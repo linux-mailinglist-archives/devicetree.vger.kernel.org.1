@@ -1,48 +1,83 @@
-Return-Path: <devicetree+bounces-239691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8251DC686D9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:08:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ECF9C686EC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:09:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8D244343DFC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:06:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 531874E3201
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD74A3016FB;
-	Tue, 18 Nov 2025 09:06:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6893016FB;
+	Tue, 18 Nov 2025 09:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RJYfUWwv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pGVI7TSr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C07207A3A;
-	Tue, 18 Nov 2025 09:06:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F782F656A
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 09:08:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763456790; cv=none; b=mNswsja0BBTL7oKkORcRMcO0PH5SEAB27fLmXa1aH2lwzBfnjwlI/BXEinVEpZg6/AJ60iY95svtVYDU7l6cYtJg/To5nXO0mZqkPVf0qPNUgYbfH/ajSsFl5ymmVs/OFYyVmzNVpx3ySjyzZ8B+gGZLoxI52ETw5mUWfxZrcN4=
+	t=1763456895; cv=none; b=cZMNCqYfV29qNMXYjUCIHUN3lZ5Ai/ES8NzVEFmVQ+HQpZldPbiAEuLNkxJSB7IvfF/dBZLz492ICCmw6Olh4njpxr2z3lHH/aRVes7GMpAkeFpB17TpNFyjvWyFpKPXLoLUgMBjYf+RQ56NQVrHR7xi71am4ih6Rj/BLFX8J5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763456790; c=relaxed/simple;
-	bh=DHQzKWh6oHuXIueNb9XjYUNjZqvdGxJwdXVrZB2F6Xk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V5vZnagEOYtPx7yDhqbiCATJYylesjIpAnP1M9THr2W6kjTmUeLg/szSi3QJJA251YT6tPRhLGNuh01mBVvyNYtCTjvF7EKvdzEx9O0uzn648bDgH3o3Io2nx0iIrPHfHVsLOK0gJMdvfrtkIwQXZrMc2d+Jd8ufviWyvoFwZ48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RJYfUWwv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDCA2C19422;
-	Tue, 18 Nov 2025 09:06:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763456789;
-	bh=DHQzKWh6oHuXIueNb9XjYUNjZqvdGxJwdXVrZB2F6Xk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RJYfUWwvFbi8xVUFLdbZ8UDqB2hSifG53imgfOb6kTFoCAGB4qUXtHmIfFJdv7DVQ
-	 mvr7i/cYdT3h+z7UB3urpj5wvfIkUbfJpOOZMNqDnF6N945hzg8qcKLFeqFGzoPuOW
-	 9mV4J5oBm/qO8keoKIpko7MlfjZRAxtskNFOG7i77JNjCnvN0CKhqeSMOiSD/rPg6d
-	 YMd1gvjpr5yPYp2OlUnkT3hlRI724SpSsbZMHKPJDb6wMzrLqCCW2HH802qya/WR/X
-	 /VUhW1YfdY/0Ti3Lv7TdogOrBk3Gpf/UOFRm01d5z8tyBrrDzWxpPQPC8jnutCrbst
-	 ijCBYajIIhtZg==
-Message-ID: <e4bd468f-6d66-4658-b69f-0dacf006d1a8@kernel.org>
-Date: Tue, 18 Nov 2025 10:06:23 +0100
+	s=arc-20240116; t=1763456895; c=relaxed/simple;
+	bh=kFlNIN+gR01G+eV5ulgKp1aOfF3zt2Lu4Fx+jo8b8dU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=G/eFx88WMhspqenGUL2P+yLmv1pdEiKGu4kPFOGEQWpBxcHvBHeOpSgfBR7IsIytI83S+gOFFYXWQRtxVM67AQKC7w379sD/AVBw0rOFLP8g/Es7qsCKasrmTriOKyi+yF+VnmAI3cjqcWJ8kIX+rnf7EGRH9/rLrWSN85YnZy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pGVI7TSr; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4779cb0a33fso31623405e9.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 01:08:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763456892; x=1764061692; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c8ojmwZvyIUVTGQLirWUPhk95m2/9IA4Sz9hLtWscRI=;
+        b=pGVI7TSriLTZypdkRLa+3b9rzWRFjtNVxHi5N/99+r3X1j8ismzsScjBGcc92QF+H+
+         iuGqKoRNsoVVZk9Ujkd45B3OND2cd2Dnnyvbil9MkDKO/PtqRox5787YCy5Bb3f1xBbJ
+         XXEeJegzbMQ/TEYX42hzQt6cQXKFDa2R5B9FsFEYyru3SRiWUiF4Iw+nOhn0AN4GL2aw
+         63w5X0eGLB88gY/mh0V+YZPpzVzMV4hw3owSTVCWTi1tqgnFZ2m9gRXJdb50qO8Aw46o
+         u5v2osd/Gve1Z9BVIO/PRRtsbL0sCjmmRBKekMRZbUz2N9O5dmiCCptLUnZoeGZQLSGc
+         n59A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763456892; x=1764061692;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=c8ojmwZvyIUVTGQLirWUPhk95m2/9IA4Sz9hLtWscRI=;
+        b=SP2xNkwexqGXReo/DH2LcEu3WCs8eR/VVO9ttoFv7EnlHazyMS2Dl4B72NlS1yTuU/
+         z9H3OJGHdbJOTbJWuKmSgcHwSGBSg0BtgCk3JUaXSZvQMipXe+9dnGR49eS/9vU6HDZl
+         Ca6bnvgA4DE2if8OYqsi8xIulWf9g5ZyOWQVewk/vSiUGZbScB7RqZ5gKPaohg4BQ8S5
+         JRyl9FSKNqCs3r14HkkM1Fb6ONWUjmxvxR//6VPxisWfz14uT8/rC/3K4aJ6RV5SD1IL
+         lGTunIRevWHcpOruBFRhoeW11DuoKkum2YGN8AGyx18qXV0FhbgdbZhdchdrg13KOEP7
+         uKnw==
+X-Forwarded-Encrypted: i=1; AJvYcCXonlrkG7DjUJjloPt97no8HKFJ1Y2Ui5lOna1iSS0e8pm+pqOKDhBj1Y7sfCbIPxwJadwNxWRE04G3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyk+IGfLLcIX1y40rU1K8BWBZttrLgQHRdXolFUIBWPkNwZT0vw
+	u6HJ0MtpON9PMdHllJ4qHW2RqbXHgP1064+SeOk7VAy0/tqAnNUjw0McSFzQ14BtbFk=
+X-Gm-Gg: ASbGnctQhGVfy4w3Vt5pAVtIvfIBjHkDVe8dT/kN9M3l30H7kswBdugget0oBfd+46k
+	Ct8TH7ELjHe6FGt1EIyLaz4mqNJgrozZ7mUn7Ry2mJF44ylCcO3pke039PauFqqAt5iuYUk1SFL
+	S7y3DPsVtcszEXJHLoSNUWNvQgNcjtocqjFlwknAmFk0DNznaGP0iqos8Ai7Avp9rFLALZVnzwO
+	PaBrigBcd3yru9rkSo5Gy7Ng4NroCGQ70HVLx69ZscYJrlLD1sYjw6qYFX4Xn+buxTdMZJrsRLC
+	tlPBuqS/I5j5A7w3hhbnzlMpnj/zwt/YSInVoKofdl5fd5n2oW3rSyzuVLP2hQHR8/75XGFjsRS
+	6FQN6ikdM5TmjheeDSDR2gDEPH3NzBQ7GhMEwWllz3qJGeFK4ZXe+a4piQDST7wfIABDe7ZO1XZ
+	ZRczBFQNlaSv/GfoAr0G0wM8a2pKwsKuok2In0Hz8+ocsmesGTqc/c6eOHXebPaJ4=
+X-Google-Smtp-Source: AGHT+IG6gLgCwxhtQm3Z8HznXw2PJ389guvo2P4OhOD1SCc8LUBuHyTff2qepHeal9ABmF52l4Ec4Q==
+X-Received: by 2002:a05:600c:3e8e:b0:477:abea:901c with SMTP id 5b1f17b1804b1-477abea924dmr8401245e9.11.1763456891500;
+        Tue, 18 Nov 2025 01:08:11 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:3d9:2080:366e:5264:fffe:1c49? ([2a01:e0a:3d9:2080:366e:5264:fffe:1c49])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f2084dsm31563471f8f.42.2025.11.18.01.08.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Nov 2025 01:08:11 -0800 (PST)
+Message-ID: <7ca46d0d-d235-421e-95cb-901efb856b0c@linaro.org>
+Date: Tue, 18 Nov 2025 10:08:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,161 +85,200 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 13/13] serial: sh-sci: Add support for RZ/G3E RSCI SCI
-To: Biju <biju.das.au@gmail.com>,
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v9 06/10] phy: rockchip: phy-rockchip-typec: Add DRM AUX
+ bridge
+To: Chaoyi Chen <kernel@airkyi.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20251114105201.107406-1-biju.das.jz@bp.renesas.com>
- <20251114105201.107406-14-biju.das.jz@bp.renesas.com>
-Content-Language: en-US
-From: Jiri Slaby <jirislaby@kernel.org>
-Autocrypt: addr=jirislaby@kernel.org; keydata=
- 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
-In-Reply-To: <20251114105201.107406-14-biju.das.jz@bp.renesas.com>
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Peter Chen <hzpeterchen@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+References: <20251111105040.94-1-kernel@airkyi.com>
+ <20251111105040.94-7-kernel@airkyi.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20251111105040.94-7-kernel@airkyi.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 14. 11. 25, 11:51, Biju wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
+On 11/11/25 11:50, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 > 
-> Add support for RZ/G3E RSCI SCI(a.k.a non FIFO mode).
-
-"a.k.a. non-FIFO"
-
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-...
-> @@ -496,34 +521,40 @@ static void rsci_receive_chars(struct uart_port *port)
->   		if (count == 0)
->   			break;
+> Using the DRM_AUX_BRIDGE helper to create the transparent DRM bridge
+> device.
+> 
+> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> ---
+> 
+> (no changes since v7)
+> 
+> Changes in v6:
+> - Fix depend in Kconfig.
+> 
+>   drivers/phy/rockchip/Kconfig              |  2 +
+>   drivers/phy/rockchip/phy-rockchip-typec.c | 52 +++++++++++++++++++++++
+>   2 files changed, 54 insertions(+)
+> 
+> diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
+> index db4adc7c53da..bcb5476222fc 100644
+> --- a/drivers/phy/rockchip/Kconfig
+> +++ b/drivers/phy/rockchip/Kconfig
+> @@ -120,6 +120,8 @@ config PHY_ROCKCHIP_TYPEC
+>   	tristate "Rockchip TYPEC PHY Driver"
+>   	depends on OF && (ARCH_ROCKCHIP || COMPILE_TEST)
+>   	depends on TYPEC || TYPEC=n
+> +	depends on DRM || DRM=n
+> +	select DRM_AUX_BRIDGE if DRM_BRIDGE
+>   	select EXTCON
+>   	select GENERIC_PHY
+>   	select RESET_CONTROLLER
+> diff --git a/drivers/phy/rockchip/phy-rockchip-typec.c b/drivers/phy/rockchip/phy-rockchip-typec.c
+> index 1f5b4142cbe4..748a6eb8ad95 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-typec.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-typec.c
+> @@ -36,6 +36,7 @@
+>    * orientation, false is normal orientation.
+>    */
 >   
-> -		for (i = 0; i < count; i++) {
-> -			char c;
-> -
-> -			rdat = rsci_serial_in(port, RDR);
-> -			/* 9-bits data is not supported yet */
-> -			c = rdat & RDR_RDAT_MSK;
-> -
-> -			if (uart_handle_sysrq_char(port, c)) {
-> -				count--;
-> -				i--;
-> -				continue;
-> -			}
-> -
-> -			/*
-> -			 * Store data and status.
-> -			 * Non FIFO mode is not supported
-> -			 */
-> -			if (rdat & RDR_FFER) {
-> -				flag = TTY_FRAME;
-> -				port->icount.frame++;
-> -			} else if (rdat & RDR_FPER) {
-> -				flag = TTY_PARITY;
-> -				port->icount.parity++;
-> -			} else {
-> -				flag = TTY_NORMAL;
-> +		if (s->type == RSCI_PORT_SCI) {
-> +			char c = rsci_serial_in(port, RDR) & RDR_RDAT_MSK;
+> +#include <linux/auxiliary_bus.h>
+>   #include <linux/clk.h>
+>   #include <linux/clk-provider.h>
+>   #include <linux/delay.h>
+> @@ -56,6 +57,7 @@
+>   #include <linux/phy/phy.h>
+>   #include <linux/usb/typec_dp.h>
+>   #include <linux/usb/typec_mux.h>
+> +#include <drm/bridge/aux-bridge.h>
+>   
+>   #define CMN_SSM_BANDGAP			(0x21 << 2)
+>   #define CMN_SSM_BIAS			(0x22 << 2)
+> @@ -415,6 +417,7 @@ struct rockchip_usb3phy_port_cfg {
+>   
+>   struct rockchip_typec_phy {
+>   	struct device *dev;
+> +	struct auxiliary_device dp_port_dev;
+>   	void __iomem *base;
+>   	struct extcon_dev *extcon;
+>   	struct typec_mux_dev *mux;
+> @@ -1299,6 +1302,51 @@ static void tcphy_typec_mux_unregister(void *data)
+>   	typec_mux_unregister(tcphy->mux);
+>   }
+>   
+> +static void tcphy_dp_port_dev_release(struct device *dev)
+> +{
+> +	struct auxiliary_device *adev = to_auxiliary_dev(dev);
 > +
-> +			if (uart_handle_sysrq_char(port, c))
-> +				count = 0;
-> +			else
-> +				tty_insert_flip_char(tport, c, TTY_NORMAL);
-> +		} else {
-> +			for (i = 0; i < count; i++) {
-> +				char c;
+> +	of_node_put(adev->dev.of_node);
+> +}
 > +
-> +				rdat = rsci_serial_in(port, RDR);
-> +				/* 9-bits data is not supported yet */
-> +				c = rdat & RDR_RDAT_MSK;
+> +static void tcphy_dp_port_unregister_adev(void *_adev)
+> +{
+> +	struct auxiliary_device *adev = _adev;
 > +
-> +				if (uart_handle_sysrq_char(port, c)) {
-> +					count--;
-> +					i--;
-> +					continue;
-> +				}
+> +	auxiliary_device_delete(adev);
+> +	auxiliary_device_uninit(adev);
+> +}
 > +
-> +				/* Store data and status */
-> +				if (rdat & RDR_FFER) {
-> +					flag = TTY_FRAME;
-> +					port->icount.frame++;
-> +				} else if (rdat & RDR_FPER) {
-> +					flag = TTY_PARITY;
-> +					port->icount.parity++;
-> +				} else {
-> +					flag = TTY_NORMAL;
-> +				}
+> +static int tcphy_aux_bridge_register(struct rockchip_typec_phy *tcphy, struct device_node *np)
+> +{
+> +	struct auxiliary_device *adev = &tcphy->dp_port_dev;
+> +	int ret;
 > +
-> +				tty_insert_flip_char(tport, c, flag);
->   			}
+> +	adev->name = "dp_port";
+> +	adev->dev.parent = tcphy->dev;
+> +	adev->dev.of_node = of_node_get(np);
+> +	adev->dev.release = tcphy_dp_port_dev_release;
+> +
+> +	ret = auxiliary_device_init(adev);
+> +
 
-Instead of this shuffle and introducing the 'if', can't you just set 
-count to 1 and introduce a mask like:
+Drop this empty line.
 
-if (SCI) {
-   count = 1;
-   read_mask = RDR_RDAT_MSK;
-} else  {
-   read_mask = ~0U;
-}
+> +	if (ret) {
+> +		of_node_put(adev->dev.of_node);
+> +		return ret;
+> +	}
+> +
+> +	ret = auxiliary_device_add(adev);
+> +	if (ret) {
+> +		auxiliary_device_uninit(adev);
+> +		return ret;
+> +	}
+> +
+> +	devm_add_action_or_reset(tcphy->dev, tcphy_dp_port_unregister_adev, adev);
+> +
+> +	ret = drm_aux_bridge_register(&adev->dev);
 
-for (...) {
-   ...
-   rdat = rsci_serial_in(port, RDR) & read_mask;
-}
-and that's it?
+Adding an aux device to an aux device looks quite overengineered to me !
 
-thanks,
--- 
-js
-suse labs
+If it's a matter of using the proper of_node, you may instead create a separate
+drm_aux_bridge_register() like drm_aux_bridge_register_from_node() instead.
+
+Neil
+
+> +
+> +	return 0;
+> +}
+> +
+>   static int tcphy_setup_typec_mux(struct rockchip_typec_phy *tcphy)
+>   {
+>   	struct typec_mux_desc mux_desc = {};
+> @@ -1312,6 +1360,10 @@ static int tcphy_setup_typec_mux(struct rockchip_typec_phy *tcphy)
+>   	if (!of_property_read_bool(np, "mode-switch"))
+>   		goto put_np;
+>   
+> +	ret = tcphy_aux_bridge_register(tcphy, np);
+> +	if (ret)
+> +		goto put_np;
+> +
+>   	mux_desc.drvdata = tcphy;
+>   	mux_desc.fwnode = device_get_named_child_node(tcphy->dev, "dp-port");
+>   	mux_desc.set = tcphy_typec_mux_set;
+
 
