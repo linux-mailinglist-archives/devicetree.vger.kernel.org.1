@@ -1,134 +1,117 @@
-Return-Path: <devicetree+bounces-240004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F66C6BEC3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 00:01:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C161BC6BF11
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 00:06:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 70A4535DCDB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 23:01:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 7F9C32C36A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 23:06:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3852E2264C9;
-	Tue, 18 Nov 2025 23:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2E2930F929;
+	Tue, 18 Nov 2025 23:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d6YyfYQG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UfvYck1u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D328370304;
-	Tue, 18 Nov 2025 23:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2322DC79F
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 23:06:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763506901; cv=none; b=csrg/bThfmkJq+Z4P/Os+rcWMuNV15vXq2OISiWGL50196alGZrpKpuAvQ0fYDHcZfTF3JLUTwqaBiPUobRSKZtxQphen5QOG2c+AYTpY34rcK5JX/hQSbyhN1mh61mMMFpD4lcC/DE1Kua1JZlJNR2HqOixS3AxUciALelf+Bo=
+	t=1763507201; cv=none; b=p93ufKd30adRLFRfX4rLfvIxGbbBPOv640PzYGN5WqAjKRl79yCGhL7OzAo+RgJAhPJ2fLJvOs2frmBPaOo3NXvy4iLmH4UlgSL8KRWFbwMYFqg80ZUB3mjHbZrxu1EkOCPTP0AGgtNSWT5YnzRQOInieMVGEYQSRRx9h7eABw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763506901; c=relaxed/simple;
-	bh=S9XI8UppMlcHCp0zUVycM2ruN5zrzwfAKCsCCcTN/9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JRoqEeGNosbOPfI3AXX7mxGDP6I6Cc/bzRa5dKb4+R3Wqr/20/Uop3n/GIMBYhbe5ikkQEz3onAA5/37J2fxYlE+Xw+SD6XjT73Scn3sThZ+uiFekTcCqmsUDEdeG/i+Qgdsz7N2AeM9WUgb6qByPt6hvbig6QYll5MAjVAr/k0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d6YyfYQG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92107C116D0;
-	Tue, 18 Nov 2025 23:01:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763506900;
-	bh=S9XI8UppMlcHCp0zUVycM2ruN5zrzwfAKCsCCcTN/9w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d6YyfYQGO/aXeRhM8Gjq98E47hNErrhHOd7HFhi71zqqTnwvi/0oxI03sKqPVKhG4
-	 qdQhbqlWkbEQZHwCKpjyVJ6yVw11Qahgn+sEOKXkFhyHB89nvTTvaWebinccxQJwpp
-	 fU9AyouOOaqUDTYg0cy49r403oY3QYQQI2p23jEb5UD0ahls8buTK+kDEeTEL1AcYn
-	 Zfc08buc7y82JIM7irPvc5QSOgCdEqzAZY28SlyheBUx2EpH5mAwYpiYyWiR3RgVj5
-	 buT0ROKUKWFck3KRA+mV/pLu0RsI4c3rum14ewd0je2zShSWPLm+iSPXcqU/0/P/C+
-	 TiTJ/PZnGFMGA==
-Date: Tue, 18 Nov 2025 23:01:33 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
-	Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mahesh Rao <mahesh.rao@altera.com>,
-	Ho Yin <adrian.ho.yin.ng@altera.com>,
-	Niravkumar L Rabara <nirav.rabara@altera.com>,
-	linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: fpga: stratix10: add support for
- Agilex5
-Message-ID: <20251118-saint-flashbulb-995844e01ec1@spud>
-References: <cover.1763427266.git.khairul.anuar.romli@altera.com>
- <79a58f075488733cced8eadd566b0b740a59094f.1763427266.git.khairul.anuar.romli@altera.com>
- <20251118-crescent-fritter-9411297ed6eb@spud>
- <a4d58001-4914-4ce2-8116-c07451acd566@kernel.org>
+	s=arc-20240116; t=1763507201; c=relaxed/simple;
+	bh=njsPLW5+sRAcBfyQAXjbkM6oMwgJ0E/jrmQ49WJzmtY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q2IQOh3Y6RPNMjjyy9RsC2dOnLLn4X58ftUliwKTmkDXgn5DJZhro7T9zwGRwv+Jyeg8UwLc6YlJrdXDesEWY7eOymiX25wcwcGpAETgll4KSJYljQW3XhGODDi6IYmwmBqse+sCigQhV7tOH7T8RODizEbudEwK9bPnME+UZb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UfvYck1u; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-591c9934e0cso8231075e87.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 15:06:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763507197; x=1764111997; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=njsPLW5+sRAcBfyQAXjbkM6oMwgJ0E/jrmQ49WJzmtY=;
+        b=UfvYck1uNz8mqIo13JFGwzFX9VIkjKIEo9RmRV4QPX5MnAX+9ywoIUDmVoPkCRVIiG
+         3fxyN53ckBdXcvwPWw89T7UAoRuOIys+10yKO3sA++4R44slzYgRUir+QbRn2769mnk4
+         UnUwnfec1xgR4Xn6p22g6kaT7AUAac4rXo6Lmu/xf/BLJjfEXH5eFSFC9uHxVF9+UTu/
+         HGU5ktezAOQtZ36HJxwuWEjhQul4Gcn10kzddMrXMmazzT9msgcv/l0C71FGD5mXbrDK
+         x9lKdHGi+prGGXgWm8LMMM/Td90mu1ZLW+L7bVuf4z9Kl5kYjL1Q39LHBi+TKA/57TK+
+         TdaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763507197; x=1764111997;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=njsPLW5+sRAcBfyQAXjbkM6oMwgJ0E/jrmQ49WJzmtY=;
+        b=dLUqISZ4DFHwhQx0LX+uLoVJ1UMC1pQ9BdagBlRPDEUVJCWFB4f6eD4YlHw/LTYftV
+         dx5bRJ6XzOL5m+3f44FVtuldtDdmya+cBk3WG/hNfn9K8ZNHThE4AU4de/RGroe9w2nE
+         2SvAOxRjbbBp0FJuKo9KxTKwLK3vK+KK9pEIeftN7H20skTh6J7pILew4eQmArI1C9cI
+         OC4XzVMcgN4KKJTxXRTSC26yioVyVlDmJ1oTCncZZWDdD4/5ZsxtbCUUWKKG1m1AqQEf
+         wXGvnPsnvakzCZtin2MNv2CPtSyImU6sRmyX2n9R5dlb9gKXpq264Nsu0PqYsqUZ8dza
+         0aIg==
+X-Forwarded-Encrypted: i=1; AJvYcCVaS+G4ZB1haDqN8GVfqPVQ1zm10s3hgt4vSIE1TgzDD+AAaESWteL8cWpjl0M1gtIel6oBO9hXYgTu@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQeCsTp31St/Hj3L4dw3KwoINAIQaNjsBUC0/wlLFrvxTVvNSk
+	wxwYQGw9Xkq1rOH3ubDeLORjPbIhDEVBF+Q36zFxsZ89yz3rFYP1JWo8cE4c6xkN2wkxjAbA2ZI
+	wZpCSKqSn2sVKXBtr+LpJdLug6KwaFOd25xGypd8tRA==
+X-Gm-Gg: ASbGncvKyIgd9lI9U5O/MuVP12t1+cUG+EVrmUWZFk5UilIwotajquom5y32GbUP7Rh
+	SPBpd14rrSbNQv5LpwATwCkKRXa7gTOCOpZQMIeLIMTJ5kynZUR19YIa7Fap3UykpangDZKlO0k
+	f8RWXsfDPIjY13ZQT5nqjX/wAFJqkZs7K+njr7zhwthCBZ1T3GLXH+FFt23ho9qJVQRrrhLkBw5
+	LL9HUgf+RukrowYYTplLwg75dLOXgyuvQxVWXaOi3ii34ggW3yzfic6KiIFxgNHeHzRvqGcQMxq
+	VuwS8w==
+X-Google-Smtp-Source: AGHT+IHgvWgHNR1n7HikNfbECM3QMJGErQNkGV7PI3jzhreQtbR/8j6SX6DzkJAmHt+W6Slk62x/gQ3zMskh1FFfiGU=
+X-Received: by 2002:ac2:4c4b:0:b0:592:fe0f:d9e with SMTP id
+ 2adb3069b0e04-5958419866amr5810310e87.7.1763507196990; Tue, 18 Nov 2025
+ 15:06:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="AocIK6Ay3niFbFPG"
-Content-Disposition: inline
-In-Reply-To: <a4d58001-4914-4ce2-8116-c07451acd566@kernel.org>
-
-
---AocIK6Ay3niFbFPG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <cover.1763022807.git.mazziesaccount@gmail.com> <ec2cb44d9d00f5edaed2fbe17fd9ddbed914ff37.1763022807.git.mazziesaccount@gmail.com>
+In-Reply-To: <ec2cb44d9d00f5edaed2fbe17fd9ddbed914ff37.1763022807.git.mazziesaccount@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 19 Nov 2025 00:06:25 +0100
+X-Gm-Features: AWmQ_bnx0kL6TQjG1WBAuJJp0XRB0JYUZxqe_CZgABTVpH_anNv9ed5mp--DLwo
+Message-ID: <CACRpkdaa_DuXbLYqOV3aOSGywz1wSPc3-7SN8FtwTdVza6-omg@mail.gmail.com>
+Subject: Re: [PATCH v4 05/16] dt-bindings: mfd: ROHM BD72720
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 18, 2025 at 08:28:46PM +0100, Krzysztof Kozlowski wrote:
-> On 18/11/2025 20:07, Conor Dooley wrote:
-> > On Tue, Nov 18, 2025 at 09:11:42AM +0800, Khairul Anuar Romli wrote:
-> >> Agilex5 introduces changes in how reserved memory is mapped and access=
-ed
-> >> compared to previous SoC generations. Agilex5 compatible allows strati=
-x10-
-> >> FPGA manager driver to handle these changes.
-> >>
-> >> Fallback is added for driver probe and init that rely on matching of t=
-able
-> >> and DT node.
-> >>
-> >> Reviewed-by: Xu Yilun <yilun.xu@intel.com>
-> >> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> >> ---
-> >> Changes in v4:
-> >> 	- Remove redundant "items - enum" as suggested in v3.
-> >> 	- Simplify compatible property to use contains instead of oneOf.
-> >> 	- Validate fallback and non-fallback DT. Also validate binding with
-> >>           dt_binding_check.
-> >=20
-> > What are you doing?? You've been told several times exactly what to do
-> > and yet you keep conjuring up completely random different things.
-> > Using contains instead of the oneOf construct that was being done before
-> > is *not* a simplification, it is functionally different.
-> >=20
-> > NAK. Go do what you were told to do.
->=20
-> There is no single file with that syntax, so I really do not understand
-> why completely different syntax is reasonable for the author :/
+On Thu, Nov 13, 2025 at 9:52=E2=80=AFAM Matti Vaittinen
+<matti.vaittinen@linux.dev> wrote:
 
-There are actually a handful of bindings that do it (14). Some are
-probably wrong, others are the generic portions of snps etc IP schemas.
-Run this if you wanna quickly see what's what:
+> From: Matti Vaittinen <mazziesaccount@gmail.com>
+>
+> The ROHM BD72720 is a power management IC integrating regulators, GPIOs,
+> charger, LEDs, RTC and a clock gate.
+>
+> Add dt-binding doc for ROHM BD72720.
+>
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-rg --multiline "^properties:\n.*compatible:\n.*contains" --context=3D5
+This is looking good!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-I'd say that about half of them should be enums or const.
-
---AocIK6Ay3niFbFPG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaRz6zQAKCRB4tDGHoIJi
-0s8+AP9W0Vq1+uKIC/CAjJUvP7YxSjdE3DC7HhvMQHZ12TEDmwEA266l8vP8Giin
-3eTWsXljj3iWpEK6NlZ+rOXZnE57qgc=
-=ZUpm
------END PGP SIGNATURE-----
-
---AocIK6Ay3niFbFPG--
+Yours,
+Linus Walleij
 
