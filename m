@@ -1,137 +1,154 @@
-Return-Path: <devicetree+bounces-239849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF0EC69E79
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:21:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B53F1C69F7C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:30:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id 05F582B008
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:21:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id BC43C2DD42
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E17235A95B;
-	Tue, 18 Nov 2025 14:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8563B35CB7D;
+	Tue, 18 Nov 2025 14:22:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FN7bx3RC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lco3dbuJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B21BA23BCFF;
-	Tue, 18 Nov 2025 14:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D6335B156;
+	Tue, 18 Nov 2025 14:22:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763475647; cv=none; b=iye0lS/KZWCZzQEQY95EseXuk+CW+AI4BbSGIXUzhM8owzO0IaiwG601PvUPoSegwXDGQ2kr243dzJzO6jSwu/WoNZxrCGcm4d4l1FFrSgESH/WjWx33pUT75ic2SttTqgiur5G7tvjYnLOSTVh/Ig1ofJZp7ZqroNfuLhwVy5Y=
+	t=1763475745; cv=none; b=R0MR/JP764tf4jq4UmeDjN+5n9lfHJcOEibpFNySLgmpfLH+zN9NGq9Eur10CRPqLtLTyDHAZwZb4f+j1i/CRuo4n73OS/ceF9FiMrZfMAVs+iLj8ZhR0onfvZfdz1tOfuCR/pCHlbwo1DSyBp148LrlcWehAeTiZh/CCyOtyfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763475647; c=relaxed/simple;
-	bh=mJkAfe+a2xUbKCMfjufIaZ3xUygcsmfN3dcDG2C5oCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vGHtdt9RYf/3zTq3CmJOeGamD41CcE/+yNAfFVCn7a7dJnRTEVkBo9Q3TN2e+JLUgtidA2+ZcIorb0jqZAm1TSJyxNPH8KmWmlrP/hfP/qpMz4RuNxydW6+tc04Wdtq1M+LckZHythkoWib1cqV7nk2cPm4dwIqSJkJ2wScxuUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FN7bx3RC; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763475645; x=1795011645;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mJkAfe+a2xUbKCMfjufIaZ3xUygcsmfN3dcDG2C5oCE=;
-  b=FN7bx3RCL9D317cGU4OmdyQZMDFSV8qXGLiPZzpCRA3SwwLKtnVZP00R
-   IP8Kr44FddiTQ8agmpr4Ww+w4+i5fDYAfdKslxt4jdfOC5B6RzmLVYPbS
-   Yw+u6UnHV2LXcLn6+y0684fcogjgs3TuzIZjTDA1PNqh4ZKVTdb2agMvc
-   SSemXf9zpQvKt43ypUR5f/3dFfzpr3iI9sZVYqDWKPrudCik89tpa/tLD
-   5Jn+WwCzVLcx4/V11NN6U7YYB2G5ocBIwdSP6Nl3geEV/d3dZqkba2slJ
-   eZSopoqjrq553ARJCkEca8MOtOoMvh/HMyE7LVUO1Rgm40TOXlBDj5QkP
-   A==;
-X-CSE-ConnectionGUID: 4PchgOGATnaG/+9SbIenFw==
-X-CSE-MsgGUID: BaJlcxAmQjKIT9TFpHRRpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="83124912"
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; 
-   d="scan'208";a="83124912"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2025 06:20:44 -0800
-X-CSE-ConnectionGUID: TA1a3Ao/TjSsn8nADB4aEQ==
-X-CSE-MsgGUID: E45H2IXkQl20KjNi/6Dq9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,314,1754982000"; 
-   d="scan'208";a="190430001"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by fmviesa007.fm.intel.com with ESMTP; 18 Nov 2025 06:20:42 -0800
-Received: by black.igk.intel.com (Postfix, from userid 1003)
-	id 353F898; Tue, 18 Nov 2025 15:20:41 +0100 (CET)
-Date: Tue, 18 Nov 2025 15:20:41 +0100
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-	linux-iio@vger.kernel.org, s32@nxp.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	chester62515@gmail.com, mbrugger@suse.com,
-	ghennadi.procopciuc@oss.nxp.com
-Subject: Re: [PATCH v5 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-Message-ID: <aRyAuTZEi_xHkn9G@black.igk.intel.com>
-References: <20251017164238.1908585-1-daniel.lezcano@linaro.org>
- <20251017164238.1908585-3-daniel.lezcano@linaro.org>
- <aPP0uVZu1T7tTQGo@ashevche-desk.local>
- <050f96d5-e60c-4b33-b6d2-24fb3925e378@linaro.org>
- <aQMvqHGN7r6babgw@smile.fi.intel.com>
- <c4c14051-2ba2-4d80-a22d-4deb3709f727@linaro.org>
- <aQSvZT73NBWZFVfk@smile.fi.intel.com>
- <d783184f-6598-479a-99f3-e142e83bbb81@linaro.org>
+	s=arc-20240116; t=1763475745; c=relaxed/simple;
+	bh=aEGw6JWHkR6aN0sc/5v4DQxKC8iSO5HJJVmjkbf4TIc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N+5tHtUHOfDV1QQ2CpixKFqoF2+TF2B+C76YRuOIbBXPU/N6SgCWBzV8zgcg9Vmf6eSRmpyfSexLOqNL9SfZD06wonNb0QBrEVhxCifzbmKBJ7vDtH3w1SfzF5gwav+vgNg132xRLnf+cTdrG5Rj1O3A+4FXQ1CIJYuJsMrAIUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lco3dbuJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE979C16AAE;
+	Tue, 18 Nov 2025 14:22:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763475744;
+	bh=aEGw6JWHkR6aN0sc/5v4DQxKC8iSO5HJJVmjkbf4TIc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lco3dbuJiPAAKrOqazMKIKz4UnIoHPOtuAnJODHUM/nIPL48vJBoGH6W0Okr/IaiM
+	 Mo12us2UlKySxMVveAXoueQWfaioZJQ5hluxGJvZCHYEdM1q6kaCdn+PUZkpecba1K
+	 RPXQrwq5CS8y+A6+Dfctv6aYWlH7e6zHK0CA6OJ7zqGFZSxDmLnx1mJ9unKCNInlBP
+	 4Lkw8Eni0Sa9K5ABgOZSKAMLT+/0D/o8zKwsjUu4wEgOGPoJ4dtPMFfrxNoG/FTF8a
+	 /FBdS+mCmB26zg18yjkX2Wzqur7c3L7bDPgsfbmbm9NTzYy++As68BzJpKh9ugPSJB
+	 cOo72/WBzmftQ==
+Message-ID: <e6c73b8a-6a73-488e-8520-1df30ec1006b@kernel.org>
+Date: Tue, 18 Nov 2025 15:22:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d783184f-6598-479a-99f3-e142e83bbb81@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: tegra: pmc: Update aotag as an optional
+ aperture
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, Prathamesh Shete <pshete@nvidia.com>
+References: <20251114161711.2655355-1-jonathanh@nvidia.com>
+ <20251115-accurate-fair-salmon-64eca9@kuoka>
+ <77b9e0cd-2597-4d52-a352-dd029ccb6a42@nvidia.com>
+ <e39fcaeb-b516-41f1-89a4-fa3328c07deb@kernel.org>
+ <9e88368b-2bcd-4f38-abcb-00b8ff6845ea@nvidia.com>
+ <d10995d5-1e32-4d51-b748-e77e7f103a3a@kernel.org>
+ <d7b5fa60-c6ec-45f2-8bc3-ba79dccf6c5d@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <d7b5fa60-c6ec-45f2-8bc3-ba79dccf6c5d@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Nov 07, 2025 at 12:36:14PM +0100, Daniel Lezcano wrote:
-> On 10/31/25 13:45, Andy Shevchenko wrote:
-> > On Fri, Oct 31, 2025 at 12:32:03PM +0100, Daniel Lezcano wrote:
-> > > On 10/30/25 10:28, Andy Shevchenko wrote:
-> > > > On Thu, Oct 30, 2025 at 09:27:21AM +0100, Daniel Lezcano wrote:
-> > > > > On 10/18/25 22:12, Andy Shevchenko wrote:
-> > > > > > On Fri, Oct 17, 2025 at 06:42:38PM +0200, Daniel Lezcano wrote:
-
-[ ... ]
-
-> > > > > > > +	dmaengine_tx_status(info->dma_chan, info->cookie, &state);
-> > > > > > 
-> > > > > > No return value check?
-> > > > > 
-> > > > > The return value is not necessary here because the caller of the callback
-> > > > > will check with dma_submit_error() in case of error which covers the
-> > > > > DMA_ERROR case and the other cases are not useful because the residue is
-> > > > > taken into account right after.
-> > > > 
-> > > > In some cases it might return DMA_PAUSE (and actually this is the correct way
-> > > > to get residue, one needs to pause the channel to read it, otherwise it will
-> > > > give outdated / incorrect information).
-> > > 
-> > > But if the residue is checked in the callback routine without checking
-> > > DMA_PAUSED, the result is the same no ?
-> > 
-> > DMA in some corner cases might have already be charged for the next transfer.
-> > Do you have a synchronisation between DMA start and residue check?
-> > 
-> > I.o.w. this may work for your case, but in general it's not guaranteed. The proper
-> > read of residue is to: pause DMA --> read residue --> resume DMA.
+On 18/11/2025 15:11, Jon Hunter wrote:
 > 
-> I'll use the new callback function dma_async_tx_callback_result() which
-> should prevent that and allows to remove the spinlock at the same time
+> On 18/11/2025 13:08, Krzysztof Kozlowski wrote:
+>> On 18/11/2025 12:11, Jon Hunter wrote:
+>>>        then:
+>>>          properties:
+>>>            reg-names:
+>>> @@ -184,7 +187,7 @@ examples:
+>>>                  <0x0c370000 0x10000>,
+>>>                  <0x0c380000 0x10000>,
+>>>                  <0x0c390000 0x10000>;
+>>> -        reg-names = "pmc", "wake", "aotag", "scratch";
+>>> +        reg-names = "pmc", "wake", "scratch", "scratch";
+>>>            nvidia,invert-interrupt;
+>>>    
+>>>            sdmmc1_3v3: sdmmc1-3v3 {
+>>>
+>>>
+>>> The above did not trigger any errors even though I introduced
+>>> an error in the example. Anything I am missing?
+>>
+>> You are right - dtschema does not work here. That's a bug, because it
+>> should and we already rely on that for many other bindings. You can add
+>> "uniqueItems: true" as workaround, but we should fix it in dtschema, so
+>> you can go with my approach anyway.
+> 
+> Thanks. Looks like I can't add 'uniqueItems' to reg-names ...
+> 
+> Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml: properties:reg-names: Additional properties are not allowed ('uniqueItems' was unexpected)
+>      	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+> 
+> Would it be OK to go with your proposal for now without
+> the uniqueItems?
 
-So, AFAIU this doesn't work for you.
+Yes, that syntax should work anyway.
 
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Krzysztof
 
