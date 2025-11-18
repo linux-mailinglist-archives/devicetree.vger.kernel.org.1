@@ -1,217 +1,524 @@
-Return-Path: <devicetree+bounces-239833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D0DC69DAC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 289D3C69DC1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 15:14:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id A69B82E337
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:04:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id A91612E68D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1443570B8;
-	Tue, 18 Nov 2025 14:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F0B355807;
+	Tue, 18 Nov 2025 14:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BKiOybET";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="STujOl7r"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="djZpCd/V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3E3C33E348
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 14:04:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D57B3321C2
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 14:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763474662; cv=none; b=TpyDo4Mq8bMyxJLyCpbSXFGiXGDATNYr1XvhBbiNsbKdANWx+qbJEggyKL3AvN78z376tjlia8iu5rTasuctIVsuvIzOvD8fgGfAs/ZMV5P7lr5ips7/mlXZykxXyf1ibxD0zjwL+Iz/R6mRPpWq5pK3Q1lDDvZhC/e4+rZw0oM=
+	t=1763474705; cv=none; b=kjrpZ4JVOpgxgzEedxt4nTkIm6GwdbimcELjBS5FdQJS4ZppfaXwvGp5veL1s1MhksWERn1qfaxZDgsN0EDbEe+s5r+/rm2jvEAmYsjaboXT8kMYMGgpN9MybAx4arSlkxrkB7R6KHYVhDd7BJpzpVnZ+bVesUWF/U/XadyoyZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763474662; c=relaxed/simple;
-	bh=58W4drVpq4sxNIxo4fhPSh45zjrOjXY8sQwqZo4rI/k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=vFlk8chGutaXJmYVjlOFa8RgGYZOSCq19fzqOoROMo3pw6f3xyYoPRje0H9gRNnwv3NMYzySS53EsjheqCWEbBodaSY0dDaQjQhLKN+lZqGaxo1FLlOnyXP8BRO7mEnzJtUlAE9p/FuIyao+iSjTIypfudvXD3f3wB7DPNQuizM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BKiOybET; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=STujOl7r; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AIDvSTu384611
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 14:04:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=9lrAM7xXdDO
-	V6c49KXuyewJT40PoW+o/goEI9xR1gZs=; b=BKiOybETwFyANiPKN5iQJXtbEpU
-	RtrQm/PJLAlnViG7bu8r3JtGp9J22RpezC1cm25q/m1U00+G1RJNjj19PbRzsfAd
-	+odvljfHd0lwa6gV7AzPsnel4EWjjw4W/MRDb8Z6+fVjviDDk8I25teE6o3GH9wB
-	TV1lUpKk8Q53XCwKhiYiFOw2H2L/k4X4DWuehIGeoayBDl3GXxtaxtozCVG9mQ5R
-	xm99V7eacEnsUe2XzQ1a9LqE94t3TjyPCD47INU5u/F8seWz35eyqjNLFq/bcwOf
-	OPlbSj6D+wotNzukSUbRCsHRsURZvLn1xPtn16pEqDfn4k4lKsuX9u9iPjg==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agag8jny5-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 14:04:19 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-297d46768a0so17362635ad.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 06:04:19 -0800 (PST)
+	s=arc-20240116; t=1763474705; c=relaxed/simple;
+	bh=12ZVpvDKpnCzm5A23mgPrXdhifDhxAFrBJxrXg8WVRo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bhVu5yonLwZ+MnrJM8zCmKGKognGNd4mzlW5Z1aT8KoEp4RXcXTKZatgP8whG/c202GAb/EDAfi1dQ0YBRnerBRKDiGj/oKHss0INHk5ZFH3Z1RB+8tWH3sr1og6Hk5B6Lze/U3p22Th3eG3pNH5bLb6OV0vSvK6XRStr+Lq6B0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=djZpCd/V; arc=none smtp.client-ip=209.85.160.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-3e7ead70738so2751213fac.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 06:05:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763474659; x=1764079459; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9lrAM7xXdDOV6c49KXuyewJT40PoW+o/goEI9xR1gZs=;
-        b=STujOl7rq55Zvl40fah+Ymske/5bZf6hK0L3AC7DTHdPrzXggx+fsGnxkpzZJwBjyU
-         0IQio2cPGcw2Ew/ei/k+Q0EWuydzKyKYf+7WBN9wi2qHdDAlrBQMYcGOkWRMmU7YWNoI
-         bwbJNnAkDCWAoU4bCHwcvsFJ3ftIeTw67IhBTeOugGT1EYlrH93XGWBVA+fAQwG0+Ei4
-         +Tr1BcAacYKwpT1r0ZA+/ci+DUGBpJ6JUcQaFXvSDfoHA9NSKQR5h+lof8T727xAr+QV
-         vm/vZQ066YRUkSWCTRQGe6Ywct7QM9L4BIvY+3CS30iU4Zm8ss6iPX4HLhGpqSQV7wbR
-         zltQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763474702; x=1764079502; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WjJCwybPy4e03hpnri7xmwes6PuHOy22Wtq70rSjzcA=;
+        b=djZpCd/VBIAAKk0ZWa9sRGDpHqYj4ndwHbaGhBwt/Uwew9b/2sHbFWmTPeCpV56E9e
+         cQL5suRV+YutOPKZ7k1zMXnZpgEwIe4O9YVmonN2SY3fH6Ao9w+8Q978zLVE1wi18Rhe
+         XfN+ZTCyHcoHKl+4bFxPhTKuthIo72Cxhpyaq0ws/+bJryLy0iqcEieqazP3kQCv8yWO
+         3+9ChoVi0kfTdjEziqZOHqt+0U2iqA7FN1AtB0NPTqVNKPkJI8Qp32dusxqfAH4jFCW5
+         Ik/jc6ms11egWSeIpk4LmToiZxveiwYhmPB+0OCjoK+2e8Ost3KvhX1h8LXnkMZA+Gm7
+         IPmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763474659; x=1764079459;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=9lrAM7xXdDOV6c49KXuyewJT40PoW+o/goEI9xR1gZs=;
-        b=J684k1F/y080NtkiRchInNR3kK6jiUyqQvlTMfOocnzIH0M0DPO8zHdUbgchF4UoGB
-         uUaCCHf7Q7CUj1WgHTHSbzXC8lDFl0xtCbNBP2wezrkxydgd9tdM1EUFRTbKAHm3AqB5
-         41thZj/btR8VrF4MlUNUgFMP4vfoWzFmcEuwdAnwUW/iLOucL5zWtZyc7E+YwhslBCQX
-         Yb0ohixAxUebecb5JMP9nF//bvREb4WnQs/StiC2LHNGu6sQ3cAdgTYWp4Kzj7X63mvE
-         qFdziyHf+U+DfxNchc3eR9egn8EziSVGF5hwAtUmWB8VbNipyIN0FXQIlOJoA7ouSNY7
-         bURA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBYXcnO4UgJYDdboSE5oWLa85eSdh7/k/WUvMtbQbdmugCW0m5tAqOPyDgK9fF0joBA3wDgTR65/O/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPlQdgaDAsfTQxfhQ657z4Eg+sq8vB3aRuqDBkR7hHKRChhpjx
-	6BhHBOsP1I8vqTovBT76oJaGEwv1b01NLY6HGphuqBfo7B98/E+XzdiuFM9PrSU+grziwZbSUIy
-	YnSVpyckXvQdB6EEgI7fEAaS50JiYB/dB/1eOH80b9GIKc3k//jFRAeLMJ33lF6Sw
-X-Gm-Gg: ASbGnctgD4CgbDqummE0sRfVAPH/CXICr9uTcCseAGAB2cCgOAv5g05NN0PrKjwbbid
-	gkqQMAVwv7SFZ2auu0EXps0HCiwU3cwGalX5SfMI9Ve7NbO4HEz45dj+bo29BfueqGUv20Xy4/H
-	+yoWRlKdD6kfc/nszTHTMStSelFwAbh7PvFYJdxSRucsmdQOCkYay5dI6r1/eYT3BxsWd5nKrGU
-	ZbIIEAzgdtQ8BslLeW3vXR4vfOXQCZgk0340/si14nnsFJToRuo1dr7VpFDlANVwpaiVa1L2PKz
-	r3CaJxpoVe5wleCgYAxe4ePM2FFbirpuWCjc7gWzl1TF5rvfjMbcun0w5NLfT0Q7yE6dfxvemgA
-	pE/to309xHfYrZ7EUPnUArsJrKYniaLaG
-X-Received: by 2002:a17:903:2350:b0:297:df7c:ed32 with SMTP id d9443c01a7336-299f641a54fmr21484655ad.0.1763474658532;
-        Tue, 18 Nov 2025 06:04:18 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHOP7F7VRre0B4GU4GD1NcI89R7ec3DLibcn7RiLGcPvNDRnFETmmrhYAeGOnSNnTVMBj5I/g==
-X-Received: by 2002:a17:903:2350:b0:297:df7c:ed32 with SMTP id d9443c01a7336-299f641a54fmr21484375ad.0.1763474657928;
-        Tue, 18 Nov 2025 06:04:17 -0800 (PST)
-Received: from hu-weiden-sha.qualcomm.com ([114.94.8.21])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2986a60b116sm142957695ad.79.2025.11.18.06.04.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Nov 2025 06:04:17 -0800 (PST)
-From: Wei Deng <wei.deng@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        cheng.jiang@oss.qualcomm.com, quic_jiaymao@quicinc.com,
-        quic_chezhou@quicinc.com, quic_shuaz@quicinc.com
-Subject: [PATCH V2 1/1] arm64: dts: qcom: qcs8300-ride: Enable Bluetooth support
-Date: Tue, 18 Nov 2025 19:34:06 +0530
-Message-Id: <20251118140406.1551669-2-wei.deng@oss.qualcomm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251118140406.1551669-1-wei.deng@oss.qualcomm.com>
-References: <20251118140406.1551669-1-wei.deng@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1763474702; x=1764079502;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WjJCwybPy4e03hpnri7xmwes6PuHOy22Wtq70rSjzcA=;
+        b=ihLwaFqJZ0OqbEasoLseDKqUx+FNT7T66bVQ961m6Mbej7Rl11SFevjGSoJV7+Vb2p
+         exQuHfgltQ2GaQUl7ikBSQqwuV7FS2P/9y+zQ7c1nT+aQ+BF3O/Of/Mm2WcOoip/qTsg
+         Lf0+Zm+HjpA2aGtZ0ypNls7AF7YevcNb947wzZiZfR9WU97lh5rA+o3WDW0RQoeFH8da
+         5MFIgn2z0JTBRRUxqHQLXhyeKDjhrfSw5WDSHkrspgKnSL10mBOO1tWERZfKrrwT08BL
+         cx1DfhVDXLrAfVgxfimZHORFidhM7wbuvnZSljctgFCsKc2eXKNZsV521xSrrh5VmiIA
+         5rJg==
+X-Forwarded-Encrypted: i=1; AJvYcCVUk7DgDCLqAL3ppZmm2mqbnqHAy+U2pw66aQkkjVHCY3uavyAdMHH/P1jvKMIAOfMoxKFHiZ6s9OzM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6+A9Ougib6WZPnXOa4tGlmawDy0Ef0+z8C6avQHb1ukLl7A78
+	SR8potIaEs7X+yutgEzwera754woSRcFb3P8HJyswCNglIT6SHYG47iqD64UMNGITMhC7BTk+6t
+	Q7BVE
+X-Gm-Gg: ASbGncsJSRPsrEHiR4HL/Ao8xkF6TfacADx4pYk+JMf3yi69LvCM3YGL9F+8EpWgyxx
+	CagQxwXCSzDEuDr5dpeFj2hG7zeuS0DiQC8yBqxRAYTBcYUG2W2cnim8PJ4CxDQBRfBXcy/GNpJ
+	I6d4swIIG0jARSXLuF+xL3A/cffXPgpIK5RAfCTwSRnm/ilMEojqRIE2grMDJXjoWbbpgQy5UZ7
+	xQKbE9Ium6N4RUq0WNExPSoBPfiKvlNd3dMqbpvSIcnN9YTwePlm3rwowpr5rv8YMWRRNFiC4gT
+	k7ozWtkJnyjo7IeA/Y6qhDxZdW9RXBBu+Ek/o6yskL8gU25En9Yblm0qnXqtlrnrUaxBgNMiCd2
+	g5unbNU2/aTZKqYFjzqnw12+THbJ/RdRr7C8y8vPofmPYmA3k1tQuK6kA2czrmqR4RVZPKXvItu
+	WtIFypUvqBSMEKYxU7oxRK54wmz2EhSiGBwuBKVOXpdp8rvd01Ww==
+X-Google-Smtp-Source: AGHT+IEcqG4n/wScJZOQXO9crrLs/Xt8cBG9w1GfNp2YfhNAMWu80zBccJoj3g7V5JGdaWuzDZlyzw==
+X-Received: by 2002:a05:6871:d691:b0:3d4:94ef:d05c with SMTP id 586e51a60fabf-3e868fbfab8mr7158580fac.21.1763474700403;
+        Tue, 18 Nov 2025 06:05:00 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:8e86:179b:44b8:cc2b? ([2600:8803:e7e4:500:8e86:179b:44b8:cc2b])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ec5962e508sm1452279fac.4.2025.11.18.06.04.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Nov 2025 06:04:59 -0800 (PST)
+Message-ID: <5f15284b-159b-4860-b58b-35c624e2539f@baylibre.com>
+Date: Tue, 18 Nov 2025 08:04:58 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: RmdQ_AhzyhEhih3485D0NPmrwlrVcfRM
-X-Proofpoint-ORIG-GUID: RmdQ_AhzyhEhih3485D0NPmrwlrVcfRM
-X-Authority-Analysis: v=2.4 cv=G6sR0tk5 c=1 sm=1 tr=0 ts=691c7ce3 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=vfj0strxkez5rotHyDAA:9 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDExMyBTYWx0ZWRfX4l85flthccSt
- RuP9BDKuRPzdDk2tBnijxy6nutA12JyzwxudiatUxi9Qp0CKYFsrVSsQSB6prJYIRq1e5VM0xYA
- uuLpLU/aMrd+fz1po/hevSldwlpNiw7qmMKxXNTq4RiZdxxFx6Ly3prq0nm8Dfhp3q0o4ez7DwY
- gUKetBOtWFwZVDstjHVnXanqRnkTCu2nfm9VkEi1OqSgNqbvL348fuEv0AsBqsdM8vO5UuDny3G
- y5nngeM2sUnGRba1qf2yhDag34e7t6YXNPKmpl/b5IwCHEVDA15td0hf1cjZp2rqOSRP03J6D5+
- kYZItxGMEup3mDUFPpxu1TcEX/5xsHcKO/lp50YqGMLI3JGw/gsUYoGsa8erp6es3jEtfVhK3bv
- nEGeEg1GvQtavMwxcaUrfTaQlTntuw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-18_01,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1015 bulkscore=0 malwarescore=0 adultscore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511180113
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: Add support for TI ADS1120
+To: Ajith Anandhan <ajithanandhan0406@gmail.com>, jic23@kernel.org
+Cc: nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251109141119.561756-1-ajithanandhan0406@gmail.com>
+ <20251109141119.561756-3-ajithanandhan0406@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20251109141119.561756-3-ajithanandhan0406@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enable BT on qcs8300-ride by adding a BT device tree node.
+On 11/9/25 8:11 AM, Ajith Anandhan wrote:
+> Add driver for the Texas Instruments ADS1120, a precision 16-bit
+> analog-to-digital converter with an SPI interface.
+> 
 
-Since the platform uses the QCA6698 Bluetooth chip. While
-the QCA6698 shares the same IP core as the WCN6855, it has
-different RF components and RAM sizes, requiring new firmware
-files. Use the firmware-name property to specify the NVM and
-rampatch firmware to load.
+...
 
-Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 28 +++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+> +#define ADS1120_CFG0_GAIN_MASK		GENMASK(3, 1)
+> +#define ADS1120_CFG0_GAIN_1		0
+> +#define ADS1120_CFG0_GAIN_2		1
+> +#define ADS1120_CFG0_GAIN_4		2
+> +#define ADS1120_CFG0_GAIN_8		3
+> +#define ADS1120_CFG0_GAIN_16		4
+> +#define ADS1120_CFG0_GAIN_32		5
+> +#define ADS1120_CFG0_GAIN_64		6
+> +#define ADS1120_CFG0_GAIN_128		7
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index cd8800a59700..08b705fe4eea 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -18,6 +18,7 @@ / {
- 	aliases {
- 		serial0 = &uart7;
- 		mmc0 = &sdhc_1;
-+		serial1 = &uart2;
- 	};
- 
- 	chosen {
-@@ -71,6 +72,7 @@ wcn6855-pmu {
- 		vddpcie1p3-supply = <&vreg_conn_pa>;
- 		vddpcie1p9-supply = <&vreg_conn_1p8>;
- 
-+		bt-enable-gpios = <&tlmm 55 GPIO_ACTIVE_HIGH>;
- 		wlan-enable-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
- 
- 		regulators {
-@@ -501,6 +503,13 @@ &sdhc_1 {
- };
- 
- &tlmm {
-+	bt_en_state: bt-en-state {
-+		pins = "gpio55";
-+		function = "gpio";
-+		bias-pull-down;
-+		output-low;
-+	};
-+
- 	ethernet0_default: ethernet0-default-state {
- 		ethernet0_mdc: ethernet0-mdc-pins {
- 			pins = "gpio5";
-@@ -571,6 +580,25 @@ wlan_en_state: wlan-en-state {
- 	};
- };
- 
-+&uart2 {
-+	status = "okay";
-+
-+	bluetooth: bluetooth {
-+		compatible = "qcom,wcn6855-bt";
-+		firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
-+		max-speed = <3200000>;
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
-+	};
-+};
-+
- &uart7 {
- 	status = "okay";
- };
--- 
-2.25.1
+We could avoid these macros by just doing ilog2(gain).
 
+> +
+> +#define ADS1120_CFG0_PGA_BYPASS		BIT(0)
+> +
+> +/* Config Register 1 bit definitions */
+> +#define ADS1120_CFG1_DR_MASK		GENMASK(7, 5)
+> +#define ADS1120_CFG1_DR_20SPS		0
+> +#define ADS1120_CFG1_DR_45SPS		1
+> +#define ADS1120_CFG1_DR_90SPS		2
+> +#define ADS1120_CFG1_DR_175SPS		3
+> +#define ADS1120_CFG1_DR_330SPS		4
+> +#define ADS1120_CFG1_DR_600SPS		5
+> +#define ADS1120_CFG1_DR_1000SPS		6
+
+I would avoid writing macros for values we don't use yet. For example,
+it may make more sense to have a lookup table when it comes to actually
+implementing something that uses this.
+
+Same applies to the rest below.
+
+> +
+> +#define ADS1120_CFG1_MODE_MASK		GENMASK(4, 3)
+> +#define ADS1120_CFG1_MODE_NORMAL	0
+> +#define ADS1120_CFG1_MODE_DUTY		1
+> +#define ADS1120_CFG1_MODE_TURBO		2
+> +
+> +#define ADS1120_CFG1_CM_MASK		BIT(2)
+> +#define ADS1120_CFG1_CM_SINGLE		0
+> +#define ADS1120_CFG1_CM_CONTINUOUS	1
+> +
+> +#define ADS1120_CFG1_TS_EN		BIT(1)
+> +#define ADS1120_CFG1_BCS_EN		BIT(0)
+> +
+> +/* Config Register 2 bit definitions */
+> +#define ADS1120_CFG2_VREF_MASK		GENMASK(7, 6)
+> +#define ADS1120_CFG2_VREF_INTERNAL	0
+> +#define ADS1120_CFG2_VREF_EXT_REFP0	1
+> +#define ADS1120_CFG2_VREF_EXT_AIN0	2
+> +#define ADS1120_CFG2_VREF_AVDD		3
+> +
+> +#define ADS1120_CFG2_REJECT_MASK	GENMASK(5, 4)
+> +#define ADS1120_CFG2_REJECT_OFF		0
+> +#define ADS1120_CFG2_REJECT_50_60	1
+> +#define ADS1120_CFG2_REJECT_50		2
+> +#define ADS1120_CFG2_REJECT_60		3
+> +
+> +#define ADS1120_CFG2_PSW_EN		BIT(3)
+> +
+> +#define ADS1120_CFG2_IDAC_MASK		GENMASK(2, 0)
+> +#define ADS1120_CFG2_IDAC_OFF		0
+> +#define ADS1120_CFG2_IDAC_10UA		1
+> +#define ADS1120_CFG2_IDAC_50UA		2
+> +#define ADS1120_CFG2_IDAC_100UA		3
+> +#define ADS1120_CFG2_IDAC_250UA		4
+> +#define ADS1120_CFG2_IDAC_500UA		5
+> +#define ADS1120_CFG2_IDAC_1000UA	6
+> +#define ADS1120_CFG2_IDAC_1500UA	7
+> +
+> +/* Config Register 3 bit definitions */
+> +#define ADS1120_CFG3_IDAC1_MASK		GENMASK(7, 5)
+> +#define ADS1120_CFG3_IDAC1_DISABLED	0
+> +#define ADS1120_CFG3_IDAC1_AIN0		1
+> +#define ADS1120_CFG3_IDAC1_AIN1		2
+> +#define ADS1120_CFG3_IDAC1_AIN2		3
+> +#define ADS1120_CFG3_IDAC1_AIN3		4
+> +#define ADS1120_CFG3_IDAC1_REFP0	5
+> +#define ADS1120_CFG3_IDAC1_REFN0	6
+> +
+> +#define ADS1120_CFG3_IDAC2_MASK		GENMASK(4, 2)
+> +#define ADS1120_CFG3_IDAC2_DISABLED	0
+> +#define ADS1120_CFG3_IDAC2_AIN0		1
+> +#define ADS1120_CFG3_IDAC2_AIN1		2
+> +#define ADS1120_CFG3_IDAC2_AIN2		3
+> +#define ADS1120_CFG3_IDAC2_AIN3		4
+> +#define ADS1120_CFG3_IDAC2_REFP0	5
+> +#define ADS1120_CFG3_IDAC2_REFN0	6
+> +
+> +#define ADS1120_CFG3_DRDYM_MASK		BIT(1)
+> +#define ADS1120_CFG3_DRDYM_DRDY_ONLY	0
+> +#define ADS1120_CFG3_DRDYM_BOTH		1
+> +
+> +/* Conversion time for 20 SPS */
+> +#define ADS1120_CONV_TIME_MS		51
+> +
+> +/* Internal reference voltage in millivolts */
+> +#define ADS1120_VREF_INTERNAL_MV	2048
+> +
+> +
+> +struct ads1120_state {
+> +	struct spi_device	*spi;
+> +	struct regmap		*regmap;
+> +	/*
+> +	 * Protects chip configuration and ADC reads to ensure
+> +	 * consistent channel/gain settings during conversions.
+> +	 */
+> +	struct mutex		lock;
+> +
+> +	int vref_mv;
+> +
+> +	/* DMA-safe buffer for SPI transfers */
+> +	u8 data[4] __aligned(IIO_DMA_MINALIGN);
+> +};
+> +
+> +
+> +static const int ads1120_gain_values[] = { 1, 2, 4, 8, 16, 32, 64, 128 };
+> +static const int ads1120_low_gain_values[] = { 1, 2, 4 };
+> +
+> +/* Differential channel macro */
+> +#define ADS1120_DIFF_CHANNEL(index, chan1, chan2)		\
+> +{								\
+> +	.type = IIO_VOLTAGE,					\
+> +	.indexed = 1,						\
+> +	.channel = chan1,					\
+> +	.channel2 = chan2,					\
+> +	.differential = 1,					\
+> +	.address = index,					\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
+> +			      BIT(IIO_CHAN_INFO_SCALE),		\
+> +	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE), \
+> +}
+> +
+> +/* Single-ended channel macro */
+> +#define ADS1120_SINGLE_CHANNEL(index, chan)			\
+> +{								\
+> +	.type = IIO_VOLTAGE,					\
+> +	.indexed = 1,						\
+> +	.channel = chan,					\
+> +	.address = index,					\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
+> +			      BIT(IIO_CHAN_INFO_SCALE),		\
+> +	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE), \
+> +}
+> +
+> +/* Diagnostic channel macro */
+> +#define ADS1120_DIAG_CHANNEL(index, label)			\
+> +{								\
+> +	.type = IIO_VOLTAGE,					\
+> +	.indexed = 1,						\
+> +	.channel = index,					\
+> +	.address = index,					\
+> +	.extend_name = label,					\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
+> +			      BIT(IIO_CHAN_INFO_SCALE),		\
+> +	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE), \
+> +}
+> +
+> +static const struct iio_chan_spec ads1120_channels[] = {
+> +	/* Differential inputs */
+> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN0_AIN1, 0, 1),
+> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN0_AIN2, 0, 2),
+> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN0_AIN3, 0, 3),
+> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN1_AIN2, 1, 2),
+> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN1_AIN3, 1, 3),
+> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN2_AIN3, 2, 3),
+> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN1_AIN0, 1, 0),
+> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN3_AIN2, 3, 2),
+> +	/* Single-ended inputs */
+> +	ADS1120_SINGLE_CHANNEL(ADS1120_CFG0_MUX_AIN0_AVSS, 0),
+> +	ADS1120_SINGLE_CHANNEL(ADS1120_CFG0_MUX_AIN1_AVSS, 1),
+> +	ADS1120_SINGLE_CHANNEL(ADS1120_CFG0_MUX_AIN2_AVSS, 2),
+> +	ADS1120_SINGLE_CHANNEL(ADS1120_CFG0_MUX_AIN3_AVSS, 3),
+> +	/* Diagnostic inputs */
+> +	ADS1120_DIAG_CHANNEL(ADS1120_CFG0_MUX_REFP_REFN_4, "ref_div4"),
+> +	ADS1120_DIAG_CHANNEL(ADS1120_CFG0_MUX_AVDD_AVSS_4, "avdd_div4"),
+> +	ADS1120_DIAG_CHANNEL(ADS1120_CFG0_MUX_SHORTED, "shorted"),
+> +};
+
+Usually we don't make macros for the index. When it comes to adding
+buffer support, having the macros makes it harder to see which scan_index
+belongs to which channel. And if buffer support is planned for later,
+it would make sense to use .scan_index instead of .address to avoid
+duplicating that info later.
+
+
+> +static int ads1120_set_gain(struct ads1120_state *st, int gain_val)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(ads1120_gain_values); i++) {
+> +		if (ads1120_gain_values[i] == gain_val)
+> +			break;
+> +	}
+> +
+> +	if (i == ARRAY_SIZE(ads1120_gain_values))
+> +		return -EINVAL;
+
+Since there is only one gain register, we should store this in a
+per-channel variable, then set the gain in the register in
+ads1120_set_mux() instead (and it would make sense to rename
+that function as well to something like ads1120_configure_channel()).
+
+> +
+> +	return regmap_update_bits(st->regmap, ADS1120_REG_CONFIG0,
+> +				  ADS1120_CFG0_GAIN_MASK,
+> +				  FIELD_PREP(ADS1120_CFG0_GAIN_MASK, i));
+> +}
+> +
+
+...
+
+> +static int ads1120_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val, int *val2, long mask)
+> +{
+> +	struct ads1120_state *st = iio_priv(indio_dev);
+> +	int ret, gain;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		guard(mutex)(&st->lock);
+> +		ret = ads1120_read_measurement(st, chan, val);
+> +		if (ret)
+> +			return ret;
+> +		return IIO_VAL_INT;
+> +
+> +	case IIO_CHAN_INFO_SCALE:
+> +		/*
+> +		 * Scale = Vref / (gain * 2^15)
+> +		 * Return in format: val / 2^val2
+> +		 */
+> +		gain = ads1120_get_gain(st);
+> +		if (gain < 0)
+> +			return gain;
+> +
+> +		*val = st->vref_mv;
+> +		*val2 = gain * 15;
+
+I think this would need to be `*val2 = ilog2(gain) + 15`.
+
+> +		return IIO_VAL_FRACTIONAL_LOG2;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+
+
+
+> +
+> +/* Regmap read function for ADS1120 */
+> +static int ads1120_regmap_read(void *context, const void *reg_buf,
+> +			       size_t reg_size, void *val_buf, size_t val_size)
+> +{
+> +	struct ads1120_state *st = context;
+> +	u8 reg = *(u8 *)reg_buf;
+> +	u8 *val = val_buf;
+> +	int ret;
+> +	struct spi_transfer xfer[2] = {
+> +		{
+> +			.tx_buf = st->data,
+> +			.len = 1,
+> +		}, {
+> +			.rx_buf = val,
+> +			.len = val_size,
+> +		}
+> +	};
+> +
+> +	if (reg > ADS1120_REG_CONFIG3)
+> +		return -EINVAL;
+
+This check should not be needed because of .maxregister.
+
+> +
+> +	/* RREG command: 0010rr00 where rr is register address */
+> +	st->data[0] = ADS1120_CMD_RREG | (reg << 2);
+> +
+> +	ret = spi_sync_transfer(st->spi, xfer, ARRAY_SIZE(xfer));
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +/* Regmap write function for ADS1120 */
+> +static int ads1120_regmap_write(void *context, const void *data, size_t count)
+> +{
+> +	struct ads1120_state *st = context;
+> +	const u8 *buf = data;
+> +
+> +	if (count != 2)
+> +		return -EINVAL;
+> +
+> +	/* WREG command: 0100rr00 where rr is register address */
+> +	st->data[0] = ADS1120_CMD_WREG | (buf[0] << 2);
+> +	st->data[1] = buf[1];
+> +
+> +	return spi_write(st->spi, st->data, 2);
+> +}
+
+I don't see anyting unusal about these read/write functions. We should
+be able to use the existing spi_regmap with the proper configuration
+instead of making a custom regmap_bus.
+
+> +
+> +static const struct regmap_bus ads1120_regmap_bus = {
+> +	.read = ads1120_regmap_read,
+> +	.write = ads1120_regmap_write,
+> +	.reg_format_endian_default = REGMAP_ENDIAN_BIG,
+> +	.val_format_endian_default = REGMAP_ENDIAN_BIG,
+> +};
+> +
+> +static const struct regmap_config ads1120_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = ADS1120_REG_CONFIG3,
+> +	.cache_type = REGCACHE_FLAT,
+> +};
+> +
+> +static int ads1120_init(struct ads1120_state *st)
+> +{
+> +	int ret;
+
+It's just a few extra lines to turn on the avdd supply here before
+resettting.
+
+> +
+> +	ret = ads1120_reset(st);
+> +	if (ret)
+> +		return dev_err_probe(&st->spi->dev, ret,
+> +					"Failed to reset device\n");
+> +
+> +	/*
+> +	 * Configure Register 0:
+> +	 * - Input MUX: AIN0/AVSS
+> +	 * - Gain: 1
+> +	 * - PGA bypass enabled. When gain is set > 4, this bit is
+> +	 *   automatically ignored by the hardware and PGA is enabled,
+> +	 *   so it's safe to leave it set.
+> +	 */
+> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG0,
+> +			   FIELD_PREP(ADS1120_CFG0_MUX_MASK,
+> +				      ADS1120_CFG0_MUX_AIN0_AVSS) |
+> +			   FIELD_PREP(ADS1120_CFG0_GAIN_MASK,
+> +				      ADS1120_CFG0_GAIN_1) |
+> +			   ADS1120_CFG0_PGA_BYPASS);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Configure Register 1:
+> +	 * - Data rate: 20 SPS (for single-shot mode)
+> +	 * - Operating mode: Normal
+> +	 * - Conversion mode: Single-shot
+> +	 * - Temperature sensor: Disabled
+> +	 * - Burnout current: Disabled
+> +	 */
+> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG1,
+> +			   FIELD_PREP(ADS1120_CFG1_DR_MASK,
+> +				      ADS1120_CFG1_DR_20SPS) |
+> +			   FIELD_PREP(ADS1120_CFG1_MODE_MASK,
+> +				      ADS1120_CFG1_MODE_NORMAL) |
+> +			   FIELD_PREP(ADS1120_CFG1_CM_MASK,
+> +				      ADS1120_CFG1_CM_SINGLE) |
+> +			   FIELD_PREP(ADS1120_CFG1_TS_EN, 0) |
+> +			   FIELD_PREP(ADS1120_CFG1_BCS_EN, 0));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Configure Register 2:
+> +	 * - Voltage reference: Internal 2.048V
+> +	 * - 50/60Hz rejection: Off
+> +	 * - Power switch: Disabled
+> +	 * - IDAC current: Off
+> +	 */
+> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG2,
+> +			   FIELD_PREP(ADS1120_CFG2_VREF_MASK,
+> +				      ADS1120_CFG2_VREF_INTERNAL) |
+> +			   FIELD_PREP(ADS1120_CFG2_REJECT_MASK,
+> +				      ADS1120_CFG2_REJECT_OFF) |
+> +			   FIELD_PREP(ADS1120_CFG2_PSW_EN, 0) |
+> +			   FIELD_PREP(ADS1120_CFG2_IDAC_MASK,
+> +				      ADS1120_CFG2_IDAC_OFF));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Configure Register 3:
+> +	 * - IDAC1: Disabled
+> +	 * - IDAC2: Disabled
+> +	 * - DRDY mode: Only reflects data ready status
+> +	 */
+> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG3,
+> +			   FIELD_PREP(ADS1120_CFG3_IDAC1_MASK,
+> +				      ADS1120_CFG3_IDAC1_DISABLED) |
+> +			   FIELD_PREP(ADS1120_CFG3_IDAC2_MASK,
+> +				      ADS1120_CFG3_IDAC2_DISABLED) |
+> +			   FIELD_PREP(ADS1120_CFG3_DRDYM_MASK,
+> +				      ADS1120_CFG3_DRDYM_DRDY_ONLY));
+> +	if (ret)
+> +		return ret;
+> +
+
+If we want to wait for a later patch to support external reference,
+I would consider to check for the devicetree properties here and
+print a warning that they aren't supported if present. Maybe others
+think that is too much noise though? Especially if you plan to add
+it soon.
+
+> +	st->vref_mv = ADS1120_VREF_INTERNAL_MV;
+> +
+> +	return 0;
+> +}
+> +
 
