@@ -1,235 +1,138 @@
-Return-Path: <devicetree+bounces-239656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42187C68246
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:13:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8F7C6829C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:14:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7FF7534DCA1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:08:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 47A2E4F0F22
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 08:12:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C856E3081D8;
-	Tue, 18 Nov 2025 08:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEFEE30AADC;
+	Tue, 18 Nov 2025 08:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LvPTBHfy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xg7ofQni"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2693726E710
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 08:07:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75D43090CC
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 08:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763453266; cv=none; b=V+w3gMCy+Fa1AThVrTQox85N8A6W8dfZibGlBnVfpfYwUx0GXvXajcPLbO/MqzpporovAaEGtMCwEIzwbR+cJvMSwcoMU46jTAdnmg0cs7fFqGOqROVFM3QTma8Z2/BA9OU9iXHYBvMuK5iI3dvABPa32yNr/rxCoGxHmQ6vmX0=
+	t=1763453516; cv=none; b=BJP6+VE9LO1zCHQJWZJAXV903uHk07lSZ3Ev1AZBgyd5QRWJfY4U+xzTMRAfxQNFtGT3oTNzp3dDtm0uTvCX8+/9zz7BXC2kDS1zwzAXObZowuTRxwq/1RG8b0koOlJbHH9tys/JeQG89Q9rKDsEri+N0kAPUqvbnpAqT8vbkgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763453266; c=relaxed/simple;
-	bh=pPUUDsnON1f/C/Xt/Dp4J8y7/kKmxia2J0vzj31aggc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=OzbzHzk4sRjbsP7eFfkM4m7tNfpN9i/oh1dHCjQ80bmeEOXRoWiRCYW4vB4YGPuerJHoYHONpX8Q55dttZrwvqiGp1k7L+djA6AAP0eidxyH19ddfJLd4RZIvHpkt8T/Js/ytUGNZlAqZAZSaN797ko8j1ns8m4gJFdr9gxAaFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LvPTBHfy; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1763453516; c=relaxed/simple;
+	bh=U6NpoMdl8Zx+ZZCVX/tl/ljFU/wuo1o7G0BCGGjfIaM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rAlvdzZJZL2KT5IJsa5qGzBDjhlFSbhrLEigkb8i2lo8P0ksTEwXaUCOStTjDqbrkcRjnBN32MExNZlU8LAG9pZ/V1dWfKUaymOQUBjXgrfkR7TdIdGHBJ2ETnPu3u8vRTR89AmT3U796igtdOEHqWfbsxTlym16kdf6F9+PFB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xg7ofQni; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-477632d9326so35108965e9.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 00:07:44 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b736ffc531fso643272266b.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 00:11:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763453262; x=1764058062; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=SOKyqW+rWF326wuYtSwfKzyTd2rHymbXP5+Sszs5WVA=;
-        b=LvPTBHfyBMrlhMUxom7VFzy6cBZCClpsJnWuz73c9jjGKwkh9Kt5oKfu447Cosatt0
-         KOibY0GwcTILBKIuo5TVl74HnWKOWnoE7F4KGuGl47wZeX+Zjk0154YM+MiwaV4rhAPZ
-         9vP+xIUvsMR26bLDlk2qw+nttWOLhwzGbBZ3V3CSEmecKm1JQVWNcRBcCxBmRs1pBSjx
-         00nkj6+6TG/HVVVPu+lC1qmmB1PyrMnfrjE6ShzBDE7Ir1QUluCXQqhACKQz2ebMb3AH
-         FrnM6QHW6XPk1lOgqzxx0ZIouYykLByG20mTu+V3aQjga3Yed1FZU3aHQIWyelp2nuf4
-         EZ+g==
+        d=gmail.com; s=20230601; t=1763453513; x=1764058313; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FangEPCYJ/rRCDDLMOYHEdKjmgCazFk4RNT28+XjQGE=;
+        b=Xg7ofQnioNqc1TeDgrErHbsGSr+2FWvb/+2Dp48pylxNakMQ8VLt/LfLd46SXAliDA
+         uwAtxZaQ+xB1FJV6G80ixBiPiSCOAOTb0KQoxU+qVqkTu3+u+00Sj1bB2q9KhEIG/xXB
+         GXVSWAe4FZDi3RT/P4Tf2BbOhIKKxQOEpLZyOYBijqRuh2sbBk5O7PKDwMjdabslfgaq
+         pKKeWWi9i9rhv9dRVAGIQQkmbB9p1hwu3+jUTBngLhxIJVO9CJr6IH8Lolgj1Ux7rg7R
+         6HMMGAZeTYI5RB51v6A3OV6WNx72QE8KyhEpV1Wcg9WVz/fKnzJnE6sD+n29RMYh3pOG
+         uezQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763453262; x=1764058062;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SOKyqW+rWF326wuYtSwfKzyTd2rHymbXP5+Sszs5WVA=;
-        b=MO+dbhrRCybl0bZVOoJae5Mh/IVSYImstAwl/u/efK80IVSdV944GpnnU0pBQQP8T4
-         q30xuOt36UPgQIN7wQE/TbE6HiM4YpNcC6UaXRRPYZFDgsQZJAMqUxffHNrMbPZE/h0O
-         dU8ns9mcunBJSJxEppFWmgQHtVaZ+c5i37uqOHQZRj44gJnmJy+1vyHo9GXDxXOYImw5
-         reDVbsmgiNJOK3lM8J6I/4o1F2VjJnRXZ7UhYHgJtCxsFqSnF6N0950WC/kr6moM9uh1
-         bYeMx/rjILzw40hY9sXbGd0JJNg5RPnTE8CpTYiW5/825iBSt3nLrSQapUE22YhhfZFF
-         H8jg==
-X-Forwarded-Encrypted: i=1; AJvYcCV6vAyPi05IULe5vZ/8KcUy+XljKaAhbl6wkq5eKWrAZLFaS8qHaNMCb/AG88fEX4Cg34UiJyM0QNIF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yybws22BK/Lv8ZYgevmwoDEGYVCe9yZkL1zptRpB+0Ua1FcLVb2
-	gDhC+GYDrmetZxoxDhyqIn+VALrZ75W8yntX4DLPQrgysOhAqTnbufLo
-X-Gm-Gg: ASbGncsw5gjJLopnyIZ1Hp1XCh6jDnvAKQ/i4Am75kggScY1wI8bWqQx7F5B92owgeU
-	0YRhYAsvQ7o+MJSfvXIHPbxu17Zgdy3PfHscnqOEXZ+22WnA0jZ0YmX8ck847W71LV52Tary27k
-	5rvwTbvrmBE7V5P70bGFICKJHWzVL8r5yvXIFWK1mtK1/NpY0zRAhoEKSQ/ds81wOz3Me2KvhYr
-	nILis3Y1U0nDfHn88nhQpXjNAOV+T175vmToh0IxHOYnEXxq0bF+tcAVDNTraCAJ4AEuzfJG7Kj
-	FuFE1FMcPr0X1+FSsn5kcbJSOysqLVRSE8aMQdD6DXclik23/0lpHOaedItD1DazLF+ORSquVkM
-	GxHWYIeX2r6p8YRCEzL9gynvjrwMsOYgJqzh+0meh0aW/rAvOvUZm7LkKILZ22x4iUyhPReaf3D
-	nuPVCYOSEH03zxYPI4dX3FiB2XcMUwKn85WycwTx84josw0KGN
-X-Google-Smtp-Source: AGHT+IE2twSPK/uc1hNp2awrrqEaL9qbm7pw2MaLUZezT/jfn8ugeWsBEA486+i2PPciEUsgTJjarg==
-X-Received: by 2002:a05:600c:3550:b0:477:7d94:9d05 with SMTP id 5b1f17b1804b1-4778feb0f3emr142789245e9.35.1763453262096;
-        Tue, 18 Nov 2025 00:07:42 -0800 (PST)
-Received: from ?IPv6:2001:818:ea56:d000:94c4:fb0e:28f:2a8d? ([2001:818:ea56:d000:94c4:fb0e:28f:2a8d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b5ce849ddsm24157607f8f.14.2025.11.18.00.07.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Nov 2025 00:07:41 -0800 (PST)
-Message-ID: <62109f602caefd06a23bbd96e05c327647d054e9.camel@gmail.com>
-Subject: Re: [PATCH v3 3/3] Documentation: ABI: adl8113: add documentation
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
- <jic23@kernel.org>,  Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Nuno
- =?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>
-Date: Tue, 18 Nov 2025 08:08:44 +0000
-In-Reply-To: <aa2808d2-58fd-41a9-a533-86896352a485@baylibre.com>
-References: <20251114115725.5660-1-antoniu.miclaus@analog.com>
-	 <20251114115725.5660-4-antoniu.miclaus@analog.com>
-	 <20251116155013.2b55af25@jic23-huawei>
-	 <aa2808d2-58fd-41a9-a533-86896352a485@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+        d=1e100.net; s=20230601; t=1763453513; x=1764058313;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=FangEPCYJ/rRCDDLMOYHEdKjmgCazFk4RNT28+XjQGE=;
+        b=FeiyhYHy5oLAbORd67Y0xcQKj/JoeMhtnPrUEpyYc/Zllf9eX52ULs2s6H9Wd12o7U
+         1NpV0a5iMdkjGkSt3WWMadmt4xxBGjf4aQPdP9MMGVIaDSfNozL6+VHx9I4V5DRzLdnk
+         yb88zIq1h7A6WyM0LcHLs12lbDmE0LzFaWXsEWvRSePdBpGvyizIGlgfL5gFgcJDxsMr
+         4J9K5WQ4opjjeDHvq/88cYUatmwlleChpivDGBxerggZdJFTMRB1lU+MbXd4ihvZa8lR
+         r7ADNoA0kQOMPbFN5LyGjOk11GleAQN2F6ANJZYeUMgmT/68PDQmRNI1Tlmgpm2HE+L2
+         SciA==
+X-Gm-Message-State: AOJu0Yx3tdjGolSsprgsqiwaBc3DntqWjCkUuBY2KPpD4FvQ3lb6Q16e
+	ppx+EC3zb59mivavWO8BsGdmsAH1wq/Z4l/W+J/xG5LABRc+0WNL3HmUDy4Pcn3ERU3LQV1QKz/
+	04KZYJHg75qevH4W/gHZPuTgdhaIQT+A=
+X-Gm-Gg: ASbGncucD9Kc4D6I+kPOFPrikM/fczRlAvTlKns1CABFLhow7NAcLPAGzs7Io+EtGRk
+	FTMPvb5jL69Vh1toqimEhkutGxthAmptVJHLppL1t2VmwNZ5lAyd/9ltKbOFkEXxOnpYJCD5kd8
+	WMYqYJgRSAUzLcVglyb8lO6fPjj0KKTWdTKahEsUBjYV6o8Ij5ih4ofb4//hwpyjTycKZXj0S7q
+	lLtLQJl4cTQNfw1y7Vn6qxFugqvlRe6Ugk5uqXUNZWyoDc5mEJ55LeCKnuh6QVCldla84Gh
+X-Google-Smtp-Source: AGHT+IEHcPR+OwRwsqJJ0/uai7T9Z5bK+GvtX4wZ68Jnfq3MM6pnPM1BSU0qX5Ee3pQ1MpaQJy38JCaslU+Q+taVZiE=
+X-Received: by 2002:a17:906:fe07:b0:b73:870f:fa2b with SMTP id
+ a640c23a62f3a-b73870ffaf8mr1152686566b.27.1763453513074; Tue, 18 Nov 2025
+ 00:11:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20251112211248.3711889-1-sjg168@gmail.com> <20251118041058.1342672-1-sjg168@gmail.com>
+ <20251118041058.1342672-2-sjg168@gmail.com> <c061ee38-5026-497d-b757-b0b9db2e6729@kernel.org>
+In-Reply-To: <c061ee38-5026-497d-b757-b0b9db2e6729@kernel.org>
+From: Peter Shen <sjg168@gmail.com>
+Date: Tue, 18 Nov 2025 03:11:41 -0500
+X-Gm-Features: AWmQ_blpk2ySgsdJXTAlDZEU8KUMAaf5aD3b5YcZV7RoXMMcHgsFu67psNDCtEU
+Message-ID: <CAJTz7Jd_fuTXpsseEE_161a7nLgoh4g9nH7M__HTsGihqNLQWA@mail.gmail.com>
+Subject: Re: [PATCH v7 1/2] dt-bindings: arm: aspeed: Add compatible for
+ Facebook Anacapa BMC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	peter.shen@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2025-11-17 at 17:59 -0600, David Lechner wrote:
-> On 11/16/25 9:50 AM, Jonathan Cameron wrote:
-> > On Fri, 14 Nov 2025 11:57:25 +0000
-> > Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-> >=20
-> > > Add ABI documentation for the ADL8113 Low Noise Amplifier,
-> > > covering the 4 pin-selectable operating modes.
-> > >=20
-> > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > +CC all the IIO subsystem reviewers as I'm not sure how to handle
-> > what this device does, and would like some more opinions.
-> >=20
-> > Anyone who has expertise or design experience with this sort
-> > of amplifier with external bypass path: how are these actually used?
-> >=20
-> > The development board seems to just be suited to measurement of
-> > device characteristics, not representative of a design using it.
-> >=20
-> > > ---
-> > >=20
-> > > Changes in v3:
-> > > - Replace "mode" attribute documentation with "signal_path" attribute
-> > > - Update descriptions to reflect separation of gain control (hardware=
-gain) and
-> > > path control (signal_path)
-> > > - Add explanation of automatic bypass mode switching when selecting e=
-xternal
-> > > paths
-> > > - Update attribute names from mode/mode_available to
-> > > signal_path/signal_path_available
-> > > - Clarify that external paths enable connection of external component=
-s for
-> > > filtering or amplification
-> > > ---
-> > > =C2=A0.../testing/sysfs-bus-iio-amplifiers-adl8113=C2=A0 | 30 +++++++=
-++++++++++++
-> > > =C2=A01 file changed, 30 insertions(+)
-> > > =C2=A0create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-ampl=
-ifiers-adl8113
-> > >=20
-> > > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-amplifiers-adl81=
-13
-> > > b/Documentation/ABI/testing/sysfs-bus-iio-amplifiers-adl8113
-> > > new file mode 100644
-> > > index 000000000000..31fb1e6e80fc
-> > > --- /dev/null
-> > > +++ b/Documentation/ABI/testing/sysfs-bus-iio-amplifiers-adl8113
-> > > @@ -0,0 +1,30 @@
-> > > +What:		/sys/bus/iio/devices/iio:deviceX/signal_path
-> > > +Date:		January 2025
-> > > +KernelVersion:	6.14
-> > > +Contact:	linux-iio@vger.kernel.org
-> > > +Description:
-> > > +		This attribute controls the signal routing path for the
-> > > ADL8113
-> > > +		Low Noise Amplifier. The supported signal paths are:
-> > > +
-> > > +		* internal - Signal passes through internal path. Can be used
-> > > with
-> > > +		=C2=A0 either amplifier mode (14dB gain) or bypass mode (0dB gain)=
-.
-> > > +
-> > > +		* external_a - Signal routes from RFIN to OUT_A and from IN_A
-> > > to RFOUT
-> > > +		=C2=A0 (VA=3D0, VB=3D1). External components can be connected for
-> > > filtering or
-> > > +		=C2=A0 additional amplification. Automatically switches to bypass
-> > > mode (0dB).
-> > > +
-> > > +		* external_b - Signal routes from RFIN to OUT_B and from IN_B
-> > > to RFOUT
-> > > +		=C2=A0 (VA=3D1, VB=3D0). External components can be connected for
-> > > filtering or
-> > > +		=C2=A0 additional amplification. Automatically switches to bypass
-> > > mode (0dB).
-> >=20
-> > I'm still not sure how to handle these external paths.=C2=A0 The one th=
-ing they won't
-> > be
-> > is truly zero gain (because that would be pointless given the internal =
-bypass
-> > path does that).
-> >=20
-> > So how are these used in practice?
->=20
-> Afraid I don't have any experience with this. But I would assume that the=
- two
-> external
-> bypasses each have another amplifier (or attenuator) connected to them.
->=20
+Hi Krzysztof,
 
-Unfortunately me neither. Antoniu, it would make sense to figure out who th=
-e APPs
-engineer for this part is. He is the one who can answer how the bypass feat=
-ure is
-supposed to be used in practise.
-
-> >=20
-> > Do we need to figure out how to describe the real characteristics of th=
-ose paths?
->=20
-> It sounds like this is just a multiplexer. So a few ideas:
->=20
-> 1. We could handle this like iio-mux.c and have 4 channels and just restr=
-ict use
-> =C2=A0=C2=A0 to one channel at a time. Not exactly sure how we would do t=
-hat. Perhaps an
-> =C2=A0=C2=A0 enable attribute that is interlocked so that it will fail to=
- enable if another
-> =C2=A0=C2=A0 channel is already enabled? In this case, the devicetree wou=
-ld need to have an
-> =C2=A0=C2=A0 io-channels property to get the two bypass amplifier channel=
-s and basically pass
-> =C2=A0=C2=A0 them through.
->=20
-> 2. Have the devicetree specify the gain of the two external bypass amplif=
-iers
-> =C2=A0=C2=A0 so that we can use the hardwaregain attribute to select betw=
-een the 4 mux
-> =C2=A0=C2=A0 positions without needing a custom attribute. This works as =
-long as none
-> =C2=A0=C2=A0 of the amplifiers have the same gain.
->=20
-> I'm envisioning this would be e.g. part of a range selection on some sort=
+Thanks for your detailed explanation. I apologize for ignoring it earlier.
+I now understand the importance of Acked-by/Reviewed-by/Tested-by tags, and=
  of
-> test equipment. In that case, option 2 seems the right way to go about it=
-.
+not attaching patchsets to unrelated threads.
 
-This makes sense but I would still try to have some confirmation about this=
-.
+I will follow the proper process from now on, and also fix my local b4
+environment so that generating the correct trailers works smoothly.
 
-- Nuno S=C3=A1
->=20
+Best regards,
+Peter
+
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B411=E6=9C=8818=
+=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:21=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On 18/11/2025 05:10, Peter Shen wrote:
+> > This patch adds the compatible string for the Facebook Anacapa BMC
+> > which uses an Aspeed AST2600 SoC. This is required before adding
+> > the board's device tree source file.
+> >
+> > Signed-off-by: Peter Shen <sjg168@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+>
+>
+> So you just ignored everything I wrote? Long explanation and you just
+> don't care?
+>
+> If so, then:
+>
+> NAK,
+>
+> Also, do not attach (thread) your patchsets to some other threads
+> (unrelated or older versions). This buries them deep in the mailbox and
+> might interfere with applying entire sets. See also:
+> https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/s=
+ubmitting-patches.rst#L830
+>
+> Best regards,
+> Krzysztof
 
