@@ -1,233 +1,314 @@
-Return-Path: <devicetree+bounces-239592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 372DBC66F97
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 03:09:58 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B73ABC66FBF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 03:12:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B3D0B3447A7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 02:07:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AFB5E4EF498
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 02:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5882D3161BD;
-	Tue, 18 Nov 2025 02:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF7CC320CB3;
+	Tue, 18 Nov 2025 02:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="RLqmZO/V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EycbbEWC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023140.outbound.protection.outlook.com [52.101.127.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B31A270572;
-	Tue, 18 Nov 2025 02:07:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.140
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763431660; cv=fail; b=U+y3tN2xiqj2Rc7LfqNOePSLJbwYqZaZNQ1D4JqjE4laRR+RYyikQrqOi1xT2J/9E0SIC83g06O96ehF93viVG14hVy85e1/FoW/X6Pv9cp22rsU7hdRGCvrqL01dt3F1108WBCaGVLwql/6yjalK+VvmyXqZJg2Oh6jagJkqHw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763431660; c=relaxed/simple;
-	bh=TkdAHGcxb0lzjPvmcucsPasITfI2/00j756Wcnus46g=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=XvSr1bsLb8vCxqtSvsBDUtlETIpFFp9i8Oeua96O7GK01o5F1EvYXt79N+5vMy9a+mZs9GR/daqRncUZb6do7WQZDJ52xx4jlsr6RBkMDrLja0NyzKpHrx1K34ItjOsg5VbZxKmbOvpAd5hUZm/d9KJV0jmm236wztyY8GCoGFg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=RLqmZO/V; arc=fail smtp.client-ip=52.101.127.140
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C1iSXas/9x7kjiVEyQnLUhRjzqIe/m0BJswgKYrKGoPz6yMT4ln8iUlXBXCWHsV+3xlU/A+3DcBMblN8njUbFtxsb3HrY3rLOc6Y6X4PJSJphr1cBHiGeBSJ4L1SN3+q6FCImvSDF/GtR3fOANt88KdRNWG/7AR7Xrq2RVy+NGqHz4V05S+k0x4EAxiSF8vGUc4zHHINeS9LOtLnqlYaTbOGyq13GzWPVfSuuRJ3Ig38BZzGkt5U3UheDfGS4OX7CI7yaYgaTAi9VNRTcGwHFPzMMM+JZSg5JGTBzT53d2KW7dEykPAcU9twrMM0EEAhSTXRJuyt67rAXNI6GW0tSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sLnDkC7czMeQm7aAiKTaobgKwp3Fne/Rphct4BwVqt8=;
- b=vWsLibrDj/ncKpq4/ZQgaMAp0s+cbhVekfu595fIJVekOG+ONWgnn5eoqj+EDw8kqY4lHPY3g6cgWdLKff4SUDV0C0MgXhzgL0TN1pne68TO43LkeaLerUtJDPC8TUXpqGJ8CyusGh7RmVqSxeCii8taAwCFyL0EnfPSbqBY/s9g8DTap19tnu6ChbXQV5hwYm5dINKIyccTVpuGSHSat227S3oClF5dIQMxNdo8V53fwniOpEUjwM5OIORiLdnza/03j4Z59zpWoapwM12dJNDhz43iHo9nhE3Xq1/G9agBr3fWj0EeW3WaBoTslUNoyWmZDQI9xDHIYYrbEbsJsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sLnDkC7czMeQm7aAiKTaobgKwp3Fne/Rphct4BwVqt8=;
- b=RLqmZO/VqNctLPTkI+vT+smlzaQ7VGl2UTQXvGHK/vxfz9OuOA/uSQ8aBGpcSkzbOEeIxRun4SvVSZb/A98IdyV21qLDVcABIEsyzhJwypCxqKMvAfliGei4KYLRvtVXTNJ7kSGxRg7DQ134YhQeWREfIltNR6y8bWCFTZDATmlsULWyMUszULunb8hjCuS5zHUq8G7xZnPiqmULYEKBaFg1wKbATg6trE6c3j1hbAxLztcZAW1ph4TTushVO3C5WOQNINqYziRaHTRqhy0tppwGyU2FC4rOAyUzTs/Ihc8+nhmUKF6pmLiuRWd/JlXALRlaYvfk8jTLvs/ugpxUoQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by TY0PR03MB8277.apcprd03.prod.outlook.com (2603:1096:405:16::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.22; Tue, 18 Nov
- 2025 02:07:32 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%4]) with mapi id 15.20.9320.013; Tue, 18 Nov 2025
- 02:07:31 +0000
-Message-ID: <1114eb5a-d04c-4497-896a-789c02527eaa@amlogic.com>
-Date: Tue, 18 Nov 2025 10:07:26 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] soc: amlogic: meson-gx-socinfo: add new SoCs id
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251117-soc-info-s6-s7-s7d-v1-0-6ab8aab03dce@amlogic.com>
- <20251117-soc-info-s6-s7-s7d-v1-2-6ab8aab03dce@amlogic.com>
- <592374f6-6fb3-47a0-a834-ba6702f4b2a6@linaro.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <592374f6-6fb3-47a0-a834-ba6702f4b2a6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TYCP286CA0350.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:405:7c::16) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A98319864
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 02:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763431765; cv=none; b=YpF++W0ooHZtWcWxnPeK1wC8cMDLwIr6ByWLFkw6uvmBZr1DD5fIosG2kY/+glePWnwxcOTSrXIYX2qAmIEjBaPvnG/8Q0vGuPSn8u/FdQD4v+DEJvoFL17uunfybq3ZfgjasLxQLK5CERXSYpPnlbcAH8kCEnv8Mz/5nlqlZD8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763431765; c=relaxed/simple;
+	bh=lJwfqUPfhaERekXMWwmLLn+2z3tsqOj7wNutTW/klo0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RTDQDuZert1X4fHK2KKQpv6MhtboNJ0/pT3afxEuAcaLsxTkkXnWxqsvaiBk1PQsLbT/HYhybFAIU/+gQ+3CJvx/DnvCGf253Qsdxqyf168XLhWII3tvpZWiUtJZIDHmmCD+wQnmbO7Ova0/p5Mfj0vRIYQ2Zz1yO8vhXc6nGSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EycbbEWC; arc=none smtp.client-ip=209.85.161.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-6542eb6dae0so2127197eaf.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Nov 2025 18:09:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763431763; x=1764036563; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gN561BfJ/Tx+gPjerfaIRTJ2ntQQhGVse0P1hKKmkYk=;
+        b=EycbbEWC4mk5fzpOrQHFiDrcyToIQqKzDdtQOTwWfLhjyfAAL5eQdmbNoKvn6FfDN1
+         3lKvmDso4osUpM00loPyPrKsUy/Pq1iE4ZXEsSyCm01VDKXXwoGSzbcwwwJHFX8t9CXW
+         0JiTogvTNlMc+aDRqU5Aaea73V2dYf9daJNd5o5mgaGF7H/uUkqlcKRoj4P0Z1AJs1Ew
+         oC/xg09zfMKfT/zKL7oHvtk0sxTUyzfqvd3hyzqVW2S81RBL/Gty8zmelzOQgT5vGuG8
+         9H4dSoMw309NbJte5UkZHwWYWDeOY6TzUDyEUIIQymyo627+k9xsL9r37cSJOqgM2EL5
+         tg7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763431763; x=1764036563;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gN561BfJ/Tx+gPjerfaIRTJ2ntQQhGVse0P1hKKmkYk=;
+        b=JjX9ePFvm7U1B4kag0D1iM6igW7yJbCoJnNXDou8oOAlDwrFh5Nj5+NPmmLf2sscBx
+         LdRqPtX09U/Vg88b6897QVvoPrrvdE9MlCUj0TdMJFR2EoWm34mz+scoNnkHGVPpN+w9
+         gtj5kdns/toAqQkmt9qWm4Jyz/E9TNcqmh5O8wvGumXpporOdOOXyuZMa4pNztQls5u9
+         kPoF3hPdugDKW0P0lAArdvtl9nu4yfZNqRnf+JZC/ZCeVBbV1I0IYx+NQ5mEyVORbsiC
+         awksox0SMDZg54ohEwzSaJLtsrSwsE9jh/HTEoWKGyrNJ+Wq6JU5hlZiRvAmqIB82NfP
+         hx2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUU5YlYPzQ9AOuZJHRqmYNjGdhZzufHxIRBWStQyiaTX7+QkxMaIFJ8I7Mzcft+pl8tHiADQ5CBX+sn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzn3lVftPHkmU3O27y3oZqATOwXhO+3qT+dR7Or25ZiO+yWgAH4
+	vlvb0+ZdCiaKtdLfNiMO2NBHgAxlC8JMh+p7ltpiWeDQ4NV2frDzTuEfzR543G70tZKYJLoDfdU
+	SnbD3yldoioZLnXT2cHnkOz3tYP4hPk8=
+X-Gm-Gg: ASbGncvEEdzaKevpDxP8FG8qIGpOdMy4E3KmW6T/nPigXjmKWnRjbisdMqHnWGZVyXI
+	hoE1JsrKa1tD1yvaJZoVRXI1iimex98QTkus0I0ZVftBSWbLB6b50IZmItBzHSyQO3nrBcG2MpM
+	MPC3zZ9eZ/U334lRTqdhIUBdpx1VWTzMitsinTbTFZRmHybzNMFIUa8EyxMmiELfLafdjCoY0Rp
+	lN6Hgt387Fbsu7JCu3DNUwCske9+/+G+kaacC4vdh/8Kyg9+++jo0PDl0nrJSJh/8pvbThjn4+e
+	e0kQO25lgY6Otg==
+X-Google-Smtp-Source: AGHT+IEHP6Nma62YOPxMGEyyVsojE6NwyT166LxKuZkXP2CW0RhhB7ZhZwN66oS/GvvfKxDg+rqUIVWwMrnd6Ix3SQE=
+X-Received: by 2002:a05:6870:330f:b0:3ec:38a7:a076 with SMTP id
+ 586e51a60fabf-3ec38a7a935mr2916930fac.28.1763431762329; Mon, 17 Nov 2025
+ 18:09:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|TY0PR03MB8277:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9287e615-a77c-4bf6-f04c-08de26473afb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MmQ1aitNKys1bFNnU1o4c3d1bEwreiswY3VDKzJUdXV2c0dwM280Mmt6dENr?=
- =?utf-8?B?ZU15NlZKWnBvU3pET21ZS1BpOC9SSlgzN2tNMzAwUjMrVFFrZnlndktVQytY?=
- =?utf-8?B?c1Q2V0tKM3AvMm5SbmNEd3dIRWQ1Njcwa2YwUVRtRXJybkNlVkJhL29vU3FI?=
- =?utf-8?B?Tk9qYzB5dUpyUE5VQ1I1SFFPM2J4YXNYbXN3K3h6aEpIOUc1UGRmSnZHUHM5?=
- =?utf-8?B?S2owcHZtc0tHZG1UVDdmSmYxY281ZUdYZUxJcks2c250bU1VbUUybnA1ODZu?=
- =?utf-8?B?YWt0NU91cFR5TVBkZE9MWUY0VzBSVG1jUEF4dGl4R1NmVDVuWUcrUG10VkFm?=
- =?utf-8?B?WDJWbmJzekRKK3RGYk9qT0FuOGJLdFZLMjczRmNIUzk2QkVQdW5kWmFQYk9l?=
- =?utf-8?B?dnk0RmZWTyt3OHV2S0tYdCtRb3FhNXYxeFZiNE04MmJZdTljZW9vQ2o3VDl5?=
- =?utf-8?B?R1V5UW5pOGF3WXdXeERNRjdRdWNmbzZDRHliTy9MWFZHYlgyY1Z2RWtvMVN2?=
- =?utf-8?B?Nm5MUlJNazMzRllJdHg4anA5T2JVUkFVVEg5M2ZudmZhMHFtNTFhVndSbU9o?=
- =?utf-8?B?ZTM4NzdJd3RNM1N1Y2ZoVGRsTENSU1lCS3BLdFhUdFJ6MlZCR0R6UnI3V3l3?=
- =?utf-8?B?QUFONkcxMzJpUzhsNHlvSG1BZkNRQ3BMc2NsNTV1dmZtM1BtYzdqTTNSYzZW?=
- =?utf-8?B?cHpNQ1BwNWN5bjVVM01ReWVESDFua2I4aFFCMkhiL3ZaY25FYzFtN3pIV3RC?=
- =?utf-8?B?Wk9oOWZkYml2eFZNM0tDclVoNTZab1lScEF4QzVCV1hxU1lLSVMreU1jMmIr?=
- =?utf-8?B?bTdrZk9rd0U3NnIzV29ENGU1aW56Nlk5dVVvdW9oYVgwSytySnRTSTlOTjkx?=
- =?utf-8?B?R3RBOWYwRjAva1FBdVFtaUNxUXd4c2VmU0xSQ3ZHRkJXVzhRSDVNbkYwdHp0?=
- =?utf-8?B?YStYL2Rja1V5SG5yUGJOWlBjMFJHcUtIWk1YQjUwc3MxVk5FdWRDUjh6Z1U0?=
- =?utf-8?B?TFF0bHNhenNvQ1NROHFiN3pSZ0Y5TnRaazBaamZNbWdHa0M5TFFZVmtjbU1N?=
- =?utf-8?B?RktqY0xpU1ZSTzFtVlNrZ2thaGRyUlAzeHU1UzNOTXk1S0VITGc2QTRISU9w?=
- =?utf-8?B?ZXFzQVMvWnB6U2JodUlkeHhhekE3TDQxYzRNeGgxVy9MR2czVTNjRVhRYitH?=
- =?utf-8?B?Q21iTC9USVl3OTEwcytCVVErVXlQeE01TlJuSHJzRUg2S2dyRm82c0M4UlNu?=
- =?utf-8?B?RUVJa0ZPTHRGUithd1l4UU5NMk1jL01nbW5yaWZKQ2p0VVhteXF1RHhZN2Y2?=
- =?utf-8?B?dHR3NHdKWFk1TEtGaWhlVnZrcjJ2SzFzb2dVOENNeS9CNStHZGJKeFFUcDNL?=
- =?utf-8?B?eFRCNE9RQWtkOTlyZUtTVkpxRzZQZGp4NWdRUFNBVytUdGpUc2lqVXArTHVa?=
- =?utf-8?B?QXZ6ekFQYS81K3NmZnNEWmNZL01lQkZRTUQrYUlWWjdjTmJ0bGFLbWI1bjBi?=
- =?utf-8?B?VGhCRW9pNWVxOGt6cGIvRzJnOWkrd0lTaDZHMEV4RTNpWDJtZ04xTjFTRUFT?=
- =?utf-8?B?SnVZQTRUaFNPQlVvdVI1WlZHanlsWVpKYStJUXZVVnFBSk83SC9zOGk0S3Vm?=
- =?utf-8?B?RG1VZUg4QXp4b1p6Y0twa0Q3S1NDWmNLRWtzMlJDeXMvOU9DblZ2aDBMSGRz?=
- =?utf-8?B?M29VbHc4LzcrQURWMDRtbmIwZzMyMHJpaCtpUk9lamZCUnl3NHZ0aDlOTXg1?=
- =?utf-8?B?Q3djZGNXdnZrVS9hR3dBZi85MTJMSHAvalVCdnBxdmVhaEp0TGN2NU84UnZQ?=
- =?utf-8?B?aXlDRDRHS1hnR01Ec2U3YWNUQk9Tc0w3ck9sQm81eEpVWU9lN1hGUjJWYmRM?=
- =?utf-8?B?aVRaeU82UEpxN2JwdXRKNnMvSXB0Y2l2UmdENkVCajZyY3A5QlRtYm4yYnNB?=
- =?utf-8?Q?Cseasv1eZ73drtdCpFVV5WN2k7DzCny+?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Q3VYaTBxUlZzSVZXeGdpK3NDOGl1ZlhVejZXRGFYaGFiQ0laRWxzMzVpOEVo?=
- =?utf-8?B?b3VXZzN0NjRlSStUMTkxMzQ2R2o4YWFSSFZxVGVpL3RYeWxPNVkyU2xXZ2hq?=
- =?utf-8?B?eWFZVEVicUhXZEpMZ2hHMjJIVGlMc2FNdDBlZnVZSUVFY2lqYXUzemptOFZm?=
- =?utf-8?B?TnhmRUE2Ny8rRXdaZ3pWcDFQYnd2VWpScjltbmprMWJQMjM3SHBKM1VWdHY2?=
- =?utf-8?B?TU5NTEZHQ0cvUnlJRGNvWnA4SnVoUjdhWW9SOTFnd3hmL0hXOVlXeXB3Nmww?=
- =?utf-8?B?bzdPLzBOT1lqS3BJZ016bHlpQ1pHZnJyeWVRbVNjNVBXSDNUKzJackJIdzhp?=
- =?utf-8?B?U08xN1l0SFFIRW81eFpYcEI4Rm9iM0duTGxiektLbG9CWGt0cVlmc1hjaVZL?=
- =?utf-8?B?dHNMV3E0OUN2aFZyejhEaTQvQitwRUl4T2dkT0dkZHZieEczT3lFMW1tMzlG?=
- =?utf-8?B?SS83aXV1U0lNMXh6cjJ6MFo3b0trMGtOeFNjRnhKbXUwcGVjTjNiRk5LRzdx?=
- =?utf-8?B?UTYzbnFzdE9xWG5wSU1vbG9uTWdZelpIbE9mbHQ5QzJXelh4TXY3OWlSS2x3?=
- =?utf-8?B?WTd0STFJMzJhR295bXd4cDBCbkVyd2E2ODMwY1VBeWlvVjM2N0hYSms4dVFw?=
- =?utf-8?B?SENuSzJZVkdIZFdpek1XamxFcFVSSDhETkFxaUN2S3p0SU5hSlB1cC82dm1a?=
- =?utf-8?B?WkJkbGYwL3FMdzRNTVZNV2xsd1M4d2lpWkdsS1lNTk5sVGdRN2xyZWw1d1Nx?=
- =?utf-8?B?bVllZ3pmQTJrQ0xRRm9ObDZidGpuL2Zkc2c5L1ZYTXNtUUtNU25YcHlzeXN5?=
- =?utf-8?B?NnJWQWRZd3VJWlg5cG9JRHdKYU9PMFU3bXMxSGE5Y3dWbk5RN0Y1QkE5SDZF?=
- =?utf-8?B?SUc2Nnc2bXk0MXozYlZPZjJ2a0pnbG5GZzFrVFJuRjlGaWFkMlVMY2JDS3Bi?=
- =?utf-8?B?N21STzg1VFM2aitxM3g5SmRQQnN3Wkg0ZHJWQmRQT29KRWZaTjRha0VNZzFk?=
- =?utf-8?B?SmpBbUN5K1UyRmJGcFVrNmh3TUZXTXJSOXY5aFBpSkxic3E1QTV0ajdySksx?=
- =?utf-8?B?MWxKdXpURTEySEhiRThKMDVza1oyRUJhekFqWFpJM0xXcTNGZzd5dGVWRG05?=
- =?utf-8?B?NGh0L3RqNHhiTXVKSUk3bVVEbzBIbXBPVGJmWjEwdWNHWlZLeDdYVWNWdDh2?=
- =?utf-8?B?RnJ1c1JwRXdEbDFWcFYyVUxFYzR4NEg3VGdYMEsyZEtoMnJtbWdsK3UySG9k?=
- =?utf-8?B?MzdiZ0J5YnJxeC8xbzVDRWxvak5iMmpPN0VLQ1lyemtidHJWbGJDRjNPdHov?=
- =?utf-8?B?YmVpWndQV1UvWXVWUTA2aTVsZXliWFFNOUFsYmRNUFd3UHZIVGZNTnI2c2U1?=
- =?utf-8?B?ZlRDaERncWlkZXVkazVxY2JkZ0RHdHB4YlF3UUJEMHZHL2wvWmxqOVZvdTFH?=
- =?utf-8?B?WU1rWHNvNWFtbmtXQUUvUUlwdWJWeFZlMWpicit6ajF3TXVNTk9IOUtBQ3Z0?=
- =?utf-8?B?OFhWR05DVW1pOFJzRStiajhwY3VRQUJNL29ZbENwSzJJUmdNUWk3TTVNdWhn?=
- =?utf-8?B?a3lFTys1UStiR3hOeGhheERiN3hXQ0dDcngvNjgyMlRNM2NXTXRZZlU2Tml3?=
- =?utf-8?B?NlRHdnFUcFFabFM1OTBlSkVQMmFLakFzMTF5dkNvV1owQktaMTNXL05SdFFM?=
- =?utf-8?B?dHBzUk0xdkVLcjcrb1hRZTFham9pUTZFVHI4bFRzbFJraEFRZWhqTlpnWnBh?=
- =?utf-8?B?aUlIV2c2M3Q3cVl2cm10ZFFDS3VoYTNFa2dMZEY5MDhpeE1WM3czcE9lZDRD?=
- =?utf-8?B?clg3U2I5NGVJQkwrdjlXRWhnVUs2am15VEh6eFpLVk9tVk5KVFA2RXp0c2dz?=
- =?utf-8?B?NHRPS1A2OTRrOVpmSDZuVnUwRjdzU1dCK2dBc0RBRWZGdC9ZL0ZrYU5qRWYy?=
- =?utf-8?B?Q1IwN0duUjRxeXpIcHhLdFZ6RU44bm51ZE9RMDJJRkJzU1VYWjdqSDRQeWxI?=
- =?utf-8?B?bDhUaXZERWNNbm5aMlAxVW1oc3hYaDdYbzJkKzlaU0VJWFRJa3hqVTNTVXAr?=
- =?utf-8?B?TzIxUlY4anB0cnNGRTFsSEpwcDNyY0FhaWNiSVo0VmhjbUw1Mjhzempvekk1?=
- =?utf-8?B?emkyaTVEY1QrVm9zNGt1UytXbU1ZUkpWWHBadFgycGNSTktvbkcveFhTQlBY?=
- =?utf-8?B?REE9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9287e615-a77c-4bf6-f04c-08de26473afb
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2025 02:07:31.4310
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9fjMHmB/PRD8xEYHtaQfEZ0/+LW/nDJIBUFAYzt1MIOwU2zDj3D5hIMmFiGbJIcJamujZj4AmPpOsdPpeXJ8mkOEescWL4ZS23BLeOSWBzw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB8277
+References: <20251029155615.1167903-1-robh@kernel.org> <20251029155615.1167903-2-robh@kernel.org>
+In-Reply-To: <20251029155615.1167903-2-robh@kernel.org>
+From: Chunyan Zhang <zhang.lyra@gmail.com>
+Date: Tue, 18 Nov 2025 10:08:46 +0800
+X-Gm-Features: AWmQ_bk1LM1wb5gUx-1FeehQxn_WLwCW-XpgYwU8-TtfMkvEYqpg5JfOOJIj7qw
+Message-ID: <CAAfSe-vS67E0pFgoDhVrpu6wh95P2SUemX+RgKKTSFUFYO+77A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: sprd: sc9860: Simplify clock nodes
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Neil,
-    Thanks for your reply
+On Wed, 29 Oct 2025 at 23:56, Rob Herring (Arm) <robh@kernel.org> wrote:
+>
+> The various "syscon" nodes in SC9860 are only referenced by clock
+> provider nodes in a 1:1 relationship, and nothing else references the
+> "syscon" nodes. There's no apparent reason for this split. The 2 nodes
+> can simply be merged into 1 node. The clock driver has supported using
+> either "reg" or "sprd,syscon" to access registers from the start, so
+> there shouldn't be any compatibility issues.
+>
+> With this, DT schema warnings for missing a specific compatible with
+> "syscon" and non-MMIO devices on "simple-bus" are fixed.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Chunyan Zhang <zhang.lyra@gmail.com>
 
-On 2025/11/17 18:19, Neil Armstrong wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> Hi,
-> 
-> On 11/17/25 11:17, Xianwei Zhao via B4 Relay wrote:
->> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>
->> Add new definition for Amlogi SoCs, include S6, S7, S7D.
->>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   drivers/soc/amlogic/meson-gx-socinfo.c | 7 ++++++-
->>   1 file changed, 6 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c 
->> b/drivers/soc/amlogic/meson-gx-socinfo.c
->> index 7549f1644e5e..6fbb70c8922d 100644
->> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
->> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
->> @@ -45,7 +45,9 @@ static const struct meson_gx_soc_id {
->>       { "S4", 0x37 },
->>       { "A5", 0x3c },
->>       { "C3", 0x3d },
->> -     { "A4", 0x40 },
-> 
-> Why did you drop A4 ?
-> 
-This was my mistake, thanks for pointing out, I will restore it.
->> +     { "S7", 0x46 },
->> +     { "S7D", 0x47 },
->> +     { "S6", 0x48 },
->>   };
->>
->>   static const struct meson_gx_package_id {
->> @@ -86,6 +88,9 @@ static const struct meson_gx_package_id {
->>       { "A311D2", 0x36, 0x1, 0xf },
->>       { "A113X2", 0x3c, 0x1, 0xf },
->>       { "A113L2", 0x40, 0x1, 0xf },
->> +     { "S805X3", 0x46, 0x3, 0xf },
->> +     { "S905X5M", 0x47, 0x1, 0xf },
->> +     { "S905X5", 0x48, 0x1, 0xf },
->>   };
->>
->>   static inline unsigned int socinfo_to_major(u32 socinfo)
->>
-> 
-> Thanks,
-> Neil
+> ---
+>  arch/arm64/boot/dts/sprd/sc9860.dtsi | 62 ----------------------------
+>  arch/arm64/boot/dts/sprd/whale2.dtsi | 54 ++++++++++++++++--------
+>  2 files changed, 36 insertions(+), 80 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/sprd/sc9860.dtsi b/arch/arm64/boot/dts/sprd/sc9860.dtsi
+> index d2456d633c39..864ef0a17425 100644
+> --- a/arch/arm64/boot/dts/sprd/sc9860.dtsi
+> +++ b/arch/arm64/boot/dts/sprd/sc9860.dtsi
+> @@ -184,20 +184,6 @@ gic: interrupt-controller@12001000 {
+>                                                 | IRQ_TYPE_LEVEL_HIGH)>;
+>                 };
+>
+> -               pmu_gate: pmu-gate {
+> -                       compatible = "sprd,sc9860-pmu-gate";
+> -                       sprd,syscon = <&pmu_regs>; /* 0x402b0000 */
+> -                       clocks = <&ext_26m>;
+> -                       #clock-cells = <1>;
+> -               };
+> -
+> -               pll: pll {
+> -                       compatible = "sprd,sc9860-pll";
+> -                       sprd,syscon = <&ana_regs>; /* 0x40400000 */
+> -                       clocks = <&pmu_gate 0>;
+> -                       #clock-cells = <1>;
+> -               };
+> -
+>                 ap_clk: clock-controller@20000000 {
+>                         compatible = "sprd,sc9860-ap-clk";
+>                         reg = <0 0x20000000 0 0x400>;
+> @@ -214,19 +200,6 @@ aon_prediv: aon-prediv@402d0000 {
+>                         #clock-cells = <1>;
+>                 };
+>
+> -               apahb_gate: apahb-gate {
+> -                       compatible = "sprd,sc9860-apahb-gate";
+> -                       sprd,syscon = <&ap_ahb_regs>; /* 0x20210000 */
+> -                       clocks = <&aon_prediv 0>;
+> -                       #clock-cells = <1>;
+> -               };
+> -
+> -               aon_gate: aon-gate {
+> -                       compatible = "sprd,sc9860-aon-gate";
+> -                       sprd,syscon = <&aon_regs>; /* 0x402e0000 */
+> -                       clocks = <&aon_prediv 0>;
+> -                       #clock-cells = <1>;
+> -               };
+>
+>                 aonsecure_clk: clock-controller@40880000 {
+>                         compatible = "sprd,sc9860-aonsecure-clk";
+> @@ -235,13 +208,6 @@ aonsecure_clk: clock-controller@40880000 {
+>                         #clock-cells = <1>;
+>                 };
+>
+> -               agcp_gate: agcp-gate {
+> -                       compatible = "sprd,sc9860-agcp-gate";
+> -                       sprd,syscon = <&agcp_regs>; /* 0x415e0000 */
+> -                       clocks = <&aon_prediv 0>;
+> -                       #clock-cells = <1>;
+> -               };
+> -
+>                 gpu_clk: clock-controller@60200000 {
+>                         compatible = "sprd,sc9860-gpu-clk";
+>                         reg = <0 0x60200000 0 0x400>;
+> @@ -256,13 +222,6 @@ vsp_clk: clock-controller@61000000 {
+>                         #clock-cells = <1>;
+>                 };
+>
+> -               vsp_gate: vsp-gate {
+> -                       compatible = "sprd,sc9860-vsp-gate";
+> -                       sprd,syscon = <&vsp_regs>; /* 0x61100000 */
+> -                       clocks = <&vsp_clk 0>;
+> -                       #clock-cells = <1>;
+> -               };
+> -
+>                 cam_clk: clock-controller@62000000 {
+>                         compatible = "sprd,sc9860-cam-clk";
+>                         reg = <0 0x62000000 0 0x4000>;
+> @@ -270,13 +229,6 @@ cam_clk: clock-controller@62000000 {
+>                         #clock-cells = <1>;
+>                 };
+>
+> -               cam_gate: cam-gate {
+> -                       compatible = "sprd,sc9860-cam-gate";
+> -                       sprd,syscon = <&cam_regs>; /* 0x62100000 */
+> -                       clocks = <&cam_clk 0>;
+> -                       #clock-cells = <1>;
+> -               };
+> -
+>                 disp_clk: clock-controller@63000000 {
+>                         compatible = "sprd,sc9860-disp-clk";
+>                         reg = <0 0x63000000 0 0x400>;
+> @@ -284,20 +236,6 @@ disp_clk: clock-controller@63000000 {
+>                         #clock-cells = <1>;
+>                 };
+>
+> -               disp_gate: disp-gate {
+> -                       compatible = "sprd,sc9860-disp-gate";
+> -                       sprd,syscon = <&disp_regs>; /* 0x63100000 */
+> -                       clocks = <&disp_clk 0>;
+> -                       #clock-cells = <1>;
+> -               };
+> -
+> -               apapb_gate: apapb-gate {
+> -                       compatible = "sprd,sc9860-apapb-gate";
+> -                       sprd,syscon = <&ap_apb_regs>; /* 0x70b00000 */
+> -                       clocks = <&ap_clk 0>;
+> -                       #clock-cells = <1>;
+> -               };
+> -
+>                 funnel@10001000 { /* SoC Funnel */
+>                         compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+>                         reg = <0 0x10001000 0 0x1000>;
+> diff --git a/arch/arm64/boot/dts/sprd/whale2.dtsi b/arch/arm64/boot/dts/sprd/whale2.dtsi
+> index a551e14ce826..dac2699a79d4 100644
+> --- a/arch/arm64/boot/dts/sprd/whale2.dtsi
+> +++ b/arch/arm64/boot/dts/sprd/whale2.dtsi
+> @@ -18,49 +18,67 @@ soc: soc {
+>                 #size-cells = <2>;
+>                 ranges;
+>
+> -               ap_ahb_regs: syscon@20210000 {
+> -                       compatible = "syscon";
+> +               apahb_gate: clock-controller@20210000 {
+>                         reg = <0 0x20210000 0 0x10000>;
+> +                       compatible = "sprd,sc9860-apahb-gate";
+> +                       clocks = <&aon_prediv 0>;
+> +                       #clock-cells = <1>;
+>                 };
+>
+> -               pmu_regs: syscon@402b0000 {
+> -                       compatible = "syscon";
+> +               pmu_gate: clock-controller@402b0000 {
+>                         reg = <0 0x402b0000 0 0x10000>;
+> +                               compatible = "sprd,sc9860-pmu-gate";
+> +                               clocks = <&ext_26m>;
+> +                               #clock-cells = <1>;
+>                 };
+>
+> -               aon_regs: syscon@402e0000 {
+> -                       compatible = "syscon";
+> +               aon_gate: clock-controller@402e0000 {
+>                         reg = <0 0x402e0000 0 0x10000>;
+> +                               compatible = "sprd,sc9860-aon-gate";
+> +                               clocks = <&aon_prediv 0>;
+> +                               #clock-cells = <1>;
+>                 };
+>
+> -               ana_regs: syscon@40400000 {
+> -                       compatible = "syscon";
+> +               pll: clock-controller@40400000 {
+>                         reg = <0 0x40400000 0 0x10000>;
+> +                               compatible = "sprd,sc9860-pll";
+> +                               clocks = <&pmu_gate 0>;
+> +                               #clock-cells = <1>;
+>                 };
+>
+> -               agcp_regs: syscon@415e0000 {
+> -                       compatible = "syscon";
+> +               agcp_gate: clock-controller@415e0000 {
+>                         reg = <0 0x415e0000 0 0x1000000>;
+> +                               compatible = "sprd,sc9860-agcp-gate";
+> +                               clocks = <&aon_prediv 0>;
+> +                               #clock-cells = <1>;
+>                 };
+>
+> -               vsp_regs: syscon@61100000 {
+> -                       compatible = "syscon";
+> +               vsp_gate: clock-controller@61100000 {
+>                         reg = <0 0x61100000 0 0x10000>;
+> +                               compatible = "sprd,sc9860-vsp-gate";
+> +                               clocks = <&vsp_clk 0>;
+> +                               #clock-cells = <1>;
+>                 };
+>
+> -               cam_regs: syscon@62100000 {
+> -                       compatible = "syscon";
+> +               cam_gate: clock-controller@62100000 {
+>                         reg = <0 0x62100000 0 0x10000>;
+> +                               compatible = "sprd,sc9860-cam-gate";
+> +                               clocks = <&cam_clk 0>;
+> +                               #clock-cells = <1>;
+>                 };
+>
+> -               disp_regs: syscon@63100000 {
+> -                       compatible = "syscon";
+> +               disp_gate: clock-controller@63100000 {
+>                         reg = <0 0x63100000 0 0x10000>;
+> +                               compatible = "sprd,sc9860-disp-gate";
+> +                               clocks = <&disp_clk 0>;
+> +                               #clock-cells = <1>;
+>                 };
+>
+> -               ap_apb_regs: syscon@70b00000 {
+> -                       compatible = "syscon";
+> +               apapb_gate: clock-controller@70b00000 {
+>                         reg = <0 0x70b00000 0 0x40000>;
+> +                               compatible = "sprd,sc9860-apapb-gate";
+> +                               clocks = <&ap_clk 0>;
+> +                               #clock-cells = <1>;
+>                 };
+>
+>                 ap-apb@70000000 {
+> --
+> 2.51.0
+>
 
