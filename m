@@ -1,197 +1,185 @@
-Return-Path: <devicetree+bounces-239814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C94CC69920
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:20:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E96F4C6993B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 14:22:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8EB9E35EF92
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:18:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A02864EF0BF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43C9330323;
-	Tue, 18 Nov 2025 13:18:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Y6U/BYrB";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JJ/adGoz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A989345CB9;
+	Tue, 18 Nov 2025 13:22:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35EA92D641D
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 13:18:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F84D34CFC4
+	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 13:22:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763471926; cv=none; b=iPvRm+GRIJfIL8S+iicaBdWKW1x1RAPQmpyxZpG70CrU84lZwnuvnMPINletE6viF96MpacVzlthXgQjYAEPs8dQaKXn7ij/V81Amj4q6ZsNKdtWBceZNbUJkjiSmC3DnEkbkqwGGJjS4p6jT2hVh11MG0gLnAlu9At8uz6khN4=
+	t=1763472130; cv=none; b=jgLcV7gfZ6i/tsKaXdWnuMKFfktd/nx9+8nTTgJ0AO4Bn1bEIKKYXIwqYoDwY/EL1sWX1CgNxKJ5xMlO9zHW1Bc+OdLDtuJ/2T0dzZFhUx5VoPKfX+e9NRcFz1MbyKPVu9q9nn99MPO37SPaMPQMqR6Qwn2Vzve6/heg6VpXAMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763471926; c=relaxed/simple;
-	bh=u2vHa0N2GrM/Gfb7w7/BVAD+L7hu6GXEgmGEDsZWBK0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ay2op8413Lq2+tEr4Fm8xGu4sQgcKTpp1Tbhaz0T2Yj8lf++1D6XSdpkiXShhCHbQdX+wknLiGqQJGWtJ+qGiI2m33Po3/oNHRqXadNgw78ze9kwW/EszB3En7f5JkGa7+D0VQxmHRnbHjiqvvbA/wQjvpKqEePqBtviz/PcbEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Y6U/BYrB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JJ/adGoz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AI6fcMk2272253
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 13:18:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Aav7xLblBgNOadCerIxkavKUB+3nM4sCZ/1UyQhFsXc=; b=Y6U/BYrBqchGWx5W
-	oT5goJ7zKfTrrXGH/yOyYp5MXRAn6bu+bryDlOIOIFx5hOceh9WYacCSAWu7IxYb
-	cdwdVBY5YIXlYsN+bzuPlbZevA+XmvS2EOFk/F8MHo4xqsj/6p9AQWp2Xu1EpjlD
-	ibhA6SMo8+Gcnl7TcDAGfrSBKXv6vo3zmmssAXOeaWVfAgPXKoAsWcu/nF6SduXn
-	97FFmMnC7U/rKXkNbValsFhV5onpTsk4siSb9iWTjmkafS1NaLV6MrZV6a9AfD/H
-	jg453ho8Y3TXps37xBDfmdow0p7wca00HyJHMS+TtgU0k6wFliymzFIZGWGq3Xv3
-	rhNeiQ==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agkrmh43k-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 13:18:43 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-8800460ca8dso22852366d6.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 05:18:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763471923; x=1764076723; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Aav7xLblBgNOadCerIxkavKUB+3nM4sCZ/1UyQhFsXc=;
-        b=JJ/adGozZLN5ZbkQHk+Cf8GOdNLbAOQ/szHHpm7YeBs0lG0HoCCvWrjqWzrq28D0Dy
-         wDZ+1YZKwq+vhH+HUP9TNbbHhHVVil4D3sIdF0m++RUT+1znx42g75ngeyiB5Rj6aqnh
-         gcYxLzNT0V394Q3Cto1YYN5Ej131XXWLlItFVvFGshxvL8PtHJEN3WqTGz4w6asuKbrM
-         rMvbHqzeKnpil5/wchKupLoLJ/yWF898bfb1Gs3BZGxIhDtNKVZFzn1fjeniw6izF78W
-         m52CKSvqCHQKLq+Cd/GiA/X3Ow2ihx/b+7B1GcgtTlEKP+A/fcpiFX0JxsMfpn3wmK38
-         L3YA==
+	s=arc-20240116; t=1763472130; c=relaxed/simple;
+	bh=38bYLMu7gHJ/RFoIgWiK/ZMbze7jRQueT3UaNeabMJM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bGG+wfKlS/6fLq39v7Nl1oyZGnXleUcj5KqQrpbe9utCjNGB/jI2nPQv+16RNg1dWOxZzqNogCxOy5OnT55zBETXINAD2IOcSvrUXOBbPAHlS+mEK/PD1pVcxwAgpat6YoVD7GYdj1KUi7ZznBYpmjwdYzxEyfnYjEqVrbmvlLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-9351ed45fb8so1303265241.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 05:22:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763471923; x=1764076723;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Aav7xLblBgNOadCerIxkavKUB+3nM4sCZ/1UyQhFsXc=;
-        b=r2ghePe+fCAoOBzMSnVLEqXt6FWwHLWzFV7KTL559unHko5wG8Yy3MFdSRBODmME+Y
-         zDTzOlWkpfN0r/rZ6eOVfv5ZTnooS95t4bW4afT4re1PLf5NNMGspkdzwHD+BFNXq2MW
-         cwp4Wsx3BYUFbXP5uJq4lL2k0kn9Q6ozDxlMBPR+JZzUCfe1fFwMSI7L3zEP6+yIfKjQ
-         ABrygazOTduU0jMk83pbuJNs9wF/pp+DfHUUtHDvWVOB4mqSlfWmd1s9VvH4yHMNUo2B
-         5bRel9pZ4KcPFH28+Ia/P3NoZNREO7dyre9iT3U/l+q6W5IC1tRIdHu5gFk0aZbz7PlZ
-         dwAw==
-X-Forwarded-Encrypted: i=1; AJvYcCW+nYyEDWTfVaIaUuY8b3ih+SxW4g8cLy/UnBDDmHG9+HLN2/nqU6tfS94qTP10hRvnRobY4iHGETjT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7TupV1SUbXeMFX+nsJmeMNcokVPA6kaOYt2ShqT+raUSMTDIp
-	nj7Vowm86Bm5ZIPdiagPQKQEuS7ojiCx8S2AujO9e7M3WwD0yRWH2fTkDa10rSZ/K6TVoq95z4j
-	9i6EONO4ctaEBHQtteYXMgzPTMnd6Qz4zhrIozxzLfjuERe0WxRqU2qUeJY2uNB5i
-X-Gm-Gg: ASbGncsTZNg12dnTT5PZrBaQYLEb4L6/hl9DYa0PLGodMvR7CevlrLAkbahCU4RFi36
-	2mj8DYEMP5Tc8sGB1n33kMXqsKmqqtZTET2VQ0XnxCqzF1HSBTdkSaZ2+7NAXuwzNUtgWE67JF0
-	ElmWtbs5uFOYDibqTdMoTaru1P9EG5lqFh5gvTJJxyF+M3xINctaLZtbU7LkN/U3MQVri+CqBb5
-	VoHHL2v4rBmpeB7bOrJOoZ04OKJYDcZduAM7SclemIS2hToUu8MjDuqwXl6t1sixPWyThx+39wS
-	WL3JvJGGgHN5proQjIwHvI9sQkA1y+0Um4wPlkQrgXW0uwj8wDzfi3MdevvMOe7pqlU1ZrND153
-	ktTDUYu+DM0lSzSoDC1oIV9kJ5c/gutRHuQcy8UgQcXV/wUFFPEHxo1/KHTP2rBzE4Rt+9g==
-X-Received: by 2002:a05:6214:5293:b0:880:4bab:466f with SMTP id 6a1803df08f44-88453a568fcmr25309736d6.0.1763471923365;
-        Tue, 18 Nov 2025 05:18:43 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGYqYNyYlpyKAS/uLzFkpcNv03+YatsNppSG0jkXgvsRgaloSBb8+VMXEFY8ZIBMcGEVBXgLA==
-X-Received: by 2002:a05:6214:5293:b0:880:4bab:466f with SMTP id 6a1803df08f44-88453a568fcmr25308716d6.0.1763471921736;
-        Tue, 18 Nov 2025 05:18:41 -0800 (PST)
-Received: from [10.111.165.185] (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8828630e991sm114484716d6.15.2025.11.18.05.18.37
+        d=1e100.net; s=20230601; t=1763472126; x=1764076926;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BHhCA9cigoUdPwap5WRlueW/Hs8cXSQrGektg/X2Gas=;
+        b=RM3KtefZ84tLu++PuS95jESmLVvyE9vKmZhLzCuw2jsp0ow3i9dvDr9ovfDcgMabs/
+         fet1RZl4EEEQ1F1qp2UTjC0IUmYIaTeBaVUjkQ/pdbFQCMvOXx3M5Z4/ruW2Sv/RFEmq
+         PEzzrdDKFR+UpVKWghb32QnlgSj/uBpM4E9zQOlFpeggvc3WvIVxVwwSy81Y78AI0tPz
+         Zc/MYafGVMwd6j7f28pYXj2HQkK1KKdjP1B5//1WRRE/6MVI7GQFi3fQM3wLuSNfpIJ+
+         wOKLt7cWfR3gMe/OjOTHvuem821NuIaS4r8jBXYMt/92G8Xqt7l3tybFs9YCZFem6+j9
+         iXzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVmyYLCc3F0bQkVFIkMYBcK2/ay25wLQw+VrIjtXcFxGoOaoVYMHm/COBe3+i0lL1zoBVueiniVcW0o@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjfJtntLl+wDz8qr5yZfVtRMNje8x5rxsY424HyjoJq0RjdLHx
+	a9Q6lbJlXOmkbqHm3Y/qHH9TfcMtPpo9jjMcefwRyonA47MDSYYTc2kGbM9iThMG
+X-Gm-Gg: ASbGncsR/WGNbSADR0PZt2hY3aaN1NhmMMddFCf6kfNsz3W02s0C3h1lT9wuAoIRl0c
+	lzsh4u7QKQbbdftjB4SkdVxXvtahBEUH0u36G46hBn6byvyhhT4LDBACXAgEbij+Mlbh73Ax9gK
+	qMQF0zmXvx4id5F3gheHDOLknTZ1PD0u8YXeC1J8jczxJbGsjlbqPQN8q6H6x3HLB46B8Bqm5Bs
+	2/qmEuQtXLR9E+CzyIu+YHwSGRr9SP5n7MR0m1Hksjwq/zEzt2d5f8QLvaxl+7gfG/CbS8+fQqK
+	jg4dPLUpPRyWURS6a2C3aPLspjRlwn3/EBtTK8llXfrbDQek6/qAeb4BofGjb6iNSowxKjbPULw
+	NXnr9EUArPNihtFstPvVg1gcvKGvu4TAU2TS8GsgdWebWU+ljpX4rEqjHNm1xyCjWiE8/uS95Kw
+	uGt02D2G5u13Koe2owoIUYh28TcxBtwrAJroz506KSNg3fJmM2ukxSR9xmSAk=
+X-Google-Smtp-Source: AGHT+IEUWF9mZPC9cM1GuF9HXSJqmZulSXRbORP5JE+CibnCAQn5LkWWj23hYAGj9JgI4ANaWg8W5w==
+X-Received: by 2002:a05:6102:38c9:b0:5de:8933:9d2a with SMTP id ada2fe7eead31-5dfc54ebc3cmr4628636137.3.1763472125618;
+        Tue, 18 Nov 2025 05:22:05 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5dfb6ca9d47sm5906942137.0.2025.11.18.05.22.04
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Nov 2025 05:18:41 -0800 (PST)
-Message-ID: <b47e6b6e-6cec-4470-9bfc-93008bd44a5f@oss.qualcomm.com>
-Date: Tue, 18 Nov 2025 21:18:35 +0800
+        Tue, 18 Nov 2025 05:22:04 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-935356590ddso1324698241.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 05:22:04 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV7uYKSRGiey0ut/FWi1WTfnherdWTCPlaAZDulCi4w3ITNhv3FguKH/cxZELBVXI5dR+K6ldMjuRgR@vger.kernel.org
+X-Received: by 2002:a05:6102:390d:b0:5db:e0e6:1b47 with SMTP id
+ ada2fe7eead31-5dfc55688c8mr4951691137.19.1763472124716; Tue, 18 Nov 2025
+ 05:22:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcs8300-ride: Enable Bluetooth support
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        cheng.jiang@oss.qualcomm.com, quic_jiaymao@quicinc.com,
-        quic_chezhou@quicinc.com, quic_shuaz@quicinc.com
-References: <20251113130942.2661069-1-wei.deng@oss.qualcomm.com>
- <8f22f268-988b-4504-a4c0-7cc9021dc8c9@kernel.org>
- <26841765-171b-475f-8019-2c349958af7d@kernel.org>
-Content-Language: en-US
-From: Wei Deng <wei.deng@oss.qualcomm.com>
-In-Reply-To: <26841765-171b-475f-8019-2c349958af7d@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDEwNiBTYWx0ZWRfX5lbJyJ3vDbdi
- 5My69rayKqN+tntrwYMIo4iJIn+aLSkmuawKeEpwgSQJZADL8tI5zwYGnNtol1mYiuugZxMZ3Yu
- Ya/M7War6X6c0HaxW0lxIUhUxlMXoRC6RLGVQxWAuPVVXoUSNm6YzyR64SCRD2G5VNao8HZI6YL
- 0MY6qfAmtBT8nJnZC2XB/hd9e5XOlQZhSl0d5rhi9pP7nWpQ19UxLdC8R5UeoE3Xd6o+KYo69e3
- VmVEFK1q1Wy6l6TcS2NBBW3mYBNFF8Pp/Ha2DVNSKVbq/dbVu9WeUezzU9B3zwmaUoZcBwHT5tF
- QU6jJs1qLJ7v2HzKSxgvYQ7G12QKtQfj2dBwdZIfGln3AblAVxhC1TYEH+cEDljegtOeOv6nylY
- aIfjlNK8aKkYc/G6XKtipuY9aU5r4w==
-X-Proofpoint-ORIG-GUID: nx_y_1opqjz2kc5uTi7-ldD7eqDiv7Lq
-X-Proofpoint-GUID: nx_y_1opqjz2kc5uTi7-ldD7eqDiv7Lq
-X-Authority-Analysis: v=2.4 cv=JfWxbEKV c=1 sm=1 tr=0 ts=691c7234 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
- a=5TMoWVwS_HVFom52XzQA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-17_04,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0 spamscore=0
- impostorscore=0 clxscore=1015 bulkscore=0 malwarescore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511180106
+References: <CGME20251118115051eucas1p15f688883a4466dd7cabf3550a798c060@eucas1p1.samsung.com>
+ <20251118115037.1866871-1-m.szyprowski@samsung.com>
+In-Reply-To: <20251118115037.1866871-1-m.szyprowski@samsung.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 18 Nov 2025 14:21:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX7vCyC7c_Y6D=axajSfCmj7JBV3eXxLwHogbrVkM-_Hg@mail.gmail.com>
+X-Gm-Features: AWmQ_bnjjds2ROTFY_LF0JjQ9CqJzRgGjh6ZD1fzHamlMqKfyof10aLGvuq8Ggo
+Message-ID: <CAMuHMdX7vCyC7c_Y6D=axajSfCmj7JBV3eXxLwHogbrVkM-_Hg@mail.gmail.com>
+Subject: Re: [PATCH] ARM: exynos: Rework system wakeup interrupts initialization
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Marc Zyngier <maz@kernel.org>, 
+	Rob Herring <robh@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Krzysztof,
-Thanks for your comments.
+Hi Marek,
 
-On 11/13/2025 9:38 PM, Krzysztof Kozlowski wrote:
-> On 13/11/2025 14:37, Krzysztof Kozlowski wrote:
->> On 13/11/2025 14:09, Wei Deng wrote:
->>> Enable BT on qcs8300-ride by adding a device tree node for BT.
->>>
->>> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
->>> ---
->>> This patch depends on:
->>> - WLAN
->>> https://lore.kernel.org/all/20251113055148.2729943-1-wei.zhang@oss.qualcomm.com/
->>
->> And that patch depends on something else.
->>
->> You make it very difficult to review and even more difficult to merge.
->>
->>> ---
->>>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 28 +++++++++++++++++++++++
->>>  1 file changed, 28 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->>> index cd8800a59700..08b705fe4eea 100644
->>> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->>> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->>> @@ -18,6 +18,7 @@ / {
->>>  	aliases {
->>>  		serial0 = &uart7;
->>>  		mmc0 = &sdhc_1;
->>
->> There is no such alias?
-> 
-> Ah there is, found now added by Sayali Lokhande <quic_sayalil@quicinc.com>.
-> 
-> Anyway, organize your work in reasonable patchsets not 3 or more
-> one-patchers spread all over the mailing list.
-> 
+CC Robh
 
-OK, will re-organize my work in reasonable patchsets. Will send new patch.
+On Tue, 18 Nov 2025 at 12:50, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+> Since commit 1b1f04d8271e ("of/irq: Ignore interrupt parent for nodes
+> without interrupts") it is not possible to get parent interrupt device
+> node when no 'interrupts' property is specified. Rework the hack used for
+> initializing the Exynos system wakeup interrupts (PMU controller is a
+> proxy for SoC RTC interrupts) to get the parent interrupt node by
+> manually parsing 'interrupt-parent' property.
+>
+> Fixes: 8b283c025443 ("ARM: exynos4/5: convert pmu wakeup to stacked domains")
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 
-> Best regards,
-> Krzysztof
+Thanks for your patch!
+
+> ---
+> This fixes the following boot failure of allmost all ARM 32bit Exynos
+> boards observed since next-20251118:
+>
+> /soc/system-controller@10020000: no parent, giving up
+> OF: of_irq_init: Failed to init /soc/system-controller@10020000 ((ptrval)), parent 00000000
+
+Oops...
+
+> ...
+> 8<--- cut here ---
+> Unable to handle kernel paging request at virtual address 00002008 when read
+> [00002008] *pgd=00000000
+> Internal error: Oops: 5 [#1] SMP ARM
+> Modules linked in:
+> CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.18.0-rc1-00026-g1b1f04d8271e #16162 PREEMPT
+> Hardware name: Samsung Exynos (Flattened Device Tree)
+> PC is at exynos_set_delayed_reset_assertion+0x5c/0xb0
+> LR is at exynos_set_delayed_reset_assertion+0x80/0xb0
+> pc : [<c012b9a4>]    lr : [<c012b9c8>]    psr: 80000053
+> ...
+> Process swapper/0 (pid: 1, stack limit = 0x(ptrval))
+> Stack: (0xf0825f30 to 0xf0826000)
+> ...
+> Call trace:
+>  exynos_set_delayed_reset_assertion from exynos_smp_prepare_cpus+0x10/0x34
+>  exynos_smp_prepare_cpus from kernel_init_freeable+0x94/0x234
+>  kernel_init_freeable from kernel_init+0x1c/0x12c
+>  kernel_init from ret_from_fork+0x14/0x28
+> Exception stack(0xf0825fb0 to 0xf0825ff8)
+> ...
+> ---[ end trace 0000000000000000 ]---
+> Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+> ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b ]---
+>
+> Best regards
+> Marek Szyprowski, PhD
+> Samsung R&D Institute Poland
+> ---
+>  arch/arm/mach-exynos/suspend.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm/mach-exynos/suspend.c b/arch/arm/mach-exynos/suspend.c
+> index 44811faaa4b4..02785342e0c7 100644
+> --- a/arch/arm/mach-exynos/suspend.c
+> +++ b/arch/arm/mach-exynos/suspend.c
+> @@ -192,6 +192,7 @@ static int __init exynos_pmu_irq_init(struct device_node *node,
+>  {
+>         struct irq_domain *parent_domain, *domain;
+>
+
+Perhaps add a check:
+
+    if (!parent)
+
+just in case any of the pmu system controllers ever gets a real
+interrupts or interrupts-extended property?
+
+> +       parent = of_parse_phandle(node, "interrupt-parent", 0);
+
+Or of_irq_find_parent(node)?
+
+>         if (!parent) {
+>                 pr_err("%pOF: no parent, giving up\n", node);
+>                 return -ENODEV;
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Best Regards,
-Wei Deng
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
