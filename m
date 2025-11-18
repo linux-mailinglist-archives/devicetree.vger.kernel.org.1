@@ -1,99 +1,119 @@
-Return-Path: <devicetree+bounces-239695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D94F9C68720
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:12:40 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE38DC688DE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 10:32:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id A19D82A723
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:12:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 71EE338020B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 09:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A671D3101AA;
-	Tue, 18 Nov 2025 09:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C95A31065B;
+	Tue, 18 Nov 2025 09:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b="VuKw5I4s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from smtp-out3.simply.com (smtp-out3.simply.com [94.231.106.210])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC43230F801;
-	Tue, 18 Nov 2025 09:12:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97EA4302758;
+	Tue, 18 Nov 2025 09:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.231.106.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763457128; cv=none; b=WV7xjhQ5Nv4f3MvTLYimF/p2dfeXDGyTWbj7VUG2dDplYVtZOmLvlHHOeZYGuirNeKKEHrejjxOf4xV/ZrS1A2Uu7fMKHzuWyN1WKFXVAFg0mM5unP1o2TLVStFm97s32MLt/T2b0MdA/ze/ZOFxWeXSsKKeDRV7kFavQ0ClTBA=
+	t=1763458218; cv=none; b=bVSl9AS2bNu/ITBkyPsgiZjqPD8PA4k7fUmHr/qtISW8uuNbGc9+VZA2650YAaLOeNas/Q0Xs5l//eG6F5I8eDgF9hQKEwlMRZz9bVI7BZIiE9TCAOhba+Khjr2cLgw1JS71bL6Xyx0WRkgIALHUfWBpYEQjylZRdJws1bVw9DQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763457128; c=relaxed/simple;
-	bh=ej2x2zXWoa7QtHmm0Xcp6bZn7Ld93lchW1+uF4w0usU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=mTJm6xvl5RW2IjFmPJAGMKZgIvRZhcbomVWhcin3LbycseaqqVgZ3uO8Pm5Q75dWOMXtTcB+cS07OWjxK+4ls54s134X2AZgG7ykeLsvKVpk5EHgjUK8J4/Wjd/ZDM33z9a6ZghS++dcmR1GvC9LDBwha1prsAc90ozg8iqaD4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 18 Nov
- 2025 17:11:54 +0800
-Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Tue, 18 Nov 2025 17:11:54 +0800
-From: Billy Tsai <billy_tsai@aspeedtech.com>
-Date: Tue, 18 Nov 2025 17:11:54 +0800
-Subject: [PATCH v2 2/2] hwmon: (aspeed-g6-pwm-tach): Add AST2700 compatible
- string
+	s=arc-20240116; t=1763458218; c=relaxed/simple;
+	bh=+PcfyNVTARJoeXWxI7D9aaTTu6aSZve4kQvaVAZvn3o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qNIlSDTyH4lg1yVz3RngQgiReCOSafE7c8YIqT6jXvDJ7/qFuMey65nRLBnD+nNzI8u0AwEfTDBsztS/5wSMfiz1Hgno2GDxj/G73Pdi6lmkvAUcfV1VoVwndwuxl29G7PprFoI0xWZfQH6labsv9pfPjil/pT4+7k5IJctLnWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com; spf=pass smtp.mailfrom=gaisler.com; dkim=fail (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b=VuKw5I4s reason="key not found in DNS"; arc=none smtp.client-ip=94.231.106.210
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gaisler.com
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.simply.com (Simply.com) with ESMTP id 4d9fHk0mpdz1DHcL;
+	Tue, 18 Nov 2025 10:21:22 +0100 (CET)
+Received: from d-5xj5g74.got.gaisler.com.com (h-98-128-223-123.NA.cust.bahnhof.se [98.128.223.123])
+	by smtp.simply.com (Simply.com) with ESMTPA id 4d9fHj4cNKz1DHYP;
+	Tue, 18 Nov 2025 10:21:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gaisler.com;
+	s=simplycom2; t=1763457681;
+	bh=B450eTSI8zJ2BnfDplznr7LN7dZPFFaNNxLcRYyEPUA=;
+	h=From:To:Cc:Subject:Date;
+	b=VuKw5I4sKcwsDdPbHu43tleKay4b7uqh2Q0MJjhVwIxw49lVwYWtCmGGsGzWthYIv
+	 HgvKJdaVB2SOO5PyNjV4FoT80XCK2h8VtAM3Prx4Y11rkpSK/wK6sAR5HUwfhw9ZQC
+	 EWyvljAISr/JQ9Qwc5UabKHqLSfN2zwd5HLz1txGn65Q4CwoK6b2PyjJOq6AKdXrSe
+	 SIRDEW1uTrmjfwJL8FbFbDJs7wzwyvGpBu4lg7KeFKUbZORJvOO4Z/h6gZqJT1vH7l
+	 0nre3LXksH/ogaIF8CiarmtwBtYl3vibsEDAzZT4n1WG26S/E7b/HMnumzeUQBijTO
+	 7AHDiY4lK2Onw==
+From: Arun Muthusamy <arun.muthusamy@gaisler.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mkl@pengutronix.de,
+	mailhol@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-can@vger.kernel.org,
+	Arun Muthusamy <arun.muthusamy@gaisler.com>
+Subject: [PATCH 00/10] can: grcan: Enhance driver with CANFD Support and Improvements
+Date: Tue, 18 Nov 2025 10:21:05 +0100
+Message-ID: <20251118092115.3455-1-arun.muthusamy@gaisler.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251118-upstream_pwm_tach-v2-2-4d9bc13d34f9@aspeedtech.com>
-References: <20251118-upstream_pwm_tach-v2-0-4d9bc13d34f9@aspeedtech.com>
-In-Reply-To: <20251118-upstream_pwm_tach-v2-0-4d9bc13d34f9@aspeedtech.com>
-To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Billy Tsai <billy_tsai@aspeedtech.com>
-CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, <BMC-SW@aspeedtech.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763457114; l=856;
- i=billy_tsai@aspeedtech.com; s=20251118; h=from:subject:message-id;
- bh=ej2x2zXWoa7QtHmm0Xcp6bZn7Ld93lchW1+uF4w0usU=;
- b=HnxO8GIocP2qBsRGLBMEi8vf3FJlYvoCW5pB3v60VhbJxGm37cTh5O2iarpOooBe9rEzus7kj
- L4wG2WFuOmhBrsfpRo7dj0kDOf3agmQp05Q11mME78z+/lHOu1sltQj
-X-Developer-Key: i=billy_tsai@aspeedtech.com; a=ed25519;
- pk=/A8qvgZ6CPfnwKgT6/+k+nvXOkN477MshEGJvVdzeeQ=
+Content-Transfer-Encoding: 8bit
 
-Extends device tree support to include the AST2700 chip variant by
-adding its compatible string to the device match table.
+This patch series updates the GRCAN driver to support the GRCANFD core
+from the GRLIB IP core library.
 
-The AST2700 PWM/TACH hardware is compatible with the existing driver
-implementation used for AST2600.
+In addition to GRCANFD support, the updates include enhancements for
+compatibility with NOEL-V (RISC-V) systems, such as matching drivers
+using the 'compatible' identifier and adding support for reading clock
+frequency via the common clock framework where available. The series
+also includes improvements like functions for configuring
+nominal bit-timing and optimizations for DMA operations.
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- drivers/hwmon/aspeed-g6-pwm-tach.c | 3 +++
- 1 file changed, 3 insertions(+)
+This series also updates the driver documentation and bindings.
+The old text binding is converted to YAML, a new vendor prefix
+is added to reflect the updated ownership and an entry for the
+driver is added to the MAINTAINERS file.
 
-diff --git a/drivers/hwmon/aspeed-g6-pwm-tach.c b/drivers/hwmon/aspeed-g6-pwm-tach.c
-index 4174b129d1fc..44e1ecba205d 100644
---- a/drivers/hwmon/aspeed-g6-pwm-tach.c
-+++ b/drivers/hwmon/aspeed-g6-pwm-tach.c
-@@ -528,6 +528,9 @@ static const struct of_device_id aspeed_pwm_tach_match[] = {
- 	{
- 		.compatible = "aspeed,ast2600-pwm-tach",
- 	},
-+	{
-+		.compatible = "aspeed,ast2700-pwm-tach",
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, aspeed_pwm_tach_match);
+Arun Muthusamy (3):
+  dt-bindings: net: can: grcan: Convert GRCAN CAN controllers binding
+    from txt to YAML
+  MAINTAINERS: Add maintainers for GRCAN CAN network driver
+  can: grcan: Add CANFD support alongside legacy CAN
 
--- 
-2.34.1
+Daniel Hellstrom (6):
+  can: grcan: Add clock handling
+  can: grcan: add FD capability detection and nominal bit-timing
+  can: grcan: optimize DMA by 32-bit accesses
+  can: grcan: set DMA mask for GRCAN and GRCANFD to 32-bit
+  can: grcan: Add saving and restoring of CAN FD baud-rate registers
+  can: grcan: Reserve space between cap and next register to align with
+    address layout
+
+Ludwig Rydberg (1):
+  dt-bindings: Add vendor prefix for Frontgrade Gaisler AB
+
+ .../bindings/net/can/gaisler,grcan.yaml       |  85 ++++
+ .../devicetree/bindings/net/can/grcan.txt     |  28 --
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ drivers/net/can/Kconfig                       |   6 +-
+ drivers/net/can/grcan.c                       | 470 ++++++++++++++----
+ 6 files changed, 473 insertions(+), 126 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/can/gaisler,grcan.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/can/grcan.txt
+
+
+base-commit: 4001bda0cc911fcdd3dde36963a17f4eac173d7d
+--
+2.51.0
 
 
