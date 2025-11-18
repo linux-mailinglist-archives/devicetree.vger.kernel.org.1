@@ -1,220 +1,84 @@
-Return-Path: <devicetree+bounces-239927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181EBC6AD4E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:10:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BDC3C6AD96
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:12:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 35FD94F330B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 17:02:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 8EBB32C13B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 17:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 180AA36997C;
-	Tue, 18 Nov 2025 17:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476573A5E80;
+	Tue, 18 Nov 2025 17:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="dsWkv5A9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RDSJbAsp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2476236CE1C;
-	Tue, 18 Nov 2025 17:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEEB3A1D1F;
+	Tue, 18 Nov 2025 17:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763485375; cv=none; b=WPjtLQCvPjfojeOUykXVTTSd+bdZ6adSuClUgXej51vCWMvAKrDNmksrTrWTFLwLr2PYv0+fFEf1tlr30g5slrjgU6WjcU18BwKrVAVYiqc8Z3vxtV93t7u10VDwgEicKM5JbaFiLjujzLeZoDhOXmaMptPxI7GNUSXc2NbPrDs=
+	t=1763485867; cv=none; b=rol6qx6RLN194rkRDxONWc+nYAy2ETV9StBrkl6J4VlcaGzwcLUh3E+COneIGgNTlW2DdFBq/t4wiVOCnzH0aXW6I8gM5qMET8TlQAWs8AnqnxVv7P5vRwjC6Ga7wx1/s2iqLymyI1uSTISLKmIPyLwQBIoTFJTb68f30PNoXEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763485375; c=relaxed/simple;
-	bh=Ikbxpjo8LZrHbmpy/V6/tjg+g8DY5QC0BL15d4mFkik=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=Zhu1lvBN4+UaD5DT5+SYLNzMywxKF53guLiV15HmNap7FudKpcFC0FEW+4OWH3239BaSa4qUfpC3bOFa4Q5cFSVhlhO68aOL66IT414qAKFNeXBEJ0PzoWzu5fFlR2vauFAr8QjAralvUifg9B5Tu1WHTrGuNq7NkrpOk8VRLhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=dsWkv5A9; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1763485361; x=1764090161; i=frank-w@public-files.de;
-	bh=Ikbxpjo8LZrHbmpy/V6/tjg+g8DY5QC0BL15d4mFkik=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:Content-Transfer-Encoding:In-Reply-To:
-	 References:cc:content-transfer-encoding:content-type:date:from:
-	 message-id:mime-version:reply-to:subject:to;
-	b=dsWkv5A9CxaTOv7R9y0hIEIvFze/tYuelAcl6Y4yJIc+Pb9VY2etBnCwnG/+2nlG
-	 cZEMAVbn2VK5EZsNbsd7QgFVB0naEt/14dpeQlmu30FVQQZ79BhrP5aZ+cE/eilBc
-	 49sAHyQo+CsOc3pSCGCCBMAN/RHphO8OhIEqRow7VL1QtQpGBUrxmRjObAKMxaomP
-	 tytBEvaMQm2puem4yuCMU1ueTCAKajLIyQnb/vUa360+7EIVNvZMZQeZE+KPxDQXt
-	 ae9HZGTvDXfIPApNBEe2POI0Lsu557SI1+iMVqsSDqeXEEF3tWYrge5I9ZlJBmM2V
-	 SUehdnu2r263l/+cKA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [194.15.86.107] ([194.15.86.107]) by
- trinity-msg-rest-gmx-gmx-live-56d984c6fb-85gcg (via HTTP); Tue, 18 Nov 2025
- 17:02:41 +0000
+	s=arc-20240116; t=1763485867; c=relaxed/simple;
+	bh=wOZRNNIL+m5X/h13FesXwnoBhtVOzxcdpFfYndv3xl4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ETrcsCSkyL9x3IjgD4BDHzGN/vlh0jYz4vQ8tQpiGqsZK88yTLdVtde8/Qk6GxWpcWkmjOFVIxFp0p3F1HVUvRN4ECBlGz/Smji6kYN2DTrARE4k6i2sSWpilrVRr8Ckk+BYqceJxhpeHpg24XX2tSrvVQTJsHv+GICnC9+1FU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RDSJbAsp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D168C4AF1A;
+	Tue, 18 Nov 2025 17:11:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763485864;
+	bh=wOZRNNIL+m5X/h13FesXwnoBhtVOzxcdpFfYndv3xl4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RDSJbAspBhtFe32YSTBs8uYPNiFEWfPcwFKM1ZnYHS/pAO2MFWEqnP8wwZEMKRxBB
+	 Y5oWUjhcxjk+aMVjUfmPh7yxgW7k2h+9MEhn6KDy3lTgLtzRJXBmzIG8uvG0XKw3o6
+	 5STIiUTtWwPSUO8vMcBcIDz/RZeNnFhtXr/TbmTD9TFFjhSLk+UswR2+Ypyz9d+ZX0
+	 5u6RwKNGK2J0ZDPCryQ0d9ryiYvKf+QJa1x3VH/qwYhBzX4biOkeqoXWFML3OjwpAo
+	 Mcf0jAf/PAM9dJWAgxAa+4nBl5Vw6Wgiwa4tCAAJwokx0GgcVQDrnapaz2r4VRQjLd
+	 dsrxIawHtEKLQ==
+Date: Tue, 18 Nov 2025 22:40:59 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Qiang Yu <qiang.yu@oss.qualcomm.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>,
+	Wenbin Yao <wenbin.yao@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Manivannan Sadhasivam <mani@kernel.org>
+Subject: Re: [PATCH v6 0/3] Add support for Glymur PCIe Gen5 x4
+Message-ID: <aRyoo2Ve_hjgc84M@vaman>
+References: <20251103-glymur-pcie-upstream-v6-0-18a5e0a538dc@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-dfca2931-a7e8-4b33-b722-c22105569d82-1763485361461@trinity-msg-rest-gmx-gmx-live-56d984c6fb-85gcg>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: robh@kernel.org, angelogioacchino.delregno@collabora.com
-Cc: matthias.bgg@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Aw: Re: [PATCH] arm64: dts: mediatek: Apply all DT overlays at
- build time
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 18 Nov 2025 17:02:41 +0000
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAL_JsqK4jvZQTQAXCjPgxBCUiENGKgkgaDgZ680QqL1XpS6bbw@mail.gmail.com>
-References: <20251117211306.725678-1-robh@kernel.org>
- <679c1f30-7c62-484e-b4e5-7351a23f15e5@collabora.com>
- <CAL_JsqK4jvZQTQAXCjPgxBCUiENGKgkgaDgZ680QqL1XpS6bbw@mail.gmail.com>
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:+NZVXvxPM7sHFnKfKMqInMumSSaXpCyIpkrfgPSpZJDAq6/hfd0ipTLFhIOBzIQSUYnUL
- NR7WDPb/NlOcAcXT/Lw5vmFwTdD07ljrc2TD0WWlNVilbTgVd8hg79IafV7iuLRKG6yv7H49KqRL
- U6WxfzvZiejuJtFsDKfXyzseFgdPahmDc2pHlW9IpSdPKOFaUx+aY5smlnC4YMvsuM8Gjn82ShQT
- 6vOUVNJn12KClhocoxezWQaM8gYGKtR2eGr1RNUhzw6zfCwy6pu3dxi5lrLZf0QMgcX/bxaOcy4S
- seEucBHcm9Gv/Q+jSrWKKdQUsvDiQRfo2np5HwfhHnUSq1H0/Nd8qs90tU3AlpnM7s=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:O+byDxN+m3E=;FPg10a5UBLeIHxc671s5gwpvCNP
- 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
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251103-glymur-pcie-upstream-v6-0-18a5e0a538dc@oss.qualcomm.com>
 
-Hi,
+On 03-11-25, 23:56, Qiang Yu wrote:
+> Glymur is the next generation compute SoC of Qualcomm. This patch series
+> aims to add support for the fourth, fifth and sixth PCIe instance on it.
+> The fifth PCIe instance on Glymur has a Gen5 4-lane PHY and fourth, fifth
+> and sixth PCIe instance have a Gen5 2-lane PHY.
+> 
+> The device tree changes and whatever driver patches that are not part of
+> this patch series will be posted separately after official announcement of
+> the SOC.
 
-this looks similar to my attempt i did here
+Please rebase on phy/next, this does not apply for me
 
-https://patchwork=2Ekernel=2Eorg/project/linux-mediatek/patch/202406080805=
-30=2E9436-2-linux@fw-web=2Ede/
-
-But in my case i added full dtb with 2 overlays as there can be 2 devices =
-(1 mmc + 1 spi) at one time=2E
-So usable as dtb for bootloader config without overlays, not only for vali=
-dation=2E=2E=2E
-
-regards Frank
-
-
-> Gesendet: Dienstag, 18=2E November 2025 um 13:31
-> Von: "Rob Herring" <robh@kernel=2Eorg>
-> An: "AngeloGioacchino Del Regno" <angelogioacchino=2Edelregno@collabora=
-=2Ecom>
-> CC: "Matthias Brugger" <matthias=2Ebgg@gmail=2Ecom>, "Krzysztof Kozlowsk=
-i" <krzk+dt@kernel=2Eorg>, "Conor Dooley" <conor+dt@kernel=2Eorg>, linux-ke=
-rnel@vger=2Ekernel=2Eorg, linux-arm-kernel@lists=2Einfradead=2Eorg, linux-m=
-ediatek@lists=2Einfradead=2Eorg, devicetree@vger=2Ekernel=2Eorg
-> Betreff: Re: [PATCH] arm64: dts: mediatek: Apply all DT overlays at buil=
-d time
->
-> On Tue, Nov 18, 2025 at 3:36=E2=80=AFAM AngeloGioacchino Del Regno
-> <angelogioacchino=2Edelregno@collabora=2Ecom> wrote:
-> >
-> > Il 17/11/25 22:13, Rob Herring (Arm) ha scritto:
-> > > It's a requirement that DT overlays be applied at build time in orde=
-r to
-> > > validate them as overlays are not validated on their own=2E
-> > >
-> > > Add targets for all the Mediatek overlays=2E
-> > >
-> > > Signed-off-by: Rob Herring (Arm) <robh@kernel=2Eorg>
-> > > ---
-> > > This will soon be a warning[1]=2E
-> > >
-> > > Note that if it is desired that the combined =2Edtb is not installed=
-, then
-> > > the combined =2Edtb should be added to 'dtb-' variable instead=2E
-> > >
-> >
-> > Uhm, sorry, can't we do something such that we don't generate a DTB wi=
-th a
-> > preapplied overlay?
-> >
-> > Even something like generating those and deleting before build finaliz=
-ation
-> > could work, I guess, though that'd be hacky maybe=2E
-> >
-> > I don't know if this is the case, but I'm worried that various people =
-have
-> > scripts to copy DTBs somewhere (in some partition) or embed those in i=
-mages,
-> > and if they get the preapplied overlay dtbs in the same place, havoc c=
-ould
-> > happen as the bootloaders might be selecting wrong dtbs (as a plus, th=
-ere is
-> > no dtbo that varies machine compatible strings, rightfully)=2E
->=20
-> If they aren't using dtbs_install for that, then that is their
-> problem=2E When we moved all the arm32 DTs to vendor directories,
-> dtbs_install maintained the old structure which seemed sufficient to
-> not break folks=2E The same should apply here=2E
->=20
-> Rob
->=20
->
+-- 
+~Vinod
 
