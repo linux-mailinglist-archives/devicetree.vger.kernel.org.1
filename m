@@ -1,218 +1,97 @@
-Return-Path: <devicetree+bounces-239944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 800C6C6AFEA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:35:12 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E05C6B042
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:41:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 7EF4E2CE92
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 17:35:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0EC1E34FF3A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 17:34:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85BE335FF4E;
-	Tue, 18 Nov 2025 17:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BFDA349B0A;
+	Tue, 18 Nov 2025 17:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="uj56So53"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fasN/W7h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A923570B5;
-	Tue, 18 Nov 2025 17:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69EA833C1B2;
+	Tue, 18 Nov 2025 17:33:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763487227; cv=none; b=s7nuVYeDMvsE2c8rkeOtMEi1IpkNeGyA33IO/0OhcRutCuXq42Gab9swgh6nnPQb/AQiOGP5zgnJoF02Ncv9y/BhUTmyz/5aij3XYEeb+13slWtGTm2YWawdi6At6mxFN88/sqgXVOy5Itpl7U1XE/KzeVD990g2TF8D7wWMKds=
+	t=1763487201; cv=none; b=UrzbqK/x6yU718ySv7BGOvrBvjS1Taucu2BcM4FdDVI9ZhDIqPC1/WN6DY4sEv3O2EEBoFgFeun9EJN8pefjpe1KngQkSgtdZjrYwkcdkKQUjcOBLxFhgYO/g8uIlMWpUifLLScLA3dvrjl6FkEZqN9wBMxF5aTxF0Ez9QaO9xE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763487227; c=relaxed/simple;
-	bh=HHJjNMzkyNm9+eFvyfLIB9NBXsLMLugJ/Yh/qD3ILHo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WSc0hUEpQytsqkj1Opjwf9sQf+zQO3Gehn5hS+eSSNXt7T3ZHOzK2XTvdztnS6DjnUW4yI4Og5fjoUUYjMT8D1aoguYdgfVocndEf8pF6Fm3tAHt7/UDMyWBs4z0iv0sSLdjS62ln5gDqqhHGFdXVLSR7xBD2owsnFkQyX6MpFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=uj56So53; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AIH4Ap02367616;
-	Tue, 18 Nov 2025 12:33:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=1qes9
-	a+k/Joj4ek4Moqp7NAJ7jPKzssVq+1TxZw4cv8=; b=uj56So53v/d+FdljkkOZF
-	QYu6ZFUH7wGWhnglKEPVg45bXNApfM3WgY7Bc5W0431uyJvqWzVqPg0hXu2C3p/W
-	NAxjZFSvxh2kumZyG/3OjEdn7fQH8kHy+TTvmFfu2EqOEQQDFKb+L5guhMCEoi6n
-	eRuhxFFiOewscrHz+aKHNwjtTWlZmcFQa3QZeV976OHqC2jadoJb6XEWP+sHBwXL
-	JQY+H+p2R624oi8Cwzl5KQoBjvX1xXykykbthGFRbjlOTdVzb5OOPBEfe9uypIin
-	DVhaB1oyoXjLdHobU/JAcitBHlzeHuFUIMkgHe25sUY1aYSoX5D99fpSKw0Eopj9
-	g==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4aggt2kpt0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Nov 2025 12:33:15 -0500 (EST)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5AIHXExf043299
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 18 Nov 2025 12:33:14 -0500
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Tue, 18 Nov 2025 12:33:14 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Tue, 18 Nov 2025 12:33:14 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Tue, 18 Nov 2025 12:33:14 -0500
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AIHWxKX007681;
-	Tue, 18 Nov 2025 12:33:01 -0500
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <nuno.sa@analog.com>, <dlechner@baylibre.com>,
-        <andy@kernel.org>, <Michael.Hennerich@analog.com>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <cosmin.tanislav@analog.com>, <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v2 3/3] Docs: iio: Add AD4134
-Date: Tue, 18 Nov 2025 14:32:58 -0300
-Message-ID: <5d51a7a53eac60ff555fe2350fac69fcb7f9e9f2.1763478299.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1763478299.git.marcelo.schmitt@analog.com>
-References: <cover.1763478299.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1763487201; c=relaxed/simple;
+	bh=MGtVji2vSVm/fOS6ONdrpFFxYiyv80fpbkiyEEmC8io=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XTCS41bZ7p59ilORO8jl2CtY+rZzwa67rKrpY62QnBPf89Hp+McG30hZ1ntTpkpiiNSgm7sFw3nROL1L6lUGpAJpRCKeXdZqjea+3EEj1yl2RDbfVv2XhlytFN2FMZnpqTYRr45ZAUMWRAUGN7X7wEHN5s20Ll7xVED1hkcGAvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fasN/W7h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A822BC4CEF1;
+	Tue, 18 Nov 2025 17:33:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763487200;
+	bh=MGtVji2vSVm/fOS6ONdrpFFxYiyv80fpbkiyEEmC8io=;
+	h=From:Subject:Date:To:Cc:From;
+	b=fasN/W7h2ZAlzq3iSmxkuMZzM963zJCUclnWpOU8Px+bTWRqwCOvsfpjn5iUgSnr+
+	 R4Futere0mqiQiitY4xhN41C742q3loUKaL2d6Uk2QlOfYwxIafN96qcphhLC2zJvz
+	 K199U9d2xJC6fERezCOmK1jEVcrmNummY9f3isqOHPeYNhs0pVIv1n6uh8Tprez3Vl
+	 WuiBcv9RpjJHVW/U83a+YjgcHiEGCM8tI0ucuvN17fl8hAyVyH0nnqymOrjOKCqkfL
+	 q/Qi5tu7T4totqDvXMt2RQMQ85lvpJrtOg+AQxo1ViI+XYOMk739zWKgsc45CDJJq3
+	 /ChdUtrelbzcQ==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/2] Add DISP_CC USB4 router link resets for X1E
+Date: Tue, 18 Nov 2025 18:33:10 +0100
+Message-Id: <20251118-topic-usb4_x1e_dispcc-v1-0-14c68d842c71@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: XAPmJovnoQV6oo0RDSTWPdvmB0FVjqM7
-X-Proofpoint-ORIG-GUID: XAPmJovnoQV6oo0RDSTWPdvmB0FVjqM7
-X-Authority-Analysis: v=2.4 cv=FsIIPmrq c=1 sm=1 tr=0 ts=691caddc cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gAnH3GRIAAAA:8 a=VwQbUJbxAAAA:8
- a=B918M15fmQb9CbtuFVMA:9 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE4MDE0MiBTYWx0ZWRfX60KlLUMwCxtL
- kDE21z2BoQj+cSTExKJWcWuT+69flRJq7XIoRdWCWzaalKTrEVpHMMC2srKX6J3lOEd07mYDf3Z
- JowK7F4uq9uiShAjU5Z9PzYdUssxU+pTrh2e6J+Je8PZvTTOKULdBDaW1YcHNIOjsbLuYcKwS8C
- 1AztNShou4otxBTxYkjQw2vMjapo3OdPFIpecCAUJz/+On0lx0fctx1WO4jTLz0cpCxTkaIhmTo
- aINZvaBvyghjImvTsyH6tPl/76mltyVeG2fWip2diPVxd60lQo82IeV6S70THD14oRSZfM2i6n3
- OGXxXlYmBsWyGsjuLvM98UAVqq+xfzy9Icu2qYKYDIqeevuXBwgKCT1klmLxvZLZ6NKqTOhVvuQ
- 683lntnM2StPspqNh4id9NNG0zzz2Q==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-18_02,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 phishscore=0
- priorityscore=1501 clxscore=1015 spamscore=0 impostorscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511180142
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANatHGkC/x3MQQqAIBBA0avErBMaK7CuEhGmU82mxKkQorsnL
+ d/i/weEIpNAXzwQ6WbhY8/AsgC32X0lxT4bdKVbRDTqPAI7dcncTAlp8izBOeWNQdvapZt1Dbk
+ NkRZO/3cY3/cDF3c53mcAAAA=
+X-Change-ID: 20251118-topic-usb4_x1e_dispcc-d881a5af9b23
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ usb4-upstream@oss.qualcomm.com, 
+ Raghavendra Thoorpu <rthoorpu@qti.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763487196; l=645;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=MGtVji2vSVm/fOS6ONdrpFFxYiyv80fpbkiyEEmC8io=;
+ b=nFq2k/E5LODGinAWB27vjR4EqNIypIoGIxEnMcJ09YjHWhyDtVCYMi3N4HZkJY9TOmX3iu/A8
+ 95TNxF2nHgNANi0sU7Xn3iOIf5ZiExUd7AufMtp+06NbFBj6gXanvPn
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Add initial documentation for the ad4134 IIO driver.
+Those are going to be necessary to toggle as part of the topology setup
 
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 ---
-Change log v1 -> v2:
-- Now using "~~~~~~~~" to mark fourth level topic.
+Konrad Dybcio (2):
+      dt-bindings: clock: qcom: x1e80100-dispcc: Add USB4 router link resets
+      clk: qcom: x1e80100-dispcc: Add USB4 router link resets
 
- Documentation/iio/ad4134.rst | 58 ++++++++++++++++++++++++++++++++++++
- Documentation/iio/index.rst  |  1 +
- MAINTAINERS                  |  1 +
- 3 files changed, 60 insertions(+)
- create mode 100644 Documentation/iio/ad4134.rst
+ drivers/clk/qcom/dispcc-x1e80100.c               | 3 +++
+ include/dt-bindings/clock/qcom,x1e80100-dispcc.h | 3 +++
+ 2 files changed, 6 insertions(+)
+---
+base-commit: 187dac290bfd0741b9d7d5490af825c33fd9baa4
+change-id: 20251118-topic-usb4_x1e_dispcc-d881a5af9b23
 
-diff --git a/Documentation/iio/ad4134.rst b/Documentation/iio/ad4134.rst
-new file mode 100644
-index 000000000000..fa44a05e6793
---- /dev/null
-+++ b/Documentation/iio/ad4134.rst
-@@ -0,0 +1,58 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+=============
-+AD4134 driver
-+=============
-+
-+Device driver for Analog Devices Inc. AD4134 and similar ADCs.
-+
-+Supported devices
-+=================
-+
-+* `AD4134 <https://www.analog.com/AD4134>`_
-+* `AD7134 <https://www.analog.com/AD7134>`_
-+
-+Wiring connections
-+------------------
-+
-+AD4134 and similar ADCs can operate in a few different wiring configurations.
-+
-+Minimum I/O mode (SPI control mode)
-+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-+
-+The minimum I/O mode wiring allows AD4134 register and data access with the
-+conventional set of SPI bus lines. The hardware configuration settings for using
-+AD4134 in minimum I/O mode are:
-+
-++----------------------------+----------------------+--------------------+
-+| Pin Function               |         Level        | Description        |
-++============================+======================+====================+
-+| PIN/SPI                    |         High         | SPI control mode   |
-++----------------------------+----------------------+--------------------+
-+| MODE                       |         Low          | ASRC slave mode    |
-++----------------------------+----------------------+--------------------+
-+| DCLKIO                     |         Low          | DCLK input         |
-++----------------------------+----------------------+--------------------+
-+| DCLKMODE                   |         Low          | Gated DCLK         |
-++----------------------------+----------------------+--------------------+
-+
-+A possible connection schema that sets AD4134 digital interface for minimum I/O
-+mode is:
-+
-+::
-+
-+                                 IOVDD
-+      +------------------------+   |
-+      |                PIN/SPI |<--+     +-------------+
-+      |                        |         |     HOST    |
-+      |                   DCLK |<--+     |             |
-+      |           FORMAT1/SCLK |<--+---- | SCLK        |
-+      |   AD4134      DEC2/SDI |<--------| SDO         |
-+      |               DEC3/SDO |-------->| SDI         |
-+      |                    ODR |<--------| GPIO        |
-+      |             FORMAT0/CS |<--+     |             |
-+      |                   MODE |<--+     +-------------+
-+      |            DEC0/DCLKIO |<--+
-+      |          DEC1/DCLKMODE |<--+
-+      +------------------------+   |
-+                                  GND
-diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-index 315ae37d6fd4..d4ed782c93a6 100644
---- a/Documentation/iio/index.rst
-+++ b/Documentation/iio/index.rst
-@@ -22,6 +22,7 @@ Industrial I/O Kernel Drivers
-    ad3552r
-    ad4000
-    ad4030
-+   ad4134
-    ad4695
-    ad7191
-    ad7380
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a1541cf3967b..b2c101598636 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1455,6 +1455,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad4134.yaml
-+F:	Documentation/iio/ad4134.rst
- F:	drivers/iio/adc/ad4134.c
- 
- ANALOG DEVICES INC AD4170-4 DRIVER
+Best regards,
 -- 
-2.51.0
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
