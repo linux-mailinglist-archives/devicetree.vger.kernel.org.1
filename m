@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-239937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC54C6AED9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:24:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F0DC6AEEE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 18:24:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 2ECA22D00C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 17:23:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 13C332B290
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 17:24:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4BB35FF7B;
-	Tue, 18 Nov 2025 17:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A6636C0BE;
+	Tue, 18 Nov 2025 17:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LRCAJX0o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I18UtjqP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DED35A954;
-	Tue, 18 Nov 2025 17:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28ACE36C0BC;
+	Tue, 18 Nov 2025 17:18:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763486298; cv=none; b=ucmLC20sjsLRf737NfdNjM2V6DcnKcmi6NTI+9y0xczreENKzVYTlM3zNNJcHGbr0L2bAMGAp+vvPk7hvCuI+cUD6W+rNGyJ0VOQD1krmxU5QE4QSM5GBxBVXS+NzBRk4bVVG3fkowcQYZriMLPW/HtFPGunZYzHYteGyde/h2A=
+	t=1763486313; cv=none; b=RirjN2yo85FrHmN8oN/51YK5SANVijYfpvrAewKp1AyMmo9oYGpbykVc5hlwt9gLokUrTtMgtF0BC4qp3yrYhZRj5kxJFG41qE2FbPQ92WWYCy8G3xLs6Eo/uVnLx2mDRWUu9I4/YpkAWWodtcxi9/9RgApOozvn0A4PSPd+/xU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763486298; c=relaxed/simple;
-	bh=1wHwuQs+KyZl1yodXT0yg2BEqvi1f1TTUhu+LxUU8GQ=;
+	s=arc-20240116; t=1763486313; c=relaxed/simple;
+	bh=RiGFzfXmZO4+VW2Jlm31IvVgpbQb3+giKHuHjhhJwgs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ObOw0t/6Udx9569Ow2UusoBHAgx0KImnNqqkgFCbqr9cQYA84Fed2/GdA7x4cQpEREKQ0DadeH7W8Yi5s1kORhgOLK/RIM0EAK9LnbieZwo9jiBAk/QsOw1htqtEDcmDwumDRKiS0eA6xMAwSQ5Hl/9t1WkRo5SBGrpy1DixElg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LRCAJX0o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED1A7C4CEF1;
-	Tue, 18 Nov 2025 17:18:11 +0000 (UTC)
+	 MIME-Version:Content-Type; b=o0E/QKCI5RXM4eQYAyZoCnLe++dMOGJIq5VJn8s+1R0h2o1evPI8+ZLS9r4mLpWfKKSGBrvbKovE4UIpzjcQrkTFhxTSEwToXKNmbcvHsU1KkEwyiJW7+XMhGNNLaYWcaneB7WTYInK9SMmNOvyRFR1tI3KF5R71at8//iQ+kRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I18UtjqP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96638C2BCAF;
+	Tue, 18 Nov 2025 17:18:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763486298;
-	bh=1wHwuQs+KyZl1yodXT0yg2BEqvi1f1TTUhu+LxUU8GQ=;
+	s=k20201202; t=1763486312;
+	bh=RiGFzfXmZO4+VW2Jlm31IvVgpbQb3+giKHuHjhhJwgs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=LRCAJX0oKd0lqfZIIz9qm2DQH9x++4W0Rqi4wLfSn7Gaeiu3LgztD6PqX4xut/MP4
-	 pc8KyM8sEBvZ3zG0x/UBt7gSHiElvE4IThaggzpADKhINojZkohQXHkJLRa+w/oojJ
-	 KTEbmVeTN3E32VSabX+mxr7/CjiJ7kAv0xysHrovD8PdGs7/3/nGsTeSbtsttNeZdK
-	 SA7HohyzyJ2x5xKotD6EBSFbiq3Zo63zThivF8bfzoJTq2Wz/rWOjXXYd/5SY6jK71
-	 DeT5rTgq7uLGNdhlEXUgOgQvYErjn7mpbLGjIPBR//zGRnREFKT8aWy0okkz9c7ad9
-	 CDLTaHo3ttjDA==
+	b=I18UtjqPqYnixIi5FDSgas4/atMW1EQ9o6lY185VTZaiaL7ZvAESGiRL0HYiZwad/
+	 LiwAxvGPNNH3jdl2mbMLR203FMWcCXM5EoEJkMkEFidY+0x45ecx37EfDwsrl1P9tL
+	 6fINqEuE6XFGLiBTXzsRZcnevpFTzKKGZUVdvOWrcPlbOoLzEKnYj/lDLdFabnRQxT
+	 jJiviQ1Smlvrx+oVGwuiO3b1AsxuzwroINlTog92wzexxRpVz1/5ssa3nh4COnH/QJ
+	 V4kXSrWC5b38H3emVxqHg1BcR9gCu/sgsfeLqbNM1WD9qdKJqGqblpm/OuwHk4LSkv
+	 kbhgcrr9aRrfA==
 From: Vinod Koul <vkoul@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, 
- Vincent Mailhol <mailhol@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Peng Fan <peng.fan@nxp.com>
-Cc: linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
+To: Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Biju <biju.das.au@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, linux-phy@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- Frank Li <Frank.Li@nxp.com>
-In-Reply-To: <20251001-can-v7-0-fad29efc3884@nxp.com>
-References: <20251001-can-v7-0-fad29efc3884@nxp.com>
-Subject: Re: (subset) [PATCH v7 0/8] phy: phy-can-transceiver: Support
- TJA1048/TJA1051
-Message-Id: <176348629150.62598.2560301627293635701.b4-ty@kernel.org>
-Date: Tue, 18 Nov 2025 22:48:11 +0530
+ linux-renesas-soc@vger.kernel.org, 
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251029084037.108610-1-biju.das.jz@bp.renesas.com>
+References: <20251029084037.108610-1-biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v4 0/2] Add Renesas RZ/G3E USB3.0 PHY driver
+Message-Id: <176348630816.62598.8877829293827996179.b4-ty@kernel.org>
+Date: Tue, 18 Nov 2025 22:48:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,36 +67,24 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Wed, 01 Oct 2025 21:22:31 +0800, Peng Fan wrote:
-> TJA1048 is a Dual channel can transceiver with Sleep mode supported.
-> TJA105{1,7} is a Single Channel can transceiver with Sleep mode supported.
+On Wed, 29 Oct 2025 08:40:32 +0000, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
 > 
-> To support them:
-> patch 1: add binding doc
-> patch 2/3: To support dual channel,
->    - Introduce new flag CAN_TRANSCEIVER_DUAL_CH to indicate the phy
->      has two channels.
->    - Introduce can_transceiver_priv as a higher level encapsulation for
->      phy, mux_state, num_ch.
->    - Alloc a phy for each channel
-> patch 4: Simplify code
-> patch 5: Add TJA1051,7 support
-> Others: Update dts to use phys.
+> This patch series aims to add Renesas RZ/G3E USB3.0 PHY driver support.
+> This module is connected between USB3 Host and PHY module. The main
+> functions of this module are:
+>  1) Reset control
+>  2) Control of PHY input pins
+>  3) Monitoring of PHY output pins
 > 
 > [...]
 
 Applied, thanks!
 
-[1/8] dt-bindings: phy: ti,tcan104x-can: Document NXP TJA105X/1048
-      commit: 05ace63d0bcfe131e741923394c7ce03322a141e
-[2/8] phy: phy-can-transceiver: Introduce can_transceiver_priv
-      commit: c77464bd9b4155891a135e51f8e916e1ab94fc14
-[3/8] phy: phy-can-transceiver: Add dual channel support for TJA1048
-      commit: 6e9fe9409e10ed25b43928062832037752630979
-[4/8] phy: phy-can-transceiver: Drop the gpio desc check
-      commit: d02a7eb12924b7473a62d5a6c9e670fe5bf6e4b7
-[5/8] phy: phy-can-transceiver: Add support for TJA105{1,7}
-      commit: b817f505926b8ffbdea8aa87b66a622acb9b96e9
+[1/2] dt-bindings: phy: renesas: Document Renesas RZ/G3E USB3.0 PHY
+      commit: 4f816512aaa1fa3b74df7473ef771ebef511255e
+[2/2] phy: renesas: Add Renesas RZ/G3E USB3.0 PHY driver
+      commit: ee5f1a3f90a4720f89fd1e250fa6754470da1510
 
 Best regards,
 -- 
