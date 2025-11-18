@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-239789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09882C694B5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:12:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8221C694EE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 13:15:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 19FC92B2D3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 12:12:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id B2B0D2B324
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 12:15:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D48DD31D75C;
-	Tue, 18 Nov 2025 12:12:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6DF633CEA9;
+	Tue, 18 Nov 2025 12:15:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="EHuSsXBa"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="cM+IEsiF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A13830103D;
-	Tue, 18 Nov 2025 12:12:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05FC62727E7;
+	Tue, 18 Nov 2025 12:15:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763467924; cv=none; b=bDTWEZwN4zuTx0pmCxJc03gCTSEXeLDIswEQzoFfTl09Pfr5DSY6A14Ikz/aeqdi1/ZqtR/n2aAjv2/fgHsGK7zIJvGFKEo8Fpz8/y/P/xQhSLNlBKmXeJFr76QsW8kqnPeBK5J/4AOQhHyFiWJWFCE2aqRNLGPBd9PuNLW/+io=
+	t=1763468139; cv=none; b=SNXeHwPGAgdQ6C5++hDb8b4H2VUSatiNwReaeFCcEwEDmfmO0IInQ9NN+46O1Ga78MTo4zVO4kqqUUdt9MLMJfH24NaGcDyPFz14XoLyM8Eq5zBQjn1ltqaUcxWSZsgP0o502W6odhEHq6tvtBcXRMCHnE27hB4Dq+tGZzsuBgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763467924; c=relaxed/simple;
-	bh=oF3NBnUTMYZQqrPLtkeu7JVKLmo3Ji3y6mQW/QBg1Y0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hNaLi+3ZidLr9P+szK2dFyC6fL3wXVL0HMBrQP1gVn3y/jgtdvhJDp3uoF9FNJmbiYu2DKuW7XwABnFwI/8m0tbgp1e2TVHOeYL+5BMpouzi3XWZp1X5CsgwY3UvQ/ZSQrBXJT8eqAXBFv4Uvf46wVBtnJ79WWT3mzsIIJRQP9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=EHuSsXBa; arc=none smtp.client-ip=178.251.229.89
+	s=arc-20240116; t=1763468139; c=relaxed/simple;
+	bh=KmfCJ4nG6BTW7ees9zJOTpmLw8Y9fFNPqxadb4oaQ3s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cyawQT1MYOxC4O9/hqOzyePTK5HOvGgP0lyp1y2PJSJMlMBbyegl7A4d+v0fCNsJwz3eTMTB7i99+j2qNrUko7uuwucLQC8q4FZlF0eGPGo/k5HJStMOAcw8PvTcU5J8PVpgiG2rm060cAMHiIeBniI622a0B+1Xtlw5OZt/d+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=cM+IEsiF; arc=none smtp.client-ip=178.251.229.89
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 963071094E2;
-	Tue, 18 Nov 2025 13:11:58 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 49A8B108C89;
+	Tue, 18 Nov 2025 13:15:32 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1763467919; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=TDmsa/pzlfmaieUPYWrn6Qbx+Sof3bJ81BGiUv9KizU=;
-	b=EHuSsXBaYqbBlFshrEIX/pllIptth/KuRlPdft8TVCz0i3e4lnutZf0TJ6nvA01rGKLZjk
-	DP3wv4DILSTWsgTRvsc95U3EnmHxOW271ysKFFovnfwoXKzHzCQERM58VClqOGUgt5JE4V
-	X6Bs954/oN2qasmhPEey/DgEse/UMOD7ng10HXar9Z7Zi7dzYRdAaJbhWwzaWd+aYJwNZ+
-	lJVmY5cuXHBiwcF4PwiUcCuSNIjoP/0f2Utl+RI2IWrVwQ6eTn6qFcJm10HY+hduXu0Qkd
-	nHX2SlzUWtFoKQA1QOnyGIvkQPrgNT/NToCf6VaHn6xo/bJqLnNwmOy0avmwLQ==
+	s=dkim; t=1763468133; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=3QJ1mTk7kGA2Mq/qr+t1f9JBo1ERwQoZHJ3mtEtKdkE=;
+	b=cM+IEsiFFxyPJrmXrbZfStiEXUKUwtHgZZ/o2gXEuujrADPdFBU3USY8tz0rzUQfn/ESCS
+	+f6JpVmalPLjCTBEo7b93zLKIp0a3XVRokmJpvgyffxbSFslRSQ9GEAA2cuNa3XDI52kfk
+	nZm9CCZWxdSonPRz4aFNaaJIaE9nssn4CKupE4ginl0QpzuKPx+WH76xoBwSc6qiisHdtX
+	RyE8ToD5SVVsYrGzmVVticwiFgvkC4Hfyf6zhjMCMtnmvTkWfqHA0bJxmLEjj7VbY928F9
+	HMxC03mF+vbrkvrXeUhKHNbK+iEGbIKgMWykPpGlMnCtjeMBDvfCRMdlxilXlw==
 From: Marek Vasut <marex@nabladev.com>
-To: devicetree@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
 Cc: Marek Vasut <marex@nabladev.com>,
+	Christian Eggers <ceggers@arri.de>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Gary Yang <gary.yang@cixtech.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
+	Markus Heidelberg <m.heidelberg@cab.de>,
 	Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org
-Subject: [PATCH] dt-bindings: pinctrl: cix,sky1-pinctrl: Drop duplicate newline
-Date: Tue, 18 Nov 2025 13:11:24 +0100
-Message-ID: <20251118121148.88165-1-marex@nabladev.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] dt-bindings: eeprom: at25: Add Anvo ANV32C81W
+Date: Tue, 18 Nov 2025 13:13:10 +0100
+Message-ID: <20251118121513.88352-1-marex@nabladev.com>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,38 +67,40 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-Fix the following DT schema check warning:
-
-./Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml:68:1: [warning] too many blank lines (2 > 1) (empty-lines)
-
-One newline is enough. No functional change.
+Document the compatible for ANV32C81W 256kb Serial SPI non-volatile SRAM.
+Although it is a SRAM device, it can be accessed through EEPROM interface.
+At least until there is no proper SRAM driver support for it.
 
 Signed-off-by: Marek Vasut <marex@nabladev.com>
 ---
+Cc: Christian Eggers <ceggers@arri.de>
 Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Gary Yang <gary.yang@cixtech.com>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Markus Heidelberg <m.heidelberg@cab.de>
 Cc: Rob Herring <robh@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
 Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
 Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-gpio@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 ---
- Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml | 1 -
- 1 file changed, 1 deletion(-)
+ Documentation/devicetree/bindings/eeprom/at25.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
-index 36977b0d745bd..8ed53496c386f 100644
---- a/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
-@@ -65,7 +65,6 @@ patternProperties:
-             enum: [ 2, 3, 5, 6, 8, 9, 11, 12, 13, 14, 17, 18, 20, 21, 23,
-                     24 ]
- 
--
-         required:
-           - pinmux
- 
+diff --git a/Documentation/devicetree/bindings/eeprom/at25.yaml b/Documentation/devicetree/bindings/eeprom/at25.yaml
+index 00e0f07b44f84..e1599ce109165 100644
+--- a/Documentation/devicetree/bindings/eeprom/at25.yaml
++++ b/Documentation/devicetree/bindings/eeprom/at25.yaml
+@@ -25,6 +25,7 @@ properties:
+     oneOf:
+       - items:
+           - enum:
++              - anvo,anv32c81w
+               - anvo,anv32e61w
+               - atmel,at25256B
+               - fujitsu,mb85rs1mt
 -- 
 2.51.0
 
