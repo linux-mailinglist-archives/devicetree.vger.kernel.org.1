@@ -1,214 +1,153 @@
-Return-Path: <devicetree+bounces-239580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-239589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44846C66D93
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 02:37:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D824AC66E54
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 02:55:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id EF9E129CEE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 01:37:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 6E22928A3B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Nov 2025 01:55:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415BB26ED37;
-	Tue, 18 Nov 2025 01:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5C430F958;
+	Tue, 18 Nov 2025 01:54:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="d95Esqwj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023074.outbound.protection.outlook.com [40.107.44.74])
+Received: from mail-m19731115.qiye.163.com (mail-m19731115.qiye.163.com [220.197.31.115])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE2C304BB8;
-	Tue, 18 Nov 2025 01:37:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.74
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763429831; cv=fail; b=h3rasr3wVlF3azOS6BM3Mrpyxvl0hpBkhZKdpqtm8nG+vB4dML9j6ReF17BW3iMOj5YFRp/pknqFxDKINTDL6/cjWThf1j53KlrglGnwQ1fTgLGUk0oPcjKQ98eKlP2tDnbINejhzpysh8IzE3fvnNFhgMqWIoCOCrc6hYhcv8c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763429831; c=relaxed/simple;
-	bh=3rn0ZqUBpN/ge4G6Ws8FjTXFisj2SCmn7cDCs+FOt6U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C26yN/CuBU0kddT8b7t2DW5OLhIDM3PhJUtw3jdTfABWy86rs2DwWEQ/LC72oA0zUOQsGkRoCxh4EzvSaAQd9n6XxaXe9rnyzDjWpcuF584ysgWWq1EXKPxhve7j26kaFOhlSk14CIxkQEdol5SWOl8oYo5XOH4vacjzxtBY0oY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NT7K93d/OhlneapWOeL0lersvVwBGOcp0CmaS8W3HlBz3q1nXDpiAs2htSneLhdq9L6WwTQ8RJSKPPO4YACabcQwVXgxA3fP/9WbfvXr9ur1UZvCODePxEKh8MFC6G1/dEE5H+RHh4xDOsGaEj0hPhKV7dTpjJEHd75R+uZm5viVcLvdmM8J/WttGliNMtU54vPwIIh67br7bNF1VG5tVqvE5IxFJmsQ7BVSYRjKmv92iPPmLqYa6Nbrg1wZtKozRhJWhEpjQ2uvX3lxqKy5joH04WdzZHtA5qQrWHlfMCWMvo6otDHpTP3E/DLc+TLRJChCSkWiusoPPrdWExouww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ehmocG0wTtlacCkfjaU5Pr3pISe+y0EeoCTHiGbEF8s=;
- b=X0tDf6kXrmxghL/eI+J/a2Wxj2Hjo/FvB+i0gEV4nuHJ3fGq7T9Rgn2NERNm1kiRKamd1tZ2TtH2drej0cWbbqbFqe1W5WrW4CU7QZmHL0x0H0lgWVW2punaciv+FS4TVJGO6uv+yXkYKx9usei77/FEWUCsCaaxKJdXo2sCxbLCDY7EJPGAMm7/u5BFCwk/OVDdHrXYKIy/JMFybCFO566yecMWGiVvs2BaEVR64sEoB8JOM5+HHTj1aQFgel8P4pJCMysgX8Zd4K9Kq8KrorCLDmdZ8QfkC0oSVOdeOpKVnRNMhrNO4Eo0PC7wFGHFcaEiQCO3Wg+0ebIz3IbKzw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PS2PR02CA0073.apcprd02.prod.outlook.com (2603:1096:300:5c::13)
- by SE3PR06MB7959.apcprd06.prod.outlook.com (2603:1096:101:2e6::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.16; Tue, 18 Nov
- 2025 01:37:04 +0000
-Received: from OSA0EPF000000CB.apcprd02.prod.outlook.com
- (2603:1096:300:5c:cafe::e) by PS2PR02CA0073.outlook.office365.com
- (2603:1096:300:5c::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.22 via Frontend Transport; Tue,
- 18 Nov 2025 01:37:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000CB.mail.protection.outlook.com (10.167.240.57) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9343.9 via Frontend Transport; Tue, 18 Nov 2025 01:37:03 +0000
-Received: from [172.20.96.43] (unknown [172.20.96.43])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 7F3E840A5BD5;
-	Tue, 18 Nov 2025 09:37:01 +0800 (CST)
-Message-ID: <f32810d7-64a1-4d29-bdf0-04b9930faf15@cixtech.com>
-Date: Tue, 18 Nov 2025 09:37:01 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B0E1862A;
+	Tue, 18 Nov 2025 01:54:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.115
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763430897; cv=none; b=IWw0GhNqmYhsofgl4Xui5DAH1Jkk8E4wLYgQt0bNHexMqSiil3cIEZNbZJedD5STmW2imBcUoq2NpMOFrdB2uMDYrypzPZkxdCRH5YE14NRtBp0o7CpWF1KN/HeapXDmukfOHmVl3RRLGPRSHp4a2htP7Aqpnsrs1wyI2kG1URQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763430897; c=relaxed/simple;
+	bh=F0odjzwhaVYFKIHL4BiePeQi3Ip1aPlv+NZ9ZDu/Pz8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=f2uyGFmt6oYmCliX+Mfu4ExKlVvRIT3Ih2po1uEcX/iYYc3UCCfJ+ruYXOyvHbXNMAwoMxKqT+Dxl8eNEjy9Lva81BszGIsK2rfAFkpvdZ4KAVosdX1cmNwS8IO96dGj2Sw6rIrPweSrIEqmxmMw8Mz1K9584oCvrjt4Su8Fk0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=d95Esqwj; arc=none smtp.client-ip=220.197.31.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from rockchip.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 29e9c3744;
+	Tue, 18 Nov 2025 09:39:30 +0800 (GMT+08:00)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: zhangqing@rock-chips.com,
+	mkl@pengutronix.de,
+	kernel@pengutronix.de,
+	mailhol.vincent@wanadoo.fr,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	cl@rock-chips.com
+Cc: linux-can@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v10 0/3] rockchip: add can for RK3576 Soc
+Date: Tue, 18 Nov 2025 09:39:26 +0800
+Message-Id: <20251118013929.2697132-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: dma: arm-dma350: update DT binding docs
-To: Krzysztof Kozlowski <krzk@kernel.org>, peter.chen@cixtech.com,
- fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com,
- schung@nuvoton.com, robin.murphy@arm.com
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
- linux-arm-kernel@lists.infradead.org
-References: <20251117015943.2858-1-jun.guo@cixtech.com>
- <20251117015943.2858-2-jun.guo@cixtech.com>
- <bfe6a067-704b-45c1-919e-6a7dfb08b984@kernel.org>
- <aea1429d-b67e-4c42-ad19-88d04f69467b@cixtech.com>
- <024eb64f-74bd-4170-a6c1-09c4af647926@kernel.org>
- <62b59d52-7107-4426-b922-812d343195db@kernel.org>
- <08142bd3-4a17-4c4f-88ff-fd81e9941a18@cixtech.com>
- <7df26091-97be-4494-8140-5e2ca54780ea@kernel.org>
-Content-Language: en-US
-From: Jun Guo <jun.guo@cixtech.com>
-In-Reply-To: <7df26091-97be-4494-8140-5e2ca54780ea@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000CB:EE_|SE3PR06MB7959:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1891966f-d361-46e6-8afc-08de2642f9d1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|7416014|376014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?dVZMTCtjb1VnWFNHS1pOYmRCTVhBc2pKQ1luVHFWVXhjdzVObG04Tzd4cHBW?=
- =?utf-8?B?cmcySWJEdWcxNDJEa2o0OFNGTzBta0M0V2hqMDFoRVlIUkxsemRMUTF1L1BN?=
- =?utf-8?B?SWd5M0ZEM0lVdDJFUGgzbTZOR1VlTzJxeUxzS295eFBPUmh2YmhRNnJSbFly?=
- =?utf-8?B?WVZWd3pSRnlVWENqZUYrcTg2NkpEdTI5Vit5OGdvM3gxTnBpSnJtZ21UTmtX?=
- =?utf-8?B?QkhFVFRoYVlXUnNWU1psTm9SQlVxMndKdG51U2FVZmZNUkVuMk9qQUsydWZ4?=
- =?utf-8?B?Z1VzbVlabWYzdmxzcUNJZElTTUpmTjdmV1E4U3VUZWc0ZDAwL2xFM3NYSzdr?=
- =?utf-8?B?NmNGTDBEZ1RqL1orMjlpZ3VGM1BwTS9YN3o1eWdnRUFWcXFKVmRSSDdHV09V?=
- =?utf-8?B?ZHV2NW1TQ1dlQk5obFprRWJHaWFYbE5ncDhEYVhqRVRvWlo2OGNCLzhVdEpO?=
- =?utf-8?B?T3VsWE10Vk1lSHJoZ0RuTmwybzhNeUZ1aDdxUU9BTzhHbVhBdnhQZVNhcFEw?=
- =?utf-8?B?cUdzL243Y3d2aStpdEdobUsyK3ljUnJ0NzRzVjdHOHpNV2N1ZCtJYm93c2xi?=
- =?utf-8?B?VkF5WUZ4RGp6dVdQbXdCVTk0cC9qQk5jbkZCTS9kVWkwaWp2Vlp3NnRnL1hE?=
- =?utf-8?B?R0s3OGpjTmVJUm01dVd3K1lDZ3FsbTNSVFA3VnlVQ2RjOVN2ZlJtR21hWS9R?=
- =?utf-8?B?WEd5Mlp4UGRqOStBZFpRbW9EajYreFltWldURnlYSVBEWXg0V1ZUZktpT3ZI?=
- =?utf-8?B?RU8zRWd2N2Z3QWdqUUNrVEVuT0tXVW1yMFBUeTRpd2hBcXdteGpKQWhyZjRh?=
- =?utf-8?B?REQydGJtTHlrSk10L0F3SFgxUElPQ3p2RDJZdi9Gak9ld0JJV3hyUW1JdUdN?=
- =?utf-8?B?UDdteU9JY3dhRGZuaWdzTVVMSnZCdm1kdWFybTFxemhoTHlYZTJ6S1BkUEow?=
- =?utf-8?B?Y2h3UUlvQ0tORFN1YStCY1NUVTRhR0IxMWtWWExTK21GRm1pcmNHSVdjL3lK?=
- =?utf-8?B?c2FwZjFRNHRPczBhYVNEU1daL2E4L1BEQWVRQlJ2MVFzQTh0bm15aGtJdzlL?=
- =?utf-8?B?RFl4Q3lFU3NCdnZIVERSVEpwczNZZG9IZjBUMFR0NnBRUnNMLzZTTjBYUmds?=
- =?utf-8?B?RG9XeVJFdDBITTd1UlZnZmpQRVp0NDE5VityOTNKN3EyUG5mWitZc2luSVhV?=
- =?utf-8?B?M1BJUTBKYUdUZ2RsSjF4ekZFUUNsWnNHSHJ1akcyWVdNVjZmZis0TnlRZjFi?=
- =?utf-8?B?eDh5NnNMcE9DcjdFU2NyR2FzYmk4Q2c1NVBXTWxPYVY0eDU4U2ovcHJYKzBx?=
- =?utf-8?B?WStLZytZczZUNGNPRWowQXkrVXZoVnBMbThKczFiaDNuSzNzUVN4bFpmNUU3?=
- =?utf-8?B?TWt1d2kybnYwSXVSSWo3M0xuRXk4QXJzMGhmdTByaXl3dUZWblJoT3RRVk5z?=
- =?utf-8?B?UkpseGU5MHI4aFNSMi9EYXFTbzY1VGRXalpjcmpIbk9hWXkvdGFwQXkvZjN3?=
- =?utf-8?B?SW5QNm83aEE5RkFMU3dXVW93YWZ4TXJ5VDRoUXRFaDFvbkk1Tzl6ZkQxMytU?=
- =?utf-8?B?dG54Vm13bm5SQ2dUOHJOWnhBT3djcHBEM1RwNmF2a2diUHlrNysrUitRRXZH?=
- =?utf-8?B?RlJ6Y21JajhFODk4a285ZDdwYVliUDRzS2ZjdmhYQUZJeWZmbk9MZnhXUSs4?=
- =?utf-8?B?T2hidTRKcUJqSFZCVTFDaGxOR2ZxQ1NxcUZRODZ1WWpWdjJ0c3AxQkFEVmVJ?=
- =?utf-8?B?U21rRXhDU3k1QU52YW4yVHA5OEl5WWx3bmVBczJPWGVRZS9PQ0hSRHZJdHRJ?=
- =?utf-8?B?bTRFRkFtUGpvYm5sVDNjRHF3bXVvdncxM0E4VnYzM3N2NUZwZURjWC9TUGhN?=
- =?utf-8?B?Q1BhYlMyalJXWGZzZm9ucTNoMWluTlhIay9RdTJkY01YSkpPakd5dUtNeS9Y?=
- =?utf-8?B?WVJxMmJDYWFpUHZjQ1NrZDNsWVRMZjdCUU44VEpqTGJ0Yis1Rmw0ajM4OVdZ?=
- =?utf-8?B?d3hOMVhUWmxiWHNNSkhOVklvanpaU1JHYjQrQjJva0pGM3VYd3U5d04vb0JI?=
- =?utf-8?B?VUlMMk5XemZZRnhmWjFpR3g4dlBhaTNwM0VLK01Kd2F1am5OZ3Vob1c1b2kv?=
- =?utf-8?Q?2aD2idf8ndnSe0UD9zvmF8yJ1?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(7416014)(376014)(921020);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2025 01:37:03.1855
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1891966f-d361-46e6-8afc-08de2642f9d1
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000CB.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE3PR06MB7959
+X-HM-Tid: 0a9a949df36403a3kunm07a8ba9e476a7
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQh1JSVZNQhkeSR8eHk8fTRpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=d95EsqwjGLzRTOUj/OyJtYu/8aGbohZlmGLCXmgNZ3IEbb1dOlTtwFe9hiOiJenrr4Glet22Dmj1AV4fN4JS9nqNNmgt/kFem93V4ZV3r7rKz4FTuhgU/pSHihamP6xELW5wjkJI0a6u4f3+Iaadru5wVTHRIr/6aOGx8feVMCQ=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=VQDe0qd4BJs1skNAK8EBE03leCXmi2MVma2kr6Rm7Lw=;
+	h=date:mime-version:subject:message-id:from;
+
+rk3576 can is a new CAN controller:
+new register layout and Bit position definition:
+There are major differences from the previous rk3568.
+All errata on the rk3568 have been fixed and redesigned.
+
+RK3576 TRM update: CANFD is replaced with RKCAN.
+
+Change in V10:
+[PATCH v10 1/3]: Add ACK for commit message.
+[PATCH v10 2/3]: No change.
+[PATCH v10 3/3]: Update commit message, fix get_berr_counter.
+		 Add log for errata, drop RKCANFD_QUIRK_CANFD_BROKEN.
+
+Change in V9(Drop dma):
+[PATCH v9 1/3]: Drop dma, fix "allOf:"
+[PATCH v9 2/3]: No change.
+[PATCH v9 3/3]: Drop dma for commit message.
+
+Change in V8:
+[PATCH v8 1/4]: Drop CANFD, correction format warning.
+[PATCH v8 2/4]: Drop fifo_setup of rkcanfd_devtype_data.
+[PATCH v8 3/4]: Drop CANFD.
+[PATCH v8 4/4]: Drop CANFD.
+
+Change in V7:
+[PATCH v7 1/4]: Correction format warning.
+[PATCH v7 2/4]: No change.
+[PATCH v7 3/4]: Correct the writing of some registers and
+                correct the annotations.
+[PATCH v7 4/4]: Optimize the structure parameters and
+                ensure error handling.
+
+Change in V6:
+[PATCH v6 1/4]: Fix dma is support only for rk3576.
+[PATCH v6 2/4]: Fix the compilation warning.
+[PATCH v6 3/4]: Fix the compilation warning.
+[PATCH v6 4/4]: Fix the compilation warning.
+
+Change in V5:
+[PATCH v5 1/4]: Add rk3576 canfd to rockchip,rk3568v2-canfd.yaml, remove
+                rockchip,rk3576-canfd.yaml
+[PATCH v5 2/4]: Encapsulate some hardware operation functions into
+                rkcanfd_devtype_data to provide differentiated
+                implementations for different models
+                (such as RK3568v2/v3)..
+[PATCH v5 3/4]: Add rk3576 canfd,fix the register naming rule,
+                Delete the variables used by rockchip itself.
+[PATCH v5 4/4]: Fix .h sorting.
 
 
-On 11/17/2025 9:29 PM, Krzysztof Kozlowski wrote:
-> On 17/11/2025 13:51, Jun Guo wrote:
->> On 11/17/2025 3:13 PM, Krzysztof Kozlowski wrote:
->>> EXTERNAL EMAIL
->>>
->>> On 17/11/2025 08:11, Krzysztof Kozlowski wrote:
->>>> On 17/11/2025 08:07, Jun Guo wrote:
->>>>> On 11/17/2025 2:11 PM, Krzysztof Kozlowski wrote:
->>>>>> On 17/11/2025 02:59, Jun Guo wrote:
->>>>>>> - Add new compatible strings to the DT binding documents to support
->>>>>> This is not a list.
->>>>>>
->>>>>> Also, subject is completely redundant. Everything is an update. Why are
->>>>>> you repeating DT binding docs?
->>>>>>
->>>>> Thank you. I will incorporate your feedback in the next version.>>   cix
->>>>> sky1 SoC.
->>>>>>> Signed-off-by: Jun Guo<jun.guo@cixtech.com>
->>>>>>> ---
->>>>>> You just broke all existing platforms. Please test your code properly.
->>>>> The patch includes proper checks. Since this platform is the first user
->>>> Nah, tests are here incomplete - look at the binding and DTS users...
->>>> nothing there, so you cannot test it.
->>>>
->>>>> of the driver in the current codebase, the change won't affect other
->>>>> platforms.
->>>> NAK, and you keep pushing... I just told you it will break everyone,
->>>> which is obvious from the diff.
->>> But if that was intentional change of ABI, then could be fine, but you
->>> must provide in commit msg proper detailed rationale WHY you are
->>> changing ABI and WHAT is the ABI impact of that change.
->>>
->> I'm not entirely sure if I fully grasped your point, but I also
->> identified the potential issue. I've reworked the patch to accommodate
->> both the default DTS case with a single compatible string and the
->> scenario where platform-specific compatible strings need to be added.
->> Could you please review it again and confirm if this aligns with your
->> intent?
->>
->> properties:
->>     compatible:
->>       contains:
-> Which example uses such syntax?
-> 
->>         enum:
->>           - cix,sky1-dma-350
->>           - arm,dma-350
-> It's completely different than previous, so I don't know what you want
-> to achieve, but maybe you wanted to explain lack of compatibility in the
-> commit msg. Anyway, send proper patches with proper justification (and
-> for above would really need to be proper).
-> 
-OK.Thank you for your prompt​ reply.> Best regards,
-> Krzysztof
+Change in V4:
+[PATCH v4 1/3]: Correct the format and add explanations.
+[PATCH v4 2/3]: No change.
+[PATCH v4 3/3]: No change.
 
-Best regards,
-Jun
+Change in V3:
+[PATCH v3 1/3]: Add documentation for the rk3576 CAN-FD.
+[PATCH v3 2/3]: Adjust the differentiated code section and
+                add dma function.
+[PATCH v3 3/3]: Remove dma, no use dma by default.
+
+Change in V2:
+[PATCH v2 1/2]: remove rk3576_canfd.c, use the rockchip_canfd driver
+[PATCH v2 2/2]: code style.
+
+Elaine Zhang (3):
+  dt-bindings: can: rockchip_canfd: add rk3576 CAN controller
+  net: can: rockchip: Refactor the rkcanfd_devtype_data structure
+  net: can: rockchip: add can for RK3576 Soc
+
+ .../net/can/rockchip,rk3568v2-canfd.yaml      |   4 +-
+ .../net/can/rockchip/rockchip_canfd-core.c    | 505 ++++++++++++++++--
+ drivers/net/can/rockchip/rockchip_canfd-rx.c  | 103 ++++
+ drivers/net/can/rockchip/rockchip_canfd-tx.c  |  20 +
+ drivers/net/can/rockchip/rockchip_canfd.h     | 268 ++++++++++
+ 5 files changed, 857 insertions(+), 43 deletions(-)
+
+-- 
+2.34.1
 
 
