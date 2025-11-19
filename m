@@ -1,167 +1,172 @@
-Return-Path: <devicetree+bounces-240346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96D11C70213
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:37:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C25C6FFD0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:15:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7DD8A3C11B0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:19:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTPS id 68DD229C3A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7262F36B07C;
-	Wed, 19 Nov 2025 16:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A645D32FA1D;
+	Wed, 19 Nov 2025 16:14:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YOfXmahm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B5AD341079;
-	Wed, 19 Nov 2025 16:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13D02FD1AE;
+	Wed, 19 Nov 2025 16:14:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763568992; cv=none; b=CtY6n4rgE2j2GENhWZcyejYgUwJVyC96Vd7HoCNELsktcnvx2feWpGom+a5hkHBJUvXcWOydzB2AX0A0BT/iLHFGWZGzTnFmuvTLP5kg1ie+OmYCcvEP8iDCFbhJ07wt+zYdCUEDULem2hfOvYGnyR1R1aSAXT8I2/HXTWJzjsY=
+	t=1763568898; cv=none; b=XFZcPe44m5B7JBUOEqr29SCDyjSN35BbFJOe629kCQBwhmwx4gRqOOH0axWtUGs3ZqOpk7gutxNYIFA3E0m6jiW1Jkj0rSxltvnTbnyviifMFf/n9Bi1Yp19lgZKSCGGCeyUFI8dSsgyabiZ/EZqgSPdv9/St84RHIVQoqCgP+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763568992; c=relaxed/simple;
-	bh=vcnDXRA4Tq34eWVLWFAK5aIFtP5uQXeekdfbraqp/RE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uv2IzSCpXncsXZNpEQedyvlnCbBRWd97a6dmUeTftj/cCo5jCSakzaPG2nzEVC362FBjHoPYTblXzdYsqvVZfoq0EXk3lPRloN5sj9LgsAX/38bdkhOz43sTqFV1w5dORzXfS7UHrIDI8nC7e3s771WNxSoyOBhbU2LUNeaVScc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: vTeI/RA8RwKVdsnBrDxngg==
-X-CSE-MsgGUID: 6wJ0oVXpQMOHFnt6vDqO3A==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 20 Nov 2025 01:16:29 +0900
-Received: from demon-pc.localdomain (unknown [10.226.92.87])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6D12A406C471;
-	Thu, 20 Nov 2025 01:16:25 +0900 (JST)
-From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-spi@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: [PATCH v4 13/13] arm64: dts: renesas: r9a09g087: Add SPIs support
-Date: Wed, 19 Nov 2025 18:14:34 +0200
-Message-ID: <20251119161434.595677-14-cosmin-gabriel.tanislav.xa@renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251119161434.595677-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20251119161434.595677-1-cosmin-gabriel.tanislav.xa@renesas.com>
+	s=arc-20240116; t=1763568898; c=relaxed/simple;
+	bh=PikyI1XUgD2dRPESOHTI4nKICevnLr+NOjrgaGi0tBI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lcwhIIZbHvNm6QPeL5UOUry6jQ/zNPfJ2ISromsXQUzIjbmcx3rgF4Qw0mbpYPngMiqg1SfWD5VRLHGyi6FP7ejnI8/PkqvN/7iyccWD14LksGZ3JAN5XknSuyk+uwwX/6TFLu6ErwPBnXyihZAUMJ8MCFrBYoFYKx5QMn0csbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YOfXmahm; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763568898; x=1795104898;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=PikyI1XUgD2dRPESOHTI4nKICevnLr+NOjrgaGi0tBI=;
+  b=YOfXmahmlWLORtXujOQx/Ir0B2diUXmh3J0lFVaifOUfFvVc+l9ImByQ
+   vxF2cVtDfVgN1b7O3XigYO8x9qyIwojW7GQCDzradP1p+eK2N/K9mOTx0
+   YPutPi2c8WjyPSMjIifk8K4xNFDuyC4+uclK/2tTBiDQvtv5/hSh9NvTq
+   n6eC2BY/rIWBHgynyeofpOAT1+tyGdOKK2dwI8hGmM64htn7ZDmkQgpe/
+   YQ4F+TyOarn/z3Mqds7Vk2Vgp7owRzOJg+j9560qlGaiyV3uP97RiiXda
+   q1fal5lZythOMpygOjLksQ8pK+JkaSiLvBxtsHT2lxiwTsx256BQL2+sq
+   w==;
+X-CSE-ConnectionGUID: 97ux116wTW6L0Oez0tUuNw==
+X-CSE-MsgGUID: QAQZlDAlTt+fHLSNeBXuCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65649475"
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; 
+   d="scan'208";a="65649475"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 08:14:57 -0800
+X-CSE-ConnectionGUID: tglGIuuNTNScrHbo4oA2yw==
+X-CSE-MsgGUID: TTWFkKCbQA6HO7I3E+xYQg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; 
+   d="scan'208";a="195406485"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.245])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 08:14:52 -0800
+Date: Wed, 19 Nov 2025 18:14:50 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, jic23@kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+	linux-iio@vger.kernel.org, s32@nxp.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	chester62515@gmail.com, mbrugger@suse.com,
+	ghennadi.procopciuc@oss.nxp.com, vkoul@kernel.org
+Subject: Re: [PATCH v6 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+Message-ID: <aR3s-gFf76mXN_uZ@smile.fi.intel.com>
+References: <20251118203305.3834987-1-daniel.lezcano@linaro.org>
+ <20251118203305.3834987-3-daniel.lezcano@linaro.org>
+ <CAHp75Ve=CU8ecXk5sgkHPJbYA_K+sa+Lyys+cdpCm=QHOw2ytg@mail.gmail.com>
+ <ac85d16d-7d9d-41eb-9b1c-08df9a61f672@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ac85d16d-7d9d-41eb-9b1c-08df9a61f672@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Add support for the four SPI peripherals on the Renesas RZ/N2H Soc.
+On Wed, Nov 19, 2025 at 03:44:04PM +0100, Daniel Lezcano wrote:
+> On 11/19/25 10:27, Andy Shevchenko wrote:
+> > On Tue, Nov 18, 2025 at 10:34 PM Daniel Lezcano
+> > <daniel.lezcano@linaro.org> wrote:
 
-Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
----
+[ ... ]
 
-V4:
- * no changes
+> > > +#define NXP_SAR_ADC_EOC_CH(c)          BIT((c) % 32)
+> > 
+> > Do you expect "c" to be bigger than 31? In which circumstances?
+> 
+> No, it should be always lesser than 32. We can drop the modulo.
 
-V3:
- * no changes
+Yep, please avoid adding a code that is never needed. It complicates reading,
+reviewing, and understanding the flow.
 
-V2:
- * no changes
+[ ... ]
 
- arch/arm64/boot/dts/renesas/r9a09g087.dtsi | 72 ++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+> > > +       /*
+> > > +        * Ensure there are at least three cycles between the
+> > > +        * configuration of NCMR and the setting of NSTART.
+> > > +        */
+> > > +       if (enable)
+> > > +               ndelay(div64_u64(NSEC_PER_SEC, clk_get_rate(info->clk) * 3));
+> > 
+> > I'm wondering how low the clock rate can be? With low enough clock
+> > rates this becomes a 100% CPU busyloop and in atomic context (is this
+> > the case?) without even the possibility to schedule.
+> 
+> I believe this question was already addressed in v1:
+> 
+> https://lore.kernel.org/all/a34efc36-0100-4a7f-b131-566413ab88ae@linaro.org/
+> 
+> right ?
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-index c742a67663cc..f9f49bd3e8b0 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-@@ -188,6 +188,78 @@ sci5: serial@81005000 {
- 			status = "disabled";
- 		};
- 
-+		rspi0: spi@80007000 {
-+			compatible = "renesas,r9a09g087-rspi", "renesas,r9a09g077-rspi";
-+			reg = <0x0 0x80007000 0x0 0x400>;
-+			interrupts = <GIC_SPI 636 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 637 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 638 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 634 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 635 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
-+				 <&cpg CPG_MOD 104>;
-+			clock-names = "pclk", "pclkspi";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		rspi1: spi@80007400 {
-+			compatible = "renesas,r9a09g087-rspi", "renesas,r9a09g077-rspi";
-+			reg = <0x0 0x80007400 0x0 0x400>;
-+			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 643 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 639 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 640 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
-+				 <&cpg CPG_MOD 105>;
-+			clock-names = "pclk", "pclkspi";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		rspi2: spi@80007800 {
-+			compatible = "renesas,r9a09g087-rspi", "renesas,r9a09g077-rspi";
-+			reg = <0x0 0x80007800 0x0 0x400>;
-+			interrupts = <GIC_SPI 646 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 647 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 648 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 644 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 645 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
-+				 <&cpg CPG_MOD 106>;
-+			clock-names = "pclk", "pclkspi";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		rspi3: spi@81007000 {
-+			compatible = "renesas,r9a09g087-rspi", "renesas,r9a09g077-rspi";
-+			reg = <0x0 0x81007000 0x0 0x400>;
-+			interrupts = <GIC_SPI 651 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 652 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 653 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 649 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 650 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "idle", "error", "end", "rx", "tx";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>,
-+				 <&cpg CPG_MOD 602>;
-+			clock-names = "pclk", "pclkspi";
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		wdt0: watchdog@80082000 {
- 			compatible = "renesas,r9a09g087-wdt", "renesas,r9a09g077-wdt";
- 			reg = <0 0x80082000 0 0x400>,
+Right, so the bottom line is that we miss the one-two phrases in the comments
+above to summarize that.
+
+[ ... ]
+
+> > > +       /* FIELD_GET() can not be used here because EOC_CH is not constant */
+> > > +       if (!(NXP_SAR_ADC_EOC_CH(chan) & ceocfr))
+> > > +               return -EIO;
+> > 
+> > [nxp_sar_adc_]field_get() may be defined and used. There is a series
+> > pending to bring field_get() to bitfield.h next release.
+> 
+> TBH I don't have an infinite bandwidth to write temporary helpers. So if it
+> is ok, I would prefer to keep it as is
+
+Sure, perhaps just add a TODO line instead of the comment above:
+
+	/* TODO: Switch to field_get() when it will be available */
+
+[ ... ]
+
+> > > +       nxp_sar_adc_channels_disable(info, *indio_dev->active_scan_mask);
+> > 
+> > Wondering why this can't take a pointer to a mask.
+> nxp_sar_adc_channels_disable() is also called with BIT(x) parameter in other
+> places. So in the function is much easier to do val |= mask;
+
+OK!
+
+> > > +       ret = devm_request_irq(dev, irq, nxp_sar_adc_isr, 0,
+> > > +                              dev_name(dev), indio_dev);
+> > > +       if (ret < 0)
+> > > +               return dev_err_probe(dev, ret, "failed requesting irq, irq = %d\n", irq);
+> > 
+> > No error code duplication in the message, please.
+> 
+> Given devm_request will print the "request_irq(%u) %ps %ps %s\n" error
+> message. Would you suggest to just return ret here ?
+
+Yes!
+
 -- 
-2.52.0
+With Best Regards,
+Andy Shevchenko
+
+
 
