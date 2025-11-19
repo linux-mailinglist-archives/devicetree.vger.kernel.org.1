@@ -1,161 +1,151 @@
-Return-Path: <devicetree+bounces-240119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9237DC6D8B8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:00:38 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 817D3C6D8D3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:01:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0EBF74E45D3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:53:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AFA304E3307
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:54:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1588A30597F;
-	Wed, 19 Nov 2025 08:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3E430AAC0;
+	Wed, 19 Nov 2025 08:54:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ibKIYJir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6312B309EED
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 08:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311122FC010
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 08:54:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763542410; cv=none; b=n8rFfVmCHrQoJhZjHI9PqqHNDEqlnYmnVJ4xBbjMWSw5CPlxHitcPRWWNnmMVHi5eHoyLma7hGoLyxYiM4qoCEgluOMj+i4DQW0wwz2qQAQsAOOGAKGGbyeZpPtfskOFEGDqzWa5dqTuJj2H0pGIdeC34LuTsV5WvkPpZTXxdhE=
+	t=1763542483; cv=none; b=PoItSKTMdEfizhwmqadCLAICYaOGpM6aBxUKNwGWYoYSkL/ytW5J5xaused/xS+CFSbqk4k4eEf0AFpqqARN1M6SrnPu8P/BeHiawwVzHXYQ+JKORviXosEWaHrBk1dq41l6OEE3BnUFrKBsXEHNqAKBI7T5gZJjXwGU8RS5Uws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763542410; c=relaxed/simple;
-	bh=x1ETO9gQBzCG9IxfyuhO9nUfEDSqlzn/l2nzh3hu+os=;
+	s=arc-20240116; t=1763542483; c=relaxed/simple;
+	bh=uq9A+rP/n2h/Cw4vBdMGHC8Y4iUHLllWMCwq1JBoATY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=e58zLrgw0PoGHt+s63WR+5nYN3sgU/+nPplWQLbk7YMxkBr/poyGn5jDG5Ke68E32Wx7Z1+nNbiWTXuW72Wnt6bvPT+RqEQlGlQKoj2uYJFsXZilHmidprQvspqpHLrZsk8JZGzZHx3lVBR3tmWXZzNIZ4RUQDI0DXxtT7X7Lmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-93a9f6efe8bso310763241.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:53:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763542407; x=1764147207;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+	 To:Cc:Content-Type; b=ByE7qB/TuJm5mScNqjWs0dQwByRnPQkbr/YwjtpwvvoZGSY9VbEgoZ8JsXq5R4hKKIFHY9WorycYlze7tTnSgRj9ctqEgfpvEkPDrac55I+f4/RvMKyXJBm6yzbzgZF4p0niw+3AMqlmh4k5LDWIJfqiuZ6nOjBcHWg1E5/nz8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ibKIYJir; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-37b95f87d4eso52406631fa.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:54:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1763542479; x=1764147279; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LS0PIRW3Q0/zfkvWSrpPbMhxA5dRo1SmIMgccBT+00o=;
-        b=VktJzzhfJ32CatifR1/3QWUAP+nUlTaYF2N8xetliAGXYWbSfKTnSt46ZhQWpt+vVY
-         329HqBrtTqwGUCIwkVG3cG4JwF/seAADyxcusDtGQmzF38fxJvuDpEoa9CqZM0n3L0Ty
-         JzmQXwY7N1shNWveeftuZYSSgdaD00oTubBtnGPG7IALNQS7+fmq2wXhx94Cc7SiAX6j
-         pqkmRoDzL2D35Sf811jO9auIwvY0/XpEBnXcFk2vZ9apGw+1XyxEL0T3tM+JQVlnaJ0x
-         owokdnlxwglRJnb7z/Ry3mCBPFKz1HvLZKu6tpui4oJHm9OG74mDjHoWOj4tAqu6IXEz
-         ysjA==
-X-Forwarded-Encrypted: i=1; AJvYcCXGqR6JJ8rf9bGk33HcIqfFVmR/YiMLTFefedplx9p80xngK9gU1PeD7IznAZ85zeRQXbGuBhetNvez@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEYVKCGFYBuiwSom6w/NGrtGFaplZ9uacESKtaRzYjzcqfxK+F
-	Zs5yrYCWKZgUE7rdHe3FU5efA5nGYsagAOSI7vnO1h7KM/KqiC0GIfqRPSyi+wTd
-X-Gm-Gg: ASbGncsPMcQepNgx/2p+R4xDngITti0gV6qTjk2Ygj6iEajzSZ3+aePdTR44qjGsG4C
-	zehzvq4Bj6VyubBNaRcG208V4G028TLMPWgYPCw7wFbyg6tj+toiH7I+QLoppYEMbY35cDpzVqY
-	2COA6VTHEa9rS/PL3hstDnVg8oN8kmhTlnvBSTLdws87SvFwJYbgmMk/gKjkNbCzF7iGg6YEB9l
-	fqXh7fMEdLrIY7iCQWkXDYAbYDbPlj+We8nC8a8Liq3fqfoF8+HjCdy+zn/WoUvxhFPtL8hgh1N
-	oFMXOhxq8bIN10cTrbJbvBlMoKX1SSvWEDfzpfGoVES3rKN0R53n5DVEci46bVay0UJcKXIZf5/
-	HAuh8eHIwwOqfaeFxS7K94MmXlwq7u28I7xZPP96OC5L29WgDXEzPh+43Abh2BlmvmLkW5bYwIi
-	s/Ma5547Sui5co6m4z6XTGHdbezsVnP4xZYpQ7pSRr1dAlzoHE
-X-Google-Smtp-Source: AGHT+IH8o+0ecoE6Uvrf5Ryi8sl0Ub2pP/MiJacmRaYgdgfCPZcgkwmL65rx9fapGrOK932WX1YppA==
-X-Received: by 2002:a05:6102:3a0a:b0:5db:cc25:dd7e with SMTP id ada2fe7eead31-5e1a6dff717mr481585137.34.1763542406930;
-        Wed, 19 Nov 2025 00:53:26 -0800 (PST)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5dfb707521fsm6400336137.2.2025.11.19.00.53.25
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Nov 2025 00:53:25 -0800 (PST)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5dfd2148bf3so1683653137.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:53:25 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWkGUno06KrwAy3fEpAeBBLZGZ/xvL4yCQ2dU+fqOjirxCje2ZlsMKoTLB9cbZEZFU55kfeSS4SeTJw@vger.kernel.org
-X-Received: by 2002:a05:6102:41ab:b0:5df:b4a8:fbaf with SMTP id
- ada2fe7eead31-5e1a6dfeb50mr481222137.31.1763542404865; Wed, 19 Nov 2025
- 00:53:24 -0800 (PST)
+        bh=C8vU/bXiUiSX+XlUElJe1ZIOtLsB+Q8+itOmUp+Ohro=;
+        b=ibKIYJirzEX3GhoDyV1DmhxctWOmM/4+1FuHBbhHYWmB74V4mhRKdR0pt4Uq9DFp4N
+         UVKMZnISNVyFpbjUECGSra0ZiUto3cH8KNLFNBy6aHHTp6WXqoTHGIZH+twDdIL3quVP
+         DD1Hl9XThRu1/QYLpNgd6pobQaLBeQcphOZx4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763542479; x=1764147279;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=C8vU/bXiUiSX+XlUElJe1ZIOtLsB+Q8+itOmUp+Ohro=;
+        b=nL2G7NrdPC2dB9L5CwWoAiZrTklrvgXDKTIIztJkRaSp1jxPXY7dhkt22Rr+q3j7TH
+         PT2SjgMGSjWb7MDSw+uK57+QshTdeQkfyNDMT2OOyiru2VxTblqyGbC/1KTfz4KTdXHp
+         TFw+PnG6CFcfKLN+riAccaDE/M7eT90ZWF+EqHKm5PENJaBf7abut3+/MgYAPBsDQCEw
+         YlAV+kKGLGAXC/j2ErgDUXaE4/3gBkyFxgE9Uyx9UHWDQXaAPeGuFDIU87hfQpPjnXKC
+         FQQy26LgIsE4+a+V/Xv8OGG46XwI3eeXfgRKS0Pg4G6wxDMtG/2v2XsSsLMlK/FVQttY
+         GAwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUV5qK/ksodspMWWvWZK/WMRkubkmXUavQA1vfALIa6IgK0P9G0Q9eKtaffo8Vh3Ax0GMNNTgGiJs2C@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZd5ldlkRq7exSquqvacd22RDW/Kt6onxzpEnA9jnqaPMaTmWM
+	Pnmlrj25kzXyD/tMaeTglAG4NQRGixrYIvoNtGM97Ujj+0mM/wlsaeB/chm+TiTaBeXc2K3kvan
+	klm1ExuSHcFDcxTMuSlLFnFaEnUVxeX1MYtAHCIuv
+X-Gm-Gg: ASbGnctjqN3AvT6U8zmsxVxIewNWT6Z1X3F/oVIgdatX6EiJeKvHiEmql1DxUG9LnUo
+	w/4LrHuMDbNlT+2l+wewbLc7bC1gjU/vlGCbLzHqKEjZmQSDjaaOUw+hc06CBZCkUKfh7YoJwu+
+	YW7rfV1DaenQvvlyYoaZt83yGPDkNx4ukh6HIHqoHF2JgYI/CkokZ8PpmhBazQP8BE8Yb8E4pVl
+	43JKzXvvgXHulHPKTHk4yAmuuSdj2Ne7DYGbcHkN08ZoaTQd1BTIqUc1JYT/jt3YK3+7Fn3YY3B
+	UJZE/jkrV+rNIEgaemdKALvmcw==
+X-Google-Smtp-Source: AGHT+IFhlPMrRvpqdsL1dRrt5/hvTvDt2HQaw6mOPpwq4Z8rWgeUCX2QlUWOEDMbkLtDd/Z5qXCyPQTzgWFahIEpLfs=
+X-Received: by 2002:a2e:a00a:0:b0:37a:4085:c83d with SMTP id
+ 38308e7fff4ca-37babd5c8d9mr55521611fa.29.1763542479298; Wed, 19 Nov 2025
+ 00:54:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
- <b037f67a-b241-4689-9914-57ff578c1454@sirena.org.uk> <1a4d2276-75e1-4aa0-8ff2-c932ce5d6edc@kernel.org>
-In-Reply-To: <1a4d2276-75e1-4aa0-8ff2-c932ce5d6edc@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 19 Nov 2025 09:53:13 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXgq=Zv3GQes_d_eyCcB7m--PaEGSQJtUWiRjj-7gBVkw@mail.gmail.com>
-X-Gm-Features: AWmQ_bmK2x20bqzBbl34KnFcBc219BFFPGMTWyPQr3AqlLeaP7gK9n05hJwL6mw
-Message-ID: <CAMuHMdXgq=Zv3GQes_d_eyCcB7m--PaEGSQJtUWiRjj-7gBVkw@mail.gmail.com>
-Subject: Re: [PATCH v2] of/irq: Ignore interrupt parent for nodes without interrupts
+References: <20251119071126.1719405-1-wenst@chromium.org> <18342493-54f9-4e5c-be05-568a3026663e@kernel.org>
+ <CAGXv+5EnfwRA1SMvt=3n7gj1gS3BndXKNVfmfkC=y6n2A3VsdA@mail.gmail.com> <d8f3eb00-c7a6-425a-9e69-a01bc3532f0c@kernel.org>
+In-Reply-To: <d8f3eb00-c7a6-425a-9e69-a01bc3532f0c@kernel.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 19 Nov 2025 16:54:28 +0800
+X-Gm-Features: AWmQ_bnHnfSc8wAlhe_rBr-TemtbkaVyA6tPaH5I_09BBzsfr8kvP5fgv6NpHVk
+Message-ID: <CAGXv+5HePVim+-fx0bG-geBHp3kLQbNGLyknGRx=LgLZ7H+DUQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: coreboot: Document optional device
+ specific properties
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel@sholland.org>, Marc Zyngier <maz@kernel.org>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	linux-samsung-soc <linux-samsung-soc@vger.kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	chrome-platform@lists.linux.dev, Julius Werner <jwerner@chromium.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 18 Nov 2025 at 20:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> On 18/11/2025 20:34, Mark Brown wrote:
-> > On Fri, Nov 14, 2025 at 11:47:54AM +0100, Geert Uytterhoeven wrote:
-> >> The Devicetree Specification states:
-> >>
-> >>     The root of the interrupt tree is determined when traversal of the
-> >>     interrupt tree reaches an interrupt controller node without an
-> >>     interrupts property and thus no explicit interrupt parent.
-> >>
-> >> However, of_irq_init() gratuitously assumes that a node without
-> >> interrupts has an actual interrupt parent if it finds an
-> >> interrupt-parent property higher up in the device tree.  Hence when such
-> >> a property is present (e.g. in the root node), the root interrupt
-> >> controller may not be detected as such, causing a panic:
-> >
-> > I'm seeing a boot regression on the TI x15 platform in -next which
-> > bisects to this patch in -next, unfortunately even with earlycon (though
-> > just earlycon, I don't know the platform specific runes) the board just
-> > dies with no output:
-> >
-> >   https://validation.linaro.org/scheduler/job/4252918#L409
-> >
-> > It does seem like a plausible patch for this sort of issue though, and
-> > the bisect converges smoothly:
+On Wed, Nov 19, 2025 at 4:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 >
-> All Samsung platforms fail as well. I was waiting with bisection but
-> Marek was as usually very fast:
+> On 19/11/2025 08:32, Chen-Yu Tsai wrote:
+> > On Wed, Nov 19, 2025 at 3:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> >>
+> >> On 19/11/2025 08:11, Chen-Yu Tsai wrote:
+> >>> Coreboot, or the ChromeOS second stage bootloader, depthcharge, will
+> >>> insert device specific properties into the coreboot firmware node whe=
+n
+> >>> there are valid values.
+> >>>
+> >>> Document these properties in the binding.
+> >>>
+> >>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/firmware/coreboot.txt | 9 ++++++++=
++
+> >>>  1 file changed, 9 insertions(+)
+> >>>
+> >>
+> >> TXT files cannot receive new properties. You need to first convert to =
+DT
+> >> schema.
+> >
+> > OK. Let me look into this.
 >
-> https://lore.kernel.org/all/20251118115037.1866871-1-m.szyprowski@samsung.com/
+> After the conversion you will hit another problem - you need vendor
+> prefixes for these, because only generic properties can come without
+> them. Otherwise (without vendor prefix) these would define the type for
+> all other bindings, which probably is not what we want.
 
-Yeah, the various ti,omap[45]-wugen-mpu nodes have interrupt-parent
-properties, but no interrupts{-extended} properties.
+I understand the concern. But given it's specifically under the
+/firmware/coreboot node, which is inserted by coreboot, doesn't that
+already serve as a namespace or vendor prefix?
 
-Does the following (whitespace-damaged) patch, to restore finding an
-explicit interrupt-parent, fix the issue?
+FWIW the ship has already sailed for naming. The first three properties
+were added to depthcharge [1] and coreboot [2] in 2018. The last property
+was added to depthcharge in 2023 [3]. That is what has shipped in immutable
+firmware on ARM-based Chromebooks since the RK3399 days. The coreboot
+change was presumably added for other devices.
 
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -685,6 +685,8 @@ void __init of_irq_init(const struct of_device_id *matches)
-                desc->interrupt_parent = of_parse_phandle(np,
-"interrupts-extended", 0);
-                if (!desc->interrupt_parent && of_property_present(np,
-"interrupts"))
-                        desc->interrupt_parent = of_irq_find_parent(np);
-+               if (!desc->interrupt_parent)
-+                       desc->interrupt_parent = of_parse_phandle(np,
-"interrupt-parent", 0);
-                if (desc->interrupt_parent == np) {
-                        of_node_put(desc->interrupt_parent);
-                        desc->interrupt_parent = NULL;
+This change only serves to document what the firmware already provides.
+Whether they should be grandfathered in or not doesn't change what the
+firmware already does; it just makes it more well known. It's not going
+to have any effect on validation either, as the properties are supposed
+to be inserted by the bootloader, not added statically to dts files.
 
-Thanks!
+Presumably we can update the code to use a new name, but we still have
+to live with the old names for up to 10 years.
 
-Gr{oetje,eeting}s,
 
-                        Geert
+ChenYu
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+[1] https://crrev.com/c/1028728
+[2] https://review.coreboot.org/c/coreboot/+/28104
+[3] https://crrev.com/c/4975217
 
