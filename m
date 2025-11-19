@@ -1,108 +1,120 @@
-Return-Path: <devicetree+bounces-240207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B622C6E945
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:49:12 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 102C7C6E807
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:36:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 137564FC996
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:35:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CC7423863B2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5393624B2;
-	Wed, 19 Nov 2025 12:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644C835FF69;
+	Wed, 19 Nov 2025 12:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="f/UovCGv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XO44VA4M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender3-pp-f112.zoho.com (sender3-pp-f112.zoho.com [136.143.184.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F339A35A135;
-	Wed, 19 Nov 2025 12:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763555479; cv=pass; b=I8XzQkYfzLaD9xjdikbY758P9IMdgX9cfcQAkDK5ZhmeDPVnJ3perzlQbLRkoGXuCbxqcVaIHqNrwHhzJAgIiLdOS90Mer69DAwBXDtpdLPefd0tmd32FeX/qi0g14yHRzMT3CZCrc0Z1mrYP84IAoT/UsAyZoXjhlnncGJ6S4U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763555479; c=relaxed/simple;
-	bh=RwzbdKhF9q2olt3ISTTZiJ9qgI/iDDN9aNM/2T/o93g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YCSVnEpzCZzCweOfpfOpSQ3OasZloulku/zgeRvRcEQTIb+D/03V+VwCN8/kqFQ4VgayXaW2lTfL8m3HfU9lwXXtGiXebTvkYdWPFB0iTCpCDU9bYXpVt0VdyKx+oWrMDCY+Mks9huCtt3TC9wkMd4ORv2OJk3MWAfJjMZC8b60=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=f/UovCGv; arc=pass smtp.client-ip=136.143.184.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1763555436; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=FC4abtollYWOgCHR45tp6BsnT0GYBa95NDLQTbL3rTPaBYcF7ElHnPq0/Vo7d6ZbhbfZvPN/NPCjtgTS8dp8tuil9CzT2Mh0qMtDZzNs+Tg6XmqOoMLk4d1phdEEVgmyMiPeanLMuGG72yWmxXCK8n5vM2XgaEGtCZDtOPbOOOg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1763555436; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=gAYEP2r0WzK6nN8V/KKyYF/p300y06zU2QmA3CuygYs=; 
-	b=GmuCVkRZplgBfn2RXT9Zuk3sJ1unPMzdYglgeBL4jeZ1fARwB8eJ7U+BWpuaGm3CkXQnOzYE4B/hg14r1DYsLJKDw+0ixPUQrineuzBLl4FGwMYd6qgdIkPGExNgxn6IreVDSCVyUoPM1M+5zfdwyYE8DsjdPI2SpNAptZEs1N8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763555436;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=gAYEP2r0WzK6nN8V/KKyYF/p300y06zU2QmA3CuygYs=;
-	b=f/UovCGvoeUVLBCFJ4LULHK017R9K0yHbePE4VHXb+nafPB6OGYBiG2GtyMkYelz
-	hm0rBqrAoXPAgj/cRbgjWbOlAopc43TUl9+Lu5c2DMGtKODY5BdGbCxndaLzL+Y20iu
-	IFH/KnxHkHJ1sia5DrDMdyngSTrNJ1qXpAzyNUlE=
-Received: by mx.zohomail.com with SMTPS id 1763555434772176.03240313540152;
-	Wed, 19 Nov 2025 04:30:34 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Henry Chen <henryc.chen@mediatek.com>, Georgi Djakov <djakov@kernel.org>,
- kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
-Subject:
- Re: [PATCH 01/13] dt-bindings: soc: mediatek: dvfsrc: Add support for MT8196
-Date: Wed, 19 Nov 2025 13:29:12 +0100
-Message-ID: <3772660.mvXUDI8C0e@workhorse>
-In-Reply-To: <39fba430-3841-4bf2-9fe7-44f372ff4a16@collabora.com>
-References:
- <20251114-mt8196-dvfsrc-v1-0-b956d4631468@collabora.com>
- <20251119-alluring-jellyfish-of-chaos-4f5bd8@kuoka>
- <39fba430-3841-4bf2-9fe7-44f372ff4a16@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 233EB35FF62;
+	Wed, 19 Nov 2025 12:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763555451; cv=none; b=TeLdRIyrkwa2v5CLwaOhvUMx5Hyod8EKwNTBVtO+vs6ooLM7Ey0uVXBPi0W0qreJZJmGQJms7t4/+qjDPIWxAkNfZpQ5HAmgC2cAw56HCsVWl5c/9z88MqvNaBOmakipHipkNTmAHUNynhxUmwAR6qFTd4uTDcidQK0hDb5dlkQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763555451; c=relaxed/simple;
+	bh=mMRAx6ZJOONKImYBrNRIu3H4Zn/hB85+rterq9QpQ8g=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=q0Yub11izLzjovmaeFc0l8DmDXn2ZGs8UymN9zHvLb9N+lk432PL082saUgdSoUZCrsmxPxHFTlvebjtyVVp5rzV/g9VaG6qduw3z3mbClwDAeqG6mc2EC7DTF4g3qWmpeaQDAhp8Fr1wBxOLedgc+XNc0cRsEk2kZIhy9vzlgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XO44VA4M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6CDDC19425;
+	Wed, 19 Nov 2025 12:30:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763555450;
+	bh=mMRAx6ZJOONKImYBrNRIu3H4Zn/hB85+rterq9QpQ8g=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=XO44VA4MS43Ut+JjCb+Yu+HPzJBJetzrAmCyurSY2nYyRtbDLu7XLmHmpE+OC8POg
+	 uqI5cGg7pJMRyqkTX+R+ZVKYi4Sp4jlsGVYj2j+nPOeqlINtjBUO0BrLVxJWvmRtts
+	 uILMmJOT6Zz7Jn16LRTYn6a1xnoHgUz5H4m8pGTIffrENWw9jM4BPewgA8kJt9UR01
+	 Zoa+dhVcTsnVcKVfmQvXGmLAjkRY7OGdHHDv77CvCHz4lqtdDIibJ7TF3e9iG6RC2q
+	 za+T3vfASWLdS3yEBjjQj8CH8PTd3KN0ZXR6CzqJe75rGohr9CGHAREnNoARrWdxvU
+	 ZfnaPV+YV1Wow==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 34233380AA40;
+	Wed, 19 Nov 2025 12:30:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 00/10] riscv: Add Zalasr ISA extension support
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <176355541475.758643.7685467502830246491.git-patchwork-notify@kernel.org>
+Date: Wed, 19 Nov 2025 12:30:14 +0000
+References: <20251020042056.30283-1-luxu.kernel@bytedance.com>
+In-Reply-To: <20251020042056.30283-1-luxu.kernel@bytedance.com>
+To: Xu Lu <luxu.kernel@bytedance.com>
+Cc: linux-riscv@lists.infradead.org, corbet@lwn.net, paul.walmsley@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, will@kernel.org,
+ peterz@infradead.org, boqun.feng@gmail.com, mark.rutland@arm.com,
+ anup@brainfault.org, atish.patra@linux.dev, pbonzini@redhat.com,
+ shuah@kernel.org, parri.andrea@gmail.com, ajones@ventanamicro.com,
+ brs@rivosinc.com, guoren@kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
+ linux-kselftest@vger.kernel.org, apw@canonical.com, joe@perches.com,
+ lukas.bulwahn@gmail.com
 
-On Wednesday, 19 November 2025 09:32:46 Central European Standard Time AngeloGioacchino Del Regno wrote:
-> Il 19/11/25 08:41, Krzysztof Kozlowski ha scritto:
-> > On Fri, Nov 14, 2025 at 05:53:55PM +0100, Nicolas Frattaroli wrote:
-> >> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> >>
-> >> Add a compatible for the MediaTek MT8196 Chromebook SoC's
-> >> DVFSRC hardware, introducing capability to communicate with it.
-> >>
-> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > 
-> > Incomplete DCO chain.
-> > 
-> > Best regards,
-> > Krzysztof
-> > 
-> 
-> Eh yes, Nicolas forgot to add his SoC on all of my commits, whoops :-)
-> 
-> Cheers,
-> Angelo
-> 
+Hello:
 
-And here I hoped b4 would do that when sending these out, oh well.
+This series was applied to riscv/linux.git (for-next)
+by Paul Walmsley <pjw@kernel.org>:
 
+On Mon, 20 Oct 2025 12:20:46 +0800 you wrote:
+> This patch adds support for the Zalasr ISA extension, which supplies the
+> real load acquire/store release instructions.
+> 
+> The specification can be found here:
+> https://github.com/riscv/riscv-zalasr/blob/main/chapter2.adoc
+> 
+> This patch seires has been tested with ltp on Qemu with Brensan's zalasr
+> support patch[1].
+> 
+> [...]
+
+Here is the summary with links:
+  - [v4,01/10] riscv: Add ISA extension parsing for Zalasr
+    https://git.kernel.org/riscv/c/0597b9c8627e
+  - [v4,02/10] dt-bindings: riscv: Add Zalasr ISA extension description
+    https://git.kernel.org/riscv/c/6e2a0ff70abe
+  - [v4,03/10] riscv: hwprobe: Export Zalasr extension
+    https://git.kernel.org/riscv/c/d5e20628a882
+  - [v4,04/10] riscv: Introduce Zalasr instructions
+    https://git.kernel.org/riscv/c/c4139ea6717c
+  - [v4,05/10] riscv: Apply Zalasr to smp_load_acquire/smp_store_release
+    (no matching commit)
+  - [v4,06/10] riscv: Apply acquire/release semantics to arch_xchg/arch_cmpxchg operations
+    (no matching commit)
+  - [v4,07/10] riscv: Apply acquire/release semantics to arch_atomic operations
+    (no matching commit)
+  - [v4,08/10] riscv: Remove arch specific __atomic_acquire/release_fence
+    (no matching commit)
+  - [v4,09/10] RISC-V: KVM: Allow Zalasr extensions for Guest/VM
+    (no matching commit)
+  - [v4,10/10] RISC-V: KVM: selftests: Add Zalasr extensions to get-reg-list test
+    (no matching commit)
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
 
