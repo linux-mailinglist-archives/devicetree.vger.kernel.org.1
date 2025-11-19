@@ -1,113 +1,156 @@
-Return-Path: <devicetree+bounces-240389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E986C70AC2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:41:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C178C70AB7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:41:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8267B34601F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:38:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id C978428AF0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D3430F92C;
-	Wed, 19 Nov 2025 18:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 781BB341064;
+	Wed, 19 Nov 2025 18:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KOgLihFq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.hostedemail.com (smtprelay0010.hostedemail.com [216.40.44.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2A32D7392;
-	Wed, 19 Nov 2025 18:38:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=216.40.44.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D9B3191C4;
+	Wed, 19 Nov 2025 18:41:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763577512; cv=none; b=A+SaYOXfLD9tbz8YHEQkizP5ZSwDtFDPWzL0XQmDlB2yFuhtv4t4RVH4FeNMdqNEiAH3rw1ceJFI7pWYm3N3Mu0HDTnSQCT/Qy59bLQDrQN1vjfBXIX3GKySqo46ooTxhE2Le5Lo9b4RcCXFonz1dkNPa/2RjFt2/h7rrj3S4v8=
+	t=1763577672; cv=none; b=afcQRVqVaErkXOlJsH8Wwn3bXnSK6yvgErszE7aYWtTuxt+/6u5B7D4oM/ys/oWINeZmW0Dx+POtP8lYU36xw+Txz9ty3bXkb+wHnAWdWm58mvKWyKpW0RcNhLjqgfa0DVlCD5sl/TYxbqXegccYr/GlljUd5AP+3cvcKIZZ+aM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763577512; c=relaxed/simple;
-	bh=7IgUbXwpQA4km+F7Dfoe93VgXivuE2hBFLK/C0BSZ9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=l2IMp9Oux6J6b2+lTlNDfUigBj5+qQ1GEaz0fhCzCCufOiZoQrAJsuFzPNXweNnlE16gndimXJEFgGdb4k/w9FQXVitORewXIGMMj2qQROappeJ3QoWAOujRdoir/Rfx86lJKszaONGZlbA4PjLUgAZ5zdBSTuqiKOyQzoUiDiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=goodmis.org; spf=pass smtp.mailfrom=goodmis.org; arc=none smtp.client-ip=216.40.44.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=goodmis.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goodmis.org
-Received: from omf10.hostedemail.com (a10.router.float.18 [10.200.18.1])
-	by unirelay07.hostedemail.com (Postfix) with ESMTP id C8AB716060D;
-	Wed, 19 Nov 2025 18:38:10 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by omf10.hostedemail.com (Postfix) with ESMTPA id 81EA330;
-	Wed, 19 Nov 2025 18:38:06 +0000 (UTC)
-Date: Wed, 19 Nov 2025 13:38:36 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Eugen Hristev <eugen.hristev@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mm@kvack.org, tglx@linutronix.de, andersson@kernel.org,
- pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, david@redhat.com,
- mhocko@suse.com, tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
- jonechou@google.com, linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, linux-arch@vger.kernel.org,
- tony.luck@intel.com, kees@kernel.org
-Subject: Re: [PATCH 00/26] Introduce meminspect
-Message-ID: <20251119133836.47d9ae73@gandalf.local.home>
-In-Reply-To: <b0102b82-9ae8-4e01-ba27-44b78b710fca@linaro.org>
-References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
-	<20251119131534.392277e3@gandalf.local.home>
-	<b0102b82-9ae8-4e01-ba27-44b78b710fca@linaro.org>
-X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1763577672; c=relaxed/simple;
+	bh=jPiEf9D0enUbIPbwxeeiH63YOLo0c0B5JvI5bNTryrk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cXa1wmWTci4AdcHWRNq5cZab8Zi7tsCavF5iTmAbWX1U2yYI7bpxyPVzO1F9pWFxu2x+GjX4pixl+Iujbuz+82uMzHECdSnEbOifMoJxqfAbzgkAlZ1b12ji6URq82xTkAcRvbMacLIesEqI0Q2XeH8LCmMRygbaW0tGVFvZaPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KOgLihFq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B83CDC4CEF5;
+	Wed, 19 Nov 2025 18:41:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763577670;
+	bh=jPiEf9D0enUbIPbwxeeiH63YOLo0c0B5JvI5bNTryrk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KOgLihFq4e/zbXry3OmMxJlk6/wjfu+Jr63VKL/cUMy8nfY0GxXWpBkKYZ1QGc0pk
+	 Um07NKpisn+tyRjh2S/CXmXsUP+rEuir7t5OsaER3oyjiogna/0vI5rFEoiE1KF0yt
+	 qdfubygGYscPwGZWQX58N7otP6RQ8wxvOwoHBFY7pE8B7jbUxwJl0WIfleN6HIOruG
+	 UrN0npsdRbxaD41STo+S2rD1KA8Pv7d+0JAutXnz/HUO7YYgSoyP84CD07pW8NFWW3
+	 FYAR3znkbbNwNFk7Etp1O1A4Ekbi2Uj3RWiWDvGyHx8tfdkad/o2xcSnTRDZ9akjzu
+	 pVDIKc8TNSA5g==
+Date: Wed, 19 Nov 2025 18:41:05 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Andrew Jeffery <andrew@aj.id.au>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-bindings: net: aspeed: add AST2700 MDIO
+ compatible
+Message-ID: <20251119-gooey-wifi-413598a8a1d7@spud>
+References: <20251117-aspeed_mdio_ast2700-v1-1-8ecb0032f554@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Stat-Signature: cc1o33w6u6owrkxkfh83ifny9egjgrsa
-X-Rspamd-Server: rspamout01
-X-Rspamd-Queue-Id: 81EA330
-X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
-X-Session-ID: U2FsdGVkX18eQxzjFElSFMQBkWmqdnIUBJkOF0f6iiE=
-X-HE-Tag: 1763577486-542771
-X-HE-Meta: U2FsdGVkX18hYyFLn4NceFAtmtr2U9i2vMLdUUZa/XY9sbc18Qd8d0XqWxwjkyLUW391A4PmfVST6fTOPo9/v/GlV/882/v3PjE3Q5zfS5DD1vsLm+4ecyYB6S0zd8UbhIjnn5oMxPSN9iXqq6UxrC6D2V+tXEx8ZTe18jJnlx5L3nYf++HdtV6ezZc8QQOsd5Sji+bCYcQ6BWUI2yZNs93T38KE14+xuHs3A5shJ2l0kZqx610Kyw6apiwgHfwv9/5JD181MK+WYyNpUzWoatcjkFOIYbmW/eiebkRWkR1PTFbDxKfNL2AREBIQ9kzXso7tg4Agi6AvAp3c/q8HXYwDktY4Ul7c6O7qpQnkvKOsmFMGedUEWwFLRTKDlkmz
-
-On Wed, 19 Nov 2025 20:24:23 +0200
-Eugen Hristev <eugen.hristev@linaro.org> wrote:
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2bWqpCW/1YghVWvY"
+Content-Disposition: inline
+In-Reply-To: <20251117-aspeed_mdio_ast2700-v1-1-8ecb0032f554@aspeedtech.com>
 
 
-> The problem is that all the meta-data is not allocated inside the
-> preallocated buffer. The meta-data is kmalloced all around the code. I
-> mean the structs that hold the information on what's in the buffer. You
-> know what I mean.
-> And all these kmalloced things, turn out to be in order of hundreds just
-> on a kernel boot, which I tested. This is not feasible for the
-> meminspect table, as it would get overcrowded very easily.
-> I thought of perhaps trying to kmalloc all of them in a dedicated cache,
-> but I haven't progressed on that. Another idea would be to try to
-> recreate the meta, but I have not found a way to do it yet.>
-> > That is, by using the persistent ring buffer code with the meminspect, if
-> > the firmware doesn't save the memory across reboots but allows you to dump
-> > it to disk, you can enable tracing within the persistent ring buffer, on
-> > crash, extract the buffer, and then use trace-cmd to rebuild a trace.dat
-> > file that you can now inspect, and see the trace that lead up to the crash.  
-> I used 'crash' tool with trace plugin and I am able to see all the trace
-> contents, but, with the limitation above. (To achieve this, I dumped a
-> huge area to include it, so , not feasible for my goal )
+--2bWqpCW/1YghVWvY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Can't you at boot up just run:
+On Mon, Nov 17, 2025 at 03:30:18PM +0800, Jacky Chou wrote:
+> Add "aspeed,ast2700-mdio" compatible to the binding schema with a fallback
+> to "aspeed,ast2600-mdio".
+>=20
+> Although the MDIO controller on AST2700 is functionally the same as the
+> one on AST2600, it's good practice to add a SoC-specific compatible for
+> new silicon. This allows future driver updates to handle any 2700-specific
+> integration issues without requiring devicetree changes or complex
+> runtime detection logic.
+>=20
+> For now, the driver continues to bind via the existing
+> "aspeed,ast2600-mdio" compatible, so no driver changes are needed.
+>=20
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> ---
+>  Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml | 8 +++++=
+++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.ya=
+ml b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+> index d6ef468495c5..1c90e7c15a44 100644
+> --- a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+> +++ b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+> @@ -13,13 +13,19 @@ description: |+
+>    The ASPEED AST2600 MDIO controller is the third iteration of ASPEED's =
+MDIO
+>    bus register interface, this time also separating out the controller f=
+rom the
+>    MAC.
+> +  The ASPEED AST2700 MDIO controller is similar to the AST2600's.
 
-   trace-cmd restore -c -o trace-head.dat
+This statement disagrees with your commit message that claims
+functionally identical, and implies that the 2700 supports some extra
+features or whatever.
+I think I'd drop this entirely from the patch, rather than try to reword
+it. Remove it and then:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: changes-requested
 
-?
+>  allOf:
+>    - $ref: mdio.yaml#
+> =20
+>  properties:
+>    compatible:
+> -    const: aspeed,ast2600-mdio
+> +    oneOf:
+> +      - const: aspeed,ast2600-mdio
+> +      - items:
+> +          - enum:
+> +              - aspeed,ast2700-mdio
+> +          - const: aspeed,ast2600-mdio
+> =20
+>    reg:
+>      maxItems: 1
+>=20
+> ---
+> base-commit: c9dfb92de0738eb7fe6a591ad1642333793e8b6e
+> change-id: 20251117-aspeed_mdio_ast2700-aa089c4f0474
+>=20
+> Best regards,
+> --=20
+> Jacky Chou <jacky_chou@aspeedtech.com>
+>=20
 
-That records all the meta data of the running machine, and places it into a
-trace-head.dat file. You can save that off anywhere.
+--2bWqpCW/1YghVWvY
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Then after a crash, if you split the buffers up into individual cpu raw data
-files, you can then run:
+-----BEGIN PGP SIGNATURE-----
 
-  trace-cmd restore -o trace.dat -i trace-head.dat trace-cpu0.raw trace-cpu1.raw ...
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaR4PQQAKCRB4tDGHoIJi
+0sqUAP9r+wKYrCdpXMLj+cK8mnW1jeDSeXieLhR1kXkxcYrCUgEAvz3f7zkatpMU
+AoB7sxn/YdlOC4WEHCby7J2J47TRzAo=
+=rJkd
+-----END PGP SIGNATURE-----
 
-And it will create a trace.dat file for you that you can read with:
-
-  trace-cmd report trace.dat
-
--- Steve
+--2bWqpCW/1YghVWvY--
 
