@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-240294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB84EC6FBB6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:45:57 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ED3DC6FCDF
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:53:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id D46EF2F256
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:45:56 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 358573578F7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F4AE302CB5;
-	Wed, 19 Nov 2025 15:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE06B2E7637;
+	Wed, 19 Nov 2025 15:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s77ePi5V"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FslOMpT0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3C82EA172
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:45:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5712F0C7D
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:45:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763567128; cv=none; b=p2qR/FpzPdxVOjJtHrjphBdqN48hUY9sq83sLzZDa5sdswiQUT02QJv8UfH6AHj4PsT4ZikFGIAxHitfvqfMOjjrBsEVibdSBoG7hZw2AfgTjUL0GKv6p1eaG1bFYIf0svnPWQTeYhekfUadx9uZ1Y/JN2MKaQWS20idTSSXmuY=
+	t=1763567130; cv=none; b=ox/NrkWgekLs8Hrwql+n+MLs1P1D7e/esXhzRxuGBfmPBHIyV5Cn/r9w205Ug80nAjcLCbbPvAkQhCM7NSWGQ571P/Yhy9QqDLtb3YiGpV+b6ytMYd0uKmjE0d1ihLbVNdZ1s8UHLli2PrvspM4Q6piE7f42V1zyn5ZWEKf/OBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763567128; c=relaxed/simple;
-	bh=xVX5vMoWLhUppTQAzGqUyciUL0HvTWD+fRU1g1HFtlY=;
+	s=arc-20240116; t=1763567130; c=relaxed/simple;
+	bh=T6SjDhmcY0qxcuyqrC2MrBGCJa3hOQc9OYm2K6gInfg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rUCInn1eiu7vxa6HDff5IPY1MQ74LZgxbINfHQ7N6JhpTVfIs3XtwA5aQT1sX6BrurHkOPmjqTqoDQErglQQZGBijgasZb7xqGWaagHBBBB0KdyGubOmDXGeaL1kcxo9w90m+qySKtk6hVOnHg33jVUZUIFGrj4nAk3Cvi6TRRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s77ePi5V; arc=none smtp.client-ip=209.85.128.49
+	 MIME-Version; b=ldptB0MgVxbyMvLs8RnSQHSeu28L/B/g+5cC/SPDkCJLqNlg03Y1jj3p1WbultQpMGx2gmVRYxhSvsvEYtkCsEYSJk5mAGAUtd6DgfJAI3Naxo11YibZ/D1AdPZsAxShT1zldqcgsFYpOnUbc2awITo65LOeGAmx/kPMbJVTOAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FslOMpT0; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-477632b0621so45535915e9.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:45:23 -0800 (PST)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42b31c610fcso5924296f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:45:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763567122; x=1764171922; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1763567124; x=1764171924; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0blJpzJVpLViS6yP++1+Q3N2n4IWObMjESar9bHwcO4=;
-        b=s77ePi5VwhAc5RdCjyAb302P4Ka1p3s03BC0V2FspdVUm4i7WYiQ2/MLytX6QDfaGN
-         kK0mUXAjWAWky+BcR4OpUoRFi0GuLC8Jj5SFvNrkKqqTO0fWekjRVtmOv5IQvQfdHEQK
-         TgXteXNfAy3vUVfU4mt5qaDa2qJFDh+l7TG550TjqEsNBBo3aCcHsKC73Ycok+9pbhk4
-         4qiYo9F/ku0uKX/a+S6dfpVvgv0UCLbmIZ6q2Z3sPsILWyDBj5OUEh6kQHBhCPh7EmVD
-         hwar1tExtLfqrIQdYXQl1vj4KnszoQmpLBQ0hyx18qnEvaC6g0olZ5w+plmslpAGCUNT
-         kFyQ==
+        bh=NCvJkYlF4keL+Fd6f7hwRGbLb7cgm1v1S6Qn3Ctc9SY=;
+        b=FslOMpT0D6lQ2kcCfXCiK0uWzCKjdNJ+AScQFNAM8TZvG3xEM7hVRVsKm91uZMaTvz
+         4ob7Vilx6or0EGs2w+NmOwSkxBsRgfBYuD4SXQ1WbbhJKL95YIWP18GQZJrCJn4gXokf
+         tudwNkwtKWBIJqQsMpTYbscsCy2OJigihpRNBGv+IyyKzjhSkKhfzVARu4Qyx6Hkq0mm
+         1I86zQNM4dXOBcXvNdoMUynBcD7yv7L6gKD5o1nmiPzDy6GzgNzrtWtBJYAKSrgDIaK6
+         pRjDKWJeLrjp7UAQu+Ih0+8lSAKK0ipcr5Lla6ZRc+MOkqYY/bqS7qUUjRISp7uAjz90
+         dUuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763567122; x=1764171922;
+        d=1e100.net; s=20230601; t=1763567124; x=1764171924;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=0blJpzJVpLViS6yP++1+Q3N2n4IWObMjESar9bHwcO4=;
-        b=fifQDRxZRgTD5qxn6qfx/HV204NZn0tx6fIiiMgYrTcmxgdyzCQCNyKBNW+rfgkmHp
-         nTEJyb8ypRi2Ybl6IURFQsDPxENgShMVdpopPkRw5SocvdK/sNWs9G3q3Fv4USSC9WJ9
-         +bco+Z6ZIV+qM+3/zUkhEJwW68/2g4nkqp783lSF/6EeAIcwwU07pCPejIpmrSUjVa5V
-         8t1nSzOffdGx6lX6ZOWEcC+9sTE0judNHsjbh+XUK/f5o098+EwgADfvRRNX7PEsWxL5
-         xfCaOStpvUd5mQW69ZmwXa0NcudI4zopTsmv/6jSoIvmssUGQiPliQmGfeYtYzVt7FTH
-         hIDw==
-X-Forwarded-Encrypted: i=1; AJvYcCXJuhQAbghy2E2MpRnC7f8cOIM0jJfAo2A5Bun5EzHdAjtpz2IbEj8mzjOhdMlmwAVHMTtbswnLRcAI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNIDiiCSMRsZF5fOMeW2i2l3ia9b1dbos/DcKGpB9sofK0gRpU
-	XZBHITn4lIcEfWiWoJuQ20DyT88GtUU9vrQ+dasHMjTqZRUy6OaErztxtIgwfPouCDc=
-X-Gm-Gg: ASbGncvT0eEGxNU10HYEeDUknijrtLGCbe2+ahxzSesCC6GEuNngC+mBHfAkiM5c29w
-	LuOWxiwQHCVg2YgzTb0U7o2Tr1eymjJSeeuwk2J+C/2HHn2YTnsZQobjz02+SIBhBnTZiFxIhov
-	Kj4DqIhIF7Q8aVv/6KRAQrPBaGpeqD5yWVb+m4fq1hd3Meaf5fO5os1zE9okAWZRTXgNEOTj42r
-	oMY/gv7YjXdSnA2SYpF8e7X1QDKx85zNB+0RgXftsk6hBA1yiFoO64GhiiLFryoQfbVtC/67PdO
-	mohMUwaJDljUI/diMmXzdzqcrJyP6n+lV4nnp9e4ydD+gqPygQgyc5zYZVI3yvI5axbakPZOOSM
-	xG7X6zaliHjpJYbiob60LKnHt7x9bCzi9Culo2+mfbJpaRolpXSFtyEdneOycNJyQ5xwcwg3bsg
-	6WPmkLzIHVIsEtEl+CuHE=
-X-Google-Smtp-Source: AGHT+IEf0A8SfCPAIU5Y+01ECXL2jbadglpozgNAZPe+3fJhQYPBk8r7h45IbtadEb3Wt583O3k4NA==
-X-Received: by 2002:a05:600c:3587:b0:477:58af:a91d with SMTP id 5b1f17b1804b1-4778fe522f3mr209598755e9.5.1763567121930;
-        Wed, 19 Nov 2025 07:45:21 -0800 (PST)
+        bh=NCvJkYlF4keL+Fd6f7hwRGbLb7cgm1v1S6Qn3Ctc9SY=;
+        b=boYu9lI6eJieAydqIr6elCtkpprxB6i6Rp8nE0rmpe8IBOcE+2hcIyQd59PvlS8vmQ
+         kF4ljdvgYXsuPdst49Tl1yo7gwAnrpZIafMTG2koOERvkjTUJJRwuhgLn/jTWq8xkTCi
+         4u4rW+hlV3L9YRQPPagpuf3+QNjN2clMpiYKDoY0pxigrSSNnNyPCPMPeKT13+sn06DZ
+         Nawgid/NtM84Hki+Zb52BmGPVp/KaapC/AZNSJ3lZHUIl8cvdwb3AV33xmN0DiHXoBQq
+         6XMANZWcnChItGp2h3+19ux/ny52bWonoDr4spk/iLxDykfAIykQXdKiZxsesrFLJhwA
+         nm4A==
+X-Forwarded-Encrypted: i=1; AJvYcCU5OHy59YecxBabFpsSK+SEARWsptYvtByDDXdgynJTfr6719imLyXtI3A493sK9A4JC3vu1VRURwWR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyClohmiqMeUuFOpRhS8y+SIW04PBtjxSos7DCLKfqi2u2N0jIO
+	Y7NsWa8BJ3qTAAnjZhNqQiNuDYOVARCS2E62DdNlJMv0oLg/B8n87VftOx0/z8OLakM=
+X-Gm-Gg: ASbGncsflZWQi3k/2A5s+2khsNfC8elEJvkXhHPysbtVnyDCWBcg4ldTqEIY7J7CcF4
+	0GCfo4+0H802LYcvO7TsTMKMsxtia+UsKy8IoX1f6DwPEem9n2qYT5MqeTuH0bNXojmM1sp2HPf
+	SrswgS5gD2iaU/EtHbGiqKOETqtUjwASS0tzq0o0b9uszdtNxk2eAIsqYYahXBE6JddehyK6YCt
+	boZ01paGAHium7y+aAS6ClhsjLCMjJ5vOaDLjTkMf1Y9cHiE1EC0qSX7PTGFz3fD8g8puf78Bal
+	Y6LslXqt7gLUaG31ZGrydUbAGtncUsk6aUZ53HAB3iLU0miRKxty9PmnJliAhx0GTdU7XjLwgRI
+	ZBrlkjFBS32Tyqvidiv4xe7yu3TLLSng8zDJXHvIkt4Up6OLTBKZSXAKaYTl0hZjSJkkt6L/OqA
+	RT9M0w3sECWVVCo2tn71Cm3xeVlFN3+A==
+X-Google-Smtp-Source: AGHT+IFVCfX9pNo5qLPfR5wjMBWTLaRukJCHurtJsWmWrjGoOxpQq2PCC7itN5NhSfJZMSf9UOyBtQ==
+X-Received: by 2002:a05:6000:1ace:b0:42b:3366:632a with SMTP id ffacd0b85a97d-42b59386ademr21562007f8f.39.1763567123749;
+        Wed, 19 Nov 2025 07:45:23 -0800 (PST)
 Received: from eugen-station.. ([82.76.24.202])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53dea1c9sm38765632f8f.0.2025.11.19.07.45.20
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53dea1c9sm38765632f8f.0.2025.11.19.07.45.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 07:45:21 -0800 (PST)
+        Wed, 19 Nov 2025 07:45:23 -0800 (PST)
 From: Eugen Hristev <eugen.hristev@linaro.org>
 To: linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
@@ -98,9 +98,9 @@ Cc: tudor.ambarus@linaro.org,
 	tony.luck@intel.com,
 	kees@kernel.org,
 	Eugen Hristev <eugen.hristev@linaro.org>
-Subject: [PATCH 03/26] mm/percpu: Annotate static information into meminspect
-Date: Wed, 19 Nov 2025 17:44:04 +0200
-Message-ID: <20251119154427.1033475-4-eugen.hristev@linaro.org>
+Subject: [PATCH 04/26] cpu: Annotate static information into meminspect
+Date: Wed, 19 Nov 2025 17:44:05 +0200
+Message-ID: <20251119154427.1033475-5-eugen.hristev@linaro.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251119154427.1033475-1-eugen.hristev@linaro.org>
 References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
@@ -112,36 +112,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Annotate vital static information into meminspect:
- - __per_cpu_offset
+Annotate vital static information into inspection table:
+ - __cpu_present_mask
+ - __cpu_online_mask
+ - __cpu_possible_mask
+ - __cpu_active_mask
 
 Information on these variables is stored into dedicated inspection section.
 
 Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
 ---
- mm/percpu.c | 2 ++
- 1 file changed, 2 insertions(+)
+ kernel/cpu.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/mm/percpu.c b/mm/percpu.c
-index 81462ce5866e..cdc5b30f6a99 100644
---- a/mm/percpu.c
-+++ b/mm/percpu.c
-@@ -87,6 +87,7 @@
- #include <linux/sched.h>
- #include <linux/sched/mm.h>
- #include <linux/memcontrol.h>
+diff --git a/kernel/cpu.c b/kernel/cpu.c
+index db9f6c539b28..1f2df5a5b9ab 100644
+--- a/kernel/cpu.c
++++ b/kernel/cpu.c
+@@ -38,6 +38,7 @@
+ #include <linux/random.h>
+ #include <linux/cc_platform.h>
+ #include <linux/parser.h>
 +#include <linux/meminspect.h>
  
- #include <asm/cacheflush.h>
- #include <asm/sections.h>
-@@ -3346,6 +3347,7 @@ void __init setup_per_cpu_areas(void)
+ #include <trace/events/power.h>
+ #define CREATE_TRACE_POINTS
+@@ -3089,18 +3090,22 @@ struct cpumask __cpu_possible_mask __ro_after_init
+ struct cpumask __cpu_possible_mask __ro_after_init;
+ #endif
+ EXPORT_SYMBOL(__cpu_possible_mask);
++MEMINSPECT_SIMPLE_ENTRY(__cpu_possible_mask);
  
- #endif	/* CONFIG_SMP */
+ struct cpumask __cpu_online_mask __read_mostly;
+ EXPORT_SYMBOL(__cpu_online_mask);
++MEMINSPECT_SIMPLE_ENTRY(__cpu_online_mask);
  
-+MEMINSPECT_SIMPLE_ENTRY(__per_cpu_offset);
- /*
-  * pcpu_nr_pages - calculate total number of populated backing pages
-  *
+ struct cpumask __cpu_enabled_mask __read_mostly;
+ EXPORT_SYMBOL(__cpu_enabled_mask);
+ 
+ struct cpumask __cpu_present_mask __read_mostly;
+ EXPORT_SYMBOL(__cpu_present_mask);
++MEMINSPECT_SIMPLE_ENTRY(__cpu_present_mask);
+ 
+ struct cpumask __cpu_active_mask __read_mostly;
+ EXPORT_SYMBOL(__cpu_active_mask);
++MEMINSPECT_SIMPLE_ENTRY(__cpu_active_mask);
+ 
+ struct cpumask __cpu_dying_mask __read_mostly;
+ EXPORT_SYMBOL(__cpu_dying_mask);
 -- 
 2.43.0
 
