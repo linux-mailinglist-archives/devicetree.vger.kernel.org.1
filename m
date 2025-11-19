@@ -1,150 +1,96 @@
-Return-Path: <devicetree+bounces-240366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7567CC70541
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:09:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B164AC707C8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:36:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 173344FD050
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:49:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTPS id 2CE32299F6
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE7D2FE06E;
-	Wed, 19 Nov 2025 16:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C332D0638;
+	Wed, 19 Nov 2025 17:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AQ9we3+K"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="WHjH6S8E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2434C2FD1C6
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 16:49:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E78AE3081D0
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 17:35:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763570954; cv=none; b=moSR17c2mLwEZRzlXVSdJWFLDvkRD/RS+VF9z6dIYiUgPf072lAQR9PUiwDO9TJ1T3PQte0ykXd7+bUzmFv8buftNSpVXEQKDEbS3AGv2JwFnvW80G6rqzX6uFuoGPt7PxY+KDBQvA4L6tJXelfpVfsKALtmr9yQfXdmmIXnhOY=
+	t=1763573708; cv=none; b=QWz4Nqq2y9rm8Id12HUOTaBgrJgcWcSOTGv5ffHNtdhIuF+PU6g/LJSRcij9AhIrMzNKB6dzHNHPJ68j9hn204PUdlJiCLkB2mYBHM6tqgIftYsmau8icbGhMcYREeiXmx32XkPgm+mWcTnSdAFTf7sITGR6kXM9MGIpd/eJ1Ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763570954; c=relaxed/simple;
-	bh=leYy/21UTD6pIL/9i4ukZ60KL/cbDqbrZ8frEBNBMrk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=gNhe6QoMe8X6AfITJ+XGJeiYMhDLJAyGS66iA7Qro4ZyxtpgZXy//ezJ+WBKF750UwveCrBx7Mi9cJ1HO3a4XoUm2D1N+Su8XRwJbq8IkYU0dbb/ZbBn8llBR9J2yxy92uAr2Un7XulEFAjJ3G5kP4YgueaheXvUo8ZI7Y2cmkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AQ9we3+K; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47789cd2083so47527335e9.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 08:49:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763570950; x=1764175750; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GL7qlh37zkRZTRlu95aZolyP82BIEUWrPCKsF6oXxAU=;
-        b=AQ9we3+KpTwgKIDxJ2iGz6vqdrRnBsE9TN/8+k4vo/O4kZoiuhRczSgS6rhnaYF29K
-         9YN1MBtCQHXPJwoEvtbj38xWip5/C+kGVanAfZaq1eiWvAEawvRHoukGXAN7fh5l/54S
-         bp3E/EV7nLucVe5Zye6sy6HNgYGcqUcsHWfgCEAk/3GgDwEpTjX3ILYoIvUIxIRk8v0/
-         F4yugJQlhBbMrqRQP359MwUS2Ns1U6sYz/KM2NxlHdxJ6wIM/5C+e40CcjaLhqxjcUUk
-         ykeCPtr6qcDlvHNfl7FtHaw+YAua4N9CvpTVDQ0ZEOAIyasbki8ODw8lH7AxwpKD0shr
-         AGKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763570950; x=1764175750;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=GL7qlh37zkRZTRlu95aZolyP82BIEUWrPCKsF6oXxAU=;
-        b=laPvzn+q+YaK8ZapiVQEEbxp8uFotw1GQyWq+njZKxq3uKPIiYeUmlfxms62DkYsac
-         muZKDCgvItMjOrkzuzzaPi7ClJbHW4LzTqar0936IqKwWvlifDv/OKO/+zxrxBqZg3+g
-         ecVR7afegT5NpuS1NHACVj6DMyMxyQ1JRIc+r/jBJRdKxuMubHJqTHnHq3842mPJaW+t
-         Ki2NTFJLgtJctgiSWmAOvn0o6L2LjIK6Q6DMEuoVBMg11BkedvAJ808q2IqsWZBArVJe
-         KIRiFga+DCELfYX5W4eDqy7fzXYCTuN76byd6nodQN104+BZUBMMuSUeUu0KemBkiVqm
-         d2OA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqiViW0djc1HMfbqY3WYenjqAMqVkhYFWRzLqTTVQWOJqa+KEYmbXoiRMrCC0G757CWAhWZkGqz5bx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yym1Uo9edUPN3WW/F3Xk071iUhapYaOCUmRmE/5etl4M8Iqf+fc
-	smyB75/kP6EtgeEwLcKWD568ecHsujNS47OxM4mGY85OgMIWBpE7KlOtVXZduVJFcP0=
-X-Gm-Gg: ASbGnctT1rbD2fb6tTYMS54M1B5KILDjLc61zzuDnSf3RXTnlmaj/9j03TCcKIeTEMa
-	ZI1PWZH24HMYuk8bEdx9bY1SC63aL05dm80hGDNgl1Zdfm9lcojvTGHc8bu4DVDqqurbI5qmjck
-	usEDq+c+c+nWXvN4xlxkTBggZpNO0zCcQU7yJrTpcf6jlg043D74ZZrUO5lITTFmf3vD6vHgGfk
-	Ou28G/LDdw/E6Lt8PfV6JcqlsY/e7hz+bfwdAj6oVxeN9hX2eFJQ+vkRVIyKELnanvetnKIhbHD
-	nad4xIFinkmys3FzQ2TB2i+q8Ie9u4DpCAqWcEVOcJY8QLTludh8EzDlRV6qDul6bDwyNXlxznw
-	KPEmuUgsmgfqgVFDlwtcXTw8Ytni3JxSKBU6M/Shqlc94pgiq6AiudPTpsDUVmBlSpPNRPlxP8H
-	ck3RpJNy5Z7uZfxeOazO1ZLqJAniXnpQjlXqQliq0+OQ==
-X-Google-Smtp-Source: AGHT+IEOxKlCU0fVyUxW6LWeLn7CtAluz8WjPTxaroJlgm9DOICHacN8yAahbHX8pTucfhXi884sbA==
-X-Received: by 2002:a05:6000:64a:b0:42b:4267:83d5 with SMTP id ffacd0b85a97d-42b5935dde3mr18285757f8f.8.1763570950069;
-        Wed, 19 Nov 2025 08:49:10 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fa3592sm117957f8f.21.2025.11.19.08.49.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 08:49:09 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Casey Connolly <casey.connolly@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, David Heidelberg <david@ixit.cz>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- phone-devel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20251119-sofef00-rebuild-v3-0-6cd55471e84e@ixit.cz>
-References: <20251119-sofef00-rebuild-v3-0-6cd55471e84e@ixit.cz>
-Subject: Re: (subset) [PATCH v3 00/12] Make Samsung SOFEF00 DDIC and panel
- work
-Message-Id: <176357094919.280640.16902732888424119445.b4-ty@linaro.org>
-Date: Wed, 19 Nov 2025 17:49:09 +0100
+	s=arc-20240116; t=1763573708; c=relaxed/simple;
+	bh=dV4KKw8/UT2qsNhrMVvIgosBVHg5wVyN/kfJhJZe92Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V5nRF6zNWQV6fKM4fJDhkR9+4dW9m6/ae8IP26LcgGXvgMm5+r9KcfkyTKz23Fa4vjfJ1O8WQnyuA3nwBqyEDSjiA2nyJkdIPH5VV0jaKXNKUzlKvnMv4Bf7TvZeV/XpB9FY5Ol9WomgXxFUmmQ5pV9XfrGhZhjqpRey19Fz31I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=WHjH6S8E; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dBTBj0Z4wz9tH7;
+	Wed, 19 Nov 2025 18:34:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1763573693;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=d7DjuaJPWcETZ1BexKkq1MHxDnEIhEMitdG38RRXcQI=;
+	b=WHjH6S8ESGByKl/O/KwaDe6G2Tvvl5q3caVr6qlZuksDsp/DwOKBHTrxofXW2BEDn/tnwl
+	L+9eYypQu3P4YLegrs9sdKNx280lnZ8shAJkggHxUcvPhDwsHtJKf0iqMmIxMmFHSUxwWA
+	b0+ezok5Ow07/nDu3a3hMvc+1vrldol3f5pX4HWZYS86M8qSl7vHkNEgdFmwHzvwplBY0+
+	HPSCvTWPfh+i05qlKHtVhzBxETEFe8datCe4BNgejZMUNWVQncD4qxBsQEp9NRSb/ydzkd
+	5MThOY6Eu8CwAIVIH7DzxJbEoqPrsToqIlMKElDewFvMshUZnHTmXbEz7Keobg==
+Message-ID: <c85e39b6-4e5b-4bbc-b1b6-7f910c8f06d8@mailbox.org>
+Date: Wed, 19 Nov 2025 18:00:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Subject: Re: [PATCH v4 2/2] arm64: dts: imx95: Describe Mali G310 GPU
+To: Shawn Guo <shawnguo2@yeah.net>
+Cc: linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Fabio Estevam <festevam@gmail.com>, "Jiyu Yang (OSS)"
+ <jiyu.yang@oss.nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Xianzhong Li <xianzhong.li@nxp.com>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev
+References: <20251102160927.45157-1-marek.vasut@mailbox.org>
+ <20251102160927.45157-2-marek.vasut@mailbox.org> <aRnBqgzeotfrdNmy@dragon>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aRnBqgzeotfrdNmy@dragon>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+X-MBO-RS-META: xfg6n8nhyrnhx6yqpdx41yjpkht33zzw
+X-MBO-RS-ID: c077a67f0eb4f199681
 
-Hi,
-
-On Wed, 19 Nov 2025 15:21:25 +0100, David Heidelberg wrote:
-> This DDIC is essential for panels used in OnePlus 6 and Pixel 3a XL
-> (SDC variant). With proper support, all downstream patches in
-> sdm845-mainline and sdm670-mainline can be dropped.
+On 11/16/25 1:20 PM, Shawn Guo wrote:
+> On Sun, Nov 02, 2025 at 05:09:07PM +0100, Marek Vasut wrote:
+>> The instance of the GPU populated in i.MX95 is the G310, describe this
+>> GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
 > 
-> The mainline driver was broken so far, and with my recent introduction
-> of S6E3FC2X01 driver, I had to "break it even more" due to OnePlus 6
-> common device-tree changes which defined all the regulators and
-> corrected properties.
-> 
-> [...]
-
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
-
-[01/12] dt-bindings: panel: Convert Samsung SOFEF00 DDIC into standalone yaml
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/1388c08c84a2b1f37abae656c1f88d18ecb1364e
-[03/12] drm/panel: sofef00: Clean up panel description after s6e3fc2x01 removal
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/05aeb5bb4b699b51f88d9f5585005b6eb66a496b
-[04/12] drm/panel: sofef00: Handle all regulators
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/dfc7e0859e05991b0920bd249434e44866a11bd1
-[05/12] drm/panel: sofef00: Split sending commands to the enable/disable functions
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/18642542ac4916807fc0925cdcb9356f5802e2ae
-[06/12] drm/panel: sofef00: Introduce page macro
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/9f1ba273f55f93759cfd1098e0682b03eb115bb4
-[07/12] drm/panel: sofef00: Add prepare_prev_first flag to drm_panel
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/1e534a56578bbea59165c3507d2b967f29771792
-[08/12] drm/panel: sofef00: Initialise at 50% brightness
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/e2e94464cf44f91c92eb631d609f812c7aef8840
-[09/12] drm/panel: sofef00: Introduce compatible which includes the panel name
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/6a353661e7058795a800de3535e4e1448d125676
-[10/12] drm/panel: sofef00: Simplify get_modes
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/940c451981ebd0901f39675c9ff3b3e1c9760571
-[11/12] drm/panel: sofef00: Mark the LPM mode always-on
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/73540e5e7c52264633c66aad681e53f7e2f54c57
-[12/12] drm/panel: sofef00: Non-continuous mode and video burst are supported
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/8bff3a2bf7c50bf45766edcd5440329d6b5cdf96
-
--- 
-Neil
-
+> The commit log seems need an update for the regulator part?
+The patch seems to be already in next, but if it can be somehow respun, 
+I can do that ?
 
