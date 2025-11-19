@@ -1,205 +1,138 @@
-Return-Path: <devicetree+bounces-240026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C436EC6C5F6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 03:27:35 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93946C6C620
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 03:30:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9418E4E034B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 02:27:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id E1CAA2ACC8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 02:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CEC0283FFC;
-	Wed, 19 Nov 2025 02:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C511F130B;
+	Wed, 19 Nov 2025 02:30:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="BnPU31r7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aG0vRxlt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023111.outbound.protection.outlook.com [52.101.127.111])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBC81E8329;
-	Wed, 19 Nov 2025 02:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.111
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763519250; cv=fail; b=Hi9CqXzuTpIVg/Dqi/8ppghp0ifBVgk4HcOIJx2kKt+ZBkIy2iTk+JGuvf1CRT/0gPhp41LxUnTLYTU0jwtCCyr9jo5c2Y1AT6B//i2r1GtpOOXg8k8abGycNH5L92QdF1FPEYq86ruSp66I2WHzv23YuiBiINe/5cyxDFVaDZM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763519250; c=relaxed/simple;
-	bh=M9qWg364L09Q3J1of4DYNpWPtvtx69nicBOneuMpbtU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Sahj1oar+CWvek93x5abkz4JskcLqFf34roP8skzlwqE2EHoxowWr0hjr+CdPlEydfFZ8AFz1ORe/FsqYB2coaDGqoPqfSRh39DrXDmQICJGasSJNoyP/MrQSpa3SHsNmoaTr7w0siUtmbg30ob1LffbA33k73inWVBoEqHnRO8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=BnPU31r7; arc=fail smtp.client-ip=52.101.127.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ht55eN+MnhkD+qjvI9sOaS7vEcMY8exAF9l+mZ5W/G6yn23bDl8v5Cc17x0GHpPkRt6zUA+sLyZ63KVCKNthxqM4Y+306tU35tzn9doCgK+sDg8FXTJVsy7u3sA2KOc3qjPfFqJnkapgV1a9a+sBD2aI4dIBkVJXoeUVB3GR/7KNcHOiUAgOQ9eZYGB42FC1lFJDqhH8I2yJD3GubsLdMqEkE0De3hbS3gKTJqwz6z3oES9EjnKcfTtmdwWXvO5+ils2B21O6a1dM0oyIEEoNFrxkxpxSCZZWHXCHCauCa2yg2z7ijsudVNp3+c80NPm1sSrqB/wgOv6qHksUoczRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M9qWg364L09Q3J1of4DYNpWPtvtx69nicBOneuMpbtU=;
- b=ngEn/+eX+DsE+rwJZ6gfKQH/LxrqJ7X424w+kOv3Iz1+oP2dLrUedO3yKGthNdQ5h9sfKak6r5J0vkdJSvAwPAMxTowuZHdf4KNAANJAPmtQXEVXz6OLVym5sMHmkSuWubOiFRZGS/sYq9OiAMlJRS9qyROFTNt/0bpb5XQeVjnCKFzWtO/LD7RmmX1xkJH8Ynxw8iPYAKnWxdvuYFvvZKYMWDgs79UVNAlCbn4VXx7RAJUErczhIfoL69m8gIO1yv7VgYT1jV3PK6HM2b3WSju5550DE8o7VqhHciArespDJclc2H4TFI4U40JhaeTuwvyvjKxQvsizP51MG8io4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M9qWg364L09Q3J1of4DYNpWPtvtx69nicBOneuMpbtU=;
- b=BnPU31r7za4anJ7S1lqiakHsvIYhHFqCn39uvMBV37Ip6xgaYTyyLINsKiRvgdGgxiHlhn4gwlSZR3bPA3h0rGfFmWCCb817S6JqENKzmrbFIvtGrD4LnOV9o4Ve0YiP7ce0fKjF1Q5Ef9JGWylHqJqxc52MQrw3ShrmSWq4CqLGyt+u+LXz5T4afrO4NsVPDET0AhnuipQL8bI6XRhaGZeJPTjVyENcDuEz/nnBy/P3UWha3Wl95y4+tq/W05Qz9DmJFAE1pD+MaHxHLq5/vLXxlQvkjQ1Gncktg+i3zrjcvJ4QCFwArHASjDguJPdMeLjK0cG/2yNr7yVY9OTKRg==
-Received: from SEYPR06MB5134.apcprd06.prod.outlook.com (2603:1096:101:5a::12)
- by SEYPR06MB5181.apcprd06.prod.outlook.com (2603:1096:101:8c::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.21; Wed, 19 Nov
- 2025 02:27:22 +0000
-Received: from SEYPR06MB5134.apcprd06.prod.outlook.com
- ([fe80::6b58:6014:be6e:2f28]) by SEYPR06MB5134.apcprd06.prod.outlook.com
- ([fe80::6b58:6014:be6e:2f28%6]) with mapi id 15.20.9320.018; Wed, 19 Nov 2025
- 02:27:22 +0000
-From: Jacky Chou <jacky_chou@aspeedtech.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew
- Jeffery <andrew@codeconstruct.com.au>, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kwilczynski@kernel.org>, Manivannan
- Sadhasivam <mani@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "linux-phy@lists.infradead.org"
-	<linux-phy@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: [PATCH v5 6/8] PCI: Add FMT, TYPE and CPL status definition for TLP
- header
-Thread-Topic: [PATCH v5 6/8] PCI: Add FMT, TYPE and CPL status definition for
- TLP header
-Thread-Index: AQHcV78oxw3pQAYCo0+MHD1idq0RtbT3H9KAgAIoIzA=
-Date: Wed, 19 Nov 2025 02:27:20 +0000
-Message-ID:
- <SEYPR06MB51340B04D9423EDEABFE9BA79DD7A@SEYPR06MB5134.apcprd06.prod.outlook.com>
-References: <20251117-upstream_pcie_rc-v5-6-b4a198576acf@aspeedtech.com>
- <20251117172859.GA2466937@bhelgaas>
-In-Reply-To: <20251117172859.GA2466937@bhelgaas>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR06MB5134:EE_|SEYPR06MB5181:EE_
-x-ms-office365-filtering-correlation-id: e7a4cb08-81a0-4be2-3aa4-08de27132ae0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?iso-8859-2?Q?S/PD1iHEg+ITnyVBPaua2SAZyE8HOi0gsc1if3DLqBdq3DtpIhYQrOcBEt?=
- =?iso-8859-2?Q?YPCNTrMa6sQYAoKT8L3Ygo1ICTNjbgX+M15mEMxfCYgV1pGSon667eEviH?=
- =?iso-8859-2?Q?CCYbjT2h4D8auEE7oaaPY7AVsjlKFfR/y/oM62iEfaKudG5zXPIbogU7Jm?=
- =?iso-8859-2?Q?IOav5fE3yuRdUaeUXekLyCPC+np3zDqJzgrg1UHMrRTESgpTfJdlgTFa0n?=
- =?iso-8859-2?Q?sOwvfDDZv2h/UcJPkI1kimMhYx9EsBpTDUy3wEiWtpn5ce66OqxS6Gk2wJ?=
- =?iso-8859-2?Q?HlVTSQrApRF3TaSaDh4J1CoIuTU1WEsUcwUE/XXtkAmlBn45r+SMvAFatM?=
- =?iso-8859-2?Q?AfHcJ/CA5u4fpGoGGGTuRZsJx5DyzD+B0p4OTGGbi6DPRpzPuNRLrrxQIK?=
- =?iso-8859-2?Q?zjMQNd0SjkWNT9XQF/LsJEmWmivlkva3vfXO0q2mili+I0VtmdZYPfcJ6i?=
- =?iso-8859-2?Q?Zv8cl1K0qQIKP1n0v1N818nUONw1E6OrtE2HbYgVn0r3Z1+tCj4xoc90Om?=
- =?iso-8859-2?Q?BgVfngjPRv7aIsKifeGw+m27Hzk0d8ttiHH6DhOL/2+/p1nh8qDw4WQBF3?=
- =?iso-8859-2?Q?LTn7PNF/oA/ziXJZVtUWJkHPL/hU+iBR05rnySc4nhATPI5qejUk1ZqtdL?=
- =?iso-8859-2?Q?SXRcoXcoGD0z6G0d1BfmKh5jdSp5S6kUwH+MIngbukHJCZp3rtFyuG4F4+?=
- =?iso-8859-2?Q?DijaMkosWid/uZUiRt81QfP4t78qwtGScr1DScyoFRtVT6Wfp9UQoT5L2s?=
- =?iso-8859-2?Q?yv91/l83JxhtgXPOrZMAC4XFQBAlv2v19GpzejVmHRVpKkA2M3L3Yy4ANW?=
- =?iso-8859-2?Q?O+m34XOmcfnJr0ZjEHLDUOYHgCIgVBska1untwIqywymQML/WqlEMXFP0K?=
- =?iso-8859-2?Q?Z2QpA4+WVeVQVuWFj4TpajFW0wb9zvdcA2/j2ZaQfF9Pq58auNZjHJQ74d?=
- =?iso-8859-2?Q?0t3+np5d7EQ/Sa5iWU9n+O7Gmdd3sR57/uLpK+zjnOmH62UO48UvNFDwt8?=
- =?iso-8859-2?Q?tri1hjrP3hX5Uk2wKSqIx6bVTzdh8dT3c0J94aqdvTNxQgAOdVCesq71QE?=
- =?iso-8859-2?Q?JQDIQorsOIAxK5HmFAT+t/qdiOVoIWYILvjGLEQgQNWRQTaLCbapXwc7xO?=
- =?iso-8859-2?Q?DxLJUi6fRLLusauJj2EB0DvkvAPMQvkB40FjxJFLN6yFl2GE5EVWvDfFlV?=
- =?iso-8859-2?Q?RVlahHfTBYcR2p2qFSpLc1yIIx/91l9b2e8aNFg3BfT7zKxcEoUm4HLQFf?=
- =?iso-8859-2?Q?LeuoFue3SSIntk2SdoTENIBm3c5hJWgUr9d+Y3dWz91kPSN2Lcfre2W4su?=
- =?iso-8859-2?Q?mdVq+Zl+N/T6Wx3jaju/e74/q50Egu4pfiWg5nM4tpGEXO5LrVuFkwH9Pg?=
- =?iso-8859-2?Q?LLMbNYR9wIi35FBAi2FuJOt8unCgUI45ME7WU+6jLZQoGEwmQrtr3RmMTt?=
- =?iso-8859-2?Q?WqlSb/c+6xghmifWMIm7hNzc4gwkVYQ4Y92t/owHcemezf5tUEY8v53Don?=
- =?iso-8859-2?Q?uQIHj9T5sPNARlKHmy93OxgzqQ/z+Sn1ZqTExuew9o95Wx7jVg61SNm9HM?=
- =?iso-8859-2?Q?/Vz7NRVJMeT4o30kcH9lEUUPauzY?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB5134.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-2?Q?UZ3n9gSw7+dwJ02C/sM0Tw3myoMjpLY+elZ8XxZzfmqk96Xi9F+RXMRdFx?=
- =?iso-8859-2?Q?B/QmL5I8sX1oYj58SQf3SLE+9BCPjXLJZUySF3zx/8PpouZh4Sy1Iehqua?=
- =?iso-8859-2?Q?mByu/M1IobKk4+gXcwMtIDo/2CISsbXGN+5mVbR9peVFes5Rbpy15rPh1m?=
- =?iso-8859-2?Q?ya7nv+ZjqwsK+I79DbF+75cM+EZ02aiSDMs9xP/GtejxOUxv60k6FUqhUu?=
- =?iso-8859-2?Q?lqdB9PKoxqGJASmQPL0DfoEIsw6Qv/XIDcgcDAl1zIaJCW8Fazul7DUfq+?=
- =?iso-8859-2?Q?XARNu6vFdZ+IKdVJ3bQh6PVYtNstjcPoV5Yhd2UiUbehdp1iFm+zRVHcfm?=
- =?iso-8859-2?Q?673gYmuv7RCPqubGM5g8/I0g/HJHBHTZPx5imyDHblU+MxYh7joUNx3EV3?=
- =?iso-8859-2?Q?KFEI+sjmuvFLWrZFVQBOYsaflPIHK14VtJ9+QrgspRTGh8h6M83OEimsoF?=
- =?iso-8859-2?Q?k7nC6ZU8uKcBGoPkPIrPXZxh2ytHlqxscF7TqiFWlurC7xdwGL0F0NP48i?=
- =?iso-8859-2?Q?jiAoLGiGbq+C+owBDVdys5eXRHFrBiz5rFRahuZsrb4LpmWlgdafUq/dWN?=
- =?iso-8859-2?Q?UtD+35TmJ8EVxyLu+hnp+8CFj2ATcLYlB1u+amc7XBCCksBhl/NdmqXjy7?=
- =?iso-8859-2?Q?Qnq6CMPd4ZYvcoXAkVMADezYseH387vxISBE07HhzZuLLZEsSz7cI12CJY?=
- =?iso-8859-2?Q?zJlYBoKqKsMtNHTEpGHUZPkjIf0aQGqAlUljE/XQHCpobpH8QZPVUGfb0I?=
- =?iso-8859-2?Q?5AiILUaVAf1etONlXJW9ytjb3G6ba14XZW7uQoAzvmXlH0Giz2paBpUKt5?=
- =?iso-8859-2?Q?Xsb76lYjOQCOoFx/M0WTECbdxQ2aCqoGLfJ2hT8LN9td9+FqB021Ph9QMm?=
- =?iso-8859-2?Q?RGBJL0OV1VxEub2trHaYuy3hmmzw7OcVQykl1dxbAKZKiuQ940v9I8Xikp?=
- =?iso-8859-2?Q?vXmv2oUFERi2jjYFHI6B7NM1lUGs+q9KqBRKBKQKO70zrJS+RbOqzrFBlX?=
- =?iso-8859-2?Q?+oQMHownXU3CJXsFztG+tV/3AODGIBIxgmUP4x8yhwUYR0rT4f8Wbr0p+J?=
- =?iso-8859-2?Q?W4e2s9JHR1suaXe0IilzE1uNdPQnrRLCVSMSESxHXG3VBnaAlmyqmaawF5?=
- =?iso-8859-2?Q?oyJfzQW4Y/DctFZ0Rjn0veBzZFFHKLHgZXVQw6EjnKFWBZhE9pxIu8tdWz?=
- =?iso-8859-2?Q?mjx9i/fuNttwFjJ0kYkpNIVjx74q9xt5uuysn14h84q38BZBSHrlJ9+/+/?=
- =?iso-8859-2?Q?TOVwMWjqKuG8GrM6IMnLxqin4L0ofebkJv9U8ovhsNWXcwuG2S5IuLxzJF?=
- =?iso-8859-2?Q?0g4xkhfimsI7Hif5BvNpNdqf14NLjfOZYBtxYThKu1GWZ5BC45ScWSoCg2?=
- =?iso-8859-2?Q?xM0U2HD3fK7oD9Yb+ZjPThHUdMzvKHabyPm177Ory8nUVhXDJ/y9DO5MlA?=
- =?iso-8859-2?Q?qXdc00MGexWg2t7poDoDNkuCJ+95DTHgCgIc3xyVlHlylGXMWCrWA0tefQ?=
- =?iso-8859-2?Q?ld+Y2a6+wDJQXkoLwg9M3DVgSXDS0dikDb/2LdQllJMcWwBSHYYpyRhsSn?=
- =?iso-8859-2?Q?/19rETpIq9eON5/oODQ6pA4Sm9wV3pyTvJAuz9K02eQMSz14wVGI2qVBXm?=
- =?iso-8859-2?Q?OhdW80RkZtKhq186Q01oYST59RIdRApvNS?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91BE24CB5B
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 02:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763519418; cv=none; b=AbLuhfWzKhSh/cULufLvCnbTLGpvKfEBx6szUc6OT8XLfZneLy17Xg4yQaKyrHjDeG5rzLIF/wDnQF3W3J/BzU3TvnAtdHFPhh8scvus8AB3rCYiJI5gHHg/aK0QHMTOyH0S/W3Dpn/cA+uMPNf0kPuHKMj/2/E0hs6aH255GTU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763519418; c=relaxed/simple;
+	bh=9jslsko6Ysi4k4hZdq86FFeqtg1ZzbHLWDCJLb+kEsg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sAwty7g0fXcV1rACunM4BjtFIHHQqya4cAnmYlGOhYJ1vjM8kCWjMtNh5QSxQ6v4HSQWVKZzFW41Z81IcrRXVdhSw3N2f153wHqw5zhIURY2F6qvxEMoJEA/9DX5ki25+H7pnGqwHDYyfLEhIHPyRNdbnDy2llc8gcjHVjSsYM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aG0vRxlt; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7baf61be569so4677907b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 18:30:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763519416; x=1764124216; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IAUl3DvNF4a96OMaEmiq14uCqbdByDkYT7FAGSKW29g=;
+        b=aG0vRxltqemu4lIVdbi9eszF7oOplesYgRQ1rojPHy0/pHB1j6mTB8K52CE9J5qfFI
+         S0nv0iT8rkE3SUWYs8rD6BYgpNfyX9hnCm6R9/i6duiSSqqcv96nZ8z/5S4cdnEDPKlb
+         6xaDP4DYoNVtJ3Cx76W/A5qvtFS83f+z+MV/+Gc4x/LNKVtkm3pB1eOBV5tJyMiA3b3z
+         U8di+cGFUY5LZuxvFbrR99Z4WrOdfeG/+Mm5cojSihvDL20D37dNuu5zuQGvo87UruAr
+         a4fnsi755rv9Ce2fSzg0QgVncJoReJFSJ47EZPJUE1eLOiC3jXvg8njPS25FfTbsNCUF
+         hHnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763519416; x=1764124216;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IAUl3DvNF4a96OMaEmiq14uCqbdByDkYT7FAGSKW29g=;
+        b=kTaOzSKbkl6la4BTZX2MA3Zos68wnv5nXJF4109PxEL/i/thPsdQlXqiIdlDFKhun5
+         4ElWP14189xOt0Se3arCcW92G6aQF5s8uA4dkuCnjuD5hp8DndjndfW/BiIIdqqRoJWB
+         uH747KK2J7dXcXQj+NMDPG0nG9qyYwuIpyxV8HZZI6r04dd6mrpyhR/WKs3v7yFfM5oj
+         zhlJ0Q7FKEmuZ06jrvMvGbJEsbkCGbSNLmFMr4GjCVvMjzU+7dT8jeDuRtd3rGo2/VJU
+         5b/2/N9g0s7crE7YV6uJUAqvEvlpVDZ7TTz5lCIwsoJXNn36zjqw9tqdp6gSQ2U4Sdsz
+         jSdg==
+X-Forwarded-Encrypted: i=1; AJvYcCVMupjRwRc3GhyOfAhI4tRa4EoAMyfsZpvTO4TTAtHGbLRolMqdeOJWAOxgthQ73qSu4cH2iso6qsW/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzw5QFcTONjhwqQa5Jw7l5n5Dbw3cASobJJBRc/umpJMFQMabLk
+	Kq/DSQ7RoFFDwhWcDYKswWTwxSmVwG1ciKc2ipHr1vKqw22ktXaEXzBR
+X-Gm-Gg: ASbGncuG2N7K3s1Dbm0X6iAsNnQFRNepaTJ7/aLreJ5p/DmmLUtVUo6TUE8mMmIndKm
+	YMs0gq2U4aAqcGrWEbp0pmGyLjAhIPS+fDjzJ36tTWqXsrkiN08MfYgHmepy3fUfRjiUpBFaNXq
+	t4c3shFkLClyiNu5fpYE7JfIuR2LRy+GRw+8hLydBUolCven89OscLr0Pqa2TpPhAqrCXxraWxd
+	lY8CHu5Wkz2HBLM9hUY5rbL4A9RpthbbDT7EYeMlB3z0nmtTsTjf21fVUcCP5kCpRrt5KVdb/jE
+	OPxCqHp5GzWAnynLh9yVeuaPCw3FbhWD6P0gnC6ElqUp1uEqvS8SDzdhcDWoAk0U3kzjKZ+Xakr
+	4kEHbmJSBO7ZlxuDBgKSrJyXBwJwgXAj5ESX7JD9JA4ainUfF+Vtz7Nkirv5mACITZQZF8f8yNL
+	FJcauYOUSkO6bh7SY5YGFVQirsMOJ3lvWx00s=
+X-Google-Smtp-Source: AGHT+IFh8r79lVQpAeCYF0NNbGC4p1MGfSUZomtiu+dfIgiNGPVRw/+zobtyaOULhCb1FmLl6qDzjQ==
+X-Received: by 2002:a05:7022:d8e:b0:119:e569:f258 with SMTP id a92af1059eb24-11b40e7b689mr5344109c88.1.1763519415678;
+        Tue, 18 Nov 2025 18:30:15 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8863:100d:2a2a:9a74])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11b060885e3sm65842955c88.0.2025.11.18.18.30.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Nov 2025 18:30:15 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: neil.armstrong@linaro.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	imx@lists.linux.dev,
+	Frank.li@nxp.com,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: display: bridge: ldb: Document nxp,enable-termination-resistor
+Date: Tue, 18 Nov 2025 23:29:45 -0300
+Message-Id: <20251119022946.268748-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB5134.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7a4cb08-81a0-4be2-3aa4-08de27132ae0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Nov 2025 02:27:20.8850
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 35d/LTWw4Z0YT3d9LQ3NMm8TPjbd4F1khY+dtvxAcO2CrNdRrBUKN/+jMYPsOE5B2FhQc4ezS4ZEo2O7BMwMwxHGov2UkVjDBjMMotZNi28=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5181
+Content-Transfer-Encoding: 8bit
 
-Hi Bjorn,
+Document the optional nxp,enable-termination-resistor property for the
+i.MX LVDS display bridge.
 
-Thank you for your reply.
+This boolean property indicates that the built-in 100 Ohm termination
+resistor on the LVDS output is enabled. It is controlled via the HS_EN
+bit in the LVDS_CTRL register. Enabling the resistor can improve LVDS
+signal quality and may prevent visual artifacts on some boards, but
+increases the power consumption.
 
-> > According to PCIe specification, add FMT, TYPE and CPL status
-> > definition for TLP header.
-> >
-> > Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
->=20
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
->=20
-> OK by me, but it'd be nice to move up a few lines so this is with the oth=
-er
-> TLP-related items and the unrelated PCI_BUS_BRIDGE_*_WINDOW values
-> aren't in the middle.
->=20
-> Might even consider moving these to be just above the Message Routing
-> constants so things are generally in the order they appear in the spec.
->=20
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+Changes since v1:
+- Change the property name to nxp,enable-termination-resistor (Frank).
 
-I'll move these above the Message Routing constants in the next version.
-Thanks for the suggestion.
+ .../devicetree/bindings/display/bridge/fsl,ldb.yaml      | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Thanks,
-Jacky
+diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+index 07388bf2b90d..6bc786204e65 100644
+--- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+@@ -35,6 +35,15 @@ properties:
+       - const: ldb
+       - const: lvds
+ 
++  nxp,enable-termination-resistor:
++    type: boolean
++    description:
++      Indicates that the built-in 100 Ohm termination resistor on the LVDS
++      output is enabled. This property is optional and controlled via the
++      HS_EN bit in the LVDS_CTRL register. Enabling it can improve signal
++      quality and prevent visual artifacts on some boards, but increases
++      power consumption.
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+-- 
+2.34.1
+
 
