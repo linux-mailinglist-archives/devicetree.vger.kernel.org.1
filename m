@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-240188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3AFC6E560
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:53:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE84C6E575
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:55:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 9C2E623FE0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:53:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2C50B4E274F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DC632721B;
-	Wed, 19 Nov 2025 11:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8183570B1;
+	Wed, 19 Nov 2025 11:53:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WbnzNC8t"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DRaZA/wC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16A8986347
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 11:53:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3528632721B
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 11:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763553198; cv=none; b=t6US8DIMU4Yf3ai7jTwIp5hVoqXr4sEE0xn8bwBTZ4wNYTM3ZLfUUrU2ww7pDANYQ+p0iQCQxnpTTRVMKGYeDGUTo0JeSRVc5l+JK1HjsDpNWUIdspvUJtGyVWbY0mkplmvmFPwJlyl6qNZN1TVsUZwokLGydYd8E+Rybjv3Y3g=
+	t=1763553204; cv=none; b=MD/bwLH9avCaxsRjfVQGPrDohoFSfgPtBaZ9vd6GKqr9oEnM454+N4myCO7ThT9p3y4lLjAX4NaHxElyGed8brF9S6qbxHhacOEpg6tNIDAlbKUwMZCw2a8lsH0cqp4nQFUoV7CsZBSLecidaLoHgqS75pTEHWMObOfXE744xb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763553198; c=relaxed/simple;
-	bh=sYgOih9xbGs3F3XHTRJ7fvFo+edeOEgNokHpkprwd2A=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QNlsyD1TmZ6Ti8jsTyNGemPqJ4pBQOAY3CgtZGEwE/KRR3NQPYF/Cs28ZmlR+tiqSRetezzswUymlJ9Xf8NEWwM8Cl3EXQaY59wV7toSV6w3q9FCpaI7h8CSr0Fd6rSSMl7GU6/B3XWobdcfxC9Q+GGAQ6IF/RG6t/vcVIu1bqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WbnzNC8t; arc=none smtp.client-ip=209.85.210.175
+	s=arc-20240116; t=1763553204; c=relaxed/simple;
+	bh=wFzeQXtiZ3L6svBdjl69noOh9R1d9Ukhuf/3rX8Jnhg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=eqiZstghqZDH8Lcww05zId4vRnfrs6WaoRPxkjB93IzucjX8cIhqxnTGolCq59Qp7Mq81bgCyALtFx8Hr9mcfGJ02Qyyzp1Evhg6pRhDw1KUAgW00eHYAMjyWQe10uNnBoozoRs0t5Zh6fnBnxxz5Xgflb47hsPaRqLWaTvxhk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DRaZA/wC; arc=none smtp.client-ip=209.85.214.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7ad1cd0db3bso5659793b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 03:53:16 -0800 (PST)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-29845b06dd2so76130475ad.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 03:53:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763553196; x=1764157996; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/dJIwW/N0kWg8cOXmaaT2vRpR7NNxpQwJA/W7KyM2QY=;
-        b=WbnzNC8tHXlfMYKDe2YJ819xCOxAfS7hFxImkaL0disDXSXb4ovw2mYLhjlE8vVaco
-         x10D51/mySLDOdFD0KSe/QCx3O39bq6Az5AqCBG0gbbotEchih1dSrCepMQH6djq3FgG
-         ol04cjNk4qomrWYHeyDJ49o1RAFUW6IEZHRtk52H+ttMB0ZRHg92w6w3Xm3426iu23NG
-         nouaLAaVP1HbcwNECvVL9NvT1daJKsiDfxJgHvGqt8S6shegX3Dtu+At8qzj4J+nrjyS
-         aXFJ0N2Ybt0zcBTBQGGT5nihKsciSqdN32t/lg+f0rMjlyf1331RfktlI0s9neqpzX2N
-         UF1w==
+        d=gmail.com; s=20230601; t=1763553202; x=1764158002; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=skfEWO4eN+7+KQ+Krvs4ImgFcRb4mPoxQdEUCrGLOW8=;
+        b=DRaZA/wCJMPduhaNtgTujlXT1Yuay2O+v2Nplr4qkwPEcY3OgoFQmzEZN//CAqjho1
+         z0zTkNJUHrB9sbE2+AZe958rGEQgqJ3ljO7N4J+HtzMpzbNgo+dyuulTFc1MMs9XX8nL
+         uzw3DIQsC5XGHUSrXBa22hzV1AeQnW8b00o5xoV8EBK1X0VS+Cg4drI8wqGaKSWYA2LU
+         9wikYnriQU3qB/dnCt/Xgiqvkj8FFUWBGJyK0MqYAw8ChP/FSxXZHZYxn1DnbtI1V6xa
+         o5V8oK+hqTwFPXAUmXyF01OumrcYrseW8ruo0dUY7liw/Bl+4+BfNHU01s6hRS/jMs17
+         Qd7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763553196; x=1764157996;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/dJIwW/N0kWg8cOXmaaT2vRpR7NNxpQwJA/W7KyM2QY=;
-        b=Xo5Csqs7rMv5+3JyXdeWjef+lJRnJXJztv00oobpQYo6gWdGp9A9Sblo5x3NaX6OuC
-         OZdyRWt0Hc4p3iiQ1+V1BwDwCSQs4gJ2R0MP5JKoeqpv4NHW9pxF2i/RiBgpPUlhf4VX
-         QQb9jsaRVxkvnNXsPZsIIF+RaT/5UunEIvzcuyAsFb+R2Sm8Q2+cNTxXDOurcLp1sgb/
-         HS3B6KTI2hEP23Dv/378PoRKdQuWK1NGCzKVTajnpo4CMPtQWulaYW3cG+Odk6kld0yN
-         i/Vf0YcjEwMWcvSG09UO3BiVx9PgafKd1O8+lf7hnyg5+CWHZBdDNhuoujSI/h/fhFba
-         yUfw==
-X-Forwarded-Encrypted: i=1; AJvYcCWlzs8jqOe5TIfPer8Nts/eKjdjgolGb4qm+7k+ULs4nx7f+0o9pNuv2Qsa+FhZt6esAfnqUczvgqJf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGTL0tUiHVgToZ456UTFZeE/ARXa8a4jf7WbdSoYBl6RIPKxXn
-	Wn9ltzhQIpYQDqLVFn9J4ckmiIg7rOU80tIUVEJ1WMbbmOveWFLiUyzf
-X-Gm-Gg: ASbGnctKPCvdLXSmldQ1krdne/j+KRY8roYEvuEmt5BbLkca7OTt2tQuPvMUwbczglT
-	k1Tp1gbPPS2jaRa7L8/Q+UDksBxFhA2fHFK4lhI7Nv05vTiCyByFomzh4AHuhCIqYbd9mHmJ9G1
-	mjQ9ZFu9FzsxpuGYMRt9JcHUA7KV5kjRwu/BnGfESrQrAsH5QUg7RUKCLVtjnGJxHaqC0cQvbzo
-	5cK5A/7b7k5VEHx1VAA3czMbMb7ZssSXJcKic+/+4HRywMu338/7oERKYNVN/RDScFPuXO1cvmh
-	cZl1Pn0XgadGqWof4rv+74oj8grIFiScLu4CngQYrB9DGy1GJtIM33ajaFYkTL1iOzE8qOVtNi9
-	4y5cS4spvGNSGQExG7vAYem8MeDN/Tpc5P1D8BGxF8WedX1C1sOusB+JF7Dn75FGZudb2oHTGwA
-	nBq0/U6eR3cgPaiua0SA==
-X-Google-Smtp-Source: AGHT+IEJfBQbQgtvUYdmvQBm2UrCj4dLEyRvU/IrmcWNvI430xMQUCHPm5Ptcge8YsrdP9W2nWxZkA==
-X-Received: by 2002:a05:6a20:6a1e:b0:350:b8e:f99b with SMTP id adf61e73a8af0-35ba2195757mr20706141637.45.1763553196212;
-        Wed, 19 Nov 2025 03:53:16 -0800 (PST)
+        d=1e100.net; s=20230601; t=1763553202; x=1764158002;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=skfEWO4eN+7+KQ+Krvs4ImgFcRb4mPoxQdEUCrGLOW8=;
+        b=ZmjKNqEfNN39S4nkfWG7sDuPu3umzSRMM+vRMAjuzNbBPUgOH1wIk4W1h6t4bFrLDb
+         ghqKyYOSCr0GbyAda7MVhDzMX/n2M+rbzy34OTqIezYayskyGDVut5q4Ly58NzYcaVVm
+         TMp0d4PQ6kIftE0DdG6ShQLLFoDov+30Wwcv5z1fC7y5r2OohxYvHsg+csDiYcvE7W1n
+         6Y25gv5AEKAZN8sbMQArWPbstmKH7UBii5rEQxeEUf/fAOg94FzS7BQ9b6CXVw+EAIYh
+         rZOnmgvcPejTEVTX0zTzHVxditYGQOUhE7Z9h0PFzi7kjHV95shLNuhzuG7MV3ZBfUOf
+         Tp9A==
+X-Forwarded-Encrypted: i=1; AJvYcCV1rJ1pdsNNb7miqqDdE0dte4NkRCFfccIBqHk8rM97H08kOIoyE58V8Eyi45KXk71u1XXrtnSQj+Hd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5RF9oqmAIyWKXKR8kCxLD9uywsyTbrwI7TWcWSTD+E6J18O6Z
+	Z1vfuL8Be9b6oOfvutF6AykMTEBznTh/Sp8ut6yDLGk7m4skyqjIdFy0
+X-Gm-Gg: ASbGncvzWb07EGU8g4xUIO43ne3KC3+iDzauHLXYC2rwrS5Fpxxq7lMTifxm8yjaknA
+	1pBCNJtIHv2fq1rH4FJC37Nm9OoxAg1TBOWmS7VHDDA/lakhP17ah0O+DtCrgJf2fXzZUvHrfaL
+	KKyNMa/2qtV9/gCCg4DW2reF8/Sn9hLw4eetcOpdArmGN1+0EU2t5OFmv7lePnH5SPjfSvPT0P+
+	PBMEOwa+IKOU+b0S+fdc0fl8sJliSwVy3zHYHDfBTCIVTXwaVYZaYTupQZyOzqK7mGFXInccT0d
+	6sa4D01m7rld6KT5+Od0YDoOF4ah3wuLlLdSaMoOlKihwg/2STNQN4w5SwCNF/qjRt5iuzNEooJ
+	17RIpUJTK5XNmOl76QZeunoS+Ei0FgESHmZHiu2V4gDvI0QjmymSCvkbX0aojfyx87+tUMuSln1
+	3ix9+erMWJR3HNKfLxsA==
+X-Google-Smtp-Source: AGHT+IGET/ADp5+3M/u89aHoTgTVYMvdcAxh0XdPkWhPO8kQbc9hPt6srasly6bIofN3a5NJPfXDpA==
+X-Received: by 2002:a17:903:2449:b0:295:275d:21d8 with SMTP id d9443c01a7336-2986a5eb5e1mr242990795ad.0.1763553202409;
+        Wed, 19 Nov 2025 03:53:22 -0800 (PST)
 Received: from localhost ([2408:8410:7820:651c:873:1d7e:7195:d122])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bc377dadbc8sm17903908a12.36.2025.11.19.03.53.14
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2348afsm203445405ad.3.2025.11.19.03.53.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 03:53:15 -0800 (PST)
+        Wed, 19 Nov 2025 03:53:22 -0800 (PST)
 From: Encrow Thorne <jyc0019@gmail.com>
-Subject: [PATCH 0/3] i2c: spacemit: add reset support
-Date: Wed, 19 Nov 2025 19:46:42 +0800
-Message-Id: <20251119-i2c-k1_reset-support-v1-0-0e9e82bf9b65@gmail.com>
+Date: Wed, 19 Nov 2025 19:46:43 +0800
+Subject: [PATCH 1/3] dt-bindings: i2c: spacemit: add optional resets
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,10 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIACOuHWkC/x3MXQpAUBBA4a1onk2Zi8hWJPkZTIrbDFKydzeP3
- 8M5DxirsEEVPaB8icm+BVAcwbB028woYzC4xOVESYbiBlypVTY+0E7vdz2QXFFmTEU/lSmE1Ct
- Pcv/bunnfD1r01blmAAAA
-X-Change-ID: 20251104-i2c-k1_reset-support-12784e17bf83
+Message-Id: <20251119-i2c-k1_reset-support-v1-1-0e9e82bf9b65@gmail.com>
+References: <20251119-i2c-k1_reset-support-v1-0-0e9e82bf9b65@gmail.com>
+In-Reply-To: <20251119-i2c-k1_reset-support-v1-0-0e9e82bf9b65@gmail.com>
 To: Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
  Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -100,33 +100,37 @@ Cc: Troy Mitchell <troymitchell988@gmail.com>, linux-i2c@vger.kernel.org,
  spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Encrow Thorne <jyc0019@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763553189; l=680;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763553189; l=738;
  i=jyc0019@gmail.com; s=20251009; h=from:subject:message-id;
- bh=sYgOih9xbGs3F3XHTRJ7fvFo+edeOEgNokHpkprwd2A=;
- b=IU3xRJcKwpUMoWT+rUcpgurcIY0Jzk1f2odi1WOayQ+0gfEARL+PNmM6B8g65taYKt+zhWcGC
- fjXVZc7Ex+oBBt1B5JeclzBIvBPoPI9A4W3sEEPVkZ6EWs87z8jBBGI
+ bh=wFzeQXtiZ3L6svBdjl69noOh9R1d9Ukhuf/3rX8Jnhg=;
+ b=4RO6EP06dVMPaF3EjWiiIGCCWCqY2xaCe3VBWKV7PFNvltdFcuEanM/AKzxhjXnUjU9i+7cb+
+ 0Qep593NG1tApNtUxjRfBGcXA7WIBA6FeUH/NIA7iZBOR8rTw7y5XBj
 X-Developer-Key: i=jyc0019@gmail.com; a=ed25519;
  pk=nnjLv04DUE0FXih6IcJUOjWFTEoo4xYQOu7m5RRHvZ4=
 
-Add reset control to SpacemiT K1 I2C.
+Add optional reset property for the SpacemiT K1 I2C.
 
 Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
 ---
-Encrow Thorne (3):
-      dt-bindings: i2c: spacemit: add optional resets
-      i2c: k1: add reset support
-      riscv: dts: spacemit: add reset property
+ Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
- Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml |  3 +++
- arch/riscv/boot/dts/spacemit/k1.dtsi                       |  2 ++
- drivers/i2c/busses/i2c-k1.c                                | 11 +++++++++++
- 3 files changed, 16 insertions(+)
----
-base-commit: 8fec172c82c2b5f6f8e47ab837c1dc91ee3d1b87
-change-id: 20251104-i2c-k1_reset-support-12784e17bf83
+diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+index b7220fff2235..3d4faec41abe 100644
+--- a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+@@ -27,6 +27,9 @@ properties:
+       - description: I2C Functional Clock
+       - description: APB Bus Clock
+ 
++  resets:
++    maxItems: 1
++
+   clock-names:
+     items:
+       - const: func
 
-Best regards,
 -- 
-Encrow Thorne <jyc0019@gmail.com>
+2.25.1
 
 
