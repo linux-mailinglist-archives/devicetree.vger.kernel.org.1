@@ -1,170 +1,200 @@
-Return-Path: <devicetree+bounces-240079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5301C6D212
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:32:06 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4666C6D206
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:31:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0619E4EE5C4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:30:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 56D75352564
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:31:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B972DF131;
-	Wed, 19 Nov 2025 07:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87CD92773EE;
+	Wed, 19 Nov 2025 07:31:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DZ3MBwOr";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aJnUDW49"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FTeTpTPE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7962D9EFB
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58945126C03;
+	Wed, 19 Nov 2025 07:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763537417; cv=none; b=CDeVgCv/nLRQXXT5Sw9/R7fIjTDCiDtoxg/QhW04x2t/aU8yfcmY4vzmKy44hTnFecxa/rJczO9vjzXFcsRjwBRDqyu4DP14pdrZbgRUEE7y5GKeAcrXrVilu932qzNVcbjzL8kG1IoSvxwft1wdXfDbg7qV9lSHir29FvJQtg8=
+	t=1763537492; cv=none; b=VP9nZ+Bzta1Ap6JYAP1fjGcjf/RQ6i5Lx5MpvlTSaHsg7WRVd7GYFpyM1Lo6B6aCFn7ET5wIyQvMYoZS3T+BBJxlG1nC7gi/vu70t9MicwtuGrDUB+St+kct69QNYGDRoDAe4VnGrNmEAN3Kjqr5Ov63gZdfcw84DUiJKaeuwds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763537417; c=relaxed/simple;
-	bh=wLa35XDm6IPnbg6hbzYVHjTSg581R2tB1S27xkWk2IA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UHC8RdZEZe/zjqeoOsoByobZAl9RgTVAw7WqHzYdIKjXL2G+Up8gPzGpyRy4PHWFYLNpNze7/F7ssFrIvLBuWVwkhI+6iRw0Xv0Uxh+2wIwrhj4fRHvHonrwvmxLGAAvDGxeWo5/vDXQ9MJoqLwdFdBns2asPOS4DEOL3j1c1uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DZ3MBwOr; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aJnUDW49; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AJ1u9S73165027
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:30:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=gr6zOUWr6GHGR7NZx6vebADU
-	cm/oi70IB3+o15K/5YA=; b=DZ3MBwOrkOsisKJbtpBWpE4cuLqSVsNnbxjsxHe9
-	iKeW+TaKZwQYG4wwevDSv9/fQVkUOcL8//P4Rfeud2O32p2EQ13Ry0bIglK9v4pC
-	G8JYGRB3aZ3k8ER4rxQjPbZa/sJqRwCB4eldss0AcpbaGkz52rvOu78gAb0GwUww
-	RDehzZQ9uwwZ8FI8KyMK71GNW3d5PLMJZKmrXE+uN1q43T/SAWtgILPwUAX/X07Z
-	etNnMsgE5V2aVU7LNHMdyQ9HBpNPrrNXTR0UiX9xsY2xkXBpgoWHK76gE5bnblro
-	xRN1NvoAUcdWWXhOfKgeuoeQo2LJ8QBIp/EoSSbWdq9p7A==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agvqgt7yv-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:30:14 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed79dd4a47so203621081cf.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 23:30:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763537414; x=1764142214; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gr6zOUWr6GHGR7NZx6vebADUcm/oi70IB3+o15K/5YA=;
-        b=aJnUDW49VDEX+PHd46uxm2ohNwHiW6PXMicD0vpThSE5w3lyvo2j6YmpBfGtHf6PfX
-         ksrr2Zk2dqiQn50j0hl17DEY5i7a+5Sa+rqeLcKbXOnANzM703dZdjrbhYd8Z7YG/YyM
-         lJ0TQvNpPLhf5jSnsbB5qw3lAFbvuThkHGxpzeHRTS4WaQz4/tvr6/E1vsQ+oevZX9Az
-         ib0UL0TJuzLwYBh8t+sPjW3vl3c+GqHp9USGFab2bHZn5RiTTgWjyya+MvO6m+k5BBE1
-         JK6eu2ZLzx5TcMnjjvjEWxE+CvL0WNzDfX9r/1F1RD3wk3mc6NvMhgJanJXip8I2F4OF
-         2aJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763537414; x=1764142214;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gr6zOUWr6GHGR7NZx6vebADUcm/oi70IB3+o15K/5YA=;
-        b=TGuRGIjqazXe4EIxTjbvAqRTs58u4RNBHgAA8smOXUsiBXHD9aBJiahQ6uNugrs1iI
-         G4Vdx3OzF8WFcNTrbpgQRdtncomtbT2egysg1/7ji6ZCq88w8mhpTbO3Qtn295+NxTZb
-         z+p+bmhXK6LQVMa3+V9/Zgy9ZdqfyrONrEg89q6zbXf8t/Z0YEzRpgZBXPNMpIPEflci
-         7xAu0pHuodEADkmss1vrwtltx1bEAQSUuvx/zBI9KdJPV75kn193byqYvtkn/sg1Od4F
-         Hx2Ryl2q6NCr5k11KvoNONwfLwCex4I9Hldn1ZmRaJkMQ2SAwEcwaDt639aodNPF6TyV
-         4yfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVxmR2mS6tXf6B5SFkQXY/jcuKq/yHGCfO0D1csdVHA6w/0r8KHI5tvQzO1T5U6/BfLxCWXXhhoMF/P@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuhygvI2KKhogqBubxB7keEAYRlBawuS9xEojp9HbYzP2d2Qp6
-	dlZc+7xkGAs6w6s9pXOrAQG937PKRaoDQRCCNAFDo6Z4xpgL2FzCgP8d67JfUEAkVlql2CWrfwZ
-	/bnxuTPCH56DAo/bQBE58GyE/AhvNq3IWVntu89wpG64+3oIxfoMiW0+d4CEQ779B
-X-Gm-Gg: ASbGncv3W2hRXL8nIhJCnEfis9jmOZD5LtCL82yWTqdxIOFGdEljKmrgsTs1xeq2EHZ
-	ImSZd3hgc2B6lMd3GVRCsBwvzGnCY1XleTmwO6oUbJ0I52GHSRn0rBOTX2N4d1AbTkDeNqPf2yI
-	HXOsQtEi/t2QsyLOmazbwDWzH7TZNzwHBYD1sgAh3itkFILi4fAKX5rWtNzQs1ZH8YsuB0EtrQy
-	ztpQFpI/YggmlRiFv5vCDJegSv9+fbeJy86qf60VURWv9LWSd1IwWrVpgkuPUJJl4BRk2kUR74R
-	UyKqgxgtWZnwQ7lJxDaiPvBI1z4L+M/MwaeNCYuMUWXOiHBIsIQG40lgarMbGr0DZp+vLTVbijR
-	ZRtk+QN/x75qd68HqLb78IF3pTxdyH3I7Bjg2kYdLg74qOWQU70wkkT4cWe0BTL17RIkc4GFEcm
-	mTrnPpCI9okShcNT3vqoGsLfw=
-X-Received: by 2002:a05:622a:1805:b0:4ee:4126:661c with SMTP id d75a77b69052e-4ee41266803mr10122141cf.81.1763537413346;
-        Tue, 18 Nov 2025 23:30:13 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEiHQ8A794wC8FAFVGiBeoz1a+i7y/spa5oW2exn/cbbWa1BhXSiZK4W3EMjFKRgzYgR2jmAg==
-X-Received: by 2002:a05:622a:1805:b0:4ee:4126:661c with SMTP id d75a77b69052e-4ee41266803mr10121711cf.81.1763537412918;
-        Tue, 18 Nov 2025 23:30:12 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-595803b30cfsm4512138e87.32.2025.11.18.23.30.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Nov 2025 23:30:12 -0800 (PST)
-Date: Wed, 19 Nov 2025 09:30:10 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: david@ixit.cz
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Casey Connolly <casey.connolly@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        phodina@protonmail.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 7/8] drm/panel: sw43408: Improve wording when
- reset-gpios aren't available
-Message-ID: <ye4ktw4ekpolnmbzkchdtllxpv53ftk6p5o2beld65o2ebedbz@fek4ildiq5td>
-References: <20251118-pixel-3-v3-0-317a2b400d8a@ixit.cz>
- <20251118-pixel-3-v3-7-317a2b400d8a@ixit.cz>
+	s=arc-20240116; t=1763537492; c=relaxed/simple;
+	bh=Uk1P1yAR/gAChVYsJ7dKNzU1fhqI7nE/pvp9Hvveqxg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CbaRwO9e2CtY95g3Ta2KgtAz5uUVk0VWxydrb9UGQ/IMulQ2j2AB/HY7+dGSK5dFmLh1d1GnLyaZQKKPJhrEVHOFrYRJgX9ogw56w6yFw+1HqmtsusF6pqA48GuaTTE1Yu+8v+wnpAcXlf6wLsieTgQVAucO9aaGBPAsAqbzgtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FTeTpTPE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49374C2BCB0;
+	Wed, 19 Nov 2025 07:31:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763537491;
+	bh=Uk1P1yAR/gAChVYsJ7dKNzU1fhqI7nE/pvp9Hvveqxg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FTeTpTPEGIrhij++EyxyqQA92gt988/tEssWkp7hC2r1Z7LnMW9IlbyzfnDofekBK
+	 IkewrfzFt4qNitML+NhUaWzN5XPfrP1J/O/BgAgpovRE00eStdL38THNv9Y1EPdhXw
+	 nI/ZNxGYlH6jDrBSRjJcAOuAq6ofoBqrV+RfaN9k7JdyDf3QYsYiIbgokdWLJLaB8F
+	 SW3fPIQ1YCewke6ifialDBNpLNuH2ESAzKYbzStBdufkBIE82sPDpHh0Lf+bpk+CKE
+	 pv+uYpsiD3RLbCwtjOJDL680Guwy2NCPfQui+WAnvIKjXL3zPKnh7MisAZf28JSAuy
+	 zmgSGfb1T+4uw==
+Message-ID: <5bc642d3-fe05-4654-88c3-11c6534c5aa4@kernel.org>
+Date: Wed, 19 Nov 2025 08:31:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251118-pixel-3-v3-7-317a2b400d8a@ixit.cz>
-X-Proofpoint-ORIG-GUID: rgsPhbwo3At5TE2XcEzgCoxf_3P8H-8t
-X-Proofpoint-GUID: rgsPhbwo3At5TE2XcEzgCoxf_3P8H-8t
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE5MDA1NyBTYWx0ZWRfX9K2PavM2AuRe
- Rnr/yz78GoAhrNGf30PlbphSSGCqIkhxkfaArIJeYRRDTZwf02nry4LNnKrPP08Nrc1wAE5WVVv
- GGi/0y7uqv4DbvoXh1xrAmDxkJCUBiLGllWGJaUDWGSLtvo6oD6SD4h6uB8Z4nyXMQe1fojThdM
- MQpx04/PKwZHJaBjWQLp/iKPn3bADkEOJQ99W9TpsO9uI3FBaKnx8JtxO70JDF5FrQvx8iwDADn
- oJokQQrisAaEnm8Km9iTNF/tdH+e7+k1rOYg5RsrC/AUAOYLrcSNFqyfh7rlfkUhtPHEQigZ95z
- HeuvkZoqUfm4YVj7ErVrzL+k39A2TF3Nzu0t0VNKxPEpsGJWYKEnDa3l//+bJt2/j8ytEKJX7cD
- uCPkr/TPcZ2aqnJBTfoz04kClfdEng==
-X-Authority-Analysis: v=2.4 cv=LMJrgZW9 c=1 sm=1 tr=0 ts=691d7206 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=1NbFu7V7WBOcOkta9d0A:9 a=CjuIK1q_8ugA:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-19_01,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 lowpriorityscore=0 spamscore=0 suspectscore=0
- bulkscore=0 adultscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511190057
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: rockchip: Add Asus Tinker Board
+ 3/3S
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20251118-tinker3-v3-0-2903693f2ebb@rootcommit.com>
+ <20251118-tinker3-v3-1-2903693f2ebb@rootcommit.com>
+ <155d3d05-49f8-a000-6939-1411917745bb@manjaro.org>
+ <e7417a6e-3824-48f7-af56-eaf4bf097cb9@kernel.org>
+ <b8e91b59-afb1-6d0d-4709-c7f76ded0e18@manjaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <b8e91b59-afb1-6d0d-4709-c7f76ded0e18@manjaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 18, 2025 at 12:30:42PM +0100, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
+On 19/11/2025 08:23, Dragan Simic wrote:
+> Hello Krzysztof,
 > 
-> Choose better wording.
+> On Wednesday, November 19, 2025 08:09 CET, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On 19/11/2025 08:00, Dragan Simic wrote:
+>>> On Tuesday, November 18, 2025 16:56 CET, Michael Opdenacker <michael.opdenacker@rootcommit.com> wrote:
+>>>> Document the compatible strings for Asus Tinker Board 3 [1] and 3S [2],
+>>>> which are SBCs based on the Rockchip 3566 SoC.
+>>>>
+>>>> The "3S" version ("S" for "storage") just adds a 16 GB eMMC
+>>>> and a "mask ROM" DIP switch to the "3" version.
+>>>>
+>>>> [1] https://tinker-board.asus.com/series/tinker-board-3.html
+>>>> [2] https://tinker-board.asus.com/series/tinker-board-3s.html
+>>>>
+>>>> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+>>>>
+>>>> ---
+>>>>
+>>>> Changes in V3:
+>>>>
+>>>> - Remove this Acked-by as the binding code changed substantially:
+>>>>   Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+>>>>  1 file changed, 7 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> index 6aceaa8acbb2..800c11323a4f 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>>> @@ -86,6 +86,13 @@ properties:
+>>>>            - const: asus,rk3288-tinker-s
+>>>>            - const: rockchip,rk3288
+>>>>  
+>>>> +      - description: Asus Tinker Board 3/3S
+>>>> +        items:
+>>>> +          - enum:
+>>>> +              - asus,rk3566-tinker-board-3
+>>>> +              - asus,rk3566-tinker-board-3s
+>>>> +          - const: rockchip,rk3566
+>>>> +
+>>>>        - description: Beelink A1
+>>>>          items:
+>>>>            - const: azw,beelink-a1
+>>>
+>>> Please see my delayed response in the v2. [1]  I think that would be
+>>> a better approach.
+>>>
+>>> [1] https://lore.kernel.org/linux-rockchip/3c96ee6b-dca7-1a0a-792b-f8c165ec997d@manjaro.org/
+>>
+>> Your reviews are not helpful. You nitpick irrelevant things and propose
+>> solutions which later reverse leading to wasted effort on contributors side.
+>>
+>> Michael implemented what you asked here:
+>>
+>> https://lore.kernel.org/linux-rockchip/e4cd11d0-463c-e707-5110-6b92899b1ba3@manjaro.org/
 > 
-> Cosmetic: also inline PTR_ERR.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  drivers/gpu/drm/panel/panel-lg-sw43408.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+> Not exactly, because I didn't ask for any compatibles to be removed
+> from the new board dts files.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Read your answer again. You wanted ENTIRE bindings, to be like this:
 
+     - description: Asus Tinker Board 3/3S
+       items:
+         - enum:
+	   - asus,rk3566-tinker-board-3
+           - asus,rk3566-tinker-board-3s
+         - const: rockchip,rk3566
 
--- 
-With best wishes
-Dmitry
+(skipping obvious indentation fixup)
+There are exactly like this.
+
+> 
+> In this case, we could also say that it was Michael's fault not to
+> give enough time for the reviewers to respond.
+
+Michael implemented EXACTLY what you asked. Now, you ask to change it to
+what Michael did BEFORE.
+
+Your reviews are completely irresponsible and incorrect.
+
+Best regards,
+Krzysztof
 
