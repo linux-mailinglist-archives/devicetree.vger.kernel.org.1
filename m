@@ -1,148 +1,152 @@
-Return-Path: <devicetree+bounces-240210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC6F4C6E83D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:39:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7EACC6E900
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:47:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E973838744E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:36:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5D8124F933C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:38:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D153E359F80;
-	Wed, 19 Nov 2025 12:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F163587C5;
+	Wed, 19 Nov 2025 12:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YJnKBikT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CKsD/rkb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A210D359712;
-	Wed, 19 Nov 2025 12:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7BF23587CB;
+	Wed, 19 Nov 2025 12:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763555575; cv=none; b=pQgEdWDjhQChZbrH4di5XO/Ml4x+xtyu06fqUr/Qd23NmgSz24vR4DkMPcuIyWc8ENyU3Xqt223tM3GR+UDz9UFZ6MSbO4uzjTRM7PRKyQZfwWhaKnVkMGPxZIc20EapFJk9kKT0DO4gKGopEOA38opOuFsWOqoCSL/1iDMYyUI=
+	t=1763555691; cv=none; b=eI8d1juhZr+bhNLJpKpMxgkIu1BxlnzogBwc7NuMlx872yRfCzKFOfd0YHL3nfmoVGTmxw3llNyQsHQOWHlhlMOTS0w1cJSzBMOe3sd9X6mfV0LAQbGuAtwX35IznhrjooiFbiVOn368vgkTgqkGCnC90ZaD6tLr5udZdYhxaB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763555575; c=relaxed/simple;
-	bh=lZSP+zcRVaFLjfEqgTEZoZrsYiM/EVvJvLitd07pV8s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e/K5VUXq7i5cKmtb23pwlnG30813yERLvunF2xc/V7+najzt3hmi68YOblN3XRXVeZ7P6JEXoE51V7Tjb691KQF76Vs4Ff/zi6He9VvB4lnaZS1JHl2hONzgNOD5CdQnoR4K2nt7yZji5l0GhUNKPtDEJvorSCdmBtOmcPUDb44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YJnKBikT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A08FDC2BC87;
-	Wed, 19 Nov 2025 12:32:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763555575;
-	bh=lZSP+zcRVaFLjfEqgTEZoZrsYiM/EVvJvLitd07pV8s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YJnKBikT246OMurOCeSmg5h4Ur2ACxJ9q8dWZhwQuyyxT31u18VJBIEJYHAUeJhtZ
-	 qCnEndb7SIp37mxUwr/zkVjDkhTl80gJb9v9IQlxzyvWZxVefZfl8Bv8aIgLXD7mgG
-	 H3pbZ6gijuvAzf5sZfdCxjeQHT6pmgckNNvplbCTMBOdumTayxJlyL/GilIIqyTntg
-	 VOWgpJigpdfYmwLSui2scd2+X9VUkNUxMRf/61az6YOn0aI4EG5KXfpiIwfMqMrNyN
-	 F7hozughcZdxL3qy4fFDVqQ7Q8rpjqDnYqx9jYwnG7TYnAuIZuj7Z570IrgIUGso9b
-	 XfHh034JIAb2g==
-Message-ID: <bc627654-f77d-48de-956e-548f97cd19c3@kernel.org>
-Date: Wed, 19 Nov 2025 13:32:49 +0100
+	s=arc-20240116; t=1763555691; c=relaxed/simple;
+	bh=iP0th/Ivf2/tis71kTz1hzdFd59Z0ymqvykIAn3v5nc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sZFjfgF4B23m5xhvFQ6V/CSE6Kz5dHJLc2KuF3Vrg+z4nNf8PTgGoS/9ig8arLP57wbyXdEYcAnqVW9l5sHNRnIASBfIX+ozG1ELeDq65m6FPht80UN4Va7Y9h//rHm8AU5gj7iXMVQ71WiQ9jCv77K1uu8KYIR0+LKEHIksdNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CKsD/rkb; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763555690; x=1795091690;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=iP0th/Ivf2/tis71kTz1hzdFd59Z0ymqvykIAn3v5nc=;
+  b=CKsD/rkb9A/1v9/YuyUdhSqtVKQkDtX2jvM4CkD61WzQ27ENX1Z3tObo
+   qG37hlxX6ngTr2z897t8K2VfKvNxDHZPyt+ORVLnhWHHHOyfyMn0n6NnZ
+   BI8aFKBo9Dw016jtG1McNxyQNup9zaBal8y1tCawNsWU4YEVPKdbiy0bn
+   DrCW5eFCfyGQ8LzXNb7P9QOi2sKyMXcu1bImZQT7hSBkXajul8TBhz6hb
+   ucdboks7DuCDyES4fZwgqaZO++04WcC3UYxr2+lQHUOHLMLUa24uYwM0p
+   kFRQF8Z72JFvl55nVzcWWDO0qClPwTLwnSPd6B7w9xK4hM/2LSSVk30Jx
+   g==;
+X-CSE-ConnectionGUID: sNnSPZ2kTvqKmHK3NF5kbQ==
+X-CSE-MsgGUID: yexSIF75Rgi+t/ugipYRVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11617"; a="65751411"
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; 
+   d="scan'208";a="65751411"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 04:34:50 -0800
+X-CSE-ConnectionGUID: qs2UXLbDThSnvllpcN/qSw==
+X-CSE-MsgGUID: ywjHJ6cRR7iqsdsNPUL14g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; 
+   d="scan'208";a="228385527"
+Received: from lkp-server01.sh.intel.com (HELO adf6d29aa8d9) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 19 Nov 2025 04:34:46 -0800
+Received: from kbuild by adf6d29aa8d9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vLhOU-0002sV-37;
+	Wed, 19 Nov 2025 12:34:42 +0000
+Date: Wed, 19 Nov 2025 20:34:29 +0800
+From: kernel test robot <lkp@intel.com>
+To: Hao-Wen Ting <haowen.ting@realtek.com>, daniel.lezcano@linaro.org,
+	tglx@linutronix.de
+Cc: oe-kbuild-all@lists.linux.dev, jinn.cheng@realtek.com,
+	edwardwu@realtek.com, phelic@realtek.com,
+	shawn.huang724@realtek.com, haowen.ting@realtek.com,
+	cy.huang@realtek.com, james.tai@realtek.com, cylee12@realtek.com,
+	phinex@realtek.com, conor+dt@kernel.org, krzk+dt@kernel.org,
+	robh@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, stanley_chang@realtek.com
+Subject: Re: [PATCH v3 2/2] clocksource: Add Realtek systimer as tick
+ broadcast driver
+Message-ID: <202511192029.jlDLXPI0-lkp@intel.com>
+References: <20251117073408.428190-3-haowen.ting@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/13] dt-bindings: soc: mediatek: dvfsrc: Add support for
- MT8196
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Henry Chen <henryc.chen@mediatek.com>,
- Georgi Djakov <djakov@kernel.org>, kernel@collabora.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-pm@vger.kernel.org
-References: <20251114-mt8196-dvfsrc-v1-0-b956d4631468@collabora.com>
- <20251119-alluring-jellyfish-of-chaos-4f5bd8@kuoka>
- <39fba430-3841-4bf2-9fe7-44f372ff4a16@collabora.com>
- <3772660.mvXUDI8C0e@workhorse>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <3772660.mvXUDI8C0e@workhorse>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251117073408.428190-3-haowen.ting@realtek.com>
 
-On 19/11/2025 13:29, Nicolas Frattaroli wrote:
-> On Wednesday, 19 November 2025 09:32:46 Central European Standard Time AngeloGioacchino Del Regno wrote:
->> Il 19/11/25 08:41, Krzysztof Kozlowski ha scritto:
->>> On Fri, Nov 14, 2025 at 05:53:55PM +0100, Nicolas Frattaroli wrote:
->>>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>>
->>>> Add a compatible for the MediaTek MT8196 Chromebook SoC's
->>>> DVFSRC hardware, introducing capability to communicate with it.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>
->>> Incomplete DCO chain.
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> Eh yes, Nicolas forgot to add his SoC on all of my commits, whoops :-)
->>
->> Cheers,
->> Angelo
->>
-> 
-> And here I hoped b4 would do that when sending these out, oh well.
+Hi Hao-Wen,
 
-b4 cannot certify something for you. You must add it explicitly yourself
-because certification must be your intentional act (which also means you
-know what you certify).
+kernel test robot noticed the following build errors:
 
-Best regards,
-Krzysztof
+[auto build test ERROR on 948b99877bf5a1cd58bee930e455b7574daba5c3]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Hao-Wen-Ting/dt-bindings-timer-Add-Realtek-SYSTIMER/20251117-153806
+base:   948b99877bf5a1cd58bee930e455b7574daba5c3
+patch link:    https://lore.kernel.org/r/20251117073408.428190-3-haowen.ting%40realtek.com
+patch subject: [PATCH v3 2/2] clocksource: Add Realtek systimer as tick broadcast driver
+config: arm-randconfig-001-20251119 (https://download.01.org/0day-ci/archive/20251119/202511192029.jlDLXPI0-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251119/202511192029.jlDLXPI0-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511192029.jlDLXPI0-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   arm-linux-gnueabi-ld: drivers/clocksource/timer-realtek.o: in function `rtk_syst_clkevt_next_ktime':
+>> drivers/clocksource/timer-realtek.c:79: undefined reference to `__aeabi_ldivmod'
+>> arm-linux-gnueabi-ld: drivers/clocksource/timer-realtek.c:86: undefined reference to `__aeabi_ldivmod'
+
+
+vim +79 drivers/clocksource/timer-realtek.c
+
+    71	
+    72	static int rtk_syst_clkevt_next_ktime(ktime_t expires,
+    73					      struct clock_event_device *clkevt)
+    74	{
+    75		u64 cmp_val;
+    76		unsigned long flags;
+    77		ktime_t now = ktime_get();
+    78		s64 delta_ns = ktime_to_ns(ktime_sub(expires, now));
+  > 79		u64 delta_us = delta_ns / 1000;
+    80	
+    81		pr_debug("delta_ns = %lld, clkevt.min_delta_ns = %llu\n",
+    82			 delta_ns, clkevt->min_delta_ns);
+    83	
+    84		if (delta_ns <= (s64)clkevt->min_delta_ns) {
+    85			delta_ns = clkevt->min_delta_ns;
+  > 86			delta_us = delta_ns / 1000;
+    87			pr_debug("Clamping delta_ns to min_delta_ns\n");
+    88		}
+    89	
+    90		rtk_cmp_en_write(DSBL);
+    91		local_irq_save(flags);
+    92		cmp_val = rtk_ts64_read();
+    93	
+    94		/* Set CMP value to current timestamp plus delta_us */
+    95		rtk_cmp_value_write(cmp_val + delta_us);
+    96		rtk_cmp_en_write(ENBL);
+    97		local_irq_restore(flags);
+    98		return 0;
+    99	}
+   100	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
