@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-240446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 195B3C712E2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 22:47:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE94DC7131C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 22:52:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id E553D2A758
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 21:47:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id C22902A365
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 21:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405902FC899;
-	Wed, 19 Nov 2025 21:46:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCBD3305E2F;
+	Wed, 19 Nov 2025 21:51:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EWx51sst"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y1j8K/Th"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECA821E0BA;
-	Wed, 19 Nov 2025 21:46:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2A02F5A25;
+	Wed, 19 Nov 2025 21:51:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763588819; cv=none; b=bpFpnKCHMqRvwqhdyVvKPsyNlW7TZfmebmKr9gqRdP2+HfON2hcqiigBpdnH3SEeSe4s8q23WZchdkC74SMFOeXp/i+Sym8OfN5zw3g49RFaaXrab6IJwg5cwTsJ8kMwbL9HkRjTKznF9+KhTzFMAgx/d+2pIP5phcj8+crRoNg=
+	t=1763589116; cv=none; b=Qq/l93fwQwYRER7nboqlcJ5a8bX9uCej0EgTOK6GIq8/1ealf8FVG97CaOTYLQYUJmuxhOTabt9uJKMzj1OQfxXZmnz/cLcTyDzLZI8I5VR2P9eCFfhTJxZUWz0i5+9cptOk358g52jsZR4p1v7iivKxDWf+cV51BwoXhQRUxVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763588819; c=relaxed/simple;
-	bh=B9vI4ZZDj4BcBUv8st3zFCjQlFaGlkNhOdTCosXdbnc=;
+	s=arc-20240116; t=1763589116; c=relaxed/simple;
+	bh=nwi+ZvFeDSI2K72amAnDtVwqMnAIb0w5EqXwQ4IVpAI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sLsNm2I88hc8mbupBhZjkkKmgquvC6zza/TY8q2viy7iXmDq91wd3i1bIThN5orcNp3GVpjRn3zeIAjaMqmRcp0OxWuE9SzGhiSvSolIBJXlF99FePlzAImGoR69s3BbuvCu58nOB8sjXWg5WLjGb8FvXWw429vZjrJun8MGiZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EWx51sst; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DC5AC4CEF5;
-	Wed, 19 Nov 2025 21:46:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ccOBSQN/0xOwAMekV4wC7vX1KLMD2Wilhs0b8EQSIvnVvwd8evfvr6lt3TL4T2WK/aMtxn5Q/cnWW0Pzq12LBFyb5p+gJqOZz8U/EMw5YkNi02wzPsJa4n9ZZA0cKuWF11mPB9IpD+HZ+Bo7JIoo89EgyqPBuUXVeGhLWyZT5NQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y1j8K/Th; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 122B7C4CEF5;
+	Wed, 19 Nov 2025 21:51:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763588818;
-	bh=B9vI4ZZDj4BcBUv8st3zFCjQlFaGlkNhOdTCosXdbnc=;
+	s=k20201202; t=1763589116;
+	bh=nwi+ZvFeDSI2K72amAnDtVwqMnAIb0w5EqXwQ4IVpAI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EWx51sstLN/GIAov5D/wrvhZTnG4zkzxQlfl3ln7FnJbgzZKG2Q43f0AtCdGoESJF
-	 yRkpaMuq6My+qQRY65z+lkptj2azuRASbNkdBMzxqkm5xTdW7qmtx9a00I+Kug/LYa
-	 2EVpKnsx8ZfBEltTi7BJIOLiNYk4ViYAAXLZfZvMxMM5Nje+Vf052SvJkb6zNqL0zl
-	 mHBNg+I+ipldhVznb7jxTip58nFgGXhuAYmrddovStFQUZTd/KQMSWSUksqgYcAUC+
-	 ltTAXOEKkKHCMb92Ab8bKPlHaBR9hni+75IiE05x4gY/i6zhaBS3YY824vmNvq7BMd
-	 6iOKGgQRsJMxA==
-Date: Wed, 19 Nov 2025 15:51:53 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: fenglin.wu@oss.qualcomm.com
-Cc: kernel@oss.qualcomm.com, Lee Jones <lee@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	linux-arm-msm@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: qcom-lpg: Explain standalone
- PWM usage
-Message-ID: <t5r7z435dui7aqiazyomnuswi2c4pud2q4xyayntqybg7medgd@whhdkulnbjcu>
-References: <20251119-lpg_triled_fix-v3-0-84b6dbdc774a@oss.qualcomm.com>
- <20251119-lpg_triled_fix-v3-1-84b6dbdc774a@oss.qualcomm.com>
+	b=Y1j8K/Thkm7qVc4L5T1qzRf5mvjXoFl6aQpZ9ld0naktl7muueng0UxfJFtohyJXK
+	 w+VJNlaLcXcW9yTHawr/YRztaqfB3MiodZA75XSj98MHZQf+b73RFRh+do7C+Va6zo
+	 F0aAV9zZKD1Bbpi7OUMi+wlEj8UvIXXWCJmvudqfgd9DQtxh+tFbx+T5ZU4H3NpqkY
+	 yFbp41+SswGWScOhhmHrVH09OLel9PuaBw7eRVoSZb/Avir8bFIfB1SjfMGr9nXPLf
+	 A3mBTN4qgaZBn0exCLw0BmtcTjnXyUoK45PeiXilZ1LioSXL6OoSVaX0SsXwvfM+IF
+	 eWLNS03ZGMdTw==
+Date: Wed, 19 Nov 2025 15:51:54 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-samsung-soc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH] of/irq: Handle explicit interrupt parent
+Message-ID: <176358911083.3363410.10556334198340567279.robh@kernel.org>
+References: <e89669c9b3a4fbac4a972ffadcbe00fddb365472.1763557994.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,42 +61,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251119-lpg_triled_fix-v3-1-84b6dbdc774a@oss.qualcomm.com>
+In-Reply-To: <e89669c9b3a4fbac4a972ffadcbe00fddb365472.1763557994.git.geert+renesas@glider.be>
 
-On Wed, Nov 19, 2025 at 02:06:42PM +0800, Fenglin Wu via B4 Relay wrote:
-> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+
+On Wed, 19 Nov 2025 14:19:11 +0100, Geert Uytterhoeven wrote:
+> If an interrupt controller is used as a proxy, it may have an
+> "interrupt-parent" property, but lack "interrupts" and
+> "interrupts-extended" properties.  In that case, the "interrupt-parent"
+> property in the interrupt controller node is ignored, causing the
+> interrupt controller to fail to probe, and leading to system boot
+> failures or crashes.
 > 
-> LPG channels can be used for only outputting PWM signals by routing to
-> PMIC GPIOs without enabling TRILED. Explain this usage in the description
-> for better clarity.
+> Fix this by also considering an explicit "interrupt-parent" property in
+> the interrupt controller node itself.
 > 
-
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+> Fixes: 1b1f04d8271e7ba7 ("of/irq: Ignore interrupt parent for nodes without interrupts")
+> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Closes: https://lore.kernel.org/20251118115037.1866871-1-m.szyprowski@samsung.com
+> Reported-by: Mark Brown <broonie@kernel.org>
+> Closes: https://lore.kernel.org/b037f67a-b241-4689-9914-57ff578c1454@sirena.org.uk
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  drivers/of/irq.c | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> index 841a0229c472a4764426d25d9dbb900adc20fc11..c4b7e57b251845a6970b34bc9ae0c00647b1bf96 100644
-> --- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> +++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> @@ -13,6 +13,11 @@ description: >
->    The Qualcomm Light Pulse Generator consists of three different hardware blocks;
->    a ramp generator with lookup table (LUT), the light pulse generator and a three
->    channel current sink. These blocks are found in a wide range of Qualcomm PMICs.
-> +  The light pulse generator (LPG) can also be used independently to output PWM
-> +  signal for standard PWM applications. In this scenario, the LPG output should
-> +  be routed to a specific PMIC GPIO by setting the GPIO pin mux to the special
-> +  functions indicated in the datasheet, the TRILED driver for the channel will
-> +  not be enabled in this configuration.
->  
->  properties:
->    compatible:
-> 
-> -- 
-> 2.34.1
-> 
-> 
+
+Applied, thanks!
+
 
