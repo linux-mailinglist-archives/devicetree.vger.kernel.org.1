@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-240067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E04ABC6D0D4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:16:29 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375C2C6D10E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:18:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id 7A6C12A74E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:16:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 268873672EC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001BC2773EC;
-	Wed, 19 Nov 2025 07:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E822E0927;
+	Wed, 19 Nov 2025 07:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RFdg2INr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dFd35Sdp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58E81ACEDE;
-	Wed, 19 Nov 2025 07:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D192BD033;
+	Wed, 19 Nov 2025 07:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763536585; cv=none; b=c7hENz4H74bHBCvcOTR7Y62PMmeclvKIUGSDUaT1Y0bM5rg5yp1MGCvxgVmDzMPyEv0lTUgjZr4nwdMxQS0KdRk+UBunDlBkjp994xP8WO4ah4XClgnm0bkK3gxiuW5wUHQ+sHjxhN9mZcbwgygdeQYE1ZajJAoj5ROvHk1C8N4=
+	t=1763536610; cv=none; b=O4t3IrkwP9k6tkuUAPNt1KbymzcDYUMyRXE4fcR2pWJFrIXCvGfzehqScQ++e7dSk2gas34VhalLnQNrLLElkBxozecBXGrFi805T1M53sCxxbvFPh8Z4f/EE83mzQ9rDJxT6RkNcYziQNQ9IYinT4ZoP2/Yk3Uu4kn9OJSNytQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763536585; c=relaxed/simple;
-	bh=MgG8jzBkmnBXLAGnFIwv2IK3/i6Zlvow6a3Ld1T+Ox8=;
+	s=arc-20240116; t=1763536610; c=relaxed/simple;
+	bh=K6fBoYewA0W2GUFp/TEVvPakFM7aTKgK3hNCpBa7nNg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=icLnuzaTjOqjWis9lvU4KBb6PAkCfkRtLj/agsiaRksBTl1W5nm8VptHz86pGrNQ6IvpsLRCUObRMdkAj2lL3vCLGKqTxzm094vR6UURSj/1GZBiC6zJiBsfk5R7vQ6wgVoxyBY7eKBmEqLLsiTC0tqEViRaoy/EFEyePRILKD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RFdg2INr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8051AC19422;
-	Wed, 19 Nov 2025 07:16:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=S86fRG+opV9mHvpgSb/KECdF94ZVqa3o2+Ru9cFZUoEOx4zC8jMi1AnNGkMltkwQBhC7EdnpE1z3JVqU0D3Ll1cgjIWIV9yA+cOKAbn1B3atrlCft7myoZb56unLaxzKZNDO7rc9TxAjA+drmst4OxQQJE2NWEyr9NT4oLmtZ8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dFd35Sdp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70E4FC2BCB2;
+	Wed, 19 Nov 2025 07:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763536585;
-	bh=MgG8jzBkmnBXLAGnFIwv2IK3/i6Zlvow6a3Ld1T+Ox8=;
+	s=k20201202; t=1763536609;
+	bh=K6fBoYewA0W2GUFp/TEVvPakFM7aTKgK3hNCpBa7nNg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RFdg2INrpX182GSzLWgeUEaNRSuj3I0PpoCt+8pv8KLd8sLOlXLqMAISQsD4JxSJw
-	 H1IgYQa84Dei73OnSqj74c2MB2a6sOxSC7OOgAOFUiLLNsaXgOFVGyvju/Bmov+7u4
-	 iHovUhvqnlf8B2d97595mGVanbiEJA5nV3ISS3PcQAnBvxeT+AIA9OdjMTs6cYdri+
-	 CYUbKY3k9mpBIjHEt+KdfAorwyYQs/UnbWDd0sqPc5lS5JNdMyOQUaVHC2zsW3jwuD
-	 W4UXoQdWMcKLzp7sP5YjerRDH5FkUlDcmDkJMNQdG5EMrQg3DpC0dt+tcQ8mfvN4Cy
-	 vqKdobNebrbVA==
-Date: Wed, 19 Nov 2025 08:16:21 +0100
+	b=dFd35Sdp7SsVOFRkacZi4ILA4NnIPtHKmU/DA7ZvBkQvHrz9TMCkcu0lQz5nbfREY
+	 JnehFsKbRk0OdEnfHu1EGhSh+YluFD3hUliVo7nmqioo8gtnPY9Ld9nAtGPdLYYPMp
+	 LdaKqhxYWGo47fB8VXp9sCRr1ow+cnOvQnLgIZvA3hE0foT14RpLJ+GW9duIqqRPvf
+	 2n/p06d00BTLGeTh1LdGybbada7/oXc3w++50v3mU19S8zOX425OnlRYJWzLehT/L8
+	 Nq6eFYo5D3QCE7tRfFrYzj7dBqo0DT54aDNSq/eRMza3CpzjU/0Sgz2+EoRstsn+PF
+	 GA7VOrmEPn0lQ==
+Date: Wed, 19 Nov 2025 08:16:45 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Baojun Xu <baojun.xu@ti.com>
-Cc: broonie@kernel.org, tiwai@suse.de, andriy.shevchenko@linux.intel.com, 
-	13916275206@139.com, shenghao-ding@ti.com, linux-sound@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, k-yi@ti.com, henry.lo@ti.com, 
-	robinchen@ti.com, will-wang@ti.com, jim.shil@goertek.com, toastcheng@google.com, 
-	chinkaiting@google.com
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: ti,tas2781: Add
- TAS2568/2574/5806M/5806MD/5830 support
-Message-ID: <20251119-augmented-bustard-of-attack-6ef006@kuoka>
-References: <20251117102153.30644-1-baojun.xu@ti.com>
+To: David Heidelberg <david@ixit.cz>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Casey Connolly <casey.connolly@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, phodina@protonmail.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 1/8] dt-bindings: arm: qcom: Add Pixel 3 and 3 XL
+Message-ID: <20251119-loyal-aromatic-lionfish-c56c22@kuoka>
+References: <20251118-pixel-3-v3-0-317a2b400d8a@ixit.cz>
+ <20251118-pixel-3-v3-1-317a2b400d8a@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,27 +66,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251117102153.30644-1-baojun.xu@ti.com>
+In-Reply-To: <20251118-pixel-3-v3-1-317a2b400d8a@ixit.cz>
 
-On Mon, Nov 17, 2025 at 06:21:52PM +0800, Baojun Xu wrote:
-> TAS5806M, TAS5806MD and TAS5830 is in same family with TAS58XX.
-> TAS2568, TAS2574 is in family with TAS257X.
+On Tue, Nov 18, 2025 at 12:30:36PM +0100, David Heidelberg wrote:
+> Document the bindings for the Pixel 3 and 3 XL.
 > 
-> Signed-off-by: Baojun Xu <baojun.xu@ti.com>
-> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
-> v3:
->  - Restore patch format for ti,tas2781.yaml.
->  - Put this patch in front of code patch.
-> v2:
->  - Add TAS2574 support.
->  - Re-organize the patch, put compatible in front.
->  - Combined some chips as the reg setting is same (0x48-0x4b).
-> ---
->  .../devicetree/bindings/sound/ti,tas2781.yaml | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
