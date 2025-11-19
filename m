@@ -1,534 +1,192 @@
-Return-Path: <devicetree+bounces-240133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07EA3C6DC67
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:39:59 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAAA4C6DC9D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:42:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 030754F95A5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:28:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D362B4EA3C6
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:30:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784A833EB11;
-	Wed, 19 Nov 2025 09:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA09633F8DF;
+	Wed, 19 Nov 2025 09:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ixD2uj0q"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="b1SVbFAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D9F33C1A6
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 09:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6099C33F8A3;
+	Wed, 19 Nov 2025 09:30:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763544507; cv=none; b=pkxm1Z6njEoRkwoWvYHqXiVU3RZHWrqelZ0FAQsfZnDIMOi1BfIC1nRYFvSTQbWQq+YUP+n1oXZAzdjKx5o+8YmMGaOeDCEYS+NJy5pWMQaC7YPQRpIO7m7TslfgZbNGtAGgywse4/20hnbN7G2A1mrfo9UWHjC9afjmgwyIWAk=
+	t=1763544624; cv=none; b=mg8+1RzxTdJhuon3MYKVxuqDmR2R0gzGSR2dJzpsbHCQGlU2WpymuhGUGdZ+8QLVfKE3P9n1Rf4METN4JnIyrbbCHGGn7mogU6WTlmziHwl4BAzCZs7hiZm1XYZYb8Gs7KX7/tUcCuqLLvCwjiX2wkHPw7Phjg+wQr8csuX8hrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763544507; c=relaxed/simple;
-	bh=tyBHd/sD6QMY7Lk4BsXzzXhUokKGbdyEon6jpEDmLuI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gqnFBqN8b+R9QkazCIeWFCX56CBo/fKGKmPOtPAcz+1gdr3lqHOpt5Th9GBqa1tcw2XqAPdOkgL1OGMEewcsytPkLAq8HfnLwwjifrv1vR+mLz0FNxivgI1z44qtuRN+O5aXvonKjIatptGnE/mlypL85qLteiIQvgAmcTw3Prw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ixD2uj0q; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b735e278fa1so989105566b.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 01:28:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763544503; x=1764149303; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mk8B3cojzWWruLtn+KqWZ/72SZHhnc9WvIBJjyExMNY=;
-        b=ixD2uj0qOMzlmtV+gKw8MREAO6VV01ftDSTqmRVb9PCPVjJOwsEKdWJxltqR3ojrX6
-         JQm3NdVYqBHW4xh/6AJKxsNdUq6bPY1/+wchxiBArklC+paRviAGVMldKIUn8eq8pV54
-         CbzWvzLo97ptUvCZOOC29V5eQwmc2hT6o6j4wLLZwPiRi5BGM4DAnYYoEFFVZfgEBlC2
-         zRQqgYJ1nbjCPo8tyMnht3d4V9HyFACnWyR2RCvjuPiEhWLudH6Y+QcRrwlAck1MjriU
-         IxYQ7nc1I9DvCUgCQexmyKyKfSaqlfGXT+aeG3UpSC8xIXaiCtfjJCUEVF7fY7PBtMUK
-         PcNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763544503; x=1764149303;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=mk8B3cojzWWruLtn+KqWZ/72SZHhnc9WvIBJjyExMNY=;
-        b=tjiclwOZfuw0oCsxeNoT9qXMtUHKqaCsinFppD4g8XiCurgItN4bWWTvhu3aiKFO8y
-         PiNPFHGn4ZFUZPFgnKa/TmDliibJmlHNgK6e//tmV58w4nvhwJCbG26BSiU8W8C9mHJb
-         hKNkYMlBanB3LPOWoDnGNl/32ZdEQswOYr2ij5I+mB1ZJbqvnpx9QTIo8Ift5c7UrlX2
-         la3u9lcB/2cdt1QPr+AP4jj7Ac5oLykmszKZYCK6lqnHqs2jOEsIXITi2nR91q0PIMoO
-         GzBrweUhVseBGisy3P6EmML9yZAKKtwxyXsW5sbGvM/O0bLVutYo1H9vebU5EWLmyC7Y
-         rxcA==
-X-Forwarded-Encrypted: i=1; AJvYcCWzx+mbYFdUw9OIVC0hM/DnQaLQCWVKKYGG6CebafT1tdAHAYCTh2ZuCWPlPG8gXUd942f9oJ0wx+vs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy45kdAd65LCoFeU3D4e4rMlm7QvslBVcEWE0VFAUOPu7GYqrJw
-	TALGeXVCQiB0Q+TiqcUMAJqtnSpAG2jBOU65XXYHgjOcaeqNzXv7KatTq617DbEMTPTksPUIcbb
-	yqtFKyCGHL9SI0fj8F8MYRWUlbQ9BCo0=
-X-Gm-Gg: ASbGncvR2cnepOCZLW9Fi37KaKq8vzpyajSrKK/9QNFUS+ktfBmUFlwjiWDuPsCNqkI
-	5YD2pmwbYr4mRCyGqMvenmErYaf5uRaS0ZKgVyb5ItBhfK/ndBdh2Xqf0mXO09RnWG8fzmTg9MR
-	GuuU1fPyRaCk6mOyY8tzpVmP5iuj6MIJPSxwB3vmqNq3vniRDm9pMCXIkWJvg8CFEzHwtqDQG02
-	0bhPDkiO0QOwKyohuhSDai2QCP4Us3laxu94iPa9476PGfbEF5KkZ9TXjxayoKcvqyNhI8s9vIT
-	6ltvMLD1bBqMLYAL9YOm6yiZqb4tLpsRM0SIen1NSCKfDuErPt6UEghdvBqKJr0cscfe0QML2nC
-	lCPwtFw==
-X-Google-Smtp-Source: AGHT+IEyGpGW+oiPii/+GMJRrXskY0cNXM+cCjTvk+0ovKdatlaE2sFNYqPJXvEgodhtsxrrNTAhNY/TeL7OFjp/9HI=
-X-Received: by 2002:a17:907:7207:b0:b73:7325:112d with SMTP id
- a640c23a62f3a-b73732513dbmr1903766566b.35.1763544502768; Wed, 19 Nov 2025
- 01:28:22 -0800 (PST)
+	s=arc-20240116; t=1763544624; c=relaxed/simple;
+	bh=QI3oATaFte0/iSC3PWSz7YXZ083ffvDPLEJVYT7+1hE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lj4h4MN3zwU/hRDrYMsjXXb1R5k7Wa647xnEW469yLi46gChO3jliTnfLclTrL3D5OB4x0KW098FdXmE/DCJgbEe2ZzMG/W3S3j52xJg4hQAEH18kGiw1F+0d0Eyxy9SkKNGnce1UpztJUV3Gl5pNlcaXWp6PYbJA8cymVW5LsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=b1SVbFAe; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 07A37EB7;
+	Wed, 19 Nov 2025 10:28:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1763544489;
+	bh=QI3oATaFte0/iSC3PWSz7YXZ083ffvDPLEJVYT7+1hE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=b1SVbFAeK9aQQMx6CE/fdqJIOXeSsf3yfci0XdHEOSKEsZkLbiMqPFlvSksisP1p+
+	 gGqiQdYdgGng1hs5XLWdJkLaS/MVHii08IHhXiivLX8He7bsgofdgj3I+qeFrftChs
+	 RayMJTqdTmLLtWrm30tD0kneSnI0YskuIWosjOz0=
+Message-ID: <3daf857c-1532-4943-8eb1-58c5cdc3a560@ideasonboard.com>
+Date: Wed, 19 Nov 2025 11:30:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251118203305.3834987-1-daniel.lezcano@linaro.org> <20251118203305.3834987-3-daniel.lezcano@linaro.org>
-In-Reply-To: <20251118203305.3834987-3-daniel.lezcano@linaro.org>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 19 Nov 2025 11:27:45 +0200
-X-Gm-Features: AWmQ_bmeAhIfHskOkZFn6ZSVM4jsXibZAlrpoGTU5Fd2b-ehl-T6Xpanfsx7_KU
-Message-ID: <CAHp75Ve=CU8ecXk5sgkHPJbYA_K+sa+Lyys+cdpCm=QHOw2ytg@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
-	andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com, 
-	ghennadi.procopciuc@oss.nxp.com, vkoul@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V6 0/5] drm/bridge: it66121: Add initial it66122 support
+To: Dmitry <dmitry.baryshkov@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Robert Nelson <robertcnelson@gmail.com>,
+ Jason Kridner <jkridner@beagleboard.org>, Andrew Davis <afd@ti.com>,
+ Devarsh <devarsht@ti.com>, Nishanth Menon <nm@ti.com>,
+ Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Robert Foss <rfoss@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Phong LE <ple@baylibre.com>
+References: <20251029150636.3118628-1-nm@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20251029150636.3118628-1-nm@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi Dmitry, Neil,
+
+Can this be merged?
+
+ Tomi
+
+On 29/10/2025 17:06, Nishanth Menon wrote:
+> Hi,
+> 
+> Add initial support for IT66122, which seems to be compatible to it66121
+> but probably has additional functionality.
+> 
+> BeagleY-AI uses this it66122 as the old part is no longer in production
+> as far as I understand.
+> 
+> Now, BeaglePlay uses it66121 at the moment, but at some point, it might
+> end up flipping over to the new part. Additionally, it also looks like
+> Revision D of BeagleBone Black switched over to it66122 as well.
+> 
+> Series is based on next-20250827
+> 
+> Bootlog: BeaglePlay: https://gist.github.com/nmenon/65afb917ee1818979d338cf25732a920
+> 
+> Changes in V6:
+> * Picked up Tomi's ack
+> * Rebased on next-20251029
+> 
+> Changes in V5:
+> * Switched over to ARRAY_SIZE
+> * Picked up Andrew's Reviewed-by
+> 
+> Changes in V4:
+> * Added patch to sort the compatibles alpha-numerically
+> * vid/pid lookup is done without using the match_data.
+> * picked reviews
+> 
+> Changes in V3:
+> Based on Tomi's and Devarsh's reviews, and searching online (and failing
+> to find) for a public data sheet, I have refactored the series to:
+> a) Detect the ID by matching vid/pid
+> b) Introduce it66122 basic support which seems to work based on
+>    empirical testing evidence on BeagleY-AI. This allows incremental
+>    patches in the future by someone who might have access to the data
+>    sheet to add additional features for the chip.
+> c) Irritated by checkpatch --strict warnings, added a patch to fix
+>    existing warnings as part of this series, but it could probably go
+>    in independent of everything else.
+> d) Stopped claiming it66122 is drop in replacement of it66121 :)
+> 
+> Changes in V2:
+> * Picked up Krystoff's binding ack
+> * Switched over to a vid/pid list
+> 
+> V5: https://lore.kernel.org/all/20250827202354.2017972-1-nm@ti.com/
+> V4: https://lore.kernel.org/all/20250819130807.3322536-1-nm@ti.com/
+> V3: https://lore.kernel.org/all/20250815034105.1276548-1-nm@ti.com/
+> V2: https://lore.kernel.org/all/20250813204106.580141-1-nm@ti.com/
+> V1: https://lore.kernel.org/all/20250813190835.344563-1-nm@ti.com/
+> 
+> 
+> Nishanth Menon (5):
+>   dt-bindings: display: bridge: it66121: Add compatible string for
+>     IT66122
+>   drm/bridge: it66121: Drop ftrace like dev_dbg() prints
+>   drm/bridge: it66121: Sort the compatibles
+>   drm/bridge: it66121: Use vid/pid to detect the type of chip
+>   drm/bridge: it66121: Add minimal it66122 support
+> 
+>  .../bindings/display/bridge/ite,it66121.yaml  |  1 +
+>  drivers/gpu/drm/bridge/ite-it66121.c          | 68 +++++++++----------
+>  2 files changed, 34 insertions(+), 35 deletions(-)
+> 
 
-On Tue, Nov 18, 2025 at 10:34=E2=80=AFPM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
-
-Thanks for the update, my comments below (but we are almost done).
-
-> The NXP S32G2 and S32G3 platforms integrate a successive approximation
-> register (SAR) ADC. Two instances are available, each providing 8
-> multiplexed input channels with 12-bit resolution. The conversion rate
-> is up to 1 Msps depending on the configuration and sampling window.
->
-> The SAR ADC supports raw, buffer, and trigger modes. It can operate
-> in both single-shot and continuous conversion modes, with optional
-> hardware triggering through the cross-trigger unit (CTU) or external
-> events. An internal prescaler allows adjusting the sampling clock,
-> while per-channel programmable sampling times provide fine-grained
-> trade-offs between accuracy and latency. Automatic calibration is
-> performed at probe time to minimize offset and gain errors.
->
-> The driver is derived from the BSP implementation and has been partly
-> rewritten to comply with upstream requirements. For this reason, all
-> contributors are listed as co-developers, while the author refers to
-> the initial BSP driver file creator.
-
-I would move this paragraph closer to the tag block and FWIW we also
-have Originally-by: tag in case it suits better (usually when the
-original code is rewritten more than ~67%).
-
-> All modes have been validated on the S32G274-RDB2 platform using an
-> externally generated square wave captured by the ADC. Tests covered
-> buffered streaming via IIO, trigger synchronization, and accuracy
-> verification against a precision laboratory signal source.
->
-> One potential scenario, not detected during testing, is that in some
-> corner cases the DMA may already have been armed for the next
-> transfer, which can lead dmaengine_tx_status() to return an incorrect
-> residue.  The callback_result() operation=E2=80=94intended to supply the
-> residue directly and eliminate the need to call
-> dmaengine_tx_status()=E2=80=94also does not work.  Attempting to use
-> dmaengine_pause() and dmaengine_resume() to prevent the residue from
-> being updated does not work either.
->
-> This potential scenario should apply to any driver using cyclic DMA.
-> However, no current driver actually handles this case, and they all rely
-> on the same acquisition routine (e.g., the STM32 implementation).
-> The NXP SAR acquisition routine has been used in production for several
-> years, which is a good indication of its robustness.
->
-> As the IIO is implementing the cyclic DMA support API, it is not worth
-> to do more spins to the current routine as it will go away when the
-> new API will be available.
-
-...
-
-> +#define NXP_SAR_ADC_EOC_CH(c)          BIT((c) % 32)
-
-Do you expect "c" to be bigger than 31? In which circumstances?
-
-...
-
-> +#define NXP_SAR_ADC_CTR_INPSAMP_MIN    0x08
-> +#define NXP_SAR_ADC_CTR_INPSAMP_MAX    0xFF
-
-Keep the style consistent (I think you want small hexadecimal letters
-in the value).
-
-...
-
-> +/* Other field define */
-> +#define NXP_SAR_ADC_CONV_TIMEOUT_MS    100
-> +#define NXP_SAR_ADC_CONV_TIMEOUT_JF    (msecs_to_jiffies(NXP_SAR_ADC_CON=
-V_TIMEOUT_MS))
-
-I don't see the use of the first definition. Dropping _JF (we usually
-assume the timeouts without units in "ticks") and using 100 directly
-as a parameter to the msecs_to_jiffies() will make it clear enough.
-
-...
-
-> +static bool nxp_sar_adc_set_enabled(struct nxp_sar_adc *info, bool enabl=
-e)
-> +{
-> +       u32 mcr;
-> +       bool pwdn;
-> +
-> +       mcr =3D readl(NXP_SAR_ADC_MCR(info->regs));
-
-> +       /* Return the current state. */
-> +       pwdn =3D FIELD_GET(NXP_SAR_ADC_MCR_PWDN, mcr);
-
-The comment is a bit odd. I think you want to say "Save the current
-state and return it later" or something like this.
-
-> +       /* When the enabled flag is not set, we set the power down bit */
-> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_PWDN, &mcr, !enable);
-> +
-> +       writel(mcr, NXP_SAR_ADC_MCR(info->regs));
-> +
-> +       /*
-> +        * Ensure there are at least three cycles between the
-> +        * configuration of NCMR and the setting of NSTART.
-> +        */
-> +       if (enable)
-> +               ndelay(div64_u64(NSEC_PER_SEC, clk_get_rate(info->clk) * =
-3));
-
-I'm wondering how low the clock rate can be? With low enough clock
-rates this becomes a 100% CPU busyloop and in atomic context (is this
-the case?) without even the possibility to schedule.
-
-> +       return pwdn;
-> +}
-
-...
-
-> +static int nxp_sar_adc_calibration(struct nxp_sar_adc *info)
-> +{
-> +       int ret;
-> +
-> +       /* Calibration works only if the adc is powered up. */
-
-ADC
-
-> +       nxp_sar_adc_enable(info);
-> +
-> +       /* The calibration operation starts. */
-> +       nxp_sar_adc_calibration_start(info->regs);
-> +
-> +       ret =3D nxp_sar_adc_calibration_wait(info->regs);
-> +
-> +       /*
-> +        * Calibration works only if the adc is powered up. However
-
-ADC
-
-> +        * the calibration is called from the probe function where the
-> +        * iio is not enabled, so we disable after the calibration.
-> +        */
-> +       nxp_sar_adc_disable(info);
-> +
-> +       return ret;
-> +}
-
-...
-
-> +static int nxp_sar_adc_read_data(struct nxp_sar_adc *info, unsigned int =
-chan)
-> +{
-> +       u32 ceocfr, cdr;
-> +
-> +       ceocfr =3D readl(NXP_SAR_ADC_CEOCFR0(info->regs));
-
-> +       /* FIELD_GET() can not be used here because EOC_CH is not constan=
-t */
-> +       if (!(NXP_SAR_ADC_EOC_CH(chan) & ceocfr))
-> +               return -EIO;
-
-[nxp_sar_adc_]field_get() may be defined and used. There is a series
-pending to bring field_get() to bitfield.h next release.
-
-> +       cdr =3D readl(NXP_SAR_ADC_CDR(info->regs, chan));
-> +       if (!(FIELD_GET(NXP_SAR_ADC_CDR_VALID, cdr)))
-> +               return -EIO;
-> +
-> +       return FIELD_GET(NXP_SAR_ADC_CDR_CDATA_MASK, cdr);
-> +}
-
-...
-
-> +static irqreturn_t nxp_sar_adc_isr(int irq, void *dev_id)
-> +{
-> +       struct iio_dev *indio_dev =3D (struct iio_dev *)dev_id;
-
-Unneeded explicit casting.
-
-> +       struct nxp_sar_adc *info =3D iio_priv(indio_dev);
-> +       int isr;
-> +
-> +       isr =3D readl(NXP_SAR_ADC_ISR(info->regs));
-> +       if (!(FIELD_GET(NXP_SAR_ADC_ISR_ECH, isr)))
-> +               return IRQ_NONE;
-> +
-> +       if (iio_buffer_enabled(indio_dev))
-> +               nxp_sar_adc_isr_buffer(indio_dev);
-> +       else
-> +               nxp_sar_adc_isr_read_raw(indio_dev);
-> +
-> +       writel(NXP_SAR_ADC_ISR_ECH, NXP_SAR_ADC_ISR(info->regs));
-> +
-> +       return IRQ_HANDLED;
-> +}
-
-> +static void nxp_sar_adc_channels_disable(struct nxp_sar_adc *info, u32 m=
-ask)
-> +{
-> +       u32 ncmr, cimr;
-> +
-> +       ncmr =3D readl(NXP_SAR_ADC_NCMR0(info->regs));
-> +       cimr =3D readl(NXP_SAR_ADC_CIMR0(info->regs));
-> +
-> +       /* FIELD_MODIFY() can not be used because the mask is not constan=
-t */
-> +       ncmr &=3D ~mask;
-> +       cimr &=3D ~mask;
-> +
-> +       writel(ncmr, NXP_SAR_ADC_NCMR0(info->regs));
-> +       writel(cimr, NXP_SAR_ADC_CIMR0(info->regs));
-> +}
-
-...
-
-> +static void nxp_sar_adc_stop_conversion(struct nxp_sar_adc *info)
-> +{
-> +       u32 mcr;
-> +
-> +       mcr =3D readl(NXP_SAR_ADC_MCR(info->regs));
-> +
-> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_NSTART, &mcr, 0x0);
-> +
-> +       writel(mcr, NXP_SAR_ADC_MCR(info->regs));
-> +
-> +       /*
-> +        * On disable, we have to wait for the transaction to finish.
-> +        * ADC does not abort the transaction if a chain conversion
-> +        * is in progress.
-> +        * Wait for the worst case scenario - 80 ADC clk cycles.
-> +        */
-> +       ndelay(div64_u64(NSEC_PER_SEC, clk_get_rate(info->clk)) * 80);
-
-Same comment / question about the possible too long delays.
-
-> +}
-> +
-> +static int nxp_sar_adc_start_conversion(struct nxp_sar_adc *info, bool r=
-aw)
-> +{
-> +       u32 mcr;
-> +
-> +       mcr =3D readl(NXP_SAR_ADC_MCR(info->regs));
-> +
-> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_NSTART, &mcr, 0x1);
-> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_MODE, &mcr, !raw);
-
-raw ? 0 : 1
-
-is better to understand (it will be optimised by the compiler anyway,
-no branches will be added).
-
-> +
-> +       writel(mcr, NXP_SAR_ADC_MCR(info->regs));
-> +
-> +       return 0;
-> +}
-> +
-> +static int nxp_sar_adc_read_channel(struct nxp_sar_adc *info, int channe=
-l)
-> +{
-> +       int ret;
-> +
-> +       info->current_channel =3D channel;
-> +       nxp_sar_adc_channels_enable(info, BIT(channel));
-> +       nxp_sar_adc_irq_cfg(info, true);
-> +       nxp_sar_adc_enable(info);
-> +
-> +       reinit_completion(&info->completion);
-> +       ret =3D nxp_sar_adc_start_conversion(info, true);
-> +       if (ret < 0)
-> +               goto out_disable;
-
-> +       ret =3D wait_for_completion_interruptible_timeout(&info->completi=
-on,
-> +                                                       NXP_SAR_ADC_CONV_=
-TIMEOUT_JF);
-> +       if (ret =3D=3D 0)
-> +               ret =3D -ETIMEDOUT;
-> +       if (ret > 0)
-> +               ret =3D 0;
-
-Since semantically it's not the same ret, I would write above as
-
-  if (!wait_for_completion...(...))
-    ret =3D -ETIMEDOUT;
-
-And note, no "else" branch is needed in this case.
-
-> +       nxp_sar_adc_stop_conversion(info);
-> +
-> +out_disable:
-> +       nxp_sar_adc_channels_disable(info, BIT(channel));
-> +       nxp_sar_adc_irq_cfg(info, false);
-> +       nxp_sar_adc_disable(info);
-> +
-> +       return ret;
-> +}
-
-> +               /*
-> +                * Configures the sample period duration in terms of the =
-SAR
-> +                * controller clock. The minimum acceptable value is 8.
-> +                * Configuring it to a value lower than 8 sets the sample=
- period
-> +                * to 8 cycles.  We read the clock value and divide by th=
-e
-> +                * sampling timing which gives us the number of cycles ex=
-pected.
-> +                * The value is 8 bits wide, consequently the max value i=
-s 0xFF.
-
-8-bit wide
-
-> +                */
-
-...
-
-> +       /*
-> +        * DMA in some corner cases might have already be charged for
-> +        * the next transfer. Potentially there can be a race where
-> +        * the residue changes while the dma engine updates the
-> +        * buffer. That could be handled by using the
-> +        * callback_result() instead of callback() because the residue
-> +        * will be passed as parameter to the function. However this
-
-as a parameter
-
-
-> +        * new callback is pretty new and the backend does not update
-> +        * the residue. So let's stick to the version other drivers do
-> +        * which has proven running well in production since several
-> +        * years.
-> +        */
-
-...
-
-> +               /*
-> +                * iio_push_to_buffers_with_ts should not be
-
-iio_push_to_buffers_with_ts()
-
-> +                * called with dma_samples as parameter. The samples
-> +                * will be smashed if timestamp is enabled.
-> +                */
-
-...
-
-> +       nxp_sar_adc_channels_disable(info, *indio_dev->active_scan_mask);
-
-Wondering why this can't take a pointer to a mask.
-
-...
-
-> +       info =3D iio_priv(indio_dev);
-
-> +
-
-Unneeded blank line.
-
-> +       info->vref_mV =3D data->vref_mV;
-
-...
-
-> +       ret =3D devm_request_irq(dev, irq, nxp_sar_adc_isr, 0,
-> +                              dev_name(dev), indio_dev);
-> +       if (ret < 0)
-> +               return dev_err_probe(dev, ret, "failed requesting irq, ir=
-q =3D %d\n", irq);
-
-No error code duplication in the message, please.
-
-...
-
-> +       spin_lock_init(&info->lock);
-
-Shouldn't this be _before_ IRQ registration? Theoretically the  IRQ
-may fire already just after the registration (yeah, it might be
-spurious, but handler and code should be ready for this).
-
-...
-
-> +       ret =3D nxp_sar_adc_calibration(info);
-> +       if (ret)
-> +               dev_err_probe(dev, ret, "Calibration failed: %d\n", ret);
-
-No error code duplication in the message, please.
-
-...
-
-> +static int nxp_sar_adc_suspend(struct device *dev)
-> +{
-> +       struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
-> +       struct nxp_sar_adc *info =3D iio_priv(indio_dev);
-
-Can be one-lined
-
-       struct nxp_sar_adc *info =3D iio_priv(dev_get_drvdata(dev));
-
-> +       info->pwdn =3D nxp_sar_adc_disable(info);
-> +       info->inpsamp =3D nxp_sar_adc_conversion_timing_get(info);
-> +
-> +       clk_disable_unprepare(info->clk);
-> +
-> +       return 0;
-> +}
-> +
-> +static int nxp_sar_adc_resume(struct device *dev)
-> +{
-> +       struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
-> +       struct nxp_sar_adc *info =3D iio_priv(indio_dev);
-
-Ditto.
-
-> +       int ret;
-> +
-> +       ret =3D clk_prepare_enable(info->clk);
-> +       if (ret)
-> +               return ret;
-> +
-> +       nxp_sar_adc_conversion_timing_set(info, info->inpsamp);
-> +
-> +       if (!info->pwdn)
-> +               nxp_sar_adc_enable(info);
-> +
-> +       return 0;
-> +}
-
-...
-
-> +static const struct nxp_sar_adc_data s32g2_sar_adc_data =3D {
-> +       .vref_mV =3D 1800,
-> +       .model =3D "s32g2-sar-adc"
-
-Leave trailing comma, it's not a terminator.
-
-> +};
-
-
---
-With Best Regards,
-Andy Shevchenko
 
