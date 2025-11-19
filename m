@@ -1,127 +1,118 @@
-Return-Path: <devicetree+bounces-240052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4EC9C6CDC0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:06:56 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B24C6CE05
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:13:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 3630C2CD66
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 06:06:54 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A50E0353A44
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 06:13:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F5C031354E;
-	Wed, 19 Nov 2025 06:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 579553148D3;
+	Wed, 19 Nov 2025 06:13:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aTU/6E2/"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="YUns4i93"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D51C2D6E44;
-	Wed, 19 Nov 2025 06:06:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38FE8313525
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 06:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763532407; cv=none; b=pTtSqudQcBxIvVJxcLy6WMGl/2r+onXVeZOabJfjeaYojtGVBfA3zhcL6mFTpld9rrgD62MQ18EP9JG9ho87EpSRgkn+IKinLr/c1nBcwb/gd5rMrgm6vJoDhKbDFdqx0u4DrZDCKwANoky3BsmV4+c9AiK+f7CHlaOJ1LHMoW0=
+	t=1763532784; cv=none; b=mBHJptpID6B0R1SE3WGgULtJJ0mS79bmpaW/8nB/W1lPEKyDoJV/yvHa1FDHftNS3M/wYvqvHtgGXFsfQieZQo9Qy4uESffnYLKf9cVQtSmMCMd/26NzC1ja+2245DToXnwnIKuyzSLb2xC16QAR8yoZ9THDAebF4ITZhLB9ixM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763532407; c=relaxed/simple;
-	bh=nEQCnRbdiI4INRoD7nPaYKHd6Awpb50IGD1nJZLNKG8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JNEhqiP5bc9aVFVcCz18yFrTKd4ZBw0BH5iprCbRtfPh5Qf1Nz/KTUp8hWEzkJqF5zjU+DAbr3oo/iXZJ5LShdhWKZcHK4PzrD4iR7Mg19CnE5oeHgH9tCFsSj+kuTnrt7xUYy/VogEPHKtEHdMhzS5veQXuH1fK9Ntujxcv25s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aTU/6E2/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EC6D7C4AF0F;
-	Wed, 19 Nov 2025 06:06:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763532406;
-	bh=nEQCnRbdiI4INRoD7nPaYKHd6Awpb50IGD1nJZLNKG8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=aTU/6E2/XAqZmOXdoI+8BjtDFggxQrDcjvsPFSZBQ5S6s50uCSTk9tv2wcgPJCBn6
-	 8solaC6Uu5l6Puxnqx1Dfd9CssBSlINKJ8vvPcOYT3XwHHmDlEyQn2/hdMtKo1LHek
-	 HSBwYvKmCaFOr7c2RSTh0QNPyxfKEpSqxHZYXNdb9XJRchfB4aaVZk31Q7vPjHCT7P
-	 rEJKHCxXvC9R+RUH7bXryRo5z444vX+OCChVn/lJ2N69blND1jOLdnXdAEWAWliYER
-	 eq3Qla2kKh7A6N+OlASuHBsSDOpjWqWTmyycKfJYLZwvdppVlDNK6QJEPl0LMwRhjP
-	 1ttHKtLjg/fBw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E165CF258F;
-	Wed, 19 Nov 2025 06:06:45 +0000 (UTC)
-From: Fenglin Wu via B4 Relay <devnull+fenglin.wu.oss.qualcomm.com@kernel.org>
-Date: Wed, 19 Nov 2025 14:06:43 +0800
-Subject: [PATCH v3 2/2] leds: rgb: leds-qcom-lpg: Don't enable TRILED when
- configuring PWM
+	s=arc-20240116; t=1763532784; c=relaxed/simple;
+	bh=Yv/W5y/sqwx9hN7aLMhEeBml2ffZorVdDnP4AifAX6M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sQuemlZNjjQYa8EVXXzYdiaWlhjcSYQDmPrBjtpuOClTm0g+dUYK2Mh97yCqvdUIsQO/WFo6sxqZc6V5iywgwIk0gULFmpAMSYvJReMC6tx571FpWfWyMcqRb90eSLLyNT4dVxq7FUeFwQgqYdsJj8zuZXmvrQ73L8qsDevQld8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=YUns4i93; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=ooLB
+	ZpH1XP4dLc68mVSjsKlUTpIH3Qv0G+oIFndpzo8=; b=YUns4i93ZsAy/bO03Iyz
+	SS+fWgysKsSqNoGwOxAO9qyhq/TYwKy7D0IHeRm3QZUKTZ1sxopcrr4OlM8fNxi6
+	KTSaGpUdq1668EhAIQfP/+x9Ts7BwDRbIacWyyA0AqDKKLiDmwHeE0DSiCn7X91O
+	q0gUcH0KmHNP/xB6rZO/AkF+QEfv+dEc7HjM8SiROMKufQJH00oEi3beulQUh5Hy
+	S8Xh7+yLJ4wDkclEVMbjDWuX/nHnQx5oRHR5LZCGsSjKKVJyzWFuce9M/T8OAj3W
+	oEi9P5VbBRdtiVCi6yxeu9/tpMwMiskztp9+QaMh3SlksrM1LQA+rrbaa+gDsBI/
+	Dw==
+Received: (qmail 4017485 invoked from network); 19 Nov 2025 07:12:57 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 Nov 2025 07:12:57 +0100
+X-UD-Smtp-Session: l3s3148p1@Wpa5eOxDaOMujnuu
+Date: Wed, 19 Nov 2025 07:12:56 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
+	biju.das.jz@bp.renesas.com,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r9a09g047e57-smarc: Add overlay
+ for P3T1085UK-ARD
+Message-ID: <aR1f6PMbG0N_9oAo@shikoro>
+References: <cover.1763475830.git.tommaso.merciai.xr@bp.renesas.com>
+ <0babc991d3b2163200bc083ef80563931d4b639a.1763475830.git.tommaso.merciai.xr@bp.renesas.com>
+ <aRyiQJsu6gob3Gf9@shikoro>
+ <aRzzEgeetDFlE3YC@tom-desktop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251119-lpg_triled_fix-v3-2-84b6dbdc774a@oss.qualcomm.com>
-References: <20251119-lpg_triled_fix-v3-0-84b6dbdc774a@oss.qualcomm.com>
-In-Reply-To: <20251119-lpg_triled_fix-v3-0-84b6dbdc774a@oss.qualcomm.com>
-To: kernel@oss.qualcomm.com, Lee Jones <lee@kernel.org>, 
- Pavel Machek <pavel@kernel.org>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, 
- Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763532404; l=1457;
- i=fenglin.wu@oss.qualcomm.com; s=20240327; h=from:subject:message-id;
- bh=U+wcmaq3xYdZ4UGGBdL6UlkAePK6V2RVv6Nso37Fbso=;
- b=7NXgXUkI+Lc6RUBYvT8HCUX3BNbVJKBH/xcndfzx5AOUB6kvxNrBRFc/IlIzFADoASq4/3wos
- XA0PR8iqBqnBPoAEgnXVFJDxMS/OcEvn3/iuVGwMYBlVCqX8MhhWvf1
-X-Developer-Key: i=fenglin.wu@oss.qualcomm.com; a=ed25519;
- pk=BF8SA4IVDk8/EBCwlBehKtn2hp6kipuuAuDAHh9s+K4=
-X-Endpoint-Received: by B4 Relay for fenglin.wu@oss.qualcomm.com/20240327
- with auth_id=406
-X-Original-From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-Reply-To: fenglin.wu@oss.qualcomm.com
-
-From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-
-The PWM signal from the LPG channel can be routed to PMIC GPIOs with
-proper GPIO configuration, and it is not necessary to enable the
-TRILED channel in that case. This also applies to the LPG channels
-that mapped to TRILED channels. Additionally, enabling the TRILED
-channel unnecessarily would cause a voltage increase in its power
-supply. Hence remove it.
-
-Fixes: 24e2d05d1b68 ("leds: Add driver for Qualcomm LPG")
-Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
----
- drivers/leds/rgb/leds-qcom-lpg.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
-index 4f2a178e3d265a2cc88e651d3e2ca6ae3dfac2e2..e197f548cddb03d079c54c4a0f402402c5d047e2 100644
---- a/drivers/leds/rgb/leds-qcom-lpg.c
-+++ b/drivers/leds/rgb/leds-qcom-lpg.c
-@@ -2,7 +2,7 @@
- /*
-  * Copyright (c) 2017-2022 Linaro Ltd
-  * Copyright (c) 2010-2012, The Linux Foundation. All rights reserved.
-- * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-  */
- #include <linux/bits.h>
- #include <linux/bitfield.h>
-@@ -1247,8 +1247,6 @@ static int lpg_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 
- 	lpg_apply(chan);
- 
--	triled_set(lpg, chan->triled_mask, chan->enabled ? chan->triled_mask : 0);
--
- out_unlock:
- 	mutex_unlock(&lpg->lock);
- 
-
--- 
-2.34.1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6j+R5nZQemQdR0Ma"
+Content-Disposition: inline
+In-Reply-To: <aRzzEgeetDFlE3YC@tom-desktop>
 
 
+--6j+R5nZQemQdR0Ma
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+
+> Your suggestion is to keep only Patch 1/2 dropping alias line right?
+
+Yes.
+
+We could think about enabling I3C unconditionally by adding this to
+rzg3e-smarc-som.dtsi:
+
++       i2c-scl-hz = <400000>;
++       i3c-scl-hz = <12500000>;
++       status = "okay";
+
+So, I3C will just work when you connect devices to it. The I3C frequency
+might be depending a bit on the I3C target board and how it is wired.
+Maybe use 10Mhz as a safe value and add a comment?
+
+
+--6j+R5nZQemQdR0Ma
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmkdX+QACgkQFA3kzBSg
+KbYgJxAAjj0fJxUJAG2gr6lnmf8svZfpmUUQY7Sh7TaT0AeQOMKbJCya0qy4+Uxs
+mPseP36pUSL3WDUSzXRwCPiUP1SpMqFnYittSM5+vQTveNi7zYznale71u1QNvXf
+uz8N81+YW2dNvs2gsG+aOF7IITlUeYONH6dtw2yidcufxu5Rc6lIXot5tmEChgVy
+E6O9BHJRqF8rTK4KnVVxH/m34xBRpwgJsB293Y+KW66DR5QtLrTSFbtBlAX8w9Bl
+o4LOkVi1rRhi5S61zsNXFltJ+qhO8xf6g8IGyosOVa3XcAItt+jgYPqzUGTbc2nr
+cS9DDuFkY8vh5/iwz11Dhb6OETgoy4aYB4P/nijEPKPK9Cf0ype3szNQNoALQt9g
+xk3fhjvw08FLjT2a9+YQ/BTwzv5OmAGhqGmXqpAUsrdymIatBpfES2SZ94o8aQSv
+uLNG6xce7x85NIe0bNAljPmymA17tzcZYQmlecVLsE9DPmvDmVWvSdwxwec7jYEy
++Ro6REzOPQCsNDkNPi4UfuGlqD3+oavKEKeHa2xYPWYhM1/PnGIvPyyT/6c3912q
+7iazbWNuxGhw6pwAeZARIfdGE3KusCt7QlZLwRdgy0Goi1OBfwQ7xEgTV979uHIM
+LoomJZQg07F/c8iAqHGeWUs460ZkBC/Lfv6hbrXaASXfwBBXUCk=
+=q7ZI
+-----END PGP SIGNATURE-----
+
+--6j+R5nZQemQdR0Ma--
 
