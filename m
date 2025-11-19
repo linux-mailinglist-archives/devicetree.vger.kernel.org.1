@@ -1,230 +1,213 @@
-Return-Path: <devicetree+bounces-240022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C164CC6C52C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 03:04:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F89C6C5DB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 03:26:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DDB3D34304B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 02:02:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2A74D4E482F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 02:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D952512FF;
-	Wed, 19 Nov 2025 02:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FDC27E056;
+	Wed, 19 Nov 2025 02:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O1gz3Q5Q";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PB21YEKn"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="tHmBnfS6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11012060.outbound.protection.outlook.com [40.93.195.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B788251795
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 02:02:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763517730; cv=none; b=jzComISCruhPy6HRBnj7bQbwc64iQPDOuPPYc2prWYebdYQ6NqIaxMqp91/akXoxvVeWdWxN3SOHz/U0ZY2OhZMIq3ZQj4AjCZwm1F6kndHXbdKKWu/ZPmSiEs/DoQOPA4vQccdux9IE8/99MOSNceU4FsRFNCMLPiX5xRvpb5k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763517730; c=relaxed/simple;
-	bh=7f1viE8CvaMFMTbnc7qz7jbsU6+J5kEGQW8yqx66MYI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YTCn3dfWSSnrhmnekxWRUguwoR5PwWtrABvm4/sKy1VA66TkNcUFNRRcULlF1bq5oTgg3bplUaGIVXTwfRFc57tfNUkkew6Y2zg0Zr+/9M1k7f1xmD8CHs1c1tk/p+dqpaDSi4lyysRGiXC0WUhtn4o0K2mLkc3wjGmgrbWDkoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O1gz3Q5Q; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PB21YEKn; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AIGrPgH3165002
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 02:02:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3tFcRwzKeLu6babJyYsmyc9yoMZ8zBiFDTWsefwBPmo=; b=O1gz3Q5Qq+VPW7ku
-	4M8iTrs0Hl4ihcGbm02e8R434gLwD/wh6r+jJXPhgl7N4i3eFf6DIVFg0tPlgtI6
-	6MOEqNucr7slZPuXF+otDq0dVlsu0HWTX/x7x6G8GqgOpw0HPbnMlqJWb7WZT4UA
-	KUmh8MQ8SsCGzeRRRty0y5embKSwdQa7tJdr2SmPtIiDbvziiwpNhSdlh6DR/S7v
-	DIojARslBvfVws2nRHOhfsFx4QWSFC1S4uKvi4/reImNjJzDm9SePo1VztZurUZK
-	6+KS0+vpSf86aLRkva4oXQwPXXKKadNLnB6r0Q3zE18lPI7GSZfXyApvtTYSXI8A
-	tiMlEQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agvqgsd3p-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 02:02:05 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2958c80fcabso169280505ad.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 18:02:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763517725; x=1764122525; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3tFcRwzKeLu6babJyYsmyc9yoMZ8zBiFDTWsefwBPmo=;
-        b=PB21YEKnEZlOsjBjM5j4LeNIp7u/HGbWdN6bUu72SvL8rsdVkZqbgDrSq/V4kwZ+Js
-         qLtr2BdroD4V+uDOEJenhuZoBUq5w2lWrffo3Bzx6e4Knq+EydivZuvMCKbmatDtmn9+
-         qWCFH0vfbFCHnYpJtBMejOnjGaOgn5PhLx5GsvF7/8h7nnNA3Y6u0BY1WO+U+mxK+BCJ
-         mtJZi1MhAZgXkD0dIZ+cBnGy/FUlUaBt7TkEXSYAZku6xByr/67ufp58wbEXJKChJbwm
-         xZy704LrpBFBLONkm+H+fEM7HsDKGbLlVBPvUDDyqiAxDbQ2+BCrgDwjLLQYPn3IB60P
-         3WWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763517725; x=1764122525;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3tFcRwzKeLu6babJyYsmyc9yoMZ8zBiFDTWsefwBPmo=;
-        b=KCUcs8kzMALI6GzmZkWHmjarrZymhqwz5S/rENk64ySL7Fadc0hnXxMYqfWHWI3cgi
-         ayZDQKcJBMxd2uXHz8E3CnBaT1x734nZ+VWR+ZEjRu7i8wxm4oTfUq+FIyz8/A6ZZ87P
-         VNgrQAfH79t6PqdC/2qBf3ZBm7qKXBMz7H/OLz5zXTRT/1uxnbfPimQreOXHRdqk1Y3l
-         rS430w3eB+/J3inw0B0Q440Mg8MTeHPTzvfbdPUojD3xNCG16Hs3UcoEHViSBY42FzP3
-         x5nQ+BrwlNwcHpnwO7Diyl+wfVi7t1bJwi5KsQg16XXj9/qpBv3MTSA1W1ezzEOEl0FK
-         53vw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYAotpBfHxEkIoePoCCnE/nwW2bn5yGY1V3aSqvTnHeu1OEruMEyt/MmD1nHZuKeykUPrKvUP1rbhI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLeDjp70BKuAOpy6lS3xywwYv73Lgfb4gVzEFfOihiuC6OYFMx
-	NweY9OKlyVfDzi7npSXCRkltDhQtCLBxqiSVkuxp619//2VK3cF3/cZM/LOpA+kWnk89tr9Mz56
-	p+hrWgaBx/eOgS/9eun4jcuPPaNDQ7/fCcyiuJ8X8vmjFxA/jeE5hqvoAHTvRXm6H
-X-Gm-Gg: ASbGnctSggEuSbVq94jtcYm7USYKM51TKv6TCZHDu354YfFaasv5ooOIa4guTiaWGK2
-	fzQWaV6r/aVlQh+sXonG7AdMCbw4SlXru2Sc3ojgzaYdQgAA/uGoIa49O7CIdhTVVQ7QDCwod8y
-	2QwQK75if3h7KcLd07azc6t23TmIINyCF6vjPRYTFanF7KCJ+e6ZKmlOsFGRZPZN94DRKp4K2OU
-	dazIr29VzwuZptRLSjqmmQZZjC9OLpc0xQJkgmu1a1eL3FTo01+bfH9lcMfYq2NS7mJayid+pT6
-	nQrwvq77pixijCzwMY3ls3Wmro3nyXOiFhAfFzQoqJHsmivZaXQAJzikzSejnjGNB3lyMXot17v
-	b4kU6uVcNvN/tJjR5Wt5JTTn8wDUE40pRnWk0nxUVuv2J5FBKDiM0e1jRnn6ivGJoDk4q/vDsVw
-	==
-X-Received: by 2002:a17:902:f606:b0:298:42ba:c437 with SMTP id d9443c01a7336-2986a7676c4mr198153605ad.50.1763517724646;
-        Tue, 18 Nov 2025 18:02:04 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHEntQRzZoDhMGwqrRc3rzZEInzusADzC6i81QtlFU1yRAn92V7cknmUJBwNjCNy9ERiFaEWA==
-X-Received: by 2002:a17:902:f606:b0:298:42ba:c437 with SMTP id d9443c01a7336-2986a7676c4mr198153155ad.50.1763517724108;
-        Tue, 18 Nov 2025 18:02:04 -0800 (PST)
-Received: from [10.133.33.82] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c253b30sm185775125ad.46.2025.11.18.18.02.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Nov 2025 18:02:03 -0800 (PST)
-Message-ID: <cfd9867a-5fa5-43f1-a1a7-81f05bacc47f@oss.qualcomm.com>
-Date: Wed, 19 Nov 2025 10:01:57 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1382C2749E0;
+	Wed, 19 Nov 2025 02:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763519178; cv=fail; b=FqDHTGtZDmNSB5HMNc2FwlDs+NgBvwsbR3O8UalI2v88qr5yQ6jGfixQtyLwzwF4qYFaioeEMZR/iqmHPv8UA0Mx+mdwgk0yQNUNyo96VHugAsNzylwQUjVTzuotLeNMkryF6zHHvMiOHsZf2Pcde3S8dJDdntpwXcNvZfvkJ+0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763519178; c=relaxed/simple;
+	bh=MWD97iAdN9JTRvz0EkB8ko8fSq5R46IpMeTB+PwzcPQ=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version; b=ALVIBGbYyEKipWk9nd3TnfDHUe02eBYnbl4w22Ye64C93RRpqTiTciAzoG3saARutpdlIPKLWixyG5wxKNhrqd8pU9xSn5nv0qXv87KI43+OYdfkoS43LVewiUmC6SPSphfpTVotsgbVFUPEDEJH26B6+eojLD7AIjZE8rI4RGQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=tHmBnfS6; arc=fail smtp.client-ip=40.93.195.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eul3BgADi1cU/qdosAcLwfnm1bRRnYYqORGFqwd5ir7MEKwp+HGala9mm3CNKLuiZToTr6VclAmGIgQY0pN7t4VOzPkZH05BTJxMT1WlA7uDJF+oO9Viu+F1hgEtuGbzw+k/3rMEkCTQOGQG6zfMSwF+GfWoFQNTj3Fk7FnMJgW1xKsUjNJ9agMqfMWYZPfXqofSuSlF0QpitH0uFUOmulJ59SgdX1dKQNSfT7w7knNi0LLgCqUVymi7hmPUFmQuGbYBxPjBKUkV2UNqJXwHa57b4VRF9yj71kAgoop1hidIKVJxhAj5N5EAxb/D5UvsrHC31flZlXcMbP/LUQTDKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jDepHHyIWTSb1OvhVL4O7Qga8d9NDUgFzO/mbHpS4xA=;
+ b=L9Eh3tgRXhfHp99kniTB6L7HX+u34uFRKx3Yr8bR8MY8vuPZ2tnCKh73VD5Z6EPNu/8KDu0lWCQCndp8hdoFRaBxiZgIhy26cAvcQrvhoJFeC3pmvcojyX6XwnKdp+eNgwe2XgdS1PoHg9G6ct0nxAFvAeNBdXcTO+LFH6A737+gYHqBsguBeVI22C6k+5kBewvegOOai3ObfMGaKuN0/SuANDw+3oSfb1BqrTKLwmQFMBZmpXLR59gVZjmDMWBpdh9nDGGmU4PkY79UGRkSnlrQBfMbrXTWc9PJtIwYt4rigmMwcuvb50a0bwxWdRaxp7E8KqG+0qfjAoLtN+Pqug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jDepHHyIWTSb1OvhVL4O7Qga8d9NDUgFzO/mbHpS4xA=;
+ b=tHmBnfS6k+8HHUzO/Ds3y4pq2KKFlwHMJ6BXoSe87b8xhvlywSFRazrYBJskcUg9zJUcHvud9u5AiVhYAkmTPcIqfdZbq6B312YIm9eNvdWMeadSPeHQDQ0syuYFPhbL6jv2nnRwB24l4wK/zYy0xnxeVZjyjzx1exqktjTEq1kewQbO1NR2fEbMDPXtgJ4mluY0/pPxUsoCBb6fEbGVOawoBPvBy+uJ2dDBNtB/YsDTvOXOPV9GbWjrhwgLf02+KhYFJ5NUuwMCo2nj2VQY96h+yghKpQM/Ig+haM6HSM6K9qf059P6LSMs4aJ+p0XAXclfzCPf55m7LOB0uDeRxA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from MN2PR03MB4927.namprd03.prod.outlook.com (2603:10b6:208:1a8::8)
+ by SA1PR03MB8068.namprd03.prod.outlook.com (2603:10b6:806:459::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.22; Wed, 19 Nov
+ 2025 02:26:14 +0000
+Received: from MN2PR03MB4927.namprd03.prod.outlook.com
+ ([fe80::bfcb:80f5:254c:c419]) by MN2PR03MB4927.namprd03.prod.outlook.com
+ ([fe80::bfcb:80f5:254c:c419%5]) with mapi id 15.20.9320.021; Wed, 19 Nov 2025
+ 02:26:13 +0000
+From: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+To: Moritz Fischer <mdf@kernel.org>,
+	Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mahesh Rao <mahesh.rao@altera.com>,
+	Ho Yin <adrian.ho.yin.ng@altera.com>,
+	Niravkumar L Rabara <nirav.rabara@altera.com>,
+	linux-fpga@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Subject: [PATCH v6 0/2] Enable FPGA Manager support for Agilex5
+Date: Wed, 19 Nov 2025 10:26:04 +0800
+Message-ID: <cover.1763518321.git.khairul.anuar.romli@altera.com>
+X-Mailer: git-send-email 2.43.7
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0094.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::9) To MN2PR03MB4927.namprd03.prod.outlook.com
+ (2603:10b6:208:1a8::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: qcom: dts: sm8750: add coresight nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251117-add-coresight-nodes-for-pakala-v1-1-d26bfaa44fe7@oss.qualcomm.com>
- <350ddcc0-cbab-4b58-8b50-5004f27688db@oss.qualcomm.com>
-Content-Language: en-US
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-In-Reply-To: <350ddcc0-cbab-4b58-8b50-5004f27688db@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: FU-pjvjePRJXJ_Cc0UrEEyZIkQNx7PY2
-X-Proofpoint-GUID: FU-pjvjePRJXJ_Cc0UrEEyZIkQNx7PY2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE5MDAxNCBTYWx0ZWRfX0PF7zLw3j3cS
- ykM1r9tKHS7Tj2dsEee0IDZxl/T3pl5bhNuJORm12djHkgMgFNq/1PkUUsAfc/ak4LYNgAet3Gg
- S7F4wiCUEqzRlFnFIhe43mFUsFHZCmW5l390sPYtvOh2WCUrllBFdzeRNqNQTJUC9D7OJZBOU4E
- CrsS5jR8S67tgu2SUArLD4+smfVApePJhnOMGNH0YqYymJkSHmLO5ftooj/95W3P4ox2l8W1iUb
- xcHS2AfpEq9PEtFhfs9P64on5gzpTGgvABGEB4Ilt+KlJKADfGYnTz7dLbzESQ4j+KoxfHgSuhH
- FaBilOTgC05AwX3GAPZANm0LF2NYQRlYXSmuGbXJFr4nAlNvAPA2eE8pK3zcjq5FIwQQVGxpe+Z
- jxuQwF74xyTOWILWMM6OwFQPhcNPQg==
-X-Authority-Analysis: v=2.4 cv=LMJrgZW9 c=1 sm=1 tr=0 ts=691d251d cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=Cy051OMfBe0flYlIuU8A:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-19_01,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 lowpriorityscore=0 spamscore=0 suspectscore=0
- bulkscore=0 adultscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511190014
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR03MB4927:EE_|SA1PR03MB8068:EE_
+X-MS-Office365-Filtering-Correlation-Id: 432cba51-8c1e-46ed-40e8-08de2713029d
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?0DhQGyMDceNHoPPhauHLXE+nzXEqZ1VsbbsMADskIMTHREnBTkzzVhVFk1IE?=
+ =?us-ascii?Q?bzIBl9ggxZ51Q4a4pgEtYOC6rprBlzas+gs9voHRJ5XQ5Vh0tVjuA1Euqn93?=
+ =?us-ascii?Q?FwSUzRk1UODQKA1u+n8fzy1l1eoJbZHkZBGCAyApBLJfaOdadPfwBMj1hAB4?=
+ =?us-ascii?Q?jasPr3YbuHZ1q4R1ENp5rlbNKEtRJd/VwyJ77MzuQ/NNCk+Q1thpqIPrO6AB?=
+ =?us-ascii?Q?p21rycxVDcgEMxJCXRQR/KrpJlYki6kdS6g97rs0Vo78g9c2/wtP8Reiwi95?=
+ =?us-ascii?Q?NVGqdSzfDxbpPBIHAW8tVK4dLxXFjUkJukc0novED1jfFCHaWOE54CRUpoSW?=
+ =?us-ascii?Q?EU6UgQtxEUixAcEnuPVWvJ3Z+IzJuiHD09QOcnnTCXVPKHVIn80fxlfK5aA2?=
+ =?us-ascii?Q?wMM64srtIJtjigmV7Hj9xJK4dv5McG5fZrJsAHLlDfjpOMCOBUilcGggnaMP?=
+ =?us-ascii?Q?z0rG1aB5a3yuN8Ve/3wKcH95+MqYu503lsAZrCjvWcsoGzxERO7eQHC4MwWL?=
+ =?us-ascii?Q?SztVrbAyr1u2x/KyieOgJYlZ3w9nUCvUuWsvATx8vritqzmz0xqvktlYP5pT?=
+ =?us-ascii?Q?JkpbXCqATMP4p6WHYJD+fMFuQ/iHYPnIu+JVQKs5VYpYcmWZukGFUQ7SmagX?=
+ =?us-ascii?Q?QonBbqOZjQXO20zljFOtyIHgGBpnADJ8bsSggSynIz9UVtnNyFjo/gczKJ+d?=
+ =?us-ascii?Q?SSMLDkZ6wKWQYaQdJbBRjMrrmkGI6LFFQtwlOHjcopd8xbpSPXihzxs1jM2t?=
+ =?us-ascii?Q?qyieWpWKpT9kFsc2moLNmlJC8Wf3cJkZnUxhsoPMkBS4YI/C4c3FVtJWK8OW?=
+ =?us-ascii?Q?XfmAqjOI/wprcz2esd72k2dhn9/HtaxIrFFOt5RP2gXye6BZjn9JxU6QRLag?=
+ =?us-ascii?Q?WHqCkxVAClolvO09UvyTcEh0oyIGvfs4IG4TCnm2NhSSi+oDZCmXn1sOlcuR?=
+ =?us-ascii?Q?ANv/O+OK5wMT5hGpC5ZZoRvByqNfluCW6KjA8JkbKNMJpxw0xHPa22+AXwSv?=
+ =?us-ascii?Q?cimY68L8QmYbqAn0Ay0s4G8I/f5wtqEXyxiW3tA/qtmGUxRv5W3teEgwxqYQ?=
+ =?us-ascii?Q?yXwp7ZPf2WsLUWGQBE5PTAKUYJs9lYy+1jelPO8Abvp0ULrEverqOevrlBnl?=
+ =?us-ascii?Q?wecuFc2NWQbGHQG/SAXfOo9jPRRcbxpnRj7aXZZXY36CQ9hkb96YfVQWCmb3?=
+ =?us-ascii?Q?xluFBxZ0N5lLof3jjvzNZU3WG+wJMO6U+swTN2swVVNgPtg9RjQbq3NA7pmU?=
+ =?us-ascii?Q?r2v+MwClERxzyIdKr2KLUUckL8zttvYGPEqWWhzBp0d16VoCT25++rvudqD4?=
+ =?us-ascii?Q?LauPXFUmAqDmLwHaJM2G8Jy/Dg1PQh5pDMPhegLEO0Ew/p3mFsxGvzqmYzS8?=
+ =?us-ascii?Q?vjQZ0HJgH0ToVaeaEwPFlSEhxQtQFgM0pEYC2VSFKSCCYJ7zw8CH6fyf4Mjo?=
+ =?us-ascii?Q?jzRtjG5ZAwbNGlGmXQ1Mjh7I7IKno5+G8d+ljVfgJTEXEgl/eXHM0CMYEZH6?=
+ =?us-ascii?Q?yoxxtFL2s4Yl5m1ns/wicLgi3yJAqxL4wcTV?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR03MB4927.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?6nJsMdF2xjAVBeiKlSUrwYvcEiZPyfZ3rOn6Cj1rDKb1YHce+j5NxqpKZgri?=
+ =?us-ascii?Q?WVOKHQ5Rz7N+Qyn0AfOR7PZegWP/Ng6lSCDrn+9wKdjT2IO8RO9AA+5NO4gB?=
+ =?us-ascii?Q?8BthnWFqk3ReayIFjTn9q8pRkr5InmfWpHWenEzLhnZ2kujS/qjfgFTQ0gpO?=
+ =?us-ascii?Q?NMXx+LtDWMu4tf511gxEltQ+izrBezGC6oK2viRakGMnPhmiBl7vkcHxSol0?=
+ =?us-ascii?Q?Pxs4tmPLIoXHpJ7aps3y7rpO5tbbPv0zU1iN9YMnglSusv4gt2aQ2hcF0njW?=
+ =?us-ascii?Q?5nVdhcY0cz9uN8M8uvyibji2jNN7MlKKJIBzNRdyV3ZzRLDvD+ylANCMFzku?=
+ =?us-ascii?Q?l/YqxJmo2WMRjtHJNWtGuazLbec350VqCgQsN7JbNdYH0U84loZj3oySlGQ/?=
+ =?us-ascii?Q?eddBXA3F5qEcCrd05cJ1xhl/P2ylQwuFTxduv0apUejfe4o5Od/hR2adlJOr?=
+ =?us-ascii?Q?2WztmQBZbADG5bLYJ/rHxp3EmBe8WSHIXpfWV+7BelZr104wI3jb3D5pSBUV?=
+ =?us-ascii?Q?iEX/UoTzS8/msu3rouo28B43KfSOXV+GkRZEi9qI52loC02IzbJh05D+cxrN?=
+ =?us-ascii?Q?w9U5UXFSd37FOrQj3Sx5DAaJ0SaAx5Ez70NV/D3hUAU6z+JSSk00kA+AUtpX?=
+ =?us-ascii?Q?SMbBiExD1Wkf3OhnOym9+zCqMnAA6Gj6gDWXuOr7F34Lcv1TA4ZLZeUN+tJM?=
+ =?us-ascii?Q?z/2gnEKX+orJQU/GyOFqLaKEU+I0tmDzcMIjQz2BSlKCF/7q7mx855zNFoEA?=
+ =?us-ascii?Q?jNbQsnWf5xlnOaVJFWAG1N5+Pxf6iLTln8oF3VfmfjzxTqFmZl1S3qPeSr2D?=
+ =?us-ascii?Q?d2nTv9uXoX5bzPhdHZTkYeELDA/fQ8Fsgl5XZOzwxtn2vmpUGHhu41G7khX2?=
+ =?us-ascii?Q?UrrqaKqWB+3NQtPUYjBDWcctbhfCgEUSlXL6otjajDLjbQPfs/xDHc0TzLbV?=
+ =?us-ascii?Q?0wUxgN73v1ig6dDhZ6VAKusKcxuqWcTB2lcmjCIszuY+sbBH/i6seSwSSTpl?=
+ =?us-ascii?Q?lHQlSdsqLbbrfjqTQIf/MZMpdBu4EDF082CQYVuXcRN77JUXlSIJ09LFtI7L?=
+ =?us-ascii?Q?7IoL2QTMeb+J0pHK5gY83B5HH0K3n4ABz+8QhZG94dAmWBH8Vn0Tb/7Lv7OG?=
+ =?us-ascii?Q?41lWpSgPhTDesxClw8auW92guexTlGET43DwBzKMx16rRHFnkERF1c5LlZNK?=
+ =?us-ascii?Q?aqJMVjbDwY6wobM7x+GMehf3L9lXzneAi2103ImNsshIGgTmeb2LkdKIiJIu?=
+ =?us-ascii?Q?lk7rf5kiwQy3MdXpDBlOG10YE/Y8xlEK/2n4QZhvhNfzS1AJKpcB65es8+eD?=
+ =?us-ascii?Q?sJ96AsdhTwhbccNmJmUPuPJ79JVcaTvC9c6RINmuL56JXoyCARM701zPukpQ?=
+ =?us-ascii?Q?3qNKoXPFNJekx4LA31N+gbunAyXdhjePBgxroe6eys/3WDxe3SY4uuJQN2EO?=
+ =?us-ascii?Q?90/RB6ouZPhWTTUZ8R5XCzhxsCPwvXZ0hygxSNSBEIUlthAlNZA3DrTrtqJ6?=
+ =?us-ascii?Q?8NetfQgzYCIpqX+CKKCv7wzLzJCoSmHTM+k7sr33broJ8ML6xRGHPlrRVtxI?=
+ =?us-ascii?Q?iBWrm5EEyjk4AxfI9hCruv5G/qrZFCvofIjlPfwFfbW78nEFGnpDhS9vuXlI?=
+ =?us-ascii?Q?mA=3D=3D?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 432cba51-8c1e-46ed-40e8-08de2713029d
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR03MB4927.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 02:26:13.8737
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iYNntx7D8Hp7+XHTd5PgwYCwj2vU2GPQGUy/1PlngcxLOeb+tedhVLxEQxxq4p/z0x7fvKazRjZATQXkKNSIpAoQzQLYZzPHeQWf4mZvMW0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR03MB8068
 
+This patch series adds device tree bindings, driver and DTS updates to
+enable FPGA Manager functionality for Intel Agilex5 SoC.
 
+These changes are intended to enable FPGA programming and FPGA management
+capabilities on Agilex5-based platforms.
 
-On 11/18/2025 6:03 PM, Konrad Dybcio wrote:
-> On 11/17/25 10:31 AM, Jie Gan wrote:
->> Add CoreSight DT nodes for AOSS, QDSS, Turing, and Modem blocks to enable
->> the STM and TPDM sources to route trace data to the ETF for debugging.
->>
->> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8750.dtsi | 981 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 981 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->> index 3f0b57f428bb..56c2605f3e0d 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->> @@ -3313,6 +3313,948 @@ tcsrcc: clock-controller@f204008 {
->>   			#reset-cells = <1>;
->>   		};
->>   
->> +		stm@10002000 {
->> +			compatible = "arm,coresight-stm", "arm,primecell";
->> +			reg = <0x0 0x10002000 0x0 0x1000>,
->> +			      <0x0 0x37280000 0x0 0x180000>;
-> 
-> This region is a little bigger but it's not described clearly. Is there
-> a reason to use this slice of it and not the whole thing?
+---
+Notes:
+Patch #2 depends on  "arm64: dts: intel: Add Agilex5 SVC node with memory
+region" from
+https://lore.kernel.org/all/3381ef56c1ff34a0b54cf76010889b5523ead825.1762387665.git.khairul.anuar.romli@altera.com/
 
-This region is about the STM channels which are allocated for APSS/HLOS. 
-The channel 10240-20479 is allocated for APSS/HLOS, each occupied 256. 
-So the start address is 10240 * 256 = 2,621,440 (0x28000). The length is 
-0x180000 because we only use part of these channels so far.
+This patch series is applied on socfpga maintainer's tree
+https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
 
-> 
-> [...]
-> 
->> +					funnel_in0_in0: endpoint {
->> +						remote-endpoint =
->> +						<&tn_ag_out>;
-> 
-> Please unwrap this line
+Changes in v6:
+	- use items - const for Agilex5 to support fallback
+	- Validate bindings through DTBS_CHECK=y by itself and agaist
+          non-fallback (stratix10, agilex) and fallback (agilex5).
+Changes in v5:
+	- Revert back to oneOf and use enum without items.
+Changes in v4:
+	- Simplify the compatible property to use enum without items.
+	- Use contains instead of oneOf due to the use of enum without items.
+Changes in v3:
+	- Add fallback in altera's soc fpga manager compatible properties.
+	- Validate with make CHECK_DBTS=y on:
+	  - intel/socfpga_agilex5_socdk.dtb (fallback)
+          - intel/socfpga_agilex_socdk.dtb (non-fallback)
+          - altera/socfpga_stratix10_socdk.dtb (non-fallback)
+Changes in v2:
+	- Drop "fpga: stratix10-soc: Add support for Agilex5"
+	- Add fallback compatible in DT
+---
+Khairul Anuar Romli (2):
+  dt-bindings: fpga: stratix10: add support for Agilex5
+  arm64: dts: agilex5: add fpga-region and fpga-mgr nodes
 
-Will fix it.
+ .../bindings/fpga/intel,stratix10-soc-fpga-mgr.yaml  | 10 +++++++---
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi       | 12 ++++++++++++
+ 2 files changed, 19 insertions(+), 3 deletions(-)
 
-> 
-> [...]
-> 
-> 
->> +		tn@109ab000 {
->> +			compatible = "qcom,coresight-tnoc", "arm,primecell";
-> 
-> "tnoc@"?
-
-In dt-binding, we suggested tn, it also could be tnoc here.
-
-> 
-> [...]
-> 
-> 
->> +	tpdm_llm {
-> 
-> Node names still can't include underscores ;)
-
-Sure, missed this part, will fix.
-
-> 
-> Please also rename 'llm' and 'turing' to 'cdsp' unless there's a good
-> reason not to
-> 
-
-Will fix.
-
-> I confirmed the coresight components addresses match their claimed function
-
-Thanks for checking, it's a huge effort.
-
-Thanks,
-Jie
-
-> 
-> Konrad
+-- 
+2.43.7
 
 
