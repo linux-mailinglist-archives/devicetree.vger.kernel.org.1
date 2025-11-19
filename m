@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-240312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825F9C6FC67
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:50:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D4BC6FC76
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:50:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id 3ECE82ECAC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:50:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 4D59D2F2E9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 091493A8D59;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945A53A8D77;
 	Wed, 19 Nov 2025 15:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OlsKOf7C"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nbcbpaj9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AA863446C4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE9F32ED53
 	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:45:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763567163; cv=none; b=cCH9LAbGtZ+cYiIzFNpM9QFIcR7adFOe+JFDYfdPclFhDDn8OYTe8imxKPzZUwa8QAoj+bLUr3dXheDhFQCs6ogzYg3VBezkNRMdNT8XkcZdTeoRmpgsaKQDIU8dRM4zExBxIW1HBhERASYVKVI06FygYMP2msHZgnMiUlwTjPY=
+	t=1763567164; cv=none; b=LF6ttcO1MAgQSdLif5gkvxbB1hEaEQjsk4nAme1KNasttPVa1/RkwLnQ6enlmb1IxyTUdCYw1kugOP4Gol/Jn0EJIFma4szyy8zqyX4euFE8vSyx2cN8Ol8KqfKMIHuoCEBJHx2PEuGN9Oy3+5ka0LRrkOCbAP+1ohnXQjGXyyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763567163; c=relaxed/simple;
-	bh=seLIx9q9vL0GJtrOwhh44Y8oeZ01I2U3Qbuzz6J6f2s=;
+	s=arc-20240116; t=1763567164; c=relaxed/simple;
+	bh=oMOJLuZhCOnY0w0cY4R3cwCR+B/zhszgawQsUmZz21o=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QVVTkZRv+g9oUDgFzCK8859gO9kuu3a3FqVp2ygHugMGxHZ0OimmrL2d0nKi6ofjeKQPaYzOT3SEFdi2oH16e8bWYojGl37U4VulHiguv021xr1MTXEuXgdUVRwk+1uzsIJTMsl/BX8pYnM2LbbfPaPWz41BDL854aY+x2vLQ1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OlsKOf7C; arc=none smtp.client-ip=209.85.221.46
+	 MIME-Version; b=YRFI4Z8Ph354aqgcxkpoXIcQCbqkiCYnf9CRDdUntyebWWSNp1oYIQWAAsxcCbLIm6zj6ue9E2K5cXCt/8kw3sPn0Tw9Cw1hQcsxgDInEBkNgJji7CXRSbd3BpLrd4IszRVzCY2cT5Er8mdQj/UyHZgHHjj2ZiOhmfaO+D0Ksnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nbcbpaj9; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42b32a5494dso4139080f8f.2
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-477b1cc8fb4so5943795e9.1
         for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:45:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763567153; x=1764171953; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1763567155; x=1764171955; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Y7Ucs3kp0oXjJAHNPlew8LSoAGCaHnYy/9pb2BVOQfw=;
-        b=OlsKOf7CJM2UCkg8sSzf3D6dnC50mCYotNLiG83mI1qis2cSNEl6iYyMVoNUiPWFtn
-         q+XeohqZ2L4g2rfVHlxX/Z74xnezMqq6Q2RDI7kKiJAAVdhgk1bmjDpTEad7w+oD+d5r
-         XhwrehKHLA8zA/6PTLm1D8myUX20MDo61BthVNchOC3ajJi+FtetAbFElpDNH0txiQfl
-         YkpKzG5UU3whCwYwxvP6bNGvK5NjG96/oE4wLDMc20Z9xA4rAsIdLgPvh/YVk9Ey+l4D
-         ICFEIP6vLzLnMBBLHX1AFbnh29b1KM9hSgdIu/yPFwLWWVFyENhMFbVyN3hTLNk7gE9T
-         2itQ==
+        bh=CEWvhI86IGkr275YCXI4U9akHZM2f251P0zZm4c5HV0=;
+        b=nbcbpaj9MDGTBG2ZCwZwK3LgPpIz0tMB0ap1DqlvjBXvufiLgu5rtDDVtwkPLgNqfI
+         o4NYkoWEt3FLcXmu6dL9PZGRVuqNh3UNpSsGeY8BCZo63wuPKa5E8f4eGYYhnQyQJZam
+         08AaKGKIGbZeT5a1zhT1ZcZwHo/C4fK+VV8OHvXI8MH3lFWpdLrebSZ2Z58hKizgokp0
+         Ai5/abu78NWX1TtrOUL2CREoPN1OgJfR/Sa8iKztlpiTwBs531ZQYTlKrnjuH8q8i7WE
+         +47cckejnY2EfW+rEn1EnfXX32XQjCAWv6+sRahgUTSZsPxPqNllZ5eE+T9BA6gFU6Pr
+         zfQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763567153; x=1764171953;
+        d=1e100.net; s=20230601; t=1763567155; x=1764171955;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Y7Ucs3kp0oXjJAHNPlew8LSoAGCaHnYy/9pb2BVOQfw=;
-        b=hGectLdARRjTiW0ZDRbp3iNX+NAhaOSnsH1d/oZF3qmRMctNNXgmFl+S5/fIxLxcqM
-         FAnvKYcTpsI0Xb5zc8PbL2IETwNEx5Waoa2yfDTX6sKyWtkX2F3jH1UTxKVhHHqsXlEp
-         J0Vc38PA3XmfMtlSb0+T1M1BHXcYc2jmDDcAml9VthgSMbBP5KHxC6UwMBYfGHQtxPKP
-         YvZURoz+n6sOLgEIDPILJvgePQ9v389N1El0gC9VfuhNrIWwAfU747YRc4UuyomgvFjy
-         hW8o1QXyl8qZQlhXylr3t1o0Os+WGj07H3+L4ZzyIm3XW/rqe0Zmh5ybdLCaylQz/8MR
-         /nFA==
-X-Forwarded-Encrypted: i=1; AJvYcCW4vqq6ub2h1pl5Sramfc1mBneMo3QJsEwW2xk9R/x/awOh1ETBERnggY0y4HwRuXsEb8WnXyqmHqBU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVnD2dxDwc3vjRvEI8qTbvCI1OskD9+C0HPnI1Zr7vWLcTMT8u
-	IRS+wLyjEgwheIWcfdm3Whj8W3H5gjro3Mqa30krOqC47LB2M0uXh4G461gNH8bvhvk=
-X-Gm-Gg: ASbGnctoDigfTbg3HKmfnGK4/7NsHeG5H58GMMk+yxHPYMNO6xNX5d17KsPdKOq6eky
-	r14geBIxw77LgIZXmoT1Wq/08yKln1H3huE2UU3SYgBY6CGdDYFVq8gmqlsHgSQhAooLoDp/puE
-	qGRyI1VLJPCGmHVGZVgiWMxdFL0sSVqqeU5nPbx/U2DahWI09bRgtpiFZCWFO9+DXA26bOyhyyB
-	SWRkYTTOkTqOBkPgXUme2oTi03ewRleJDC2k1DsZWtu6j9x0t0F6faiHY0LTQYPz347IuqPVp2l
-	gga9kPi+bRrNLivQvQUS/nSiHlgwMkBO5QFP0nnZcm0lZ4WOWEhpRhIKH4AYUhcHqDJjXIoz4Pa
-	ibOkPS/4jyPatFzFXW5NkpuoHVDX7RyXy00pfkLBkduXUo02sJpbw7S3JS/z0p9HDYeOnx+ZXR+
-	Upvx/SpV/z3IKDACk1v2iA1PmfxL/C2w==
-X-Google-Smtp-Source: AGHT+IFMxVwxw3DtlUhFwveVzixkh9p9iHWd+faYE31GhqiINsGSMiGzAK7z2FWSCj0eS8F6/aaKoQ==
-X-Received: by 2002:a05:6000:2510:b0:42b:3e20:f1b4 with SMTP id ffacd0b85a97d-42cb1f1de66mr3206403f8f.5.1763567153508;
-        Wed, 19 Nov 2025 07:45:53 -0800 (PST)
+        bh=CEWvhI86IGkr275YCXI4U9akHZM2f251P0zZm4c5HV0=;
+        b=QPdWR02UPBL9U0Awaz+I6lJeiQ4x9zQn+hvy4x79XG+ydNQHVJCk/y1UiSSsqDmBTg
+         IxgdO4zFKBET6z7K9UEjxIuSfzi4EP6UyhkwN15xDy47kEV4udRxECJeVI9jckSp7PXo
+         Uoiw1DnciqpDyBq96uRrDG4k3CeP7nlr6xxHZtxTg0g+wqhFO9N2v5X3YSW4lYOaAVfw
+         QhTP0Wz2m4XeeSITODRkpiGeZ7PUAe3p9mr1sOhX37q7KoLOc9x7oEp6x7II9meiMNki
+         9hI5CaUO5PQfplty04NkE4xnNrnq2Our0ur8eyfTn0AYHJvOutc8Yu2OLW1uY2ab9dG4
+         MYSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUsKCkF06MnBD4Ui4IBbzjuNHxSL/EdDx7AfODnmXECNFQ1AxXfc5Ps9xSDbiM0CWpbstmByjzkNRPF@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpRq0pR32NJuRZIuW8GHU6Nbzg+XSwbwdLOI98MwJM14majEMm
+	gMo+0sMjm80zHI3QcsRw5cXv2AU8cotOIKaTt3BMHUMhIR+A+5wsX5DucO1lzG1lUAI=
+X-Gm-Gg: ASbGncuqCj0nV62xASSJLxusQgXqQzjn5SOjdLJRpbQC5yX7g0qJteBcmYAgDbJpsIz
+	R58OD8IvHNT8tFXuuH0nQoUqNAdLWd28+m3KhH0FBMuUlq2GOKRb0iQ0eNfPRkh6Ef5WqNT0qFw
+	Vg6DGDmKK+925n3mm2o8xNaz4jyVgmHNSH4nB6NEY1XUw7hullrbEqvkTC0ejvqhZk91ALhRq6e
+	85mlD6wtR3raUnIwvYwCT5XpnbZdPpiJnU2vg4Kq2HhCRFEinVnC4B4hnmZeblNF0HExx2bD77G
+	phBQU9nHxz3FC9Yvh9+yQX4RhCISLR6/aKSDnYin9Zes39Jh69VnefS3gfBhgGZf4YWPEvCHbwY
+	CRuOe7rCNyXtxWFkPVqTJNPsEj10YUJ9+K7UiGQlCUReVRsY+24WhFfaQi/kmTF6XQ+PrMwnAWh
+	YGiF0BOWi1BupQkKU7zNNOuCLYdAbtbwd9LbM20AOb
+X-Google-Smtp-Source: AGHT+IGkk7cUbQZnXjGag8yPABXUYogSDTvlv9CsdaEjFL1fCOMxhsVRR8P5cnyld7ERa3Ar7rkUkQ==
+X-Received: by 2002:a05:6000:22c1:b0:42b:3ab7:b8a4 with SMTP id ffacd0b85a97d-42b5938b4b1mr19940877f8f.33.1763567155275;
+        Wed, 19 Nov 2025 07:45:55 -0800 (PST)
 Received: from eugen-station.. ([82.76.24.202])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53dea1c9sm38765632f8f.0.2025.11.19.07.45.51
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53dea1c9sm38765632f8f.0.2025.11.19.07.45.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 07:45:53 -0800 (PST)
+        Wed, 19 Nov 2025 07:45:54 -0800 (PST)
 From: Eugen Hristev <eugen.hristev@linaro.org>
 To: linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
@@ -98,9 +98,9 @@ Cc: tudor.ambarus@linaro.org,
 	tony.luck@intel.com,
 	kees@kernel.org,
 	Eugen Hristev <eugen.hristev@linaro.org>
-Subject: [PATCH 21/26] printk: Register information into meminspect
-Date: Wed, 19 Nov 2025 17:44:22 +0200
-Message-ID: <20251119154427.1033475-22-eugen.hristev@linaro.org>
+Subject: [PATCH 22/26] remoteproc: qcom: Extract minidump definitions into a header
+Date: Wed, 19 Nov 2025 17:44:23 +0200
+Message-ID: <20251119154427.1033475-23-eugen.hristev@linaro.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251119154427.1033475-1-eugen.hristev@linaro.org>
 References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
@@ -112,92 +112,165 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Annotate vital static information into meminspect:
- - prb_descs
- - prb_infos
- - prb
- - prb_data
- - printk_rb_static
- - printk_rb_dynamic
-
-Information on these variables is stored into inspection table.
-
-Register dynamic information into meminspect:
- - new_descs
- - new_infos
- - new_log_buf
-This information is being allocated as a memblock, so call
-memblock_mark_inspect to mark the block accordingly.
+Extract the minidump definitions into a header such that the
+definitions can be reused by other drivers.
+No other change, purely moving the definitions.
 
 Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
 ---
- kernel/printk/printk.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/remoteproc/qcom_common.c  | 56 +------------------------
+ include/linux/soc/qcom/minidump.h | 68 +++++++++++++++++++++++++++++++
+ 2 files changed, 69 insertions(+), 55 deletions(-)
+ create mode 100644 include/linux/soc/qcom/minidump.h
 
-diff --git a/kernel/printk/printk.c b/kernel/printk/printk.c
-index 5aee9ffb16b9..8b5aba2527ac 100644
---- a/kernel/printk/printk.c
-+++ b/kernel/printk/printk.c
-@@ -49,6 +49,7 @@
- #include <linux/sched/debug.h>
- #include <linux/sched/task_stack.h>
- #include <linux/panic.h>
-+#include <linux/meminspect.h>
+diff --git a/drivers/remoteproc/qcom_common.c b/drivers/remoteproc/qcom_common.c
+index 8c8688f99f0a..4f1c8d005c97 100644
+--- a/drivers/remoteproc/qcom_common.c
++++ b/drivers/remoteproc/qcom_common.c
+@@ -18,6 +18,7 @@
+ #include <linux/rpmsg/qcom_smd.h>
+ #include <linux/slab.h>
+ #include <linux/soc/qcom/mdt_loader.h>
++#include <linux/soc/qcom/minidump.h>
+ #include <linux/soc/qcom/smem.h>
  
- #include <linux/uaccess.h>
- #include <asm/sections.h>
-@@ -513,10 +514,16 @@ static u32 log_buf_len = __LOG_BUF_LEN;
- #endif
- _DEFINE_PRINTKRB(printk_rb_static, CONFIG_LOG_BUF_SHIFT - PRB_AVGBITS,
- 		 PRB_AVGBITS, &__log_buf[0]);
-+MEMINSPECT_NAMED_ENTRY(prb_descs, _printk_rb_static_descs);
-+MEMINSPECT_NAMED_ENTRY(prb_infos, _printk_rb_static_infos);
-+MEMINSPECT_NAMED_ENTRY(prb_data, __log_buf);
-+MEMINSPECT_SIMPLE_ENTRY(printk_rb_static);
+ #include "remoteproc_internal.h"
+@@ -28,61 +29,6 @@
+ #define to_ssr_subdev(d) container_of(d, struct qcom_rproc_ssr, subdev)
+ #define to_pdm_subdev(d) container_of(d, struct qcom_rproc_pdm, subdev)
  
- static struct printk_ringbuffer printk_rb_dynamic;
-+MEMINSPECT_SIMPLE_ENTRY(printk_rb_dynamic);
- 
- struct printk_ringbuffer *prb = &printk_rb_static;
-+MEMINSPECT_SIMPLE_ENTRY(prb);
- 
- /*
-  * We cannot access per-CPU data (e.g. per-CPU flush irq_work) before
-@@ -1190,6 +1197,7 @@ void __init setup_log_buf(int early)
- 		       new_log_buf_len);
- 		goto out;
- 	}
-+	memblock_mark_inspect(virt_to_phys(new_log_buf), new_log_buf_len);
- 
- 	new_descs_size = new_descs_count * sizeof(struct prb_desc);
- 	new_descs = memblock_alloc(new_descs_size, LOG_ALIGN);
-@@ -1198,6 +1206,7 @@ void __init setup_log_buf(int early)
- 		       new_descs_size);
- 		goto err_free_log_buf;
- 	}
-+	memblock_mark_inspect(virt_to_phys(new_descs), new_descs_size);
- 
- 	new_infos_size = new_descs_count * sizeof(struct printk_info);
- 	new_infos = memblock_alloc(new_infos_size, LOG_ALIGN);
-@@ -1206,6 +1215,7 @@ void __init setup_log_buf(int early)
- 		       new_infos_size);
- 		goto err_free_descs;
- 	}
-+	memblock_mark_inspect(virt_to_phys(new_infos), new_infos_size);
- 
- 	prb_rec_init_rd(&r, &info, &setup_text_buf[0], sizeof(setup_text_buf));
- 
-@@ -1258,8 +1268,10 @@ void __init setup_log_buf(int early)
- 
- err_free_descs:
- 	memblock_free(new_descs, new_descs_size);
-+	memblock_clear_inspect(virt_to_phys(new_descs), new_descs_size);
- err_free_log_buf:
- 	memblock_free(new_log_buf, new_log_buf_len);
-+	memblock_clear_inspect(virt_to_phys(new_log_buf), new_log_buf_len);
- out:
- 	print_log_buf_usage_stats();
- }
+-#define MAX_NUM_OF_SS           10
+-#define MAX_REGION_NAME_LENGTH  16
+-#define SBL_MINIDUMP_SMEM_ID	602
+-#define MINIDUMP_REGION_VALID		('V' << 24 | 'A' << 16 | 'L' << 8 | 'I' << 0)
+-#define MINIDUMP_SS_ENCR_DONE		('D' << 24 | 'O' << 16 | 'N' << 8 | 'E' << 0)
+-#define MINIDUMP_SS_ENABLED		('E' << 24 | 'N' << 16 | 'B' << 8 | 'L' << 0)
+-
+-/**
+- * struct minidump_region - Minidump region
+- * @name		: Name of the region to be dumped
+- * @seq_num:		: Use to differentiate regions with same name.
+- * @valid		: This entry to be dumped (if set to 1)
+- * @address		: Physical address of region to be dumped
+- * @size		: Size of the region
+- */
+-struct minidump_region {
+-	char	name[MAX_REGION_NAME_LENGTH];
+-	__le32	seq_num;
+-	__le32	valid;
+-	__le64	address;
+-	__le64	size;
+-};
+-
+-/**
+- * struct minidump_subsystem - Subsystem's SMEM Table of content
+- * @status : Subsystem toc init status
+- * @enabled : if set to 1, this region would be copied during coredump
+- * @encryption_status: Encryption status for this subsystem
+- * @encryption_required : Decides to encrypt the subsystem regions or not
+- * @region_count : Number of regions added in this subsystem toc
+- * @regions_baseptr : regions base pointer of the subsystem
+- */
+-struct minidump_subsystem {
+-	__le32	status;
+-	__le32	enabled;
+-	__le32	encryption_status;
+-	__le32	encryption_required;
+-	__le32	region_count;
+-	__le64	regions_baseptr;
+-};
+-
+-/**
+- * struct minidump_global_toc - Global Table of Content
+- * @status : Global Minidump init status
+- * @md_revision : Minidump revision
+- * @enabled : Minidump enable status
+- * @subsystems : Array of subsystems toc
+- */
+-struct minidump_global_toc {
+-	__le32				status;
+-	__le32				md_revision;
+-	__le32				enabled;
+-	struct minidump_subsystem	subsystems[MAX_NUM_OF_SS];
+-};
+-
+ struct qcom_ssr_subsystem {
+ 	const char *name;
+ 	struct srcu_notifier_head notifier_list;
+diff --git a/include/linux/soc/qcom/minidump.h b/include/linux/soc/qcom/minidump.h
+new file mode 100644
+index 000000000000..25247a6216e2
+--- /dev/null
++++ b/include/linux/soc/qcom/minidump.h
+@@ -0,0 +1,68 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Qualcomm Minidump definitions
++ *
++ * Copyright (C) 2016 Linaro Ltd
++ * Copyright (C) 2015 Sony Mobile Communications Inc
++ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
++ */
++
++#ifndef __QCOM_MINIDUMP_H__
++#define __QCOM_MINIDUMP_H__
++
++#define MAX_NUM_OF_SS           10
++#define MAX_REGION_NAME_LENGTH  16
++#define SBL_MINIDUMP_SMEM_ID	602
++#define MINIDUMP_REGION_VALID		('V' << 24 | 'A' << 16 | 'L' << 8 | 'I' << 0)
++#define MINIDUMP_SS_ENCR_DONE		('D' << 24 | 'O' << 16 | 'N' << 8 | 'E' << 0)
++#define MINIDUMP_SS_ENABLED		('E' << 24 | 'N' << 16 | 'B' << 8 | 'L' << 0)
++
++/**
++ * struct minidump_region - Minidump region
++ * @name		: Name of the region to be dumped
++ * @seq_num:		: Use to differentiate regions with same name.
++ * @valid		: This entry to be dumped (if set to 1)
++ * @address		: Physical address of region to be dumped
++ * @size		: Size of the region
++ */
++struct minidump_region {
++	char	name[MAX_REGION_NAME_LENGTH];
++	__le32	seq_num;
++	__le32	valid;
++	__le64	address;
++	__le64	size;
++};
++
++/**
++ * struct minidump_subsystem - Subsystem's SMEM Table of content
++ * @status : Subsystem toc init status
++ * @enabled : if set to 1, this region would be copied during coredump
++ * @encryption_status: Encryption status for this subsystem
++ * @encryption_required : Decides to encrypt the subsystem regions or not
++ * @region_count : Number of regions added in this subsystem toc
++ * @regions_baseptr : regions base pointer of the subsystem
++ */
++struct minidump_subsystem {
++	__le32	status;
++	__le32	enabled;
++	__le32	encryption_status;
++	__le32	encryption_required;
++	__le32	region_count;
++	__le64	regions_baseptr;
++};
++
++/**
++ * struct minidump_global_toc - Global Table of Content
++ * @status : Global Minidump init status
++ * @md_revision : Minidump revision
++ * @enabled : Minidump enable status
++ * @subsystems : Array of subsystems toc
++ */
++struct minidump_global_toc {
++	__le32				status;
++	__le32				md_revision;
++	__le32				enabled;
++	struct minidump_subsystem	subsystems[MAX_NUM_OF_SS];
++};
++
++#endif
 -- 
 2.43.0
 
