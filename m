@@ -1,350 +1,206 @@
-Return-Path: <devicetree+bounces-240149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B66C6DD8E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:57:28 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E74BC6DDF0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:04:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 522132DD33
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:57:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2D1904E3EB1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 569CE345CC6;
-	Wed, 19 Nov 2025 09:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53BB52376E0;
+	Wed, 19 Nov 2025 09:59:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="QXf1hG3l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010048.outbound.protection.outlook.com [52.101.84.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B6C335BBB
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 09:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763546240; cv=none; b=ma5/TIQpTbsi/z+nizfdGsmwck5IH0/8ztNbdlV0dUDxILAnCivSFzCGovAvho7yDwZYcsy/stb88Yb5zoHdVZiO82sZF3HXKelsgnxozeJAFHd/rUfjr2com8aCgph0TZvD/dg6ExFgj0Tba0ncKQSW3SEWxS2Fsl7iCfkp29k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763546240; c=relaxed/simple;
-	bh=u79rK05bGjXVLdcXPTg+6TrexWR50QX9FMb4ZS2IZYY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JpIGanEzV6ck//u10KawbYE7DjSun+Igl6Sau25tEQt1ZHqoUEgUThWyRtpr2FOT/RZMuC6Elj4zprIDentdwG9itzWp5m2IDWuiNOsAOeDj3T5NvigRFA9oaV2t9aZna1gchL3+4ZzcFXikOUx6bygSTSyBr4cgkROkDMS67ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-787da30c50fso60105027b3.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 01:57:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763546232; x=1764151032;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=u0htT7CWQPeByeqxSahyOl4zpUDCMY13dqs08SYJuOU=;
-        b=K77ddDLQMrrtpqFb8yRcaEbbFINhwNgaXEwdfz3YCcvyK+iGm7VIQHLVkRIVpe7laY
-         hvLLVph1tig2aydCZkxnXhCkz7FW/XTYXZKVv/dtOyXiM19pW32AJb3GWJtJuX3TCBb1
-         bqqm6u2fIO/vLx4kGGzHmraNZJkABNWakjKiHIGTi9bccAxHR0muD/rWOLiq7JYMDUXs
-         L2D/KFvsnCC/2umzMZ5xjwoTs7sW3pv1M6v62wroCKMu4GfVfhwEyEOBSEE2tEnPEPaB
-         POebv8xEmwO+SaYXPs6AilKGTniXA6ppXVSgy72et3J/2el2m54WSazpALzGJ5fWBauy
-         P8sA==
-X-Forwarded-Encrypted: i=1; AJvYcCWdP9NTrZFrC7YqKtGgyKntgyJEWwsOET2BL82iU9ZD/+cbcPElnzpIjtmfxypHHKriCV9ktbik5k1S@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkXEAWBI2hpluK9r4kwhUgew+ucaoXOj0V2w1nXmYERQSqMlbz
-	8tJTDlgzadfFrG+QqeKIfzteoUwNKB8XTrme8vOj3RIH/02iGQrIrumV
-X-Gm-Gg: ASbGncsy1k0nI14+dwpqmiAjMM/3FrMQ0DlTANBVainHObFPjwxikRFsz9OWrVYi7/m
-	Metw5QRoP5X99mTCZLUbdrw6YqegGPwRh0/7yXRdhNdSW0LN3D1TzMTjCKtSYLjZ4wkqxNIXps5
-	2NvWerjVO3Mfj3i7A+xDzjTn0GqxCf1KbPpQdKaVdqHH+di6kXARuMK5xAq7NV3WVrqKBAza2lK
-	/TzNcDsSZtket8W2JO2nk/fCcpmc5ZqJoVXvVrX5AGJXEq3ruge/tlL1zZJtUxHZqoXIaYV9L4Y
-	+mP6hoXj06o6L10S8esCOZOLmWB0dJ77gz3rGHPvGV5cz0w1IJ0neDQNlYFzBVyumHourueV9XB
-	vsBbepAoWh6YzTch28sIlDDahkqxCqvc3zPtEiK5AT2MFMGKkJtJdX4tvZ73KxCFYYeAZt+dqIT
-	2xNFA=
-X-Google-Smtp-Source: AGHT+IE6LqxZ12cGRllnLTKJ6CN02VFm/lmGISe4QW8wyVlwqqdnzmBi+WqVehYvYsST8F9UmUsoZw==
-X-Received: by 2002:a05:690c:6812:b0:788:bda:47c8 with SMTP id 00721157ae682-78929efb8f0mr335199187b3.55.1763546229905;
-        Wed, 19 Nov 2025 01:57:09 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-78821ddb70fsm61273127b3.12.2025.11.19.01.57.06
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Nov 2025 01:57:07 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-787da30c50fso60104297b3.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 01:57:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUPWd+B0niqR8hQd8isxROOxCKX39qAPcanZH7fdw7Ubrm81NLJWr2Xvp2hHuWsl8VgJGoK2ESRVGPY@vger.kernel.org
-X-Received: by 2002:a05:690c:86:b0:786:7c0a:71e5 with SMTP id
- 00721157ae682-78929e44351mr312271377b3.26.1763546226053; Wed, 19 Nov 2025
- 01:57:06 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7DD3358AB;
+	Wed, 19 Nov 2025 09:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763546393; cv=fail; b=fFL5vwJZY2mQ5e7BSuUS+jOgrh09dWbp+1S5ljczJAHJAsJgJs8xj4zKg6f234Jv5X9UlOWAoeElPpU/l6Xh1Wr+J7/nUKVywG6UAXlil3KHIMjA7hGXOeH/EQDa0uv+D94/hxnhgNaoksQ6w6vGYZdgN3CwnpgaSvdaCahlBCs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763546393; c=relaxed/simple;
+	bh=IfWmkwur2G5BaKRB/83aC62d+RpY2zKY4CYb8v620Zg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=DkAAO4GOMBsNl7JdnmIR6g/eMq1XX/ldMYPd/29JW58uj630YP00UWoDhZdaj7+DFdNoy01CnTNfwvynfhpmvXlVu5V9WLTeJc+To/QngHFaqGTpqnYSwsxaHGFw9fCZMOL1TEZwHl7cyqDdD5gNwGhoKw24a0uDJbije+xJkfM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=QXf1hG3l; arc=fail smtp.client-ip=52.101.84.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OIMjiwpV8S/phMfleZrr/7wIFhd5oRTFpsbgS0OSbZyAUiAEj6GJ0RGSEeGpY+Ov+Ch0bEIeDvFo+Apv2iI9rmpst6ZbAFxxFMPn9C/EC92lxzOEYePi2aB+v/7ubEi/0wPSqTQfXrL9XZz9KTOG2MGn0fQ1s7bL41on65440MytL4I124GGtwBdxhjJZTcWZVpnF4SGlGSV9eOJPCVzmuz3wsSzOySyyi4Ksd8JXUnIPx7QVjkLb8q4QmaVsKw2RoFp+oywsKi377OLDg25sdCe43yNG9cGY9yFxBym/ztJum07z2BTZX9mxsIleEVErRGxEHLegCXKy5j71WrcwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Df8XFfE76eEo4qA10N4cvk3U/vOXeZqvrzwdrRpQkkA=;
+ b=STYPHwoISWnqBhOd+MrxaSfrDDKjaQ7/n54Pk8VdfATlx9E3LDkIgECzlk0qTYD8X9pvpUiqk5SH4CRd2oAIaEOssF7CTBy0HPfyQKsYTrwhfxMKckXriYnh7VMwrjJcnrkfHX+bOr8bJtRl6+DUXPzZPfgSdUarEDoSLrcZUflDVUetvyr+5Cr3A1Bnj82RSt+/UbTXRi2j0h4bvJfFaBo6im3F5K6IuUOYdXQSeDI7mUZTzMhZqWhBH7Mp++Dt35Bph69CvnCnrad2BdxgvHbSOmZjSwwN2+PlRFvM2Jc88ucUO7KuffbIsokYgWCbH+VKzDwH3UAeWsLm9dgCWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Df8XFfE76eEo4qA10N4cvk3U/vOXeZqvrzwdrRpQkkA=;
+ b=QXf1hG3lrRMj+mM85SbCP1yM18WNcaC4NwaanVt9Z1mtxWpARokG1Y15fuiYiyr8Js1JHjFKuNkT7gPZufLwzsliQxrD3/attnTegtYJcMIwzeFF+u3TS4iFJwfZ11T7VLqLKCtbM9zrYlZVjMHbR9MLE1f+YH4s78g4iFGUf3G+ZJEt2/EhrsFhGhdP81W4pu6X7zGSh7CWLQSO/wo4XcfeX47agJSpLzy5tzVBjXXK11Aq33VIIBGdYyD0Sqi219CYgYdEuI9mNuS4PeAsJSrv3moLXAC8/vUxJXJvEUIbMRwCBsWnAQ64p4a7lri7/Rs0lAeEvEhC/K1dNhWyyA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DBBPR04MB7497.eurprd04.prod.outlook.com (2603:10a6:10:204::9)
+ by AM9PR04MB8940.eurprd04.prod.outlook.com (2603:10a6:20b:40b::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
+ 2025 09:59:47 +0000
+Received: from DBBPR04MB7497.eurprd04.prod.outlook.com
+ ([fe80::503f:b388:6d07:adff]) by DBBPR04MB7497.eurprd04.prod.outlook.com
+ ([fe80::503f:b388:6d07:adff%4]) with mapi id 15.20.9343.009; Wed, 19 Nov 2025
+ 09:59:46 +0000
+Date: Wed, 19 Nov 2025 11:59:42 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 14/15] net: dsa: sja1105: replace mdiobus-pcs
+ with xpcs-plat driver
+Message-ID: <20251119095942.bu64kg6whi4gtnwe@skbuf>
+References: <20251118190530.580267-1-vladimir.oltean@nxp.com>
+ <20251118190530.580267-15-vladimir.oltean@nxp.com>
+ <20251118190530.580267-1-vladimir.oltean@nxp.com>
+ <20251118190530.580267-15-vladimir.oltean@nxp.com>
+ <20251118164130.4e107c93@kernel.org>
+ <20251118164130.4e107c93@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251118164130.4e107c93@kernel.org>
+ <20251118164130.4e107c93@kernel.org>
+X-ClientProxiedBy: VI1PR04CA0129.eurprd04.prod.outlook.com
+ (2603:10a6:803:f0::27) To DBBPR04MB7497.eurprd04.prod.outlook.com
+ (2603:10a6:10:204::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251115-rubikpi-next-20251114-v1-0-fc630dc5bb5d@thundersoft.com>
- <20251115-rubikpi-next-20251114-v1-1-fc630dc5bb5d@thundersoft.com>
- <b2d4d91f-c726-4f5a-994a-086edc9caff2@mainlining.org> <CAEQ9gE=ztgQ+pGJVxKgk5dVWDSSfOG7r=s1cDa_x0_Zsf2eyYA@mail.gmail.com>
- <2iv3hsxcwlgfnpq75h4tfnbilurs5jelslig6gzknpb6lsupvk@xfxdofqw7b3v>
-In-Reply-To: <2iv3hsxcwlgfnpq75h4tfnbilurs5jelslig6gzknpb6lsupvk@xfxdofqw7b3v>
-From: Roger Shimizu <rosh@debian.org>
-Date: Wed, 19 Nov 2025 01:56:54 -0800
-X-Gmail-Original-Message-ID: <CAEQ9gEkke-tON2-oR9qSHgDH63gtDKu0S71XtMw=uwqRxSHkGA@mail.gmail.com>
-X-Gm-Features: AWmQ_bl_SFzQCsuk2XqZ4jDBPrsGzKnkCwo_SRBXj_zK7hVSRiz7ReegFQasHCc
-Message-ID: <CAEQ9gEkke-tON2-oR9qSHgDH63gtDKu0S71XtMw=uwqRxSHkGA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: rubikpi3: Add qcs6490-rubikpi3
- board dts
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Jens Reidel <adrian@mainlining.org>, Hongyang Zhao <hongyang.zhao@thundersoft.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DBBPR04MB7497:EE_|AM9PR04MB8940:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3a532286-ff8c-42c9-ff10-08de27525e7d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|10070799003|366016|7416014|19092799006|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?lIuh5bC3nFoCVbUZJRSe1mzj6DvocFnYOCEtk7wW81ejUJ42M0ak7HGOQVmb?=
+ =?us-ascii?Q?qOKtVl1Y5+L2H5DTDrbdp9GX2wHGgg1R30ZQLVm7S7uMOeTzqyDYj4F4lHMe?=
+ =?us-ascii?Q?UiMeFk8F8SV3McpNAZ0haM4W0B/Kr1yfwt+Dh1+SNKIq9JIGmgTOi8U+tnqJ?=
+ =?us-ascii?Q?rPbLS23IQXK7gmVaKMQF9ZTs0f3sZwsFxx/SYCW41JbixAu7tKT9Io+GJwbY?=
+ =?us-ascii?Q?DVZh/gEFKxsso72EoIjz7RSskMi8DiBe35/5k7VVDfb/NKv1gguIVw+PNXzF?=
+ =?us-ascii?Q?5jNB7j+KpYlTNz/D+BlFRRXF/32cf9tQ03yibJ5Z7198r20zzJxqROpqzWJ0?=
+ =?us-ascii?Q?a8MYAh9Ps+LmRmVapWa9zUpyU5ru+BwzdxETbgoyVD85RjwmQGDwS/bBU1bX?=
+ =?us-ascii?Q?1aR1aDrsT+MsU1azr3rxB9GAiAN78mmLQ+HU8rvNXLCLmWV+fII0/On1OslR?=
+ =?us-ascii?Q?o5ivYACBAC2A4rCTCa+I8j2f7vdcMzYK7eVnJt4YYFWa14udlBkDh+D+mcFm?=
+ =?us-ascii?Q?cEztgRhlTqUUbTqtRnBggoGQJ9JwTjZ/N+HKwl6EmD5Jr3J0PjBxDIofXIzx?=
+ =?us-ascii?Q?zb/3jpwMi0EDNpAwqGKzn7BpdRRvcL9CHRQa23pBtDW5WxURZU+rFmFNePJl?=
+ =?us-ascii?Q?xNQ9tdwu9bcWxNyRftMUsIlsjgJ4cbeIdNB/Mpcd5zqGDs+AkwPCUi01As/P?=
+ =?us-ascii?Q?3zMsgpt3f9Z7vXXc0Nw4rkdy7bXVheYAioi/rey1HmgC3n2gawszUjtWMp+1?=
+ =?us-ascii?Q?f139K0eCzhPTCw1S9vWV3VM4100xn1GAoDQglfDFOnQPqmjim3tAUG5+q4t4?=
+ =?us-ascii?Q?M6V/ymTevoXMZHE0WvUD+6OIAf87jfPkwzsQDq7uQZ9onfR5JBfbSXQaBUkk?=
+ =?us-ascii?Q?F8xTDjHuqwxJiaXQS32ZJCeISMimwdZqUT427exeHwd2fydzrgMB+DpRHlOo?=
+ =?us-ascii?Q?nqr+pd8KqU9P+hEGvWQF5L9fBV+uJAVs1YO8/Fh2BQYOAYesIbRxeAznsl4G?=
+ =?us-ascii?Q?zPy/4Egk22XIqCG+YYjpNMiqK+/gk2E868TmMvCrlcy5bDuASBQeoNqyWz9c?=
+ =?us-ascii?Q?6pU8MsglZ1kVgkC65/4yKaFMVVVzaMWvTrKRc3iJNnKQZPSIH38/IszBrlNt?=
+ =?us-ascii?Q?cIHiHJXK/e94QnJxynO+ayGg+e21rek8/L8EN/0p1x+JTKnmlYmcs3K3b3ou?=
+ =?us-ascii?Q?WoU7LgXCP2f4ZMo967Pk+9Ywk0tZOvvhZ4cPLkVqlDMXAIRdop0yyXoq5PeW?=
+ =?us-ascii?Q?kqy8PBp6j1Stbq9PENPS/De8S3OL2jM4SKZx79L4un7TwXQt0RhhQi/hj3tK?=
+ =?us-ascii?Q?LdJErtNUQOIvzU+eaG5Sw/Q48nG+zav2milblYayTWmjhx91TlN3HzvQFziM?=
+ =?us-ascii?Q?NE4BEwlrN9ShOx43LUpMZss6IkzwzbqMo/QjobaMn3RHh4LxNSz34EOsAfmB?=
+ =?us-ascii?Q?0tf/gDr1BZ0fBDMt7GtwBPnKKytPSL27?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7497.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(366016)(7416014)(19092799006)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?/hOzF5bWY1p7FXb2D0OBKjMnEWCgl1u5BwgkF9U/uGePoBYNExxKyehRm71w?=
+ =?us-ascii?Q?EChyZ504WTJYpTmz88JDAodMm2NvtOlCg3VCMbotrmK3jDGavBabAYzryFOx?=
+ =?us-ascii?Q?yzA0lgau+1x+8lSB8HMr7BtgIoIWW1XLfXRTBS/51cLJ1zyd9JqFzYoDICUU?=
+ =?us-ascii?Q?vJFJEdBAkB5N2OM6olwbV75HTX9FqD3sYsWdhCnxH0lX7RDLJEKx3CWBSt+Z?=
+ =?us-ascii?Q?d1tRM1ua+JR7/Ai2B8E4EGgCVfr9XwlcAtHkkV76R8FXcX8634ZVyd//6A+u?=
+ =?us-ascii?Q?UbueKoyblJVP5yPTV4Br5k1kvAFnmD6kt8LaLKktsjNXzSkOiDr8BSWUdvH3?=
+ =?us-ascii?Q?Clk4hgl85j6/V5I1A6ABg13FxyyUEWqPMaipJzGc3AJGXohrwKJ9GDqWtroJ?=
+ =?us-ascii?Q?921BM6VOe3dsKatRzVotYZGe0u8Phug1aB3kzfezcopGcSApfzfK8JuBhyu3?=
+ =?us-ascii?Q?Dw8jM/xiXNCBf7VeKEAzMTAkKG5iX7S/2R60j3AfgeK52zn8JqtppuP/TKRZ?=
+ =?us-ascii?Q?ayS52udi22lMCGkiqKIT4shrNVcXlyjJnIatDGynI2gK4oM5Vr60qj52vqRf?=
+ =?us-ascii?Q?Ni/+GXtaIcSBYxvEZijFEJgpsKUugowZCWQxbhHNMHHvt9EtSYCIV2bjIZPp?=
+ =?us-ascii?Q?C9XMoSjeG3Kp+EE4Txa863KhWv6lUOIBDsNsn2H8wfKszg71RD7LVmct+Yzf?=
+ =?us-ascii?Q?m5HxRYc+0m0Vnx9PyALp7vK9+IQzSw2kpX9k5NkhXjxpUXlnDbjte8kvLopA?=
+ =?us-ascii?Q?iYckllIYtBeYrc9BT+qj/pabe0v1u0td7CUbxiuDVhlWlV+1D3ThFiaxi2iO?=
+ =?us-ascii?Q?ak26j9CXOFOQX6ugyaMqc6O2UuQU20a62xA3WPdbehbER9eEAiZLcjDyddN6?=
+ =?us-ascii?Q?MoPZuev4JqVfuW2GwjVnP6d2SWzzH6yOm5R2tz/KT5JQPt7QzoHL1FZp5lCB?=
+ =?us-ascii?Q?HoMwxfX4RA4iJ4lcVKmaDH7rAYCbOW7lwJwEjJpofxY+CVbNYjdFAEMvXruE?=
+ =?us-ascii?Q?QeHADCtoAWpLlYt189prruG3H9pJrZopls8dfZppGi7y3qoNP/sB92D5K6TP?=
+ =?us-ascii?Q?h7NVS5dMaj1rZwg2wRbSNajG7SJ0+en94E0t8nwn4M67O0HJ3x9kVrXHdRji?=
+ =?us-ascii?Q?lDjA8fyvdqVxi1nK/mj3LPpA/WEVMDJKx1OcCWePav8mfVhH4BiX8y5Bq2am?=
+ =?us-ascii?Q?CyEWPpPOgauVlxaxyBXf+h8nro48AUxrBg8hSpD/Z8AJ02tiD7DqMmqBbVhz?=
+ =?us-ascii?Q?PW5+vGR6cIKHQT8nDa2WnI499TDTI0RNAXLxPYVIOvH4ooR0LgrZIfSvCB0e?=
+ =?us-ascii?Q?lL3oB23oe5w0evX8udJby4221YcS4iebtFvgGSC35K/s7sn08QgTSKTcGd7C?=
+ =?us-ascii?Q?VkY/Aq5ZpgFpvBdLMfK50jhvKqnR2LkXGX4HLWHad6XANnu8KCWJzKTiJOB5?=
+ =?us-ascii?Q?FH7NCHzYzqzJOFaRWkOXsFd2khaVs6bcYCBV4EIPo+rUdR/d/0N7NLeP1YVK?=
+ =?us-ascii?Q?nbj+YbssaDPnlE2aEyePRqBWRTpmqFz3VpEoSbNSwkNw9wYqHigAcbx+V3gv?=
+ =?us-ascii?Q?Q/YvGsyn/qPnRXqEHfipHfC6+OmDU9mhtH1ON3SHARyim33ngwlPjzsljqyf?=
+ =?us-ascii?Q?dlT9K3f2lscgfIkR+C+MPL3jUmOWrzgE7e+eJvQ9PCv99qsSJscJslgoA82B?=
+ =?us-ascii?Q?Oj0LFA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a532286-ff8c-42c9-ff10-08de27525e7d
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7497.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 09:59:46.0864
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZgfCPvAgKJbMYEQM+I8GXOnN40la0a9VxZiKQ16bTJtixA7zS/6ELKpQTgCicaku19fqvXTvCdGRqOzSSrI9jQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8940
 
-Dear Dmitry,
+On Tue, Nov 18, 2025 at 04:41:30PM -0800, Jakub Kicinski wrote:
+> On Tue, 18 Nov 2025 21:05:29 +0200 Vladimir Oltean wrote:
+> > +static bool sja1105_child_node_exists(struct device_node *node,
+> > +				      const char *name,
+> > +				      const struct resource *res)
+> > +{
+> > +	struct device_node *child = of_get_child_by_name(node, name);
+> > +	u32 reg[2];
+> > +
+> > +	for_each_child_of_node(node, child) {
+> > +		if (!of_node_name_eq(child, name))
+> > +			continue;
+> > +
+> > +		if (of_property_read_u32_array(child, "reg", reg, ARRAY_SIZE(reg)))
+> > +			continue;
+> > +
+> > +		if (reg[0] == res->start && reg[1] == resource_size(res))
+> > +			return true;
+> 
+> coccicheck says you're likely leaking the reference on the child here
 
-Glad that you're checking for the changes for RUBIK Pi 3!
+Ok, one item added to the change list for v2.
 
-On Tue, Nov 18, 2025 at 10:08=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> On Sun, Nov 16, 2025 at 11:36:13PM -0800, Roger Shimizu wrote:
-> > Thanks Jens, and Dmitry for the review!
-> >
-> > On Sat, Nov 15, 2025 at 9:25=E2=80=AFAM Jens Reidel <adrian@mainlining.=
-org> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On 11/14/25 5:34 PM, Hongyang Zhao wrote:
-> > > > Add DTS for Thundercomm qcs6490-rubikpi3 board which uses
-> > > > QCS6490 SoC.
-> > > >
-> > > > Works:
-> > > > - Bluetooth (AP6256)
-> > > > - Wi-Fi (AP6256)
-> > > > - Ethernet (AX88179B connected to UPD720201)
-> > > > - FAN
-> > > > - Two USB Type-A 3.0 ports (UPD720201 connected to PCIe0)
-> > > > - M.2 M-Key 2280 PCIe 3.0
-> > > > - RTC
-> > > > - USB Type-C
-> > > > - USB Type-A 2.0 port
-> > > > - 40PIN: I2C x1, UART x1
-> > > >
-> > > > Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-> > > > Reviewed-by: Roger Shimizu <rosh@debian.org>
-> > > > ---
-> > > >   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
-> > > >   .../boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts | 1415 +++++++=
-+++++++++++++
-> > > >   2 files changed, 1416 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dt=
-s/qcom/Makefile
-> > > > index 6f34d5ed331c..2433b15754fe 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > > @@ -138,6 +138,7 @@ qcs6490-rb3gen2-industrial-mezzanine-dtbs :=3D =
-qcs6490-rb3gen2.dtb qcs6490-rb3gen2
-> > > >
-> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs6490-rb3gen2-industrial-mezza=
-nine.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs6490-rb3gen2-vision-mezzanine=
-.dtb
-> > > > +dtb-$(CONFIG_ARCH_QCOM)      +=3D qcs6490-thundercomm-rubikpi3.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs8300-ride.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs8550-aim300-aiot.dtb
-> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs9100-ride.dtb
-> > > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.=
-dts b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
-> > > > new file mode 100644
-> > > > index 000000000000..4c9016992de3
-> > > > --- /dev/null
-> > > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
-> > > > @@ -0,0 +1,1415 @@
-> > >
-> > > [snip]
-> > >
-> > > > +
-> > > > +&pcie0 {
-> > > > +     perst-gpios =3D <&tlmm 87 GPIO_ACTIVE_LOW>;
-> > > > +     wake-gpios =3D <&tlmm 89 GPIO_ACTIVE_HIGH>;
-> > > > +
-> > > > +     pinctrl-0 =3D <&pcie0_clkreq_n>,
-> > > > +                 <&pcie0_reset_n>,
-> > > > +                 <&pcie0_wake_n>;
-> > > > +     pinctrl-names =3D "default";
-> > > > +
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&pcie0_phy {
-> > > > +     vdda-phy-supply =3D <&vreg_l10c_0p88>;
-> > > > +     vdda-pll-supply =3D <&vreg_l6b_1p2>;
-> > > > +
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&pcie1 {
-> > > > +     /* Using traditional address mapping */
-> > > > +     reg =3D <0 0x01c08000 0 0x3000>,
-> > > > +           <0 0x40000000 0 0xf1d>,
-> > > > +           <0 0x40000f20 0 0xa8>,
-> > > > +           <0 0x40001000 0 0x1000>,
-> > > > +           <0 0x40100000 0 0x100000>;
-> > > > +
-> > > > +     ranges =3D <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x10=
-0000>,
-> > > > +              <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd0=
-0000>;
-> > >
-> > > Thanks for attempting to fix the PCIe issues. With your patch series
-> > > applied on top of linux-next, I'm still seeing PCIe issues:
-> > >
-> > > [    0.380693] Internal error: synchronous external abort:
-> > > 0000000096000010 [#1]  SMP
-> > > [    0.406491] Modules linked in:
-> > > [    0.406495] CPU: 5 UID: 0 PID: 106 Comm: kworker/u32:6 Tainted: G =
-  M
-> > >                 6.18.0-rc5-next-20251113 #13 NONE
-> > > [    0.406499] Tainted: [M]=3DMACHINE_CHECK
-> > > [    0.406500] Hardware name: thundercomm Thundercomm RUBIK Pi
-> > > 3/Thundercomm RUBIK Pi 3, BIOS 2025.10-rc4 10/01/2025
-> > > [    0.406502] Workqueue: async async_run_entry_fn
-> > > [    0.406508] pstate: 40400005 (nZcv daif +PAN -UAO -TCO -DIT -SSBS
-> > > BTYPE=3D--)
-> > > [    0.428362] pc : __pi_memset_generic+0x16c/0x188
-> > > [    0.428366] lr : dma_direct_alloc+0x19c/0x3d0
-> > > [    0.428370] sp : ffff8000810e3920
-> > > [    0.428371] x29: ffff8000810e3920 x28: ffff000080d0f810 x27:
-> > > ffffba4c6196ec48
-> > > [    0.428373] x26: ffff000080d0f810 x25: ffffba4c607b31cc x24:
-> > > 0000000000000000
-> > > [    0.428375] x23: ffff000080d0f810 x22: ffff000000c00000 x21:
-> > > ffff000082858948
-> > > [    0.428376] x20: 0000000000001000 x19: fffffdffc0030000 x18:
-> > > 000000000000000a
-> > > [    0.428378] x17: ffff0000823dae00 x16: 0000000000000000 x15:
-> > > 0000000000000000
-> > > [    0.428380] x14: 00000000ffffffff x13: 0000000000000068 x12:
-> > > 0000000000000100
-> > > [    0.449344] x11: 0000000000000000 x10: ffff0001fef99500 x9 :
-> > > 0000000000000000
-> > > [    0.449345] x8 : ffff000000c00000 x7 : 0000000000000000 x6 :
-> > > 000000000000003f
-> > > [    0.449347] x5 : 0000000000000040 x4 : 0000000000000000 x3 :
-> > > 0000000000000004
-> > > [    0.449349] x2 : 0000000000000fc0 x1 : 0000000000000000 x0 :
-> > > ffff000000c00000
-> > > [    0.449350] Call trace:
-> > > [    0.449351]  __pi_memset_generic+0x16c/0x188 (P)
-> > > [    0.449354]  dma_alloc_attrs+0x94/0x210
-> > > [    0.449357]  dmam_alloc_attrs+0x74/0xc0
-> > > [    0.469967]  dw_pcie_msi_host_init+0x100/0x300
-> > > [    0.469971]  dw_pcie_host_init+0x5e4/0x6d8
-> > > [    0.491913]  qcom_pcie_probe+0x5a8/0x838
-> > > [    0.491916]  platform_probe+0x64/0xc0
-> > > [    0.491919]  really_probe+0xc8/0x3f0
-> > > [    0.491921]  __driver_probe_device+0x88/0x170
-> > > [    0.491922]  driver_probe_device+0x48/0x130
-> > > [    0.491923]  __device_attach_driver+0xc4/0x190
-> > > [    0.491925]  bus_for_each_drv+0x90/0x100
-> > > [    0.491928]  __device_attach_async_helper+0xb8/0x120
-> > > [    0.491929]  async_run_entry_fn+0x3c/0x1e0
-> > > [    0.491931]  process_one_work+0x150/0x3a0
-> > > [    0.491934]  worker_thread+0x288/0x480
-> > > [    0.491936]  kthread+0x118/0x1e0
-> > > [    0.491938]  ret_from_fork+0x10/0x20
-> > > [    0.513092] Code: 91010108 54ffff4a 8b040108 cb050042 (d50b7428)
-> > > [    0.513094] ---[ end trace 0000000000000000 ]---
-> > >
-> > > I can only get the device to boot by disabling both pcie0 and pcie1.
-> >
-> > I think there're some regressions in "next-20251114".
-> > After some time to "git bisect", I found after running 2 revert
-> > commands below, it can boot for both RUBIK Pi 3 and RB3 Gen2.
-> >
-> > $ git revert b15ce3c0882c9cd2fbe4f87047874ad087b583ff -m 1
-> > $ git revert 03e928442d469f7d8dafc549638730647202d9ce
-> >
-> > > > +
-> > > > +
-> > > > +     perst-gpios =3D <&tlmm 2 GPIO_ACTIVE_LOW>;
-> > > > +     wake-gpios =3D <&tlmm 3 GPIO_ACTIVE_LOW>;
-> > > > +
-> > > > +     pinctrl-0 =3D <&pcie1_clkreq_n>,
-> > > > +                 <&pcie1_reset_n>,
-> > > > +                 <&pcie1_wake_n>;
-> > > > +     pinctrl-names =3D "default";
-> > > > +
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&pcie1_phy {
-> > > > +     vdda-phy-supply =3D <&vreg_l10c_0p88>;
-> > > > +     vdda-pll-supply =3D <&vreg_l6b_1p2>;
-> > > > +
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > >
-> > > [snip]
-> > >
-> > > > +
-> > > > +&remoteproc_adsp {
-> > > > +     firmware-name =3D "qcom/qcs6490/adsp.mbn";
-> > > > +
-> > > > +     status =3D "okay";
-> > > > +};
-> > >
-> > > I'm fairly sure that this is the wrong ADSP firmware. With the firmwa=
-re
-> > > in linux-firmware, I'm seeing charger pd crashes and the ADSP constan=
-tly
-> > > restarting. Using the Radxa Dragon Q6A ADSP firmware which disables t=
-he
-> > > charging feature in the firmware works way better and does not result=
- in
-> > > crashes.
-> >
-> > I run the Ubuntu 24.04 base system:
-> > * https://ubuntu.com/download/qualcomm-iot#rubikpi3
-> >
-> > Currently it boots well with adsp fw from RB3 Gen2 (from deb pkg:
-> > firmware-qcom-hlosfw) without crash.
-> > But I heard from next release, adsp will be customized, so Hongyang
-> > will make another patch to upstream the adsp for RUBIK Pi 3.
->
-> Then it would be nice to include the new path for ADSP firmware from the
-> day 0 (you can do this even before it is sent to linux-firmware).
+Why is cocci-check.sh part of the "contest" test suite that runs on
+remote executors? This test didn't run when I tested this series locally
+with ingest_mdir.py.
 
-Thanks for letting me know we can post it here, before sending to
-linux-firmware!
-
-Currently we're using the same adsp blob as QLI1.4 for RB3 Gen2.
-It's packaged in ubuntu:
-* https://launchpad.net/~ubuntu-qcom-iot/+archive/ubuntu/qcom-ppa/+packages
-* Package: firmware-qcm6490-msl
-* Version: 1.0.r00083.0+dsp103-0ubuntu1
-
-I heard from Hongyang that from QLI1.5, RUBIK Pi 3 will have a
-slightly different adsp than RB3 Gen2.
-Hongyang will make it public after full testing.
-
-Cheers,
-Roger
-
-> > Cheers,
-> > Roger
-> >
-> > > > +
-> > > > +&remoteproc_cdsp {
-> > > > +     firmware-name =3D "qcom/qcs6490/cdsp.mbn";
-> > > > +
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > >
-> > > [snip]
-> > >
-> > > Thanks,
-> > > Jens
->
-> --
-> With best wishes
-> Dmitry
+> > +	}
+> > +
+> > +	return false;
+> > +}
+> -- 
+> pw-bot: cr
 
