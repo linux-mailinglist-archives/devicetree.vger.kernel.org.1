@@ -1,198 +1,534 @@
-Return-Path: <devicetree+bounces-240132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A72BC6DC01
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:35:27 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07EA3C6DC67
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:39:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 444FB4F42DF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:26:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 030754F95A5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:28:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C8A33C503;
-	Wed, 19 Nov 2025 09:26:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784A833EB11;
+	Wed, 19 Nov 2025 09:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="s6HN2fID"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ixD2uj0q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D1C33C52F;
-	Wed, 19 Nov 2025 09:26:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D9F33C1A6
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 09:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763544412; cv=none; b=sc003TjcAsJ7eXsTp0Cl6ABeSQLvcfmjnNEtnxoRxe33yVe7emD/SLQVZNwmvEBMmvNtUzEkLgm0JzCPUkPOi0iYHasUxEu4ELBfvEf/DZYXfFd+2jCvf1KY1KLJatl4jjNt6UdrOA2ihBsKbb3xoBUpmAjm0JkUEZgPuFyYbkA=
+	t=1763544507; cv=none; b=pkxm1Z6njEoRkwoWvYHqXiVU3RZHWrqelZ0FAQsfZnDIMOi1BfIC1nRYFvSTQbWQq+YUP+n1oXZAzdjKx5o+8YmMGaOeDCEYS+NJy5pWMQaC7YPQRpIO7m7TslfgZbNGtAGgywse4/20hnbN7G2A1mrfo9UWHjC9afjmgwyIWAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763544412; c=relaxed/simple;
-	bh=uxsIT98AKgzeKLCoDfmcMtFTm6JJY57t1GEPNiKn05k=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=nDGkRWSy/fhL1m1hH0H8S2LC8LCOBghdSvZA92scFq4v9tFjlKPawtotmjOK0MJNle1OpNQizMHCxNq7SKFtW9fgPYBqr1+Q5+VG+y7dBni1bmV73O6f47UeYvjCFfiuOz/kYTdvm8l48OFN3u0O74uqu1YuUIP1CGnFB8RZmQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=s6HN2fID; arc=none smtp.client-ip=212.227.15.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1763544403; x=1764149203; i=frank-w@public-files.de;
-	bh=uxsIT98AKgzeKLCoDfmcMtFTm6JJY57t1GEPNiKn05k=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
-	 References:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=s6HN2fID5S/UpOoEioEzsjWuNbxjF6ziEbzc/SWqe/dGENq8Was4CyO1S3+C8m63
-	 RWlY8Hizn1yjNhiXwR6LrT70CD15U6v98WHxINVcnioNQDbsUvznk0tFMIdZNllNo
-	 LD1jE2+LMkJ7J9dKgeimmjoQDpg2M36ueXMnwK/h17aAt9vpOzWColAXs0/W26J+U
-	 arn+CvdjGs+dyu109gh4nYcbeis3pYgch0Vgsi4lkV2Jk1oC9t+rdyx8Y9BOuM7ZV
-	 VERztBpKpFgrE9fU/aBKJd7H4QgLplcjmsIoE04scTkdNeRpJytSDyqhPKe63SBcZ
-	 CUdUjcrfwiX1+LQ5Mg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from ehlo.thunderbird.net ([80.187.70.145]) by mail.gmx.net
- (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1N2DxE-1wIS9l0iY2-016Xyz; Wed, 19 Nov 2025 10:26:43 +0100
-Date: Wed, 19 Nov 2025 10:26:40 +0100
-From: Frank Wunderlich <frank-w@public-files.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- robh@kernel.org
-CC: matthias.bgg@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_Aw=3A_Re=3A_=5BPATCH=5D_arm64=3A_dts=3A_mediat?=
- =?US-ASCII?Q?ek=3A_Apply_all_DT_overlays_at_build_time?=
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <bd64ace0-b4c5-46e0-870b-e62f950f4199@collabora.com>
-References: <20251117211306.725678-1-robh@kernel.org> <679c1f30-7c62-484e-b4e5-7351a23f15e5@collabora.com> <CAL_JsqK4jvZQTQAXCjPgxBCUiENGKgkgaDgZ680QqL1XpS6bbw@mail.gmail.com> <trinity-dfca2931-a7e8-4b33-b722-c22105569d82-1763485361461@trinity-msg-rest-gmx-gmx-live-56d984c6fb-85gcg> <bd64ace0-b4c5-46e0-870b-e62f950f4199@collabora.com>
-Message-ID: <81BC8F8F-91A2-4414-9847-292D974042B6@public-files.de>
+	s=arc-20240116; t=1763544507; c=relaxed/simple;
+	bh=tyBHd/sD6QMY7Lk4BsXzzXhUokKGbdyEon6jpEDmLuI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gqnFBqN8b+R9QkazCIeWFCX56CBo/fKGKmPOtPAcz+1gdr3lqHOpt5Th9GBqa1tcw2XqAPdOkgL1OGMEewcsytPkLAq8HfnLwwjifrv1vR+mLz0FNxivgI1z44qtuRN+O5aXvonKjIatptGnE/mlypL85qLteiIQvgAmcTw3Prw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ixD2uj0q; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b735e278fa1so989105566b.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 01:28:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763544503; x=1764149303; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mk8B3cojzWWruLtn+KqWZ/72SZHhnc9WvIBJjyExMNY=;
+        b=ixD2uj0qOMzlmtV+gKw8MREAO6VV01ftDSTqmRVb9PCPVjJOwsEKdWJxltqR3ojrX6
+         JQm3NdVYqBHW4xh/6AJKxsNdUq6bPY1/+wchxiBArklC+paRviAGVMldKIUn8eq8pV54
+         CbzWvzLo97ptUvCZOOC29V5eQwmc2hT6o6j4wLLZwPiRi5BGM4DAnYYoEFFVZfgEBlC2
+         zRQqgYJ1nbjCPo8tyMnht3d4V9HyFACnWyR2RCvjuPiEhWLudH6Y+QcRrwlAck1MjriU
+         IxYQ7nc1I9DvCUgCQexmyKyKfSaqlfGXT+aeG3UpSC8xIXaiCtfjJCUEVF7fY7PBtMUK
+         PcNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763544503; x=1764149303;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=mk8B3cojzWWruLtn+KqWZ/72SZHhnc9WvIBJjyExMNY=;
+        b=tjiclwOZfuw0oCsxeNoT9qXMtUHKqaCsinFppD4g8XiCurgItN4bWWTvhu3aiKFO8y
+         PiNPFHGn4ZFUZPFgnKa/TmDliibJmlHNgK6e//tmV58w4nvhwJCbG26BSiU8W8C9mHJb
+         hKNkYMlBanB3LPOWoDnGNl/32ZdEQswOYr2ij5I+mB1ZJbqvnpx9QTIo8Ift5c7UrlX2
+         la3u9lcB/2cdt1QPr+AP4jj7Ac5oLykmszKZYCK6lqnHqs2jOEsIXITi2nR91q0PIMoO
+         GzBrweUhVseBGisy3P6EmML9yZAKKtwxyXsW5sbGvM/O0bLVutYo1H9vebU5EWLmyC7Y
+         rxcA==
+X-Forwarded-Encrypted: i=1; AJvYcCWzx+mbYFdUw9OIVC0hM/DnQaLQCWVKKYGG6CebafT1tdAHAYCTh2ZuCWPlPG8gXUd942f9oJ0wx+vs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy45kdAd65LCoFeU3D4e4rMlm7QvslBVcEWE0VFAUOPu7GYqrJw
+	TALGeXVCQiB0Q+TiqcUMAJqtnSpAG2jBOU65XXYHgjOcaeqNzXv7KatTq617DbEMTPTksPUIcbb
+	yqtFKyCGHL9SI0fj8F8MYRWUlbQ9BCo0=
+X-Gm-Gg: ASbGncvR2cnepOCZLW9Fi37KaKq8vzpyajSrKK/9QNFUS+ktfBmUFlwjiWDuPsCNqkI
+	5YD2pmwbYr4mRCyGqMvenmErYaf5uRaS0ZKgVyb5ItBhfK/ndBdh2Xqf0mXO09RnWG8fzmTg9MR
+	GuuU1fPyRaCk6mOyY8tzpVmP5iuj6MIJPSxwB3vmqNq3vniRDm9pMCXIkWJvg8CFEzHwtqDQG02
+	0bhPDkiO0QOwKyohuhSDai2QCP4Us3laxu94iPa9476PGfbEF5KkZ9TXjxayoKcvqyNhI8s9vIT
+	6ltvMLD1bBqMLYAL9YOm6yiZqb4tLpsRM0SIen1NSCKfDuErPt6UEghdvBqKJr0cscfe0QML2nC
+	lCPwtFw==
+X-Google-Smtp-Source: AGHT+IEyGpGW+oiPii/+GMJRrXskY0cNXM+cCjTvk+0ovKdatlaE2sFNYqPJXvEgodhtsxrrNTAhNY/TeL7OFjp/9HI=
+X-Received: by 2002:a17:907:7207:b0:b73:7325:112d with SMTP id
+ a640c23a62f3a-b73732513dbmr1903766566b.35.1763544502768; Wed, 19 Nov 2025
+ 01:28:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+References: <20251118203305.3834987-1-daniel.lezcano@linaro.org> <20251118203305.3834987-3-daniel.lezcano@linaro.org>
+In-Reply-To: <20251118203305.3834987-3-daniel.lezcano@linaro.org>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 19 Nov 2025 11:27:45 +0200
+X-Gm-Features: AWmQ_bmeAhIfHskOkZFn6ZSVM4jsXibZAlrpoGTU5Fd2b-ehl-T6Xpanfsx7_KU
+Message-ID: <CAHp75Ve=CU8ecXk5sgkHPJbYA_K+sa+Lyys+cdpCm=QHOw2ytg@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, 
+	linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com, 
+	ghennadi.procopciuc@oss.nxp.com, vkoul@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:QYl+nkFXj3iFRCfUcFJTebjVj/pq1Tu4+4nWS/Y7622nKJOAdh0
- 3KiAgVhPIihXHRZx4PXnSJ/CI3mxFtwwYhnbztub76UZDpqW+khZNxiA3C31neYSMTlrEaK
- 4f3KFqqd9PJHsyX8O8S6ca0olGa9aQDQ5e7f1C8XQZY5WS/NnrZLEVdJ+fSLDo9T+WMIFC2
- H0zdaZgP71ICHWX69q+tQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:Z4KewGmBvgs=;n+8kalSeuObTxamXdgrZIH9IG4v
- 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
- FeEY9++0=
 
-Am 19=2E November 2025 09:39:07 MEZ schrieb AngeloGioacchino Del Regno <ang=
-elogioacchino=2Edelregno@collabora=2Ecom>:
->Il 18/11/25 18:02, Frank Wunderlich ha scritto:
->> Hi,
->>=20
->> this looks similar to my attempt i did here
->>=20
->> https://patchwork=2Ekernel=2Eorg/project/linux-mediatek/patch/202406080=
-80530=2E9436-2-linux@fw-web=2Ede/
->>=20
->> But in my case i added full dtb with 2 overlays as there can be 2 devic=
-es (1 mmc + 1 spi) at one time=2E
->> So usable as dtb for bootloader config without overlays, not only for v=
-alidation=2E=2E=2E
->>=20
+On Tue, Nov 18, 2025 at 10:34=E2=80=AFPM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+
+Thanks for the update, my comments below (but we are almost done).
+
+> The NXP S32G2 and S32G3 platforms integrate a successive approximation
+> register (SAR) ADC. Two instances are available, each providing 8
+> multiplexed input channels with 12-bit resolution. The conversion rate
+> is up to 1 Msps depending on the configuration and sampling window.
 >
->Please don't top post :-)
-
-Sorry for that :(
-
->That said, for the target of what is done here, I think yours is nicer to=
- the eye
->compared to Rob's (not his fault at all, most of the times overlays canno=
-t be
->applied together, he can't possibly know if that is possible in this case=
-)=2E
+> The SAR ADC supports raw, buffer, and trigger modes. It can operate
+> in both single-shot and continuous conversion modes, with optional
+> hardware triggering through the cross-trigger unit (CTU) or external
+> events. An internal prescaler allows adjusting the sampling clock,
+> while per-channel programmable sampling times provide fine-grained
+> trade-offs between accuracy and latency. Automatic calibration is
+> performed at probe time to minimize offset and gain errors.
 >
->If there is really no other solution to that=2E=2E=2E well, at this point=
- I prefer to
->have something nicer to the eye, with all of the necessary "evil" that co=
-mes with
->it=2E
+> The driver is derived from the BSP implementation and has been partly
+> rewritten to comply with upstream requirements. For this reason, all
+> contributors are listed as co-developers, while the author refers to
+> the initial BSP driver file creator.
 
-If my version is ok for rob (afair he did not replied on that yet),i would=
- resend it again with similar for R4 and R4Pro=2E
+I would move this paragraph closer to the tag block and FWIW we also
+have Originally-by: tag in case it suits better (usually when the
+original code is rewritten more than ~67%).
 
->P=2ES=2E: Strong words contained in this reply are meant to be lighter th=
-an they appear
+> All modes have been validated on the S32G274-RDB2 platform using an
+> externally generated square wave captured by the ADC. Tests covered
+> buffered streaming via IIO, trigger synchronization, and accuracy
+> verification against a precision laboratory signal source.
+>
+> One potential scenario, not detected during testing, is that in some
+> corner cases the DMA may already have been armed for the next
+> transfer, which can lead dmaengine_tx_status() to return an incorrect
+> residue.  The callback_result() operation=E2=80=94intended to supply the
+> residue directly and eliminate the need to call
+> dmaengine_tx_status()=E2=80=94also does not work.  Attempting to use
+> dmaengine_pause() and dmaengine_resume() to prevent the residue from
+> being updated does not work either.
+>
+> This potential scenario should apply to any driver using cyclic DMA.
+> However, no current driver actually handles this case, and they all rely
+> on the same acquisition routine (e.g., the STM32 implementation).
+> The NXP SAR acquisition routine has been used in production for several
+> years, which is a good indication of its robustness.
+>
+> As the IIO is implementing the cyclic DMA support API, it is not worth
+> to do more spins to the current routine as it will go away when the
+> new API will be available.
 
->Cheers,
->Angelo
+...
 
-regards Frank
+> +#define NXP_SAR_ADC_EOC_CH(c)          BIT((c) % 32)
+
+Do you expect "c" to be bigger than 31? In which circumstances?
+
+...
+
+> +#define NXP_SAR_ADC_CTR_INPSAMP_MIN    0x08
+> +#define NXP_SAR_ADC_CTR_INPSAMP_MAX    0xFF
+
+Keep the style consistent (I think you want small hexadecimal letters
+in the value).
+
+...
+
+> +/* Other field define */
+> +#define NXP_SAR_ADC_CONV_TIMEOUT_MS    100
+> +#define NXP_SAR_ADC_CONV_TIMEOUT_JF    (msecs_to_jiffies(NXP_SAR_ADC_CON=
+V_TIMEOUT_MS))
+
+I don't see the use of the first definition. Dropping _JF (we usually
+assume the timeouts without units in "ticks") and using 100 directly
+as a parameter to the msecs_to_jiffies() will make it clear enough.
+
+...
+
+> +static bool nxp_sar_adc_set_enabled(struct nxp_sar_adc *info, bool enabl=
+e)
+> +{
+> +       u32 mcr;
+> +       bool pwdn;
+> +
+> +       mcr =3D readl(NXP_SAR_ADC_MCR(info->regs));
+
+> +       /* Return the current state. */
+> +       pwdn =3D FIELD_GET(NXP_SAR_ADC_MCR_PWDN, mcr);
+
+The comment is a bit odd. I think you want to say "Save the current
+state and return it later" or something like this.
+
+> +       /* When the enabled flag is not set, we set the power down bit */
+> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_PWDN, &mcr, !enable);
+> +
+> +       writel(mcr, NXP_SAR_ADC_MCR(info->regs));
+> +
+> +       /*
+> +        * Ensure there are at least three cycles between the
+> +        * configuration of NCMR and the setting of NSTART.
+> +        */
+> +       if (enable)
+> +               ndelay(div64_u64(NSEC_PER_SEC, clk_get_rate(info->clk) * =
+3));
+
+I'm wondering how low the clock rate can be? With low enough clock
+rates this becomes a 100% CPU busyloop and in atomic context (is this
+the case?) without even the possibility to schedule.
+
+> +       return pwdn;
+> +}
+
+...
+
+> +static int nxp_sar_adc_calibration(struct nxp_sar_adc *info)
+> +{
+> +       int ret;
+> +
+> +       /* Calibration works only if the adc is powered up. */
+
+ADC
+
+> +       nxp_sar_adc_enable(info);
+> +
+> +       /* The calibration operation starts. */
+> +       nxp_sar_adc_calibration_start(info->regs);
+> +
+> +       ret =3D nxp_sar_adc_calibration_wait(info->regs);
+> +
+> +       /*
+> +        * Calibration works only if the adc is powered up. However
+
+ADC
+
+> +        * the calibration is called from the probe function where the
+> +        * iio is not enabled, so we disable after the calibration.
+> +        */
+> +       nxp_sar_adc_disable(info);
+> +
+> +       return ret;
+> +}
+
+...
+
+> +static int nxp_sar_adc_read_data(struct nxp_sar_adc *info, unsigned int =
+chan)
+> +{
+> +       u32 ceocfr, cdr;
+> +
+> +       ceocfr =3D readl(NXP_SAR_ADC_CEOCFR0(info->regs));
+
+> +       /* FIELD_GET() can not be used here because EOC_CH is not constan=
+t */
+> +       if (!(NXP_SAR_ADC_EOC_CH(chan) & ceocfr))
+> +               return -EIO;
+
+[nxp_sar_adc_]field_get() may be defined and used. There is a series
+pending to bring field_get() to bitfield.h next release.
+
+> +       cdr =3D readl(NXP_SAR_ADC_CDR(info->regs, chan));
+> +       if (!(FIELD_GET(NXP_SAR_ADC_CDR_VALID, cdr)))
+> +               return -EIO;
+> +
+> +       return FIELD_GET(NXP_SAR_ADC_CDR_CDATA_MASK, cdr);
+> +}
+
+...
+
+> +static irqreturn_t nxp_sar_adc_isr(int irq, void *dev_id)
+> +{
+> +       struct iio_dev *indio_dev =3D (struct iio_dev *)dev_id;
+
+Unneeded explicit casting.
+
+> +       struct nxp_sar_adc *info =3D iio_priv(indio_dev);
+> +       int isr;
+> +
+> +       isr =3D readl(NXP_SAR_ADC_ISR(info->regs));
+> +       if (!(FIELD_GET(NXP_SAR_ADC_ISR_ECH, isr)))
+> +               return IRQ_NONE;
+> +
+> +       if (iio_buffer_enabled(indio_dev))
+> +               nxp_sar_adc_isr_buffer(indio_dev);
+> +       else
+> +               nxp_sar_adc_isr_read_raw(indio_dev);
+> +
+> +       writel(NXP_SAR_ADC_ISR_ECH, NXP_SAR_ADC_ISR(info->regs));
+> +
+> +       return IRQ_HANDLED;
+> +}
+
+> +static void nxp_sar_adc_channels_disable(struct nxp_sar_adc *info, u32 m=
+ask)
+> +{
+> +       u32 ncmr, cimr;
+> +
+> +       ncmr =3D readl(NXP_SAR_ADC_NCMR0(info->regs));
+> +       cimr =3D readl(NXP_SAR_ADC_CIMR0(info->regs));
+> +
+> +       /* FIELD_MODIFY() can not be used because the mask is not constan=
+t */
+> +       ncmr &=3D ~mask;
+> +       cimr &=3D ~mask;
+> +
+> +       writel(ncmr, NXP_SAR_ADC_NCMR0(info->regs));
+> +       writel(cimr, NXP_SAR_ADC_CIMR0(info->regs));
+> +}
+
+...
+
+> +static void nxp_sar_adc_stop_conversion(struct nxp_sar_adc *info)
+> +{
+> +       u32 mcr;
+> +
+> +       mcr =3D readl(NXP_SAR_ADC_MCR(info->regs));
+> +
+> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_NSTART, &mcr, 0x0);
+> +
+> +       writel(mcr, NXP_SAR_ADC_MCR(info->regs));
+> +
+> +       /*
+> +        * On disable, we have to wait for the transaction to finish.
+> +        * ADC does not abort the transaction if a chain conversion
+> +        * is in progress.
+> +        * Wait for the worst case scenario - 80 ADC clk cycles.
+> +        */
+> +       ndelay(div64_u64(NSEC_PER_SEC, clk_get_rate(info->clk)) * 80);
+
+Same comment / question about the possible too long delays.
+
+> +}
+> +
+> +static int nxp_sar_adc_start_conversion(struct nxp_sar_adc *info, bool r=
+aw)
+> +{
+> +       u32 mcr;
+> +
+> +       mcr =3D readl(NXP_SAR_ADC_MCR(info->regs));
+> +
+> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_NSTART, &mcr, 0x1);
+> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_MODE, &mcr, !raw);
+
+raw ? 0 : 1
+
+is better to understand (it will be optimised by the compiler anyway,
+no branches will be added).
+
+> +
+> +       writel(mcr, NXP_SAR_ADC_MCR(info->regs));
+> +
+> +       return 0;
+> +}
+> +
+> +static int nxp_sar_adc_read_channel(struct nxp_sar_adc *info, int channe=
+l)
+> +{
+> +       int ret;
+> +
+> +       info->current_channel =3D channel;
+> +       nxp_sar_adc_channels_enable(info, BIT(channel));
+> +       nxp_sar_adc_irq_cfg(info, true);
+> +       nxp_sar_adc_enable(info);
+> +
+> +       reinit_completion(&info->completion);
+> +       ret =3D nxp_sar_adc_start_conversion(info, true);
+> +       if (ret < 0)
+> +               goto out_disable;
+
+> +       ret =3D wait_for_completion_interruptible_timeout(&info->completi=
+on,
+> +                                                       NXP_SAR_ADC_CONV_=
+TIMEOUT_JF);
+> +       if (ret =3D=3D 0)
+> +               ret =3D -ETIMEDOUT;
+> +       if (ret > 0)
+> +               ret =3D 0;
+
+Since semantically it's not the same ret, I would write above as
+
+  if (!wait_for_completion...(...))
+    ret =3D -ETIMEDOUT;
+
+And note, no "else" branch is needed in this case.
+
+> +       nxp_sar_adc_stop_conversion(info);
+> +
+> +out_disable:
+> +       nxp_sar_adc_channels_disable(info, BIT(channel));
+> +       nxp_sar_adc_irq_cfg(info, false);
+> +       nxp_sar_adc_disable(info);
+> +
+> +       return ret;
+> +}
+
+> +               /*
+> +                * Configures the sample period duration in terms of the =
+SAR
+> +                * controller clock. The minimum acceptable value is 8.
+> +                * Configuring it to a value lower than 8 sets the sample=
+ period
+> +                * to 8 cycles.  We read the clock value and divide by th=
+e
+> +                * sampling timing which gives us the number of cycles ex=
+pected.
+> +                * The value is 8 bits wide, consequently the max value i=
+s 0xFF.
+
+8-bit wide
+
+> +                */
+
+...
+
+> +       /*
+> +        * DMA in some corner cases might have already be charged for
+> +        * the next transfer. Potentially there can be a race where
+> +        * the residue changes while the dma engine updates the
+> +        * buffer. That could be handled by using the
+> +        * callback_result() instead of callback() because the residue
+> +        * will be passed as parameter to the function. However this
+
+as a parameter
+
+
+> +        * new callback is pretty new and the backend does not update
+> +        * the residue. So let's stick to the version other drivers do
+> +        * which has proven running well in production since several
+> +        * years.
+> +        */
+
+...
+
+> +               /*
+> +                * iio_push_to_buffers_with_ts should not be
+
+iio_push_to_buffers_with_ts()
+
+> +                * called with dma_samples as parameter. The samples
+> +                * will be smashed if timestamp is enabled.
+> +                */
+
+...
+
+> +       nxp_sar_adc_channels_disable(info, *indio_dev->active_scan_mask);
+
+Wondering why this can't take a pointer to a mask.
+
+...
+
+> +       info =3D iio_priv(indio_dev);
+
+> +
+
+Unneeded blank line.
+
+> +       info->vref_mV =3D data->vref_mV;
+
+...
+
+> +       ret =3D devm_request_irq(dev, irq, nxp_sar_adc_isr, 0,
+> +                              dev_name(dev), indio_dev);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "failed requesting irq, ir=
+q =3D %d\n", irq);
+
+No error code duplication in the message, please.
+
+...
+
+> +       spin_lock_init(&info->lock);
+
+Shouldn't this be _before_ IRQ registration? Theoretically the  IRQ
+may fire already just after the registration (yeah, it might be
+spurious, but handler and code should be ready for this).
+
+...
+
+> +       ret =3D nxp_sar_adc_calibration(info);
+> +       if (ret)
+> +               dev_err_probe(dev, ret, "Calibration failed: %d\n", ret);
+
+No error code duplication in the message, please.
+
+...
+
+> +static int nxp_sar_adc_suspend(struct device *dev)
+> +{
+> +       struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
+> +       struct nxp_sar_adc *info =3D iio_priv(indio_dev);
+
+Can be one-lined
+
+       struct nxp_sar_adc *info =3D iio_priv(dev_get_drvdata(dev));
+
+> +       info->pwdn =3D nxp_sar_adc_disable(info);
+> +       info->inpsamp =3D nxp_sar_adc_conversion_timing_get(info);
+> +
+> +       clk_disable_unprepare(info->clk);
+> +
+> +       return 0;
+> +}
+> +
+> +static int nxp_sar_adc_resume(struct device *dev)
+> +{
+> +       struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
+> +       struct nxp_sar_adc *info =3D iio_priv(indio_dev);
+
+Ditto.
+
+> +       int ret;
+> +
+> +       ret =3D clk_prepare_enable(info->clk);
+> +       if (ret)
+> +               return ret;
+> +
+> +       nxp_sar_adc_conversion_timing_set(info, info->inpsamp);
+> +
+> +       if (!info->pwdn)
+> +               nxp_sar_adc_enable(info);
+> +
+> +       return 0;
+> +}
+
+...
+
+> +static const struct nxp_sar_adc_data s32g2_sar_adc_data =3D {
+> +       .vref_mV =3D 1800,
+> +       .model =3D "s32g2-sar-adc"
+
+Leave trailing comma, it's not a terminator.
+
+> +};
+
+
+--
+With Best Regards,
+Andy Shevchenko
 
