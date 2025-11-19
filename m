@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-240153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175F6C6DEF6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:17:44 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A11ABC6DE9B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:13:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AC4D94E6C77
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:11:22 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 65406346F4F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:12:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF4233E341;
-	Wed, 19 Nov 2025 10:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2CE349B01;
+	Wed, 19 Nov 2025 10:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ntiFG0WZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oMptCL+9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B02A43321A2;
-	Wed, 19 Nov 2025 10:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BDD349B06;
+	Wed, 19 Nov 2025 10:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763547079; cv=none; b=LNaUGDGtX/FTPGcSdGybB2Ju4+uwXA3wopTbiNH1GWNfYGZZ3Ql+cAHYaaV6/dGkjc0wEEQg8MdIpDYjC+VP/tH8V6KYMQCRYfiL1+gNZhxBPDMA0IK8EdXUizy9YY9Rt5UuvW7EEGRhJqkJqup+OqNFUvu8ZGxsmUKIpu9hIlo=
+	t=1763547117; cv=none; b=kWyGKBcb9Zq8f7uWaMLCE2rU8TGryUFWfNyrCPim0iKbfkD3zcaV9DVlt4DINMDLvxQr7CtT4XmvRlgZ91TOOso7rICQyQgbPG6z1N+2DLaHdZAYQQgE2QaRgHA16G6J1jjKDCrlPdeEJMDNmyyjWAwewMKQpL4kjmSEDdlWtRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763547079; c=relaxed/simple;
-	bh=9yJ+lbhA1r+tZs2HhWSRDE1MNSxLVUWQeRxUtprZbcw=;
+	s=arc-20240116; t=1763547117; c=relaxed/simple;
+	bh=5IJcif5aQjGM+nqy25GZprs/eWri+Wf116zYCKPr8+A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TdIrzrG7pX9g72JR1cNyLiXI22j8DG1HbXAFZbpYxHo9kIQtx/+MOLcVkHVizttzUAP07W2DUhcQCH445s9I4Oo1wb5ndsjLjlj4kS7za18brL5Cfu5Y9yCnmav1LD1pyAUH0VZK+WeEXQOCUImoam2gs6eC6lgkmJNjfVMgSKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ntiFG0WZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E032C19423;
-	Wed, 19 Nov 2025 10:11:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fZ0eZRFTNFKlbk/bDpb6EKUswt76a1GySeu+S1hlVqhMBlvqpALWvX3yfrPQCqDmq+asmma+PHNidd1yxH8BkaD2IrzKG6ydOrZvXzZlVN2McdEsyOPeCuastiUGta9H+Lnkj95t5UnSBl2RIycaZTkBbMHzUDDc9+Ox//RN6cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oMptCL+9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35DFBC2BCB0;
+	Wed, 19 Nov 2025 10:11:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763547079;
-	bh=9yJ+lbhA1r+tZs2HhWSRDE1MNSxLVUWQeRxUtprZbcw=;
+	s=k20201202; t=1763547116;
+	bh=5IJcif5aQjGM+nqy25GZprs/eWri+Wf116zYCKPr8+A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ntiFG0WZwLyi6cuJC0HDINEibfnqLYU5uNGylwSu3kSmO6ugkS2JzJ9ndesijZcbj
-	 lga6O61md6Wi7yuhy44jmFO0Dz1Ki/XqMKCC7iKQuZIkzDTnvYfZt5zu43OQJ6YY2J
-	 6htuf5RF2XoaKvhsx0+lv71jlWcRAQyJqfVzppcKSTA7IRC8Qz/DxrjOJ4FvI4wRTj
-	 PWMWgjpUKOdVoD7osLAW+gEZTBlurLEUyqf5o8s/5MGld6ljJrMrqjf7E9JuFe7ToM
-	 ni47TCNZHfJBx9emo+BKHScQS9WPtJB6yr4gv2VjOEufqQPZFkIE2cDx0hDnDRmdpd
-	 OgD2G6CflFEUQ==
-Message-ID: <c1e46e07-c4b6-45c7-8a03-3ac972b1018f@kernel.org>
-Date: Wed, 19 Nov 2025 11:11:14 +0100
+	b=oMptCL+9ndyRm4+m0V8+fQZW1CX45cPdxsIuIPkrxiMwCFPR7q3FIS8nNAvYFQoj1
+	 Gy6r7j94w1ku+/40MW1gH24wRdUUDF53Zm4JwdI/W8H31U55x4aGQSxHX3D9dcfyp5
+	 68roHmkaU6d/8h9zAMPeZxsEsqMrk44WARd6IUoRrmFBJcaPpRG7euklvz0LKJ4Tpe
+	 bXVWixiMuHd80JnV4UHv6wyrGo5qaneyDB/KNu0ckPVN10c9urkXRzT5+QX/uBZjv+
+	 xV61Cg9qZUaVNiZkiZ0ybRucPuVCuQ34n9FYws6nVm61EAd0oUKDTegFbB5VgeIcO/
+	 FT7A6QUPTutZQ==
+Message-ID: <ae967667-26db-41fd-8aec-bdb1f2cdffc8@kernel.org>
+Date: Wed, 19 Nov 2025 11:11:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: firmware: coreboot: Document optional device
- specific properties
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- chrome-platform@lists.linux.dev, Julius Werner <jwerner@chromium.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251119071126.1719405-1-wenst@chromium.org>
- <18342493-54f9-4e5c-be05-568a3026663e@kernel.org>
- <CAGXv+5EnfwRA1SMvt=3n7gj1gS3BndXKNVfmfkC=y6n2A3VsdA@mail.gmail.com>
- <d8f3eb00-c7a6-425a-9e69-a01bc3532f0c@kernel.org>
- <CAGXv+5HePVim+-fx0bG-geBHp3kLQbNGLyknGRx=LgLZ7H+DUQ@mail.gmail.com>
- <d8194781-56b1-49d5-a3a0-31360ee208b3@kernel.org>
- <CAGXv+5FwrudX5JwbSTkRMNjOUPmbjzP+qJ7FMrgX0Jj52HvrQw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: rockchip: merge Asus Tinker and Tinker
+ S
+To: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251119-merge-tinker-bindings-v1-1-4072b55750c1@rootcommit.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,100 +103,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAGXv+5FwrudX5JwbSTkRMNjOUPmbjzP+qJ7FMrgX0Jj52HvrQw@mail.gmail.com>
+In-Reply-To: <20251119-merge-tinker-bindings-v1-1-4072b55750c1@rootcommit.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 19/11/2025 10:36, Chen-Yu Tsai wrote:
-> On Wed, Nov 19, 2025 at 5:26 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 19/11/2025 09:54, Chen-Yu Tsai wrote:
->>> On Wed, Nov 19, 2025 at 4:13 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>
->>>> On 19/11/2025 08:32, Chen-Yu Tsai wrote:
->>>>> On Wed, Nov 19, 2025 at 3:13 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>>>
->>>>>> On 19/11/2025 08:11, Chen-Yu Tsai wrote:
->>>>>>> Coreboot, or the ChromeOS second stage bootloader, depthcharge, will
->>>>>>> insert device specific properties into the coreboot firmware node when
->>>>>>> there are valid values.
->>>>>>>
->>>>>>> Document these properties in the binding.
->>>>>>>
->>>>>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
->>>>>>> ---
->>>>>>>  Documentation/devicetree/bindings/firmware/coreboot.txt | 9 +++++++++
->>>>>>>  1 file changed, 9 insertions(+)
->>>>>>>
->>>>>>
->>>>>> TXT files cannot receive new properties. You need to first convert to DT
->>>>>> schema.
->>>>>
->>>>> OK. Let me look into this.
->>>>
->>>> After the conversion you will hit another problem - you need vendor
->>>> prefixes for these, because only generic properties can come without
->>>> them. Otherwise (without vendor prefix) these would define the type for
->>>> all other bindings, which probably is not what we want.
->>>
->>> I understand the concern. But given it's specifically under the
->>> /firmware/coreboot node, which is inserted by coreboot, doesn't that
->>> already serve as a namespace or vendor prefix?
->>
->> Unfortunately not or not completely. Properties have single type
->> globally (with exceptions). This means whatever you write here for
->> board-id will affect every possible future board-id property.
+On 19/11/2025 10:22, Michael Opdenacker wrote:
+> Merge sections for Asus Tinker Board and Asus Tinker Board S.
 > 
-> IIUC you mean it applies to every "board-id" property that is under
-> a node that matches the compatible "coreboot"?
-
-Type applies to every board-id property.
-
+> Asus Tinker Board S (Storage) is just a variant of Tinker Board
+> with an added eMMC chip.
 > 
-> Is there any way to limit the match also by path (and not just node name,
-> which I know is possible)? If we can limit the scope then maybe it works
-> out?
-> 
-> Or perhaps you are worried that some other new binding with a broader
-> scope defines "board-id" and thus conflicts with this one?
+> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+> ---
 
-Yes. You basically define now type for all "board-id"s.
 
-> 
->>>
->>> FWIW the ship has already sailed for naming. The first three properties
->>> were added to depthcharge [1] and coreboot [2] in 2018. The last property
->>> was added to depthcharge in 2023 [3]. That is what has shipped in immutable
->>> firmware on ARM-based Chromebooks since the RK3399 days. The coreboot
->>> change was presumably added for other devices.
->>>
->>> This change only serves to document what the firmware already provides.
->>> Whether they should be grandfathered in or not doesn't change what the
->>> firmware already does; it just makes it more well known. It's not going
->>> to have any effect on validation either, as the properties are supposed
->>> to be inserted by the bootloader, not added statically to dts files.
->>
->> If you convince Rob then it's fine, but I don't want to accept
->> downstream solutions just because they exist. This opens the door for
->> every vendor to implement what they want and later ask for forgiveness
->> ("oh it is already there and we cannot change shipped devices"). I mean,
->> this was fine back 2010, but that was 15 years ago.
-> 
-> I completely understand, and yes this does have that feel to it.
-> But FWIW the change is in upstream coreboot.
-
-Oh, that is something coreboot should fix - I went to their repo and:
-
-git grep board-id
-
-and there are no bindings (no ABI documentation), which could imply they
-use Linux bindings (great!) but then this should have been sent to DT
-Linux list for review and included in the kernel bindings.
-
-I understand this is a different case than vendor doing whatever they
-want in downstream, but still it is a similar one - "project is doing
-whatever they want inside" - and it does not make me happy.
-
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
