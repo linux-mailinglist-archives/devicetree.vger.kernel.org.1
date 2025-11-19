@@ -1,346 +1,105 @@
-Return-Path: <devicetree+bounces-240107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 761A9C6D70A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:34:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D05EC6D7AB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:42:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id 2D0322D519
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:34:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 16CC14FABE7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:35:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38306329E52;
-	Wed, 19 Nov 2025 08:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6BA132C927;
+	Wed, 19 Nov 2025 08:34:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kjsTtw1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65E72313526;
-	Wed, 19 Nov 2025 08:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C015E32B9A7;
+	Wed, 19 Nov 2025 08:34:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763541232; cv=none; b=Y5/cTFrQM4NLV1TkzkSUBRBkquLpkUwP4qiGRDa/YJpA/voUOTe2QItea2scIP01qMnLHkegG7J+bIUyFUjZJDd3RtEH+LUGAsLVZs2ISGQkE5GJCdWlVILlLUNTPsAkg1sITgDDw5133OJ5Tn25htfwXgwL2W4GVoNrm4dMgyU=
+	t=1763541244; cv=none; b=M/ftC+BTuxmEDNk6TfLPu0v3rlEGXqdE72KTnD//uAPGPBlIGaEj6HyuX6qzIydKHSVLbsmN6Z8lOR9C/iI4qx/MiIszOhyWxmaTckY5Ru1iiofW+HkhY8w/r+SS9IfY5myfD7Uk9iFNVB96+PO5t6cKcggGbm2JTRPuL/9siq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763541232; c=relaxed/simple;
-	bh=8/UlkaZsFFc1Q8UYlyH3yZantBcn1/jBlLozQ4FaB7Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Qtjq+tAABR5TC889W8z36WdAlAcAS7qL2Ev9EbGpZ1hvmT0dbif5VaUm/n6nr9YM9qOVYuggVrXOj9sq2Y1h0f/FlOsZPRDPmx6EoLEGG9GeTESu1IHdRmQpASICtyOanO7saLJf5sl7Kcg8Pyz444lMVUhEVQKuYEIq7/1AoY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 82CAB200CD7;
-	Wed, 19 Nov 2025 09:33:46 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 57DEA2029F2;
-	Wed, 19 Nov 2025 09:33:46 +0100 (CET)
-Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 148E91800097;
-	Wed, 19 Nov 2025 16:33:45 +0800 (+08)
-From: Lakshay Piplani <lakshay.piplani@nxp.com>
-To: alexandre.belloni@bootlin.com,
-	linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	linux-watchdog@vger.kernel.org
-Cc: vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com,
-	shashank.rebbapragada@nxp.com,
-	Lakshay Piplani <lakshay.piplani@nxp.com>
-Subject: [PATCH v3 5/5] rtc: pcf85363: add watchdog support with configurable step size
-Date: Wed, 19 Nov 2025 14:03:36 +0530
-Message-Id: <20251119083336.2241142-5-lakshay.piplani@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251119083336.2241142-1-lakshay.piplani@nxp.com>
-References: <20251119083336.2241142-1-lakshay.piplani@nxp.com>
+	s=arc-20240116; t=1763541244; c=relaxed/simple;
+	bh=1Pc5fBlhsZRdTIzwz2Wk8NOr8hOO9wcu82HCeysKRwk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Gffa82Obuf/gGVv/efNowcP96G+e4VOxCwtiaK6FbuJp5oA4C3vDu5CuhOpe1VUVWwcPw/a7fWARl6QXE1O+0egQq7LxNOR06iIj11DDQSHP3sfoqbfwaKTA5wftImKFuQu9v/l7IpZJBSP8DgPmxTf8EvgMnf7ny0PW0W1dhvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kjsTtw1P; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1763541237;
+	bh=1Pc5fBlhsZRdTIzwz2Wk8NOr8hOO9wcu82HCeysKRwk=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=kjsTtw1PJuGX6Mv1xUUq6YRgSSs3tyKfWsV9SfMHkCQV11DsLeiF5Q1IlSWZFIOLs
+	 6YRq74PzDdJTQNwRBujSx9zKpia9dAtzWgsr7jeT2f52844SwQX/y+l1/rwijtH9Qh
+	 UvbuQN3vIe2CKVGeSlLiT5JZDz+LEFnYr3+azqh4KOE2K7gqlA1wnu+ZdaeuJ6YX0Y
+	 Zr8epnbJMh2FlqeXhTp7IvEFA4Ukg+jsPVtV9eyg0smv3Bzeg4u/r9pJW6phmOnzQ+
+	 9gJfhJB3fMF+gAPejSh8ROpDS2qSVNo/NgF96G6X8CRReXrTqxPB3xlm9JgFu/uVKV
+	 FcGonuD9BQP7A==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C2B3717E0154;
+	Wed, 19 Nov 2025 09:33:56 +0100 (CET)
+Message-ID: <bb84228f-2aab-4b82-b787-37fe631007e7@collabora.com>
+Date: Wed, 19 Nov 2025 09:33:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/13] dt-bindings: soc: mediatek: dvfsrc: Add support for
+ MT8196
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Henry Chen <henryc.chen@mediatek.com>,
+ Georgi Djakov <djakov@kernel.org>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org
+References: <20251114-mt8196-dvfsrc-v1-0-b956d4631468@collabora.com>
+ <20251114-mt8196-dvfsrc-v1-1-b956d4631468@collabora.com>
+ <20251119-alluring-jellyfish-of-chaos-4f5bd8@kuoka>
+ <39fba430-3841-4bf2-9fe7-44f372ff4a16@collabora.com>
+Content-Language: en-US
+In-Reply-To: <39fba430-3841-4bf2-9fe7-44f372ff4a16@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add watchdog timer support to PCF85263/PCF85363 using the linux watchdog
-subsystem. The driver programs the hardware watchdog timeout based on
-the requested period.
+Il 19/11/25 09:32, AngeloGioacchino Del Regno ha scritto:
+> Il 19/11/25 08:41, Krzysztof Kozlowski ha scritto:
+>> On Fri, Nov 14, 2025 at 05:53:55PM +0100, Nicolas Frattaroli wrote:
+>>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>
+>>> Add a compatible for the MediaTek MT8196 Chromebook SoC's
+>>> DVFSRC hardware, introducing capability to communicate with it.
+>>>
+>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>
+>> Incomplete DCO chain.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> Eh yes, Nicolas forgot to add his SoC on all of my commits, whoops :-)
 
-Also use rtc_add_group() instead of sysfs_create_group() to register
-timestamp attributes under the RTC class device (/sys/class/rtc/rtcX).
+his SoC!??!?! Ugh. I meant SoB, and I should sleep more, lol
 
-Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
----
-V2 -> V3:
-- Split into separate patches as suggested:
-  - Battery switch-over detection.
-  - Timestamp recording for TS pin and battery switch-over events.
-  - Offset calibration.
-  - Watchdog timer (to be reviewed by watchdog maintainers).
-- Dropped Alarm2 support
-- Switched to rtc_add_group() for sysfs attributes
-- Removed failure paths after RTC device registration as per subsystem guidelines.
-V1 -> V2:
-- Watchdog related changes due to removal of vendor specific properties
-  from device tree
-  * remove vendor DT knobs (enable/timeout/stepsize/repeat)
-  * use watchdog_init_timeout (with 10s default)
-  * derive clock_sel from final timeout
-  * default, repeat=true (repeat mode)
-- Fixed uninitalised warning on 'ret' (reported by kernel test robot)
-- Use dev_dbg instead of dev_info for debug related print messages
-- Minor cleanup and comments
-
- drivers/rtc/rtc-pcf85363.c | 168 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 160 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/rtc/rtc-pcf85363.c b/drivers/rtc/rtc-pcf85363.c
-index 3d733375187b..34d4c2e16774 100644
---- a/drivers/rtc/rtc-pcf85363.c
-+++ b/drivers/rtc/rtc-pcf85363.c
-@@ -5,6 +5,10 @@
-  * Driver for NXP PCF85363 real-time clock.
-  *
-  * Copyright (C) 2017 Eric Nelson
-+ *
-+ * Copyright 2025 NXP
-+ * Added support for timestamps, battery switch-over,
-+ * watchdog, offset calibration.
-  */
- #include <linux/module.h>
- #include <linux/i2c.h>
-@@ -17,6 +21,8 @@
- #include <linux/device.h>
- #include <linux/of.h>
- #include <linux/regmap.h>
-+#include <linux/rtc.h>
-+#include <linux/watchdog.h>
- 
- /*
-  * Date/Time registers
-@@ -127,6 +133,18 @@
- #define OFFSET_MAXIMUM  127
- #define OFFSET_MASK     0xFF
- 
-+#define WD_MODE_REPEAT  BIT(7)
-+#define WD_TIMEOUT_MASK GENMASK(6, 2)
-+#define WD_TIMEOUT_SHIFT        2
-+#define WD_CLKSEL_MASK  GENMASK(1, 0)
-+#define WD_CLKSEL_0_25HZ        0x00
-+#define WD_CLKSEL_1HZ   0x01
-+#define WD_CLKSEL_4HZ   0x02
-+#define WD_CLKSEL_16HZ  0x03
-+
-+#define WD_TIMEOUT_MIN  1
-+#define WD_TIMEOUT_MAX  0x1F
-+
- struct pcf85363 {
- 	struct rtc_device	*rtc;
- 	struct regmap		*regmap;
-@@ -138,6 +156,15 @@ struct pcf85x63_config {
- 	unsigned int num_nvram;
- };
- 
-+struct pcf85363_watchdog {
-+	struct watchdog_device wdd;
-+	struct regmap *regmap;
-+	struct device *dev;
-+	u8 timeout_val;
-+	u8 clock_sel;
-+	bool repeat;
-+};
-+
- static int pcf85363_load_capacitance(struct pcf85363 *pcf85363, struct device_node *node)
- {
- 	u32 load = 7000;
-@@ -323,12 +350,13 @@ static irqreturn_t pcf85363_rtc_handle_irq(int irq, void *dev_id)
- 		return IRQ_NONE;
- 
- 	if (flags) {
--		dev_dbg(&pcf85363->rtc->dev, "IRQ flags: 0x%02x%s%s%s%s%s\n",
-+		dev_dbg(&pcf85363->rtc->dev, "IRQ flags: 0x%02x%s%s%s%s%s%s\n",
- 			flags, (flags & FLAGS_A1F) ? " [A1F]" : "",
- 			(flags & FLAGS_TSR1F) ? " [TSR1F]" : "",
- 			(flags & FLAGS_TSR2F) ? " [TSR2F]" : "",
- 			(flags & FLAGS_TSR3F) ? " [TSR3F]" : "",
--			(flags & FLAGS_BSF) ? " [BSF]" : "");
-+			(flags & FLAGS_BSF) ? " [BSF]" : "",
-+			(flags & FLAGS_WDF) ? " [WDF]" : "");
- 	}
- 
- 	if (flags & FLAGS_A1F) {
-@@ -360,6 +388,11 @@ static irqreturn_t pcf85363_rtc_handle_irq(int irq, void *dev_id)
- 		handled = true;
- 	}
- 
-+	if (flags & FLAGS_WDF) {
-+		regmap_update_bits(pcf85363->regmap, CTRL_FLAGS, FLAGS_WDF, 0);
-+		handled = true;
-+	}
-+
- 	return handled ? IRQ_HANDLED : IRQ_NONE;
- }
- 
-@@ -503,6 +536,123 @@ static const struct pcf85x63_config pcf_85363_config = {
- 	.num_nvram = 2
- };
- 
-+/*
-+ * This function sets the watchdog control register based on the timeout,
-+ * clock selection and repeat mode settings. It prepares the value to
-+ * write into the watchdog control register (CTRL_WDOG).
-+ */
-+static int pcf85363_wdt_reload(struct pcf85363_watchdog *wd)
-+{
-+	u8 val;
-+
-+	val = (wd->repeat ? WD_MODE_REPEAT : 0) |
-+	       ((wd->timeout_val & WD_TIMEOUT_MAX) << WD_TIMEOUT_SHIFT) |
-+	       (wd->clock_sel & WD_CLKSEL_MASK);
-+
-+	return regmap_write(wd->regmap, CTRL_WDOG, val);
-+}
-+
-+static int pcf85363_wdt_start(struct watchdog_device *wdd)
-+{
-+	struct pcf85363_watchdog *wd = watchdog_get_drvdata(wdd);
-+
-+	return pcf85363_wdt_reload(wd);
-+}
-+
-+static int pcf85363_wdt_stop(struct watchdog_device *wdd)
-+{
-+	struct pcf85363_watchdog *wd = watchdog_get_drvdata(wdd);
-+
-+	return regmap_write(wd->regmap, CTRL_WDOG, 0);
-+}
-+
-+static int pcf85363_wdt_ping(struct watchdog_device *wdd)
-+{
-+	struct pcf85363_watchdog *wd = watchdog_get_drvdata(wdd);
-+
-+	regmap_update_bits(wd->regmap, CTRL_FLAGS, FLAGS_WDF, 0);
-+
-+	return pcf85363_wdt_reload(wd);
-+}
-+
-+static int pcf85363_wdt_set_timeout(struct watchdog_device *wdd,
-+				    unsigned int timeout)
-+{
-+	struct pcf85363_watchdog *wd = watchdog_get_drvdata(wdd);
-+
-+	wd->timeout_val = clamp(timeout, WD_TIMEOUT_MIN, WD_TIMEOUT_MAX);
-+	wdd->timeout = wd->timeout_val;
-+
-+	return pcf85363_wdt_reload(wd);
-+}
-+
-+static const struct watchdog_info pcf85363_wdt_info = {
-+	.identity = "PCF85363 Watchdog",
-+	.options = WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT,
-+};
-+
-+static const struct watchdog_ops pcf85363_wdt_ops = {
-+	.owner = THIS_MODULE,
-+	.start = pcf85363_wdt_start,
-+	.stop = pcf85363_wdt_stop,
-+	.ping = pcf85363_wdt_ping,
-+	.set_timeout = pcf85363_wdt_set_timeout,
-+};
-+
-+static int pcf85363_watchdog_init(struct device *dev, struct regmap *regmap)
-+{
-+	struct pcf85363_watchdog *wd;
-+	unsigned int timeout_sec;
-+	int ret;
-+
-+	if (!IS_ENABLED(CONFIG_WATCHDOG))
-+		return 0;
-+
-+	wd = devm_kzalloc(dev, sizeof(*wd), GFP_KERNEL);
-+	if (!wd)
-+		return -ENOMEM;
-+
-+	wd->regmap = regmap;
-+	wd->dev = dev;
-+
-+	wd->wdd.info = &pcf85363_wdt_info;
-+	wd->wdd.ops = &pcf85363_wdt_ops;
-+	wd->wdd.min_timeout = WD_TIMEOUT_MIN;
-+	wd->wdd.max_timeout = WD_TIMEOUT_MAX;
-+	wd->wdd.parent = dev;
-+	wd->wdd.status = WATCHDOG_NOWAYOUT_INIT_STATUS;
-+
-+	ret = watchdog_init_timeout(&wd->wdd, 10, dev);
-+	if (ret)
-+		wd->wdd.timeout = clamp(10U, WD_TIMEOUT_MIN, WD_TIMEOUT_MAX);
-+
-+	timeout_sec = wd->wdd.timeout;
-+
-+	if (timeout_sec <= 2)
-+		wd->clock_sel = WD_CLKSEL_16HZ;
-+	else if (timeout_sec <= 8)
-+		wd->clock_sel = WD_CLKSEL_4HZ;
-+	else if (timeout_sec <= 16)
-+		wd->clock_sel = WD_CLKSEL_1HZ;
-+	else
-+		wd->clock_sel = WD_CLKSEL_0_25HZ;
-+
-+	wd->repeat = true;
-+
-+	ret = regmap_update_bits(regmap, CTRL_FLAGS, FLAGS_WDF, 0);
-+	if (ret) {
-+		dev_err(dev, "failed to clear WDF:%d\n", ret);
-+		return ret;
-+	}
-+
-+	watchdog_set_drvdata(&wd->wdd, wd);
-+
-+	dev_dbg(dev, "pcf85363 watchdog registered (timeout=%us, clk_sel=%u)\n",
-+		timeout_sec, wd->clock_sel);
-+
-+	return devm_watchdog_register_device(dev, &wd->wdd);
-+}
-+
- /*
-  * Reads 6 bytes of timestamp data starting at the given base register,
-  * converts them from BCD to binary, and formats the result into a
-@@ -684,20 +834,22 @@ static int pcf85363_probe(struct i2c_client *client)
- 			   PIN_IO_TSPM | PIN_IO_TSIM,
- 			   PIN_IO_TSPM | PIN_IO_TSIM);
- 
-+	ret = pcf85363_watchdog_init(dev, pcf85363->regmap);
-+	if (ret)
-+		dev_err_probe(dev, ret, "Watchdog init failed\n");
-+
- 	if (irq_a > 0 || wakeup_source)
- 		device_init_wakeup(dev, true);
- 
- 	dev_set_drvdata(&pcf85363->rtc->dev, pcf85363);
- 
--	ret = devm_rtc_register_device(pcf85363->rtc);
--
-+	ret = rtc_add_group(pcf85363->rtc, &pcf85363_attr_group);
- 	if (ret)
--		return dev_err_probe(dev, ret, "RTC registration failed\n");
--
--	ret = sysfs_create_group(&pcf85363->rtc->dev.kobj, &pcf85363_attr_group);
-+		return ret;
- 
-+	ret = devm_rtc_register_device(pcf85363->rtc);
- 	if (ret)
--		return dev_err_probe(dev, ret, "Timestamp sysfs creation failed\n");
-+		return dev_err_probe(dev, ret, "RTC registration failed\n");
- 
- 	for (i = 0; i < config->num_nvram; i++) {
- 		nvmem_cfg[i].priv = pcf85363;
--- 
-2.25.1
+> 
+> Cheers,
+> Angelo
 
 
