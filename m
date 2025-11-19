@@ -1,214 +1,267 @@
-Return-Path: <devicetree+bounces-240226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0D54C6EED5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:35:27 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37EB9C6F13A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:56:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4F11934AF1D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:29:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 19F41502EEC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354623624B0;
-	Wed, 19 Nov 2025 13:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 481CC363C69;
+	Wed, 19 Nov 2025 13:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="etfWme76"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="ZB0fy+cS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A60B35BDD8
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 13:27:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B223624D4
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 13:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763558857; cv=none; b=uoTZVofS2kkZ/rr++BNSJe3ru03b80b2lZTxNSEy5+rWdDQLZy3uMCTIgTsbpqpriL6VFvoz6ijH0NzDGIyEv0dsOQ4tv3HdL40n2ddoZlwq+Za0X2W3Pni0/eX45N5WvKxKH/r3qob3ymhg2TByQU9HA8L9x9V9Bl90qvYGTWQ=
+	t=1763558899; cv=none; b=YdJ1AAzKWs1Zy8s5DhbVHLoZKiI7K9ClaGxeY8VdsIJObQ7OD4uZMUcX/b4rwuOmZYHL+48emEwV+4iNs0FExtXGEcZ77xvjKo1x16ul2bAjcxUhRG+zOgoebLfPcePZLGVyJ5dVYlrMgpWmnUGHVahGpF16EVp8COm5wyAOr8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763558857; c=relaxed/simple;
-	bh=6rsSfWyVnaU5/X11J4qai299yHBsXVwzci2eXOoVEtc=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pQITX0mDL81lUp4tGlKFS2my1v9D31mAer2lHRLb5v4RinTQOwPyJeqxHvRn9HZI2aw5p5Xw67jpm/UJ9gVdsQP1iJGzEEVAwarDHuSbOsezPG39/WoNvQdiEGz+oxKwuuRkVUqdSk9I7iGIz7j4t0kozUYz7Wu4sqPo0tQxpGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=etfWme76; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 573F03F2EF
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 13:27:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1763558852;
-	bh=Zf71PPi80OPlEx8Il95aFJzJcBxtZN/TTdL1nSo4eyc=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=etfWme76pbWblOsGe8O3tz4NBNcCaBE6D2txsWt+2ORnnGnEsJugjNyuPO+yTKulz
-	 5Wtp715L+LcHhReQxspHQR9feRDN0YrzOUhv1P/nq5fpkaUOdBXckxl6KUh79Yg2Ic
-	 fbXny/dwcpPTsRtGvkapOIf/SkH6YAunx0kb/dwaSURL9OJbpLHoVkuztCHRlz+5KZ
-	 KcpFrA0U1wV0obR16R+A4AyBtrkCe9o+iv2iPeKXaOF2DDB8wDcw0t5OVsf8Q4jVEu
-	 umotyAXZBN1OAyWA2JGZSSeeV2qUMTUVT71E1TCv5sD+BECNu8RqJisEOkWsO3k8xv
-	 D3se1cVFTzjue2pG6mcgh+eRs8ucnOnTIZk9y1uWCYxvFLKgpRbRxyTBXE1JgTikta
-	 w31zxs1lwT1GSkBF5vPvA5n4nR8764+VGAacE2h00953P1D1JuRW9DbDpjHiT1aS+t
-	 xHhPZdRrqKnDxIaqm1YXO5fuJQf4WIgmCJtiqW7s3lVCPqcDizJ+ZhUfJnp5iJseWs
-	 OM9ebyjEy0FE+VNVOoLnLg2ohKR/SRAdLviKufVPo4YnUCro2kyOXxsMJ5N6MfNUdc
-	 z7wuRJaSK/MWjD3y6OOJX9Y1y1ClzdwRG6J8HcWXOdB1AAAaFxa9Wb89T+Ht40BSO4
-	 J6ZrRVftip1+ser7T+yeGsz8=
-Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-b72a95dc6d9so959460066b.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 05:27:32 -0800 (PST)
+	s=arc-20240116; t=1763558899; c=relaxed/simple;
+	bh=gHpwjjREhsAd8WKsVYT8IYp6+ZQIN7Tnm8WoUEA8aZQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dnF1XV6j/WxrOKA3C+4qJukR+D+dfIKB0rO7/wb+b1IDlc5yrfgB5QFihLIiOMom4JyVWzpk6zSloIRQSRP2eOlsEDv/SvsWDQtVD0TKb18WyucpsnPD6c5A81v1tUk/0nsgYVE/zMTI7xkWjCIvl1QpfdAWMVN324Su5OErROE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=ZB0fy+cS; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5958232f806so6671535e87.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 05:28:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1763558893; x=1764163693; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g9Fz2SH1ZUm7FuuivONGxxUgBBznVGQP+s2/x19XhOc=;
+        b=ZB0fy+cS1xYK9vha6Tv00U0twgMJFjTq4+9aYZ8hfvmNMqly9QfDD0oXfZNzwWRpbh
+         JwGFoamRilDGXXJFFu9byVUjYTEGhBvrAkUaTW4zbHsxMiaCmJXWKWGGJ1wn+TY/2Aog
+         twpOHdet9yu8ZPQAozLB0jDV4ur4E5xF7GGdhCc+mwzbml3XhLsLF/WkE3y/uHdyVfNy
+         WSixf7XnPG58jugGaEQVpZRATC1hb9sAaUkNE1pRhY9SE4CtrJIfLMbXjMgDs4Jd1T0s
+         TnaJUFkbVzs4/Wx5SLGTYQ+q9yG5OJixmqZG+sza1llI6xYIr6g9l8B5eKkFJLn7A4Bg
+         BWYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763558852; x=1764163652;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zf71PPi80OPlEx8Il95aFJzJcBxtZN/TTdL1nSo4eyc=;
-        b=WSU8p7qGgDCycbE/DmggzgaOPilR3VXUDHqLRje5kHhg5j8zHAR2aYap+hvNjKs388
-         zFG/iWYUINhg6Z8ELL48v9HHIrao9+cNITOLBCD9BtTfkc9vnOrgygK1yOe2drvHxCjw
-         ri2ba+98ph/e+YoUVj0VVOMDru3JV01FlfJl6I2RAiwwpGhxWWgKVP+v+4KOJxa6JDmC
-         MAfIrtdhEa83eSjmH9VnsuBwqmmKy8v4SFPNjQFVsxm6G8J0MjcbRHn5RTfXYFyU1EG0
-         OpoLnlva4+61fs7xyLoiM3HV0bhaeFTJzzlje/K8PvdVjHs9MmZGSJ81vY1Aku2TAs6g
-         km0g==
-X-Forwarded-Encrypted: i=1; AJvYcCWujvg/3tL0KwSTU0Nhb8Kmld5Ud9xb5USh4dOgr2a1MpHnB6CTnjaMksD4KtREgT/XB4jV7tkYmTms@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuZzioZjWW86brhMg4OyKAR+ajt6O/KcjFwzBlbwcnsmZNRRKD
-	5ZGnjwUhd0U8+MQUY3u2a2ccdZEyQaSnTDHmBhMLc4Br2OM3+9wwYq/C+l57E5fz6JUO0motDU9
-	tQXl9i7r88yEJr4wunY4s7CvHnPImF4BU6Qa0puPbFVFjhyz9u11og1/Sn1OAqEMTx0oWJ9omAZ
-	5nQ+4lj0o3hIz/Ax+0j0y7TEcHS0RDrMaWGTGiBJv05Q86MYyheJ7p0w==
-X-Gm-Gg: ASbGncshl1DWy6uhHZ4TzDBaXnzxWFTYTLqSOY7zv8IR8IGotXZHwtCgrBa6i7lSyrI
-	/6t4Y51tv6IglMhRVSumLLHcUZezWaHEN8YlsAdjosHyfn2DcZpQWnqRB6XsAq+orP9aYDH5JcU
-	FmGlNT051soRfHfhcqDlj5vGBXS7+TansEawj4jERIIoXX9jNVJTGMl6oUg24cCesCRl2Ek1ZNV
-	pvrMdS+5+rzkGNfl/2LDvY=
-X-Received: by 2002:a17:907:25c4:b0:b5f:c2f6:a172 with SMTP id a640c23a62f3a-b7367962920mr2271129366b.30.1763558851800;
-        Wed, 19 Nov 2025 05:27:31 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IExSS9MaUldyLPT7Iou5C3NP0DPQDxJxzB9TQhVXWuuilvLezgx6R8t0Ds/PpwPKNH6hoMB6uCLUA2EuEKKjh8=
-X-Received: by 2002:a17:907:25c4:b0:b5f:c2f6:a172 with SMTP id
- a640c23a62f3a-b7367962920mr2271124466b.30.1763558851353; Wed, 19 Nov 2025
- 05:27:31 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 19 Nov 2025 05:27:30 -0800
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 19 Nov 2025 05:27:30 -0800
+        d=1e100.net; s=20230601; t=1763558893; x=1764163693;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=g9Fz2SH1ZUm7FuuivONGxxUgBBznVGQP+s2/x19XhOc=;
+        b=efJDQsOINAsfP4GduQv7xIIUH4ju3lDOC7KkYaNpCbSH8ryMeyEWAnNxTRWk3JCvK8
+         61+fFhSU/44ovT73Ocv7+zU/AQkY5cJHszKOgKADEGzhVeLBOuTgj41yzFWngnDqaqmq
+         Qn8Eqwkn/41fwAqEslxgVdRPyWMtP9JmLCe0voYVj51RowJw8H+fi71TOm0QZXjQf/ZZ
+         w92GbHKfXXtBnjYPJ+wGftuMRHl8zVhv8dlVmjXBdCkkRRdE3XuOT9qy+AyjUvqex151
+         j2fKqiPueGUgDmg26kQ5h6uETIpYzg9AMRziMEaxe8lXuFqKqyqSU+/H6R7AiwQ2eCLF
+         P5nQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUvMPeERtG5tPqhsqr0sugs3VdyuNRt2dowGC3mQgZu1qQUCIgHlGOvtLQCQbpHspHiXCCl4y3GcQS4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0RhkDKNx3lcUT4ptVVUX7k0oqAxGmn4MfCWA/vK4McbIKfPb/
+	gdRXexmQ02xN1f7KmYZ7aWjsyRF467i3QvxYgF02UrUisNn6O7ecPlVIKG/iU4gFG+TXbMnZ25j
+	GtdHJ5GTYQqWRdcfcCGflsdsh+K5FCu0TiPk7YgrZ8Q==
+X-Gm-Gg: ASbGncvvoRhRWFmPOvOrZNXAmN8j4yzx5Qpl1mCU438QWt/VTzLnglJhiTJXLQepPEA
+	hBLan1LTKEbT2Lw8J21MybSgzpULSK9Wm04tmKsqV/UYy11gXhqBv02lEOlgpbZZUwbb2pxeb0z
+	YgZmr5bhaLUJCh60a/AKJbv/jTkbn639cg4CCeOyLd+a7qOs7WrGolAtcHmE+Ar3V0LgggalBRt
+	mtkMhT8lVHRQhFp9xfHiNIfeUuPo611navk5OEILY7UCvkD0zSPbicYv/29wmhUCuJeOv3LGRHF
+	yaPIS9E97S6Vrbxe7ReibvXAEgp/bGU2WrWrV8Pv4wUuyUER
+X-Google-Smtp-Source: AGHT+IGJBnlU8SfCgN2H396Pf5rcfKBaHkLraBwus+9No1IWypEaF8w8j8PGxkXY9nu4VlhBBrtuUvloX+iTMlSUET4=
+X-Received: by 2002:a05:6512:1326:b0:594:2cdf:1941 with SMTP id
+ 2adb3069b0e04-59604e3f4e4mr1143048e87.31.1763558892975; Wed, 19 Nov 2025
+ 05:28:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20251118-throwing-marina-14a87d65465a@spud>
-References: <20251107095530.114775-1-hal.feng@starfivetech.com>
- <CAJM55Z_rczBo4D3HsC90QW1=fp3NWgK-tsEo6LHTZNXEBHTDqA@mail.gmail.com>
- <ZQ2PR01MB13076544E2136E7E7C2EEDA1E6CD2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
- <CAJM55Z9KyNK1n4i9FxbLor4HTQKqK8WKA2svjPVvKXihw_E+sg@mail.gmail.com>
- <4a55301a-ef7e-4b47-8151-621cfba36ddd@freeshell.de> <CAJM55Z-bRdNmnRZ7wi3PMOkzGYrxQEGk+7F67Pdu4WXwKmTjCQ@mail.gmail.com>
- <ZQ2PR01MB13075CDDEFC2F03C837E1B31E6C92@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
- <b33919e9-e100-4629-92cb-d1ec3dd756a7@freeshell.de> <ZQ2PR01MB1307DADE17FFEFCE70C3F391E6D62@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
- <20251118-throwing-marina-14a87d65465a@spud>
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-User-Agent: alot/0.0.0
-Date: Wed, 19 Nov 2025 05:27:30 -0800
-X-Gm-Features: AWmQ_bkXMb__BB3WeHVgakQ5iZHBjvvMXAjrpqkcU7PRZ3VxAvyAIYzaQhqJGpo
-Message-ID: <CAJM55Z-MfpVX3EuQ_AjvDSk6FwR51R5cQdN5RybS9pbJ8r9NNg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/8] Add support for StarFive VisionFive 2 Lite board
-To: Conor Dooley <conor@kernel.org>, Hal Feng <hal.feng@starfivetech.com>
-Cc: E Shattow <e@freeshell.de>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20251112-pci-m2-e-v1-0-97413d6bf824@oss.qualcomm.com> <20251112-pci-m2-e-v1-9-97413d6bf824@oss.qualcomm.com>
+In-Reply-To: <20251112-pci-m2-e-v1-9-97413d6bf824@oss.qualcomm.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 19 Nov 2025 14:28:00 +0100
+X-Gm-Features: AWmQ_bm5iCKbfw8hpw1YVmAcjxIFk-iHf3DCtBX1MsQ5hHQ1VM87jgrdbOpF5Hc
+Message-ID: <CAMRc=MeyeyuNVP6CWcxNp8XSCT+P9ZNmgSj6Hktrv8ZYNN5kMg@mail.gmail.com>
+Subject: Re: [PATCH 9/9] power: sequencing: pcie-m2: Add support for PCIe M.2
+ Key E connectors
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, linux-serial@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Quoting Conor Dooley (2025-11-19 00:10:08)
-> On Tue, Nov 18, 2025 at 02:12:58AM +0000, Hal Feng wrote:
-> > > All,
-> > >
-> > > I repeat that the suggestion was made months ago (by Hal) to split out the
-> > > OPP tables per-board from the period of time when I was complaining about
-> > > 1.5GHz JH-7110 operation pushing TDP into over-temperature thermal limit
-> > > on Milk-V Mars CM SoM.
-> > >
-> > > Whether or not JH7110S is a new compatible should follow precedence in
-> > > Linux development. JH-7110S is evidently the same tape-out as JH-7110 and
-> > > however you deal with that in Linux is the appropriate way to deal with that
-> > > here. Selection of OPP table for correct operation will be determined by
-> > > bootloader, where, it is demonstrated by patch series sent to U-Boot
-> > > upstream to be selected ** per-board ** based on EEPROM content as if it
-> > > was any other JH-7110 board deciding dts based on EEPROM content. Given
-> > > that it is the same tape-out I do not find a valid justification for a new
-> > > compatible in the stack of adjacent software besides going along with some
-> > > kind of marketing-driven answer about whether or not this is a new SoC.
-> > >
-> > > What I care about now is that the VisionFive 2 Lite series is in good enough
-> > > shape and there's a possibility to act on this months-old suggestion to split out
-> > > the OPP tables which as we have confirmed the JH7110S is the same SoC as
-> > > JH7110 it makes a lot of sense to do.
-> > >
-> > > How is it supposed to work for binned silicon in Linux?
-> >
-> > Hi, Conor,  Emil,
-> >
-> > What do you think about this? Hope to hear from you.
+On Wed, Nov 12, 2025 at 3:45=E2=80=AFPM Manivannan Sadhasivam via B4 Relay
+<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> wrote:
 >
-> Can someone just give me a yes/no question out of this thread? I'm not
-> really immediately sure what's being asked of me. What exactly do you
-> want to do with the opp-tables? "Split out" isn't super clear. Does that
-> mean into board files? I am guessing it does, since you're saying that a
-> particular board cannot support the 1.5 GHz mode. It's not unusual
-> though to use delete node for unsupported opp-table entries, could that
-> be done instead?
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+>
+> Add support for handling the power sequence of the PCIe M.2 Key E
+> connectors. These connectors are used to attach the Wireless Connectivity
+> devices to the host machine including combinations of WiFi, BT, NFC using
+> interfaces such as PCIe/SDIO for WiFi, USB/UART for BT and I2C for NFC.
+>
+> Currently, this driver supports only the PCIe interface for WiFi and UART
+> interface for BT. The driver also only supports driving the 3.3v/1.8v pow=
+er
+> supplies and W_DISABLE{1/2}# GPIOs. The optional signals of the Key E
+> connectors are not currently supported.
+>
+> For supporting Bluetooth over the non-discoverable UART interface, the
+> driver currently creates the serdev interface after enumerating the PCIe
+> interface. This is mandatory since the device ID is only known after the
+> PCIe enumeration and the ID is used for creating the serdev device.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.=
+com>
+> ---
+>
+> +static int pwrseq_pci_m2_e_uart_enable(struct pwrseq_device *pwrseq)
+> +{
+> +       struct pwrseq_pcie_m2_ctx *ctx =3D pwrseq_device_get_drvdata(pwrs=
+eq);
+> +
+> +       gpiod_set_value_cansleep(ctx->w_disable2_gpio, 0);
 
-Yes, as far as I can tell we should be able to just add the board description
-like this:
+Since this is new code and gpiod_set_value_cansleep() now returns an
+integer, can you do
 
- jh7110.dtsi               # JH7110 SoC description
- |- jh7110-common.dtsi     # Peripherals common to all JH7110 boards
-    |- jh7110-starfive-visionfive-2.dtsi # Peripherals common to VF2 boards
-    |  |- <VF2 boards>     # Final VF2 board descriptions
-    |- jh7110-milkv-marscm.dtsi # Peripherals common to Mars CM boards
-    |  |- <Mars CM boards> # Final Mars CM board descriptions
-    |- <other boards>      # Other JH7110 board descriptions
-+   |- jh7110-starfive-visionfive-2-lite.dts
+  return gpiod_set_value_cansleep()?
 
-and have it do
+Same elsewhere.
 
-&cpu_opp {
-    /delete-node/ opp-375000000;
-    /delete-node/ opp-500000000;
-    /delete-node/ opp-750000000;
-    /delete-node/ opp-1500000000;
+>
+> +static int pwrseq_m2_pcie_notify(struct notifier_block *nb, unsigned lon=
+g action,
+> +                             void *data)
+> +{
+> +       struct pwrseq_pcie_m2_ctx *ctx =3D container_of(nb, struct pwrseq=
+_pcie_m2_ctx, nb);
+> +       struct pci_dev *pdev =3D to_pci_dev(data);
+> +       struct device_node *remote;
+> +       struct serdev_controller *serdev_ctrl;
+> +       struct serdev_device *serdev;
+> +       struct device *dev =3D ctx->dev;
+> +       int ret;
+> +
+> +       /*
+> +        * Check whether the PCI device is associated with this M.2 conne=
+ctor or
+> +        * not, by comparing the OF node of the PCI device parent and the=
+ Port 0
+> +        * (PCIe) remote node parent OF node.
+> +        */
+> +       remote =3D of_graph_get_remote_node(dev_of_node(ctx->dev), 0, -1)=
+;
+> +       if (!remote || (remote !=3D pdev->dev.parent->of_node)) {
+> +               of_node_put(remote);
 
-    opp-312500000 {
-        opp-hz = /bits/ 64 <312500000>;
-        opp-microvolt = <800000>;
-    };
-    opp-417000000 {
-        opp-hz = /bits/ 64 <417000000>;
-        opp-microvolt = <800000>;
-    };
-    opp-625000000 {
-        opp-hz = /bits/ 64 <625000000>;
-        opp-microvolt = <800000>;
-    };
-    opp-1250000000 {
-        opp-hz = /bits/ 64 <1250000000>;
-        opp-microvolt = <1000000>;
-    };
-};
+You could really use some __free(device_node) here. It would simplify
+the code below quite a bit and make sure you don't miss anything.
 
-This seems to be the minimal amount of changes needed. I looked through the
-latest OpenSBI and it does match "starfive,jh7110s", but it treats it exactly
-the same as "starfive,jh7110" and Hal have not really given any other reason
-we'd need new compatible strings.
+> +               return NOTIFY_DONE;
+> +       }
+> +       of_node_put(remote);
+> +
+> +       switch (action) {
+> +       case BUS_NOTIFY_ADD_DEVICE:
+> +               /* Create serdev device for WCN7850 */
+> +               if (pdev->vendor =3D=3D PCI_VENDOR_ID_QCOM && pdev->devic=
+e =3D=3D 0x1107) {
+> +                       remote =3D of_graph_get_remote_node(dev_of_node(c=
+tx->dev), 1, -1);
+> +                       if (!remote) {
+> +                               of_node_put(remote);
+> +                               return NOTIFY_DONE;
+> +                       }
+> +
+> +                       serdev_ctrl =3D of_find_serdev_controller_by_node=
+(remote);
+> +                       of_node_put(remote);
+> +                       if (!serdev_ctrl)
+> +                               return NOTIFY_DONE;
+> +
+> +                       serdev =3D serdev_device_alloc(serdev_ctrl);
+> +                       if (!serdev)
+> +                               return NOTIFY_DONE;
+> +
+> +                       ret =3D serdev_device_add(serdev, "WCN7850");
+> +                       if (ret) {
+> +                               dev_err(dev, "Failed to add serdev for WC=
+N7850: %d\n", ret);
+> +                               serdev_device_put(serdev);
+> +                               return NOTIFY_DONE;
+> +                       }
+> +               }
+> +               break;
+> +       }
+> +
+> +       return NOTIFY_DONE;
+> +}
+> +
+> +static bool pwrseq_pcie_m2_check_remote_node(struct device *dev, u8 port=
+, const char *node)
+> +{
+> +       struct device_node *remote;
 
-E: I know this doesn't split out the opp table like you suggested, but I think
-that can come later if needed. Let's just start with the minimal amount of
-changes to get the VF2 Lite supported.
+Same here.
 
-Hal: Do you think this could work? You might need a patch to move some mmc
-properties out of jh7110-common.dtsi
+> +
+> +       remote =3D of_graph_get_remote_node(dev_of_node(dev), port, -1);
+> +       if (remote && of_node_name_eq(remote, node)) {
+> +               of_node_put(remote);
+> +               return true;
+> +       }
+> +
+> +       of_node_put(remote);
+> +
+> +       return false;
+> +}
+> +
+> +/*
+> + * If the connector exposes a non-discoverable bus like UART, the respec=
+tive
+> + * protocol device needs to be created manually with the help of the not=
+ifier
+> + * of the discoverable bus like PCIe.
+> + */
 
-/Emil
+I really like this idea BTW!
+
+> +static void pwrseq_pcie_m2_register_notifier(struct pwrseq_pcie_m2_ctx *=
+ctx, struct device *dev)
+> +{
+> +       int ret;
+> +
+> +       /*
+> +        * Register a PCI notifier for Key E connector that has PCIe as P=
+ort 0
+> +        * interface and Serial as Port 1 interface.
+> +        */
+> +       if (pwrseq_pcie_m2_check_remote_node(dev, 1, "serial")) {
+> +               if (pwrseq_pcie_m2_check_remote_node(dev, 0, "pcie")) {
+> +                       ctx->dev =3D dev;
+> +                       ctx->nb.notifier_call =3D pwrseq_m2_pcie_notify;
+> +                       ret =3D (bus_register_notifier(&pci_bus_type, &ct=
+x->nb));
+> +                       if (ret) {
+> +                               dev_err_probe(dev, ret, "Failed to regist=
+er notifier for serdev\n");
+
+If this is optional and we don't handle the error, should we really
+print it as one? I'd say a dev_dbg() would suffice unless the failure
+here impacts the driver's behavior (which it does, so maybe the
+notifier should not be optional?).
+
+Bart
 
