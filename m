@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-240302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6109FC6FD43
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:54:47 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 413DEC6FE5C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D0CA53480BB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:47:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 898FC4F6A8F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4169736C0BB;
-	Wed, 19 Nov 2025 15:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3376836CE1D;
+	Wed, 19 Nov 2025 15:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bz492DHl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rAnSdbFB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EDE4369966
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:45:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1261A36C0AB
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:45:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763567143; cv=none; b=DcQ/kdtqbEw3eUACnmIPvH3g5u6F5f/0ArMszX8HEzv5Q2m/UcOCiWN7gVKnKiluh/JrhtTlHoe5QrNiAfTyKgNsNoSpq1HoYBKRBDjlL9JPdErY3Pa6zYzy2jj1E4u8tZPTRJXlFkT+IP+PAcZWROKF7J2JTb6LZDgvZ16MIkA=
+	t=1763567146; cv=none; b=s8a++cGWZu8ZiQ9TozYrt9cmJSqqItn5luBQeqLQiI0vBTImcn34rGNrgKmE1wWQRfrBjBN10ZKzDRaRzUiVuHpW+2SI+A0KxQvbikl+46+E5kMQA9gVE6rn94USTD9ZRoj4zSrtp375N9CGvKc1TWgZkNvhx0dKzqaMiYKTX+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763567143; c=relaxed/simple;
-	bh=bdt5n2rAVI8cStNvPmdZt8oM87hfXgPy8mlP/xL4jOQ=;
+	s=arc-20240116; t=1763567146; c=relaxed/simple;
+	bh=JX9G2IddNBochneGYWQCKynmuHEMYdz6GZlhqVo2tUg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eod8NBJj1/fhLHLuID8V1ozFCSDVRdiXc4l1uwa3wmigOF9rVybjPwN2z+euCmHcQcNVRz7PC0htwAIVRLZYOvYjOwy5K/LeFOVMrfJbXNBoytS90b1xVTNAGoLBHf2ccfjYDIMvv2w96713I/04rMT8HNJZdw8ATvGIaf+pbug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bz492DHl; arc=none smtp.client-ip=209.85.221.51
+	 MIME-Version; b=kR083njQb9G+QQsz23Qd7hoUZQrGwH1+jyFGiJ01UwBt202/YIGJETkdZK32nPqpe7FmU33147fjWlYBT0Tz7QdRhJChoZH1P5foC9fZGQV14HxAzMi3t4yBdFT11FSx9Zu+0y1uKJjXVcdoqRSAvGzmatwzrMbLxFHTo1WCsQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rAnSdbFB; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-42b3ac40ae4so4186903f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:45:39 -0800 (PST)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-42b2dc17965so5618252f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:45:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763567138; x=1764171938; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1763567139; x=1764171939; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=slnZKLktel7FGULom0AhklQ/3aJdt8tuo66g65NOCPI=;
-        b=bz492DHl5yOzE9yJqimKdlgCFvBmcsPkvDkuBNCriAVZnkeSAqY3nP7LGbyBZvdxbW
-         oc2HOPgDgVH18yyt6HjNfvydEL8GIuHXv2Pofai7w1UKXlmII3hPumvCXNOvOePSROSi
-         e/2BiBnIWC2n2sNn+FoRECLcoeEkoo+4CnwCEhpQwBpUULBVqNYLT4F1hgITIZqkJLqQ
-         bfeKsPz9KlTRqx2ZVlK2A6artCAtJV32H7NQpEOqVUMiDR1uo3umGlgdSfA+RVSV9ygb
-         zLmQSslT7dn9MaSqtfyzoxsSoi+0bpd+NdlBvr5Az29P7gmjqheUCt9rGNgINWi3WwuL
-         Kn/w==
+        bh=JjJbR05GJTjvP4eC8iuNclWxk1mMm5RuLT4aWNn+uIg=;
+        b=rAnSdbFBCLvJLjGUsRP/QcCxvZOZSBH0Zgq71o4AlrJ42jn5rslMLmFXW2AxVikkjc
+         TCFSyFvag+KDqaGb+sGs6y6Xav09Zyp10l3ZPFhA94o2Ri3OzwIj02xzj+m0FuSPn/Gv
+         hD1RwrF7bt3oyLRQ5AQJ5JdP2XYKa+DRSBQ8FahHCby8Rmw4HIxn1MEMOVXs7a2B6/2u
+         EVKQhhdTnuxBtaFrS4GyTGu+YV6B791L869p/wQHxmNOdi+WqgZOXrqw3s6bGiwy5FTy
+         Tw6bwTM4dfJLyCpzNUExW1r8gLRr75kF8oll6wI7RdBr3kTbO/KRsqKSb6aLjhuH5/bX
+         l6IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763567138; x=1764171938;
+        d=1e100.net; s=20230601; t=1763567139; x=1764171939;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=slnZKLktel7FGULom0AhklQ/3aJdt8tuo66g65NOCPI=;
-        b=Igj/MXBuoLNXQMVPScRpkGkPUv27UuAwviORKpU/Ut2iVDxuXeEqbyi5PUN9arPypK
-         /BWl5Fx5B+GBAZyI++mwwLwKUnNWap9HLuPJ9Oe8CzW7xO7/CHe1FyT2VYDt2990Z9co
-         ZFLP4FrcOY3CHppRCYdJ9nPOrxQ8wYFsfYwAjUbGuXZWmICrB07AA1SnmckTCodwXR1W
-         mITxZj2+b72fgnJ4fpk8PlvTHRC+zciAsNKACqlvq8tkgIqiIEuFGhaIdaEI7YgrX9UK
-         eP3kdOhT2swRLygR1PEqZzqNfkHpKVNqduN8f+/Brj2MKkcQ/aYcfYXjWP5ySoeLturZ
-         tqvA==
-X-Forwarded-Encrypted: i=1; AJvYcCV/daYXZYMpaS18HaULWMb+Ge+ld/ZY2ib2xIrRliqxgwXBU7Ob7fOtAISn4tWpneN+5lO1SU+CU7GP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoAThXTHFSr12EW3m7oU0gAlIjK+skcYDe9Vc7xiQcIMOeyutH
-	BuDDlDEFbtNXqmeeySRmiBfOxyp5R5Bc4JfrWSrcFV8OITRcNa/BWejEzlEtWMFEFQ8=
-X-Gm-Gg: ASbGncudSo685UWtidTWdSWNEmR9hxE7RD37Qm/0s1SfKnWgt8ofKZCMmO05S+WM0xM
-	bIPiBR3QS3vagsJpspDywAB04aeNFXNn/KUfgYiWd5NlpTjIjeFcKA7yURuJsOeLmNhriQF22lk
-	JaAU0cchg4RiRrIYzmvuIQ+aLYDVuBWvYX50Metd737xaF+jytFG7exvOyKDZZpRiLBT/+ICMl+
-	B6DVmDQm7WlUCv6rlyT/8h/CBzo1KbEf58z1KulVilROFaDqykLOUmAhgRmcVQCcqHkMhtWayB6
-	rT7vCCc2iEXJ1d9ZAGiQwhBjOUjqbK2jk0jgv7TMT6V8Cr8yWuoDpYagxxQXa3de/E27xPbwk7a
-	Hf2b+AFThiQ2YTP61eWfkEnbRz7mAk34Z85NzqN3sBDZbvzT2eiRqIVfekKg0i7bnoM6hsmWcQo
-	8BdYf7QELFU4n0iIGJBANlgQkro20cTxCtGHC4kdRe
-X-Google-Smtp-Source: AGHT+IH9XA5XKwB+eYd4P52AVjjtUkCjRx7TcK6UtIfvF/aP3IOPVELnIO3YhYk8yezAw62YpuQ83g==
-X-Received: by 2002:a5d:64e7:0:b0:42b:47da:c313 with SMTP id ffacd0b85a97d-42b593395a0mr22250899f8f.3.1763567137600;
-        Wed, 19 Nov 2025 07:45:37 -0800 (PST)
+        bh=JjJbR05GJTjvP4eC8iuNclWxk1mMm5RuLT4aWNn+uIg=;
+        b=IUCHI4axMtPOR2ApOpCmuUC0TM9IsEpLlgfETfvIJCr3kGqwdpVVyg8LcvnaBJ+Oty
+         GUQM5QSEYnBC0B0W2U6/7bStuYLZC7B2glQ3Xf9+dInfMqx2BtFbax3RNKaF5W2zjJDc
+         LKI2QPOmemmzlU4MAGbzWXPCpDqEaPag0torwnUqjEfiXjtht/O4GzLD68z9XodvX2Ju
+         tjcfMplqFHCEkHI75WaZG49PS/a6jz8Ckp+u2kqYEV/LjNN2KKM9dhL0PP95z3F4wEDl
+         9narrumIYpzS4Prb00q43OO2Y+9dD2Mbe79pyymmbFyFtdDsZqijnt9pMBh2B1CfYAwJ
+         fXjw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVF/CjpgOlZPv5HHm0uS/Wje169wnykaiFyisAVPS1oAMO7CqCaCePPkUabrkpH1mpWq50kfKkzm+C@vger.kernel.org
+X-Gm-Message-State: AOJu0YygVHKq1UFaewJgb9BeTb0hWkIN510g+Gbp7CQIHdP01uH8hHyc
+	eYM8pUePJs7WfCPwR/NqcrQy+Xc/IdOnuS0A9UiCjCDBjwpu6pE4oBBmW4hbU7qxciw=
+X-Gm-Gg: ASbGncsBKD+Q05ibge/VjtiMka5ounPa60/VVjty1MCxFPVN7bDuUhV9QGn7dPgxM7d
+	UQVoJw/1jJ6OThlnGsuv5VInU4E3lVMmOsd1Njgxyi4p+ZpLWoTFtYlTNtnWpTbHYiJss9bS1jV
+	WWwJVvbWCC9TVMzDE6+mU/MVCWpOPYYTQSXJm2OIjKa0cSbUDvTOwF0Fg0me3yTX3xWj04/xfDs
+	2QlKVCJk7ZiG5rhxwS+tyb4JLe9K9LklB2WH7UkeTXltsi/hfEtr3q708RN/7QiWJ8Nif8kWVbi
+	YNoisRZe4N1NwBa+ylzh9poL5Gl4FghTF2OjF4ItdW1SnvwNqwb9kGF3NXhSBXn4QX+JJjUbC6+
+	42JmxL2uLxLpsLDuAfkr+XCLQ5dS808UJx86YJGzCUJWJhrESUvD9HUPLKfyaQYx5V9pyB36m2Y
+	ywZyE2BFYMeirBg0Gmk+g82PYzkmf4XA==
+X-Google-Smtp-Source: AGHT+IEyhedKwAlBM3EiuchJNsF2kJSsWS7yZo6BNIFhuE+C/7ka0URI4Q7HQ+TXxvH0Bkqj0xsuVQ==
+X-Received: by 2002:a05:6000:2c11:b0:429:cd3f:f43b with SMTP id ffacd0b85a97d-42b5933e404mr19233459f8f.4.1763567139371;
+        Wed, 19 Nov 2025 07:45:39 -0800 (PST)
 Received: from eugen-station.. ([82.76.24.202])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53dea1c9sm38765632f8f.0.2025.11.19.07.45.36
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53dea1c9sm38765632f8f.0.2025.11.19.07.45.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 07:45:37 -0800 (PST)
+        Wed, 19 Nov 2025 07:45:39 -0800 (PST)
 From: Eugen Hristev <eugen.hristev@linaro.org>
 To: linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
@@ -98,9 +98,9 @@ Cc: tudor.ambarus@linaro.org,
 	tony.luck@intel.com,
 	kees@kernel.org,
 	Eugen Hristev <eugen.hristev@linaro.org>
-Subject: [PATCH 12/26] kernel/configs: Register dynamic information into meminspect
-Date: Wed, 19 Nov 2025 17:44:13 +0200
-Message-ID: <20251119154427.1033475-13-eugen.hristev@linaro.org>
+Subject: [PATCH 13/26] mm/init-mm: Annotate static information into meminspect
+Date: Wed, 19 Nov 2025 17:44:14 +0200
+Message-ID: <20251119154427.1033475-14-eugen.hristev@linaro.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251119154427.1033475-1-eugen.hristev@linaro.org>
 References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
@@ -112,39 +112,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Register kernel_config_data information into inspection table.
-Debugging tools look for the start and end markers, so we need to capture
-those as well into the region.
+Annotate vital static information into inspection table:
+ - init_mm
+ - swapper_pg_dir
+ - _sinittext
+ - _einittext
+ - _end
+ - _text
+ - _stext
+ - _etext
+
+Information on these variables is stored into dedicated inspection section.
 
 Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
 ---
- kernel/configs.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ mm/init-mm.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/kernel/configs.c b/kernel/configs.c
-index a28c79c5f713..139ecc74bcee 100644
---- a/kernel/configs.c
-+++ b/kernel/configs.c
-@@ -15,6 +15,7 @@
- #include <linux/seq_file.h>
- #include <linux/init.h>
- #include <linux/uaccess.h>
+diff --git a/mm/init-mm.c b/mm/init-mm.c
+index 4600e7605cab..6931549bb7a2 100644
+--- a/mm/init-mm.c
++++ b/mm/init-mm.c
+@@ -7,6 +7,7 @@
+ #include <linux/cpumask.h>
+ #include <linux/mman.h>
+ #include <linux/pgtable.h>
 +#include <linux/meminspect.h>
  
- /*
-  * "IKCFG_ST" and "IKCFG_ED" are used to extract the config data from
-@@ -64,6 +65,11 @@ static int __init ikconfig_init(void)
+ #include <linux/atomic.h>
+ #include <linux/user_namespace.h>
+@@ -19,6 +20,13 @@
  
- 	proc_set_size(entry, &kernel_config_data_end - &kernel_config_data);
+ const struct vm_operations_struct vma_dummy_vm_ops;
  
-+	/* Register 8 bytes before and after, to catch the marker too */
-+	meminspect_lock_register_id_va(MEMINSPECT_ID_CONFIG,
-+			     (void *)&kernel_config_data - 8,
-+			     &kernel_config_data_end - &kernel_config_data + 16);
++MEMINSPECT_AREA_ENTRY(_sinittext, sizeof(void *));
++MEMINSPECT_AREA_ENTRY(_einittext, sizeof(void *));
++MEMINSPECT_AREA_ENTRY(_end, sizeof(void *));
++MEMINSPECT_AREA_ENTRY(_text, sizeof(void *));
++MEMINSPECT_AREA_ENTRY(_stext, sizeof(void *));
++MEMINSPECT_AREA_ENTRY(_etext, sizeof(void *));
 +
- 	return 0;
- }
+ /*
+  * For dynamically allocated mm_structs, there is a dynamically sized cpumask
+  * at the end of the structure, the size of which depends on the maximum CPU
+@@ -48,6 +56,9 @@ struct mm_struct init_mm = {
+ 	INIT_MM_CONTEXT(init_mm)
+ };
  
++MEMINSPECT_SIMPLE_ENTRY(init_mm);
++MEMINSPECT_AREA_ENTRY(swapper_pg_dir, sizeof(void *));
++
+ void setup_initial_init_mm(void *start_code, void *end_code,
+ 			   void *end_data, void *brk)
+ {
 -- 
 2.43.0
 
