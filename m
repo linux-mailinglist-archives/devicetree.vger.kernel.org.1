@@ -1,118 +1,110 @@
-Return-Path: <devicetree+bounces-240438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1088C7104B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 21:18:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 573E1C70FED
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 21:12:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E9901359844
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:10:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 01FAF4E3CC0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:11:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F104536BCC5;
-	Wed, 19 Nov 2025 20:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6AEB327BE4;
+	Wed, 19 Nov 2025 20:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DVYvJxcC"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="fdmaCx3T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FC1362143;
-	Wed, 19 Nov 2025 20:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 236B52F9C39
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 20:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763582726; cv=none; b=abVSDPt3jlmVuCfpvqFBRt6hRKEYtm+OrwjvQUVU+5auWXMnVOXpGU94agoUVd8btqbbBqT9WQbkXLhw58T1RwJ/jaAjx6S/IGQ/nx35Qety/uwZd2EILk47wB6s2I+q0e36eRQWk4BKU/4VBO/fFcJlSFJHxBI62f6hTTu/1t8=
+	t=1763582813; cv=none; b=ifnEVhOYVuw5y0SsZINGai9Hrsajnb7eiKLsz7A/vFrsyRVHZWhGWRfeZUG9MKmAA3nUj/0PERq7g0Sv+sljCgzCF7LQf6j7rSWpjZFVul0E+1WK06qfOhW0IH/kYxXvLQjpEZah7konwCLiE+6fH8HjtqF5Ywk1jxPi1D9gZAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763582726; c=relaxed/simple;
-	bh=58JJAYBmhecOlIksKrVjKgMTdqA1OoMhJ2vhGxjvb8M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a/86OxomtttYtwwFhOlGxNJPT+oiH8cGzyAYEg/5mkO6F/f8U+HN2tU4c9h03/uvIDrCWyNSNedo7D9q3sREgT7CEK3ZkrVGMV2g/yHDVC+OuAJnlXvvHpydb5GOFNCV01Mv/98t6X3tVVEwDk/EMnk+frtI8ZheGPkGf4m2PRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DVYvJxcC; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763582723; x=1795118723;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=58JJAYBmhecOlIksKrVjKgMTdqA1OoMhJ2vhGxjvb8M=;
-  b=DVYvJxcCRa5e0IcxJzUzrYchgkV0qq/HJvv5Tiy9H8qUfHaXP8pJrL0g
-   01IaPWek9+9sUSYk564lSTqBfYQA1cSBKoJ6bIJRttNaMxycjuEE34wIO
-   tlOyxS8Yr/LEcyxOLcN5ij3hsElYNg0Go8S4ZUqWNlQXo3z0MTc2puwfD
-   5KCUrvBeTf60H97cy6gvoDnkH3TRsWuXZgXM0Dvw5C7QwbHVaN5gD4yQ/
-   LvrwBo4R6DetCZKn+d2C5sJbTNxO/gcA7zg/n1RODFmFR/5cQC1dBStrL
-   u6UTflx+qb2oggUU9GxRgaFmvcfbzJVQCVUj8J48h/0enGGJMQjp1IYBV
-   g==;
-X-CSE-ConnectionGUID: Em3bm5CQS76txmG2tictwA==
-X-CSE-MsgGUID: kkOqAqv0S0WW3OkM60V+sA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="76316298"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; 
-   d="scan'208";a="76316298"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 12:05:20 -0800
-X-CSE-ConnectionGUID: 5SBGXruOTRuhCotE2+SCrw==
-X-CSE-MsgGUID: CjKn2GOnS166hy9Ak2Y1SA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; 
-   d="scan'208";a="191955972"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.245])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 12:05:16 -0800
-Date: Wed, 19 Nov 2025 22:05:13 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Jan Dabros <jsd@semihalf.com>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Clark Williams <clrkwllms@kernel.org>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Dmitry Guzman <dmitry.guzman@mobileye.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
-Subject: Re: [PATCH v3 2/7] i2c: designware: Optimize flag reading in
- i2c_dw_read()
-Message-ID: <aR4i-fnWPpnhBHaQ@smile.fi.intel.com>
-References: <20251119-i2c-dw-v3-0-bc4bc2a2cbac@bootlin.com>
- <20251119-i2c-dw-v3-2-bc4bc2a2cbac@bootlin.com>
+	s=arc-20240116; t=1763582813; c=relaxed/simple;
+	bh=qG5+IlHh1mxaXcrUVMcJNHvtrGkvdwElR/i6jnAiIwM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=qSblrtJRo8+9m0CieLkeZrbSt9JQJgrAug4dpT/if1YpeMl6cfO0ChAXHZVZCnQBWynm+qWOfkHtFEQljolGlLky0/7ctIl+4I3xK4QeUg3OvepxvDHfueoav1YggDddtxrImPEzvOpBHT81mM96hOu8dEd642WzI9EuM9icNls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=fdmaCx3T; arc=none smtp.client-ip=84.16.241.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
+Received: from [IPv6:2a02:1812:162c:8f00:26cd:b932:ba51:717b] (2a02-1812-162c-8f00-26cd-b932-ba51-717b.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:26cd:b932:ba51:717b])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id 7DA186A1EA0;
+	Wed, 19 Nov 2025 21:06:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1763582807;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qG5+IlHh1mxaXcrUVMcJNHvtrGkvdwElR/i6jnAiIwM=;
+	b=fdmaCx3TLAF9VwAdGFa3rdhkQkbJW0/0OoDJbK/2SyK3iWImNSFb+yBMlqBNoW/u/BwiKa
+	XCwdrvIYoUbcpNxLqrc/iyBxOODFbhxKBbwpC0oM/uY6Zitbts90SkoW5YQRHtfqQqalk0
+	WXP8uOS2WneaTe2habZwv5GorT61ytCySN1tY1M1+nAD66yxtW2irvdiKJYG0O9Jmw4WVN
+	jqB/tp4rqzsHTs7r+lhEqXtZvAou9jyFK6/YQFa5im+mWUbgJthRzg3ee4lNVFNUbJSscr
+	Q+JR65g8YgRl2jNGLCiHp/tViVz07hvwhGwU9hKdiM9VlTySCXTTCulXLBwt3g==
+Message-ID: <5644907b34f2806afa1a7c997942642eca94628a.camel@svanheule.net>
+Subject: Re: [PATCH v8 0/6] RTL8231 GPIO expander support
+From: Sander Vanheule <sander@svanheule.net>
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Michael
+ Walle	 <mwalle@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Date: Wed, 19 Nov 2025 21:06:47 +0100
+In-Reply-To: <20251119200306.60569-1-sander@svanheule.net>
+References: <20251119200306.60569-1-sander@svanheule.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251119-i2c-dw-v3-2-bc4bc2a2cbac@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Wed, Nov 19, 2025 at 04:05:31PM +0100, Benoît Monin wrote:
-> Optimize the i2c_dw_read() function by reading the message flags only
-> once per message, rather than for every byte.
-> 
-> The message flags are accessed both in the outer loop and the inner loop,
-> so move the declaration of the local flags variable to the outer loop.
-> 
-> The message index is only modified by the outer loop, so reading the
-> flags in the inner loop was always getting the same value.
+On Wed, 2025-11-19 at 21:02 +0100, Sander Vanheule wrote:
+> The RTL8231 GPIO and LED expander can be configured for use as an MDIO
+> or SMI bus device. Currently only the MDIO mode is supported, although
+> SMI mode support should be fairly straightforward, once an SMI bus
+> driver is available.
+>=20
+> Provided features by the RTL8231:
+> =C2=A0 - Up to 37 GPIOs
+> =C2=A0=C2=A0=C2=A0 - Configurable drive strength: 8mA or 4mA (currently u=
+nsupported)
+> =C2=A0=C2=A0=C2=A0 - Input debouncing on GPIOs 31-36
+> =C2=A0 - Up to 88 LEDs in multiple scan matrix groups
+> =C2=A0=C2=A0=C2=A0 - On, off, or one of six toggling intervals
+> =C2=A0=C2=A0=C2=A0 - "single-color mode": 2=C3=9736 single color LEDs + 8=
+ bi-color LEDs
+> =C2=A0=C2=A0=C2=A0 - "bi-color mode": (12 + 2=C3=976) bi-color LEDs + 24 =
+single color LEDs
+> =C2=A0 - Up to one PWM output (currently unsupported)
+> =C2=A0=C2=A0=C2=A0 - Fixed duty cycle, 8 selectable frequencies (1.2kHz -=
+ 4.8kHz)
+>=20
+> The patches have been in use downstream by OpenWrt for some months. As
+> the original patches are already a few years old, I would like to request
+> all patches to be reviewed again (and I've dropped all provided tags and
+> changelogs until v6).
+>=20
+> ---
+Forgot to list the changes since v7:
+- All drivers can now be built independently with COMPILE_TEST
+- Fix storage size of pinfunction flags in a more compatible way
+- Add missing OF dependency to pinctrl driver
+- Improve references properties in bindings
 
-OK.
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best,
+Sander
 
