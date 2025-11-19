@@ -1,182 +1,129 @@
-Return-Path: <devicetree+bounces-240064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE50EC6D092
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:10:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB687C6D09B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:11:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B47AC365B10
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:09:36 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5669C352359
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB28B3074A4;
-	Wed, 19 Nov 2025 07:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73403148C6;
+	Wed, 19 Nov 2025 07:11:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="slUwqxzq"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kPcL8d5k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2835260583;
-	Wed, 19 Nov 2025 07:09:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289A62F5322
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:11:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763536171; cv=none; b=eqCZGT9b/JeRVuc3rleSUOnBf/DGSSGG6HkdLwqYQirX7/naJOJAI0y4t+549HQSMAWwOrMBL1WwnTwiNKtrBFVV62fq5QT6498AdddvbqdN8d74M2uSocxxdDhbO/Y49jlybG/5V7KILfzPd9G3AmI5vgZtvcwdZzg9aTSfbJw=
+	t=1763536311; cv=none; b=Mgeb42lMF6wOpRJfDi6M/C6+OBdKEyywkd+uikSEvjeoklErD3kN0SKID6HZTMQaCekBygO7PCZu8ogk02q00WfdxLBDZgRnbTtdvJAAfiA4V9674i19xMz/KnhYrNN2QGOpuz1IxL9QmnOo8nYu9Osu3d0YqQ6CYLJ5xhPqK3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763536171; c=relaxed/simple;
-	bh=O/4WfGtcG0/mNMxamiEKbindOcuVypVEQdCPFbGQcBQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AhcJLpADG6TbKgerBQP2I7L9MEhi5eRHX+ecJ4EiTrZic15j6DzEUo7K5R6/DpnMMjuoAKEs81GFIPJJA1RmEuzCHPJN2iH+UH8YyAMALkd4b+sJMWsdeQusaPmnzj028KNReX7sGcFeLQJcTGOeCVGeDGDIVgvqnmLPp4sJ2cA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=slUwqxzq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBCB4C116B1;
-	Wed, 19 Nov 2025 07:09:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763536171;
-	bh=O/4WfGtcG0/mNMxamiEKbindOcuVypVEQdCPFbGQcBQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=slUwqxzqE3w2SMUy1ovPpJ2lp0nmLMR1a+4QCn9nTqNzZ4DaN08X3QaD6dE/u7bfg
-	 YeXiCSVgPNBRusjPYlG03X5dtFQ1CuguJvzEx8JrLfCPX7jCdJNfwI8esPcwXT/Cx8
-	 iz5rZv1CC+L9q+pmwnUVJBEj5NO+Z3nfj06R3PXywt9UZiaCpCu0W4zi6t94QhCb2F
-	 sEVV5ARlgh0TuaxMYW2zDGGdo7+vceOuRno0+HKuPszXAHfl1BUC0XZyEBvxomf8QK
-	 RiW+noBX9DPtFt8asP+N2YjJ35TzoJ5dN4Pa2WZTDVwQexrV+QGEip2HYccvKdD5M9
-	 zc9yDazu2QNcg==
-Message-ID: <e7417a6e-3824-48f7-af56-eaf4bf097cb9@kernel.org>
-Date: Wed, 19 Nov 2025 08:09:25 +0100
+	s=arc-20240116; t=1763536311; c=relaxed/simple;
+	bh=lewKTD6NLFHdDtQ7f7/vxDFUy37j58RvCE9wZLaqFZw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pUFsIjx0ch0tYvWXLCaLi/xpRbo3Zqz2+UVQSutHwOV1eUKh0rcQrntDVuiMqr1ZuXyfppyuOlZeGpFLX8JNb+AS/E5aGO1EUj2RQnvinxF/m8FFT1DkDhpCpMtuiZ3UFNkmzcq29r2TQTJIMbsr0m2eTABfeNcwOGLY0n3ekfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kPcL8d5k; arc=none smtp.client-ip=209.85.214.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-297d4a56f97so72457085ad.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 23:11:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1763536309; x=1764141109; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kYHfBeSzfHHxVu3uMn0kynACtSYKaWfSTnHHUJabxhI=;
+        b=kPcL8d5kUfwccY9poEyC+Om6MkQM9cWa3wOMMHSphpnLjJOhTSFOh7nqlr63LugQ7x
+         N1hk/YQnvNBZY2g0GxxWvVuh3ym8tax0Fv7S012p2DDgU7K9Xyc7akCVUZHyucSBbibH
+         NBSUawlYaU6Ito7foHNcRHXe7UvgpA+mbKiRM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763536309; x=1764141109;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kYHfBeSzfHHxVu3uMn0kynACtSYKaWfSTnHHUJabxhI=;
+        b=eMdNydXF+OVJtuhmCuTui9YyQ7bZ2ePlViklf76F02hgeZLCHhSzxZ20dCRND11Q7v
+         1qhsCKm0157Sy3FluRmvcJZk++eh324Gt7EVfefNWQPvtHkvZWtFc0I0t2ZYOZVCat+K
+         4m90Dls9sSeLyBbbYwzO6RmOpqJ5MJD0Xg2EAmDBihd6vVo728B8a0sT/AAHdyq1hwks
+         fW+ZhUytDeS2/nOuiYd8w5hCgXdiMpEjT4iaxQvaG4iFE1WZ9YetBu6m7uq0kCEDYACh
+         s8RbjDVZwbeIQ5aM1FARgdDjxlaJO8FLjXCGByKeFrN5PDafbmU0eq2qCbvy9Hm2UjTo
+         wOtw==
+X-Forwarded-Encrypted: i=1; AJvYcCX0NzImK18YnQ4MKpUgREHq5oNwmhkkNoKSXcrrO4Aomjix7Zpl7d/a12LnAcS7ONCONcPgaogVTXHs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxwk6XqAuRdhSiqXTjUFY5d+9Y3utfwhI1qerDB/s1iyZpsArzZ
+	7YCc7tDcf1JMvyou6PhS3N9oHSfnvfJNFn0/LAqTHANPwC/+ZtLFfHE+nohHcObSqgF5qjUd0zW
+	rVhTlxA==
+X-Gm-Gg: ASbGnctN6Bumu/Bxlh4H5GcRsa5kicb6J6HLqwmsdEKZuNKrQIReorU+hfB0sEBO+MM
+	hbDsYCib9l5ctPWyPyD84sfw9lkq+EnUb2H1IwKYq2GNzrzXkj6YTT0X1tO6Ds8qE90MiRLkV49
+	nqE1/BkQIsDdff+ib0KJ1o0hKdkJrkPHugwS+GhEJGKTTdUL9j+/UpO0GCsbe+WN2xr/VVybCyL
+	UiJ1zl0Gqk/9k9lkI66eqAhwOe2DwYfS0+4Y89+QrJSMquV8u7yaVH3k7bDAAXmINz/PZPy65zn
+	2XdigzE4hgJpFvKGxEozlQCpDJfWVV9LVMTifWXp3pHKwOjCWhOHeYBEhp8HQaWG81RtsFcM7FQ
+	dnylmpmkB3a5ctWMA/2NBuSVxn0RZ2dKhuuXXSI/PLFsnHFDVnIjFOc/io1yyYambWESmMl1WUy
+	hRSlIJBs5+CGe7aFzu72pa6HZoXcCNh7HinVZx5XY3i/AxrsT5PxjoKu1a5NNbWn/RQxgW
+X-Google-Smtp-Source: AGHT+IGNuUZZklbSnAwcwjH0fvBJN9XmBWel6ilOI6vt+JGrwzQllOqIu2jGWlXL11D1C3baD1ynRg==
+X-Received: by 2002:a17:903:247:b0:294:ccc6:ccfd with SMTP id d9443c01a7336-2986a6bf3b3mr209119565ad.24.1763536309538;
+        Tue, 18 Nov 2025 23:11:49 -0800 (PST)
+Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:d42c:6a2b:5251:a121])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2985c2bf1ddsm197554725ad.92.2025.11.18.23.11.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Nov 2025 23:11:48 -0800 (PST)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev,
+	Julius Werner <jwerner@chromium.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: firmware: coreboot: Document optional device specific properties
+Date: Wed, 19 Nov 2025 15:11:25 +0800
+Message-ID: <20251119071126.1719405-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.52.0.rc1.455.g30608eb744-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: rockchip: Add Asus Tinker Board
- 3/3S
-To: Dragan Simic <dsimic@manjaro.org>,
- Michael Opdenacker <michael.opdenacker@rootcommit.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20251118-tinker3-v3-0-2903693f2ebb@rootcommit.com>
- <20251118-tinker3-v3-1-2903693f2ebb@rootcommit.com>
- <155d3d05-49f8-a000-6939-1411917745bb@manjaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <155d3d05-49f8-a000-6939-1411917745bb@manjaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/11/2025 08:00, Dragan Simic wrote:
-> Hello Michael,
-> 
-> On Tuesday, November 18, 2025 16:56 CET, Michael Opdenacker <michael.opdenacker@rootcommit.com> wrote:
->> Document the compatible strings for Asus Tinker Board 3 [1] and 3S [2],
->> which are SBCs based on the Rockchip 3566 SoC.
->>
->> The "3S" version ("S" for "storage") just adds a 16 GB eMMC
->> and a "mask ROM" DIP switch to the "3" version.
->>
->> [1] https://tinker-board.asus.com/series/tinker-board-3.html
->> [2] https://tinker-board.asus.com/series/tinker-board-3s.html
->>
->> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
->>
->> ---
->>
->> Changes in V3:
->>
->> - Remove this Acked-by as the binding code changed substantially:
->>   Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> index 6aceaa8acbb2..800c11323a4f 100644
->> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> @@ -86,6 +86,13 @@ properties:
->>            - const: asus,rk3288-tinker-s
->>            - const: rockchip,rk3288
->>  
->> +      - description: Asus Tinker Board 3/3S
->> +        items:
->> +          - enum:
->> +              - asus,rk3566-tinker-board-3
->> +              - asus,rk3566-tinker-board-3s
->> +          - const: rockchip,rk3566
->> +
->>        - description: Beelink A1
->>          items:
->>            - const: azw,beelink-a1
-> 
-> Please see my delayed response in the v2. [1]  I think that would be
-> a better approach.
-> 
-> [1] https://lore.kernel.org/linux-rockchip/3c96ee6b-dca7-1a0a-792b-f8c165ec997d@manjaro.org/
-> 
+Coreboot, or the ChromeOS second stage bootloader, depthcharge, will
+insert device specific properties into the coreboot firmware node when
+there are valid values.
 
-Your reviews are not helpful. You nitpick irrelevant things and propose
-solutions which later reverse leading to wasted effort on contributors side.
+Document these properties in the binding.
 
-Michael implemented what you asked here:
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+ Documentation/devicetree/bindings/firmware/coreboot.txt | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-https://lore.kernel.org/linux-rockchip/e4cd11d0-463c-e707-5110-6b92899b1ba3@manjaro.org/
+diff --git a/Documentation/devicetree/bindings/firmware/coreboot.txt b/Documentation/devicetree/bindings/firmware/coreboot.txt
+index 4c955703cea8..0d04ea482aa9 100644
+--- a/Documentation/devicetree/bindings/firmware/coreboot.txt
++++ b/Documentation/devicetree/bindings/firmware/coreboot.txt
+@@ -21,6 +21,15 @@ Required properties:
+ 	0xc0389481 that resides in the topmost 8 bytes of the area.
+ 	See coreboot's src/include/imd.h for details.
+ 
++Optional properties:
++- board-id: Contains the board revision number.
++- ram-code: Contains the board's DRAM configuration type.
++- sku-id: Contains the device variant SKU ID.
++- fw-config: Contains the device variant FW config value.
++
++The optional properties are only populated if the values parsed by coreboot
++are valid.
++
+ Example:
+ 	firmware {
+ 		ranges;
+-- 
+2.52.0.rc1.455.g30608eb744-goog
 
-This patch implements exactly what you wanted. On v4 you will ask to
-reverse back to v1?
-
-Now you claim that you want back v2. Really, you are NOT HELPING. It is
-clear you do not understand what you are proposing and this is not
-helping ion the process. Please refrain from such confusing reviews.
-
-
-
-Best regards,
-Krzysztof
 
