@@ -1,106 +1,188 @@
-Return-Path: <devicetree+bounces-240076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6B38C6D1D5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:30:07 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B352C6D1C3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:29:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 85B082CE42
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:29:12 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6C84034FB7C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D864032548A;
-	Wed, 19 Nov 2025 07:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926EF322A1F;
+	Wed, 19 Nov 2025 07:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="EcsPZ0hM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L7hCn8jO";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="C+UkjT2A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94CDB320CCE;
-	Wed, 19 Nov 2025 07:28:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E45EF321F31
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:29:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763537328; cv=none; b=EbUjvpsu8n6mda+AVraweoUHobWPUFy+zFY0V+uqoXAuRLG3RUnpLrCBu0eBBqRYRsjVbmBICEamLBVXLlzjLPuKPwWWxvnht3ng86ZYGR3VB1exfWBr9xYsqPDqEPrCUwjFqqSmCroF8Esfs07KLGxeNtoRNlsjUme8o3dzLhU=
+	t=1763537349; cv=none; b=DLXDVCF9MK8Yfa/FwL9PpvwcySA1foUK7nEWmQUYNuza/n5rZTgQsUeQ/0TxoOGi2dWnkV1iqF1+2Un7uwUcwwyNAgMasbArVyzmW9qR3tjstAfJC/ajR0gvBy+3KOi5K0WCcLBDOM9RyjOfM/tLuXEHe1W7v9JWtW41s5vGq34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763537328; c=relaxed/simple;
-	bh=AaE9Hltz7b5i2393djCofwQlNVHLseidgcqGDZi+OAE=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=MClG58sMqtptkVLvp5xfvYI22qvfjFrxj855Gz4+KvEmLNptOHq7KGsnmzLgWBN7sq+4BrmeWlXjne0k+0V0edlY9e3d1Tq2jaQO978LuTpxLumsCZQtcQoCNvBdLkuYbCktDnWsfwJeGjZURibLu53lyFWw/PdJXtK1Jok92ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=EcsPZ0hM; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id C25E54103E;
-	Wed, 19 Nov 2025 08:28:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1763537324; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=h4MyhiUrRVJoFNGk2D4bpUeiUKWMgtxnDIhB2j6Wz40=;
-	b=EcsPZ0hM4pFqxttaBdH9EvxyMJnbZvzyZyp9mNtz212SHspBhfRhqUIQWSkXCzOLtBjCeM
-	ZwacH1LDlOPxxEae8HtZ8AX/gd6V+8mTVQct3ZUm5yTh8fwKe3Ser1lvSZ2PNxzqN9Cwmt
-	37CKvcAdhagZtstAzXwyo1MZPaA7v11abSVAfZuJALMPM5Pug5oD5u4Poa9z0fACmGCuLy
-	NEvRLHHiODf/s1TrbLWHkl7QRUk/PJ4IDxX35X38pls3SdipUcCh1jW67UWpRkfal4CFWP
-	ay0c0tHfscXICGgzHSyuAb/kEvfUbVgAVR6pZCl8icA7bWWsVxkrNd7Zv8Cc3A==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <8fce39e0-62f7-4a79-83b8-e3a63af10e2f@rootcommit.com>
-Content-Type: text/plain; charset="utf-8"
-References: <e4cd11d0-463c-e707-5110-6b92899b1ba3@manjaro.org>
- <0c224662-b3c2-4075-8b68-c0ae27421ba8@rootcommit.com>
- <3c96ee6b-dca7-1a0a-792b-f8c165ec997d@manjaro.org> <8fce39e0-62f7-4a79-83b8-e3a63af10e2f@rootcommit.com>
-Date: Wed, 19 Nov 2025 08:28:43 +0100
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-To: "Michael Opdenacker" <michael.opdenacker@rootcommit.com>
+	s=arc-20240116; t=1763537349; c=relaxed/simple;
+	bh=ewTtdlM+ycukCeY2AVDnBWK0akizVQ43cPK6OLi6FP0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=phXjcpoWF+gxLGWcOe8/PeamlBgv1+MHiWz8es7GpqvJEP0ml5aqswmx05SM61vwvOZHnZrXsri4GA1nGjHI34oKk3T3XQZzz6Ys/ODykMO9qD/svc5HFR/Jo3RhEqWWqCLLb02GwnGRz0xlas1RQC2soBBKdvhNOiJSrkjk5Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L7hCn8jO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=C+UkjT2A; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AJ40K5D844680
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:29:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=3DsLZ1FPHrZSruYCWz+tNPLe
+	YmGcBuVVtHAcpOK5kqU=; b=L7hCn8jOFNCOdEq4+xSQP4S5U6BPf9bqK8E1/1cS
+	hci1VfOLerJsWogWVbA4KDd1LBTlCQcv4K1u4UoiHB0vyNg+YX4+jjHk8YB4/BWa
+	YlbVZfkR+xgAY5cikyjKsa2B+DBcjqOd9Yzwj2ki1veU31a/uHX3y2/Vl8o0iTC0
+	EavnJ4WpOL7QJ5+XIe4Dc0vdxqEYPeMpmw5j2Xs5Iv+W7FnreQvaWC+p+7mU9q9W
+	6b8LW4iRtbTbuiJts30NwDHldQnPKA4MdCXNo6eLStXxtuMpSDmyJVai23RkRDcO
+	L1PcrSJklTlwOfyyLq0w2pWsH+/3nbRYTP+uri9X+Cth7Q==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ah6fg8h96-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:29:06 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b245c49d0cso834937585a.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 23:29:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763537346; x=1764142146; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3DsLZ1FPHrZSruYCWz+tNPLeYmGcBuVVtHAcpOK5kqU=;
+        b=C+UkjT2ADzULMQT+ro69U8AI0tRlipzkri3/rG4uIO6M8Z4RhRSFGoo0pHtPZFXrDC
+         NC1++o82eeqiozXmHLHLcSljsKnQzMDPKxHQ+IeYWWpoatrYUOGsJwjK13Hy7OVIp1me
+         AjrmLD6AuA/y6hikmHItoAlBawEc5AlMvfDc/plwqP5wHQS7Goz+Gt+lxfH4TQ2oNHnb
+         qNP8UTO0Pw5laLb9kFjMg3RbbdVfTk/5y7Ygfpe3XFqcUUAkWVDYakdnGhpeG8laBqfn
+         weGCRWgjKmacnqopjQ2jfYzW6B6bzH43/HmPcdTAaki3N1t4mMIuf5crc9Y5VFlTXRHW
+         V3Ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763537346; x=1764142146;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3DsLZ1FPHrZSruYCWz+tNPLeYmGcBuVVtHAcpOK5kqU=;
+        b=qU959CvIo1+eOwqWgvOTNcoQyGULQ+LT9POZXovRmAmPHnF9ur99HfcoTwS42YxeDX
+         goPTpFABqy4fAV7G3W0m/pfDYrh3k5y2x56QU9jOfbepbnWrw3gGc9u8KCraf+NC+912
+         nN9eP3jWEbS10BH7GApOJ3BVR0LjSUpDYb/RjuwaEh97BIC01R6eYRDCy5gulrCQRx0d
+         MMUUsQHjChs4xmtKM/t8KEandy5kkA6gPAVxMZmjvxlo0XkhVuv7pu1eIiUso30Wp3iJ
+         mRBcMYe7sMoqtq+Z0zQziP1WHqwhuk4Z8F+2HzBsOocTnhIWYRuI1XauwLGYuypJI6bi
+         Q7sg==
+X-Forwarded-Encrypted: i=1; AJvYcCXBrR6DHUZ3FdHVpvG5T2g4BBvgpDkx8qbDlmwBjMcql/UtnCeUrCELzceuD8AP24c3nYR8P9sNELtb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaNXk4x3dL03nCc0WJhXiaH95ziZDz8wZVEuEpO8pQ+LVi8KOP
+	3Hln8Xn4DKZ3GsLq62LvEb32U/TX6aJ3DbQNb+140eUYl/CvrBE1tawy1/Q5BeuOFH/yUQW4Vl5
+	6FbQuy8C25f1XmwrwUewdItXcCOfOQgMRhPcPaNbhNeL1RWgN0exYn9JYCAs8MMxj
+X-Gm-Gg: ASbGncsR83UOq9yPsmT25j+a8Ol3EsK1HKBS5vIq6b6DNcrAW7EjeLzpgL9ngGP9+tL
+	pVyV7f1IeQtObWnft9b8HHMT85VU6DGmqoTI0vzuIWVaEFRQS/WfvdQ6Ma97H6lvvP8SgtNXdfY
+	lXbdUFXnuZFMXzCs7jC0F/S5mWr/9pmpdWXZ5kOdqCeeklwt0+SahXoNTmri/nYqKtAOuWmFkOX
+	BdESvJqh0tRkwFH6s/bQavjbXJ3aZBA/tn0iUdq4wKSxcb1Y+oIJqkoA6k88BQPSrJG8Rmfyo7E
+	no6N0iKmRd4JsVSOPEBon5GdbZq2HxJ4XMcFiV8rgC4V8TqDGRRYS78mk0dtWZYon+iNCOMKuBI
+	P/FtiZJCeh3+9JRzJrnLtfrdiPEKqarpiTOW+OiDj9lqsKkUJu04dhrg9ShPriGS/D1l2fkiVUr
+	c50KubKL8ClJ73nTnboqIgqAk=
+X-Received: by 2002:a05:620a:4624:b0:89f:27dc:6536 with SMTP id af79cd13be357-8b2c31b472fmr2374290085a.54.1763537345882;
+        Tue, 18 Nov 2025 23:29:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEKIqRUG0uKJ86GZa25Y/KflSonDJZP1+c4TBsaJcqeDzg8wuWNhhhKAJ7H9zoJRIHBmQBSbg==
+X-Received: by 2002:a05:620a:4624:b0:89f:27dc:6536 with SMTP id af79cd13be357-8b2c31b472fmr2374287885a.54.1763537345431;
+        Tue, 18 Nov 2025 23:29:05 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-595803b9f7csm4464106e87.48.2025.11.18.23.29.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Nov 2025 23:29:04 -0800 (PST)
+Date: Wed, 19 Nov 2025 09:29:02 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: david@ixit.cz
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Casey Connolly <casey.connolly@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        phodina@protonmail.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 5/8] drm/panel: sw43408: Remove manual invocation of
+ unprepare at remove
+Message-ID: <d6oxprhyao6bajkhyqul333vkerfw4jekiwxpc6pwvul4sedb7@kmxuhqafna5j>
+References: <20251118-pixel-3-v3-0-317a2b400d8a@ixit.cz>
+ <20251118-pixel-3-v3-5-317a2b400d8a@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <3d5ed2bc-038c-0808-56f3-411652b5ed6d@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v2 1/2] =?utf-8?q?dt-bindings=3A?=
- =?utf-8?q?_arm=3A?==?utf-8?q?_rockchip=3A?= Add Asus Tinker Board 3 and 3S
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251118-pixel-3-v3-5-317a2b400d8a@ixit.cz>
+X-Proofpoint-GUID: CHIrulK6PaL0IZKMVcdTIWV0bErie8hH
+X-Authority-Analysis: v=2.4 cv=ZKHaWH7b c=1 sm=1 tr=0 ts=691d71c2 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=-dl1TJHNn62xojq5CvEA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE5MDA1NyBTYWx0ZWRfX54oDLTYoDSqe
+ 3dcSFOz86M3GwKt3eTO3ku8vm9z4zpPvbO2sfcnN+0wKOH9nHm7Q9e4V6oWy4+b3R1iQmn4fC1Y
+ /k1qgy9u1oZ5pKUS6R52jk/fkkxY4Fxghg8j07b1woSqrkRbNcDBu/KhMA4xxyr/N/11s7PIw+i
+ zltrg9hG6dEsYj7PT2Z/piEpSowm3WKlDKvErXmWTwCn9++M27XTkQ6CyU32wXE6H6sYVqRXZRz
+ 79rGqbN63lFV1ede55TUqobOvthWcLABK4CrHHw75EFhdntu7LQhwIygiBc3IwUqp6TZb+sJYaG
+ 0CRxkH4VEJPNOl9OWj9T4JFXHJlWkBswoRVIxlllOLemeyGYj6cfVF5Onkjk+djPVOP/R5VTU7C
+ Xg+x/k1Za6U0wrt1//HsYeR6LXLhgA==
+X-Proofpoint-ORIG-GUID: CHIrulK6PaL0IZKMVcdTIWV0bErie8hH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-19_01,2025-11-18_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 spamscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 bulkscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511190057
 
-On Wednesday, November 19, 2025 08:25 CET, Michael Opdenacker <michael.=
-opdenacker@rootcommit.com> wrote:
-> > This should let us keep the "asus,rk3566-tinker-board-3" compatible
-> > in the new rk3566-tinker-board-3s.dts board dts while satisfying th=
-e
-> > validation properly:
-> >
-> >    - description: Asus Tinker Board 3/3S
-> >      items:
-> >      - enum:
-> >          - asus,rk3566-tinker-board-3s
-> >      - const: asus,rk3566-tinker-board-3
-> >      - const: rockchip,rk3566
-> >
-> > I'm quite busy at the moment, hence my delayed response, and I also
-> > apologize for not running the checks on the above-proposed solution=
-,
-> > but I think it should work as expected.
->=20
-> I actually already tried this, but it doesn't pass "make dtbs=5Fcheck=
-":
->=20
-> arch/arm64/boot/dts/rockchip/rk3566-tinker-board-3.dtb: /=20
-> (asus,rk3566-tinker-board-3): compatible: 'oneOf' conditional failed,=20
-> one must be fixed:
->  =C2=A0 =C2=A0 ['asus,rk3566-tinker-board-3', 'rockchip,rk3566'] is t=
-oo short
->=20
-> The "enum" statement seems to mean that there is at least one of the=20
-> items, which is not the case for rk3566-tinker-board-3.dts that doesn=
-'t=20
-> have it.
->=20
-> So, my V3 seems like the way to go if we don't want to duplicate entr=
-ies=20
-> in rockchip.yaml.
+On Tue, Nov 18, 2025 at 12:30:40PM +0100, David Heidelberg via B4 Relay wrote:
+> From: David Heidelberg <david@ixit.cz>
+> 
+> The drm_panel_remove should take care of disable/unprepare. Remove the
+> manual call from the sw43408_remove function.
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
-I see, thanks for the clarification.  Then the v3 is the way to go.
+Missing Fixes: tag
 
+> ---
+>  drivers/gpu/drm/panel/panel-lg-sw43408.c | 4 ----
+>  1 file changed, 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-lg-sw43408.c b/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> index e5a8a9bb8d15c..d8481bdafd6dd 100644
+> --- a/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> +++ b/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> @@ -319,10 +319,6 @@ static void sw43408_remove(struct mipi_dsi_device *dsi)
+>  	struct sw43408_panel *ctx = mipi_dsi_get_drvdata(dsi);
+>  	int ret;
+>  
+> -	ret = sw43408_unprepare(&ctx->base);
+> -	if (ret < 0)
+> -		dev_err(&dsi->dev, "failed to unprepare panel: %d\n", ret);
+> -
+>  	ret = mipi_dsi_detach(dsi);
+>  	if (ret < 0)
+>  		dev_err(&dsi->dev, "failed to detach from DSI host: %d\n", ret);
+> 
+> -- 
+> 2.51.0
+> 
+> 
+
+-- 
+With best wishes
+Dmitry
 
