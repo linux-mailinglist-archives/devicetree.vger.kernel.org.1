@@ -1,151 +1,350 @@
-Return-Path: <devicetree+bounces-240148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C45EC6DD51
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:55:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50B66C6DD8E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6118A3552D3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:55:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 522132DD33
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C6A03446B5;
-	Wed, 19 Nov 2025 09:55:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="uPmwArdO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 569CE345CC6;
+	Wed, 19 Nov 2025 09:57:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B3793446C2
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 09:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B6C335BBB
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 09:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763546122; cv=none; b=fDN7Rb8YZBtMQPTBIxD9uDh7lVr/2+CxSHI6S2e+WvSVEkQ51nuWoH/4lM0s1/vLd9UFeP7x/CkO7zG2IzTuYP/TZ261th7QzO9c6z5cDaTNo/bH1J7O71mqIOvApsQyOl935qplZ2ccjzu6fw0fjT7QLXgoHWmRXKxaaUK595o=
+	t=1763546240; cv=none; b=ma5/TIQpTbsi/z+nizfdGsmwck5IH0/8ztNbdlV0dUDxILAnCivSFzCGovAvho7yDwZYcsy/stb88Yb5zoHdVZiO82sZF3HXKelsgnxozeJAFHd/rUfjr2com8aCgph0TZvD/dg6ExFgj0Tba0ncKQSW3SEWxS2Fsl7iCfkp29k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763546122; c=relaxed/simple;
-	bh=64h2U+bC76oJIPACy/1e19gVkOarzbd3SCTybXSaLwQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=XG75SnZmsZ6BOmfgnBTRcZyYg4lTXpNFbYXzOW+yvlRYO9/V3YTsJUkJWE1Af/bxVkS+Yqmj9oiuAkkvdg/kLDZ+pTiyUV4qcZmtloxZ0HIb5tnL5mO1ew+eWTJZ1+U59IGp76rOv0+ru/irosgGlmBBx/0tqzj+eVrN0xyF8II=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=uPmwArdO; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20251119095517euoutp016e55fc0a7e295c3ce281d3a1bb8536ca~5X9mTUrXm0858108581euoutp01O
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 09:55:17 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20251119095517euoutp016e55fc0a7e295c3ce281d3a1bb8536ca~5X9mTUrXm0858108581euoutp01O
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1763546117;
-	bh=L9QUbT5sfOfSl3yIBpPIQUHqDme8WznARKwtO6/UvWc=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=uPmwArdO3anYJSblTHIv1FqLZgXX/Pg8rCYKAcM+LI0I49VBk/SyIV0lp7vIufial
-	 hPm7nJ6mOy+30TLQRaHTLQXuhmuI3ejU8K5wCbEGxXF0BUfeGYET4bYBkF3J4e+EpH
-	 /JlmQ8o5qfMTC3SnmLMjmTwChk7CTASiryfl5T0E=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20251119095516eucas1p2f3b258d1a710192d3ca6068433be4b85~5X9l2Ux8E1400214002eucas1p2R;
-	Wed, 19 Nov 2025 09:55:16 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20251119095514eusmtip2bf01f8bfcbc9230cf2e7669fc51637bf~5X9kNe68a0439904399eusmtip2m;
-	Wed, 19 Nov 2025 09:55:14 +0000 (GMT)
-Message-ID: <765d114d-6a03-4535-a644-5e7581dfbccc@samsung.com>
-Date: Wed, 19 Nov 2025 10:55:13 +0100
+	s=arc-20240116; t=1763546240; c=relaxed/simple;
+	bh=u79rK05bGjXVLdcXPTg+6TrexWR50QX9FMb4ZS2IZYY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JpIGanEzV6ck//u10KawbYE7DjSun+Igl6Sau25tEQt1ZHqoUEgUThWyRtpr2FOT/RZMuC6Elj4zprIDentdwG9itzWp5m2IDWuiNOsAOeDj3T5NvigRFA9oaV2t9aZna1gchL3+4ZzcFXikOUx6bygSTSyBr4cgkROkDMS67ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-787da30c50fso60105027b3.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 01:57:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763546232; x=1764151032;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=u0htT7CWQPeByeqxSahyOl4zpUDCMY13dqs08SYJuOU=;
+        b=K77ddDLQMrrtpqFb8yRcaEbbFINhwNgaXEwdfz3YCcvyK+iGm7VIQHLVkRIVpe7laY
+         hvLLVph1tig2aydCZkxnXhCkz7FW/XTYXZKVv/dtOyXiM19pW32AJb3GWJtJuX3TCBb1
+         bqqm6u2fIO/vLx4kGGzHmraNZJkABNWakjKiHIGTi9bccAxHR0muD/rWOLiq7JYMDUXs
+         L2D/KFvsnCC/2umzMZ5xjwoTs7sW3pv1M6v62wroCKMu4GfVfhwEyEOBSEE2tEnPEPaB
+         POebv8xEmwO+SaYXPs6AilKGTniXA6ppXVSgy72et3J/2el2m54WSazpALzGJ5fWBauy
+         P8sA==
+X-Forwarded-Encrypted: i=1; AJvYcCWdP9NTrZFrC7YqKtGgyKntgyJEWwsOET2BL82iU9ZD/+cbcPElnzpIjtmfxypHHKriCV9ktbik5k1S@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkXEAWBI2hpluK9r4kwhUgew+ucaoXOj0V2w1nXmYERQSqMlbz
+	8tJTDlgzadfFrG+QqeKIfzteoUwNKB8XTrme8vOj3RIH/02iGQrIrumV
+X-Gm-Gg: ASbGncsy1k0nI14+dwpqmiAjMM/3FrMQ0DlTANBVainHObFPjwxikRFsz9OWrVYi7/m
+	Metw5QRoP5X99mTCZLUbdrw6YqegGPwRh0/7yXRdhNdSW0LN3D1TzMTjCKtSYLjZ4wkqxNIXps5
+	2NvWerjVO3Mfj3i7A+xDzjTn0GqxCf1KbPpQdKaVdqHH+di6kXARuMK5xAq7NV3WVrqKBAza2lK
+	/TzNcDsSZtket8W2JO2nk/fCcpmc5ZqJoVXvVrX5AGJXEq3ruge/tlL1zZJtUxHZqoXIaYV9L4Y
+	+mP6hoXj06o6L10S8esCOZOLmWB0dJ77gz3rGHPvGV5cz0w1IJ0neDQNlYFzBVyumHourueV9XB
+	vsBbepAoWh6YzTch28sIlDDahkqxCqvc3zPtEiK5AT2MFMGKkJtJdX4tvZ73KxCFYYeAZt+dqIT
+	2xNFA=
+X-Google-Smtp-Source: AGHT+IE6LqxZ12cGRllnLTKJ6CN02VFm/lmGISe4QW8wyVlwqqdnzmBi+WqVehYvYsST8F9UmUsoZw==
+X-Received: by 2002:a05:690c:6812:b0:788:bda:47c8 with SMTP id 00721157ae682-78929efb8f0mr335199187b3.55.1763546229905;
+        Wed, 19 Nov 2025 01:57:09 -0800 (PST)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-78821ddb70fsm61273127b3.12.2025.11.19.01.57.06
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Nov 2025 01:57:07 -0800 (PST)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-787da30c50fso60104297b3.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 01:57:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUPWd+B0niqR8hQd8isxROOxCKX39qAPcanZH7fdw7Ubrm81NLJWr2Xvp2hHuWsl8VgJGoK2ESRVGPY@vger.kernel.org
+X-Received: by 2002:a05:690c:86:b0:786:7c0a:71e5 with SMTP id
+ 00721157ae682-78929e44351mr312271377b3.26.1763546226053; Wed, 19 Nov 2025
+ 01:57:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: [PATCH v2] of/irq: Ignore interrupt parent for nodes without
- interrupts
-To: Geert Uytterhoeven <geert@linux-m68k.org>, Krzysztof Kozlowski
-	<krzk@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Saravana
-	Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Samuel Holland <samuel@sholland.org>, Marc Zyngier
-	<maz@kernel.org>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-samsung-soc
-	<linux-samsung-soc@vger.kernel.org>
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <CAMuHMdXgq=Zv3GQes_d_eyCcB7m--PaEGSQJtUWiRjj-7gBVkw@mail.gmail.com>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20251119095516eucas1p2f3b258d1a710192d3ca6068433be4b85
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20251119085902eucas1p223cb580bdd4cef2698382835c77210e8
-X-EPHeader: CA
-X-CMS-RootMailID: 20251119085902eucas1p223cb580bdd4cef2698382835c77210e8
-References: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
-	<b037f67a-b241-4689-9914-57ff578c1454@sirena.org.uk>
-	<1a4d2276-75e1-4aa0-8ff2-c932ce5d6edc@kernel.org>
-	<CGME20251119085902eucas1p223cb580bdd4cef2698382835c77210e8@eucas1p2.samsung.com>
-	<CAMuHMdXgq=Zv3GQes_d_eyCcB7m--PaEGSQJtUWiRjj-7gBVkw@mail.gmail.com>
+References: <20251115-rubikpi-next-20251114-v1-0-fc630dc5bb5d@thundersoft.com>
+ <20251115-rubikpi-next-20251114-v1-1-fc630dc5bb5d@thundersoft.com>
+ <b2d4d91f-c726-4f5a-994a-086edc9caff2@mainlining.org> <CAEQ9gE=ztgQ+pGJVxKgk5dVWDSSfOG7r=s1cDa_x0_Zsf2eyYA@mail.gmail.com>
+ <2iv3hsxcwlgfnpq75h4tfnbilurs5jelslig6gzknpb6lsupvk@xfxdofqw7b3v>
+In-Reply-To: <2iv3hsxcwlgfnpq75h4tfnbilurs5jelslig6gzknpb6lsupvk@xfxdofqw7b3v>
+From: Roger Shimizu <rosh@debian.org>
+Date: Wed, 19 Nov 2025 01:56:54 -0800
+X-Gmail-Original-Message-ID: <CAEQ9gEkke-tON2-oR9qSHgDH63gtDKu0S71XtMw=uwqRxSHkGA@mail.gmail.com>
+X-Gm-Features: AWmQ_bl_SFzQCsuk2XqZ4jDBPrsGzKnkCwo_SRBXj_zK7hVSRiz7ReegFQasHCc
+Message-ID: <CAEQ9gEkke-tON2-oR9qSHgDH63gtDKu0S71XtMw=uwqRxSHkGA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: rubikpi3: Add qcs6490-rubikpi3
+ board dts
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Jens Reidel <adrian@mainlining.org>, Hongyang Zhao <hongyang.zhao@thundersoft.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Geert,
+Dear Dmitry,
 
-On 19.11.2025 09:53, Geert Uytterhoeven wrote:
-> On Tue, 18 Nov 2025 at 20:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On 18/11/2025 20:34, Mark Brown wrote:
->>> On Fri, Nov 14, 2025 at 11:47:54AM +0100, Geert Uytterhoeven wrote:
->>>> The Devicetree Specification states:
->>>>
->>>>      The root of the interrupt tree is determined when traversal of the
->>>>      interrupt tree reaches an interrupt controller node without an
->>>>      interrupts property and thus no explicit interrupt parent.
->>>>
->>>> However, of_irq_init() gratuitously assumes that a node without
->>>> interrupts has an actual interrupt parent if it finds an
->>>> interrupt-parent property higher up in the device tree.  Hence when such
->>>> a property is present (e.g. in the root node), the root interrupt
->>>> controller may not be detected as such, causing a panic:
->>> I'm seeing a boot regression on the TI x15 platform in -next which
->>> bisects to this patch in -next, unfortunately even with earlycon (though
->>> just earlycon, I don't know the platform specific runes) the board just
->>> dies with no output:
->>>
->>>    https://protect2.fireeye.com/v1/url?k=7efe2b91-216202bb-7effa0de-000babe598f7-79b85fd5422be185&q=1&e=a2b4aea0-c947-472b-ae80-9160750f84a2&u=https%3A%2F%2Fvalidation.linaro.org%2Fscheduler%2Fjob%2F4252918%23L409
->>>
->>> It does seem like a plausible patch for this sort of issue though, and
->>> the bisect converges smoothly:
->> All Samsung platforms fail as well. I was waiting with bisection but
->> Marek was as usually very fast:
->>
->> https://lore.kernel.org/all/20251118115037.1866871-1-m.szyprowski@samsung.com/
-> Yeah, the various ti,omap[45]-wugen-mpu nodes have interrupt-parent
-> properties, but no interrupts{-extended} properties.
+Glad that you're checking for the changes for RUBIK Pi 3!
+
+On Tue, Nov 18, 2025 at 10:08=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
 >
-> Does the following (whitespace-damaged) patch, to restore finding an
-> explicit interrupt-parent, fix the issue?
-
-This also fixes Exynos case without any need for the changes in 
-arch/arm/mach-exynos/suspend.c. The question is which approach is preferred?
-
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -685,6 +685,8 @@ void __init of_irq_init(const struct of_device_id *matches)
->                  desc->interrupt_parent = of_parse_phandle(np,
-> "interrupts-extended", 0);
->                  if (!desc->interrupt_parent && of_property_present(np,
-> "interrupts"))
->                          desc->interrupt_parent = of_irq_find_parent(np);
-> +               if (!desc->interrupt_parent)
-> +                       desc->interrupt_parent = of_parse_phandle(np,
-> "interrupt-parent", 0);
->                  if (desc->interrupt_parent == np) {
->                          of_node_put(desc->interrupt_parent);
->                          desc->interrupt_parent = NULL;
+> On Sun, Nov 16, 2025 at 11:36:13PM -0800, Roger Shimizu wrote:
+> > Thanks Jens, and Dmitry for the review!
+> >
+> > On Sat, Nov 15, 2025 at 9:25=E2=80=AFAM Jens Reidel <adrian@mainlining.=
+org> wrote:
+> > >
+> > > Hi,
+> > >
+> > > On 11/14/25 5:34 PM, Hongyang Zhao wrote:
+> > > > Add DTS for Thundercomm qcs6490-rubikpi3 board which uses
+> > > > QCS6490 SoC.
+> > > >
+> > > > Works:
+> > > > - Bluetooth (AP6256)
+> > > > - Wi-Fi (AP6256)
+> > > > - Ethernet (AX88179B connected to UPD720201)
+> > > > - FAN
+> > > > - Two USB Type-A 3.0 ports (UPD720201 connected to PCIe0)
+> > > > - M.2 M-Key 2280 PCIe 3.0
+> > > > - RTC
+> > > > - USB Type-C
+> > > > - USB Type-A 2.0 port
+> > > > - 40PIN: I2C x1, UART x1
+> > > >
+> > > > Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+> > > > Reviewed-by: Roger Shimizu <rosh@debian.org>
+> > > > ---
+> > > >   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+> > > >   .../boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts | 1415 +++++++=
++++++++++++++
+> > > >   2 files changed, 1416 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dt=
+s/qcom/Makefile
+> > > > index 6f34d5ed331c..2433b15754fe 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > > @@ -138,6 +138,7 @@ qcs6490-rb3gen2-industrial-mezzanine-dtbs :=3D =
+qcs6490-rb3gen2.dtb qcs6490-rb3gen2
+> > > >
+> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs6490-rb3gen2-industrial-mezza=
+nine.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs6490-rb3gen2-vision-mezzanine=
+.dtb
+> > > > +dtb-$(CONFIG_ARCH_QCOM)      +=3D qcs6490-thundercomm-rubikpi3.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs8300-ride.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs8550-aim300-aiot.dtb
+> > > >   dtb-$(CONFIG_ARCH_QCOM)     +=3D qcs9100-ride.dtb
+> > > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.=
+dts b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
+> > > > new file mode 100644
+> > > > index 000000000000..4c9016992de3
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
+> > > > @@ -0,0 +1,1415 @@
+> > >
+> > > [snip]
+> > >
+> > > > +
+> > > > +&pcie0 {
+> > > > +     perst-gpios =3D <&tlmm 87 GPIO_ACTIVE_LOW>;
+> > > > +     wake-gpios =3D <&tlmm 89 GPIO_ACTIVE_HIGH>;
+> > > > +
+> > > > +     pinctrl-0 =3D <&pcie0_clkreq_n>,
+> > > > +                 <&pcie0_reset_n>,
+> > > > +                 <&pcie0_wake_n>;
+> > > > +     pinctrl-names =3D "default";
+> > > > +
+> > > > +     status =3D "okay";
+> > > > +};
+> > > > +
+> > > > +&pcie0_phy {
+> > > > +     vdda-phy-supply =3D <&vreg_l10c_0p88>;
+> > > > +     vdda-pll-supply =3D <&vreg_l6b_1p2>;
+> > > > +
+> > > > +     status =3D "okay";
+> > > > +};
+> > > > +
+> > > > +&pcie1 {
+> > > > +     /* Using traditional address mapping */
+> > > > +     reg =3D <0 0x01c08000 0 0x3000>,
+> > > > +           <0 0x40000000 0 0xf1d>,
+> > > > +           <0 0x40000f20 0 0xa8>,
+> > > > +           <0 0x40001000 0 0x1000>,
+> > > > +           <0 0x40100000 0 0x100000>;
+> > > > +
+> > > > +     ranges =3D <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x10=
+0000>,
+> > > > +              <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd0=
+0000>;
+> > >
+> > > Thanks for attempting to fix the PCIe issues. With your patch series
+> > > applied on top of linux-next, I'm still seeing PCIe issues:
+> > >
+> > > [    0.380693] Internal error: synchronous external abort:
+> > > 0000000096000010 [#1]  SMP
+> > > [    0.406491] Modules linked in:
+> > > [    0.406495] CPU: 5 UID: 0 PID: 106 Comm: kworker/u32:6 Tainted: G =
+  M
+> > >                 6.18.0-rc5-next-20251113 #13 NONE
+> > > [    0.406499] Tainted: [M]=3DMACHINE_CHECK
+> > > [    0.406500] Hardware name: thundercomm Thundercomm RUBIK Pi
+> > > 3/Thundercomm RUBIK Pi 3, BIOS 2025.10-rc4 10/01/2025
+> > > [    0.406502] Workqueue: async async_run_entry_fn
+> > > [    0.406508] pstate: 40400005 (nZcv daif +PAN -UAO -TCO -DIT -SSBS
+> > > BTYPE=3D--)
+> > > [    0.428362] pc : __pi_memset_generic+0x16c/0x188
+> > > [    0.428366] lr : dma_direct_alloc+0x19c/0x3d0
+> > > [    0.428370] sp : ffff8000810e3920
+> > > [    0.428371] x29: ffff8000810e3920 x28: ffff000080d0f810 x27:
+> > > ffffba4c6196ec48
+> > > [    0.428373] x26: ffff000080d0f810 x25: ffffba4c607b31cc x24:
+> > > 0000000000000000
+> > > [    0.428375] x23: ffff000080d0f810 x22: ffff000000c00000 x21:
+> > > ffff000082858948
+> > > [    0.428376] x20: 0000000000001000 x19: fffffdffc0030000 x18:
+> > > 000000000000000a
+> > > [    0.428378] x17: ffff0000823dae00 x16: 0000000000000000 x15:
+> > > 0000000000000000
+> > > [    0.428380] x14: 00000000ffffffff x13: 0000000000000068 x12:
+> > > 0000000000000100
+> > > [    0.449344] x11: 0000000000000000 x10: ffff0001fef99500 x9 :
+> > > 0000000000000000
+> > > [    0.449345] x8 : ffff000000c00000 x7 : 0000000000000000 x6 :
+> > > 000000000000003f
+> > > [    0.449347] x5 : 0000000000000040 x4 : 0000000000000000 x3 :
+> > > 0000000000000004
+> > > [    0.449349] x2 : 0000000000000fc0 x1 : 0000000000000000 x0 :
+> > > ffff000000c00000
+> > > [    0.449350] Call trace:
+> > > [    0.449351]  __pi_memset_generic+0x16c/0x188 (P)
+> > > [    0.449354]  dma_alloc_attrs+0x94/0x210
+> > > [    0.449357]  dmam_alloc_attrs+0x74/0xc0
+> > > [    0.469967]  dw_pcie_msi_host_init+0x100/0x300
+> > > [    0.469971]  dw_pcie_host_init+0x5e4/0x6d8
+> > > [    0.491913]  qcom_pcie_probe+0x5a8/0x838
+> > > [    0.491916]  platform_probe+0x64/0xc0
+> > > [    0.491919]  really_probe+0xc8/0x3f0
+> > > [    0.491921]  __driver_probe_device+0x88/0x170
+> > > [    0.491922]  driver_probe_device+0x48/0x130
+> > > [    0.491923]  __device_attach_driver+0xc4/0x190
+> > > [    0.491925]  bus_for_each_drv+0x90/0x100
+> > > [    0.491928]  __device_attach_async_helper+0xb8/0x120
+> > > [    0.491929]  async_run_entry_fn+0x3c/0x1e0
+> > > [    0.491931]  process_one_work+0x150/0x3a0
+> > > [    0.491934]  worker_thread+0x288/0x480
+> > > [    0.491936]  kthread+0x118/0x1e0
+> > > [    0.491938]  ret_from_fork+0x10/0x20
+> > > [    0.513092] Code: 91010108 54ffff4a 8b040108 cb050042 (d50b7428)
+> > > [    0.513094] ---[ end trace 0000000000000000 ]---
+> > >
+> > > I can only get the device to boot by disabling both pcie0 and pcie1.
+> >
+> > I think there're some regressions in "next-20251114".
+> > After some time to "git bisect", I found after running 2 revert
+> > commands below, it can boot for both RUBIK Pi 3 and RB3 Gen2.
+> >
+> > $ git revert b15ce3c0882c9cd2fbe4f87047874ad087b583ff -m 1
+> > $ git revert 03e928442d469f7d8dafc549638730647202d9ce
+> >
+> > > > +
+> > > > +
+> > > > +     perst-gpios =3D <&tlmm 2 GPIO_ACTIVE_LOW>;
+> > > > +     wake-gpios =3D <&tlmm 3 GPIO_ACTIVE_LOW>;
+> > > > +
+> > > > +     pinctrl-0 =3D <&pcie1_clkreq_n>,
+> > > > +                 <&pcie1_reset_n>,
+> > > > +                 <&pcie1_wake_n>;
+> > > > +     pinctrl-names =3D "default";
+> > > > +
+> > > > +     status =3D "okay";
+> > > > +};
+> > > > +
+> > > > +&pcie1_phy {
+> > > > +     vdda-phy-supply =3D <&vreg_l10c_0p88>;
+> > > > +     vdda-pll-supply =3D <&vreg_l6b_1p2>;
+> > > > +
+> > > > +     status =3D "okay";
+> > > > +};
+> > > > +
+> > >
+> > > [snip]
+> > >
+> > > > +
+> > > > +&remoteproc_adsp {
+> > > > +     firmware-name =3D "qcom/qcs6490/adsp.mbn";
+> > > > +
+> > > > +     status =3D "okay";
+> > > > +};
+> > >
+> > > I'm fairly sure that this is the wrong ADSP firmware. With the firmwa=
+re
+> > > in linux-firmware, I'm seeing charger pd crashes and the ADSP constan=
+tly
+> > > restarting. Using the Radxa Dragon Q6A ADSP firmware which disables t=
+he
+> > > charging feature in the firmware works way better and does not result=
+ in
+> > > crashes.
+> >
+> > I run the Ubuntu 24.04 base system:
+> > * https://ubuntu.com/download/qualcomm-iot#rubikpi3
+> >
+> > Currently it boots well with adsp fw from RB3 Gen2 (from deb pkg:
+> > firmware-qcom-hlosfw) without crash.
+> > But I heard from next release, adsp will be customized, so Hongyang
+> > will make another patch to upstream the adsp for RUBIK Pi 3.
 >
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+> Then it would be nice to include the new path for ADSP firmware from the
+> day 0 (you can do this even before it is sent to linux-firmware).
 
+Thanks for letting me know we can post it here, before sending to
+linux-firmware!
+
+Currently we're using the same adsp blob as QLI1.4 for RB3 Gen2.
+It's packaged in ubuntu:
+* https://launchpad.net/~ubuntu-qcom-iot/+archive/ubuntu/qcom-ppa/+packages
+* Package: firmware-qcm6490-msl
+* Version: 1.0.r00083.0+dsp103-0ubuntu1
+
+I heard from Hongyang that from QLI1.5, RUBIK Pi 3 will have a
+slightly different adsp than RB3 Gen2.
+Hongyang will make it public after full testing.
+
+Cheers,
+Roger
+
+> > Cheers,
+> > Roger
+> >
+> > > > +
+> > > > +&remoteproc_cdsp {
+> > > > +     firmware-name =3D "qcom/qcs6490/cdsp.mbn";
+> > > > +
+> > > > +     status =3D "okay";
+> > > > +};
+> > > > +
+> > >
+> > > [snip]
+> > >
+> > > Thanks,
+> > > Jens
+>
+> --
+> With best wishes
+> Dmitry
 
