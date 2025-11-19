@@ -1,249 +1,154 @@
-Return-Path: <devicetree+bounces-240198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A08F4C6E61F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:09:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A793FC6E637
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:10:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3A878384F78
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:09:18 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4AE8E384B04
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:10:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241C5357A32;
-	Wed, 19 Nov 2025 12:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C72335770B;
+	Wed, 19 Nov 2025 12:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JYKm0mVl"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="vuBbkI0c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3254357726
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 12:08:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6B7357726;
+	Wed, 19 Nov 2025 12:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763554124; cv=none; b=nnG+aBN9TIihD4WVDEIFfdby45B8w+1K1f4WnLHuiSUCZAeXXhkXgD6x1i1c30r5TUhATw1Ltw0OU6w015ohc7Bmhu4k4SZijmc6LNyJqBOInxiE0Bmy26fp4idEbAeGW0eCgkx+5ejD7LA4oyIbTc8G6CNlZUUk/FURoruPRWE=
+	t=1763554235; cv=none; b=i7LnGSLtXD2Ha/GunxUvhWU464aEL4VnTBfyUqiYE0Zp0EzD3/QW7gxaFR33rBJPDivgXEntEfQi6wksn9hKPAhCAB4/2fxCR5ftXkiD4750d/Ei16xWEfmbUQA8uiqoz2ZlXW+U2l/2HwZnSPIWwbODD0sf127PNGd9L8HahfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763554124; c=relaxed/simple;
-	bh=ByPytVwOkYKXwrFR1eX0Dldo7i7jLrts7cxdQE5Z9vk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=r4zPmF6xAzyb4eWL28CTrIKxMx9JpQT9guBEl+d4gItSeASpXEB2X4WHy6+qkrS6hvYItm8J8hO2RAnohjRrPmPeCNXUSS50TQZgER2hdFpetvkUZo8YFa6C1kcwqqocGyZyYhGWzVOb021W/4mA+9jrdb/vrRqx5F5nCJn38TA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JYKm0mVl; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-594516d941cso6277309e87.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 04:08:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763554120; x=1764158920; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CupoU1rlidvFb//Su+E+dztn1SFhUsAToU3niKlBzQ8=;
-        b=JYKm0mVlg6+ec++5MJet+Xvn+rifA14fPQ3FvzJYrVmx5neVFa5Dc7VvERasG0hAYL
-         n6jYLAENl0DLA5RXOUK2KxrboyEuL071DzJtKh6tS9b5Mao94iY2X6AP5/doyoBzwZfb
-         YOGlpaTc+YvbXJ63Ru58x6oYX+XqJsVOeLLFYb35i82D7nmPcvRT7BJa/Ow1lB0JakYI
-         irXSXuDVBJC0oqq4n3Fu1h8o9t6a2jRgiJ1OOb+lwAKFy+55i1+pPSrtHRVOH5vJvjtF
-         v0Qh+FishrztkiWHnNOJVXh3PxDRZPgBGvORFExZ1Z0u1fCGOM8GaNd9MQArVSibZFJ9
-         yD0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763554120; x=1764158920;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=CupoU1rlidvFb//Su+E+dztn1SFhUsAToU3niKlBzQ8=;
-        b=ulfNRlXi90YGdVM9foiV8xP+v0eXZO/m08heRtIj1uQ/TH6XXYUyolvfzZfgosWWTm
-         /K1zOU5n2vKctmlDdpl1qJW4pTikJ6Hx3L7W/9PP2/141mEc8WeCYiox/cpht6yPioYO
-         KmsLvS7Fy6IpN06jvsW4Q1eX+3BfK9vj2hUpFqOZ3nNM5x6RJcMhHavRSH5qBcagtAoa
-         d+hDkcPT36kA6Ea5xEs8+8iJeVDtds5YqDdOHIWH0j5stNjBxpSwHsYksj/E4igfCkJp
-         rvaaj+pDeUHNGD94PHN+QselYGbFBk0od+w8GXm2MfrlDPLmY5H1vkTscfXvvJBEEKCw
-         IC4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXW/HC7fG9pvPBYPBv4xoccOjFQClkWSvkHGmPSlZydjz47BXAKT9BeYA3Q3MhJ1KbW7yxivk5NGc1C@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9E2ujDjtMoIqpZLhNhwSHPxm+MM9Jg1cH49PWSkW27Aaumakf
-	VtfVf43NYyUrfRDxObsiA12qonmRYk6KePo0JGTtmSnRSDoR7KNIH+KZKfXcCf672EBactsAC/w
-	3FcsX8MqERz/RC6iRHQmDfVV+Y3W6Y6hr1w42fzktIA==
-X-Gm-Gg: ASbGncvGAbxdW8aDGzxQUN6RTd0ircDGl9KvAVIwcszOJUDMB1LLeYtsXg8ZPoup4bF
-	flKrSp3iRB8Rajo9XJ+AVAXN/2GkMhz0+ZrAIDGXCGyryMLzr0YVIRfPjl1CxhZjJ9WiE5RFtyf
-	SxLDkzY/3jTAkcpVgME1RgwhMNPcLkGGW36S9mVar/eDJ4nGPrQgo/dW3HtYPaFXKn0OTEKnttf
-	LrE92FtWsIXtb8PUOjcYPEP2qACG50BANVZKzYNeO4Vi3zt7RI+MFVPwANDCLarAbu8h54=
-X-Google-Smtp-Source: AGHT+IFciWtpr9shGuhQdJuvFO1JoD1hUUOxBDCbMz3L6aCSp3UqpGOGtGjUFPTd2WWaTP0bbFJs9Iywa/nFQqCmxUg=
-X-Received: by 2002:a05:6512:1508:20b0:595:9195:3390 with SMTP id
- 2adb3069b0e04-595919534dbmr3250626e87.5.1763554119994; Wed, 19 Nov 2025
- 04:08:39 -0800 (PST)
+	s=arc-20240116; t=1763554235; c=relaxed/simple;
+	bh=gx7dfqtS0qKNDyQgFcv8bdsKEkYEWM2ISv6bq69Uo8U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d1bOk4n44QxUbUPiY53Aqs3Pf8UJWEmk2Nk2PSNFX9OaV/slACagWtC5TbX6+3khWBpDe8HXHviP/iPEn8aYz06K8dfR7A2gi/JMV6vWTDgp6ND21BiPebVU9Mnvsztvhsuur6gkuTusRL8UmqreeemWcM13cmQN060+IMKQLyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=vuBbkI0c; arc=none smtp.client-ip=54.243.244.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1763554129;
+	bh=S7h+FU1LHdECY8e1Sl6WspAIu8Ya6oOxnRRIjO3o1OE=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=vuBbkI0cnNYwopfj/0QYDEObcS3sfeHHrWCoxtpDpMPpesu2pyIdjsLrf1uflsXmy
+	 s8BON9DgM0ZF/hBkhrkQJL3cVcZAxIj63VspfOdaKZ3EgjauZNNZkJzrhEk/XifAzl
+	 tQ70ebDCIOL1sPhcxiFP1lFFH/OHTiV044egcUXM=
+X-QQ-mid: zesmtpip2t1763554117t9482c6f6
+X-QQ-Originating-IP: IK9N0AlKm0p8CM/IABJTzm7XNr6l+1k2JU3qct77bqo=
+Received: from = ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 19 Nov 2025 20:08:35 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12270866521218039204
+EX-QQ-RecipientCnt: 18
+Date: Wed, 19 Nov 2025 20:08:35 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Encrow Thorne <jyc0019@gmail.com>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: Troy Mitchell <troymitchell988@gmail.com>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] i2c: k1: add reset support
+Message-ID: <2A293BCA6504D560+aR2zQzsDieMGOva5@troy-wujie14pro-arch>
+References: <20251119-i2c-k1_reset-support-v1-0-0e9e82bf9b65@gmail.com>
+ <20251119-i2c-k1_reset-support-v1-2-0e9e82bf9b65@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251112-lantern-sappy-bea86ff2a7f4@spud> <20251112-improving-tassel-06c6301b3e23@spud>
-In-Reply-To: <20251112-improving-tassel-06c6301b3e23@spud>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 19 Nov 2025 13:08:26 +0100
-X-Gm-Features: AWmQ_bl8GTS1pxmVH4FYnWu6Hvd-wjg97P1oQPtijz6Z6iNATfFpYwFKIsJIGZQ
-Message-ID: <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
-Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Valentina.FernandezAlanis@microchip.com, Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251119-i2c-k1_reset-support-v1-2-0e9e82bf9b65@gmail.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: Mk3pYwnXiIiD1/t9VxyfPdFlIsdTdYCLqw5i7RY5fjz6omcSQWqkIEvh
+	jv1a2rhHbLdGy5aVDqurdJuJZv/i6I+oZh+levqFMEJn6pT+WuoE9ywpkxgTo9gTDNxXYpu
+	Z9+htKga9sv8iPsYjAqboaXx4rYe7zrAXcvMKPTHKkzI4v9nDLsjbZXodu9jkUZhcBlq2NP
+	piQ9mxramzyaqS+xEOELL4+gaJsMx75DMlOyb3xsSjXLBwm/XLXIh5oopr5+1vs/BdGmgRJ
+	YvW5mfNzFufMdsh3DfKWn5zfOrWcMe2Esbt9sm5Ui6lT+3n5nPWvfJ55fT12EJ8rrrXKt9Y
+	u4fOWhyZ6Oxyf99Eyl39axyjzY+Nu+F4R26Y+8hU/j9W4l1vVLPBhT22yRQXyu3H/nEDHoc
+	mIb9la/S9MirXMhoHkDJtlEC946BpglvA6rh07DARc7oowQuxBKmk/pmN80LAM6qoykW/DU
+	7S1Z/c5AktuoQvVjsFo1Ar3LDz35WkUWx3NdLKBR3wQ8Orbn06mm2TgX03uWxj4by9xFr3L
+	GrScWvbaxfmCkUyZXQysz7duvxAm0wZZ05BmeXeZHzc8mg04OfTBuTS2U8BOIFwZDKpnXW5
+	gW3lZ0mF5fM+DVx5vbXwpjin42KhQWFd6mp6+6qkD3fnYFZZpPnfgQZwpLFd/2EpZ+E3n4a
+	ObYFcv40TadvdOC6Jvw1AEvfZMs9DX6gSLHoDiwGAQ8VfhncRFemuy+DPySDhOKBSI9f5jP
+	w//I+C72LS0+m+EgLhE/2eb9VZR+bG/0e8B7lzaxwKqRMyjKuXd5Bqtk9r2I0y6WiKPANU7
+	C/aZwnbDbI+JkARigAV/xbZyeVt7ZowAmUEKFJ94RUcn/wiuyOMBGNXGRxS5wQ5CnucEHJN
+	YLyxx2wS/G2N5/x24BVxZQ7H8rTRRkDU1nP3t5lUQzCqMPZ/Jr6SeuQgtvO3f15GS7CkSv9
+	FXyZfYntpBuOzWXXrDVTb+LOcqhnldABB3XTsAgWXnZP86gpFSEFOYTkJ5tHfet7AXeQLXG
+	KTNZ9daYhFA21HmjTQbqh459zsiCKKtN/kFh1WH4yzEfqf44mt
+X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
+X-QQ-RECHKSPAM: 0
 
-Hi Conor,
+Hi Encrow,
 
-took a quick look at this!
+On Wed, Nov 19, 2025 at 07:46:44PM +0800, Encrow Thorne wrote:
+> Add reset control handling to the K1 I2C driver.
+> 
+> Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
+> ---
+>  drivers/i2c/busses/i2c-k1.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/i2c/busses/i2c-k1.c b/drivers/i2c/busses/i2c-k1.c
+> index 6b918770e612..64d817d8315d 100644
+> --- a/drivers/i2c/busses/i2c-k1.c
+> +++ b/drivers/i2c/busses/i2c-k1.c
+> @@ -10,6 +10,7 @@
+>   #include <linux/module.h>
+>   #include <linux/of_address.h>
+>   #include <linux/platform_device.h>
+> + #include <linux/reset.h>
+>  
+>  /* spacemit i2c registers */
+>  #define SPACEMIT_ICR		 0x0		/* Control register */
+> @@ -113,6 +114,7 @@ struct spacemit_i2c_dev {
+>  	void __iomem *base;
+>  	int irq;
+>  	u32 clock_freq;
+> +	struct reset_control *resets;
+>  
+>  	struct i2c_msg *msgs;
+>  	u32 msg_num;
+> @@ -571,6 +573,15 @@ static int spacemit_i2c_probe(struct platform_device *pdev)
+>  	if (IS_ERR(clk))
+>  		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable bus clock");
+>  
+> +	i2c->resets = devm_reset_control_get_optional(dev, NULL);
+> +	if (IS_ERR(i2c->resets))
+> +		return dev_err_probe(dev, PTR_ERR(i2c->resets),
+> +				    "failed to get reset\n");
+Please align.
 
-On Wed, Nov 12, 2025 at 3:33=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
-
-> +#include "linux/dev_printk.h"
-
-Weird but it's RFC so OK :)
-
-> +#define MPFS_PINCTRL_LOCKDOWN (PIN_CONFIG_END + 1)
-> +#define MPFS_PINCTRL_CLAMP_DIODE (PIN_CONFIG_END + 2)
-> +#define MPFS_PINCTRL_IBUFMD (PIN_CONFIG_END + 3)
-
-Yeah this should work for custom props.
-
-> +struct mpfs_pinctrl_drive_strength {
-> +       u8 ma;
-> +       u8 val;
-> +};
 > +
-> +static struct mpfs_pinctrl_drive_strength mpfs_pinctrl_drive_strengths[8=
-] =3D {
-> +       { 2,   2 },
-> +       { 4,   3 },
-> +       { 6,   4 },
-> +       { 8,   5 },
-> +       { 10,  6 },
-> +       { 12,  7 },
-> +       { 16, 10 },
-> +       { 20, 12 },
-> +};
+> +	reset_control_assert(i2c->resets);
+> +	udelay(2);
+This seems to be a very small value. If this
+has been verified multiple times?
 
-I would probably assign field explicitly with C99 syntax, but no
-hard requirement.
-
-{ .ma =3D 2, .val =3D 2 }
-
-BTW you can see clearly that each setting activates
-another driver stage in the silicon, each totempole giving
-2 mA.
-
-> +static const struct pinconf_generic_params mpfs_pinctrl_custom_bindings[=
-] =3D {
-> +       { "microchip,bank-lockdown", MPFS_PINCTRL_LOCKDOWN, 1 },
-> +       { "microchip,clamp-diode", MPFS_PINCTRL_CLAMP_DIODE, 1 },
-> +       { "microchip,ibufmd", MPFS_PINCTRL_IBUFMD, 0x0 },
-> +};
-
-I take it these have proper documentation in the DT bindings, so users know
-exactly what they do.
-
-> +static int mpfs_pinctrl_pin_to_iocfg_reg(unsigned int pin)
-> +{
-> +       u32 reg =3D MPFS_PINCTRL_IOCFG01_REG;
+                        - Troy
+> +	reset_control_deassert(i2c->resets);
 > +
-> +       if (pin >=3D MPFS_PINCTRL_BANK2_START)
-> +               reg +=3D MPFS_PINCTRL_INTER_BANK_GAP;
-> +
-> +       // 2 pins per 32-bit register
-> +       reg +=3D (pin / 2) * 0x4;
-
-This is a nice comment, easy to follow the code with small helpful
-things like this.
-
-> +static int mpfs_pinctrl_dt_node_to_map(struct pinctrl_dev *pctrl_dev, st=
-ruct device_node *np,
-> +                                      struct pinctrl_map **maps, unsigne=
-d int *num_maps)
-
-I saw in the cover letter that you wanted this to use more generic helpers.
-
-If you see room for improvement of the generic code, do not hesitate.
-Doing a new driver is the only time when you actually have all these
-details in your head and can create good helpers.
-
-> +       //TODO @Linus, it correct to group these 3? There's no control ov=
-er voltage.
-> +       case PIN_CONFIG_INPUT_SCHMITT:
-> +       case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
-> +       case PIN_CONFIG_INPUT_SCHMITT_UV:
-
-Consider not supporting some like PIN_CONFIG_INPUT_SCHMITT_UV
-in the bindings if they don't make any sense, and let it just return error
-if someone tries to do that.
-
-Isn't PIN_CONFIG_INPUT_SCHMITT_ENABLE the only one that
-makes sense for this hardware?
-
-> +static int mpfs_pinctrl_pinconf_generate_config(struct mpfs_pinctrl *pct=
-rl, unsigned int pin,
-> +                                               unsigned long *configs, u=
-nsigned int num_configs,
-> +                                               u32 *value)
-(...)
-> +               case PIN_CONFIG_BIAS_PULL_DOWN:
-> +                       //TODO always start from val =3D=3D 0, there's no=
- reason to ever actually
-> +                       // clear anything AFAICT. @Linus, does the driver=
- need to check mutual
-> +                       // exclusion on these, or can I drop the clearing=
-?
-> +                       val &=3D ~MPFS_PINCTRL_PULL_MASK;
-> +                       val |=3D MPFS_PINCTRL_WPD;
-> +                       break;
-
-I was about to say that the core checks that you don't enable pull up
-and pull down
-at the same time, but apparently that was just a dream I had.
-
-The gpiolib however contains this in gpiod_configure_flags():
-
-        if (((lflags & GPIO_PULL_UP) && (lflags & GPIO_PULL_DOWN)) ||
-            ((lflags & GPIO_PULL_UP) && (lflags & GPIO_PULL_DISABLE)) ||
-            ((lflags & GPIO_PULL_DOWN) && (lflags & GPIO_PULL_DISABLE))) {
-                gpiod_err(desc,
-                          "multiple pull-up, pull-down or pull-disable
-enabled, invalid configuration\n");
-                return -EINVAL;
-        }
-
-So there is a precedent for checking this.
-
-So if you patch pinconf-generic.c to disallow this that'd be great, I think
-it makes most sense to do this in the core.
-
-> +               case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
-> +                       if (!arg)
-> +                               break;
-> +                       fallthrough;
-> +               case PIN_CONFIG_INPUT_SCHMITT:
-> +               case PIN_CONFIG_INPUT_SCHMITT_UV:
-> +                       //TODO Is it enabled regardless of register setti=
-ng, or must it
-> +                       // be set for lower voltage IO? Docs are missing,=
- MSS Configurator
-> +                       // is not clear. Leaning towards the latter.
-> +                       //bank_voltage =3D mpfs_pinctrl_pin_to_bank_volta=
-ge(pctrl, pin);
-> +                       //if (bank_voltage < MPFS_PINCTRL_LVCMOS25 && !ar=
-g) {
-> +                       //      dev_err(pctrl->dev,
-> +                       //              "schmitt always enabled for 1.2, =
-1.5 and 1.8 volt io\n");
-> +                       //      return -EINVAL;
-> +                       //}
-> +                       val |=3D MPFS_PINCTRL_ENHYST;
-> +                       break;
-
-See above.
-
-I hope this helps!
-
-Yours,
-Linus Walleij
+>  	spacemit_i2c_reset(i2c);
+>  
+>  	i2c_set_adapdata(&i2c->adapt, i2c);
+> 
+> -- 
+> 2.25.1
+> 
+> 
 
