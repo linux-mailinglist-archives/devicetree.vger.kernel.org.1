@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-240376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E916C708F0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:59:51 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6423AC70905
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:04:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 658C44E1C33
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:51:55 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7C2FA34A191
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:59:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC7A30FC33;
-	Wed, 19 Nov 2025 17:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A40F30F7FE;
+	Wed, 19 Nov 2025 17:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="OGrFa886"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="h1pkhQ7o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F4630DD1F;
-	Wed, 19 Nov 2025 17:51:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D8130E0E7;
+	Wed, 19 Nov 2025 17:59:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763574712; cv=none; b=n9kGcNbCmzlmCVlKP6/aPbpnbTk2spDDDJIDY02DRAuUQfDt0/8OKH3CXYrwbodCqh5k9N1M8OFYeJjTiQGw12b8MywrPDr6fD1hjXD5YycIft128BJhJS8kXb/jZ0mpF3/2e7Jxq5CTwat/rSo81Smt/OStxYZf7ZcTvPrwII8=
+	t=1763575149; cv=none; b=iXXR36mGmWF0SI8+UWhABzxaudZB8dA2+U1RbC/6cuyv13JUohcZ1oJyXbJEoM+SvPpiNJyBpxLFfNd99IeNdOqqegv7olwXaLXD9TjY6i7GIGeGT1XKL/SQA0OtFAo4I+Kg2XkZkDjIwpAUKf1fXIm0yucLFkQfy3BNxC9EWAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763574712; c=relaxed/simple;
-	bh=14fFsgn5W9ls3LXAg+iBDZfHswLhsc/IdykyVAOxQq0=;
+	s=arc-20240116; t=1763575149; c=relaxed/simple;
+	bh=GIQ1OHRCHMJPLvY5z/iD5R4YJVTyNbwoFOPEACHZt44=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=focw0s6CR+SlfaE2L5MOoJToSC1Ls1I4m8PJAB6QVnh14ECKSpSpuXcUh9QzcdK+JwxBN5ztazh6yKxSsRUVfzoW9+4Ua9HN5nEdNcAfwCR/fJVXewsEQeWIwMjWJF37cjJr15HYHg0qT2sInkZ88TH66CDzOoYAu7YVGaI5x6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=OGrFa886; arc=none smtp.client-ip=134.0.28.9
+	 MIME-Version; b=jW34TfLEi2F6DzbeBUpf6aUOO3iHb9/a0WIeqNo/qrYR9pMRj3V4913TP8W2iroOXG55h6H2l5ARf/YrwcBvvNZ6qQ6JZH/vbeb4X2Rd90kYDaOnoChtOShfbEZ0OxE/UN2Up11UGVhpzERbnor4nYdPNOJfINI14ZvJhFvINIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=h1pkhQ7o; arc=none smtp.client-ip=134.0.28.12
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
 Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout4.routing.net (Postfix) with ESMTP id DE830100496;
-	Wed, 19 Nov 2025 17:51:39 +0000 (UTC)
+	by mxout2.routing.net (Postfix) with ESMTP id 1C4B25FF2F;
+	Wed, 19 Nov 2025 17:51:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
 	s=routing; t=1763574700;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=/1g4STQANovnsZYNWV1sflDkn8/Z+KrcOvNhJVz0DmI=;
-	b=OGrFa886FDjvTUNa4X4G3NOe06y58gJqa5xj6XK8tylcPeMJPL7c34vbc+xyYMK7Pm7YUS
-	YtZabUqvLen18ygNESO44AQMc6mzqD73q2en6fIQyvmJdQ5K7Nb7BbMe39gSylcr9szMrq
-	jUU9RXgtTTsSMTgHjCAaGkxDu6ukQUw=
+	bh=Mz1Hei/9QJRhAecU/xXAdrbHkGMc20BKiYFo6RjYfNw=;
+	b=h1pkhQ7oO0mI5BKEEuGV744muaLAeSUioojkJsuQ1XyGa1C6H0SN+rHH8qlOpUNMgPD9f8
+	IzQrJduvjp2jn881kD1GjkrR7RYRoWXBz3IKCbUtH5+fVwc44PrI7bNZ3K/pH4e9BhmBy2
+	83L0jLnVGzMP6rSrqzPuKgCP5rPB8aQ=
 Received: from frank-u24.. (fttx-pool-194.15.82.239.bambit.de [194.15.82.239])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id B52C1122707;
+	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id E38A61225D8;
 	Wed, 19 Nov 2025 17:51:39 +0000 (UTC)
 From: Frank Wunderlich <linux@fw-web.de>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
@@ -57,11 +57,10 @@ Cc: Frank Wunderlich <frank-w@public-files.de>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v1 1/2] arm64: dts: mediatek: mt7986: add dtbs with applied overlays for bpi-r3
-Date: Wed, 19 Nov 2025 18:51:22 +0100
-Message-ID: <20251119175124.48947-2-linux@fw-web.de>
+	devicetree@vger.kernel.org
+Subject: [PATCH v1 2/2] arm64: dts: mediatek: mt7988: add dtbs with applied overlays for bpi-r4 (pro)
+Date: Wed, 19 Nov 2025 18:51:23 +0100
+Message-ID: <20251119175124.48947-3-linux@fw-web.de>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251119175124.48947-1-linux@fw-web.de>
 References: <20251119175124.48947-1-linux@fw-web.de>
@@ -76,54 +75,59 @@ Content-Transfer-Encoding: 8bit
 From: Frank Wunderlich <frank-w@public-files.de>
 
 Build devicetree binaries for testing overlays and providing users
-full dtb without using overlays.
+full dtb without using overlays for Bananapi R4 (pro) variants.
 
-Suggested-by: Rob Herring <robh+dt@kernel.org>
 Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 ---
-resend of
-https://patchwork.kernel.org/project/linux-mediatek/patch/20240608080530.9436-2-linux@fw-web.de/
-due to discussions here:
-https://patchwork.kernel.org/project/linux-mediatek/patch/20251117211306.725678-1-robh@kernel.org/
-
-changes:
-- updated sd-nand with sata-overlay
+It is not required to build all possible combinations, only for
+common usecases and to test if all overlays can be applied.
 ---
- arch/arm64/boot/dts/mediatek/Makefile | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ arch/arm64/boot/dts/mediatek/Makefile | 32 +++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index c5fd6191a925..77d76730d61b 100644
+index 77d76730d61b..cac8f4c6d76f 100644
 --- a/arch/arm64/boot/dts/mediatek/Makefile
 +++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -19,6 +19,27 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sata.dtbo
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtbo
-+mt7986a-bananapi-bpi-r3-emmc-nand-dtbs := \
-+	mt7986a-bananapi-bpi-r3.dtb \
-+	mt7986a-bananapi-bpi-r3-emmc.dtbo \
-+	mt7986a-bananapi-bpi-r3-nand.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc-nand.dtb
-+mt7986a-bananapi-bpi-r3-emmc-nor-dtbs := \
-+	mt7986a-bananapi-bpi-r3.dtb \
-+	mt7986a-bananapi-bpi-r3-emmc.dtbo \
-+	mt7986a-bananapi-bpi-r3-nor.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc-nor.dtb
-+mt7986a-bananapi-bpi-r3-sd-nand-dtbs := \
-+	mt7986a-bananapi-bpi-r3.dtb \
-+	mt7986a-bananapi-bpi-r3-sd.dtbo \
-+	mt7986a-bananapi-bpi-r3-nand.dtbo \
-+	mt7986a-bananapi-bpi-r3-sata.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd-nand.dtb
-+mt7986a-bananapi-bpi-r3-sd-nor-dtbs := \
-+	mt7986a-bananapi-bpi-r3.dtb \
-+	mt7986a-bananapi-bpi-r3-sd.dtbo \
-+	mt7986a-bananapi-bpi-r3-nor.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd-nor.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4.dtb
+@@ -52,6 +52,38 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-cn18.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-emmc.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-sd.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-sd.dtbo
++mt7988a-bananapi-bpi-r4-emmc-dtbs := \
++	mt7988a-bananapi-bpi-r4.dtb \
++	mt7988a-bananapi-bpi-r4-emmc.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-emmc.dtb
++mt7988a-bananapi-bpi-r4-sd-dtbs := \
++	mt7988a-bananapi-bpi-r4.dtb \
++	mt7988a-bananapi-bpi-r4-sd.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-sd.dtb
++mt7988a-bananapi-bpi-r4-2g5-emmc-dtbs := \
++	mt7988a-bananapi-bpi-r4-2g5.dtb \
++	mt7988a-bananapi-bpi-r4-emmc.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-2g5-emmc.dtb
++mt7988a-bananapi-bpi-r4-2g5-sd-dtbs := \
++	mt7988a-bananapi-bpi-r4-2g5.dtb \
++	mt7988a-bananapi-bpi-r4-sd.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-2g5-sd.dtb
++mt7988a-bananapi-bpi-r4-pro-8x-emmc-dtbs := \
++	mt7988a-bananapi-bpi-r4-pro-8x.dtb \
++	mt7988a-bananapi-bpi-r4-pro-emmc.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x-emmc.dtb
++mt7988a-bananapi-bpi-r4-pro-8x-sd-dtbs := \
++	mt7988a-bananapi-bpi-r4-pro-8x.dtb \
++	mt7988a-bananapi-bpi-r4-pro-sd.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x-sd.dtb
++mt7988a-bananapi-bpi-r4-pro-8x-sd-cn15-dtbs := \
++	mt7988a-bananapi-bpi-r4-pro-8x-sd.dtb \
++	mt7988a-bananapi-bpi-r4-pro-cn15.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x-sd-cn15.dtb
++mt7988a-bananapi-bpi-r4-pro-8x-sd-cn18-dtbs := \
++	mt7988a-bananapi-bpi-r4-pro-8x-sd.dtb \
++	mt7988a-bananapi-bpi-r4-pro-cn18.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-pro-8x-sd-cn18.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana.dtb
 -- 
 2.43.0
 
