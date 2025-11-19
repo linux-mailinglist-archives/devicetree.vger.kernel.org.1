@@ -1,132 +1,142 @@
-Return-Path: <devicetree+bounces-240127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1DA1C6D9F9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:14:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E0CC6DB71
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:28:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 7AE692D917
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:13:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E98144E5357
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC6A335BB2;
-	Wed, 19 Nov 2025 09:13:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E776336EDB;
+	Wed, 19 Nov 2025 09:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JifxLllR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r32lf2+A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D564308F0C
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 09:13:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D79162FE04A;
+	Wed, 19 Nov 2025 09:17:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763543613; cv=none; b=meJbFEJAmZJCqB4fgARDeEUneZt27JghO84m5ZKxkKAFdHZXYHwwgM8QzSQzoeDOqlNghfe88VK5tJ68Fl/JX42aGiY+SaNZ5xRh2phHZKjhuilSVsl7l4RHrdWQwQodLyJmVhAPQ7LZLAhzNayHIeImfrgfXCL5FOqlMTyIwFQ=
+	t=1763543844; cv=none; b=NkcmYwiolcXWlBwBGvduwzCk3MH8oOgSNY1jIz/Wi1obheqHvIpPkG9ohmOS25hipEUt+i2Ru5vONPWLsU3JyVsKhl48JZONmTg4kP06UqfS5JRWsGJk0h1GQm4CcLNvfR2o25s2XoV1qAaAvxITzrj8FbiYD/b2ws9d/8nTLuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763543613; c=relaxed/simple;
-	bh=qGa6obvFqIKbQVGEu+FGZTJ+R+chI3xR4ysDJDTEp1I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=otaSt44fUxQ6Syu7qWgrXYYO7tBCCtckIEBiOjWrJyF+CIMlhYlSETI50DAJGgkGSbPS4sN489jwpne2FBd++qse527ZBzCVjGyCbajgXoNC53wZZV9MzoeyH5zBuyOqfwHsWo80B0Tt/EROrzQhfAPPEHFKYXQVC0YXvnuqcHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JifxLllR; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-594285c6509so6818066e87.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 01:13:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763543608; x=1764148408; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0J1JKE0aezaTk7YL5x9auhCAR6Yuw+pFDajDahgAlD0=;
-        b=JifxLllRExMiqRqMOfDDgMcsabW46GmVq/QpgLGXQncI/tI+yHrqD8wc7uD/I4mPN8
-         V5+wvFVTK99e0XEY+e7IO8wHvG5BEh5FiDOROgalWU83FcGRSPdzlKMGufbIwqtC5MbE
-         hTAhNTYXOX6q8/QZFXnlAFDTjq1XMaf24cunJYUXrcN1AaSOiUZdMWwy95/EVsethHiK
-         SihnWG26qOgOq3aSFc/Ku4PelAF3jz8cs01fniId6uMyWDD0nNoUqJCkTaLiQdFR5JpK
-         ZCx3X0AvDMcLpv/7+xuJobEAGJtoV2mXrYkaUMG9OnH6dWhyLybN0PNcM3FoCUgfJtMx
-         6DuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763543608; x=1764148408;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0J1JKE0aezaTk7YL5x9auhCAR6Yuw+pFDajDahgAlD0=;
-        b=E5JbsR8uS99ida62bMvYc/V5T9djGn5evY73BAf/TBdFnqtzns3ozFLZ4aur/gpAJw
-         trqRal4XJ/XTIZ3v6uQ2YtKPrdyRtlhL9hVjOqwf1OOlZRa/+xX9HSPlFZeqP9oakOGx
-         P/cT/Hoph1Q1jOh041t5bZGU2SljLapVyln3DqcmfkNbwz4rDJI0/EWg557a1eszAG5T
-         houC1shUTy0PrzgtbYFdrP8+5y9Iq1vYkbsIexvECyyIPWStXuK0XfH5EB2SZgH37orh
-         jSTpPySESKhc8xFlERQMe97EmSEFX1Y/F3ydUqsZCfeAX2vmUHQ498bwYyKzq6OSKavg
-         6HPg==
-X-Forwarded-Encrypted: i=1; AJvYcCWoo1TylE1YSz737clUdHk22PBvOPTKg/t2w2AvQFelfMFhjnZkocCmhjJM6jRlFXEuwmRO9vxqaNgv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQR6rvRJ09GsSzEcGwlaDQNRnukcwAB/E8JqyXUHLW0d6V4xWE
-	kRJIMJf7lc6GD+HTGDIFm80FuGpObMCQa2/SRsUADtUsaR7J6zGKMCdIJwNN2Nd7y0uNBf0e7Z4
-	Ht2xv3LXCIrz4Phi8jm9ryFb4QTFa4nBUrJ+t1xScJg==
-X-Gm-Gg: ASbGnctuAWFxQ1LXmcpfwHv30jaPRUM5KU9PGi8781M5Ipw07QqrG8n7Rx3HSH46ih1
-	odefsO8MAK/AUy0MldCYLaceyGXw9eUz/KWSWXtcgCo4Zz9ReRpvG1e068UUklTc7vIzAMNrgaP
-	NBr7t3kHOsaNnPEvSHA0QaRLCoBeyQyvGutGA0k3JSdoAbk3M0WeSEOvkZiFG2QtMrU8rLLoVPA
-	cYrUR2b84kC//G/IQ0cufQ79eNWIT3qxBo/QbZsNqz9KWGvQdGEqAvEyJxp10GemTehahH9k7lw
-	zKPmMQ==
-X-Google-Smtp-Source: AGHT+IEOI5iZEjfO9VJo0Kz3Z09YGBxN9hO26vkpOzJXesVSVACehf+X9YKlHf0uT5YA8Z7B6Zpf7wlHpLU/JSp1No0=
-X-Received: by 2002:a05:6512:b87:b0:595:7df4:6930 with SMTP id
- 2adb3069b0e04-5958419f6c0mr6943714e87.8.1763543608340; Wed, 19 Nov 2025
- 01:13:28 -0800 (PST)
+	s=arc-20240116; t=1763543844; c=relaxed/simple;
+	bh=3cAunmQcrmE+ScH/u7fsJaBupjtTDeGKN4sqjaO1IEY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lhCOdVTSO33I6u/4caRJtfQXw+cI3evgN8DkL5p2kmDvkS1kwNJs5u8vaYsEyrosgaFmOM5qW0DF0QZja3aZRbZ/v94KZI0MiFMA0xgCH5nLlLbUYXAfnXofi2NqDBVmm/7dfgoxCWNyqlbn4BZSn5g8XeWMjbfHegCxQpCUZVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r32lf2+A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F742C2BCB4;
+	Wed, 19 Nov 2025 09:17:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763543844;
+	bh=3cAunmQcrmE+ScH/u7fsJaBupjtTDeGKN4sqjaO1IEY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r32lf2+AS1UJa0fXO3/leUMbbFo3CJowloRFEMtGtX3g2jWSb7CLTP+JzxW/bs2hi
+	 PC6FvAugHrmR0aDyX4IFORWdwaYQh9bdZ80ujoua5twgogZIjiUgRCqo/CUAMgSw3F
+	 qDKEFFZuWxIqxkqAGLaSWzNlrvj51MNrkO45rOw5zHqBXPeVIQ8YaHr8P9WX/RQ2Bi
+	 +N07cohi5dH3/lc8d2UzRwLDV42/9K7aLNXWmIHGWLKYuXw4bAcwkJ1odtq1TRqMRd
+	 bxmK+uoNKzKllducUeVEDdhvPVU5CSgv2AeWjFaW6L6ztKRH62bKKD3Fo/5vm9+5/3
+	 3HSPIv8F7Y+xQ==
+Message-ID: <b37737fc-5e43-4599-ad20-73fb37c2ff7e@kernel.org>
+Date: Wed, 19 Nov 2025 10:17:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251112-lantern-sappy-bea86ff2a7f4@spud> <20251112-reappear-margarita-83b9d6c04dd6@spud>
-In-Reply-To: <20251112-reappear-margarita-83b9d6c04dd6@spud>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 19 Nov 2025 10:13:16 +0100
-X-Gm-Features: AWmQ_bkrfiDYfimx03_4hHPW7_c-dWF0WPsMlwXx16TGGTPqPEZMNW6kc49N4bE
-Message-ID: <CACRpkdbXrq=9xWBCg3iOX1JySAu+xs+G9dDUYphEqeN2-M9tuQ@mail.gmail.com>
-Subject: Re: [RFC v1 1/4] dt-bindings: pinctrl: document polarfire soc mssio
- pin controller
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Valentina.FernandezAlanis@microchip.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/8] dt-bindings: hwmon: ti,ina3221: Add SQ52210
+To: Wenliang Yan <wenliang202407@163.com>
+Cc: conor+dt@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org,
+ jdelvare@suse.com, krzk+dt@kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux@roeck-us.net, robh@kernel.org
+References: <20251119-tremendous-skunk-of-science-aab7fb@kuoka>
+ <20251119090618.60538-1-wenliang202407@163.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20251119090618.60538-1-wenliang202407@163.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Conor,
+On 19/11/2025 10:06, Wenliang Yan wrote:
+> At 2025-11-19 15:22:38, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
+>> On Tue, Nov 18, 2025 at 07:51:41AM -0500, Wenliang Yan wrote:
+>>> Add a compatible string for sq52210. The sq52210 is forward compatible
+>>
+>> forward?
+>>
+>>> with INA3221 and incorporates alert registers to implement four
+>>
+>> But this suggests opposite.
+>>
+>> Your driver changes confirm that even more - it is not forward
+>> compatible. And in other way why wouldn't compatibility be expressed in
+>> the bindings?
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Perhaps my use of "forward" was inaccurate. I only meant to express that
+> at the hardware level, the SQ52210 contains all the registers and
+> functions of the INA3221, and builds upon them by adding current, power,
+> and alert registers. However, these additional registers don't require
+> adding more specific properties in the binding file.
+> Are you suggesting that I'm missing the description of SQ52210's
+> characteristics in the documentation?
 
-On Wed, Nov 12, 2025 at 3:33=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
+This is backwards compatibility and if that's the case - driver can bind
+via old compatible and work correctly with previous functionality - why
+not expressing it in the bindings as compatible devices? See writing
+bindings.
 
-> +examples:
-> +  - |
-> +    pinctrl@204 {
-> +      compatible =3D "microchip,mpfs-pinctrl-mssio";
-> +      reg =3D <0x204 0x7c>;
-> +
-> +      irkd_sd_cfg: irkd-sd-cfg {
-> +        sd-10ma-pins {
-> +          pins =3D <0>, <1>, <2>, <3>, <4>, <5>, <8>, <9>, <10>, <11>, <=
-12>, <13>;
-> +          function =3D "sd";
-> +          bias-pull-up;
-> +          drive-strength =3D <10>;
-> +        };
-> +
-> +        sd-8ma-pins {
-> +          pins =3D <6>, <7>;
-> +          function =3D "sd";
-> +          bias-pull-up;
-> +          drive-strength =3D <8>;
-> +        };
-> +      };
-> +    };
-
-This looks good to me and you sure know how to do syntax
-so I don't even need to check that part.
-
-These bindings are fine.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
 
