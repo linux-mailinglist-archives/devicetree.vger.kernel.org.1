@@ -1,138 +1,268 @@
-Return-Path: <devicetree+bounces-240398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B58AC70B98
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:01:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5812C70C1C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:16:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E41294E1797
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:57:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 25248350D3B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5521233A6FC;
-	Wed, 19 Nov 2025 18:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BBFF366DC1;
+	Wed, 19 Nov 2025 19:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="cx27ivo3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HDPfqYaX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68365283C8E
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 18:57:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C3B2D839E
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 19:15:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763578664; cv=none; b=SSyOYfoowNSQtulSxXI1bK780mx46RAJmuYweNzVqlFUi8ithGTQ7Kh/GFPic+PIyjfbgkz2k/JogaL/8eTaiFKAhwTINU5vDkhzVjn9feCqHEgMfy/Oqj/U8Wme9H+2j8PFvXCSo7qFsYK7fm6la3hYYpQTrMEOnMSgrbyHGc4=
+	t=1763579761; cv=none; b=DQ3XfFZDHO8fmnnUgVfBFNeiSOt3qul0QigB0etiyiJM1rfU/F+btnvOVea98n65HHfRJ63ARd6WqLzHFRhWUyIP9l9mX6vXVJScuEO1egDBbUNm+1mh6pWn1zzpPhiM3Kh2WuqXZCWD9sMGD2fx0ZgcmWK/PNULSOZDQih3fCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763578664; c=relaxed/simple;
-	bh=DrUMQQIRs8itbSC+3mDznjL9OAtA0LU7Cru6b4x2oX0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jRsjhqWpcbTLm5JFsrAlM2ccspF94VSs240VRVPmBxzWy51PCuR+r0lTtHJABKIf2JMxoeKae+Y55ApZfPJQMvfs7f+2r4zL5K3iiSByQJFdg8i1qjwIDnLJmCuP8rKwdtn/4SO7F5ix3rKLj3yLan2xARUXwwK8GAgyEgctNew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=cx27ivo3; arc=none smtp.client-ip=84.16.241.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
-Received: from [IPv6:2a02:1812:162c:8f00:26cd:b932:ba51:717b] (2a02-1812-162c-8f00-26cd-b932-ba51-717b.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:26cd:b932:ba51:717b])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sander@svanheule.net)
-	by polaris.svanheule.net (Postfix) with ESMTPSA id 850926A1E37;
-	Wed, 19 Nov 2025 19:57:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-	s=mail1707; t=1763578652;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DrUMQQIRs8itbSC+3mDznjL9OAtA0LU7Cru6b4x2oX0=;
-	b=cx27ivo3T4K8dTrWkdWleUVPkkmWP6Q1UXAsd2PDbaSa2ZswdXLKe9vWQAXfaHC6AdRlOy
-	EfoyZz0GGAFwFC6mnyv2W4dKmiTjGuewyafWeab+x9SPR3pu4V43uIGT1edQVnqRzXn4eY
-	kur61/YRKh01Ua1QZ36DRCLxbeyJfccfDmwhmWr/EXQuUneibH+e8TargiGJQgIOVqgpIw
-	+cpV5F34XTwBCwqt+7cbcFtWU46Ip7QMU9Q1jAf2kULGCxCOM3Jj0Rz17Rswc91Xtf5GML
-	j1A0ezogClQB3OlAefD7NYKCLjnIrYW2c5kkTWGlILexmC+7BXI5amYWVCG+tg==
-Message-ID: <1e90814b86355384010966f559d185a5b6fea99d.camel@svanheule.net>
-Subject: Re: [PATCH v7 4/6] pinctrl: Add RTL8231 pin control and GPIO support
-From: Sander Vanheule <sander@svanheule.net>
-To: kernel test robot <lkp@intel.com>, Lee Jones <lee@kernel.org>, Pavel
- Machek	 <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus
- Walleij	 <linus.walleij@linaro.org>, Michael Walle <mwalle@kernel.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: oe-kbuild-all@lists.linux.dev, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Date: Wed, 19 Nov 2025 19:57:25 +0100
-In-Reply-To: <202511191158.bVKUDrKa-lkp@intel.com>
-References: <20251117215138.4353-5-sander@svanheule.net>
-	 <202511191158.bVKUDrKa-lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1763579761; c=relaxed/simple;
+	bh=PyqxDeLWnklxDLea4lMZHNmW8+0PYRict1QhyG/l/1A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NfyiOnVCrusaYWZYbz5GJ4Yup7SQ+bwvEGdkSHMpwvXD3+66+ZEe11gOi+EjLG+cOCKNIBNEBvWTf9KttNop2hyD5UWBDc4WyVY90KnRRbapOPTKzcfyxA5Ovxi96HO52rXUB68M7z2Hrddj54+iG6lNi/G2r8i1o7xSu1ztmXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HDPfqYaX; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso1158145e9.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 11:15:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763579749; x=1764184549; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C6OuqeJZhvGMHSS4ImkZHuubYYQPzVP1/U0T2ymBBBY=;
+        b=HDPfqYaXbqS08Y/WCNCa/sD12fo5tc9BhHb6kugKLr3bc459tqqQAIUch8tHnFUedS
+         cPiY6EMsl4jz4+PAASuO8uEn7jNuXOSbZYSIjtQFzqhdqpbdl/Sucbgr7BhSIN84rmM1
+         PnqrQm7N4y7P0A+44Mxh+gXFNsEJino6fJwaQVQJxu7ZXg1azCHg7YfjMxqC8Ptv6IQR
+         xcOSe+fdb1yf31+zv8GLJ340iUcjw+OavXEvlK0Xqk/7N4Do8zA4ZgIYeNWtMwGRiKfD
+         npGn2ONKzsNoeYx6Z0KDsjM79nxM1sCAqhvqkd+R5AfKu9McA12i+LFPneQgp58IgMis
+         wNpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763579749; x=1764184549;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C6OuqeJZhvGMHSS4ImkZHuubYYQPzVP1/U0T2ymBBBY=;
+        b=RmorS8PkCenFk0OhWClBPcwACB/dlDOKrHshuVZF9DfyTkArZAOAa0PcBJiU9Ql3Qm
+         iV9RLogVdvflmIv0StAtp2nxnOLcqCiSmQIcrz1j5VSmiAfJERVSKeAuvP1+DRm0WjPC
+         mJguo9+iy3uy1snQ7x/ZM6CvVpAoevM+EOEZI1wjYMrosmEWMkF+iNh8hIoFK57P6CGY
+         Nt5FgW0VEHOsioNa15/h8BBTx279ESJqiim4gQmOWJmXRlDx0MXLWT0ntL0Upq8e1Myk
+         NWk7BF/5bA8lUJNfHmIItwCBY66/PL5Ss6tiwegWyRQhUOsQTc2PRyM0LU+cZcCZOb8e
+         wgoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXI1XdG90LygPO2LEdSsCAviJ5bPBY2ckwzThZK+7jpQnODACP+tyy6Ql85RTtx3hRJjygR2riof2dB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+glprYx09Q4p4p1zWQ8q39RwbRZdm3XATMZxNRHdaUGIg/w2Q
+	PHqTwU+a13jPM5LTuFQCwxQEB6ArOnZIYbxlQZ5CcIRYyRMQTyQsU9+fUZQDM9NbYhI=
+X-Gm-Gg: ASbGncuk+XEdrsvJlvg6uKPUqjN6GvHpxPuVZbQyCdPM4IDEITeXBDuA7YKw8mIPOsM
+	hf5i7E5kMJLYZk0e+Y2xm7ffvtOWTjkHJ/7KP5uxqT/bOjC8YbOJBDNk1yLpsF4y2RL0jxSSZKM
+	Mmd1j0i2Q7ud9WwIEmh0NraW7wcP0yT+NasGBT+SIbS2995845Z94LOmxmiFK0U+umSTKUBWNcc
+	rARBkLmrUktp4gKnFkQaJCeQGQzBLtFH6uGo4AJ/AM8Y9O3bQb2L1PNDu7BiP6jJCZbwPKSjkzz
+	ZwolQCT5U6En28vzwkQgsfGlQ0Xv3ABw5aFbgH9ZRisJWpzpt9eWPn2ar8ZolLANiZ3ER3XcJco
+	TW4SIWDyphsPLafbxfHQ8PfVOUzRGVObIkJOqkEcWE5FBL2uZcHyx94yulPgqB/0k51fZTiskXf
+	onXVZzJimXV+ZJOcD9+WxHXRBwu1QcsMw=
+X-Google-Smtp-Source: AGHT+IE/w2b8gSMCy9bUs8RTliLQAWBb9m76KMY755BVK1VHoNHvgJujjZcMR9OFxrqWVtJ6+6St/Q==
+X-Received: by 2002:a05:600c:154d:b0:475:d8b3:a9d5 with SMTP id 5b1f17b1804b1-477b8953efdmr3897565e9.10.1763579749139;
+        Wed, 19 Nov 2025 11:15:49 -0800 (PST)
+Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:37e6:ed62:3c8b:2621])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fd9061sm788246f8f.41.2025.11.19.11.15.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Nov 2025 11:15:48 -0800 (PST)
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: jic23@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org
+Cc: linux-iio@vger.kernel.org,
+	s32@nxp.com,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	chester62515@gmail.com,
+	mbrugger@suse.com,
+	ghennadi.procopciuc@oss.nxp.com,
+	vkoul@kernel.org
+Subject: [PATCH v7 0/2] NXP SAR ADC IIO driver for s32g2/3 platforms
+Date: Wed, 19 Nov 2025 20:15:43 +0100
+Message-ID: <20251119191545.46053-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Wed, 2025-11-19 at 12:19 +0800, kernel test robot wrote:
-> Hi Sander,
->=20
-> kernel test robot noticed the following build warnings:
->=20
-> [auto build test WARNING on lee-mfd/for-mfd-next]
-> [also build test WARNING on lee-mfd/for-mfd-fixes lee-leds/for-leds-next =
-linusw-
-> pinctrl/devel linusw-pinctrl/for-next linus/master v6.18-rc6 next-2025111=
-8]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->=20
-> url:=C2=A0=C2=A0=C2=A0
-> https://github.com/intel-lab-lkp/linux/commits/Sander-Vanheule/dt-binding=
-s-leds-Binding-for-RTL8231-scan-matrix/20251118-055707
-> base:=C2=A0=C2=A0 https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd=
-.git=C2=A0for-mfd-next
-> patch link:=C2=A0=C2=A0=C2=A0 https://lore.kernel.org/r/20251117215138.43=
-53-5-sander%40svanheule.net
-> patch subject: [PATCH v7 4/6] pinctrl: Add RTL8231 pin control and GPIO s=
-upport
-> config: i386-randconfig-063-20251119
-> (https://download.01.org/0day-ci/archive/20251119/202511191158.bVKUDrKa-l=
-kp@intel.com/co
-> nfig)
-> compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-> reproduce (this is a W=3D1 build):
-> (https://download.01.org/0day-ci/archive/20251119/202511191158.bVKUDrKa-l=
-kp@intel.com/re
-> produce)
->=20
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > Closes: https://lore.kernel.org/oe-kbuild-all/202511191158.bVKUDrKa-lkp=
-@intel.com/
->=20
-> sparse warnings: (new ones prefixed by >>)
-> > > drivers/pinctrl/pinctrl-rtl8231.c:28:27: sparse: sparse: missing iden=
-tifier in
-> > > declaration
-> =C2=A0=C2=A0 drivers/pinctrl/pinctrl-rtl8231.c:28:27: sparse: sparse: Exp=
-ected ; at the end of
-> type declaration
-> =C2=A0=C2=A0 drivers/pinctrl/pinctrl-rtl8231.c:28:27: sparse: sparse: got=
- :
-> > > drivers/pinctrl/pinctrl-rtl8231.c:52:44: sparse: sparse: invalid bitf=
-ield specifier
-> > > for type incomplete type enum rtl8231_pin_function.
+The S32G2 and S32G3 platforms have a couple of successive
+approximation register (SAR) ADCs with eight channels and 12-bit
+resolution. These changes provide the driver support for these ADCs
+and the bindings describing them.
 
+The driver is derived from the BSP driver version. It has been partly
+rewritten to conform to upstream criteria.
 
-sparse doesn't seem to understand the enum type specifier either. Fixed by =
-instead casting
-rtl8231_pin_function where a uintptr_t is required.
+https://github.com/nxp-auto-linux/linux/blob/release/bsp44.0-6.6.85-rt/drivers/iio/adc/s32cc_adc.c
 
-Best,
-Sander
+After the V1 posting there were some discussions around the DMA code
+to be converted to use the IIO DMA API [1]. Unfortunately this one is
+not yet fully implemented and merged in the framework to support the
+cyclic DMA. The current DMA code in the driver has been used in
+production since several years and even if I agree it can be improved
+with a dedicated IIO DMA API in the future, IMO, it sounds reasonable
+to keep it as is until the IIO DMA API supporting the cyclic DMA is
+merged. I'll be glad to convert the driver code if such an API exists
+and allows to remove code inside the driver.
+
+[1] https://lore.kernel.org/all/c30bb4b6328d15a9c213c0fa64b909035dc7bf40.camel@gmail.com/
+[2] https://lore.kernel.org/all/aRyBKH4KOQ1L8lA4@black.igk.intel.com/
+
+Changelog:
+	* V7:
+	  ** Andy Shevchenko **
+	  - Moved paragraph closer to the tags in the changelog
+	  - Used Originally-by which is more adequate
+	  - Removed unneeded modulo conversion in macro
+	  - Fixed the consistency of the style by lowercasing the hexa value
+	  - Rename a timeout macro and remove another one
+	  - Clarified a comment when getting the power state of the ADC
+	  - Added a comment to clarify the clock is fast and suitable in atomic context
+	  - Uppercased the 'adc' words
+	  - Added a TODO to use field_get() when available
+	  - Removed unneeded explicit casting
+	  - Replaced a more readable version with raw ? 0 : 1
+	  - Folded return value check with wait_for_completion_interruptible()
+	  - Fixed comment "8 bits" --> "8-bit"
+	  - Fixed typo in comment
+	  - Fixed comment "iio_push_to_buffers_with_ts()"
+	  - Clarified why not using a pointer to a mask
+	  - Removed unneeded blank line
+	  - Removed duplicate error code in message
+	  - Initialized the spin lock before requesting the interrupt
+	  - One lined declaration in suspend/resume callbacks
+	  - Added trailing comma in structure initialization
+
+	* V6:
+	  ** Vinod Koul **
+	  - Dynamically allocate/release the channel at enable/disable
+
+	  ** Jonathan Cameron **
+	  - Reached out Vinod to clarify the buffer life cycle
+	  - Inverted more intuitive variable initialization
+	  - Updated comment with "iio_push_to_buffers_with_ts"
+
+	  ** Andy Shevchenko **
+	  - Removed unused NXP_SAR_ADC_IIO_BUFF_SZ macro
+	  - Removed "<litteral>U" annotation
+	  - Checked the buffer is a byte buffer
+	  - Investigated callback routine vs residue and updated the changelog
+	    the conclusions [2]
+
+	* V5:
+	  - Rebased against v6.18-rc1
+
+	  ** Jonathan Cameron **
+	  - Replace DRIVER_NAME macro with its literal string
+	  - Used FIELD_MODIFY() wherever it is possible
+	  - Complied with the 80 chars convention
+	  - Combined two variables in a single line declaration
+	  - Removed the 'remove' function as it is useless
+	  - Changed s32g2_sar_adc_data structure indentation / format
+
+	* V4:
+	  ** Christophe Jaillet **
+	  - Used dmam_alloc_coherent() instead of dma_alloc_coherent()
+
+	* V3:
+	  ** Jonathan Cameron **
+	  - Removed specific IIO_SYSFS_TRIGGER dependency in Kconfig
+	  - Fixed headers
+	  - Avoided macro generic names
+	  - Used IIO_DECLARE_BUFFER_WITH_TS
+	  - Documented buffer and buffer_chan
+	  - Fixed single line comment
+	  - Commented why channel 32 is the timestamp
+	  - Renamed __<prefixed> functions
+	  - Factored out the raw read function to prevent nested goto in the switch
+	  - Returned -EINVAL instead of break
+	  - Removed explict pointer cast
+	  - Used iio_push_to_buffers_with_ts variant
+	  - Fixed ordering operations in postenable / predisable
+	  - Return IRQ_HANDLED even if there is an error in the isr
+	  - Fixed devm_add_action_or_reset() to return directly
+	  - Used sizeof(*var) instead of sizeof(struct myvar)
+	  - Used model name instead of dev_name()
+	  - Used dev_err_probe() in any case in the probe function
+	  - Fixed indentation
+
+	  ** David Lechner **
+	  - Kept alphabetical order in Makefile
+	  - Changed explicit GPL-2.0-only
+	  - Removed clock name in when calling devm_clk_get_enabled()
+
+	  ** Andriy Shevchenko **
+	  - Fixed headers ordering and added the missing ones
+	  - Fixed constant numeric format
+	  - Ran pahole and consolidated the nxp_sar_adc structure
+	  - Fixed semi-column in comments and typos
+	  - Fixed indentation
+	  - Moved data assignment before iio_dev allocation
+
+	* V2:
+	  - Massaged the cover letter changelog to explain the DMA
+	  ** Andriy Shevchenko **
+	  - Added missing headers and use proper header for of.h
+	  - Changed macro offset zero to be consistent
+	  - Remove macros REG_ADC_MCR_NRSMPL_* as they are unused
+	  - Changed delays macro under the form 100000 => 100 * USEC_PER_MSEC
+	  - Replaced PAGE_SIZE by a NXP_PAGE_SIZE = SZ_4K macro
+	  - Replaced read_poll_timeout() by readl_poll_timeout()
+	  - Changed error pattern "error first"
+	  - Replaced variable type 'int' to 'unsigned int'
+	  - Fixed bug right instead of left shift, use BIT(channel)
+	  - Returned directly from switch-case
+	  - Used guard(spinlock_irqsave)()
+	  - One liner function call
+	  - Remove redundant {}
+	  - Write default values litterals instead of temporary variables
+	  - Changed variable name vref -> vref_mV
+	  - Removed unneeded error message
+	  - Used dev_err_probe() consistently
+	  - Removed successful driver probe message
+	  - Removed redundant blank line
+
+	  ** Nuno Sa **
+	  - Replaced of_device_get_match_data() by device_get_match_data()
+	  - Removed iio_device_unregister() because devm_iio_device_register() is used
+	  - Removed "/* sentinel */" comment
+	  - Removed CONFIG_PM_SLEEP defiries
+
+	  ** Krzysztof Kozlowski / David Lechner **
+	  - Removed clock-names in DT bindings
+	  - Fixed minItems by maxItems
+
+	* V1:
+	  - Initial post
+
+Daniel Lezcano (2):
+  dt-bindings: iio: adc: Add the NXP SAR ADC for s32g2/3 platforms
+  iio: adc: Add the NXP SAR ADC support for the s32g2/3 platforms
+
+ .../bindings/iio/adc/nxp,s32g2-sar-adc.yaml   |   63 +
+ drivers/iio/adc/Kconfig                       |   12 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/nxp-sar-adc.c                 | 1015 +++++++++++++++++
+ 4 files changed, 1091 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml
+ create mode 100644 drivers/iio/adc/nxp-sar-adc.c
+
+-- 
+2.43.0
+
 
