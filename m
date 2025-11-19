@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-240272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6900BC6F6D4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:51:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADAD5C6F83A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:04:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 662182F00F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:51:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 787C54F0B21
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F1E3590B9;
-	Wed, 19 Nov 2025 14:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83708296BA5;
+	Wed, 19 Nov 2025 14:48:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TmHkXOB/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cw0UF1CQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9598A26ED59
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 14:47:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C348132FA12
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 14:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763563673; cv=none; b=KUmjFMD7H1ntPHzR18gpnshCfLLyd85tgMQM0hNAxVmN7NTZNGFkWWRB7er991YQPKD2nuZUbfTGEis1wbmM5l5uc5rhjeEofEfPaoeiWKqMG0U1h2xMLFK0eF6yxTrzKgg8VHo3eYS4Go0dYzDdrToSgdilDurLiM/PjyKN58k=
+	t=1763563711; cv=none; b=adlxLUeBSUMMMSu8mhJfS+3NM5SmCneNmwCVZvZ+rktksG7maoJWn52RGU7W1gDiCaWxHKhbhhestjD/rdQRoRsAzbvx25bPlVyo7tpdRW4zoUxDRnvUc8w6fgl3VGMGOO6/sKiiAmQRSeiywuF3R+cuWu3KgXAoETK6gMvsAVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763563673; c=relaxed/simple;
-	bh=uhzWM/qGYZFfhE1HvQD4WizdEvAfuuSn/VMnpLmpDRA=;
+	s=arc-20240116; t=1763563711; c=relaxed/simple;
+	bh=LsdlzNEqNOcsomi5SfM+OmnGYfXQ9+G7JTobhKXRoww=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=B89v5DFvy/ItnZDtwHhvM3bXPPh8hsW+JyO56n8y6pLl445NGarYzozkRoOfd87WIxgXUTMDld7141CNa9RyM8JqBdmEvprBd/hnPlKghWTW9h1pFjO9f4QRMIplnkcPc3p0+yUNDHcTzgxJM/sL6bbwa3YomhwwNrszov2aDcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TmHkXOB/; arc=none smtp.client-ip=209.85.128.51
+	 MIME-Version:Content-Type; b=bJnCbSTwlY5iee5djWpwuVfaOj+YjmeoE0mfNgSIyL0DnquTdBvAsNnKzBhZwskdm9sx3FARTt9KnXNnmwcapOHOo2cy6Ac0k9peJb+Irru+f+bkf3gCiCGoVgVzU7yy9PeJHDLXqpRAT74Vu/WFejNbrOYlbKJ6HlVEBjmT6YE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Cw0UF1CQ; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4775ae77516so74499195e9.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 06:47:51 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47118259fd8so50827335e9.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 06:48:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763563670; x=1764168470; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1763563708; x=1764168508; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QeQ7og2zIf2WaBP3fNWtUSnP+euy7z4uHI8eX0I9W/o=;
-        b=TmHkXOB/vHGhDJDAS1B4eJRyx+moXvkG+CYKBlrXmEy3q6j6XwrA1239xvOmSVDkyT
-         qlaqCU9fp3QcwnY+ZGs/0Vhxu6qMqQNpmEwbTBg1HKCOE7b3PngTAU8aJQJjrI0bZu4D
-         vy2l5unEflzClsGqKxFmPbdsUCI3wKBVgM0ha+XLSyaD91hJuf/U0cf7EsEuXqFJjVAT
-         i9TIzzse+wUf0/p1ywWlh9dX4DctMkg+hSBSpQU5DRMoNn/9ThEV63JeNQkhv7BzX1Gs
-         2FFnjIpNcfNciNMHgqJzIHQQ1B75cAUe2tqrMN49gqZ2ybfCF1/34XcqQ8+C5fZz+uNI
-         68Vg==
+        bh=AAvWWiQSPgIYwk1AWP8/6DiVxFM2G8tlxz+0kwoYwpY=;
+        b=Cw0UF1CQB8LaNLJjz4RrnDOeSuu/LE/pgRggKOQvBCh4cyml+yCMTLkdjT7rVWX1B/
+         1Ld3lnlZ25PEq7vG7uQN6GpdU27NoOCipyIfEIAUrwnijiYqSq7xl9yMUdGP9isSn14t
+         o2pnGAAO3i085qJmI0+A+Y9A4Ui5S9TwkhZLRCLQLMoNMUhiBTJOWPtO5korGiPUpyKl
+         H2FC9tE0l8DUQ5qlda+tLzyXcPU2g4pQtfC5q0MEWJRqXB9T/6LOigReHGK9OkvwK4CV
+         9aWi+X+HPlPfX14mMU/PPQymFaPG0Ez7QZfAu++BJYG+GZlLrBznUIvx0WH47BJsV+PN
+         YSPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763563670; x=1764168470;
+        d=1e100.net; s=20230601; t=1763563708; x=1764168508;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=QeQ7og2zIf2WaBP3fNWtUSnP+euy7z4uHI8eX0I9W/o=;
-        b=stDxecSNCh5qC1xZl3I5pc3rWiEEB7rB14bJK3AXlZ9AgBq9CDB7h7SxlTA0TkZNtZ
-         QKpVp5x6os1hkdEjR4zpbSCs2rehKGQsMeLdSrTcqt2+jIHgH2bkNJ+Kk7dN9ejgUIBr
-         aG5jD9gx8vyZyXeOHtlJYZzcXFK2FSq5d5hEUOlWKGNfjiPJxz+OMI+h9RaAQijtiocd
-         mAlozFIhdHaGWlveqE+W1HD498leBIT4zlIm91aiqHzbvKR/aqXfn3tyVlzpiF1JSI3Q
-         Oin7JE0kku5gmjqIxoeuqFw97XK5uIHkBdwP8jGtzStcsE4H0fZ1eEEGAM+Ego5z/+hk
-         WTHg==
-X-Gm-Message-State: AOJu0Yz6cFeBpqBFTDDN56VCbEvapBHJ5qbRZRu7x8Jcpy3hOGUc4PQ3
-	VhAyJEQkRgqJ+qOXzOEXCOga9QrXE9ldt6aGZ0R7Jo7n3ZchvGqunbminFmSB9guPNA=
-X-Gm-Gg: ASbGncvD8OzK8/FvsRDEhE9jF8VxTSr13CZ54CX2viTibSzsO0ZqiLpVB2ajQM1y+Pf
-	UFpNr8VSdARypxpVqWWd4QTi8JrPiDPePwF4hc5zXQ4kqPUIFS5jKSHP3ge/2Hu0g4aC6kMjGp7
-	vtksPrxXWOmK5zMBAvHeqpqludHej9x0TRLGuLKdvV0Q7oRS0Z6VLZuqYL/qpSNwVjnjumGC8be
-	NZkKphlM8WK/b+5tC2CrcIucgmN3PKiDUaGIA/g/YCjmDoAAkAS38Rnf/xuKva2geR51URZLMVg
-	60ixZ+/3JsuEag7lTdmit1elPrTW39RCjNd0Z9dIa+Fv3OQg4pUz/FZkRd4YwPf139l0Bs2fXfI
-	Cnk+B6QU6R0FkspW+lwit6QRiKYwnXh2AmGi3FCBDDMvVBa3CCv4ih3HNja2Kferkxr6TI4bvc4
-	uvpK91T/EIAiqfCWHNMUrUDz32yS1A5ew=
-X-Google-Smtp-Source: AGHT+IE+tE828EFZZvZOt5BSe3ijLR8pMVOobVWe9YorjUhOAYJSEIXeL1tJpdukzaJzd5dVtgQ6Mw==
-X-Received: by 2002:a05:600c:1d19:b0:45d:f83b:96aa with SMTP id 5b1f17b1804b1-4778fe51e63mr185910855e9.7.1763563669904;
-        Wed, 19 Nov 2025 06:47:49 -0800 (PST)
+        bh=AAvWWiQSPgIYwk1AWP8/6DiVxFM2G8tlxz+0kwoYwpY=;
+        b=Yn+JEa31ZAZ3Hh1QFH1E5OQ/RhxbKcW9qRURHhAdBsOiMx4MIRUSr2bDWt3L4uRFO+
+         fRTzgn+cmwwvP/u7bet9O4Vj7a1R22PX23NRCSWrzohqpoiOhIf5gE6UiZA4YdSOmIXc
+         5c81hYvJeQoJrjedCRj0BFoGoFre2qoHJKg/siNb2CgCWZIkdPOntD+qBfXbF+DE+LPE
+         u20G7IM2DDHDLLt/4ILn7x3xyrhvxx/ni6eR7P72PHZZPxiDxqjdIs+JLwZy+5OY/rPh
+         QqyeMheDCe3CzBqgpqfzYOY5mO7O2dkoRoCjA6HEDLBNFZuOx6mOg6f0N7qk0a+3nhDS
+         slag==
+X-Gm-Message-State: AOJu0YyFawt0CeXfGIxMZWlg2RdjSO3Br++YGk63QcEejZzm2JxK+2bv
+	9kBpARIJKa1SAMQSRedv48j8yNG/hNB03djtj/jbmi3Fs2mKr5HlQJSN+i3rIFrxk84=
+X-Gm-Gg: ASbGncu3vWFylkgAjdWMdcAzkEh6t3bfnD2TEInJgl4BxlVcAD9Wk+Ry7LiN/m85MnA
+	45YZXMR3/a085QaqWbUSskRooFWPISMyiBEAZemvRLZFKerJKrKxQ+2+lXpkzKwj7zT0YQp1SQL
+	GYV3wjim/dA+Mr2/LrRXDzK+5FdgYcgpTQzi8WKEgn9qV0A9McYg86D47CAjTOT8t6Kiq43C68J
+	Eeum+D+DdFtvzarxHmBTUSiHih5gQZBPRfUwH0k2GmjMoA/4ESgCiDRTBwxVLJ8OPEEiGZmuZiq
+	GLj5x5FQt3ZK9qozyxJwsf1zTIwq+5/QVzBBe+Z+Xa9+KO7G/499rjvd6umG7NpICNTLZ2/5Z43
+	Xs4/ONyMyd3ujkI0E7nGNuiTmDs/F4vqy3ezDpuOiPZeRDRx/jTJFVh0VzbnJv3vV8/9dYmhqyy
+	Q+D0LNj87Rpj71rODFdCwvc/eg4dgeDSI=
+X-Google-Smtp-Source: AGHT+IEwXhf12WmwbkhOzW6haSCLFbfitinhCu11eBWyJ+4WomkGncN25OlqCSrNETzoBABx8qeaPA==
+X-Received: by 2002:a05:600c:a49:b0:477:73cc:82c2 with SMTP id 5b1f17b1804b1-4778fe6822fmr186919395e9.9.1763563708133;
+        Wed, 19 Nov 2025 06:48:28 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477b102bc9csm53729505e9.8.2025.11.19.06.47.49
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f206e2sm39187174f8f.41.2025.11.19.06.48.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 06:47:49 -0800 (PST)
+        Wed, 19 Nov 2025 06:48:27 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
@@ -86,8 +86,8 @@ In-Reply-To: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
 References: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
 Subject: Re: (subset) [PATCH v3 0/5] soc: amlogic: Add new Amlogic SoCs
  info defines
-Message-Id: <176356366923.77927.3381277328480983792.b4-ty@linaro.org>
-Date: Wed, 19 Nov 2025 15:47:49 +0100
+Message-Id: <176356370742.79050.14585932686305193943.b4-ty@linaro.org>
+Date: Wed, 19 Nov 2025 15:48:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,16 +105,18 @@ On Wed, 19 Nov 2025 10:52:21 +0800, Xianwei Zhao wrote:
 > 
 > 
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.19/drivers)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.19/arm64-dt)
 
-[1/5] dt-bindings: arm: amlogic: meson-gx-ao-secure: support more SoCs
-      https://git.kernel.org/amlogic/c/1d80bed4e35710287c584f998e51980a34fb3a4e
-[2/5] soc: amlogic: meson-gx-socinfo: add new SoCs id
-      https://git.kernel.org/amlogic/c/ba8abbdfd09e64f51ead8b86afc6b586505919b4
+[3/5] arm64: dts: amlogic: s6: add ao secure node
+      https://git.kernel.org/amlogic/c/fe85b8876768496196108a4c5199d084a6dc0036
+[4/5] arm64: dts: amlogic: s7: add ao secure node
+      https://git.kernel.org/amlogic/c/070fcd4448a1d49ddbebfb63c681766f75cd90ed
+[5/5] arm64: dts: amlogic: s7d: add ao secure node
+      https://git.kernel.org/amlogic/c/e490b52477b85ffc5bc8ae7124415345fb6a3f4e
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.19/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.19/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
