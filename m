@@ -1,151 +1,126 @@
-Return-Path: <devicetree+bounces-240120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817D3C6D8D3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:01:36 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6D22C6D93C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:05:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AFA304E3307
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:54:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A16CE356571
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:02:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3E430AAC0;
-	Wed, 19 Nov 2025 08:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB3A93321B9;
+	Wed, 19 Nov 2025 09:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ibKIYJir"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tYi6Gkpz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311122FC010
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 08:54:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B534131B13B
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 09:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763542483; cv=none; b=PoItSKTMdEfizhwmqadCLAICYaOGpM6aBxUKNwGWYoYSkL/ytW5J5xaused/xS+CFSbqk4k4eEf0AFpqqARN1M6SrnPu8P/BeHiawwVzHXYQ+JKORviXosEWaHrBk1dq41l6OEE3BnUFrKBsXEHNqAKBI7T5gZJjXwGU8RS5Uws=
+	t=1763542948; cv=none; b=fwJZ5iTUWSwZRA+VvqsRNypERla1FijnPZFIgu4KxBNLmKJt4A67Q+VH5cWXx1suiQtszsTbP/kSs7GC07YJz0NBvwuhg8ut/UmW0qGgsx/Tx7v7LbO/e7PmNPvWCv2BnlK86GpUGJHPsR0RIlJ4xGcY7dZcdyX++4JuYiQPdis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763542483; c=relaxed/simple;
-	bh=uq9A+rP/n2h/Cw4vBdMGHC8Y4iUHLllWMCwq1JBoATY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ByE7qB/TuJm5mScNqjWs0dQwByRnPQkbr/YwjtpwvvoZGSY9VbEgoZ8JsXq5R4hKKIFHY9WorycYlze7tTnSgRj9ctqEgfpvEkPDrac55I+f4/RvMKyXJBm6yzbzgZF4p0niw+3AMqlmh4k5LDWIJfqiuZ6nOjBcHWg1E5/nz8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ibKIYJir; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-37b95f87d4eso52406631fa.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:54:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1763542479; x=1764147279; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C8vU/bXiUiSX+XlUElJe1ZIOtLsB+Q8+itOmUp+Ohro=;
-        b=ibKIYJirzEX3GhoDyV1DmhxctWOmM/4+1FuHBbhHYWmB74V4mhRKdR0pt4Uq9DFp4N
-         UVKMZnISNVyFpbjUECGSra0ZiUto3cH8KNLFNBy6aHHTp6WXqoTHGIZH+twDdIL3quVP
-         DD1Hl9XThRu1/QYLpNgd6pobQaLBeQcphOZx4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763542479; x=1764147279;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=C8vU/bXiUiSX+XlUElJe1ZIOtLsB+Q8+itOmUp+Ohro=;
-        b=nL2G7NrdPC2dB9L5CwWoAiZrTklrvgXDKTIIztJkRaSp1jxPXY7dhkt22Rr+q3j7TH
-         PT2SjgMGSjWb7MDSw+uK57+QshTdeQkfyNDMT2OOyiru2VxTblqyGbC/1KTfz4KTdXHp
-         TFw+PnG6CFcfKLN+riAccaDE/M7eT90ZWF+EqHKm5PENJaBf7abut3+/MgYAPBsDQCEw
-         YlAV+kKGLGAXC/j2ErgDUXaE4/3gBkyFxgE9Uyx9UHWDQXaAPeGuFDIU87hfQpPjnXKC
-         FQQy26LgIsE4+a+V/Xv8OGG46XwI3eeXfgRKS0Pg4G6wxDMtG/2v2XsSsLMlK/FVQttY
-         GAwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUV5qK/ksodspMWWvWZK/WMRkubkmXUavQA1vfALIa6IgK0P9G0Q9eKtaffo8Vh3Ax0GMNNTgGiJs2C@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZd5ldlkRq7exSquqvacd22RDW/Kt6onxzpEnA9jnqaPMaTmWM
-	Pnmlrj25kzXyD/tMaeTglAG4NQRGixrYIvoNtGM97Ujj+0mM/wlsaeB/chm+TiTaBeXc2K3kvan
-	klm1ExuSHcFDcxTMuSlLFnFaEnUVxeX1MYtAHCIuv
-X-Gm-Gg: ASbGnctjqN3AvT6U8zmsxVxIewNWT6Z1X3F/oVIgdatX6EiJeKvHiEmql1DxUG9LnUo
-	w/4LrHuMDbNlT+2l+wewbLc7bC1gjU/vlGCbLzHqKEjZmQSDjaaOUw+hc06CBZCkUKfh7YoJwu+
-	YW7rfV1DaenQvvlyYoaZt83yGPDkNx4ukh6HIHqoHF2JgYI/CkokZ8PpmhBazQP8BE8Yb8E4pVl
-	43JKzXvvgXHulHPKTHk4yAmuuSdj2Ne7DYGbcHkN08ZoaTQd1BTIqUc1JYT/jt3YK3+7Fn3YY3B
-	UJZE/jkrV+rNIEgaemdKALvmcw==
-X-Google-Smtp-Source: AGHT+IFhlPMrRvpqdsL1dRrt5/hvTvDt2HQaw6mOPpwq4Z8rWgeUCX2QlUWOEDMbkLtDd/Z5qXCyPQTzgWFahIEpLfs=
-X-Received: by 2002:a2e:a00a:0:b0:37a:4085:c83d with SMTP id
- 38308e7fff4ca-37babd5c8d9mr55521611fa.29.1763542479298; Wed, 19 Nov 2025
- 00:54:39 -0800 (PST)
+	s=arc-20240116; t=1763542948; c=relaxed/simple;
+	bh=x3Erefu0LLIavVKjiZTP0JB8l64h9R/5ClLSpQhbGmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E80QCoOEBbrMYW6C8fKwEy9QHiSxNwzMoxMvYDGZ8xWU6KKbKUZqW4/YtugYMa72fgu07kBnASIeqTH+vrgefG/6wQLOOtUXhCXbhUKGqJszZf+R2JNHfpii2mYaSbVr0LMxNiiud3LNigjp/G8yob+4iwX2fvzbKRXHNhWrvpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tYi6Gkpz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7628BC19423;
+	Wed, 19 Nov 2025 09:02:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763542948;
+	bh=x3Erefu0LLIavVKjiZTP0JB8l64h9R/5ClLSpQhbGmg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tYi6GkpzCeYDh1M9Oj5ex3zEIevjErNC1YfGJLc6QV17ffViR+uyBJv4WhyhL1Ghs
+	 ijKO4fg1Rho4FimCnwioQOTW3dZvg8qpr+wxiE7NCq67T3bMXW6WumkeQB1maoZJCP
+	 7yRCL/r8EhpwkKH0DQouhgmvv6BeLq5cNb8sV/SkXWa6PsqIp1Rw2g/d4cCGuZ/G+C
+	 hjwREyoGufMmZuG5BvWDQwJUOzPCusnaM/gosnQvo2d2f/ltz7eYTNmQY8nktDr0Xf
+	 CJQ33lM8XvrPP14dguRvy3IR8cJmufPXAFotYGhqyQwtg3Xp2/bJcCO7mmtWhLCSYp
+	 TvfsxOd3OhalA==
+Date: Wed, 19 Nov 2025 10:02:23 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Chris Morgan <macromorgan@hotmail.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, conor+dt@kernel.org, 
+	rfoss@kernel.org, tzimmermann@suse.de, jonas@kwiboo.se, neil.armstrong@linaro.org, 
+	heiko@sntech.de, sebastian.reichel@collabora.com, jernej.skrabec@gmail.com, 
+	dri-devel@lists.freedesktop.org, andrzej.hajda@intel.com, andy.yan@rock-chips.com, 
+	krzk+dt@kernel.org, robh@kernel.org, Laurent.pinchart@ideasonboard.com
+Subject: Re: [PATCH v2 2/3] drm/bridge: dw-hdmi-qp: Add support for missing
+ HPD
+Message-ID: <hgwfztkwk4qgvefwo2cdedzas3rzlhx6yek6dgldkgaq2jskvw@exxqujjpa6bl>
+References: <20251113192939.30031-1-macroalpha82@gmail.com>
+ <20251113192939.30031-3-macroalpha82@gmail.com>
+ <avdnpwnxs6cql7eyckdt37szpcf5ztgxlc7juwu6tqj5xxu56a@nrwljig2p67i>
+ <SN6PR1901MB46548ED8D4BA1184E0EA7DC3A5D6A@SN6PR1901MB4654.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251119071126.1719405-1-wenst@chromium.org> <18342493-54f9-4e5c-be05-568a3026663e@kernel.org>
- <CAGXv+5EnfwRA1SMvt=3n7gj1gS3BndXKNVfmfkC=y6n2A3VsdA@mail.gmail.com> <d8f3eb00-c7a6-425a-9e69-a01bc3532f0c@kernel.org>
-In-Reply-To: <d8f3eb00-c7a6-425a-9e69-a01bc3532f0c@kernel.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Wed, 19 Nov 2025 16:54:28 +0800
-X-Gm-Features: AWmQ_bnHnfSc8wAlhe_rBr-TemtbkaVyA6tPaH5I_09BBzsfr8kvP5fgv6NpHVk
-Message-ID: <CAGXv+5HePVim+-fx0bG-geBHp3kLQbNGLyknGRx=LgLZ7H+DUQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: firmware: coreboot: Document optional device
- specific properties
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, Julius Werner <jwerner@chromium.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="wdbqem6hd3bixddf"
+Content-Disposition: inline
+In-Reply-To: <SN6PR1901MB46548ED8D4BA1184E0EA7DC3A5D6A@SN6PR1901MB4654.namprd19.prod.outlook.com>
+
+
+--wdbqem6hd3bixddf
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/3] drm/bridge: dw-hdmi-qp: Add support for missing
+ HPD
+MIME-Version: 1.0
 
-On Wed, Nov 19, 2025 at 4:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 19/11/2025 08:32, Chen-Yu Tsai wrote:
-> > On Wed, Nov 19, 2025 at 3:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 19/11/2025 08:11, Chen-Yu Tsai wrote:
-> >>> Coreboot, or the ChromeOS second stage bootloader, depthcharge, will
-> >>> insert device specific properties into the coreboot firmware node whe=
-n
-> >>> there are valid values.
-> >>>
-> >>> Document these properties in the binding.
-> >>>
-> >>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> >>> ---
-> >>>  Documentation/devicetree/bindings/firmware/coreboot.txt | 9 ++++++++=
-+
-> >>>  1 file changed, 9 insertions(+)
-> >>>
-> >>
-> >> TXT files cannot receive new properties. You need to first convert to =
-DT
-> >> schema.
-> >
-> > OK. Let me look into this.
->
-> After the conversion you will hit another problem - you need vendor
-> prefixes for these, because only generic properties can come without
-> them. Otherwise (without vendor prefix) these would define the type for
-> all other bindings, which probably is not what we want.
+On Tue, Nov 18, 2025 at 02:36:09PM -0600, Chris Morgan wrote:
+> On Tue, Nov 18, 2025 at 09:46:04AM +0100, Maxime Ripard wrote:
+> > Hi,
+> >=20
+> > On Thu, Nov 13, 2025 at 01:29:38PM -0600, Chris Morgan wrote:
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > >=20
+> > > Add support for the dw-hdmi-qp driver to handle devices with missing
+> > > HPD pins.
+> > >=20
+> > > Since in this situation we are now polling for the EDID data via i2c
+> > > change the error message to a debug message when we are unable to
+> > > complete an i2c read, as a disconnected device would otherwise fill
+> > > dmesg with i2c read errors.
+> > >=20
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> >=20
+> > You must also disable any mode using the scrambler when there's no
+> > hotplug interrupt available.
+>=20
+> Is there a simple way to do that? I'm not seeing any references to
+> scrambling in the current driver.
+>=20
+> Should I just limit the rate to HDMI14_MAX_TMDSCLK (340000000)  under
+> dw_hdmi_qp_bridge_tmds_char_rate_valid() if using EDID polling? A
+> document I found online from Synopsys [1] claims that scrambling is
+> used by default at rates above 340 (if I'm reading it right) and used
+> opportunistically at rates below 340.
 
-I understand the concern. But given it's specifically under the
-/firmware/coreboot node, which is inserted by coreboot, doesn't that
-already serve as a namespace or vendor prefix?
+Yep, that's what you should be testing for :)
 
-FWIW the ship has already sailed for naming. The first three properties
-were added to depthcharge [1] and coreboot [2] in 2018. The last property
-was added to depthcharge in 2023 [3]. That is what has shipped in immutable
-firmware on ARM-based Chromebooks since the RK3399 days. The coreboot
-change was presumably added for other devices.
+Maxime
 
-This change only serves to document what the firmware already provides.
-Whether they should be grandfathered in or not doesn't change what the
-firmware already does; it just makes it more well known. It's not going
-to have any effect on validation either, as the properties are supposed
-to be inserted by the bootloader, not added statically to dts files.
+--wdbqem6hd3bixddf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Presumably we can update the code to use a new name, but we still have
-to live with the old names for up to 10 years.
+-----BEGIN PGP SIGNATURE-----
 
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaR2HnwAKCRAnX84Zoj2+
+dl1hAX91CWnkZWqyujHg7Ra5UTVcO8/PTCDzBEBf9nV+OEkHsOhQhwSIeC+T7Vb6
+M3s4gOgBewQnAe2ln3VIklSXwTyJhAuBujf/VUAbPACBFrFB6rc7YGTmq0PLYpG8
+mB6GUJvyAA==
+=P/8l
+-----END PGP SIGNATURE-----
 
-ChenYu
-
-[1] https://crrev.com/c/1028728
-[2] https://review.coreboot.org/c/coreboot/+/28104
-[3] https://crrev.com/c/4975217
+--wdbqem6hd3bixddf--
 
