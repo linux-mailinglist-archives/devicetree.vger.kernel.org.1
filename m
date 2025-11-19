@@ -1,168 +1,120 @@
-Return-Path: <devicetree+bounces-240362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06616C703C4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:53:43 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE55C7062B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:16:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B2C193848B3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:41:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5683C4EC671
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C8C35C1BD;
-	Wed, 19 Nov 2025 16:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DDA72FCBED;
+	Wed, 19 Nov 2025 16:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLhT6SzF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J+PgUpVN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 798AC3559EF;
-	Wed, 19 Nov 2025 16:40:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0509D2F5A2E
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 16:49:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763570451; cv=none; b=Mt6uKjlky7GCIzMrD8CAaWwiUKBuqRhTNocQPMkpSEYrV6BV8af3q0w6dHPeEEsEaXEqYVrVXJklii4NqC79Vc3+3phpdTTXvX1gxdILAWiwvMRqTsiwq9svEjqcq3JfZlJ2D70NFjNEU4Fl9Ho+Ahi2w1JhqPMKBTpSKqJm6Ro=
+	t=1763570950; cv=none; b=WtMydb7j+kCoA7yvY8V8BMr65zP1i8qIP/FdQ9r8SmBc1VqIU8CIuPIVpsmFdYvBpDcna7BD+zSsg0HY0DdBsaQmQ4aglU1GEzIjgHVY4o75w4wC6oIshYkdzEoHoAtc/3WM0tacc95YLXc/J7duBeyZVeGOUfq4envBkKYN5FQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763570451; c=relaxed/simple;
-	bh=JFhkn6lZcnccDk/Xiy7qQSi9rib1FbFLEz39Orxm4zU=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=AjohPN4s1honwQEp+PqJkm6zkAy4f6FUuFqo9g18BBL564yXwuqVmknKg3mjEZ4ciLN7jgjHwLZ96ajqiAxztpyHPpv7arzYsU32gc3bcNngKWQBVgAhirMCetqjqMgA1jTFBjLA1YUuIygt61OhoVRDE37ZQ9/LLUS8dlyo6sc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lLhT6SzF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD87DC116D0;
-	Wed, 19 Nov 2025 16:40:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763570450;
-	bh=JFhkn6lZcnccDk/Xiy7qQSi9rib1FbFLEz39Orxm4zU=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=lLhT6SzFU8YnGXsRaD9WXB6PNnLJLV37WDNGmrJy2H1ItVpSERaHHYDaFiYKNaTV8
-	 +sVhKIOM1aK6VFMCTMiiclyoJ6FbkMoHm8GmYVEwqN8HqysKqiYA2qFxVtt1FCV6GL
-	 rQM3sW9biWpOtyldb5TOmuVQUiSaD48/zJmmAJb/OOdI1uJLtgsMGUt9P8LO0zJ0gD
-	 RROcbYYeQdiQrEUnH79JiJ1PCp3fssgXZm7EtH+v7vliUypYK83hjFbI8kc/+cf1u4
-	 f3y9tcnYDpu4hBC/zI/fNyQ2y390nUQBi/LQeDuSFAw6ek1nW6BuEi3Ur+HX4anYRQ
-	 Gf66G4uOfb/ig==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADF0F39D0C22;
-	Wed, 19 Nov 2025 16:40:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1763570950; c=relaxed/simple;
+	bh=/QQ4D6lJ/U3RIjl1LEQL/cd6ruupC400gGbOZNouKEk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=nGhVnqw/eAauhrnCNCL44bND9HE4DkU0WiQ+GX0qgRBvgOw5wSOXbPiJkJ+QjMHeo+UyULVp8Nr5J7uBahSMcjN8/Gn5emAcSacXO/NrHQ7t1PMFHuqCWmh2kNjhxF9FQ0C+ZHWO/k6Oh2SkK9ac19x8jFTYQB9Ltno+8YlAFQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J+PgUpVN; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-42b3b29153fso3791848f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 08:49:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763570946; x=1764175746; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fP3mEwFpsF6SroI//feXRB59U8Qjn1AbUsRd1VVvnew=;
+        b=J+PgUpVNIo+wtb/7IIBEhQkMQQ2Vn7QPeYL02mb4S5wmpbUyOsauHT5LkaiD8nmZg0
+         LkK56k+d5oM5sX9yahWZLY72iqInfz4gGe5JdzdIt97SdJMhwDv1KcLyUcxG6YQtfEZh
+         fEH98egIJpu6oYf/xXlJZb4yOr08g75ofeO49mLKtK2JOFYM5EtYCJCSsnlxj43M7Yjc
+         vlcL/xfU1cYMS4T+Qkc0+KGzguEObXlbz7S6zw7RQ2qDgI84KLGyj1PAtSLEKFCfsNty
+         dyJ+vZiQzLvP+WBSUca4T3jehg4Ic7Ma9hqHRG4ZBPk568IkKj5eSZNXsKC0x4HL3hHw
+         mtPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763570946; x=1764175746;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=fP3mEwFpsF6SroI//feXRB59U8Qjn1AbUsRd1VVvnew=;
+        b=WsICczegXs4Ft5+LfZXQMaSaaTqWsE19dB2Xx4FK7G+yHV3tp+Z/h/G3hH9f5Oo1cT
+         CqImWR/lZMdKjyxjgUsRfT6yHE7pUQlzQ6NAIIacveqGEZcppzVtxXY0UDb2YgbZZkPd
+         H9rXCOU1EtsQRSQyr6FKxyVCAlOcIR2A5KV/GS+f3Jdy7m9KzwctuUbB/zCoUgDzsTBO
+         ity8MVU5Tq0RHvbc6L1Cna0cWcSmi09Y+kt9r01IRgkvj8mavSEpdpapJfUBVeJzEj7R
+         IhcLRDjT+Mzvfra5UNWJ2aKNz8DzFIOoQp3ERl75W3G8STknRnFaAjj+UQnUH1XKlW+k
+         lwvA==
+X-Forwarded-Encrypted: i=1; AJvYcCWxw70Z8Uss1qdPOuQuUSagMCCQ6T8Beno9X5oPPGHzB9dhvV5hwJJyTiVdg2fvma9DfGckPLDb8Y7E@vger.kernel.org
+X-Gm-Message-State: AOJu0YweBoCPMugmheds13wBEffVvdXu/uMD/FCFKURhqG7LMLkxq9oJ
+	SUrQ2K+DVBgHtJNkKmXR/frIKE7qHLmooGlKPrnS+WaD3eX2cZz02KqNaNBrQF3B+K0=
+X-Gm-Gg: ASbGncs3P9k+f8I9DQgFzQvem4/yKJI3xB0SQTocUbYMYN3Vezj4bm9cSEWYgsADIGG
+	LK7XuP18teiOrPiOASyRol+ZxSTKBEasy5VceZGdZDdbrJyiExsWcIQeQPGyuC6iQejFXmb2CyP
+	J3OnRberXY4nnRTCYH1ddH9QUpYgrP2JAxvuQot3FMLnMN0YyBygFkjVSzuoZrvl2C0pj6Muuzy
+	fdOlJEjH7MDtlTTItRM6oQ+WXWnx3MJsIedjl5UvfI/71lqomrCPCnxdtvq4pKXx7HVc41GHuMp
+	L2Jmd4E+x+CWlAUBgbVa5tC6R64/8VpSwSbBrVjKW2do+qaCwNNQMW6iT0OUSEZezErYD1OXYxH
+	HFmpsgtttlPhX+IP2bKBdl2h4CWOr91qB5JFQkrFWrzP59D8MWv27TVfdWPz3oxJ3+VKput8eNc
+	llxwWtqbipiZILow+oEcLPQUaLdz7zevM=
+X-Google-Smtp-Source: AGHT+IFJpIEuxRckg0fs35/YF1zumhfLI6hXTo+NQzpKlh4APBaEOe3Aa9NPbO0iCSdpBRsqom8cRA==
+X-Received: by 2002:a05:6000:401e:b0:42b:3cd2:e9bc with SMTP id ffacd0b85a97d-42cb1fb9793mr3572008f8f.39.1763570946125;
+        Wed, 19 Nov 2025 08:49:06 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fa3592sm117957f8f.21.2025.11.19.08.49.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Nov 2025 08:49:05 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: jesszhan0024@gmail.com, dri-devel@lists.freedesktop.org, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ devicetree@vger.kernel.org, Fabio Estevam <festevam@nabladev.com>
+In-Reply-To: <20251115025827.3113790-1-festevam@gmail.com>
+References: <20251115025827.3113790-1-festevam@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Raystar
+ Optronics, Inc
+Message-Id: <176357094533.280640.13259117637796979460.b4-ty@linaro.org>
+Date: Wed, 19 Nov 2025 17:49:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v23 00/28] riscv control-flow integrity for usermode
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <176357041649.873046.14385292158343476261.git-patchwork-notify@kernel.org>
-Date: Wed, 19 Nov 2025 16:40:16 +0000
-References: <20251112-v5_user_cfi_series-v23-0-b55691eacf4f@rivosinc.com>
-In-Reply-To: <20251112-v5_user_cfi_series-v23-0-b55691eacf4f@rivosinc.com>
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org, tglx@linutronix.de, mingo@redhat.com,
- bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
- akpm@linux-foundation.org, Liam.Howlett@oracle.com, vbabka@suse.cz,
- lorenzo.stoakes@oracle.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, conor@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- arnd@arndb.de, brauner@kernel.org, peterz@infradead.org, oleg@redhat.com,
- ebiederm@xmission.com, kees@kernel.org, corbet@lwn.net, shuah@kernel.org,
- jannh@google.com, conor+dt@kernel.org, ojeda@kernel.org,
- alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
- bjorn3_gh@protonmail.com, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, lossin@kernel.org, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
- rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
- zong.li@sifive.com, david@redhat.com, cmirabil@redhat.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-Hello:
+Hi,
 
-This series was applied to riscv/linux.git (for-next)
-by Paul Walmsley <pjw@kernel.org>:
-
-On Wed, 12 Nov 2025 16:42:58 -0800 you wrote:
-> v23:
-> fixed some of the "CHECK:" reported on checkpatch --strict.
-> Accepted Joel's suggestion for kselftest's Makefile.
-> CONFIG_RISCV_USER_CFI is enabled when zicfiss, zicfilp and fcf-protection
-> are all present in toolchain
+On Fri, 14 Nov 2025 23:58:25 -0300, Fabio Estevam wrote:
+> Raystar Optronics is an LCD manufacturer based in Taiwan:
+> https://www.raystar-optronics.com/
 > 
-> v22: fixing build error due to -march=zicfiss being picked in gcc-13 and above
-> but not actually doing any codegen or recognizing instruction for zicfiss.
-> Change in v22 makes dependence on `-fcf-protection=full` compiler flag to
-> ensure that toolchain has support and then only CONFIG_RISCV_USER_CFI will be
-> visible in menuconfig.
+> Add a vendor prefix for it.
 > 
-> [...]
+> 
 
-Here is the summary with links:
-  - [v23,01/28] mm: VM_SHADOW_STACK definition for riscv
-    (no matching commit)
-  - [v23,02/28] dt-bindings: riscv: zicfilp and zicfiss in dt-bindings (extensions.yaml)
-    (no matching commit)
-  - [v23,03/28] riscv: zicfiss / zicfilp enumeration
-    (no matching commit)
-  - [v23,04/28] riscv: zicfiss / zicfilp extension csr and bit definitions
-    (no matching commit)
-  - [v23,05/28] riscv: usercfi state for task and save/restore of CSR_SSP on trap entry/exit
-    (no matching commit)
-  - [v23,06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ | VM_WRITE
-    (no matching commit)
-  - [v23,07/28] riscv/mm: manufacture shadow stack pte
-    (no matching commit)
-  - [v23,08/28] riscv/mm: teach pte_mkwrite to manufacture shadow stack PTEs
-    (no matching commit)
-  - [v23,09/28] riscv/mm: write protect and shadow stack
-    (no matching commit)
-  - [v23,10/28] riscv/mm: Implement map_shadow_stack() syscall
-    (no matching commit)
-  - [v23,11/28] riscv/shstk: If needed allocate a new shadow stack on clone
-    (no matching commit)
-  - [v23,12/28] riscv: Implements arch agnostic shadow stack prctls
-    (no matching commit)
-  - [v23,13/28] prctl: arch-agnostic prctl for indirect branch tracking
-    (no matching commit)
-  - [v23,14/28] riscv: Implements arch agnostic indirect branch tracking prctls
-    (no matching commit)
-  - [v23,15/28] riscv/traps: Introduce software check exception and uprobe handling
-    (no matching commit)
-  - [v23,16/28] riscv: signal: abstract header saving for setup_sigcontext
-    https://git.kernel.org/riscv/c/bfc1388f2753
-  - [v23,17/28] riscv/signal: save and restore of shadow stack for signal
-    (no matching commit)
-  - [v23,18/28] riscv/kernel: update __show_regs to print shadow stack register
-    (no matching commit)
-  - [v23,19/28] riscv/ptrace: riscv cfi status and state via ptrace and in core files
-    (no matching commit)
-  - [v23,20/28] riscv/hwprobe: zicfilp / zicfiss enumeration in hwprobe
-    (no matching commit)
-  - [v23,21/28] riscv: kernel command line option to opt out of user cfi
-    (no matching commit)
-  - [v23,22/28] riscv: enable kernel access to shadow stack memory via FWFT sbi call
-    (no matching commit)
-  - [v23,23/28] arch/riscv: compile vdso with landing pad and shadow stack note
-    (no matching commit)
-  - [v23,24/28] arch/riscv: dual vdso creation logic and select vdso based on hw
-    (no matching commit)
-  - [v23,25/28] riscv: create a config for shadow stack and landing pad instr support
-    (no matching commit)
-  - [v23,26/28] riscv: Documentation for landing pad / indirect branch tracking
-    (no matching commit)
-  - [v23,27/28] riscv: Documentation for shadow stack on riscv
-    (no matching commit)
-  - [v23,28/28] kselftest/riscv: kselftest for user mode cfi
-    (no matching commit)
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-You are awesome, thank you!
+[1/3] dt-bindings: vendor-prefixes: Add Raystar Optronics, Inc
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/9c1cd9e01c46bca66df47a4775685a862114c3a7
+[2/3] dt-bindings: display: simple: Add Raystar RFF500F-AWH-DNN panel
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/1594c6da54838823f7f88f7b692bd917530f6bd3
+[3/3] drm/panel: simple: Add Raystar RFF500F-AWH-DNN panel entry
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/1b2a9ec82099a39611705884c446cd45b6738537
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Neil
 
 
