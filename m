@@ -1,170 +1,143 @@
-Return-Path: <devicetree+bounces-240166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BF6C6E229
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:07:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82243C6E26C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:10:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C0B8734B259
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:03:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E9D814E5359
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:06:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20EC334EEE0;
-	Wed, 19 Nov 2025 11:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA032F5A3C;
+	Wed, 19 Nov 2025 11:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="srfoqts+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bX3/6o6E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A1534EEE6
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 11:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076F03502B1
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 11:05:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763550219; cv=none; b=Jz0rKT8wMh5F+cs1iJkFncK1FnY1Vgt/8czmtaR9UUVZX7Hp28q0+DsVNo+iEX8S1TwoZa33rjZhnnouMieyDov41SEhqEX9G0fkQ2efRoClH+uOOHNopjaMB2tGV1RAE3FsUrl20VLEL7vdWglqqBdaFFEbCZkpA6X2s0l2F30=
+	t=1763550317; cv=none; b=aCnDh28NtbWDuwH62oXptCY72jb8MEwVgNdezEZuqWKcKdQjOgNOqG2BhYgcKNU/mU5ehacKtFt+cB8B7Fmhoy/Tba2CUxzqZFel89tpZKI4zSoq9UTpQAWS2Fj6KE2DiZRXDpjKlFjkhFRbnUCyWgGeE4PZW3CPzbCCGbf1l68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763550219; c=relaxed/simple;
-	bh=cmsffZOuHxL5Qaqbxv2ybstmIRrQd5fzYigoO3vtk2Q=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=IvTAwGDWnLBC+JSrNWKy7fhdNPvXb5m+Xq1U0MdqG+bKsttRT8Wo+Jw4hz39dSOzUdaGUMUqJ5yFfxbwtstW5w7W6w15hi2PEEKss7gj5UaSihVCOQ64mYO2sDX3h7RHwhgbUwkjwIErs9LArP4O7/8TKXSih7aiqarZ4f6ye4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=srfoqts+; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20251119110333epoutp040560505c12e4e41895b0248eb1fd63c2~5Y5NRRJQe0685606856epoutp04X
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 11:03:33 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20251119110333epoutp040560505c12e4e41895b0248eb1fd63c2~5Y5NRRJQe0685606856epoutp04X
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1763550213;
-	bh=utyQ56Iwp0bE0o5k8NLdtz9Zyjjs9puPqvgpDBjrhts=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=srfoqts+XkaVcY8e7Sn5kdV0lCsbTtpJ22b+7u6hBfvHtjCfH4XCY+YKX594jyM7b
-	 4bZshuCUpQCml8WA/SkJ8m2TcAyeT15FGAYdFlPp4IH1BJJe13ra7MQmi0xiDVU4pC
-	 9ML2ts1t18FJAUW0Pzn39O/PV/zyCrmRze0GzhHA=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20251119110332epcas5p1e7576a2f6f2f68fdd692f43fa6b456b7~5Y5MUbs-q1958119581epcas5p13;
-	Wed, 19 Nov 2025 11:03:32 +0000 (GMT)
-Received: from epcas5p2.samsung.com (unknown [182.195.38.93]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4dBJW72nQWz2SSKZ; Wed, 19 Nov
-	2025 11:03:31 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20251119110330epcas5p10fe5035ad50ad1f5cfa3eb42830ac401~5Y5Kj0FOb1937319373epcas5p14;
-	Wed, 19 Nov 2025 11:03:30 +0000 (GMT)
-Received: from FDSFTE411 (unknown [107.122.81.184]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20251119110320epsmtip214c80850a63127e66a162ef624825255~5Y5Auz_Pp1541615416epsmtip2X;
-	Wed, 19 Nov 2025 11:03:19 +0000 (GMT)
-From: "Ravi Patel" <ravi.patel@samsung.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<jesper.nilsson@axis.com>, <lars.persson@axis.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <alim.akhtar@samsung.com>,
-	<s.nawrocki@samsung.com>, <cw00.choi@samsung.com>
-Cc: <ksk4725@coasia.com>, <smn1196@coasia.com>, <linux-arm-kernel@axis.com>,
-	<krzk@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<pjsin865@coasia.com>, <gwk1013@coasia.com>, <bread@coasia.com>,
-	<jspark@coasia.com>, <limjh0823@coasia.com>, <lightwise@coasia.com>,
-	<hgkim05@coasia.com>, <mingyoungbo@coasia.com>, <shradha.t@samsung.com>,
-	<swathi.ks@samsung.com>, <kenkim@coasia.com>
-In-Reply-To: <20251029130731.51305-1-ravi.patel@samsung.com>
-Subject: RE: [PATCH v3 0/4] Add basic clock and pmu support for the Axis
- ARTPEC-9 SoC
-Date: Wed, 19 Nov 2025 16:33:17 +0530
-Message-ID: <027f01dc5944$239f6890$6ade39b0$@samsung.com>
+	s=arc-20240116; t=1763550317; c=relaxed/simple;
+	bh=Z7BqYBP1hQPbK6MRUQ0wzMjKx60/qWpwRoZtM1hFtxw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SWSF9NQmPNVuhRM+ZNtMhVp2MZkpQ3IZChpxikz+4nwWGsw0vvtotkD+0QAlLoD/3PBIfXJMTdWxJY1e+MnoUuIx45rtZmAnZTkksrLQCWOy6q+GOzog58ZbEaJB+aepPIwNoTdKCCx4Vwo/n3npyiHKgem5pMj8ThllQ7fDOCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bX3/6o6E; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-477b198f4bcso4260115e9.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 03:05:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763550312; x=1764155112; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CWlw20o6LQDwwv5VrwhL4squAhrFIax2gZpjeEuMfG8=;
+        b=bX3/6o6EQ0Bo7pZDfiKNTIgQWCmGWO0wLdAY8eSqHdItzrMgIIW32UAyeqZQI3EHpD
+         IQWrTRQA/nxQHfIiYlb6AIuKi55sBuzOEWhNcezCkQ2yKkO7vROXfetRi3MofDC7+Tag
+         2viCXLp5apzMcfPrTMGaRfLEBE9YR+YzEDY7Zy+0gXnWL/TSpMNzggUnwEUCBaKmVwRR
+         +cYUODnpgHVQkXozdE3xuCSkldKbtolpougTHwhkzuGUE/Fsa3E5ctmX2zF/1Z7f8YRf
+         RQHycmOIL2ePkw4Yfsxtvz6Uo3nuDwOfaN+ID8ESaeUkMIe89CciLe0qkV9+Jt1QnDTe
+         2bqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763550312; x=1764155112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CWlw20o6LQDwwv5VrwhL4squAhrFIax2gZpjeEuMfG8=;
+        b=Y/A40aK1Mk/8IiFruqvFojwbnt+Dy4xg+KPRSm3PkGTqODrBKUyN7VlaeF0Vm0Km/8
+         tgfCyqELjR1yy5+sSynyKNBrGrbW3XYUIP7re3J25ocgS5HKqc2x6fQS4AW8czDZ5H4G
+         vgexC3mLSq4ctgnkDLbrO832lmxsa3Sr0iYDTHnTPVjxDvFb/jb3kHLJ8ypfayrZd9MG
+         8UQj/TwePAAtLECcMDvjlJ/cHgwXHEHnB224GyRl0C8KZ4yqirBB/YPmVNkGZp3WGEuV
+         MKJsfSrFspB4byXjfoYiQlbg3yn2qdkY/vp7/fHvKGgXw9WwqtM/L+6bip4C8Se0Wxpu
+         fKdg==
+X-Forwarded-Encrypted: i=1; AJvYcCWVdPCVoBzzYbgul+HNoR37uDJS6+FLA8ZkwiXjOCDiWaH0cbfCsMWCooq+ZFaGnhcnbImMMgDEZcYQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfDEqLM0CZnIZ2zy4PYG6VivQtPf/yyFyuo0BZPb09WcEcC66q
+	wpAB8IB/iABnVPy6YLMthOGZHkiIhj++leZZogePedPGDHibM3IU+umk
+X-Gm-Gg: ASbGncsjxApzF/BuYtLYE43xeD/Qsd1xNYc1sYM1vuk3wsK90KTrm1DCGE6VFlSNDeq
+	bTwl/zbBqW0HIXKVPMoZ/8leSdPFTi7M36HGXSLtzz+ECCvjbj+hikdssxlbEDYMxwPn8rsb4W5
+	5LRMsqFRXhDYaBa4tlDYeudPsLWx7INFTHX1Lhv+MZIt4TRLTvM5NhLjf32eLhkjHckHGNY9/9l
+	AOsGYXHK97pqNELQFXu+FdZ77vHnbhIrqsY3J4Q68v/pmEwEbw5rgZUN51CBfE4WQQgRdUOta1Y
+	9I1Ur0ImAWf5V7B8daCg9JKwqkaEIiBB8Vq2lml1dRgkeuNbQ+3AuC97ZRoZdjbQ2qaa7w4arJ5
+	tnIu6BlzXu9bnEViuzW9oTeT1pNSzFLQktDT5ynTkqq2o4mpFH8VPYn7DzKB1dQocqza1d5BMaB
+	rlzw1eK1CwYICTdNNr4w32pCdjgS4A5N9qQJHo1uPfFvMS0dBpTpeVqqid
+X-Google-Smtp-Source: AGHT+IHvIJl1Yyeyb6PlfbHbv2vqvVFA+gZ94GJdtTnuQ5bBm81qZUqFHMsfO2W+YX8YNlnln+efZg==
+X-Received: by 2002:a05:600c:3112:b0:477:9650:3184 with SMTP id 5b1f17b1804b1-47796503351mr160637325e9.2.1763550311378;
+        Wed, 19 Nov 2025 03:05:11 -0800 (PST)
+Received: from iku.Home ([2a06:5906:61b:2d00:4b7e:3ed7:e0b3:cf30])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477a9d198a0sm39884505e9.1.2025.11.19.03.05.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Nov 2025 03:05:10 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/4] Add USB3 PHY/Host nodes and enable on RZ/V2H and RZ/V2N
+Date: Wed, 19 Nov 2025 11:05:01 +0000
+Message-ID: <20251119110505.100253-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.51.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFuBG9fI91CU/dBRNhjuFekaH32YALr0KoHtb8gl/A=
-Content-Language: en-in
-X-CMS-MailID: 20251119110330epcas5p10fe5035ad50ad1f5cfa3eb42830ac401
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20251029130809epcas5p3cd5341d86ffac5fe18d8541c8018e568
-References: <CGME20251029130809epcas5p3cd5341d86ffac5fe18d8541c8018e568@epcas5p3.samsung.com>
-	<20251029130731.51305-1-ravi.patel@samsung.com>
+Content-Transfer-Encoding: 8bit
 
-Gentle reminder to review this patch series.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Thanks,
-Ravi
+Hi All,
 
-> -----Original Message-----
-> From: Ravi Patel <ravi.patel@samsung.com>
-> Sent: 29 October 2025 18:37
-> To: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; jesper.nilsson@axis.com; lars.persson@axis.com;
-> mturquette@baylibre.com; sboyd@kernel.org; alim.akhtar@samsung.com; s.nawrocki@samsung.com; cw00.choi@samsung.com
-> Cc: ravi.patel@samsung.com; ksk4725@coasia.com; smn1196@coasia.com; linux-arm-kernel@axis.com; krzk@kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org;
-> linux-clk@vger.kernel.org; pjsin865@coasia.com; gwk1013@coasia.com; bread@coasia.com; jspark@coasia.com; limjh0823@coasia.com;
-> lightwise@coasia.com; hgkim05@coasia.com; mingyoungbo@coasia.com; shradha.t@samsung.com; swathi.ks@samsung.com;
-> kenkim@coasia.com
-> Subject: [PATCH v3 0/4] Add basic clock and pmu support for the Axis ARTPEC-9 SoC
-> 
-> Add basic clock driver and pmu compatible support for the
-> Axis ARTPEC-9 SoC which contains 6-core Cortex-A55 CPU
-> and other several IPs. This SoC is an Axis-designed chipset
-> used in surveillance camera products.
-> 
-> This ARTPEC-9 SoC has a variety of Samsung-specific IP blocks and
-> Axis-specific IP blocks and SoC is manufactured by Samsung Foundry.
-> 
-> This patch series includes below changes:
-> - CMU (Clock Management Unit) driver and its bindings (patch #1 to #3)
-> - PMU bindings (patch #4)
-> 
-> The patch series has been tested on the ARTPEC-9 EVB with
-> Linux Samsung SoC tree (for-next branch) and intended
-> to be merged via the `arm-soc` tree.
-> 
-> ---
-> Changes in v3:
-> - Resend all patches in single thread
-> 
-> Link to v2: https://lore.kernel.org/linux-samsung-soc/20251029125641.32989-1-ravi.patel@samsung.com/
-> ---
-> 
-> Changes in v2:
-> - Decouple the device tree related patches which was present in v1 (Patch #5 to #7)
->   Device tree related patches will be sent in separate series.
-> - Fix the division issue (in arm target) reported by kernel test in patch #2
-> 
-> Link to v1: https://lore.kernel.org/linux-samsung-soc/20250917085005.89819-1-ravi.patel@samsung.com/
-> ---
-> 
-> GyoungBo Min (3):
->   dt-bindings: clock: Add ARTPEC-9 clock controller
->   clk: samsung: Add clock PLL support for ARTPEC-9 SoC
->   clk: samsung: artpec-9: Add initial clock support for ARTPEC-9 SoC
-> 
-> SungMin Park (1):
->   dt-bindings: samsung: exynos-pmu: Add compatible for ARTPEC-9 SoC
-> 
->  .../bindings/clock/axis,artpec9-clock.yaml    |  232 ++++
->  .../bindings/soc/samsung/exynos-pmu.yaml      |    1 +
->  drivers/clk/samsung/Makefile                  |    1 +
->  drivers/clk/samsung/clk-artpec9.c             | 1224 +++++++++++++++++
->  drivers/clk/samsung/clk-pll.c                 |  185 ++-
->  drivers/clk/samsung/clk-pll.h                 |   17 +
->  include/dt-bindings/clock/axis,artpec9-clk.h  |  195 +++
->  7 files changed, 1847 insertions(+), 8 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/axis,artpec9-clock.yaml
->  create mode 100644 drivers/clk/samsung/clk-artpec9.c
->  create mode 100644 include/dt-bindings/clock/axis,artpec9-clk.h
-> 
-> --
-> 2.17.1
+This series of 4 patches adds USB3 PHY and xHCI host controller nodes to
+the DTSI files for the Renesas RZ/V2H(P) (R9A09G057) and RZ/V2N (R9A09G056)
+SoCs. Additionally, it enables the USB3.0 support on the respective EVKs.
+The first two patches add the necessary USB3 PHY and xHCI host controller
+nodes to the RZ/V2H DTSI file and enable them on the RZ/V2H EVK DTS file.
+The next two patches perform similar additions and enablement for the
+RZ/V2N DTSI and EVK DTS files.
 
+Note,
+1] This patch series applies on top of below patch series which is
+   already under review:
+   - https://lore.kernel.org/all/20251103200349.62087-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+   - https://lore.kernel.org/all/20251023212314.679303-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+2] The corresponding USB3.0 PHY/xHCI DT binding patches have been submitted separately for review.
+[0] https://lore.kernel.org/all/20251118180712.4191384-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[1] https://lore.kernel.org/all/20251101042440.648321-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (4):
+  arm64: dts: renesas: r9a09g057: Add USB3 PHY/Host nodes
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable USB3.0 PHYs and
+    xHCI controllers
+  arm64: dts: renesas: r9a09g056: Add USB3 PHY/Host nodes
+  arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Enable USB3.0 PHY and
+    xHCI controller
+
+ arch/arm64/boot/dts/renesas/r9a09g056.dtsi    | 30 ++++++++++
+ .../dts/renesas/r9a09g056n48-rzv2n-evk.dts    | 15 +++++
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 60 +++++++++++++++++++
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    | 30 ++++++++++
+ 4 files changed, 135 insertions(+)
+
+-- 
+2.51.2
 
 
