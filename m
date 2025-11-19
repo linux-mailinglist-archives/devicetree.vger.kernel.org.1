@@ -1,114 +1,106 @@
-Return-Path: <devicetree+bounces-240236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA40C6EFFA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:46:44 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 855B2C6F128
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:56:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 504EF2DF51
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:46:14 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 21D16387E5A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C53C35E551;
-	Wed, 19 Nov 2025 13:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C8D35FF7F;
+	Wed, 19 Nov 2025 13:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iNqrXIg/"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="rFMwkwZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D1335A137
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 13:45:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C142F35FF55;
+	Wed, 19 Nov 2025 13:48:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763559958; cv=none; b=FCbgzkllZkbn1m1QKsud9wdcttoI6vJD6YdwJ+3c91jUoDQbOWIMozKrpl5rwg+oCEH9fbCNI6g5Ds+XUoAeI3K9FLUcChfJriD91t1JAzFei66G/VZOz6YV5ITqagFBPQ2279oLqFTKQXBaESgRPYT9nZ+jzgJrRKa/9+OiSPA=
+	t=1763560116; cv=none; b=EH0XSpOGUbS80uU+dzf2PoYdOMYDe4zAIgB9DQVG/GGlB8PnUT0PkTLv/dVGVR1KdAHNafHvNJutEOdhr3FJLmWlENxUYO4QLc9BuHr28u4SOAgnkZfyww3EOiymlyAGBUwCKfZGp+adJ2EQe6QvXTCEEn8sesfOaE9T36Hf+Bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763559958; c=relaxed/simple;
-	bh=Iw1IbTA9k7P7Eqb6cVyD4QyxkJcMEsmsz+D3jS9djWs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IhOe45LKyFbT0EMBQqpn1EqR57/C6rmIy9+DLLVPax8HMN545sUkMw5dXHWWiQ50Ga+8txQ0avzSZ2xNkF4OHalqquHRkg/sxXtVk36n5HybsNXcfDOMdesksckKohchJAeKsmn9c6c27f2oKSJEyI3OyCF4wF877dv69/dH4mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iNqrXIg/; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-595819064cdso1407254e87.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 05:45:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763559955; x=1764164755; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/1l2z/VREV/OGSRWFgMDmn4kGnAaKe77gm/9lQK3iBA=;
-        b=iNqrXIg/IFIeYcgUC4NVqrgdh1jtEexXjeHh+fyvVHuWhEvCdpe1asJ3vEVZuYBUbm
-         L3OnuZlmKWnYLDOkP3uVZQJ25KQv5jWj4nk2BFf6kNhmBs8P+xhmGlLftLCADjyh3vt1
-         KYstK0aqdE6iUUryEsw3VZeUcj9Tr8JJDmqpM/S53vmGLCU/ZbeDqbtm3vh/m7u0UGv9
-         lmybBJC9VH6R/iuubFKGAKCnfmGXYp7NmuHj0DgxGhrL5ARfIleawB/jCTQYFCmRvP5u
-         OXdj6oirUOayuCaINelZlcE1rf+VF+QfupjJigrC22sPTYr/K5/lYjrYjuWZbYPaYoGa
-         Z2sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763559955; x=1764164755;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=/1l2z/VREV/OGSRWFgMDmn4kGnAaKe77gm/9lQK3iBA=;
-        b=ZjrmsgwRdH19GV0SYrdnnNfjFgqpa7Fc0PtgfAmlClAm8nbis51UTcZe5jmMmzVC1H
-         31FkT68Tt0XObjAgn7RYOAp1lyfrWMZLMzhL6MEL9m0ancBqCOJ2i6SCgDZc7TP8yLAm
-         IoA5r79OMSHDED+HtWRz8X5k2d899U2HWmWh9JnihY+gM/rz9wlIbTXqM2Q4+HwcHtn0
-         8Nxwqez+PY9LGL+jEPF6+pfAHz77f+u26j9rSqV3nikETKn5V3eXSwiFX2oQ/mydYzwZ
-         XQASPyYLjNZSvk5XzTHOK9B3oZqLdXExKUvd1YmZj6P3jNqkqpZoBr+4ueD51VuBsQbx
-         US+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUXtkbBRGktICTte7TFAfCRUmm4LoXx000AyZjfwx6ZDPT0P9F6D62qaTt0kLXgru6hU1ZpxZ5SL8Mg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy264Y5ZbdyLH6fBuAPf0SipgFNPsMrs4iTE15ymy9hrxtpGj57
-	VN6tsxQu79kM8G8cfe6Dyn4sNXRnF6WhLWt9O/cq6MU1Oy4pj7A6IZo0Rrik/FvmnmQ+bftYQdM
-	iSEZehOYdpgPJQba0laKR0WEVBgbqb5xiyPuHibFCdA==
-X-Gm-Gg: ASbGnctbnChtkUufFomcqhnCm4zVhNxreUi22aayUCA337vx6ZMrMhjxnxcKayAuqNS
-	bI9ElqhcCpwm0RZKy5bmbeRznICbbNKAhOfnviNhKe0YAZDXYO4wg0yNJJyGH6eMkchnvEG3/qj
-	hsg035lbZRe3H7a2UZBK/qwPPM5390O6qcC2NOaN9icwmu1gHUyvLW8a/PT1frkmZgtSsTSD2qE
-	yGNPvn44FezRjpNLF8ZveY5YQEms+HheM+v8sdyeJqYkjzQdXOEAUE8Cg82hlHnT5t6Megj+dU8
-	Euh/0g==
-X-Google-Smtp-Source: AGHT+IHi46MJUsWVgKG97zvzBmctPH37ez7biiVDWReMD3gtNWbTOlbOcaiB9PFyYiZpqYGbAnTU/qHFubT2adEieWs=
-X-Received: by 2002:a05:6512:1541:20b0:595:91c5:3de1 with SMTP id
- 2adb3069b0e04-596432521bamr735676e87.0.1763559954606; Wed, 19 Nov 2025
- 05:45:54 -0800 (PST)
+	s=arc-20240116; t=1763560116; c=relaxed/simple;
+	bh=xZVbLtQtCTrrDEgWar98Jt+Zmc5VQCpCV/VIbnHZMZY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NB5drzXbvE294z+VfosxRXRktlqc20Y62FsdocP3yN7Qdx59ME/2Xn8Xj75Zo/SI5Elw11noz4zccgQreiJYX0YINu5uKgnd4A80P6n8VBNYxPA3yERME4gdGA3VHw/4/Pvysc4rCX5BQPCS/E1z5seizJ59K7UVQA9H3baCRDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=rFMwkwZS; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1763560115; x=1795096115;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=xZVbLtQtCTrrDEgWar98Jt+Zmc5VQCpCV/VIbnHZMZY=;
+  b=rFMwkwZSEpfpqkqSXXbNQAA+mMxgA14rh7vtV78osr8uzZD6/lYcy0Dj
+   zHPKs3xXS1WzcQydAjiWrYqiasnxHYlfbg9Dxk+03WCTjCZ743tuxG9m8
+   xaQaaM5R4piXkbXG9bYcMP0obCr5hPA9ae78nkgZvJwSeHhZ5cFM0yoPi
+   2xVBTDBWCLeWPsTLdpuFvjw7egMcGGmOz9P//CK4Yx47QIxTmS1Oft82u
+   +G8hihx0Ue1k7F5eJmvU/HTr5ULyLgR6sCHeQh5qeMTojo1DtdJF+xUXT
+   YHAHYSRRSithaOGUKM778UTMJg4ydSAIn2kKsSF0Y1oZERia7abMg+8Ib
+   w==;
+X-CSE-ConnectionGUID: 71KvCTRZRcWm48O19CYCXg==
+X-CSE-MsgGUID: SRxyaEjXS92SKLxPNJQCnA==
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; 
+   d="scan'208";a="49381641"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Nov 2025 06:48:34 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Wed, 19 Nov 2025 06:48:20 -0700
+Received: from DEN-DL-M31836.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Wed, 19 Nov 2025 06:48:18 -0700
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH] ARM: dts: lan966x: Fix the access to the PHYs for pcb8290
+Date: Wed, 19 Nov 2025 14:47:50 +0100
+Message-ID: <20251119134750.394655-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251117091427.3624-1-antoniu.miclaus@analog.com> <20251117091427.3624-2-antoniu.miclaus@analog.com>
-In-Reply-To: <20251117091427.3624-2-antoniu.miclaus@analog.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 19 Nov 2025 14:45:42 +0100
-X-Gm-Features: AWmQ_bkJ2p2IaEyURBIT9I33r_u7IzpUPkMo9HREbt3jJevxjDJx9Uz8HFl3ag0
-Message-ID: <CACRpkdbdsqLnqGeOVtNJ_N2Z+rfpON2-B=YV30xsN3iN2Wb-KQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: switch: adg1712: add adg1712 support
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi Antoniu,
+The problem is that the MDIO controller can't detect any of the PHYs.
+The reason is that the lan966x is not pulling high the GPIO 53 that is
+connected to the PHYs reset GPIO. Without doing this the PHYs are kept
+in reset. The mdio controller framework has the possiblity to control a
+GPIO to release the reset of the PHYs. So take advantage of this and set
+line to be high before accessing the PHYs.
 
-I like the looks of this!
+Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+---
+ arch/arm/boot/dts/microchip/lan966x-pcb8290.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Mon, Nov 17, 2025 at 10:15=E2=80=AFAM Antoniu Miclaus
-<antoniu.miclaus@analog.com> wrote:
+diff --git a/arch/arm/boot/dts/microchip/lan966x-pcb8290.dts b/arch/arm/boot/dts/microchip/lan966x-pcb8290.dts
+index 3b7577e48b467..50bd29572f3ed 100644
+--- a/arch/arm/boot/dts/microchip/lan966x-pcb8290.dts
++++ b/arch/arm/boot/dts/microchip/lan966x-pcb8290.dts
+@@ -54,6 +54,7 @@ udc_pins: ucd-pins {
+ &mdio0 {
+ 	pinctrl-0 = <&miim_a_pins>;
+ 	pinctrl-names = "default";
++	reset-gpios = <&gpio 53 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+ 
+ 	ext_phy0: ethernet-phy@7 {
+-- 
+2.34.1
 
-> +  The switches are configured at probe time based on device tree propert=
-ies
-> +  and cannot be changed from userspace after initialization.
-
-Please drop this paragraph. The DT bindings are for several operating syste=
-ms
-and this seems to be Linux specifics and also not every operating system
-has a kernelspace/userspace separation.
-
-With that change:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
 
