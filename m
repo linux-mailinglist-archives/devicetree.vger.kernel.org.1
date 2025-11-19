@@ -1,112 +1,150 @@
-Return-Path: <devicetree+bounces-240081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 659A7C6D25D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:35:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B436C6D26F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:35:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0613B4F2E1A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:33:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id E8F0A2D5C9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:34:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768062EE268;
-	Wed, 19 Nov 2025 07:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B403254A1;
+	Wed, 19 Nov 2025 07:33:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="lZOYKIPb"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="WUctF8Rm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gecko.ash.relay.mailchannels.net (gecko.ash.relay.mailchannels.net [23.83.222.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4742D73AB
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763537567; cv=none; b=Ny2ch4H74F1/DOVFoJu0zsANp9QO3sNjOvIMNhUjBqPfsvuE8LrOrhgBOIPvkfBRTFs6vTYbcnJcF6MGoK7nFIi1dNgPbGeSRDwQcyPJEjm8DLzUpgYVk/60qzUE6msxu894z8xR4o7uYWMTuTxg+dy5Ir1qOxg8LZUDUYDuBe0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763537567; c=relaxed/simple;
-	bh=QH5oLqLZDQZSVsmh0LNkhFrypl/KCzx0EX65VAszEfQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cNKr9UUbVxirIUgE22xhMOpTe8SYUSjQkgPenJcK/1seeY8D6IuuSiRj/iMto4roRll3WC8HPePB94I/5B8gZX+Ff5ehEI55Fan3FtS0UjDo6j6n622+XA1NeQikvkgy+GD1dHxj6AxCkR6F3froMS4dpc0TXvKY+NVPfPLtbBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=lZOYKIPb; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-37a2dcc52aeso63916941fa.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 23:32:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1763537562; x=1764142362; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IO0DNZhiENG8w/XHNdOtB6qefAmL2Exx733Q4ukPAMg=;
-        b=lZOYKIPbNO5j9gD1vaA93jUrkWuj1sWlbaJDz9n6DJRcQhZAwcH85ULQ2UTXDxlPVA
-         8aFLr8rBiZnwYubHT4H7yFS9rDxuxfE426MSOhnF0ZuNENsHiT4Ueghgj5ILj2owhSDu
-         M+JnmIE7iP7FCcyWpb2hFVWn/b9Ls6uRPAgII=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763537562; x=1764142362;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=IO0DNZhiENG8w/XHNdOtB6qefAmL2Exx733Q4ukPAMg=;
-        b=vwWm68QO2pGfrS1JNVfYV1B8rUEPaGxQm8wZT/hzHmNbWEtZYVYfZvTq1F9e1H0hBS
-         d2G2zrnZ4+oH5Ic8q4XDqiyuquZEN4nQxcRhqNAkZAF4wQ6vo+9c8Z5nbghVWDSV3N8R
-         rjk6IrqQxLWUMUAlBSixtX+l1QQAQjz3hJjfpVjEN+dvIfSdhW+BmXki79bACTidMRX9
-         OPtcvCCVMd26UrcDsbS2NgfJ3exxDETGnZVZ/t5ZmnaOm96IgIrP3VTny2WIpuviw9gQ
-         vHEVVS8IkM5cP5lEP4tXgtSVKQBNx8GufWtLv0DTuBhsbDaqx0cDT+n0jCmat4f03zBg
-         IKIg==
-X-Forwarded-Encrypted: i=1; AJvYcCVbMu7Ovi93H0IMHhDu2B+J2wDcf1IdE9oLzDJvSWNSLFKXbYWw3wziVHrYUI0Mx+L582Qvv0hcnFlR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxwzq14v4I+M5TU3CBSNaNGK6Nk3VONfB0eRt2ZaqrAqvH1NZDu
-	VbJgjz/vkPjpNj1vxkPL8ron6AjbVnvcdrrvOoFRUZf9ERpqp2v6W2JdHVoRGH3BtDXZ3o5KpGV
-	9BfK/BbQY/uHObbz0gdIqJ3nNwUux6ex7G7gpNoWU
-X-Gm-Gg: ASbGncvuFhYwygAe4Z8BQKou2/tRxzcRb6Wyt5zQQF621h1+M5Uk+4uPayMIwsOCNNZ
-	Ak0HHd1eJ7v+juQejMdo/3EDa59hY6qdAc/awOVctun/SR6/GjVM9ukx7OPoC83CxmAhEG832vh
-	0cRxN3HOtLUUWLKMUdpuSK+0ptMfLn5dEPudkQPEpyjgLbNdeoSWTmhY+6cMxrPaIgjgTwV/o7X
-	xeOPHqElnkcmmrlMSIdTpkycdYNIgvARQMCl3Gr7h6Y9mqY9D81kUUDjH5eAHzSgr3HhFqjVqTp
-	bWOYdoJV3auL7/oJ4Ahn3Q0fkg==
-X-Google-Smtp-Source: AGHT+IHJrAu1K7jWQMAE6p11RyXzPNk9G1nAtzaQ+Z3fQ98mNJH85oUoeMLP1XXO3FI/y3LlEG4mixCcvEMB8DZHxuc=
-X-Received: by 2002:a2e:a1c7:0:b0:37a:432f:8ecc with SMTP id
- 38308e7fff4ca-37babd71d49mr48399931fa.33.1763537562422; Tue, 18 Nov 2025
- 23:32:42 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D8B2EFDA2;
+	Wed, 19 Nov 2025 07:33:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.222.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763537592; cv=pass; b=CYgU/rQtOyrcBzabtJGcJX1h+mRthR6TTWVnK30FnHYV9KSt0jrAP+rzv275tjDb05bJn4SUv7Mc+UmzZVOsxE5uAwsUpdvNT19YPOnAoB/5ckktlSeArO99ig/CiU0Hpfz2K1S3MnCC07lYOX11X8SlvEKGf81l45KVswjpN3Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763537592; c=relaxed/simple;
+	bh=m1BqxGTyJeApI42A6A2Z80jY3RwisfZ5LF8pVrsXQP0=;
+	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
+	 Content-Type:Date; b=snWZAqpcfFIajV778EmsS+xXuGkvDOuMTSDpwM5XMvcWtYxOAibMVTPoXmpn113vKLWUWGp9AOH6gpppeKV1sQj9W/uQW3gqYPKJICZcoPtrPUK3c7kSYEp6JPMSjPvFUombkP61vx4U1Z1pNWUV4Yxk3jvwq4k2/DcWeDxrJXE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=WUctF8Rm; arc=pass smtp.client-ip=23.83.222.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id CC7508A276B;
+	Wed, 19 Nov 2025 07:33:01 +0000 (UTC)
+Received: from fr-int-smtpout19.hostinger.io (100-96-202-146.trex-nlb.outbound.svc.cluster.local [100.96.202.146])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 81BBB8A26F5;
+	Wed, 19 Nov 2025 07:32:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
+	t=1763537581;
+	b=qH3njPfspa4Y6/4DYMNHxGXgrrRa3zUfs7dysJvaAX9oSpIdqHyV/XKOH7W2mrfC2ZQYy6
+	DLv63P47j+iof30AvPBTS43FdgNKLPF3j7gSF47KBVxk7gWi00g1eBehHVroxLcdSpUxwO
+	Cz7fDwCxUCiki1wa2W9vGQmuYs3cq2S2fEOXA7S82R/7/8gWCbuxrQIctSP3j9zpfapZiB
+	G0ACc98mBtpNpmARGyQQMXGyza86jnOkRC+OG52Ce66WtcQ0MqX94jBWtKxjykxgXgRoa7
+	kgzQHqAr0uW3Z3O8GMdRXU1SL+xBn/yuuOlcvdJaVDNSyondDiF5Zp3XUZNWWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1763537581;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=T7FPIIPqguMBGK80Eu0/GYCdp66S9qABzZqZQoPkk/c=;
+	b=Lx87qnKW7tqWqFR4BbJ9gFcnmeMS2aGCQo/tJcvYaciklvqyMIaT0cpZnBXyMfuK9NULqG
+	pmjRjNshSfvrjBT9X9pBFWrojR7qm5pl72oL97U81eafItiRKK54tqBMwyweyavl0mNV1V
+	0de8jkxXf1Fa0al3gcmImIKfyvDmPwn8OGq4K4ymC7RekQVTlXcHDJm+W8PlO2t7PudrtN
+	rKn2b7PSlKNa9F1wF64PVRAin6dTI75rG0JsBrHMXtxh/V0/E/i9PvEyYANRiUJ7SNck9G
+	MLY5lQHMnbTAcjUFVODmdbgb4REXcPq4nUhneoT1rdjNwanDITin+gt/qP6UVg==
+ARC-Authentication-Results: i=1;
+	rspamd-55b59744f-5rtcb;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Language-Ski: 210e651045f8322f_1763537581705_2679991986
+X-MC-Loop-Signature: 1763537581705:1368043681
+X-MC-Ingress-Time: 1763537581705
+Received: from fr-int-smtpout19.hostinger.io (fr-int-smtpout19.hostinger.io
+ [148.222.54.35])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.96.202.146 (trex/7.1.3);
+	Wed, 19 Nov 2025 07:33:01 +0000
+Received: from [IPV6:2001:861:4450:d360:c546:29e2:335f:d5df] (unknown [IPv6:2001:861:4450:d360:c546:29e2:335f:d5df])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4dBCr91X4tz1xxj;
+	Wed, 19 Nov 2025 07:32:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1763537577;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=T7FPIIPqguMBGK80Eu0/GYCdp66S9qABzZqZQoPkk/c=;
+	b=WUctF8RmXDPWCkw1ejnEA/deye1/YCPQPq4wZRx1lsAZUheZ6W72oOed6+i0wjJSVIamRU
+	K1EgbJpTReEiWohfd5vvm1Q0PS/OBw6j9gXrzOEL/DthdQ0WFLAOZ3/QoNIOV/OvdBKtw7
+	3RFJZxlkwHUr/W3u6b2HnaWMApM9iYf3Vb0i8+sGJt18ZICj3nSS8Pb5i5WDsRj7HkTGch
+	uyQCNJeUNBdA0UQj+SQ9y26LQnj6QnraDZUhrocFFjqt9wnkmP7xvNtz2Dhcq3Lf5XE0D5
+	Ph303RMFKd8g/EIj4Ew48WHHhz830CHGTBXsvyiNjl1GmAmXBqfwWxUhPeT2TA==
+Message-ID: <d6b3ca5a-e036-4019-8f4f-428d4d132f2f@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251119071126.1719405-1-wenst@chromium.org> <18342493-54f9-4e5c-be05-568a3026663e@kernel.org>
-In-Reply-To: <18342493-54f9-4e5c-be05-568a3026663e@kernel.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Wed, 19 Nov 2025 15:32:31 +0800
-X-Gm-Features: AWmQ_bkw083HXAHlfoTHPiQeY1k_8hzN3vGBWotGu575ZiGZHcE5k6oSmz34_IY
-Message-ID: <CAGXv+5EnfwRA1SMvt=3n7gj1gS3BndXKNVfmfkC=y6n2A3VsdA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: firmware: coreboot: Document optional device
- specific properties
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, Julius Werner <jwerner@chromium.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Cc: michael.opdenacker@rootcommit.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: rockchip: Add Asus Tinker Board
+ 3/3S
+To: Dragan Simic <dsimic@manjaro.org>, Krzysztof Kozlowski <krzk@kernel.org>
+References: <20251118-tinker3-v3-0-2903693f2ebb@rootcommit.com>
+ <20251118-tinker3-v3-1-2903693f2ebb@rootcommit.com>
+ <155d3d05-49f8-a000-6939-1411917745bb@manjaro.org>
+ <e7417a6e-3824-48f7-af56-eaf4bf097cb9@kernel.org>
+ <b8e91b59-afb1-6d0d-4709-c7f76ded0e18@manjaro.org>
+Content-Language: en-US, fr
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+Organization: Root Commit
+In-Reply-To: <b8e91b59-afb1-6d0d-4709-c7f76ded0e18@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Wed, 19 Nov 2025 07:32:57 +0000 (UTC)
+X-CM-Envelope: MS4xfLaeISHAFTUmvcbpnL6lH5D0hiEa0ZwcDeNTq39xSpVmqC1zb5gbnXm55IF2cAwm3koLEvtAzTxZKxyO/v7PM7kOtSI4HzQCNsGjJu2J9WrRJxkQifP6 m/XaejMx5rQWb8pJn1N+dt33nprANSJn98XCE3t66JiVXmNcDA0RZiAneCgZ/OvGN6dtuBMvU+rOhdRTOnog8cf1RtSK+QOD4Xct3um9CLZfxI5kPn1XK0Vu qFgVzkWSYmHW01xM1LYSfuqDpxfUbbgf8GHCbVLsXweLCQU+K1NiPp7DOgsKK0mYuqPRm2x1AzMxYT+bdLtNmPQbxlMTVjye20J2zuuI98i6tzXyHSx5dn2l AxIV6Fqck4vVx+3JYRZDlH7tW25Dwm76bwGIftDjTatthFWFkjtQnhyPD6432aSBIRCkQayuBTQ00+wzLYcbnuTmJ8b3nP779mZlTVcdFVuTkDGRRn0FIY80 7mCdBXY4dKYiylrbPTvAEKpfQVVndjuYXy6ZpnD89okH/XMsKJtpTFa40FfA0aU4Kl0Xd99/ByFLi39onVxSWDDixw5TfuLY0hElfJLHllwdl+xmpubJoQ/e HbiBAd4GEuo4hJE64JfW0kFFdIf5AA0ftFqn445A5A8iipRw+RKr/q/n9lLaLiWNHlZvkNMUihwp1+rz+iUv70K1r6qOKr3Z1k0AdB0C7zhQ3TGs3xm3zyEh pi9/VkZqFTZ8LnOLuLgMYLfsp+RXMEgs
+X-CM-Analysis: v=2.4 cv=Lflu6Sfi c=1 sm=1 tr=0 ts=691d72a9 a=ZT5r2a33aVEFtXz168a3Sg==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=d70CFdQeAAAA:8 a=e6NoAuRXJklMgYph6uQA:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=NcxpMcIZDGm-g932nG_k:22
+X-AuthUser: michael.opdenacker@rootcommit.com
 
-On Wed, Nov 19, 2025 at 3:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 19/11/2025 08:11, Chen-Yu Tsai wrote:
-> > Coreboot, or the ChromeOS second stage bootloader, depthcharge, will
-> > insert device specific properties into the coreboot firmware node when
-> > there are valid values.
-> >
-> > Document these properties in the binding.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> >  Documentation/devicetree/bindings/firmware/coreboot.txt | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >
->
-> TXT files cannot receive new properties. You need to first convert to DT
-> schema.
 
-OK. Let me look into this.
+On 11/19/25 08:23, Dragan Simic wrote:
+> No, I'm not suggesting that the series goes back to v2, but Michael
+> failed to give me enough time to respond.  If that were the case,
+> the v3 would've been in nicer shape, with, from my point of view, no
+> need for further adjustments.
+
+I'm sorry if I caused trouble.
+
+I agree I didn't leave you much time to react to my reply to your 
+review. What happens is that I'm new to this subsystem and I was feeling 
+some pressure to avoid missing the launch window for 6.19, which I don't 
+know exactly when it will be.
+
+Michael.
+
+-- 
+Michael Opdenacker
+Root Commit
+Yocto Project and OpenEmbedded Training course - Learn by doing:
+https://rootcommit.com/training/yocto/
+
 
