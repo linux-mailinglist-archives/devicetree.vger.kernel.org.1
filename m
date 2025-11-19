@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-240452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD32FC71462
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 23:27:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E86D6C7146B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 23:27:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6194034D484
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 22:27:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D68114E2836
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 22:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6634B30ACED;
-	Wed, 19 Nov 2025 22:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA7731159C;
+	Wed, 19 Nov 2025 22:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UkI0Zwd8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="imgY6TDy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3780F302CDC;
-	Wed, 19 Nov 2025 22:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F7430F92E;
+	Wed, 19 Nov 2025 22:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763591263; cv=none; b=oNeaaC0CsTpso+1CcbWMJDToiIVr4u3JmktjCNl9mZGOTCDtrYXCWbUxMETMVMh2tXmN/rEcfNpYJYodF/jryyYTF8oADLu//kxQKoV1j/KUh+NZGP7HtUWomsUqeO9EYGJY/ki3GNki/YjHgs+VRhi73GgqLgoVEC+XsJKCUOE=
+	t=1763591264; cv=none; b=Dm//Hs4vbvU8CA38diQdpyo6CptxyPb8+hq60R6cGNnGhHFIgfHW71TTu7k0OyM05BwsKz0JmtmrPILcYBQbpkymv1a9867YAA4IvBQdE6F+3CoCX+ZWBpD2jy8C4BQasKLY9Fx8NG+CSp/FLoYYYjjYEYD7XnbTl1drbmDV1YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763591263; c=relaxed/simple;
-	bh=7TFTdEKpjq78Hov22dVDguk+sxIxp+FrI/cMgGdjvLI=;
+	s=arc-20240116; t=1763591264; c=relaxed/simple;
+	bh=/8R3jAWH+04a5Vi5dU1uhypE32MurQD61AqM5GlfyvE=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=mgvR9xSaiGxU7epOJbsTU78iAcEUFitd7vCJZYNnoWVdh22HDcM2TRwTFYXrKxsrfIhvAlWYYaZDYxWXvGug0azyZgc16MjIbLPaTKqP8fg+5HPbRs55Esuf/4TUl5JEPv527sl3vQeNtjkjDfhoP0EcCFq/avvsqyxx8QrsdAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UkI0Zwd8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DADBC4CEF5;
-	Wed, 19 Nov 2025 22:27:42 +0000 (UTC)
+	 Message-Id:Subject; b=LyxtsioFGyK9wktMd3liY1peU/hy9QUM1mO9QuMpWMuYy/SI4UzZuBxOVcMHNmaY9XcWslWjSzFXd1RBKfS3tQrTYOlijtSU+3t11bMK1K839gxEEBc84xVxj/HCuitCqx1m7WOofv+2eb3aLHFGo1vASD8NnqluGREVp61xXcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=imgY6TDy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F339C116B1;
+	Wed, 19 Nov 2025 22:27:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763591262;
-	bh=7TFTdEKpjq78Hov22dVDguk+sxIxp+FrI/cMgGdjvLI=;
+	s=k20201202; t=1763591264;
+	bh=/8R3jAWH+04a5Vi5dU1uhypE32MurQD61AqM5GlfyvE=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=UkI0Zwd8j6//AwKAXl45Gg8hKWsy2OKl4mT6FyGgQ8yPQ6HaiTtgFMHJaW6qJgFRL
-	 fwQcnCa0NeF8bzClD3IfMyyfXTd6JSv/B8wClBbi7NqGZj29LPzMBDdXcENR1HmgkV
-	 xUgg08GbaYBaZQdjfi2juzVmIIIqU5zW5bgWV2BJUKYEBSsEV7Gre0o0U2soLgZkx0
-	 6N+qeBfOkJZQWd8S3i+MyqlSiGD86+DYqmayhUdWJTz7tfvTyuTyHymsWkCjSsRC5z
-	 n4g4034LC3YAsVl8aY6dcyO8KrBow5b2pgI8D2Zmn/AnY6A9goUtHk6XNzXkwB9hag
-	 XrIZH73RuRM9A==
+	b=imgY6TDyVrEfccxsqc/JbFsbLsaXzoHtyOOV8BlZzxLiO+SL76sJwg9Zh+ELx2/J5
+	 OgiA92KZgdudADz9TaTi1aTtC7vtO6iteU49A97EOyJaxPB25BjGev/FWSmPEPKzVV
+	 pykdbZKYcDMu6XBqFPl68iypkMuz7ufGCe91P+hSSVsjPh98sQHRwEC1MEUb1jQnJq
+	 uB8qS+0igzH1+kRpLKnpX7s9+1LG8+M6+lHnA2WM3D+l2+e8jTMtmZZDhAzlhreHyY
+	 l++gSrpKYrb06UMcMGC6iJzzLZ1FgZfHrk8QR9Pbkq+AOLQyaQ8WCHS7VxhqnjFG07
+	 cH6by7OtQwJKA==
 From: Rob Herring <robh@kernel.org>
-Date: Wed, 19 Nov 2025 16:27:40 -0600
+Date: Wed, 19 Nov 2025 16:27:42 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,71 +51,43 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: kitak81.kim@samsung.com, gwk1013@coasia.com, lars.persson@axis.com, 
- bread@coasia.com, kenkim@coasia.com, smn1196@coasia.com, 
- devicetree@vger.kernel.org, hgkim05@coasia.com, jspark@coasia.com, 
- limjh0823@coasia.com, shradha.t@samsung.com, linux-kernel@vger.kernel.org, 
- krzk@kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, conor+dt@kernel.org, 
- swathi.ks@samsung.com, linux-arm-kernel@axis.com, krzk+dt@kernel.org, 
- alim.akhtar@samsung.com, mingyoungbo@coasia.com, pjsin865@coasia.com, 
- ksk4725@coasia.com, lightwise@coasia.com, jesper.nilsson@axis.com
-To: Ravi Patel <ravi.patel@samsung.com>
-In-Reply-To: <20251119131302.79088-1-ravi.patel@samsung.com>
-References: <CGME20251119131424epcas5p44eb0d15d8ba28d94152dbbea23e32714@epcas5p4.samsung.com>
- <20251119131302.79088-1-ravi.patel@samsung.com>
-Message-Id: <176359122535.3467795.541782777241212587.robh@kernel.org>
-Subject: Re: [PATCH v2 0/3] Add basic device tree support for the Axis
- ARTPEC-9 SoC
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Frank Wunderlich <frank-w@public-files.de>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ linux-mediatek@lists.infradead.org
+To: Frank Wunderlich <linux@fw-web.de>
+In-Reply-To: <20251119175124.48947-1-linux@fw-web.de>
+References: <20251119175124.48947-1-linux@fw-web.de>
+Message-Id: <176359122549.3467832.13147318038488444877.robh@kernel.org>
+Subject: Re: [PATCH v1 0/2] build full dtbs for BananaPi R3/R4(Pro)
 
 
-On Wed, 19 Nov 2025 18:42:59 +0530, Ravi Patel wrote:
-> Add basic device tree support for the Axis ARTPEC-9 SoC
-> which contains 6-core Cortex-A55 CPU and other several IPs.
-> This SoC is an Axis-designed chipset used in surveillance camera products.
+On Wed, 19 Nov 2025 18:51:21 +0100, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> This ARTPEC-9 SoC has a variety of Samsung-specific IP blocks and
-> Axis-specific IP blocks and SoC is manufactured by Samsung Foundry.
+> Build devicetree binaries for testing overlays and providing users
+> full dtb without using overlays for Bananapi R4 (pro) variants.
 > 
-> This patch series includes below changes:
-> - Bindings document update for ARTPEC-9 board (patch #1)
-> - Device tree for ARTPEC-9 board (patch #2 and #3)
+> It is not required to build all possible combinations, only for
+> common usecases and to test if all overlays can be applied.
 > 
-> The patch series has been tested on the ARTPEC-9 EVB with
-> Linux Samsung SoC tree (for-next branch) and intended
-> to be merged via the `arm-soc` tree.
+> This series is based on
+> https://git.kernel.org/pub/scm/linux/kernel/git/mediatek/linux.git/log/?h=v6.18-next/dts64
 > 
-> Pinctrl and UART DT-bindings are present in another patches which are listed below:
-> - https://git.kernel.org/pub/scm/linux/kernel/git/pinctrl/samsung.git/commit/?id=e671a1bb5d1cf9ca4dbab61b9a3e1e77579f99ba
-> - https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git/commit/?h=tty-next&id=85f17e130dc7189acf03eb0f8e2455c4ea2c4f9e
+> Frank Wunderlich (2):
+>   arm64: dts: mediatek: mt7986: add dtbs with applied overlays for
+>     bpi-r3
+>   arm64: dts: mediatek: mt7988: add dtbs with applied overlays for
+>     bpi-r4 (pro)
 > 
-> ---
-> Changes in v2:
-> - Decouple the device tree related patches which was present in v1 (Patch #5 to #7)
->   Device tree related patches will be sent in separate series.
-> 
-> Link to v1: https://lore.kernel.org/linux-samsung-soc/20250917085005.89819-1-ravi.patel@samsung.com/
-> ---
-> 
-> Ravi Patel (2):
->   dt-bindings: arm: axis: Add ARTPEC-9 alfred board
->   arm64: dts: axis: Add ARTPEC-9 Alfred board support
-> 
-> SungMin Park (1):
->   arm64: dts: exynos: axis: Add initial ARTPEC-9 SoC support
-> 
->  .../devicetree/bindings/arm/axis.yaml         |   6 +
->  arch/arm64/boot/dts/exynos/axis/Makefile      |   3 +-
->  .../boot/dts/exynos/axis/artpec9-alfred.dts   |  36 +++
->  .../boot/dts/exynos/axis/artpec9-pinctrl.dtsi | 115 ++++++++
->  arch/arm64/boot/dts/exynos/axis/artpec9.dtsi  | 277 ++++++++++++++++++
->  5 files changed, 436 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dts
->  create mode 100644 arch/arm64/boot/dts/exynos/axis/artpec9-pinctrl.dtsi
->  create mode 100644 arch/arm64/boot/dts/exynos/axis/artpec9.dtsi
+>  arch/arm64/boot/dts/mediatek/Makefile | 53 +++++++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
 > 
 > --
-> 2.17.1
+> 2.43.0
 > 
 > 
 > 
@@ -143,41 +115,9 @@ This patch series was applied (using b4) to base:
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/exynos/' for 20251119131302.79088-1-ravi.patel@samsung.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20251119175124.48947-1-linux@fw-web.de:
 
-In file included from arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dts:12:
-arch/arm64/boot/dts/exynos/axis/artpec9.dtsi:12:10: fatal error: dt-bindings/clock/axis,artpec9-clk.h: No such file or directory
-   12 | #include <dt-bindings/clock/axis,artpec9-clk.h>
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[4]: *** [scripts/Makefile.dtbs:141: arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb] Error 1
-make[3]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/exynos/axis] Error 2
-make[3]: Target 'arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb' not remade because of errors.
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/exynos] Error 2
-make[2]: Target 'arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1500: exynos/axis/artpec9-alfred.dtb] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-make: Target 'exynos/exynos8895-dreamlte.dtb' not remade because of errors.
-make: Target 'exynos/exynos2200-g0s.dtb' not remade because of errors.
-make: Target 'exynos/exynos850-e850-96.dtb' not remade because of errors.
-make: Target 'exynos/exynos7870-on7xelte.dtb' not remade because of errors.
-make: Target 'exynos/exynos7885-jackpotlte.dtb' not remade because of errors.
-make: Target 'exynos/exynos990-x1slte.dtb' not remade because of errors.
-make: Target 'exynos/exynos5433-tm2.dtb' not remade because of errors.
-make: Target 'exynos/exynos990-r8s.dtb' not remade because of errors.
-make: Target 'exynos/exynos7-espresso.dtb' not remade because of errors.
-make: Target 'exynos/google/gs101-oriole.dtb' not remade because of errors.
-make: Target 'exynos/google/gs101-raven.dtb' not remade because of errors.
-make: Target 'exynos/exynosautov920-sadk.dtb' not remade because of errors.
-make: Target 'exynos/exynosautov9-sadk.dtb' not remade because of errors.
-make: Target 'exynos/exynos990-c1s.dtb' not remade because of errors.
-make: Target 'exynos/exynos9810-starlte.dtb' not remade because of errors.
-make: Target 'exynos/exynos990-x1s.dtb' not remade because of errors.
-make: Target 'exynos/axis/artpec9-alfred.dtb' not remade because of errors.
-make: Target 'exynos/axis/artpec8-grizzly.dtb' not remade because of errors.
-make: Target 'exynos/exynos7870-a2corelte.dtb' not remade because of errors.
-make: Target 'exynos/exynos5433-tm2e.dtb' not remade because of errors.
-make: Target 'exynos/exynos7870-j6lte.dtb' not remade because of errors.
+scripts/Makefile.dtbs:20: .dtbo is not applied to any base: mt8395-radxa-nio-12l-8-hd-panel.dtbo
 
 
 
