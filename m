@@ -1,133 +1,202 @@
-Return-Path: <devicetree+bounces-240325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8583C6FEE6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:06:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EBB6C6FED7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:05:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B53C34FD7B9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:57:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 7D4EE2F6BF
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95643A9BF5;
-	Wed, 19 Nov 2025 15:51:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C07364030;
+	Wed, 19 Nov 2025 15:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KZYHWNMK"
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="UqQV/M0K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sg-1-104.ptr.blmpb.com (sg-1-104.ptr.blmpb.com [118.26.132.104])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9818933A6E5
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:51:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B2A35E543
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:59:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.26.132.104
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763567495; cv=none; b=mc1rgOFhivtYDupkWAM1Pw/zk5i9xCB/hj48o1zHR8YAdxCe6Va75iMB5ORjU3XJYf8gjUQ9Ab6M1UgwBVCPs3ZGiY8mvwlj3I9tlenN2/LXpetr99BUtpJzy7WTZP8nHUhfWZR4Dmh93utThk/LoFfLOL+WMiOF8tubufkUTgA=
+	t=1763567983; cv=none; b=dviEFD3IQr7LbLksSCis/4KVD3445WjW5Q4WW/NDubfd1Y3ZswF7ABlgnvDsjPlTP4r9v5DKkwpT6wfrhplWRMPO0+I9s5RDJ+EX3Q62u6IyHjKUonzG6jhEReKqlDxH01LZUmagUxYDeNb0zmFllMuSHQtSlc5Opdupt5bxuqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763567495; c=relaxed/simple;
-	bh=IkKxjN3rMBFp73RgD9vwag8MPYIM7lEwj0F6o6x6bvo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i7OmGQwjxF1nm/cGIgYM4ZwVQBOZIaUbicCywnKRi7Uv2EoiltLN1JT4Fexdce0Uocl8vxlAtezf6U84EluOUgAFYIxyPhOrikI20YUuubqdDw48Pk0jwUtboK77R22PGlK3tY3XR55rwNY+5uWj09Qsdwh94VghRJPzuhJiPTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KZYHWNMK; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 74C7D4E417B0;
-	Wed, 19 Nov 2025 15:51:31 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 4974160699;
-	Wed, 19 Nov 2025 15:51:31 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CFDBA10371A95;
-	Wed, 19 Nov 2025 16:51:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763567490; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=ve9CapSEWEKtu43skVGcR+S7+2vr8yoZ+6wP4hyPLao=;
-	b=KZYHWNMKZs02aAYbdDy6PSrVBslaXNnb2wSlHo3Q2hOj7zt0GYNnZacXN9ukKQbvvvFTtc
-	sGHHvoOsBpmpc1naSg2wGD4KnZ+S4kCMuuGc2gA0UDbJ6ShzzEa2nB4/0sap8MoFO/AKa/
-	F7I/h61BUCQfMkfrGtZyEzgrmC9H+bw262rgqPP0MGUwVL+ZZwiNCNUCHy2mmOqplke8HR
-	u6Y5FJqbAzWLhx0WxHhayTKsDDmXF2fhNbw6/hEKnmEfXa7YqT2wDMxg5zQ512SHSsQmUD
-	Hqm8RXVgKkH80MBePs1RjUYyrNXcxtZQFgrcFz1FubAXu3qUmOLSd/b44x8A8A==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Wed, 19 Nov 2025 16:51:15 +0100
-Subject: [PATCH v3 7/7] MIPS: mobileye: eyeq5-epm: add two Cadence GEM
- Ethernet PHYs
+	s=arc-20240116; t=1763567983; c=relaxed/simple;
+	bh=mQ45HxHEz7bEk0U1Kg7KEiKQ1cBt2yG8qBc7T+EeuPs=;
+	h=Message-Id:To:Subject:References:Content-Type:Date:Cc:From:
+	 Mime-Version:In-Reply-To; b=tHXNdaPtC7fgKFqOlVQYfUFbpCbj8ohQyQP5ZQebnEJo6VtWkLTWf/qwxjq1j24IvjEm6b38MdzQHxe2eUHgxGMl1m4pIWWNY8iVkTEnqGYyzWR4lbp99VMZ2P+HWUduI905WfExDMzwQ2z7rZkGWjfw7hmSvIm3mM0AOKVhW/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=UqQV/M0K; arc=none smtp.client-ip=118.26.132.104
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=2212171451; d=bytedance.com; t=1763567861; h=from:subject:
+ mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
+ mime-version:in-reply-to:message-id;
+ bh=mQ45HxHEz7bEk0U1Kg7KEiKQ1cBt2yG8qBc7T+EeuPs=;
+ b=UqQV/M0KVnqVIbes+T1VV5SYDQBUho8kznxbAiYsToK+jUa4il3/H/XbholIfk2vhMtJjp
+ qBcw52taj1iZnwQoxlvwy6vQyl96TiF5DLpAY/hnB8OKpiyrxr3bxooNrdZddhA7V4FTh5
+ cModvja+7QNJsvuYxDrSOrVjKQI+lSnHCBf4TMYmvtLXrpNTTgkaB6Xadywgbtlfw2YI4R
+ 1HMOwLrt30weNo9TEwQpsV6nTf4bz4Zbwq3Jq/+Ttc+NwLbHFhn89RC5I13WCOSG9aNnOl
+ yfod9OGzB8lb4c9K7hvmAD7rJwuVYmdbbk2hWYvfNJf/0OF4eMx4QOpG4cabOQ==
+Message-Id: <b0b0f9d727b334fa569c726fc13490dd51d4fe42.7caea664.2799.41de.8705.9603c8f00a51@bytedance.com>
+To: "Paul Walmsley" <pjw@kernel.org>
+Subject: Re: [PATCH v4 00/10] riscv: Add Zalasr ISA extension support
+References: <20251020042056.30283-1-luxu.kernel@bytedance.com> <176355541475.758643.7685467502830246491.git-patchwork-notify@kernel.org>
+	<b7dc669e-cc48-f163-0146-0ef37dbd19ec@kernel.org>
+X-Lms-Return-Path: <lba+1691de8f3+3eb7e6+vger.kernel.org+luxu.kernel@bytedance.com>
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 19 Nov 2025 23:57:38 +0800
+Cc: <patchwork-bot+linux-riscv@kernel.org>, 
+	<linux-riscv@lists.infradead.org>, <corbet@lwn.net>, 
+	<paul.walmsley@sifive.com>, <palmer@dabbelt.com>, 
+	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <robh@kernel.org>, 
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <will@kernel.org>, 
+	<peterz@infradead.org>, <boqun.feng@gmail.com>, <mark.rutland@arm.com>, 
+	<anup@brainfault.org>, <atish.patra@linux.dev>, <pbonzini@redhat.com>, 
+	<shuah@kernel.org>, <parri.andrea@gmail.com>, <ajones@ventanamicro.com>, 
+	<brs@rivosinc.com>, <guoren@kernel.org>, <linux-doc@vger.kernel.org>, 
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, 
+	<kvm@vger.kernel.org>, <kvm-riscv@lists.infradead.org>, 
+	<linux-kselftest@vger.kernel.org>, <apw@canonical.com>, 
+	<joe@perches.com>, <lukas.bulwahn@gmail.com>
+From: =?utf-8?q?=E8=B7=AF=E6=97=AD?= <luxu.kernel@bytedance.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251119-macb-phy-v3-7-e9a7be186a33@bootlin.com>
-References: <20251119-macb-phy-v3-0-e9a7be186a33@bootlin.com>
-In-Reply-To: <20251119-macb-phy-v3-0-e9a7be186a33@bootlin.com>
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-clk@vger.kernel.org, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Andrew Lunn <andrew@lunn.ch>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Mime-Version: 1.0
+In-Reply-To: <b7dc669e-cc48-f163-0146-0ef37dbd19ec@kernel.org>
+Content-Transfer-Encoding: quoted-printable
 
-The Mobileye EyeQ5 eval board (EPM) embeds two MDIO PHYs.
+Hi Paul,
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Acked-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- arch/mips/boot/dts/mobileye/eyeq5-epm5.dts | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+I will continue with this work. And thanks for Andrea's feedback.
 
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-index 9fc1a1b0a81b..babf52731ea6 100644
---- a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-+++ b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-@@ -29,3 +29,29 @@ temperature-sensor@48 {
- 		label = "U60";
- 	};
- };
-+
-+&macb0 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&macb0_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb0_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
-+
-+&macb1 {
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&macb1_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb1_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
+Best Regards,
+Xu Lu
 
--- 
-2.51.2
+> From: "Paul Walmsley"<pjw@kernel.org>
+> Date:=C2=A0 Wed, Nov 19, 2025, 23:42
+> Subject:=C2=A0 Re: [PATCH v4 00/10] riscv: Add Zalasr ISA extension suppo=
+rt
+> To: <patchwork-bot+linux-riscv@kernel.org>
+> Cc: "Xu Lu"<luxu.kernel@bytedance.com>, <linux-riscv@lists.infradead.org>=
+, <corbet@lwn.net>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@=
+eecs.berkeley.edu>, <alex@ghiti.fr>, <robh@kernel.org>, <krzk+dt@kernel.org=
+>, <conor+dt@kernel.org>, <will@kernel.org>, <peterz@infradead.org>, <boqun=
+.feng@gmail.com>, <mark.rutland@arm.com>, <anup@brainfault.org>, <atish.pat=
+ra@linux.dev>, <pbonzini@redhat.com>, <shuah@kernel.org>, <parri.andrea@gma=
+il.com>, <ajones@ventanamicro.com>, <brs@rivosinc.com>, <guoren@kernel.org>=
+, <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <devicetree@=
+vger.kernel.org>, <kvm@vger.kernel.org>, <kvm-riscv@lists.infradead.org>, <=
+linux-kselftest@vger.kernel.org>, <apw@canonical.com>, <joe@perches.com>, <=
+lukas.bulwahn@gmail.com>
+> Folks,
 
+>=C2=A0
+> On Wed, 19 Nov 2025, patchwork-bot+linux-riscv@kernel.org wrote:
+
+>=C2=A0
+> > This series was applied to riscv/linux.git (for-next)
+
+> > by Paul Walmsley <pjw@kernel.org>:
+
+>=C2=A0
+> This actually isn't true; I've only applied the first four patches (see=
+=C2=A0
+
+> below).
+
+>=C2=A0
+> > On Mon, 20 Oct 2025 12:20:46 +0800 you wrote:
+
+> > > This patch adds support for the Zalasr ISA extension, which supplies =
+the
+
+> > > real load acquire/store release instructions.
+
+> > >=C2=A0
+
+> > > The specification can be found here:
+
+> > > https://github.com/riscv/riscv-zalasr/blob/main/chapter2.adoc
+
+> > >=C2=A0
+
+> > > This patch seires has been tested with ltp on Qemu with Brensan's zal=
+asr
+
+> > > support patch[1].
+
+> > >=C2=A0
+
+> > > [...]
+
+> >=C2=A0
+
+> > Here is the summary with links:
+
+> > =C2=A0 - [v4,01/10] riscv: Add ISA extension parsing for Zalasr
+
+> > =C2=A0 =C2=A0 https://git.kernel.org/riscv/c/0597b9c8627e
+
+> > =C2=A0 - [v4,02/10] dt-bindings: riscv: Add Zalasr ISA extension descri=
+ption
+
+> > =C2=A0 =C2=A0 https://git.kernel.org/riscv/c/6e2a0ff70abe
+
+> > =C2=A0 - [v4,03/10] riscv: hwprobe: Export Zalasr extension
+
+> > =C2=A0 =C2=A0 https://git.kernel.org/riscv/c/d5e20628a882
+
+> > =C2=A0 - [v4,04/10] riscv: Introduce Zalasr instructions
+
+> > =C2=A0 =C2=A0 https://git.kernel.org/riscv/c/c4139ea6717c
+
+> > =C2=A0 - [v4,05/10] riscv: Apply Zalasr to smp_load_acquire/smp_store_r=
+elease
+
+> > =C2=A0 =C2=A0 (no matching commit)
+
+> > =C2=A0 - [v4,06/10] riscv: Apply acquire/release semantics to arch_xchg=
+/arch_cmpxchg operations
+
+> > =C2=A0 =C2=A0 (no matching commit)
+
+> > =C2=A0 - [v4,07/10] riscv: Apply acquire/release semantics to arch_atom=
+ic operations
+
+> > =C2=A0 =C2=A0 (no matching commit)
+
+> > =C2=A0 - [v4,08/10] riscv: Remove arch specific __atomic_acquire/releas=
+e_fence
+
+> > =C2=A0 =C2=A0 (no matching commit)
+
+> > =C2=A0 - [v4,09/10] RISC-V: KVM: Allow Zalasr extensions for Guest/VM
+
+> > =C2=A0 =C2=A0 (no matching commit)
+
+> > =C2=A0 - [v4,10/10] RISC-V: KVM: selftests: Add Zalasr extensions to ge=
+t-reg-list test
+
+> > =C2=A0 =C2=A0 (no matching commit)
+
+>=C2=A0
+> In terms of patches 5-8, we're still waiting for Xu Lu to update the=C2=
+=A0
+
+> patches based on Andrea's feedback. =C2=A0Xu Lu, are you still planning t=
+o=C2=A0
+
+> update these?
+
+>=C2=A0
+>=C2=A0
+> - Paul
+>=C2=A0
 
