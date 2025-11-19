@@ -1,132 +1,153 @@
-Return-Path: <devicetree+bounces-240201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE678C6E667
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:14:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631B3C6E685
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:16:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 69985345C9A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:14:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0E1E934458E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E522357A49;
-	Wed, 19 Nov 2025 12:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872B42F6929;
+	Wed, 19 Nov 2025 12:16:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gaKBS3xg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xyCYeZHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F49B34D4D2;
-	Wed, 19 Nov 2025 12:14:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA4851CEADB
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 12:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763554446; cv=none; b=hCvJ4+tS229bN7mpc/5qmkkl+0ddn32QAenDakdylMxXiiF5Hn1Vvo4KT1CxBIo5zYabn2BghB5IqWt/mlczQJlIm5m0frtZfp/jprBzJX36dy3mDgbxGpOobJNK15RyTaMRNkz3aBZhEzAYhMB8ALd/KWu7s4OyWPwHvnXiMyI=
+	t=1763554592; cv=none; b=jBRQ/J5Jrg/r6Jhrz4SXmoTYRYJKcP8L18CjXGwoi08HrNunoi19Yz2qCpdPdeQ/Y20RQbBeB1sO6eKE8PVXPk8yt5DA+4aqTaPejpiTczN1VsKLXhY0QbVE6RyvmwL05cxeuQo2uJw1jfUaBlChL6fnh2R/A8vDGBbWdZv8IeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763554446; c=relaxed/simple;
-	bh=QLifMXuofRLvBzC10/jwJe/e8B4mmFP7h0J7ELx0+rw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HqjPSnCxDThZqeOmSP3bRsJgSZgmcUWG2sQ5zCKgPq2CeyIzvH0tqjGjHI3Ueqmv3PZujEiNMJkveFST7HSj+klTQM8B+xLEzCfGPIovOBjpjeeGbPFrK+BnCU2Q+ivonImGb5QV4ChywHgPoOSPCI5TUiqq7sfgbAMsmaKl00c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gaKBS3xg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6881FC19423;
-	Wed, 19 Nov 2025 12:13:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763554443;
-	bh=QLifMXuofRLvBzC10/jwJe/e8B4mmFP7h0J7ELx0+rw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gaKBS3xgc/9yjSNbdbVkzSV+xtBY1Y0ofDqeNE7MwaA5OLAYawA5SopweTVP1dhtL
-	 SECob3rFCL2lfikVcv+D7PtbLlBTkvtyaVgdWSLaudbDHwkeBFbnhctOuBVKGoA3l4
-	 HzrRmY1ZsoYXdEY8DxKuxxBfujm46dECKqNKIeyJm2FwU1e+RNtbFxkqqaWK+BVQFC
-	 PWN8JySHzFLjUrd6LNgarW9VQNKc/tUzSCu4ctCnQ+bAcVzELm2AVwvyFuCfsxjMmD
-	 vt0ZwYU50L1FsJAPW6mSCPqIZZNNketfRweC/SNcGGJlgk3kbbxlH4rmF9757hfCqr
-	 xc6hxfjGgq7BA==
-Message-ID: <e25b9f14-b583-434d-ac4f-364b962f0ed1@kernel.org>
-Date: Wed, 19 Nov 2025 13:13:57 +0100
+	s=arc-20240116; t=1763554592; c=relaxed/simple;
+	bh=6/PhrrVSQDzzgciifbMK5F9YvfY+nnwOb5SXC9Sks0o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EISDGKUuVWj3LnOkBdlumChzWFWIG8UygCQpxTWQbdf8qaJumtC/E7zleuJYkIKQ8JEuRp1r1L6pSmRV1/a0lVHUtuY8NGH/mGEha3wNCkeDGXOqIS4zKDvsu7LC/LODwLDmXUoWpTpJBuwUf6RHuM84Ws5TlIKfW7d4ooX95qA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xyCYeZHO; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-59584301f0cso6867521e87.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 04:16:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763554589; x=1764159389; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sHPaeKsEbeRiFEHcjj+tBilONoLgLzURpxTSyMgOFPA=;
+        b=xyCYeZHO9IvtOyecCZbcHN3CIpb7hhZkw3PynVCA3yBYq7iThGYLOtxnDUM146ihYm
+         W2ws4hLulGds+g96vuSsw74ecOfXCawgKmESbwVjjhIrJHLKhjN5aTblmRBjn+ioDVOL
+         v98J/osc802jPIKUl1lL3lfMQgfafpzit8njf6DBeKofD6OzdevblwBfBNO8OMEg621/
+         +hE9Pje+HmySW8GrDkKDgYq8Nsc4QwsBilsAeBCfG6wEyIZwu2p8u4jEGJ3SK8hpaIKA
+         3+e3z2Lw8huUYwueyycd6s9mnJAfaKJyBipRKFepAb1mqGi3KIdkHTQWqbwIVzffVSEF
+         0wnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763554589; x=1764159389;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=sHPaeKsEbeRiFEHcjj+tBilONoLgLzURpxTSyMgOFPA=;
+        b=J7Xxxo2gdgV3ig3IJFN6f89xNdpJooOVgWqW8SEF5yR92dOMSqH6MiiZmt3g+V7tvB
+         +a6cTaW8pk6/Jq9fAJy+0UJitgWnUeZaF1TWYM/X7sHqxeBAKmrCMTmi+VQqYF7JTVNO
+         QRl1A7B4BExE4ViTZmkQiGf8DI+0oC1bOu8/XMlR3HeUJcuacn38KseOw+f5J9z4bDyy
+         MArWTrASb228ufd/GLQQELsYcc5Jex8PVuTJrYhHlJSZIHH+35pPpx5+pN8cmOTLdzvz
+         AA0yWMruoO8pGJ7TP87A57m9TjhzSl0Bre8Qf135Zct/ChyWYFjeaX3VzC24oMBJMS2p
+         kYvg==
+X-Forwarded-Encrypted: i=1; AJvYcCVeaqywNfzquH+3WMcQSflbSZUo8Kl8jETKyQdAtKDiUWFfsm0YKqsOAt9I0/KghZxLCjNzkH9W8xj6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQVW0d+u/iZA5DmrqO0Sqcbd49WBn6ybB3oCmOHXkyQe7Eld14
+	k0lW9nJ3QfCq8sWQ9SWyKERZ2HLbwHNoLeGVd2m/QcrzQrFPFkELB1Z+t61/nmJlEIkKFwEiNQx
+	C7PN4eQ7jvFLkbLzR7CH7Fe7F2mQvazT9PW3XXFoLLw==
+X-Gm-Gg: ASbGncve7atfDKenPu+f2vxuUePNwgK0k1GLzfdFShEQ+/yEsTgh3FCSp9RvcdGvLO4
+	HCLqQoQJ9U3gNAMNUS3/7m1JPyqLg9uhGQi0C5TidxlDZylIQ1z6BN879/3L/QnsTzxO4CWAcn7
+	08h2SZ+4wh3sLGkEcrJ2UDTIlASzygwnB1KNPGRR0aFJEaIop/95Gqh0RNcxGt+lQBGVJ6gvWEv
+	DQ60W2dV90HmgCJIwOwpryocju9yvAolXikGgufwrfBE9sYz2gVJDocuewhZjCxByKYyFAoYUw3
+	QJIE4w==
+X-Google-Smtp-Source: AGHT+IHDywYiWcri0I745jv79pvTBz4VunGvT3/T6dEdfyVdHk1YRWLlH1QfwFM6eBV3bVpEzskWBVibEPo3gaoFC64=
+X-Received: by 2002:a05:6512:3056:b0:595:8258:ccc7 with SMTP id
+ 2adb3069b0e04-5958419ebccmr5995505e87.1.1763554588792; Wed, 19 Nov 2025
+ 04:16:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] soc: samsung: exynos-chipid: use devm action to
- unregister soc device
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>
-Cc: semen.protsenko@linaro.org, willmcvicker@google.com,
- kernel-team@android.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251118-gs101-chipid-v2-0-e9f1e7460e35@linaro.org>
- <20251118-gs101-chipid-v2-3-e9f1e7460e35@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251118-gs101-chipid-v2-3-e9f1e7460e35@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251112-lantern-sappy-bea86ff2a7f4@spud>
+In-Reply-To: <20251112-lantern-sappy-bea86ff2a7f4@spud>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 19 Nov 2025 13:16:16 +0100
+X-Gm-Features: AWmQ_blX1Suu08MFi1LMSKPgGOqo8LltGij5xY2-PL2zAc2tvG1HjaDITzQtWKs
+Message-ID: <CACRpkdZuopbAyHaZQpeGh0+V7v6Cg5uJwscmVPCfjHghNbPymg@mail.gmail.com>
+Subject: Re: [RFC v1 0/4] Microchip mpfs/pic64gx pinctrl part 2
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Valentina.FernandezAlanis@microchip.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 18/11/2025 14:56, Tudor Ambarus wrote:
-> Simplify the unwinding of the soc device by using a devm action.
-> Add the action before the exynos_asv_init() to avoid an explicit call
-> to soc_device_unregister().
-> 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
->  drivers/soc/samsung/exynos-chipid.c | 27 +++++++++++----------------
+On Wed, Nov 12, 2025 at 3:33=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
 
-Can I take the cleanups before new GS support?
+> Got the other driver that I was talking about here for you...
+> It's in RFC state because I'd like to get some feedback on the approach
+> while I try to figure out a) what ibufmd is
 
-That's btw preferred order for all work. Fixes should be independent or
-first in the patchset. Then cleanups before features/new support.
+I was going to ask about that :D
 
-Best regards,
-Krzysztof
+> and b) how the bank voltage
+> interacts with the schmitt trigger setting.
+
+Please check if "bank voltage" is somewhat analogous to
+this generic config:
+
+* @PIN_CONFIG_POWER_SOURCE: if the pin can select between different power
+ *      supplies, the argument to this parameter (on a custom format) tells
+ *      the driver which alternative power source to use.
+
+> There's some specific @Linus questions in the driver, mostly where I was
+> unsure about how config bits should be handled and looking around at
+> other drivers wasn't sufficient because they did different things.
+
+I tried to answer as best I could.
+
+> Finally, on the dt side, this was using the pinmux property before the
+> other drivers were submitted, but I didn't really like it to begin with
+> (shoving two things into entries of the same property gives me the ick).
+> I moved to using pins + function which at least looks prettier in the
+> devicetree.
+
+I think this looks way better than any pinmux properties.
+
+> I had been hoping that I could move to some sort of generic
+> dt_node_to_map function, but I couldn't figure out one that'd work
+> without creating groups in the driver. If there is, I'd love to get rid
+> of the custom dt_node_to_map stuff.
+
+It seems like something that could be added to the core
+(drivers/pinctrl/devicetree.c), if you feel like and have time for going
+the extra mile. Maybe it would be simple to move some drivers
+over to using it if done right.
+
+> I want to avoid doing having set groups, because of the number of
+> possible configurations in the MSS Configurator FPGA tool is fairly
+> large, and I believe that MSS Configurator actually undersells the
+> number of possible combinations for ease of use.
+
+FPGA:s often have this "phone exchange" property.
+
+> I haven't tested that
+> and the driver technically doesn't support it, but I feel like not trying
+> to define groups statically and using pins instead would permit those
+> combos in the future should that use case ever materialise.
+
+It makes sense for a driver for this type of very flexible hardware.
+
+Yours,
+Linus Walleij
 
