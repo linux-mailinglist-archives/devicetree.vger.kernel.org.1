@@ -1,82 +1,88 @@
-Return-Path: <devicetree+bounces-240270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CE1CC6F722
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:54:38 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE834C6F7C5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:00:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 1C6CE2F6BA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:48:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 55F3B4FAD39
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF28366576;
-	Wed, 19 Nov 2025 14:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C256D36402A;
+	Wed, 19 Nov 2025 14:46:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ij76wMoh"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BpMDkjUo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010001.outbound.protection.outlook.com [52.101.193.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9535E27B4F7
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 14:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763563549; cv=none; b=eWheDihtfCEoR0YAQkj36fiPMxAKxhbcPxKga8aXySAXjzGcWUY1CK6AoSKVH+MvNXBsLOfO9EXVcRwhLdguvKNX+ZhC7tYgvVhVUch5aVQeAg7xH5GA+lv4FxvaxJOySc9zDtkZCptG5y8OthNTdJtaD77ZjACtAbsT+a13AT0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763563549; c=relaxed/simple;
-	bh=FpgOAbIYhuYfiHny/yTXdpx2tP9GMeonyI6HAzCnoR4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B/8RzODGlVYu0sIHFINX1dRl+LzY4y0bN8tCjP4kgIm2A9o03VKEJcDp4/CdWAjaIbetUh2qAUmqVfdPOp4IeO0vY/OWs6Mg365OaKKaaZRloNIi0QA2HlG6bBeB4pDQP3ewQnX2PqC4kBplQW5b4XaFVwDNz+ra5k8su2+50zU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ij76wMoh; arc=none smtp.client-ip=209.85.167.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-450c9057988so1461013b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 06:45:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763563544; x=1764168344; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=65Ns16gxTh3NW+vKmsGtUFPKjw4kyOUeoeH+pasPpPo=;
-        b=ij76wMohszUBXAvHRcWAy+ztoR5AmKX2VibM3qCs8or2AlxNIvE5UoyjX7GyT1CNmy
-         yFPKqrjzsTTiRfOifvX67RJp+3AQsLlcTyslqoKF+JTo+8l4MvlDal9gCB/9IRMLlFjz
-         +VtcyB0ga+VXdcwht4rwDOYl1Fxz3oDQKy5VZzQ47yPvCKhrw8LQ6XoRHpUaMXQKIqiC
-         X8QofHaCfP6hDf7ngWFn5mJVzhwNcDOmGnIhhC1A20j695ER45n4kP9J8U+NjiCxiLyb
-         ycwyaNifPt3CDFDbtkpM+Rg7fBy/VmR/OctJLw9Oszg7aHJL5QSE+sgg2LSPoa852Zgg
-         4khA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763563544; x=1764168344;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=65Ns16gxTh3NW+vKmsGtUFPKjw4kyOUeoeH+pasPpPo=;
-        b=js6Kp1O5iM1ok/ls5xZiWTJR2sBfejocTchCu6kwt5b+ulltBCL1BJBbIkEtOSSjeQ
-         C/5zzGS6Lr2rVxT/Q3NhfjPE2lyrcG0vYA8kFXkSkbqYs4WATo96+xNLhcpfzTpTWdyl
-         tZ9ChiE8j6/HGOAq4aIr29r/OKpa/0vlaFzA1l0SeI2g5JmJ5cwK+AXMHutfSJLb0IbX
-         IsyktYodkd12mDSaVO9q4tJbLPoR31GtbYjrY6yNeB+xrL/4D9wXZAFQWfff7LpW29CK
-         rExyyduESkrEGoJTK6rR3Wr/ILUHFMaauoHU5m8SislOmAT+A680nTGYInXXhxfRvhTZ
-         bgBA==
-X-Forwarded-Encrypted: i=1; AJvYcCX5/m5YRRKORnVxwwA/9f0eO40nfNFQG2cKVL/gscnk+UH3V1vW9F5w152yL2yLHj5Nbv6cxNVv2l1d@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1QuJ9cVD4L7iBP6xef8+OpmooYOtKW9BrYR/lXbYrgCPXg2/b
-	oGZeWZ6th861FDbz+RY7KB29e4KXCbdUx2jR2bGWt84+HcPdKdwqYaBTgqm9Vi+RFAg=
-X-Gm-Gg: ASbGnctk29LjlpHaN7MhPE3c+EwIRtizpC/1CJIWMhtgh5QdKvstNBanq4eFtKGf7YX
-	U0HdAWR+grW8dldzB5t3gnuMQE24BWbI5VtZ4pDqc/d17bnmT145Kp0q6h9PznFUSpBBUD/OT6f
-	NMs+j0kP8xd9+X7YNRoV7Xw9t+HyJeWyxpk+b9/Sw9RcHXwWjS56Bynp/1f46kEmYRVSbpf2eM4
-	2V+fUcegwLe8UUQX0oAhUFnTDm5lvpgetruEYYi8zIxeXdobkEVJphryo+IMxQqUag2oHFXvUde
-	xyIOBTN6v0eyJLyYingH/+NVE8cnqOFCFLgU8s1kBGAeBxj6+5OoyGTBe18ehaDvRBNHWOdyJtO
-	drszyY3EL+g9z5o8pRfvR++yKX4P+DLkxc1OEBvS5zgtCZZvDXg9bNSLktevZSYntRR1Hv/hlsg
-	y8+QC1MeqWFow+UHz/PKGtAFIHZdhT2FUbtkg/brSqfaifBlM0wjyku/j44YXb
-X-Google-Smtp-Source: AGHT+IGAT38Ks4Qoob8CXFhi3Zr9y4b0BYvNCj7qmWn7rmgJYD09bg+QwprfnFA3SZGLWLjrYnkusQ==
-X-Received: by 2002:a05:6808:1302:b0:44d:a6a8:1b6a with SMTP id 5614622812f47-4509755d5d2mr9071196b6e.50.1763563544459;
-        Wed, 19 Nov 2025 06:45:44 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:f327:6b3c:8989:a18d? ([2600:8803:e7e4:500:f327:6b3c:8989:a18d])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3e8834111c5sm5421311fac.13.2025.11.19.06.45.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Nov 2025 06:45:43 -0800 (PST)
-Message-ID: <f2ac13fc-8f47-465e-8cef-e2e34bf41818@baylibre.com>
-Date: Wed, 19 Nov 2025 08:45:42 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26CF5279DA6;
+	Wed, 19 Nov 2025 14:46:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.1
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763563606; cv=fail; b=f3B0h5Ba4pBuf8kcGd+3orpoVmHpCJ6BSOtxxmjSOOQWyksmDJEZzaLKGV8mU20us+Ql3w6oUYFZanKL/4cvbuBVaT74wrkvAJvfC3eAjwGESZuzJKmxxzB6Kz0TC7CEiZ0tvmhB/zqd7xzEFs9sk/y1Dr2UxsH7PuYKsL0FBj0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763563606; c=relaxed/simple;
+	bh=7NBMyGVMrGQSa0z5XzF5AvHIqxjgHZU6BD0xgsnlM2Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=K4G32OBOY7ibp8iwOmk9S/fwHwc8wm9BvhntIIsLJ5BSOayRnOJNOvgotbe9IF6GeIV5i3a/ygVUMd41Dwfapt5lhL7lyvuzwAjERUnsPcxQoPRsOsGl9LKiVNBz3p0cw3uw+UAV+4dU7RKqdgpiJdYni+wmwyTY2X98+W98NYU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BpMDkjUo; arc=fail smtp.client-ip=52.101.193.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wzN9tHYWZ16lgOkP++OH3s6LGSEnN+TaBc8FP6cbnizYQkO3uvE9fCqyls/LM5UK9QxX2CeHTJZEXQaYx6hKCIFjJ/tw0Yo+ot8HlnwLhBFCWD4W46CWikeIcGDRjUnZzNdq+bOTdJ+Ug0vJNLIpHLCEmTl9uWTekQyEN06BldmrF1y/kEeQ26IBSZu9Ez+qQ/NfpCK2ntCErxYxuKT+ycHyXg9OI0/Zk6eJMhAe6MG0loQO7JqPg5tmgJ1w9OhHNjaqIf29ZtrJM/zyAq+0aHv6xdSD4ZZVTN8uc8jVtNH0XB8YFiGY0sbVMyEEpQ8IEsMEVkouqL0SeLnJfPo3hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JhUEAo5rQfJbLlsbXat4WcAJ0vqDg2PEckaSW0bIwf8=;
+ b=KeBTZsofN8Q3LAasV+TYa39ic2/QwCgdjIKpQ7uxLrRyAUU0es9poz8eN01bMZHV0gR8PTiU/sRWIzo0BxvC7rnpOKHF5ofwgkNZh25c27EfEIJFvERqy/YyxMgPinlaNJFNfbJH920VazX3sl927XRPeQKf0lb8NJp9/xPbHGmbRSeA/n6RuvAb8MDMdrN+xtNbhcf/WcDOeA9HD2sdxKbayjzWzm02sH8fn383CITG1OV2bPrVHUh7Y1SJHdyOSYG0VNGiUXa1MolTdRV8D18tjSEM0ODwrivjKKYaExyeQid7hOrEO848lnX75EyWW2fN3GcdCzPmsAtO7aRx+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JhUEAo5rQfJbLlsbXat4WcAJ0vqDg2PEckaSW0bIwf8=;
+ b=BpMDkjUoNldbdg/Ffjz17/nLXp21y8xMlVviEW6p1tIN38QriS72n9jmkFYoPVtp2XunnLnF478yr0A09haCCXK2IK24ZastxPi+LPt0DRsHxH0YxgxPtNbijPiHE+Gdj7hL6lU9aL4sW1ye9rxTYm7x4GZ84++ryJ4jrqfEegs=
+Received: from BN9PR03CA0569.namprd03.prod.outlook.com (2603:10b6:408:138::34)
+ by DM4PR10MB5992.namprd10.prod.outlook.com (2603:10b6:8:af::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
+ 2025 14:46:40 +0000
+Received: from BN3PEPF0000B076.namprd04.prod.outlook.com
+ (2603:10b6:408:138:cafe::fb) by BN9PR03CA0569.outlook.office365.com
+ (2603:10b6:408:138::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Wed,
+ 19 Nov 2025 14:46:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ BN3PEPF0000B076.mail.protection.outlook.com (10.167.243.121) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9343.9 via Frontend Transport; Wed, 19 Nov 2025 14:46:38 +0000
+Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
+ 2025 08:46:34 -0600
+Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE215.ent.ti.com
+ (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
+ 2025 08:46:34 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 19 Nov 2025 08:46:34 -0600
+Received: from [172.24.233.103] (uda0132425.dhcp.ti.com [172.24.233.103])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AJEkVua2042638;
+	Wed, 19 Nov 2025 08:46:32 -0600
+Message-ID: <002fad46-adb5-402e-8eb0-e4c71b862674@ti.com>
+Date: Wed, 19 Nov 2025 20:16:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,206 +90,174 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] dt-bindings: iio: adc: adi,ad7380: add spi-buses
- property
-To: Rob Herring <robh@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20251107-spi-add-multi-bus-support-v2-0-8a92693314d9@baylibre.com>
- <20251107-spi-add-multi-bus-support-v2-5-8a92693314d9@baylibre.com>
- <20251118155905.GB3236324-robh@kernel.org>
- <97c6b55d-9505-4091-8f0b-317dcbd70838@baylibre.com>
- <CAL_Jsq+ZZE0g424jE75xeCt2KY1ThPLqmbmOs0o_ddaJ8fOf3w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: ti: Add missing applied DT overlay targets
+To: "Rob Herring (Arm)" <robh@kernel.org>, Nishanth Menon <nm@ti.com>, "Tero
+ Kristo" <kristo@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Wadim Egorov <w.egorov@phytec.de>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+References: <20251117211316.725960-1-robh@kernel.org>
+From: Vignesh Raghavendra <vigneshr@ti.com>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <CAL_Jsq+ZZE0g424jE75xeCt2KY1ThPLqmbmOs0o_ddaJ8fOf3w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251117211316.725960-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B076:EE_|DM4PR10MB5992:EE_
+X-MS-Office365-Filtering-Correlation-Id: 48be1bc7-0c28-4fae-f0bd-08de277a7231
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RW5oRkY4ZjJuNks3anFiUk1EVU44c0ZNSlRWK2FpZW5SbzdpRHBiOVdyK0lv?=
+ =?utf-8?B?WEp3V1VyRlFBeVMzckh2ajJlWUJRaWtqRzc2cjZWb1RrNXlnRDlxOU5sTzlu?=
+ =?utf-8?B?SnB3ak9QeEF1Qnkrb2JHRlRGYzdRYk1GR3VHb1dxSWlnQUF3SEcxVEtLUGQ0?=
+ =?utf-8?B?STBMdUVSZUc5SDlydnR1UTZOZTFxamdkN0VWcXpDdmxXbFRWVXZjTm04Rmwz?=
+ =?utf-8?B?bjZDWmQ3NGFkUTNiT0EyMXhVRUhjdExWRFF5KzhaUXVaLzlmcHpEejJ6MytR?=
+ =?utf-8?B?MEZJL0ZJZE9YRFY5TW9lRUJsUnpZQUppOENGU3JZZVZJOGdvZWExQmorZDV3?=
+ =?utf-8?B?Sm9abzZlNCsyMnllSk1veU41dGlxdDRDZDliZ3NpNyt4Rk5XcHNPREhVK09C?=
+ =?utf-8?B?R0RJbXZmMkJMYUt5RnFmQTVGMy9IN3hFQTd5cnR0STVqUEtQa3Q3NlFKVDRS?=
+ =?utf-8?B?U1dmRDh1V0RaRTdxL3hycFNacjVseDNMRkZ0ak8yV3I0Wnpma1ZEOHlqaEtG?=
+ =?utf-8?B?UnNodm5WNVF0eHFrZ1BIRGQ5Q1pBOWtTRjJ1VzhLN2FJOUV6RDQ2bkRLZkpB?=
+ =?utf-8?B?bmtVK3ZVd3gydXk0cUJKRkZEUjZkQzh1c3dQYXRPdXBiaGZDTUhiLzFCc2kx?=
+ =?utf-8?B?VDFKSFNaWHFFLzllNGo1NHVxSHg2VE4vRjhGZElremdFUlJra2lsN1M4dFRK?=
+ =?utf-8?B?cUxtM1NzSnAxcll3aTlSSkE5YjdXZHhWMW83aURwWVNzRUhnU3JBUlJ0T2xX?=
+ =?utf-8?B?cTB1cDk0OVRMZzVSWUUrdjZBemgrbytsSjFMaE4xbWZIR2RNbUJmMWtqbTZM?=
+ =?utf-8?B?MEdtQWlDN2pTcXNvemY1aVVuZkRYR0UyVVMycHk3NVJCaGV2Y3B0QVNZMjVM?=
+ =?utf-8?B?YkdvU3ZwVEdlKzdhWS83YjdzL3Ezek05UWQrNnNEZC9iRUE0UjFKU2EwSTJx?=
+ =?utf-8?B?QXFyY0RHVmhXbld4Z2VxT2szZDZFYWJ1MkJFTlI3Zy9NTkR6YXhML0Zvb2Rq?=
+ =?utf-8?B?UjU1NmxQdWh3ZnkrUzBXbVQwYWMrYlRreGFwMTIzcmc1TEx0T2NrMkI1Uy9U?=
+ =?utf-8?B?dE85emcwb3F1aTByQUk4dkNyQ0ltSXIzeXhaSE5vTDVCSmlGd2VkRHROblor?=
+ =?utf-8?B?UXpaRFZnTzBQS3ozV3AwYzJvRFJWMkFIUEFMMTVpN2s2eHk2UUtlSWVyS0gy?=
+ =?utf-8?B?T3BoWTV3MTY3WE9URVF0ZndWN3pPTUZuMUhsYjdCVnVRRGhyVnV6RWtYSHVP?=
+ =?utf-8?B?cy9jOFhxOGdESCtrU1EzQzROMm9JTWpmTnBsRVhadXJRS0psanhxOEVUNzUx?=
+ =?utf-8?B?MUhuU05EQkVQQ3Q1d3M2dzBDaGdVelRlUzV4aTBEdHdML2w0TDNsZFMzUmtR?=
+ =?utf-8?B?TTRzR2lZUnJWZ0MyQlI3ZWJmd0pPRVVqNUEyeXZpSnpUWjlMK1ByMTFibk8y?=
+ =?utf-8?B?cE1zREJISWE1bTVseGpKZklZTkpqSnFwSkVsZDRoRkpKdnNDTFBnSEg5bFl2?=
+ =?utf-8?B?R1ZaSHkwaVFNWHdxOXNBUlpiZW1CQm5oRUMwZkplVy9tQXNlYkUzRm5UOG01?=
+ =?utf-8?B?QURFcjRKSWFBa3F2eHpMcE93ZnBIUGtBZ3FoUW15NWNScVBHY3gySEMvb1Fr?=
+ =?utf-8?B?TldxV09BQ1ZOaUtsUnlJMTZlbmwrRjdUWlkrNDBwMjZzcE9hdG5oNTBwZjVo?=
+ =?utf-8?B?VjRhU2VoQjlCWjdoZk9zMDFacUd6NVFsZHBJR2VFZ3lGTVQ4WWwrR014OEZx?=
+ =?utf-8?B?bTB1cTRsRzUyODlsY1ZJOE5IT0VsbG5YMnJVV3pUSGVmZXJpeXp1SWgyTEhs?=
+ =?utf-8?B?SmpyUUZqUE8yVXBLbDN3N1dtR3VrSlFhYmwrYlE5bkdIK1I5b0Q2d2wxZDFm?=
+ =?utf-8?B?a25QalY1enFBOU05dDdzM3Q5aEkrTEEra2RMbGkxWjNwMVh0dUh4bHd2dGZ2?=
+ =?utf-8?B?aG9nL0E0ODcyejkxNnlLMkJTT1dheXppaUh1MGtVYTBsVnhtK2gzNFlvYk95?=
+ =?utf-8?B?THNYTC9taElVcDhWWVBqZHZOd29GbDFCTFlMSHZMc29takNmd3duT054bjBM?=
+ =?utf-8?B?VXk5UU1EdUl6RysvS1dyWXZyV3NSSURqZ1JSNm5SQU5IdXVtSHY0bk1jNHJ6?=
+ =?utf-8?Q?/+c8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 14:46:38.7852
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48be1bc7-0c28-4fae-f0bd-08de277a7231
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN3PEPF0000B076.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR10MB5992
 
-On 11/19/25 7:18 AM, Rob Herring wrote:
-> On Tue, Nov 18, 2025 at 11:46 AM David Lechner <dlechner@baylibre.com> wrote:
->>
->> On 11/18/25 9:59 AM, Rob Herring wrote:
->>> On Fri, Nov 07, 2025 at 02:52:51PM -0600, David Lechner wrote:
->>>> Add spi-buses property to describe how many SDO lines are wired up on
->>>> the ADC. These chips are simultaneous sampling ADCs and have one SDO
->>>> line per channel, either 2 or 4 total depending on the part number.
->>>>
->>>> Signed-off-by: David Lechner <dlechner@baylibre.com>
->>>> ---
->>>>  .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 22 ++++++++++++++++++++++
->>>>  1 file changed, 22 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
->>>> index b91bfb16ed6bc6c605880f81050250d1ed9c307a..9ef46cdb047d45d088e0fbc345f58c5b09083385 100644
->>>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
->>>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
->>>> @@ -62,6 +62,10 @@ properties:
->>>>    spi-cpol: true
->>>>    spi-cpha: true
->>>>
->>>> +  spi-data-buses:
->>>> +    minItems: 1
->>>> +    maxItems: 4
->>>> +
->>>
->>> As the property is not required, what's the default?
->>
->> spi-perepheral-props.yaml defines:
->>
->>         default: [0]
->>
->> Do I need to repeat that here?
++ wadim who posted something similar:
+
+Hi Rob,
+
+On 18/11/25 02:43, Rob Herring (Arm) wrote:
+> It's a requirement that DT overlays be applied at build time in order to
+> validate them as overlays are not validated on their own.
 > 
-> No. So that means you only use one channel and the others are not connected?
-
-Correct.
-
+> Add the missing TI overlays. Some of the TI overlays have the first part
+> needed (a "*-dtbs" variable), but not the second part adding the target to
+> dtb-y/dtb- variable.
 > 
->>
->>>
->>>>    vcc-supply:
->>>>      description: A 3V to 3.6V supply that powers the chip.
->>>>
->>>> @@ -245,6 +249,22 @@ allOf:
->>>>        patternProperties:
->>>>          "^channel@[0-3]$": false
->>>>
->>>> +  # 2-channel chip can only have up to 2 buses
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          enum:
->>>> +            - adi,ad7380
->>>> +            - adi,ad7381
->>>> +            - adi,ad7386
->>>> +            - adi,ad7387
->>>> +            - adi,ad7388
->>>> +            - adi,ad7389
->>>> +    then:
->>>> +      properties:
->>>> +        spi-data-buses:
->>>> +          maxItems: 2
->>>> +
->>>>  examples:
->>>>    - |
->>>>      #include <dt-bindings/interrupt-controller/irq.h>
->>>> @@ -260,6 +280,7 @@ examples:
->>>>              spi-cpol;
->>>>              spi-cpha;
->>>>              spi-max-frequency = <80000000>;
->>>> +            spi-data-buses = <0>, <1>;
->>>>
->>>>              interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
->>>>              interrupt-parent = <&gpio0>;
->>>> @@ -284,6 +305,7 @@ examples:
->>>>              spi-cpol;
->>>>              spi-cpha;
->>>>              spi-max-frequency = <80000000>;
->>>> +            spi-data-buses = <0>, <1>, <2>, <3>;
->>>
->>> An example that doesn't look like a 1 to 1 mapping would be better.
->>> Otherwise, it still looks to me like you could just define the bus
->>> width.
->>
->> I'm not sure we could do that on this chip since it doesn't have
->> the possibility of more than one line per channel.
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+
+Look like there is more needed change needed.
+
+https://lore.kernel.org/all/20251119123216.1481420-1-w.egorov@phytec.de/
+
+Could one of you post the superset patch?
+
+
+I have already sent out the PR for v6.19rc1 for TI tree? Is [1] plan to
+be merged for v6.19 cycle, if so I will plan for a follow up PR with
+newer version of this patch.
+
+> ---
+> This will soon be a warning[1].
 > 
-> That's a property of the SPI controller though, right?
+> [1] https://lore.kernel.org/all/20251114222759.4181152-1-robh@kernel.org/
+
+BTW, with above patch, make dtbs seems to fail w/o CONFIG_OF_ALL_DTBS=y.
+Is that expected?
+
+> ---
+>  arch/arm64/boot/dts/ti/Makefile | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
 > 
-> If the above controller had 4 lines per channel/serializer, then you could have:
-> 
-> spi-data-buses = <0>, <4>, <8>, <12>;
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 743115b849a7..54c4a6ba23c7 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -115,7 +115,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-evm.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-j7200-evm-pcie1-ep.dtbo
+>  
+>  # Boards with J721e SoC
+> -k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb k3-j721e-evm-quad-port-eth-exp.dtbo
+> +k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb \
+> +	k3-j721e-evm-quad-port-eth-exp.dtbo k3-j721e-evm-gesi-exp-board.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board-infotainment.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
+> @@ -177,6 +178,7 @@ k3-am625-sk-csi2-tevi-ov5640-dtbs := k3-am625-sk.dtb \
+>  	k3-am62x-sk-csi2-tevi-ov5640.dtbo
+>  k3-am625-sk-hdmi-audio-dtbs := k3-am625-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
+>  k3-am62-lp-sk-hdmi-audio-dtbs := k3-am62-lp-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
+> +k3-am62-lp-sk-nand-dtbs := k3-am62-lp-sk.dtb k3-am62-lp-sk-nand.dtbo
+>  k3-am62a7-sk-csi2-imx219-dtbs := k3-am62a7-sk.dtb \
+>  	k3-am62x-sk-csi2-imx219.dtbo
+>  k3-am62a7-sk-csi2-ov5640-dtbs := k3-am62a7-sk.dtb \
+> @@ -254,11 +256,17 @@ k3-j784s4-evm-usxgmii-exp1-exp2-dtbs := k3-j784s4-evm.dtb \
+>  	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
+>  dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>  	k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
+> +	k3-am625-phyboard-lyra-disable-eth-phy.dtb \
+> +	k3-am625-phyboard-lyra-disable-rtc.dtb \
+> +	k3-am625-phyboard-lyra-disable-spi-nor.dtb \
+> +	k3-am625-phyboard-lyra-gpio-fan.dtb \
+> +	k3-am625-phyboard-lyra-qspi-nor.dtb \
+>  	k3-am625-sk-csi2-imx219.dtb \
+>  	k3-am625-sk-csi2-ov5640.dtb \
+>  	k3-am625-sk-csi2-tevi-ov5640.dtb \
+>  	k3-am625-sk-hdmi-audio.dtb \
+>  	k3-am62-lp-sk-hdmi-audio.dtb \
+> +	k3-am62-lp-sk-nand.dtb \
+>  	k3-am62a7-sk-csi2-imx219.dtb \
+>  	k3-am62a7-sk-csi2-ov5640.dtb \
+>  	k3-am62a7-sk-hdmi-audio.dtb \
+> @@ -268,6 +276,14 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>  	k3-am642-evm-icssg1-dualemac.dtb \
+>  	k3-am642-evm-icssg1-dualemac-mii.dtb \
+>  	k3-am642-evm-pcie0-ep.dtb \
+> +	k3-am642-phyboard-electra-disable-eth-phy.dtb \
+> +	k3-am642-phyboard-electra-disable-rtc.dtb \
+> +	k3-am642-phyboard-electra-disable-spi-nor.dtb \
+> +	k3-am642-phyboard-electra-qspi-nor.dtb \
+> +	k3-am642-phyboard-electra-gpio-fan.dtb \
+> +	k3-am642-phyboard-electra-pcie-usb2.dtb \
+> +	k3-am642-phyboard-electra-x27-gpio1-spi1-uart3.dtb \
+> +	k3-am642-phyboard-electra-peb-c-010.dtb \
+>  	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
+>  	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+>  	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
 
-Ah, I get what you mean now. The intention here though was that the
-index numbers correspond to the data lane (channel/serializer), not
-to individual lines. So the example you gave would mean that the chip
-has at least 13 data lanes (rather than what I think your intention was
-of saying it has at least 16 data wires). I did it that way because all
-of the hardware I looked at didn't allow assigning arbitrary data lines
-to arbitrary lanes/channels so it keeps things simpler and easier to match
-to the actual hardware docs.
-
-I intend to change the property name to data-lanes so I will use that
-below instead of spi-data-buses.
-
-For this ADC, I would still write:
-
-	data-lanes: <0>, <1>, <2>, <3>;
-
-to mean:
-
-+--------------+    +----------+
-| SPI          |    | AD7380-4 |
-| Controller   |    | ADC      |
-|              |    |          |   
-|        SDIA0 |<---| SDOA     |
-|        SDIA1 |x   |          |
-|        SDIA2 |x   |          |
-|        SDIA3 |x   |          |
-|              |    |          |
-|        SDIB0 |<---| SDOB     |
-|        SDIB1 |x   |          |
-|        SDIB2 |x   |          |
-|        SDIB3 |x   |          |
-|              |    |          |
-|        SDIC0 |<---| SDOC     |
-|        SDIC1 |x   |          |
-|        SDIC2 |x   |          |
-|        SDIC3 |x   |          |
-|              |    |          |
-|        SDID0 |<---| SDOD     |
-|        SDID1 |x   |          |
-|        SDID2 |x   |          |
-|        SDID3 |x   |          |
-|              |    |          |
-+--------------+     +---------+
-
-I.e. lanes <0>=A, <1>=B, <2>=C, <3>=D and there is an implied default
-spi-rx-bus-width = <1>;
-
-
-For another chip we are working on, we could have:
-
-	spi-rx-bus-width = <4>;
-	data-lanes: <0>, <1>;
-
-Meaning:
-
-+--------------+    +----------+
-| SPI          |    | AD4630   |
-| Controller   |    | ADC      |
-|              |    |          |   
-|        SDIA0 |<---| SDOA0    |
-|        SDIA1 |<---| SDOA1    |
-|        SDIA2 |<---| SDOA2    |
-|        SDIA3 |<---| SDOA3    |
-|              |    |          |
-|        SDIB0 |<---| SDOB0    |
-|        SDIB1 |<---| SDOB1    |
-|        SDIB2 |<---| SDOB2    |
-|        SDIB3 |<---| SDOB3    |
-|              |    |          |
-|        SDIC0 |x   |          |
-|        SDIC1 |x   |          |
-|        SDIC2 |x   |          |
-|        SDIC3 |x   |          |
-|              |    |          |
-|        SDID0 |x   |          |
-|        SDID1 |x   |          |
-|        SDID2 |x   |          |
-|        SDID3 |x   |          |
-|              |    |          |
-+--------------+     +---------+
-
-> 
-> Rob
+-- 
+Regards
+Vignesh
+https://ti.com/opensource
 
 
