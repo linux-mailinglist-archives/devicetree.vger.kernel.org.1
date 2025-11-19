@@ -1,44 +1,102 @@
-Return-Path: <devicetree+bounces-240012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F211C6C1B5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 01:14:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C66BC6C1D7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 01:23:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E3F6C4E0620
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 00:14:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A0EE04E0418
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 00:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6688136351;
-	Wed, 19 Nov 2025 00:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B7DA1DDC1B;
+	Wed, 19 Nov 2025 00:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JRxyCUma";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Xuvjhxty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82B23A1C9
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:14:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C66C1DA60D
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:23:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763511244; cv=none; b=FFgOcXEJ7Xyjn+6mSd49OKouY4PwZshzdUZ/eFP5Kj0tCppALZr8l2cqIY7XcAW1qTa5iEEmfiAw//p/mu29OHOYKt+PyFJMcgjRzrYclaRpowclmqrmgLd7nePhCvFFzZtJS4A7G7pWznBJxiu2GE6m7OB7chPWJj8Cg/eGUaM=
+	t=1763511831; cv=none; b=gOpN2KxeaESbh18nfixWoZocEu/aCVfKOEa0K8ddohTWMdLaJbnr2If6rSVaMUj2xBl1ZRfrES0THbl0QxkwG8gQmDqhpzijuguYehj52B+NVjsnFtlkFf/ASZDA9mNacwfgeHGj9pRVZa1jXb8eNka8AvRonX+Hh3HQAITCClU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763511244; c=relaxed/simple;
-	bh=udyYK93gahgUc6AMxpho/lmhnQHN5Fz7/UUJ4h69MU8=;
+	s=arc-20240116; t=1763511831; c=relaxed/simple;
+	bh=dbxQ+lWbQ/v0JEBh7WfaNiELJev7d2uNdEhFBncVoVI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rm/+7z2+B/5+WauFvFtEZZBmKCTx7q4T749T1kDApzd3o76fgjwUm0yGZ4CVzB5yiT1V5WBI1uVzQ9jJyU7XAFy26CyNKmGKRHUJA9TZhqi7YcSlw4xHjsDHJ9Sio0WjrWywJ1eNwPJjwXv/vnIlqJge1lkN1+55uBxIO+AFUzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=52.59.177.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpgz8t1763511161tda318cee
-X-QQ-Originating-IP: WCyfxCkXQbLOI3rQhE9c7nxrHn2fqsWQwmCHFlbw4y8=
-Received: from [192.168.254.128] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 19 Nov 2025 08:12:38 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 8747622648211889514
-Message-ID: <77B4456916875131+5e15cfc7-61ef-4277-885e-f28f3f33380c@radxa.com>
-Date: Wed, 19 Nov 2025 09:12:37 +0900
+	 In-Reply-To:Content-Type; b=lczpfuzpw1I1nYlOo8HhOGmdwS0ZLENqrq1TNcKhy4XP6DYOpg6/iM0AY9EGnM8Vtwjn6cNFBhIA3HT1hn+mkx9As759yjq9TlHEnqhNTvEtB4kr3c8FKUWcV2x17E2sfWbFD6b6pKSYjYNRQTL1vlDfWZn39pfoKoQfV6R6tMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JRxyCUma; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Xuvjhxty; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AILmTUI2343970
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:23:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NACq7p7BFA2chMCrQGix5RxOQsKwaCoHfjgKRgQT/oY=; b=JRxyCUmalpMTaAH0
+	jrNkcwN+/Jixc7420knIWiaHfFrreM/BoV3SuFELWZaUIpVTwJnD54uKq0Nk72IP
+	WGKAhZejaOQBpam7xA4Gj/T+q0gOC6na8MdPK2vUQ+JoI3cL9cP8PybJaeu2whYy
+	xWXybs8D7IYZnwVEB++TzUxOZF7YQAC38RMTZlM0PaneT7QecI7ycH1ASttGfpjh
+	+Jy8nuRPnTf+teNpDlxonmokFatbCyxoNBaepM+EqXZQWWDRmAxzivZGI6kl4W9H
+	R8e4g9qbHVETYmZTAQtNyi48NHPq63NkUYBIQEVLlXXgaCsaLgKqGfJqVDYBVxB4
+	AKqOSQ==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agkrn2xp8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:23:48 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b99763210e5so5849222a12.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Nov 2025 16:23:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763511827; x=1764116627; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NACq7p7BFA2chMCrQGix5RxOQsKwaCoHfjgKRgQT/oY=;
+        b=XuvjhxtyrjKUIYyKReOESdyW0j7il6KELLMpz6CWYWko2BTbUCNRrIxDksNP9xo/6d
+         LRJF4e7Zbyb9QQ5WuVYO95MFu3AwuT6/uhnbkE7qQQAd32cNac3/2NdAXLCiR1iA4Sld
+         GiJMV4kAqpNFmVoOXI19FUP71s+0IurjF9wKlYelBRFL1kHOqSu0RTr8jM8NyaGdTrNy
+         LEE/LQlHd4WCy7eWxvzkloeGXywnmd1xQadLSyTRt9jCbsXHX/z86oG6bSmpk6/V4v3c
+         Y3g4RBlUrUodDcZKlKPS3GgTiPhgPH1p4sz+lqaxAasP56QpJj7f4KvU8kL42FQ+tPkY
+         PNaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763511827; x=1764116627;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NACq7p7BFA2chMCrQGix5RxOQsKwaCoHfjgKRgQT/oY=;
+        b=h2w0lLstk/7vpTQrDMT1/FWy994c45nkibmR17BQjWqPcuiSsZ56v2VgGv3EXBb9DD
+         SfkU/Rw+BVIQSMPIZAc7kfBkdipQYmMAbLmT2IBm7Xmji2jLDYXMYtSECTL5MdPmkTI8
+         Jch202g6p8/WYcyMCiVFhsljMj7gMDjAVb+BFWzNka8QHNPieW6Y2avwLiwGRjI0i74+
+         I3mIwAw/FGBdesfI2j7UWlk6hUr7lQmJMhabjcAAAJcXqy9U9orkv2w6Kz3v7Jg9dvuq
+         IEKdPUYVKJ1gUTsoskpA92AOXZdzOLbbs5scHcDCydI4yz+HeHV2jjd3H/R06rCepV4d
+         Mtvw==
+X-Forwarded-Encrypted: i=1; AJvYcCXThl8OkxxfHxnamCsuRS+W9Q25kZmA6+wQ1RIQzmDI0OhFbJwOiazVw99xHzYRlAbl1Ah5wCdy1jwc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHp1IVs9sbDZhpU8mJo6Z3/7GVlKGmE+ydxSfCKvquK9WA7jnr
+	i1BK7LA/n71c7beydt0wp97sa6bqzYu1TuCpZdzfqWVrp8KrXs+OTmDrl3ayKmcSV2DeBVsJuS0
+	CinKMnZ8p4Ma6/tQOrQEEbs/m60KZVgUq9/4Q62Xuqoct7VPO6BcnNfDNdawMX8X8
+X-Gm-Gg: ASbGncs6wbRRrFuGzYj3z8hgrlNoVLaDPeixEzbOXziT50vdJrcIj/g/MA+MYfLFQVy
+	0YF/nK3ds1pr9hC4auCHELfYFykoconJeLW0BwTQzJ8kSl5ciS+4Mq4NeGRi9dMkLOkSYxjo/0Y
+	ADsdwN/ZS7KgPeG85WDQKc5lvsPm8cmcHwuubmv9weuKfvCWlr4BHbrfyl0SgX7wjOB1XQPMsCa
+	EOkUdZzqC96CsXWcYwz65STQqsGkiEkt0wkwNq/VcYoeKVa1u+xdHFNJegQMKw6/mQ8dNUqV72v
+	FYkyiuCEvNkolYzqULciIyJHaP1H+kP0tAkIzKLzARJoJXTT22JK7dWyRGXisUJkofzLt1/LqT6
+	ZOdOgtODEt6V2tBYGLjzkaS5HlDtb9TeQ4DFKGnrW
+X-Received: by 2002:a05:693c:248b:b0:2a4:3593:6450 with SMTP id 5a478bee46e88-2a4ab75ea03mr8177627eec.0.1763511827295;
+        Tue, 18 Nov 2025 16:23:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGY/LUvIaYspXXBZKdhgqXXbTL2b9p/z+6obt25kh74FGuJV/7c04bkuMplZXWKtSHgF7QJnw==
+X-Received: by 2002:a05:693c:248b:b0:2a4:3593:6450 with SMTP id 5a478bee46e88-2a4ab75ea03mr8177609eec.0.1763511826697;
+        Tue, 18 Nov 2025 16:23:46 -0800 (PST)
+Received: from [192.168.1.57] ([98.148.145.183])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2a49db4a36asm48843525eec.5.2025.11.18.16.23.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Nov 2025 16:23:44 -0800 (PST)
+Message-ID: <c2f30fc7-8123-4711-a45e-d02155590d22@oss.qualcomm.com>
+Date: Tue, 18 Nov 2025 16:23:42 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,70 +104,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: rockchip: Make eeprom read-only for
- Radxa ROCK 3C/5A/5C
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: alchark@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- dsimic@manjaro.org, heiko@sntech.de, krzk+dt@kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20251112035133.28753-5-naoki@radxa.com>
- <20251113140020.919159-1-amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v6 4/5] media: qcom: camss: csid: Add support for CSID
+ 1080
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Atiya Kailany <atiya.kailany@oss.qualcomm.com>
+References: <20251113-add-support-for-camss-on-kaanapali-v6-0-1e6038785a8e@oss.qualcomm.com>
+ <20251113-add-support-for-camss-on-kaanapali-v6-4-1e6038785a8e@oss.qualcomm.com>
+ <79097e86-1570-440d-b18c-43b143f9ab54@linaro.org>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20251113140020.919159-1-amadeus@jmu.edu.cn>
+From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
+In-Reply-To: <79097e86-1570-440d-b18c-43b143f9ab54@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: Ns5uoka424kMp4azHtaauTgrSlfx3MOH+MxTfFqT8buVllDVBcOJ0mQK
-	2biwZsnRyDOnQHZby+/mQ7LTZ994ScBza+mpYpqGZ5w7IZlmd4fWR2SXb92FBwi5J4mtAt2
-	TcCvRahfHHlOa15Qd2iiH9AzE4ZFIgQAqlNUufe3Q1oZwUDJd73aJ4gaPGGAWEYgxcLee9S
-	6r4/c5+9FUoZk1WeVU36JHSEm8Ds89qMptpNTz/S10JorKU6z6ovJeQQHv9CNqMhNLTdGvH
-	iQ5Zw+rTAfwtv54qcExQM3WDxFh8zdOMCJln9GF03BI6ZzZ11sU1ls/F13JB1s3rF0KPTSF
-	5Py0gbz0Jbu81GmxADjI828IFdnl4ybepesIYD4S+VlksqNNJJnbXfdIourIabprt2/OmXG
-	NgA/y1WMg+IGc68mDYBVureyzNpQGzw5cY1ZE4tGwMjfXCtCzCYbEapq9DI+G/FfuuS8LyL
-	sn8qOSdzbmhGU8SOjgJpQDk3nP022D0tCIgO+aRWFdMAT/K/82gPwom5RELpbz2iUoNEosZ
-	UG7q54/x9J7Bx+KzkTN84xDnu8xrw9dRbN7N7ht712EcVQOF44Clyb6ZOGtyMu3oRPL75lG
-	+hu8G/hzZBFKynKA4Iq8VIMBkaQcuvrvE0vYdZklNPP6VXnsv6tpz/tVPGPvmzP1SYmppsE
-	tQgtLk7XOmrtk0UXWUaR5OUzG7o49CDWRXv+F4ns3kswb4joQjNLdxg2mBNAuVRevUZq11G
-	toKIOode7nFO1OmIK3hSb6LAtXFwq1BaM7ydLq+WvYQvC5g/tdg0vdi3xJLntQSJ80dpzWy
-	VucWsE/Q4Cqt76724zFs0HUmnUHMlocomqqAuibTneKrGtF34LzJcOIbhN2vx38nQb87Vj9
-	CrWAFLoEWtSle8+hV51hHBotVu9YeDnt/8iijTd3TJJNDckWI+bDk20tPJycC7qbhNAFlmX
-	vgLA/dJh4PQUYBeYqtlsTaDc6yBkwQRd+81zwHeCuqa3t8w==
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-X-QQ-RECHKSPAM: 0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: G6mWn_EPLdoF5US7VqjRhHwWNrc2_ksw
+X-Proofpoint-ORIG-GUID: G6mWn_EPLdoF5US7VqjRhHwWNrc2_ksw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE5MDAwMCBTYWx0ZWRfX4kXZBxPb8Wfg
+ v+HwpyRWSNLHX2dN7SQknLamR5p5oogmJXQanXngzJwKeey19lQo0hNioTrz9gqlYZtYUzkQV7m
+ ylaCFpuGAXpJios09c24nbvprOk4aTuogwCL2bG+1WZMsD726nWFl5ZhYpftbcP3CYWBHm+kiPm
+ dSERlgx2Cq3L/rBHTGTwwl/4GVJkp/aWoSGZjfL2LZEs0X8Zcn7ZkCP7FRf6Ob6yqIwu5ysUAbF
+ DD10YGcsGVO4z0A3yoGP4dTZ+1mHT57PEqm4qlPYuBAruUwElYSLFTtIrXiYGK14/KdJxE9m8M6
+ yjcg/E1LgbqgJybsqdDdi0PKggFLujvGnX+AoOXQs/InFufVP+RlcYTCEkERNsvXI+hANBpfISy
+ T8f1tz/kcmTeDald/RiD6PvZwlSqeQ==
+X-Authority-Analysis: v=2.4 cv=L+kQguT8 c=1 sm=1 tr=0 ts=691d0e14 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=BiHMn5M11h/vNwziJwzFrg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=5SxNaTsAWBRRj6OLVwAA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-18_04,2025-11-18_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 malwarescore=0 lowpriorityscore=0
+ clxscore=1015 bulkscore=0 adultscore=0 spamscore=0 phishscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511190000
 
-Hi Chukun,
 
-On 11/13/25 23:00, Chukun Pan wrote:
-> Hi,
-> 
->> Make the BL24C16 EEPROM chips found on Radxa ROCK 3C, 5A and 5C SBCs
->> read-only, [1] [2] [3] because they contain factory-programmed data
->> that isn't supposed to be modified by the end users. [4]
-> 
-> Is this true? I confirmed that the EEPROM was empty when I submitted
-> the ROCK 3C support. Based on the Radxa boards I purchased, it seems
-> that only the "Network Computer" series SBC (E20C, E24C, E52C, E54C)
-> have production information in their EEPROM.
-
-I have confirmed with the Radxa internal team, and it is clear that for 
-"all" products, the EEPROM (regardless of whether data has been written 
-or not) is designated as: "The EEPROM is for factory data; users can 
-read it, but they are not expected to write to it." This confirms that 
-defining a read-only property is appropriate.
-
-I will be submitting a series of patches to add eeprom nodes for several 
-Radxa boards, and all of them will include the read-only property.
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Thanks,
-> Chukun
-> 
+On 11/18/2025 1:43 AM, Bryan O'Donoghue wrote:
+> On 14/11/2025 03:29, Hangxiang Ma wrote:
+>> +            if (buf_done_val & BIT(BUF_DONE_IRQ_STATUS_RDI_OFFSET + 
+>> i)) {
+>> +                /*
+>> +                 * buf done and RUP IRQ have been moved to CSID from 
+>> VFE.
+>> +                 * Once CSID received buf done, need notify VFE of this
+>> +                 * event and trigger VFE to handle buf done process.
+>> +                 */
+>> +                camss_buf_done(csid->camss, csid->id, i);
+>> +            }
+>
+> Somebody needs to have a conversation with the Si design people to 
+> tell them to stop moving this functionality around... its completely 
+> demented.
+>
+> ---
+> bod
+>
+If this is different between any of the recent chip sets (which I am not 
+aware of), we can discuss with the HW team and standardize. I will take 
+an AI on this. Other than that, I believe there is no code change 
+required here. Thanks.
 
 
