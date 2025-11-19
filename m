@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-240400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5812C70C1C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:16:52 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C954C70C01
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:16:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 25248350D3B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:16:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 74E194E0660
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BBFF366DC1;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7621B31ED92;
 	Wed, 19 Nov 2025 19:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HDPfqYaX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GmR/5M8h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C3B2D839E
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 19:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9202E1C7B
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 19:15:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763579761; cv=none; b=DQ3XfFZDHO8fmnnUgVfBFNeiSOt3qul0QigB0etiyiJM1rfU/F+btnvOVea98n65HHfRJ63ARd6WqLzHFRhWUyIP9l9mX6vXVJScuEO1egDBbUNm+1mh6pWn1zzpPhiM3Kh2WuqXZCWD9sMGD2fx0ZgcmWK/PNULSOZDQih3fCM=
+	t=1763579760; cv=none; b=ujpR7w2Zf2X4Bx+cTS0a3RS/1D55G/hoMDt/ts9Hq89AKdZ+V98XqDuoTFyMLCRmdPbhyAuE53UAuO5JGp35WNtQaPKps4E/tQnjeWqW8tlA45me97YAsqJFdhBoIvgH5UP+lDQlSoPbxPU3TcmE1I66379hgNlzq8jgWlPGH1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763579761; c=relaxed/simple;
-	bh=PyqxDeLWnklxDLea4lMZHNmW8+0PYRict1QhyG/l/1A=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NfyiOnVCrusaYWZYbz5GJ4Yup7SQ+bwvEGdkSHMpwvXD3+66+ZEe11gOi+EjLG+cOCKNIBNEBvWTf9KttNop2hyD5UWBDc4WyVY90KnRRbapOPTKzcfyxA5Ovxi96HO52rXUB68M7z2Hrddj54+iG6lNi/G2r8i1o7xSu1ztmXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HDPfqYaX; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1763579760; c=relaxed/simple;
+	bh=OhAPqaXLXCmsNIfo7/tILARHNy+GrLJldAAVbkxmaW8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=oLCdXgcuNwTHAhJuZTOjn7/Pqj3pRDPWqDBvv9dMRg2eR2q+TUIVQJnwP2GYrvEfq90HAGSQRzmW3WG6/of2A34WEvTEqW5mCZxkia9Qsryu2Y+b9x2bYu5xNucohXnCoTh6K1ywyd0rQZ8n9K8GECTt1r6oWaasY0NHNgDewSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GmR/5M8h; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso1158145e9.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 11:15:52 -0800 (PST)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-429ce7e79f8so58024f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 11:15:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763579749; x=1764184549; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=C6OuqeJZhvGMHSS4ImkZHuubYYQPzVP1/U0T2ymBBBY=;
-        b=HDPfqYaXbqS08Y/WCNCa/sD12fo5tc9BhHb6kugKLr3bc459tqqQAIUch8tHnFUedS
-         cPiY6EMsl4jz4+PAASuO8uEn7jNuXOSbZYSIjtQFzqhdqpbdl/Sucbgr7BhSIN84rmM1
-         PnqrQm7N4y7P0A+44Mxh+gXFNsEJino6fJwaQVQJxu7ZXg1azCHg7YfjMxqC8Ptv6IQR
-         xcOSe+fdb1yf31+zv8GLJ340iUcjw+OavXEvlK0Xqk/7N4Do8zA4ZgIYeNWtMwGRiKfD
-         npGn2ONKzsNoeYx6Z0KDsjM79nxM1sCAqhvqkd+R5AfKu9McA12i+LFPneQgp58IgMis
-         wNpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763579749; x=1764184549;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1763579750; x=1764184550; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=C6OuqeJZhvGMHSS4ImkZHuubYYQPzVP1/U0T2ymBBBY=;
-        b=RmorS8PkCenFk0OhWClBPcwACB/dlDOKrHshuVZF9DfyTkArZAOAa0PcBJiU9Ql3Qm
-         iV9RLogVdvflmIv0StAtp2nxnOLcqCiSmQIcrz1j5VSmiAfJERVSKeAuvP1+DRm0WjPC
-         mJguo9+iy3uy1snQ7x/ZM6CvVpAoevM+EOEZI1wjYMrosmEWMkF+iNh8hIoFK57P6CGY
-         Nt5FgW0VEHOsioNa15/h8BBTx279ESJqiim4gQmOWJmXRlDx0MXLWT0ntL0Upq8e1Myk
-         NWk7BF/5bA8lUJNfHmIItwCBY66/PL5Ss6tiwegWyRQhUOsQTc2PRyM0LU+cZcCZOb8e
-         wgoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXI1XdG90LygPO2LEdSsCAviJ5bPBY2ckwzThZK+7jpQnODACP+tyy6Ql85RTtx3hRJjygR2riof2dB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+glprYx09Q4p4p1zWQ8q39RwbRZdm3XATMZxNRHdaUGIg/w2Q
-	PHqTwU+a13jPM5LTuFQCwxQEB6ArOnZIYbxlQZ5CcIRYyRMQTyQsU9+fUZQDM9NbYhI=
-X-Gm-Gg: ASbGncuk+XEdrsvJlvg6uKPUqjN6GvHpxPuVZbQyCdPM4IDEITeXBDuA7YKw8mIPOsM
-	hf5i7E5kMJLYZk0e+Y2xm7ffvtOWTjkHJ/7KP5uxqT/bOjC8YbOJBDNk1yLpsF4y2RL0jxSSZKM
-	Mmd1j0i2Q7ud9WwIEmh0NraW7wcP0yT+NasGBT+SIbS2995845Z94LOmxmiFK0U+umSTKUBWNcc
-	rARBkLmrUktp4gKnFkQaJCeQGQzBLtFH6uGo4AJ/AM8Y9O3bQb2L1PNDu7BiP6jJCZbwPKSjkzz
-	ZwolQCT5U6En28vzwkQgsfGlQ0Xv3ABw5aFbgH9ZRisJWpzpt9eWPn2ar8ZolLANiZ3ER3XcJco
-	TW4SIWDyphsPLafbxfHQ8PfVOUzRGVObIkJOqkEcWE5FBL2uZcHyx94yulPgqB/0k51fZTiskXf
-	onXVZzJimXV+ZJOcD9+WxHXRBwu1QcsMw=
-X-Google-Smtp-Source: AGHT+IE/w2b8gSMCy9bUs8RTliLQAWBb9m76KMY755BVK1VHoNHvgJujjZcMR9OFxrqWVtJ6+6St/Q==
-X-Received: by 2002:a05:600c:154d:b0:475:d8b3:a9d5 with SMTP id 5b1f17b1804b1-477b8953efdmr3897565e9.10.1763579749139;
-        Wed, 19 Nov 2025 11:15:49 -0800 (PST)
+        bh=tZahglen05z3CRdzByKKHS/uCh35Ibd/55Vn0qmvXT0=;
+        b=GmR/5M8hKGcY/fmoclyUwornqytGUr+nWy4thm6HDc86qBtUDO/E08PDJCqRmG1Kbc
+         TRSOKCz9GfI6E1ZTQqXPWInacqctUxzjBzNVHZuqfcQZdqzOScdLfzJ97IAiXy3V2yEE
+         oI5fp2vIJZqF5UfRbmKm6jDZLlA7DJuVNQZNUr/Dfqet6n3nv55aY1e89EBXS6Ed9k2c
+         +QGDtyF5A8Un8Vtz87iGeFRQm93twjtEfsPUQ3DYAGLgp4SuuqwZ0X1SXOlytJ+eOrYc
+         WabArJqzXzjQnd1E6Hckf6u0DkmufpadnyBfWiaAO6a8ifkmaXbmVsfthBv6VzZrmWXz
+         4k0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763579750; x=1764184550;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tZahglen05z3CRdzByKKHS/uCh35Ibd/55Vn0qmvXT0=;
+        b=h0gRLHcMAURcuEidNhBWNdEiLCw6w1EWlDWxJnDRbd1FrLLcwpmeNSQT7RQjiVIy4m
+         06VQz9rLX0QrHEn4JSfUeVLF426ma2E5Jbn3a/H62dY3RwEsvdY0zzAfsfn2FaatmmPm
+         tyXpO+fTXzs14ax8xiMx2l57Q9EL2p7pjY0Rt8azyTZd7jE/dHNDYpS9n2paVcYmGHJ3
+         NwXZ3VJbuguU3gi4QS2SLLXb0ZLsVq6Po2Dh4LL8B1CGxeczVdCfF9ycSRWgAKSkE6Uq
+         ZElWIy0iESorZONSZqqjpCYOjmm76B1dFaVfStkjszkoIAopE358K5+eYdZIj/le03Gs
+         ERQA==
+X-Forwarded-Encrypted: i=1; AJvYcCWJHK9MDMTqin9rLD+Z9KGQky91Xy+fYFrU7H1Xfm8p3/Khowctz2HeoeewK5xLF4+/QTD26pDPIE5Q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/mIKgehnm2Tk8hn88NAg3IpTMYW6kC/+GmES82C3rnEebdGpu
+	pEWneqLR6mKsd7K7NBq6xKAMRqgt4jijbo86ESmVRK4K3dLzqvPMEt/6nhW/t7cnDyQ=
+X-Gm-Gg: ASbGnctwqCAfGKCP5/0meyeb4LMhLliWPQeoMGKHy4OaiQK5ppBuT6Q2O8R+S+EpGlO
+	ZE8pi0aY25dsTES8uJZpjUaI6hb9IsmSERL9eWHB6/u5pjQQE8oKYDqXye9tPHgUj4+PbtG4VCr
+	9xwAB8tdFjXcyBNFfav7LS7XXsxvK/tpTodpXUMEQlG9lS2M6cnhHyzJkbVeiVOQAWwqjZnlvLg
+	/C37Cv6e7lgUuAybFl7VcFW99Aq1nHB5WJzc+gGmotfXOiZeLmF3zsBfFj5cTPWGZaG3D/0I1ib
+	nIh3HfUcl+72/32Dly2TNCP6AhJUPGf2xmGKppwsZWiWaR3jQCKUlAtLPCIBNIZYUEfFnMGE0o3
+	glHckpd7uPfGTHrtiyO6NeybVSq8e+VW1KuKcJ+2qKNq2MDgZHm2qdKbuk6ci3+vXZftgjSmvYZ
+	VLOMP6kFEJlOC2CaZh6XELbgzNPF5h45vGFAbNtPYD2A==
+X-Google-Smtp-Source: AGHT+IFKE+Ky/K++z5OHPA04EVmi5tIsUEcEojQOiVrA+eQqY31INhQV7qHFlCCEBZCKCcJw0G3bFw==
+X-Received: by 2002:a05:6000:3106:b0:429:8d0f:ebf with SMTP id ffacd0b85a97d-42b5938fad5mr21012521f8f.42.1763579750166;
+        Wed, 19 Nov 2025 11:15:50 -0800 (PST)
 Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:37e6:ed62:3c8b:2621])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fd9061sm788246f8f.41.2025.11.19.11.15.47
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fd9061sm788246f8f.41.2025.11.19.11.15.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 11:15:48 -0800 (PST)
+        Wed, 19 Nov 2025 11:15:49 -0800 (PST)
 From: Daniel Lezcano <daniel.lezcano@linaro.org>
 To: jic23@kernel.org,
 	dlechner@baylibre.com,
@@ -88,10 +90,12 @@ Cc: linux-iio@vger.kernel.org,
 	mbrugger@suse.com,
 	ghennadi.procopciuc@oss.nxp.com,
 	vkoul@kernel.org
-Subject: [PATCH v7 0/2] NXP SAR ADC IIO driver for s32g2/3 platforms
-Date: Wed, 19 Nov 2025 20:15:43 +0100
-Message-ID: <20251119191545.46053-1-daniel.lezcano@linaro.org>
+Subject: [PATCH v7 1/2] dt-bindings: iio: adc: Add the NXP SAR ADC for s32g2/3 platforms
+Date: Wed, 19 Nov 2025 20:15:44 +0100
+Message-ID: <20251119191545.46053-2-daniel.lezcano@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251119191545.46053-1-daniel.lezcano@linaro.org>
+References: <20251119191545.46053-1-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,168 +104,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The S32G2 and S32G3 platforms have a couple of successive
-approximation register (SAR) ADCs with eight channels and 12-bit
-resolution. These changes provide the driver support for these ADCs
-and the bindings describing them.
+The s32g2 and s32g3 NXP platforms have two instances of a Successive
+Approximation Register ADC. It supports the raw, trigger and scan
+modes which involves the DMA. Add their descriptions.
 
-The driver is derived from the BSP driver version. It has been partly
-rewritten to conform to upstream criteria.
-
-https://github.com/nxp-auto-linux/linux/blob/release/bsp44.0-6.6.85-rt/drivers/iio/adc/s32cc_adc.c
-
-After the V1 posting there were some discussions around the DMA code
-to be converted to use the IIO DMA API [1]. Unfortunately this one is
-not yet fully implemented and merged in the framework to support the
-cyclic DMA. The current DMA code in the driver has been used in
-production since several years and even if I agree it can be improved
-with a dedicated IIO DMA API in the future, IMO, it sounds reasonable
-to keep it as is until the IIO DMA API supporting the cyclic DMA is
-merged. I'll be glad to convert the driver code if such an API exists
-and allows to remove code inside the driver.
-
-[1] https://lore.kernel.org/all/c30bb4b6328d15a9c213c0fa64b909035dc7bf40.camel@gmail.com/
-[2] https://lore.kernel.org/all/aRyBKH4KOQ1L8lA4@black.igk.intel.com/
-
-Changelog:
-	* V7:
-	  ** Andy Shevchenko **
-	  - Moved paragraph closer to the tags in the changelog
-	  - Used Originally-by which is more adequate
-	  - Removed unneeded modulo conversion in macro
-	  - Fixed the consistency of the style by lowercasing the hexa value
-	  - Rename a timeout macro and remove another one
-	  - Clarified a comment when getting the power state of the ADC
-	  - Added a comment to clarify the clock is fast and suitable in atomic context
-	  - Uppercased the 'adc' words
-	  - Added a TODO to use field_get() when available
-	  - Removed unneeded explicit casting
-	  - Replaced a more readable version with raw ? 0 : 1
-	  - Folded return value check with wait_for_completion_interruptible()
-	  - Fixed comment "8 bits" --> "8-bit"
-	  - Fixed typo in comment
-	  - Fixed comment "iio_push_to_buffers_with_ts()"
-	  - Clarified why not using a pointer to a mask
-	  - Removed unneeded blank line
-	  - Removed duplicate error code in message
-	  - Initialized the spin lock before requesting the interrupt
-	  - One lined declaration in suspend/resume callbacks
-	  - Added trailing comma in structure initialization
-
-	* V6:
-	  ** Vinod Koul **
-	  - Dynamically allocate/release the channel at enable/disable
-
-	  ** Jonathan Cameron **
-	  - Reached out Vinod to clarify the buffer life cycle
-	  - Inverted more intuitive variable initialization
-	  - Updated comment with "iio_push_to_buffers_with_ts"
-
-	  ** Andy Shevchenko **
-	  - Removed unused NXP_SAR_ADC_IIO_BUFF_SZ macro
-	  - Removed "<litteral>U" annotation
-	  - Checked the buffer is a byte buffer
-	  - Investigated callback routine vs residue and updated the changelog
-	    the conclusions [2]
-
-	* V5:
-	  - Rebased against v6.18-rc1
-
-	  ** Jonathan Cameron **
-	  - Replace DRIVER_NAME macro with its literal string
-	  - Used FIELD_MODIFY() wherever it is possible
-	  - Complied with the 80 chars convention
-	  - Combined two variables in a single line declaration
-	  - Removed the 'remove' function as it is useless
-	  - Changed s32g2_sar_adc_data structure indentation / format
-
-	* V4:
-	  ** Christophe Jaillet **
-	  - Used dmam_alloc_coherent() instead of dma_alloc_coherent()
-
-	* V3:
-	  ** Jonathan Cameron **
-	  - Removed specific IIO_SYSFS_TRIGGER dependency in Kconfig
-	  - Fixed headers
-	  - Avoided macro generic names
-	  - Used IIO_DECLARE_BUFFER_WITH_TS
-	  - Documented buffer and buffer_chan
-	  - Fixed single line comment
-	  - Commented why channel 32 is the timestamp
-	  - Renamed __<prefixed> functions
-	  - Factored out the raw read function to prevent nested goto in the switch
-	  - Returned -EINVAL instead of break
-	  - Removed explict pointer cast
-	  - Used iio_push_to_buffers_with_ts variant
-	  - Fixed ordering operations in postenable / predisable
-	  - Return IRQ_HANDLED even if there is an error in the isr
-	  - Fixed devm_add_action_or_reset() to return directly
-	  - Used sizeof(*var) instead of sizeof(struct myvar)
-	  - Used model name instead of dev_name()
-	  - Used dev_err_probe() in any case in the probe function
-	  - Fixed indentation
-
-	  ** David Lechner **
-	  - Kept alphabetical order in Makefile
-	  - Changed explicit GPL-2.0-only
-	  - Removed clock name in when calling devm_clk_get_enabled()
-
-	  ** Andriy Shevchenko **
-	  - Fixed headers ordering and added the missing ones
-	  - Fixed constant numeric format
-	  - Ran pahole and consolidated the nxp_sar_adc structure
-	  - Fixed semi-column in comments and typos
-	  - Fixed indentation
-	  - Moved data assignment before iio_dev allocation
-
-	* V2:
-	  - Massaged the cover letter changelog to explain the DMA
-	  ** Andriy Shevchenko **
-	  - Added missing headers and use proper header for of.h
-	  - Changed macro offset zero to be consistent
-	  - Remove macros REG_ADC_MCR_NRSMPL_* as they are unused
-	  - Changed delays macro under the form 100000 => 100 * USEC_PER_MSEC
-	  - Replaced PAGE_SIZE by a NXP_PAGE_SIZE = SZ_4K macro
-	  - Replaced read_poll_timeout() by readl_poll_timeout()
-	  - Changed error pattern "error first"
-	  - Replaced variable type 'int' to 'unsigned int'
-	  - Fixed bug right instead of left shift, use BIT(channel)
-	  - Returned directly from switch-case
-	  - Used guard(spinlock_irqsave)()
-	  - One liner function call
-	  - Remove redundant {}
-	  - Write default values litterals instead of temporary variables
-	  - Changed variable name vref -> vref_mV
-	  - Removed unneeded error message
-	  - Used dev_err_probe() consistently
-	  - Removed successful driver probe message
-	  - Removed redundant blank line
-
-	  ** Nuno Sa **
-	  - Replaced of_device_get_match_data() by device_get_match_data()
-	  - Removed iio_device_unregister() because devm_iio_device_register() is used
-	  - Removed "/* sentinel */" comment
-	  - Removed CONFIG_PM_SLEEP defiries
-
-	  ** Krzysztof Kozlowski / David Lechner **
-	  - Removed clock-names in DT bindings
-	  - Fixed minItems by maxItems
-
-	* V1:
-	  - Initial post
-
-Daniel Lezcano (2):
-  dt-bindings: iio: adc: Add the NXP SAR ADC for s32g2/3 platforms
-  iio: adc: Add the NXP SAR ADC support for the s32g2/3 platforms
-
- .../bindings/iio/adc/nxp,s32g2-sar-adc.yaml   |   63 +
- drivers/iio/adc/Kconfig                       |   12 +
- drivers/iio/adc/Makefile                      |    1 +
- drivers/iio/adc/nxp-sar-adc.c                 | 1015 +++++++++++++++++
- 4 files changed, 1091 insertions(+)
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/iio/adc/nxp,s32g2-sar-adc.yaml   | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml
- create mode 100644 drivers/iio/adc/nxp-sar-adc.c
 
+diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml
+new file mode 100644
+index 000000000000..ec258f224df8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/nxp,s32g2-sar-adc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP Successive Approximation ADC
++
++description:
++  The NXP SAR ADC provides fast and accurate analog-to-digital
++  conversion using the Successive Approximation Register (SAR) method.
++  It has 12-bit resolution with 8 input channels. Conversions can be
++  launched in software or using hardware triggers. It supports
++  continuous and one-shot modes with separate registers.
++
++maintainers:
++  - Daniel Lezcano <daniel.lezcano@kernel.org>
++
++properties:
++  compatible:
++    oneOf:
++      - const: nxp,s32g2-sar-adc
++      - items:
++          - const: nxp,s32g3-sar-adc
++          - const: nxp,s32g2-sar-adc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    const: rx
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - dmas
++  - dma-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    adc@401f8000 {
++        compatible = "nxp,s32g2-sar-adc";
++        reg = <0x401f8000 0x1000>;
++        interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clks 0x41>;
++        dmas = <&edma0 0 32>;
++        dma-names = "rx";
++    };
 -- 
 2.43.0
 
