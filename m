@@ -1,144 +1,139 @@
-Return-Path: <devicetree+bounces-240056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A81C6CFAC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:49:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7155FC6CF9D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:47:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3670D4E1D0A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 06:49:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 0906923EA4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 06:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DFA2D3A89;
-	Wed, 19 Nov 2025 06:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EAB531960D;
+	Wed, 19 Nov 2025 06:47:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="YI8H3jzT"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="yLXwecfE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13342DBF5E;
-	Wed, 19 Nov 2025 06:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D6131064A;
+	Wed, 19 Nov 2025 06:47:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763534987; cv=none; b=gTDU+SGfG41U4tA5x2FyfYl5hTFzuvGfuW6pH0S4uFCaaYq4etdFqRfyRDY0e8FgfrcWqzjhcDOxMgfaYg8uv0DImmrdFQuDzN95xZMvVUX5xwz4se6Dw6uPc3fAoV7BklRku3TEn6e+JHlx8j2bcaOxxkXH5oT2jpQL1CGngJI=
+	t=1763534854; cv=none; b=CjHovwh125XobUPVz9SM1gvgXB3PeImj6MdSEL812+BZmEk+kBaDpGN/GMwxR5GMX5I1FBUIkYNLkHhSJP84oA9ZqJ6Wx3OPnGmVh44Lcpzw03y6EVW0RwKUybJFYIxi5bHG5LRjjQScCF2FFeXEYuPxAI5IfreGUW5+IAQtf6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763534987; c=relaxed/simple;
-	bh=1Gd3ZPcpZCccuSNzJYaGEPiStISD0m98tSjC8VyiwbA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=mJt+DBhiX7C9ML1PhWiXfRAE/P6lUmvrXC2rACi/S38ZKMq0W3yr5zr9J4Xd2RD4XuA7+Y+xrDgO+yCq4S40exbeCgllB3ZLRRMdfDJ4Y6kyutNoB92CpT9nGKPHEFsMN0C20bvxBac2TByqe1qqPIzfL9INmd635/wGU+qfSsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=YI8H3jzT; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AJ6kNXZ13032395, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1763534784; bh=1Gd3ZPcpZCccuSNzJYaGEPiStISD0m98tSjC8VyiwbA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:MIME-Version;
-	b=YI8H3jzTbBaVCOzToRtvwnHs++qBXHrn/tuF39PLJUQ38nhlji/EWhnZGB5DMNgos
-	 NVAMla+rmXNWm1xWMwkAfTi6I7VkrOr07i0Pc4BAyOT9DYembD78uqqQKk7KZojNIY
-	 jKBuiI13miA9NdqTAl8LEJw+0Xk4q6o9sbwWel5CHQHFI2qFj7s1xV6uSwu9WSoU05
-	 khc3b8cOXfD/Hz2C9D9AHeiOhcChydathnPqIiEnSoeZ0aqUmX7tkXd1fin7zmADaq
-	 zcjiTbqEJpDEAuG1MO1bBy8foR01U9wTZU2isKvdUQNrEulsxeeFkc+rMko8avrgEE
-	 8EBdwQUjd9d4g==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AJ6kNXZ13032395
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 19 Nov 2025 14:46:24 +0800
-Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.27; Wed, 19 Nov 2025 14:46:24 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.27; Wed, 19 Nov 2025 14:46:24 +0800
-Received: from RTKEXHMBS06.realtek.com.tw ([::1]) by
- RTKEXHMBS06.realtek.com.tw ([fe80::744:4bc9:832c:9b7e%10]) with mapi id
- 15.02.1544.027; Wed, 19 Nov 2025 14:46:24 +0800
-From: =?utf-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        "afaerber@suse.de"
-	<afaerber@suse.de>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?=
-	<james.tai@realtek.com>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "linux-realtek-soc@lists.infradead.org"
-	<linux-realtek-soc@lists.infradead.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        =?utf-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?=
-	<cy.huang@realtek.com>,
-        =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?=
-	<stanley_chang@realtek.com>
-Subject: RE: [PATCH v2 2/3] dt-bindings: mfd: Add Realtek MISC system
- controller
-Thread-Topic: [PATCH v2 2/3] dt-bindings: mfd: Add Realtek MISC system
- controller
-Thread-Index: AQHcVJlAzHmV40ZjSkSQ8WpSKXbqLLT2ughw//98TgCAAJ8DAP//iGCAgAM4iJA=
-Date: Wed, 19 Nov 2025 06:46:23 +0000
-Message-ID: <d2dbb700ce684ee4a4c4ca120ac5e4e4@realtek.com>
-References: <20251113123009.26568-1-eleanor.lin@realtek.com>
- <20251113123009.26568-3-eleanor.lin@realtek.com>
- <e799389ce8b4449baba83a893361bdd4@realtek.com>
- <94198d5f-e49f-4b38-8288-3be29efd142b@kernel.org>
- <15951264289d44f797ebd4e05238b380@realtek.com>
- <38d7aacd-1c05-4040-8575-bdec0587e08f@kernel.org>
-In-Reply-To: <38d7aacd-1c05-4040-8575-bdec0587e08f@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
+	s=arc-20240116; t=1763534854; c=relaxed/simple;
+	bh=6Of4VRHEaV2qjKF1Znw/tDjESqh1tGLau0QId+6glro=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=U5OzJt++XRcb2mQ6i/z0ZWPS7KnMva3Dg4IFsi1StvrSk/ODU0aCjoivRd/47vxyUK90bIfyVMg4H8LbsCBuBdG0Fc2Xx5e1dE2eFMdRQvO6ms/+48ahEIwRw+vtIX48zNpz5Rz4YBiaMt5cZUqGwC0YCKrUtK94GuR0Jfl1SMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=yLXwecfE; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 85BDF41281;
+	Wed, 19 Nov 2025 07:47:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1763534842; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=VPnh4647l0Ye1/fWlT5mBsuMOhFdOEN38ARA/l13Q8c=;
+	b=yLXwecfEvsrN+fPShQu7pUzx54NBsWvHHEU1/ZnbH64PmSCnxxv2fH/dytG/OADsSPgYMK
+	0hoG5iNr1Hb165RJJNzTHl54ImwWEEKSd1MRWrmqwEMkBdgPTRshpDj7Xpq0HduR2NHx5j
+	gYro03GRO19FOv5cUlSNC0tBRw5DWeiKckTIenGGhp3v0FXTQniVAzNOK6Fa1kyPYIHV4z
+	hosgJERLb/tD0pZNHvE734+iu7aOA2ZjQ8JeFbso/g/6JjjVKEllL7/yO6y60n9uwgOo8C
+	IHzWsNLam8jJ9fxFMXhpga9tsROqnJvVELN7Fs/KTDlKWvQTcOiTc6MRrLXzbA==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <0c224662-b3c2-4075-8b68-c0ae27421ba8@rootcommit.com>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+References: <e4cd11d0-463c-e707-5110-6b92899b1ba3@manjaro.org> <0c224662-b3c2-4075-8b68-c0ae27421ba8@rootcommit.com>
+Date: Wed, 19 Nov 2025 07:47:20 +0100
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+To: "Michael Opdenacker" <michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Message-ID: <3c96ee6b-dca7-1a0a-792b-f8c165ec997d@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v2 1/2] =?utf-8?q?dt-bindings=3A?=
+ =?utf-8?q?_arm=3A?==?utf-8?q?_rockchip=3A?= Add Asus Tinker Board 3 and 3S
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-PiBPbiAxNy8xMS8yMDI1IDEzOjQxLCBZdS1DaHVuIExpbiBb5p6X56WQ5ZCbXSB3cm90ZToNCj4g
-Pj4+DQo+ID4+DQo+ID4+IE5vbmUgb2YgdGhlbS4gWW91IG5lZWQgU29DIHNwZWNpZmljIGNvbXBh
-dGlibGVzIHdoaWNoIGNhbiBiZSB1c2VkIGFzDQo+ID4+IGZhbGxiYWNrcyBmb3IgU29DIHNwZWNp
-ZmljIGNvbXBhdGlibGVzLiBUaGVyZSBpcyBwbGVudHkgb2YgZXhhbXBsZXMNCj4gPj4gZm9yIHRo
-aXMgYWxyZWFkeSwgYnV0IGFueXdheSB0aGlzIGRvZXMgbm90IHNvbHZlIHRoZSBwcm9ibGVtIHRo
-YXQgeW91DQo+ID4+IHN0aWxsIGRpZCBub3QgcHJvcGVybHkgZGVzY3JpYmUgdGhlIGhhcmR3YXJl
-IGJ1dCBpbnN0ZWFkIHVzZSB5b3VyDQo+ID4+IGRvd25zdHJlYW0gYXMgYXJndW1lbnRzLg0KPiA+
-Pg0KPiA+PiBUaGlzIHdpbGwgZ2V0IHlvdSBub3doZXJlLg0KPiA+DQo+ID4gVG8gaW1wbGVtZW50
-IHRoaXMgZmFsbGJhY2sgc3RydWN0dXJlLCBteSB1bmRlcnN0YW5kaW5nIGlzIHRoYXQgdGhlDQo+
-ID4gU29DLWxldmVsIERUU0kgc2hvdWxkIG92ZXJyaWRlIHRoZSBub2RlIGFuZCBwcmVwZW5kIGl0
-cyBTb0Mtc3BlY2lmaWMNCj4gPiBDb21wYXRpYmxlLCB3aGlsZSB0aGUgY29tbW9uIERUU0kgb25s
-eSBwcm92aWRlcyB0aGUgZmFtaWx5LWxldmVsDQo+ID4gY29tcGF0aWJsZS4NCj4gPg0KPiA+IC8q
-IGNvbW1vbiBEVFNJICovDQo+ID4gbWlzYzogc3lzY29uQC4uLiB7DQo+ID4gICAgIGNvbXBhdGli
-bGUgPSAicmVhbHRlayxrZW50LW1pc2MiLCAic3lzY29uIiwgInNpbXBsZS1tZmQiOw0KPiANCj4g
-Tm8uIFlvdSBjaGFuZ2VkIG5vdGhpbmcuIEhvdyBkb2VzIHRoaXMgZGlmZmVyIGZyb20gb3B0aW9u
-cyBJIGRpc2FncmVlZCB3aXRoPw0KPiANCj4gQW55d2F5LCB0aGVyZSBpcyBubyBzdWNoIFNvQyBh
-cyAia2VudCIgYW5kIEkgd2FzIGNsZWFyIC0geW91IG5lZWQgU29DDQo+IGNvbXBhdGlibGVzLg0K
-PiANCj4gRGVmaW5lIHdoYXQgaXMgeW91ciBTb0MgZmlyc3QuDQo+IA0KPiBCZXN0IHJlZ2FyZHMs
-DQo+IEtyenlzenRvZg0KDQpIaSBLcnp5c3p0b2YsDQoNClRoYW5rIHlvdSBmb3IgeW91ciByZXNw
-b25zZS4NCg0KVGhlIG9yaWdpbmFsIGludGVudGlvbiB3YXMgdG8gYWRkIGEgYmFzaWMgS2VudCBk
-ZXZpY2UgdHJlZSwgYnV0IHNpbmNlIHRoZQ0KJ21pc2MnIG5vZGUgaXMgY3VycmVudGx5IGVtcHR5
-LiBJIHdpbGwgcmVtb3ZlIGJvdGggdGhpcyBkZXZpY2Ugbm9kZSBhbmQNCml0cyBjb3JyZXNwb25k
-aW5nIFlBTUwgYmluZGluZyBpbiB2My4NCg0KQWZ0ZXIgZnVydGhlciBjb25zaWRlcmF0aW9uIHdp
-dGhpbiBvdXIgdGVhbSwgd2UgaGF2ZSBkZWNpZGVkIHRvIGFkZA0KcG93ZXItZG9tYWluIGFuZCBy
-ZWJvb3QtbW9kZSBmdW5jdGlvbmFsaXRpZXMgdG8gdGhlICdtaXNjJyBub2RlIGluIHRoZQ0KZnV0
-dXJlLiBBbmQgd2Ugd2lsbCBhZGhlcmUgdG8gdGhlIFNvQy1zcGVjaWZpYyBjb21wYXRpYmxlIHN0
-cmluZyBiaW5kaW5nDQpwYXR0ZXJuLCBmb2xsb3dpbmcgdGhpcyBzdHJ1Y3R1cmU6DQoNCi8qIHNj
-aGVtYSBiaW5kaW5nICovDQpjb21wYXRpYmxlOg0KICBpdGVtczoNCiAgICAtIGVudW06DQogICAg
-ICAgIC0gcmVhbHRlayxydGQxNTAxLW1pc2MNCiAgICAgICAgLSByZWFsdGVrLHJ0ZDE4NjEtbWlz
-Yw0KICAgICAgICAtIHJlYWx0ZWsscnRkMTkyMC1taXNjDQogICAgLSBjb25zdDogc3lzY29uDQog
-ICAgLSBjb25zdDogc2ltcGxlLW1mZA0KDQovKiBTb0Mtc3BlY2lmaWMgRGV2aWNlIFRyZWUgU291
-cmNlIChlLmcuIHJ0ZDE5MjBzLmR0c2kpICovDQoNCiZyYnVzIHsNCiAgbWlzYzogc3lzY29uQDcw
-MDAgew0KICAgIGNvbXBhdGlibGUgPSAicmVhbHRlayxydGQxOTIwLW1pc2MiLCAic3lzY29uIiwg
-InNpbXBsZS1tZmQiOw0KICAgIHJlZyA9IDwweDcwMDAgMHgxMDAwPjsNCiAgICByYW5nZXMgPSA8
-MHgwIDB4NzAwMCAweDEwMDA+Ow0KICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KICAgICNzaXpl
-LWNlbGxzID0gPDE+Ow0KICB9Ow0KfTsNCg0KQmVzdCByZWdhcmRzLA0KWXUtQ2h1bg0K
+Hello Michael,
+
+On Tuesday, November 18, 2025 06:27 CET, Michael Opdenacker <michael.op=
+denacker@rootcommit.com> wrote:
+> On 11/15/25 01:52, Dragan Simic wrote:
+> > I'm sorry again for not mentioning it in my earlier responses,
+> > but shouldn't this addition be specified like below:
+> >
+> >       - description: Asus Tinker Board 3/3S
+> >         items:
+> >           - enum:
+> > 	          - asus,rk3566-tinker-board-3
+> >             - asus,rk3566-tinker-board-3s
+> >           - const: rockchip,rk3566
+> >
+> > ... because the introduced .dts files define the actual board DTs,
+> > by descending from the common .dtsi file, while they're compatible
+> > in the sense of the 3S board variant extending the 3 variant.
+>=20
+> Actually, "make dtbs=5Fcheck" fails if rk3566-tinker-board-3s.dts has=
+:
+> compatible =3D "asus,rk3566-tinker-board-3s",=20
+> "asus,rk3566-tinker-board-3", "rockchip,rk3566";
+>=20
+> The failure is:
+> arch/arm64/boot/dts/rockchip/rk3566-tinker-board-3s.dtb: /=20
+> (asus,rk3566-tinker-board-3s): compatible: 'oneOf' conditional failed=
+,=20
+> one must be fixed:
+>  =C2=A0 =C2=A0 ['asus,rk3566-tinker-board-3s', 'asus,rk3566-tinker-bo=
+ard-3',=20
+> 'rockchip,rk3566'] is too long
+>  =C2=A0 =C2=A0 ['asus,rk3566-tinker-board-3s', 'asus,rk3566-tinker-bo=
+ard-3',=20
+> 'rockchip,rk3566'] is too short
+
+Oh, I missed that completely, thanks for running the checks.
+
+> If I understand correctly, to keep the=C2=A0rk3566-tinker-board-3s.dt=
+s file=20
+> as it is, you need Asus Tinker Board 3 and 3S to have two different=20
+> descriptions as in V2:
+>=20
+> - description: Asus Tinker Board 3 items: - const:=20
+> asus,rk3566-tinker-board-3 - const: rockchip,rk3566 - description: As=
+us=20
+> Tinker Board 3S items: - const: asus,rk3566-tinker-board-3s - const:=20
+> asus,rk3566-tinker-board-3 - const: rockchip,rk3566
+>=20
+> The other solution is to remove the "asus,rk3566-tinker-board-3"=20
+> compatible from=C2=A0rk3566-tinker-board-3s.dts, which is not a big d=
+eal in=20
+> my opinion. In addition, if some code turns out to work only on 3 but=20
+> not on 3S, though that's not expected if 3S is indeed a superset of 3=
+,=20
+> we won't be stuck.
+>=20
+> I can submit a V3 along these lines.
+
+This should let us keep the "asus,rk3566-tinker-board-3" compatible
+in the new rk3566-tinker-board-3s.dts board dts while satisfying the
+validation properly:
+
+  - description: Asus Tinker Board 3/3S
+    items:
+    - enum:
+        - asus,rk3566-tinker-board-3s
+    - const: asus,rk3566-tinker-board-3
+    - const: rockchip,rk3566
+
+I'm quite busy at the moment, hence my delayed response, and I also
+apologize for not running the checks on the above-proposed solution,
+but I think it should work as expected.
+
 
