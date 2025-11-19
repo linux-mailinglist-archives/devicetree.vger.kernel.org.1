@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-240057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96DB7C6CFEE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4CB2C6D020
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:01:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 847DC366BB3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 06:56:55 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 173A63630AC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 06:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7F731CA68;
-	Wed, 19 Nov 2025 06:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AAE831ED6C;
+	Wed, 19 Nov 2025 06:57:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KJyDULlz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cFci5oEn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3FF831BCAA;
-	Wed, 19 Nov 2025 06:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6EB25B662;
+	Wed, 19 Nov 2025 06:57:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763535344; cv=none; b=b9vhPZGQ6Hz//d95Jr0FcK1eoqYshXqv9qULqvp95nAa/3+22bfYiTJ9pWbfb5cvitUwJlYTsWJoDQxtqeHNFkNUGSmoo+44WS13K0JvQb2o+EjnRSpwF7wG/8NFzLEQdbrLCQFOJHIxezCV8VDjrVMnUfLjidufiIArMDe8cGg=
+	t=1763535448; cv=none; b=RT3FBz4wD3bla3Yz/C52DMygdx2nOFVhlaiQIKMnATLRIleZ+eiYn3CaqOKEV0NhxensHqraene+jQz02h8R9MHwuWxXtNoABXf5jR6sJ4Wpiw3yrNe4CUQ6xlOZxaOqJXUMFh6gEGDWarmo91JMualNN01lQ57/mXP0Gh+KwNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763535344; c=relaxed/simple;
-	bh=sNsDnJ3x9r0tgMdFeU0dnDMeTiN+nxC8dTvoMbxMiSY=;
+	s=arc-20240116; t=1763535448; c=relaxed/simple;
+	bh=piHIRtvPgJ/pR7ZXwdMGLC6+yiLapBGLc2VV3ODHwlU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EYtl7/DHCxDN9YyFE60FQjq7oXUwpn2kpjxBg83zW/vvQRK/QewbtkK3AioIo1ddoDnZS1pMPh77pu7Pvu8eP9pfxmYnrHowbOwEbZYY1YggDktgSobZgg6TI1a5LhHBEKwQOmxa4NszvsZcSA2MOyTQU8njnVK2k/iOHT5Xwzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KJyDULlz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58FE2C116D0;
-	Wed, 19 Nov 2025 06:55:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=a6fB2oQ7vXWVFacav+B6MQIeAFgblrNCYlyYDYqpmGNR5/GSEgwGHxzDosm03EgIllZbpJ+LQ2u7tyVtMqYvj7vEViR9g92TLcM0pNiDr2THWhASwpkvlKw4iO+dW0lP88pW/H+3UO/F7LLxRt//u6kw9XLfMPhPPa5XR92M/G8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cFci5oEn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B35FAC19424;
+	Wed, 19 Nov 2025 06:57:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763535343;
-	bh=sNsDnJ3x9r0tgMdFeU0dnDMeTiN+nxC8dTvoMbxMiSY=;
+	s=k20201202; t=1763535447;
+	bh=piHIRtvPgJ/pR7ZXwdMGLC6+yiLapBGLc2VV3ODHwlU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KJyDULlzEaKjlFjeZ9yViqcK6DROeOx9HO33idFpslnPRT0COjsN9Cf3krK5uD2FK
-	 hyHswibHr896T75USbWr/GVZf2BJXYYmrXi4cK7lwCi7Yj8WCu81k1E9kVN0A7LOag
-	 yjk4uZWDEy3MGdsrhW2QNksLDpfkkdEFBLb2fCATJk7qWVoCvLdkZV3Uc60azoONzV
-	 F0RSmdfimvGqE3YORHexGSTzCZLGcaJx46e/+bf/Se8lkrPqSiIyMLYi9uYj+LKOuq
-	 UlySzBq5z8E7ag52VthJFeFjPcg8VNwRP/aOxTn5F7nZtH0aRW/L946SB5tRixZQhN
-	 6xvu6WniBwbCg==
-Message-ID: <5b6acbe4-374f-4554-9d9a-8cf1933ad65b@kernel.org>
-Date: Wed, 19 Nov 2025 07:55:37 +0100
+	b=cFci5oEnTq2MdX8n3f6MQD/N3iYPv2rV4cDD2W3nIliOh5yCbGJ+dV111lF11kgWt
+	 rP4hWHtAl0+Ewum6MXi9vQA4yz2WN15HCL4ptObIJn3xw9b/+wTiVYKF67ItfzgmTf
+	 wslCMlv7kVAbWHhhyeuBuhKgeNi0h7gzK94ac4jEpx2C880uQTUTinLbhvifKIfI5k
+	 hVczaafglCuTtwNrlKIMZ4CYy6fQr7/UJKmAFLlF0w2nZavMnrNtljgXW8fcON3pDX
+	 kM2MWAFMRTMIVQasBRiUQGttJY8En0DacY5mEwoEssDX3P0eLkije68vSrcynzSnsq
+	 lknEUEjcLgT1A==
+Message-ID: <48a0432d-a9b1-416a-931f-46822463ad10@kernel.org>
+Date: Wed, 19 Nov 2025 07:57:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: nxp: imx: Fix mc13xxx LED node names
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251118213551.44116-1-robh@kernel.org>
+Subject: Re: [PATCH v2 05/16] dt-bindings: media: ov5647: Add optional
+ regulators
+To: Jai Luthra <jai.luthra@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Jacopo Mondi <jacopo@jmondi.org>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Naushir Patuck <naush@raspberrypi.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Mauro Carvalho Chehab
+ <mchehab+huawei@kernel.org>, Kieran Bingham
+ <kieran.bingham@ideasonboard.com>,
+ David Plowman <david.plowman@raspberrypi.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Stefan Wahren <wahrenst@gmx.net>,
+ "Ivan T. Ivanov" <iivanov@suse.de>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+References: <20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com>
+ <20251118-b4-rpi-ov5647-v2-5-5e78e7cb7f9b@ideasonboard.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,22 +115,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251118213551.44116-1-robh@kernel.org>
+In-Reply-To: <20251118-b4-rpi-ov5647-v2-5-5e78e7cb7f9b@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/11/2025 22:35, Rob Herring (Arm) wrote:
-> Node names are supposed to be generic and use hexadecimal unit-addresses.
+On 18/11/2025 13:02, Jai Luthra wrote:
+> The OV5647 camera sensor takes 3 voltage supplies. So define those in
+> the bindings as optional regulators, to not break existing users.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
 > ---
->  arch/arm/boot/dts/nxp/imx/imx27-phytec-phycore-rdk.dts | 8 ++++----
->  arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts           | 4 ++--
->  arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts      | 4 ++--
->  arch/arm/boot/dts/nxp/imx/imx51-zii-scu3-esb.dts       | 4 ++--
->  4 files changed, 10 insertions(+), 10 deletions(-)
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
