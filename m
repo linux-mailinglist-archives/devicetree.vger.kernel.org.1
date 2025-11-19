@@ -1,149 +1,132 @@
-Return-Path: <devicetree+bounces-240186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24EB5C6E548
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:49:48 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3AFC6E560
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 12:53:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 75EFD4E50C9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:43:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 9C2E623FE0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:53:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E16352F81;
-	Wed, 19 Nov 2025 11:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DC632721B;
+	Wed, 19 Nov 2025 11:53:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dM1250PN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WbnzNC8t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF8B3446AF;
-	Wed, 19 Nov 2025 11:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16A8986347
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 11:53:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763552609; cv=none; b=EhLYuwAri67jC3xSj0+wRSHNnPkdccq40imKacRVLGNTvzYQTbRii5EfPYmH7b/hgCgvNH/SEWaA16a70BBxPbvs/kaPXIevxNGy2SilY7SHY3JaxbMpBh5swwsYZnwzN4lfNEjmfjcLw7TB7rQRjr+JglX+elNj91mrww9ZVgA=
+	t=1763553198; cv=none; b=t6US8DIMU4Yf3ai7jTwIp5hVoqXr4sEE0xn8bwBTZ4wNYTM3ZLfUUrU2ww7pDANYQ+p0iQCQxnpTTRVMKGYeDGUTo0JeSRVc5l+JK1HjsDpNWUIdspvUJtGyVWbY0mkplmvmFPwJlyl6qNZN1TVsUZwokLGydYd8E+Rybjv3Y3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763552609; c=relaxed/simple;
-	bh=d6KwsYhHbPVt4kfOy79+X9Arnp2t89fn5b7QI+PWzCw=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=qmqiuzwJiqMemgh+hUyeARV40fLtgRjiqWRd/uOh/cEwifPcvYPyHALN12p7R35/pUUZQR+/1fgYFfLeQHUn5ConWO9asZfyo/HK23pXmshjqcmgJS42TL3vPpF7d6pPLMvV1rqd4i2E+mC4XSvnOK21yBroG+tHg5vpHPGeskk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dM1250PN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13CF1C2BCB0;
-	Wed, 19 Nov 2025 11:43:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763552608;
-	bh=d6KwsYhHbPVt4kfOy79+X9Arnp2t89fn5b7QI+PWzCw=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=dM1250PNGbcwhV8Gr3h6Z6OgVj6Ao1fmKsclt6bo2czfNh08/KX7e6nCVjRpvCqgP
-	 FjIxikjVrg3F3dNfP6/lYTEV/o79llk4D0NshKjnqR4u234TbnxdIxxhdatGOOfZ9e
-	 CZ09mq8N6Wsp/u63OyTdE8JDOit+Ju70RiMEsHA/4s7/PZTuYPWurrU+NfFnQi+QqD
-	 DtHlHeioCi6Anrgdz/eRQKkaN3FNNjRnqMHd/VydoZ31aHOwWnB9mZGm4+XYlbHiFq
-	 DRZvb9NUn5HMEaXTwje9MNAdqJipKJjiHfFPdi3bWWbnFyKcN0ZjShqKzfRjIe1s5r
-	 RzWU83ieQ/MkQ==
-Message-ID: <de2f6c52-e9d6-48ae-8620-7c518b686ffd@kernel.org>
-Date: Wed, 19 Nov 2025 12:43:18 +0100
+	s=arc-20240116; t=1763553198; c=relaxed/simple;
+	bh=sYgOih9xbGs3F3XHTRJ7fvFo+edeOEgNokHpkprwd2A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QNlsyD1TmZ6Ti8jsTyNGemPqJ4pBQOAY3CgtZGEwE/KRR3NQPYF/Cs28ZmlR+tiqSRetezzswUymlJ9Xf8NEWwM8Cl3EXQaY59wV7toSV6w3q9FCpaI7h8CSr0Fd6rSSMl7GU6/B3XWobdcfxC9Q+GGAQ6IF/RG6t/vcVIu1bqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WbnzNC8t; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7ad1cd0db3bso5659793b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 03:53:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763553196; x=1764157996; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/dJIwW/N0kWg8cOXmaaT2vRpR7NNxpQwJA/W7KyM2QY=;
+        b=WbnzNC8tHXlfMYKDe2YJ819xCOxAfS7hFxImkaL0disDXSXb4ovw2mYLhjlE8vVaco
+         x10D51/mySLDOdFD0KSe/QCx3O39bq6Az5AqCBG0gbbotEchih1dSrCepMQH6djq3FgG
+         ol04cjNk4qomrWYHeyDJ49o1RAFUW6IEZHRtk52H+ttMB0ZRHg92w6w3Xm3426iu23NG
+         nouaLAaVP1HbcwNECvVL9NvT1daJKsiDfxJgHvGqt8S6shegX3Dtu+At8qzj4J+nrjyS
+         aXFJ0N2Ybt0zcBTBQGGT5nihKsciSqdN32t/lg+f0rMjlyf1331RfktlI0s9neqpzX2N
+         UF1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763553196; x=1764157996;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/dJIwW/N0kWg8cOXmaaT2vRpR7NNxpQwJA/W7KyM2QY=;
+        b=Xo5Csqs7rMv5+3JyXdeWjef+lJRnJXJztv00oobpQYo6gWdGp9A9Sblo5x3NaX6OuC
+         OZdyRWt0Hc4p3iiQ1+V1BwDwCSQs4gJ2R0MP5JKoeqpv4NHW9pxF2i/RiBgpPUlhf4VX
+         QQb9jsaRVxkvnNXsPZsIIF+RaT/5UunEIvzcuyAsFb+R2Sm8Q2+cNTxXDOurcLp1sgb/
+         HS3B6KTI2hEP23Dv/378PoRKdQuWK1NGCzKVTajnpo4CMPtQWulaYW3cG+Odk6kld0yN
+         i/Vf0YcjEwMWcvSG09UO3BiVx9PgafKd1O8+lf7hnyg5+CWHZBdDNhuoujSI/h/fhFba
+         yUfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWlzs8jqOe5TIfPer8Nts/eKjdjgolGb4qm+7k+ULs4nx7f+0o9pNuv2Qsa+FhZt6esAfnqUczvgqJf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGTL0tUiHVgToZ456UTFZeE/ARXa8a4jf7WbdSoYBl6RIPKxXn
+	Wn9ltzhQIpYQDqLVFn9J4ckmiIg7rOU80tIUVEJ1WMbbmOveWFLiUyzf
+X-Gm-Gg: ASbGnctKPCvdLXSmldQ1krdne/j+KRY8roYEvuEmt5BbLkca7OTt2tQuPvMUwbczglT
+	k1Tp1gbPPS2jaRa7L8/Q+UDksBxFhA2fHFK4lhI7Nv05vTiCyByFomzh4AHuhCIqYbd9mHmJ9G1
+	mjQ9ZFu9FzsxpuGYMRt9JcHUA7KV5kjRwu/BnGfESrQrAsH5QUg7RUKCLVtjnGJxHaqC0cQvbzo
+	5cK5A/7b7k5VEHx1VAA3czMbMb7ZssSXJcKic+/+4HRywMu338/7oERKYNVN/RDScFPuXO1cvmh
+	cZl1Pn0XgadGqWof4rv+74oj8grIFiScLu4CngQYrB9DGy1GJtIM33ajaFYkTL1iOzE8qOVtNi9
+	4y5cS4spvGNSGQExG7vAYem8MeDN/Tpc5P1D8BGxF8WedX1C1sOusB+JF7Dn75FGZudb2oHTGwA
+	nBq0/U6eR3cgPaiua0SA==
+X-Google-Smtp-Source: AGHT+IEJfBQbQgtvUYdmvQBm2UrCj4dLEyRvU/IrmcWNvI430xMQUCHPm5Ptcge8YsrdP9W2nWxZkA==
+X-Received: by 2002:a05:6a20:6a1e:b0:350:b8e:f99b with SMTP id adf61e73a8af0-35ba2195757mr20706141637.45.1763553196212;
+        Wed, 19 Nov 2025 03:53:16 -0800 (PST)
+Received: from localhost ([2408:8410:7820:651c:873:1d7e:7195:d122])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bc377dadbc8sm17903908a12.36.2025.11.19.03.53.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Nov 2025 03:53:15 -0800 (PST)
+From: Encrow Thorne <jyc0019@gmail.com>
+Subject: [PATCH 0/3] i2c: spacemit: add reset support
+Date: Wed, 19 Nov 2025 19:46:42 +0800
+Message-Id: <20251119-i2c-k1_reset-support-v1-0-0e9e82bf9b65@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v3 1/4] dt-bindings: clock: Add ARTPEC-9 clock
- controller
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jesper.nilsson@axis.com, lars.persson@axis.com, mturquette@baylibre.com,
- sboyd@kernel.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com,
- cw00.choi@samsung.com, Ravi Patel <ravi.patel@samsung.com>
-Cc: ksk4725@coasia.com, smn1196@coasia.com, linux-arm-kernel@axis.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, pjsin865@coasia.com, gwk1013@coasia.com,
- bread@coasia.com, jspark@coasia.com, limjh0823@coasia.com,
- lightwise@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com,
- shradha.t@samsung.com, swathi.ks@samsung.com, kenkim@coasia.com
-References: <20251029130731.51305-1-ravi.patel@samsung.com>
- <CGME20251029130826epcas5p180506ff38fb57ecca0e33b2f5c57ed6c@epcas5p1.samsung.com>
- <20251029130731.51305-2-ravi.patel@samsung.com>
- <176355242978.116968.261312419155141714.b4-ty@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <176355242978.116968.261312419155141714.b4-ty@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACOuHWkC/x3MXQpAUBBA4a1onk2Zi8hWJPkZTIrbDFKydzeP3
+ 8M5DxirsEEVPaB8icm+BVAcwbB028woYzC4xOVESYbiBlypVTY+0E7vdz2QXFFmTEU/lSmE1Ct
+ Pcv/bunnfD1r01blmAAAA
+X-Change-ID: 20251104-i2c-k1_reset-support-12784e17bf83
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Troy Mitchell <troymitchell988@gmail.com>, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Encrow Thorne <jyc0019@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763553189; l=680;
+ i=jyc0019@gmail.com; s=20251009; h=from:subject:message-id;
+ bh=sYgOih9xbGs3F3XHTRJ7fvFo+edeOEgNokHpkprwd2A=;
+ b=IU3xRJcKwpUMoWT+rUcpgurcIY0Jzk1f2odi1WOayQ+0gfEARL+PNmM6B8g65taYKt+zhWcGC
+ fjXVZc7Ex+oBBt1B5JeclzBIvBPoPI9A4W3sEEPVkZ6EWs87z8jBBGI
+X-Developer-Key: i=jyc0019@gmail.com; a=ed25519;
+ pk=nnjLv04DUE0FXih6IcJUOjWFTEoo4xYQOu7m5RRHvZ4=
 
-On 19/11/2025 12:40, Krzysztof Kozlowski wrote:
-> 
-> On Wed, 29 Oct 2025 18:37:28 +0530, Ravi Patel wrote:
->> Add dt-schema for Axis ARTPEC-9 SoC clock controller.
->>
->> The Clock Management Unit (CMU) has a top-level block CMU_CMU
->> which generates clocks for other blocks.
->>
->> Add device-tree binding definitions for following CMU blocks:
->> - CMU_CMU
->> - CMU_BUS
->> - CMU_CORE
->> - CMU_CPUCL
->> - CMU_FSYS0
->> - CMU_FSYS1
->> - CMU_IMEM
->> - CMU_PERI
->>
->> [...]
-> 
-> Applied, thanks!
-> 
-> [1/4] dt-bindings: clock: Add ARTPEC-9 clock controller
->       (no commit info)
+Add reset control to SpacemiT K1 I2C.
 
+Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
+---
+Encrow Thorne (3):
+      dt-bindings: i2c: spacemit: add optional resets
+      i2c: k1: add reset support
+      riscv: dts: spacemit: add reset property
 
-All applied regardless of above missing commit info.
+ Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml |  3 +++
+ arch/riscv/boot/dts/spacemit/k1.dtsi                       |  2 ++
+ drivers/i2c/busses/i2c-k1.c                                | 11 +++++++++++
+ 3 files changed, 16 insertions(+)
+---
+base-commit: 8fec172c82c2b5f6f8e47ab837c1dc91ee3d1b87
+change-id: 20251104-i2c-k1_reset-support-12784e17bf83
 
 Best regards,
-Krzysztof
+-- 
+Encrow Thorne <jyc0019@gmail.com>
+
 
