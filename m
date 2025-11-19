@@ -1,263 +1,139 @@
-Return-Path: <devicetree+bounces-240271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE834C6F7C5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:00:30 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6900BC6F6D4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:51:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 55F3B4FAD39
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:50:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 662182F00F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C256D36402A;
-	Wed, 19 Nov 2025 14:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F1E3590B9;
+	Wed, 19 Nov 2025 14:47:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BpMDkjUo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TmHkXOB/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010001.outbound.protection.outlook.com [52.101.193.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26CF5279DA6;
-	Wed, 19 Nov 2025 14:46:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.1
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763563606; cv=fail; b=f3B0h5Ba4pBuf8kcGd+3orpoVmHpCJ6BSOtxxmjSOOQWyksmDJEZzaLKGV8mU20us+Ql3w6oUYFZanKL/4cvbuBVaT74wrkvAJvfC3eAjwGESZuzJKmxxzB6Kz0TC7CEiZ0tvmhB/zqd7xzEFs9sk/y1Dr2UxsH7PuYKsL0FBj0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763563606; c=relaxed/simple;
-	bh=7NBMyGVMrGQSa0z5XzF5AvHIqxjgHZU6BD0xgsnlM2Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=K4G32OBOY7ibp8iwOmk9S/fwHwc8wm9BvhntIIsLJ5BSOayRnOJNOvgotbe9IF6GeIV5i3a/ygVUMd41Dwfapt5lhL7lyvuzwAjERUnsPcxQoPRsOsGl9LKiVNBz3p0cw3uw+UAV+4dU7RKqdgpiJdYni+wmwyTY2X98+W98NYU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BpMDkjUo; arc=fail smtp.client-ip=52.101.193.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wzN9tHYWZ16lgOkP++OH3s6LGSEnN+TaBc8FP6cbnizYQkO3uvE9fCqyls/LM5UK9QxX2CeHTJZEXQaYx6hKCIFjJ/tw0Yo+ot8HlnwLhBFCWD4W46CWikeIcGDRjUnZzNdq+bOTdJ+Ug0vJNLIpHLCEmTl9uWTekQyEN06BldmrF1y/kEeQ26IBSZu9Ez+qQ/NfpCK2ntCErxYxuKT+ycHyXg9OI0/Zk6eJMhAe6MG0loQO7JqPg5tmgJ1w9OhHNjaqIf29ZtrJM/zyAq+0aHv6xdSD4ZZVTN8uc8jVtNH0XB8YFiGY0sbVMyEEpQ8IEsMEVkouqL0SeLnJfPo3hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JhUEAo5rQfJbLlsbXat4WcAJ0vqDg2PEckaSW0bIwf8=;
- b=KeBTZsofN8Q3LAasV+TYa39ic2/QwCgdjIKpQ7uxLrRyAUU0es9poz8eN01bMZHV0gR8PTiU/sRWIzo0BxvC7rnpOKHF5ofwgkNZh25c27EfEIJFvERqy/YyxMgPinlaNJFNfbJH920VazX3sl927XRPeQKf0lb8NJp9/xPbHGmbRSeA/n6RuvAb8MDMdrN+xtNbhcf/WcDOeA9HD2sdxKbayjzWzm02sH8fn383CITG1OV2bPrVHUh7Y1SJHdyOSYG0VNGiUXa1MolTdRV8D18tjSEM0ODwrivjKKYaExyeQid7hOrEO848lnX75EyWW2fN3GcdCzPmsAtO7aRx+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JhUEAo5rQfJbLlsbXat4WcAJ0vqDg2PEckaSW0bIwf8=;
- b=BpMDkjUoNldbdg/Ffjz17/nLXp21y8xMlVviEW6p1tIN38QriS72n9jmkFYoPVtp2XunnLnF478yr0A09haCCXK2IK24ZastxPi+LPt0DRsHxH0YxgxPtNbijPiHE+Gdj7hL6lU9aL4sW1ye9rxTYm7x4GZ84++ryJ4jrqfEegs=
-Received: from BN9PR03CA0569.namprd03.prod.outlook.com (2603:10b6:408:138::34)
- by DM4PR10MB5992.namprd10.prod.outlook.com (2603:10b6:8:af::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
- 2025 14:46:40 +0000
-Received: from BN3PEPF0000B076.namprd04.prod.outlook.com
- (2603:10b6:408:138:cafe::fb) by BN9PR03CA0569.outlook.office365.com
- (2603:10b6:408:138::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Wed,
- 19 Nov 2025 14:46:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BN3PEPF0000B076.mail.protection.outlook.com (10.167.243.121) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9343.9 via Frontend Transport; Wed, 19 Nov 2025 14:46:38 +0000
-Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
- 2025 08:46:34 -0600
-Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
- 2025 08:46:34 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 19 Nov 2025 08:46:34 -0600
-Received: from [172.24.233.103] (uda0132425.dhcp.ti.com [172.24.233.103])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AJEkVua2042638;
-	Wed, 19 Nov 2025 08:46:32 -0600
-Message-ID: <002fad46-adb5-402e-8eb0-e4c71b862674@ti.com>
-Date: Wed, 19 Nov 2025 20:16:31 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9598A26ED59
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 14:47:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763563673; cv=none; b=KUmjFMD7H1ntPHzR18gpnshCfLLyd85tgMQM0hNAxVmN7NTZNGFkWWRB7er991YQPKD2nuZUbfTGEis1wbmM5l5uc5rhjeEofEfPaoeiWKqMG0U1h2xMLFK0eF6yxTrzKgg8VHo3eYS4Go0dYzDdrToSgdilDurLiM/PjyKN58k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763563673; c=relaxed/simple;
+	bh=uhzWM/qGYZFfhE1HvQD4WizdEvAfuuSn/VMnpLmpDRA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=B89v5DFvy/ItnZDtwHhvM3bXPPh8hsW+JyO56n8y6pLl445NGarYzozkRoOfd87WIxgXUTMDld7141CNa9RyM8JqBdmEvprBd/hnPlKghWTW9h1pFjO9f4QRMIplnkcPc3p0+yUNDHcTzgxJM/sL6bbwa3YomhwwNrszov2aDcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TmHkXOB/; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4775ae77516so74499195e9.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 06:47:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763563670; x=1764168470; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QeQ7og2zIf2WaBP3fNWtUSnP+euy7z4uHI8eX0I9W/o=;
+        b=TmHkXOB/vHGhDJDAS1B4eJRyx+moXvkG+CYKBlrXmEy3q6j6XwrA1239xvOmSVDkyT
+         qlaqCU9fp3QcwnY+ZGs/0Vhxu6qMqQNpmEwbTBg1HKCOE7b3PngTAU8aJQJjrI0bZu4D
+         vy2l5unEflzClsGqKxFmPbdsUCI3wKBVgM0ha+XLSyaD91hJuf/U0cf7EsEuXqFJjVAT
+         i9TIzzse+wUf0/p1ywWlh9dX4DctMkg+hSBSpQU5DRMoNn/9ThEV63JeNQkhv7BzX1Gs
+         2FFnjIpNcfNciNMHgqJzIHQQ1B75cAUe2tqrMN49gqZ2ybfCF1/34XcqQ8+C5fZz+uNI
+         68Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763563670; x=1764168470;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=QeQ7og2zIf2WaBP3fNWtUSnP+euy7z4uHI8eX0I9W/o=;
+        b=stDxecSNCh5qC1xZl3I5pc3rWiEEB7rB14bJK3AXlZ9AgBq9CDB7h7SxlTA0TkZNtZ
+         QKpVp5x6os1hkdEjR4zpbSCs2rehKGQsMeLdSrTcqt2+jIHgH2bkNJ+Kk7dN9ejgUIBr
+         aG5jD9gx8vyZyXeOHtlJYZzcXFK2FSq5d5hEUOlWKGNfjiPJxz+OMI+h9RaAQijtiocd
+         mAlozFIhdHaGWlveqE+W1HD498leBIT4zlIm91aiqHzbvKR/aqXfn3tyVlzpiF1JSI3Q
+         Oin7JE0kku5gmjqIxoeuqFw97XK5uIHkBdwP8jGtzStcsE4H0fZ1eEEGAM+Ego5z/+hk
+         WTHg==
+X-Gm-Message-State: AOJu0Yz6cFeBpqBFTDDN56VCbEvapBHJ5qbRZRu7x8Jcpy3hOGUc4PQ3
+	VhAyJEQkRgqJ+qOXzOEXCOga9QrXE9ldt6aGZ0R7Jo7n3ZchvGqunbminFmSB9guPNA=
+X-Gm-Gg: ASbGncvD8OzK8/FvsRDEhE9jF8VxTSr13CZ54CX2viTibSzsO0ZqiLpVB2ajQM1y+Pf
+	UFpNr8VSdARypxpVqWWd4QTi8JrPiDPePwF4hc5zXQ4kqPUIFS5jKSHP3ge/2Hu0g4aC6kMjGp7
+	vtksPrxXWOmK5zMBAvHeqpqludHej9x0TRLGuLKdvV0Q7oRS0Z6VLZuqYL/qpSNwVjnjumGC8be
+	NZkKphlM8WK/b+5tC2CrcIucgmN3PKiDUaGIA/g/YCjmDoAAkAS38Rnf/xuKva2geR51URZLMVg
+	60ixZ+/3JsuEag7lTdmit1elPrTW39RCjNd0Z9dIa+Fv3OQg4pUz/FZkRd4YwPf139l0Bs2fXfI
+	Cnk+B6QU6R0FkspW+lwit6QRiKYwnXh2AmGi3FCBDDMvVBa3CCv4ih3HNja2Kferkxr6TI4bvc4
+	uvpK91T/EIAiqfCWHNMUrUDz32yS1A5ew=
+X-Google-Smtp-Source: AGHT+IE+tE828EFZZvZOt5BSe3ijLR8pMVOobVWe9YorjUhOAYJSEIXeL1tJpdukzaJzd5dVtgQ6Mw==
+X-Received: by 2002:a05:600c:1d19:b0:45d:f83b:96aa with SMTP id 5b1f17b1804b1-4778fe51e63mr185910855e9.7.1763563669904;
+        Wed, 19 Nov 2025 06:47:49 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477b102bc9csm53729505e9.8.2025.11.19.06.47.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Nov 2025 06:47:49 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
+References: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
+Subject: Re: (subset) [PATCH v3 0/5] soc: amlogic: Add new Amlogic SoCs
+ info defines
+Message-Id: <176356366923.77927.3381277328480983792.b4-ty@linaro.org>
+Date: Wed, 19 Nov 2025 15:47:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: Add missing applied DT overlay targets
-To: "Rob Herring (Arm)" <robh@kernel.org>, Nishanth Menon <nm@ti.com>, "Tero
- Kristo" <kristo@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Wadim Egorov <w.egorov@phytec.de>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-References: <20251117211316.725960-1-robh@kernel.org>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Content-Language: en-US
-In-Reply-To: <20251117211316.725960-1-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B076:EE_|DM4PR10MB5992:EE_
-X-MS-Office365-Filtering-Correlation-Id: 48be1bc7-0c28-4fae-f0bd-08de277a7231
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RW5oRkY4ZjJuNks3anFiUk1EVU44c0ZNSlRWK2FpZW5SbzdpRHBiOVdyK0lv?=
- =?utf-8?B?WEp3V1VyRlFBeVMzckh2ajJlWUJRaWtqRzc2cjZWb1RrNXlnRDlxOU5sTzlu?=
- =?utf-8?B?SnB3ak9QeEF1Qnkrb2JHRlRGYzdRYk1GR3VHb1dxSWlnQUF3SEcxVEtLUGQ0?=
- =?utf-8?B?STBMdUVSZUc5SDlydnR1UTZOZTFxamdkN0VWcXpDdmxXbFRWVXZjTm04Rmwz?=
- =?utf-8?B?bjZDWmQ3NGFkUTNiT0EyMXhVRUhjdExWRFF5KzhaUXVaLzlmcHpEejJ6MytR?=
- =?utf-8?B?MEZJL0ZJZE9YRFY5TW9lRUJsUnpZQUppOENGU3JZZVZJOGdvZWExQmorZDV3?=
- =?utf-8?B?Sm9abzZlNCsyMnllSk1veU41dGlxdDRDZDliZ3NpNyt4Rk5XcHNPREhVK09C?=
- =?utf-8?B?R0RJbXZmMkJMYUt5RnFmQTVGMy9IN3hFQTd5cnR0STVqUEtQa3Q3NlFKVDRS?=
- =?utf-8?B?U1dmRDh1V0RaRTdxL3hycFNacjVseDNMRkZ0ak8yV3I0Wnpma1ZEOHlqaEtG?=
- =?utf-8?B?UnNodm5WNVF0eHFrZ1BIRGQ5Q1pBOWtTRjJ1VzhLN2FJOUV6RDQ2bkRLZkpB?=
- =?utf-8?B?bmtVK3ZVd3gydXk0cUJKRkZEUjZkQzh1c3dQYXRPdXBiaGZDTUhiLzFCc2kx?=
- =?utf-8?B?VDFKSFNaWHFFLzllNGo1NHVxSHg2VE4vRjhGZElremdFUlJra2lsN1M4dFRK?=
- =?utf-8?B?cUxtM1NzSnAxcll3aTlSSkE5YjdXZHhWMW83aURwWVNzRUhnU3JBUlJ0T2xX?=
- =?utf-8?B?cTB1cDk0OVRMZzVSWUUrdjZBemgrbytsSjFMaE4xbWZIR2RNbUJmMWtqbTZM?=
- =?utf-8?B?MEdtQWlDN2pTcXNvemY1aVVuZkRYR0UyVVMycHk3NVJCaGV2Y3B0QVNZMjVM?=
- =?utf-8?B?YkdvU3ZwVEdlKzdhWS83YjdzL3Ezek05UWQrNnNEZC9iRUE0UjFKU2EwSTJx?=
- =?utf-8?B?QXFyY0RHVmhXbld4Z2VxT2szZDZFYWJ1MkJFTlI3Zy9NTkR6YXhML0Zvb2Rq?=
- =?utf-8?B?UjU1NmxQdWh3ZnkrUzBXbVQwYWMrYlRreGFwMTIzcmc1TEx0T2NrMkI1Uy9U?=
- =?utf-8?B?dE85emcwb3F1aTByQUk4dkNyQ0ltSXIzeXhaSE5vTDVCSmlGd2VkRHROblor?=
- =?utf-8?B?UXpaRFZnTzBQS3ozV3AwYzJvRFJWMkFIUEFMMTVpN2s2eHk2UUtlSWVyS0gy?=
- =?utf-8?B?T3BoWTV3MTY3WE9URVF0ZndWN3pPTUZuMUhsYjdCVnVRRGhyVnV6RWtYSHVP?=
- =?utf-8?B?cy9jOFhxOGdESCtrU1EzQzROMm9JTWpmTnBsRVhadXJRS0psanhxOEVUNzUx?=
- =?utf-8?B?MUhuU05EQkVQQ3Q1d3M2dzBDaGdVelRlUzV4aTBEdHdML2w0TDNsZFMzUmtR?=
- =?utf-8?B?TTRzR2lZUnJWZ0MyQlI3ZWJmd0pPRVVqNUEyeXZpSnpUWjlMK1ByMTFibk8y?=
- =?utf-8?B?cE1zREJISWE1bTVseGpKZklZTkpqSnFwSkVsZDRoRkpKdnNDTFBnSEg5bFl2?=
- =?utf-8?B?R1ZaSHkwaVFNWHdxOXNBUlpiZW1CQm5oRUMwZkplVy9tQXNlYkUzRm5UOG01?=
- =?utf-8?B?QURFcjRKSWFBa3F2eHpMcE93ZnBIUGtBZ3FoUW15NWNScVBHY3gySEMvb1Fr?=
- =?utf-8?B?TldxV09BQ1ZOaUtsUnlJMTZlbmwrRjdUWlkrNDBwMjZzcE9hdG5oNTBwZjVo?=
- =?utf-8?B?VjRhU2VoQjlCWjdoZk9zMDFacUd6NVFsZHBJR2VFZ3lGTVQ4WWwrR014OEZx?=
- =?utf-8?B?bTB1cTRsRzUyODlsY1ZJOE5IT0VsbG5YMnJVV3pUSGVmZXJpeXp1SWgyTEhs?=
- =?utf-8?B?SmpyUUZqUE8yVXBLbDN3N1dtR3VrSlFhYmwrYlE5bkdIK1I5b0Q2d2wxZDFm?=
- =?utf-8?B?a25QalY1enFBOU05dDdzM3Q5aEkrTEEra2RMbGkxWjNwMVh0dUh4bHd2dGZ2?=
- =?utf-8?B?aG9nL0E0ODcyejkxNnlLMkJTT1dheXppaUh1MGtVYTBsVnhtK2gzNFlvYk95?=
- =?utf-8?B?THNYTC9taElVcDhWWVBqZHZOd29GbDFCTFlMSHZMc29takNmd3duT054bjBM?=
- =?utf-8?B?VXk5UU1EdUl6RysvS1dyWXZyV3NSSURqZ1JSNm5SQU5IdXVtSHY0bk1jNHJ6?=
- =?utf-8?Q?/+c8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 14:46:38.7852
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48be1bc7-0c28-4fae-f0bd-08de277a7231
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN3PEPF0000B076.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR10MB5992
+X-Mailer: b4 0.14.3
 
-+ wadim who posted something similar:
+Hi,
 
-Hi Rob,
-
-On 18/11/25 02:43, Rob Herring (Arm) wrote:
-> It's a requirement that DT overlays be applied at build time in order to
-> validate them as overlays are not validated on their own.
+On Wed, 19 Nov 2025 10:52:21 +0800, Xianwei Zhao wrote:
+> Add more Amlogic SoCs info defines, include S6, S7, S7D.
 > 
-> Add the missing TI overlays. Some of the TI overlays have the first part
-> needed (a "*-dtbs" variable), but not the second part adding the target to
-> dtb-y/dtb- variable.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Look like there is more needed change needed.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.19/drivers)
 
-https://lore.kernel.org/all/20251119123216.1481420-1-w.egorov@phytec.de/
+[1/5] dt-bindings: arm: amlogic: meson-gx-ao-secure: support more SoCs
+      https://git.kernel.org/amlogic/c/1d80bed4e35710287c584f998e51980a34fb3a4e
+[2/5] soc: amlogic: meson-gx-socinfo: add new SoCs id
+      https://git.kernel.org/amlogic/c/ba8abbdfd09e64f51ead8b86afc6b586505919b4
 
-Could one of you post the superset patch?
+These changes has been applied on the intermediate git tree [1].
 
+The v6.19/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-I have already sent out the PR for v6.19rc1 for TI tree? Is [1] plan to
-be merged for v6.19 cycle, if so I will plan for a follow up PR with
-newer version of this patch.
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
 
-> ---
-> This will soon be a warning[1].
-> 
-> [1] https://lore.kernel.org/all/20251114222759.4181152-1-robh@kernel.org/
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
 
-BTW, with above patch, make dtbs seems to fail w/o CONFIG_OF_ALL_DTBS=y.
-Is that expected?
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
 
-> ---
->  arch/arm64/boot/dts/ti/Makefile | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 743115b849a7..54c4a6ba23c7 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -115,7 +115,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-evm.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j7200-evm-pcie1-ep.dtbo
->  
->  # Boards with J721e SoC
-> -k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb k3-j721e-evm-quad-port-eth-exp.dtbo
-> +k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb \
-> +	k3-j721e-evm-quad-port-eth-exp.dtbo k3-j721e-evm-gesi-exp-board.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board-infotainment.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
-> @@ -177,6 +178,7 @@ k3-am625-sk-csi2-tevi-ov5640-dtbs := k3-am625-sk.dtb \
->  	k3-am62x-sk-csi2-tevi-ov5640.dtbo
->  k3-am625-sk-hdmi-audio-dtbs := k3-am625-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
->  k3-am62-lp-sk-hdmi-audio-dtbs := k3-am62-lp-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
-> +k3-am62-lp-sk-nand-dtbs := k3-am62-lp-sk.dtb k3-am62-lp-sk-nand.dtbo
->  k3-am62a7-sk-csi2-imx219-dtbs := k3-am62a7-sk.dtb \
->  	k3-am62x-sk-csi2-imx219.dtbo
->  k3-am62a7-sk-csi2-ov5640-dtbs := k3-am62a7-sk.dtb \
-> @@ -254,11 +256,17 @@ k3-j784s4-evm-usxgmii-exp1-exp2-dtbs := k3-j784s4-evm.dtb \
->  	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
->  dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->  	k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
-> +	k3-am625-phyboard-lyra-disable-eth-phy.dtb \
-> +	k3-am625-phyboard-lyra-disable-rtc.dtb \
-> +	k3-am625-phyboard-lyra-disable-spi-nor.dtb \
-> +	k3-am625-phyboard-lyra-gpio-fan.dtb \
-> +	k3-am625-phyboard-lyra-qspi-nor.dtb \
->  	k3-am625-sk-csi2-imx219.dtb \
->  	k3-am625-sk-csi2-ov5640.dtb \
->  	k3-am625-sk-csi2-tevi-ov5640.dtb \
->  	k3-am625-sk-hdmi-audio.dtb \
->  	k3-am62-lp-sk-hdmi-audio.dtb \
-> +	k3-am62-lp-sk-nand.dtb \
->  	k3-am62a7-sk-csi2-imx219.dtb \
->  	k3-am62a7-sk-csi2-ov5640.dtb \
->  	k3-am62a7-sk-hdmi-audio.dtb \
-> @@ -268,6 +276,14 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->  	k3-am642-evm-icssg1-dualemac.dtb \
->  	k3-am642-evm-icssg1-dualemac-mii.dtb \
->  	k3-am642-evm-pcie0-ep.dtb \
-> +	k3-am642-phyboard-electra-disable-eth-phy.dtb \
-> +	k3-am642-phyboard-electra-disable-rtc.dtb \
-> +	k3-am642-phyboard-electra-disable-spi-nor.dtb \
-> +	k3-am642-phyboard-electra-qspi-nor.dtb \
-> +	k3-am642-phyboard-electra-gpio-fan.dtb \
-> +	k3-am642-phyboard-electra-pcie-usb2.dtb \
-> +	k3-am642-phyboard-electra-x27-gpio1-spi1-uart3.dtb \
-> +	k3-am642-phyboard-electra-peb-c-010.dtb \
->  	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
->  	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
->  	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-Regards
-Vignesh
-https://ti.com/opensource
+Neil
 
 
