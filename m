@@ -1,106 +1,102 @@
-Return-Path: <devicetree+bounces-240259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A31C6F4F9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:34:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B731C6F5F0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:43:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CEC7338345C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:25:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 475A04F6286
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D898535A95B;
-	Wed, 19 Nov 2025 14:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92C4235A95B;
+	Wed, 19 Nov 2025 14:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SbJNpwjt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u1vd4Dr0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8079F34F48A
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 14:22:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 623B22E7165;
+	Wed, 19 Nov 2025 14:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763562161; cv=none; b=A8eRPUeBMN0jhdCYRzIoHicAsGlCpAXDyVeYZ0yxGVHVEHpoe2eP2Hrfhm62wHyhtkOsaDyizoBM2ylZ6iupw8Y9cLvshIDoCeVbSnnFgMB7lSa3EXgsxIJvq0LNHTUGsVpO0dzWo2YlaucqBzZk2WKf61ipswvNujQAAvcX/Ds=
+	t=1763562331; cv=none; b=ZHVnq0iTsaieyQoAb7Fi4I7424g7f46DtGYcGH13QfWX1ZXvjDh9pZ/cc5xDPDXP/6uoFfik3JyEOojQLTJqwf/IyjzyiKTcEL7fndoda30KhfTVXiv49YWuyM/3ly6Y6eV2DIJj3yp9eKk5MCzWsVFoqxVv2XbnOgBLCY88FH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763562161; c=relaxed/simple;
-	bh=MhrsZIbWzRhCkp8ZCo9BwzqVTC7yndSnE/Tw3//4s9I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kg49hTYEsOX1GhI0BeymjZNfNBlT9ZZh99MECOTQiY6atiB8XQVeDLKIYNtTdCfaQ5HjcTIlTQivy9CzaHmLsK41XUm/MOQTjxq4fZSksTc2oo3pWT2+uc3EzD1xXcgJg67CEHmhQApueEP/z56AcALM2Bv7WdY3uX2OGKC/TJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SbJNpwjt; arc=none smtp.client-ip=74.125.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-640d790d444so6089022d50.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 06:22:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763562158; x=1764166958; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MhrsZIbWzRhCkp8ZCo9BwzqVTC7yndSnE/Tw3//4s9I=;
-        b=SbJNpwjthtm/8W8rajTN3TBOYNG0IZZOcGjIhztrWsBJAOARwr49/KvjH0bBND+vX5
-         q97U6xkYvMPOqHIcmJUsMjqU8iNdKrY0HoaM/cLoP+pWBuKyxnnNBsx0onVd3ZGg/jwt
-         hvBhe0c8po6aFWGjffuLncll0F/nLWLKtxyG7o4fVJ5mUmjH7epP2XH5veOt/+ikPwR9
-         H3l4MEPZyxrAEpZuDXdXPt+t0Z8d+ngLsNUbAC7m8MsCAxKdfNMiR13d06Y+z9p8KU9A
-         4sYugiEf94/DjGh/AM9HIRPvTRi6APVUJvoD65TL/QwKhcYC8UJSWGgeHH883E9voBDg
-         a1Ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763562158; x=1764166958;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=MhrsZIbWzRhCkp8ZCo9BwzqVTC7yndSnE/Tw3//4s9I=;
-        b=gstzlSABC3zpTTO7K8VTPXaN5WdFGgdkwlfwyH5oM0KNgvaOjIZEsG3GBsvIfyxmO2
-         TArDHnUg/1rG4K7B88XRYwluT8u8E2mOh3tUQhIlXXSPCJJCMk6ng3zep5dBg7KG2lTg
-         jqHn6w3rxRaQ4zG5YuPaoTAk+TKHzRMnfAt2Cvz2c2D0qaERIkb36sieUu378shmYEBQ
-         MK2C1zFl9b8exUZVIA55OOmSozuqM9hkVa7f/DSIHfiE/SMaSOBDRVFVM4dps2zSw0db
-         Lu/h/+MifwUTJF17MeIOvSEb1zMqfWlnreG1EKyxuCSmD9FjIxlPB4IxS4UJpt+p+90p
-         h7FQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVp87ZWqUD5wIWP4oLdzq1y+2CAJBWGxb9Tl1HRDqiXx0WgHXPWYTlTcn++Nvz0B7U7o95dMWZrDULq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7KDylNODgAu/TBWapG5ikKx+CygfxX45Xa+ucTETPMHn6Vt8J
-	dEUjHm48W9PVO491x6hsC7XVfAhshU60Ij743M09Q4lmlZ+hSOZ9XYhOld5urE00UY8VYbA4kzp
-	FaosXs1Dhhy8q5GyuEk0JgLCri9ydjU7Yizvmyr4Dcw==
-X-Gm-Gg: ASbGnctynq9yro8mcV2tO5aKmxu+2wnuu82+hS2dVUApyV3jjZw3awupjJ2koLQiV18
-	tFAlKbqUNU2/HzfQfXZogAw+PKapCE8sVucCVaXZiYFm3KYYsa6NBuzop3EWuTbO5pIxHrBrvne
-	xIYHfEfcH6TmvmWOE9AEzMAlcxIaAEmYLd/go0/XnJFFRM9fKqLZ2jpLTK7WXhmrNxuEpk34/Wx
-	0fSZYTLQcNL/IBF3MrsSex7hyvKRbSeMo8os664AfeRNfoGg3csM8rNkkaroP+cCqnqDLwxU6RE
-	lJB3JA==
-X-Google-Smtp-Source: AGHT+IEK96oDDGhtSMOrFEinT1tokH4hnf8wTVBS3BSk/cku7ibmRWyEcIG9r+y6XUg52Cr/+RO7BwnZ8CPpg1m6izg=
-X-Received: by 2002:a53:d00b:0:b0:63f:a89c:46f9 with SMTP id
- 956f58d0204a3-641e76a391dmr13332400d50.40.1763562158314; Wed, 19 Nov 2025
- 06:22:38 -0800 (PST)
+	s=arc-20240116; t=1763562331; c=relaxed/simple;
+	bh=IPpllDroeIVWpU7coZYoVoMYcpJP+CsG5RsTB2e1Rlc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JpuEeSP/APRG9gju/g+AtoQfT0VYxZncrxhNHHPdEdhh6TH6HRh9i2Q7a18KdZmZkDqkznFL1K0DXf0v/tjWr1MNhS0tgF3eb5XJOL0flsXfMd+nnNWE5VICFqaPgt9H5LTtCvJAsEjSFQQxVDT7fgfC5XhJyONz/aW62XwLujQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u1vd4Dr0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC34AC116C6;
+	Wed, 19 Nov 2025 14:25:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763562329;
+	bh=IPpllDroeIVWpU7coZYoVoMYcpJP+CsG5RsTB2e1Rlc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u1vd4Dr0MtIh/wtzlg/lZ+jLOlAaSS2YeqVNZdtFyPL32YVGB4SeB3cf85TaCENtL
+	 8TKL7AiVyq4xygYKou/UAr0qndmPedz3BOdTRSz70aHaUIrFVGYICc8XQXPcka04hP
+	 L31FBN+qxccsZlsu9RHDctApiuctcfbth3gLPXgH4Nn9lKIwFI3MlIqLLWYE/5rrN4
+	 HnuEjEi1ncs0d6HlRaVxwDQYtHeoIrX5qV7SW3oPC+Lln/t4fLFnZC0FEaqax2L7YI
+	 l59T1byANzH3fbast2y8EGqixpflUygeizHlMRljJb3rc+m38aIPPRZp6pE8Vvj3vW
+	 THA/Y6/QDnHCg==
+Date: Wed, 19 Nov 2025 14:25:23 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Rob Herring <robh@kernel.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of/irq: Handle explicit interrupt parent
+Message-ID: <71a2ecf1-a6dc-450d-8d94-1d03294746b6@sirena.org.uk>
+References: <e89669c9b3a4fbac4a972ffadcbe00fddb365472.1763557994.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251118213428.36700-1-robh@kernel.org>
-In-Reply-To: <20251118213428.36700-1-robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 19 Nov 2025 15:22:05 +0100
-X-Gm-Features: AWmQ_bkPvGHNxXPgik4goguOsOD08uL9PsXetzBiLxVbcWWbISsz0NGOhdm9JVY
-Message-ID: <CACRpkdZ3bz2_-vh-RwVwicLyBOyfROE5EGtBqCgPYcy7srKNSA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: xlnx,versal-pinctrl: Add missing
- unevaluatedProperties on '^conf' nodes
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Potthuri <sai.krishna.potthuri@amd.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dXrumqPCuqa97emu"
+Content-Disposition: inline
+In-Reply-To: <e89669c9b3a4fbac4a972ffadcbe00fddb365472.1763557994.git.geert+renesas@glider.be>
+X-Cookie: Microbiology Lab:  Staph Only!
 
-On Tue, Nov 18, 2025 at 10:34=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org=
-> wrote:
 
-> Add the missing unevaluatedProperties to disallow extra properties on
-> the '^conf' nodes.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+--dXrumqPCuqa97emu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Patch applied for fixes.
+On Wed, Nov 19, 2025 at 02:19:11PM +0100, Geert Uytterhoeven wrote:
+> If an interrupt controller is used as a proxy, it may have an
+> "interrupt-parent" property, but lack "interrupts" and
+> "interrupts-extended" properties.  In that case, the "interrupt-parent"
+> property in the interrupt controller node is ignored, causing the
+> interrupt controller to fail to probe, and leading to system boot
+> failures or crashes.
 
-Yours,
-Linus Walleij
+This fixes x15:
+
+Tested-by: Mark Brown <broonie@kernel.org>
+
+--dXrumqPCuqa97emu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkd01IACgkQJNaLcl1U
+h9A0OAgAgiqzeJ+/k2KHArbkPFKyn1BIrHCdXiP8+H54gFZtaofhRAabFCiSb8Qa
+4xqve8UPhr+OZxKaJpSN4xPl9Xsw2/XjS+F0FzHOKHe7Y4yPZoRwsc5aZgcnS0m2
+PJUimumr9oJ9BBL5/fOCYLoZB7WhgKfk9OR+0wx4Pbvw3QjoUOYqsZeKpKhATilu
+XB9pOYFp3YeeGMosjOKj8MmsgnlRaXuEdDcO1nkk+yhY3jdS4j9QpuCb3oi0Yc4e
+E+RLyO6wVjP20Twwg+o2QJAmBizEOuHfM1b8Jz/yoNeXSfXYaDH/8GOTY3WXGHnM
+kAqWpJ4TsX/w5gr9aOxx9V6isaJ3lA==
+=Nam7
+-----END PGP SIGNATURE-----
+
+--dXrumqPCuqa97emu--
 
