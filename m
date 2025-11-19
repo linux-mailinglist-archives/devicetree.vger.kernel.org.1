@@ -1,114 +1,249 @@
-Return-Path: <devicetree+bounces-240434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50192C70F96
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 21:08:24 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51531C70FC9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 21:12:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3E3944E168D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:07:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 9DCA22972D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921903730F8;
-	Wed, 19 Nov 2025 20:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1568631B808;
+	Wed, 19 Nov 2025 20:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="6781Uit0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZPhdPCoM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD855372AA5
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 20:03:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E9B33A5E79;
+	Wed, 19 Nov 2025 20:03:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763582610; cv=none; b=m0EpKGYJRGtlC1tq3QeEcHOWkRYoZVhJNcxYvuM7nAwqAD+54G+LCHnZbLhYkbfM6w4m5TmyCf/xzZpDVyrDNAIRHo3Y3rxXTpXnXtkmO+j0uBwXrjMgm3mfJtIidFpMEMdwz6BcDXo3Pw7mwR3nQjBYyPPl/Btj2xGX7dRt6L4=
+	t=1763582639; cv=none; b=SZz+zfNMnj5zT+zN91rKPoqwcuhB09p2tFDZM+WGUi1QDdqwby5rBFpkI2uCcKfaMEoPjRhwq52q+1iFleisrvcIXFr7TbqDBn/10IoLS0USWuS3sZUr6pbVp0dVKVVo04wpojtTp0udes/zfezEXVyCaivRVaYGV64XBVAWznA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763582610; c=relaxed/simple;
-	bh=yfnCoLTtpEcfOKw0YoWFy2WJjr64Vx1dfDmsR/BqStA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aUjESLfLkqPpkxyJWu3l3WTW9BmwehE68p6BacZohO5shiqjegTFJwI6KDx/ny9KHLNiGAX6DaEKQALNGicvWqB45lm5KsSp1CRnaODaJ/k4GkJ7jWbGqBJ8FW09XqwWaozw/6mFjiIAMVKmnrJ08Z3a736Ka8c8Iao95zECNTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=6781Uit0; arc=none smtp.client-ip=84.16.241.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
-Received: from terra.vega.svanheule.net (2a02-1812-162c-8f00-1e2d-b404-3319-eba8.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sander@svanheule.net)
-	by polaris.svanheule.net (Postfix) with ESMTPSA id 86CA96A1E9C;
-	Wed, 19 Nov 2025 21:03:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-	s=mail1707; t=1763582597;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o2tv2LQS6rVaGTazg9EFfmU0wdPHn3ddSWc6g6gBwqA=;
-	b=6781Uit0+MiL0uTlcyB803kDOcMNfevWN1D5x0zdt0Y7A22YpAF6z3CfBjWYYAevHLLy4S
-	dgBQ3JyIGgXWsirApg83QWnoBgSzo61wDOhZe1zuTle8wJY29YQHtX7I3H1coiuKGjnocB
-	gswVISZ/NpM11uMCpYE9+eHsgUdld1RMvu7akogKO2o3FJvMy+AKUqQr4cutmA/csxNMyT
-	naNqOCRMQ/b5sensoKBYPsApNOwQs5gvDWESC5tOqiBCeWMUGcDyGgv5VFEHZ+KcsWW/3c
-	VgsJfxgC/ig8FJAW0JINoj7B1DD5Lzw9pbOO+ecxFljxlZm7e3C2GraRezwgxg==
-From: Sander Vanheule <sander@svanheule.net>
-To: Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1763582639; c=relaxed/simple;
+	bh=6FvheDxb079G/35qiI8mEO2FvYTKpcKFhNAWHP13xrI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=euihXn6Zl4I2gOm+Jm5x439rWR7FdCkgswbvaqfFWMFaepkdjPMRBDJbo5zj58ZcRZEZ4YjQLXO9ytHGfX8JCUrMCqXd58vN5JSNl7hGgTElSd8xUQih9Cm/Pzo83fl/GAsDkkh8AonFZpycpX3ZVVk48lVp4L+5jlLMOKj4WWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZPhdPCoM; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763582635; x=1795118635;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=6FvheDxb079G/35qiI8mEO2FvYTKpcKFhNAWHP13xrI=;
+  b=ZPhdPCoMWS1aiMRevJOtKiCYOHq/jwKVAPB/6cJ0WN2A3zWQjlSF9G9G
+   DpEvqlIJHJWdfwjT3nr2uTJ/2Nf9lJAtUVX4C2wUFqSYR6ypkwP6bQ+Ug
+   Z5OanHcB4auVCMzuMdKwzI031a//VlzQVFWZtOE4AqryyaNu5vYsoCHPh
+   iY/3Ut6j4sK3KjcWgDOBWTafKnhhYqPD/o5H91FOzAjwLiUiSBF7ufpRt
+   rryZCtAAk2T8i/J/59c7QClw/mYoyzVTvmTG71IiA3HXwuxRabwvO5nNj
+   mnUkn+ro4vX3nbfzyiErVcXHjWbQMae3gbpa+kKVl9WBngg9bh/nMNNUr
+   Q==;
+X-CSE-ConnectionGUID: 1NcTRvf8SxmTLfEfgOz+mw==
+X-CSE-MsgGUID: FP+KJgMKR1WBtjanvcZETw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="76249897"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; 
+   d="scan'208";a="76249897"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 12:03:49 -0800
+X-CSE-ConnectionGUID: QYbq4pmtT5ueZBxR1HyaHQ==
+X-CSE-MsgGUID: H2GvheIcQJqNCB3/GdCnVQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; 
+   d="scan'208";a="191590733"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.245])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 12:03:44 -0800
+Date: Wed, 19 Nov 2025 22:03:42 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Sander Vanheule <sander@svanheule.net>
-Subject: [PATCH v8 6/6] MAINTAINERS: Add RTL8231 MFD driver
-Date: Wed, 19 Nov 2025 21:03:05 +0100
-Message-ID: <20251119200306.60569-7-sander@svanheule.net>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251119200306.60569-1-sander@svanheule.net>
-References: <20251119200306.60569-1-sander@svanheule.net>
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Jan Dabros <jsd@semihalf.com>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Clark Williams <clrkwllms@kernel.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Dmitry Guzman <dmitry.guzman@mobileye.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
+Subject: Re: [PATCH v3 6/7] i2c: designware: Implement I2C_M_STOP support
+Message-ID: <aR4inuzOitdpSDvd@smile.fi.intel.com>
+References: <20251119-i2c-dw-v3-0-bc4bc2a2cbac@bootlin.com>
+ <20251119-i2c-dw-v3-6-bc4bc2a2cbac@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251119-i2c-dw-v3-6-bc4bc2a2cbac@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Add the files associated with the RTL8231 support, and list Sander
-Vanheule (myself) as maintainer.
+On Wed, Nov 19, 2025 at 04:05:35PM +0100, Benoît Monin wrote:
+> Add the support of the I2C_M_STOP flag in i2c_msg by splitting
+> i2c_dw_xfer() in two: __i2c_dw_xfer_one_part() for the core transfer logic
+> and i2c_dw_xfer() for handling the high-level transaction management.
+> 
+> In detail __i2c_dw_xfer_one_part() starts a transaction and wait for its
+> completion, either with a STOP on the bus or an error. i2c_dw_xfer()
+> loops over the messages to search for the I2C_M_STOP flag and calls
+> __i2c_dw_xfer_one_part() for each part of the messages up to a STOP or
+> the end of the messages array.
+> 
+> i2c_dw_xfer() takes care of runtime PM and holds the hardware lock on
+> the bus while calling __i2c_dw_xfer_one_part(), this allows grouping
+> multiple accesses to device that support a STOP in a transaction when
+> done via i2c_dev I2C_RDWR ioctl.
+> 
+> Also, now that we have a lookup of the messages in i2c_dw_xfer() prior
+> to each transaction, we use it to make sure the messages are valid for
+> the transaction. We check that the target address does not change before
+> starting the transaction instead of aborting the transfer while it is
+> happening, as it was done in i2c_dw_xfer_msg(). The target address can
+> only be changed after an I2C_M_STOP flag, i.e after a STOP on the i2c bus.
+> 
+> The I2C_FUNC_PROTOCOL_MANGLING flag is added to the list of
+> functionalities supported by the controller, except for the AMD NAVI
+> i2c controller which uses its own xfer() function and is left untouched.
 
-Signed-off-by: Sander Vanheule <sander@svanheule.net>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 00e2cb65ddec..20f946dc4a25 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21663,6 +21663,16 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
- F:	drivers/watchdog/realtek_otto_wdt.c
- 
-+REALTEK RTL8231 MFD DRIVER
-+M:	Sander Vanheule <sander@svanheule.net>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/leds/realtek,rtl8231-leds.yaml
-+F:	Documentation/devicetree/bindings/mfd/realtek,rtl8231.yaml
-+F:	drivers/leds/leds-rtl8231.c
-+F:	drivers/mfd/rtl8231.c
-+F:	drivers/pinctrl/pinctrl-rtl8231.c
-+F:	include/linux/mfd/rtl8231.h
-+
- REALTEK RTL83xx SMI DSA ROUTER CHIPS
- M:	Linus Walleij <linus.walleij@linaro.org>
- M:	Alvin Å ipraga <alsi@bang-olufsen.dk>
+>  	ret = -EIO;
+>  
+> +done:
+> +	return ret;
+
+I don't see the point of keeping this label anymore. Is there a followup
+that addresses this?
+
+> +static inline bool
+> +i2c_dw_msg_is_valid(struct dw_i2c_dev *dev, const struct i2c_msg *msgs, size_t idx)
+> +{
+> +	/* The first message of a transaction is valid */
+> +	if (!idx)
+> +		return true;
+> +
+> +	/*
+> +	 * We cannot change the target address during a transaction, so make
+> +	 * sure the address is identical to the one of the previous message.
+> +	 */
+> +	if (msgs[idx - 1].addr != msgs[idx].addr) {
+> +		dev_err(dev->dev, "invalid target address\n");
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+
+Hmm... I would do it in the nested conditionals if nothing comes between
+the lines in the future.
+
+static inline bool
+i2c_dw_msg_is_valid(struct dw_i2c_dev *dev, const struct i2c_msg *msgs, size_t idx)
+{
+	/*
+	 * We cannot change the target address during a transaction, so make
+	 * sure the address of the sequential messages is identical to the one
+	 * of the previous message.
+	 */
+	if (idx && (msgs[idx - 1].addr != msgs[idx].addr) {
+		dev_err(dev->dev, "invalid target address\n");
+		return false;
+	}
+
+	/*
+	 * Addresses match. For the first message return true as it sets the
+	 * address for the whole transaction.
+	 */
+	return true;
+}
+
+...
+
+> +static int
+> +i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
+> +{
+> +	struct dw_i2c_dev *dev = i2c_get_adapdata(adap);
+> +	struct i2c_msg *msgs_part;
+> +	size_t cnt;
+> +	int ret;
+> +
+> +	dev_dbg(dev->dev, "msgs: %d\n", num);
+> +
+> +	ACQUIRE(pm_runtime_active_auto_try, pm)(dev->dev);
+> +	if (ACQUIRE_ERR(pm_runtime_active_auto_try, &pm))
+> +		return -ENXIO;
+> +
+> +	ret = i2c_dw_acquire_lock(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * If the I2C_M_STOP is present in some the messages,
+> +	 * we do one transaction for each part up to the STOP.
+> +	 */
+> +	for (msgs_part = msgs; msgs_part < msgs + num; msgs_part += cnt) {
+> +		/*
+> +		 * Count the messages in a transaction, up to a STOP
+> +		 * or the end of the msgs.
+> +		 */
+> +		for (cnt = 1; ; cnt++) {
+> +			if (!i2c_dw_msg_is_valid(dev, msgs_part, cnt - 1)) {
+> +				ret = -EINVAL;
+> +				goto done;
+
+What about
+
+				break;
+
+> +			}
+> +
+> +			if ((msgs_part[cnt - 1].flags & I2C_M_STOP) ||
+> +			    (msgs_part + cnt == msgs + num))
+> +				break;
+> +		}
+		if (ret < 0)
+			break;
+
+?
+
+The motivation is to avoid mixing auto ptr with goto style
+(it's not recommended as per cleanup.h).
+
+> +		/* transfer one part up to a STOP */
+> +		ret = __i2c_dw_xfer_one_part(dev, msgs_part, cnt);
+> +		if (ret < 0)
+> +			break;
+> +	}
+> +
+>  done:
+>  	i2c_dw_release_lock(dev);
+>  
+> -	return ret;
+> +	if (ret < 0)
+> +		return ret;
+> +	return num;
+>  }
+
 -- 
-2.51.1
+With Best Regards,
+Andy Shevchenko
+
 
 
