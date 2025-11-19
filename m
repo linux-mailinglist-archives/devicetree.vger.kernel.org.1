@@ -1,142 +1,141 @@
-Return-Path: <devicetree+bounces-240369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97E98C706DB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:22:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2083C70774
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:30:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id EBA702F90C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:20:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9610D4E4BB7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:24:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5EA357A3C;
-	Wed, 19 Nov 2025 17:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B00359FB1;
+	Wed, 19 Nov 2025 17:24:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FV5ypvbi"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="v5CvUAkT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F151259C84
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 17:19:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9743612E8;
+	Wed, 19 Nov 2025 17:24:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763572790; cv=none; b=rZiqVy0vvRJsPiPfFe8I1/Vmw9uBgNVsyxuvjl94T1K1/8oA+rQkBlDl6hreN9iL569F9eI00amPqa10QSPn3PhUDYosRxpBSZsrb9K8vUDrm1hzAVbV91P+0xJhOXYKFHihpEtdx2OpQpGXk3buoSFORVx5+RcAyCP0j+efxJ4=
+	t=1763573052; cv=none; b=Xo9zGxN+kG26bX8qD4VaYuJkBr/Ehba1jWGEftheegz7d9Du4iLV+sKvGMmLj31JtABUt8167OMvw91LvX9L5xvTPwLcHrF7uEfuieQA6J5FS6S19zEJ8Wl+Tu+ROO21rUPf77GSQyrqrnyLSC1/6CeTW9jDB5+cVLqLcKSsTqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763572790; c=relaxed/simple;
-	bh=UTnsObU+5/BfOz0pGlvdtOsTqbuwL/EFPcGG/OAK6zw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gMDl6ZyNi99AfO8dnkMyjCLwlvSy80c9QdyNVh1ly/UksaVZoQnP1QHiH4llVZzawYGKXUqkMY4+JVli7eAG8guUQyP9e2RbyI5Xj8EAoxem5r3d/wZm0oAJFn360wfbP+iGQWxYJfOTU3CbbNUB6SCXH3/sDxg7MWEFy//I14k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FV5ypvbi; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b7277324054so2472666b.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 09:19:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763572786; x=1764177586; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yoCeIVGZrihZGBDqvC+f7PXwUd8OXTG8E9X1EYx2gXI=;
-        b=FV5ypvbi0c1g1GVk2oRsP6V206ZBIPZ7DJw2Dh/yBQnEfaS3DrvxlCAdZa95+c9xXg
-         bb+YFjEt0Ozp3d1PN5x5v+gw6obj0/B1ZiDwzThrcRnW6dJPSATTCaO4vm4/vXoY2ktw
-         Adxh515goJVC8qrnbUjtonPWEe0Sb9+/8Lc0xBZu/s53ak5v30IUP1ZNEwpBZvcs9gYb
-         72/A/K/toru0tYBR3OdDptgRzjWnWBGekiqSFSK8CnV27FW+3CnlMu0IARu1Py4YdVUa
-         eO3C1NMgAFiZy7mnCThN43IgsUfXy9UFfab+494llewzIA2JuHwjX5tikjxOQjypiAPV
-         z7ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763572786; x=1764177586;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yoCeIVGZrihZGBDqvC+f7PXwUd8OXTG8E9X1EYx2gXI=;
-        b=d25L5dvxADOoFVkIN0AmAh3P8aiesWFc9G52+ocb7knLPZq/PWkL8nYwmwJvxOLxz+
-         LS48wfRNa53xMrfT7qclORSbPCBw88k2uu4pGY4XOhc4ma+UFrJ6JyMme6oIU+m2sor9
-         wlUEv3NKhdS/8I7qJt39cO/GMHQxWvGsfydzUjboF+10CBhmKJsf7ReEW/qGqcoUAc5j
-         JAoUwwmRqL1ty9XnXfmWo+JEIg/TaOeaRWRT44842n2kInNFmnnM+KzflJ8yc1AsYzO6
-         KQyiYhKkJzTl89zNISfXP5KkLNy0ne2BtSDsOI/L1H69J5mW+pYzMP93i8YPTvql12w2
-         PvTw==
-X-Forwarded-Encrypted: i=1; AJvYcCWuFKydQk8ilax0QlxjXQlT09XAGdA0dbIdIH7RLOHHbPOu+/0Cc+7nRG0i5HzGB+WlhFFY9o2Xx3LB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlqfOBkdZMC2jDh8FDVB8T8ZPQOew+YODjFhfOMvYYF9XpsZLu
-	1iuEpNgf8hqmm9/w2kXXoC8Cs4PADmh/RerLFSFgZW5DDJkclK6VNuYg4cXgsWnV5qM=
-X-Gm-Gg: ASbGncud5BXrYIEPFOn8lFPJ4HM2ggK1Z/kaNUerIxwcsHqqghU8cO54YLjJhWmSTOB
-	eP/lFXXYx9DkFVi27cEL+0njKjRyfELRSKqrv/Nza9ThVMzMukXnkiTewmTBsD81QZviGvjqysQ
-	G7nsaSxGBqKFVliEoafcCHn/Vjls6bTz3qj06llltNITIj5LPD4en2hYCurBHVNfouok+0fSdSG
-	IATvutKGck/k1qQd97weYlR+rn7J2XLZcP8IhNG0HUu3429Rr5BHfsUc21Nri+UqerTkkpoot+j
-	KTqf1LFJtGD9aHy8CB9yW/ydQ4w0FnM6sakGJfG59TsoxY/Xt34rk4p8TL2lTA4lMDzqjxfH32l
-	NH6VViKI2URg9XjB1+TvVfA0U9aLk6efstflB7hEjKdEr4SXr+48DP6zXpTe0y7dskW4YOicD4f
-	q9sXGyEGY7OAPwosA9DwO3gKMfB1ChwjFJivOKJ/G6ug==
-X-Google-Smtp-Source: AGHT+IHFXlBYjBXYt8PjoVc6j/wKQUSsTRCIrYOrIhFX/QpfdOU8ruX00omnczPPKhikD5LHpvnGDw==
-X-Received: by 2002:a17:907:2d12:b0:b73:572d:3b07 with SMTP id a640c23a62f3a-b736782d087mr2292251166b.28.1763572785909;
-        Wed, 19 Nov 2025 09:19:45 -0800 (PST)
-Received: from [10.101.2.140] ([93.122.165.106])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fdaa15asm1625320866b.57.2025.11.19.09.19.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Nov 2025 09:19:45 -0800 (PST)
-Message-ID: <d24c4f4c-e58e-483d-adeb-9ec1799c80dc@linaro.org>
-Date: Wed, 19 Nov 2025 19:19:42 +0200
+	s=arc-20240116; t=1763573052; c=relaxed/simple;
+	bh=c+CxTfJFAihZfmb8pM44lVO6CKJsjHPohT3hdCYU5yo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JfV1EaAu+P3ZAxa/YaC5r2ZRh7OR5a+rxjNPXl9pwOGDEjL97veKX0aF1C3xthNtg+OTkHDCj5YteGa/DzorgHOdDfu1fgi0tqIvVrseiu81QEf6fXjqgGmRUYQpOY5XeiavD16Qm2B13OIR5DirxmwdUPaj4DzeurT3mTnHFSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=v5CvUAkT; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Wn6ONkRCeRKKhGAlDyEAqfV/PcLRTJSDP9TT9+pdRJM=; b=v5CvUAkTlRoZdxsyNwJJf37vPy
+	Rlew48/9J/wyYHxHK8KiD95VOftwrpxjPuRYPAgtv9iBmIyK+5z3jPQ38K+++DWJBzWLrq53/lT0T
+	7BY68SDPNNiYS06hNCQ7YhjUVw0J0XOCC/Gk4kkJNtpalgRW1mt2xILpAVyHKjOHz6A3cG6rhExiQ
+	hZgs1kxiZKdb5moHEdM7nIWlHwZTgalIwiNzygHZnIr2D5b+2JpVDK31jN0/eBHkK7PIsSBrnuH1D
+	+gR1A9f+Lvvz+3WyLtHIipFnpFZ8N1Hwe7Qzhj0DygS/799lRY/87gD3v95wZaVs3CHB5LAWEHQ2u
+	INBhESjQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46206)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vLluK-000000005Gr-3FgI;
+	Wed, 19 Nov 2025 17:23:52 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vLluH-000000003ay-0KzU;
+	Wed, 19 Nov 2025 17:23:49 +0000
+Date: Wed, 19 Nov 2025 17:23:48 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Jakub Kicinski <kuba@kernel.org>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 14/15] net: dsa: sja1105: replace mdiobus-pcs
+ with xpcs-plat driver
+Message-ID: <aR39JBrqn5PC911s@shell.armlinux.org.uk>
+References: <20251118190530.580267-15-vladimir.oltean@nxp.com>
+ <20251118190530.580267-1-vladimir.oltean@nxp.com>
+ <20251118190530.580267-15-vladimir.oltean@nxp.com>
+ <20251118164130.4e107c93@kernel.org>
+ <20251118164130.4e107c93@kernel.org>
+ <20251119095942.bu64kg6whi4gtnwe@skbuf>
+ <aR2cf91qdcKMy5PB@smile.fi.intel.com>
+ <20251119112522.dcfrh6x6msnw4cmi@skbuf>
+ <20251119081112.3bcaf923@kernel.org>
+ <aR3trBo3xqZ0sDyr@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/26] Introduce meminspect
-To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mm@kvack.org, tglx@linutronix.de, andersson@kernel.org,
- pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, david@redhat.com,
- mhocko@suse.com, tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
- jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- linux-arch@vger.kernel.org, tony.luck@intel.com, kees@kernel.org
-References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
- <6c9b0aa2-820c-4153-ad64-cd2a45f7cf32@lucifer.local>
- <19171859-94ac-4f41-b100-70a1497e62e6@linaro.org>
- <dc9a8462-8384-4e9a-94e1-778fc763fa9a@lucifer.local>
-Content-Language: en-US
-From: Eugen Hristev <eugen.hristev@linaro.org>
-In-Reply-To: <dc9a8462-8384-4e9a-94e1-778fc763fa9a@lucifer.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aR3trBo3xqZ0sDyr@smile.fi.intel.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-
-
-On 11/19/25 19:14, Lorenzo Stoakes wrote:
-> On Wed, Nov 19, 2025 at 07:11:23PM +0200, Eugen Hristev wrote:
->>
->>
->> On 11/19/25 18:30, Lorenzo Stoakes wrote:
->>> Hi Eugen,
->>>
->>> You've not run scripts/get_maintainer.pl so this is missing a ton of maintainers
->>> that you're required to send this to. This is not a great start for a huge 26
->>> patch series that seems to want to make very significant changes.
->>>
->>> Please try to follow proper kernel procedure.
->>
->> Hi Lorenzo,
->>
->> I included the relevant mailing lists, but indeed I have not cc-ed every
->> individual maintainer. Do you think it would be appropriate to resend it
->> as-is to everyone cc-ed (PATCH RESEND) or just do that for the next
->> revision ?
+On Wed, Nov 19, 2025 at 06:17:48PM +0200, Andy Shevchenko wrote:
+> On Wed, Nov 19, 2025 at 08:11:12AM -0800, Jakub Kicinski wrote:
+> > On Wed, 19 Nov 2025 13:25:22 +0200 Vladimir Oltean wrote:
+> > > I think it's due to the fact that the "contest" checks are fundamentally
+> > > so slow, that they can't be run on individual patch sets, and are run on
+> > > batches of patch sets merged into a single branch (of which there seem
+> > > to be 8 per day).
+> > 
+> > Correct, looking at the logs AFAICT coccicheck takes 25min on a
+> > relatively beefy machine, and we only run it on path that were actually
+> > modified by pending changes. We get 100+ patches a day, and 40+ series,
+> > and coccicheck fails relatively rarely. So on the NIPA side it's not
+> > worth it.
+> > 
+> > But, we can certainly integrate it into ingest_mdir.
+> > 
+> > FTR make htmldocs and of course selftests are also not executed by
+> > ingest_mdir.
 > 
-> Yeah probably fine to do on respin :)
-> 
-> But obviously let's not land this without at least 1 respin/resend.
+> Btw, do you do `make W=1` while having CONFIG_WERROR=y?
+> And if so, do you also compile with clang?
 
-Definitely. This isn't something that would land without a lot of reviews.
-I am sorry again and hope to hear your opinion on it as well.
+If you look at any patch in patchwork, e.g.
 
-Thanks,
-Eugen
+https://patchwork.kernel.org/project/netdevbpf/patch/E1vLgSZ-0000000FMrW-0cEu@rmk-PC.armlinux.org.uk/
 
-> 
-> Thanks, Lorenzo
+it gives a list of the tests performed. In answer to your questions:
 
+netdev/build_clang 	success 	Errors and warnings before: 1 this patch: 1
+
+So yes, building with clang is tested.
+
+I can say that stuff such as unused const variables gets found by
+nipa, via -Wunused-const-variable, which as I understand it is a
+W=1 thing.
+
+I suspect CONFIG_WERROR=y isn't used (I don't know) as that would
+stop the build on warnings, whereas what is done instead is that
+the output of the build is analysed, and the number of warnings
+counted and reported in patchwork. Note that the "build" stuff
+reports number of errors/warnings before and after the patch.
+
+Hope this answers your question.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
