@@ -1,202 +1,108 @@
-Return-Path: <devicetree+bounces-240327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EBB6C6FED7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:05:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DD0AC6FFCD
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:15:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 7D4EE2F6BF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:03:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 119B43680E5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C07364030;
-	Wed, 19 Nov 2025 15:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1F836E57E;
+	Wed, 19 Nov 2025 15:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="UqQV/M0K"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bkjeXlf3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sg-1-104.ptr.blmpb.com (sg-1-104.ptr.blmpb.com [118.26.132.104])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B2A35E543
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:59:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.26.132.104
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D554636E575;
+	Wed, 19 Nov 2025 15:58:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763567983; cv=none; b=dviEFD3IQr7LbLksSCis/4KVD3445WjW5Q4WW/NDubfd1Y3ZswF7ABlgnvDsjPlTP4r9v5DKkwpT6wfrhplWRMPO0+I9s5RDJ+EX3Q62u6IyHjKUonzG6jhEReKqlDxH01LZUmagUxYDeNb0zmFllMuSHQtSlc5Opdupt5bxuqc=
+	t=1763567909; cv=none; b=RS8r+fM/LA1jgxSk17c6FvExFP/ksA0ke3TE8rpk7MWnRoR6KfeupQN5Fco2hUMxJlYTtwprismWfS/52SGXIJafEuu9bSM9UI5gILanlocaFiqKzmUmrGogn6iOaakTVhMUhc8UZvUHTS6ONQxz3Dd8ZTL8kgWyHJDtQLX2ixk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763567983; c=relaxed/simple;
-	bh=mQ45HxHEz7bEk0U1Kg7KEiKQ1cBt2yG8qBc7T+EeuPs=;
-	h=Message-Id:To:Subject:References:Content-Type:Date:Cc:From:
-	 Mime-Version:In-Reply-To; b=tHXNdaPtC7fgKFqOlVQYfUFbpCbj8ohQyQP5ZQebnEJo6VtWkLTWf/qwxjq1j24IvjEm6b38MdzQHxe2eUHgxGMl1m4pIWWNY8iVkTEnqGYyzWR4lbp99VMZ2P+HWUduI905WfExDMzwQ2z7rZkGWjfw7hmSvIm3mM0AOKVhW/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=UqQV/M0K; arc=none smtp.client-ip=118.26.132.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=2212171451; d=bytedance.com; t=1763567861; h=from:subject:
- mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
- mime-version:in-reply-to:message-id;
- bh=mQ45HxHEz7bEk0U1Kg7KEiKQ1cBt2yG8qBc7T+EeuPs=;
- b=UqQV/M0KVnqVIbes+T1VV5SYDQBUho8kznxbAiYsToK+jUa4il3/H/XbholIfk2vhMtJjp
- qBcw52taj1iZnwQoxlvwy6vQyl96TiF5DLpAY/hnB8OKpiyrxr3bxooNrdZddhA7V4FTh5
- cModvja+7QNJsvuYxDrSOrVjKQI+lSnHCBf4TMYmvtLXrpNTTgkaB6Xadywgbtlfw2YI4R
- 1HMOwLrt30weNo9TEwQpsV6nTf4bz4Zbwq3Jq/+Ttc+NwLbHFhn89RC5I13WCOSG9aNnOl
- yfod9OGzB8lb4c9K7hvmAD7rJwuVYmdbbk2hWYvfNJf/0OF4eMx4QOpG4cabOQ==
-Message-Id: <b0b0f9d727b334fa569c726fc13490dd51d4fe42.7caea664.2799.41de.8705.9603c8f00a51@bytedance.com>
-To: "Paul Walmsley" <pjw@kernel.org>
-Subject: Re: [PATCH v4 00/10] riscv: Add Zalasr ISA extension support
-References: <20251020042056.30283-1-luxu.kernel@bytedance.com> <176355541475.758643.7685467502830246491.git-patchwork-notify@kernel.org>
-	<b7dc669e-cc48-f163-0146-0ef37dbd19ec@kernel.org>
-X-Lms-Return-Path: <lba+1691de8f3+3eb7e6+vger.kernel.org+luxu.kernel@bytedance.com>
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 19 Nov 2025 23:57:38 +0800
-Cc: <patchwork-bot+linux-riscv@kernel.org>, 
-	<linux-riscv@lists.infradead.org>, <corbet@lwn.net>, 
-	<paul.walmsley@sifive.com>, <palmer@dabbelt.com>, 
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <robh@kernel.org>, 
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <will@kernel.org>, 
-	<peterz@infradead.org>, <boqun.feng@gmail.com>, <mark.rutland@arm.com>, 
-	<anup@brainfault.org>, <atish.patra@linux.dev>, <pbonzini@redhat.com>, 
-	<shuah@kernel.org>, <parri.andrea@gmail.com>, <ajones@ventanamicro.com>, 
-	<brs@rivosinc.com>, <guoren@kernel.org>, <linux-doc@vger.kernel.org>, 
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, 
-	<kvm@vger.kernel.org>, <kvm-riscv@lists.infradead.org>, 
-	<linux-kselftest@vger.kernel.org>, <apw@canonical.com>, 
-	<joe@perches.com>, <lukas.bulwahn@gmail.com>
-From: =?utf-8?q?=E8=B7=AF=E6=97=AD?= <luxu.kernel@bytedance.com>
+	s=arc-20240116; t=1763567909; c=relaxed/simple;
+	bh=mjsTWSnRr7lGCQg1/uTCVXVJKVn6B2SqCh5DqRGiSs8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ot6P4BWQFZIkwwxDk5lCIBee2cX2AebyPuBMucD5DIB6w+Jt6Vqyk08BvwIjw6/Zm7JIoFvb2/lhAdH50c5sKXh3EcyNROmLRqmUud6uTDh+2JYDlDWRIOoKvf/vU54Zk2ldDWZu4RS3PbH6WxOdBKBUm1QOmZZMJtSgViOfF2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bkjeXlf3; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763567908; x=1795103908;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mjsTWSnRr7lGCQg1/uTCVXVJKVn6B2SqCh5DqRGiSs8=;
+  b=bkjeXlf3JbOp90vWXfBHcy6+PdcSGncS5XtKqsvIJpsJO4uJKIwDmAFD
+   TVYP62mSmBnQybRi3pkQlBaZF+3+nQyOq8DUKibmRgb3S7LWQtH1bNV+X
+   taS8zMb+u8JEDccKQ05GkwuROxtEWar+YMJc8MeJmxFHAhBlFcyYQM1YU
+   pKO5DUAudF8v2sF2/Df5bKIve+vHVQj2IVOPcvV3Y/yMs3FAovhR1IFgC
+   141d6XZyHFNMEf0rgXk+r09erAsamS8I+YdXh9Wx71hEsxdcWlIz3AoAY
+   S14wU/++Befb8cg3AFH7TY9khgieSihOVI3A09puewyMbsVRo/n7gMwar
+   Q==;
+X-CSE-ConnectionGUID: vTVCDyU3TqST0SnDi3peLw==
+X-CSE-MsgGUID: eajTyhQvS22iPCYIy/lofQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65647017"
+X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; 
+   d="scan'208";a="65647017"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 07:58:28 -0800
+X-CSE-ConnectionGUID: 4KZTxpf4Q963/vB8ThHCAg==
+X-CSE-MsgGUID: dQkV7QBXRRG2V33oyHD3Pw==
+X-ExtLoop1: 1
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.245])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 07:58:24 -0800
+Date: Wed, 19 Nov 2025 17:58:22 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Ariana.Lazar@microchip.com
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	robh@kernel.org, linux-kernel@vger.kernel.org, andy@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH 2/2] iio: adc: adding support for PAC1711
+Message-ID: <aR3pHtpdfnqcPahC@smile.fi.intel.com>
+References: <20251015-pac1711-v1-0-976949e36367@microchip.com>
+ <20251015-pac1711-v1-2-976949e36367@microchip.com>
+ <20251019112846.774d7690@jic23-huawei>
+ <9741143f091acf1a2791ced6ea26f5cac720a283.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-In-Reply-To: <b7dc669e-cc48-f163-0146-0ef37dbd19ec@kernel.org>
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9741143f091acf1a2791ced6ea26f5cac720a283.camel@microchip.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Paul,
+On Wed, Nov 19, 2025 at 03:31:24PM +0000, Ariana.Lazar@microchip.com wrote:
+> 
+> There has been an unsuccessful attempt to submit this function to the
+> unaligned set. It was rejected because of the lack of current possible
+> shared uses. Please see the discussion thread below:
+> 
+> https://yhbt.net/lore/lkml/20240927083543.80275-1-
+> marius.cristea@microchip.com/T/#u
 
-I will continue with this work. And thanks for Andrea's feedback.
+Please, make sure you provide working links which should be this one if I am
+not mistaken:
 
-Best Regards,
-Xu Lu
+https://lore.kernel.org/r/20240927083543.80275-1-marius.cristea@microchip.com/T/#u
 
-> From: "Paul Walmsley"<pjw@kernel.org>
-> Date:=C2=A0 Wed, Nov 19, 2025, 23:42
-> Subject:=C2=A0 Re: [PATCH v4 00/10] riscv: Add Zalasr ISA extension suppo=
-rt
-> To: <patchwork-bot+linux-riscv@kernel.org>
-> Cc: "Xu Lu"<luxu.kernel@bytedance.com>, <linux-riscv@lists.infradead.org>=
-, <corbet@lwn.net>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@=
-eecs.berkeley.edu>, <alex@ghiti.fr>, <robh@kernel.org>, <krzk+dt@kernel.org=
->, <conor+dt@kernel.org>, <will@kernel.org>, <peterz@infradead.org>, <boqun=
-.feng@gmail.com>, <mark.rutland@arm.com>, <anup@brainfault.org>, <atish.pat=
-ra@linux.dev>, <pbonzini@redhat.com>, <shuah@kernel.org>, <parri.andrea@gma=
-il.com>, <ajones@ventanamicro.com>, <brs@rivosinc.com>, <guoren@kernel.org>=
-, <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <devicetree@=
-vger.kernel.org>, <kvm@vger.kernel.org>, <kvm-riscv@lists.infradead.org>, <=
-linux-kselftest@vger.kernel.org>, <apw@canonical.com>, <joe@perches.com>, <=
-lukas.bulwahn@gmail.com>
-> Folks,
+Also put lore site directly. I don't want to make my browser crawling from
+whatever possibly fishing and malware sites.
 
->=C2=A0
-> On Wed, 19 Nov 2025, patchwork-bot+linux-riscv@kernel.org wrote:
+What you provided is two non-working links.
 
->=C2=A0
-> > This series was applied to riscv/linux.git (for-next)
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> > by Paul Walmsley <pjw@kernel.org>:
 
->=C2=A0
-> This actually isn't true; I've only applied the first four patches (see=
-=C2=A0
-
-> below).
-
->=C2=A0
-> > On Mon, 20 Oct 2025 12:20:46 +0800 you wrote:
-
-> > > This patch adds support for the Zalasr ISA extension, which supplies =
-the
-
-> > > real load acquire/store release instructions.
-
-> > >=C2=A0
-
-> > > The specification can be found here:
-
-> > > https://github.com/riscv/riscv-zalasr/blob/main/chapter2.adoc
-
-> > >=C2=A0
-
-> > > This patch seires has been tested with ltp on Qemu with Brensan's zal=
-asr
-
-> > > support patch[1].
-
-> > >=C2=A0
-
-> > > [...]
-
-> >=C2=A0
-
-> > Here is the summary with links:
-
-> > =C2=A0 - [v4,01/10] riscv: Add ISA extension parsing for Zalasr
-
-> > =C2=A0 =C2=A0 https://git.kernel.org/riscv/c/0597b9c8627e
-
-> > =C2=A0 - [v4,02/10] dt-bindings: riscv: Add Zalasr ISA extension descri=
-ption
-
-> > =C2=A0 =C2=A0 https://git.kernel.org/riscv/c/6e2a0ff70abe
-
-> > =C2=A0 - [v4,03/10] riscv: hwprobe: Export Zalasr extension
-
-> > =C2=A0 =C2=A0 https://git.kernel.org/riscv/c/d5e20628a882
-
-> > =C2=A0 - [v4,04/10] riscv: Introduce Zalasr instructions
-
-> > =C2=A0 =C2=A0 https://git.kernel.org/riscv/c/c4139ea6717c
-
-> > =C2=A0 - [v4,05/10] riscv: Apply Zalasr to smp_load_acquire/smp_store_r=
-elease
-
-> > =C2=A0 =C2=A0 (no matching commit)
-
-> > =C2=A0 - [v4,06/10] riscv: Apply acquire/release semantics to arch_xchg=
-/arch_cmpxchg operations
-
-> > =C2=A0 =C2=A0 (no matching commit)
-
-> > =C2=A0 - [v4,07/10] riscv: Apply acquire/release semantics to arch_atom=
-ic operations
-
-> > =C2=A0 =C2=A0 (no matching commit)
-
-> > =C2=A0 - [v4,08/10] riscv: Remove arch specific __atomic_acquire/releas=
-e_fence
-
-> > =C2=A0 =C2=A0 (no matching commit)
-
-> > =C2=A0 - [v4,09/10] RISC-V: KVM: Allow Zalasr extensions for Guest/VM
-
-> > =C2=A0 =C2=A0 (no matching commit)
-
-> > =C2=A0 - [v4,10/10] RISC-V: KVM: selftests: Add Zalasr extensions to ge=
-t-reg-list test
-
-> > =C2=A0 =C2=A0 (no matching commit)
-
->=C2=A0
-> In terms of patches 5-8, we're still waiting for Xu Lu to update the=C2=
-=A0
-
-> patches based on Andrea's feedback. =C2=A0Xu Lu, are you still planning t=
-o=C2=A0
-
-> update these?
-
->=C2=A0
->=C2=A0
-> - Paul
->=C2=A0
 
