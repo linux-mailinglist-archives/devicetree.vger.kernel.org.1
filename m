@@ -1,469 +1,217 @@
-Return-Path: <devicetree+bounces-240317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141E7C6FF25
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:08:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD273C6FDA5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:56:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E31F2500A31
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:51:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 81A822EF6B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:56:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDCEE341050;
-	Wed, 19 Nov 2025 15:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E295327C07;
+	Wed, 19 Nov 2025 15:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iKEE9S1x"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fE6c+Dys"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4064C377E84
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:46:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A94327C11
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763567174; cv=none; b=i3o7O2hanHHMxFZ/t4z0y61NbR7hHeoWqg8etArRImuPQ4vCshDzdKJbyXAB9KzBdgTPRMP/WFUUgbfWW1rrG+mRaz2iboMDncaSwc1bh6HOwn4wCgMlg95HsbUuqbAkVp8ZSca/UQ5zh9SfAdHoEP7KLFE2mPz2pgkMRbAMTQw=
+	t=1763567482; cv=none; b=dw+xiCxUpB6wQwy/LEfY2wwlhALSruVrd+729vWwv37FxUvYDvS1Qx9fD0MSRYimnNSD3ABxVHc6yWZH9j3ZOxmXw3Z5EGyCFpfTd77is+2vgpeIZEwMdsPoRnc2s9rWyRQJSUwK/TvaRCmSmwIOkagIjv+RK45nqtwi7idzY4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763567174; c=relaxed/simple;
-	bh=wT8jmHzcNzOn5Qz+3QDhit2hy9V6GOAqUfnO1Z91iT4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QwsFoBOXQcgj841ffadfzKQaDs3tJiCrWxchv7sD72SlA9YYDCNzdREQK5cV9pw55QD/n0wIvV3TtUk5Qx8S4VOL9jPWQkKGiDvLFbZjbqJwVGfWH6axy3f8XYIOe7muOBtwGqo2Zj/ZlZsLmPmy9k7vkehivuZDmWcwpt/FuY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iKEE9S1x; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-42b2dc17965so5618678f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 07:46:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763567162; x=1764171962; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vjdG1/a5AFb8CurP464/OyK+i/niRA2OFjF7IXQ6EqU=;
-        b=iKEE9S1x9QWbGHB/ePXFxV+MOYG1FQjEFKLupkcUbkIDj1MwKSWWC80B5kbXz527Uu
-         +XrrAonfGs9qGc3eyA1TzIeotXf7kj+BVjN4suIrHDlzwVkBEz6MTYOwS0pnaQ4TwDjW
-         np02CTwRAZTGAX4P5BJIGbgELcQkvyKUPNtmsnrychGRuzXzPfutsHnE2bDaRz7Qw3UL
-         Hy2sn1q6aGUhuFRRo7QjslJ0yDKLJsUbaYSNAuGxCiVYaCgg6reHJpLV9v33MftCVQ8R
-         R79z8CbM+8gYja96FcgAPvOTrPUBeYykCrc9acmjDKxn15o9cVyWZ6ZV7q64VV9jB6St
-         nW2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763567162; x=1764171962;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=vjdG1/a5AFb8CurP464/OyK+i/niRA2OFjF7IXQ6EqU=;
-        b=ZZIQXeNo9BDGF2496DNf4QxOPCe8wpsNnjiY/8XNsmHeZc3N2RRsMB+FDHN9xiPUuv
-         TMi7eZBcWZaUFoWceqIfSj8ASONwGLWOYFZ3F3nxmizSpLnnDeWeBncGJ8A5V24vaNjs
-         9OhWusDdS19qR3vxq6ISsz6Xomb0sBa2cf+fBJ9sXB1/FV2NgW5DDJ26M9Afqp/w5T3V
-         kkYE4TVt/P5jY94CQ/ooZuxHGyKMQna7/I0qCwLzEP9rUOOyL2T8HRd66nrElzJca3tf
-         K0U2Y5aMr0ROzcgGkRHPNqwEqe5tuWnaLg0OHq5R2GM0E4iFYyLFvxUjIJ9f6Du8VYF8
-         TXzg==
-X-Forwarded-Encrypted: i=1; AJvYcCVqfrNmePE4Z0erNbWpksEZcGUwFGI4cg2NW8hs67pU3i3WruXCFQTUOe+J764k5UiV82bcext7oQtj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzo3mp8csRPmYHBHmThsQU4hOZHcfiMAVVkcA1bjTkJ/K+DNWlF
-	V+GdSs/2eG7xj3+Xflj9VQYsY5/Gq16MFK1+XV6TLXY/3ZZaYuAzpQHqIsj/0I11DfQ=
-X-Gm-Gg: ASbGncsX73i0DQBhzDeZVqsSKu1tJhlkSyKoEn6jTXbgZVUPVDkwlupGnUyfyJFeD1g
-	gqgrE1bvEYB6evGut95oetxJ0Wc+TMNh4WW7+o5oEUgwYOT1lsbJjihIPYHKhGYvonm+alxWXTZ
-	vF8B7Wr5GZYH8yC3lvN7zx/dynI2gyK6NfGVb5PVdrtTUbCu6Pm5SxDwdNwSRJgprFzTj3qQjMv
-	Yr6NUA/H9DZLcsXUlE2rVcDyKAAhLqBcaDK0YtdWTLvcDmHZKvc+qK4TAboHMfV0GJ8S9FuW9+Q
-	bwJsLzJUfYg3F2jQI1z9SU0KwxCGvXvYjl3pBdL9hD7+O0px6GD1O66M4nDZwx5mklGjby8URJ/
-	SyOkqv2JYpXEnpcfdcD/79Q5PaZanrkxIVNcIK9dIlXkULP9+Akmuvsq/QWkUaDGaIs5QG0gqMh
-	YhGcc1c4SHDEuUtwDduKOHlrAcQ5o7Lw==
-X-Google-Smtp-Source: AGHT+IEYehjZzwQP4QY9mT+/5fGr+NBXUC5zHCL5MMz466EKwRwnbbkUf34pwbvo8KJX34cdlYI+Ug==
-X-Received: by 2002:a05:6000:657:b0:400:7e60:7ee0 with SMTP id ffacd0b85a97d-42b592d8549mr20248098f8f.0.1763567162304;
-        Wed, 19 Nov 2025 07:46:02 -0800 (PST)
-Received: from eugen-station.. ([82.76.24.202])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53dea1c9sm38765632f8f.0.2025.11.19.07.46.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 07:46:01 -0800 (PST)
-From: Eugen Hristev <eugen.hristev@linaro.org>
-To: linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org,
-	tglx@linutronix.de,
-	andersson@kernel.org,
-	pmladek@suse.com,
-	rdunlap@infradead.org,
-	corbet@lwn.net,
-	david@redhat.com,
-	mhocko@suse.com
-Cc: tudor.ambarus@linaro.org,
-	mukesh.ojha@oss.qualcomm.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-hardening@vger.kernel.org,
-	jonechou@google.com,
-	rostedt@goodmis.org,
-	linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
-	linux-arch@vger.kernel.org,
-	tony.luck@intel.com,
-	kees@kernel.org,
-	Eugen Hristev <eugen.hristev@linaro.org>
-Subject: [PATCH 26/26] meminspect: Add Kinfo compatible driver
-Date: Wed, 19 Nov 2025 17:44:27 +0200
-Message-ID: <20251119154427.1033475-27-eugen.hristev@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251119154427.1033475-1-eugen.hristev@linaro.org>
-References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
+	s=arc-20240116; t=1763567482; c=relaxed/simple;
+	bh=GbMjQfXbVDBRYa99+t6zovRCd+kwGqxoJZCf8LF1Il0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dyI4KEGV7/LY/+SVXFi0mCSpuS3myAQa5MnxFjSxdWRG4MwVDDZShmXCcf/7wfClhmPipk6dwQzI77Ko10Le1cH9jA1vR7Sa8uWXwieRfB1T+jXeiGRJgeH2MqMGniZxjwl8mrNW8xkb0QdDV5w4H/BIpYQ36RT9OoxTEh92bns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fE6c+Dys; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 58506C1118D;
+	Wed, 19 Nov 2025 15:50:55 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 869AA60699;
+	Wed, 19 Nov 2025 15:51:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C220C10371A8D;
+	Wed, 19 Nov 2025 16:51:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1763567475; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=YgkbkBFr0ckOJQWKBFTLiaCszDsoKrpS3iQ1CceK2n8=;
+	b=fE6c+DysR+/xMRp1rzBHfJ2srBe2rV3Jcto4oFkWjbu07IPjIN5QUSOZR8lfCVi0A0JNCO
+	VXmku5imKGgGGvj+fbKllpMFLhk8J5n0hWSY/iUtB2Gm7Y4tAVLQZaN87zb8U9DWdCA5Cx
+	X/OLLPG2KgEttcpweulIUmDpGoaZmHG/r6Wp4zLkwyhPGnr41HDcowOEb10f8LU6ZU2ssR
+	U/CM4BLpwIDc1RDLag+2A+3poejHH+MSIRNtE1Yq6h9CdUR7+HtoeQYErzb45WmLU018Z4
+	iHE063QrDoBKSH595OTNEPxjSZxyPVRRs/WrixCQTlt8D4KFdy1ua/3TcFaEcQ==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH v3 0/7] Add generic PHY driver used by MACB/GEM on EyeQ5
+Date: Wed, 19 Nov 2025 16:51:08 +0100
+Message-Id: <20251119-macb-phy-v3-0-e9a7be186a33@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAGznHWkC/22MQQ6CMBBFr0JmbU1nEBFW3sO4oGUqTYSSljQSw
+ t0tbNTE5fv57y0Q2FsOUGcLeI42WDckyA8Z6K4ZHixsmxhIUoGSSPSNVmLsZkGo9ImxNUqVkO6
+ jZ2Nfe+p2T9zZMDk/7+WI2/onElFIYagydDENl4RX5dz0tMNRux62TKSPihK/VEqqxgIrZoPnN
+ v9V13V9A81gWH3dAAAA
+X-Change-ID: 20251022-macb-phy-21bc4e1dfbb7
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-clk@vger.kernel.org, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Andrew Lunn <andrew@lunn.ch>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-With this driver, the registered regions are copied to a shared
-memory zone at register time.
-The shared memory zone is supplied via OF.
-This driver will select only regions that are of interest,
-and keep only addresses. The format of the list is Kinfo compatible,
-with devices like Google Pixel phone.
-The firmware is only interested in some symbols' addresses.
+EyeQ5 SoCs integrate two GEM instances. A system-controller register
+region named "OLB" has some control over the Ethernet PHY integration.
 
-Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+Past iterations [0] touched those syscon registers directly from MACB.
+It was a bad idea. Extend the current OLB ecosystem with a new generic
+PHY driver.
+ - OLB is carried by one main platform driver: clk-eyeq.
+ - It instantiates auxiliary devices: reset-eyeq & pinctrl-eyeq5.
+ - We add a new one: phy-eyeq5-eth.
+
+I always find devicetree the simplest way to understand device
+interactions, so here is a DT overview:
+
+    olb: system-controller@e00000 {
+            compatible = "mobileye,eyeq5-olb", "syscon";
+            reg = <0 0xe00000 0x0 0x400>;
+            // ...
+            #reset-cells = <2>;
+            #clock-cells = <1>;
+            #phy-cells = <1>; // <= this is new
+    };
+
+    macb0: ethernet@2a00000 {
+            compatible = "mobileye,eyeq5-gem";
+            phys = <&olb 0>; // <= GEM device consumes the PHY
+            // ...
+    };
+
+    macb1: ethernet@2b00000 {
+            compatible = "mobileye,eyeq5-gem";
+            phys = <&olb 1>; // <= same thing for the second instance
+            // ...
+    };
+
+The Linux MACB driver already consumes a generic PHY for some other
+compatibles, this is nothing new. The MACB series [1] has been merged
+into net-next/main.
+
+--
+
+About merging, Philipp Zabel gave his ACK for [5/7] to go into
+linux-clk. The split becomes simpler:
+
+ - [PATCH 1/7] dt-bindings: soc: mobileye: OLB is an Ethernet PHY provider on EyeQ5
+   [PATCH 6/7] MIPS: mobileye: eyeq5: add two Cadence GEM Ethernet controllers
+   [PATCH 7/7] MIPS: mobileye: eyeq5-epm: add two Cadence GEM Ethernet PHYs
+   => linux-mips
+
+ - [PATCH 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
+   => linux-phy
+
+ - [PATCH 3/7] clk: eyeq: use the auxiliary device creation helper
+   [PATCH 4/7] clk: eyeq: add EyeQ5 children auxiliary device for generic PHYs
+   [PATCH 5/7] reset: eyeq: drop device_set_of_node_from_dev() done by parent
+   => linux-clk
+
+MACB patches are in and V1 and V2 were super calm, can we sync to get
+this V3 in before the v6.19 merge window? Patches apply cleanly on the
+three linux-{clk,mips,phy} trees.
+
+Have a nice day,
+Thanks!
+Théo
+
+[0]: https://lore.kernel.org/lkml/20250627-macb-v2-15-ff8207d0bb77@bootlin.com/
+[1]: https://lore.kernel.org/lkml/20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 ---
- MAINTAINERS                |   1 +
- kernel/meminspect/Kconfig  |  10 ++
- kernel/meminspect/Makefile |   1 +
- kernel/meminspect/kinfo.c  | 289 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 301 insertions(+)
- create mode 100644 kernel/meminspect/kinfo.c
+Changes in v3:
+- Take Philipp Zabel's Reviewed-by & Acked-by trailers on reset patch.
+- Take Thomas Bogendoerfer's two Acked-by trailers on DT patches.
+- Rebase on net-next & test on target. Nothing to report.
+- Link to v2: https://lore.kernel.org/r/20251101-macb-phy-v2-0-c1519eef16d3@bootlin.com
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8034940d0b1e..9cba0e472e01 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16168,6 +16168,7 @@ MEMINSPECT KINFO DRIVER
- M:	Eugen Hristev <eugen.hristev@linaro.org>
- S:	Maintained
- F:	Documentation/devicetree/bindings/misc/google,kinfo.yaml
-+F:	kernel/meminspect/kinfo.c
- 
- MEMBLOCK AND MEMORY MANAGEMENT INITIALIZATION
- M:	Mike Rapoport <rppt@kernel.org>
-diff --git a/kernel/meminspect/Kconfig b/kernel/meminspect/Kconfig
-index 8680fbf0e285..396510908e47 100644
---- a/kernel/meminspect/Kconfig
-+++ b/kernel/meminspect/Kconfig
-@@ -18,3 +18,13 @@ config MEMINSPECT
- 	  Note that modules using this feature must be rebuilt if option
- 	  changes.
- 
-+config MEMINSPECT_KINFO
-+	tristate "Shared memory KInfo compatible driver"
-+	depends on MEMINSPECT
-+	help
-+	  Say y here to enable the Shared memory KInfo compatible driver
-+	  With this driver, the registered regions are copied to a shared
-+	  memory zone at register time.
-+	  The shared memory zone is supplied via OF.
-+	  This driver will select only regions that are of interest,
-+	  and keep only addresses. The format of the list is Kinfo compatible.
-diff --git a/kernel/meminspect/Makefile b/kernel/meminspect/Makefile
-index 09fd55e6d9cf..283604d892e5 100644
---- a/kernel/meminspect/Makefile
-+++ b/kernel/meminspect/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- obj-$(CONFIG_MEMINSPECT) += meminspect.o
-+obj-$(CONFIG_MEMINSPECT_KINFO) += kinfo.o
-diff --git a/kernel/meminspect/kinfo.c b/kernel/meminspect/kinfo.c
-new file mode 100644
-index 000000000000..62f8ee7a66a9
---- /dev/null
-+++ b/kernel/meminspect/kinfo.c
-@@ -0,0 +1,289 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ *
-+ * Copyright 2002 Rusty Russell <rusty@rustcorp.com.au> IBM Corporation
-+ * Copyright 2021 Google LLC
-+ * Copyright 2025 Linaro Ltd. Eugen Hristev <eugen.hristev@linaro.org>
-+ */
-+#include <linux/container_of.h>
-+#include <linux/kallsyms.h>
-+#include <linux/meminspect.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_reserved_mem.h>
-+#include <linux/platform_device.h>
-+#include <linux/utsname.h>
-+
-+#define BUILD_INFO_LEN		256
-+#define DEBUG_KINFO_MAGIC	0xcceeddff
-+
-+/*
-+ * Header structure must be byte-packed, since the table is provided to
-+ * bootloader.
-+ */
-+struct kernel_info {
-+	/* For kallsyms */
-+	u8 enabled_all;
-+	u8 enabled_base_relative;
-+	u8 enabled_absolute_percpu;
-+	u8 enabled_cfi_clang;
-+	u32 num_syms;
-+	u16 name_len;
-+	u16 bit_per_long;
-+	u16 module_name_len;
-+	u16 symbol_len;
-+	u64 _relative_pa;
-+	u64 _text_pa;
-+	u64 _stext_pa;
-+	u64 _etext_pa;
-+	u64 _sinittext_pa;
-+	u64 _einittext_pa;
-+	u64 _end_pa;
-+	u64 _offsets_pa;
-+	u64 _names_pa;
-+	u64 _token_table_pa;
-+	u64 _token_index_pa;
-+	u64 _markers_pa;
-+	u64 _seqs_of_names_pa;
-+
-+	/* For frame pointer */
-+	u32 thread_size;
-+
-+	/* For virt_to_phys */
-+	u64 swapper_pg_dir_pa;
-+
-+	/* For linux banner */
-+	u8 last_uts_release[__NEW_UTS_LEN];
-+
-+	/* Info of running build */
-+	u8 build_info[BUILD_INFO_LEN];
-+
-+	/* For module kallsyms */
-+	u32 enabled_modules_tree_lookup;
-+	u32 mod_mem_offset;
-+	u32 mod_kallsyms_offset;
-+} __packed;
-+
-+struct kernel_all_info {
-+	u32 magic_number;
-+	u32 combined_checksum;
-+	struct kernel_info info;
-+} __packed;
-+
-+struct debug_kinfo {
-+	struct device *dev;
-+	void *all_info_addr;
-+	size_t all_info_size;
-+	struct notifier_block nb;
-+};
-+
-+static void update_kernel_all_info(struct kernel_all_info *all_info)
-+{
-+	struct kernel_info *info;
-+	u32 *checksum_info;
-+	int index;
-+
-+	all_info->magic_number = DEBUG_KINFO_MAGIC;
-+	all_info->combined_checksum = 0;
-+
-+	info = &all_info->info;
-+	checksum_info = (u32 *)info;
-+	for (index = 0; index < sizeof(*info) / sizeof(u32); index++)
-+		all_info->combined_checksum ^= checksum_info[index];
-+}
-+
-+static u8 global_build_info[BUILD_INFO_LEN];
-+
-+static int build_info_set(const char *str, const struct kernel_param *kp)
-+{
-+	size_t build_info_size = sizeof(global_build_info);
-+
-+	if (strlen(str) > build_info_size)
-+		return -ENOMEM;
-+	memcpy(global_build_info, str, min(build_info_size - 1, strlen(str)));
-+	return 0;
-+}
-+
-+static const struct kernel_param_ops build_info_op = {
-+	.set = build_info_set,
-+};
-+
-+module_param_cb(build_info, &build_info_op, NULL, 0200);
-+MODULE_PARM_DESC(build_info, "Write build info to field 'build_info' of debug kinfo.");
-+
-+static void __maybe_unused register_kinfo_region(void *priv,
-+						 const struct inspect_entry *e)
-+{
-+	struct debug_kinfo *kinfo = priv;
-+	struct kernel_all_info *all_info = kinfo->all_info_addr;
-+	struct kernel_info *info = &all_info->info;
-+	struct uts_namespace *uts;
-+	u64 paddr;
-+
-+	if (e->pa)
-+		paddr = e->pa;
-+	else
-+		paddr = __pa(e->va);
-+
-+	switch (e->id) {
-+	case MEMINSPECT_ID__sinittext:
-+		info->_sinittext_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__einittext:
-+		info->_einittext_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__end:
-+		info->_end_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__text:
-+		info->_text_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__stext:
-+		info->_stext_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__etext:
-+		info->_etext_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_num_syms:
-+		info->num_syms = *(__u32 *)e->va;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_relative_base:
-+		info->_relative_pa = (u64)__pa(*(u64 *)e->va);
-+		break;
-+	case MEMINSPECT_ID_kallsyms_offsets:
-+		info->_offsets_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_names:
-+		info->_names_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_token_table:
-+		info->_token_table_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_token_index:
-+		info->_token_index_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_markers:
-+		info->_markers_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_seqs_of_names:
-+		info->_seqs_of_names_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_swapper_pg_dir:
-+		info->swapper_pg_dir_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_init_uts_ns:
-+		if (!e->va)
-+			return;
-+		uts = e->va;
-+		strscpy(info->last_uts_release, uts->name.release, __NEW_UTS_LEN);
-+		break;
-+	default:
-+		break;
-+	};
-+
-+	update_kernel_all_info(all_info);
-+}
-+
-+static int kinfo_notifier_cb(struct notifier_block *nb,
-+			     unsigned long code, void *entry)
-+{
-+	struct debug_kinfo *kinfo = container_of(nb, struct debug_kinfo, nb);
-+
-+	if (code == MEMINSPECT_NOTIFIER_ADD)
-+		register_kinfo_region(kinfo, entry);
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static int debug_kinfo_probe(struct platform_device *pdev)
-+{
-+	struct kernel_all_info *all_info;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *mem_region;
-+	struct reserved_mem *rmem;
-+	struct debug_kinfo *kinfo;
-+	struct kernel_info *info;
-+
-+	mem_region = of_parse_phandle(dev->of_node, "memory-region", 0);
-+	if (!mem_region)
-+		return dev_err_probe(dev, -ENODEV, "no such memory-region\n");
-+
-+	rmem = of_reserved_mem_lookup(mem_region);
-+	if (!rmem)
-+		return dev_err_probe(dev, -ENODEV, "no such reserved mem of node name %s\n",
-+			      dev->of_node->name);
-+
-+	/* Need to wait for reserved memory to be mapped */
-+	if (!rmem->priv)
-+		return -EPROBE_DEFER;
-+
-+	if (!rmem->base || !rmem->size)
-+		dev_err_probe(dev, -EINVAL, "unexpected reserved memory\n");
-+
-+	if (rmem->size < sizeof(struct kernel_all_info))
-+		dev_err_probe(dev, -EINVAL, "reserved memory size too small\n");
-+
-+	kinfo = devm_kzalloc(dev, sizeof(*kinfo), GFP_KERNEL);
-+	if (!kinfo)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, kinfo);
-+
-+	kinfo->dev = dev;
-+
-+	kinfo->all_info_addr = rmem->priv;
-+	kinfo->all_info_size = rmem->size;
-+
-+	all_info = kinfo->all_info_addr;
-+
-+	memset(all_info, 0, sizeof(struct kernel_all_info));
-+	info = &all_info->info;
-+	info->enabled_all = IS_ENABLED(CONFIG_KALLSYMS_ALL);
-+	info->enabled_absolute_percpu = IS_ENABLED(CONFIG_KALLSYMS_ABSOLUTE_PERCPU);
-+	info->enabled_base_relative = IS_ENABLED(CONFIG_KALLSYMS_BASE_RELATIVE);
-+	info->enabled_cfi_clang = IS_ENABLED(CONFIG_CFI_CLANG);
-+	info->name_len = KSYM_NAME_LEN;
-+	info->bit_per_long = BITS_PER_LONG;
-+	info->module_name_len = MODULE_NAME_LEN;
-+	info->symbol_len = KSYM_SYMBOL_LEN;
-+	info->thread_size = THREAD_SIZE;
-+	info->enabled_modules_tree_lookup = IS_ENABLED(CONFIG_MODULES_TREE_LOOKUP);
-+	info->mod_mem_offset = offsetof(struct module, mem);
-+	info->mod_kallsyms_offset = offsetof(struct module, kallsyms);
-+
-+	memcpy(info->build_info, global_build_info, strlen(global_build_info));
-+
-+	kinfo->nb.notifier_call = kinfo_notifier_cb;
-+
-+	meminspect_notifier_register(&kinfo->nb);
-+	meminspect_lock_traverse(kinfo, register_kinfo_region);
-+
-+	return 0;
-+}
-+
-+static void debug_kinfo_remove(struct platform_device *pdev)
-+{
-+	struct debug_kinfo *kinfo = platform_get_drvdata(pdev);
-+
-+	meminspect_notifier_unregister(&kinfo->nb);
-+}
-+
-+static const struct of_device_id debug_kinfo_of_match[] = {
-+	{ .compatible	= "google,debug-kinfo" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, debug_kinfo_of_match);
-+
-+static struct platform_driver debug_kinfo_driver = {
-+	.probe = debug_kinfo_probe,
-+	.remove = debug_kinfo_remove,
-+	.driver = {
-+		.name = "debug-kinfo",
-+		.of_match_table = of_match_ptr(debug_kinfo_of_match),
-+	},
-+};
-+module_platform_driver(debug_kinfo_driver);
-+
-+MODULE_AUTHOR("Eugen Hristev <eugen.hristev@linaro.org>");
-+MODULE_AUTHOR("Jone Chou <jonechou@google.com>");
-+MODULE_DESCRIPTION("meminspect Kinfo Driver");
-+MODULE_LICENSE("GPL");
+Changes in v2:
+- Take Acked-by: Conor Dooley on dt-bindings-patch.
+- s/%ld/%tu/ for printing ptrdiff_t; warnings on 32-bit archs.
+  Reported by NIPA's netdev/build_32bit test.
+  https://patchwork.kernel.org/project/netdevbpf/patch/20251021-macb-eyeq5-v1-7-3b0b5a9d2f85@bootlin.com/
+  https://netdev.bots.linux.dev/static/nipa/1014126/14277857/build_32bit/stderr
+- Link to v1: https://lore.kernel.org/r/20251022-macb-phy-v1-0-f29f28fae721@bootlin.com
+
+Changes since MACB V1:
+- Drop the old "mobileye,olb" properties from DT patches; found while
+  running dtbs_check and dt_binding_check.
+- Drop all patches targeting net-next. That is MACB dt-bindings patch
+  and MACB driver code. See there here [1].
+- Link to v1: https://lore.kernel.org/lkml/20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com/
+
+Past versions of MACB patches:
+ - March 2025: [PATCH net-next 00/13] Support the Cadence MACB/GEM
+   instances on Mobileye EyeQ5 SoCs
+   https://lore.kernel.org/lkml/20250321-macb-v1-0-537b7e37971d@bootlin.com/
+ - June 2025: [PATCH net-next v2 00/18] Support the Cadence MACB/GEM
+   instances on Mobileye EyeQ5 SoCs
+   https://lore.kernel.org/lkml/20250627-macb-v2-0-ff8207d0bb77@bootlin.com/
+ - August 2025: [PATCH net v3 00/16] net: macb: various fixes & cleanup
+   https://lore.kernel.org/lkml/20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com/
+
+---
+Jerome Brunet (1):
+      clk: eyeq: use the auxiliary device creation helper
+
+Théo Lebrun (6):
+      dt-bindings: soc: mobileye: OLB is an Ethernet PHY provider on EyeQ5
+      phy: Add driver for EyeQ5 Ethernet PHY wrapper
+      clk: eyeq: add EyeQ5 children auxiliary device for generic PHYs
+      reset: eyeq: drop device_set_of_node_from_dev() done by parent
+      MIPS: mobileye: eyeq5: add two Cadence GEM Ethernet controllers
+      MIPS: mobileye: eyeq5-epm: add two Cadence GEM Ethernet PHYs
+
+ .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  |   7 +-
+ MAINTAINERS                                        |   1 +
+ arch/mips/boot/dts/mobileye/eyeq5-epm5.dts         |  26 +++
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi             |  45 ++++
+ drivers/clk/clk-eyeq.c                             |  60 ++---
+ drivers/phy/Kconfig                                |  13 ++
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/phy-eyeq5-eth.c                        | 254 +++++++++++++++++++++
+ drivers/reset/reset-eyeq.c                         |  24 +-
+ 9 files changed, 363 insertions(+), 68 deletions(-)
+---
+base-commit: 4bd327737e4e408bed2daa1a3fc2ce45afab1790
+change-id: 20251022-macb-phy-21bc4e1dfbb7
+
+Best regards,
 -- 
-2.43.0
+Théo Lebrun <theo.lebrun@bootlin.com>
 
 
