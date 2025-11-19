@@ -1,225 +1,220 @@
-Return-Path: <devicetree+bounces-240284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 909D1C6F9A6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:17:30 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3D2C6FB08
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:37:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CA2E94F7CA7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:10:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2D02E4F126D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35702377E8D;
-	Wed, 19 Nov 2025 15:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3F623B60A;
+	Wed, 19 Nov 2025 15:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="c38y875G"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wbpFDpTS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010071.outbound.protection.outlook.com [52.101.61.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 523783730FD
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 15:06:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763564766; cv=none; b=PbtD2WQxgpAzP80sKPv5X2dTuDRI0pjsHaxVXI0K5Vp3rsb95MualjD/FwypE3CCN/sSFx7Dus6Vpu5qr+UkyF7eJyMNhx7p1433DlCNTBwnCwgR4GDlPYoeobsP5COPwyZm1sNY/FwhieEzeYbTzNmu4gWKNuecdBAXNwJbFNg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763564766; c=relaxed/simple;
-	bh=XMjhU5xBGVE+BteNaWxQS1rFxs2lHbDdMUeAq5fPn98=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=U9jWzcwh4G7Sp2O8gb6skdphTYWc7HOgoJK4nz2uDeaY6xH0i1av6TMC9q9mZRnxe6JqOnbbI5LM+2GFA1NAiFFGfrOYKTLK2Y0EFnTGg6ltTKcpyjTjv1Lk8p95x55qRCScbsQ1Col+WrIR2DvxTZ19O05Exxkwxi9wzz2289s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=c38y875G; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 15CA51A1BE2;
-	Wed, 19 Nov 2025 15:06:03 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DEED360699;
-	Wed, 19 Nov 2025 15:06:02 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5E61D10371A7C;
-	Wed, 19 Nov 2025 16:05:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763564761; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Qlwe5TwEIuTzD/7egh2Z/AjPfw+YwtKdtWet50MaR+k=;
-	b=c38y875GsbRAeytEOKF6p/L4tbghDOm1SE2hMHoTclk8/RZfYgz5QS8zv0W4hWUHTR6N5U
-	Z6tOCP4ga/nWYTYwhesK/SM6U5cQg99UcVk5pZGO038mrguJgN5v0ULGi7Qd/PYRjwt3N1
-	j7cCL/OsQX7IOj3M1aQvCWiDORvQfku4NMjeXXtf5x05hGbTxJp43FL/9TheQuyhu71T5h
-	PXnbmfIkbLZ//r2bKaivP/dLq6pOTN1zVtmTz0ymJrNoMMA6THkmnEI94AvMr5EH1DAAph
-	BZv6UJ03FBp7ItL/w8U+7P90EFS4lhajbI7dEzD3Bq66ZVGUzRKhu0rRRmkF9Q==
-From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-Date: Wed, 19 Nov 2025 16:05:36 +0100
-Subject: [PATCH v3 7/7] i2c: designware: Support of controller with
- IC_EMPTYFIFO_HOLD_MASTER disabled
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B650150997;
+	Wed, 19 Nov 2025 15:30:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763566224; cv=fail; b=UErOqR7IesVxRZOMmoR7Ce4+zkLpUcAebEBYow3vxSBXZ8zkeOAaOvHb4unrBjXYW6cSoGxqeHxWMH4luS/h+HBSpgeuvbj7zISha9UIMGXHdnCzCl693TuKoYooFeMs/Iav1OpU31RkNrppwdBHJ1QWZGnVN57lAgNgScR47G4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763566224; c=relaxed/simple;
+	bh=H0B/CdZyh5sXwFp2pDlwejMTPKEKL55oquo+esJFbmI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=j/QgEQ16H97U25bUuOzHoLiZxmZMamWIr00CVYKrLYSH5nqNLBNdwucXrtB2aSzw+ttDD2Pkks7tdIUETE1u7aHDpTfU3Wa0ucVlVuGuhAMSk/RFlvsocByCrusXSSYfLoDYYBglo31HI+1ry+IicYHpYVmGA1tChafWslG+zWY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wbpFDpTS; arc=fail smtp.client-ip=52.101.61.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uWG+cHAoePYJAblOCqDYrdtGaZv9hYWTBhoJBwPAtmojftP2Qvd63L+AJwwXZrYSYTWoXL5qWiKipnPxqCDKmdMYmkz7QtPsCE0VfSovEVu6WI2wciRB0hzbhtgBQdQgeP7AmB0MEHSPWBtxFdRTPenfqsrZuQx28Y5PxCni0+9LdEf6ZMeVnOd22if0nEcBlVfY94TtMMYayHef0M5TijpNYukrr+0PXqE3L/VbiMLd6SAb4LHdxBfilJ5bNsiDSywRhqZeNkM0hamDUZOiPjtSK1lbRTP9KRkihRJefF+sSA5Spj9ZYkZTdEK74GG6MrojqUe/8c+hD6PKeB97uQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HfV/rsXv2INEQUdU6pAB2OPZnSsrbVFIxEsvyKgYTPU=;
+ b=Jj6Fw1xzhNz2wOw6w+08oOPbmML9dNLBvR2iPkpspJ02rKhjfNbrN9zKNnRv5orR5wcp3GrSJMVx3qPkehfWipewr5G8HydUZJMIdzdpME2/FiwySsrXlb0NRmOYdQc/w1qUZV6QOCrnANgsZB6+qIuIA7B7pYwot/qGwQxQTarmzCnlNRM4s6y8Y+JA0e1UtUCXG8au6qqn3IGBspNOA92QuvdGoehTR2gC7i+G4kquCRnzrJtThJya+MXpzpVaOQx8tkDMewaVGdYW9BmQxIT38JUtg3UvQh2fpjTR9pcUJBJKfYNDu9siPzpdwjGMhf7FdKrOJNwv+a9T+trTxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HfV/rsXv2INEQUdU6pAB2OPZnSsrbVFIxEsvyKgYTPU=;
+ b=wbpFDpTS9U0TKB8WRdAf0HD/yqLLwWqqieOr15GWXanpPODYEzFmZri2t0scD8ZV28LcuUoLa188hWAWM/DSpij02zb+uUoVta8KUBphFjegqk2n3bH/KgiHzNGDhY3jE3cHFyIVvUX1B3YreSexS7DJzVYfpxGMgmd0OyBU9u8=
+Received: from MN2PR15CA0050.namprd15.prod.outlook.com (2603:10b6:208:237::19)
+ by SJ2PR10MB7655.namprd10.prod.outlook.com (2603:10b6:a03:547::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
+ 2025 15:30:17 +0000
+Received: from BL6PEPF00022574.namprd02.prod.outlook.com
+ (2603:10b6:208:237:cafe::cc) by MN2PR15CA0050.outlook.office365.com
+ (2603:10b6:208:237::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Wed,
+ 19 Nov 2025 15:30:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ BL6PEPF00022574.mail.protection.outlook.com (10.167.249.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9343.9 via Frontend Transport; Wed, 19 Nov 2025 15:30:13 +0000
+Received: from DLEE206.ent.ti.com (157.170.170.90) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
+ 2025 09:30:06 -0600
+Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE206.ent.ti.com
+ (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
+ 2025 09:30:06 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 19 Nov 2025 09:30:06 -0600
+Received: from [10.249.139.123] ([10.249.139.123])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AJFU1nx2061800;
+	Wed, 19 Nov 2025 09:30:02 -0600
+Message-ID: <f134863c-b4bb-485f-80af-f6a4207cac2f@ti.com>
+Date: Wed, 19 Nov 2025 21:00:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251119-i2c-dw-v3-7-bc4bc2a2cbac@bootlin.com>
-References: <20251119-i2c-dw-v3-0-bc4bc2a2cbac@bootlin.com>
-In-Reply-To: <20251119-i2c-dw-v3-0-bc4bc2a2cbac@bootlin.com>
-To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
- Mika Westerberg <mika.westerberg@linux.intel.com>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Jan Dabros <jsd@semihalf.com>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-rt-devel@lists.linux.dev, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-sk: Fix pinmux for power
+ regulator
+To: Vignesh Raghavendra <vigneshr@ti.com>
+CC: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <y-abhilashchandra@ti.com>, <u-kumar1@ti.com>,
+	<stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<srk@ti.com>, <s-vadapalli@ti.com>
+References: <20251118114954.1838514-1-s-vadapalli@ti.com>
+ <f4d38392-a019-4061-9ef0-d95506766027@ti.com>
+ <371e6a49846f910e9a747d4185471806cc719138.camel@ti.com>
+ <6d6a1eeb-503d-48be-81bb-df53942b321c@ti.com>
+Content-Language: en-US
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <6d6a1eeb-503d-48be-81bb-df53942b321c@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00022574:EE_|SJ2PR10MB7655:EE_
+X-MS-Office365-Filtering-Correlation-Id: 68cc9679-2196-4953-0d3a-08de278088a0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UHpyWEgzRG56TUhndkpYREs0dDJZdG1Oc2ZrbnZDQUNKT1RGSUp5cHhWbUhn?=
+ =?utf-8?B?dUxYZk5VWEVGRUFQSGJmVmdJMG1iU1JrMWJCdkJHaUV0WTFCTmZpbVMrVUln?=
+ =?utf-8?B?dEU0eXl1aklHYWJJTDkvQzdkT05YajYzVEZ1WW1DMzJVaXh1NjY5L0RPVk9x?=
+ =?utf-8?B?MXRSUlBXTmExME9zWnUvS05FcmRqSEZ2ZUN4aVZzTUQwRXZpNjZtU2JlQjBE?=
+ =?utf-8?B?d0FCYkJUNDdEUjduSktiUTdBVWJ4dlFUZVYxc3FsS3Z5UjRTTzhmV00xYVBx?=
+ =?utf-8?B?Nmk5ZUt4TEx1QTY0azdGZm1TdjdCK2VjYVlxbDlNY21qbGRSWmE0a29HNHk1?=
+ =?utf-8?B?eEN1c1h0Znp5VGIyMkRSblVrS05ZM21TWDRuQVB2VWd0c25PK21EYzQrdm5w?=
+ =?utf-8?B?b1BOd2FpYmRPZFRJeWl1QkY4Q3NkYXZHS3Boa2hIbFNmblllU1R1YmkrcGZT?=
+ =?utf-8?B?NWhMalQ1Z2pGcFRERjh6OGZDb0UwdDcvZnM3Z0RNNXA3c2M4NFI3eFBSREpr?=
+ =?utf-8?B?b2F6bHRXazVjNHZSeFBMWjNkbTBIdS9rdEU2TTJtOW9obHRWVGxhVU5GZUtx?=
+ =?utf-8?B?alpXOGZzMlA5N2VxSHpFMjVIYi9lM0NDZlkwdkVCNkZqS2E4YkRCa0sydlFv?=
+ =?utf-8?B?MHFidElLOUUwK0hHdzZCUDVjczlnTjNYc1FnbExUYWZTbGZTTmJ2YWYrSUsw?=
+ =?utf-8?B?NU5CMHJsZjJDd1ZmQlgxM0ttMHdwc0pBOW43bXd0YVJBaXoxV2hvdGRCVFhV?=
+ =?utf-8?B?cVpGMDdSR2FFQW1VQzZDa2x3eGlkc0RmZm94UWhPc2RWbWNhSW9pM2RQOVRB?=
+ =?utf-8?B?QnpVeFNWUWlPL1hYT0N6dHYzWm5pSExvdWpUeDkvUmVoOFBOdzZLeEFhQjZj?=
+ =?utf-8?B?MXB4azNtdnY5eE5hMXM0QldSTUhuQnNCbUs3cEU3RS9kbUVNSWprSEkrdDFO?=
+ =?utf-8?B?TFd3S2grY0pVVmtRMTllMExTbW84WXNIVGhqaXREeFlhcngyYlpLdUNjM3BV?=
+ =?utf-8?B?THJ0TXBjazFHNFBoSGxXV2wwcDFzWVo0WDZ4c2cvTW5nTXl5NC9yTnAwbTNp?=
+ =?utf-8?B?NnJpWDMzT3BxL1lYT0Juc240SnFjTjkvbDk1TmVjSmtFSFNjSkNtM0xVc2xm?=
+ =?utf-8?B?TWszWHZHSGpXSHlCUno4bVh2UTM1YUR0aTV0WjdCdUkzVk9mK29NQjJFeUtv?=
+ =?utf-8?B?Wm5wOEZuc3R6RVBDa0hhankyaTM1V2tGNzhaWTFxK0JEUlpYdXVFNFN2NERV?=
+ =?utf-8?B?d29CZDRVc21IMjZwQi9LU0tQVFd4RTNBWFlhMEJOSkc4OEVQQTVSNzREQmx1?=
+ =?utf-8?B?c0tIMk9HT0VRU2s1WVNsMHQzOXRSd2NicldUem8xK2ZHVUdXWnB0eG81TURp?=
+ =?utf-8?B?a2NmNlhuSEcvYTc2a2VQZ1hZdng2OXpCQU4rdnBCclFUZXlKbHNvTnNYSzhJ?=
+ =?utf-8?B?VGR3UjBTaUNXT3c2U09LMHozZi8vSW42dUg0YWV1REkxdDYwbW4wVWZLRStl?=
+ =?utf-8?B?dzluaTVqQmVRNkJNRnphSDRiZCtzR09ndnc0R1VpOFU2Qmdka3hCVFg4YVJH?=
+ =?utf-8?B?MUNYMnZrcnRCUW1HT0Z2TlhqbVU1elRidkRvazgydGxSRzg4OW1FeStrL1Rr?=
+ =?utf-8?B?L25tRGlZK1lKQjRRV1hjYnZ4Y016cytqQUVtZEdIR2F6KzFwanE3R09RSXJK?=
+ =?utf-8?B?cUd2elNtR1hrOE9lMXNYWE9VN0N2MHNmRmRoNU80MHBZK3lGOUUyTkJSeDhi?=
+ =?utf-8?B?WHhMOThSa2NnVG02MFhBcUVzVzNaS1dHRk9Gb2ZIRUVYNXJ0U0ZFcGhCOXFn?=
+ =?utf-8?B?UzdYWGxvM0tFRVRXaVZaRHh1M3U4M0VNVlFRWFdIbWFGeFVzWllJYmNTaURa?=
+ =?utf-8?B?c1ZsdWhvSGFiTUpodWxDS2Jmc3dUY05IM0RyNHhoZnV2U05PV1NXaXNNRVFt?=
+ =?utf-8?B?dUI4WkhuQzdiM2dONFNmUElxd08rREtDWlhxWEttN1VxK3FXcnVwc2xPRm16?=
+ =?utf-8?B?QzNUQS9YTFF5eDJEVXR2L0NPYmtqZWFNd0dsOVR5OFZmS3hseUVKL21LYlA3?=
+ =?utf-8?B?U2NyaGdkSFE1ek1FcnhTUzZDdFZFS1U4QUZTUkFFcmd2bkFPZGR3cVJ2OWJk?=
+ =?utf-8?Q?WiYs=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 15:30:13.4035
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68cc9679-2196-4953-0d3a-08de278088a0
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF00022574.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR10MB7655
 
-If IC_EMPTYFIFO_HOLD_MASTER_EN parameter is 0, "Stop" and "Repeated Start"
-bits in command register does not exist, thus it is impossible to send
-several consecutive write messages in a single hardware batch. The
-existing implementation worked with such configuration incorrectly:
-all consecutive write messages are joined into a single message without
-any Start/Stop or Repeated Start conditions. For example, the following
-command:
+On 19/11/25 7:57 PM, Vignesh Raghavendra wrote:
+> 
+> 
+> On 19/11/25 14:13, Siddharth Vadapalli wrote:
+>> On Wed, 2025-11-19 at 13:38 +0530, Vignesh Raghavendra wrote:
+>>
+>> Hello Vignesh,
+>>
+>>>
+>>> On 18/11/25 17:19, Siddharth Vadapalli wrote:
+>>>> Commit under Fixes added support for power regulators on the J721E SK
+>>>
+>>> ^^^ not the right way to quote a commit. Should follow commit SHA
+>>
+>> I started following this format after I noticed that an earlier patch of
+>> mine at [0]
+>> was merged to the Networking Tree with the commit message updated to follow
+>> this format [1]. I acknowledge that the expected format might be different
+>> across subsystems, but I used this format since it seemed concise to me and
+>> I believe that it makes it easier for the reader.
+>>
+> 
+> Ok,  seems common in netdev but not outside of that tree.
+> 
+>> However, if the format should be:
+>> commit SHA ("$subject")
+>> for the TI-K3-DTS Tree as a policy, I will fix the format and post the v2
+>> patch.
+>>
+>> [0]: https://lore.kernel.org/r/20241220075618.228202-1-s-vadapalli@ti.com/
+>> [1]:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=4a4d38ace1fb
+>>
+>>> ("$subject") format. Moreover this paragraph can be simply be stated as
+>>> node is under wrong pmx region (wakeup) and instead should be moved to main
+>>
+>> Please let me know if I should post a v2 for this or if you plan to correct
+>> it locally
+>> (in case the 'commit SHA ("$subject") format doesn't require a v2).
+> 
+> There really is no need to quote the offending commit as part of the
+> text as Fixes Tag makes it obvious. You would just have to describe that
+> node is in the wrong parent node and needs to be moved under main pmx
+> node with appropriate reference to TRM/Doc
 
-    i2ctransfer -y 0 w1@0x55 0x00 w1@0x55 0x01
+Thank you for the clarification. I will keep the commit message concise 
+and post the v2 patch.
 
-does the same as
-
-    i2ctransfer -y 0 w2@0x55 0x00 0x01
-
-In i2c_dw_msg_is_valid(), we ensure that we do not have such sequence
-of messages requiring a RESTART, aborting the transfer on controller
-that cannot emit them explicitly.
-
-This behavior is activated by compatible entries because the state of
-the IC_EMPTYFIFO_HOLD_MASTER_EN parameter cannot be detected at runtime.
-Add the compatible entry for Mobileye SoCs needing the workaround.
-
-There is another possible problem with this controller configuration:
-When the CPU is putting commands to the FIFO, this process must not be
-interrupted because if FIFO buffer gets empty, the controller finishes
-the I2C transaction and generates STOP condition on the bus.
-
-If we continue writing the remainder of the message to the FIFO, the
-controller will start emitting a new transaction with those data. This
-turns a single a single message into multiple I2C transactions. To
-protect against FIFO underrun, two changes are done:
-
-First we flag the interrupt with IRQF_NO_THREAD, to prevent it from
-running in a thread on PREEMPT-RT kernel. This ensures that we are not
-interrupted when filling the FIFO as it is very time-senstive. For
-example, being preempted after writing a single byte in the FIFO with
-a 1MHz bus gives us only 18µs before an underrun.
-
-Second in i2c_dw_process_transfer(), we abort if a STOP is detected
-while a read or a write is in progress. This can occur when processing
-a message larger than the FIFO. In that case the message is processed in
-parts, and rely on the TX EMPTY interrupt to refill the FIFO when it gets
-below a threshold. If servicing this interrupt is delayed for too long,
-it can trigger a FIFO underrun, thus an unwanted STOP.
-
-Originally-by: Dmitry Guzman <dmitry.guzman@mobileye.com>
-Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
----
- drivers/i2c/busses/i2c-designware-core.h    |  1 +
- drivers/i2c/busses/i2c-designware-master.c  | 32 +++++++++++++++++++++++++++++
- drivers/i2c/busses/i2c-designware-platdrv.c |  1 +
- 3 files changed, 34 insertions(+)
-
-diff --git a/drivers/i2c/busses/i2c-designware-core.h b/drivers/i2c/busses/i2c-designware-core.h
-index 347843b4f5dd..a31a8698e511 100644
---- a/drivers/i2c/busses/i2c-designware-core.h
-+++ b/drivers/i2c/busses/i2c-designware-core.h
-@@ -311,6 +311,7 @@ struct dw_i2c_dev {
- #define ACCESS_NO_IRQ_SUSPEND			BIT(1)
- #define ARBITRATION_SEMAPHORE			BIT(2)
- #define ACCESS_POLLING				BIT(3)
-+#define NO_EMPTYFIFO_HOLD_MASTER		BIT(4)
- 
- #define MODEL_MSCC_OCELOT			BIT(8)
- #define MODEL_BAIKAL_BT1			BIT(9)
-diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/busses/i2c-designware-master.c
-index 2977c13c709c..3486a8c760e0 100644
---- a/drivers/i2c/busses/i2c-designware-master.c
-+++ b/drivers/i2c/busses/i2c-designware-master.c
-@@ -710,6 +710,14 @@ static void i2c_dw_process_transfer(struct dw_i2c_dev *dev, unsigned int stat)
- 	if (stat & DW_IC_INTR_TX_EMPTY)
- 		i2c_dw_xfer_msg(dev);
- 
-+	/* Abort if we detect a STOP in the middle of a read or a write */
-+	if ((stat & DW_IC_INTR_STOP_DET) &&
-+	    (dev->status & (STATUS_READ_IN_PROGRESS | STATUS_WRITE_IN_PROGRESS))) {
-+		dev_err(dev->dev, "spurious STOP detected\n");
-+		dev->rx_outstanding = 0;
-+		dev->msg_err = -EIO;
-+	}
-+
- 	/*
- 	 * No need to modify or disable the interrupt mask here.
- 	 * i2c_dw_xfer_msg() will take care of it according to
-@@ -896,6 +904,16 @@ i2c_dw_msg_is_valid(struct dw_i2c_dev *dev, const struct i2c_msg *msgs, size_t i
- 		return false;
- 	}
- 
-+	/*
-+	 * Make sure we don't need explicit RESTART between two messages
-+	 * in the same direction for controllers that cannot emit them.
-+	 */
-+	if (dev->flags & NO_EMPTYFIFO_HOLD_MASTER &&
-+	    (msgs[idx - 1].flags & I2C_M_RD) == (msgs[idx].flags & I2C_M_RD)) {
-+		dev_err(dev->dev, "cannot emit RESTART\n");
-+		return false;
-+	}
-+
- 	return true;
- }
- 
-@@ -1113,6 +1131,20 @@ int i2c_dw_probe_master(struct dw_i2c_dev *dev)
- 		irq_flags = IRQF_SHARED | IRQF_COND_SUSPEND;
- 	}
- 
-+	/*
-+	 * The first writing to TX FIFO buffer causes transmission start. If
-+	 * IC_EMPTYFIFO_HOLD_MASTER_EN is not set, when TX FIFO gets empty, I2C
-+	 * controller finishes the transaction. If writing to FIFO is
-+	 * interrupted, FIFO can get empty and the transaction will be finished
-+	 * prematurely. FIFO buffer is filled in IRQ handler, but in PREEMPT_RT
-+	 * kernel IRQ handler by default is executed in thread that can be
-+	 * preempted with another higher priority thread or an interrupt. So,
-+	 * IRQF_NO_THREAD flag is required in order to prevent any preemption
-+	 * when filling the FIFO.
-+	 */
-+	if (dev->flags & NO_EMPTYFIFO_HOLD_MASTER)
-+		irq_flags |= IRQF_NO_THREAD;
-+
- 	ret = i2c_dw_acquire_lock(dev);
- 	if (ret)
- 		return ret;
-diff --git a/drivers/i2c/busses/i2c-designware-platdrv.c b/drivers/i2c/busses/i2c-designware-platdrv.c
-index d7d764f7554d..4aad3dc51fbc 100644
---- a/drivers/i2c/busses/i2c-designware-platdrv.c
-+++ b/drivers/i2c/busses/i2c-designware-platdrv.c
-@@ -346,6 +346,7 @@ static void dw_i2c_plat_remove(struct platform_device *pdev)
- 
- static const struct of_device_id dw_i2c_of_match[] = {
- 	{ .compatible = "baikal,bt1-sys-i2c", .data = (void *)MODEL_BAIKAL_BT1 },
-+	{ .compatible = "mobileye,eyeq6lplus-i2c", .data = (void *)NO_EMPTYFIFO_HOLD_MASTER },
- 	{ .compatible = "mscc,ocelot-i2c", .data = (void *)MODEL_MSCC_OCELOT },
- 	{ .compatible = "snps,designware-i2c" },
- 	{}
-
--- 
-2.51.1
-
+Regards,
+Siddharth.
 
