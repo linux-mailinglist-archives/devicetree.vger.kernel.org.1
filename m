@@ -1,205 +1,119 @@
-Return-Path: <devicetree+bounces-240029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86B8C6C64A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 03:33:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 997FDC6C7A9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 03:57:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4767C4E919B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 02:31:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6833B4ED45F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 02:54:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5254728504D;
-	Wed, 19 Nov 2025 02:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92732D5937;
+	Wed, 19 Nov 2025 02:52:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="MoMWDiM+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1yoA/py"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023076.outbound.protection.outlook.com [52.101.127.76])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 410ED21254B;
-	Wed, 19 Nov 2025 02:31:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.76
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763519470; cv=fail; b=u9UHwm+yhasfnVJr5gyPQgFwkQnK9DoOBJMvI0eK/FBXXJHg88I4wcnUJyHMEYZxQnSSSKnlOeRc6rNdKkNQFF+uc613XC75UVk6WYRNrTkWJNzsBlNOE77F/2QTcd4cJAfK9/M8Dd7kA/A17j5YDc6anlbYAJh7VbUMG2dBUvU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763519470; c=relaxed/simple;
-	bh=cp/5a23E5VRKzfpNOCHNM4gDo4gszs2P40+uQTn4lBw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=WWIIHiW+UaAeckIhBW5zDeidVxdKD2LHuLc5a4hz26y7CDdykk6PoNV3WeYYTUt45RJaDu4+1Wd13cA3N13EwlG/HTqvViFgr5q69hFHG7Bmq4Zvn0dUEWL8yi90uMMJwGj8xgklQQ0vFWNUxTOGMPhLmIo+M2gMkUSMEIWcj44=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=MoMWDiM+; arc=fail smtp.client-ip=52.101.127.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LKLTGawEZhqaQZ6B5tlQdEUgjRRBfwnayqkgg4vnyiYYr1yAnV1T6R0PLjf7bqlQuxofpBIympwDbLj6yVnpFlOHGs7tfY17dUVlZvvBm4wMD9kNeSc4hYKFhWUBwp5jPxORpUlHH7nvF8Vb5fxFjf5apjRTF7z3gqVrFVNCq8xmEDHGWDQfPvh2102H1xgtnB3oh5ZwB+0ukEmqvGLZ4QqyR9CnyZFp13Rl0hvfQQOwg53ZEZtNL8KP3/id9faJcw1dN/TWf0jRsZLEI/g+R7BKYRigt0FSvuue1GX3uI+pPcKnsegXNUqTAvi2tXq6vljuq4pfMJOlKswcxOSGaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jniKW+gjSz6592uOFsyR1I+BCin6SAxvTYM+S2KdxFI=;
- b=UuK7bVzQgGkv/dcSxlPm1zaG6mEcqoulk5MwZtOXivD9CbCTlYr2N9gzVrtl0D+/hVOqZp6+IMvnLsZZJ1lH4AsUKccHZMnEBeT8jtgzluoVF38+zt88kW73MHuLUO4/hM65uEmFSoConbqQ0V+X9Lu20OdovKbuXa35TRoDNDc09KuWxm2okliKdd59uCZoPe3FrJOE/TBWhUia94MNgKObsKfmSwfup6b+RWYmhBU8S2WqJOxDhvaFoVXpQzv0gXDgv793bpHINYH+f7PkemK3XggACZD8GfiHqLNNPuiQTVbowXkXYHuLqyC9m655fp+yh9aoY7Y/zPdnpkyd9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jniKW+gjSz6592uOFsyR1I+BCin6SAxvTYM+S2KdxFI=;
- b=MoMWDiM+5Ngyex1hrUzPGig7Sg+0xhOztU3in65UWFSfAte4jVU2ufVzXxA2YcFeEbuD50bfv9P057L8Bwa7zbSLGnc214P/utkB+GEZXIeRzKqQz0uFpuo11goPcrvJMRFvv0qaBebc6bSSUuunvZldcxm1aodkPmerRVeZN/Nh2IM+n3hRGUT8FapmW5qyK3/TkK6ibJRrvrdtmvk+FUGZ+zIQw6sgvKgdODsmQT3JlP3kNQCUUea6aTBu8Un0whZpntg9bjleK/aVe/9e4aV+Yav+Ci3NFmq0S9gYz6QSSUIc7JLgkp12hF0U4U4zuC8PvnGxQAOgsttJ2kI7OA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by KL1PR03MB8162.apcprd03.prod.outlook.com (2603:1096:820:ff::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
- 2025 02:31:04 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%4]) with mapi id 15.20.9320.013; Wed, 19 Nov 2025
- 02:31:02 +0000
-Message-ID: <8e140ad4-3898-4756-9847-8d7fea0676e9@amlogic.com>
-Date: Wed, 19 Nov 2025 10:30:59 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] soc: amlogic: meson-gx-socinfo: add new SoCs id
-Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251118-soc-info-s6-s7-s7d-v2-0-38e2b31a88d1@amlogic.com>
- <20251118-soc-info-s6-s7-s7d-v2-2-38e2b31a88d1@amlogic.com>
- <CAFBinCBnupgH=6NQH0oPTj3ETVkLfCB6aVyMySAqAxNEAHnuew@mail.gmail.com>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <CAFBinCBnupgH=6NQH0oPTj3ETVkLfCB6aVyMySAqAxNEAHnuew@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TY4P286CA0020.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:405:2b0::13) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9273C288C24;
+	Wed, 19 Nov 2025 02:52:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763520746; cv=none; b=GxXEOxQbR1fmOkWv9h4GLTFQeZphkcE1pYrimNIcYk0Cf7Lj3tHO+0cTiAlahNBK8pBfzQh52km+yx8x27ggKOMqH66fsfZ8LR+tldugqQ4fVixsLXsIwSnmsngzeQE7payiQFFlywJbQcM1T1ck0TQNHoSqQDZkDuyPlJ1li6Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763520746; c=relaxed/simple;
+	bh=yGGQ82tynU/Cs1FoQ40nLIWp5JIbe9V7Pi5kfcfRrgs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EwBUj6kF3/FQ9pGzVb7lb+OCyG6eJUFlmT2VI16ba9bCrIvQDXF/1HAM1JQlx3Gupy9bAwVynfwAHt/gwRm+bcuu7Ix3iCvYD1KDLhpA0ILTdwM+42kXjcpv80/oqizDr3OK9QP0pjaZl6tvRAawCg1nbfWHAPkSzcTxcu7U3Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1yoA/py; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C335FC19422;
+	Wed, 19 Nov 2025 02:52:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763520746;
+	bh=yGGQ82tynU/Cs1FoQ40nLIWp5JIbe9V7Pi5kfcfRrgs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Q1yoA/py3ZooYjbabzJ76j5SCOpLsvpaJSbhAuFr6t/a0OtAgOhr0xrZxoJKDlXiV
+	 QVyU1s0V93JCOeNLQag7nbJuXuEGhF4Q/nn+WrTqrqsCt05Ni1ixBydISiWj7IKHP7
+	 8UoNVF0BQM5fqhKDej5GJRFrpE37ZOnlLSmEDP4NMTZDvoBAtbC/tDK1+Rgm4bWIO3
+	 JudQ2AlWVtajR/i0cUAzJHNXyURWJB0WwSZpXoULNiT5J2JrxVtoz5tqpOKlTn7dsX
+	 SMIsTXArHV265YEgk/Iln2xZmddR6Ylifvt9Df5nSDWpRrSKDNMeIHpKF7gIQK9Uck
+	 eRSAlMyYRcOBQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A1F07CF256C;
+	Wed, 19 Nov 2025 02:52:25 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/5] soc: amlogic: Add new Amlogic SoCs info defines
+Date: Wed, 19 Nov 2025 10:52:21 +0800
+Message-Id: <20251119-soc-info-s6-s7-s7d-v3-0-1764c1995c04@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|KL1PR03MB8162:EE_
-X-MS-Office365-Filtering-Correlation-Id: fd9b603e-ee49-4c93-9dd1-08de2713aecc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?N21MVHZkRW1vUFhhL3hrTXFyZzhmb0h6NEtvM0NFRnFTTTRxMERoTnFRNGpE?=
- =?utf-8?B?L0ZLM01mRmZrdmNNYVVINXJZeTAwSytNODQ2SU53RklBMkpVaVB4QWtYV1Na?=
- =?utf-8?B?YXZtbVJmdzM3UkRuNzcrZi9aVno1aTYwUUh4eVRKNXBieU5RTmFNVHdhOTdj?=
- =?utf-8?B?QUJPMkFyazcrb0pqb3kxY1czNUpybXEwK3EzL3ROMmlxVXpSTkZaQmpXR2U4?=
- =?utf-8?B?MWFSRDJRK1cwNTlEUVY5dk8yWnljLzVLb1VBcXFNdWlka1BwR2s3OURIUGV5?=
- =?utf-8?B?NWFBKzFvSlc1dWpndi9GTzFvSG8vVXlwcGpFS2xZdkJhUDBzN2lnODlxZnkr?=
- =?utf-8?B?bHh1MzQ3Q1l4c0g4NnZRc0JsYVJEMlhTcUx4czh1RDRVd3hwWGhFdC93SkVw?=
- =?utf-8?B?OTZrMWJpWldNcGxZTndRNkR0SHBkSVgvK0Q0WXBtM3VqalRCTEY0N1pVZ2Na?=
- =?utf-8?B?a1B3WFVsK3o5N2pZWE5hOUNaY3VaNHg3YjRlRXBpSnQvRVd3NE1tdjBWbjc4?=
- =?utf-8?B?VCt3MEFYeFlac0tBS1cwa3dYNW4wS3AreStKUjQ1amdpRWJqUThxdVVGTHVx?=
- =?utf-8?B?ZEI1NFFEZVprdVprVlhUQTBiSFZPZWVWcHpVVnVHckMvbUR3NTFnZytxTDdr?=
- =?utf-8?B?MEl2VERkRFJsZmR5LzZiRVBobUI5ZmxPem5waFZLMnNQQ0sraDYzVjhJTWxy?=
- =?utf-8?B?ZFN6OFE0bU5UL2tRTGQ2dlgybWRSS05hLzBlaUR5aW1YL3hZZUl6WmlkMzF4?=
- =?utf-8?B?bWlaUzFNRjFLSHp0M0t6Zkg1RXJ6SDFDU1hhazlWSDhycW85WmZLTzJkS0Vz?=
- =?utf-8?B?bGxnbG5LclRjNjE2Q1ljMzdkWTB2ZDgxMndZNENDa0dDZTZJMW9wclVqazEv?=
- =?utf-8?B?d3doZHNiZ0djVGpJcmpMWXNGZTA4WnQzT2FuOG05NWRQczBEOWU3MjB3WGQ3?=
- =?utf-8?B?SjBHWFdHNWw5NjdaKzhLUGJwc0tGeGdMV3NEOU1VakwxdXdpcVBPZkNXMS8r?=
- =?utf-8?B?a2cwWkYycXdxbm1jWWNBMXY5ait6eFhFUkVSME1zaUdIUkZuemxwQngraEZn?=
- =?utf-8?B?d3ZoZytPbkRSZy9qWGNDcTQ1aUNGRVJJVXA0Z3BpWG12Y0UwRnpoS0NVMFpw?=
- =?utf-8?B?ZVNxUHJvbzA1aUgrWTBUblpCQ21RZHM0KzJaZk5PTGFrRXdiWStxeXk1UWRD?=
- =?utf-8?B?cDJaSFd4THZxQThmK3VpSUpMeVFSNWlManRKeXgyL0kra0hHd1FTNmMxRVNQ?=
- =?utf-8?B?U0tYQlNOdmI1OGtvaEZIWi9wb0kxdVBHcUt6NFlMUngzQXphci9UeDVoVzBX?=
- =?utf-8?B?ZmZaMEpuNUwrZmxFQ2JDR2prcUxoc0d3MkJFM1JTUFg2a0lFRHBxVkFJWnNp?=
- =?utf-8?B?VnBHc1F4WUtXN3hHVGtpRVBPSDZhelhSdGpXNlZhelVHbnAzUDJKdlRPcm5I?=
- =?utf-8?B?SFFWMGFtS0NtdVNLczEwdHd5WDR1NWhGVjF5T1dKc3FMZ3A2cTh0TElPaGVX?=
- =?utf-8?B?UTJCUzduaFlWUFpOQ0tJRGQ3NzZ3a1BXK1paZlV2UFU0K3NGZ3pRdFZXYjJo?=
- =?utf-8?B?SjVGMjdpamVXb3dtMjlUb1FGWkNzV2FjY0I5Q2tjU3RtdEY5dE5PYmwveit4?=
- =?utf-8?B?eVFvdmJ4T0lXcHZhYUp3RDZjczNkYitQbytlM1VjbjNYZmtld0NrTTVMVStH?=
- =?utf-8?B?eDVPZzNqL01zSUMxSTRqeHV1UndVUzNtSythZGtpOE84c0RKeUxEeXZLL2pl?=
- =?utf-8?B?aU4rTE93d3h3TDdmOUMrWWxDdmFsOEhEak9VR2I0WEtsQm10YlNFeG9IRzhz?=
- =?utf-8?B?RVN3b2w4N25pTEduN3RPODNtT2ROT0Z1VDZGUjNzSzAwdEZKRkQ4N3NTV25j?=
- =?utf-8?B?OWNPWHZhU0xVSWVHdHloRVJSV2Y1UHVqVnVVdW5qTVBROVNzT1RPVFNNQUxm?=
- =?utf-8?Q?4S1QdHLIQunlY9iipWqqJe9ium1SAJRu?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(7053199007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?d3hyNitWdFB3T0hzQW51Zk1VR1dkY2FMTThQTjNjb21MOG9kUXE2dzJHdDFt?=
- =?utf-8?B?MlVhQlg3cWRoT1djZW1oU1hJVmIvQUxwQUhLTjJKLzJoMFBNSW1jTS9IU0w4?=
- =?utf-8?B?ZlBjWlozMEE5RzgxdzRrQTVMMlI4WHp4aDRiSWlyVEFLOC9tdDJ6TmRha0w0?=
- =?utf-8?B?V0tBalZqOERmMzZYT3k5dlBKKzFPYkdGNmovTGxzd3dPM1NkS0dqMlU1UTk5?=
- =?utf-8?B?Y2JRSzNvSlZQR3BIbmZLeWpRbXZ3UHF5c0xQazBFdytCd3VpcFVUSnlCR3ZD?=
- =?utf-8?B?Ti9lU0wyQUEveHJNaFBGTEtKQ1JxcVA3U0FhOGhBaUVBTC9HVXFWMWdGV2Qw?=
- =?utf-8?B?dWtYWXE1bHJySi8rd3NZalNkUFQrNTlGUWV6ck9LT3RlTWliV0JLbVVkczBk?=
- =?utf-8?B?THBzV3BIRVNseURmZjdNLytXSlQwUjY5TTBmczJkMlJHK2ptWXorNXJKMHFj?=
- =?utf-8?B?eTdaQm1BZjN2a2VieldRZWplbXlkTXpUVm9wSFU4WVRhTjVwOHRXOXYrb25V?=
- =?utf-8?B?UDl2dXpHMW5GcDRhQ0ZGQjkvTmxyZlhuK1pGa2VrZ1dSZ01XZHdnaGRybzhu?=
- =?utf-8?B?d3gxQkxiV3Z4R3NaMlRqNDZVTGhSaFU5b0xLN0lMcXVFSHU1cGxrb1JteCs5?=
- =?utf-8?B?cFdvY1pyK2VtdUZFK2FrUTZTNG5GTzgvR1R2RHRQdDBDNnFBU0lyK3hhdENn?=
- =?utf-8?B?ZXUydUx3NW5SRDlJcllZYzI4Q3RHM0Irc0Vhc0JpQ09hS3AxUU52QnYrdzNn?=
- =?utf-8?B?bTZ2WUZUbDF5TGFJV1dDeHJpTWVqRWNRSXI0TERoc2ZYWXZwaEZpajZJSWtC?=
- =?utf-8?B?b1kzbmplSVZZRHVOMEpVbHkvZGVwTlk1eUZGSDdrd3BSMWMwQXNycGtvQ3BV?=
- =?utf-8?B?aUZVeFZ3U1kyeHlRbk93MndKb2huYzRiUVgzSlJBblExUHlqOVhBME1XQkF1?=
- =?utf-8?B?QjR1OXNzVUpzWlNybW10cVdQeDdaM3JSSU9hTU1rSVNER0RWUEozbTJRQWlI?=
- =?utf-8?B?TERXcVJ0d0pwc2VHSExPQkdOL2F5d0wvMzVFYWxGUnl4U0NYSy9ZcFpNN2lS?=
- =?utf-8?B?ODdiTU9mUkJkbEpYbjd6VnJnbHhWVUpaQWE5alBJQjNPQVF0RlhPT2o4dVNI?=
- =?utf-8?B?Y05TOGZaYUp1b2UxcUNsYk5UQVVZRURycTh3REJEenZ4NjVhQXBJcG92UUJZ?=
- =?utf-8?B?bi9LZ2o3VTBJZ3FURlQxOTcvclA4UjF5R2JKM3FXZERvaXNoeVVoREQrbmo2?=
- =?utf-8?B?VDlIZlJVbkJkdWRzOGV0WkRZYnBVbFlDL1BOVnFkcnVNdDJRaisvMWs1V1Zj?=
- =?utf-8?B?cUdWakwzMGdUV3E3cGFNYTdESHpKVStBVkoycDRPN3FYNXNSQWdObWhyay96?=
- =?utf-8?B?SndzVjc1LysyZ0h2MXBNdkgwWStoUjN5Ui81ZllRakV5UEtIb3RidjB1SEc3?=
- =?utf-8?B?Smg5K3JKTDIza1N1US9MeTdGZjRyblBEZVVhdmVkTE1SUzJkb0tmUU12OXRM?=
- =?utf-8?B?NnM2a3dOMmlvYXpxbW4yTUtod2YzUXIxdzNDdjZIeC9SMjhCVjlrUVRiMUlo?=
- =?utf-8?B?N3g1TnBGeUdBcnc2YllvNHpETkRtby9aSlpzY1hNMlN0ZVBabjhDWWJiL3VY?=
- =?utf-8?B?cm50Mkd6NDRrcFdxZUx4OG1tdGZGRmVuYTJZVnZyT0ZTbENwaDJZRm1GbE5w?=
- =?utf-8?B?RDhOaTlXNHJWbzFFQzhqR3N5aVE1RDhsa3Jmd2lJZzZGTHlvaVRXK01MMExG?=
- =?utf-8?B?Z0p6SjZZZEx0NnRwTzFXcGp5M1JTdkU3RjFkQzdYcWc5MVVEMFgrYTRhOHNR?=
- =?utf-8?B?ekpxd0cxOWwrR3JkOExsck5FRzRSdnBIQ3A3N2JzUnZPNFp0VHhuWitJWWcv?=
- =?utf-8?B?NmlxSWNMWDJYakVla2ZnS09TaUZxZmdxNmxhTXhoeC84blBjdHJtYmNXekVP?=
- =?utf-8?B?NklEZ1h4VDZKckhZWW1sQkxacVFra1hnQ2Y3WmI4OVk1UE9KdkdLWFMxU1pz?=
- =?utf-8?B?YnBCV2tQVkh6WEFsbFBUVGprUXphaFprTDZKalpPYWhDSTNsZzJDcFRVMGZa?=
- =?utf-8?B?M1AzdklTRy9oVmFQVHBOU25peXJ0ZnVmY0xqSUFhRi80K1Q3VG5hclpQS3pR?=
- =?utf-8?B?TElnZlgrNTQ3Nnh4ZzA4VHFvV1dmTTVLeGMvaGRpUXBwRGpEQldtVE10RFFR?=
- =?utf-8?B?b2c9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd9b603e-ee49-4c93-9dd1-08de2713aecc
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 02:31:02.6916
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EmMrvSefvaRLJlPzvndh9IkD2CriXYrpg9ov6R71jSQwrIgdMN3956IzXrmQmG8At6OaKC/YWZc/tld6H4yIC7Cv+cHFELCxNhRO6VFkhtM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB8162
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOYwHWkC/23NwQqDMAyA4VeRnpfRtJvWnfYeY4faVg1MK+0oG
+ +K7rwqDDYRc/kC+zCy6QC6ySzGz4BJF8mMOeSiY6fXYOSCbmwkuzogoIHoDNLYeYgmxymOBo1F
+ ljWjEqWb5cAqupdeG3u65e4pPH97bj4Tr9stVe1xC4FDqRmndcGmNu+rh4TsyR+MHtoJJ/CJqF
+ xEZkcqJRqJWyuI/sizLB//1zP77AAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763520742; l=1361;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=yGGQ82tynU/Cs1FoQ40nLIWp5JIbe9V7Pi5kfcfRrgs=;
+ b=wLxX3Cp5piFHCG506GA5M5KyuVVL2l6yIS3U/E4ZXAwPWoBvmuxVQ8RNUjDCVjiFcpdjbfvXb
+ M9qZKNzL1OfCetJ8p4xOwzCW5G/v9trDHPc3j5bZcR6khXkC8NuBAza
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hi Martin,
-    Thanks for your reply.
+Add more Amlogic SoCs info defines, include S6, S7, S7D.
 
-On 2025/11/19 05:43, Martin Blumenstingl wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Tue, Nov 18, 2025 at 6:59 AM Xianwei Zhao via B4 Relay
-> <devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
->>
->> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>
->> Add new definition for Amlogi SoCs, include S6, S7, S7D.
-> s/Amlogi/Amlogic/
-> 
-> Neil, is this something you can fixup while applying the patch or do
-> we need a v3?
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v3:
+- s/Amlogi/Amlogic/ for patch [2/5].
+- Link to v2: https://lore.kernel.org/r/20251118-soc-info-s6-s7-s7d-v2-0-38e2b31a88d1@amlogic.com
 
-Thanks for points out, this patch is not applied, I will send v3 to fix it.
+Changes in v2:
+- Restore the previous accidental deletion of A4.
+- Link to v1: https://lore.kernel.org/r/20251117-soc-info-s6-s7-s7d-v1-0-6ab8aab03dce@amlogic.com
 
-> 
-> with that:
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+Xianwei Zhao (5):
+      dt-bindings: arm: amlogic: meson-gx-ao-secure: support more SoCs
+      soc: amlogic: meson-gx-socinfo: add new SoCs id
+      arm64: dts: amlogic: s6: add ao secure node
+      arm64: dts: amlogic: s7: add ao secure node
+      arm64: dts: amlogic: s7d: add ao secure node
+
+ .../bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml          | 3 +++
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi                       | 8 ++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi                       | 8 ++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi                      | 8 ++++++++
+ drivers/soc/amlogic/meson-gx-socinfo.c                            | 6 ++++++
+ 5 files changed, 33 insertions(+)
+---
+base-commit: 8d5b965a53bf6a4e2a2a028b75b2c7067cde5397
+change-id: 20251112-soc-info-s6-s7-s7d-01c86911c249
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
