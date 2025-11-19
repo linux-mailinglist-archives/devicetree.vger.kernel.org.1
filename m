@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-240459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9037EC71666
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 23:58:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9AFC71669
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 23:58:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id AB9F42C4A2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 22:58:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 017722D5AC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 22:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D264E2FF64E;
-	Wed, 19 Nov 2025 22:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB722D481F;
+	Wed, 19 Nov 2025 22:57:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z/JPpVUr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gBXO60Kd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47AD02D481F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0309A2FB988
 	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 22:57:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763593078; cv=none; b=q2YpCW1yVn1Te6Q2jdRH6yA+aPv6QO563TmIdqGrB1MmjMYNSSLvU0joc7mwAK2zwZiArikaMpR8fchNMypjx/u8vYWjHEjhxfbJyoH95JK/AWbXAr4nRH7EN9gDqQxmtDrCMJ0xZaxSuQqH1BZoaKOcIeGt3KMKn6GrYNJ2hI4=
+	t=1763593079; cv=none; b=GOVOT5JIYnD9PnfTfKT7c6Qw2KgVTFgRUJGMXqB6+SA3HZ3GjKx7H6Die+pXpIXyZ0XrO3u78vB7NqanTZmszsk6tjTdIpnQhRGfEb/UCJpFOn+QeG9EiYeHT+bLhmw0rGO7FQj1o+YnyzseV3GfJD0csT4o/bJJI8qjs9BoW7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763593078; c=relaxed/simple;
-	bh=JnyNYT5+jEouV/8yUPXvRX7CeEyZGEPq2A0wuBBRJJg=;
+	s=arc-20240116; t=1763593079; c=relaxed/simple;
+	bh=/bF8tOqrKKwoh47fMEwmiiiiYKPnw/fvBNPYnylKokE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rG5ENNPaLGWzzeIvogFpuJDBLpaK+IgvmS6akCjK+4l6sA95pqmiVcduHL9Y006nAQCn6SkDwaLlZFvbLs91cTzRPUII7j2ccZZlJ73+zRqTKgMRXcv/ajDkWmlpqr3vDkAMxrNcAO+CPo4UnKqy2WXzf4PfcibwR+mMl8O4r2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z/JPpVUr; arc=none smtp.client-ip=209.85.160.43
+	 MIME-Version; b=YJgN+Fu+8GNealzwRYkLUC8zqugqQbWRlQFSKO2ZgKzZcBl2wyceeOoroU0SVNZDzdtyGLfVQZ7TM4MGYaDYQkyn3l+m9Cqgsz9azvnKpZZLiOA1n5RJOJbsG3ihgDEsx0dgLIHUqyRKUM7QqddNf4YozRse6nOfw0Ow/XpedyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gBXO60Kd; arc=none smtp.client-ip=209.85.160.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-3e2eeb85822so90464fac.2
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-3e89d226c3aso105511fac.2
         for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 14:57:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763593076; x=1764197876; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1763593077; x=1764197877; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ojyXh9J+hBwCNMVLciyvICBaCTIpiiyWT0C0jl060F0=;
-        b=Z/JPpVUrxyM1WZH1kTvoJntXzN9TsV9PTWnnXG5sIHJ8h82ef5iuTvTrRmNaRlPJvS
-         rgUWb3njAfKWTi7z/gna1gRTu1YY31TpACHYhW01L1jky5gLna4eqcqr+6RkkRXaL97o
-         rtY4FziDvuu1AK18ZhNTeqqZL42ZVZKjMJl4d+xY96zMr+9WHlyDdotXR4hQAMASoiFt
-         qZn0kzknB1A3hX8IO4jjf0qzN5dHxZ2EY6BVfa/F3kzyS6731kLIfwxV3BOP8+9ALuMh
-         cbEc3JOLdxccFgMlRyydGWHDP4o/jEJ1UbGyePsrie5lIMTrDpLGakUftMjeRKkBdhxy
-         mTig==
+        bh=y6LGAGBP9c6FoKoEIEPE5MCGiUaAlb4W0quePS5bYZY=;
+        b=gBXO60KdmWs2JO9NYybKI2YQAAj94NKpI7//3y/L8a+UBdwSOeQFkwAqc5VwEZ859g
+         Vg55WfqLkUn2lXuFwrpJDugOWQ+yLZa7Q20reL/7SZuvyRYtg4UAakugTF6na8gVCkmS
+         YC68uuWqX2HHMxHpBaS7J5SoZ4GiFEhCLoxZxA+13/KPCB/I9sRyzWAxwdm8xnyEzXRw
+         HqY8mu9JV2CjWxm1su3by/FADDSWBhLBEOmnp3zyvQs5fBYftFMLOXSbl3ccXzkCQOLB
+         /7ag7zmard/I7MjLeWWvlg/ym54eXI8eDNHBJ6zkE6Ddi7KCFW0ERX2GrcoI0eo0NKr9
+         vkxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763593076; x=1764197876;
+        d=1e100.net; s=20230601; t=1763593077; x=1764197877;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=ojyXh9J+hBwCNMVLciyvICBaCTIpiiyWT0C0jl060F0=;
-        b=bqXXjyF7X8GLjsobuNI+Ir4DsVb1ojFx6o3H5DTq0W6mEipkbP+SXClp2X13q6u4Tb
-         fdG7b+s0L+b82oB9Vxp6X4Wnq/yCraPOeWIWD4NM9AfEIZzAAv6PAtRhEWEKjMQzV31H
-         UPfwshruFZYgVem85dI22aiM3NOnET/LI61SqUpu5YqvlJq3XxU+8JdtKjuv0P9wAwBX
-         9lRaQSAyqz+VJ68XEJZhUgrISaVCHzS/sf0dIClRdkgFy823KyMaSBQC4QMWiirTmQYx
-         HrFL/6ZcGSjGa8Ouo23hG4tPCr5+56zQwIDa0+EGBDMEEFcm1Ih1vgvGzJ1+kT0OpJXx
-         KA/A==
-X-Forwarded-Encrypted: i=1; AJvYcCUOERfzo5Qv8pV+0aHDKRwNDz6Mzjyojlv0nLawTpq2jc9YEIBTEMAQ4VUkL8AGh4szCdbbay02H0dj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOv/xtRyBhcELi16gnivD2Ifd5jgawaxVVUn9jfPhzGHUnpBEG
-	ytFumBxK5pQ1o0A421saubBS3g+pA/mux/zOcB4tL3e6+TeuUnw/pawE
-X-Gm-Gg: ASbGnct4oIdmK2q7VXciCYhKNeGFvDEWC+R/742BhD3mXoEU8PfxicQZiBrSTUrgi1u
-	ss7rodFMbw64f0nkp7T7oB9st49r2pEwLYndiTE8VYOXzItKx8sxp3/Piuqa2ehHkTbNdJdRnJO
-	wsAQxU+q9UByM8FBlfFlclTKr+bdRqvIGI7J4zO54nhnlX6UvHk9e1DRyFaEczNtY/wqx1HXOUl
-	dZH4y7GYiXw77kn2oYypgUtQMyE5fhuPFk1xzplqPFEcPT+uDVm7SjYiCNx7RgwkmLLGjnJ2n6q
-	B23gZgxNqEUOZcUlIRy1XgQVj/AqgNO2dqby6qLWr1vJeLBCiVNcwRb3UWExezVhVkw6r+GuuWb
-	TBTq7Cin4/j+2i3QPuQyazMqJqkY2NFveLEN4V+aY78wgRjBItM8U2YSDc3jPJcX1+1mv+O9A6q
-	n8FxSRCD23l3yyxQdtrF9WHjrAQb9szQ==
-X-Google-Smtp-Source: AGHT+IEkoK4IKUSKkADKn3nl7MMZN9fnLRgr8FuZfcsJqIloseBEgJ9BYQnnl0mgNPa4iiUW2K74ZQ==
-X-Received: by 2002:a05:6871:825:b0:3d4:fe66:28f6 with SMTP id 586e51a60fabf-3eca16b166cmr140484fac.27.1763593076280;
-        Wed, 19 Nov 2025 14:57:56 -0800 (PST)
+        bh=y6LGAGBP9c6FoKoEIEPE5MCGiUaAlb4W0quePS5bYZY=;
+        b=sA64Dk3AkKpWw7+dCEwi+miD1ckMZpPdrTzrQ0MLDhPqhtnsanwzYYvLzdR8sPRh2H
+         lNpWSuhP8aLie1uXPgY417U5Hv0KbUB2eCDLWsMwWXmgD9iDFdMBa/E3PSQsPRA7uVJs
+         IZZRfZCa1WMt8qRtjVLKAzqkrS7fHaklqMaYFImDQ2/SKQzjh60TtWdn6p9HFWOh9EEQ
+         GN8Zdr3yiZgZ720U1U84fsJD7nxGErMLRe/Sg+yzcNB+Jip7GLu5LaiuOfm8HgUFMAhE
+         lxRxZ6aIBsXsWiK+F6GaiBH4ca67tgAhSEhMo9SQkggoUld7WaxhrVhaslptpRqLM5pd
+         ufTA==
+X-Forwarded-Encrypted: i=1; AJvYcCWFu2UGwWd5kafTFyhQeuE8FskEGHcsmQUSgVKh1vD3Yu2vJi4NOX4+XcHCXdtwB6UPUNekRbJrRTAY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/Yymakb3Z/62uYaZpED6+UNBKxuxPilZr0CA0kx3T7bLWODC0
+	CiAZy4saccHl5ke7l5a9RiG/Sl+KIw/Lq+HDzp3Lj+fFurIQQfSMvTMK
+X-Gm-Gg: ASbGncuj7nbXSsyPLAnTwV8hDiA3KIdTULqstQbERwPrx8nRKe6+FPdCiEnpRQMg7C1
+	CnbRSyA7Q/3q7oSI6YB3MV+aze6YyR4NGlldnbQTkpT/MW7D5aCJ4bt6Yr7At7aBn5542WnD0Ai
+	tHJCsTjwDxxQfQAZgDKXnpUo6JqQwTAmZoi5tnAUveNzK2XfZFNJmN0gXflQzNUYwufnsGexUAZ
+	hoGEvhnVW1f1oGI7hBeFVzCQv8O+oUUdbLWxsTvOmaavCO0YObaLp6010Dr416seHAGpYZsjsWb
+	Ty5VsPTTKGIhN5vPeJsu7nwzRHKUuQ5ON4gO72OPPJRSDAxs4gy15OvAYzIgos78waHgKx5nPd0
+	QIGr60+EKcbEoE0IRWZMgiJraDlwJde5AJEYl3+vePXrekUJ2MYkqIaG3YdCYCC1dxeZ5z99TVp
+	VcSQJK/rFXTix5K2o/Gkw=
+X-Google-Smtp-Source: AGHT+IFytu07GZ0leAT27e/jZkgFSTcxqNaPPUdMxf5ufIH3je+/bC9NW+Gg2lNinpphG6lYgT/JCg==
+X-Received: by 2002:a05:6870:80cb:b0:3ec:343c:8db7 with SMTP id 586e51a60fabf-3ec9a3332f7mr514455fac.5.1763593077107;
+        Wed, 19 Nov 2025 14:57:57 -0800 (PST)
 Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ec9dcfe28csm346496fac.22.2025.11.19.14.57.55
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ec9dcfe28csm346496fac.22.2025.11.19.14.57.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 14:57:55 -0800 (PST)
+        Wed, 19 Nov 2025 14:57:56 -0800 (PST)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-rockchip@lists.infradead.org
 Cc: mripard@kernel.org,
@@ -93,11 +93,10 @@ Cc: mripard@kernel.org,
 	robh@kernel.org,
 	Laurent.pinchart@ideasonboard.com,
 	cristian.ciocaltea@collabora.com,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH V3 1/3] dt-bindings: display: rockchip: Add no-hpd for dw-hdmi-qp controller
-Date: Wed, 19 Nov 2025 16:55:24 -0600
-Message-ID: <20251119225526.70588-2-macroalpha82@gmail.com>
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V3 2/3] drm/bridge: dw-hdmi-qp: Add support for missing HPD
+Date: Wed, 19 Nov 2025 16:55:25 -0600
+Message-ID: <20251119225526.70588-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251119225526.70588-1-macroalpha82@gmail.com>
 References: <20251119225526.70588-1-macroalpha82@gmail.com>
@@ -111,39 +110,103 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add an attribute of "no-hpd" for the Rockchip dw-hdmi-qp controller.
-This is used to describe implementations where the HPD pin is not
-connected or used for other purposes, such as in the RK3588S based
-Gameforce Ace which repurposed the GPIO for an additional face
-button.
+Add support for the dw-hdmi-qp driver to handle devices with missing
+HPD pins.
 
-The "no-hpd" option was chosen to be consistent with other devices
-which already define this parameter for broken or missing hpd
-functionality.
+Since in this situation we are now polling for the EDID data via i2c
+change the error message to a rate limited debug message when we are
+unable to complete an i2c read, as a disconnected device would
+otherwise fill dmesg with i2c read errors.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- .../display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml        | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 34 +++++++++++++++++---
+ 1 file changed, 30 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
-index 96b4b088eebe..07342838cd52 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
-@@ -69,6 +69,12 @@ properties:
-       - const: main
-       - const: hpd
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+index 39332c57f2c5..929b2e95a5c5 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+@@ -145,6 +145,7 @@ struct dw_hdmi_qp {
+ 	struct regmap *regm;
  
-+  no-hpd:
-+    type: boolean
-+    description:
-+      The HPD pin is not present or used for another purpose, and the EDID
-+      must be polled instead to determine if a device is attached.
+ 	unsigned long tmds_char_rate;
++	bool no_hpd;
+ };
+ 
+ static void dw_hdmi_qp_write(struct dw_hdmi_qp *hdmi, unsigned int val,
+@@ -535,14 +536,22 @@ static int dw_hdmi_qp_i2c_read(struct dw_hdmi_qp *hdmi,
+ 
+ 		stat = wait_for_completion_timeout(&i2c->cmp, HZ / 10);
+ 		if (!stat) {
+-			dev_err(hdmi->dev, "i2c read timed out\n");
++			if (hdmi->no_hpd)
++				dev_dbg_ratelimited(hdmi->dev,
++						    "i2c read timed out\n");
++			else
++				dev_err(hdmi->dev, "i2c read timed out\n");
+ 			dw_hdmi_qp_write(hdmi, 0x01, I2CM_CONTROL0);
+ 			return -EAGAIN;
+ 		}
+ 
+ 		/* Check for error condition on the bus */
+ 		if (i2c->stat & I2CM_NACK_RCVD_IRQ) {
+-			dev_err(hdmi->dev, "i2c read error\n");
++			if (hdmi->no_hpd)
++				dev_dbg_ratelimited(hdmi->dev,
++						    "i2c read error\n");
++			else
++				dev_err(hdmi->dev, "i2c read error\n");
+ 			dw_hdmi_qp_write(hdmi, 0x01, I2CM_CONTROL0);
+ 			return -EIO;
+ 		}
+@@ -879,6 +888,15 @@ static enum drm_connector_status
+ dw_hdmi_qp_bridge_detect(struct drm_bridge *bridge, struct drm_connector *connector)
+ {
+ 	struct dw_hdmi_qp *hdmi = bridge->driver_private;
++	const struct drm_edid *drm_edid;
 +
-   phys:
-     maxItems: 1
-     description: The HDMI/eDP PHY
++	if (hdmi->no_hpd) {
++		drm_edid = drm_edid_read_ddc(connector, bridge->ddc);
++		if (drm_edid)
++			return connector_status_connected;
++		else
++			return connector_status_disconnected;
++	}
+ 
+ 	return hdmi->phy.ops->read_hpd(hdmi, hdmi->phy.data);
+ }
+@@ -904,6 +922,11 @@ dw_hdmi_qp_bridge_tmds_char_rate_valid(const struct drm_bridge *bridge,
+ {
+ 	struct dw_hdmi_qp *hdmi = bridge->driver_private;
+ 
++	/*
++	 * TODO: when hdmi->no_hpd is 1 we must not support modes that
++	 * require scrambling, including every mode with a clock above
++	 * HDMI14_MAX_TMDSCLK.
++	 */
+ 	if (rate > HDMI14_MAX_TMDSCLK) {
+ 		dev_dbg(hdmi->dev, "Unsupported TMDS char rate: %lld\n", rate);
+ 		return MODE_CLOCK_HIGH;
+@@ -1074,12 +1097,15 @@ struct dw_hdmi_qp *dw_hdmi_qp_bind(struct platform_device *pdev,
+ 	if (ret)
+ 		return ERR_PTR(ret);
+ 
++	hdmi->no_hpd = device_property_read_bool(dev, "no-hpd");
++
+ 	hdmi->bridge.driver_private = hdmi;
+ 	hdmi->bridge.ops = DRM_BRIDGE_OP_DETECT |
+ 			   DRM_BRIDGE_OP_EDID |
+ 			   DRM_BRIDGE_OP_HDMI |
+-			   DRM_BRIDGE_OP_HDMI_AUDIO |
+-			   DRM_BRIDGE_OP_HPD;
++			   DRM_BRIDGE_OP_HDMI_AUDIO;
++	if (!hdmi->no_hpd)
++		hdmi->bridge.ops |= DRM_BRIDGE_OP_HPD;
+ 	hdmi->bridge.of_node = pdev->dev.of_node;
+ 	hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
+ 	hdmi->bridge.vendor = "Synopsys";
 -- 
 2.43.0
 
