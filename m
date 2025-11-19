@@ -1,130 +1,132 @@
-Return-Path: <devicetree+bounces-240443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB72BC710AF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 21:35:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F913C7123C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 22:22:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B5B1A4E0681
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:35:27 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 16FE435022C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 21:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58543596F4;
-	Wed, 19 Nov 2025 20:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979952FB97D;
+	Wed, 19 Nov 2025 21:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M6bPeD3v"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="paglm16F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 042FD22576E
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 20:35:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4BB2EB843
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 21:22:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763584520; cv=none; b=JmIjjwHjns67zdKfiqse4PT4UxN3D+OFXG91JwRUSyYaW02JL0Zq7Mc+WIZ39oABLpqFsPoItyOaSP7cxx1HKHC0oYj50QMWEICpMytM5NIF6w4DOZbMTcfWGVajpA+y+do/gjXN/Cwir/757NozVQmhEffwllfIW7q2Ch5nMlc=
+	t=1763587338; cv=none; b=jFYQlYo583xJaI08lSkBUY61hLRrB3a6bBg+BzY0RIH7ubadr/iW4/e4gcmhtICg63AsCy+OXg61OsW/bvHqrvqU/rirmXcwWcXum4ztpSg5VMORFLzk0NVHm6aq48ej8WmxvNUJY6VIbRZ0U99EQaN/nKtwvAqJmcO7HAC6rbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763584520; c=relaxed/simple;
-	bh=AcEF/ULZ7hn5XborFI2uRrFvNzwQynLPNGhuGPcXeuI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PqFDd12Z4f0MqIa0j3s6lWQnZ/mtlmFIRUHMyVdv7y7hJ6Z4MFA51nbHha49DnuQvR7qeQjngR6meI/TPB6orvXV+JVnItqxdLV50iFR/PV9ZgVw4ENrjVDaY2XkTVIj91hzCJ/Rt6svU/Iv/FvZhZOFdxXq/leEINHt73yPK3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M6bPeD3v; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-477a219dbcaso1481905e9.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 12:35:17 -0800 (PST)
+	s=arc-20240116; t=1763587338; c=relaxed/simple;
+	bh=DBz0niONnl+seOVorkJ/1kFeqhbKAlpzYMwEYSVEOlM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q3BqthtWgIYs5u4w4owbzmawp0W2DqM97AGwT3NreZ1fzFMgHHTZGWfxXO2Hy3/qdAO8hJ0/hTBNQKXPenn4pLn9kGSuzuSuaQsNETgh9RUnYC6ycGnndXuNzQGETjEtK8YcQ8N7xw+E9mv8GAGSdszvEoO48vP7jYtOEBpM7Ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=paglm16F; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-59581e32163so108818e87.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 13:22:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763584516; x=1764189316; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IPjBoOQ0X6tiw7eKt7ufioOYEoA2Xgma4d9CNgYmRXA=;
-        b=M6bPeD3vLWP63lQIZrEH1n4fsZ1CDd6OmUwbBC40N/+ymw0OQFjaM+7oz9VU76o6tJ
-         HJ6dgUzbRT2ZbUL/Zyu6w/S1Ljn42Dc2kfJnD7f93VcQ3dRFe774ciM1z9w6c1AL9ttc
-         E7zbCEa6ufBurZfmCChNG66nor4SG66gA62ot7XhJSOnQ56hSeOe43MfK14Xn5NiVWNu
-         VjSvL2CQqNot21qMKlLqTF5Pv3zoS0K1LO87d47xh8vhu0ghcJvOlHtjy497SLP4Y2ZG
-         Sr47cOnhyP/HcDZDukUuI/triGFEfdGrQoOzCvHuI31SiMejpI7MaqrHUBEi94UPlbei
-         O89g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763584516; x=1764189316;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1763587335; x=1764192135; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IPjBoOQ0X6tiw7eKt7ufioOYEoA2Xgma4d9CNgYmRXA=;
-        b=T3itlHHvkFOurZf7IzU3TIC9Drd26wvICfdvc9iQLcyBMUCfooNr2qVh1V0iv6V9xZ
-         cdx8mSUzMgY6EOhgWzh0WRxh3d472JEI+K82xuSiE3z5BwKp0EZ2S6shzOG+fDnhz6qM
-         SQWRZwC8g/erGW62ky/A/my3aZJyuLOFP8sgiD0p4B7GQJRe2qRslWOB0xpcr8Pfrh31
-         vly5o1H8ls9c9R/w9K5rDnk/pgPfFrkHh1xxQp6+wloKSHM9gUCIxvUJA7W8+bEkGbBE
-         wh38e5R/Ofk2LyrjP6wt04Eu9Kx1akGH4tLLBVof510Bujt6k2O3x+b84Pwwa2tvjhrt
-         hGyw==
-X-Forwarded-Encrypted: i=1; AJvYcCV1/Fcouu/TKTiJiij9MPPlUH7wnDPfdppV0RsEAE4LHLLzmw8nJQ6g/kT5Xd406pfwmRKy+3dfPhiU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLQVkhwZ2mT8rnAvF/+RFgI8yIpvoV4kbyWfRo9u5yR57flyZr
-	09RdhQ6KwBQdYozrW/9VVs/awE3H/sErXyIV63p8lYHZVu8TK2ZLgQSB
-X-Gm-Gg: ASbGncsvfsVkrzyu+lnaRZ6tf6lHdcAt+sXPOvphzQXiS3w+UHGFydKaAxvLAqBaeLx
-	Mw9YRs1+QHuso6xI00HJWK8b8TOIQPo0jWvQEzggR+R4h547pe9BLeZbmFimrqGEL0toSGCmu6m
-	bNatUaHkFOKDK7Rsmh4uAJLMy7DcugCe4T8WFVk3lWtkubBilbXlSECbk5iafJvHVdVA13nNga7
-	lTc3cmDYg1zAAGaQSR3fFBdTeTGPRlc0NYSHuO7MQTKT6S52tDI6nnPktxV03SJJ1oL7OqQveeo
-	3QZNDnialbJKpWUp+vNIMqobpKKEcdXAKXFVt0oAXM4uGjUklWD0CQzRgH8WdZRrpbo/QMX2EE5
-	ao/90NPdb5Xxaa1F6cSiJKukc4G3bxbRpRAFfNNuX2e/4B8lXgwo6/t/hoDElvWtXv9+NV6QX+i
-	P1pDXC
-X-Google-Smtp-Source: AGHT+IFq24ZE90yWikR1WNs6G9qizziluuH3FFv6RjdpPlQ2XJnKH0ssswEw3Z2b4tPjhHGKFdhHog==
-X-Received: by 2002:a05:600c:4506:b0:477:5af7:6fa with SMTP id 5b1f17b1804b1-477b8c92626mr4124585e9.32.1763584516042;
-        Wed, 19 Nov 2025 12:35:16 -0800 (PST)
-Received: from curiosity ([80.211.22.60])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-477b82cc72dsm8653205e9.1.2025.11.19.12.35.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 12:35:15 -0800 (PST)
-From: Sergey Matyukevich <geomatsi@gmail.com>
-To: linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Charlie Jenkins <charlie@rivosinc.com>,
-	Sergey Matyukevich <geomatsi@gmail.com>
-Subject: [PATCH] riscv: dts: allwinner: d1: fix vlenb property
-Date: Wed, 19 Nov 2025 23:35:06 +0300
-Message-ID: <20251119203508.1032716-1-geomatsi@gmail.com>
-X-Mailer: git-send-email 2.51.2
+        bh=66eo3/FCxbT46WW1S08bhZLk8NV3Guy/KGsyPNbaZKQ=;
+        b=paglm16F5/OclCayPw+IY/tD7YtH2HmV+Thh/it20JFPgY3jEmdMHy4EYNAdnci0Ky
+         vAE3scjVbqzQM5hWNSHLsfqVT6Nr2k0rvvobWH06EjRgTakfNwC874MT7st4BspyLYwC
+         Ecfx9bocqKJPJkiIWQntSywi3uOl22+ISd9I4BsYXgJl6gnxguep3hq0DLF+QuYXxWxv
+         Gk6+nTqn7XBBT0mDHHrHTbiG+JXsBly0usElkrvJ0VtnSsTMoi4ldIX20kJq9W36Guag
+         ZJZFDDSnRHi+ODh2/arRFEvtzQm9OuUanhLLn4kSm5qzxI6iR1GZove0ebwadf+dcHon
+         xgAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763587335; x=1764192135;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=66eo3/FCxbT46WW1S08bhZLk8NV3Guy/KGsyPNbaZKQ=;
+        b=Hi4JxuI9Ix2Zv86dMeEpGKkasMs+gi6naALTt/BtPRmN0yNe0J/J9fHNxNg2ChVKWv
+         gIzYY28b3LBhlAlfL9OLvtQc6ayiYmtZB4qM2wyea5WHSOsNjjLe0+qQpLO1B9frYT9s
+         /nEcetSl7v5R2EY5hWPN3L1WTt6/ah0htWGbZsJE9tkUwh/UmW0zQr2uTnrdBjyptaw3
+         LS9sHknPDUZo+ohixP/0S1gGrWLlFXIJxJGWzxj7GVnouDieKzYlW4k41D+h/HzVvkB0
+         /woH1SUK39eS4qp+yMm7Jg0vlw5f0iYUrBSc1gHa3i73fO1XgCVW2LEq62sZtjHTZVZK
+         rDTA==
+X-Forwarded-Encrypted: i=1; AJvYcCX4q9YoX8Hj7KGuE+J9C1xxSpl3bIMlLlzvE9mGSOyZgPKFw3XDWB+a7GZHilh+EfNAxBQUsYN0Eht2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmkQpdo4QIUUhEensfklMwoZKDiojvy0IKeyMO9zFJM0chVoBQ
+	mhY4yM10xOyZTs+CfVJIwBdSoCLEMlyP1JtpIAle/vDKScjcWT6kx5IhqAcKmj3NACVAURIFAcH
+	1WkM7KKgSzw828TBVOWV8AcH1NURzsh7qKjRRAtCWzA==
+X-Gm-Gg: ASbGncvgWIKc/uq0+dulkrKAhbLl/oNPrXMARF+4JaVxySF/sy9lEmFhRPerlYUuR2n
+	bgizCCU1UDnaSxUzKZrboCi4QKYFUPc+G6pRwktvI8sp959X1vK4t8fr+2b/Fh8NGlIN1AFJDTJ
+	u3uCVJbNdM9QyC2+OiulG5A8807dBZ6eB9c+pMz/WOvSbwqyLka5v8nfVaTlqu+7Hglv3ByPci+
+	s3ExJLKUVGzzTYucCJUMaYkIiNeF0OhNXZevxz5/FYWvXvZn8Fz8jFsc4xQXIkFn1ehoMXqajtJ
+	MggmfA==
+X-Google-Smtp-Source: AGHT+IELiSBP2aXqm08BReCsgwxpMOYg15fH+SMrgMDaXnTxP8h9xFapGyVh9++EymMn2Bzw6LukssCo7PGt0VpsR6E=
+X-Received: by 2002:a05:6512:3d09:b0:595:82ed:ff28 with SMTP id
+ 2adb3069b0e04-5969e309670mr93355e87.32.1763587334880; Wed, 19 Nov 2025
+ 13:22:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251117091427.3624-1-antoniu.miclaus@analog.com>
+ <20251117091427.3624-2-antoniu.miclaus@analog.com> <20251119-violation-enforcer-1362d3eecb69@spud>
+In-Reply-To: <20251119-violation-enforcer-1362d3eecb69@spud>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 19 Nov 2025 22:22:02 +0100
+X-Gm-Features: AWmQ_bkWCJ5flHFo7S9tQWx88Mz6raD_BwO06QspIghe4e7ST0AyUuf6Ba9-3ns
+Message-ID: <CACRpkdayt+upQxxT-GdQOENWjdF2zz3DLEjcvD7sdg9-oaLwoA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: switch: adg1712: add adg1712 support
+To: Conor Dooley <conor@kernel.org>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-According to [1], the C906 vector registers are 128 bits wide.
-The 'thead,vlenb' property specifies the vector register length
-in bytes, so its value must be set to 16.
+On Wed, Nov 19, 2025 at 6:56=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+> On Mon, Nov 17, 2025 at 09:13:22AM +0000, Antoniu Miclaus wrote:
 
-[1] https://dl.linux-sunxi.org/D1/Xuantie_C906_R1S0_User_Manual.pdf
+> > +  switch-gpios:
+> > +    description: |
+> > +      Array of GPIOs connected to the IN1-IN4 control pins.
+> > +      Index 0 corresponds to IN1 (controls SW1),
+> > +      Index 1 corresponds to IN2 (controls SW2),
+> > +      Index 2 corresponds to IN3 (controls SW3),
+> > +      Index 3 corresponds to IN4 (controls SW4).
+>
+> Did I miss a reply about my comment on this switch-gpios? I was asking
+> if a binding like this, which doesn't permit any of these not being
+> provided is a good idea.
+>
+> > +    minItems: 4
+> > +    maxItems: 4
 
-Fixes: ce1daeeba600 ("riscv: dts: allwinner: Add xtheadvector to the D1/D1s devicetree")
-Signed-off-by: Sergey Matyukevich <geomatsi@gmail.com>
----
- arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Maybe we should make them named GPIOs after all, as the switch
+has exactly 4 possible GPIOs. It was my request to have an
+array I think, and now I feel a bit stupid about that :(
 
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-index 6367112e614a..a7442a508433 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-@@ -28,7 +28,7 @@ cpu0: cpu@0 {
- 			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
- 					       "zifencei", "zihpm", "xtheadvector";
--			thead,vlenb = <128>;
-+			thead,vlenb = <16>;
- 			#cooling-cells = <2>;
- 
- 			cpu0_intc: interrupt-controller {
--- 
-2.51.2
+> > +  switch-states:
+> > +    description: |
+> > +      Initial states for the four switches (SW1-SW4).
+>
+> Missing an adi prefix? Also, probably should say initial if it is
+> initial states.
 
+It should probably be initial-switch-states.
+
+I vote for a generic binding as it is a new "subsystem" in DT,
+and this can be exepected for any new switch.
+
+Yours,
+Linus Walleij
 
