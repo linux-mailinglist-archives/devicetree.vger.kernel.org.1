@@ -1,164 +1,204 @@
-Return-Path: <devicetree+bounces-240113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A21C6D839
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:49:18 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A6AC6D7E8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:44:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 09D644FA2C0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:42:14 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5FA71342B8C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75A0432ABF6;
-	Wed, 19 Nov 2025 08:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B79632ABF6;
+	Wed, 19 Nov 2025 08:43:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jxUpE0Xu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CGNzNW6R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011060.outbound.protection.outlook.com [52.101.62.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FCA32E13C
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 08:41:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763541698; cv=none; b=lP3Z3zNfBF4H6z3ieuNU2sRNeP9Tlsjxqvlvv+dZU/qSMlD9qbgyIrZNWJIFA4iJhUeWy4WEnGrVPRey3EUxHPjdLPgc/zM3JYzqmrMSXmzKfKytFpduVzJks8lqE2sZhEAjeN/JJofuyx9I+CW/XM6TbgiTfhFs9EYhzFQfUvw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763541698; c=relaxed/simple;
-	bh=/pVHjvT3P2IN9665epAkr/46e5YpKQpDV1MCGY4SeX0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VRTgP/MTp8/YiDU9eFecMT1GtRUzOe+gncsf82+WnjEXiRUEstUCUPuUEiRf7AX8u6w/kKGUUDDegCmdfw1bbJlG7ZhrRgaSH87Ix4H/e4c7BTUmFTVc79m6g2IREV0RGXRgrXlfj0U7/ZQABdsnQt458Wk592e1tEtKY6iIsQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jxUpE0Xu; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-594270ec7f9so5876218e87.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:41:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1763541694; x=1764146494; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5j+PVmz1ThbmMU8zEKanJG/8MyZ6W6XB53wlJvy8v2E=;
-        b=jxUpE0XuakgkibVSlQzk7lOoNzdrxGxc5mmanHFB9Cn6JxhPG/I61zJRwHt7jBGM8r
-         2WTNJVzkJSFixvIVFxKfAH9qbBfnG39pE23GyWXqyBbKnqEHnGduYf2Vgb41W7oQlDeA
-         SDYz7lpAEfYuNYM1UNh0tYvAE8S0kGG0iQkFU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763541694; x=1764146494;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=5j+PVmz1ThbmMU8zEKanJG/8MyZ6W6XB53wlJvy8v2E=;
-        b=cn0AP9z3yXiy/qgxbXPJD8UOs1X9j3rNk+93cWmaTWsRAGdzl+7CtcWrSOlJC+zY6O
-         jOs9gwdxcdUlSeTvqiNnPjpmc/wo4f9UsF5hrai/WK+d77ADmgbW3+M5L7Ad+0IH2Iie
-         HpQFOUkVlHDSQgjOrhsGvMzZSPdL/YiVC84JnCKAOfsAzXXadR/xJoDd3008KxunwPz6
-         NWK8afYMS3lf74vJ+V/WSlEqpglIDLSbvkvTVbcEsRa+TrWyWISrav42GS2jkoOAk5f0
-         Scg4spITg337ls4cxX63CCEWNVvIRlFj09zSgJR/RzjYdficYfjZagUP2SlFGwvZqTNv
-         7vSA==
-X-Forwarded-Encrypted: i=1; AJvYcCWhy0Y5m2WVkhGAeNLq7Nkc6f0fZUZILdEHfCvEAUac9y9Pzt4hWDOUemUEUJSD5/7nxkBGasLhsJHj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8RKkP3nzJdVTIdS6KWjdp66hRe4AMEKr4RRgAsbOJdkIY7dBc
-	ipEKLsK7MfikNC+Tt4hqsMw7hUlRsLWfIwc22zWbqVlVFkb44JsmfW26OVeulcLYugRo9RumNN8
-	wTJindm1Gq74A5n6F9hSS+J2PMboohdVpFnY7cQZ2
-X-Gm-Gg: ASbGncth8veHxcVcb6tzVDaZYYSZhTRDba/AGU/7wNNTccYtwQN+u4GcHLWLqXKixnG
-	sJJxjwU6BAHOFtpL4/1FVeCxgkwevkeZ8/5XtuTff8PcQyUpaKfyxCTmfoZfBP2KGIZjyVebl8b
-	AAkmTVV0uguqXCwidGLLyVdtSnI3iZt4fW9dFFWGJkeVP+Rd3a4zW0F1fUvsT5ilav/WWFjDnye
-	rHjVomhis2fGgUoUOOUPQIvNraMOxTs3iOhl2xicDOJ65x4yE1dSNWwjw+Ab/k/B2UwQYsqnb8A
-	UfehuvDzVSa8M60WcaIBoOxawO4q4wtAjw8Mu084PoNOwaQ=
-X-Google-Smtp-Source: AGHT+IFQrP/i43BRhijnwjgkcRa7OAPKQ47ycdJ6Y9winLF07YK7XNLrMlityx7sOAiSK2CbDbRJMbbPsGbnrHHqS5w=
-X-Received: by 2002:a05:6512:3b22:b0:595:76aa:8e with SMTP id
- 2adb3069b0e04-595841f7d84mr6219364e87.38.1763541693273; Wed, 19 Nov 2025
- 00:41:33 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC66C2765D7;
+	Wed, 19 Nov 2025 08:43:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763541827; cv=fail; b=Ehrci3b6HuJSURz7vJy6a3NC6ZU7OJ1Xjd1Nxe4dDyfSMmieHmR6mqBAFHYhRSjDVBfiE1LyG+8UtTdRL1toYNVoGxCdPaP+4iwtWmk4QE0+rg9XogZ75sHhEgc2gLuuDHW0JYqTPghzxNqdaeD8cJvlGcjW51Wzp6mbmqG/W5c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763541827; c=relaxed/simple;
+	bh=s3x0v1TicZAMQOY/0Bh9EgSOwlUFNbm9dzGF8XcB3/0=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ucVgwUnFsqT4//lfWyxlZlfy6iyrfOSmvZlSDjTVchitGmhQ+Gu+gtXjTGaR42uSXLbu6Uy+/vxXn72WXY6R2W53vcRo4f4HCfmcdggnyei8AuunvFSVnG/IIQFW8Z2Pl5Gf/AI56uwMXmvcSBT++Niab6lyFihQBvrumtBshsw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CGNzNW6R; arc=fail smtp.client-ip=52.101.62.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Wy58Ft9X6btI7d1WfGHq1db/V3EgSL+ZPPYO5mToY5lbthopmrx/6rtEHuf+VQjL1HxTuoiEU6VUZjYeWWQtbyRjBmcDWmIhxtPtl/hcVFUSMxmPJe3SsrQl6gwS8EfVjioxPeIliop3v0afckhHyaf9YJkpZ5feJURoepLrwO/4rpIEl3wg596GQgymmVE8FxMGT2jhCeR7jgCtZrd6OeTB0exkHzCsLCfWIER3RKBOM4dw2qfvC6CiX6E5xWiA98sbSWcBQELJayZPKxOY/PMBuHSUbB2iOUmluPTX8J2fYGWp7u5cYN/5LX+wEtRRNnGWIzFd+akKJunlcUPJ4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s3x0v1TicZAMQOY/0Bh9EgSOwlUFNbm9dzGF8XcB3/0=;
+ b=M0HC24XTjGGlj9kjDrk2QvvMU7Xh3NkZ3F0cfni2rUynHTGh5C2WcBGBzQOoZPa9qzqv0w0iHpJ0WQSu6Gpj+6wZRp0VdmcBFEI8wth2UNTIx4CmUFqmt/BABv7RmPgG/gBdSprRGJhXloRsFSaNOV1ZYP3x35jXOO07h82gIgWRAjs5E1Esi+y52JCzoU+mhlnlF91Y1jSeJJ3X/q1oHDNcahwcfBREwzSkTSqirdDMO+sycA0wmcXlyxlL/0uZtKhu9KJeGW946RpZ+gMeOnWkZtM7tONWmOUyrmbKNCJ7bzPCA9SoeCA9OX+4jPPa12k5H7hPFooS8c9NupjFFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s3x0v1TicZAMQOY/0Bh9EgSOwlUFNbm9dzGF8XcB3/0=;
+ b=CGNzNW6RKe+XzTYMDvuvUojDUipX/erlWgYEM29P3WjGFIN4Ip9BXjUhDYvhfN5b0ONYUEPMLz1IPUHK6QMjLuw67lHnr81lVUQlAZk40SM/kMlimlKJFBDcjrqhyxhF6fs9rZsRA4lrM3T2U90o14muBcH8te3GqCwC8SFU5qY=
+Received: from BYAPR05CA0092.namprd05.prod.outlook.com (2603:10b6:a03:e0::33)
+ by MN0PR10MB6005.namprd10.prod.outlook.com (2603:10b6:208:3cb::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
+ 2025 08:43:41 +0000
+Received: from MWH0EPF000A672F.namprd04.prod.outlook.com
+ (2603:10b6:a03:e0:cafe::dd) by BYAPR05CA0092.outlook.office365.com
+ (2603:10b6:a03:e0::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Wed,
+ 19 Nov 2025 08:43:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ MWH0EPF000A672F.mail.protection.outlook.com (10.167.249.21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9343.9 via Frontend Transport; Wed, 19 Nov 2025 08:43:40 +0000
+Received: from DLEE202.ent.ti.com (157.170.170.77) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
+ 2025 02:43:35 -0600
+Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
+ 2025 02:43:34 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 19 Nov 2025 02:43:34 -0600
+Received: from [10.24.73.74] (uda0492258.dhcp.ti.com [10.24.73.74])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AJ8hUWR1544454;
+	Wed, 19 Nov 2025 02:43:31 -0600
+Message-ID: <371e6a49846f910e9a747d4185471806cc719138.camel@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-sk: Fix pinmux for power
+ regulator
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>
+CC: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <y-abhilashchandra@ti.com>, <u-kumar1@ti.com>,
+	<stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<srk@ti.com>, <s-vadapalli@ti.com>
+Date: Wed, 19 Nov 2025 14:13:48 +0530
+In-Reply-To: <f4d38392-a019-4061-9ef0-d95506766027@ti.com>
+References: <20251118114954.1838514-1-s-vadapalli@ti.com>
+	 <f4d38392-a019-4061-9ef0-d95506766027@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251119070230.1716418-1-wenst@chromium.org> <66693e69-7ad8-4067-9bd3-ef1454e3ec18@collabora.com>
-In-Reply-To: <66693e69-7ad8-4067-9bd3-ef1454e3ec18@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Wed, 19 Nov 2025 16:41:21 +0800
-X-Gm-Features: AWmQ_bkZdxwhlKh-aCeAiAApl_fYKJMVFMF18ypbY25Gza-xyZhDFbzK5dIIIps
-Message-ID: <CAGXv+5HOrP=hj8qxZmjq+ozeppXrzFKh=kq2Cb+QqWEx9n83Bw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8188-geralt: drop firmware-name
- from first SCP core
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A672F:EE_|MN0PR10MB6005:EE_
+X-MS-Office365-Filtering-Correlation-Id: 860641c9-619c-4f8b-d2f8-08de2747bd4b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bTA2YzJzWmpyUk9xTlhoUHRYMmV4S1I5dTJ0V2tGRVhQcjcrVTE2NlNBMjJm?=
+ =?utf-8?B?SVhObzV0ekdFNXVmVVArbkEvRzV0MmYyUmU0MnR2bmMxR0hoMzZNNC9jdTd6?=
+ =?utf-8?B?SE1vbWF1YnIrUGdHSDZsOXc5VUluZnBPQ3RoWXgrWlZUREdqd3IvOHpYZ0lL?=
+ =?utf-8?B?Mk1XNE5SK0kzeFk4blI4RlNaYVBhZkE0VEs3MEt2WnQzeDhQRjB1Q2dSRk05?=
+ =?utf-8?B?T1FZN3EwcWlseDR1NThkWFR0ZG0wQXdpR2k4WXVlWmxFcXdVb2lpc2wvcXlM?=
+ =?utf-8?B?c1ArbjVRV3ROY3ZwYkRIeTN0ZHV3dkhiVVB1NjFZWHVsdEJUaXFTNGJFQ0JO?=
+ =?utf-8?B?aWJNWkd5clp0NEZRWkN1cjZuQjJDdnRlNk1nQmNIb1V5VnRpY0ZRalM5S0Ir?=
+ =?utf-8?B?L21xZTlmemt6ZE9KQ3d0T3ZQR2xtV2lvaFZva3dOSmx0Um5yUW9aRzBFaWhZ?=
+ =?utf-8?B?UDdJRWVPbW5hS1MveUdoNlBISnNwVnhCTmRtaFlqOWVYelNHam9UQkhHYkZT?=
+ =?utf-8?B?MG1Mc0JrNXN1YnBlMFQ2L1pJNnBNaWQzdk14amF0MkN5cXovd2lwSzZETVRQ?=
+ =?utf-8?B?SnlrUWZFYUYxNmZkaFJnbldNMXhscC8ydCtuN0I3WjdJK251anE4TVFGYXlo?=
+ =?utf-8?B?ZG5LanJIeTYvSXZLNzFiVDVoblNXNGZaamxmMzE2T1A3WFVQQjhvZ3hleWdP?=
+ =?utf-8?B?ZHNCVkZSanBHRlJrcHhHS2tieTQ3UmFkVk4rR3hDNFl1bzFrbE5IOWk4aXp0?=
+ =?utf-8?B?eExPYzNKWTRKRXYzTm1zcGtqc0tTODErbmFCWDI5aGdnSndTWlBDYWwyVWoz?=
+ =?utf-8?B?MlBuSUFkV3BsVGpiOEIzb0VpZ0M5OGt1ZVQrWUpkNEdxSEVlY25ZWTNvNFNp?=
+ =?utf-8?B?OW5QQjQ0OEo5bDV6NFVKcTQxYlZNTHdXYnpnMTBIbzZ4YThkQ3k2TXp6cU5M?=
+ =?utf-8?B?RGRwWGU4T1FyM3ZyZFpqODdzeUJvRHRWa0VxMFJjQmgzbGVxNWdsVEs1OXc5?=
+ =?utf-8?B?MEViQ01zVEtLbWVKRENKTW5Veld5c2dkQk00UkJSVGFhUFBQZkROVm9LTk9P?=
+ =?utf-8?B?NUFVYjRFdXEzZjJ5OUpyOTUrMW5WSTllVEtHQXorK1pRUmJxK0tSUnpqcnJU?=
+ =?utf-8?B?VU9FM1FyUCtWZmNod0Z1WE5WRzQ5TmM4dUdxNkRwaTJCcjA0cjVIb05YNWtq?=
+ =?utf-8?B?QVdUc0Z1Ui9tMllkaC9wdFlMMjF5VURqaS84M2VpY2lNWHNFeXYwcGxzU0o5?=
+ =?utf-8?B?S21NUUJEOFNrU0FHNE5MM0lRSCt3WE5rSklCVUk3Y2dMQWJSci9IWGx3MGox?=
+ =?utf-8?B?ZjlzZ0ttaEVFaHloV1B0bjFtMm1adWZLaDN6UHFsUDcwMGRXN3QxdmF0ejcy?=
+ =?utf-8?B?VG83U0FpQnVnY2oxbVpsenlWTW9hTDd2bGlXeUl0aWxKS1BJTFh4RFIvT0Ev?=
+ =?utf-8?B?MUJXbFR3UXhIdzk4RVZhOCt0VTFmQjFBaFJhYkJBMTB5ajVyVEVEdGZUM1Vm?=
+ =?utf-8?B?cy84SjEvWi8rNUpzd1RBSEJ2N1hONWVuNEdRcXU3UEVoQjAyc2tSMHhlR01s?=
+ =?utf-8?B?bjczUkp0d0s1Z0VqajhwR1dLdm1ZWU5zUmtFT01OTERPMWZpTlQxbGpEK2N2?=
+ =?utf-8?B?K21rRFR1bjlNMkY5YlUvSkZHK0JHY0tSNkR4WFZXbXo1RER4UnZ2amxVVmFn?=
+ =?utf-8?B?dHg4UG1GeW5zRmVUbnBhQXZZNUxWc0dMcjMwSG1ualQyWWtKSWs2ZTdaaGtu?=
+ =?utf-8?B?a1M3WG9tYUoyR0NKQlAzYWE0RzByS0VEb0Jrd09HUUhYNGltK2dLLzU1aW1o?=
+ =?utf-8?B?azVWSGRHanY0SWZoZDRMVDBmTGxnWXk0ODVJakdaamxRbUpXaWo3SVdwTUlT?=
+ =?utf-8?B?TFhlVklYdElSWXo3WmRiSEVKT29rb09uWXNWVGZmZW4remhwd2U5OUhkSXJ5?=
+ =?utf-8?B?SnRwMmJkZzZyTzEwRkZSMjhKTFVYd2tjZnlQZUJ4M08wcHNjb1I0cWp0eFJL?=
+ =?utf-8?B?NWM0ZDdsVEZPMGcyMTB4c2grOXRDenc5enkyVUtsZ2RXYUEwSlpqcXlONFBu?=
+ =?utf-8?B?R3YvRzgvT1dyTzFvZFo5ZFpIQTNFSlhVUEpLZ0JuV3hVVUMzQTUwMjVNY3Vq?=
+ =?utf-8?Q?PK/0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 08:43:40.3842
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 860641c9-619c-4f8b-d2f8-08de2747bd4b
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MWH0EPF000A672F.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR10MB6005
 
-On Wed, Nov 19, 2025 at 4:31=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 19/11/25 08:02, Chen-Yu Tsai ha scritto:
-> > Arnd pointed out that having firmware-name in the device tree is wrong.
-> > Drop it.
-> >
-> > Fixes: e36be19823f0 ("arm64: dts: mediatek: mt8188-geralt: Enable first=
- SCP core")
->
-> Fixes here is .. well, right, but wrong - as if you "fix" that in previou=
-s kernel
-> releases, you will create regressions :-)
+On Wed, 2025-11-19 at 13:38 +0530, Vignesh Raghavendra wrote:
 
-This is a fix because the commit in question was merged in v6.18-rc1
-and v6.18 hasn't been released yet. So you should pick it now for
-v6.18.
+Hello Vignesh,
 
-> For all of the currently supported boards, I was planning to temporarily =
-leave the
-> firmware-name properties in place for one kernel version (v6.19) and remo=
-ve it from
-> all of them at once, for kernel v6.20.
+>=20
+> On 18/11/25 17:19, Siddharth Vadapalli wrote:
+> > Commit under Fixes added support for power regulators on the J721E SK
+>=20
+> ^^^ not the right way to quote a commit. Should follow commit SHA
 
-OK. So I guess the plan is to have MT8188 SCP working in v6.18 based
-on the current name then?
+I started following this format after I noticed that an earlier patch of
+mine at [0]
+was merged to the Networking Tree with the commit message updated to follow
+this format [1]. I acknowledge that the expected format might be different
+across subsystems, but I used this format since it seemed concise to me and
+I believe that it makes it easier for the reader.
 
-> I'd be okay if you send a commit or a series removing firmware-name from =
-all of
-> them, without any Fixes tag and without any "fix" word (so that we avoid =
-autosel
-> backports at all costs!), but keep in mind that I'd pick that in the next=
- merge
-> window, and not right now.
+However, if the format should be:
+commit SHA ("$subject")
+for the TI-K3-DTS Tree as a policy, I will fix the format and post the v2
+patch.
 
-We can avoid autosel with:
+[0]: https://lore.kernel.org/r/20241220075618.228202-1-s-vadapalli@ti.com/
+[1]:
+https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=
+=3D4a4d38ace1fb
 
-     Cc: <stable+noautosel@kernel.org> # reason goes here, and must be pres=
-ent
+> ("$subject") format. Moreover this paragraph can be simply be stated as
+> node is under wrong pmx region (wakeup) and instead should be moved to ma=
+in
 
-(See stable-kernel-rules for the whole paragraph.)
+Please let me know if I should post a v2 for this or if you plan to correct
+it locally
+(in case the 'commit SHA ("$subject") format doesn't require a v2).
 
-After the blobs in the firmware repo have been renamed, we then explicitly
-backport the change to stable. I think that works out better? And the only
-one that needs to be timed is the MT8188 change anyway.
-
-How does that sound?
-
-
-ChenYu
-
-> Thanks!
-> Angelo
->
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi | 1 -
-> >   1 file changed, 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm=
-64/boot/dts/mediatek/mt8188-geralt.dtsi
-> > index 7fedbacdac44..8e423504ec05 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
-> > @@ -1166,7 +1166,6 @@ &scp_cluster {
-> >   &scp_c0 {
-> >       pinctrl-names =3D "default";
-> >       pinctrl-0 =3D <&scp_pins>;
-> > -     firmware-name =3D "mediatek/mt8188/scp.img";
-> >       memory-region =3D <&scp_mem_reserved>;
-> >       status =3D "okay";
-> >   };
->
->
+Regards,
+Siddharth.
 
