@@ -1,245 +1,188 @@
-Return-Path: <devicetree+bounces-240411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA0E1C70E1B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:48:01 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2BC2C70E64
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 20:52:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 6307629F31
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:47:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EE663349C79
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E1D628469F;
-	Wed, 19 Nov 2025 19:47:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9982B371DCC;
+	Wed, 19 Nov 2025 19:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GfQ/wm0i"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JXf09Dz3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 784752773D4;
-	Wed, 19 Nov 2025 19:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5023730EC
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 19:49:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763581662; cv=none; b=hJzLbmOJ649w05xf5SR+i0dbfflRBG6OvovuD+kaitxTko1wOKUB4HQvmboq5Jg2usueu2wst1mUEx9W/WCzxZVkvb9OWebFxjvHDUGUUP9IUDbAE5/YxGQbHssTADDMA8c2Pkfm/xF/U1zjhO2YZYhuNLfy0wi1DdlKRb8f+c8=
+	t=1763581802; cv=none; b=Y84yhhfGGf813fuvlOqnzTxVnUrxA+Mzlms6rbBm3ESuXWNo3D7G++qjb32L0s9r32ZuqtCTvOzkMGYLOHglDONeKTtL+IQWDtR9PTWM/kmZz49rRLvzRKWCiWdxDvaiDHsxDdnWk4O46MPpj3dqOHo5BwWWRiDUvBgXQYe03Oc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763581662; c=relaxed/simple;
-	bh=yR1jifjvTn+qY7kiz3sNt3OFFB6PgyOmHUCR90yMOTs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BcA8EJ1CddqhVROMhYFww0gdyDDJV2I157cRwk+gdhEqcLgmjfEhxVcaFYSOpImFwmAWMT2m8XdARNNHODldzu73qqrM7oc4dTx5buxgv6maRMpmRt+TtksxL1Py52vvNyhQWFqUM544cRuKb+BbcKGMw1UBSCGELWJjfKKLq70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GfQ/wm0i; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763581658; x=1795117658;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=yR1jifjvTn+qY7kiz3sNt3OFFB6PgyOmHUCR90yMOTs=;
-  b=GfQ/wm0ikCLpjuwU3/7H4Pinu3fBrz1XfRaDAvXNiInUeMjOgNHa+59D
-   kjDlOt2wXjjyT52Ycz/qjg9hIpTkcwvnNDOYKvvwPSX0XgsmeryuwFmiy
-   bkt8nM9i+plruaWgjKr3YQUyxdQu60k8Mr6A3EsE8Z2lQKk2AgHyceMN8
-   eNEEhrNIZ58rf0kW5dJBVLWLeCChg0wgjW1SiHGgGPcrDc6yEDUJB9HVj
-   KXjiS0lHgQj/t8jjQgHE6Y40NjNoZtCcTY+TiAU21d+nM4f8qObZXa2eC
-   FpHrT9bCvc01TxMO+cdn64h3WGiS9x8GtVQ16UayPt5/CLLUpBzT+Z9mm
-   A==;
-X-CSE-ConnectionGUID: r7pkM+beRemrb/TohhBdCg==
-X-CSE-MsgGUID: Ks6glD/5Td2E2bvjD0XceQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="76248471"
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; 
-   d="scan'208";a="76248471"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 11:47:30 -0800
-X-CSE-ConnectionGUID: ZhJcMBwDRVyDeZotrQyU2g==
-X-CSE-MsgGUID: NFvu5yZ3SsGLI0U+5XMiFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; 
-   d="scan'208";a="222084274"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.245])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 11:47:26 -0800
-Date: Wed, 19 Nov 2025 21:47:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	krzk+dt@kernel.org, linux-iio@vger.kernel.org, s32@nxp.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	chester62515@gmail.com, mbrugger@suse.com,
-	ghennadi.procopciuc@oss.nxp.com, vkoul@kernel.org
-Subject: Re: [PATCH v7 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-Message-ID: <aR4ezOOnBl6S6G2e@smile.fi.intel.com>
-References: <20251119191545.46053-1-daniel.lezcano@linaro.org>
- <20251119191545.46053-3-daniel.lezcano@linaro.org>
+	s=arc-20240116; t=1763581802; c=relaxed/simple;
+	bh=e+EiGdFsf3VbyevUL5TU1jG+j1FMAfrqATyo4KcYRJc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=jys3FhGuvE8H3+8U55JcTvyVIrbkdBymWJ5rzzrNtIzUxl3E1Tp4Mp9P2dso9UaUNIbsSihAxuTEIv4ZjLRv+XWg6W7H5n76Lt7+7kV/66O4bfLo3Lr1Mz4W4G/pRsX+FrOYFqEmfRmxyAkRns3Rxojft0nZAcprheSmgFwkhhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JXf09Dz3; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id B3D7DC11195;
+	Wed, 19 Nov 2025 19:49:33 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D932060699;
+	Wed, 19 Nov 2025 19:49:55 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9639A102F2165;
+	Wed, 19 Nov 2025 20:49:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1763581794; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=idyisNLwX/81MGmvTcXblC/vtIFhEqtsf+2ziThKUl0=;
+	b=JXf09Dz37KSxb84fPt0xCNsN6GavF6zxGYaDnAtetqDs1Km7Qg7tyl3ucVCrlP7/wI3vAH
+	Brt1JLyQr6Z57RRLIel57nTLTRpZp/sci2HRmjHC9IN8P66AnuvhSLwoAleU1e/B5bLIs9
+	iaCY9MyqzKGWVk2uTAulwuStyUlVPQz3dHD/IHrZ0mSJPM4G72sjQoDupWx8MFVv4jORI6
+	skNrYrosDF7JY6jIe6vF8gCgT7WtJ7AMpQezOWiZJq6UpmsLH1LyIMmlFoUNpI6slEiwTZ
+	GOY43hLWnRXakTMPShCKL/gGL2evdNlbs5ZmEWzSbKZqvB85NowHOsfPoUyZLA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251119191545.46053-3-daniel.lezcano@linaro.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 19 Nov 2025 20:49:42 +0100
+Message-Id: <DECXKE9A67HG.35AR5UZKKQ8A1@bootlin.com>
+To: "Chaoyi Chen" <chaoyi.chen@rock-chips.com>, "Chaoyi Chen"
+ <kernel@airkyi.com>, "Heikki Krogerus" <heikki.krogerus@linux.intel.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Peter Chen" <hzpeterchen@gmail.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul"
+ <vkoul@kernel.org>, "Kishon Vijay Abraham I" <kishon@kernel.org>, "Heiko
+ Stuebner" <heiko@sntech.de>, "Sandy Huang" <hjc@rock-chips.com>, "Andy Yan"
+ <andy.yan@rock-chips.com>, "Yubing Zhang" <yubing.zhang@rock-chips.com>,
+ "Frank Wang" <frank.wang@rock-chips.com>, "Andrzej Hajda"
+ <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
+ <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Amit Sunil Dhamne"
+ <amitsd@google.com>, "Dragan Simic" <dsimic@manjaro.org>, "Johan Jonker"
+ <jbx6244@gmail.com>, "Diederik de Haas" <didi.debian@cknow.org>, "Peter
+ Robinson" <pbrobinson@gmail.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH v9 08/10] drm/rockchip: cdn-dp: Add multiple bridges to
+ support PHY port selection
+Cc: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <dri-devel@lists.freedesktop.org>
+X-Mailer: aerc 0.20.1
+References: <20251111105040.94-1-kernel@airkyi.com>
+ <20251111105040.94-9-kernel@airkyi.com>
+ <DE5YP3AVGOG3.OHP68Z0F6KBU@bootlin.com>
+ <b1a339e7-a011-4b4b-8988-2e3768753c85@rock-chips.com>
+ <2ebace6f-d3c4-4516-b6cb-4951de06b6c8@rock-chips.com>
+In-Reply-To: <2ebace6f-d3c4-4516-b6cb-4951de06b6c8@rock-chips.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Nov 19, 2025 at 08:15:45PM +0100, Daniel Lezcano wrote:
-> The NXP S32G2 and S32G3 platforms integrate a successive approximation
-> register (SAR) ADC. Two instances are available, each providing 8
-> multiplexed input channels with 12-bit resolution. The conversion rate
-> is up to 1 Msps depending on the configuration and sampling window.
-> 
-> The SAR ADC supports raw, buffer, and trigger modes. It can operate
-> in both single-shot and continuous conversion modes, with optional
-> hardware triggering through the cross-trigger unit (CTU) or external
-> events. An internal prescaler allows adjusting the sampling clock,
-> while per-channel programmable sampling times provide fine-grained
-> trade-offs between accuracy and latency. Automatic calibration is
-> performed at probe time to minimize offset and gain errors.
-> 
-> All modes have been validated on the S32G274-RDB2 platform using an
-> externally generated square wave captured by the ADC. Tests covered
-> buffered streaming via IIO, trigger synchronization, and accuracy
-> verification against a precision laboratory signal source.
-> 
-> One potential scenario, not detected during testing, is that in some
-> corner cases the DMA may already have been armed for the next
-> transfer, which can lead dmaengine_tx_status() to return an incorrect
-> residue.  The callback_result() operation—intended to supply the
-> residue directly and eliminate the need to call
-> dmaengine_tx_status()—also does not work.  Attempting to use
-> dmaengine_pause() and dmaengine_resume() to prevent the residue from
-> being updated does not work either.
-> 
-> This potential scenario should apply to any driver using cyclic DMA.
-> However, no current driver actually handles this case, and they all rely
-> on the same acquisition routine (e.g., the STM32 implementation).
-> The NXP SAR acquisition routine has been used in production for several
-> years, which is a good indication of its robustness.
-> 
-> As the IIO is implementing the cyclic DMA support API, it is not worth
-> to do more spins to the current routine as it will go away when the
-> new API will be available.
-> 
-> The driver is derived from the BSP implementation and has been partly
-> rewritten to comply with upstream requirements. For this reason, all
-> contributors are listed as co-developers.
+Hello Chaoyi,
 
-...contributors to the original code are...
-
-
-This version is good enough, only a couple of nit-picks most important of which
-is PM related macros usage.
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-
+On Mon Nov 17, 2025 at 2:33 AM CET, Chaoyi Chen wrote:
 ...
+>>>> +=C2=A0=C2=A0=C2=A0 /* One endpoint may correspond to one next bridge.=
+ */
+>>>> +=C2=A0=C2=A0=C2=A0 for_each_of_graph_port_endpoint(port, dp_ep) {
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device_node *next_b=
+ridge_node __free(device_node) =3D
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of=
+_graph_get_remote_port_parent(dp_ep);
+>>>> +
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bridge =3D of_drm_find_bri=
+dge(next_bridge_node);
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!bridge) {
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
+t =3D -EPROBE_DEFER;
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 go=
+to out;
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>>>> +
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dp->next_bridge_valid =3D =
+true;
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dp->next_bridge_list[count=
+].bridge =3D bridge;
+>>> You are storing a reference to a drm_bridge, so have to increment the
+>>> refcount:
+>>>
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dp->next_bridge_list[count].=
+bridge =3D drm_bridge_get(bridge);
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^^^^^^^^^^^^^^
+>>>
+>>> FYI there is a plan to replace of_drm_find_bridge() with a function tha=
+t
+>>> increases the bridge refcount before returning the bridge, but it's not
+>>> there yet. When that will happen, the explicit drm_bridge_get() won't b=
+e
+>>> needed anymore and this code can be updated accordingly.
+>
+> Out of curiosity, I checked the callers of of_drm_find_bridge(), and it
+> seems that the vast majority of them do not pay attention to the increase
+> or decrease of reference counts.
 
-> +static int nxp_sar_adc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	const struct nxp_sar_adc_data *data = device_get_match_data(dev);
-> +	struct nxp_sar_adc *info;
-> +	struct iio_dev *indio_dev;
-> +	struct resource *mem;
-> +	int irq, ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*info));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	info = iio_priv(indio_dev);
-> +	info->vref_mV = data->vref_mV;
-> +	spin_lock_init(&info->lock);
-> +	info->regs = devm_platform_get_and_ioremap_resource(pdev, 0, &mem);
-> +	if (IS_ERR(info->regs))
-> +		return dev_err_probe(dev, PTR_ERR(info->regs),
-> +				     "failed to get and remap resource");
-> +
-> +	info->regs_phys = mem->start;
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return irq;
+They do not call drm_bridge_put() to decrease the refcount, and that's
+"correct" because of_drm_find_bridge() does not increase it. This was
+totally correct in the past because DRM bridge refcounting did not exist.
 
-> +	ret = devm_request_irq(dev, irq, nxp_sar_adc_isr, 0,
-> +			       dev_name(dev), indio_dev);
+Refcounting has been added to support hot-pluggable bridges. If you want
+more info, this presentation I gave at ELCE 2025 is a good summary, with
+links to relevant patches:
 
-At least dev_name(dev) can be placed on the previous line.
+ * Video (start at 19:30): https://www.youtube.com/watch?v=3DmsmBQBSyZZ4
+ * Slides (start at slide 27):
+   https://bootlin.com/pub/conferences/2025/elce/ceresoli-hotplug-status.pd=
+f
 
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	info->clk = devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(info->clk))
-> +		return dev_err_probe(dev, PTR_ERR(info->clk),
-> +				     "failed to get the clock\n");
-> +
-> +	platform_set_drvdata(pdev, indio_dev);
-> +
-> +	init_completion(&info->completion);
-> +
-> +	indio_dev->name = data->model;
-> +	indio_dev->info = &nxp_sar_adc_iio_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
-> +	indio_dev->channels = nxp_sar_adc_iio_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(nxp_sar_adc_iio_channels);
-> +
-> +	nxp_sar_adc_set_default_values(info);
-> +
-> +	ret = nxp_sar_adc_calibration(info);
-> +	if (ret)
-> +		dev_err_probe(dev, ret, "Calibration failed\n");
+> Does this mean that even if we add reference counting in
+> of_drm_find_bridge(), we still need to modify the corresponding functions
+> of their callers and decrease the reference count at the appropriate
+> time?
 
-Some of the messages started with capital letter, some with a small. Please,
-make them consistent with whatever style you choose.
+Exactly. I have explored that approach but it turned out being not
+reasonably doable due to the large number of (direct + indirect) callers of
+of_drm_find_bridge() as well as the trickiness of those involvingthe
+panel_bridge. So Maxime proposed a different approach [0]: deprecate
+of_drm_find_bridge() and replace it with a function that increments the
+refcount, then let the various callers move to the new function over time.
 
-> +	ret = nxp_sar_adc_dma_probe(dev, info);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to initialize the dma\n");
+Earlier today I sent a series doing that, and converting lots of users
+[1]. If/when that approach will be accepted, you can update your driver to
+use the new drm_of_fund_bridge() and take care of putting the reference
+when appropriate. But you don't need to do anything until then.
 
-DMA
+[0] https://lore.kernel.org/dri-devel/20250319-stylish-lime-mongoose-0a18ad=
+@houat/
+[1] https://lore.kernel.org/lkml/20251119-drm-bridge-alloc-getput-drm_of_fi=
+nd_bridge-v1-0-0db98a7fe474@bootlin.com/
 
-> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-> +					      &iio_pollfunc_store_time,
-> +					      &nxp_sar_adc_trigger_handler,
-> +					      &iio_triggered_buffer_setup_ops);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "Couldn't initialise the buffer\n");
-> +
-> +	ret = devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Couldn't register the device\n");
-> +
-> +	return 0;
-> +}
+> Thank you.
 
-...
+You're welcome. I hope it was a clear explanation.
 
-> +static SIMPLE_DEV_PM_OPS(nxp_sar_adc_pm_ops, nxp_sar_adc_suspend, nxp_sar_adc_resume);
+Luca
 
-include/linux/pm.h:
-
-/* Deprecated. Use DEFINE_SIMPLE_DEV_PM_OPS() instead. */
-
-...
-
-> +static struct platform_driver nxp_sar_adc_driver = {
-> +	.probe = nxp_sar_adc_probe,
-> +	.driver = {
-> +		.name = "nxp-sar-adc",
-> +		.of_match_table = nxp_sar_adc_match,
-> +		.pm = pm_ptr(&nxp_sar_adc_pm_ops),
-
-Shouldn't this be pm_sleep_ptr()?
-
-> +	},
-> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
