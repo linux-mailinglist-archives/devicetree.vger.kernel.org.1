@@ -1,128 +1,90 @@
-Return-Path: <devicetree+bounces-240066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19185C6D0E3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:16:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E04ABC6D0D4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:16:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8B3CE382019
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:14:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 7A6C12A74E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA18321442;
-	Wed, 19 Nov 2025 07:13:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001BC2773EC;
+	Wed, 19 Nov 2025 07:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jm4oH0FN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RFdg2INr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22C12C235E;
-	Wed, 19 Nov 2025 07:13:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58E81ACEDE;
+	Wed, 19 Nov 2025 07:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763536421; cv=none; b=AvcHuxZ6uIOGPOX64UoBcjQhh/9LczqqL2OT/N2SNg3iGdYfdDN9coxbLQ9Zrh3P4YPGSTsiBlOwJj6aSBGzdnez6j3w7pLJDy+6bIEN2aaGZ33TqIrpwBW/joUksypVrENeG0hI8NHGInN+AZSpHy5iDEhzuY40Fn//BoMMmWY=
+	t=1763536585; cv=none; b=c7hENz4H74bHBCvcOTR7Y62PMmeclvKIUGSDUaT1Y0bM5rg5yp1MGCvxgVmDzMPyEv0lTUgjZr4nwdMxQS0KdRk+UBunDlBkjp994xP8WO4ah4XClgnm0bkK3gxiuW5wUHQ+sHjxhN9mZcbwgygdeQYE1ZajJAoj5ROvHk1C8N4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763536421; c=relaxed/simple;
-	bh=JdiuwQJaBq8BfZP5QfPN33wDD2Y0dJAO0lctZUVJ17w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LHgaD4SSDi1MvCE96JJOfqYbUyfLLKJ8RDzrgSQoFVnS38WOQ9D8+IIcQJNDxSKiWYsJPbvyN3JjhivumcmEBQYJ9Iy3ruvvEgtfetsinlIOGDJh9SwP5gUPGChqh9QuBJBGMRA3imp8DL+HKEubAlKlloHI2cTfzDC7eKzqNOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jm4oH0FN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83DEDC4CEF5;
-	Wed, 19 Nov 2025 07:13:38 +0000 (UTC)
+	s=arc-20240116; t=1763536585; c=relaxed/simple;
+	bh=MgG8jzBkmnBXLAGnFIwv2IK3/i6Zlvow6a3Ld1T+Ox8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=icLnuzaTjOqjWis9lvU4KBb6PAkCfkRtLj/agsiaRksBTl1W5nm8VptHz86pGrNQ6IvpsLRCUObRMdkAj2lL3vCLGKqTxzm094vR6UURSj/1GZBiC6zJiBsfk5R7vQ6wgVoxyBY7eKBmEqLLsiTC0tqEViRaoy/EFEyePRILKD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RFdg2INr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8051AC19422;
+	Wed, 19 Nov 2025 07:16:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763536421;
-	bh=JdiuwQJaBq8BfZP5QfPN33wDD2Y0dJAO0lctZUVJ17w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jm4oH0FNP/XVeStbk78/YjZPUXiNpLlq8DA5EE7to8++Fqnm72Ql7PuhilPw2+8dL
-	 E2vIMR/vHYbVdCVApIZBLWq/VTrVUM8nzwPxk3adNC0LfNTwceW7SlT8V8DzNihYdz
-	 efC5KpgxOGtiOz3kKb22l15/41SJYl2ascZbFkzxYrFmeCGaXrSIVkQ9WYBIrGS1sD
-	 4skte5T2A+01yURrmywjLrAFWesPzjLEo2YsFzYiiK24RjEAtok/5769dZdMimZg+O
-	 8X+IpSOMRAovwhBdHkz03SdDfmAO7RxnPbk1jxw8oJ1LOrSTFDp9QQovMWpKrz3rva
-	 jyAgswP3yRK0Q==
-Message-ID: <18342493-54f9-4e5c-be05-568a3026663e@kernel.org>
-Date: Wed, 19 Nov 2025 08:13:36 +0100
+	s=k20201202; t=1763536585;
+	bh=MgG8jzBkmnBXLAGnFIwv2IK3/i6Zlvow6a3Ld1T+Ox8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RFdg2INrpX182GSzLWgeUEaNRSuj3I0PpoCt+8pv8KLd8sLOlXLqMAISQsD4JxSJw
+	 H1IgYQa84Dei73OnSqj74c2MB2a6sOxSC7OOgAOFUiLLNsaXgOFVGyvju/Bmov+7u4
+	 iHovUhvqnlf8B2d97595mGVanbiEJA5nV3ISS3PcQAnBvxeT+AIA9OdjMTs6cYdri+
+	 CYUbKY3k9mpBIjHEt+KdfAorwyYQs/UnbWDd0sqPc5lS5JNdMyOQUaVHC2zsW3jwuD
+	 W4UXoQdWMcKLzp7sP5YjerRDH5FkUlDcmDkJMNQdG5EMrQg3DpC0dt+tcQ8mfvN4Cy
+	 vqKdobNebrbVA==
+Date: Wed, 19 Nov 2025 08:16:21 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Baojun Xu <baojun.xu@ti.com>
+Cc: broonie@kernel.org, tiwai@suse.de, andriy.shevchenko@linux.intel.com, 
+	13916275206@139.com, shenghao-ding@ti.com, linux-sound@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, k-yi@ti.com, henry.lo@ti.com, 
+	robinchen@ti.com, will-wang@ti.com, jim.shil@goertek.com, toastcheng@google.com, 
+	chinkaiting@google.com
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: ti,tas2781: Add
+ TAS2568/2574/5806M/5806MD/5830 support
+Message-ID: <20251119-augmented-bustard-of-attack-6ef006@kuoka>
+References: <20251117102153.30644-1-baojun.xu@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: firmware: coreboot: Document optional device
- specific properties
-To: Chen-Yu Tsai <wenst@chromium.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
- Julius Werner <jwerner@chromium.org>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251119071126.1719405-1-wenst@chromium.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251119071126.1719405-1-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251117102153.30644-1-baojun.xu@ti.com>
 
-On 19/11/2025 08:11, Chen-Yu Tsai wrote:
-> Coreboot, or the ChromeOS second stage bootloader, depthcharge, will
-> insert device specific properties into the coreboot firmware node when
-> there are valid values.
+On Mon, Nov 17, 2025 at 06:21:52PM +0800, Baojun Xu wrote:
+> TAS5806M, TAS5806MD and TAS5830 is in same family with TAS58XX.
+> TAS2568, TAS2574 is in family with TAS257X.
 > 
-> Document these properties in the binding.
+> Signed-off-by: Baojun Xu <baojun.xu@ti.com>
 > 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 > ---
->  Documentation/devicetree/bindings/firmware/coreboot.txt | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
+> v3:
+>  - Restore patch format for ti,tas2781.yaml.
+>  - Put this patch in front of code patch.
+> v2:
+>  - Add TAS2574 support.
+>  - Re-organize the patch, put compatible in front.
+>  - Combined some chips as the reg setting is same (0x48-0x4b).
+> ---
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 31 +++++++++++++++++++
+>  1 file changed, 31 insertions(+)
 
-TXT files cannot receive new properties. You need to first convert to DT
-schema.
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
+
 
