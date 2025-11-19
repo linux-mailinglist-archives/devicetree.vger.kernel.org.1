@@ -1,127 +1,106 @@
-Return-Path: <devicetree+bounces-240258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 488D2C6F40F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:23:48 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01A31C6F4F9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:34:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id D77912EF1E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:23:41 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CEC7338345C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898AE369219;
-	Wed, 19 Nov 2025 14:21:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D898535A95B;
+	Wed, 19 Nov 2025 14:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gwCLXods"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SbJNpwjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5766036920F;
-	Wed, 19 Nov 2025 14:21:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8079F34F48A
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 14:22:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763562105; cv=none; b=LitsqMqbbv71+CQQGnora3lrlyPBfAXkm1dUoii4+YA9CMj9u/kj7q4ramFHgHXcQq3txLblsma+2hE0ozfhskQgD0KP0WgNo0+s2awL1UAg16cbEUSBngo7G9s4fgS2qRxUPtPglua8etl0yvhCc3wvBED39pELh0+t7yJjbnw=
+	t=1763562161; cv=none; b=A8eRPUeBMN0jhdCYRzIoHicAsGlCpAXDyVeYZ0yxGVHVEHpoe2eP2Hrfhm62wHyhtkOsaDyizoBM2ylZ6iupw8Y9cLvshIDoCeVbSnnFgMB7lSa3EXgsxIJvq0LNHTUGsVpO0dzWo2YlaucqBzZk2WKf61ipswvNujQAAvcX/Ds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763562105; c=relaxed/simple;
-	bh=n+MbHJLuqiHoMoKEy+fupno4fvWaPOq/2PFTInr0Jy0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bsMM8UYvtV1hYM0Glyo2o4Gb77DLxmqs/9j9dQwZNTMp8Y8jpKzf+3VBKMM/jTUzFvzKsMqPSmfYZLB4MkbWUMvmjPBm60WiIuUtT1cHxqPERXjlBwV/BtYql2pCwR3YomjMrjrtHeZSt5K7fuaDXOJ0vflzovio/i/D/WWBptE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gwCLXods; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 7E63EC2BCF5;
-	Wed, 19 Nov 2025 14:21:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763562103;
-	bh=n+MbHJLuqiHoMoKEy+fupno4fvWaPOq/2PFTInr0Jy0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=gwCLXodsyHfmtNp7eq1yhZUMKBugmKMftla83ywsBspR6VBMXRv1+AINc4tkzKFOn
-	 Jzl7KrbkXvhpitTDxyn0TQeZjbtZT2k4TSW3fVtWu7MOanxKPUkie9v/Iphf3TUHnx
-	 F1UghfDBWVN6zHAHiVf2tkPmJJuMhO7cIvB/teViPp+7s0dUV7jijqEipOWK0b+fNJ
-	 apYkmdnjmLUBuTE2qCRkrkrj8znBbL4B6BIvCaIb5G6rEpVove3pPN1nPuoZ798p/E
-	 xDQohpy+I1E5WFA+U3coDHuiNK5cGM12ZGNg053DsXHXWOwff+5qg9H2eC/SIjW4m0
-	 BQcA0AZtIqKDw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34101CF34C6;
-	Wed, 19 Nov 2025 14:21:41 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Wed, 19 Nov 2025 15:21:37 +0100
-Subject: [PATCH v3 12/12] drm/panel: sofef00: Non-continuous mode and video
- burst are supported
+	s=arc-20240116; t=1763562161; c=relaxed/simple;
+	bh=MhrsZIbWzRhCkp8ZCo9BwzqVTC7yndSnE/Tw3//4s9I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kg49hTYEsOX1GhI0BeymjZNfNBlT9ZZh99MECOTQiY6atiB8XQVeDLKIYNtTdCfaQ5HjcTIlTQivy9CzaHmLsK41XUm/MOQTjxq4fZSksTc2oo3pWT2+uc3EzD1xXcgJg67CEHmhQApueEP/z56AcALM2Bv7WdY3uX2OGKC/TJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SbJNpwjt; arc=none smtp.client-ip=74.125.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-640d790d444so6089022d50.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 06:22:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763562158; x=1764166958; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MhrsZIbWzRhCkp8ZCo9BwzqVTC7yndSnE/Tw3//4s9I=;
+        b=SbJNpwjthtm/8W8rajTN3TBOYNG0IZZOcGjIhztrWsBJAOARwr49/KvjH0bBND+vX5
+         q97U6xkYvMPOqHIcmJUsMjqU8iNdKrY0HoaM/cLoP+pWBuKyxnnNBsx0onVd3ZGg/jwt
+         hvBhe0c8po6aFWGjffuLncll0F/nLWLKtxyG7o4fVJ5mUmjH7epP2XH5veOt/+ikPwR9
+         H3l4MEPZyxrAEpZuDXdXPt+t0Z8d+ngLsNUbAC7m8MsCAxKdfNMiR13d06Y+z9p8KU9A
+         4sYugiEf94/DjGh/AM9HIRPvTRi6APVUJvoD65TL/QwKhcYC8UJSWGgeHH883E9voBDg
+         a1Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763562158; x=1764166958;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=MhrsZIbWzRhCkp8ZCo9BwzqVTC7yndSnE/Tw3//4s9I=;
+        b=gstzlSABC3zpTTO7K8VTPXaN5WdFGgdkwlfwyH5oM0KNgvaOjIZEsG3GBsvIfyxmO2
+         TArDHnUg/1rG4K7B88XRYwluT8u8E2mOh3tUQhIlXXSPCJJCMk6ng3zep5dBg7KG2lTg
+         jqHn6w3rxRaQ4zG5YuPaoTAk+TKHzRMnfAt2Cvz2c2D0qaERIkb36sieUu378shmYEBQ
+         MK2C1zFl9b8exUZVIA55OOmSozuqM9hkVa7f/DSIHfiE/SMaSOBDRVFVM4dps2zSw0db
+         Lu/h/+MifwUTJF17MeIOvSEb1zMqfWlnreG1EKyxuCSmD9FjIxlPB4IxS4UJpt+p+90p
+         h7FQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVp87ZWqUD5wIWP4oLdzq1y+2CAJBWGxb9Tl1HRDqiXx0WgHXPWYTlTcn++Nvz0B7U7o95dMWZrDULq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7KDylNODgAu/TBWapG5ikKx+CygfxX45Xa+ucTETPMHn6Vt8J
+	dEUjHm48W9PVO491x6hsC7XVfAhshU60Ij743M09Q4lmlZ+hSOZ9XYhOld5urE00UY8VYbA4kzp
+	FaosXs1Dhhy8q5GyuEk0JgLCri9ydjU7Yizvmyr4Dcw==
+X-Gm-Gg: ASbGnctynq9yro8mcV2tO5aKmxu+2wnuu82+hS2dVUApyV3jjZw3awupjJ2koLQiV18
+	tFAlKbqUNU2/HzfQfXZogAw+PKapCE8sVucCVaXZiYFm3KYYsa6NBuzop3EWuTbO5pIxHrBrvne
+	xIYHfEfcH6TmvmWOE9AEzMAlcxIaAEmYLd/go0/XnJFFRM9fKqLZ2jpLTK7WXhmrNxuEpk34/Wx
+	0fSZYTLQcNL/IBF3MrsSex7hyvKRbSeMo8os664AfeRNfoGg3csM8rNkkaroP+cCqnqDLwxU6RE
+	lJB3JA==
+X-Google-Smtp-Source: AGHT+IEK96oDDGhtSMOrFEinT1tokH4hnf8wTVBS3BSk/cku7ibmRWyEcIG9r+y6XUg52Cr/+RO7BwnZ8CPpg1m6izg=
+X-Received: by 2002:a53:d00b:0:b0:63f:a89c:46f9 with SMTP id
+ 956f58d0204a3-641e76a391dmr13332400d50.40.1763562158314; Wed, 19 Nov 2025
+ 06:22:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251119-sofef00-rebuild-v3-12-6cd55471e84e@ixit.cz>
-References: <20251119-sofef00-rebuild-v3-0-6cd55471e84e@ixit.cz>
-In-Reply-To: <20251119-sofef00-rebuild-v3-0-6cd55471e84e@ixit.cz>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Casey Connolly <casey.connolly@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=802; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=aJ/EglBDysKAXREtcXVh/z+Zh6bgaROjs/Vk7ZuGVZs=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpHdJyUgxKl+tyy/rxnd3ByE1L+Mfe9B9bTkPee
- MJVkwSsUUKJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaR3ScgAKCRBgAj/E00kg
- clwyD/9fUWuyonL8WuG+fTSZT85ZATR6y9QZJHZTGC0Dz0k587dKkHXiq1iJClfNO7LBAWWvjhZ
- UmiHaDU1mM0KZIxo97E301s/ocIacaSvbsGMLx69Z6VPOy00IGZmVVJmrX2708XBfaCWwMJNAXi
- rbynfoy99gZnH/Edzv8cad2wyicOZR2nJHmAvqYYxk61AEc/uBqfwlWLbcfnCqa/TxWWXI7wiYB
- f58nO9XAbsDDNdR/yd7bNW3d17eFwQ3ce0QAINiPzWZvOb/R5JRrHL8rkFtTxxDLcrB8Uk3akSJ
- xR1RB2Wl0eRplxbbwnIT+QyhxiiP5Qkk/75uw/SJ3GG2UswmLTqnFRr4jsdCGI6zxVLLmjguNuT
- yUijUGf7fx45zsdMaraxPq4UqL5tV+Wo+9DL4NEq0FRqxzHM0L8mmiKxkPUVSfSD+08A1Gv5gpb
- lxHifHWXE/Nl7/7oa6GfWZI/5WvoiwcSXsxlFf0BGeRL4HXbXogJpT0/01FpDoudFDPF4DOYa1d
- edFsioFRXFPvCdcW28TphGT60ghR2ObbSWN5yR87ctg2q0xPrysBbWVqg3jWj80bNRK76+NODUV
- 8TdyoNJML4CR8ZefQ75Ulh1JF6YESUuu7nP/W/BCViEywHAejH9nazcKGKgE8m7J6b5scRun+I3
- TubsItsGLoGMzxw==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+References: <20251118213428.36700-1-robh@kernel.org>
+In-Reply-To: <20251118213428.36700-1-robh@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 19 Nov 2025 15:22:05 +0100
+X-Gm-Features: AWmQ_bkPvGHNxXPgik4goguOsOD08uL9PsXetzBiLxVbcWWbISsz0NGOhdm9JVY
+Message-ID: <CACRpkdZ3bz2_-vh-RwVwicLyBOyfROE5EGtBqCgPYcy7srKNSA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: xlnx,versal-pinctrl: Add missing
+ unevaluatedProperties on '^conf' nodes
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krishna Potthuri <sai.krishna.potthuri@amd.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: David Heidelberg <david@ixit.cz>
+On Tue, Nov 18, 2025 at 10:34=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org=
+> wrote:
 
-The panel supports both modes.
+> Add the missing unevaluatedProperties to disallow extra properties on
+> the '^conf' nodes.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- drivers/gpu/drm/panel/panel-samsung-sofef00.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Patch applied for fixes.
 
-diff --git a/drivers/gpu/drm/panel/panel-samsung-sofef00.c b/drivers/gpu/drm/panel/panel-samsung-sofef00.c
-index db9c181695f1d..e00a497a7c961 100644
---- a/drivers/gpu/drm/panel/panel-samsung-sofef00.c
-+++ b/drivers/gpu/drm/panel/panel-samsung-sofef00.c
-@@ -236,7 +236,8 @@ static int sofef00_panel_probe(struct mipi_dsi_device *dsi)
- 
- 	dsi->lanes = 4;
- 	dsi->format = MIPI_DSI_FMT_RGB888;
--	dsi->mode_flags = MIPI_DSI_MODE_LPM;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
- 
- 	ctx->panel.prepare_prev_first = true;
- 
-
--- 
-2.51.0
-
-
+Yours,
+Linus Walleij
 
