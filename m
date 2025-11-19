@@ -1,134 +1,117 @@
-Return-Path: <devicetree+bounces-240059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 405B8C6D041
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:02:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE9C3C6D053
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:03:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 895694F7F1C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 06:58:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DAA894F2EAB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 07:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA6C304967;
-	Wed, 19 Nov 2025 06:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0537B31ED7E;
+	Wed, 19 Nov 2025 07:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MJlaVgOx"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="wVRWPPc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71930213E6A;
-	Wed, 19 Nov 2025 06:58:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9639D315D39;
+	Wed, 19 Nov 2025 07:00:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763535515; cv=none; b=OuOeJci27Cyzd2/YxcJkUUS5nlzlNwyyj5phuPRT0sHMdrePqjMY7dCtz/9/vFH1sSU++GNUyIEpZLRM/ajEHbPP8iYEPTEzJWgXEFAbWz09soQDpU3kcKeiEzqOTctX2QJh4xz7BhHT2YxX9VkLyRPf+2jfZ15N9IEY8IwSfrc=
+	t=1763535656; cv=none; b=R1uQgmvWh5VZt41EgLp5WBqV0xqZjNJa/8MLWPADRRmoNo9YykdfLzJVCtVQYPjpPJHSaAXf0EMzHtw9NDj2zj1JQEIwgG7DpiQ6VbvOKGBlG6PLvB1kZthkQTVTGcdGUIxM1Za9YTR0nksmu2kErbaubb8Jpg88UTJoeRs5L88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763535515; c=relaxed/simple;
-	bh=xqpppwD1JtmElYx9+k0cBzkdD23wS/IRF5UenU5rTaI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q2oOcKWP17GM41aF5yeaZXWNOxpeTSwbJzi4mOvSJRhxgngZ1Mt0oRT6JB+7DFaVsrwN/ojaOgH4GsvUPiawCAlokMuzqe8+TB6C+MmnaxOwRe0CeI3lLzMAKafuLnEdjbE+/MTpmG+DjP4AGAgx++yLhSVasQRBoVMhMV6ex0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MJlaVgOx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A94CC19422;
-	Wed, 19 Nov 2025 06:58:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763535514;
-	bh=xqpppwD1JtmElYx9+k0cBzkdD23wS/IRF5UenU5rTaI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MJlaVgOxENXeDayNieiJlez7tO/fruamm7LkYVoiQIsjHG4+lakDNL8JplxBav9Hw
-	 8ybUtIpfAj3bTRkGZk9v9ouBw6OFYnig6FZ03wrm+rB9sv2j8aAGgw1qMVylYZNY0/
-	 +DFmI1LenSJWtkUplvWc8e7VOTDPFXZa9eUvsK3SBTgkvignmlPGSZN0l2FDnVDODh
-	 uohRcn9l0IQ5SNAhRnCda93dMkWkChI0dEzkJDVD5BmK6xbqIrKlZHKgzADID0GxL/
-	 I6R9mVrxvU1x05YMLOIHZd7bVr4OHrKMXSAH/rUvfqpTHYINdHNjyv4i/o5kkTuqPe
-	 IWmLmEU31bDCw==
-Message-ID: <721ae67a-22e4-43c8-940a-56ad9fa4f608@kernel.org>
-Date: Wed, 19 Nov 2025 07:58:27 +0100
+	s=arc-20240116; t=1763535656; c=relaxed/simple;
+	bh=CIpOiW2txaFQ6WVs/u8FNWX53uL3+8TtqapTR9qQYEI=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=g0TIYlAuuRAk6DMBH0G3Bynx53XWycxBbF82ucdF1xL+MJT+VQLBz7b6nBn3seAPEdE36/MYlBRpXV9Nc9zGYLX1yzWOdkrSDfMiFrRXwQfddMRKbOl67rycwfBsFtrTI/0S1DOd4DQk3oxjZFJZTkxINR5dooUvBQ5kreQe7a4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=wVRWPPc8; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 034C041232;
+	Wed, 19 Nov 2025 08:00:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1763535651; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=RshtQloAKPJWaBhC9RTtzqTW9sA5Qpf21PsMkDt8Tpo=;
+	b=wVRWPPc8maeCZRmVQVxDcEdHNSFTuuX7JhTOqaKyXnVj8RZLOqBU0wAVwlp8tbLSw4fVOO
+	wkf+FfZXLsRj6lcvXyTbOOqYgkHebJW6aYoLhOinYqZ67pzp3RgtVgGAZF7WDFgTo3+/RF
+	vLQyAZrMi44Vv/hSmRHyuQLz64tOCdhbWOwZJDzzt1TWcHB5THytq4mFIHCaq+0YfxBI/L
+	cqSmSkGBjkUFJD1/sJLVLmhu/c8ibv7DN2KBv84e9qIMxs2+F2AGbLOsuQpShIO/KetjLD
+	vLt1x1TZdmhbzJwRujPTUfyqara8n1KonRZ/qlZjxY1N5+1FjOpwdm7RJC/rQg==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <20251118-tinker3-v3-1-2903693f2ebb@rootcommit.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20251118-tinker3-v3-0-2903693f2ebb@rootcommit.com> <20251118-tinker3-v3-1-2903693f2ebb@rootcommit.com>
+Date: Wed, 19 Nov 2025 08:00:50 +0100
+Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+To: "Michael Opdenacker" <michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/16] dt-bindings: media: ov5647: Allow props from
- video-interface-devices
-To: Jai Luthra <jai.luthra@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Jacopo Mondi <jacopo@jmondi.org>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Naushir Patuck <naush@raspberrypi.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Mauro Carvalho Chehab
- <mchehab+huawei@kernel.org>, Kieran Bingham
- <kieran.bingham@ideasonboard.com>,
- David Plowman <david.plowman@raspberrypi.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Peter Robinson <pbrobinson@gmail.com>, Stefan Wahren <wahrenst@gmx.net>,
- "Ivan T. Ivanov" <iivanov@suse.de>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-References: <20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com>
- <20251118-b4-rpi-ov5647-v2-7-5e78e7cb7f9b@ideasonboard.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251118-b4-rpi-ov5647-v2-7-5e78e7cb7f9b@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Message-ID: <155d3d05-49f8-a000-6939-1411917745bb@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v3 1/2] =?utf-8?q?dt-bindings=3A?=
+ =?utf-8?q?_arm=3A?==?utf-8?q?_rockchip=3A?= Add Asus Tinker Board 3/3S
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-On 18/11/2025 13:03, Jai Luthra wrote:
-> Allow properties from video-interface-devices. The change is identical to
-> commit 08fbd355be3d ("media: dt-bindings: sony,imx219: Allow props from
-> video-interface-devices")
-> 
-> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+Hello Michael,
+
+On Tuesday, November 18, 2025 16:56 CET, Michael Opdenacker <michael.op=
+denacker@rootcommit.com> wrote:
+> Document the compatible strings for Asus Tinker Board 3 [1] and 3S [2=
+],
+> which are SBCs based on the Rockchip 3566 SoC.
+>=20
+> The "3S" version ("S" for "storage") just adds a 16 GB eMMC
+> and a "mask ROM" DIP switch to the "3" version.
+>=20
+> [1] https://tinker-board.asus.com/series/tinker-board-3.html
+> [2] https://tinker-board.asus.com/series/tinker-board-3s.html
+>=20
+> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+>=20
 > ---
+>=20
+> Changes in V3:
+>=20
+> - Remove this Acked-by as the binding code changed substantially:
+>   Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Do=
+cumentation/devicetree/bindings/arm/rockchip.yaml
+> index 6aceaa8acbb2..800c11323a4f 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -86,6 +86,13 @@ properties:
+>            - const: asus,rk3288-tinker-s
+>            - const: rockchip,rk3288
+> =20
+> +      - description: Asus Tinker Board 3/3S
+> +        items:
+> +          - enum:
+> +              - asus,rk3566-tinker-board-3
+> +              - asus,rk3566-tinker-board-3s
+> +          - const: rockchip,rk3566
+> +
+>        - description: Beelink A1
+>          items:
+>            - const: azw,beelink-a1
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Please see my delayed response in the v2. [1]  I think that would be
+a better approach.
 
-Best regards,
-Krzysztof
+[1] https://lore.kernel.org/linux-rockchip/3c96ee6b-dca7-1a0a-792b-f8c1=
+65ec997d@manjaro.org/
+
 
