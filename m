@@ -1,199 +1,251 @@
-Return-Path: <devicetree+bounces-240348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1762FC70124
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:26:59 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D5A5C703AC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 17:52:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 97D0A2AFB9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:24:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0AA344FCF34
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:24:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A30368263;
-	Wed, 19 Nov 2025 16:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB06369219;
+	Wed, 19 Nov 2025 16:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="kEyZrXv4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G10a9wMa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013063.outbound.protection.outlook.com [40.107.159.63])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F351F369200;
-	Wed, 19 Nov 2025 16:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763569143; cv=fail; b=mt1THFfjAR94kzLLeQKkMq2iiknFfdDG2oujFY8Aw53AqmO5F/024SWs+w5pjPcpSGVw3Gq79u0i9eOnUQkV0WUYEhtnaGuIRxygv8aWZVEFNGvPIJqpgot5JVDmUtKoSqtzoqGyIENTvtnCASlPhiISYmUxdtPNY4CqugOhLRk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763569143; c=relaxed/simple;
-	bh=xAXbTBJFH/NWnLQsFLNc2sqr09+914LN7QhfadwFBjI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=eYbWcb/xtFNqfTw43oD7n+19WifJ+Am9jjofkSFpMKp5L1scWkKz5nhYRAj9UqIP1jLZxB24PylJbfHJ2U4dIw21suyBx6Oy1a0TiGRM25nYj9UwpoLjB5Bdgc5SbHZHkGGopblec+p3NpKJmjUF0+atbMaH82p8juBracV4PfI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=kEyZrXv4; arc=fail smtp.client-ip=40.107.159.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ati4RtJ5b1d3fq3r/U4r3jzrKyIL+DwW4iNzZ2l56Qgc1gOCPFbakUSbptpsclhrnZ3zHXjlBHn1X6o4p4+MQNELrxB3ZO7TnqQvAGYlaMfHx84MMOyFqhq1JPXEDMWztDLolFGuw28bT+qFNf9NHW/nIko/RZw1Fxh42BLR/o8yvLapQn+gvaHO4iZxApRUirqURTCxLcooAO7uCIb26Ups5Xlr4FM1iQWTpEhTElC2+oNXJVSFJ7UZEfS5xxuAmEqXfwVGdjBJEk5e00k7ao1jIARVnmiGaETYCfeIH6GSYjtPUmYAEtjdigCzuCsqKOXACsgnAncJPgVJLWdElg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sBIF+2jCSJ7zB7a4oP0CfhSYlvAFPnaVgBxM7h2X2Yg=;
- b=sZkhONj9l6GiQVZWm+8NoCr/7vrgF8lOTCs5gG0t/MhkN5EIQmPOb6ZG30Bs4cZw2gKV4iFWtBiYwU3POz0kupdvggr2wrOlAtw0W5bQ/ueJU1oqXta7UtaQuHFDZc9tezPRH+Tuqx/oEgCOFYwtT1QBUjmTATgmGLzQ38GqZ7bl4FRsqgLf2x6l0v3IeiLQB0DBNPk+TvwbUL9YMHIkB0GtZj5OLL4EyVg9N64AinGLTkXiwvYvhuwoJkGDtdbA1WTBAcMVYsgn7cpsu6u/pNEAlzvnsOejxEdE/WM2OdIzvtkt+VRRgSNWuRuoxCE6Ii7nCt0KzfBoCbGz7sXEYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sBIF+2jCSJ7zB7a4oP0CfhSYlvAFPnaVgBxM7h2X2Yg=;
- b=kEyZrXv4ArOLghcR8wblSTv4sv/vEMnR4nKe8J8tPLgeXC4f+7aa4+EiwrgJLPwIr8b02nGXa1MY9zaDKRaNm6defv4ZmxhcnIvLPFzMxCj0Gxum6AqfDjqatJ1Gn1UjTGaz+VhjNA3j4jm5rRhxPophXza1tOVHX2zlixVc6GtYUZThjA8E8I7tnbLPcpW3tiAZCi7+B5waMRJ21yTRQqMlul81IHnIfeud4tz2pqK01yQid2Qu1b5bqkgCgLLu1zwvxAUlCHneAurtGCRedDaqG8KixWkhTbQIwzyk51teEG/Iax8oqCBkWgs8EOnXnjN20US3IYS+by5nnRw4pg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by PA4PR04MB7694.eurprd04.prod.outlook.com (2603:10a6:102:e7::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
- 2025 16:18:57 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd%4]) with mapi id 15.20.9320.021; Wed, 19 Nov 2025
- 16:18:57 +0000
-Date: Wed, 19 Nov 2025 11:18:50 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Haibo Chen <haibo.chen@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: imx8qm-mek: correct the light sensor
- interrupt type to low level
-Message-ID: <aR3t6huxr3wQT547@lizhi-Precision-Tower-5810>
-References: <20251119-dts-imx8qm-v2-0-2579434f95cb@nxp.com>
- <20251119-dts-imx8qm-v2-1-2579434f95cb@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251119-dts-imx8qm-v2-1-2579434f95cb@nxp.com>
-X-ClientProxiedBy: PH3PEPF0000409E.namprd05.prod.outlook.com
- (2603:10b6:518:1::4e) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22EE36922C
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 16:19:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763569155; cv=none; b=pdNxCM1JDXmhywnxgI5Z/YLowZex8MDd1+3dMsl0AdKJNu/XLmb/AKAAbVdCoKaCjQkEUUQOdxLZffUFyZ9/BnwbqoR3CrHyEkfY8SYpuAiCfl1DbxXXY0YBBamEwcC75GBXgSOJTSYjpIi0vgP0P8pCZ41FqD3PscEqccC5+Bk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763569155; c=relaxed/simple;
+	bh=TA2fn/MPowLU/Otx4A+G3fody4U0W0BzBMJVKJEuXbc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V+VqNBqRdL2QqwwRy4O8MRqzSQRsZeOiqd16Q8i0gmQCANGJL8xPYaDbqFFNg2R8dJFaHyanDvK9XZKG78tQng6VTf8iZF990fTQGJUi4XAXsjLNI9ZDh35AY6jtDd0Hq0Ue06SrU6FSbj23m+QHyAxOPl+NjSEIF4zWGa9/JWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G10a9wMa; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-298144fb9bcso73171095ad.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 08:19:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763569152; x=1764173952; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=+6HDqJUm16rryB8P6WaTAzJpsQ5pMTyvGVVzWJ0edS8=;
+        b=G10a9wMabq+2glmFGtjKKzgI3URJ7uhoeNCPvP08hwHPcL0bLpGxWakJ53soG6KVTp
+         DxrXHJW/qqfNdWny1zaYsfLKBn2H8LBQu9qG1JD6jQ8cZL9CaVFA4yJU7XqZu6JU/pxN
+         68r5A33Ogq1ylkOO1iFA+oKV9FY0Ks57F83SCYh+B55WpdYtEmYGwOyVu1D4cOdCeqtM
+         304V9/OhrNVDlVkZ2y3qs11IgqAgOPEGk91/W1CccVPuaup0WvdlEO/i+GSXxM2Q74Ng
+         xZ26XHd3igi3ozyJABH0gmsdyerlD6bC0uT0ISi60Twh/TKgizubPBXtbRs4s+nIo8sZ
+         jBYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763569152; x=1764173952;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+6HDqJUm16rryB8P6WaTAzJpsQ5pMTyvGVVzWJ0edS8=;
+        b=i/mLuFyGcltX7Xapt3js28dfhVZhgtd/blZrn7dZdzynxOh7uHOsaTOcjAp7cETX5X
+         KEawlvjrc/i6BnGaFH+crVpWoowhze4GeVitN5p4dO7vVVoZvYlFRqI/N99rSGF6v2Ps
+         s2YlJ8oWD4d1/wTPUyYAo5BWcsrBInEAglJVJfWWSQQ9/VPGSODps/HHc6dW/7rNKQWk
+         tNTXjYg4BvlA/jQYWaUqwhqO1jX+Oqxr+TqhlOOdKflR+m5uihWnfsFVjo9fZ40XOooE
+         QNGRkSQ0iyTA8nlHauDUB9N071/Prfuq7T+gF00lUaatjFt0KVGrBr6mHZj8ILNXiY2g
+         3USQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVIeLEN/nN3Vty8CMG4JvCPkexsbpRfq9MGqCom2wYPpHPce7oXmhu2WgvknzXt8nIM+zWtIt1kDiaB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxB6QwdsJqF17GCu9eVpMK03hIlC22/p38pIEiib6G1fHWiNwRX
+	luzmtb1hYln3UB1j5hckdCjguNIshpw3sFRgF8T9IXLulLfBQZdgS7rH
+X-Gm-Gg: ASbGncvz1dL7UxrdM/5s7lS5rFA6XbjIMHHZjOy00qYAKOK2pW0uMwNfCtZV+0iV1xM
+	zECfPqRvFOKTDtEXsu1oebdFIO4C2WPf8SrCt93FmpqX1n8oSI0JqseevSdMOSoa60++bJI4zEh
+	19ujBUfMW1fi74LcsYUmKinNeSUL6diI7pHkSfSgbiXIf/I8QhnxNBSkDVN5Of9kAfZw1OHeEgp
+	n2lDkpLmuCW8drp1dDmP3uJVUwLKAf85f54DiVgMtp6zPhlXH53lOaP2Vouqq/mUnW7dLEw7Gl0
+	NpDysmihrJllwY0ZuBowl+fREWP1bb7RNJfx/8SAzCRrlrldOap1hpZXPswnqbqRTPOo9NSld60
+	1rZSOawrForkgdfAphDJQNujmcJB41J+3MSsyCbOd4Qtxd893Qa1TAAAwWJT8D8gW2dRCoJUy67
+	8GoPdcdEttW4eq+ZY63QErX6CDiRxN4s21krWC6zlnwfscOxcjvj0hZ0o0l5BNbnlhVBbmWNq0E
+	qtHHre3
+X-Google-Smtp-Source: AGHT+IE30doPMpAYBt7MYn70T78ZfSqhQ5JpdF8FnEk1gF/jJn1jAtJCRLq4lC+btIz3WcyY9hL+jQ==
+X-Received: by 2002:a17:903:3c2b:b0:295:6d30:e25f with SMTP id d9443c01a7336-2986a75e7b9mr230173205ad.53.1763569152013;
+        Wed, 19 Nov 2025 08:19:12 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7b9250d24b9sm20095126b3a.17.2025.11.19.08.19.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Nov 2025 08:19:11 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <9f3e270b-f17f-4442-83ad-40d51ac27598@roeck-us.net>
+Date: Wed, 19 Nov 2025 08:19:09 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|PA4PR04MB7694:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a6201d8-133e-4be2-b31d-08de27875739
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Iv+nCXqzSj60jsavYti2t7Hr1Mh3Nozhucr949Nw91wnP4PdwifODF/LLiaP?=
- =?us-ascii?Q?fZ6Uxryc/VdFNGkJxLQnH0S5VC1Uf3wj5+1U9cZH68lol4ndjC4Xrp8qeoyB?=
- =?us-ascii?Q?FnUwrUM6uk3bIrpNAk8J7OSac9AbvVTftAI1+mgp0NAndD6tpmzDidL8S1kJ?=
- =?us-ascii?Q?LsnAA7xGmnjEQjpSCEKth3G0tgBdVBvzo2GsWsJyT7c13j7mqqXMUcZJPBn1?=
- =?us-ascii?Q?19oCeSmppUG6/Y49ltsRjpc5xmI22Zl1DJavbM0syaDi+qaJvEFqXVIEAbG1?=
- =?us-ascii?Q?M+Os8HkvCshRuus40hxPacxnls86qZrEtsVvQG6p3FUmyPthQhvUS/ONxxTz?=
- =?us-ascii?Q?Z4QHP0AijXix8j/3P+oS562mfiIlTS4Rb7C7V+ZYdHMVd8Wxefp7kAfq9g09?=
- =?us-ascii?Q?lgBcgJSEtdWYbSx8LKaoUCKNZI8LyJq1M187OKizOR24j0ymaVVYZzaVMbkk?=
- =?us-ascii?Q?P2biclBInhlH0NFxcvRTZ4o3ox50xGXqybL9cTUyWbvjeXWtT6QLv+Fe6KoQ?=
- =?us-ascii?Q?Fh0Ld+RA9E734KsrCwtu5g/bzUbZ9QIyEpJ4dt8Jk7uoEBmGYn0IkETHO3lx?=
- =?us-ascii?Q?sysaQ0qUJVK3nX2y6fx7mR2nqpoTG3hisDDfnXf2aIinzkNtoa4yzaiUOQzx?=
- =?us-ascii?Q?WGdEdTrlP9YG5GXlM+eGVx3ZlCqudTA3D40TceiqFMOv1IgPK7/Llhq8+Dnn?=
- =?us-ascii?Q?2f0fDb8BJ6euOgAlWEOuFuWXw4xIbgSCbH5aicEE2V/Bh72/L7g8fqXJC5Zb?=
- =?us-ascii?Q?0fgVfl8gEWT4gwyic2/c2no/+CTfb64dVzfEv8AwXkr+EF9vzkpcXSOeCaeN?=
- =?us-ascii?Q?nEGqvN3UxP+uWzIkaOhQ3Xci2JzTdUa+0hu6azaRKEZ+A908A7izgZCb4dZt?=
- =?us-ascii?Q?PuRpZfJGi+SxeqAjfzKd8KMjcBKcLpKVZIpQ3S82elGks6uXMNYa7RK7HXa2?=
- =?us-ascii?Q?SCGNaiilpqjEs7YHomZIk9+nSBvnI6TjA1cTQjqG3m/7CTEddHoUsUOMGaxz?=
- =?us-ascii?Q?b9wEKWktePa6xT+rTEjveCs8szg3h6FDOgCUnSCyQJ2TALamR9awo+76O+ww?=
- =?us-ascii?Q?Pf6RzYMpea+j07G1+CgodpFh00JXSTLLshrr4tHWqlZUqztxuSIABXQaTkfv?=
- =?us-ascii?Q?FA36swekADClgKtJRVb1EZh2978pPgqOHhmxp6Rk54Qy7YOCXB9T0Qo04WL2?=
- =?us-ascii?Q?xPWp61151S/+tk3EPNM2UlgKeRGyJk0rrdLHXUg2g0rnxHb/RqaEemUmZYH3?=
- =?us-ascii?Q?dHsow2sfUDVWNcKjQ5ExjVfgGLHyBFxH+LnQ8V7SH6frdzji8fCsabcx9NV/?=
- =?us-ascii?Q?E8r1RrpyFTGilGZqECWXAlYbftaJtWZEwDhrgLhYGlSfF+x71igsfHRTYj/m?=
- =?us-ascii?Q?0TR04iYYfst0dimDxhEhcGko9p7mj7gwdugkh3zskOlEhKTrF6nyOkjEHKgP?=
- =?us-ascii?Q?GMvsbC2v8IJWe/b+fg//tt2TISzM41qw1CEicGPRCO5qbgMAZuxL/u1IIJ52?=
- =?us-ascii?Q?VzDpWKWt1KmInrs9IjcERQeiib+SK/Oc1ckN?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?C6hIFUm2Ee5aiHDjHop8JgPkDUqfIfh6+96wELQCrEYCQlm1rK9Kz0M9bGzH?=
- =?us-ascii?Q?PflqqdL92SB8GeNGsmUYyx7xpwKITK15RMAYkgRUJJrPiizviO5O8C9EyGwi?=
- =?us-ascii?Q?XlDJ9d7yzYop+aAhvGNMvzHszNTIT5oFhxnWCmlrAk6JTP7lRVMHS94ZC17k?=
- =?us-ascii?Q?ECJMuCMzNMAFKNRb20Cd1RtJcgteI+eMPjlT0FefUySGhWqthx0ChAJkwsv+?=
- =?us-ascii?Q?/Yc16IHDIJs27GEjqSDwi0lp51Uk22AWPJnP+CYSEA9UeIfcz5T9rDOs2JpS?=
- =?us-ascii?Q?CdvEdG8pOdAExFrQSH5qfboJJJZ0fYAa+oB5N+8DEluaHRdD67L6qvflKRb5?=
- =?us-ascii?Q?ueJPKvb5ZPCZ8wpMrBy/tvYs3ez0na1UnncCIMTaPP/fJxMiOfz6ZFHa8Beo?=
- =?us-ascii?Q?WCh94rTPBeDsEubu9MhDMdYB8mkO8+/2KQ3aZXj67kHQ+pOcvmNnsV+I6fQU?=
- =?us-ascii?Q?snyQx6cbDo8SXzeKSo4n5jrw9SZbwu4OeIBP2pnlcal8ftG/OQg5Wk/nkyW/?=
- =?us-ascii?Q?VhOyMSZWk8e3TS9rS1SqU8fAF0RCZnk+VLVgjHZnjRd/xKZCXUa4yrznSbtP?=
- =?us-ascii?Q?O2HC69SYbAiq4NAdmAdtbE0YLAU8h5KgHAX4xBuOxzDR62APSAA6OJ8Ea7FW?=
- =?us-ascii?Q?jNJIbeQlUlt3nM9K/+KTe6fly8Rv0P0U5a+BZcHdMD8+l1Je6AwMmWjhVCQd?=
- =?us-ascii?Q?s9SRAfz6VovQ6BUKU+7sBeyHeY3TlGQcN55s1B8eXR4sxMUVRS4T+cf7Bmsu?=
- =?us-ascii?Q?CPI8l8YVSzNWTO6h+sySrDYQeNESsV56VnvJHfEj9RDYQCgB6vOQJZ5X7co1?=
- =?us-ascii?Q?x+aLtte7rHSV8wDl/UGKAbWqTMTAzjxw5oxx6CbwI757eKGNE3qDukefwr7B?=
- =?us-ascii?Q?vS5+3w3vb6ZM89NjieIluS/gu122Tlt37V21Uo4S0AC7Hdn/yAgbywyFBC71?=
- =?us-ascii?Q?aX9HY/jzv9QJrcFhWyxBlCT+qEIXJjv+mgBuyVWudGfFWxsfi+f8Qo2wQJJC?=
- =?us-ascii?Q?OxPFPZAzk01pARCRhSuPxMbyyRrzdfY5YLTCZ7qiKYa16pypNwz13E0LxWIK?=
- =?us-ascii?Q?4dpk1glEBLpyyZ7wIk7rbDD2aWLA9ZZTQajaVm4TpQdGkbJNt0TkNAb1qxPM?=
- =?us-ascii?Q?0yfuEVX1jIsQv4l8jv9vUSMStu3It1mOTLioJKS4pSuavvmsSnJP8Tt46Nqj?=
- =?us-ascii?Q?58du5dz3qB6VqIk6ROJwdcK9cVg+O5fe0vY4LE8H9jF+q7fHsj4dmTPJsZOG?=
- =?us-ascii?Q?l2p7FFL73AnEuK4mqarQLN2+mTVSeVal4qHeIsFO3AGGUeuM2MAEOFeknuT8?=
- =?us-ascii?Q?7+pJYdSgifwbTFa8sqi5TewgEWYFw09CXsRhPEt7Jf4+BY8vjhhuvQe20JfZ?=
- =?us-ascii?Q?1r08Erew+kbAPF4363fe1XMbXY9RT3rANiHTO1M/Hzlt8uvu27wMz+GZVu+e?=
- =?us-ascii?Q?jFJQtrffD0jGe3zjA/fiD51FmTH9rq2lsNwg9twBXeHLBFUY19WXLMcJMWhc?=
- =?us-ascii?Q?LOcQK6+Ff1b118X4Kof94UjCvbBVDaEko6LS9uSzDDxb7lnoDBeulRjfJ+1y?=
- =?us-ascii?Q?rRulqcUIUaAxUxYBwc4keAb1jS8/sXv52dsk80mf?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a6201d8-133e-4be2-b31d-08de27875739
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 16:18:57.1937
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 53hUC8AZmb10PfiyUzeT3JNNSOcpat5Z3ebKfm5yKpengKLFTIuU6wuVlI9bWTeTGib9xh0At6T369zK8mg6eQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7694
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] hwmon: documentation: add tids
+To: Thomas Marangoni <Thomas.Marangoni@becom-group.com>,
+ linux-hwmon@vger.kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+ Jonathan.Cameron@huawei.com, michal.simek@amd.com, nuno.sa@analog.com,
+ Frank.Li@nxp.com, wenswang@yeah.net, apokusinski01@gmail.com,
+ dixitparmar19@gmail.com, vassilisamir@gmail.com, paweldembicki@gmail.com,
+ heiko@sntech.de, neil.armstrong@linaro.org, kever.yang@rock-chips.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, mani@kernel.org, dev@kael-k.io,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20251119125145.2402620-1-Thomas.Marangoni@becom-group.com>
+ <20251119125145.2402620-5-Thomas.Marangoni@becom-group.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251119125145.2402620-5-Thomas.Marangoni@becom-group.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 19, 2025 at 11:22:39AM +0800, Haibo Chen wrote:
-> light sensor isl29023 share the interrupt with lsm303arg, but these
-> two devices use different interrupt type. According to the datasheet
-> of these two devides, both support low level trigger type, so correct
-> the interrupt type here to avoid the following error log:
->
->   irq: type mismatch, failed to map hwirq-11 for gpio@5d0c0000!
->
-> Fixes: 9918092cbb0e ("arm64: dts: imx8qm-mek: add i2c0 and children devices")
-> Fixes: 1d8a9f043a77 ("arm64: dts: imx8: use defines for interrupts")
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-
+On 11/19/25 04:51, Thomas Marangoni wrote:
+> Add tids driver documentation
+> 
+> Signed-off-by: Thomas Marangoni <Thomas.Marangoni@becom-group.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8qm-mek.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-> index 779d9f78fb8196b04c41516963f16ece082360e3..667ba2fea8678215c611dc0ca19e8fbc397f9273 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-> @@ -576,7 +576,7 @@ light-sensor@44 {
->  		compatible = "isil,isl29023";
->  		reg = <0x44>;
->  		interrupt-parent = <&lsio_gpio4>;
-> -		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
->  	};
->
->  	pressure-sensor@60 {
->
-> --
-> 2.34.1
->
+>   Documentation/hwmon/tids.rst | 61 ++++++++++++++++++++++++++++++++++++
+
+Needs to be added to Documentation/hwmon/index.rst.
+
+I'd suggest to combine patches 2, 3, and 4 into a single patch.
+
+>   1 file changed, 61 insertions(+)
+>   create mode 100644 Documentation/hwmon/tids.rst
+> 
+> diff --git a/Documentation/hwmon/tids.rst b/Documentation/hwmon/tids.rst
+> new file mode 100644
+> index 000000000000..254c4a90e6f8
+> --- /dev/null
+> +++ b/Documentation/hwmon/tids.rst
+> @@ -0,0 +1,61 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver tids
+> +===================
+> +
+> +Supported Chips:
+> +
+> +  * WSEN TIDS
+> +
+> +    Prefix: 'tids'
+> +
+> +    Addresses scanned: None
+> +
+> +    Datasheet:
+> +
+> +      English: https://www.we-online.com/components/products/manual/Manual-um-wsen-tids-2521020222501%20(rev1.2).pdf
+> +
+> +Author: Thomas Marangoni <Thomas.Marangoni@becom-group.com>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +This driver implements support for the WSEN TIDS chip, a temperature
+
+This driver implements support -> This driver supports
+
+> +sensor. Temperature is measured in degree celsius. In sysfs interface,
+> +all values are scaled by 1000, i.e. the value for 31.5 degrees celsius is 31500.
+> +
+
+This is per ABI and does not need to be mentioned. If you want to mention any
+details, the operating temperature and range and the current consumption (from the
+introduction in the datasheet) would be acceptable.
+
+> +Usage Notes
+> +-----------
+> +
+> +The device communicates with the I2C protocol. Sensors can have the I2C
+> +address 0x38 or 0x3F. See Documentation/i2c/instantiating-devices.rst for methods
+> +to instantiate the device.
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +=============== ============================================
+> +temp1_input     Measured temperature in millidegrees Celsius
+> +update_interval The interval for polling the sensor, in
+> +                milliseconds. Writable. Supported values are
+> +                5, 10, 20 or 40.
+> +temp1_max       The temperature in millidegrees Celsius, that
+> +                is triggering the temp1_max_alarm. Writable.
+> +                The lowest supported value is -39680 and the
+> +                highest supported value is 122880. Values are
+> +                saved in steps of 640.
+> +temp1_min       The temperature in millidegrees Celsius, that
+> +                is triggering the temp1_min_alarm. Writable.
+> +                The lowest supported value is -39680 and the
+> +                highest supported value is 122880. Values are
+> +                saved in steps of 640.
+> +temp1_max_alarm The alarm will be triggered when the level
+> +                reaches the value specified in
+> +                temp1_max. It will reset automatically
+> +                once it has been read.
+
+The datasheet suggests that it should be "exceeds", not "reaches".
+I'd suggest to use "temperature", not "level".
+
+> +temp1_min_alarm The alarm will be triggered when the level
+> +                reaches the value specified in
+
+Same here. Per datasheet: "Temperature is lower than low limit".
+The datasheet says "exceeds the low limit", but that isn't technically
+correct, because that means "higher than". "when the temperature is
+lower than" should work.
+
+> +                temp1_min. It will reset automatically
+> +                once it has been read.
+> +=============== ============================================
+
 
