@@ -1,204 +1,206 @@
-Return-Path: <devicetree+bounces-240114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A6AC6D7E8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:44:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3056DC6D7F4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 09:45:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5FA71342B8C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:43:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A8351341853
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 08:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B79632ABF6;
-	Wed, 19 Nov 2025 08:43:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF922FE045;
+	Wed, 19 Nov 2025 08:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CGNzNW6R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LhisBWhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011060.outbound.protection.outlook.com [52.101.62.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC66C2765D7;
-	Wed, 19 Nov 2025 08:43:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763541827; cv=fail; b=Ehrci3b6HuJSURz7vJy6a3NC6ZU7OJ1Xjd1Nxe4dDyfSMmieHmR6mqBAFHYhRSjDVBfiE1LyG+8UtTdRL1toYNVoGxCdPaP+4iwtWmk4QE0+rg9XogZ75sHhEgc2gLuuDHW0JYqTPghzxNqdaeD8cJvlGcjW51Wzp6mbmqG/W5c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763541827; c=relaxed/simple;
-	bh=s3x0v1TicZAMQOY/0Bh9EgSOwlUFNbm9dzGF8XcB3/0=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ucVgwUnFsqT4//lfWyxlZlfy6iyrfOSmvZlSDjTVchitGmhQ+Gu+gtXjTGaR42uSXLbu6Uy+/vxXn72WXY6R2W53vcRo4f4HCfmcdggnyei8AuunvFSVnG/IIQFW8Z2Pl5Gf/AI56uwMXmvcSBT++Niab6lyFihQBvrumtBshsw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CGNzNW6R; arc=fail smtp.client-ip=52.101.62.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Wy58Ft9X6btI7d1WfGHq1db/V3EgSL+ZPPYO5mToY5lbthopmrx/6rtEHuf+VQjL1HxTuoiEU6VUZjYeWWQtbyRjBmcDWmIhxtPtl/hcVFUSMxmPJe3SsrQl6gwS8EfVjioxPeIliop3v0afckhHyaf9YJkpZ5feJURoepLrwO/4rpIEl3wg596GQgymmVE8FxMGT2jhCeR7jgCtZrd6OeTB0exkHzCsLCfWIER3RKBOM4dw2qfvC6CiX6E5xWiA98sbSWcBQELJayZPKxOY/PMBuHSUbB2iOUmluPTX8J2fYGWp7u5cYN/5LX+wEtRRNnGWIzFd+akKJunlcUPJ4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s3x0v1TicZAMQOY/0Bh9EgSOwlUFNbm9dzGF8XcB3/0=;
- b=M0HC24XTjGGlj9kjDrk2QvvMU7Xh3NkZ3F0cfni2rUynHTGh5C2WcBGBzQOoZPa9qzqv0w0iHpJ0WQSu6Gpj+6wZRp0VdmcBFEI8wth2UNTIx4CmUFqmt/BABv7RmPgG/gBdSprRGJhXloRsFSaNOV1ZYP3x35jXOO07h82gIgWRAjs5E1Esi+y52JCzoU+mhlnlF91Y1jSeJJ3X/q1oHDNcahwcfBREwzSkTSqirdDMO+sycA0wmcXlyxlL/0uZtKhu9KJeGW946RpZ+gMeOnWkZtM7tONWmOUyrmbKNCJ7bzPCA9SoeCA9OX+4jPPa12k5H7hPFooS8c9NupjFFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s3x0v1TicZAMQOY/0Bh9EgSOwlUFNbm9dzGF8XcB3/0=;
- b=CGNzNW6RKe+XzTYMDvuvUojDUipX/erlWgYEM29P3WjGFIN4Ip9BXjUhDYvhfN5b0ONYUEPMLz1IPUHK6QMjLuw67lHnr81lVUQlAZk40SM/kMlimlKJFBDcjrqhyxhF6fs9rZsRA4lrM3T2U90o14muBcH8te3GqCwC8SFU5qY=
-Received: from BYAPR05CA0092.namprd05.prod.outlook.com (2603:10b6:a03:e0::33)
- by MN0PR10MB6005.namprd10.prod.outlook.com (2603:10b6:208:3cb::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
- 2025 08:43:41 +0000
-Received: from MWH0EPF000A672F.namprd04.prod.outlook.com
- (2603:10b6:a03:e0:cafe::dd) by BYAPR05CA0092.outlook.office365.com
- (2603:10b6:a03:e0::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Wed,
- 19 Nov 2025 08:43:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- MWH0EPF000A672F.mail.protection.outlook.com (10.167.249.21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9343.9 via Frontend Transport; Wed, 19 Nov 2025 08:43:40 +0000
-Received: from DLEE202.ent.ti.com (157.170.170.77) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
- 2025 02:43:35 -0600
-Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
- 2025 02:43:34 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 19 Nov 2025 02:43:34 -0600
-Received: from [10.24.73.74] (uda0492258.dhcp.ti.com [10.24.73.74])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AJ8hUWR1544454;
-	Wed, 19 Nov 2025 02:43:31 -0600
-Message-ID: <371e6a49846f910e9a747d4185471806cc719138.camel@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-sk: Fix pinmux for power
- regulator
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>
-CC: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <y-abhilashchandra@ti.com>, <u-kumar1@ti.com>,
-	<stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<srk@ti.com>, <s-vadapalli@ti.com>
-Date: Wed, 19 Nov 2025 14:13:48 +0530
-In-Reply-To: <f4d38392-a019-4061-9ef0-d95506766027@ti.com>
-References: <20251118114954.1838514-1-s-vadapalli@ti.com>
-	 <f4d38392-a019-4061-9ef0-d95506766027@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 925CD26B2D3
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 08:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763541949; cv=none; b=ey1eCkVKJtZxXhYhGdUTI90dAjqbKaCHXQpWQXLZrqxlCmehKH7QbusJZdH+ofHDTnwrd3WocT8jbkKVAqQ0Ylq7xCR+TUlRLJ9UtiDGPRru4Pf6EbBsCGjjeJwsUmSYII8Y7wjtuGVh2HNs74Us32yF1tUqz+DtJVmpvLSW48E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763541949; c=relaxed/simple;
+	bh=TXuhYGsW55IISOwAX0hINh3nofc7z+3ojcxWvdtoRek=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lE/Q6lSJ617wZQNNTlNIm7axaU9nhd77yNbIg0her37cPEuz2KROqdFp5GfkTVuH2x8aIIKbrYEcmgV/87+eDWrXVw115WPfuFkCE1EeLhKofNy0igf48D64JOjHYmQ9pKwTdWbYGp+LPBJ9Ng7cnaegoxrYX3/zyI/xSJmhPd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LhisBWhE; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-42b3720e58eso5881286f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 00:45:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763541945; x=1764146745; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E3GucV+GzoG4WyLANsgiY2XfGGlIy+gJfrdoUBjs0Ww=;
+        b=LhisBWhElQa1o2QZOG3G5jfJSkOllZa7vZvFY2nD31fqs42X1hc488nyHxyl5V1g6H
+         mOuwjKxd7wtBaK+r/s00Kj0aws5BoV4vIxJhqUyt/vEzaMrQDOqchTlAKfTTmTTJ47Vb
+         eCX0MVl0pA+ddUZpk6uagV2ekxPOVxodMLbRZ9QIpa0y2AA2lc8WFL8N8H9xeO6pSJfv
+         6nt+KIMOJ/UhV3tKMXEJ2bdLiqYLXqasCYqewkgTMfJL6mHhRAwgmdfYyXklRjVpk3za
+         I0mL3rapTceTg9648J5cYeJuii01AJQAsTxOOPglFWFW50LrO87De+2zmT7teaE1EiHB
+         DTUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763541945; x=1764146745;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E3GucV+GzoG4WyLANsgiY2XfGGlIy+gJfrdoUBjs0Ww=;
+        b=Dyue3SLQv0oFUbemycClt1YqwRgpJSOu0ciCNHzPx+NCepQoRcbxSONM8gw1Vk4nvE
+         XLHHTkuqjnPP9P1+pfhV8ApGDNz0h6iuRrU1tC4xPST8qWCWHZoc8FQzILf12wRdgsQ+
+         QNIlQej+CdYoBWDcUL9O4eJlysjTXXX8VYaXJCkdQg8e4IDZuLW7aHOTKXofVj3ORa19
+         sTYm0Txlt3AHD4VOwleWvmqiL4jk+pzOyh0sm4nzipP7u7G1Pn1aIvNDF5NcydbfbJAC
+         nEWZ+daZ0spVERtRghoXdJZmZUTvCyMv4seMNNc1DmLmrpMrV0ztNtDDx3p6hxTVdN08
+         QYTA==
+X-Forwarded-Encrypted: i=1; AJvYcCXeh9bTN1OCfW9wb43usJi8i0c+dAlDHr32q2Vt1RvI9OSFydqMmPqMux1uZrQp8dxBKtqx42x9Mm0v@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxx5DPPGVN+41snOh5r2w0XDDIgDa9l5orlLzHgE2R32HSgCk8u
+	dqUkJHBKt8PYJyBKzSueSRUxljWmc2tAlbaaCYM7pcvxM9BTbcmnQ31sYtJtVML7Tjc=
+X-Gm-Gg: ASbGnctE55VbD2rsHkoSYzLrkQt2DQ6kLlrYIrhZpcK3PiJAtYvzWpWBgHrCD20u1BF
+	7WktQCtKRC7vBBTc6l/b830lQC7Iy9ZMmvt5bkPIdpJHnnnr1fgqJQzGYzZt9mBb322Vpn+a1Ku
+	DfY+3rEgJHuyGM1GKNKDBpJ3/aTJdLsryX7I7/OvTBYerQFMiO60K/FJdUYsNUlKChVz2/pmj5x
+	txC3AD3vWpwmUW4QVB44Jh3vGokswytJvErdlcBDegy88gxPSjopostIkUM8Uju5WOpihIfSavY
+	Xhud4vIYsbmRulBf0Ta8FFxDth+lkZ1FQa+OBNmfkod418Limrxm6CUrxFJ7nxYKGssbYH5BCz6
+	aEMLjjELe/gb2MmMeOPznHA32Kt9gFLrQKDstagLLmCHMw27r5VIiybwEnslu9yVysY5EZJLtL1
+	2NczWQRfBHIFHBGF10GllV/xRK9F4DSWytFCsG5r4ol/nzeUM+QZQk
+X-Google-Smtp-Source: AGHT+IG4Gv3cm9hV53MWodUTfGOGPmkC5Ip7TMWoRz7vtoZP8JZ7tgzPXUhPB/bP42Xqla588Cy9Yg==
+X-Received: by 2002:a05:6000:2909:b0:429:d66b:507f with SMTP id ffacd0b85a97d-42b5939111dmr19492885f8f.48.1763541944528;
+        Wed, 19 Nov 2025 00:45:44 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42b53f0b894sm38132306f8f.26.2025.11.19.00.45.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Nov 2025 00:45:44 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v7 0/3] arm64: qcom: x1e78100-lenovo-thinkpad-t14s: add
+ support for HDMI output
+Date: Wed, 19 Nov 2025 09:45:39 +0100
+Message-Id: <20251119-topic-x1e80100-hdmi-v7-0-2bee0e66cc1b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000A672F:EE_|MN0PR10MB6005:EE_
-X-MS-Office365-Filtering-Correlation-Id: 860641c9-619c-4f8b-d2f8-08de2747bd4b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?bTA2YzJzWmpyUk9xTlhoUHRYMmV4S1I5dTJ0V2tGRVhQcjcrVTE2NlNBMjJm?=
- =?utf-8?B?SVhObzV0ekdFNXVmVVArbkEvRzV0MmYyUmU0MnR2bmMxR0hoMzZNNC9jdTd6?=
- =?utf-8?B?SE1vbWF1YnIrUGdHSDZsOXc5VUluZnBPQ3RoWXgrWlZUREdqd3IvOHpYZ0lL?=
- =?utf-8?B?Mk1XNE5SK0kzeFk4blI4RlNaYVBhZkE0VEs3MEt2WnQzeDhQRjB1Q2dSRk05?=
- =?utf-8?B?T1FZN3EwcWlseDR1NThkWFR0ZG0wQXdpR2k4WXVlWmxFcXdVb2lpc2wvcXlM?=
- =?utf-8?B?c1ArbjVRV3ROY3ZwYkRIeTN0ZHV3dkhiVVB1NjFZWHVsdEJUaXFTNGJFQ0JO?=
- =?utf-8?B?aWJNWkd5clp0NEZRWkN1cjZuQjJDdnRlNk1nQmNIb1V5VnRpY0ZRalM5S0Ir?=
- =?utf-8?B?L21xZTlmemt6ZE9KQ3d0T3ZQR2xtV2lvaFZva3dOSmx0Um5yUW9aRzBFaWhZ?=
- =?utf-8?B?UDdJRWVPbW5hS1MveUdoNlBISnNwVnhCTmRtaFlqOWVYelNHam9UQkhHYkZT?=
- =?utf-8?B?MG1Mc0JrNXN1YnBlMFQ2L1pJNnBNaWQzdk14amF0MkN5cXovd2lwSzZETVRQ?=
- =?utf-8?B?SnlrUWZFYUYxNmZkaFJnbldNMXhscC8ydCtuN0I3WjdJK251anE4TVFGYXlo?=
- =?utf-8?B?ZG5LanJIeTYvSXZLNzFiVDVoblNXNGZaamxmMzE2T1A3WFVQQjhvZ3hleWdP?=
- =?utf-8?B?ZHNCVkZSanBHRlJrcHhHS2tieTQ3UmFkVk4rR3hDNFl1bzFrbE5IOWk4aXp0?=
- =?utf-8?B?eExPYzNKWTRKRXYzTm1zcGtqc0tTODErbmFCWDI5aGdnSndTWlBDYWwyVWoz?=
- =?utf-8?B?MlBuSUFkV3BsVGpiOEIzb0VpZ0M5OGt1ZVQrWUpkNEdxSEVlY25ZWTNvNFNp?=
- =?utf-8?B?OW5QQjQ0OEo5bDV6NFVKcTQxYlZNTHdXYnpnMTBIbzZ4YThkQ3k2TXp6cU5M?=
- =?utf-8?B?RGRwWGU4T1FyM3ZyZFpqODdzeUJvRHRWa0VxMFJjQmgzbGVxNWdsVEs1OXc5?=
- =?utf-8?B?MEViQ01zVEtLbWVKRENKTW5Veld5c2dkQk00UkJSVGFhUFBQZkROVm9LTk9P?=
- =?utf-8?B?NUFVYjRFdXEzZjJ5OUpyOTUrMW5WSTllVEtHQXorK1pRUmJxK0tSUnpqcnJU?=
- =?utf-8?B?VU9FM1FyUCtWZmNod0Z1WE5WRzQ5TmM4dUdxNkRwaTJCcjA0cjVIb05YNWtq?=
- =?utf-8?B?QVdUc0Z1Ui9tMllkaC9wdFlMMjF5VURqaS84M2VpY2lNWHNFeXYwcGxzU0o5?=
- =?utf-8?B?S21NUUJEOFNrU0FHNE5MM0lRSCt3WE5rSklCVUk3Y2dMQWJSci9IWGx3MGox?=
- =?utf-8?B?ZjlzZ0ttaEVFaHloV1B0bjFtMm1adWZLaDN6UHFsUDcwMGRXN3QxdmF0ejcy?=
- =?utf-8?B?VG83U0FpQnVnY2oxbVpsenlWTW9hTDd2bGlXeUl0aWxKS1BJTFh4RFIvT0Ev?=
- =?utf-8?B?MUJXbFR3UXhIdzk4RVZhOCt0VTFmQjFBaFJhYkJBMTB5ajVyVEVEdGZUM1Vm?=
- =?utf-8?B?cy84SjEvWi8rNUpzd1RBSEJ2N1hONWVuNEdRcXU3UEVoQjAyc2tSMHhlR01s?=
- =?utf-8?B?bjczUkp0d0s1Z0VqajhwR1dLdm1ZWU5zUmtFT01OTERPMWZpTlQxbGpEK2N2?=
- =?utf-8?B?K21rRFR1bjlNMkY5YlUvSkZHK0JHY0tSNkR4WFZXbXo1RER4UnZ2amxVVmFn?=
- =?utf-8?B?dHg4UG1GeW5zRmVUbnBhQXZZNUxWc0dMcjMwSG1ualQyWWtKSWs2ZTdaaGtu?=
- =?utf-8?B?a1M3WG9tYUoyR0NKQlAzYWE0RzByS0VEb0Jrd09HUUhYNGltK2dLLzU1aW1o?=
- =?utf-8?B?azVWSGRHanY0SWZoZDRMVDBmTGxnWXk0ODVJakdaamxRbUpXaWo3SVdwTUlT?=
- =?utf-8?B?TFhlVklYdElSWXo3WmRiSEVKT29rb09uWXNWVGZmZW4remhwd2U5OUhkSXJ5?=
- =?utf-8?B?SnRwMmJkZzZyTzEwRkZSMjhKTFVYd2tjZnlQZUJ4M08wcHNjb1I0cWp0eFJL?=
- =?utf-8?B?NWM0ZDdsVEZPMGcyMTB4c2grOXRDenc5enkyVUtsZ2RXYUEwSlpqcXlONFBu?=
- =?utf-8?B?R3YvRzgvT1dyTzFvZFo5ZFpIQTNFSlhVUEpLZ0JuV3hVVUMzQTUwMjVNY3Vq?=
- =?utf-8?Q?PK/0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 08:43:40.3842
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 860641c9-619c-4f8b-d2f8-08de2747bd4b
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MWH0EPF000A672F.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR10MB6005
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALODHWkC/33SS07DMBAG4KtUXmM0fsZmxT1QF342liAuThoVV
+ bk7TkEQFIvlP9Z8Y2nmhsZQUhjR0+GGSpjTmPJQQ/dwQK43wyng5GtGFKgARQme8jk5fCVBAQH
+ AvX9LmFkvrLCeei1R7TyXENP1rr4ca+7TOOXycR8yk7X6vzcTDDgSbrzmDIJSz69pMCU/5nJCK
+ zjTX0QDbSN0RbhzEULstLE7hG0R1UZYRZxgFiK1jsY9wjcIgzbCK6KkITwow7hxO0T8ILVJthG
+ x/qS+MkK80L7bIXKDENZGZEWY0U7FToD08g+yfK2uhPdLvYPpe3/L8gmmTTMdJQIAAA==
+X-Change-ID: 20250821-topic-x1e80100-hdmi-3bd5b5bd2d96
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Xilin Wu <sophon@radxa.com>, linux-arm-msm@vger.kernel.org, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Abel Vesa <abel.vesa@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3228;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=TXuhYGsW55IISOwAX0hINh3nofc7z+3ojcxWvdtoRek=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBpHYO1U8ojRWdv78LxWJ9eYS08dukYx1P4RMCSAkrC
+ ibKx3M2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaR2DtQAKCRB33NvayMhJ0VE9EA
+ CVGIvcK2g0ddWKb0+iPh+T4WJK8x6lUVCl3zAI7fKh1LMi6c1xdHJNkWj9T9K4rA7NmvZyltEK9KWo
+ bzN5+qkh5kkhGly8L3wELBfQBa8oMcFv8YjzwmYU6iqczQ2OxEkqG3bk82WUWAp6b7h8+YE5UZvhZv
+ RJKp29IlxRt6awl1KOjsdERyM81F3zBm5VkdwP8PEdO2cDCY2d6K0Nbif1ihTx9TaV9GK6/qeBt5xa
+ Y0auTfTeGxPyBzw8rSsUslHeS3kPPYlp0pOPfCnyP+iJu7SnLl4f/A8QJQpsri1fFETrvMbQYA3zeX
+ Iu2lD4FwSdQkCXraV1gEMFN6j4ptokn2igg+SWENqbPAV6X3ypJXUgyCz9KJnTMrUOnkApW+m3OEnR
+ Xy70o2HWTM9PYwhxWKHxyMH82VuA4a4iUob/60aOOZKGblGEohF2WNqB2NzmXSWjNBn7MefwPZEKSj
+ br59xaVlSr32qxYllmq/3Jhr300Q8yQwn9h4K3c4HNVAymuVIEVLU6ogxIYaPEwS+E6L+dgXeBgio7
+ yhZHgWMgCnrWdvusstfQbrx6gFB5Oq23GwamUoVT+aLHotWKZjOZWCvJVoT5MeyDz2sqMSb/DjPS/b
+ gVbQH8vbbcfxmgc9itT2X+sX+YRc9IUG6Z5cQdbrg4Opv6fVA2viazMmtKKw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Wed, 2025-11-19 at 13:38 +0530, Vignesh Raghavendra wrote:
+The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
+connected to the third QMP Combo PHY 4 lanes.
 
-Hello Vignesh,
+The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
+of a combo glue to route either lanes to the 4 shared physical lanes.
 
->=20
-> On 18/11/25 17:19, Siddharth Vadapalli wrote:
-> > Commit under Fixes added support for power regulators on the J721E SK
->=20
-> ^^^ not the right way to quote a commit. Should follow commit SHA
+The routing of the lanes can be:
+- 1/2 DP + 2 USB3
+- 1/2/4 DP
+- 2 USB3
 
-I started following this format after I noticed that an earlier patch of
-mine at [0]
-was merged to the Networking Tree with the commit message updated to follow
-this format [1]. I acknowledge that the expected format might be different
-across subsystems, but I used this format since it seemed concise to me and
-I believe that it makes it easier for the reader.
+We need be able to specify the lanes mapping to DisplayPort
+and/or USB3 peripherals when not connected to a Type-C complex.
 
-However, if the format should be:
-commit SHA ("$subject")
-for the TI-K3-DTS Tree as a policy, I will fix the format and post the v2
-patch.
+Add the documentation for data-lanes in the out endpoints amd
+use those in the driver to setup the right PHY mode and
+orientation.
 
-[0]: https://lore.kernel.org/r/20241220075618.228202-1-s-vadapalli@ti.com/
-[1]:
-https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=
-=3D4a4d38ace1fb
+Finally Add all the data routing in DT, disable mode switching and specify
+the QMP Combo PHY should be in DP-Only mode to route the 4 lanes to
+the underlying DP phy.
 
-> ("$subject") format. Moreover this paragraph can be simply be stated as
-> node is under wrong pmx region (wakeup) and instead should be moved to ma=
-in
+All dependencies were merged on -next.
 
-Please let me know if I should post a v2 for this or if you plan to correct
-it locally
-(in case the 'commit SHA ("$subject") format doesn't require a v2).
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v7:
+- Rebased on -next, all dependencies are merged
+- Link to v6: https://lore.kernel.org/r/20251013-topic-x1e80100-hdmi-v6-0-3a9c8f7506d6@linaro.org
 
-Regards,
-Siddharth.
+Changes in v6:
+- Switched to __free(device_node)
+- Fixed to min_t, added review tags
+- Link to v5: https://lore.kernel.org/r/20251006-topic-x1e80100-hdmi-v5-0-c006311d59d7@linaro.org
+
+Changes in v5:
+- Fixed bindings tab
+- Add comment about exlusivity of the static lanes mapping
+- Fixed the single lane phy entries
+- Switched to of_property_present()
+- Moved the ss2 nodes after ss1 in DT
+- Link to v4: https://lore.kernel.org/r/20250930-topic-x1e80100-hdmi-v4-0-86a14e8a34ac@linaro.org
+
+Changes in v4:
+- Add definition for single lane DP
+- Fix lanes mapping for DP in bindings and driver
+- Add documentation on how to interpret the data-lanes numbers
+- Rewrite driver support for be simpler and split into helpers
+- Rebase DT on next and drop phy.h include, and use proper mapping
+- Link to v3: https://lore.kernel.org/r/20250908-topic-x1e80100-hdmi-v3-0-c53b0f2bc2fb@linaro.org
+
+Changes in v3:
+- Move the static lanes mapping in data-lanes in the out endpoints
+	- new bindings
+	- new drivewr implementation
+	- new DT layout
+- rebased on next, fixed simple bridge rebase
+- added link frequencies for dp2
+- Link to v2: https://lore.kernel.org/r/20250902-topic-x1e80100-hdmi-v2-0-f4ccf0ef79ab@linaro.org
+
+Changes in v2:
+- Model the HDMI transceiver as a simple bridge
+- Switch to a static lanes mapping property
+- Link to v1: https://lore.kernel.org/r/20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org
+
+---
+Neil Armstrong (3):
+      dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Document lanes mapping when not using in USB-C complex
+      phy: qcom: qmp-combo: get the USB3 & DisplayPort lanes mapping from DT
+      arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: add HDMI nodes
+
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |  69 +++++++++-
+ .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    |  81 ++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 142 +++++++++++++++++++--
+ 3 files changed, 283 insertions(+), 9 deletions(-)
+---
+base-commit: fe4d0dea039f2befb93f27569593ec209843b0f5
+change-id: 20250821-topic-x1e80100-hdmi-3bd5b5bd2d96
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
