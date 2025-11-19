@@ -1,183 +1,247 @@
-Return-Path: <devicetree+bounces-240158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33CFBC6DF81
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:26:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D20D8C6E022
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 11:36:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 00119383D2D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:25:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 58D594F968D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 10:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC6C34BA5A;
-	Wed, 19 Nov 2025 10:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 885D034CFCB;
+	Wed, 19 Nov 2025 10:27:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Fof5NDdj";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XEsZhNAv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AzcmxNeW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA28299959
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 10:25:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A821C34D3A3
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 10:27:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763547911; cv=none; b=aP31rRLFYCgmWmougHqJ8sJnfEe5ViYk6m789w4YlWbPElZk737WaeoeUAhpftQ7EXkwRdLY4n3K6VmdF2THu/M/KogYhMDb5rNokpwcfR/13UMQyUU2dzflVfV1Jai6y4eBsdX7OG4j2stWklZ0NwUqAqToyBfv8w6rOITP0KI=
+	t=1763548063; cv=none; b=TlDR/r/dkHKy2unWlWPLQbuXVQzd1t0JvmLJ55PvUnVvkuyZRbrfE/6vcCla626YwL+72XKEVj3EsrG9OUtxkjDCLIOEJvhECU5M53kuJaW/gyBZJRI1qf+JTawgZriNni+lfyfSITSwzmP9ILjUQQhCRz0RdsvFxkk/NJJY72E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763547911; c=relaxed/simple;
-	bh=ym5N+NqN9gnH0rLWboUPWanOhy/OGcrXxbUH557pk40=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CP46hgR7g+750z8P2rL4N3MjrAjZT3In13B+gfxPJdAnXNVsbcmWnaKiN7MqkOUHrwm9N0CgLZ86oi9B/52OK4c7Nn35U0fS00h0hjOFhfhs3XQ6sEpz4iDeIJvHwi8DJdFHzsbaLHb+msJQjYdABjyk2gUIR0bsqGh2v1Pl8uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Fof5NDdj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XEsZhNAv; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AJAHYeb3165161
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 10:25:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=zOYGYPzsas4Ye8z2cQQ9l8Pj
-	B0eBVtk3ZyKewT1i9Bs=; b=Fof5NDdjJ0KAkI/R/4P9SmQR0qc0lEVETgqcjn5c
-	nV8xRAFzJHur+rao4pN9SCfY9RV7TuyXdSydgfSi+ToQjUvvKGVLBOBWhr+r8MVw
-	MKZZ+HkxT607IBE+1vEgKckcRNFZunOFlG0ViBjfuEiWeH/FeKiXUwED7Bz86CpC
-	njtpRHPwcQ+/x0pXCyGQgtDwodn1fXIixp3yxhrCCdUsxUCY75SO0/PNSR1crrzt
-	d7SVpxA/dWEhBF84/FTcIwU3WuorXBEd84JWiOiFAkyXY9dl7yMPjcoj9ewu42UY
-	r+uR+o+1pXbK43Afo9XewEcAkVKa3FyFjvQ/6o/2svuBXg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4agvqgttnj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 10:25:09 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ede679393aso212342251cf.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 02:25:08 -0800 (PST)
+	s=arc-20240116; t=1763548063; c=relaxed/simple;
+	bh=ctOhoXzCrNGir2BqjHZ0QJ1bVseg/hdCu75raDnkXMY=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=TXHz0njnH4Rtu54HTYvmOxs/u/Czdj7bsm4yEFdmqAoRPoNrdhkcspVL4cfX9mwXcCbMp/v00zlDDKqK3mll1A3gKl6uq9rRarecvJ1MXktusfYn8nC2OzkwDcEJ0W156u/YPjPRdk5huA/2iYSyJuNsFN4hfNcKG1USycF2lXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AzcmxNeW; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b72cbc24637so1112070166b.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 02:27:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763547908; x=1764152708; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zOYGYPzsas4Ye8z2cQQ9l8PjB0eBVtk3ZyKewT1i9Bs=;
-        b=XEsZhNAvhkB7O04DKKtqiuzig5t/xjRTrlroi7ybas7vG2y8dPCar6ji0/Svml/NjE
-         zWRbDpSuwbXsFG3tgPX33+AYyC1xbDz6vpTY8peGvoXJePfmgBVC+7ZdBFbwRjAndwue
-         tlFRVFkHwuRXKLDXFQPW5n6uty6l00w90OVGIDEwpHYpoDP4bVM8wapNQOWzi6VOF04C
-         CGhB/tjffcHtz1/Eoha+u7rR0UragoQt3o4Dnr95Szxn2LyrGrJ/4rrm0z7tRxH7Gcsu
-         P+2tMEbPxYdRilpAb9WhNIcZShWlq6mnYa9ZUaaP5QsTKd5jchH1E1q7RN1XHq+ZL916
-         XGRw==
+        d=gmail.com; s=20230601; t=1763548060; x=1764152860; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S+nM8TwEn3pAM+Wkbq5/nAzbOqWOMItS7/Y6FbwZo48=;
+        b=AzcmxNeW6cMIWdkomRTGUwmHoqgeVsyx78C/B+/79yBxCes78M8ocdBdCSNvPlfwWv
+         NAVteqx2AJk/SxU4jeCaHfw4JJ2nS4kxGj4QKKb+tB7OJDkGwXSDRBFlPT0DriMCUlcd
+         J9bTERv289FlR6sPg5/kU39+9xShHUJgarDAwGGnL/VAFQFsc3oLfLfzY9Tr0BXx8DIa
+         HFLLN7P6Tiv1+/XLNFYlQn7BaB04STUykoWolLzWr8BGCNNlse/HIcyzg0ks2ZFQSS1t
+         4j8U3n4Wwjrz5xZIhqAAoP9sz7ookfMSKcnOUOPNWVCY0W84ft/QqsowGMatOo8vxjVS
+         JjEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763547908; x=1764152708;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zOYGYPzsas4Ye8z2cQQ9l8PjB0eBVtk3ZyKewT1i9Bs=;
-        b=j2aHzbszTU4BMP9LLskhZhR8aNU6DWRBGF3Vu6GV7cc0Y2fwZpbKGs5mtXLjylaxAe
-         QIHWN1k0c++WUm2kr3C4o6Kl+CCHkGvSRYmVzJZYgzFkYgzy1qDFyY/gDaJdcNbbIZXo
-         QW+22C1HPHqyoueCvMYFom8VBcVdFiJw1KHGpwMjurbEqlzuUFWgZcZiP2GraVSPGg2R
-         +xVMRKmIVGN374K0WLwsQzWso4zTUV0SLwMHtFOELoEp+GGkr1YWZnwgsKBm8f46Pjd9
-         aM86hG4sfykXW0VcbDiAvgsYAcHuutFdLuqn1I/5kAxbVagwCChv9lJgMGsnDZ/q9Ofn
-         MjDg==
-X-Forwarded-Encrypted: i=1; AJvYcCWx7XAzIpzsbAywAouSjgayMG5HYEla5wamwTMZ2e/SaxSj81IG2NyVqNFI9AooRzhNfOhqG3Q9wLHr@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA03ooMQza6XqARZXkVHEqFA/669S9HEj28Enmdb1kgRWZZnwj
-	L4cU03P1ULxh6O+axM4TA2ujIFE+Y9Q/DU5omCWhj9ETyxueKFU//xlzjunJ9QwFtEb4Wc5uN2i
-	OdCl/TGINEpCBhQmKuD/nhRMgC1hWTjXZsTibQDyTuEk5XUWVirgeX99trnvGhiLH
-X-Gm-Gg: ASbGnctCrvg9L4SGfuQ9NIA7eugK+f/WYRFgf3t2P+dtiZWMyPjM0bBMxqB8BRKbSsv
-	m1yqYtyE3yKeEwakSlfGXcpWHE6KuFdi4AFv0v7hEmUhgeYp1kp+rB83qX0reQu/uQ9aLy4cibu
-	e3qznESW8UNpc4sCmI/A8+MpMNl3OxDdFdfMl7eEEhVU33A+ifhQcjoKUF3JF0PXv1EbRy6wSWq
-	5RZGa717TfQZ5t8DEsfrb/7dMl06w6oOsKmaI/5BUt/V27z04SuuiTDS/JTJ4xmx1RVV5fOvdUN
-	NVV8EIJZIzSfOtGt5OyVF2WWDvv2m7iO10q6jVQ1c6JAkBdCMiuGnt7/fDvjpylGBJgOuIF7M5F
-	KcxxlOpgK4OiiYXYwWmXiL+emGioD+AEldNooJo3PatYDcp8Hn3dC4KkjrpojPSiPO/9E2ci2uD
-	d2gKCTS8gqyDvd/TTzCoXIYvU=
-X-Received: by 2002:a05:622a:1787:b0:4ed:dcf0:6c42 with SMTP id d75a77b69052e-4edf20ed317mr240567751cf.40.1763547908086;
-        Wed, 19 Nov 2025 02:25:08 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGMvBRUVJt9SF9A31IZ5DavkEhnPNzijPYUPOqFxcOXgDWtfwRwMxFg48oSC74HCwIeYqiIbA==
-X-Received: by 2002:a05:622a:1787:b0:4ed:dcf0:6c42 with SMTP id d75a77b69052e-4edf20ed317mr240567541cf.40.1763547907688;
-        Wed, 19 Nov 2025 02:25:07 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37b9ce1abf9sm38262851fa.19.2025.11.19.02.25.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 02:25:06 -0800 (PST)
-Date: Wed, 19 Nov 2025 12:25:04 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Sudarshan Shetty <tessolveupstream@gmail.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-Message-ID: <ug4n5dpsg5v5jwhwmjaktvydhtfx6gagoum6lul2a27h44xexz@uvdu6ma42wei>
-References: <20251118130814.3554333-1-tessolveupstream@gmail.com>
- <20251118130814.3554333-3-tessolveupstream@gmail.com>
+        d=1e100.net; s=20230601; t=1763548060; x=1764152860;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S+nM8TwEn3pAM+Wkbq5/nAzbOqWOMItS7/Y6FbwZo48=;
+        b=po2BHSerfF/J65yKLR84bClcyU6piKdf2k4s/hGpj6inb6joj3Ne41IHDxJ5yHHd7v
+         6zecmkwB3tdHZaS1xs2MjVFnCgzipZWjPA3UBI+A6TszVLG1ILf5fKGuUC8KxsFqKNjU
+         yrD+Lgt+y2L+IXw/ZUNli6o6i5vlNPJTzZ5lqr0XzLFainOoCOpC5wDcVADZqf0mzf0c
+         XaExh12ekpqAGNVIuIrTVpIuci7ZMHSKXLgdph7wVXlUEdTiOMo9W9wFvxN3ElClMmNd
+         ER1/ECSJ6rMszkkFsJrG4NDi6SuEcOBPRHFZVsL8088gpHml4k5NA3xTNSaG+Srf2i2V
+         j7XQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVtzd7x0vCKiv/JM7KzTUUsqvvlyIXkbahu9PFJIBEQDQ/mEHa2fAxOZgNbVn+vAz4MeqVHqbmcTf8a@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgAql8XrPL5KxZGlIKjWzaiy2Pt3qJZdUKoAV9J4+Tsq942GwJ
+	XvBVyaoGGE907zAMqQa0oMbKmtMXxpkWAIbOoWkLnE+1gEMYmoP2tvnE
+X-Gm-Gg: ASbGncv6LnJymYvQ/oD6+Pjk8c2DbfN2hONkpTFOxidoSOCaR74Jyd7NRoX8i+kUm8E
+	RewU037LTCSglDrXtOk57lTLxz8Za7VatyjO2A4e/HYfT/vr84YRGfJZxeanmYRxmjLMA+Z62H3
+	QsT72dzL5wmcW+hBdEdYg5St/IuJQaHEkiVdSl6JhwChb3boTSySJWpXKVUOaZeRht+QiUhg/vz
+	EMmL9v9VExcoVuLsuAVhXEEat3A+c5bLmHNsrpPpQtx7NB4hhPfmxHf+QE125fYOsDIyCP/0yX4
+	2bvQOhqY+tNdXJkgmH8cR4y72ECXK2tCfiGFOlyS36nOuyyXnezU9OJclX//WZNLgELYgVoeiXw
+	zl4ZJ68HLFT/FN7gHNwCwE20GwBJskd2Y+idCYCkc6IGc4/wTchwtG6q0dil9N/ri9BfonB2Rel
+	aMKiyDDKGPX0QHzEMJGrizmxkDO1XS1Mt1z4S+YWkqBz5D6oDBbtID0ULMcv9TO/3UcB+pvD3qQ
+	/U=
+X-Google-Smtp-Source: AGHT+IFcsP/JWu7DWWlBu/BkWNRt0LIFSuLh7i2sy3UQ2gmA3tYApcSpm1bJdautTGMK/vyZo0UGug==
+X-Received: by 2002:a17:907:7e93:b0:b73:9368:ad44 with SMTP id a640c23a62f3a-b739368aff0mr1299146866b.16.1763548059649;
+        Wed, 19 Nov 2025 02:27:39 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.play.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b734fad4635sm1588133966b.26.2025.11.19.02.27.37
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 19 Nov 2025 02:27:39 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251118130814.3554333-3-tessolveupstream@gmail.com>
-X-Proofpoint-ORIG-GUID: OAnthF4Wt8el8dxjo1DkDL11X2rWPeDP
-X-Proofpoint-GUID: OAnthF4Wt8el8dxjo1DkDL11X2rWPeDP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTE5MDA4MSBTYWx0ZWRfXyES7o5OWmZLf
- uNSQGOpisy675/08RjiAPRdffbpcBeJbK9KCanJaNATIanxoghGxTOxb02RrdiRvKvoYhQPYcRf
- csH8DUIH285mu+SaHC1u2A899MCTRQPizFi0zOtX+XhrpY7Dnctc4pclz5RwmV4EZziNChBSkCF
- JtN+uFL5PLsGCWzpesrPhZcncOEbN4wFpRIgX5SeBWTSJR0Ud8Ri3qZftXqHMIae0aet8YQeo2T
- 10rbtzAuVmDto4xz7MC5k35EtHSkkeLSPEu2LwHm6GlAKDRMwiIP4h5AmviJr1Cx/nlNePWJjSw
- thWoGLpZXvq76F5jv9DjCprm0rqcCWLLrdKT/oz3U/XDBmRt5Fnf483lu7lxOsv8GpZe06ypxjK
- WRIgg1Xws+hYRRsxuaneiY+32g4BRQ==
-X-Authority-Analysis: v=2.4 cv=LMJrgZW9 c=1 sm=1 tr=0 ts=691d9b05 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=pGLkceISAAAA:8 a=6q-ckXwDscysDfU1ynwA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-19_02,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 lowpriorityscore=0 spamscore=0 suspectscore=0
- bulkscore=0 adultscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511190081
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
+Subject: Re: [PATCH 01/11] dt-bindings: display: meson-dw-hdmi: Add compatible
+ for S4 HDMI controller
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <8c3b9fa4-326e-4791-8154-07b268faa132@amlogic.com>
+Date: Wed, 19 Nov 2025 11:27:26 +0100
+Cc: ao.xu@amlogic.com,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <7703796D-35D4-4AD2-B7F8-B75D2BE0F7AD@gmail.com>
+References: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
+ <20250110-drm-s4-v1-1-cbc2d5edaae8@amlogic.com>
+ <3AC316FA-A633-4B6C-81BA-CCCA290E7F03@gmail.com>
+ <8c3b9fa4-326e-4791-8154-07b268faa132@amlogic.com>
+To: Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: Apple Mail (2.3826.700.81)
 
-On Tue, Nov 18, 2025 at 06:38:14PM +0530, Sudarshan Shetty wrote:
-> Add the device tree for the QCS615-based Talos EVK platform. The
-> platform is composed of a System-on-Module following the SMARC
-> standard, and a Carrier Board.
-> 
-> The Carrier Board supports several display configurations, HDMI and
-> LVDS. Both configurations use the same base hardware, with the display
-> selection controlled by a DIP switch.
-> 
-> To avoid duplication, use an include file, talos-evk-cb.dtsi, which
-> defines the interfaces and peripherals common to both display
-> variants. Two additional DTs (e.g. talos-evk and talos-evk-lvds)
-> can describe the selected display configuration.
-> 
-> The initial device tree includes support for:
-> - CPU and memory
-> - UART
-> - GPIOs
-> - Regulators
-> - PMIC
-> - Early console
-> - AT24MAC602 EEPROM
-> - MCP2515 SPI to CAN
-> - ADV7535 DSI-to-HDMI bridge
-> - DisplayPort interface
+Pls see inline
 
-You got the question for v6, responded there but didn't update commit
-message. What is not enabled here? E.g. why isn't venus enabled?
+> Wiadomo=C5=9B=C4=87 napisana przez Chuan Liu <chuan.liu@amlogic.com> w =
+dniu 19 lis 2025, o godz. 03:57:
+>=20
+> Hi Piotr,
+>=20
+>=20
+> On 11/18/2025 10:50 PM, Piotr Oniszczuk wrote:
+>> [You don't often get email from piotr.oniszczuk@gmail.com. Learn why =
+this is important at https://aka.ms/LearnAboutSenderIdentification ]
+>> [ EXTERNAL EMAIL ]
+>> Ao,
+>> Is there any chance to get this s4 drm hdmi series for current 6.18?
+>> (i tried backport this series to 6.18 but have some issues with =
+reparent vpu_0_sel to sysclk_b_sel)
+>=20
+> Why do we need to reparent vpu_0_sel to sysclk_b_sel? is there any
+> background here?
 
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile           |   1 +
->  arch/arm64/boot/dts/qcom/talos-evk-cb.dtsi  |  56 +++
->  arch/arm64/boot/dts/qcom/talos-evk-som.dtsi | 447 ++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/talos-evk.dts      |  94 ++++
->  4 files changed, 598 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-cb.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
-> 
+Well - it looks it is because bug....
+Martin Blumenstingl had perfect eye and catch typo in patch =
+https://lore.kernel.org/all/20250110-drm-s4-v1-11-cbc2d5edaae8@amlogic.com=
+/:
 
--- 
-With best wishes
-Dmitry
+By replacing:
+assigned-clock-parents =3D <&clkc_periphs CLKID_FCLK_DIV3>,
+<0>, /* Do Nothing */
+<&clkc_periphs CLKID_VPU_0>,
+<&clkc_periphs CLKID_FCLK_DIV4>,
+<0>, /* Do Nothing */
+<&clkc_periphs CLKID_VAPB_0>;
+
+with:
+assigned-clock-parents =3D <&clkc_pll CLKID_FCLK_DIV3>,
+<0>, /* Do Nothing */
+<&clkc_periphs CLKID_VPU_0>,
+<&clkc_pll CLKID_FCLK_DIV4>,
+<0>, /* Do Nothing */
+<&clkc_periphs CLKID_VAPB_0>;
+
+dmesg is like this https://termbin.com/6020
+
+So i'm getting hdmi working - but only when device boots _without_ =
+connected hdmi at boot (and connected later)
+If hdmi is connected at boot - boot hangs at:
+
+    0.341676] meson-dw-hdmi fe300000.hdmi-tx: Detected HDMI TX =
+controller v2.01a with HDCP (meson_dw_hdmi_phy)
+[    0.342750] meson-dw-hdmi fe300000.hdmi-tx: registered DesignWare =
+HDMI I2C bus driver
+[    0.343660] meson-drm ff000000.vpu: bound fe300000.hdmi-tx (ops =
+meson_dw_hdmi_ops)
+[    0.344832] [drm] Initialized meson 1.0.0 for ff000000.vpu on minor 0
+
+FYI: It is after applying =
+https://patchwork.kernel.org/project/linux-amlogic/cover/20250110-drm-s4-v=
+1-0-cbc2d5edaae8@amlogic.com/ on mainline 6.18 (with some my adjustments =
+on this series required by changes in 6.18).=20
+For VPU clk changes see =
+https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-6.18/f=
+iles/0312-drm-meson-add-vpu-clk-setting-for-S4.patch=20
+It is 6.18 adaptation of =
+https://patchwork.kernel.org/project/linux-amlogic/patch/20250110-drm-s4-v=
+1-9-cbc2d5edaae8@amlogic.com/
+
+As kernel hangs - i have limited caps to drill where root cause is.=20
+ =20
+Maybe above hang is reason of my backports or missing any pre-req =
+required to get s4 drm working?
+Anyway - it will be good to test with updated to 6.18 series of Add DRM =
+support for Amlogic S4 (plus info about any pre-req required to get s4 =
+drm working)  =20
+    =20
+
+>=20
+> The vpu_clk on S4 doesn't support sysclk_b_sel as one of its
+> selectable clock sources, so this reparent operation will definitely
+> fail. This has nothing to do with the kernel version.
+>=20
+>>> Wiadomo=C5=9B=C4=87 napisana przez Ao Xu via B4 Relay =
+<devnull+ao.xu.amlogic.com@kernel.org> w dniu 10 sty 2025, o godz. =
+06:39:
+>>>=20
+>>> From: Ao Xu <ao.xu@amlogic.com>
+>>>=20
+>>> Add devicetree document for S4 HDMI controller
+>>>=20
+>>> Signed-off-by: Ao Xu <ao.xu@amlogic.com>
+>>> ---
+>>> Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml =
+| 1 +
+>>> 1 file changed, 1 insertion(+)
+>>>=20
+>>> diff --git =
+a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml =
+b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+>>> index =
+84d68b8cfccc86fd87a6a0fd2b70af12e51eb8a4..6e0a8369eee915fab55af24d450a6c40=
+e08def38 100644
+>>> --- =
+a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+>>> +++ =
+b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+>>> @@ -55,6 +55,7 @@ properties:
+>>>           - const: amlogic,meson-gx-dw-hdmi
+>>>       - enum:
+>>>           - amlogic,meson-g12a-dw-hdmi # G12A (S905X2, S905Y2, =
+S905D2)
+>>> +          - amlogic,meson-s4-dw-hdmi # S4 (S905Y4)
+>>>=20
+>>>   reg:
+>>>     maxItems: 1
+>>>=20
+>>> --
+>>> 2.43.0
+>>>=20
+>>>=20
+>>>=20
+>>> _______________________________________________
+>>> linux-amlogic mailing list
+>>> linux-amlogic@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>=20
+
 
