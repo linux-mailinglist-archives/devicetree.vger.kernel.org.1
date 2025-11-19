@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-240269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5775CC6F7E3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 16:01:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CE1CC6F722
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:54:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6313E35DF0E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:47:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 1C6CE2F6BA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5719B36402D;
-	Wed, 19 Nov 2025 14:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF28366576;
+	Wed, 19 Nov 2025 14:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QZmTleyI"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ij76wMoh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ACCC363C40
-	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 14:44:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9535E27B4F7
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 14:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763563451; cv=none; b=GjQH8BsPwAkq/1PfRtAIY8I2C9TRE4+sM7wkJwyXK6Swoyj12Esv1K/9ZYlHsqA3SUWCeu9mPducx7BUFtnMS2YM4gTjuSX2ly0v52dbPYQBrJOej8M28jblYMqMD19McGl9vhPTL3FVIY+0w1F+AJRkbU3Ua7hpfZtLg8q24wE=
+	t=1763563549; cv=none; b=eWheDihtfCEoR0YAQkj36fiPMxAKxhbcPxKga8aXySAXjzGcWUY1CK6AoSKVH+MvNXBsLOfO9EXVcRwhLdguvKNX+ZhC7tYgvVhVUch5aVQeAg7xH5GA+lv4FxvaxJOySc9zDtkZCptG5y8OthNTdJtaD77ZjACtAbsT+a13AT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763563451; c=relaxed/simple;
-	bh=Xyem1T4TjWDXBAbPB2bVcsf7G/MOcjGjlN9bKzecXrY=;
+	s=arc-20240116; t=1763563549; c=relaxed/simple;
+	bh=FpgOAbIYhuYfiHny/yTXdpx2tP9GMeonyI6HAzCnoR4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H4IFBSir5D8AsNEcgoBv7q84/ZxzK02lNeR/PGqa50qXSUr/d8OghdGzrcqKWec1D1T7ovhyG1jKtfeZ4IBq7SNLuWPNhza6GzCf7e7jTYxIeY9a4goyUGDc2HEWL477JcaFt9eFn+y+McW+nizSGNzqlawGxfM5YKvIXxMcvsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QZmTleyI; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-477619f8ae5so45946715e9.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 06:44:06 -0800 (PST)
+	 In-Reply-To:Content-Type; b=B/8RzODGlVYu0sIHFINX1dRl+LzY4y0bN8tCjP4kgIm2A9o03VKEJcDp4/CdWAjaIbetUh2qAUmqVfdPOp4IeO0vY/OWs6Mg365OaKKaaZRloNIi0QA2HlG6bBeB4pDQP3ewQnX2PqC4kBplQW5b4XaFVwDNz+ra5k8su2+50zU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ij76wMoh; arc=none smtp.client-ip=209.85.167.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-450c9057988so1461013b6e.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 06:45:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763563445; x=1764168245; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763563544; x=1764168344; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ngp1SC4MNCi9zjMSYXmnmBUUdQBlYP0J8WPlUtZvAg8=;
-        b=QZmTleyI2Fdy33u6o9rTHiq4aOWqTkyRBBdwwPAoWyEhheIcL1KRQe4iDAKpC8WENY
-         ZhwV4mEkSmzJlnGkjY0XIB9u1S7WN277bFn7/rXAoh+62LozqBHwIiNWIfHFsMlt76Sq
-         DyaVE7hio+RSz+Zyi4xsmRrK5CkBuZwxqJLSsQIoeo73CQ7rw839QwmyonqguBUA0wQg
-         ANtTgNLBo8wdbObDtlkQxsg6j4WJOePO3Hm7T+bHT8rk0ZBVjQJoM2I8IVVTpd5jc9OQ
-         xgICztsCc1oZyJ8OXE7EU3phnGChVi+ggsfJMgDLESdvpRCxS/eeptENkP4YWxlo55TJ
-         yTlg==
+        bh=65Ns16gxTh3NW+vKmsGtUFPKjw4kyOUeoeH+pasPpPo=;
+        b=ij76wMohszUBXAvHRcWAy+ztoR5AmKX2VibM3qCs8or2AlxNIvE5UoyjX7GyT1CNmy
+         yFPKqrjzsTTiRfOifvX67RJp+3AQsLlcTyslqoKF+JTo+8l4MvlDal9gCB/9IRMLlFjz
+         +VtcyB0ga+VXdcwht4rwDOYl1Fxz3oDQKy5VZzQ47yPvCKhrw8LQ6XoRHpUaMXQKIqiC
+         X8QofHaCfP6hDf7ngWFn5mJVzhwNcDOmGnIhhC1A20j695ER45n4kP9J8U+NjiCxiLyb
+         ycwyaNifPt3CDFDbtkpM+Rg7fBy/VmR/OctJLw9Oszg7aHJL5QSE+sgg2LSPoa852Zgg
+         4khA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763563445; x=1764168245;
+        d=1e100.net; s=20230601; t=1763563544; x=1764168344;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ngp1SC4MNCi9zjMSYXmnmBUUdQBlYP0J8WPlUtZvAg8=;
-        b=uLhD8KzFPLmVLNcb+oRb8pRg3iJZSGfXxQya9cf/zJN++am3OOwResoKrQE4NgTF8T
-         LQNLneAZoQanqZ4g2Ymn/ri6Ztdw491Wd5jPeNy/W2+TqudnF6Tyo+l6yxPkjSBVPJyo
-         Mq4Jw7/jRRGuHBXxFxjUBxsLVZDq2X6aTRfu0P2I9bLV1dQgeaVimYuKSiTyuMcQNmfZ
-         8dCSzK8F3hvdXROYd4EOAiCEcHziw+tZ/+ypuozXUCG8r5gSQq3WSQmEkOBsJfIqZeb9
-         KTn5EdDsKuQ0IHYX8FRDYvqsIq+85SlC8KvRkIf3f1wNeml2X6JKH22gRSR+4KyJHQW8
-         LfTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjz3Nm194R+KIzutJuXcK4a84vncO3JEIZh+feNz3c5kBtpefh7ymJsAvLSDYrIBwh0jzmZs/kuQET@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvWBXaxeUlKDVvIKGxHwDTlNS671D9JmYgOiLXwX1tzY4J4yWR
-	0Px+wT9wjbIKHAQxNsJe6otvBLOoJwGNyIWwygRZ2lkb5cyClv+a4Yd3ScnChJ2o4bQ=
-X-Gm-Gg: ASbGncvuS1HYXWSsJ+ndNuHYDLj1zuPXwGXnHQDTXvJ0Y4KWbPMLDgQMBx/PdxGaBrr
-	p7x18/qQsxscUqggKl7Dji/UqLytPXdj8CBk4dSY5VV1pl4cFF1feqfmvyiHFklvkDphv4iKzEP
-	l5Xfaa2AS/HSG8/7AKGyOMuU1hIogOgocYQ0d9RZThQmfVRGpAdUy/ROmJUcTBgJiaFBrhbq4Ay
-	w8AQjd1n0dv/cCuBz8YgslMQzYIJU2CkshpmuLlrj/rldDIGm+XAz7aFQeXGWNVmubakPu5NaHp
-	43rA/hgqMZ6tjMxQS4ok/SWpKZ6kF+31EDOtf48i9B5ZaznEICzewuZNX2DJglk2jFqzxIYmaQq
-	8yOrbq95onQ1Y/vxPCsmDK/SgzEgz6ZZX2oIiGhTNdx8RzxjAY8yh5VXeJSFTnJMsG2AiLiLpWl
-	LbqPoStC8GnoI59T93lxvp6cFyiUID18SkS4RJu3xwXSgORTeXx5xrpNojWI7ZDunaeA==
-X-Google-Smtp-Source: AGHT+IE5vmKNsD7QZkjolnBUwUjbuodqqG/JGzfTWUDx3VC09KvuyQis/7fD2WgXAV/CXB4n72a8XA==
-X-Received: by 2002:a5d:64c3:0:b0:42b:36f4:cd23 with SMTP id ffacd0b85a97d-42cb1f3878bmr2925850f8f.19.1763563445382;
-        Wed, 19 Nov 2025 06:44:05 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:37e6:ed62:3c8b:2621? ([2a05:6e02:1041:c10:37e6:ed62:3c8b:2621])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-42b53e7ae47sm37011553f8f.4.2025.11.19.06.44.04
+        bh=65Ns16gxTh3NW+vKmsGtUFPKjw4kyOUeoeH+pasPpPo=;
+        b=js6Kp1O5iM1ok/ls5xZiWTJR2sBfejocTchCu6kwt5b+ulltBCL1BJBbIkEtOSSjeQ
+         C/5zzGS6Lr2rVxT/Q3NhfjPE2lyrcG0vYA8kFXkSkbqYs4WATo96+xNLhcpfzTpTWdyl
+         tZ9ChiE8j6/HGOAq4aIr29r/OKpa/0vlaFzA1l0SeI2g5JmJ5cwK+AXMHutfSJLb0IbX
+         IsyktYodkd12mDSaVO9q4tJbLPoR31GtbYjrY6yNeB+xrL/4D9wXZAFQWfff7LpW29CK
+         rExyyduESkrEGoJTK6rR3Wr/ILUHFMaauoHU5m8SislOmAT+A680nTGYInXXhxfRvhTZ
+         bgBA==
+X-Forwarded-Encrypted: i=1; AJvYcCX5/m5YRRKORnVxwwA/9f0eO40nfNFQG2cKVL/gscnk+UH3V1vW9F5w152yL2yLHj5Nbv6cxNVv2l1d@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1QuJ9cVD4L7iBP6xef8+OpmooYOtKW9BrYR/lXbYrgCPXg2/b
+	oGZeWZ6th861FDbz+RY7KB29e4KXCbdUx2jR2bGWt84+HcPdKdwqYaBTgqm9Vi+RFAg=
+X-Gm-Gg: ASbGnctk29LjlpHaN7MhPE3c+EwIRtizpC/1CJIWMhtgh5QdKvstNBanq4eFtKGf7YX
+	U0HdAWR+grW8dldzB5t3gnuMQE24BWbI5VtZ4pDqc/d17bnmT145Kp0q6h9PznFUSpBBUD/OT6f
+	NMs+j0kP8xd9+X7YNRoV7Xw9t+HyJeWyxpk+b9/Sw9RcHXwWjS56Bynp/1f46kEmYRVSbpf2eM4
+	2V+fUcegwLe8UUQX0oAhUFnTDm5lvpgetruEYYi8zIxeXdobkEVJphryo+IMxQqUag2oHFXvUde
+	xyIOBTN6v0eyJLyYingH/+NVE8cnqOFCFLgU8s1kBGAeBxj6+5OoyGTBe18ehaDvRBNHWOdyJtO
+	drszyY3EL+g9z5o8pRfvR++yKX4P+DLkxc1OEBvS5zgtCZZvDXg9bNSLktevZSYntRR1Hv/hlsg
+	y8+QC1MeqWFow+UHz/PKGtAFIHZdhT2FUbtkg/brSqfaifBlM0wjyku/j44YXb
+X-Google-Smtp-Source: AGHT+IGAT38Ks4Qoob8CXFhi3Zr9y4b0BYvNCj7qmWn7rmgJYD09bg+QwprfnFA3SZGLWLjrYnkusQ==
+X-Received: by 2002:a05:6808:1302:b0:44d:a6a8:1b6a with SMTP id 5614622812f47-4509755d5d2mr9071196b6e.50.1763563544459;
+        Wed, 19 Nov 2025 06:45:44 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:f327:6b3c:8989:a18d? ([2600:8803:e7e4:500:f327:6b3c:8989:a18d])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3e8834111c5sm5421311fac.13.2025.11.19.06.45.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Nov 2025 06:44:04 -0800 (PST)
-Message-ID: <ac85d16d-7d9d-41eb-9b1c-08df9a61f672@linaro.org>
-Date: Wed, 19 Nov 2025 15:44:04 +0100
+        Wed, 19 Nov 2025 06:45:43 -0800 (PST)
+Message-ID: <f2ac13fc-8f47-465e-8cef-e2e34bf41818@baylibre.com>
+Date: Wed, 19 Nov 2025 08:45:42 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,182 +84,206 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com, vkoul@kernel.org
-References: <20251118203305.3834987-1-daniel.lezcano@linaro.org>
- <20251118203305.3834987-3-daniel.lezcano@linaro.org>
- <CAHp75Ve=CU8ecXk5sgkHPJbYA_K+sa+Lyys+cdpCm=QHOw2ytg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/6] dt-bindings: iio: adc: adi,ad7380: add spi-buses
+ property
+To: Rob Herring <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20251107-spi-add-multi-bus-support-v2-0-8a92693314d9@baylibre.com>
+ <20251107-spi-add-multi-bus-support-v2-5-8a92693314d9@baylibre.com>
+ <20251118155905.GB3236324-robh@kernel.org>
+ <97c6b55d-9505-4091-8f0b-317dcbd70838@baylibre.com>
+ <CAL_Jsq+ZZE0g424jE75xeCt2KY1ThPLqmbmOs0o_ddaJ8fOf3w@mail.gmail.com>
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <CAHp75Ve=CU8ecXk5sgkHPJbYA_K+sa+Lyys+cdpCm=QHOw2ytg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <CAL_Jsq+ZZE0g424jE75xeCt2KY1ThPLqmbmOs0o_ddaJ8fOf3w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-
-Hi Andy,
-
-thanks for the review
-
-On 11/19/25 10:27, Andy Shevchenko wrote:
-> On Tue, Nov 18, 2025 at 10:34 PM Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
-
-[ ... ]
-
->> As the IIO is implementing the cyclic DMA support API, it is not worth
->> to do more spins to the current routine as it will go away when the
->> new API will be available.
+On 11/19/25 7:18 AM, Rob Herring wrote:
+> On Tue, Nov 18, 2025 at 11:46 AM David Lechner <dlechner@baylibre.com> wrote:
+>>
+>> On 11/18/25 9:59 AM, Rob Herring wrote:
+>>> On Fri, Nov 07, 2025 at 02:52:51PM -0600, David Lechner wrote:
+>>>> Add spi-buses property to describe how many SDO lines are wired up on
+>>>> the ADC. These chips are simultaneous sampling ADCs and have one SDO
+>>>> line per channel, either 2 or 4 total depending on the part number.
+>>>>
+>>>> Signed-off-by: David Lechner <dlechner@baylibre.com>
+>>>> ---
+>>>>  .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 22 ++++++++++++++++++++++
+>>>>  1 file changed, 22 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+>>>> index b91bfb16ed6bc6c605880f81050250d1ed9c307a..9ef46cdb047d45d088e0fbc345f58c5b09083385 100644
+>>>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+>>>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+>>>> @@ -62,6 +62,10 @@ properties:
+>>>>    spi-cpol: true
+>>>>    spi-cpha: true
+>>>>
+>>>> +  spi-data-buses:
+>>>> +    minItems: 1
+>>>> +    maxItems: 4
+>>>> +
+>>>
+>>> As the property is not required, what's the default?
+>>
+>> spi-perepheral-props.yaml defines:
+>>
+>>         default: [0]
+>>
+>> Do I need to repeat that here?
 > 
-> ...
+> No. So that means you only use one channel and the others are not connected?
+
+Correct.
+
 > 
->> +#define NXP_SAR_ADC_EOC_CH(c)          BIT((c) % 32)
+>>
+>>>
+>>>>    vcc-supply:
+>>>>      description: A 3V to 3.6V supply that powers the chip.
+>>>>
+>>>> @@ -245,6 +249,22 @@ allOf:
+>>>>        patternProperties:
+>>>>          "^channel@[0-3]$": false
+>>>>
+>>>> +  # 2-channel chip can only have up to 2 buses
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          enum:
+>>>> +            - adi,ad7380
+>>>> +            - adi,ad7381
+>>>> +            - adi,ad7386
+>>>> +            - adi,ad7387
+>>>> +            - adi,ad7388
+>>>> +            - adi,ad7389
+>>>> +    then:
+>>>> +      properties:
+>>>> +        spi-data-buses:
+>>>> +          maxItems: 2
+>>>> +
+>>>>  examples:
+>>>>    - |
+>>>>      #include <dt-bindings/interrupt-controller/irq.h>
+>>>> @@ -260,6 +280,7 @@ examples:
+>>>>              spi-cpol;
+>>>>              spi-cpha;
+>>>>              spi-max-frequency = <80000000>;
+>>>> +            spi-data-buses = <0>, <1>;
+>>>>
+>>>>              interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
+>>>>              interrupt-parent = <&gpio0>;
+>>>> @@ -284,6 +305,7 @@ examples:
+>>>>              spi-cpol;
+>>>>              spi-cpha;
+>>>>              spi-max-frequency = <80000000>;
+>>>> +            spi-data-buses = <0>, <1>, <2>, <3>;
+>>>
+>>> An example that doesn't look like a 1 to 1 mapping would be better.
+>>> Otherwise, it still looks to me like you could just define the bus
+>>> width.
+>>
+>> I'm not sure we could do that on this chip since it doesn't have
+>> the possibility of more than one line per channel.
 > 
-> Do you expect "c" to be bigger than 31? In which circumstances?
-
-No, it should be always lesser than 32. We can drop the modulo.
-
-[ ... ]
-
->> +       /*
->> +        * Ensure there are at least three cycles between the
->> +        * configuration of NCMR and the setting of NSTART.
->> +        */
->> +       if (enable)
->> +               ndelay(div64_u64(NSEC_PER_SEC, clk_get_rate(info->clk) * 3));
+> That's a property of the SPI controller though, right?
 > 
-> I'm wondering how low the clock rate can be? With low enough clock
-> rates this becomes a 100% CPU busyloop and in atomic context (is this
-> the case?) without even the possibility to schedule.
-
-I believe this question was already addressed in v1:
-
-https://lore.kernel.org/all/a34efc36-0100-4a7f-b131-566413ab88ae@linaro.org/
-
-right ?
-
-[ ... ]
-
->> +static int nxp_sar_adc_read_data(struct nxp_sar_adc *info, unsigned int chan)
->> +{
->> +       u32 ceocfr, cdr;
->> +
->> +       ceocfr = readl(NXP_SAR_ADC_CEOCFR0(info->regs));
+> If the above controller had 4 lines per channel/serializer, then you could have:
 > 
->> +       /* FIELD_GET() can not be used here because EOC_CH is not constant */
->> +       if (!(NXP_SAR_ADC_EOC_CH(chan) & ceocfr))
->> +               return -EIO;
+> spi-data-buses = <0>, <4>, <8>, <12>;
+
+Ah, I get what you mean now. The intention here though was that the
+index numbers correspond to the data lane (channel/serializer), not
+to individual lines. So the example you gave would mean that the chip
+has at least 13 data lanes (rather than what I think your intention was
+of saying it has at least 16 data wires). I did it that way because all
+of the hardware I looked at didn't allow assigning arbitrary data lines
+to arbitrary lanes/channels so it keeps things simpler and easier to match
+to the actual hardware docs.
+
+I intend to change the property name to data-lanes so I will use that
+below instead of spi-data-buses.
+
+For this ADC, I would still write:
+
+	data-lanes: <0>, <1>, <2>, <3>;
+
+to mean:
+
++--------------+    +----------+
+| SPI          |    | AD7380-4 |
+| Controller   |    | ADC      |
+|              |    |          |   
+|        SDIA0 |<---| SDOA     |
+|        SDIA1 |x   |          |
+|        SDIA2 |x   |          |
+|        SDIA3 |x   |          |
+|              |    |          |
+|        SDIB0 |<---| SDOB     |
+|        SDIB1 |x   |          |
+|        SDIB2 |x   |          |
+|        SDIB3 |x   |          |
+|              |    |          |
+|        SDIC0 |<---| SDOC     |
+|        SDIC1 |x   |          |
+|        SDIC2 |x   |          |
+|        SDIC3 |x   |          |
+|              |    |          |
+|        SDID0 |<---| SDOD     |
+|        SDID1 |x   |          |
+|        SDID2 |x   |          |
+|        SDID3 |x   |          |
+|              |    |          |
++--------------+     +---------+
+
+I.e. lanes <0>=A, <1>=B, <2>=C, <3>=D and there is an implied default
+spi-rx-bus-width = <1>;
+
+
+For another chip we are working on, we could have:
+
+	spi-rx-bus-width = <4>;
+	data-lanes: <0>, <1>;
+
+Meaning:
+
++--------------+    +----------+
+| SPI          |    | AD4630   |
+| Controller   |    | ADC      |
+|              |    |          |   
+|        SDIA0 |<---| SDOA0    |
+|        SDIA1 |<---| SDOA1    |
+|        SDIA2 |<---| SDOA2    |
+|        SDIA3 |<---| SDOA3    |
+|              |    |          |
+|        SDIB0 |<---| SDOB0    |
+|        SDIB1 |<---| SDOB1    |
+|        SDIB2 |<---| SDOB2    |
+|        SDIB3 |<---| SDOB3    |
+|              |    |          |
+|        SDIC0 |x   |          |
+|        SDIC1 |x   |          |
+|        SDIC2 |x   |          |
+|        SDIC3 |x   |          |
+|              |    |          |
+|        SDID0 |x   |          |
+|        SDID1 |x   |          |
+|        SDID2 |x   |          |
+|        SDID3 |x   |          |
+|              |    |          |
++--------------+     +---------+
+
 > 
-> [nxp_sar_adc_]field_get() may be defined and used. There is a series
-> pending to bring field_get() to bitfield.h next release.
+> Rob
 
-TBH I don't have an infinite bandwidth to write temporary helpers. So if 
-it is ok, I would prefer to keep it as is
-
-> ...
-> 
->> +static irqreturn_t nxp_sar_adc_isr(int irq, void *dev_id)
->> +{
->> +       struct iio_dev *indio_dev = (struct iio_dev *)dev_id;
-> 
-> Unneeded explicit casting.
-
-Right I will fix it.
-[ ... ]
-
-
->> +static int nxp_sar_adc_start_conversion(struct nxp_sar_adc *info, bool raw)
->> +{
->> +       u32 mcr;
->> +
->> +       mcr = readl(NXP_SAR_ADC_MCR(info->regs));
->> +
->> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_NSTART, &mcr, 0x1);
->> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_MODE, &mcr, !raw);
-> 
-> raw ? 0 : 1
-> 
-> is better to understand (it will be optimised by the compiler anyway,
-> no branches will be added).
-
-Ok, will do the change
-
->> +
->> +       writel(mcr, NXP_SAR_ADC_MCR(info->regs));
->> +
->> +       return 0;
->> +}
->> +
->> +static int nxp_sar_adc_read_channel(struct nxp_sar_adc *info, int channel)
->> +{
->> +       int ret;
->> +
->> +       info->current_channel = channel;
->> +       nxp_sar_adc_channels_enable(info, BIT(channel));
->> +       nxp_sar_adc_irq_cfg(info, true);
->> +       nxp_sar_adc_enable(info);
->> +
->> +       reinit_completion(&info->completion);
->> +       ret = nxp_sar_adc_start_conversion(info, true);
->> +       if (ret < 0)
->> +               goto out_disable;
-> 
->> +       ret = wait_for_completion_interruptible_timeout(&info->completion,
->> +                                                       NXP_SAR_ADC_CONV_TIMEOUT_JF);
->> +       if (ret == 0)
->> +               ret = -ETIMEDOUT;
->> +       if (ret > 0)
->> +               ret = 0;
-> 
-> Since semantically it's not the same ret, I would write above as
-> 
->    if (!wait_for_completion...(...))
->      ret = -ETIMEDOUT;
-> 
-> And note, no "else" branch is needed in this case.
-
-Sure, I'll change that
->> +       nxp_sar_adc_channels_disable(info, *indio_dev->active_scan_mask);
-> 
-> Wondering why this can't take a pointer to a mask.
-nxp_sar_adc_channels_disable() is also called with BIT(x) parameter in 
-other places. So in the function is much easier to do val |= mask;
-
->> +       ret = devm_request_irq(dev, irq, nxp_sar_adc_isr, 0,
->> +                              dev_name(dev), indio_dev);
->> +       if (ret < 0)
->> +               return dev_err_probe(dev, ret, "failed requesting irq, irq = %d\n", irq);
-> 
-> No error code duplication in the message, please.
-
-Given devm_request will print the "request_irq(%u) %ps %ps %s\n" error 
-message. Would you suggest to just return ret here ?
-
->> +       spin_lock_init(&info->lock);
-> 
-> Shouldn't this be _before_ IRQ registration? Theoretically the  IRQ
-> may fire already just after the registration (yeah, it might be
-> spurious, but handler and code should be ready for this).
-
-Well it does not hurt moving it before anyway
-
-[ ... ]
-
-Thanks
-
-   -- Daniel
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
