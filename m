@@ -1,108 +1,106 @@
-Return-Path: <devicetree+bounces-240387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC898C70AAD
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:39:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81B2DC70ACB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 19:41:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A918E34878A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:35:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 10FEC4E518A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 18:36:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 679AA327C0E;
-	Wed, 19 Nov 2025 18:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7E12D7DC5;
+	Wed, 19 Nov 2025 18:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RgpJCLrj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GVSWr3Vc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5726A3074BC;
-	Wed, 19 Nov 2025 18:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EDE2F6596;
+	Wed, 19 Nov 2025 18:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763577347; cv=none; b=hBN58PFmWhzpDUWODLl+nKEXblFKDLkBuikmUHDTWBb5uOuCgKEeCIObsi+gDa+gafTs8sE2pctexDSU8OJs9t7U0oo0A2de53+t4hRNlrBKGh82UbD/6nO1FN3nJSDiCwD+wPmgOu6jNSIklX2Rsgi/Aw24CxvuLuxpsfcY7JM=
+	t=1763577386; cv=none; b=A2Qx6BfmErfl4PuMkHz/nu8aQ5pfPmVMzqI+qiVm4yX3RoyxlxzXu3rADdIxgu29Aq5QqVp5awlRc4n2+j2jPIp/0eX4NPe+unDAM0xV88DVMBRXsmpK6+Ej+TGrcG7CRXGmC6UY0/ar4X07kRRnj8R3ORq66HAVveGic8t0ODQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763577347; c=relaxed/simple;
-	bh=9wKGQkAN4eTHkqUQxVV6qaoHW5rjdvZ6IVdsYwt3fCI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=en5780Djr2wt4A+SzWJ/B9SKTMN2noVVolmliwho13bfsf6iOSOI84EtAzfUzXFSnAD2hXBH9ZklDXxs86S5jmlUZKIQvJc+ygEk7vlzJeNSCuBqTf6mYiynEckw+eHQnv4RDwhet0yZc6nPU9uadb1EzRdwVGwCh5chpcvwX7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RgpJCLrj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 197DDC4CEF5;
-	Wed, 19 Nov 2025 18:35:46 +0000 (UTC)
+	s=arc-20240116; t=1763577386; c=relaxed/simple;
+	bh=xwKZp/x+NWQ/Q/NfrVl33rtEFF4kXJDbcGr/uUULN5A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=upJj9ypw1HRHXrk1/nnjQOuIaphFVPnOnmgqpiplYR2zx5QC+yWaQw+7EGMOP8zGK40o87dgzS8PcgCAi0MPOV006PNvM0W49h0BXVCZaASxY9SQGTHLguvSCC9hgo43NXiwxWhRKk7QamYkJisJKuYuBkUZ24XJ49nBPz+Yt0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GVSWr3Vc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81C5DC4CEF5;
+	Wed, 19 Nov 2025 18:36:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763577346;
-	bh=9wKGQkAN4eTHkqUQxVV6qaoHW5rjdvZ6IVdsYwt3fCI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=RgpJCLrjn4N8u/Zxq35Fzci8fPcO+a2dBRsirEtQUGSKTfddFtu1TvBc1M6MmTjtN
-	 F3bMeefe3wrKYCXK7Brt7fPZMESV0snx4cLVutSXuX6/BY1K4ydDl/y33M3QyiSquX
-	 sUguGXj3cBTMw47MM2dK6sF6Ioqmfd35JBi8NANxpAwpRqF0cCU6ZodE6EdUlVUPSM
-	 7FokbINa1SuKcLgOqAPdgZcpCnISg8t7FVCfBVV28+J3zt/HH2zAfwNUCrUiW8/nLf
-	 fOKVUTHyTPwTvWTanoFAY9NEBFq7Tds3DtUpt4LJ0b3gcv5anUGAyAaelpnKa2nXu+
-	 7IUmDdcFCPLuA==
-Date: Wed, 19 Nov 2025 10:35:45 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>, Vladimir Oltean
- <vladimir.oltean@nxp.com>, netdev@vger.kernel.org, Andrew Lunn
- <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, linux-kernel@vger.kernel.org, Serge Semin
- <fancer.lancer@gmail.com>, Herve Codina <herve.codina@bootlin.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 14/15] net: dsa: sja1105: replace mdiobus-pcs
- with xpcs-plat driver
-Message-ID: <20251119103545.53c13aac@kernel.org>
-In-Reply-To: <aR4A1MaCn9fStNdm@smile.fi.intel.com>
-References: <20251118190530.580267-1-vladimir.oltean@nxp.com>
-	<20251118190530.580267-15-vladimir.oltean@nxp.com>
-	<20251118164130.4e107c93@kernel.org>
-	<20251118164130.4e107c93@kernel.org>
-	<20251119095942.bu64kg6whi4gtnwe@skbuf>
-	<aR2cf91qdcKMy5PB@smile.fi.intel.com>
-	<20251119112522.dcfrh6x6msnw4cmi@skbuf>
-	<20251119081112.3bcaf923@kernel.org>
-	<aR3trBo3xqZ0sDyr@smile.fi.intel.com>
-	<aR39JBrqn5PC911s@shell.armlinux.org.uk>
-	<aR4A1MaCn9fStNdm@smile.fi.intel.com>
+	s=k20201202; t=1763577385;
+	bh=xwKZp/x+NWQ/Q/NfrVl33rtEFF4kXJDbcGr/uUULN5A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GVSWr3VcWf04TXPc8OzdtC3WZc59SgUATizJV9nUaEyCWPRbKA7R0NytHLFQIcvt3
+	 g9xiFGtEbUZ0zB/LIvVmMakhSe3mnp0WCU4DLmp2igBMzTSVW5KauU1MNWVtYvU6JY
+	 9ptCOYP9I5nW536kDbEOXvfTI35UYMcJAiIL5rLz7+zw7mWCgYNhxpEqXmHTuuT0VL
+	 V8SM29H6YcSeDlzU+YMUNqyBenm/u3Im6i8zh2A+L+TPcqH/3BXUZmwBxcLOypjhYA
+	 q8dkorr3aMYObj+bnlzjBlcl/Rir1OYAR85MJZN6X3Ozt1ThOPwA9gWhdhhji7LdFt
+	 VsJc3r7YpcQkw==
+Date: Wed, 19 Nov 2025 18:36:20 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mahesh Rao <mahesh.rao@altera.com>,
+	Ho Yin <adrian.ho.yin.ng@altera.com>,
+	Niravkumar L Rabara <nirav.rabara@altera.com>,
+	linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: fpga: stratix10: add support for
+ Agilex5
+Message-ID: <20251119-surfer-festival-da76a38dbec0@spud>
+References: <cover.1763518321.git.khairul.anuar.romli@altera.com>
+ <2092d4572e9772a30e8f50cb39d066c1c2b2cad9.1763518321.git.khairul.anuar.romli@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="QV4u/H7FWfggDSte"
+Content-Disposition: inline
+In-Reply-To: <2092d4572e9772a30e8f50cb39d066c1c2b2cad9.1763518321.git.khairul.anuar.romli@altera.com>
 
-On Wed, 19 Nov 2025 19:39:32 +0200 Andy Shevchenko wrote:
-> On Wed, Nov 19, 2025 at 05:23:48PM +0000, Russell King (Oracle) wrote:
-> > On Wed, Nov 19, 2025 at 06:17:48PM +0200, Andy Shevchenko wrote:  
-> > > On Wed, Nov 19, 2025 at 08:11:12AM -0800, Jakub Kicinski wrote:  
-> > I can say that stuff such as unused const variables gets found by
-> > nipa, via -Wunused-const-variable, which as I understand it is a
-> > W=1 thing.
-> > 
-> > I suspect CONFIG_WERROR=y isn't used (I don't know) as that would
-> > stop the build on warnings, whereas what is done instead is that
-> > the output of the build is analysed, and the number of warnings
-> > counted and reported in patchwork. Note that the "build" stuff
-> > reports number of errors/warnings before and after the patch.
-> > 
-> > Hope this answers your question.  
-> 
-> Pretty much, thanks!
 
-We do:
+--QV4u/H7FWfggDSte
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-prep_config() {
-  make LLVM=1 O=$output_dir allmodconfig
-  ./scripts/config --file $output_dir/.config -d werror
-  ./scripts/config --file $output_dir/.config -d drm_werror
-  ./scripts/config --file $output_dir/.config -d kvm_werror
-}
+On Wed, Nov 19, 2025 at 10:26:05AM +0800, Khairul Anuar Romli wrote:
+> Agilex5 introduces changes in how reserved memory is mapped and accessed
+> compared to previous SoC generations. Agilex5 compatible allows stratix10-
+> FPGA manager driver to handle these changes.
+>=20
+> Fallback is added for driver probe and init that rely on matching of table
+> and DT node.
+>=20
+> Reviewed-by: Xu Yilun <yilun.xu@intel.com>
+> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 
-I have strong feelings about people who think Werror is an acceptable
-practice in 2025, but let me not violate the CoC here..
+=02
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
+
+--QV4u/H7FWfggDSte
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaR4OJAAKCRB4tDGHoIJi
+0gfjAQCTiUNRgcq03G2tyNvU+67BLzzDA3yU8qZRAmO2jWvWwgEA/ksLDmhoBgcZ
+tn4TRgJ2Aep4YZ3WM4YvKootVZLXQAw=
+=x862
+-----END PGP SIGNATURE-----
+
+--QV4u/H7FWfggDSte--
 
