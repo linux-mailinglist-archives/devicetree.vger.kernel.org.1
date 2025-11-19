@@ -1,106 +1,112 @@
-Return-Path: <devicetree+bounces-240237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855B2C6F128
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 14:56:13 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A3FFC6F1A0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 15:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 21D16387E5A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:48:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BE05935660C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 13:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C8D35FF7F;
-	Wed, 19 Nov 2025 13:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02FE3612FD;
+	Wed, 19 Nov 2025 13:52:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="rFMwkwZS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Snt6j7LM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C142F35FF55;
-	Wed, 19 Nov 2025 13:48:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF67035E523
+	for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 13:52:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763560116; cv=none; b=EH0XSpOGUbS80uU+dzf2PoYdOMYDe4zAIgB9DQVG/GGlB8PnUT0PkTLv/dVGVR1KdAHNafHvNJutEOdhr3FJLmWlENxUYO4QLc9BuHr28u4SOAgnkZfyww3EOiymlyAGBUwCKfZGp+adJ2EQe6QvXTCEEn8sesfOaE9T36Hf+Bk=
+	t=1763560328; cv=none; b=X+MpUtrZ52babNS1gLbIx2JTtXk5CKPdzZKtamFSZ/4MNdrVU0mxVOM/Q63VIEeDemsvJLnKBWdRFY8gLlVvNJY99ix+ebOGFzwgm3K3+TBlTGCAIEGOD9+BN/UhYfSERLXAXQdMhYZOUoVwsGmiUL2/lRvlpHpdDwZD/2s91Qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763560116; c=relaxed/simple;
-	bh=xZVbLtQtCTrrDEgWar98Jt+Zmc5VQCpCV/VIbnHZMZY=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NB5drzXbvE294z+VfosxRXRktlqc20Y62FsdocP3yN7Qdx59ME/2Xn8Xj75Zo/SI5Elw11noz4zccgQreiJYX0YINu5uKgnd4A80P6n8VBNYxPA3yERME4gdGA3VHw/4/Pvysc4rCX5BQPCS/E1z5seizJ59K7UVQA9H3baCRDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=rFMwkwZS; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1763560115; x=1795096115;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=xZVbLtQtCTrrDEgWar98Jt+Zmc5VQCpCV/VIbnHZMZY=;
-  b=rFMwkwZSEpfpqkqSXXbNQAA+mMxgA14rh7vtV78osr8uzZD6/lYcy0Dj
-   zHPKs3xXS1WzcQydAjiWrYqiasnxHYlfbg9Dxk+03WCTjCZ743tuxG9m8
-   xaQaaM5R4piXkbXG9bYcMP0obCr5hPA9ae78nkgZvJwSeHhZ5cFM0yoPi
-   2xVBTDBWCLeWPsTLdpuFvjw7egMcGGmOz9P//CK4Yx47QIxTmS1Oft82u
-   +G8hihx0Ue1k7F5eJmvU/HTr5ULyLgR6sCHeQh5qeMTojo1DtdJF+xUXT
-   YHAHYSRRSithaOGUKM778UTMJg4ydSAIn2kKsSF0Y1oZERia7abMg+8Ib
-   w==;
-X-CSE-ConnectionGUID: 71KvCTRZRcWm48O19CYCXg==
-X-CSE-MsgGUID: SRxyaEjXS92SKLxPNJQCnA==
-X-IronPort-AV: E=Sophos;i="6.19,315,1754982000"; 
-   d="scan'208";a="49381641"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Nov 2025 06:48:34 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Wed, 19 Nov 2025 06:48:20 -0700
-Received: from DEN-DL-M31836.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Wed, 19 Nov 2025 06:48:18 -0700
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
-To: <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH] ARM: dts: lan966x: Fix the access to the PHYs for pcb8290
-Date: Wed, 19 Nov 2025 14:47:50 +0100
-Message-ID: <20251119134750.394655-1-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1763560328; c=relaxed/simple;
+	bh=9Sw7qNK2MuqEfcGlDiodQEmkMQSxPXI8ojkn2672gPY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZCStQCYzUhnHlyVWHxqW9QOLiGWUXCH7hTcYPx0Mwj/zKnxE8yVD1Edp+aNWz6zXqpt/gg1QXWA8XPLso1SDx4JHpp6WdKRlXUDRFat38G+gagIWz82AGJ5EKA3ivtYxqatYcnZjb1XLXwXAeI9GL6461SEIk4XulNfV9tDw3+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Snt6j7LM; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-594330147efso6717970e87.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 05:52:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763560323; x=1764165123; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9Sw7qNK2MuqEfcGlDiodQEmkMQSxPXI8ojkn2672gPY=;
+        b=Snt6j7LMr4k9kZO8xqFcQpVv8OepnY4KrYS3NPi2/fSBBSq+/W4E6Y+Nb50ZpN1xgH
+         1Ii7RksL0kRAQipraGoxabQ66PlwbcDixQTl/8pFw9Pd/uqsViV5Y92oIQlJalZLGtzZ
+         vMdf/TkiQg96uzTO70A+QrLzd+pcORoHcbgPv0WHIUakRIzziE2ug4YGa8Vhhjwx4bLP
+         vhV/TGB247IWW6BenW497MUVUz7pvyHOG0uMIMfcJZhVg2TXSf8iy56iBmvsgI6N9Lny
+         P8f1/kij6nMvzOElOEp1ZNAKIXanN/r2+5W21iUz8w7Abova9RFSIupEhgyN68RPpOMA
+         KegA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763560323; x=1764165123;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=9Sw7qNK2MuqEfcGlDiodQEmkMQSxPXI8ojkn2672gPY=;
+        b=PvAO7bfK5Xh+v6GcTY7UXFTpijTkh9C2G7gvfCchVfoyPRzA7tuVSfm54f1MoiBIzv
+         Grx8qYXCt/AzYPRGY6Kn1MJsdPwlTrbnuER8SFcqoxDCTubWoZmkxSq4iUE30YJYcTn2
+         APXBatp7bwtLJPt8dlHBd9s4LHsqzZMYZg3mbdI0rGAnJKoOmfFmaPRLTFYbZzrgkQYX
+         lglMlm1yZQBNtqAqEFa0LNqJx1xhED8mZyb7/vIeEzY/N/Maz9yKU3AtDKfoPITNQmup
+         oMZnjXa5qLuQvFxBkxhWkjVWFM2CBv7hhyms6AhoOcQVCrSNI6Acr5INuWn3uS0iBbAd
+         KIhA==
+X-Forwarded-Encrypted: i=1; AJvYcCUoOcEQb+kKFanoT6hV97S/YNbBvaBgF1aHWYO7Kv/KVtYHJelLrZhxsGDKckKx9LjL6iHwD1XTHa9o@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxj/gPWrBb3nV+cdTmDI1/05tFGwdeFQQ94avfDYVMZ4hQKArbJ
+	MpmFhgvGzV+BMgnV9y3eB2CME5oI/Hf8H4iqb/yqgGLXSzH3216AYHuXhKttejTcMok1uXpiAFr
+	/YQ17ThcGiv5C/5hgGDrWPeNi0OHarLF1uDMCEzKOEw==
+X-Gm-Gg: ASbGncvS6cEcpPXWzaRKAojdAnrRZa1CpomqZwvx6Yc46sFjnYDbXpqwaoiHkx9FBqJ
+	wUL7fgL2YTAEhInJqB+rxwYj1I5NF94gTujWtb9RTu7QRc+C9ZpvuG6BHQZX+7ZnE7ADPgCzSIL
+	17Ofv2DfWJFI1REspADDba7XVephN4cVVEbJqtfSz4CCwqMp9nB1gaWfdIeYSe9/5ZoLo8RJAnz
+	N3nImSHMYciVtvcw+Hr2Evanozua5/pspSuRWs7JHOFg4fuu8S1oLR6oFOI3A+DCovw0mw=
+X-Google-Smtp-Source: AGHT+IEmqj3lGDApr9edrXMaFwN0H3cZ82GlBpdq67AUQg80YKIMgCzJi1RzhM8yWFVqY0UQAGJbUbSB8ccCc0F5BHI=
+X-Received: by 2002:a05:6512:3b9c:b0:578:f613:ed9c with SMTP id
+ 2adb3069b0e04-59584201168mr7597957e87.43.1763560322586; Wed, 19 Nov 2025
+ 05:52:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20251117-upstream_pcie_rc-v5-0-b4a198576acf@aspeedtech.com> <20251117-upstream_pcie_rc-v5-3-b4a198576acf@aspeedtech.com>
+In-Reply-To: <20251117-upstream_pcie_rc-v5-3-b4a198576acf@aspeedtech.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 19 Nov 2025 14:51:51 +0100
+X-Gm-Features: AWmQ_blwvWUHZn6LSm0qwvTRD5Kr7vftxNarMVR6ZM3aN6PFLC6U4mHy-OgOWik
+Message-ID: <CACRpkdYp4NuxDA7QLnqQ_pfd7sFZuDjCuZQ8Jim3BYXN=u=2Xw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/8] dt-bindings: pinctrl: aspeed,ast2600-pinctrl: Add
+ PCIe RC PERST# group
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, linux-aspeed@lists.ozlabs.org, 
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Andrew Jeffery <andrew@aj.id.au>, openbmc@lists.ozlabs.org, 
+	linux-gpio@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The problem is that the MDIO controller can't detect any of the PHYs.
-The reason is that the lan966x is not pulling high the GPIO 53 that is
-connected to the PHYs reset GPIO. Without doing this the PHYs are kept
-in reset. The mdio controller framework has the possiblity to control a
-GPIO to release the reset of the PHYs. So take advantage of this and set
-line to be high before accessing the PHYs.
+On Mon, Nov 17, 2025 at 1:38=E2=80=AFPM Jacky Chou <jacky_chou@aspeedtech.c=
+om> wrote:
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- arch/arm/boot/dts/microchip/lan966x-pcb8290.dts | 1 +
- 1 file changed, 1 insertion(+)
+> Add PCIe PERST# group to support for PCIe RC.
+>
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm/boot/dts/microchip/lan966x-pcb8290.dts b/arch/arm/boot/dts/microchip/lan966x-pcb8290.dts
-index 3b7577e48b467..50bd29572f3ed 100644
---- a/arch/arm/boot/dts/microchip/lan966x-pcb8290.dts
-+++ b/arch/arm/boot/dts/microchip/lan966x-pcb8290.dts
-@@ -54,6 +54,7 @@ udc_pins: ucd-pins {
- &mdio0 {
- 	pinctrl-0 = <&miim_a_pins>;
- 	pinctrl-names = "default";
-+	reset-gpios = <&gpio 53 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
- 	ext_phy0: ethernet-phy@7 {
--- 
-2.34.1
+This patch 3/5 applied to the pinctrl tree.
 
+Yours,
+Linus Walleij
 
