@@ -1,220 +1,139 @@
-Return-Path: <devicetree+bounces-240509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A673CC723C8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 06:16:51 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BE0EC723E8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 06:26:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E7008352048
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 05:14:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5CC654E07EC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 05:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A50F0BA3D;
-	Thu, 20 Nov 2025 05:14:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AEF12FD7B2;
+	Thu, 20 Nov 2025 05:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="w51/XmYE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l9M0Y2pr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azon11011069.outbound.protection.outlook.com [40.107.208.69])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5EB92BE03B;
-	Thu, 20 Nov 2025 05:14:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.208.69
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763615678; cv=fail; b=NEcnVqiB5FatVCE6cb4oIMHAea6jWQG3zdEGKq522ohhjE3EJIzVYY7E5H5mZoLE20A5f1S4qfE7jbFfOl9XGfOG3nN7e7G7G7LX8JHAWTvgP8UpDjPogbnsncnTD/x76xPK7VWpw+egCBsvbcAzEStOERmHX36DpKtcaST1o24=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763615678; c=relaxed/simple;
-	bh=oHpO4/ixV3yePB9Ip9VfWD9t9j8Xb0LVbbrQkMt91fM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Wp/HQ8D0AuSNHm48TzSoaYoWAsuhWJOwvUHxVhPS/Hben446IcqKBdzacaH7Sa+/gSc2NYCJxXkg9gvH/MhCFYtHPWsdWhlkDsKkT5hfIME7Jgqc400Tq4NYgiPPbmBd0Rp5f4ARQAc6NqCacKOO+3ewr1MQQCErHv4fbEXH2Mk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=w51/XmYE; arc=fail smtp.client-ip=40.107.208.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JxVPaHok4SzBoEWNSsmVdNkBvvzHBTFhepLw+HT6HSSfspA7iwqFyT8ppDt74Vu2Y+JpRpOWXrl3VFpA5fq7LO/g4oLyIQZ+cIoNkzx05chD+v/1ugZY5/0vI2HfihnvvsFSGniy4cjods2TCsMC58dZwQ2pqN28ZmZTpmKc2bZIeaaFRI9zV91RttRuiuXmT5VhCNXZgaJb0hkorSCamN+XpYkcityl+i0t8r/xhbvbuxNu13WY+jLw9PspO/Q3gJmc54MG+EsH3m9jr4ZEJlINSUGKIgw9ZWdcc+nHinNlTl/7tfZq5QvZtaYtXTFl9EUA4sWm5UUXs9/oEUiEsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cL0Dh91o1bCVwoX8NEcemWJh5bhQJzeBH1jlX3hGHiA=;
- b=OvILzlidzVv0eUaqYH5gL6G+QaXAgIVDOe0vhiEQKQcZsBgxs5xWNwD2wlNgD/RGG4jI6HJleyeebumPQo/4H+4RMQ1AX4HVP3K8jxyV2bFXTyUQplX/RVm2WVvgK/igoD78s1hbk1XmfNEFrpPmk/UlxDhh7+mJYfpIEfgqEjLyibMDSJjpYIj+jBTl/au/wkrg+F6+g2Um9UFw2Mv2DCGdBUFLuSR2nJ68MR4V5tnrpdGSC6g6/jnUh388bNq8dRm62sRTWwBJTvx6/yGWIWkNagucM1wc0RYndfV5CGldT3dGKuKGQnuAAKmCilsZas9eBzBS2f/5v0aHLKh8kg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cL0Dh91o1bCVwoX8NEcemWJh5bhQJzeBH1jlX3hGHiA=;
- b=w51/XmYEAZSxp+8Iw1056aOiac8yNZxoakYECloM3Wgy7+nchbttQROFGq/JTQ/NuVLFkxXwgITgG85DYwBBmskqLWI87ZW999/ipgu8AdnwGCXXI1QCSGA+LD9kOtxxBhQqECzZiAqUHVLz67JSf0WVnB3yQTuXa9qFLyoV7Hw=
-Received: from PH8P223CA0002.NAMP223.PROD.OUTLOOK.COM (2603:10b6:510:2db::8)
- by IA0PR10MB7158.namprd10.prod.outlook.com (2603:10b6:208:403::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Thu, 20 Nov
- 2025 05:14:32 +0000
-Received: from SN1PEPF000397AE.namprd05.prod.outlook.com
- (2603:10b6:510:2db:cafe::28) by PH8P223CA0002.outlook.office365.com
- (2603:10b6:510:2db::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Thu,
- 20 Nov 2025 05:14:31 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- SN1PEPF000397AE.mail.protection.outlook.com (10.167.248.52) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9343.9 via Frontend Transport; Thu, 20 Nov 2025 05:14:30 +0000
-Received: from DFLE209.ent.ti.com (10.64.6.67) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
- 2025 23:14:29 -0600
-Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
- 2025 23:14:29 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 19 Nov 2025 23:14:29 -0600
-Received: from [172.24.233.103] (uda0132425.dhcp.ti.com [172.24.233.103])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AK5EPLA3096606;
-	Wed, 19 Nov 2025 23:14:26 -0600
-Message-ID: <a8d1aaa8-9204-42f1-9e2d-3d20d5025efa@ti.com>
-Date: Thu, 20 Nov 2025 10:44:25 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929DB1D2F42
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 05:26:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763616368; cv=none; b=h00ik/wYPSejHHU6iiGZ8ipsaYjawxpu6TD0VUoexYX2VuBA9vjj/W2f884Sji6Wyy1M+tIU5lE5oiRKazE7sSEcy73LKxfse+Tf1I9GJkRMw9vKNHm2l8ygHoXDtK0mrHNMfIAkR9+a1D6DP/Tubco1tcWEyJIsz3FmzxoX6tI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763616368; c=relaxed/simple;
+	bh=lg2jHrJxqbgoMaTKC4ITbkxnQHARHKleNAEPRdJp6v8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rAxesJRJXNqN11yz3GS8yt/+rubHMSRNL9a36kpnXrxtL6KWFoHhGeJ8a6MwW4tNdq/tL8thmr3humBQcBAiQOxAmRrN4VSxJAsdPi4Bz/k0tRlVlvd2mMqtY73FJW0kp2KL0qSBpsYA32w/JuDb6V82jH3bHJ+KLMrlDSHz60M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l9M0Y2pr; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-343806688c5so378749a91.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 21:26:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763616364; x=1764221164; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XK8FGpJd/gRCbg6Rh2iKRhUNOEC1c+hhwCoLg8DxBR0=;
+        b=l9M0Y2prL+ic55yqsaQuiKy2rI/ZMnB1ZqHh0nv0SHTVbuisc3XTCRnsep8fj9VEKd
+         1cNRsGW2w/hlHUmOuT37FZf3zU4uxgOp/PnJF604rLi7yTGpfKrUY8Mq6AFjCk5leR8+
+         Wi64yliSuhQYSoGn/CXzxHbsG1lZRHDuOJniLdo+tjEwimBuJW9gUzJDgV8pCmPKF+v/
+         Yk/rhPMJVkIR5y2oTW8WLHDpbYhtdX65zjuwW803r3iONMRvxvpyoR4exX+TmQltW1cN
+         LC8DjDqc0nS9xDT0zcvF1pxyNWupQ0V39NlMSDoZzObH+uLpbzlaA3Sb8tzt3Y9O/Kkq
+         /5Xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763616364; x=1764221164;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XK8FGpJd/gRCbg6Rh2iKRhUNOEC1c+hhwCoLg8DxBR0=;
+        b=NpFbw2/Yq1KFzWf4IEFIyKDMGY5KVPqHmOznbk6juK0UMEfksxZuujpOrCKuxysRuq
+         qB4vTe++8Ch9kG2P26qnXnpabKAlsZieMUJqsXOVz8UnFu21qh+vhUD9NSQdICX7hDEb
+         43z3YzQh+pET/TdEMRE+3083msnZ8L2dkW/4F904Zmdf7LX57VGCeaLypc/sEABNB2vf
+         1X5a6bM5GCVgP3H8fx2G+25Op/xMCW8/sqFAhmCXmkMVfXHgi926dVLyWNm4oUUBb9WP
+         M+pl1fybH3RFnKyY+LPx16PidC/csi8CNIZJwn7AVRQN31LCuBrnydTGP+DJ0IFwdF5b
+         EOWA==
+X-Gm-Message-State: AOJu0YwctJeluWY/didN0/5qmy4J0Xcxur1CjWQ1wKExokDyvu0wn4aM
+	OLCZXehOlqI4ZiftpdIBxSSgU+ofzWyhkhbluvLc2LikYvTHCVbsDXpW
+X-Gm-Gg: ASbGncvX9DSHvDoceP0yjsUrpIV6Dxn3K2NQnN0DIousF6OnV+ERU9GBpojMACLVt8h
+	OnoupLJ4t5SAzl1MMD0ZCBWvvuL20ZS6B+YAMbMKZmXcu/VfnI8P8HyAuLe3H+rCE/wu9OeJQkg
+	jIcw6s6obzsbFE3iDVeLUkzFjAueh1vpsiTlMY/Tq5lkDY1dst/vpdGsICUCwnN4a31OFntadCh
+	CbReZmb6lhsdwRmJNDsuFyJdIT8w2LP6H3IvZVO2LcuFfhCjyL+aOegip5yzvomPnf/BGFPr45K
+	h0ZKh8QfAfRK3vENhZSUcA9GAopo3KrVt4bF4D//cBBW2piOtjkOIkDQpJbEC3e33bRhfgb7+kD
+	byOoYHuK3H1Rv7Wy/ZPdSun572je/fGQDxPHnxCgF32mPEu/zQ4AjIOuD9gQXV9KkVCVHQrXB/t
+	8zxIHA7Z+I6aw3TVlZgipoP/E4+VC+5iCS282eg0kHdtQFyZ7pyiH8qrNWVxdG3Gt5xxSr7d2Re
+	4WWGgaq36SSCmmmhCERpMjQt1CwAGgbbcViTzRJM92ouPuYXHcbpVyIdULPqfE3XgpQ0gYzPfHR
+	WXgQOnE91W7lv7ZkBT/Cow==
+X-Google-Smtp-Source: AGHT+IGRKwLmW5TfFmdLBz3341tnXeMORxmdp+rmYdWoNAuomZUITEEz1HkqEwACgq+mI0ayc0njuw==
+X-Received: by 2002:a17:90b:2cc7:b0:340:b572:3b7f with SMTP id 98e67ed59e1d1-34727d56695mr2083615a91.20.1763616363754;
+        Wed, 19 Nov 2025 21:26:03 -0800 (PST)
+Received: from 2001-b400-e301-38bf-be0d-b72c-6bec-2812.emome-ip6.hinet.net (2001-b400-e301-38bf-be0d-b72c-6bec-2812.emome-ip6.hinet.net. [2001:b400:e301:38bf:be0d:b72c:6bec:2812])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3472692e5d3sm1221342a91.9.2025.11.19.21.26.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Nov 2025 21:26:03 -0800 (PST)
+From: Kevin Tung <kevin.tung.openbmc@gmail.com>
+Subject: [PATCH v2 0/4] Revise Meta Yosemite5 devicetree
+Date: Thu, 20 Nov 2025 13:25:57 +0800
+Message-Id: <20251120-yv5_revise_dts-v2-0-4d7de701c5be@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: Add missing applied DT overlay targets
-To: Rob Herring <robh@kernel.org>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Wadim
- Egorov" <w.egorov@phytec.de>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20251117211316.725960-1-robh@kernel.org>
- <002fad46-adb5-402e-8eb0-e4c71b862674@ti.com>
- <CAL_JsqJNOeKViuUwpLf-7RzBDB-EMm35MumJsGZ0deX1cLx3CQ@mail.gmail.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Content-Language: en-US
-In-Reply-To: <CAL_JsqJNOeKViuUwpLf-7RzBDB-EMm35MumJsGZ0deX1cLx3CQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397AE:EE_|IA0PR10MB7158:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7bd1e39-ea49-4efd-7fb4-08de27f3af72
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Q2lMdEtFYVhjb3Bxa05SNDdkV1pLd1kxRmlTM3pVLzhmanZHZ0p2VThETWtz?=
- =?utf-8?B?UzZsQ0tNa0o1ZXlqRFBIdnF3UkJVRVp0OUZOeldqMzgxK0JXUUl1VStra2VT?=
- =?utf-8?B?N05kb2FSTUg2alhLVW9vdmZWb2lJQVROeHlwTDljMjI1N05KcmtYVkR6azdM?=
- =?utf-8?B?UXY2aE9DKzc0SXpJWHVrbWNOOXo1b3NESm8yc3RMVFY3SkkwTkRhTzlCSk1i?=
- =?utf-8?B?TnJySThVdk93TkNjQk9RMFpUZWFUcTJOL0NveWNWZW4xYnVEbk00TWhocytD?=
- =?utf-8?B?RE16b1J4VkppVlU4Q2hQUkV6ZEVTQ2hCMkJLMTFnQk5xYndDU1dLSDlwL2E3?=
- =?utf-8?B?Q1ozVndkQ216M1BPeDBPcUVtbTdMcHMrU05CZlM1MlBSci8wN3ZzTWJJL1lv?=
- =?utf-8?B?R1lxUDlPSjJxV3FSWS85RWhJaDBjQ1AwT094UnU5WUV2R3g0NUFrT1RTLzlR?=
- =?utf-8?B?VW1RcEVYL1lLWkcyRXpnTmtNY0thVlkxMDEyOURhOHpqT0NuR1pFQkh4RDdF?=
- =?utf-8?B?eGR0N2N5c1plYVd5R2IwckZMQmcycHRFYW1kNGh0Mno1VGl5V3lHcGFxOWFm?=
- =?utf-8?B?OWxCaTZoUThYL2Fjay8yZEhvdHl4SEN6ZTFpeGdic2g4eHZZWkpMakJ4eEJW?=
- =?utf-8?B?RXdZYmlKYzVXb2RXYjFJV3l5RlYzWWVQcUdCdDZMdmxnSit0U3doRnd6MDFW?=
- =?utf-8?B?Y1VIR2VCajh3a1lyU09UNEUzZERGbjhBTFRsMmRnaFlPeVY3bWczK0dxNUhT?=
- =?utf-8?B?bkw4QmZqK08wVjVaWDF5UndtNDRqL0dPSThwaWVIYlFnbWl5Y3RFbnl5Mkor?=
- =?utf-8?B?TlV2dUtXTTVMUVExRUlUK3pXRHNkWXNVWHMvYm43RERmSWRDejVvb0FFMXla?=
- =?utf-8?B?ZXVHOEpNb3dlMWJvTkk0VFh2REphTHBZNC92VjFzZ3NDMlI1VDVSc0tVdCtH?=
- =?utf-8?B?RllpMmxYMkpGblFxaTdoaHdsRjg3ZTlGZk5vZmluL2lxZzhHMHdiVkJ1elIy?=
- =?utf-8?B?VXBIY0RvNktRakRWWHVucGRvRmd4bHBRVG0wY2RsSGpZcmtwbjdxc09NOVV6?=
- =?utf-8?B?aVZNNjRiQVNBcE9UT3h3Sk85a25HTSt4ZU5YSER6SExiWFlVMDRPTXExbjZZ?=
- =?utf-8?B?dWVOZTh6TWEzQmxVVDUrK3R1TlN1NW10L1J2dUFYYU93OFQ2WlZYV0h4YW8w?=
- =?utf-8?B?RHlnakJsZTY3dFFTT2dyR1htTG1hZUZYMFdBYkI5YklrWVduM2VhajRRTEI3?=
- =?utf-8?B?empJNHZZenFSeUVuZTVETVRkM2JLcHBhT1pUNU01Zk5QcmR0RUpGQzdrTGpM?=
- =?utf-8?B?aDNhSFBYSlVFcHJhRXRwdWkrOFJXeTZpWEEzWHlSQUhIMjVmL0s2MEJMbkFS?=
- =?utf-8?B?Sm0vcXJkeDBLcmdqdkRCVmtkcDhOcGJ4b2x6WmZzaFRJNjRkSHpiVGdCNDdJ?=
- =?utf-8?B?cnJ5azc3aWR3RWpDN2RuKzJOWWV2Vzh5Z0NTTFF2eFZmOU43Z2xSWTRWd2hQ?=
- =?utf-8?B?dkl5WjlQNUpaaExCdlFMZ0hYalJ3MEJvK216NmpNMW1ta0ZpU1lFUDRIUG9q?=
- =?utf-8?B?bXdISHV3Tkc1bmJiQ0FIT2M1VGx3bkw2ZVZXNU5PbDVaSlR1WXFDRE1vbjdk?=
- =?utf-8?B?NzdVSlZpYVBQYVBQeFlEUnVTaG55c0l3cHlYRjBXcTc4L3JxLytGVSt1R3BK?=
- =?utf-8?B?MnNKelZDMVpsYXBUOERGOWExd2R4OVFVd09kVTVxMGNITlhETThtOHlwbEx4?=
- =?utf-8?B?RFk4QjhUNHpnS2lzN0JocjBjN2VNeG80Qlljd3JOMXVDNEw3KzZpMUtjOHFX?=
- =?utf-8?B?ZndkZ2pKVm9ML0NsSWxvR2F5V2x0UWZaTDAzZ3BGTC9XYWhpT24yQ2crRjk3?=
- =?utf-8?B?bEtqWkJMVSs3N1VVZzhBMWV5cXcrMHhCczVUNFhRUlYxeGNYeWx5KzlreCtn?=
- =?utf-8?B?ZlZWdEZtL3BWUlF0UmkzSUVuWVJUcFp1c1FNVEU1bEVKdWRTNy9DYVJtN3Mz?=
- =?utf-8?B?SDRJbitUTmZjMjRZT3BBQ3E1MktzRkFlOGtPczIxSEVJWHM4MjdYaG9sek9z?=
- =?utf-8?B?Z0dQZkdxTFFRbndhYWg1TU5JbVMzdWRna2RYQkhkQkpEWS8vYVlaUXhaUGhI?=
- =?utf-8?Q?yPdA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 05:14:30.6773
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7bd1e39-ea49-4efd-7fb4-08de27f3af72
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF000397AE.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR10MB7158
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGWmHmkC/3WMwQqDMBBEf0X23JRsMLb21P8oIjZZdaGakkioS
+ P69ae6Fubxh5h0QyDMFuFUHeIoc2K0Z1KkCMw/rRIJtZlBSaUS8ij3qvgypt1sQqAglWdtq20A
+ +vT2N/CnCR5d55rA5vxd/xF/7VxVRSDEa2zzrOqe93Kdl4NfZuAW6lNIX93AXBawAAAA=
+X-Change-ID: 20251118-yv5_revise_dts-12e10edd95d6
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Amithash Prasasd <amithash@meta.com>, Kevin Tung <Kevin.Tung@quantatw.com>, 
+ Ken Chen <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>, 
+ Kevin Tung <kevin.tung.openbmc@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763616361; l=1026;
+ i=kevin.tung.openbmc@gmail.com; s=20250924; h=from:subject:message-id;
+ bh=lg2jHrJxqbgoMaTKC4ITbkxnQHARHKleNAEPRdJp6v8=;
+ b=rT/dVjbKgo2z9etA2QhmDgpnEgtLGOvLpItmQ1ufeR+WHVaWVtYQ8Nhh4/3EdyX0Cnixja2eV
+ Q8efbvA4UxrBtX8ICLtcXY24k4Wq4dmaXAAKyzBKi7nCsPs2xXp7q5c
+X-Developer-Key: i=kevin.tung.openbmc@gmail.com; a=ed25519;
+ pk=PjAss0agA0hiuLfIBlA9j/qBmJaPCDP+jmQIUB6SE7g=
 
+Summary:
+Revise linux device tree entry related to Meta (Facebook) Yosemite5.
 
+Changes in v2:
+- Add ipmb node for OCP debug card
+- Link to v1: https://lore.kernel.org/r/20251118-yv5_revise_dts-v1-0-fcd6b44b4497@gmail.com
 
-On 20/11/25 03:26, Rob Herring wrote:
-> On Wed, Nov 19, 2025 at 8:47 AM Vignesh Raghavendra <vigneshr@ti.com> wrote:
->>
->> + wadim who posted something similar:
->>
->> Hi Rob,
->>
->> On 18/11/25 02:43, Rob Herring (Arm) wrote:
->>> It's a requirement that DT overlays be applied at build time in order to
->>> validate them as overlays are not validated on their own.
->>>
->>> Add the missing TI overlays. Some of the TI overlays have the first part
->>> needed (a "*-dtbs" variable), but not the second part adding the target to
->>> dtb-y/dtb- variable.
->>>
->>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->>
->> Look like there is more needed change needed.
->>
->> https://lore.kernel.org/all/20251119123216.1481420-1-w.egorov@phytec.de/
->>
->> Could one of you post the superset patch?
-> 
-> I'll leave it to Wadim.
+Changes in v1:
+- Increase i2c4/i2c12 bus speed to 400 kHz
+- Update sensor configuration
+- Rename sgpio P0_I3C_APML_ALERT_L
 
-Probably best to merge Wadim's patch first and then then delta. I will
-take care of posting the next as TI board targets need a bit more tweaking.
+Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
+---
+Kevin Tung (4):
+      ARM: dts: aspeed: yosemite5: Increase i2c4/i2c12 bus speed to 400 kHz
+      ARM: dts: aspeed: yosemite5: Update sensor configuration
+      ARM: dts: aspeed: yosemite5: Rename sgpio P0_I3C_APML_ALERT_L
+      ARM: dts: aspeed: yosemite5: Add ipmb node for OCP debug card
 
-> 
->>
->> I have already sent out the PR for v6.19rc1 for TI tree? Is [1] plan to
->> be merged for v6.19 cycle, if so I will plan for a follow up PR with
->> newer version of this patch.
->>
->>> ---
->>> This will soon be a warning[1].
->>>
->>> [1] https://lore.kernel.org/all/20251114222759.4181152-1-robh@kernel.org/
->>
->> BTW, with above patch, make dtbs seems to fail w/o CONFIG_OF_ALL_DTBS=y.
->> Is that expected?
-> 
-> Yes. What's in linux-next now is fixed.
-> 
-> Rob
+ .../dts/aspeed/aspeed-bmc-facebook-yosemite5.dts   | 25 +++++++++-------------
+ 1 file changed, 10 insertions(+), 15 deletions(-)
+---
+base-commit: 111e542d267576de402d0836603e1def2b60316b
+change-id: 20251118-yv5_revise_dts-12e10edd95d6
 
+Best regards,
 -- 
-Regards
-Vignesh
-https://ti.com/opensource
+Kevin Tung <kevin.tung.openbmc@gmail.com>
 
 
