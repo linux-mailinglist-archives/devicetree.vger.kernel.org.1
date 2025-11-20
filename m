@@ -1,132 +1,96 @@
-Return-Path: <devicetree+bounces-240745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0EE8C75024
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 16:36:29 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C782C75075
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 16:38:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 7D6A431848
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:26:25 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EEC593652D8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96791364EB3;
-	Thu, 20 Nov 2025 15:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197B935FF7A;
+	Thu, 20 Nov 2025 15:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="l9S42diO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="biRg2Kjb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B19D366DAA
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 15:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57D335CB81;
+	Thu, 20 Nov 2025 15:23:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763651908; cv=none; b=NjsUH+hsz3wy0qvHv0v1mH/uG8tuNl6+rBn+miHd9SWJndH/Sdt00PbppINIxo9OAFJoOR3lsciSKcWKuZRQYQ//sAVjYrhw2p1X7I7BYoupZ4OgjUh4auWTDn09zfsIbHlLwDxOabAU4EXxG6PX2s0+LBoDIZ0CIvIAvArGr48=
+	t=1763652222; cv=none; b=GR2zh39M0IqHyqnhGVTeUwd523Il+RRcqw63ceyjKFtWlo31ZIfX8zr9FnNvfhCPa2KSqwMRUzHkkc9UYkA60qUKjCX/DqYcwZBun8rCxyPbmTMtm7LtzLK32gWhTB4mhXXynEcbti1yq9f4JoX1JZjdn2o3sbtQw71Q+oyiW/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763651908; c=relaxed/simple;
-	bh=KiKmLPo0LId2AqBx7SKloWwEHaffPU4qyU54oEDKIa8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FQL9P7T6S1zOUN3ZpkyrkSDKOYlQ0c1kE8g5de1V9CyNEvjXHo0GY+0lI/ypCH4mbcKeAFOd4swg1XGW4bjVrfJVUGXHUn+i2EI9i8eprrqwSIvbC3LoJIMtGTONsAToMcV39QxpJvuGUMZwv9lhTwKONNYKpYkwI119VcnOQ1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=l9S42diO; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id ED2D2C111B0;
-	Thu, 20 Nov 2025 15:18:01 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2C8EC6068C;
-	Thu, 20 Nov 2025 15:18:24 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1371810371C4F;
-	Thu, 20 Nov 2025 16:18:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763651902; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=W+w9uzAPuUadr/2vcu3RjzEbTIq1CSq9medNjoIyd0c=;
-	b=l9S42diO51gPGUNuhEnHQSnWSxeL7UtQyzWf+pSUkD1kHEiJLJ2pxLkp7FW9teyxIjXeM7
-	GjWKcU9mPtqPUARnLTB3ODK0eZk1VkcUWYggdmpPLYWEwWavemElCdfRIimMfNBGkrc44R
-	GfJd21OqCv3vIdx3ElchM3qWyG5kH3MY8B17grroqx8eE6LefdKu7NWY2NY9qgsXmOufzK
-	SPI/OvH7FwMVdEIafwEKK2MLS+gq44ozi4hBBVG84S8XT/UIoO2PlY0dPj4Mx0IwzrYzDc
-	aCTBmsdZC7uM6gAaoQzZlnJlVWbMcQ7lEVSNmdFhnJRosCsGAmk0OA+xXUyoPw==
-Message-ID: <2fbd40ed-40e6-4ba2-b914-1f6d2d26dc85@bootlin.com>
-Date: Thu, 20 Nov 2025 16:18:14 +0100
+	s=arc-20240116; t=1763652222; c=relaxed/simple;
+	bh=0MNEyCDiMjE2vsbrKi6Sd2Jmx0BtFcSOJN/HQidrjv8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kQ03PDQWQJS6PQFkJgNrrzo+f6fx1jSOa/Q583eq3PpNSt4Cnn53v8MlA+jGMQQpLEtDrcfUfo3g2tcDXePE0ijO8r5F3lMljL8djIntOKMMb7oej/L4HBUTwhgtai8uyJDdlzMlOf5ODQ1Y+5ob5zTMN0yfx9LBs/o8FU+pY/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=biRg2Kjb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338A2C116D0;
+	Thu, 20 Nov 2025 15:23:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763652221;
+	bh=0MNEyCDiMjE2vsbrKi6Sd2Jmx0BtFcSOJN/HQidrjv8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=biRg2KjbGYCiUsqPAXuvHTgF4YX5ZoSPv9h1d4D0oeMQj7/06VDWNGkAEoNo2LBTH
+	 qw2JrtQykNbJWU0AkAGZmlr5WbQQIBcQ+bVFLcklUy0cF6sG221e28gQVlS2eOaurB
+	 hLTZeFCg6dGqnX4yFnlW6J9+BSmRf9FwTHxEsyMHWmftTO9Po1a6Rpj+siiVbIqL+r
+	 gLFjlGph03p2zYFEbg1ICzd4zMCHgJ+7ebnfDqiFJjslw+Bi1KoLKM+GcqQYxUlLsT
+	 D8h4AzcgzLloBdvZRSSy7u0ViK/XOT8Id3A96dRgin2lc+WR0e/6zWcWP24/yrU298
+	 O/H/iK+Fyo99g==
+Date: Thu, 20 Nov 2025 09:23:40 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Vincent Guittot <vincent.guittot@linaro.org>
+Cc: Ionut.Vicovan@nxp.com, linux-arm-kernel@lists.infradead.org,
+	bhelgaas@google.com, linux-kernel@vger.kernel.org,
+	ciprianmarian.costea@nxp.com, conor+dt@kernel.org,
+	linux-pci@vger.kernel.org, s32@nxp.com,
+	ghennadi.procopciuc@oss.nxp.com, imx@lists.linux.dev,
+	kwilczynski@kernel.org, jingoohan1@gmail.com, Frank.li@nxp.com,
+	larisa.grigore@nxp.com, chester62515@gmail.com, cassel@kernel.org,
+	bogdan.hamciuc@nxp.com, devicetree@vger.kernel.org, mani@kernel.org,
+	lpieralisi@kernel.org, mbrugger@suse.com, krzk+dt@kernel.org,
+	Ghennadi.Procopciuc@nxp.com
+Subject: Re: [PATCH 1/4 v5] dt-bindings: PCI: s32g: Add NXP PCIe controller
+Message-ID: <176365221942.1402463.4737452946243069736.robh@kernel.org>
+References: <20251118160238.26265-1-vincent.guittot@linaro.org>
+ <20251118160238.26265-2-vincent.guittot@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v17 03/15] net: phy: Introduce PHY ports
- representation
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
- =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>,
- =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
- Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
- Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Romain Gantois <romain.gantois@bootlin.com>,
- Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-References: <20251119195920.442860-1-maxime.chevallier@bootlin.com>
- <20251119195920.442860-4-maxime.chevallier@bootlin.com>
- <20251119195400.1bf0cc68@kernel.org>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20251119195400.1bf0cc68@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251118160238.26265-2-vincent.guittot@linaro.org>
 
 
-
-On 20/11/2025 04:54, Jakub Kicinski wrote:
-> On Wed, 19 Nov 2025 20:59:04 +0100 Maxime Chevallier wrote:
->> diff --git a/net/ethtool/common.c b/net/ethtool/common.c
->> index 2f4b70f104e8..8216e4ada58e 100644
->> --- a/net/ethtool/common.c
->> +++ b/net/ethtool/common.c
->> @@ -460,6 +460,21 @@ const struct link_mode_info link_mode_params[] = {
->>  static_assert(ARRAY_SIZE(link_mode_params) == __ETHTOOL_LINK_MODE_MASK_NBITS);
->>  EXPORT_SYMBOL_GPL(link_mode_params);
->>  
->> +const char ethtool_link_medium_names[][ETH_GSTRING_LEN] = {
->> +	[ETHTOOL_LINK_MEDIUM_BASET] = "BaseT",
->> +	[ETHTOOL_LINK_MEDIUM_BASEK] = "BaseK",
->> +	[ETHTOOL_LINK_MEDIUM_BASES] = "BaseS",
->> +	[ETHTOOL_LINK_MEDIUM_BASEC] = "BaseC",
->> +	[ETHTOOL_LINK_MEDIUM_BASEL] = "BaseL",
->> +	[ETHTOOL_LINK_MEDIUM_BASED] = "BaseD",
->> +	[ETHTOOL_LINK_MEDIUM_BASEE] = "BaseE",
->> +	[ETHTOOL_LINK_MEDIUM_BASEF] = "BaseF",
->> +	[ETHTOOL_LINK_MEDIUM_BASEV] = "BaseV",
->> +	[ETHTOOL_LINK_MEDIUM_BASEMLD] = "BaseMLD",
->> +	[ETHTOOL_LINK_MEDIUM_NONE] = "None",
->> +};
->> +static_assert(ARRAY_SIZE(ethtool_link_medium_names) == __ETHTOOL_LINK_MEDIUM_LAST);
+On Tue, 18 Nov 2025 17:02:35 +0100, Vincent Guittot wrote:
+> Describe the PCIe host controller available on the S32G platforms.
 > 
-> Thanks for reshuffling things, this one needs a static tho:
+> Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+> ---
+>  .../bindings/pci/nxp,s32g-pcie.yaml           | 130 ++++++++++++++++++
+>  1 file changed, 130 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
 > 
-> net/ethtool/common.c:463:12: warning: symbol 'ethtool_link_medium_names' was not declared. Should it be static?
 
-Ok I figured that I didn't have sparse installed locally, so the
-local NIPA build "build_allmodconfig_warn" didn't go through.
-
-That's fixed now, hopefully even less bugs next time !
-
-Maxime
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
