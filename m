@@ -1,89 +1,181 @@
-Return-Path: <devicetree+bounces-240546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06D27C72AE5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:57:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9769AC72AFA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:58:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 290A44E93BB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 07:55:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1982D4E2511
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 07:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FFCD307ACE;
-	Thu, 20 Nov 2025 07:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A82CC2F12CE;
+	Thu, 20 Nov 2025 07:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJwT9epb"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="fuk2iyo0";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="M9T/whRL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1EFD184E;
-	Thu, 20 Nov 2025 07:55:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E691319F135;
+	Thu, 20 Nov 2025 07:57:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763625324; cv=none; b=PN3LVxRE15AZ9aJH4BdZhfSLV3VGDqnhwlPyr6+00FfME7VoRGM4EGWS0Hqdco3sU7BegHK/5Jwvzvesi0YokWzNBkH+lT+zxqlDGFswyMaiAvY+YrL1BagCn55ZfsZskL9QQti1eq5a4Xfs2Sp40XS57cbccLcZZDKHZBJnLtk=
+	t=1763625475; cv=none; b=jlIDdbPUrfg/O7jUd4F0/u9GLV61ZlN+rwu2qVZsZn/rFF8JgMrVQ9C1icSe5gw5z30tZwM1lfjO9OW6X1ULjyreXqscdGmuEkJGagXY1IA2+cFFQUcd6B0Fy/LUF5+5wocyBvQdhW9VIYf1HuCB+z6vftnAMJY6w3ouzHyDDyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763625324; c=relaxed/simple;
-	bh=3MJTLL2jvRU91p6wVEUoe3Zsr/EBDozQFEsbAVHw1Yo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RsfzTuqdTuzgWE1xrNbr9OLhmO54pTWivYz3puRHv+xVgBggfygEroJgwIOgUL8kNKjcAH7fpUeK/Dn/ofUsVRNhNU/+DyFtpXAM0jDvgvQi+Qpmi69FeMQQ4zbiAM/KNilIBfkpcfAJnoEGY5vOBqZ+gJ8Xpy9o9GEUG6vdB8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJwT9epb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27EC9C4CEF1;
-	Thu, 20 Nov 2025 07:55:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763625324;
-	bh=3MJTLL2jvRU91p6wVEUoe3Zsr/EBDozQFEsbAVHw1Yo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uJwT9epbVXUn3nkO4Oyn+/pcx8uxSOzbQcz89V+Bx/++xGPVEO4WNh7l5k4NELThz
-	 WGa4EQ+hCMcPRdmp8MWFTC9IK4raaK2q9PdnkhEoMCxfdTMYx3XTGBtmNeQynFkq0I
-	 lxT55lVuyiuTxqz/W4yPEeS7tkHjvKc9o+UZtFtjL/WPpH0tElV22L+jbThWzU3bBK
-	 bTcNU9Ngo21IxBCT9FI6lHSkv+p7zb7TEyAxHNONddg9yhjihHL8/BJRh8Mr7uBQGn
-	 lkLL6VhEh/+mdlCxeeDY01qWNAzX16FCctCOSeUO8gtTU8o0ST0EuiRMOWwiRsiW/+
-	 HEA/EAwuvFt9Q==
-Date: Thu, 20 Nov 2025 08:55:22 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?Q?Beno=C3=AEt?= Monin <benoit.monin@bootlin.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Jan Dabros <jsd@semihalf.com>, 
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Clark Williams <clrkwllms@kernel.org>, 
-	Steven Rostedt <rostedt@goodmis.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
-Subject: Re: [PATCH v3 1/7] dt-bindings: i2c: dw: Add Mobileye I2C controllers
-Message-ID: <20251120-tough-sturdy-woodpecker-7dcbdf@kuoka>
-References: <20251119-i2c-dw-v3-0-bc4bc2a2cbac@bootlin.com>
- <20251119-i2c-dw-v3-1-bc4bc2a2cbac@bootlin.com>
+	s=arc-20240116; t=1763625475; c=relaxed/simple;
+	bh=V0Sh2TMXpUQCNxyR3egUazThvyB7Eda+oTn2EUA+1sE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V30UOVCWSv0ewCrJsKbw63HKKGodSCJUmvkV2IkPk1xRDWHN9vlqI9yOVKSOkEe4n3lI4zJrM4w9FicU/qzPr7BYGvu61bf/TN+v1UHo+fYNGc3ODYARiU/SAGfSgWWLWdhgic2O/T1YLFY6hyAK+EypLqwP9hZiEgXN3Xppajo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=fuk2iyo0; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=M9T/whRL; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1763625465; bh=ZV6NAnJ/9l3+2iQNuWRUgEr
+	Humtpng+pcSbwFNFU05U=; b=fuk2iyo0VfGxbqu4F95yIVAtBQuN2jqGI6e5FrboZGbLr3m5KM
+	GZUEGMsq8vqYJ5n2FXpnivp4F9ODPheKSHu/ccRtOADOX5LIt2g60N0rbrYqmk9bqr06wu96uAK
+	0LKN5j+owjF+w1eGZl71SEeyoDSYyeGdsgCxLn3aHfPJJPpjXnJ4ZJTPznlXrWBTrmQhdvkig1h
+	+272z+k7QX7h1zMU/1C1q5TVGtiK6TobX2pOTbYgo7l+V5/hc19VOnN9zebeVQ2JoJ25l41pRLU
+	aY2kGIQDgzrMUyZfw6/Pc20kpf3+zDFMkJRfu7orziFmzlbgsIVolhUR/1AbXIWuzKw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1763625465; bh=ZV6NAnJ/9l3+2iQNuWRUgEr
+	Humtpng+pcSbwFNFU05U=; b=M9T/whRLLezxSf1wEbNotivF4PkiRNc4YsnZQVvq0NewtfZC2F
+	6X6QYg8PQ9uyRTwncqndxw+oVVJdG+3LnDAA==;
+Message-ID: <eddc16cb-d951-401c-8fb8-fccfcf600143@mainlining.org>
+Date: Thu, 20 Nov 2025 10:57:43 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251119-i2c-dw-v3-1-bc4bc2a2cbac@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
+ nodes
+To: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org, Chenna Kesava Raju <chennak@qti.qualcomm.com>,
+ Bharath Kumar <bkumar@qti.qualcomm.com>
+References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
+ <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
+ <07066c46-4121-48da-846a-3a180d245589@oss.qualcomm.com>
+ <47b40a91-8365-4431-9fd9-1e48fad2a4e1@mainlining.org>
+ <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
+ <83c3aea5-764e-4e60-8b16-67b474f19357@oss.qualcomm.com>
+ <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
+ <f5c7eb1c-28b1-4cf1-afb0-b993384b7712@oss.qualcomm.com>
+ <80836b8f-16a8-4520-ad11-5ca0abb3403e@oss.qualcomm.com>
+ <99c22e73-797c-4a30-92ba-bc3bd8cf70f0@oss.qualcomm.com>
+Content-Language: ru-RU, en-US
+From: Nickolay Goppen <setotau@mainlining.org>
+In-Reply-To: <99c22e73-797c-4a30-92ba-bc3bd8cf70f0@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 19, 2025 at 04:05:30PM +0100, Beno=C3=AEt Monin wrote:
-> Add compatible string for the DesignWare-based I2C controllers present
-> in Mobileye Eyeq6Lplus SoC, with a fallback to the default compatible.
-> The same controllers are also present in the EyeQ7H, so add a compatible
-> for those with a fallback to the Eyeq6Lplus compatible.
->=20
-> Signed-off-by: Beno=C3=AEt Monin <benoit.monin@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 7 +++++=
-++
->  1 file changed, 7 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+20.11.2025 07:55, Ekansh Gupta пишет:
+>
+> On 11/20/2025 1:58 AM, Srinivas Kandagatla wrote:
+>> On 11/12/25 1:52 PM, Konrad Dybcio wrote:
+>>> On 11/10/25 6:41 PM, Srinivas Kandagatla wrote:
+>>>> On 11/3/25 12:52 PM, Konrad Dybcio wrote:
+>>>>> On 10/31/25 12:30 PM, Nickolay Goppen wrote:
+>>>>>> 24.10.2025 16:58, Nickolay Goppen пишет:
+>>>>>>> 24.10.2025 11:28, Konrad Dybcio пишет:
+>>>>>>>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
+>>>>>>>>> In order to enable CDSP support for SDM660 SoC:
+>>>>>>>>>    * add shared memory p2p nodes for CDSP
+>>>>>>>>>    * add CDSP-specific smmu node
+>>>>>>>>>    * add CDSP peripheral image loader node
+>>>>>>>>>
+>>>>>>>>> Memory region for CDSP in SDM660 occupies the same spot as
+>>>>>>>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+>>>>>>>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+>>>>>>>>> cdsp_region, which is also larger in size.
+>>>>>>>>>
+>>>>>>>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+>>>>>>>>> related nodes and add buffer_mem back.
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+>>>>>>>>> ---
+>>>>>>>> [...]
+>>>>>>>>
+>>>>>>>>> +            label = "turing";
+>>>>>>>> "cdsp"
+>>>>>>> Ok, I'll change this in the next revision.
+>>>>>>>>> +            mboxes = <&apcs_glb 29>;
+>>>>>>>>> +            qcom,remote-pid = <5>;
+>>>>>>>>> +
+>>>>>>>>> +            fastrpc {
+>>>>>>>>> +                compatible = "qcom,fastrpc";
+>>>>>>>>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
+>>>>>>>>> +                label = "cdsp";
+>>>>>>>>> +                qcom,non-secure-domain;
+>>>>>>>> This shouldn't matter, both a secure and a non-secure device is
+>>>>>>>> created for CDSP
+>>>>>>> I've added this property, because it is used in other SoC's, such as SDM845 and SM6115 for both ADSP and CDSP
+>>>>>> Is this property not neccessary anymore?
+>>>>> +Srini?
+>>>> That is true, we do not require this for CDSP, as CDSP allows both
+>>>> unsigned and signed loading, we create both secured and non-secure node
+>>>> by default. May be we can provide that clarity in yaml bindings so that
+>>>> it gets caught during dtb checks.
+>>>>
+>>>>
+>>>> However in ADSP case, we only support singed modules, due to historical
+>>>> reasons how this driver evolved over years, we have this flag to allow
+>>>> compatiblity for such users.
+>>> Does that mean that we can only load signed modules on the ADSP, but
+>>> the driver behavior was previously such that unsigned modules were
+>>> allowed (which was presumably fine on devboards, but not on fused
+>>> devices)?
+>> Yes, its true that we allowed full access to adsp device nodes when we
+>> first started upstreaming fastrpc driver.
+>>
+>> irrespective of the board only signed modules are supported on the ADSP.
+>> I think there was one version of SoC i think 8016 or some older one
+>> which had adsp with hvx which can load unsigned modules for compute
+>> usecase only.
+>>
+>> I have added @Ekansh for more clarity.
+>>
+>> --srini
+> For all the available platforms, ADSP supports only signed modules. Unsigned
+> modules(as well as signed) are supported by CDSP and GDSP subsystems.
+>
+> qcom,non-secure-domain property marks the corresponding DSP as non-secure DSP.
+> The implications of adding this property would be the following:
+> on ADSP, SDSP, MDSP:
+> - Only non-secure device node(/dev/fastrpc-Xdsp) is created.
+> - Non-secure device node can be used for signed DSP PD offload.
+>
+> on CDSP, GDSP:
+> - Both secure(/dev/fastrpc-Xdsp-secure) and non-secure(/dev/fastrpc-Xdsp) devices
+>    are created, regardless of this property.
+> - Both the nodes can be used for signed and unsigned DSP PD offload.
+>
+> Note: If the property is not added for CDSP/GDSP, only secure device node can
+> be used for signed PD offload, if non-secure device is used, the request gets
+> rejected[1].
+>
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1245
+>
+> //Ekansh
+Does this mean that the qcom,non-secure-domain property should be 
+dropped from both nodes?
+>>
+>>> Konrad
 
+-- 
 Best regards,
-Krzysztof
+Nickolay
 
 
