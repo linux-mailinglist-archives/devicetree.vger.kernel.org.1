@@ -1,144 +1,101 @@
-Return-Path: <devicetree+bounces-240479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 789D3C71A68
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 02:06:41 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5751EC71BCF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 02:56:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 44031348C67
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 01:04:32 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D7C1B352190
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 01:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF444223324;
-	Thu, 20 Nov 2025 01:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36CD32494D8;
+	Thu, 20 Nov 2025 01:55:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FEEQ5Lqv"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="FsX4dyzI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F269D21ADC7
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 01:04:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABC023C4FF
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 01:54:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763600669; cv=none; b=dFSRTXrvwVMCHUCzDO80pR6yDvTX44zdd54yGexo0sas6YsCqlJHRlLBn3gSU56ntkdgMGTvoZs7e8lJmTHq+xa0f53mnoyc3mzsP0BRe6MtnicvE/FCow6OU1jNbaXKKJd569TGTwsWWIzkdMhhBwitAyLiD8SJJPDooOetwrc=
+	t=1763603701; cv=none; b=UV1bDGSueU5d01I+YsP1oVtu8KiyooiulkmUcLLZxoSsA/a2DXOJiNcEzMTtq1yOemGiXxTLf5zGUlSTXSUaqWSBPvtH7mGF2PQDKIkKiHHgLK/v9N52uGFJpw+5gI8lWmQZntCl/4xmYAsvNDnmqtrivPSUUB1r0tIMYVLuJqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763600669; c=relaxed/simple;
-	bh=HNKStvuc0XB3JshjhPWn5gZkIa6YpjmT/QSv6jmE+eg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z1Xd3J9yGQVmWAEHfK4+vKgHY2M7QoVlZDyVtC3yOcXW0ii8I0XHF6KSA1Gurx6JLKZtB7+oldCLixNf5ynwgA6X5YxMp2LAVZtMLFJCDgxvabJkiAUsExgt9M+jAjQACQV9Fmnp4sXO9Z6lY1HqoobK2u2l2mYd3Nplp5iE65w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=FEEQ5Lqv; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6408f9cb1dcso427578a12.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 17:04:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1763600664; x=1764205464; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HNKStvuc0XB3JshjhPWn5gZkIa6YpjmT/QSv6jmE+eg=;
-        b=FEEQ5LqvU9V9SEiFyYm48SMBkCpp6Mv01whQsXRIftSIxI80afXfFJpKo9RYynTDI2
-         /zjEzbuSMMYOvUKGbcSgDGudOrZoqRhGibIgOUyQvY+1o4RkAHyFQapnVnv8xxHWiwRo
-         RJl50okBnr3NQsni0C0cL+CfeHky6LrglZ56U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763600664; x=1764205464;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=HNKStvuc0XB3JshjhPWn5gZkIa6YpjmT/QSv6jmE+eg=;
-        b=rlVTmQT707dt0L+0BB12cMdXeHfzsRvB7zN93ymFQ3tR710O3su4z6uc0NIPoMhiaw
-         nbJpYlr1C79vtpd/d3qntG9DA2rH00usFvF3Np9TMRhZx+OgwtMLGHIlRzjXa4wLh9t2
-         H/EMzn01fFh5aPXws7oecg7f1xbnwDN/K5BsWpgdwU0Cj/PiGQyw32rPwwben9e/cV52
-         FRNPSqYwVziGVS04Ot7p3EAALrb4yqsi+Njwtxo9yOJZVbDIY6lw79wXbOMsUXQvmiQS
-         3HcspbU+Y/0/2+kDZjJ69SJ1QgVrwWzf+EMXKZ5+5xAlhEg17Wq4EWKElyyn9rqM1Avv
-         A4Rw==
-X-Forwarded-Encrypted: i=1; AJvYcCXquBCNM1JTIbDi0YW74R5aAeI4YBCMEDvmPONeh4YHNWvvDBF8dtHTtSzulEFWEwrpVZIEeJh/1Zoq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJ2s46p543EUKNPfWY6SCFeHanrDDPdF2ap2CNr0+ec7/EOKGt
-	0H1l6OTKpoSf1FFhbAJ0anLe+uWAeBmL/3Ad+xeUVET2kOkRnFz/UpyPrlWvybEMdim5dkZbr2x
-	hwz6/S+to
-X-Gm-Gg: ASbGncuyaHx1w3XQaPC5Us7GkudfC52+o5bk8orufEBB3lXNW+aaBgO5DoYtC5DlF5T
-	tkU/XK1t25pTnVORLN2jLuqaKa8IWvGb5o3NOA9Bfxe1yOI1N2RQAtDPJ2cGavB/UrpZl18e6Jr
-	YSFxsU846GpnT7AlXIFQU1LFYlPDkSGZcXjadVp5cyKO84+tUhLCNrByyTokLx3lJ97VOfIvRce
-	lt8pzdYxkn78oE3DaSwOCspIXbrz93CIt+ksBPZOVkNf2PxZDymqz38q2tJd8Fp2lVHfF0ucz2y
-	sRPZzRhGcnfttAORx7xi/upubBfacp+qfqMyXAdunrnHZQX0EDRUDkm5u1sW9J2mGi+8GEvh0RR
-	JzbauRKHIictm4FbFou/llifjvp2gl6NCnHMBGi2QePAg61nNhE9RbG54jObVv1gfmykCvCWBWQ
-	yNk6za+YgIyuWjF8rPV/OWaN+JORU/XzGbuih+KT6iMjmKVn/8R8P/ffQjQ06c0qa309rYrvI=
-X-Google-Smtp-Source: AGHT+IGGqpaM76jl5tUPBTG+tFvhdxDkG4puJPkyMNSj6C7cGUEL5+2HdLKbxSEkD1GBfmoGxrVa7g==
-X-Received: by 2002:a17:907:94c7:b0:b73:8639:cd96 with SMTP id a640c23a62f3a-b7654dfc0camr97139766b.24.1763600663621;
-        Wed, 19 Nov 2025 17:04:23 -0800 (PST)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654d7c919sm77349766b.28.2025.11.19.17.04.22
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Nov 2025 17:04:22 -0800 (PST)
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477770019e4so3229785e9.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 17:04:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXxNvz9gTdD4SB8YfGS/nf8NXySpDC3tN7VbnHI4ULrLZ3Lcv+Ay5DCzJv+Bh8uQ0wJDzw8zHz0fTvk@vger.kernel.org
-X-Received: by 2002:a05:600c:3ba8:b0:475:dd7f:f6cd with SMTP id
- 5b1f17b1804b1-477b8d8eec1mr10748455e9.35.1763600661833; Wed, 19 Nov 2025
- 17:04:21 -0800 (PST)
+	s=arc-20240116; t=1763603701; c=relaxed/simple;
+	bh=sAdiuolNXE/24WrsaGL6jXBYWZ6ex3v68gkeEXIOatA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e4aMGqrWI76eRnbRI0rly/ybBS0anQ2xjVWupo9yInNQFI1HtMPN5Xnqgp/VgeGJ8pvx0o6CKI4Ctf3vNjZm7L//MVt7bTutlj8dBY9iJAzD4Lz/p6RMIt4/ND78sd2BXcjXqFHkpiFmaoTuo3G7j6qYSzZhgsoZIEd14osejPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=FsX4dyzI; arc=none smtp.client-ip=1.95.21.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=B13YSSVdzv+A9HSJEV6haxN1uEpuGwZCWegPWDkjWo0=;
+	b=FsX4dyzILs5Mz6P4OxTN0CZ6a8W+QrZGfT4i9E3mD9Dv8c2Wr9s1GER+09vuSz
+	Dpxgn8PQ5E00Q20Pwiw2acWxvlUkmrX6TRLNIYoPBDhFIob5/fYH1Bbh6yxBhp5B
+	1fnjOh6XPpG1UEzIw76l7HjPslGkMFtm4wD6UPJer8H7w=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgCnHTeLdB5pzrRhAg--.10170S3;
+	Thu, 20 Nov 2025 09:53:18 +0800 (CST)
+Date: Thu, 20 Nov 2025 09:53:15 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Marek Vasut <marek.vasut@mailbox.org>,
+	Liviu Dudau <liviu.dudau@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	"Jiyu Yang (OSS)" <jiyu.yang@oss.nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Steven Price <steven.price@arm.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Xianzhong Li <xianzhong.li@nxp.com>, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, imx@lists.linux.dev
+Subject: Re: [PATCH v4 2/2] arm64: dts: imx95: Describe Mali G310 GPU
+Message-ID: <aR50iy_FWk6PqAUg@dragon>
+References: <20251102160927.45157-1-marek.vasut@mailbox.org>
+ <20251102160927.45157-2-marek.vasut@mailbox.org>
+ <aRnBqgzeotfrdNmy@dragon>
+ <c85e39b6-4e5b-4bbc-b1b6-7f910c8f06d8@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251118-pixel-3-v3-0-317a2b400d8a@ixit.cz> <20251118-pixel-3-v3-8-317a2b400d8a@ixit.cz>
- <d81b0e70-5e3f-4e33-a268-e8b903904e9b@oss.qualcomm.com> <d9c91625-a829-474f-9fda-5e39342bb4af@ixit.cz>
- <96673da0-d8be-4b82-9e8c-2263f752881c@oss.qualcomm.com>
-In-Reply-To: <96673da0-d8be-4b82-9e8c-2263f752881c@oss.qualcomm.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 19 Nov 2025 17:04:10 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VrB8FycxF+SFpP0-LBuRh00q6ecQ14fJj5fBKcFqsdCA@mail.gmail.com>
-X-Gm-Features: AWmQ_bmyj5sGx4tyY9L7h2oSdpAiPgC3_696WJh5bzTVt6VHuCNSI8LWrwUfgrE
-Message-ID: <CAD=FV=VrB8FycxF+SFpP0-LBuRh00q6ecQ14fJj5fBKcFqsdCA@mail.gmail.com>
-Subject: Re: [PATCH v3 8/8] arm64: dts: qcom: Add support for Pixel 3 and
- Pixel 3 XL
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: David Heidelberg <david@ixit.cz>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Casey Connolly <casey.connolly@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	phodina@protonmail.com, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>, 
-	Joel Selvaraj <foss@joelselvaraj.com>, Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c85e39b6-4e5b-4bbc-b1b6-7f910c8f06d8@mailbox.org>
+X-CM-TRANSID:Ms8vCgCnHTeLdB5pzrRhAg--.10170S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUnzV1UUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNg4ih2kedI5lUAAA3l
 
-Hi,
+On Wed, Nov 19, 2025 at 06:00:55PM +0100, Marek Vasut wrote:
+> On 11/16/25 1:20 PM, Shawn Guo wrote:
+> > On Sun, Nov 02, 2025 at 05:09:07PM +0100, Marek Vasut wrote:
+> > > The instance of the GPU populated in i.MX95 is the G310, describe this
+> > > GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
+> > 
+> > The commit log seems need an update for the regulator part?
+> The patch seems to be already in next, but if it can be somehow respun, I
+> can do that ?
 
-On Tue, Nov 18, 2025 at 5:41=E2=80=AFAM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> > Yes, there is only one firmware, which crosshatch has different, but al=
-l listed in the initial bringup are used for both.
-> >
-> > To add, crosshatch was somehow not that popular device, so as I've been=
- suggested in u-boot discussion, I would love to keep blueline everywhere.
-> >
-> > One exception is LineageOS kernels, where they go by name crosshatch, b=
-ut again for the both phones.
->
-> Google seems to suggest crosshatch is the 'base'
->
-> https://android.googlesource.com/device/google/crosshatch/+/refs/heads/ma=
-in
->
-> Ultimately if none of the Googlers (hello +Doug) care that much, it's up
-> to you to choose
+Hmm, okay, just take it as a protest that DTS shouldn't have been
+applied by GPU subsystem, @Liviu ;)
 
-I haven't dug into this patch series and don't personally know a lot
-of the history of older Pixel code names before ~Pixel 6, but in
-general I wouldn't expect Google to have much of an opinion about
-Pixel 3 support upstream. I'd say leaving it up to the people doing
-the work sounds good to me. :-)
+Shawn
 
--Doug
 
