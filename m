@@ -1,59 +1,65 @@
-Return-Path: <devicetree+bounces-240727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28DCCC748AC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:26:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 528BCC749A8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:38:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 8FC392B32C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:21:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6F2E64E4073
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:32:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8892A3451D7;
-	Thu, 20 Nov 2025 14:21:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C14041DF72C;
+	Thu, 20 Nov 2025 14:32:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="khCfVV5r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TJrRbU0t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C519337BBA;
-	Thu, 20 Nov 2025 14:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E561DE8BB;
+	Thu, 20 Nov 2025 14:32:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763648502; cv=none; b=Ftfv4UYbZql/IkivOxSoZN/iiOViYMIWQkGqxPD3FXM6qOZ7xrpFa70IJjZ8MyhPXgjJTj9g0+I/Tb/8Nk4sxEa5XFeQ5onkGg+rbBFYMMksbjZsqUOm5DofPcl0n0vloo6gBk5aQbvs6OdOsqy+JwH9j71cYdLndOOXgJ6mrrg=
+	t=1763649136; cv=none; b=iFhlFZ085CHjtDPlVpzoqYE12JpHEeIzaXU9zMNp3SjdtW5UbNaOPVq27cbeqpsAiW2KOsRR/zlEwIyTjZRQgc5TdTTfaFRJU0TcvXZRUK6wDKAo7BFAnRzyWe1qJv6DxnfnufSzzcGnNpBXwOxYC5CyoNhv9aSWwhmAUBlzP9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763648502; c=relaxed/simple;
-	bh=y1OIh1u2LeSJHLZBleRaaxbUdu7kp1SIHpl+J+34nD4=;
+	s=arc-20240116; t=1763649136; c=relaxed/simple;
+	bh=U8zbGG01z7p4Cuy4VpxIsRZ+5mJPuvKfvCJwdqaAoLU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zi0aSLLnPx/eCJ00IQWit4sSHRHL5ROnTh5j7kT6R5G8jvMPyr2L3uzBr/pT5BiENSwMzZ3VwdXBN3wLDJo1qlYbqfhyMftG1rjTCZ6KfyjY0LbZYQWEwWiQs0gWpstPZzb0dGtiWMoc0dnCyE9O+yRvJgAtBrip6+xcJfGdT64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=khCfVV5r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15DAFC4CEF1;
-	Thu, 20 Nov 2025 14:21:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fcBboTrd2QS5wXHWjxSnXvSljebK+C/ZnDV9JsMs+sZXZoxs8pd3keyXlRfC/HtSa7QA84+vxH4cQ4BNfriviT9b4OwJ7oTAnGi9HJR8E0qdm2Bruqu5eTYN/6KcqmMF6g+T++DdnPRW/ULHOLcAGfPXKKn3/t5rDIrlwm9+fFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TJrRbU0t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5C7FC4CEF1;
+	Thu, 20 Nov 2025 14:32:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763648501;
-	bh=y1OIh1u2LeSJHLZBleRaaxbUdu7kp1SIHpl+J+34nD4=;
+	s=k20201202; t=1763649136;
+	bh=U8zbGG01z7p4Cuy4VpxIsRZ+5mJPuvKfvCJwdqaAoLU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=khCfVV5rwzJh+rVbz+ZPLlJkifByrqQr0+OX7hMDORss15f2lsCt7kBx9aGV/AvrN
-	 pFOphxT6Mohk0sdM1ReR1/4x7/BtG+8PWetMCoXfcX/E2odBNIqBb9cIC6OJGNpu6I
-	 sObvzb+3mZ86uUAwWLJ/1ENxkt9P0n/L+esuMSPhhrF7cCo3Q5UZUk4XVQNO0JlERL
-	 6AYF+K5xah60qtUHSdLZ0JD37JqPpc1GSodieC9t7MwYbI/sRQU0dbJIizZd6XnHnv
-	 /b9w75Nu6DdE89zoNhQn8OotEeMrZxYcGInl4DiZpj+MAPJwmjzZWRG+c51Ylun7ie
-	 8tlut2sfsuznw==
-Date: Thu, 20 Nov 2025 08:26:40 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Vishnu Saini <vishsain@qti.qualcomm.com>, prahlad.valluru@oss.qualcomm.com, 
-	Prahlad Valluru <vvalluru@qti.qualcomm.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: monaco: add lt8713sx bridge with
- displayport
-Message-ID: <cjz47arpfbangtrzx6kw4ommph3zhn6xnroz34oqskafvmpnmi@xduotm2houzg>
-References: <20251120-lt8713sx-bridge-linux-for-next-v1-0-2246fc5fb490@qti.qualcomm.com>
- <20251120-lt8713sx-bridge-linux-for-next-v1-1-2246fc5fb490@qti.qualcomm.com>
+	b=TJrRbU0tQFCz02hwsFt/y+TgevZFen7yZ/1M5cA0K5V69CScW20+Y+ulZpOjylKd2
+	 xtqxFbfTO74ZLbAbmbQdjZC5tb5P/LQML6NxB64qadgNKMydTvzzHDtzPMfXIgSxSf
+	 rXV/HhIedrRMbYemHFtr/EQ/BSBzK+T30YJNo2NVnyJc/RZO7G5vwGPL+kPUyvACkQ
+	 5j9moIdnL4bf7XEECWmlBL6MSTOz+Y+fEyBsrtX14oFHXW3mu8EVTKq1qbIiW3Yd7J
+	 zvoMijfL3Y+N9ByKs43x2W1BkEE7oPFvGWo35WK8MxmFPAnoTMFhpO7C3josJ+Yo0F
+	 FPNvN9Z+ZngGw==
+Date: Thu, 20 Nov 2025 08:32:14 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yuntao Wang <yuntao.wang@linux.dev>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	James Morse <james.morse@arm.com>, Baoquan He <bhe@redhat.com>,
+	Zhen Lei <thunder.leizhen@huawei.com>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Geoff Levand <geoff@infradead.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Changyuan Lyu <changyuanl@google.com>,
+	Alexander Graf <graf@amazon.com>,
+	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/8] of/fdt: Some bug fixes and cleanups
+Message-ID: <20251120143214.GA3608321-robh@kernel.org>
+References: <20251115134753.179931-1-yuntao.wang@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,142 +68,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251120-lt8713sx-bridge-linux-for-next-v1-1-2246fc5fb490@qti.qualcomm.com>
+In-Reply-To: <20251115134753.179931-1-yuntao.wang@linux.dev>
 
-On Thu, Nov 20, 2025 at 04:28:05PM +0530, Vishnu Saini wrote:
-> Monaco-evk has LT8713sx which act as DP to 3 DP output
-> converter. Edp PHY from monaco soc is connected to lt8713sx
-> as input and output of lt8713sx is connected to 3 mini DP ports.
-> Two of these ports are available in mainboard and one port
-> is available on Mezz board. lt8713sx is connected to soc over
-> i2c0 and with reset gpio connected to pin6 or ioexpander5.
+On Sat, Nov 15, 2025 at 09:47:45PM +0800, Yuntao Wang wrote:
+> This patch series fixes several bugs related to dt_root_addr_cells and
+> dt_root_size_cells, and performs some cleanup.
 > 
-
-This is good, you're describing the role of LT8713sx and how it's
-connected on the board. Thank you for taking the time to do so!
-
-I think one aspect that's worth pointing out on its own is the
-placement of the mini DP ports. You do capture it, but the fact that
-we have two on the EVK and one on the expansion board is "hidden" there
-in the middle of the paragraph.
-I think extracting this part of the message into its own paragraph would
-improve the commit message further.
-
-> Enable the edp nodes from monaco and enable lontium lt8713sx
-> bridge node.
+> Changelog:
 > 
-> Co-developed-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
-> Signed-off-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
-> Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/monaco-evk.dts | 44 ++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
+> v2 -> v3:
+>   - Use of_flat_dt_ instead of of_fdt_ as the prefix for the newly added
+>     helper functions
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/dts/qcom/monaco-evk.dts
-> index bb35893da73d..947807f8a9cb 100644
-> --- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
-> +++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
-> @@ -317,6 +317,20 @@ &gpu_zap_shader {
->  	firmware-name = "qcom/qcs8300/a623_zap.mbn";
->  };
->  
-
-Would it be possible to add dp-connector nodes and wire them up to the
-&lt8713sx, like I did in sa8295-adp.dts?
-
-> +&i2c0 {
-> +	pinctrl-0 = <&qup_i2c0_default>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +
-> +	lt8713sx: lt8713sx@4f {
-
-This should be bridge@4f.
-
-Also, unless we need to reference this from a overlay there's no need to
-give it a label.
-
-> +		/*Display bridge chip, DP1.4/HDMI2.0/DP++ hub*/
-
-This comment explains what "lontium,lt8713sx" is. The binding call tell
-me that, so the value of this comment would be for you to tell us what
-it is used for on this particular board - and if that's obvious you can
-omit the comment.
-
-> +		compatible = "lontium,lt8713sx";
-> +		reg = <0x4f>;
-> +		reset-gpios = <&expander5 6 GPIO_ACTIVE_HIGH>;
-
-In addition to using an of_graph to describe the connectors that this is
-wired to, it would be nice to have a port describing the relationship to
-the DP controller here as well - so we know where the signal is coming
-from.
-
-Would that be possible to add?
-
-Regards,
-Bjorn
-
-> +	};
-> +};
-> +
->  &i2c1 {
->  	pinctrl-0 = <&qup_i2c1_default>;
->  	pinctrl-names = "default";
-> @@ -396,6 +410,23 @@ expander6: gpio@3e {
->  	};
->  };
->  
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp0 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp0_out {
-> +	data-lanes = <0 1 2 3>;
-> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> +};
-> +
-> +&mdss_dp0_phy {
-> +	status = "okay";
-> +};
-> +
->  &iris {
->  	status = "okay";
->  };
-> @@ -435,6 +466,12 @@ &serdes0 {
->  };
->  
->  &tlmm {
-> +	dp_hot_plug_det: dp-hot-plug-det-state {
-> +		pins = "gpio94";
-> +		function = "edp0_hot";
-> +		bias-disable;
-> +	};
-> +
->  	ethernet0_default: ethernet0-default-state {
->  		ethernet0_mdc: ethernet0-mdc-pins {
->  			pins = "gpio5";
-> @@ -451,6 +488,13 @@ ethernet0_mdio: ethernet0-mdio-pins {
->  		};
->  	};
->  
-> +	qup_i2c0_default: qup-i2c0-state {
-> +		pins = "gpio17", "gpio18";
-> +		function = "qup0_se0";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
->  	qup_i2c1_default: qup-i2c1-state {
->  		pins = "gpio19", "gpio20";
->  		function = "qup0_se1";
+>   - Improve the internal logic of of_flat_dt_get_addr_size_prop() and
+>     of_flat_dt_get_addr_size()
 > 
-> -- 
-> 2.34.1
+>   - Introduce the entry_index parameter for of_flat_dt_read_addr_size()
 > 
+>   - Fix some warnings and coding-style issues
+> 
+> v1 -> v2:
+>   - Consolidate duplicate code into helper functions
+> 
+> Links to previous patch series:
+> 
+> v2: https://lore.kernel.org/linux-devicetree/20251113155104.226617-1-yuntao.wang@linux.dev/
+> v1: https://lore.kernel.org/linux-devicetree/20251112143520.233870-1-yuntao.wang@linux.dev/
+> 
+> Yuntao Wang (8):
+>   of/fdt: Consolidate duplicate code into helper functions
+>   of/fdt: Fix the len check in early_init_dt_check_for_elfcorehdr()
+>   of/fdt: Fix the len check in
+>     early_init_dt_check_for_usable_mem_range()
+>   of/fdt: Fix incorrect use of dt_root_addr_cells in
+>     early_init_dt_check_kho()
+>   of/fdt: Simplify the logic of early_init_dt_scan_memory()
+>   of/reserved_mem: Simplify the logic of __reserved_mem_reserve_reg()
+>   of/reserved_mem: Simplify the logic of
+>     fdt_scan_reserved_mem_reg_nodes()
+>   of/reserved_mem: Simplify the logic of __reserved_mem_alloc_size()
+
+I've applied the series. I was going to send the first 4 for 6.18, 
+but since we're pretty close to the merge window, I decided to 
+keep it all together for 6.19.
+
+Thanks for all the clean-ups.
+
+Rob
 
