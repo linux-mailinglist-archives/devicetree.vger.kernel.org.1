@@ -1,147 +1,119 @@
-Return-Path: <devicetree+bounces-240717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62884C74742
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:10:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7339C747BA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:15:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B16E44F3142
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:54:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D6B894F3E86
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0B3311C19;
-	Thu, 20 Nov 2025 13:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B379346773;
+	Thu, 20 Nov 2025 13:59:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kzEwQeEr"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h58aRXaI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 745B7341ACC
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 13:54:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317D2346772
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 13:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763646889; cv=none; b=CeDUQuxqxuKhTyckHMKiGs7dKA4d4W9GMwFRrhcWiC0v+TAWEP80nmtjio2VbGw4xjOUIPEQXmTFQZLQ+ciszPb71nSNN+Tp+82Zce0Fv6ns/BYIR7IDHyFeG8zJHbINmCgGnf0Jr+Iwmh1kd+puyxO8Xavvgm30HOUqemK9iBE=
+	t=1763647173; cv=none; b=hjcbXDh1829wZNkFj9jJyt3JPhlkZKIAf3s6af6x0xI2K6IJGkuDH1WDjXk7cC+RA9N2RkWr7/rrYflnCxl1XrEVFEufqicuyCWadJ4K1BQqiR1AVRtT4GMS2njaLz/a9n5uKwFp3SULXnZbRZTEEQVLWHZyEPYThWriFX2pKfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763646889; c=relaxed/simple;
-	bh=FyQwtlNC7u1DQKxO8khtUake8nXyBTwLkIG8Vwkn598=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=E9QLZTHJwwliLHT4GRJtvQmw2CbH+d6rSXRj+KABr/My/ASdBLYmi2jNC98xINWcfxxlJ8/8bM/p8u9zuReY/8m7jwHQNH0dhdKDf5KzleQNE2d9FW1WaoDqF6oyFnfBezjKfSv48D5Ce+W7tvQ7x2UcRpUoVzRlx+pqCfbgmPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kzEwQeEr; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4779a637712so6185515e9.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 05:54:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763646886; x=1764251686; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rIHU9p5z8N+75WnfQpaCAm6p2JQ7k0H+LTu62bmByDg=;
-        b=kzEwQeErOPNKJFIUvc1Yf+ErM5WTwemuK4PIs6bsBRISjH9VUwPEwGiEodi0M/MD3L
-         /ZmuCHLDQH4Xe9wW/oVIFj9RWoPGNPKgi0/TPfVNgFarXXsjY/Fu+tvF9MfTV4k4XxkV
-         itrOxYPlZDvKmm9i+YeQ+jW2vENQIMR3JjoWQXjWxIB5xOG4xe41WwlnXUj3JEzqTI6V
-         /YJbI44xwAUI2q6GxGr2gawdfJCh4UHxO9g7kVVtV7aywq/1C4oswbKr/JbGuVOq4czc
-         oK4NTYIxy5KgE2lZjZPzUqvrKZi9wlqIsVSJ793qm1ivj155tPS31131OjWqEwm4KeBE
-         g1LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763646886; x=1764251686;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rIHU9p5z8N+75WnfQpaCAm6p2JQ7k0H+LTu62bmByDg=;
-        b=BgIH2/hw5DYBRZciC9+yZN2SKIyUu/I/b8lq6t/J20V7n5Vx4/Bbl8Ob+5NLELm4ZI
-         OlAOK9PbFNaCL2JOFWBd1PoVc3ZLtdrX3G+tOVDUL/NTSKGTnevnoAddb6r/6kmWHpD2
-         sjl/03fSCYFgpMDahzW2NGUQGEzj+Wk8JQ8Ex0rt/brINgcZW63LYKmShdFFlEHGyck4
-         y+bWzxzhR48OBXp3fPMVLd27zuaZpZm5DFPfm36dEuylwLulZa3KaHeLFdXQYOJ7ifRr
-         rZH1bgIjrVpSvMj8fsbuyVJH+Qjd7Noq0vfK1o+lXrlCJkArehqaGkgB+nesKfRkgM/V
-         lAIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVwn2VwlC5phVjeyWZFTI8gS8OEImRItRtP5joq2KSHVmY6n831Lv/TQeqDm21l/qRuYB3xaoO9KdNT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGGXDCl4eViHJF12nzE23ImGPUj1vPm+kUXTSstBqrkfqqyWJr
-	E4ote6LhD9INuMnZVyv/Uvddf8pKD+VXCXtKz1TfEsg2OsYKox9GM9DG
-X-Gm-Gg: ASbGncvAsH+dQSnRHzSV7IgFMDf3F7zIPEsaERN6bYnEzaOBrSKmmUHajicQzHlZ9aX
-	sQGQItPnH5wHB4+8eSXOU3z/QrxczMZkkaMzoRhiox4m8OsgCaJS3X3ex0b+WIKHea4ak7FGWu0
-	AOXToKLD558mIs81pzBZf0VWP+Dl72a81TxmxA88pC6KW78IYoCH1OJTWsBMrO25Ml3uwPjiWdk
-	9334CTownebMXBo2jn3jAZWCsEI28o98ZPqsKYQ/UC2BiCPy0ZXGAoTMhhdEBEjmbjeR2fRHeZt
-	waIvcSE/NBqP/Zdj9idLf0ZWDoRKvBkNBr8tnRye3pYlOa9UrOlsiqytLSn7oXMhHqfTLKjehgd
-	pFd349LmG2nNLRqxwfZoZmEoVFHOw6ax0wpGQxptY5T/hZn6ny/i8VrpIjE3+brMY4XT0OuIJmA
-	YknG5zwziFwDz1yzNfoskjimQCRZnseSBwOCkPJgNn
-X-Google-Smtp-Source: AGHT+IFvfLlycM3x3L8VWWPzLacq07JlP2EdcX+xFjgzosVN0t/a2zaDf5V9YEcduMxdaXIKpx28PQ==
-X-Received: by 2002:a05:600c:1e8c:b0:46d:a04:50c6 with SMTP id 5b1f17b1804b1-477b9e423d0mr31123195e9.30.1763646885721;
-        Thu, 20 Nov 2025 05:54:45 -0800 (PST)
-Received: from Ansuel-XPS24 (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-477a96aed1esm67367295e9.0.2025.11.20.05.54.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Nov 2025 05:54:45 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1763647173; c=relaxed/simple;
+	bh=03SXIA4oKWP90BK304MihS/+V/7odb5PoMgrN/1p/qk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tYlEvx+Qmh7JIGJFVin8C5WRLqddrjks5EH0KgBJ8FAHW+q5TEOSerwE8+nBE9j0IlaISIP0i+nCK1OjAXhWWdimpfw0jq/zKhzYIyno9zhBYrEVVwTgX7ddy/mBqpE3zVeHXffqBCkh1HIzD4MUZI5Z2muMaUKRGnVPiyaEs8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h58aRXaI; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 5BFF54E41804;
+	Thu, 20 Nov 2025 13:59:27 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2896F6068C;
+	Thu, 20 Nov 2025 13:59:27 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 71FD910371C4D;
+	Thu, 20 Nov 2025 14:59:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1763647166; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=+RFWFftAzDHWnw+Z+hitcu313UCuMoXyrlJUegc6J+U=;
+	b=h58aRXaIUEhQHztbSUQ9G5QXd6HneKsqBpdqwK2apQY8NzSBZQ7hcSYp39u/g+t1e3rgNR
+	ladPfOIlvHj+eVCWuJh+gXQtSdRz0TlhW1gr5Rm4GQGcIoAjuxaBqqD2jX/gfU88155+1X
+	j25nTt/+SgmT304me5EPfEami95SgB9h6DM0dTNSgJFi3jfadO9QFaX1kzg0XTkwuxwvzA
+	scuCg0jXDxIFz0/nj+UrUnkCz5WTAYyH0MBaHcFQ2NIBl4dlV+h1lziO4QLT7RCdc3InsC
+	bTVFkzIKAEdttHp6pwmLLpauZGjr11+4ijYHQRouhm5y/hSlbZf3AfmCfqL8gw==
+Date: Thu, 20 Nov 2025 14:59:20 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: ot_shunxi.zhang@mediatek.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH] dt-bindings: arm: qcom: add ipq8064 board variants
-Date: Thu, 20 Nov 2025 14:54:32 +0100
-Message-ID: <20251120135435.12824-1-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.51.0
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Eddie Huang <eddie.huang@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>, Lee Jones <lee@kernel.org>,
+	Vince-WL.Liu@mediatek.com, sirius.wang@mediatek.com,
+	Jh.Hsu@mediatek.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 3/5] rtc: mt6397: Fix formatting of platform driver
+ structure
+Message-ID: <20251120135920cfea853d@mail.local>
+References: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
+ <20251120121805.6775-4-ot_shunxi.zhang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251120121805.6775-4-ot_shunxi.zhang@mediatek.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-Document QCOM ipq8064 board variants ipq8062, ipq8065, ipq8066,
-ipq8068, ipq8069 now matched by the QCOM cpufreq nvmem driver if
-socinfo can't derive the variant from SMEM.
+On 20/11/2025 20:17:59+0800, ot_shunxi.zhang@mediatek.com wrote:
+> From: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
+> 
+> This is a cosmetic change to improve code consistency.
+> 
 
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- .../devicetree/bindings/arm/qcom.yaml         | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+But, is it?
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 18b5ed044f9f..0eb1619fede8 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -299,12 +299,32 @@ properties:
-               - qcom,ipq5424-rdp466
-           - const: qcom,ipq5424
- 
-+      - items:
-+          - const: qcom,ipq8062
-+          - const: qcom,ipq8064
-+
-       - items:
-           - enum:
-               - mikrotik,rb3011
-               - qcom,ipq8064-ap148
-           - const: qcom,ipq8064
- 
-+      - items:
-+          - const: qcom,ipq8065
-+          - const: qcom,ipq8064
-+
-+      - items:
-+          - const: qcom,ipq8066
-+          - const: qcom,ipq8064
-+
-+      - items:
-+          - const: qcom,ipq8068
-+          - const: qcom,ipq8064
-+
-+      - items:
-+          - const: qcom,ipq8069
-+          - const: qcom,ipq8064
-+
-       - items:
-           - enum:
-               - qcom,ipq8074-hk01
+> Signed-off-by: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
+> ---
+>  drivers/rtc/rtc-mt6397.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
+> index 692c00ff544b..b8f44a00de5d 100644
+> --- a/drivers/rtc/rtc-mt6397.c
+> +++ b/drivers/rtc/rtc-mt6397.c
+> @@ -345,7 +345,7 @@ static struct platform_driver mtk_rtc_driver = {
+>  		.of_match_table = mt6397_rtc_of_match,
+>  		.pm = &mt6397_pm_ops,
+>  	},
+> -	.probe	= mtk_rtc_probe,
+
+I guess the original author wanted to align with the members of the
+.drivers struct above. I won't take a patch to change just that as the
+next guys wanting to improve his KPIs will do the exact opposite.
+
+
+> +	.probe = mtk_rtc_probe,
+>  };
+>  
+>  module_platform_driver(mtk_rtc_driver);
+> -- 
+> 2.45.2
+> 
+
 -- 
-2.51.0
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
