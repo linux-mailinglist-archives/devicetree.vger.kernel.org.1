@@ -1,360 +1,269 @@
-Return-Path: <devicetree+bounces-240652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EC3FC73CA2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:44:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFED4C73CFB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:48:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CCE0334AED5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:43:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 8A96330501
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:48:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39FF332D455;
-	Thu, 20 Nov 2025 11:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 399EC32E744;
+	Thu, 20 Nov 2025 11:47:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Gsevl2vZ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bt4JJvlu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F8432E735;
-	Thu, 20 Nov 2025 11:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31BB9302150
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 11:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763639017; cv=none; b=hlFstqxXHEFdR6XHgSlGqsmEWiUMoAgZIUKAUxPS0ayyM2OCF3JarrDuWhAY+X5Q+3HBZFzUglmHshbHBX+eNAqxzByLsEAVRkf2LkzNVy2BZS+ZMvKejpaTtLnx86wd5GMagyxE9cWyKWliVmKAyFGfTtp4YdGMJOOCk1AqJVs=
+	t=1763639279; cv=none; b=X3eqyW0zX2D2vejNvwmEv5XeXhilgvHrL2K8DZxv0ZJZHNDFj/Ov9///3+ppIwfCkziHz6nUFRYVJ9LSfWbgibeKVXZJpJdYbK+r2S26rEpcClBd+L3Ol83S4zxAsLBgpyNP4MSmRaKnwgQBPsoEMvLJEIBnMDEQbb2efohz80Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763639017; c=relaxed/simple;
-	bh=T7yH+tLH0ytcPlliAfVYtJBUKjrxly67IXG+/EGy4/I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HKSf+YkC7DojnsufL0+7lVyaVaEvnlk3uz94vxtG1ynvhnjYbQH/L/ROUU0oM2Wl7cFHYFkSJ/zSdtQ/9F7CNumlx2goiTC0k2wlTH6M6sdgyC+bNoGGMEfNrrtc14+rrTCzGRl8sv9OACElTZ/yJKjOsu3RAaq4q18VqiAaud4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dBxLm226Lz9smP;
-	Thu, 20 Nov 2025 12:43:28 +0100 (CET)
-Date: Thu, 20 Nov 2025 12:43:21 +0100
-From: Lukas Timmermann <linux@timmermann.space>
-To: lee@kernel.org, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 2/2] leds: as3668: Driver for the ams Osram 4-channel
- i2c LED driver
-Message-ID: <nkdqizx5lmf5mgovt4lv4pkzzaujnqt4zlhuwdlidrlgyqr5s5@dvnhdhkhfuvy>
-References: <20251117020008.316648-1-linux@timmermann.space>
- <20251117020008.316648-3-linux@timmermann.space>
+	s=arc-20240116; t=1763639279; c=relaxed/simple;
+	bh=EZ/NZj91wZH2T2vAvj3ZsOBgnYXe06hjHyPiLOwcqSU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rHtu9An3BHbkGLpSb+x8fxdDkWkl3dEqUTWOP2NnPELiXTh1VckVLFVTCyOJm96EMg/Y6dSkrpQy/tzlHWXiElW6dqZcQURU8Pyo1zAyeuFXAUfl6e8XEKByrhSa2Qhh/v8CGIOwvJtoDgQ0bArH7HUXJ1TzqrwJnrqp8MTStZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Gsevl2vZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bt4JJvlu; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AK64LfV3926092
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 11:47:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	JxyeXwffx5hTKSMh7esokKl8lA+PQtUsPeK/qG3TCgI=; b=Gsevl2vZdd2UySeh
+	XxaACt3zJTWwgdGsJqK87M0bd5xGlfOkgw7gukoSVvTUkKXOrlLvYGVb7yIF/LOY
+	H7NiGKev6buu1TmiomW2nc6Gsb6Yhz0GTgnT5UhovAf/m8m/wTMB56cl9diIlBTZ
+	K17FDXhE45EZCVuDWjPijC0ituG3bluEpbrCti8b0Nz7ugT25XdNbMRJPtlN7CYs
+	hVCXH/XbEGTxs1vnTVC53Q6X+/ui580oMM8qdF8lv61oRi+NUPKTP2G1ZpC4BRHs
+	zRg+u7NNyQh+J4WdkdLDnjWtGpIli/bFj3jf78vUFP0hcBuR/Gsy+QUjbCK5W2TY
+	BDyBPg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ahwd791w6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 11:47:56 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee00f2b7d7so2531321cf.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 03:47:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763639275; x=1764244075; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JxyeXwffx5hTKSMh7esokKl8lA+PQtUsPeK/qG3TCgI=;
+        b=bt4JJvluYiOZpZ8ra3UA4aBmPRg/f1ETrUpXARWWs8uO8s8ckyA1ZQMx1JgiBSbIfT
+         9VI3Gph9r+3QyWUKw2c+LCdjnwGxCifpSXlWMFCJX4JCiexiSVHE3Gymv2emK2swqTVi
+         v2VPTAJjXhecv/fycI22k/zxA8+P9wbsEJxDDIEKQwnt3FNDuHb8RmwrFO8TORI8nFcd
+         t3BfLFiMtD9zzIf2Q3DT3aaKgvJ46VyJukq6zPJVNww6Xv/eNLImCIgSPZjON5Xwi0cz
+         tYSGIqzV4LwNnu0Vh0oH2XySJEMyopUlUFCPxBmCZqxn8ltXjy0HwpXPgqSQ8I3whQjM
+         NSvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763639275; x=1764244075;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JxyeXwffx5hTKSMh7esokKl8lA+PQtUsPeK/qG3TCgI=;
+        b=KEIgGwgeMQmsBXYz2uImml7+3KzZOcfsKRPdwv6q5RmmnDZ0gPrbCxZ+iKjFL2gnUt
+         ISgBR8lfC8cjByIEsusGCpwP7iUjq+uSH+c9ma4ni3S/wZj2he/BVwAWedBNo5xXafDI
+         ju0MmkH+8OkAsBJzkvMMDYXzlZu4ZViOOfHLWoIgUPF3d+cIRv2JAUuhIIDfTILHl2m8
+         vn3VOLMJolCi6/dBeg/vxUvHy4SWwOSINygx1gaosatt9MJjaUYkOwk+OaMy3jhYQZ3c
+         56IiMGSh3pHT+Yn9k30J4+ahHSsFpsueCCGMMMcUpSmng0MsXJ8Op9IY8dQBWTrSaCM1
+         WezA==
+X-Forwarded-Encrypted: i=1; AJvYcCW8xHxCCwo2P5OX2yR1QAvwEIMqcOJl+Gg5jhJ0hCwPHzGuFzusY/M2DNNHSVCneqB2jlTtZYTcGsBa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzj2fgvm+Su311fS2Anj6K5BFF/3UNYyG9NZWrQeynjbIIY4tHY
+	8oAsRJm01MOh/blWiZ+0B9Bx8Efuh7gtXIJw6Zg6x/S8GsUO7pRbBctOn/pPPvJB4A5QTmFDwAD
+	WYhfxGeUMC5nhqKKmdsr2pDMs/OSIRP44r0SBHLMHxPT5MaQZLQJD4AleK7+xyaap
+X-Gm-Gg: ASbGncs5BCB+fAaeOht8rQCYaobFP3bQBDW5np606/fXjrfRox/gB502gDHmmrv4j3H
+	1dqYMsEjKyy1aZ+LgEbBQo+k11BY0VGRuGH0si2saf1FW0MO4O4zEvpJmFUx4YwafBwetu0qVlI
+	cyq/ZfDrLlR51VPkSg2yoUCQy81rOq99V6iADj1iLuVbWZ2lQWumEgTNRgAlatGAKc8nqzbm3Kd
+	WWa680MYOpj3C7oiIqwpUCCP/0sDmwTpJTuGsN57znuMz/c4ZvodgALqEolHbentM99lVZlvaNJ
+	Y+uCq51eH/uwbx6HO8dR5un4cW2g+udQfjvr5LddZDfU07Gk+rxgXjhhe7wbgX2y46iE6OrIJc4
+	b1rV8Gi9JPs7CbAlgnvaKNqp+w2dc/0Gkxvqy4noEc77VYtn2SGBaowSrEgvMMdJghhs=
+X-Received: by 2002:a05:622a:1208:b0:4ee:2580:9bc5 with SMTP id d75a77b69052e-4ee49456b7amr24661021cf.2.1763639275295;
+        Thu, 20 Nov 2025 03:47:55 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF4Z/1QKTPQfmoIuUIOYna7Jmfp/wXBj5aE67cYkKmgIdTUJbMVnedKZ0kWLzAz7Hk+98vkfw==
+X-Received: by 2002:a05:622a:1208:b0:4ee:2580:9bc5 with SMTP id d75a77b69052e-4ee49456b7amr24660841cf.2.1763639274820;
+        Thu, 20 Nov 2025 03:47:54 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654cdac18sm186405666b.11.2025.11.20.03.47.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Nov 2025 03:47:54 -0800 (PST)
+Message-ID: <24221ce7-24e4-4eaa-8681-ed9b4b9f2d6e@oss.qualcomm.com>
+Date: Thu, 20 Nov 2025 12:47:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251117020008.316648-3-linux@timmermann.space>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
+ nodes
+To: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
+        Nickolay Goppen <setotau@mainlining.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux@mainlining.org, Chenna Kesava Raju <chennak@qti.qualcomm.com>,
+        Bharath Kumar <bkumar@qti.qualcomm.com>
+References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
+ <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
+ <07066c46-4121-48da-846a-3a180d245589@oss.qualcomm.com>
+ <47b40a91-8365-4431-9fd9-1e48fad2a4e1@mainlining.org>
+ <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
+ <83c3aea5-764e-4e60-8b16-67b474f19357@oss.qualcomm.com>
+ <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
+ <f5c7eb1c-28b1-4cf1-afb0-b993384b7712@oss.qualcomm.com>
+ <80836b8f-16a8-4520-ad11-5ca0abb3403e@oss.qualcomm.com>
+ <99c22e73-797c-4a30-92ba-bc3bd8cf70f0@oss.qualcomm.com>
+ <eddc16cb-d951-401c-8fb8-fccfcf600143@mainlining.org>
+ <0b06f744-b695-43d9-8da3-4424e2b53a5e@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <0b06f744-b695-43d9-8da3-4424e2b53a5e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=Jtf8bc4C c=1 sm=1 tr=0 ts=691effec cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=OuZLqq7tAAAA:8
+ a=hDfUAWCtjtKpYJbaT9cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=AKGiAy9iJ-JzxKVHQNES:22
+X-Proofpoint-ORIG-GUID: TdHv8me0RHpk1HTXDSq6eze9R8AWj2YP
+X-Proofpoint-GUID: TdHv8me0RHpk1HTXDSq6eze9R8AWj2YP
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIwMDA3NCBTYWx0ZWRfX0JKO+G0WPj5B
+ G+UyU9wHAk5T7r9dyLqKamCT9I6DJP+QIs893SrXTCd/8FDVefNC2VK5FGbDVfnZjlh7HSdNiEY
+ zf1gtM6XX9t4FfQMRML6QMAHtMjg4CLc5vAn2+141KdvaAFJB3CtY3Y38dNQuSv+p0W8wi5Xqxq
+ rdpKyP/i/FhioVkt5FnBuRz06d8domCYiYq5gXZgrYftRmLemhdaEXnaq++E+KMYh+pfH1p/ghm
+ 58/v0e0CPCFO5Y8E9VAKKHHJ8OO7sD8yE3MCyLO6SS75Ijp3BDBGBWPz9IT+d66Efa2tkypwMnA
+ aAyvuczMfjdcoso7v3X+uydCqcUeOjKuKf9pt/zjbuAhW74IJ/iSBsNJnqI24BXcyeSgb1aCUEC
+ wurGZl6YwZW5Ywf9oqXeG8JSSbdk5A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-20_04,2025-11-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 clxscore=1015 adultscore=0
+ lowpriorityscore=0 bulkscore=0 impostorscore=0 phishscore=0 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511200074
 
-On Mon, Nov 17, 2025 at 03:00:08AM +0100, Lukas Timmermann wrote:
-> Since there were no existing drivers for the AS3668 or related devices,
-> a new driver was introduced in a separate file. Similar devices were
-> reviewed, but none shared enough characteristics to justify code reuse.
-> As a result, this driver is written specifically for the AS3668.
-> 
-> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
-> ---
->  MAINTAINERS                |   1 +
->  drivers/leds/Kconfig       |  13 +++
->  drivers/leds/Makefile      |   1 +
->  drivers/leds/leds-as3668.c | 222 +++++++++++++++++++++++++++++++++++++
->  4 files changed, 237 insertions(+)
->  create mode 100644 drivers/leds/leds-as3668.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 091206c54c63..945d78fef380 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
->  L:	linux-leds@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
-> +F:	drivers/leds/leds-as3668.c
->  
->  ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
->  M:	Tianshu Qiu <tian.shu.qiu@intel.com>
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index a104cbb0a001..ec37d55ac14e 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -100,6 +100,19 @@ config LEDS_ARIEL
->  
->  	  Say Y to if your machine is a Dell Wyse 3020 thin client.
->  
-> +config LEDS_OSRAM_AMS_AS3668
-I've modified this line as requested in patch series v9. After comparing
-this with other configuration options in drivers/leds/Kconfig, this
-seems out of place. Shouldn't we keep this consistent?
-> +	tristate "LED support for Osram AMS AS3668"
-> +	depends on LEDS_CLASS
-> +	depends on I2C
-> +	help
-> +	  This option enables support for the Osram AMS AS3668 LED controller.
-> +	  The AS3668 provides up to four LED channels and is controlled via
-> +	  the I2C bus. This driver offers basic brightness control for each
-> +	  channel, without support for blinking or other advanced features.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called leds-as3668.
-> +
->  config LEDS_AW200XX
->  	tristate "LED support for Awinic AW20036/AW20054/AW20072/AW20108"
->  	depends on LEDS_CLASS
-> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-> index 2f170d69dcbf..983811384fec 100644
-> --- a/drivers/leds/Makefile
-> +++ b/drivers/leds/Makefile
-> @@ -14,6 +14,7 @@ obj-$(CONFIG_LEDS_ADP5520)		+= leds-adp5520.o
->  obj-$(CONFIG_LEDS_AN30259A)		+= leds-an30259a.o
->  obj-$(CONFIG_LEDS_APU)			+= leds-apu.o
->  obj-$(CONFIG_LEDS_ARIEL)		+= leds-ariel.o
-> +obj-$(CONFIG_LEDS_AS3668)		+= leds-as3668.o
->  obj-$(CONFIG_LEDS_AW200XX)		+= leds-aw200xx.o
->  obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
->  obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
-> diff --git a/drivers/leds/leds-as3668.c b/drivers/leds/leds-as3668.c
-> new file mode 100644
-> index 000000000000..8c43429f2856
-> --- /dev/null
-> +++ b/drivers/leds/leds-as3668.c
-> @@ -0,0 +1,222 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + *  Osram AMS AS3668 LED Driver IC
-> + *
-> + *  Copyright (C) 2025 Lukas Timmermann <linux@timmermann.space>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/i2c.h>
-> +#include <linux/leds.h>
-> +#include <linux/module.h>
-> +#include <linux/uleds.h>
-> +
-> +#define AS3668_MAX_LEDS			4
-> +
-> +/* Chip Ident */
-> +
-> +#define AS3668_CHIP_ID1_REG		0x3e
-> +#define AS3668_CHIP_ID			0xa5
-> +
-> +/* Current Control */
-> +
-> +#define AS3668_CURR_MODE_REG		0x01
-> +#define AS3668_CURR_MODE_OFF		0x0
-> +#define AS3668_CURR_MODE_ON		0x1
-> +#define AS3668_CURR1_MODE_MASK		GENMASK(1, 0)
-> +#define AS3668_CURR2_MODE_MASK		GENMASK(3, 2)
-> +#define AS3668_CURR3_MODE_MASK		GENMASK(5, 4)
-> +#define AS3668_CURR4_MODE_MASK		GENMASK(7, 6)
-> +#define AS3668_CURR1_REG		0x02
-> +#define AS3668_CURR2_REG		0x03
-> +#define AS3668_CURR3_REG		0x04
-> +#define AS3668_CURR4_REG		0x05
-> +
-> +struct as3668_led {
-> +	struct led_classdev cdev;
-> +	struct as3668 *chip;
-> +	struct fwnode_handle *fwnode;
-> +	int led_id;
-> +};
-> +
-> +struct as3668 {
-> +	struct i2c_client *client;
-> +	struct as3668_led leds[AS3668_MAX_LEDS];
-> +};
-> +
-> +static void as3668_channel_mode_set(struct as3668 *as3668, int led_id, u8 mode)
-> +{
-> +	int err;
-> +	u8 reg;
-> +
-> +	reg = i2c_smbus_read_byte_data(as3668->client, AS3668_CURR_MODE_REG);
-> +	if (reg < 0) {
-> +		dev_err(&as3668->client->dev, "failed to read channel modes\n");
-> +		return;
-> +	}
-> +
-> +	switch (led_id) {
-> +	case 0:
-> +		reg &= ~AS3668_CURR1_MODE_MASK;
-> +		reg |= FIELD_PREP(AS3668_CURR1_MODE_MASK, mode);
-> +		break;
-> +	case 1:
-> +		reg &= ~AS3668_CURR2_MODE_MASK;
-> +		reg |= FIELD_PREP(AS3668_CURR2_MODE_MASK, mode);
-> +		break;
-> +	case 2:
-> +		reg &= ~AS3668_CURR3_MODE_MASK;
-> +		reg |= FIELD_PREP(AS3668_CURR3_MODE_MASK, mode);
-> +		break;
-> +	case 3:
-> +		reg &= ~AS3668_CURR4_MODE_MASK;
-> +		reg |= FIELD_PREP(AS3668_CURR4_MODE_MASK, mode);
-> +		break;
-> +	default:
-> +		return;
-> +	}
-> +
-> +	err = i2c_smbus_write_byte_data(as3668->client, AS3668_CURR_MODE_REG, reg);
-> +	if (err)
-> +		dev_err(&as3668->client->dev, "failed to set channel modes\n");
-> +}
-> +
-> +static enum led_brightness as3668_brightness_get(struct led_classdev *cdev)
-> +{
-> +	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-> +
-> +	return i2c_smbus_read_byte_data(led->chip->client, AS3668_CURR1_REG + led->led_id);
-> +}
-> +
-> +static void as3668_brightness_set(struct led_classdev *cdev, enum led_brightness brightness)
-> +{
-> +	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-> +	int err;
-> +
-> +	if (brightness == 0)
-> +		as3668_channel_mode_set(led->chip, led->led_id, AS3668_CURR_MODE_OFF);
-> +	else
-> +		as3668_channel_mode_set(led->chip, led->led_id, AS3668_CURR_MODE_ON);
-> +
-> +	err = i2c_smbus_write_byte_data(led->chip->client,
-> +					AS3668_CURR1_REG + led->led_id,
-> +					brightness);
-> +
-> +	if (err)
-> +		dev_err(&led->chip->client->dev, "failed to set brightness: %d\n", err);
-> +}
-> +
-> +static int as3668_dt_init(struct as3668 *as3668)
-> +{
-> +	struct device *dev = &as3668->client->dev;
-> +	struct as3668_led *led;
-> +	struct led_init_data init_data = {};
-> +	int err;
-> +	u32 reg;
-> +
-> +	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
-> +		err = of_property_read_u32(child, "reg", &reg);
-> +		if (err)
-> +			return dev_err_probe(dev, err, "failed to read 'reg' property");
-> +
-> +		if (reg < 0 || reg > AS3668_MAX_LEDS)
-> +			return dev_err_probe(dev, -EOPNOTSUPP,
-> +					     "unsupported LED: %d\n", reg);
-> +
-> +		led = &as3668->leds[reg];
-> +		led->fwnode = of_fwnode_handle(child);
-> +
-> +		led->led_id = reg;
-> +		led->chip = as3668;
-> +
-> +		led->cdev.max_brightness = U8_MAX;
-> +		led->cdev.brightness_get = as3668_brightness_get;
-> +		led->cdev.brightness_set = as3668_brightness_set;
-> +
-> +		init_data.fwnode = led->fwnode;
-> +		init_data.default_label = ":";
-> +
-> +		err = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
-> +		if (err)
-> +			return dev_err_probe(dev, err, "failed to register LED %d\n", reg);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int as3668_probe(struct i2c_client *client)
-> +{
-> +	struct as3668 *as3668;
-> +	int err;
-> +	u8 chip_id;
-> +
-> +	chip_id = i2c_smbus_read_byte_data(client, AS3668_CHIP_ID1_REG);
-> +	if (chip_id != AS3668_CHIP_ID)
-> +		return dev_err_probe(&client->dev, -ENODEV,
-> +				     "expected chip ID 0x%02x, got 0x%02x\n",
-> +				     AS3668_CHIP_ID, chip_id);
-> +
-> +	as3668 = devm_kzalloc(&client->dev, sizeof(*as3668), GFP_KERNEL);
-> +	if (!as3668)
-> +		return -ENOMEM;
-> +
-> +	as3668->client = client;
-> +
-> +	err = as3668_dt_init(as3668);
-> +	if (err)
-> +		return err;
-> +
-> +	/* Set all four channel modes to 'off' */
-> +	err = i2c_smbus_write_byte_data(client, AS3668_CURR_MODE_REG,
-> +					FIELD_PREP(AS3668_CURR1_MODE_MASK, AS3668_CURR_MODE_OFF) |
-> +					FIELD_PREP(AS3668_CURR2_MODE_MASK, AS3668_CURR_MODE_OFF) |
-> +					FIELD_PREP(AS3668_CURR3_MODE_MASK, AS3668_CURR_MODE_OFF) |
-> +					FIELD_PREP(AS3668_CURR4_MODE_MASK, AS3668_CURR_MODE_OFF));
-> +
-> +	/* Set initial currents to 0mA */
-> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR1_REG, 0);
-> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR2_REG, 0);
-> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR3_REG, 0);
-> +	err |= i2c_smbus_write_byte_data(client, AS3668_CURR4_REG, 0);
-> +
-> +	if (err)
-> +		return dev_err_probe(&client->dev, -EIO, "failed to write to the device\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static void as3668_remove(struct i2c_client *client)
-> +{
-> +	int err;
-> +
-> +	err = i2c_smbus_write_byte_data(client, AS3668_CURR_MODE_REG, 0);
-> +	if (err)
-> +		dev_err(&client->dev, "failed to turn off the LEDs\n");
-> +}
-> +
-> +static const struct i2c_device_id as3668_idtable[] = {
-> +	{ "as3668" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, as3668_idtable);
-> +
-> +static const struct of_device_id as3668_match_table[] = {
-> +	{ .compatible = "ams,as3668" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, as3668_match_table);
-> +
-> +static struct i2c_driver as3668_driver = {
-> +	.driver = {
-> +		.name = "leds_as3668",
-> +		.of_match_table = as3668_match_table,
-> +	},
-> +	.probe = as3668_probe,
-> +	.remove = as3668_remove,
-> +	.id_table = as3668_idtable,
-> +};
-> +module_i2c_driver(as3668_driver);
-> +
-> +MODULE_AUTHOR("Lukas Timmermann <linux@timmermann.space>");
-> +MODULE_DESCRIPTION("AS3668 LED driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.51.2
+On 11/20/25 11:54 AM, Ekansh Gupta wrote:
 > 
 > 
---
-Best regards,
-Lukas Timmermann
+> On 11/20/2025 1:27 PM, Nickolay Goppen wrote:
+>>
+>> 20.11.2025 07:55, Ekansh Gupta пишет:
+>>>
+>>> On 11/20/2025 1:58 AM, Srinivas Kandagatla wrote:
+>>>> On 11/12/25 1:52 PM, Konrad Dybcio wrote:
+>>>>> On 11/10/25 6:41 PM, Srinivas Kandagatla wrote:
+>>>>>> On 11/3/25 12:52 PM, Konrad Dybcio wrote:
+>>>>>>> On 10/31/25 12:30 PM, Nickolay Goppen wrote:
+>>>>>>>> 24.10.2025 16:58, Nickolay Goppen пишет:
+>>>>>>>>> 24.10.2025 11:28, Konrad Dybcio пишет:
+>>>>>>>>>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
+>>>>>>>>>>> In order to enable CDSP support for SDM660 SoC:
+>>>>>>>>>>>    * add shared memory p2p nodes for CDSP
+>>>>>>>>>>>    * add CDSP-specific smmu node
+>>>>>>>>>>>    * add CDSP peripheral image loader node
+>>>>>>>>>>>
+>>>>>>>>>>> Memory region for CDSP in SDM660 occupies the same spot as
+>>>>>>>>>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+>>>>>>>>>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+>>>>>>>>>>> cdsp_region, which is also larger in size.
+>>>>>>>>>>>
+>>>>>>>>>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+>>>>>>>>>>> related nodes and add buffer_mem back.
+>>>>>>>>>>>
+>>>>>>>>>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+>>>>>>>>>>> ---
+>>>>>>>>>> [...]
+>>>>>>>>>>
+>>>>>>>>>>> +            label = "turing";
+>>>>>>>>>> "cdsp"
+>>>>>>>>> Ok, I'll change this in the next revision.
+>>>>>>>>>>> +            mboxes = <&apcs_glb 29>;
+>>>>>>>>>>> +            qcom,remote-pid = <5>;
+>>>>>>>>>>> +
+>>>>>>>>>>> +            fastrpc {
+>>>>>>>>>>> +                compatible = "qcom,fastrpc";
+>>>>>>>>>>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
+>>>>>>>>>>> +                label = "cdsp";
+>>>>>>>>>>> +                qcom,non-secure-domain;
+>>>>>>>>>> This shouldn't matter, both a secure and a non-secure device is
+>>>>>>>>>> created for CDSP
+>>>>>>>>> I've added this property, because it is used in other SoC's, such as SDM845 and SM6115 for both ADSP and CDSP
+>>>>>>>> Is this property not neccessary anymore?
+>>>>>>> +Srini?
+>>>>>> That is true, we do not require this for CDSP, as CDSP allows both
+>>>>>> unsigned and signed loading, we create both secured and non-secure node
+>>>>>> by default. May be we can provide that clarity in yaml bindings so that
+>>>>>> it gets caught during dtb checks.
+>>>>>>
+>>>>>>
+>>>>>> However in ADSP case, we only support singed modules, due to historical
+>>>>>> reasons how this driver evolved over years, we have this flag to allow
+>>>>>> compatiblity for such users.
+>>>>> Does that mean that we can only load signed modules on the ADSP, but
+>>>>> the driver behavior was previously such that unsigned modules were
+>>>>> allowed (which was presumably fine on devboards, but not on fused
+>>>>> devices)?
+>>>> Yes, its true that we allowed full access to adsp device nodes when we
+>>>> first started upstreaming fastrpc driver.
+>>>>
+>>>> irrespective of the board only signed modules are supported on the ADSP.
+>>>> I think there was one version of SoC i think 8016 or some older one
+>>>> which had adsp with hvx which can load unsigned modules for compute
+>>>> usecase only.
+>>>>
+>>>> I have added @Ekansh for more clarity.
+>>>>
+>>>> --srini
+>>> For all the available platforms, ADSP supports only signed modules. Unsigned
+>>> modules(as well as signed) are supported by CDSP and GDSP subsystems.
+>>>
+>>> qcom,non-secure-domain property marks the corresponding DSP as non-secure DSP.
+>>> The implications of adding this property would be the following:
+>>> on ADSP, SDSP, MDSP:
+>>> - Only non-secure device node(/dev/fastrpc-Xdsp) is created.
+>>> - Non-secure device node can be used for signed DSP PD offload.
+>>>
+>>> on CDSP, GDSP:
+>>> - Both secure(/dev/fastrpc-Xdsp-secure) and non-secure(/dev/fastrpc-Xdsp) devices
+>>>    are created, regardless of this property.
+>>> - Both the nodes can be used for signed and unsigned DSP PD offload.
+>>>
+>>> Note: If the property is not added for CDSP/GDSP, only secure device node can
+>>> be used for signed PD offload, if non-secure device is used, the request gets
+>>> rejected[1].
+>>>
+>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1245
+>>>
+>>> //Ekansh
+>> Does this mean that the qcom,non-secure-domain property should be dropped from both nodes? 
+> I checked again and found that unsigned module support for CDSP is
+> not available on this platform. Given this, the safest approach would
+> be to add the property for both ADSP and CDSP, ensuring that all
+> created device nodes can be used for signed PD offload. I can provide
+
+The property allows *unsigned* PD offload though
+
+> a more definitive recommendation once I know the specific use cases
+> you plan to run.
+
+Why would the usecase affect this?
+
+Konrad
 
