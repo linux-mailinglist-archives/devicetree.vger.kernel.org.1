@@ -1,116 +1,124 @@
-Return-Path: <devicetree+bounces-240714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7698DC7465E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:00:17 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EDD1C74622
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:57:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D59EC4F0CB1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:47:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 8E5AE326B9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4D7342539;
-	Thu, 20 Nov 2025 13:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A460934403E;
+	Thu, 20 Nov 2025 13:47:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kXUsnNhT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O5bzoH+f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D569934164C;
-	Thu, 20 Nov 2025 13:47:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C6B341054;
+	Thu, 20 Nov 2025 13:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763646458; cv=none; b=HpBL2cyp0bBO0Sk/TmCmMoBRtE9ChJPo3BI+/kf9otLxgoWab+USVQ+CTpOxQi1+/BEyO7E3KXq67SrsHpqwKgjRwvcTpIExF/1C5y5rFWsk6D7uxOJQ4nwaFJVfRXSG4jQVEZh+E3g16tX8+exzlmnXk4HgWxnNXPvItGiIBdA=
+	t=1763646470; cv=none; b=l0rs/I/E1rUKnUuZ86ycVUaFkrGTVI0aFTp7Hnpz9ROJdHSzrn6vX5mVnk5Ro4rsQT4V5sxsWpHs/8mKhP4gL71VtrTYgn/GmQbshFbpyXDj7jwbdL+Lv+mnw30lJIJXVVFj0JJRGFnfCd33dzUVZiDNX91O3aFoS/JuIZMISdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763646458; c=relaxed/simple;
-	bh=CJvDRzJ6YFbRHvYRFotqckNLhW7HcjNVMeyVDaTUxIU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iKIZPKqUFpmlu/Ws/1rK2HmlJNJZQKZfkLkDaM2LX4esXDcMsZEl3IIZ6EjfExDylUTJcjVDybARRqOIc20XtuFuvMtoRDXLEGXDoJPD+EptviUg7PRTeD0MJ9HpeFo/MfwyUjb5bf1AiBLMAAoKdbR/Z9Kadm/+DR8whIwT96w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kXUsnNhT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5B79C4CEF1;
-	Thu, 20 Nov 2025 13:47:32 +0000 (UTC)
+	s=arc-20240116; t=1763646470; c=relaxed/simple;
+	bh=5ayRAEyqkMtKSXzM3wf9nh7PM7E2uEi6Aa9AoVrtxAQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nW7dryPjyXefPpg5QBQ9Qe/qmeIkw7JG8Yx0HOIfCZ4zIUGF8X/Y1ByMgESnYSA6YIqRjSNMD5evgeLhyW1JVkefp1Or9KEbdRzoffnzlT3xv0UDiUecVmcc3s7Ldf84uw3vE5YR5pDfgyG88Y3RvQ0631UgmtuVVebgbxd4u9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O5bzoH+f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A41ACC4CEF1;
+	Thu, 20 Nov 2025 13:47:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763646457;
-	bh=CJvDRzJ6YFbRHvYRFotqckNLhW7HcjNVMeyVDaTUxIU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kXUsnNhTC9c9YaZ7AYyCFxRs7XWV+0G1RxEDkF/L+x7qwqxzTpsxsvbxaVc5NWahR
-	 huMD/s+bOqTwgoExzXL5ZQfoxJoFI2FIy+zJbH/o7FY5MZjtHWGse/BnJEK1rKC6mV
-	 LIiHMkFddRichUUmbIrQtGM/hS2SXwYOPRLF2XwFCOyM+li198/4L66MC9bg1kl1w5
-	 cx+RS+vJGmtZShei7zVzbQ0EdlmKzOHS9HZKv8rDTZiUb68cuewCMbqSgSQddRWaTC
-	 IeP/jDdzMzDe5euq4kc8PzFD9uj/IQ8u8qTIjqpM1vxVh7ppoKlgZQE+BgOWXLT8Ju
-	 tS7zCQoeEbIjA==
-Date: Thu, 20 Nov 2025 13:47:29 +0000
-From: Lee Jones <lee@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Jonathan Corbet <corbet@lwn.net>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-doc@vger.kernel.org, Mark Kettenis <kettenis@openbsd.org>,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v5 00/11] mfd: macsmc: add rtc, hwmon and hid subdevices
-Message-ID: <20251120134729.GD661940@google.com>
-References: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
+	s=k20201202; t=1763646470;
+	bh=5ayRAEyqkMtKSXzM3wf9nh7PM7E2uEi6Aa9AoVrtxAQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=O5bzoH+f492/l7cK6HHN2LTFoZElsyDCGQMooUyu55J9VnA0X7TmS6YE51kYprup+
+	 aHxnE2Hm1EGWYiCC5nQfNgKyO7XL+kZ/sdHHGeG7zll3TI3u7AbiLeDWUhIE8irwwj
+	 C0uL7tE3+vITBneLbXCzMNzxoyid3+fjCxauMQlwG7C7cOfNnQHFGmxhNz8MHI4odL
+	 emX74K8K+Fqtxm06gA6zGs7vQRi1YrD5ClJW9RjYtZqDyd/7Y0183m2urrZQstE0nn
+	 irU+hMs5jiiC0alASmsGTzKcitxuNiVLlZynujDT15WXmiTImp0QdEyW0XSV3s+5+8
+	 Lidg71w6TqagA==
+Message-ID: <74d931db-8ecf-4b71-b644-d9a82ba54c8a@kernel.org>
+Date: Thu, 20 Nov 2025 14:47:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: defconfig: Enable Lontium LT8713sx driver
+To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Vishnu Saini <vishsain@qti.qualcomm.com>,
+ prahlad.valluru@oss.qualcomm.com, Prahlad Valluru <vvalluru@qti.qualcomm.com>
+References: <20251120-lt8713sx-bridge-linux-for-next-v1-0-2246fc5fb490@qti.qualcomm.com>
+ <20251120-lt8713sx-bridge-linux-for-next-v1-2-2246fc5fb490@qti.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251120-lt8713sx-bridge-linux-for-next-v1-2-2246fc5fb490@qti.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 12 Nov 2025, James Calligeros wrote:
+On 20/11/2025 11:58, Vishnu Saini wrote:
+> Lontium LT8713sx DP bridge hub can be found in monaco-evk
 
-> Hi all,
-> 
-> This series adds support for the remaining SMC subdevices. These are the
-> RTC, hwmon, and HID devices. They are being submitted together as the RTC
-> and hwmon drivers both require changes to the SMC DT schema.
-> 
-> The RTC driver is responsible for getting and setting the system clock,
-> and requires an NVMEM cell. This series replaces Sven's original RTC driver
-> submission [1].
-> 
-> The hwmon function is an interesting one. While each Apple Silicon device
-> exposes pretty similar sets of sensors, these all seem to be paired to
-> different SMC keys in the firmware interface. This is true even when the
-> sensors are on the SoC. For example, an M1 MacBook Pro will use different
-> keys to access the LITTLE core temperature sensors to an M1 Mac mini. This
-> necessitates describing which keys correspond to which sensors for each
-> device individually, and populating the hwmon structs at runtime. We do
-> this with a node in the device tree. This series includes only the keys
-> for sensors which we know to be common to all devices. The SMC is also
-> responsible for monitoring and controlling fan speeds on systems with fans,
-> which we expose via the hwmon driver.
-> 
-> The SMC also handles the hardware power button and lid switch. Power
-> button presses and lid opening/closing are emitted as HID events, so we
-> add an input subdevice to handle them.
-> 
-> Since there are no real dependencies between the components of this series,
-> it should be fine for each subsystem to take the relevant patches through
-> their trees. The mfd one-liners should be taken in order to avoid trivial
-> conflicts. Per [2], the hwmon driver should be merged along with the preceding
-> mfd patch adding the __SMC_KEY macro to avoid build errors.
+Qualcomm Monaco EVK Full Name of board goes here not some keywords.
 
-Apart from my (perhaps naive) question on patch 5, the other MFD patches
-look okay to me.  Once my question has been answered, I can apply the
-MFD, or at least 3 of them, orthogonally.
+You are adding this to common defconfig, that's not your own private one.
 
--- 
-Lee Jones [李琼斯]
+> 
+
+
+Best regards,
+Krzysztof
 
