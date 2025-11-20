@@ -1,80 +1,99 @@
-Return-Path: <devicetree+bounces-240739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFF85C74A9B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:53:13 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8AAC74BC6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 16:05:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 7BE8A2AC35
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:53:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EBD744E4C51
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:57:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A566933C519;
-	Thu, 20 Nov 2025 14:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A55034573C;
+	Thu, 20 Nov 2025 14:57:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KdFFiqcI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a31r7nz5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639C8314B60;
-	Thu, 20 Nov 2025 14:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC603451AA;
+	Thu, 20 Nov 2025 14:57:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763650366; cv=none; b=OGzyUy1uPA/MYudD4/QMfcg9Z8Wcp5LaxsAPtLPtBKQqIig3rHKOknIRvPZf6Xs38htKjYvjpG3DeTkWvxpyibQeFKyz+UOQBkjdJqh5Qo69wBPAioBhcfzSV6+5DZib/WSL4QY+1wN7ooKdtGj0cwnBx9GOxR+4WN6UKgaKkW8=
+	t=1763650624; cv=none; b=bIUEnqiL0XlvsxGGbGUaCraaYOpqvFkm0bZIiPpy2Kmt1Q0AhLjj2x0Lg5TMQBMcTJsciTBbw+yYNk2Z2BDGCdqd37zeHDPB5V1B2tzrSvTGIdnjmtDpRoAm22qWfcg+OQN7UM3yi+vYgVYYiq43SlTdrChXCPMGJmcjJWO8EK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763650366; c=relaxed/simple;
-	bh=dd8gXAxBGCSTKR0xqs6Xe9fhkfzo2q5Xg4tiEYganaE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=CNd+kgrtrAfNCgRRi5TacQhcHyI1tFexoqnbU5KA4O+D/YbfAAmGp9QxzARsxe5eoFxT/hh7HkILwn+fH5F3vVlikqFe5YoDSOtjkdvwqboU51AT1x11eH1XfNuFBPvNSc0/lDdq17BsMzTJM3Ys+seCkUpoXxvVGQnfuXjeo2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KdFFiqcI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8233CC4CEF1;
-	Thu, 20 Nov 2025 14:52:44 +0000 (UTC)
+	s=arc-20240116; t=1763650624; c=relaxed/simple;
+	bh=ZAWEhvuGNxLW528zSSPNsK40qVVkeMvPLNo31hKx7FU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NhUKTm7SIwF97mYiAs6pvRIHTVI51qaBO+FS1kk39PRRGfIyfP1unUjbY+Gd+rjXaqqqOmlCJNlBe9fq7UbS9YAiVv5eP5FGlPGpCIrsk4yh8q/aToFURWlE03ljO+tarDUy25P6iuxqArhgMeT6jLuuNuktRVt9cmYbBT9F+h8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a31r7nz5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFAC8C113D0;
+	Thu, 20 Nov 2025 14:57:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763650365;
-	bh=dd8gXAxBGCSTKR0xqs6Xe9fhkfzo2q5Xg4tiEYganaE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=KdFFiqcI4MKf8fbRTxWZBRU2sLzfrJLngSUi8ly9yon0/9tvUGui/zsF3d49N4D89
-	 zYy0HpyHBsLSim1eMttKOCoQV7w1Yp+99g1bRXuzcSrtvr8CKwRvJHdbN0aJ4vxbj/
-	 NLs52Tyb6pnTvdNLs0ku3xBC9f4hE9/f5QhSwh4DwhAJb7nTVw6TQm49f7UoCxzwbA
-	 3P4THEHG20YFzGbETpCII1SgGGxBITsdSecUZNa1R9S11NoWDyTaDeQTZPUjcskibn
-	 ShvE4g9xIvZlLHNGg3O2VH0D1sYbKb88KTD3KdOOiEedisn1H49f6iVHHSoEd+oaNS
-	 ST0D7RlKA8tow==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alexander Kurz <akurz@blala.de>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20251118213541.43812-1-robh@kernel.org>
-References: <20251118213541.43812-1-robh@kernel.org>
-Subject: Re: (subset) [PATCH] dt-bindings: mfd: fsl,mc13xxx: Fix leds node
- schema
-Message-Id: <176365036417.744495.17310062447934282027.b4-ty@kernel.org>
-Date: Thu, 20 Nov 2025 14:52:44 +0000
+	s=k20201202; t=1763650623;
+	bh=ZAWEhvuGNxLW528zSSPNsK40qVVkeMvPLNo31hKx7FU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a31r7nz53cyUEYwpuoTtq+Q9RJYSZkSl1zEN4oG+lYTBthELcNwkHF7oYMp0iZgPz
+	 K88gFCg+CatZvxK+BzgIPfiOswIfy+KVLcs/lFE/G7r65lmxzKy9UToz1njvtoY+nM
+	 eMdTTNSMrPVqi62uPPoN/gR2WltIcHPC9o2dexHw+EK85Lde0F/atyDeor5sbtBZML
+	 CLzPqRnpxk7bLY7/AcbMm0VVwI3AnqcNO9CQoZEw98KFHeEqoCo9695+2IeO0nnIRr
+	 jDkX4Brb7LKk9Z+a5mkoI2hAmLg2tGunwQOFV7C/H2HjK1gsfw0KehB2tgd2fo06Ar
+	 BCJLlF+filw1Q==
+Date: Thu, 20 Nov 2025 08:57:02 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment?= Le Goffic <legoffic.clement@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Julius Werner <jwerner@chromium.org>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	=?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
+Subject: Re: [PATCH v9 2/7] dt-bindings: memory: introduce DDR4
+Message-ID: <176365062162.1254978.3113045721070075271.robh@kernel.org>
+References: <20251118-b4-ddr-bindings-v9-0-a033ac5144da@gmail.com>
+ <20251118-b4-ddr-bindings-v9-2-a033ac5144da@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-52d38
+In-Reply-To: <20251118-b4-ddr-bindings-v9-2-a033ac5144da@gmail.com>
 
-On Tue, 18 Nov 2025 15:35:40 -0600, Rob Herring (Arm) wrote:
-> The 'leds' node is missing constraints on additional properties. It is
-> mixing 'leds' node and child node properties as well as missing some
-> properties. Add the 'led@' child nodes and the missing properties.
+
+On Tue, 18 Nov 2025 16:07:58 +0100, ClÈment Le Goffic wrote:
+> From: ClÈment Le Goffic <clement.legoffic@foss.st.com>
 > 
+> Introduce JEDEC compliant DDR bindings, that use new memory-props binding.
+> 
+> The DDR4 compatible can be made of explicit vendor names and part
+> numbers or be of the form "ddrX-YYYY,AAAA...-ZZ" when associated with an
+> SPD, where (according to JEDEC SPD4.1.2.L-6):
+> - YYYY is the manufacturer ID
+> - AAAA... is the part number
+> - ZZ is the revision ID
+> 
+> The former form is useful when the SDRAM vendor and part number are
+> known, for example, when memory is soldered on the board.
+> The latter form is useful when SDRAM nodes are created at runtime by
+> boot firmware that doesn't have access to static part number information.
+> 
+> Signed-off-by: ClÈment Le Goffic <clement.legoffic@foss.st.com>
+> Signed-off-by: ClÈment Le Goffic <legoffic.clement@gmail.com>
+> ---
+>  .../memory-controllers/ddr/jedec,ddr4.yaml         | 34 ++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
 > 
 
-Applied, thanks!
-
-[1/1] dt-bindings: mfd: fsl,mc13xxx: Fix leds node schema
-      commit: 1759a0392f345689e155196c42f1db28a222618d
-
---
-Lee Jones [ÊùéÁêºÊñØ]
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
