@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-240732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13958C7491E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21D05C74945
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:33:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 282264F0746
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:23:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 867C84E5C14
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D626349AE4;
-	Thu, 20 Nov 2025 14:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5251346FAE;
+	Thu, 20 Nov 2025 14:23:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C650F345CB1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 368BC33FE2B
 	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 14:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763648607; cv=none; b=Un3TSQGO2bUIuHa16ilbVehEl7aFHn3ybhp4mVSF5DtVMCWQSoswlyDpnxRS91hrL94tx/LHFs3OKribl6jrbpQNJz3fPl3QuOGVs+ohHn8v5eyAU15MAoCp6b5E4TCqKUVoq3xE7Y9soyNKnagvd2Fc+mcHJa+Qbz/0IEcWnNg=
+	t=1763648608; cv=none; b=nOtwIvWi3bt8D7DZyIJFyqSmeWdPHULciC7OTGIj3qUduFWL+wjbWZscUK/zEa8Ce5N/ciugsaxoeLDovVGFWOWAUjE0uC0qb9B45d/SUBI5NH3RA5Pig0khCG9Dk1b2+xDgSrxD0ca5ZQ3eDGhBX058hXLgsrSdLM0ZQhz3lZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763648607; c=relaxed/simple;
-	bh=r7mLc3KHPv7p4Rv7ztLwFO9ubBmCS7q/cP/7DHEAMQQ=;
+	s=arc-20240116; t=1763648608; c=relaxed/simple;
+	bh=h5KwSsh8Jb/txmvFYQffTn25jrarRhI3mU7L+macfXs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ui8Aegaft29N+L1uoZea1loNxaE4kh0P9KQKfGMRR4w0UPQN1mhL/UGblYboFGRx5Jhy6MUvQu84cxQq0fGRw9X1RrR5J7s/aUzEwV8YmnD+sFNwkxNKeZNqbRode+zQIgFlhco08AihVWM7zsT1t/O0hri9fA9xyogXOgOvvwI=
+	 In-Reply-To:To:Cc; b=SUwW2re3sX+Q1wV89dCqsnzw9XBQupI+q5KRfcbYk2voob3jpo9Nf+BfJAmrcoTCqAgxFrLkSJ9L7ZdBDXZoFU/6OBbeY+TehAJRBgztUL0fn52RvoIgcDw7Y79RfXmi8Aqwr1zALbcuB+tDBUSnKLC58F0ClsOpgmz0ZcsWrRU=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.tretter@pengutronix.de>)
-	id 1vM5Z9-0004us-Bt; Thu, 20 Nov 2025 15:23:19 +0100
+	id 1vM5Z9-0004us-D9; Thu, 20 Nov 2025 15:23:19 +0100
 From: Michael Tretter <m.tretter@pengutronix.de>
-Date: Thu, 20 Nov 2025 15:22:54 +0100
-Subject: [PATCH v3 2/4] media: adv7180: add support for ancillary devices
+Date: Thu, 20 Nov 2025 15:22:55 +0100
+Subject: [PATCH v3 3/4] media: adv7180: implement g_register and s_register
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,8 +43,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251120-b4-adv7180-vpp-sub-device-v3-2-c9d80661e7d9@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20251120-b4-adv7180-vpp-sub-device-v3-3-c9d80661e7d9@pengutronix.de>
 References: <20251120-b4-adv7180-vpp-sub-device-v3-0-c9d80661e7d9@pengutronix.de>
 In-Reply-To: <20251120-b4-adv7180-vpp-sub-device-v3-0-c9d80661e7d9@pengutronix.de>
 To: Lars-Peter Clausen <lars@metafoo.de>, 
@@ -63,16 +63,13 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 From: Thorsten Schmelzer <tschmelzer@topcon.com>
 
-Depending on other devices on the i2c bus, using a non-default address
-for the CSI and VPP devices may be necessary.
+The g_register and s_register callbacks are useful for debugging the
+adv7180.
 
-Replace calls to i2c_new_dummy_device with i2c_new_ancillary_device,
-which can directly use an i2c address from the device tree.
-
-Program the actual addresses of the sub-devices when configuring the
-chip.
+Implement the callbacks to expose the register debugging to userspace.
 
 Signed-off-by: Thorsten Schmelzer <tschmelzer@topcon.com>
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 ---
 Changes in v3:
@@ -80,53 +77,57 @@ Changes in v3:
 Changes in v2:
 - None
 ---
- drivers/media/i2c/adv7180.c | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+ drivers/media/i2c/adv7180.c | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
 diff --git a/drivers/media/i2c/adv7180.c b/drivers/media/i2c/adv7180.c
-index 378f4e6af12c..4152f2049a6d 100644
+index 4152f2049a6d..d289cbc2eefd 100644
 --- a/drivers/media/i2c/adv7180.c
 +++ b/drivers/media/i2c/adv7180.c
-@@ -1066,13 +1066,13 @@ static int adv7180_select_input(struct adv7180_state *state, unsigned int input)
- 
- static int adv7182_init(struct adv7180_state *state)
- {
--	if (state->chip_info->flags & ADV7180_FLAG_MIPI_CSI2)
-+	if (state->csi_client)
- 		adv7180_write(state, ADV7180_REG_CSI_SLAVE_ADDR,
--			ADV7180_DEFAULT_CSI_I2C_ADDR << 1);
-+			      state->csi_client->addr << 1);
- 
--	if (state->chip_info->flags & ADV7180_FLAG_I2P)
-+	if (state->vpp_client)
- 		adv7180_write(state, ADV7180_REG_VPP_SLAVE_ADDR,
--			ADV7180_DEFAULT_VPP_I2C_ADDR << 1);
-+			      state->vpp_client->addr << 1);
- 
- 	if (state->chip_info->flags & ADV7180_FLAG_V2) {
- 		/* ADI recommended writes for improved video quality */
-@@ -1443,15 +1443,17 @@ static int adv7180_probe(struct i2c_client *client)
- 		state->force_bt656_4 = true;
- 
- 	if (state->chip_info->flags & ADV7180_FLAG_MIPI_CSI2) {
--		state->csi_client = i2c_new_dummy_device(client->adapter,
--				ADV7180_DEFAULT_CSI_I2C_ADDR);
-+		state->csi_client =
-+			i2c_new_ancillary_device(client, "csi",
-+						 ADV7180_DEFAULT_CSI_I2C_ADDR);
- 		if (IS_ERR(state->csi_client))
- 			return PTR_ERR(state->csi_client);
+@@ -969,6 +969,32 @@ static int adv7180_subscribe_event(struct v4l2_subdev *sd,
  	}
+ }
  
- 	if (state->chip_info->flags & ADV7180_FLAG_I2P) {
--		state->vpp_client = i2c_new_dummy_device(client->adapter,
--				ADV7180_DEFAULT_VPP_I2C_ADDR);
-+		state->vpp_client =
-+			i2c_new_ancillary_device(client, "vpp",
-+						 ADV7180_DEFAULT_VPP_I2C_ADDR);
- 		if (IS_ERR(state->vpp_client)) {
- 			ret = PTR_ERR(state->vpp_client);
- 			goto err_unregister_csi_client;
++#ifdef CONFIG_VIDEO_ADV_DEBUG
++static int adv7180_g_register(struct v4l2_subdev *sd,
++			      struct v4l2_dbg_register *reg)
++{
++	struct adv7180_state *state = to_state(sd);
++	int ret;
++
++	ret = adv7180_read(state, reg->reg);
++	if (ret < 0)
++		return ret;
++
++	reg->val = ret;
++	reg->size = 1;
++
++	return 0;
++}
++
++static int adv7180_s_register(struct v4l2_subdev *sd,
++			      const struct v4l2_dbg_register *reg)
++{
++	struct adv7180_state *state = to_state(sd);
++
++	return adv7180_write(state, reg->reg, reg->val);
++}
++#endif
++
+ static const struct v4l2_subdev_video_ops adv7180_video_ops = {
+ 	.s_std = adv7180_s_std,
+ 	.g_std = adv7180_g_std,
+@@ -982,6 +1008,10 @@ static const struct v4l2_subdev_video_ops adv7180_video_ops = {
+ static const struct v4l2_subdev_core_ops adv7180_core_ops = {
+ 	.subscribe_event = adv7180_subscribe_event,
+ 	.unsubscribe_event = v4l2_event_subdev_unsubscribe,
++#ifdef CONFIG_VIDEO_ADV_DEBUG
++	.g_register = adv7180_g_register,
++	.s_register = adv7180_s_register,
++#endif
+ };
+ 
+ static const struct v4l2_subdev_pad_ops adv7180_pad_ops = {
 
 -- 
 2.47.3
