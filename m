@@ -1,174 +1,279 @@
-Return-Path: <devicetree+bounces-240702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C513C7436D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:27:43 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DF98C7441B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:32:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9CE1B35EC73
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:22:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC0024F2C94
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E7133F391;
-	Thu, 20 Nov 2025 13:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C50633DEC9;
+	Thu, 20 Nov 2025 13:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="hvu/z7cM"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aoqVACB6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A60533123E;
-	Thu, 20 Nov 2025 13:17:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9884333A6FA;
+	Thu, 20 Nov 2025 13:16:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763644638; cv=none; b=ldRBqJLXvR3ursyQXqLWohBhxGnlUqZtDb6wy3P/711Ax8mPjeInxChhym0o4Hzoxi6RRX1j4W5s31RC0GkFy/Mt2teEF9f/DNS9KICLMQa/ua27XX+Z6yO+JE3hGBSxa23kBWpb+98TeoEcXX23IeBv03TT5UDLW9JxNJI+AJo=
+	t=1763644586; cv=none; b=C6lF8nXdY58QREeG48nnHHyvA5LOXeM2JhVWnFas3MRBqmwOIoVIiY3bs+ySHt9J69dwLmuO7GATWY1F/xm7ngE0q6rN8mK3MEn1ft83g40KPLCsY2l04pua5ZUJGSyAy1+050uI2zQxtimO4AX5Kgep/x4aCTWqBfdPIYdeGlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763644638; c=relaxed/simple;
-	bh=rzsceNVsLgNTO+X00rj3Tf+eMe4kMyO3UMkIeEbat4c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bS59lB9l96gZYdhjD+PkTfMAfadqnrlrpEi94jtnQGbnZ+OO4bknq/tZaoTdw7Vrzt3BzmNPsg1f3X7XkR2Pn9bS4T589zb0xZQAUHnYpGoS6bO7Amq+u8nAmi4T3X1NecR7GPudCtu/scDL5jPZA6f6kpkD+himD7U0W4bEBlk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=hvu/z7cM; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 0C6962617B;
-	Thu, 20 Nov 2025 14:17:15 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id fPVi9DDBgPin; Thu, 20 Nov 2025 14:17:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1763644634; bh=rzsceNVsLgNTO+X00rj3Tf+eMe4kMyO3UMkIeEbat4c=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=hvu/z7cMM9B466fCNUlVTJJ+1uxXSmsnHKCwjPlaWNy3Q67leBSvyfLkAnO46Crrm
-	 4WyXMBl9RniFGROU0WXmQQ0jjpDIoI8BrAr7SKyd5lTZSVY8ACxuo3FXFJ8OK+9elt
-	 75F+5pGPX+Gyj8PAC+Equ6yaGDEJrXRBciCMP6IqGkvcnkXj+HrsXhqNPUn4ohLPpU
-	 VhbXeoqQq5qvn/BYvS/ya3foz9SJNa+Ge5bBlmSWmBYUOg63t8MemJBao8NIbdYIl/
-	 +TC1O1C26J79C0OkR+iKa2/y7KKz7/x5pGPgxmDfPkaUqDX31TJZbkZZzhxAVCtWYS
-	 8YHyWOdnZZnHw==
-From: Yao Zi <ziyao@disroot.org>
-To: Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Icenowy Zheng <uwu@icenowy.me>
-Cc: linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Han Gao <rabenda.cn@gmail.com>,
-	Han Gao <gaohan@iscas.ac.cn>,
-	Yao Zi <ziyao@disroot.org>
-Subject: [PATCH 7/7] [Not For Upstream] riscv: dts: thead: Add CPU clock and OPP table for TH1520
-Date: Thu, 20 Nov 2025 13:14:16 +0000
-Message-ID: <20251120131416.26236-8-ziyao@disroot.org>
-In-Reply-To: <20251120131416.26236-1-ziyao@disroot.org>
-References: <20251120131416.26236-1-ziyao@disroot.org>
+	s=arc-20240116; t=1763644586; c=relaxed/simple;
+	bh=9VysXCuQwwAr16ZKvChRxEUqOLGTxoqa33ub7SVB70c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QBOOvvEUx0TWE9QNHFys0DR7OSPawrOUVgKRdwWVjZbO8QNs0BlKpVlUtjzOxtPdiFmZAGlggNsZsXq111IjAyiw5hVKFXxmdJpDd+59HWdsOJLTs8Ugbd58OmfJUQVY0nWhu558xSJ74Fyk6bO8sxo5padjIgN0zEHxKDW9Mws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aoqVACB6; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763644584; x=1795180584;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9VysXCuQwwAr16ZKvChRxEUqOLGTxoqa33ub7SVB70c=;
+  b=aoqVACB6EI+ktnUP6Go/nvUNq21jaYablIL8jnBqgFDubYQlCjHf4qi5
+   eWQdy5TXvHWYDr7u95Rtqz8UJRklPtIjNU7skpjlTDbg8lLraL0weZ80E
+   ikpG8FIJMjd1xWKc4NRS1xctrPVoHXD55XIPmLEVyjqubz3+lN9U3yzel
+   ehGcpgMPaUXnnJ+vGbel/k0o0fROzMokd3fkplXnghimO+Hi2okwzPXTO
+   bzXXgfPhxgt6PHqTiB+qbMh10NUjcXeXHWk62njLxtn5neQ2XikBdFoJY
+   Mrm6d3fReY2gc4xDfRSEd2wnwFKZVvdk74hv5j25A4BY+rGuxjnxG8ohp
+   g==;
+X-CSE-ConnectionGUID: 4ct1p5giQKCXJOlF3wkR0Q==
+X-CSE-MsgGUID: g+2pKbCpRZCHv/OBDgYU4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="76818034"
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; 
+   d="scan'208";a="76818034"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2025 05:16:23 -0800
+X-CSE-ConnectionGUID: HQZ+gVEPRuuXejf0mVfpVw==
+X-CSE-MsgGUID: DtVRadOQSNquhYhLJ1mubw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; 
+   d="scan'208";a="191392443"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.114])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2025 05:16:18 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id E8353121DCE;
+	Thu, 20 Nov 2025 15:16:14 +0200 (EET)
+Date: Thu, 20 Nov 2025 15:16:14 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Rishikesh Donadkar <r-donadkar@ti.com>
+Cc: jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com,
+	mripard@kernel.org, y-abhilashchandra@ti.com, devarsht@ti.com,
+	s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de,
+	conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
+	tomi.valkeinen@ideasonboard.com, jai.luthra@ideasonboard.com,
+	changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
+	sjoerd@collabora.com, dan.carpenter@linaro.org,
+	hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 17/18] media: ti: j721e-csi2rx: Support runtime suspend
+Message-ID: <aR8UlHdBppncdlRD@kekkonen.localdomain>
+References: <20251112115459.2479225-1-r-donadkar@ti.com>
+ <20251112115459.2479225-18-r-donadkar@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251112115459.2479225-18-r-donadkar@ti.com>
 
-Add operating point table for CPU cores, and wire up clocks for CPU
-nodes.
+Hi Rishikesh,
 
-This patch isn't intended for upstreaming but only for testing purpose,
-since the PMIC driver for scaling CPU voltage isn't ready yet. Only
-operating points whose voltage is satisified by Lichee Module 4A's PMIC
-default, i.e. <= 1.5GHz, are enabled.
+On Wed, Nov 12, 2025 at 05:24:58PM +0530, Rishikesh Donadkar wrote:
+> From: Jai Luthra <jai.luthra@ideasonboard.com>
+> 
+> Add support for runtime power-management to enable powering off the
+> shared power domain between Cadence CSI2RX and TI CSI2RX wrapper when
+> the device(s) are not in use.
+> 
+> When powering off the IP, the PSI-L endpoint loses the paired DMA
+> channels. Thus we have to release the DMA channels at runtime suspend
+> and request them again at resume.
+> 
+> Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+>  drivers/media/platform/ti/Kconfig             |  1 +
+>  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 55 ++++++++++++++++++-
+>  2 files changed, 54 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/ti/Kconfig b/drivers/media/platform/ti/Kconfig
+> index 3bc4aa35887e6..a808063e24779 100644
+> --- a/drivers/media/platform/ti/Kconfig
+> +++ b/drivers/media/platform/ti/Kconfig
+> @@ -70,6 +70,7 @@ config VIDEO_TI_J721E_CSI2RX
+>  	depends on VIDEO_CADENCE_CSI2RX
+>  	depends on PHY_CADENCE_DPHY_RX || COMPILE_TEST
+>  	depends on ARCH_K3 || COMPILE_TEST
+> +	depends on PM
+>  	select VIDEOBUF2_DMA_CONTIG
+>  	select V4L2_FWNODE
+>  	help
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index 528041ee78cf3..21e032c64b901 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+>  #include <linux/property.h>
+>  
+>  #include <media/cadence/cdns-csi2rx.h>
+> @@ -963,12 +964,16 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  	unsigned long flags;
+>  	int ret = 0;
+>  
+> +	ret = pm_runtime_resume_and_get(csi->dev);
+> +	if (ret)
+> +		return ret;
+> +
+>  	spin_lock_irqsave(&dma->lock, flags);
+>  	if (list_empty(&dma->queue))
+>  		ret = -EIO;
+>  	spin_unlock_irqrestore(&dma->lock, flags);
+>  	if (ret)
+> -		return ret;
+> +		goto err;
+>  
+>  	ret = video_device_pipeline_start(&ctx->vdev, &csi->pipe);
+>  	if (ret)
+> @@ -1024,6 +1029,8 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
+>  err:
+>  	ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_QUEUED);
+> +	pm_runtime_put(csi->dev);
+> +
+>  	return ret;
+>  }
+>  
+> @@ -1055,6 +1062,7 @@ static void ti_csi2rx_stop_streaming(struct vb2_queue *vq)
+>  
+>  	ti_csi2rx_stop_dma(ctx);
+>  	ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_ERROR);
+> +	pm_runtime_put(csi->dev);
+>  }
+>  
+>  static const struct vb2_ops csi_vb2_qops = {
+> @@ -1261,7 +1269,9 @@ static void ti_csi2rx_cleanup_notifier(struct ti_csi2rx_dev *csi)
+>  
+>  static void ti_csi2rx_cleanup_ctx(struct ti_csi2rx_ctx *ctx)
+>  {
+> -	dma_release_channel(ctx->dma.chan);
+> +	if (!pm_runtime_status_suspended(ctx->csi->dev))
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 35 +++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+What's the motivation for this change? Do the DMA channel need to be
+released only if the device's RPM status isn't suspended?
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index bd5d33840884..6020d568ad7c 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -38,6 +38,8 @@ c910_0: cpu@0 {
- 			d-cache-sets = <512>;
- 			next-level-cache = <&l2_cache>;
- 			mmu-type = "riscv,sv39";
-+			operating-points-v2 = <&cpu_opp>;
-+			clocks = <&clk CLK_C910>;
- 
- 			cpu0_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
-@@ -65,6 +67,8 @@ c910_1: cpu@1 {
- 			d-cache-sets = <512>;
- 			next-level-cache = <&l2_cache>;
- 			mmu-type = "riscv,sv39";
-+			operating-points-v2 = <&cpu_opp>;
-+			clocks = <&clk CLK_C910>;
- 
- 			cpu1_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
-@@ -92,6 +96,8 @@ c910_2: cpu@2 {
- 			d-cache-sets = <512>;
- 			next-level-cache = <&l2_cache>;
- 			mmu-type = "riscv,sv39";
-+			operating-points-v2 = <&cpu_opp>;
-+			clocks = <&clk CLK_C910>;
- 
- 			cpu2_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
-@@ -119,6 +125,8 @@ c910_3: cpu@3 {
- 			d-cache-sets = <512>;
- 			next-level-cache = <&l2_cache>;
- 			mmu-type = "riscv,sv39";
-+			operating-points-v2 = <&cpu_opp>;
-+			clocks = <&clk CLK_C910>;
- 
- 			cpu3_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
-@@ -137,6 +145,33 @@ l2_cache: l2-cache {
- 		};
- 	};
- 
-+	cpu_opp: opp-table-cpu {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-300000000 {
-+			opp-hz = /bits/ 64 <300000000>;
-+			opp-microvolt = <600000>;
-+		};
-+
-+		opp-800000000 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-microvolt = <700000>;
-+		};
-+
-+		opp-1500000000 {
-+			opp-hz = /bits/ 64 <1500000000>;
-+			opp-microvolt = <800000>;
-+		};
-+
-+/*
-+		opp-1848000000 {
-+			opp-hz = /bits/ 64 <1848000000>;
-+			opp-microvolt = <1000000>;
-+		};
-+ */
-+	};
-+
- 	pmu {
- 		compatible = "riscv,pmu";
- 		riscv,event-to-mhpmcounters =
+Is there a guarantee Runtime PM is disabled when the function is called?
+Otherwise there's no guarantee state change couldn't occur.
+
+> +		dma_release_channel(ctx->dma.chan);
+> +
+>  	vb2_queue_release(&ctx->vidq);
+>  
+>  	video_unregister_device(&ctx->vdev);
+> @@ -1512,6 +1522,39 @@ static int ti_csi2rx_init_ctx(struct ti_csi2rx_ctx *ctx)
+>  	return ret;
+>  }
+>  
+> +static int ti_csi2rx_runtime_suspend(struct device *dev)
+> +{
+> +	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
+> +	int i;
+> +
+> +	if (csi->enable_count != 0)
+> +		return -EBUSY;
+> +
+> +	for (i = 0; i < csi->num_ctx; i++)
+> +		dma_release_channel(csi->ctx[i].dma.chan);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ti_csi2rx_runtime_resume(struct device *dev)
+> +{
+> +	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
+> +	int ret, i;
+> +
+> +	for (i = 0; i < csi->num_ctx; i++) {
+
+You could declare i (as unsigned int) here.
+
+The same for ret actually.
+
+> +		ret = ti_csi2rx_init_dma(&csi->ctx[i]);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops ti_csi2rx_pm_ops = {
+> +	RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resume,
+> +		       NULL)
+> +};
+> +
+>  static int ti_csi2rx_probe(struct platform_device *pdev)
+>  {
+>  	struct device_node *np = pdev->dev.of_node;
+> @@ -1579,6 +1622,10 @@ static int ti_csi2rx_probe(struct platform_device *pdev)
+>  		goto err_notifier;
+>  	}
+>  
+> +	pm_runtime_set_active(csi->dev);
+> +	pm_runtime_enable(csi->dev);
+
+Note that the sub-device driver's UAPI may be already available to users
+when the async sub-device is registered. Therefore you'll need enable
+runtime PM before that.
+
+> +	pm_request_idle(csi->dev);
+> +
+>  	return 0;
+>  
+>  err_notifier:
+> @@ -1609,6 +1656,9 @@ static void ti_csi2rx_remove(struct platform_device *pdev)
+>  	mutex_destroy(&csi->mutex);
+>  	dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
+>  			  csi->drain.paddr);
+
+Is there a guarantee the device is in a particular runtime PM state here,
+e.g. suspended?
+
+> +	pm_runtime_disable(&pdev->dev);
+> +	pm_runtime_set_suspended(&pdev->dev);
+> +
+>  }
+>  
+>  static const struct of_device_id ti_csi2rx_of_match[] = {
+> @@ -1623,6 +1673,7 @@ static struct platform_driver ti_csi2rx_pdrv = {
+>  	.driver = {
+>  		.name = TI_CSI2RX_MODULE_NAME,
+>  		.of_match_table = ti_csi2rx_of_match,
+> +		.pm		= &ti_csi2rx_pm_ops,
+>  	},
+>  };
+>  
+
 -- 
-2.51.2
+Kind regards,
 
+Sakari Ailus
 
