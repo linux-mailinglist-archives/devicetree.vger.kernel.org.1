@@ -1,241 +1,235 @@
-Return-Path: <devicetree+bounces-240517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14F55C72496
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 06:55:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13453C724B7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 07:05:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 241B435314C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 05:53:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 899AE34CF14
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 06:05:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F7D2BE05B;
-	Thu, 20 Nov 2025 05:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B691271468;
+	Thu, 20 Nov 2025 06:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KgNYciMg"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="tGVNUbHz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11020116.outbound.protection.outlook.com [52.101.69.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A53526A1B5;
-	Thu, 20 Nov 2025 05:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763618024; cv=none; b=prMxsXMHyw4WhuxSIUfS/LxfPM6blmKdcOH1WueFBOr8ZqjzyKiPj+EQfUcVRijhUCdXrZF1kgtvtKIebf3KWrCFL5N1ReRR+kP1eOnjSy5h0l1VO9vPclFoiM1GZKVug1ANNpCqr2g8njMdVtqpg0anF17M5ILJWsnmK6+w0PM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763618024; c=relaxed/simple;
-	bh=ZxSLBt7y7kqXZURIsohmOU3ZTYO209PLn7aCv4WTc8M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NiX3K7uaB9mE4LAyvOkykgwlcIu4w0l87by42n4vUpE+XfN89Y1shMiXyMLU4aZ4N9DBhsbHHzHYWXmaP3933DOG/kforX4d3l4ZBrDEnynYPJqCQbCyYPxiLNqilSpE4aZOw8VfzTp6Zoc2kF4uuOAPiuGZ+EUR/xEt8/3EyLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KgNYciMg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D06BC4CEF1;
-	Thu, 20 Nov 2025 05:53:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763618024;
-	bh=ZxSLBt7y7kqXZURIsohmOU3ZTYO209PLn7aCv4WTc8M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KgNYciMgWOtX/7PxD9HWGs9m0VH9dI9UQvRX7WhvJGJUoq/BHdh5mOVRbgKHS6Szz
-	 Chx5TuojqyKoN52Pici2nUfByaZoTuhRjyrW0+HceEhNU5CGJ3DFwROvyMCG1Qtp4g
-	 oVR9TPwQPdE93D35TtoY6AmqxqR5+8RVwrZEn337VAwgyASK20O5FtsDl5O+ITRsh8
-	 w6vmNNtowxab8rnmIPaK6HBgVmSJ8ruSxr2g41c3An3XOgB6MVp+atE7RP4TKs1uE+
-	 DNvbp/7HWXebz8TfkKlOJcGGyXZUzyx1va/4y86UyG4+iARaA0+gYXlBh4tXVGsHWE
-	 zio7SghEtUzkg==
-Date: Thu, 20 Nov 2025 11:23:24 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>
-Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com, quic_ahari@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Shazad Hussain <quic_shazhuss@quicinc.com>
-Subject: Re: [PATCH V1 3/3] ufs: ufs-qcom: Add support for firmware-managed
- resource abstraction
-Message-ID: <avpwp57yqkljxkld7dsqdsc7m26wvmwwhvph6ljv43yjjdyqof@szlfmik6betd>
-References: <20251114145646.2291324-1-ram.dwivedi@oss.qualcomm.com>
- <20251114145646.2291324-4-ram.dwivedi@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 212F1189BB0;
+	Thu, 20 Nov 2025 06:05:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.116
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763618746; cv=fail; b=G0Q7Vhi7+YnrBCsQmhez1YZ4eMoIxmEZMMgHzyisrnHSEzxXIGiWCgoNxCmNskU3kQMpm1AkIHQpsV0FVjU+Udvyw+0UmDBhYDpGZCO8NXcwVAMAMBqQ6VXZVcJ5nqt/2/X9SwfeEaYDQJbRAKom4NOhuIoVHWpCpLz5t0BRClE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763618746; c=relaxed/simple;
+	bh=gTp+LZQzWKwZEA2S1RdHKEbUKsK8Nv3MU1EX9CoFULo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=R5Xj36sJBO49jbQaS9PfB78A7ucrP+H4VMKT+PTI/MR0iMEEW50NdfasP/JG8PS+cYnFDNuaFv/woD7CibxeBjJAKXH/2cu0ZP8GlxYmiF9cMb4Cul1AIueOdxw/lTLyOObvm+ZZ8izcW0fM2FcaqtdAk4NaBJcCETc7jiDGoxI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=tGVNUbHz; arc=fail smtp.client-ip=52.101.69.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=M6Qw4agBYr/OcpbkXDOm0yK6nbvOwk+iIIZxvDU+ZLf+y4V0Td1t10FpkmGCA60WhgAHRGUl+yiEjPYV7WAaZ0uP0addja+W855DPoof1ZW6iLXpXtlJDsxyg2lDEDhHaBqQb8hmjv0/ej3UwYmTQ2NnK/Q5AWWIiaKNZI/kfpbwYJKNgKseVdvCkTjFJGE+8G1mHX8X6RuThWutKVrgzYoDUN1CCLjViEWd1GBLaaIxMS9O4HJKL22ggHone1AqBHufwZDzenktj/9YE8FdBskV0LduipnUvWymlmS6meNwqaUT1iSeXAUVpAGYNnZRnNBehpT+M+SZfQM1G7odrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3JAh/0ridBKizU/cE26EFLdW+lzD4EdZwpHrpvRoXBw=;
+ b=nEHIUD7XNBuZxCii4jzjHb2A2if1c64BJLkHl7ltQw1pMdDLb7Jy4UQS9H1zHQAWTeh8Fscdj/T4wrmB9HDxrtw23jB+QcgUKfGMyN0y+aq0SEjXimCbXizmTeHFKP+96PxZsu8gbiQdD1JVGxH0tSo7fZsXNhRHz6errkfrR2GwER9hFWTB1jZd9X/TaQYSUmiv8DyPhyL0l2T6VcX4AtyXFjoANH44riXA3RaSks/MtsoSZq+goISgWmhw5TSjoqj7E1FO8mVt7+agXWU/wGG49vREvPxwKl+LFLrt20QcoxqLU3cncRMvFWOxYg8JNYyOGBL3zOHiuFbrN/o6Pw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.de; dmarc=pass action=none header.from=phytec.de;
+ dkim=pass header.d=phytec.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3JAh/0ridBKizU/cE26EFLdW+lzD4EdZwpHrpvRoXBw=;
+ b=tGVNUbHz+UeiiC8xACLdQqr5NZezwtNZmSojakw2AgMtBQ40PNCuPQlUnwxZYQP1c/ayp/kbvqXB+eadlvSTz/GcZ+QtlaC16kiVG61Xo9h6T8bp1nyPuUQ6VD/igjkX0VWRpYSknrjOl2vkKHKojq76g3l5jlF9gcMUOBM2kodv7vejfgImCbCBM/pyLoiA7hMu6OrbHDPND90xc20MWoaC+2hReZ6cUganx2z2yCfdc7et32ylBIfzZMBn/WYMDsLhyBd1wAnlAXE+NCDUNG7Ur0rKlkOW9vlbdODtn6qeaSJzr+hbFQkFEc0n5f5ssW4BvVoqVpqkAoM0gFckNQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.de;
+Received: from AS4P195MB1456.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:4b3::21)
+ by DB5P195MB2402.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:4a4::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Thu, 20 Nov
+ 2025 06:05:39 +0000
+Received: from AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
+ ([fe80::369c:a760:5bf9:8d4a]) by AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
+ ([fe80::369c:a760:5bf9:8d4a%2]) with mapi id 15.20.9343.011; Thu, 20 Nov 2025
+ 06:05:38 +0000
+Message-ID: <3b64fd3e-5a78-4955-b3ab-8ae104449414@phytec.de>
+Date: Thu, 20 Nov 2025 08:05:28 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: Add missing applied DT overlay targets
+To: Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251117211316.725960-1-robh@kernel.org>
+ <002fad46-adb5-402e-8eb0-e4c71b862674@ti.com>
+ <CAL_JsqJNOeKViuUwpLf-7RzBDB-EMm35MumJsGZ0deX1cLx3CQ@mail.gmail.com>
+ <a8d1aaa8-9204-42f1-9e2d-3d20d5025efa@ti.com>
+Content-Language: en-US
+From: Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <a8d1aaa8-9204-42f1-9e2d-3d20d5025efa@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR09CA0174.eurprd09.prod.outlook.com
+ (2603:10a6:800:120::28) To AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:4b3::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251114145646.2291324-4-ram.dwivedi@oss.qualcomm.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4P195MB1456:EE_|DB5P195MB2402:EE_
+X-MS-Office365-Filtering-Correlation-Id: 98720db0-8c5c-420e-25f0-08de27fad41f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?WlNZV295YmlBa1BscFJKVGg4VkVSQ0V5aEN5NHZXY3RISGJqZTZBd2cwTVp5?=
+ =?utf-8?B?UVZyWXF2Ni96VXZIZUVUVmozZkloUXB1aTA1M04rQTY0M3Q2L1ZvU1JtalEz?=
+ =?utf-8?B?b0xBd3A3Mm5TaGpMMzZmcXJxc0w1SmhSQiszb1d5dG04ZURPSjJZaFlEYXNk?=
+ =?utf-8?B?YTFpWlFMTVlZZURxVy9oc05IMlpubDZlY1JUNDJUV0psS2NiSjdkY2hLWXBH?=
+ =?utf-8?B?dHh0ODFnQXRQb1l4Y1p0V2hGMFhvcnkvOXhqQ1BPcXNHL2xBc3JlYW1ycFRZ?=
+ =?utf-8?B?cGdDQ2lQSzhzMkoreTRmUkM0V2VSd29kREt4TXhTUUZlQSt4OW14SitSVjQ5?=
+ =?utf-8?B?eFd5V0FQUDBQUWxpQnhnODVWUHpCSklTR2RWeEM0YlU0VmNNWnVTYWx4WHFI?=
+ =?utf-8?B?MnAxZENNWjVDTXZlNjZVTGdWMlkydGJMNlR5MHN4L09ER3hDOHQrS2ZiTkFy?=
+ =?utf-8?B?ays3UndWQ3A4bkpmT2RVN2pJT2MvRVpCZ0tibG84UFI4U3JvRlBlMDhGcVcy?=
+ =?utf-8?B?SndvMGcxaFpFQWo1MjAxQkVvSjdPSS9OV0RaQ1p4Zk4yRDFoODkxNVJ2K1or?=
+ =?utf-8?B?RVJIczE2S2VYcWFkS01SMDQvaHQwV0sxN2pEYjNubS9Jbzh1MHRaMmZmRTBx?=
+ =?utf-8?B?RXN5cUNsOGRTRURCVDNhTDZRTWMwWWY1cmJFSE82TGhTUjE0S2ppK3BrTDIw?=
+ =?utf-8?B?VnM1OEJBVnlBZ1hqVExBeGcxK21QNXRZYm1ObStyOUlrNW5hMzNtL1ZBYkZ4?=
+ =?utf-8?B?VFhsRGdQUjlBemZFMjZrTzJUd2diOWxqa0cyWWNkdGszM0NqVWdOZisydHcx?=
+ =?utf-8?B?V0kvV1NES3NOanpIYTZNcXVKeVgrSUNSQjdjT1RyYmpDNzh2Rmo2bEl2R2N2?=
+ =?utf-8?B?UkRmanlTZ0p2RTNVMmxTMWE1TlMxSGRvaEtWMTdTa3JiMXJWeVFBRUVBaGV6?=
+ =?utf-8?B?MkVCSlA2em5sdmtXNytDdzQvcHdGWVR6M2txU251b1doc3IvUmZjVGh5MHdB?=
+ =?utf-8?B?d05raCs3TWs3VXYzcUJNdmNVaGgwVTJCQ3doNTlDWlhXM2RuVkQ5Vk15Y1RX?=
+ =?utf-8?B?TWVsWFZ4UG1xekNpT1NLbTdEamxzZ3dVMExieTNxbnhzM0Z0RFVpQ0R6cHpq?=
+ =?utf-8?B?S3BZYzZRcFcxa3NGSjFwQnFnQzBIM0plUWF2STd1bm9hYU93dXoxTnMrZnRN?=
+ =?utf-8?B?K2NvcGM2dkdSY0I2K3IySjN6MWhhSUFoVTl5SDRvcnFGcHFEMWV0M09QS28v?=
+ =?utf-8?B?aE1OZ0hVWkcyUE1WY0U5Z0t3T0NJWTBheUptUk9SMEhlZXdGdUlLMFByd2ho?=
+ =?utf-8?B?dC9kYklKV0ZFY0tzcjB2aHJzSmlEMFo0cmhOS0ROVU45R1B0a1ZNai9OdjdU?=
+ =?utf-8?B?RmJFSWZzdmNNTVBHMHFObERSZkY0OU05bFJ4aVRvMzdidzhzcHFhZER2MGs5?=
+ =?utf-8?B?S2E1THoveS9PamdJeWtkbzRLd2lWV2hQUFR3bW5xRFVNaE9XK1BMSTZDeTUx?=
+ =?utf-8?B?MVpVREs4UC9xYnR4TDZrN0xkakVlUDhCQUplMWk4ZllLZmRTYXBZUVE1dy9W?=
+ =?utf-8?B?TGZuaURWSTJWSkphZnVkSUpRWTAyRVBzcyszTGFsWkhTdzExN2xKY1dENmJG?=
+ =?utf-8?B?UWtHRFc3aWw5RXF3YzNyejFvRDk0SzRxS0orRkRJMVNDM21DVS9hdzN3dGR3?=
+ =?utf-8?B?L0ErNERFWUlNd09BSWZib2lIdi9kcHQ0ckpnK0VuQzFqcEVrTVZGenY5WGth?=
+ =?utf-8?B?ZVZubER3WmtBMGY0YTZoOXllVnR1WEdQQXBlNlBzcHhiWlZzVlZPTDc3ZnJh?=
+ =?utf-8?B?NGlDZmdBa3M2ZVdudmdqenUvT2gyMjBObmxyVS9iU0pGRTlaNngyblFKM3pn?=
+ =?utf-8?B?YTZOeDJyZHNsKzBzUTNHK3ZqVHUzaGpNK1VsdFRqR3lMSGJMZDM2V1M2OE1N?=
+ =?utf-8?B?N0RZcmRzR3pMbTRZQ3lIdmRlY2c4aWs1MTh0WWtjTnZqWmQrVlRNN0dXUEpV?=
+ =?utf-8?B?RWdDcDNNekVBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4P195MB1456.EURP195.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SmFyT3FOVFEyNFlXVi9xSTVDN3hNY2g4Q3hGenArd1Q4VzNxVCtuQll4SFVC?=
+ =?utf-8?B?UklwZkJ3SERSSVQvYnV0dEVaaEpjd0FUUnFCeU41aXhpTTBNREFuKzgrbzl0?=
+ =?utf-8?B?TmQxK2gvWHZSMDNzdW45NUloblpMTDFXTFVZWGZIUkRNZW1rNVF3UWR5dkI1?=
+ =?utf-8?B?QWZRN2U3MmhkME14V0gxQUFNTDN4MWQ3RzF6OUhkSFpsNW44a3FiV0dNaEhr?=
+ =?utf-8?B?MmZvMUV4TzFjd0IvaXZYanNxR0pYbWlyRkNxYzFzalJ0NCtGYjh3SmhaNU55?=
+ =?utf-8?B?eHNWNTRud2xwcHpwMUJqbjBaZFZWQlEzNnhiQjJPUjJBaDZNNnVTWEMrdkFk?=
+ =?utf-8?B?L24yYUpEeU01VERycDFMam1BVDcrbmZLZ0Z2M3NwZS9jQ3A2TzlaVXZHbTNY?=
+ =?utf-8?B?bWFDc2Y3M0x5TnJDMmRXMEF5czVGZXNNSThjeDdHa0lEWHdGbGZpNHhEYVA4?=
+ =?utf-8?B?K25UakRkVXdrS0QxYkI5ZDFQanhXUC9HOEVwTlNzYWN5RkVpQmhCZGZ2am1C?=
+ =?utf-8?B?RmVjOGpDM01wR21ZQlRtZjFFc1lYaFJ6anN1bWJ2WWlaL2R0dEJURWpwMHVI?=
+ =?utf-8?B?R01VR2owUlh1ZUFPNTZjMjBKeGs3clQyaSthODM2anJvU0grYnZ1YnFVK01z?=
+ =?utf-8?B?LzBUSlBsUW9hNjNLT0puK09YbVNyR0tJVFJPdGdERHZ3ZGhPRmZVWEdCdVoz?=
+ =?utf-8?B?L2tLWGZnQmdQVDJpblkzY3lFTC8xL2V4c01VV1RBZytWUktnVGwxbnJsTDJU?=
+ =?utf-8?B?cjVaY29yeHpGL29tQmZCSFVpMlN6YktkRFZtR1QxUkMxR2VZdkNWNi9FSzJS?=
+ =?utf-8?B?TVh6RWlHd0ZNdGZVOUFPZWpaNzZpMy9xVjFnMHhrWVVKbzZPRjJGTm5xM3pz?=
+ =?utf-8?B?QmNzMlYwQzkxMW5iY3BaM0lHTGc3RFFBaHJCR3Q2UkxwY1pMQ3Ivc2JCTThn?=
+ =?utf-8?B?d1UrWUl1cG9xd2RpOUhCRFlQMnhIVlVPempTMStBQWJDYUM4a1VYYm1yYUdL?=
+ =?utf-8?B?VWFjS3dPL1I2QjBYWCtWVFJIM3lmVkNxbUwraXFlSlAzSWtVdUFnS0hmNS9U?=
+ =?utf-8?B?dkpRcjZ4QjMwRTJRZGZQZzhYeklOTDR4eDI1dW84MEpyblJYQzRJSGRHTGI0?=
+ =?utf-8?B?M1YzTGM1YksveXdJUXhuaVNYRTcxNUkzblV3Q3pvUTA1RTlNYkdwUlRqMlhO?=
+ =?utf-8?B?dW0rYzkzQ1J1V2d5TkVqKzNZeVZteEdsUGwyMkhlYzdLMjhVak1aVWpmQ0tE?=
+ =?utf-8?B?M2NoN1ZoZFBXZnlXdWRlRzB4REEzUmNybUttTC9mNlplMk9vbE5mUXl5VW1K?=
+ =?utf-8?B?TzFudU82US9najJXaWp2aXROVnhVS0NCWUZidnB5Y1lkSVY3Qnp1blVFdDNk?=
+ =?utf-8?B?MTl2STRYczVwem5pZ1RaVnd3MFpDL2ZpV21MN05zMElrV2RINHhwbHpRN2lw?=
+ =?utf-8?B?L29mT2dibk8rUlRVbDMzcFZEaFpESXJIN0R3Q2o5elBYTDltUXF1ekp3QURP?=
+ =?utf-8?B?OCtPYVlUcG45azZZL0h4UXBJVnBWSG95a2JiL3kxcWVEOU02N3RTY1hLRmFK?=
+ =?utf-8?B?cVBTalFXckxjNE1SYWNYMGoyWnBQQWZPalllQjQ3QlhCT1E2aEVDTW5RUTls?=
+ =?utf-8?B?amwxeWo3ZGdWcWw0UGpUanF6YzkxQ1poTTlQWElPZUNnOFBmNzNzTzIxZThI?=
+ =?utf-8?B?Q1VhaWZ5RjdyUURpMzljR1JVWXNHWWxHVVBsYmczWnBBS0NaRGZaMjZ5cXhw?=
+ =?utf-8?B?QmgyekwzVEpyaTNvcEVDRkE5TG1iQ2NyQmFwcUxGVGFLZ1VCUXNxQkVkWEox?=
+ =?utf-8?B?d0Q3SXQyUko1QVluUWRvMVlSMm5oM3dRVGRBMUFReFVQMDBsNXdPT2pqdTNT?=
+ =?utf-8?B?ZXcwRVBSQzVKVjhzVjZ3VzR0L1UzS1hhRXo5MHFpNWdGQUJJNmdic242TjVW?=
+ =?utf-8?B?eXIxMzc4dVppVTMvbnNFaGJORisyNmR6RzF0bWpuQmlLNy9sam1pS0JycU42?=
+ =?utf-8?B?d1R5b3g4cUlWbXZRMXVUeTIxeDNsZkxzRmxMNWFzSzArTlI5VXFBbmc2dTBZ?=
+ =?utf-8?B?WEFnNm1nL3JmWFhpeHhuSXMyMGZRelNzLzhpWEk2U05JVU05WDk0NnZkdU9I?=
+ =?utf-8?Q?6xYRnRPf3FCQ8/znLEzleVZGW?=
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98720db0-8c5c-420e-25f0-08de27fad41f
+X-MS-Exchange-CrossTenant-AuthSource: AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 06:05:38.9158
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nuWdP/7oROytxU0HWywdgnPUCZOEAxPf9d/HCVmdz7NaM4mIzDKZ4NP8K7liF5zDQxp5HXS8DGE+J+qXVzgPiA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5P195MB2402
 
-On Fri, Nov 14, 2025 at 08:26:46PM +0530, Ram Kumar Dwivedi wrote:
-> From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+
+
+On 11/20/25 7:14 AM, Vignesh Raghavendra wrote:
 > 
-> Add a compatible string for SA8255p platforms where resources such as
-> PHY, clocks, regulators, and resets are managed by firmware through an
-> SCMI server. Use the SCMI power protocol to abstract these resources and
-> invoke power operations via runtime PM APIs (pm_runtime_get/put_sync).
 > 
-> Introduce vendor operations (vops) for SA8255p targets to enable SCMI-
-> based resource control. In this model, capabilities like clock scaling
-> and gating are not yet supported; these will be added incrementally.
+> On 20/11/25 03:26, Rob Herring wrote:
+>> On Wed, Nov 19, 2025 at 8:47 AM Vignesh Raghavendra <vigneshr@ti.com> wrote:
+>>>
+>>> + wadim who posted something similar:
+>>>
+>>> Hi Rob,
+>>>
+>>> On 18/11/25 02:43, Rob Herring (Arm) wrote:
+>>>> It's a requirement that DT overlays be applied at build time in order to
+>>>> validate them as overlays are not validated on their own.
+>>>>
+>>>> Add the missing TI overlays. Some of the TI overlays have the first part
+>>>> needed (a "*-dtbs" variable), but not the second part adding the target to
+>>>> dtb-y/dtb- variable.
+>>>>
+>>>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>>>
+>>> Look like there is more needed change needed.
+>>>
+>>> https://lore.kernel.org/all/20251119123216.1481420-1-w.egorov@phytec.de/
+>>>
+>>> Could one of you post the superset patch?
+>>
+>> I'll leave it to Wadim.
 > 
-> Co-developed-by: Anjana Hari <quic_ahari@quicinc.com>
-> Signed-off-by: Anjana Hari <quic_ahari@quicinc.com>
-> Co-developed-by: Shazad Hussain <quic_shazhuss@quicinc.com>
-> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
-> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-> ---
->  drivers/ufs/host/ufs-qcom.c | 161 +++++++++++++++++++++++++++++++++++-
->  drivers/ufs/host/ufs-qcom.h |   1 +
->  2 files changed, 161 insertions(+), 1 deletion(-)
+> Probably best to merge Wadim's patch first and then then delta. I will
+> take care of posting the next as TI board targets need a bit more tweaking.
+
+OK, let me know if there is anything needed from my side.
+
 > 
-> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> index 8d119b3223cb..13ccf1fb2ebf 100644
-> --- a/drivers/ufs/host/ufs-qcom.c
-> +++ b/drivers/ufs/host/ufs-qcom.c
-> @@ -14,6 +14,7 @@
->  #include <linux/of.h>
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
->  #include <linux/reset-controller.h>
->  #include <linux/time.h>
->  #include <linux/unaligned.h>
-> @@ -619,6 +620,27 @@ static int ufs_qcom_hce_enable_notify(struct ufs_hba *hba,
->  	return err;
->  }
->  
-> +static int ufs_qcom_fw_managed_hce_enable_notify(struct ufs_hba *hba,
-> +						 enum ufs_notify_change_status status)
-> +{
-> +	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-> +
-> +	switch (status) {
-> +	case PRE_CHANGE:
-> +		ufs_qcom_select_unipro_mode(host);
-> +		break;
-> +	case POST_CHANGE:
-> +		ufs_qcom_enable_hw_clk_gating(hba);
-> +		ufs_qcom_ice_enable(host);
-> +		break;
-> +	default:
-> +		dev_err(hba->dev, "Invalid status %d\n", status);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * ufs_qcom_cfg_timers - Configure ufs qcom cfg timers
->   *
-> @@ -789,6 +811,38 @@ static int ufs_qcom_resume(struct ufs_hba *hba, enum ufs_pm_op pm_op)
->  	return ufs_qcom_ice_resume(host);
->  }
->  
-> +static int ufs_qcom_fw_managed_suspend(struct ufs_hba *hba, enum ufs_pm_op pm_op,
-> +				       enum ufs_notify_change_status status)
-> +{
-> +	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-> +
-> +	if (status == PRE_CHANGE)
-> +		return 0;
-> +
-> +	if (hba->spm_lvl != UFS_PM_LVL_5) {
-> +		dev_err(hba->dev, "Unsupported spm level %d\n", hba->spm_lvl);
-> +		return -EINVAL;
-> +	}
+>>
+>>>
+>>> I have already sent out the PR for v6.19rc1 for TI tree? Is [1] plan to
+>>> be merged for v6.19 cycle, if so I will plan for a follow up PR with
+>>> newer version of this patch.
+>>>
+>>>> ---
+>>>> This will soon be a warning[1].
+>>>>
+>>>> [1] https://lore.kernel.org/all/20251114222759.4181152-1-robh@kernel.org/
+>>>
+>>> BTW, with above patch, make dtbs seems to fail w/o CONFIG_OF_ALL_DTBS=y.
+>>> Is that expected?
+>>
+>> Yes. What's in linux-next now is fixed.
+>>
+>> Rob
+> 
 
-You should consider moving this check to ufs-sysfs.c where the sysfs write is
-handled. Failing due to unsupported suspend level at the last moment could be
-avoided.
-
-> +
-> +	pm_runtime_put_sync(hba->dev);
-> +
-> +	return ufs_qcom_ice_suspend(host);
-> +}
-> +
-> +static int ufs_qcom_fw_managed_resume(struct ufs_hba *hba, enum ufs_pm_op pm_op)
-> +{
-> +	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-> +	int err;
-> +
-> +	err = pm_runtime_resume_and_get(hba->dev);
-> +	if (err) {
-> +		dev_err(hba->dev, "PM runtime resume failed: %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	return ufs_qcom_ice_resume(host);
-> +}
-> +
->  static void ufs_qcom_dev_ref_clk_ctrl(struct ufs_qcom_host *host, bool enable)
->  {
->  	if (host->dev_ref_clk_ctrl_mmio &&
-> @@ -1421,6 +1475,52 @@ static void ufs_qcom_exit(struct ufs_hba *hba)
->  	phy_exit(host->generic_phy);
->  }
->  
-> +static int ufs_qcom_fw_managed_init(struct ufs_hba *hba)
-> +{
-> +	struct device *dev = hba->dev;
-> +	struct ufs_qcom_host *host;
-> +	int err;
-> +
-> +	host = devm_kzalloc(dev, sizeof(*host), GFP_KERNEL);
-> +	if (!host)
-> +		return -ENOMEM;
-> +
-> +	host->hba = hba;
-> +	ufshcd_set_variant(hba, host);
-> +
-> +	ufs_qcom_get_controller_revision(hba, &host->hw_ver.major,
-> +					 &host->hw_ver.minor, &host->hw_ver.step);
-> +
-> +	err = ufs_qcom_ice_init(host);
-> +	if (err)
-> +		goto out_variant_clear;
-> +
-> +	ufs_qcom_get_default_testbus_cfg(host);
-> +	err = ufs_qcom_testbus_config(host);
-> +	if (err)
-> +		/* Failure is non-fatal */
-> +		dev_warn(dev, "Failed to configure the testbus %d\n", err);
-> +
-> +	hba->caps |= UFSHCD_CAP_WB_EN;
-> +
-> +	ufs_qcom_advertise_quirks(hba);
-> +	host->hba->quirks &= ~UFSHCD_QUIRK_REINIT_AFTER_MAX_GEAR_SWITCH;
-> +
-> +	ufs_qcom_set_host_params(hba);
-> +	ufs_qcom_parse_gear_limits(hba);
-> +
-> +	return 0;
-> +
-> +out_variant_clear:
-> +	ufshcd_set_variant(hba, NULL);
-> +	return err;
-> +}
-> +
-> +static void ufs_qcom_fw_managed_exit(struct ufs_hba *hba)
-> +{
-> +	pm_runtime_put_sync(hba->dev);
-> +}
-> +
->  /**
->   * ufs_qcom_set_clk_40ns_cycles - Configure 40ns clk cycles
->   *
-> @@ -1952,6 +2052,39 @@ static int ufs_qcom_device_reset(struct ufs_hba *hba)
->  	return 0;
->  }
->  
-> +/**
-> + * ufs_qcom_fw_managed_device_reset - Reset UFS device under FW-managed design
-
-I believe this is not just device reset but both controller + device reset. So
-not pretty sure that this is the right place to reset both.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
