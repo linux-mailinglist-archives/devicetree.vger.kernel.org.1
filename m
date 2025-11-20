@@ -1,160 +1,90 @@
-Return-Path: <devicetree+bounces-240559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FB24C72C48
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:21:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F5A6C72C6F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:21:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0F62B4E54C9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:21:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C496E3592ED
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06D330DD22;
-	Thu, 20 Nov 2025 08:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5AFC30AD04;
+	Thu, 20 Nov 2025 08:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="JYXDB66v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="umYwHn6C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AB5302CD0
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 08:20:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8764B302CD0;
+	Thu, 20 Nov 2025 08:20:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763626810; cv=none; b=r1tU5+X9kZnxzecM/XCwLSrg7JDkRUe+aa1i/kRMvrPSBAwovv0ldLw3anQdi3k+vmK2vJjK0G6DxaXupwN/5WcAHnvZdDrcAjp3q+wNxJ/GcXWqTi98Xsi1ahZRQGMImTUy1ZCQipvML8O2IEt+QKaNwQ8sqWIrEFC3ZZV7m2Y=
+	t=1763626802; cv=none; b=NOTLce+wtzZOgsxjKbVBe6Z7nygg7CuTON8yzg+CewSjVPS94NEaqfMuS5+tCbO58EyHQSYJGWThbDbxwSfAc+eop6Z+owBLQMYIv3bzh0caQpkCl0FE2+nbEwHjH5KojkSPUk1gAb+tQgDhgMoYvsXKZdJHlGwWuZeLHBwynsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763626810; c=relaxed/simple;
-	bh=6GjRBxIEq16fvySibBGoXBETlm2Ts8lIXfMePHALfHM=;
+	s=arc-20240116; t=1763626802; c=relaxed/simple;
+	bh=RxDPhffDV0KuCg3hXM9CfYPba4pq906fwuxIATPJd8U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bs5oKR98PQEBFJ9Uqs+rt8m+ieO/J1bCuMlehnXNw5qzrbXU38L9In8ealFIGWeVobKNPPTjwUjZm86kBm8wpmO5Vi5Mnb2bSyi7sl7IKcAMTwFELGxJCEE5BjRYjx9dRhGshFayIGEA/O8wuMgEL0kPU14cLIrZwcXD9HFBV04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=JYXDB66v; arc=none smtp.client-ip=91.218.175.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Thu, 20 Nov 2025 10:19:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1763626805; h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-	 content-type:content-type:in-reply-to:in-reply-to:  references:references;
-	bh=yfYUQcha5v1Ro+j4Y2wvfYErfjiZB7zoAjiaqjqPWso=;
-	b=JYXDB66vuKNXEk2D3132rkddGcxfAVPUElUP5/vKLGgxXccAwZDDK/c8R3TCKK5doobnPg
-	CJCy5oThvA9ODv7CI08v101zc5r9jTNyfZyIjDDYls4eR8gfn3azpgKw9V+gx537WAm4Rq
-	xj8vpG1mIo+r0LG/koQNOO2smC0AT94=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Matti Vaittinen <matti.vaittinen@linux.dev>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v5 02/16] dt-bindings: battery: Clarify trickle-charge
-Message-ID: <0b12e7761c670b228f3a4c49736c838a38fbcc81.1763625920.git.mazziesaccount@gmail.com>
-Reply-To: Matti Vaittinen <mazziesaccount@gmail.com>
-References: <cover.1763625920.git.mazziesaccount@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DXCYF/EZk6o/8C//J5YkWehgS/qzThOFsyhqYMXK1GJJq86kNG1benNQA31Za+bbOe7vKTnvcEhidi66JD/T/74ZudAXneE1G8DRmNXQJ4EJk/EQKH8XQa6RMeeizrGKv5SyIus++MFysW3jEKUNGNawT143d51sdLWHi0doE2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=umYwHn6C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7375BC19421;
+	Thu, 20 Nov 2025 08:20:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763626802;
+	bh=RxDPhffDV0KuCg3hXM9CfYPba4pq906fwuxIATPJd8U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=umYwHn6CRlilYb8aMdKWhMEJQa306xmvRmsWa79Q9xX7ZwhQMTNJkUwJ6hKM15zUA
+	 f8AfdljMxB/G20HFoeb4FcyjYbANQCj7fp5tdgsakizQDvwBUy3H1G6OizZHqVRoed
+	 l/xRPXwgMxqjLM4te8Uiua5HJajKGT2b50J0vEYVTrR9yxDIOsBWb5nRl0qfRYg/1x
+	 ii2jxHRk7XZd+Qb9vekFe94pfIanHDecO7kUv5jIOMUNjwtVGIbGa5V0QWYn5CPheD
+	 vJzUGa+vO39NojfxiSjrzX9jMGCL2KHHEe07H4eGWqZdLsEhISlB6fy816X3m5ueFc
+	 OUg8bTXpQNqZw==
+Date: Thu, 20 Nov 2025 09:19:59 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, michal.simek@amd.com, Thinh.Nguyen@synopsys.com, 
+	p.zabel@pengutronix.de, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, git@amd.com
+Subject: Re: [PATCH 3/3] usb: dwc3: xilinx: Add support to program MMI USB TX
+ deemphasis
+Message-ID: <20251120-polite-ginger-tarantula-08c98c@kuoka>
+References: <20251119193036.2666877-1-radhey.shyam.pandey@amd.com>
+ <20251119193036.2666877-4-radhey.shyam.pandey@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zdzOgAxX3iPmgcNW"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1763625920.git.mazziesaccount@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+In-Reply-To: <20251119193036.2666877-4-radhey.shyam.pandey@amd.com>
 
+On Thu, Nov 20, 2025 at 01:00:36AM +0530, Radhey Shyam Pandey wrote:
+>  struct dwc3_xlnx {
+>  	int				num_clocks;
+> @@ -306,7 +307,7 @@ MODULE_DEVICE_TABLE(of, dwc3_xlnx_of_match);
+>  static int dwc3_set_swnode(struct device *dev)
+>  {
+>  	struct device_node *np = dev->of_node, *dwc3_np;
+> -	struct property_entry props[2];
+> +	struct property_entry props[3];
+>  	int prop_idx = 0, ret = 0;
+>  
+>  	dwc3_np = of_get_compatible_child(np, "snps,dwc3");
+> @@ -320,6 +321,10 @@ static int dwc3_set_swnode(struct device *dev)
+>  	if (of_dma_is_coherent(dwc3_np))
+>  		props[prop_idx++] = PROPERTY_ENTRY_U16("snps,gsbuscfg0-reqinfo",
+>  						       0xffff);
+> +	if (of_device_is_compatible(np, "xlnx,versal2-mmi-dwc3"))
 
---zdzOgAxX3iPmgcNW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Don't sprinkle compatibles all over the code - it does not scale. You
+have driver match data for that.
 
-=46rom: Matti Vaittinen <mazziesaccount@gmail.com>
+Best regards,
+Krzysztof
 
-The term 'trickle-charging' is used to describe a very slow charging
-phase, where electrons "trickle-in" the battery.
-
-There are two different use-cases for this type of charging. At least
-some Li-Ion batteries can benefit from very slow, constant current,
-pre-pre phase 'trickle-charging', if a battery is very empty.
-
-Some other batteries use top-off phase 'trickle-charging', which is
-different from the above case.
-
-The battery bindings use the term 'trickle-charge' without specifying
-which of the use-cases properties are addressing. This has already
-caused some confusion.
-
-Clarify that the 'trickle-charge-current-microamp' refers to the first
-one, the "pre-pre" -charging use-case.
-
-Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
----
-Revision history:
- v3 =3D> :
- - No changes
-
- v2 =3D> v3:
- - New patch
----
- .../devicetree/bindings/power/supply/battery.yaml          | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/power/supply/battery.yaml b/=
-Documentation/devicetree/bindings/power/supply/battery.yaml
-index 491488e7b970..bfb7b716ae13 100644
---- a/Documentation/devicetree/bindings/power/supply/battery.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/battery.yaml
-@@ -64,7 +64,12 @@ properties:
-     description: battery design capacity
-=20
-   trickle-charge-current-microamp:
--    description: current for trickle-charge phase
-+    description: current for trickle-charge phase.
-+      Please note that the trickle-charging here, refers "wake-up" or
-+      "pre-pre" -charging, for very empty batteries. Similar term is also
-+      used for "maintenance" or "top-off" -charging of batteries (like
-+      NiMh bq24400) - that is different and not controlled by this
-+      property.
-=20
-   precharge-current-microamp:
-     description: current for pre-charge phase
---=20
-2.51.1
-
-
---zdzOgAxX3iPmgcNW
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmkezywACgkQeFA3/03a
-ocXYYQf/VF3miohBdq8SjlP0EDn8Hu4OBOPvuTttflpQJzsBgS/dACSOqBUI/RxF
-heA/ZSqAZuZx3Ud6uTzS5m3v76W0pz0dnNJk+R4NUwDL30IQD7XnBaTzmV1hv80D
-7+XWCtV35sV53uVCW79BRkH6pb810MlVWiA1d+gJwuZRFKyzg/qP39eKaP8i3gZE
-NH7D/XKIiXKOr6fNmM0ADw3aH/ozNs03D9tBuPFc7aXEiyBtuvZl+J7/+or7kE71
-KzN1AMJdYjBOj7ldQ0oWUg0o2JEA8lHTh7kamg3zxpncOfnHcohcLAOVSb8UAWsS
-2dkd1M3JS/mv6FInTgkqa6rVpjm5eA==
-=/tgU
------END PGP SIGNATURE-----
-
---zdzOgAxX3iPmgcNW--
 
