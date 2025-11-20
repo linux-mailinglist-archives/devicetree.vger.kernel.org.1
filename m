@@ -1,115 +1,86 @@
-Return-Path: <devicetree+bounces-240673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C363FC73F1B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:20:40 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD17FC73F33
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:22:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE8E74EAA8B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:19:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4C90D4E75DC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:20:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B844C33556B;
-	Thu, 20 Nov 2025 12:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB6732D0F5;
+	Thu, 20 Nov 2025 12:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="hiRh41++"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CIIOsDua"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE17332919;
-	Thu, 20 Nov 2025 12:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3BA30C62F;
+	Thu, 20 Nov 2025 12:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763641108; cv=none; b=im0dQ5P0AuE2I/XM7Cbq2Z80qo2bkT2/De5k09tUGUnilhapiJQLcspTkraA9oCrrC1Yu6SKTuEtCZm/QGWSlRe8rKxfn3FUF/q3qYrOJ2+FlEekZDNtfHZPYGE30ecBdEWhFUyYybPTqz/ZVX86wtc5GbYrc4WZ+xaoqwczrVI=
+	t=1763641234; cv=none; b=gZn74p1Tsz95GhlrpXY8roFV1SQeQQhgmlFMd80EKAb/Q+Y4R8gPN4IirFwgMv5tIxP5CoHYnSZgMBV4zd7Rd6MqVac9FD3Gtw0a9BFHfqfHi3S8c8HgZCFClk8tqx6CBr1TGzjiWvW5A55Aq4vTCoIa17YjgO40BaFamldnyvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763641108; c=relaxed/simple;
-	bh=WZRG1JEmDOJWM+vc77sKVKfKSBfyLqU+ymaXXzid9fE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tIe3pb/rEBQ2pJht/Nk33kiveqGP1SdxDHrKyU+acjivif8siaESBt+DPGtCYDfFDyb44RBOl1/qs6dkcHBzTnCveoB6F7j8fzGsNspWCIpj/RuB8zCTLarBZYzzXGizoNHIuxrETViuFK/DjKK0o7kdFWIMlCJNtSnSAWPXF/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=hiRh41++; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 00f09808c60b11f08ac0a938fc7cd336-20251120
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=dhFHowXMcyHG6GlkMqEO6UqfBe56kP38J9fnw9ieP9c=;
-	b=hiRh41++VS38xsUpRFkq21EDzJzQlUUC1jYcNEpuLoz1MZ41sHh8LWcpsjdgr6MLzR+JjxPLE0AimzZh3QwZiMAJYuTKrh4SSBMpWmYgo5KacaJDcYeaVn9TVXa47INxk+PXTNmEK3pcVaVo9X6VoXrpSaULsZGehgwKXRZkL2w=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:4460448d-cfb8-4ad1-a14b-27d7d0170b14,IP:0,UR
-	L:0,TC:0,Content:51,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:51
-X-CID-META: VersionHash:a9d874c,CLOUDID:7f5d1d58-17e4-43d2-bf73-55337eed999a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|123|836|888|898,TC:-5,Cont
-	ent:3|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:
-	0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 00f09808c60b11f08ac0a938fc7cd336-20251120
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-	(envelope-from <ot_shunxi.zhang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2031222606; Thu, 20 Nov 2025 20:18:21 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 20 Nov 2025 20:18:19 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Thu, 20 Nov 2025 20:18:19 +0800
-From: <ot_shunxi.zhang@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Eddie Huang
-	<eddie.huang@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, Alexandre
- Belloni <alexandre.belloni@bootlin.com>, Lee Jones <lee@kernel.org>, Shunxi
- Zhang <ot_shunxi.zhang@mediatek.com>, <Vince-WL.Liu@mediatek.com>,
-	<sirius.wang@mediatek.com>, <Jh.Hsu@mediatek.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-Subject: [PATCH v2 5/5] arm64: dts: mediatek: mt6359: Add alarm-sta-supported property to RTC node
-Date: Thu, 20 Nov 2025 20:18:01 +0800
-Message-ID: <20251120121805.6775-6-ot_shunxi.zhang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
-References: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
+	s=arc-20240116; t=1763641234; c=relaxed/simple;
+	bh=ke8gjuZusTrJYO19oEdk7CEewMM281yqKdgHeoNfrFc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ZQ1Q3nfpsTh9Ya3Zu04g3eEOaGtmqQn2RE/k0/peJY4ZfS1GhmhSxbHOqaZh8UF3nYz1Lesd10EBtMtiOm/A3Svyw8RFHehepGH9ZOgepLZuuZzbTYlZHxhTgLpWP7+Faex5XcfAdVXHIbhHwQ0WySesCbOR10ZCVQ9O3MGgnFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CIIOsDua; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C26AC4CEF1;
+	Thu, 20 Nov 2025 12:20:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763641232;
+	bh=ke8gjuZusTrJYO19oEdk7CEewMM281yqKdgHeoNfrFc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=CIIOsDuarnqPTot72oF4zqBm7cFf6391E6rH7ytTfoD7oiMzNi0T2dDm0UU5Dmeqx
+	 DpuCuX1AUbUfJc+9NEy5H0xfk+31xLeY6cV+fa8MtDmDB0kElqy7a5fKu5HFll3nME
+	 yf7ezq1PUDvmWSyJXCY8SptNhS+zb2l2WCjDoK6/YxHDBqNz0dW17//51gMuYdv4tX
+	 /DrnieR4W08/6hS4aT0hgv8/2cR/eJnUwLqEIeYZvUiYg50p1W/tcxkedhIU20eHnR
+	 +AnfNXuNGnkTwJnQreCRB2YSmEHW6iM1nuT63K0Dn+XIVAGSChctbrXABW+y0I/R0P
+	 ak3sB/mfN3POQ==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc: liqind@163.com, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20251117054511.730246-1-Qing-wu.Li@leica-geosystems.com.cn>
+References: <20251117054511.730246-1-Qing-wu.Li@leica-geosystems.com.cn>
+Subject: Re: [PATCH V10 1/3] dt-bindings: leds: pwm: Add enable-gpios
+ property
+Message-Id: <176364123028.661829.1279847907031507316.b4-ty@kernel.org>
+Date: Thu, 20 Nov 2025 12:20:30 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-Mailer: b4 0.15-dev-52d38
 
-From: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
+On Mon, 17 Nov 2025 05:45:08 +0000, LI Qingwu wrote:
+> Some PWM LED driver chips like TPS92380 and LT3743 require a separate
+> enable signal in addition to PWM control. Add this property to allow
+> device trees to specify such GPIO, which will be controlled
+> automatically by the driver based on the LED brightness state.
+> 
+> 
 
-This patch adds the 'mediatek,alarm-sta-supported' property to the RTC
-node in the MediaTek MT6359 device tree source file. This property
-indicates that the RTC supports alarm status functionality, which is
-essential for proper power management and wake-up events.
+Applied, thanks!
 
-Signed-off-by: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt6359.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+[1/3] dt-bindings: leds: pwm: Add enable-gpios property
+      commit: d7dca03a48e2e95b4469d3e3a1ef23065d90f98b
+[2/3] leds: pwm: Add optional GPIO enable pin support
+      commit: bb64206276db15f1d6e115febb262c9830628625
+[3/3] leds: pwm: Reorder include files to alphabetic order
+      commit: c7a2e5eed13b8eec5e1d38fa15d2108cc5f8c730
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-index 467d8a4c2aa7..62a2d745c8d2 100644
---- a/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-@@ -302,6 +302,7 @@ mt6359_vsram_others_sshub_ldo: ldo_vsram_others_sshub {
- 
- 		mt6359rtc: rtc {
- 			compatible = "mediatek,mt6358-rtc";
-+			mediatek,alarm-sta-supported;
- 		};
- 	};
- };
--- 
-2.45.2
+--
+Lee Jones [李琼斯]
 
 
