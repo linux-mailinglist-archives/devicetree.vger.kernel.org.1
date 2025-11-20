@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-240581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79A93C72F0A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:44:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9A27C735CD
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DE514343A89
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:44:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id AA3032D6E4
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:03:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B47D302158;
-	Thu, 20 Nov 2025 08:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8E8372AC9;
+	Thu, 20 Nov 2025 10:03:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2096.outbound.protection.partner.outlook.cn [139.219.17.96])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2103.outbound.protection.partner.outlook.cn [139.219.146.103])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1761372AB8;
-	Thu, 20 Nov 2025 08:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 285DC2309BE;
+	Thu, 20 Nov 2025 10:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.103
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763628287; cv=fail; b=HrGqKvhAgSic8sdXMY2leMCk78gQG45x3UA937Dx/O+HUQsf6+KDYGdOsRuWcKD2iTDDTQP2QBGWJol1g9k3u+GcX6R1DhlNu8RjtynWvJyi/7mFTg2e/7PEbzNN7hNWqWJZF894PzXGbzBHvh+qbU50JZeq5PL/1r7UJtDhKnw=
+	t=1763633015; cv=fail; b=EfrMoeqFa0U9Uf8+0vwvDoNzcLZkYmNbKWTPIvwTNTOJLUIbqxCbiz/yeqOaiBPtRTFMXo2hYi/VSs/KUSX031kkalEUsGcV9wyBcK5VGGEyxTNmBr7ZMHIULhsixY3VWPMZRKmYzB66Mv/vWbAxKk3lO+/NkcUYAdUlLY6/qQo=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763628287; c=relaxed/simple;
-	bh=nL5jLAky1y6eU1JSj2sdKu7T8q6TR+IjSIzWMLgQbCA=;
+	s=arc-20240116; t=1763633015; c=relaxed/simple;
+	bh=nFC4f26JPpp2onhD2q5JYJ0O7Rcbu0dfj3f/Yu7gVOo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=swZG1rENd917w72QgK4mvFBx9VSL0BmgysshHsSdG5j9ToAnz61h5zentBBiY50weXu9fjleo7PRTXUybS9rdE3P7R7MesBjz9MhGYMqqRoNQWNbpj9vwQtoj3xcc9rz1XMbNw+uVO7l5LruX2ZMG1+UwuUV1GLbwuPBFublvvA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.96
+	 Content-Type:MIME-Version; b=tM+R/G3SA4u3W0Nh2LnH0Cpy6miksZdfkuR2k90qRbymEzpDQVd+mSNOYX2J6ML6l7N3eRkReHLK5/59LcYEM+LHTrC43zefrPn/73rpp9ALwRZjBENhe7kY+yEOREGllRrYSX/AtUCVRdwReBt+U39i2NU6J4F8ZYtW8uO2bvs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.103
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ajJi4iiasmNYErJOfYhc1zk9Aj8vIHEJRWEbbj/DuJhGWImMq//EhZxGYOdqa8/UmYcGJ/BQo5+5HyyShPxI7rOqXR0DHpMcQT0BLV1eA/XteLjeFe+0XBiEppTNYSlWQLI5iU0y29c6aFbQJ66o30irfLGW7CTA7zxMCLkzxja/22bQT84uyzgBBxDjI/WlS/7UVyxJlsSDdgGKhakegPxD9DbLHzF9P2udWIF8q0C0uJPB3QslgjfB942S5u9gOsdWXasHEczSXZR9LUWz7kYaNcBDE3fet2ELE1Aoo44fWJ5vEjeF5TADBcazELv3NSWrd/5A73fK4s31K3PIXA==
+ b=FK7vxj6abb/3/ceuDyH3yq+MkbsnDMDbdha+Q/j0VlXVy52S2DUsToDklIA/JdEf9R1kfc9Hgv+M45wBWXzh8igWvJOAEWjfu5CNzDEMBKZCHMvVZwf1iW/GTrHMI3ZkdQ0YuX81wYD4AplWK3D3a+whDKhizUThypUbEDjN5z1ZEDbLx6+oC6LkSHVf+2qocRuLgCrKb7GHslAmq+u15bpTBv6Yz5R9FMy+U7S3wLXI4KL+s2j/WgGMKp84m9NveHi+WTvEMKcKuXuy83sX6Uu8BI/PCOGGICRcDvsmWeMZJL8sn/vJM6ecPpaQ3tD53ZpwPb1fiySxI7vJeioI1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TrdOIBe6XTVZYCkuYgFBIwODEgTpoZey6Uz/1VHRgT0=;
- b=WvW6xHCJ+oAER2KwlkOYunhKNJWeCfKexld9pPDw8C9Z1Hf4fuoSDPJ/Bqxj7SHbKlFitpHUegO8jVBeBg34UrV3M73yUmoryIK5IEs6FM84e0z1t5G1oTf4lW9ZUm0iM30SV62NYJvmzCTAFGFQQBwmpuijvSCkdXczQ9+F6YUkAlGCa4m+uvCjnVKykCDFY145I/ApBsl4suu4ExurISq8dSJgDDgO/RLoZDCNPkB9GKs1h20HuGyIhrOLS+3a3kbXjKcWi+N1mtx2oag9nCxqVMTzjfUmChz2VGQ1AGex6M6HbZwrKcW/h0pjZMuTCqSGkk5cOvu5CpA6vsZxAw==
+ bh=MmrGoNeghDrD3f24Hq/M0Vt1VkGEM5paQ8a870qOb+c=;
+ b=X36JM//wPRQguup7KfT7PN//spoRHdwqJE8pRVTjChdxox2rzcn/iqSMcZ9iA52MPPIQTJ8jdVsZz640jTz3QC5BdQKWLKdaTJdVmabyWIbxL12ezpONLNFj3FsnjBtIkfFRnF2yBcu42cFWEpw0ufw6bmBzgEMQSt0gn/Ypvosn/fB4locyQwmvlDiGOjknCdi8Kms7EBtrQxjxxzDSkT/X5fzfRHVIw9YSrPZpFZrznaj4075Z3RX8BVvhDUg1iturqGokUZmS77C+p9RgwQAVPC/3svAtjGn5vkaGIj8bix7Q7sUc60/N36jorvKuk73637RbqOSQLt4tOIK0Ug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=starfivetech.com; dmarc=pass action=none
  header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
@@ -45,11 +45,11 @@ Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:7::14) by ZQ2PR01MB1275.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:10::6) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.24; Thu, 20 Nov
- 2025 08:29:57 +0000
+ 2025 08:29:58 +0000
 Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
  ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
  ([fe80::2595:ef4d:fae:37d7%6]) with mapi id 15.20.9320.021; Thu, 20 Nov 2025
- 08:29:57 +0000
+ 08:29:58 +0000
 From: Hal Feng <hal.feng@starfivetech.com>
 To: Conor Dooley <conor+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -70,9 +70,9 @@ Cc: Hal Feng <hal.feng@starfivetech.com>,
 	devicetree@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/5] dt-bindings: riscv: Add StarFive JH7110S SoC and VisionFive 2 Lite board
-Date: Thu, 20 Nov 2025 16:29:43 +0800
-Message-ID: <20251120082946.109378-3-hal.feng@starfivetech.com>
+Subject: [PATCH v3 3/5] riscv: dts: starfive: Add common board dtsi for VisionFive 2 Lite variants
+Date: Thu, 20 Nov 2025 16:29:44 +0800
+Message-ID: <20251120082946.109378-4-hal.feng@starfivetech.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20251120082946.109378-1-hal.feng@starfivetech.com>
 References: <20251120082946.109378-1-hal.feng@starfivetech.com>
@@ -89,90 +89,761 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1275:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7706e344-6b00-45bc-9619-08de280efcfe
+X-MS-Office365-Filtering-Correlation-Id: 5c860237-c65e-4908-6383-08de280efdd8
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam:
 	BCL:0;ARA:13230040|1800799024|7416014|52116014|366016|41320700013|38350700014|921020;
 X-Microsoft-Antispam-Message-Info:
-	C/LjBxSrfAxI0oAz9I+MmDgKeCf44+1za6VQVKMG8sBHhoWOQDhJdepsGXIbJj0l5pvXnp2stTO5UrvYrashszJ4mdMf1SG5yGQbe13vQQKha2DcOwmkof6/FNvE5mxSlShqqFuDx8GlYf0s6rMIUkYqpfP75zXAUHp7pM7Brqb+s2B5aHOdsKuh3ekjlr7r9B+b3iPDipBhWK27gyl01VOhmFa65ECSsdUac1jRh0TVNm2nFYw604CATFk6Yma1SInwWMRhIBGHEa+zCZNNlK929nP1QQl9Xg2SiF756JsJl6LogL+fJ0hvelp8KMLfTsD6RHr0cWLLVUOtPsf8Tq12nyWBlz3iRLB/G4EzGTvviHFMCnCRpAC3E5SCn+BpjiWF/EgaAjNwyRG+fVz6bv7wu0WkGd0OyLfzaX4x1dVAL+GwNHkbIXlHI5+tlfdDJ/dzM0JBVufoPR3ooANcsvzuuJ66o5tONzrtlcqEES/1zEIzdoK9YMBGP9/bjznqzp3IBd8mZ6HDJWuiQDdboYlfqLUZIQ2JRlBYhPZeYk9AKGkzlh8ujQuJEQDpvKfj728RFvyJNDDJ//WGRLhtuatobNqjw58emeZargw7fz4=
+	2XWLCG+grhQNxwAgGxDA9DJyik8t+Ce4PwE/DrWIxJQR8HPzHde7b2Ye9epzLqRCZ029gmCV0JW/8JNNNtuYFWInOMxLezXBA40u9WfkASNCDank64Eqyio73pXz1Wm169OrFHHCVN4OZTK0WhZwHOxK8IA5/AfjLW1i0OEJD9gkcOS2OB0oQ05R9EQEMqOeyGVb9ifCL8/5tuZy0GbFrSSgxd9yh7ll+vCxpBX6qATXG/gwkRbXlkpiGHw3oCLPJUE51aCIrGTjkpVVwbHXEuSlST502Ec0kUA17P6UQWDYDV+e2xmHeTnFy6q6jcqidQYLy8C+mewk4LRiIr9nTSpmiv9v3N72DbTnFrVmvJNf0AVyx0O6WhdLWn7z42zytliavzbnLseHskdqT+DEYIEkaD3VbTGCsmQNuGrE8saEe36YSCYVAYyaKWcCZFV0iYcFYpNEKqZ6ESzZoZB+2lY59zvbNoDS0BE98VBXj5qmW5oYvKLWoS49XJJRWJAVbQw2m+D4KWc5sSjwgerVrUWAT90fKWTAQazmG/D/1E/LbnFNd1ASkxv5hLlYThf7RVN/q/8rJq7X81xOSGJ66XoqSH48NbSOpi8ACo7ISgY=
 X-Forefront-Antispam-Report:
 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(52116014)(366016)(41320700013)(38350700014)(921020);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ZdogE4PgGy2gcvTojfJNWg0Xn74wB1RLT0sMxwACYa+RSeSOSRRbtrLWrzLl?=
- =?us-ascii?Q?tZHypjnVDxGLrmNdPObgHykeiQJ7kH8QnnuXWTsizJgCHo1D0bg+bizjLpG6?=
- =?us-ascii?Q?ydZM8WRolB9KlhEwWjKKtulFSDgkTUwGki/OfDivZSSz1M4NzG/mgYuWNcpe?=
- =?us-ascii?Q?AWuPVAXZwtDeGTMzC6gu7kRzpsYPZhUlAWfjeNGQOee8wIhJLy23jlZ1WQCa?=
- =?us-ascii?Q?lwIz4ChD7GitoybFYQaSkqUs9nfc4ZnAspRUNRZ7wCCS6m6aHhfy7AiAja5a?=
- =?us-ascii?Q?iBfxKjDuJxA/SdmJ9mS4dLzSz6wjo2yxCW3pZ9jp2zS07R9atjBdkC9QJazy?=
- =?us-ascii?Q?LKOEE0sBBBBdrE5G/5CeQ0Evmc4tv/Ril+3CPodZZ6t4Cdwx6Hw8RD7e9iVK?=
- =?us-ascii?Q?5cohU+dHwH8ThHPICSbdgMxq71qjxgY6dbmrcS+wXZweeEm0q8lNurBScygx?=
- =?us-ascii?Q?HrwPW2cNhSxr8SOszEVnfVs80+LIXA8Rl/x8eek7KPik+vciujZtdlCs3JJ8?=
- =?us-ascii?Q?rBpraW00Zg/N/yPXWr9gBaaGuHjv42ZpTkEvzPjxnGz0xQcjfqdoD7/v4pyH?=
- =?us-ascii?Q?sJ9gmZenMRvOm0MIng4wBy+LygxWE1p2G9wK0sMAoA7pBUEziUZnF/mXj14n?=
- =?us-ascii?Q?4DcpJnZy1LMIYwIWI/Y/8cWckL81Jo98y//766py62cDgn6atEZES1tsedMZ?=
- =?us-ascii?Q?ORzeyYDeLhcAp6s/iO3DonHjXdQvAQWGXymsWheGaUOzxNlioZu2NM7HoIS9?=
- =?us-ascii?Q?x8YLE+9+XQiOI1AlnbzlCv7vjlzpdyHu448H+oJ5ZPErFIRU3d33gcO6mW+i?=
- =?us-ascii?Q?JrbQkHIZUhMf594i5BBJiLvjZa4S2e1/CIqqSL6hEBLHMdphpBBBSf7tJvR6?=
- =?us-ascii?Q?lw3s6hJjxp7OBz4ceLLoV9XjXH5Aq6nF3zrDt0e/u2IorE+uKLbKD66PA9Rx?=
- =?us-ascii?Q?eUjOPAMcdO3/hQ2ii6bYk6RzW5T8ye29m7vo4Lu1xJ+EqJOFCvzGPGYaa2m0?=
- =?us-ascii?Q?Q2S3GdgTjSUT0PBLASvJ2SoajQqZQt2VAmKWWyFJINpLOkEyomjkUJ/MJGWP?=
- =?us-ascii?Q?eVLyrLto1cBK9wrD2LGbsVUI+eCNjkzYe6mdxJGJf1XIzjIjy9NyKFT8sqrA?=
- =?us-ascii?Q?ddzvXm1ZxaXzWx9+PZE0xmG8z0RZmCPos35VrQRcLei42K+Soi0VpSZUYvpw?=
- =?us-ascii?Q?Q+qNJb/0GonmRVrxIiyNgR4oFIRmqjyeGCYL21G3s6O1HX84AH7Kty9VZiZI?=
- =?us-ascii?Q?9QD+HZcLQQOzDtLWQMsENdvqzbEM24MeRMgf4E3ce/X+aNeEAycUTctUJBrY?=
- =?us-ascii?Q?JTkHcloekdxzrqXNSFz3nU+Mfj6UJP8nZS9ZbJ+/bwS/qaD+O6srI1qPcxYe?=
- =?us-ascii?Q?pg+Iru9nXrzKwikImvCZPdRWAm/4OZaE0kS0rNpsgiz/RS2e/6hQvHToD8C1?=
- =?us-ascii?Q?ntGBXl8U/cdl1qAc821vOWalt6GaF09AgKww0T1wMsd9x43QlslUU1Bvir4B?=
- =?us-ascii?Q?1QX6o/kwI53RIXwj0xwf+hiXWYfQMACsqgiaZG31aHSMasPBUC1hUFVgN5xJ?=
- =?us-ascii?Q?XTB1ETBNXatjYn1N3dPZS+5XkJ6OybR8uAeU22EVG5RoOYjRjpdMpXFbWvom?=
- =?us-ascii?Q?Sg=3D=3D?=
+	=?us-ascii?Q?3CIX8j5Phb6JdMpkk+P1ngUQK42x+c/rZPXUuDEgzmp6uHY6hoQBNBxIvERv?=
+ =?us-ascii?Q?Qr3WZiqcb39lpmikHzZlZppIP1XN4S8bS4Poyo8ryPnz/6oIHVZVosO8okih?=
+ =?us-ascii?Q?zH19vZRoZnbjsM73uUw02DgkokToOCr/IHGA/48YSxdMAkVne5aI8mqhmDRF?=
+ =?us-ascii?Q?RQwxJfPNC8cihCciGoTrWxh164rWqv7/ecANsmed10379lpwIhZFGtCLtoEh?=
+ =?us-ascii?Q?TZWiBbvlvtj9CDF3rgKm5+qbHAvCpR+Z3VEuzX8GNnjJE0y+Fxqpx52kXSSn?=
+ =?us-ascii?Q?9BJgFaF1lLkGDMPk35dRnHEeEGLmWBMGn9GD4WRjHuv02T+vXs6CO7CVsBww?=
+ =?us-ascii?Q?H2CZCG9TrIbgVDMwHxDxMOsgqlnc7n50ilYUe/kJ97tLVQPAX760xzQww3NR?=
+ =?us-ascii?Q?XxQk5MWT8v+suHmGYROM1P45fw/lcIqIm4eX8HqC684UB357PB94u+05qATm?=
+ =?us-ascii?Q?Z39uX0QXWPHPNb8I0D/ae8YfSBy25o7JwpUeSzqRcOz9NLIf7OmhQWfYcyDW?=
+ =?us-ascii?Q?nsiRP8jAs+gHRlSTpStiWX7/ueEUT6syZPaZLy9hz4O7C9lTcy7epo8gqh9N?=
+ =?us-ascii?Q?lf3uCH9kjxhVwqpZxr/VITkCsB2amJucgay74y1SUNelMsCGaYcqB2PvpGnL?=
+ =?us-ascii?Q?eq7flTpZRRBBCKxBj1XXu4Parj1rYPgTiWsLDhdBWL/m/X5vIVC5zGTahrc2?=
+ =?us-ascii?Q?O5ZIESdXI4MFyj9qTj80NiuMaI4eCNu3x5zuaoxbRkEL5osacZOiLrF+BF9i?=
+ =?us-ascii?Q?/Jwd8UZoUg5/WKdSb2e8Jm6gLnLLW3iIju0orPQbzLrncm7xrtHgzC7JH1JW?=
+ =?us-ascii?Q?MJcBYI4UuJhOOCW2/peSj4u2rKPXGmz2M56It5JL7Ymnd5q9qv1WFNBxcf0a?=
+ =?us-ascii?Q?whAAbINpk9xJVnLkgM9uQ6F2GubXz5zhBeVWOou6kYx1FexxtIwprgzNV/Ib?=
+ =?us-ascii?Q?3Nq5CHk5o1Bf41IUu5t7HN8jMyisVQOr5Y8EcJs3kYKho/Nwv1n8UXo7O8IX?=
+ =?us-ascii?Q?crOyJEq2P2ZFFaEVRJKv+LmW6ZpmMhNLMJjhU/EYWxMClQEpPlgAhaECZDtr?=
+ =?us-ascii?Q?uB+nD4efNedPS0iIgBglTLYD3nznnQ//EXeVxCFnmg9OHv1hcJ9/pwzT4DLD?=
+ =?us-ascii?Q?namUhcxmoEyJ4zs4Pyzz3vAWATCa22ncHGXK3ZsO0JUfELKXP9B1Khut4hqf?=
+ =?us-ascii?Q?Nc/fy0Sm/14Y2msL4mXnZdfTd34DsU78DJxKpXXBJdl7WnJFC8n7mnF7q5ah?=
+ =?us-ascii?Q?JN0dnneG+X7hO957UWN/n6KTKgytO3X0Fbw5JUnXf4KAmYvIVGBIzTWrsCJa?=
+ =?us-ascii?Q?q5SkfHalyMGz7F8nZiJ+fN9PbyPx5mGBXSLTzjGUFw66v7SPI8JpcQpDiEDp?=
+ =?us-ascii?Q?B/kbkjUqrJ4sAZTXYrxtfayle3kH65HXpNoHzLWY+4V8TRkEiw3jJc+V84U0?=
+ =?us-ascii?Q?0o+CZqcvR/+rFN5sVia6Z+ShpYCKclfZPCcr3VL2fSeS/MhQM6myp7gSGhd8?=
+ =?us-ascii?Q?fB4+k/dAZY/gC+kHU0xDgYPmCTmPL9MQl8hosTL8Cz92qjy0817xryT28aiG?=
+ =?us-ascii?Q?AqPPvVe/Vaigqi8DeYoewHJ50ElQ4P3kpwCj4E7qOULuqvzZHqjIIKOsTPA1?=
+ =?us-ascii?Q?bg=3D=3D?=
 X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7706e344-6b00-45bc-9619-08de280efcfe
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c860237-c65e-4908-6383-08de280efdd8
 X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 08:29:57.3921
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 08:29:58.7732
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 90SVI6MPP1bSEXuFT/0KUm4RLuxTmsECV/F0VPSEuFVlYUXwRnT9vTVC9DHlnatD4z1xWKWeT4exOMjLCiWTB7inCSKVqTF2omZ48F29kVE=
+X-MS-Exchange-CrossTenant-UserPrincipalName: W7nVODLoOv7aiT1Egb8r3CGGWYQfxAF65bkcE0Z6SQQBG/KXFQQ/uC6ERLPg0EUWBWe//ISWfKW0hmEGqYS/O1yeSZy8AV0GP7QofSug36w=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1275
 
-Add device tree bindings for the StarFive JH7110S SoC
-and the VisionFive 2 Lite board equipped with it.
+Add common board dtsi for use by VisionFive 2 Lite variants.
 
-JH7110S SoC is an industrial SoC which can run at -40~85 degrees centigrade
-and up to 1.25GHz. Its CPU cores and peripherals are the same as
-those of the JH7110 SoC.
-
-VisionFive 2 Lite boards have SD card version (default) and eMMC version,
-which are called "VisionFive 2 Lite" and "VisionFive 2 Lite eMMC"
-respectively.
-
-Reviewed-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
 Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 ---
- Documentation/devicetree/bindings/riscv/starfive.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../jh7110s-starfive-visionfive-2-lite.dtsi   | 691 ++++++++++++++++++
+ 1 file changed, 691 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dtsi
 
-diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
-index 04510341a71e..797d9956b949 100644
---- a/Documentation/devicetree/bindings/riscv/starfive.yaml
-+++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
-@@ -35,6 +35,12 @@ properties:
-               - starfive,visionfive-2-v1.3b
-           - const: starfive,jh7110
- 
-+      - items:
-+          - enum:
-+              - starfive,visionfive-2-lite
-+              - starfive,visionfive-2-lite-emmc
-+          - const: starfive,jh7110s
+diff --git a/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dtsi b/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dtsi
+new file mode 100644
+index 000000000000..aa375c4a3fa3
+--- /dev/null
++++ b/arch/riscv/boot/dts/starfive/jh7110s-starfive-visionfive-2-lite.dtsi
+@@ -0,0 +1,691 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++/*
++ * Copyright (C) 2025 StarFive Technology Co., Ltd.
++ * Copyright (C) 2025 Hal Feng <hal.feng@starfivetech.com>
++ */
 +
- additionalProperties: true
- 
- ...
++/dts-v1/;
++#include "jh7110.dtsi"
++#include "jh7110-pinfunc.h"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
++#include <dt-bindings/pinctrl/starfive,jh7110-pinctrl.h>
++
++/ {
++	aliases {
++		ethernet0 = &gmac0;
++		i2c0 = &i2c0;
++		i2c2 = &i2c2;
++		i2c5 = &i2c5;
++		i2c6 = &i2c6;
++		mmc0 = &mmc0;
++		mmc1 = &mmc1;
++		serial0 = &uart0;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory@40000000 {
++		device_type = "memory";
++		reg = <0x0 0x40000000 0x1 0x0>;
++		bootph-pre-ram;
++	};
++
++	gpio-restart {
++		compatible = "gpio-restart";
++		gpios = <&sysgpio 35 GPIO_ACTIVE_HIGH>;
++		priority = <224>;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led_status_power: led-0 {
++			gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
++		};
++	};
++};
++
++&cpu_opp {
++	/delete-node/ opp-375000000;
++	/delete-node/ opp-500000000;
++	/delete-node/ opp-750000000;
++	/delete-node/ opp-1500000000;
++
++	opp-312500000 {
++		opp-hz = /bits/ 64 <312500000>;
++		opp-microvolt = <800000>;
++	};
++	opp-417000000 {
++		opp-hz = /bits/ 64 <417000000>;
++		opp-microvolt = <800000>;
++	};
++	opp-625000000 {
++		opp-hz = /bits/ 64 <625000000>;
++		opp-microvolt = <800000>;
++	};
++	opp-1250000000 {
++		opp-hz = /bits/ 64 <1250000000>;
++		opp-microvolt = <1000000>;
++	};
++};
++
++&cpus {
++	timebase-frequency = <4000000>;
++};
++
++&dvp_clk {
++	clock-frequency = <74250000>;
++};
++
++&gmac0_rgmii_rxin {
++	clock-frequency = <125000000>;
++};
++
++&gmac0_rmii_refin {
++	clock-frequency = <50000000>;
++};
++
++&gmac1_rgmii_rxin {
++	clock-frequency = <125000000>;
++};
++
++&gmac1_rmii_refin {
++	clock-frequency = <50000000>;
++};
++
++&hdmitx0_pixelclk {
++	clock-frequency = <297000000>;
++};
++
++&i2srx_bclk_ext {
++	clock-frequency = <12288000>;
++};
++
++&i2srx_lrck_ext {
++	clock-frequency = <192000>;
++};
++
++&i2stx_bclk_ext {
++	clock-frequency = <12288000>;
++};
++
++&i2stx_lrck_ext {
++	clock-frequency = <192000>;
++};
++
++&mclk_ext {
++	clock-frequency = <12288000>;
++};
++
++&osc {
++	clock-frequency = <24000000>;
++};
++
++&rtc_osc {
++	clock-frequency = <32768>;
++};
++
++&tdm_ext {
++	clock-frequency = <49152000>;
++};
++
++&camss {
++	assigned-clocks = <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
++			  <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>;
++	assigned-clock-rates = <49500000>, <198000000>;
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++		};
++
++		port@1 {
++			reg = <1>;
++
++			camss_from_csi2rx: endpoint {
++				remote-endpoint = <&csi2rx_to_camss>;
++			};
++		};
++	};
++};
++
++&csi2rx {
++	assigned-clocks = <&ispcrg JH7110_ISPCLK_VIN_SYS>;
++	assigned-clock-rates = <297000000>;
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++
++			/* remote MIPI sensor endpoint */
++		};
++
++		port@1 {
++			reg = <1>;
++
++			csi2rx_to_camss: endpoint {
++				remote-endpoint = <&camss_from_csi2rx>;
++			};
++		};
++	};
++};
++
++&gmac0 {
++	phy-handle = <&phy0>;
++	phy-mode = "rgmii-id";
++	starfive,tx-use-rgmii-clk;
++	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
++	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
++	status = "okay";
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "snps,dwmac-mdio";
++
++		phy0: ethernet-phy@0 {
++			reg = <0>;
++			motorcomm,tx-clk-adj-enabled;
++			motorcomm,tx-clk-100-inverted;
++			motorcomm,tx-clk-1000-inverted;
++			motorcomm,rx-clk-drv-microamp = <3970>;
++			motorcomm,rx-data-drv-microamp = <2910>;
++			rx-internal-delay-ps = <1500>;
++			tx-internal-delay-ps = <1500>;
++		};
++	};
++};
++
++&i2c0 {
++	clock-frequency = <100000>;
++	i2c-sda-hold-time-ns = <300>;
++	i2c-sda-falling-time-ns = <510>;
++	i2c-scl-falling-time-ns = <510>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0_pins>;
++	status = "okay";
++};
++
++&i2c2 {
++	clock-frequency = <100000>;
++	i2c-sda-hold-time-ns = <300>;
++	i2c-sda-falling-time-ns = <510>;
++	i2c-scl-falling-time-ns = <510>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c2_pins>;
++	status = "okay";
++};
++
++&i2c5 {
++	clock-frequency = <100000>;
++	i2c-sda-hold-time-ns = <300>;
++	i2c-sda-falling-time-ns = <510>;
++	i2c-scl-falling-time-ns = <510>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c5_pins>;
++	status = "okay";
++
++	axp15060: pmic@36 {
++		compatible = "x-powers,axp15060";
++		reg = <0x36>;
++		interrupt-controller;
++		#interrupt-cells = <1>;
++
++		regulators {
++			vcc_3v3: dcdc1 {
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-name = "vcc_3v3";
++			};
++
++			vdd_cpu: dcdc2 {
++				regulator-always-on;
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1540000>;
++				regulator-name = "vdd_cpu";
++			};
++
++			emmc_vdd: aldo4 {
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-name = "emmc_vdd";
++			};
++		};
++	};
++
++	eeprom@50 {
++		compatible = "atmel,24c04";
++		reg = <0x50>;
++		bootph-pre-ram;
++		pagesize = <16>;
++	};
++};
++
++&i2c6 {
++	clock-frequency = <100000>;
++	i2c-sda-hold-time-ns = <300>;
++	i2c-sda-falling-time-ns = <510>;
++	i2c-scl-falling-time-ns = <510>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c6_pins>;
++	status = "okay";
++};
++
++&mmc0 {
++	max-frequency = <100000000>;
++	assigned-clocks = <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
++	assigned-clock-rates = <50000000>;
++	bus-width = <8>;
++	bootph-pre-ram;
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc0_pins>;
++	status = "okay";
++};
++
++&mmc1 {
++	max-frequency = <50000000>;
++	assigned-clocks = <&syscrg JH7110_SYSCLK_SDIO1_SDCARD>;
++	assigned-clock-rates = <50000000>;
++	bus-width = <4>;
++	bootph-pre-ram;
++	cap-sd-highspeed;
++	keep-power-in-suspend;
++	non-removable;
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc1_pins>;
++	status = "okay";
++};
++
++&pcie1 {
++	enable-gpios = <&sysgpio 27 GPIO_ACTIVE_HIGH>;
++	perst-gpios = <&sysgpio 28 GPIO_ACTIVE_LOW>;
++	phys = <&pciephy1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie1_pins>;
++	status = "okay";
++};
++
++&pwm {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pwm_pins>;
++	status = "okay";
++};
++
++&qspi {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	nor_flash: flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		bootph-pre-ram;
++		cdns,read-delay = <2>;
++		spi-max-frequency = <100000000>;
++		cdns,tshsl-ns = <1>;
++		cdns,tsd2d-ns = <1>;
++		cdns,tchsh-ns = <1>;
++		cdns,tslch-ns = <1>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			spl@0 {
++				reg = <0x0 0xf0000>;
++			};
++			uboot-env@f0000 {
++				reg = <0xf0000 0x10000>;
++			};
++			uboot@100000 {
++				reg = <0x100000 0xf00000>;
++			};
++		};
++	};
++};
++
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pins>;
++	status = "okay";
++};
++
++&syscrg {
++	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
++			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
++			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
++			  <&syscrg JH7110_SYSCLK_QSPI_REF>,
++			  <&syscrg JH7110_SYSCLK_CPU_CORE>,
++			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
++	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
++				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
++				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
++				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
++	assigned-clock-rates = <0>, <0>, <0>, <0>, <500000000>, <1250000000>;
++};
++
++&sysgpio {
++	i2c0_pins: i2c0-0 {
++		i2c-pins {
++			pinmux = <GPIOMUX(57, GPOUT_LOW,
++					      GPOEN_SYS_I2C0_CLK,
++					      GPI_SYS_I2C0_CLK)>,
++				 <GPIOMUX(58, GPOUT_LOW,
++					      GPOEN_SYS_I2C0_DATA,
++					      GPI_SYS_I2C0_DATA)>;
++			bias-disable; /* external pull-up */
++			input-enable;
++			input-schmitt-enable;
++		};
++	};
++
++	i2c2_pins: i2c2-0 {
++		i2c-pins {
++			pinmux = <GPIOMUX(3, GPOUT_LOW,
++					     GPOEN_SYS_I2C2_CLK,
++					     GPI_SYS_I2C2_CLK)>,
++				 <GPIOMUX(2, GPOUT_LOW,
++					     GPOEN_SYS_I2C2_DATA,
++					     GPI_SYS_I2C2_DATA)>;
++			bias-disable; /* external pull-up */
++			input-enable;
++			input-schmitt-enable;
++		};
++	};
++
++	i2c5_pins: i2c5-0 {
++		bootph-pre-ram;
++
++		i2c-pins {
++			pinmux = <GPIOMUX(19, GPOUT_LOW,
++					      GPOEN_SYS_I2C5_CLK,
++					      GPI_SYS_I2C5_CLK)>,
++				 <GPIOMUX(20, GPOUT_LOW,
++					      GPOEN_SYS_I2C5_DATA,
++					      GPI_SYS_I2C5_DATA)>;
++			bias-disable; /* external pull-up */
++			bootph-pre-ram;
++			input-enable;
++			input-schmitt-enable;
++		};
++	};
++
++	i2c6_pins: i2c6-0 {
++		i2c-pins {
++			pinmux = <GPIOMUX(16, GPOUT_LOW,
++					      GPOEN_SYS_I2C6_CLK,
++					      GPI_SYS_I2C6_CLK)>,
++				 <GPIOMUX(17, GPOUT_LOW,
++					      GPOEN_SYS_I2C6_DATA,
++					      GPI_SYS_I2C6_DATA)>;
++			bias-disable; /* external pull-up */
++			input-enable;
++			input-schmitt-enable;
++		};
++	};
++
++	mmc0_pins: mmc0-0 {
++		mmc-pins {
++			pinmux = <PINMUX(PAD_SD0_CLK, 0)>,
++				 <PINMUX(PAD_SD0_CMD, 0)>,
++				 <PINMUX(PAD_SD0_DATA0, 0)>,
++				 <PINMUX(PAD_SD0_DATA1, 0)>,
++				 <PINMUX(PAD_SD0_DATA2, 0)>,
++				 <PINMUX(PAD_SD0_DATA3, 0)>,
++				 <PINMUX(PAD_SD0_DATA4, 0)>,
++				 <PINMUX(PAD_SD0_DATA5, 0)>,
++				 <PINMUX(PAD_SD0_DATA6, 0)>,
++				 <PINMUX(PAD_SD0_DATA7, 0)>;
++			bias-pull-up;
++			drive-strength = <12>;
++			input-enable;
++		};
++	};
++
++	mmc1_pins: mmc1-0 {
++		clk-pins {
++			pinmux = <GPIOMUX(10, GPOUT_SYS_SDIO1_CLK,
++					      GPOEN_ENABLE,
++					      GPI_NONE)>;
++			bias-pull-up;
++			drive-strength = <12>;
++			input-disable;
++			input-schmitt-disable;
++			slew-rate = <0>;
++		};
++
++		mmc-pins {
++			pinmux = <GPIOMUX(9, GPOUT_SYS_SDIO1_CMD,
++					     GPOEN_SYS_SDIO1_CMD,
++					     GPI_SYS_SDIO1_CMD)>,
++				 <GPIOMUX(11, GPOUT_SYS_SDIO1_DATA0,
++					      GPOEN_SYS_SDIO1_DATA0,
++					      GPI_SYS_SDIO1_DATA0)>,
++				 <GPIOMUX(12, GPOUT_SYS_SDIO1_DATA1,
++					      GPOEN_SYS_SDIO1_DATA1,
++					      GPI_SYS_SDIO1_DATA1)>,
++				 <GPIOMUX(7, GPOUT_SYS_SDIO1_DATA2,
++					     GPOEN_SYS_SDIO1_DATA2,
++					     GPI_SYS_SDIO1_DATA2)>,
++				 <GPIOMUX(8, GPOUT_SYS_SDIO1_DATA3,
++					     GPOEN_SYS_SDIO1_DATA3,
++					     GPI_SYS_SDIO1_DATA3)>;
++			bias-pull-up;
++			drive-strength = <12>;
++			input-enable;
++			input-schmitt-enable;
++			slew-rate = <0>;
++		};
++	};
++
++	pcie1_pins: pcie1-0 {
++		clkreq-pins {
++			pinmux = <GPIOMUX(29, GPOUT_LOW,
++					      GPOEN_DISABLE,
++					      GPI_NONE)>;
++			bias-pull-down;
++			drive-strength = <2>;
++			input-enable;
++			input-schmitt-disable;
++			slew-rate = <0>;
++		};
++
++		wake-pins {
++			pinmux = <GPIOMUX(21, GPOUT_LOW,
++				      GPOEN_DISABLE,
++					      GPI_NONE)>;
++			bias-pull-up;
++			drive-strength = <2>;
++			input-enable;
++			input-schmitt-disable;
++			slew-rate = <0>;
++		};
++	};
++
++	pwm_pins: pwm-0 {
++		pwm-pins {
++			pinmux = <GPIOMUX(46, GPOUT_SYS_PWM_CHANNEL0,
++					      GPOEN_SYS_PWM0_CHANNEL0,
++					      GPI_NONE)>,
++				 <GPIOMUX(59, GPOUT_SYS_PWM_CHANNEL1,
++					      GPOEN_SYS_PWM0_CHANNEL1,
++					      GPI_NONE)>;
++			bias-disable;
++			drive-strength = <12>;
++			input-disable;
++			input-schmitt-disable;
++			slew-rate = <0>;
++		};
++	};
++
++	spi0_pins: spi0-0 {
++		mosi-pins {
++			pinmux = <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
++					      GPOEN_ENABLE,
++					      GPI_NONE)>;
++			bias-disable;
++			input-disable;
++			input-schmitt-disable;
++		};
++
++		miso-pins {
++			pinmux = <GPIOMUX(53, GPOUT_LOW,
++					      GPOEN_DISABLE,
++					      GPI_SYS_SPI0_RXD)>;
++			bias-pull-up;
++			input-enable;
++			input-schmitt-enable;
++		};
++
++		sck-pins {
++			pinmux = <GPIOMUX(48, GPOUT_SYS_SPI0_CLK,
++					      GPOEN_ENABLE,
++					      GPI_SYS_SPI0_CLK)>;
++			bias-disable;
++			input-disable;
++			input-schmitt-disable;
++		};
++
++		ss-pins {
++			pinmux = <GPIOMUX(49, GPOUT_SYS_SPI0_FSS,
++					      GPOEN_ENABLE,
++					      GPI_SYS_SPI0_FSS)>;
++			bias-disable;
++			input-disable;
++			input-schmitt-disable;
++		};
++	};
++
++	uart0_pins: uart0-0 {
++		tx-pins {
++			pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX,
++					     GPOEN_ENABLE,
++					     GPI_NONE)>;
++			bias-disable;
++			drive-strength = <12>;
++			input-disable;
++			input-schmitt-disable;
++			slew-rate = <0>;
++		};
++
++		rx-pins {
++			pinmux = <GPIOMUX(6, GPOUT_LOW,
++					     GPOEN_DISABLE,
++					     GPI_SYS_UART0_RX)>;
++			bias-disable; /* external pull-up */
++			drive-strength = <2>;
++			input-enable;
++			input-schmitt-enable;
++			slew-rate = <0>;
++		};
++	};
++
++	uart1_pins: uart1-0 {
++		tx-pins {
++			pinmux = <GPIOMUX(22, GPOUT_SYS_UART1_TX,
++					      GPOEN_ENABLE,
++					      GPI_NONE)>;
++			bias-disable;
++			drive-strength = <12>;
++			input-disable;
++			input-schmitt-disable;
++			slew-rate = <0>;
++		};
++
++		rx-pins {
++			pinmux = <GPIOMUX(23, GPOUT_LOW,
++					      GPOEN_DISABLE,
++					      GPI_SYS_UART1_RX)>;
++			bias-pull-up;
++			drive-strength = <2>;
++			input-enable;
++			input-schmitt-enable;
++			slew-rate = <0>;
++		};
++
++		cts-pins {
++			pinmux = <GPIOMUX(24, GPOUT_LOW,
++					      GPOEN_DISABLE,
++					      GPI_SYS_UART1_CTS)>;
++			input-enable;
++		};
++
++		rts-pins {
++			pinmux = <GPIOMUX(25, GPOUT_SYS_UART1_RTS,
++					      GPOEN_ENABLE,
++					      GPI_NONE)>;
++			input-enable;
++		};
++	};
++
++	usb0_pins: usb0-0 {
++		power-pins {
++			pinmux = <GPIOMUX(26, GPOUT_HIGH,
++					      GPOEN_ENABLE,
++					      GPI_NONE)>;
++			input-disable;
++		};
++
++		switch-pins {
++			pinmux = <GPIOMUX(62, GPOUT_LOW,
++					      GPOEN_ENABLE,
++					      GPI_NONE)>;
++			input-disable;
++		};
++	};
++};
++
++&uart0 {
++	bootph-pre-ram;
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pins>;
++	status = "okay";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart1_pins>;
++	status = "okay";
++};
++
++&usb0 {
++	dr_mode = "host";
++	pinctrl-names = "default";
++	pinctrl-0 = <&usb0_pins>;
++	status = "okay";
++};
++
++&usb_cdns3 {
++	phys = <&usbphy0>, <&pciephy0>;
++	phy-names = "cdns3,usb2-phy", "cdns3,usb3-phy";
++};
++
++&U74_1 {
++	cpu-supply = <&vdd_cpu>;
++};
++
++&U74_2 {
++	cpu-supply = <&vdd_cpu>;
++};
++
++&U74_3 {
++	cpu-supply = <&vdd_cpu>;
++};
++
++&U74_4 {
++	cpu-supply = <&vdd_cpu>;
++};
 -- 
 2.43.2
 
