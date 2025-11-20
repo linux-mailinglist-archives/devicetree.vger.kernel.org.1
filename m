@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-240668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32AF3C73EF7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:18:55 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55DF7C73F21
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:21:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CA2894E2735
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:18:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 30F4C35260E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:18:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A443432D0F5;
-	Thu, 20 Nov 2025 12:18:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 860773346B2;
+	Thu, 20 Nov 2025 12:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="CjX8K0Cg"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="hro9HM45"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8626A1DE4CD;
-	Thu, 20 Nov 2025 12:18:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC993314C5;
+	Thu, 20 Nov 2025 12:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763641104; cv=none; b=eCHtbvGWN38W7+1qNPfmJdjMbrYqmvXtAMHYO1IGW7z0t5LcjmHATmgioL/q7Zt83g1GrvnGhwIFdGhcpQHF0vfwyenEJ7NZA7fOlJJzEQz+TmBNd9uZcZLyTMm0nZJiz0VBzMnxriqYkbunbC/WdSJEVv2IU3IkXhytVLCn94g=
+	t=1763641107; cv=none; b=J8ccE3MnyMyonoqHXJS8xTE4zctq6TSMQ0tvIavxKUtVB+z+3vpCppAtZR7CzF6iUbiPGXeCUwLPf6SvMReE3i66Sp9vXcAK6XPaecUYTIMDnrtMHM1M1aYjANU8nWkjK1ld6Rj8LVR3irgXh1K6pwwlNMELhvxv6lWF7cVOHfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763641104; c=relaxed/simple;
-	bh=5USmu8aFaf1Yk5LNqVzpSRcXZ4HV87WY1hSaqD8iItY=;
+	s=arc-20240116; t=1763641107; c=relaxed/simple;
+	bh=Vxav7XyDqCbVQnUGsLagYTNwyeirTjuz6rEWixVHDF4=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mWL+qpXRSb+JStRemmd+cpzwlHmKqvUCkUBxgft0Is6PTlPTATPI9ZtY03xHoiFrWucpNCxBtb5v/ZwB0ImBbjRXuDSB+Txz94W3PrUoqtaa9Fb5AqmJI/RHvsuElgMXrUCgVxdt9r2vcMM8opkeOw31+Mjd+AruPV8Ulv9DE30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=CjX8K0Cg; arc=none smtp.client-ip=60.244.123.138
+	 MIME-Version:Content-Type; b=jI4HOROHrH/TMjBJjNVfw/uWdsN2aBt6nwZidGZBpNwufcMCe/CHvN7Ja/6AUvhWYOmapOxwLVj4J8AcvOEj3EGvv/9k8KfMLHsSm42FBgUtr6u9ya3AdeA47KSP00gPXstgRQaJ1hv9l7a7aPggm35zYgLK4fyagghJZjaBeC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=hro9HM45; arc=none smtp.client-ip=60.244.123.138
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: fe08e79ec60a11f08ac0a938fc7cd336-20251120
+X-UUID: ff7ecfa8c60a11f08ac0a938fc7cd336-20251120
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=fGdPK3RrezBbVwSc0ssaDkQ74p9HJyqRG5LTP1bNyGk=;
-	b=CjX8K0CgUZ4h7u5MXSTx20NFTcQSxmnNhMyHmxEO+bUxOBskMpsCmA5X24qlk3L5CVHJdpmeY9ZqPkjeMrafmcJUEOcv+xG1HBlT7BEP76W8NOypF48zUPWZy2DAN3GeZC149b2YBlsL5bCdOYxtMdp/c8pLO7WS8aKRn2PhFvA=;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=3oJiCAFnSSqs+1N9A+csqjVeGPs0gjhYFNbYsa4KcUk=;
+	b=hro9HM45egRCiqNPb1aaGP/9VmY++bU9EtV8CCcB4YEWOrqfXRH1119hYaHKq95TMnzb++ITZ31Kj3v4KzEv82Y/OLOGtEE7wmpmBiMTA5bKnmIHQwXd+zlbgUNgnJOqsp5SjPuUkpL2XlMJr0/uqy+7Nu02o82Sw9ChGpRhg2Y=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:6ee2c1f9-d174-43ab-bb0b-c947dcf00051,IP:0,UR
+X-CID-O-INFO: VERSION:1.3.6,REQID:12ac9481-adc7-4114-8e66-bd4adcf5a12b,IP:0,UR
 	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
 	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:695d1d58-17e4-43d2-bf73-55337eed999a,B
+X-CID-META: VersionHash:a9d874c,CLOUDID:007304bb-0c02-41a0-92a3-94dc7dc7eeca,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|123|836|888|898,TC:-5,Cont
 	ent:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:
 	0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
@@ -47,18 +47,18 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: fe08e79ec60a11f08ac0a938fc7cd336-20251120
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+X-UUID: ff7ecfa8c60a11f08ac0a938fc7cd336-20251120
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
 	(envelope-from <ot_shunxi.zhang@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 778364173; Thu, 20 Nov 2025 20:18:16 +0800
+	with ESMTP id 150345237; Thu, 20 Nov 2025 20:18:18 +0800
 Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 20 Nov 2025 20:18:14 +0800
+ 15.2.1748.26; Thu, 20 Nov 2025 20:18:17 +0800
 Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
  mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Thu, 20 Nov 2025 20:18:14 +0800
+ 15.2.1748.26 via Frontend Transport; Thu, 20 Nov 2025 20:18:16 +0800
 From: <ot_shunxi.zhang@mediatek.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
@@ -70,9 +70,9 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	<sirius.wang@mediatek.com>, <Jh.Hsu@mediatek.com>
 CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-Subject: [PATCH v2 3/5] rtc: mt6397: Fix formatting of platform driver structure
-Date: Thu, 20 Nov 2025 20:17:59 +0800
-Message-ID: <20251120121805.6775-4-ot_shunxi.zhang@mediatek.com>
+Subject: [PATCH v2 4/5] rtc: mt6397: Add BBPU alarm status reset and shutdown handling
+Date: Thu, 20 Nov 2025 20:18:00 +0800
+Message-ID: <20251120121805.6775-5-ot_shunxi.zhang@mediatek.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
 References: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
@@ -87,23 +87,92 @@ Content-Type: text/plain
 
 From: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
 
-This is a cosmetic change to improve code consistency.
+Function "mtk_rtc_reset_bbpu_alarm_status" is added to address the
+issue that the RTC BBPU alarm state remains after the RTC alarm
+has occurred.
+
+Additionally, function "mtk_rtc_shutdown" is added to address the
+issue of the platform being powered on again after shutdown because
+the RTC_BBPU alarm state was not cleared.
 
 Signed-off-by: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
 ---
- drivers/rtc/rtc-mt6397.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/rtc/rtc-mt6397.c | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
 diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
-index 692c00ff544b..b8f44a00de5d 100644
+index b8f44a00de5d..8bf7e0822ef0 100644
 --- a/drivers/rtc/rtc-mt6397.c
 +++ b/drivers/rtc/rtc-mt6397.c
-@@ -345,7 +345,7 @@ static struct platform_driver mtk_rtc_driver = {
- 		.of_match_table = mt6397_rtc_of_match,
+@@ -37,6 +37,21 @@ static int mtk_rtc_write_trigger(struct mt6397_rtc *rtc)
+ 	return ret;
+ }
+ 
++static void mtk_rtc_reset_bbpu_alarm_status(struct mt6397_rtc *rtc)
++{
++	u32 bbpu = RTC_BBPU_KEY | RTC_BBPU_PWREN | RTC_BBPU_RESET_AL;
++	int ret;
++
++	ret = regmap_write(rtc->regmap, rtc->addr_base + RTC_BBPU, bbpu);
++	if (ret < 0) {
++		dev_err(rtc->rtc_dev->dev.parent, "%s: write rtc bbpu error\n",
++			__func__);
++		return;
++	}
++
++	mtk_rtc_write_trigger(rtc);
++}
++
+ static irqreturn_t mtk_rtc_irq_handler_thread(int irq, void *data)
+ {
+ 	struct mt6397_rtc *rtc = data;
+@@ -51,6 +66,9 @@ static irqreturn_t mtk_rtc_irq_handler_thread(int irq, void *data)
+ 		if (regmap_write(rtc->regmap, rtc->addr_base + RTC_IRQ_EN,
+ 				 irqen) == 0)
+ 			mtk_rtc_write_trigger(rtc);
++
++		if (rtc->alarm_sta_supported)
++			mtk_rtc_reset_bbpu_alarm_status(rtc);
+ 		mutex_unlock(&rtc->lock);
+ 
+ 		return IRQ_HANDLED;
+@@ -249,6 +267,7 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+ 	struct resource *res;
+ 	struct mt6397_chip *mt6397_chip = dev_get_drvdata(pdev->dev.parent);
+ 	struct mt6397_rtc *rtc;
++	struct device_node *np = pdev->dev.of_node;
+ 	int ret;
+ 
+ 	rtc = devm_kzalloc(&pdev->dev, sizeof(struct mt6397_rtc), GFP_KERNEL);
+@@ -275,6 +294,8 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+ 	if (IS_ERR(rtc->rtc_dev))
+ 		return PTR_ERR(rtc->rtc_dev);
+ 
++	rtc->alarm_sta_supported = of_property_read_bool(np, "mediatek,alarm-sta-supported");
++
+ 	ret = devm_request_threaded_irq(&pdev->dev, rtc->irq, NULL,
+ 					mtk_rtc_irq_handler_thread,
+ 					IRQF_ONESHOT | IRQF_TRIGGER_HIGH,
+@@ -297,6 +318,14 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+ 	return devm_rtc_register_device(rtc->rtc_dev);
+ }
+ 
++static void mtk_rtc_shutdown(struct platform_device *pdev)
++{
++	struct mt6397_rtc *rtc = platform_get_drvdata(pdev);
++
++	if (rtc->alarm_sta_supported)
++		mtk_rtc_reset_bbpu_alarm_status(rtc);
++}
++
+ #ifdef CONFIG_PM_SLEEP
+ static int mt6397_rtc_suspend(struct device *dev)
+ {
+@@ -346,6 +375,7 @@ static struct platform_driver mtk_rtc_driver = {
  		.pm = &mt6397_pm_ops,
  	},
--	.probe	= mtk_rtc_probe,
-+	.probe = mtk_rtc_probe,
+ 	.probe = mtk_rtc_probe,
++	.shutdown = mtk_rtc_shutdown,
  };
  
  module_platform_driver(mtk_rtc_driver);
