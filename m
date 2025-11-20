@@ -1,163 +1,131 @@
-Return-Path: <devicetree+bounces-240704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ADDAC743E5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:30:58 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 388DFC74628
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:58:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 3A5592B2C9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:30:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4A2CA4F6270
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B50433971E;
-	Thu, 20 Nov 2025 13:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D923933E373;
+	Thu, 20 Nov 2025 13:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DnClM+ww"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQRmJe0g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709A0258EFC;
-	Thu, 20 Nov 2025 13:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9C0533DEFB;
+	Thu, 20 Nov 2025 13:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763645455; cv=none; b=Q9hFlakf8nI5g9Ckznqk6I1MWBSausHeWvHnMXMImYkhvry+WXB3YtMtl+iuYHhvTA749BB0VojKyxU1QpB0Gj83iP5M7zcqEZYU6hTg23F6ap06izuMcpK8Qp/o4A7B+wYW45Zgz9G99Us1j4dxgOMx8XgthtwnKQOh/WHSb00=
+	t=1763645909; cv=none; b=MbhcAwpSfHZvKGtr96kRh/3DL44CW55qCOTXw5J3z8M8tRGj0ZTEeRTWJD3cHEJfM5D2CWVW9ycC+8KpumIfALxY2BPC3gpoBN5iJ8QxfDxoUBi6SABaMWzSY3XNj1PimtiboCObEMX8NmSk/6RcIicrLax2mTmhwBKXsUGzdXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763645455; c=relaxed/simple;
-	bh=Givm/hktJ8XSzaSQNKnhwSeeHNx1dcVC53O89fZfg6Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CipBTk91B2frwhn+1psu1j92Bh6Kq3UZ9SgXWJz2APDx7/z3oF68eoFhTlAMMjMf4NxWsdW6RSbNzElZ9dxX9eSzPMGa4t3KWtnJRabfgX0ILZkYmoXwCIQ0Etdu0SbIMM0ETyHd5PkrgDpH0JYET1lQq8JTG/pEQtS+8nnwv7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DnClM+ww; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4507CC4CEF1;
-	Thu, 20 Nov 2025 13:30:54 +0000 (UTC)
+	s=arc-20240116; t=1763645909; c=relaxed/simple;
+	bh=CPiSXQWLPTRw9YqUm59meRVTWCik9PWrWPizlDTGwk4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iRGn7Mbkvd3CSJYB/wuEgS7U1TOHfazyB1wZVnC7GOXsUAB918SxSIMkDrnIES7PQr2n1TCTZpG5ButqDMI+GW6KSqoCLYKNAuVayYEA5A68YTkDhxLWGaU6k+OOL+V/Pxuz9i3/N47f2l5i47ZTWQbLah+eyZc+IMTELoiD5VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQRmJe0g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78260C4CEF1;
+	Thu, 20 Nov 2025 13:38:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763645455;
-	bh=Givm/hktJ8XSzaSQNKnhwSeeHNx1dcVC53O89fZfg6Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DnClM+wwarsTProD+7NUyjlc5fgHa5SgEkXIFjaXSNfy8M66Owmq1aZ5ELy7yVhdv
-	 z8MrlkMeu/A0+6xICp/VftWIW3p0R0vvWcDZhhE+rgz4ZibQGAkpqz4fHwyserz3qk
-	 h/GjUcp8ANBOIYmdBKX7jot2MayDLXPuqTrAMI0P6x4wMVHzzu7p9d2UgQIDyB6UdJ
-	 P5yH6j3jCc8HsR+pav3X+vBtHtZxhbjfV+Qs2gqXS6Hglw6Q+iyL1FDDJENBDaCEtz
-	 l0ThkGH5RjUSvX+8BTgfSOXkerjrpBVmVbfXtZPmqJSSlh7+gK0CLSxU5aIFMSjCf+
-	 GePly+1K8Lyww==
-Date: Thu, 20 Nov 2025 07:35:53 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Jianping Li <jianping.li@oss.qualcomm.com>
-Cc: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>, 
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	ekansh.gupta@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: kodiak: Add memory region for
- audiopd
-Message-ID: <i6dkxjngvfk4gotrtm4ompcfouppk57glngbiydnxjdstv24jw@ggsalbe4vqj2>
-References: <20251114055639.1050-1-jianping.li@oss.qualcomm.com>
- <20251117070819.492-1-jianping.li@oss.qualcomm.com>
- <mnmfh22usps4xy4hdck4ts2p6rej7iynsifzrqtmlklffnxrwh@f3gn5hz6yemx>
- <63fea0e6-1ce5-4f71-8531-a01535326374@oss.qualcomm.com>
+	s=k20201202; t=1763645909;
+	bh=CPiSXQWLPTRw9YqUm59meRVTWCik9PWrWPizlDTGwk4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oQRmJe0g15jvqwnOEi6c9pGQJTgUM8OOGw5QUoO/qZgg0xllWoxVhA9vMB3gTw1/M
+	 ZrUY7w2LyzrOHYX255CQOSkI2aG3AVMc+L4GCw4wLGcB9O6x1ALvYerKh/VkIhFBJz
+	 MFISeBTd3su4Rm+vhzu09l0QVd0+X1TT114jBtlgPiCEdivjT72ih6cqB8hJICX064
+	 iSU/ZNaN5yEYNl/GCiCoF5T+BPWsuYynxtQEVxtvMNeKnBbNoD56fhIv73f0K8FFrJ
+	 t6zje+UTye9oIa9+R+/ohi9ckFcRIitx8wZmxZlhnywOwGcGS2YW61jaawp+aw8xDx
+	 7keg3nFBcxfgw==
+Message-ID: <de26ada1-0d8f-4d3c-a665-091925dd44ce@kernel.org>
+Date: Thu, 20 Nov 2025 14:38:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <63fea0e6-1ce5-4f71-8531-a01535326374@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] mfd: mt6397: Fix formatting of RTC_BBPU_KEY
+ definition
+To: ot_shunxi.zhang@mediatek.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Eddie Huang <eddie.huang@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, Lee Jones
+ <lee@kernel.org>, Vince-WL.Liu@mediatek.com, sirius.wang@mediatek.com,
+ Jh.Hsu@mediatek.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
+ <20251120121805.6775-2-ot_shunxi.zhang@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251120121805.6775-2-ot_shunxi.zhang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 20, 2025 at 05:08:37PM +0800, Jianping Li wrote:
+On 20/11/2025 13:17, ot_shunxi.zhang@mediatek.com wrote:
+> From: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
 > 
-> On 11/18/2025 11:39 PM, Bjorn Andersson wrote:
-> > On Mon, Nov 17, 2025 at 03:08:19PM +0800, Jianping Li wrote:
-> > 
-> > Please don't send new versions as replies to older ones, and please
-> > adopt b4, it will take care of these practicalities for you.
-> 
-> Ack. I'll fix this going forward.
-> 
+> Adjust the whitespace alignment for the RTC_BBPU_KEY macro definition
+> in the mt6397 RTC header file. This is a cosmetic change to improve
+> code consistency.
 
-Thank you. FYI, There are instructions on go/upstream on how to start
-using b4 for patches in-progress.
+Please don't send such changes line by line.. You have other patches
+here doing the same. Organize all such trivial stuff, including for
+other drivers not only this one (!!),  in one patch. This is just churn.
 
-> > 
-> > > Add reserved memory region for audio PD dynamic loading and remote
-> > > heap requirement. Also add LPASS and ADSP_HEAP VMIDs.
-> > > 
-> > > Signed-off-by: Jianping Li <jianping.li@oss.qualcomm.com>
-> > > ---
-> > > Patch v1: https://lore.kernel.org/all/20251114055639.1050-1-jianping.li@oss.qualcomm.com/
-> > > Changes in v2:
-> > >    - Fixed the alignment issue of the qcom,vmids properties, aligning
-> > >      the values in the second row with the first row.
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/kodiak.dtsi | 8 ++++++++
-> > >   1 file changed, 8 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-> > > index 3ef61af2ed8a..7957a9151055 100644
-> > > --- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-> > > @@ -190,6 +190,11 @@ rmtfs_mem: rmtfs@9c900000 {
-> > >   			qcom,client-id = <1>;
-> > >   			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
-> > >   		};
-> > > +
-> > > +		adsp_rpc_remote_heap_mem: adsp-rpc-remote-heap@9cb80000 {
-> > > +			reg = <0x0 0x9cb80000 0x0 0x800000>;
-> > > +			no-map;
-> > > +		};
-> > Is the placement of this carveout hard code somewhere in non-HLOS
-> > software? If so, its location and size universal across all Kodiak-based
-> > devices?
-> 
-> This information is not hard-coded on non-HLOS. Any region(irrespective of placement)
-> allocated by fastrpc is moved to LPASS using qcom_scm calls.
-> 
 
-Then you can replace reg = <0x0 0x9cb80000 0x0 0x800000> with size =
-<0x0 0x800000>.
 
-I'm assuming that this is subject to address-bit restrictions, so you
-probably need alloc-ranges = <0 0 1 0> as well though.
-
-> > Also, the presence of arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
-> > tells me that we have different audio stacks in play on Kodiak. Does all
-> > of them have the same PD loading capabilities/needs?
-> 
-> This DT looks to be audioreach specific. The one I'm adding is mostly used for audio PD
-> dynamic loading purpose. Adding @Mohammad Rafi to give more details about audioreach.
-> 
-
-So, you're saying that we do dynamic audio PD loading in all Kodiak
-devices (LA, LC, LE, WP), and they all use about 8MB of RAM for this?
-
-Regards,
-Bjorn
-
-> > 
-> > 
-> > PS. Others might ask these same questions in the future (I will probably
-> > wonder in 6 months from now...), so let's make sure the git history
-> > carries the answers to why things look the way they do.
-> 
-> Ack.
-> 
-> > 
-> > Thanks,
-> > Bjorn
-> > 
-> > >   	};
-> > >   	cpus {
-> > > @@ -4139,6 +4144,9 @@ fastrpc {
-> > >   					qcom,glink-channels = "fastrpcglink-apps-dsp";
-> > >   					label = "adsp";
-> > >   					qcom,non-secure-domain;
-> > > +					memory-region = <&adsp_rpc_remote_heap_mem>;
-> > > +					qcom,vmids = <QCOM_SCM_VMID_LPASS
-> > > +						      QCOM_SCM_VMID_ADSP_HEAP>;
-> > >   					#address-cells = <1>;
-> > >   					#size-cells = <0>;
-> > > -- 
-> > > 2.43.0
-> > > 
+Best regards,
+Krzysztof
 
