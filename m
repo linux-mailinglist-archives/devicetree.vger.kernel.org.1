@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-240471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4403C718C0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 01:26:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A45C718DB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 01:31:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7FC813501F5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 00:26:52 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5D345345DBA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 00:31:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129D51D63C2;
-	Thu, 20 Nov 2025 00:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E770C1898F8;
+	Thu, 20 Nov 2025 00:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ryhel1iV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q6gkNEPZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAB9F1D5CC6;
-	Thu, 20 Nov 2025 00:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B929B16DEB1;
+	Thu, 20 Nov 2025 00:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763598408; cv=none; b=ZGWajek4/eoMXj2isuOcdfUGmgea1uzZCpfj+cB1WkgiYnGd6LwxPunt8n3ru4r0WpiqJUGeC0tlOhZbx8MNfALXNN0fvMrkfqf4cJxIx29cpGvQFxQW7Y67aJuH7WAaLJsjG/EM/iQ6vz2ikpJza15GmCbf7oTxXSJa665TGao=
+	t=1763598675; cv=none; b=RQYVba5JvV3URZ0Iqq6TTh7i4zktX9DZItrBF7+lf5Y20mK9a+3i94AI0jp214Z4poZRQepVeskZZE+BXvyG0Onx7HyFkCiGEe7AFDfEzuTmFLvSYsRCcK1nyxL/kp6Cr/H75unehbL3xSwNXoJRjd8MWH2rUzZKT1/1O/Slxhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763598408; c=relaxed/simple;
-	bh=JHTxgS6i63wOUdISHaih1cPc2pNBu+ZVJ+UwzHPwjNA=;
+	s=arc-20240116; t=1763598675; c=relaxed/simple;
+	bh=vC5ZsmenMkhitGJQ0ThlsxoDZXm6NpZmMjC1M6Veq0w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lDRXVrRSQW+O6CiCaXUJIcKTM1JYi84YQ/PuEwcNS3zY8ykplUCebd8IAX7hobZs+KWpRycr75lK99USwwsZQuF5S/AHGaMmsL/v0B3YdZpG/BWb5nvPnGmHlPNX5ndj37osdM5W/+VtvgWzngNOh8nR6nDZ0cIQbahc3RW4jaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ryhel1iV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A646CC4CEF5;
-	Thu, 20 Nov 2025 00:26:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IZVK9J4CbgEYjFiKKMqwC5otoj+sXTiNcklVNv6p69DJaNGozqTjSfAJt2LZ3QK6WTTqKVsuAVFaiQ5x44HQVMV9QndgQH/Nza7a7tyBqFCZC4kS+6vBIxayOZpT4gv0INQwFiIQqsCQQOl46YczYO7Ul9RT1f2yzxW5s0iiMhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q6gkNEPZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59A33C4CEF5;
+	Thu, 20 Nov 2025 00:31:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763598407;
-	bh=JHTxgS6i63wOUdISHaih1cPc2pNBu+ZVJ+UwzHPwjNA=;
+	s=k20201202; t=1763598675;
+	bh=vC5ZsmenMkhitGJQ0ThlsxoDZXm6NpZmMjC1M6Veq0w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ryhel1iVVNiUZKZI2LzgvCgfhP/Aak3aQ6xdhBaehF9CRBZsbLXYnqqv/WeCKjGp+
-	 mHL+sFbcNYZJoC1UwtPbBNo77pTv70LoaklLj6nRi+3w6HVGTZY4scn1b+f0RNgu05
-	 kWX+EKlaWP0PbCeIv8kpuYmjDAt4UlMhu7GFq3D4EiazOKBd0Fz+kRTBGgatP4Wsjm
-	 BShoiTDAyE+D0yFclRv0+FwpLfucZDJB9olmL8Wuz34REV3S5yvjxnuQNPtQspvqcu
-	 AVi+WYbhrc+l9xt2SX+rzP9VMou4lqiJ5I0Sm9dcpwODd404w6rdSKhbjKOglnaJbd
-	 F6OdcbV2YLPSw==
-Date: Thu, 20 Nov 2025 00:26:43 +0000
+	b=Q6gkNEPZeY9FIh3hEo697fONF+OqlB9eauJ7vGvqWsMup/kNubmhEoe4U1kTL06Rr
+	 sDcbt/c4DZoLPKfW4eeakdb1Mjc84E+W6o0d3rq3nVjdySAs2YaSXp6z3tALtsLndU
+	 jqv2Uyr9oRrOLCoqJ95/NSWuohl76dvozBNXePAmgJxhc5Vi+tqH5z6RfHjQv2y7mw
+	 NjZBO+8c7eug8WXQ3t1L6ymmAdgFgg/S6A2jSUHEsx971+FPNAR8Ub8xM+hFZAXyzl
+	 c7m6ofHrzHxb9XKX277Qza9eI+ipBEkSAYTG1K30LHJEFJtlSy1agx0mi1Jenv4k/9
+	 FKqfrIaVTynaA==
+Date: Thu, 20 Nov 2025 00:31:11 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
-Message-ID: <20251120-silicon-oyster-5d973ff822d9@spud>
-References: <20251112-lantern-sappy-bea86ff2a7f4@spud>
- <20251112-improving-tassel-06c6301b3e23@spud>
- <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
- <20251119-bacterium-banana-abcdf5c9fbc5@spud>
- <CACRpkda3Oz+K1t38QKgWipEseJxxneBSC11sFvzpB7ycnqsjBA@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: switch: adg1712: add adg1712 support
+Message-ID: <20251120-evacuee-opulently-8e98840c4ba2@spud>
+References: <20251117091427.3624-1-antoniu.miclaus@analog.com>
+ <20251117091427.3624-2-antoniu.miclaus@analog.com>
+ <20251119-violation-enforcer-1362d3eecb69@spud>
+ <CACRpkdayt+upQxxT-GdQOENWjdF2zz3DLEjcvD7sdg9-oaLwoA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,102 +63,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zTWThl0QcBJpnw0J"
+	protocol="application/pgp-signature"; boundary="8jFdXtNEoClBb2NM"
 Content-Disposition: inline
-In-Reply-To: <CACRpkda3Oz+K1t38QKgWipEseJxxneBSC11sFvzpB7ycnqsjBA@mail.gmail.com>
+In-Reply-To: <CACRpkdayt+upQxxT-GdQOENWjdF2zz3DLEjcvD7sdg9-oaLwoA@mail.gmail.com>
 
 
---zTWThl0QcBJpnw0J
+--8jFdXtNEoClBb2NM
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 19, 2025 at 10:48:07PM +0100, Linus Walleij wrote:
-> On Wed, Nov 19, 2025 at 7:23=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+On Wed, Nov 19, 2025 at 10:22:02PM +0100, Linus Walleij wrote:
+> On Wed, Nov 19, 2025 at 6:56=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
 rote:
-> > On Wed, Nov 19, 2025 at 01:08:26PM +0100, Linus Walleij wrote:
-> > > On Wed, Nov 12, 2025 at 3:33=E2=80=AFPM Conor Dooley <conor@kernel.or=
-g> wrote:
+> > On Mon, Nov 17, 2025 at 09:13:22AM +0000, Antoniu Miclaus wrote:
 >=20
-> > > > +       //TODO @Linus, it correct to group these 3? There's no cont=
-rol over voltage.
-> > > > +       case PIN_CONFIG_INPUT_SCHMITT:
-> > > > +       case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
-> > > > +       case PIN_CONFIG_INPUT_SCHMITT_UV:
-> > >
-> > > Consider not supporting some like PIN_CONFIG_INPUT_SCHMITT_UV
-> > > in the bindings if they don't make any sense, and let it just return =
-error
-> > > if someone tries to do that.
-> > >
-> > > Isn't PIN_CONFIG_INPUT_SCHMITT_ENABLE the only one that
-> > > makes sense for this hardware?
+> > > +  switch-gpios:
+> > > +    description: |
+> > > +      Array of GPIOs connected to the IN1-IN4 control pins.
+> > > +      Index 0 corresponds to IN1 (controls SW1),
+> > > +      Index 1 corresponds to IN2 (controls SW2),
+> > > +      Index 2 corresponds to IN3 (controls SW3),
+> > > +      Index 3 corresponds to IN4 (controls SW4).
 > >
-> > Yeah, I just didn't know if having the others was helpful, since they
-> > say things like:
-> >  * @PIN_CONFIG_INPUT_SCHMITT: this will configure an input pin to run in
-> >  *      schmitt-trigger mode. If the schmitt-trigger has adjustable hys=
-teresis,
-> >  *      the threshold value is given on a custom format as argument when
-> >  *      setting pins to this mode.
-> > which implies they should be implemented for systen not permitting
-> > hysteresis adjustment.
+> > Did I miss a reply about my comment on this switch-gpios? I was asking
+> > if a binding like this, which doesn't permit any of these not being
+> > provided is a good idea.
+> >
+> > > +    minItems: 4
+> > > +    maxItems: 4
 >=20
-> I see.
->=20
-> I looked at the bindings that look like this and are not 1:1 to the
-> in-kernel configs:
->=20
->   input-schmitt-enable:
->     type: boolean
->     description: enable schmitt-trigger mode
->=20
->   input-schmitt-disable:
->     type: boolean
->     description: disable schmitt-trigger mode
->=20
->   input-schmitt-microvolt:
->     description: threshold strength for schmitt-trigger
->=20
-> 1. input-schmitt is missing! But it is right there in
-> drivers/pinctrl/pinconf-generic.c ... All DTS files appear to be
-> using input-schmitt-enable/disable and -microvolt.
->=20
-> 2. input-schmitt-microvolt should probably be used separately
-> to set the voltage threshold and can be used in conjunction
-> with input-schmitt-enable in the same node. In your case
-> you probably don't want to use it at all and disallow it.
->=20
-> They are all treated individually in the parser.
->=20
-> Maybe we could patch the docs in pinconf-generic.h to make it clear that
-> they are all mutually exclusive.
->=20
-> The DT parser is a bit primitive for these.
-> For example right now it is fine with the schema
-> to set input-schmitt-enable and input-schmitt-disable at the same time, a=
-nd
-> the result will be enabled because of parse order :/
+> Maybe we should make them named GPIOs after all, as the switch
+> has exactly 4 possible GPIOs. It was my request to have an
+> array I think, and now I feel a bit stupid about that :(
 
-> The real trick would be to also make the
-> schema in Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-> make them at least mutually exclusive and deprecate the
-> input-schmitt that noone is using, maybe that is simpler than I think?
+It might cause havoc dt-schema wise, but is having a switch-gpio-names
+a silly suggestion? Seems more usable than having 16 or 32 individual
+-gpios properties on a larger device.
 
-I think that this is probably what to do. Mutual exclusion isn't
-difficult to set up there and if there's no property for "input-schmitt"
-then deprecating it sounds pretty reasonable?
+> > > +  switch-states:
+> > > +    description: |
+> > > +      Initial states for the four switches (SW1-SW4).
+> >
+> > Missing an adi prefix? Also, probably should say initial if it is
+> > initial states.
+>=20
+> It should probably be initial-switch-states.
+>=20
+> I vote for a generic binding as it is a new "subsystem" in DT,
+> and this can be exepected for any new switch.
 
---zTWThl0QcBJpnw0J
+Cool, prefix-less is fine in the case - although Rob's usual requirement
+is two users for some common thing to make sure that it is actually
+suitable for being common.
+
+--8jFdXtNEoClBb2NM
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaR5gQwAKCRB4tDGHoIJi
-0ozGAQDueTTfu4Eqcv2GhlVmCt0VpLT0iLQVJ7HYX03eO52/2QEAoode4HwrlMo5
-GBVMx6tFH/HyXT7K0Nq7e3aTayk/aQ4=
-=zaAd
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaR5hTwAKCRB4tDGHoIJi
+0tSWAPoD82y5vmd53/Q234BBHyKoR+py3qoQbfuubqcOtaxgnwD+MHsw8Q5cmb+7
+EuQ16EGRwyUitBK6EIBAyYEzzG19uAc=
+=OFmZ
 -----END PGP SIGNATURE-----
 
---zTWThl0QcBJpnw0J--
+--8jFdXtNEoClBb2NM--
 
