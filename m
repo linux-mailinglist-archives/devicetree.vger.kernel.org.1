@@ -1,217 +1,558 @@
-Return-Path: <devicetree+bounces-240680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54E36C7404E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:43:47 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35215C74063
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:44:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 41B634EEA61
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:40:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTPS id 97F812419A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:44:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29FC9338909;
-	Thu, 20 Nov 2025 12:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E40337B82;
+	Thu, 20 Nov 2025 12:44:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="siVt2/QW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="miNb9k44"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044C0337B8D;
-	Thu, 20 Nov 2025 12:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAAA23376AA;
+	Thu, 20 Nov 2025 12:44:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763642439; cv=none; b=Ixm/peR1FUHCbU05izE+6rPlZI3K94WuvRacDwE6rcOtroHVDlLZhAIgJ7BmueTO8Wo8MQ/qWXX3N8AcUsA2IQNtOTFypWYjXJMkPcJtBtR43AuKraFH06peFWaS+KY23MGs7igA1L4nWjtIcZ3evatTdpMAs/MBrZHzxQEP2Zk=
+	t=1763642653; cv=none; b=nbdbiIR0mZL591W3dI/Oln+jiL608u5blX+/NUTdwErBs3rmKMdmKQrX1Mxp0KabrBX00t6urjEAWSd87dB7Y+tfcXD8Z7aUCymlgpx1IRxRwQQNSMQLTgS7TD7nac7t35Ht3uPu4wLO97QItoE5r5L45C2eY/UMrBZwfvvSvzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763642439; c=relaxed/simple;
-	bh=ZSaOL1s6e8ZdQExY38r542UpENF7yyAB5lY0ioJupUg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YcYKB4m4mwnJZ9mQvwxDJVR48GIidpuU9Kxy1r/079ORm3+PE0uvx73QdU8j8OnmY1Rh0QAcbEY7lSYIJxH85NGMEVhCtvTBY0jMsb+CNELGU7V1qSn8H6dewEbtetU/i7Hjke7S6usodzs0WHU6HMuvFVownrlRKn495eb2ZlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=siVt2/QW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 38523B5;
-	Thu, 20 Nov 2025 13:38:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1763642308;
-	bh=ZSaOL1s6e8ZdQExY38r542UpENF7yyAB5lY0ioJupUg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=siVt2/QWt93JssxWxea5trt5ZAMzu3Lia/caKFDSaB++wCf3c7R29TE5rXHCd/7TB
-	 IXwb1lrONtjKzMd50jWE8Uzqym23vAK0LfqFTR3TO8GX/MiXLQRHlcs0PQlv42iZOZ
-	 HPCjK3ppJgtKwUnaL+LYKuYajHfaYbjBWzvBallA=
-Message-ID: <ecae251f-3f2e-4f80-8423-09d0e8679416@ideasonboard.com>
-Date: Thu, 20 Nov 2025 14:40:29 +0200
+	s=arc-20240116; t=1763642653; c=relaxed/simple;
+	bh=k3vCYK9C/DvlsV96Opr7kY6W21EMPkaeEmOovXdACek=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JUrH8bPimAQQoP6ItF+5R7V2iePEbh+kT4yMo3+68ljyS7NqtuXllcYGJxg8hvqs+pWg3beaArd9M0AbLQa5WpA91pB3RLuODdVQmg4LjvHxtiVIwSHWDe4IZ3aVEWgtrXzzKWFA0664GI4Kj/rjnuaCaC4LhzRq1waD+FSMiZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=miNb9k44; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7916BC4CEF1;
+	Thu, 20 Nov 2025 12:43:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763642651;
+	bh=k3vCYK9C/DvlsV96Opr7kY6W21EMPkaeEmOovXdACek=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=miNb9k44ML3UmbX8Gj4qJLvm9uJV0/ajiySur4JOvsnGWJO0ft04uA3xtW1IisIpH
+	 mf955Msj+jS5tDwgHaIpIEg2puj53/zMLsNyCVId3l6gvrNMC5Vj/fE872V6slA0N+
+	 84GJrHOctAaUQ8LndvzNt99lF2rOpSfkEx1dZbCdNgyCm6LZBWUSEvm7Hsvr//8lTS
+	 3lq0H2hYHvZVHm/fPeq5lIsRbD+SoRo+9i12IbgNTb9umOhM2w3r2tgk9QWU6VCR7j
+	 JVLG1cT8YqXXse2r2Eydq7ajqgMUvOF2WUFcfRIAGS7Mb914y/9HIxHnRTt6WTMpjA
+	 FFMOXAnMm9dPA==
+Date: Thu, 20 Nov 2025 18:13:47 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: zhangsenchuan@eswincomputing.com
+Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, 
+	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, 
+	mayank.rana@oss.qualcomm.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
+	thippeswamy.havalige@amd.com, inochiama@gmail.com, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com, 
+	Frank.li@nxp.com
+Subject: Re: [PATCH v6 2/3] PCI: eic7700: Add Eswin PCIe host controller
+ driver
+Message-ID: <uijg47suvluvamftyxwc65kl34eo2eu2af2o5aia4nu45hanqc@grcr2bjgph2i>
+References: <20251120101018.1477-1-zhangsenchuan@eswincomputing.com>
+ <20251120101206.1518-1-zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 10/18] media: cadence: csi2rx: add get_frame_desc
- wrapper
-To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev,
- laurent.pinchart@ideasonboard.com, mripard@kernel.org
-Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
- vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
- hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
- changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
- sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251112115459.2479225-1-r-donadkar@ti.com>
- <20251112115459.2479225-11-r-donadkar@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20251112115459.2479225-11-r-donadkar@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251120101206.1518-1-zhangsenchuan@eswincomputing.com>
 
-
-
-On 12/11/2025 13:54, Rishikesh Donadkar wrote:
-> From: Pratyush Yadav <p.yadav@ti.com>
+On Thu, Nov 20, 2025 at 06:12:06PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 > 
-> J721E wrapper CSI2RX driver needs to get the frame descriptor from the
-> source to find out info about virtual channel. This driver itself does
-> not touch the routing or virtual channels in any way. So simply pass the
-> descriptor through from the source.
-
-Unfortunately I think that doesn't work.
-
-E.g. we have a fpdllink deser and the cdns csi2rx.
-
-Deser's routing table (pad/stream):
-
-0/0 -> 4/15
-0/1 -> 4/33
-
-So we have two streams coming into the deser's pad 0, with stream IDs 0
-and 1. They are routed by the user to output pad 4, with stream IDs 15
-and 33.
-
-cdns csi2rx routing table:
-
-0/15 -> 1/0
-0/33 -> 1/1
-
-So cdns csi2rx routes the streams through, as stream IDs 0 and 1 on the
-output side.
-
-With this patch, if the j2 csi2rx asks frame desc from cdns csi2rx, it
-gets a frame desc with two streams, stream IDs 15 and 33.
-
-I made this series for the issue above, but it hasn't been merged:
-
-https://lore.kernel.org/all/20250324-frame-desc-passthrough-v4-0-dbe2412297cc%40ideasonboard.com/
-
- Tomi
-
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Reviewed-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> Add driver for the Eswin EIC7700 PCIe host controller, which is based on
+> the DesignWare PCIe core, IP revision 6.00a. The PCIe Gen.3 controller
+> supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
+> interrupts.
+> 
+> Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
+> Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
+> Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 > ---
->  drivers/media/platform/cadence/cdns-csi2rx.c | 24 ++++++++++++++++++++
->  1 file changed, 24 insertions(+)
+>  drivers/pci/controller/dwc/Kconfig        |  11 +
+>  drivers/pci/controller/dwc/Makefile       |   1 +
+>  drivers/pci/controller/dwc/pcie-eic7700.c | 387 ++++++++++++++++++++++
+>  3 files changed, 399 insertions(+)
+>  create mode 100644 drivers/pci/controller/dwc/pcie-eic7700.c
 > 
-> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> index 34da81893308b..3688077fa8347 100644
-> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> @@ -229,6 +229,21 @@ static const struct csi2rx_fmt *csi2rx_get_fmt_by_code(u32 code)
->  	return NULL;
->  }
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index 349d4657393c..66568efb324f 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -93,6 +93,17 @@ config PCIE_BT1
+>  	  Enables support for the PCIe controller in the Baikal-T1 SoC to work
+>  	  in host mode. It's based on the Synopsys DWC PCIe v4.60a IP-core.
 >  
-> +static int csi2rx_get_frame_desc_from_source(struct csi2rx_priv *csi2rx,
-> +					     struct v4l2_mbus_frame_desc *fd)
-> +{
-> +	struct media_pad *remote_pad;
+> +config PCIE_EIC7700
+> +	bool "Eswin EIC7700 PCIe controller"
+
+You can make it tristate as you've used builtin_platform_driver() which
+guarantees that this driver won't be removed once loaded.
+
+> +	depends on ARCH_ESWIN || COMPILE_TEST
+> +	depends on PCI_MSI
+> +	select PCIE_DW_HOST
+> +	help
+> +	  Say Y here if you want PCIe controller support for the Eswin EIC7700.
+> +	  The PCIe controller on EIC7700 is based on DesignWare hardware,
+> +	  enables support for the PCIe controller in the EIC7700 SoC to work in
+> +	  host mode.
 > +
-> +	remote_pad = media_entity_remote_source_pad_unique(&csi2rx->subdev.entity);
-> +	if (!remote_pad) {
-> +		dev_err(csi2rx->dev, "No remote pad found for sink\n");
-> +		return -ENODEV;
+>  config PCI_IMX6
+>  	bool
+>  
+> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
+> index 7ae28f3b0fb3..04f751c49eba 100644
+> --- a/drivers/pci/controller/dwc/Makefile
+> +++ b/drivers/pci/controller/dwc/Makefile
+> @@ -6,6 +6,7 @@ obj-$(CONFIG_PCIE_DW_EP) += pcie-designware-ep.o
+>  obj-$(CONFIG_PCIE_DW_PLAT) += pcie-designware-plat.o
+>  obj-$(CONFIG_PCIE_AMD_MDB) += pcie-amd-mdb.o
+>  obj-$(CONFIG_PCIE_BT1) += pcie-bt1.o
+> +obj-$(CONFIG_PCIE_EIC7700) += pcie-eic7700.o
+>  obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
+>  obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
+>  obj-$(CONFIG_PCIE_FU740) += pcie-fu740.o
+> diff --git a/drivers/pci/controller/dwc/pcie-eic7700.c b/drivers/pci/controller/dwc/pcie-eic7700.c
+> new file mode 100644
+> index 000000000000..239fdbc501fe
+> --- /dev/null
+> +++ b/drivers/pci/controller/dwc/pcie-eic7700.c
+> @@ -0,0 +1,387 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ESWIN EIC7700 PCIe root complex driver
+> + *
+> + * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd.
+> + *
+> + * Authors: Yu Ning <ningyu@eswincomputing.com>
+> + *          Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> + *          Yanghui Ou <ouyanghui@eswincomputing.com>
+> + */
+> +
+> +#include <linux/interrupt.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/pci.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/resource.h>
+> +#include <linux/reset.h>
+> +#include <linux/types.h>
+> +
+> +#include "pcie-designware.h"
+> +
+> +/* ELBI registers */
+> +#define PCIEELBI_CTRL0_OFFSET		0x0
+> +#define PCIEELBI_STATUS0_OFFSET		0x100
+> +
+> +/* LTSSM register fields */
+> +#define PCIEELBI_APP_LTSSM_ENABLE	BIT(5)
+> +
+> +/* APP_HOLD_PHY_RST register fields */
+> +#define PCIEELBI_APP_HOLD_PHY_RST	BIT(6)
+> +
+> +/* PM_SEL_AUX_CLK register fields */
+> +#define PCIEELBI_PM_SEL_AUX_CLK		BIT(16)
+> +
+> +/* DEV_TYPE register fields */
+> +#define PCIEELBI_CTRL0_DEV_TYPE		GENMASK(3, 0)
+> +
+> +/* Vendor and device ID value */
+> +#define PCI_VENDOR_ID_ESWIN		0x1fe1
+> +#define PCI_DEVICE_ID_ESWIN		0x2030
+> +
+> +#define EIC7700_NUM_RSTS		ARRAY_SIZE(eic7700_pcie_rsts)
+> +
+> +static const char * const eic7700_pcie_rsts[] = {
+> +	"pwr",
+> +	"dbi",
+> +};
+> +
+> +struct eic7700_pcie_data {
+> +	bool msix_cap;
+> +	bool no_suspport_L2;
+
+support?
+
+> +};
+> +
+> +struct eic7700_pcie_port {
+> +	struct list_head list;
+> +	struct reset_control *perst;
+> +	int num_lanes;
+> +};
+> +
+> +struct eic7700_pcie {
+> +	struct dw_pcie pci;
+> +	struct clk_bulk_data *clks;
+> +	struct reset_control_bulk_data resets[EIC7700_NUM_RSTS];
+> +	struct list_head ports;
+> +	const struct eic7700_pcie_data *data;
+> +	int num_clks;
+> +};
+> +
+> +#define to_eic7700_pcie(x) dev_get_drvdata((x)->dev)
+> +
+> +static int eic7700_pcie_start_link(struct dw_pcie *pci)
+> +{
+> +	u32 val;
+> +
+> +	/* Enable LTSSM */
+> +	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +	val |= PCIEELBI_APP_LTSSM_ENABLE;
+> +	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +
+> +	return 0;
+> +}
+> +
+> +static bool eic7700_pcie_link_up(struct dw_pcie *pci)
+> +{
+> +	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> +	u16 val = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
+> +
+> +	return val & PCI_EXP_LNKSTA_DLLLA;
+> +}
+> +
+> +static int eic7700_pcie_perst_deassert(struct eic7700_pcie_port *port,
+> +				       struct eic7700_pcie *pcie)
+> +{
+> +	int ret;
+> +
+> +	ret = reset_control_assert(port->perst);
+> +	if (ret) {
+> +		dev_err(pcie->pci.dev, "Failed to assert PERST#\n");
+> +		return ret;
+> +	}
+
+Why assert is part of the deassert helper?
+
+> +
+> +	/* Ensure that PERST# has been asserted for at least 100 ms */
+> +	msleep(PCIE_T_PVPERL_MS);
+> +
+> +	ret = reset_control_deassert(port->perst);
+> +	if (ret) {
+> +		dev_err(pcie->pci.dev, "Failed to deassert PERST#\n");
+> +		return ret;
 > +	}
 > +
-> +	return v4l2_subdev_call(csi2rx->source_subdev, pad, get_frame_desc,
-> +				remote_pad->index, fd);
+> +	return 0;
 > +}
 > +
->  static inline
->  struct csi2rx_priv *v4l2_subdev_to_csi2rx(struct v4l2_subdev *subdev)
->  {
-> @@ -611,12 +626,21 @@ int cdns_csi2rx_negotiate_ppc(struct v4l2_subdev *subdev, unsigned int pad,
->  }
->  EXPORT_SYMBOL_FOR_MODULES(cdns_csi2rx_negotiate_ppc, "j721e-csi2rx");
->  
-> +static int csi2rx_get_frame_desc(struct v4l2_subdev *subdev, unsigned int pad,
-> +				 struct v4l2_mbus_frame_desc *fd)
+> +static int eic7700_pcie_parse_port(struct eic7700_pcie *pcie,
+> +				   struct device_node *node)
 > +{
-> +	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
+> +	struct device *dev = pcie->pci.dev;
+> +	struct eic7700_pcie_port *port;
 > +
-> +	return csi2rx_get_frame_desc_from_source(csi2rx, fd);
+> +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
+> +	if (!port)
+> +		return -ENOMEM;
+> +
+> +	port->perst = of_reset_control_get_exclusive(node, "perst");
+> +	if (IS_ERR(port->perst)) {
+> +		dev_err(dev, "Failed to get PERST# reset\n");
+> +		return PTR_ERR(port->perst);
+> +	}
+> +
+> +	/*
+> +	 * TODO: Since the Root Port node is separated out by pcie devicetree,
+> +	 * the DWC core initialization code can't parse the num-lanes attribute
+> +	 * in the Root Port. Before entering the DWC core initialization code,
+> +	 * the platform driver code parses the Root Port node. The EIC7700 only
+> +	 * supports one Root Port node, and the num-lanes attribute is suitable
+> +	 * for the case of one Root Rort.
+> +	 */
+> +	if (!of_property_read_u32(node, "num-lanes", &port->num_lanes))
+> +		pcie->pci.num_lanes = port->num_lanes;
+> +
+> +	INIT_LIST_HEAD(&port->list);
+> +	list_add_tail(&port->list, &pcie->ports);
+> +
+> +	return 0;
 > +}
 > +
->  static const struct v4l2_subdev_pad_ops csi2rx_pad_ops = {
->  	.enum_mbus_code	= csi2rx_enum_mbus_code,
->  	.get_fmt	= v4l2_subdev_get_fmt,
->  	.set_fmt	= csi2rx_set_fmt,
->  	.enable_streams         = csi2rx_enable_streams,
->  	.disable_streams        = csi2rx_disable_streams,
-> +	.get_frame_desc	= csi2rx_get_frame_desc,
->  };
->  
->  static const struct v4l2_subdev_core_ops csi2rx_core_ops = {
+> +static int eic7700_pcie_parse_ports(struct eic7700_pcie *pcie)
+> +{
+> +	struct eic7700_pcie_port *port, *tmp;
+> +	struct device *dev = pcie->pci.dev;
+> +	int ret;
+> +
+> +	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> +		ret = eic7700_pcie_parse_port(pcie, of_port);
+> +		if (ret)
+> +			goto err_port;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_port:
+> +	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
+> +		list_del(&port->list);
+> +
+> +	return ret;
+> +}
+> +
+> +static void eic7700_pcie_hide_broken_msix_cap(struct dw_pcie *pci)
+> +{
+> +	u16 offset, val;
+> +
+> +	/*
+> +	 * Hardware doesn't support MSI-X but it advertises MSI-X capability,
+> +	 * to avoid this problem, the MSI-X capability in the PCIe capabilities
+> +	 * linked-list needs to be disabled. Since the PCI Express capability
+> +	 * structure's next pointer points to the MSI-X capability, and the
+> +	 * MSI-X capability's next pointer is null (00H), so only the PCI
+> +	 * Express capability structure's next pointer needs to be set 00H.
+> +	 */
+> +	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> +	val = dw_pcie_readl_dbi(pci, offset);
+> +	val &= ~PCI_CAP_LIST_NEXT_MASK;
+> +	dw_pcie_writel_dbi(pci, offset, val);
 
+I hate to enforce dependency for your series, but this is properly handled here:
+https://lore.kernel.org/linux-pci/20251109-remove_cap-v1-2-2208f46f4dc2@oss.qualcomm.com
+
+> +}
+> +
+> +static int eic7700_pcie_host_init(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct eic7700_pcie *pcie = to_eic7700_pcie(pci);
+> +	struct eic7700_pcie_port *port;
+> +	u8 msi_cap;
+> +	u32 val;
+> +	int ret;
+> +
+> +	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
+> +	if (pcie->num_clks < 0)
+> +		return dev_err_probe(pci->dev, pcie->num_clks,
+> +				     "Failed to get pcie clocks\n");
+> +
+> +	ret = reset_control_bulk_deassert(EIC7700_NUM_RSTS, pcie->resets);
+
+I think this is being called too early.
+
+> +	if (ret) {
+> +		dev_err(pcie->pci.dev, "Failed to deassert resets\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Configure Root Port type */
+> +	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +	val &= ~PCIEELBI_CTRL0_DEV_TYPE;
+> +	val |= FIELD_PREP(PCIEELBI_CTRL0_DEV_TYPE, PCI_EXP_TYPE_ROOT_PORT);
+> +	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +
+> +	list_for_each_entry(port, &pcie->ports, list) {
+> +		ret = eic7700_pcie_perst_deassert(port, pcie);
+> +		if (ret)
+> +			goto err_perst;
+> +	}
+> +
+> +	/* Configure app_hold_phy_rst */
+> +	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +	val &= ~PCIEELBI_APP_HOLD_PHY_RST;
+> +	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
+> +
+> +	/* The maximum waiting time for the clock switch lock is 20ms */
+> +	ret = readl_poll_timeout(pci->elbi_base + PCIEELBI_STATUS0_OFFSET,
+> +				 val, !(val & PCIEELBI_PM_SEL_AUX_CLK), 1000,
+> +				 20000);
+> +	if (ret) {
+> +		dev_err(pci->dev, "Timeout waiting for PM_SEL_AUX_CLK ready\n");
+> +		goto err_phy_init;
+> +	}
+
+You seem to be configuring the PHY reset and Aux clock, which should come before
+deasserting PERST# IMO. PERST# deassertion indicates that the power and clock
+are stable and the endpoint can start its operation. I don't know the impact of
+these configurations, but it is safe to do them earlier.
+
+> +
+> +	/*
+> +	 * Configure ESWIN VID:DID for Root Port as the default values are
+> +	 * invalid.
+> +	 */
+> +	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, PCI_VENDOR_ID_ESWIN);
+> +	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, PCI_DEVICE_ID_ESWIN);
+> +
+> +	/* Configure support 32 MSI vectors */
+> +	msi_cap = dw_pcie_find_capability(pci, PCI_CAP_ID_MSI);
+> +	val = dw_pcie_readw_dbi(pci, msi_cap + PCI_MSI_FLAGS);
+> +	val &= ~PCI_MSI_FLAGS_QMASK;
+> +	val |= FIELD_PREP(PCI_MSI_FLAGS_QMASK, 5);
+> +	dw_pcie_writew_dbi(pci, msi_cap + PCI_MSI_FLAGS, val);
+
+So this configures the MSI for Root Port. But are you sure that the internal MSI
+controller could receive MSI from the Root Port?
+
+Take a look: https://lore.kernel.org/linux-pci/20251109-remove_cap-v1-3-2208f46f4dc2@oss.qualcomm.com
+
+> +
+> +	/* Configure disable MSI-X cap */
+> +	if (!pcie->data->msix_cap)
+> +		eic7700_pcie_hide_broken_msix_cap(pci);
+> +
+> +	return 0;
+> +
+> +err_phy_init:
+> +	list_for_each_entry(port, &pcie->ports, list)
+> +		reset_control_assert(port->perst);
+> +err_perst:
+> +	reset_control_bulk_assert(EIC7700_NUM_RSTS, pcie->resets);
+> +
+> +	return ret;
+> +}
+> +
+> +static void eic7700_pcie_host_deinit(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct eic7700_pcie *pcie = to_eic7700_pcie(pci);
+> +	struct eic7700_pcie_port *port;
+> +
+> +	list_for_each_entry(port, &pcie->ports, list)
+> +		reset_control_assert(port->perst);
+> +	reset_control_bulk_assert(EIC7700_NUM_RSTS, pcie->resets);
+> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
+> +}
+> +
+> +static const struct dw_pcie_host_ops eic7700_pcie_host_ops = {
+> +	.init = eic7700_pcie_host_init,
+> +	.deinit = eic7700_pcie_host_deinit,
+> +};
+> +
+> +static const struct dw_pcie_ops dw_pcie_ops = {
+> +	.start_link = eic7700_pcie_start_link,
+> +	.link_up = eic7700_pcie_link_up,
+> +};
+> +
+> +static int eic7700_pcie_probe(struct platform_device *pdev)
+> +{
+> +	const struct eic7700_pcie_data *data;
+> +	struct eic7700_pcie_port *port, *tmp;
+> +	struct device *dev = &pdev->dev;
+> +	struct eic7700_pcie *pcie;
+> +	struct dw_pcie *pci;
+> +	int ret, i;
+> +
+> +	data = of_device_get_match_data(dev);
+> +	if (!data)
+> +		return dev_err_probe(dev, -EINVAL, "OF data missing\n");
+
+-ENODATA
+
+> +
+> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+> +	if (!pcie)
+> +		return -ENOMEM;
+> +
+> +	INIT_LIST_HEAD(&pcie->ports);
+> +
+> +	pci = &pcie->pci;
+> +	pci->dev = dev;
+> +	pci->ops = &dw_pcie_ops;
+> +	pci->pp.ops = &eic7700_pcie_host_ops;
+> +	pcie->data = data;
+> +	pci->no_suspport_L2 = pcie->data->no_suspport_L2;
+> +
+> +	for (i = 0; i < EIC7700_NUM_RSTS; i++)
+> +		pcie->resets[i].id = eic7700_pcie_rsts[i];
+> +
+> +	ret = devm_reset_control_bulk_get_exclusive(dev, EIC7700_NUM_RSTS,
+> +						    pcie->resets);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get resets\n");
+> +
+> +	ret = eic7700_pcie_parse_ports(pcie);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to parse Root Port: %d\n", ret);
+> +
+> +	platform_set_drvdata(pdev, pcie);
+> +
+
+You need to set the runtime PM status for the controller:
+
+	pm_runtime_no_callbacks(dev);
+	devm_pm_runtime_enable(dev);
+	ret = pm_runtime_get_sync(dev);
+	if (ret < 0)
+		goto err_pm_runtime_put;
+
+> +	ret = dw_pcie_host_init(&pci->pp);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to initialize host\n");
+> +		goto err_init;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_init:
+> +	list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
+> +		list_del(&port->list);
+> +		reset_control_put(port->perst);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int eic7700_pcie_suspend_noirq(struct device *dev)
+> +{
+> +	struct eic7700_pcie *pcie = dev_get_drvdata(dev);
+> +
+> +	return dw_pcie_suspend_noirq(&pcie->pci);
+> +}
+> +
+> +static int eic7700_pcie_resume_noirq(struct device *dev)
+> +{
+> +	struct eic7700_pcie *pcie = dev_get_drvdata(dev);
+> +
+> +	return dw_pcie_resume_noirq(&pcie->pci);
+> +}
+> +
+> +static const struct dev_pm_ops eic7700_pcie_pm_ops = {
+> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(eic7700_pcie_suspend_noirq,
+> +				  eic7700_pcie_resume_noirq)
+> +};
+> +
+> +static const struct eic7700_pcie_data eic7700_data = {
+> +	.msix_cap = false,
+> +	.no_suspport_L2 = true,
+> +};
+> +
+> +static const struct of_device_id eic7700_pcie_of_match[] = {
+> +	{ .compatible = "eswin,eic7700-pcie", .data = &eic7700_data },
+> +	{},
+> +};
+> +
+> +static struct platform_driver eic7700_pcie_driver = {
+> +	.probe = eic7700_pcie_probe,
+> +	.driver = {
+> +		.name = "eic7700-pcie",
+> +		.of_match_table = eic7700_pcie_of_match,
+> +		.suppress_bind_attrs = true,
+> +		.pm = &eic7700_pcie_pm_ops,
+
+Use:
+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
+
+to speed up the controller probe.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
