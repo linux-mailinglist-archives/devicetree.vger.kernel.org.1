@@ -1,448 +1,219 @@
-Return-Path: <devicetree+bounces-240619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B6EC7371E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:26:20 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B90EC73773
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A13424E42B3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:26:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id A5AD42A846
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1618D2EBDD9;
-	Thu, 20 Nov 2025 10:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1C830216E;
+	Thu, 20 Nov 2025 10:32:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GLAEEK93"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wjvGljOB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012044.outbound.protection.outlook.com [52.101.43.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D038F2DE711;
-	Thu, 20 Nov 2025 10:26:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763634369; cv=none; b=RXKZkYsB/yR18mZJPW/Yga+B4YA3qdm0nXGcyZndJlIH72cIVsODlnzA1atbLPSjJzkOJD1BpjmfyVkdM4eldOVBnskWIArdOcj+4paStA49GD6T4b01OApku/KmtnUyxBdC8aVN/ong/YBaL0frEH23bKLRvlLc0vUgp8QWl1k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763634369; c=relaxed/simple;
-	bh=DI7Cdd1ov2IMhJq4Nen2ZfUBn1MrWU7t3iy4UBZqN6A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WQABpinLCwasbVsiXwDHY7+1o36SyoQV+Y8124aVOlURiabMh0bgYKFNNYoGeAK6lIc6HfoqCDb6kqSJiWp8ZI0iH+xiFFwW5mKmVSBkLPrsSQUuER0UU2GLgM/dywXn6XnjCEaWBfdqhxlSM6hi896kVI7nm8soRIhgrrMO/NM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GLAEEK93; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C399C4CEF1;
-	Thu, 20 Nov 2025 10:25:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763634367;
-	bh=DI7Cdd1ov2IMhJq4Nen2ZfUBn1MrWU7t3iy4UBZqN6A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GLAEEK93EJk41rFpzF9y6RUUplXLPT/7YtIBg+x6FOiBpu1RWFkQUPf0DS/4hExYt
-	 ZQ0DQgzbgVuxJbY8feps9zQ16q453OhUt53GHwAhbR01/esU23Y6j7zx2nLbQ5eU7z
-	 G/0/w5J5zl9oreKipIy1VVAbv3TKSm6zXUr+CSmKt6abrM++DFy9GZndopPomy5eUF
-	 VaWUUWgsTfsXQjYf0+vHZUgYCEmpwJ7DWID/XilEmqzqJzvg1wouMvtuH9/Sv7N0gA
-	 UKCGCKmIjJuZ0pO8egKJ0TL2SYsguLOVRux96TW4PWhfUSwKvXipTiB+BggeIT6Yl5
-	 eccvltaSOyX4A==
-Date: Thu, 20 Nov 2025 15:55:46 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Vincent Guittot <vincent.guittot@linaro.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com, 
-	ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, 
-	Frank.li@nxp.com, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	cassel@kernel.org
-Subject: Re: [PATCH 3/4 v5] PCI: s32g: Add initial PCIe support (RC)
-Message-ID: <gz67pxlwddob5my62imtkiluwezixvn55gm2dse46njsolb3ct@p3wmu2j6swnc>
-References: <20251118160238.26265-1-vincent.guittot@linaro.org>
- <20251118160238.26265-4-vincent.guittot@linaro.org>
- <qvpx4ys2jqqugfbcdwidwvklcatdqiwdxfjumn7ncbh7z6ef5n@sepvjsatmpbd>
- <CAKfTPtDONX3-syavhhza6t6+6U8wowqwCN2Hnv9CHBR6W9RNNQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BF02E8B8A;
+	Thu, 20 Nov 2025 10:32:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763634735; cv=fail; b=VsYLZS2OAUme2E0rSsqqalynLCnTJ8Zvrvnx2rdfWufeMqRSYWSIXnA9AXqQOyRAAnm1x0C/z/RPEfH1ekDAEdWdswk2I1fgOUcZntYpFW3HImJ9CtVFwxqGo29aTMxPTI8SOF4zy10hGWYaASMhNvUpGrhG3MG6Xxgtm/P+eN8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763634735; c=relaxed/simple;
+	bh=OMDLiu89b7j9V40PUSEHWCmHOhxsy/omfPdKBlrbE0Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EENZ4DhfZYYw7ic/2+LaC+Tetwf7OirxyCTUV3/TmP9poccluzsTevi2tojZRvAJqjhWbX60PAXWNWHNDcouPaPwYsQE46nCIGsvSzEfuoYQBfs4XzJUN5pK90i7lcQ7UaaJ5Ne+p2MwA10bnl6Pha1AOPwdugGIvNJ7N2U6VV4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wjvGljOB; arc=fail smtp.client-ip=52.101.43.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=k33u+Ca3k8l/20Mo1zVuznQiu0O4jQLVS5L3MgsJCzxk5X5YPG+7K3dQdKhOlVxNFduhETvVDJ27pzDl6oiFq9SyxX0uJ/3rhMhxYExCEEXrq/9fU6pf5bPw0aBYptZz/hcYTwrcKZ7xClG1ImFp55Or8wLn0jKXMjiI5kjs0cmf5etZHjgdRO52+mj6L1B8dSgEPDFtbsO9zXRxR0N2EcqGsqjxCJglsXGXCQwi/bkEHeGRjFx9Rk27Vu+IHcfbiQjtiS44CGNiQgqvlVs+qYv3q2v5cP5bxF1mKAnVJyccib4N5stdbOHzINlzGatvsf5qix9UrxrjwhX2wlK1zw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+U5n5W+49CJTfiSSPCPw6tB1AoKMdI9gMtef8SBjKxg=;
+ b=pfldXA4zWOLfAHpFhc3B+9t/+BRiO3ddvGmSLuPI/ZvJ+hbbIetSmGDzTBUKzSn3aLqmMW3/CYONXYDq8a+l2Wx7H/zclnFIq2jKdc16klr9ujz7Ix3XGZCsAwVdlftSuuWoxAupv/eMZAWyJ9SgtQOv9kYq5jA9867YaritfXSq78+QkPjRZg/wuG7t+aYDLIKEUBN2tUTljgHqJzWPipjHsWnEaSEzVt7JYtoHlwfWqiFRKAfGzXJkv6cU5fg21h9WACnOpP6t21ZSDujwSSe4ATZBgXa8JAEHd1N1bGQmwkyY/bfvE/NPhuR/7Im8oBCm6NLyiuIQCuVW9P3qmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=baylibre.com smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+U5n5W+49CJTfiSSPCPw6tB1AoKMdI9gMtef8SBjKxg=;
+ b=wjvGljOBsNebjhHIPWzrCwF0rKDjPq0pu8RuZsTgTKDhS/j6lWSAYi+9Teg13mQrR0/W2Yn8G5agDZQz1Bt/g+p52lM/yiJbdJ49llk9yg8kUhLYlzzl00JPzbWmeIwnylo7+imc0CaQFceeybi+v/vEbzgJVxjvRVfQDLCNBnA=
+Received: from BY3PR05CA0029.namprd05.prod.outlook.com (2603:10b6:a03:254::34)
+ by PH5PR10MB997708.namprd10.prod.outlook.com (2603:10b6:510:39c::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.11; Thu, 20 Nov
+ 2025 10:32:10 +0000
+Received: from BY1PEPF0001AE1A.namprd04.prod.outlook.com
+ (2603:10b6:a03:254:cafe::61) by BY3PR05CA0029.outlook.office365.com
+ (2603:10b6:a03:254::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Thu,
+ 20 Nov 2025 10:32:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ BY1PEPF0001AE1A.mail.protection.outlook.com (10.167.242.102) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9343.9 via Frontend Transport; Thu, 20 Nov 2025 10:32:10 +0000
+Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 20 Nov
+ 2025 04:32:06 -0600
+Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE203.ent.ti.com
+ (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 20 Nov
+ 2025 04:32:06 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 20 Nov 2025 04:32:06 -0600
+Received: from [10.24.68.198] (abhilash-hp.dhcp.ti.com [10.24.68.198])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AKAW1rS3517791;
+	Thu, 20 Nov 2025 04:32:02 -0600
+Message-ID: <7ebd8fa2-eea0-4620-bf5c-c60a572575d3@ti.com>
+Date: Thu, 20 Nov 2025 16:02:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKfTPtDONX3-syavhhza6t6+6U8wowqwCN2Hnv9CHBR6W9RNNQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V6 3/4] dt-bindings: media: ti: vpe: Add support for Video
+ Input Port
+To: Krzysztof Kozlowski <krzk@kernel.org>, <mchehab@kernel.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<hverkuil+cisco@kernel.org>
+CC: <sakari.ailus@linux.intel.com>, <bparrot@ti.com>,
+	<jai.luthra@ideasonboard.com>, <dale@farnsworth.org>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, Sukrut Bellary
+	<sbellary@baylibre.com>
+References: <20251120091030.2081594-1-y-abhilashchandra@ti.com>
+ <20251120091030.2081594-4-y-abhilashchandra@ti.com>
+ <d0ca66b3-82ff-4187-b2c0-182e25f6f19c@kernel.org>
+Content-Language: en-US
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+In-Reply-To: <d0ca66b3-82ff-4187-b2c0-182e25f6f19c@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE1A:EE_|PH5PR10MB997708:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0465e731-d263-4697-7cc7-08de28200fb6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|7416014|376014|36860700013|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?S2tYVnY1bmFMZHlFeWlsbDgwb2podlVwb253eGI0ck1MRnlDTkMyL3dnUEJR?=
+ =?utf-8?B?Y1RkVlROWnB5ZElJMUQ4SkJtc3pWOFVFdzlmamNKcjFWMUd3SnlDWnpZdkxJ?=
+ =?utf-8?B?TnlVUTQ2cnUrTGYzeGRxQzFLS1pFSGNiVHdLZzBnZVRsOEwyVHp2QWVOMmVY?=
+ =?utf-8?B?VjZoZVN5a1ZmRGp2WG9SNHZDdzI4czlEQ3NLWlBjWWxFaE1VVFBzTUlaZXRu?=
+ =?utf-8?B?Tk0vcmxZaCswZnJYZGppUS9FOExoeEt0ZFZGVGpTWWxJVG1KUXllNGhhZHpI?=
+ =?utf-8?B?UnBhMGl5c3lWOU4vdXU1NjBCK2l5VlJVdHBERE5EeDBnK3pmVzI1dlZyK1RR?=
+ =?utf-8?B?MWN4T3lJbWJwdmRKSldFWUZTZ0REWkthN3c3ZjdlUVdhOHAwd3h6cC9JQmxk?=
+ =?utf-8?B?NldYbmVkRGplUlBJaGVNMmdZT2tJR3dXYi9JT0I3NCtXazlCamplTXVBbHRa?=
+ =?utf-8?B?Yk9YZ0JOcFozeWpnNjlzYmloazRYc01jOW1LWkxpTWJVSVVTd2VVSWlMN3gv?=
+ =?utf-8?B?MnBNUUo1czlKbWhKSkZIMFhJVVMyWU5oUTRGU1V4dWJXOUE2MGxBL3NkTkpZ?=
+ =?utf-8?B?SjFnSFBaSjZjakdBMXkzRzNqWncxWUdMSXF2eWVRRmFaRVBQRkxHRElJRU1C?=
+ =?utf-8?B?WjExWVkzcjNiUno1M2lDRUdlNU5JUFpmdW1FckplTTc3dkhiczAxNXdZOGxi?=
+ =?utf-8?B?SnNTNi9PYWhCSzhaQXExMmIwV1BQVm5GbDhrSGhxVGYyQ1gvcGhEb2xvSFho?=
+ =?utf-8?B?R0pRZFdXZDlvSjVFanQrTnE1WUxySG82SnBFdlNuZFVQUi9QeXdJb1QrRUdq?=
+ =?utf-8?B?NnZkVmNLN2RDWDMwc1BBMUtjQzRCWDJMbWRoaDhpd3lGR0dyMWVQSFZKNVRi?=
+ =?utf-8?B?dXRhMUc4cVo3YU02elE1S3BRSm1nM3kxQ0FqOG1UYnBYb2FQQlI3WnR4WVNZ?=
+ =?utf-8?B?UDg2YWYwNGZJU1NTQ2VRZ2N0MVE3c1hQb0hOUkRHdnVEUE5hbnFhWS92TGht?=
+ =?utf-8?B?c2xXeXJpeUVlT0E1dVh4UzRabzBhZHFNM1c3VjdEVDQ4Wjd0UjVXcnNQRHRN?=
+ =?utf-8?B?TXB6OWFqTlV2WHVubHZqOUhKZWRLNFhKYlVKUWNsK2FkQ2ZncWVQKzVNWW9z?=
+ =?utf-8?B?OG85MDkzaERyeGJuWjF2eEFtMkcyc1VrK01PUnVBZVgrRVdBb2luSWhuc2dU?=
+ =?utf-8?B?ZGN5VWZKRzdkTEpqc3gxMTByZDF6TUVCYkVvTUR3ZXY4a3hrQTRONkJnTUcy?=
+ =?utf-8?B?bTVYZ1ZJY1lERDJ1V3RYdEhtUUhYRmt5L2JEcWQrVmlHdTgyZ0JsZ0h1Q0dy?=
+ =?utf-8?B?Rkp2M3V3b2YxSVdIYkpiVnc5cXMwN2E5L3RJYVZBZHdZM01MUEZFVzI3em5Z?=
+ =?utf-8?B?WkhmdVMra0dCb21yeE5iSEtCbXQxVTFUdnd4b0p4ekh1aHo2QkN0OHRqejFF?=
+ =?utf-8?B?Q0hLbVhXaFZBUlhjVEJTejZWUmpIS0ozN29haHhDYmw3czh0NklqTFMvUVZ1?=
+ =?utf-8?B?SEJXVmhMaVlkTk14dU9PYkpCdTVkZUd6U1EwTE9UUnlBUVcwNURVVllCSzVl?=
+ =?utf-8?B?eUljSElaSmxaWCtML0NxblNEbGdza2RJVEVrdDZza1F6NWxSOTdNeEJFNlR1?=
+ =?utf-8?B?TmE0aUkwZTRJcnB3YXBYazlESmM2ZEZzM2pQZTBBQ096T2lmcm5hTjU1Umxu?=
+ =?utf-8?B?c1VHSVpVRlpPZkdTYzVDVThGQ0lKV1NoczdWVVlycUZDNVB6M0JnVHNDVytM?=
+ =?utf-8?B?QXptTHFDVVMwbGVhWWtlcFRxZVJpY0Y4clk0QThkZnM3cWlkeXhpZFRwWnhU?=
+ =?utf-8?B?eVg5eHYwRmdlSnlmcWd1QW92SHJ3YWk2QkVva1poMEE2RDUwK0ZQblE2emZY?=
+ =?utf-8?B?QXVzTmZtWmg4RkNvU0ZQQkMzQjZhRjdkR1Fxd1U0a1FFaWpuUzlMSzlCL1dn?=
+ =?utf-8?B?MzVzU3B2MlBsQ3kvT1ZzOCtEVks2aFowcHZtR3hHU0NZL3dZNFM2czdydU0x?=
+ =?utf-8?B?NncrRFVjM0lHSm9BNWF6M3A1dDNkQ0syYnc1VVFRbmk0WjJ6NmF3dTMzMGJ6?=
+ =?utf-8?B?QmlqWUJXa1NJNlQwRUtCMVI4Z1BDTHFTWXc4QU4zMURmcWNTcU5XdEw3NHdN?=
+ =?utf-8?Q?SSoQ=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(376014)(36860700013)(7053199007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 10:32:10.0203
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0465e731-d263-4697-7cc7-08de28200fb6
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BY1PEPF0001AE1A.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH5PR10MB997708
 
-On Thu, Nov 20, 2025 at 10:06:53AM +0100, Vincent Guittot wrote:
-> On Thu, 20 Nov 2025 at 09:22, Manivannan Sadhasivam <mani@kernel.org> wrote:
-> >
-> > On Tue, Nov 18, 2025 at 05:02:37PM +0100, Vincent Guittot wrote:
-> > > Add initial support of the PCIe controller for S32G Soc family. Only
-> > > host mode is supported.
-> > >
-> > > Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> > > Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> > > Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> > > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> > > Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> > > Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> > > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> > > ---
-> > >  drivers/pci/controller/dwc/Kconfig            |  10 +
-> > >  drivers/pci/controller/dwc/Makefile           |   1 +
-> > >  .../pci/controller/dwc/pcie-nxp-s32g-regs.h   |  21 +
-> > >  drivers/pci/controller/dwc/pcie-nxp-s32g.c    | 391 ++++++++++++++++++
-> > >  4 files changed, 423 insertions(+)
-> > >  create mode 100644 drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h
-> > >  create mode 100644 drivers/pci/controller/dwc/pcie-nxp-s32g.c
-> > >
-> > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> > > index 349d4657393c..e276956c3fca 100644
-> > > --- a/drivers/pci/controller/dwc/Kconfig
-> > > +++ b/drivers/pci/controller/dwc/Kconfig
-> > > @@ -256,6 +256,16 @@ config PCIE_TEGRA194_EP
-> > >         in order to enable device-specific features PCIE_TEGRA194_EP must be
-> > >         selected. This uses the DesignWare core.
-> > >
-> > > +config PCIE_NXP_S32G
-> > > +     tristate "NXP S32G PCIe controller (host mode)"
-> > > +     depends on ARCH_S32 || COMPILE_TEST
-> > > +     select PCIE_DW_HOST
-> > > +     help
-> > > +       Enable support for the PCIe controller in NXP S32G based boards to
-> > > +       work in Host mode. The controller is based on DesignWare IP and
-> > > +       can work either as RC or EP. In order to enable host-specific
-> > > +       features PCIE_NXP_S32G must be selected.
-> > > +
-> > >  config PCIE_DW_PLAT
-> > >       bool
-> > >
-> > > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> > > index 7ae28f3b0fb3..3301bbbad78c 100644
-> > > --- a/drivers/pci/controller/dwc/Makefile
-> > > +++ b/drivers/pci/controller/dwc/Makefile
-> > > @@ -10,6 +10,7 @@ obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
-> > >  obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
-> > >  obj-$(CONFIG_PCIE_FU740) += pcie-fu740.o
-> > >  obj-$(CONFIG_PCI_IMX6) += pci-imx6.o
-> > > +obj-$(CONFIG_PCIE_NXP_S32G) += pcie-nxp-s32g.o
-> > >  obj-$(CONFIG_PCIE_SPEAR13XX) += pcie-spear13xx.o
-> > >  obj-$(CONFIG_PCI_KEYSTONE) += pci-keystone.o
-> > >  obj-$(CONFIG_PCI_LAYERSCAPE) += pci-layerscape.o
-> > > diff --git a/drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h b/drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h
-> > > new file mode 100644
-> > > index 000000000000..81e35b6227d1
-> > > --- /dev/null
-> > > +++ b/drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h
-> > > @@ -0,0 +1,21 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0+ */
-> > > +/*
-> > > + * Copyright 2015-2016 Freescale Semiconductor, Inc.
-> > > + * Copyright 2016-2023, 2025 NXP
-> > > + */
-> > > +
-> > > +#ifndef PCIE_S32G_REGS_H
-> > > +#define PCIE_S32G_REGS_H
-> > > +
-> > > +/* PCIe controller Sub-System */
-> > > +
-> > > +/* PCIe controller 0 General Control 1 */
-> > > +#define PCIE_S32G_PE0_GEN_CTRL_1             0x50
-> > > +#define DEVICE_TYPE_MASK                     GENMASK(3, 0)
-> > > +#define SRIS_MODE                            BIT(8)
-> > > +
-> > > +/* PCIe controller 0 General Control 3 */
-> > > +#define PCIE_S32G_PE0_GEN_CTRL_3             0x58
-> > > +#define LTSSM_EN                             BIT(0)
-> > > +
-> >
-> > Since this header is not used by other drivers as of now, I'd prefer moving
-> > these definitions inside the driver.
-> 
-> I would prefer to keep it separate. It makes reg easier to parse and
-> more registers will be added with new coming features
-> 
+Hi Krzysztof,
+Thanks for the quick review.
 
-The convention we follow is to mostly add register definitions within the driver
-itself if they are not shared.
-
-> >
-> > > +#endif  /* PCI_S32G_REGS_H */
-> > > diff --git a/drivers/pci/controller/dwc/pcie-nxp-s32g.c b/drivers/pci/controller/dwc/pcie-nxp-s32g.c
-> > > new file mode 100644
-> > > index 000000000000..eaa6b5363afe
-> > > --- /dev/null
-> > > +++ b/drivers/pci/controller/dwc/pcie-nxp-s32g.c
-> > > @@ -0,0 +1,391 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * PCIe host controller driver for NXP S32G SoCs
-> > > + *
-> > > + * Copyright 2019-2025 NXP
-> > > + */
-> > > +
-> > > +#include <linux/interrupt.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/memblock.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of_device.h>
-> > > +#include <linux/of_address.h>
-> > > +#include <linux/pci.h>
-> > > +#include <linux/phy/phy.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/pm_runtime.h>
-> > > +#include <linux/sizes.h>
-> > > +#include <linux/types.h>
-> > > +
-> > > +#include "pcie-designware.h"
-> > > +#include "pcie-nxp-s32g-regs.h"
-> > > +
-> > > +struct s32g_pcie_port {
-> > > +     struct list_head list;
-> > > +     struct phy *phy;
-> > > +};
-> > > +
-> > > +struct s32g_pcie {
-> > > +     struct dw_pcie  pci;
-> > > +     void __iomem *ctrl_base;
-> > > +     struct list_head ports;
-> > > +};
-> > > +
-> > > +#define to_s32g_from_dw_pcie(x) \
-> > > +     container_of(x, struct s32g_pcie, pci)
-> > > +
-> > > +static void s32g_pcie_writel_ctrl(struct s32g_pcie *s32g_pp, u32 reg, u32 val)
-> > > +{
-> > > +     writel(val, s32g_pp->ctrl_base + reg);
-> > > +}
-> > > +
-> > > +static u32 s32g_pcie_readl_ctrl(struct s32g_pcie *s32g_pp, u32 reg)
-> > > +{
-> > > +     return readl(s32g_pp->ctrl_base + reg);
-> > > +}
-> > > +
-> > > +static void s32g_pcie_enable_ltssm(struct s32g_pcie *s32g_pp)
-> > > +{
-> > > +     u32 reg;
-> > > +
-> > > +     reg = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_3);
-> > > +     reg |= LTSSM_EN;
-> > > +     s32g_pcie_writel_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_3, reg);
-> > > +}
-> > > +
-> > > +static void s32g_pcie_disable_ltssm(struct s32g_pcie *s32g_pp)
-> > > +{
-> > > +     u32 reg;
-> > > +
-> > > +     reg = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_3);
-> > > +     reg &= ~LTSSM_EN;
-> > > +     s32g_pcie_writel_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_3, reg);
-> > > +}
-> > > +
-> > > +static int s32g_pcie_start_link(struct dw_pcie *pci)
-> > > +{
-> > > +     struct s32g_pcie *s32g_pp = to_s32g_from_dw_pcie(pci);
-> > > +
-> > > +     s32g_pcie_enable_ltssm(s32g_pp);
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static void s32g_pcie_stop_link(struct dw_pcie *pci)
-> > > +{
-> > > +     struct s32g_pcie *s32g_pp = to_s32g_from_dw_pcie(pci);
-> > > +
-> > > +     s32g_pcie_disable_ltssm(s32g_pp);
-> > > +}
-> > > +
-> > > +static struct dw_pcie_ops s32g_pcie_ops = {
-> > > +     .start_link = s32g_pcie_start_link,
-> > > +     .stop_link = s32g_pcie_stop_link,
-> > > +};
-> > > +
-> > > +/* Configure the AMBA AXI Coherency Extensions (ACE) interface */
-> > > +static void s32g_pcie_reset_mstr_ace(struct dw_pcie *pci, u64 ddr_base_addr)
-> > > +{
-> > > +     u32 ddr_base_low = lower_32_bits(ddr_base_addr);
-> > > +     u32 ddr_base_high = upper_32_bits(ddr_base_addr);
-> > > +
-> > > +     dw_pcie_dbi_ro_wr_en(pci);
-> > > +     dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_3_OFF, 0x0);
-> > > +
-> > > +     /*
-> > > +      * Ncore is a cache-coherent interconnect module that enables the
-> > > +      * integration of heterogeneous coherent and non-coherent agents in
-> > > +      * the chip. Ncore Transactions to peripheral should be non-coherent
-> > > +      * or it might drop them.
-> > > +      *
-> > > +      * One example where this is needed are PCIe MSIs, which use NoSnoop=0
-> > > +      * and might end up routed to Ncore.
-> >
-> > I don't think this statement is correct. No Snoop attribute is only applicable
-> > to MRd/MWr operations and not applicable to MSIs. Also, you've marked the
+On 20/11/25 15:20, Krzysztof Kozlowski wrote:
+> On 20/11/2025 10:10, Yemike Abhilash Chandra wrote:
+>> From: Dale Farnsworth <dale@farnsworth.org>
+>>
+>> Add device tree bindings for the Video Input Port. Video Input Port (VIP)
+>> can be found on devices such as DRA7xx and provides a parallel interface
+>> to a video source such as a sensor or TV decoder.
+>>
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 > 
-> The Ncore makes the bridge between the PCIe and the NoC and can decide
-> to drop some transactions based in this boundary
+> How the tag could appear here?
 > 
-> > controller as cache coherent in the binding, but this comment doesn't relate to
-> > it.
+>> Signed-off-by: Dale Farnsworth <dale@farnsworth.org>
+>> Signed-off-by: Benoit Parrot <bparrot@ti.com>
+>> Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
+>> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
 > 
-> More details of the issue:
-> PCIe coherent traffic (e.g. MSIs) that targets peripheral space will
-> be dropped by Ncore because peripherals on S32G are not coherent as
-> slaves. We add a hard boundary in the PCIe controller coherency
-> control registers to separate physical memory space from peripheral
-> space.
+> Who actually sent the patch and what was the original DCO chain?
 > 
 
-Ok, this clarifies. Please add it to the comment.
+The original author of the VIP driver and bindings was Dale.
+Benoit worked on upstreaming the driver in 2020,[1] and Sukruth
+later ported it to our downstream 6.1 LTS tree. I am currently
+working to upstream the driver.
 
-> >
-> > > +      * Define the start of DDR as seen by Linux as the boundary between
-> > > +      * "memory" and "peripherals", with peripherals being below.
-> >
-> > Please mention what this configuration does and why it is necessary. This is not
-> > clearly mentioned in the comment.
-> >
-> > > +      */
-> > > +     dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_1_OFF,
-> > > +                        (ddr_base_low & CFG_MEMTYPE_BOUNDARY_LOW_ADDR_MASK));
-> > > +     dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_2_OFF, ddr_base_high);
-> > > +     dw_pcie_dbi_ro_wr_dis(pci);
-> > > +}
-> > > +
-> > > +static int s32g_init_pcie_controller(struct dw_pcie_rp *pp)
-> > > +{
-> > > +     struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +     struct s32g_pcie *s32g_pp = to_s32g_from_dw_pcie(pci);
-> > > +     u32 val;
-> > > +
-> > > +     /* Set RP mode */
-> > > +     val = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_1);
-> > > +     val &= ~DEVICE_TYPE_MASK;
-> > > +     val |= FIELD_PREP(DEVICE_TYPE_MASK, PCI_EXP_TYPE_ROOT_PORT);
-> > > +
-> > > +     /* Use default CRNS */
-> >
-> > SRNS?
-> 
-> it's CRNS
-> 
+Before sending v2 , I contacted Dale, Benoit, and Sukruth and
+obtained their permission to retain their respective Signed-off-by tags.
+I also kept Dale as the author since he was the original author.
 
-I'm not aware of CRNS, but only SRNS. Care to expand it?
+I collected Rob's R/B from [2]
 
-> >
-> > > +     val &= ~SRIS_MODE;
-> > > +
-> > > +     s32g_pcie_writel_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_1, val);
-> > > +
-> > > +     /*
-> > > +      * Make sure we use the coherency defaults (just in case the settings
-> > > +      * have been changed from their reset values)
-> > > +      */
-> > > +     s32g_pcie_reset_mstr_ace(pci, memblock_start_of_DRAM());
-> > > +
-> > > +     dw_pcie_dbi_ro_wr_en(pci);
-> > > +
-> > > +     val = dw_pcie_readl_dbi(pci, PCIE_PORT_FORCE);
-> > > +     val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
-> > > +     dw_pcie_writel_dbi(pci, PCIE_PORT_FORCE, val);
-> > > +
-> > > +     val = dw_pcie_readl_dbi(pci, GEN3_RELATED_OFF);
-> > > +     val |= GEN3_RELATED_OFF_EQ_PHASE_2_3;
-> > > +     dw_pcie_writel_dbi(pci, GEN3_RELATED_OFF, val);
-> > > +
-> > > +     dw_pcie_dbi_ro_wr_dis(pci);
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static const struct dw_pcie_host_ops s32g_pcie_host_ops = {
-> > > +     .init = s32g_init_pcie_controller,
-> > > +};
-> > > +
-> > > +static int s32g_init_pcie_phy(struct s32g_pcie *s32g_pp)
-> > > +{
-> > > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > > +     struct device *dev = pci->dev;
-> > > +     struct s32g_pcie_port *port, *tmp;
-> > > +     int ret;
-> > > +
-> > > +     list_for_each_entry(port, &s32g_pp->ports, list) {
-> > > +             ret = phy_init(port->phy);
-> > > +             if (ret) {
-> > > +                     dev_err(dev, "Failed to init serdes PHY\n");
-> > > +                     goto err_phy_revert;
-> > > +             }
-> > > +
-> > > +             ret = phy_set_mode_ext(port->phy, PHY_MODE_PCIE, 0);
-> > > +             if (ret) {
-> > > +                     dev_err(dev, "Failed to set mode on serdes PHY\n");
-> > > +                     goto err_phy_exit;
-> > > +             }
-> > > +
-> > > +             ret = phy_power_on(port->phy);
-> > > +             if (ret) {
-> > > +                     dev_err(dev, "Failed to power on serdes PHY\n");
-> > > +                     goto err_phy_exit;
-> > > +             }
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +
-> > > +err_phy_exit:
-> > > +     phy_exit(port->phy);
-> > > +
-> > > +err_phy_revert:
-> > > +     list_for_each_entry_continue_reverse(port, &s32g_pp->ports, list) {
-> > > +             phy_power_off(port->phy);
-> > > +             phy_exit(port->phy);
-> > > +     }
-> > > +
-> > > +     list_for_each_entry_safe(port, tmp, &s32g_pp->ports, list)
-> > > +             list_del(&port->list);
-> >
-> > Can't you use list_for_each_entry_safe_reverse() to combine both operations?
-> 
-> No, it goes over all elements of the list whereas I only want to power
-> off and exit only those which have been init and powered on above.
-> 
+I should probably have this context in my cover letter for better clarity.
+Please let me know if you would prefer the tags to be removed or modified.
 
-Sorry, I misread the kdoc...
+[1]: https://lore.kernel.org/all/20200522225412.29440-1-bparrot@ti.com/#t
+[2]: 
+https://lore.kernel.org/all/176158807606.1250661.5992100889957757703.robh@kernel.org/
 
-> >
-> > > +
-> > > +     return ret;
-> > > +}
-> > > +
+Thanks and Regards
+Yemike Abhilash Chandra
 
-[...]
 
-> > > +static struct platform_driver s32g_pcie_driver = {
-> > > +     .driver = {
-> > > +             .name   = "s32g-pcie",
-> > > +             .of_match_table = s32g_pcie_of_match,
-> > > +             .suppress_bind_attrs = true,
-> > > +             .pm = pm_sleep_ptr(&s32g_pcie_pm_ops),
-> > > +             .probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> > > +     },
-> > > +     .probe = s32g_pcie_probe,
-> > > +};
-> > > +
-> > > +module_platform_driver(s32g_pcie_driver);
-> >
-> > builtin_platform_driver() since this controller implements MSI controller.
-> 
-> Can you elaborate ?
-> 
+> Best regards,
+> Krzysztof
 
-If a PCI controller is implementing an irqchip, it is not supposed to be removed
-during runtime due to IRQ disposal concern. So we encourage the driver to be
-tristate, but use builtin_platform_driver() so that it can be loaded as a
-module, but not removed dynamically.
-
-This limitation comes from the irqchip framework.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
