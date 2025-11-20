@@ -1,119 +1,342 @@
-Return-Path: <devicetree+bounces-240718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7339C747BA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:15:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFBA8C74733
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:08:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D6B894F3E86
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:00:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 38A8A29781
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:08:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B379346773;
-	Thu, 20 Nov 2025 13:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96D2346E7F;
+	Thu, 20 Nov 2025 14:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h58aRXaI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UhaPVNhu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317D2346772
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 13:59:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6AD33C1B7
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 14:08:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763647173; cv=none; b=hjcbXDh1829wZNkFj9jJyt3JPhlkZKIAf3s6af6x0xI2K6IJGkuDH1WDjXk7cC+RA9N2RkWr7/rrYflnCxl1XrEVFEufqicuyCWadJ4K1BQqiR1AVRtT4GMS2njaLz/a9n5uKwFp3SULXnZbRZTEEQVLWHZyEPYThWriFX2pKfY=
+	t=1763647729; cv=none; b=qt8VKQ8Zq9BEVFWGUgYRImI9hZZnBg+g6RlVUU7Cr8jj9OxqN2mPqgxNRrGDPgsaXa64RdUPuf4xiksbV8n/xbI4UPCr+BPRVKiObj5dYVqK/4VRoFvPgkO1ngIsobyYqtevY++hzLKuCEzMExt4ZZtMO0bnDrOUTIuHJbuJhHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763647173; c=relaxed/simple;
-	bh=03SXIA4oKWP90BK304MihS/+V/7odb5PoMgrN/1p/qk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tYlEvx+Qmh7JIGJFVin8C5WRLqddrjks5EH0KgBJ8FAHW+q5TEOSerwE8+nBE9j0IlaISIP0i+nCK1OjAXhWWdimpfw0jq/zKhzYIyno9zhBYrEVVwTgX7ddy/mBqpE3zVeHXffqBCkh1HIzD4MUZI5Z2muMaUKRGnVPiyaEs8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h58aRXaI; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 5BFF54E41804;
-	Thu, 20 Nov 2025 13:59:27 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2896F6068C;
-	Thu, 20 Nov 2025 13:59:27 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 71FD910371C4D;
-	Thu, 20 Nov 2025 14:59:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763647166; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=+RFWFftAzDHWnw+Z+hitcu313UCuMoXyrlJUegc6J+U=;
-	b=h58aRXaIUEhQHztbSUQ9G5QXd6HneKsqBpdqwK2apQY8NzSBZQ7hcSYp39u/g+t1e3rgNR
-	ladPfOIlvHj+eVCWuJh+gXQtSdRz0TlhW1gr5Rm4GQGcIoAjuxaBqqD2jX/gfU88155+1X
-	j25nTt/+SgmT304me5EPfEami95SgB9h6DM0dTNSgJFi3jfadO9QFaX1kzg0XTkwuxwvzA
-	scuCg0jXDxIFz0/nj+UrUnkCz5WTAYyH0MBaHcFQ2NIBl4dlV+h1lziO4QLT7RCdc3InsC
-	bTVFkzIKAEdttHp6pwmLLpauZGjr11+4ijYHQRouhm5y/hSlbZf3AfmCfqL8gw==
-Date: Thu, 20 Nov 2025 14:59:20 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: ot_shunxi.zhang@mediatek.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Eddie Huang <eddie.huang@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>, Lee Jones <lee@kernel.org>,
-	Vince-WL.Liu@mediatek.com, sirius.wang@mediatek.com,
-	Jh.Hsu@mediatek.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 3/5] rtc: mt6397: Fix formatting of platform driver
- structure
-Message-ID: <20251120135920cfea853d@mail.local>
-References: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
- <20251120121805.6775-4-ot_shunxi.zhang@mediatek.com>
+	s=arc-20240116; t=1763647729; c=relaxed/simple;
+	bh=hXBBthJypM5vjTTphA0r6Oi5jEFjwOHaRtvgMSwE0wk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bB5T9+iIliDjB6bzvM0By1GFF31uoYYe3RXU3Aemq0GAEm6XDriy6UOwS2H8LTwboEJ9VTpV/gO0Osp4MGkzXdV83BiS3jfq/QfTnpCseedizv+yMYNmemJqo7PgFcEfFN6pmjjjcU7iWNA6k3b5uxkAfQfOEgcv55EpjWl5lPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UhaPVNhu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 409E7C19421
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 14:08:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763647729;
+	bh=hXBBthJypM5vjTTphA0r6Oi5jEFjwOHaRtvgMSwE0wk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=UhaPVNhu09owXU6y9W2n4EbDbqwc/M9mp92cn9ldwz/kHaQSikV4QEb1x8h862KGJ
+	 XEAlXPX/rZMIk4ZA/MYwmG9EU/RSiyYSX7pM56WL3cf1WqwvDKTFeYvROl6ruiKiWz
+	 RggNxFAtFsx+/iyPnygo4X7mkYvb76H07eNlxXYTNwF9wiCoIR/FCK1rQOFDN8Pz89
+	 ulOQwlOIztwO8KonkDga5rm923zYMQC2dcj4b91fvXFtiMLAZ6U7ixUJeqqReeRjA5
+	 G9fse4dfN9owLuSRdXtpyoUOE6rOkvVJcpFyUykgCDV57nRS6GoyWnsS0rOd+YyS/e
+	 x1GT2S7aSmTzA==
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-640b0639dabso1554577a12.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 06:08:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXXnAFeDi6G0DvRt2X21IBGtxFmYstQ+gZ1nYbhe4iewLSyrBkq3rPd+ANft653EnVL3GKgsd2FsR//@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywjm31TKBHiuy1nxX05Kle0pNHaPy8zJ3fpFpCxKoycJuzNoT6z
+	Xm76On1T/O45crBVH1bE0VLgHvnGAyto1FPFjeRcz18XCSOkpi1AaFVX1KNChnRbprHRLEULFZe
+	jRPn16JiBrWwqR5+Zp4GGP4zXZXZx9Q==
+X-Google-Smtp-Source: AGHT+IFhmpxwxTK3iIU5gGY4RHYCOg2OWMZSTYPm0QsqQ/K/SQuzk+g5Q+9Xr/dcjgg52W8xNLzdh4MPPMoGiSlnRts=
+X-Received: by 2002:a05:6402:348c:b0:640:cdad:d2c0 with SMTP id
+ 4fb4d7f45d1cf-64538227a06mr2493204a12.25.1763647727793; Thu, 20 Nov 2025
+ 06:08:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251120121805.6775-4-ot_shunxi.zhang@mediatek.com>
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20251119-topic-lpm-of-map-iterator-v6-18-v1-1-1f0075d771a3@baylibre.com>
+In-Reply-To: <20251119-topic-lpm-of-map-iterator-v6-18-v1-1-1f0075d771a3@baylibre.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 20 Nov 2025 08:08:36 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+2sFzQb8j5bBWbwgyYn5apLTfWOTZW3+9n74uVyph16A@mail.gmail.com>
+X-Gm-Features: AWmQ_bl_e2mY7mehKL9PPzNTQx6rMW289JXHIko6uxRTQ1xj75fDik3Oj__esgs
+Message-ID: <CAL_Jsq+2sFzQb8j5bBWbwgyYn5apLTfWOTZW3+9n74uVyph16A@mail.gmail.com>
+Subject: Re: [PATCH RFC] of: Add of_parse_map_iter() helper for nexus node map iteration
+To: "Kevin Hilman (TI.com)" <khilman@baylibre.com>, Herve Codina <herve.codina@bootlin.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
+	arm-scmi@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 20/11/2025 20:17:59+0800, ot_shunxi.zhang@mediatek.com wrote:
-> From: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
-> 
-> This is a cosmetic change to improve code consistency.
-> 
++Herve
 
-But, is it?
+On Wed, Nov 19, 2025 at 6:41=E2=80=AFPM Kevin Hilman (TI.com)
+<khilman@baylibre.com> wrote:
+>
+> Add a new helper function of_parse_map_iter() to iterate over nexus
+> node maps (c.f. DT spec, section 2.5.1.)
+>
+> This function provides an iterator interface for traversing map
+> entries, handling the complexity of variable-sized entries based on
+> <stem>-cells properties, as well as handling the <stem>-skip and
+> <stem>-pass-thru properties.
+>
+> RFC: There's a lot of overlap between this function and
+> of_parse_phandle_with_args_map().  However the key differences are:
+>
+>   - of_parse_phandle_with_args_map() does matching
+>     it searches for an entry that matches specific child args
+>   - of_parse_map_iter() does iteration
+>     it simply walks through all entries sequentially
 
-> Signed-off-by: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
+There's also this in flight for interrupt-map:
+
+https://lore.kernel.org/all/20251027123601.77216-2-herve.codina@bootlin.com=
+/
+
+There's probably enough quirks with interrupt-map that we can't use
+the same code. Though it may boil down to handling #address-cells and
+how the parent is looked up.
+
+> There are likely ways to extract some shared code between these two
+> functions into some shared helpers, but I'm hoping someone more
+> familiar with this OF code can help here.
+
+I would expect of_parse_phandle_with_args_map() could be implemented
+in terms of the iterator.
+
+> However, before refactoring the shared code, it would be good to have
+> some feedback on this approach.
+>
+> Signed-off-by: Kevin Hilman (TI.com) <khilman@baylibre.com>
 > ---
->  drivers/rtc/rtc-mt6397.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
-> index 692c00ff544b..b8f44a00de5d 100644
-> --- a/drivers/rtc/rtc-mt6397.c
-> +++ b/drivers/rtc/rtc-mt6397.c
-> @@ -345,7 +345,7 @@ static struct platform_driver mtk_rtc_driver = {
->  		.of_match_table = mt6397_rtc_of_match,
->  		.pm = &mt6397_pm_ops,
->  	},
-> -	.probe	= mtk_rtc_probe,
+>  drivers/of/base.c  | 167 +++++++++++++++++++++++++++++++++++++++++++++++=
++++++
+>  include/linux/of.h |  13 ++++
+>  2 files changed, 180 insertions(+)
+>
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 7043acd971a0..bdb4fde1bfa9 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -1594,6 +1594,173 @@ int of_parse_phandle_with_args_map(const struct d=
+evice_node *np,
+>  }
+>  EXPORT_SYMBOL(of_parse_phandle_with_args_map);
+>
+> +/**
+> + * of_parse_map_iter() - Iterate through entries in a nexus node map
+> + * @np:                        pointer to a device tree node containing =
+the map
+> + * @stem_name:         stem of property names (e.g., "power-domain" for =
+"power-domain-map")
+> + * @index:             pointer to iteration index (set to 0 for first ca=
+ll)
+> + * @child_args:                pointer to structure to fill with child s=
+pecifier (can be NULL)
+> + * @parent_args:       pointer to structure to fill with parent phandle =
+and specifier
+> + *
+> + * This function iterates through a nexus node map property as defined i=
+n DT spec 2.5.1.
+> + * Each map entry has the format: <child_specifier phandle parent_specif=
+ier>
+> + *
+> + * On each call, it extracts one map entry and fills child_args (if prov=
+ided) with the
+> + * child specifier and parent_args with the parent phandle and specifier=
+.
+> + * The index pointer is updated to point to the next entry for the follo=
+wing call.
+> + *
+> + * Example usage::
+> + *
+> + *  int index =3D 0;
+> + *  struct of_phandle_args child_args, parent_args;
+> + *
+> + *  while (!of_parse_map_iter(np, "power-domain", &index, &child_args, &=
+parent_args)) {
+> + *      // Process child_args and parent_args
+> + *      of_node_put(parent_args.np);
+> + *  }
+> + *
+> + * Caller is responsible for calling of_node_put() on parent_args.np.
+> + *
+> + * Return: 0 on success, -ENOENT when iteration is complete, or negative=
+ error code on failure.
+> + */
+> +int of_parse_map_iter(const struct device_node *np,
+> +                      const char *stem_name,
+> +                      int *index,
+> +                      struct of_phandle_args *child_args,
+> +                      struct of_phandle_args *parent_args)
+> +{
+> +       char *cells_name __free(kfree) =3D kasprintf(GFP_KERNEL, "#%s-cel=
+ls", stem_name);
+> +       char *map_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map", =
+stem_name);
+> +       char *mask_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-m=
+ask", stem_name);
+> +       char *pass_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-p=
+ass-thru", stem_name);
+> +       static const __be32 dummy_mask[] =3D { [0 ... MAX_PHANDLE_ARGS] =
+=3D cpu_to_be32(~0) };
+> +       static const __be32 dummy_pass[] =3D { [0 ... MAX_PHANDLE_ARGS] =
+=3D cpu_to_be32(0) };
+> +       const __be32 *map, *mask, *pass;
+> +       __be32 child_spec[MAX_PHANDLE_ARGS];
+> +       u32 child_cells, parent_cells;
+> +       int map_len, i, entry_idx;
+> +
+> +       if (!np || !stem_name || !index || !parent_args)
+> +               return -EINVAL;
+> +
+> +       if (!cells_name || !map_name || !mask_name || !pass_name)
+> +               return -ENOMEM;
+> +
+> +       /* Get the map property */
+> +       map =3D of_get_property(np, map_name, &map_len);
+> +       if (!map)
+> +               return -ENOENT;
+> +
+> +       map_len /=3D sizeof(u32);
+> +
+> +       /* Get child #cells */
+> +       if (of_property_read_u32(np, cells_name, &child_cells))
+> +               return -EINVAL;
+> +
+> +       /* Get the mask property (optional) */
+> +       mask =3D of_get_property(np, mask_name, NULL);
+> +       if (!mask)
+> +               mask =3D dummy_mask;
+> +
+> +       /* Get the pass-thru property (optional) */
+> +       pass =3D of_get_property(np, pass_name, NULL);
+> +       if (!pass)
+> +               pass =3D dummy_pass;
 
-I guess the original author wanted to align with the members of the
-.drivers struct above. I won't take a patch to change just that as the
-next guys wanting to improve his KPIs will do the exact opposite.
+Generally the DT iterators need some state maintained, so there's an
+init function to do all/most of the above and stash that into a state
+struct for the iterator.
 
+> +
+> +       /* Iterate through map to find the entry at the requested index *=
+/
+> +       entry_idx =3D 0;
+> +       while (map_len > child_cells + 1) {
+> +               /* If this is the entry we're looking for, extract it */
+> +               if (entry_idx =3D=3D *index) {
+> +                       /* Save masked child specifier for pass-thru proc=
+essing */
+> +                       for (i =3D 0; i < child_cells && i < MAX_PHANDLE_=
+ARGS; i++)
+> +                               child_spec[i] =3D map[i] & mask[i];
+> +
+> +                       /* Extract child specifier if requested */
+> +                       if (child_args) {
+> +                               child_args->np =3D (struct device_node *)=
+np;
+> +                               child_args->args_count =3D child_cells;
+> +                               for (i =3D 0; i < child_cells && i < MAX_=
+PHANDLE_ARGS; i++)
+> +                                       child_args->args[i] =3D be32_to_c=
+pu(map[i]);
+> +                       }
+> +
+> +                       /* Move past child specifier */
+> +                       map +=3D child_cells;
+> +                       map_len -=3D child_cells;
+> +
+> +                       /* Extract parent phandle */
+> +                       parent_args->np =3D of_find_node_by_phandle(be32_=
+to_cpup(map));
 
-> +	.probe = mtk_rtc_probe,
->  };
->  
->  module_platform_driver(mtk_rtc_driver);
-> -- 
-> 2.45.2
-> 
+Before you update the parent node, you need to put the previous parent.
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> +                       map++;
+> +                       map_len--;
+> +
+> +                       if (!parent_args->np)
+> +                               return -EINVAL;
+> +
+> +                       /* Get parent #cells */
+> +                       if (of_property_read_u32(parent_args->np, cells_n=
+ame, &parent_cells))
+> +                               parent_cells =3D 0;
+> +
+> +                       /* Check for malformed properties */
+> +                       if (WARN_ON(parent_cells > MAX_PHANDLE_ARGS) ||
+> +                           map_len < parent_cells) {
+> +                               of_node_put(parent_args->np);
+> +                               return -EINVAL;
+> +                       }
+> +
+> +                       /*
+> +                        * Copy parent specifier into the out_args struct=
+ure, keeping
+> +                        * the bits specified in <stem>-map-pass-thru per=
+ DT spec 2.5.1
+> +                        */
+> +                       parent_args->args_count =3D parent_cells;
+> +                       for (i =3D 0; i < parent_cells; i++) {
+> +                               __be32 val =3D map[i];
+> +
+> +                               if (i < child_cells) {
+> +                                       val &=3D ~pass[i];
+> +                                       val |=3D child_spec[i] & pass[i];
+> +                               }
+> +
+> +                               parent_args->args[i] =3D be32_to_cpu(val)=
+;
+> +                       }
+> +
+> +                       /* Advance index for next iteration */
+> +                       (*index)++;
+> +                       return 0;
+> +               }
+> +
+> +               /* Skip this entry: child_cells + phandle + parent_cells =
+*/
+> +               map +=3D child_cells;
+> +               map_len -=3D child_cells;
+> +
+> +               /* Get parent node to determine parent_cells */
+> +               parent_args->np =3D of_find_node_by_phandle(be32_to_cpup(=
+map));
+> +               map++;
+> +               map_len--;
+> +
+> +               if (!parent_args->np)
+> +                       return -EINVAL;
+> +
+> +               if (of_property_read_u32(parent_args->np, cells_name, &pa=
+rent_cells))
+> +                       parent_cells =3D 0;
+> +
+> +               of_node_put(parent_args->np);
+> +
+> +               /* Check for malformed properties */
+> +               if (map_len < parent_cells)
+> +                       return -EINVAL;
+> +
+> +               /* Move forward by parent node's #<stem>-cells amount */
+> +               map +=3D parent_cells;
+> +               map_len -=3D parent_cells;
+> +
+> +               entry_idx++;
+> +       }
+> +
+> +       /* Reached end of map without finding the requested index */
+> +       return -ENOENT;
+> +}
+> +EXPORT_SYMBOL(of_parse_map_iter);
+> +
+>  /**
+>   * of_count_phandle_with_args() - Find the number of phandles references=
+ in a property
+>   * @np:                pointer to a device tree node containing a list
 
