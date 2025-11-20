@@ -1,142 +1,90 @@
-Return-Path: <devicetree+bounces-240615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C260C736CD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:17:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0116C736D0
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:17:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4449635FFA2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:13:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 6551B2A48C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03E12F656A;
-	Thu, 20 Nov 2025 10:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53ABF2FB97D;
+	Thu, 20 Nov 2025 10:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="U9FGjQGU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F2428B40E;
-	Thu, 20 Nov 2025 10:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0382FDC4F;
+	Thu, 20 Nov 2025 10:17:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763633583; cv=none; b=HOmdw+HSo0taIC5lHKyEV8YkIW8IBrCH1rWMTC1F/Rk3unAeO6HXIDgkkNGZGcpCa1wS20ARXXUZvCoVbYOjgD5FaqiFGE3Na0s4r1SW4ynJjiYQQOmxhxl37gqXDpPSPf7i5MVokppTJ2qj7cexmhmgynYxmoiNQ6bvQiqs25Q=
+	t=1763633867; cv=none; b=qO9zXEXZwxSiQNkU+ikx6NoJ89EZUw80fA8tiv/Q46azX4SVN/jhdZVlLL1hDt2zz4DgmOtmzqnsMaPDpIW1/SSw8CEAi96kmzwHeH0o2bCpC5Zde+kfoCQpeV/ug50VNyRveV1hagoeEnO0ZpWmOmXhHTBXhlw0I6K+VSyFb2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763633583; c=relaxed/simple;
-	bh=gOMiq57HTxx79NRhQi+7+831DMzl1qRNS4Gvn3ry15s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ILzOf6SMfP3TueF9yhPJB/YpXzzOk1K1zBCOPkBK0x7/dmigZMpppN4ObQ5VIMZXubTBpEc2qUkXBXxXdU1/Yqf7ODSna6a5DLRpPykQnbdF8YKnVtJiKMVChTZ5Tl+XUPp2Yv2Tp0K78rB5o3lbFTrnmnFlTPfB5YF8eOWfwPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0004758DT.eswin.cn (unknown [10.12.96.83])
-	by app1 (Coremail) with SMTP id TAJkCgCnoWmW6R5p5P18AA--.34347S2;
-	Thu, 20 Nov 2025 18:12:39 +0800 (CST)
-From: zhangsenchuan@eswincomputing.com
-To: bhelgaas@google.com,
-	mani@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	robh@kernel.org,
-	p.zabel@pengutronix.de,
-	jingoohan1@gmail.com,
-	gustavo.pimentel@synopsys.com,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com,
-	mayank.rana@oss.qualcomm.com,
-	shradha.t@samsung.com,
-	krishna.chundru@oss.qualcomm.com,
-	thippeswamy.havalige@amd.com,
-	inochiama@gmail.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	ouyanghui@eswincomputing.com,
-	Frank.li@nxp.com,
-	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-Subject: [PATCH v6 3/3] PCI: dwc: Add no_suspport_L2 flag and skip PME_Turn_Off broadcast
-Date: Thu, 20 Nov 2025 18:12:35 +0800
-Message-ID: <20251120101236.1538-1-zhangsenchuan@eswincomputing.com>
-X-Mailer: git-send-email 2.49.0.windows.1
-In-Reply-To: <20251120101018.1477-1-zhangsenchuan@eswincomputing.com>
-References: <20251120101018.1477-1-zhangsenchuan@eswincomputing.com>
+	s=arc-20240116; t=1763633867; c=relaxed/simple;
+	bh=oj3XXa4I6VaWw2BCv50Gz8e0+tE79Q6lQpDSY4nSM5Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N4OdgQ+oxNMSduSwlQHb5r3jmKJC/keHugo1Xi6QNaauTl1jewMohPuXdbV/NJSHDfLSaJIJR9tIlrxpmUUXs36feKBLKh22yE5RiaMBHAwzePkZSj4cwG+jhKDjP1ThU4Zs85TKSvqnCCn1FGH0pNSikc1LBrU6vOAx/jJOP5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=U9FGjQGU; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1763633857;
+	bh=oj3XXa4I6VaWw2BCv50Gz8e0+tE79Q6lQpDSY4nSM5Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=U9FGjQGUwWioE5NB9i9posewenwjNK4FZ5Mu9/mNuWXlRKzgqes2ELoDnW/EhfUE5
+	 RdP8DsB2Yn86UnI1qjLSWfZipqfgORbNt08nbGjPCJg2KhLcTA6B6+vWXDQn58aZ3O
+	 fTvRT+yaUX95valvaxU1vbcXPZbyYMfpKbgOdNUSLfdlVOQS0jXgUWREX8VcDFxI3T
+	 PJbRwA8MzcZVnzynZairjtvr2YWRWPM05EuDiC/8BZ3BfSrBKh0/GVbz0rj9B5vu9e
+	 USNly/whU5958/E/Q8Ushx0gBPGyVoYlkmPvpwPRXTvHR9utL3PH0Vq+GcDAMhG1Li
+	 ZHj5TnFFqIMIw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C1D1217E0CA1;
+	Thu, 20 Nov 2025 11:17:36 +0100 (CET)
+Message-ID: <18d49588-2c1e-4546-a258-7b063ac64b36@collabora.com>
+Date: Thu, 20 Nov 2025 11:17:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgCnoWmW6R5p5P18AA--.34347S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Zw1xXr1DCry8Zw15WFyDJrb_yoW8ZrWUpa
-	98KFWIyF18JF45Za1Yy3Z3ur43t3Z8AFyUCa9293WfWa42va4Dt34xJFy3tFn7Jr4Iv343
-	Kr15ta93Ga13JFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBm14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1U
-	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
-	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRNSdgDUUUU
-X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] dt-bindings: spi: airoha: add compatible for
+ EN7523
+To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Ray Liu <ray.liu@airoha.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org
+Cc: Andreas Gnau <andreas.gnau@iopsys.eu>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20251120042753.640492-1-mikhail.kshevetskiy@iopsys.eu>
+ <20251120042753.640492-3-mikhail.kshevetskiy@iopsys.eu>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20251120042753.640492-3-mikhail.kshevetskiy@iopsys.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Il 20/11/25 05:27, Mikhail Kshevetskiy ha scritto:
+> Add dt-bindings documentation of SPI NAND controller
+> for Airoha EN7523 SoC platform.
+> 
+> Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The ESWIN EIC7700 soc does not support enter L2 link state. Therefore add
-no_suspport_L2 flag skip PME_Turn_Off broadcast and link state check code,
-other driver can reuse this flag if meet the similar situation.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
-Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
-Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
----
- drivers/pci/controller/dwc/pcie-designware-host.c | 4 ++++
- drivers/pci/controller/dwc/pcie-designware.h      | 1 +
- 2 files changed, 5 insertions(+)
-
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index e92513c5bda5..a203577606e5 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -1156,6 +1156,9 @@ int dw_pcie_suspend_noirq(struct dw_pcie *pci)
- 	if (dw_pcie_readw_dbi(pci, offset + PCI_EXP_LNKCTL) & PCI_EXP_LNKCTL_ASPM_L1)
- 		return 0;
-
-+	if (pci->no_suspport_L2)
-+		goto stop_link;
-+
- 	if (pci->pp.ops->pme_turn_off) {
- 		pci->pp.ops->pme_turn_off(&pci->pp);
- 	} else {
-@@ -1182,6 +1185,7 @@ int dw_pcie_suspend_noirq(struct dw_pcie *pci)
- 	 */
- 	udelay(1);
-
-+stop_link:
- 	dw_pcie_stop_link(pci);
- 	if (pci->pp.ops->deinit)
- 		pci->pp.ops->deinit(&pci->pp);
-diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-index e995f692a1ec..170a73299ce5 100644
---- a/drivers/pci/controller/dwc/pcie-designware.h
-+++ b/drivers/pci/controller/dwc/pcie-designware.h
-@@ -539,6 +539,7 @@ struct dw_pcie {
- 	 * use_parent_dt_ranges to true to avoid this warning.
- 	 */
- 	bool			use_parent_dt_ranges;
-+	bool			no_suspport_L2;
- };
-
- #define to_dw_pcie_from_pp(port) container_of((port), struct dw_pcie, pp)
---
-2.25.1
 
 
