@@ -1,95 +1,150 @@
-Return-Path: <devicetree+bounces-240637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B045EC73B6C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:27:20 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46694C73B84
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:28:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D2DF44EB980
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:23:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4FA9A4EC78A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832DA32E132;
-	Thu, 20 Nov 2025 11:20:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34FEB331204;
+	Thu, 20 Nov 2025 11:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i6dFsT9n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IKLRNaPn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3592B337105;
-	Thu, 20 Nov 2025 11:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9894330D51;
+	Thu, 20 Nov 2025 11:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763637628; cv=none; b=FXiWBWAMciPLIoViB/nzCqlsycW3mAOiJNMKFFNZX1LmkqkrI//OXUN0qCRc+/0GYoVC8KWIUnYrM4DICEcB8F3Rijcu4z6BuTY58k8XyaebfYQV5oENw3KAfXfPNUSOnO0Uf5GXt8/QGmgN10vjm9EhQRc9Yr8Cn3yIy8HT1S8=
+	t=1763637668; cv=none; b=Rcu2zaaDD8DoD6Ww22/5NA5KVv74N7Q1CuLuWTaYAnrSObrmU/3LdTrqzdEkhhTqaNhLX06AFeBTtSqpsCiP59Cn8epMod4f5qbQnqtmAX89adiEnxl3Zh7XkQqnbgSAbiDyPRFozpcYLiQbzBB+S2zZ85of+IejF9jEQFHEkT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763637628; c=relaxed/simple;
-	bh=7M/+by6hjHaSWvOQWnNFtGMfjey8mHHTw3tpzF2pw2o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YFz2l3OSafCQMpUXDRgqG8KfZeKUrrk3mIaMUo6diNARkSlq3OKpZI7RKV5FzLhd9kjyriPodZydWQKLJDq7NXThJS/l3625zaI5zKrBW/4ZOBsFkQdiJgVIsk+EeC32QUPcvUdxiX/Jqvi2j/I5oRVEmDrrQTqMtyORFRBQk0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i6dFsT9n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7967AC19423;
-	Thu, 20 Nov 2025 11:20:22 +0000 (UTC)
+	s=arc-20240116; t=1763637668; c=relaxed/simple;
+	bh=rPQFuIZDJT6zNaJh62JKfyC1TKTfo5xpmR0sQ3I84iM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=aV9PzjcPTzwnJiBO1ef7JvuECBaFTH/PL84UQEM0t6KRYCexc1NXjMjAcPXK1nOQtfNOM66TONWdLWwIku2XGhIA3/IgThLxQ9AVVeV2GAJ5y2zJi0IlW+tfbWk732TNB4BOHumeJfB/mHmyePR9OzEWuuZtV6ItVM6iZffgzjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IKLRNaPn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F716C4CEF1;
+	Thu, 20 Nov 2025 11:21:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763637627;
-	bh=7M/+by6hjHaSWvOQWnNFtGMfjey8mHHTw3tpzF2pw2o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i6dFsT9n0bk34WzsZndpIYXsI3Iz/wcjlSKLfRcrpxx4z+lzlxMFFt7oucqRuutbD
-	 fm3VLZiW9D2800h5tUmepsj0i2jIJwH8jdhnAJFZBGVaPwlh86tGth33xY7QRVWkPy
-	 PyIiahqDUVlUxqLYpuHoXBv33p2pk5B5J7puSxLgXRx1ChDl2a8Wl6DCs/QfJFdtoF
-	 NiaLGSGVgneY8HpNll2cbLuXdlosZseIcDM2SlRUF2NwA8VVwaEwQOGbeqDbIE893u
-	 YEr4gv6qyD9DMLi8a+IZV0T77prNsvlDwLQ0sqEacPHhrENkaw0iDiaPmqzpuBtfP1
-	 oI2KDMe6MQm8w==
-Date: Thu, 20 Nov 2025 16:50:12 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>, 
-	Wenbin Yao <wenbin.yao@oss.qualcomm.com>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v6 0/3] Add support for Glymur PCIe Gen5 x4
-Message-ID: <hoxawvhmxyht2pf53xiw5wratcmivc7d3g2w4u5lzhkvnjm2ua@yba3t26of36c>
-References: <20251103-glymur-pcie-upstream-v6-0-18a5e0a538dc@oss.qualcomm.com>
- <aRyoo2Ve_hjgc84M@vaman>
- <aR7xkSWWLoGX1HYn@hu-qianyu-lv.qualcomm.com>
+	s=k20201202; t=1763637666;
+	bh=rPQFuIZDJT6zNaJh62JKfyC1TKTfo5xpmR0sQ3I84iM=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=IKLRNaPn5pMZTUsCgz/S/YZuQDp3ftsY6psSF/40VQV3HagpICGYKFEw+AuQoBeli
+	 OymjeKZANFChOYnN29Ef4ZRr4OnIlccU+N6Xszak0LekCmIuFDMyklVCyI4rk56m0b
+	 gNwmlHZmG/KK/2B17hDXDOq1ulHuvc2G1MZBn9qSYWP8AzW5kau6jFSQu9aLop09sN
+	 d+J24/jMcMBbrxM11KFfx22SP6HGZldmTBYa7j8qfja17iqVwA/gi4Gn6WWt5htva8
+	 gshONyMZH70Ip2Jo7T1Qx41VM4ZyY5/E+f/jh1QHyjglES6VaVab2URg2XGwSgMJj/
+	 dJhaDwUYZYp6g==
+Message-ID: <5c4864fa-bf73-4397-8098-2a28f31c81f5@kernel.org>
+Date: Thu, 20 Nov 2025 12:21:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aR7xkSWWLoGX1HYn@hu-qianyu-lv.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: arm: cpus: Add Qualcomm Oryon compatibles
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi
+ <lpieralisi@kernel.org>, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251119-oryon-binding-v1-1-f79a101b0391@oss.qualcomm.com>
+ <20251120-tacky-perfect-barnacle-0fb27d@kuoka>
+ <77bcb402-dc38-4f04-95e4-ff4fd5812ac1@oss.qualcomm.com>
+ <44474c4c-fcc6-4508-b311-de5c4636c75b@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <44474c4c-fcc6-4508-b311-de5c4636c75b@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 20, 2025 at 02:46:41AM -0800, Qiang Yu wrote:
-> On Tue, Nov 18, 2025 at 10:40:59PM +0530, Vinod Koul wrote:
-> > On 03-11-25, 23:56, Qiang Yu wrote:
-> > > Glymur is the next generation compute SoC of Qualcomm. This patch series
-> > > aims to add support for the fourth, fifth and sixth PCIe instance on it.
-> > > The fifth PCIe instance on Glymur has a Gen5 4-lane PHY and fourth, fifth
-> > > and sixth PCIe instance have a Gen5 2-lane PHY.
-> > > 
-> > > The device tree changes and whatever driver patches that are not part of
-> > > this patch series will be posted separately after official announcement of
-> > > the SOC.
-> > 
-> > Please rebase on phy/next, this does not apply for me
+On 20/11/2025 10:00, Krzysztof Kozlowski wrote:
+> On 20/11/2025 09:50, Aiqun(Maria) Yu wrote:
+>> On 11/20/2025 4:24 PM, Krzysztof Kozlowski wrote:
+>>> On Wed, Nov 19, 2025 at 09:50:53PM -0800, Jingyi Wang wrote:
+>>>> Previous "qcom,oryon" is too generic, add specific cpu bindings:
+>>>
+>>> Why is too generic? Why gen1/2/3 is not generic? Both sound exactly the
+>>> same for me - arbitrary number incremented from 1 does not make it less
+>>> generic.
+>>
+>> This is align the qualcomm announced cpu information, there is no other
+>> more information revealed publicly. The reference is from [1].
+>> For me, it is likely the generation numbers information is having more
+>> information compare to "qcom,oryon". And the current patch is to be
+>> address the comments like [2]. What's your specific suggestion on this pls?
 > 
-> Hi Vinod
+> There is no context in this commit msg and patch is sent completely
+> without users, so how anyone can guess above?
 > 
-> This patch serie depends on
-> https://lore.kernel.org/all/20251017045919.34599-2-krzysztof.kozlowski@linaro.org/
+> The original compatible was never acked by any DT maintainers. What's
+> more Konrad raised objections to it at v1 (!!!) 2 years ago and provided
+> the answer what is expected.
+> 
+> It is not my task to dig old thread like that, because it is not me who
+> proposes this patch.
+> 
+> You are doing it for some reason, so you must come with the background
+> and the rationale.
 > 
 
-Why was this dependency not mentioned in the cover letter?
 
-- Mani
+For the context here was Konrad's request:
+https://lore.kernel.org/lkml/b165d2cd-e8da-4f6d-9ecf-14df2b803614@linaro.org/
 
--- 
-மணிவண்ணன் சதாசிவம்
+Best regards,
+Krzysztof
 
