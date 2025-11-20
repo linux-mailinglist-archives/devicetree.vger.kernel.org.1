@@ -1,99 +1,95 @@
-Return-Path: <devicetree+bounces-240636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6604C73A78
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:15:01 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B045EC73B6C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:27:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 081283594B0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:13:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D2DF44EB980
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:23:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A918330B19;
-	Thu, 20 Nov 2025 11:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832DA32E132;
+	Thu, 20 Nov 2025 11:20:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i6dFsT9n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5D433032A;
-	Thu, 20 Nov 2025 11:12:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3592B337105;
+	Thu, 20 Nov 2025 11:20:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763637163; cv=none; b=l4+RxfnsgqCFGjziCxH6yIkVmrolOkCy5fuazvwDbd1zjmeELlljFkI/rHiv7x31/c9CTiPWvqgkf/5/opfkAHX2PZw0bOrjEjeZybcxyDeS/iKm9noG2XurrM0Tb+YQsQMC3BigTDptv6LEmpv4XYs4XKKRNiYOWnTf4Qfkrxk=
+	t=1763637628; cv=none; b=FXiWBWAMciPLIoViB/nzCqlsycW3mAOiJNMKFFNZX1LmkqkrI//OXUN0qCRc+/0GYoVC8KWIUnYrM4DICEcB8F3Rijcu4z6BuTY58k8XyaebfYQV5oENw3KAfXfPNUSOnO0Uf5GXt8/QGmgN10vjm9EhQRc9Yr8Cn3yIy8HT1S8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763637163; c=relaxed/simple;
-	bh=ej2x2zXWoa7QtHmm0Xcp6bZn7Ld93lchW1+uF4w0usU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=ewrP9VI79lN1vmAka8KClNQdpLiP9RQrX478OT3aTeAjr5AivBj1HIY3iVUIVyoDnUx+lHpE1dVDp90A2reG+AecScUM0i8+FvZ06OcZzE7o640mzWP8FVwK2lYumKmpJgeWlnbqP53jAnSIonHBbignhdk/cnCi1lZfe5ajNto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 20 Nov
- 2025 19:12:34 +0800
-Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Thu, 20 Nov 2025 19:12:34 +0800
-From: Billy Tsai <billy_tsai@aspeedtech.com>
-Date: Thu, 20 Nov 2025 19:12:32 +0800
-Subject: [PATCH v3 2/2] hwmon: (aspeed-g6-pwm-tach): Add AST2700 compatible
- string
+	s=arc-20240116; t=1763637628; c=relaxed/simple;
+	bh=7M/+by6hjHaSWvOQWnNFtGMfjey8mHHTw3tpzF2pw2o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YFz2l3OSafCQMpUXDRgqG8KfZeKUrrk3mIaMUo6diNARkSlq3OKpZI7RKV5FzLhd9kjyriPodZydWQKLJDq7NXThJS/l3625zaI5zKrBW/4ZOBsFkQdiJgVIsk+EeC32QUPcvUdxiX/Jqvi2j/I5oRVEmDrrQTqMtyORFRBQk0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i6dFsT9n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7967AC19423;
+	Thu, 20 Nov 2025 11:20:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763637627;
+	bh=7M/+by6hjHaSWvOQWnNFtGMfjey8mHHTw3tpzF2pw2o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=i6dFsT9n0bk34WzsZndpIYXsI3Iz/wcjlSKLfRcrpxx4z+lzlxMFFt7oucqRuutbD
+	 fm3VLZiW9D2800h5tUmepsj0i2jIJwH8jdhnAJFZBGVaPwlh86tGth33xY7QRVWkPy
+	 PyIiahqDUVlUxqLYpuHoXBv33p2pk5B5J7puSxLgXRx1ChDl2a8Wl6DCs/QfJFdtoF
+	 NiaLGSGVgneY8HpNll2cbLuXdlosZseIcDM2SlRUF2NwA8VVwaEwQOGbeqDbIE893u
+	 YEr4gv6qyD9DMLi8a+IZV0T77prNsvlDwLQ0sqEacPHhrENkaw0iDiaPmqzpuBtfP1
+	 oI2KDMe6MQm8w==
+Date: Thu, 20 Nov 2025 16:50:12 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Qiang Yu <qiang.yu@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>, 
+	Wenbin Yao <wenbin.yao@oss.qualcomm.com>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v6 0/3] Add support for Glymur PCIe Gen5 x4
+Message-ID: <hoxawvhmxyht2pf53xiw5wratcmivc7d3g2w4u5lzhkvnjm2ua@yba3t26of36c>
+References: <20251103-glymur-pcie-upstream-v6-0-18a5e0a538dc@oss.qualcomm.com>
+ <aRyoo2Ve_hjgc84M@vaman>
+ <aR7xkSWWLoGX1HYn@hu-qianyu-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251120-upstream_pwm_tach-v3-2-eaa2f9b300a2@aspeedtech.com>
-References: <20251120-upstream_pwm_tach-v3-0-eaa2f9b300a2@aspeedtech.com>
-In-Reply-To: <20251120-upstream_pwm_tach-v3-0-eaa2f9b300a2@aspeedtech.com>
-To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Billy Tsai <billy_tsai@aspeedtech.com>
-CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, <BMC-SW@aspeedtech.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763637154; l=856;
- i=billy_tsai@aspeedtech.com; s=20251118; h=from:subject:message-id;
- bh=ej2x2zXWoa7QtHmm0Xcp6bZn7Ld93lchW1+uF4w0usU=;
- b=9D8NhxSOyyG7fLbywKVqdjG1j+SQgH267L/XyiiX3zrdd3nPdvt9S2B2UD+K/F7tfAiJFl7mu
- eQwMsMn8g+nDR0affVT6WVYSAiPG6plYrtnArbJqsrQPPzpQqSl5SXV
-X-Developer-Key: i=billy_tsai@aspeedtech.com; a=ed25519;
- pk=/A8qvgZ6CPfnwKgT6/+k+nvXOkN477MshEGJvVdzeeQ=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aR7xkSWWLoGX1HYn@hu-qianyu-lv.qualcomm.com>
 
-Extends device tree support to include the AST2700 chip variant by
-adding its compatible string to the device match table.
+On Thu, Nov 20, 2025 at 02:46:41AM -0800, Qiang Yu wrote:
+> On Tue, Nov 18, 2025 at 10:40:59PM +0530, Vinod Koul wrote:
+> > On 03-11-25, 23:56, Qiang Yu wrote:
+> > > Glymur is the next generation compute SoC of Qualcomm. This patch series
+> > > aims to add support for the fourth, fifth and sixth PCIe instance on it.
+> > > The fifth PCIe instance on Glymur has a Gen5 4-lane PHY and fourth, fifth
+> > > and sixth PCIe instance have a Gen5 2-lane PHY.
+> > > 
+> > > The device tree changes and whatever driver patches that are not part of
+> > > this patch series will be posted separately after official announcement of
+> > > the SOC.
+> > 
+> > Please rebase on phy/next, this does not apply for me
+> 
+> Hi Vinod
+> 
+> This patch serie depends on
+> https://lore.kernel.org/all/20251017045919.34599-2-krzysztof.kozlowski@linaro.org/
+> 
 
-The AST2700 PWM/TACH hardware is compatible with the existing driver
-implementation used for AST2600.
+Why was this dependency not mentioned in the cover letter?
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- drivers/hwmon/aspeed-g6-pwm-tach.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/hwmon/aspeed-g6-pwm-tach.c b/drivers/hwmon/aspeed-g6-pwm-tach.c
-index 4174b129d1fc..44e1ecba205d 100644
---- a/drivers/hwmon/aspeed-g6-pwm-tach.c
-+++ b/drivers/hwmon/aspeed-g6-pwm-tach.c
-@@ -528,6 +528,9 @@ static const struct of_device_id aspeed_pwm_tach_match[] = {
- 	{
- 		.compatible = "aspeed,ast2600-pwm-tach",
- 	},
-+	{
-+		.compatible = "aspeed,ast2700-pwm-tach",
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, aspeed_pwm_tach_match);
+- Mani
 
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
