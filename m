@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-240802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5391DC759FF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 18:23:54 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C6B0C75A32
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 18:25:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 51BAF35A909
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 17:17:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 09DAB4E2D51
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 17:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E14925B687;
-	Thu, 20 Nov 2025 17:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D353A1D0D;
+	Thu, 20 Nov 2025 17:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LkQvZtHK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jb+5A4Ku"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30EDB1DDA18;
-	Thu, 20 Nov 2025 17:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920B63A1CFD;
+	Thu, 20 Nov 2025 17:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763658940; cv=none; b=bZg/aHpBK7pzXQeU0Bi7WmsPlD9gx1SgHAw31o9ROWoHEq+N3oupPMmf3eG3VKP8X1/4AHzO5t8NDU09vo8MFA2JFh8ruwj6PDATSw9d64XKvOE5BKl9AsReAZmzCr0NlWrGYpHIr/HJ1X+xTpBINSkaq3Y/caDbpon6wQDSHLA=
+	t=1763658963; cv=none; b=Ig23B8nA0ynJ4y3uBhIrZZA1/YHTXkYD00Xzc/2qoHAaa1aHEhnbHBg6C4Z8UboOr5CKD5iTn/Hz8oUCfAaYCvQPjCDhLRpNq9JXx43ds65Is6QGCZr9DKMXJIGFr30JAAlKbu7BfXwdep54ApXOTUmkXiVfMEeoVK9Zum+Garw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763658940; c=relaxed/simple;
-	bh=kVEUku+jmD7IM9oXhsKRMaGSp3Jgrbk1cacSxT7VSrY=;
+	s=arc-20240116; t=1763658963; c=relaxed/simple;
+	bh=qSfOFD+42f1IICxdofg+0sJjXxgykQIN2e/Hg34usak=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AwdYnRo6Tns3QegDhs26+GG7KIhrA+ww6VZ9upT3bQR44eIUXoCAmY3a0dkXI/dr2oK+lJxP48lxqwzZd1xAMRaxY29PEMKiJfjhUCU+Cu8ZD49Pvl2CZ6v36krik7ASG1AlCXR/5j+3v0ExiICzkwLaJQ32syg8dj/0rMXWqKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LkQvZtHK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A19BC4CEF1;
-	Thu, 20 Nov 2025 17:15:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KQT5gk+Ej2UADIagVQ2bKU/vU1SrwaOyhZCZNPoGo5OMlHcQbQBhn3SHrsvirtM7FfbodXxibPQxjPkZkAcueFoN/3mTNygPmkImQynHbZdKd8ns/kQdfhaS1mDUeLWme8za5dP45Jw2cNWcDcFPNDrB+6jq6dvaKTvqNGTdvvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jb+5A4Ku; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA93BC4CEF1;
+	Thu, 20 Nov 2025 17:16:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763658939;
-	bh=kVEUku+jmD7IM9oXhsKRMaGSp3Jgrbk1cacSxT7VSrY=;
+	s=k20201202; t=1763658963;
+	bh=qSfOFD+42f1IICxdofg+0sJjXxgykQIN2e/Hg34usak=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LkQvZtHKcc7JsvaHTAdolGvLLHJRVpvSN2ohS8/bx54z2lf0hO/KqE9ebfnOUEqb8
-	 MAyAKqDYWamfY2m5KJ5qpjzOKVNqdtXkl7KgjxAN01b/EvHFANtO0y8nj4xgw/4HbB
-	 A3kyj9PS597tYkpLzDznRZN6ZqRRkkZ3AwZlmjK/KrKDgBHRlrWiPHWWYnSuEbmTVg
-	 RrouGOs+LYPRDGqtTFYmkvMxVpSThqYq+AAWpwDaYwaQNx3wZu9jDBmNZpiMp+xapN
-	 4foh92JIcaNu2Y8Cqq3equ+z07aAKUYiqIuU290cM1Fiib17tEg+6C3pyhlkakH+bN
-	 CAXa0Qme8MxSA==
-Date: Thu, 20 Nov 2025 11:15:37 -0600
+	b=Jb+5A4KuBIguT5VutFWGsjF3qZyiSAtQLddvB4rr4iqqRsqL4a9IA9pr/sxiHuCCQ
+	 tbaW1XCpdnnbtFTkV0qDmRr5rClXW03bu76YEIvl56psKpKhy3YK4DSFxjFC8QpcPn
+	 ZJ7Bwy5svKP/j1SYGAFd5I/U7xH4Ms9d6tlttZnq4bBjnqiaXiUPfqXwINV+5Sq60I
+	 RmE/OBrlsAdAAHJyCLS3V7v3ZnEpw+j+eLEYC0+/Ep/4g2BX5fErXGos8AH4m5xd0V
+	 OVYbgUH3CfkqtmnRLcYDZJgiMRCTM5RYRdJQWVR9axKBykIlQWor2ZTUYpAPmpr/NR
+	 bqeeX3kEDl0uw==
+Date: Thu, 20 Nov 2025 11:16:01 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Marek Vasut <marex@nabladev.com>
-Cc: imx@lists.linux.dev, Christian Eggers <ceggers@arri.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Shawn Guo <shawnguo@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Cc: Shawn Guo <shawnguo@kernel.org>, Christian Eggers <ceggers@arri.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
 	Markus Heidelberg <m.heidelberg@cab.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: vendor-prefixes: Document ifm
- electronic gmbh
-Message-ID: <176365893738.1563102.3354522525163832099.robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH 3/4] dt-bindings: arm: fsl: Document ifm VHIP4 EvalBoard
+ v1 and v2
+Message-ID: <176365896117.1563647.15336573113314132301.robh@kernel.org>
 References: <20251118121513.88352-1-marex@nabladev.com>
- <20251118121513.88352-2-marex@nabladev.com>
+ <20251118121513.88352-3-marex@nabladev.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,13 +64,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251118121513.88352-2-marex@nabladev.com>
+In-Reply-To: <20251118121513.88352-3-marex@nabladev.com>
 
 
-On Tue, 18 Nov 2025 13:13:11 +0100, Marek Vasut wrote:
-> ifm is a manufacturer of industrial sensors, control technology and
-> automation solutions. Document their vendor prefix, which is already
-> used for ifm,ac14xx and other powerpc devices.
+On Tue, 18 Nov 2025 13:13:12 +0100, Marek Vasut wrote:
+> Document ifm i.MX8MN VHIP4 EvalBoard v1 and v2 reference design binding.
+> This system exists in two generations, v1 and v2, which share a lot of
+> commonality. The boards come with either single gigabit ethernet or an
+> KSZ8794 fast-ethernet switch, boot from eMMC, and offer CAN interfaces
+> via Microchip MCP25xx SPI CAN controllers, UART, and USB host. The GPU
+> is not available in the SoC populated on these devices.
 > 
 > Signed-off-by: Marek Vasut <marex@nabladev.com>
 > ---
@@ -89,8 +90,8 @@ On Tue, 18 Nov 2025 13:13:11 +0100, Marek Vasut wrote:
 > Cc: linux-arm-kernel@lists.infradead.org
 > Cc: linux-kernel@vger.kernel.org
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
