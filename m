@@ -1,120 +1,242 @@
-Return-Path: <devicetree+bounces-240676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66EB2C73F94
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:32:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3A9CC73F97
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:33:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DF69E357C45
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:32:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 5DFAA2A541
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:33:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73282337102;
-	Thu, 20 Nov 2025 12:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3142E337114;
+	Thu, 20 Nov 2025 12:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="Qun9URXZ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="iQvExGL9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B50DC335577;
-	Thu, 20 Nov 2025 12:32:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F11A3358DE;
+	Thu, 20 Nov 2025 12:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763641972; cv=none; b=bLfaO3RWH6e5dt3/WVzJZrBd2gZAUIceNK5R6et/wKscSifcqn4KUvYLkjeYLN7J4qQewVLcG9uTf1JwnDsMUyeyC/uw8Uy1cYtogi9nbGvqQvfD0ScwNLcRzjT7upUIbHKkvBxoWUhOFoNn+FvHA9/L5LCSAH7wkt4YNMVSGhk=
+	t=1763641973; cv=none; b=FeXgGnG1T0+ftEglKH9evqAKptY1TWC+85PvCYVTFeyeLEOURseviOZg7PRw8t/GxSWjouWrhkHk4Ajq8jsr0xwDPqWOs4NlYwkhrEu+UUw3OlTrWLZiVhrsv7jDn1x0OAVKcjulmubbJYm5qyXDu0JCBPSmyKY7zVSdY7a5rk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763641972; c=relaxed/simple;
-	bh=vd54oodelnJJ35MRaeJ8BgvpBBFpBgRofS/ZMLNUSkU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RUyyZWih0ZZjk70vvdN88OCmujYcqwax2UdWewDHv1nIvmpfcX4mrPISJ2GWWhTKgp/fb3T8R0b6BsuIv58O3MbTvug8tkb57LebhykuxY9sn85QpTwEeQaveTh6akKwOXIcaFlwSgnJ/logyawcAjHkKF0+tuf5Y7xmArzD/lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=Qun9URXZ; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ddCkFmqfNO0QIKiQtpYM6PNRU6hkZxXZNyioptho42M=; b=Qun9URXZEhALZEqSNRvjg4q2uR
-	KYvu/Tg23aIoP2Pkj71TkJkgdZcIB3uUJXeGnbqlIv96QkeHJ3Tfx6V1alSko+pe/Iy3D6sMXb0Fl
-	B+2ns3MDaunA3mBFBWg9omtW79cvpWPhxIhDMlHIoRALMviaPd9MbKPdy60XKwsY3DjRZbDiaKotq
-	wC+5nI325+97iYonHeI7+hx2NO8EYa8wcvqt8zE+SfHx2i2Y5Dy8gPjd/+sAfuSFMJHKdhGvuZylO
-	jPbD/B5r4GejTDB3zqtCbz2QfurSZEHL0aKUUrLeWrSrwOTY14/Rk5fXgBvhIcEDPprAmE5ri1NcQ
-	L0mYNU4g==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38356)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vM3q5-000000006Dq-2ibL;
-	Thu, 20 Nov 2025 12:32:41 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vM3q1-000000004Nb-48ve;
-	Thu, 20 Nov 2025 12:32:38 +0000
-Date: Thu, 20 Nov 2025 12:32:37 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 14/15] net: dsa: sja1105: replace mdiobus-pcs
- with xpcs-plat driver
-Message-ID: <aR8KZZa63ygR-e1N@shell.armlinux.org.uk>
-References: <20251118190530.580267-1-vladimir.oltean@nxp.com>
- <20251118190530.580267-15-vladimir.oltean@nxp.com>
- <20251118190530.580267-1-vladimir.oltean@nxp.com>
- <20251118190530.580267-15-vladimir.oltean@nxp.com>
- <20251118164130.4e107c93@kernel.org>
- <20251118164130.4e107c93@kernel.org>
- <20251119095942.bu64kg6whi4gtnwe@skbuf>
- <aR2cf91qdcKMy5PB@smile.fi.intel.com>
- <20251119112522.dcfrh6x6msnw4cmi@skbuf>
- <20251119081112.3bcaf923@kernel.org>
+	s=arc-20240116; t=1763641973; c=relaxed/simple;
+	bh=2v+oVXA5XQwW3yaP6RdhHsbJCehfOR8b/dPGpGw+7W8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lb1wnrHOEIm6qUEveeeu4+NwB4+HstgCmSsQSAV7yteR/51omwhCOHOcQyQ0xHHsbt9lhpveN9wFYnfB+H7B+87OI0Ha3Ajy7FmRlK6SRU3dOF3k8gDAyG+V2vrlOed0ojgyFBsZLgBDdJ41HmtME00aS1qB/wd1gSUtjAwQXCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=iQvExGL9; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 30346B5;
+	Thu, 20 Nov 2025 13:30:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1763641839;
+	bh=2v+oVXA5XQwW3yaP6RdhHsbJCehfOR8b/dPGpGw+7W8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iQvExGL9odqgZlLHny2/T87i5wcR1GavlcQaEhBcuhsovMyq81+sfccISi+tg4H6w
+	 YNhaQlg9rXgEZNVjZhh+g69+lF7fmOim15+qmuEnA5Jp2x/pGMdtX8S+3TF4Pt5LSt
+	 WHBcls/zcCjap+cwDEXYpmsRwfh87/no7RX4smWk=
+Message-ID: <442f321e-be2e-4a42-ba3e-d8a58eaac11b@ideasonboard.com>
+Date: Thu, 20 Nov 2025 14:32:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251119081112.3bcaf923@kernel.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 11/18] media: ti: j721e-csi2rx: add support for
+ processing virtual channels
+To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev,
+ laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
+ vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
+ hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
+ changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
+ sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251112115459.2479225-1-r-donadkar@ti.com>
+ <20251112115459.2479225-12-r-donadkar@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20251112115459.2479225-12-r-donadkar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 19, 2025 at 08:11:12AM -0800, Jakub Kicinski wrote:
-> On Wed, 19 Nov 2025 13:25:22 +0200 Vladimir Oltean wrote:
-> > I think it's due to the fact that the "contest" checks are fundamentally
-> > so slow, that they can't be run on individual patch sets, and are run on
-> > batches of patch sets merged into a single branch (of which there seem
-> > to be 8 per day).
+Hi,
+
+On 12/11/2025 13:54, Rishikesh Donadkar wrote:
+> From: Jai Luthra <j-luthra@ti.com>
 > 
-> Correct, looking at the logs AFAICT coccicheck takes 25min on a
-> relatively beefy machine, and we only run it on path that were actually
-> modified by pending changes. We get 100+ patches a day, and 40+ series,
-> and coccicheck fails relatively rarely. So on the NIPA side it's not
-> worth it.
+> Use get_frame_desc() to get the frame desc from the connected source,
+> and use the provided virtual channel instead of hardcoded one.
 
-On "contest" I find when looking at patchwork, it's just best to ignore
-the result that NIPA posts for that, because more often than not it
-reports "fail" when there's nothing wrong.
+So this baffled me a bit: the code seems to get the VC from the frame
+desc, but not the DT. But it looks like the DT values are hardcoded in
+the driver's formats table, and those are used for DT filtering.
 
-For example, the qcom-ethqos patches - v1 passed contest, and this
-morning I submitted v2. The only change was removing the double space
-in patch 2. What I see in v2 is that _all_ the patches failed contest,
-even those that are unchanged and previously passed. This makes
-contest unreliable and IMHO misleading - and as such I hate it.
+We need to do something like that for legacy cases where the source does
+not support get_frame_desc, but if there is a frame desc, we should use
+the DT and VC from the frame desc.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> get_frame_desc() returns the same information when called on each stream
+> start, so instead get the VCs for all the routed stream at first
+> stream start and cache this information in the driver.
+
+I get the point but... There isn't anything like this in the patch?
+
+> get_frame_desc() works per stream, but as we don't support multiple
+
+"get_frame_desc() works per stream", what does it mean? It returns all
+the streams for a pad.
+
+> streams yet, we will just always use stream 0. If the source doesn't
+> support get_frame_desc(), fall back to the previous method of always
+> capturing virtual channel 0.
+
+Right, if there's no frame desc (and we need to support legacy drivers),
+the driver should default to VC=0, DT from the formats table. But as
+mentioned above, VC and DT should normally come from the frame desc. It
+would be good to have a separate "legacy" function/branch/something, so
+that we clearly distinguish the legacy and frame-desc cases.
+
+ Tomi
+
+> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+>  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+> 
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index 5c4524bf42e6e..126a62fa2c4c4 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -32,6 +32,7 @@
+>  #define SHIM_DMACNTX_YUV422		GENMASK(27, 26)
+>  #define SHIM_DMACNTX_DUAL_PCK_CFG	BIT(24)
+>  #define SHIM_DMACNTX_SIZE		GENMASK(21, 20)
+> +#define SHIM_DMACNTX_VC			GENMASK(9, 6)
+>  #define SHIM_DMACNTX_FMT		GENMASK(5, 0)
+>  #define SHIM_DMACNTX_YUV422_MODE_11	3
+>  #define SHIM_DMACNTX_SIZE_8		0
+> @@ -110,6 +111,8 @@ struct ti_csi2rx_ctx {
+>  	struct media_pad		pad;
+>  	u32				sequence;
+>  	u32				idx;
+> +	u32				vc;
+> +	u32				stream;
+>  };
+>  
+>  struct ti_csi2rx_dev {
+> @@ -610,6 +613,7 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
+>  	}
+>  
+>  	reg |= FIELD_PREP(SHIM_DMACNTX_SIZE, fmt->size);
+> +	reg |= FIELD_PREP(SHIM_DMACNTX_VC, ctx->vc);
+>  
+>  	writel(reg, csi->shim + SHIM_DMACNTX(ctx->idx));
+>  
+> @@ -884,6 +888,32 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
+>  	}
+>  }
+>  
+> +static int ti_csi2rx_get_vc(struct ti_csi2rx_ctx *ctx)
+> +{
+> +	struct ti_csi2rx_dev *csi = ctx->csi;
+> +	struct v4l2_mbus_frame_desc fd;
+> +	struct media_pad *pad;
+> +	int ret, i;
+> +
+> +	pad = media_entity_remote_pad_unique(&csi->subdev.entity, MEDIA_PAD_FL_SOURCE);
+> +	if (!pad)
+> +		return -ENODEV;
+> +
+> +	ret = v4l2_subdev_call(csi->source, pad, get_frame_desc, pad->index, &fd);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (fd.type != V4L2_MBUS_FRAME_DESC_TYPE_CSI2)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < fd.num_entries; i++) {
+> +		if (ctx->stream == fd.entry[i].stream)
+> +			return fd.entry[i].bus.csi2.vc;
+> +	}
+> +
+> +	return -ENODEV;
+> +}
+> +
+>  static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  {
+>  	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
+> @@ -904,6 +934,14 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+>  	if (ret)
+>  		goto err;
+>  
+> +	ret = ti_csi2rx_get_vc(ctx);
+> +	if (ret == -ENOIOCTLCMD)
+> +		ctx->vc = 0;
+> +	else if (ret < 0)
+> +		goto err;
+> +	else
+> +		ctx->vc = ret;
+> +
+>  	ti_csi2rx_setup_shim(ctx);
+>  
+>  	ctx->sequence = 0;
+
 
