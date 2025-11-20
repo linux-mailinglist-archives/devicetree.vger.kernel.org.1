@@ -1,77 +1,85 @@
-Return-Path: <devicetree+bounces-240463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF0CC717B4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 00:59:15 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C8FC717CC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 01:02:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 064014E283B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Nov 2025 23:59:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 6F90528F59
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 00:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5130320CA2;
-	Wed, 19 Nov 2025 23:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83263B19F;
+	Thu, 20 Nov 2025 00:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4iKVDWi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q01i+Muc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7180BCA52;
-	Wed, 19 Nov 2025 23:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFB78F7D;
+	Thu, 20 Nov 2025 00:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763596748; cv=none; b=LmlP9EIQrdRoxWWAL9wbIVAZepC3lAhR9ScBQ8fOBHL4l4EUV1fvQzP9+s7Ydse6V2nH1i+s37PIx4CtuMmOGiQMd7bBQB2WOjonA0sncBWVMghoKq6Yb8puNpEqx0/TOTbHgot9PGHlWlumim1sltQYZGLZi3z1op6oahkCsPc=
+	t=1763596921; cv=none; b=ZcKa4BNWkOn8pFdeC8fqkOblaT/NwwWqY2BalPZcObwvITlawJntZ/p3KbkUOK5pEt3jfw4tuFzsjIEXXJD7cPJHyYikVofs6al+sTD3x1+UJ2VCqPoI+qdKK9BjiOiMrsNa72m5wLzccGEhBIviJNK5PpJrYOhYyQrJBghddFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763596748; c=relaxed/simple;
-	bh=aMfWom2YqMjywxvhE2wFwmB5PmpGzL00uN54+jIPqgU=;
+	s=arc-20240116; t=1763596921; c=relaxed/simple;
+	bh=MxyulG5TdIie/f2I6AlCTv3CCEbt50rKM7Gaf6i8V+Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W5CIMmwHn9o7zrwkXZrOXZJ5mxGzKn0L7IDAfzSqrOnSB5w6FG7RNOMJPP6kFsGdc648izAUcaf3ggFhseOYENWCEWbLYnNN/FsDxqIJM1Jc3O8EsgOY9iXtiEvGAqG8hSqUIAeSlWnZIqUzff3VMSQdCcW0ipQ/nX0uhh3Vnog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4iKVDWi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29638C4CEF5;
-	Wed, 19 Nov 2025 23:59:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763596747;
-	bh=aMfWom2YqMjywxvhE2wFwmB5PmpGzL00uN54+jIPqgU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V4iKVDWikOrKp8hiVqz7Okp9Q1q3wFuIqlNEPISzAxRKkGlABp3eSp+Q323D3HozF
-	 WQovlJ6kDkd1iVz/X6E3BuADT96viHLBJ7t0DQqIMu0W2U4TzTk/Py116HXU2jWkNa
-	 qdzNhgGXEtQ4zt9knAMOkL7xksapBqYXZmJERU27xjOqcHNjcHg5YUTlmcsrX6G3XC
-	 tceGSYW6Roc2HnSvfiJUQJere5z2Bk3CrTyV2sV9MvwNGqupZN9jMnrpfcC2hL8URJ
-	 mVU1CXqlhnfTXBnt83idwbEra5CVbSFhTWeLRTWsvxW7s1GEz1PusdHV6R537Gv57b
-	 4zMtgEWnlvIaQ==
-Date: Wed, 19 Nov 2025 17:59:05 -0600
-From: Rob Herring <robh@kernel.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Frank Li <Frank.li@nxp.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nicolas Schier <nicolas.schier@linux.dev>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Mark Pearson <mpearson-lenovo@squebb.ca>,
-	"Derek J. Clark" <derekjohn.clark@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-serial@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH 7/9] dt-bindings: connector: Add PCIe M.2 Mechanical Key
- E connector
-Message-ID: <20251119235905.GA3575788-robh@kernel.org>
-References: <20251112-pci-m2-e-v1-0-97413d6bf824@oss.qualcomm.com>
- <20251112-pci-m2-e-v1-7-97413d6bf824@oss.qualcomm.com>
- <aRS/3OTerCBGlmBm@lizhi-Precision-Tower-5810>
- <qiwgnela4b6gbwuuq7xaqjong47c2ix6caagjl6ryqukzqkswn@6l7rvkf4dfyx>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YbQjAGG8AJHOjqDhy6Cq+iH1fpJCTOj+pDQPGhbXJtnfzp2Uht80u3snfqFltpkibZYEcLwCQhL/wTOdUZfai18UuJQyj0sGFqeOK9Cjpl1R7589a2q4MOd29i/lSKU8X6NjyfBj8joduFKQoH73LozK4RvNoV6RyyXrhP9E9gU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q01i+Muc; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763596920; x=1795132920;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MxyulG5TdIie/f2I6AlCTv3CCEbt50rKM7Gaf6i8V+Q=;
+  b=Q01i+Mucf9t5Yo+aGQZQv9b/I9DiNSTF1ytSkJAuvjb3u4d1ryz7nRZ3
+   yn6JTE1xftW+WzB+Fr6QIffJjELQdXCuQUQHiN7zfmpGz9rgs//D7G3uZ
+   t/aaErDkStTXravw+nfZ1g3vWjSDrkE/lpBitwXgnKcgnUMD7wPVgftZC
+   Wmg8UADt9RA9+iz/AGJEr46uJaSkpcUqD+5x1xyRvgB/rApoHknDGxm34
+   bGcHN3u7gbuSgex9FeOoTho3grBFyyr2Fcn/U8Ta7YXHnw8QUne+caMF6
+   ESMus63GJS9HCb+8r2LyXLSrMAEAPkOrscVtxQYfr7TxYANnmqeQYmoRW
+   Q==;
+X-CSE-ConnectionGUID: R1EEhLRdS5O/S+v6WzSp4w==
+X-CSE-MsgGUID: +bsoxnESSXOHRoLSJkzwdQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="65357307"
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; 
+   d="scan'208";a="65357307"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2025 16:01:59 -0800
+X-CSE-ConnectionGUID: ddD+iSXVSOun+Lv1s08Sqw==
+X-CSE-MsgGUID: /VnRUlHzRFGeejcosZwI5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,316,1754982000"; 
+   d="scan'208";a="228519626"
+Received: from lkp-server01.sh.intel.com (HELO adf6d29aa8d9) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 19 Nov 2025 16:01:55 -0800
+Received: from kbuild by adf6d29aa8d9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vLs7U-0003R1-1O;
+	Thu, 20 Nov 2025 00:01:52 +0000
+Date: Thu, 20 Nov 2025 08:01:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-kernel@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 14/15] net: dsa: sja1105: replace mdiobus-pcs
+ with xpcs-plat driver
+Message-ID: <202511200752.hGkPwqbU-lkp@intel.com>
+References: <20251118190530.580267-15-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,159 +88,124 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <qiwgnela4b6gbwuuq7xaqjong47c2ix6caagjl6ryqukzqkswn@6l7rvkf4dfyx>
+In-Reply-To: <20251118190530.580267-15-vladimir.oltean@nxp.com>
 
-On Thu, Nov 13, 2025 at 10:30:42AM +0530, Manivannan Sadhasivam wrote:
-> On Wed, Nov 12, 2025 at 12:11:56PM -0500, Frank Li wrote:
-> > On Wed, Nov 12, 2025 at 08:15:19PM +0530, Manivannan Sadhasivam wrote:
-> > > Add the devicetree binding for PCIe M.2 Mechanical Key E connector defined
-> > > in the PCI Express M.2 Specification, r4.0, sec 5.1.2. This connector
-> > > provides interfaces like PCIe or SDIO to attach the WiFi devices to the
-> > > host machine, USB or UART+PCM interfaces to attach the Bluetooth (BT)
-> > > devices along with additional interfaces like I2C for NFC solution. At any
-> > > point of time, the connector can only support either PCIe or SDIO as the
-> > > WiFi interface and USB or UART as the BT interface.
-> > >
-> > > The connector provides a primary power supply of 3.3v, along with an
-> > > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
-> > > 1.8v sideband signaling.
-> > >
-> > > The connector also supplies optional signals in the form of GPIOs for fine
-> > > grained power management.
-> > >
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > > ---
-> > >  .../bindings/connector/pcie-m2-e-connector.yaml    | 154 +++++++++++++++++++++
-> > >  MAINTAINERS                                        |   1 +
-> > >  2 files changed, 155 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..91cb56b1a75b7e3de3b9fe9a7537089f96875746
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> > > @@ -0,0 +1,154 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/connector/pcie-m2-e-connector.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: PCIe M.2 Mechanical Key E Connector
-> > > +
-> > > +maintainers:
-> > > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > > +
-> > > +description:
-> > > +  A PCIe M.2 E connector node represents a physical PCIe M.2 Mechanical Key E
-> > > +  connector. Mechanical Key E connectors are used to connect Wireless
-> > > +  Connectivity devices including combinations of Wi-Fi, BT, NFC to the host
-> > > +  machine over interfaces like PCIe/SDIO, USB/UART+PCM, and I2C.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: pcie-m2-e-connector
-> > > +
-> > > +  vpcie3v3-supply:
-> > > +    description: A phandle to the regulator for 3.3v supply.
-> > > +
-> > > +  vpcie1v8-supply:
-> > > +    description: A phandle to the regulator for VIO 1.8v supply.
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +    description: OF graph bindings modeling the interfaces exposed on the
-> > > +      connector. Since a single connector can have multiple interfaces, every
-> > > +      interface has an assigned OF graph port number as described below.
-> > > +
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: PCIe/SDIO interface
-> > 
-> > 
-> > PCIe and SDIO is difference signal at key E. why combine to one port? The
-> > similar case is USB2.0/UART
-> > 
-> 
-> They will be defined as separate endpoints in the next version.
-> 
-> > > +
-> > > +      port@1:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: USB 2.0/UART interface
-> > > +
-> > > +      port@2:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: PCM/I2S interface
-> > > +
-> > > +      port@3:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: I2C interface
-> > > +
-> > > +    oneOf:
-> > > +      - required:
-> > > +          - port@0
-> > > +
-> > > +  clocks:
-> > > +    description: 32.768 KHz Suspend Clock (SUSCLK) input from the host system to
-> > > +      the M.2 card. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.1 for
-> > > +      more details.
-> > > +    maxItems: 1
-> > 
-> > Do we need add pciref clock here?
-> > 
-> > > +
-> > > +  w_disable1-gpios:
-> > 
-> > use "-"
-> > 
-> > w-disable1-gpios
-> > 
-> 
-> I just went with the spec that defines the signal as W_DISABLE.
-> 
-> > > +    description: GPIO controlled connection to W_DISABLE1# signal. This signal
-> > > +      is used by the system to disable WiFi radio in the M.2 card. Refer, PCI
-> > > +      Express M.2 Specification r4.0, sec 3.1.12.3 for more details.
-> > > +    maxItems: 1
-> > > +
-> > > +  w_disable2-gpios:
-> > > +    description: GPIO controlled connection to W_DISABLE2# signal. This signal
-> > > +      is used by the system to disable BT radio in the M.2 card. Refer, PCI
-> > > +      Express M.2 Specification r4.0, sec 3.1.12.3 for more details.
-> > > +    maxItems: 1
-> > > +
-> > > +  led1-gpios:
-> > > +    description: GPIO controlled connection to LED_1# signal. This signal is
-> > > +      used by the M.2 card to indicate the card status via the system mounted
-> > > +      LED. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.2 for more
-> > > +      details.
-> > > +    maxItems: 1
-> > > +
-> > > +  led2-gpios:
-> > > +    description: GPIO controlled connection to LED_2# signal. This signal is
-> > > +      used by the M.2 card to indicate the card status via the system mounted
-> > > +      LED. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.2 for more
-> > > +      details.
-> > > +    maxItems: 1
-> > > +
-> > > +  viocfg-gpios:
-> > > +    description: GPIO controlled connection to IO voltage configuration
-> > > +      (VIO_CFG) signal. This signal is used by the M.2 card to indicate to the
-> > > +      host system that the card supports an independent IO voltage domain for
-> > > +      the sideband signals. Refer, PCI Express M.2 Specification r4.0, sec
-> > > +      3.1.15.1 for more details.
-> > > +    maxItems: 1
-> > > +
-> > > +  uim_power_src-gpios:
-> > 
-> > property use -
-> > 
-> 
-> Again, this is as per the spec. If DT maintainers object to it, I'll change it.
+Hi Vladimir,
 
-Use '-'.
+kernel test robot noticed the following build errors:
 
-Rob
+[auto build test ERROR on net-next/main]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Vladimir-Oltean/net-dsa-sja1105-let-phylink-help-with-the-replay-of-link-callbacks/20251119-031300
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20251118190530.580267-15-vladimir.oltean%40nxp.com
+patch subject: [PATCH net-next 14/15] net: dsa: sja1105: replace mdiobus-pcs with xpcs-plat driver
+config: s390-randconfig-002-20251120 (https://download.01.org/0day-ci/archive/20251120/202511200752.hGkPwqbU-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251120/202511200752.hGkPwqbU-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511200752.hGkPwqbU-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/cpufreq.h:17,
+                    from kernel/sched/sched.h:31,
+                    from kernel/sched/rq-offsets.c:5:
+   include/linux/of.h: In function 'of_changeset_attach_node':
+>> include/linux/of.h:1623:34: error: 'OF_RECONFIG_ATTACH_NODE' undeclared (first use in this function); did you mean 'OF_RECONFIG_NO_CHANGE'?
+     return of_changeset_action(ocs, OF_RECONFIG_ATTACH_NODE, np, NULL);
+                                     ^~~~~~~~~~~~~~~~~~~~~~~
+                                     OF_RECONFIG_NO_CHANGE
+   include/linux/of.h:1623:34: note: each undeclared identifier is reported only once for each function it appears in
+   include/linux/of.h: In function 'of_changeset_detach_node':
+>> include/linux/of.h:1629:34: error: 'OF_RECONFIG_DETACH_NODE' undeclared (first use in this function); did you mean 'OF_RECONFIG_NO_CHANGE'?
+     return of_changeset_action(ocs, OF_RECONFIG_DETACH_NODE, np, NULL);
+                                     ^~~~~~~~~~~~~~~~~~~~~~~
+                                     OF_RECONFIG_NO_CHANGE
+   include/linux/of.h: In function 'of_changeset_add_property':
+>> include/linux/of.h:1635:34: error: 'OF_RECONFIG_ADD_PROPERTY' undeclared (first use in this function); did you mean 'OF_RECONFIG_NO_CHANGE'?
+     return of_changeset_action(ocs, OF_RECONFIG_ADD_PROPERTY, np, prop);
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~
+                                     OF_RECONFIG_NO_CHANGE
+   include/linux/of.h: In function 'of_changeset_remove_property':
+>> include/linux/of.h:1641:34: error: 'OF_RECONFIG_REMOVE_PROPERTY' undeclared (first use in this function); did you mean 'OF_RECONFIG_CHANGE_REMOVE'?
+     return of_changeset_action(ocs, OF_RECONFIG_REMOVE_PROPERTY, np, prop);
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                     OF_RECONFIG_CHANGE_REMOVE
+   include/linux/of.h: In function 'of_changeset_update_property':
+>> include/linux/of.h:1647:34: error: 'OF_RECONFIG_UPDATE_PROPERTY' undeclared (first use in this function); did you mean 'OF_RECONFIG_CHANGE_REMOVE'?
+     return of_changeset_action(ocs, OF_RECONFIG_UPDATE_PROPERTY, np, prop);
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                     OF_RECONFIG_CHANGE_REMOVE
+   make[3]: *** [scripts/Makefile.build:182: kernel/sched/rq-offsets.s] Error 1 shuffle=1571759522
+   make[3]: Target 'prepare' not remade because of errors.
+   make[2]: *** [Makefile:1280: prepare0] Error 2 shuffle=1571759522
+   make[2]: Target 'prepare' not remade because of errors.
+   make[1]: *** [Makefile:248: __sub-make] Error 2 shuffle=1571759522
+   make[1]: Target 'prepare' not remade because of errors.
+   make: *** [Makefile:248: __sub-make] Error 2 shuffle=1571759522
+   make: Target 'prepare' not remade because of errors.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for OF_DYNAMIC
+   Depends on [n]: OF [=n]
+   Selected by [m]:
+   - NET_DSA_SJA1105 [=m] && NETDEVICES [=y] && NET_DSA [=m] && SPI [=y] && PTP_1588_CLOCK_OPTIONAL [=m]
+
+
+vim +1623 include/linux/of.h
+
+2e8fff668dc14e Rob Herring       2023-03-29  1604  
+201c910bd6898d Pantelis Antoniou 2014-07-04  1605  #ifdef CONFIG_OF_DYNAMIC
+f6892d193fb9d6 Grant Likely      2014-11-21  1606  extern int of_reconfig_notifier_register(struct notifier_block *);
+f6892d193fb9d6 Grant Likely      2014-11-21  1607  extern int of_reconfig_notifier_unregister(struct notifier_block *);
+f5242e5a883bf1 Grant Likely      2014-11-24  1608  extern int of_reconfig_notify(unsigned long, struct of_reconfig_data *rd);
+f5242e5a883bf1 Grant Likely      2014-11-24  1609  extern int of_reconfig_get_state_change(unsigned long action,
+f5242e5a883bf1 Grant Likely      2014-11-24  1610  					struct of_reconfig_data *arg);
+f6892d193fb9d6 Grant Likely      2014-11-21  1611  
+201c910bd6898d Pantelis Antoniou 2014-07-04  1612  extern void of_changeset_init(struct of_changeset *ocs);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1613  extern void of_changeset_destroy(struct of_changeset *ocs);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1614  extern int of_changeset_apply(struct of_changeset *ocs);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1615  extern int of_changeset_revert(struct of_changeset *ocs);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1616  extern int of_changeset_action(struct of_changeset *ocs,
+201c910bd6898d Pantelis Antoniou 2014-07-04  1617  		unsigned long action, struct device_node *np,
+201c910bd6898d Pantelis Antoniou 2014-07-04  1618  		struct property *prop);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1619  
+201c910bd6898d Pantelis Antoniou 2014-07-04  1620  static inline int of_changeset_attach_node(struct of_changeset *ocs,
+201c910bd6898d Pantelis Antoniou 2014-07-04  1621  		struct device_node *np)
+201c910bd6898d Pantelis Antoniou 2014-07-04  1622  {
+201c910bd6898d Pantelis Antoniou 2014-07-04 @1623  	return of_changeset_action(ocs, OF_RECONFIG_ATTACH_NODE, np, NULL);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1624  }
+201c910bd6898d Pantelis Antoniou 2014-07-04  1625  
+201c910bd6898d Pantelis Antoniou 2014-07-04  1626  static inline int of_changeset_detach_node(struct of_changeset *ocs,
+201c910bd6898d Pantelis Antoniou 2014-07-04  1627  		struct device_node *np)
+201c910bd6898d Pantelis Antoniou 2014-07-04  1628  {
+201c910bd6898d Pantelis Antoniou 2014-07-04 @1629  	return of_changeset_action(ocs, OF_RECONFIG_DETACH_NODE, np, NULL);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1630  }
+201c910bd6898d Pantelis Antoniou 2014-07-04  1631  
+201c910bd6898d Pantelis Antoniou 2014-07-04  1632  static inline int of_changeset_add_property(struct of_changeset *ocs,
+201c910bd6898d Pantelis Antoniou 2014-07-04  1633  		struct device_node *np, struct property *prop)
+201c910bd6898d Pantelis Antoniou 2014-07-04  1634  {
+201c910bd6898d Pantelis Antoniou 2014-07-04 @1635  	return of_changeset_action(ocs, OF_RECONFIG_ADD_PROPERTY, np, prop);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1636  }
+201c910bd6898d Pantelis Antoniou 2014-07-04  1637  
+201c910bd6898d Pantelis Antoniou 2014-07-04  1638  static inline int of_changeset_remove_property(struct of_changeset *ocs,
+201c910bd6898d Pantelis Antoniou 2014-07-04  1639  		struct device_node *np, struct property *prop)
+201c910bd6898d Pantelis Antoniou 2014-07-04  1640  {
+201c910bd6898d Pantelis Antoniou 2014-07-04 @1641  	return of_changeset_action(ocs, OF_RECONFIG_REMOVE_PROPERTY, np, prop);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1642  }
+201c910bd6898d Pantelis Antoniou 2014-07-04  1643  
+201c910bd6898d Pantelis Antoniou 2014-07-04  1644  static inline int of_changeset_update_property(struct of_changeset *ocs,
+201c910bd6898d Pantelis Antoniou 2014-07-04  1645  		struct device_node *np, struct property *prop)
+201c910bd6898d Pantelis Antoniou 2014-07-04  1646  {
+201c910bd6898d Pantelis Antoniou 2014-07-04 @1647  	return of_changeset_action(ocs, OF_RECONFIG_UPDATE_PROPERTY, np, prop);
+201c910bd6898d Pantelis Antoniou 2014-07-04  1648  }
+b544fc2b8606d7 Lizhi Hou         2023-08-15  1649  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
