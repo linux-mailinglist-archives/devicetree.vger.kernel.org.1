@@ -1,135 +1,141 @@
-Return-Path: <devicetree+bounces-240530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D905C728C9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:16:00 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97F9DC728CF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:16:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4CD534E5C69
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 07:11:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AB2EB3470A6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 07:14:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99CFE3009E5;
-	Thu, 20 Nov 2025 07:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02AD2D5950;
+	Thu, 20 Nov 2025 07:14:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XLFUhixT"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="jhEG2d8t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF262FFF92;
-	Thu, 20 Nov 2025 07:11:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C78284888;
+	Thu, 20 Nov 2025 07:14:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763622705; cv=none; b=oZqf+GGDxTvO+yv3Z7ua/IetW+Sid2fRy/MtOzABcVf3oq7RmQ90Tzzf2I4F6Z61bN9puzd6e9UO8KJMfIG89mFCGqrCSugXFZO22Jh3D1ll4adXfwfPe1ZFT9s8xAk9XH5G7ndzabm+HOOLBHLxHG6KuzfZl3xHXQo8kbsekEk=
+	t=1763622868; cv=none; b=XEvMxz1T2IXyr+Zm3+ubL+e9b0cwNE09gP2dKnHFTQ4jkRNqGeNFn4u/VG6NwiD3nGFvgTz0E9RkwTYwo0e9Czy0NdV/U0Xl8igF1IpjYN8amVLaEzhua7zPvaz3wOrartYYG6lrVaESzTwVqfwLLUIBkZLECNoe1qCw5RYX9dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763622705; c=relaxed/simple;
-	bh=efQF4aJjRLpdkiiuYdHO2Ex8z+C3ZQz2AqIJbXvG6WE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UWXgNn+ti/PQCv3MeUMgwU/pGnAheH8oQfgI+cagST52YXO8z8FI8n24LPaJOYzE0xuPP1nA/M8B+IV7lv2JHpL2uxiD2TuvmeTKpavTmse280y62nGRe5CpQJxEqR4Lod4UOtb3CQCdh1zAwD056YkPXpPzAyJ1zn9q6wAYrhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XLFUhixT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AK50FQ24104949;
-	Thu, 20 Nov 2025 07:11:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KNaP7Q607cOb5siBQiPOtij0E1NZqriqXz41/3/+zaY=; b=XLFUhixT9zXAcK5o
-	5Z2MS9Xqa99cgm6RYzIt058QfZUsSWw6ti311uFB0JRSejf6tHz+GauARdZUWzXa
-	W9BuCecuWEudNJil9Tguj3EyyhwnHrthz6pjBaU/RNv86Azh1hWppI9TAtm1bdDp
-	14/PVNnbZpK0FH5dvZAG0GTeMZf5FBbdpNqvxKJc+3oMnLcjcG1FVjWhGRw24r4o
-	4eW4SPTf59ONB9KrkRjilciyMToo/fe6rdIYCGMmhFXsjd4ON5VG40cdeEB4yvPG
-	IHDatZVrwZtYByEGGv6jMa1mn9wzs0xNAwb/R7Dp/dSFcxk1en1+Bou0XUnjefs6
-	HGtZ4g==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ahver0b06-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Nov 2025 07:11:23 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5AK7BMg2028326
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Nov 2025 07:11:22 GMT
-Received: from [10.204.78.57] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 19 Nov
- 2025 23:11:14 -0800
-Message-ID: <e6e081b5-4a7a-425f-af24-98e93cd1a60a@quicinc.com>
-Date: Thu, 20 Nov 2025 12:41:12 +0530
+	s=arc-20240116; t=1763622868; c=relaxed/simple;
+	bh=kt0qyZkW+MeJECkI5Xss7gOhcc8oUs7F0dqKayTW0G8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jXOzLSPxD/CvxSUJPvqMjMMvjiFZQ78DnC2Ng4imTklnTwDLc3Ch4AGBL1DZyQpg+w/6aw/1riiidGdwfpVrpSiFO+TZE2KdZ/9jVWNJhLjNj8IrZVf6uJ9k9VKR9JzTlIl2lLlKcK7CEaGnqoV0106DUkzzt4gmKF+zjEHdTCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=jhEG2d8t; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1763622867; x=1795158867;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=kt0qyZkW+MeJECkI5Xss7gOhcc8oUs7F0dqKayTW0G8=;
+  b=jhEG2d8tFcId6uDa0ff+s6ximyQI1HENjDvOxJq8h7/eS4OYvRQAkBby
+   nGi0l71UGcEHv6oqz3lazpBebBLEOpZb0I3MLqKhooOFZ2YPr94Dy9TFO
+   sB7/LQWiMPYhhxwpv2DLeBblIOw5UWX34RAVZJeiQUJdTjEJ1fryVpPeh
+   j7NUqASWBchx+HEBgD7rz01kqjA22EZ6xNkPDZ31/6LNKZmo4lP0x1mgF
+   37fMSKMi+8xRCbBOTlpGPFxE5zirgJt7PTNXbaemXFT51aHvOqy+OlzlC
+   i0VjuaKpHvcNSGu74SeeeaFGAGN6wvofwT8XYyXYvu3suueS486bRJbuK
+   A==;
+X-CSE-ConnectionGUID: 7tMF3faYTyyB7jmTWiAErQ==
+X-CSE-MsgGUID: K/njos6fQ4C+EoqVr908ow==
+X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; 
+   d="scan'208";a="49909730"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2025 00:14:25 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.29; Thu, 20 Nov 2025 00:13:55 -0700
+Received: from vduicu-Virtual-Machine.mshome.net (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Thu, 20 Nov 2025 00:13:52 -0700
+From: <victor.duicu@microchip.com>
+To: <linux@roeck-us.net>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <corbet@lwn.net>
+CC: <marius.cristea@microchip.com>, <victor.duicu@microchip.com>,
+	<linux-hwmon@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v2 0/2] add support in hwmon for MCP998X
+Date: Thu, 20 Nov 2025 09:12:44 +0200
+Message-ID: <20251120071248.3767-1-victor.duicu@microchip.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] drm/msm/dp: Update msm_dp_controller IDs for sa8775p
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: <marijn.suijten@somainline.org>, <swboyd@chromium.org>,
-        <mripard@kernel.org>, <abel.vesa@linaro.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <robin.clark@oss.qualcomm.com>,
-        <jessica.zhang@oss.qualcomm.com>, <abhinav.kumar@linux.dev>,
-        <sean@poorly.run>, <airlied@gmail.com>, <simona@ffwll.ch>,
-        <alex.vinarskis@gmail.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <freedreno@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
-        <quic_rajeevny@quicinc.com>, <quic_vproddut@quicinc.com>,
-        <quic_riteshk@quicinc.com>, <quic_amitsi@quicinc.com>
-References: <20250926085956.2346179-1-quic_mkuntuma@quicinc.com>
- <20250926085956.2346179-2-quic_mkuntuma@quicinc.com>
- <c4o6bcvl7cgmvklvnwj7togokawvaiqmiye3sgdlugwftz45bh@g7vfktowo5hj>
-Content-Language: en-US
-From: Mani Chandana Kuntumalla <quic_mkuntuma@quicinc.com>
-In-Reply-To: <c4o6bcvl7cgmvklvnwj7togokawvaiqmiye3sgdlugwftz45bh@g7vfktowo5hj>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=ZvPg6t7G c=1 sm=1 tr=0 ts=691ebf1b cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=xgBnMW_o2ljmifkhbjUA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: KZGMStxDDC_AK_i7TTseNbxFFiy92cxA
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIwMDA0MCBTYWx0ZWRfX3WeHMYDE2USM
- EJN2ixcz2qWLs4gMqd3DQHMSkOMr3rzhtrJrdhzJlpxQiOdGlwG/a1HUrSM325UCVRVbVTv5jsa
- YT9At5LyJjR5uZLhr2kh6mKDJrss3tDQZCvaa/z8qUY9Ob2MnZTC+ju2PzaEE91dlcCKkGFSbNe
- 3PXuqhyk8FJebRLXYAtY/HsdHExDbJhZi2Cl+MUxwUtRfedd4bHlfztzoXdYdDyfXaU9vVjEDeQ
- eI5SyydXRS0g9rbxsI6P5HZC8Y+yKwk1ecJo5c1Uvgfa01N7oEOF8lRHKFuA7xeRjvkdNiGQioZ
- Q0SttKOIcUtCevHKwEbraaNDED6NY0IOHlZlvL8g4u1bi82RY0AKl1vZq/6AnspF1D7cfcSx3Ep
- Zey+KvkrE24oUirt20iRw5FzRn9/kA==
-X-Proofpoint-GUID: KZGMStxDDC_AK_i7TTseNbxFFiy92cxA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-20_02,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 malwarescore=0 clxscore=1011
- priorityscore=1501 spamscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511200040
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+
+From: Victor Duicu <victor.duicu@microchip.com>
+
+Add support in hwmon for Microchip MCP998X/33 and MCP998XD/33D
+Multichannel Automotive Temperature Monitor Family.
+
+The chips in the family have different numbers of external channels,
+ranging from 1 (MCP9982) to 4 channels (MCP9985).
+Reading diodes in anti-parallel connection is supported by MCP9984/85/33
+and MCP9984D/85D/33D. Dedicated hardware shutdown circuitry is present
+only in MCP998XD and MCP9933D.
+
+The driver supports reading the temperature channels, the temperature
+limits and their corresponding alarms. The user can set the limits and
+the update interval.
+
+This driver is based on the IIO driver for MCP998X:
+https://lore.kernel.org/all/20250930133131.13797-1-victor.duicu@microchip.com/ 
+
+Differences related to previous patch:
+v2:
+- in Kconfig add select REGMAP_I2C.
+- in yaml add power state attribute. For chips with "D" in the name
+  check that Run mode is set in yaml and driver.
+- in the include list: remove cleanup.h, add math.h, minmax.h and
+  util_macros.h.
+- add min, max and crit limits for all channels. These attributes can
+  be read and written. In mcp9982_init() set default values for limits.
+- add alarms for limits.
+- edit regmap ranges to add the limit registers.
+- when writing update interval, don't force the user to set exact value.
+  Search for closest valid value.
+- in mcp9982_parse_fw_config() check value from fwnode_property_read_u32().
+- edit coding style and comments.
+- remove constant MCP9982_SCALE.
+- rename variable sampl_idx from mcp9982_priv to interval_idx.
+- in mcp9982_write() rename variable use_previous_freq
+  to use_previous_interval.
+
+v1:
+- initial version for review.
+
+Victor Duicu (2):
+  dt-bindings: hwmon: add support for MCP998X
+  hwmon: add support for MCP998X
+
+ .../bindings/hwmon/microchip,mcp9982.yaml     | 205 ++++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/mcp9982.rst               |  95 ++
+ MAINTAINERS                                   |   8 +
+ drivers/hwmon/Kconfig                         |  11 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/mcp9982.c                       | 937 ++++++++++++++++++
+ 7 files changed, 1258 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,mcp9982.yaml
+ create mode 100644 Documentation/hwmon/mcp9982.rst
+ create mode 100644 drivers/hwmon/mcp9982.c
 
 
-
-On 9/26/2025 7:21 PM, Dmitry Baryshkov wrote:
-> On Fri, Sep 26, 2025 at 02:29:53PM +0530, Mani Chandana Ballary Kuntumalla wrote:
->> The Qualcomm SA8775P platform comes with 2 DisplayPort controllers
->> for each mdss. Update controller id for DPTX0 and DPTX1 of mdss1.
->>
->> Signed-off-by: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>
->> ---
->>   drivers/gpu/drm/msm/dp/dp_display.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> Missing Fixes tag.
-> 
-
-Sure.
+base-commit: 7254a2b52279091683e0228095118ee69ce9742f
+-- 
+2.48.1
 
 
