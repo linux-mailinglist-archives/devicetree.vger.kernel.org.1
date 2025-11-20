@@ -1,107 +1,203 @@
-Return-Path: <devicetree+bounces-240729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D497EC74912
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:31:30 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28DCCC748AC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:26:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 695104F06A2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:23:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 8FC392B32C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC2D346E7C;
-	Thu, 20 Nov 2025 14:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8892A3451D7;
+	Thu, 20 Nov 2025 14:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="khCfVV5r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3693B340A74
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 14:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C519337BBA;
+	Thu, 20 Nov 2025 14:21:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763648607; cv=none; b=VGTKA2hvKJXpY55yXYMom+fGwDlX4uk38r5sTcHW10uPPEv7m3X0ZOHpfIzsVC07jH/uYvg5Lc+yPfoy7Umtm7/DCY3h7jsxJ/NGzDkHPRs9VlY7+r2P0c7x/yrLLKeLx3UgPj3k9s+Hlx1QquL3sgZPGoZwcNJuPn1EYJfvXEg=
+	t=1763648502; cv=none; b=Ftfv4UYbZql/IkivOxSoZN/iiOViYMIWQkGqxPD3FXM6qOZ7xrpFa70IJjZ8MyhPXgjJTj9g0+I/Tb/8Nk4sxEa5XFeQ5onkGg+rbBFYMMksbjZsqUOm5DofPcl0n0vloo6gBk5aQbvs6OdOsqy+JwH9j71cYdLndOOXgJ6mrrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763648607; c=relaxed/simple;
-	bh=mU5bmU5Kv9Wew4r9yUlqgz0rahavdarKuOurro+crQ8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YbRrTZp1whVkadRMCeBjOTvpIg1k8owBriSNtWWRYCTCCYuPFfHahvZVxmbj6rFURYGeWAjbDxvO8f71zQ1OsQaMWtaYBQNu2+dxU+1pHK2yq0R3/XxVQ4/B3dxxBglq/xcbtbSZfqdR6PIfXxQtcnMmb1KjNQkRFGa377QvSAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.tretter@pengutronix.de>)
-	id 1vM5Z9-0004us-EV; Thu, 20 Nov 2025 15:23:19 +0100
-From: Michael Tretter <m.tretter@pengutronix.de>
-Date: Thu, 20 Nov 2025 15:22:56 +0100
-Subject: [PATCH v3 4/4] media: adv7180: fix frame interval in progressive
- mode
+	s=arc-20240116; t=1763648502; c=relaxed/simple;
+	bh=y1OIh1u2LeSJHLZBleRaaxbUdu7kp1SIHpl+J+34nD4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zi0aSLLnPx/eCJ00IQWit4sSHRHL5ROnTh5j7kT6R5G8jvMPyr2L3uzBr/pT5BiENSwMzZ3VwdXBN3wLDJo1qlYbqfhyMftG1rjTCZ6KfyjY0LbZYQWEwWiQs0gWpstPZzb0dGtiWMoc0dnCyE9O+yRvJgAtBrip6+xcJfGdT64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=khCfVV5r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15DAFC4CEF1;
+	Thu, 20 Nov 2025 14:21:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763648501;
+	bh=y1OIh1u2LeSJHLZBleRaaxbUdu7kp1SIHpl+J+34nD4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=khCfVV5rwzJh+rVbz+ZPLlJkifByrqQr0+OX7hMDORss15f2lsCt7kBx9aGV/AvrN
+	 pFOphxT6Mohk0sdM1ReR1/4x7/BtG+8PWetMCoXfcX/E2odBNIqBb9cIC6OJGNpu6I
+	 sObvzb+3mZ86uUAwWLJ/1ENxkt9P0n/L+esuMSPhhrF7cCo3Q5UZUk4XVQNO0JlERL
+	 6AYF+K5xah60qtUHSdLZ0JD37JqPpc1GSodieC9t7MwYbI/sRQU0dbJIizZd6XnHnv
+	 /b9w75Nu6DdE89zoNhQn8OotEeMrZxYcGInl4DiZpj+MAPJwmjzZWRG+c51Ylun7ie
+	 8tlut2sfsuznw==
+Date: Thu, 20 Nov 2025 08:26:40 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Vishnu Saini <vishsain@qti.qualcomm.com>, prahlad.valluru@oss.qualcomm.com, 
+	Prahlad Valluru <vvalluru@qti.qualcomm.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: monaco: add lt8713sx bridge with
+ displayport
+Message-ID: <cjz47arpfbangtrzx6kw4ommph3zhn6xnroz34oqskafvmpnmi@xduotm2houzg>
+References: <20251120-lt8713sx-bridge-linux-for-next-v1-0-2246fc5fb490@qti.qualcomm.com>
+ <20251120-lt8713sx-bridge-linux-for-next-v1-1-2246fc5fb490@qti.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251120-b4-adv7180-vpp-sub-device-v3-4-c9d80661e7d9@pengutronix.de>
-References: <20251120-b4-adv7180-vpp-sub-device-v3-0-c9d80661e7d9@pengutronix.de>
-In-Reply-To: <20251120-b4-adv7180-vpp-sub-device-v3-0-c9d80661e7d9@pengutronix.de>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>, 
- Thorsten Schmelzer <tschmelzer@topcon.com>
-X-Mailer: b4 0.14.3
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
-X-SA-Exim-Mail-From: m.tretter@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251120-lt8713sx-bridge-linux-for-next-v1-1-2246fc5fb490@qti.qualcomm.com>
 
-From: Thorsten Schmelzer <tschmelzer@topcon.com>
+On Thu, Nov 20, 2025 at 04:28:05PM +0530, Vishnu Saini wrote:
+> Monaco-evk has LT8713sx which act as DP to 3 DP output
+> converter. Edp PHY from monaco soc is connected to lt8713sx
+> as input and output of lt8713sx is connected to 3 mini DP ports.
+> Two of these ports are available in mainboard and one port
+> is available on Mezz board. lt8713sx is connected to soc over
+> i2c0 and with reset gpio connected to pin6 or ioexpander5.
+> 
 
-The ADV7280-M may internally convert interlaced video input to
-progressive video. If this mode is enabled, the ADV7280-M delivers
-progressive video frames at the field rate of 50 fields per second (PAL)
-or 60 fields per second (NTSC).
+This is good, you're describing the role of LT8713sx and how it's
+connected on the board. Thank you for taking the time to do so!
 
-Fix the reported frame interval if progressive video is enabled.
+I think one aspect that's worth pointing out on its own is the
+placement of the mini DP ports. You do capture it, but the fact that
+we have two on the EVK and one on the expansion board is "hidden" there
+in the middle of the paragraph.
+I think extracting this part of the message into its own paragraph would
+improve the commit message further.
 
-Signed-off-by: Thorsten Schmelzer <tschmelzer@topcon.com>
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
----
-Changes in v3:
-- None
-Changes in v2:
-- Simplify and document calculation of frame interval
----
- drivers/media/i2c/adv7180.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+> Enable the edp nodes from monaco and enable lontium lt8713sx
+> bridge node.
+> 
+> Co-developed-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
+> Signed-off-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
+> Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/monaco-evk.dts | 44 ++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> index bb35893da73d..947807f8a9cb 100644
+> --- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> +++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> @@ -317,6 +317,20 @@ &gpu_zap_shader {
+>  	firmware-name = "qcom/qcs8300/a623_zap.mbn";
+>  };
+>  
 
-diff --git a/drivers/media/i2c/adv7180.c b/drivers/media/i2c/adv7180.c
-index d289cbc2eefd..669b0b3165b1 100644
---- a/drivers/media/i2c/adv7180.c
-+++ b/drivers/media/i2c/adv7180.c
-@@ -507,6 +507,13 @@ static int adv7180_get_frame_interval(struct v4l2_subdev *sd,
- 		fi->interval.denominator = 25;
- 	}
- 
-+	/*
-+	 * If the de-interlacer is active, the chip produces full video frames
-+	 * at the field rate.
-+	 */
-+	if (state->field == V4L2_FIELD_NONE)
-+		fi->interval.denominator *= 2;
-+
- 	return 0;
- }
- 
+Would it be possible to add dp-connector nodes and wire them up to the
+&lt8713sx, like I did in sa8295-adp.dts?
 
--- 
-2.47.3
+> +&i2c0 {
+> +	pinctrl-0 = <&qup_i2c0_default>;
+> +	pinctrl-names = "default";
+> +
+> +	status = "okay";
+> +
+> +	lt8713sx: lt8713sx@4f {
 
+This should be bridge@4f.
+
+Also, unless we need to reference this from a overlay there's no need to
+give it a label.
+
+> +		/*Display bridge chip, DP1.4/HDMI2.0/DP++ hub*/
+
+This comment explains what "lontium,lt8713sx" is. The binding call tell
+me that, so the value of this comment would be for you to tell us what
+it is used for on this particular board - and if that's obvious you can
+omit the comment.
+
+> +		compatible = "lontium,lt8713sx";
+> +		reg = <0x4f>;
+> +		reset-gpios = <&expander5 6 GPIO_ACTIVE_HIGH>;
+
+In addition to using an of_graph to describe the connectors that this is
+wired to, it would be nice to have a port describing the relationship to
+the DP controller here as well - so we know where the signal is coming
+from.
+
+Would that be possible to add?
+
+Regards,
+Bjorn
+
+> +	};
+> +};
+> +
+>  &i2c1 {
+>  	pinctrl-0 = <&qup_i2c1_default>;
+>  	pinctrl-names = "default";
+> @@ -396,6 +410,23 @@ expander6: gpio@3e {
+>  	};
+>  };
+>  
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dp0 {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dp0_out {
+> +	data-lanes = <0 1 2 3>;
+> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+> +};
+> +
+> +&mdss_dp0_phy {
+> +	status = "okay";
+> +};
+> +
+>  &iris {
+>  	status = "okay";
+>  };
+> @@ -435,6 +466,12 @@ &serdes0 {
+>  };
+>  
+>  &tlmm {
+> +	dp_hot_plug_det: dp-hot-plug-det-state {
+> +		pins = "gpio94";
+> +		function = "edp0_hot";
+> +		bias-disable;
+> +	};
+> +
+>  	ethernet0_default: ethernet0-default-state {
+>  		ethernet0_mdc: ethernet0-mdc-pins {
+>  			pins = "gpio5";
+> @@ -451,6 +488,13 @@ ethernet0_mdio: ethernet0-mdio-pins {
+>  		};
+>  	};
+>  
+> +	qup_i2c0_default: qup-i2c0-state {
+> +		pins = "gpio17", "gpio18";
+> +		function = "qup0_se0";
+> +		drive-strength = <2>;
+> +		bias-pull-up;
+> +	};
+> +
+>  	qup_i2c1_default: qup-i2c1-state {
+>  		pins = "gpio19", "gpio20";
+>  		function = "qup0_se1";
+> 
+> -- 
+> 2.34.1
+> 
 
