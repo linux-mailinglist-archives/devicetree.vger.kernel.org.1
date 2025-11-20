@@ -1,215 +1,185 @@
-Return-Path: <devicetree+bounces-240641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8D2C73BF3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:33:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 401F4C73C0B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 764AB361241
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:27:56 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EAE6D344C1A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F88D2E92D0;
-	Thu, 20 Nov 2025 11:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9BE2FCC1D;
+	Thu, 20 Nov 2025 11:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pJ/RcFCS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d8kzPR8P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF3E72C3258;
-	Thu, 20 Nov 2025 11:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF04D2D062F
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 11:29:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763638072; cv=none; b=fH9wIAnb6wsPg9NATm2xjVbzZmlK3H4YuozmFwjhY7Ti7cRhfnC3kvW0os0HpUmxN7M4B+VP89AdNpWPXMsSqAH5hAJBgNOnYZZSYU1LeGDaw07FXzVTYFhEKXiJy9z/O2j3Rs12JcT+9YFaYla5F0yP++9jLQ5ndUwPX9R5ky8=
+	t=1763638181; cv=none; b=IbS1LVhInVQvBl594B+PQ9nQGZNhXy5FITWrCJHpQPipqyngWQ5LtHiqrP0Dawgz+UMLKvBa3MKrILRkLLH6AMFAhVan16x17l6Ko9vH46EIUAHRypB+QAWVNv0HcW6TFMLWuMw+J5XTIaqsrWASnGZvyT6KRYYZQHwk0avCKvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763638072; c=relaxed/simple;
-	bh=Hcer97dP75o+T5ehV5+nCdf+Z1PlLJkSc7iXUrcY7QM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kaMVBLzVueflMU89ABu3yHJIGQbPestfRzcuzZftUHaU2HCSyxiWcr0VIET4HC0s+cSolVSEsY46ITGnEvK6Ns4jhtHgMocI8wYpOHtx9kAAm7mieFKzvtwFufuIVWSoIYQRl+fHZfLtQomMjwZ5/CVEFmo0HO5Z3Y2V40cM+YI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pJ/RcFCS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AC9BC4CEF1;
-	Thu, 20 Nov 2025 11:27:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763638069;
-	bh=Hcer97dP75o+T5ehV5+nCdf+Z1PlLJkSc7iXUrcY7QM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pJ/RcFCSf/9oyLwA92DEMR3vVQhNGdAx64A7q2NbsQv+RyiM/XK06NJbe1FCniiRN
-	 nZxuk+nWhio4q2FaZS6jlMRjIO7W93lCwAFgp6nioD5n1X0rC6WohaRRSCjhXCjQ9t
-	 vzFuJ9j8tKImtv+rw+ksexSmxnMzO3e19orbPJCgmOOfd17MDVa3HGUgcSIi9sMlPo
-	 Y+1mdVf7u3iTcQDHnH0YqC9IL+aEGdTwUInn+oI2jLhrpvQvapLbizZQPn0lM4DvKM
-	 +QIItI7Po9QnGTYnyKhCe9sjGont9ApZognpTaMgirh3IjK7fHOwHnFVyBak6mB4pW
-	 lrt3Y7LYp4SzA==
-Date: Thu, 20 Nov 2025 16:57:24 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Vincent Guittot <vincent.guittot@linaro.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com, 
-	ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, 
-	Frank.li@nxp.com, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	cassel@kernel.org
-Subject: Re: [PATCH 1/4 v5] dt-bindings: PCI: s32g: Add NXP PCIe controller
-Message-ID: <gnfp6pmdfk7n2kask3qmp7qtjcwdze2ltheibqctsl3ap4fxjj@kxgegsjroooh>
-References: <20251118160238.26265-1-vincent.guittot@linaro.org>
- <20251118160238.26265-2-vincent.guittot@linaro.org>
+	s=arc-20240116; t=1763638181; c=relaxed/simple;
+	bh=ivjSzEx+CxHtG09V2L9ly4PVIffolvcnC0we/k+cPGc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JLt1EyKJSENopyBqap353c3P983dmPP+kNMApVi8cek4BGwEpasDB/nnV+jUabAWI6hS/HKZJqxkU+VPNAbejbsY9UEcZ05O8VNILOjwxBgVLb7raMObantSnQZKgC4Tnsg8Q/O0u6xwUdC9fOE1qFsr91lSD3Oxsqt6D5e99QA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d8kzPR8P; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-477aa218f20so4923925e9.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 03:29:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763638178; x=1764242978; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5jsja9fjYhb+NStCyKVmqy2iqD9br8b7PE34hFfWl3s=;
+        b=d8kzPR8PXaG/Gjk4zeuLb8cm54h03vqkNI3dwCe1wc0aaRkrkPGIh9hfy1KPnXrb9H
+         PkQqYeijjRZZ2/NBqUsqXC3+sJPVJlgctu56RCePCzxfd895sUWR0BKpvZ1XGb8/Al0q
+         mULCFtCuXPAoW+E3syTBb0YKWMhpqdL/kOw8NAVcF8Lh0VYlUOKcXTnwqxQDwwG4aaOD
+         hX3Jgr4vb/0ZYP6Oh15hO7DiJIP9GzLCO0rQrokbBV4SUqq/lnVrP8c3tSogjoiBUpYp
+         b7yGFofnd5K1/VDstBa8G7+hF8eU7ut/Dkc87oQGa0pj5A0Xb0U5YEXqQJu1Z/PKWHY+
+         S6/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763638178; x=1764242978;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5jsja9fjYhb+NStCyKVmqy2iqD9br8b7PE34hFfWl3s=;
+        b=XsfIr8RFwPGM/nZgF4Oag9jP05fpb8NwawUXJRCabwqXWv82pdNyeFDX/9lWAMNV7F
+         HaCdx9wuANU2YDXvbMBp0w0Hg0tNiKl7ccyhzIaoZ5tp6nKQu6GMqMSCWyzWIxJIp73Z
+         H/hW2VWS9sovzQJk2TCrRHPjnKui7awDfi6c14QHOVzqjVy9Lt40i+X7RC1x9CFjudSP
+         Wq2nav2NeMzq6v0PLKoRJPa6aJKHUnWUwXdg9FmNSbL6af9hB/XYPT+nUJtQeuSRLM7+
+         et2FpxGh9dEX3O/yVMhcxEB1wDiRU//MQgEMFL7gVCmGpbI3EZNgaaU3GtljuW41Hr4Y
+         Gnxg==
+X-Forwarded-Encrypted: i=1; AJvYcCXyWg1hzZai7J1V5hPmwWUPQwf5SfcKHLCbIwsP0YaYa9FabAz9SqgfIqRjNU/DfDIf3b5Za7FpQtrK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5WDxMwnswpHx+aYKghXYzuo3crgompAhjIqwx91Uz5ov8pK7f
+	hnboyfpkK9FNWN9gvCFwTSbGCUIIjvk2+dGwB+9v0gAiOA2F7/NZt4OXAnckAgcsBDMt+JRsiyu
+	fnSy8l64=
+X-Gm-Gg: ASbGncsO47QSoLq0u6gSTmDuGXhhlXsFNUZeeeQOjX/SoAwtvO4/ziqhqvftZZXSdeS
+	MQ2cwp4Yd9L+dMExIiUVKh+D10Lql+yh+c7WN9LHKEi5qRi+OoeKGuOwfEe0kwQoieCrCW9cbr5
+	Le0wqgynn2y6KWMcfb3qDx4aSqtqU7NeQE0aGB4NbS2OMYdzUMwaSbH+i9u0fiAO2LecJbd1yQK
+	a+Mg2RaNJT0bAhDHOHwGB9vgwSAK5ZyX+jje3C60/5Iuf/NvrbWV3E2baLGE1dhjk4hyhDQEb/M
+	IcLR7L+x+rfDyl/pZ2RAvgzA9T1XHDHvUUAb6xD16njnMdMSgbWfhWezmza07fQA4G0tY1R3+Eb
+	rMeEViR/I0TUWX30XV8InGxc2lMaofQA3EnOpknDzYGC7E5mz7YE6WkBspnge+6R23kozg2TrHm
+	T1ONjPAFw1hx2eMLBRPfAann3a6bEXNf5UL49w7hMBromSQi972s0PcpJzSV+rA8M+pAY=
+X-Google-Smtp-Source: AGHT+IHE+l5HsIigBRRfPfTgTns2urZyrt30XqV4zwL6M7ZPA9e1/JP7tH+iQOimE4Sm0ipCDkqCZQ==
+X-Received: by 2002:a05:600c:4f53:b0:477:af07:dd17 with SMTP id 5b1f17b1804b1-477b9e377e5mr21242825e9.24.1763638177719;
+        Thu, 20 Nov 2025 03:29:37 -0800 (PST)
+Received: from ta2.c.googlers.com (17.83.155.104.bc.googleusercontent.com. [104.155.83.17])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f34fd1sm4961040f8f.11.2025.11.20.03.29.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Nov 2025 03:29:37 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v3 0/6] soc: samsung: exynos-chipid: add gs101 support
+Date: Thu, 20 Nov 2025 11:29:34 +0000
+Message-Id: <20251120-gs101-chipid-v3-0-1aeaa8b7fe35@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251118160238.26265-2-vincent.guittot@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ77HmkC/3XMywrCMBCF4VcpWRuZSW+xK99DXMRm0g5IUxIJS
+ um7m3YjCi7Pge9fRKTAFEVXLCJQ4sh+yqM8FKIfzTSQZJu3UKBqhBLlEBFQ9iPPbKWzurJGG2e
+ UE5nMgRw/99zlmvfI8eHDa68n3N4/oYQSpG21RWibm0I433kywR99GMRWSuqjEfWPVlnTySG1V
+ QNU1l96Xdc3l/x5mucAAAA=
+X-Change-ID: 20251031-gs101-chipid-fd84da8afa2f
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Srinivas Kandagatla <srini@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org, 
+ willmcvicker@google.com, kernel-team@android.com, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763638176; l=3081;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=ivjSzEx+CxHtG09V2L9ly4PVIffolvcnC0we/k+cPGc=;
+ b=ma6axIDODKlP5/fIDbimwj6oH2uwR8BQHYAE8OXcROykBzYDRDaDArsO6/veko/kQ86svfaYU
+ Raxm7ROZFqeDPtkHufUH41CBp+bKkWdVzyvCcQ3e+aJ7zFZ7BVlyeeo
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-On Tue, Nov 18, 2025 at 05:02:35PM +0100, Vincent Guittot wrote:
-> Describe the PCIe host controller available on the S32G platforms.
-> 
-> Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
-> Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
-> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
-> Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
-> Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> ---
->  .../bindings/pci/nxp,s32g-pcie.yaml           | 130 ++++++++++++++++++
->  1 file changed, 130 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-> new file mode 100644
-> index 000000000000..da3106dfcf58
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-> @@ -0,0 +1,130 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/nxp,s32g-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP S32G2xxx/S32G3xxx PCIe Root Complex controller
-> +
-> +maintainers:
-> +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
-> +  - Ionut Vicovan <ionut.vicovan@nxp.com>
-> +
-> +description:
-> +  This PCIe controller is based on the Synopsys DesignWare PCIe IP.
-> +  The S32G SoC family has two PCIe controllers, which can be configured as
-> +  either Root Complex or Endpoint.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - nxp,s32g2-pcie
-> +      - items:
-> +          - const: nxp,s32g3-pcie
-> +          - const: nxp,s32g2-pcie
-> +
-> +  reg:
-> +    maxItems: 6
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: dbi2
-> +      - const: atu
-> +      - const: dma
-> +      - const: ctrl
-> +      - const: config
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: msi
-> +      - const: dma
-> +    minItems: 1
-> +
-> +  pcie@0:
-> +    description:
-> +      Describe the S32G Root Port.
-> +    type: object
-> +    $ref: /schemas/pci/pci-pci-bridge.yaml#
-> +
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      phys:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - reg
-> +      - phys
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - ranges
-> +  - pcie@0
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/phy/phy.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie@40400000 {
-> +            compatible = "nxp,s32g3-pcie", "nxp,s32g2-pcie";
-> +            reg = <0x00 0x40400000 0x0 0x00001000>,   /* dbi registers */
-> +                  <0x00 0x40420000 0x0 0x00001000>,   /* dbi2 registers */
-> +                  <0x00 0x40460000 0x0 0x00001000>,   /* atu registers */
-> +                  <0x00 0x40470000 0x0 0x00001000>,   /* dma registers */
-> +                  <0x00 0x40481000 0x0 0x000000f8>,   /* ctrl registers */
-> +                  <0x5f 0xffffe000 0x0 0x00002000>;   /* config space */
-> +            reg-names = "dbi", "dbi2", "atu", "dma", "ctrl", "config";
-> +            dma-coherent;
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +            device_type = "pci";
-> +            ranges =
-> +                     <0x81000000 0x0 0x00000000 0x5f 0xfffe0000 0x0 0x00010000>,
-> +                     <0x82000000 0x0 0x00000000 0x58 0x00000000 0x0 0x80000000>,
-> +                     <0x82000000 0x1 0x00000000 0x59 0x00000000 0x6 0xfffe0000>;
+Dependency
+==========
+Typical dependency of the DT patch depending on the bindings patch,
+thus the bindings patch could go via the Samsung SoC tree with
+Srinivas's ack.
 
-Please drop the 'relocatable' flag (bit 31) from all the entries.
+Description
+===========
+GS101 is different (but also e850 and autov9 I assume) from the SoCs
+that are currently handled by the exynos-chipid driver because the
+chip ID info is part of the OTP registers. GS101 OTP has a clock, an
+interrupt line, a register space (that contains product and chip ID,
+TMU data, ASV, etc) and a 32Kbit memory space that can be
+read/program/locked with specific commands. On GS101 the "ChipID block"
+is just an abstraction, it's not a physical device. When the power-on
+sequence progresses, the OTP chipid values are loaded to the OTP
+registers.
 
-With that,
+Add the GS101 chip ID support. The support is intentionally added in the
+exynos-chipid driver, and not in a dedicated Exynos OTP driver, because
+we estimate that there will not be any OTP consumers in the kernel other
+than the chip ID/SoC interface. The downstream GS101 drivers confirm
+this supposition.
 
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+Testing
+=======
+root@google-gs:~# cat /sys/devices/soc0/family
+Samsung Exynos
+root@google-gs:~# cat /sys/devices/soc0/machine
+Oriole
+root@google-gs:~# cat /sys/devices/soc0/revision
+11
+root@google-gs:~# cat /sys/devices/soc0/soc_id
+GS101
 
-- Mani
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Changes in v3:
+- rebase so that cleanups come before the gs101 support. The inclusion
+  of linux/device/devres.h is now done in the devm action patch, as it's
+  first needed there.
+- update error message: s/failed to read sub revision/failed to read revision
+- Link to v2: https://lore.kernel.org/r/20251118-gs101-chipid-v2-0-e9f1e7460e35@linaro.org
 
+Changes in v2:
+- complete rework, treat it as a new patch set please.
+- bindings were reviewed at:
+  - Link: https://lore.kernel.org/linux-samsung-soc/27a5521cd7ddbed0e870ac416dc829722f1b36a5.camel@linaro.org/T/#me139353334db535806ca6462ae1e86b01ff032a7
+  - addressed Andre's s/if of/is of
+- part of the cleaning patches are from this trivial series:
+  - Link: https://lore.kernel.org/linux-samsung-soc/20251112-chipid-trivial-v1-0-ec2dea03bd83@linaro.org/
+- Link to v1: https://lore.kernel.org/r/20251031-gs101-chipid-v1-0-d78d1076b210@linaro.org
+
+---
+Tudor Ambarus (6):
+      soc: samsung: exynos-chipid: use devm action to unregister soc device
+      soc: samsung: exynos-chipid: use dev_err_probe where appropiate
+      soc: samsung: exynos-chipid: rename method
+      soc: samsung: exynos-chipid: downgrade dev_info to dev_dbg for soc info
+      soc: samsung: exynos-chipid: add google,gs101-otp support
+      arm64: dts: exynos: gs101: add OTP node
+
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi |   7 ++
+ drivers/soc/samsung/exynos-chipid.c          | 148 +++++++++++++++++++--------
+ 2 files changed, 112 insertions(+), 43 deletions(-)
+---
+base-commit: 303dc6bfcd269f141c3de92aad7e25e2afd1dd47
+change-id: 20251031-gs101-chipid-fd84da8afa2f
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Tudor Ambarus <tudor.ambarus@linaro.org>
+
 
