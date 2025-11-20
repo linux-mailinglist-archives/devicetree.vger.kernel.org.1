@@ -1,252 +1,282 @@
-Return-Path: <devicetree+bounces-240612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E5FAC736B7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:16:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA60C736CA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:17:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D4EDB3590B5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:11:39 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 562A035EC20
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E265F30F93D;
-	Thu, 20 Nov 2025 10:11:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="SjA2fq1Y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB8A7272E45;
+	Thu, 20 Nov 2025 10:12:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010002.outbound.protection.outlook.com [52.101.193.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30EDA23D28C;
-	Thu, 20 Nov 2025 10:11:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763633490; cv=fail; b=qJl7EJv7OBcIlPDUotjmY8aU30123XEs/AgesLfctUKv10TcZKsWhmBiCuRnWYSGHMp9y2JaF4Q9T1tf0Xnrc4ZFaKCyyPsjnlXAXatTOGUkcmV53ypFumZAPrIBfiftYEbU+ceGLRyaUJPThprji2B3IljDiBgSZYQcJraFzEI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763633490; c=relaxed/simple;
-	bh=kq9KDBw5JjgiSbsz+Am3+rddfOJkCsHWWWtNDV1yyW0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=jncXbCFNkiDZvcHTsDS01q9dpfYjFqrYX/mwMro/HDkylcBOX3HA5VQzG/4g5s9VvceBcimsk3GSsY7DQMRv8IdRalpE+LnEYZmY7nm7BVEi9o+66QMvTmmKxknPjKCKxMq4iTkGkcZSKi6nCBKUBilLfCPiNS7mXEHEVY4Owgg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=SjA2fq1Y; arc=fail smtp.client-ip=52.101.193.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kamJOPO6DIHyMkgHbv0ZMMTTNKPGP8uEG9ni5lf4jHcieM7KM0APRsJv1XCc7mbasilCsxTblPSeLUzDxa6q8oRXOF/QlsbRcm6UguIM563Z37Tuhyux1Gb77MXphpavyl0EjasOME4sUNcoYz3133aBTcKtvJXpzySTq8uM1kgbx3kg5eYGj8ptAeN+EEZe+xjS4ppEtQQJIy4UVpPq/LZolBafxdEb/7HUWXZcMtUpZoANrzQCEM+gSM8cvwUnER6k1dmwQHP6pRosBDIeFP9Z1elcXGcswlPBf9g2w8uvbaftMoHfALLhDjHalqoM7gtLDzV/2WGoaRBolw2eLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tv/MYpcXsRCbzeZnHtP8wkAi2D+TOWhWnKG3bgbS6LA=;
- b=b6lciz1+vakY/TLaIm90yY254wQIB1jYq1NkhTgSbA+qfWqk0Aw/2VeUFgi9u5cxDHWlU2x5l9tHu9VHxHgtql8S8xPrJPuTP+R1awFv4D+0n87ESBd99E9opCzCKWVAa3fMgzcw8X9lnP2Q7iBjtQhyhbQIuaAt4N4T2XyD8A1cH13WMBvSAGLAGzhe2dmx9w7WwtH19U/bmV6UbMfGmIdQKrBs6PZEe4n5UGs4+09aV79VHdZ6kFyIR8MwIkNC5pBK85YD+hrK9rg2f6aAdUexy+hO6V3afd7UzRjpm7x5Ae5fdI2PsOw5pfx4z0k5wxEWjT0/WrJOJlt/HvEVTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tv/MYpcXsRCbzeZnHtP8wkAi2D+TOWhWnKG3bgbS6LA=;
- b=SjA2fq1YZMtSRWjKI56W3bBIV6fIDidZ+3iyafESVice5Rpu2HrIOJJTxoWY8QmviUcmlRI5wOdiuLrAOTf+F2xdRhEuaXUrPHDsQgsdIQlf/3sgVR3Chb6DaLLRDmkVNnMvAixVnFWX6Lt3fCYOq5fmM7dEWRMoGDuyxqcVreM35zyQejHr1MnO6e9hAvzKnVelc9+UV0zmOAWEdr7gxVYiTrp1Oi/17FfCKygARNhT5G5BYuM6/lJB6tKV4l47m/Wy8jW8e95WYzJWQ/fTaNnEIRBfgE+FMpeDQR5Sa6CJaQhx3sX/ahB3nE/FzldM+irLjmAo9k7ged6pJBziIQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
- by MN2PR12MB4405.namprd12.prod.outlook.com (2603:10b6:208:26d::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.11; Thu, 20 Nov
- 2025 10:11:26 +0000
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9%4]) with mapi id 15.20.9343.009; Thu, 20 Nov 2025
- 10:11:25 +0000
-Message-ID: <566061bf-7645-48ca-b7f5-086eab81d8eb@nvidia.com>
-Date: Thu, 20 Nov 2025 10:11:14 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] of/irq: Ignore interrupt parent for nodes without
- interrupts
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel@sholland.org>,
- Marc Zyngier <maz@kernel.org>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
- linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-References: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
- <b037f67a-b241-4689-9914-57ff578c1454@sirena.org.uk>
- <1a4d2276-75e1-4aa0-8ff2-c932ce5d6edc@kernel.org>
- <CAMuHMdXgq=Zv3GQes_d_eyCcB7m--PaEGSQJtUWiRjj-7gBVkw@mail.gmail.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <CAMuHMdXgq=Zv3GQes_d_eyCcB7m--PaEGSQJtUWiRjj-7gBVkw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO3P123CA0009.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:ba::14) To SJ2PR12MB8784.namprd12.prod.outlook.com
- (2603:10b6:a03:4d0::11)
+Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835432727E7;
+	Thu, 20 Nov 2025 10:12:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.97.182.222
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763633532; cv=none; b=JxgQ7KlBb+wEanGNQ43BMdwd2K2pYYcZMS1VrCyKP5POakw9wvsVxErnYvvfVBBJNBfzwsBSkTXo8Jkv6syRPMtDrn4NIkfn7Tu7SAUWTZrO5SrV376It3ZBcM+QNZfrT2w9NX97spkKpdF+d4cpmX0Bo+jaCIMlCxXc50rbDWU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763633532; c=relaxed/simple;
+	bh=Uz0fY3Px0EDRTfZfxQtIyjnSustIMmTdaEAm2CARD8g=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=mBDLaaJ0JXfp7mUSuEI2dauvHhfF8M1AzEDhmRpckIGFw7nBrrJoZvNoDICWlCrTLnL+vYDLRU5oduEDUEXManBKig+kRq03gOoGkTytEY+G6wqomlOBM5nXjgjpfcjrskvwe5jhqBdvnWB200dVqMVH02Wm0Mpcxiy62WSM0Ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=209.97.182.222
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0004758DT.eswin.cn (unknown [10.12.96.83])
+	by app2 (Coremail) with SMTP id TQJkCgBnqq1Y6R5pK_F8AA--.37429S2;
+	Thu, 20 Nov 2025 18:11:37 +0800 (CST)
+From: zhangsenchuan@eswincomputing.com
+To: bhelgaas@google.com,
+	mani@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	robh@kernel.org,
+	p.zabel@pengutronix.de,
+	jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com,
+	mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com,
+	inochiama@gmail.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	ouyanghui@eswincomputing.com,
+	Frank.li@nxp.com,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: [PATCH v6 1/3] dt-bindings: PCI: eic7700: Add Eswin PCIe host controller
+Date: Thu, 20 Nov 2025 18:11:28 +0800
+Message-ID: <20251120101128.1501-1-zhangsenchuan@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
+In-Reply-To: <20251120101018.1477-1-zhangsenchuan@eswincomputing.com>
+References: <20251120101018.1477-1-zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|MN2PR12MB4405:EE_
-X-MS-Office365-Filtering-Correlation-Id: 745af8d2-f06c-498b-bf5f-08de281d29dd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MnRmb2hwazdlSXExV1RnUUdkZDJjOEdEQU5TbjV1T1l2b0ZKQ0RmeHhKWUxt?=
- =?utf-8?B?OW5PeGFmYkpMaXRrWmN5eTRhTVBXQ0tQSUc1ZU5XWjlxNjJRcThySkhpcXNX?=
- =?utf-8?B?ZVJnc3ZSaTlFcEY0VjJhdks1dEdZRzJyeE1wYXlYZCt5VlhrYWR4U0pRbmd2?=
- =?utf-8?B?b3dMa3RrNjFoU1R1VTNzcWVMUUNPUU9tM0p2ODNRTGZiZDEvZ0o3bEhMNWd1?=
- =?utf-8?B?TEo0V1J4VFFiRDBGUnkveXlBYXUwaklkRDdheStuU1Ntckk1YkNXUm5HS1RM?=
- =?utf-8?B?NG5lamhVbzEzODZNU1VjeVVnREpUYk1nUTVGVkRrZllWQ2k0am5sZ1dIVHJB?=
- =?utf-8?B?MjMxMjdYWi91NXoveEpMZkwyVFJUZmFOWC91cmhUNE02TERqNDdFWXNDbWhG?=
- =?utf-8?B?S3Qyb1JlTE14UHRUb0lOU2kxNUR3cnBHMFZERmJRMmMrU1h6ZXQ4N1hEd3do?=
- =?utf-8?B?WWllZjhjVUcvazNrMXZiK3BvSnUvOWw5b2ZGaE5MMHlnSmZ6cHVyZ2hPbnVG?=
- =?utf-8?B?OW9VTDIrWFYrdktYT2VUUnAzK1dRaTVld2ZRdWx1dm1JUWdQRkJhZFNjRDBr?=
- =?utf-8?B?TkJUVEk4cUJHZ0tIc3RJZmhrOFFvekEySlVoQXBVUEhibXdQOE1yMXA4TlB2?=
- =?utf-8?B?b3huc1NoRnFzUEZCL0FkaWVqaiswYzQ3ZVROV2ZXbCtERDlxYys5Z0g0MFla?=
- =?utf-8?B?OXRtM1p2UDAwTUVZVllrTjdXeHlUT3M5SWcycFF6NFY0Wklkc0xSM2pTVTUz?=
- =?utf-8?B?OXVlZjJaU3NGS1Nmc0ZPUzNIQlRGSDhaS09HaDBjTHZYVXVkV1E0WXEycnJk?=
- =?utf-8?B?d0ExelAyMFY1SDVVb2tuRTI5bVl1bGRQR21URnRxMlhYYnk4cHZ1UVJDWXdH?=
- =?utf-8?B?N3BXT0VNQmkveEtlVklRZyt1NUxxei95cHlxbjUvZ0U5SlRxRHI3UGJMcTZN?=
- =?utf-8?B?MzB3SjlXWUttUjlLQUR3S0UwZkdpcUF2bG5xTFMvVEpMWGtYZVdnc2Zib3Bx?=
- =?utf-8?B?QWJtV2JXL3RQemVYUTNudlU3cUhqem1BNjNmd1VaeXFwa2tNSEZJMHA5M2Vv?=
- =?utf-8?B?OFBNakV0WGpKaEp1MkdpclM3TEdxVTFJamREZ3ZKZ3BhN25WR0U1V3JMMklj?=
- =?utf-8?B?SjR1ZFgza1dyT2R0dklaNXhPUVhTSzc2dFE0cGFwTFVqaDhHNWlSYVk2ak9P?=
- =?utf-8?B?TzV0eHhUbjBERlh6NVNnRHlvS1BGeVRXZzdqUll0WkF1SjFaTnNRU3ZRT21y?=
- =?utf-8?B?bmJGWnkrNkNHY1Q3ekRjclJ5NFd2ZmNYRmRFMWhpNTlPZTFsSWFlWE5tUGho?=
- =?utf-8?B?eVBrODJIQWRTL3pzUlcwSlZIWmtVSStYRVo3QnlTbHdFVkd6TU1mblhvQm85?=
- =?utf-8?B?aVBJYW5yVGdZZm1jcWRzOEErV2dTK3grczhpbWg5Zk8vZktxdzBhVkNGL1Ji?=
- =?utf-8?B?MXU4dGR1WXE2Yk1HeFFzbVp6UFpacHl4UVZmeDR2bloxLzhzRVVRTTF0ZHEv?=
- =?utf-8?B?WWI3anZEN1dPSXVoMkZYSXFBS0oxUy8zN0VnVis5KzVPNUdmTTlFa0NBMlMy?=
- =?utf-8?B?TjNhRVRuaXNNcmJXSTVteXhkYmkxaEZQT29iMUlPc1ZWZjNjYmNqanBJNVVV?=
- =?utf-8?B?REFyWmtwSzh6M2pkU3lMRDgyQUdDbE5rZGxnQlI5MjUxTThTQmhmclVMYVdD?=
- =?utf-8?B?bTBrblM2NVNlUytVTWN6M3UwSkZTNUFJUDFvNzJWd1R0MGw3WnRSSWVRVEkw?=
- =?utf-8?B?Z0wwWXJleEVyeHhMbHpGL08zOG9oTHU4T3UvRlJaTjNjRWJIZXU0QmRTNURB?=
- =?utf-8?B?SnRBRTJPcWx1NWNsc1lwcVd0Tmw3bWs3K0dXUEEzQUVLM29oQmVpZXFJaU5Z?=
- =?utf-8?B?REJSaC90MktJYkZOSXpEYXQzWnhvY3B2eHV0UFBTeFpIVVNwMkQ1QklFZFoy?=
- =?utf-8?B?QlZlS09pZjh6Tzh3SGYwRnJJT0ZqSWlJOGtDaHc1S0lxdyt6dVVBRFNwdVpJ?=
- =?utf-8?B?clo3ZS9Rd3JnPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SW9TZW9lSHYxejMvM251RWRHOGZpaVJPRlp5RmtadmRpdGFkSTd5cjdETXBa?=
- =?utf-8?B?MHovTlhkcVVsZmlKYmRPSjlHcjd3Y3QwRmw3NjBwbnBBWkozTDlNeGJpVG03?=
- =?utf-8?B?OFNUVDZyYThmTGpwRUU4ZTd0d3llLzh5Yi9ZZ1FrNmRCUTdQNzBUME5qUU5n?=
- =?utf-8?B?a3VaVlJabmdvcEl1QVNYMkpTbk5HZVl1V08wWFRSNFpCR1BKTm12ZDAxYnV3?=
- =?utf-8?B?SnJFOVNtdmd6RWxWUDJHRHh1OFhDY3dLYmt5NkIyUmt0Y0NMNkZMa0svOG50?=
- =?utf-8?B?WGwveTBPZ0hGY2ZDaU42NWk5VUR4Z0hzVmpPTHBKNEp2UCs1S25zeC9vbzdT?=
- =?utf-8?B?SUFETzJQcHlQYmtuQ2NLa0IzclZKWlJSaG0zd2N4YXhaL01DQlFJTC81UGV1?=
- =?utf-8?B?SlZaY05OYVFXNDh3amFDOVBGcHlQRG9hekZQZUxab2dDQktjWFNJVk5wMjJZ?=
- =?utf-8?B?RHU1Q0hRb2VwbmZEWVNxTFZna2VJVHlnNUk5NjNGOWJqOXNTc01SZ2ltSnVV?=
- =?utf-8?B?L05JeXY1T2FjaUtzQUF4OFF5a215TFJmUWRLNm5OZm5Za3EyTXEzUEtrcFd1?=
- =?utf-8?B?Z0phTGZQUG4vbEcvbnAyVENwQjFBTmZKcE55UmRVUXNER0kzZ3VnL2dVUWgy?=
- =?utf-8?B?OXYrM2tkbzFlbEtrVkY0bDNaUjVkVGMySVRWVFBNeTJCamZmMnlwbWU5Y1o5?=
- =?utf-8?B?WFNVSzhJUHhuTDVYZjBJcTYweW5USnk5cG0yQ1JtUVlFOHR3MU5YMG9jUzA2?=
- =?utf-8?B?NWJGNUFmME5FVFYyV1FuK0tlYUdHUFlUemdkRnJjMG1NdDhMc0trdDJJL2U4?=
- =?utf-8?B?TGVzQ1psbEdRTkdFbUxDOTlORko4bzlER3dpdHpiSU01ZXJYVlplWE1PRHpK?=
- =?utf-8?B?a3YwdlZUMHRHc1kzUURNQnkrV3ltRDhFWm1RNDNLSW5NRjlCd1FIWi9ubVFk?=
- =?utf-8?B?TXhWc3VsbEU4OVVHd09uQjlnK3VTOEF2SkxZNXhvdGMva2VzWHk1dzhkL2NS?=
- =?utf-8?B?STF1a015cUxBaTNmNlFCdVJHek9oYXV4dlRQZXgwblV5eHVJREZNKzBNcnJj?=
- =?utf-8?B?L0R1UUx1K2ZQUGdSUkxMY0UxeWJuTm15d2IyVGsrejNUU1ZoK1d4VzRFOGYx?=
- =?utf-8?B?d0xpaGwraVFUTitnL1U2NFFEaUZ4a09NeU5RSXg1bGtteHNPdDN3RzBQUEdE?=
- =?utf-8?B?L3pzWHJLRWs0SFY2WFZlSG83S0YyRDF1U0p0L1dyMjNjdGVDOEw3YW5sTVRX?=
- =?utf-8?B?WC9xVFVVMW52RHEwbFZaKzR1WHY5aGorNWdnb0loeUpxNjBIcGFTUlBzai9x?=
- =?utf-8?B?d25ERnFxb0taaHhVZnRxMWthWEF1R1cxandyUFd6UjJmMkVRNE9YM1N2QVVL?=
- =?utf-8?B?ZWpjdzNPQUlKdEhiSFhlZmo3SzlmSUY5TVZCTzZwd051akllQjNPVlhQTlFS?=
- =?utf-8?B?Nk1XRExOa0ZsRlprQSszM280TzlCaVVWUm9UVFdST1hNc1Y4Q3lCeUVGWEFu?=
- =?utf-8?B?a1RIVyszUVA1TlpDU2xoc2wrVllQUlkyaUQvcHFZdXFtNG9mWU5NQ3l4eWNI?=
- =?utf-8?B?d0plcTZKbkNEZU45TGJ1dks0Zjk0cnNmRmxSR0kvMFRkenNjd2pZdURTVGNu?=
- =?utf-8?B?Njkxd3poWWtlTTYwWUUxQlEwK3Z1cC9PaFM1UmJqT2ZYOXhoVm1hU1Y4SEdw?=
- =?utf-8?B?YjNGS2pNVHRuRG1jSjV6VCtxa050Z1Erd1FuL0I4eFNCTnd3cXc4YWxtUDhx?=
- =?utf-8?B?SGcxOFFUWVlNL0dYUzFKeGp1V2Q4bDUwem9SdzdrWkVRTGJOa0h0aWtMc2Rk?=
- =?utf-8?B?TGJBR0c2MGRURDZ2OW1HS2lEZlNWL0pJZlgwYkUvWnpEakdDRlRSQmNzRUEx?=
- =?utf-8?B?NjhkcGRBbHlVMk8zS25Qd3I5TjZCSWozMFVMS3FZcjhPV2d4UGNCOFoyaDRZ?=
- =?utf-8?B?OUo1TjVQRDRsWDE1QUIyd1k2Y1p0KysxZjlmR2s2SnJ5bDNBSmFxcDVoVVoy?=
- =?utf-8?B?amQ3cXQ2SWtKZEVvMHh1Sno1UTNRWHpaLzNhcnZSWkxtT0JTWGloWFVzNlVw?=
- =?utf-8?B?VEZlakk0djF6ZjF4S3RObFAxWDRDL201dlUyWVk4QWYrUXhBVFNoSktrNHBn?=
- =?utf-8?Q?VhldXKAiYUfnYT+u45d9XVudd?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 745af8d2-f06c-498b-bf5f-08de281d29dd
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 10:11:25.8868
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VOnIPwFetuwkbIGz9yHHOybSjyxylcaqWWN/g8RS3fsjGhgkfAkbCWiNrF5EnugihtCfYtT2byN2eKpZkAZPKw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4405
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgBnqq1Y6R5pK_F8AA--.37429S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxZw4UKr1kCFW5Gr4fGrWfKrg_yoWrArW5pF
+	ZrCFW8Wr48Xr1fAw4UJF1jkF13Ja1vkFnYyr1xW3W3t3s5ta4qqr43KF13J345Gr4jq34Y
+	gFnIv34xtw17A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRuHqcUUUUU=
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/
 
+From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 
-On 19/11/2025 08:53, Geert Uytterhoeven wrote:
-> On Tue, 18 Nov 2025 at 20:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On 18/11/2025 20:34, Mark Brown wrote:
->>> On Fri, Nov 14, 2025 at 11:47:54AM +0100, Geert Uytterhoeven wrote:
->>>> The Devicetree Specification states:
->>>>
->>>>      The root of the interrupt tree is determined when traversal of the
->>>>      interrupt tree reaches an interrupt controller node without an
->>>>      interrupts property and thus no explicit interrupt parent.
->>>>
->>>> However, of_irq_init() gratuitously assumes that a node without
->>>> interrupts has an actual interrupt parent if it finds an
->>>> interrupt-parent property higher up in the device tree.  Hence when such
->>>> a property is present (e.g. in the root node), the root interrupt
->>>> controller may not be detected as such, causing a panic:
->>>
->>> I'm seeing a boot regression on the TI x15 platform in -next which
->>> bisects to this patch in -next, unfortunately even with earlycon (though
->>> just earlycon, I don't know the platform specific runes) the board just
->>> dies with no output:
->>>
->>>    https://validation.linaro.org/scheduler/job/4252918#L409
->>>
->>> It does seem like a plausible patch for this sort of issue though, and
->>> the bisect converges smoothly:
->>
->> All Samsung platforms fail as well. I was waiting with bisection but
->> Marek was as usually very fast:
->>
->> https://lore.kernel.org/all/20251118115037.1866871-1-m.szyprowski@samsung.com/
-> 
-> Yeah, the various ti,omap[45]-wugen-mpu nodes have interrupt-parent
-> properties, but no interrupts{-extended} properties.
-> 
-> Does the following (whitespace-damaged) patch, to restore finding an
-> explicit interrupt-parent, fix the issue?
-> 
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -685,6 +685,8 @@ void __init of_irq_init(const struct of_device_id *matches)
->                  desc->interrupt_parent = of_parse_phandle(np,
-> "interrupts-extended", 0);
->                  if (!desc->interrupt_parent && of_property_present(np,
-> "interrupts"))
->                          desc->interrupt_parent = of_irq_find_parent(np);
-> +               if (!desc->interrupt_parent)
-> +                       desc->interrupt_parent = of_parse_phandle(np,
-> "interrupt-parent", 0);
->                  if (desc->interrupt_parent == np) {
->                          of_node_put(desc->interrupt_parent);
->                          desc->interrupt_parent = NULL;
+Add Device Tree binding documentation for the Eswin EIC7700 PCIe
+controller module, the PCIe controller enables the core to correctly
+initialize and manage the PCIe bus and connected devices.
 
+Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
+Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
+Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/pci/eswin,eic7700-pcie.yaml      | 167 ++++++++++++++++++
+ 1 file changed, 167 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
 
-This patch also breaks various Tegra boards but the above does fix it.
-
-Jon	
-
--- 
-nvpublic
+diff --git a/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+new file mode 100644
+index 000000000000..9c0150834e6d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+@@ -0,0 +1,167 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/eswin,eic7700-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Eswin EIC7700 PCIe host controller
++
++maintainers:
++  - Yu Ning <ningyu@eswincomputing.com>
++  - Senchuan Zhang <zhangsenchuan@eswincomputing.com>
++  - Yanghui Ou <ouyanghui@eswincomputing.com>
++
++description:
++  Eswin EIC7700 SoC PCIe root complex controller is based on the Synopsys
++  DesignWare PCIe IP.
++
++properties:
++  compatible:
++    const: eswin,eic7700-pcie
++
++  reg:
++    maxItems: 3
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: config
++      - const: elbi
++
++  ranges:
++    maxItems: 3
++
++  '#interrupt-cells':
++    const: 1
++
++  interrupt-names:
++    items:
++      - const: msi
++      - const: inta
++      - const: intb
++      - const: intc
++      - const: intd
++
++  interrupt-map:
++    maxItems: 4
++
++  interrupt-map-mask:
++    items:
++      - const: 0
++      - const: 0
++      - const: 0
++      - const: 7
++
++  clocks:
++    maxItems: 4
++
++  clock-names:
++    items:
++      - const: mstr
++      - const: dbi
++      - const: phy_reg
++      - const: aux
++
++  resets:
++    maxItems: 2
++
++  reset-names:
++    items:
++      - const: dbi
++      - const: pwr
++
++patternProperties:
++  "^pcie@":
++    type: object
++    $ref: /schemas/pci/pci-pci-bridge.yaml#
++
++    properties:
++      reg:
++        maxItems: 1
++
++      num-lanes:
++        maximum: 4
++
++      resets:
++        maxItems: 1
++
++      reset-names:
++        items:
++          - const: perst
++
++    required:
++      - reg
++      - ranges
++      - num-lanes
++      - resets
++      - reset-names
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - ranges
++  - interrupts
++  - interrupt-names
++  - interrupt-map-mask
++  - interrupt-map
++  - '#interrupt-cells'
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++
++allOf:
++  - $ref: /schemas/pci/snps,dw-pcie.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        pcie@54000000 {
++            compatible = "eswin,eic7700-pcie";
++            reg = <0x0 0x54000000 0x0 0x4000000>,
++                  <0x0 0x40000000 0x0 0x800000>,
++                  <0x0 0x50000000 0x0 0x100000>;
++            reg-names = "dbi", "config", "elbi";
++            #address-cells = <3>;
++            #size-cells = <2>;
++            #interrupt-cells = <1>;
++            ranges = <0x01000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
++                     <0x02000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
++                     <0x43000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
++            bus-range = <0x00 0xff>;
++            clocks = <&clock 144>,
++                     <&clock 145>,
++                     <&clock 146>,
++                     <&clock 147>;
++            clock-names = "mstr", "dbi", "phy_reg", "aux";
++            resets = <&reset 97>,
++                     <&reset 98>;
++            reset-names = "dbi", "pwr";
++            interrupts = <220>, <179>, <180>, <181>, <182>, <183>, <184>, <185>, <186>;
++            interrupt-names = "msi", "inta", "intb", "intc", "intd";
++            interrupt-parent = <&plic>;
++            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
++            interrupt-map = <0x0 0x0 0x0 0x1 &plic 179>,
++                            <0x0 0x0 0x0 0x2 &plic 180>,
++                            <0x0 0x0 0x0 0x3 &plic 181>,
++                            <0x0 0x0 0x0 0x4 &plic 182>;
++            device_type = "pci";
++            pcie@0 {
++                reg = <0x0 0x0 0x0 0x0 0x0>;
++                #address-cells = <3>;
++                #size-cells = <2>;
++                ranges;
++                device_type = "pci";
++                num-lanes = <4>;
++                resets = <&reset 99>;
++                reset-names = "perst";
++            };
++        };
++    };
+--
+2.25.1
 
 
