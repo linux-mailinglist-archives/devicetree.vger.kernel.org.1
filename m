@@ -1,95 +1,199 @@
-Return-Path: <devicetree+bounces-240663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62CECC73DB8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:01:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF72BC73DC7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:01:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2F1DB4E5ED8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:01:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 9772C30787
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74EF3112BD;
-	Thu, 20 Nov 2025 12:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0483D330D4C;
+	Thu, 20 Nov 2025 12:01:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D68D33122F;
-	Thu, 20 Nov 2025 12:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29CD33122F
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 12:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763640080; cv=none; b=OActvMVQYPKXPjOIF23z8YbS5kO7t2WixcXwQkkdHoXheQnAI2398O1XR5LNKUPJByuwiWyGllJTzsOyc1NeIevyfCWdP6g4hGPgEXkeK65PezuybNxX7J1+kevYtpDId8cxzr5tIN4ZWLTjd/cq4VXtqPLSEYM92alROZimcog=
+	t=1763640084; cv=none; b=JPa7tjqLDwQt+lfYQEbcVLgXamHteW1QgxyqhKDKKwaSsjqIqEmqMhX8odVNkL5xPF4q5mzI3MSeTew05n7VToirU4ix5VoQSB+JlmarRRsWDRBOKAMG4HYfTIZEB9t7zYuLqFmwrtNdGvz7uDa+NFpybSQZwTwF9fowR1N5aJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763640080; c=relaxed/simple;
-	bh=mS8NAqaKf68WZnqFyiZLX0dvHR0+Ol8pZ0B2V8P28W8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=amgXluwEdhTFNdFLgd2foYOuTiuB5SYpL3TlELaMnbh0Ta9DWLW5YlYFRZSnjeo3qGvbSYhXACVgGUjatluZJqlYT6MDpDUkGX3kEagfGu3XSyHBe7n3jqU+eyWVy4JpuY+feSluxh7pGBJ/nF30r/v7aTL9VGldHgGF1mJLJwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [116.25.94.95])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2a4b77161;
-	Thu, 20 Nov 2025 20:01:15 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Chukun Pan <amadeus@jmu.edu.cn>,
+	s=arc-20240116; t=1763640084; c=relaxed/simple;
+	bh=KJsQC5O9cBTtiYQW8uUwYST5pWYTTuZxIoDDqSTU33Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=si6nGvUJXf6qVfQmY7leZPL6TiqZWcfiFAcObFVjDjz9xdgtB3d1xfksKTEdgq0XR1gAqLaM1wEiQg+xniAduM/eqC0Nt2/4HIzvnTiMSex+6LPVVIf0JuwzIjddfc6uWwr9FP7quHaRFGCpOX+jroVoIGaBPnRlRChfJN+SJqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <m.tretter@pengutronix.de>)
+	id 1vM3LU-0006rr-Rj; Thu, 20 Nov 2025 13:01:04 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <m.tretter@pengutronix.de>)
+	id 1vM3LU-001PVg-1C;
+	Thu, 20 Nov 2025 13:01:04 +0100
+Received: from mtr by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <m.tretter@pengutronix.de>)
+	id 1vM3LU-00E0d2-0v;
+	Thu, 20 Nov 2025 13:01:04 +0100
+Date: Thu, 20 Nov 2025 13:01:04 +0100
+From: Michael Tretter <m.tretter@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: rockchip: enable RTC for 100ASK DshanPi A1
-Date: Thu, 20 Nov 2025 20:00:11 +0800
-Message-Id: <20251120120011.279104-6-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251120120011.279104-1-amadeus@jmu.edu.cn>
-References: <20251120120011.279104-1-amadeus@jmu.edu.cn>
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v2 1/4] media: dt-bindings: adi,adv7180: add VPP and CSI
+ register maps
+Message-ID: <aR8DAObqhSh5BJky@pengutronix.de>
+Mail-Followup-To: Michael Tretter <m.tretter@pengutronix.de>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel@pengutronix.de
+References: <20251119-b4-adv7180-vpp-sub-device-v2-0-86a7790b63ab@pengutronix.de>
+ <20251119-b4-adv7180-vpp-sub-device-v2-1-86a7790b63ab@pengutronix.de>
+ <20251120-calm-invisible-bullmastiff-ceaf71@kuoka>
+ <aR7W76sUxs2gm1LL@pengutronix.de>
+ <bdc6a80f-3d26-420e-8c83-839f06c365a5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9aa123e40d03a2kunm2d0ac75b4ac5f
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCQx5LVh0YGB5MSRgYTxhMS1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk9VQk5ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVUpCS0
-	tZBg++
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <bdc6a80f-3d26-420e-8c83-839f06c365a5@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: m.tretter@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Enable RTC support for the 100ASK DshanPi A1 board.
+On Thu, 20 Nov 2025 10:05:43 +0100, Krzysztof Kozlowski wrote:
+> On 20/11/2025 09:53, Michael Tretter wrote:
+> > On Thu, 20 Nov 2025 09:04:48 +0100, Krzysztof Kozlowski wrote:
+> >> On Wed, Nov 19, 2025 at 05:25:51PM +0100, Michael Tretter wrote:
+> >>> diff --git a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+> >>> index dee8ce7cb7ba..dbbbe76291bc 100644
+> >>> --- a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+> >>> +++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+> >>> @@ -30,7 +30,27 @@ properties:
+> >>>            - adi,adv7282-m
+> >>>  
+> >>>    reg:
+> >>> -    maxItems: 1
+> >>> +    minItems: 1
+> >>> +    items:
+> >>> +      - description: main register map
+> >>> +      - description: CSI register map
+> >>> +      - description: VPP register map
+> >>> +    description:
+> >>> +      The ADV7180 family may have up to three register maps. All chips have
+> >>> +      the main register map. The availability of the CSI and VPP register maps
+> >>> +      depends on the chip variant.
+> >>> +
+> >>> +      The addresses of the CSI and VPP register maps are programmable by
+> >>> +      software. They depend on the board layout and other devices on the I2C
+> >>> +      bus and are determined by the hardware designer to avoid address
+> >>> +      conflicts on the I2C bus.
+> >>> +
+> >>> +  reg-names:
+> >>> +    minItems: 1
+> >>> +    items:
+> >>> +      - const: main
+> >>> +      - enum: [ csi, vpp ]
+> >>> +      - enum: [ csi, vpp ]
+> >>
+> >> Last entry must be:
+> >>
+> >> const: vpp
+> >>
+> >> We do not allow flexible order... but the problem is that your if:then:
+> >> does not match above at all. You do not have three items anywhere.
+> > 
+> > I'm not entirely sure, if I correctly understand that comment.
+> > 
+> > The adi,adv7280-m and adi,adv7282-m have all three items and don't need
+> > an if:then:. Do I have explicitly define the binding with three items,
+> > too?
+> 
+> Which comment? That third item cannot be csi? What is odd here?
+> 
+> 
+> > 
+> > The chip has the following variants:
+> > 
+> > adi,adv7180:     main
+> > adi,adv7180cp:   main
+> > adi,adv7180st:   main
+> > adi,adv7182:     main
+> > adi,adv7280:     main, vpp
+> > adi,adv7280-m:   main, csi, vpp
+> > adi,adv7281:     main, csi
+> > adi,adv7281-m:   main, csi
+> > adi,adv7281-ma:  main, csi
+> > adi,adv7282:     main, vpp
+> > adi,adv7282-m:   main, csi, vpp
+> 
+> So where is csi as third item?
+> 
+> Anyway, you also miss minItems in your if:then: cases.
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- .../arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+The minItems in the if:then: cases would be the same as in the top level
+definition. Do I have to override the minItems if it's the same?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dts b/arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dts
-index d23c87fe6a9d..b19f9b6be6bf 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dts
-@@ -655,6 +655,15 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c2 {
-+	status = "okay";
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1338";
-+		reg = <0x68>;
-+	};
-+};
-+
- &i2c4 {
- 	status = "okay";
- 
--- 
-2.25.1
+> 
+> > 
+> > If I make the last entry (vpp) const, I allow exactly these variants.
+> > 
+> > For the adi,adv7280-m compatible, the following combinations would be
+> > valid or invalid:
+> > 
+> > adi,adv7280-m:   main
+> > 
+> > is valid, because only main is mandatory. For csi and vpp, the default
+> > addresses are used.
+> > 
+> > adi,adv7280-m:   main, vpp
+> > 
+> > is valid, because the second entry may be vpp. For csi, the default
+> > address is used.
+> > 
+> > adi,adv7280-m:   main, vpp, csi
+> > 
+> > is invalid, because the entries must be in the defined order, and
+> > flexible order is not possible.
+> > 
+> > Is this correct and matches the binding definition?
+> 
+> It does not match your code.
 
+If I change the last entry to
+
+	- const: csi
+
+to disallow vpp as a third item (which is compliant to the example), the
+binding is fine. Correct?
+
+Michael
 
