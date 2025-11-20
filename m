@@ -1,56 +1,83 @@
-Return-Path: <devicetree+bounces-240824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 778D7C76340
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 21:30:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11EA4C76388
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 21:45:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 7174E28FDE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 20:30:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5CEF84E1FD5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 20:43:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFD03242CD;
-	Thu, 20 Nov 2025 20:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 990EC305953;
+	Thu, 20 Nov 2025 20:43:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WED9arYD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F7D36D50D;
-	Thu, 20 Nov 2025 20:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC662FFF9D;
+	Thu, 20 Nov 2025 20:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763670601; cv=none; b=kCd3BI42ZRkbiYBgn3HastRLEDXcyWKbd1ImdnsPkxVoWCQiyEbvRIEzODOAqe+FZgbdgQ1YY7llvqiocvM4l6+kFSjn7pdvBwVBmAEKaskbAcN2WeHNbh9Eu1dY2IBkZhOWWnroFJFps3Tt8DnOYumlE49j1F+WhYZ6ievS0b0=
+	t=1763671402; cv=none; b=noen2dbVouKtK/t53BoGpuhF+QAjWqyfdql1mN8+H7a4JcAbf7pbbdvo0PexfFf6INn3uteQ2gp6zBLTZewLixhQTCw8rMFzztscMha8KTUMYFkaKgFmiwDt3kj07qZobZ3vXZDZDNXM+4O32lj+9nIYSujo1zsDD+re4CiIjdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763670601; c=relaxed/simple;
-	bh=mO+Gt8tvYysjFRCC+UgxT9iMqoLBnVpPJj/73SAYUmg=;
+	s=arc-20240116; t=1763671402; c=relaxed/simple;
+	bh=UUn7JgKQmKikqCmbVJPQXE79ce57X7L+YEAlrs+V/qc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kPPbLo9NnCXetMk+Klc4ws6LHgBwRHSdczSh5sXsqz3ebPXWQlA3qa9K95TNPqi5DWKwqJkxEabHcVJRV0JcQOAukWEA/VeNgEFv5NKzeWLG1jsdEFhudJipM9KSPAWe7zZ8+NAmDOcBrUzi2gGMs1FoqcGWcI3rpYDvKi5CIKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dC92B4ylxz9tLf;
-	Thu, 20 Nov 2025 21:29:54 +0100 (CET)
-Authentication-Results: outgoing_mbo_mout;
-	dkim=none;
-	spf=pass (outgoing_mbo_mout: domain of linux@timmermann.space designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=linux@timmermann.space
-Date: Thu, 20 Nov 2025 21:29:51 +0100
-From: Lukas Timmermann <linux@timmermann.space>
-To: Henrik Grimler <henrik@grimler.se>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Alexandre Marquet <tb@a-marquet.fr>, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] ARM: dts: exynos: Add Samsung Manta (Google Nexus 10)
-Message-ID: <crpigxfixz3iagngdm4n3wkoct7aalkdvwruy5eyvujhoxiuat@sq234fwzdwe7>
-References: <20251120144018.961604-1-linux@timmermann.space>
- <20251120144018.961604-3-linux@timmermann.space>
- <20251120173120.GA10065@localhost>
+	 Content-Type:Content-Disposition:In-Reply-To; b=m10siZg7QnPZ0gHvmTLXCSbmQCHvrT+aqayGWTxPB1KH6PQcGzU545wSVxqURr2pv0xBLTe0yyy9SHVwM5waPUrfMVmG+7ZGbS97aEPGC+/FHjW8/fxkIKg+Hc1/l2EycO9jAR+S8/CUEBFJ7Ghc7szJkEwkO1jzYWpsOKyzyVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WED9arYD; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763671401; x=1795207401;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UUn7JgKQmKikqCmbVJPQXE79ce57X7L+YEAlrs+V/qc=;
+  b=WED9arYDYwkfzivM5PYru6Vxr7j2ZPaIIv0yUXUkE2lU05liZ2euDPCH
+   8hNC9t0xzGKdOJOe7PMlBzzCJlMSaoUoEY5XRrZSEKu6f6zpF037xFY4c
+   SNgiSTbbVwIz9Cyhrhp6b/hMPIfaQ2tanPhiXUdwMLjllsDTtyXii1vEW
+   5yWVRzclvfNGh7hipJ2wljB78cNUpb5cQIvKi6r1IRCjENttD893Gq7r7
+   7MnSYmtFQca01kz7zZT1PCjZOcJ2A0wCdTCUZXs3Y/T7eAAO59tyFu86Z
+   BGpWiesa/QO0HbG36W+eOeXBrSLFsVt8nKD7WAufFc3mG7HRfIbqpR+Zo
+   g==;
+X-CSE-ConnectionGUID: ZRMpywHBTwKpmXFwHPHn/g==
+X-CSE-MsgGUID: h0YGhaeDS56ZmUOgNkO3yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11619"; a="65634629"
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; 
+   d="scan'208";a="65634629"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2025 12:43:20 -0800
+X-CSE-ConnectionGUID: xgYWqL62TWizbyA9t+DeRA==
+X-CSE-MsgGUID: hEQyJtLyQR+bTh6H93KnCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,213,1758610800"; 
+   d="scan'208";a="191732009"
+Received: from lkp-server01.sh.intel.com (HELO adf6d29aa8d9) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 20 Nov 2025 12:43:15 -0800
+Received: from kbuild by adf6d29aa8d9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vMBUn-0004YJ-2e;
+	Thu, 20 Nov 2025 20:43:13 +0000
+Date: Fri, 21 Nov 2025 04:43:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Haibo Chen <haibo.chen@nxp.com>, Han Xu <han.xu@nxp.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, frank.li@nxp.com
+Cc: oe-kbuild-all@lists.linux.dev, linux-spi@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Haibo Chen <haibo.chen@nxp.com>
+Subject: Re: [PATCH v4 2/2] spi: add driver for NXP XSPI controller
+Message-ID: <202511210421.NAzUWBmi-lkp@intel.com>
+References: <20251119-xspi-v4-2-a451afbccf33@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,585 +86,294 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251120173120.GA10065@localhost>
-X-Rspamd-Queue-Id: 4dC92B4ylxz9tLf
+In-Reply-To: <20251119-xspi-v4-2-a451afbccf33@nxp.com>
 
-On Thu, Nov 20, 2025 at 06:31:20PM +0100, Henrik Grimler wrote:
-> Hi Lukas,
-> 
-> On Thu, Nov 20, 2025 at 03:40:15PM +0100, Lukas Timmermann wrote:
-> > From: Alexandre Marquet <tb@a-marquet.fr>
-> > 
-> > Manta is the code name for Google Nexus 10, and was manufactured by
-> > Samsung. This patch adds initial device-tree file for this board.
-> > 
-> > Co-developed-by: Alexandre Marquet <tb@a-marquet.fr>
-> > Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
-> > Co-developed-by: Lukas Timmermann <linux@timmermann.space>
-> > Signed-off-by: Lukas Timmermann <linux@timmermann.space>
-> 
-> Awesome! I think this series would benefit from a cover letter
-> explaining what features are working, and perhaps saying something
-> about other patches that will be sent separately (if any). The as3668
-> led driver and bindings for example has not been merged, right? Adding
-> the lore link in a cover letter would therefore help reviewers.
-> 
-I sent the cover letter just now. There was a mistake on my side. Sorry.
-> One nitpick below that I happened to notice.
-> 
-> > ---
-> >  arch/arm/boot/dts/samsung/Makefile            |   1 +
-> >  .../exynos5250-samsung-nexus10-manta.dts      | 516 ++++++++++++++++++
-> >  2 files changed, 517 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/samsung/exynos5250-samsung-nexus10-manta.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/samsung/Makefile b/arch/arm/boot/dts/samsung/Makefile
-> > index 7becf36656b1..c9cb06a8ff97 100644
-> > --- a/arch/arm/boot/dts/samsung/Makefile
-> > +++ b/arch/arm/boot/dts/samsung/Makefile
-> > @@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
-> >  	exynos4412-trats2.dtb
-> >  dtb-$(CONFIG_ARCH_EXYNOS5) += \
-> >  	exynos5250-arndale.dtb \
-> > +	exynos5250-samsung-nexus10-manta.dtb \
-> >  	exynos5250-smdk5250.dtb \
-> >  	exynos5250-snow.dtb \
-> >  	exynos5250-snow-rev5.dtb \
-> > diff --git a/arch/arm/boot/dts/samsung/exynos5250-samsung-nexus10-manta.dts b/arch/arm/boot/dts/samsung/exynos5250-samsung-nexus10-manta.dts
-> > new file mode 100644
-> > index 000000000000..84df54941bcd
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/samsung/exynos5250-samsung-nexus10-manta.dts
-> > @@ -0,0 +1,516 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Samsung Manta (Google Nexus 10) board device tree source
-> > + *
-> > + * Copyright (c) 2023-2025 Alexandre Marquet
-> > + * Copyright (c) 2025 Lukas Timmermann
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include <dt-bindings/leds/common.h>
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/clock/maxim,max77686.h>
-> > +#include <dt-bindings/input/linux-event-codes.h>
-> > +#include "exynos-pinctrl.h"
-> > +#include "exynos5250.dtsi"
-> > +#include "exynos-mfc-reserved-memory.dtsi"
-> > +
-> > +/ {
-> > +	model = "Google Nexus 10";
-> > +	compatible = "samsung,nexus10-manta", "samsung,exynos5250", "samsung,exynos5";
-> > +
-> > +	aliases {
-> > +		mmc0 = &mmc_0; /* eMMC */
-> > +		mmc1 = &mmc_1; /* WiFi */
-> > +	};
-> > +
-> > +	memory@40000000 {
-> > +		device_type = "memory";
-> > +		reg = <0x40000000 0x20000000
-> > +		       0x60000000 0x20000000
-> > +		       0x80000000 0x20000000
-> > +		       0xa0000000 0x1FF00000>;
-> 
-> Please use lower case letters, 0x1ff00000.
-> 
-> Best regards,
-> Henrik Grimler
-> 
-Thanks. I will fix that.
+Hi Haibo,
 
-Best regards,
-Lukas Timmermann
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = &serial_2;
-> > +	};
-> > +
-> > +	firmware@204f000 {
-> > +		compatible = "samsung,secure-firmware";
-> > +		reg = <0x0204f000 0x1000>;
-> > +	};
-> > +
-> > +	fixed-rate-clocks {
-> > +		xxti {
-> > +			compatible = "samsung,clock-xxti";
-> > +			clock-frequency = <24000000>;
-> > +		};
-> > +
-> > +		xusbxti {
-> > +			compatible = "samsung,clock-xusbxti";
-> > +			clock-frequency = <24000000>;
-> > +		};
-> > +	};
-> > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&gpio_keys>;
-> > +
-> > +		key-down {
-> > +			gpios = <&gpx2 1 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_VOLUMEDOWN>;
-> > +			label = "volume down";
-> > +			debounce-interval = <5>;
-> > +		};
-> > +
-> > +		key-up {
-> > +			gpios = <&gpx2 0 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_VOLUMEUP>;
-> > +			label = "volume up";
-> > +			debounce-interval = <5>;
-> > +		};
-> > +
-> > +		key-power {
-> > +			gpios = <&gpx2 7 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_POWER>;
-> > +			label = "power";
-> > +			debounce-interval = <5>;
-> > +			wakeup-source;
-> > +		};
-> > +
-> > +		lid-switch {
-> > +			label = "Lid";
-> > +			gpios = <&gpx1 3 GPIO_ACTIVE_LOW>;
-> > +			linux,input-type = <5>; /* EV_SW */
-> > +			linux,code = <0>; /* SW_LID */
-> > +			debounce-interval = <10>;
-> > +			wakeup-source;
-> > +		};
-> > +	};
-> > +
-> > +	multi-led {
-> > +		compatible = "leds-group-multicolor";
-> > +		color = <LED_COLOR_ID_RGB>;
-> > +		function = LED_FUNCTION_STATUS;
-> > +		leds = <&status_red>, <&status_green>, <&status_blue>, <&status_white>;
-> > +	};
-> > +
-> > +	wlan_pwrseq: mmc1-pwrseq {
-> > +		compatible = "mmc-pwrseq-simple";
-> > +		reset-gpios = <&gpv1 0 GPIO_ACTIVE_LOW>;
-> > +		pinctrl-0 = <&wlan_pmena>;
-> > +		pinctrl-names = "default";
-> > +		clocks = <&max77686 MAX77686_CLK_PMIC>;
-> > +		clock-names = "ext_clock";
-> > +		post-power-on-delay-ms = <300>;
-> > +		power-off-delay-us = <50>;
-> > +	};
-> > +
-> > +	bmp180_vddd_reg: regulator-bmp180-vddd {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "BMP180_VDDD";
-> > +	};
-> > +
-> > +	bmp180_vdda_reg: regulator-bmp180-vdda {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "BMP180_VDDA";
-> > +	};
-> > +};
-> > +
-> > +&clock {
-> > +	assigned-clocks = <&clock CLK_FOUT_APLL>;
-> > +	assigned-clock-rates = <1000000000>;
-> > +};
-> > +
-> > +&cpu0 {
-> > +	cpu0-supply = <&buck2_reg>;
-> > +};
-> > +
-> > +&ehci {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +&i2c_0 {
-> > +	status = "okay";
-> > +	samsung,i2c-sda-delay = <100>;
-> > +	samsung,i2c-slave-addr = <0x10>;
-> > +};
-> > +
-> > +&i2c_1 {
-> > +	status = "okay";
-> > +
-> > +	pressure@77 {
-> > +		compatible = "bosch,bmp180";
-> > +		reg = <0x77>;
-> > +		vddd-supply = <&bmp180_vddd_reg>;
-> > +		vdda-supply = <&bmp180_vdda_reg>;
-> > +	};
-> > +
-> > +	imu@68 {
-> > +		compatible = "invensense,mpu6050";
-> > +		reg = <0x68>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&acc_int>;
-> > +		interrupt-parent = <&gpx1>;
-> > +		interrupts = <4 IRQ_TYPE_EDGE_RISING>;
-> > +		mount-matrix = "0",  "-1",  "0",
-> > +				"-1",  "0",  "0",
-> > +				"0",  "0", "-1";
-> > +
-> > +		i2c-gate {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			magnetometer@c {
-> > +				compatible = "asahi-kasei,ak8963";
-> > +				reg = <0x0c>;
-> > +				pinctrl-names = "default";
-> > +				pinctrl-0 = <&msense_rst>;
-> > +				mount-matrix = "-1",  "0",  "0",
-> > +						"0",  "1",  "0",
-> > +						"0",  "0", "-1";
-> > +			};
-> > +		};
-> > +	};
-> > +
-> > +	led-controller@42 {
-> > +		compatible = "ams,as3668";
-> > +		reg = <0x42>;
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> > +		status_red: led@0 {
-> > +			reg = <0x0>;
-> > +			function = LED_FUNCTION_STATUS;
-> > +			color = <LED_COLOR_ID_RED>;
-> > +		};
-> > +
-> > +		status_green: led@1 {
-> > +			reg = <0x1>;
-> > +			function = LED_FUNCTION_STATUS;
-> > +			color = <LED_COLOR_ID_GREEN>;
-> > +		};
-> > +
-> > +		status_blue: led@2 {
-> > +			reg = <0x2>;
-> > +			function = LED_FUNCTION_STATUS;
-> > +			color = <LED_COLOR_ID_BLUE>;
-> > +		};
-> > +
-> > +		status_white: led@3 {
-> > +			reg = <0x3>;
-> > +			function = LED_FUNCTION_STATUS;
-> > +			color = <LED_COLOR_ID_WHITE>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&i2c_2 {
-> > +	status = "okay";
-> > +
-> > +	light-sensor@23 {
-> > +		compatible = "rohm,bh1721";
-> > +		reg = <0x23>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&bh1721fvc_reset>;
-> > +		reset-gpios = <&gph1 2 GPIO_ACTIVE_LOW>;
-> > +	};
-> > +
-> > +	onewire@18 {
-> > +		compatible = "maxim,ds2484";
-> > +		reg = <0x18>;
-> > +
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&onewire_sleep>;
-> > +	};
-> > +};
-> > +
-> > +&i2c_5 {
-> > +	status = "okay";
-> > +	samsung,i2c-sda-delay = <100>;
-> > +
-> > +	max77686: pmic@9 {
-> > +		compatible = "maxim,max77686";
-> > +		reg = <0x09>;
-> > +		interrupt-parent = <&gpx0>;
-> > +		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&max77686_irq>;
-> > +		#clock-cells = <1>;
-> > +		wakeup-source;
-> > +
-> > +		voltage-regulators {
-> > +			ldo3_reg: LDO3 {
-> > +				regulator-name = "VCC_1.8V_AP";
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			ldo8_reg: LDO8 {
-> > +				regulator-name = "VMIPI_1.0V";
-> > +				regulator-min-microvolt = <1000000>;
-> > +				regulator-max-microvolt = <1000000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			ldo9_reg: LDO9 {
-> > +				regulator-name = "TOUCH_VDD_1.8V";
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +			};
-> > +			ldo10_reg: LDO10 {
-> > +				regulator-name = "VMIPI_1.8V";
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			ldo12_reg: LDO12 {
-> > +				regulator-name = "VUOTG_3.0V";
-> > +				regulator-min-microvolt = <3000000>;
-> > +				regulator-max-microvolt = <3000000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			ldo15_reg: LDO15 {
-> > +				regulator-name = "VHSIC_1.0V";
-> > +				regulator-min-microvolt = <1000000>;
-> > +				regulator-max-microvolt = <1000000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			ldo16_reg: LDO16 {
-> > +				regulator-name = "VHSIC_1.8V";
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			ldo17_reg: LDO17 {
-> > +				regulator-name = "5M_CORE_1.5V";
-> > +				regulator-min-microvolt = <1500000>;
-> > +				regulator-max-microvolt = <1500000>;
-> > +			};
-> > +			ldo18_reg: LDO18 {
-> > +				regulator-name = "CAM_IO_1.8V";
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +			};
-> > +			ldo19_reg: LDO19 {
-> > +				regulator-name = "VT_CAM_1.8V";
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +			};
-> > +			ldo20_reg: LDO20 {
-> > +				regulator-name = "TA_CHECK_1.35V";
-> > +				regulator-min-microvolt = <1350000>;
-> > +				regulator-max-microvolt = <1350000>;
-> > +			};
-> > +			ldo23_reg: LDO23 {
-> > +				regulator-name = "TSP_AVDD_2.8V";
-> > +				regulator-min-microvolt = <2800000>;
-> > +				regulator-max-microvolt = <2800000>;
-> > +			};
-> > +			ldo24_reg: LDO24 {
-> > +				regulator-name = "CAM_AF_2.8V";
-> > +				regulator-min-microvolt = <2800000>;
-> > +				regulator-max-microvolt = <2800000>;
-> > +			};
-> > +			ldo25_reg: LDO25 {
-> > +				regulator-name = "VADC_3.3V";
-> > +				regulator-min-microvolt = <3300000>;
-> > +				regulator-max-microvolt = <3300000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			buck1_reg: BUCK1 {
-> > +				regulator-name = "vdd_mif";
-> > +				regulator-min-microvolt = <850000>;
-> > +				regulator-max-microvolt = <1200000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			buck2_reg: BUCK2 {
-> > +				regulator-name = "vdd_arm";
-> > +				regulator-min-microvolt = <850000>;
-> > +				regulator-max-microvolt = <1200000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			buck3_reg: BUCK3 {
-> > +				regulator-name = "vdd_int";
-> > +				regulator-min-microvolt = <850000>;
-> > +				regulator-max-microvolt = <1200000>;
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +			};
-> > +			buck4_reg: BUCK4 {
-> > +				regulator-name = "vdd_g3d";
-> > +				regulator-min-microvolt = <850000>;
-> > +				regulator-max-microvolt = <1200000>;
-> > +				regulator-boot-on;
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&mali {
-> > +	status = "okay";
-> > +	mali-supply = <&buck4_reg>;
-> > +};
-> > +
-> > +&mixer {
-> > +	status = "okay";
-> > +};
-> > +
-> > +/* eMMC */
-> > +&mmc_0 {
-> > +	status = "okay";
-> > +	non-removable;
-> > +	max-frequency = <200000000>;
-> > +	sd-uhs-ddr50;
-> > +	mmc-ddr-1_8v;
-> > +	cap-mmc-hw-reset;
-> > +	mmc-hs200-1_8v;
-> > +	bus-width = <8>;
-> > +	card-detect-delay = <200>;
-> > +	samsung,dw-mshc-ciu-div = <3>;
-> > +	samsung,dw-mshc-sdr-timing = <1 2>;
-> > +	samsung,dw-mshc-ddr-timing = <2 3>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&sd0_clk &sd0_cmd &sd0_bus4 &sd0_bus8>;
-> > +};
-> > +
-> > +/* WiFi */
-> > +&mmc_1 {
-> > +	status = "okay";
-> > +	non-removable;
-> > +	max-frequency = <100000000>;
-> > +	sd-uhs-sdr50;
-> > +	cap-sd-highspeed;
-> > +	keep-power-in-suspend;
-> > +	bus-width = <4>;
-> > +	card-detect-delay = <0>;
-> > +	samsung,dw-mshc-ciu-div = <3>;
-> > +	samsung,dw-mshc-sdr-timing = <2 4>;
-> > +	samsung,dw-mshc-ddr-timing = <2 3>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&sd1_clk &sd1_cmd &sd1_bus4>;
-> > +	mmc-pwrseq = <&wlan_pwrseq>;
-> > +
-> > +	wifi@1 {
-> > +		compatible = "brcm,bcm4330-fmac", "brcm,bcm4329-fmac";
-> > +		reg = <1>;
-> > +		interrupt-parent = <&gpx2>;
-> > +		interrupts = <5 IRQ_TYPE_NONE>;
-> > +		interrupt-names = "host-wake";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&wlan_irq>;
-> > +	};
-> > +};
-> > +
-> > +&ohci {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +&pinctrl_0 {
-> > +	acc_int: acc-int-pins {
-> > +		samsung,pins = "gpx1-4";
-> > +		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-> > +		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-> > +	};
-> > +
-> > +	max77686_irq: max77686-irq-pins {
-> > +		samsung,pins = "gpx0-2";
-> > +		samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
-> > +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> > +		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV1>;
-> > +	};
-> > +	gpio_keys: gpio-keys-pins-pins {
-> > +		samsung,pins = "gpx2-0", "gpx2-1", "gpx2-7", "gpx1-3";
-> > +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> > +	};
-> > +	wlan_irq: wlan-irq-pins {
-> > +		samsung,pins = "gpx2-5";
-> > +		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
-> > +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> > +		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV3>;
-> > +	};
-> > +};
-> > +
-> > +&pinctrl_1 {
-> > +	bh1721fvc_reset: bh1721fvc-reset-pins {
-> > +		samsung,pins = "gph1-2";
-> > +		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-> > +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> > +	};
-> > +	msense_rst: msense-rst-pins {
-> > +		samsung,pins = "gpg2-0";
-> > +		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-> > +	};
-> > +	onewire_sleep: onewire-sleep-pins {
-> > +		samsung,pins = "gpg0-0";
-> > +		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-> > +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> > +		samsung,pin-con-pdn = <EXYNOS_PIN_PDN_INPUT>;
-> > +		samsung,pin-pud-pdn = <EXYNOS_PIN_PULL_NONE>;
-> > +	};
-> > +};
-> > +
-> > +&pinctrl_2 {
-> > +	wlan_pmena: wlan-pmena-pins {
-> > +		samsung,pins = "gpv1-0";
-> > +		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-> > +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> > +		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV3>;
-> > +		samsung,pin-con-pdn = <EXYNOS_PIN_PDN_PREV>;
-> > +		samsung,pin-val = <0>;
-> > +	};
-> > +};
-> > +
-> > +&pmu_system_controller {
-> > +	assigned-clocks = <&pmu_system_controller 0>;
-> > +	assigned-clock-parents = <&clock CLK_FIN_PLL>;
-> > +};
-> > +
-> > +&sd1_bus4 {
-> > +	samsung,pin-con-pdn = <EXYNOS_PIN_PDN_INPUT>;
-> > +	samsung,pin-pud-pdn = <EXYNOS_PIN_PULL_NONE>;
-> > +};
-> > +
-> > +&sd1_cmd {
-> > +	samsung,pin-con-pdn = <EXYNOS_PIN_PDN_INPUT>;
-> > +	samsung,pin-pud-pdn = <EXYNOS_PIN_PULL_NONE>;
-> > +};
-> > +
-> > +/* Bluetooth */
-> > +&serial_0 {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +&serial_1 {
-> > +	pinctrl-names = "default", "flow-control";
-> > +	pinctrl-0 = <&uart1_data>;
-> > +	pinctrl-1 = <&uart1_data>, <&uart1_fctl>;
-> > +};
-> > +
-> > +&serial_2 {
-> > +	pinctrl-names = "default", "flow-control";
-> > +	pinctrl-0 = <&uart2_data>;
-> > +	pinctrl-1 = <&uart2_data>, <&uart2_fctl>;
-> > +};
-> > +
-> > +&usbdrd {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +&usbdrd_dwc3 {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +&usbdrd_phy {
-> > +	status = "disabled";
-> > +};
-> > -- 
-> > 2.52.0
-> > 
-> > 
-> 
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on fe4d0dea039f2befb93f27569593ec209843b0f5]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Haibo-Chen/dt-bindings-spi-Document-imx94-xspi/20251119-185220
+base:   fe4d0dea039f2befb93f27569593ec209843b0f5
+patch link:    https://lore.kernel.org/r/20251119-xspi-v4-2-a451afbccf33%40nxp.com
+patch subject: [PATCH v4 2/2] spi: add driver for NXP XSPI controller
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20251121/202511210421.NAzUWBmi-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251121/202511210421.NAzUWBmi-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511210421.NAzUWBmi-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:50:9: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      50 |         BUILD_BUG_ON_MSG(condition, "BUILD_BUG_ON failed: " #condition)
+         |         ^~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:21:9: note: in expansion of macro 'BUILD_BUG_ON'
+      21 |         BUILD_BUG_ON(((n) & ((n) - 1)) != 0)
+         |         ^~~~~~~~~~~~
+   include/linux/bitfield.h:75:17: note: in expansion of macro '__BUILD_BUG_ON_NOT_POWER_OF_2'
+      75 |                 __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:115:17: note: in expansion of macro '__BF_FIELD_CHECK'
+     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+         |                 ^~~~~~~~~~~~~~~~
+   drivers/spi/spi-nxp-xspi.c:661:15: note: in expansion of macro 'FIELD_PREP'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |               ^~~~~~~~~~
+   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
+      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
+         |                                 ^~~~~~~~~~~~
+   drivers/spi/spi-nxp-xspi.c:114:41: note: in expansion of macro 'GENMASK'
+     114 | #define XSPI_DLLCRA_DLLRES_MASK         GENMASK(32, 20)
+         |                                         ^~~~~~~
+   drivers/spi/spi-nxp-xspi.c:661:26: note: in expansion of macro 'XSPI_DLLCRA_DLLRES_MASK'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
+      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+         |                           ^~
+   include/linux/compiler_types.h:582:23: note: in definition of macro '__compiletime_assert'
+     582 |                 if (!(condition))                                       \
+         |                       ^~~~~~~~~
+   include/linux/compiler_types.h:602:9: note: in expansion of macro '_compiletime_assert'
+     602 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
+      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:50:9: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      50 |         BUILD_BUG_ON_MSG(condition, "BUILD_BUG_ON failed: " #condition)
+         |         ^~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:21:9: note: in expansion of macro 'BUILD_BUG_ON'
+      21 |         BUILD_BUG_ON(((n) & ((n) - 1)) != 0)
+         |         ^~~~~~~~~~~~
+   include/linux/bitfield.h:75:17: note: in expansion of macro '__BUILD_BUG_ON_NOT_POWER_OF_2'
+      75 |                 __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:76:56: note: in expansion of macro '__bf_shf'
+      76 |                                               (1ULL << __bf_shf(_mask))); \
+         |                                                        ^~~~~~~~
+   include/linux/bitfield.h:115:17: note: in expansion of macro '__BF_FIELD_CHECK'
+     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+         |                 ^~~~~~~~~~~~~~~~
+   drivers/spi/spi-nxp-xspi.c:661:15: note: in expansion of macro 'FIELD_PREP'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |               ^~~~~~~~~~
+   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
+      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
+         |                                 ^~~~~~~~~~~~
+   drivers/spi/spi-nxp-xspi.c:114:41: note: in expansion of macro 'GENMASK'
+     114 | #define XSPI_DLLCRA_DLLRES_MASK         GENMASK(32, 20)
+         |                                         ^~~~~~~
+   drivers/spi/spi-nxp-xspi.c:661:26: note: in expansion of macro 'XSPI_DLLCRA_DLLRES_MASK'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~
+   In file included from drivers/spi/spi-nxp-xspi.c:34:
+   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
+      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+         |                           ^~
+   include/linux/bitfield.h:45:38: note: in definition of macro '__bf_shf'
+      45 | #define __bf_shf(x) (__builtin_ffsll(x) - 1)
+         |                                      ^
+   drivers/spi/spi-nxp-xspi.c:661:15: note: in expansion of macro 'FIELD_PREP'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |               ^~~~~~~~~~
+   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
+      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
+         |                                 ^~~~~~~~~~~~
+   drivers/spi/spi-nxp-xspi.c:114:41: note: in expansion of macro 'GENMASK'
+     114 | #define XSPI_DLLCRA_DLLRES_MASK         GENMASK(32, 20)
+         |                                         ^~~~~~~
+   drivers/spi/spi-nxp-xspi.c:661:26: note: in expansion of macro 'XSPI_DLLCRA_DLLRES_MASK'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
+      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+         |                           ^~
+   include/linux/bitfield.h:116:63: note: in definition of macro 'FIELD_PREP'
+     116 |                 ((typeof(_mask))(_val) << __bf_shf(_mask)) & (_mask);   \
+         |                                                               ^~~~~
+   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
+      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
+         |                                 ^~~~~~~~~~~~
+   drivers/spi/spi-nxp-xspi.c:114:41: note: in expansion of macro 'GENMASK'
+     114 | #define XSPI_DLLCRA_DLLRES_MASK         GENMASK(32, 20)
+         |                                         ^~~~~~~
+   drivers/spi/spi-nxp-xspi.c:661:26: note: in expansion of macro 'XSPI_DLLCRA_DLLRES_MASK'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~
+   In function 'nxp_xspi_dll_auto',
+       inlined from 'nxp_xspi_select_mem' at drivers/spi/spi-nxp-xspi.c:771:3:
+>> include/linux/compiler_types.h:602:45: error: call to '__compiletime_assert_346' declared with attribute error: FIELD_PREP: mask is zero
+     602 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |                                             ^
+   include/linux/compiler_types.h:583:25: note: in definition of macro '__compiletime_assert'
+     583 |                         prefix ## suffix();                             \
+         |                         ^~~~~~
+   include/linux/compiler_types.h:602:9: note: in expansion of macro '_compiletime_assert'
+     602 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
+      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:67:17: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      67 |                 BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero");    \
+         |                 ^~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:115:17: note: in expansion of macro '__BF_FIELD_CHECK'
+     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+         |                 ^~~~~~~~~~~~~~~~
+   drivers/spi/spi-nxp-xspi.c:661:15: note: in expansion of macro 'FIELD_PREP'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |               ^~~~~~~~~~
+--
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:50:9: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      50 |         BUILD_BUG_ON_MSG(condition, "BUILD_BUG_ON failed: " #condition)
+         |         ^~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:21:9: note: in expansion of macro 'BUILD_BUG_ON'
+      21 |         BUILD_BUG_ON(((n) & ((n) - 1)) != 0)
+         |         ^~~~~~~~~~~~
+   include/linux/bitfield.h:75:17: note: in expansion of macro '__BUILD_BUG_ON_NOT_POWER_OF_2'
+      75 |                 __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:115:17: note: in expansion of macro '__BF_FIELD_CHECK'
+     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+         |                 ^~~~~~~~~~~~~~~~
+   spi-nxp-xspi.c:661:15: note: in expansion of macro 'FIELD_PREP'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |               ^~~~~~~~~~
+   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
+      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
+         |                                 ^~~~~~~~~~~~
+   spi-nxp-xspi.c:114:41: note: in expansion of macro 'GENMASK'
+     114 | #define XSPI_DLLCRA_DLLRES_MASK         GENMASK(32, 20)
+         |                                         ^~~~~~~
+   spi-nxp-xspi.c:661:26: note: in expansion of macro 'XSPI_DLLCRA_DLLRES_MASK'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
+      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+         |                           ^~
+   include/linux/compiler_types.h:582:23: note: in definition of macro '__compiletime_assert'
+     582 |                 if (!(condition))                                       \
+         |                       ^~~~~~~~~
+   include/linux/compiler_types.h:602:9: note: in expansion of macro '_compiletime_assert'
+     602 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
+      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:50:9: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      50 |         BUILD_BUG_ON_MSG(condition, "BUILD_BUG_ON failed: " #condition)
+         |         ^~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:21:9: note: in expansion of macro 'BUILD_BUG_ON'
+      21 |         BUILD_BUG_ON(((n) & ((n) - 1)) != 0)
+         |         ^~~~~~~~~~~~
+   include/linux/bitfield.h:75:17: note: in expansion of macro '__BUILD_BUG_ON_NOT_POWER_OF_2'
+      75 |                 __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:76:56: note: in expansion of macro '__bf_shf'
+      76 |                                               (1ULL << __bf_shf(_mask))); \
+         |                                                        ^~~~~~~~
+   include/linux/bitfield.h:115:17: note: in expansion of macro '__BF_FIELD_CHECK'
+     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+         |                 ^~~~~~~~~~~~~~~~
+   spi-nxp-xspi.c:661:15: note: in expansion of macro 'FIELD_PREP'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |               ^~~~~~~~~~
+   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
+      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
+         |                                 ^~~~~~~~~~~~
+   spi-nxp-xspi.c:114:41: note: in expansion of macro 'GENMASK'
+     114 | #define XSPI_DLLCRA_DLLRES_MASK         GENMASK(32, 20)
+         |                                         ^~~~~~~
+   spi-nxp-xspi.c:661:26: note: in expansion of macro 'XSPI_DLLCRA_DLLRES_MASK'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~
+   In file included from spi-nxp-xspi.c:34:
+   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
+      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+         |                           ^~
+   include/linux/bitfield.h:45:38: note: in definition of macro '__bf_shf'
+      45 | #define __bf_shf(x) (__builtin_ffsll(x) - 1)
+         |                                      ^
+   spi-nxp-xspi.c:661:15: note: in expansion of macro 'FIELD_PREP'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |               ^~~~~~~~~~
+   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
+      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
+         |                                 ^~~~~~~~~~~~
+   spi-nxp-xspi.c:114:41: note: in expansion of macro 'GENMASK'
+     114 | #define XSPI_DLLCRA_DLLRES_MASK         GENMASK(32, 20)
+         |                                         ^~~~~~~
+   spi-nxp-xspi.c:661:26: note: in expansion of macro 'XSPI_DLLCRA_DLLRES_MASK'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
+      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+         |                           ^~
+   include/linux/bitfield.h:116:63: note: in definition of macro 'FIELD_PREP'
+     116 |                 ((typeof(_mask))(_val) << __bf_shf(_mask)) & (_mask);   \
+         |                                                               ^~~~~
+   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
+      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
+         |                                 ^~~~~~~~~~~~
+   spi-nxp-xspi.c:114:41: note: in expansion of macro 'GENMASK'
+     114 | #define XSPI_DLLCRA_DLLRES_MASK         GENMASK(32, 20)
+         |                                         ^~~~~~~
+   spi-nxp-xspi.c:661:26: note: in expansion of macro 'XSPI_DLLCRA_DLLRES_MASK'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~
+   In function 'nxp_xspi_dll_auto',
+       inlined from 'nxp_xspi_select_mem' at spi-nxp-xspi.c:771:3:
+>> include/linux/compiler_types.h:602:45: error: call to '__compiletime_assert_346' declared with attribute error: FIELD_PREP: mask is zero
+     602 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |                                             ^
+   include/linux/compiler_types.h:583:25: note: in definition of macro '__compiletime_assert'
+     583 |                         prefix ## suffix();                             \
+         |                         ^~~~~~
+   include/linux/compiler_types.h:602:9: note: in expansion of macro '_compiletime_assert'
+     602 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
+      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+         |                                     ^~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:67:17: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+      67 |                 BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero");    \
+         |                 ^~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:115:17: note: in expansion of macro '__BF_FIELD_CHECK'
+     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+         |                 ^~~~~~~~~~~~~~~~
+   spi-nxp-xspi.c:661:15: note: in expansion of macro 'FIELD_PREP'
+     661 |               FIELD_PREP(XSPI_DLLCRA_DLLRES_MASK, 0x08) |
+         |               ^~~~~~~~~~
+
+
+vim +/__compiletime_assert_346 +602 include/linux/compiler_types.h
+
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  588  
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  589  #define _compiletime_assert(condition, msg, prefix, suffix) \
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  590  	__compiletime_assert(condition, msg, prefix, suffix)
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  591  
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  592  /**
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  593   * compiletime_assert - break build and emit msg if condition is false
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  594   * @condition: a compile-time constant condition to check
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  595   * @msg:       a message to emit if condition is false
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  596   *
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  597   * In tradition of POSIX assert, this macro will break the build if the
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  598   * supplied condition is *false*, emitting the supplied error message if the
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  599   * compiler has support to do so.
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  600   */
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  601  #define compiletime_assert(condition, msg) \
+eb5c2d4b45e3d2 Will Deacon 2020-07-21 @602  	_compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+eb5c2d4b45e3d2 Will Deacon 2020-07-21  603  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
