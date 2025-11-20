@@ -1,124 +1,102 @@
-Return-Path: <devicetree+bounces-240555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9692C72C09
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:17:57 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D103C72CCC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:23:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E26044E4C11
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:17:56 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1A6C8353605
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:22:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C997257848;
-	Thu, 20 Nov 2025 08:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C9D3101D3;
+	Thu, 20 Nov 2025 08:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kpW7Ue26"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="XgSq4ELR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 192CD23D7EA;
-	Thu, 20 Nov 2025 08:17:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A59030BF60;
+	Thu, 20 Nov 2025 08:20:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763626673; cv=none; b=sVCoP6FdYn9D44kHj8mzEx3JhUO+IIThj/Qh1+n+gvQnbhug+ySjfwpqGsnAc5LmwYoz2m6S+VSWZZ/vNyZoGfECR3+p6MjNHyw9kE4QU8+tuthLaSu3kembDGxlIBmEP3+DRSgme3txRZD0iM0fBXCqA7magF9jWnq8gD0emfY=
+	t=1763626849; cv=none; b=pRqqkJbxUTLe6F2EAGLfUm/gdf0uv69fO1qBIvk9BHzXnAJqdaCy7vAR8HHpd4klzVwBqL0zCpylTSvggR8If8aCaFPBBQJOJSV3AWiIr43Cmf3IENN2ysmamBL5SVBpbm+xr7yZ0oHc8kCRzvNUhdmsyGMJlt0uPS45R03dXBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763626673; c=relaxed/simple;
-	bh=vCh0Nf9ol/SJ8LORneyZFWOq+kGqweHI+LiY7Sod7EY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dyH8vpWaiGO+ifCDKpI7wRk3w5vnuXtFddHSF+FOmLjR/Wi+ZftIWMpYlv1p3X+MMJHk7RWlyT11Q84rXpHfvOpbngPfydtNMZIsoofk9K3FcB0HdJ3vmkqB81edEURVUVLh2CnJlKqNdZGpR+G9NhkuPqJxfbsCVqQ+onEClYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kpW7Ue26; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D1C1C4CEF1;
-	Thu, 20 Nov 2025 08:17:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763626671;
-	bh=vCh0Nf9ol/SJ8LORneyZFWOq+kGqweHI+LiY7Sod7EY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kpW7Ue26N0TujXycX/gjDfNHp8Uup9OzwpT01gMm2Ae9M94LKOK393piRsqZVieED
-	 Ai2yZe2evN3jXQG4g5R9DD3dFp3Tk95SdGBB8zpau3tLuvsZF86ieQwxfWrpCvuHnl
-	 Hy/vvTpE6d7VLJ5oyQ0AEieg148Qb69/T2/T3GfnF9yK+Mam8qEADjAxHQHuALTUw+
-	 AYA8os2aXRWfVaQZJ/Obg45FEndp+3bgiyaty3W91Hm2xAKE/QklRqoM9YYeLtdwqi
-	 bRWF8O1X3V39DLllsfceQ5sdmHTI16jae3zzF+1VRnLOFU40krHrTT7kgSWLB7vi0l
-	 sK4WQOi/kxAmw==
-Date: Thu, 20 Nov 2025 09:17:49 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, michal.simek@amd.com, Thinh.Nguyen@synopsys.com, 
-	p.zabel@pengutronix.de, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, git@amd.com
-Subject: Re: [PATCH 1/3] dt-bindings: usb: dwc3-xilinx: Add MMI USB support
- on Versal Gen2 platform
-Message-ID: <20251120-affable-markhor-of-authority-a9e63c@kuoka>
-References: <20251119193036.2666877-1-radhey.shyam.pandey@amd.com>
- <20251119193036.2666877-2-radhey.shyam.pandey@amd.com>
+	s=arc-20240116; t=1763626849; c=relaxed/simple;
+	bh=ZW042sC9gIPOFnqhoxec9Hoqgz2PilHlyVzmoeoFWJs=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=cS3eJUjS6Ea48AZpPDxvRcyMYO3ScSUPZktOL2gN5p1lza9hngNfi9QyFX2C4WUdTCuz7WOe78ZQXGJ+6k+PIDaN5SmrfauvBDjex9T5BNhpS0Qhdk60e847eRB3mJpAJN3QbGg3NRZnIuMuH3+TtN44jo6vubD0I62yAD7nq6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=XgSq4ELR; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id; bh=GXrAeDrMarYstBo
+	zZxJzPxQ6+Dj9RlIaBV2Ivegt5Nk=; b=XgSq4ELR6fkQfqTvwrNO5xj1RN3EgkF
+	buANkSpeZYQANP7SJ+WQQtAts9CKVawGIMD6OH9otPz9zn68LtwVB9fSOnFXw1TY
+	Fr4YQ5VFoED44iE4bY5JbYjBqSZXnUv+PW37jyFbETQjR4nomsFOtOzJZkvWImIr
+	7m1TNzx/gTCU=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wA3BPAwzx5p45f2BA--.17S2;
+	Thu, 20 Nov 2025 16:20:03 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net,
+	Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Wenliang Yan <wenliang202407@163.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/8] hwmon: (ina3221) Various improvement and add support for SQ52210
+Date: Thu, 20 Nov 2025 03:19:13 -0500
+Message-Id: <20251120081921.39412-1-wenliang202407@163.com>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID:_____wA3BPAwzx5p45f2BA--.17S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7WFyrAF15ur1fuFyktFW3Awb_yoW8Jw45pa
+	97C345Grn8Xr1xXanIkw48C34YqF4xJF1ayr9rJ3y0qF4UA3WSvr48K3Z8t3srtryxtry8
+	ua4xursxKasrCrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JUf73kUUUUU=
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/xtbCwBTitmkezzR2mQAA3j
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251119193036.2666877-2-radhey.shyam.pandey@amd.com>
 
-On Thu, Nov 20, 2025 at 01:00:34AM +0530, Radhey Shyam Pandey wrote:
-> Versal Gen2 platform multimedia integrated (MMI) module has a USB3.2 Gen
-> 2x1 Dual Role Device IP. Introduce a new compatibility string to support
-> it and make reg optional as the register space for USB wrapper IP is moved
-> to MMI System-Level Control registers.
-> 
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> ---
->  .../devicetree/bindings/usb/dwc3-xilinx.yaml  | 19 ++++++++++++++++---
->  1 file changed, 16 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> index d6823ef5f9a7..502294649a6b 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> @@ -15,6 +15,7 @@ properties:
->        - enum:
->            - xlnx,zynqmp-dwc3
->            - xlnx,versal-dwc3
-> +          - xlnx,versal2-mmi-dwc3
+Revised based on feedback from the previous version:
 
-All other cases were calling your SoC "versal2", not "versal2-mmi".
+1.Adjusted the description in dt-bindings: add description for sq52210,
+express sq52210 in the bindings as compatible devices.
 
-Add here missing blank line.
+2.Modified the register read/write value conversion function, refined the
+calculation logic for each register, and reduced unnecessary function
+calls.
 
->    reg:
->      maxItems: 1
->  
-> @@ -37,8 +38,9 @@ properties:
->        A list of phandle and clock-specifier pairs for the clocks
->        listed in clock-names.
->      items:
-> -      - description: Master/Core clock, has to be >= 125 MHz
-> -          for SS operation and >= 60MHz for HS operation.
-> +      - description: Master/Core clock, has to be >= 156.25MHz in SSP
-> +          mode, >= 125 MHz for SS operation and >= 60MHz for HS
-> +          operation.
->        - description: Clock source to core during PHY power down.
->  
->    clock-names:
-> @@ -87,7 +89,6 @@ patternProperties:
->  
->  required:
->    - compatible
-> -  - reg
+---
+v2: https://lore.kernel.org/linux-hwmon/20251118125148.95603-1-wenliang202407@163.com/
+v1: https://lore.kernel.org/linux-hwmon/20251111080546.32421-1-wenliang202407@163.com/
 
-Hm? No. Block without address space makes little sense and is completely
-different device.
+Wenliang Yan (8):
+  dt-bindings: hwmon: ti,ina3221: Add SQ52210
+  hwmon: (ina3221) Add support for SQ52210
+  hwmon: (ina3221) Pre-calculate current and power LSB
+  hwmon: (ina3221) Support alert configuration
+  hwmon: (ina3221) Introduce power attribute and alert characteristics
+  hwmon: (ina3221) Support for writing alert limit values and modify the
+    'ina3221_read_value' function
+  hwmon: (ina3221) Support write/read functions for 'power' attribute
+  hwmon: (ina3221) Modify write/read functions for 'in' and 'curr'
+    attribute
 
-Look at this binding - there is no way this device can be programmed
-anywhow, because mentionned MMI sys registers are not there.
+ .../devicetree/bindings/hwmon/ti,ina3221.yaml |  15 +-
+ Documentation/hwmon/ina3221.rst               |  24 +
+ drivers/hwmon/ina3221.c                       | 527 +++++++++++++++++-
+ 3 files changed, 552 insertions(+), 14 deletions(-)
 
-This is a messy, incomplete and confusing change. We ask always to post
-complete bindings, for complete hardware, so put attention to this.
-
-Best regards,
-Krzysztof
+-- 
+2.17.1
 
 
