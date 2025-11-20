@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-240796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8211C75962
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 18:15:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54783C7596B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 18:15:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BCD3234D7EA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 17:13:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1CA60351AA8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 17:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A7FC393DC9;
-	Thu, 20 Nov 2025 17:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 499A2393DD4;
+	Thu, 20 Nov 2025 17:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ib+c8rVw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SFR04STc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DDA9372AD9;
-	Thu, 20 Nov 2025 17:11:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F126372AD9;
+	Thu, 20 Nov 2025 17:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763658695; cv=none; b=lDSgvbz3fElfCNNfIiQNny51uw4IlmEkkWr8oQJawBGRR9L+62HtmIbkCJWJnG4b/a9yXkX9TBpRu2Slkk5pNz28+sZlSAqDK9I3lX9MbHKhK01VDJGtxiWTpiB+6ciKRO45DKDSk9VdVE2dIxGqzRrGnyK2R0C+05oqKPCM5xU=
+	t=1763658700; cv=none; b=eMAxXvjFj2K4b0NRzNLHXpzthiagyMzyRJDWqMETYtPyU6qJM6eL3GnAJH8uLD0z32PGrASJgQ9EsaNXmN2B4e1ReAcdqYoN6cl6emEM8yMHglO3HlL4Et4PVmdylxq4HBGM1Q5uPO7/DB0dP5gceAGqmgMKZx5ykzB2mpjR1bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763658695; c=relaxed/simple;
-	bh=5wzxcrvaGv7atXkrXN0bTcUzJ7kZ+lrRO/axNUDhPZs=;
+	s=arc-20240116; t=1763658700; c=relaxed/simple;
+	bh=CzNgQDtqsMlCOrg+Jv4nr2hesjVeTWdR3pTTkDHKWDA=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=p8RwUTBfM2NiPVFYJ8xoBIsynW5cXANx1qf9+D/GTCeCNXj0WkNVyxLSTyclyOWMh0LtNbYV4Ygq/zqbxm9Qk1VP4w4/eqQFn2tuUF+eGM9/smave+hYoPe4OmpTXhLIxrVyG7y9FFQO7ggZJPpJZrp0+jrmaaT3HNOePIb07ZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ib+c8rVw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E92EC116C6;
-	Thu, 20 Nov 2025 17:11:31 +0000 (UTC)
+	 MIME-Version:Content-Type; b=ax7jRuUQYd8uy0emwQqcEj/tNqBtL5bB+g8O35joSvuFLZYbkdrE5Wbq9RcJ1gN+1/hj9ubKLqvG2UcwtW8jd6YuWN76pBdkcYRsV2tdYgVjwgscms9VaxcOgPodHumsoEkjtxfgzz3ubYBgpmP8ibt6KcAiCQ1Ln4GT8QvTrf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SFR04STc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC1A4C4CEF1;
+	Thu, 20 Nov 2025 17:11:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763658695;
-	bh=5wzxcrvaGv7atXkrXN0bTcUzJ7kZ+lrRO/axNUDhPZs=;
+	s=k20201202; t=1763658699;
+	bh=CzNgQDtqsMlCOrg+Jv4nr2hesjVeTWdR3pTTkDHKWDA=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ib+c8rVwYpC7/0y/ecf7L6ifkoJNECXqkp4IPKJdaA1QOfDrYCGMV57LIhXktOBlL
-	 +gy7JLJo32O9x+5N05aHEjO1YD6n7DhQlWrekY1RRZ4VD+0tXUNyT7c5HMfizGIETl
-	 lTwW2U8+/Hu/JNfTVc0mMSQtpDKEu/2nxSyeDYnVxOab8uw87WffcPM9nJkG4Y5F4n
-	 F3WftcpJc7OzIH1UB+GGDDXKoOvnymwxbAf0veH4I1aeGMHp7lNZ2DRibXnNzrF9N8
-	 ZwC2+p8n50AgDh/m1r0BBOP3LuhbSwq8NcKOlXe91MupXI1nrr6e/Xrmoq0M+figlo
-	 waMvlbd3JpD8w==
+	b=SFR04STcUedDKoj5s2nDLfSh9lEinHLB/UuCxrmFwn5Mvg7vVNpcKxM0K64MwvFDm
+	 N4scXGHWYNwe1uMlqPG7kvaJdMAuMwHWSSpvBBFKhMMEEZRWs1lgBu8Ij2YPp+BNMU
+	 CeAsZ18FlTVvuClEQCLuGcvL2qcIOvjcs5tDNdNu7Z07tl3r8gb4qzc4mK1Dre4VZA
+	 +pieLtevmp4YMzjI9GfMjKQUNZbmns3bRloD7M8mg1K/7V0cLmGJemtU48HQriPzUw
+	 M/E9uo/QnMmvMzyj74Nu7HjuRWgRu/idiYHvCkgRCuQfWvsqnl+FPI7BinV9q074HL
+	 eGa0TKSVdW7dA==
 From: Vinod Koul <vkoul@kernel.org>
-To: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be, 
- magnus.damm@gmail.com, yoshihiro.shimoda.uh@renesas.com, 
- biju.das.jz@bp.renesas.com, Claudiu <claudiu.beznea@tuxon.dev>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: (subset) [PATCH v8 0/7] Add initial USB support for the
- Renesas RZ/G3S SoC
-Message-Id: <176365869114.207696.6136305677225848114.b4-ty@kernel.org>
-Date: Thu, 20 Nov 2025 22:41:31 +0530
+To: Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Xilin Wu <sophon@radxa.com>, linux-arm-msm@vger.kernel.org, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Abel Vesa <abel.vesa@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251119-topic-x1e80100-hdmi-v7-0-2bee0e66cc1b@linaro.org>
+References: <20251119-topic-x1e80100-hdmi-v7-0-2bee0e66cc1b@linaro.org>
+Subject: Re: (subset) [PATCH v7 0/3] arm64: qcom:
+ x1e78100-lenovo-thinkpad-t14s: add support for HDMI output
+Message-Id: <176365869552.207696.3147796021521061532.b4-ty@kernel.org>
+Date: Thu, 20 Nov 2025 22:41:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,23 +70,26 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Thu, 23 Oct 2025 16:58:03 +0300, Claudiu wrote:
-> Series adds initial USB support for the Renesas RZ/G3S SoC.
+On Wed, 19 Nov 2025 09:45:39 +0100, Neil Armstrong wrote:
+> The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
+> connected to the third QMP Combo PHY 4 lanes.
 > 
-> Series is split as follows:
-> - patches 1-2/7		- fixes on bindings and driver for USB PHY
-> - patches 3-5/7		- updates the rzg2l-usbphy-ctrl driver and documentation
-> 			  with support for setting PWRRDY though SYSC
-> - patches 6-7/7		- add device tree support
+> The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
+> of a combo glue to route either lanes to the 4 shared physical lanes.
+> 
+> The routing of the lanes can be:
+> - 1/2 DP + 2 USB3
+> - 1/2/4 DP
+> - 2 USB3
 > 
 > [...]
 
 Applied, thanks!
 
-[1/7] dt-bindings: phy: renesas,usb2-phy: Mark resets as required for RZ/G3S
-      commit: bc6f8b756c89d831c91a65ef9f3b5ceabdbae441
-[2/7] phy: renesas: rcar-gen3-usb2: Fix an error handling path in rcar_gen3_phy_usb2_probe()
-      commit: 662bb179d3381c7c069e44bb177396bcaee31cc8
+[1/3] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Document lanes mapping when not using in USB-C complex
+      commit: 3faa2d0e794093df21c96550829d67d7d38e24bb
+[2/3] phy: qcom: qmp-combo: get the USB3 & DisplayPort lanes mapping from DT
+      commit: f842daf740114a8783be566219db34c6a0f1d02c
 
 Best regards,
 -- 
