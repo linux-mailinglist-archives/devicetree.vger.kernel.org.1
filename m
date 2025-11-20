@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-240709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F760C745B6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:52:30 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E304C74587
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:50:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B57164F8272
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:39:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 03F9C32A17
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF1133F380;
-	Thu, 20 Nov 2025 13:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0E033F380;
+	Thu, 20 Nov 2025 13:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sX4DsPO9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pmgwwX+P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320FB1E412A;
-	Thu, 20 Nov 2025 13:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F76933030F;
+	Thu, 20 Nov 2025 13:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763645995; cv=none; b=RrWp7+1aLSxY1BkXu3izHKreYStT/+mvtHZc0TQozMqlt8RUF8/aO6ZRmM8ozQglN+IqYezmgcT2A95LGspZG3iKA2Y94GL9XU15zho5rBhOWYvTjwWFW4tX22JM3NLfZHRCKwh1bk/B1aKnSUZAS37aZ38SfjivlzrecEGft7o=
+	t=1763646021; cv=none; b=ppElCnFeep90NqHa3c9Z9DtmDIMLBSNDjpP/uFAGMRhY7774iYf4yr3MEnB4GbUy6UDnJwOpmWXv48bN0hdr6psMw5DM77fHtJ+QaaCOcl8YRGEq3VWeACj2I4qx5KgEn2ha9BJkAPEMmZOLdo1SVqk+VBWj5bnck7Raudd9XbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763645995; c=relaxed/simple;
-	bh=z2M9ohD80JDyZLtDqqyDY26IKgCioW3dBGT7QUySnc0=;
+	s=arc-20240116; t=1763646021; c=relaxed/simple;
+	bh=wtFcg+mxeMTwpc0PfeCeV5YE3FP0e1rSXIPsPzLHaiY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k4TwVnZXvoZyldNN7CK6DX4k1OFlQ/+D3rsEXYZ32B9D6DUxgqnRJ5mZxLghPo4FBDsQF23pyJ4rA7ioE4EwP716sWAj0bkryFpJuMK3sq97GpJxyNCqAFOE11fUCCDURX0u0aCcoxtVlmqREnPIKqpfiL/KQr6FlOgz9XIyZoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sX4DsPO9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75975C4CEF1;
-	Thu, 20 Nov 2025 13:39:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Hz6ONqTdRCQBX6fu0/y7M/dmeo9EHgefWPP74lXE0CHnz+LbH1QV8/uvHqv6mDc5wxsdvtQ3Dp5+34rw8qt5ai+OHfYCzFtyMMbA/XpR6ZT2EpGh9tg9DRB3MSbfpy16M3uXDChzd3q24pgAH80QeTPdA9FsgtaEm3j2BNkpmjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pmgwwX+P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 403A6C4CEF1;
+	Thu, 20 Nov 2025 13:40:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763645995;
-	bh=z2M9ohD80JDyZLtDqqyDY26IKgCioW3dBGT7QUySnc0=;
+	s=k20201202; t=1763646020;
+	bh=wtFcg+mxeMTwpc0PfeCeV5YE3FP0e1rSXIPsPzLHaiY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sX4DsPO9TcTbQuIzuvP43lhqJhakFwB24Rk4hGGsKDmSMwtEhDi/tPGG33fEqOAsc
-	 CgE6ocKs7ervfHtd70D1Ym9UDxpzOtDaDbY3sKOQf4o0VpBildmITsr2IoUmBPjcN9
-	 UNCMPEnnbz8b6vyFPVcDVFYK8Fug0GlDhJXdFIF4iI45Ng2hfkD3c0AJaMTSLsjM85
-	 BZ4phL4kUguILCnlTPpou2z8K7NG4r/zAOp+GMOhqGOS8l2QpxPpvEIjkxVrDUnE1c
-	 NdVRYDx6S34yfm/asKVOOA6l2oImDyFs9qTDp+jmnlKuTe1Vvs9+761w8rsukIvSQ8
-	 4kyH0pVN08GZg==
-Message-ID: <14caa2fe-e1fa-471a-8c6c-aafd4aaff4be@kernel.org>
-Date: Thu, 20 Nov 2025 14:39:49 +0100
+	b=pmgwwX+PTg5q1wQA9qq5HSSSQIQ0sB+Yrr7AUP3Ub1OaoQn5DE4gRmnSG0gy59IU9
+	 GfeU26dQV1v3BOolEyAlXUwfl/AkmYfrE7F8Ma+xiRe746zunC6JOxFAqc64QH6yqe
+	 XOyr+RPQzghYh1Bf4JddwcUJ5k5fU3BM+kyJ77bghVpw1ncTAoUgdkqGk5ML1kp3qP
+	 knO1OJKVoPZv+NHBr54T8O5JV0y4CVzVG8izEC+tEKkXcrbD58IfTFVCIbymev5SkN
+	 3V/bPMLN4FR96+3wa2J/A13/d6U8ywQ2v9t8cdyJQeiRzlcPX0Yir31GzlF+E31nA5
+	 S+aL/vWLawaIA==
+Message-ID: <44783f62-c8da-4c5c-a927-f9ce80df8e37@kernel.org>
+Date: Thu, 20 Nov 2025 14:40:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: mediatek: mt6359: Add
- alarm-sta-supported property to RTC node
+Subject: Re: [PATCH v2 4/5] rtc: mt6397: Add BBPU alarm status reset and
+ shutdown handling
 To: ot_shunxi.zhang@mediatek.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
@@ -63,7 +63,7 @@ To: ot_shunxi.zhang@mediatek.com, Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
 References: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
- <20251120121805.6775-6-ot_shunxi.zhang@mediatek.com>
+ <20251120121805.6775-5-ot_shunxi.zhang@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,52 +109,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251120121805.6775-6-ot_shunxi.zhang@mediatek.com>
+In-Reply-To: <20251120121805.6775-5-ot_shunxi.zhang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 20/11/2025 13:18, ot_shunxi.zhang@mediatek.com wrote:
-> From: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
-> 
-> This patch adds the 'mediatek,alarm-sta-supported' property to the RTC
-
-
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
-
-> node in the MediaTek MT6359 device tree source file. This property
-> indicates that the RTC supports alarm status functionality, which is
-> essential for proper power management and wake-up events.
-> 
-> Signed-off-by: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt6359.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-> index 467d8a4c2aa7..62a2d745c8d2 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-> @@ -302,6 +302,7 @@ mt6359_vsram_others_sshub_ldo: ldo_vsram_others_sshub {
 >  
->  		mt6359rtc: rtc {
->  			compatible = "mediatek,mt6358-rtc";
-> +			mediatek,alarm-sta-supported;
+>  	rtc = devm_kzalloc(&pdev->dev, sizeof(struct mt6397_rtc), GFP_KERNEL);
+> @@ -275,6 +294,8 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+>  	if (IS_ERR(rtc->rtc_dev))
+>  		return PTR_ERR(rtc->rtc_dev);
+>  
+> +	rtc->alarm_sta_supported = of_property_read_bool(np, "mediatek,alarm-sta-supported");
 
-NAK, there is no such ABI.
-
-Test your code BEFORE you send it.
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-Maybe you need to update your dtschema and yamllint. Don't rely on
-distro packages for dtschema and be sure you are using the latest
-released dtschema.
-
+You cannot add undocumented ABI. Read carefully Linux documentation.
 
 Best regards,
 Krzysztof
