@@ -1,82 +1,84 @@
-Return-Path: <devicetree+bounces-240510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE0EC723E8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 06:26:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BFB5C723EE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 06:26:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5CC654E07EC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 05:26:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 4EC6729891
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 05:26:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AEF12FD7B2;
-	Thu, 20 Nov 2025 05:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EE12FFDD8;
+	Thu, 20 Nov 2025 05:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l9M0Y2pr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ug/5L3Dk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929DB1D2F42
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 05:26:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9353A2FDC4C
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 05:26:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763616368; cv=none; b=h00ik/wYPSejHHU6iiGZ8ipsaYjawxpu6TD0VUoexYX2VuBA9vjj/W2f884Sji6Wyy1M+tIU5lE5oiRKazE7sSEcy73LKxfse+Tf1I9GJkRMw9vKNHm2l8ygHoXDtK0mrHNMfIAkR9+a1D6DP/Tubco1tcWEyJIsz3FmzxoX6tI=
+	t=1763616371; cv=none; b=fA+KviSpJIQB5xoNp7CxBdsiV+m1tTiE6o66fcXYlq7ip21nOqnuVvpr5E8HOTEUGqu1v9hziUEgL/VS2/pWkudr9Qf/E60ckRJVXkaFjD7FtF+/+Bs1T2a/vHX11SYiiTCxChjckQhY7nOkqgcNlVfXlmYF32Xxjit2YasR4UE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763616368; c=relaxed/simple;
-	bh=lg2jHrJxqbgoMaTKC4ITbkxnQHARHKleNAEPRdJp6v8=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rAxesJRJXNqN11yz3GS8yt/+rubHMSRNL9a36kpnXrxtL6KWFoHhGeJ8a6MwW4tNdq/tL8thmr3humBQcBAiQOxAmRrN4VSxJAsdPi4Bz/k0tRlVlvd2mMqtY73FJW0kp2KL0qSBpsYA32w/JuDb6V82jH3bHJ+KLMrlDSHz60M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l9M0Y2pr; arc=none smtp.client-ip=209.85.216.54
+	s=arc-20240116; t=1763616371; c=relaxed/simple;
+	bh=V8hyqVc8AxjSIpi8Rf3ei8SCie7TL3OVm+o7PWaDSjI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=fFijj39ymLOoqs3M+fBd+t7b/dXx+98/NAj3ch6sFtLdOJdNngI/djwXnmHecjs/zfkbzquRBXvkB26eb5pKCel+9F4HjhvCz6cYA1qsaRnADo83LWffKT01iN99bniDPOxnrKZOIZd6z/hgiDius78zldxndPg7lCwrurpScbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ug/5L3Dk; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-343806688c5so378749a91.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 21:26:04 -0800 (PST)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-297dc3e299bso5429795ad.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 21:26:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763616364; x=1764221164; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XK8FGpJd/gRCbg6Rh2iKRhUNOEC1c+hhwCoLg8DxBR0=;
-        b=l9M0Y2prL+ic55yqsaQuiKy2rI/ZMnB1ZqHh0nv0SHTVbuisc3XTCRnsep8fj9VEKd
-         1cNRsGW2w/hlHUmOuT37FZf3zU4uxgOp/PnJF604rLi7yTGpfKrUY8Mq6AFjCk5leR8+
-         Wi64yliSuhQYSoGn/CXzxHbsG1lZRHDuOJniLdo+tjEwimBuJW9gUzJDgV8pCmPKF+v/
-         Yk/rhPMJVkIR5y2oTW8WLHDpbYhtdX65zjuwW803r3iONMRvxvpyoR4exX+TmQltW1cN
-         LC8DjDqc0nS9xDT0zcvF1pxyNWupQ0V39NlMSDoZzObH+uLpbzlaA3Sb8tzt3Y9O/Kkq
-         /5Xg==
+        d=gmail.com; s=20230601; t=1763616367; x=1764221167; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jrmpJ7r5olEuuHW8bES57a8T6LK6exu5hSOQkrAzRxY=;
+        b=Ug/5L3Dkp9leCfH74MaoucER48IhWKZY9hvnqorRxzp0fgztPjNiLr6iqTFDfVda3G
+         3pbGvJxkvneLbgg978oMkXBVUt8Fb//SyNXCzTyF3pTiXPlHxESI1ygTzYUH3ERKQxgI
+         cPu+pagNbD40d6e9jP13H9Ee0UlID5452VdX77a/hMS5lz+yc3gWbfr55YsTBdgaBSsI
+         gNjZpUvdBtMR0Ub/7jmhNLzfhOeQxF4nSdRei+h5YfVHaouo+heN6uMacOBz2G/XHjj0
+         P3t+7BNi4Hv4bWA6/mLGjtGsemw4F6uI01SXJUmxA/+YmxUpOo8BUeW5G7PbsCJCqGe1
+         +oQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763616364; x=1764221164;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XK8FGpJd/gRCbg6Rh2iKRhUNOEC1c+hhwCoLg8DxBR0=;
-        b=NpFbw2/Yq1KFzWf4IEFIyKDMGY5KVPqHmOznbk6juK0UMEfksxZuujpOrCKuxysRuq
-         qB4vTe++8Ch9kG2P26qnXnpabKAlsZieMUJqsXOVz8UnFu21qh+vhUD9NSQdICX7hDEb
-         43z3YzQh+pET/TdEMRE+3083msnZ8L2dkW/4F904Zmdf7LX57VGCeaLypc/sEABNB2vf
-         1X5a6bM5GCVgP3H8fx2G+25Op/xMCW8/sqFAhmCXmkMVfXHgi926dVLyWNm4oUUBb9WP
-         M+pl1fybH3RFnKyY+LPx16PidC/csi8CNIZJwn7AVRQN31LCuBrnydTGP+DJ0IFwdF5b
-         EOWA==
-X-Gm-Message-State: AOJu0YwctJeluWY/didN0/5qmy4J0Xcxur1CjWQ1wKExokDyvu0wn4aM
-	OLCZXehOlqI4ZiftpdIBxSSgU+ofzWyhkhbluvLc2LikYvTHCVbsDXpW
-X-Gm-Gg: ASbGncvX9DSHvDoceP0yjsUrpIV6Dxn3K2NQnN0DIousF6OnV+ERU9GBpojMACLVt8h
-	OnoupLJ4t5SAzl1MMD0ZCBWvvuL20ZS6B+YAMbMKZmXcu/VfnI8P8HyAuLe3H+rCE/wu9OeJQkg
-	jIcw6s6obzsbFE3iDVeLUkzFjAueh1vpsiTlMY/Tq5lkDY1dst/vpdGsICUCwnN4a31OFntadCh
-	CbReZmb6lhsdwRmJNDsuFyJdIT8w2LP6H3IvZVO2LcuFfhCjyL+aOegip5yzvomPnf/BGFPr45K
-	h0ZKh8QfAfRK3vENhZSUcA9GAopo3KrVt4bF4D//cBBW2piOtjkOIkDQpJbEC3e33bRhfgb7+kD
-	byOoYHuK3H1Rv7Wy/ZPdSun572je/fGQDxPHnxCgF32mPEu/zQ4AjIOuD9gQXV9KkVCVHQrXB/t
-	8zxIHA7Z+I6aw3TVlZgipoP/E4+VC+5iCS282eg0kHdtQFyZ7pyiH8qrNWVxdG3Gt5xxSr7d2Re
-	4WWGgaq36SSCmmmhCERpMjQt1CwAGgbbcViTzRJM92ouPuYXHcbpVyIdULPqfE3XgpQ0gYzPfHR
-	WXgQOnE91W7lv7ZkBT/Cow==
-X-Google-Smtp-Source: AGHT+IGRKwLmW5TfFmdLBz3341tnXeMORxmdp+rmYdWoNAuomZUITEEz1HkqEwACgq+mI0ayc0njuw==
-X-Received: by 2002:a17:90b:2cc7:b0:340:b572:3b7f with SMTP id 98e67ed59e1d1-34727d56695mr2083615a91.20.1763616363754;
-        Wed, 19 Nov 2025 21:26:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1763616367; x=1764221167;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=jrmpJ7r5olEuuHW8bES57a8T6LK6exu5hSOQkrAzRxY=;
+        b=lszcfXpSl4oO11UPum+E33BrSV6mYBD/utJMhBiTsQKMS65IvU4eDnmxgZD7aulC9B
+         cZgbx09BowyX0zdo/7ZDKw72VZGRdvvusQ13W91J53+/Oja03cx5oHzna3VrVEXPM7GQ
+         ruRDaojIcl2SX9kmfYsf5QgJCf72Dl1Psm2yjYzXfyTHAePbSJWT5ouiW1v2ymR+BQ43
+         SXkneHTxYn69La4hDecmlIIOX2MQIq2GxaNq6v3/naSm5qkF/2WPTgLwT2T8IEUh0wgr
+         v8Nnw+hI7koUTtsnyNIJOIuzrzCi8ROzLX9SGT2UreiQs4nbBc20ZS85t3Ox64LM3cJm
+         LN+A==
+X-Gm-Message-State: AOJu0YzHG0KJ+z1PGpU/koI87py2Pwq4zCP3fWdyw6EYYZmOhLaFNCRO
+	lg0H+AoPeKbsbrzR4yvTlhUJ86C16vLaJWsSaP35b6pSGNbqpGjoVzG4cSjsrw==
+X-Gm-Gg: ASbGnctnKKFTxpICOxG9QQ5EZjbJlpfud2RTvlYT8H4Twx5hxh02Xi3pMDI4TQvpSqB
+	hKAa6ZyWbNWhDsN+J34cH38fsxbpRPjSRbE9KgC73yyoC1BIE8CtItYg/cbYcEEFuITa4YicU+0
+	ZlTZSK87K7A480c/U1aUoMfygSMq02sXHXq0DFxHj1eubUaf/opzGD4yQXgbmieGMoYa4EOn0Ok
+	KxeutyMLXRUkdjZ1VKET1oNNHrtH32PZjtYydPt0cryboo+reE0Nbs4VVp8MrETz66xpGleBR9l
+	Xzn97WXWqRp2/xZQUsxYLS1M4JiQz2kbiXkGLN2h5U4HWD9N93s0fwDWdlxJsYOEhGFP3LrbVmL
+	KI02OCbvwGGGSCoBu8tqYrYEI2q/uSVCQAi1XiSPqRWevfV/YLh9+twLUxwCnvgsShEH7DGS1Z1
+	5oMo5V+69DPjpz0mw+IKoJsVepxSJT4xj09KFJEHa+u11W7s7xLiUXRnLDwNFDsWe/phzfR8oPT
+	QxbUx8UieF2d+r8QFyEg9RTs/1NeA5Yu225jBqg/apYVZnPgTSEU7LmLGaHPp/+iSoH82sC14OW
+	YFPCvwxWlbk=
+X-Google-Smtp-Source: AGHT+IE0C4Gi/8UKiKUiQ7+Veji85cevN0GQcvp62+0plkZpI6JLPQDYbGS70t9JxUT+e0asq9HnEg==
+X-Received: by 2002:a17:903:2a84:b0:294:fb47:b623 with SMTP id d9443c01a7336-29b5b02e987mr23648385ad.11.1763616366824;
+        Wed, 19 Nov 2025 21:26:06 -0800 (PST)
 Received: from 2001-b400-e301-38bf-be0d-b72c-6bec-2812.emome-ip6.hinet.net (2001-b400-e301-38bf-be0d-b72c-6bec-2812.emome-ip6.hinet.net. [2001:b400:e301:38bf:be0d:b72c:6bec:2812])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3472692e5d3sm1221342a91.9.2025.11.19.21.26.01
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3472692e5d3sm1221342a91.9.2025.11.19.21.26.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 21:26:03 -0800 (PST)
+        Wed, 19 Nov 2025 21:26:06 -0800 (PST)
 From: Kevin Tung <kevin.tung.openbmc@gmail.com>
-Subject: [PATCH v2 0/4] Revise Meta Yosemite5 devicetree
-Date: Thu, 20 Nov 2025 13:25:57 +0800
-Message-Id: <20251120-yv5_revise_dts-v2-0-4d7de701c5be@gmail.com>
+Date: Thu, 20 Nov 2025 13:25:58 +0800
+Subject: [PATCH v2 1/4] ARM: dts: aspeed: yosemite5: Increase i2c4/i2c12
+ bus speed to 400 kHz
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,10 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAGWmHmkC/3WMwQqDMBBEf0X23JRsMLb21P8oIjZZdaGakkioS
- P69ae6Fubxh5h0QyDMFuFUHeIoc2K0Z1KkCMw/rRIJtZlBSaUS8ij3qvgypt1sQqAglWdtq20A
- +vT2N/CnCR5d55rA5vxd/xF/7VxVRSDEa2zzrOqe93Kdl4NfZuAW6lNIX93AXBawAAAA=
-X-Change-ID: 20251118-yv5_revise_dts-12e10edd95d6
+Message-Id: <20251120-yv5_revise_dts-v2-1-4d7de701c5be@gmail.com>
+References: <20251120-yv5_revise_dts-v2-0-4d7de701c5be@gmail.com>
+In-Reply-To: <20251120-yv5_revise_dts-v2-0-4d7de701c5be@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
  Andrew Jeffery <andrew@codeconstruct.com.au>
@@ -98,42 +99,45 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Ken Chen <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>, 
  Kevin Tung <kevin.tung.openbmc@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763616361; l=1026;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763616361; l=1020;
  i=kevin.tung.openbmc@gmail.com; s=20250924; h=from:subject:message-id;
- bh=lg2jHrJxqbgoMaTKC4ITbkxnQHARHKleNAEPRdJp6v8=;
- b=rT/dVjbKgo2z9etA2QhmDgpnEgtLGOvLpItmQ1ufeR+WHVaWVtYQ8Nhh4/3EdyX0Cnixja2eV
- Q8efbvA4UxrBtX8ICLtcXY24k4Wq4dmaXAAKyzBKi7nCsPs2xXp7q5c
+ bh=V8hyqVc8AxjSIpi8Rf3ei8SCie7TL3OVm+o7PWaDSjI=;
+ b=0bsl4Rx14cAtCjmaDk5pc8Kupx+kOZS/805VJ8qDzXtiYCPgERiNuvmWmSRspeQkoS+bmAwIv
+ ia6LJNmRmjxAyG6ryOy5JCxImsZ4z3ABZNrKDM2pwquLgjAYog+BKoX
 X-Developer-Key: i=kevin.tung.openbmc@gmail.com; a=ed25519;
  pk=PjAss0agA0hiuLfIBlA9j/qBmJaPCDP+jmQIUB6SE7g=
 
-Summary:
-Revise linux device tree entry related to Meta (Facebook) Yosemite5.
-
-Changes in v2:
-- Add ipmb node for OCP debug card
-- Link to v1: https://lore.kernel.org/r/20251118-yv5_revise_dts-v1-0-fcd6b44b4497@gmail.com
-
-Changes in v1:
-- Increase i2c4/i2c12 bus speed to 400 kHz
-- Update sensor configuration
-- Rename sgpio P0_I3C_APML_ALERT_L
+Configure i2c4 and i2c12 to operate at 400 kHz instead of 100 kHz.
+This update aligns the bus settings with the hardware capabilities
+and improves MCTP communication performance.
 
 Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
 ---
-Kevin Tung (4):
-      ARM: dts: aspeed: yosemite5: Increase i2c4/i2c12 bus speed to 400 kHz
-      ARM: dts: aspeed: yosemite5: Update sensor configuration
-      ARM: dts: aspeed: yosemite5: Rename sgpio P0_I3C_APML_ALERT_L
-      ARM: dts: aspeed: yosemite5: Add ipmb node for OCP debug card
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../dts/aspeed/aspeed-bmc-facebook-yosemite5.dts   | 25 +++++++++-------------
- 1 file changed, 10 insertions(+), 15 deletions(-)
----
-base-commit: 111e542d267576de402d0836603e1def2b60316b
-change-id: 20251118-yv5_revise_dts-12e10edd95d6
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+index 2486981f3d6bd36f3fe780b21e834b85242f8aa9..7991e9360847532cff9aad4ad4ed57d4c30668a0 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+@@ -231,6 +231,7 @@ sbtsi@4c {
+ &i2c4 {
+ 	multi-master;
+ 	mctp-controller;
++	clock-frequency = <400000>;
+ 	status = "okay";
+ 
+ 	mctp@10 {
+@@ -782,6 +783,7 @@ adc@4b {
+ &i2c12 {
+ 	multi-master;
+ 	mctp-controller;
++	clock-frequency = <400000>;
+ 	status = "okay";
+ 
+ 	mctp@10 {
 
-Best regards,
 -- 
-Kevin Tung <kevin.tung.openbmc@gmail.com>
+2.51.2
 
 
