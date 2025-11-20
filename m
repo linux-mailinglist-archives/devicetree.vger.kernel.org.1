@@ -1,96 +1,89 @@
-Return-Path: <devicetree+bounces-240746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C782C75075
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 16:38:48 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6F90C75096
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 16:39:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EEC593652D8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:31:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 82181366B17
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197B935FF7A;
-	Thu, 20 Nov 2025 15:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD313446C2;
+	Thu, 20 Nov 2025 15:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="biRg2Kjb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W7cjxkBN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57D335CB81;
-	Thu, 20 Nov 2025 15:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8DE332EAD;
+	Thu, 20 Nov 2025 15:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763652222; cv=none; b=GR2zh39M0IqHyqnhGVTeUwd523Il+RRcqw63ceyjKFtWlo31ZIfX8zr9FnNvfhCPa2KSqwMRUzHkkc9UYkA60qUKjCX/DqYcwZBun8rCxyPbmTMtm7LtzLK32gWhTB4mhXXynEcbti1yq9f4JoX1JZjdn2o3sbtQw71Q+oyiW/I=
+	t=1763652338; cv=none; b=t1OG2HJnMNik27rWIGVkci6+S3E6Cf3kKDO9t3pLPoCyLHdLgFYmiPNICAW21LQ2H5/Bm+8Ytxx7q9SY6PYPkkqUsJnw+xYc0g144p9Td2bjx2HlQL9uz2WqBnDwZ+FR5UzmBBpUSPpPJzVNGoTBt8gG7jcG9nEtbMnL5m7PlB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763652222; c=relaxed/simple;
-	bh=0MNEyCDiMjE2vsbrKi6Sd2Jmx0BtFcSOJN/HQidrjv8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kQ03PDQWQJS6PQFkJgNrrzo+f6fx1jSOa/Q583eq3PpNSt4Cnn53v8MlA+jGMQQpLEtDrcfUfo3g2tcDXePE0ijO8r5F3lMljL8djIntOKMMb7oej/L4HBUTwhgtai8uyJDdlzMlOf5ODQ1Y+5ob5zTMN0yfx9LBs/o8FU+pY/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=biRg2Kjb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338A2C116D0;
-	Thu, 20 Nov 2025 15:23:41 +0000 (UTC)
+	s=arc-20240116; t=1763652338; c=relaxed/simple;
+	bh=nWThquxamoFflq7KF0r/pPgR07P9ssgz8ujdMf47B/M=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=gs+XeulC0fcqz4cHYTv3eZGjb4AfaQHJi4jmsTjRSkhlKNl1+Uitg+BYrjMuvJf/SXf286AsRLojl3R3Td36KCNbXUlXubjSnck7Ppw/OOy30J3I/lFp9oCG0dHK1mY38bkvWNOGADTjUHGFgs+r2aW2j2RSANO+4wCxPBXb8Is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W7cjxkBN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D73F5C4CEF1;
+	Thu, 20 Nov 2025 15:25:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763652221;
-	bh=0MNEyCDiMjE2vsbrKi6Sd2Jmx0BtFcSOJN/HQidrjv8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=biRg2KjbGYCiUsqPAXuvHTgF4YX5ZoSPv9h1d4D0oeMQj7/06VDWNGkAEoNo2LBTH
-	 qw2JrtQykNbJWU0AkAGZmlr5WbQQIBcQ+bVFLcklUy0cF6sG221e28gQVlS2eOaurB
-	 hLTZeFCg6dGqnX4yFnlW6J9+BSmRf9FwTHxEsyMHWmftTO9Po1a6Rpj+siiVbIqL+r
-	 gLFjlGph03p2zYFEbg1ICzd4zMCHgJ+7ebnfDqiFJjslw+Bi1KoLKM+GcqQYxUlLsT
-	 D8h4AzcgzLloBdvZRSSy7u0ViK/XOT8Id3A96dRgin2lc+WR0e/6zWcWP24/yrU298
-	 O/H/iK+Fyo99g==
-Date: Thu, 20 Nov 2025 09:23:40 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Vincent Guittot <vincent.guittot@linaro.org>
-Cc: Ionut.Vicovan@nxp.com, linux-arm-kernel@lists.infradead.org,
-	bhelgaas@google.com, linux-kernel@vger.kernel.org,
-	ciprianmarian.costea@nxp.com, conor+dt@kernel.org,
-	linux-pci@vger.kernel.org, s32@nxp.com,
-	ghennadi.procopciuc@oss.nxp.com, imx@lists.linux.dev,
-	kwilczynski@kernel.org, jingoohan1@gmail.com, Frank.li@nxp.com,
-	larisa.grigore@nxp.com, chester62515@gmail.com, cassel@kernel.org,
-	bogdan.hamciuc@nxp.com, devicetree@vger.kernel.org, mani@kernel.org,
-	lpieralisi@kernel.org, mbrugger@suse.com, krzk+dt@kernel.org,
-	Ghennadi.Procopciuc@nxp.com
-Subject: Re: [PATCH 1/4 v5] dt-bindings: PCI: s32g: Add NXP PCIe controller
-Message-ID: <176365221942.1402463.4737452946243069736.robh@kernel.org>
-References: <20251118160238.26265-1-vincent.guittot@linaro.org>
- <20251118160238.26265-2-vincent.guittot@linaro.org>
+	s=k20201202; t=1763652337;
+	bh=nWThquxamoFflq7KF0r/pPgR07P9ssgz8ujdMf47B/M=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=W7cjxkBNoJWb3EJyBVOoSX12btyvCAxDaxhjyUbT1xK4WDuJ9LmTotBXb1X+frGkF
+	 lYYpWrXQlxhIgMVtfVPv51Osdep37NHfIO/dVDYkejqCgvu/BR7n9fbGRGGOKaBgm9
+	 dujZSrZOEyDpYjonQ2Su7gEh0dewfOz5VqxPAM6jjPecDXSBnPT4xK7jYb18SYYJrL
+	 7LP+L/T9wgCKq6jWbODBrvuFtsiz1vF3UgJcKnLHkzMYtaXm2b8la1t65TEnJWH7J2
+	 kQj98p/OsoEermNZu0EN91EOMLmnkIL0E2eUfQRtHfNDu14moT/UNyVHDBQCsn2pwD
+	 K9zCW0i2jfdaQ==
+From: Lee Jones <lee@kernel.org>
+To: kernel@oss.qualcomm.com, Lee Jones <lee@kernel.org>, 
+ Pavel Machek <pavel@kernel.org>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, 
+ Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20251119-lpg_triled_fix-v3-0-84b6dbdc774a@oss.qualcomm.com>
+References: <20251119-lpg_triled_fix-v3-0-84b6dbdc774a@oss.qualcomm.com>
+Subject: Re: [PATCH v3 0/2] leds: rgb: lpg: Don't enable TRILED when
+ configuring PWM
+Message-Id: <176365233461.759764.4308118661859596744.b4-ty@kernel.org>
+Date: Thu, 20 Nov 2025 15:25:34 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251118160238.26265-2-vincent.guittot@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-52d38
 
-
-On Tue, 18 Nov 2025 17:02:35 +0100, Vincent Guittot wrote:
-> Describe the PCIe host controller available on the S32G platforms.
+On Wed, 19 Nov 2025 14:06:41 +0800, Fenglin Wu wrote:
+> The LPG channel can be used for only outputting PWM signal without the
+> need to enable TRILED. Update the DT binding document to explain that
+> usage and remove the TRILED enabling register write in the driver for
+> that use case.
 > 
-> Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
-> Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
-> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
-> Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
-> Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> ---
->  .../bindings/pci/nxp,s32g-pcie.yaml           | 130 ++++++++++++++++++
->  1 file changed, 130 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
+
+[1/2] dt-bindings: leds: qcom-lpg: Explain standalone PWM usage
+      commit: 5d390e7a02e850a995ee25248292d4be61314078
+[2/2] leds: rgb: leds-qcom-lpg: Don't enable TRILED when configuring PWM
+      commit: 072cd5f458d76b9e15d89ebdaea8b5cb1312eeef
+
+--
+Lee Jones [李琼斯]
 
 
