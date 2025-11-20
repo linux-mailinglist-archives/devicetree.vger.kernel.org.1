@@ -1,447 +1,200 @@
-Return-Path: <devicetree+bounces-240847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 242B5C76530
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 22:07:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74AD8C76680
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 22:44:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C452B4E1E58
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 21:07:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 3D6432928B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 21:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754AE30CDAB;
-	Thu, 20 Nov 2025 21:06:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C8A2FF151;
+	Thu, 20 Nov 2025 21:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LVRZkR60"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dF6PFKne"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012025.outbound.protection.outlook.com [52.101.66.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCB730BF67
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 21:06:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763672793; cv=none; b=IamVEs54nkAiOeWx2+2xER8HIPCDG/v/3VnzTESCQiepa4QXF2AO8EKs/XEnXCS0GQVLb23+WnXOLU4273jeoNtawEwXryMFCmjslnTpwUidosA09Fbz0HMhP3WXOT5Tq1C4N4VTMx7jLjI9ic2Aupac4YaU9HjVm7txeg/Pets=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763672793; c=relaxed/simple;
-	bh=QHk8SiPa/eaPMZxAsAQiLzZk+6fLpZAERsS/cFDDl8A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=moYSqeknnTQ7YBTqdxXGlpQ+pT03Q6c1LZuQvsFYa3CjXiWieiK3K95TWef++FEofu0TiueGQcRfigQpssq/cPuaU9dqtgtX1ZojBi2yyqWowX7j3/pfrLe0KdjPvJfTuUXMfs1S34MTq3/Bet2Ss5g9y1u6VCSEvhGAwfdIzIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LVRZkR60; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42bb288c1bfso869196f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 13:06:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763672789; x=1764277589; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K8BXYkJo09cffbco27DiXaVUKDDylvywu2kiuIHEYbM=;
-        b=LVRZkR60NkJPy9hN4oUaj+PKWggxEnjH9hAs+JvT1CLT2xmdsydrIwVvXAKULSpOMj
-         s1YMeWvKbO8/uc45Mb0EeVzEUO+Q26cdl7Vdn/i+2NSbmSHA79vWu73Ae5nRKBPKS0Dj
-         YDifd4GGbjzPhsCXD/+9WvekRGwKiJF024OQrpSc6kbPXEuvp9o1ttgQBZRrRrIlqbGB
-         kOugUlPuTRVhNFCyx1ulBZBUH8qkWe3RuG6XHBO9YqFr9JPqLUNdMU3uIB77585ZN+FT
-         vGXykntK6N3+4EHmU5q4/N2o5ZiiX4O9Zt1Ya8Bz4qtnzmug761QiGhhIj66Oo+okXnN
-         adDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763672789; x=1764277589;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=K8BXYkJo09cffbco27DiXaVUKDDylvywu2kiuIHEYbM=;
-        b=bh4zdSlUGNgQVcWpZ8FPV94Zd1cDhNNvdxmAPlnuiY9bBmLNJJ+JTXZ0c72jtORoKD
-         tj3oMIWccnONbrGUfVTbsxd1goPvJNx03DY+rGnLdo+YwUlt2MPirNf4fEpGlRqRHnKw
-         +9omcCmwBykN8ojn9MfW9J42II2RrRc4nCvC1U54wNMOZ1tgxwyjHT99KnndDb7kioqq
-         gBNNpejTSKJM0/aeoDNvXw6DtLCQFPzNdwioEul8FGfISjoUJPqGksPBN7tZow911ld6
-         Zfalr3S+xjU4ea6I4OO/pb+DvyteRgULdO4mZXzkdS/TCTQQA6dQpeHqc6O88E0aLs9s
-         F4Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCXz6uiAJjZlouyjWb0eJ/+cLGcC6gpPeft2UzNExkOhW1fR+8bOYo+4UAvePsqhZEcS44zEelY99GIG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwcwXFJHrgIPODJoQi/AzUA5v3kh+x7YgqpVF34otcWcZbwQ1q
-	twlYENwlQtM5LhwazaQ1537snkXhHGDzuhWLSgoT5DRnFEAxtbphorWuHSmTtcwnVS8=
-X-Gm-Gg: ASbGncsFCY5GJxQFWAp7W85DsZiO2v+Tc4HsAc35Epir0Yt70AfL0kZKRRqLkRg3PMt
-	OQNmxEvwqCllmVP9OOgOIkJDWev0dkREW2SpM3xQek5I/WmTjp2txS45GknrkqHGE5yyh6fbo3z
-	Q5117/GdzYeYxMEI0fFNMUKNtYhzcRgLO4+lkEoCFtoYl6MeZbxh/9gpW6Jia3Eq2CqG4MKXEfg
-	t1tMP1BXK7s+04edvThUAn+XQrVPwRj3jRcqEs5sDfQXb7Owu43Z2bT5PehL3MQ17tsgEjVwvpU
-	Xv0tOnonIJASKBmMNn/Mp4zei5wamCHg0mSKO8iFUsM/diTl27pGPj3iy9DeDXAPrtKsnp0pI3q
-	mRh5GYMsBOFvEGTGP+LjBKm5lyeXONkb5aAbKbGZ5c0cTGeVRsoLKoYCT+g55RoblNaTRsoym4g
-	WoSpM6CPgjueQPCVj08DJxIxAHRJpeHMLJYEByP4w=
-X-Google-Smtp-Source: AGHT+IF1y8NS7fSk9ziWEi5PszSWt8O9ekApxvVjAqVjXDU6OKQ3ZcI1ywbVKU56ntpqV90CAcY/xw==
-X-Received: by 2002:a5d:5d0a:0:b0:42b:4177:7136 with SMTP id ffacd0b85a97d-42cb9a6075fmr5196598f8f.32.1763672789027;
-        Thu, 20 Nov 2025 13:06:29 -0800 (PST)
-Received: from gpeter-l.roam.corp.google.com ([150.228.9.80])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f2e5b6sm7321287f8f.1.2025.11.20.13.06.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Nov 2025 13:06:28 -0800 (PST)
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Thu, 20 Nov 2025 21:06:14 +0000
-Subject: [PATCH 4/4] clk: samsung: gs101: add support for Display Process
- Unit (DPU) clocks
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFFC915A86D;
+	Thu, 20 Nov 2025 21:43:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.25
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763675019; cv=fail; b=NoxqwatCc4WdMvsmmisagejr1aieaoanh0M22nRwdfvd1XHdZd1wpOq/A9xTDM7a6V5wDdmCBWkgZo9eAtV7E3gk3knL5nN6FcKAYtzoHegksCtcjUPAR6hl61ecKt/vQq4p2GsXz0Xf7ERtxDhhSyKnulauDU93UXEfQFprfmo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763675019; c=relaxed/simple;
+	bh=5IS1t5pk2A/2HpKHIjGnUOon/SSdivpIUHOh9dZBjos=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=DVq9nlEnsy7Z32KalFV0kaU/aeonx5E6zaz5ffdfcD4gWJNH2b7zfkbrr+KH1DfPX6q5UhfM3ZbkdatlpXPzX3ETLTMPGXvG78BJNFI/p5AR1uTPDP5qfZaX/Oj6HYWrCIyB/uaTyaIV1rsboR6xFDry+NmeCNwvNLq7k/QU3Gg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dF6PFKne; arc=fail smtp.client-ip=52.101.66.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uPeWOZmTvN1MjxkfuxmTcDIYXkNxahJHE7cm4zslVwsjHuOeknqrZ7QRKBCZ19eXG1m0mR9l4fmFWFGF/CSQnmmPZGRQb9JUz//WZ5NHwhojoLYiHkNP3xGOv9QP+gY4XPATMq03I7P4S0VCAUzKGf2Go9HpBRTDQDwPtYgWtAwtxVpJcDKjXVq+MfIJtaMjLjxzXr0lW0JJwcPa0VT3cWVHJqW5wMw5cWuQ66SqF2EtbJKfdPl8pfAQo7IZe8Q1Rr6izSeFgFhu6AEvXS6VHHwHUKcz1sT6D/XS8iuOntq+eyZUkPqUErmC+WVG+qgLKHomzytngs11ecMRYWJPCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/raptrK/wR9e6ikZ0UGxS1gIJi9T4usIWuECY9aqDxg=;
+ b=xpThdIacVshIyr1qUSIzJn6FNlxQYHUVYV3E7AsbOt9/k8yB3fbxB5iUbEtVjfrpJbRZ5qXG3f6ek3PSROTz5RrbDGLU1hV2k/dO2g7wWt9JLUZYB4FyN54cErjSi713itR5uFvcqmvuXaJGhdZ/7pz8clGgh4xm0g6njMc1IRFPr3x0AwlsK2OqUlQ0c0a/HeG1Q54HWh95fccmZYIexn+S/ogTdnspXj2sc9AKMsUOGoJ2Ut8j7I4QF+x7txZKKVZelOrpsrd13+akFwJBizj43kt5FdRRqLB88Qzdwm5DPr8F961f9BIiOzAW9g+/8XIkWBmjRd95hwLiTO5lDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/raptrK/wR9e6ikZ0UGxS1gIJi9T4usIWuECY9aqDxg=;
+ b=dF6PFKnezG3aSANBg49sb++Ogg+8n7z0LgITuRG0VFzVTxaeklrPVcrKCecQGs1iQ5BceRRyivh3iuH6u3lW4ZqHlpb03Ndkjc8JBx/c82KTbrma1RdtCLV5IMbDbDqk7wZOTN4uAayWBW9LUjOu8xLDhB6kQ4trLab7VN8IwRYv+kWn1Ugu3f2dIHECsISq9Qvbc9niiKy2P8kECGvXNzJKEPkYwR3X3x1Qv7SFtAjcup+QSMAuxjXHsp6jXleUNdMrm9xHVuMzYjwjpGQbRB0fJ+CSj1DTCmKELwALjGOOK9OXdJfqHSdiUAC0PXUyugV1BzYChp+W5H+dSRqRQA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by DBBPR04MB7721.eurprd04.prod.outlook.com (2603:10a6:10:1f6::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.11; Thu, 20 Nov
+ 2025 21:43:33 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%4]) with mapi id 15.20.9343.009; Thu, 20 Nov 2025
+ 21:43:33 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux@ew.tq-group.com (open list:TQ SYSTEMS BOARD & DRIVER SUPPORT),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] arm64: dts: mba8xx: replace 0 with IMX_LPCG_CLK_0 for lpcg indices
+Date: Thu, 20 Nov 2025 16:43:18 -0500
+Message-Id: <20251120214318.347483-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PH5P222CA0002.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:510:34b::9) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251120-dpu-clocks-v1-4-11508054eab8@linaro.org>
-References: <20251120-dpu-clocks-v1-0-11508054eab8@linaro.org>
-In-Reply-To: <20251120-dpu-clocks-v1-0-11508054eab8@linaro.org>
-To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
- kernel-team@android.com, Will McVicker <willmcvicker@google.com>, 
- Juan Yescas <jyescas@google.com>, Doug Anderson <dianders@google.com>, 
- Peter Griffin <peter.griffin@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=15641;
- i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=QHk8SiPa/eaPMZxAsAQiLzZk+6fLpZAERsS/cFDDl8A=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBpH4LLaQE+sYqCV4pJQLUBYS+awWcWDoBUANWyY
- B9Qz+UNyreJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaR+CywAKCRDO6LjWAjRy
- umlID/93RgADTcD22ilasX9gZ4Sdeps/lGe7ouZBzFVb4ZJ1GW+ehklO8xMW9bocRQ0bPS8dchZ
- jU/EZUk5+PLE20IJPra5D+QaCr06c7yuKHIIWXhcY73kbs+UaxSwnq1jpTpOinQifo4TPaMqWzB
- u4MHhUlyVw9jlHs5Zj0vs/gjTJmyXpSzzfGv3IOo3Pg0VElyt3OVSZEbWWU0oqzT5pXEdG0bciy
- Fb3FP6AaVBr7/vYjCuQmzN0+WQcTn90URC0L29DaxMBLG/4s85ro9OBdCneE/t+IDa6NWC2cJcQ
- 29mtKBjvUDBZF6FudmmIBnmgUmpJytm09zq69+NJaBhFmgVZo50JQWd5IXzuR7xE31DO6O9MXqE
- UoIwdSPGm5VnsUvKTAqdp/X8Pi/UNuDsmv2c65QAFrXsGYwMrOLLosR87tiU0ow43ao4ZTT2czC
- 1Po77OSkwdmnzw2OPmYigiIxLorjsGI1gQLLj3s/m+8YlGTV9KXHEwsZPTxw6ZM/4iSNWGO9+ku
- BT+0zU16Q3dMLfTyxjnh+AuI6zOtq0ixt7BZc/C6QeEPpzW0/uDFTP5EBiHNVzmaY9fjxJ2JEfT
- +r2Mvtf+9PmQe0NqNEXr1/ZjRIw2PLVatn+B46Y+MTh06xVBW+2ldE6JT7gkNGfuTEMVDjyRIOz
- FQTpfE2EtNlNy6Q==
-X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
- fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DBBPR04MB7721:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a10aaad-8bbc-460e-6338-08de287dda75
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|52116014|7416014|376014|366016|1800799024|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?hCoXAnh3nYiTlE+pXVnnOUnMy6Wi4A+5s5m8r3Tz4U2RZGRzNEuUp6MAnvqw?=
+ =?us-ascii?Q?bmv2nz9aa+0XpO+OOwj1fUE/2V4o/F5MAtR0goodT8k4R7YRSyN4sfFgDe4b?=
+ =?us-ascii?Q?1yec8qYEd93w+iZFLFtBC9dYCfalOeMwlpjt5u1KpIS/AO/dpms4y5Q/G7Rl?=
+ =?us-ascii?Q?913G71XfEhSqKPwCLKdlQkq9qLhp3kYQBSi1SM1DFA4ZWKlCwlNyq/KUvWFS?=
+ =?us-ascii?Q?bA7PvKKcaByMJZHFqEmA3gqvxuci3VVWAMMIRjUmcAUs3e0HuZ7jj3uWA1Ls?=
+ =?us-ascii?Q?spmMpL0ex2CFVSRoCNC1WyJxy/s9MRCDUEAQgx5/xoohxuhIaS5DulUVIrnd?=
+ =?us-ascii?Q?E3ITP6QDgXss4ppmQ81OPE390Sno/JUo+vZqGbLoYpkZs6W0j8IfUGa2lUja?=
+ =?us-ascii?Q?iJCcZz4qC71aF63K4MglDTXpjm2H4GwzGobw0Z5GbeYMixRGkSPU4Nsmvu78?=
+ =?us-ascii?Q?G5USfM2l1EFnw8PEouxq6h3EOoi0z9ouq2wCu7/ZeeY8ycboyG5UxcRaTaGp?=
+ =?us-ascii?Q?Kh8uR2467SesGvKYEKO/Fc4zT2CKmSk6v2uZCHJJ31aFAQEFLM7kzo0s0vmt?=
+ =?us-ascii?Q?9xmTmIXvTd1M7EboKgk/urlBQi/0/ONkqA76xJkz1iiq1lr55g7KNHqan/iZ?=
+ =?us-ascii?Q?snCYtFEyUS/j+SgKH7EZyZNeNRLHcQgSuhffedI4BeLMEY3fZ8TaMj9X9WGE?=
+ =?us-ascii?Q?HaORDWfSVyPFO6I/ZtG7RTbKFq4wyOFWnwwwg0xBrFYQVdpwtoaTLJrHlT9H?=
+ =?us-ascii?Q?KQVE/UxKYkMpmH44lr6fhefcbTQh+vEqbIWyzvzxOQe1dmZOjbRuuD0dIKdY?=
+ =?us-ascii?Q?+NkWEIoWLmrDEhJZlwm84KrytAYwxYkl/eFoqo+wudkdL0Lj8z/cgYFrhsQO?=
+ =?us-ascii?Q?bNy7Y62A1YzbV0mI/VgEVU5nvuNS2mDPH1RJKm+c4PYHjKH+XMwEWcdF7kqM?=
+ =?us-ascii?Q?kd82Bpr92RGzXXacYJVdMTeRHJIgbNpA+n0TknV+tc1jSl6PD/tENsAa72wV?=
+ =?us-ascii?Q?PHQFVxtGwwSiB3GH1/+usi09WSsLnfvddQzYmLxQCOk9QeOFhmlHsPxT2MTC?=
+ =?us-ascii?Q?tZ8HrR4G6rNgJlOOUNG85CmnfnUUbgSUNcXVBj+l3B3rhjymvezhFIipcqEl?=
+ =?us-ascii?Q?0fO7xnbhGE9PQ5qewGsvrwske3qQMTvp6XHrnRvpBCMJ/jWIufR++8d3MV6X?=
+ =?us-ascii?Q?HYlQHGV8SMom2QkHpmh+jGAxxpqPqBzc5J43+fPaqiahMn7U9LhpmU3pCEku?=
+ =?us-ascii?Q?+xzmqRlsDQZcmpL4ak1fjNf/T1w+AkZch8mgjPm0SkfYsLAIdsM0/v5RIGFt?=
+ =?us-ascii?Q?MqHA6QjNSDUNtC7Bt4NdezO4ya/Ab4TOyzOEC3hiu74PmV5ZncK5VQytN159?=
+ =?us-ascii?Q?SiMuCFcHi0KNwr5CdSzMJWzQaX7ozew0k48lp+MEa9TFWgNSGzAP8flXeW0A?=
+ =?us-ascii?Q?28gPIdK8R1LOJM/hXJluQiNMev0+/fr9oUaHMFnBvHhA6fToPhJVwbU/qFl0?=
+ =?us-ascii?Q?72knp2PvUJ3SnE/5qCybM8Ltt4uZsyw9FEkqFvTZcOMTmqNnA4DZ+y7AsQ?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(7416014)(376014)(366016)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?5CT5zn54pJOUO5BaEwmjSTY8rPK554bUGMDhoJQHKSClTuZJl5JSN2w2vO5R?=
+ =?us-ascii?Q?v1b5+GRyYxmkstT/rE03GrnY1N3gnWEMlZUNNjunTkIM1F+WHWgdleYV2D8X?=
+ =?us-ascii?Q?cnCtRuy/LkSu2hmiDEErwriE4F/BU72T3VXwHARqoCzU7ahxLq9Fv0C7pAGB?=
+ =?us-ascii?Q?HVkWydFNSHeWdYVvHea4kZe2sw08laG74EPO6iHfOF2rGNMKjrGdnSdkRZ5s?=
+ =?us-ascii?Q?tqJ3F5bWdQ3vPnZCZ9R0L92qhXxLisoUi/VKt6eyeHAPaeuzHGj2oVs5OQuK?=
+ =?us-ascii?Q?4tk30dovHgJyWa+fJkC5cz3TIbJQEIG8BxCCTFwQqqrhYAgPt/YNgAE/8RW+?=
+ =?us-ascii?Q?XCFOnaIhdnVOzr1o4066JTsPD+5bFwg31hxdsw43fealo7JRpJmukYaAoID4?=
+ =?us-ascii?Q?ejiu5gDcspEGeiYcmIChjUIvVJSpevcso8FtXtAv/qa7kvLRVff8ZStUnNnd?=
+ =?us-ascii?Q?AeeApa3mR03oDbfEn/b2FCuqw0QKEuNdq0UdhDYhdADytk/IybgHcgl8bgXR?=
+ =?us-ascii?Q?NNixhuY99Icj+cmLNYbVWfjY3DuvptRzhlFkNsd83UAvmLqd58YQ/tU0hygQ?=
+ =?us-ascii?Q?118h3GY59rOKpKjN2NykT25Zm1+sGeHqisTS6NOrOhAzR+xEpAw5jo8tgJv5?=
+ =?us-ascii?Q?5wFnGd+4hBbY1bAYzQwVE559sUXuPQgK2pbwjwLV+qvue/+uVW2kdb7y3w2d?=
+ =?us-ascii?Q?JRsfOcj3duTLojy/1nVj+iPV4SVcNUz3TRoIO4j+OXYM3PeivTNWWYKX3zCG?=
+ =?us-ascii?Q?p14nGWMKiLFaXoVYHvh0lJU0kB/aRRDJv5PuV1ZGcnP7UA8Eaou/cg/vF0iK?=
+ =?us-ascii?Q?Kp8yraHdNDbzpb7TOSYQntw9bX5pdsGF9jMN2PriEcnha97T2FJmDVx5m03a?=
+ =?us-ascii?Q?gAEAzmAFpvdNQoLRjhRuTK06vXXX4//l0dRGpbL3htDfOafTNyrZJyV36oQD?=
+ =?us-ascii?Q?BlsMZiifGdofqAosOFQLo8DkxIhgCPB4OT68HdWdJIlcoHmzbho1PwQH3GFY?=
+ =?us-ascii?Q?+iyudJyWjy21jhu1o3kUg2PwxUv9Qv3a5K0nx4KCnSLRxVlaWjeRdB4OwR5q?=
+ =?us-ascii?Q?ef5rmA19wqoQAgGXM7IuLyYKUFwM4VSApT0UA5GVM3CVkcTgjHDz2f00EUmP?=
+ =?us-ascii?Q?Vbmnc7km9gLorP+d8Qh75y2vtyvfynCQxjqx6zYJ+v/P30Wxu+r+mnJDF3oe?=
+ =?us-ascii?Q?jIFjMXwNeb1FJiImXQ8t8GuJPw0692x4jkv7vuu7HnI+HH0sz/vdnPIzKsYM?=
+ =?us-ascii?Q?OTcSf2rOJYGfm+2Pv/0Y7C1HsRgwM6xiMCitcWi0+bRUibftOXTwAOndGK5r?=
+ =?us-ascii?Q?hcAv5o48tGC4Yo06/itxtDluZ2tMxAzxLsrigi4UcIKTmGW98ZOYKEX8MRcF?=
+ =?us-ascii?Q?n/d5rFjjTxA2gQr/Hx3FXxU+Cb3jz80w6vXeegpcsBzt7hGriNXZ+osdHPaE?=
+ =?us-ascii?Q?ImaGFGyVxuL2LlSL4nkZssk6TogIn5+B3z4D9dMC0FCwrRyEz6Hafa8HXAnC?=
+ =?us-ascii?Q?eJz6uM43IS0DtR9KA1p0KXfzh6uNZBS8C0jVd8OoVvumYhVOKt2cS+J4mOHH?=
+ =?us-ascii?Q?VHSPyYRaQMyFHL0DOUc=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a10aaad-8bbc-460e-6338-08de287dda75
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 21:43:33.7855
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yi+6zgIxrXU92Q9CoqJKUIR/gL0gwUgfLgG9URiLIqLE/Hi0Cx5dKwVgkEBz2lvBhcfRTxARNlqjQh1TxuvwYw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7721
 
-cmu_dpu is the clock management unit used for the Display Process Unit
-block. It generates clocks for image scaler, compressor etc.
+Replace the 0 with IMX_LPCG_CLK_0 for LPCG clock indices. Although the
+numerical value is identical, the LPCG input is defined as
+IMX_LPCG_CLK_<n>, so using the symbolic constant improves clarity and
+consistency with the LPCG clock naming convention.
 
-Add support for the muxes, dividers and gates in cmu_dpu.
-
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- drivers/clk/samsung/clk-gs101.c | 283 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 283 insertions(+)
+ arch/arm64/boot/dts/freescale/mba8xx.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
-index 8551289b46eb88ec61dd1914d0fe782ae6794000..82f2343ecc63cc285343cc79692f3a199a9c16cc 100644
---- a/drivers/clk/samsung/clk-gs101.c
-+++ b/drivers/clk/samsung/clk-gs101.c
-@@ -25,6 +25,7 @@
- #define CLKS_NR_MISC	(CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
- #define CLKS_NR_PERIC0	(CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
- #define CLKS_NR_PERIC1	(CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
-+#define CLKS_NR_DPU	(CLK_GOUT_DPU_SYSREG_DPU_PCLK + 1)
- 
- #define GS101_GATE_DBG_OFFSET 0x4000
- #define GS101_DRCG_EN_OFFSET  0x104
-@@ -4426,6 +4427,285 @@ static const struct samsung_cmu_info peric1_cmu_info __initconst = {
- 	.drcg_offset		= GS101_DRCG_EN_OFFSET,
- };
- 
-+/* ---- CMU_DPU ------------------------------------------------------------- */
-+
-+/* Register Offset definitions for CMU_DPU (0x1c000000) */
-+#define PLL_CON0_MUX_CLKCMU_DPU_BUS_USER					0x0600
-+#define PLL_CON1_MUX_CLKCMU_DPU_BUS_USER					0x0604
-+#define DPU_CMU_DPU_CONTROLLER_OPTION						0x0800
-+#define CLKOUT_CON_BLK_DPU_CMU_DPU_CLKOUT0					0x0810
-+#define CLK_CON_DIV_DIV_CLK_DPU_BUSP						0x1800
-+#define CLK_CON_GAT_CLK_BLK_DPU_UID_DPU_CMU_DPU_IPCLKPORT_PCLK			0x2000
-+#define CLK_CON_GAT_CLK_BLK_DPU_UID_RSTNSYNC_CLK_DPU_OSCCLK_IPCLKPORT_CLK	0x2004
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_AD_APB_DPU_DMA_IPCLKPORT_PCLKM		0x2008
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_DPUF_IPCLKPORT_ACLK_DMA			0x200c
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_DPUF_IPCLKPORT_ACLK_DPP			0x2010
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_D_TZPC_DPU_IPCLKPORT_PCLK			0x2014
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_GPC_DPU_IPCLKPORT_PCLK			0x2018
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_LHM_AXI_P_DPU_IPCLKPORT_I_CLK		0x201c
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_LHS_AXI_D0_DPU_IPCLKPORT_I_CLK		0x2020
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_LHS_AXI_D1_DPU_IPCLKPORT_I_CLK		0x2024
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_LHS_AXI_D2_DPU_IPCLKPORT_I_CLK		0x2028
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD0_IPCLKPORT_ACLK			0x202c
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD0_IPCLKPORT_PCLK			0x2030
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD1_IPCLKPORT_ACLK			0x2034
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD1_IPCLKPORT_PCLK			0x2038
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD2_IPCLKPORT_ACLK			0x203c
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD2_IPCLKPORT_PCLK			0x2040
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_RSTNSYNC_CLK_DPU_BUSD_IPCLKPORT_CLK	0x2044
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_RSTNSYNC_CLK_DPU_BUSP_IPCLKPORT_CLK	0x2048
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU0_IPCLKPORT_ACLK			0x204c
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU0_IPCLKPORT_PCLK			0x2050
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU1_IPCLKPORT_ACLK			0x2054
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU1_IPCLKPORT_PCLK			0x2058
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU2_IPCLKPORT_ACLK			0x205c
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU2_IPCLKPORT_PCLK			0x2060
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD0_IPCLKPORT_CLK_S1		0x2064
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD0_IPCLKPORT_CLK_S2		0x2068
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD1_IPCLKPORT_CLK_S1		0x206c
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD1_IPCLKPORT_CLK_S2		0x2070
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD2_IPCLKPORT_CLK_S1		0x2074
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD2_IPCLKPORT_CLK_S2		0x2078
-+#define CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSREG_DPU_IPCLKPORT_PCLK			0x207c
-+#define PCH_CON_LHM_AXI_P_DPU_PCH						0x3000
-+#define PCH_CON_LHS_AXI_D0_DPU_PCH						0x3004
-+#define PCH_CON_LHS_AXI_D1_DPU_PCH						0x3008
-+#define PCH_CON_LHS_AXI_D2_DPU_PCH						0x300c
-+#define QCH_CON_DPUF_QCH_DPU_DMA						0x3010
-+#define QCH_CON_DPUF_QCH_DPU_DPP						0x3014
-+#define QCH_CON_DPU_CMU_DPU_QCH							0x301c
-+#define QCH_CON_D_TZPC_DPU_QCH							0x3020
-+#define QCH_CON_GPC_DPU_QCH							0x3024
-+#define QCH_CON_LHM_AXI_P_DPU_QCH						0x3028
-+#define QCH_CON_LHS_AXI_D0_DPU_QCH						0x302c
-+#define QCH_CON_LHS_AXI_D1_DPU_QCH						0x3030
-+#define QCH_CON_LHS_AXI_D2_DPU_QCH						0x3034
-+#define QCH_CON_PPMU_DPUD0_QCH							0x3038
-+#define QCH_CON_PPMU_DPUD1_QCH							0x303c
-+#define QCH_CON_PPMU_DPUD2_QCH							0x3040
-+#define QCH_CON_SSMT_DPU0_QCH							0x3044
-+#define QCH_CON_SSMT_DPU1_QCH							0x3048
-+#define QCH_CON_SSMT_DPU2_QCH							0x304c
-+#define QCH_CON_SYSMMU_DPUD0_QCH_S1						0x3050
-+#define QCH_CON_SYSMMU_DPUD0_QCH_S2						0x3054
-+#define QCH_CON_SYSMMU_DPUD1_QCH_S1						0x3058
-+#define QCH_CON_SYSMMU_DPUD1_QCH_S2						0x305c
-+#define QCH_CON_SYSMMU_DPUD2_QCH_S1						0x3060
-+#define QCH_CON_SYSMMU_DPUD2_QCH_S2						0x3064
-+#define QCH_CON_SYSREG_DPU_QCH							0x3068
-+#define QUEUE_CTRL_REG_BLK_DPU_CMU_DPU						0x3c00
-+
-+static const unsigned long dpu_clk_regs[] __initconst = {
-+	PLL_CON0_MUX_CLKCMU_DPU_BUS_USER,
-+	PLL_CON1_MUX_CLKCMU_DPU_BUS_USER,
-+	DPU_CMU_DPU_CONTROLLER_OPTION,
-+	CLKOUT_CON_BLK_DPU_CMU_DPU_CLKOUT0,
-+	CLK_CON_DIV_DIV_CLK_DPU_BUSP,
-+	CLK_CON_GAT_CLK_BLK_DPU_UID_DPU_CMU_DPU_IPCLKPORT_PCLK,
-+	CLK_CON_GAT_CLK_BLK_DPU_UID_RSTNSYNC_CLK_DPU_OSCCLK_IPCLKPORT_CLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_AD_APB_DPU_DMA_IPCLKPORT_PCLKM,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_DPUF_IPCLKPORT_ACLK_DMA,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_DPUF_IPCLKPORT_ACLK_DPP,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_D_TZPC_DPU_IPCLKPORT_PCLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_GPC_DPU_IPCLKPORT_PCLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_LHM_AXI_P_DPU_IPCLKPORT_I_CLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_LHS_AXI_D0_DPU_IPCLKPORT_I_CLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_LHS_AXI_D1_DPU_IPCLKPORT_I_CLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_LHS_AXI_D2_DPU_IPCLKPORT_I_CLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD0_IPCLKPORT_ACLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD0_IPCLKPORT_PCLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD1_IPCLKPORT_ACLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD1_IPCLKPORT_PCLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD2_IPCLKPORT_ACLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD2_IPCLKPORT_PCLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_RSTNSYNC_CLK_DPU_BUSD_IPCLKPORT_CLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_RSTNSYNC_CLK_DPU_BUSP_IPCLKPORT_CLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU0_IPCLKPORT_ACLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU0_IPCLKPORT_PCLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU1_IPCLKPORT_ACLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU1_IPCLKPORT_PCLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU2_IPCLKPORT_ACLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU2_IPCLKPORT_PCLK,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD0_IPCLKPORT_CLK_S1,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD0_IPCLKPORT_CLK_S2,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD1_IPCLKPORT_CLK_S1,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD1_IPCLKPORT_CLK_S2,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD2_IPCLKPORT_CLK_S1,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD2_IPCLKPORT_CLK_S2,
-+	CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSREG_DPU_IPCLKPORT_PCLK,
-+	PCH_CON_LHM_AXI_P_DPU_PCH,
-+	PCH_CON_LHS_AXI_D0_DPU_PCH,
-+	PCH_CON_LHS_AXI_D1_DPU_PCH,
-+	PCH_CON_LHS_AXI_D2_DPU_PCH,
-+	QCH_CON_DPUF_QCH_DPU_DMA,
-+	QCH_CON_DPUF_QCH_DPU_DPP,
-+	QCH_CON_DPU_CMU_DPU_QCH,
-+	QCH_CON_D_TZPC_DPU_QCH,
-+	QCH_CON_GPC_DPU_QCH,
-+	QCH_CON_LHM_AXI_P_DPU_QCH,
-+	QCH_CON_LHS_AXI_D0_DPU_QCH,
-+	QCH_CON_LHS_AXI_D1_DPU_QCH,
-+	QCH_CON_LHS_AXI_D2_DPU_QCH,
-+	QCH_CON_PPMU_DPUD0_QCH,
-+	QCH_CON_PPMU_DPUD1_QCH,
-+	QCH_CON_PPMU_DPUD2_QCH,
-+	QCH_CON_SSMT_DPU0_QCH,
-+	QCH_CON_SSMT_DPU1_QCH,
-+	QCH_CON_SSMT_DPU2_QCH,
-+	QCH_CON_SYSMMU_DPUD0_QCH_S1,
-+	QCH_CON_SYSMMU_DPUD0_QCH_S2,
-+	QCH_CON_SYSMMU_DPUD1_QCH_S1,
-+	QCH_CON_SYSMMU_DPUD1_QCH_S2,
-+	QCH_CON_SYSMMU_DPUD2_QCH_S1,
-+	QCH_CON_SYSMMU_DPUD2_QCH_S2,
-+	QCH_CON_SYSREG_DPU_QCH,
-+	QUEUE_CTRL_REG_BLK_DPU_CMU_DPU,
-+};
-+
-+/* List of parent clocks for Muxes in CMU_DPU */
-+PNAME(mout_dpu_bus_user_p)	= { "oscclk", "dout_cmu_dpu_bus" };
-+
-+static const struct samsung_mux_clock dpu_mux_clks[] __initconst = {
-+	MUX(CLK_MOUT_DPU_BUS_USER, "mout_dpu_bus_user",
-+	    mout_dpu_bus_user_p, PLL_CON0_MUX_CLKCMU_DPU_BUS_USER, 4, 1),
-+};
-+
-+static const struct samsung_div_clock dpu_div_clks[] __initconst = {
-+	DIV(CLK_DOUT_DPU_BUSP, "dout_dpu_busp", "",
-+	    CLK_CON_DIV_DIV_CLK_DPU_BUSP, 0, 3),
-+};
-+
-+static const struct samsung_gate_clock dpu_gate_clks[] __initconst = {
-+	GATE(CLK_GOUT_DPU_PCLK, "gout_dpu_dpu_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_CLK_BLK_DPU_UID_DPU_CMU_DPU_IPCLKPORT_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_CLK_DPU_OSCCLK_CLK, "gout_dpu_clk_dpu_oscclk_clk",
-+	     "oscclk",
-+	     CLK_CON_GAT_CLK_BLK_DPU_UID_RSTNSYNC_CLK_DPU_OSCCLK_IPCLKPORT_CLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_AD_APB_DPU_DMA_PCLKM, "gout_dpu_ad_apb_dpu_dma_pclkm",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_AD_APB_DPU_DMA_IPCLKPORT_PCLKM,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_DPUF_ACLK_DMA, "gout_dpu_dpuf_aclk_dma",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_DPUF_IPCLKPORT_ACLK_DMA, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_DPUF_ACLK_DPP, "gout_dpu_dpuf_aclk_dpp",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_DPUF_IPCLKPORT_ACLK_DPP, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_D_TZPC_DPU_PCLK, "gout_dpu_d_tzpc_dpu_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_D_TZPC_DPU_IPCLKPORT_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_GPC_DPU_PCLK, "gout_dpu_dpu_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_GPC_DPU_IPCLKPORT_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_LHM_AXI_P_DPU_I_CLK, "gout_dpu_lhm_axi_p_dpu_i_clk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_LHM_AXI_P_DPU_IPCLKPORT_I_CLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_LHS_AXI_D0_DPU_I_CLK, "gout_dpu_lhs_axi_d0_dpu_i_clk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_LHS_AXI_D0_DPU_IPCLKPORT_I_CLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_LHS_AXI_D1_DPU_I_CLK, "gout_dpu_lhs_axi_d1_dpu_i_clk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_LHS_AXI_D1_DPU_IPCLKPORT_I_CLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_LHS_AXI_D2_DPU_I_CLK, "gout_dpu_lhs_axi_d2_dpu_i_clk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_LHS_AXI_D2_DPU_IPCLKPORT_I_CLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_PPMU_DPUD0_ACLK, "gout_dpu_ppmu_dpud0_aclk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD0_IPCLKPORT_ACLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_PPMU_DPUD0_PCLK, "gout_dpu_ppmu_dpud0_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD0_IPCLKPORT_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_PPMU_DPUD1_ACLK, "gout_dpu_ppmu_dpud1_aclk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD1_IPCLKPORT_ACLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_PPMU_DPUD1_PCLK, "gout_dpu_ppmu_dpud1_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD1_IPCLKPORT_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_PPMU_DPUD2_ACLK, "gout_dpu_ppmu_dpud2_aclk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD2_IPCLKPORT_ACLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_PPMU_DPUD2_PCLK, "gout_dpu_ppmu_dpud2_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_PPMU_DPUD2_IPCLKPORT_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_CLK_DPU_BUSD_CLK, "gout_dpu_clk_dpu_busd_clk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_RSTNSYNC_CLK_DPU_BUSD_IPCLKPORT_CLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_CLK_DPU_BUSP_CLK, "gout_dpu_clk_dpu_busp_clk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_RSTNSYNC_CLK_DPU_BUSP_IPCLKPORT_CLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SSMT_DPU0_ACLK, "gout_dpu_ssmt_dpu0_aclk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU0_IPCLKPORT_ACLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SSMT_DPU0_PCLK, "gout_dpu_ssmt_dpu0_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU0_IPCLKPORT_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SSMT_DPU1_ACLK, "gout_dpu_ssmt_dpu1_aclk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU1_IPCLKPORT_ACLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SSMT_DPU1_PCLK, "gout_dpu_ssmt_dpu1_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU1_IPCLKPORT_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SSMT_DPU2_ACLK, "gout_dpu_ssmt_dpu2_aclk",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU2_IPCLKPORT_ACLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SSMT_DPU2_PCLK, "gout_dpu_ssmt_dpu2_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SSMT_DPU2_IPCLKPORT_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SYSMMU_DPUD0_CLK_S1, "gout_dpu_sysmmu_dpud0_clk_s1",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD0_IPCLKPORT_CLK_S1,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SYSMMU_DPUD0_CLK_S2, "gout_dpu_sysmmu_dpud0_clk_s2",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD0_IPCLKPORT_CLK_S2,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SYSMMU_DPUD1_CLK_S1, "gout_dpu_sysmmu_dpud1_clk_s1",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD1_IPCLKPORT_CLK_S1,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SYSMMU_DPUD1_CLK_S2, "gout_dpu_sysmmu_dpud1_clk_s2",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD1_IPCLKPORT_CLK_S2,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SYSMMU_DPUD2_CLK_S1, "gout_dpu_sysmmu_dpud2_clk_s1",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD2_IPCLKPORT_CLK_S1,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SYSMMU_DPUD2_CLK_S2, "gout_dpu_sysmmu_dpud2_clk_s2",
-+	     "mout_dpu_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSMMU_DPUD2_IPCLKPORT_CLK_S2, 21, 0, 0),
-+	GATE(CLK_GOUT_DPU_SYSREG_DPU_PCLK, "gout_dpu_sysreg_dpu_pclk",
-+	     "dout_dpu_busp",
-+	     CLK_CON_GAT_GOUT_BLK_DPU_UID_SYSREG_DPU_IPCLKPORT_PCLK, 21, 0, 0),
-+};
-+
-+static const struct samsung_cmu_info dpu_cmu_info __initconst = {
-+	.mux_clks		= dpu_mux_clks,
-+	.nr_mux_clks		= ARRAY_SIZE(dpu_mux_clks),
-+	.div_clks		= dpu_div_clks,
-+	.nr_div_clks		= ARRAY_SIZE(dpu_div_clks),
-+	.gate_clks		= dpu_gate_clks,
-+	.nr_gate_clks		= ARRAY_SIZE(dpu_gate_clks),
-+	.nr_clk_ids		= CLKS_NR_DPU,
-+	.clk_regs		= dpu_clk_regs,
-+	.nr_clk_regs		= ARRAY_SIZE(dpu_clk_regs),
-+	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-+	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
-+	.clk_name		= "bus",
-+	.auto_clock_gate        = true,
-+	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-+	.option_offset		= DPU_CMU_DPU_CONTROLLER_OPTION,
-+	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-+};
-+
- /* ---- platform_driver ----------------------------------------------------- */
- 
- static int __init gs101_cmu_probe(struct platform_device *pdev)
-@@ -4443,6 +4723,9 @@ static const struct of_device_id gs101_cmu_of_match[] = {
- 	{
- 		.compatible = "google,gs101-cmu-apm",
- 		.data = &apm_cmu_info,
-+	}, {
-+		.compatible = "google,gs101-cmu-dpu",
-+		.data = &dpu_cmu_info,
- 	}, {
- 		.compatible = "google,gs101-cmu-hsi0",
- 		.data = &hsi0_cmu_info,
-
+diff --git a/arch/arm64/boot/dts/freescale/mba8xx.dtsi b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
+index c4b5663949ade..78f5dfdc5cc8a 100644
+--- a/arch/arm64/boot/dts/freescale/mba8xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
+@@ -225,7 +225,7 @@ &i2c1 {
+ 	tlv320aic3x04: audio-codec@18 {
+ 		compatible = "ti,tlv320aic32x4";
+ 		reg = <0x18>;
+-		clocks = <&mclkout0_lpcg 0>;
++		clocks = <&mclkout0_lpcg IMX_LPCG_CLK_0>;
+ 		clock-names = "mclk";
+ 		iov-supply = <&reg_1v8>;
+ 		ldoin-supply = <&reg_3v3>;
+@@ -336,7 +336,7 @@ &sai1 {
+ 	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
+ 			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
+ 			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
+-			  <&sai1_lpcg 0>;
++			  <&sai1_lpcg IMX_LPCG_CLK_0>;
+ 	assigned-clock-rates = <786432000>, <49152000>, <12288000>, <49152000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_sai1>;
 -- 
-2.52.0.rc2.455.g230fcf2819-goog
+2.34.1
 
 
