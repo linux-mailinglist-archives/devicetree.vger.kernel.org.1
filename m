@@ -1,102 +1,88 @@
-Return-Path: <devicetree+bounces-240508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C259AC72379
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 05:55:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A673CC723C8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 06:16:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3DDBB34E8A0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 04:55:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E7008352048
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 05:14:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9AF283FD4;
-	Thu, 20 Nov 2025 04:55:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A50F0BA3D;
+	Thu, 20 Nov 2025 05:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HBhIOL0o";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Ggq5/TP8"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="w51/XmYE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azon11011069.outbound.protection.outlook.com [40.107.208.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 773D02AEF5
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 04:55:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763614523; cv=none; b=hP7Kwpp4wkwuMtApjTc3/otJ0mgXPjyij+GGbEHp8IZ7YzVxpdFNli3NluDcxsj7n70NfKEn0IHBzKViAcfuJW0VQwHo8nmFHPsP4vgFVymDM2OcFPE78KPhaE1xPjD7X8zfHDvFkan3Yz9046tHD9xtorZbLnXJuabjXoNBuTQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763614523; c=relaxed/simple;
-	bh=AaqqIxdOGtjyFvjU79C2CKtPoEEELPnTs9irzQKnb9Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MN7awNRNUCsRDo3A63AHhkgx56DA6hjXTm0t6PXi30UqrBCdiN1PZZb1fxaekI/wuPOzUyS18suryGAazybfTd23FeZDUeNp9BzYYWZHCUhqTizsxI7foDs9TTIy77fft1HfFes2HhCbMwC+dwuN+U7okyxIWP2TUa3+zxsv3N4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HBhIOL0o; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Ggq5/TP8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AK4prJS4184961
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 04:55:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DncpN4eTwVmWaxuFQwCTjhRzoIYadgkKUlbtMRPPtuM=; b=HBhIOL0osIYFltyV
-	6yArROHTS3sssJaZ/SMTuI1/SnowjHrHFk3VxWINiZr0JwhmQMdnMij7W1ed0ip1
-	MmnhCoMxMA1epDUKpgNsxCOqCvO2JoeD40HXGL/p9RjtB2vx/uSfR6vzCqvAoOeg
-	trH25HRKVTP53nEi/1FNccjhg8/5otDEDYMbFzWguSzUyJYV6yxncq9/pIgrWvpA
-	FqzZxl+jTJ7t+97tKt2SDGZ4G4twv+QQRQzKjt+gsnlF0SPFHEKinpQdu7d11WSG
-	Qw21WQiDJJV15vTAKbcwwR0UqSww2y2froWDnT/hPslixlANHpanTyeOVzdKrA76
-	ot0Tkw==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ahbt6tyrq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 04:55:20 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-297ddb3c707so4443845ad.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 20:55:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763614519; x=1764219319; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DncpN4eTwVmWaxuFQwCTjhRzoIYadgkKUlbtMRPPtuM=;
-        b=Ggq5/TP8U1TJT4MF6vPJbI7p2NK3oFsoXxm8TqILkY9Dh7g/8EoNIJKIo46BrxB/yX
-         HBRJh5kK6eDIZV3AwyszDr6pCU/SAoIg5f1bwZ/Rq/MQhEctuNZIoahlqJN81VE5RR6/
-         QtUV+yC7sYsUGD32hIl85MKRfUbXs0/I8lLNzwAOcMm1trgY11qKG37As9q6ayJLS0gy
-         HVyFS6Y8YEChzcCaKtARnvHdQyeEOaQ86gl9Oc8OypcruVP7p52VeBq2oaBRp3FWfVgc
-         lpF77qEJNU5gWdoGBFCqW0c6H4Ke/Lihq7lqKE5tNMcSM4YTC87AiTR2giDzQrFFHxg9
-         q+tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763614519; x=1764219319;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DncpN4eTwVmWaxuFQwCTjhRzoIYadgkKUlbtMRPPtuM=;
-        b=PhPMbDeueTuuh9Xmfmlu2pwujqac6WDAnL9xjA4OjGqe6/M2h+f3NlyH/HWgoYl3nY
-         nJbCN23MBmh9WUIWToTVj5Xhm5OtSDF9yHtNTe/edbtJuPj/2D89rGIgL33vjC4GHjFD
-         VtSooXsXyCzl+jacbRSE4d0GWRhK2XdenDPTjnlJeJK6JWMvvdi39L5hQdS854DdMv/6
-         eV/0aFhw678JC9r3Z7++XS4lW0QQIQp83yp5z2u6+6hlM6bUgUVXNmBqGXmuA7/7RorM
-         QpXMuRa5fXr06h8G51X9KznXm2LXfTXbezObwFCJGXkQK50GbvQaFV2Mg7/Vnvg35jU7
-         uznA==
-X-Forwarded-Encrypted: i=1; AJvYcCX/ngVYSjIDoBwA/aGqJZbuM0PVJoYl0CUTI4vMS1brDizL665cGampz29AvQRqHE1wik2D5ZvvEXP7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9bVwE+dSvK4LRbCJXbys7t8uyIQeQgprJv5R/8fZrRoiTA7Au
-	xFzy2rgAll1fQvUKpENxriD3EmB+WpTkuWGC4Qbr92XpCXlpBTSptFclQ2jDc3hc25Ov1d1IxF/
-	e5n/iMIRYf5LsjSrdz27igcX5napLEwqWpo1GKlrSf/Y+8zzNTcREzg7MyimtW60u
-X-Gm-Gg: ASbGnctjzQeDhIZwzAfVjDOIwdTj0XLqQVm2G4RAw/mHDf4ZWE73frE4Dv0FEMaveor
-	Wae68Kg6uqq6r8V6kkUCSrkqTAhhndIlf7cWe8w7WDNBShAivFyLN1lqRCjP7tRMC1pt1Eu54Je
-	ldAlZp4gEAhIjRFfSMHU4u8SBpvdGyructTqNDnOoKZHe7lrJZbeCMMIRtsIQbek05KCjKyldB+
-	cuMEagG0WbJQ7vZaz/wkfBBAvrCifSX2vAlVZjU4C1zYf9cwsTEI8NSBI2jRs+eNGlreq/VNr2y
-	XFprDbARRLgnVbgBGzEy7JHRLn7Y+vpR+Z/Np/r5m24ZKs7d2TTfVbPCvhFVRSbaXyXqIM6emNJ
-	BPiwwjcoNzhK+DJbYKntOL7yu9+w0VeBgMUU1DFvg
-X-Received: by 2002:a17:902:ef09:b0:297:dfae:1524 with SMTP id d9443c01a7336-29b5b0599ecmr23010785ad.16.1763614519219;
-        Wed, 19 Nov 2025 20:55:19 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE9wEYeJGmIMH4x08ZM2uAK1wl8/ybQKArVIWz3buvqwW+M1nh22erxRUrOrddYdQiIylejYQ==
-X-Received: by 2002:a17:902:ef09:b0:297:dfae:1524 with SMTP id d9443c01a7336-29b5b0599ecmr23010485ad.16.1763614518708;
-        Wed, 19 Nov 2025 20:55:18 -0800 (PST)
-Received: from [10.206.107.125] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b111acfsm11506795ad.19.2025.11.19.20.55.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Nov 2025 20:55:18 -0800 (PST)
-Message-ID: <99c22e73-797c-4a30-92ba-bc3bd8cf70f0@oss.qualcomm.com>
-Date: Thu, 20 Nov 2025 10:25:13 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5EB92BE03B;
+	Thu, 20 Nov 2025 05:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.208.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763615678; cv=fail; b=NEcnVqiB5FatVCE6cb4oIMHAea6jWQG3zdEGKq522ohhjE3EJIzVYY7E5H5mZoLE20A5f1S4qfE7jbFfOl9XGfOG3nN7e7G7G7LX8JHAWTvgP8UpDjPogbnsncnTD/x76xPK7VWpw+egCBsvbcAzEStOERmHX36DpKtcaST1o24=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763615678; c=relaxed/simple;
+	bh=oHpO4/ixV3yePB9Ip9VfWD9t9j8Xb0LVbbrQkMt91fM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Wp/HQ8D0AuSNHm48TzSoaYoWAsuhWJOwvUHxVhPS/Hben446IcqKBdzacaH7Sa+/gSc2NYCJxXkg9gvH/MhCFYtHPWsdWhlkDsKkT5hfIME7Jgqc400Tq4NYgiPPbmBd0Rp5f4ARQAc6NqCacKOO+3ewr1MQQCErHv4fbEXH2Mk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=w51/XmYE; arc=fail smtp.client-ip=40.107.208.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JxVPaHok4SzBoEWNSsmVdNkBvvzHBTFhepLw+HT6HSSfspA7iwqFyT8ppDt74Vu2Y+JpRpOWXrl3VFpA5fq7LO/g4oLyIQZ+cIoNkzx05chD+v/1ugZY5/0vI2HfihnvvsFSGniy4cjods2TCsMC58dZwQ2pqN28ZmZTpmKc2bZIeaaFRI9zV91RttRuiuXmT5VhCNXZgaJb0hkorSCamN+XpYkcityl+i0t8r/xhbvbuxNu13WY+jLw9PspO/Q3gJmc54MG+EsH3m9jr4ZEJlINSUGKIgw9ZWdcc+nHinNlTl/7tfZq5QvZtaYtXTFl9EUA4sWm5UUXs9/oEUiEsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cL0Dh91o1bCVwoX8NEcemWJh5bhQJzeBH1jlX3hGHiA=;
+ b=OvILzlidzVv0eUaqYH5gL6G+QaXAgIVDOe0vhiEQKQcZsBgxs5xWNwD2wlNgD/RGG4jI6HJleyeebumPQo/4H+4RMQ1AX4HVP3K8jxyV2bFXTyUQplX/RVm2WVvgK/igoD78s1hbk1XmfNEFrpPmk/UlxDhh7+mJYfpIEfgqEjLyibMDSJjpYIj+jBTl/au/wkrg+F6+g2Um9UFw2Mv2DCGdBUFLuSR2nJ68MR4V5tnrpdGSC6g6/jnUh388bNq8dRm62sRTWwBJTvx6/yGWIWkNagucM1wc0RYndfV5CGldT3dGKuKGQnuAAKmCilsZas9eBzBS2f/5v0aHLKh8kg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cL0Dh91o1bCVwoX8NEcemWJh5bhQJzeBH1jlX3hGHiA=;
+ b=w51/XmYEAZSxp+8Iw1056aOiac8yNZxoakYECloM3Wgy7+nchbttQROFGq/JTQ/NuVLFkxXwgITgG85DYwBBmskqLWI87ZW999/ipgu8AdnwGCXXI1QCSGA+LD9kOtxxBhQqECzZiAqUHVLz67JSf0WVnB3yQTuXa9qFLyoV7Hw=
+Received: from PH8P223CA0002.NAMP223.PROD.OUTLOOK.COM (2603:10b6:510:2db::8)
+ by IA0PR10MB7158.namprd10.prod.outlook.com (2603:10b6:208:403::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Thu, 20 Nov
+ 2025 05:14:32 +0000
+Received: from SN1PEPF000397AE.namprd05.prod.outlook.com
+ (2603:10b6:510:2db:cafe::28) by PH8P223CA0002.outlook.office365.com
+ (2603:10b6:510:2db::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Thu,
+ 20 Nov 2025 05:14:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SN1PEPF000397AE.mail.protection.outlook.com (10.167.248.52) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9343.9 via Frontend Transport; Thu, 20 Nov 2025 05:14:30 +0000
+Received: from DFLE209.ent.ti.com (10.64.6.67) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
+ 2025 23:14:29 -0600
+Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE209.ent.ti.com
+ (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
+ 2025 23:14:29 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE200.ent.ti.com
+ (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 19 Nov 2025 23:14:29 -0600
+Received: from [172.24.233.103] (uda0132425.dhcp.ti.com [172.24.233.103])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AK5EPLA3096606;
+	Wed, 19 Nov 2025 23:14:26 -0600
+Message-ID: <a8d1aaa8-9204-42f1-9e2d-3d20d5025efa@ti.com>
+Date: Thu, 20 Nov 2025 10:44:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,149 +90,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
- nodes
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Nickolay Goppen <setotau@mainlining.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux@mainlining.org, Chenna Kesava Raju <chennak@qti.qualcomm.com>,
-        Bharath Kumar <bkumar@qti.qualcomm.com>
-References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
- <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
- <07066c46-4121-48da-846a-3a180d245589@oss.qualcomm.com>
- <47b40a91-8365-4431-9fd9-1e48fad2a4e1@mainlining.org>
- <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
- <83c3aea5-764e-4e60-8b16-67b474f19357@oss.qualcomm.com>
- <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
- <f5c7eb1c-28b1-4cf1-afb0-b993384b7712@oss.qualcomm.com>
- <80836b8f-16a8-4520-ad11-5ca0abb3403e@oss.qualcomm.com>
+Subject: Re: [PATCH] arm64: dts: ti: Add missing applied DT overlay targets
+To: Rob Herring <robh@kernel.org>
+CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Wadim
+ Egorov" <w.egorov@phytec.de>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20251117211316.725960-1-robh@kernel.org>
+ <002fad46-adb5-402e-8eb0-e4c71b862674@ti.com>
+ <CAL_JsqJNOeKViuUwpLf-7RzBDB-EMm35MumJsGZ0deX1cLx3CQ@mail.gmail.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
 Content-Language: en-US
-From: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-In-Reply-To: <80836b8f-16a8-4520-ad11-5ca0abb3403e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <CAL_JsqJNOeKViuUwpLf-7RzBDB-EMm35MumJsGZ0deX1cLx3CQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: uMxTHiaxUSzVuiLSqa68G4dRD_Xgb8JT
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIwMDAyNCBTYWx0ZWRfX42hucmaDPSMK
- kPgU78TgMCDi755D6cwT/Nw/8i4yG73o7VXqJLHkpolbmGU81mvWIwn7+uw5cwdo0cxnVMGJfUx
- CTh+nFz0/8S0N+CNS9oSXQItzdq/eOZ9KCmmffWaQmb7sBeDZgaxFO9GRSMapKYzp7ilXZ/pNkA
- YiEMsFKArPIKoc03c0c+jKtdTqaOM4oCzLIkZb9UugYpn67QQDshb3ZoVVqnZDrkCdnQEkJWUk+
- 335HJzONmYXwZ0dGsZG2reidL+tvrmtjCiA9lbEBDAynX9vnjmOsaj5NXJJTyfQQd0FLujoQ+ta
- Uu1vLYy0eY866GJ9BHZ2Wuoc8Z/mhdf2qtplwl5tS46xCvUUl/A1nsSnTzDIjNDVblxG8iyANDD
- 5CYL3Wg6t61PBaweD0qxXPz+aH1nbA==
-X-Proofpoint-ORIG-GUID: uMxTHiaxUSzVuiLSqa68G4dRD_Xgb8JT
-X-Authority-Analysis: v=2.4 cv=PJICOPqC c=1 sm=1 tr=0 ts=691e9f38 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=OuZLqq7tAAAA:8
- a=eRdh0U0_q75e97kZN5sA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22 a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-20_01,2025-11-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 phishscore=0 impostorscore=0 spamscore=0
- lowpriorityscore=0 adultscore=0 malwarescore=0 bulkscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511200024
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000397AE:EE_|IA0PR10MB7158:EE_
+X-MS-Office365-Filtering-Correlation-Id: b7bd1e39-ea49-4efd-7fb4-08de27f3af72
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Q2lMdEtFYVhjb3Bxa05SNDdkV1pLd1kxRmlTM3pVLzhmanZHZ0p2VThETWtz?=
+ =?utf-8?B?UzZsQ0tNa0o1ZXlqRFBIdnF3UkJVRVp0OUZOeldqMzgxK0JXUUl1VStra2VT?=
+ =?utf-8?B?N05kb2FSTUg2alhLVW9vdmZWb2lJQVROeHlwTDljMjI1N05KcmtYVkR6azdM?=
+ =?utf-8?B?UXY2aE9DKzc0SXpJWHVrbWNOOXo1b3NESm8yc3RMVFY3SkkwTkRhTzlCSk1i?=
+ =?utf-8?B?TnJySThVdk93TkNjQk9RMFpUZWFUcTJOL0NveWNWZW4xYnVEbk00TWhocytD?=
+ =?utf-8?B?RE16b1J4VkppVlU4Q2hQUkV6ZEVTQ2hCMkJLMTFnQk5xYndDU1dLSDlwL2E3?=
+ =?utf-8?B?Q1ozVndkQ216M1BPeDBPcUVtbTdMcHMrU05CZlM1MlBSci8wN3ZzTWJJL1lv?=
+ =?utf-8?B?R1lxUDlPSjJxV3FSWS85RWhJaDBjQ1AwT094UnU5WUV2R3g0NUFrT1RTLzlR?=
+ =?utf-8?B?VW1RcEVYL1lLWkcyRXpnTmtNY0thVlkxMDEyOURhOHpqT0NuR1pFQkh4RDdF?=
+ =?utf-8?B?eGR0N2N5c1plYVd5R2IwckZMQmcycHRFYW1kNGh0Mno1VGl5V3lHcGFxOWFm?=
+ =?utf-8?B?OWxCaTZoUThYL2Fjay8yZEhvdHl4SEN6ZTFpeGdic2g4eHZZWkpMakJ4eEJW?=
+ =?utf-8?B?RXdZYmlKYzVXb2RXYjFJV3l5RlYzWWVQcUdCdDZMdmxnSit0U3doRnd6MDFW?=
+ =?utf-8?B?Y1VIR2VCajh3a1lyU09UNEUzZERGbjhBTFRsMmRnaFlPeVY3bWczK0dxNUhT?=
+ =?utf-8?B?bkw4QmZqK08wVjVaWDF5UndtNDRqL0dPSThwaWVIYlFnbWl5Y3RFbnl5Mkor?=
+ =?utf-8?B?TlV2dUtXTTVMUVExRUlUK3pXRHNkWXNVWHMvYm43RERmSWRDejVvb0FFMXla?=
+ =?utf-8?B?ZXVHOEpNb3dlMWJvTkk0VFh2REphTHBZNC92VjFzZ3NDMlI1VDVSc0tVdCtH?=
+ =?utf-8?B?RllpMmxYMkpGblFxaTdoaHdsRjg3ZTlGZk5vZmluL2lxZzhHMHdiVkJ1elIy?=
+ =?utf-8?B?VXBIY0RvNktRakRWWHVucGRvRmd4bHBRVG0wY2RsSGpZcmtwbjdxc09NOVV6?=
+ =?utf-8?B?aVZNNjRiQVNBcE9UT3h3Sk85a25HTSt4ZU5YSER6SExiWFlVMDRPTXExbjZZ?=
+ =?utf-8?B?dWVOZTh6TWEzQmxVVDUrK3R1TlN1NW10L1J2dUFYYU93OFQ2WlZYV0h4YW8w?=
+ =?utf-8?B?RHlnakJsZTY3dFFTT2dyR1htTG1hZUZYMFdBYkI5YklrWVduM2VhajRRTEI3?=
+ =?utf-8?B?empJNHZZenFSeUVuZTVETVRkM2JLcHBhT1pUNU01Zk5QcmR0RUpGQzdrTGpM?=
+ =?utf-8?B?aDNhSFBYSlVFcHJhRXRwdWkrOFJXeTZpWEEzWHlSQUhIMjVmL0s2MEJMbkFS?=
+ =?utf-8?B?Sm0vcXJkeDBLcmdqdkRCVmtkcDhOcGJ4b2x6WmZzaFRJNjRkSHpiVGdCNDdJ?=
+ =?utf-8?B?cnJ5azc3aWR3RWpDN2RuKzJOWWV2Vzh5Z0NTTFF2eFZmOU43Z2xSWTRWd2hQ?=
+ =?utf-8?B?dkl5WjlQNUpaaExCdlFMZ0hYalJ3MEJvK216NmpNMW1ta0ZpU1lFUDRIUG9q?=
+ =?utf-8?B?bXdISHV3Tkc1bmJiQ0FIT2M1VGx3bkw2ZVZXNU5PbDVaSlR1WXFDRE1vbjdk?=
+ =?utf-8?B?NzdVSlZpYVBQYVBQeFlEUnVTaG55c0l3cHlYRjBXcTc4L3JxLytGVSt1R3BK?=
+ =?utf-8?B?MnNKelZDMVpsYXBUOERGOWExd2R4OVFVd09kVTVxMGNITlhETThtOHlwbEx4?=
+ =?utf-8?B?RFk4QjhUNHpnS2lzN0JocjBjN2VNeG80Qlljd3JOMXVDNEw3KzZpMUtjOHFX?=
+ =?utf-8?B?ZndkZ2pKVm9ML0NsSWxvR2F5V2x0UWZaTDAzZ3BGTC9XYWhpT24yQ2crRjk3?=
+ =?utf-8?B?bEtqWkJMVSs3N1VVZzhBMWV5cXcrMHhCczVUNFhRUlYxeGNYeWx5KzlreCtn?=
+ =?utf-8?B?ZlZWdEZtL3BWUlF0UmkzSUVuWVJUcFp1c1FNVEU1bEVKdWRTNy9DYVJtN3Mz?=
+ =?utf-8?B?SDRJbitUTmZjMjRZT3BBQ3E1MktzRkFlOGtPczIxSEVJWHM4MjdYaG9sek9z?=
+ =?utf-8?B?Z0dQZkdxTFFRbndhYWg1TU5JbVMzdWRna2RYQkhkQkpEWS8vYVlaUXhaUGhI?=
+ =?utf-8?Q?yPdA=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 05:14:30.6773
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b7bd1e39-ea49-4efd-7fb4-08de27f3af72
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF000397AE.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR10MB7158
 
 
 
-On 11/20/2025 1:58 AM, Srinivas Kandagatla wrote:
-> On 11/12/25 1:52 PM, Konrad Dybcio wrote:
->> On 11/10/25 6:41 PM, Srinivas Kandagatla wrote:
->>> On 11/3/25 12:52 PM, Konrad Dybcio wrote:
->>>> On 10/31/25 12:30 PM, Nickolay Goppen wrote:
->>>>> 24.10.2025 16:58, Nickolay Goppen пишет:
->>>>>> 24.10.2025 11:28, Konrad Dybcio пишет:
->>>>>>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
->>>>>>>> In order to enable CDSP support for SDM660 SoC:
->>>>>>>>   * add shared memory p2p nodes for CDSP
->>>>>>>>   * add CDSP-specific smmu node
->>>>>>>>   * add CDSP peripheral image loader node
->>>>>>>>
->>>>>>>> Memory region for CDSP in SDM660 occupies the same spot as
->>>>>>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
->>>>>>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
->>>>>>>> cdsp_region, which is also larger in size.
->>>>>>>>
->>>>>>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
->>>>>>>> related nodes and add buffer_mem back.
->>>>>>>>
->>>>>>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
->>>>>>>> ---
->>>>>>> [...]
->>>>>>>
->>>>>>>> +            label = "turing";
->>>>>>> "cdsp"
->>>>>> Ok, I'll change this in the next revision.
->>>>>>>> +            mboxes = <&apcs_glb 29>;
->>>>>>>> +            qcom,remote-pid = <5>;
->>>>>>>> +
->>>>>>>> +            fastrpc {
->>>>>>>> +                compatible = "qcom,fastrpc";
->>>>>>>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
->>>>>>>> +                label = "cdsp";
->>>>>>>> +                qcom,non-secure-domain;
->>>>>>> This shouldn't matter, both a secure and a non-secure device is
->>>>>>> created for CDSP
->>>>>> I've added this property, because it is used in other SoC's, such as SDM845 and SM6115 for both ADSP and CDSP
->>>>> Is this property not neccessary anymore?
->>>> +Srini?
->>> That is true, we do not require this for CDSP, as CDSP allows both
->>> unsigned and signed loading, we create both secured and non-secure node
->>> by default. May be we can provide that clarity in yaml bindings so that
->>> it gets caught during dtb checks.
+On 20/11/25 03:26, Rob Herring wrote:
+> On Wed, Nov 19, 2025 at 8:47 AM Vignesh Raghavendra <vigneshr@ti.com> wrote:
+>>
+>> + wadim who posted something similar:
+>>
+>> Hi Rob,
+>>
+>> On 18/11/25 02:43, Rob Herring (Arm) wrote:
+>>> It's a requirement that DT overlays be applied at build time in order to
+>>> validate them as overlays are not validated on their own.
 >>>
+>>> Add the missing TI overlays. Some of the TI overlays have the first part
+>>> needed (a "*-dtbs" variable), but not the second part adding the target to
+>>> dtb-y/dtb- variable.
 >>>
->>> However in ADSP case, we only support singed modules, due to historical
->>> reasons how this driver evolved over years, we have this flag to allow
->>> compatiblity for such users.
->> Does that mean that we can only load signed modules on the ADSP, but
->> the driver behavior was previously such that unsigned modules were
->> allowed (which was presumably fine on devboards, but not on fused
->> devices)?
-> Yes, its true that we allowed full access to adsp device nodes when we
-> first started upstreaming fastrpc driver.
->
-> irrespective of the board only signed modules are supported on the ADSP.
-> I think there was one version of SoC i think 8016 or some older one
-> which had adsp with hvx which can load unsigned modules for compute
-> usecase only.
->
-> I have added @Ekansh for more clarity.
->
-> --srini
+>>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>>
+>> Look like there is more needed change needed.
+>>
+>> https://lore.kernel.org/all/20251119123216.1481420-1-w.egorov@phytec.de/
+>>
+>> Could one of you post the superset patch?
+> 
+> I'll leave it to Wadim.
 
-For all the available platforms, ADSP supports only signed modules. Unsigned
-modules(as well as signed) are supported by CDSP and GDSP subsystems.
+Probably best to merge Wadim's patch first and then then delta. I will
+take care of posting the next as TI board targets need a bit more tweaking.
 
-qcom,non-secure-domain property marks the corresponding DSP as non-secure DSP.
-The implications of adding this property would be the following:
-on ADSP, SDSP, MDSP:
-- Only non-secure device node(/dev/fastrpc-Xdsp) is created.
-- Non-secure device node can be used for signed DSP PD offload.
+> 
+>>
+>> I have already sent out the PR for v6.19rc1 for TI tree? Is [1] plan to
+>> be merged for v6.19 cycle, if so I will plan for a follow up PR with
+>> newer version of this patch.
+>>
+>>> ---
+>>> This will soon be a warning[1].
+>>>
+>>> [1] https://lore.kernel.org/all/20251114222759.4181152-1-robh@kernel.org/
+>>
+>> BTW, with above patch, make dtbs seems to fail w/o CONFIG_OF_ALL_DTBS=y.
+>> Is that expected?
+> 
+> Yes. What's in linux-next now is fixed.
+> 
+> Rob
 
-on CDSP, GDSP:
-- Both secure(/dev/fastrpc-Xdsp-secure) and non-secure(/dev/fastrpc-Xdsp) devices
-  are created, regardless of this property.
-- Both the nodes can be used for signed and unsigned DSP PD offload.
-
-Note: If the property is not added for CDSP/GDSP, only secure device node can
-be used for signed PD offload, if non-secure device is used, the request gets
-rejected[1].
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1245
-
-//Ekansh
-
->
->
->> Konrad
+-- 
+Regards
+Vignesh
+https://ti.com/opensource
 
 
