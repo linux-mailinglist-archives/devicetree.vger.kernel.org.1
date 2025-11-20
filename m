@@ -1,131 +1,80 @@
-Return-Path: <devicetree+bounces-240804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4C6C75AF7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 18:32:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF85C74A9B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:53:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E47A2346BDE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 17:26:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 7BE8A2AC35
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:53:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB8836E564;
-	Thu, 20 Nov 2025 17:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A566933C519;
+	Thu, 20 Nov 2025 14:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="MqFEMG7/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KdFFiqcI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AFC43644C9;
-	Thu, 20 Nov 2025 17:17:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639C8314B60;
+	Thu, 20 Nov 2025 14:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763659079; cv=none; b=HgAWRW1uUmVx3K047dIkjMSWAkJFG8vIDKhSWBcyPQHfj9bi+BUIy28+iJcjGfCewA//upNj75BR2Oltu9x+iPx/Cdjx8s5gzsEyOKp3GpzqHbnBRMnOWtLkhKOa47/LII/MbIMfMz7ABdXx70OGfyZu+HOWI1fx8Png6uylbzk=
+	t=1763650366; cv=none; b=OGzyUy1uPA/MYudD4/QMfcg9Z8Wcp5LaxsAPtLPtBKQqIig3rHKOknIRvPZf6Xs38htKjYvjpG3DeTkWvxpyibQeFKyz+UOQBkjdJqh5Qo69wBPAioBhcfzSV6+5DZib/WSL4QY+1wN7ooKdtGj0cwnBx9GOxR+4WN6UKgaKkW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763659079; c=relaxed/simple;
-	bh=A/GWPaBQVlDVMfDmib2WIFU3MsNZJt8ywlHFd+byPbo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=WlUNKSHNkTumETQ+JqKWs4Br0p2IigLWCcuWOhjh8m0g/eqCpFJeSB80aF4H7KayCqF/aSIN/J0IRPLC7pHsL4g7OWqyIL9hOJWPR+f+ME9OO2V4O2GRTKGeEttAJKa/2P+2jUwNRHpi27OJ/ih/EnONBBHDRaf4V+vMac19Wig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=MqFEMG7/; arc=none smtp.client-ip=220.197.31.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=ck
-	2LXnallF0o14E7324Drq0pinMWebr/hckuV1kG/zs=; b=MqFEMG7/RTC91gTVjA
-	Dl4seBQ5Ws9MA7NAK4hlamY5Giq8jh+/TF3J8WmSKhuZ8tk1a+IlK1RDurJ+uZPM
-	kgvFUqGx0w7zxS5ndkD+1FMYtRC4hN/C5VB+agW7/Pb6BGuKee8NpGGOiaMprA+D
-	EAG1GHJM+2YnUR8kFh6nfq+vw=
-Received: from nilq-virtual-machine.. (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3t8f_KB9pu1X7AA--.141S2;
-	Thu, 20 Nov 2025 22:43:12 +0800 (CST)
-From: niliqiang <ni_liqiang@126.com>
-To: apatel@ventanamicro.com
-Cc: ajones@ventanamicro.com,
-	anup@brainfault.org,
-	atishp@atishpatra.org,
-	bjorn@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	frowand.list@gmail.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	maz@kernel.org,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh+dt@kernel.org,
-	saravanak@google.com,
-	sunilvl@ventanamicro.com,
-	tglx@linutronix.de,
-	hu.yuye@zte.com.cn,
-	deng.weixian@zte.com.cn,
-	ni.liqiang@zte.com.cn
-Subject: Re: [PATCH v16 6/9] irqchip: Add RISC-V advanced PLIC driver for direct-mode
-Date: Thu, 20 Nov 2025 22:43:11 +0800
-Message-Id: <20251120144311.5083-1-ni_liqiang@126.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240307140307.646078-7-apatel@ventanamicro.com>
-References: <20240307140307.646078-7-apatel@ventanamicro.com>
+	s=arc-20240116; t=1763650366; c=relaxed/simple;
+	bh=dd8gXAxBGCSTKR0xqs6Xe9fhkfzo2q5Xg4tiEYganaE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=CNd+kgrtrAfNCgRRi5TacQhcHyI1tFexoqnbU5KA4O+D/YbfAAmGp9QxzARsxe5eoFxT/hh7HkILwn+fH5F3vVlikqFe5YoDSOtjkdvwqboU51AT1x11eH1XfNuFBPvNSc0/lDdq17BsMzTJM3Ys+seCkUpoXxvVGQnfuXjeo2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KdFFiqcI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8233CC4CEF1;
+	Thu, 20 Nov 2025 14:52:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763650365;
+	bh=dd8gXAxBGCSTKR0xqs6Xe9fhkfzo2q5Xg4tiEYganaE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=KdFFiqcI4MKf8fbRTxWZBRU2sLzfrJLngSUi8ly9yon0/9tvUGui/zsF3d49N4D89
+	 zYy0HpyHBsLSim1eMttKOCoQV7w1Yp+99g1bRXuzcSrtvr8CKwRvJHdbN0aJ4vxbj/
+	 NLs52Tyb6pnTvdNLs0ku3xBC9f4hE9/f5QhSwh4DwhAJb7nTVw6TQm49f7UoCxzwbA
+	 3P4THEHG20YFzGbETpCII1SgGGxBITsdSecUZNa1R9S11NoWDyTaDeQTZPUjcskibn
+	 ShvE4g9xIvZlLHNGg3O2VH0D1sYbKb88KTD3KdOOiEedisn1H49f6iVHHSoEd+oaNS
+	 ST0D7RlKA8tow==
+From: Lee Jones <lee@kernel.org>
+To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alexander Kurz <akurz@blala.de>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20251118213541.43812-1-robh@kernel.org>
+References: <20251118213541.43812-1-robh@kernel.org>
+Subject: Re: (subset) [PATCH] dt-bindings: mfd: fsl,mc13xxx: Fix leds node
+ schema
+Message-Id: <176365036417.744495.17310062447934282027.b4-ty@kernel.org>
+Date: Thu, 20 Nov 2025 14:52:44 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3t8f_KB9pu1X7AA--.141S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7tw47XFyrJw47tw1Dtw4DCFg_yoW8ZF1DpF
-	4Dt34Iya9rGF1ag3ZrGa1kAFy7C395Cayayr1DJ34a9wn8uFyqva1Iy3909ry5Jr4rAr1a
-	qrWjyF9rCan8ZFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jjbyZUUUUU=
-X-CM-SenderInfo: xqlbzxxtld0wa6rslhhfrp/1tbiTwgM5WkfG4PySQAAs7
+X-Mailer: b4 0.15-dev-52d38
 
-> diff --git a/drivers/irqchip/irq-riscv-aplic-main.c b/drivers/irqchip/irq-riscv-aplic-main.c
-> +static const struct of_device_id aplic_match[] = {
-> + { .compatible = "riscv,aplic" },
-> + {}
-> +};
-> +
-> +static struct platform_driver aplic_driver = {
-> + .driver = {
-> +  .name  = "riscv-aplic",
-> +  .of_match_table = aplic_match,
-> + },
-> + .probe = aplic_probe,
-> +};
-> +builtin_platform_driver(aplic_driver);
+On Tue, 18 Nov 2025 15:35:40 -0600, Rob Herring (Arm) wrote:
+> The 'leds' node is missing constraints on additional properties. It is
+> mixing 'leds' node and child node properties as well as missing some
+> properties. Add the 'led@' child nodes and the missing properties.
+> 
+> 
 
-Dear Anup Patel and all concerned,
+Applied, thanks!
 
-I am writing to inquire about the historical rationale behind defining the APLIC driver's
-initialization priority using builtin_platform_driver in the current implementation.
+[1/1] dt-bindings: mfd: fsl,mc13xxx: Fix leds node schema
+      commit: 1759a0392f345689e155196c42f1db28a222618d
 
-In our environment, we are encountering an issue where this priority level causes ACPI-based PCIe
-enumeration to be executed in the system_unbound_wq work queue. This parallel execution model
-results in PCIe devices being enumerated in an arbitrary order rather than strictly following the
-sequence defined in the ACPI DSDT table.
-
-The random enumeration order is adversely affecting customer experience, particularly in scenarios
-where device ordering is critical for proper system operation or application compatibility.
-
-We are considering modifying the APLIC driver's initialization priority to ensure PCIe enumeration
-occurs sequentially according to the DSDT specification. However, before proceeding with such
-changes, we wanted to consult with you regarding:
-
-1. Were there specific technical considerations that led to the current priority selection?
-2. Are there any potential side effects or broader impacts that we might have overlooked?
-3. Would you support such a priority adjustment, or do you have alternative suggestions to 
-address the enumeration order issue?
-
-We greatly appreciate your insights and expertise on this matter, as it will help us make an
-informed decision while maintaining system stability and compatibility.
-
-Thank you for your time and consideration.
-
-Best regards,
-Liqiang
+--
+Lee Jones [李琼斯]
 
 
