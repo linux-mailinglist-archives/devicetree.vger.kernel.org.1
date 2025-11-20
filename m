@@ -1,135 +1,243 @@
-Return-Path: <devicetree+bounces-240608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BA14C73624
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:08:17 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD7FC736A5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:16:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 977134E418E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:04:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 39D4835379B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:11:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC8813019CD;
-	Thu, 20 Nov 2025 10:04:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u0X9zxRS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45345372ABF;
+	Thu, 20 Nov 2025 10:11:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC13C2F0686
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 10:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.205.26])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65FC121FF28;
+	Thu, 20 Nov 2025 10:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.205.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763633067; cv=none; b=s32b2r7ZJzHR+k7soL2bn/QfUqJ2saoE887/sJoY97Iz3+rIFi+kinHbZN4yTJe6IQ20Gkn5nWzz+SjqWs9ydINc/Tl0WDopbFqhj65Vd0H6xn6cNIxrwo7rjMk5SYLHF0PxLDyTqMnSE0qx82G/v/FWGXufK5YzLVj88Ep2fPU=
+	t=1763633462; cv=none; b=W7ljwjewyCO7MYwEZmQFcXAjnrGZDXj6ptQDV4k9C2lglydhwP7tdckfmL8JqFIeioBGfwJsNYa4XpxIcuyKlhfoKqRkFT4c/GuH28A96AGLlraGqn6M1GyXnnCSDXfZwyz9EDdTEyoLdLPJ3+4SIIG2ezccVbeGNTbujSjg1RM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763633067; c=relaxed/simple;
-	bh=DrOk2bm03bUPngyIHoBKhcf9gFSNhp+zCbFH+3YDqpg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=e2PliTr/lYFlLZw7UC0qiD61FubD7d2yHCudNe1YLOtymoaSauwoL1aB4LagDLBH871rBbu/m3cQfcFRZNA+HPgoKiw3FM4PXsKNZiAidXBNhmq8TKCPzYjNvTvZvm8cFusj+pLCtVSEQuzwyNUAXOoxwU1opbYuk4SFj10n7+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u0X9zxRS; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-477619f8ae5so4030565e9.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 02:04:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763633063; x=1764237863; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=DrOk2bm03bUPngyIHoBKhcf9gFSNhp+zCbFH+3YDqpg=;
-        b=u0X9zxRSdKh1kRo3A3pcE7mPQJMEv+zH9byMeGTExC2w1/ACpAvabi+UVISJBp9XST
-         zADnpTjb30gDt/f/C5Rzi7PZNbndEFBN9QUiC4r2bZjfvoxlbRB7IESs6nDQ6KCGMUy+
-         z6lQy3hgIaqzavOUqC0H8EplhqHCj9NAcO8NBkB3+NYFBfow8Ii6sRyHKCMHd1/8aAMo
-         S3KwxgzTi8WbVWCEZw96zgFVgO3m373pWEAWN4gvtN5amFpreX5TOlNp8g93m0X4Lc64
-         k11KhFXmFgjcVbONGo9lkClWRuz27bQ0lY9FII4VkKv5EVLnUp/I35KjCJmsIh24nx40
-         zZbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763633063; x=1764237863;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DrOk2bm03bUPngyIHoBKhcf9gFSNhp+zCbFH+3YDqpg=;
-        b=Mhnb7GKj+lvBZjymhOcdpDP9ld3l0wdqvfu1v4AKhO6gsYVT+c1KJYXMrQ1WFMAUyg
-         KQ1IwM5qUFGuCYj5SgYV75ePOIOn0vSfUqqwCSY3dGsFBRVbkatFvNe+bMh1Nu6wgdlE
-         GCnW02liF8dKPdsBU9ZUycviCuIH2OcNez/vZxfa+1P6K0QCJM949D0nbCSI2qF23r94
-         6MY6hRSna+30JobyITAZYfdM/MCECrYjZlC44in9kGswsnodrFjQYlryK0qB5IzNGpNb
-         NibdlEiKUN9mBJLk6DW2FOkSr9B6vWinmjFckyL2svoKwcD8yXjacBF9XHfAMTFW9SBz
-         qTWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUvLdRCSBLl8iXnVQMU0K452rXzjmpnFaZL+yKvtFCvXx86JnIN+oeeP5+w9jcV/rTgFI176oNJIPBn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwQgzRV5UaCYAatOpbw2p0z7U43+iE1R95JGb/Val4jb9q+R8b
-	aZ0eFbPAVzCmb7gIn2gTiLEQmZHmTmCPU3XySWuJ5a8MLKM4K8dWZnPnRJVqKFWJUds=
-X-Gm-Gg: ASbGncsYJUwHBu6Od27n+vnILk3z46IpMe/RAFMrtyA1ey06cGaieLWOKkoQkwD3ByX
-	NZKeHO5AOb0Fn94H+dJwt/9Ng2ZAfO8N3Cl/qU+s3HqyuNkb5sTdmRSrh7RT5NUIkNnEzidj5P9
-	Xu+fdgEJrmb9mDF2Xq8y36U8q7qzXUv1/tkOgM4bTE29QPlK02mKvmhwydvcssGzpiZUen4FmLT
-	t04kkfGhJ8+Xk9cvyLPs/ARjy0eFq97dT064hlTEgY898V7NpGfsaoTdsgkGo2k6VRvQzGyY587
-	VSf5zAraSb0JHwa/nXLw2YDammw9fL9htvIMqygoJ9kae5VIV3JZN9HlpLcV0x1qhDbJSRZl7E5
-	sk/XPmNuxc830MzaZjXw/HIXJJxX4Qa8zps2Ndr6izi3pr+53obzkNgvS5Wd/bKFDF6cnvT6GaB
-	25IJgRLEzr3uLDecjx
-X-Google-Smtp-Source: AGHT+IHrm5EaKYpV2W1s8pc4aTiYKHHkbeiQA9rV3WdkFR1VnTT0ZyX40PvNC5BuFfhZRUT8Fz32TQ==
-X-Received: by 2002:a05:600c:458e:b0:46e:396b:f5ae with SMTP id 5b1f17b1804b1-477bac0cfb5mr16019325e9.16.1763633062818;
-        Thu, 20 Nov 2025 02:04:22 -0800 (PST)
-Received: from salami.lan ([212.129.72.102])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477a9739964sm63387065e9.1.2025.11.20.02.04.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Nov 2025 02:04:22 -0800 (PST)
-Message-ID: <b9f4103d8de37574a116164c50ac7e1bd09be80d.camel@linaro.org>
-Subject: Re: [PATCH v5 1/4] dt-bindings: clock: google,gs101-clock: add
- samsung,sysreg property as required
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar	 <alim.akhtar@samsung.com>, Tudor
- Ambarus <tudor.ambarus@linaro.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Sam Protsenko	
- <semen.protsenko@linaro.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, Krzysztof Kozlowski	
- <krzk@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- kernel-team@android.com
-Date: Thu, 20 Nov 2025 10:04:20 +0000
-In-Reply-To: <20251114-automatic-clocks-v5-1-efb9202ffcd7@linaro.org>
-References: <20251114-automatic-clocks-v5-0-efb9202ffcd7@linaro.org>
-	 <20251114-automatic-clocks-v5-1-efb9202ffcd7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-7 
+	s=arc-20240116; t=1763633462; c=relaxed/simple;
+	bh=8QqqxkIdDjyJE0BWvVsg6KycxewcBPKhRvOLlWvLtwE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=h6xSAkvIEtGpIQIIVJ8/2iwirE/cgZdrR2S9UmSm2T9Fj9dDHKX1XVGABOKvtl4yDrUGzQLnPFGcmkD3xtVO57sEMlpav2hgHIH1NAieGT7qNBjnsz1OycrYjh+lgamy2nSDlo4Nj8Ffqf+M1EvdboYDqzZImzub2DQvumCVGlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.205.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0004758DT.eswin.cn (unknown [10.12.96.83])
+	by app2 (Coremail) with SMTP id TQJkCgAXWq0N6R5pJvF8AA--.36854S2;
+	Thu, 20 Nov 2025 18:10:22 +0800 (CST)
+From: zhangsenchuan@eswincomputing.com
+To: bhelgaas@google.com,
+	mani@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	robh@kernel.org,
+	p.zabel@pengutronix.de,
+	jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com,
+	mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com,
+	inochiama@gmail.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	ouyanghui@eswincomputing.com,
+	Frank.li@nxp.com,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: [PATCH v6 0/3] Add driver support for Eswin EIC7700 SoC PCIe controller
+Date: Thu, 20 Nov 2025 18:10:17 +0800
+Message-ID: <20251120101018.1477-1-zhangsenchuan@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgAXWq0N6R5pJvF8AA--.36854S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3JrWrJF45Kw48trWkCw1UGFg_yoW3ZF4Upa
+	97KFWjkFn5Gr4xZrs7Aa1F9F4fXFs8AFW5Cwn2g347Za1293s7tryvkFW3ta47Ars3ZrWY
+	vF42qanYkFn8AFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRkwIhUUUUU=
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/
 
-On Fri, 2025-11-14 at 14:16 +0000, Peter Griffin wrote:
-> Each CMU (with the exception of cmu_top) has a corresponding sysreg bank
-> that contains the BUSCOMPONENT_DRCG_EN and optional MEMCLK registers.
-> The BUSCOMPONENT_DRCG_EN register enables dynamic root clock gating of
-> bus components and MEMCLK gates the sram clock.
->=20
-> Now the clock driver supports automatic clock mode, to fully enable dynam=
-ic
-> root clock gating it is required to configure these registers. Update the
-> bindings documentation so that all CMUs (with the exception of
-> gs101-cmu-top) have samsung,sysreg as a required property.
->=20
-> Note this is NOT an ABI break, as if the property isn't specified the
-> clock driver will fallback to the current behaviour of not initializing
-> the registers. The system still boots, but bus components won't benefit
-> from dynamic root clock gating and dynamic power will be higher (which ha=
-s
-> been the case until now anyway).
->=20
-> Additionally update the DT example to included the correct CMU size as
-> registers in that region are used for automatic clock mode.
->=20
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
-> Changes in v5:
-> - Invert the test for google,gs101-cmu-top (Andre)
+From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+Changes in v6:
+- Updates: eswin,eic7700-pcie.yaml
+  - Add Reviewed-by: Rob Herring (Arm) <robh@kernel.org>.
+
+- Updates: pcie-eic7700.c
+  - Remove pci_root_ports_have_device function judgment during suspend.
+  - Remove eic7700_pcie_pme_turn_off and eic7700_pcie_get_ltssm function.
+  - Add set no_suspport_L2 flag.
+
+- Updates: pcie-designware.h pcie-designware-host.c
+ - The ESWIN EIC7700 soc does not support enter L2 link state. Therefore
+   add no_suspport_L2 flag skip PME_Turn_Off broadcast and link state
+   check code, other driver can reuse this flag if meet the similar
+   situation.
+- Link to V5: https://lore.kernel.org/all/20251110090716.1392-1-zhangsenchuan@eswincomputing.com/
+- Link to: https://lore.kernel.org/all/e7plmtwtkkd4ymrt2hkztcqdx4ugfjk64oksjyf6lpi2oui53d@vhuo5occyref/
+
+Changes in v5:
+- Updates: eswin,eic7700-pcie.yaml
+  - Modify reg-names: update mgmt to elbi.
+  - Modify clock-names: update pclk to phy_reg.
+  - Modify reset-names: update powerup to pwr.
+  - Remove powerup modify in "snps,dw-pcie-common.yaml" file.
+
+- Updates: pcie-eic7700.c
+  - Update the driver submission comment, mention EIC7700 in the
+    "config PCIE_EIC7700" and in the driver title.
+  - Update some comments, for examples: "s/PME_TURN_OFF/PME_Turn_Off/",
+    "s/INTX/INTx/", "s/PERST/PERST#/", "s/perst/PERST#/", "s/id/ID/".
+  - Update "struct *_pcie" name and function name, add the eic7700 prefix.
+  - Use PCIEELBI_CTRL0_DEV_TYPE macro and update comment, use FIELD_PREP.
+  - Add eic7700_pcie_data pointer in struct eic7700_pcie.
+  - Update .deinit callback function name and removed the dw_pcie_link_up
+    judgment, add pci_root_ports_have_device function judgment.
+  - Remove devm_platform_ioremap_resource_byname function get mgmt, use
+    platform_get_resource_byname function get elbi in "pcie-designware.c".
+  - Update of_reset_control_get to of_reset_control_get_exclusive, use
+    devm_reset_control_bulk_get_exclusive function get resets, update use
+    reset_control_bulk_assert/reset_control_bulk_deassert function.
+- Link to V4: https://lore.kernel.org/all/20251030082900.1304-1-zhangsenchuan@eswincomputing.com/
+- Link to https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/tree/?h=controller/dwc
+
+Changes in v4:
+- Updates: eswin,eic7700-pcie.yaml
+  - Use snps,dw-pcie.yaml instead pci-host-bridge.yaml.
+
+- Updates: snps,dw-pcie-common.yaml
+  - Add powerup reset property, our powerup property is somewhat different
+    from the general attributes defined by Synopsys DWC binding.
+
+- Updates: pcie-eic7700.c
+  - Update the driver submission comment.
+  - Alphabetize so the menuconfig entries remain sorted by vendor.
+  - Update use PCI_CAP_LIST_NEXT_MASK macro.
+  - Use readl_poll_timeout function.
+  - Update eswin_pcie_suspend/eswin_pcie_resume name to
+    eswin_pcie_suspend_noirq/eswin_pcie_resume_noirq.
+  - PM use dw_pcie_suspend_noirq and dw_pcie_resume_noirq function and add
+    eswin_pcie_get_ltssm, eswin_pcie_pme_turn_off, eswin_pcie_host_exit
+    function adapt to PM.
+- Link to V3: https://lore.kernel.org/linux-pci/20250923120946.1218-1-zhangsenchuan@eswincomputing.com/
+
+Changes in v3:
+- Updates: eswin,eic7700-pcie.yaml
+  - Based on the last patch yaml file, devicetree separates the root port
+    node, changing it significantly. Therefore, "Reviewed-by: Krzysztof
+    Kozlowski <krzysztof.kozlowski@linaro.org>" is not added.
+  - Clock and reset drivers are under review. In yaml, macro definitions
+    used in clock and reset can only be replaced by constant values.
+  - Move the num-lanes and perst resets to the PCIe Root Port node, make
+    it easier to support multiple Root Ports in future versions of the
+    hardware.
+  - Update the num-lanes attribute and modify define num-lanes as decimal.
+  - Optimize the ranges attribute and clear the relocatable flag (bit 31)
+    for any regions.
+  - Update comment: inte~inth are actual interrupts and these names align
+    with the interrupt names in the hardware IP, inte~inth interrupts
+    corresponds to Deassert_INTA~Deassert_INTD.
+  - Add Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>.
+
+- Updates: pcie-eic7700.c
+  - Update the submission comment and add DWC IP revision, data rate, lane
+    information.
+  - Optimize the "config PCIE_EIC7700" configuration.
+  - Optimize the macro definition, add bitfield definition for the mask,
+    and remove redundant comments. optimize comments, make use of 80
+    columns for comments.
+  - Use the dw_pcie_find_capability function to obtain the offset by
+    traversing the function list.
+  - Remove the sets MPS code and configure it by PCI core.
+  - Alphabetize so the menuconfig entries remain sorted by vendor.
+  - Configure ESWIN VID:DID for Root Port as the default values are
+	invalid,and remove the redundant lane config.
+  - Use reverse Xmas order for all local variables in this driver
+  - Hardware doesn't support MSI-X but it advertises MSI-X capability, set
+    a flag and clear it conditionally.
+  - Resets are all necessary, Update the interface function for resets.
+  - Since driver does not depend on any parent to power on any resource,
+    the pm runtime related functions are removed.
+  - Remove "eswin_pcie_shutdown" function, our comment on the shutdown
+    function is incorrect. Moreover, when the host powers reboots,it will
+    enter the shutdown function, we are using host reset and do not need
+    to assert perst. Therefore, the shutdown function is not necessary.
+  - remove "eswin_pcie_remove", because it is not safe to remove it during
+    runtime, and this driver has been modified to builtin_platform_driver
+    and does not support hot plugging, therefore, the remove function is
+    not needed.
+  - The Suspend function adds link state judgment, and for controllers
+    with active devices, resources cannot be turned off.
+  - Add Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>.
+- Link to V2: https://lore.kernel.org/linux-pci/20250829082021.49-1-zhangsenchuan@eswincomputing.com/
+
+Changes in v2:
+- Updates: eswin,eic7700-pcie.yaml
+  - Optimize the naming of "clock-names" and "reset-names".
+  - Add a reference to "$ref: /schemas/pci/pci-host-bridge.yaml#".
+    (The name of the reset attribute in the "snps,dw-pcie-common.yaml"
+    file is different from our reset attribute and "snps,dw-pcie.yaml"
+    file cannot be directly referenced)
+  - Follow DTS coding style to optimize yaml attributes.
+  - Remove status = "disabled" from yaml.
+
+- Updates: pcie-eic7700.c
+  - Remove unnecessary imported header files.
+  - Use dev_err instead of pr_err and remove the WARN_ON function.
+  - The eswin_evb_socket_power_on function is removed and not supported.
+  - The eswin_pcie_remove function is placed after the probe function.
+  - Optimize function alignment.
+  - Manage the clock using the devm_clk_bulk_get_all_enabled function.
+  - Handle the release of resources after the dw_pcie_host_init function
+    call fails.
+  - Remove the dev_dbg function and remove __exit_p.
+  - Add support for the system pm function.
+- Link to V1: https://lore.kernel.org/all/20250516094057.1300-1-zhangsenchuan@eswincomputing.com/
+
+Senchuan Zhang (3):
+  dt-bindings: PCI: eic7700: Add Eswin PCIe host controller
+  PCI: eic7700: Add Eswin PCIe host controller driver
+  PCI: dwc: Add no_suspport_L2 flag and skip PME_Turn_Off broadcast
+
+ .../bindings/pci/eswin,eic7700-pcie.yaml      | 167 ++++++++
+ drivers/pci/controller/dwc/Kconfig            |  11 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ .../pci/controller/dwc/pcie-designware-host.c |   4 +
+ drivers/pci/controller/dwc/pcie-designware.h  |   1 +
+ drivers/pci/controller/dwc/pcie-eic7700.c     | 387 ++++++++++++++++++
+ 6 files changed, 571 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-eic7700.c
+
+--
+2.25.1
+
 
