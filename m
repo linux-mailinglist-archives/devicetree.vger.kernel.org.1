@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-240672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5510C73F0C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32AF3C73EF7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:18:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 822DF4E95A7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:18:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CA2894E2735
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:18:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 859BB3346A6;
-	Thu, 20 Nov 2025 12:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A443432D0F5;
+	Thu, 20 Nov 2025 12:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="f/2vGwdt"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="CjX8K0Cg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F3FB332EA1;
-	Thu, 20 Nov 2025 12:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8626A1DE4CD;
+	Thu, 20 Nov 2025 12:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763641107; cv=none; b=uuh4PEkY5/rbJY7z4KVuId0M/jYqhxHb34szpwc1g8/YX940JEJTLdDP6GJ9lqCJWifIkqxdWJiVnbElJe6zPDh5C4jWnPw+QgRvTkHWDB9bTH8mrvjER7FIhqJye5MpLtSqnI+yGlo/SFZSusUScCzP6e31v0rdgreGfdHc9SQ=
+	t=1763641104; cv=none; b=eCHtbvGWN38W7+1qNPfmJdjMbrYqmvXtAMHYO1IGW7z0t5LcjmHATmgioL/q7Zt83g1GrvnGhwIFdGhcpQHF0vfwyenEJ7NZA7fOlJJzEQz+TmBNd9uZcZLyTMm0nZJiz0VBzMnxriqYkbunbC/WdSJEVv2IU3IkXhytVLCn94g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763641107; c=relaxed/simple;
-	bh=jhWhWVoA5Nx+NThyj5ek2Wb60/QYyeMKybFnMTAl75E=;
+	s=arc-20240116; t=1763641104; c=relaxed/simple;
+	bh=5USmu8aFaf1Yk5LNqVzpSRcXZ4HV87WY1hSaqD8iItY=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MyjrY2j/qeqUu+BqhMizzBoR8uuWtb2kHmzCv0mA4ovcDpa6GqfjFeOVsuXMNTlYUsbVEetaGnH2fgk/oIJQ/qNJfGIP0KSCULM46QgLYMoSXQwYbae5jUrmT3VmFLO3KGwW9viwp3rEebAi+KomDZLwvey/Ryd+UlldipT7cGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=f/2vGwdt; arc=none smtp.client-ip=60.244.123.138
+	 MIME-Version:Content-Type; b=mWL+qpXRSb+JStRemmd+cpzwlHmKqvUCkUBxgft0Is6PTlPTATPI9ZtY03xHoiFrWucpNCxBtb5v/ZwB0ImBbjRXuDSB+Txz94W3PrUoqtaa9Fb5AqmJI/RHvsuElgMXrUCgVxdt9r2vcMM8opkeOw31+Mjd+AruPV8Ulv9DE30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=CjX8K0Cg; arc=none smtp.client-ip=60.244.123.138
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: fc9a7b70c60a11f08ac0a938fc7cd336-20251120
+X-UUID: fe08e79ec60a11f08ac0a938fc7cd336-20251120
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=rsteaxwmn11dQnr7Va5x92id71POVjFtFsjVHcNIMtc=;
-	b=f/2vGwdtPnxHL/y0tet5KwSBSErPEYL6ymkTfszH4iCt93R55YLaT8pHGIuteeJZpxz6sjerwop0NhxBxUt4ecehcov6BQ/qUBZkyMK4b8c2t0bYh7HPRO2iVBB6ny7Jz/VQ0vvrGDkD8HGz/GOC3vv0KIvXNGxJANgecVt/BWQ=;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=fGdPK3RrezBbVwSc0ssaDkQ74p9HJyqRG5LTP1bNyGk=;
+	b=CjX8K0CgUZ4h7u5MXSTx20NFTcQSxmnNhMyHmxEO+bUxOBskMpsCmA5X24qlk3L5CVHJdpmeY9ZqPkjeMrafmcJUEOcv+xG1HBlT7BEP76W8NOypF48zUPWZy2DAN3GeZC149b2YBlsL5bCdOYxtMdp/c8pLO7WS8aKRn2PhFvA=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:f0d01e15-cc3e-4edb-adfd-c759c4728234,IP:0,UR
+X-CID-O-INFO: VERSION:1.3.6,REQID:6ee2c1f9-d174-43ab-bb0b-c947dcf00051,IP:0,UR
 	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
 	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:abdab1e0-f48b-4fea-bcf0-ae56d774aa1d,B
+X-CID-META: VersionHash:a9d874c,CLOUDID:695d1d58-17e4-43d2-bf73-55337eed999a,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|123|836|888|898,TC:-5,Cont
 	ent:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:
 	0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
@@ -47,32 +47,32 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: fc9a7b70c60a11f08ac0a938fc7cd336-20251120
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+X-UUID: fe08e79ec60a11f08ac0a938fc7cd336-20251120
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
 	(envelope-from <ot_shunxi.zhang@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1513773302; Thu, 20 Nov 2025 20:18:13 +0800
+	with ESMTP id 778364173; Thu, 20 Nov 2025 20:18:16 +0800
 Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 20 Nov 2025 20:18:12 +0800
+ 15.2.1748.26; Thu, 20 Nov 2025 20:18:14 +0800
 Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
  mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Thu, 20 Nov 2025 20:18:11 +0800
+ 15.2.1748.26 via Frontend Transport; Thu, 20 Nov 2025 20:18:14 +0800
 From: <ot_shunxi.zhang@mediatek.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
 	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
 	<angelogioacchino.delregno@collabora.com>, Eddie Huang
-	<eddie.huang@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, "Alexandre
- Belloni" <alexandre.belloni@bootlin.com>, Lee Jones <lee@kernel.org>, "Shunxi
- Zhang" <ot_shunxi.zhang@mediatek.com>, <Vince-WL.Liu@mediatek.com>,
+	<eddie.huang@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, Alexandre
+ Belloni <alexandre.belloni@bootlin.com>, Lee Jones <lee@kernel.org>, Shunxi
+ Zhang <ot_shunxi.zhang@mediatek.com>, <Vince-WL.Liu@mediatek.com>,
 	<sirius.wang@mediatek.com>, <Jh.Hsu@mediatek.com>
 CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-Subject: [PATCH v2 2/5] mfd: mt6397: Add bit definitions and struct members to support alarm status
-Date: Thu, 20 Nov 2025 20:17:58 +0800
-Message-ID: <20251120121805.6775-3-ot_shunxi.zhang@mediatek.com>
+Subject: [PATCH v2 3/5] rtc: mt6397: Fix formatting of platform driver structure
+Date: Thu, 20 Nov 2025 20:17:59 +0800
+Message-ID: <20251120121805.6775-4-ot_shunxi.zhang@mediatek.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
 References: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
@@ -87,36 +87,26 @@ Content-Type: text/plain
 
 From: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
 
-This patch adds new bit definitions for the RTC_BBPU register and one
-members in the mt6397_rtc_data structure in the mt6397 RTC header file
-to support alarm status functionality in the MT6397 RTC driver.
+This is a cosmetic change to improve code consistency.
 
 Signed-off-by: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
 ---
- include/linux/mfd/mt6397/rtc.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/rtc/rtc-mt6397.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/linux/mfd/mt6397/rtc.h b/include/linux/mfd/mt6397/rtc.h
-index 6d0bb1ea151b..fb320719f676 100644
---- a/include/linux/mfd/mt6397/rtc.h
-+++ b/include/linux/mfd/mt6397/rtc.h
-@@ -15,6 +15,8 @@
- #include <linux/rtc.h>
- 
- #define RTC_BBPU               0x0000
-+#define RTC_BBPU_PWREN         BIT(0)
-+#define RTC_BBPU_RESET_AL      BIT(3)
- #define RTC_BBPU_CBUSY         BIT(6)
- #define RTC_BBPU_KEY           (0x43 << 8)
- 
-@@ -76,6 +78,7 @@ struct mt6397_rtc {
- 	int                     irq;
- 	u32                     addr_base;
- 	const struct mtk_rtc_data *data;
-+	bool                    alarm_sta_supported;
+diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
+index 692c00ff544b..b8f44a00de5d 100644
+--- a/drivers/rtc/rtc-mt6397.c
++++ b/drivers/rtc/rtc-mt6397.c
+@@ -345,7 +345,7 @@ static struct platform_driver mtk_rtc_driver = {
+ 		.of_match_table = mt6397_rtc_of_match,
+ 		.pm = &mt6397_pm_ops,
+ 	},
+-	.probe	= mtk_rtc_probe,
++	.probe = mtk_rtc_probe,
  };
  
- #endif /* _LINUX_MFD_MT6397_RTC_H_ */
+ module_platform_driver(mtk_rtc_driver);
 -- 
 2.45.2
 
