@@ -1,117 +1,108 @@
-Return-Path: <devicetree+bounces-240705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76300C74469
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:36:35 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D4A4C7449C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:38:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 23EFB30A44
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:32:01 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3F45535A96B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA8333AD8A;
-	Thu, 20 Nov 2025 13:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4CC33A006;
+	Thu, 20 Nov 2025 13:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Equu/vol"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="hYWksjoG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2003433A6E4;
-	Thu, 20 Nov 2025 13:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CA6258EFC
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 13:32:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763645514; cv=none; b=e7A8LzBrIcB+DqwvxTqF9QfR09R2MVbwFZ/142k2Njsam4dn/lvHlKVEG2s0YE+4jhaKOU8q0aRkvwZOQ2MhN8lg5RhVb39moURbIDoaS7UzIPEo2D4RwfKLgSuZ2sqZhc8NifnpD3ztmigOXoGgMqnU5XemSpGaGqOhCw728SM=
+	t=1763645536; cv=none; b=QEjglSZcgLFanixaLeBUnhvwoE6Ae5gBpuiGRkPZ+DR31cNIaI4Lyes60NBp6ot8C7u8y9a4YCJi2lI0V7BMBqNpPjM9+zkS9Bop9l9tWGIfBYrZJA31miFUj20F2dJLZutjxjphf3QAGt2ZPXjmd/b/ypzjf7qq6naH+VDiNbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763645514; c=relaxed/simple;
-	bh=OlbGMJJo3h6foGa9UIPDdn5kb4i4ti9jl9iG5XLFp60=;
+	s=arc-20240116; t=1763645536; c=relaxed/simple;
+	bh=HT2dsCW4VnjrogrIv1Ap43hH1evmMUs9ZWigIAKQUng=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EJSfPmxJlPoloDnLQkTnmN6Xaaudm3uKi4bpXHGUTHx0f753TECPId7E79plWY7/eNjqgiObS5XABDfBe58QR6XhSWK4SoRFUJjDVs7+49LbZoiyQKcp8zA6l1VOrx8o/geD3x7DOz3KyoXv7FEFbGDkAoeGjLfqfTimR4/mEW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Equu/vol; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF858C4CEF1;
-	Thu, 20 Nov 2025 13:31:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763645513;
-	bh=OlbGMJJo3h6foGa9UIPDdn5kb4i4ti9jl9iG5XLFp60=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Equu/volqLlS+/V/HejpMUXVrMOWv4YBuA4TVh35QdOGWHdxUZB66BVNZ/lk3xt2r
-	 Eobgh+38biYgVUwk50p2+GF0LKR+PAEewarnZ+6V5aF3TYRl0z6mfhbu/pzi16G2sO
-	 Wud2qyl7Y3q3eHHkmI6AU8kFAVcNg7hfQVI1eXh7mzA8MnsomLzsZH3K1bl5Dx2f7w
-	 vtjK3hCaYNQfQ32ppTrAoVk83O3/nARw9tFNiHu0roroQ9BbEky+LPbn8UGdjz0sX3
-	 YECBRGXoyzd/VJGazgJ7PSP5+V3KbTMlbbS2NoV2mIcVwjRTI5raXRqQ3nfPTNo9hV
-	 y3f6A+gPlet2A==
-Date: Thu, 20 Nov 2025 13:31:49 +0000
-From: Lee Jones <lee@kernel.org>
-To: Lukas Timmermann <linux@timmermann.space>
-Cc: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 2/2] leds: as3668: Driver for the ams Osram 4-channel
- i2c LED driver
-Message-ID: <20251120133149.GA661940@google.com>
-References: <20251117020008.316648-1-linux@timmermann.space>
- <20251117020008.316648-3-linux@timmermann.space>
- <nkdqizx5lmf5mgovt4lv4pkzzaujnqt4zlhuwdlidrlgyqr5s5@dvnhdhkhfuvy>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bHw0WAYd3obt+kL09mxtKBnnzXykjMo0lYA+Lc5v6L7nyYYGEtEpQXnFaGasySWShw+muWtz/1TkRQBFxgSuz7neiQ5cWi9ipjDi5EKGHbjk1KmQu8MkAkB8msbYBw3Tjyl0asvFxfWsBQL7S6Qda+EHPfEKdZyGoBZG6KyZ1ig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=hYWksjoG; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=HT2d
+	sCW4VnjrogrIv1Ap43hH1evmMUs9ZWigIAKQUng=; b=hYWksjoGWpJnHMX7GAnW
+	EGFEm+tJdgNATY1jsuKJ/ndhRbWB0TzBosfwAC+bJzCUrNVWZBsI2RKY0/IQkw/K
+	annqgrR4UCnXyAUO/OJOeHacH8JJem7uvkZpXPYqNvQphuY8N5JdFEz/Jd/6h9uI
+	6QhuWGrFgD6q3dZ948GMQ0W0BHJbsx8/90F2VCtSavoZjau5IWrA9B+FpUjxv6Hw
+	1xvTjzNbHyDrOW629AjYfthju2O9ojNsCjfLehxtBJx46ztPmiAntAwY09w79dnS
+	ck3xKDLG/5aixS9UA/hzzTv2f9WDwWq6kU0CW8Pm2OiAq/hOZd+VpMkiJ0EfioTu
+	aw==
+Received: (qmail 388819 invoked from network); 20 Nov 2025 14:32:09 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Nov 2025 14:32:09 +0100
+X-UD-Smtp-Session: l3s3148p1@1VZJuQZELLgujnvV
+Date: Thu, 20 Nov 2025 14:32:09 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
+	biju.das.jz@bp.renesas.com,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
+ support
+Message-ID: <aR8YWQ0m2tZpONG9@ninjato>
+References: <cover.1763638659.git.tommaso.merciai.xr@bp.renesas.com>
+ <9d1cf2cdb1c11f24378404142e4c8aff680c6961.1763638659.git.tommaso.merciai.xr@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8In1Xu0qc9ZJg/Go"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <nkdqizx5lmf5mgovt4lv4pkzzaujnqt4zlhuwdlidrlgyqr5s5@dvnhdhkhfuvy>
+In-Reply-To: <9d1cf2cdb1c11f24378404142e4c8aff680c6961.1763638659.git.tommaso.merciai.xr@bp.renesas.com>
 
-On Thu, 20 Nov 2025, Lukas Timmermann wrote:
 
-> On Mon, Nov 17, 2025 at 03:00:08AM +0100, Lukas Timmermann wrote:
-> > Since there were no existing drivers for the AS3668 or related devices,
-> > a new driver was introduced in a separate file. Similar devices were
-> > reviewed, but none shared enough characteristics to justify code reuse.
-> > As a result, this driver is written specifically for the AS3668.
-> > 
-> > Signed-off-by: Lukas Timmermann <linux@timmermann.space>
-> > ---
-> >  MAINTAINERS                |   1 +
-> >  drivers/leds/Kconfig       |  13 +++
-> >  drivers/leds/Makefile      |   1 +
-> >  drivers/leds/leds-as3668.c | 222 +++++++++++++++++++++++++++++++++++++
-> >  4 files changed, 237 insertions(+)
-> >  create mode 100644 drivers/leds/leds-as3668.c
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 091206c54c63..945d78fef380 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
-> >  L:	linux-leds@vger.kernel.org
-> >  S:	Maintained
-> >  F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
-> > +F:	drivers/leds/leds-as3668.c
-> >  
-> >  ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
-> >  M:	Tianshu Qiu <tian.shu.qiu@intel.com>
-> > diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> > index a104cbb0a001..ec37d55ac14e 100644
-> > --- a/drivers/leds/Kconfig
-> > +++ b/drivers/leds/Kconfig
-> > @@ -100,6 +100,19 @@ config LEDS_ARIEL
-> >  
-> >  	  Say Y to if your machine is a Dell Wyse 3020 thin client.
-> >  
-> > +config LEDS_OSRAM_AMS_AS3668
-> I've modified this line as requested in patch series v9. After comparing
-> this with other configuration options in drivers/leds/Kconfig, this
-> seems out of place. Shouldn't we keep this consistent?
+--8In1Xu0qc9ZJg/Go
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-There are a few other examples in there, so consistency is less of an
-issue.  I personally think it provides a better picture of the device if
-the manufacture is mentioned as well.
+On Thu, Nov 20, 2025 at 12:51:39PM +0100, Tommaso Merciai wrote:
+> Enable I3C on RZ/G3E SMARC SoM.
+>=20
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-But this is not a blocking point.  Take your preference.
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
--- 
-Lee Jones [李琼斯]
+
+--8In1Xu0qc9ZJg/Go
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmkfGFUACgkQFA3kzBSg
+KbYyYg//YZTVyaYtoFRL4Ao7Gc5/1fA97jLqn6yHDhPEzjd9mwHBy0UakCWIgpqz
+LAQeIrciKU2tjONfn2GjGGfEMnYjjzx5foUh7p5Ad2BaltDwG2ActG/59RB3XJQW
+i+RfP6cz/0I837cxAiA9CaQ5QeLBjoM3pSln+ji8H/2jCpu7ZT3tkCQ+PK8MW+c4
+9B2n97T+HzOg6+r+rmm/rEC1KtUdxGbvk3hBAejEL2swDEngfScbuX0MwpzSDR0X
+QG65pW/PxEW1Tm07v7xIpVn/VZ09YzRqKMyFqvgyjV+4bji+MiKbyhQFWU1QUUYp
+1/azp/sqBRlOREIkMi+coT55Rno1zFZC75+Q3s59w6iO7ckMku1vBxNvdgBrtFt8
+pKv/knKy/rmMeqCYtWvvMQGgw+q7KhC8v6wQYMlrDhup5ezNOMQmChLlmtJ0KhH0
+l6wRMfHiq3dKRyp3RMngF07YdZybV0PAAoyz8uliosm4MsmaraHdXWICzUHxPp9Q
+MA0+QYmOjZrTqlXJPOO7HzCWgrQ1jF4Xo1NURhYxZg11JFrzobZGR28EcNfItkwj
+TzJznzgAfbvJGfvI1mhDxh6JEKHOSWwk8X6s3MJ52d7RsJAf45DSMmNyWGskSzQv
+3lSo7U++wngn5TtMngD19kGllCpuoX/AvI3BBOlau5KOcVP5sVQ=
+=LdXr
+-----END PGP SIGNATURE-----
+
+--8In1Xu0qc9ZJg/Go--
 
