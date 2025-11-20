@@ -1,80 +1,127 @@
-Return-Path: <devicetree+bounces-240579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32AE1C72E5F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:34:24 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3145C72E5C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:34:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 442DD4F01A3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:28:36 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4DAB834F803
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:29:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22FBF3128AA;
-	Thu, 20 Nov 2025 08:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9517D30F93D;
+	Thu, 20 Nov 2025 08:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RuhsLNFa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V7q090lq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F126F30DEDD;
-	Thu, 20 Nov 2025 08:25:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B3430F803;
+	Thu, 20 Nov 2025 08:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763627103; cv=none; b=a/ap7+SLTp6mERUZBZ/oxIh3uhWSkdEsDH1stWCByr0+iYlmCIXBUvpG6Gg346XjH/tQshV3vnVOKxGobbWZLaFqZekyGpp0U7q/pxtjmpOdl791+1YJGB/gl/DCx832Xx0j4wL1kMzM2PgBfqYsDR/4iPPn7IIDaVkbuapFhjY=
+	t=1763627184; cv=none; b=nCmfL2kq/vxo84ODl9brPjTgvCgMb88zENl2jPLyBzA/v8yKM02eNmQl4XbNHsb6r7uJHhd3ufMmmvuIyWKdgIQOcuu7gN3NT8IQTy+oU0xa1at4D1Fn7Lak2awgoJGTuhpuJfcVZwyL30es/bYLyzYsR8PcA9aCpAc9W6hi1/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763627103; c=relaxed/simple;
-	bh=1Xn5Sh69vBo1kPivyK9OnESXDYMQbUtggKYy7JqDebE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=adcfkwmYxfIympi5/j0lH/iDmMgEiJ+5B1SX7DBJUy/stQYU7ji8cqkpdxddoT0ZGpNcnYWeBnwShdwsPBNFMVFQuLNgY0R2izdPnusr9S3dCtLI78F2qsqAMvf/sl5lzxRp3bGnX6Cchc6fOJTR3FxYYNm6/8tAvdzQ9qUIV1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RuhsLNFa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA62DC4CEF1;
-	Thu, 20 Nov 2025 08:25:01 +0000 (UTC)
+	s=arc-20240116; t=1763627184; c=relaxed/simple;
+	bh=0UjaahDG0m3xax3ARgNeDEntAZL+mPydev+s7WtHty0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WliQzhTUuE24xVKEFMuBCJ41ISbqtV3qzKrCZc5lNQJrmAS7l5HPATN6oflolXDxS4EXs3XvIWztTYQYW4s4Ii6tazYlGKm/lTVGNGJJbqH6vn7D5VsIl6uZy38CZTjp7Yu1RWREI0JA25B7UwTO8Lhv+rpWFrmIJ5WEmx6e/eY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V7q090lq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9E36C4CEF1;
+	Thu, 20 Nov 2025 08:26:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763627102;
-	bh=1Xn5Sh69vBo1kPivyK9OnESXDYMQbUtggKYy7JqDebE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RuhsLNFa7vN+h7eI3AjwM07CoSJ8MRL3N2PTXww0KYWe9UDS+Xj0fpCna1nnGJGpH
-	 +lj6AhAURxx49kXo8/crWpZuQfbQ9tykOuVd85r9AKuP2dxV9v89QMG64F85QDDhQd
-	 cnrL+sJpCIhHV6ImSGnOpjLz06vrhNs52c3wd8vxVzAhgJ0wXm6hT3p/BTzABpjv3G
-	 ve7XdaMM8Q6+IvYsr90YyI4m4QUicC17oIpd3MQUtkx9TAoVOnmLJ/GThXAb+5P1p2
-	 dh8qAfQC1TThqDOnXHqDJDjlbrBPbFxwnSk0ndaRwKaf1ci4VYy61HJpjY1DlbmyC2
-	 usQmT2GXsrZ1g==
-Date: Thu, 20 Nov 2025 09:24:59 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
-	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: cpus: Add Qualcomm Oryon compatibles
-Message-ID: <20251120-tacky-perfect-barnacle-0fb27d@kuoka>
-References: <20251119-oryon-binding-v1-1-f79a101b0391@oss.qualcomm.com>
+	s=k20201202; t=1763627184;
+	bh=0UjaahDG0m3xax3ARgNeDEntAZL+mPydev+s7WtHty0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=V7q090lqNqm0VYJPVvkZKtrDGijErcHck9jJqL4WMKOKVXXvVOqWAuTB01l3bfm9m
+	 rsQgdDKEoFzxbHAdE5mLkERFfKmsYour7KVmWbKcEdc6WDnTxFh3Ivx83Ch+vEkN4R
+	 dx1UsCk1HBVMNiBkdw5lSup0xmjK8P7oBm+qgFHd97Nwva8fLyoyOJjC0hyrfwYaGV
+	 m70cV2pIsE6qfjblRrtbjkFdHU1lnpv526yVU3H3fDE0WkFvu9PNJLQuv/UUHBHQ0f
+	 2nJkYxsAk2pDe4ix6Qa8bYx0kdDzTV9XdffwkonXdJs0tj/IlpkOhPVLQ6JHtSkN2e
+	 H90SiPC5A1fOA==
+Message-ID: <758c729b-4951-498b-bdef-5018377846bb@kernel.org>
+Date: Thu, 20 Nov 2025 09:26:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251119-oryon-binding-v1-1-f79a101b0391@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/8] dt-bindings: hwmon: ti,ina3221: Add SQ52210
+To: Wenliang Yan <wenliang202407@163.com>, linux@roeck-us.net,
+ Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251120081921.39412-1-wenliang202407@163.com>
+ <20251120081921.39412-2-wenliang202407@163.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251120081921.39412-2-wenliang202407@163.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 19, 2025 at 09:50:53PM -0800, Jingyi Wang wrote:
-> Previous "qcom,oryon" is too generic, add specific cpu bindings:
-
-Why is too generic? Why gen1/2/3 is not generic? Both sound exactly the
-same for me - arbitrary number incremented from 1 does not make it less
-generic.
-
-> qcom,oryon-gen1 for X1E80100, qcom,oryon-gen2 for SM8750, qcom,oryon-gen3
-> for Kaanapali.
+On 20/11/2025 09:19, Wenliang Yan wrote:
+> Add a compatible string for SQ52210, provide brief descriptions for
+> both INA3221 and SQ52210, and define the compatibility relationship
+> between SQ52210 and INA3221.
+> SQ52210 is backward compatible with INA3221.
 > 
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+> ---
+>  .../devicetree/bindings/hwmon/ti,ina3221.yaml     | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+
+
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
-
 
