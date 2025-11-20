@@ -1,86 +1,148 @@
-Return-Path: <devicetree+bounces-240469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2459C7183C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 01:11:49 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51836C718B7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 01:25:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id D7CE02966F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 00:11:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 15FBD3501D3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 00:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29246C2EA;
-	Thu, 20 Nov 2025 00:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0CC1D86DC;
+	Thu, 20 Nov 2025 00:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p3kk9/Nx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMvzvpQh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2363846F;
-	Thu, 20 Nov 2025 00:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B9731D5CF2;
+	Thu, 20 Nov 2025 00:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763597505; cv=none; b=D8k35Nczwnye60xlG5mTYnKIPvOLg5n1yNluuFmnml0xQw0sQvRDsGhwqlugXuG/mp2pN5fQfsmbhKCkXvb3A/m7+prAdCmXYHvTGV8Yo5J1CqDZhspcnq5J9XJ6Px6XLD0+r2Bnb+rzAnqfNfNlnBDN1k1encnfexxDOi4HuEY=
+	t=1763598350; cv=none; b=f/4aAiXsjGx3c4tkPzVZZWVGUHpV+E5i6uL/j7OghZvX05kkUzOoHJzr6kpIG5iZN/xRhsjfF+xb9wb9QvSUw3046fch23wRtcWmcftmQyDykvHWabYYLP55QLPUA8nzxN6IP+rCoLRVUVbzyGcyUm+q4YqD6nwqZpFhOzpgu+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763597505; c=relaxed/simple;
-	bh=BJXgWOV8ilrXkWcqiCBuYjzC9vId9KOVewUanGTI5AU=;
+	s=arc-20240116; t=1763598350; c=relaxed/simple;
+	bh=S2XOgunETdCSBuxFCo1EOKgt7OKv3vevGxDiojSL/jc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k1yUgKPqC6MSbgIh2yqjKgxfnxV0xA8t+Zb4HjLYtpUBfV9PJXvE/79HlZMigFxkD+DtwSEh9NdSbcKIvfCE6cwxJ7fleedzxtZSNNSEt7Gk2ggr4jDnwmsc5o6LznQewbCq8LcMseBVThTw7fEzHlJUhPXvGte40B5DCrsK6aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p3kk9/Nx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AF39C4CEF5;
-	Thu, 20 Nov 2025 00:11:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mbjrWRSQNgJBzyOq7pDtwMJIqfHh2f1ISKFsnf6SoWZmWVXChVsV8+WX8u7dM1g61WGPTBXGM/nBFjT7UHTj7fVvM7GhnSHkOttSwIBz0ZNbBeNANHSFGw5SMjCui/21jkvZfugvN9HgK9B18fa/dFevOoylfbY514Ozk6EO99c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMvzvpQh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60901C4CEF5;
+	Thu, 20 Nov 2025 00:25:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763597504;
-	bh=BJXgWOV8ilrXkWcqiCBuYjzC9vId9KOVewUanGTI5AU=;
+	s=k20201202; t=1763598350;
+	bh=S2XOgunETdCSBuxFCo1EOKgt7OKv3vevGxDiojSL/jc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p3kk9/Nxp/DO5l6FwrufqoasWCnTaPs+yanQIOr3qixcWop2otdgPZTMQE6f/Wrvu
-	 nnCKtR/+npDlAJBxplDQ/BcJw31Y619hrnwJ8UNh+xSbkdTuJqu0d3roN4dE2o+K4w
-	 1aXOpaHRzWI3aPJ3PjsVTow/sTS288ppZuANK1PR6TCY3I0n9/wZRrkc+nGrddYpOt
-	 PT4/T9Acq/r81e0ZmY4OuBGE4Lu5s1YeflOsIld55Dozqdsh28CMqpfeSlSYaJovPf
-	 T6mw26E9kU94Qn0KI1wh6SisdegAE6oNaEmqUCWFiIqyCLZyDK+Tj+XnQXNl/gyTMl
-	 a5zVlgv0dbzaw==
-Date: Wed, 19 Nov 2025 18:11:42 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Matthias Brugger <matthias.bgg@gmail.com>, kernel@collabora.com,
-	Georgi Djakov <djakov@kernel.org>,
-	linux-mediatek@lists.infradead.org,
+	b=KMvzvpQhJFLosDkES5vRlvcTISZHA9Yo/lyB9WDA6sC5XvacPlYH+jcOZ4V5S7bUB
+	 osZKpZB0QBb6dg8X8pKMqZFHFvgvn5htlqgn6iaYjl5SeuoqynzyRsqf2KMHLd0197
+	 ExYT87jzl+T9KT9TStPhKEzn0lpafAsuY30ED21aNDmm7Sltbnme9lxidRrt7hT3lN
+	 C8sDYS0aY5rK8jhC2O2GRD/vIL8oouwentr3GpObJjk1rcYOpmY9mSEkvrg/vc0Dye
+	 /yyP/yXDT3fdIRIhDSBS1Rxrq6Xdf07aw6Fan67rcypEcUKod062CzieVbCQgBW2Kb
+	 uO/SR3X59kVlQ==
+Date: Thu, 20 Nov 2025 00:25:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Henry Chen <henryc.chen@mediatek.com>, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH 03/13] dt-bindings: interconnect: mt8183-emi: Add support
- for MT8196 EMI
-Message-ID: <176359750213.3605847.582811616705438270.robh@kernel.org>
-References: <20251114-mt8196-dvfsrc-v1-0-b956d4631468@collabora.com>
- <20251114-mt8196-dvfsrc-v1-3-b956d4631468@collabora.com>
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com
+Subject: Re: [RFC v1 0/4] Microchip mpfs/pic64gx pinctrl part 2
+Message-ID: <20251120-unguarded-stony-a58ea2401605@spud>
+References: <20251112-lantern-sappy-bea86ff2a7f4@spud>
+ <CACRpkdZuopbAyHaZQpeGh0+V7v6Cg5uJwscmVPCfjHghNbPymg@mail.gmail.com>
+ <20251119-citadel-shrine-fabc3fb309ac@spud>
+ <CACRpkdZOak-+Aahj7fte9gk9m+76LOguEsO7bBbHTMTfLExWcA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/rjLm8t14p4Vpzud"
 Content-Disposition: inline
-In-Reply-To: <20251114-mt8196-dvfsrc-v1-3-b956d4631468@collabora.com>
+In-Reply-To: <CACRpkdZOak-+Aahj7fte9gk9m+76LOguEsO7bBbHTMTfLExWcA@mail.gmail.com>
 
 
-On Fri, 14 Nov 2025 17:53:57 +0100, Nicolas Frattaroli wrote:
-> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Add a new compatible for the External Memory Interface Interconnect
-> found on the MediaTek MT8196 Chromebook SoC.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/interconnect/mediatek,mt8183-emi.yaml |  1 +
->  include/dt-bindings/interconnect/mediatek,mt8196.h | 48 ++++++++++++++++++++++
->  2 files changed, 49 insertions(+)
-> 
+--/rjLm8t14p4Vpzud
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+On Wed, Nov 19, 2025 at 10:31:47PM +0100, Linus Walleij wrote:
+> On Wed, Nov 19, 2025 at 7:06=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+> > On Wed, Nov 19, 2025 at 01:16:16PM +0100, Linus Walleij wrote:
+> > > On Wed, Nov 12, 2025 at 3:33=E2=80=AFPM Conor Dooley <conor@kernel.or=
+g> wrote:
+>=20
+> > > > and b) how the bank voltage
+> > > > interacts with the schmitt trigger setting.
+> > >
+> > > Please check if "bank voltage" is somewhat analogous to
+> > > this generic config:
+> > >
+> > > * @PIN_CONFIG_POWER_SOURCE: if the pin can select between different p=
+ower
+> > >  *      supplies, the argument to this parameter (on a custom format)=
+ tells
+> > >  *      the driver which alternative power source to use.
+> >
+> > It's not pin based, the whole bank it is connected to has to be changed.
+>=20
+> So there *is* such a thing as a group pin config setting for a
+> whole group of pins. Groups are not just for functions...
+>=20
+> And I don't know what is meant by a bank here, but it seems
+> to be exactly a group of pins.
 
+Yeah, it's a whole group of pins. There's two banks that the IOs this
+driver controls are split between, they don't really neatly correspond
+to a particular function (although the configurator doesn't permit a
+function belong to two banks, but it is technically possible for them
+to).
+>=20
+> From arch/arm/boot/dts/gemini/gemini-sq201.dts:
+>=20
+>  /* Set up drive strength on GMAC0 and GMAC1 to 16 mA */
+> conf9 {
+>     groups =3D "gmii_gmac0_grp", "gmii_gmac1_grp";
+>     drive-strength =3D <16>;
+> };
+>=20
+> If you look in driver/pinctrl/pinctrl-gemini.c you find:
+> gemini_pinconf_group_set()
+>=20
+> static const struct pinconf_ops gemini_pinconf_ops =3D {
+>         .pin_config_get =3D gemini_pinconf_get,
+>         .pin_config_set =3D gemini_pinconf_set,
+>         .pin_config_group_set =3D gemini_pinconf_group_set,
+>         .is_generic =3D true,
+> };
+>=20
+> OTOMH it's actually *fine* to *just* use groups for pin config like this
+> and *not* use it for muxing, i.e. have this group correspond to
+> a bank and not use that group for anything else than to set this
+> or any other per-bank property. But have a look!
+
+I could just put it in as a per-pin thing, even if the control isn't
+actually that granular. The bank lockdown has a per-pin bit, but is
+actually a bank wide toggle in the configurator, it wouldn't be too
+different.
+
+--/rjLm8t14p4Vpzud
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaR5gCgAKCRB4tDGHoIJi
+0htdAP9wFCGPx5famwNvCdfiLOLiEh+yaD0+FknUzUTj1jenNwD+IEbetMxWYCkV
+vMmxEi7yg7mm8P2qxRXuGtp5k1mmJgA=
+=aIi8
+-----END PGP SIGNATURE-----
+
+--/rjLm8t14p4Vpzud--
 
