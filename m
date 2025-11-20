@@ -1,165 +1,158 @@
-Return-Path: <devicetree+bounces-240621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8158C73782
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:32:51 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0792C737A6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:34:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 930814E2DC7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:32:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0E0E23501D7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:34:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A1832BF51;
-	Thu, 20 Nov 2025 10:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB242DEA8E;
+	Thu, 20 Nov 2025 10:34:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="fI0flkrf";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="08bR0/lq";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="fI0flkrf";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="08bR0/lq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R634Dkwn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C66532D0E0
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 10:32:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452C9205E25;
+	Thu, 20 Nov 2025 10:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763634753; cv=none; b=qi1oYmsyjy9NKbo1vyreNJhWGnxzagfv3EywhBb0NK9syZvoJnso5wVIx5Z2cSMeQ+TsL7WTe6O5iJ4LuXGRp9yxyFOSKGzn8o5SWJ27kEm2CraRgz5O6DZYSia0HPUcLyKxImxNfRSq9QWaeYdq+xtRH/mHH/GbpgUKHNHnlAA=
+	t=1763634856; cv=none; b=jtdC5N+/hVuK9GgRb5AqFxsa7k6MEY9h/9HQd1ktiItlXdApn9Q/oCr0TjuXhH2MD25uAYARHkQx7ZlY8xXYp+QJ1fZJ+bE0e9tC1FOgrenCqZ0WPCCDfUZZLTeFDYhRhaBoTfLMGcm+I6YNA/L8NQmY9bZ3qTiZejbWKeEKglw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763634753; c=relaxed/simple;
-	bh=tNSg8aCD6nZhbYliPcq+yjGCd2mcFdjJC8MiT7RY128=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EOwczBAWYc1pifJsWgrwlaCWjAy/6e4tIbC69yFeBiiRvRrMuwtm1degkRK2ITxRfOY0gkzL/7WN50YwVGSKwBqIRS5GYk5e5tAqwtChR9jhiAaehLZ5o21FPO2nAEomeOkwHuxpXnyHjkHCatUruBuIFh4gM2N/8GiGpVSL2MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=fI0flkrf; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=08bR0/lq; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=fI0flkrf; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=08bR0/lq; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 0E911209BA;
-	Thu, 20 Nov 2025 10:32:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1763634749; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=k8eHdVDqFsUecB9quEOdMDvlgDb++nIgrYxStlYj8a4=;
-	b=fI0flkrfILFoGqGCmrL+hhByQs1EnB/Af6T0/+jwe6UrU53WAZoUDbUrKeqtM7HNb8dyFL
-	c/pmh6jEcQZqud2F/yL1KRugfwV/rkccc8AxhBZFaY2jBM6cUWF5oVVKShXpikgcIRdwSJ
-	/8D5A9BqpkeuF3wzi5TyQ9VTYx0ZceY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1763634749;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=k8eHdVDqFsUecB9quEOdMDvlgDb++nIgrYxStlYj8a4=;
-	b=08bR0/lqWXzp5rHNgUoNiighTAupKsbWenty5Rm91/5HO5X2iuQXaMN11DZb4dqRYnwOwE
-	4u9pA5EfTVkACeDg==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1763634749; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=k8eHdVDqFsUecB9quEOdMDvlgDb++nIgrYxStlYj8a4=;
-	b=fI0flkrfILFoGqGCmrL+hhByQs1EnB/Af6T0/+jwe6UrU53WAZoUDbUrKeqtM7HNb8dyFL
-	c/pmh6jEcQZqud2F/yL1KRugfwV/rkccc8AxhBZFaY2jBM6cUWF5oVVKShXpikgcIRdwSJ
-	/8D5A9BqpkeuF3wzi5TyQ9VTYx0ZceY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1763634749;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=k8eHdVDqFsUecB9quEOdMDvlgDb++nIgrYxStlYj8a4=;
-	b=08bR0/lqWXzp5rHNgUoNiighTAupKsbWenty5Rm91/5HO5X2iuQXaMN11DZb4dqRYnwOwE
-	4u9pA5EfTVkACeDg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 351413EA61;
-	Thu, 20 Nov 2025 10:32:28 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id y1vJAzzuHmmHXwAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Thu, 20 Nov 2025 10:32:28 +0000
-Message-ID: <ee9809e3-58e5-4a40-8c77-a8115f11c1d1@suse.de>
-Date: Thu, 20 Nov 2025 12:32:23 +0200
+	s=arc-20240116; t=1763634856; c=relaxed/simple;
+	bh=0kC3JVbniNzr/ImDlkOT0dNJwNLVLcsG6+ixM/BI2sI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HDj8fwhGgEybg4LShHdxiR1Eh1cPHhBxVl7Q37TCqw7S6+zmyRJS+j/LCTOWv7Xm2zTbjvr0Q3EDEZrpien6JI6LzHkL0/M+2EkM6e8xtbvtJoiq1xx1e0O/Wv0c9IMXvnjkHPW4FLe5NX4ENCZLwcqh9pJqk13CaCXax4fI2t8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R634Dkwn; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763634854; x=1795170854;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=0kC3JVbniNzr/ImDlkOT0dNJwNLVLcsG6+ixM/BI2sI=;
+  b=R634DkwnCAGalqYwCscEn5XiFKz4lNkToYqCnfPZE0Axfyn88qUnmO5H
+   5u0nKXz5qvUE6WC6DD9B3Dmh28rzl+JRU9Zg/lDuZjtGuI2H8kAlwVrn8
+   nXbWSOIby2dOUfkF0CXGLPd4J8hOy4yXA9Wd61dsV+FIXPoP6dsWKjZHH
+   nId3i65xtGzGQ805Tce/s7pVN8YJ/K2iREOyDIHgMVXi1ZxpWPUewaX05
+   pRxb1pbfC35NrLUKdVxmJte94iOOueyuGG7UkkMvvTAGekKJbUvbJCxAX
+   7eyFw8/59ZRmIJGh9r4xnwUYQaNr5Z0g2fktyIuUOE+HmZZ4Inyeu+qwG
+   A==;
+X-CSE-ConnectionGUID: 2I/wwwXYQNSQGOlaIiASCw==
+X-CSE-MsgGUID: 08N8s2C9R9mA526YrgpxCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11618"; a="76308541"
+X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; 
+   d="scan'208";a="76308541"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2025 02:34:13 -0800
+X-CSE-ConnectionGUID: w0355Oc6SFu/ZzuNlAwbEA==
+X-CSE-MsgGUID: Sf5bM+iTTw6SqHjQxv4REA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,317,1754982000"; 
+   d="scan'208";a="195465708"
+Received: from black.igk.intel.com ([10.91.253.5])
+  by orviesa003.jf.intel.com with ESMTP; 20 Nov 2025 02:34:09 -0800
+Received: by black.igk.intel.com (Postfix, from userid 1001)
+	id AACE196; Thu, 20 Nov 2025 11:34:07 +0100 (CET)
+Date: Thu, 20 Nov 2025 11:34:07 +0100
+From: Mika Westerberg <mika.westerberg@linux.intel.com>
+To: =?utf-8?Q?Beno=C3=AEt?= Monin <benoit.monin@bootlin.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Jan Dabros <jsd@semihalf.com>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Clark Williams <clrkwllms@kernel.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Dmitry Guzman <dmitry.guzman@mobileye.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
+Subject: Re: [PATCH v3 4/7] i2c: designware: Use runtime PM macro for
+ auto-cleanup
+Message-ID: <20251120103407.GO2912318@black.igk.intel.com>
+References: <20251119-i2c-dw-v3-0-bc4bc2a2cbac@bootlin.com>
+ <20251119-i2c-dw-v3-4-bc4bc2a2cbac@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/2] soc/tegra: pmc: don't fail if "aotag" is not
- present
-To: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- Prathamesh Shete <pshete@nvidia.com>, Shardar Mohammed <smohammed@nvidia.com>
-References: <20251119093729.441654-1-jonathanh@nvidia.com>
- <20251119093729.441654-2-jonathanh@nvidia.com>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <20251119093729.441654-2-jonathanh@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.30 / 50.00];
-	BAYES_HAM(-3.00)[99.99%];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-0.994];
-	MIME_GOOD(-0.10)[text/plain];
-	TAGGED_RCPT(0.00)[dt];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_TO(0.00)[nvidia.com,kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:email,suse.de:mid,nvidia.com:email]
-X-Spam-Flag: NO
-X-Spam-Score: -4.30
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251119-i2c-dw-v3-4-bc4bc2a2cbac@bootlin.com>
 
-Hi Jon,
-
-On 11/19/25 11:37 AM, Jon Hunter wrote:
-> From: Prathamesh Shete <pshete@nvidia.com>
+On Wed, Nov 19, 2025 at 04:05:33PM +0100, Benoît Monin wrote:
+> Simplify runtime PM handling in i2c_dw_xfer() by using the
+> pm_runtime_active_auto_try guard. This adds the proper handling for
+> runtime PM resume errors and allows us to get rid of the done_nolock
+> label.
 > 
-> The "aotog" is an optional aperture, so if that aperture is not defined
-> for a given device, then initialise the 'aotag' pointer to NULL instead
-> of returning an error. Note that the PMC driver will not use 'aotag'
-> pointer if initialised to NULL.
-> 
-> Co-developed-by: Shardar Mohammed <smohammed@nvidia.com>
-> Signed-off-by: Shardar Mohammed <smohammed@nvidia.com>
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
 > ---
-> Changes since V2:
-> - None
+>  drivers/i2c/busses/i2c-designware-master.c | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
 > 
->  drivers/soc/tegra/pmc.c | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
+> diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/busses/i2c-designware-master.c
+> index ec4fc2708d03..fe708c7cd282 100644
+> --- a/drivers/i2c/busses/i2c-designware-master.c
+> +++ b/drivers/i2c/busses/i2c-designware-master.c
+> @@ -811,12 +811,13 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
+>  
+>  	dev_dbg(dev->dev, "%s: msgs: %d\n", __func__, num);
+>  
+> -	pm_runtime_get_sync(dev->dev);
+> +	ACQUIRE(pm_runtime_active_auto_try, pm)(dev->dev);
+> +	if (ACQUIRE_ERR(pm_runtime_active_auto_try, &pm))
+> +		return -ENXIO;
+>  
+>  	switch (dev->flags & MODEL_MASK) {
+>  	case MODEL_AMD_NAVI_GPU:
+> -		ret = amd_i2c_dw_xfer_quirk(adap, msgs, num);
+> -		goto done_nolock;
+> +		return amd_i2c_dw_xfer_quirk(adap, msgs, num);
+>  	default:
+>  		break;
+>  	}
+> @@ -834,7 +835,7 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
+>  
+>  	ret = i2c_dw_acquire_lock(dev);
+>  	if (ret)
+> -		goto done_nolock;
+> +		return ret;
+>  
+>  	ret = i2c_dw_wait_bus_not_busy(dev);
+>  	if (ret < 0)
+> @@ -899,9 +900,6 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
+>  done:
+>  	i2c_dw_release_lock(dev);
 
-Reviewed-by: Stanimir Varbanov <svarbanov@suse.de>
-Tested-by: Stanimir Varbanov <svarbanov@suse.de>
+There is still this goto here. I don't think it is good to mix the
+"cleanup" helpers and gotos. So if we want to use the cleanup helpers then
+I think we should convert the whole function.
 
-~Stan
+>  
+> -done_nolock:
+> -	pm_runtime_put_autosuspend(dev->dev);
+> -
+>  	return ret;
+>  }
+>  
+> 
+> -- 
+> 2.51.1
 
