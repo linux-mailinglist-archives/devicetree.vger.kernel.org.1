@@ -1,269 +1,235 @@
-Return-Path: <devicetree+bounces-240653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFED4C73CFB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:48:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C3CC73D46
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:52:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id 8A96330501
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:48:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 7E3692AAE5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 399EC32E744;
-	Thu, 20 Nov 2025 11:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 795EC30AAC0;
+	Thu, 20 Nov 2025 11:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Gsevl2vZ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bt4JJvlu"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="kCpiWVzm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010020.outbound.protection.outlook.com [52.101.229.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31BB9302150
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 11:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763639279; cv=none; b=X3eqyW0zX2D2vejNvwmEv5XeXhilgvHrL2K8DZxv0ZJZHNDFj/Ov9///3+ppIwfCkziHz6nUFRYVJ9LSfWbgibeKVXZJpJdYbK+r2S26rEpcClBd+L3Ol83S4zxAsLBgpyNP4MSmRaKnwgQBPsoEMvLJEIBnMDEQbb2efohz80Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763639279; c=relaxed/simple;
-	bh=EZ/NZj91wZH2T2vAvj3ZsOBgnYXe06hjHyPiLOwcqSU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rHtu9An3BHbkGLpSb+x8fxdDkWkl3dEqUTWOP2NnPELiXTh1VckVLFVTCyOJm96EMg/Y6dSkrpQy/tzlHWXiElW6dqZcQURU8Pyo1zAyeuFXAUfl6e8XEKByrhSa2Qhh/v8CGIOwvJtoDgQ0bArH7HUXJ1TzqrwJnrqp8MTStZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Gsevl2vZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bt4JJvlu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AK64LfV3926092
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 11:47:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JxyeXwffx5hTKSMh7esokKl8lA+PQtUsPeK/qG3TCgI=; b=Gsevl2vZdd2UySeh
-	XxaACt3zJTWwgdGsJqK87M0bd5xGlfOkgw7gukoSVvTUkKXOrlLvYGVb7yIF/LOY
-	H7NiGKev6buu1TmiomW2nc6Gsb6Yhz0GTgnT5UhovAf/m8m/wTMB56cl9diIlBTZ
-	K17FDXhE45EZCVuDWjPijC0ituG3bluEpbrCti8b0Nz7ugT25XdNbMRJPtlN7CYs
-	hVCXH/XbEGTxs1vnTVC53Q6X+/ui580oMM8qdF8lv61oRi+NUPKTP2G1ZpC4BRHs
-	zRg+u7NNyQh+J4WdkdLDnjWtGpIli/bFj3jf78vUFP0hcBuR/Gsy+QUjbCK5W2TY
-	BDyBPg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ahwd791w6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 11:47:56 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee00f2b7d7so2531321cf.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 03:47:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763639275; x=1764244075; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JxyeXwffx5hTKSMh7esokKl8lA+PQtUsPeK/qG3TCgI=;
-        b=bt4JJvluYiOZpZ8ra3UA4aBmPRg/f1ETrUpXARWWs8uO8s8ckyA1ZQMx1JgiBSbIfT
-         9VI3Gph9r+3QyWUKw2c+LCdjnwGxCifpSXlWMFCJX4JCiexiSVHE3Gymv2emK2swqTVi
-         v2VPTAJjXhecv/fycI22k/zxA8+P9wbsEJxDDIEKQwnt3FNDuHb8RmwrFO8TORI8nFcd
-         t3BfLFiMtD9zzIf2Q3DT3aaKgvJ46VyJukq6zPJVNww6Xv/eNLImCIgSPZjON5Xwi0cz
-         tYSGIqzV4LwNnu0Vh0oH2XySJEMyopUlUFCPxBmCZqxn8ltXjy0HwpXPgqSQ8I3whQjM
-         NSvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763639275; x=1764244075;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JxyeXwffx5hTKSMh7esokKl8lA+PQtUsPeK/qG3TCgI=;
-        b=KEIgGwgeMQmsBXYz2uImml7+3KzZOcfsKRPdwv6q5RmmnDZ0gPrbCxZ+iKjFL2gnUt
-         ISgBR8lfC8cjByIEsusGCpwP7iUjq+uSH+c9ma4ni3S/wZj2he/BVwAWedBNo5xXafDI
-         ju0MmkH+8OkAsBJzkvMMDYXzlZu4ZViOOfHLWoIgUPF3d+cIRv2JAUuhIIDfTILHl2m8
-         vn3VOLMJolCi6/dBeg/vxUvHy4SWwOSINygx1gaosatt9MJjaUYkOwk+OaMy3jhYQZ3c
-         56IiMGSh3pHT+Yn9k30J4+ahHSsFpsueCCGMMMcUpSmng0MsXJ8Op9IY8dQBWTrSaCM1
-         WezA==
-X-Forwarded-Encrypted: i=1; AJvYcCW8xHxCCwo2P5OX2yR1QAvwEIMqcOJl+Gg5jhJ0hCwPHzGuFzusY/M2DNNHSVCneqB2jlTtZYTcGsBa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzj2fgvm+Su311fS2Anj6K5BFF/3UNYyG9NZWrQeynjbIIY4tHY
-	8oAsRJm01MOh/blWiZ+0B9Bx8Efuh7gtXIJw6Zg6x/S8GsUO7pRbBctOn/pPPvJB4A5QTmFDwAD
-	WYhfxGeUMC5nhqKKmdsr2pDMs/OSIRP44r0SBHLMHxPT5MaQZLQJD4AleK7+xyaap
-X-Gm-Gg: ASbGncs5BCB+fAaeOht8rQCYaobFP3bQBDW5np606/fXjrfRox/gB502gDHmmrv4j3H
-	1dqYMsEjKyy1aZ+LgEbBQo+k11BY0VGRuGH0si2saf1FW0MO4O4zEvpJmFUx4YwafBwetu0qVlI
-	cyq/ZfDrLlR51VPkSg2yoUCQy81rOq99V6iADj1iLuVbWZ2lQWumEgTNRgAlatGAKc8nqzbm3Kd
-	WWa680MYOpj3C7oiIqwpUCCP/0sDmwTpJTuGsN57znuMz/c4ZvodgALqEolHbentM99lVZlvaNJ
-	Y+uCq51eH/uwbx6HO8dR5un4cW2g+udQfjvr5LddZDfU07Gk+rxgXjhhe7wbgX2y46iE6OrIJc4
-	b1rV8Gi9JPs7CbAlgnvaKNqp+w2dc/0Gkxvqy4noEc77VYtn2SGBaowSrEgvMMdJghhs=
-X-Received: by 2002:a05:622a:1208:b0:4ee:2580:9bc5 with SMTP id d75a77b69052e-4ee49456b7amr24661021cf.2.1763639275295;
-        Thu, 20 Nov 2025 03:47:55 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF4Z/1QKTPQfmoIuUIOYna7Jmfp/wXBj5aE67cYkKmgIdTUJbMVnedKZ0kWLzAz7Hk+98vkfw==
-X-Received: by 2002:a05:622a:1208:b0:4ee:2580:9bc5 with SMTP id d75a77b69052e-4ee49456b7amr24660841cf.2.1763639274820;
-        Thu, 20 Nov 2025 03:47:54 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654cdac18sm186405666b.11.2025.11.20.03.47.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Nov 2025 03:47:54 -0800 (PST)
-Message-ID: <24221ce7-24e4-4eaa-8681-ed9b4b9f2d6e@oss.qualcomm.com>
-Date: Thu, 20 Nov 2025 12:47:50 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4DF62E6CBF;
+	Thu, 20 Nov 2025 11:52:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.20
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763639539; cv=fail; b=Nj+GnEm8U7zAVLJJ/k2RvNVYah1rD0aKJzRnQ2n5rI9boKv0l5kJFosbpaeY/OA84MSrmZFTnofzRZl0/fBrw1h7Z1fPcv88zqSdq2qrQMuXv3Dp7qCqfmcPBK+TYWHP/Yu0bX+X5AkPvHKUWQHUKM3gmSYhjzN+SjvmAA5bnGc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763639539; c=relaxed/simple;
+	bh=DF8PJj8Ogz5WhAy7QN1fIIzu28wW+YICPZUI28mQhoI=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=SII5dUkaA1eDfz/OFDiv6B0FjkgAGBoO06SCTx9cgv1j4RYMeEnhvNZ6DcmZn675osETx9RS9ikcyprGBOXPJ9K8Yh2WmW3v21ZiV5Ei95XrH6QDCYyTDqC0NBbWhgO+6jlG0ReoAEafMyeY396oLoEbFvns0baVxVZ0gUo2pnc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=kCpiWVzm; arc=fail smtp.client-ip=52.101.229.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fYVsS5ymG1a9Ft2S38T3UR9gblCiu/y2m5yKTIvfIJxj3N13kia+JoKHa7Mg9zkgE4lYn8Y/6e1E/vAaw4zejCwHtg2D6j77vtBOnwNLTYdqrgHc0VI18xV1zZHvipD9/72AC9dz6NLsfHBhF/xNmCXyjQ1W//3KqdlgdoIXbxzJeB4FctGV7S5IBGXoTC1KcOeuoP6jWytD6bdQUDYt4vmUEQ9CD1yfoHvoC+hNTLroW+gy+80980cqmCxPf8+NLBcYpxnkS/thgkUip3O/rErGEzE0yO6UT+IB0jhVX/TstRJO9CveY9FidstKTOcZduA0sC68m4owNCwN5MQIOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BqhMwKl9ayoPhpg8EGt1MFIk5Vb0iHQlx2Jvqol4KUE=;
+ b=FW4nCP5pSbwPxjJqmJVFjCf8HnyyWNJmU0x78IfK0IjkDOIcCnyqXXr2Rn73E3x2GVHZ3HFXLQgUkNoZTvb9/CfOw+m5LkMpr+mlmVTv7xKi5217XvT4CDS8zkXj0XkeF45PxxRZqih68eVCczheQOeH416bqiqOuh0mQ0/oLQwjlo4zuQXMd7aRN1aUZhikqmoG7d1vuzz7OzQyp5LUrqYA+Tl5aePJErXZreKFURkb6xgofG/Etybf32MGQ25qDnyXNni3o9wfPpHlQLuyzukft8CJxf/FL+VPy2XGjpdgfnAXag/LAMhkkVZ5fhSBOM/mt2lT4cRM/vxqfB9XIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BqhMwKl9ayoPhpg8EGt1MFIk5Vb0iHQlx2Jvqol4KUE=;
+ b=kCpiWVzmc964CniWCy0t7GSrAecqI4+4fbY+kpo1QBDK0HTXXDQgEj2Non6foexvk/3TV4OCigR5lmWwWAaCLo7/TWb0jF8BgYr7UIuYXfd/kWHSl0WeOtes5mkYDJ+HNcs5RiH2MShAy5ErHm4c4D/5R7bFIkvla/qnjH7Guj8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
+ by TYCPR01MB11636.jpnprd01.prod.outlook.com (2603:1096:400:37a::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.9; Thu, 20 Nov
+ 2025 11:52:09 +0000
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9343.009; Thu, 20 Nov 2025
+ 11:52:09 +0000
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: tomm.merciai@gmail.com
+Cc: linux-renesas-soc@vger.kernel.org,
+	biju.das.jz@bp.renesas.com,
+	wsa+renesas@sang-engineering.com,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/1] arm64: dts: renesas: r9a09g047e57-smarc: Enable I3C
+Date: Thu, 20 Nov 2025 12:51:38 +0100
+Message-ID: <cover.1763638659.git.tommaso.merciai.xr@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0201.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e5::17) To TYCPR01MB11947.jpnprd01.prod.outlook.com
+ (2603:1096:400:3e1::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
- nodes
-To: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
-        Nickolay Goppen <setotau@mainlining.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux@mainlining.org, Chenna Kesava Raju <chennak@qti.qualcomm.com>,
-        Bharath Kumar <bkumar@qti.qualcomm.com>
-References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
- <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
- <07066c46-4121-48da-846a-3a180d245589@oss.qualcomm.com>
- <47b40a91-8365-4431-9fd9-1e48fad2a4e1@mainlining.org>
- <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
- <83c3aea5-764e-4e60-8b16-67b474f19357@oss.qualcomm.com>
- <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
- <f5c7eb1c-28b1-4cf1-afb0-b993384b7712@oss.qualcomm.com>
- <80836b8f-16a8-4520-ad11-5ca0abb3403e@oss.qualcomm.com>
- <99c22e73-797c-4a30-92ba-bc3bd8cf70f0@oss.qualcomm.com>
- <eddc16cb-d951-401c-8fb8-fccfcf600143@mainlining.org>
- <0b06f744-b695-43d9-8da3-4424e2b53a5e@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <0b06f744-b695-43d9-8da3-4424e2b53a5e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Jtf8bc4C c=1 sm=1 tr=0 ts=691effec cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=OuZLqq7tAAAA:8
- a=hDfUAWCtjtKpYJbaT9cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22 a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-ORIG-GUID: TdHv8me0RHpk1HTXDSq6eze9R8AWj2YP
-X-Proofpoint-GUID: TdHv8me0RHpk1HTXDSq6eze9R8AWj2YP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIwMDA3NCBTYWx0ZWRfX0JKO+G0WPj5B
- G+UyU9wHAk5T7r9dyLqKamCT9I6DJP+QIs893SrXTCd/8FDVefNC2VK5FGbDVfnZjlh7HSdNiEY
- zf1gtM6XX9t4FfQMRML6QMAHtMjg4CLc5vAn2+141KdvaAFJB3CtY3Y38dNQuSv+p0W8wi5Xqxq
- rdpKyP/i/FhioVkt5FnBuRz06d8domCYiYq5gXZgrYftRmLemhdaEXnaq++E+KMYh+pfH1p/ghm
- 58/v0e0CPCFO5Y8E9VAKKHHJ8OO7sD8yE3MCyLO6SS75Ijp3BDBGBWPz9IT+d66Efa2tkypwMnA
- aAyvuczMfjdcoso7v3X+uydCqcUeOjKuKf9pt/zjbuAhW74IJ/iSBsNJnqI24BXcyeSgb1aCUEC
- wurGZl6YwZW5Ywf9oqXeG8JSSbdk5A==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-20_04,2025-11-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 bulkscore=0 impostorscore=0 phishscore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511200074
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|TYCPR01MB11636:EE_
+X-MS-Office365-Filtering-Correlation-Id: d26e3b35-fd11-427e-e067-08de282b3c23
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RHA5eFl1TUs5YnhDZlVXbmRsOWhOMFRGU1pZMmlmWm9oYmM0VUxBMnRwTXZ2?=
+ =?utf-8?B?Ujhpdm50emxxeDF1UGVyQXVucm1xY2RHZXFNeFdKKzlXMllvMW1zbFdXcUpm?=
+ =?utf-8?B?b21zQ29rVEZ3NllYOXNwRjlIYkpZNENWZFN0MG9wUCtwa2pRUFJXekZlYWR2?=
+ =?utf-8?B?YjBTV3BaMk82WTQrRS9OZTFEZzJpTUlubjc1ZXVBOTJsVVBZQU9BazZhcnVk?=
+ =?utf-8?B?M2VRenBuTWpqU2F3SlZzWThrMlN5WkdTeEZQWW5FRWZaUmpxeStkZnNSM1RX?=
+ =?utf-8?B?U09DRTc3ODV6cllMREREUWhiSlVVRXFRREZOV1JsdG9FL0w2MG5JcUt1MHVq?=
+ =?utf-8?B?T3d4RHg0TVRsUEJNNnNSNkpGNEhPKzk3STZydGdTbU42ZEhVSHowNmpIYVhY?=
+ =?utf-8?B?L25UamE3bjB5KzZsaVB0N2pDcDc5M2xkRXZCOXllamhXYVg0RVlLdlRrL0x1?=
+ =?utf-8?B?VEQyYnRFRm5BODhsaitIK0hWeUc3dVIzM3hIckhreEZEWDBneitpaFJVdFpR?=
+ =?utf-8?B?aHhPYksrZ0JhRkZCVHBVemVWQ2JtZzNnRm9tV2N1Yi94T3dtdVlKc0xnamVJ?=
+ =?utf-8?B?Z2VlWFMzT043NXozVmxXMTRSaXFzVVNURE03czlBeDJnUHk3LzRFNFdHd0d5?=
+ =?utf-8?B?bWJHcmtvRVRhRWFjSGxleE1Kd1QxcjZjS1JoMFllQjI0NEhvU1dEcVBYRENi?=
+ =?utf-8?B?WXgyTjdETFhvL2tSeTd1MEpEbmJIaVNHTk1Qc2NtVE85K0o1T3ZlSUhZSE95?=
+ =?utf-8?B?RU5BY01SUnRJVHFZSnJ2azNaVkJYODhGN2RWZGphdDA0c2xNcnlxWUxpdUZK?=
+ =?utf-8?B?T2RneXg3TzM1OG1oWG5BVkVtVnVZOCs1NEFISUV2TWI1eWJrc001NVRObDBX?=
+ =?utf-8?B?d0FUMEJzZG9JZEVuWmhkZ1N3dVBSdU1jaEloNG0rU250SHNjNnc0UnB3R1Vn?=
+ =?utf-8?B?ZS8yRUhUNFRoRW9KOFliWm82TWZHd1NOaWZxVWludndFSmF4UkZTKzJ5Q1RX?=
+ =?utf-8?B?bzlpZTJ3aDBiVkhzSm5ZTVFZT3BFcFZoSTFLdVk3MlZNdk9jbVdFV2dyb25O?=
+ =?utf-8?B?cDBqRy84eWUzWUZhWlFUMm43S2pqWVk2b3NiQ1dLbWFkMHVBQmlVVnFWbzIv?=
+ =?utf-8?B?S1lSVEt1QnBuTGJkQ1NHZCtlS2tadEwvbEJSVFVYUElMQzFQUzhEdStNeUQ2?=
+ =?utf-8?B?a3Vnd2V2UWFNaVAxNUczRlhBVG9seThzS1g4ZUlGVHY2VjcvWnFMaG80NWJR?=
+ =?utf-8?B?KzdHc2IzOUdmMUI5eFNjZzB6RTFTMnQ0bml5d0cxNW9PQ1pTaWNXd1g1Smdi?=
+ =?utf-8?B?eWQwRkN5dWJ0Yk5QSVdROVNzTkVPVmlNL2UwZlI4TWFhdUtQUTV2WW1meE0r?=
+ =?utf-8?B?T3JmaUMxUkF2VnFva3BlZVVRVGtBQnZ5OTNTbVhKL2RIS2tEajYrOXYwNFkz?=
+ =?utf-8?B?TmlYQzNWVW8yWlFsNVlmZjVHUjNnVDY4ejZIcjZENEd2dWp0RFh5Y0Q3ZldO?=
+ =?utf-8?B?S2dEQXpxcFFkTHpzTFFlNWswdWpGNTVFS2lybElHNzZZUThMUitMSFJnN2tT?=
+ =?utf-8?B?eloranJMMFlhdTc3S2NXZkFkckkwMWNFMENKRmdSSXd6bXZLc1h1VEppejJS?=
+ =?utf-8?B?TnRYZWhRNDJ0QXRTR0J6bnRibTJLWDdPdkdiOGN0RVpxRFRNQXA5T0QxcHVH?=
+ =?utf-8?B?SnlkWE5sVVordVJObHZaR1VPR2ZpZTRSRGRpQnd4WGg4S296QWVSbE41Q2xL?=
+ =?utf-8?B?emdxRERnMlR3MjhHNTdIV0llb2ticGZmM0o0NjNZcmk3NU50dmlTaytsQnFz?=
+ =?utf-8?B?cHdXeUN5QmZ4blo4N0N2WUZsS1BLUGtrNnJWcWNOVzJJZjhKVmY1aS9RemJG?=
+ =?utf-8?B?RE5kM0hseHhTQXNXYWdGd2Y1REdFNDZYdG9KemR4RmZEcUdUeU1VZ210RWFL?=
+ =?utf-8?B?VnlPQVRuSitTNUpPaUVOWkNKM1dRR3BqRXVEekE5UVg0Z1hDdFM4eVlmdGNh?=
+ =?utf-8?B?VU0wdUF4c3lEUGlMeWh3STRJUGRXeWxOWEdrb1BCSHozM0ZHWmlEblBUNi8z?=
+ =?utf-8?Q?jEJMjL?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?U3ZVZGIwOXFnbU5WZjd6MjI1RVNwRW9YUTI4b2FFeUU2c0JXVlNheXd3Y0Uy?=
+ =?utf-8?B?bE5BdHBFRDVORGVpeHNYZlNNQkVRbGJSZDhBeGJjSm1tRTMxSGloLzkrY2Vm?=
+ =?utf-8?B?cHcwUkV0b0FsbmNSc1ZlU2pDSUo3SUFVYXNVSTdmWVlWYVo3NHlaTTJSZkw3?=
+ =?utf-8?B?d21IejJIVTFmem5mNWtXODNRaWxrYkg4a3o3T3ZFSS9GZUkrQzYzWkVrV1Iz?=
+ =?utf-8?B?U1A2NlVsTmdxUnpVdDJTQlJvY3hZMnZGckU3WTBUQ3hNdVh1SUNxSCtzRnM1?=
+ =?utf-8?B?ZVVkOFczbXh0Z2JLZFVhb3NtQ3Fod1FVc1dMckJTcnpyRndHUmpOQ0FJZEI2?=
+ =?utf-8?B?UENMV25BKytIdEpwdkc1VkZRY3FvRFpuVHFGWVI2cURnSU0rd2xacWp3RTVx?=
+ =?utf-8?B?a09Wajk5TUo2OG5UcnhFU2I4MWdnQTBnZzlzbEpmd1RIUGU5dXRyWk82Ulp0?=
+ =?utf-8?B?QWx1VnpYQnM4ZCt3eEJFcUIxQzJtVE1xY3lQMGJySnhvZ3duTFI4Q0p5U0Vx?=
+ =?utf-8?B?T3NjQzk2OVQ4ZUxYQnlKSGJCYWcxUDkwS1pwVHZpYzVOU2NpSHVEZ1lDcnBC?=
+ =?utf-8?B?d3VhNHNkRE9LMHMxaEVUdk1kQUJ1MWxPRnF1UThucGdWdEJzclpodzlOSmN2?=
+ =?utf-8?B?MlFTNWJkYXFBS1lqUGtvbVMzaVdVMVlMK0xzQlJSWXZMelJTK3NKb3pFK0Qz?=
+ =?utf-8?B?QkM1RzZZekQvbHhHbmNoMExCbmpxY1JBY2t6NzdZQVlkK21ENFJrdk5jT1N1?=
+ =?utf-8?B?VUJWVkFqQUZsY281V1R2ZWZKVXBhNE84cFdiQlV3enc2RGQ4bUxWV2xkekdO?=
+ =?utf-8?B?Sld4aXFnYkNsVkJ1SWlKRFdNeUNRZzBPSFJVZW94ZDhOT0lyeDZtc01VMHpZ?=
+ =?utf-8?B?ZnJCeUZqdTI4ekZsSFJmNVgrc0tWNjdDZ1Q0QVRScDNBWFNSdThVcTlWeUJw?=
+ =?utf-8?B?MHJpZlhWY3M3UmJRbExyNVA4Z2ducWNnTzNEOHpkTExieXNHWlpNRUptdEZX?=
+ =?utf-8?B?aFZwVXNLdjBlSnJyU0lyU1lzcWdEUkFFWFk0NDhRK040MXRyQjl3ZTR6WUVO?=
+ =?utf-8?B?RElzMTBuUTlaWC9mb0NDZEVmbmJ6U1M3akFZWjI5OVVRQVlPbEE2aGhNU0M0?=
+ =?utf-8?B?elVnZ3U5c0NEWVU4V00vWEg5cXZqSktqNVFEOVAyQ1JTNGVHa2J2ZzM5UFpI?=
+ =?utf-8?B?WmZNNk1iSlYyc2h0R1p1QlFSMjlTckFITm9qR3NtVFNWaFVqd2hXZ1BJc0x3?=
+ =?utf-8?B?ekF3MkE5NmtlQ2tHekRnS0VHQUdPZkxzaDZWcHZyY2lRQWF5OWdUTC9yOHBw?=
+ =?utf-8?B?cW5SanpicW55OEQrQ0xHYmZzYW0rYVlLbEF5ekIrRmVKZjNhdmpoTDQ4REE2?=
+ =?utf-8?B?K01ROFdZVkhtYVNlT1AzeG5xN1VRMVk2SmZkNDVOenhXQlRteHplV1RBTDU4?=
+ =?utf-8?B?YWx5NGhFUVR1QmM2NFZQd0laNEdJS3BaMjRKMVl0VHd0L1JlSWVhRXozYzFM?=
+ =?utf-8?B?TUVScmI0cFFCeWhOTFhHcjBVcnBJK0ZvK0VRZkVuZDlRSTQrYkIrQ1E5TC9H?=
+ =?utf-8?B?VXp4aHhCdXRVSjcwcUJnT2cvdEhtS0U1cmNaREphRy9KRkZ0TnA0dXJ2cHZO?=
+ =?utf-8?B?QVVtM2pHQmFzMmhVK3BkS1FCYnF3NWM1MFRIWVR2U3o1WVZqSkZvZGFuV3di?=
+ =?utf-8?B?MHhnRThHTm1IdGw3R1RGc083QnFqMXM1RlYvYnNSek4zSnRLSnZQZnVZSTlh?=
+ =?utf-8?B?alJjWVZDVWdINzMwUllJS1dUekhMUzlRWENjSFQ3cE4zN2xoTGMrMm1WK3JL?=
+ =?utf-8?B?RzdpRHgvTWFkWG9ZenFYYnFvUUxpQS93aVNXRTFTbGNZdWtFSm9QMWZCb2dQ?=
+ =?utf-8?B?Y3AwcXdFWGI3ODUwZk45aTllTTc4MDRrdjhLYXlMOUZVRHdJMzJPUDdzRVYw?=
+ =?utf-8?B?UEFXRm1UYU5mb3RwQnFoWkVER3VVR2hZYkhpWExaQjA4emZLWVJhVHNrMSsr?=
+ =?utf-8?B?NHRpdlZBZEx6WWU4VjdSanlZMmNINldBa1phQlZyRGk1TkFxZldaSEpLVjh0?=
+ =?utf-8?B?VXpCSDNYc1ptMTh0cjRLOUc2dzk1R0c1YjBIaEVILzBBRC9GNDdHczhlbGxU?=
+ =?utf-8?B?VXd5d0FqZk44blh1UzRkbXMxdzdZVDNsb0JmeVBhbTV0dGtIY2F4bW5qczVw?=
+ =?utf-8?Q?YW+uPkBCcfJpJjSAi978h1k=3D?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d26e3b35-fd11-427e-e067-08de282b3c23
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2025 11:52:09.2096
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zNyoUDP23H5oIo1tim15RXMHTwiHhpy/OMcPSJlDh3X0Y2ctNjdvS3JBIDkncw2RCBcE8ViYesjd8GUR82XcLqgkn31Qw9/qcnC6FeARQ7IaNQAI2xHYa9jr+ugkKfzV
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11636
 
-On 11/20/25 11:54 AM, Ekansh Gupta wrote:
-> 
-> 
-> On 11/20/2025 1:27 PM, Nickolay Goppen wrote:
->>
->> 20.11.2025 07:55, Ekansh Gupta пишет:
->>>
->>> On 11/20/2025 1:58 AM, Srinivas Kandagatla wrote:
->>>> On 11/12/25 1:52 PM, Konrad Dybcio wrote:
->>>>> On 11/10/25 6:41 PM, Srinivas Kandagatla wrote:
->>>>>> On 11/3/25 12:52 PM, Konrad Dybcio wrote:
->>>>>>> On 10/31/25 12:30 PM, Nickolay Goppen wrote:
->>>>>>>> 24.10.2025 16:58, Nickolay Goppen пишет:
->>>>>>>>> 24.10.2025 11:28, Konrad Dybcio пишет:
->>>>>>>>>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
->>>>>>>>>>> In order to enable CDSP support for SDM660 SoC:
->>>>>>>>>>>    * add shared memory p2p nodes for CDSP
->>>>>>>>>>>    * add CDSP-specific smmu node
->>>>>>>>>>>    * add CDSP peripheral image loader node
->>>>>>>>>>>
->>>>>>>>>>> Memory region for CDSP in SDM660 occupies the same spot as
->>>>>>>>>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
->>>>>>>>>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
->>>>>>>>>>> cdsp_region, which is also larger in size.
->>>>>>>>>>>
->>>>>>>>>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
->>>>>>>>>>> related nodes and add buffer_mem back.
->>>>>>>>>>>
->>>>>>>>>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
->>>>>>>>>>> ---
->>>>>>>>>> [...]
->>>>>>>>>>
->>>>>>>>>>> +            label = "turing";
->>>>>>>>>> "cdsp"
->>>>>>>>> Ok, I'll change this in the next revision.
->>>>>>>>>>> +            mboxes = <&apcs_glb 29>;
->>>>>>>>>>> +            qcom,remote-pid = <5>;
->>>>>>>>>>> +
->>>>>>>>>>> +            fastrpc {
->>>>>>>>>>> +                compatible = "qcom,fastrpc";
->>>>>>>>>>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
->>>>>>>>>>> +                label = "cdsp";
->>>>>>>>>>> +                qcom,non-secure-domain;
->>>>>>>>>> This shouldn't matter, both a secure and a non-secure device is
->>>>>>>>>> created for CDSP
->>>>>>>>> I've added this property, because it is used in other SoC's, such as SDM845 and SM6115 for both ADSP and CDSP
->>>>>>>> Is this property not neccessary anymore?
->>>>>>> +Srini?
->>>>>> That is true, we do not require this for CDSP, as CDSP allows both
->>>>>> unsigned and signed loading, we create both secured and non-secure node
->>>>>> by default. May be we can provide that clarity in yaml bindings so that
->>>>>> it gets caught during dtb checks.
->>>>>>
->>>>>>
->>>>>> However in ADSP case, we only support singed modules, due to historical
->>>>>> reasons how this driver evolved over years, we have this flag to allow
->>>>>> compatiblity for such users.
->>>>> Does that mean that we can only load signed modules on the ADSP, but
->>>>> the driver behavior was previously such that unsigned modules were
->>>>> allowed (which was presumably fine on devboards, but not on fused
->>>>> devices)?
->>>> Yes, its true that we allowed full access to adsp device nodes when we
->>>> first started upstreaming fastrpc driver.
->>>>
->>>> irrespective of the board only signed modules are supported on the ADSP.
->>>> I think there was one version of SoC i think 8016 or some older one
->>>> which had adsp with hvx which can load unsigned modules for compute
->>>> usecase only.
->>>>
->>>> I have added @Ekansh for more clarity.
->>>>
->>>> --srini
->>> For all the available platforms, ADSP supports only signed modules. Unsigned
->>> modules(as well as signed) are supported by CDSP and GDSP subsystems.
->>>
->>> qcom,non-secure-domain property marks the corresponding DSP as non-secure DSP.
->>> The implications of adding this property would be the following:
->>> on ADSP, SDSP, MDSP:
->>> - Only non-secure device node(/dev/fastrpc-Xdsp) is created.
->>> - Non-secure device node can be used for signed DSP PD offload.
->>>
->>> on CDSP, GDSP:
->>> - Both secure(/dev/fastrpc-Xdsp-secure) and non-secure(/dev/fastrpc-Xdsp) devices
->>>    are created, regardless of this property.
->>> - Both the nodes can be used for signed and unsigned DSP PD offload.
->>>
->>> Note: If the property is not added for CDSP/GDSP, only secure device node can
->>> be used for signed PD offload, if non-secure device is used, the request gets
->>> rejected[1].
->>>
->>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1245
->>>
->>> //Ekansh
->> Does this mean that the qcom,non-secure-domain property should be dropped from both nodes? 
-> I checked again and found that unsigned module support for CDSP is
-> not available on this platform. Given this, the safest approach would
-> be to add the property for both ADSP and CDSP, ensuring that all
-> created device nodes can be used for signed PD offload. I can provide
+Dear all,
 
-The property allows *unsigned* PD offload though
+This patch enable I3C support to the rzg3e-smarc-som.dtsi.
+Tested using NXP P3T1085UK-ARD connected to the RZ/G3E SMARC SoM
+via the RZ/G3E SMARC BREAKOUT board.
 
-> a more definitive recommendation once I know the specific use cases
-> you plan to run.
+Using the following connections:
 
-Why would the usecase affect this?
+ RZ SMARC Carrier II (CN1)  →  RZ SMARC BREAKOUT board
+ +--------------------------------------------------------+
 
-Konrad
+ RZ SMARC Carrier II (PMOD1_6)  →  P3T1085UK-ARD (J9)
+ +--------------------------------------------------------+
+ |    PWR_PMOD1  (pin 6)    →    (pin 9)   +3V3           |
+ |    GND        (pin 5)    →    (pin 7)   GND            |
+ +--------------------------------------------------------+
+
+ RZ SMARC BREAKOUT board (CN1)  →  P3T1085UK-ARD (J13)
+ +--------------------------------------------------------+
+ |    GND      (pin 2)    →    (pin 4)   GND              |
+ |    I3C_SCL  (pin 3)    →    (pin 1)   SCL_I3C          |
+ |    I3C_SDA  (pin 4)    →    (pin 2)   SDA_I3C          |
+ +--------------------------------------------------------+
+
+ The following jumpers setup is required on the P3T1085UK-ARD board:
+ - JP1: 1-2
+ - JP2: 1-2
+ - JP3: 1-2
+
+ The following SW1(1,2) switch setup is required on the RZ SMARC BREAKOUT
+ board:
+ - SW1(1): 1
+ - SW1(2): 1
+
+Thanks & Regards,
+Tommaso
+
+v1->v2:
+ - Dropped overlay and moved I3C support (pure bus mode) directly to the
+   rzg3e-smarc-som.dtsi as suggested by Wolfram Sang.
+ - Removed alias as suggested by Wolfram Sang.
+
+Tommaso Merciai (1):
+  arm64: dts: renesas: rzg3e-smarc-som: Enable I3C support
+
+ arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+-- 
+2.43.0
+
 
