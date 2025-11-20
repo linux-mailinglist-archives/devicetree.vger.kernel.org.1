@@ -1,128 +1,144 @@
-Return-Path: <devicetree+bounces-240478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE61DC71A2C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 02:01:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 789D3C71A68
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 02:06:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B5B274E26A9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 01:01:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 44031348C67
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 01:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8481E492D;
-	Thu, 20 Nov 2025 01:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF444223324;
+	Thu, 20 Nov 2025 01:04:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lhzTm0Qc"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FEEQ5Lqv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B98A0178372
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 01:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F269D21ADC7
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 01:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763600503; cv=none; b=QTkwFvSIvUyE7c76QP3fin0koFeGqip1CaD9r7kUzvuw/+akbKgrnlu0uTCZGcSh9UpXM6j6A1soi1jTvUylm3yOgZL/bPtuKbm0EZL0NqqVdbxfJdubDklA9WDN3ndR6I/rZ2Xnt8DXf/udhy3LTQXVdi3xM7QxsM01RDLqAgM=
+	t=1763600669; cv=none; b=dFSRTXrvwVMCHUCzDO80pR6yDvTX44zdd54yGexo0sas6YsCqlJHRlLBn3gSU56ntkdgMGTvoZs7e8lJmTHq+xa0f53mnoyc3mzsP0BRe6MtnicvE/FCow6OU1jNbaXKKJd569TGTwsWWIzkdMhhBwitAyLiD8SJJPDooOetwrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763600503; c=relaxed/simple;
-	bh=S1kXvrn93cUEzs6slAKgNy4bH/LtAkdBKIXZyolnmdQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=tqAX3lduO5RGfiAZJUsyx5OaLeZVMdhvqAr0BdG42i1nDFbrXWE7BvlAweFH94l9Oa8ASgaxtF2RGBu60z3SUiAtRJyDTGFwv1n/p0yqHwnu2wbIqmsRktCmiYQ+N8Crq1Qv2M1BuCnZfUfIBpmaEhVUx1auoWs5n+hVG9qSy1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lhzTm0Qc; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-297dd95ffe4so2924865ad.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 17:01:41 -0800 (PST)
+	s=arc-20240116; t=1763600669; c=relaxed/simple;
+	bh=HNKStvuc0XB3JshjhPWn5gZkIa6YpjmT/QSv6jmE+eg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Z1Xd3J9yGQVmWAEHfK4+vKgHY2M7QoVlZDyVtC3yOcXW0ii8I0XHF6KSA1Gurx6JLKZtB7+oldCLixNf5ynwgA6X5YxMp2LAVZtMLFJCDgxvabJkiAUsExgt9M+jAjQACQV9Fmnp4sXO9Z6lY1HqoobK2u2l2mYd3Nplp5iE65w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=FEEQ5Lqv; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6408f9cb1dcso427578a12.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 17:04:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763600501; x=1764205301; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eIEhL4VxM7ghK2mG+iC47nZUgip1BfB1tOdqThTNDgY=;
-        b=lhzTm0QcxdqtPS1J4JbnNJt5ajkk/hdh8WuxmYfXVUw6pTKP4b7vU9lTFeGD+su3/z
-         NRToEiG/D2qjElPhlJJfpMSPKwTHb9Rrn+At8Cpx/rb+8eVihs0OtC/Un+VRDfvWQHrS
-         Hb7NxJq3md3oYXu3Ur6IcahIUxJy7ZYlVCOSPZ4p15/xsSQy9Q34fs4s6eY1DMsW1kQC
-         H7k1++cuV+0ollpGjg9sABJNGiaPK8bM2G2x5dofh/X7G1sLslw5ObHR0FCfv4RAul0h
-         T6dCEZEAsAvDz2i6ICXTCZVxZ9HPuebPbdIlQjpXN3lDeKTvjTJ70SQlPtx1ILYLOBd3
-         G7hQ==
+        d=chromium.org; s=google; t=1763600664; x=1764205464; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HNKStvuc0XB3JshjhPWn5gZkIa6YpjmT/QSv6jmE+eg=;
+        b=FEEQ5LqvU9V9SEiFyYm48SMBkCpp6Mv01whQsXRIftSIxI80afXfFJpKo9RYynTDI2
+         /zjEzbuSMMYOvUKGbcSgDGudOrZoqRhGibIgOUyQvY+1o4RkAHyFQapnVnv8xxHWiwRo
+         RJl50okBnr3NQsni0C0cL+CfeHky6LrglZ56U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763600501; x=1764205301;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eIEhL4VxM7ghK2mG+iC47nZUgip1BfB1tOdqThTNDgY=;
-        b=pMFqUI3fawCAsTmX+ZZv5jNkXiWNM6Ng9K+BMO4LXb5qPaINeGawEHJGeAwdqJDJNY
-         LvKqd4NStkJk1RWoR+bMN97fGTCcIOSglkrBtByay3epf1R5HR7ZrijNJoPb2dxRm/z6
-         mSCktFD2NiGqUmsjF0git7bcUr3Go124ZkcTf8XCKXiX3gS5abfJnIb18XinZu3+sYaW
-         K6HQfHkF40llGb7yqqni9dDRY6ShEB8aLBua6CkAhIO9exWj8GDrm82gA3mc3yC75jdq
-         dhNRph6A5qgLj19/LD//2EcVO17GS9GMTrWdQvVFZqhuN5/vlGz3OUKQo+9pvjplkHAt
-         u7dQ==
-X-Gm-Message-State: AOJu0YwYeC9HJcY5WYpFQE60IqZy2w47E98C5XVwWnki+dYe7cuzPRs0
-	MtQvc/JiNmf5i3LSG9FDhnVjAI28ZsH22u6GJPOpucLqsoHCympEiGZ5empzXy9eDHfNKusFGuY
-	P/DNqzGk=
-X-Gm-Gg: ASbGncv2Iwxr55QWDQ0NfU05q9QfTLEUnqBEBpB0EVEOSavI9w09L0q2hNOWewDodSm
-	rBzj5oz47Sgyeg2GUPDa8Lq0DMa1FycSUkubCGDUTx+04n5c8S7inn7X42P7dfLrh/QwlkFaxkg
-	A5QxoRkR8f2SWA45g1x1ukmKVVdpvnsoyZSIO495HOEibgnFRUsjVkPhYt5jksI2r7AuDOJfPiw
-	4Lzna5kEKzW4KArPk4/7lE0TNpT3UHdMKsnH2faV5lbruRg7komdXDycZO35cS5Y4OwarnUCX1Z
-	BUhJMBg/JutlD14hlD2XVXkZ24qDq2XNZpSXQnENc/trQJkN+Xebdb/rSBxmdE2wbdUGcxbPYeM
-	htl8g8B+95o8gXe3ZjMiaE0vt+BjrMgyEvlDGCcdwOcLO4+uw6TyP9opPoT17Tliwx1UozSjjJQ
-	gWbCX6Nxo/2ZPEMaNf02A=
-X-Google-Smtp-Source: AGHT+IEqw78cftsDU7YZyIRB0CXtzePRU0iLnoit3ob3znYZ+DZXTr4p0cuA9rJuU7Vz7Z+gxqqtDg==
-X-Received: by 2002:a17:903:1a43:b0:296:2aed:4fab with SMTP id d9443c01a7336-29b5b05b6damr14930755ad.23.1763600500485;
-        Wed, 19 Nov 2025 17:01:40 -0800 (PST)
-Received: from localhost ([71.212.208.158])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b2ac81bsm6687805ad.93.2025.11.19.17.01.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Nov 2025 17:01:39 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- arm-scmi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC] of: Add of_parse_map_iter() helper for nexus node
- map iteration
-In-Reply-To: <20251119-topic-lpm-of-map-iterator-v6-18-v1-1-1f0075d771a3@baylibre.com>
-References: <20251119-topic-lpm-of-map-iterator-v6-18-v1-1-1f0075d771a3@baylibre.com>
-Date: Wed, 19 Nov 2025 17:01:39 -0800
-Message-ID: <7h8qg1frf0.fsf@baylibre.com>
+        d=1e100.net; s=20230601; t=1763600664; x=1764205464;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=HNKStvuc0XB3JshjhPWn5gZkIa6YpjmT/QSv6jmE+eg=;
+        b=rlVTmQT707dt0L+0BB12cMdXeHfzsRvB7zN93ymFQ3tR710O3su4z6uc0NIPoMhiaw
+         nbJpYlr1C79vtpd/d3qntG9DA2rH00usFvF3Np9TMRhZx+OgwtMLGHIlRzjXa4wLh9t2
+         H/EMzn01fFh5aPXws7oecg7f1xbnwDN/K5BsWpgdwU0Cj/PiGQyw32rPwwben9e/cV52
+         FRNPSqYwVziGVS04Ot7p3EAALrb4yqsi+Njwtxo9yOJZVbDIY6lw79wXbOMsUXQvmiQS
+         3HcspbU+Y/0/2+kDZjJ69SJ1QgVrwWzf+EMXKZ5+5xAlhEg17Wq4EWKElyyn9rqM1Avv
+         A4Rw==
+X-Forwarded-Encrypted: i=1; AJvYcCXquBCNM1JTIbDi0YW74R5aAeI4YBCMEDvmPONeh4YHNWvvDBF8dtHTtSzulEFWEwrpVZIEeJh/1Zoq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJ2s46p543EUKNPfWY6SCFeHanrDDPdF2ap2CNr0+ec7/EOKGt
+	0H1l6OTKpoSf1FFhbAJ0anLe+uWAeBmL/3Ad+xeUVET2kOkRnFz/UpyPrlWvybEMdim5dkZbr2x
+	hwz6/S+to
+X-Gm-Gg: ASbGncuyaHx1w3XQaPC5Us7GkudfC52+o5bk8orufEBB3lXNW+aaBgO5DoYtC5DlF5T
+	tkU/XK1t25pTnVORLN2jLuqaKa8IWvGb5o3NOA9Bfxe1yOI1N2RQAtDPJ2cGavB/UrpZl18e6Jr
+	YSFxsU846GpnT7AlXIFQU1LFYlPDkSGZcXjadVp5cyKO84+tUhLCNrByyTokLx3lJ97VOfIvRce
+	lt8pzdYxkn78oE3DaSwOCspIXbrz93CIt+ksBPZOVkNf2PxZDymqz38q2tJd8Fp2lVHfF0ucz2y
+	sRPZzRhGcnfttAORx7xi/upubBfacp+qfqMyXAdunrnHZQX0EDRUDkm5u1sW9J2mGi+8GEvh0RR
+	JzbauRKHIictm4FbFou/llifjvp2gl6NCnHMBGi2QePAg61nNhE9RbG54jObVv1gfmykCvCWBWQ
+	yNk6za+YgIyuWjF8rPV/OWaN+JORU/XzGbuih+KT6iMjmKVn/8R8P/ffQjQ06c0qa309rYrvI=
+X-Google-Smtp-Source: AGHT+IGGqpaM76jl5tUPBTG+tFvhdxDkG4puJPkyMNSj6C7cGUEL5+2HdLKbxSEkD1GBfmoGxrVa7g==
+X-Received: by 2002:a17:907:94c7:b0:b73:8639:cd96 with SMTP id a640c23a62f3a-b7654dfc0camr97139766b.24.1763600663621;
+        Wed, 19 Nov 2025 17:04:23 -0800 (PST)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654d7c919sm77349766b.28.2025.11.19.17.04.22
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Nov 2025 17:04:22 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477770019e4so3229785e9.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Nov 2025 17:04:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXxNvz9gTdD4SB8YfGS/nf8NXySpDC3tN7VbnHI4ULrLZ3Lcv+Ay5DCzJv+Bh8uQ0wJDzw8zHz0fTvk@vger.kernel.org
+X-Received: by 2002:a05:600c:3ba8:b0:475:dd7f:f6cd with SMTP id
+ 5b1f17b1804b1-477b8d8eec1mr10748455e9.35.1763600661833; Wed, 19 Nov 2025
+ 17:04:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20251118-pixel-3-v3-0-317a2b400d8a@ixit.cz> <20251118-pixel-3-v3-8-317a2b400d8a@ixit.cz>
+ <d81b0e70-5e3f-4e33-a268-e8b903904e9b@oss.qualcomm.com> <d9c91625-a829-474f-9fda-5e39342bb4af@ixit.cz>
+ <96673da0-d8be-4b82-9e8c-2263f752881c@oss.qualcomm.com>
+In-Reply-To: <96673da0-d8be-4b82-9e8c-2263f752881c@oss.qualcomm.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 19 Nov 2025 17:04:10 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=VrB8FycxF+SFpP0-LBuRh00q6ecQ14fJj5fBKcFqsdCA@mail.gmail.com>
+X-Gm-Features: AWmQ_bmyj5sGx4tyY9L7h2oSdpAiPgC3_696WJh5bzTVt6VHuCNSI8LWrwUfgrE
+Message-ID: <CAD=FV=VrB8FycxF+SFpP0-LBuRh00q6ecQ14fJj5fBKcFqsdCA@mail.gmail.com>
+Subject: Re: [PATCH v3 8/8] arm64: dts: qcom: Add support for Pixel 3 and
+ Pixel 3 XL
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: David Heidelberg <david@ixit.cz>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Casey Connolly <casey.connolly@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	phodina@protonmail.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>, 
+	Joel Selvaraj <foss@joelselvaraj.com>, Vinod Koul <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-"Kevin Hilman (TI.com)" <khilman@baylibre.com> writes:
+Hi,
 
-> Add a new helper function of_parse_map_iter() to iterate over nexus
-> node maps (c.f. DT spec, section 2.5.1.)
+On Tue, Nov 18, 2025 at 5:41=E2=80=AFAM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
 >
-> This function provides an iterator interface for traversing map
-> entries, handling the complexity of variable-sized entries based on
-> <stem>-cells properties, as well as handling the <stem>-skip and
-> <stem>-pass-thru properties.
+> > Yes, there is only one firmware, which crosshatch has different, but al=
+l listed in the initial bringup are used for both.
+> >
+> > To add, crosshatch was somehow not that popular device, so as I've been=
+ suggested in u-boot discussion, I would love to keep blueline everywhere.
+> >
+> > One exception is LineageOS kernels, where they go by name crosshatch, b=
+ut again for the both phones.
 >
-> RFC: There's a lot of overlap between this function and
-> of_parse_phandle_with_args_map().  However the key differences are:
+> Google seems to suggest crosshatch is the 'base'
 >
->   - of_parse_phandle_with_args_map() does matching
->     it searches for an entry that matches specific child args
->   - of_parse_map_iter() does iteration
->     it simply walks through all entries sequentially
+> https://android.googlesource.com/device/google/crosshatch/+/refs/heads/ma=
+in
 >
-> There are likely ways to extract some shared code between these two
-> functions into some shared helpers, but I'm hoping someone more
-> familiar with this OF code can help here.
->
-> However, before refactoring the shared code, it would be good to have
-> some feedback on this approach.
+> Ultimately if none of the Googlers (hello +Doug) care that much, it's up
+> to you to choose
 
-For a bit more context, the need for this comes from the work in
-drivers/pmdomain to be able to create pmdomain hierarchies using a
-power-domain-map property.
+I haven't dug into this patch series and don't personally know a lot
+of the history of older Pixel code names before ~Pixel 6, but in
+general I wouldn't expect Google to have much of an opinion about
+Pixel 3 support upstream. I'd say leaving it up to the people doing
+the work sounds good to me. :-)
 
-I just posted an example user of this functionality here:
-https://lore.kernel.org/r/20251119-pmdomain-hierarchy-onecell-v4-0-f25a1d5022f8@baylibre.com
-
-Kevin
+-Doug
 
