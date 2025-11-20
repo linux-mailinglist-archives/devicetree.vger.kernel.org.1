@@ -1,95 +1,41 @@
-Return-Path: <devicetree+bounces-240728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 434D6C74918
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B630C74924
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:32:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 42F4E4EF25A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:22:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AABD34EEF8E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:23:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D479733A71C;
-	Thu, 20 Nov 2025 14:22:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yRQOsFat"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F93D346FC6;
+	Thu, 20 Nov 2025 14:23:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED228348468
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 14:22:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D6F342515
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 14:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763648542; cv=none; b=u6/TFXTm/vWFVGtvsiHvwQzUv42OM+iuWQ2TdqbQB1njnqBA/1/I7t9ir3A2EPHBslxWkXhLT6NwqzJO4/NRehdHiTSUNuANRV/gnLRgnjt0sqdnCj6CpJzlVov9ZaR5XroBGJI7arSP3LulLbsVkHcDhqLtvPu/AOHOsqC6wwg=
+	t=1763648607; cv=none; b=G/fgmJMduCaW5SHMKgROWPUyKqDDmpO9KaHQGuaSsNi+ADAR4bdjIiAe1l2h/pV7fG/qhAu2IirQ0c2T1TMEpKbHG0lIT+gGfZG2Zv4m3ORvAM0mRJbQ4jQiPIlvavNoxxKgxItOunBUBCt62fEzCHm/F8jD5lnNMZEu9Bp5VU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763648542; c=relaxed/simple;
-	bh=oBNH8eUjmKYO/3xhfUUA363GVWbTM9WGGCw76nOKELg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=VKI4xZ8hkaKtyn4KzeukN2zZhWTKfpUQPVzdyH5860gKN6B/6SdtLulAYhK305qma0zwepL3hvRxJuk/Pd2XNRo30+CGdxlhWI3vLt/f/fXpwCLoXORfRUx16mbYBXqQ3lgCLOHVD87dzfUGJRapQeCuct8kUPMkMpyr0rQZmlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yRQOsFat; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-42b3377aaf2so548136f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 06:22:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763648539; x=1764253339; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ImsNgbxyduoUICuKtNWRzS77ROdXymoggItSs8rqsZ4=;
-        b=yRQOsFataZr5kpygt3QIGcCWi6IQiF6AkU1hQlXXuIAUiY1gPh003W7r2WiBpOAh26
-         u9Ule6HojtjDAehtHQAZ1v2r/Lu9bOewR+Fp1oyDhhDuIJezcJpOsBoniltvoqk6LI+Q
-         U8NWIsBm7ZJRWOGl3oriRdAQqNHouU9oKiuag5PGEiJDeegyXsbkGyiqK/IjjQGCcUN7
-         w+MA6vzYen2O7Q8Q2RGWL7h9tfnL/f3/0hxFTc35rReiGs1xk/syIeHN6WNwpu/CppNV
-         WWJWS4v1+AF9gxPaBotnwfCqO6G3Z+Atb8+eaGqjaN9vCnyT4sHg7IeWjHFgOZUOorUF
-         +yQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763648539; x=1764253339;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ImsNgbxyduoUICuKtNWRzS77ROdXymoggItSs8rqsZ4=;
-        b=dFHK4D5JHd21bd8ot8xUSR4ouOxUfUZ/Ln4kbCsw7wlC4zlW/xAjpffzj4u3FDYSr9
-         /okuMVuKi4uZ1BTABxQ5MXDOzqQpgS05B1lMEe7/2Jk1ZY9JY62b038XnIkZykPH87hs
-         QkHc/m/K771iZCAb8leJzQZbUIFfhAUZjwVweogbp6UqVJPuxWw2r5nndLmHJ0+GkSx3
-         BT9J5UB3g49klzHb2eOJV0FU3nTQS5lQrK7KmaCePQk1qMFNHb9HHFeJW6gOPahTrxtx
-         EAYUZZJhesFYE5xVf6sJGYjmNrFm+lL0Lw3qcngwQAf/JrxbYetlII/WYAPZH/MluGyW
-         i9ew==
-X-Forwarded-Encrypted: i=1; AJvYcCVseioOOdj/EXFCgy4M2DIYLY0QqNrxLen1TuLNld5ewq070h/pP9IE2HCYvovydoT7siBG+yRGpC34@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiJuJRWdiBfXEuXoGlQp1bIx7RMz4ffLYD33v8BC5mLKk00OvK
-	CMf5xBQ4TK3bfsjy1G0HhuzhROctgurA72pDv/NaufPTbGlPk5OM8hQkO3B/WxRkyDA=
-X-Gm-Gg: ASbGncvcxZC9+uK6Unhb1qv1GZVrulheRyK0Db815M5zPsHwrks/Rn5FjlATQ6KoyvK
-	BVdqvM0GB0lDMPIywircmY4UEOQ2tXclc3XBsR2jD6FZ/Bly8ccKx4rX7Yumno1Mkj9PuJMXFUT
-	x7jn4y/7zMyYIth4golH9DN1lf4PO2v4oJEy5Pg0MnT9EYZl1HE0MBZL9PPxd8K6aa8C6ldZO4J
-	Zdhl8YXwlzuwGoexmvgraKV3RH/dsCuZF+tTSjGRP+D4yc6rV+x1GcnZGfXtMobnbbnxPhE/H4F
-	ByUZxTPzx7idLk5bRM08I8A1LyAccn0zCcETtLIYpGaimJpbK3PoyYV8fha4Y/UGgsQZLH/WjL0
-	djLaIrLOzJR3psZJz45HNp/RPJszckvrgs4w8OhLmSR+ka7/fGF96yqtFRXB+YUUV/jaBDxUlxI
-	WAhtutL2IJU2Yecnc+9ZlZz8jqTQ+9noM=
-X-Google-Smtp-Source: AGHT+IEGseLKbFavKV9xaiJK1w+nleecfiJIQQYI2QNSmK0kaikQ4QsqFmQRSpA3dOYxpV3ByNTjGQ==
-X-Received: by 2002:a5d:5f48:0:b0:42b:3ad7:fdb3 with SMTP id ffacd0b85a97d-42cb9a1177fmr3052135f8f.4.1763648539064;
-        Thu, 20 Nov 2025 06:22:19 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fa41d2sm5565338f8f.22.2025.11.20.06.22.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Nov 2025 06:22:18 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com>
-References: <20251105-irqchip-gpio-s6-s7-s7d-v1-0-b4d1fe4781c1@amlogic.com>
-Subject: Re: (subset) [PATCH 0/5] Add GPIO interrupt support for Amlogic S6
- S7 and S7D
-Message-Id: <176364853839.2628478.10260053331001764353.b4-ty@linaro.org>
-Date: Thu, 20 Nov 2025 15:22:18 +0100
+	s=arc-20240116; t=1763648607; c=relaxed/simple;
+	bh=WZe5/cA6zqNeTygzkTLdr1KPjI/va8xNKx8u+FYczho=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jRTLlXUlyIkOqz9D0FDlLjFsrjaw3te4PVvt569EVUK29eY+mU+FKmRxMMhQahT6JExkqOlX5UpO137P6saJbLJryrkzc3wBBS35GaIsYlMFSWHaOG2Yq5sgTRqD0jdYNtSRPmw+S3wPydZdn45Wh3hJAbvZJmJ1gTwzZKspSxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <m.tretter@pengutronix.de>)
+	id 1vM5Z9-0004us-9J; Thu, 20 Nov 2025 15:23:19 +0100
+From: Michael Tretter <m.tretter@pengutronix.de>
+Subject: [PATCH v3 0/4] media: adv7180: make VPP handling more flexible
+Date: Thu, 20 Nov 2025 15:22:52 +0100
+Message-Id: <20251120-b4-adv7180-vpp-sub-device-v3-0-c9d80661e7d9@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,46 +44,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADwkH2kC/43NTQ6DIBAF4KsY1p0G8AfpqvdougAZlQ0SUGJjv
+ HvRVZMmTWf3XvK+2UjEYDGSW7GRgMlGO7kcyktBulG5AcGanAmnvGb5QFegTBKspZC8h7hoMHn
+ XIejOlLVQQlWSkbz3AXu7nvbjmfNo4zyF1/kqsaP9R00MKMhWiB5lL6jUd49uWOYwObteDZKDT
+ vyTk784nrm2UUJIqptSfXP7vr8BysGdsBYBAAA=
+X-Change-ID: 20251111-b4-adv7180-vpp-sub-device-bcd357a7a491
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>, 
+ Thorsten Schmelzer <tschmelzer@topcon.com>
 X-Mailer: b4 0.14.3
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
+X-SA-Exim-Mail-From: m.tretter@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi,
+The adv7280 and adv7280-m have a Video Post Processor (VPP) unit that is
+able to de-interlace the video signal.
 
-On Wed, 05 Nov 2025 17:45:31 +0800, Xianwei Zhao wrote:
-> This patch adds GPIO interrupt support for Amlogic S6 S7 and S7D SoCs.
-> 
-> 
+This series makes the handling of the VPP more flexible. Furthermore, it
+fixes the reported frame interval if the VPP is enabled.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.19/arm64-dt)
+Patches 1 and 2 add the device tree bindings and driver handling to
+specify the (programmable) I2C address of the VPP (and CSI) slave device
+via device tree.
 
-[3/5] arm64: dts: Add gpio_intc node for Amlogic S6 SoCs
-      https://git.kernel.org/amlogic/c/96ce4313d6f9d5131937b449f9a2484277658c13
-[4/5] arm64: dts: Add gpio_intc node for Amlogic S7 SoCs
-      https://git.kernel.org/amlogic/c/8e8059d1747da43b0d8dafff216cbf32b647a7ca
-[5/5] arm64: dts: Add gpio_intc node for Amlogic S7D SoCs
-      https://git.kernel.org/amlogic/c/691db5908724f2f63b3a2fbe8394f2cc35b02c31
+Patch 3 exposes the registers of the adv via CONFIG_VIDEO_ADV_DEBUG to
+user space for improved debugging capabilities.
 
-These changes has been applied on the intermediate git tree [1].
+Patch 4 fixes the frame interval that is reported by the driver if the
+de-interlacing is active.
 
-The v6.19/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+---
+Changes in v3:
+- fix device tree bindings
+- Link to v2: https://patch.msgid.link/20251119-b4-adv7180-vpp-sub-device-v2-0-86a7790b63ab@pengutronix.de
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+Changes in v2:
+- fix and rewrite device tree bindings definition
+- simplify calculation of frame interval in progressive mode
+- Link to v1: https://patch.msgid.link/20251111-b4-adv7180-vpp-sub-device-v1-0-9877fe9f709b@pengutronix.de
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+---
+Michael Tretter (1):
+      media: dt-bindings: adi,adv7180: add VPP and CSI register maps
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+Thorsten Schmelzer (3):
+      media: adv7180: add support for ancillary devices
+      media: adv7180: implement g_register and s_register
+      media: adv7180: fix frame interval in progressive mode
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+ .../devicetree/bindings/media/i2c/adi,adv7180.yaml | 99 +++++++++++++++++++++-
+ drivers/media/i2c/adv7180.c                        | 55 ++++++++++--
+ 2 files changed, 145 insertions(+), 9 deletions(-)
+---
+base-commit: 1f2353f5a1af995efbf7bea44341aa0d03460b28
+change-id: 20251111-b4-adv7180-vpp-sub-device-bcd357a7a491
 
+Best regards,
 -- 
-Neil
+Michael Tretter <m.tretter@pengutronix.de>
 
 
