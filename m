@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-240552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D307C72BA2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:09:14 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80F78C72BC8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:14:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3662835357D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:09:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4C4AA4E50E2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 730DE2FF172;
-	Thu, 20 Nov 2025 08:09:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A81C307AEA;
+	Thu, 20 Nov 2025 08:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pB7GZUBs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EfBIh/CL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F732848A8;
-	Thu, 20 Nov 2025 08:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE693009EA;
+	Thu, 20 Nov 2025 08:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763626149; cv=none; b=rwIjARNDUB8+Q6s9Te/f/2wx6TLFXg3CoCx14iTW92k3t+p8jbcqyPZvaYu5GWG0HH9DuEbLlncElMiCoIwtGkJG9Bt2u1EMDUghQBEvRIVwQSuUTv8gKL5GIZFuYWbf93t+fPjZtvZRXkuUue81UzMSLGZ/jSGCKHdWInVtRy4=
+	t=1763626434; cv=none; b=cSzkdrlPbfkPTnHRCp4dEqavtlOs0TVKNI+9t/kJwsLZa7Go30IDfyVJYA8QDLSu46JQFtgK7MdP4qWsTy61ISCspeAOoYmYAbNWvkMXfEV7yUQlIc1geEhGYRKVlY3LCnC7hTsvPqg4/Kxrbo5cihy/wtZ+0HWzNgSS9xx0ugo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763626149; c=relaxed/simple;
-	bh=+ZWe1Hac0pHN3+FJ8e9MAam7O24cZIiVQZ5o1J0qM7M=;
+	s=arc-20240116; t=1763626434; c=relaxed/simple;
+	bh=G9LXGufG/UQP5AIT5n6OMpjuYpG4fsbv9VqINY8RA0E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KpF58uP9vkU2QkP9RpR3s2UE4gALZI5bcAOougUCWk66GYmygVm5dokwvdGt1sCzTDUHG/28C9D6ps5rOHYtNqs0CPdH3xFOtUjO/kFvyXPk/DF/ZjUhIXC77Atkai7jC/j+w3oDDAdC1ARRsb71S0S1X8Uaqj0MGCxqlezlgh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pB7GZUBs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49C44C4CEF1;
-	Thu, 20 Nov 2025 08:09:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vq3nNmjF6PmmoYDc3cJi23bh6eI5Wc7f5kB9OkGtYyLpAjp3aItNGr01QzAagJAFmoqYXaTvXrXieQkiZXs9QnGek1WQcOdMfddoBaR/r5nTgaMa2NG8x+xWR8L0bB7iNpnunUsaedSX2ixuAeIcaipfesgF3j9hW8TE8jpDNFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EfBIh/CL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1900CC4CEF1;
+	Thu, 20 Nov 2025 08:13:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763626148;
-	bh=+ZWe1Hac0pHN3+FJ8e9MAam7O24cZIiVQZ5o1J0qM7M=;
+	s=k20201202; t=1763626433;
+	bh=G9LXGufG/UQP5AIT5n6OMpjuYpG4fsbv9VqINY8RA0E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pB7GZUBssZwPL+eaGWXALOfGHECsNKbqNF93tDJNcy1onMJzLUpRbDy9hl9sHSSf3
-	 hVWG+kwQILkKdNeEXlUY08GRvZgvTnnTHW8aJGM0359QS7lsSpum6KkXcFwQyn1NSa
-	 ENzYlz2kQJjqLA82wWbZE3YR4+uayPQtNx/dOuJyjClMsUexlOxf0roRZKpc4Hd2M3
-	 V5ZPs3EGqdBFCDiKyb+p0orkrAEV4W8ki1RqSJw20LgPAyu92JWsDi5y68GpOEjOgO
-	 x7UWPlEMHDXmRbBy40iFKIBuG5lPHjW2v5M41qmcOrQp2ERyc/tQ8jNFNoHeYSmYSh
-	 oVdy0543ilbyA==
-Date: Thu, 20 Nov 2025 09:09:06 +0100
+	b=EfBIh/CLPUJs1yji8DrwVkAbqqNquYxkEsAiaruEwtyGTpX8RHSMkqy6tz7+eSG+9
+	 qVZSyMlbZlXXVOAOmDZfaSc8EKhiKsl1h5ukZFuLwEoI0kAxrrUowoIgqKn4XArJNS
+	 n8/28GiFhfQvuHlPLf+qS4hVBvGt7+8br2iwXljjy4tD1YkoSalbuXXOgoETo5FGzB
+	 nTZ0HqzKxwrhUWE+irWLxXVeq2YwQsyTd1ZssRfcQ71xTRfJNzNOKghuJ6BFimLMF1
+	 a065bnFoRcf8ugfo6OOfAJS6VZXyib3OEyoqEi8QJ/Rmh3dJHz51cPk7S+bIQq3LP7
+	 7xVr0pcnL+htg==
+Date: Thu, 20 Nov 2025 09:13:51 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Biju <biju.das.au@gmail.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	linux-can@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/2] dt-bindings: can: renesas,rcar-canfd: Document
- renesas,fd-only property
-Message-ID: <20251120-statuesque-heavy-herring-e915f6@kuoka>
-References: <20251118141840.267652-1-biju.das.jz@bp.renesas.com>
- <20251118141840.267652-2-biju.das.jz@bp.renesas.com>
+To: Encrow Thorne <jyc0019@gmail.com>
+Cc: Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Troy Mitchell <troymitchell988@gmail.com>, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: spacemit: add optional resets
+Message-ID: <20251120-warping-logical-skunk-0674f8@kuoka>
+References: <20251119-i2c-k1_reset-support-v1-0-0e9e82bf9b65@gmail.com>
+ <20251119-i2c-k1_reset-support-v1-1-0e9e82bf9b65@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,51 +64,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251118141840.267652-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20251119-i2c-k1_reset-support-v1-1-0e9e82bf9b65@gmail.com>
 
-On Tue, Nov 18, 2025 at 02:18:34PM +0000, Biju wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
+On Wed, Nov 19, 2025 at 07:46:43PM +0800, Encrow Thorne wrote:
+> Add optional reset property for the SpacemiT K1 I2C.
+
+Why? You just repeated diff and we can read the diff. Please explain WHY
+you are doing things in terms of hardware.
+
 > 
-> The CANFD on RZ/{G2L,G3E} and R-Car Gen4 support 3 modes FD-Only mode,
-> Classical CAN mode and CAN-FD mode. In FD-Only mode, communication in
-> Classical CAN frame format is disabled. Document renesas,fd-only to handle
-> this mode. As these SoCs support 3 modes, update the description of
-> renesas,no-can-fd property.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
 > ---
->  .../bindings/net/can/renesas,rcar-canfd.yaml       | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> index f4ac21c68427..bf9a7d5288d3 100644
-> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> @@ -125,9 +125,17 @@ properties:
->    renesas,no-can-fd:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
-> -      The controller can operate in either CAN FD only mode (default) or
-> -      Classical CAN only mode.  The mode is global to all channels.
-> -      Specify this property to put the controller in Classical CAN only mode.
-> +      The controller can operate in either CAN-FD mode (default) or FD-Only
-> +      mode (RZ/{G2L,G3E} and R-Car Gen4) or Classical CAN mode. Specify this
-> +      property to put the controller in Classical CAN mode.
+> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> index b7220fff2235..3d4faec41abe 100644
+> --- a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> @@ -27,6 +27,9 @@ properties:
+>        - description: I2C Functional Clock
+>        - description: APB Bus Clock
+>  
+> +  resets:
+> +    maxItems: 1
 > +
-> +  renesas,fd-only:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      The CANFD on RZ/{G2L,G3E} and R-Car Gen4 SoCs support 3 modes FD-Only
-> +      mode, Classical CAN mode and CAN-FD mode (default). In FD-Only mode,
-> +      communication in Classical CAN frame format is disabled. Specify this
-> +      property to put the controller in FD-Only mode.
 
-It should really be just an enum since the beginning - representing the
-mode of operation. Now you need to complex oneOf to disallow usage of
-both.
-
-You also claim not all devices support this, so you need to disallow it
-per variant.
+Completely misplaced. There are never random properties between xxx and
+xxx-names.
 
 Best regards,
 Krzysztof
