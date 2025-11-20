@@ -1,89 +1,94 @@
-Return-Path: <devicetree+bounces-240623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00618C737E2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:38:40 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04164C73812
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 11:42:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 993BA4E6CD7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:38:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A4ECA345584
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 10:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F14B32E12B;
-	Thu, 20 Nov 2025 10:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6153130AAD3;
+	Thu, 20 Nov 2025 10:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="KC+rmiWN";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="+8kQzenj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ElnYylfU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D23E232C94F;
-	Thu, 20 Nov 2025 10:38:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38908757EA;
+	Thu, 20 Nov 2025 10:42:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763635086; cv=none; b=oVV9QS9GaH7VM89CADigxxZNwHEfOHEqHjcUtGM8itPO02G8dZvTJ76LLXGaANSJYpL5BT4pGPu2xHd9KObxBXnsUrF1R0UEtuKmD6L8z0BEYVz3sB+LkTcZh4fMQJ3TnWLwCwe+L85x29TNYNKtS/H4ij/u0xi4PXf01XH9XxM=
+	t=1763635349; cv=none; b=M3eKqSiwOqZH73YgpXbn5MDdhNptlQd9djuIa/hg3CZ3nnyLB1tdHHXzQPDwEP4Q445+8Vfm3j8civdz9HBv5FZVp5PDomYSmSpd7svixZ7/unsGrOf9RcpbsV9dVHMkheAssmo9KiGxcYQBwd+3Desok8iol3W7G0ceh9OWC+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763635086; c=relaxed/simple;
-	bh=kH+k2xSgrEnZBQwWdde7oCJKJmyVT1Wv2J4duOGUBSs=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=lq7Q+WUa91yhu1nDA3lI3O/FGkh4GGJNpM57TZNsWKHXpUgR0VG/2lbg0vhX4cl2aFSFwVNtqbp16ul5d0Kob5LyqfnxAGh+wcTE5ypnTF/8oW1NWKwr4TtI05DIzs8bEg9Ir2an11SPQ1C4Vpo84L2hF4hXS42FulQ6OmFTgN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=KC+rmiWN; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=+8kQzenj; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1763635082;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kH+k2xSgrEnZBQwWdde7oCJKJmyVT1Wv2J4duOGUBSs=;
-	b=KC+rmiWNCSB51ppZjyJCkn2Loo8taIibMLoISRnQPcYSozwmSB9wkoGD13vKgI7Qzrm1uW
-	EqcMZXPTjCIT6iQVcgKRnxsywt2VAEagDR1d1lYDrP5IAOTZyZVdfSROMROHjut0/lLugH
-	37+1ccyRGUmnCPvcxTth1jtEKtLDInGbR2ptp5nebhjsQGss9S3VfSxDBpA4YJ8ine5jAA
-	VaRFBMd+GHrOUC1awv6SDe1JQAKYjd4mZZ+oKltCkGQ28SKL4UGsAduNQpv3gb06uw5Crj
-	2i13JE6jdE64ho7/fykQkC75tcLtEYcMepWkHyTUgVAOItdKbUNSAwj5Wb3ROQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1763635082;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kH+k2xSgrEnZBQwWdde7oCJKJmyVT1Wv2J4duOGUBSs=;
-	b=+8kQzenj0cSKSsWChGyZTGcC0xQ6uTlbcU/IulWJSNg9W1witlBpfFECLGhflUaYi1xM8J
-	/ZcxywYEp2NvGaDQ==
-To: Hao-Wen Ting <haowen.ting@realtek.com>, daniel.lezcano@linaro.org
-Cc: jinn.cheng@realtek.com, edwardwu@realtek.com, phelic@realtek.com,
- shawn.huang724@realtek.com, haowen.ting@realtek.com, cy.huang@realtek.com,
- james.tai@realtek.com, cylee12@realtek.com, phinex@realtek.com,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- stanley_chang@realtek.com
-Subject: Re: [PATCH v4 2/2] clocksource: Add Realtek system timer driver
-In-Reply-To: <20251120063010.830805-3-haowen.ting@realtek.com>
-References: <20251120063010.830805-1-haowen.ting@realtek.com>
- <20251120063010.830805-3-haowen.ting@realtek.com>
-Date: Thu, 20 Nov 2025 11:38:01 +0100
-Message-ID: <87a50hkn06.ffs@tglx>
+	s=arc-20240116; t=1763635349; c=relaxed/simple;
+	bh=6Xq8ia8Lq6KOMeslHV9RF4HxCjdUoN7PVLieO/tqFF4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cuQmTBZNSjw3MEuNBw5g9579gQ8cTM0+0Aznw/ypjQJXPqfzBOgiRckfuWzw7vwflOBk7a0WfG0eUi1g7sLV146Lch8sHUS5kDliKDx3RehqUKapzmYvq4I/leXJn5Y0JZz2sEkmh/u24ej1pd0RHW9H2dzL+cKl8sveIknAZrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ElnYylfU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FC9DC4CEF1;
+	Thu, 20 Nov 2025 10:42:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763635348;
+	bh=6Xq8ia8Lq6KOMeslHV9RF4HxCjdUoN7PVLieO/tqFF4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ElnYylfUAh2XXbfFCqVtP7b0wD9+p+yPz0oIAZFiAM15QN2lPON1Vs7bW2AJxRJ2t
+	 cEu54W90Sy0nwry0gvMA2qrbRdaAghN4bdlWHsDfSizdz2M5wzy0dZbaMN5LZbc9z8
+	 4L8f07hkjt64jW7cvqV0zT4X2jq3F8pDK5ACQ4Cn5JEI69S/leROYWth09OyKz/EAA
+	 v8wVrkqRgg/fzGCAC8r07A0ac4HP/6GVu6rpyjrQKiyx/GxqkFV4Uq/CwnaEj1naxU
+	 fd3uvzJEZ2dEx8jfzbIHymMIt/zZhi/BDyUosVsl5BZGxE3rVqrHLnX1zQOHGRssyI
+	 ZmcI93acXtA9Q==
+Date: Thu, 20 Nov 2025 10:42:24 +0000
+From: Lee Jones <lee@kernel.org>
+To: Daniel Mack <daniel.mack@holoplot.com>
+Cc: linux-leds@vger.kernel.org, pavel@kernel.org, robh@kernel.org,
+	devicetree@vger.kernel.org, Daniel Mack <daniel@zonque.org>
+Subject: Re: [PATCH v2 0/3] leds: is31f132xx: add support for is31fl3293
+Message-ID: <20251120104224.GA1949330@google.com>
+References: <20251114094640.4096054-1-daniel.mack@holoplot.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251114094640.4096054-1-daniel.mack@holoplot.com>
 
-On Thu, Nov 20 2025 at 14:30, Hao-Wen Ting wrote:
-> Add a system timer driver for Realtek SoCs.
->
-> This driver registers the 1 MHz global hardware counter on Realtek
-> platforms as a clock event device. Since this hardware counter starts
-> counting automatically after SoC power-on, no clock initialization is
-> required. Because the counter does not stop or get affected by CPU power
-> down, and it supports oneshot mode, it is typically used as a tick
-> broadcast timer.
->
-> Signed-off-by: Hao-Wen Ting <haowen.ting@realtek.com>
+On Fri, 14 Nov 2025, Daniel Mack wrote:
 
-Acked-by: Thomas Gleixner <tglx@linutronix.de>
+> From: Daniel Mack <daniel@zonque.org>
+> 
+> This is v2 of the series to support the is31fl3293 with the is31f132xx
+> driver.
+
+Please place the changelog in the patch itself, under the "---" markers.
+
+> It is now split into 3 parts and also addresses the removal of forward
+> declarations.
+
+I still see the forward declarations.
+
+> Comments on styling isses in v1 were addressed.
+> 
+> Daniel Mack (3):
+>   dt-bindings: leds: add issi,is31fl3293 to leds-is31fl32xx
+>   leds: is31f132xx: add support for is31fl3293
+>   leds: is31f132xx: re-order code to remove forward declarations
+> 
+>  .../bindings/leds/leds-is31fl32xx.txt         |   1 +
+>  drivers/leds/leds-is31fl32xx.c                | 234 +++++++++++++-----
+>  2 files changed, 177 insertions(+), 58 deletions(-)
+> 
+> -- 
+> 2.51.1
+> 
+
+-- 
+Lee Jones [李琼斯]
 
