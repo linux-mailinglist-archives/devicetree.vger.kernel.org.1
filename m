@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-240707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 388DFC74628
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:58:07 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BF96C74511
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 14:44:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4A2CA4F6270
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:38:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 123E230A5F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D923933E373;
-	Thu, 20 Nov 2025 13:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2542D33F8A8;
+	Thu, 20 Nov 2025 13:38:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQRmJe0g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pbw9et1/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9C0533DEFB;
-	Thu, 20 Nov 2025 13:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE2D302152;
+	Thu, 20 Nov 2025 13:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763645909; cv=none; b=MbhcAwpSfHZvKGtr96kRh/3DL44CW55qCOTXw5J3z8M8tRGj0ZTEeRTWJD3cHEJfM5D2CWVW9ycC+8KpumIfALxY2BPC3gpoBN5iJ8QxfDxoUBi6SABaMWzSY3XNj1PimtiboCObEMX8NmSk/6RcIicrLax2mTmhwBKXsUGzdXU=
+	t=1763645934; cv=none; b=CV1fBThAMbkquN0e+baU72LQ3Mx28XAhInkX2GrzGglDfddIK4blnIeCbczG0dezKzTCzs/V1ouqcCMaZJ+CMQ7I/B4GrtoEsggAV+UkOtC28neeFIEtLqpF/RJ7vsT+0dEst9Nzapucv1YINYVeaMmDLIiJNMKC7x8Wt+PNBYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763645909; c=relaxed/simple;
-	bh=CPiSXQWLPTRw9YqUm59meRVTWCik9PWrWPizlDTGwk4=;
+	s=arc-20240116; t=1763645934; c=relaxed/simple;
+	bh=Vh65xuHJA3R+p/CgeVtOwOfKpNv4dQp6CPQbxiU/u3g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iRGn7Mbkvd3CSJYB/wuEgS7U1TOHfazyB1wZVnC7GOXsUAB918SxSIMkDrnIES7PQr2n1TCTZpG5ButqDMI+GW6KSqoCLYKNAuVayYEA5A68YTkDhxLWGaU6k+OOL+V/Pxuz9i3/N47f2l5i47ZTWQbLah+eyZc+IMTELoiD5VY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQRmJe0g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78260C4CEF1;
-	Thu, 20 Nov 2025 13:38:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=j0TLwdqtrewgc6zhTsQvkvP5ZX6FxKioPPPX/WXcyUiTUT4xNUGZRUfB6V7GU2RE0Nm210YYkriY8ykjvRx/y+JmnHQPmG3YG70WN3GecLYvRY1aGxJQus2jJmVK0IHE/LEVIYyimTYN5ewv1NEM7fYsL3sOwuebpcRLC2iIulE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pbw9et1/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEAE5C4CEF1;
+	Thu, 20 Nov 2025 13:38:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763645909;
-	bh=CPiSXQWLPTRw9YqUm59meRVTWCik9PWrWPizlDTGwk4=;
+	s=k20201202; t=1763645933;
+	bh=Vh65xuHJA3R+p/CgeVtOwOfKpNv4dQp6CPQbxiU/u3g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oQRmJe0g15jvqwnOEi6c9pGQJTgUM8OOGw5QUoO/qZgg0xllWoxVhA9vMB3gTw1/M
-	 ZrUY7w2LyzrOHYX255CQOSkI2aG3AVMc+L4GCw4wLGcB9O6x1ALvYerKh/VkIhFBJz
-	 MFISeBTd3su4Rm+vhzu09l0QVd0+X1TT114jBtlgPiCEdivjT72ih6cqB8hJICX064
-	 iSU/ZNaN5yEYNl/GCiCoF5T+BPWsuYynxtQEVxtvMNeKnBbNoD56fhIv73f0K8FFrJ
-	 t6zje+UTye9oIa9+R+/ohi9ckFcRIitx8wZmxZlhnywOwGcGS2YW61jaawp+aw8xDx
-	 7keg3nFBcxfgw==
-Message-ID: <de26ada1-0d8f-4d3c-a665-091925dd44ce@kernel.org>
-Date: Thu, 20 Nov 2025 14:38:23 +0100
+	b=pbw9et1/7GeKZ3UVYcll3hptEC2OAfW9vCivCCoHY2c/l+P4kSlAUqF0xAeqzx4z+
+	 Zs73IYqgvqj1sQZZP5JDtLU1Wel9eWP8RzASbBWcx+ySjDBeABqQhyC97y5mFM4M7F
+	 ccP2Kw5Ol8mMHgPNlGmeTaqGCwo2enEOJvFR7fGIU03Cg69sn8eI44uy3OASssKkqi
+	 4+ka/qylqAhzTz0ZNyixgZcvuX/cLwLbRjXdn+Y5lleSn7/8LSv4Gq6mENUWGz0gxi
+	 CSzD0kxPfTMp5XS+wN9uWej3bbUtQ03wIHzJAlkp3EEwau4iNCNhcCzkpCgLF1sOF0
+	 WhuXwzYAryMjg==
+Message-ID: <ca1bc81b-f4cf-4f3f-acf2-daa646762842@kernel.org>
+Date: Thu, 20 Nov 2025 14:38:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] mfd: mt6397: Fix formatting of RTC_BBPU_KEY
- definition
+Subject: Re: [PATCH v2 3/5] rtc: mt6397: Fix formatting of platform driver
+ structure
 To: ot_shunxi.zhang@mediatek.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
@@ -63,7 +63,7 @@ To: ot_shunxi.zhang@mediatek.com, Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
 References: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
- <20251120121805.6775-2-ot_shunxi.zhang@mediatek.com>
+ <20251120121805.6775-4-ot_shunxi.zhang@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,22 +109,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251120121805.6775-2-ot_shunxi.zhang@mediatek.com>
+In-Reply-To: <20251120121805.6775-4-ot_shunxi.zhang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 20/11/2025 13:17, ot_shunxi.zhang@mediatek.com wrote:
 > From: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
 > 
-> Adjust the whitespace alignment for the RTC_BBPU_KEY macro definition
-> in the mt6397 RTC header file. This is a cosmetic change to improve
-> code consistency.
+> This is a cosmetic change to improve code consistency.
+> 
 
-Please don't send such changes line by line.. You have other patches
-here doing the same. Organize all such trivial stuff, including for
-other drivers not only this one (!!),  in one patch. This is just churn.
-
-
+Churn. Don't send individual patches like this. Fix entire subsystem please.
 
 Best regards,
 Krzysztof
