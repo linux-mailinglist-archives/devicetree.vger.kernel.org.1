@@ -1,115 +1,127 @@
-Return-Path: <devicetree+bounces-240742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74EB4C74B6C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 16:01:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4A72C74D73
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 16:18:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 7B32B2B80D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:01:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 195194E8A15
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 15:06:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D587C2E6CAF;
-	Thu, 20 Nov 2025 15:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1295F34D4C6;
+	Thu, 20 Nov 2025 15:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bq+zbsKP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AC6pR3ZW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3D02D3A96;
-	Thu, 20 Nov 2025 15:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB382D1F5E;
+	Thu, 20 Nov 2025 15:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763650849; cv=none; b=WHmWIQ/xIzmbWSaMLOoa8FGITbGIwbdmygKr6bMyAtWnukMi2Lo09PZ0j12G4cgjYchaP9j6bnI1Qh7QSP3FHjmC2JjCqcWmWcm4mu1h2VKN7CsLM9/+dKRQ9oslJvHCA2DEnko9/QbvMAxOGyOrHN0HeB4+xuVG+QV915mwd9Y=
+	t=1763651026; cv=none; b=Bm8yznCGu/6bYG1AkATH++ZZmMFjoyylqGsiaFkY9mHHY2MCmg9WQHkqpL7lgbgwqK8q22R7WxB62r60M8RhuGlJqHhvZ0Jq7kfd6tKeNO6WHtFjeTNlCC3iwr0ISEpbnmVwZ0vCWZ4nENkjVsW+Q7G9nrJk/6lCa4844go/6ng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763650849; c=relaxed/simple;
-	bh=qOLDXwSo6tNYPEYXmBkGtDCBymPoojze6blkqSOqtL0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qLBf3B48Wl6h1GWaSAh+WNfYJBFmYA2vcNKWT6l5rJ4hjD4oFtO0SqxeJz3oR+OHbos9nrhIyQ80kCFh48YHnifOlaX5qPoWnFz0tWR72vPf4pxo0I4SFf03bO6Fz/qTeK0Sm6rvqONQFp+FhmXyr20qiCeiIxm00k/nro27fMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bq+zbsKP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68A1EC4CEF1;
-	Thu, 20 Nov 2025 15:00:48 +0000 (UTC)
+	s=arc-20240116; t=1763651026; c=relaxed/simple;
+	bh=pfOB+M7ex+fP/RluyCcJ2YvWmOHgbeDNJ44F7gcziKM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qEQs9s+adMPMYwBxi8t/6zsAL/3Nkf6Y5CAZM1lExkvRGAEfXO4T6rd2XcZiW1M3RlKEqc6txTROd3sIVTOqFAh57RBvGw0T0+rqWzBYXiLyzHSwR6o8AbRvGGnVXwO89qGICMJxqfDLF1eY/SA/hVyDJZIc8J1TBKN2MJTqCDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AC6pR3ZW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6974DC4CEF1;
+	Thu, 20 Nov 2025 15:03:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763650849;
-	bh=qOLDXwSo6tNYPEYXmBkGtDCBymPoojze6blkqSOqtL0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=bq+zbsKPiFYmj+VLYHAJ0VeR10BbUewTKtW5i8XUmmnY+rc1Tt4pMfEcUv9HWoIC8
-	 zFXWTEXe+8BSqRCb33wFalhbtPTN3rdGR1SiTtppEtT2jU9efh4XOjwdLt1q+q6ebI
-	 T8G6UyZJIOF8Sbbu2HGnomwLVcNHzECaCyM3EiGKspf7Qz7DcCspEZR+CZRd9NVmn4
-	 l4D/PQfNdZE5KeX739TWqbkP7aHTBNC/a9nh5ajZUUXSUKsHLmvLcJjs+Z+VMNA5jR
-	 Gx0iclo4Xl12uABQQ47Jeu7R6kriDT6xHbf0gD3/jH03yKZn7JIZ0Cr0PpCgEQcFTI
-	 ASEn6/huUgR3g==
-Date: Thu, 20 Nov 2025 07:00:47 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, netdev@vger.kernel.org, Andrew Lunn
- <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, linux-kernel@vger.kernel.org, Serge Semin
- <fancer.lancer@gmail.com>, Herve Codina <herve.codina@bootlin.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 14/15] net: dsa: sja1105: replace mdiobus-pcs
- with xpcs-plat driver
-Message-ID: <20251120070047.4c8411af@kernel.org>
-In-Reply-To: <aR8KZZa63ygR-e1N@shell.armlinux.org.uk>
-References: <20251118190530.580267-1-vladimir.oltean@nxp.com>
-	<20251118190530.580267-15-vladimir.oltean@nxp.com>
-	<20251118190530.580267-1-vladimir.oltean@nxp.com>
-	<20251118190530.580267-15-vladimir.oltean@nxp.com>
-	<20251118164130.4e107c93@kernel.org>
-	<20251118164130.4e107c93@kernel.org>
-	<20251119095942.bu64kg6whi4gtnwe@skbuf>
-	<aR2cf91qdcKMy5PB@smile.fi.intel.com>
-	<20251119112522.dcfrh6x6msnw4cmi@skbuf>
-	<20251119081112.3bcaf923@kernel.org>
-	<aR8KZZa63ygR-e1N@shell.armlinux.org.uk>
+	s=k20201202; t=1763651024;
+	bh=pfOB+M7ex+fP/RluyCcJ2YvWmOHgbeDNJ44F7gcziKM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AC6pR3ZWDb2M0PIxmSNgFIw79OENm7Y4I9e29LuBfhy7MQWisUYLvavroXo6ZYiO4
+	 iW5pRRbeSFFRLEDmozpTX3EOgUbLDQ8jxJRlA/aq5HncPJwlRxElr3sy0ZYw9JdH4n
+	 jWRaPNIITuWujpINkM2tNWPN6/rdtil/u4gjcfeYN/d999b/k+GTt0Ssvpc5tddqrQ
+	 0naxD9+fz3XoLESnMla+XAxX+tVYh8BaGHWb+TixY1NiDXRnWtcfh+Gez5UB4O1q55
+	 /HPmI9bIWQyqSG0aQIPLvk+zQt5cgPFQC2jPw9OdYQIiWv1HIYREkr+F3ig7f0XG2G
+	 hfUzk63nen0Mw==
+Date: Thu, 20 Nov 2025 09:03:43 -0600
+From: Rob Herring <robh@kernel.org>
+To: Joan-Na-adi <joan.na.devcode@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
+Subject: Re: [PATCH v6 1/2] regulator: dt-bindings: Add MAX77675 regulator
+Message-ID: <20251120150343.GA1256330-robh@kernel.org>
+References: <20251120125449.26530-1-joan.na@analog.com>
+ <20251120125449.26530-2-joan.na@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251120125449.26530-2-joan.na@analog.com>
 
-On Thu, 20 Nov 2025 12:32:37 +0000 Russell King (Oracle) wrote:
-> On Wed, Nov 19, 2025 at 08:11:12AM -0800, Jakub Kicinski wrote:
-> > On Wed, 19 Nov 2025 13:25:22 +0200 Vladimir Oltean wrote:  
-> > > I think it's due to the fact that the "contest" checks are fundamentally
-> > > so slow, that they can't be run on individual patch sets, and are run on
-> > > batches of patch sets merged into a single branch (of which there seem
-> > > to be 8 per day).  
-> > 
-> > Correct, looking at the logs AFAICT coccicheck takes 25min on a
-> > relatively beefy machine, and we only run it on path that were actually
-> > modified by pending changes. We get 100+ patches a day, and 40+ series,
-> > and coccicheck fails relatively rarely. So on the NIPA side it's not
-> > worth it.  
+On Thu, Nov 20, 2025 at 09:54:48PM +0900, Joan-Na-adi wrote:
+> From: Joan Na <joan.na@analog.com>
 > 
-> On "contest" I find when looking at patchwork, it's just best to ignore
-> the result that NIPA posts for that, because more often than not it
-> reports "fail" when there's nothing wrong.
+> Add device tree binding YAML schema for the Maxim MAX77675 PMIC regulator.
 > 
-> For example, the qcom-ethqos patches - v1 passed contest, and this
-> morning I submitted v2. The only change was removing the double space
-> in patch 2. What I see in v2 is that _all_ the patches failed contest,
-> even those that are unchanged and previously passed. This makes
-> contest unreliable and IMHO misleading - and as such I hate it.
+> Signed-off-by: Joan Na <joan.na@analog.com>
+> ---
+>  .../bindings/regulator/adi,max77675.yaml      | 188 ++++++++++++++++++
+>  1 file changed, 188 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77675.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/adi,max77675.yaml b/Documentation/devicetree/bindings/regulator/adi,max77675.yaml
+> new file mode 100644
+> index 000000000000..54cbbd59ff5b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/adi,max77675.yaml
+> @@ -0,0 +1,188 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/adi,max77675.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX77675 PMIC Regulator
+> +
+> +maintainers:
+> +  - Joan Na <joan.na@analog.com>
+> +
+> +description:
+> +  The MAX77675 is a Power Management IC providing four switching buck
+> +  regulators (SBB0–SBB3) accessible via I2C. It supports configuration
+> +  of output voltages and enable controls for each regulator.
+> +
+> +allOf:
+> +  - $ref: /schemas/input/input.yaml
+> +  - $ref: /schemas/pinctrl/pincfg-node.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: adi,max77675
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-time-sec:
+> +    description: Manual reset time in seconds
+> +    enum: [4, 8, 12, 16]
+> +    default: 4
+> +
+> +  bias-disable:
+> +    type: boolean
+> +    description: Disable internal pull-up for EN pin
+> +    default: false
 
-Fair, I'll fix it over the weekend. tl;dr it shows up as failing until
-we get a clean run because of patchwork UI shortcomings.
+'default' does not make sense for boolean properties. default is how 
+should the s/w handle the property not being present. That's always 
+false for booleans and can't possibly be true as you have below.
 
-Long version is that unfortunately patchwork UI does not show "pending"
-tests on the main page. So when we eyeball the queue to get a sense
-of patches which are fully validated its hard to tell "done" from 
-"in progress". I believe BPF's KPD system also uses "fail until
-finished", I'm guessing for the same reason. 
+With those dropped everywhere,
 
-That said I stopped using the patchwork UI completely now, and switch 
-to my own UIs within NIPA. So patchwork shortcomings are no longer 
-a concern.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
