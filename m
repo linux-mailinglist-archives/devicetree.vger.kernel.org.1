@@ -1,50 +1,55 @@
-Return-Path: <devicetree+bounces-240495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFC9C71E3E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 03:50:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD6A0C71E80
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 03:58:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DF35E4E2219
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 02:50:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 1A91229C9E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 02:58:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCBD92F5465;
-	Thu, 20 Nov 2025 02:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731B22F5A3E;
+	Thu, 20 Nov 2025 02:58:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S8MjIokI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HE7YpeJ2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE72A28A1F1;
-	Thu, 20 Nov 2025 02:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E0B42F5A1F
+	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 02:58:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763607041; cv=none; b=jcjOVaoDOZV1+wgKwk8UzQIbTpSF8lan2VPmIdYN98+KeYZDi0xeoUzwahEKJXgsk5NBwDQSc0YcsTqLJ9iHq7UMoz4se7JKfSoeSKuwkMPeFtOkSy3MCm9w7gqXCrqIhgkvd/4b0GolVNXxqu7JgXmZknCQafuM0NHCpAl9PR4=
+	t=1763607508; cv=none; b=it0nX+XA+DJaP6AlagMiyOof9LN1lWJcm8UCFkptag9xnSJwNHh2NWqCFWozZxR+a8fXmQjD6SWEneCkIK22ATRnKNZ+04+lGxjUcp97cqQhu632QO1DMnZ4PqDkqG8LldzPPI0XrhrK5sI9IqNl5RnIoaz8u8AACucqnnle7TE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763607041; c=relaxed/simple;
-	bh=Aa7WnttGEYS9DURKutasxGDYsZUdjqB9YngO+llu6wc=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=C4r4IUpwi1U+MkLX3u93wu4GRdtISbFU00bXwvUs0hNX4ejM4ZcgNlUoyNB+IFnIpNBAyHfjonraHBDoTbNRAvqRfwuuHoEf+T3SiV0DkO1mTNCuFnbNzDt+pay6Z+s4MlW+6fDzRsmGCemUjRxx8GIswWzElSAm8GGYXot7Sck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S8MjIokI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DE17C4CEF5;
-	Thu, 20 Nov 2025 02:50:41 +0000 (UTC)
+	s=arc-20240116; t=1763607508; c=relaxed/simple;
+	bh=72rpXeJzAKOM+ey6m+XjcDiC/ioU24pybCfGKrguMMQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bCXi3sujNwqgAOJ5I1/1kViy1FzP6/kGwh9fMN850ixuw4nUpHsy4L8IRZR4NZNMrg1mcnoIQSOS0GWWMCLjSVV2nV0uhscTkTzSoa7Q11qZEzTjdIm8sVV7PPJjRYycrVlGCYd2Lf49wp9Zc7ip2+XivNw4rn8PYmWFxB4r8SE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HE7YpeJ2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6829FC4CEF5;
+	Thu, 20 Nov 2025 02:58:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763607041;
-	bh=Aa7WnttGEYS9DURKutasxGDYsZUdjqB9YngO+llu6wc=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=S8MjIokIPFiZtBoyLBhAKt0Eug5olwn21DgCteRt2goUeFiplqSVQ0DaqYvklPhyY
-	 CS6dPeKFTQq8swWVerxdr/5zzsYF/BKPGHhHhpFXgo9ae/HcvxaRnI8AMl6Fi6c7Bk
-	 +CDWkdTTQ2Ciey6FwLEhQrPo5NyN8Z6pwhxSub3K9YLEN906H3WNsDabCsJ7uJPwwv
-	 WbwKo4JVKIRsFYv6yqO9uIwikHQVDb4oiUOLL6Cre0bDb4ErQ1MRPixvYzd6JPJv+z
-	 m8+4+SzI6lWRulT2OP6V8nNlbYVlB2Df9yTZi/CIxe+J/p5us+qqAo0L6z4az0lpZF
-	 ZvxsXSDUBtB3Q==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB15F39EF96C;
-	Thu, 20 Nov 2025 02:50:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1763607507;
+	bh=72rpXeJzAKOM+ey6m+XjcDiC/ioU24pybCfGKrguMMQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=HE7YpeJ2/XL0Eq4Q0MXZj17GisNvJoiHRY9CwhaadZV3ylkbP0WaUgmveKuSQL0mH
+	 PzN03z/WShoZ6Q8ISqCFd9qLgnwoqlWaZEwAGuYcnezEDQkdg2eE9rMQ4qJ2quUIaX
+	 fqIaranBYA/LZgALMKbzMCkgdVvgnV8Xj03Vvv9Ti/wS+WQivhI6ubyUJeLT8cwvHZ
+	 iUVz82QgW+2hfMe31uldGiIqGlLnWQDYr/0OkpDP+CE5yZB1uIoEqFAoE4WtwOneTd
+	 oY7aGERifD2i9jG8T8hTj7If/04UCr1v+V3dtiX+Xba1KUzc8qvcCGPz6ybDUNT4SI
+	 kKZSIak9G4I6g==
+From: Dinh Nguyen <dinguyen@kernel.org>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dinguyen@kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: net: allow the Agilex5 ethernet to have a fallback
+Date: Wed, 19 Nov 2025 20:58:19 -0600
+Message-ID: <20251120025820.41308-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.42.0.411.g813d9a9188
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,89 +57,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 00/11] arm64: dts: mediatek: Add Openwrt One AP
- functionality
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <176360700676.1051457.11874224265724256534.git-patchwork-notify@kernel.org>
-Date: Thu, 20 Nov 2025 02:50:06 +0000
-References: <20251115-openwrt-one-network-v4-0-48cbda2969ac@collabora.com>
-In-Reply-To: <20251115-openwrt-one-network-v4-0-48cbda2969ac@collabora.com>
-To: Sjoerd Simons <sjoerd@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
- ryder.lee@mediatek.com, jianjun.wang@mediatek.com, bhelgaas@google.com,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- chunfeng.yun@mediatek.com, vkoul@kernel.org, kishon@kernel.org,
- lee@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, lorenzo@kernel.org,
- nbd@nbd.name, kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org,
- linux-phy@lists.infradead.org, netdev@vger.kernel.org, daniel@makrotopia.org,
- bryan@bryanhinton.com, conor.dooley@microchip.com
 
-Hello:
+Add the generic "snps,dwxgmac" as a fallback binding for the Agilex5
+ethernet controller.
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Sat, 15 Nov 2025 21:58:03 +0100 you wrote:
-> Significant changes in V4:
->   * Drop patches that were picked up
->   * Improve mediatek,net dt bindings:
->     - Move back to V2 version (widening global constraint, constraining
->       per compatible)
->     - Ensure all compatibles are constraint in the amount of WEDs (2 for
->       everything apart from mt7981). Specifically adding constraints for
->       mediatek,mt7622-eth and ralink,rt5350-eth
-> Significant changes in V3:
->   * Drop patches that were picked up
->   * Re-order patches so changes that don't require dt binding changes
->     come first (Requested by Angelo)
->   * Specify drive power directly rather then using MTK_DRIVE_...
->   * Simply mediatek,net binding changes to avoid accidental changes to
->     other compatibles then mediatek,mt7981-eth
-> Significant changes in V2:
->   * https://lore.kernel.org/lkml/20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com/
->   * Only introduce labels in mt7981b.dtsi when required
->   * Switch Airoha EN8811H phy irq to level rather then edge triggered
->   * Move uart0 pinctrl from board dts to soc dtsi
->   * Only overwrite constraints with non-default values in MT7981 bindings
->   * Make SPI NOR nvmem cell labels more meaningfull
->   * Seperate fixing and disable-by-default for the mt7981 in seperate
->     patches
-> 
-> [...]
-
-Here is the summary with links:
-  - [v4,01/11] dt-bindings: mfd: syscon: Add mt7981-topmisc
-    (no matching commit)
-  - [v4,02/11] dt-bindings: PCI: mediatek-gen3: Add MT7981 PCIe compatible
-    (no matching commit)
-  - [v4,03/11] dt-bindings: phy: mediatek,tphy: Add support for MT7981
-    (no matching commit)
-  - [v4,04/11] arm64: dts: mediatek: mt7981b: Add PCIe and USB support
-    (no matching commit)
-  - [v4,05/11] arm64: dts: mediatek: mt7981b-openwrt-one: Enable PCIe and USB
-    (no matching commit)
-  - [v4,06/11] dt-bindings: net: mediatek,net: Correct bindings for MT7981
-    https://git.kernel.org/netdev/net-next/c/bc41fbbf6faa
-  - [v4,07/11] arm64: dts: mediatek: mt7981b: Add Ethernet and WiFi offload support
-    (no matching commit)
-  - [v4,08/11] arm64: dts: mediatek: mt7981b-openwrt-one: Enable Ethernet
-    (no matching commit)
-  - [v4,09/11] arm64: dts: mediatek: mt7981b: Disable wifi by default
-    (no matching commit)
-  - [v4,10/11] arm64: dts: mediatek: mt7981b: Add wifi memory region
-    (no matching commit)
-  - [v4,11/11] arm64: dts: mediatek: mt7981b-openwrt-one: Enable wifi
-    (no matching commit)
-
-You are awesome, thank you!
+diff --git a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+index fc445ad5a1f1..b53847a2d953 100644
+--- a/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
++++ b/Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+@@ -46,6 +46,7 @@ properties:
+       - items:
+           - const: altr,socfpga-stmmac-agilex5
+           - const: snps,dwxgmac-2.10
++          - const: snps,dwxgmac
+ 
+   clocks:
+     minItems: 1
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.42.0.411.g813d9a9188
 
 
