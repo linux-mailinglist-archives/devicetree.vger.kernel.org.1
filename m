@@ -1,155 +1,118 @@
-Return-Path: <devicetree+bounces-240667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0646C73E93
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:12:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1BD2C73F00
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 13:19:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 190F44E5B75
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:12:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 26D764E7D99
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 12:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 479C232E733;
-	Thu, 20 Nov 2025 12:12:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9827333436;
+	Thu, 20 Nov 2025 12:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XTREXln+";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YppdEdp7"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="tTRTnU+f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46A32BDC1D
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 12:12:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3565824A3;
+	Thu, 20 Nov 2025 12:18:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763640740; cv=none; b=VVIt81RjsW2MeCZL4c9e86kA/HdpxhoQfSS/IIjTfBmjD/27R1xu5vY1kZEVuT8fcxSV++1CPwgabCFk99pP6HePY9ULKj0jputAj2LEVS84TtP4wYXhyUSKMm0DehmAlWPq0gKy/jD0ati0RwsuXJUeZohd2UG3++WLhreDfZE=
+	t=1763641105; cv=none; b=JtrLFn/BCjchpQksU1/aG9fwawfYYuyA2qsC451eRHbIhPHnJaBCHxI2QG5Xa+aWC3/MKDpyDtdASToZqyIlgys03nvJLb16NYjvsftAHXzghClYbfJ1zUzAYdP4iZ4cbA0RVG13bTGurVt10OxT/+ADLYKrS/2Dr7OpZ7FeDOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763640740; c=relaxed/simple;
-	bh=1Nz10t/7oalmE66wkAYRWXCKS5b2nIrcrTL24CtxGJc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LEQRyZh7e2u4Zn3+z+003RpaJIWG2nz97gbQquGYBhkfRN2HBkFMnO/8bvwMcmuygPM53ba26E7sZByHVH3w20vvcmVKNZrr1vIMfcG9IDxaCCsSiERW1yWyADgEM37v5KxdSuqr1m7ufx96NqBKzyK3dr40TXAkXOtHntoDZ0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XTREXln+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YppdEdp7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AKB9WhV816819
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 12:12:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1Nz10t/7oalmE66wkAYRWXCKS5b2nIrcrTL24CtxGJc=; b=XTREXln+mSArhYEL
-	Kzn4uO+Hg1zGB9avAW8fpFKf9KaWD8IZYNwE6atb5jRTE7+LGwticFh/hSniFrFf
-	OLnjv7yi0Xx1lbMhWHzQ05otuJSl/Pn/uOgRIcgpYIso6QANhWIC8+oQZloi36PM
-	EFgF3sDLp4EPkqQTW1QjoCNLxKSrKSxpAaDGeV/Ate7+oHkxn+F9pGbm2Qhez3Ro
-	Ec8h90ITveTOPfSaYe/rL+rgSp6G/WWQy5XSY8qm5zhQOl5U3ikylUFqKRmMNmOV
-	LVLO/U6HZ3lGMg12cZAu1t0ZhACfSFHbA0j6fTUwOCARwkzuVwGbjnBV3U/mJTc2
-	Df018A==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aj1va85wk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 12:12:17 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4edace8bc76so2363991cf.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Nov 2025 04:12:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763640737; x=1764245537; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1Nz10t/7oalmE66wkAYRWXCKS5b2nIrcrTL24CtxGJc=;
-        b=YppdEdp7x37M4YgPSd8T9RFNM3ptlol+MaGSBuSMfrCn5Zp3Gt9xQjDU/3UueAafA9
-         WEG3/hFdzVp1VnEUV54qBhziXGJLivqSiHmlMJeOpsayHV6sgmwmfH5dL2q5x9b+xTcR
-         PXbtLHQap+ExwOkMUnFiMQuljE9tk6XJ/FkV+0S1ofd4Q3kJ99i25oFVrDIk8FyotpFy
-         YRRgeFlJlvpGhvLj/Eu4iXRWU77fBVLomn5xKAE2obYWOfXPglZtQBPEKngHwJRS114+
-         P4PPFS2a0sTom3ybRmPGVG8pp2CtzFjbGjgmpl5B4wA1ycid6viWiBvwcaqUxEKKGfuH
-         hjuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763640737; x=1764245537;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1Nz10t/7oalmE66wkAYRWXCKS5b2nIrcrTL24CtxGJc=;
-        b=CLzrAuge3xISP2BUVeYR5ZnUavpBBwjWo9nqfK1A78M0bitIBLnXK7A7V4lhl+9Yk7
-         /T3hmAoxrWCePfdDIbx4LDiVoH5v/1MoykDy2aQLvJ80q+5hjFc0qbFBJ8Q+COfo6NsT
-         arQJPFOXtj3ByvMRfkpeVXhz0tZuja9dwWhKSv59RvZTfcX7NmwTtUc5peHoMRtUF5/L
-         L2grCtHb+tKb48wbto2wlXsSjt2k6LeXj97kSKTG0w1M5v2cwBBZCo9jECKgn4rI4La0
-         fCxT9LPBm15WqrkBCAo7OK934Qag2MyvJ6dh8OVHC48iOJ9sIbUUzyjgKvkYbhpWWcx9
-         6u+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUiG1q50aNcF8fiJCndnKoXq7eb6JDc80jLWsRJRwArKIFfP9L1JSEtPXXz0C0gQoGicrg0NLcirson@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAAVEvr0L1V6ohKSCz1g3KaYC+c1LypYC/q12fdp8Tv57y7+0g
-	ARnSw+FgOO1/+7DLLJITOTjFZRaHuwByfsVm/ZvU3Kk7l+yfc4HeJWJgcF2Uk3n7DUYlxn/+WtI
-	D0N6QmqNkyj0lJPhKtybRdrO1HHTbDoRJifSs5xqLLzdlE+8utGhpM0zKoIL51Cuq
-X-Gm-Gg: ASbGncuOGk5Zq+cf+c8yDDYGtIZrigx70JB7H0JAKp9PDTveHQ2M3d5jKtOv9VZy7jr
-	LWPDTzDc2fkvzECJ11HEqgENI2Z366kg39x7TThglGmKExy4OkUL0gBMgcJMFT/tldoFlgQ/50d
-	4/DdxK42OBRlDxsjQx6DnErQ/Zlw/GtPhbi6jglIUqpN/Zw0k0EqMAlk/Q/n/tWtmaae0/rmEhP
-	gpRGHf2Z+VkL+vNJlmEyX7CZujTMbsWBtXvUSZKwr++CK8h+mKrYU2R/AFMjgkOF+JZMumhbM9P
-	FkbJOj1EsBEz9mO5ft7Pm5TDUUksGY7tv+dhEZqhEKGu8aWescoJFaE6GXl5YqDQF6Hc/olY4fb
-	wQME0RekhcH9uuNqyxbpV70uKNyS+caskLOaESMzjJaHZdhxwcYnR7dOMmG3d306/k5A=
-X-Received: by 2002:ac8:5809:0:b0:4e6:eaff:3a4b with SMTP id d75a77b69052e-4ee4946ddb9mr26729391cf.4.1763640737085;
-        Thu, 20 Nov 2025 04:12:17 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFJIkAJMIb87XqU3/DNYgnO1nkc5omHVlsyY6ht8wbgHtHomIDDdW2jKr7zv8ydU/CGrQlzgw==
-X-Received: by 2002:ac8:5809:0:b0:4e6:eaff:3a4b with SMTP id d75a77b69052e-4ee4946ddb9mr26729081cf.4.1763640736644;
-        Thu, 20 Nov 2025 04:12:16 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654ff3fc0sm197643866b.46.2025.11.20.04.12.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Nov 2025 04:12:16 -0800 (PST)
-Message-ID: <adb24ecc-a4c8-454c-8fdf-09617bb8e660@oss.qualcomm.com>
-Date: Thu, 20 Nov 2025 13:12:13 +0100
+	s=arc-20240116; t=1763641105; c=relaxed/simple;
+	bh=i3uFgoWp5gPv85aeGBNAZtlsGgimFsKiwaH3D4TtTEw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=azjV/yBqj2Dk0N4qyx3ZCy+DmnNgJvj3b9k3GBl0adZcRoBIEe3WsmRwx/C4dHhK8KceSlx1wGCHk2Rmlasl0TPb/er8SQgX0rWwjjxozxWMzHQ8l9yoJWn4cPXxCY37nyXLZfO5QHV60P561gqn8jJGbOIQMcvmiHEiK2G5JgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=tTRTnU+f; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: f9b8d1b8c60a11f0b33aeb1e7f16c2b6-20251120
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=5O3QSTjG/GYo1v2aEYGeurT8OjIk96rTbcs+GIL+0MQ=;
+	b=tTRTnU+fTdPzygTjmujJJcaroT1gjqb01wJfCGiNU8sC2STNDUS34XzS0hmbBvK28nLn6D11C1dTuPTN3cYiLAqv30uTIaMlAacYUuNK8Mx6cNrtrBDhOGThJi30v2N63HAjXTLNLN2oyYGqYxsS4Pjnwuz0a56cuFlYXanikhI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:8d9efc55-9d3a-4504-934e-74e3b3032e96,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:a9d874c,CLOUDID:90dab1e0-f48b-4fea-bcf0-ae56d774aa1d,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|123|836|888|898,TC:-5,Content:0|
+	15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:
+	0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: f9b8d1b8c60a11f0b33aeb1e7f16c2b6-20251120
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
+	(envelope-from <ot_shunxi.zhang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1862464299; Thu, 20 Nov 2025 20:18:09 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Thu, 20 Nov 2025 20:18:07 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.26 via Frontend Transport; Thu, 20 Nov 2025 20:18:06 +0800
+From: <ot_shunxi.zhang@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Eddie Huang
+	<eddie.huang@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, Alexandre
+ Belloni <alexandre.belloni@bootlin.com>, Lee Jones <lee@kernel.org>, Shunxi
+ Zhang <ot_shunxi.zhang@mediatek.com>, <Vince-WL.Liu@mediatek.com>,
+	<sirius.wang@mediatek.com>, <Jh.Hsu@mediatek.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v2 0/5] rtc: Enhance RTC driver with BBPU bit definitions and shutdown handling
+Date: Thu, 20 Nov 2025 20:17:56 +0800
+Message-ID: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: defconfig: Enable Lontium LT8713sx driver
-To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Vishnu Saini <vishsain@qti.qualcomm.com>,
-        prahlad.valluru@oss.qualcomm.com,
-        Prahlad Valluru <vvalluru@qti.qualcomm.com>
-References: <20251120-lt8713sx-bridge-linux-for-next-v1-0-2246fc5fb490@qti.qualcomm.com>
- <20251120-lt8713sx-bridge-linux-for-next-v1-2-2246fc5fb490@qti.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251120-lt8713sx-bridge-linux-for-next-v1-2-2246fc5fb490@qti.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIwMDA3NyBTYWx0ZWRfX2BhQjXZDgYL0
- QYJUEKHhYPwKzMuOgXX2BSM8NetSJOW8JzBpyGkGwgHKNbIvqzIeyn4E5Mr+wPQ84qVW99sOlD5
- hcAkN48hHwEnRiF9u1Mt60VEbRVXudz05h6sK1Hkz95N/MommZQsbZ3I5UD1irao7xJhepaNBA9
- IMUa3J7ZN2UCy6dF57GWfAVjjRrsF10WwpSBq3wvu7ndBzwt9ZU+hdvsLrhv4GSnam70jdT+6qK
- 35RFtu8wcwzcwT9IdO/rSPMunrbf3YCw6r2XqVnh7XNVa2oMCBkOYuR264lAh+6dsmqB8gbrrTF
- VpxhPLaNfD5wPUA4IddOjFwaZcG/plddcGEKe7AbYCfY55aRA+PW4HrE0ukOHCMoJEb/seonIF+
- H00S+eqIqa4QXw9Ht6Fgjzh/2q4Miw==
-X-Authority-Analysis: v=2.4 cv=Vpwuwu2n c=1 sm=1 tr=0 ts=691f05a1 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=k2smkN0swJPmjpsklw8A:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-ORIG-GUID: qqGigNMTlNjZq8shc2HH4YbEtFykkFpQ
-X-Proofpoint-GUID: qqGigNMTlNjZq8shc2HH4YbEtFykkFpQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-20_04,2025-11-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 bulkscore=0 phishscore=0 priorityscore=1501
- malwarescore=0 spamscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511200077
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 11/20/25 11:58 AM, Vishnu Saini wrote:
-> Lontium LT8713sx DP bridge hub can be found in monaco-evk
+From: Shunxi Zhang <ot_shunxi.zhang@mediatek.com>
 
-"..can be found on a Qualcomm Monaco EVK board" would be neater,
-otherwise it's not obvious (and this file is of interest to folks
-who work on non-Qualcomm boards too)
+(1) Add new bits definitions for RTC_BBPU register.
+(2) Add new functions to reset the BBPU alarm status in mt6397 RTC driver
+(3) Add mtk_rtc_shutdown function to handle RTC shutdown events.
+(4) For the V1 version comments, the following modifications are made: 
+(4.1)the formatting changes are separated into a distinct patch. 
+(4.2)Since the rtc-mt6397.c file is a fusion of multiple RTC drivers 
+for the mt6358, mt6359, and mt6357 RTCs, the definitions of certain bits 
+in the RTC_BBPU register differ among these RTCs. The mt6359 supports 
+the alarm status bit, while both mt6358 and mt6357 do not. Therefore, 
+the alarm-sta-supported property is added in the mt6359.dtsi file to 
+differentiate between the different RTCs. 
+(4.3)Additionally, the operation to disable IRQ in the shutdown function 
+is removed.
 
-Konrad
+Shunxi Zhang (5):
+  mfd: mt6397: Fix formatting of RTC_BBPU_KEY definition
+  mfd: mt6397: Add bit definitions and struct members to support alarm
+    status
+  rtc: mt6397: Fix formatting of platform driver structure
+  rtc: mt6397: Add BBPU alarm status reset and shutdown handling
+  arm64: dts: mediatek: mt6359: Add alarm-sta-supported property to RTC
+    node
+
+ arch/arm64/boot/dts/mediatek/mt6359.dtsi |  1 +
+ drivers/rtc/rtc-mt6397.c                 | 32 +++++++++++++++++++++++-
+ include/linux/mfd/mt6397/rtc.h           |  5 +++-
+ 3 files changed, 36 insertions(+), 2 deletions(-)
+
+-- 
+2.45.2
+
 
