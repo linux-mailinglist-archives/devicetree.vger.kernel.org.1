@@ -1,62 +1,59 @@
-Return-Path: <devicetree+bounces-240550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D64E5C72B30
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:02:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D10C9C72B45
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 09:05:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 31000352ADE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:02:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9878E357548
+	for <lists+devicetree@lfdr.de>; Thu, 20 Nov 2025 08:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28F9128C2DD;
-	Thu, 20 Nov 2025 08:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5983093A6;
+	Thu, 20 Nov 2025 08:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s9tcBmKw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NWU3m47Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA339221271;
-	Thu, 20 Nov 2025 08:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7616D2D063F;
+	Thu, 20 Nov 2025 08:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763625728; cv=none; b=f6Hmntb/Uq2j5SF/C2r9mfm7N50BdMZzi8wN6u1fbhG8rEFemBwp5zgHK/jJU95XUnzBdfoQHJvXvFUIR0nyGYHCPqQOnLEx231mJ6rzlMy0dL4+jX7KK9PqgnzsZXdOj9PSThlsCTJGsj9uKz/pg3DhLZDRsvteediDUnhqym0=
+	t=1763625891; cv=none; b=XQ4gnHhmLP8VCWC4/z6mkVB4vejKQX+OyEdYjYFY49earg4L6MKmfiwoyD/vupsOI6ewjmZBRqFCjAXZEAuYGwO7umabaMdB9b87I+xOZCiz3MtSpXAGI6YSx/ZNf03vg2FNealzajMG1j2ZHFCgA1h81P6COh5Mp+Ligru1pM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763625728; c=relaxed/simple;
-	bh=mmzn6UC+XT6yk7vSSz8rO7MiIRbmBMxComsmjWtmqgk=;
+	s=arc-20240116; t=1763625891; c=relaxed/simple;
+	bh=kZYWb/g02bT8X3jIx6M3OoYsWyrxc26Nntqt2xri9Cc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b5vdcoKH1kZNPMK7MOjJXQ3jjdg3xU6ET7ZuC7rlsKzXi6WZOZLUsUmOkdG8Kb5wfEQ/uokcIFcaDKU/vtdNa+DwEk2tTuq3UiqAsMZBjZjUgtnyYY6d7r3u3+VfLHSlJ2YkLt8BaQ7bSA8WCzbE7g2Sq3F20BifCkpU2WL1Hmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s9tcBmKw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D13C5C4CEF1;
-	Thu, 20 Nov 2025 08:02:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y5451Fbs2iVkBpMRhhqvD6XY3Em9Fye9zlmkR4U02NzV/AdAh8CU4zxw5HKzbNSMR32YaBuW3gahhvsbGVPXMUREfIkXN5Yt2/5WFyFHeONYGdqoEbslX5u8d2BsKirTCTFyCPsFW6lktCc2Uzg/YJE4/Cz8cHD3F4ITZq+3MmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NWU3m47Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 774D6C4CEF1;
+	Thu, 20 Nov 2025 08:04:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763625724;
-	bh=mmzn6UC+XT6yk7vSSz8rO7MiIRbmBMxComsmjWtmqgk=;
+	s=k20201202; t=1763625891;
+	bh=kZYWb/g02bT8X3jIx6M3OoYsWyrxc26Nntqt2xri9Cc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s9tcBmKw0xtxde1vbfu3KXoQuJJ3WllVlxNvksp/DTOano8dJrxkPVs6Kh2TnOwy9
-	 qBPFGbKin+c4hnQBC8+z7gQ2nD57Rp0ze9ZRiHiGYc4I1qSFG4PDYEJ8xjiEMpMq1b
-	 pes05/5SRpfgJ0VXRNxc01vkxR8ohZ9ITvOrbnm08nEPHYofAM7ebTXecT0c3nf5T5
-	 SEVKYOAL61kEi/t/x/1aoNhUVKTHh76wsBwRAKj5GxDYMeYJRDmJRHPpoZz/MHzEKB
-	 6TDS9wKD3hT/yaACF8w5zUdK3TEzwNGyIWjlv98htce4cZKT3XQ2RGGJ+F1X06H5zH
-	 aFEbcKYk9AmAQ==
-Date: Thu, 20 Nov 2025 09:02:02 +0100
+	b=NWU3m47Qrj9p9CvDWb/FZZBrScm6kbJAl9lTVGMbUmDtM478mDuh7I03TUbBEByl9
+	 WZ0WSQbXTEhC2tUF0lZWeDK/YjdSH4kr+9mIs48zOA9V1XkvCdVAZr02+NBVAzhJnc
+	 vvEMlmV6iemmVNH9/CxgT3aZCAQaCPeE1e+WTO4WXyvsaA+sPlwBetIozqyOv0rUnB
+	 l25Fx8qbUTeQkFX/LQyYl9bc8SRqmLAq0g+O3ubuDa5yq5gVXzTiw5A3yNZ2Uv2cgc
+	 JP94dSn6zT9uhwg+5sCQCTEQpmyYDBwj5a+8VW5y02SaEYh/w9JtMjSsGmblxP2uQu
+	 fCozh9tOrrYvQ==
+Date: Thu, 20 Nov 2025 09:04:48 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Thomas Marangoni <Thomas.Marangoni@becom-group.com>
-Cc: linux-hwmon@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux@roeck-us.net, corbet@lwn.net, Jonathan.Cameron@huawei.com, 
-	michal.simek@amd.com, nuno.sa@analog.com, Frank.Li@nxp.com, wenswang@yeah.net, 
-	apokusinski01@gmail.com, dixitparmar19@gmail.com, vassilisamir@gmail.com, 
-	paweldembicki@gmail.com, heiko@sntech.de, neil.armstrong@linaro.org, 
-	kever.yang@rock-chips.com, prabhakar.mahadev-lad.rj@bp.renesas.com, mani@kernel.org, 
-	dev@kael-k.io, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: Add trivial-devices for WSEN-tids
- temperature sensor and wsen as vendor-prefix
-Message-ID: <20251120-towering-clam-of-memory-d96a6e@kuoka>
-References: <20251119125145.2402620-1-Thomas.Marangoni@becom-group.com>
- <20251119125145.2402620-2-Thomas.Marangoni@becom-group.com>
+To: Michael Tretter <m.tretter@pengutronix.de>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	kernel@pengutronix.de
+Subject: Re: [PATCH v2 1/4] media: dt-bindings: adi,adv7180: add VPP and CSI
+ register maps
+Message-ID: <20251120-calm-invisible-bullmastiff-ceaf71@kuoka>
+References: <20251119-b4-adv7180-vpp-sub-device-v2-0-86a7790b63ab@pengutronix.de>
+ <20251119-b4-adv7180-vpp-sub-device-v2-1-86a7790b63ab@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,42 +62,114 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251119125145.2402620-2-Thomas.Marangoni@becom-group.com>
+In-Reply-To: <20251119-b4-adv7180-vpp-sub-device-v2-1-86a7790b63ab@pengutronix.de>
 
-On Wed, Nov 19, 2025 at 01:51:38PM +0100, Thomas Marangoni wrote:
-> WSEN-tids only has an i2c interface and an optional interrupt. This
-> should qualify the sensor as trivial device.
->=20
-> WSEN is a subcompany of W=C3=BCrth Electronics specialized on IC sensors.
->=20
-> Signed-off-by: Thomas Marangoni <Thomas.Marangoni@becom-group.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  2 files changed, 4 insertions(+)
+On Wed, Nov 19, 2025 at 05:25:51PM +0100, Michael Tretter wrote:
+> diff --git a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+> index dee8ce7cb7ba..dbbbe76291bc 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
+> @@ -30,7 +30,27 @@ properties:
+>            - adi,adv7282-m
+>  
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: main register map
+> +      - description: CSI register map
+> +      - description: VPP register map
+> +    description:
+> +      The ADV7180 family may have up to three register maps. All chips have
+> +      the main register map. The availability of the CSI and VPP register maps
+> +      depends on the chip variant.
+> +
+> +      The addresses of the CSI and VPP register maps are programmable by
+> +      software. They depend on the board layout and other devices on the I2C
+> +      bus and are determined by the hardware designer to avoid address
+> +      conflicts on the I2C bus.
+> +
+> +  reg-names:
+> +    minItems: 1
+> +    items:
+> +      - const: main
+> +      - enum: [ csi, vpp ]
+> +      - enum: [ csi, vpp ]
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Last entry must be:
 
-<form letter>
-This is an automated instruction, just in case, because many review
-tags are being ignored. If you know the process, just skip it entirely
-(please do not feel offended by me posting it here - no bad intentions
-intended, no patronizing, I just want to avoid wasted efforts). If you
-do not know the process, here is a short explanation:
+const: vpp
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
-However, there's no need to repost patches *only* to add the tags. The
-upstream maintainer will do that for tags received on the version they
-apply.
+We do not allow flexible order... but the problem is that your if:then:
+does not match above at all. You do not have three items anywhere.
 
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitt=
-ing-patches.rst#L591
-</form letter>
+
+>  
+>    powerdown-gpios:
+>      maxItems: 1
+> @@ -138,6 +158,58 @@ allOf:
+>        required:
+>          - ports
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,adv7180
+> +              - adi,adv7180cp
+> +              - adi,adv7180st
+> +              - adi,adv7182
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +
+> +        reg-names:
+> +          maxItems: 1
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,adv7281
+> +              - adi,adv7281-m
+> +              - adi,adv7281-ma
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 2
+> +
+> +        reg-names:
+> +          items:
+> +            - const: main
+> +            - enum: [ csi ]
+
+const
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,adv7280
+> +              - adi,adv7282
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 2
+> +
+> +        reg-names:
+> +          items:
+> +            - const: main
+> +            - enum: [ vpp ]
+
+const
+
+> +
+>  examples:
 
 Best regards,
 Krzysztof
