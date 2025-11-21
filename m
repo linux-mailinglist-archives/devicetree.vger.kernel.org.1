@@ -1,161 +1,138 @@
-Return-Path: <devicetree+bounces-241027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F7BC78B8B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:17:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94BB7C78C1E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:21:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id 3D0A52FC61
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:17:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DA3A64F09F7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3513733EB0D;
-	Fri, 21 Nov 2025 11:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492883019B6;
+	Fri, 21 Nov 2025 11:17:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PJRQcbgV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A6020C001;
-	Fri, 21 Nov 2025 11:15:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9585E34321A;
+	Fri, 21 Nov 2025 11:17:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763723732; cv=none; b=SodI9la6oqvdT4S4yINYZKwkBfna1EiUnajrFzxYmUUtnCygU3A0KPIsePi+n3lfTP1GCeUwcKVrn8hv60Wvnyznr6GVVkYoAbXi10yyFqISiy49m07ZhUUC6xKJLDSj6L6MefafJdaOK2xz1n78PoMY03Pf1xBWH+dhtJ3PPKg=
+	t=1763723834; cv=none; b=VVshZsEuIZF0wgu4D2Ey9ptl0ItSa/YOyGga6bO77GABAzE9GyaorZSJ9iGEdOafxbEt/U/Eyo2cpEWHRNOVzNSMMTSLb6+XwlORyag1IRvjRX351V8lwQuOj2HBbHKakZzumIp4q7OPY17P9otjGfW/pvYapsN0kV88B02eULk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763723732; c=relaxed/simple;
-	bh=DgQaTaEJyG/E+l47tkmhpChsk1RzPUC387AZ43VhldU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Nd0ZKdliqHgQXXJE/g14yZWfmCYkBny2ZLZyORGXdUmOKygGEpb7gAodwPBQ9Uk/ZPIfiCvql458Mw7FGp41/KO5U/JF+G6cFAfJrF+UPLLY9ljVWT62G10hZg65Z0fHAFjVYO6DWDjwkFakyqa83c6Y060D+PsyjGWdEQExp4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: UERxQqO7SBeLQx+PSNcx1A==
-X-CSE-MsgGUID: AEfCCy7kRsq7Zx0kBV4FzA==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 21 Nov 2025 20:15:29 +0900
-Received: from demon-pc.localdomain (unknown [10.226.92.224])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id E029C430ED4F;
-	Fri, 21 Nov 2025 20:15:25 +0900 (JST)
-From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1763723834; c=relaxed/simple;
+	bh=WsrtTZZgN5cpcaeLfhfmV5Uwfe5UlDUKhrY36z8jPVY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Qrp5XgA3AIQMwUvGIHbjSSLl6Nr1YQXMiLH9XN0x1oAZQQ/phoza9XkgvHKma6kXw2ORu8Kj/yjhZQxEaPEdaISVrJyOvSHwBBJWBsU6x7e626A3zDSqs6tr7mtam9tmeHhWIhFj5MjAqXoJMvQR42IJN9Q686zGK5oPQ7fXq64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PJRQcbgV; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1763723822;
+	bh=WsrtTZZgN5cpcaeLfhfmV5Uwfe5UlDUKhrY36z8jPVY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=PJRQcbgVZNrXjk2K7ARdstUNgf7FfKlfkA8MvpZ/bHvoYpQyg8zo4nY1Jv1yYREXB
+	 N1CUgsZzeJfDrvKTpee+EnO9/nZ2MWvEYaG4YeWr3Bgv1EYQ8Gg08LfhgubBEQBYIR
+	 ecR1C9k1IqakxfHE3w0hcbDeC/x5+/1c/PocO5ciQOsZtVUIzntrVAcPm2VCv2nI97
+	 cmV8vDVCOB4lO/BOstQ0NHEGMmyUQmoMl7IHuOOnmte5p3B3chBjV4qSsWN1AxS/tt
+	 5IGkmGouqRre/IrgbCkjjBOCS++FJN3SZrErhKzKmm8h27XxsE8VFpsVxkZ+GVq0e0
+	 hX6vFchJfs2yA==
+Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:c4bf:9969:6e1c:dc69])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A007417E05BE;
+	Fri, 21 Nov 2025 12:17:01 +0100 (CET)
+From: Laura Nao <laura.nao@collabora.com>
+To: srini@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	rafael@kernel.org,
+	daniel.lezcano@linaro.org,
+	rui.zhang@intel.com,
+	lukasz.luba@arm.com,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com
+Cc: nfraprado@collabora.com,
+	arnd@arndb.de,
+	colin.i.king@gmail.com,
+	u.kleine-koenig@baylibre.com,
+	andrew-ct.chen@mediatek.com,
+	lala.lin@mediatek.com,
+	bchihi@baylibre.com,
+	frank-w@public-files.de,
+	wenst@chromium.org,
+	fshao@chromium.org,
 	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: renesas: r9a09g087: add ICU support
-Date: Fri, 21 Nov 2025 13:14:23 +0200
-Message-ID: <20251121111423.1379395-5-cosmin-gabriel.tanislav.xa@renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251121111423.1379395-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20251121111423.1379395-1-cosmin-gabriel.tanislav.xa@renesas.com>
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com,
+	Laura Nao <laura.nao@collabora.com>
+Subject: [PATCH v4 0/9] Add thermal sensor driver support for Mediatek MT8196
+Date: Fri, 21 Nov 2025 12:16:33 +0100
+Message-Id: <20251121-mt8196-lvts-v4-v4-0-357f955a3176@collabora.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-The Renesas RZ/N2H (R9A09G087) SoC has an Interrupt Controller (ICU)
-block that routes external interrupts to the GIC's SPIs, with the
-ability of level-translation, and can also produce software
-and aggregate error interrupts.
+This patch series extends the MediaTek LVTS thermal driver to support the
+MT8196 SoC.
 
-Add support for it.
+MT8196 requires a different implementation of the lvts_temp_to_raw()
+function.
 
-Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To support this, the series introduces:
+
+- A new struct lvts_platform_ops to allow platform-specific
+  conversion logic between raw sensor values and temperature
+- A variant of the lvts_temp_to_raw() implementation
+- Platform data and controller definitions for MT8196
+
+Link to v3: https://lore.kernel.org/all/20251016142158.740242-1-laura.nao@collabora.com/
+
+Changes in v4:
+- Dropped v1/v2 suffixes, replaced with mt7988/mt8196
+- Added lvts_raw_to_temp/lvts_temp_to_raw functions, which return the 
+  corresponding SoC-specific ops.
+- Changed probe logic to fail when temp_factor == 0, dropped checks at
+  runtime
+- Dropped R-b/T-b tags on affected patches (3 and 4)
+
 ---
- arch/arm64/boot/dts/renesas/r9a09g087.dtsi | 73 ++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
+Laura Nao (9):
+      dt-bindings: thermal: mediatek: Add LVTS thermal controller support for MT8196
+      thermal/drivers/mediatek/lvts: Make number of calibration offsets configurable
+      thermal/drivers/mediatek/lvts: Fail probe if temp_factor is zero
+      thermal: mediatek: lvts: Add platform ops to support alternative conversion logic
+      thermal/drivers/mediatek/lvts: Add lvts_temp_to_raw variant
+      thermal/drivers/mediatek/lvts: Add support for ATP mode
+      thermal/drivers/mediatek/lvts: Support MSR offset for 16-bit calibration data
+      thermal/drivers/mediatek/lvts_thermal: Add MT8196 support
+      dt-bindings: nvmem: mediatek: efuse: Add support for MT8196
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-index f9f49bd3e8b0..6b5693e5c1f9 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-@@ -865,6 +865,79 @@ cpg: clock-controller@80280000 {
- 			#power-domain-cells = <0>;
- 		};
- 
-+		icu: interrupt-controller@802a0000 {
-+			compatible = "renesas,r9a09g087-icu", "renesas,r9a09g077-icu";
-+			reg = <0 0x802a0000 0 0x10000>,
-+			      <0 0x812a0000 0 0x50>;
-+			#interrupt-cells = <2>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 1 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 2 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 5 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 6 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 7 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 9 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 10 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 11 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 12 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 13 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 14 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 15 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 16 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 17 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 18 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 19 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 20 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 21 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 23 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 24 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 27 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 28 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 29 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 30 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 31 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 406 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 407 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 408 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 409 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 410 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 411 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 412 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 413 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 414 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 415 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 416 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 417 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 418 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "intcpu0", "intcpu1", "intcpu2",
-+					  "intcpu3", "intcpu4", "intcpu5",
-+					  "intcpu6", "intcpu7", "intcpu8",
-+					  "intcpu9", "intcpu10", "intcpu11",
-+					  "intcpu12", "intcpu13", "intcpu14",
-+					  "intcpu15",
-+					  "irq0", "irq1", "irq2", "irq3",
-+					  "irq4", "irq5", "irq6", "irq7",
-+					  "irq8", "irq9", "irq10", "irq11",
-+					  "irq12", "irq13", "irq14", "irq15",
-+					  "sei",
-+					  "ca55-err0", "ca55-err1",
-+					  "cr520-err0", "cr520-err1",
-+					  "cr521-err0", "cr521-err1",
-+					  "peri-err0", "peri-err1",
-+					  "dsmif-err0", "dsmif-err1",
-+					  "encif-err0", "encif-err1";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKM>;
-+			power-domains = <&cpg>;
-+		};
-+
- 		pinctrl: pinctrl@802c0000 {
- 			compatible = "renesas,r9a09g087-pinctrl";
- 			reg = <0 0x802c0000 0 0x10000>,
+ .../devicetree/bindings/nvmem/mediatek,efuse.yaml  |   1 +
+ .../bindings/thermal/mediatek,lvts-thermal.yaml    |   2 +
+ drivers/thermal/mediatek/lvts_thermal.c            | 307 +++++++++++++++++++--
+ .../dt-bindings/thermal/mediatek,lvts-thermal.h    |  26 ++
+ 4 files changed, 315 insertions(+), 21 deletions(-)
+---
+base-commit: abadc219d77ce0e61fcac0147cc6cc69164af43e
+change-id: 20251121-mt8196-lvts-v4-a61fb5c27216
+
+Best regards,
 -- 
-2.52.0
-
+Laura Nao <laura.nao@collabora.com>
 
