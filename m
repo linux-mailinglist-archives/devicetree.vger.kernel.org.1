@@ -1,171 +1,236 @@
-Return-Path: <devicetree+bounces-240901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA9CC77598
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 06:22:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7601AC77227
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 04:14:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id DCE6831CD2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 05:21:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 587A94E674C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 03:14:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CEC2F83C0;
-	Fri, 21 Nov 2025 05:20:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B543E2E6CC6;
+	Fri, 21 Nov 2025 03:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rZsk7Lyu"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="QGzk1nYF";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="Q1GJ8Lgp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 252C52F7ACA;
-	Fri, 21 Nov 2025 05:20:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763702456; cv=none; b=dAVGlZ5QKHEHJpvvSFOtdjnLgg7uEwGXKiZBPB9sdtf5tBUqpl49iwIEv60rHyAaPPw9Rg4LMbaph01ljXCrdmHEwLyiuh0fLwMgbzDogzzG6sFc1eWFKVyIbb9UyMZ3VwY4fkWB0bas72v+xyDe3MyB6oHYuru9hw+fEP3n4+8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763702456; c=relaxed/simple;
-	bh=59fhQFZGoydaHxlMPuxXXLYxyde4wR0Kx8QXeefUfKI=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=CjV35B+P7FvPwIJA5LM0vsTdTJTwO7kHvmixUfagHBN/sE/ChWnlgnpEcQInpNXXAIQTRJEu28OxYxVzEWImigVEsL/YrPmsxa26+o0/FvYdcQto1woJdGShuEtbMvRJfZ2bxhEAY+ByrloTht8MdCyB+OgM62RFol9YAk+vSBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rZsk7Lyu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4FE0C4CEFB;
-	Fri, 21 Nov 2025 05:20:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763702456;
-	bh=59fhQFZGoydaHxlMPuxXXLYxyde4wR0Kx8QXeefUfKI=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=rZsk7LyuN+Z0DDtMKnmRZDSu1SvHU56yTM8dagFD3IWv8IdbovcyvKGUedcxwiw1O
-	 gyEfO8JoIwk7kGttMi27uuyiJEfLMsFjtnkjtty2ZYsDXiLkM91VirYiyh21ImzV47
-	 r2jbOpI8NmVwHfIo1luC8gnFQ87AEdipjIZz3ovtOXpTd52R6N900IhlQtmxRDBbPm
-	 oYtoGJQdCQHAHvroLRVRp5sye0CDBUGsMCH/GWjykfnYptVf6pF88JDfmwcq/s1PmA
-	 1SMm3smBej+qLwc2Ur8nENCark02bRSTN2dpQNldW5wzWg3aNGUshhvCpRjvpEqbE7
-	 C3XTogMZYshpA==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42E022E719B;
+	Fri, 21 Nov 2025 03:14:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763694895; cv=fail; b=WSQzVnFSYEdSBSAxhs1oHH695/132ix268vHYrrsxEbAMiXNnOJV4krhDZbGHVzcyrXC7nRjfVXMuq7m3eBY9Tl4QXcOB0wvT3yn77Wm1z8kyFPqmpLtMDOdCPSEY0tAw9kV4BiqraPaRqL54QX7iZdRf2vY/zwZyrwOhZ7cHR4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763694895; c=relaxed/simple;
+	bh=iNuT4XaQZqN3TW/n7m1sr0Med1MMgJwPdqt1HJNp7fI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=AY/zHhNH4NfJtvCgSBfX9aj51QrOGUGZjPEDtQzm3b3lZcgpHiI40Bp3oPqliu2v3hFN/rc6u9Vi4vak/UoECoHaJv12HJqK/44luAAX7Q4Riecw3gaM+RmAaewSZMV+shz7aJpUkeEWUZ6T03tCC++mIMpAjRtr+RENqiMAkV8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=QGzk1nYF; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=Q1GJ8Lgp; arc=fail smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 3a9e2e4ec68811f08ac0a938fc7cd336-20251121
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=iNuT4XaQZqN3TW/n7m1sr0Med1MMgJwPdqt1HJNp7fI=;
+	b=QGzk1nYF3AAkjvhdAP14ouD9u9EgBj7PQCq5SUFNX1bYD777teBtoqi6y9OUa22cp9w98mriDGrFoxqgAcndQRqgLBUZEaPQ2+OSXm2dg2JXxxdcq2RbzvjkGaRquVdkMehSDWCIwXGIywoUrSNZ+rGReuzWz7f475/WWtKwUCo=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:7c4fe2a3-cb4d-42ae-ac0a-914a20fdf47c,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:a9d874c,CLOUDID:eb6eb7e0-f48b-4fea-bcf0-ae56d774aa1d,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111|836|888|898,
+	TC:-5,Content:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BE
+	C:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 3a9e2e4ec68811f08ac0a938fc7cd336-20251121
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <ot_shunxi.zhang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 2109156759; Fri, 21 Nov 2025 11:14:44 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Fri, 21 Nov 2025 11:14:43 +0800
+Received: from SI4PR04CU001.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1748.26 via Frontend Transport; Fri, 21 Nov 2025 11:14:43 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SS0j+j7bKzNtpqaVDbfNDdU20IsdKMTEYcDQcGnaLdNKlx2NJCvtBAWueeh9+L8dW/tmqZgh9fb1ypaO7L8CTKoNf38Bi9DRJWqkBBkQVNuoxVNWQe4rjgkp2LSArJR75d1Oyc71EriMxPr+FwKlDbUytoLlcEpqr8U+JCVXdCE+JO9nHtTwzCsfsASISecNPIV8jMur/3gUu++NWNNcHQRL/5fT/c+qODCnbFgDCcVeOM+CPfH89uRBLFI7vGliCDQw9Pve8qJ5D5FRRFSqg2HWhnponE/RelmlT1Z2pKd2ACgzbLaghIrUio3TCdtRZ2gCy+iKusy+OF/UnY7VDA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iNuT4XaQZqN3TW/n7m1sr0Med1MMgJwPdqt1HJNp7fI=;
+ b=A5krKPBcUYE56Flq3rBwROSYeoXo3sYk91khiRNoPkmscpEo3hVZEauU79Vo+zEXkqq4RwDPdXKcZ3XLiIBmexEMdeaNEWPEHoFDH+akR4SD7xDWS6WUYzqvgRV9mVmm3nR0DfJcF3zGxL3HEt8Mbevz/xDalhyLw4L5/dhwsXQDmbZoxuFuSChJx0thivjh8KKpqt0sKwB0MMKt9mGjty5w2lK2xcqhFla8H5U+b9ElpMwMCFe/oU0StizGvEnVGzdRWUSoxJ+7ynOWoGTEReDRGeVQUNich9sirQU4E/9NCRHIReG+kr6uX4EqFvnvlb4FpJtqO/7SYfHvBlZ2kA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iNuT4XaQZqN3TW/n7m1sr0Med1MMgJwPdqt1HJNp7fI=;
+ b=Q1GJ8LgpVGKP4kva+xrk9lsE2fN6D7cmFkK5Ift8bd7Bomyn0Bg50h5fI/ktfbZWz3juE7G4CPVoCZPQaj8mil/A8W61DysG/GUzJU2SYqgLp+gwoMw8va20jXxIU7YiPib4IftpPusl0HI2jyfn42ZrnH1AX1/4/8GfSXCQw7Y=
+Received: from KL1PR03MB5974.apcprd03.prod.outlook.com (2603:1096:820:88::11)
+ by TYSPR03MB8564.apcprd03.prod.outlook.com (2603:1096:405:61::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Fri, 21 Nov
+ 2025 03:14:41 +0000
+Received: from KL1PR03MB5974.apcprd03.prod.outlook.com
+ ([fe80::35d:48c9:580e:b5fc]) by KL1PR03MB5974.apcprd03.prod.outlook.com
+ ([fe80::35d:48c9:580e:b5fc%2]) with mapi id 15.20.9343.009; Fri, 21 Nov 2025
+ 03:14:40 +0000
+From: =?utf-8?B?U2h1bnhpIFpoYW5nICjnq6Dpobrllpwp?=
+	<ot_shunxi.zhang@mediatek.com>
+To: =?utf-8?B?RWRkaWUgSHVhbmcgKOm7g+aZuuWCkSk=?= <eddie.huang@mediatek.com>,
+	"alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+	=?utf-8?B?VmluY2UtV0wgTGl1ICjlionmlofpvo0p?= <Vince-WL.Liu@mediatek.com>,
+	"krzk@kernel.org" <krzk@kernel.org>, =?utf-8?B?SmggSHN1ICjoqLHluIzlrZwp?=
+	<Jh.Hsu@mediatek.com>, Sean Wang <Sean.Wang@mediatek.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "robh@kernel.org"
+	<robh@kernel.org>, "lee@kernel.org" <lee@kernel.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	=?utf-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 3/5] rtc: mt6397: Fix formatting of platform driver
+ structure
+Thread-Topic: [PATCH v2 3/5] rtc: mt6397: Fix formatting of platform driver
+ structure
+Thread-Index: AQHcWhffROg/3JwNV0+/06XbrQHFirT7kc8AgADj8oA=
+Date: Fri, 21 Nov 2025 03:14:40 +0000
+Message-ID: <e9d017e7acd19d301ec9cb1058181f3d772f7035.camel@mediatek.com>
+References: <20251120121805.6775-1-ot_shunxi.zhang@mediatek.com>
+	 <20251120121805.6775-4-ot_shunxi.zhang@mediatek.com>
+	 <ca1bc81b-f4cf-4f3f-acf2-daa646762842@kernel.org>
+In-Reply-To: <ca1bc81b-f4cf-4f3f-acf2-daa646762842@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: KL1PR03MB5974:EE_|TYSPR03MB8564:EE_
+x-ms-office365-filtering-correlation-id: 2f2f0ff3-efc3-45c2-3058-08de28ac1c5f
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016|38070700021|921020;
+x-microsoft-antispam-message-info: =?utf-8?B?TlJwaG1sWTJPNnJ6eGtmOHpzYUhkKzduWmVoMVJzSTNVYTBIZy9kaUk4RlFs?=
+ =?utf-8?B?WFBsWEp0QUw5QUxqcGNhZ1Z3dnJrdk1td1UxY1htQ3huWXJYdFlCMFZxNy9Y?=
+ =?utf-8?B?S2VpSDJvZGdPcnkvSUlISWhteWlvZTJRSjZoQ2Rkd0E1MEEwbGZRTXZTYVd3?=
+ =?utf-8?B?VmZLZFN1b0UvWmN4aU1UbFErTHVGdGVDQXdSSFREMWFSY0FuN1FBbGFoMk9U?=
+ =?utf-8?B?ZlhnbHJBekVMcDFxdC8wTXcxanppTXZzZnBrTm1SZG5oalBURmZDekpJZm9Y?=
+ =?utf-8?B?UC9QWXU1M2xWbVgzYkh0ZVhCdSs4c2hwNkRudWx3YmJ6UmlqY1dXYU54Tyt1?=
+ =?utf-8?B?WXdCWThLUGhCZWprSlYxaWM2RTNHTDZuRkFIdTFxWjQycWtSbzN3YS9jSHRq?=
+ =?utf-8?B?WlErU1g1djJzOWxwbXpOR3EwWmFrM0NpWk5GTStaRnFkTVJxakxNV1hoMGpS?=
+ =?utf-8?B?RC93NlNKMHRGS1ZqNUJwMXNxeVkyNTgxTVBtTHJqeXMzM2Jwc3NXb0hycnh1?=
+ =?utf-8?B?c3BPY00vZ0dKWkw1QVB6OG9QTXkzVTNGUWlSbFFYNlhVVWJxWnB2cW96d01K?=
+ =?utf-8?B?M20rVmIvQWJLOURsZjJRNkpjZFlIVXVkSXhNNjExa2J3cU8xQ1BuZDg0TjhU?=
+ =?utf-8?B?SU5DRFZlZGxTZTY5UlNBVnUxVHJMRkJxUVNRYVRzVk5rY25Qd3dDTGJyZjk3?=
+ =?utf-8?B?MnRhb0E4Sy9YWjhPTk56NGRnUUNxUzl4akNocE9PMHBLUnZtNTNFRTFBYktl?=
+ =?utf-8?B?aGU1VTlDc09COHdnK3BJRDlWMEExK1hpby93aEg5VlMyb1k1ck5SSzJpanRX?=
+ =?utf-8?B?YXc3U2laWkx1WVc4L1pJYmk4ZW9LaHhNTEZlZXZpUy9XVmFOa01VM1l4eUY0?=
+ =?utf-8?B?Zk1HZURHY3JrVDRUMFBMaldvaUZ4QmtBRVlUNzFPRFB5OUhiOTRhcXZjM2s1?=
+ =?utf-8?B?S3JWUHRIeFNGS2UyUmFrYUpSZWI0SEVxaXRtbHpHQUpyK0JiNDJZcU5DaEJN?=
+ =?utf-8?B?ekZiSkVZUHdIdWRFVHhraFhDM2FVeE05VEoyQ21EdWxMaEJRQnVFNENlWVdC?=
+ =?utf-8?B?SnQydjliVStEZVY5aytjYjE1TWVLSDRERTZwcEZiNXdxM0x1WE0wY00vV2dz?=
+ =?utf-8?B?clJKVFRDOVZLOVhmR1QwVjcwOExKTHdTbTYySk50ZXpLZGlmQXRNODF2WUpr?=
+ =?utf-8?B?OXh2SXNqQ1UxWGJqTEtHWk9WMkxqRG9acGZyTjRrMUVQYXArUXZMY2pOdkV3?=
+ =?utf-8?B?L1FNL0R3dUYzVjM5ZGR4WFR1RDRNWFlaZWI2NmFGcUpYQ1RkblczbDkvRW5C?=
+ =?utf-8?B?SFo2dGRBQVlNV1AydUgvZnZ4Q0NBSkV1cEw0VnJRV2FrU1JlaXU2b05GRDJ1?=
+ =?utf-8?B?N3NGUHY5MW1TV1J2YzBGOHVFdWpsUFdXM0puKzdOSFNZc3VPejdMamZCOFov?=
+ =?utf-8?B?c3B3QVVDVkZCYXhpM0I1dmhpYjhpOXJGaWkzaUFWRHN2K3Zkb2lMTkk5bXZ6?=
+ =?utf-8?B?WUNtZHVTVVNlbHJwdWVBOG94MkgvYnkxR0N1NlNkQVk0aUZQTWR6b3ZQK0lJ?=
+ =?utf-8?B?azJQd1oyWWpYTWd3aFRTSkxSeVhjRWdzcWozSWp2UlRUOFJzK0k0b3c2OVA5?=
+ =?utf-8?B?V2piUDgzTzAzT0IwajNoUlA0MDkrOTBqSkJ5NGttRHZweUJaQnZrbG9MKzRl?=
+ =?utf-8?B?TUZNajFjRXI5TUUxUmR4VW5DRU1vOCttQ2wxQVRhOEpzVnVXUm04K1VSQzVB?=
+ =?utf-8?B?L1dnRG1USEFQYXlJQzNOcEE4dUJwcUt5SWJ3VDZpbHhSdGVMcmdQcE03cWdX?=
+ =?utf-8?B?b0JieUdCaEJSWXFoY3EyMkpjTmlrQTBkMEZCUzE2d0txZnhKVXhPd0hMbzF6?=
+ =?utf-8?B?R1dEdFBaUmJiVnBuTE9kdUcvRGo3UXVpenpUbDNrMHJ5WGhScmQvZVV3c0VV?=
+ =?utf-8?B?LzJJYk5KK1FmQS9nSzQzSWJ4NGxIckFRS2t3WUpsY0x5UUViYzJtSE5tWHls?=
+ =?utf-8?B?Z1lnTEQ2d2p5OEFpMDgwWGdXOWhWMnJLRWpZUHpTeU1rZWVVOTZ6SnhWcXZH?=
+ =?utf-8?Q?CpfCAE?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5974.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(38070700021)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZlQ5d1plZFF5SVpwc1JqYXhBRWtINzJnc3ArQ1pDZ0FyUDJ4YVhnVURDQTVS?=
+ =?utf-8?B?elpGbWtrYnlhQnE1dDhNMkg1eUZ3UTR4OFB6VWFiQ0txS01YZXVTWEVVTFBz?=
+ =?utf-8?B?bWFSUldocWFsS05kYkY4RlNyZ3ZFaVdUWjVsS1dqdUljTG5WQlBiWktBS01S?=
+ =?utf-8?B?MU1PZWVna0NHMFdudndNWlB0Q2Vra0k4K0QyYU8yVHBwMEl6MnFGelFJcFRs?=
+ =?utf-8?B?K2VNc0p6ZUJta1gyaG1yZFg1elNONDFmWWhMNFNyUVBLSzB4ZVE3VVZib0Iv?=
+ =?utf-8?B?ZHY3aVEybit1RFptaVk2MjJ0VjROMmFKUTVFbFZxbTlPeHJ1cCt6ZTdOSmVk?=
+ =?utf-8?B?TVZ5b1h4WVBsWndOT3g5bGs4L3JRcFNkclRQVnhrUlovMDQ2RFFmYzkvVFBj?=
+ =?utf-8?B?ODBBTmlLalJvRnB0bTM4NWE3clkvQjFFVzZXeVF5WG96RGsrZUNIRGptOVBS?=
+ =?utf-8?B?ZDZpZ29MTXJIZEE2MXB6MmhGNnNBcnY0NmhRd0dxVk54d2pkdlN2TVV4b21U?=
+ =?utf-8?B?VGFEU2Vtc01SVzBPQk5vYXprNlU0bEczNXcrc2JIR2h5UCtkS29QcGpkYlk2?=
+ =?utf-8?B?MXlkRFlja1pudjhtNlNueWlIbnJTbTFvQ2pNeVRaQzVNNjBDL0p6K2JNYzQz?=
+ =?utf-8?B?YWxLdW1vME5kdnNiU3o0OW1PdmxkQVlWTmc3OEp2Wk5UOVBkZHZ2RFFLdS9r?=
+ =?utf-8?B?VkRDVkc1eXRWUktlcUR3Y3UvZGhoSjExUVZUU05OQytZOFpsVStQM25oc0tt?=
+ =?utf-8?B?eFNrQy9CSDNrUDVkUmFEalFYQWc0UEZZUjZwa29hUzF2ZHh6R1B5aVkwY3BL?=
+ =?utf-8?B?WXR0NVE3bWViM0o5b2ZmL1RhRWZjUVROaFdmZG1PcC8xdW1pTWZzdFg5bEdz?=
+ =?utf-8?B?R3ZmRHFmOGJ6WWMyNTMwSkRCbE1nYmtQSUpKRDlzMVN3Rm1YWnA2Z1hFOXNs?=
+ =?utf-8?B?dWZIVVVYa0dIQi9WSWZldkY3cTRZS1BTQ1ZnZFgwSi84S1BqSVF6NWp3dmRO?=
+ =?utf-8?B?Tm5kTloyYVdSNWpyTUw1NVRGSkI3OEdRQzUvcjIyajhJa2M5bk9yTXpNaUJG?=
+ =?utf-8?B?T2FIajJIR2hMWHJmclFVR1h2dW1mM2EwSERoSmVTcWUwalRMdWVYd1Naa005?=
+ =?utf-8?B?Z2JvZkF6LytWTEdnd0dEeWRpSytJSGo3bEJmcDY2M1REREk2bXRiNDc1Z3Bj?=
+ =?utf-8?B?aFZTa0RVbllERVN6b2NXT1VaZkFOT2s5UUlNNFRmZlhkRVBBZnlDZFZhRjE3?=
+ =?utf-8?B?VW0zNEM3VE1vYkNIK1UyWGwvREY4UytsU25IUU50SjFlYjZ1VnMwWGFKcHNh?=
+ =?utf-8?B?TCtMWkhUTTlGV2hOdXQ1TGRTdHBYYTV4YXhhcVB6TGZyRElMWVhsZkVLRkZW?=
+ =?utf-8?B?MEdrc2taWmp0Z3M1Z2F0d0UrTFJKNjFFV0lsWHFDMGkrQWgvaTRWQW1ZU0I1?=
+ =?utf-8?B?dEcycnZ6bUtLT3dBUG9SU21CMzVna1U2Zy83NG1Jei9OaXpQVytPVDEzZ1Q1?=
+ =?utf-8?B?RzIyY1JKQlJwaG1tM2VBZldsSDE0Qm1Ta29RZlNUSzFtak1rVkRkM1BlaERN?=
+ =?utf-8?B?MkRhT2dpQ3R3bTJDTDRXNWpTMnIrdEUxK1Z4ci95OGw1dFYrSFU0NTRHZy9j?=
+ =?utf-8?B?bk5EQU9KcURxRWlBRVU3Y0M5YWkrWWgvTTNMUG1RL3hnWUR6QStoTUVERzN0?=
+ =?utf-8?B?bVdGZGNWVGgwMFVaTXgyMWNlNFYrVFZQUDZjVmJ5L0QwUm1pQ3BYNG1oMSs0?=
+ =?utf-8?B?L3VPc0pLcWhycmYxbXpvNEdkR3I1b2ZrV2J3WmRRNWdkMjl2WW5jdDhGWXhF?=
+ =?utf-8?B?T29zcXB1UTBuRjVxK0hNU083Wk80TkR4QUkxbU5ySGI1RFkya2Z1cFJZek1Z?=
+ =?utf-8?B?MXYySGZycFhxWk5ibEJ2cXBSeCtGWFhBSGovb2lQa2p4cWJFUk8vejdvNmpy?=
+ =?utf-8?B?U2t2NkI0MStjTzcyTmJWQWxMMGJUVzBUaFRxT3NINHNCeGtNYmY3Q3E4cXk0?=
+ =?utf-8?B?b1ZvM0E2dEFWNUtwY0tPejVPM04xclNtcGVqM0tLdWxKcjFwSko1N3RtVXFu?=
+ =?utf-8?B?RjI5aEtoRzFQM3lLR2o4THpJWDQ3TG9CcnRiNmtRTytKam1EYWd3UEZmU3Bl?=
+ =?utf-8?B?NHlNTEMxVnk3Z0J6akNrazJ2VnRrZ1J5aDZUV1pvVkFkRUdZVTVZcWJtS2dv?=
+ =?utf-8?B?Y3c9PQ==?=
 Content-Type: text/plain; charset="utf-8"
+Content-ID: <346A39C0BF789A42A2A9DA6D607CDFA5@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251114120908.6502-3-antoniu.miclaus@analog.com>
-References: <20251114120908.6502-1-antoniu.miclaus@analog.com> <20251114120908.6502-3-antoniu.miclaus@analog.com>
-Subject: Re: [PATCH 2/2] iio: frequency: adf4377: add clk provider support
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, conor+dt@kernel.org, devicetree@vger.kernel.org, jic23@kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org
-Date: Thu, 20 Nov 2025 19:13:54 -0800
-Message-ID: <176369483456.11952.769972703298837189@localhost.localdomain>
-User-Agent: alot/0.11
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5974.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f2f0ff3-efc3-45c2-3058-08de28ac1c5f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2025 03:14:40.8253
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0ZxpehnByGYYL/IVpwozXqb9FZdt73I6AAlX2osPR+liBhZOBodqOl+zPaOUaQ3YIKw5xAPGkZkkVDvei4SMzmLRYe/M+aSKSs9ImY8EILU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8564
 
-Quoting Antoniu Miclaus (2025-11-14 04:09:08)
-> diff --git a/drivers/iio/frequency/adf4377.c b/drivers/iio/frequency/adf4=
-377.c
-> index 08833b7035e4..08dc2110cf8c 100644
-> --- a/drivers/iio/frequency/adf4377.c
-> +++ b/drivers/iio/frequency/adf4377.c
-> @@ -929,6 +935,120 @@ static int adf4377_freq_change(struct notifier_bloc=
-k *nb, unsigned long action,
->         return NOTIFY_OK;
->  }
-> =20
-> +static void adf4377_clk_del_provider(void *data)
-> +{
-> +       struct adf4377_state *st =3D data;
-> +
-> +       of_clk_del_provider(st->spi->dev.of_node);
-> +}
-> +
-> +
-> +static int adf4377_clk_is_enabled(struct clk_hw *hw)
-> +{
-> +       struct adf4377_state *st =3D to_adf4377_state(hw);
-> +       unsigned int readval;
-> +       int ret;
-> +
-> +       ret =3D regmap_read(st->regmap, 0x1a, &readval);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return !(readval & (ADF4377_001A_PD_CLKOUT1_MSK | ADF4377_001A_PD=
-_CLKOUT2_MSK));
-> +}
-> +
-> +static const struct clk_ops adf4377_clk_ops =3D {
-> +       .recalc_rate =3D adf4377_clk_recalc_rate,
-> +       .set_rate =3D adf4377_clk_set_rate,
-> +       .prepare =3D adf4377_clk_prepare,
-> +       .unprepare =3D adf4377_clk_unprepare,
-> +       .is_enabled =3D adf4377_clk_is_enabled,
-
-In theory .is_enabled shouldn't sleep to match the contract of
-.enable/.disable. Probably should change this to .is_prepared?
-
-> +};
-> +
-> +static int adf4377_clk_register(struct adf4377_state *st)
-> +{
-> +       struct spi_device *spi =3D st->spi;
-> +       struct clk_init_data init;
-> +       struct clk *clk;
-> +       const char *parent_name;
-> +       int ret;
-> +
-> +       if (!device_property_present(&spi->dev, "#clock-cells"))
-> +               return 0;
-> +
-> +       if (device_property_read_string(&spi->dev, "clock-output-names", =
-&init.name)) {
-> +               init.name =3D devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-c=
-lk",
-> +                                          fwnode_get_name(dev_fwnode(&sp=
-i->dev)));
-> +               if (!init.name)
-> +                       return -ENOMEM;
-> +       }
-> +
-> +       parent_name =3D of_clk_get_parent_name(spi->dev.of_node, 0);
-> +       if (!parent_name)
-> +               return -EINVAL;
-> +
-> +       init.ops =3D &adf4377_clk_ops;
-> +       init.parent_names =3D &parent_name;
-
-We should be able to use clk_parent_data here instead of
-of_clk_get_parent_name(). It will require setting the proper DT
-node/device when registering the clk but it looks like you're doing that
-already.
-
-> +       init.num_parents =3D 1;
-> +       init.flags =3D CLK_SET_RATE_PARENT;
-> +
-> +       st->hw.init =3D &init;
-> +       clk =3D devm_clk_register(&spi->dev, &st->hw);
-
-Please use devm_clk_hw_register()
-
-> +       if (IS_ERR(clk))
-> +               return PTR_ERR(clk);
-> +
-> +       st->clk =3D clk;
-> +
-> +       ret =3D of_clk_add_provider(spi->dev.of_node, of_clk_src_simple_g=
-et, clk);
-
-Please add a clk_hw provider. A clk provider isn't typically a clk
-consumer of the clk it provides. I think we have devm for that too?
-
-> +       if (ret)
-> +               return ret;
-> +
-> +       st->clkout =3D clk;
-> +
-> +       return devm_add_action_or_reset(&spi->dev, adf4377_clk_del_provid=
-er, st);
-> +}
-> +
->  static const struct adf4377_chip_info adf4377_chip_info =3D {
->         .name =3D "adf4377",
->         .has_gpio_enclk2 =3D true,
+T24gVGh1LCAyMDI1LTExLTIwIGF0IDE0OjM4ICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3Bl
+biBhdHRhY2htZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRo
+ZSBjb250ZW50Lg0KPiANCj4gDQo+IE9uIDIwLzExLzIwMjUgMTM6MTcsIG90X3NodW54aS56aGFu
+Z0BtZWRpYXRlay5jb20gd3JvdGU6DQo+ID4gRnJvbTogU2h1bnhpIFpoYW5nIDxvdF9zaHVueGku
+emhhbmdAbWVkaWF0ZWsuY29tPg0KPiA+IA0KPiA+IFRoaXMgaXMgYSBjb3NtZXRpYyBjaGFuZ2Ug
+dG8gaW1wcm92ZSBjb2RlIGNvbnNpc3RlbmN5Lg0KPiA+IA0KPiANCj4gQ2h1cm4uIERvbid0IHNl
+bmQgaW5kaXZpZHVhbCBwYXRjaGVzIGxpa2UgdGhpcy4gRml4IGVudGlyZSBzdWJzeXN0ZW0NCj4g
+cGxlYXNlLg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0KRGVhciBzaXIsDQpF
+eGN1c2UgbWUsIGRvIHlvdSBtZWFuIHdlIHNob3VsZG4ndCBtYWtlIHRoZSAiZm9ybWF0dGluZyBj
+aGFuZ2VzIiBhDQpzZXBhcmF0ZSBwYXRjaD8gDQpJZiBpdCBkb2Vzbid0IG5lZWQgdG8gbW9kaWZ5
+LCBJIHdpbGwgcmVtb3ZlIHRoZSAiZm9tYXR0aW5nDQpjaGFuZ2VzInBhdGNoIGluIHRoZSBuZXh0
+IHZlcnNpb24uDQoNCkJlc3QgUmVnYXJkcw0KU2h1bnhpIFpoYW5nDQo=
 
