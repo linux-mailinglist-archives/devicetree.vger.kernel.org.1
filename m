@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-241049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AFD3C78D0E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:34:31 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 915A5C78D2A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:35:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D178A4ED904
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:29:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C6FD14F0C69
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:29:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D81234CFD3;
-	Fri, 21 Nov 2025 11:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1366C34CFC0;
+	Fri, 21 Nov 2025 11:28:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JIkOPlmJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z1C9tBvC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFE334CFC1
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:27:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510C234D3AD
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763724479; cv=none; b=sbVFZHx9FPCJvy7e2buhybpo71LV4UbAPHZAx4RnyB+FW0Uu2zeo8jGGIYFpMCT73EOGjvgAn8NvR++xkPl1OFVS57rl2P4XLZ1xpxlyuWXbcL0jZMXWYuaF/y8kEROj/I2pGuKYowTUVJ6CWFO2Ik+i3L5vpjUUnVGKfKwoWl0=
+	t=1763724485; cv=none; b=BbkyP+guVXplfQp2ZDVBmBJ39zXB0GL/EXa9CKL+/9KjlGDKyEYoqSe25vB5uoJ/CKhekDlkUUrRwnTJGJsoWfO5ebtO4OI+ZqJ3Sm3zgvODIw2d1OWavGfI+T9CQTBh89cixdoyDezjH4x94vI3qJiu/Jc0sWV+3FF+svk4fgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763724479; c=relaxed/simple;
-	bh=FR/l64BfQtWcy5AmGa/x0Kd+BcD5MaBGaBHWSqd/0I4=;
+	s=arc-20240116; t=1763724485; c=relaxed/simple;
+	bh=6k4OylsmN4qVHT1GrAf8kQxewQyget+SmApZA+xjQNA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i/KRx1KYs1IpSZbaVUfqb4YHj32Juz6mKDIdjZGzEktBqgSbYFYkTQt1HzCVQbTgKmPX2DklD3lcan1fyTWzP2ZuoWG1LdtCgVKE47RlOqmgkTh2XnG3NW8TJVu/jgTf9BoDVhgQPQ+UsBK3dW3nMpnf3r6WY+eiPbTxBigBKYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JIkOPlmJ; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7bb710d1d1dso2854030b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 03:27:56 -0800 (PST)
+	 In-Reply-To:Content-Type; b=AiLQHfVpf/gfS8LRj5NV0LpaM5tX/nhXu4TiW0/HBPTGSH16PdGC+0OOd9xrLJFjkOvjSDU7mgaVdrXKFLEE1zzBVdPRiPsoUMRAMfDNqaDlPIJlcnju4w+KuofICZwXcLaLuB2MmIduIBKqTSaiaknVpZlpFXAKH6RJGLcQlrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z1C9tBvC; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42b32ff5d10so1904015f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 03:28:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763724476; x=1764329276; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=linaro.org; s=google; t=1763724480; x=1764329280; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1R2yvLJT9l2sebGa7bGBLAEk2UsFTKZ/XGXxsCh1YW8=;
-        b=JIkOPlmJU4yMwEm0Q/rJCsJtNZOFHhTRj3qJeP3miCbTw66YUADhTzPObPOFSRLgCs
-         PPnINZ3RZHjy0IE39DxdBC8ij2J8Crvp7TP7iX7Aq7EhLwtHBzpzLHnPkp+9Vmqath6h
-         2X0Iua5WmymRsU6U9gtI+eXXyjFtcoFRcRF5da4U77DCBpoymEO+0jJ0dK9w6IUKCVQQ
-         hfMP3EW/mPgKi18kd+CDNBYJznZ5CqMVfvo3tYLFzc+sNEsYpWQKJDZE19BGinY2ynPr
-         hGmIijDurGzDoUM4Xb4a+zbeOrJFEWpkxy0/AFkUEC5cazs9NAh5YbKjPvSOBIJmXbr1
-         iRZQ==
+        bh=SPTNdD/V1t/7tPVXOMB+qcETjJ0avA8VN0ZMOhNtAlM=;
+        b=Z1C9tBvC/zrfwWehK/+lLNZqE1x7vSx+c6088HTpVjp0cOCzvZS6plPH6u0HvDXb5/
+         oynsg+ARZgqiR/VMbrB8EfF3pqVsKRBoGJzBrLI8/Rz0LC7Bj6Fa7gu/w6mCRbZYODK8
+         DjvTVPSXUTuOCgGXf505rqw5p03zyBvSiuY5WEEED4A1wV9/6SL17aTLClECUtGBdPeU
+         ANL0gCaqA6PljCbFAd0SAZfvXEM+nZkKNtwGrpkJp5tEcSjOuukTfQ4LtwWyTgHibhCY
+         CGbdxc5rr0fGyyScBhfMHD7zJRUsp+NtSZB2ekCidf1n+IQT72rd3uaI7Csw1JSCZL/F
+         Sbhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763724476; x=1764329276;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1763724480; x=1764329280;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1R2yvLJT9l2sebGa7bGBLAEk2UsFTKZ/XGXxsCh1YW8=;
-        b=mz7g2o9UIIkdpmFlCl3u+AeAEIE8GXwO4xI39URUmqDTcPWSFi/VeBX8wIaBX+qP6V
-         idfbv7gD4pAKenfSHQoBVDa2PbPKc+UmkwsYvvX3M4Y688WkrA1MD+E96B5YpN7u1Ot6
-         dywHxsb3J/cmcdPiVgS2scIQLBF9zmJNqtCW4cq0OyWBepJI1gC7jjqrdhYZehWGi4x3
-         u3hKqJPy2w/bSA9CdQtP7fGhOAQ0Em/2Wrce57eFtmdFpHxdSvYXLKMI5E/0o8qI8Jg/
-         bqgfkyQXmI1uvU70tLiLXo4OSyf0ejDcQRbyjrtwRzs5aLm0wtKorl6axyKDXf/tQG/B
-         mTtA==
-X-Forwarded-Encrypted: i=1; AJvYcCUCYnyRcyK5t5RoOpZ3lXVG3iTP/wqfSnK2s4LSET3vyHFXbMk98I+3TDPB0OhGY3UkGHP9wOGJBapv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTRhEzr39sCfkgcrzFyXoMQQuhAFIsxhdtvd41lBZyckKsntoz
-	HJELJZHi2vNSIUME2yobjIMn9+Nl66wBJZb2evAvhlBQS5BAImnF0PJo
-X-Gm-Gg: ASbGncuOgWTcYuWHmbIMernnAwIJyZClMdieAxiv752pQt3ERfBZq7aOIV6LH//pBuH
-	RZeh5nriZNMtRxNvRnL8HUel2IUvDuRVH7ynOYMv7VRTtvp4QlCbkdDHh4HNDCE9g/zY3lHDUT5
-	DuZKvX5lf6nz7A+/9tfGJaRv13fFbNx1IHxtEbB4dFh0J/me3/9LGO+jexetIVZPUqTTji5+45l
-	AQdGb6qgCENC4G55QGtcwkbUgzvIaxNNnBy7ZPS+qqrlQbNINlk2G7KGKJzxVQEjwMmfV104ds2
-	OAEihOAAe8INU4nn5wCkDsS/CAgr5L6F9Qqh2TSGgnc7ceZD3XBnwqFh5+BV8nMJithMy2V4WFp
-	1DfwdmYOua1e341v4XWqFM74g4S1PnIumrankHNeJ70LH0POJN1Z5snib4uwvbZ+BErK1ZBowMx
-	RImJRil65cFEg8RwvSU3mWR5ulI+J7cP0UXw+bxgRHtdv07fSN0HlXsyqoW+SStcUZ
-X-Google-Smtp-Source: AGHT+IGx1kj8XCwGhrb2uV3Nnb7QEjcdqvgrN3fzzNee0TinoDaJQazabZ6HTuolBNuWue92taBcWQ==
-X-Received: by 2002:a05:6a20:3ca3:b0:35f:cfb:1efb with SMTP id adf61e73a8af0-3614edd7f17mr3004978637.29.1763724476323;
-        Fri, 21 Nov 2025 03:27:56 -0800 (PST)
-Received: from [192.168.68.63] (104-12-136-65.lightspeed.irvnca.sbcglobal.net. [104.12.136.65])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd7604de4cdsm5274052a12.20.2025.11.21.03.27.55
+        bh=SPTNdD/V1t/7tPVXOMB+qcETjJ0avA8VN0ZMOhNtAlM=;
+        b=dXPiFogg27Ba5cQVT7dYgsOZ1CGIPyfxabB61SZxg7KOF/Fq9uJFaaILqyxvS4CLb8
+         GoUI1LMANnLStvbdoAQfc3Ca4LBTpBLdjyWBB7aDVohDI8CIviiCkjP6a4V3u3X2E7ZG
+         p/wVVp4Ca2RcEGo4raBxlb7XweAD3ylBYMoumTzbpRjsWS/7ij9yduEePsEco5xU66No
+         bqi0U6fEQg9O3/gGPKSJtSISDqTL5QA4gDUPqn+Bk8BCLgeAORa3XUsCuJ2fkltZGWiH
+         eRVDXu3uq1doa4tSeC2lEhYuGhjXPoGNnDXFZnMb8lvUI36Dyv6UjHXvKd1bPC/z8wbg
+         ko0g==
+X-Forwarded-Encrypted: i=1; AJvYcCWYWfqeapeK+7miNKjrSB2Gmma+TDzQJUhJqk+WzHhQrHOQEPEut+4rkkk+IYDw8cdXZGLhNr/8Pg3A@vger.kernel.org
+X-Gm-Message-State: AOJu0YxH0SG6qyxY3Z0dnFxFQUY+gd+mdAPJKSQFc9ZFbem2dT8m7Bke
+	bXLoOoXN62yKfIB4TTMnfda6bZZ08rYGfsefrCr5c1kedZLzUFzeICr52eckzFtMGFPU76DAQ81
+	wBBwKDtQ=
+X-Gm-Gg: ASbGncsMYF/2XwfuNFmLpOBBPYGnQt7hLMaHDx53dNQjMYSeYB1A4NeNFYrYb0EevSz
+	lJ9sL2EJJ6jIY+c9UvQh++rDNYIT4OSpmLKRfnMJN8OyHEGiPszKL5KZeyx3f2g7qomnGmaT8nl
+	z+o0Ez17a26yWCKi4M67GAL+N3vGCn6CeAmqPToSTdZN1VkvIDsuKTq7VSzdKlSpQjAZmJUx6ph
+	xPh98nduXabAvIxhHFDjiM9nP3oDYGhKfX9NmAYXK+8/1C9cvMjHpYxWu4dU4RxmznsUlxx3TTe
+	gD4XxYOEknJF8np0csZyqhDWiIh3lkIyFw1ftrm/iQbE5HMOtvHpPc9JMO7qHKLcua8xcPKI0Ur
+	NCM8qMSWXEHh2npM3cLkVve3tPP7qfKUrbLaPMrRQ8ehGiu30hOKc+pStvVs89xsWOYN6jhogaO
+	N026eg1FPC6AoxICYN8kAN8QI7DDVW/mTiG9rzCh5Abzpd4Za7AeW6g3md1tetA3E=
+X-Google-Smtp-Source: AGHT+IF4BgCTrNHH6qecumy4fg4lfB3G2Nlb8SiWNun3lsw+mbCCP9mMa2ihiKy/x9qFTC06IkiiWw==
+X-Received: by 2002:a5d:5f82:0:b0:42b:5448:7b34 with SMTP id ffacd0b85a97d-42cc1301cffmr2191246f8f.7.1763724480369;
+        Fri, 21 Nov 2025 03:28:00 -0800 (PST)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f2e5a3sm10702636f8f.6.2025.11.21.03.27.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Nov 2025 03:27:55 -0800 (PST)
-Message-ID: <a187acac-d2ec-4fc9-9a5c-178590197f84@gmail.com>
-Date: Fri, 21 Nov 2025 03:27:54 -0800
+        Fri, 21 Nov 2025 03:27:59 -0800 (PST)
+Message-ID: <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
+Date: Fri, 21 Nov 2025 11:27:57 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,42 +85,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8960: expressatt: Add
- Light/Proximity Sensor
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
+ SoCs running Linux host at EL2
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251119-expressatt_nfc_accel_magn_light-v1-0-636f16f05cf4@gmail.com>
- <20251119-expressatt_nfc_accel_magn_light-v1-1-636f16f05cf4@gmail.com>
- <742601dc-32d8-41ff-8e2b-a960f6fe77ab@oss.qualcomm.com>
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-From: Rudraksha Gupta <guptarud@gmail.com>
-In-Reply-To: <742601dc-32d8-41ff-8e2b-a960f6fe77ab@oss.qualcomm.com>
+In-Reply-To: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
->> +
->> +	i2c-gpio-sensors {
->> +		compatible = "i2c-gpio";
->
-> Are you using gpio-i2c for any specific reason? Would GSBI2 not be
-> connected to this pair? (I am not sure FWIW)
+On 21/11/2025 11:01, Mukesh Ojha wrote:
+> In May 2025, we discussed the challenges at Linaro Connect 2025 [1]
+> related to Secure PAS remoteproc enablement when Linux is running at EL2
+> for Qualcomm SoCs.
+> 
+> [1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
+> 
+> Below, is the summary of the discussion.
+> 
+> Qualcomm is working to enable remote processors on the SA8775p SoC with
+> a Linux host running at EL2. In doing so, it has encountered several
+> challenges related to how the remoteproc framework is handled when Linux
+> runs at EL1.
+> 
+> One of the main challenges arises from differences in how IOMMU
+> translation is currently managed on SoCs running the Qualcomm EL2
+> hypervisor (QHEE), where IOMMU translation for any device is entirely
+> owned by the hypervisor. Additionally, the firmware for remote
+> processors does not contain a resource table, which would typically
+> include the necessary IOMMU configuration settings.
+> 
+> Qualcomm SoCs running with QHEE (EL2) have been utilizing the Peripheral
+> Authentication Service (PAS) from TrustZone (TZ) firmware to securely
+> authenticate and reset remote processors via a single SMC call,
+> _auth_and_reset_. This call is first trapped by QHEE, which then invokes
+> TZ for authentication. Once authentication is complete, the call returns
+> to QHEE, which sets up the IOMMU translation scheme for the remote
+> processors and subsequently brings them out of reset. The design of the
+> Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
+> is not permitted to configure IOMMU translation for remote processors,
+> and only a single-stage translation is configured.
+> 
+> To make the remote processor bring-up (PAS) sequence
+> hypervisor-independent, the auth_and_reset SMC call is now handled
+> entirely by TZ. However, the issue of IOMMU configuration remains
+> unresolved, for example a scenario, when KVM host at EL2 has no
+> knowledge of the remote processors’ IOMMU settings.  This is being
+> addressed by overlaying the IOMMU properties when the SoC runs a Linux
+> host at EL2. SMC call is being provided from the TrustZone firmware to
+> retrieve the resource table for a given subsystem.
+> 
+> There are also remote processors such as those for video, camera, and
+> graphics that do not use the remoteproc framework to manage their
+> lifecycle. Instead, they rely on the Qualcomm PAS service to
+> authenticate their firmware. These processors also need to be brought
+> out of reset when Linux is running at EL2. The client drivers for these
+> processors use the MDT loader function to load and authenticate
+> firmware. Similar to the Qualcomm remoteproc PAS driver, they also need
+> to retrieve the resource table, create a shared memory bridge
+> (shmbridge), and map the resources before bringing the processors out of
+> reset.
+> 
+> It is based on next-20251120 and tested on SA8775p which is now called
+> Lemans IOT platform and does not addresses DMA problem discussed at
+> [1] which is future scope of the series.
+> 
+> Changes in v8: https://lore.kernel.org/lkml/20251113-kvm-rproc-v7-v7-0-df4910b7c20a@oss.qualcomm.com/
+>   - Addressed suggestion from Stephen which was regarding commit message(9/14),
+>     debug log(12/14) suggestion, and return type change(4/14).
+>   - Added R-b tag on 10/14 .
+Sorry.
 
-This is interesting! Downstream uses i2c-gpio and I (well, Claude) used 
-that. Seems like downstream doesn't define a GSBI2, so I guessed it's 
-structure in the dts and it seems to work! Thanks for the suggestion.
+Did we actually come up with a cogent reason to omit the video firmware 
+loading here ?
 
+AFAIU it is required for Lemans and Glymur - leaving it out is blocking 
+getting video stuff done and storing up trouble.
 
-No GSBI2: 
-https://codeberg.org/LogicalErzor/Android_Kernel_Samsung_D2/src/branch/cm-14.1/arch/arm/mach-msm/board-express-gpiomux.c#L411
+What exactly is the blockage - is it something you want help with ?
 
-
->> +			amstaos,proximity-diodes = <0>;
-> Try comparing the values the upstream and downstream drivers write
-> to the device, maybe you're missing something
-Yeah, I'll continue to try and do that. In the meantime I'll send a v2 
-so I can get further comments.
+---
+bod
 
