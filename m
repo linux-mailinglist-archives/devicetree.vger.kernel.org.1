@@ -1,149 +1,137 @@
-Return-Path: <devicetree+bounces-240952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7679BC77F8D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:47:06 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8378C77FCF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:49:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2244034F26A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:47:06 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2BEA934C96E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:49:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0BD8280CC1;
-	Fri, 21 Nov 2025 08:47:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BB82D5A0C;
+	Fri, 21 Nov 2025 08:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="WPeS3YxE"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="M9SJGaXC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC3F23956E
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 08:46:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E81833C188;
+	Fri, 21 Nov 2025 08:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763714820; cv=none; b=YlhHIRkwoPZ8KK5OVXuOB0OfXjNM0WvNq+XkVH2/46j8W9DwcVEFIn5MoKCFeSOvuiJ/biYFLLYwzgvpugxd21EBWlNT31IO0CSeVBBviN1N6RN+9d7W3M4Vmy5DBFxzvQCtb+39pODtuZcV9vW1GwRrMPiK1ZF6nhaBBzuhavE=
+	t=1763714962; cv=none; b=h91Ts+Yn53Qt4Tsd7A2AfNebtbal5Rw5TbYB3KgoqsalEpJVJGA4McvdUsF6YsVRnZkqPIHsEiQBcGEXyJeBGhRWVsZ81sDokxdt0/xN9VV6Uuodnz1uD+9CkWRjSindyskaatJ7OuTCTLwBL72lfcB7+Cq8vjybgDN5ptnNLwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763714820; c=relaxed/simple;
-	bh=Flir5tljPSjxxK6yY84qRrxreOuDD4ZmYqr0Soj0ZNU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LQoG6htgA4d0QHYMdAocUtKbhQfrzraYKasyb2djyDRYDlUofp8ICYgSGj1avE9Oxf0izdKDHSyDR7dwxlHVNXo/7vNOamh/gg9rhGb0j2pSurEpznxid5ZKD08OZBPDmUsCigpYRJrNAHjz7AZ/tnhRhUZ2xatuUa+eyywbvHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=WPeS3YxE; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7b22ffa2a88so1574271b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 00:46:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1763714818; x=1764319618; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9rw6P3vTkq9/VDf2BdRM52eT1wyytd0Ws0h+4Sg6bhM=;
-        b=WPeS3YxEXJ8DCbQxogXI5+2NOSlk3/KaChIUQkOBrCcRqwl80cF/c2Iw8T6qmN4yV1
-         p92rpndEv4Tp81wPvy1vSJ2nQR7zkQ7Ie6rHYOqiYzn9K/J08ZKZWmcQRLqBZlyTdt3C
-         bDUVIGU3nA4/pezXAOUaRBhQN2VGDPW3LbAuLJyw2SksVgcikqXVhzmnm0SolIYVPBju
-         C1NrMM9hLAfHFa54pdEUdCWGBTAIEcfL5Y4QwqT/iCEgIfWpv/jEccMTfhRI1fJGXZwi
-         SYaVwmGeIDPzbIH+QbaAPrNr114Zk9ZWPRkxQnRfsPighUVFeTzaId97/6yZRvYqJwi/
-         EH8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763714818; x=1764319618;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=9rw6P3vTkq9/VDf2BdRM52eT1wyytd0Ws0h+4Sg6bhM=;
-        b=l98UpfJGxkY5F+4qPpZ2cO6uyJqT38J8392en64TYxXrvYrqcqC1nzHQ6i1qy60Gb6
-         w3fxGsUNn3on/RUvslS/37TakJw2o31mpe86eTMXyJuuRY09ZypYkPaFe31ThvTqmKOg
-         E6BVtATuwwfxy2sCnJYRDVlSQMa6ETKWpVuz7skWsrq8IJrrt9c/L9+0NWbj9F+MaWlL
-         +jow9KFrgmC/z55zbsO/ULl9JR3yAwvAbQiT9W3WUgehcdfXtN1XWx1BYsyzLcLVcfoL
-         ZYDlPc3zYY819A60hwNFloXyi0U0nhuJ3ZmU9C2BPtxzI17XXOFhImLzj2gbT6SEI15x
-         CqFA==
-X-Forwarded-Encrypted: i=1; AJvYcCXi+iD4UR9Zx5V8A8Jkw1Q/QT0pI3xqWTvvSw8INdMiSU958jYKIe35OuYhz8PK2b5BwPvAVlZLinZP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyF4kXHX5rz7Fug9cDXgNFM7eKaWhp6esXNR4PDcGaWZwJtSv1S
-	W+hgfpd5VFz0usCCjF9pVK1ywtGbjaor0sc8JBCoI18/039qOMijaMCfKGLW3NpsTb7WjnCgxXo
-	f6VssuIHrDJapC34bihQTtEQF9wb+iVrVInxNjvqx
-X-Gm-Gg: ASbGnctIfnpw0n09XIWSDAKeanNrAbuqRt/pNRx0aXNnX1WSftSYJM9x0PNrgkSVQ7m
-	FVnqMh0mJ1yQtb7VAa2VAlj4a645lXzk859Kryn+nz3ezaMxe1WsOS0/9UQDWB3SyufMLpkWXDA
-	+BrDOxADdnnF10xWnSMFy6AISKCQCB5TqgTWO0q/1h8BXNefr19WN33PVkhv68fyNrP9RWsFCMp
-	PPnG/gq8WqDR4yK7efa3QLfx8E7xF+LyzQUWxAhbWZZxsf8wSIPn+4+Y7UMvRYFDC4Kdxo=
-X-Google-Smtp-Source: AGHT+IEGKK1JVapl4Bfkn+X1caSvW4BJYyhUwjXrKD36ojgbUTuY+cLlAhIn+4hGtsKsgQZA7TevAUxQK94FOcafFjQ=
-X-Received: by 2002:a05:7022:ea46:10b0:119:e569:f26c with SMTP id
- a92af1059eb24-11c9d819c4amr549173c88.21.1763714817986; Fri, 21 Nov 2025
- 00:46:57 -0800 (PST)
+	s=arc-20240116; t=1763714962; c=relaxed/simple;
+	bh=2a6B8T00wgK1+t9Ha00mHgSKtskeKDoJ0hM4NhfDVgU=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=hO0HkaIpDfR/I1MkhzdOq0o3C4Wi362mpsSFu0461kRHJok7haCZGNtetF3rG9OWWal1KgkMGyDq5on35oy99YCJmVb++WZ7aCGh9kKCR0/z2WveuQDxS2tE2VWI6Dc5yoOKS5WxUWuqVoh2HnqpEtd0SOcr2kRTYb+liffIvC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=M9SJGaXC; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1763714958; x=1795250958;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=2a6B8T00wgK1+t9Ha00mHgSKtskeKDoJ0hM4NhfDVgU=;
+  b=M9SJGaXC5ObZ42KRKDpR3UcHMPWTGjaPG0zTTsOoagBqsHRok7H8JLG/
+   JpdtbGLPeqSyDkNXg3WoepmNM2AfE9bGHRMfbh1h2Zn3rmUPQ9etg5s8+
+   N8eRDjyCgnfGansnVgErt2IZJusUkAG+1dhHw4I2Wt/hdC+a4axCj19Yz
+   m/qOitUkEK6iHLj+OkhKldOi1vqqL9YpwLyoyz+6TBIyQiMvuCugw4ud/
+   G2FRK9AYGRHC7msG6Eqb7X86aE9/PdzSAWRco/5sXNvpmgjBfk9Byntnw
+   CAyqQVrXRx4PMvUYPYjVGbmrDU/uOVx6RMHdJtWgAG8DYr8zhh0jKiEzh
+   w==;
+X-CSE-ConnectionGUID: wKnKnyE+RMO2awr1IOEsIA==
+X-CSE-MsgGUID: B0QPjaGKRf+49NXkrhn70g==
+X-IronPort-AV: E=Sophos;i="6.20,215,1758610800"; 
+   d="scan'208";a="56041597"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Nov 2025 01:49:15 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Fri, 21 Nov 2025 01:49:02 -0700
+Received: from marius-VM.mshome.net (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Fri, 21 Nov 2025 01:48:59 -0700
+From: Marius Cristea <marius.cristea@microchip.com>
+Subject: [PATCH v2 0/2] Add support for Microchip EMC1812
+Date: Fri, 21 Nov 2025 10:48:53 +0200
+Message-ID: <20251121-hw_mon-emc1812-v2-0-5b2070f8b778@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251120-phyb4-v6-0-b6694e1f0caf@google.com> <20251120-phyb4-v6-1-b6694e1f0caf@google.com>
- <20251121-attentive-demonic-jacamar-fc4afb@kuoka>
-In-Reply-To: <20251121-attentive-demonic-jacamar-fc4afb@kuoka>
-From: Roy Luo <royluo@google.com>
-Date: Fri, 21 Nov 2025 16:46:21 +0800
-X-Gm-Features: AWmQ_bmUVOlmJqcVyT_EtvB6gdvlOG5rtdefUR1SndkOE8ikDuOVfBKFFoK6hGc
-Message-ID: <CA+zupgxskC2HMy_sLusDbb_L1t49frjLQW6isBfAKa6BgNvpNQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: phy: google: Add Google Tensor G5 USB PHY
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHUnIGkC/13MQQ6CMBCF4auQWVsz0yBWV97DEANlamdRSlqDG
+ sLdrcSVy/8l71sgcxLOcK4WSDxLljiW0LsKrO/GOysZSoNGfSBErfzzFuKoOFgypJWj3mBTm+N
+ ACOU0JXby2sBrW9pLfsT03vyZvuuP0qd/aiaFqufaDaZzSE13CWJTtF6mvY0B2nVdP6wxk5CwA
+ AAA
+X-Change-ID: 20251002-hw_mon-emc1812-f1b806487d10
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>, Marius Cristea
+	<marius.cristea@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1705;
+ i=marius.cristea@microchip.com; h=from:subject:message-id;
+ bh=2a6B8T00wgK1+t9Ha00mHgSKtskeKDoJ0hM4NhfDVgU=;
+ b=owGbwMvMwCW2tbSTZa7u0x2Mp9WSGDIV1Ktsn4rN38O/r+L0scevFt5vvxLLcyC7jMNy0rzNz
+ 64/CvSO6ihlYRDjYpAVU2RZ8dZPrWrth8tKYpk6MHNYmUCGMHBxCsBEFpczMqzobXUICrWXuns4
+ VkDgTnD//3rNN5FOP72VNA7br8tYYcnwz+boQb77Z3fErX7wKYxTRcG9Zdf9O+8ieBimutyqYBe
+ T5wEA
+X-Developer-Key: i=marius.cristea@microchip.com; a=openpgp;
+ fpr=E32F8D4396E72E463E8CCD91446DE0ABD9140C3E
 
-On Fri, Nov 21, 2025 at 4:16=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Thu, Nov 20, 2025 at 05:36:41PM +0000, Roy Luo wrote:
->
-> I read last discussion and patch is fine, except one issue in example I
-> never noticed before (see at the end), which I want to fix. Apologies
-> for not bringing it up anytime earlier, I missed it. While at it also
-> one more nit.
->
-> > +description: |
->
-> nit: drop |, do not need '|' unless you need to preserve formatting.
->
-> > +  Describes the USB PHY interfaces integrated with the DWC3 USB contro=
-ller on
-> > +  Google Tensor SoCs, starting with the G5 generation (laguna).
-> > +  Two specific PHY IPs from Synopsys are integrated, including eUSB 2.=
-0 PHY IP
-> > +  and USB3.2/DisplayPort combo PHY IP.
->
-> ...
->
-> > > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    soc {
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <2>;
-> > +
-> > +        usb_phy: usb_phy@c410000 {
->
-> node name: usb-phy, because there are no underscors used anywhere in
-> upstream. While at it, you can drop the label as well, because it is not
-> uised, so just usb-phy@..... {
->
-> Please send new version with these two fixed and:
->
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
->
-> Best regards,
-> Krzysztof
->
+This is the hwmon driver for EMC1812/13/14/15/33 multichannel Low-Voltage
+Remote Diode Sensor Family. The chips in the family have one internal
+and different numbers of external channels, ranging from 1 (EMC1812) to
+4 channels (EMC1815).
+Reading diodes in anti-parallel connection is supported by EMC1814, EMC1815
+and EMC1833.
 
-Thank you for the review, I appreciate it!
-Ack on both points and will send out a new version.
+Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+---
+Changes in v2:
+- update the interrupt section from yaml file
+- update index.rst
+- remove fault condition from internal sensor
+- remove unused members from structures
+- update the driver to work on systems without device tree or
+  firmware nodes
+- add missing include files
+- make NULL labels to be not visible
+- corect sign/unsign calculations
+- corect possible underflow for limits
+- Link to v1: https://lore.kernel.org/r/20251029-hw_mon-emc1812-v1-0-be4fd8af016a@microchip.com
 
-Regards,
-Roy Luo
+---
+Marius Cristea (2):
+      dt-bindings: hwmon: temperature: add support for EMC1812
+      hwmon: temperature: add support for EMC1812
+
+ .../bindings/hwmon/microchip,emc1812.yaml          | 182 ++++
+ Documentation/hwmon/emc1812.rst                    |  68 ++
+ Documentation/hwmon/index.rst                      |   1 +
+ MAINTAINERS                                        |   8 +
+ drivers/hwmon/Kconfig                              |  11 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/emc1812.c                            | 968 +++++++++++++++++++++
+ 7 files changed, 1239 insertions(+)
+---
+base-commit: d2b2fea3503e5e12b2e28784152937e48bcca6ff
+change-id: 20251002-hw_mon-emc1812-f1b806487d10
+
+Best regards,
+-- 
+Marius Cristea <marius.cristea@microchip.com>
+
 
