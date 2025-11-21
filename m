@@ -1,206 +1,215 @@
-Return-Path: <devicetree+bounces-241114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020C0C79C37
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:54:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E72DC79DD8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:59:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id B60442E3BE
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:53:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id D3BD62AD99
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:59:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E4E4349AF7;
-	Fri, 21 Nov 2025 13:49:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12F7349B04;
+	Fri, 21 Nov 2025 13:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pcZxzE0J"
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="h+ePWbcs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010061.outbound.protection.outlook.com [52.101.46.61])
+Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1970834B402;
-	Fri, 21 Nov 2025 13:49:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763732975; cv=fail; b=b8TJekZSK8q1spB/GZLE3g8E79xetDD6jclTsMz1oa+stILxGBLLsSgLWrZO1aIhM4zkqyrYf1NTA1ncZ3VjJxWMM6fXdplOj+xOWJVMA4cjd0oSb6OPcmVNJderTiySoUlY720DSkv8J0Lzef/W5VhHCg3GF5YWaKrclyuwnPM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763732975; c=relaxed/simple;
-	bh=j+1O5JJP9Xo29h96xyW+sYPBUSoh9tiV0/8hGoppsmI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D2/MfnsFOL8hiP1ZSJC6htExzXk+l9gArx1E5Eq+VBEkrI8ntsEE7EVO8k/eRjt3IvqGAURfnn08cJVQlAMkYd17q/V02aUZ8KeqptIZS5zXujqghFAlihZTwBeZ1BXhvfMLoiRpVTEDgQ54C5b6YyevvH1j7hQ06xq1CbfWOyE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pcZxzE0J; arc=fail smtp.client-ip=52.101.46.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Z4mT5MxHv2jqUiBV8dLnTXJywphkOn3npi09Keo+bQYS4r1V+dRpalouIvt5COXHEdrPJE/DRJfFzxaaZLkkRez0X6tuUSs9J8nEoLCqz2m8MgBQRMLuytFbpMFpQbJWpcwAZTjo4PPjPQSWbmQlaF9loB/rDqht34lNrJI/WBlpl0Q6BQu8AdRRGgqG8WP5ILFkTlqbAEIVgs6N7izq9/fcS4SvzR8r1OQMXO49hAUhLuh/Ml4f0Wqf8eiaqGmvn9atEpdhTtbaDwx+FfcPTj9sDgAVDxNX4/BiSTCspZMfQmZU1L31cJ7jh6hpr65KSjHSQanJ2vJxm81A/y2M2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0mJ+Jg1f8cRgt+oDez5dZ80zpBBg2DNnsDtmRxQ/NN0=;
- b=kYUgOTyNPK6Kcvjj8u1TfRwx4URr29r+6ako/KGwegu9VMc3vM7s/pdg656JipkMFzNf3kk0uCQ19SAb3TwTnM1Y8e3ByW3T8FnEpPXTGs5rxgVVniX5ZiakBO9XMeY+Sr0R6uMPsOGoyKsZZnkdh/2YPEGwyM44bUWA4aVleJEvJ+yq5HjCNv2VjSgEQposuvMj38ABM0iXJagy3BqrQP4+rvqCybUdzgDCF98pk3VN1qUYE26SJ6lETeuE9Vlq662TqgqZxw/qwt3/x5/XahcWA0kKRfTeASefvD9+iMlITX/LncaPdGsH09qo+Epj1HDEQBovcJRrBQldXfyN2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0mJ+Jg1f8cRgt+oDez5dZ80zpBBg2DNnsDtmRxQ/NN0=;
- b=pcZxzE0JGwC6NV05YwEAGPsJcZglVT5DAT2SoaQ/H04rGQ3LWwM/F1YXDy3GEz31qupYKdhp2fNrEIN9LD4sIkrCItkw+HY09Ftu6jOKRMGybJIVAdXIyN+LzeKvyBHHrxKCc56I+wHJOe5o25Aq5y/W3IhsVUaYtb8eqSBv8C8=
-Received: from SJ0PR05CA0118.namprd05.prod.outlook.com (2603:10b6:a03:334::33)
- by SJ0PR10MB5552.namprd10.prod.outlook.com (2603:10b6:a03:3da::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Fri, 21 Nov
- 2025 13:49:28 +0000
-Received: from CO1PEPF000075ED.namprd03.prod.outlook.com
- (2603:10b6:a03:334:cafe::a2) by SJ0PR05CA0118.outlook.office365.com
- (2603:10b6:a03:334::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Fri,
- 21 Nov 2025 13:49:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- CO1PEPF000075ED.mail.protection.outlook.com (10.167.249.36) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9343.9 via Frontend Transport; Fri, 21 Nov 2025 13:49:27 +0000
-Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 21 Nov
- 2025 07:49:24 -0600
-Received: from DLEE208.ent.ti.com (157.170.170.97) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 21 Nov
- 2025 07:49:23 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE208.ent.ti.com
- (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 21 Nov 2025 07:49:23 -0600
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.233.103])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ALDnJrK1313880;
-	Fri, 21 Nov 2025 07:49:20 -0600
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <y-abhilashchandra@ti.com>, <u-kumar1@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <stable@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e-sk: Fix pinmux for pin Y1 used by power regulator
-Date: Fri, 21 Nov 2025 19:19:17 +0530
-Message-ID: <176373265680.739386.4552474353060268697.b4-ty@ti.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251119160148.2752616-1-s-vadapalli@ti.com>
-References: <20251119160148.2752616-1-s-vadapalli@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAB2A33C50B;
+	Fri, 21 Nov 2025 13:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.8
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763733370; cv=none; b=FnXsEle4Tl8M6McSI0MsU54Plj2MYCvei2nXftvCVRPjCCRcPI9IEsWWprfnKSMfZuAkcoii0ZQ6bO8wm2rtuUczVUgx2gZEFVxlSmfRHw3oYf1/z6ZmSdQA6EJSqqAMozJ66PWgb7G/f9SoUf2NT3zMfi8bK01XCJYOkbNjrOI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763733370; c=relaxed/simple;
+	bh=Jq2pv/G2zVXiXXG11ElydHJ2WoF5Q8+oy53eVs0eCEA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q8fA/+P0SQHqyrzJTguhvxNlN7qBfWX0JcGOvMZfIaaocm0T3kRy6dnlADRlMbH+7KopmNTgsniPtD6Q5s+NAwLf+zBjeHJTSLRcKb6jMU9B9r+hrlD2dMAcTyForcR8Ob/xi+E9mATGmMXHVaUpAKys0ULdNVlQOzxczPz2jzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=h+ePWbcs; arc=none smtp.client-ip=117.135.210.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version:
+	Content-Type; bh=WF7zmEjCDjV6ilB5EvAYSDT7Fkd1062FEPH2y/AHz5Q=;
+	b=h+ePWbcsST9l746MDpEgWl0av8qMn9RFmoMNI9/ACZqCufKaNcGz+VOD/Zvxz4
+	viteYnhznScDQsYG1xvy/O8YpB1oxzfzP80wHn77U4l3Kut8AB0C+JG1HMkrQ92r
+	iA42efWFnSYs5rnU8VDMWkGO79tgmtARXuCsi6o9haLI4=
+Received: from nilq-virtual-machine.. (unknown [])
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD39wn_biBpQoUTAQ--.36592S2;
+	Fri, 21 Nov 2025 21:54:09 +0800 (CST)
+From: niliqiang <ni_liqiang@126.com>
+To: sunilvl@ventanamicro.com
+Cc: ajones@ventanamicro.com,
+	anup@brainfault.org,
+	apatel@ventanamicro.com,
+	atishp@atishpatra.org,
+	bjorn@kernel.org,
+	conor+dt@kernel.org,
+	deng.weixian@zte.com.cn,
+	devicetree@vger.kernel.org,
+	frowand.list@gmail.com,
+	hu.yuye@zte.com.cn,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	maz@kernel.org,
+	ni.liqiang@zte.com.cn,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh+dt@kernel.org,
+	saravanak@google.com,
+	tglx@linutronix.de,
+	dai.hualiang@zte.com.cn,
+	liu.qingtao2@zte.com.cn,
+	guo.chang2@zte.com.cn,
+	wu.jiabao@zte.com.cn,
+	liu.wenhong35@zte.com.cn
+Subject: Re: [PATCH v16 6/9] irqchip: Add RISC-V advanced PLIC driver for direct-mode
+Date: Fri, 21 Nov 2025 21:54:07 +0800
+Message-Id: <20251121135407.53372-1-ni_liqiang@126.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <aSAn8DdQVBBzenlJ@sunil-laptop>
+References: <aSAn8DdQVBBzenlJ@sunil-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=y
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000075ED:EE_|SJ0PR10MB5552:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94072576-017b-4539-f58f-08de2904c9bb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?bzZ3S1hRYjByelZhWnJ6UWMvekJaTUd5dWxYeEZiUjZsSk9RVWNUOFFQU1lw?=
- =?utf-8?B?Z3BZRElWSnBUL0NqMS85M0JwQmRrbEp4Q0M5Z05WZ05ocm94MnJOL3dPSW5F?=
- =?utf-8?B?a1kzU2pVT2VxSEx1K1RrQStNbGtMWlVXTUJsU0VGdzZ4NTJjd2pUVEM5NXdR?=
- =?utf-8?B?SzUxMUlMMnQ4ZDVPQnoyWnlLSTlhZSs4SllIYzBaSUpHOGI1NTBQbndOOFZU?=
- =?utf-8?B?NmV2RDZDbzRRV09pRjdDRE5UZGZEdzg3RkFraE1ZaDRsS3F5VkEraGRERGVj?=
- =?utf-8?B?Ull0S2g5NCtkditYc1I2dlZxUmEzUkF3SkhuQmYzTTlPN0VLTVBNYk56dDNB?=
- =?utf-8?B?dlZPQ0RFUytiTnQ4R0lDVlhPYUpQNzFiUHN5RWRBalBBalRDdkhndE1sU1Vw?=
- =?utf-8?B?L1J3by9ZRWZsM1VZZjBiQWsvTEE3U1JrVDRMcUhLbkZ0ZGFIcGJZanV3cDJB?=
- =?utf-8?B?eVVxTERYbWZPU3RzbWtuZ1NQMVlNSXR2VWYwdEFyK3MwcUlKTk1YOHdXejZ4?=
- =?utf-8?B?U3RTdzZ6d3FqNTNEeEVMN3QwQytjRVNOLzRDY2tiUzFmYkFZNFJFRHd1b0ho?=
- =?utf-8?B?RGFQZlU4ZXJZK1plTWZkdHQxOGtxK2VYbEFhSEoxcFNEaHhrcmR6clBDcEVR?=
- =?utf-8?B?QU5Qd3RaNzg1YnhUL0k5dGNtZzJLaEZCK0ZEUlk5bW04UEk1WUZvY0VidWsr?=
- =?utf-8?B?Y2x2SFN5U1ZhbHpESnFURE1kR1MxMWZSY0dVcm1GRTlPUnVmenpEbGVEbmpQ?=
- =?utf-8?B?eG1tNGhMQ0VUTGNqdnhreThDWVQwRXVjVEJGcWRjR21rbFRpYUE2ZUdNQ0Q0?=
- =?utf-8?B?alF0d3ZhSDAwSUlUcVc5bE9WeGwwaFVoTWlIcnZLUVhJc1FDWXoxblpqRHBz?=
- =?utf-8?B?TExUNXIya2JwVG55Rzd4VUJPN3B1RWZNODBiUVZKaE9FTllza0phdFJLdVlD?=
- =?utf-8?B?T0NTS2hQazZUNnc4d0JrVUVyWXRkTVFKWHRnR2xId01vUmdUNTlaQWdYRTVy?=
- =?utf-8?B?WjdYUm5VYWRvb21rL2JZUGtsQ1RzbWVGbXpNOVlNRXJiVTVRamsrejE2OUFC?=
- =?utf-8?B?S0dweWFOcE5MdCsvekEzVEVpeE9rdXJJdVJiNFNTdktHa1FYcENNWUZhVVBV?=
- =?utf-8?B?U1dhTjh0VEhLaUJTVytRYzFOSmo4TXZIQWdjRFd5TGdpanVzT1RSL1MrcUlT?=
- =?utf-8?B?SHRacUFyemd1bnlTckU3dm1ESXp5MHJacGpSUzN3dFovYlp4dVAxOVRxdlMz?=
- =?utf-8?B?YTZwNTNremxNdVpqMU9jZzhHTVZaQWt5UmtESjVZbzJZVUFLSzNpMklLc25y?=
- =?utf-8?B?enNWTC92VjZ3Ky9RSjRkMWR5dUZ0S3REMW9uaGtWaTJpUkxBS3RCei9vbkhJ?=
- =?utf-8?B?TVBmTkFkYW9NR0ZqdEFMZGU3eXNIbUpuSnJ6czBFbWp0U3RrTFV3TzA0UDFY?=
- =?utf-8?B?YlNNVVJFOU4wQVk2Z3JMUzdzY2RscFoxNVp5SG5HQldSWURhZ0NNb29SUGgr?=
- =?utf-8?B?ek5sa2Y1VENOUVVkWEdCdElKWHZQYWMwM0dDcHNEOGhhYzRNYWY3U0oxN1pN?=
- =?utf-8?B?YU90cWhQTlhqVVBwMUlCMjY4eXoySkFFelBRV3BQK3pMOFNyblFEQlROS0ly?=
- =?utf-8?B?TnBFQVJNVHFTLzVBRVl5VVpCK0dIMWRKVms2cnNFVExvTkFheDhWaFErOU1q?=
- =?utf-8?B?MXBMYk9FWUZ1T3VFQ2ZVSHJrUGU4dHVUU0IwMjFmc05mZGdzUTJiZVNGODNB?=
- =?utf-8?B?V1dUVDBoTmNkZ0xzek5CeEZhSWIvN1hueWFzWkFGdS9PMnBIOW9WbUoreDg4?=
- =?utf-8?B?QXFIL2pTd1BaRzh3bDkyRTdiR3FIcFJtdC9oOXNPT2E3S2p1bGJaK3pFWGJF?=
- =?utf-8?B?VitFSE55c0xDZ0FEN0xIQm83VWsvQkQrYWpqSUxPbHJBck56eGUzMjN3SDUv?=
- =?utf-8?B?N21NTklPWDk4YnNFakc3ZVlMaGxUbENJRjFPSTUzaGlIM1NDWGoyRHl1aS9s?=
- =?utf-8?B?SkQ5ck9hbms4RDlXTkw3ZERyd0VpY0JkVVhQSHVPY2ZveDJvS1lTQ01hU1E5?=
- =?utf-8?B?Z0t5OHdJK2JpUE4wTmdZUytCd1FXLzNraW1hb0l5M3IzMmdpR2V6VTR4dHJx?=
- =?utf-8?Q?pmV4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2025 13:49:27.2958
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94072576-017b-4539-f58f-08de2904c9bb
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000075ED.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB5552
+X-CM-TRANSID:_____wD39wn_biBpQoUTAQ--.36592S2
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUx-BMDUUUU
+X-CM-SenderInfo: xqlbzxxtld0wa6rslhhfrp/1tbiYBYN5WkgaBd5mQAAsI
 
-Hi Siddharth Vadapalli,
+Dear Sunil,
 
-On Wed, 19 Nov 2025 21:31:05 +0530, Siddharth Vadapalli wrote:
-> The SoC pin Y1 is incorrectly defined in the WKUP Pinmux device-tree node
-> (pinctrl@4301c000) leading to the following silent failure:
+> > > diff --git a/drivers/irqchip/irq-riscv-aplic-main.c b/drivers/irqchip/irq-riscv-aplic-main.c
+> > > +static const struct of_device_id aplic_match[] = {
+> > > + { .compatible = "riscv,aplic" },
+> > > + {}
+> > > +};
+> > > +
+> > > +static struct platform_driver aplic_driver = {
+> > > + .driver = {
+> > > +  .name  = "riscv-aplic",
+> > > +  .of_match_table = aplic_match,
+> > > + },
+> > > + .probe = aplic_probe,
+> > > +};
+> > > +builtin_platform_driver(aplic_driver);
+> > 
+> > Dear Anup Patel and all concerned,
+> > 
+> > I am writing to inquire about the historical rationale behind defining the APLIC driver's
+> > initialization priority using builtin_platform_driver in the current implementation.
+> > 
+> > In our environment, we are encountering an issue where this priority level causes ACPI-based PCIe
+> > enumeration to be executed in the system_unbound_wq work queue. This parallel execution model
+> > results in PCIe devices being enumerated in an arbitrary order rather than strictly following the
+> > sequence defined in the ACPI DSDT table.
+> > 
+> > The random enumeration order is adversely affecting customer experience, particularly in scenarios
+> > where device ordering is critical for proper system operation or application compatibility.
+> > 
+> > We are considering modifying the APLIC driver's initialization priority to ensure PCIe enumeration
+> > occurs sequentially according to the DSDT specification. However, before proceeding with such
+> > changes, we wanted to consult with you regarding:
+> > 
+> > 1. Were there specific technical considerations that led to the current priority selection?
+> > 2. Are there any potential side effects or broader impacts that we might have overlooked?
+> > 3. Would you support such a priority adjustment, or do you have alternative suggestions to 
+> > address the enumeration order issue?
+> > 
+> > We greatly appreciate your insights and expertise on this matter, as it will help us make an
+> > informed decision while maintaining system stability and compatibility.
+> > 
+> > Thank you for your time and consideration.
+> > 
 > 
->     pinctrl-single 4301c000.pinctrl: mux offset out of range: 0x1dc (0x178)
-> 
-> According to the datasheet for the J721E SoC [0], the pin Y1 belongs to the
-> MAIN Pinmux device-tree node (pinctrl@11c000). This is confirmed by the
-> address of the pinmux register for it on page 142 of the datasheet which is
-> 0x00011C1DC.
-> 
-> [...]
+> IRQ subsystem maintainers rejected the idea of relying on initcalls to
+> enforce probe order because initcalls do not guarantee ordering. The
+> Linux driver model instead ensures probe order through device
+> dependencies. Since PCI INTx depends on the APLIC being probed first,
+> the PCI host bridge probe cannot occur until after the APLIC probe
+> completes. This requirement and behavior are the same for both DT and
+> ACPI. In DT, the driver model uses fw_devlink to establish probe
+> ordering, while in ACPI this is handled through either an explicit _DEP
+> or, on RISC-V, the GSI mapping.
+> Typically, this dependency appears in the DSDT only for the PCI host
+> bridge. Individual PCIe devices are enumerated through the standard PCI
+> scan once the host bridge has been probed. Therefore, I’m not sure what
+> you meant by a probe sequence defined in the DSDT for PCIe devices.
+> Regards,
+> Sunil
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+I understand the scenario you described with a single PCI host bridge, where devices are enumerated
+through standard PCIe scanning after the host bridge completes probing. However, in ARM and RISC-V
+architectures, systems often have multiple PCI host bridges. We're currently facing an issue in a
+6-host-bridge system where all bridges depend on the APLIC driver. They must wait until the APLIC
+driver completes and callsacpi_dev_clear_dependenciesto resolve dependencies, after which they're
+sequentially added to the system_unbound_wq work queue. However, during execution in the work queue,
+these 6 host bridges undergo parallel enumeration, preventing them from following the order defined
+in the firmware's ACPI DSDT table. Specifically:
+1. The ACPI DSDT table declares the 6 host bridges in a fixed sequence
+Device(PC06) {
+    Name(_HID, "PNP0A08")
+    Name(_CID, "PNP0A03")
+    Name(_UID, 0x6)
+   ......
+}
+Device(PC07) {
+    Name(_HID, "PNP0A08")
+    Name(_CID, "PNP0A03")
+    Name(_UID, 0x7)
+    ......
+}
+Device(PC08) {
+    Name(_HID, "PNP0A08")
+    Name(_CID, "PNP0A03")
+    Name(_UID, 0x8)
+    .....
+}
+...
+Device(PC11) {
+    Name(_HID, "PNP0A08")
+    Name(_CID, "PNP0A03")
+    Name(_UID, 0xB)
+......
+}
 
-[1/1] arm64: dts: ti: k3-j721e-sk: Fix pinmux for pin Y1 used by power regulator
-      commit: 51f89c488f2ecc020f82bfedd77482584ce8027a
+2. But the OS enumerates them in random order upon each boot (first boot sequence ≠ second boot sequence)
+first boot sequence ~ # dmesg |grep -i "PCI Root"
+[ 8794.588531] ACPI: PCI Root Bridge [PC08] (domain 0006 [bus 80-ff])
+[ 8794.624478] ACPI: PCI Root Bridge [PC06] (domain 0005 [bus 00-ff])
+[ 8794.672741] ACPI: PCI Root Bridge [PC10] (domain 0008 [bus 00-ff])
+[ 8794.696680] ACPI: PCI Root Bridge [PC07] (domain 0006 [bus 00-7f])
+[ 8794.728234] ACPI: PCI Root Bridge [PC11] (domain 0009 [bus 00-ff])
+[ 8794.755098] ACPI: PCI Root Bridge [PC09] (domain 0007 [bus 00-ff])
+second boot sequence ~ # dmesg |grep -i "PCI Root"
+[ 8794.588531] ACPI: PCI Root Bridge [PC09] (domain 0007 [bus 00-ff])
+[ 8794.624478] ACPI: PCI Root Bridge [PC06] (domain 0005 [bus 00-ff])
+[ 8794.672741] ACPI: PCI Root Bridge [PC08] (domain 0006 [bus 80-ff])
+[ 8794.696680] ACPI: PCI Root Bridge [PC11] (domain 0009 [bus 00-ff])
+[ 8794.728234] ACPI: PCI Root Bridge [PC07] (domain 0006 [bus 00-7f])
+[ 8794.755098] ACPI: PCI Root Bridge [PC10] (domain 0008 [bus 00-ff])
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+This creates a critical issue: when NVMe devices are connected to these host bridges, the
+unpredictable kernel scanning sequence causes device identifiers (e.g., /dev/nvme0n1, /dev/nvme1n1)
+to change across reboots. In server environments, such device naming instability is unacceptable as
+it breaks storage configuration reliability and consistency.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+So far, we've only observed this disorderly enumeration in RISC-V multi-host-bridge scenarios, where
+APLIC dependency leads to enumeration via system_unbound_wq. We'd like to consult kernel experts:
+1. Has the impact of enumeration disorder in multi-host-bridge scenarios been considered?
+2. Are there viable solutions to address the random enumeration caused by system_unbound_wq?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+Best regards,
+Liqiang
 
 
