@@ -1,175 +1,101 @@
-Return-Path: <devicetree+bounces-240970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E618FC78292
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:31:19 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 685ABC782F4
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:37:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D9DB2353120
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:29:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 10BF0348100
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B842D0611;
-	Fri, 21 Nov 2025 09:29:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hOe8q+Yp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A827030E0F2;
+	Fri, 21 Nov 2025 09:37:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCDC42144D7
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 09:29:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85B92D193B
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 09:36:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763717394; cv=none; b=WvkVdWNQ+dVfJkCMAWlZaom2BODXQTliLwCByjrbMWaR2Z2hsIj3c35KljUWY6n8rFVJN6Z16DI6DehrVwM1YLPi7WAQrxPY3zpMDJ7PvqASObp5oZc437TgVlT0LWkbPcrJfGdGGURHk10ZRtWriTTo6zoZh0ZREOHF5fbMe8g=
+	t=1763717852; cv=none; b=fhORexqlK+h7SLJyOxcDIrrWb7WI9Mg9CKTmpUffNzYLs1P7KApJOvJ7KO0RDB9YLZBAMcb9cP9v2NJN6GuXpD1Bv+bp+xf6U8dOQPU6f7CFtQ6aFOV+0uwfu6x7KemwWWJi7zWrEW7VVQIN7hlRD4cIf+k0Z0+SGs3NiHCKZV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763717394; c=relaxed/simple;
-	bh=uSbYcEm1WCPNJwx8UqPV/i1enY5q8gnMalq46Q7qZW8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SnMlHN37MQEjyrGfEBjljog4iAAVkbdT/oMd+Sq2Hikozxr7rtLwRyph3Ln7uCeM1iGcO3GJT9mX/TALMFJ4kwM4jh62C/0T31vs4DCEhRaqlSOB7E/s8NhuW+BX1jTC7UcMlfvF1jiD3MbqAMulm6h7CPxb4YLmgOdAuftPqxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hOe8q+Yp; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b735b89501fso203838866b.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 01:29:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763717391; x=1764322191; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Wl2xu8XKN1gPMV9ACQzl23UL67KsRhgGQiSjpamCaq0=;
-        b=hOe8q+YpB9Z+lp7JGPGx+zpY/Q2DF6WpeFfc1dy4uapImoAll3cZsTSHIGe5SZU2zr
-         tzaS+8BSTBBQSEv3mqIbJitGfCwDNs1C0M8LlX0yRLAJc+/Oj9zYWlMybWU4lQFlIM7b
-         eOpIE61D2Rja6pAZ+e8zRcVKSuhgnoqyQo7qV7j0IiBakJTI8qfaU44kz8kxbM8Gb5zr
-         MwtnWz8Y7OE/QW+sKoqP7F4zS2gAa8MorSVHCgyPL2SoCNmCCbXOGh0hqPQJV2m1ynYE
-         gX6pl2i8hsvIgXgWcwC6gOwT7cKZfdY2zkMtlcaaCxbaUsHKrakXr9ouoXoDSVpGe6Lq
-         BMdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763717391; x=1764322191;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Wl2xu8XKN1gPMV9ACQzl23UL67KsRhgGQiSjpamCaq0=;
-        b=CbaBk3IyqAd9Uk5sy7JzM9O/2+OTfgfTvFLn53Kc6JcTuNkZJCPNK9YvZh9cJZ97uM
-         rDpB0UNLFnEAVqYPJ4W3pl6A4XbF6aNRhZFEieQFgl39IIhfXp17OP4R1IGWVAsnlh7g
-         2Ms/pp9J0z2pt5v4MvN0/3dfn6GcZpUWkD4NXBWEJh6XZIotA/j7KGtGpXMa6j3nmozP
-         u7wZDA94LKGvDnqddOySkpTYDf4vYZ7lzBOwfq3johem2Nchk6zLZzWJTMETKHymJCDd
-         iNkbtO4s/iTasDWKjfr+PFzqz3q4jNPJuo7vrYe71rA3AjbMkj3q9noKNQDPGawUaxT0
-         ZwLA==
-X-Gm-Message-State: AOJu0YzWSNI/dDi3dLojhF0PRMxL1S0jIf5J5frjelp+yqK4TYwonOz3
-	ItFpOuzi515bSb81zINraPq+tHIEmNxcVZNXiESQYOmXbq5FWcyrRzNs
-X-Gm-Gg: ASbGncvoew9d7dNDAN56V9foOqMxgubpVrHQ5Dc1510j9KRLAQSKkFWc0NqyZH6g/Kg
-	CZe0UuPV02zs8As6A+Ye6rkbd8ksudbSIshUMNj4EYXOfpF0wV1E8AdVNptBJ6kt2d3XtAWtXe5
-	JGPpLhbLbM/dOu6Q0Hlh9rBomUu+7kEZfDvqmfVDbKFnbD/toJitusPUylaxNUC592Z8WLC6BWb
-	ZlQVROYosCaWBNHt9CRmBZ6kL6dGLwzWXD4RLL7jiK0c1BbZO++qCSKY613BQ6sDCUpWoiNFUvJ
-	rTDl1H4a85X/z2G3Jd5spM9KTiyfCmL7Lr1wrCbiYL1sb+PMcGay5BldH+xtCI+nO5aJWRnzf44
-	F24s9YPvHe5E7AQXxcIBZ14RDT1Zki21Haupm2qrHUw0AwGCe3tC5FDHHlJbYmrOtWnH+4dNxTt
-	XPGE98pbkd5xePhxjNksIrLasEzAwq089xm38D8Af6gpQ=
-X-Google-Smtp-Source: AGHT+IHq8hk9zncY5NjxJIA+5dLJtbgJgeFMs63IXI+ZjuoPAQXsuFcRPpdcxS7UMwvUHeWvXnedJA==
-X-Received: by 2002:a17:906:fe4a:b0:b76:277b:9a3d with SMTP id a640c23a62f3a-b767170a37emr166265266b.29.1763717390579;
-        Fri, 21 Nov 2025 01:29:50 -0800 (PST)
-Received: from [10.25.210.163] ([128.77.115.157])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654fd4275sm402635166b.37.2025.11.21.01.29.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Nov 2025 01:29:50 -0800 (PST)
-Message-ID: <3959e908-ae61-4424-a8ef-89f655a4de8c@gmail.com>
-Date: Fri, 21 Nov 2025 01:29:48 -0800
+	s=arc-20240116; t=1763717852; c=relaxed/simple;
+	bh=YkdsA5OIGHFVkvcgR89QyHDhanQzIqF/1eGoMs51eC4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IO+cvi6R32Hs3PmnJvF6rZBm+JZoxfPmrRpDTTvfRo0qwj5sTTYVSMbi0OCpRsRnbTxC8/RS4hn45RFTGk8oQICfcV7PWjXgPoMtd7K0irp5zuHQBSNMfNy6wK7GJXlZaw2h16Wtm+XGrUDDT7o8FxMPTEchRn+hwYMPjo//V4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=andestech.com; spf=unknown smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=tempfail smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
+	by Atcsqr.andestech.com with ESMTPS id 5AL9aWW5051674
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 21 Nov 2025 17:36:32 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02 (10.0.15.183) by ATCPCS31.andestech.com (10.0.1.89)
+ with Microsoft SMTP Server id 14.3.498.0; Fri, 21 Nov 2025 17:36:32 +0800
+Date: Fri, 21 Nov 2025 17:36:32 +0800
+From: CL Wang <cl634@andestech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <broonie@kernel.org>, <linux-spi@vger.kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tim609@andestech.com>, <cl634@andestech.com>
+Subject: Re: [PATCH 2/2] spi: atcspi200: Add ATCSPI200 SPI driver
+Message-ID: <aSAyoP3ohz73sd1U@swlinux02>
+References: <20251112034724.1977630-1-cl634@andestech.com>
+ <20251112034724.1977630-3-cl634@andestech.com>
+ <73a39371-5bf0-4a3d-a48b-9e91668b779c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/6] reset: imx8mp-audiomix: Extend the driver usage
-To: Philipp Zabel <p.zabel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>,
- Shengjiu Wang <shengjiu.wang@nxp.com>, Frank Li <Frank.Li@nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20251114133738.1762-1-laurentiumihalcea111@gmail.com>
- <20251114133738.1762-5-laurentiumihalcea111@gmail.com>
- <8b225c56612ff01845a90388be0945c7d0b3f0d2.camel@pengutronix.de>
-Content-Language: en-US
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <8b225c56612ff01845a90388be0945c7d0b3f0d2.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <73a39371-5bf0-4a3d-a48b-9e91668b779c@kernel.org>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 5AL9aWW5051674
 
+Hi Krzysztof,
 
-On 11/14/2025 8:02 AM, Philipp Zabel wrote:
-> On Fr, 2025-11-14 at 05:37 -0800, Laurentiu Mihalcea wrote:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>
->> Switch to per-device reset map to allow reusing the driver for other NXP
->> block control IPs.
->>
->> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
->> Reviewed-by: Frank Li <Frank.Li@nxp.com>
->> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->> ---
->>  drivers/reset/reset-imx8mp-audiomix.c | 18 ++++++++++++++++--
->>  1 file changed, 16 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-imx8mp-audiomix.c
->> index 35df9bd5f71a..d3396f37d1ff 100644
->> --- a/drivers/reset/reset-imx8mp-audiomix.c
->> +++ b/drivers/reset/reset-imx8mp-audiomix.c
->> @@ -24,7 +24,12 @@ struct imx8mp_reset_map {
->>  	bool active_low;
->>  };
->>  
->> -static const struct imx8mp_reset_map reset_map[] = {
->> +struct imx8mp_reset_info {
->> +	const struct imx8mp_reset_map *map;
->> +	int num_lines;
->> +};
->> +
->> +static const struct imx8mp_reset_map imx8mp_reset_map[] = {
->>  	[IMX8MP_AUDIOMIX_EARC_RESET] = {
->>  		.offset	= IMX8MP_AUDIOMIX_EARC_RESET_OFFSET,
->>  		.bit = 0,
->> @@ -42,9 +47,15 @@ static const struct imx8mp_reset_map reset_map[] = {
->>  	},
->>  };
->>  
->> +static const struct imx8mp_reset_info imx8mp_reset_info = {
->> +	.map = imx8mp_reset_map,
->> +	.num_lines = ARRAY_SIZE(imx8mp_reset_map),
->> +};
->> +
->>  struct imx8mp_audiomix_reset {
->>  	struct reset_controller_dev rcdev;
->>  	struct regmap *regmap;
->> +	const struct imx8mp_reset_info *rinfo;
-> Since only rinfo->map is used in imx8mp_audiomix_update(), you could
-> directly store a
->
-> 	const struct imx8mp_reset_map *map;
+Thanks for your review, and please see my responses inline.
+> > +     spi->clk_rate = clk_get_rate(spi->clk);
+> > +     if (!spi->clk_rate)
+> > +             return dev_err_probe(spi->dev, -EINVAL,
+> > +                                  "Failed to get SPI clock rate\n");
+> 
+> You miss clock enable/prepare cleanup. In other places as well.
+You are right — the error paths miss the corresponding
+clk_disable_unprepare() cleanup. I will update the probe logic to ensure
+the clock is properly disabled along all failure paths
 
+> > +
+> > +free_controller:
+> > +     spi_controller_put(host);
+> 
+> Where is DMA channel release? Same for unbind path.
+Thanks for pointing this out. To ensure proper cleanup in both the probe
+error path and a potential future remove() implementation, I will switch to
+devm_dma_request_chan(), so that DMA channels are automatically released
+by the device core.
 
-hm, that is true, but I wonder if instead of replacing "rinfo" with "map", it would be better to
+> > +static const struct of_device_id atcspi_of_match[] = {
+> > +     { .compatible = "andestech,qilai-spi", },
+> > +     { .compatible = "andestech,atcspi200", },
+Understood. I will fix the compatible strings and ensure all of them are
+properly documented in the binding.
 
-keep "rinfo" and add an out-of-bounds check for the reset ID in imx8mp_audiomix_update().
+Thanks again for your review and suggestions.
 
-Something like:
+Best regards,
+CL
 
-
-                if (id >= priv->rinfo->num_lines)
-
-                    return -EINVAL;
-
-
-we are stuck with "struct imx8mp_reset_info" so might as well fully make use of it?
-
-
->
->
-> regards
-> Philipp
 
