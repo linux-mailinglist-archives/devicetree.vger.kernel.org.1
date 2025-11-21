@@ -1,272 +1,126 @@
-Return-Path: <devicetree+bounces-240983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51E24C784E9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:05:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F94C785A3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:09:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DC40C343196
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:01:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 00319356DF2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30494343208;
-	Fri, 21 Nov 2025 09:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7302ED16B;
+	Fri, 21 Nov 2025 10:00:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mKc6qhet"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="oh2ivgxf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41870340D9E
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 09:55:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1BB34A786;
+	Fri, 21 Nov 2025 10:00:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763718917; cv=none; b=kVtZkW5EaMmFnUVeAOns7FOSC+NlY8qIYM4abk5cM0xJ12WnKfIocAcz7qK0YMkM3/RNJZKT4KWAjpy19Wvo1FgskQ6LHosZwWWe56HX4PAEkIdwqPWJSXFkZ7j6NhOe/HnOCKxwZQx1iyXH4F96g/Pa76UMRhtIHK9Vo7YUDTk=
+	t=1763719206; cv=none; b=MTe/BsgsSsj17ChqpG4afX8e+jhMyKF2vvcBfCl8tCHqplC6MM7GgrHX/JcPOoMyCFa/ZUWK4cGk1JF53YIhnMkCUX9PdOtSDgEJny6IOavR28fuMX4te0eDvE8aYxTIMZQMsuH4S2iFDQIoDpzYtOVhSxnjQBbVjgj6ihxqtck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763718917; c=relaxed/simple;
-	bh=EMfSDRMto6bdlxznJ1sCs94d+Mr4wdVBG6VAaoKfhMs=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=Dxwp5gk5KQWxsiF1hdVYx3JifeE75rw3jaLjwe3khm2CIGYwSQquzw6VDqJFVLJy5WiiTuyrDEia1wQRMgoip5noQQkws1CSDEmnvHGz2CMo3/rZ6nHjUKsUuoecYb4hQJH1vPtCL05L8bBhS5vvA71IRW9Tsc10iRG22+9XFLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mKc6qhet; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-64312565c10so2580132a12.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 01:55:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763718914; x=1764323714; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O5sXa9oC+KOOiftpAe4sv1j7HqzzBA+hMLeVqAktHeQ=;
-        b=mKc6qhetC/qcTAXVBfp0DBJM/ZpR17bBFInWaCXLQBJz9X5tdxfdGpp76XO9y9+ew5
-         6MVukMm925KjcRusEzPVpCmMPgknyqC0sclnMywjoL3wAxxi9tIEBhOvoPZjND0HQJ3K
-         nyCBaFuzjvSnqkxdeNkyFhoSEhFVThvLrk1Ypkhq4BHAUvLWegf69lO/5Hsw7CYDWShn
-         HaR6jTErhJNocKun4WKzY+sbEixXIGVvt+lll+YMs3Qv0qrqVGY7M8DNr6mDLkaMJAhs
-         kNZ6ud8cTe5+EIHFDJRqrKu1jD3Nkp8t2dgPQDB1vqCaSzaMDtyl1AhmtpOwqLsyu6MX
-         0a7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763718914; x=1764323714;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=O5sXa9oC+KOOiftpAe4sv1j7HqzzBA+hMLeVqAktHeQ=;
-        b=Ck/9F8cAG6m3gDq5EbpCUBaRtK6theINjTmfORzHeGrmdYK/3C1khs+q8HKnu2VKBb
-         50hXzm6+C6nJs2ZSWm/zwKrUVRd18n9qyZbFejSm1VH4vhz0PW8jAzICS0IBSLsIkNUX
-         2Kf8fA8n7xHSy8bgXFga+Anf4IMQ1WxHw3CIpLl6Pd4cxEYpVt87D8VzvwVnKehcOj2w
-         vC0W9uuLWWpV2mrsOebwrf36mv7saySKg9wWk4HWeiKug1erlapbWU6JfXIrv3Eu9tFN
-         5pR5GCtCAM7NpAVmAUWJCqbnD+EejqlrLpqgV8v3VhObR7XRcAdRbqTgQ1+87WNzS2nf
-         YxLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOp3Jf/uGZLIowAY1r1f8apH1POFnZq96caQ8XyIDymRulTR4xkD3Ig4KVNhWGFdL1He0E5bYTB2o1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPyVXnIKb/Em3MzyRRl3BxcnLfn515uDTMlnNQ1ROgv2GgGJtM
-	UoeQ5nTKKGOicNBHTSUr+n5mkYAbaU/ZZWTwo8s34sUP4YBG10FngczC
-X-Gm-Gg: ASbGnctGEUfi4C3QIiUC2x8cf1BPi+5CnAZERnuEbdRGhBruF3vDy+Pz8u/ugbV+Skz
-	EK9Bez95IZgyB7W3SPvERKdh1aoFpZ/IlP9vqAme5AOzyG8d348b/dEoZkGeicLNZ/tAKoAA1JM
-	f2/d8LqdvJFG6b0sq39UBIMcI3E7Aki1zVK+ZyhSXd9tyzuNSvDOwNSJ+S5Es9uNlQxyyeslyxU
-	8k91z448oUYusGJZqOBo5lEza8nkxw49GDpn9RV/AmHU7sbz1vop7NwDGZOMKOpNNLd+ZetJu4K
-	Kheam0RhNuoqgVzkwrJwGNjD+nlu6oPcgunao73vc9UTUQ47uiI15izGSPwgG49MK/00E5VOmhe
-	YUl1vHQljceStnAuWpM/AYazaC2PeuSbgmlHJICOOGgDMMWhOyPTZ5VYOUtfqiBmeqiE+6ffEsb
-	C+lI/tkmDUoiSpXUy4Ri7RK1lnmHWi/ZHoW40nJdARCkXzlIUyQMv0Bee0xDPbup86
-X-Google-Smtp-Source: AGHT+IFK2gLLD1c3WD4mHnPUfISp9zBgTSqIO/lEejZpzJMB+Sb3nwm+/TCS3vP9Ug1MEnPP1fQzYw==
-X-Received: by 2002:a05:6402:2714:b0:640:93b2:fd0a with SMTP id 4fb4d7f45d1cf-64554665a08mr1612974a12.20.1763718913347;
-        Fri, 21 Nov 2025 01:55:13 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.play.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6453642d3ecsm4085545a12.17.2025.11.21.01.55.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 21 Nov 2025 01:55:12 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1763719206; c=relaxed/simple;
+	bh=4ngOHI0oQJ9ODvGvOW6kol0M+om6BeyoWwEBajehyeU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JcdvKWDMAQs02oYqePYlpHNywsZ9t6ywuq0fg9NGZXOFWQL2/aKMVGl/ab8PC3cm1EqVsKc+XRJmAfEtPMER2ZQx5i14+WgwxBjhT+Rq59pC/JPyJTyBBiJT3dbrq6bsoZWLCD8f4d0I0WwmE9cR6ni+9MqhNDIRWxuDtADIpbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=oh2ivgxf; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AL6KJvW2556766;
+	Fri, 21 Nov 2025 05:00:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=5Q1/Qu6oH/Iq5pIb5Q7+xQKZ5r0
+	Sx9x+6nGD3ljvf4s=; b=oh2ivgxfCKLZpIQ+pyOeI0xutwku7F4kHZkeDrSamhX
+	lgWv2O73cysm+TvFf7XeGhEHz6Amjr0ySDCVZ0LGY9KgWQTKmsVk8GQMZnBtx5QH
+	P023I8A/81PpuB+pt1dFCpZva+KfRUvIgnfHM5pim5B+TIfFQTooj2iza96uMamS
+	AUl+OlNqq0U3vgPFFtypNcclVlzmFTo6jl4WIPoBU88zX1DLiTPR3bCaBThYCJ++
+	HME4DwlHCJov4OSzDKQ6Yc7L+nkPHf8MH2xI3at2HaNEMiW+kpC9OLztCBKZ4iYw
+	uGwxek3oWYpqvCqWAby1noJSgwFNaegTOaQujIXOIZg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4ajjqjrwd8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Nov 2025 05:00:01 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5ALA00PV015301
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 21 Nov 2025 05:00:00 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Fri, 21 Nov
+ 2025 05:00:00 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Fri, 21 Nov 2025 05:00:00 -0500
+Received: from Ubuntu.ad.analog.com (AMICLAUS-L01.ad.analog.com [10.48.65.187])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AL9xo94027151;
+	Fri, 21 Nov 2025 04:59:52 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [RESEND PATCH v2 0/2] iio: frequency: adf4377: add clock provider support
+Date: Fri, 21 Nov 2025 09:59:31 +0000
+Message-ID: <20251121095933.19032-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
-Subject: Re: [PATCH 01/11] dt-bindings: display: meson-dw-hdmi: Add compatible
- for S4 HDMI controller
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <a71f24c9-1f40-45a1-8fdb-6075bbf89930@amlogic.com>
-Date: Fri, 21 Nov 2025 10:54:59 +0100
-Cc: Chuan Liu <chuan.liu@amlogic.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <1015ADA9-34EA-43E6-A43A-413740C6736E@gmail.com>
-References: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
- <20250110-drm-s4-v1-1-cbc2d5edaae8@amlogic.com>
- <3AC316FA-A633-4B6C-81BA-CCCA290E7F03@gmail.com>
- <8c3b9fa4-326e-4791-8154-07b268faa132@amlogic.com>
- <7703796D-35D4-4AD2-B7F8-B75D2BE0F7AD@gmail.com>
- <a71f24c9-1f40-45a1-8fdb-6075bbf89930@amlogic.com>
-To: Ao Xu <ao.xu@amlogic.com>
-X-Mailer: Apple Mail (2.3826.700.81)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: O0pP-IiaX-3qfmgCv0ogh2sJvywsV4tY
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIxMDA3NiBTYWx0ZWRfX/JjPM9eVx2m9
+ 2Ub5bK2LAySyEkKDNkVl9BwKI/5MzEik1jqulrrenUya29KsgL+FRufiRAt+Uqk6KbDWMMUzDI0
+ TgYq9T8tolbfK48ctS1e73gGKga68nrztmDMsiqVPBkj4DhmpdWqSV9xaNSl10Gv0AORHn5vqyI
+ VfxFgZNdXrPJmISu/aBoM4HCe8ErUhJ+1coIvU2bMB8D1N87FgFWyqp7HC9qc8RVxdAoQOwJgfM
+ J+T8gBMvHIq+/EJsFDTdUj+HWRY/GHY24//8Bjoz67OvGhrIjjfF0e2ah7Y0CD+mzKzaUlpsTAi
+ eDrmzbzInUvPtIjxrLIGZyDC90ncERBeYSQW/LjxKqRpBR7F0FWw5v8VAuSjEe8HQVF+yXQnKUI
+ NoT6jFLq6bxDCwRkX4FTkg6d8c4t2w==
+X-Proofpoint-ORIG-GUID: O0pP-IiaX-3qfmgCv0ogh2sJvywsV4tY
+X-Authority-Analysis: v=2.4 cv=ffygCkQF c=1 sm=1 tr=0 ts=69203821 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=xhyw43Vw4g2VkAmxKawA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-21_03,2025-11-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 malwarescore=0 bulkscore=0 lowpriorityscore=0
+ clxscore=1015 impostorscore=0 adultscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511210076
 
-Thx!
+This series adds clock provider functionality to the ADF4377 frequency
+synthesizer driver to address user requests for controlling output
+frequencies from userspace.
 
-btw: i found that enabling CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER
+While implemented as an IIO driver, the ADF4377 is commonly used as a
+clock source. This patch series enables it to function as either:
+- A traditional IIO device (when #clock-cells is not specified)
+- A clock provider (when #clock-cells is present in device tree)
 
-results with:=20
--no anymore boot hang on s4 (with connected hdmi)
--still black screen at s4 boot (with connected hdmi)  =20
--breaks boot-splash for me on other platforms (allwinner, rockchip)
+The implementation provides standard clock framework integration with
+rate control, enable/disable support, and maintains backward
+compatibility with existing IIO configurations.
 
-maybe s4 drm series i'm using is not ready for 6.18 change of fbdev =
-framework to DRM?
-   =20
-> Wiadomo=C5=9B=C4=87 napisana przez Ao Xu <ao.xu@amlogic.com> w dniu 21 =
-lis 2025, o godz. 03:55:
->=20
-> Hi Piotr=EF=BC=8C
->=20
->     I will check this issue
->=20
-> =E5=9C=A8 2025/11/19 18:27, Piotr Oniszczuk =E5=86=99=E9=81=93:
->> [You don't often get email from piotr.oniszczuk@gmail.com. Learn why =
-this is important at https://aka.ms/LearnAboutSenderIdentification ]
->>=20
->> [ EXTERNAL EMAIL ]
->>=20
->> Pls see inline
->>=20
->>> Wiadomo=C5=9B=C4=87 napisana przez Chuan Liu <chuan.liu@amlogic.com> =
-w dniu 19 lis 2025, o godz. 03:57:
->>>=20
->>> Hi Piotr,
->>>=20
->>>=20
->>> On 11/18/2025 10:50 PM, Piotr Oniszczuk wrote:
->>>> [You don't often get email from piotr.oniszczuk@gmail.com. Learn =
-why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->>>> [ EXTERNAL EMAIL ]
->>>> Ao,
->>>> Is there any chance to get this s4 drm hdmi series for current =
-6.18?
->>>> (i tried backport this series to 6.18 but have some issues with =
-reparent vpu_0_sel to sysclk_b_sel)
->>> Why do we need to reparent vpu_0_sel to sysclk_b_sel? is there any
->>> background here?
->> Well - it looks it is because bug....
->> Martin Blumenstingl had perfect eye and catch typo in patch =
-https://lore.kernel.org/all/20250110-drm-s4-v1-11-cbc2d5edaae8@amlogic.com=
-/:
->>=20
->> By replacing:
->> assigned-clock-parents =3D <&clkc_periphs CLKID_FCLK_DIV3>,
->> <0>, /* Do Nothing */
->> <&clkc_periphs CLKID_VPU_0>,
->> <&clkc_periphs CLKID_FCLK_DIV4>,
->> <0>, /* Do Nothing */
->> <&clkc_periphs CLKID_VAPB_0>;
->>=20
->> with:
->> assigned-clock-parents =3D <&clkc_pll CLKID_FCLK_DIV3>,
->> <0>, /* Do Nothing */
->> <&clkc_periphs CLKID_VPU_0>,
->> <&clkc_pll CLKID_FCLK_DIV4>,
->> <0>, /* Do Nothing */
->> <&clkc_periphs CLKID_VAPB_0>;
->>=20
->> dmesg is like this https://termbin.com/6020
->>=20
->> So i'm getting hdmi working - but only when device boots _without_ =
-connected hdmi at boot (and connected later)
->> If hdmi is connected at boot - boot hangs at:
->>=20
->>     0.341676] meson-dw-hdmi fe300000.hdmi-tx: Detected HDMI TX =
-controller v2.01a with HDCP (meson_dw_hdmi_phy)
->> [    0.342750] meson-dw-hdmi fe300000.hdmi-tx: registered DesignWare =
-HDMI I2C bus driver
->> [    0.343660] meson-drm ff000000.vpu: bound fe300000.hdmi-tx (ops =
-meson_dw_hdmi_ops)
->> [    0.344832] [drm] Initialized meson 1.0.0 for ff000000.vpu on =
-minor 0
->>=20
->> FYI: It is after applying =
-https://patchwork.kernel.org/project/linux-amlogic/cover/20250110-drm-s4-v=
-1-0-cbc2d5edaae8@amlogic.com/ on mainline 6.18 (with some my adjustments =
-on this series required by changes in 6.18).
->> For VPU clk changes see =
-https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-6.18/f=
-iles/0312-drm-meson-add-vpu-clk-setting-for-S4.patch
->> It is 6.18 adaptation of =
-https://patchwork.kernel.org/project/linux-amlogic/patch/20250110-drm-s4-v=
-1-9-cbc2d5edaae8@amlogic.com/
->>=20
->> As kernel hangs - i have limited caps to drill where root cause is.
->>=20
->> Maybe above hang is reason of my backports or missing any pre-req =
-required to get s4 drm working?
->> Anyway - it will be good to test with updated to 6.18 series of Add =
-DRM support for Amlogic S4 (plus info about any pre-req required to get =
-s4 drm working)
->>=20
->>=20
->>> The vpu_clk on S4 doesn't support sysclk_b_sel as one of its
->>> selectable clock sources, so this reparent operation will definitely
->>> fail. This has nothing to do with the kernel version.
->>>=20
->>>>> Wiadomo=C5=9B=C4=87 napisana przez Ao Xu via B4 Relay =
-<devnull+ao.xu.amlogic.com@kernel.org> w dniu 10 sty 2025, o godz. =
-06:39:
->>>>>=20
->>>>> From: Ao Xu <ao.xu@amlogic.com>
->>>>>=20
->>>>> Add devicetree document for S4 HDMI controller
->>>>>=20
->>>>> Signed-off-by: Ao Xu <ao.xu@amlogic.com>
->>>>> ---
->>>>> =
-Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml | 1 =
-+
->>>>> 1 file changed, 1 insertion(+)
->>>>>=20
->>>>> diff --git =
-a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml =
-b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->>>>> index =
-84d68b8cfccc86fd87a6a0fd2b70af12e51eb8a4..6e0a8369eee915fab55af24d450a6c40=
-e08def38 100644
->>>>> --- =
-a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->>>>> +++ =
-b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->>>>> @@ -55,6 +55,7 @@ properties:
->>>>>           - const: amlogic,meson-gx-dw-hdmi
->>>>>       - enum:
->>>>>           - amlogic,meson-g12a-dw-hdmi # G12A (S905X2, S905Y2, =
-S905D2)
->>>>> +          - amlogic,meson-s4-dw-hdmi # S4 (S905Y4)
->>>>>=20
->>>>>   reg:
->>>>>     maxItems: 1
->>>>>=20
->>>>> --
->>>>> 2.43.0
->>>>>=20
->>>>>=20
->>>>>=20
->>>>> _______________________________________________
->>>>> linux-amlogic mailing list
->>>>> linux-amlogic@lists.infradead.org
->>>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>>> _______________________________________________
->>>> linux-amlogic mailing list
->>>> linux-amlogic@lists.infradead.org
->>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Antoniu Miclaus (2):
+  dt-bindings: iio: frequency: adf4377: add clk provider
+  iio: frequency: adf4377: add clk provider support
+
+ .../bindings/iio/frequency/adi,adf4377.yaml   |   8 ++
+ drivers/iio/frequency/adf4377.c               | 119 +++++++++++++++++-
+ 2 files changed, 125 insertions(+), 2 deletions(-)
+
+-- 
+2.43.0
 
 
