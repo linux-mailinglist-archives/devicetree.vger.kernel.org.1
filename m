@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-240991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62AEDC78902
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:45:10 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11174C788A7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:36:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 9BC522D1E5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:35:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F388F4E648D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0649933FE07;
-	Fri, 21 Nov 2025 10:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED53E340A59;
+	Fri, 21 Nov 2025 10:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y9H7sHMy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dMMkY9/o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5463370EE;
-	Fri, 21 Nov 2025 10:35:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1983370EE;
+	Fri, 21 Nov 2025 10:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763721334; cv=none; b=immkI/ngWIXbMgJ/y/Us3bSLrTC4pS0ByFnglwt/ruragoOX9+4ebGK7ACcD5/SGwdRJv/EBkziR1UP3sQ2x0IpQaUrcJZ+TZTzf0/l4gJz5+VsDHHCT1+GOUWuKvFg0ghilzKQAsS6qQDqQGE5cEIfBVqRl1npo2d50dtpbNhQ=
+	t=1763721383; cv=none; b=V+Lg3Qxio72yMBp0Em+fPmXXlXZvfVtIOWcEHQKcFC3RirreisoKK4ccRqLNd9cGk4LXhmExkfXDQjERnGEiLrTtr62O6SXjqzVhMU9DzpDgxaIo5do5uQwVe1rlh+7k6IR3bwqoLYiqSP/vhV/poxLupdLHEgtrHuayXNn+PYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763721334; c=relaxed/simple;
-	bh=JTVcxFY+N0ePohEgVAcIVZFT86TMErD4s13HGO/aF/Y=;
+	s=arc-20240116; t=1763721383; c=relaxed/simple;
+	bh=pRXqSJURymbccYWTQkb2HlC6TsWnsMMqs45Ng/VOuCo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UI79UE5Aef/7qoKvmAhka2e80G/okSbcNi+TKpDXaRVLzjWYTQNHT5V1xhJ3iLl69OHlDHBlXmufN0jYhnPmdzZSmxllCHsSXHkFQyY4IjdyhXITnJa/Vd3ye7WXF36BCsqKsjpQxMNZPRqtVTLkqWPUcxAdnIivNMKdOqGfYHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y9H7sHMy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17B5EC116C6;
-	Fri, 21 Nov 2025 10:35:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=aQWuMYL3X1EpU1GdFfG3R6WprpeXpnT2e/hpcQnsYdghwI3KmUQvEQIC004M+uTpos6pdLvWES9B2sDo178haxSqQV7YzzsAVGkyso/mse5E0P922J/cvn0tzzrWtqSObXFrHNLzHiolDhVGRtWmp4BYzL/oIw+s3NUcgFnipXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dMMkY9/o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B12A9C4CEF1;
+	Fri, 21 Nov 2025 10:36:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763721334;
-	bh=JTVcxFY+N0ePohEgVAcIVZFT86TMErD4s13HGO/aF/Y=;
+	s=k20201202; t=1763721383;
+	bh=pRXqSJURymbccYWTQkb2HlC6TsWnsMMqs45Ng/VOuCo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y9H7sHMyUFr2dMxcyB7bDAyUw9LVx/klrj3CeCzOBVHzGc1mIsMc/h/9gest4nRC9
-	 49hFRlzkIfoe57sIltWRi+jKd1k5IlxxDd4xUkr2pah5RXOmVpkROJI6ayw4GJhE1M
-	 NwxuIoPOnqLpcVtfpCSPBy4qTIVhzJokJ0SM2otSD5arhqtzBGsftXT9zCzbR9rWV9
-	 MYq+oCB6j/mGfn6YFnce/Kj54Dn3b7MVHBO5l5zy6PfIX3FdXdkVZXiXld+a9dCHyJ
-	 jB/eevvCpVt7LpbGSIP06pUiI1PhW6IlN4qneay9djngB4SBBo3dVupIZdqecsFVqe
-	 BICETwfNT/k4Q==
-Message-ID: <40c930a4-2dc0-4fe1-b430-02ca05a1b517@kernel.org>
-Date: Fri, 21 Nov 2025 11:35:30 +0100
+	b=dMMkY9/oODkK46nt7OJDedG9JOh/AZPVgqIaCcx+HzsBmb60KNp8p3qE8GTVCzILP
+	 kSbtqycxFSIskj1kexG06yqabmED6RAZjQ1KgGYcj1NqKSXhm5l2QBbPJWQuc4YyVL
+	 hPv2BC1K4suRLT8FT5f3DbcZGKcP7BrCszM7MFcMELksypv9XTYUpZV8rnN6rS9HLz
+	 2SNteI/f2bH4c7VvFQR8l1JedEg2mZQAY7JL9TcK135C5VDlu3QQSlsCIwMnbd5rdC
+	 eE/TbfuejUPJw8LRbQ4nqnrJL0JCatMuiks2cuuwqFZNewUIASHP8OFqAng5ZwDKw7
+	 zD4Gc0BFwicmg==
+Message-ID: <9056e0fd-bcc9-490a-a103-d0da384338b8@kernel.org>
+Date: Fri, 21 Nov 2025 11:36:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: cache: qcom,llcc: Document Glymur LLCC
- block
+Subject: Re: [PATCH 3/4] soc: qcom: llcc: Fix usecase id macro alignment
 To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
  Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>,
@@ -60,7 +59,7 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, sibi.sankar@oss.qualcomm.com,
  rajendra.nayak@oss.qualcomm.com
 References: <20251121-glymur_llcc_enablement-v1-0-336b851b8dcb@oss.qualcomm.com>
- <20251121-glymur_llcc_enablement-v1-1-336b851b8dcb@oss.qualcomm.com>
+ <20251121-glymur_llcc_enablement-v1-3-336b851b8dcb@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,39 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251121-glymur_llcc_enablement-v1-1-336b851b8dcb@oss.qualcomm.com>
+In-Reply-To: <20251121-glymur_llcc_enablement-v1-3-336b851b8dcb@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21/11/2025 10:53, Pankaj Patil wrote:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,glymur-llcc
-> +    then:
-> +      properties:
-> +        reg:
-> +          items:
-> +            - description: LLCC0 base register region
-> +            - description: LLCC1 base register region
-> +            - description: LLCC2 base register region
-> +            - description: LLCC3 base register region
-> +            - description: LLCC4 base register region
-> +            - description: LLCC5 base register region
-> +            - description: LLCC6 base register region
-> +            - description: LLCC7 base register region
-> +            - description: LLCC8 base register region
-> +            - description: LLCC9 base register region
-> +            - description: LLCC10 base register region
-> +            - description: LLCC11 base register region
-> +            - description: LLCC broadcast base register region
-> +            - description: LLCC broadcast AND register region
+> Fixed spacing for usecase id macro along the
 
-Max is 10, so this is too many. You need to fix top-level constraints.
+What is exactly fixed?
 
-> +        reg-names:
+> column length
+
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+Cleanups go before new features/devices.
+
 Best regards,
 Krzysztof
 
