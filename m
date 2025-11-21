@@ -1,114 +1,174 @@
-Return-Path: <devicetree+bounces-241147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7EE8C7A4A1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:50:10 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D4AC7A526
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:54:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7D28F382432
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:41:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 67DFD4E9968
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:46:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC29352F94;
-	Fri, 21 Nov 2025 14:39:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Te6RDEOd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5895F27587D;
+	Fri, 21 Nov 2025 14:46:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A641B4244;
-	Fri, 21 Nov 2025 14:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A61D1E9B1C
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 14:46:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763735988; cv=none; b=RrYJODVhn3ZD9XNi1Nt2A0cIN01Hx1M1OkGh4x03Pd4SAd8wC6dOOF3qirth9ysQ65uDx3+HpnJ4zvwJ7J/vCkY07F0Cr6LCHegvyipgvvAg0F043KHVJhiaIFKVS3DJ0hYco8rf05uH12i5cYw93Jxg4xIvtvC1rS22e9cs1yQ=
+	t=1763736404; cv=none; b=bndoLfDGU9vv+NuZMYP2HuM19h7iGYl6vrWFt5IQjqGHkyTqpPbyBDQSotWhBUnxkopvWn007gRJHcXQOCieos3HXstIbpw+7GpFwV2dNeczmM0p5+eThkuRUsRbV5OEFzTganDJS8Wty0KfdbWCJRusY/v3YdlopNB1yMXnk/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763735988; c=relaxed/simple;
-	bh=pnM6zj86IqldLJPS+Ht6crPpBTtueu6/UR4GDU5+lHQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jvDyGKBTpeZwwelYQ0IpLEQfwt4XQAzoWJU+4M7oXcRRmChb3JSvlQTJf77VbxMjxRL5175Xx1aNMomINJhYB0BtKe8/idWdYR8LmzEWi2eUq//G86J6H1W2eNjfPU/eFSWI4R0zOjMxW+dqsB+2niuplidtgVNxcZkFXJdYFtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Te6RDEOd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68B3BC4CEF1;
-	Fri, 21 Nov 2025 14:39:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763735987;
-	bh=pnM6zj86IqldLJPS+Ht6crPpBTtueu6/UR4GDU5+lHQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Te6RDEOdyGphjrHER0QQGpNtE5pzBwo8AYMnhRlsTSP737QewqjciixM2c9k4an4a
-	 6sOfxv346z52RYZxC73xZT3rr6A+FVPuzRw2RGYzm9YQM+Xf64k9TSE2xWGUGZ8xKr
-	 HeFcja7evMSOOdE0R1wISnpO7Cqr+IqC3SlGrIyz0ZBVuBKwxwptqOJ+6wR3Hg9wWN
-	 Q79HMi64H7qQkyFEXMnRxLLgjrZPblBWhHPfN9NB/+pL/KQJU0KfOM2mJddM4t7PWH
-	 M8jF+9PMH8ypMxE+On3gZ/u0re5h0No9UP5C0bk2SdXx3la2PFYEsTZppw5vuInVfh
-	 68pDSluqUh3Ng==
-From: Mark Brown <broonie@kernel.org>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, 
- Riccardo Mereu <r.mereu.kernel@arduino.cc>
-Cc: linux@roeck-us.net, Jonathan.Cameron@huawei.com, wenswang@yeah.net, 
- naresh.solanki@9elements.com, michal.simek@amd.com, nuno.sa@analog.com, 
- chou.cosmo@gmail.com, grantpeltier93@gmail.com, eajames@linux.ibm.com, 
- farouk.bouabid@cherry.de, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-spi@vger.kernel.org, m.facchin@arduino.cc, 
- Riccardo Mereu <r.mereu@arduino.cc>
-In-Reply-To: <20251120155825.121483-1-r.mereu.kernel@arduino.cc>
-References: <20251120155825.121483-1-r.mereu.kernel@arduino.cc>
-Subject: Re: (subset) [PATCH v3 0/6] arm64: qcom: add support for Arduino
- UnoQ SBC
-Message-Id: <176373598316.33640.5262167228570567922.b4-ty@kernel.org>
-Date: Fri, 21 Nov 2025 14:39:43 +0000
+	s=arc-20240116; t=1763736404; c=relaxed/simple;
+	bh=eUopMHDcrOOQ3SDLbKHxv+NyN+8j07BPv0wKk64BLns=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ojV3F53/XFIzkY7RXNscc8I087RHd1F6HUE/yahrvQ5c0n7yinFP037mzrcyxqzYsneJnEHv3H03VngrUuBOvvz5AnrhyXY1z+JxAXb/UxLyeAcC+TtgRDgftVwEwy9ZonkOsjDEkTEIoExkOHWf+dHGdSj+HVL8MZZRMIyZXLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-55b155c9ab2so646062e0c.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 06:46:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763736401; x=1764341201;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ENP0h/R0a3V4uxvE+8RQQ9YGEKzdgQGNp1M5prxm01k=;
+        b=MTlUqNfKtLMiQqtE8gKHF5Xdxz4/gX7lzyCMJ3leb9pXjGxg2kV7RYZMWfLqXbYIE0
+         7NsIRGRBCTF0A+rNywYm2bSr2+UGIRbD3E6fO72j55Yxw3nA+a+6Rr37DaGxmDFsE/1P
+         S/82mgZlF4xWIi608OI0GPRVcIfwxdghK6rHuMOxjqYKhIMG+aS5GLna6f0s3OKkMJCn
+         NwQa1dUf91IBWibNmelwFRDMMrcriQdy5KVYzdQJWz9ftH8AVfaYLMkIJK/vAO+fE1PY
+         iZSE+JSlQLm85PrDqlrTGYFu7hXNw4RCIIE4sNKtt0yAg2Jqfgq0TZWYPzqjrA85QukT
+         RDDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXgZvRWTRrRxLN8G/42sjekP7KW9AB+fCgWxUYouAh4Dk5udBFdN78l7ELNU6fxrF/xCtzE0HxSR65e@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw519v+V39zncnC627PE5+rx0IsgoKuUU+IgGNbffNnuDlkLTys
+	zs7ZwKnZS7SHTe+k+F1YPQwkWYkhWbm/jJt5J2MuOGEnsMyyU9YsaCNlrkWaRc7+
+X-Gm-Gg: ASbGnctKBvmZQPNKFSwHAU+bqen3tbhiJ9G/nfkC+bTdALB1r001T5sknDYToW2pr9s
+	bSfsEtfbWAkazyzJcFeP1+z+2+6sm4Tu/fLy1U3+wnfunCe1fXOv59znnNWp8/VK7TGbkcWV4bT
+	ogdn4eKGaQzEqKp43dCanbHyUVz8og9brcBGkAmaIMWyzZmpma6OMqGi/FGMHw3rKg/G6gJLbGi
+	/fQmoL/SHKPCmh2vZsYHwz+8ELd2oYSuqFZp1Mrf6KT7PtkV6zoQAYoMGUk1z3Xser4RxFxWVYR
+	aeDn+YtjSttSS8jtweaUluuamDJqyqZ67aqH0zKkdpXfmgWXFa+wJwACZZQNS3mpt1QVEjRiKh/
+	XN/KRzl+HzgSu7opwLJCllugl04E7FX2kkkc+VK7WlKYssu8UX7IOPS/fJZ4nLbZKk5nPd6x0Df
+	ZyPYnxGUAgMUk/AGHDGiyWfeIHuuuY8SAEuaCN7DWJdEICbbvw
+X-Google-Smtp-Source: AGHT+IFI8FCxp2LNVsRvwLpVt87sCWi9B3psiR1fy8IYg4NO5KvC6aPsbYuipP9YJBFhllnALHMVPQ==
+X-Received: by 2002:a05:6122:8c26:b0:55b:305b:4e3a with SMTP id 71dfb90a1353d-55b8d7df9femr776635e0c.21.1763736401202;
+        Fri, 21 Nov 2025 06:46:41 -0800 (PST)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55b7f7a1c53sm2464281e0c.19.2025.11.21.06.46.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Nov 2025 06:46:41 -0800 (PST)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-5dbe6304b79so783127137.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 06:46:41 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWzuQ08U/38yA5Y9O7SipZrX3yR7iU/LqZnJBGbNHM9LSSFQJspPzkNUX1B1XY8NLKUIewUVUNVLxbg@vger.kernel.org
+X-Received: by 2002:a05:6102:5129:b0:5dd:b2a1:a5a4 with SMTP id
+ ada2fe7eead31-5e1de0f50fbmr689223137.5.1763736400807; Fri, 21 Nov 2025
+ 06:46:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-88d78
+References: <20251114105201.107406-1-biju.das.jz@bp.renesas.com> <20251114105201.107406-13-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20251114105201.107406-13-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 21 Nov 2025 15:46:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXshthP8nrV-qP=fSv6HGCDj47x9_jQYobZTEivy15tvw@mail.gmail.com>
+X-Gm-Features: AWmQ_bmAeU3gltmbELTNuNCMFNbRqLYdBo-mhJUddza9Ysxl7Zd2lut4kibciNM
+Message-ID: <CAMuHMdXshthP8nrV-qP=fSv6HGCDj47x9_jQYobZTEivy15tvw@mail.gmail.com>
+Subject: Re: [PATCH v3 12/13] serial: sh-sci: Add support for RZ/G3E RSCI SCIF
+To: Biju <biju.das.au@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 20 Nov 2025 16:58:19 +0100, Riccardo Mereu wrote:
-> This patch series adds support for Arduino UnoQ single board computer.
-> UnoQ combines Qualcomm QRB2210 microprocessor and STMicroelectronics
-> STM32U585 microcontroller.
-> 
-> In some files we decided to keep UnoQ code name as "imola".
-> 
-> As this platform has a microcontroller connected to the microprocessor
-> we needed a dedicated spidev and to add uart2 to qcm2290.dtsi file; both
-> are used as interfaces between microprocessor and microcontroller.
-> 
-> [...]
+Hi Biju,
 
-Applied to
+On Fri, 14 Nov 2025 at 11:52, Biju <biju.das.au@gmail.com> wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Add support for RZ/G3E RSCI SCIF(a.k.a FIFO mode). RSCI IP found on the
+> RZ/G3E SoC is similar to RZ/T2H, but it has a 32-stage FIFO. it has 6
+> clocks(5 module clocks + 1 external clock) instead of 3 clocks(2 module
+> clocks + 1 external clock) on T2H and has multiple resets. Add support
+> for the hardware flow control.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v2->v3:
+>  * Dropped cpu_relax() from rsci_finish_console_write() and added a
+>    comment.
+>  * Added sci_is_rsci_fifo_type() helper for reuse in probe() and remove().
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Thanks for the update!
 
-Thanks!
+> --- a/drivers/tty/serial/sh-sci.c
+> +++ b/drivers/tty/serial/sh-sci.c
+> @@ -3563,6 +3563,11 @@ static struct uart_driver sci_uart_driver = {
+>         .cons           = SCI_CONSOLE,
+>  };
+>
+> +static bool sci_is_rsci_fifo_type(u8 type)
+> +{
+> +       return (type == SCI_PORT_RSCI || type == RSCI_PORT_SCIF);
+> +}
+> +
+>  static void sci_remove(struct platform_device *dev)
+>  {
+>         struct sci_port *s = platform_get_drvdata(dev);
+> @@ -3574,7 +3579,7 @@ static void sci_remove(struct platform_device *dev)
+>         if (s->port.fifosize > 1)
+>                 device_remove_file(&dev->dev, &dev_attr_rx_fifo_trigger);
+>         if (type == PORT_SCIFA || type == PORT_SCIFB || type == PORT_HSCIF ||
+> -           type == SCI_PORT_RSCI)
+> +           sci_is_rsci_fifo_type(type))
 
-[2/6] dt-bindings: trivial-devices: add arduino spi mcu interface
-      commit: a7bde7c10902a0f6f903d3bbe67461f2b402a9ca
-[3/6] spi: spidev: add compatible for arduino spi mcu interface
-      commit: 43a3adb6dd39d98bf84e04569e7604be5e5c0d79
+I think Jiri intended[1] having a helper that covers all cases, not
+just the two RSCI variants. E.g. sci_has_fifo(u8 type).
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+>                 device_remove_file(&dev->dev, &dev_attr_rx_fifo_timeout);
+>  }
+>
+> @@ -3669,6 +3674,10 @@ static const struct of_device_id of_sci_match[] __maybe_unused = {
+>                 .data = &of_sci_scif_rzv2h,
+>         },
+>  #ifdef CONFIG_SERIAL_RSCI
+> +       {
+> +               .compatible = "renesas,r9a09g047-rscif",
+> +               .data = &of_rsci_scif_data,
+> +       },
+>         {
+>                 .compatible = "renesas,r9a09g077-rsci",
+>                 .data = &of_sci_rsci_data,
+> @@ -3936,7 +3945,7 @@ static int sci_probe(struct platform_device *dev)
+>                         return ret;
+>         }
+>         if (sp->type == PORT_SCIFA || sp->type == PORT_SCIFB ||
+> -           sp->type == PORT_HSCIF || sp->type == SCI_PORT_RSCI) {
+> +           sp->type == PORT_HSCIF || sci_is_rsci_fifo_type(sp->type)) {
+>                 ret = device_create_file(&dev->dev, &dev_attr_rx_fifo_timeout);
+>                 if (ret) {
+>                         if (sp->port.fifosize > 1) {
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+[1] https://lore.kernel.org/all/19a08b75-13ca-45f9-884d-f96602336dfd@kernel.org
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Gr{oetje,eeting}s,
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+                        Geert
 
-Thanks,
-Mark
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
