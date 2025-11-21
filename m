@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-241060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DE89C78D9B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:38:37 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E56BC78DEC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:41:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A8266365A2B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:37:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 651674EE6B9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B7C34DB5B;
-	Fri, 21 Nov 2025 11:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFBC834DCEE;
+	Fri, 21 Nov 2025 11:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I9kqeeqs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YW9fLdb+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7308F34D392
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:36:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A72CC34D901
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763724976; cv=none; b=JnWCvONLsXsH6e4ru/FgsMmW9+hF3brh+3p5UEv1iQ3gwyPn7HFTOp1ywyXgzkkg2aZsE8iDxtg1avlXrniV6IcAwR+AaJtHIti3zlj9g0/1v4pF2C764y23oPFbByAUODsWYWKFEj3CPWoYtdk0ow9p2ur0cU2fcBCSMXTm8ok=
+	t=1763724977; cv=none; b=qTC/cJMP4QdTyv1ghn8ioI/vgA/DYHWgtS0bjGyo5sU0fLUpqtiZtjgF094JeYnTia+MumBNjsK+5UO0tfZJYwZbWkn7K7CKVoBDf4FjNHqgj83u0BzPPjvwxvcEsHTCTpVG0ISQyn1MHKafZU5FKVpe4wMoxyt2M2dnn4yWIM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763724976; c=relaxed/simple;
-	bh=J9bbhlK2abRtODzOWkRv049W2G9nmFT+wPa+YCN2ze8=;
+	s=arc-20240116; t=1763724977; c=relaxed/simple;
+	bh=a9iHaZ5PPXBHrtyzxvPI+cAOuvyT4cROkSXb5P8Mt6U=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EGutxZck6DlrRgNPoDDdXNfZc/gMUXvBJ1N6rUGn8fOm7sbrbkbdjLWotp5hGc43VdFW8R0XUQn6fWPFiFJZBOB6yAl41VZL7jY3qq7Z8iARcyEaxrGmkGs52uC1Hp1ydcr4DiNebEQSVFE1/CpA/yScVbfW6PsFXz1ZmtIQuu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I9kqeeqs; arc=none smtp.client-ip=209.85.128.46
+	 MIME-Version; b=fF3/6/Z8Qc4AQHR7gYBguKgK9dekGFn5X4pEhzy85e5Y075Kz8xCLQenWmWR74nppcLKOXnCI5k5cSOozoTJD3NNyYAsiJkTeFjWj6V0MMzg+BDkQMO0cM3cIzLEU5rhY8lencZ2c03B5NSIsUNR+ackwRblpXw69Mz1YNjkGtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YW9fLdb+; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-47778b23f64so11000265e9.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 03:36:13 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477632b0621so13457195e9.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 03:36:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763724972; x=1764329772; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1763724973; x=1764329773; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Qu2kzCH7a9rdHz1PcQb+OvB7oiG265tCyETgvREK4Pg=;
-        b=I9kqeeqsEjbAJsoV6HgeAysUP7DKTg+ie04Yhd+Og4saAHgp8POy5T0vevitqwwKwt
-         IYmv3TvUbuIf3zqQdo9Awty7w7ayJqJuMVlYelrYNGWB6h0PX3jT3PyInu3eW80UlGq1
-         U+L1b5JH3lv0mWV5CVrre/nx0+y0RuPnU4b8EbJjl3qRtA3AJIZwxKjhnwvlgVzurBS9
-         hupHxK8idD8JDZAFgQb+LrM4CJ+hU9sq015UpTMB3b6hSkFr+n9anjSSJUA/uV0ONnQQ
-         D5ssHLUSltT8k8pmh/CPzhrioeR7pR4LoECIeC+9X2miF3f77PBCenAqFQrtl6QVSZxT
-         Nj7Q==
+        bh=Lx8a6006lMaIvKt+PGJnSU2GzWYSKMGOtHoKCCD0pMI=;
+        b=YW9fLdb+EO6TZMgofMV8Ph0YTD+RB7UELOpxI/upS6e8bZEKiapU0hSXO9E9jnFkjt
+         i4D6YmdF974iv0UBFxAPuQo/74iwbNTgOodhw3PYut90PFfP0ob236AV4QdZQ5nmYK7P
+         QQZyE5cLO3plwvU+hy+5ZErVB3TbYs8xcKttAPlnKkEOfZ3P3umNwkIs6KGCXX0SYrLo
+         pG8xzjCmcpliz4XHhk9rvqDm0wd4TM+IqjP5T+Gn3UUWfnHfebLMyW2BequPTz/8MYrc
+         PZ/1obhei0iA7WMazNk4S3FmzqVtYZmu9z7vu8XFg+l5lJE1+Ply/+RtIyZqyWicWoHm
+         sX1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763724972; x=1764329772;
+        d=1e100.net; s=20230601; t=1763724973; x=1764329773;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Qu2kzCH7a9rdHz1PcQb+OvB7oiG265tCyETgvREK4Pg=;
-        b=MzTLm+TydGhDGbA0LuMYk1rEHH1px09U1AuAOv7pAhRrB5F/sU9bUWjIn5oVzq/1tB
-         d22r/lTdskaiVu2q0GZvUJWkwjADrbK1W4flzfb+vHDRfj0C02ZZJ0DGgokqHfTUPDui
-         ZPzBWa4YqbhE2MTyKHPWvF/ffSCy/+Uh50X/jBgTSUGniBpQYm1Vxa9qcDnZRXHSVTMR
-         n2eQMITBmlw9lD44NkM68FmBGANZXU7I3hSBtue0ohcYAn5JVNxIf8BkUV3QogJXDlex
-         G9Oc1/b06+LQd59hPVvaPWtyMIrVL1NgeGaJkkrhWSaDGV/iLMFQve/mDOoEZnPGHC+D
-         v72g==
-X-Forwarded-Encrypted: i=1; AJvYcCWCKfKsbFAZsr6Ns3trzye5XS3iQKphEZlzJb3lgWOwrnCaDulxikVvOFAVzwR9lApHtlo2lf2DeyG+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx17LDbc1KCjvvAGlH0UBEmY4lXA0OreOoLKBrz1JxTe66zkJQ3
-	fZKaQCGf9kw9RMLwfB//BFL2VcG7sjgDCchlfUbFelKZ+8SYBnZK7L4Y
-X-Gm-Gg: ASbGncuB/eoBvB8evATIdedLtvqX42OZ3RHoWFrhPSPC+4dok/JV41Tua9lBjcknXdN
-	l6ZMg5oS6Y6G11aTmAxFVvxMtjsSFBKeIAhU3WwB1a/C/cpiUbkcfN708S04qTNiIrv6mgZwaHt
-	fsJYtZGj9twn+bNwywwNocmQJKDdcs8knXxD2tLC/DnADA2UxybCD6XdQnnyzxdxJBZrweRDu62
-	bvIrEEsauxTHbCXIlrSsMXbV+mSawgkUoftCrhVDiQYtsNz+IEdEKoo3hI4/AgiVyyfnagYmDHT
-	pGJahr7GOHQ4E2ABfHT5Cugr/6xEMuXyC2YLSbQOCtFjVBXdqckmL65wwZXec/1bu3DJyRKPkHq
-	gFYyE+tDYwX18AfVSHy7y1KmwqIRAOp3seWRR4uK4e2fspwD11LBIjq1/ddE2mivnHm/pb2unYJ
-	OVeI7GCNGyryIOFAMYpBB4STpYhdpO0vMEDaQ=
-X-Google-Smtp-Source: AGHT+IHJfGnMJvpbU4mjRm3yacg24pgKSDc6DAnZqzokWG1QDvI/YfVxDvtrLFX3uGvN42B9PR/hpA==
-X-Received: by 2002:a05:600c:8b16:b0:475:dd8d:2f52 with SMTP id 5b1f17b1804b1-477c115dc85mr15823345e9.32.1763724971434;
-        Fri, 21 Nov 2025 03:36:11 -0800 (PST)
+        bh=Lx8a6006lMaIvKt+PGJnSU2GzWYSKMGOtHoKCCD0pMI=;
+        b=Vx0FPOq3/TMPB9lS9xqdOoMS29uA9pCuUbnh8NgZU4og3CqGR0H2XmX6iomZEC23lO
+         yUEyO7LX12x6DGPrICHOvL2n1CM+rDCBUZA3vrTiCu+tUMiaJyFeED1ize7sf0quMEBZ
+         YIai02BlH6+CP2Zl7AySM6N/sciOz721M7oND5j8O8fCxO8V5dGu06b8+O3zHkDy3zD0
+         T7WuNE43SdTW6OKBRfxe7aWFOb5fxH+fuTuERA1rU2060Z6yVnqFE/jspIppK7QGaTzo
+         aJPkfeedLprOWPcI8/3sLAu/5VsabqklaFrzhPRG3Ls937TYUY7AzwhLj3ke97f0KUeT
+         YbCw==
+X-Forwarded-Encrypted: i=1; AJvYcCXP8IXE5kCZhuldbB38jdj7f42VpaahKMhSsmKwbrtfloblhROutYeGcUXWShUAIisDEYjt0cqgIrDm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHTwc7VpQzsqH+b7cuAb3tnQlctyPDfPT7FyqdRqzlG7cDUE5S
+	KlZTZuNpGg8kRqgS1enCpfKJeIadv5I6/ORQREB7WG9+A/dXhIAZXumH
+X-Gm-Gg: ASbGnctmEfLbxNDvhPovWKVykZMr8+WxF8n3gjhNdZSvXo3VS2hcFDqvjDuKHxTWjg2
+	UJvV+dQYXikCMyicq3c3ho2e9lUax51Qm/afWqHtCN6D7EJHV4S0l8HEFJic3hm509OtdYf6o3G
+	8xBFRodbXP52p2dr5Xcmtk6scCET0n15ZqsHqNewPmUwdh33A932+71HujWIBzUdqbBYIEwCjnF
+	PHE6Z4UIttC2cHunqodTE8kmd89Y+vFCrHGNdSABtwVoI7uBMjaL+Td+jcGk2swDX7+I1mytYLU
+	ZdeK4Qr/ll6ssq/8tiBK0L+qPdJhNbSSe9augaYWWYeOJHaClIBn5JNS92AR0TrX+g1G71y/ojA
+	ZlajzsL62kA3ju5UPc5nIMiEECHVuhk9njCRunIa8RgHr8R3pXQgclyoNYtnXfW8rrI8DIvw+p0
+	tivQcmrtzMvTVGyVh+kjGBoStVPjHKxYmp0K0u2hldtQGpvxMriY07yJP1
+X-Google-Smtp-Source: AGHT+IFto1VNl0X8Iz8e3+Q8ER8AySeVHn7wevr1XBc4yThGtBjhnSMYfEV+qBCobpXwA5EM85iirQ==
+X-Received: by 2002:a05:600c:3592:b0:477:9b35:3e36 with SMTP id 5b1f17b1804b1-477c10c873amr20494465e9.2.1763724972625;
+        Fri, 21 Nov 2025 03:36:12 -0800 (PST)
 Received: from iku.Home ([2a06:5906:61b:2d00:9cce:8ab9:bc72:76cd])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477bf3558d5sm38732465e9.1.2025.11.21.03.36.10
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477bf3558d5sm38732465e9.1.2025.11.21.03.36.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Nov 2025 03:36:10 -0800 (PST)
+        Fri, 21 Nov 2025 03:36:11 -0800 (PST)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
@@ -99,9 +99,9 @@ Cc: linux-renesas-soc@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH net-next 07/11] net: dsa: rzn1-a5psw: Make switch topology configurable via OF data
-Date: Fri, 21 Nov 2025 11:35:33 +0000
-Message-ID: <20251121113553.2955854-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH net-next 08/11] net: dsa: rzn1-a5psw: Make DSA tag protocol configurable via OF data
+Date: Fri, 21 Nov 2025 11:35:34 +0000
+Message-ID: <20251121113553.2955854-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
@@ -115,176 +115,62 @@ Content-Transfer-Encoding: 8bit
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Move the switch topology description-the number of ports and the CPU-port
-index-out of hard-coded constants and into SoC-specific OF match data. The
-driver previously assumed a fixed 5-port layout with the last port acting
-as the CPU port. That assumption does not hold for newer Renesas variants,
-and embedding it in the code made the driver inflexible and error-prone.
+Update the RZN1 A5PSW driver to obtain the DSA tag protocol from
+device-specific data instead of using a hard-coded value. Add a new
+`tag_proto` field to `struct a5psw_of_data` and use it in
+`a5psw_get_tag_protocol()` to return the appropriate protocol for
+each SoC.
 
-Introduce a small a5psw_of_data structure carrying both the total number
-of ports and the CPU-port identifier, and rely on this data everywhere the
-driver previously used fixed values. This ensures that port loops, PCS
-allocation, management-port setup, and bridge bookkeeping all reflect the
-actual hardware configuration.
-
-Making these attributes runtime-selectable allows the driver to support
-RZ/T2H and RZ/N2H SoCs which use different port counts and CPU-port
-assignments-without rewriting common logic or forking the driver, while
-preserving correct behaviour on existing RZN1 systems.
+This allows future SoCs such as RZ/T2H and RZ/N2H, which use the
+DSA_TAG_PROTO_RZT2H_ETHSW tag format, to share the same driver
+infrastructure without code duplication.
 
 Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- drivers/net/dsa/rzn1_a5psw.c | 26 +++++++++++++++++---------
- drivers/net/dsa/rzn1_a5psw.h | 17 ++++++++++++++---
- 2 files changed, 31 insertions(+), 12 deletions(-)
+ drivers/net/dsa/rzn1_a5psw.c | 5 ++++-
+ drivers/net/dsa/rzn1_a5psw.h | 2 ++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/net/dsa/rzn1_a5psw.c b/drivers/net/dsa/rzn1_a5psw.c
-index 99098bc06efe..d957b6d40f05 100644
+index d957b6d40f05..dc42a409eaef 100644
 --- a/drivers/net/dsa/rzn1_a5psw.c
 +++ b/drivers/net/dsa/rzn1_a5psw.c
-@@ -382,13 +382,14 @@ static void a5psw_port_bridge_leave(struct dsa_switch *ds, int port,
- 				    struct dsa_bridge bridge)
+@@ -97,7 +97,9 @@ static enum dsa_tag_protocol a5psw_get_tag_protocol(struct dsa_switch *ds,
+ 						    int port,
+ 						    enum dsa_tag_protocol mp)
  {
- 	struct a5psw *a5psw = ds->priv;
-+	unsigned int cpu_port = a5psw->of_data->cpu_port;
- 
- 	a5psw->bridged_ports &= ~BIT(port);
- 
- 	a5psw_port_set_standalone(a5psw, port, true);
- 
- 	/* No more ports bridged */
--	if (a5psw->bridged_ports == BIT(A5PSW_CPU_PORT))
-+	if (a5psw->bridged_ports == BIT(cpu_port))
- 		a5psw->br_dev = NULL;
- }
- 
-@@ -924,20 +925,21 @@ static void a5psw_vlan_setup(struct a5psw *a5psw, int port)
- static int a5psw_setup(struct dsa_switch *ds)
- {
- 	struct a5psw *a5psw = ds->priv;
-+	unsigned int cpu_port = a5psw->of_data->cpu_port;
- 	int port, vlan, ret;
- 	struct dsa_port *dp;
- 	u32 reg;
- 
--	/* Validate that there is only 1 CPU port with index A5PSW_CPU_PORT */
-+	/* Validate that there is only 1 CPU port with index matching cpu_port */
- 	dsa_switch_for_each_cpu_port(dp, ds) {
--		if (dp->index != A5PSW_CPU_PORT) {
-+		if (dp->index != cpu_port) {
- 			dev_err(a5psw->dev, "Invalid CPU port\n");
- 			return -EINVAL;
- 		}
- 	}
- 
- 	/* Configure management port */
--	reg = A5PSW_CPU_PORT | A5PSW_MGMT_CFG_ENABLE;
-+	reg = cpu_port | A5PSW_MGMT_CFG_ENABLE;
- 	a5psw_reg_writel(a5psw, A5PSW_MGMT_CFG, reg);
- 
- 	/* Set pattern 0 to forward all frame to mgmt port */
-@@ -1147,7 +1149,7 @@ static void a5psw_pcs_free(struct a5psw *a5psw)
- {
- 	int i;
- 
--	for (i = 0; i < ARRAY_SIZE(a5psw->pcs); i++) {
-+	for (i = 0; i < a5psw->of_data->nports - 1; i++) {
- 		if (a5psw->pcs[i])
- 			miic_destroy(a5psw->pcs[i]);
- 	}
-@@ -1174,7 +1176,7 @@ static int a5psw_pcs_get(struct a5psw *a5psw)
- 			goto free_pcs;
- 		}
- 
--		if (reg >= ARRAY_SIZE(a5psw->pcs)) {
-+		if (reg >= a5psw->of_data->nports - 1) {
- 			ret = -ENODEV;
- 			goto free_pcs;
- 		}
-@@ -1223,7 +1225,8 @@ static int a5psw_probe(struct platform_device *pdev)
- 	if (IS_ERR(a5psw->base))
- 		return PTR_ERR(a5psw->base);
- 
--	a5psw->bridged_ports = BIT(A5PSW_CPU_PORT);
-+	a5psw->of_data = of_device_get_match_data(dev);
-+	a5psw->bridged_ports = BIT(a5psw->of_data->cpu_port);
- 
- 	ret = a5psw_pcs_get(a5psw);
- 	if (ret)
-@@ -1268,7 +1271,7 @@ static int a5psw_probe(struct platform_device *pdev)
- 
- 	ds = &a5psw->ds;
- 	ds->dev = dev;
--	ds->num_ports = A5PSW_PORTS_NUM;
-+	ds->num_ports = a5psw->of_data->nports;
- 	ds->ops = &a5psw_switch_ops;
- 	ds->phylink_mac_ops = &a5psw_phylink_mac_ops;
- 	ds->priv = a5psw;
-@@ -1310,8 +1313,13 @@ static void a5psw_shutdown(struct platform_device *pdev)
- 	platform_set_drvdata(pdev, NULL);
- }
- 
-+static const struct a5psw_of_data rzn1_of_data = {
-+	.nports = 5,
-+	.cpu_port = 4,
-+};
+-	return DSA_TAG_PROTO_RZN1_A5PSW;
++	struct a5psw *a5psw = ds->priv;
 +
- static const struct of_device_id a5psw_of_mtable[] = {
--	{ .compatible = "renesas,rzn1-a5psw", },
-+	{ .compatible = "renesas,rzn1-a5psw", .data = &rzn1_of_data },
- 	{ /* sentinel */ },
++	return a5psw->of_data->tag_proto;
+ }
+ 
+ static void a5psw_port_pattern_set(struct a5psw *a5psw, int port, int pattern,
+@@ -1316,6 +1318,7 @@ static void a5psw_shutdown(struct platform_device *pdev)
+ static const struct a5psw_of_data rzn1_of_data = {
+ 	.nports = 5,
+ 	.cpu_port = 4,
++	.tag_proto = DSA_TAG_PROTO_RZN1_A5PSW,
  };
- MODULE_DEVICE_TABLE(of, a5psw_of_mtable);
+ 
+ static const struct of_device_id a5psw_of_mtable[] = {
 diff --git a/drivers/net/dsa/rzn1_a5psw.h b/drivers/net/dsa/rzn1_a5psw.h
-index 81be30d6c55f..d1b2cc5b43e6 100644
+index d1b2cc5b43e6..0fef32451e4f 100644
 --- a/drivers/net/dsa/rzn1_a5psw.h
 +++ b/drivers/net/dsa/rzn1_a5psw.h
-@@ -195,8 +195,7 @@
- #define A5PSW_aCarrierSenseErrors		0x924
- 
- #define A5PSW_VLAN_TAG(prio, id)	(((prio) << 12) | (id))
--#define A5PSW_PORTS_NUM			5
--#define A5PSW_CPU_PORT			(A5PSW_PORTS_NUM - 1)
-+#define A5PSW_MAX_PORTS			4
- #define A5PSW_MDIO_DEF_FREQ		2500000
- #define A5PSW_MDIO_TIMEOUT		100
- #define A5PSW_JUMBO_LEN			(10 * SZ_1K)
-@@ -231,6 +230,16 @@ union lk_data {
- 	struct fdb_entry entry;
+@@ -234,10 +234,12 @@ union lk_data {
+  * struct a5psw_of_data - OF data structure
+  * @nports: Number of ports in the switch
+  * @cpu_port: CPU port number
++ * @tag_proto: DSA tag protocol used by the switch
+  */
+ struct a5psw_of_data {
+ 	unsigned int nports;
+ 	unsigned int cpu_port;
++	enum dsa_tag_protocol tag_proto;
  };
  
-+/**
-+ * struct a5psw_of_data - OF data structure
-+ * @nports: Number of ports in the switch
-+ * @cpu_port: CPU port number
-+ */
-+struct a5psw_of_data {
-+	unsigned int nports;
-+	unsigned int cpu_port;
-+};
-+
  /**
-  * struct a5psw - switch struct
-  * @base: Base address of the switch
-@@ -238,6 +247,7 @@ union lk_data {
-  * @clk: clk_switch clock
-  * @ts: Timestamp clock
-  * @dev: Device associated to the switch
-+ * @of_data: Pointer to OF data
-  * @mii_bus: MDIO bus struct
-  * @mdio_freq: MDIO bus frequency requested
-  * @pcs: Array of PCS connected to the switch ports (not for the CPU)
-@@ -254,8 +264,9 @@ struct a5psw {
- 	struct clk *clk;
- 	struct clk *ts;
- 	struct device *dev;
-+	const struct a5psw_of_data *of_data;
- 	struct mii_bus	*mii_bus;
--	struct phylink_pcs *pcs[A5PSW_PORTS_NUM - 1];
-+	struct phylink_pcs *pcs[A5PSW_MAX_PORTS];
- 	struct dsa_switch ds;
- 	struct mutex lk_lock;
- 	spinlock_t reg_lock;
 -- 
 2.52.0
 
