@@ -1,102 +1,81 @@
-Return-Path: <devicetree+bounces-240969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFE2CC78201
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:23:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E618FC78292
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:31:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id F1C462D58B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:23:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D9DB2353120
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D0034104A;
-	Fri, 21 Nov 2025 09:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B842D0611;
+	Fri, 21 Nov 2025 09:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="o5wR2HXt";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="M3FxpTtP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hOe8q+Yp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3024C33C184
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 09:19:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCDC42144D7
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 09:29:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763716779; cv=none; b=es7wW8O/EQ7kkHYIS/bpIlecNtYUvIBRDwlKkyosQGcf+aJXLsu+9xCQ88aAkvRzIw7BZVTlgUe9SgSRg6KurHE+/sQmoBuWL1+TjyU6TaiJ2R9TMP9vEaXG1mNimSVjYyRPVHBPzHeJv6QcnCWWfrwrFM2jnGGlHBJJDbArMkA=
+	t=1763717394; cv=none; b=WvkVdWNQ+dVfJkCMAWlZaom2BODXQTliLwCByjrbMWaR2Z2hsIj3c35KljUWY6n8rFVJN6Z16DI6DehrVwM1YLPi7WAQrxPY3zpMDJ7PvqASObp5oZc437TgVlT0LWkbPcrJfGdGGURHk10ZRtWriTTo6zoZh0ZREOHF5fbMe8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763716779; c=relaxed/simple;
-	bh=93pp6K5KRJ0nOULLGFyNsHHqNK/ssHzPkmeZq5LEK7s=;
+	s=arc-20240116; t=1763717394; c=relaxed/simple;
+	bh=uSbYcEm1WCPNJwx8UqPV/i1enY5q8gnMalq46Q7qZW8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XJExgGSp9asZr/KzxfVTMdhXfbIkKwfBAt+VWaQCxA9v6e5g0E1VCqOZrMNMW9Vkh1b5p9h0uqdNN/6uG+InC1/r8fwq5evseMb2CWcJBwxkGxZt5yHd2zoP9Pal8tBorvF1fb6M7KO+1ZYgREqMvbQlZKVTDb1hu5JR2HZPRtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=o5wR2HXt; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=M3FxpTtP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AL5RtrH2756749
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 09:19:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	C8ThIwuK59MSjkJYMBHga8gJe9326S5J7eRXrlnJw1w=; b=o5wR2HXtfvbjsLBf
-	3Shqp5dNFmnEEdFMbhXWNEa3iWL5pEIgrw7ir8h0Ez4VoPdS90t7lEVR1O4J6bwy
-	OE8/QXU1D5p10AANBMsZD2riEjlVnAJMbNa72fj3/DBt/WyKOJCgTAlUJXU3zlbv
-	MNnCoQiHLL9ENd8SEAMLpRw1qDBLF+vKuz7m77rrhJOcKzrrAXoJgkCxTXjLC4dD
-	c3Pcf/ZRHq5CdFUH+hORunZrzin2S/IBDvay7HGfJvJ0Xv9MNgvBu9vdVc7BCqwM
-	OuoflmvibRUve/b/X0a2LM/wvgJGdbHIGXmNvvvMzW5gcgg1wPz5sLJ37NNsp0mA
-	41VLrw==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ajhy60tmj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 09:19:37 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4edaa289e0dso7734461cf.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 01:19:37 -0800 (PST)
+	 In-Reply-To:Content-Type; b=SnMlHN37MQEjyrGfEBjljog4iAAVkbdT/oMd+Sq2Hikozxr7rtLwRyph3Ln7uCeM1iGcO3GJT9mX/TALMFJ4kwM4jh62C/0T31vs4DCEhRaqlSOB7E/s8NhuW+BX1jTC7UcMlfvF1jiD3MbqAMulm6h7CPxb4YLmgOdAuftPqxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hOe8q+Yp; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b735b89501fso203838866b.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 01:29:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763716776; x=1764321576; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1763717391; x=1764322191; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=C8ThIwuK59MSjkJYMBHga8gJe9326S5J7eRXrlnJw1w=;
-        b=M3FxpTtPjLs4QU/QAuWzM/tHWSzRVWGJlnV6tWzRZ+I0V0L2Es87nicjCIzL/LQbqa
-         HI9JqW5uuqq8GpJ0IkWzkK55dCmPe2+JaR2qa6ZPiN921olQ3TU6ML9ECkS+LwEZrIcT
-         9MAFzQ8X/xkq9T1CenFSbrREh2dRK3dirFpxviux2sQyaEE9TDqx+/svXpv5KfTrqpgb
-         +rrPMNh9VvYcQCiEkn1ngYN62p/0hb1gZ522VeKjcPg78meQx5aFr1WPskBkMzc5O2ik
-         /4vF6GqnaeQE37zIlZsBOVNyj1igRwEur/X0uDo/PMtzo8gPOfiXmT4xWJhgWOkgk1kY
-         5PnA==
+        bh=Wl2xu8XKN1gPMV9ACQzl23UL67KsRhgGQiSjpamCaq0=;
+        b=hOe8q+YpB9Z+lp7JGPGx+zpY/Q2DF6WpeFfc1dy4uapImoAll3cZsTSHIGe5SZU2zr
+         tzaS+8BSTBBQSEv3mqIbJitGfCwDNs1C0M8LlX0yRLAJc+/Oj9zYWlMybWU4lQFlIM7b
+         eOpIE61D2Rja6pAZ+e8zRcVKSuhgnoqyQo7qV7j0IiBakJTI8qfaU44kz8kxbM8Gb5zr
+         MwtnWz8Y7OE/QW+sKoqP7F4zS2gAa8MorSVHCgyPL2SoCNmCCbXOGh0hqPQJV2m1ynYE
+         gX6pl2i8hsvIgXgWcwC6gOwT7cKZfdY2zkMtlcaaCxbaUsHKrakXr9ouoXoDSVpGe6Lq
+         BMdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763716776; x=1764321576;
+        d=1e100.net; s=20230601; t=1763717391; x=1764322191;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=C8ThIwuK59MSjkJYMBHga8gJe9326S5J7eRXrlnJw1w=;
-        b=hvksPOFl0byCS1fWLO5QQxmHxLNYYr31BdK23DylRrtAAlP+ZDl3YdTRNpDBJ5lrZR
-         DDSYuBXSmO3+aKXY1+HBsVyB5+qw+lK5cKCVQjxQN1jG/ndiZu/ChrJLl4hlmccaGfG6
-         YvmctK+DMXormPwA5JtiRV3SmdDk4klisUnHxo16rlWa+dJ1KVmJ1E+5qZWrtP8o4qkb
-         dxp6p/dIwAtQVQ9NfonnYb5QYggk5kYqpVw8jMsrilYwArtx3UcAE5f308qwbXJDIcMK
-         h58CEKa81bczWDXo2NsdB3rqcy12Uf3AC7o2H585IYLJRz0ifTa7dwJT75tm2DsfvmOP
-         ykJw==
-X-Forwarded-Encrypted: i=1; AJvYcCWe8xA9jBGbwCn7pICXVHgHugZwLqCgqFaXNZEx9gP0aO1h3vYL2e7oxl+bQJb4e/RZd1du2yO6ZX7/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNwaqCz9De0Koqvn/UIViq4MfwuYRnOHs4grrJS3nZ7RbjGt6m
-	f5LnWirU9Q/ATOMxuew3gSkGXQNJnYVUNfOhPs36vrtqNXDqk/XvBhpi2V8lr7dGVev4b4kWZLV
-	ASJtswWB6NnfYUBEnQg6/a+ofekAKDN5oPj+ssTU5TlLPU5uq591gWNAnyixzCKK6
-X-Gm-Gg: ASbGncs3ag3o6CA9bU6S7WMvlqATqxasC90bskYq2ZCt5qc+IVypMAqzR6KHV4b4UxP
-	+OPAc5gDyiMSfCq4EWO/utoDPq4z6iEJjrIXbjzG12e2i0d/IG2R2xeVehn2tFunQ4me9AjX1rw
-	ystNMqqvzKElBAmSRkGXdR8aWpnKd3Jvni9EZEX5hiCjasH1leqY4O0I/GdlEwSm2UgdO21q6Pu
-	ync697LCV7gbT1HfsBjLGZgjU09ixF6Fj3AJLN+KK1Xwht8LxC+WFhsCwzog84eB+E8x31kaVAD
-	UHewKvYeJ2NpcyDNKXQNnduFprfpCXfWiaclwFZpDqQNsSbLnHzYuFvCvFj0FtH5TYHMXz9vbor
-	nQ0dgdF2uftAAQEAPLieaq1ZyQJxUWsT25dJ/YV861ZFONC67o7UH0nHmG2GM+JxkmB8=
-X-Received: by 2002:a05:622a:c3:b0:4ee:2580:9bc5 with SMTP id d75a77b69052e-4ee5883ae04mr16435931cf.2.1763716776382;
-        Fri, 21 Nov 2025 01:19:36 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFm/JGHQ40fJEftfT3CcvrQpmlf+U6w8IwlHK/aospVSRLrwkNSqWoX994rgeL5orZIkHPZtw==
-X-Received: by 2002:a05:622a:c3:b0:4ee:2580:9bc5 with SMTP id d75a77b69052e-4ee5883ae04mr16435791cf.2.1763716775832;
-        Fri, 21 Nov 2025 01:19:35 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654cdd62bsm419357466b.5.2025.11.21.01.19.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Nov 2025 01:19:35 -0800 (PST)
-Message-ID: <5ee9f41b-979f-4c44-a009-f0d94f6854b6@oss.qualcomm.com>
-Date: Fri, 21 Nov 2025 10:19:33 +0100
+        bh=Wl2xu8XKN1gPMV9ACQzl23UL67KsRhgGQiSjpamCaq0=;
+        b=CbaBk3IyqAd9Uk5sy7JzM9O/2+OTfgfTvFLn53Kc6JcTuNkZJCPNK9YvZh9cJZ97uM
+         rDpB0UNLFnEAVqYPJ4W3pl6A4XbF6aNRhZFEieQFgl39IIhfXp17OP4R1IGWVAsnlh7g
+         2Ms/pp9J0z2pt5v4MvN0/3dfn6GcZpUWkD4NXBWEJh6XZIotA/j7KGtGpXMa6j3nmozP
+         u7wZDA94LKGvDnqddOySkpTYDf4vYZ7lzBOwfq3johem2Nchk6zLZzWJTMETKHymJCDd
+         iNkbtO4s/iTasDWKjfr+PFzqz3q4jNPJuo7vrYe71rA3AjbMkj3q9noKNQDPGawUaxT0
+         ZwLA==
+X-Gm-Message-State: AOJu0YzWSNI/dDi3dLojhF0PRMxL1S0jIf5J5frjelp+yqK4TYwonOz3
+	ItFpOuzi515bSb81zINraPq+tHIEmNxcVZNXiESQYOmXbq5FWcyrRzNs
+X-Gm-Gg: ASbGncvoew9d7dNDAN56V9foOqMxgubpVrHQ5Dc1510j9KRLAQSKkFWc0NqyZH6g/Kg
+	CZe0UuPV02zs8As6A+Ye6rkbd8ksudbSIshUMNj4EYXOfpF0wV1E8AdVNptBJ6kt2d3XtAWtXe5
+	JGPpLhbLbM/dOu6Q0Hlh9rBomUu+7kEZfDvqmfVDbKFnbD/toJitusPUylaxNUC592Z8WLC6BWb
+	ZlQVROYosCaWBNHt9CRmBZ6kL6dGLwzWXD4RLL7jiK0c1BbZO++qCSKY613BQ6sDCUpWoiNFUvJ
+	rTDl1H4a85X/z2G3Jd5spM9KTiyfCmL7Lr1wrCbiYL1sb+PMcGay5BldH+xtCI+nO5aJWRnzf44
+	F24s9YPvHe5E7AQXxcIBZ14RDT1Zki21Haupm2qrHUw0AwGCe3tC5FDHHlJbYmrOtWnH+4dNxTt
+	XPGE98pbkd5xePhxjNksIrLasEzAwq089xm38D8Af6gpQ=
+X-Google-Smtp-Source: AGHT+IHq8hk9zncY5NjxJIA+5dLJtbgJgeFMs63IXI+ZjuoPAQXsuFcRPpdcxS7UMwvUHeWvXnedJA==
+X-Received: by 2002:a17:906:fe4a:b0:b76:277b:9a3d with SMTP id a640c23a62f3a-b767170a37emr166265266b.29.1763717390579;
+        Fri, 21 Nov 2025 01:29:50 -0800 (PST)
+Received: from [10.25.210.163] ([128.77.115.157])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654fd4275sm402635166b.37.2025.11.21.01.29.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Nov 2025 01:29:50 -0800 (PST)
+Message-ID: <3959e908-ae61-4424-a8ef-89f655a4de8c@gmail.com>
+Date: Fri, 21 Nov 2025 01:29:48 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,112 +83,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: qcom: add ipq8064 board variants
-To: Christian Marangi <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251120135435.12824-1-ansuelsmth@gmail.com>
- <8e75be2b-643e-4380-a018-3cb718745101@oss.qualcomm.com>
- <691f3465.050a0220.105096.7667@mx.google.com>
- <20251120174119.GA1586641-robh@kernel.org>
- <691f9aee.050a0220.138abd.0f33@mx.google.com>
+Subject: Re: [PATCH v5 4/6] reset: imx8mp-audiomix: Extend the driver usage
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>,
+ Shengjiu Wang <shengjiu.wang@nxp.com>, Frank Li <Frank.Li@nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20251114133738.1762-1-laurentiumihalcea111@gmail.com>
+ <20251114133738.1762-5-laurentiumihalcea111@gmail.com>
+ <8b225c56612ff01845a90388be0945c7d0b3f0d2.camel@pengutronix.de>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <691f9aee.050a0220.138abd.0f33@mx.google.com>
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+In-Reply-To: <8b225c56612ff01845a90388be0945c7d0b3f0d2.camel@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Lb0xKzfi c=1 sm=1 tr=0 ts=69202ea9 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8
- a=9UnCyIbBERiO__AbIc4A:9 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-ORIG-GUID: 40h7xjykT6wP9EsFSXdx5HQhQXQ0vkjr
-X-Proofpoint-GUID: 40h7xjykT6wP9EsFSXdx5HQhQXQ0vkjr
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIxMDA3MCBTYWx0ZWRfX0piLRRvJMFtr
- 4bcOgXkuQGLDP5HCn6e44DyzjEa1UPd7TpdVDbGqWBXPobqazODWZQRtWk0i0nRrhAephVg3om1
- XFqgNjyG+XsQ4xBucXpvGiysvnIxCOW/a2AFH87DjEe3aiYKOL6Nh3DRozum5bMu+P6/xZbEhQ1
- XRlMHVkxOh3IQPTLbCZ7UhvsJMWezpHTFyRiT54x3liwsUwwcYYihLUXhZB/UFhAA9PfkMJ8xDS
- 2ULmJttlqv37A0Ca+wdPMuyxlMsAM4c3qu02ZbtrlFW604gQboHH/zes5WXp8Yk/Lh6o3oI2RU5
- y5IgylLYHH8+/fhM8yIyyN5KlJiHpoTDRyUci6/Sgj1q4g3WKsnBGa0T3+izH+frIfi49Pr9Lp5
- 4x5iKk+JYB4655Ndb5CqYy8ormSF/w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-21_02,2025-11-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 impostorscore=0 clxscore=1015 malwarescore=0
- lowpriorityscore=0 suspectscore=0 adultscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511210070
+Content-Transfer-Encoding: 8bit
 
-On 11/20/25 11:49 PM, Christian Marangi wrote:
-> On Thu, Nov 20, 2025 at 11:41:19AM -0600, Rob Herring wrote:
->> On Thu, Nov 20, 2025 at 04:31:47PM +0100, Christian Marangi wrote:
->>> On Thu, Nov 20, 2025 at 04:25:37PM +0100, Konrad Dybcio wrote:
->>>> On 11/20/25 2:54 PM, Christian Marangi wrote:
->>>>> Document QCOM ipq8064 board variants ipq8062, ipq8065, ipq8066,
->>>>> ipq8068, ipq8069 now matched by the QCOM cpufreq nvmem driver if
->>>>> socinfo can't derive the variant from SMEM.
->>>>>
->>>>> Suggested-by: Rob Herring <robh@kernel.org>
->>>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->>>>> ---
->>>>>  .../devicetree/bindings/arm/qcom.yaml         | 20 +++++++++++++++++++
->>>>>  1 file changed, 20 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->>>>> index 18b5ed044f9f..0eb1619fede8 100644
->>>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->>>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->>>>> @@ -299,12 +299,32 @@ properties:
->>>>>                - qcom,ipq5424-rdp466
->>>>>            - const: qcom,ipq5424
->>>>>  
->>>>> +      - items:
->>>>> +          - const: qcom,ipq8062
->>>>> +          - const: qcom,ipq8064
->>>>
->>>> Since 'items' requires that all items are present (and in this order),
->>>> we would normally have a board name go first.. but I suppose this is
->>>> some sort of a fix to the issue that sparked this (posting the link
->>>> for others to have more context)
->>>>
->>>> But since these SoCs do exist, I wouldn't say this is necessarily
->>>> wrong..
->>>>
->>>
->>> Well we can see this as a ""template"" for device that might be added
->>> using the ipq8062 or ipq8065 compatible.
->>>
->>> When device with that variant will be added we would have to just add an
->>> enum with the real device name on top of it (as first element).
->>>
->>> Honestly I should have added these compatible long time ago as on
->>> OpenWrt we have tons of device that are ipq8062 or ipq8065 with the
->>> compatible structure
->>>
->>> "device,name", "qcom,ipq8065", "qcom,ipq8064".
->>
->> If you don't you have any boards yet, you can do:
->>
->> items:
->>   - description: ...
->>   - const: qcom,ipq8065
->>   - const: qcom,ipq8064
->>
->> Just to prevent skipping a board compatible.
->>
->> But you said you have tons of devices, so...
->>
-> 
-> Yes the problem is that it might take a while for the DTS to be picked
-> so maybe it's better to push for the description solution?
 
-DT depends on bindings, it's not so stringent the other way around
+On 11/14/2025 8:02 AM, Philipp Zabel wrote:
+> On Fr, 2025-11-14 at 05:37 -0800, Laurentiu Mihalcea wrote:
+>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>>
+>> Switch to per-device reset map to allow reusing the driver for other NXP
+>> block control IPs.
+>>
+>> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+>> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>> ---
+>>  drivers/reset/reset-imx8mp-audiomix.c | 18 ++++++++++++++++--
+>>  1 file changed, 16 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-imx8mp-audiomix.c
+>> index 35df9bd5f71a..d3396f37d1ff 100644
+>> --- a/drivers/reset/reset-imx8mp-audiomix.c
+>> +++ b/drivers/reset/reset-imx8mp-audiomix.c
+>> @@ -24,7 +24,12 @@ struct imx8mp_reset_map {
+>>  	bool active_low;
+>>  };
+>>  
+>> -static const struct imx8mp_reset_map reset_map[] = {
+>> +struct imx8mp_reset_info {
+>> +	const struct imx8mp_reset_map *map;
+>> +	int num_lines;
+>> +};
+>> +
+>> +static const struct imx8mp_reset_map imx8mp_reset_map[] = {
+>>  	[IMX8MP_AUDIOMIX_EARC_RESET] = {
+>>  		.offset	= IMX8MP_AUDIOMIX_EARC_RESET_OFFSET,
+>>  		.bit = 0,
+>> @@ -42,9 +47,15 @@ static const struct imx8mp_reset_map reset_map[] = {
+>>  	},
+>>  };
+>>  
+>> +static const struct imx8mp_reset_info imx8mp_reset_info = {
+>> +	.map = imx8mp_reset_map,
+>> +	.num_lines = ARRAY_SIZE(imx8mp_reset_map),
+>> +};
+>> +
+>>  struct imx8mp_audiomix_reset {
+>>  	struct reset_controller_dev rcdev;
+>>  	struct regmap *regmap;
+>> +	const struct imx8mp_reset_info *rinfo;
+> Since only rinfo->map is used in imx8mp_audiomix_update(), you could
+> directly store a
+>
+> 	const struct imx8mp_reset_map *map;
 
-Konrad
-> 
+
+hm, that is true, but I wonder if instead of replacing "rinfo" with "map", it would be better to
+
+keep "rinfo" and add an out-of-bounds check for the reset ID in imx8mp_audiomix_update().
+
+Something like:
+
+
+                if (id >= priv->rinfo->num_lines)
+
+                    return -EINVAL;
+
+
+we are stuck with "struct imx8mp_reset_info" so might as well fully make use of it?
+
+
+>
+>
+> regards
+> Philipp
 
