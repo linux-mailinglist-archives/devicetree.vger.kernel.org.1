@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-240947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17FFEC77F5A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:41:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7274C77F24
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:38:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 185B92EEC3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:37:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 6DE632D473
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3E52FCC01;
-	Fri, 21 Nov 2025 08:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8CA337BB3;
+	Fri, 21 Nov 2025 08:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S1nx8Psn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aIWaNk/8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5326FBF
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 08:36:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E5413777E
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 08:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763714221; cv=none; b=A4kv2F7WWtjeSrZS8pEt85RGq+ZKNccGAJdtNIYnDLiqF+Ss2Gbe/JQhXHAYkZ/M6Yj5admVu2GwaY81GLDBkbx/VCBQuo5pkXb3jqb1zvBv2fumZ4UCJRtlZQJxcJ15A+tfUNBtqAVQRDLwexubpDuioZC0FztjXRKcfJtn9e0=
+	t=1763714279; cv=none; b=AVN9LkPiFQ/dkT14Hw70Sz2H0kN+mRfsNNNkuwvU6QYxN2kcXLdZ5OtA6qSi4YTOhi+prS4ZrSSLec+afRf2hM+xwqt863Jni0QDU2rpvjQjMInzi/7bdvk1MpllMXGm/wgvb3h773avcfBLCyMXMZu3eh1y8SykN99kOKFIXIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763714221; c=relaxed/simple;
-	bh=2CSuKOB0Q7+xqXD4ky+SFzZuaVcYW2fEBobu8hliL4E=;
+	s=arc-20240116; t=1763714279; c=relaxed/simple;
+	bh=RKkdw4ds7xIqmoTHkH7/H9YNJfhbbWsH8UZSL9tFY+Y=;
 	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rxkONH2WyAofcuwbgOdN4oGdIYPyX6cPJziddNINOM+lD63TCDBWi0OoiI3g3i/LsT0otRmg39paNU/I34gxaa6paMHul1sAVOeOi4XASsreNGLj5KyW7uFu09sz0+wGe4IjYiyvwKSvzEQdq9NaEtmxUhqfSi3ACgubGq6/dC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S1nx8Psn; arc=none smtp.client-ip=209.85.128.50
+	 Content-Type:Content-Disposition:In-Reply-To; b=diP3WE4puQqjBKHSCHvaPffkUrJCYYjmofD5x3KDKpAj2V6srnaVdVmQb2XzANdqdTdawQG5jK+1RvHhLV3tDJ9IJHlxIr7geNP4AIXXWRc+hAGAQS8cHGcMol+G1dTnT/JZEfp9ORRRtAlpR+TK0bYVGwL5/TtSxCPMjE55nfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aIWaNk/8; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47118259fd8so15166875e9.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 00:36:59 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47775fb6c56so15100935e9.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 00:37:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763714218; x=1764319018; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1763714276; x=1764319076; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:subject:cc
          :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1wEtuoMiVjHpLpaR9GzcLxm957ZTjBHVy8JV0VCpcAs=;
-        b=S1nx8Psnst2QvO22jZHkF/WvdHUePcmBmX3QarV8FQ3I+l0o6HhjQjZcwCAEyZHQKb
-         9wdArUp41p5BngCSLIRbQmSjPzkhbBzCwWdPgj6Wm30F+V+gblb0Mo9wT+8VYNrtE++s
-         +QLr/PMkFYRjVULMaVPyYXmG2n3Xbt2ZsogJ6KLT9WTkdBeI0h/XGf2Pe3TIh9KNnaZp
-         Uh9DCjT3afRo+kNU4M5IE2SqvISYbQrKLSoojNdVRcDx3tYt9FLS1F+sWDA9DD3F4HJu
-         ON9ijQEa5l9+AUjRgat70Oivn8zQcmAQthiX+IxMAHklRFdNFVzd9H55j1fMseTOZff5
-         C0RA==
+        bh=2qSXvzlmdS35P7fsTtvXLVpdTT/36B4mvzOkNUVsHgc=;
+        b=aIWaNk/8NLiLVI2msXyx4lwLhrqBnc9dVziauHradjT2g7FMKRtyMAGhAV8jhllY7H
+         eyDudQ2ryXPagk0DS9u6R7OI5LzNhOWYBwXL7ikR3RH3bAG6wDZhRl84rmrxmc5hxXzH
+         ib/4VOuHFujDHv4WtGwSmpax8VRSUm5lq/SgRaEtDk5PiHCjQYmZ0URHgTuifSowXIHl
+         iBHT7lQE/566BeSg0fSZLyZHDaN4tlakFRko24zW7wnYBEZSrS6yRGr3XVFWIdkQRa8W
+         Wk2sjVHKar09xaPAO82vAPOBU4V22v8+AD1miZNswHdt0OShQBx3eQS6c73VRkHcb3SA
+         D9qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763714218; x=1764319018;
+        d=1e100.net; s=20230601; t=1763714276; x=1764319076;
         h=in-reply-to:content-disposition:mime-version:references:subject:cc
          :to:from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1wEtuoMiVjHpLpaR9GzcLxm957ZTjBHVy8JV0VCpcAs=;
-        b=T2HgxQye6JgfUDCe8+SSlAVawSlEHI2A+pD5ACX2qDvI1I7TW5wzLkQuFAuWAEC3AQ
-         HYoPGOMMNzrmQ8WbBfKsmxLY1nb5NhdDoCNKhezJavOJ58KMUa6nhnegys2V1yRmkLUs
-         xGMUSds4Ompn+NoCFLLennb6ZqW2ZtZ1oE9pypisgIhtBAzmb7gZHCBEl9Oms4XFBKye
-         u5IxfPIYS2F254YtN41mhtYqDsZ25o5uM1kpv/WctbNFVgpoJmEVCqYz9kCcjTL8YyVB
-         B10J4lijYugPAtc1bXRijY5m7QS+1/dND8SqdDlQDYWo3yC2StXkdql23QtL8+3XpGcN
-         BdZw==
-X-Forwarded-Encrypted: i=1; AJvYcCVl5hGkuw5P9D5T37qiWmZSca1xQe/z5WALX5RBksxV4kq9bUw3S/thM8Yv7rkCrbfUAFjQY2b5eEaB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeQ+AQH61hr60v+FOGgk1NSXo6HDhSTS4FrnbmSPEl09Hssvsh
-	XPqKIi8t91c703av6HjyyGNV+fApEFPFTX/Z5GwWY0+JYWF752yZuSzT
-X-Gm-Gg: ASbGncvxaaKtblwKjlaa6G8HRvSvT75QpIxNoeo+nuq4Cuolr8MDwLk4FCNdYKJmpiG
-	vEMtJxf0cIvnNSvdtWnSv67AhS8HUDOjv4RyKUM4QXcsP/yi2Jvvha+3r1CWZMB82HSb2NcmsF7
-	RF09VuhwyCqguRGNVwtsW7LoSW5OtNdZE8qEj6c26VBf7qxcwl7hMTAkNUXhNExHVM3b3xMPdu0
-	wPnxrxplM8u1O0lcE7/Vat6My5lYF9g5wWEs5Cpo/WbOOE4kQeAgOHNkHBvvHfHwyb71RhfD1Jt
-	qRwJ8wdebMmVmTS2jUmX1jDH5c+nlw3Ihhn1oN5H0sszdZd5o5KeLLHKgkNFwmJrB4aUj+8/uAX
-	S0zMZTiRP3vLdLyqF8ETtBv6QAaxpZyrn3pZnYyGUGS9i4aRRfANHas5YpWccHXL7B74jww2tv3
-	W23Aop+39VJJe/VHr4zezr4dCibq30w/ZvDitvzR8=
-X-Google-Smtp-Source: AGHT+IHPLw2jQaPF5ElF0qIXmxXxh5kNC5rhs4V0teeBNwT7wDD/o8bBEszH0XJ2zTJXCk24Llcm4g==
-X-Received: by 2002:a05:600c:1c89:b0:477:8a29:582c with SMTP id 5b1f17b1804b1-477c01fc60amr15542125e9.34.1763714217408;
-        Fri, 21 Nov 2025 00:36:57 -0800 (PST)
+        bh=2qSXvzlmdS35P7fsTtvXLVpdTT/36B4mvzOkNUVsHgc=;
+        b=BB/cyp9JsBQdqjMpThMEb0jiVi2XQHioW34xxABVRRYmb/u7QnoyzgXYr1b0bYYaQ2
+         DDsK2qNCjDcsKVw0Jgh/Dk+G5PbgMeWV6JqFTbzSgSUFbI/g65Jf5M3YVVZ2320p7gqj
+         HGJ6C5eF5HKBCYxNu0dQFItaErOYHFInKBgeJNH7GblWdq35r+y5ROuvQPoL2cDYZHx2
+         P2xOJ7aRLNq4pBAMaFCWyfAKFeAo/K1yv70GIZTMznE02LOcEmqyaGjdRop+wbWj6kco
+         seZgEAbROI+BUN2I/LYz+HA6/4+YioS3wSh0W3Zdmu73plQKB5Ehxlc42Nt+sLzya5+k
+         z9ag==
+X-Forwarded-Encrypted: i=1; AJvYcCXqRVu/g8pnJoiJBO7JnDsLci8+eL0cea6rjSLQfyEkM7dmDyDC5L88Ix7r9Nrtahty22wAz8hU1D4G@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0SP6Gwbd3E0+ttkEAvYR0bj9+zaXtcnOphH2Mx4PttE08osTO
+	fOlNrOtCtD0+bTdcs6x8Dz0CfW11GNf6RLp3QVaI66OYD0g02v6/OlkI
+X-Gm-Gg: ASbGnctiHrRloae15DzcD8O7xP4sq6myGLbqWRSsC0RfkAXZ01ieufKzUoZQraSC4G4
+	hZKJtfdjkrwbZIQO93tJmO8ynxrohXInPivxEIDtBuhLW90Te+Yt6uTNtNP1ialO+sQuGEo1I+i
+	TYeO6uOvABonQXIOhZA+wmtUvu0APFr5Am6kwLgp6/j1tecbnWzU6pho3pwLZZ++3jPe413UDPU
+	EcOf55kJd4Ul9uWNw1TYd9znO3XjtHnxJZQ6iU1YMEgAwYU/yY3cbAYI/XkxCVEb97iRCuTI8x7
+	U6OH0ihoEuLBTTtITSwKAAK2InQDwXKuFbWEpiUWfI1LriBFXnRT7/YExQEWfk7DXtzApGmuegd
+	j71LwRszBjKFxxMO+LdhuBW0udus7YGtEcS74P+eN30+eCGPvMoXqJq6Zgk7XefuPbgr/jEZdYA
+	yXwMS6SsPS26G7L7hxSnDTFbL3lRs4z160sdlRsF8=
+X-Google-Smtp-Source: AGHT+IEA+dyN8n6gI9VghYdVrCVyA5Lkx+Pi/7Qw0bW1qYcQrv+1D9Mt2waBz7nsc6tPHypUcxzIAw==
+X-Received: by 2002:a05:600c:35ce:b0:477:6d96:b3e5 with SMTP id 5b1f17b1804b1-477c016c071mr18413245e9.7.1763714275447;
+        Fri, 21 Nov 2025 00:37:55 -0800 (PST)
 Received: from Ansuel-XPS. (93-34-90-37.ip49.fastwebnet.it. [93.34.90.37])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477a9dfd643sm78628425e9.14.2025.11.21.00.36.56
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477a9deeb96sm82356155e9.4.2025.11.21.00.37.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Nov 2025 00:36:57 -0800 (PST)
-Message-ID: <692024a9.7b0a0220.878f3.25a3@mx.google.com>
-X-Google-Original-Message-ID: <aSAkpwReMrolkA5k@Ansuel-XPS.>
-Date: Fri, 21 Nov 2025 09:36:55 +0100
+        Fri, 21 Nov 2025 00:37:55 -0800 (PST)
+Message-ID: <692024e3.050a0220.183811.f1dc@mx.google.com>
+X-Google-Original-Message-ID: <aSAk4XQ-S6d7iXUs@Ansuel-XPS.>
+Date: Fri, 21 Nov 2025 09:37:53 +0100
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -91,11 +91,10 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org, upstream@airoha.com
-Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: Add Airoha AN7581 with WM8960
- YAML
+Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: Add Airoha AN7581 AFE YAML
 References: <20251121054537.25796-1-ansuelsmth@gmail.com>
- <20251121054537.25796-2-ansuelsmth@gmail.com>
- <20251121-hospitable-tacky-cuckoo-b53af2@kuoka>
+ <20251121054537.25796-3-ansuelsmth@gmail.com>
+ <20251121-daft-secret-collie-629a2c@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,26 +103,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251121-hospitable-tacky-cuckoo-b53af2@kuoka>
+In-Reply-To: <20251121-daft-secret-collie-629a2c@kuoka>
 
-On Fri, Nov 21, 2025 at 09:33:45AM +0100, Krzysztof Kozlowski wrote:
-> On Fri, Nov 21, 2025 at 06:44:59AM +0100, Christian Marangi wrote:
-> > Add documentation for Airoha AN7581 with WM8960 i2c codec YAML schema.
+On Fri, Nov 21, 2025 at 09:36:10AM +0100, Krzysztof Kozlowski wrote:
+> On Fri, Nov 21, 2025 at 06:45:00AM +0100, Christian Marangi wrote:
+> > Add documentation for Airoha AN7581 AFE YAML schema.
 > 
-> I don't see WM8690 nowhere in the binding, so that's a bit confusing. It
-> feels like you mention here entire sound card description but binding is
-> for specific component (AFE).
+> Drop YAML and YAML schema from subbect and commit description. See also
+> submitting-patches in DT dir. You cannot add documentation for YAML
+> schema. It's like adding a Linux driver for C code.
+> 
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  .../bindings/sound/airoha,an7581-wm8960.yaml  | 67 +++++++++++++++++++
+> >  1 file changed, 67 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/airoha,an7581-wm8960.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/sound/airoha,an7581-wm8960.yaml b/Documentation/devicetree/bindings/sound/airoha,an7581-wm8960.yaml
+> > new file mode 100644
+> > index 000000000000..ebeda0876280
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sound/airoha,an7581-wm8960.yaml
+> > @@ -0,0 +1,67 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/sound/airoha,an7581-wm8960.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Airoha AN7581 sound card with WM8960 codec
+> > +
+> > +maintainers:
+> > +  - Christian Marangi <ansuelsmth@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: sound-card-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: airoha,an7581-wm8960-sound
+> > +
+> > +  platform:
+> > +    type: object
+> > +    additionalProperties: false
+> > +    properties:
+> > +      sound-dai:
+> > +        description: The phandle of AN7581 platform.
+> > +        maxItems: 1
+> > +    required:
+> > +      - sound-dai
+> > +
+> > +  codec:
+> > +    type: object
+> > +    additionalProperties: false
+> > +    properties:
+> > +      sound-dai:
+> > +        description: The phandle of wm8960 codec.
+> > +        maxItems: 1
+> > +    required:
+> > +      - sound-dai
+> > +
+> > +unevaluatedProperties: false
+> 
+> Please place it after 'required:' block.
 >
-> Well, anyway, probably not worth to resend, so:
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
 
-Maybe I have to send a new revision for the machine driver so I have to
-resent anyway.
+Thanks for the review. Will do!
 
-I took mt7986 schema as reference and the i2c codec card wasn't defined
-in the example.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - audio-routing
+> > +  - platform
+> > +  - codec
+> 
+> Best regards,
+> Krzysztof
+> 
 
 -- 
 	Ansuel
