@@ -1,198 +1,99 @@
-Return-Path: <devicetree+bounces-241238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB76C7B581
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 19:31:12 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08271C7B59C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 19:32:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F0B8C4E25AD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 18:31:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3404D360361
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 18:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485692F12A3;
-	Fri, 21 Nov 2025 18:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0E62F261F;
+	Fri, 21 Nov 2025 18:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NfNlwVj2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y/yYFmzq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173CA2E92B0;
-	Fri, 21 Nov 2025 18:30:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01D9C824BD;
+	Fri, 21 Nov 2025 18:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763749857; cv=none; b=iVj/JtjS2Jnt8EIOIjZNf2UaeDlhvZQF0HA1z9CsERqTLCRlTZKuUJBY558nuwUzOcA1II+mM1vUsjN78LlqdRPWJR53T+k49ArHlsqrEPQvYkEcgghXrSbs3wibjVRgw14DDfU2rkl3tDuIyVhF7v+jY91SqLUFoAxlcU4WzKQ=
+	t=1763749934; cv=none; b=jL1BFbDp2NKrzJngB/Lr3oYj+iJ622MatvNks+XPudnXxCaY7SAtEcovLfGAW80VmoLLszIFkZDGXr0NMt2Gb7vvJnayFrBq3Df4qrPZ+KXx8BuRS025TXPsqFFToMYJo5+kzIx75Peej+wo1Chb5CmSDwzuo9pTMO9zBW6dsVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763749857; c=relaxed/simple;
-	bh=nuLEuThv9O831xu0F147aRG9883uZgJtP/Du5sjsZgo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=hfWEj4gEilU3PdssnR5jogkRoQUwWm2GK6gmARLXdshKFyTn68BfSVBOfWxgnQBz09i3SeilfHHBqPB5Qu0kW/fj3VONgbfOs4W8nz/Rmu1By8wIYMewao2Ipiq54L3UMgLpYMU3RqmAaWbUz+8e3Ls/mbePidhutipKdAMf7vY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NfNlwVj2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81861C116C6;
-	Fri, 21 Nov 2025 18:30:56 +0000 (UTC)
+	s=arc-20240116; t=1763749934; c=relaxed/simple;
+	bh=FYYPervbEOjVJJBzptFxIG8219f/76+NO4AhnB1hXNo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i65O8jIPkyjgdTALEz50MLiQqMGw3WaHWbVj6nwk+Xdaq54SELpksqyt9OM8OGZ6ZAyJCzLCi0s+WCAVz4Yazeir7mpPLfR3zpheoX/Cqh11u8bTEeTz2D8XJC79RfxMDNe+cLuI40KaiiC3mWPbuGgYIUq439Na4WMUwc1fNA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y/yYFmzq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB8A6C116D0;
+	Fri, 21 Nov 2025 18:32:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763749856;
-	bh=nuLEuThv9O831xu0F147aRG9883uZgJtP/Du5sjsZgo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=NfNlwVj26byITxx4VpUHKfrCW5wJ2oC/OSIzb2Sl8O/4GDvNM8FIXbM4E45F/dk4X
-	 X3g591xQKN2gzgeI6D2cBOiP+h73/ubsVG/tHk0HSIdHWzvbyqltTAal3YsjWGundi
-	 R4mx/wSSFIbq39L6xaXbk8o/+4wTtqKd80mE95ky7dnpSsAi6nQJnwAuCxT8APKMqj
-	 /qSiRrBsx1v1IfW8ArfvG7TqIqB4S3G9UUwv8lqYYbfG15XahtW+S/ijFoxxh4vbPs
-	 uTFZJ8S8CRapm3NY+opKfiD/yMRvjJwoo5odxr99NXaqIM4qitdGWTZ8GgFmx8I8e4
-	 wV9YV4gCIDXIA==
-Date: Fri, 21 Nov 2025 12:30:54 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1763749933;
+	bh=FYYPervbEOjVJJBzptFxIG8219f/76+NO4AhnB1hXNo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y/yYFmzqxyIdBmUAV3gvjPj/hP22PY1qOyfhcIG1rM8hK2Vzo88PaB+kyb7aHOQ7F
+	 thaWNLoxl+yG+fzCBrfnlX9Vy9goHiqa3eQnFfrBgCwdnk3BYwBaQkG5Q4cJJRB6kp
+	 p3uVQk32svVFtHsiAfNRJRJ80Uoep2McqKajzidFe8fiHzqlktKSnaE3UVlE5MbacI
+	 tv7WuIP6qWHO1k4N0h4/oV7A97d8B5p4HeHCFb+Pq76JfsijWXJjBatDCApieSaK8O
+	 kqd/Z47QdEupQOoV+00I7E4wq8s5hPwkaKmW4EwUKyACipEEQ4CuEycFSzB1Tj2qJ2
+	 wgKZ9tvnGqb1g==
+Date: Fri, 21 Nov 2025 18:32:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Elaine Zhang <zhangqing@rock-chips.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, heiko@sntech.de,
+	robh@kernel.org, p.zabel@pengutronix.de, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	finley.xiao@rock-chips.com
+Subject: Re: [PATCH v9 1/2] dt-bindings: clock: rockchip: Add RK3506 clock
+ and reset unit
+Message-ID: <20251121-pardon-employee-9dec9bc4f722@spud>
+References: <20251121075350.2564860-1-zhangqing@rock-chips.com>
+ <20251121075350.2564860-2-zhangqing@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, devicetree@vger.kernel.org, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-kernel@vger.kernel.org, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-iio@vger.kernel.org, 
- Tobias Sperling <tobias.sperling@softing.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Andy Shevchenko <andy@kernel.org>
-To: Kurt Borja <kuurtb@gmail.com>
-In-Reply-To: <20251121-ads1x18-v1-1-86db080fc9a4@gmail.com>
-References: <20251121-ads1x18-v1-0-86db080fc9a4@gmail.com>
- <20251121-ads1x18-v1-1-86db080fc9a4@gmail.com>
-Message-Id: <176374985488.1690161.9712720079705383605.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add TI ADS1018/ADS1118
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="OODCh6Xp3HC9Xyhv"
+Content-Disposition: inline
+In-Reply-To: <20251121075350.2564860-2-zhangqing@rock-chips.com>
 
 
-On Fri, 21 Nov 2025 12:16:14 -0500, Kurt Borja wrote:
-> Add documentation for Texas Instruments ADS1018 and ADS1118
-> analog-to-digital converters.
-> 
-> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
-> ---
->  .../devicetree/bindings/iio/adc/ti,ads1118.yaml    | 132 +++++++++++++++++++++
->  1 file changed, 132 insertions(+)
-> 
+--OODCh6Xp3HC9Xyhv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Fri, Nov 21, 2025 at 03:53:49PM +0800, Elaine Zhang wrote:
+> From: Finley Xiao <finley.xiao@rock-chips.com>
+>=20
+> Add device tree bindings for clock and reset unit on RK3506 SoC.
+> Add clock and reset IDs for RK3506 SoC.
+>=20
+> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml:93:8: [error] empty value in block mapping (empty-values)
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: ignoring, error in schema: allOf: 1: if
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: properties:reg: 'anyOf' conditional failed, one must be fixed:
-	'maxitems' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: properties:drdy-gpios: 'anyOf' conditional failed, one must be fixed:
-	'maxitems' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: properties:interrupts: 'anyOf' conditional failed, one must be fixed:
-	'maxitems' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: properties:reg: 'anyOf' conditional failed, one must be fixed:
-	'maxItems' is a required property
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	'maxitems' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	Additional properties are not allowed ('maxitems' was unexpected)
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	'maxitems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
-	from schema $id: http://devicetree.org/meta-schemas/cell.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: properties:drdy-gpios: 'anyOf' conditional failed, one must be fixed:
-	'maxItems' is a required property
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	'maxitems' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	Additional properties are not allowed ('maxitems' was unexpected)
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	'maxitems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
-	from schema $id: http://devicetree.org/meta-schemas/cell.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: properties:interrupts: 'anyOf' conditional failed, one must be fixed:
-	'maxItems' is a required property
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	'maxitems' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	Additional properties are not allowed ('maxitems' was unexpected)
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	'maxitems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
-	from schema $id: http://devicetree.org/meta-schemas/cell.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: allOf:1:if: None is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: allOf:1:if: None is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: allOf:1:if: None is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: allOf:1:if: None is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: allOf:1:if: None is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: allOf:1:if: None is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml: allOf:1:if: None is not of type 'object', 'boolean'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 8, in <module>
-    sys.exit(main())
-             ~~~~^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/doc_validate.py", line 66, in main
-    ret |= check_doc(f)
-           ~~~~~~~~~^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/doc_validate.py", line 37, in check_doc
-    dtsch.check_schema_refs()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 241, in check_schema_refs
-    self._check_schema_refs(resolver, self)
-    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 212, in _check_schema_refs
-    self._check_schema_refs(resolver, v, parent=k, is_common=is_common,
-    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                            has_constraint=has_constraint)
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 212, in _check_schema_refs
-    self._check_schema_refs(resolver, v, parent=k, is_common=is_common,
-    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                            has_constraint=has_constraint)
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 203, in _check_schema_refs
-    ref_sch = resolver.lookup(schema['$ref']).contents
-              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
-    retrieved = self._registry.get_or_retrieve(uri)
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 422, in get_or_retrieve
-    registry = self.crawl()
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 500, in crawl
-    id = resource.id()
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 231, in id
-    id = self._specification.id_of(self.contents)
-  File "/usr/local/lib/python3.13/dist-packages/referencing/jsonschema.py", line 50, in _dollar_id
-    return contents.get("$id")
-           ^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'get'
-Lexical error: Documentation/devicetree/bindings/iio/adc/ti,ads1118.example.dts:32.49-70 Unexpected 'IRQ_TYPE_EDGE_FALLING'
-Lexical error: Documentation/devicetree/bindings/iio/adc/ti,ads1118.example.dts:33.40-55 Unexpected 'GPIO_ACTIVE_LOW'
-FATAL ERROR: Syntax error parsing input tree
-make[2]: *** [scripts/Makefile.dtbs:132: Documentation/devicetree/bindings/iio/adc/ti,ads1118.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1525: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+--OODCh6Xp3HC9Xyhv
+Content-Type: application/pgp-signature; name="signature.asc"
 
-doc reference errors (make refcheckdocs):
+-----BEGIN PGP SIGNATURE-----
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251121-ads1x18-v1-1-86db080fc9a4@gmail.com
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSCwKAAKCRB4tDGHoIJi
+0tYmAP0XdiQ7FjAMJRMNG+AfR5MdexmkPh6Y1Wk7sVStJYlgngD9FvuK+OKz/JB9
+1pNXBM31iSC3eLIx+nz+r2s7DT8gNw0=
+=hCqX
+-----END PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--OODCh6Xp3HC9Xyhv--
 
