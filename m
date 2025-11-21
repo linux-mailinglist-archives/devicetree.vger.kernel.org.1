@@ -1,622 +1,235 @@
-Return-Path: <devicetree+bounces-241128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA051C7A29A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:31:55 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C78C7A30C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:35:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9E9024F35F5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:24:42 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 88A603593DD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93CA133D6CB;
-	Fri, 21 Nov 2025 14:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E29134CFC2;
+	Fri, 21 Nov 2025 14:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ZP79mZEW"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="acKKIXgW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011051.outbound.protection.outlook.com [52.101.52.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49FE433BBB7;
-	Fri, 21 Nov 2025 14:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763735026; cv=none; b=qNC/0kwHMV9h0tSAR19uHbW4Hs18/aWymgccf/WzkU6FJJxSL1eSdALzrkoaTQbjkgkeyceuwVU2X5+meAtSw4dwd9txdr8rFCjGV5wh7PeqJWGyhXGEQwv3ufY2lhDKIbtC0vFMhgVD25yOrSZoGInIqWkacTl+KFdoQDLILK8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763735026; c=relaxed/simple;
-	bh=omMiT7pbMoA+dkdGJLVHzTNHrr6qMPU8BTC52NWXAKE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EdeDoVcJsL4Cvn8/1uEXh7rP8VF1UkIunYz2SpbNxQQRugb5leZ1qL0E5b4P+KXGiKYFv1jMjklC67V+UHUywwTTIhpe3AQCpnbb/9cw3LAEvSPyrnrQrWfjWtBfeG0z6SeNo6qZqGcKZ29Bh/HVdYWm0EhEe8I5GJO/ff2ZyWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZP79mZEW; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1763735023; x=1795271023;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=omMiT7pbMoA+dkdGJLVHzTNHrr6qMPU8BTC52NWXAKE=;
-  b=ZP79mZEWMevuV/SXi/Xzzod4S16cKumCmH7SUpWP5x+LAvs3wE+jf+T5
-   KGrntJvQ+brFuaIJvHswV1Gt8Duzw35/kijRjFRWJm5+8/9DImQtEAyhW
-   8qLyEcMJiqyONR088NNN7WWeI7t7e5eWOFS7hrz23hvzicEV4UpsZExd9
-   TGdnr3HfC+mnYJ185bhWi2bdbFncsgHDgPpuBgiqCPLpIkKvjx2yK/An1
-   p841oqDdCQqbQCg1wzCxJZwIsO7NzcuJS/81mZaqgbPclC9RYH6zcykZr
-   DTUGOhK1gnegW8+vAHFx3p9ejTEnHF1a4EA38A1A3bwVDx2AF9xAWqppg
-   g==;
-X-CSE-ConnectionGUID: y2gBB57rQ7Cqsaw/h91kwQ==
-X-CSE-MsgGUID: VRmkWkxjTcaGSucjyNojfQ==
-X-IronPort-AV: E=Sophos;i="6.20,216,1758610800"; 
-   d="scan'208";a="216836379"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Nov 2025 07:23:42 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Fri, 21 Nov 2025 07:22:40 -0700
-Received: from valentina.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Fri, 21 Nov 2025 07:22:38 -0700
-From: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<valentina.fernandezalanis@microchip.com>
-CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] remoteproc: add support for Microchip IPC remoteproc platform driver
-Date: Fri, 21 Nov 2025 14:21:57 +0000
-Message-ID: <20251121142157.3582463-3-valentina.fernandezalanis@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251121142157.3582463-1-valentina.fernandezalanis@microchip.com>
-References: <20251121142157.3582463-1-valentina.fernandezalanis@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68CA6348889;
+	Fri, 21 Nov 2025 14:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763735148; cv=fail; b=am8HYomHAEBiK+fNoewIazrjWUYqWJDHdEa35UwVudQi5ufMHdnv9WM1eggZ3wBbCeivmZMj0vD5JFiBDt+p2uSfJUcvELXxB1WaHYdLq3yGGbDOY/1o2QKHIQ72BtfJXw+ZqAnuYQg/3Cvqa8RL0AqtlIxiI/3NvMFHt8XseU0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763735148; c=relaxed/simple;
+	bh=eXbL8mHIYoep5hMYVcIMdueQA1n9wnwP1TxMKeMYZ58=;
+	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=dXcYoBVK1WYnaj5wxL++rzGuQl8Rg/BZeErEbCftrJgq/FKHqd+oSDvRK4imLayJGoGA9BxcQGSUh1NxaUoLwH3naKYKzyGjnQksyg1MVEfU+0L4pZS6/MkodeEYo4GxHNYlimv/zyeF9SswqLL2yWcCOObE+RjPnOEDbChr0YA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=acKKIXgW; arc=fail smtp.client-ip=52.101.52.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dzy+R12L5IKdwesX5WEi0VjZnXt9AJRvJk8v1NRVND6D1+wTMy5cXbmi0PrBISnQEAMsIjMsbNyR9KSkl3SMHLW2nD7lPM27Z0agjTjIeNUlDl4yloOnlzvQH+Ijt+MSYVTgZO7P04Auuo+6guuOWWduCQdQ+TVcpSvK+6ULX1KWxzAGfJuMNhzwmixnSbfm61gdOEhwvP+UQrf6J+3RkBTo/x3r2oCEEqw0JSX6MDypT+H5h9O5dBnGqGStEEhjiv2ArlbnCR13ykuXNv/sdd/6a2rRXG6XY9QDRzHTrGYSkZUrQgbxOxq8ueJtJV3wbnkHgI7Drx4PAJ4MLChyIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YG2N5vAKTaLFYBGxb/UYch5q83ipWbSSkFhDUAWTO+I=;
+ b=tNWf7ZA11gPA/II2TeVEt6OP3j1u3uZtkM2VC8hYejKzPMLeKynw4Rx/qzeAyGub8qDhSd3W7vEfhixS7PpkFI52FRnqF7PAtGPhEvx0yZ5JLps+MOj0+EbAPO1GS0BqPkXC5mTh1Wp9EOuy/aPRNyGbMi1WexZix0MlMo7pqKMRZHB6GumlidlRvqKxtDfCf+5ddCnMr4ey1mKDpJKKc/y7k1Cn7G0szQt44YQNVcZMLbowUdaqOTFs91gYe+IUh05nhu0kV/YmskpuJlh6dgyamhsnzoG4fa+aj9irAq4q1gWWHV00yoeNuDAGEYuVNAqLQrvi/dy4wAnJ3hcwUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YG2N5vAKTaLFYBGxb/UYch5q83ipWbSSkFhDUAWTO+I=;
+ b=acKKIXgWK7VnYYdnfIUVUfbe69sUg24Psi4ookhtKrRmeiLDUqKA3Ahow2OzSwtnpyfHU/fQ6oT8S9fP/DRUjsIJFY5lwOfzx3g6MiwCzWMCo/ZDTsKo9e35wfR/LpBLXn1PrsUg++MrjkNFlHgGqDCwD4h2uc19bBFEla+S3ZSfMPpU07uqgdHsPOvHiCCTJdfkKC9x+nB33x70fC+9TL56nQbmpfcz5MVtPbEFkcBfsgYzbAau3Q++BjR8mkjsuRUzc/4cGmug8oslrkU6A+pPaEzxQeuxPQ2ce4bbxPpDGk1gHgPCLWmuHbZopn1JQEz1GXHtthDkph2wv03TAw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
+ by PH0PR12MB8773.namprd12.prod.outlook.com (2603:10b6:510:28d::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.11; Fri, 21 Nov
+ 2025 14:25:42 +0000
+Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
+ ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
+ ([fe80::1660:3173:eef6:6cd9%4]) with mapi id 15.20.9343.011; Fri, 21 Nov 2025
+ 14:25:42 +0000
+Message-ID: <b67b887d-541c-43a6-85fb-3fe7ac490d26@nvidia.com>
+Date: Fri, 21 Nov 2025 14:25:36 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] gpio: tegra186: Add support for Tegra256
+To: Prathamesh Shete <pshete@nvidia.com>, linus.walleij@linaro.org,
+ brgl@bgdev.pl, thierry.reding@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250823055420.24664-1-pshete@nvidia.com>
+ <20250823055420.24664-2-pshete@nvidia.com>
+From: Jon Hunter <jonathanh@nvidia.com>
+Content-Language: en-US
+In-Reply-To: <20250823055420.24664-2-pshete@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO6P123CA0033.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:2fe::6) To SJ2PR12MB8784.namprd12.prod.outlook.com
+ (2603:10b6:a03:4d0::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|PH0PR12MB8773:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5399ea0-0e6b-4d9b-4372-08de2909d9f4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|10070799003|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SEdUbThYZTZtcVg1Q3c4UVUvQ3p6TDA1MHJWODNZMGZXcUhLSmhDNUhhZUI3?=
+ =?utf-8?B?V0d0c1BlclJxcUtJTTlBTXV2MzRWTFZReVluNzRrVFoySExDSVBLUUUwd0JC?=
+ =?utf-8?B?SlBmVWROY05UVlc2S0JacHR5ZUFlV1p6UFJreTVxWm1BVGJ3UTY5N0ZjVFNy?=
+ =?utf-8?B?WkFSYlhEMFdjUCthMlhEMXBlSlM0d1ZvaHJRcDRuVG1hekRkVlNtWXhhaVkz?=
+ =?utf-8?B?U21MZkt3ZzJUdDhTWHV1R0NWWFVoQUNUWVl0Z1h0eTlNdWFIWE11bzZXUnZF?=
+ =?utf-8?B?SGVpbm4zUkpmQzVncmd6MWJxZGViaHoxb2NJNGhWWnM0NHl3VzFUcFNERVVa?=
+ =?utf-8?B?Ym9kM1Rsd1lBL2ZGUHdYaEdwRzBCRCtsczEzTUlPRzRpU0NHbVFMTHRoOXZm?=
+ =?utf-8?B?VzM1Z21yRmw3THJIV3R1T0FwNFZnWEs4Ym1nZGJEcGppdjlYSUFVQjYyNENs?=
+ =?utf-8?B?aG90b2w1b2g4bWUwcDBVRFU3c3c5WndnVFgvSHcyRml4QnRmdVloTXh5MWty?=
+ =?utf-8?B?Wjc1NS8xaWNMMEdkVElBR2QvZEwxYzlJeEtWMGdwYWQ5dEM3L2c2OFFvS2hv?=
+ =?utf-8?B?NFhhMXpML0F2cU0rQUw5RUY4TjVTUXBOOWlUSGpadFBBenI4QXFybDFJSVl6?=
+ =?utf-8?B?ZW4yWXFNd0JyV2Z4ZWZEdkFoRmZkSStJV3ViSHJCbkpzb2RjcGUrbjhDK0J1?=
+ =?utf-8?B?MjZOL3Q0c3crSHA5aTZIRzYwNmJ3MzRTWS8ra01aNmhyL3ZtUlZ3SWY0Unhs?=
+ =?utf-8?B?N2hUUCs1TDU5cy9IaGJVME90bVlxcnIyR2xXWEhvb2JaZVJLWDZoS053alJm?=
+ =?utf-8?B?TnJCaGlLN3lJMzVBVlhkWDg5M0s4WDlqSTl2UmVjWGp5S2hMcEZQU2dqT2dj?=
+ =?utf-8?B?U2VGRVRtVG1XT2h2c3MyWlgyTy9WdlNJRTNFSXJCTG9RTFlqZStPczFFQ3g4?=
+ =?utf-8?B?ZnZTcSs2dUl6aU9PZk9zM25qNHljdTZ2ZVB1UjZSY25ySzdodGJ3RG45bldB?=
+ =?utf-8?B?RDJzUkVhUU9mZEpJUS94SldINDVLd1U2YnliNzJqNHhLRmw5TmcwOEszWklj?=
+ =?utf-8?B?OTFPRkQ4WGxqamwwbDRab1JVVzcxTFlzVi9qS0o5WUxITWorS0RHb2FuUGtO?=
+ =?utf-8?B?b1cxM0ZvbXFnWkY2Ymx5aUgveVNrcm9xR2hWYUUyOHR3UGxQU0JidytoalJq?=
+ =?utf-8?B?emdVWHJUaHAwZHV1U0tSTnFCdStXZ1BPMUQ2Q0xnS2tvTXVYU1dhSHpDMVFq?=
+ =?utf-8?B?NFpiTnFNdGRRTWhJWjVWZmFnSU9QQUE4SHg1ZTF1NGRsMUNaWmJ1YzN2ZFFO?=
+ =?utf-8?B?Mk4vVWxaUEFFV2lWeDBDeDE4eVZCZHMwOS9DK1pJNnRhSGtxM0dzVEZqaTIz?=
+ =?utf-8?B?b0E5R2FWc0lmTkowaG9TTnhRbW1ORFlRWDdEbnArUy9PZU55UVlWaUtJYm1x?=
+ =?utf-8?B?bDFvZ2lVNmRTN0g2blVpeVQrVTM2OUdCZkJIS0QxOVltTXVod0hPcEpJeU9E?=
+ =?utf-8?B?SFV3Z2xDNG9VZnc5aDk5WGFsVUx6S3ZyUmJtT0lNVXZCNUpraTQ5aUg2TUR2?=
+ =?utf-8?B?ei9Md09TUHY4R09qVWRuQkN4aUdTTCszZUQwQWIxUEJlbVB3bHVTcEg3YlZl?=
+ =?utf-8?B?aDRKU3IvV2laZ29QU1I1bUozeDJRUjdpcGE1bUJ0czhCT1AyMzBHUGZHU29Q?=
+ =?utf-8?B?b1JOSlNzaTUrbS9neFJIOFZRQ2JPdHhVaFdxQ2F6RXZDOWpnejlVS1BtQ1VW?=
+ =?utf-8?B?WWhsL2orcHdpZWo0OW9wRnNUSkN5a1MwRXpCTlhiQk9sSHArWi9ucFdFU2Jh?=
+ =?utf-8?B?ODdRZExTVFpuTlluTFlaaC9HTjJFb0pLV0VzdGFKcXRtMXpTdGREbzVKUkMr?=
+ =?utf-8?B?U0VOVEViaUdySGlndUs1UzV2eGZqTGR6MHRmSTlMTy9na2UrOWV1YmQ3S2F6?=
+ =?utf-8?B?S1JKOWJvUFF3UUtoUEZWZDBGTlBIZnFjaXE5Tk0razhTeU9uUktERVdCbDRJ?=
+ =?utf-8?Q?tSb65hkPTM4mpjjlKig2MoRw/nhYYk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(10070799003)(7416014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?alR6TVRBU05aU3pLQlFrd2lKU2ZXQ1QxemxidnRxVHFVWlYxd0dQMk9hZDlN?=
+ =?utf-8?B?azVRQy91bU5pNzVzSjFYTkszWjEwRXRKcGw1OFc0NHVaMDQzNzFnQ2VrcXlX?=
+ =?utf-8?B?bnVCeGVlb3ZnZ1NhQW1XdVVpWjV6ejI0SEJCTkdtSGtaWjBiWFpBNTBGYmJO?=
+ =?utf-8?B?Sk9Obmg3ait5dzlMYzZlZXp0ZDY2SmwzQVBUTm5Wc3RkYXJXMDlTekVISjEy?=
+ =?utf-8?B?cW03VFhtb2t5LzFRSWJNcEtadm41VjBZYVhQblBzUDNEZlBNVW5vVENCMVFQ?=
+ =?utf-8?B?eGRGMDR2bGlzWUt2cFJBS28zUEw5VWV0dGlyaitoZ3ppek9tVW04TnR3Q1VL?=
+ =?utf-8?B?UkhqejVDM2w2YUtyVHEyVDdTdzJlYVVSUEVtQU9rTDdycmg1T2xvQ3RxWnRC?=
+ =?utf-8?B?bmU1ZjJEUHhGR09EWjlVeC9XTkRXMW16dzV5eTRqdkdHUkR3S2RFaStVZ2lC?=
+ =?utf-8?B?N1k2WDVGaHNpS2pvOEl5c3hMb2UyUFFHYkpZRndHZm1kVmREMWZ3Q0JzNXU3?=
+ =?utf-8?B?YXNRT0xySUFGM1N4OEVLdVpCTnB2b3JyRk0zV21EY3ZEbEN3QkkrbDBSQVAv?=
+ =?utf-8?B?bjEwNXZKbi82SnlocTRMV2J3bGQ2U0NqaUExeXRHdFVtcldYemVVNklRZXNm?=
+ =?utf-8?B?cmwwNm8yZlQ1R3gzSi9OdE1VVmxZR1lSTjhFT2NtZU9GNStRZlpEUXJYcy9M?=
+ =?utf-8?B?Qmd6TnhyNWdCVktsVUJsd0ZSKy9QM3RRNkVxK29uR1N3eVZPZlBYUStEM05F?=
+ =?utf-8?B?MWNybVBnYzRqUEUvUnhGcUowaWNPTDRIc1B3RmR2RmZtSC9TQXpWN0l0UzNh?=
+ =?utf-8?B?QkJLQ2ZHY0J5NDlSSkJaSWUySDNza01KQTZ6cThacFRqWGtuTjQyTzRYV1A2?=
+ =?utf-8?B?TUtjL2srMk9XNmlyNEdGSC9Gc0Z6UkN5RWVJL2ZPWWhXWjBabmFwV21Wei9L?=
+ =?utf-8?B?Y29PcFlzUGNkSlFlbDg4czZMdUJ2K0FGTVFkRWUvTUY3VUgybnVPUndkdHNR?=
+ =?utf-8?B?NHljRHltQVkydEgzUHRuVlNYRVc0cENiNnhKKzgyR3JocnphM2tqNUd4R1ZJ?=
+ =?utf-8?B?TnIwQWZJMzhhRFVTa2I1ZlI2ems0a0VtVUwxVm5mR2ZQTll3dEg3RklNZDF5?=
+ =?utf-8?B?N1ByZ1dXd1lJQk9LcGREOW8zRE1ZeC9qWUNHUHNYaWcrWHBXeHQ2T1Y1K09Z?=
+ =?utf-8?B?KzBNSVVUWUwzU1ZNcldaYWtjTmc0RERPU2EvZ0dvd3piaEZhYTNWYVlQUHIz?=
+ =?utf-8?B?cHQ3dXRuUG5LUyttbzBhem94cndnSTRwTEpmb3RLV2EyUVhsb3VxYVdIVVlD?=
+ =?utf-8?B?KzhHT202UkVBZDMvbzJiK2Z4ZGdmS2l0ejV5WmpDUjFLTGxtZFpVcDl3eEhV?=
+ =?utf-8?B?TXpvcm5wYUNkTVdJMEJ3YlpFbE10dmdtSGhYc3MrOW1PQzRKbUF3TlB5RXR5?=
+ =?utf-8?B?Z0JhSUovbCtSb3puL29HNXB1azZ4ODNaUFp1dHRuL0lNblA3YVNmWGJmbTVm?=
+ =?utf-8?B?eHZyR1pwd2tTVjdra3hvNC9GVkpXdWJWaTBpb3FxT2hqb2JzTjdCUjZPRkxD?=
+ =?utf-8?B?azhnSnd6em1ydHlYRTJ5T0VyYVExWERUTFJVQTgxbDFwd3JJKytOeWYrL3dE?=
+ =?utf-8?B?NmM0K3BUMDhLV1JPazc2QjkzU3IrZkJpaXFoUWNheFM5d1c4T1ZoODVma1F6?=
+ =?utf-8?B?MzZmRUFJeHhva2pGQ3JDdHBFUVVudWQwN05HYU1aU2M5cUcwVHc0Kzd2QWZ0?=
+ =?utf-8?B?V2xYSnh3NWE0RVNwU1k3ak12SFQ2WEN2M0RNMzNHWGR5ZHQwY2pQTDdrTUFQ?=
+ =?utf-8?B?RTNLTGRXYkFEUk9PVml1eFJ6ZmxwTXdoalhFMVRteE1hM1J6d2NXN09URTdx?=
+ =?utf-8?B?UThkVjBhWUkyNENkZDkrR2svVzBlVTZ4V2hVWjU4VHhwclJlZytUM2wvWlU1?=
+ =?utf-8?B?K2I1R0NrZSsreHpQamVlc2ZTY2Y4VVJUdTFaeS82bENmM2ZxU3lYaUhUYjVP?=
+ =?utf-8?B?ck4rU3pDaGxMNVo3dFczbjVkLytZZ0VQeXRSK1pJRnNJSUVtejBlVnZ2K0Zu?=
+ =?utf-8?B?NXBLbHBicWlkbDZtblkwSFAzY2JRNGZGRFN4bk5KNU92TDBMcHAyTVJpY202?=
+ =?utf-8?B?Y3VveHQ1cFBmNWNlaEtKN0toTGVpcFFmeWJwVlRML0FjVm5GTExneFdCUHpQ?=
+ =?utf-8?Q?LxE30o2h1vecFVIIGeR14pnkm160ZgQdyn6FLxC1MRj6?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5399ea0-0e6b-4d9b-4372-08de2909d9f4
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2025 14:25:42.3794
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LckVErckwPxWMx+2M2Ski6mnHx6YOkxMRKvUomAGcN1iJT9bMxqRitUPG5CnluunpHU3mXfKEB+PKdtIbVqOJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8773
 
-Microchip family of RISC-V SoCs typically have one or more
-clusters. These clusters can be configured to run in an Asymmetric
-Multi Processing (AMP) mode where clusters are split in independent
-software contexts.
 
-Add a remoteproc platform driver to be able to load and boot firmware
-to remote processors.
+On 23/08/2025 06:54, Prathamesh Shete wrote:
+> Extend the existing Tegra186 GPIO controller driver with support for the
+> GPIO controller found on Tegra256. While the programming model remains
+> the same, the number of pins has slightly changed.
+> 
+> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+> ---
+>   drivers/gpio/gpio-tegra186.c | 28 ++++++++++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
+> 
+> diff --git a/drivers/gpio/gpio-tegra186.c b/drivers/gpio/gpio-tegra186.c
+> index d27bfac6c9f5..c9f1441a7b30 100644
+> --- a/drivers/gpio/gpio-tegra186.c
+> +++ b/drivers/gpio/gpio-tegra186.c
+> @@ -20,6 +20,7 @@
+>   #include <dt-bindings/gpio/tegra194-gpio.h>
+>   #include <dt-bindings/gpio/tegra234-gpio.h>
+>   #include <dt-bindings/gpio/tegra241-gpio.h>
+> +#include <dt-bindings/gpio/tegra256-gpio.h>
+>   
+>   /* security registers */
+>   #define TEGRA186_GPIO_CTL_SCR 0x0c
+> @@ -1274,6 +1275,30 @@ static const struct tegra_gpio_soc tegra241_aon_soc = {
+>   	.has_vm_support = false,
+>   };
+>   
+> +#define TEGRA256_MAIN_GPIO_PORT(_name, _bank, _port, _pins)	\
+> +	[TEGRA256_MAIN_GPIO_PORT_##_name] = {			\
+> +		.name = #_name,					\
+> +		.bank = _bank,					\
+> +		.port = _port,					\
+> +		.pins = _pins,					\
+> +	}
+> +
+> +static const struct tegra_gpio_port tegra256_main_ports[] = {
+> +	TEGRA256_MAIN_GPIO_PORT(A, 0, 0, 8),
+> +	TEGRA256_MAIN_GPIO_PORT(B, 0, 1, 8),
+> +	TEGRA256_MAIN_GPIO_PORT(C, 0, 2, 8),
+> +	TEGRA256_MAIN_GPIO_PORT(D, 0, 3, 8),
+> +};
+> +
+> +static const struct tegra_gpio_soc tegra256_main_soc = {
+> +	.num_ports = ARRAY_SIZE(tegra256_main_ports),
+> +	.ports = tegra256_main_ports,
+> +	.name = "tegra256-gpio-main",
+> +	.instance = 1,
 
-The driver uses SBI (RISC-V Supervisor Binary Interface) ecalls to
-request software running in machine privilege mode (M-mode) to
-start/stop the remote processor.
+Shouldn't this be 0?
 
-Inter-processor communication is supported through the
-virtio rpmsg stack using shared memory and the Microchip IPC mailbox
-driver.
+Jon
 
-Currently, the driver the following features are supported:
-- Start/stop a remote software context
-- Kick function implementation for RPMsg Communication
-- Attach to a remote context loaded by another entity (bootloader)
-
-Error Recovery and Power Management features are not currently supported.
-
-Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
----
- drivers/remoteproc/Kconfig                   |  12 +
- drivers/remoteproc/Makefile                  |   1 +
- drivers/remoteproc/mchp_ipc_sbi_remoteproc.c | 465 +++++++++++++++++++
- 3 files changed, 478 insertions(+)
- create mode 100644 drivers/remoteproc/mchp_ipc_sbi_remoteproc.c
-
-diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-index 48a0d3a69ed0..68bd68f553ea 100644
---- a/drivers/remoteproc/Kconfig
-+++ b/drivers/remoteproc/Kconfig
-@@ -54,6 +54,18 @@ config INGENIC_VPU_RPROC
- 	  This can be either built-in or a loadable module.
- 	  If unsure say N.
- 
-+config MCHP_IPC_SBI_REMOTEPROC
-+	tristate "Microchip IPC remoteproc support"
-+	depends on MCHP_SBI_IPC_MBOX || COMPILE_TEST
-+	depends on ARCH_MICROCHIP
-+	help
-+	  Say y here to support booting and loading firmware to remote
-+	  processors on various Microchip family of RISC-V SoCs via the
-+	  remote processor framework.
-+	  This can be either built-in or a loadable module.
-+	  If compiled as module, the module will be called mchp_ipc_remoteproc.
-+	  If unsure say N.
-+
- config MTK_SCP
- 	tristate "Mediatek SCP support"
- 	depends on ARCH_MEDIATEK || COMPILE_TEST
-diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
-index 1c7598b8475d..afb28dff5666 100644
---- a/drivers/remoteproc/Makefile
-+++ b/drivers/remoteproc/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_REMOTEPROC_CDEV)		+= remoteproc_cdev.o
- obj-$(CONFIG_IMX_REMOTEPROC)		+= imx_rproc.o
- obj-$(CONFIG_IMX_DSP_REMOTEPROC)	+= imx_dsp_rproc.o
- obj-$(CONFIG_INGENIC_VPU_RPROC)		+= ingenic_rproc.o
-+obj-$(CONFIG_MCHP_IPC_SBI_REMOTEPROC)	+= mchp_ipc_sbi_remoteproc.o
- obj-$(CONFIG_MTK_SCP)			+= mtk_scp.o mtk_scp_ipi.o
- obj-$(CONFIG_OMAP_REMOTEPROC)		+= omap_remoteproc.o
- obj-$(CONFIG_WKUP_M3_RPROC)		+= wkup_m3_rproc.o
-diff --git a/drivers/remoteproc/mchp_ipc_sbi_remoteproc.c b/drivers/remoteproc/mchp_ipc_sbi_remoteproc.c
-new file mode 100644
-index 000000000000..55d182c1eee7
---- /dev/null
-+++ b/drivers/remoteproc/mchp_ipc_sbi_remoteproc.c
-@@ -0,0 +1,465 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Microchip IPC Remoteproc driver
-+ *
-+ * Copyright (c) 2021 - 2025 Microchip Technology Inc. All rights reserved.
-+ *
-+ * Author: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-+ *
-+ * Derived from the imx_rproc implementation:
-+ * Copyright (c) 2017 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/kernel.h>
-+#include <linux/mailbox_client.h>
-+#include <linux/module.h>
-+#include <linux/of_address.h>
-+#include <linux/of_reserved_mem.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/remoteproc.h>
-+#include <linux/workqueue.h>
-+
-+#include <asm/sbi.h>
-+#include <asm/vendorid_list.h>
-+#include <linux/mailbox/mchp-ipc.h>
-+
-+#include "remoteproc_internal.h"
-+
-+#define SBI_EXT_MICROCHIP_TECHNOLOGY	(SBI_EXT_VENDOR_START | \
-+					 MICROCHIP_VENDOR_ID)
-+
-+#define MIV_RPROC_MEM_MAX		2
-+
-+enum {
-+	SBI_EXT_RPROC_STATE = 0x3,
-+	SBI_EXT_RPROC_START,
-+	SBI_EXT_RPROC_STOP,
-+};
-+
-+/**
-+ * enum mchp_ipc_rproc_mbox_messages - predefined mailbox messages
-+ *
-+ * @MCHP_IPC_RPROC_MBOX_READY: a ready message response from a remote context indicating
-+ * that the remote context is up and running.
-+ *
-+ * @MCHP_IPC_RPROC_MBOX_PENDING_MSG: Not currently in use, but reserved for future use
-+ * to inform the receiver that there is a message awaiting in its receive-side
-+ * vring. At the moment, one can explicitly send the index of the triggered
-+ * virtqueue as a payload.
-+ *
-+ * @MCHP_IPC_RPROC_MBOX_STOP: a stop request for the remote context
-+ *
-+ * @MCHP_IPC_RPROC_MBOX_END_MSG: Indicates end of known/defined messages.
-+ * This should be the last definition.
-+ *
-+ */
-+enum mchp_ipc_rproc_mbox_messages {
-+	MCHP_IPC_RPROC_MBOX_READY = 0xFFFFFF00,
-+	MCHP_IPC_RPROC_MBOX_PENDING_MSG = 0xFFFFFF01,
-+	MCHP_IPC_RPROC_MBOX_STOP = 0xFFFFFF02,
-+	MCHP_IPC_RPROC_MBOX_END_MSG = 0xFFFFFF03,
-+};
-+
-+enum {
-+	MCHP_IPC_RPROC_RSC_TABLE_REGION,
-+	MCHP_IPC_RPROC_FW_REGION,
-+	MCHP_IPC_RPROC_BUFF_REGION,
-+	MCHP_IPC_RPROC_VRING0_REGION,
-+	MCHP_IPC_RPROC_VRING1_REGION,
-+	MCHP_IPC_RPROC_REGION_MAX,
-+};
-+
-+struct mchp_ipc_rproc_mem_region {
-+	const char *name;
-+	const char *prefix;
-+};
-+
-+struct mchp_ipc_rproc {
-+	struct device *dev;
-+	struct rproc *rproc;
-+	struct mbox_chan *mbox_channel;
-+	struct workqueue_struct *workqueue;
-+	struct mbox_client mbox_client;
-+	struct completion start_done;
-+	struct work_struct rproc_work;
-+	struct mchp_ipc_msg message;
-+	void __iomem *rsc_table;
-+	bool initialized;
-+	u32 chan_id;
-+};
-+
-+static struct mchp_ipc_rproc_mem_region mchp_rproc_mem_regions[] = {
-+	[MCHP_IPC_RPROC_RSC_TABLE_REGION] = {
-+		.name = "rsc-table",
-+		.prefix = NULL,
-+	},
-+	[MCHP_IPC_RPROC_FW_REGION] = {
-+		.name = "firmware",
-+		.prefix = NULL,
-+	},
-+	[MCHP_IPC_RPROC_BUFF_REGION] = {
-+		.name = "buffer",
-+		.prefix = "vdev0",
-+	},
-+	[MCHP_IPC_RPROC_VRING0_REGION] = {
-+		.name = "vring0",
-+		.prefix = "vdev0",
-+	},
-+	[MCHP_IPC_RPROC_VRING1_REGION] = {
-+		.name = "vring1",
-+		.prefix = "vdev0",
-+	},
-+};
-+
-+static int mchp_ipc_rproc_start(struct rproc *rproc)
-+{
-+	struct mchp_ipc_rproc *priv = rproc->priv;
-+	struct sbiret ret;
-+
-+	ret = sbi_ecall(SBI_EXT_MICROCHIP_TECHNOLOGY, SBI_EXT_RPROC_START,
-+			priv->chan_id, rproc->bootaddr, 0, 0, 0, 0);
-+
-+	if (ret.error)
-+		return sbi_err_map_linux_errno(ret.error);
-+
-+	if (!wait_for_completion_timeout(&priv->start_done,
-+					 msecs_to_jiffies(5000))) {
-+		dev_err(priv->dev, "timeout waiting for ready notification\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	return 0;
-+}
-+
-+static int mchp_ipc_rproc_stop(struct rproc *rproc)
-+{
-+	struct mchp_ipc_rproc *priv = rproc->priv;
-+	struct sbiret ret;
-+
-+	ret = sbi_ecall(SBI_EXT_MICROCHIP_TECHNOLOGY, SBI_EXT_RPROC_STOP,
-+			priv->chan_id, MCHP_IPC_RPROC_MBOX_STOP, 0, 0, 0, 0);
-+
-+	if (ret.error)
-+		return sbi_err_map_linux_errno(ret.error);
-+
-+	return ret.value;
-+}
-+
-+static int mchp_ipc_rproc_mem_alloc(struct rproc *rproc, struct rproc_mem_entry *mem)
-+{
-+	struct device *dev = rproc->dev.parent;
-+	void *va;
-+
-+	dev_dbg(dev, "map memory: %pad+%zx\n", &mem->dma, mem->len);
-+	va = ioremap_wc(mem->dma, mem->len);
-+	if (IS_ERR_OR_NULL(va)) {
-+		dev_err(dev, "Unable to map memory region: %p+%zx\n",
-+			&mem->dma, mem->len);
-+		return -ENOMEM;
-+	}
-+
-+	mem->va = va;
-+
-+	return 0;
-+}
-+
-+static int mchp_ipc_rproc_mem_release(struct rproc *rproc,
-+				      struct rproc_mem_entry *mem)
-+{
-+	dev_dbg(rproc->dev.parent, "unmap memory: %pad\n", &mem->dma);
-+	iounmap(mem->va);
-+
-+	return 0;
-+}
-+
-+static int mchp_ipc_rproc_prepare(struct rproc *rproc)
-+{
-+	struct mchp_ipc_rproc *priv = rproc->priv;
-+	struct device_node *np = priv->dev->of_node;
-+	struct rproc_mem_entry *mem;
-+	struct resource res;
-+	int i, ret;
-+
-+	reinit_completion(&priv->start_done);
-+
-+	for (i = 0; i < ARRAY_SIZE(mchp_rproc_mem_regions); i++) {
-+		char *mem_region_name = devm_kstrdup(priv->dev,
-+						     mchp_rproc_mem_regions[i].name, GFP_KERNEL);
-+		int index = of_property_match_string(np, "memory-region-names", mem_region_name);
-+
-+		if (index < 0)
-+			continue;
-+
-+		ret = of_reserved_mem_region_to_resource_byname(np, mem_region_name, &res);
-+		if (ret)
-+			return ret;
-+
-+		if (mchp_rproc_mem_regions[i].prefix) {
-+			mem_region_name = devm_kasprintf(priv->dev, GFP_KERNEL, "%s%s",
-+							 mchp_rproc_mem_regions[i].prefix,
-+							 mem_region_name);
-+		}
-+
-+		if (i == MCHP_IPC_RPROC_BUFF_REGION) {
-+			mem = rproc_of_resm_mem_entry_init(priv->dev, index, resource_size(&res),
-+							   res.start, mem_region_name);
-+		} else {
-+			mem = rproc_mem_entry_init(priv->dev, NULL,
-+						   (dma_addr_t)res.start,
-+						   resource_size(&res), res.start,
-+						   mchp_ipc_rproc_mem_alloc,
-+						   mchp_ipc_rproc_mem_release,
-+						   mem_region_name);
-+		}
-+		rproc_add_carveout(rproc, mem);
-+	}
-+
-+	return 0;
-+}
-+
-+static int mchp_ipc_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
-+{
-+	int ret;
-+
-+	ret = rproc_elf_load_rsc_table(rproc, fw);
-+	if (ret)
-+		dev_info(&rproc->dev, "No resource table in elf\n");
-+
-+	return 0;
-+}
-+
-+static void mchp_ipc_rproc_kick(struct rproc *rproc, int vqid)
-+{
-+	struct mchp_ipc_rproc *priv = (struct mchp_ipc_rproc *)rproc->priv;
-+	struct mchp_ipc_msg msg;
-+	int ret;
-+
-+	msg.buf = (void *)&vqid;
-+	msg.size = sizeof(vqid);
-+
-+	ret = mbox_send_message(priv->mbox_channel, (void *)&msg);
-+	if (ret < 0)
-+		dev_err(priv->dev,
-+			"failed to send mbox message, status = %d\n", ret);
-+}
-+
-+static int mchp_ipc_rproc_attach(struct rproc *rproc)
-+{
-+	return 0;
-+}
-+
-+static struct resource_table
-+*mchp_ipc_rproc_get_loaded_rsc_table(struct rproc *rproc, size_t *table_sz)
-+{
-+	struct mchp_ipc_rproc *priv = rproc->priv;
-+
-+	if (!priv->rsc_table)
-+		return NULL;
-+
-+	*table_sz = SZ_1K;
-+	return (struct resource_table *)priv->rsc_table;
-+}
-+
-+static const struct rproc_ops mchp_ipc_rproc_ops = {
-+	.prepare = mchp_ipc_rproc_prepare,
-+	.start = mchp_ipc_rproc_start,
-+	.get_loaded_rsc_table = mchp_ipc_rproc_get_loaded_rsc_table,
-+	.attach = mchp_ipc_rproc_attach,
-+	.stop = mchp_ipc_rproc_stop,
-+	.kick = mchp_ipc_rproc_kick,
-+	.load = rproc_elf_load_segments,
-+	.parse_fw = mchp_ipc_rproc_parse_fw,
-+	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
-+	.sanity_check = rproc_elf_sanity_check,
-+	.get_boot_addr = rproc_elf_get_boot_addr,
-+};
-+
-+static void mchp_ipc_rproc_vq_work(struct work_struct *work)
-+{
-+	struct mchp_ipc_rproc *priv = container_of(work, struct mchp_ipc_rproc, rproc_work);
-+	struct device *dev = priv->rproc->dev.parent;
-+
-+	u32 msg = priv->message.buf[0];
-+
-+	/*
-+	 * Currently, we are expected to receive the following messages
-+	 * from the remote cluster: a ready message or receive the index
-+	 * of the triggered virtqueue as a payload.
-+	 * We can silently ignore any other type of mailbox messages since
-+	 * they are not meant for us and are meant to be received by the
-+	 * remote cluster only.
-+	 */
-+	switch (msg) {
-+	case MCHP_IPC_RPROC_MBOX_READY:
-+		complete(&priv->start_done);
-+		break;
-+	default:
-+		if (msg >= MCHP_IPC_RPROC_MBOX_READY && msg < MCHP_IPC_RPROC_MBOX_END_MSG)
-+			return;
-+		if (msg > priv->rproc->max_notifyid) {
-+			dev_info(dev, "dropping unknown message 0x%x", msg);
-+			return;
-+		}
-+		/* msg contains the index of the triggered vring */
-+		if (rproc_vq_interrupt(priv->rproc, msg) == IRQ_NONE)
-+			dev_dbg(dev, "no message was found in vqid %d\n", msg);
-+	}
-+}
-+
-+static void mchp_ipc_rproc_rx_callback(struct mbox_client *mbox_client, void *msg)
-+{
-+	struct rproc *rproc = dev_get_drvdata(mbox_client->dev);
-+	struct mchp_ipc_rproc *priv = rproc->priv;
-+
-+	priv->message = *(struct mchp_ipc_msg *)msg;
-+	queue_work(priv->workqueue, &priv->rproc_work);
-+}
-+
-+static int mchp_ipc_rproc_mbox_init(struct rproc *rproc)
-+{
-+	struct mchp_ipc_rproc *priv = rproc->priv;
-+	struct device *dev = priv->dev;
-+	struct mchp_ipc_sbi_chan *chan_priv;
-+	struct mbox_client *mbox_client;
-+
-+	mbox_client = &priv->mbox_client;
-+	mbox_client->dev = dev;
-+	mbox_client->tx_block = true;
-+	mbox_client->tx_tout = 100;
-+	mbox_client->knows_txdone = false;
-+	mbox_client->rx_callback = mchp_ipc_rproc_rx_callback;
-+
-+	priv->mbox_channel = mbox_request_channel(mbox_client, 0);
-+	if (IS_ERR(priv->mbox_channel))
-+		return dev_err_probe(mbox_client->dev,
-+				     PTR_ERR(priv->mbox_channel),
-+				     "failed to request mailbox channel\n");
-+
-+	chan_priv = (struct mchp_ipc_sbi_chan *)priv->mbox_channel->con_priv;
-+	priv->chan_id = chan_priv->id;
-+
-+	return 0;
-+}
-+
-+static int mchp_ipc_rproc_get_state(u32 chan)
-+{
-+	struct sbiret ret;
-+
-+	ret = sbi_ecall(SBI_EXT_MICROCHIP_TECHNOLOGY, SBI_EXT_RPROC_STATE,
-+			chan, 0, 0, 0, 0, 0);
-+
-+	if (ret.error)
-+		return sbi_err_map_linux_errno(ret.error);
-+
-+	return ret.value;
-+}
-+
-+static int mchp_ipc_rproc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct mchp_ipc_rproc *priv;
-+	struct rproc *rproc;
-+	struct resource res;
-+	int num_rmems, ret;
-+
-+	rproc = devm_rproc_alloc(dev, np->name, &mchp_ipc_rproc_ops,
-+				 NULL, sizeof(*priv));
-+	if (!rproc)
-+		return -ENOMEM;
-+
-+	priv = rproc->priv;
-+	priv->rproc = rproc;
-+	priv->dev = dev;
-+
-+	num_rmems = of_property_count_elems_of_size(np, "memory-region",
-+						    sizeof(phandle));
-+	if (num_rmems < 1)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "device needs at least one memory regions to be defined\n");
-+
-+	ret = of_reserved_mem_region_to_resource_byname(np, "rsc-table", &res);
-+	if (!ret) {
-+		priv->rsc_table  = devm_ioremap_resource(dev, &res);
-+		if (IS_ERR(priv->rsc_table)) {
-+			return dev_err_probe(dev, PTR_ERR(priv->rsc_table),
-+					     "failed to map resource table\n");
-+		}
-+	}
-+
-+	priv->workqueue = create_workqueue(dev_name(dev));
-+	if (!priv->workqueue)
-+		return dev_err_probe(dev, -ENOMEM, "cannot create workqueue\n");
-+
-+	INIT_WORK(&priv->rproc_work, mchp_ipc_rproc_vq_work);
-+	init_completion(&priv->start_done);
-+
-+	ret = mchp_ipc_rproc_mbox_init(rproc);
-+	if (ret)
-+		goto err_put_wkq;
-+
-+	/*
-+	 * Check if the remote cluster has been booted by another entity
-+	 * (i.e. bootloader) and set rproc state accordingly
-+	 */
-+	rproc->state = mchp_ipc_rproc_get_state(priv->chan_id);
-+	if (ret < 0) {
-+		dev_err_probe(dev, ret, "Couldn't get cluster boot mode\n");
-+		goto err_put_mbox;
-+	}
-+
-+	if (rproc->state != RPROC_DETACHED)
-+		rproc->auto_boot = false;
-+
-+	/* error recovery is not supported at present */
-+	rproc->recovery_disabled = true;
-+
-+	dev_set_drvdata(dev, rproc);
-+
-+	ret = devm_rproc_add(dev, rproc);
-+	if (ret) {
-+		dev_err_probe(dev, ret, "rproc_add failed\n");
-+		goto err_put_mbox;
-+	}
-+
-+	return 0;
-+
-+err_put_mbox:
-+	mbox_free_channel(priv->mbox_channel);
-+err_put_wkq:
-+	destroy_workqueue(priv->workqueue);
-+
-+	return ret;
-+}
-+
-+static void mchp_ipc_rproc_remove(struct platform_device *pdev)
-+{
-+	struct rproc *rproc = platform_get_drvdata(pdev);
-+	struct mchp_ipc_rproc *priv = rproc->priv;
-+
-+	mbox_free_channel(priv->mbox_channel);
-+	destroy_workqueue(priv->workqueue);
-+}
-+
-+static const struct of_device_id mchp_ipc_rproc_of_match[] __maybe_unused = {
-+	{ .compatible = "microchip,ipc-sbi-remoteproc", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mchp_ipc_rproc_of_match);
-+
-+static struct platform_driver mchp_ipc_rproc_driver = {
-+	.probe = mchp_ipc_rproc_probe,
-+	.remove = mchp_ipc_rproc_remove,
-+	.driver = {
-+		.name = "microchip-ipc-rproc",
-+		.of_match_table = of_match_ptr(mchp_ipc_rproc_of_match),
-+	},
-+};
-+
-+module_platform_driver(mchp_ipc_rproc_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Valentina Fernandez <valentina.fernandezalanis@microchip.com>");
-+MODULE_DESCRIPTION("Microchip IPC Remote Processor control driver");
 -- 
-2.34.1
+nvpublic
 
 
