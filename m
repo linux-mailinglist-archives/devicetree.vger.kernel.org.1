@@ -1,139 +1,313 @@
-Return-Path: <devicetree+bounces-241153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640E9C7A662
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 16:06:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24045C7A67D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 16:07:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BBAD4F2407
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:58:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 64A3B4F2FD8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:59:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71832C0F93;
-	Fri, 21 Nov 2025 14:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D3E31812E;
+	Fri, 21 Nov 2025 14:59:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nsYWpq+k"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h2UcHlMA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F53829ACE5
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 14:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66E92BEFFE
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 14:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763737076; cv=none; b=ocqTiMi69G2z25g057Xrhb9gYfU1/xSGywolhsbhw1Q8snlEJ+1fSRQS6QB9oHk4O8Y6Ps2EQVKsFeHf0J+o/S4ApqjtH/9Lifrj4FyqfPwyU5P1OSrtDK+JUZXB/gaeIXQ63bNRCFZMy4enOJXzhluDVV3ywpodmT6uWEDGjTI=
+	t=1763737158; cv=none; b=cFsuqtUg7LPyGs4MK8pchV+y+cE5tfodhDzAUR3qf+dtsBAhcRwAIiSC7DFeXnpzM9JRG6PWU3yyVMTtnAXkHVMWYbbX+2qDXIanyGwJu0tqcIcWNhECar4ujsLRvw9Uj/MyfWpkGdRm4D/UXsfmiu74i+aY55RVsMouWbNJTm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763737076; c=relaxed/simple;
-	bh=GexnKlA0YgFy7w6qLf9EOJChpUqtHF9jKu9bbfwY66E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=JUNfsZqlfiP6xfjOr0hp3sZF60LKrjmV3yKQCLd3OMfe/zfGmTqt5LWD4P+mFKjR/aSaW/y+o4R7q8n0KFb17c6B6QMmq2Pw7FRQcSehX2xdrWA2j9/jrkFHRxfjiZ/7fVMNJm1kgfktWOiQvjmXhlHfXMHVW8Yt8v7eoYAIB+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nsYWpq+k; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-42b3ad51fecso1741839f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 06:57:54 -0800 (PST)
+	s=arc-20240116; t=1763737158; c=relaxed/simple;
+	bh=AEPPC2/OB+EufDF/AubUdHCaH/c6DPuCqPKXn50gnxE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UwjGxsL0worM8QNnHdMKbVTxv3N9FX6dTkl2CwiZFJNTxDyhemL8+KUIVQLvPA+fXxPKMAe5Lw6BALi9FVOcwmUFGK7ZeI6p9vzyg7llZkA3+omWLyU7vb+aYLA0G37B5IUeCTybTSYjbFsB1t8LUfq/hy2B9pPSqGhFa3Hgsbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h2UcHlMA; arc=none smtp.client-ip=209.85.160.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-4edf1be4434so16415461cf.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 06:59:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763737072; x=1764341872; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AtUE9VgWDT0up5b20u2z4HmowMp+K68a0eApx09UJwo=;
-        b=nsYWpq+kuiJuHSZHecLXmqqVmrA68a/c53i8jxH9mgqq1NvAoOd/I4Bcc1ZHc32zfZ
-         +kS+QvQ+thxyrKH7jTdhXBio6TXsyX+es1CY4UpXohjXBgnT212o5laG2exdj0DN0TEB
-         XvoESl9ukMfFM+5mn0EQB2e5GgXslnyeIQ1//SLYrnFqOYQ/116VErGZ72VYc3ATNaTo
-         Ta+6p9QX2vYR5IQPLy8vazgGMTmQoPKR2+zJJJZSniuFD08Zr2I+GCziS4L+Ds/OBqnQ
-         NxNchhDfKi3JYs0u1qIOADuo/PwytHCSWk6QrIoMUpwa8g5LIA7jltNs9IFlnFPXtcZf
-         6oKA==
+        d=gmail.com; s=20230601; t=1763737154; x=1764341954; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=A1g5hDcJOSC1qjJJxGkJ4PFPBcBAfI5Ur0GFlw7nurs=;
+        b=h2UcHlMAPogYShd5Lf1bVowZSc6k7jwkUCiePNBxah09lba/HzOo3kGQ8i54iUDln3
+         LNxkXsSEDy1+9eUqML2yQ+grU5BL08bHBF7wkLZBRN6my/lR7Bx/S5Fx/QAQUS6Q4gsA
+         2d1mQbRqwwYCpkqtC8i4MYQ4kO0jaUlYhYIjHoO44qIZiqdJQJNZ3oxSBpUm4zWz2yjB
+         OzzjE/a1F00fB//FAn+7IFc1cLR0uPIgu2Eh8WDAle8j6s/s5NsER6NiVWpyx6p6Tgki
+         cKvx6JatNn0ZEwhL7RXbCm3cDu9+RbUWupa7uk+N67wINdZcIMB1LA5uhepPGf/JnAoq
+         swJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763737072; x=1764341872;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=AtUE9VgWDT0up5b20u2z4HmowMp+K68a0eApx09UJwo=;
-        b=Yap0AJ2WqcaRyvXjaauYTr4vJrHs6AkzfMRsr6AkQWcBpaonaI5fakQ7kHNKu8dApq
-         qNVricHLTKGNtk8ZQi5kxxFz5Ika9BMepgP7d7RAUew0Hrh+4Mk1+6iy7eYROFtPEPeH
-         K6MXVdeelcrTfb44F+oZSYRTrdQ7l8+3Y6B7WLoQ/pMsDcgurLI6dCjh3QEhsa3FN5ym
-         W9LEzhowcfKQyKwE5oMZ8YDN0XRVtI+XQ8Uj0s5GDsGhPbYcN0Nc8UN+5LurO+RDGSKt
-         8zJqaIUGNd5pahO7tofiE7CV/XI0PjEgPG0CpbSvlrTAeJhf09KW7HeBc15nZl0YD5Pr
-         7iFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW+ml5yjEqATo4TbIdEH2OQK+P/9ysHQbkzFWLrRfYw82sQfzZ5lTRKqCcnJnVXTyTuPoUyNcSdEPY8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5UweDZOGlxWM9Bx6TRjGYLCw+jVTL/LmwPlk/3MPeXUqkJHjl
-	F7XzfJ+tPdex4D6mTPhpOd3tmR61MTZWsD2JheMiFHzTNp9GeRwYQQIVcKrTb0OqVWo=
-X-Gm-Gg: ASbGncswubqIozPEygU9URyU4CcQdOVnFsTjuep2dusr4UdnyQkIejUCWgdR+ma+wKN
-	ikpYgJY8aim0WvDvuMEfP5msPFwhLk12HJt8xeKDNAddM4IiGG0V9usKeab/9ixEB7oN8Dp+s5i
-	8Wl5OS9fr7zmLHgS8M2px4YyDTcnQQi6YW1dNSv7pNKTxVVKZ4BY2RBbXFhZXBf34GdkaWqdqBd
-	oShbWlCe2v3Y/1mNEXaEtXrwAqeI+YdkuLvH2h+BkVQS44dIfxpOxoe5w+DGJi9mqkFMunRkdtY
-	p05LfoaIxoh59+ypxXbGuJijpoeEAfcjN5H7/Q6fuj69kOOxOp2cTuWqJgZcHaypDa2Gc8aXcHN
-	aQguFqa9alv4xDUKuTKwt8/nMih4qHVkLovaFSzThWY0snNq3OL2enRLSkTAim/3dnH94axrqw3
-	U/qVKSLySsC5KUaSzAAqHEPFaSywvwZ80=
-X-Google-Smtp-Source: AGHT+IGGsc+G9i/U16taUPkam+Wa9Fw+qY9LD/Z4a3vJZqhgcrN9boVVP9pk9VKrZ9axd0FyosPCIA==
-X-Received: by 2002:a5d:64e6:0:b0:42b:3ccc:91ec with SMTP id ffacd0b85a97d-42cc1ce482fmr2961149f8f.22.1763737071868;
-        Fri, 21 Nov 2025 06:57:51 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7ec454csm10875217f8f.0.2025.11.21.06.57.50
+        d=1e100.net; s=20230601; t=1763737154; x=1764341954;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=A1g5hDcJOSC1qjJJxGkJ4PFPBcBAfI5Ur0GFlw7nurs=;
+        b=Se+LuT75amhD6vzAzptNhCql6LZhQHnQOnBsUhmVykmd/Ccp9TdfnfiancUr0fuCPH
+         HLeikpMdj5kojuXW3VYUEfDQk/FEFa8kQ/XFtD3bRBqamCP6IAtyKkEyeDlLyB4arIQy
+         TxThz1gQN4KBTjm/XSqLnd+wWHhez8BwKGBMEhgRg1JJZgvdfXbm6rAGFnC8Fq0qcf1H
+         5vdVASpYZzAeZIzLUeeilCeUjOhaexsTR/N/ECnfPvJy2n52dbo7m5VkbdclzWu1Sxyz
+         Y1vtvPha/iqQW+OeS8FklkSvTcAxyz+t4N55AccMPD6ujcxtoRy0O3BxiPb+XuAhUnvb
+         poZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVvrvzXghGQPV7NejWb89sObkkjxVvT1A0ccZFMmSp53mQhqIOs0+zGogvhvelIGvZbOajhcHaWkoBF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOWL75v3/qyCRN8Prv74iATdz5OppJFHwYr2X2165FIwUCUbao
+	bpwbwl8VEP3GxZKm+RS71bFNwJBIQ2azOKlqRDi2dU03QJloMQd8zqhd
+X-Gm-Gg: ASbGncv5MAUEcNK1gse0LeuQztm+SW32d2VG1GPz/oSz7xWBqYgL+Bu6OyIrGDSv2oO
+	NWe/rYpVCNoQ/C3/49siKkI6wsbQb6xePBGzqWZUiINJu+l3ZwNU0V21dF5FJlJ5mRGw3CzDEYi
+	qBSjBROwYFwIATkZnobi8tBn0UqMC9zzsVwE0IBnJ0Ernif7F5fFq1hLixTPHlcjj7lNYNqjwyS
+	RnfG5jM5nPrFePx1zwdWZ8xI277ZdCqhX2hFiqA+iiF3c/pcUko0e+uPj8GRJ8XEEklweh8juXP
+	RZgBdyF+2McelAQ5PvyRVQaWVr0vwvDD0n1/AsO9kp0b45vf50kJ4nRxVEgLgB1VVwK6QhwJFp5
+	5YcKI0FN/ib5gIcyZldDFTlytsDgBeBywx9+dCNRcP+qy3uSRFl2/E+QgjVnVFlm+RhShwE6o5f
+	yPGbIx645HmIavZfLxu1LbQdXJ/71hDMj8w0EF6gPiTHqf9O6mFCoIwYkw
+X-Google-Smtp-Source: AGHT+IFP8ya+Er0C8RuiSOkCyYLALm/nejOQiyK9TwIBTMNVGMIBgNLU/F3gxda3wpr0r5uy+x1mYw==
+X-Received: by 2002:a05:622a:1ba4:b0:4ee:49b8:fb82 with SMTP id d75a77b69052e-4ee58914e86mr34017431cf.60.1763737153483;
+        Fri, 21 Nov 2025 06:59:13 -0800 (PST)
+Received: from localhost (modemcable197.17-162-184.mc.videotron.ca. [184.162.17.197])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4ee48e66f28sm36596381cf.26.2025.11.21.06.59.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Nov 2025 06:57:51 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Robert Foss <rfoss@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
- Phong LE <ple@baylibre.com>, Dmitry <dmitry.baryshkov@oss.qualcomm.com>, 
- Nishanth Menon <nm@ti.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, Robert Nelson <robertcnelson@gmail.com>, 
- Jason Kridner <jkridner@beagleboard.org>, Andrew Davis <afd@ti.com>, 
- Tomi V <tomi.valkeinen@ideasonboard.com>, Devarsh <devarsht@ti.com>
-In-Reply-To: <20251029150636.3118628-1-nm@ti.com>
-References: <20251029150636.3118628-1-nm@ti.com>
-Subject: Re: [PATCH V6 0/5] drm/bridge: it66121: Add initial it66122
- support
-Message-Id: <176373707090.380945.5826140184462252866.b4-ty@linaro.org>
-Date: Fri, 21 Nov 2025 15:57:50 +0100
+        Fri, 21 Nov 2025 06:59:13 -0800 (PST)
+From: =?UTF-8?q?Jean-Fran=C3=A7ois=20Lessard?= <jefflessard3@gmail.com>
+To: Andy Shevchenko <andy@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v6 0/7] auxdisplay: Add TM16xx 7-segment LED matrix display controllers driver
+Date: Fri, 21 Nov 2025 09:59:00 -0500
+Message-ID: <20251121145911.176033-1-jefflessard3@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+This series adds mainline kernel support for TM16xx family LED matrix
+controllers and compatible chips, widely used in auxiliary displays on TV
+boxes and embedded devices.
 
-On Wed, 29 Oct 2025 10:06:31 -0500, Nishanth Menon wrote:
-> Add initial support for IT66122, which seems to be compatible to it66121
-> but probably has additional functionality.
-> 
-> BeagleY-AI uses this it66122 as the old part is no longer in production
-> as far as I understand.
-> 
-> Now, BeaglePlay uses it66121 at the moment, but at some point, it might
-> end up flipping over to the new part. Additionally, it also looks like
-> Revision D of BeagleBone Black switched over to it66122 as well.
-> 
-> [...]
+Many consumer devices, particularly TV boxes, use auxiliary displays based
+on TM16xx controllers to show status information such as time, network
+connectivity and system state. Currently, there is no mainline kernel
+support for these displays, forcing users to rely on out-of-tree drivers
+or userspace solutions that access hardware interfaces directly.
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+This driver provides unified TM16xx support through the LED subsystem with
+both I2C and SPI communication protocols. It integrates with the LED class
+framework, enabling control via standard sysfs interfaces and LED triggers,
+while supporting keypad input when hardware connections are available.
 
-[1/5] dt-bindings: display: bridge: it66121: Add compatible string for IT66122
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/e902d2c38a2797aa78c1e08fc1419490bb8c63dd
-[2/5] drm/bridge: it66121: Drop ftrace like dev_dbg() prints
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/1ba36afa667bf14820a9862e18b5d55ee47a67e4
-[3/5] drm/bridge: it66121: Sort the compatibles
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/a1df28b5f4d30467b8dabe861f1da324e00313fd
-[4/5] drm/bridge: it66121: Use vid/pid to detect the type of chip
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/a8811c0bb79c60bf2464e939c8e040b5d6f532ef
-[5/5] drm/bridge: it66121: Add minimal it66122 support
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/715cbb21c6fe2fe5760ea05e873f12473aa5884e
+The driver supports multiple controller families from various vendors:
+- Titan Micro Electronics: TM1618, TM1620, TM1628, TM1638, TM1650
+- Fuda Hisi Microelectronics: FD620, FD628, FD650, FD655, FD6551
+- i-Core Electronics: AiP650, AiP1618, AiP1628
+- Princeton Technology: PT6964
+- Winrise Technology: HBS658
+
+Key features:
+- 7-segment display support with flexible digit/segment mapping
+- Individual LED icon control through LED class devices
+- Optional keypad scanning with configurable key mapping
+- Device tree configuration for board-specific wiring layouts
+- LED trigger integration for automatic system event indication
+- I2C and SPI protocol support depending on controller interface
+
+Device tree bindings describe board-specific display wiring since
+controllers are layout-agnostic. The bindings use separate 'digits' and
+'leds' containers with specific addressing schemes to accommodate the
+hardware's grid/segment matrix organization.
+
+Tested on multiple ARM TV boxes (H96 Max, Magicsee N5, Tanix TX3 Mini,
+Tanix TX6, X92, X96 Max) across different SoC platforms (Rockchip, Amlogic,
+Allwinner) in both I2C and SPI configurations.
+
+User space utilities available at:
+https://github.com/jefflessard/tm16xx-display
+
+Dependencies:
+- linedisp_attach()/_detach() infrastructure introduced in patch series:
+ "auxdisplay: linedisp: support attribute attachment to auxdisplay devices"
+- fwnode_for_each_available_child_node_scoped() from patch series:
+ "device property: Add scoped fwnode child node iterators"
+
+Note: This driver is placed in drivers/auxdisplay rather than drivers/leds
+based on previous maintainer guidance. LED maintainer Pavel Machek
+recommended auxdisplay for TM1628-based display drivers:
+https://lore.kernel.org/linux-devicetree/20200226130300.GB2800@duo.ucw.cz/
+
+Regmap Evaluation:
+TM16xx controllers use command-based 2-wire/3-wire protocols that share
+sufficient commonalities with I2C/SPI to leverage their subsystems, but
+are not fully compliant with standard register-based access patterns:
+- TM1650 example: 0x48 is a control command while 0x4F is a keyscan
+  command. These appear as adjacent I2C "addresses" but are distinct
+  commands with different data directions and payloads, not read/write
+  pairs of the same register.
+- TM1628 example: Initialization requires coordinated sequences followed
+  by indexed data writes. Single regmap read/write calls cannot express
+  these multi-step transactions and timing constraints.
+- Protocol requirements: I2C read operations require I2C_M_NO_RD_ACK flags;
+  SPI write-then-read operations require mandatory inter-transfer delays
+  and CS assertion across phases.
+
+While regmap provides valuable synchronization, debugfs, and abstraction
+benefits, standard I2C/SPI regmap buses cannot handle these requirements.
+
+Custom regmap implementation is technically possible via IO accessors, but
+demands complex command routing logic and only partially supports paging.
+It would essentially recreate the existing controller functions while
+forcing them into register semantics they don't naturally fit.
+
+The current explicit I2C/SPI approach directly expresses the hardware's
+actual command structure and maintains proper controller abstraction.
+
+Changes in v6:
+- core: Reduce indent level of fwnode children parsing
+- core: Comment brightness properties handling
+- core: Document concurrency model and non-devm resource management
+- core: Remove apply label property comment
+- core: Remove dev_err_probe for mutex init
+- core: remove '0' from led_init_data initialization
+- core: Merge tm16xx_display_value loops with embedded conditional
+- core: Document flush_status error handling to flush operations
+- core: Change scoped_guard to guard() in flush operations
+- core: Return early on flush operations
+- core: Format to single line within 100 char limit
+- core: Drop tm16xx_probe/_remove kernel-doc
+- core: Use %true/%false formatting in kernel-doc
+- i2c: Consolidate FD655/FD6551 CMD_CTRL definitions
+- all: Ensure RCS declarations
+- all: Change EXPORT_SYMBOL_NS to _GPL
+- all: Add missing header includes
+- header: Add forward declaration for struct device
+- header: Remove const qualifiers from controller fields
+- Kconfig: Expand help text to ~3 lines minimum
+- Kconfig: Add COMPILE_TEST for compile test coverage
+- dt-bindings: Change units to hex pattern
+- dt-bindings: Add led node description
+
+Changes in v5:
+- dt-bindings: set $ref: /schemas/leds/common.yaml# at the node level
+- dt-bindings: add constraints to max_/default_brightness properties
+- dt-bindings: clarify digit positions are numbered left-to-right
+- dt-bindings: reorder the schema sections to 'dependencies',
+              'required', 'allOf'
+- dt-bindings: leds: add default-brightness to leds/common.yaml
+- core: rename prfx to prefix in TM16XX_CTRL_BRIGHTNESS macro
+- core: drop i2c/spi client union in favor of to_i2c_client/to_spi_device
+- core: rename controller grids/segments to avoid 7-seg confusion
+- core: remove tm16xx_digit_segment and simplify tm16xx_digit structs
+- core: drop tm16xx sysfs attributes in favor of line-display library
+- core: rename tm16xx_parse_dt to tm16xx_parse_fwnode
+- core: replace manual child count with fwnode_get_child_node_count
+- core: use __free(fwnode_handle) instead of fwnode_handle_put
+- core: remove of.h include and duplicated logic of main led label
+- core: use devm_ variant of mutex_init
+- core: drop kernel-doc for well-established meaning functions
+- i2c/spi: remove redundant NULL initializers
+- i2c/spi: remove CONFIG_OF preprocessor conditions
+- i2c/spi: drop usage of of_match_ptr
+- i2c/spi: fix CONFIG_I2C=m, CONFIG_SPI=y, CONFIG_TM16XX=y edge case
+           reported by kernel test robot (late v3 feedback)
+- all: rely on explicit rather than transitive includes
+- all: review signed types usage consistency
+- all: use 'if (ret)' where there is no positive return
+- all: apply relaxed line wrap, allowing over 80 column width
+- all: remove info and debug messages
+- all: update copyright year to 2025
+
+Changes in v4:
+- Split MAINTAINERS patch into each specific patch
+- Document ABI of sysfs driver attributes
+- Remove kernel-doc of obvious Linux core driver model APIs
+- dt-bindings: Drop obvious comments that schema tells by itself
+- dt-bindings: Gather canonical compatible strings in a single enum
+- dt-bindings: Clarify top-level logical led DT node name/label property
+- dt:bindings: Replace refs to input properties with allOf
+- Split driver patch and code file for better reviewability
+- Refactor into separate i2c and spi glue driver modules
+- Drop driver name macro constant in favor of explicit string literals
+- Revise to use bit shifts for values and GENMASK/BIT for bit positions
+- Format TM16XX_CTRL_BRIGHTNESS on one line
+- Drop default_value module param in favor of Kconfig compile time option
+- Fix for_each_key name and expressions
+- Replace manual mutex locking with scoped_guard
+- Move scancode declaration to avoid mix with code
+- Remove unnecessary ret initialization
+- Remove ENOMEM error message
+- Replace probe error messages by dev_err_probe
+- Remove keypad failed probe cleanup to avoid devm anti-pattern confusion
+- Switch to non-devm led registration to avoid anti-pattern confusion
+- Replace u16 in favor of unsigned int for controller data
+
+Changes in v3:
+- Update vendor prefixes with documented rationale, in a single patch,
+  per maintainer feedback
+- Refine device tree bindings per maintainer feedback:
+  * Update compatible string ordering and fallback logic
+  * Improve YAML descriptions for clarity and 80-column wrapping
+  * Replace digit-specific properties with clearer digits container node
+  * Add required constraints for properties in container nodes
+  * Clarify addressing schemes for LED icons and digits
+  * Fix conditional SPI properties handling
+  * Document rationale for spi-3wire property
+  * Expand DT examples to cover typical and transposed display layouts
+- Code reformat from clang-format to kernel style per maintainer feedback
+- Fix conditional CONFIG_I2C/_SPI compilation issues per kernel test robot
+- Add keypad scanning with configurable keymap (new feature)
+- Add support for TM1638 controller extending hardware compatibility
+- Add support for default and maximum brightness properties
+- Fix multi-instance device handling and add optional label property
+- Allocate DMA-safe SPI buffer for hardware compatibility
+- Enhance error handling with comprehensive kernel-doc documentation
+- Remove sysfs runtime reconfiguration, enforce device tree-only
+
+Changes in v2:
+- Fix duplicate label in dt-bindings examples
+- Rename device tree property prefixes to use titanmec vendor prefix
+
+Jean-François Lessard (7):
+  dt-bindings: vendor-prefixes: Add fdhisi, titanmec, princeton,
+    winrise, wxicore
+  dt-bindings: leds: add default-brightness property to common.yaml
+  dt-bindings: auxdisplay: add Titan Micro Electronics TM16xx
+  auxdisplay: Add TM16xx 7-segment LED matrix display controllers driver
+  auxdisplay: TM16xx: Add keypad support for scanning matrix keys
+  auxdisplay: TM16xx: Add support for I2C-based controllers
+  auxdisplay: TM16xx: Add support for SPI-based controllers
+
+ .../bindings/auxdisplay/titanmec,tm16xx.yaml  | 465 +++++++++++++++++
+ .../devicetree/bindings/leds/common.yaml      |   6 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  10 +
+ MAINTAINERS                                   |  10 +
+ drivers/auxdisplay/Kconfig                    |  53 ++
+ drivers/auxdisplay/Makefile                   |   5 +
+ drivers/auxdisplay/tm16xx.h                   | 200 +++++++
+ drivers/auxdisplay/tm16xx_core.c              | 488 ++++++++++++++++++
+ drivers/auxdisplay/tm16xx_i2c.c               | 333 ++++++++++++
+ drivers/auxdisplay/tm16xx_keypad.c            | 192 +++++++
+ drivers/auxdisplay/tm16xx_spi.c               | 398 ++++++++++++++
+ 11 files changed, 2160 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
+ create mode 100644 drivers/auxdisplay/tm16xx.h
+ create mode 100644 drivers/auxdisplay/tm16xx_core.c
+ create mode 100644 drivers/auxdisplay/tm16xx_i2c.c
+ create mode 100644 drivers/auxdisplay/tm16xx_keypad.c
+ create mode 100644 drivers/auxdisplay/tm16xx_spi.c
 
 -- 
-Neil
+2.43.0
 
 
