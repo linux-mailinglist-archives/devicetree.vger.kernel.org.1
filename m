@@ -1,145 +1,132 @@
-Return-Path: <devicetree+bounces-241276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4787BC7BD32
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 23:17:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52951C7BDBD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 23:32:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E47183A20C7
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 22:16:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C5773A67C0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 22:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBADE307AE6;
-	Fri, 21 Nov 2025 22:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0F82777FC;
+	Fri, 21 Nov 2025 22:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cGOKcdcl"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YBRdluUS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C3E2737F4;
-	Fri, 21 Nov 2025 22:16:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 632EC23909C
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 22:32:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763763416; cv=none; b=aZr7qKfyAJzwInliofBkHXNZNESRPfw/SN1S+9yjQqSu8jy+P6ovNezg+WwymgRzwqfGmymNIU4ZNePGzRjoKSiQ62Oexdx1Lf2xYKnKPASq+OMqS708pXU3Dzki14kFIc50korRe+KkYBPw2cz8QrRTl/UMEuB/zkybEW7utc8=
+	t=1763764355; cv=none; b=kfPgML/X7J1owcw3RybMfWhiaBR6RTZm1bRIy7w19zybEtPOp3HuKW7J08R9CjTm2cW+3bZHK3GUIIRSNgj6UwxLCw7CGfzfxGBz+BkOWIcwtVofewO6Uv3KvWbS4WrinYndagtjXGtsfyF2pmEZXWhWduWTa/6oXuQN8X0amIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763763416; c=relaxed/simple;
-	bh=IZWfBJDaHCe7l541lCMHfRRvdDcJ9cS7vOHixV9h5tc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jv0c5weW4w/D0iXKMsjbpyMqkpZaMIY7lf1cvUYOt0zYtmd1IfNe3PJtNXqig8c0Bq3FLrymImRxFNPALxCxBbDVVsmAu7P27ITk+XPcZkln5seHzaJ6SfZezPfiljb3WcbDjQfedv9uYOi2VfeMceWlAS7eibuW583Nc5qyeC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cGOKcdcl; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763763416; x=1795299416;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IZWfBJDaHCe7l541lCMHfRRvdDcJ9cS7vOHixV9h5tc=;
-  b=cGOKcdcl1fINBPXtRNWJgmOgmvIKEzbEJqHFJ7j1wxJdJ5GKS4Nu8w4l
-   cXosAIjUkYQKyQy+kiGPFlAxSXW4qCztbqbYHsPgHuwbn326L3RENMDks
-   Q8VLWJSy/kyfqXKNqD9eCHg5LSLWOJPy0W4ezN4U/xOxo+15/Us80d+CP
-   WCuxG/s25rX2VyZ894/H+2wiJqk8esaHCghfXOsEPt9viiXaztmQ3TpuI
-   MxTCv4ONwnG6W+p/NKfgsB8X2nF2NWtLQi65HnYjZtb3UHDm9SqTuOkv0
-   XDf7UmhawXIZn0971iVglxGeqzyAwBGaN8UWjwAscVuOezF/X/xJCxYot
-   w==;
-X-CSE-ConnectionGUID: s3ouSAZnSwq56Od/KUKvyg==
-X-CSE-MsgGUID: UeiYcK7cS3azNkFU46pZZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11620"; a="88515029"
-X-IronPort-AV: E=Sophos;i="6.20,216,1758610800"; 
-   d="scan'208";a="88515029"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2025 14:16:55 -0800
-X-CSE-ConnectionGUID: TOehty9pSyCfviE3bYiNSw==
-X-CSE-MsgGUID: BIxr2Fa8QbCS5hbxVrvkJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,216,1758610800"; 
-   d="scan'208";a="192265938"
-Received: from lkp-server01.sh.intel.com (HELO adf6d29aa8d9) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 21 Nov 2025 14:16:49 -0800
-Received: from kbuild by adf6d29aa8d9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vMZQs-0006vH-32;
-	Fri, 21 Nov 2025 22:16:46 +0000
-Date: Sat, 22 Nov 2025 06:16:25 +0800
-From: kernel test robot <lkp@intel.com>
-To: Eugen Hristev <eugen.hristev@linaro.org>, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-	tglx@linutronix.de, andersson@kernel.org, pmladek@suse.com,
-	rdunlap@infradead.org, corbet@lwn.net, david@redhat.com,
-	mhocko@suse.com
-Cc: oe-kbuild-all@lists.linux.dev, tudor.ambarus@linaro.org,
-	mukesh.ojha@oss.qualcomm.com, linux-arm-kernel@lists.infradead.org,
-	linux-hardening@vger.kernel.org, jonechou@google.com,
-	rostedt@goodmis.org, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	linux-arch@vger.kernel.org, tony.luck@intel.com, kees@kernel.org,
-	Eugen Hristev <eugen.hristev@linaro.org>
-Subject: Re: [PATCH 12/26] kernel/configs: Register dynamic information into
- meminspect
-Message-ID: <202511220511.nMJSuw8H-lkp@intel.com>
-References: <20251119154427.1033475-13-eugen.hristev@linaro.org>
+	s=arc-20240116; t=1763764355; c=relaxed/simple;
+	bh=yCaJpFEp9FE+/fCtlSlffQKThHPF+iZGETI3PTIVyco=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XUiu9YhUxDqP5oT0UH9mB/rsJP8Uwurz0qv8idmMlSUJ5xTESQtDZuyxuhuuejliI7MISjUGIam3blzEohWAgEtUsshUl5CpsBHwFQIjwgJNyfbL2U3m/9f0UG+Trw+S5XBRf4CinsOD06AqdYLvh2WCdVwoR0++tCegB6WZE7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YBRdluUS; arc=none smtp.client-ip=209.85.160.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-3ebd1b07919so594479fac.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 14:32:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763764352; x=1764369152; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pSYijzg5CEc2E6+C/AUpQILvxjP1MN4jnIIv1fwDbxA=;
+        b=YBRdluUSEAnhgazOC9QyECm2l2HK8oEYZOZ8GoHcp6sm4BUDP5OCZx965989c6TytM
+         zMc/QFe/NpXaLNWD5V+MJwZilAndxZomHCEzeO+BZqN3H7yKuoiyysqOefZULf3YR2bo
+         5qOm85M9aSjjEDgIFXNzwe7eB+qI0n5I4etohx2+SD+0Io1VGPKAwwu989yYNO9yWBqV
+         Qu2Nnm9YgtPMo9oNEnrJrreV9M6x0gnmYc+Pe+3qgDp0kyZque1NSJhiGqlGPXF2+AYL
+         RrCempDvKq0B1jFDuJbx3C66i27srVLj4lM8HpIBb05Xq7tt42V2JP0pMHzcljWNSeCi
+         FFcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763764352; x=1764369152;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pSYijzg5CEc2E6+C/AUpQILvxjP1MN4jnIIv1fwDbxA=;
+        b=dI3OdQrOJzF+3E+xHs/etYTHrUZc4GSbZfabFnMxkOx/1BqdsWzhZUt36u/U0FMIGw
+         3IPTxlWEhJlG4XCmkCymNYEt4SFnRfYbu+Tlo/7eU216yLaTwdtzZsAlraf97OZvLygO
+         hJjEW0RBtfmVC/s5z6206pHKPuVRdgYB6WVVumYlmYOWFExmeKEA9io3nnQdb98NH379
+         LmD+stQCAMn1X4kr3U6WLW9afJVXZrDRsA3IomSCuGh/59wl5HSyMlaFjgel+BCWZecO
+         gz8a08DaaPysyRE3Utcvumz3H5JSTT1SET/yKsk9DPeH4c+IDaVbtCYljB2Sv2f/2RAt
+         R1SQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUw8/0LY2Tsu4OpshIh1YyZ6O9aMDT3cEJD8ZwzqW0Kpufns+UpjoAV+vfzmY8nSVRgqTKBXMSojFEE@vger.kernel.org
+X-Gm-Message-State: AOJu0YynsPLKajXSa8YcTMO1sZh4VmSJSr6pxxqDzeAKfS3NUkRqrA5C
+	MUSc4LyQA6hzBenwwv/ZvJraUlpRofSAJ1w5UQYgF+YG7fhUkaZr4RISLAY9Ezyf1Rc=
+X-Gm-Gg: ASbGnct4fGy+FdsXHiMPgtytJ89jqReOdBLI+TZdED6e7c4DjZzwD34RnWQ43PI8cts
+	MzorLLikCWwhv5LDq+h/wf6p24pzaBlw2eRjTYSbU2/bqSHrHKQMimN5sVbPeD1FvLZM4JCztG9
+	9Ori9fnSZabtF+UClertqjbyzVCpQ5ulx+KxVGXeRhT46f4I9Dx3yc5o/cGcxE8NyUaSoY8Q/rg
+	XtRBgVQSQsBPzzvpGPjpghi65yJktrCAYkuCzXDRrcGOWwAFUCM2xvbc+xkVmi6t/03GKOSMsmB
+	HURjbD7lHG8xnD4so51M8lHazUlTHY1e3XGK1zXSlCuD0iSQL3QwNKEXWU0ZHJQDgrW8L5j7/G9
+	H2P5qstK7L2qUZ7svNDj9c4STtmvs1F4LP/BHfkqjrSDu5SGKmga+xdQSpIXmuSAeizi9ALYVhm
+	nqbVxrP9E751NzxwxHG8SonhNe43D5DkFJs9errxDR0tZ+/K1471SWO7j+GpNC
+X-Google-Smtp-Source: AGHT+IEBcoh/hheC34kEJ5SMlQT7J1zDk1fRi/rNlhKfDoHMzhq3M6R6ET9DH16T8Jf4Y/+MZSJDTQ==
+X-Received: by 2002:a05:6808:4fd1:b0:441:cf96:934f with SMTP id 5614622812f47-45115adf96cmr1439824b6e.47.1763764352531;
+        Fri, 21 Nov 2025 14:32:32 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:e782:93d8:7c2f:f9df? ([2600:8803:e7e4:500:e782:93d8:7c2f:f9df])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-450fff8d592sm2073533b6e.12.2025.11.21.14.32.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Nov 2025 14:32:32 -0800 (PST)
+Message-ID: <05fae891-a4e6-439d-97da-6259370f68b5@baylibre.com>
+Date: Fri, 21 Nov 2025 16:32:30 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251119154427.1033475-13-eugen.hristev@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] iio: Add support for TI ADS1X18 ADCs
+To: Kurt Borja <kuurtb@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Tobias Sperling <tobias.sperling@softing.com>
+Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20251121-ads1x18-v1-0-86db080fc9a4@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20251121-ads1x18-v1-0-86db080fc9a4@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Eugen,
+On 11/21/25 11:16 AM, Kurt Borja wrote:
+> Hi,
+> 
+> This series adds a new driver for TI ADS1X18 SPI devices.
+> 
+> This is my first time contributing to the IIO subsystem and making
+> dt-bindings documentation, so (don't) go easy on me :p.
 
-kernel test robot noticed the following build errors:
+I actually had these parts on my radar, so happy to help you out.
+Unfortunately, I don't have the hardware for testing though.
 
-[auto build test ERROR on rppt-memblock/fixes]
-[also build test ERROR on linus/master v6.18-rc6]
-[cannot apply to akpm-mm/mm-everything rppt-memblock/for-next next-20251121]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The first thing I was going to do was check the existing drivers
+to make sure that there isn't one already that has a compatible
+register layout. I have a feeling we won't find one, but would be
+good to mention that in the cover to justify adding a new driver.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Eugen-Hristev/kernel-Introduce-meminspect/20251119-235912
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rppt/memblock.git fixes
-patch link:    https://lore.kernel.org/r/20251119154427.1033475-13-eugen.hristev%40linaro.org
-patch subject: [PATCH 12/26] kernel/configs: Register dynamic information into meminspect
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20251122/202511220511.nMJSuw8H-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251122/202511220511.nMJSuw8H-lkp@intel.com/reproduce)
+There are a couple of similar TI ADCs on the mailing list right
+now, but they are IMHO just slightly too different to share a
+driver, but would be good to look at just to make things are
+consistent on a high level.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511220511.nMJSuw8H-lkp@intel.com/
+> 
+> As explained in Patch 2 changelog, the DRDY interrupt line is shared
+> with the MOSI pin. This awkward quirk is also found on some Analog
+> Devices sigma-delta SPI ADCs, so the interrupt and trigger design is
+> inspired by those.
 
-All errors (new ones prefixed by >>):
+Yup, that seems to be the best way we know how to handle this.
 
-   In file included from kernel/configs.c:18:
-   kernel/configs.c: In function 'ikconfig_init':
->> include/linux/meminspect.h:144:39: error: implicit declaration of function 'virt_to_phys'; did you mean 'virt_to_page'? [-Wimplicit-function-declaration]
-     144 |         meminspect_register_id_pa(id, virt_to_phys(va), size, MEMINSPECT_TYPE_REGULAR)
-         |                                       ^~~~~~~~~~~~
-   include/linux/meminspect.h:170:17: note: in expansion of macro 'meminspect_register_id_va'
-     170 |                 meminspect_register_id_va(__VA_ARGS__); \
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~
-   kernel/configs.c:69:9: note: in expansion of macro 'meminspect_lock_register_id_va'
-      69 |         meminspect_lock_register_id_va(MEMINSPECT_ID_CONFIG,
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +144 include/linux/meminspect.h
-
-184ddf27f54a0b Eugen Hristev 2025-11-19  139  
-184ddf27f54a0b Eugen Hristev 2025-11-19  140  #define meminspect_register_pa(...) \
-184ddf27f54a0b Eugen Hristev 2025-11-19  141  	meminspect_register_id_pa(MEMINSPECT_ID_DYNAMIC, __VA_ARGS__, MEMINSPECT_TYPE_REGULAR)
-184ddf27f54a0b Eugen Hristev 2025-11-19  142  
-184ddf27f54a0b Eugen Hristev 2025-11-19  143  #define meminspect_register_id_va(id, va, size) \
-184ddf27f54a0b Eugen Hristev 2025-11-19 @144  	meminspect_register_id_pa(id, virt_to_phys(va), size, MEMINSPECT_TYPE_REGULAR)
-184ddf27f54a0b Eugen Hristev 2025-11-19  145  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
