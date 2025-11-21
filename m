@@ -1,171 +1,434 @@
-Return-Path: <devicetree+bounces-240933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D82C77C9E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:03:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11701C77CB9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:07:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id C11BC2C086
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:01:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id DEA1B2B56C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3421A2749CE;
-	Fri, 21 Nov 2025 08:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CBF22BE658;
+	Fri, 21 Nov 2025 08:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="CDFQbRxh"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="tetsIlOU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f46.google.com (mail-yx1-f46.google.com [74.125.224.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62EFA227B94
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 08:01:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775A5219E8C
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 08:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763712071; cv=none; b=jY8oloJwfSrFlMHiwfCGoTSBxe2iKslaunTNezD94FVFLxL2vOEHhd7pVidOzmrfXh9axQcwh5xa/OMp29o7/0l3tifG0IdSCe6r6LjT7NV1XBDXKizYvtL6uT55L1BEk/KOE5ivWTj4K6yoFkNhwiT018Y+mdvBEz39/7gSWpc=
+	t=1763712389; cv=none; b=QQu84PZk4DI9D7BuFXdVVQcwQFK1z5f+wihVJT8LjSPKDIo/Cve3GKNUgoatebzkkzhMPOdszW9+ThgcF8OAHyU1Mg0I+PRspA/h3+YXiyvtUJfVSsFlI+1fF+g+B6RQVZJs419cGXZPl1nVkalWqwHFYazuPX+/MijseizOfOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763712071; c=relaxed/simple;
-	bh=p7uVlvE3Qm03vihPsE08vYaawKMxPv/DQrOZ33uA8iU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cwnWE7OSoq3J9xPuR5deiPPzn8wVBw/L4Em7bjatdxlfXl+DpY08zeUxU8YsaRR0be2tJM4PdbBxzFW2v5zUckgF4nyNxshLJ1ZcYIt+3lkSlUGRzbBbvL8wRweEGyw5TqDqnH3T+utQPXBoNFFNPMr9E9aCti2DPiN1/UwZ3tc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=CDFQbRxh; arc=none smtp.client-ip=74.125.224.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-63fca769163so1825758d50.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 00:01:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1763712068; x=1764316868; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L1tvndMjP9HAoDprqdYPBtu6xsScYiQegulJGgBItgE=;
-        b=CDFQbRxhpK3BEgEhyY8klRbYdf0Bo9A0y2m2pgDH+qfdVc9ogFEpVpumfHSxD+1069
-         /cvZgw9+SqH1h0bCfXtPQeu3lwe1GrJ+KC69HBV7xH7EwSy84C3WJPs78Cdw730uuGT+
-         S4y/e1TavZ7fLR4DAYquPWYFoKmApW47WyioA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763712068; x=1764316868;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=L1tvndMjP9HAoDprqdYPBtu6xsScYiQegulJGgBItgE=;
-        b=OROQr3oNpH3B4rf757Fa6+hzBVPL6cOPRPjgzKgzgJkRtQ7obFVHsM9n4KG/vWG88/
-         +alZJpe4QC2pFC5VIzuSBiKLsed1CrAO9Nxv38By8qCu6aPJ0SpejizGtsXRrb10caH8
-         g1qfAstOLRp0INDK0KLU3Co+GI8A+suPQ6FSQOF/VkiPP1lM/vxbtejgYnEAuRUQ8iTw
-         yExh1DXlW6lzRXbNmyruH1ljuj/po5DkmgZYU5CvUcSw/7IDRBoNvETvIz7SJOsNdb2k
-         TxzVkkunsc7ZBL6lwnK9KUBX9TxZLWdWZhsB8Ubh1+bRK5g9awL79O5wNLrUpEYnjJsL
-         wRGA==
-X-Forwarded-Encrypted: i=1; AJvYcCWqJthyZX/pOJw8djRzPEqtAiFj6m50TpHbUcbUF4CC9BmUnIETeSGv2LM3/W3jRcXA4+OOCtEaOF7i@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyk8SCwm81TbrF4T+OOmDfsRh/knUvsukc4V7pJKauJU9PoJLnu
-	VbClMbDtwQ22rVtGvlZPJMQXVRbb28JNf26ExnnGzQxDVq+3ZqHdymF/823G5qObtcdTRIqp7VB
-	AcVLbySmSsKQkntq55TERxKVziWdgKiGt/2g/J7mHuw==
-X-Gm-Gg: ASbGncttFABdaHX/AQqYdqMdSMqQZOKnI0JqoNsIkgOYrqfeTbzdKjntDO9njFXbKH3
-	QK0ojeas0t3/1/0Md7L/8imPQwt8wc5GZx6W/B3bqyw9NOLz97pYYBH1JQJRhtcgoCCOvlggZJQ
-	byPx0H8bKnjFtEqIcTJCGsGHxayeIh/mb/BZV8BPJ+1w/jKBHg4UzR9cLRCIQdFmK7n29qAgeDJ
-	hSrSj61gak73kfVAnBFV1BbSY1L/tCHLCZvUucOl/NTyngL+l21pxtuX6KJ5/cKXLyz47Z1X6Qi
-	o70CNCpFJPOkIyMtXDZlk94arJD5
-X-Google-Smtp-Source: AGHT+IEl8KOODStMI8dm5m76lMMQQ5gRzTphkTRgniUf/5r0P9q1EzWrX2kDa3Fv9kZPz1574X5k0b+ryB9WLwLycEY=
-X-Received: by 2002:a05:690e:190c:b0:640:d255:2d6f with SMTP id
- 956f58d0204a3-64302a568f1mr802060d50.34.1763712068236; Fri, 21 Nov 2025
- 00:01:08 -0800 (PST)
+	s=arc-20240116; t=1763712389; c=relaxed/simple;
+	bh=+FlNs/8I0phHVdUAZB8vk8tbDtFCZcsZUWzS1+fbdJo=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=Ynp3M/f5DlnJ4uznohQ9cUX8dkWwLUDISoPZR387cvgkNJcSuRlBLwoa44L0p5Xcq5yycwIHL1eYXRfQrKBShmLOC+ZSnEEEhLpEm1fyVCsYdwrvwtEmUeeORsGVRPXtzp8Fe3stONf7LbYCZ+YdznJ+e2O9FOpvsD8p5LcihI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=tetsIlOU; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20251121080623epoutp03cfda6aa660ab4b2ea1362f26eeb0e2aa~59xFrxSci2895028950epoutp03q
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 08:06:23 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20251121080623epoutp03cfda6aa660ab4b2ea1362f26eeb0e2aa~59xFrxSci2895028950epoutp03q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1763712383;
+	bh=bicOhB3lxHr36qOBr/Cji/9SyYsIhCzg0MNSw9q5xJQ=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=tetsIlOUt0/NwiaYVagXRXVNUQEWwOmWhLC8jaWhxFTeHZYz3guaCOepRylF6NU5s
+	 mX1vDEF/cHMlsBMBVrjOpwhZUyBLK3oUQwCNZoSxrvKPO79frkJU/5OJV2kgm4mtr2
+	 SoU61KWRNjIcqqvWzP73Na+wOpnECNkrFdmJvoDA=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20251121080622epcas5p17eb6ede357292c192ae4b66fa293b18a~59xE47lI80272402724epcas5p1H;
+	Fri, 21 Nov 2025 08:06:22 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.89]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4dCSTn3Dtnz3hhT7; Fri, 21 Nov
+	2025 08:06:21 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20251121080620epcas5p36b7649efb1c754829beeca1761f84a9b~59xDcEAGk2569925699epcas5p3R;
+	Fri, 21 Nov 2025 08:06:20 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20251121080617epsmtip2ce5f185be502f2976a0bda80eba7721f~59xAhUARY2184821848epsmtip2b;
+	Fri, 21 Nov 2025 08:06:17 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Vinod Koul'" <vkoul@kernel.org>
+Cc: <kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <johan@kernel.org>,
+	<ivo.ivanov.ivanov1@gmail.com>, <m.szyprowski@samsung.com>,
+	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <aR9DtJuwpzoq6spx@vaman>
+Subject: RE: [PATCH v9 4/6] phy: exynos5-usbdrd: support HS combo phy for
+ ExynosAutov920
+Date: Fri, 21 Nov 2025 13:36:03 +0530
+Message-ID: <00ef01dc5abd$b8aac3b0$2a004b10$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251031044803.400524-1-pavitrakumarm@vayavyalabs.com>
- <20251031044803.400524-3-pavitrakumarm@vayavyalabs.com> <aQw-ugxNqclAqDkg@gondor.apana.org.au>
-In-Reply-To: <aQw-ugxNqclAqDkg@gondor.apana.org.au>
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Date: Fri, 21 Nov 2025 13:30:57 +0530
-X-Gm-Features: AWmQ_bkOmSF2vdQ5-_vP3HC8nfm7o6gE93J9cVBanb22mvJUTU4-cuCIGuUYy3g
-Message-ID: <CALxtO0=LxXg6Cw+PKnPQLhurkPRxvTOn63pyK9gFFH=y+F=hBQ@mail.gmail.com>
-Subject: Re: [PATCH v8 2/4] crypto: spacc - Add SPAcc ahash support
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Ruud.Derwig@synopsys.com, 
-	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com, 
-	Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQId6djPdSPyHc1kqH9U3Yvp+ju6FgNTbNUIAjBcJ0ECKt+0kLQ8L78w
+Content-Language: en-in
+X-CMS-MailID: 20251121080620epcas5p36b7649efb1c754829beeca1761f84a9b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20251010070057epcas5p31b6ee42004594b2b2fb414494180753c
+References: <20251010070912.3758334-1-pritam.sutar@samsung.com>
+	<CGME20251010070057epcas5p31b6ee42004594b2b2fb414494180753c@epcas5p3.samsung.com>
+	<20251010070912.3758334-5-pritam.sutar@samsung.com> <aR9DtJuwpzoq6spx@vaman>
 
-Hi Herbert,
+Hi Vinod,
 
-Thank you for your suggestion regarding removing dynamic statesize and
-reqsize usage in the spacc_ahash driver. I reviewed the
-aspeed_ahash_fallback implementation as you recommended and updated
-our driver to follow the same approach, including using the
-HASH_FBREQ_ON_STACK macro.
+> -----Original Message-----
+> From: Vinod Koul <vkoul@kernel.org>
+> Sent: 20 November 2025 10:07 PM
+> To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> Cc: kishon@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org; alim.akhtar@samsung.com; andre.draszik@linaro.org;
+> peter.griffin@linaro.org; kauschluss@disroot.org; johan@kernel.org;
+> ivo.ivanov.ivanov1@gmail.com; m.szyprowski@samsung.com;
+> s.nawrocki@samsung.com; linux-phy@lists.infradead.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org;
+> rosa.pila@samsung.com; dev.tailor@samsung.com;
+> faraz.ata@samsung.com; muhammed.ali@samsung.com;
+> selvarasu.g@samsung.com
+> Subject: Re: [PATCH v9 4/6] phy: exynos5-usbdrd: support HS combo phy for
+> ExynosAutov920
+> 
+> On 10-10-25, 12:39, Pritam Manohar Sutar wrote:
+> > Support UTMI+ combo phy for this SoC which is somewhat simmilar to
+>                                                         ^^^^^^^^ typo
+> 
+> > what the existing Exynos850 support does. The difference is that some
+> > register offsets and bit fields are defferent from Exynos850.
+>                                            ^^^^^^^^ again
 
-With these changes, the ahash self-tests and functional tests pass
-successfully on kernel 6.17-rc1. However, the same implementation is
-failing on 6.18-rc1. Since aspeed_ahash_fallback is currently the only
-reference driver using this new fallback method, we wanted to request
-a bit more insight into the expected usage patterns.
+Thank for the review and sorry for the typo and can you please
+confirm if updated commit message is fine, mentioned as below?
 
-Specifically, it would be helpful to understand:
+"
+    phy: exynos5-usbdrd: support HS combo phy for ExynosAutov920
 
-Whether there were any additional changes in the ahash API or fallback
-handling between 6.17-rc1 and 6.18-rc1 that drivers should adapt to.
+    Support UTMI+ combo phy for this SoC, which is somewhat similar to
+    what the existing Exynos850 supports. The difference is that some
+    register offsets and bit fields are different from Exynos850.
 
-Any constraints or assumptions the new fallback mechanism requires,
-beyond what aspeed_ahash_fallback demonstrates.
+    Add required change in phy driver to support combo HS phy for this SoC.
+"
 
-Whether the stack-based fallback request (HASH_FBREQ_ON_STACK) has any
-new limitations or expected ordering requirements in 6.18-rc1.
-
-We want to ensure our implementation aligns fully with the intended
-direction of the API, so any guidance would be appreciated.
-
-Warm regards,
-PK
-
-
-On Thu, Nov 6, 2025 at 11:53=E2=80=AFAM Herbert Xu <herbert@gondor.apana.or=
-g.au> wrote:
->
-> On Fri, Oct 31, 2025 at 10:18:01AM +0530, Pavitrakumar Managutte wrote:
 > >
-> > +static int spacc_hash_init_tfm(struct crypto_ahash *tfm)
-> > +{
-> > +     const struct spacc_alg *salg =3D container_of(crypto_ahash_alg(tf=
-m),
-> > +                                                 struct spacc_alg,
-> > +                                                 alg.hash.base);
-> > +     struct spacc_crypto_ctx *tctx =3D crypto_ahash_ctx(tfm);
+> > Add required change in phy driver to support combo HS phy for this SoC.
+> >
+> > Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> > ---
+> >  drivers/phy/samsung/phy-exynos5-usbdrd.c | 211
+> > +++++++++++++++++++++++
+> >  1 file changed, 211 insertions(+)
+> >
+> > diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > index dfc2cc71e579..c52b0e25a423 100644
+> > --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > @@ -41,6 +41,13 @@
+> >  #define EXYNOS2200_CLKRST_LINK_PCLK_SEL		BIT(1)
+> >
+> >  #define EXYNOS2200_DRD_UTMI			0x10
 > > +
-> > +     tctx->handle    =3D -1;
-> > +     tctx->ctx_valid =3D false;
-> > +     tctx->dev       =3D get_device(salg->dev);
+> > +/* ExynosAutov920 bits */
+> > +#define UTMICTL_FORCE_UTMI_SUSPEND		BIT(13)
+> > +#define UTMICTL_FORCE_UTMI_SLEEP		BIT(12)
+> > +#define UTMICTL_FORCE_DPPULLDOWN		BIT(9)
+> > +#define UTMICTL_FORCE_DMPULLDOWN		BIT(8)
 > > +
-> > +     tctx->fb.hash =3D crypto_alloc_ahash(crypto_ahash_alg_name(tfm), =
-0,
-> > +                     CRYPTO_ALG_NEED_FALLBACK);
-> > +     if (IS_ERR(tctx->fb.hash)) {
-> > +             dev_err(tctx->dev, "SPAcc ahash fallback tfm is NULL!\n")=
-;
-> > +             put_device(tctx->dev);
-> > +             return PTR_ERR(tctx->fb.hash);
-> > +     }
+> >  #define EXYNOS2200_UTMI_FORCE_VBUSVALID		BIT(1)
+> >  #define EXYNOS2200_UTMI_FORCE_BVALID		BIT(0)
+> >
+> > @@ -250,6 +257,22 @@
+> >  #define EXYNOS850_DRD_HSP_TEST			0x5c
+> >  #define HSP_TEST_SIDDQ				BIT(24)
+> >
+> > +#define EXYNOSAUTOV920_DRD_HSP_CLKRST		0x100
+> > +#define HSPCLKRST_PHY20_SW_PORTRESET		BIT(3)
+> > +#define HSPCLKRST_PHY20_SW_POR			BIT(1)
+> > +#define HSPCLKRST_PHY20_SW_POR_SEL		BIT(0)
 > > +
-> > +     crypto_ahash_set_statesize(tfm,
-> > +                     crypto_ahash_statesize(tctx->fb.hash));
+> > +#define EXYNOSAUTOV920_DRD_HSPCTL		0x104
+> > +#define HSPCTRL_VBUSVLDEXTSEL			BIT(13)
+> > +#define HSPCTRL_VBUSVLDEXT			BIT(12)
+> > +#define HSPCTRL_EN_UTMISUSPEND			BIT(9)
+> > +#define HSPCTRL_COMMONONN			BIT(8)
 > > +
-> > +     crypto_ahash_set_reqsize(tfm,
-> > +                     sizeof(struct spacc_crypto_reqctx) +
-> > +                     crypto_ahash_reqsize(tctx->fb.hash));
->
-> Please stop using dynamic statesize/reqsize values as they are
-> being phased out.
->
-> The API now provides a fallback directly that can be used with
-> a stack request.  Grep for aspeed_ahash_fallback to see an example
-> of that being used.
->
-> Thanks,
+> > +#define EXYNOSAUTOV920_DRD_HSP_TEST		0x10c
+> > +
+> > +#define EXYNOSAUTOV920_DRD_HSPPLLTUNE		0x110
+> > +#define HSPPLLTUNE_FSEL				GENMASK(18, 16)
+> > +
+> >  /* Exynos9 - GS101 */
+> >  #define EXYNOS850_DRD_SECPMACTL			0x48
+> >  #define SECPMACTL_PMA_ROPLL_REF_CLK_SEL
+> 	GENMASK(13, 12)
+> > @@ -2054,6 +2077,140 @@ static const struct
+> exynos5_usbdrd_phy_drvdata exynos990_usbdrd_phy = {
+> >  	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
+> >  };
+> >
+> > +static void
+> > +exynosautov920_usbdrd_utmi_init(struct exynos5_usbdrd_phy
+> *phy_drd) {
+> > +	void __iomem *reg_phy = phy_drd->reg_phy;
+> > +	u32 reg;
+> > +
+> > +	/*
+> > +	 * Disable HWACG (hardware auto clock gating control). This
+> > +	 * forces QACTIVE signal in Q-Channel interface to HIGH level,
+> > +	 * to make sure the PHY clock is not gated by the hardware.
+> > +	 */
+> > +	reg = readl(reg_phy + EXYNOS850_DRD_LINKCTRL);
+> > +	reg |= LINKCTRL_FORCE_QACT;
+> > +	writel(reg, reg_phy + EXYNOS850_DRD_LINKCTRL);
+> > +
+> > +	/* De-assert link reset */
+> > +	reg = readl(reg_phy + EXYNOS2200_DRD_CLKRST);
+> > +	reg &= ~CLKRST_LINK_SW_RST;
+> > +	writel(reg, reg_phy + EXYNOS2200_DRD_CLKRST);
+> > +
+> > +	/* Set PHY POR High */
+> > +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSP_CLKRST);
+> > +	reg |= HSPCLKRST_PHY20_SW_POR |
+> HSPCLKRST_PHY20_SW_POR_SEL;
+> > +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSP_CLKRST);
+> > +
+> > +	/* Enable UTMI+ */
+> > +	reg = readl(reg_phy + EXYNOS2200_DRD_UTMI);
+> > +	reg &= ~(UTMICTL_FORCE_UTMI_SUSPEND |
+> UTMICTL_FORCE_UTMI_SLEEP |
+> > +		UTMICTL_FORCE_DPPULLDOWN |
+> UTMICTL_FORCE_DMPULLDOWN);
+> > +	writel(reg, reg_phy + EXYNOS2200_DRD_UTMI);
+> > +
+> > +	/* set phy clock & control HS phy */
+> > +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSPCTL);
+> > +	reg |= HSPCTRL_EN_UTMISUSPEND | HSPCTRL_COMMONONN;
+> > +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSPCTL);
+> > +
+> > +	fsleep(100);
+> > +
+> > +	/* Set VBUS Valid and DP-Pull up control by VBUS pad usage */
+> > +	reg = readl(reg_phy + EXYNOS850_DRD_LINKCTRL);
+> > +	reg |= FIELD_PREP_CONST(LINKCTRL_BUS_FILTER_BYPASS, 0xf);
+> > +	writel(reg, reg_phy + EXYNOS850_DRD_LINKCTRL);
+> > +
+> > +	reg = readl(reg_phy + EXYNOS2200_DRD_UTMI);
+> > +	reg |= EXYNOS2200_UTMI_FORCE_VBUSVALID |
+> EXYNOS2200_UTMI_FORCE_BVALID;
+> > +	writel(reg, reg_phy + EXYNOS2200_DRD_UTMI);
+> > +
+> > +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSPCTL);
+> > +	reg |= HSPCTRL_VBUSVLDEXTSEL | HSPCTRL_VBUSVLDEXT;
+> > +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSPCTL);
+> > +
+> > +	/* Setting FSEL for refference clock */
+> > +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSPPLLTUNE);
+> > +	reg &= ~HSPPLLTUNE_FSEL;
+> > +
+> > +	switch (phy_drd->extrefclk) {
+> > +	case EXYNOS5_FSEL_50MHZ:
+> > +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 7);
+> > +		break;
+> > +	case EXYNOS5_FSEL_26MHZ:
+> > +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 6);
+> > +		break;
+> > +	case EXYNOS5_FSEL_24MHZ:
+> > +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 2);
+> > +		break;
+> > +	case EXYNOS5_FSEL_20MHZ:
+> > +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 1);
+> > +		break;
+> > +	case EXYNOS5_FSEL_19MHZ2:
+> > +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 0);
+> > +		break;
+> > +	default:
+> > +		dev_warn(phy_drd->dev, "unsupported ref clk: %#.2x\n",
+> > +			 phy_drd->extrefclk);
+> > +		break;
+> > +	}
+> > +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSPPLLTUNE);
+> > +
+> > +	/* Enable PHY Power Mode */
+> > +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSP_TEST);
+> > +	reg &= ~HSP_TEST_SIDDQ;
+> > +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSP_TEST);
+> > +
+> > +	/* before POR low, 10us delay is needed to Finish PHY reset */
+> > +	fsleep(10);
+> > +
+> > +	/* Set PHY POR Low */
+> > +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSP_CLKRST);
+> > +	reg |= HSPCLKRST_PHY20_SW_POR_SEL;
+> > +	reg &= ~(HSPCLKRST_PHY20_SW_POR |
+> HSPCLKRST_PHY20_SW_PORTRESET);
+> > +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSP_CLKRST);
+> > +
+> > +	/* after POR low and delay 75us, PHYCLOCK is guaranteed. */
+> > +	fsleep(75);
+> > +
+> > +	/* force pipe3 signal for link */
+> > +	reg = readl(reg_phy + EXYNOS850_DRD_LINKCTRL);
+> > +	reg |= LINKCTRL_FORCE_PIPE_EN;
+> > +	reg &= ~LINKCTRL_FORCE_PHYSTATUS;
+> > +	reg |= LINKCTRL_FORCE_RXELECIDLE;
+> > +	writel(reg, reg_phy + EXYNOS850_DRD_LINKCTRL); }
+> > +
+> > +static void
+> > +exynosautov920_usbdrd_hsphy_disable(struct exynos5_usbdrd_phy
+> > +*phy_drd) {
+> > +	u32 reg;
+> > +	void __iomem *reg_phy = phy_drd->reg_phy;
+> > +
+> > +	/* set phy clock & control HS phy */
+> > +	reg = readl(reg_phy + EXYNOS2200_DRD_UTMI);
+> > +	reg |= UTMICTL_FORCE_UTMI_SUSPEND |
+> UTMICTL_FORCE_UTMI_SLEEP;
+> > +	reg &= ~(UTMICTL_FORCE_DPPULLDOWN |
+> UTMICTL_FORCE_DMPULLDOWN);
+> > +	writel(reg, reg_phy + EXYNOS2200_DRD_UTMI);
+> > +
+> > +	/* Disable PHY Power Mode */
+> > +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSP_TEST);
+> > +	reg |= HSP_TEST_SIDDQ;
+> > +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSP_TEST);
+> > +
+> > +	/* clear force q-channel */
+> > +	reg = readl(reg_phy + EXYNOS850_DRD_LINKCTRL);
+> > +	reg &= ~LINKCTRL_FORCE_QACT;
+> > +	writel(reg, reg_phy + EXYNOS850_DRD_LINKCTRL);
+> > +
+> > +	/* link sw reset is need for USB_DP/DM high-z in host mode */
+> > +	reg = readl(reg_phy + EXYNOS2200_DRD_CLKRST);
+> > +	reg |= CLKRST_LINK_SW_RST;
+> > +	writel(reg, reg_phy + EXYNOS2200_DRD_CLKRST);
+> > +	fsleep(10);
+> > +	reg &= ~CLKRST_LINK_SW_RST;
+> > +	writel(reg, reg_phy + EXYNOS2200_DRD_CLKRST); }
+> > +
+> >  static int exynosautov920_usbdrd_phy_init(struct phy *phy)  {
+> >  	struct phy_usb_instance *inst = phy_get_drvdata(phy); @@ -2095,6
+> > +2252,27 @@ static int exynosautov920_usbdrd_phy_exit(struct phy *phy)
+> >  	return 0;
+> >  }
+> >
+> > +static int exynosautov920_usbdrd_combo_phy_exit(struct phy *phy) {
+> > +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
+> > +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
+> > +	int ret = 0;
+> 
+> Superfluous init
+> 
+> > +
+> > +	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks,
+> phy_drd->clks);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (inst->phy_cfg->id == EXYNOS5_DRDPHY_UTMI)
+> > +		exynosautov920_usbdrd_hsphy_disable(phy_drd);
+> > +
+> > +	/* enable PHY isol */
+> > +	inst->phy_cfg->phy_isol(inst, true);
+> > +
+> > +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks,
+> > +phy_drd->clks);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  static int exynosautov920_usbdrd_phy_power_on(struct phy *phy)  {
+> >  	struct phy_usb_instance *inst = phy_get_drvdata(phy); @@ -2146,6
+> > +2324,36 @@ static const char * const exynosautov920_usb20_regulators[]
+> = {
+> >  	"dvdd", "vdd18", "vdd33",
+> >  };
+> >
+> > +static const struct phy_ops exynosautov920_usbdrd_combo_hsphy_ops
+> = {
+> > +	.init		= exynosautov920_usbdrd_phy_init,
+> > +	.exit		= exynosautov920_usbdrd_combo_phy_exit,
+> > +	.power_on	= exynosautov920_usbdrd_phy_power_on,
+> > +	.power_off	= exynosautov920_usbdrd_phy_power_off,
+> > +	.owner		= THIS_MODULE,
+> > +};
+> > +
+> > +static const struct
+> > +exynos5_usbdrd_phy_config usbdrd_hsphy_cfg_exynosautov920[] = {
+> > +	{
+> > +		.id		= EXYNOS5_DRDPHY_UTMI,
+> > +		.phy_isol	= exynos5_usbdrd_phy_isol,
+> > +		.phy_init	= exynosautov920_usbdrd_utmi_init,
+> > +	},
+> > +};
+> > +
+> > +static const
+> > +struct exynos5_usbdrd_phy_drvdata
+> exynosautov920_usbdrd_combo_hsphy = {
+> > +	.phy_cfg		= usbdrd_hsphy_cfg_exynosautov920,
+> > +	.phy_ops		=
+> &exynosautov920_usbdrd_combo_hsphy_ops,
+> > +	.pmu_offset_usbdrd0_phy	=
+> EXYNOSAUTOV920_PHY_CTRL_USB20,
+> > +	.clk_names		= exynos5_clk_names,
+> > +	.n_clks			= ARRAY_SIZE(exynos5_clk_names),
+> > +	.core_clk_names		= exynos5_core_clk_names,
+> > +	.n_core_clks		= ARRAY_SIZE(exynos5_core_clk_names),
+> > +	.regulator_names	= exynosautov920_usb20_regulators,
+> > +	.n_regulators		=
+> ARRAY_SIZE(exynosautov920_usb20_regulators),
+> > +};
+> > +
+> >  static const struct phy_ops exynosautov920_usbdrd_phy_ops = {
+> >  	.init		= exynosautov920_usbdrd_phy_init,
+> >  	.exit		= exynosautov920_usbdrd_phy_exit,
+> > @@ -2380,6 +2588,9 @@ static const struct of_device_id
+> exynos5_usbdrd_phy_of_match[] = {
+> >  	}, {
+> >  		.compatible = "samsung,exynos990-usbdrd-phy",
+> >  		.data = &exynos990_usbdrd_phy
+> > +	}, {
+> > +		.compatible = "samsung,exynosautov920-usbdrd-combo-
+> hsphy",
+> > +		.data = &exynosautov920_usbdrd_combo_hsphy
+> >  	}, {
+> >  		.compatible = "samsung,exynosautov920-usbdrd-phy",
+> >  		.data = &exynosautov920_usbdrd_phy
+> > --
+> > 2.34.1
+> 
 > --
-> Email: Herbert Xu <herbert@gondor.apana.org.au>
-> Home Page: http://gondor.apana.org.au/~herbert/
-> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+> ~Vinod
+
+Thank you,
+
+Regards,
+Pritam
+
 
