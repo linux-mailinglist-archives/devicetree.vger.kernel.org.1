@@ -1,154 +1,135 @@
-Return-Path: <devicetree+bounces-241260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23EB0C7BB32
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 21:59:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F370C7BB63
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 22:05:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D15FD3A709E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 20:59:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 442D13A7417
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 21:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF102F3617;
-	Fri, 21 Nov 2025 20:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF6A306B15;
+	Fri, 21 Nov 2025 21:05:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fFJ8GWOk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kvus6StE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E38B2D77EA
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 20:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4391F2F069E
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 21:05:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763758765; cv=none; b=i6itT8J4lWQExdoUFLveSPOClXaTtB5C8qrnD6Wfn79JIfU2SGakbOyT5/vzCamDynCrqoNCQrB0v9ZZ1dqiBo/G1tr4wwMVJAbW6vU9HkW1i9LMPzyixhzNLj1qRWzYy6HwvYemNpGJyWfxnGemx1SkxZDVjGZ8ZRWKCS5ByJk=
+	t=1763759112; cv=none; b=MH3VH8ilN0/oBm3RkeTLMcxJGxAjQoTzzE1TKfqW2FXfgp10k8nnSYQnJTdkFkx8IVx9s6IPegL5zBQO5KvPoq2He2A+SPoewJdT7g7p6E336jFlyWdRni64a9Bdm9hkzSSGMW8GAGZD6iyT0oZKtsbJOqPzFtXiYexyeTJ7x4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763758765; c=relaxed/simple;
-	bh=bBtrX5EFPZEAZC522dfsiRzfYQSbHJajcuBGnynMbnA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d4ymayHEjvit4v/u7SQtJ2Y4x45InTgscU8oaXCdSUR552dcmSVHF2m1PkR/CSThktcMuQ3BXzxorJKmB1WMQQVXQC0HA/FO74ILsvOnSb/QE9F6EQFgfVT6gKn0zg7sy8O5k6jyzPXU/Qvxc3Oqoz5QH7rqOJm9aFKSDvvCNuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fFJ8GWOk; arc=none smtp.client-ip=209.85.221.47
+	s=arc-20240116; t=1763759112; c=relaxed/simple;
+	bh=ikocOw5rSrWvxBWEQdFtppjYN11mom4HHhas6/T9J2g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BdDtV8arC0sgd4Yddq30dkJIw9aiDWLvLcDzSPiIbwzWC3T5srKZQ9+lnS18iwmIoxaIshXfOAR4LEU4peZ54CetEpbAPfFsaEp84ODlKC5j3d5C6vCMESk34K3Kucnxw0yPZjCilijQ1qm7rYTBM1wOyGh0vU68+kzZJD+76u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kvus6StE; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-42b3669ca3dso1036001f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 12:59:23 -0800 (PST)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42b53b336e6so207027f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 13:05:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763758762; x=1764363562; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ompreuHERq3FUSzaEPD4bpaAyYj0ejhMujXL9v1zCZw=;
-        b=fFJ8GWOkqO76wiHeLrfhi1R4l+ekOuSLspy9BonAi1ZLEf1F6cvleCrXa6MM1oC9vD
-         qVu1uCWcFUnI0y+ehgxpf6DzkgPAjklBcmD4BdDOkxWmvqcTZeJwXTbnF9WdCH5y5MIn
-         EH+sI4G0iDH4q36c41RmLpCN5cNbMFQdIv4wlUfuUmndm3ICLCJp3p+FpfVXrQV8A+Lb
-         A+zgrJPMuHBgq5NmAmB0TQPBwVdtDeJo59j/1O/8Iuq+Mx6203/QE0thPBwI0nShwrsG
-         Iof61ZQRulBH1GDiyANFiuxoycymqBbuUis3AmxoLRvRwKV0b8ItAMeLfOQfYc3dyPzA
-         oHHw==
+        d=gmail.com; s=20230601; t=1763759108; x=1764363908; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JM0Mreiq32b+LPITrWPP1aT6vTsdSPOWG4QtqrPmPSQ=;
+        b=Kvus6StEPYOK5Nn9yT9sJpo1VRUIp3KQK79bcMq9Yh55IrwEPQoOoe8iwDeryiWUXl
+         Dr29xuT4qBbPvsKO/1v/c2z1nv9UEkmCSS0k0pVNhcxpB2PSzaWQ/D1DdBTD1Bja7hzM
+         LZ6O+hfbpOPovUN7n/Btv3wjDQYtEpC2IRDB9+6Kkt9YLOuhJzDNYDMbKmyLEh5RMwWi
+         s/6ug5j6nNJTuZxtvLzwCk8hlH5XI5FSLJrVkUau+2WFbOvrNoOnNd4WnrE6LQ6iTJd3
+         HbcW2EEKOzFSvYY0wqpu1t1rDqU/h/ZWq7fDTEfC+vUiobsM5396nB9jNehUS7s7ecQt
+         hfVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763758762; x=1764363562;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ompreuHERq3FUSzaEPD4bpaAyYj0ejhMujXL9v1zCZw=;
-        b=p3PthDm9hPLemZFn5s12qLowlAXLmfBs9XXUDuAVocvZCGEPfKIY+Yh5NQccItwUMk
-         U34FeoN03nVUsVzkhbPqHvOlR1QSuag4wXNeOrjB4x7J/3fIZfJlSHsq5DPuq1gfXvTy
-         zO9zqn/wC1HfFkNt07p5VSjKVa2tFhcfdn7+xW+D+Md7OFWrUQ3P2vV1D4V4Vf9T+OgZ
-         Jtrhg2vaJMfGsMCJ/+b1K5FC3YpoAGvENVjDjMhfdYZMvbiUAJhcZYbwVrZSo+pmS1O+
-         7ZJtI4K6ihHugYcltqhbbwoW06UOQfMH8QijSZmNV+XHwAbmFjWQOe0beCJ5GqU8y/Tq
-         xB/A==
-X-Forwarded-Encrypted: i=1; AJvYcCXigw+greWGTrtq2GeDOrDGJ2mXfWy3cSelMemUMl1iu+6mRpikG/V4Eyjfi9lkdf/jVtygZpROxcKW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXZpxxelmzcbeZSYRBX13b4mBx/b4IRo4JRjUtpOd0O7IB6KZJ
-	BM0t7v4b/aQIwcectiCMYDwkY5wzL/aTWEEj6SSEbrYIFP77jOad8DRHCIetgyyl9KcCqXqehSR
-	+ZUev8nyM4D9QWROx6HAnbOBtAwO/Cto=
-X-Gm-Gg: ASbGnctTIDOQjXtd3oae0coaOKxwZP2jVt/9lDXynP2gGVL6Ji5afFTVlpB0gz9umKZ
-	GjOeERe3AqWqCC0n0vzdPpWdBDApSgR72bo/ZqvFNVqHDTHAx5rOswKqBSq0J32PjoAN4ZtZc44
-	gR/HTdtrvk5SpwUBNQ/Hjp8utv6papjHCmP7D8/JNhzA4qj+Qtv+9yERPDF1S5S3Cc/3zxECyD1
-	4WgHtDQrc5op5puR8NZsdtiXQWqFR6AWpceb4cxu+GQa9x82vAUI2rAQ7nRuVtNTOui0U/LIZht
-	FwMsvsWxN0zaIFFrYjVzP83n0lf561vzcO0kVcY=
-X-Google-Smtp-Source: AGHT+IEJnYj9tzPgEsH3/YX9J7g70T3nquwHQesZI2rg877VbuY1O9Me5EFeMIoOkC9QXWw8tDigW182DhTgyFQOpFc=
-X-Received: by 2002:a5d:5e01:0:b0:42b:3e20:f1b0 with SMTP id
- ffacd0b85a97d-42cc1ac9b39mr4097573f8f.7.1763758762231; Fri, 21 Nov 2025
- 12:59:22 -0800 (PST)
+        d=1e100.net; s=20230601; t=1763759108; x=1764363908;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JM0Mreiq32b+LPITrWPP1aT6vTsdSPOWG4QtqrPmPSQ=;
+        b=gRYjtYFiG0o/LXBtwNspJm+FM2Jb2h4qEJS8KwcSXQaNd7KZrwifL67zEYk2BCOzHQ
+         NvVqN9RQ4feAuLu8EoV1TASKt5zGVdELmU3o8i+Kv/RgAFcQy7N+f4Bj6N9nBsjg3314
+         t8US/5JLndvEELKl67VRm7sL4pZ01sTeIA6ngzdAF7mgFkHwt7T7igv1tGuZl+G8GMEy
+         otJoDE0jvYcS3QQLB+ToxuYOneZHpk7J0Gszdx1GLue0xKMGKO9fd+0uLviDu+TD974/
+         NnY3BkPzYlYevyBAJngiro21Zmhhb2M1Xzz0igck1K/zAkdpo19+kmqXg/zT19F9bUvp
+         i7Cw==
+X-Forwarded-Encrypted: i=1; AJvYcCXaAAAVVNrrLFhq8DjEmeXlbWQgPBvSfJa/J3LHEBozTtQx9VKUii0VHV2ipMQLiZ0BqAjWIuBXl2vN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLgnMT7YGOEOOI85QQXJ8064tXSf/qzjOeNeDfziALr1RPSXSe
+	bR3pMiHI+cayyHBc+b9fRRdA9i/2Wy/hb4y6bEZrxSwPZk2k+Y4HiLWj
+X-Gm-Gg: ASbGncuxdVw9UM8HoOXQ+edA2QqLc37/6QNlCYYeSCzn9DNj+x7mu5/b4WFQUdCoDav
+	ljKuUazj9iDn2iSXbb1GUapK/zCNGQavy9lL6NyKaTf85x4Pe0TS0ntQSqQvxxBkXbXj8KwXPam
+	jeN+YNvGF8pIyGcKFcdt0dlnYVntBaxKHN5/OVknuXP0V3NYqjJKv3iJGCZdmi8kUd7fhmWK4pw
+	jg6DUp7YhPc6I9lC1FUWtSfsaMa7BnUnx332GC94e593y15/UNZ2nzzTP/wIqAmee/PyNPFSGHr
+	HpJ87haOep6Luw12YzyCF0GWBYSDpK87IfFNf2/HXZZ0qrmwQi1UCMWrWQJ5dvmtWNQKtCMdsVu
+	DloWKW0KZdQv8ohEkkkS9lEmVfgQ7aWyqHDBY2bojGoHTzvlwzuAhtwaano0G8HcuEi4EqzCwUa
+	N1+uU=
+X-Google-Smtp-Source: AGHT+IFS3P2oYUjpO8Y/WJHNkwI++Z16Q0FgFLqrouu1RpHsouIxJV7ZSaPDknXEWFmL4yz0PFSImg==
+X-Received: by 2002:a05:6000:4382:b0:429:c711:22b5 with SMTP id ffacd0b85a97d-42cc3eda99cmr1814532f8f.1.1763759108146;
+        Fri, 21 Nov 2025 13:05:08 -0800 (PST)
+Received: from skbuf ([2a02:2f04:d106:d600:b19f:2efa:e88a:a382])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f49a7bsm12836295f8f.19.2025.11.21.13.05.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Nov 2025 13:05:07 -0800 (PST)
+Date: Fri, 21 Nov 2025 23:05:04 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Russell King <linux@armlinux.org.uk>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH net-next 09/11] net: dsa: rzn1-a5psw: Add support for
+ management port frame length adjustment
+Message-ID: <20251121210504.ljeejnltaawahqtv@skbuf>
+References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251121113553.2955854-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251121113553.2955854-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251121193002.hzjuijrs6gtoibuv@skbuf>
-In-Reply-To: <20251121193002.hzjuijrs6gtoibuv@skbuf>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 21 Nov 2025 20:58:56 +0000
-X-Gm-Features: AWmQ_bmUNeZEWkWbeRP4C_Eo6_UYOxEcRWlNLuxLNTPKm97Sw-9WbzKrfrrXu9I
-Message-ID: <CA+V-a8sWzBsnO6vNFirPJCT=S=jMDO1uw5HhvN0kQ2PpvumJ-Q@mail.gmail.com>
-Subject: Re: [PATCH net-next 03/11] net: dsa: Kconfig: Expand config
- description to cover RZ/T2H and RZ/N2H ETHSW
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Russell King <linux@armlinux.org.uk>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251121113553.2955854-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251121113553.2955854-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi Vladimir,
+On Fri, Nov 21, 2025 at 11:35:35AM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Extend the RZN1 A5PSW driver to support SoC-specific adjustments to the
+> management (CPU) port frame length. Some SoCs, such as the RZ/T2H and
+> RZ/N2H, require additional headroom on the management port to account
+> for a special management tag added to frames. Without this adjustment,
+> frames may be incorrectly detected as oversized and subsequently
+> discarded.
+> 
+> Introduce a new field, `management_port_frame_len_adj`, in
+> `struct a5psw_of_data` to represent this adjustment, and apply it in
+> `a5psw_port_change_mtu()` when configuring the frame length for the
+> CPU port.
+> 
+> This change prepares the driver for use on RZ/T2H and RZ/N2H SoCs.
 
-Thank you for the review.
-
-On Fri, Nov 21, 2025 at 7:30=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com>=
- wrote:
->
-> On Fri, Nov 21, 2025 at 11:35:29AM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Update the Kconfig entry for the RZN1 A5PSW tag driver to reflect that
-> > the same tagging format is also used by the ETHSW blocks found in Renes=
-as
-> > RZ/T2H and RZ/N2H SoCs.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  net/dsa/Kconfig | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
-> > index f86b30742122..a00eb3bdcd0f 100644
-> > --- a/net/dsa/Kconfig
-> > +++ b/net/dsa/Kconfig
-> > @@ -159,11 +159,11 @@ config NET_DSA_TAG_RTL8_4
-> >         switches with 8 byte protocol 4 tags, such as the Realtek RTL83=
-65MB-VC.
-> >
-> >  config NET_DSA_TAG_RZN1_A5PSW
-> > -     tristate "Tag driver for Renesas RZ/N1 A5PSW switch"
-> > +     tristate "Tag driver for Renesas RZ/N1 A5PSW and RZ/{T2H,N2H} ETH=
-SW switches"
-> >       help
-> >         Say Y or M if you want to enable support for tagging frames for
-> > -       Renesas RZ/N1 embedded switch that uses an 8 byte tag located a=
-fter
-> > -       destination MAC address.
-> > +       Renesas RZ/N1 A5PSW and RZ/{T2H,N2H} ETHSW embedded switches th=
-at use
-> > +       an 8-byte tag located after the destination MAC address.
->
-> I think the device names are sufficiently strange with that forward
-> slash in them, that you shouldn't make them worse with the {}, at least
-> not in the full help text, and spell them out instead. It's hard for an
-> unfamiliar reader to know which punctuation marks to take literally and
-> which not to... (plus it makes it more difficult to find through grep)
->
-Agreed, I will add the full device names.
-
-Cheers,
-Prabhakar
+In the next change you set this to 40. What's the reason behind such a
+high value (need to set the management port A5PSW_FRM_LENGTH value to
+1574 bytes to pass L2 payload of 1500 bytes)? It sounds like this needs
+to be called out more clearly for what it is - a hardware bug.
 
