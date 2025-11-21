@@ -1,796 +1,149 @@
-Return-Path: <devicetree+bounces-240954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1ECFC77FA2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:48:00 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7679BC77F8D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:47:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id E5E122C9DB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:47:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2244034F26A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F31233C1A5;
-	Fri, 21 Nov 2025 08:47:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0BD8280CC1;
+	Fri, 21 Nov 2025 08:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="CBZV4LVG"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="WPeS3YxE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 197BF33B95A;
-	Fri, 21 Nov 2025 08:47:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC3F23956E
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 08:46:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763714873; cv=none; b=uC6rEXw+u+gjZn/DELmkvVX65/4ajPw02kUtBnSXZCsdqsqNkmIAU19c3ccG8had2dB0LGMrFyKhusUGct9siX+0Y+BOeX7y35JUlEPr/ueZViEASpTEoG1Dw9UlsnBwiP2ikJqUWy2eZ9M0uXJdPD2awUN75djp3qz1vuFx+Wk=
+	t=1763714820; cv=none; b=YlhHIRkwoPZ8KK5OVXuOB0OfXjNM0WvNq+XkVH2/46j8W9DwcVEFIn5MoKCFeSOvuiJ/biYFLLYwzgvpugxd21EBWlNT31IO0CSeVBBviN1N6RN+9d7W3M4Vmy5DBFxzvQCtb+39pODtuZcV9vW1GwRrMPiK1ZF6nhaBBzuhavE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763714873; c=relaxed/simple;
-	bh=TrxiDGAb+CACXfI7SQ8F0AWThOUb/X1YHD+7xxs0u9s=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tZsRq6Rw2mDbpQO4jl8R1Olaf4xr8YIsMtu5xUQLsUCbUPXEIWliEwBd6PY+5t1wKqDhCpUC/cHcx9s64IjvvtyBISwdZ9VfbEGJL34SRJ06w4yu6HvpWFWofn+h2UDvwr151T7dUA42FqHBYCikmCxz849nOXIQ+Wdohb0WP6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=CBZV4LVG; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AL8j5w853255892, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1763714706; bh=UIiprcjgq2lecYZK2AZBwF2o0KKwZPjW0iWNG/O03pU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=CBZV4LVGo68+lGMx/J7aC695Mrcp8oF8xfHZbJ6/uXm/8zNjx04MpbRPUK0ZCkmlz
-	 lCAKt6J5kaQeJa0+diC9glyrUOxDfYkwQOgGn5mhwezKn6/JpwJds2wrgmoXzgKbkM
-	 cf4uMhvtEaD4eFetUWdTEyXcL/HpBwzVoVDglS8hUrk90vPWXws43UTapwZonm9b1Q
-	 TnLWX+6AX85y8qwrs8tmijiBi4IXdfFBUlotOfBYAk2eERFCC1gjbGegD8ZGYINBDL
-	 48B6dBiqGU812KEXhPJl+FmB2kD6CaImcdKSjJI0U6rSJif87qPOlHC8c30G5XZmyt
-	 qHl4YHoXi1bag==
-Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AL8j5w853255892
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 21 Nov 2025 16:45:05 +0800
-Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
- RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.27; Fri, 21 Nov 2025 16:45:06 +0800
-Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
- RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.27; Fri, 21 Nov 2025 16:45:05 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS04.realtek.com.tw
- (10.21.1.54) with Microsoft SMTP Server id 15.2.1544.27 via Frontend
- Transport; Fri, 21 Nov 2025 16:45:05 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <afaerber@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <lee@kernel.org>, <james.tai@realtek.com>
-CC: <linux-arm-kernel@lists.infradead.org>,
-        <linux-realtek-soc@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <cy.huang@realtek.com>,
-        <stanley_chang@realtek.com>, <eleanor.lin@realtek.com>
-Subject: [PATCH v3 2/2] arm64: dts: realtek: Add Kent SoC and EVB device trees
-Date: Fri, 21 Nov 2025 16:45:05 +0800
-Message-ID: <20251121084505.3200-3-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20251121084505.3200-1-eleanor.lin@realtek.com>
-References: <20251121084505.3200-1-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1763714820; c=relaxed/simple;
+	bh=Flir5tljPSjxxK6yY84qRrxreOuDD4ZmYqr0Soj0ZNU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LQoG6htgA4d0QHYMdAocUtKbhQfrzraYKasyb2djyDRYDlUofp8ICYgSGj1avE9Oxf0izdKDHSyDR7dwxlHVNXo/7vNOamh/gg9rhGb0j2pSurEpznxid5ZKD08OZBPDmUsCigpYRJrNAHjz7AZ/tnhRhUZ2xatuUa+eyywbvHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=WPeS3YxE; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7b22ffa2a88so1574271b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 00:46:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1763714818; x=1764319618; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9rw6P3vTkq9/VDf2BdRM52eT1wyytd0Ws0h+4Sg6bhM=;
+        b=WPeS3YxEXJ8DCbQxogXI5+2NOSlk3/KaChIUQkOBrCcRqwl80cF/c2Iw8T6qmN4yV1
+         p92rpndEv4Tp81wPvy1vSJ2nQR7zkQ7Ie6rHYOqiYzn9K/J08ZKZWmcQRLqBZlyTdt3C
+         bDUVIGU3nA4/pezXAOUaRBhQN2VGDPW3LbAuLJyw2SksVgcikqXVhzmnm0SolIYVPBju
+         C1NrMM9hLAfHFa54pdEUdCWGBTAIEcfL5Y4QwqT/iCEgIfWpv/jEccMTfhRI1fJGXZwi
+         SYaVwmGeIDPzbIH+QbaAPrNr114Zk9ZWPRkxQnRfsPighUVFeTzaId97/6yZRvYqJwi/
+         EH8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763714818; x=1764319618;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=9rw6P3vTkq9/VDf2BdRM52eT1wyytd0Ws0h+4Sg6bhM=;
+        b=l98UpfJGxkY5F+4qPpZ2cO6uyJqT38J8392en64TYxXrvYrqcqC1nzHQ6i1qy60Gb6
+         w3fxGsUNn3on/RUvslS/37TakJw2o31mpe86eTMXyJuuRY09ZypYkPaFe31ThvTqmKOg
+         E6BVtATuwwfxy2sCnJYRDVlSQMa6ETKWpVuz7skWsrq8IJrrt9c/L9+0NWbj9F+MaWlL
+         +jow9KFrgmC/z55zbsO/ULl9JR3yAwvAbQiT9W3WUgehcdfXtN1XWx1BYsyzLcLVcfoL
+         ZYDlPc3zYY819A60hwNFloXyi0U0nhuJ3ZmU9C2BPtxzI17XXOFhImLzj2gbT6SEI15x
+         CqFA==
+X-Forwarded-Encrypted: i=1; AJvYcCXi+iD4UR9Zx5V8A8Jkw1Q/QT0pI3xqWTvvSw8INdMiSU958jYKIe35OuYhz8PK2b5BwPvAVlZLinZP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyF4kXHX5rz7Fug9cDXgNFM7eKaWhp6esXNR4PDcGaWZwJtSv1S
+	W+hgfpd5VFz0usCCjF9pVK1ywtGbjaor0sc8JBCoI18/039qOMijaMCfKGLW3NpsTb7WjnCgxXo
+	f6VssuIHrDJapC34bihQTtEQF9wb+iVrVInxNjvqx
+X-Gm-Gg: ASbGnctIfnpw0n09XIWSDAKeanNrAbuqRt/pNRx0aXNnX1WSftSYJM9x0PNrgkSVQ7m
+	FVnqMh0mJ1yQtb7VAa2VAlj4a645lXzk859Kryn+nz3ezaMxe1WsOS0/9UQDWB3SyufMLpkWXDA
+	+BrDOxADdnnF10xWnSMFy6AISKCQCB5TqgTWO0q/1h8BXNefr19WN33PVkhv68fyNrP9RWsFCMp
+	PPnG/gq8WqDR4yK7efa3QLfx8E7xF+LyzQUWxAhbWZZxsf8wSIPn+4+Y7UMvRYFDC4Kdxo=
+X-Google-Smtp-Source: AGHT+IEGKK1JVapl4Bfkn+X1caSvW4BJYyhUwjXrKD36ojgbUTuY+cLlAhIn+4hGtsKsgQZA7TevAUxQK94FOcafFjQ=
+X-Received: by 2002:a05:7022:ea46:10b0:119:e569:f26c with SMTP id
+ a92af1059eb24-11c9d819c4amr549173c88.21.1763714817986; Fri, 21 Nov 2025
+ 00:46:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20251120-phyb4-v6-0-b6694e1f0caf@google.com> <20251120-phyb4-v6-1-b6694e1f0caf@google.com>
+ <20251121-attentive-demonic-jacamar-fc4afb@kuoka>
+In-Reply-To: <20251121-attentive-demonic-jacamar-fc4afb@kuoka>
+From: Roy Luo <royluo@google.com>
+Date: Fri, 21 Nov 2025 16:46:21 +0800
+X-Gm-Features: AWmQ_bmUVOlmJqcVyT_EtvB6gdvlOG5rtdefUR1SndkOE8ikDuOVfBKFFoK6hGc
+Message-ID: <CA+zupgxskC2HMy_sLusDbb_L1t49frjLQW6isBfAKa6BgNvpNQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: phy: google: Add Google Tensor G5 USB PHY
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add Device Tree hierarchy for Realtek Kent SoC family:
+On Fri, Nov 21, 2025 at 4:16=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Thu, Nov 20, 2025 at 05:36:41PM +0000, Roy Luo wrote:
+>
+> I read last discussion and patch is fine, except one issue in example I
+> never noticed before (see at the end), which I want to fix. Apologies
+> for not bringing it up anytime earlier, I missed it. While at it also
+> one more nit.
+>
+> > +description: |
+>
+> nit: drop |, do not need '|' unless you need to preserve formatting.
+>
+> > +  Describes the USB PHY interfaces integrated with the DWC3 USB contro=
+ller on
+> > +  Google Tensor SoCs, starting with the G5 generation (laguna).
+> > +  Two specific PHY IPs from Synopsys are integrated, including eUSB 2.=
+0 PHY IP
+> > +  and USB3.2/DisplayPort combo PHY IP.
+>
+> ...
+>
+> > > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    soc {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +
+> > +        usb_phy: usb_phy@c410000 {
+>
+> node name: usb-phy, because there are no underscors used anywhere in
+> upstream. While at it, you can drop the label as well, because it is not
+> uised, so just usb-phy@..... {
+>
+> Please send new version with these two fixed and:
+>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+>
+> Best regards,
+> Krzysztof
+>
 
-- kent.dtsi: base SoC layer
-- rtd<variant>.dtsi: SoC variant layer
-- rtd<variant>-<board>.dtsi: board layer
-- rtd<variant>-<board>-<config>.dts: board configuration layer
+Thank you for the review, I appreciate it!
+Ack on both points and will send out a new version.
 
-Include RTD1501s Phantom EVB (8GB), RTD1861B Krypton EVB (8GB), and
-RTD1920s Smallville EVB (4GB).
-
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
- arch/arm64/boot/dts/realtek/Makefile          |   7 +-
- arch/arm64/boot/dts/realtek/kent.dtsi         | 166 ++++++++++++++++++
- arch/arm64/boot/dts/realtek/rtd1501.dtsi      |  12 ++
- .../boot/dts/realtek/rtd1501s-phantom-8gb.dts |  25 +++
- .../boot/dts/realtek/rtd1501s-phantom.dtsi    | 118 +++++++++++++
- arch/arm64/boot/dts/realtek/rtd1861.dtsi      |  12 ++
- .../boot/dts/realtek/rtd1861b-krypton-8gb.dts |  25 +++
- .../boot/dts/realtek/rtd1861b-krypton.dtsi    |  72 ++++++++
- arch/arm64/boot/dts/realtek/rtd1920.dtsi      |  12 ++
- .../dts/realtek/rtd1920s-smallville-4gb.dts   |  23 +++
- .../boot/dts/realtek/rtd1920s-smallville.dtsi | 128 ++++++++++++++
- 11 files changed, 596 insertions(+), 4 deletions(-)
- create mode 100644 arch/arm64/boot/dts/realtek/kent.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1501.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1861.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1920.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
-
-diff --git a/arch/arm64/boot/dts/realtek/Makefile b/arch/arm64/boot/dts/realtek/Makefile
-index ef8d8fcbaa05..60a37d5a948c 100644
---- a/arch/arm64/boot/dts/realtek/Makefile
-+++ b/arch/arm64/boot/dts/realtek/Makefile
-@@ -1,15 +1,14 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1293-ds418j.dtb
--
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1295-mele-v9.dtb
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1295-probox2-ava.dtb
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1295-xnano-x5.dtb
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1295-zidoo-x9s.dtb
--
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1296-ds418.dtb
--
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-bpi-m4.dtb
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-lionskin.dtb
--
-+dtb-$(CONFIG_ARCH_REALTEK) += rtd1501s-phantom-8gb.dtb
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1619-mjolnir.dtb
-+dtb-$(CONFIG_ARCH_REALTEK) += rtd1861b-krypton-8gb.dtb
-+dtb-$(CONFIG_ARCH_REALTEK) += rtd1920s-smallville-4gb.dtb
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-new file mode 100644
-index 000000000000..ae006ce24420
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -0,0 +1,166 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek Kent SoC family
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI  9 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x0>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2_0>;
-+			dynamic-power-coefficient = <454>;
-+			#cooling-cells = <2>;
-+
-+			l2_0: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <256>;
-+				cache-size = <0x40000>;
-+				cache-unified;
-+				next-level-cache = <&l3>;
-+			};
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2_1>;
-+			dynamic-power-coefficient = <454>;
-+			#cooling-cells = <2>;
-+
-+			l2_1: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <256>;
-+				cache-size = <0x40000>;
-+				cache-unified;
-+				next-level-cache = <&l3>;
-+			};
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x200>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2_2>;
-+			dynamic-power-coefficient = <454>;
-+			#cooling-cells = <2>;
-+
-+			l2_2: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <256>;
-+				cache-size = <0x40000>;
-+				cache-unified;
-+				next-level-cache = <&l3>;
-+			};
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x300>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2_3>;
-+			dynamic-power-coefficient = <454>;
-+			#cooling-cells = <2>;
-+
-+			l2_3: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <256>;
-+				cache-size = <0x40000>;
-+				cache-unified;
-+				next-level-cache = <&l3>;
-+			};
-+		};
-+
-+		l3: l3-cache {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-size = <0x200000>;
-+			cache-unified;
-+		};
-+	};
-+
-+	psci: psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	soc@0 {
-+		compatible = "simple-bus";
-+		ranges = <0x0 0x0 0x0 0x40000>, /* boot code */
-+			 <0x98000000 0x0 0x98000000 0xef0000>, /* rbus */
-+			 <0xa0000000 0x0 0xa0000000 0x10000000>, /* PCIE */
-+			 <0xff000000 0x0 0xff000000 0x200000>; /* GIC */
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		rbus: bus@98000000 {
-+			compatible = "simple-bus";
-+			ranges = <0x0 0x98000000 0xef0000>,
-+				 <0xa0000000 0xa0000000 0x10000000>; /* PCIE */
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			uart0: serial@7800 {
-+				compatible = "snps,dw-apb-uart";
-+				reg = <0x7800 0x100>;
-+				clock-frequency = <432000000>;
-+				interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
-+				reg-io-width = <4>;
-+				reg-shift = <2>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		gic: interrupt-controller@ff100000 {
-+			compatible = "arm,gic-v3";
-+			reg = <0xff100000 0x10000>,
-+			      <0xff140000 0x80000>;
-+			interrupt-controller;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+			#address-cells = <1>;
-+			#interrupt-cells = <3>;
-+			#size-cells = <1>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1501.dtsi b/arch/arm64/boot/dts/realtek/rtd1501.dtsi
-new file mode 100644
-index 000000000000..65f7ede3df73
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1501.dtsi
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek RTD1501 SoC
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+#include "kent.dtsi"
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts b/arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
-new file mode 100644
-index 000000000000..09e544acfd34
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek RTD1501S Phantom EVB
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "rtd1501s-phantom.dtsi"
-+
-+/ {
-+	compatible = "realtek,phantom", "realtek,rtd1501s";
-+	model = "Realtek Phantom EVB Chromium (8GB)";
-+
-+	memory@40000 {
-+		device_type = "memory";
-+		reg = <0x0 0x50000 0x0 0x7ffb0000>,
-+		      <0x0 0x8a100000 0x0 0xdef0000>,
-+		      <0x0 0x98700000 0x0 0x7900000>,
-+		      <0x0 0xa0600000 0x0 0x5ea00000>,
-+		      <0x1 0x0 0x0 0xa0000000>,
-+		      <0x1 0xa0600000 0x0 0x5fa00000>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi b/arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
-new file mode 100644
-index 000000000000..bcfb96799671
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
-@@ -0,0 +1,118 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek RTD1501S Phantom EVB
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/thermal/thermal.h>
-+#include "rtd1501.dtsi"
-+
-+/ {
-+	chosen {
-+		stdout-path = "serial0:460800n8";
-+	};
-+
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			alignment = <0x0 0x400000>;
-+			alloc-ranges = <0x0 0x0 0x0 0x20000000>;
-+			size = <0x0 0x2000000>;
-+			reusable;
-+			linux,cma-default;
-+		};
-+	};
-+
-+	cpu_opps: opp-table-cpu {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp800: opp-800000000 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-microvolt = <830000 830000 1100000>;
-+		};
-+
-+		opp900: opp-900000000 {
-+			opp-hz = /bits/ 64 <900000000>;
-+			opp-microvolt = <850000 850000 1100000>;
-+		};
-+
-+		opp1000: opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-microvolt = <870000 870000 1100000>;
-+		};
-+
-+		opp1100: opp-1100000000 {
-+			opp-hz = /bits/ 64 <1100000000>;
-+			opp-microvolt = <890000 890000 1100000>;
-+		};
-+
-+		opp1200: opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <910000 910000 1100000>;
-+		};
-+
-+		opp1300: opp-1300000000 {
-+			opp-hz = /bits/ 64 <1300000000>;
-+			opp-microvolt = <930000 930000 1100000>;
-+		};
-+
-+		opp1400: opp-1400000000 {
-+			opp-hz = /bits/ 64 <1400000000>;
-+			opp-microvolt = <950000 950000 1100000>;
-+		};
-+
-+		opp1500: opp-1500000000 {
-+			opp-hz = /bits/ 64 <1500000000>;
-+			opp-microvolt = <970000 970000 1100000>;
-+		};
-+
-+		opp1600: opp-1600000000 {
-+			opp-hz = /bits/ 64 <1600000000>;
-+			opp-microvolt = <990000 990000 1100000>;
-+			opp-suspend;
-+		};
-+
-+		opp1700: opp-1700000000 {
-+			opp-hz = /bits/ 64 <1700000000>;
-+			opp-microvolt = <1010000 1010000 1100000>;
-+		};
-+
-+		opp1800: opp-1800000000 {
-+			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <1030000 1030000 1100000>;
-+		};
-+
-+		opp1900: opp-1900000000 {
-+			opp-hz = /bits/ 64 <1900000000>;
-+			opp-microvolt = <1050000 1050000 1100000>;
-+		};
-+	};
-+};
-+
-+&cpu0 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu1 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu2 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu3 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1861.dtsi b/arch/arm64/boot/dts/realtek/rtd1861.dtsi
-new file mode 100644
-index 000000000000..44c3de8f1f48
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1861.dtsi
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek RTD1861 SoC
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+#include "kent.dtsi"
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts b/arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts
-new file mode 100644
-index 000000000000..9c23d901c49c
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek RTD1861B Krypton EVB
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "rtd1861b-krypton.dtsi"
-+
-+/ {
-+	compatible = "realtek,krypton", "realtek,rtd1861b";
-+	model = "Realtek Krypton EVB (8GB)";
-+
-+	memory@40000 {
-+		device_type = "memory";
-+		reg = <0x0 0x50000 0x0 0x7ffb0000>,
-+		      <0x0 0x8a100000 0x0 0xdef0000>,
-+		      <0x0 0x98700000 0x0 0x7900000>,
-+		      <0x0 0xa0600000 0x0 0x5ea00000>,
-+		      <0x1 0x0 0x0 0xa0000000>,
-+		      <0x1 0xa0600000 0x0 0x5fa00000>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi b/arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi
-new file mode 100644
-index 000000000000..b500f4d2c502
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi
-@@ -0,0 +1,72 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek RTD1861B Krypton EVB
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "rtd1861.dtsi"
-+
-+/ {
-+	chosen {
-+		stdout-path = "serial0:460800n8";
-+	};
-+
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			alignment = <0x0 0x400000>;
-+			alloc-ranges = <0x0 0x0 0x0 0x20000000>;
-+			size = <0x0 0x2000000>;
-+			reusable;
-+			linux,cma-default;
-+		};
-+	};
-+
-+	cpu_opps: opp-table-cpu {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp1200: opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <900000>;
-+		};
-+
-+		opp1600: opp-1600000000 {
-+			opp-hz = /bits/ 64 <1600000000>;
-+			opp-microvolt = <1000000>;
-+			opp-suspend;
-+		};
-+
-+		opp1800: opp-1800000000 {
-+			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <1050000>;
-+		};
-+	};
-+};
-+
-+&cpu0 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu1 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu2 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu3 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1920.dtsi b/arch/arm64/boot/dts/realtek/rtd1920.dtsi
-new file mode 100644
-index 000000000000..becf546216e9
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1920.dtsi
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek RTD1920 SoC
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+#include "kent.dtsi"
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts b/arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts
-new file mode 100644
-index 000000000000..9fd6976e0d9b
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek RTD1920S Smallville EVB
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "rtd1920s-smallville.dtsi"
-+
-+/ {
-+	compatible = "realtek,smallville", "realtek,rtd1920s";
-+	model = "Realtek Smallville EVB (4GB)";
-+
-+	memory@40000 {
-+		device_type = "memory";
-+		reg = <0x0 0x50000 0x0 0x7ffb0000>,
-+		      <0x0 0x8a100000 0x0 0xdef0000>,
-+		      <0x0 0x98700000 0x0 0x7900000>,
-+		      <0x0 0xa1000000 0x0 0x5e000000>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi b/arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
-new file mode 100644
-index 000000000000..3db8fcea6447
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
-@@ -0,0 +1,128 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Realtek RTD1920S Smallville EVB
-+ *
-+ * Copyright (c) 2024 Realtek Semiconductor Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/thermal/thermal.h>
-+#include "rtd1920.dtsi"
-+
-+/ {
-+	chosen {
-+		stdout-path = "serial0:460800n8";
-+	};
-+
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		protected_mem: protected-mem@50000 {
-+			reg = <0x0 0x50000 0x0 0xbf0000>;
-+			no-map;
-+		};
-+
-+		metadata: metadata@c40000 {
-+			reg = <0x0 0xc40000 0x0 0x3c4000>;
-+			no-map;
-+		};
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			alignment = <0x0 0x400000>;
-+			alloc-ranges = <0x0 0x0 0x0 0x20000000>;
-+			size = <0x0 0x2000000>;
-+			reusable;
-+			linux,cma-default;
-+		};
-+	};
-+
-+	cpu_opps: opp-table-cpu {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp800: opp-800000000 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-microvolt = <830000 830000 1100000>;
-+		};
-+
-+		opp900: opp-900000000 {
-+			opp-hz = /bits/ 64 <900000000>;
-+			opp-microvolt = <850000 850000 1100000>;
-+		};
-+
-+		opp1000: opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-microvolt = <870000 870000 1100000>;
-+		};
-+
-+		opp1100: opp-1100000000 {
-+			opp-hz = /bits/ 64 <1100000000>;
-+			opp-microvolt = <890000 890000 1100000>;
-+		};
-+
-+		opp1200: opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <910000 910000 1100000>;
-+		};
-+
-+		opp1300: opp-1300000000 {
-+			opp-hz = /bits/ 64 <1300000000>;
-+			opp-microvolt = <930000 930000 1100000>;
-+		};
-+
-+		opp1400: opp-1400000000 {
-+			opp-hz = /bits/ 64 <1400000000>;
-+			opp-microvolt = <950000 950000 1100000>;
-+		};
-+
-+		opp1500: opp-1500000000 {
-+			opp-hz = /bits/ 64 <1500000000>;
-+			opp-microvolt = <970000 970000 1100000>;
-+		};
-+
-+		opp1600: opp-1600000000 {
-+			opp-hz = /bits/ 64 <1600000000>;
-+			opp-microvolt = <990000 990000 1100000>;
-+			opp-suspend;
-+		};
-+
-+		opp1700: opp-1700000000 {
-+			opp-hz = /bits/ 64 <1700000000>;
-+			opp-microvolt = <1010000 1010000 1100000>;
-+		};
-+
-+		opp1800: opp-1800000000 {
-+			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <1030000 1030000 1100000>;
-+		};
-+
-+		opp1900: opp-1900000000 {
-+			opp-hz = /bits/ 64 <1900000000>;
-+			opp-microvolt = <1050000 1050000 1100000>;
-+		};
-+	};
-+};
-+
-+&cpu0 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu1 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu2 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu3 {
-+	operating-points-v2 = <&cpu_opps>;
-+	#cooling-cells = <2>;
-+};
--- 
-2.34.1
-
+Regards,
+Roy Luo
 
