@@ -1,70 +1,90 @@
-Return-Path: <devicetree+bounces-240900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B6EC77589
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 06:21:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EDFEC7715C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 03:58:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 24B6F360FED
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 05:21:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id 859712D66A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 02:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F66C2F657E;
-	Fri, 21 Nov 2025 05:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9B1271A6D;
+	Fri, 21 Nov 2025 02:58:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iAWS6/bi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bWhS1yRE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75D252F617E;
-	Fri, 21 Nov 2025 05:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C99214A8B;
+	Fri, 21 Nov 2025 02:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763702452; cv=none; b=DQ3uIDYom/VKT0c1pdBqgpdWedkOv12hkxoGw14OFPH1jK5GPNcu7MJTIsMrLlq7qqnBcXsGGZS54n40y2vOKv51goYSC8jJiNdAJLontrC8Ame9wlL/Ft2xKEoOcrUsWayoYhRDLcL5BlJE53q1tKiX+8HhNusjXPIHNPBPLzg=
+	t=1763693919; cv=none; b=Eru4TQeLX6fR9vRWkpgFK4G+a+6ltM/zGA388qHieR/3kvyqI//aENfpdIB2fgBzDKxkJn+tVZXyWqilR9pp03e3iupE9vdG9ccBtzpfQTwz2fpV3hnYwDKU1cDFHTRMRSMidHhEq1Fwpozwfby3W+JmpwtfpVHA5qqarm0kTT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763702452; c=relaxed/simple;
-	bh=i2FwM7GZO0cI1PqJuSMSgG5po4pWC/aYmRuf6oqJ0EA=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=OvcAxotsBJeMs2hKG3GmMc3vG/e5bxNEgQtubLdkAbJmyENmhXXQagzJ9car2wT5DYLQKAoJjKcv7r2dOE20EoDoYZAfwMBe1DqXP4GxLznlrmrX4lY1l2JRH/g8hGiEEF5FXPiwflVNV2Df83+/opGQY6CRd2eTM7DVBhty8D4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iAWS6/bi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A316C116D0;
-	Fri, 21 Nov 2025 05:20:52 +0000 (UTC)
+	s=arc-20240116; t=1763693919; c=relaxed/simple;
+	bh=1bNQbwHrYuW7HQk1KCxPp9vMuOHIa6T5fJNOx6hn+Is=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Vk3lR6eOD8Od1gMHlN0+hkhbyPOfvQhPVsIX1L+E2zQJiDeJ937FJTRRyZOWxqa8xO4uLvOutcSCDfLRpVdxGXpieIMitlaCFa+sU0RPhPjTKZDfsOGcOLNnlyBf4YUSs32N5SlGNjlZFQRsOBw8YAXxlUjOy/EvRFQOM54wZZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bWhS1yRE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1E1FC4CEF1;
+	Fri, 21 Nov 2025 02:58:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763702452;
-	bh=i2FwM7GZO0cI1PqJuSMSgG5po4pWC/aYmRuf6oqJ0EA=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=iAWS6/biLVL0sAnADt6xnjlkSpp6FCgCoqn3Le5I/Sp+XgWVcbCdnjOa0zak6Ycfl
-	 r2Jl9qZvnskxyMPHAdWNWDY+ERbRRATeNj59nwBMNnii6lvkclm1b8t7IY5cI+lGCr
-	 dnpHJHp7aGjsFxBHEiTG61jP0y+G0VSq1kZFR13Jbftn3GJl+QVYlaAkETjuBojy3w
-	 0uVIl3a0CkvzNJDWDo0qOAWVGxvR4tZ8tziBrINd82mlI47heZpAXAdzwZ+4E8KjKi
-	 EwV6Kd15zzjOJWUr1aVL6j63RPN2HG5qyzojIYzs536DPAYNEBBbSyxz77DH3+PdyY
-	 pta0BKLZyhR6w==
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1763693918;
+	bh=1bNQbwHrYuW7HQk1KCxPp9vMuOHIa6T5fJNOx6hn+Is=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=bWhS1yRElPkMGupvWAWEtHGTKAlv3U7wwvmZrbmiCJXyJyrDJCihpr+9pEtMAmErC
+	 6sNYVR/LwDIRLwJgLQ6SeitmYMxcHzqGUfbq2KZ0BOCr6cQoCfl3azk03GdswQkxem
+	 9pTvPVXW1dwTMGPysxIjc+DEGoOC5W++xXu7kGuuOBx7vvKbwpyxNH4matqfkfBCua
+	 GEVJ2/uWQ1zFoWXuoo23ouimtm7VgaeMMwXXhm2Y3KVs7AaA8JvZioIe0rLiqff7dN
+	 M4/BbzXQS/wluBuMvJXNbl5eVlzqhHmvJDG01OBirplPk39nahRHEpsY7/2gWiPPWE
+	 Je7X0KhgLpYmA==
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id E67465FDB4;
+	Fri, 21 Nov 2025 10:58:35 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ Sergey Matyukevich <geomatsi@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Charlie Jenkins <charlie@rivosinc.com>
+In-Reply-To: <20251119203508.1032716-1-geomatsi@gmail.com>
+References: <20251119203508.1032716-1-geomatsi@gmail.com>
+Subject: Re: [PATCH] riscv: dts: allwinner: d1: fix vlenb property
+Message-Id: <176369391591.4121578.8100709414179507629.b4-ty@kernel.org>
+Date: Fri, 21 Nov 2025 10:58:35 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251114070512.855008-2-yuji2.ishikawa@toshiba.co.jp>
-References: <20251114070512.855008-1-yuji2.ishikawa@toshiba.co.jp> <20251114070512.855008-2-yuji2.ishikawa@toshiba.co.jp>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: tmpv770x: Add VIIF clocks
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Date: Thu, 20 Nov 2025 18:57:00 -0800
-Message-ID: <176369382052.11952.16022702616514274716@localhost.localdomain>
-User-Agent: alot/0.11
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-Quoting Yuji Ishikawa (2025-11-13 23:05:11)
-> Add clock and reset identifiers for the Video Input Interface.
-> These identifiers support two instances: VIIF0 and VIIF1.
->=20
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> ---
+On Wed, 19 Nov 2025 23:35:06 +0300, Sergey Matyukevich wrote:
+> According to [1], the C906 vector registers are 128 bits wide.
+> The 'thead,vlenb' property specifies the vector register length
+> in bytes, so its value must be set to 16.
+> 
+> [1] https://dl.linux-sunxi.org/D1/Xuantie_C906_R1S0_User_Manual.pdf
+> 
+> 
+> [...]
 
-Applied to clk-next
+Applied to sunxi/fixes-for-6.18 in local tree, thanks!
+
+[1/1] riscv: dts: allwinner: d1: fix vlenb property
+      commit: 57c5543b94d0c0280145a4a7445a2c1ae074879e
+
+Best regards,
+-- 
+Chen-Yu Tsai <wens@kernel.org>
+
 
