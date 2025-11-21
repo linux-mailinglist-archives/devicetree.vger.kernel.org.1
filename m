@@ -1,142 +1,123 @@
-Return-Path: <devicetree+bounces-241130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CE30C7A39F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:41:02 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AF3C7A252
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:28:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5712F4F0102
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:29:34 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 96F52347E05
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065CE350D60;
-	Fri, 21 Nov 2025 14:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2135307481;
+	Fri, 21 Nov 2025 14:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="YhMTPHHb"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="FnyEaFm9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5C3350D4C;
-	Fri, 21 Nov 2025 14:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35BB1F09AC;
+	Fri, 21 Nov 2025 14:23:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763735167; cv=none; b=JL2/2sZoIVt8b5LkJ6j0p/mltokNPLDtsbnBePvNrfrk71FUJLG4FDtqYg06hCjgalbzlrfriwcvo3YKljrxJQOI2DPcHzGt72vKs2Jf8pl8E5Iy2fFZqev/5+nNW8IahN+Mab0rtjA88avQc2lFbTzS8qnMtOKXpz5cMhqpIg4=
+	t=1763734998; cv=none; b=JH5DcPrRWKZHGqaXSzucGaEUDtbQZKIgeBvZp0rnKlEitehljYNNrO51szB/tmGXxwoHdC5VwB7iH+Tsl+yoa+f8qR8uUvtMJNTL2PuSUH3wQi8LVq86Qz+bLsiefezcoYrxJzCYHXVkiTtIcEQGi8xBMrioifC8BDwLB1H8PXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763735167; c=relaxed/simple;
-	bh=YbrPtkB06/Jg3xfKlxAAt1KSm17776sC1HO/GQZ1S88=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ps6mOmuuRBKKMWAQacJrmSrffmvZ7M8rM/joZ1MnldhnIQMiPD5ZX5nvZe3v+Qkz7JPVU+cxbO+sz9QqxTAg9Mpo678WFdRjgEXOPfbc454YJXJhLKiH6xhDT9xAdjlaftdKJ4+wPVP4uv/ojq8iO8emDFpP6FAPkmGgJXnW9pI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=YhMTPHHb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F5AC4CEF1;
-	Fri, 21 Nov 2025 14:26:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1763735166;
-	bh=YbrPtkB06/Jg3xfKlxAAt1KSm17776sC1HO/GQZ1S88=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YhMTPHHbVjfqaYVVAyXmbfZ6m+WxBdDRDNMYB/aFueMvGaIimyUb3L6orZbC3BrCi
-	 x4FPHuL/zwELdgYWE/x9SUl5ZFMdEVqWkCGId/cjsX+wyC8Io1ld2f/OKrOvDtb8NX
-	 CF4w3J6HAfPSji1auxCoxp8e44KYJ0c+FrDMPGVA=
-Date: Fri, 21 Nov 2025 15:21:49 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Roy Luo <royluo@google.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Joy Chakraborty <joychakr@google.com>,
-	Naveen Kumar <mnkumar@google.com>,
-	Badhri Jagan Sridharan <badhri@google.com>,
-	Doug Anderson <dianders@google.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
-Message-ID: <2025112144-claw-recolor-49c3@gregkh>
-References: <20251119093749.292926-1-royluo@google.com>
- <20251119093749.292926-3-royluo@google.com>
+	s=arc-20240116; t=1763734998; c=relaxed/simple;
+	bh=siADLXNIdSZqDXTpejfo/TYTIA+I/j/UpCP+u8PRgqs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pe2BiUWWCIgWMSegQQzfNxRvKX4dzpnJ/cx/c5XEayClP5tHNvDQXociOEjr7aC0H31GJxQKt0Hqsj3kyGkp/2jU/8F6qjC0pMokafBfOpkGmILJbnWjPBpmRlc7atw5mfKVaKzd4C+WDO+3Avcsqfk4HEQ1w85b57VF4EM3+Sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=FnyEaFm9; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1763734996; x=1795270996;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=siADLXNIdSZqDXTpejfo/TYTIA+I/j/UpCP+u8PRgqs=;
+  b=FnyEaFm93np2VUt175gM3eJsXpBqhbFmAFUjPgpJk2akF4tBmB4LDC17
+   Yu7dRnW0cpz4BZzjOJofjykLH0QCATsnSUsfNMQ/eTHckHBQ3FuJ57lNE
+   CB4oRHK9DNgnyXzRQZ2rfPrkhusbpXYbSxs5WhqyOtvX1jPZv2qgotUHq
+   n2xd25RrBtRHEoCsoKsOpGK+Dq7sj8ETpZwMMKzaY38znlBzVa7w7WczX
+   4jVKC6uHkTazeORx0CDc0FyogRWkgswQfksN+H9Ry9GVOxhm2QmYbjYxP
+   71f16Z54LQyPcg1xZeVJ9tjGXCvxbngFzO8NkC581tQD78Lr8p3vgudl+
+   A==;
+X-CSE-ConnectionGUID: L9J59RpxQyuZuauzmfB2LQ==
+X-CSE-MsgGUID: i7TVzkosSjaP1RIWpAbhTQ==
+X-IronPort-AV: E=Sophos;i="6.20,216,1758610800"; 
+   d="scan'208";a="216836360"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2025 07:23:15 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.29; Fri, 21 Nov 2025 07:22:35 -0700
+Received: from valentina.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Fri, 21 Nov 2025 07:22:33 -0700
+From: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<valentina.fernandezalanis@microchip.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] Add Microchip IPC remoteproc support
+Date: Fri, 21 Nov 2025 14:21:55 +0000
+Message-ID: <20251121142157.3582463-1-valentina.fernandezalanis@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251119093749.292926-3-royluo@google.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, Nov 19, 2025 at 09:37:48AM +0000, Roy Luo wrote:
-> Add support for the DWC3 USB controller found on Google Tensor G5
-> (codename: laguna). The controller features dual-role functionality
-> and hibernation.
-> 
-> The primary focus is implementing hibernation support in host mode,
-> enabling the controller to enter a low-power state (D3). This is
-> particularly relevant during system power state transition and
-> runtime power management for power efficiency.
-> Highlights:
-> - Align suspend callback with dwc3_suspend_common() for deciding
->   between a full teardown and hibernation in host mode.
-> - Integration with `psw` (power switchable) and `top` power domains,
->   managing their states and device links to support hibernation.
-> - A notifier callback dwc3_google_usb_psw_pd_notifier() for
->   `psw` power domain events to manage controller state
->   transitions to/from D3.
-> - Coordination of the `non_sticky` reset during power state
->   transitions, asserting it on D3 entry and deasserting on D0 entry
->   in hibernation scenario.
-> - Handling of high-speed and super-speed PME interrupts
->   that are generated by remote wakeup during hibernation.
-> 
-> Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-> Co-developed-by: Joy Chakraborty <joychakr@google.com>
-> Signed-off-by: Joy Chakraborty <joychakr@google.com>
-> Co-developed-by: Naveen Kumar <mnkumar@google.com>
-> Signed-off-by: Naveen Kumar <mnkumar@google.com>
-> Signed-off-by: Roy Luo <royluo@google.com>
-> ---
->  drivers/usb/dwc3/Kconfig       |  10 +
->  drivers/usb/dwc3/Makefile      |   1 +
->  drivers/usb/dwc3/dwc3-google.c | 628 +++++++++++++++++++++++++++++++++
->  3 files changed, 639 insertions(+)
->  create mode 100644 drivers/usb/dwc3/dwc3-google.c
-> 
-> diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-> index 4925d15084f8..bb0e4dc97da3 100644
-> --- a/drivers/usb/dwc3/Kconfig
-> +++ b/drivers/usb/dwc3/Kconfig
-> @@ -200,4 +200,14 @@ config USB_DWC3_GENERIC_PLAT
->  	  the dwc3 child node in the device tree.
->  	  Say 'Y' or 'M' here if your platform integrates DWC3 in a similar way.
->  
-> +config USB_DWC3_GOOGLE
-> +	tristate "Google Platform"
-> +	depends on OF && COMMON_CLK && RESET_CONTROLLER
+Hello all,
 
-No build testing?
+This series adds support for the Microchip Inter-Processor Communication
+(IPC) remoteproc platform driver.
 
-> +	default n
+Microchip's family of RISC-V SoCs typically has one or more clusters
+that can be configured to run in Asymmetric Multi-Processing (AMP) mode.
 
-This is always the default, no need to list it here.
+The IPC remoteproc platform driver allows for starting and stopping
+firmware on the remote cluster(s) and facilitates RPMsg communication.
+The remoteproc attach/detach operations are also supported for use cases
+where the firmware is loaded by the Hart Software Services
+(zero-stage bootloader) before Linux boots.
 
-> +	help
-> +	  Support the DesignWare Core USB3 IP found on Google Tensor
-> +	  SoCs, starting with the G5 generation. This driver includes
-> +	  support for hibernation in host mode.
-> +	  Say 'Y' or 'M' if you have one such device.
+Error Recovery and Power Management features are not currently
+supported in the remoteproc platform driver.
 
-You forgot the module name :(
+Changes in v2:
+ - simplify memory region handling with memory-region-names
+ - rename compatible to "microchip,ipc-sbi-remoteproc"
+ - rephrase dt binding commit  subject, message and description property
+ - drop microchip,auto-boot and microchip,skip-ready-wait properties
+ - fix memory-region constraints and add memory-region-names
+ - fix binding example and add examples for all use cases
+ - Link to v1: https://patchwork.kernel.org/project/linux-remoteproc/patch/20240912170025.455167-6-valentina.fernandezalanis@microchip.com/
 
-> +#define to_dwc3_google(d) container_of((d), struct dwc3_google, dwc)
+Thanks,
+Valentina
 
-container_of_const() please.
+Valentina Fernandez (2):
+  dt-bindings: remoteproc: add Microchip IPC remoteproc
+  remoteproc: add support for Microchip IPC remoteproc platform driver
 
+ .../microchip,ipc-sbi-remoteproc.yaml         |  95 ++++
+ drivers/remoteproc/Kconfig                    |  12 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/mchp_ipc_sbi_remoteproc.c  | 465 ++++++++++++++++++
+ 4 files changed, 573 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/microchip,ipc-sbi-remoteproc.yaml
+ create mode 100644 drivers/remoteproc/mchp_ipc_sbi_remoteproc.c
 
-thanks,
+-- 
+2.34.1
 
-greg k-h
 
