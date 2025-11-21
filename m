@@ -1,120 +1,144 @@
-Return-Path: <devicetree+bounces-240990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3AD1C787F4
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:24:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62AEDC78902
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:45:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sea.lore.kernel.org (Postfix) with ESMTPS id BAF8D2D4F0
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:24:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 9BC522D1E5
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6B81339B47;
-	Fri, 21 Nov 2025 10:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0649933FE07;
+	Fri, 21 Nov 2025 10:35:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ENU7nhgQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y9H7sHMy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA37A28689F;
-	Fri, 21 Nov 2025 10:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5463370EE;
+	Fri, 21 Nov 2025 10:35:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763720678; cv=none; b=Q6eqXPJD6B/1AIHakULIZU5yVl0AohmQBJ3+e3hHah3S6Sa0KJ52/IJY5yCGpj9zxAZI1MjJNe5n649sMPxGUuoAiGLoNGdnGSLqQGKbTB3JlciTYFFp4Gv/wIsFbfsR/kTjNPMEGgr+yokJSBU3IMB3496bhlr4KU7lrNPm+Po=
+	t=1763721334; cv=none; b=immkI/ngWIXbMgJ/y/Us3bSLrTC4pS0ByFnglwt/ruragoOX9+4ebGK7ACcD5/SGwdRJv/EBkziR1UP3sQ2x0IpQaUrcJZ+TZTzf0/l4gJz5+VsDHHCT1+GOUWuKvFg0ghilzKQAsS6qQDqQGE5cEIfBVqRl1npo2d50dtpbNhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763720678; c=relaxed/simple;
-	bh=HizJuIeoODBpLxDfWhYPkJL8kWROViz2yXrYNsMsOZQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oURuJuDNzQTIw838SmD0jRFOchgrqm8pSTyV4TFw4CzI7sctpukq//V5E8HaGi4q4M9UKVz7iP8k2hiNzu/54NFn2I6nsfJenvk8lWLsrEFcCXO5XCPIYfm3f/P+I3qtYZ3wAK/yevpFFFSIJg8dg2Y+CSg5R5+sGW0vpbhk6cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ENU7nhgQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83A35C4CEF1;
-	Fri, 21 Nov 2025 10:24:37 +0000 (UTC)
+	s=arc-20240116; t=1763721334; c=relaxed/simple;
+	bh=JTVcxFY+N0ePohEgVAcIVZFT86TMErD4s13HGO/aF/Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UI79UE5Aef/7qoKvmAhka2e80G/okSbcNi+TKpDXaRVLzjWYTQNHT5V1xhJ3iLl69OHlDHBlXmufN0jYhnPmdzZSmxllCHsSXHkFQyY4IjdyhXITnJa/Vd3ye7WXF36BCsqKsjpQxMNZPRqtVTLkqWPUcxAdnIivNMKdOqGfYHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y9H7sHMy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17B5EC116C6;
+	Fri, 21 Nov 2025 10:35:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763720678;
-	bh=HizJuIeoODBpLxDfWhYPkJL8kWROViz2yXrYNsMsOZQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ENU7nhgQJ0Xamb6jBuOiemY0Bw1AJxP1R15NYtKp5A36cygl4NMApg9nBioHh8leE
-	 NReMNTh22emL56uJrYwaQkSsB7IYXQb2NF3XqbXXdTzu8339j3daFqLuuDY9zyyAyy
-	 u51V3HzZDCr9Dd+RHM9Rfo3F7US/BeTOoqeLuHO7TL/gkqZDN4MEFAj0TEQTI4VMqQ
-	 Q5ZGhvIj2qOoD81XZa4Q2CnqjMk/S+FpgQgunoKNvHLv3oRoxa/rotQbkuwUCDtuMf
-	 qySx6QD2GGLwD0annoDrtNAfEIndIk1Y9Y/wPGsW0NNsGYM7cRwVWbQQsvvDbMddoN
-	 O/1cO9Bn7T2TA==
-Date: Fri, 21 Nov 2025 15:54:34 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, alim.akhtar@samsung.com,
-	andre.draszik@linaro.org, peter.griffin@linaro.org,
-	kauschluss@disroot.org, johan@kernel.org,
-	ivo.ivanov.ivanov1@gmail.com, m.szyprowski@samsung.com,
-	s.nawrocki@samsung.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
-	dev.tailor@samsung.com, faraz.ata@samsung.com,
-	muhammed.ali@samsung.com, selvarasu.g@samsung.com
-Subject: Re: [PATCH v9 4/6] phy: exynos5-usbdrd: support HS combo phy for
- ExynosAutov920
-Message-ID: <aSA94s_g0yVno3sS@vaman>
-References: <20251010070912.3758334-1-pritam.sutar@samsung.com>
- <CGME20251010070057epcas5p31b6ee42004594b2b2fb414494180753c@epcas5p3.samsung.com>
- <20251010070912.3758334-5-pritam.sutar@samsung.com>
- <aR9DtJuwpzoq6spx@vaman>
- <00ef01dc5abd$b8aac3b0$2a004b10$@samsung.com>
+	s=k20201202; t=1763721334;
+	bh=JTVcxFY+N0ePohEgVAcIVZFT86TMErD4s13HGO/aF/Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y9H7sHMyUFr2dMxcyB7bDAyUw9LVx/klrj3CeCzOBVHzGc1mIsMc/h/9gest4nRC9
+	 49hFRlzkIfoe57sIltWRi+jKd1k5IlxxDd4xUkr2pah5RXOmVpkROJI6ayw4GJhE1M
+	 NwxuIoPOnqLpcVtfpCSPBy4qTIVhzJokJ0SM2otSD5arhqtzBGsftXT9zCzbR9rWV9
+	 MYq+oCB6j/mGfn6YFnce/Kj54Dn3b7MVHBO5l5zy6PfIX3FdXdkVZXiXld+a9dCHyJ
+	 jB/eevvCpVt7LpbGSIP06pUiI1PhW6IlN4qneay9djngB4SBBo3dVupIZdqecsFVqe
+	 BICETwfNT/k4Q==
+Message-ID: <40c930a4-2dc0-4fe1-b430-02ca05a1b517@kernel.org>
+Date: Fri, 21 Nov 2025 11:35:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <00ef01dc5abd$b8aac3b0$2a004b10$@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: cache: qcom,llcc: Document Glymur LLCC
+ block
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, sibi.sankar@oss.qualcomm.com,
+ rajendra.nayak@oss.qualcomm.com
+References: <20251121-glymur_llcc_enablement-v1-0-336b851b8dcb@oss.qualcomm.com>
+ <20251121-glymur_llcc_enablement-v1-1-336b851b8dcb@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20251121-glymur_llcc_enablement-v1-1-336b851b8dcb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 21-11-25, 13:36, Pritam Manohar Sutar wrote:
-> Hi Vinod,
-> 
-> > -----Original Message-----
-> > From: Vinod Koul <vkoul@kernel.org>
-> > Sent: 20 November 2025 10:07 PM
-> > To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-> > Cc: kishon@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
-> > conor+dt@kernel.org; alim.akhtar@samsung.com; andre.draszik@linaro.org;
-> > peter.griffin@linaro.org; kauschluss@disroot.org; johan@kernel.org;
-> > ivo.ivanov.ivanov1@gmail.com; m.szyprowski@samsung.com;
-> > s.nawrocki@samsung.com; linux-phy@lists.infradead.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org;
-> > rosa.pila@samsung.com; dev.tailor@samsung.com;
-> > faraz.ata@samsung.com; muhammed.ali@samsung.com;
-> > selvarasu.g@samsung.com
-> > Subject: Re: [PATCH v9 4/6] phy: exynos5-usbdrd: support HS combo phy for
-> > ExynosAutov920
-> > 
-> > On 10-10-25, 12:39, Pritam Manohar Sutar wrote:
-> > > Support UTMI+ combo phy for this SoC which is somewhat simmilar to
-> >                                                         ^^^^^^^^ typo
-> > 
-> > > what the existing Exynos850 support does. The difference is that some
-> > > register offsets and bit fields are defferent from Exynos850.
-> >                                            ^^^^^^^^ again
-> 
-> Thank for the review and sorry for the typo and can you please
-> confirm if updated commit message is fine, mentioned as below?
-> 
-> "
->     phy: exynos5-usbdrd: support HS combo phy for ExynosAutov920
-> 
->     Support UTMI+ combo phy for this SoC, which is somewhat similar to
->     what the existing Exynos850 supports. The difference is that some
->     register offsets and bit fields are different from Exynos850.
-> 
->     Add required change in phy driver to support combo HS phy for this SoC.
-> "
+On 21/11/2025 10:53, Pankaj Patil wrote:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,glymur-llcc
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            - description: LLCC0 base register region
+> +            - description: LLCC1 base register region
+> +            - description: LLCC2 base register region
+> +            - description: LLCC3 base register region
+> +            - description: LLCC4 base register region
+> +            - description: LLCC5 base register region
+> +            - description: LLCC6 base register region
+> +            - description: LLCC7 base register region
+> +            - description: LLCC8 base register region
+> +            - description: LLCC9 base register region
+> +            - description: LLCC10 base register region
+> +            - description: LLCC11 base register region
+> +            - description: LLCC broadcast base register region
+> +            - description: LLCC broadcast AND register region
 
-better :-)
--- 
-~Vinod
+Max is 10, so this is too many. You need to fix top-level constraints.
+
+> +        reg-names:
+Best regards,
+Krzysztof
 
