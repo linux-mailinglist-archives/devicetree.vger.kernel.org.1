@@ -1,125 +1,125 @@
-Return-Path: <devicetree+bounces-241050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60088C78D10
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:34:43 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AFD3C78D0E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:34:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1DE094F058F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:29:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D178A4ED904
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:29:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2385834CFDF;
-	Fri, 21 Nov 2025 11:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D81234CFD3;
+	Fri, 21 Nov 2025 11:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JIkOPlmJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD3F34C9A6;
-	Fri, 21 Nov 2025 11:27:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFE334CFC1
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:27:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763724479; cv=none; b=F+yoXeGPN1ycd8FOcCDCV7qXAC3r8jQl4zVsclIEezvP/fKcyqFGx5BPHJ8uefLiTthiXyUI9fD6hEHLV4Uqqq+MeEbZHHW76j1C1mscEPc9YBtXYyR0UnI/pTLBAYWNpEjW9IDTZVk+tAuAMbxUDsXkH5EGTqzcGmyuZYUT1sc=
+	t=1763724479; cv=none; b=sbVFZHx9FPCJvy7e2buhybpo71LV4UbAPHZAx4RnyB+FW0Uu2zeo8jGGIYFpMCT73EOGjvgAn8NvR++xkPl1OFVS57rl2P4XLZ1xpxlyuWXbcL0jZMXWYuaF/y8kEROj/I2pGuKYowTUVJ6CWFO2Ik+i3L5vpjUUnVGKfKwoWl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1763724479; c=relaxed/simple;
-	bh=i+DrjT0Zgr1f5K7hSlFtySDw90VBzamvsEjfkOYaRz4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ONUcxPGCqHwh53iTA/CvUMWg89e5LBS5VGqlU5k+ZwG/+GTNjQspcUES2+oGBtHSCKhSaRqpYQ87g6dhVEiYKTNaDYsssfb55AmA6moJt6DXvhjbVVFOonItC4VU4KvH4Hi1DP81i7pREkF/SGrNXx3r6jHY6puSg61TLtwVmTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: 314/AnGdQWK47aAcv2oL3w==
-X-CSE-MsgGUID: K/rKLA2PRrqm6bMRnJdosg==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 21 Nov 2025 20:27:56 +0900
-Received: from demon-pc.localdomain (unknown [10.226.92.224])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 90A17437C1A2;
-	Fri, 21 Nov 2025 20:27:52 +0900 (JST)
-From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: [PATCH 8/8] arm64: dts: renesas: r9a09g087m44-rzn2h-evk: add GPIO keys
-Date: Fri, 21 Nov 2025 13:26:26 +0200
-Message-ID: <20251121112626.1395565-9-cosmin-gabriel.tanislav.xa@renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251121112626.1395565-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20251121112626.1395565-1-cosmin-gabriel.tanislav.xa@renesas.com>
+	bh=FR/l64BfQtWcy5AmGa/x0Kd+BcD5MaBGaBHWSqd/0I4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i/KRx1KYs1IpSZbaVUfqb4YHj32Juz6mKDIdjZGzEktBqgSbYFYkTQt1HzCVQbTgKmPX2DklD3lcan1fyTWzP2ZuoWG1LdtCgVKE47RlOqmgkTh2XnG3NW8TJVu/jgTf9BoDVhgQPQ+UsBK3dW3nMpnf3r6WY+eiPbTxBigBKYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JIkOPlmJ; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7bb710d1d1dso2854030b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 03:27:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763724476; x=1764329276; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1R2yvLJT9l2sebGa7bGBLAEk2UsFTKZ/XGXxsCh1YW8=;
+        b=JIkOPlmJU4yMwEm0Q/rJCsJtNZOFHhTRj3qJeP3miCbTw66YUADhTzPObPOFSRLgCs
+         PPnINZ3RZHjy0IE39DxdBC8ij2J8Crvp7TP7iX7Aq7EhLwtHBzpzLHnPkp+9Vmqath6h
+         2X0Iua5WmymRsU6U9gtI+eXXyjFtcoFRcRF5da4U77DCBpoymEO+0jJ0dK9w6IUKCVQQ
+         hfMP3EW/mPgKi18kd+CDNBYJznZ5CqMVfvo3tYLFzc+sNEsYpWQKJDZE19BGinY2ynPr
+         hGmIijDurGzDoUM4Xb4a+zbeOrJFEWpkxy0/AFkUEC5cazs9NAh5YbKjPvSOBIJmXbr1
+         iRZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763724476; x=1764329276;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1R2yvLJT9l2sebGa7bGBLAEk2UsFTKZ/XGXxsCh1YW8=;
+        b=mz7g2o9UIIkdpmFlCl3u+AeAEIE8GXwO4xI39URUmqDTcPWSFi/VeBX8wIaBX+qP6V
+         idfbv7gD4pAKenfSHQoBVDa2PbPKc+UmkwsYvvX3M4Y688WkrA1MD+E96B5YpN7u1Ot6
+         dywHxsb3J/cmcdPiVgS2scIQLBF9zmJNqtCW4cq0OyWBepJI1gC7jjqrdhYZehWGi4x3
+         u3hKqJPy2w/bSA9CdQtP7fGhOAQ0Em/2Wrce57eFtmdFpHxdSvYXLKMI5E/0o8qI8Jg/
+         bqgfkyQXmI1uvU70tLiLXo4OSyf0ejDcQRbyjrtwRzs5aLm0wtKorl6axyKDXf/tQG/B
+         mTtA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCYnyRcyK5t5RoOpZ3lXVG3iTP/wqfSnK2s4LSET3vyHFXbMk98I+3TDPB0OhGY3UkGHP9wOGJBapv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTRhEzr39sCfkgcrzFyXoMQQuhAFIsxhdtvd41lBZyckKsntoz
+	HJELJZHi2vNSIUME2yobjIMn9+Nl66wBJZb2evAvhlBQS5BAImnF0PJo
+X-Gm-Gg: ASbGncuOgWTcYuWHmbIMernnAwIJyZClMdieAxiv752pQt3ERfBZq7aOIV6LH//pBuH
+	RZeh5nriZNMtRxNvRnL8HUel2IUvDuRVH7ynOYMv7VRTtvp4QlCbkdDHh4HNDCE9g/zY3lHDUT5
+	DuZKvX5lf6nz7A+/9tfGJaRv13fFbNx1IHxtEbB4dFh0J/me3/9LGO+jexetIVZPUqTTji5+45l
+	AQdGb6qgCENC4G55QGtcwkbUgzvIaxNNnBy7ZPS+qqrlQbNINlk2G7KGKJzxVQEjwMmfV104ds2
+	OAEihOAAe8INU4nn5wCkDsS/CAgr5L6F9Qqh2TSGgnc7ceZD3XBnwqFh5+BV8nMJithMy2V4WFp
+	1DfwdmYOua1e341v4XWqFM74g4S1PnIumrankHNeJ70LH0POJN1Z5snib4uwvbZ+BErK1ZBowMx
+	RImJRil65cFEg8RwvSU3mWR5ulI+J7cP0UXw+bxgRHtdv07fSN0HlXsyqoW+SStcUZ
+X-Google-Smtp-Source: AGHT+IGx1kj8XCwGhrb2uV3Nnb7QEjcdqvgrN3fzzNee0TinoDaJQazabZ6HTuolBNuWue92taBcWQ==
+X-Received: by 2002:a05:6a20:3ca3:b0:35f:cfb:1efb with SMTP id adf61e73a8af0-3614edd7f17mr3004978637.29.1763724476323;
+        Fri, 21 Nov 2025 03:27:56 -0800 (PST)
+Received: from [192.168.68.63] (104-12-136-65.lightspeed.irvnca.sbcglobal.net. [104.12.136.65])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd7604de4cdsm5274052a12.20.2025.11.21.03.27.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Nov 2025 03:27:55 -0800 (PST)
+Message-ID: <a187acac-d2ec-4fc9-9a5c-178590197f84@gmail.com>
+Date: Fri, 21 Nov 2025 03:27:54 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8960: expressatt: Add
+ Light/Proximity Sensor
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251119-expressatt_nfc_accel_magn_light-v1-0-636f16f05cf4@gmail.com>
+ <20251119-expressatt_nfc_accel_magn_light-v1-1-636f16f05cf4@gmail.com>
+ <742601dc-32d8-41ff-8e2b-a960f6fe77ab@oss.qualcomm.com>
+Content-Language: en-US
+From: Rudraksha Gupta <guptarud@gmail.com>
+In-Reply-To: <742601dc-32d8-41ff-8e2b-a960f6fe77ab@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The Renesas RZ/N2H Evaluation Kit has three user buttons connected to
-GPIOs that can be used as input keys.
+>> +
+>> +	i2c-gpio-sensors {
+>> +		compatible = "i2c-gpio";
+>
+> Are you using gpio-i2c for any specific reason? Would GSBI2 not be
+> connected to this pair? (I am not sure FWIW)
 
-Add support for them.
+This is interesting! Downstream uses i2c-gpio and I (well, Claude) used 
+that. Seems like downstream doesn't define a GSBI2, so I guessed it's 
+structure in the dts and it seems to work! Thanks for the suggestion.
 
-Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
----
- .../dts/renesas/r9a09g087m44-rzn2h-evk.dts    | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
-index eaf73868783b..252f1c21ff90 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
-@@ -7,6 +7,8 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/input/input.h>
-+
- #include "r9a09g087m44.dtsi"
- 
- /*
-@@ -77,6 +79,34 @@ / {
- 	model = "Renesas RZ/N2H EVK Board based on r9a09g087m44";
- 	compatible = "renesas,rzn2h-evk", "renesas,r9a09g087m44", "renesas,r9a09g087";
- 
-+	keys {
-+		compatible = "gpio-keys";
-+
-+		key-1 {
-+			interrupts-extended = <&pinctrl RZT2H_GPIO(18, 2) IRQ_TYPE_EDGE_FALLING>;
-+			linux,code = <KEY_1>;
-+			label = "SW2";
-+			wakeup-source;
-+			debounce-interval = <20>;
-+		};
-+
-+		key-2 {
-+			interrupts-extended = <&pinctrl RZT2H_GPIO(0, 4) IRQ_TYPE_EDGE_FALLING>;
-+			linux,code = <KEY_2>;
-+			label = "SW3";
-+			wakeup-source;
-+			debounce-interval = <20>;
-+		};
-+
-+		key-3 {
-+			interrupts-extended = <&pinctrl RZT2H_GPIO(18, 7) IRQ_TYPE_EDGE_FALLING>;
-+			linux,code = <KEY_3>;
-+			label = "SW4";
-+			wakeup-source;
-+			debounce-interval = <20>;
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
--- 
-2.52.0
+No GSBI2: 
+https://codeberg.org/LogicalErzor/Android_Kernel_Samsung_D2/src/branch/cm-14.1/arch/arm/mach-msm/board-express-gpiomux.c#L411
 
+
+>> +			amstaos,proximity-diodes = <0>;
+> Try comparing the values the upstream and downstream drivers write
+> to the device, maybe you're missing something
+Yeah, I'll continue to try and do that. In the meantime I'll send a v2 
+so I can get further comments.
 
