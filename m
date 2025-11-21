@@ -1,173 +1,249 @@
-Return-Path: <devicetree+bounces-241278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3CC4C7BDCF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 23:32:54 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EFD2C7BDD5
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 23:33:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E70824E19A4
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 22:32:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 979E73496EA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 22:33:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3558C2BE64A;
-	Fri, 21 Nov 2025 22:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7CC2FD682;
+	Fri, 21 Nov 2025 22:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kH7WqefG";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XTs4kY/S"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0jtAI4S2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8B223909C
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 22:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDA382BD5BB
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 22:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763764366; cv=none; b=BsJ1Bul3guJVG68pecFtNaGjkXabLveSgIIUvDyLYDJkriIANHTECIegmlNAaBiYU5UqexztZigIBMUWqY/nF/BUGY2AW5flLYXTBHpppQJqMl2UKYi1M3Vyj5XAxQzCHu2wAqB7SLrOwohSU6QkfVgUTTJIn/twBKRG5xfW56U=
+	t=1763764378; cv=none; b=IL0L0P/fGw/xPsGsaJqn2sgjJ4HLuOwQruhDJtYvaAJuG2LD2M8olg3AqAVQ5fJBfdGMI+G+3bHtKPupmXpPtO55wc5Z5fTgfjRpTJNw4ioutlkjgJeACPiw3XvV/cwObgjgi7H8/G5DeixFgzewGBIr1EUhtMdf2TBnuuWDi9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763764366; c=relaxed/simple;
-	bh=5A0Q77sAPpGijX2UqsXmaV76gU4BZ0C2GTRYj7Rq/zA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gTnPdxTb/q7OsdIwydslnT6cucZGisd3El8nsmOdJ0Q7RAvLnVTMqORQp1UmE8WExkIUAa2FtthDLCskaQcH8kKoNAuwuthc5IuuYv1d99uqolPegdyAmc2r5+BWu92QPuIU3LCwpfR2gVYTEmfrB3nTIwhmKMd8f6TvoDNpUUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kH7WqefG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XTs4kY/S; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ALFla2p3140679
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 22:32:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Pr453cERSmy1/J9J1l2SfVrp
-	0cwlN0LwGQ0VuFEXJdQ=; b=kH7WqefGVNsFQj+gaR6mLFWKT1rqgfx9RKoagdyk
-	MazkSWDV1TldXVvbJlvNhfQBaB2vAPc12HMsrllpzzq+C8U+RUTkfUTnfcSFW+7g
-	ChHV8N/1BDarRlqSM1ql4cCgubBG3UqqAVRxNZU3HwVI55608t9MIkoYZVe1GRoJ
-	idSLZpxDTXVQ9qsrghEqbYpv2vBrcfCkSXzDwZvay8oJU3usYmfNOwvKZgLnTMYI
-	JnCgv0B/5E3IYNCapvMfwJ7cOe3B+mS3Jneg5jvOw5IkClAxRRxUGAWsUuC7SWaE
-	oBldQ2dUrpr8GUTtyQQJg9ntnwz0GonSLABUv9EB2p3JYw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ajmppjjt6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 22:32:43 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b1d8f56e24so734692385a.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 14:32:43 -0800 (PST)
+	s=arc-20240116; t=1763764378; c=relaxed/simple;
+	bh=OV5XXYqUL+sxDYxS7WBVYXoTxfUP94qNqDDhKGS1yw8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sOSddMtKn420Z7XMoRTtkPaMn9g7Ix/oC7Fjhv+kIf8sPEXYI3Af0HtWyP3mcEZgPMu3w9Ovz+pYLJPr4TkXRdpsMN0eCymk79Q4+tGoaVGhR0GkYJtl2wvfg/28xMsYLYRHC3HlCKQ2g0NQ2T0OK5oOBF20cKoQ90JzFOljCGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0jtAI4S2; arc=none smtp.client-ip=209.85.210.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7c75178c05fso659563a34.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 14:32:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763764363; x=1764369163; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pr453cERSmy1/J9J1l2SfVrp0cwlN0LwGQ0VuFEXJdQ=;
-        b=XTs4kY/Sd3A2CyXcoUvR89IAPUAwG0HUYQGPaDAMyGQN05EjbBw08k8PK56/f51EcH
-         rMIXwRRdHrvSEflEBKOMNF8Trw4bS4NEElFB04YMl7uCQyQubsAhsK4qLMa0GGbk3Fk9
-         mEl7YMVHD4xn3D1oBnBIVMTkhmSe5n8ULLH1CJ0vKOt8OFmOR5APOz/AtGoEMN7vmNp1
-         UP8L0vmdPGIivfCPs73o9kuX5IdBockkcniVz5D5hzdkPmo2xclSPwHz3Ym8SwBHDLex
-         UuEnZssDuoNyx6pbO0e5Xrs5DtVcvlmd2Kv8eDhPWNyrSwxXeDrLJMwfWqaIyTYRBmrT
-         s/lg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763764375; x=1764369175; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wkhsAadmvIfs2+/TT2LiP1fAEiIB5/2W37+khHFDLCo=;
+        b=0jtAI4S26XkuBlTCEu3uF9fD+3uVmPHi7OTLtyAROyspU5Hsk6faB0CgcC6UPQNMKc
+         lRDNVh/2yAYPN/5r51ttsnFgEHZUVIEtak1gIlJOvbJz+Z7vgm0iEDyEjJTr0z/nGEEU
+         UJEzgKyFGBPhfGP5FtlJY1CD6d5xOjkrNZ+jldTEGRpiSq3pWZgiGlUPwovh5bmUv+uA
+         7xdvfM9mS24o4l1QX+QdyD7UOLhJNMcajbdaRHNH+r7EiP7wSdiw5n10hESfMbjVqMWu
+         zzEiwAwl+049G1X55QtBakmZTf/Gda38Ej/5Ca6Wu+brotifwxviLKm1F8cFl4Fx2nEK
+         uUnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763764363; x=1764369163;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Pr453cERSmy1/J9J1l2SfVrp0cwlN0LwGQ0VuFEXJdQ=;
-        b=KV0Jwzlu/csDc8fIu5BDoucFFa+vrpiGwku1W7eo+ebbMp1pd8KPPLPu0In1LBUb6i
-         CnAP59eyN5iaiIs3/d7hl4Qb96Y5X2P0Ov+j7Yy/cehSts4ajaeq/lZff62fvYnOp2wF
-         HWphAYUhIgu8UQC44flF0ZETIhZu0Oa5sIxhfEz6ACM9mj693xbbH3RoGF0mhZ9r0RiA
-         Gq/2UuSe1PYBLN1Zh9pvN7ONpYXm6uTFPMGgfVd5qeOoMoclmYmitHynYgNQIVjR78/q
-         VaNl16D3L7lvKi8K4HaRG2HZQp7+IOdfXKGpYcntQ6XlBuu+j95pT0nJE6qL+3IjSoWk
-         v0DQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXtYvVKq8mOYdkdEAxDzhlbS/jreyIhqpJYZwWd3IfDT0H1FJOqScFvQWnG9E3IoHWcrFwVWOzvsphw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxk3GofRIG1HCJSRVTEfh2xy+M6FiS0O17mbEsrXAwrlqHJ846K
-	/8qM3w138vvTSMIA10Yw/z616MF71Ocsr0VrLUm8CvvdHBn00Ax5myVuMZ0kwHqTVJh412wmE3K
-	4vFPliLW0J50nL+/hlU5bjhbnK+0dmyjNJn8w+bdbvep/99g8d4sO4yClSc+gAafX
-X-Gm-Gg: ASbGncs/R3Tj2EOQKGIC/rp+VtRfE252nmeY0n5cJLXeGGIRfKjJKKJQ2P2eXlv0kgr
-	wzrrzYTfcS/1PqdSmljm3Wy5MS4qp7kCRy6fkH3jyaIAcLKNz/0lHLscxDx7rYVVvD15OEHpEvR
-	B7sucFk1iagXCh+n9jn89w2BuxA0NJP62/aUxT/UTbwW0Rp5uFhMbWqczzytZwzKyK1LySs/zEm
-	O1wHcmIKV4fHm41GQhEWVsvLS+++wcsc+mbf6ZtfuDCUAiCPoa7WpMtoclqevgOXxeDVz2uPw70
-	2ADItsZFdDDx+/DKNUkC02yW3sWGUSgTVCbCfvJ6GEppN8oVQw2GpBlF5ufnx3mgHBMk8QUS/w4
-	5MRW/Sca4qFs/AreJo5+DjfT5Tv7cQ+3tzGaXWXX0Kk4jsQb4iezFN1dkPz1KnwbjYTAJat8umg
-	M160OdgXdrKKGrz1hORst5/LE=
-X-Received: by 2002:a05:620a:1aa7:b0:8b2:bf20:f0ef with SMTP id af79cd13be357-8b33d47997fmr497574285a.54.1763764362847;
-        Fri, 21 Nov 2025 14:32:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGrQuCX6VXqTt+aYIlduBf1Y7uPpB2QJUvC4Ki9sjnl/6lrwFmlUsH69t4JWc63uH1+2GbDVg==
-X-Received: by 2002:a05:620a:1aa7:b0:8b2:bf20:f0ef with SMTP id af79cd13be357-8b33d47997fmr497568285a.54.1763764362337;
-        Fri, 21 Nov 2025 14:32:42 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5969dbd2817sm1914260e87.100.2025.11.21.14.32.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Nov 2025 14:32:41 -0800 (PST)
-Date: Sat, 22 Nov 2025 00:32:39 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Dan Carpenter <dan.carpenter@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Qingqing Zhou <quic_qqzhou@quicinc.com>,
-        Jie Zhang <jie.zhang@oss.qualcomm.com>
-Subject: Re: [PATCH v3 4/6] arm64: dts: qcom: sm6150: add the GPU SMMU node
-Message-ID: <7dd6deirm7p7jgbjzev2hcxcfmsx5dtijfaglynmqaicpxr7rf@p2zev7mayq6l>
-References: <20251122-qcs615-spin-2-v3-0-9f4d4c87f51d@oss.qualcomm.com>
- <20251122-qcs615-spin-2-v3-4-9f4d4c87f51d@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1763764375; x=1764369175;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wkhsAadmvIfs2+/TT2LiP1fAEiIB5/2W37+khHFDLCo=;
+        b=Pg7kIXrsMywp67GVkdbjcXnnAxlX0/vVdjoP80A3k0cmaHMKn9aAjyPCMoSqZ18mJS
+         E/5aRaE1Cpotn5EeiBDfQb3x5zmCeXeIrEk4/RWO20HdVw9VPcy56vu8mvlx5i7o9WA1
+         wrPPjTSRXpJVVz68iCPlX4UKbdwjCQF2RPOQ7+ZJhfoAWdxaomNMM+3jn4OVLqS3gL7v
+         dG2E1cOZtmkWnQQ9eRDdW+x2DFuqqJrvj48UHZP4E0aYgVMrl40WzODW3EvyBROkdYM8
+         jgLh/e07MGG+y//q7P5Vt6MQph2bt93La4rOtQC+egkIEGlfsoE5UUdDGiyJPUNVM8Iw
+         9QYg==
+X-Forwarded-Encrypted: i=1; AJvYcCVKaj4ZTl35W2tBND6KmYAfms5v6Yt0NjDiA7pBAu5mY9/aNIpRgS6TH1GVUcVmYaP3BcFLH4H/fm/m@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzw8z5sz0j6/VCs1WrDOCFUpJLT8GUVs8Wq2UPO/34qmwiTEMiN
+	h26/s23p+zMZ7fs5gycFr0yl4jePD1IaWRu+v/pjU7LnFySq3NBIIIV++Uvijd35LNE=
+X-Gm-Gg: ASbGncsZKL9nddPgUMVr8uAGDAs1lVqXi1DXw7emD+gCZ/h6j29Fz7D+7H70Oi3ZUtT
+	CgtOn8BX/NxT85QuECEwd48xjjlnnFxRb0fHHFeQb+ImgGHhVPmK7dJzy4TX2KoXyrYF/QBlriI
+	KsKTYWk+huFLleUo/gxU+5WhmKISb6a26MJxULqCG75W+CAxJKzd0SZW/1/vukvSpWo4i28r16P
+	kQcmKf7Pv7o7ye+OWRV21m+yh2tyk9+EostXk7FTInbhjxolJS28mvTrBTHk5ZDkkcnOqa2C7/5
+	rjcWol9o9I/WQbY3XgfYju/OdhEQVhK5p2mSTHEvx7ypiprZ281f1/m10prHlcSlTeD03vBC5w6
+	zcflC4v/VMu+YFB9osryrFI6Az08VeH09K3disWVQlOg7UoF/g9RwtzZIU0jdHAZdHQJ1xtFFcw
+	fDGB7mmjW3MdwjrOl1saVAjGU4ktvP1db/4JKOSCbcNuns3oU8bdLvHTTmxzJr
+X-Google-Smtp-Source: AGHT+IHmg4dqwQGnhKWN6tRZpOeDBvXT8EQMAzJ9QptgwgzSRibm2Uvl1r/LVHz9MDFAlt0Wl0+hJA==
+X-Received: by 2002:a05:6830:4420:b0:7c7:68d8:f711 with SMTP id 46e09a7af769-7c798c4df0bmr1660734a34.18.1763764374831;
+        Fri, 21 Nov 2025 14:32:54 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:e782:93d8:7c2f:f9df? ([2600:8803:e7e4:500:e782:93d8:7c2f:f9df])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c78d32c89esm2807155a34.7.2025.11.21.14.32.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Nov 2025 14:32:53 -0800 (PST)
+Message-ID: <09d8aa0c-8713-4673-8d70-ff5d59392c12@baylibre.com>
+Date: Fri, 21 Nov 2025 16:32:52 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251122-qcs615-spin-2-v3-4-9f4d4c87f51d@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: Pj2rd9aKNSwVpLnMRFi4cx9WOuuHbuvB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIxMDE3MyBTYWx0ZWRfX/jemozuyblTe
- k21/a1KKBX6l1/Esl4WWLoNE5Ks1YQhmSW694m6lwiAmdlAs4fyTNsfbC2YhJcGLPhjy3YHbFUi
- siKXnb6GspvUbWf7q/lfhb/fu8sihwGFcbbSm3JKCBCPiqdxpYefqfyaefM7X1FuR0F0Pw3uZ5O
- iWSbTRCy1KrWeLnB3ilLTE5UL1Isz6KbP5EtXDz9CcShQWtL0VbzX8QukmCdGiIId5oB/97jk5F
- R75H1rE0ESULrlHVuQAnLd+l8P8hYtHdKXRYMoDsBWlxnnquOsw0DDA24GusGjKVpjUu0B8SaLL
- utUch0NQXECFyZkp/Wdr+4AlHL4FasNpmIRK9c+IF7mlK3Iq1FY+xcKc3kADxeKYh900nQK6eW5
- wHwApUT97wHnE0jOEdxms8sUN1HcoA==
-X-Proofpoint-GUID: Pj2rd9aKNSwVpLnMRFi4cx9WOuuHbuvB
-X-Authority-Analysis: v=2.4 cv=CK4nnBrD c=1 sm=1 tr=0 ts=6920e88b cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=UQAiW8fk4jwks4S4FoYA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-21_07,2025-11-21_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 adultscore=0 spamscore=0 impostorscore=0
- suspectscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511210173
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add TI ADS1018/ADS1118
+To: Kurt Borja <kuurtb@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Tobias Sperling <tobias.sperling@softing.com>
+Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20251121-ads1x18-v1-0-86db080fc9a4@gmail.com>
+ <20251121-ads1x18-v1-1-86db080fc9a4@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20251121-ads1x18-v1-1-86db080fc9a4@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Nov 22, 2025 at 03:22:18AM +0530, Akhil P Oommen wrote:
-> From: Qingqing Zhou <quic_qqzhou@quicinc.com>
+On 11/21/25 11:16 AM, Kurt Borja wrote:
+> Add documentation for Texas Instruments ADS1018 and ADS1118
+> analog-to-digital converters.
 > 
-> Add the Adreno GPU SMMU node for QCS615 platform.
-> 
-> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
-> Signed-off-by: Jie Zhang <jie.zhang@oss.qualcomm.com>
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/talos.dtsi | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
+>  .../devicetree/bindings/iio/adc/ti,ads1118.yaml    | 132 +++++++++++++++++++++
+>  1 file changed, 132 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml
+> new file mode 100644
+> index 000000000000..eb7228ed6ddb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+I like to make the file name match the lowest number. That way it matches
+the first item in the compatible list.
 
+> @@ -0,0 +1,132 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 
--- 
-With best wishes
-Dmitry
+Better to be specific with GPL-2.0-only or GPL-2.0-or-later (your choice).
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/ti,ads1118.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI ADS1018/ADS1118 SPI analog to digital converter
+> +
+> +maintainers:
+> +  - Kurt Borja <kuurtb@gmail.com>
+> +
+> +description: |
+> +  The ADS1018/ADS1118 is a precision, low-power, 12-bit or 16-bit, noise-free,
+> +  analog-to-digital converter (ADC). It integrates a programmable gain amplifier
+> +  (PGA), voltage reference, oscillator and high-accuracy temperature sensor.
+> +
+> +  Datasheets:
+> +    - ADS1018: https://www.ti.com/lit/ds/symlink/ads1018.pdf
+> +    - ADS1118: https://www.ti.com/lit/ds/symlink/ads1118.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,ads1018
+> +      - ti,ads1118
+> +
+> +  reg:
+> +    maxitems: 1
+
+We know the max SCLK rate from the datasheet, so we can add:
+
+spi-max-frequency:
+  maximum: 4000000
+
+And we need to explicitly mention this one (it isn't part of
+spi-peripheral-props.yaml but rather comes from spi-controller.yaml):
+
+spi-cpha: true
+
+> +
+> +  interrupts:
+> +    description: DOUT/DRDY (Data Out/Data Ready) line.
+> +    maxitems: 1
+> +
+> +  drdy-gpios:
+> +    description:
+> +      Extra GPIO line connected to DOUT/DRDY (Data Out/Data Ready). This allows
+> +      distinguishing between latched and real DRDY IRQs.
+> +    maxitems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  '#io-channel-cells':
+> +    const: 1
+> +
+
+All chips need power, so we should have:
+
+vdd-supply: true
+
+and make it required.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - drdy-gpios
+
+The chip can be used without needing the DRDY signal, so drdy-gpios and
+interrupts should not be required.
+
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +patternProperties:
+> +  "^channel@[0-7]$":
+> +    type: object
+> +    $ref: /schemas/iio/adc/adc.yaml#
+> +    description: Properties for a single ADC channel.
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 7
+> +        description: The channel index (0-7).
+> +
+> +      ti,gain:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 5
+> +        description:
+> +          Programmable gain amplifier configuration, as described in the PGA
+> +          Config Register Field description. If not present, the default is
+> +          used.
+
+The gain is programmable, so normally, we would set that by writing
+to the in_voltageY_scale attribute rather than hard-coding it in the
+devicetree.
+
+> +
+> +      ti,datarate:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 7
+> +        description:
+> +          Data rate configuration, as described in the DR Config Register Field
+> +          description. If not present, the default is used.
+
+Likewise, the data rate should be set at runtime using a
+sampling_frequency attribute rather than being hard-coded
+in the devicetree.
+
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+So we shouldn't need explicit channel properties at this time.
+
 
