@@ -1,225 +1,134 @@
-Return-Path: <devicetree+bounces-241193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9172C7A954
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 16:39:12 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B660BC7A9B1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 16:46:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 635D43A0693
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:39:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CE8FB4E278B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:42:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D942E3B1C;
-	Fri, 21 Nov 2025 15:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538542EB861;
+	Fri, 21 Nov 2025 15:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="XCiNEyAx"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ao77SuV1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013024.outbound.protection.outlook.com [40.107.162.24])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149E5299937;
-	Fri, 21 Nov 2025 15:39:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.24
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763739548; cv=fail; b=C6ZXs2vONZfLblQkD3ioCZG0JhVa4kC8B+vT0NGgPtEwmbJ2cFPwRVU+uNmhp0yzYaj6A+TTny6Dd7iccNbpjdyJZEySQqZmIFK78E5zUajjzWrQwEGNQn/IRcYAq6/MQhP///eWFITQbURS/auMCPXVMGqWj/Th0SvMk+9JMNc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763739548; c=relaxed/simple;
-	bh=CIeTmqerQmCbFDt4SvCYigN927rCNwqcS8HWBorW/+c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=MT+sZnlHytQFyt6NlXXYPQsPrifjUQWs7Rg1lDe6epdAVC4+gLZWCaHi3/QMHxRigT/CmsUwZhOIiwtBzW/aD7noe65MIB5FBucqU5oQRXISrko7gTe3PNkuFWfu/ZjY1PI6ESfN0jOHrZY0lrTboU7U8cuTHMKrhm0bruG5GMk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=XCiNEyAx; arc=fail smtp.client-ip=40.107.162.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L+JzLerVPI1XrcFZI07G3+wL0bDwNQpft0pMmK+kpZADiURZv6kpHj44o39GM+oadGq1SOKZyTRcyKdXQF4Bi4/5Ir//qlkzYP8NwWhLoUwocBVuwmPuP2ctUWjLnjAHea53nVPu5cLPkJkCgVJK7/2duB43l7gkrtULii+Sox0YrMrFS3U4Nf94ZwbRTwfhD4NvpN4xqIn1KBILnlBLvazCwEQIng7lxIjs8xqvGFV07gYycoF7GtwmHFp+TrmniRg3MhGufZCY11NM35/CeyywWfvxU/RpnH4Ewq4m5Cg9LRO/GdlN/rbr1C8CAmHvl2+q+fhYM/AAG/TJPWEQMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jujZf960hjE8V7mTv+3ptx8+OGcL0shH4k+ZMPIGEPI=;
- b=aKMsiXQbHt3pYOhzEkOTqoMjfPh1NaqQZP+K/WUmSxJ+X9Uzi+8EwdJY13qLAFzAl9mlD4itAmRI+D0e45mm7RPjEgEAyvMIbPnbMi1Sh//UWOOSUXZCxxeSz/Z6oKDLVT0iitUWsN3tcC/PSxHpxHU98YdorkaGeEwA0EMR9fTAaMK58UELi4P7jm6KmWVX/Sa+k8lJna3ieLgzfP0tYiwGahe4r9SX5aCkSluZ6P/3L2m5WDhy8Zzia97tjV2HJ688RFd1sESrKjk9Fw9AStgTr1gjpk+Ob/3cc1eviEFvCdOvxIdbTF6t8HwooaM+xX+eDQo7dHG3z2m2kh2fMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jujZf960hjE8V7mTv+3ptx8+OGcL0shH4k+ZMPIGEPI=;
- b=XCiNEyAxaEO/5yzEztq9kmyZP4BDzaHW1xGoH4GwFkPYqz07sSpCQ7SjFVmBEljt9xAqj5pHZGcvAFax9NWu1KVqwnhK0OKmwLsese2KGnUBUtgTsDHjMHBe9epD/VnOZSH+kYpv1oUaa7gOVF8Rw2EAVrNs1TF2T8qsJReLVdWsYP6Z/ummRePscATN4UgQdkMQOkrV6MWQ2kr7T4p+EEx0MU0yn3jP1qbTUPUmYFJ6qpKIUPPBAEKPsfhfAsaHc77bo6KIdNck+oc1MgcdUDrpOpvOki8vzPMBo8eYfYpJx5fTx3oWYGlHW7dL39KKgfNv+dACAARD/JDbqfvIMg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
- by FRWPR04MB11151.eurprd04.prod.outlook.com (2603:10a6:d10:170::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Fri, 21 Nov
- 2025 15:39:01 +0000
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9343.011; Fri, 21 Nov 2025
- 15:39:01 +0000
-Date: Fri, 21 Nov 2025 10:38:52 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH v5 2/6] reset: imx8mp-audiomix: Replace mask with bit
- index
-Message-ID: <aSCHjNqj3CV3ahX0@lizhi-Precision-Tower-5810>
-References: <20251114133738.1762-1-laurentiumihalcea111@gmail.com>
- <20251114133738.1762-3-laurentiumihalcea111@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251114133738.1762-3-laurentiumihalcea111@gmail.com>
-X-ClientProxiedBy: PH8P223CA0015.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:510:2db::34) To DU2PR04MB8951.eurprd04.prod.outlook.com
- (2603:10a6:10:2e2::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C280B2D7388;
+	Fri, 21 Nov 2025 15:42:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763739775; cv=none; b=bVmUI+uokSBVtTFbiNlh2Xjknc/m/PWyypx8/mlpWJ0rV01ts2mH/3ySo86OARLwN9V+WlvdaWBW6TIgj/2F8CqCnml9b2ujCov26Q3u40A7BqfSV474UesS0suX6soNTIPfzuvKGlHS6oxBxrAR2dBaFiOhdzamz5do6ma2qvc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763739775; c=relaxed/simple;
+	bh=AyzzxToqnIAsSlOdhPRR7RN98+9hvID79dbBdLzfwko=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kuWEqDIx0BvaA3sJHxfFE8K+m4ARWXS0tGApeZb+L8AT2JJ2V4mnPpYFF6d4c6PBkZnQjuSEaIPFQiO/vIN/hYZ873L31aKSdrqYTMYEQ1+aLuAGTDdfb+PG01sfbrJTgnqsvNVVEvLcHmbhl9FiLULHcCn0kt+EN/YfGKrzbBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Ao77SuV1; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 522911A1C94;
+	Fri, 21 Nov 2025 15:42:41 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 19DEE60719;
+	Fri, 21 Nov 2025 15:42:41 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1DFBD10372188;
+	Fri, 21 Nov 2025 16:42:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1763739760; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=yTl8T9kOPsRlZLi/qxLvoBg6wGqTVmaXfk9LwQI9gG0=;
+	b=Ao77SuV1edzIejLmr9NePiyIi6sDLyET5aHhLyRUZYC3OmM3c5LiAnuKMdqHGrow6OWaCg
+	54OyYzdJpRo81tUPqvjP0zv6xlkRPt85CCRGCRiOYHiBIP2y5cn2YoUj2DjiLR7PJIN3dY
+	71M+9AbGuTSCcGXHjwMlGbxF4E2wt+yNyODv0jKqaOs3pBZq0qJSQxoOZ1i90/MsymcfIS
+	azL8tDVsuXpqOIY9ZmIrQ8/HUB1WlepKdtSH6886eq3/qZQTc3fMjKhPxmNbXsNVoIIXTN
+	Pq0EvQQzy8Nl4Qbs44rAVOTSCz4g+r0LyuACqKWf3f/typfuD+/7/Iu9hTbnjA==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+Subject: [PATCH v2 0/3] MTD physmap: Adding reserved RAM support and fixing
+ reserved_mem limitations
+Date: Fri, 21 Nov 2025 16:42:34 +0100
+Message-Id: <20251121-mtd-memregion-v2-0-c5535fdcebe4@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|FRWPR04MB11151:EE_
-X-MS-Office365-Filtering-Correlation-Id: 96c7cd38-760e-4c5d-db34-08de29141818
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|1800799024|52116014|7416014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?pMvEQwS+zw0iUDaIcdu+wRrJXCtmnW5WM5Nov+1OXick0eI9wq1SToQbPcCa?=
- =?us-ascii?Q?Kl2x543vPzuKsAd+AmFT4AtmuHuOEkYuVrtPVBAAM0w2vriokmwH4LWfrv3+?=
- =?us-ascii?Q?SoFDGd/AsK7NlUS33u0eBnubc32JRVf8V7UdaVXbz3dK+YBE7L4aZcGmMEwN?=
- =?us-ascii?Q?ro4rQtgCviAflpWTmmZV77T7c2Gtlz0nrtGMcEPcKp4QWnykB7vCkmmq44ot?=
- =?us-ascii?Q?lwFh+wy0t2Mj8jWToJakg3mrJkpf1VtcK5w9+1uRLX2lh+vNaXWpHr4xFDYs?=
- =?us-ascii?Q?5mM5PX/Gxza3CYSB0gsCnIqi7AtC4W+ZtnePFOGv7dJpSdCs7Wr86FK8nYoq?=
- =?us-ascii?Q?JMgI/Try3leXb38vaodGDB8MOkO4vUgWqI4dSNbA6eoYN/azQES18SN6Vv8w?=
- =?us-ascii?Q?WwjNGGxftXbaLqKUfPHvqEf/jvHh2D9YSUBvHsPTJfvc/uPkrhr6aHQKiL0v?=
- =?us-ascii?Q?+zrr2ce4rcY92UyB+aNrcmVaRvwZTZJAquPgWT/fXumUD5lYBYX/A1apEqwf?=
- =?us-ascii?Q?1lJOLDB5bVteJv3iKK0IpaVy8ZwfWkcA8QqIsKjaKVXjXdy4oPumus1jakRW?=
- =?us-ascii?Q?vxzfmWE4XYx+c2TJ1ZRaDStOlIOJqMCyM+NpwKQVHcAiVSQNXGOYCq/Rc8x5?=
- =?us-ascii?Q?29wWEHdQfTzKsN+nmoTQNMBP3coYtnA825aVAnCqkBuSYcC5ZrRIf9QHQzZk?=
- =?us-ascii?Q?r4hu2tZ8j5DRgjvN8ZCpQdrp92/QHLg62VTBz7d7AImbsP9moBn+e68Osydl?=
- =?us-ascii?Q?qzVZ08NQ4loI755hh9qhpceDU2jcGwrEYS4Fnb3Qoijs1crzkFE75sGJsJRC?=
- =?us-ascii?Q?h80m6l+0qMU6g5zV1X6Cza+jU1QdypKwGrM8SOe4O7BoR4ZxvlQ2+loh6wCi?=
- =?us-ascii?Q?NoDuNoPePyhvLTB9Kq8RVGqcHn2HyJ2hkEsj/l6vTTXbOTb24gKyTi3i00kZ?=
- =?us-ascii?Q?5NizH6LikqrX3WDMJQGmmH62CNYaj9q7dE/rBz6Z8sbabtb6jxXEbERxHwnh?=
- =?us-ascii?Q?I/Av0P2B0W+vaoLqXLnnaPO1J7R00MjwWwVysk62AY1P4pTghEmYGN/JjhSf?=
- =?us-ascii?Q?wR5WhljxLJKwcwUFYz/tKGUjTq3+gE4TG3Uh6IkwPYAxgPVgY01UkrIj6aFx?=
- =?us-ascii?Q?967EJ7QpcJCxeyWJObQEpITCK0g0wrLxvOLyFpaZsZ0CKNSYhXFS6BUy82PK?=
- =?us-ascii?Q?JdYiH4+4xU5ogg1NKzsQ+T1YkfOhDTnzkMtu71KHLwS8Hw+mPyZUqhi0R5nL?=
- =?us-ascii?Q?Mw8UgqIZDmoGkgPEM4iww/B8O/fclOsGfTJOKRia5qxqeTHepVdluCAz6bu4?=
- =?us-ascii?Q?DIoNLI0P1AAqwMGtA0RYoIMCAkm1n6zMD2Qb+qfQY82dxLO6Pa46nA5gPf+p?=
- =?us-ascii?Q?AmonEtCrbVmyKKzTJN6qdrobANa1xmfVpRIKSYrN78Rl+NvKnuoXx75Q12MH?=
- =?us-ascii?Q?YssS2jyuQX/6MXQHtHYlfJy4yZOIRCSFbJsy1NX73/kMi58t+5eqGOVWg9On?=
- =?us-ascii?Q?gc4G7gc31izOs6zc/JR3f+ejty6/XM4JO03V?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?WbuPzN/OpzqR22NgL2u1NBqvSZ96QO5upcHcEjlW6IVpMdN12BgB2L6ji3GS?=
- =?us-ascii?Q?94/S402hrgWJDnsWf1YO4t2RCK+AaCRudWouL71Juk9Dv1JKJ+8TSPcttUK6?=
- =?us-ascii?Q?4uYwCKKmq72pehp7qELPyGHkVBEx+dx/GL6byAxsFKYvx3F6jUJxx8gcfhxo?=
- =?us-ascii?Q?zcI7yyFbDPr+r5v6ChPrxn2fvmLxlgVZxC6Ke/7/2DBmfHRjeWVwAULAHLKw?=
- =?us-ascii?Q?/r1qI028H5/8E4V5l05mZx6Jhq6Dd1G+uR1DBlUwQj4rFA6BSu2XJ5FM8WnI?=
- =?us-ascii?Q?usbUwVIhVvR+SY2DNBPv1vCYR7BhYCEaTz6h7zfmeecu/gM/+SGeTnDmC29e?=
- =?us-ascii?Q?g2hCLyQtFK9T3f4VLUpTPMGyvPXwRaD5yvCoQTM1VxutgpzKvxdw/C3hETTp?=
- =?us-ascii?Q?yxCq5dKDg+4bmbfvmZq1sqH0jxPgeuqaA0kh1NQfC7AGPmPafrUkNLGISIfi?=
- =?us-ascii?Q?uUTLK3XQvoLIlIbkPuK3nBu0IPdibelNVSHnpgA8rSVKAsaM0VEfzf+WlnSN?=
- =?us-ascii?Q?T70YyA62j+LbR65sx9yiY3ON7NHUWrw4NCd9QczkVpUF4JKWjL02PwEonyEa?=
- =?us-ascii?Q?qKESF8VPz13LFyIB+06PldZbJt4nY5gJE0J3NdwCFzeIQKR5mvcg906a7q53?=
- =?us-ascii?Q?J3hhjb9M9Os5UByt9GOJ0l/mK15IEUNNCiy7o3qjNl4oVyBsmLjYrwWdQETc?=
- =?us-ascii?Q?2wNKcRjKczUqSMAhu9DJDlu7tDh7Ro1J0CN0E9SemGJkSW9TK1c09JmfjPOJ?=
- =?us-ascii?Q?YJA4/UoAhBTSLj9iRCa0Kv1o5rkkzsPM8VHVnx62rnzEK4H80XU1hZCN9Oey?=
- =?us-ascii?Q?NfURyFjZ7oCMLmxkF8cpi9Z7GIVTNCgmkTjSK72J54gy6rO/TwFH2C0J+A/q?=
- =?us-ascii?Q?V148QzTsWNPzcA7bH9ogaVXyPo9OKunYeRNn1qNuNSTPdh10V974kpl8HLA+?=
- =?us-ascii?Q?P/lSq2U78ccHJcjdYpr6LK+dkOQtINXRmHbfuE1uQUI7hJi7BJ6nHANYuCS2?=
- =?us-ascii?Q?o6gA0zEhk5+NouYvhU11QL5mjtm3zx++wbzBkudNFovY5Kqmh8FdWbNP0UbF?=
- =?us-ascii?Q?eFxnLOhkSHOTPZA26jCegeL1eCl8wshBTDC2XNTEWlj5yQeaQwyfwBMM8wSB?=
- =?us-ascii?Q?SlT8ieNC/RhAL4bg1EkJfGN7H6216UXR9zx4wRmffzdJt98XeEftP8IqKDVX?=
- =?us-ascii?Q?QTRx0EUkANMpsmys3LfPUn9rv+gxxRR1zhKOQBrTrf1jhH3lJak5p7CbI/yX?=
- =?us-ascii?Q?P5wlaohGGDig2LUpfnXJf5tqGkPw0FfuI8+FR2frwhdzdodo9G6nMaHlqH1r?=
- =?us-ascii?Q?8/enLtbtV9yZD9u9RBJm8WY712Klf87pOTsgBcHOiT/+3RDNs46sDHQBlXiR?=
- =?us-ascii?Q?0lEaowuX8CXUOKMC3u93het4it+KJhIf6ySoP3sLGj9yq7yaY2Az+hvL/Kzw?=
- =?us-ascii?Q?+UxlOLnzrrmLXlzWYVgLmy0GhmEfAqpsJPGIeDIvQ1bpI6FR3Yhy+CP8xBgr?=
- =?us-ascii?Q?PTLhN+CWoG/Ig/o/YyWfKZQbCWgrWFw1cETMynHXh8aDdcWDGIMiAOtwgm2t?=
- =?us-ascii?Q?f9FEU2ihNyCbo0k+P8OQ/AebyxKegrmApkd7BuWc?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96c7cd38-760e-4c5d-db34-08de29141818
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2025 15:39:01.5104
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KQ8cjoRT7OgjH8sxRvsG2Pqn9dPhiixh7aRzN+bNYjFSm8IIPPFeoP7088Bslck0zLFBYlmPemjDbfZeypbpPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: FRWPR04MB11151
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAGqIIGkC/3WMQQ7CIBBFr9LMWgxD01JdeQ/TRQtjO4kUA4RoG
+ u4udu/y/fz3dogUmCJcmx0CZY7stwrq1IBZp20hwbYyKKk6RNTCJSscuUBLfYphaKVBa7U0BNV
+ 5BXrw++jdx8orx+TD58hn/K3/ShmFFHpuux7R6MvU32bv05O3s/EOxlLKF7EcAKusAAAA
+X-Change-ID: 20251117-mtd-memregion-8830c1dd70ce
+To: Rob Herring <robh@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, Nov 14, 2025 at 05:37:34AM -0800, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->
-> Replace the reset map mask with the bit index to make it clear that all
-> reset lines are managed by exactly 1 bit.
+Hello,
 
-I don't think there are benefit because I met some periphal need a magic
-number to reset.
+While working on adding reserved RAM support to the MTD physmap
+driver, I encountered a limitation in the kernel's reserved memory
+support: although the Device Tree specification allows multiple reg
+entries for a memory-region node, the kernel only processed the first
+one. This limitation prevented proper support for reserved RAM regions
+in MTD.
 
->
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> ---
->  drivers/reset/reset-imx8mp-audiomix.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-imx8mp-audiomix.c
-> index acfa92b15329..d993c294c548 100644
-> --- a/drivers/reset/reset-imx8mp-audiomix.c
-> +++ b/drivers/reset/reset-imx8mp-audiomix.c
-> @@ -19,24 +19,24 @@
->
->  struct imx8mp_reset_map {
->  	unsigned int offset;
-> -	unsigned int mask;
-> +	unsigned int bit;
->  	bool active_low;
->  };
->
->  static const struct imx8mp_reset_map reset_map[] = {
->  	[IMX8MP_AUDIOMIX_EARC_RESET] = {
->  		.offset	= IMX8MP_AUDIOMIX_EARC_RESET_OFFSET,
-> -		.mask = BIT(0),
-> +		.bit = 0,
->  		.active_low = true,
->  	},
->  	[IMX8MP_AUDIOMIX_EARC_PHY_RESET] = {
->  		.offset	= IMX8MP_AUDIOMIX_EARC_RESET_OFFSET,
-> -		.mask = BIT(1),
-> +		.bit = 1,
->  		.active_low = true,
->  	},
->  	[IMX8MP_AUDIOMIX_DSP_RUNSTALL] = {
->  		.offset	= IMX8MP_AUDIOMIX_DSP_RUNSTALL_OFFSET,
-> -		.mask = BIT(5),
-> +		.bit = 5,
->  		.active_low = false,
->  	},
->  };
-> @@ -60,7 +60,7 @@ static int imx8mp_audiomix_update(struct reset_controller_dev *rcdev,
->  	unsigned int mask, offset, active_low;
->  	unsigned long reg, flags;
->
-> -	mask = reset_map[id].mask;
-> +	mask = BIT(reset_map[id].bit);
->  	offset = reset_map[id].offset;
->  	active_low = reset_map[id].active_low;
->
-> --
-> 2.43.0
->
+This series addresses both issues:
+
+First, the reserved memory support is extended to fully support
+multiple reg entries per memory-region node, ensuring compliance with
+the Device Tree specification.
+
+Then, with this foundation in place, the series updates the MTD
+physmap driver to support reserved RAM regions. The DT bindings are
+extended to allow memory-region phandles for RAM access, and the
+physmap driver is modified to use these regions.
+
+Gregory
+
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+---
+Changes in v2:
+
+- Properly managed cases where register entries used by the memory
+  region are out of order, particularly when one or more register
+  entries are mixed with memory region entries in an other node.
+- Used "memlog" as the node name instead of "sram," which was misleading.
+- Link to v1: https://lore.kernel.org/r/20251117-mtd-memregion-v1-0-7b35611c79a6@bootlin.com
+
+---
+Gregory CLEMENT (3):
+      of: reserved_mem: Support multiple 'reg' entries for memory-region
+      dt-bindings: mtd: physmap: Allow using memory-region to access memory resources
+      mtd: physmap: Add support for RAM reserved memory regions
+
+ .../devicetree/bindings/mtd/mtd-physmap.yaml       |  59 ++++++---
+ drivers/mtd/maps/physmap-core.c                    |  56 +++++++--
+ drivers/of/of_reserved_mem.c                       | 139 +++++++++++++++++++--
+ include/linux/of_reserved_mem.h                    |   4 +
+ 4 files changed, 218 insertions(+), 40 deletions(-)
+---
+base-commit: b55d426c390f2a4762b2a88b113cc44c37e08e46
+change-id: 20251117-mtd-memregion-8830c1dd70ce
+
+Best regards,
+-- 
+Grégory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
