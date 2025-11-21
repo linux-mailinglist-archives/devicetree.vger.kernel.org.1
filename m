@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-241106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69817C79A65
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:48:27 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF7CC79A19
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:47:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 05F6C4EBD60
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:46:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 96F882DF3F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:47:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D95350D5F;
-	Fri, 21 Nov 2025 13:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22FF7349B14;
+	Fri, 21 Nov 2025 13:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UabFJLBB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T7HOUL5s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD4034B415;
-	Fri, 21 Nov 2025 13:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBA6933CEAC;
+	Fri, 21 Nov 2025 13:44:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763732568; cv=none; b=Rdkj4Uv/cU/rxq9HWm/QHzVczfOQe9YrO3Jfvk8dKwtClpgjDfyK/c63aOfHBjx4APwTL+vZGIx8RJjkFh317GNyBYlIf4aNIVqivpGqi5eS+nVDYXkMzjDzzgDgdLXm+Z+37DNpfBC86Z7VP6Q2IgIgu/Y7hQuIcz31Ew7S+Hk=
+	t=1763732650; cv=none; b=gNpNzmg2a/FLYKO450955i5v7xEJYU/2E6caoB9FxWg56sbY8ZoNJDMuOnwY8SvELJt4cOcVzbnf2Q9LXP7H0OhvFimrmkb6i6fdFmBR4arVpwPNGHIDINH8idox9TS6mU+LzF2LBPHc+X0ltrZHBecdCc7ZtfnWcu2vXOVaovc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763732568; c=relaxed/simple;
-	bh=JWEH0EEiu3HL+mQccorOdCZ3B7sTUWJsB+/8RXQUlrs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UvOVc9H+pc1SanDJO9Wg6wgLqyEI/SQO9rjWmJuSFiZq/9uZVSSCRs7nrkAVGQgnrOHJ2PiFXK9nt1vHfhpD3UBR15scTQ0IzYy4WRU/faL5ZQffSrHpojOCgYti2Om1RZ/Y9GWO78lsbzNMeXyU4ejsE8QmIoiNvErjBVVun6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UabFJLBB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28347C116D0;
-	Fri, 21 Nov 2025 13:42:45 +0000 (UTC)
+	s=arc-20240116; t=1763732650; c=relaxed/simple;
+	bh=lDsrtShU/VO8T6WYHAXOOSTPA+dCTONGeNGt9vcVGcs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=J6wjVjzS0hegWXGTGL/lgNIQfVTzsDXhfwAa3IuKvT6vPKI3DUQV1L/6xYRhyqSi3avnH5t9ZsAgKKH0DnvvjTsm3ez4Reat4qeRI/ezTidLyZf3Y5LA6xGaiUBYN68cvQlyEJk8uqQK1+epCm85QNcNkDwKer5bymzCuXtm3xA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T7HOUL5s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56D7AC4CEF1;
+	Fri, 21 Nov 2025 13:44:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763732568;
-	bh=JWEH0EEiu3HL+mQccorOdCZ3B7sTUWJsB+/8RXQUlrs=;
+	s=k20201202; t=1763732647;
+	bh=lDsrtShU/VO8T6WYHAXOOSTPA+dCTONGeNGt9vcVGcs=;
 	h=From:To:Cc:Subject:Date:From;
-	b=UabFJLBBCAFml7+qNgB7VXXI+lMl4ffeKvg0NjnLbrVK8MBlQ7LWX5R+WQQW1XQMg
-	 wZTyx1BS7vLTdOH8v9vyBF+pt5ne2kJiPW5+MyyC9fw8eCK1cUOKkeddAtLpAWorrK
-	 OAnweA3HAYb1yLcQt4eTVtrKkkS3JorBNmsfj5d7SYHBBonaYyRuOGXJi+8ikntByy
-	 yWcG9p+oDcIOL6xvWKwQf+kOBhblY4rHsxunnPVWUDjgjLMR3VEP4afkatmJhQ6PXe
-	 QMISijh/2yAGqZwBXbGa+1TADN1bbeRRKfRzOHU2JOX1Iy+LD8A2SEYFdFf+ywzgem
-	 Fr2Bjqsu9CoTA==
+	b=T7HOUL5s9/0wAmJmOEo9qbvoVqOWdFk77C3ZmCZkMRXfOlUmk7t+PPh5HYvrBNJji
+	 esB2Z5m0Bfai2gE6vqsEuMOCTXMXpOrKdCa7sQpiYDk3tb3qATRwIVUKV6Co3dEPY+
+	 Is544oytnwcAMPZn5OJDZm7+IbEOFpYunkBGMWuHIOGyGYO0yW0JaTj6/b4O38pHnR
+	 cKZIbpRvqMpZhlV3tZKI9DqedLGHeupWgqYCqYf41FOg63qUrQ3qhvNNufYgEQOGqt
+	 HbmKUoTi3c3yrZnbP3zijZ3USvHzcDacJs/YdgxfmO5RXVcfxpePQGVX6uqbixQ3sf
+	 4FjDgq66IiQKg==
 From: Conor Dooley <conor@kernel.org>
 To: linux-kernel@vger.kernel.org
 Cc: conor@kernel.org,
 	Conor Dooley <conor.dooley@microchip.com>,
 	Daire McNamara <daire.mcnamara@microchip.com>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
 	linux-riscv@lists.infradead.org,
-	linux-can@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [net-next v2] dt-bindings: can: mpfs: document resets
-Date: Fri, 21 Nov 2025 13:42:30 +0000
-Message-ID: <20251121-sample-footsore-743d81772efc@spud>
+Subject: [PATCH v2 0/3] pic64gx clk kconfig/binding changes
+Date: Fri, 21 Nov 2025 13:43:59 +0000
+Message-ID: <20251121-tartar-drew-ba31c5ec9192@spud>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -62,72 +63,41 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2274; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=H1pKxRw0xn3sBjDfosi1NAZI2A1U748fyOaF5di6rGM=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkKOS7plyf6zE2cUSiwcmn0ydYIp5y9R/vrlGd1uBpvY d/Zd1Klo5SFQYyLQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABOp3s3wP3CxyI2GIAn/zrf1 1dXP9kfUWJ3akd1+syop0e/KC/WfIYwMq7Mns0xpWu75Q7jba9tao2TNxJ4Zvzwn5X6VO6ejIXy bFwA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1087; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=dil/skRvfu+XgxPfnqEG3kkSoF73rVq/CS0DNDKKvCg=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkKOfPmxgvvPcewwm6J7IvYRVvurNZff6B6y/d/C7vPK W6Tm+04v6OUhUGMi0FWTJEl8XZfi9T6Py47nHvewsxhZQIZwsDFKQAT6RJmZLhq7SjFdbYhqWC1 1JRQ3y31c+srnj7f8i555d19237UL77NyPCBIdTGW+gw6xv1m/mmh/wlyyrY9fiXxPLN/5kjXT3 tOTcA
 X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-The CAN cores on Polarfire SoC both have a reset. The platform firmware
-brings both cores out of reset, but the linux driver must use them
-during normal operation. The resets should have been made required, but
-this is one of the things that can happen when the binding is written
-without driver support.
+Mostly this is stuff that PH did last year, but rebased on top of
+current work, now that the clock driver rework patches have been
+applied.
 
-Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN controller")
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-This is the second mistake in this binding, both spotted because of the
-driver being written (although this one sat downstream for a while for
-w/e reason). I wish I could say that I'd send the driver soon, but I am
-busy upstreaming things I wrote and therefore understand at the moment,
-so a driver that I'd have to go understand and review before sending is
-low priority, sorry!
-
-v2: update the example too...
+v2: fix the binding, d'oh
 
 CC: Conor Dooley <conor.dooley@microchip.com>
 CC: Daire McNamara <daire.mcnamara@microchip.com>
-CC: Marc Kleine-Budde <mkl@pengutronix.de>
-CC: Vincent Mailhol <mailhol@kernel.org>
+CC: Michael Turquette <mturquette@baylibre.com>
+CC: Stephen Boyd <sboyd@kernel.org>
 CC: Rob Herring <robh@kernel.org>
 CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 CC: linux-riscv@lists.infradead.org
-CC: linux-can@vger.kernel.org
+CC: linux-clk@vger.kernel.org
 CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
----
- .../devicetree/bindings/net/can/microchip,mpfs-can.yaml      | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml b/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
-index 1219c5cb601f..519a11fbe972 100644
---- a/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
-+++ b/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
-@@ -32,11 +32,15 @@ properties:
-       - description: AHB peripheral clock
-       - description: CAN bus clock
- 
-+  resets:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-   - interrupts
-   - clocks
-+  - resets
- 
- additionalProperties: false
- 
-@@ -46,6 +50,7 @@ examples:
-         compatible = "microchip,mpfs-can";
-         reg = <0x2010c000 0x1000>;
-         clocks = <&clkcfg 17>, <&clkcfg 37>;
-+        resets = <&clkcfg 17>;
-         interrupt-parent = <&plic>;
-         interrupts = <56>;
-     };
+Conor Dooley (1):
+  clk: microchip: drop POLARFIRE from ARCH_MICROCHIP_POLARFIRE
+
+Pierre-Henry Moussay (2):
+  dt-bindings: clock: mpfs-ccc: Add pic64gx compatibility
+  dt-bindings: clock: mpfs-clkcfg: Add pic64gx compatibility
+
+ .../bindings/clock/microchip,mpfs-ccc.yaml       |  6 +++++-
+ .../bindings/clock/microchip,mpfs-clkcfg.yaml    | 16 +++++++++++++++-
+ drivers/clk/microchip/Kconfig                    |  4 ++--
+ 3 files changed, 22 insertions(+), 4 deletions(-)
+
 -- 
 2.51.0
 
