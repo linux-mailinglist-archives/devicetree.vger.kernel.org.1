@@ -1,172 +1,126 @@
-Return-Path: <devicetree+bounces-240940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA017C77E40
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A3AC77E4C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:26:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D9EA6344137
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:23:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9195635FD8D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AC733E364;
-	Fri, 21 Nov 2025 08:21:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1AD633B6F6;
+	Fri, 21 Nov 2025 08:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ps/jj8OT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FFFnTNDW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD74E2FDC57;
-	Fri, 21 Nov 2025 08:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836742FFFA3
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 08:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763713286; cv=none; b=oejguto8qnxYSCsveqLIytbGVqXl4J4R90enDg0aP8pxn7wkU0CykdM7WKS7vcNpJt+yoVJO2k9/a0KD5M0wcfr033EYvMahmMdcC9rbAb08BpTool8cpdYD8UCmQB40/oUABpeVpLJD4RRXFikcHkerzph7jjME3M0mmVFJ4Zg=
+	t=1763713359; cv=none; b=YeBGtU479n5f2x6ytWGIkaE9TYjkWD0Fz4w3ov4hS1QNgqebR+v0CJ4DeQbAklB7dvdJN4Ar3v87MgMxBNI2hRTd+wrA/cwmNsX9A2b6g8SLmmSKihAQs/pJACkdf7Kbok4bBETZ63cCJKsJ4i4gGSY7w1unwHeohcfR3ZpuE9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763713286; c=relaxed/simple;
-	bh=bbkC/gm+PlvYtnfQwRKFSQLCAfd4zVrxvX6KXk1XrPM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MlqRWW0T0Gg01eBXH2WE9Ddtsa3uOTls8RoheG0z1XLZUM16MhK0317aVBuO3kQnfeTSDSEYnyLZ6cnXTUV1kBIXj41sHsofFJ7SCvVI+xpjX5HPltAlNy4/aB7ZF90Q/UDW6QQkjuPvASpwhS0r4GeLF9goC8myJ4kq9ExJXA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ps/jj8OT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E369FC4CEF1;
-	Fri, 21 Nov 2025 08:21:24 +0000 (UTC)
+	s=arc-20240116; t=1763713359; c=relaxed/simple;
+	bh=HYNDpspIIvlQrvW+iVhMi8SfO4q/jqFm+sWhmzc5mMg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BJmPISbUTo0VWrfAiAJeOVyqNwr4qP1xAfZ6TMAQOQq1dV+mvSDJ17m0dHw99Z6WjrQCyGLUVC8gxIAQgYtwrp5BQVCJCOO0S5ULyi2nWmj2mD/HetUFeeJUfbRcUDW/BvaHVJNj8mkbSKJR97ztA0dbEiJI/mPlnyEHF1xhkyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FFFnTNDW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EF4CC19421
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 08:22:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763713285;
-	bh=bbkC/gm+PlvYtnfQwRKFSQLCAfd4zVrxvX6KXk1XrPM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ps/jj8OTyCxwmGcOFq4SxnG4HIdTLuzI2EE2RjXYt015cAW9PDLc1kesVkR43f1Lr
-	 eSSpeXoRzFUGjxsd4JKBIJBcwwmvlkI4ApM1SgHGkmNCoIJs6L5ZQOiMwgCxp81WQR
-	 1HLM0KmRGlR09MfeyWVLJ8LSlJKkA8VbMYQ22UyymhXXJbjvj+Xbp1GvpjY1o/hsNc
-	 0Ehn0L0DZRBxbCiEyJ+uvl7Z2wPc4nHp/u33m1Zptegkn7xznD25NXicOwFUdd11XE
-	 hc40aJVd6dbcwwUspVLVqF9EDDHgKYaKfopVzyVRJA32nXr6fsB+Py83AUZQ23U0TW
-	 TsqcdI8UDU/Ew==
-Date: Fri, 21 Nov 2025 09:21:22 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Michael Tretter <m.tretter@pengutronix.de>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	kernel@pengutronix.de
-Subject: Re: [PATCH v3 1/4] media: dt-bindings: adi,adv7180: add VPP and CSI
- register maps
-Message-ID: <20251121-ambrosial-ermine-of-gallantry-cf2c51@kuoka>
-References: <20251120-b4-adv7180-vpp-sub-device-v3-0-c9d80661e7d9@pengutronix.de>
- <20251120-b4-adv7180-vpp-sub-device-v3-1-c9d80661e7d9@pengutronix.de>
+	s=k20201202; t=1763713359;
+	bh=HYNDpspIIvlQrvW+iVhMi8SfO4q/jqFm+sWhmzc5mMg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=FFFnTNDWHm6S3nVWx6LLLUhjdYwuA4MweY+5foFaJLD8Gp3mAWBjTtX8EtcABAg3g
+	 YXmivT5yZoQRUXwb7a/Mm7fWjEm//XP87wJhdhkw30YUrKxgFzKf1GiCSXFqX3muNp
+	 IZcvDJKF+49gc2rg7tyR069jEvaeYNYA2lzHER/Qo8i7fsIDzjusqNTZErlCHDi/Qa
+	 VMJKY0ZYlkuX4HEv2mEDq80MNVJeDIO8aXwgPYYQX7C+q2CBteD7DkLtFFpyqzXE+t
+	 dGZSzgbvVk9P/lX3dugyFbWUyTnWTwDH3PeXVV7zR4fc898C9bT5k3MqH7GefKNty5
+	 NBogVKQEexb3w==
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42b566859ecso1558774f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 00:22:39 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWxd0WKqLxwVPkDI0tQZG9u2aZtDjMxmoK3KNhhwP5BAKSP1MlulqdYh+rDBPRBj+5g1JDgmjARlmXJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRrqaKnbybifs7hZ2MhUn5TdPvP1Bz73ERZF8So5N69PWROnSi
+	QwixK3vKUCLB5iAbUzTZkGvzhMG7iAwz/B2gj8zgZ4Es/rDgyJD3fMEGXZR1YM2bJcdaqUphKVi
+	qBAuuJtS85h8mgFKPudZiivy56vBUBNQ=
+X-Google-Smtp-Source: AGHT+IGUTC0KIr8VzF4dB2PYL/35xms4GHTL8V+m6O+4W4E4J+pE2dP+DxrlgkmaLJo1VtMewWX9G6RonD0G+xBL+TQ=
+X-Received: by 2002:a05:6000:1a8f:b0:42b:3dfb:645f with SMTP id
+ ffacd0b85a97d-42cc1d19d78mr1388711f8f.47.1763713357676; Fri, 21 Nov 2025
+ 00:22:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251120-b4-adv7180-vpp-sub-device-v3-1-c9d80661e7d9@pengutronix.de>
+References: <20251121063439.2545-1-cp0613@linux.alibaba.com> <20251121063439.2545-2-cp0613@linux.alibaba.com>
+In-Reply-To: <20251121063439.2545-2-cp0613@linux.alibaba.com>
+From: Guo Ren <guoren@kernel.org>
+Date: Fri, 21 Nov 2025 16:22:25 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTRhatsOVshRHZSrxcNLktGCD6xK2MF3=qTtjkqm2-A8JQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bnMD2gejPZX_v0rAyljbsI6Oke2xFh30nSFLiY-NGQAnJTIyn8eTijEau0
+Message-ID: <CAJF2gTRhatsOVshRHZSrxcNLktGCD6xK2MF3=qTtjkqm2-A8JQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: vendor-prefixes: Add prefix for XuanTie
+To: cp0613@linux.alibaba.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, peterz@infradead.org, 
+	mingo@redhat.com, acme@kernel.org, namhyung@kernel.org, mark.rutland@arm.com, 
+	alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com, 
+	adrian.hunter@intel.com, james.clark@linaro.org, devicetree@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 20, 2025 at 03:22:53PM +0100, Michael Tretter wrote:
-> Different variants of the ADV7280 chip have up to three register maps.
-> The availability of the CSI and VPP register maps depends on the chip
-> variant. The address of the additional register maps depends on the
-> board design and other chips on the I2C but. They may be programmed via
-> registers in the main register map.
-> 
-> Allow to specify the addresses of the VPP and CSI register maps in the
-> device tree to solve I2C address conflicts on a board level.
-> 
-> The CSI and VPP register maps are always optional to allow backwards
-> compatibility with existing device trees which may rely on the default
-> address.
-> 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+On Fri, Nov 21, 2025 at 2:35=E2=80=AFPM <cp0613@linux.alibaba.com> wrote:
+>
+> From: Chen Pei <cp0613@linux.alibaba.com>
+>
+> Add new vendor strings to dt bindings for RISC-V vendor XuanTie.
+>
+> Signed-off-by: Chen Pei <cp0613@linux.alibaba.com>
 > ---
-> Changes in v3:
-> - add minItems to all if:then: cases
-> - make enums with one item const
-> Changes in v2:
-> - document backwards compatibility in commit message
-> - extend register maps in top level and define limits per variant
-> - define additional register maps for all variants
-> - document, why the programmable addresses are hardware description
-> ---
->  .../devicetree/bindings/media/i2c/adi,adv7180.yaml | 99 +++++++++++++++++++++-
->  1 file changed, 98 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-> index dee8ce7cb7ba..c455da2b7912 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-> @@ -30,7 +30,27 @@ properties:
->            - adi,adv7282-m
->  
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    items:
-> +      - description: main register map
-> +      - description: CSI register map
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index f1d1882009ba..5d28b2da94cd 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1829,6 +1829,8 @@ patternProperties:
+>      description: Xilinx
+>    "^xnano,.*":
+>      description: Xnano
+> +  "^xuantie,.*":
+> +    description: C-SKY Microsystems Co., Ltd. (XuanTie)
+Yes, According to the "Standard Manufacturer's IDENTIFICATION CODE"
+[1]. The manufacturer of Code '0x5b7' has changed from thead to
+xuantie in 04/30/2024.
 
-VPP  or CSI register map
+105 T-HEAD Semiconductor Co Ltd -> C-SKY Microsystems Co Ltd (XuanTie)
 
-> +      - description: VPP register map
+The XuanTie is the abbreviation of C-SKY Microsystems Co., Ltd, which
+belongs to Alibaba Damo Academy.
 
-CSI register map
+[1] https://www.jedec.org/standards-documents/docs/jep-106ab
 
-> +    description:
-> +      The ADV7180 family may have up to three register maps. All chips have
-> +      the main register map. The availability of the CSI and VPP register maps
-> +      depends on the chip variant.
-> +
-> +      The addresses of the CSI and VPP register maps are programmable by
-> +      software. They depend on the board layout and other devices on the I2C
-> +      bus and are determined by the hardware designer to avoid address
-> +      conflicts on the I2C bus.
-> +
-> +  reg-names:
-> +    minItems: 1
-> +    items:
-> +      - const: main
-> +      - enum: [ csi, vpp ]
-> +      - const: csi
->  
->    powerdown-gpios:
->      maxItems: 1
-> @@ -138,6 +158,64 @@ allOf:
->        required:
->          - ports
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - adi,adv7180
-> +              - adi,adv7180cp
-> +              - adi,adv7180st
-> +              - adi,adv7182
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 1
+Reviewed-by: Guo Ren (Alibaba Damo Academy) <guoren@kernel.org>
+Signed-off-by: Guo Ren (Alibaba Damo Academy) <guoren@kernel.org>
 
-I guess you added minItems after my suggestions of being explicit, heh,
-I did not provide you all rules because that one seemed obvious - 1 is
-already minimum, so it can be skipped.
+>    "^xunlong,.*":
+>      description: Shenzhen Xunlong Software CO.,Limited
+>    "^xylon,.*":
+> --
+> 2.50.1
+>
 
-Please drop minItems here.
 
-> +          maxItems: 1
-> +
-> +        reg-names:
-> +          minItems: 1
-
-and here
-
-The rest is fine, so with all fixes above:
-
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
-
+--
+Best Regards
+ Guo Ren
 
