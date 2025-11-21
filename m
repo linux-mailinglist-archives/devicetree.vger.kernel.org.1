@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-240964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49E27C78083
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:01:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA1A1C7809B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:02:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CE650360B5A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:01:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 12453362049
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA7933E350;
-	Fri, 21 Nov 2025 09:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A05D33E374;
+	Fri, 21 Nov 2025 09:01:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nAijLsFX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Odt6l800"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFA42C0296;
-	Fri, 21 Nov 2025 09:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F018C2DF151;
+	Fri, 21 Nov 2025 09:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763715670; cv=none; b=A1KdYNHgCeZK8Lk2jOAwDsBbBteq1MqxwBJynEd75Bz9txnxrGxmfatWo40BFqbf46UfTK4lZNoIi2ZAggLOlYQJrli1HD3v5Y1bNRbpMhW9pyExrdv8baw5DWFCovaQPp8bv7P7NT6OboU474WRggiowlmtn+u7/qQFSto5u2w=
+	t=1763715712; cv=none; b=OaHLECtMot61hA3GwHr0ZFTnlyEVhp3dBgNghp1umdNGkdvu18L7EjeC/l8Lfvxw8yjo+bKfvEv08aqLP4AHusm3RbB36p8ni0lVZxHRw1FzQn+RHQe5D/Al0nIcYXn2DpeUI2pJz4iwsixoJU1UGon1sHlU8eechM1OdRQJbMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763715670; c=relaxed/simple;
-	bh=eInAUYEonqecolnVtmUNXId6rbl1ZXAHthWxpLNajEU=;
+	s=arc-20240116; t=1763715712; c=relaxed/simple;
+	bh=BAlIVa/oy39TVToOmx2+pumF4QJ8TMQ+gMvOrQ50rm0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TXx7i0ZMvSbAfU7086iPXSZArk99xBdniFfFWWAvoiZwtH+bKi/r2ejXQXOwPhrze+9SLNCANj3VWIG36rhGir5vPDbCenFwH0iVLwAiGpjjtXeI6fOhigOQnQMIpXLXCfeXDwL624C7K3Ia+LeUWUZ93sSCwXe75JCRCxhNVIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nAijLsFX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 829DAC4CEF1;
-	Fri, 21 Nov 2025 09:01:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ntWpblg9RskVypHJXm4IHFIqCdsIomCsRj0rz6vALLzBbMh0kMQcH9xoI+L0LDf/GZauR0MEI3OpVtwNXXd2ajwefJRcWirgcF8qAzBL6feqqBxNYKeKpcGlssmzQUePzfg1KM+QV/yPCib90W0IHIPSJEAwTGHimZmm735ECrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Odt6l800; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 006B8C4CEF1;
+	Fri, 21 Nov 2025 09:01:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763715670;
-	bh=eInAUYEonqecolnVtmUNXId6rbl1ZXAHthWxpLNajEU=;
+	s=k20201202; t=1763715711;
+	bh=BAlIVa/oy39TVToOmx2+pumF4QJ8TMQ+gMvOrQ50rm0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nAijLsFX/S5Sf6sqheAQEACvIwIlXP58JZgMNSayulYJhQ/vkzcFMbYimLZajqFl8
-	 WDudN5Vht9JQNhoGhkJFZOYhDi6GOK81pnW+IbjFPGpFFvzp/aTmtykFLRtZnQRY5G
-	 cqhAXEdxrZYjx+nm+mtHr9aHyX/xjtTur91tejJBBKl7LkX7O1GHLnUA8KNs1i2Dd6
-	 HZmETHnaJlYLGxI5SBm/WWJUXucKqbCHGke95a6qpHln5XIk1QXet84kIm7+ZfzP4O
-	 w4ZHHh7nOdCeY/PqH+1xY9kfjHuskzqbIsbatfTzEI/bX02JflZlD4/pgMTidGofS5
-	 fGblDXCRydK4w==
-Date: Fri, 21 Nov 2025 10:01:07 +0100
+	b=Odt6l8004Gy13rV97eKLhGuEg7Ybbputx02ogH9vFfbE1mf/Qy7KGUm/LQMg66d3X
+	 f0z6ioDVLTY7y7eyJ9jAJQ5n7wsSjICHTrUIAqpaKHumxBJvBxcWvm+wxEuJ71pnAF
+	 vjoLJ7txHg+pZrF6scoE6DKxsn3+8giAyfmw/SJhR73ni9RN7KqLrddyTDH6RXvxJD
+	 b/hV5jCm8vy35nsx+v7J40tJHfkoKQOi2QzkPEt6NuRuCvE0QiSZ1/C/PHfi7pVjtv
+	 39xjlJ4vGTs20tPWCrismoAkydWHT4DGih+MizVAXmZAZJb/t8jvn32P4/4aysXvPI
+	 whBrBZLBZY0ww==
+Date: Fri, 21 Nov 2025 10:01:49 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: cp0613@linux.alibaba.com
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
@@ -50,11 +50,11 @@ Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
 	alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com, adrian.hunter@intel.com, 
 	james.clark@linaro.org, guoren@kernel.org, devicetree@vger.kernel.org, 
 	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: vendor-prefixes: Add prefix for
- XuanTie
-Message-ID: <20251121-able-terrestrial-spaniel-90c3cf@kuoka>
+Subject: Re: [PATCH v2 2/4] dt-bindings: riscv: Add XuanTie C930 CPU
+ compatible
+Message-ID: <20251121-hasty-scarlet-axolotl-c93efb@kuoka>
 References: <20251121063439.2545-1-cp0613@linux.alibaba.com>
- <20251121063439.2545-2-cp0613@linux.alibaba.com>
+ <20251121063439.2545-3-cp0613@linux.alibaba.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,35 +63,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251121063439.2545-2-cp0613@linux.alibaba.com>
+In-Reply-To: <20251121063439.2545-3-cp0613@linux.alibaba.com>
 
-On Fri, Nov 21, 2025 at 02:34:36PM +0800, cp0613@linux.alibaba.com wrote:
+On Fri, Nov 21, 2025 at 02:34:37PM +0800, cp0613@linux.alibaba.com wrote:
 > From: Chen Pei <cp0613@linux.alibaba.com>
 > 
-> Add new vendor strings to dt bindings for RISC-V vendor XuanTie.
+> Update Documentation for supporting XuanTie C930.
+
+You just copied here commit subject and diff. Write something useful
+instead.
+
 > 
 > Signed-off-by: Chen Pei <cp0613@linux.alibaba.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index f1d1882009ba..5d28b2da94cd 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1829,6 +1829,8 @@ patternProperties:
->      description: Xilinx
->    "^xnano,.*":
->      description: Xnano
-> +  "^xuantie,.*":
-> +    description: C-SKY Microsystems Co., Ltd. (XuanTie)
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index 153d0dac57fb..581a95eba932 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -65,6 +65,7 @@ properties:
+>                - thead,c908
+>                - thead,c910
+>                - thead,c920
+> +              - xuantie,c930
 
-We do not create new prefixes for existing entries. You have already
-csky, alibaba and thead and probably many more. Choose some appropriate.
+So that is thead...
 
-Your commit msg should also explain anything unusual here, like above.
-
-Best regards,
-Krzysztof
-
+>            - const: riscv
+>        - items:
+>            - enum:
+> -- 
+> 2.50.1
+> 
 
