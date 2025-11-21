@@ -1,112 +1,121 @@
-Return-Path: <devicetree+bounces-241229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7F0C7B383
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 19:07:52 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C9E1C7B3BE
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 19:11:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C638A4EF438
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 18:05:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A1680349989
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 18:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B7E93538B3;
-	Fri, 21 Nov 2025 18:04:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gQxPFzWa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1806F26F2A1;
+	Fri, 21 Nov 2025 18:07:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA0534FF50;
-	Fri, 21 Nov 2025 18:04:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 253A0332909;
+	Fri, 21 Nov 2025 18:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763748247; cv=none; b=ae6e3cdb4TKMM7mCFpny0+3aLG6poh9GGhWBY9k7RIIbqRVNWGZ3QXX2Rxy3Mcsdi7/WaUcUvDUxBV+mqQ/ggXvtfxD2ErEiMpwY73zt8fzBpwt5Gz7ABuj2Dx55/ni+XHc39eNshnAWg57H2mOUWp0HLt8h+8b6UGPV2fYZ4Ik=
+	t=1763748457; cv=none; b=Qxl4QmhGykbNsfAubZ75E3xFfWjvNWPOtuQ2pxqzxyGQtra3+sbCIo354rWPuYQtfxvlOU2zRLAxfQHm0OGUidhoq7oaHzKz3gjgEqTwHahCACPsxEE+5YwDDiMt6J5zw1n8A7YZOTmA+FSaZYfbDh2SigUeqVMK9/Zawz6+SFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763748247; c=relaxed/simple;
-	bh=3QgOc9vFpKAThsDu88K7b5Pzpr6OZoSFTyD1bjmAiXQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=t/btgg8r5fyq+g8Qf+Svn7lu2On9uRRNCVwjwEBnN/WGR4BzyR9wT33XlwwkUeeNo+dJdVm5a0vE5ZBXv3dRagsajKVyqBOcQZco7vjqrXc9GkGfrOb7NQ+CsP8YCYI8aqQ6gFOjWvH0AtKtAUxL5biZvH+vh7n8uOO5qIrrlzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gQxPFzWa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7CBEC4CEF1;
-	Fri, 21 Nov 2025 18:04:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763748246;
-	bh=3QgOc9vFpKAThsDu88K7b5Pzpr6OZoSFTyD1bjmAiXQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=gQxPFzWaDHj64LqIDJY5xz0of2/TjheRsmP7Fykqvwh/K5L0cm4CXTufZQQe8Q7Xt
-	 ud3jO/hOOLclYMd+YnEOgfw0rbq9wZAhlKimJ8ZyDK76X0UtJeVcf8EINLcIFrvSIt
-	 bxwuopH4apWCpEA+1n+pT0bSWNFCGgYb2jOfxsfboGO4QHgdL7X+cb6fPWWscL+GB/
-	 J8BZHiMSr653ytwEdr0hoR1VrXdNSzrPLalltcd/lfzhRRRFkqcIjSv6h+ifd13uRS
-	 5D/FroVA56jKw3PbZDhDmjXoZEHr/TaCGGG2sRstFVprF9yKg8TUDp7/euKiu9Sxux
-	 jvMsjpO9t3jnw==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Guenter Roeck <linux@roeck-us.net>, Andreas Kemnade <andreas@kemnade.info>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20251115-fp9931-submit-v3-0-92f5d0772b68@kemnade.info>
-References: <20251115-fp9931-submit-v3-0-92f5d0772b68@kemnade.info>
-Subject: Re: [PATCH v3 0/3] regulator: Add FP9931/JD9930
-Message-Id: <176374824456.73617.6524061972788557743.b4-ty@kernel.org>
-Date: Fri, 21 Nov 2025 18:04:04 +0000
+	s=arc-20240116; t=1763748457; c=relaxed/simple;
+	bh=Ioxqv4KlEYcuNnaTZjV+Y5n9xgfyfs18TyUalExGjPY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k+6q+HNrHX8k/pYL5vG3iUbkTEd+4FBR0sZ8QzPhJmTiM7MQr3UbnLs0ChkpFFt6G1epHKDtlTRPVQ5NyuMMxO8r73w12j/BUIQVg8HwgsjqhvDoPUM0W0msozO0DgyAxdRy3PpQ72SrU4WzBTdvD6L+YuWcvjhjDaup8XbsUvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dCjqH5JC5z9vB1;
+	Fri, 21 Nov 2025 19:07:23 +0100 (CET)
+Authentication-Results: outgoing_mbo_mout;
+	dkim=none;
+	spf=pass (outgoing_mbo_mout: domain of linux@timmermann.space designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=linux@timmermann.space
+Date: Fri, 21 Nov 2025 19:07:20 +0100
+From: Lukas Timmermann <linux@timmermann.space>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alexandre Marquet <tb@a-marquet.fr>, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: ARM: samsung: Add Samsung Manta (Google
+ Nexus 10)
+Message-ID: <3phpqlnzbqoclx6zqkqymugzgazg3xtxrmvl3coflgos4ncwf4@ljo4zpgyp7vh>
+References: <20251120144018.961604-1-linux@timmermann.space>
+ <20251120144018.961604-2-linux@timmermann.space>
+ <20251121-convivial-wren-of-wind-cefe21@kuoka>
+ <zgyxb6jqfvfr6iah4lw7rvweextbwxrtlysap4dfzeejqgulwo@ik25opshvwxd>
+ <a75675ef-dff6-4f97-854e-a007d289c45d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-88d78
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a75675ef-dff6-4f97-854e-a007d289c45d@kernel.org>
+X-Rspamd-Queue-Id: 4dCjqH5JC5z9vB1
 
-On Sat, 15 Nov 2025 07:50:48 +0100, Andreas Kemnade wrote:
-> Add a driver for the FP9931/JD9930 regulator which provides the
-> comparatively high voltages needed for electronic paper displays.
+On Fri, Nov 21, 2025 at 06:24:36PM +0100, Krzysztof Kozlowski wrote:
+> On 21/11/2025 14:45, Lukas Timmermann wrote:
+> > On Fri, Nov 21, 2025 at 10:04:43AM +0100, Krzysztof Kozlowski wrote:
+> >> On Thu, Nov 20, 2025 at 03:40:14PM +0100, Lukas Timmermann wrote:
+> >>> From: Alexandre Marquet <tb@a-marquet.fr>
+> >>>
+> >>> Add the Google Nexus 10 board to documentation.
+> >>>
+> >>> Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
+> >>> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+> >>> ---
+> >>>  .../devicetree/bindings/arm/samsung/samsung-boards.yaml          | 1 +
+> >>>  1 file changed, 1 insertion(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+> >>> index f8e20e602c20..97a5a678f43c 100644
+> >>> --- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+> >>> +++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+> >>> @@ -120,6 +120,7 @@ properties:
+> >>>                - google,snow-rev5                # Google Snow Rev 5+
+> >>>                - google,spring                   # Google Spring
+> >>>                - insignal,arndale                # Insignal Arndale
+> >>> +              - samsung,nexus10-manta           # Samsung Manta (Google Nexus 10)
+> >>
+> >> Google Nexus or Samsung Nexus or Samsung Manta? I am sorry, but I am
+> >> 100% sure that Samsung and Google are two different companies. Google
+> >> products use only google prefixes, see all other Google devices.
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >>
+> > Google sold the device under it's Nexus brand. But it was built by
+> > Samsung, not just it's SoC. It's codename is "manta". Google places it 
+> > in the Samsung directory instead of their own.
+> > See: https://android.googlesource.com/device/samsung/manta/
+> > It is a Samsung board, but also a Google device.
 > 
-> Datasheet for the FP9931 is at
-> https://www.fitipower.com/dl/file/flXa6hIchVeu0W3K
+> As I said, all Google end-user made by Samsung have Google names, not
+> Samsung. Do you see there samsung,spring? Or samsung,nexus for other
+> Nexuses? No.
 > 
-> Although it is in English, it seems to be only downloadable
-> from the Chinese part of that website.
-> For the JD9930 there can be a datasheet found at
-> https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/196/JD9930_2D00_0.7_2D00_JUN_2D00_2019.pdf
+> There is just no such thing as samsung,nexus. Never was, so you cannot
+> use that as product.
 > 
-> [...]
+> Best regards,
+> Krzysztof
+> 
+I compared some Pixel and Nexus devices and now understand what you
+meant. So "google,manta" should be the correct name here?
+As seen in "google,sargo" -> Google Pixel 3a
+Thanks for your input.
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/3] dt-bindings: vendor-prefixes: Add Fitipower
-      commit: 0d360d54ea6d0fb3928205d6c67801d1719dd958
-[2/3] dt-bindings: regulator: Add Fitipower FP9931/JD9930
-      commit: 80bbdefdfb4174ff7e5d4f17658c845ef8f0b623
-[3/3] regulator: Add FP9931/JD9930 driver
-      commit: 12d821bd13d42e6de3ecb1c13918b1f06a3ee213
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Best regards,
+Lukas Timmermann
 
