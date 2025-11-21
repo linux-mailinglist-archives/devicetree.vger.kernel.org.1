@@ -1,295 +1,194 @@
-Return-Path: <devicetree+bounces-240986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0FBDC784D4
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:05:04 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9133EC787ED
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:24:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sto.lore.kernel.org (Postfix) with ESMTPS id 1EF7F28C2D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:05:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id 410DD2D7CF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:11:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC0D34AB03;
-	Fri, 21 Nov 2025 10:00:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB7634253F;
+	Fri, 21 Nov 2025 10:07:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="cfA84AlS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MGuxeJfS";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IzBlCeUc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93BCD30C636;
-	Fri, 21 Nov 2025 10:00:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E571347BCA
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 10:07:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763719209; cv=none; b=uRphxvZFkuusHMnHS3WifrtbfMxZoS9d1jSuoLbClbV8wU1/UAJlTrpEpZ1Un4pXWF+JX+cbyRe7nSlgcCLimcujmCMvwoprJNR+8qz1n5wmVZTqUS5AX6l0jgnzQYRiqrPD4J/7MxLThW0xIIZvWe27aztpGoE/8eWSO4IAzpk=
+	t=1763719652; cv=none; b=GmXGrRh1raCnLA6aBLwBT/v7iTx9UoYcJHPKSHUbM4kEAbTuXS33cxX5tIjMCprMvq93Clau5pgQ8m7St64IzBEeSmWebH+aYEvPRWOOjydRtHUBpTNRYP+3nrxwRqiMLdWNSiLJa0M77mfhh+d1e7wWpPaqFnDw7SQL7dug+5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763719209; c=relaxed/simple;
-	bh=b5r1NAmyQjRNCU11owh2ozDZ3T9LNomz4EoNbpmT44E=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OdeTa+V6beFHALqJ9v8OspI6VcNmK5qiJq/lRrW5cbMHdqkvf+3HPqCe0mlEpw7guWa8A9CJPPIXv9exnA+ygELC9ETXKrJB/OxsLBG3gjcsSntNVRDWRlj9owINiYuC96+bkQz13eeqaANHPHF6DjrAf5G87rahHnNyFIuY+dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=cfA84AlS; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AL6KKKU2556779;
-	Fri, 21 Nov 2025 05:00:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=QOWGL
-	8hWgVx0NQcDiIEm3cVbPm7ASlxqAGJFb1yGqhw=; b=cfA84AlSfgERFG2MRAtOv
-	uE52b9gKXKQwq/v98KwP0F8ugCq0RQfPrriBG8AhMSPGPFW6gwLbXt5GEhO2DOIF
-	Ry/o+UBH6KXeNx8Ca8RpdlnY2bO2/neVTLCyxvUGy/MqdwB+xciYgW0yipbZgfhE
-	MElhkRNHrJ1jOeFFzFp3BZpQi8XbcqanZ5c4Q/x1//AlcspUy4YODVE8jSrmnEOm
-	KnD/zXNbO9CQrn+WFFdKKlFzTnAWul8d1v1c5+uj47zA7b8e0XqAX5GgWnomjnq0
-	hhdohgezrGjUO1VKI4g9V3/v/gI2Yxz0JPe0PQjKbDNUu3qsfTogJaTW1Pw50bTy
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4ajjqjrwdg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Nov 2025 05:00:03 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5ALA02gC015330
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 21 Nov 2025 05:00:02 -0500
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 21 Nov 2025 05:00:02 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 21 Nov 2025 05:00:02 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 21 Nov 2025 05:00:02 -0500
-Received: from Ubuntu.ad.analog.com (AMICLAUS-L01.ad.analog.com [10.48.65.187])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AL9xo96027151;
-	Fri, 21 Nov 2025 04:59:57 -0500
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [RESEND PATCH v2 2/2] iio: frequency: adf4377: add clk provider support
-Date: Fri, 21 Nov 2025 09:59:33 +0000
-Message-ID: <20251121095933.19032-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251121095933.19032-1-antoniu.miclaus@analog.com>
-References: <20251121095933.19032-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1763719652; c=relaxed/simple;
+	bh=PNmoRySXomFwHZ5wJR3FqfFGTm7ykYNU7b6TynDTfLQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MZJaCO0GJA0os63HzRhw71cHwcyreTJ1S6lWlTu5WY+Kkpjm3p3MnKcSTvqa4hZxviPHXogdqaEYWJdpg95bB7nM3r9Yvsgzs+VoXRllD1pJVfdexIacMdGF/M4PGAE4vOib2z/QS6UJTVFJIX91zslfz1XyfOkcBqkjkOYwe38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MGuxeJfS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IzBlCeUc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AL53mFL2840650
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 10:07:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6qWcC51wdthdog5p8LZY+DkjPJ5e5/TUFh7HiVBSxto=; b=MGuxeJfS9t13WT9g
+	02kaVwfWOT/Y8viLhVavvUWc37gMtPhXEMGWBPn9OAM2GCmQ7+2k1BH2e6XB97l8
+	1ttFT4BxJKZp3+BQ2f9/fhicnspB0FIqSDzv9iXPFllJy5cMZBh19FcQAtKh+ZTI
+	YsnjDw1RBYBtyiDU8pQGAL+tQ5IS571s+locXYw0JGLoVu9TGOuZ4QBk2KS0ZCzf
+	71LoI3Vj74i2uqI6rYOI3Jy04Lbd5A0RUt6R02hSjPfF2DWUK9L5fnwUxGr1pA3p
+	yl5YrUvnpXTQ0bScYkytRkR8hyGo1mtYCUlNB1tiWLUwKEeocAJD6hqWVCcnWb9B
+	1/08kQ==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ajhkvh1dd-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 10:07:29 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-297dde580c8so73120645ad.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 02:07:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763719648; x=1764324448; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6qWcC51wdthdog5p8LZY+DkjPJ5e5/TUFh7HiVBSxto=;
+        b=IzBlCeUcKPVS6UEYwV1VSjjxHOapLphu9QrkxmnTwSqwD8M2ZMtrCC4oVWawvqBSYR
+         BYWIZuMJHzdju1LItUoy2DpVWCk52G878sL4E8mXgwMHfWjc50eji8nm7BkeQ6tb7SuN
+         ZdN08EVeZNxmD77PrnbKte2UfIMPcubawktipSmrh7wWcg+biEph3g7F/cgE8qoyo/jn
+         NuJdN5Dyj6z2Y92pntJsjNdrcWqnlxu3/RWJbboP+hZQn5ZoBvqCVZSq3qA9QuYTb7Ae
+         ehz0EonKy0ErzChFuzLoi+Zj+pX77vEe7QdmT4QC9DdmQXofkIVd4OQ98XXdo2m19fuq
+         u+ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763719648; x=1764324448;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6qWcC51wdthdog5p8LZY+DkjPJ5e5/TUFh7HiVBSxto=;
+        b=M9l0zS4K+W7lp6Ra+VRaTSPSd+VKqKiAunHYY6TfqEijGhgkC3jQmXrM2k+c6eUpIC
+         OVP518d1q3Zt00Gb+i5mVi4rM1BjPTA7OykPz+85jLamjXn/hIEhyrB9XGKLPD3zCjBB
+         +TtDbb5v526KmgaYpdmuIi7vEJ4bHxhT+B9HCLyhblINy+WPFhFWv08Nm2ekz5mJgKAR
+         xlhDMc8WTF2wjn4w6qORnFvZp/PwGSNDLbjuJgPhakGkqR6+NnxcuyBUplFO1eIP3/Gr
+         vvwgqBC9jqmcBlLmdAYJnAFmf5yYcrnrREmDq1svRAn+MhZaf3ID3iiFa/iwktGmFmda
+         NJHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVkF+qAjZMnPm8gyg89aqXJrRLAUKNJGzenwucwbtrw9jVS00cVF+B1+KeydyplcVzkO0dkvnErD1fl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyp/dk3Nik1qECDkZ4Us/3UuDC6uL1z/bOUHjcRRXHiwA1wrfNH
+	FYrtW1MMmDxcal9958+J5SPPs0XVOgRZEZbXnBALPL5ivf+smJGAl+wBCPDfn5ZJRMcOqL8+3Pn
+	FiGa+FQXQ8l8Buf0TWecAVQNQQGRRPydh7ibZt25tYrAArN31a9eAbYl+Ynv9Y6Ta
+X-Gm-Gg: ASbGnctJtqlGQMQ14DUfUUltQIN4Ft8SJtxxDRG1fKQSaClc2+hYGtNPX2DkrNZJinv
+	BuSb5hodLwfRm3K8re2hexvOYWszAUqE9zdFrlgg4m5EDvuW15IXHFz6549mwcAsDYacL7lwyZ/
+	xIMWPlvk/20Jyule2cad3nBy3Kazn5714vMjBHFerAAX9rYeI9zVFokrY+rsnS4KajQ7Gkoktnl
+	Xhm0jeCXQHJZqkKOvnD4Hsja16QYAGi+dIoRkuSfJNbeG1TMlKntJg8dcxvx0d/UyialWxj4Ob6
+	vBNQ4O6gBdh4ULL8hlgidC1OI+NXtaFeTeJDm0uDdSboBLze0PWf/iFl6uNsv/djAORbVmA6mgh
+	eiM/zWZKj3Fk+IcrJul2UB5YHFiRdrjod6Z69KE+KEg==
+X-Received: by 2002:a17:903:2c06:b0:297:fc22:3a9f with SMTP id d9443c01a7336-29b6bf19f1dmr24090635ad.38.1763719647852;
+        Fri, 21 Nov 2025 02:07:27 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEVecqhY0KyIOS0VJbGRckurUMgBDF0SzgoQ9N/+mxRQVhMYHtAiPWpWP+ignhE3DJhCxCfNA==
+X-Received: by 2002:a17:903:2c06:b0:297:fc22:3a9f with SMTP id d9443c01a7336-29b6bf19f1dmr24090275ad.38.1763719647429;
+        Fri, 21 Nov 2025 02:07:27 -0800 (PST)
+Received: from [10.218.4.221] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b25c20dsm52665545ad.59.2025.11.21.02.07.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Nov 2025 02:07:27 -0800 (PST)
+Message-ID: <efec8f09-8bb7-9739-5a1f-ce4a1c54771e@oss.qualcomm.com>
+Date: Fri, 21 Nov 2025 15:37:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: talos: Drop opp-shared from QUP OPP
+ table
+Content-Language: en-US
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@oss.qualcomm.com, dmitry.baryshkov@linaro.org,
+        mukesh.savaliya@oss.qualcomm.com
+References: <20251111170350.525832-1-viken.dadhaniya@oss.qualcomm.com>
+ <ivinuu2ofm2hf7jvnw67gjfwo46bepunconf5g4kzdcaxs4jvm@6dm5btokf2zi>
+From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+In-Reply-To: <ivinuu2ofm2hf7jvnw67gjfwo46bepunconf5g4kzdcaxs4jvm@6dm5btokf2zi>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: S_x1Sdo_QV8GZOx05Gz-mHMP6FRzhpLz
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIxMDA3NiBTYWx0ZWRfX95XNdNdlJZVM
- WieHE70+6MrCsWkcsAWNKl/5tueyy154GXxp30+zmvDOk2jPUOGbOvjrlUL7NpmrwCX2lhBKsPZ
- VqeN5mxaeS9gQ08d+kXVG9/inBCPXQ/pT30OVSrnU0x2Y1Hp7HlfhXed6LjrdgypnBp0kuYfRuB
- kEmQDaXW3kRzfYUZkwrdKQYkooQjKLX745lQSfToDIgNJzap1KuTwcLbAApFCl7YOltGHo56y7k
- qhPsQhQ2yXpyqZrmdLkouxNcpa7KCtntORrf3HYVDtv78AcydZK12Kl3EOlyqfBVLmWsz7F/r0p
- a69rGTvz3+YcBVv3LLewFrZXVQqtWqu0G2CO6yWT1RJ8+QXQZLyLlWGrGisKcYr2YL72Kjl6shy
- 1TOQiBDNmnc3OFoqbNMfINveueCjvw==
-X-Proofpoint-ORIG-GUID: S_x1Sdo_QV8GZOx05Gz-mHMP6FRzhpLz
-X-Authority-Analysis: v=2.4 cv=ffygCkQF c=1 sm=1 tr=0 ts=69203823 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gAnH3GRIAAAA:8
- a=I9ctbcXp8itbP4OmBmcA:9
+X-Proofpoint-GUID: J9kijMb326-gRNxivcD81SBfILz625PQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIxMDA3NyBTYWx0ZWRfX0Bxlcwb+/PBT
+ TPWNxcN3LvR5f6534QExQhW0UXz5ewrf2CBv5UfAazBVkbjeylScyRmlkQz3xsUOObFW0M0GqQ0
+ 9fMjMb0Nwd6L/4naU0FgRY8QS7iR5O7MqkHmauh3ogCA4Rap1n2QcUiIIYQKK+KxatBTYLLeI4d
+ q74nBekTPYff0+Hcf8Qdy1uqprJ4sje1wgWwItV6mKjkD21BjxPAwHpUrLTp+EPHPqIMjvZO1UT
+ Gj31411CnnsCRpRfttJPniVAy+OCDvikt6m6zwQJh9L+Q3ZG1iROHmxdjAMXy3tuGAdk1AE4jlz
+ CHMrBvN89ZH3j5SogU2q9sv8cq9ZliEca8xRc5YdtdzYENmZIwSF0mfEdzZn2jKE+64Rtb80Mzy
+ 3m44KYjKQKr0ps+CfvqV0qoGEAqgiQ==
+X-Authority-Analysis: v=2.4 cv=bpdBxUai c=1 sm=1 tr=0 ts=692039e1 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=cdpHMJko8vg9vcfRfWEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: J9kijMb326-gRNxivcD81SBfILz625PQ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-21_03,2025-11-20_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 malwarescore=0 bulkscore=0 lowpriorityscore=0
- clxscore=1015 impostorscore=0 adultscore=0 spamscore=0 suspectscore=0
+ clxscore=1015 malwarescore=0 phishscore=0 lowpriorityscore=0 bulkscore=0
+ adultscore=0 impostorscore=0 suspectscore=0 spamscore=0 priorityscore=1501
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511210076
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511210077
 
-Add clk provider feature for the adf4377.
 
-Even though the driver was sent as an IIO driver in most cases the
-device is actually seen as a clock provider.
 
-This patch aims to cover actual usecases requested by users in order to
-completely control the output frequencies from userspace.
+On 11/12/2025 1:25 AM, Bjorn Andersson wrote:
+> On Tue, Nov 11, 2025 at 10:33:50PM +0530, Viken Dadhaniya wrote:
+>> QUP devices are currently marked with opp-shared in their OPP table,
+>> causing the kernel to treat them as part of a shared OPP domain. This
+>> leads to the qcom_geni_serial driver failing to probe with error
+>> -EBUSY (-16).
+>>
+>> Remove the opp-shared property to ensure the OPP framework treats the
+>> QUP OPP table as device-specific, allowing the serial driver to probe
+>> successfully
+>>
+>> Fixes: f6746dc9e379 ("arm64: dts: qcom: qcs615: Add QUPv3 configuration")
+> 
+> This was merged 11 months ago, and Yu Zhang added bluetooth support 3
+> months ago. What changed to break the QUP users? I think it's reasonable
+> to use this "Fixes", but we should document - at least on the mailing
+> list, where the regression happened.
+> 
+> Regards,
+> Bjorn
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-Changes in v2:
-- Replace deprecated .is_enabled clock operation with .is_prepared
-- Use modern devm_clk_hw_register() instead of devm_clk_register()
-- Switch to clk_parent_data with fw_name instead of parent_names array
-- Use devm_of_clk_add_hw_provider() with of_clk_hw_simple_get for modern DT integration
-- Fix indentation alignment in adf4377_clk_recalc_rate function parameter
-- Remove manual clock provider cleanup by using devm_* variants
- drivers/iio/frequency/adf4377.c | 119 +++++++++++++++++++++++++++++++-
- 1 file changed, 117 insertions(+), 2 deletions(-)
+I’ve checked the older Linux versions and found that this issue started occurring after the following change:
+https://lore.kernel.org/linux-devicetree/20250630064338.2487409-1-viken.dadhaniya@oss.qualcomm.com/
 
-diff --git a/drivers/iio/frequency/adf4377.c b/drivers/iio/frequency/adf4377.c
-index 08833b7035e4..045747351ed7 100644
---- a/drivers/iio/frequency/adf4377.c
-+++ b/drivers/iio/frequency/adf4377.c
-@@ -8,6 +8,7 @@
- #include <linux/bitfield.h>
- #include <linux/bits.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/clkdev.h>
- #include <linux/delay.h>
- #include <linux/device.h>
-@@ -435,9 +436,14 @@ struct adf4377_state {
- 	struct gpio_desc	*gpio_ce;
- 	struct gpio_desc	*gpio_enclk1;
- 	struct gpio_desc	*gpio_enclk2;
-+	struct clk		*clk;
-+	struct clk		*clkout;
-+	struct clk_hw		hw;
- 	u8			buf[2] __aligned(IIO_DMA_MINALIGN);
- };
- 
-+#define to_adf4377_state(h)	container_of(h, struct adf4377_state, hw)
-+
- static const char * const adf4377_muxout_modes[] = {
- 	[ADF4377_MUXOUT_HIGH_Z] = "high_z",
- 	[ADF4377_MUXOUT_LKDET] = "lock_detect",
-@@ -929,6 +935,108 @@ static int adf4377_freq_change(struct notifier_block *nb, unsigned long action,
- 	return NOTIFY_OK;
- }
- 
-+static unsigned long adf4377_clk_recalc_rate(struct clk_hw *hw,
-+					     unsigned long parent_rate)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+	u64 freq;
-+	int ret;
-+
-+	ret = adf4377_get_freq(st, &freq);
-+	if (ret)
-+		return 0;
-+
-+	return freq;
-+}
-+
-+static int adf4377_clk_set_rate(struct clk_hw *hw,
-+				unsigned long rate,
-+				unsigned long parent_rate)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+
-+	return adf4377_set_freq(st, rate);
-+}
-+
-+static int adf4377_clk_prepare(struct clk_hw *hw)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+
-+	return regmap_update_bits(st->regmap, 0x1a, ADF4377_001A_PD_CLKOUT1_MSK |
-+				  ADF4377_001A_PD_CLKOUT2_MSK,
-+				  FIELD_PREP(ADF4377_001A_PD_CLKOUT1_MSK, 0) |
-+				  FIELD_PREP(ADF4377_001A_PD_CLKOUT2_MSK, 0));
-+}
-+
-+static void adf4377_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+
-+	regmap_update_bits(st->regmap, 0x1a, ADF4377_001A_PD_CLKOUT1_MSK |
-+			   ADF4377_001A_PD_CLKOUT2_MSK,
-+			   FIELD_PREP(ADF4377_001A_PD_CLKOUT1_MSK, 1) |
-+			   FIELD_PREP(ADF4377_001A_PD_CLKOUT2_MSK, 1));
-+}
-+
-+static int adf4377_clk_is_prepared(struct clk_hw *hw)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+	unsigned int readval;
-+	int ret;
-+
-+	ret = regmap_read(st->regmap, 0x1a, &readval);
-+	if (ret)
-+		return ret;
-+
-+	return !(readval & (ADF4377_001A_PD_CLKOUT1_MSK | ADF4377_001A_PD_CLKOUT2_MSK));
-+}
-+
-+static const struct clk_ops adf4377_clk_ops = {
-+	.recalc_rate = adf4377_clk_recalc_rate,
-+	.set_rate = adf4377_clk_set_rate,
-+	.prepare = adf4377_clk_prepare,
-+	.unprepare = adf4377_clk_unprepare,
-+	.is_prepared = adf4377_clk_is_prepared,
-+};
-+
-+static int adf4377_clk_register(struct adf4377_state *st)
-+{
-+	struct spi_device *spi = st->spi;
-+	struct clk_init_data init;
-+	struct clk_parent_data parent_data;
-+	int ret;
-+
-+	if (!device_property_present(&spi->dev, "#clock-cells"))
-+		return 0;
-+
-+	if (device_property_read_string(&spi->dev, "clock-output-names", &init.name)) {
-+		init.name = devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
-+					   fwnode_get_name(dev_fwnode(&spi->dev)));
-+		if (!init.name)
-+			return -ENOMEM;
-+	}
-+
-+	parent_data.fw_name = "ref_in";
-+
-+	init.ops = &adf4377_clk_ops;
-+	init.parent_data = &parent_data;
-+	init.num_parents = 1;
-+	init.flags = CLK_SET_RATE_PARENT;
-+
-+	st->hw.init = &init;
-+	ret = devm_clk_hw_register(&spi->dev, &st->hw);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_of_clk_add_hw_provider(&spi->dev, of_clk_hw_simple_get, &st->hw);
-+	if (ret)
-+		return ret;
-+
-+	st->clkout = st->hw.clk;
-+
-+	return 0;
-+}
-+
- static const struct adf4377_chip_info adf4377_chip_info = {
- 	.name = "adf4377",
- 	.has_gpio_enclk2 = true,
-@@ -958,8 +1066,6 @@ static int adf4377_probe(struct spi_device *spi)
- 
- 	indio_dev->info = &adf4377_info;
- 	indio_dev->name = "adf4377";
--	indio_dev->channels = adf4377_channels;
--	indio_dev->num_channels = ARRAY_SIZE(adf4377_channels);
- 
- 	st->regmap = regmap;
- 	st->spi = spi;
-@@ -979,6 +1085,15 @@ static int adf4377_probe(struct spi_device *spi)
- 	if (ret)
- 		return ret;
- 
-+	ret = adf4377_clk_register(st);
-+	if (ret)
-+		return ret;
-+
-+	if (!st->clkout) {
-+		indio_dev->channels = adf4377_channels;
-+		indio_dev->num_channels = ARRAY_SIZE(adf4377_channels);
-+	}
-+
- 	return devm_iio_device_register(&spi->dev, indio_dev);
- }
- 
--- 
-2.43.0
-
+> 
+>> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/talos.dtsi | 1 -
+>>  1 file changed, 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
+>> index eb6f69be4a82..ed89d2d509d5 100644
+>> --- a/arch/arm64/boot/dts/qcom/talos.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/talos.dtsi
+>> @@ -536,7 +536,6 @@ cdsp_smp2p_in: slave-kernel {
+>>  
+>>  	qup_opp_table: opp-table-qup {
+>>  		compatible = "operating-points-v2";
+>> -		opp-shared;
+>>  
+>>  		opp-75000000 {
+>>  			opp-hz = /bits/ 64 <75000000>;
+>> -- 
+>> 2.34.1
+>>
 
