@@ -1,404 +1,167 @@
-Return-Path: <devicetree+bounces-241101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E2FC79211
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:08:19 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7174C79220
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:08:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6C57435310F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:03:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9AF3436574D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B236D30F951;
-	Fri, 21 Nov 2025 13:03:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA62346784;
+	Fri, 21 Nov 2025 13:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fi6Zdz++";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XDsDLMSo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EE5234677B
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 13:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FA7F242D60
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 13:03:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763730195; cv=none; b=H/wg3ZqxVt0G4FrvqQaiDO96Av8ONJJeekSGivETKe18xCvD7uoMQRf6KCt3e9dyS/TCADFcLUr/AbwcK6QINgN5cyurc2A4mR6aNsWthic8xMYLkTXFLFxU+aW0OOBsrAHhzPAxs2lrkWE3HmFdSfx3ZW/8MN/0v2oGHJ6AJBE=
+	t=1763730207; cv=none; b=NmI6J6nQN71feUKjqXYz5vUL6BHBripKPedbi5vLfJGJ7ExZ8UPK+e4bkTvneXQrJv+0PN/h3SiUfMNqXt7adqshu2vxPlsGQQh7k6i+dkJrI6jSZvPvw/mjAYZrW9V4f/H4QAOzLdGdjuKLkPJFkzOaS8r77NTfFeM936pv+WQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763730195; c=relaxed/simple;
-	bh=YkK/oXJnGvbZKU3ual5nicstOZljfEPn/ryE7CiXY1Y=;
+	s=arc-20240116; t=1763730207; c=relaxed/simple;
+	bh=Wlkw7CTMZpViEXDbRhWiCoeXPkPaNu8bn2eHQ4cnqpE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gOtR7SCCs0osXMm6S2Cu0nCeuj+1WOcedvn2QMYgUPwWvr1rS0opFdUpzVN7mNapeVT15J1TfwgfbQE7CuS2IZTSmnSQFD4xFOjFgCtdLEW9FeAPrDBHLqUJ4F7phCetllb+7XReRRkeI3JxuEG+uC/xIlbwu47Fk1oTNR91tg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vMQn2-0002cf-1Y; Fri, 21 Nov 2025 14:03:04 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vMQn1-001alV-2Y;
-	Fri, 21 Nov 2025 14:03:03 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 692C74A4807;
-	Fri, 21 Nov 2025 13:03:03 +0000 (UTC)
-Date: Fri, 21 Nov 2025 14:03:03 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-can@vger.kernel.org
-Subject: Re: [PATCH 10/10] can: grcan: Add CANFD support alongside legacy CAN
-Message-ID: <20251121-refined-economic-oyster-5de770-mkl@pengutronix.de>
-References: <20251118092115.3455-1-arun.muthusamy@gaisler.com>
- <20251118092115.3455-11-arun.muthusamy@gaisler.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FPZ5OEQvamBSayIVjQeBaOo1/wByeX0IZux697vlE+s1IO3I6tfzJvFNo0O7dJxVmn6IrgyMNuwM+3gKV7g7yhPSZGvHJKJmYtQu3t63B75FOc1sBHJxRTrJVSnQNStGpCyNut1Km/ahXJD+sp27Pnm6tUApcRHHmbEma9Eqdrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fi6Zdz++; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XDsDLMSo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AL8Z4Zs3139930
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 13:03:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=6Ebzqqb2HB25wSY3SHb86DFL
+	9SKoXTlvL/xdpHoslPs=; b=fi6Zdz++x5UutEiehiR3xOAXPb7xiJwsgQo+Otgv
+	dSqLupmmBqhayW3/WwcbnQ6xcvSWag6ffq3NSo1FpRpcZo+A0qH+Msptq8SmVyhZ
+	m6teFL3PizGXnl5IrVhr7cLapRidepbXZcbwF/dhFa/P/aPOEa2tJtCQyRiOuN6d
+	/T6LwQ8W20Llbzejd3ES/706XctKo3vn5DHsBOq5r4ERESDXnQW+fgqZdtIuKxI5
+	mQtx9GcOjNlJnscUTISgViBMIq8499HM+GyxGR8j75aVgMc+LCkD0v5Rgt4r+RPZ
+	aEreuV5fvnfX+yInHfy4LYPUB5VDAZCDlEPaLZ1TW7RwQw==
+Received: from mail-yx1-f72.google.com (mail-yx1-f72.google.com [74.125.224.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ajmppgxfy-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 13:03:25 +0000 (GMT)
+Received: by mail-yx1-f72.google.com with SMTP id 956f58d0204a3-63e1e96b6d3so2343419d50.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 05:03:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763730204; x=1764335004; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Ebzqqb2HB25wSY3SHb86DFL9SKoXTlvL/xdpHoslPs=;
+        b=XDsDLMSo2ZY9ZD17A3eID/TWqNPxEnvtOBMIrfU8ERCqBBIheS5iUTNITafQHntkhf
+         OSscdF/zYYlPLIT+v6cfrr5IsynZ924rs6fCooeRPV4u8TQ/ceDsdMZaYPLUE5AMAARo
+         aohNWwZlcPPp38CTG7l1nInOIBz6bfMf6GihydcGaS5Wjk9DdqQlpBzqTnkOBXGgUzra
+         O3A7q6o7/HtRtFfsjyl85XgxkeTC4NLZ9fHikd5t+CTpR6Ov54IGKFoq2XVI/0Ph1Tr7
+         lakUnG7U4jMb6mQFPMj2RCLKUDrLYetge+vWTj9CE6utDMA1VwjEk8B6eJKHM0WtEpXL
+         8Hpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763730204; x=1764335004;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6Ebzqqb2HB25wSY3SHb86DFL9SKoXTlvL/xdpHoslPs=;
+        b=o6LkFQbqG9/cf+cRcLl17VTj3aGPih9qSl5ruW04TEnBqDbMvR5jaCSAQ22mB7Wt7Q
+         IEe0iputAGKB9c2QFL7O4hpgnl5/+k8IMfnOwLNknPijFjCcX/nsgJ3ZDbobIfSedCDK
+         sftHjZ3QVVeZA/Lsgbn7XO2aTXxxyjUZ2GlSs8ja2EgwupDtw0KDfwCEusu80eJS0hxu
+         z4SIeUoXCKFA8oPlWUa7h1JaS8lhQaYIHyilxtHUiZHFJCDo1TgfvcOZEPoWE5eEOTYn
+         UFEiat9iLFAn3fn1qvnZNXkBw7I9wrDC9WKAb4auCV+alTzWPwBoeaMd+2mObq0XmDu0
+         SSng==
+X-Forwarded-Encrypted: i=1; AJvYcCWNntKqOBr8i13+JTEJ4SoqT4HzqzMTxGeQq7NgPKZWsvXQ3MGGYUU8R8gbkS3VcNy0RSiLdhBZoh2l@vger.kernel.org
+X-Gm-Message-State: AOJu0YyU9ZKesXePPSzMO61UzEDBqhuTnEHMCZ1+hVYx2HVAAopHCkRT
+	14pfYsBYXUBIkHGd1X5DH6BFTw6jpMBTyBVO5NStuRbiTZVEilyplAmsRFqcxneknNKGwhGkXtV
+	x6+AQPWFPex6opUmmXm85v3TN42DRvSAq6WULmasumJyxyRFzzSB0V3bVhhyrL8c4
+X-Gm-Gg: ASbGncvDm8Vc5NB0XBv8X8RWCq5TqyOAg3mm0gNebeYakS9YH2+bGBAY/gyeplrwQct
+	f2lVpkolbSPljizhJryx0RccIN6JEWPcrfnjK+f+IThVCAXpcLIJVCLoHRzj/sL5XKH43PrZ+q6
+	0U0Z6cWw2+OpIj5T7a89we/H05vtAUABHvTxQtv4Qj6NnjPh1cWTubEfr7VbmNEXzGbdGdMN9Is
+	h1Lkza0rGvn+vn/hS+Lu2Kca33uF5HU9UEkGi0TqSSlVUHx2k1RYw4aBDLz3j0ibQmeN1N2vUnE
+	sBww97B7s91BlXODrLvSMUm51ETJ6Ki0PCywslbsEYZ0sjnj6RQYL2Hpc68P2MHNV8ppJuM3DD1
+	2Lrm/vx7AO7Ng4CKWI5jmsCP5p11yx8cMHQCMJBaEUQjpOTbQ7v1h0cJqw9QTjFhbPw8rMW7Kkh
+	SLB2J5nSU5Y+emXSNsTRVcvC8=
+X-Received: by 2002:a53:cd8c:0:b0:63e:1943:ce49 with SMTP id 956f58d0204a3-64302abb486mr1012759d50.39.1763730204039;
+        Fri, 21 Nov 2025 05:03:24 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEi7GrdMAr6GhOFsCRThFLBFakA5j7YJp94i9Kss9c/Elt0tOH0sM/CQSpFGWLHLjb3njADQw==
+X-Received: by 2002:a53:cd8c:0:b0:63e:1943:ce49 with SMTP id 956f58d0204a3-64302abb486mr1012697d50.39.1763730203300;
+        Fri, 21 Nov 2025 05:03:23 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-596a0d1493bsm1148420e87.73.2025.11.21.05.03.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Nov 2025 05:03:22 -0800 (PST)
+Date: Fri, 21 Nov 2025 15:03:20 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Nilesh Laad <nilesh.laad@oss.qualcomm.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, venkata.valluru@oss.qualcomm.com,
+        jessica.zhang@oss.qualcomm.com, Yi Zhang <zhanyi@qti.qualcomm.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: bridge: lt9211c: Add bindings
+Message-ID: <vtk3okmi7t2bxx5zynwwr7wqyaj5rol5o4lwxi42h4i3fstbmw@i5hkr6g7kgtj>
+References: <20251107-add-lt9211c-bridge-v2-0-b0616e23407c@oss.qualcomm.com>
+ <20251107-add-lt9211c-bridge-v2-1-b0616e23407c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vo5t3wpyf3tgrk32"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251118092115.3455-11-arun.muthusamy@gaisler.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20251107-add-lt9211c-bridge-v2-1-b0616e23407c@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: sxRA4b0xlgHuM10PbFrWqNf7JlQFUC94
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIxMDA5NiBTYWx0ZWRfX5hVb9Hn9s4Pb
+ uCjlnlSgxrLHb7qfILxsvk4REvG3QIeX5JLTDnZ8dmGtzsa6KCMD6FD8KtU3czgYBqj7k9oSdpx
+ J0oEty4gsUucf02Lg+g2jInyU0XY7kZrROZNsp7GMg7Xhu2sGcJ5sorE6kl/1ENg9ghsSUIFIEN
+ OUi8//ncPUe/Egkx/ETJGXRUkGD3AewyQr/hs5ADhfd0UzkmLXt78Hk22NquRQv+MlbNqw/TthX
+ WQ2US34cnwEys3g3RNg0uTeIzg3FfSDwIkPHbMTz+L8XjaFzUie9exTnotnK5iqC5dqE7Sm9eUA
+ vBEveBoxjgPEA702QKS91AVsBhUL4yLKQasIzc47Vfn/8ovayWNXkshSgv4r/9m8NDimR0KVz9h
+ u3EgFb0PCnQZ16CpUWdfccx/gmcJLg==
+X-Proofpoint-GUID: sxRA4b0xlgHuM10PbFrWqNf7JlQFUC94
+X-Authority-Analysis: v=2.4 cv=CK4nnBrD c=1 sm=1 tr=0 ts=6920631d cx=c_pps
+ a=VEzVgl358Dq0xwHDEbsOzA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=wANug47Xg7UbwDa8xMoA:9 a=CjuIK1q_8ugA:10
+ a=uujmmnXaIg8lM0-o0HFK:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-21_03,2025-11-21_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 adultscore=0 spamscore=0 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511210096
 
-
---vo5t3wpyf3tgrk32
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 10/10] can: grcan: Add CANFD support alongside legacy CAN
-MIME-Version: 1.0
-
-On 18.11.2025 10:21:15, Arun Muthusamy wrote:
-> Include CANFD support with the legacy CAN support, enabling
-> support for extended data payloads up to 64 bytes, higher bit rates,
-> handle canecho frames.
->
-> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
+On Fri, Nov 07, 2025 at 06:32:58PM +0530, Nilesh Laad wrote:
+> From: Yi Zhang <zhanyi@qti.qualcomm.com>
+> 
+> Add bindings for lt9211c.
+> 
+> Signed-off-by: Yi Zhang <zhanyi@qti.qualcomm.com>
+> Signed-off-by: Nilesh Laad <nilesh.laad@oss.qualcomm.com>
 > ---
->  drivers/net/can/grcan.c | 240 ++++++++++++++++++++++++++++------------
->  1 file changed, 167 insertions(+), 73 deletions(-)
->
-> diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
-> index 8753bff4f917..ff7ab979d2c9 100644
-> --- a/drivers/net/can/grcan.c
-> +++ b/drivers/net/can/grcan.c
-> @@ -44,6 +44,8 @@
->
->  #define GRCAN_RESERVE_SIZE(slot1, slot2) (((slot2) - (slot1)) / 4 - 1)
->
-> +#define CHECK_SLOT_FDF(slot) ((slot) & GRCAN_RX_FDF)
-> +
->  struct grcan_registers {
->  	u32 conf;	/* 0x00 */
->  	u32 stat;	/* 0x04 */
-> @@ -181,8 +183,11 @@ struct grcan_registers {
->  			  | GRCAN_IRQ_TXAHBERR | GRCAN_IRQ_RXAHBERR	\
->  			  | GRCAN_IRQ_TXLOSS)
->  #define GRCAN_IRQ_DEFAULT (GRCAN_IRQ_RX | GRCAN_IRQ_TX | GRCAN_IRQ_ERROR=
-S)
-> +#define GRCAN_CTRL_MODES (CAN_CTRLMODE_LISTENONLY | CAN_CTRLMODE_ONE_SHO=
-T)
-> +#define GRCAN_CTRL_MODES_FD (CAN_CTRLMODE_LISTENONLY | CAN_CTRLMODE_ONE_=
-SHOT | CAN_CTRLMODE_FD)
+>  .../bindings/display/bridge/lontium,lt9211c.yaml   | 113 +++++++++++++++++++++
+>  1 file changed, 113 insertions(+)
 
-IMHO no need for these defines, just list the CAN_CTRLMODE
+Can't we reuse lt9211.yaml bindings for this chip version?
 
->
->  #define GRCAN_MSG_SIZE		16
-> +#define GRCAN_CLASSIC_DATA_SIZE 8
->
->  #define GRCAN_MSG_IDE		0x80000000
->  #define GRCAN_MSG_RTR		0x40000000
-> @@ -264,6 +269,12 @@ struct grcan_registers {
->  #define GRCANFD_FDBTR_PS2_BIT 5
->  #define GRCANFD_FDBTR_SJW_BIT 0
->
-> +#define GRCAN_TX_BRS  BIT(25)
-> +#define GRCAN_TX_FDF  BIT(26)
-> +
-> +#define GRCAN_RX_BRS  BIT(25)
-> +#define GRCAN_RX_FDF  BIT(26)
-> +
->  /* Hardware capabilities */
->  struct grcan_hwcap {
->  	/* CAN-FD capable, indicates GRCANFD IP.
-> @@ -326,6 +337,13 @@ struct grcan_priv {
->
->  	struct sk_buff **echo_skb;	/* We allocate this on our own */
->
-> +	/*
-> +	 * Since the CAN FD frame has a variable length, this variable is used
-> +	 * to keep track of the index of the CAN echo skb (socket buffer) frame.
-> +	 * It's important for ensuring that we correctly manage the echo skb.
-> +	 */
-> +	u32 echo_skb_idx;
-> +
->  	/* The echo skb pointer, pointing into echo_skb and indicating which
->  	 * frames can be echoed back. See the "Notes on the tx cyclic buffer
->  	 * handling"-comment for grcan_start_xmit for more details.
-> @@ -637,7 +655,7 @@ static int catch_up_echo_skb(struct net_device *dev, =
-int budget, bool echo)
->  	struct grcan_registers __iomem *regs =3D priv->regs;
->  	struct grcan_dma *dma =3D &priv->dma;
->  	struct net_device_stats *stats =3D &dev->stats;
-> -	int i, work_done;
-> +	int work_done;
->
->  	/* Updates to priv->eskbp and wake-ups of the queue needs to
->  	 * be atomic towards the reads of priv->eskbp and shut-downs
-> @@ -648,19 +666,22 @@ static int catch_up_echo_skb(struct net_device *dev=
-, int budget, bool echo)
->  	for (work_done =3D 0; work_done < budget || budget < 0; work_done++) {
->  		if (priv->eskbp =3D=3D txrd)
->  			break;
-> -		i =3D priv->eskbp / GRCAN_MSG_SIZE;
-> -		if (echo) {
-> -			/* Normal echo of messages */
-> -			stats->tx_packets++;
-> -			stats->tx_bytes +=3D can_get_echo_skb(dev, i, NULL);
-> -		} else {
-> -			/* For cleanup of untransmitted messages */
-> -			can_free_echo_skb(dev, i, NULL);
-> -		}
->
->  		priv->eskbp =3D grcan_ring_add(priv->eskbp, GRCAN_MSG_SIZE,
->  					     dma->tx.size);
->  		txrd =3D grcan_read_reg(&regs->txrd);
-> +
-> +		/* Grab the packet once the  packet is send or free untransmitted pack=
-et*/
-> +		if (priv->eskbp =3D=3D txrd) {
-> +			if (echo) {
-> +				/* Normal echo of messages */
-> +				stats->tx_packets++;
-> +				stats->tx_bytes +=3D can_get_echo_skb(dev, priv->echo_skb_idx, NULL);
-> +			} else {
-> +				/* For cleanup of untransmitted messages */
-> +				can_free_echo_skb(dev, priv->echo_skb_idx, NULL);
-> +			}
-> +		}
->  	}
->  	return work_done;
->  }
-> @@ -1174,6 +1195,7 @@ static int grcan_set_mode(struct net_device *dev, e=
-num can_mode mode)
->  			if (!(priv->can.ctrlmode & CAN_CTRLMODE_LISTENONLY))
->  				netif_wake_queue(dev);
->  		}
-> +		priv->echo_skb_idx =3D 0;
->  		spin_unlock_irqrestore(&priv->lock, flags);
->  		return err;
->  	}
-> @@ -1223,7 +1245,6 @@ static int grcan_open(struct net_device *dev)
->  		netif_start_queue(dev);
->  	priv->resetting =3D false;
->  	priv->closing =3D false;
-> -
->  	spin_unlock_irqrestore(&priv->lock, flags);
->
->  	return 0;
-> @@ -1294,20 +1315,29 @@ static void grcan_transmit_catch_up(struct net_de=
-vice *dev)
->  	spin_unlock_irqrestore(&priv->lock, flags);
->  }
->
-> +static int grcan_numbds(int len)
-> +{
-> +	if (len <=3D GRCAN_CLASSIC_DATA_SIZE)
-> +		return 1;
-> +	return 1 + ((len - GRCAN_CLASSIC_DATA_SIZE + GRCAN_MSG_SIZE) / GRCAN_MS=
-G_SIZE);
-> +}
-> +
->  static int grcan_receive(struct net_device *dev, int budget)
->  {
->  	struct grcan_priv *priv =3D netdev_priv(dev);
->  	struct grcan_registers __iomem *regs =3D priv->regs;
->  	struct grcan_dma *dma =3D &priv->dma;
->  	struct net_device_stats *stats =3D &dev->stats;
-> -	struct can_frame *cf;
-> +	struct canfd_frame *cf;
->  	struct sk_buff *skb;
-> -	u32 wr, rd, startrd;
-> +	u32 wr, rd, dlc, startrd;
->  	u32 *slot;
->  	u32 rtr, eff;
-> -	int work_done =3D 0;
-> +	u8 *data;
-> +	int i, bds, payload_offset, copy_len, work_done =3D 0;
-
-Please take care of the infamous reverse-xmas-tree.
-
->
->  	rd =3D grcan_read_reg(&regs->rxrd);
-> +
->  	startrd =3D rd;
->  	for (work_done =3D 0; work_done < budget; work_done++) {
->  		/* Check for packet to receive */
-> @@ -1315,44 +1345,70 @@ static int grcan_receive(struct net_device *dev, =
-int budget)
->  		if (rd =3D=3D wr)
->  			break;
->
-> -		/* Take care of packet */
-> -		skb =3D alloc_can_skb(dev, &cf);
-> -		if (skb =3D=3D NULL) {
-> +		slot =3D dma->rx.buf + rd;
-> +
-> +		if (CHECK_SLOT_FDF(slot[1]))
-
-IMHO "slot[1] & GRCAN_RX_FDF" is more readable
-
-> +			skb =3D alloc_canfd_skb(dev, &cf);
-> +		else
-> +			skb =3D alloc_can_skb(priv->dev, (struct can_frame **)&cf);
-> +
-> +		if (unlikely(!skb)) {
->  			netdev_err(dev,
->  				   "dropping frame: skb allocation failed\n");
->  			stats->rx_dropped++;
->  			continue;
->  		}
->
-> -		slot =3D dma->rx.buf + rd;
-> -		eff =3D slot[0] & GRCAN_MSG_IDE;
-> -		rtr =3D slot[0] & GRCAN_MSG_RTR;
-> -		if (eff) {
-> -			cf->can_id =3D ((slot[0] & GRCAN_MSG_EID)
-> -				      >> GRCAN_MSG_EID_BIT);
-> -			cf->can_id |=3D CAN_EFF_FLAG;
-> -		} else {
-> -			cf->can_id =3D ((slot[0] & GRCAN_MSG_BID)
-> -				      >> GRCAN_MSG_BID_BIT);
-> -		}
-> -		cf->len =3D can_cc_dlc2len((slot[1] & GRCAN_MSG_DLC)
-> -					  >> GRCAN_MSG_DLC_BIT);
-> -		if (rtr) {
-> -			cf->can_id |=3D CAN_RTR_FLAG;
-> -		} else {
-> -			if (cf->can_dlc > 0) {
-> -				*(u32 *)(cf->data) =3D slot[2];
-> -				if (cf->can_dlc > 4)
-> -					*(u32 *)(cf->data + 4) =3D slot[3];
-> +		dlc =3D (slot[1] & GRCAN_MSG_DLC) >> GRCAN_MSG_DLC_BIT;
-> +		if (CHECK_SLOT_FDF(slot[1]))
-> +			cf->len =3D can_fd_dlc2len(dlc);
-> +		else
-> +			cf->len =3D can_cc_dlc2len(dlc);
-> +
-> +		bds =3D grcan_numbds(cf->len);
-> +		payload_offset =3D 0;
-> +		data =3D cf->data;
-> +
-> +		for (i =3D 0; i < bds; i++) {
-> +			slot =3D dma->rx.buf + rd;
-> +
-> +			if (i =3D=3D 0) {
-> +				eff =3D slot[0] & GRCAN_MSG_IDE;
-> +				rtr =3D slot[0] & GRCAN_MSG_RTR;
-> +				if (eff) {
-> +					cf->can_id =3D ((slot[0] & GRCAN_MSG_EID)
-> +						      >> GRCAN_MSG_EID_BIT);
-
-you can use up to 100 chars now, but please move the ">>" to the end of
-the line
-
-> +					cf->can_id |=3D CAN_EFF_FLAG;
-> +				} else {
-> +					cf->can_id =3D ((slot[0] & GRCAN_MSG_BID)
-> +						      >> GRCAN_MSG_BID_BIT);
-> +				}
-> +				if (rtr)
-> +					cf->can_id |=3D CAN_RTR_FLAG;
-> +
-> +				dlc =3D (slot[1] & GRCAN_MSG_DLC) >> GRCAN_MSG_DLC_BIT;
-> +				if (CHECK_SLOT_FDF(slot[1]))
-> +					cf->len =3D can_fd_dlc2len(dlc);
-> +				else
-> +					cf->len =3D can_cc_dlc2len(dlc);
-> +
-> +				copy_len =3D min(cf->len, GRCAN_CLASSIC_DATA_SIZE);
-> +				memcpy(data, &slot[2], copy_len);
-> +				payload_offset +=3D copy_len;
-> +			} else {
-> +				copy_len =3D  min(cf->len - payload_offset, GRCAN_MSG_SIZE);
-> +				memcpy(data + payload_offset, slot, copy_len);
-> +				payload_offset +=3D copy_len;
->  			}
-> -
-> -			stats->rx_bytes +=3D cf->len;
-> +			rd +=3D GRCAN_MSG_SIZE;
-> +			if (rd >=3D dma->tx.size)
-> +				rd -=3D dma->tx.size;
->  		}
-> -		stats->rx_packets++;
->
-> +		/* Update statistics and read pointer */
-> +		stats->rx_packets++;
-> +		stats->rx_bytes +=3D cf->len;
->  		netif_receive_skb(skb);
-> -
-> -		rd =3D grcan_ring_add(rd, GRCAN_MSG_SIZE, dma->rx.size);
->  	}
->
->  	/* Make sure everything is read before allowing hardware to
-> @@ -1479,12 +1535,15 @@ static netdev_tx_t grcan_start_xmit(struct sk_buf=
-f *skb,
->  	struct grcan_priv *priv =3D netdev_priv(dev);
->  	struct grcan_registers __iomem *regs =3D priv->regs;
->  	struct grcan_dma *dma =3D &priv->dma;
-> -	struct can_frame *cf =3D (struct can_frame *)skb->data;
-> -	u32 id, txwr, txrd, space, txctrl;
-> -	int slotindex;
-> -	u32 *slot;
-> -	u32 rtr, eff, dlc, tmp, err;
-> +	struct can_frame *cf;
-> +	struct canfd_frame *cfd;
-> +	int i, bds, copy_len, payload_offset;
->  	unsigned long flags;
-> +	u8 *payload;
-> +	u8 len;
-> +	u32 *slot;
-> +	u32 eff, rtr, dlc, tmp, err, can_id;
-> +	u32 id, txwr, txrd, space, txctrl;
-
-reverse-xmas-tree for all vars you touch please
-
-regards,
-Marc
-
---
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---vo5t3wpyf3tgrk32
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmkgYwQACgkQDHRl3/mQ
-kZxAEgf/TCDu6bUZyiVTtsFPbM67cqvsjnRdEq+m+mnZDNcTldYlr7OFz9JNDtb3
-VItF/b7SEvjjWhWm5c78oSFVvcs2IzMb5FwBxiQnOA8D9OM4ZWbf+z7i1puYKTVz
-S+U4ZnYSUtv63olZ0ADluJtWKCTk6M7RHxCCP7BOcat9UVMYT9aHS0iWRCJOxpTH
-NWCtwlWyjjMMPboT8l49u8uwZkD6/DCFRKbU7bLNWNLBSzlRFMXwA7arcpZ3ANyK
-WKOXGz7Sh5um16maKrGAKhGj1Z5dXPX0NYC0Sz2Toja4o7gPJQ8p1TmNoNj+z7IE
-OG7Yp6kjSlCkgMCEZTVg3MvkHPFLWw==
-=h0wo
------END PGP SIGNATURE-----
-
---vo5t3wpyf3tgrk32--
+-- 
+With best wishes
+Dmitry
 
