@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-240911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00F15C77976
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 07:37:50 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F11C7795B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 07:35:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.lore.kernel.org (Postfix) with ESMTPS id 2F64A2CC1C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 06:35:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id A6F4C2B5A7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 06:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76609330B03;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF29F330B3E;
 	Fri, 21 Nov 2025 06:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="exrzOeio"
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="rLqrkcf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out30-112.freemail.mail.aliyun.com (out30-112.freemail.mail.aliyun.com [115.124.30.112])
+Received: from out30-111.freemail.mail.aliyun.com (out30-111.freemail.mail.aliyun.com [115.124.30.111])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C94026A1B6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645DD32FA36;
 	Fri, 21 Nov 2025 06:35:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.112
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.111
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763706913; cv=none; b=JCElhWkcEEWWcS0cC/Sx6kEdeKYoLODcfrINoMC3GWvPEeXbekZZ1fg3o5NSGGZ3r8cBYEkLMJ8h0jKs7uV74asuww5YSGQjUmkZIuT4Mp23Uv5Xt5aL/RXHttx+pxtLUow8VtTj3W2q4AdaNcKIHZoPtxUkVWkn7DfA6yvEIlM=
+	t=1763706913; cv=none; b=rFy83D7NlNgnhwlskMF0uIw/TDAqO+eVKxgifhgGsAE8luGapv15TRvL1cPouLYWCOD1wY1vYuj4pp/K6UO00EWtnIVkdjmL8VUjUH6pClyuQlRuGlMTpIrKawnJV3wCAByr0ylMPWBhcDHAQgMz0ZaqGAzFYvZ5/2c501gpYxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1763706913; c=relaxed/simple;
-	bh=kXMhAazt0uxA4yg1yuPsBKe1Mfi0G9F6GXwrhBbNi7M=;
+	bh=Zz6cCP1KSKUhcCw4A/xMGthElsJqiQrr7KctT/zep4Y=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bthc+d7AZwvQ9NR+piZ/7+viWPOTYLuHOIaJsAWscB9Op96cTFETyi5GGjWnY0pzDbr/85wy6BWJOdsLLEpxh4Huh+96lO6Kh+/SckB3sW6C7cycRLu2aNj9xni/oAUA9eeDzHLqzHblTCD6DnfGGJclZzdZHms9zBnuklOa2hU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=exrzOeio; arc=none smtp.client-ip=115.124.30.112
+	 MIME-Version; b=AVf+LCRYRa4IOsRL5HA1k5Z2UIOHWsTJr/78RyJjB9YHaaXZm0ep6YoR8XLATI/Ef1JzGkyMZxg+VA6Tlto3UTm9KnL6HMlcFUGpQcIhhQQYyA6m2uZ8NpCyXUt6VCkNdPmGFm/7yG5RXLw0eO1U1gCe+o/pv3ed0q0kXoZBH68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=rLqrkcf9; arc=none smtp.client-ip=115.124.30.111
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
 DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=linux.alibaba.com; s=default;
-	t=1763706902; h=From:To:Subject:Date:Message-ID:MIME-Version;
-	bh=48Ey0y3O33KKcN2qk5Z3Lr1o4LbwnuPTXJlui7gSguo=;
-	b=exrzOeior8XCY1q2JCWU/8P08giDZ/gyRv1ZzXVdjuvpz3Gz2UnPJhM2FXymCLcF2nY0ZfqXhoZf2amYhI/BA3etqSwyF2YG/+ObXxYxMD5ncG9FpH6TpIyTNeBk6vWkIIqVCUSmqwvwf1jixv3oH3IyQZqFfjX2d5iYmZK0v8Y=
-Received: from DESKTOP-S9E58SO.localdomain(mailfrom:cp0613@linux.alibaba.com fp:SMTPD_---0Wt-RZKC_1763706899 cluster:ay36)
+	t=1763706903; h=From:To:Subject:Date:Message-ID:MIME-Version;
+	bh=hpRbi0CeVm4uXkBY/YnhHVn+gxawjyC4Z7fefd3l0iE=;
+	b=rLqrkcf9qfKfz+kja+Ca6Qv3diX2orOQjmm2cWp+hzsL7xkCDcV8Bg4IFYZeh+eRAKpHUGggHX7wFXp3I1e1lFfCsGlJxASiXOBCVWf2qXWTNIEHuHHWDh3iIobc0vi/JQxbT4CHWLPbyl0vb82bYy3SkbzbJeHnqzHL+7MLAcQ=
+Received: from DESKTOP-S9E58SO.localdomain(mailfrom:cp0613@linux.alibaba.com fp:SMTPD_---0Wt-RZKt_1763706901 cluster:ay36)
           by smtp.aliyun-inc.com;
-          Fri, 21 Nov 2025 14:35:00 +0800
+          Fri, 21 Nov 2025 14:35:01 +0800
 From: cp0613@linux.alibaba.com
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -62,9 +62,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Chen Pei <cp0613@linux.alibaba.com>
-Subject: [PATCH v2 1/4] dt-bindings: vendor-prefixes: Add prefix for XuanTie
-Date: Fri, 21 Nov 2025 14:34:36 +0800
-Message-ID: <20251121063439.2545-2-cp0613@linux.alibaba.com>
+Subject: [PATCH v2 2/4] dt-bindings: riscv: Add XuanTie C930 CPU compatible
+Date: Fri, 21 Nov 2025 14:34:37 +0800
+Message-ID: <20251121063439.2545-3-cp0613@linux.alibaba.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251121063439.2545-1-cp0613@linux.alibaba.com>
 References: <20251121063439.2545-1-cp0613@linux.alibaba.com>
@@ -78,26 +78,25 @@ Content-Transfer-Encoding: 8bit
 
 From: Chen Pei <cp0613@linux.alibaba.com>
 
-Add new vendor strings to dt bindings for RISC-V vendor XuanTie.
+Update Documentation for supporting XuanTie C930.
 
 Signed-off-by: Chen Pei <cp0613@linux.alibaba.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index f1d1882009ba..5d28b2da94cd 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1829,6 +1829,8 @@ patternProperties:
-     description: Xilinx
-   "^xnano,.*":
-     description: Xnano
-+  "^xuantie,.*":
-+    description: C-SKY Microsystems Co., Ltd. (XuanTie)
-   "^xunlong,.*":
-     description: Shenzhen Xunlong Software CO.,Limited
-   "^xylon,.*":
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index 153d0dac57fb..581a95eba932 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -65,6 +65,7 @@ properties:
+               - thead,c908
+               - thead,c910
+               - thead,c920
++              - xuantie,c930
+           - const: riscv
+       - items:
+           - enum:
 -- 
 2.50.1
 
