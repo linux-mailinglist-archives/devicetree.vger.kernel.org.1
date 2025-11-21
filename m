@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-241158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05C3C7A591
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:59:47 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65A8DC7A6A1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 16:09:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C2393A069E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:59:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BB4DD4EE371
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B045341077;
-	Fri, 21 Nov 2025 14:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3DD3349B1E;
+	Fri, 21 Nov 2025 14:59:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T6BFudg/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IMta0Ziy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD972C11C4
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 14:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8646339708
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 14:59:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763737164; cv=none; b=CVzoQX8iTPSpUFEqWm3JMgYzSwIHfhJIMPHac3NDHqZF0qvQckxF8fhdKmTv8lvNzMS6mxQC0alLYaokYdbVjuMAW0dMIlOO1Kstk/pQMlDzc5RRTpFeE+zXB4si1JNbpVfe0S+KoevzCU6JiM6PKEHiaXIGxMtAORSgiSm8Y4U=
+	t=1763737167; cv=none; b=Mm8IVoHcZZagPaTCOYiM+PX5fr445kjYil36Oajm7SjUBvBjdRU/INjf8PuvucurhgGJLnbPoDmtebULyhQ6QWhV64+1cpW7Lc4UE17JRvyFT8W+UjiKVHYtpFDzhvqj4en7FqAz5CoDck2KckygdgI2A7ClZx2skQfW5wqgpaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763737164; c=relaxed/simple;
-	bh=0RYxF2O1I50G0xCMEk9os6H+1FU7Nj2Qsc46pGikx3E=;
+	s=arc-20240116; t=1763737167; c=relaxed/simple;
+	bh=S4sSF+WliB2XKbxy0gR75BFAM4Ei9WLGFCfdqq+fbPc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sg13ZUQNrW0hWHCGy6FXabo059CgdhZxPmR3Iv9trMnn+68oLF0H5D4soHFoqzgxL/i0Y4+NZmNCVv296TT72Mz7Z87LlJQkbLDVGHcNbQM4UL+yPRNwGY/AOBKp1p/JIcglg0g4WeUYAudrw4lv8xCHeGx47+gZsmpf6+zwh74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T6BFudg/; arc=none smtp.client-ip=209.85.222.169
+	 MIME-Version:Content-Type; b=VjsDF9KVbesL9cbb70J4B6nXxFM3V5Su+ksShfWXq7WPHzlwbnUnivFivljJfWtK2hCs9Ll58I1ueICdDFQPuAIx/Eq5+Oz5VzkQoakMyDwVnmCFvwqPJi+X18ANncrK+GuFb7JMN14OMZGmg9v3EJpsalz6uQuDxft5Fd1c36U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IMta0Ziy; arc=none smtp.client-ip=209.85.219.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-8b220ddc189so240523385a.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 06:59:20 -0800 (PST)
+Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-882360ca0e2so15505016d6.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 06:59:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763737159; x=1764341959; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1763737161; x=1764341961; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TFyXZv60JjVqu0d66mH+BvtprWywEdPKCOEamb24pyg=;
-        b=T6BFudg/EFkSEHyoKcuvqcUbrkgHwO1x1NhLBZh9XG92dvPL3MpFYZvLTM4lBHXdpR
-         m7czsHr3uk5Trfomm+Fs0g0E+dUS0ZWI/zlICbS47d91As9WaRJgOZ8xJ26r22O0CBeM
-         adpV36IYjuEzTAkjf/QDNMdUBmgLmQLNB9d7sS94NCHlWEAVLm/YPhNL8JNAwWUSTr2S
-         Jg+PFp6t0xXbjKmsIZlhTNWgMsfPkJMP+Wp43TzRj73YpvFJr4IAVUaqnhqj7RJa9Bp5
-         k1vkY91uQ5GaEJUw4857tStam9YpOS4EJMZiLLrIiOproPcLv1Z5g34+H7e6ibtxP0Xw
-         iZcQ==
+        bh=bKQjWFZ6s5v1/CJZOjpbR5CY3BsDZRl41Ly30PSlyZM=;
+        b=IMta0ZiyGtgrrT6svJNSK2hIxT7s5ugMrI+hIRG4v6AMSXmt2nUeYURTsT1uxG/tgW
+         kFvjZlst4TE5fzGYw1EFBwE6Dz6BurLHLsOtM3DpXilqn9WCg9SQ3pSLTZrtbkVpzLhX
+         yhyZMDZw0t0Xes3muOAWYn2wLDtHtEyAJPRVAaY0N8Xkct05IfaHZvdvejNSoKjWIjkw
+         dMUKABQZaQ231ahYMGpb6SN50R3gKrz9zMXQy4tl8supTOyjIUpKYNSBHghavnk2oY5y
+         jirUkuzFxkzK75gmm2zGFZoKQ2DPpqh+SYgY7e/ZHOOZHMbkr2RYRW1ssss+SukoWjOl
+         acmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763737159; x=1764341959;
+        d=1e100.net; s=20230601; t=1763737161; x=1764341961;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=TFyXZv60JjVqu0d66mH+BvtprWywEdPKCOEamb24pyg=;
-        b=ixzgjFUk4BJBzbO2k6DAW8Gj3GsWSOd2IXvty3x+MnZ0z5SJYb5yYeSUl8thepOYuk
-         YBYFD5oKpuNNevC7ymJ3QQ5nUnWUF085UwpfImuIR7g12cSVdGd1VJitGH8jS3S6J83F
-         YwFuvSh+RwaUaZuXfhro+K1pjlleOHbng2C37MMAFcjEjIez4TDi3kA9dnzk93yu6UEB
-         uzAgG3wdkeNKDYKPSNajCvQy5pMfpqFzKFoHKxvaren56uMs3dlNvCmTEtd6RYLqYKaB
-         iVhTb4pUwg/ZFNMb+MHlDWzVtpj5Dqmh5lEJ3UhbxVtTUd/zHm9H7M3jWBZEQaG9dhX2
-         WbCw==
-X-Forwarded-Encrypted: i=1; AJvYcCU27UrJu0Kk132waMTVSWb87sE/tsqcAeI0+c6G3KXVgIEn7odgCHYO2kkpCeeCsQamvDR2N7bQQAaW@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPC5UDb7yn4J+CrfEeMGem2/fSZ3JQgISoM99UZkMtJdZ4IJoT
-	GYVXGrRoL4gpw4THolkYRU00DoJtGZY94eg2YNaOEFSAydiXOsX1cQ7L
-X-Gm-Gg: ASbGnctE7T8nbYbJ5tgKdncH6IdBSFXPdyWAgmOEuTCbjAjFeT66SzX1DIe4Fl9+DIw
-	kDE+Qxlsh75ild7GRu4Mk6tBJtUqpvC3lBKDMTgwwbQMKbMwNM7Iy4oCS99FVjQO21H2MBas9Qk
-	zaVI1hbm4BWoYgpMBclTNa364jTtSH2nvWKmvBp5HyEwZq36E/exSd7+1qxfr/l3lFOYr/FYhxN
-	B8prIIEhGk9OfscELUuR8n1lxFNEbjvAmNFXZEMBdzA6fAeIgxZyKN18CZbhyivQclmlgvQ8EyR
-	iQAhiMdgBFh8fB7DN6Bg6LnMg6sMTiRZEv/cPk+NSZ/nUMkjBp5yfZ/A0oglyAiYLwOJDv4mBH5
-	3JqJzaXrhnCjk245fr2Z8lKufbZbaNAGo8DR9b87LS/LmuzPgobx2RdXhjyCvtYCXunQvs73Z66
-	eG/tLSXtwXfaCpZVOGBXXC3FLqKKDR9RwPvhRlBU+NEGoOx4QKUphzsCjE
-X-Google-Smtp-Source: AGHT+IFd4caIoqL9aFEyCoew15z3I1kr3N4w1lYRKu3YEsWf+q0KAidZs97UdhZL8qN6RoYTZlCEYA==
-X-Received: by 2002:a05:620a:46a0:b0:8b2:7165:544f with SMTP id af79cd13be357-8b33d1fd878mr311333285a.25.1763737158857;
-        Fri, 21 Nov 2025 06:59:18 -0800 (PST)
+        bh=bKQjWFZ6s5v1/CJZOjpbR5CY3BsDZRl41Ly30PSlyZM=;
+        b=sjkxNHK1jK1xwlSEfqzgI5nkjjqWxGL/sYPQJH7QRFfpOb2YnAuzB71VEe8eqgj0zL
+         QVbisqLNEudbglqTVKUB3BHaeaN221K4mbj4kqTg/CP1Br2Dn/vwQB69C8sFBI76qLVq
+         gKeU6LDButpC+TqMEilLFqs3FL7dRcUslrEiYvLy2VpwS9lz9exlAq24zWOVw5t9A/Tu
+         CEPV8q/wtXNptv1lA4PEI+sj3+pVuvKs84Oy0vIPr8XXZlpXu4EpmhYdB6dalpM9x0z7
+         QCkl0itprQQcjPGyR3AB1fgCMHSPZJ56l+xZHnhgtvgfk8u+IiUeLqPQ33AI5A7g61KQ
+         QIHg==
+X-Forwarded-Encrypted: i=1; AJvYcCVjYbo8ChWuUD+32zXiLd3KmDXLqo2adSuNpEZtrLJbc5NBVACCezB3EL9xmMK2cHvTKoXFWwUvGckX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMSABR8YoawDLjDuiimEKvGjfZIIhRCc8rwWptb0FlBRmWhKba
+	CPVIWfajerCbtW2z51UpN7+DmkdO+CXqeqvfsQbZFE/0SLKbYiWG2oAYfXOYmWB6
+X-Gm-Gg: ASbGncuOaQIJeabyR3fZmBSf1MQVWCqMrGMDFO4yB+mOhY6CSSC6Zprqt1Hf5x6jAfx
+	hbODPq4EWMqdf3uao8GOwUu9EAWdOQ4SV1Y5wAtDIZmF4pkB2X1F1QIj33F1YfONELVbyVcpntO
+	2NCSmqHUeg9p3y2hNIbMIOg91uudI4Q0jkgwqqZ1mhEankpNRAxGI6RmNSuHATcZUovuIV3kuj4
+	Of0nVnz41FjhuydDamvViRs7KRBQG6vijpzINCRrtI1F4UtKRJbSjcTlTd4P+zM6nuHqhEJqVkc
+	KeXO/2nPOzh16WWMboi93CQaNYWW5lWEOPhHR2XWLW5b68hE6D/ZLuMeN3SHPLtbKRiHiJs/jqi
+	cU31k3oj3z+J8UsSflxrZ2j9RnZtNfqjDaFgMwOxUQl2lS+SLGJXSxx1Nc3B7f7BLai/uEqaZPu
+	lpMz050i2uWeMb2XwFlR4b2m8CWcGAjVvhGpJCNxhIcNrW24WFPZl+bruO
+X-Google-Smtp-Source: AGHT+IHwXqp7GKbFTLcYiJEWWM4gZ6I0auGFdL7cg8+sE9liHZy0zat6xP/oDFOT/uo59MrPrE0qng==
+X-Received: by 2002:a05:620a:7106:b0:8b2:e5da:d316 with SMTP id af79cd13be357-8b33d48b7d4mr277231785a.87.1763737160462;
+        Fri, 21 Nov 2025 06:59:20 -0800 (PST)
 Received: from localhost (modemcable197.17-162-184.mc.videotron.ca. [184.162.17.197])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8b32932ba76sm388744785a.4.2025.11.21.06.59.18
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8b329431460sm376873585a.15.2025.11.21.06.59.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Nov 2025 06:59:18 -0800 (PST)
+        Fri, 21 Nov 2025 06:59:20 -0800 (PST)
 From: =?UTF-8?q?Jean-Fran=C3=A7ois=20Lessard?= <jefflessard3@gmail.com>
 To: Andy Shevchenko <andy@kernel.org>,
 	Geert Uytterhoeven <geert@linux-m68k.org>,
@@ -82,10 +82,13 @@ To: Andy Shevchenko <andy@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
 Cc: linux-kernel@vger.kernel.org,
 	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v6 3/7] dt-bindings: auxdisplay: add Titan Micro Electronics TM16xx
-Date: Fri, 21 Nov 2025 09:59:03 -0500
-Message-ID: <20251121145911.176033-4-jefflessard3@gmail.com>
+	devicetree@vger.kernel.org,
+	Paolo Sabatino <paolo.sabatino@gmail.com>,
+	Christian Hewitt <christianshewitt@gmail.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v6 4/7] auxdisplay: Add TM16xx 7-segment LED matrix display controllers driver
+Date: Fri, 21 Nov 2025 09:59:04 -0500
+Message-ID: <20251121145911.176033-5-jefflessard3@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251121145911.176033-1-jefflessard3@gmail.com>
 References: <20251121145911.176033-1-jefflessard3@gmail.com>
@@ -98,527 +101,760 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add documentation for TM16xx-compatible 7-segment LED display controllers
-with keyscan.
+Add driver for TM16xx family LED controllers and compatible chips from
+multiple vendors including Titan Micro, Fuda Hisi, i-Core, Princeton, and
+Winrise. These controllers drive 7-segment digits and individual LED icons
+through either I2C or SPI buses.
 
+Successfully tested on various ARM TV boxes including H96 Max, Magicsee N5,
+Tanix TX3 Mini, Tanix TX6, X92, and X96 Max across different SoC platforms
+(Rockchip, Amlogic, Allwinner).
+
+Acked-by: Paolo Sabatino <paolo.sabatino@gmail.com> # As primary user, integrated tm16xx into Armbian rockchip64
+Acked-by: Christian Hewitt <christianshewitt@gmail.com> # As primary user, integrated tm16xx into LibreElec
+Tested-by: Paolo Sabatino <paolo.sabatino@gmail.com> # Tested on H96 Max (XY_RK3328)
+Tested-by: Christian Hewitt <christianshewitt@gmail.com> # Tested on X96 Max, Tanix TX3 Mini
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> # Tested on Tanix TX3 Mini
 Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
 ---
 
 Notes:
-    The 'segments' property is intentionally not vendor-prefixed as it
-    defines a generic hardware description concept applicable to any
-    7-segment display controller. The property describes the fundamental
-    grid/segment coordinate mapping that is controller-agnostic and could
-    be reused by other LED matrix display bindings. Similar to how 'gpios'
-    describes GPIO connections generically, 'segments' describes segment
-    connections in a standardized way using uint32-matrix format.
+    checkpatch reports false positives that are intentionally ignored:
+    BIT_MACRO: bit shifts are used for field values while GENMASK/BIT
+    are used for bit positions per semantic convention
     
-    The property uses explicit coordinate pairs to handle real-world
-    hardware variations. Some board manufacturers use standard layouts
-    (same grid, different segments per digit) while others use transposed
-    layouts (same segment, different grids per digit). The coordinate-pair
-    approach accommodates both patterns without requiring separate arrays
-    or boolean flags, as confirmed acceptable by DT maintainers.
+    LED registration uses non-devm variant on-purpose to allow explicit
+    unregistration on device removal, ensuring LED triggers are
+    immediately stopped. This prevents stale LED trigger activity from
+    continuing after the hardware is gone, avoiding the need for complex
+    state tracking in brightness callbacks.
 
-    Retained 'properties:' wrapper for spi-3wire in conditional block.
-    Rob Herring suggested removing it, but dt_binding_check requires
-    explicit 'properties:' context when referencing peripheral
-    properties within allOf conditional sections to satisfy
-    unevaluatedProperties validation. This follows the pattern in
-    spi-controller.yaml itself.
+ MAINTAINERS                      |   2 +
+ drivers/auxdisplay/Kconfig       |  12 +
+ drivers/auxdisplay/Makefile      |   2 +
+ drivers/auxdisplay/tm16xx.h      | 175 +++++++++++
+ drivers/auxdisplay/tm16xx_core.c | 484 +++++++++++++++++++++++++++++++
+ 5 files changed, 675 insertions(+)
+ create mode 100644 drivers/auxdisplay/tm16xx.h
+ create mode 100644 drivers/auxdisplay/tm16xx_core.c
 
- .../bindings/auxdisplay/titanmec,tm16xx.yaml  | 465 ++++++++++++++++++
- MAINTAINERS                                   |   5 +
- 2 files changed, 470 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
-
-diff --git a/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
-new file mode 100644
-index 000000000000..a852d8b8882c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
-@@ -0,0 +1,465 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/auxdisplay/titanmec,tm16xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Auxiliary displays based on TM16xx and compatible LED controllers
-+
-+maintainers:
-+  - Jean-François Lessard <jefflessard3@gmail.com>
-+
-+description: |
-+  LED matrix controllers used in auxiliary display devices that drive individual
-+  LED icons and 7-segment digit groups through a grid/segment addressing scheme.
-+  Controllers manage a matrix of LEDs organized as grids (columns/banks in
-+  vendor datasheets) and segments (rows/bit positions in vendor datasheets).
-+  Maximum brightness and grid/segment indices are controller-specific.
-+  Controller-specific maximum are validated in the driver.
-+
-+  The controller is agnostic of the display layout. Board-specific LED wiring is
-+  described through child nodes that specify grid/segment coordinates for
-+  individual icons and segment mapping for 7-segment digits.
-+
-+  The bindings use separate 'leds' and 'digits' containers to accommodate
-+  different addressing schemes:
-+  - LEDs use 2-cell addressing (grid, segment) for matrix coordinates
-+  - Digits use 1-cell addressing with explicit segment mapping
-+
-+  The controller node exposes a logical LED-like control for the aggregate
-+  display brightness. Child nodes describe individual icons and 7-seg digits.
-+  The top-level control supports only label and brightness-related properties
-+  and does not support other common LED properties such as color or function.
-+  Child LED nodes use the standard LED binding.
-+
-+  Optional keypad scanning is supported when both 'linux,keymap' and
-+  'poll-interval' properties are specified.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fdhisi,fd628
-+              - princeton,pt6964
-+              - wxicore,aip1628
-+          - const: titanmec,tm1628
-+      - items:
-+          - enum:
-+              - wxicore,aip1618
-+          - const: titanmec,tm1618
-+      - items:
-+          - enum:
-+              - fdhisi,fd650
-+              - wxicore,aip650
-+          - const: titanmec,tm1650
-+      - enum:
-+          - fdhisi,fd620
-+          - fdhisi,fd655
-+          - fdhisi,fd6551
-+          - titanmec,tm1618
-+          - titanmec,tm1620
-+          - titanmec,tm1628
-+          - titanmec,tm1638
-+          - titanmec,tm1650
-+          - winrise,hbs658
-+
-+  reg:
-+    maxItems: 1
-+
-+  label:
-+    description:
-+      The label for the top-level LED. If omitted, the label is taken from the
-+      node name (excluding the unit address). It has to uniquely identify a
-+      device, i.e. no other LED class device can be assigned the same label.
-+
-+  max-brightness:
-+    minimum: 0  # 0=off
-+    maximum: 8  # Maximum across all TM16xx controllers
-+    description:
-+      Normally the maximum brightness is determined by the hardware and this
-+      property is not required. This property is used to put a software limit
-+      on the brightness apart from what the driver says, as it could happen
-+      that a LED can be made so bright that it gets damaged or causes damage
-+      due to restrictions in a specific system, such as mounting conditions.
-+
-+  default-brightness:
-+    minimum: 0  # 0=off
-+    maximum: 8  # Maximum across all TM16xx controllers
-+    description:
-+      Brightness to be set if LED's default state is on. Used only during
-+      initialization. If the option is not set then max brightness is used.
-+
-+  digits:
-+    type: object
-+    description: Container for 7-segment digit group definitions
-+    additionalProperties: false
-+
-+    properties:
-+      "#address-cells":
-+        const: 1
-+      "#size-cells":
-+        const: 0
-+
-+    patternProperties:
-+      "^digit@[0-9a-f]+$":
-+        type: object
-+        unevaluatedProperties: false
-+
-+        properties:
-+          reg:
-+            description:
-+              Digit position identifier numbered sequentially left-to-right,
-+              with reg=0 representing the leftmost digit position as displayed
-+              to the user.
-+            maxItems: 1
-+
-+          segments:
-+            $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+            description: |
-+              Array of grid/segment coordinate pairs for each 7-segment position.
-+              Each entry is <grid segment> mapping to standard 7-segment positions
-+              in order: a, b, c, d, e, f, g
-+
-+              Standard 7-segment layout:
-+                 aaa
-+                f   b
-+                f   b
-+                 ggg
-+                e   c
-+                e   c
-+                 ddd
-+            items:
-+              items:
-+                - description: Grid index
-+                - description: Segment index
-+            minItems: 7
-+            maxItems: 7
-+
-+        required:
-+          - reg
-+          - segments
-+
-+  leds:
-+    type: object
-+    description: Container for individual LED icon definitions
-+    additionalProperties: false
-+
-+    properties:
-+      "#address-cells":
-+        const: 2
-+      "#size-cells":
-+        const: 0
-+
-+    patternProperties:
-+      "^led@[0-9a-f]+,[0-9a-f]+$":
-+        type: object
-+        description:
-+          Individual LED icon addressed by <grid>,<segment> matrix coordinates.
-+        $ref: /schemas/leds/common.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          reg:
-+            description:
-+              Grid and segment indices as <grid segment> of this individual LED icon
-+
-+        required:
-+          - reg
-+
-+dependencies:
-+  poll-interval:
-+    - linux,keymap
-+  linux,keymap:
-+    - poll-interval
-+  autorepeat:
-+    - linux,keymap
-+    - poll-interval
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/leds/common.yaml#
-+    properties:
-+      color: false
-+      function: false
-+      function-enumerator: false
-+  - $ref: /schemas/input/input.yaml#
-+  - $ref: /schemas/input/matrix-keymap.yaml#
-+  # SPI controllers require 3-wire (combined MISO/MOSI line)
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fdhisi,fd620
-+              - fdhisi,fd628
-+              - princeton,pt6964
-+              - titanmec,tm1618
-+              - titanmec,tm1620
-+              - titanmec,tm1628
-+              - titanmec,tm1638
-+              - wxicore,aip1618
-+              - wxicore,aip1628
-+    then:
-+      $ref: /schemas/spi/spi-peripheral-props.yaml#
-+      properties:
-+        spi-3wire: true
-+      required:
-+        - spi-3wire
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    // I2C example: Magicsee N5 TV box with fd655 controller
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      display@24 {
-+        reg = <0x24>;
-+        compatible = "fdhisi,fd655";
-+
-+        digits {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+          digit@0 {
-+            reg = <0>;
-+            segments = <1 3>, <1 4>, <1 5>, <1 0>, <1 1>, <1 2>, <1 6>;
-+          };
-+          digit@1 {
-+            reg = <1>;
-+            segments = <2 3>, <2 4>, <2 5>, <2 0>, <2 1>, <2 2>, <2 6>;
-+          };
-+          digit@2 {
-+            reg = <2>;
-+            segments = <3 3>, <3 4>, <3 5>, <3 0>, <3 1>, <3 2>, <3 6>;
-+          };
-+          digit@3 {
-+            reg = <3>;
-+            segments = <4 3>, <4 4>, <4 5>, <4 0>, <4 1>, <4 2>, <4 6>;
-+          };
-+        };
-+
-+        leds {
-+          #address-cells = <2>;
-+          #size-cells = <0>;
-+          led@0,0 {
-+            reg = <0 0>;
-+            function = LED_FUNCTION_ALARM;
-+          };
-+          led@0,1 {
-+            reg = <0 1>;
-+            function = LED_FUNCTION_USB;
-+          };
-+          led@0,2 {
-+            reg = <0 2>;
-+            function = "play";
-+          };
-+          led@0,3 {
-+            reg = <0 3>;
-+            function = "pause";
-+          };
-+          led@0,4 {
-+            reg = <0 4>;
-+            function = "colon";
-+          };
-+          led@0,5 {
-+            reg = <0 5>;
-+            function = LED_FUNCTION_LAN;
-+          };
-+          led@0,6 {
-+            reg = <0 6>;
-+            function = LED_FUNCTION_WLAN;
-+          };
-+        };
-+      };
-+    };
-+
-+  - |
-+    #include <dt-bindings/input/input.h>
-+
-+    // SPI example: TM1638 module with keypad support
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      display@0 {
-+        reg = <0>;
-+        compatible = "titanmec,tm1638";
-+        spi-3wire;
-+        spi-lsb-first;
-+        spi-max-frequency = <500000>;
-+
-+        label = "tm1638";
-+        default-brightness = <2>;
-+        max-brightness = <4>;
-+        poll-interval = <100>;
-+        linux,keymap = <MATRIX_KEY(2, 0, KEY_F1)
-+                        MATRIX_KEY(2, 2, KEY_F2)
-+                        MATRIX_KEY(2, 4, KEY_F3)
-+                        MATRIX_KEY(2, 6, KEY_F4)
-+                        MATRIX_KEY(2, 1, KEY_F5)
-+                        MATRIX_KEY(2, 3, KEY_F6)
-+                        MATRIX_KEY(2, 5, KEY_F7)
-+                        MATRIX_KEY(2, 7, KEY_F8)>;
-+
-+        digits {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          digit@0 {
-+            reg = <0>;
-+            segments = <7 0>, <7 1>, <7 2>, <7 3>, <7 4>, <7 5>, <7 6>;
-+          };
-+
-+          digit@1 {
-+            reg = <1>;
-+            segments = <6 0>, <6 1>, <6 2>, <6 3>, <6 4>, <6 5>, <6 6>;
-+          };
-+
-+          digit@2 {
-+            reg = <2>;
-+            segments = <5 0>, <5 1>, <5 2>, <5 3>, <5 4>, <5 5>, <5 6>;
-+          };
-+
-+          digit@3 {
-+            reg = <3>;
-+            segments = <4 0>, <4 1>, <4 2>, <4 3>, <4 4>, <4 5>, <4 6>;
-+          };
-+
-+          digit@4 {
-+            reg = <4>;
-+            segments = <3 0>, <3 1>, <3 2>, <3 3>, <3 4>, <3 5>, <3 6>;
-+          };
-+
-+          digit@5 {
-+            reg = <5>;
-+            segments = <2 0>, <2 1>, <2 2>, <2 3>, <2 4>, <2 5>, <2 6>;
-+          };
-+
-+          digit@6 {
-+            reg = <6>;
-+            segments = <1 0>, <1 1>, <1 2>, <1 3>, <1 4>, <1 5>, <1 6>;
-+          };
-+
-+          digit@7 {
-+            reg = <7>;
-+            segments = <0 0>, <0 1>, <0 2>, <0 3>, <0 4>, <0 5>, <0 6>;
-+          };
-+        };
-+
-+        leds {
-+          #address-cells = <2>;
-+          #size-cells = <0>;
-+
-+          led@0,7 {
-+            reg = <0 7>;
-+          };
-+
-+          led@1,7 {
-+            reg = <1 7>;
-+          };
-+
-+          led@2,7 {
-+            reg = <2 7>;
-+          };
-+
-+          led@3,7 {
-+            reg = <3 7>;
-+          };
-+
-+          led@4,7 {
-+            reg = <4 7>;
-+          };
-+
-+          led@5,7 {
-+            reg = <5 7>;
-+          };
-+
-+          led@6,7 {
-+            reg = <6 7>;
-+          };
-+
-+          led@7,7 {
-+            reg = <7 7>;
-+          };
-+        };
-+      };
-+    };
-+
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    // SPI example: X96 Max with transposed layout (fd628 with tm1628 fallback)
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      display@0 {
-+        reg = <0>;
-+        compatible = "fdhisi,fd628", "titanmec,tm1628";
-+        spi-3wire;
-+        spi-lsb-first;
-+        spi-max-frequency = <500000>;
-+
-+        digits {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+          digit@0 {
-+            reg = <0>;
-+            segments = <0 7>, <1 7>, <2 7>, <3 7>, <4 7>, <5 7>, <6 7>;
-+          };
-+          digit@1 {
-+            reg = <1>;
-+            segments = <0 6>, <1 6>, <2 6>, <3 6>, <4 6>, <5 6>, <6 6>;
-+          };
-+          digit@2 {
-+            reg = <2>;
-+            segments = <0 5>, <1 5>, <2 5>, <3 5>, <4 5>, <5 5>, <6 5>;
-+          };
-+          digit@3 {
-+            reg = <3>;
-+            segments = <0 4>, <1 4>, <2 4>, <3 4>, <4 4>, <5 4>, <6 4>;
-+          };
-+        };
-+
-+        leds {
-+          #address-cells = <2>;
-+          #size-cells = <0>;
-+          led@0,3 {
-+            reg = <0 3>;
-+            function = "apps";
-+          };
-+          led@1,3 {
-+            reg = <1 3>;
-+            function = "setup";
-+          };
-+          led@2,3 {
-+            reg = <2 3>;
-+            function = LED_FUNCTION_USB;
-+          };
-+          led@3,3 {
-+            reg = <3 3>;
-+            function = LED_FUNCTION_SD;
-+          };
-+          led@4,3 {
-+            reg = <4 3>;
-+            function = "colon";
-+          };
-+          led@5,3 {
-+            reg = <5 3>;
-+            function = "hdmi";
-+          };
-+          led@6,3 {
-+            reg = <6 3>;
-+            function = "video";
-+          };
-+        };
-+      };
-+    };
 diff --git a/MAINTAINERS b/MAINTAINERS
-index e64b94e6b5a9..8ccf02ca2544 100644
+index 8ccf02ca2544..d9badf2c24ba 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -25914,6 +25914,11 @@ W:	http://sourceforge.net/projects/tlan/
- F:	Documentation/networking/device_drivers/ethernet/ti/tlan.rst
- F:	drivers/net/ethernet/ti/tlan.*
+@@ -25918,6 +25918,8 @@ TM16XX-COMPATIBLE LED CONTROLLERS DISPLAY DRIVER
+ M:	Jean-François Lessard <jefflessard3@gmail.com>
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
++F:	drivers/auxdisplay/tm16xx.h
++F:	drivers/auxdisplay/tm16xx_core.c
  
-+TM16XX-COMPATIBLE LED CONTROLLERS DISPLAY DRIVER
-+M:	Jean-François Lessard <jefflessard3@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
-+
  TMIO/SDHI MMC DRIVER
  M:	Wolfram Sang <wsa+renesas@sang-engineering.com>
- L:	linux-mmc@vger.kernel.org
+diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
+index bedc6133f970..6b7c04902649 100644
+--- a/drivers/auxdisplay/Kconfig
++++ b/drivers/auxdisplay/Kconfig
+@@ -526,6 +526,18 @@ config SEG_LED_GPIO
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called seg-led-gpio.
+ 
++config TM16XX
++	tristate "TM16xx LED matrix display controllers" if COMPILE_TEST
++	select LEDS_CLASS
++	select LEDS_TRIGGERS
++	select LINEDISP
++	select NEW_LEDS
++	help
++	  Core support for TM16xx-compatible 7-segment LED matrix display
++	  controllers from multiple vendors (Titan Micro, Fuda Hisi, i-Core,
++	  Princeton, Winrise). Provides LED class integration for display
++	  control and optional keypad scanning support.
++
+ #
+ # Character LCD with non-conforming interface section
+ #
+diff --git a/drivers/auxdisplay/Makefile b/drivers/auxdisplay/Makefile
+index f5c13ed1cd4f..7ecf3cd4a0d3 100644
+--- a/drivers/auxdisplay/Makefile
++++ b/drivers/auxdisplay/Makefile
+@@ -16,3 +16,5 @@ obj-$(CONFIG_LINEDISP)		+= line-display.o
+ obj-$(CONFIG_MAX6959)		+= max6959.o
+ obj-$(CONFIG_PARPORT_PANEL)	+= panel.o
+ obj-$(CONFIG_SEG_LED_GPIO)	+= seg-led-gpio.o
++obj-$(CONFIG_TM16XX)		+= tm16xx.o
++tm16xx-y			+= tm16xx_core.o
+diff --git a/drivers/auxdisplay/tm16xx.h b/drivers/auxdisplay/tm16xx.h
+new file mode 100644
+index 000000000000..ef6c004f9d89
+--- /dev/null
++++ b/drivers/auxdisplay/tm16xx.h
+@@ -0,0 +1,175 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * TM16xx and compatible LED display/keypad controller driver
++ * Supports TM16xx, FD6xx, PT6964, HBS658, AIP16xx and related chips.
++ *
++ * Copyright (C) 2025 Jean-François Lessard
++ */
++
++#ifndef _TM16XX_H
++#define _TM16XX_H
++
++#include <linux/bits.h>
++#include <linux/bitfield.h>
++#include <linux/leds.h>
++#include <linux/mutex.h>
++#include <linux/types.h>
++#include <linux/workqueue.h>
++
++#include "line-display.h"
++
++/* Common bit field definitions */
++
++/* Command type bits (bits 7-6) */
++#define TM16XX_CMD_MASK		GENMASK(7, 6)
++#define TM16XX_CMD_MODE		(0 << 6)
++#define TM16XX_CMD_DATA		(1 << 6)
++#define TM16XX_CMD_CTRL		(2 << 6)
++#define TM16XX_CMD_ADDR		(3 << 6)
++#define TM16XX_CMD_WRITE	(TM16XX_CMD_DATA | TM16XX_DATA_MODE_WRITE)
++#define TM16XX_CMD_READ		(TM16XX_CMD_DATA | TM16XX_DATA_MODE_READ)
++
++/* Mode command grid settings (bits 1-0) */
++#define TM16XX_MODE_GRID_MASK	GENMASK(1, 0)
++#define TM16XX_MODE_4GRIDS	(0 << 0)
++#define TM16XX_MODE_5GRIDS	(1 << 0)
++#define TM16XX_MODE_6GRIDS	(2 << 0)
++#define TM16XX_MODE_7GRIDS	(3 << 0)
++
++/* Data command settings */
++#define TM16XX_DATA_ADDR_MASK	BIT(2)
++#define TM16XX_DATA_ADDR_AUTO	(0 << 2)
++#define TM16XX_DATA_ADDR_FIXED	(1 << 2)
++#define TM16XX_DATA_MODE_MASK	GENMASK(1, 0)
++#define TM16XX_DATA_MODE_WRITE	(0 << 0)
++#define TM16XX_DATA_MODE_READ	(2 << 0)
++
++/* Control command settings */
++#define TM16XX_CTRL_BR_MASK	GENMASK(2, 0)
++#define TM16XX_CTRL_ON		(1 << 3)
++
++/* TM1618 specific constants */
++#define TM1618_BYTE1_MASK	GENMASK(4, 0)
++#define TM1618_BYTE2_MASK	GENMASK(7, 5)
++#define TM1618_BYTE2_SHIFT	3
++#define TM1618_KEY_READ_LEN	3
++#define TM1618_KEY_MASK		(BIT(4) | BIT(1))
++
++/* TM1628 specific constants */
++#define TM1628_BYTE1_MASK	GENMASK(7, 0)
++#define TM1628_BYTE2_MASK	GENMASK(13, 8)
++#define TM1628_KEY_READ_LEN	5
++#define TM1628_KEY_MASK		(GENMASK(4, 3) | GENMASK(1, 0))
++
++/* TM1638 specific constants */
++#define TM1638_KEY_READ_LEN	4
++#define TM1638_KEY_MASK		(GENMASK(6, 4) | GENMASK(2, 0))
++
++/* FD620 specific constants */
++#define FD620_BYTE1_MASK	GENMASK(6, 0)
++
++#define FD620_BYTE2_MASK	BIT(7)
++#define FD620_BYTE2_SHIFT	5
++#define FD620_KEY_READ_LEN	4
++#define FD620_KEY_MASK		(BIT(3) | BIT(0))
++
++/* I2C controller addresses and control settings */
++#define TM1650_CMD_CTRL		0x48
++#define TM1650_CMD_READ		0x4F
++#define TM1650_CMD_ADDR		0x68
++#define TM1650_CTRL_BR_MASK	GENMASK(6, 4)
++#define TM1650_CTRL_ON		(1 << 0)
++#define TM1650_CTRL_SLEEP	(1 << 2)
++#define TM1650_CTRL_SEG_MASK	BIT(3)
++#define TM1650_CTRL_SEG8_MODE	(0 << 3)
++#define TM1650_CTRL_SEG7_MODE	(1 << 3)
++#define TM1650_KEY_ROW_MASK	GENMASK(1, 0)
++#define TM1650_KEY_COL_MASK	GENMASK(5, 3)
++#define TM1650_KEY_DOWN_MASK	BIT(6)
++#define TM1650_KEY_COMBINED	GENMASK(5, 3)
++
++#define FD655_CMD_CTRL		0x48
++#define FD655_CMD_ADDR		0x66
++#define FD655_CTRL_BR_MASK	GENMASK(6, 5)
++#define FD655_CTRL_ON		(1 << 0)
++
++#define FD6551_CTRL_BR_MASK	GENMASK(3, 1)
++#define FD6551_CTRL_ON		(1 << 0)
++
++#define HBS658_KEY_COL_MASK	GENMASK(7, 5)
++
++#define TM16XX_CTRL_BRIGHTNESS(on, val, prefix) \
++	((on) ? (FIELD_PREP(prefix##_CTRL_BR_MASK, (val)) | prefix##_CTRL_ON) : 0)
++
++/* Forward declarations */
++struct device;
++struct tm16xx_display;
++struct tm16xx_digit;
++struct tm16xx_led;
++
++/**
++ * struct tm16xx_controller - Controller-specific operations and limits
++ * @max_grids: Maximum number of grids supported by the controller.
++ * @max_segments: Maximum number of segments supported by the controller.
++ * @max_brightness: Maximum brightness level supported by the controller.
++ * @max_key_rows: Maximum number of key input rows supported by the controller.
++ * @max_key_cols: Maximum number of key input columns supported by the controller.
++ * @init: Pointer to controller mode/brightness configuration function.
++ * @data: Pointer to function writing display data to the controller.
++ * @keys: Pointer to function reading controller key state into bitmap.
++ *
++ * Holds function pointers and limits for controller-specific operations.
++ */
++struct tm16xx_controller {
++	u8 max_grids;
++	u8 max_segments;
++	u8 max_brightness;
++	u8 max_key_rows;
++	u8 max_key_cols;
++	int (*init)(struct tm16xx_display *display);
++	int (*data)(struct tm16xx_display *display, u8 index, unsigned int grid);
++	int (*keys)(struct tm16xx_display *display);
++};
++
++/**
++ * struct tm16xx_display - Main driver structure for the display
++ * @dev: Pointer to device struct.
++ * @controller: Controller-specific function table and limits.
++ * @linedisp: character line display structure
++ * @spi_buffer: DMA-safe buffer for SPI transactions, or NULL for I2C.
++ * @num_hwgrid: Number of controller grids in use.
++ * @num_hwseg: Number of controller segments in use.
++ * @main_led: LED class device for the entire display.
++ * @leds: Array of individual LED icon structures.
++ * @num_leds: Number of individual LED icons.
++ * @digits: Array of 7-segment digit structures.
++ * @num_digits: Number of 7-segment digits.
++ * @flush_init: Work struct for configuration update.
++ * @flush_display: Work struct for display update.
++ * @flush_status: Status/result of last flush work.
++ * @lock: Mutex protecting concurrent access to work operations.
++ * @state: Bitmap holding current raw display state.
++ */
++struct tm16xx_display {
++	struct device *dev;
++	const struct tm16xx_controller *controller;
++	struct linedisp linedisp;
++	u8 *spi_buffer;
++	u8 num_hwgrid;
++	u8 num_hwseg;
++	struct led_classdev main_led;
++	struct tm16xx_led *leds;
++	u8 num_leds;
++	struct tm16xx_digit *digits;
++	u8 num_digits;
++	struct work_struct flush_init;
++	struct work_struct flush_display;
++	int flush_status;
++	struct mutex lock; /* prevents concurrent work operations */
++	unsigned long *state;
++};
++
++int tm16xx_probe(struct tm16xx_display *display);
++void tm16xx_remove(struct tm16xx_display *display);
++
++#endif /* _TM16XX_H */
+diff --git a/drivers/auxdisplay/tm16xx_core.c b/drivers/auxdisplay/tm16xx_core.c
+new file mode 100644
+index 000000000000..9c29b7fb1635
+--- /dev/null
++++ b/drivers/auxdisplay/tm16xx_core.c
+@@ -0,0 +1,484 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * TM16xx and compatible LED display/keypad controller driver
++ * Supports TM16xx, FD6xx, PT6964, HBS658, AIP16xx and related chips.
++ *
++ * Concurrency model:
++ * - Atomic display state bitmap writes for LED triggers in atomic context
++ * - Non-atomic display state reads in flush work provide eventual consistency
++ * - Mutex serializes hardware I2C/SPI transactions (sleeping context)
++ * - Workqueue prevents same work item running concurrently
++ *
++ * Uses explicit resource management (non-devm) for LEDs and workqueues
++ * to enforce removal ordering: unregister LEDs first to stop triggers
++ * before hardware cleanup, preventing use-after-free.
++ *
++ * Copyright (C) 2025 Jean-François Lessard
++ */
++
++#include <linux/bits.h>
++#include <linux/bitfield.h>
++#include <linux/bitmap.h>
++#include <linux/cleanup.h>
++#include <linux/container_of.h>
++#include <linux/device.h>
++#include <linux/leds.h>
++#include <linux/map_to_7segment.h>
++#include <linux/module.h>
++#include <linux/mutex.h>
++#include <linux/property.h>
++#include <linux/sysfs.h>
++#include <linux/types.h>
++#include <linux/workqueue.h>
++
++#include "line-display.h"
++
++#include "tm16xx.h"
++
++#define TM16XX_DIGIT_SEGMENTS	7
++
++#define linedisp_to_tm16xx(display)	container_of(display, struct tm16xx_display, linedisp)
++
++/**
++ * struct tm16xx_led - Individual LED icon mapping
++ * @cdev: LED class device for sysfs interface.
++ * @hwgrid: Controller grid index of the LED.
++ * @hwseg: Controller segment index of the LED.
++ */
++struct tm16xx_led {
++	struct led_classdev cdev;
++	u8 hwgrid;
++	u8 hwseg;
++};
++
++/**
++ * struct tm16xx_digit - 7-segment digit mapping and value
++ * @hwgrids: Array mapping each 7-segment position to a grid on the controller.
++ * @hwsegs: Array mapping each 7-segment position to a segment on the controller.
++ * @value: Current character value displayed on this digit.
++ */
++struct tm16xx_digit {
++	u8 hwgrids[TM16XX_DIGIT_SEGMENTS];
++	u8 hwsegs[TM16XX_DIGIT_SEGMENTS];
++};
++
++/* state bitmap helpers */
++/**
++ * tm16xx_led_nbits() - Number of bits used for the display state bitmap
++ * @display: pointer to tm16xx_display
++ *
++ * Return: total bits in the display state bitmap (grids * segments)
++ */
++static inline unsigned int tm16xx_led_nbits(const struct tm16xx_display *display)
++{
++	return display->num_hwgrid * display->num_hwseg;
++}
++
++/**
++ * tm16xx_set_seg() - Set the display state for a specific grid/segment
++ * @display: pointer to tm16xx_display
++ * @hwgrid: grid index
++ * @hwseg: segment index
++ * @on: %true to turn on, %false to turn off
++ *
++ * Atomic display state bitmap writes. May execute in atomic context.
++ */
++static inline void tm16xx_set_seg(const struct tm16xx_display *display,
++				  const u8 hwgrid, const u8 hwseg, const bool on)
++{
++	assign_bit(hwgrid * display->num_hwseg + hwseg, display->state, on);
++}
++
++/**
++ * tm16xx_get_grid() - Get the current segment pattern for a grid
++ * @display: pointer to tm16xx_display
++ * @index: grid index
++ *
++ * Non-atomic display state reads. Flush work provide eventual consistency.
++ *
++ * Return: bit pattern of all segments for the given grid
++ */
++static inline unsigned int tm16xx_get_grid(const struct tm16xx_display *display,
++					   const unsigned int index)
++{
++	return bitmap_read(display->state, index * display->num_hwseg, display->num_hwseg);
++}
++
++/* main display */
++/**
++ * tm16xx_display_flush_init() - Workqueue to configure controller and set brightness
++ * @work: pointer to work_struct
++ *
++ * Configures controller and sets brightness. If an error occurs the error code
++ * is stored in flush_status for upper layers to handle.
++ *
++ * Flush operations use mutex to serialize hardware transactions. Workqueue
++ * allows non-atomic context and ensures the same work never runs concurrently.
++ */
++static void tm16xx_display_flush_init(struct work_struct *work)
++{
++	struct tm16xx_display *display = container_of(work, struct tm16xx_display, flush_init);
++	int ret;
++
++	if (!display->controller->init)
++		return;
++
++	guard(mutex)(&display->lock);
++
++	ret = display->controller->init(display);
++	display->flush_status = ret;
++	if (ret)
++		dev_err(display->dev, "Failed to configure controller: %d\n", ret);
++}
++
++/**
++ * tm16xx_display_flush_data() - Workqueue to update display data to controller
++ * @work: pointer to work_struct
++ *
++ * Updates all hardware grids with current display state. If an error occurs
++ * during any grid write, the operation is interrupted and the error code is
++ * stored in flush_status for upper layers to handle.
++ *
++ * Flush operations use mutex to serialize hardware transactions. Workqueue
++ * allows non-atomic context and ensures the same work never runs concurrently.
++ */
++static void tm16xx_display_flush_data(struct work_struct *work)
++{
++	struct tm16xx_display *display = container_of(work, struct tm16xx_display, flush_display);
++	unsigned int grid, i;
++	int ret = 0;
++
++	if (!display->controller->data)
++		return;
++
++	guard(mutex)(&display->lock);
++
++	for (i = 0; i < display->num_hwgrid; i++) {
++		grid = tm16xx_get_grid(display, i);
++		ret = display->controller->data(display, i, grid);
++		if (ret) {
++			dev_err(display->dev, "Failed to write display data: %d\n", ret);
++			break;
++		}
++	}
++
++	display->flush_status = ret;
++}
++
++/**
++ * tm16xx_brightness_set() - Set display main LED brightness
++ * @led_cdev: pointer to led_classdev
++ * @brightness: new brightness value
++ *
++ * Cannot sleep. Display brightness can be set by LED trigger in atomic context.
++ */
++static void tm16xx_brightness_set(struct led_classdev *led_cdev, enum led_brightness brightness)
++{
++	struct tm16xx_display *display = dev_get_drvdata(led_cdev->dev->parent);
++
++	led_cdev->brightness = brightness;
++	schedule_work(&display->flush_init);
++}
++
++/**
++ * tm16xx_led_set() - Set state of an individual LED icon
++ * @led_cdev: pointer to led_classdev
++ * @value: new brightness (0/1)
++ *
++ * Cannot sleep. LED brightness can be set by LED trigger in atomic context.
++ */
++static void tm16xx_led_set(struct led_classdev *led_cdev, enum led_brightness value)
++{
++	struct tm16xx_led *led = container_of(led_cdev, struct tm16xx_led, cdev);
++	struct tm16xx_display *display = dev_get_drvdata(led_cdev->dev->parent);
++
++	tm16xx_set_seg(display, led->hwgrid, led->hwseg, value);
++	schedule_work(&display->flush_display);
++}
++
++static int tm16xx_display_value(struct tm16xx_display *display, const char *buf, size_t count)
++{
++	struct linedisp *linedisp = &display->linedisp;
++	struct linedisp_map *map = linedisp->map;
++	struct tm16xx_digit *digit;
++	int seg_pattern, ret = 0;
++	unsigned int i, j;
++	bool val;
++
++	for (i = 0; i < display->num_digits; i++) {
++		digit = &display->digits[i];
++
++		if (i < count) {
++			seg_pattern = map_to_seg7(&map->map.seg7, buf[i]);
++			if (seg_pattern < 0) {
++				dev_err(display->dev,
++					"Invalid mapping to 7 segment at position %u: %c",
++					i, buf[i]);
++				ret = -EINVAL;
++				seg_pattern = 0;
++			}
++		} else {
++			seg_pattern = 0;
++		}
++
++		for (j = 0; j < TM16XX_DIGIT_SEGMENTS; j++) {
++			val = seg_pattern & BIT(j);
++			tm16xx_set_seg(display, digit->hwgrids[j], digit->hwsegs[j], val);
++		}
++	}
++
++	schedule_work(&display->flush_display);
++	return ret;
++}
++
++static int tm16xx_linedisp_get_map_type(struct linedisp *linedisp)
++{
++	return LINEDISP_MAP_SEG7;
++}
++
++static void tm16xx_linedisp_update(struct linedisp *linedisp)
++{
++	struct tm16xx_display *display = linedisp_to_tm16xx(linedisp);
++
++	tm16xx_display_value(display, linedisp->buf, linedisp->num_chars);
++}
++
++static const struct linedisp_ops tm16xx_linedisp_ops = {
++	.get_map_type = tm16xx_linedisp_get_map_type,
++	.update = tm16xx_linedisp_update,
++};
++
++static int tm16xx_display_init(struct tm16xx_display *display)
++{
++	schedule_work(&display->flush_init);
++	flush_work(&display->flush_init);
++	if (display->flush_status)
++		return display->flush_status;
++
++	return 0;
++}
++
++static int tm16xx_parse_fwnode(struct device *dev, struct tm16xx_display *display)
++{
++	unsigned int max_hwgrid = 0, max_hwseg = 0;
++	u32 segments[TM16XX_DIGIT_SEGMENTS * 2];
++	struct tm16xx_digit *digit;
++	struct tm16xx_led *led;
++	unsigned int i, j;
++	u32 reg[2];
++	int ret;
++
++	struct fwnode_handle *digits_node __free(fwnode_handle) =
++		device_get_named_child_node(dev, "digits");
++	struct fwnode_handle *leds_node __free(fwnode_handle) =
++		device_get_named_child_node(dev, "leds");
++
++	/* parse digits */
++	display->num_digits = fwnode_get_child_node_count(digits_node);
++	if (display->num_digits) {
++		display->digits = devm_kcalloc(dev, display->num_digits,
++					       sizeof(*display->digits), GFP_KERNEL);
++		if (!display->digits)
++			return -ENOMEM;
++
++		i = 0;
++		fwnode_for_each_available_child_node_scoped(digits_node, child) {
++			digit = &display->digits[i];
++
++			ret = fwnode_property_read_u32(child, "reg", reg);
++			if (ret)
++				return ret;
++
++			ret = fwnode_property_read_u32_array(child, "segments", segments,
++							     TM16XX_DIGIT_SEGMENTS * 2);
++			if (ret < 0)
++				return ret;
++
++			for (j = 0; j < TM16XX_DIGIT_SEGMENTS; ++j) {
++				digit->hwgrids[j] = segments[2 * j];
++				digit->hwsegs[j] = segments[2 * j + 1];
++				max_hwgrid = umax(max_hwgrid, digit->hwgrids[j]);
++				max_hwseg = umax(max_hwseg, digit->hwsegs[j]);
++			}
++			i++;
++		}
++	}
++
++	/* parse leds */
++	display->num_leds = fwnode_get_child_node_count(leds_node);
++	if (display->num_leds) {
++		display->leds = devm_kcalloc(dev, display->num_leds,
++					     sizeof(*display->leds), GFP_KERNEL);
++		if (!display->leds)
++			return -ENOMEM;
++
++		i = 0;
++		fwnode_for_each_available_child_node_scoped(leds_node, child) {
++			led = &display->leds[i];
++			ret = fwnode_property_read_u32_array(child, "reg", reg, 2);
++			if (ret < 0)
++				return ret;
++
++			led->hwgrid = reg[0];
++			led->hwseg = reg[1];
++			max_hwgrid = umax(max_hwgrid, led->hwgrid);
++			max_hwseg = umax(max_hwseg, led->hwseg);
++			i++;
++		}
++	}
++
++	if (max_hwgrid >= display->controller->max_grids) {
++		dev_err(dev, "grid %u exceeds controller max_grids %u\n",
++			max_hwgrid, display->controller->max_grids);
++		return -EINVAL;
++	}
++
++	if (max_hwseg >= display->controller->max_segments) {
++		dev_err(dev, "segment %u exceeds controller max_segments %u\n",
++			max_hwseg, display->controller->max_segments);
++		return -EINVAL;
++	}
++
++	display->num_hwgrid = max_hwgrid + 1;
++	display->num_hwseg = max_hwseg + 1;
++
++	return 0;
++}
++
++int tm16xx_probe(struct tm16xx_display *display)
++{
++	struct led_classdev *main = &display->main_led;
++	struct led_init_data led_init = {};
++	struct device *dev = display->dev;
++	struct fwnode_handle *leds_node;
++	struct tm16xx_led *led;
++	unsigned int nbits, i;
++	int ret;
++
++	ret = tm16xx_parse_fwnode(dev, display);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to parse device tree\n");
++
++	nbits = tm16xx_led_nbits(display);
++	display->state = devm_bitmap_zalloc(dev, nbits, GFP_KERNEL);
++	if (!display->state)
++		return -ENOMEM;
++
++	ret = devm_mutex_init(display->dev, &display->lock);
++	if (ret)
++		return ret;
++
++	/*
++	 * Explicit (non-devm) resource management and specific order shutdown sequence
++	 * required to prevent hardware access races when triggers attempt to update
++	 * the display during removal:
++	 * 1. unregister LEDs to stop triggers
++	 * 2. clear display
++	 * 3. turn off display
++	 */
++
++	INIT_WORK(&display->flush_init, tm16xx_display_flush_init);
++	INIT_WORK(&display->flush_display, tm16xx_display_flush_data);
++
++	/* Initialize main LED properties */
++	led_init.fwnode = dev_fwnode(dev);
++	/* max_brightness: handle default value and enforce hardware ceiling */
++	main->max_brightness = display->controller->max_brightness;
++	device_property_read_u32(dev, "max-brightness", &main->max_brightness);
++	main->max_brightness = umin(main->max_brightness,
++				    display->controller->max_brightness);
++
++	/* brightness: handle default value and enforce max ceiling */
++	main->brightness = main->max_brightness;
++	device_property_read_u32(dev, "default-brightness", &main->brightness);
++	main->brightness = umin(main->brightness, main->max_brightness);
++
++	main->brightness_set = tm16xx_brightness_set;
++	main->flags = LED_RETAIN_AT_SHUTDOWN | LED_CORE_SUSPENDRESUME;
++
++	/* Register individual LEDs from device tree */
++	ret = led_classdev_register_ext(dev, main, &led_init);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to register main LED\n");
++
++	i = 0;
++	led_init.devicename = dev_name(main->dev);
++	led_init.devname_mandatory = true;
++	led_init.default_label = "led";
++	leds_node = device_get_named_child_node(dev, "leds");
++	fwnode_for_each_available_child_node_scoped(leds_node, child) {
++		led_init.fwnode = child;
++		led = &display->leds[i];
++		/* Individual leds are hardware-constrained to on/off */
++		led->cdev.max_brightness = 1;
++		led->cdev.brightness_set = tm16xx_led_set;
++		led->cdev.flags = LED_RETAIN_AT_SHUTDOWN | LED_CORE_SUSPENDRESUME;
++
++		ret = led_classdev_register_ext(dev, &led->cdev, &led_init);
++		if (ret) {
++			dev_err_probe(dev, ret, "Failed to register LED %s\n",
++				      led->cdev.name);
++			goto unregister_leds;
++		}
++
++		i++;
++	}
++
++	ret = tm16xx_display_init(display);
++	if (ret) {
++		dev_err_probe(dev, ret, "Failed to initialize display\n");
++		goto unregister_leds;
++	}
++
++	ret = linedisp_attach(&display->linedisp, display->main_led.dev,
++			      display->num_digits, &tm16xx_linedisp_ops);
++	if (ret) {
++		dev_err_probe(dev, ret, "Failed to initialize line-display\n");
++		goto unregister_leds;
++	}
++
++	return 0;
++
++unregister_leds:
++	while (i--)
++		led_classdev_unregister(&display->leds[i].cdev);
++
++	led_classdev_unregister(main);
++	return ret;
++}
++EXPORT_SYMBOL_NS_GPL(tm16xx_probe, "TM16XX");
++
++void tm16xx_remove(struct tm16xx_display *display)
++{
++	unsigned int nbits = tm16xx_led_nbits(display);
++	struct tm16xx_led *led;
++
++	linedisp_detach(display->main_led.dev);
++
++	/*
++	 * Unregister LEDs first to immediately stop trigger activity.
++	 * This prevents LED triggers from attempting to access hardware
++	 * after it's been disconnected or driver unloaded.
++	 */
++	for (int i = 0; i < display->num_leds; i++) {
++		led = &display->leds[i];
++		led_classdev_unregister(&led->cdev);
++	}
++	led_classdev_unregister(&display->main_led);
++
++	/* Clear display state */
++	bitmap_zero(display->state, nbits);
++	schedule_work(&display->flush_display);
++	flush_work(&display->flush_display);
++
++	/* Turn off display */
++	display->main_led.brightness = LED_OFF;
++	schedule_work(&display->flush_init);
++	flush_work(&display->flush_init);
++}
++EXPORT_SYMBOL_NS_GPL(tm16xx_remove, "TM16XX");
++
++MODULE_AUTHOR("Jean-François Lessard");
++MODULE_DESCRIPTION("TM16xx LED Display Controllers");
++MODULE_LICENSE("GPL");
++MODULE_IMPORT_NS("LINEDISP");
 -- 
 2.43.0
 
