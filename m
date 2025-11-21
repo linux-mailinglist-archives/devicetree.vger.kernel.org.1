@@ -1,285 +1,189 @@
-Return-Path: <devicetree+bounces-241082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90EBFC78F39
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:11:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ECEDC78F42
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E74354ED1BE
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:09:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTPS id C1DFA28DE6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A87634C155;
-	Fri, 21 Nov 2025 12:09:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bsvNUnmW";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aeZCPzoy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9A4634B691;
+	Fri, 21 Nov 2025 12:11:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA4A34A786
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 12:09:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 745D2346785;
+	Fri, 21 Nov 2025 12:11:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763726976; cv=none; b=r6hH8IU14e3TDUrB0GxDo3WmHX07SYS+IOJGQF0Z3wIdRjxygS9WMO+lqQ3Ub4egshiuEe/tMgE6HwNkwm8zsXj28ekKpjcSmQSSyhrQxNFaNyMfcZSSOTuVFGonpjgiur5CfGLmilEQnYNTVwwMTBXXUj/R+AE1NhwnQA9NXSU=
+	t=1763727110; cv=none; b=YDmRquvQuGX0mQt3G5B12FWsL6RytcFsahkIIRREttVvxyFl9BlJyInEIvS8Vo0BD1LcBX8zyArQNT2rzJ6lpeDjttDDc7CM8/Znepw7VWpoShgm1GKE0PuSPZ82dK6Efbcojbtt1NxsNi9cdvNZGxKjSypp5LNqGi78iO3HhLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763726976; c=relaxed/simple;
-	bh=fq9u6rKEzesAri82Zy3u5TfNpEqdatEFeQ1wOKCs0dE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hLa/6vlXDKNPH/vdjgQPukzt4evcJ1HahDDTA0gqQ3rQiEPZqnlmnQHAp+o7VuTy0kUOP3W959TVxpTHaGMqgvbqg6lgQACUk78Osj9m3Gkc2yun7R6EuHDjpikHuhXttHXtxIs9WkHMJn+QFoY4ASXKu3SO9OTVJj9jR0oc8WA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bsvNUnmW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aeZCPzoy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ALBWsN32841965
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 12:09:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+zGQlu6jj9oYzi0P7lbjaJIv+/Ang6ohhNMm2Bw9Lsk=; b=bsvNUnmWVGNtk77s
-	3Ut5tTAEExobfD6ys17JgFRLs9mNB80V1TUEghvp+/VM59VJ72qutagZWwwL+F35
-	poakBd7ug7SY0yKuRzw0qiESDkJwUIw3/7xhIPewfLcIcxFLf7vJ5o+Kd8cU7IiH
-	jNxRBJUOg+KLdGfJ0YsouHVBPfPGrIUF4zaW2MZT3Q1OpsU0Ld+UrbzkSTG4uzXO
-	OhTaEpx4hviERXu0L6VzLjBzl1xhzWSC3hJy/aqebLTo+SMn/gZgYcMKTh31kLDg
-	mTCKs3kn6+xm8Ti9If2FAIdOGTrz0Ku0fpb7jWy7B4M+vON9aC7ip/TnoYMFbDRA
-	RvrADA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ajhkvhc76-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 12:09:33 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b2e2342803so584227385a.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 04:09:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763726972; x=1764331772; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+zGQlu6jj9oYzi0P7lbjaJIv+/Ang6ohhNMm2Bw9Lsk=;
-        b=aeZCPzoyJOvzzMlaBkNWj+YcHgAP62bDchsMvgHhqh0XGKxE6vnt/muGg0g65Duouw
-         c2dWPVWPlNMBnQLz+QG//Fvai8Wwl+tzPdBBJ6zQWpA+g58W+T6Jwpi8gaaePGrf39gB
-         VmJ/0Ewlm7cjtIvm7Dbiz2tonYTTFdix+CEtmtBfAwLYCpWqayhBgPw09BLZ/6fuRGKK
-         SOjuLFVsGDxjNe7AooGna6lNl15gPyVE+D32HB+JVIm0wa8gNKlvZJKSf32TPnWnJRY4
-         XxT750Y0YEWjxfyD5fBwHFEt4wyjcEXtIfXC8a44QWIXn6OU0WT62xJtwFOIU2zecKkb
-         WZJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763726972; x=1764331772;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+zGQlu6jj9oYzi0P7lbjaJIv+/Ang6ohhNMm2Bw9Lsk=;
-        b=s/QGon8560UR3BBYT6FiQ+/wrweL7rkDdtv8S6tvZjOoif60XJVkw+RnbEqRZt6OGW
-         TbgEBfOp12vaBR4Z/cr8ncynI8Ny0eZTpkUa10RYh3ahq8CXKH+nSgPPfisol5JfdTPH
-         m0vo5+EJw2OgpsqD98tPkn3d+VdGS698dagJmfq9tw6ROi00neTTYlWit8/L9F+2wnLf
-         E3PmPBR/xM9NO39FQY23/2/pLHYX6Y+CGF6ERDo3Rxsgxk+lm7pUTdVHpxohb0I5ImYK
-         Bn4MbjnTP4mJx5E4SAaTlsgq52DSj9fpiu8oRBrN7ggQEa27+Vx0LPY7SRJM5EclEzPM
-         xHNA==
-X-Forwarded-Encrypted: i=1; AJvYcCUH7IfUbOdI6NM6xVpPiVOa1mAzPd/sgaAFuKAuFOpiM8yP48cFcUNvWpCmY8tGR1IsrePfXTC9JXND@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsO7dBITQf474GGfQ8SbOddkUi6H15dd3DwXpuJkYv0rsWYJtv
-	g/rBTWJcU6D2fCOqQVqXFIsVc2re+Nl7H+8JCVWwVEVE+wFlMQmqFqN4Se4Nwm3JrjPKpq+iT/F
-	Tzg6e57sXBeE6sR2XoLI37YhqiZ2qprUz0WcTf+i6QwDL1P7Z5qvY9LKBAB/BbcOS
-X-Gm-Gg: ASbGncsiSEuCit67V0AIC0lzvHTwMxsg35sDPdRzdD0VdV8bGg0u4fzMMgriWOYqIfO
-	ft1XYBYxMHgWP319UFeTxLRkPhhBaAhTDI1sMrkjO4mnVhNSYT3Z8Ir5x1LQqE7St+hxkDviaOg
-	WLz7Jyiywg/kDGGR/Qh7qY2PKMzoTqx+QXfRdvCv0hxsINMKOjnl+uXvsj9UuuXj1ANGk3JDvyl
-	yhWqE5nPtnYauLNohCCwU4Nijzf6KgKu6f4fa9l6Y1qwMHpxqyOtAuMDrAT3vcIOQ4Lf8b/qcci
-	1nRzcnLL/wIwGwKh9JE6lgGN3XiZ0i6LyGSoCgWTnOwOa3hI7gwiDGi1sUlHT+qjFPHT7rQT5oK
-	lAFh9N6flNddaxahYvaYFE6cSRst0I+X8bWngE9e+mK9QRlNRqpdVtgDix/OxFa+WAi3cqkS6zm
-	8Qq/hBNA825+NWRyoDtQGcBN8=
-X-Received: by 2002:a05:620a:4509:b0:8b2:e70c:4263 with SMTP id af79cd13be357-8b33d4c8483mr201394685a.88.1763726972408;
-        Fri, 21 Nov 2025 04:09:32 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHkupH0XCrzqRaeeHWgkk4fAVZZv7qGzg3hFYJ6fAbyAAeI48Ugr95eaDQjnccQHyGqxvffPw==
-X-Received: by 2002:a05:620a:4509:b0:8b2:e70c:4263 with SMTP id af79cd13be357-8b33d4c8483mr201389685a.88.1763726971890;
-        Fri, 21 Nov 2025 04:09:31 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37cc6bcbde6sm10859521fa.49.2025.11.21.04.09.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Nov 2025 04:09:31 -0800 (PST)
-Date: Fri, 21 Nov 2025 14:09:29 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Nickolay Goppen <setotau@mainlining.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org,
-        Chenna Kesava Raju <chennak@qti.qualcomm.com>,
-        Bharath Kumar <bkumar@qti.qualcomm.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
- nodes
-Message-ID: <2h222ejvc37cldeno7e4qom5tnvdblqn2zypuquvadbcu7d3pr@765qomrwfvwl>
-References: <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
- <83c3aea5-764e-4e60-8b16-67b474f19357@oss.qualcomm.com>
- <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
- <f5c7eb1c-28b1-4cf1-afb0-b993384b7712@oss.qualcomm.com>
- <80836b8f-16a8-4520-ad11-5ca0abb3403e@oss.qualcomm.com>
- <99c22e73-797c-4a30-92ba-bc3bd8cf70f0@oss.qualcomm.com>
- <eddc16cb-d951-401c-8fb8-fccfcf600143@mainlining.org>
- <0b06f744-b695-43d9-8da3-4424e2b53a5e@oss.qualcomm.com>
- <24221ce7-24e4-4eaa-8681-ed9b4b9f2d6e@oss.qualcomm.com>
- <be4e2715-882d-4358-8575-374187f7ee2f@oss.qualcomm.com>
+	s=arc-20240116; t=1763727110; c=relaxed/simple;
+	bh=BmozpeUBmvpWzH6co7gbd6JjF/r3KB3trk5Ft5C16jk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aauSvtZaTw9N5Ls4xyIoKGAwyWxnvy9QYYBSNLp2M2tFbNAcvVMY2EoFMVSH7v1kiQ+FCUYRnAJVDJ7CYOqf6Tiw6AL86wQ6ulPH0bkax97StnLIHXBpUkaX+Y39JiwVEmhddyV5H/6fYNTnvmGQzTuW1n/LLQKjO43ms7x9dYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D67841A0E16;
+	Fri, 21 Nov 2025 13:11:40 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9FC1E1A0ABA;
+	Fri, 21 Nov 2025 13:11:40 +0100 (CET)
+Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 5DEB21800087;
+	Fri, 21 Nov 2025 20:11:39 +0800 (+08)
+From: Lakshay Piplani <lakshay.piplani@nxp.com>
+To: alexandre.belloni@bootlin.com,
+	linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	linux-watchdog@vger.kernel.org
+Cc: vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com,
+	shashank.rebbapragada@nxp.com,
+	Lakshay Piplani <lakshay.piplani@nxp.com>
+Subject: [PATCH v4 1/5] dt-bindings: rtc: nxp,pcf85363: add timestamp mode config
+Date: Fri, 21 Nov 2025 17:41:33 +0530
+Message-Id: <20251121121137.3043764-1-lakshay.piplani@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <be4e2715-882d-4358-8575-374187f7ee2f@oss.qualcomm.com>
-X-Proofpoint-GUID: 29BsqP9_oZw60KVnogh64qaSMHgVTWSV
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIxMDA5MSBTYWx0ZWRfX24fbYQsWJv1a
- F3cdvw3mQfeoUE3DC6e0U1x3xCzYRqU0BOqQEwUc9Ir12GmZKTGqY7gsKxzOIHutWcH9MFj6Bhv
- woK9cLDZoikN0SDvXj4p0WW3SbB8BV1l16TKPJmaXaa5GFBJR7YLKl0tPjjMm7hmZrNnKC25JvX
- w5ove4JeVvlJnDrmjf3qgtND1c4Lpq6CcLf7Q9+enhhnabLzzdEYXXuEc9OOmIAxBQuQwE8YsxW
- LnS6kcNYHq86HFN/rKJXXUnnxgPIm323tSi39LwfbrUqV6XF1yUUoLW/BKUfmRLZwmmwE+5GME3
- wngU7baKi3awvrj2oporRHzs9+B8rw6WgUH6UN1LPJoGERYYqRtooqmEOIWRDufPuIVYA316qup
- 9I+RKPInLXeK16EcQfHVPLhnwjTcJA==
-X-Authority-Analysis: v=2.4 cv=bpdBxUai c=1 sm=1 tr=0 ts=6920567d cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=D19gQVrFAAAA:8 a=OuZLqq7tAAAA:8 a=HCHdmRvMB3AQNsFCoscA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
- a=W4TVW4IDbPiebHqcZpNg:22 a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-ORIG-GUID: 29BsqP9_oZw60KVnogh64qaSMHgVTWSV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-21_03,2025-11-20_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 phishscore=0 lowpriorityscore=0 bulkscore=0
- adultscore=0 impostorscore=0 suspectscore=0 spamscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511210091
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-On Fri, Nov 21, 2025 at 01:41:21PM +0530, Ekansh Gupta wrote:
-> 
-> 
-> On 11/20/2025 5:17 PM, Konrad Dybcio wrote:
-> > On 11/20/25 11:54 AM, Ekansh Gupta wrote:
-> >>
-> >> On 11/20/2025 1:27 PM, Nickolay Goppen wrote:
-> >>> 20.11.2025 07:55, Ekansh Gupta пишет:
-> >>>> On 11/20/2025 1:58 AM, Srinivas Kandagatla wrote:
-> >>>>> On 11/12/25 1:52 PM, Konrad Dybcio wrote:
-> >>>>>> On 11/10/25 6:41 PM, Srinivas Kandagatla wrote:
-> >>>>>>> On 11/3/25 12:52 PM, Konrad Dybcio wrote:
-> >>>>>>>> On 10/31/25 12:30 PM, Nickolay Goppen wrote:
-> >>>>>>>>> 24.10.2025 16:58, Nickolay Goppen пишет:
-> >>>>>>>>>> 24.10.2025 11:28, Konrad Dybcio пишет:
-> >>>>>>>>>>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
-> >>>>>>>>>>>> In order to enable CDSP support for SDM660 SoC:
-> >>>>>>>>>>>>    * add shared memory p2p nodes for CDSP
-> >>>>>>>>>>>>    * add CDSP-specific smmu node
-> >>>>>>>>>>>>    * add CDSP peripheral image loader node
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> Memory region for CDSP in SDM660 occupies the same spot as
-> >>>>>>>>>>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
-> >>>>>>>>>>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
-> >>>>>>>>>>>> cdsp_region, which is also larger in size.
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
-> >>>>>>>>>>>> related nodes and add buffer_mem back.
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
-> >>>>>>>>>>>> ---
-> >>>>>>>>>>> [...]
-> >>>>>>>>>>>
-> >>>>>>>>>>>> +            label = "turing";
-> >>>>>>>>>>> "cdsp"
-> >>>>>>>>>> Ok, I'll change this in the next revision.
-> >>>>>>>>>>>> +            mboxes = <&apcs_glb 29>;
-> >>>>>>>>>>>> +            qcom,remote-pid = <5>;
-> >>>>>>>>>>>> +
-> >>>>>>>>>>>> +            fastrpc {
-> >>>>>>>>>>>> +                compatible = "qcom,fastrpc";
-> >>>>>>>>>>>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
-> >>>>>>>>>>>> +                label = "cdsp";
-> >>>>>>>>>>>> +                qcom,non-secure-domain;
-> >>>>>>>>>>> This shouldn't matter, both a secure and a non-secure device is
-> >>>>>>>>>>> created for CDSP
-> >>>>>>>>>> I've added this property, because it is used in other SoC's, such as SDM845 and SM6115 for both ADSP and CDSP
-> >>>>>>>>> Is this property not neccessary anymore?
-> >>>>>>>> +Srini?
-> >>>>>>> That is true, we do not require this for CDSP, as CDSP allows both
-> >>>>>>> unsigned and signed loading, we create both secured and non-secure node
-> >>>>>>> by default. May be we can provide that clarity in yaml bindings so that
-> >>>>>>> it gets caught during dtb checks.
-> >>>>>>>
-> >>>>>>>
-> >>>>>>> However in ADSP case, we only support singed modules, due to historical
-> >>>>>>> reasons how this driver evolved over years, we have this flag to allow
-> >>>>>>> compatiblity for such users.
-> >>>>>> Does that mean that we can only load signed modules on the ADSP, but
-> >>>>>> the driver behavior was previously such that unsigned modules were
-> >>>>>> allowed (which was presumably fine on devboards, but not on fused
-> >>>>>> devices)?
-> >>>>> Yes, its true that we allowed full access to adsp device nodes when we
-> >>>>> first started upstreaming fastrpc driver.
-> >>>>>
-> >>>>> irrespective of the board only signed modules are supported on the ADSP.
-> >>>>> I think there was one version of SoC i think 8016 or some older one
-> >>>>> which had adsp with hvx which can load unsigned modules for compute
-> >>>>> usecase only.
-> >>>>>
-> >>>>> I have added @Ekansh for more clarity.
-> >>>>>
-> >>>>> --srini
-> >>>> For all the available platforms, ADSP supports only signed modules. Unsigned
-> >>>> modules(as well as signed) are supported by CDSP and GDSP subsystems.
-> >>>>
-> >>>> qcom,non-secure-domain property marks the corresponding DSP as non-secure DSP.
-> >>>> The implications of adding this property would be the following:
-> >>>> on ADSP, SDSP, MDSP:
-> >>>> - Only non-secure device node(/dev/fastrpc-Xdsp) is created.
-> >>>> - Non-secure device node can be used for signed DSP PD offload.
-> >>>>
-> >>>> on CDSP, GDSP:
-> >>>> - Both secure(/dev/fastrpc-Xdsp-secure) and non-secure(/dev/fastrpc-Xdsp) devices
-> >>>>    are created, regardless of this property.
-> >>>> - Both the nodes can be used for signed and unsigned DSP PD offload.
-> >>>>
-> >>>> Note: If the property is not added for CDSP/GDSP, only secure device node can
-> >>>> be used for signed PD offload, if non-secure device is used, the request gets
-> >>>> rejected[1].
-> >>>>
-> >>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1245
-> >>>>
-> >>>> //Ekansh
-> >>> Does this mean that the qcom,non-secure-domain property should be dropped from both nodes? 
-> >> I checked again and found that unsigned module support for CDSP is
-> >> not available on this platform. Given this, the safest approach would
-> >> be to add the property for both ADSP and CDSP, ensuring that all
-> >> created device nodes can be used for signed PD offload. I can provide
-> > The property allows *unsigned* PD offload though
-> I don't think I can directly relate this property to unsigned PD offload. This is just
-> defining what type of device node will be created and whether the channel is secure
-> or not. There is a possibility of making unsigned PD request(on CDSP/GDSP) irrespective
-> of whether this property is added or not. If DSP does not support unsigned offload, it
-> should return failures for such requests.
+NXP PCF85263/PCF85363 provides three timestamp registers (TSR1-TSR3)
+which latch the current time when a selected event occurs. Add a
+vendor specific property, nxp,timestamp-mode, to select the event
+source for each register.
 
-Which part of the hardware and/or firmware interface does it define? If
-it simply declared Linux behaviour, it is incorrect and probably should
-be dropped.
+Also introduce a new header 'pcf85363-tsr.h' to expose
+macros for timestamp mode fields, improving readability
+of device tree file.
 
-> >
-> >> a more definitive recommendation once I know the specific use cases
-> >> you plan to run.
-> > Why would the usecase affect this?
-> I'm saying this as per past discussions where some application was relying on non-secure
-> device node on some old platform(on postmarketOS)[1] and having this property in place.
-> So if similar usecase is being enabled here, the property might be required[1].
+Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+V3 -> V4:
+- Added Reviewed-by tag in commit message (previously only in changelog) 
+V2 -> V3:
+- No changes in v3
+- Added Reviewed-by: Rob Herring <robh@kernel.org>
+V1 -> V2:
+- Addressed review comments from Rob Herring:
+  * use $ref: /schemas/types.yaml#/definitions/uint32-array
+  * tuple form with exactly 3 items (TSR1/TSR2/TSR3), per items decimal enums
+  * define 'nxp,timestamp-mode' clearly
+  * drop watchdog related vendor properties
+  * remove watchdog related vendor properties from i2c example
 
-DT files are not usecase-based.
+ .../devicetree/bindings/rtc/nxp,pcf85363.yaml | 23 ++++++++++++++-
+ include/dt-bindings/rtc/pcf85363-tsr.h        | 28 +++++++++++++++++++
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+ create mode 100644 include/dt-bindings/rtc/pcf85363-tsr.h
 
-> 
-> [1] https://lkml.org/lkml/2024/8/15/117
-
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
+index 52aa3e2091e9..cf9c155162d6 100644
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/rtc/nxp,pcf85363.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Philips PCF85263/PCF85363 Real Time Clock
++title: NXP PCF85263/PCF85363 Real Time Clock
+ 
+ maintainers:
+   - Alexandre Belloni <alexandre.belloni@bootlin.com>
+@@ -39,6 +39,24 @@ properties:
+   start-year: true
+   wakeup-source: true
+ 
++  nxp,timestamp-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    items:
++      - enum: [0, 1, 2] # TSR1: NONE, FE, LE
++        description: TSR1 mode
++      - enum: [0, 1, 2, 3, 4, 5] # TSR2: NONE, FB, LB, LV, FE, LE
++        description: TSR2 mode
++      - enum: [0, 1, 2, 3] # TSR3: NONE, FB, LB, LV
++        description: TSR3 mode
++    description: |
++      Defines timestamp modes for TSR1, TSR2, and TSR3.
++      Use macros from <dt-bindings/rtc/pcf85363-tsr.h>.
++
++      Each value corresponds to a mode constant:
++        - TSR1: NONE, FE, LE
++        - TSR2: NONE, FB, LB, LV, FE, LE
++        - TSR3: NONE, FB, LB, LV
++
+ required:
+   - compatible
+   - reg
+@@ -47,6 +65,7 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/rtc/pcf85363-tsr.h>
+     i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -56,5 +75,7 @@ examples:
+             reg = <0x51>;
+             #clock-cells = <0>;
+             quartz-load-femtofarads = <12500>;
++            wakeup-source;
++            nxp,timestamp-mode = <PCF85363_TSR1_FE PCF85363_TSR2_LB PCF85363_TSR3_LV>;
+         };
+     };
+diff --git a/include/dt-bindings/rtc/pcf85363-tsr.h b/include/dt-bindings/rtc/pcf85363-tsr.h
+new file mode 100644
+index 000000000000..1fb5b9b3601e
+--- /dev/null
++++ b/include/dt-bindings/rtc/pcf85363-tsr.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++/*
++ * Copyright 2025 NXP
++ */
++
++#ifndef _DT_BINDINGS_RTC_PCF85363_TSR_H
++#define _DT_BINDINGS_RTC_PCF85363_TSR_H
++
++/* TSR1 modes */
++#define PCF85363_TSR1_NONE 0x00
++#define PCF85363_TSR1_FE 0x01
++#define PCF85363_TSR1_LE 0x02
++
++/* TSR2 modes */
++#define PCF85363_TSR2_NONE 0x00
++#define PCF85363_TSR2_FB 0x01
++#define PCF85363_TSR2_LB 0x02
++#define PCF85363_TSR2_LV 0x03
++#define PCF85363_TSR2_FE 0x04
++#define PCF85363_TSR2_LE 0x05
++
++/* TSR3 modes */
++#define PCF85363_TSR3_NONE 0x00
++#define PCF85363_TSR3_FB 0x01
++#define PCF85363_TSR3_LB 0x02
++#define PCF85363_TSR3_LV 0x03
++
++#endif /* _DT_BINDINGS_RTC_PCF85363_TSR_H */
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
