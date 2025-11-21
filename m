@@ -1,141 +1,156 @@
-Return-Path: <devicetree+bounces-241052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C07D0C78DB6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:39:43 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35252C78D4A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:36:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 17F214EBBC9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:35:25 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7360C364D0E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:36:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0855534B42F;
-	Fri, 21 Nov 2025 11:35:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8F834B420;
+	Fri, 21 Nov 2025 11:36:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kp0JNg7Y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dV6TiyO6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C86334B412
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B892347BC5
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:36:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763724908; cv=none; b=Whlig+3Wp+J5K/HRTs16/Xck1QZ/CIM9tZIVqZYvqwNvZ9MGrk1CxMls/sR8ur8KoCQDTvYmGWj5E37nZSTAPki4MMLEc3hZ32JyKVX1k7/gSPrcTiKPHPDN97l6hiJRfZrtr627xpf5PXOnp/S+IFPwNEfdHdX6IILyR2ko/w0=
+	t=1763724968; cv=none; b=JTwKHjjzP1h9uc9mQaO+gk6W4cVmRTML1CPug//nGbB4b+snGnLw2jzsMpBUyq5XHtquengIsv+cyDfJ5Oc9foNaEFKD5VzYpB747N6AwhDSevhem9srOjKySiXagQRe6GZ8zagUTS5tZI3Beh5N/7ugrqXZqinryOex9zpFgMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763724908; c=relaxed/simple;
-	bh=/FkxSXRz9LMHnMMNJp+LieZnrRuKbRrFs/7QOECPU9Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W5hHl8K+KHjxzHSorzQD2VBofRByHz+nAvhety+it2eGSIQVtYxVLnw4S236Edv2BXrMNbbGvRZbJ41UU6I4rCYVi/NTUlHiyNrHHiQGb+fXzF81yCl0VG0SGSs/kY18FlzHPTZ1PIpRCyVnWRwxSa0/ztWngHa2+SgPGaVKsts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kp0JNg7Y; arc=none smtp.client-ip=209.85.216.41
+	s=arc-20240116; t=1763724968; c=relaxed/simple;
+	bh=ftRTYtj+MIdNdrTL102wop7nvVmtJJk9dP87Q3JUdCo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lQierXKHASS1lGw2PPSKB11VYuQE4dHfek7VQnBUCaC4H8a91/MHL2H6SZodtUHDx2u0o1qgKjjTKElLYHGG/0VrkeROcxD6r8zNHcMMOkwzZXQ7Vu5dr67E2jYC+7g5LY3kLYP8ZCFgtYf0An4wdiCQ2SXWYugnOCn++2/6pcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dV6TiyO6; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-3436cbb723fso1576759a91.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 03:35:07 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4779cb0a33fso18767775e9.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 03:36:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763724907; x=1764329707; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qfo/be4GYxt9btZnUQbCHGlLLclI61+pD2umzl5YLU8=;
-        b=Kp0JNg7Y2K6jrnY0Q8Rm++9F4nrLK4hWT0PeJVvRR1UGa5AUAt8rMvj6oliOEwGs3s
-         +EXAiQrz6hUy+l5TZW7Twm7HVeZkeeaVTzxIRAr/tOw4c27jLUJdmLID5gieIt2OeMxN
-         QpfCb0Wa7mVWz/yuWGaoM6jCaxNK2xyjZj9+CD6mmd7kQiV/SjDBXRws/mAMfv2ccIPo
-         2BEJs5dh0+KgHLuyKnS/1KgjS5/Gd1dTfibicRAO5wh0dGlZAiA6ZiafmYW5MycOtSUx
-         5F22MKyyiFxgmCdmQ3/76Z/3aO2qs3TKH4l5y+tZDlmlKevSfUtXSHae3p1Qh1lI4RXN
-         YwBg==
+        d=gmail.com; s=20230601; t=1763724964; x=1764329764; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=L1iu1X2rkalrqKSnE+I8dJ8h9QZAQz7+DuxtVRZln6A=;
+        b=dV6TiyO6yeyYY0Zt5haoYB/ex7ipCl4ini7vVhbp1BNMcHOlxaxQMVEGEMNkWLbZZJ
+         x7iGB/2y1cfecRyA1/Y4MVvDGQA6Q73aDUk0JPQc29LIv+Q6eviUX5flNG7PjU1ymGD9
+         UYB4c3jdMzuwbVYEI9raDzTb/60Dn4ByKAXkgi4luHtYkLj8eC0pFgxwfeu5FVElOZVK
+         nL2QCmcItRxP1Lk9GCozzPbZiIsARMi2HEfqKHEMzfZG0cTDQhFGLApd/N+JGzb2wXxJ
+         k5R+hFlUQM85c9upG81eaY4uIbl5bw58dP1ACsCcUf51fah2NxZ0APS2S0yLlW5VYUgD
+         gxDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763724907; x=1764329707;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qfo/be4GYxt9btZnUQbCHGlLLclI61+pD2umzl5YLU8=;
-        b=GfGdSohx/p8NOt4CPuquWR78jOnjxpNcFalBeW+9ttJW1suQfL2PhQa0O3TwOyOec4
-         WtgiyiIBrfZfUObZXKREI087/Bje/unhEABT1kt5mjTzYKDZ/rAzLQ18PxUGKKxvp0RM
-         9KMRUR8S8xgUesO9PCj6nZNlHgTlpOuSstXTF/7fDcLprpA+N3VOQI3E9FX8s1jFrFky
-         SDeSjYGm3LBaRZHhfc59ON8Jy0p9/LaeYpR1XsOT8lPWkIY1REWZRqYw3T4Z5ODdMnWx
-         z9BqbMq12w5SpSuKDWHv1/4T3nnM11Sp958XWZNfVtP7osqBmLaaKEArj6PnvUQP5M7t
-         G8+A==
-X-Forwarded-Encrypted: i=1; AJvYcCXtPnfmGpMR+NZJCI5ZPp6EK/l+l4GpOvlopKpqCyq7YhklnSu22sxhyMPPrS2UHDP5BI4WSAcRBalu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYc4jZU6EmruXTstQXGT4gGfyOqZIUWbJ0DOtOUmp6yjHsEdg5
-	XuvoISo3qxEjt120Qzva2SXlNtv+GK7rcsMPCboMsYg4uHiZerYhvW0Y
-X-Gm-Gg: ASbGnctBKtY84p0SWTWQGr85JXTCl4V/2JPqa7uii2vyv6tjtz/hN9Kys67puxku5D/
-	k43i9LiIaGAMW3iJYodJj27RYk1SXW6ijOa7cYMGaFO5NbNuuv0Ac6y/h6HXtpG2hfoIrEdveIG
-	P1AcL7R8NKwFa1UAXk2vowB6bMV6g5K1t4/TyKsG6kaURhdIyJYPaaAHJADQr3JdtgMc/Fnq9qw
-	Jb0nbhOgDBgpRJM6PXDgLepLxIHUWnmQsHS7q2M2fa+iM2rdcQcMrV/79nspHVfuXOuP8NTRrE7
-	5rSUIpPVwXw5odAUweHAj//USCnfSjDpZZVQlFhFVegLuzplAZrT27a46XZJgroUZnD8JUrFKbf
-	a5VPU5WBksLmFFnO0dCCcj9Pka5MKKG/A4k8ihpcz8IS3iZV9UBs9Djf351+dTCxMY5s23gBBFu
-	02q+xGfIdpYOtIKF18y0rMkWTelSlGh11h0eAmCVCnrj9BJMsua1qn0QQ7+WyWr5yV
-X-Google-Smtp-Source: AGHT+IFwa9ohIUmcXG9jXkofsOzOfpDOKPDZvgLrJIRHhd7+7MgM4xWll6gheZBw4rWbw0fZpldKmg==
-X-Received: by 2002:a05:7022:24a2:b0:11a:23fb:16e2 with SMTP id a92af1059eb24-11c9d613003mr671394c88.9.1763724906696;
-        Fri, 21 Nov 2025 03:35:06 -0800 (PST)
-Received: from [192.168.68.63] (104-12-136-65.lightspeed.irvnca.sbcglobal.net. [104.12.136.65])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11c93e55af3sm23498679c88.7.2025.11.21.03.35.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Nov 2025 03:35:06 -0800 (PST)
-Message-ID: <573b2293-7b39-4c68-a51b-ecd5b62b0ec1@gmail.com>
-Date: Fri, 21 Nov 2025 03:35:05 -0800
+        d=1e100.net; s=20230601; t=1763724964; x=1764329764;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L1iu1X2rkalrqKSnE+I8dJ8h9QZAQz7+DuxtVRZln6A=;
+        b=lAB6eIJF4TLm1jkqeaPuZO7IgZEc+veqdA3eyzEvq8cSdtKSjtjpXpGbJa1qWLLUPp
+         k6iBDJnp+ITXGS9c09rKS+Xj/IoyxE/xOJu71CJHx+uNdI6pbKfmyd3BHLInslcV2uQc
+         XZFWa9OKPGtitXzsXTSTA2PqGXQjRzMTc6po7W05smZC7meHHHCAVyKrsgANGrE5/ur0
+         wJeil5h9TuUcZz5mbmOZIQbmdvWMz0PuCtOWNHwvbAkDr4RIIgZ5rbass2MAm9VlMkYz
+         jiWu5N046q3Yb2F9yg618HHRt2zAs+kqK/4RQ077k+vYdR30ll381IRZN5lnzqMYyYW1
+         7pzg==
+X-Forwarded-Encrypted: i=1; AJvYcCVohpEOHX9XzckA7I02Mj4msnT5r9FO3exTvQzTrXf2JQQ16EqPo59sK9OF9PJNX4tIRHhgSFSJ1gLj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYs+s9wX/1BGvECMIdxdr+WoENyDEdvOFKYn3F9gIVHq+Jn36l
+	YVf4aUIw1L7hfZmMDCfHt38hGuiys5SQfkfGkhbCqt0AFeKypQ0ndcs/
+X-Gm-Gg: ASbGncuSMUSWDJp1ueiwjLzSBZ7dAeR7pmecNDn1xqkAZvqvNJa3Hku0VWHtNl4LwUH
+	ML5vpnr3jgS2SpccKKuRpzqIYQh9YgWrYjsDaDwnYH+FUt4vL53N8dGlET0ZX8wV04pWpWRXjMJ
+	5mlapWy2NWaiTSa7YYX+x0gO7JcgI7lbK0RrFt5kYbmj2CI8k2xcgJoXdrFsXXcdXIPQ2IDoSJC
+	YML7aPY+840EYKILOX4JD3ZxB8SxdymxgjA1k7Iyj47ngwCoIumtbARxqHEh06dig1QXQYNoLeJ
+	pl9ap7iXtHTWQ+0hFH4BxqEx2qZ9pLw49y89Zs/E8wvHLM7uWteXI4CxvxwfybhsK8tWEdZBQ3p
+	OBapfPhDQI7T9GxHxC9ZdRIYDyKqKGBapbZBYTq2gER4MBVpn4S2Ii0cchYJ/CzLCIOZGLmbcvx
+	Vqm0Ao7Ou7nk9PR7DHLWc/zF/JJWijT0OMyrA=
+X-Google-Smtp-Source: AGHT+IENbIixTtlLAm9EX+vhw2xhihNg0J8d0rCtdFjldUByc3WPIQ755fW/IkVXGwQuhSLkmIA/DQ==
+X-Received: by 2002:a05:600c:354b:b0:46f:b327:ecfb with SMTP id 5b1f17b1804b1-477c0184c45mr19858395e9.9.1763724963551;
+        Fri, 21 Nov 2025 03:36:03 -0800 (PST)
+Received: from iku.Home ([2a06:5906:61b:2d00:9cce:8ab9:bc72:76cd])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477bf3558d5sm38732465e9.1.2025.11.21.03.36.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Nov 2025 03:36:03 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Simon Horman <horms@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Russell King <linux@armlinux.org.uk>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH net-next 00/11] Add ETHSW support for Renesas RZ/T2H and RZ/N2H SoCs
+Date: Fri, 21 Nov 2025 11:35:26 +0000
+Message-ID: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] ARM: dts: qcom: msm8960: expressatt: Add Magnetometer
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251119-expressatt_nfc_accel_magn_light-v1-0-636f16f05cf4@gmail.com>
- <20251119-expressatt_nfc_accel_magn_light-v1-3-636f16f05cf4@gmail.com>
- <161da2d4-3306-4251-addb-cc9822a112c0@oss.qualcomm.com>
-Content-Language: en-US
-From: Rudraksha Gupta <guptarud@gmail.com>
-In-Reply-To: <161da2d4-3306-4251-addb-cc9822a112c0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
->> +		iovdd-supply = <&pm8921_lvs4>;
->> +
->> +		// TODO: Figure out Mount Matrix
-> pmOS wiki has this:
->
-> https://github.com/SiddharthManthan/accelerometer-mount-matrix-generator/blob/master/rotation_matrix.py
->
-> but for accelerometers.. shouldn't be too different, I would assume
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Unfortunately this seems to generate a broken matrix for me for the 
-accelerometer. Downstream is also useless here as I believe Android does 
-something slightly different.
+Hi All,
 
-I have been trying to upstream the pinephone pro's accelerometer and 
-magnetometer as well ( 
-https://lore.kernel.org/all/20250929-ppp_light_accel_mag_vol-down-v4-0-6598f22d3451@gmail.com/ 
-), but I'm just not sure if what I'm doing is right. I think the easiest 
-solution for me right now is to get the screen working and use GUI 
-programs to figure out if the mount matrix is right. If you have other 
-suggestions, please let me know. I'm all ears.
+This series of patches adds support for the Renesas RZ/T2H and RZ/N2H SoCs
+which integrate an Ethernet switch IP variant called ETHSW. The ETHSW is
+largely compatible with the A5PSW switch found on RZ/N1 SoCs, but has
+several key differences in register layout and hardware configuration. The
+series includes updates to the DSA driver, device tree bindings, and
+Kconfig to enable support for these SoCs.
 
-But since I have your attention for now, I had a couple questions on 
-trying to get the screen to work:
+Cheers,
+Prabhakar
 
-- The pipeline is MDP4 <-> DSI <-> Panel, right? Any information you can 
-give me so that I can try to get this working faster?
+Lad Prabhakar (11):
+  net: dsa: tag_rzn1_a5psw: Drop redundant ETH_P_DSA_A5PSW definition
+  net: dsa: tag_rzn1_a5psw: Add RZ/T2H ETHSW tag protocol and register
+    ethsw tag driver
+  net: dsa: Kconfig: Expand config description to cover RZ/T2H and
+    RZ/N2H ETHSW
+  dt-bindings: net: dsa: renesas,rzn1-a5psw: Add RZ/T2H and RZ/N2H ETHSW
+    support
+  net: dsa: rzn1-a5psw: Add support for optional reset control
+  net: dsa: rzn1-a5psw: Add support for optional timestamp clock
+  net: dsa: rzn1-a5psw: Make switch topology configurable via OF data
+  net: dsa: rzn1-a5psw: Make DSA tag protocol configurable via OF data
+  net: dsa: rzn1-a5psw: Add support for management port frame length
+    adjustment
+  net: dsa: rzn1-a5psw: Add support for RZ/T2H Ethernet switch
+  net: dsa: Kconfig: Enable support for RZ/T2H and RZ/N2H SoCs
 
-- Is IOMMU broken? It seems like I can use APQ8064's implementation, but 
-that's broken since at least 5.10. Should this be reported, and if so where?
+ .../bindings/net/dsa/renesas,rzn1-a5psw.yaml  | 154 +++++++++++++++---
+ drivers/net/dsa/Kconfig                       |   9 +-
+ drivers/net/dsa/rzn1_a5psw.c                  |  58 +++++--
+ drivers/net/dsa/rzn1_a5psw.h                  |  25 ++-
+ include/net/dsa.h                             |   2 +
+ include/uapi/linux/if_ether.h                 |   2 +-
+ net/dsa/Kconfig                               |   6 +-
+ net/dsa/tag_rzn1_a5psw.c                      |  22 ++-
+ 8 files changed, 230 insertions(+), 48 deletions(-)
 
-- I see Adreno 2xx, but seems like there is not Adreno 225 DTS 
-compatible? Any insight here?
-
-
-Thanks,
-
-Rudraksha
+-- 
+2.52.0
 
 
