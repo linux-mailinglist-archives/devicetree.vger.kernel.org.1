@@ -1,139 +1,300 @@
-Return-Path: <devicetree+bounces-241258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9FDC7BB02
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 21:55:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC1BC7BB11
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 21:56:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7078A4E0438
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 20:55:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DB5054E0192
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 20:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 293DC279358;
-	Fri, 21 Nov 2025 20:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2E42EE617;
+	Fri, 21 Nov 2025 20:56:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h42BLlMM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cKNSDk6i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D5D6272E6E
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 20:55:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2C6241CB7
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 20:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763758553; cv=none; b=cku4ew0Rw7qa3PAiVCIBN7NtQy5XXRdU7WuXtJqvPfG0rjdWh7j3dXecn8j5ffZiyMJ/z2BtZEO6GfReba/snwORdPVoF57LrpIXAyTXTZdwyxJvG9tO4pjiJXnlsreatwsJCMe5SHjjXyuszSzPzperp1dE5ASjBpv4A99t3aY=
+	t=1763758610; cv=none; b=gpc4jo5jfLklyaubpvtgqYMTDfJ8hOhPU6rTAVix3FDw1Rc30WdkjJ5I37dUeU4AAYrhTM3TPRdqS8xEotPgejjkUMxTs0f61bNpbKsTVZna2e2W4CykpTkM4rjZ2Bfsg3NKuhagxskoYRSvztDTS0wvWOivKVa0H1MGOlJhA9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763758553; c=relaxed/simple;
-	bh=lYUK59Z9lErXRf5Bg+aGnzF3C82gccjJNbgCi2t10u4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=moBJ7GCAKm17XApsWTYk6g4+3VgE94zsH2Nx1EBRcIqn1PQiQY1QRhifFvJCTZ3I70BuLDwzqjcq3+MujOBHosQOjCgcW+3PKv8P3xHACWbWfIgIcEPgH4u0Y4bKM8/tnkFPb+ghHYL6a8AB+Y4KJMCvm9TBnpBVS7MUvgZMqWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h42BLlMM; arc=none smtp.client-ip=209.85.221.47
+	s=arc-20240116; t=1763758610; c=relaxed/simple;
+	bh=7uksRBnfK3K3nAtGLE08L1+hYX17PYdp83wl89HyR5o=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=OT+Q8MsuoF9g192SoZ8Ue4pkJK9PPhSMqNOsU3/3iA7misM47ZHtSpVSO+Ocbm6ytEgFCHCd2s0rQNRdwNo9k6mU2EJaQqfpnQYLpN09mjyed1TJUKBC4SjDrKK3bJu/ORGaVK5E+FAAnYSu7M9ULH3ogLLCiQPEICiSqBegEPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cKNSDk6i; arc=none smtp.client-ip=209.85.221.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-42b2de74838so206142f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 12:55:51 -0800 (PST)
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-5599688d574so728272e0c.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 12:56:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763758550; x=1764363350; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SWLVJDOcbRGYcqao1ONr0boRiS6rHHZNiYodJCrm44Y=;
-        b=h42BLlMMyKXqPMLsi4gNQ2+Ng3XSpkwmx0dC8ZAE2SnutTlyVFr9pY8+RilB9q+2d/
-         HLxqtROSm0f1pebN7bNkNt6mHaYLXCkVEgAa9sL3UurrK4mIXrxbMsOxwEXrafDO9egE
-         6suiAh9LszwJLTOOQayGxo49dWcQeGWLESyEXmTbhKRCVHW6w16KErywrUhFEY4o+EVs
-         hKo+A+L87Fk5NmIC++Z7ox6IJ21nO/uSZQhYDw2ZEmWAtfWYr0grW/N+cP9ZmirQcPCf
-         FeCJzutmNv/w9cdXxaoSDLwnRMCfQ2g6A4+lXPY3D+kf8LQEGaPk2MrsG1UAQDm0R4s3
-         +nVg==
+        d=gmail.com; s=20230601; t=1763758606; x=1764363406; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q3wAic5FhNcDCB3A5RECBp8DoRSHHZ6/CbFE+9ai9bc=;
+        b=cKNSDk6ieO+jqF2qHSsiQWZ9/JNdhO042wwuHVQusuLZ6D3Y7aUu8yjdCx/yxnGcnv
+         tT6eaYKt9+ZjfLir/ECImNnT0B7HLAJ3Lu9yOs0Q34WZn+cUL/diUozWqeHG4rPtYNQY
+         HGiAFahJdGvugMcxH1P5R2TNIcDPAfx7xPYHA2nhziksKuGzZEGxfJNhccZlfoIPCowI
+         +roVL9njUYFDMpSrtpdlhInDvTZOguWofe6HsIs+d4OPee9v8XSPqWihPTIvWQEtOqZa
+         vWDf9hqQOPp969UeSHS9hChZZEZ9TqwGOP24cOl0Z6RQQ5ojS8EBwAphQ0mNEzvhIUt8
+         9GdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763758550; x=1764363350;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SWLVJDOcbRGYcqao1ONr0boRiS6rHHZNiYodJCrm44Y=;
-        b=N/qtRaJ0aUpLBjaT7lIR/oH+GJbraNGS+medOtCQ2pxhXdqiuF2eudZYFPEFCLgrO+
-         7RBCJKyS2uFSqZ6sWwvIKsQxCbaSJYxkeRZQeFwpIgc3j0IdkTUiN+4PKWzNNVR/BLQG
-         zxM+hoNSWkjs4tTBoZvBUMQtUd+YXixYPdweUaL4RV5QmpScY7K/Z1e2qnhYzWLnIvub
-         f7MqsB+qzT9n/FZsAVLF608blyeg5kXIRz7hTnQaom00iH1r4e4nHXdQYVb1oVFZdwMk
-         SBQU2tWQaRqgCTmE65CdHPuLbT3rAyt432ay+fRx4//dmgRCmF//bJWjZG/i0l64GSCp
-         XTKw==
-X-Forwarded-Encrypted: i=1; AJvYcCXR8+IWQeDURrLvW/36p5T2SsN8tb5jF7h4TxT5KYjP6XPkFxOMalG/csTo+sob6YRxprwvrh5fZoFb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBQf5KChiNLNRGx5fN9L3y3LgKPfXTiq7yM32HaIR+pVZd5ULv
-	ZRoPTrlsYaieu9l7rEDvxJ3+JoUDCSfyW46ojeK0+hX5ba60cuvTSqqb
-X-Gm-Gg: ASbGncv5Q3ChX4o4obF91dUf5sAMn+LpQ7/cDcIWTIQmwUBwtjn55hNyURoOgvidvaz
-	eQRCVHduOQ3r3/IUilzzMJ/c3dWkH10EgbqZaweeqptQofZBDRxjFiamh2B3c2ad2x2r5ArKpYB
-	Wu081/XgcY1fxml1PhjPgQTJmRuj28rpQigOu63LTmt9X3Q0/1x+IY9iSJ1PosnazFQzY6V1kQU
-	3OrQEK4jHYjuBl/8HPVSj1WdFHtSiwLPKmZ+71+aMktxroeuAyP07JodTO63JIN9R2szTO3aCZX
-	DO15XRiUR4v/R3JYdkT/uz2gGA8IC4bahp2tB9K/aDy83g4S0a0WBoKysbRyFf/ReG+Y6Z/WIj2
-	thxzsoSYNcc+EiFdyOWD3rTRxO15UQ1JT5259GWEe5RI350x8b4CM8V8+eHHbGrzFNdXe73u19G
-	8y0WA=
-X-Google-Smtp-Source: AGHT+IEpBti2Vot/ywXlhz/7XNq56k24q9qvbPMpnhnia8lGLDa9AtxVQGq2oXuumoaffzRpt9mvgQ==
-X-Received: by 2002:a05:6000:1ac9:b0:429:c851:69bb with SMTP id ffacd0b85a97d-42cc3f99224mr1830789f8f.5.1763758549737;
-        Fri, 21 Nov 2025 12:55:49 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d106:d600:b19f:2efa:e88a:a382])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f2e556sm12847859f8f.5.2025.11.21.12.55.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Nov 2025 12:55:48 -0800 (PST)
-Date: Fri, 21 Nov 2025 22:55:46 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Russell King <linux@armlinux.org.uk>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next 08/11] net: dsa: rzn1-a5psw: Make DSA tag
- protocol configurable via OF data
-Message-ID: <20251121205546.6bqpo2bn5sp3uxxu@skbuf>
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1763758606; x=1764363406;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q3wAic5FhNcDCB3A5RECBp8DoRSHHZ6/CbFE+9ai9bc=;
+        b=iCM+EpAI+xAZ75DXzMSKrtLGbMQTMibZSdEh599TXdvO1pWjIh3ceYDrJdsUE2dN4A
+         ir1yf87UkVGmO9rs8Nmmbvdu+wgaFSVBr1UpTkHKqJeV0+KP+W2KbLGIp1v881SFnijs
+         wRb/w3KRbgjMoCW8Xw67wrqM+dBb661mRV1juHTej9+TF/TOIM+mtol7YeEVTbUTn9Nv
+         AgRyCIqkrHDfKb/xKwC9E8WqOXkuRRxGtroTs+UPIG4VRDQ2aH5m3bJ0BYLm2CbvSzlL
+         3tdIwBuFIxsR+2BVzz2OoiPKfYGYYZc4gwX9RWsS/G66fXr0y26YE+irEL6pb3tksL3I
+         fLGw==
+X-Forwarded-Encrypted: i=1; AJvYcCX5Hpti59zWceT6U5xEIQRUD6X8SAUIir0CfpEa/drEmZTtM1kK7AJm3xZmHRVlqC5dfBpV0/7OlVYH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQJCIK3RsnLE3qAWfA1CJ7ZZ4Tl7YxwTEs1DNMIyJR8piog/xz
+	ifeopPIk96NBcRUFzTkQdKNU4IhRbvkK1gHW9j4nJ4Cah+3KCarjtpJr
+X-Gm-Gg: ASbGncslMeShyykzIIvYqvCuZ65vLdl7o4npgmLHSoBfKNW9K3Aje0NHQSKqdL1UI8a
+	IYefgLbNyn3YI3mgjGpQepCeg5/WYcbkAsZAQdFGHsETqVtrriYnJFz9X8tPDnu4oK0iMuPdMFB
+	Pf2DpzvKnGmX8emp35/8t1/I7yDUKnSX6RAz9DInQcN9zUZFcGMpEq9DCFPe8gpyXMKDQ3SgFj9
+	1kiKvNMFhQuY5Whxn3Zuup3JTe+ORBxvDIqo7hqNkDBIEyIVtG7EiuaZ90RS+gQzUTT+X9ztxr0
+	93X83VSvy9J8IaRfCXHAxKe7iKzhd38DVJb2FhzRD3Skg2GMYopsz78wS19cQWDLZxjao4qgipq
+	xiWXp4skX81AYvQnnIlNhzX8W6TpbR68FbozCVypeMcTa7BrfqIWfM0JVs1j6HHxjijsg9zhbE3
+	zP2RKac8mBpjUXag==
+X-Google-Smtp-Source: AGHT+IENv8YWM05cBPNs2ogCuYE12Fl+bVDAg6kzB4RNjxXY2aUQDDydPC+4XXSAj7+RKW6uB+O5yw==
+X-Received: by 2002:a05:6102:2b87:b0:5d7:dec5:b6a7 with SMTP id ada2fe7eead31-5e1de18ed8fmr1291583137.7.1763758606460;
+        Fri, 21 Nov 2025 12:56:46 -0800 (PST)
+Received: from localhost ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93c5658147fsm2864175241.15.2025.11.21.12.56.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Nov 2025 12:56:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251121113553.2955854-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 21 Nov 2025 15:56:43 -0500
+Message-Id: <DEEO8SSA15XY.1SDBZEILR5AHM@gmail.com>
+From: "Kurt Borja" <kuurtb@gmail.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Kurt Borja"
+ <kuurtb@gmail.com>, "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Tobias Sperling"
+ <tobias.sperling@softing.com>
+Cc: "David Lechner" <dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, "Andy Shevchenko" <andy@kernel.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Jonathan Cameron"
+ <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add TI ADS1018/ADS1118
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251121-ads1x18-v1-0-86db080fc9a4@gmail.com>
+ <20251121-ads1x18-v1-1-86db080fc9a4@gmail.com>
+ <32e76bff-f535-40ce-88e2-7bbf7da87620@kernel.org>
+In-Reply-To: <32e76bff-f535-40ce-88e2-7bbf7da87620@kernel.org>
 
-On Fri, Nov 21, 2025 at 11:35:34AM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Update the RZN1 A5PSW driver to obtain the DSA tag protocol from
-> device-specific data instead of using a hard-coded value. Add a new
-> `tag_proto` field to `struct a5psw_of_data` and use it in
-> `a5psw_get_tag_protocol()` to return the appropriate protocol for
-> each SoC.
-> 
-> This allows future SoCs such as RZ/T2H and RZ/N2H, which use the
-> DSA_TAG_PROTO_RZT2H_ETHSW tag format, to share the same driver
-> infrastructure without code duplication.
+Hi Krzysztof,
 
-Again the twitching when reading the commit title. I thought this has
-something to do with the "dsa-tag-protocol" property from
-Documentation/devicetree/bindings/net/dsa/dsa-port.yaml. The tagger *is*
-runtime-configurable if you implement the ds->ops->change_tag_protocol()
-API, and it's also possible to trigger that API function from OF
-properties. But this is not what the patch does, so it is confusing.
+On Fri Nov 21, 2025 at 2:10 PM -05, Krzysztof Kozlowski wrote:
+> On 21/11/2025 18:16, Kurt Borja wrote:
+>> Add documentation for Texas Instruments ADS1018 and ADS1118
+>> analog-to-digital converters.
+>>=20
+>> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
+>
+> You did not test it before sending, so no full review but few nits to
+> save you one round of reviews:
 
-I think it would be more natural to say "choose tagging protocol based
-on compatible string".
+My bad! I will fix the errors. Thanks!
 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
+>
+>> ---
+>>  .../devicetree/bindings/iio/adc/ti,ads1118.yaml    | 132 ++++++++++++++=
++++++++
+>>  1 file changed, 132 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml b=
+/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml
+>> new file mode 100644
+>> index 000000000000..eb7228ed6ddb
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml
+>> @@ -0,0 +1,132 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/adc/ti,ads1118.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TI ADS1018/ADS1118 SPI analog to digital converter
+>> +
+>> +maintainers:
+>> +  - Kurt Borja <kuurtb@gmail.com>
+>> +
+>> +description: |
+>> +  The ADS1018/ADS1118 is a precision, low-power, 12-bit or 16-bit, nois=
+e-free,
+>> +  analog-to-digital converter (ADC). It integrates a programmable gain =
+amplifier
+>> +  (PGA), voltage reference, oscillator and high-accuracy temperature se=
+nsor.
+>> +
+>> +  Datasheets:
+>> +    - ADS1018: https://www.ti.com/lit/ds/symlink/ads1018.pdf
+>> +    - ADS1118: https://www.ti.com/lit/ds/symlink/ads1118.pdf
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ti,ads1018
+>> +      - ti,ads1118
+>> +
+>> +  reg:
+>> +    maxitems: 1
+>> +
+>> +  interrupts:
+>> +    description: DOUT/DRDY (Data Out/Data Ready) line.
+>> +    maxitems: 1
+>> +
+>> +  drdy-gpios:
+>> +    description:
+>> +      Extra GPIO line connected to DOUT/DRDY (Data Out/Data Ready). Thi=
+s allows
+>> +      distinguishing between latched and real DRDY IRQs.
+>
+> I have feeling that you miss proper handling of IRQs (e.g. active level)
+> on your board.
 
-Anyway I'm not reviewing this commit until the reason why you added a
-new name for this tagger becomes completely clear.
+Can you elaborate? Should I specify active level here?
+
+>
+>> +    maxitems: 1
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+>> +
+>> +  '#size-cells':
+>> +    const: 0
+>> +
+>> +  '#io-channel-cells':
+>> +    const: 1
+>> +
+>> +required:
+>
+> This goes after patternProperties.
+>
+>> +  - compatible
+>> +  - reg
+>> +  - drdy-gpios
+>> +  - '#address-cells'
+>> +  - '#size-cells'
+>> +
+>> +patternProperties:
+>> +  "^channel@[0-7]$":
+>> +    type: object
+>> +    $ref: /schemas/iio/adc/adc.yaml#
+>> +    description: Properties for a single ADC channel.
+>> +
+>> +    properties:
+>> +      reg:
+>> +        minimum: 0
+>> +        maximum: 7
+>> +        description: The channel index (0-7).
+>> +
+>> +      ti,gain:
+>
+> Use common property units.
+>
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pr=
+operty-units.yaml
+>
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        minimum: 0
+>> +        maximum: 5
+>> +        description:
+>> +          Programmable gain amplifier configuration, as described in th=
+e PGA
+>> +          Config Register Field description. If not present, the defaul=
+t is
+>> +          used.
+>> +
+>> +      ti,datarate:
+>
+> Use common property units.
+>
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        minimum: 0
+>> +        maximum: 7
+>> +        description:
+>> +          Data rate configuration, as described in the DR Config Regist=
+er Field
+>> +          description. If not present, the default is used.
+>
+> default:
+>
+>> +
+>> +    required:
+>> +      - reg
+>> +
+>> +    additionalProperties: false
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>> +
+>> +  - if:
+>> +    properties:
+>> +      compatible:
+>> +        contains:
+>> +          const: ti,ads1018
+>> +    then:
+>> +      patternProperties:
+>> +        "^channel@[0-7]$":
+>> +          properties:
+>> +            ti,datarate:
+>> +              maximum: 6
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    spi0 {
+>
+> spi
+>
+>> +        #address-cells =3D <1>;
+>> +        #size-cells =3D <0>;
+>> +
+>> +        ads1118@0 {
+>
+>
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
+tree-basics.html#generic-names-recommendation
+> If you cannot find a name matching your device, please check in kernel
+> sources for similar cases or you can grow the spec (via pull request to
+> DT spec repo).
+>
+> e.g. adc
+>
+>
+>> +            compatible =3D "ti,ads1118";
+> Best regards,
+> Krzysztof
+
+Ack for the rest. Thank you!
+
+
+--=20
+ ~ Kurt
+
 
