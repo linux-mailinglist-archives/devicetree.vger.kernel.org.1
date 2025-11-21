@@ -1,138 +1,154 @@
-Return-Path: <devicetree+bounces-240993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35210C788CC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:37:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC81CC78917
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:47:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D4EA1347A04
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:37:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 093BE2D47B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 10:47:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2591342539;
-	Fri, 21 Nov 2025 10:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C490C345CCA;
+	Fri, 21 Nov 2025 10:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q0NcL31P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQdr8ZMN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B717733F8A4;
-	Fri, 21 Nov 2025 10:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9688D275AFF;
+	Fri, 21 Nov 2025 10:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763721431; cv=none; b=Y0pdFLlC+RmLN8nv0mC23ryVxYsqNJC1TVw8heWsHUY5m6pZmyk730qI9QwPlaiVZ7XM+e8iAZYQczq1ey1actRdO37jnj5h1VyLlwm45X0e2bP9a9FOQCrGoWtD3hS4PK/oIGbVbSV0mI+6QY/iyK/pH2O5GXjV8ZYx0Td71h4=
+	t=1763722019; cv=none; b=pKH7euJNRXvaxYmLri1Goadz1Id1Tlk64Xf0ZRX+Hq1xX8GL2kh3qVxarpwxT28LfQRWAcBEcV0VQS1V2GXNIZbyx2gZp9lqM15MKFNvmppHepo1ptDIYT/pv01f0t4adTiN/ZPD4aQwM/BzVfnxN7VRYxQyYqbsNQ8eqpILVoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763721431; c=relaxed/simple;
-	bh=J7FhIu/QRNQB7FTtcYRvMt7DBAVUX39t15JODTOuYs8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ndpvFNu/NSfqQqxIddEcvERHOHYR6+/Xacg+jsRVsNOWiULyQnvbKr+CICF4Ws5E4Hg3JYyHbdLGANk/oLXJEnJY1F98hwzngA46X3zUOHt/qk5QaOTMimch23yLPHr/E6QIfGR3scVk6QOiiWjP8l/vGC/kvdTr5l37pEdWylo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q0NcL31P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAFF1C4CEF1;
-	Fri, 21 Nov 2025 10:37:08 +0000 (UTC)
+	s=arc-20240116; t=1763722019; c=relaxed/simple;
+	bh=IY7GKSwUDc964CV9W4zkczN113qk2pJQBKtZUin5/Ec=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LPjFqiCZ1AUmRdb9CpRMC+xGMfXqlf+o52puOd8RJK3p+2OyC+lQT4Zjyie/NpfqnS3h9GJcl/uGSfzdUTIvC/ypRljF8GuKIE3OJX+tXjddeovH/5CainWFKP6anaIDJzbCUPA+OwRi1a73I+cRwUaLrXvxhWw9VGUYNhivnGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQdr8ZMN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46416C4CEF1;
+	Fri, 21 Nov 2025 10:46:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763721431;
-	bh=J7FhIu/QRNQB7FTtcYRvMt7DBAVUX39t15JODTOuYs8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q0NcL31PhllGsebfjM9+SvoKEUuwOKivIl1WB947vPzG0oM7wV61P1LVsWOGFSCPQ
-	 O/UTYa4eOd9ZSjWMRYLqnz0zdnWkbGg0wyRxHX+LYhL2PfVl7KZGVuWNkq2gYXEQdY
-	 1nTTwVDs+LQroGs9ld5A4H9qitw38bRhIlZpuN9u0ouqSGvVtqXkBipU6uIRGDidkz
-	 kPq8EX69KedZIkMT2rmlO267ZjYYgsSe9nWGZvQXkYt+Um2LpX9QfPOxhbKgTGF3/3
-	 zbN8B1lMybddEa4CJsMJQBxna+5Zimj5LKvmA085huBdGxf6yQn0NZedVJhFkmUBaP
-	 GK/1C1LtoOK1A==
-Message-ID: <bc8cbca0-3bfc-44e2-a7ff-401e52f76b90@kernel.org>
-Date: Fri, 21 Nov 2025 11:37:07 +0100
+	s=k20201202; t=1763722019;
+	bh=IY7GKSwUDc964CV9W4zkczN113qk2pJQBKtZUin5/Ec=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oQdr8ZMN3vMm/65ROOuoj2jbdYyDmxCKlQpD02CAOU7YslNTWNmFahFkpXkE8Y2Xc
+	 A9n32PFwpx9KEdotOuicx8rjAVk+YVqLtTd+Hq8xhuZNihxjPQAGGX2BWGvFdv8EIE
+	 q2u2JY3i0ujYRhmLzPpsKBB2s0Yzd6ZGB9CLtdTa1m9oSYkhTcn01feba6FdzooDpM
+	 RbjIUNOFzYlL97rDOwhcSBxLiq+HD5b9H7hPpkbubn/bX5iz529xHdWJU9myG1I6cd
+	 ys1VNpFUdoq0+BubJ4VMFGmkptP0k3sGnL8bRx3Dphk3LvIq3XgBp8n2WgN0VcnweU
+	 xYrIPrZRcGDag==
+Date: Fri, 21 Nov 2025 10:46:54 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
+Message-ID: <20251121-epidermis-overdue-1ebb1bb85e36@spud>
+References: <20251112-lantern-sappy-bea86ff2a7f4@spud>
+ <20251112-improving-tassel-06c6301b3e23@spud>
+ <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
+ <20251119-bacterium-banana-abcdf5c9fbc5@spud>
+ <CACRpkda3Oz+K1t38QKgWipEseJxxneBSC11sFvzpB7ycnqsjBA@mail.gmail.com>
+ <20251120-silicon-oyster-5d973ff822d9@spud>
+ <CACRpkdaM3Hkbxx99uXx6OVdSbdhNNc3voS1FoUsz2oAUEc1-qA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] soc: qcom: llcc: Enable additional usecase id for
- Glymur
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, sibi.sankar@oss.qualcomm.com,
- rajendra.nayak@oss.qualcomm.com
-References: <20251121-glymur_llcc_enablement-v1-0-336b851b8dcb@oss.qualcomm.com>
- <20251121-glymur_llcc_enablement-v1-2-336b851b8dcb@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251121-glymur_llcc_enablement-v1-2-336b851b8dcb@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="InPS5/iTnJJVQXkm"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdaM3Hkbxx99uXx6OVdSbdhNNc3voS1FoUsz2oAUEc1-qA@mail.gmail.com>
 
-On 21/11/2025 10:53, Pankaj Patil wrote:
-> Update the list of usecase id's to enable additional clients
-> for Glymur SoC
-> 
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> ---
->  include/linux/soc/qcom/llcc-qcom.h | 4 ++++
 
-That's not a separate patch. We do not want defines just for defines.
-You add defines because some code uses it, so there is a user. Where? It
-must be in this patch, for all typical cases.
+--InPS5/iTnJJVQXkm
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
-> index 0287f9182c4d..8243ab3a12a8 100644
-> --- a/include/linux/soc/qcom/llcc-qcom.h
-> +++ b/include/linux/soc/qcom/llcc-qcom.h
-> @@ -74,13 +74,17 @@
->  #define LLCC_CAMSRTIP	 73
->  #define LLCC_CAMRTRF	 74
->  #define LLCC_CAMSRTRF	 75
-> +#define LLCC_OOBM_NS	 81
-Best regards,
-Krzysztof
+On Fri, Nov 21, 2025 at 12:13:21AM +0100, Linus Walleij wrote:
+> On Thu, Nov 20, 2025 at 1:26=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
+rote:
+> > On Wed, Nov 19, 2025 at 10:48:07PM +0100, Linus Walleij wrote:
+> > > On Wed, Nov 19, 2025 at 7:23=E2=80=AFPM Conor Dooley <conor@kernel.or=
+g> wrote:
+>=20
+> > > I looked at the bindings that look like this and are not 1:1 to the
+> > > in-kernel configs:
+> > >
+> > >   input-schmitt-enable:
+> > >     type: boolean
+> > >     description: enable schmitt-trigger mode
+> > >
+> > >   input-schmitt-disable:
+> > >     type: boolean
+> > >     description: disable schmitt-trigger mode
+> > >
+> > >   input-schmitt-microvolt:
+> > >     description: threshold strength for schmitt-trigger
+> > >
+> > > 1. input-schmitt is missing! But it is right there in
+> > > drivers/pinctrl/pinconf-generic.c ... All DTS files appear to be
+> > > using input-schmitt-enable/disable and -microvolt.
+> > >
+> > > 2. input-schmitt-microvolt should probably be used separately
+> > > to set the voltage threshold and can be used in conjunction
+> > > with input-schmitt-enable in the same node. In your case
+> > > you probably don't want to use it at all and disallow it.
+> > >
+> > > They are all treated individually in the parser.
+> > >
+> > > Maybe we could patch the docs in pinconf-generic.h to make it clear t=
+hat
+> > > they are all mutually exclusive.
+> > >
+> > > The DT parser is a bit primitive for these.
+> > > For example right now it is fine with the schema
+> > > to set input-schmitt-enable and input-schmitt-disable at the same tim=
+e, and
+> > > the result will be enabled because of parse order :/
+> >
+> > > The real trick would be to also make the
+> > > schema in Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> > > make them at least mutually exclusive and deprecate the
+> > > input-schmitt that noone is using, maybe that is simpler than I think?
+> >
+> > I think that this is probably what to do. Mutual exclusion isn't
+> > difficult to set up there and if there's no property for "input-schmitt"
+> > then deprecating it sounds pretty reasonable?
+>=20
+> Yeah I agree.
+>=20
+> Do you want to look into it?
+>=20
+> Otherwise it becomes my problem now that I've noticed it :D
+
+Yeah, it's just a binding patch here I think, so yeah I'll do it.
+
+>=20
+> Yours,
+> Linus Walleij
+
+--InPS5/iTnJJVQXkm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSBDHgAKCRB4tDGHoIJi
+0hYBAQDXuNTU27ZqIQsjPEhhDcO+EPC/JLRa+0NWQs/gnzgtMwD+KVdxXEM0NizJ
+1GePWgRXDY50JkyRmHjNltWiQjb/kQY=
+=z8bd
+-----END PGP SIGNATURE-----
+
+--InPS5/iTnJJVQXkm--
 
