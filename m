@@ -1,120 +1,161 @@
-Return-Path: <devicetree+bounces-241097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6F7C791BA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:03:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA62C791AB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:02:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7E9E23645C3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:00:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 2C9F42DA9D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96ECD1DE3DC;
-	Fri, 21 Nov 2025 13:00:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9CC9332904;
+	Fri, 21 Nov 2025 13:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qR8YYg9a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tce2aylL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84E41C84CB;
-	Fri, 21 Nov 2025 13:00:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD1F6338595
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 13:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763730034; cv=none; b=herd4iXubilc3wgqo5o1ZeOKRYEr48DoJo8gnIAttWW9HrJKIcLysYwr5mBwp+uOjxDMHLx5PoXp2ax7LV6Uz0LmQGbwWBELr8Zuckz8H7nsTdHN5VcYFTyqdd6ekTUTsejTD9MsijJpCHGp0CcO5MpKTT/5BZ0okyrPUD3HAHA=
+	t=1763730116; cv=none; b=Jrko96Ulu2HGTRaEWtaT+zNjulve0XjQie+3oDGuwEMKkVAZ96X4U+Hd3z963pktYRxW7WL3eoBppQ0tVfyP97i7DCgVaOevzvhY8SMVTHcUTXrB8eIP/Hc13J51+I55Ou1hhHIFCc8UXT2nTn9tszQGhYnr4ZwotEtf4CHoXmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763730034; c=relaxed/simple;
-	bh=l+liJeHp0JkLlcj+7/9/4BqCexY09/RYvw3Uz3/qIX8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dlA21FFVhIonweq1h+oXyN065cIOp1hX5o1kyW6cgNDpidKsqsIOYNmDIsEwUQXXlVgLD1nX29hEphxQCx51UhhL+2+pjlCkx84w0qTQO9e7Pb1GhTQCyltnlQ/W283dJ2WX9/bL3fZvpdLOZeVyQlTasjMnSXI9c56VMdudaz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qR8YYg9a; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1763730030;
-	bh=l+liJeHp0JkLlcj+7/9/4BqCexY09/RYvw3Uz3/qIX8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qR8YYg9avpuPHoD1vt/phejYpeMFiuCav/44bcWP07kFaS6Zaq+l/++kBCzpHhQQE
-	 BBkzZv2aUe+G7xBCNotgAFVaNcntSqi/LO2OrT9bHyQfqsvc5u98YlkragcAsbeBof
-	 H4vpYAxrJpxJXwXu90oQ8CUE61Qm3swXuv5X2cQy1e1R3kkjf9QJB88TFUAvvWdrUc
-	 OvAhUQhIqV8f0WiIff0MAbRpYpj5gFlvOe2/aKJLNBNwASr6x2OpKktLqcDT/hCQeQ
-	 boVZwKoAuAUEIhgx/Os69bCCkin9qKPsIkhq1XvvqPDPxxNL4EfRGZZORs4J2Hc3lf
-	 8y/VEVTNovyvQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7A81117E05BE;
-	Fri, 21 Nov 2025 14:00:29 +0100 (CET)
-Message-ID: <acfc088f-7c54-4281-b816-a5f2eca23ecf@collabora.com>
-Date: Fri, 21 Nov 2025 14:00:29 +0100
+	s=arc-20240116; t=1763730116; c=relaxed/simple;
+	bh=pFABHeUoQY0iTYtcJ4akPo9l83Vtn04kLhdTwdzSeGQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kjm2xpEyeopL6BHqqoScjhke6rh0l5QwIRQji35GPUX9R6sf4oy1+vZnrNAOVwWGKqv+LTGOQNMI3YX8jEt11vyI4lT41LIldtbanYeDJq2EOg2uV9bklvg+oyXO2790DGDELBkj7sz/WVMTgY7ANAPKT1hyrpi9rgjHoGNxiHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tce2aylL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CE16C2BCB1
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 13:01:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763730116;
+	bh=pFABHeUoQY0iTYtcJ4akPo9l83Vtn04kLhdTwdzSeGQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Tce2aylLuTwJkp5tjrvo9HV45BY43bcXQhLYbKwSeeZfjGseOFeliyQAOjWhaFJcI
+	 +mxhfIHytB2afLH4DW230R/oFYafOVUPYiN7jUWqWrt9e3YFRfC3pvrDgZNe3HGGn1
+	 h3iPZfY78nLW5DPhcfMzrljOlLgES8nQxFxXUjQ7K4fsCRpjwDCFL5AsR9pqd7ySxH
+	 b7tVpmreG4HIcRTWY5x8acgkxyDcwHpvRLpOq0Y/MVrszBXXrE5OtRUWkbXhN/nK4F
+	 iL06ikq1zTFM6wuMyGFJWOfGim/tS80lbKOGDdc4CbDUlbJUB8GXYuw04Evk+y6Z9X
+	 BS0SMV0I0C9zw==
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-42b566859ecso1824149f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 05:01:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVZPRwFZTkITG6bWjBapy+A3irTr8Vj7/debM0kxC9H5D5iuTrldcjaanqOqbU9n18xIsat1sSW6RLM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRlmWfAmlHDnxfy54jgt/SgAwwp2sklYLEYKCfP7f3AWZPKtc9
+	zfTmMu7DrIsHnzXHMe1HRMUrFY9gbG7cVlmeADX2sPyAeTjJuwmJwrajb4IhphYhrUuyBtLW+gx
+	YPzjiyYnfIDZ+60oi5I54KYvVtTk2bME=
+X-Google-Smtp-Source: AGHT+IH2WWQx62nU3nXwdjAYaSGbKV/vdvwMmXoWS67FwfXhPZ0YDOvI2r9MT5zCkI2PYga5CpnXhou/x6QgIvB6LMg=
+X-Received: by 2002:a5d:5c89:0:b0:42b:3455:e4a4 with SMTP id
+ ffacd0b85a97d-42cc1d0c963mr2291902f8f.31.1763730114690; Fri, 21 Nov 2025
+ 05:01:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/9] thermal/drivers/mediatek/lvts: Fail probe if
- temp_factor is zero
-To: Laura Nao <laura.nao@collabora.com>, srini@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org,
- daniel.lezcano@linaro.org, rui.zhang@intel.com, lukasz.luba@arm.com,
- matthias.bgg@gmail.com
-Cc: nfraprado@collabora.com, arnd@arndb.de, colin.i.king@gmail.com,
- u.kleine-koenig@baylibre.com, andrew-ct.chen@mediatek.com,
- lala.lin@mediatek.com, bchihi@baylibre.com, frank-w@public-files.de,
- wenst@chromium.org, fshao@chromium.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com
-References: <20251121-mt8196-lvts-v4-v4-0-357f955a3176@collabora.com>
- <20251121-mt8196-lvts-v4-v4-3-357f955a3176@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251121-mt8196-lvts-v4-v4-3-357f955a3176@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251121063439.2545-1-cp0613@linux.alibaba.com>
+ <20251121063439.2545-2-cp0613@linux.alibaba.com> <20251121-able-terrestrial-spaniel-90c3cf@kuoka>
+ <20251121-shortlist-coroner-b29e19293b40@spud>
+In-Reply-To: <20251121-shortlist-coroner-b29e19293b40@spud>
+From: Guo Ren <guoren@kernel.org>
+Date: Fri, 21 Nov 2025 21:01:41 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTRUmUHrTsOBM82kNq2cSYmeYr9NC_ORacUnqHAefFSaWw@mail.gmail.com>
+X-Gm-Features: AWmQ_blX7yyP7BZRzgRui-YUVloEOuF-o22dWIaYeG9mowbwvBtor0IGCm44Agc
+Message-ID: <CAJF2gTRUmUHrTsOBM82kNq2cSYmeYr9NC_ORacUnqHAefFSaWw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: vendor-prefixes: Add prefix for XuanTie
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, cp0613@linux.alibaba.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, peterz@infradead.org, mingo@redhat.com, 
+	acme@kernel.org, namhyung@kernel.org, mark.rutland@arm.com, 
+	alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com, 
+	adrian.hunter@intel.com, james.clark@linaro.org, devicetree@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 21/11/25 12:16, Laura Nao ha scritto:
-> temp_factor is used in lvts_temp_to_raw() and lvts_raw_to_temp(). If
-> platform data is incorrect and temp_factor is zero, it could cause a
-> division by zero. Fail the probe early to prevent a kernel crash.
-> 
-> Signed-off-by: Laura Nao <laura.nao@collabora.com>
-> ---
->   drivers/thermal/mediatek/lvts_thermal.c | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-> index 1c54d0b75b1a..b49441d82ffd 100644
-> --- a/drivers/thermal/mediatek/lvts_thermal.c
-> +++ b/drivers/thermal/mediatek/lvts_thermal.c
-> @@ -1346,6 +1346,11 @@ static int lvts_probe(struct platform_device *pdev)
->   	if (irq < 0)
->   		return irq;
->   
-> +	if (!lvts_data->temp_factor)
-> +		return dev_err_probe(
-> +			dev, -EINVAL,
-> +			"temp_factor should never be zero; check platform data.\n");
-> +
+On Fri, Nov 21, 2025 at 8:31=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Fri, Nov 21, 2025 at 10:01:07AM +0100, Krzysztof Kozlowski wrote:
+> > On Fri, Nov 21, 2025 at 02:34:36PM +0800, cp0613@linux.alibaba.com wrot=
+e:
+> > > From: Chen Pei <cp0613@linux.alibaba.com>
+> > >
+> > > Add new vendor strings to dt bindings for RISC-V vendor XuanTie.
+> > >
+> > > Signed-off-by: Chen Pei <cp0613@linux.alibaba.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b=
+/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > index f1d1882009ba..5d28b2da94cd 100644
+> > > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > @@ -1829,6 +1829,8 @@ patternProperties:
+> > >      description: Xilinx
+> > >    "^xnano,.*":
+> > >      description: Xnano
+> > > +  "^xuantie,.*":
+> > > +    description: C-SKY Microsystems Co., Ltd. (XuanTie)
+> >
+> > We do not create new prefixes for existing entries. You have already
+> > csky, alibaba and thead and probably many more. Choose some appropriate=
+.
+We could leave the one C-SKY vendor entry, how about:
 
-		return dev_err_probe(dev, -EINVAL,
-				     "temp_factor should never be zero; check platform data.\n");
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -347,8 +347,8 @@ patternProperties:
+     description: Creative Technology Ltd
+   "^crystalfontz,.*":
+     description: Crystalfontz America, Inc.
+-  "^csky,.*":
+-    description: Hangzhou C-SKY Microsystems Co., Ltd
++  "^xuantie,.*":
++    description: C-SKY Microsystems Co., Ltd. (XuanTie)
+   "^csot,.*":
+     description: Guangzhou China Star Optoelectronics Technology Co., Ltd
+   "^csq,.*":
 
-That's the only nitpick that I've got here, and I'm fine either way, anyway, as
-this then kind of boils down to personal preference, in a way.
+The arch/csky is the architecture name, which means "xuantie,csky".
 
-So, regardless of this getting fixed (by the maintainer or by you) or not:
+The c810 is the CPU product name, which means "xuantie,c810" of the
+"xuantie,csky" architecture.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+The c930 is the CPU product name, which means "xuantie,c930".
 
->   	golden_temp_offset = lvts_data->temp_offset;
->   
->   	ret = lvts_domain_init(dev, lvts_td, lvts_data);
-> 
+>
+> When the vendor literally says "C-SKY", it's hard to buy why csky
+> shouldn't be used here. Xuantie is described as being a brand, where at
+> least t-head was a company. This seems akin to having
+> "snapdragon,msm8660" instead of "qcom,msm8660", for example.
+Yes, XuanTie is not only a brand, but also the abbreviation of C-SKY
+Microsystems Co., Ltd.
 
+Just like:
+
+  "^100ask,.*":
+    description: Baiwen.com (100ask).
+  "^linksys,.*":
+    description: Belkin International, Inc. (Linksys)
+
+>
+> >
+> > Your commit msg should also explain anything unusual here, like above.
+> >
+> > Best regards,
+> > Krzysztof
+> >
+
+--=20
+Best Regards
+ Guo Ren
 
