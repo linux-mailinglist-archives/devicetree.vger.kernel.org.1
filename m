@@ -1,139 +1,135 @@
-Return-Path: <devicetree+bounces-240915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDAEC7798B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 07:43:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 740BAC779A1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 07:48:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 059224E55D5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 06:43:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E18D135BF00
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 06:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ABF131D399;
-	Fri, 21 Nov 2025 06:43:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="POsEpL2A"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257B224CEEA;
+	Fri, 21 Nov 2025 06:48:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EBD928C037;
-	Fri, 21 Nov 2025 06:43:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from zg8tmja2lje4os43os4xodqa.icoremail.net (zg8tmja2lje4os43os4xodqa.icoremail.net [206.189.79.184])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF08238C07;
+	Fri, 21 Nov 2025 06:48:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.79.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763707383; cv=none; b=ggBqlq9XKhb16yvoaliSemHxR4TwAVIxeCEIh/KMMvXBjZd5If+xA/qwj+qPm/9/54WLOEBBibgRI5iO8s/3ZqRdUo8T4DR/DT+XtZwET2TPfIl/Q85fNjAZKakR6tB57sMPAZRsGwPB5IPBL/dER+a7PGdaNflN2TdwNKqaY6w=
+	t=1763707733; cv=none; b=jxm25sAwXGavXGxvSnkkFANp9lr7buWAnIG5xLE7mtPFU8qTAwLFstB+eVot0Z1btSf/mF7bRyFKOBlr0uoqqO8lkDnS8DxLOAA1gLxnsnzICDQNpNLPsZgE3zJpH5vLHXKq91Koz1leIoUmWsIQFL0vm6yIDIiK6/genzgk/3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763707383; c=relaxed/simple;
-	bh=VorYLfymXUb0WIcUpjhuWjueRM2ZfW3g8T9ia5ZU3l0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hy7nldm3RQXFPQfNC8H8uB4OcqD0omMgNjDhr4C1STK9uSVwr23MZzfh8Q/GfAGjQONJbzc3HcoWDitf1I6Tfyft6UtIghb+DpbnvC+i34hj6IDDPp50Q7V0QQkRNOfr+361lu+JjbyGjeWUWrtBJSDMbmAd9JIjhTIDP+Uib1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=POsEpL2A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01A76C4CEF1;
-	Fri, 21 Nov 2025 06:42:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763707380;
-	bh=VorYLfymXUb0WIcUpjhuWjueRM2ZfW3g8T9ia5ZU3l0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=POsEpL2AOzVAeVpd6h1kASyZth0ssPEUBXJalMz0lDqk6kDiBhQtDRdvMovHC0SBS
-	 KjcREu3OIg5etrKysfJLRV9rPA+e1J8tLitJPNFgDYt2e3Icx8P7W26N8pY3nIY9Kq
-	 Yia403CcPgpv1ZwrDTVbrNJTdsNz3N782X63Oj/xVzKz9mkg/13+xeo0fgLjMpfJLx
-	 I5hM9RHUcsnq25ZG31lVfU6wzwpj+uiCas+omMtK24DeMrJAL+58OjqK3kmTKsWel4
-	 BfySCy/D8CzJoUG5X9bB8QF+5WRd3HstZ7/pFZTMQzDZbNOLDznNloK5esiBhFwVxB
-	 Z5Ecm1pm3ew3A==
-Date: Thu, 20 Nov 2025 23:42:56 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Thomas De Schampheleire <thomas.de_schampheleire@nokia.com>
-Cc: linux-kbuild@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
-	Nicolas Schier <nsc@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] kbuild: fix compilation of dtb specified on command-line
- without make rule
-Message-ID: <20251121064256.GB571346@ax162>
-References: <20251120140645.478623-1-thomas.de_schampheleire@nokia.com>
+	s=arc-20240116; t=1763707733; c=relaxed/simple;
+	bh=fS5PgzwvioGL5pHjmQTgLKdllFC+X3iN9pvEDO4sWNw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=K0mxB8SdnYkBnH4WO1JkN8niHWfhm83I0tGmgHlpiKT4u/XGY0/7a/9/+PI45UN/SePBUcl3G2nuYZr2UcWH+4nhLvfkRmlvyygmUhR0baOh0eU1h2stYyPvlxJkGGvLA54vJVSiwp4lGR9yJFCngTdrwSUcX2noUR7AvaJJkWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.79.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
+ ajax-webmail-app2 (Coremail) ; Fri, 21 Nov 2025 14:48:20 +0800 (GMT+08:00)
+Date: Fri, 21 Nov 2025 14:48:20 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
+To: "Manivannan Sadhasivam" <mani@kernel.org>
+Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
+	p.zabel@pengutronix.de, jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com, inochiama@gmail.com,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com,
+	Frank.li@nxp.com
+Subject: Re: Re: [PATCH v6 3/3] PCI: dwc: Add no_suspport_L2 flag and skip
+ PME_Turn_Off broadcast
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <dux47crrf6ranvexkpzw667hzmkgfguqadseco52svgvglalye@alxqq4ybu672>
+References: <20251120101018.1477-1-zhangsenchuan@eswincomputing.com>
+ <20251120101236.1538-1-zhangsenchuan@eswincomputing.com>
+ <dux47crrf6ranvexkpzw667hzmkgfguqadseco52svgvglalye@alxqq4ybu672>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251120140645.478623-1-thomas.de_schampheleire@nokia.com>
+Message-ID: <11367b43.6d3.19aa52bc596.Coremail.zhangsenchuan@eswincomputing.com>
+X-Coremail-Locale: en_US
+X-CM-TRANSID:TQJkCgDnK680CyBpFzB9AA--.2279W
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAQENBmkfQ
+	oMSzAAAsi
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 
-+ Rob, as he reviewed e7e2941300d2
-
-On Thu, Nov 20, 2025 at 03:06:43PM +0100, Thomas De Schampheleire wrote:
-> Since commit e7e2941300d2 ("kbuild: split device tree build rules into
-> scripts/Makefile.dtbs"), it is no longer possible to compile a device tree
-> blob that is not specified in a make rule
-> like:
->     dtb-$(CONFIG_FOO) += foo.dtb
-> 
-> Before the mentioned commit, one could copy a dts file to e.g.
-> arch/arm64/boot/dts/ (or a new subdirectory) and then convert it to a dtb
-> file using:
->     make ARCH=arm64 foo.dtb
-> 
-> In this scenario, both 'dtb-y' and 'dtb-' are empty, and the inclusion of
-> scripts/Makefile.dtbs relies on 'targets' to contain the MAKECMDGOALS. The
-> value of 'targets', however, is only final later in the code.
-> 
-> Move the conditional include of scripts/Makefile.dtbs down to where the
-> value of 'targets' is final.
-> 
-> Fixes: e7e2941300d2 ("kbuild: split device tree build rules into scripts/Makefile.dtbs")
-> Signed-off-by: Thomas De Schampheleire <thomas.de_schampheleire@nokia.com>
-
-Huh, TIL that .c and .S files can be built in the same way...
-
-  $ touch init/foo.c init/bar.S
-  $ make init/foo.o init/bar.o
-  $ ls init/.foo.o.cmd init/.bar.o.cmd
-  init/.bar.o.cmd
-  init/.foo.o.cmd
-
-I do not necessarily love splitting up the conditional includes from
-each other but I am not sure it can be avoided... Nicolas, are you okay
-with me taking this as a fix or do you want to take it via kbuild-next?
-If the latter:
-
-Reviewed-by: Nathan Chancellor <nathan@kernel.org>
-
-> ---
->  scripts/Makefile.build | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
-> 
-> diff --git a/scripts/Makefile.build b/scripts/Makefile.build
-> index d0ee33a487be..6e0f9e922c68 100644
-> --- a/scripts/Makefile.build
-> +++ b/scripts/Makefile.build
-> @@ -527,10 +527,6 @@ ifneq ($(userprogs),)
->  include $(srctree)/scripts/Makefile.userprogs
->  endif
->  
-> -ifneq ($(need-dtbslist)$(dtb-y)$(dtb-)$(filter %.dtb %.dtb.o %.dtbo.o,$(targets)),)
-> -include $(srctree)/scripts/Makefile.dtbs
-> -endif
-> -
->  # Build
->  # ---------------------------------------------------------------------------
->  
-> @@ -568,6 +564,11 @@ FORCE:
->  targets += $(filter-out $(single-subdir-goals), $(MAKECMDGOALS))
->  targets := $(filter-out $(PHONY), $(targets))
->  
-> +# Now that targets is fully known, include dtb rules if needed
-> +ifneq ($(need-dtbslist)$(dtb-y)$(dtb-)$(filter %.dtb %.dtb.o %.dtbo.o,$(targets)),)
-> +include $(srctree)/scripts/Makefile.dtbs
-> +endif
-> +
->  # Read all saved command lines and dependencies for the $(targets) we
->  # may be building above, using $(if_changed{,_dep}). As an
->  # optimization, we don't need to read them if the target does not
-> 
-> base-commit: deab487e0f9b39ae4603e22d7d00908ebfc9753c
-> -- 
-> 2.51.0
-> 
+CgoKPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2VzLS0tLS0KPiBGcm9tOiAiTWFuaXZhbm5hbiBTYWRo
+YXNpdmFtIiA8bWFuaUBrZXJuZWwub3JnPgo+IFNlbmQgdGltZTpUaHVyc2RheSwgMjAvMTEvMjAy
+NSAyMDo0NTozOAo+IFRvOiB6aGFuZ3NlbmNodWFuQGVzd2luY29tcHV0aW5nLmNvbQo+IENjOiBi
+aGVsZ2Fhc0Bnb29nbGUuY29tLCBrcnprK2R0QGtlcm5lbC5vcmcsIGNvbm9yK2R0QGtlcm5lbC5v
+cmcsIGxwaWVyYWxpc2lAa2VybmVsLm9yZywga3dpbGN6eW5za2lAa2VybmVsLm9yZywgcm9iaEBr
+ZXJuZWwub3JnLCBwLnphYmVsQHBlbmd1dHJvbml4LmRlLCBqaW5nb29oYW4xQGdtYWlsLmNvbSwg
+Z3VzdGF2by5waW1lbnRlbEBzeW5vcHN5cy5jb20sIGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmcs
+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnLCBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3Jn
+LCBjaHJpc3RpYW4uYnJ1ZWxAZm9zcy5zdC5jb20sIG1heWFuay5yYW5hQG9zcy5xdWFsY29tbS5j
+b20sIHNocmFkaGEudEBzYW1zdW5nLmNvbSwga3Jpc2huYS5jaHVuZHJ1QG9zcy5xdWFsY29tbS5j
+b20sIHRoaXBwZXN3YW15LmhhdmFsaWdlQGFtZC5jb20sIGlub2NoaWFtYUBnbWFpbC5jb20sIG5p
+bmd5dUBlc3dpbmNvbXB1dGluZy5jb20sIGxpbm1pbkBlc3dpbmNvbXB1dGluZy5jb20sIHBpbmtl
+c2gudmFnaGVsYUBlaW5mb2NoaXBzLmNvbSwgb3V5YW5naHVpQGVzd2luY29tcHV0aW5nLmNvbSwg
+RnJhbmsubGlAbnhwLmNvbQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjYgMy8zXSBQQ0k6IGR3Yzog
+QWRkIG5vX3N1c3Bwb3J0X0wyIGZsYWcgYW5kIHNraXAgUE1FX1R1cm5fT2ZmIGJyb2FkY2FzdAo+
+IAo+IE9uIFRodSwgTm92IDIwLCAyMDI1IGF0IDA2OjEyOjM1UE0gKzA4MDAsIHpoYW5nc2VuY2h1
+YW5AZXN3aW5jb21wdXRpbmcuY29tIHdyb3RlOgo+ID4gRnJvbTogU2VuY2h1YW4gWmhhbmcgPHpo
+YW5nc2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tPgo+ID4gCj4gPiBUaGUgRVNXSU4gRUlDNzcw
+MCBzb2MgZG9lcyBub3Qgc3VwcG9ydCBlbnRlciBMMiBsaW5rIHN0YXRlLiBUaGVyZWZvcmUgYWRk
+Cj4gPiBub19zdXNwcG9ydF9MMiBmbGFnIHNraXAgUE1FX1R1cm5fT2ZmIGJyb2FkY2FzdCBhbmQg
+bGluayBzdGF0ZSBjaGVjayBjb2RlLAo+ID4gb3RoZXIgZHJpdmVyIGNhbiByZXVzZSB0aGlzIGZs
+YWcgaWYgbWVldCB0aGUgc2ltaWxhciBzaXR1YXRpb24uCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6
+IFl1IE5pbmcgPG5pbmd5dUBlc3dpbmNvbXB1dGluZy5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBZ
+YW5naHVpIE91IDxvdXlhbmdodWlAZXN3aW5jb21wdXRpbmcuY29tPgo+ID4gU2lnbmVkLW9mZi1i
+eTogU2VuY2h1YW4gWmhhbmcgPHpoYW5nc2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tPgo+IAo+
+IERvZXMgdGhpcyBwYXRjaCB3b3JrIGZvciB5b3U/Cj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
+bGludXgtcGNpLzIwMjUxMTE5LXBjaS1kd2Mtc3VzcGVuZC1yZXdvcmstdjEtMS1hYWQxMDQ4Mjg1
+NjJAb3NzLnF1YWxjb21tLmNvbS8KCmlmIHRoZSBQQ0llIGxpbmsgaXMgbm90IHVwLCB0aGlzIHN1
+aXRzIG1lIHRvbywgYnV0IGlmIHRoZSBQQ0llIGxpbmsgdXAsIApvdXIgaGFyZHdhcmUgZG9lcyBu
+b3Qgc3VwcG9ydCBlbnRlcmluZyB0aGUgTDIgbGluayBzdGF0ZS4gQXQgdGhpcyBwb2ludCwgCml0
+IGlzIGFsc28gbmVjZXNzYXJ5IHRvIHNraXAgdGhlIGJyb2FkY2FzdCBQTUVfVHVybl9PZmYgbWVz
+c2FnZSBhbmQgd2FpdApmb3IgTDIgdHJhbnNpdGlvbi4KCktpbmQgcmVnYXJkcywKU2VuY2h1YW4g
+WmhhbmcKCj4gCj4gPiAtLS0KPiA+ICBkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRl
+c2lnbndhcmUtaG9zdC5jIHwgNCArKysrCj4gPiAgZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2Mv
+cGNpZS1kZXNpZ253YXJlLmggICAgICB8IDEgKwo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgNSBpbnNl
+cnRpb25zKCspCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3
+Yy9wY2llLWRlc2lnbndhcmUtaG9zdC5jIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNp
+ZS1kZXNpZ253YXJlLWhvc3QuYwo+ID4gaW5kZXggZTkyNTEzYzViZGE1Li5hMjAzNTc3NjA2ZTUg
+MTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndh
+cmUtaG9zdC5jCj4gPiArKysgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2ln
+bndhcmUtaG9zdC5jCj4gPiBAQCAtMTE1Niw2ICsxMTU2LDkgQEAgaW50IGR3X3BjaWVfc3VzcGVu
+ZF9ub2lycShzdHJ1Y3QgZHdfcGNpZSAqcGNpKQo+ID4gIAlpZiAoZHdfcGNpZV9yZWFkd19kYmko
+cGNpLCBvZmZzZXQgKyBQQ0lfRVhQX0xOS0NUTCkgJiBQQ0lfRVhQX0xOS0NUTF9BU1BNX0wxKQo+
+ID4gIAkJcmV0dXJuIDA7Cj4gPiAKPiA+ICsJaWYgKHBjaS0+bm9fc3VzcHBvcnRfTDIpCj4gPiAr
+CQlnb3RvIHN0b3BfbGluazsKPiA+ICsKPiA+ICAJaWYgKHBjaS0+cHAub3BzLT5wbWVfdHVybl9v
+ZmYpIHsKPiA+ICAJCXBjaS0+cHAub3BzLT5wbWVfdHVybl9vZmYoJnBjaS0+cHApOwo+ID4gIAl9
+IGVsc2Ugewo+ID4gQEAgLTExODIsNiArMTE4NSw3IEBAIGludCBkd19wY2llX3N1c3BlbmRfbm9p
+cnEoc3RydWN0IGR3X3BjaWUgKnBjaSkKPiA+ICAJICovCj4gPiAgCXVkZWxheSgxKTsKPiA+IAo+
+ID4gK3N0b3BfbGluazoKPiA+ICAJZHdfcGNpZV9zdG9wX2xpbmsocGNpKTsKPiA+ICAJaWYgKHBj
+aS0+cHAub3BzLT5kZWluaXQpCj4gPiAgCQlwY2ktPnBwLm9wcy0+ZGVpbml0KCZwY2ktPnBwKTsK
+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndh
+cmUuaCBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS5oCj4gPiBp
+bmRleCBlOTk1ZjY5MmExZWMuLjE3MGE3MzI5OWNlNSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMv
+cGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS5oCj4gPiArKysgYi9kcml2ZXJzL3Bj
+aS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUuaAo+ID4gQEAgLTUzOSw2ICs1MzksNyBA
+QCBzdHJ1Y3QgZHdfcGNpZSB7Cj4gPiAgCSAqIHVzZV9wYXJlbnRfZHRfcmFuZ2VzIHRvIHRydWUg
+dG8gYXZvaWQgdGhpcyB3YXJuaW5nLgo+ID4gIAkgKi8KPiA+ICAJYm9vbAkJCXVzZV9wYXJlbnRf
+ZHRfcmFuZ2VzOwo+ID4gKwlib29sCQkJbm9fc3VzcHBvcnRfTDI7Cj4gPiAgfTsKPiA+IAo+ID4g
+ICNkZWZpbmUgdG9fZHdfcGNpZV9mcm9tX3BwKHBvcnQpIGNvbnRhaW5lcl9vZigocG9ydCksIHN0
+cnVjdCBkd19wY2llLCBwcCkKPiA+IC0tCj4gPiAyLjI1LjEKPiA+IAo+IAo+IC0tIAo+IOCuruCu
+o+Cuv+CuteCuo+CvjeCuo+CuqeCvjSDgrprgrqTgrr7grprgrr/grrXgrq7gr40K
 
