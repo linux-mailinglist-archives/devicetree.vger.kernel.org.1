@@ -1,148 +1,210 @@
-Return-Path: <devicetree+bounces-241248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2096C7B868
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 20:32:31 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01023C7B85C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 20:32:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6F6DD355715
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 19:30:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D70564E47A0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 19:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1839030103B;
-	Fri, 21 Nov 2025 19:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D132FFFAF;
+	Fri, 21 Nov 2025 19:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MPnV9WYY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jo2UGlXs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0668D3002C1
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 19:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE10E3002A6
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 19:32:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763753410; cv=none; b=AgGE4IKf30PrEigUI4E9G987f3SUvZ/Ye1OjYiljMqjavq04054mSHystP6fFu/Ingjw6aISzCT+vViCQqsv8J7ACK7M7/RZkaGbIgxq3SPTkVEa4zv8vcyhlobt8jNbaKqCymes9PDrCVCjDdW7wOpuR17wmt2GvjjkJWtJN40=
+	t=1763753537; cv=none; b=Rgye3uxxp8ZMpcDNp95aJOhZ7YdLsR2GZX2ZJ5cEZIXC2aMsDt2SfnytzNg+cWWb/F2D43om6hJZJD08UbU5JD+8EeyLe/FTVqESkgJpu4lyTVwonqamAoXnY2OdNi8ErbSOCO8mjxnV7gQ5cv1vqhkobkXdtHVfFFjN6uLDjQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763753410; c=relaxed/simple;
-	bh=CUfsT/KcsbXhjgq0PWj/Jo5KW2KX+kDK6dvLvHHX2bU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sCydWgZMLjwhr46uO6hUhNdlsOZRL4betIObXxzylDXbD6hjumCZOa4FA51M+dV4kUksAtZCyxbVqTgH/6pkfYB4gsetgdK42AEr6evQkrfdTazcE6aH/OvuieGlH+r6BcP0PNu6p4DEvwS3e3VyMr9dkTDu/KU6fDD8kePYO8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MPnV9WYY; arc=none smtp.client-ip=209.85.221.53
+	s=arc-20240116; t=1763753537; c=relaxed/simple;
+	bh=TyJZhZkzFkz4ji/Ckoc811B9aWkl0eSzR8xvVKTd01M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=up2mDBbIyynxIQLujZNVeN4m+hEy09KSPg+4Ztqy3P/KFOzQXmfp79SvCo+gh/VrDrcrkJyG9BLAHM74EC77OZax1cOtFG/iyY5tui7sa3f8g3ZyAm2XGzyO/R8JDWpS3g6RYG2i3ztr+mB1pglNfAOYiYJQgwEuX2FkxMKCCHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jo2UGlXs; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-42b2de74838so196902f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:30:07 -0800 (PST)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-594330147efso2540979e87.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:32:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763753406; x=1764358206; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=I+IA53flpYhg7qkM8SQVtCPMDf7Kx/j2jvlkT/E8Ijk=;
-        b=MPnV9WYYDJ2lb13frYAyvXyNJIJbdfKK/mQLqZpoAjv7/luh0hFF4ToXSDdBU7uUEn
-         Yecfo0lFcILLX99bzHtu7+TlmWMx7UIK2HvRjmstZuoZSMStmOfp6vtdsqH8PsZL35Fx
-         dl4lUj0tKxRVyP7DztioV2qRrcbZVko5vcWqghzIYFm7B8O+9Xuv0YiFOpA8aVqEVp5O
-         1vsPrQ5YsvDIcHU04wvHX9Namve18oelAJ5cREV0SXMS7qc0sPT/5sNf43ZPfDAeI2Qc
-         UthWxg6tv3JuYvhZi2ziklv6FAtzS8SnWITpDgvT13x97N7/fphDWiz/dk6h+nPV0kEN
-         E02g==
+        d=gmail.com; s=20230601; t=1763753534; x=1764358334; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aQQkgZdyyxCS6gJ5PW70XCzN6wIijcc0Oben6ZHbGUY=;
+        b=jo2UGlXsvjrf9n+5EgWx1qgC4Q+nqdAvfGcmbwOlGnLCQXf5wnCGAK1IDGzMNtD23u
+         NbfCplyuxYLD7ZEZu8Mik1wnPwX73zGHeAN7AvhkR+3O7N8vF0sSQkJ36tHUWQj1+INC
+         UGEVZEQXWpONQ1du0LY63+VUo2Sv5uPKuVAcHuW16hHvyPHksMYOFb9apTt2pVbzL76L
+         Ia8Erh1ymUKNLakoNo4rTuzYP83I260rvAklgrIRWDxA1WlVtnVn4/b8LJZTo6gn65lv
+         paCxhm4I/0qGyE6jxoyhilWw9KqWhWnONR8ugxlXs1+m8d4OwZeS3Be++Zcj1lJivZdm
+         8P/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763753406; x=1764358206;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I+IA53flpYhg7qkM8SQVtCPMDf7Kx/j2jvlkT/E8Ijk=;
-        b=Ur4u1vSSqYoQNnOjws8JwE7OGp/2ICkF+V9YKYluJTYr6G6+swxyJ5dp4HmBHzk9wp
-         FPH6CQiBOPqDpJijCCKmRu0e5xI2cyknm08XuNXV/FTxDI0scR9VMa14QRywCj4Z+igc
-         MgXfkRqZ/Oc1CXQSKMfxewAh5oS3abYN2vDvi3NRXVhNCPDcsII0+aJyiNr/ElY0a+Uf
-         bHt/Q9WgQ39BFtgpvnDIwCG5wIqBBLrC3hrhB2/VZfMQOpkPEUkhbqbj3Fe/tBJc+yHU
-         1pxxq75vKU+dhzQC5pxPJlNj8ZhfqZrZgUGxeDTkChFr6P1jtE6RNal0W1xxxuxysQow
-         YBnA==
-X-Forwarded-Encrypted: i=1; AJvYcCV5eN157FIeO1vni3kqKIpEYdCktGL5Sb4np+1CLMbU65RKDD5RDd+c1p6Az15bWXXCsNKmq/j860Jv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyfnmf3zyTL8eNTpMw4xHRXAdoRtUO8EyaAPdOo0ewzLQvDZZt/
-	DilE+5z5qrcewzRQh3c4fx/ZrNba1LlIqSiThGkvDQ4lHudfzGqrNlrG
-X-Gm-Gg: ASbGncsUD3fNhoLPy6Q4aLI/ngk2slyLbHPGuNKFv+EKr7DRRfcT0hZfqvsP7Xs+/dG
-	yDiYj/6Aj6KLN3tmImYKiLu9xz4MfeUoDpN9KRUR21ACdyy9sACoyCgqt3/Tms43lRWvogWYDOJ
-	IrRSxA2qSEhAMpuJmLovDPcAOBDjUdjJA2nLAKT4LyLHLBxumE5L8aA3a7/24W8SNEDpY2jb+ew
-	bNqQMKBKue10MgZf5b0853Fs+xu2j4q3lGHS9w9ptBrY4tLV7UhwatW+0ryzyAtbUqT/Ol9Nfor
-	u+JyW9kAO/+nW+gkU6eByCc2KSKxQwyaspzOMZD+K2Fb+kUywn3075ZBNIwm3AI3XHa0avn2p6U
-	kv1LmX/3lhHUbmXKaPtu+1CMaK7JGO7bj2N/5aV7VAYEoWLzo/U+pQGlQKPrb9jggc9CwpaKJhL
-	+NHYNMGnICDiZe3w==
-X-Google-Smtp-Source: AGHT+IELA4YCMaCt5qqKwWNv4I8LUOWdDURkACst0WKaClQVFLuv+pAGeVXkVIUOYdREwkCdLPYHDA==
-X-Received: by 2002:a05:600c:8905:b0:477:c5a9:33ce with SMTP id 5b1f17b1804b1-477c5a933d1mr3450945e9.4.1763753406047;
-        Fri, 21 Nov 2025 11:30:06 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d106:d600:b19f:2efa:e88a:a382])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477bf1f365fsm56874185e9.8.2025.11.21.11.30.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Nov 2025 11:30:05 -0800 (PST)
-Date: Fri, 21 Nov 2025 21:30:02 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Russell King <linux@armlinux.org.uk>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next 03/11] net: dsa: Kconfig: Expand config
- description to cover RZ/T2H and RZ/N2H ETHSW
-Message-ID: <20251121193002.hzjuijrs6gtoibuv@skbuf>
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1763753534; x=1764358334;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=aQQkgZdyyxCS6gJ5PW70XCzN6wIijcc0Oben6ZHbGUY=;
+        b=kP+3/qzybK9hV10fZ/Jam650UjwxJGw17fNUDxUyUuSn/iOhs2Bs3tB45e0bioiWQq
+         QOB3X3UBXIslnIjaezRy2iooKOftfAKm4v9TFKmMC3e1gAfNpjhjrv3mRpV+1tgdgL5S
+         vh5xB300yGKFxCLCwlSKlGrLplreTUMeJjKAkwkIZy/+vzybE/D71CjVVBI32kJ/UM3D
+         7+grn4U9MySdlzhyihCnJXnVhtGW+wMgp5Em2jY5MP4GOzhM7hBBG5KqKI3kqP1CEmCE
+         wGIbI2wQ8fulaUbWxWEGCmhf5cSFQhh/e6ZwZN0h/sTC39xBeD/VMqejsf91rlV0SQuF
+         QU+w==
+X-Forwarded-Encrypted: i=1; AJvYcCXSHaWXvLax7C9noLoPPbuVA9m6+MnlhA9HW6EP1PF9zR1YVNmbQTs41dX1Xw/+SMgB1Wv7ocaF13di@vger.kernel.org
+X-Gm-Message-State: AOJu0YyF1YvlNy3lQ/400JHjl9ONd7yf5f2nwKu8frwySwznHHGWS8lU
+	qewExI5o6gPigqg/o2zP+Ow2Qc5vaTM/hjF/wjSAJLLSz+DY40WpwH5OwNSl0ksjkNsxWDIwaO9
+	Fl36OrkFCzn8PrcosukijrxFFwdqfH64=
+X-Gm-Gg: ASbGncs9COzVsyCbAfQdC+G24vXjTDA/7+KzuThCaZcIZa+v4AoQwWCvfubeybpnXhG
+	cbFhOoPpjAQfy9au068yG6g3eX8VWp+d6iXOhWln9sD4duv1mQBnZ8uDVt7sy6o7sdvwgFVXOxw
+	6HwkD0nH1smQnh8KFg931ghJauLKh0EWYrtnWVz1Ax4tEMmi1EdERzMQGyaJpk+Uk7shtFovFbH
+	/8kZNsSv37lhYZ+LcTOrCOV7kOkysSuqQPejFX7pRBduAkE1dhJXHV9x02bDOw+G6Ux45w=
+X-Google-Smtp-Source: AGHT+IHzMeMRLx+qNbKNP4tO+td0fjgmUeolZXMPswV6zfAtRsDlZcOqTWPYIFhq6t3VYkJwJzmnVFwBb0BgIBovNlQ=
+X-Received: by 2002:a05:6512:3f1d:b0:594:3004:ce37 with SMTP id
+ 2adb3069b0e04-596a3ef00bbmr1211551e87.44.1763753533445; Fri, 21 Nov 2025
+ 11:32:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251121113553.2955854-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20251021-t210-actmon-p4-v5-0-4a4dbc49fbc8@gmail.com>
+ <20251021-t210-actmon-p4-v5-2-4a4dbc49fbc8@gmail.com> <56aed0ec-b104-4612-8901-3f6f95e0afab@nvidia.com>
+In-Reply-To: <56aed0ec-b104-4612-8901-3f6f95e0afab@nvidia.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Fri, 21 Nov 2025 13:32:02 -0600
+X-Gm-Features: AWmQ_bk5MRf-_DTPSdXZzW6hKcukUSEpofw-tme48-1wKUDFb-YLYStIglwKPTA
+Message-ID: <CALHNRZ8Hc+kqWVCjTZvtJ+hBrsgpjO9EySOQFfLaLHvt9P_reg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] arm64: tegra: Add interconnect properties to
+ Tegra210 device-tree
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 21, 2025 at 11:35:29AM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Update the Kconfig entry for the RZN1 A5PSW tag driver to reflect that
-> the same tagging format is also used by the ETHSW blocks found in Renesas
-> RZ/T2H and RZ/N2H SoCs.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  net/dsa/Kconfig | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
-> index f86b30742122..a00eb3bdcd0f 100644
-> --- a/net/dsa/Kconfig
-> +++ b/net/dsa/Kconfig
-> @@ -159,11 +159,11 @@ config NET_DSA_TAG_RTL8_4
->  	  switches with 8 byte protocol 4 tags, such as the Realtek RTL8365MB-VC.
->  
->  config NET_DSA_TAG_RZN1_A5PSW
-> -	tristate "Tag driver for Renesas RZ/N1 A5PSW switch"
-> +	tristate "Tag driver for Renesas RZ/N1 A5PSW and RZ/{T2H,N2H} ETHSW switches"
->  	help
->  	  Say Y or M if you want to enable support for tagging frames for
-> -	  Renesas RZ/N1 embedded switch that uses an 8 byte tag located after
-> -	  destination MAC address.
-> +	  Renesas RZ/N1 A5PSW and RZ/{T2H,N2H} ETHSW embedded switches that use
-> +	  an 8-byte tag located after the destination MAC address.
+On Fri, Nov 21, 2025 at 5:24=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> w=
+rote:
+>
+>
+> On 22/10/2025 04:13, Aaron Kling via B4 Relay wrote:
+> > From: Aaron Kling <webgeek1234@gmail.com>
+> >
+> > Add interconnect properties to the Memory Controller, External Memory
+> > Controller and the Display Controller nodes in order to describe hardwa=
+re
+> > interconnection.
+> >
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > ---
+> >   arch/arm64/boot/dts/nvidia/tegra210.dtsi | 24 +++++++++++++++++++++++=
++
+> >   1 file changed, 24 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot=
+/dts/nvidia/tegra210.dtsi
+> > index 6da10db893add44a98fde1666c382511212fd43c..2fcc7a28690f7100d49e8b9=
+3c4fb77de7947b002 100644
+> > --- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> > +++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> > @@ -202,6 +202,19 @@ dc@54200000 {
+> >
+> >                       nvidia,outputs =3D <&dsia &dsib &sor0 &sor1>;
+> >                       nvidia,head =3D <0>;
+> > +
+> > +                     interconnects =3D <&mc TEGRA210_MC_DISPLAY0A &emc=
+>,
+> > +                                     <&mc TEGRA210_MC_DISPLAY0B &emc>,
+> > +                                     <&mc TEGRA210_MC_DISPLAY0C &emc>,
+> > +                                     <&mc TEGRA210_MC_DISPLAYHC &emc>,
+> > +                                     <&mc TEGRA210_MC_DISPLAYD &emc>,
+> > +                                     <&mc TEGRA210_MC_DISPLAYT &emc>;
+> > +                     interconnect-names =3D "wina",
+> > +                                          "winb",
+> > +                                          "winc",
+> > +                                          "cursor",
+> > +                                          "wind",
+> > +                                          "wint";
+> >               };
+> >
+> >               dc@54240000 {
+> > @@ -217,6 +230,15 @@ dc@54240000 {
+> >
+> >                       nvidia,outputs =3D <&dsia &dsib &sor0 &sor1>;
+> >                       nvidia,head =3D <1>;
+> > +
+> > +                     interconnects =3D <&mc TEGRA210_MC_DISPLAY0AB &em=
+c>,
+> > +                                     <&mc TEGRA210_MC_DISPLAY0BB &emc>=
+,
+> > +                                     <&mc TEGRA210_MC_DISPLAY0CB &emc>=
+,
+> > +                                     <&mc TEGRA210_MC_DISPLAYHCB &emc>=
+;
+> > +                     interconnect-names =3D "wina",
+> > +                                          "winb",
+> > +                                          "winc",
+> > +                                          "cursor";
+> >               };
+> >
+> >               dsia: dsi@54300000 {
+> > @@ -990,6 +1012,7 @@ mc: memory-controller@70019000 {
+> >
+> >               #iommu-cells =3D <1>;
+> >               #reset-cells =3D <1>;
+> > +             #interconnect-cells =3D <1>;
+> >       };
+> >
+> >       emc: external-memory-controller@7001b000 {
+> > @@ -1001,6 +1024,7 @@ emc: external-memory-controller@7001b000 {
+> >               clock-names =3D "emc";
+> >               interrupts =3D <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
+> >               nvidia,memory-controller =3D <&mc>;
+> > +             #interconnect-cells =3D <0>;
+> >               #cooling-cells =3D <2>;
+> >       };
+>
+>
+> I am seeing another failure on -next for Tegra210 and bisect is point to
+> this commit ...
+>
+> # first bad commit: [3cad4369399a31277e9e20de723c665b30cba574] arm64:
+> tegra: Add interconnect properties for Tegra210
+>
+> The tegra-tests [0] devices test is failing and after this commit the
+> DRM device is no longer bound to the driver.
 
-I think the device names are sufficiently strange with that forward
-slash in them, that you shouldn't make them worse with the {}, at least
-not in the full help text, and spell them out instead. It's hard for an
-unfamiliar reader to know which punctuation marks to take literally and
-which not to... (plus it makes it more difficult to find through grep)
+Upon research, this one appears to be a bit more complicated. The dc
+code in tegra-drm sets up an icc connection per plane to emc, I
+presume in order to prevent underruns. If the icc path exists in the
+dt, but the emc driver has not added itself to icc, then dc will
+infinitely defer [0]. And per earlier statements on this list, the
+regression test setup for Tegra210 does not pass emc training data
+from the bootloader to the kernel, meaning the emc driver fails to
+probe.
+
+I am not sure how to handle this. As far as I know, the previous archs
+that the dc icc code was originally written for wouldn't ever have the
+emc driver fail, because the untrained tables are in the kernel dt,
+meaning that the driver could at least load that. On Tegra210 since
+the dt tables were rejected, there's nothing for the driver to fall
+back on, so it is possible to have a hard failure.
+
+Does anyone have ideas on how to handle this? To allow dc to report
+icc bw on Tegra210, but not fail probe if the emc is missing? Making
+the icc path lookup non-fatal isn't really an option.
+
+Aaron
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/drivers/gpu/drm/tegra/plane.c?h=3Dv6.18-rc6#n778
 
