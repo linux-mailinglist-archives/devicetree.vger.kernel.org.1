@@ -1,123 +1,117 @@
-Return-Path: <devicetree+bounces-241110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3D4C79A5E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 14:48:23 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C7F1C79E78
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:03:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id E6F062DF78
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:48:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id A0C2436426
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 13:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09416352931;
-	Fri, 21 Nov 2025 13:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CBFB34EF10;
+	Fri, 21 Nov 2025 13:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MrcXdDJf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C9el9yOE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BAB34E75E;
-	Fri, 21 Nov 2025 13:44:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71FBE34D90E;
+	Fri, 21 Nov 2025 13:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763732656; cv=none; b=quNC8FMyP9FQWw+oVwNwRs/SeQBGX7zvFja/4YBTWxRPjYk9lzkRdHfDo5brceFWIt9PSYBrD+eliBfBelx5eJ/2jcxf42A7iWuYolEVAsPj8nl8zDOJdIOVBolGLhxhBtSVBIt8yCeSx1uUnBN28Oic3HWHhbVJchA+AThH1yM=
+	t=1763732699; cv=none; b=SHSl1OX07xNlm9YbWKr7oHIXR15AGnowvsQjX381jAHG3UcFLQD6hrTeV1cuSwqzhIQXyKpPwHQkXVSAClf9bL5vSgZHwh+89xlqyDp8XELwj3sJbdJl4GViHa/HqFavGjckxoeLKzsm463AviSfspckiJnuTNLHfGjGMlJcurI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763732656; c=relaxed/simple;
-	bh=0+J1Q5CKVMTP2xhn6YpjpspBi2tj6Gjjxk8nh8alXSY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SpKM/hL7SIsjQm6V8ygo9V1c8GVb34Dxi6PnbsXbQ0Lt9bxUQXmWN8TP3Ubw7W/n0OSDQA3v+/UoSGqCGfqGXKhVeQnazQigA2at/vE4IASBw4SR4ExpOGjGTIoRhV8py+55VvgfaSdyTgHTyg7BLGIghBJvBnhK5o3VbU7zu8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MrcXdDJf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4B69C4CEFB;
-	Fri, 21 Nov 2025 13:44:13 +0000 (UTC)
+	s=arc-20240116; t=1763732699; c=relaxed/simple;
+	bh=315KQt8BfXDy9EkmurrYqnpr3MLjmoZQRU/4PbKRhhM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=lSAQxtWO1towFJZANHfDS3bUe/gzcWctHoMVYCjOhTsURbsKfHNeVSl+PvsHiLccDZ4H+XBprvwyYWh1Fc4JugIkbx2FNCZVdIj3lrgCnKZnX6P2HTFBjzMiwYq2wwOYiCu+M+47pbEEgGCnjXQLQ5bFn2M091P75s0p/DrL69M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C9el9yOE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E54CEC116C6;
+	Fri, 21 Nov 2025 13:44:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763732656;
-	bh=0+J1Q5CKVMTP2xhn6YpjpspBi2tj6Gjjxk8nh8alXSY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MrcXdDJfyvU/I3meVg/ArtkEdEJx5REMlOb+eK7jKHWiSdBCUuRvZm5Eda3nnwROr
-	 tM58qKQjtrApyMD6gWUjO4pcmzRjUXsDdDaLGyyuHGlDi0pv+x3VmG623BS0d5zvpJ
-	 FKYpJblG+oBsMVYEETH3cbQ79tLlnCXx/rQ7fpmAlhYRoMXZteLfdTgd5bFwXaWUg5
-	 x4/F6y2j2UgxFMTXfRQGhcQNC309vIDGWSJ+JsVchrLEAi76LXGcoXKsuJxuPjKkUV
-	 q9PoYR7va2W052QLZpCrXc47d3E9i0qZyPZYUPVJ/Rw1kE5gqmYrVsPh2UUDkSJMv8
-	 fUotfhTBuhOog==
-From: Conor Dooley <conor@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
-Subject: [PATCH v2 3/3] dt-bindings: clock: mpfs-clkcfg: Add pic64gx compatibility
-Date: Fri, 21 Nov 2025 13:44:02 +0000
-Message-ID: <20251121-unclip-shabby-a7a16e865146@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251121-tartar-drew-ba31c5ec9192@spud>
-References: <20251121-tartar-drew-ba31c5ec9192@spud>
+	s=k20201202; t=1763732699;
+	bh=315KQt8BfXDy9EkmurrYqnpr3MLjmoZQRU/4PbKRhhM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=C9el9yOE9oIRomnfh5SmchF2obOxXYAlvnaOMbJSxk7Nbearx/MGUjQXlVXOk8lvU
+	 WIo0/Iq3yQP5PRLAzrhULtjCPy8ZzhAQrRN1Hqb68wr1FEnLMA+0CZuUnkFSMvJeMJ
+	 PzwYP6cD97NYm113edJ8Qo+crMZdyFHLBH1IHWdTxzczwjSXhnAINzzsfdJsT1MQwo
+	 yXozTSzyXkF1bB4RgaIB/Qd2n1bN/AQwGxaOpU8vY/bE9JkWax6R/CqRTW8gIcZ6+w
+	 dsYk/2fjlCZIjJzvkf18w/XLaeLUavj7D1EgdyWmRorzO2ruSeZ9idhQLVFh72rCrj
+	 9QjFSdif5YATw==
+Date: Fri, 21 Nov 2025 07:44:57 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1375; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=BAqYmh3+kZOKEzACbZi5m6qzBFcZG08zjLdoiX1jvnQ=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkKOfMTLvxZIKvxR3R3ZPbj37b/pu479/R0njDjUV29i ObZk5LvdJSyMIhxMciKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAiaiYM/yxqF7nGc1v1pHDq ZZ763J5xM7IyYm3eebWswNroeTZ6zxl+s3Z7KBlM0oj+8Kf41vkdukI1vaGnXjoV7BM62F574BI vKwA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Peter Rosin <peda@axentia.se>, Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Srinivas Kandagatla <srini@kernel.org>, devicetree@vger.kernel.org, 
+ Johan Hovold <johan+linaro@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+In-Reply-To: <20251121115750.20119-2-antoniu.miclaus@analog.com>
+References: <20251121115750.20119-1-antoniu.miclaus@analog.com>
+ <20251121115750.20119-2-antoniu.miclaus@analog.com>
+Message-Id: <176373269741.263545.10849918874919174841.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: mux: gpio-mux: add support for
+ ADG1712
 
-From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 
-pic64gx has a clock controller compatible with mpfs-clkcfg. Don't permit
-the deprecated configuration that was never supported for this SoC.
+On Fri, 21 Nov 2025 11:57:31 +0000, Antoniu Miclaus wrote:
+> Add support for the Analog Devices ADG1712 quad SPST switch to the
+> existing GPIO multiplexer bindings. The ADG1712 contains four
+> independent single-pole/single-throw (SPST) switches, each controlled
+> by a dedicated GPIO pin.
+> 
+> Unlike traditional multiplexers that use GPIOs as binary-encoded
+> selectors, the ADG1712 treats each GPIO as a direct switch controller.
+> The mux state represents the combination of all four switches, with
+> values from 0-15 corresponding to different switch combinations.
+> 
+> For example, state 5 (binary 0101) represents:
+> - SW1: ON (GPIO0 = 1)
+> - SW2: OFF (GPIO1 = 0)
+> - SW3: ON (GPIO2 = 1)
+> - SW4: OFF (GPIO3 = 0)
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+>  .../devicetree/bindings/mux/gpio-mux.yaml     | 24 ++++++++++++++++++-
+>  1 file changed, 23 insertions(+), 1 deletion(-)
+> 
 
-Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
-Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../bindings/clock/microchip,mpfs-clkcfg.yaml    | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.yaml b/Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.yaml
-index ee4f31596d97..a23703c281d1 100644
---- a/Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.yaml
-+++ b/Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.yaml
-@@ -19,7 +19,11 @@ description: |
- 
- properties:
-   compatible:
--    const: microchip,mpfs-clkcfg
-+    oneOf:
-+      - items:
-+          - const: microchip,pic64gx-clkcfg
-+          - const: microchip,mpfs-clkcfg
-+      - const: microchip,mpfs-clkcfg
- 
-   reg:
-     oneOf:
-@@ -69,6 +73,16 @@ required:
-   - clocks
-   - '#clock-cells'
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: microchip,pic64gx-clkcfg
-+then:
-+  properties:
-+    reg:
-+      maxItems: 1
-+
- additionalProperties: false
- 
- examples:
--- 
-2.51.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mux/gpio-mux.example.dtb: switch-controller (adi,adg1712): $nodename:0: 'switch-controller' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251121115750.20119-2-antoniu.miclaus@analog.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
