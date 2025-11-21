@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-240927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943ECC77B49
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:33:14 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3049C77B46
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:33:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 836F24E7050
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 07:33:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8DB55354248
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 07:33:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB522F291B;
-	Fri, 21 Nov 2025 07:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0AFF285C8D;
+	Fri, 21 Nov 2025 07:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Lwsd05w3"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="rcEKvPP2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay139-hz1.antispameurope.com (mx-relay139-hz1.antispameurope.com [94.100.133.185])
+Received: from mx-relay51-hz1.antispameurope.com (mx-relay51-hz1.antispameurope.com [94.100.132.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B1E22836C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537E4275106
 	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 07:33:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.133.185
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.226
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763710386; cv=pass; b=StCUv3dMIdND1omMs57jfrFw1sHm4l6IfOo/TQjsNqrW9XixHjqeFX2oTeOv0z75Bfr7n/qvLJL4j7akfZeSAKuOvmRB434pq2EijhxVzVPdJmY1XP8puO66X8+bOf+6XByP3sU9V+3zgw41JldnBzN1BKo5J/uWu5dm1Sdk8Sw=
+	t=1763710385; cv=pass; b=J6Fism4F1TsaaXYiwikjNLbxph4NNZ8eYtFCQZZrYX1qNO70cwyW/wgXloVQytnYIlT5sH34o6zf8EtKM1UwkhLgNHn86o76HplhVAVbEmjxJ7UaHEMQH0ANq+723nnCeICppnoS/xKejVe0clvWcZKyC4awUjiE4ijziC8rw9g=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763710386; c=relaxed/simple;
-	bh=irY4+aQ29QnkbeLn0nQsrvfY/8RJJ2M64NCPho3lbeQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZtUvMDGIowigwaaX3IGJOBYTRQfGAL1Nthx6mO7UUxJjRXrxZUwOI8UPbNo8yEoSA65dShe3GyZdfNBp8Fx9syGFiuD/sz6ZnxDQgPY/xgED8pHm9qLqjsfqb0KPtg8dYUMsidcX3pyhfQec2RipOIdZW8O3aNgc7ImRxwcbt68=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Lwsd05w3; arc=pass smtp.client-ip=94.100.133.185
+	s=arc-20240116; t=1763710385; c=relaxed/simple;
+	bh=yxLZqcd5zM0Zptc34DEGfIKYPe3PxXkgB686Z8yY8kw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=cUgZfbHvE5DvK1jPv/6fF1oXr2e7xeAmTF7sDsIasUEqqsXPEbHa4cbsAv3369mooUm3YBOpGP0CLYTxtMOYWqIy7+y7I/FLwC7BpuYtDmlHOVLStzpru1gerwRz3JEdmt/G6W4iBxSIenGh5dYTMKr905Rx/GUcmwtb0IUIQsE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=rcEKvPP2; arc=pass smtp.client-ip=94.100.132.226
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate139-hz1.hornetsecurity.com 1;
- spf=pass reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ARC-Authentication-Results: i=1; mx-gate51-hz1.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
  smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out02-hz1.hornetsecurity.com;
  dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
 ARC-Message-Signature: a=rsa-sha256;
- bh=5Dqt//Bb3x/Y5eSf+OIeQhron5iHwkVjbr2ny9T+e44=; c=relaxed/relaxed;
+ bh=SHcSWj72/by64/S98T4wmbPzKNfmbTKpvj8oqcHTQ4E=; c=relaxed/relaxed;
  d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
  t=1763710314;
- b=CHisQH9DrMb4MdBhzFRbhqrTtMSrFsgwIg/6u1BHtOQr9cV/vdwj/BhowjhI4Cdei+EmO/e5
- ZuHLhuFeOwaF8xWAj4RDM73LO4A9B32CZVR9Ptw9tqFD+jM9ySNbxsbj36qC7NZCLwcv6SfO/F+
- 8XZcJxbQUwCFlSJ4cjrUNDMmEuHHtuA1v3pVkMl0s5DAlvopEX7n0nCJRteYEMgii1G8AaIrZwY
- ZXFUfTSEk1bKqEOxvfa5AOLW8zFwuElxgML6ZYBXfvI5gv2SiFatNMcEZPnVCZqyHlEZFN+4SnI
- CU08Rrg8HA1yVAWqfLHzKD7csmHvMbwrpTtBp7UFTda4A==
+ b=dJtp5S/HzjCqtGhORk0Nj4fj/qulBaiiHSAdazlT8mNa+OjKvK58Z6IJ6QrfnXBw1tTm/Zpy
+ guOhaJ475gmP3BeOy1+bC1W/LdpRrbTNQ/gQNn5Ep04l7PXnQE9Sgml0uF0O6HpojvyCXBwWoh/
+ 9NpZIpopWsN7L/9W3DjngZeKD5+ULGJ+pB2yey9IRAGlBD1RGkb7Q6NnqQLqBgeki6sOpz74GAj
+ czofsGJTPiTso0B/PMQ561i90UmDGiF8f2Z7+0ruZEuFc/FH85EQShMEPz9+D+t/9+5uWOwZ7EO
+ tE42F/TglVtZLLRnrZ1VgoDqleCXRoCVd00bkgT0wSQaQ==
 ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
  t=1763710314;
- b=hl2lPfMVa74lQbDOuh2Fb0H9Aly3+Wjhv6N3fWGGzXAj3tjXwi4cKN/Qt5bb/uPY+dFhXLbw
- el/45MyAvWzIGMDl3lIAgXUQvr3OoWASOtzJM55tuu6RLlUSXyevI/xa4ieBF30v/s5bl003pfr
- X1G9rHNcq1SASVteH6rSSsUNap6PqVT58WsCRHWNOE+0GN8h1QFfMOZMLl5xnN3Wvj3Vcx28t0W
- n3X3qWicSZbRoUPRPZQVFaCa28h2lJjEWO+OlY5ZvpD67hHoEzAnAbGfu/9NSuwKHOZj+u7Y2Wh
- JWASXfG24Oo3h/+GPpbo+0HMG/Cfx2JxOJB4sDpjfHEbw==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay139-hz1.antispameurope.com;
- Fri, 21 Nov 2025 08:31:53 +0100
+ b=QGQwqc4Ko+MoTH+BVXm8IQ1CBFC9mTPZB5QSNzbQwBjLrlNopRcHP9dMznv9hMpVdtx+k/y1
+ 1AYmHPT1T12SJpA/T57LurvvMrTC0SoPqGdphPT0H1NYHgDfakQvoQLHuRikFUvRLirNnCbyTyY
+ FX8Ezp5yn75E9FedbxvPNj5maJfnSJYjsSPhczVTSgQtAC/13w8t1nb6K91hwij5BV6SJ8PDv5Y
+ SJVK4K2o2ot8kT6mw2sRKYRoZg7gmW02YulO6MugPi3QTWvD1DhUiZFUawlb1S3CwOdmfwGXZrZ
+ 9K0Ij4ZnqmDdVXGXJfs0RkEG0ABbbpBIJzppypLEUhPBg==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay51-hz1.antispameurope.com;
+ Fri, 21 Nov 2025 08:31:54 +0100
 Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
 	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out02-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 382945A0495;
-	Fri, 21 Nov 2025 08:31:45 +0100 (CET)
+	by smtp-out02-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 7DCBB5A076C;
+	Fri, 21 Nov 2025 08:31:46 +0100 (CET)
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
@@ -70,10 +71,12 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] arm64: dts: tqma8xxs: replace 0 with IMX_LPCG_CLK_0 for lpcg indices
-Date: Fri, 21 Nov 2025 08:31:40 +0100
-Message-ID: <20251121073142.3367642-1-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 2/2] arm64: dts: tqma8xxs-mb-smarc-2: replace 0 with IMX_LPCG_CLK_0 for lpcg indices
+Date: Fri, 21 Nov 2025 08:31:41 +0100
+Message-ID: <20251121073142.3367642-2-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251121073142.3367642-1-alexander.stein@ew.tq-group.com>
+References: <20251121073142.3367642-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,20 +90,20 @@ X-cloud-security-crypt: load encryption module
 X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
 X-cloud-security-Mailarchivtype:outbound
 X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay139-hz1.antispameurope.com with 4dCRjs6s50zNwSv
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay51-hz1.antispameurope.com with 4dCRjv1PFPz33Nyk
 X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:56853c09cfe5c0363f0c70f3518d825f
-X-cloud-security:scantime:2.285
+X-cloud-security-Digest:4b0d0fc0d52d0a2e82669a6eda2d09f7
+X-cloud-security:scantime:1.914
 DKIM-Signature: a=rsa-sha256;
- bh=5Dqt//Bb3x/Y5eSf+OIeQhron5iHwkVjbr2ny9T+e44=; c=relaxed/relaxed;
+ bh=SHcSWj72/by64/S98T4wmbPzKNfmbTKpvj8oqcHTQ4E=; c=relaxed/relaxed;
  d=ew.tq-group.com;
  h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
  t=1763710313; v=1;
- b=Lwsd05w38AH5Q4/OrkOVsUTqa9nuLezZ0fKubVk0L538eBXNV66ydJYOQeP+YWdtL1BZg1YA
- Q4Ray2RFwuOE5SD5zlqzp4wb4o6Nl1vSCcY0QbNHEVZrR0ce0Yl4n59N0ivKO7wvqh6XmE31hCY
- yt/2Y5ONpMterHbt99No4lLslAN45TaNq+YYqdEvyWLAtaVcYSQ63Sv4AlWhvW66WudooB0EEdg
- rfIKpetmETUHaY2405mVIsnZtCUU29RXjl+9m4TeRsqy+1PlOmzoLQHPgbJPPKniqia647Qce5x
- p3DKdSRlk5lo7esYX+aZwxE0w72x3j37DIg8nvLlF90Zw==
+ b=rcEKvPP2PCBvTfH51g1SmihuZDFM12hlhwBcDDmw9rMBsDMzrs4x46ExWikCnOFAfdGaUp43
+ rFztg5eNnOh1oBgkzLACznT8KRDLntvPZDLZ2Dh5c7/8Nmd435NEpss/5gnXQwfQ3ol0+J0yASM
+ AXsHNqGFrd1IAQ0sgML349k5UIyLI52Ui570fnE0RkSg1YCpmMaBTg8zn/AQBvDslzZOD4Yrxvh
+ hwUQknRNkvmUM5jZUMnYTzv0m+g4XbV1I83nzULpV0pRPyWjjZadzibT/j4vwexWdGlvchoHd+i
+ kTmDLnTkGDrZ3qem7HlXgZr6VRGDIdCDcBdoWlcd8DA5Q==
 
 Replace the 0 with IMX_LPCG_CLK_0 for LPCG clock indices. Although the
 numerical value is identical, the LPCG input is defined as
@@ -109,22 +112,22 @@ consistency with the LPCG clock naming convention.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/freescale/tqma8xxs.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/tqma8xxs.dtsi b/arch/arm64/boot/dts/freescale/tqma8xxs.dtsi
-index 2d0a329c2fa50..ebf20d5b5df9c 100644
---- a/arch/arm64/boot/dts/freescale/tqma8xxs.dtsi
-+++ b/arch/arm64/boot/dts/freescale/tqma8xxs.dtsi
-@@ -406,7 +406,7 @@ &sai1 {
- 	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
- 			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
- 			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
--			  <&sai1_lpcg 0>;
-+			  <&sai1_lpcg IMX_LPCG_CLK_0>;
- 	assigned-clock-rates = <786432000>, <49152000>, <12288000>, <49152000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sai1>;
+diff --git a/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi b/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi
+index 3d20e3bf32ce7..8bfe77113d64b 100644
+--- a/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi
++++ b/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi
+@@ -130,7 +130,7 @@ &i2c0 {
+ 	tlv320aic3x04: audio-codec@18 {
+ 		compatible = "ti,tlv320aic32x4";
+ 		reg = <0x18>;
+-		clocks = <&mclkout0_lpcg 0>;
++		clocks = <&mclkout0_lpcg IMX_LPCG_CLK_0>;
+ 		clock-names = "mclk";
+ 		iov-supply = <&reg_1v8>;
+ 		ldoin-supply = <&reg_3v3>;
 -- 
 2.43.0
 
