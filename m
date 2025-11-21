@@ -1,103 +1,203 @@
-Return-Path: <devicetree+bounces-241066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D09BAC78E49
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:46:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99EAFC78E13
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 12:44:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4B274347405
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:43:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTPS id 9FB9629DF8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 11:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 969F434029C;
-	Fri, 21 Nov 2025 11:43:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB09433D6E4;
+	Fri, 21 Nov 2025 11:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uN9FJlrI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E527533D6D4
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 11:43:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BFDF824A3;
+	Fri, 21 Nov 2025 11:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763725415; cv=none; b=UA2T99BVa/cB5pfaon8OgsdhNAEOgufVpPfmDeedoxL8U0o12drkCXzbciYVTHwThG9KEhxtbudyWBntx36eofxT43jydT4MSPBBCpYNdjX9Kncbax4ndOX5H8PYe8lpghPwoX7diOTlR4s80fLc0aJCzu79+EURVuV8EydR/fA=
+	t=1763725485; cv=none; b=GRqu0PK23XopzvWKRJVyRbNbu4B6pxwvA/z3Ek/FwYy0Xk2iQ7mtzJVkFTixhL2i/y0A8/X6V4hNq59YLOmpnLMhS3+DZdkEOS3EJVW9/NmjpdHO724pSskz3xVKEEYs2fnSv3N0tmU1ytVXfdsr35hHsswy4Xnb9KZtP/W91pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763725415; c=relaxed/simple;
-	bh=+WXBgeboy6rtNVSH8ml+pXMUn813R/MlG2esAsn5p9E=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=thSpEjHBMOg4bt9ecYsZKK3KWmaOAIyQFNUh8UE1Dv4zvkL52xPBlpfWfUgRTcdEWbAVf89kQ1dB53Frsv9FpbR9cyQBGTmiXgHw6keUFr7N9RsrL+AIqUk2ciVsdZWpGWP0/Swmv5VgI83V2uyDn+WSdQeVplIckAXKdQUKLHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vMPXg-0003GG-RC; Fri, 21 Nov 2025 12:43:08 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vMPXe-001ZuI-0I;
-	Fri, 21 Nov 2025 12:43:06 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vMPXd-000000005XB-4AQe;
-	Fri, 21 Nov 2025 12:43:05 +0100
-Message-ID: <951c27938acfb23e7af29603043143744f702808.camel@pengutronix.de>
-Subject: Re: [PATCH net-next 05/11] net: dsa: rzn1-a5psw: Add support for
- optional reset control
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Prabhakar <prabhakar.csengg@gmail.com>, 
- =?ISO-8859-1?Q?Cl=E9ment_L=E9ger?=	 <clement.leger@bootlin.com>, Andrew
- Lunn <andrew@lunn.ch>, Vladimir Oltean	 <olteanv@gmail.com>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet	 <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni	 <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Simon Horman	 <horms@kernel.org>, Russell King
- <linux@armlinux.org.uk>, Geert Uytterhoeven	 <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Biju Das	
- <biju.das.jz@bp.renesas.com>, Fabrizio Castro
- <fabrizio.castro.jz@renesas.com>,  Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Date: Fri, 21 Nov 2025 12:43:05 +0100
-In-Reply-To: <20251121113553.2955854-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: 
-	<20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-	 <20251121113553.2955854-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1763725485; c=relaxed/simple;
+	bh=Yi/oXfy9j6fRDTfKxTvKwXsP2XvE8pwQxQuLxQPvpMc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mEsw2JLkUZtFmdAiRfe/J7ADZk0hoa0zM3QHLOL+ttvipGtZj+OswoN1yxc65lKEEvrOtZXhHIttSC61YuqnNqhfpGYgOBOqhEiHAsMYSF0QfcHhopsVo7lGB2AhMUIKkU3kPXIPEO91uI54vg4d5ayiU3wF43lz1VpGGoG09Do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uN9FJlrI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1EBD6C4CEF1;
+	Fri, 21 Nov 2025 11:44:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763725485;
+	bh=Yi/oXfy9j6fRDTfKxTvKwXsP2XvE8pwQxQuLxQPvpMc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=uN9FJlrIDGZUaHj7Xrdl83sKLvTshPVJM33aRrzdqZTBEEzphbu+BTRneVO4CJRxe
+	 RBJkOrXBa/OBU9xK6KHBN3cZ4b+MLprFRgwnlPsfcHpbl8gWNPT7N+YchzIqm/VJds
+	 NSmqYVn6ySYL8HKUeyncpzQz990YnT7+YKA9YFHXS83xBq+2ukI/PkDPLaQH5IANz4
+	 WRLGvIllRQrvu4fB9dA+1WE8Z1T34Iko57bUXoNLB5cRQEGGhNCF04GkJPBCMODtWv
+	 xM6O4D9GkdlNLKMUvaeuUazHwDTYdPHCH1beqGKH762CAKruGgi5ROPZMiLy5ZFIyj
+	 PaVXgKixMN/pQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10816CFA759;
+	Fri, 21 Nov 2025 11:44:45 +0000 (UTC)
+From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
+Subject: [PATCH v2 0/5] ARM: dts: qcom: msm8960: expressatt: Add more
+ peripherals
+Date: Fri, 21 Nov 2025 03:44:43 -0800
+Message-Id: <20251121-expressatt_nfc_accel_magn_light-v2-0-54ce493cc6cf@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKtQIGkC/42PUW7DIAxArxLxPRCGhEA1Tb3HVEWMmQQtIRuwq
+ FWVu4+mF9jns6z37DvJmAJmcmruJOEWclhjBfHSEDfZOCINn5WJ4KIDAEPx+p0wZ1vKEL0brHM
+ 4D4sd4zCHcSrU9xq50KYHrUi11G0frkfh/fLkhD+/NVSeQ7I8dEfo1LxCrwRwZbSShhnZa5BMt
+ bLTneAGQGtpwBj20dJyO39hijizNY1v5OGeQi5ruh3PbHDI/333BpRTJZUH5XnnfHseFxtm5ta
+ FXPZ9/wNW18L8KgEAAA==
+X-Change-ID: 20251119-expressatt_nfc_accel_magn_light-f78e02897186
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763725484; l=3612;
+ i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
+ bh=Yi/oXfy9j6fRDTfKxTvKwXsP2XvE8pwQxQuLxQPvpMc=;
+ b=hLfsrD5gEKvsBouEZ8uueZRE9XQ2YD5veq8OcCbTneNMiejLa1IcrZF53GjnU7a5tyULi6GGn
+ 9EPnkelO1GJCf+RGk8/zB9jkCP1OAF0dys4GZaYIoepXpI+urVY8Jwp
+X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
+ pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
+X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
+ auth_id=211
+X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
+Reply-To: guptarud@gmail.com
 
-On Fr, 2025-11-21 at 11:35 +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Add support for an optional reset control to the RZN1 A5PSW driver.
-> Obtain the reset line using
-> devm_reset_control_get_optional_exclusive_deasserted() during probe
-> to ensure that the Ethernet switch (ETHSW) block is properly released
-> from reset before initialization.
->=20
-> This change prepares the driver for use on Renesas RZ/T2H and RZ/N2H
-> SoCs, where the ETHSW IP block is connected to a dedicated reset line
-> that must be controlled by software.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Intro:
+=================
+The following is now working on the Samsung Galaxy Express SGH-I437, an
+old 2012 Android phone:
+- Light Sensor
+    - Proximity is currently giving bogus values
+- NFC
+- Magnetometer
+    - Maybe need to update the mount matrix?
+- Accelerometer
+    - Maybe need to update the mount matrix?
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Tests:
+=================
+Light Sensor
+=================
+/sys/bus/iio/devices/iio:device2 # cat in_intensity0_raw && cat in_intensity1_raw
+0
+0
+/sys/bus/iio/devices/iio:device2 # cat in_intensity0_raw && cat in_intensity1_raw
+163
+28
 
-regards
-Philipp
+=================
+NFC
+=================
+nfc0:
+          Tags: [ ]
+          Devices: [ ]
+          Protocols: [ Felica MIFARE Jewel ISO-DEP NFC-DEP ]
+          Powered: Yes
+          RF Mode: None
+          lto: 150
+          rw: 15
+          miux: 2047
+
+Start polling on nfc0 as initiator
+
+Targets found for nfc0
+  Tags: [ tag4 ]
+  Devices: [ ]
+
+=================
+Magnetometer
+=================
+/sys/bus/iio/devices/iio:device1 # cat in_magn_x_raw && cat in_magn_y_raw && cat in_magn_z_raw
+-441672
+1223706
+3275580
+/sys/bus/iio/devices/iio:device1 # cat in_magn_x_raw && cat in_magn_y_raw && cat in_magn_z_raw
+-364650
+1206172
+3248674
+/sys/bus/iio/devices/iio:device1 # cat in_magn_x_raw && cat in_magn_y_raw && cat in_magn_z_raw
+-439362
+1214092
+3180892
+
+=================
+Accelerometer
+=================
+/sys/bus/iio/devices/iio:device0 # cat in_accel_x_raw && cat in_accel_y_raw && cat in_accel_z_raw
+16
+484
+-48
+/sys/bus/iio/devices/iio:device0 # cat in_accel_x_raw && cat in_accel_y_raw && cat in_accel_z_raw
+13
+489
+469
+/sys/bus/iio/devices/iio:device0 # cat in_accel_x_raw && cat in_accel_y_raw && cat in_accel_z_raw
+433
+106
+48
+
+More Information:
+=================
+- Device page:
+https://wiki.postmarketos.org/wiki/Samsung_Galaxy_Express_SGH-I437_(samsung-expressatt)
+- Downstream kernel (uses board files):
+https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/arch/arm/mach-msm/board-express.c
+
+Note: These patches were assisted with AI (specifically Claude) as it
+was easily able to translate the old board file into a DTS format that
+mainline understands.
+
+Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+---
+Changes in v2:
+- Fixed formatting issues
+- Use GSBI instead of i2c-gpio
+- Remove regulator-always-on
+- Link to v1: https://lore.kernel.org/r/20251119-expressatt_nfc_accel_magn_light-v1-0-636f16f05cf4@gmail.com
+
+---
+Rudraksha Gupta (5):
+      ARM: dts: qcom: msm8960: Add GSBI2 & GSBI7
+      ARM: dts: qcom: msm8960: expressatt: Add Light/Proximity Sensor
+      ARM: dts: qcom: msm8960: expressatt: Add NFC
+      ARM: dts: qcom: msm8960: expressatt: Add Magnetometer
+      ARM: dts: qcom: msm8960: expressatt: Add Accelerometer
+
+ .../dts/qcom/qcom-msm8960-samsung-expressatt.dts   | 110 +++++++++++++++++++++
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi           |  96 ++++++++++++++++++
+ 2 files changed, 206 insertions(+)
+---
+base-commit: a771210bab42017434c91411e16694ac4fd7afc2
+change-id: 20251119-expressatt_nfc_accel_magn_light-f78e02897186
+prerequisite-message-id: <176210698639.937813.643585209118839199.b4-ty@kernel.org>
+prerequisite-patch-id: befdfe1948c2fbfb867597a6de917c8067fd57be
+prerequisite-patch-id: 70a2b0837b9846d8a775f464295da73ca8ff26b4
+prerequisite-patch-id: 20e005aa4312c3525e1b90f33a398189b9e2b3b7
+prerequisite-patch-id: 970e0eb8af1736e4565fc37830576a67bf7b3227
+prerequisite-patch-id: babd3b55d9ff28f19dbc3f7978742c58ef436aee
+
+Best regards,
+-- 
+Rudraksha Gupta <guptarud@gmail.com>
+
+
 
