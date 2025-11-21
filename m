@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-241226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD65DC7B122
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 18:27:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64174C7B3A6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 19:08:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 702D23A11B2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 17:27:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5C30F380DEA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 18:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12FE52E7BD2;
-	Fri, 21 Nov 2025 17:26:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A33C034EEE2;
+	Fri, 21 Nov 2025 18:03:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZP4jZUWn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AwgOdXv0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6352DC797;
-	Fri, 21 Nov 2025 17:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7678C34D4DC;
+	Fri, 21 Nov 2025 18:03:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763746018; cv=none; b=okVTll/TnPYrfFi+f+mcR168/5b3w35VnQJfo2hcIOm9CQ3BiUVaHG097gggE5PcnwlZlJKtoOaN38Avf6l5CksofRjBzPkOwDmybrE2oLF0+iDmHXL3cuI0QDnwJf2d9ntIQn+OVBCxewGj1NY/U8hk/ENoK1Gk8YQ5A02ewNI=
+	t=1763748223; cv=none; b=plggVqxiEBidnacqHmXKLTe8M5nqdB1QobKo+51RyaKQhVa/qbsfBkzhGEhtWYy7eK9N5Ooi/2T7fnqjr9MhXtfgyt1OpXUIeyYHRyMJYBqfT/PMYg4k+fBBm8LOUfJYo4eBPrNaMnzAKWVUEf0c2aN+wmo1ijniCPmqoe+mk+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763746018; c=relaxed/simple;
-	bh=oZuPnsRs96As6mwHGZwZdGrhn8aG8g8OtqsiFy92vpc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MMmiScVsWarwVZQxDpakwhMsZt2jDgxdcaOc4oRBVoNUU1bEZUX8lXm05AsMtb6u1oFPP5PmUqfyzc6JHlew1s/Y+7Enq1UuGjXwmh/65qG3bKdyWjWBIWuLbcq4f5Omfq7rlBKzwXcBi9Vbgi6KY59WLXe2w1nrlbKv6IFbBfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZP4jZUWn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CADDAC4CEF1;
-	Fri, 21 Nov 2025 17:26:53 +0000 (UTC)
+	s=arc-20240116; t=1763748223; c=relaxed/simple;
+	bh=hWczLQZrWmOZKkgHmVVs6onVe1uMkp2Ve3IptdaS7/o=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=aFMGM6C93F+S/vtAmWEAxHLeyN1QlXvJBHwb3KN76WNn12TQvvtpZ+5mfoDth00uZ5muBoKmwflfAootZY91YZY7W+yjfdrOaXvm2Wqu/6vriHswyR3AraXvwWBD3BrC25NQp9SVxj9M8ywwa1HYcAFVahg3zsq7PRk0GyyeMbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AwgOdXv0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A079EC4CEF1;
+	Fri, 21 Nov 2025 18:03:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763746017;
-	bh=oZuPnsRs96As6mwHGZwZdGrhn8aG8g8OtqsiFy92vpc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZP4jZUWngx1/Zak59BjYs5ygPvcTBjd7l1KDf6n4N2FI/ewQT56l1mVKbJwCGJEir
-	 41VxbP89ZH0M0X+SilGTN1fmLhjph8HTPBSrvCk6Nrx4xTYEDys7/gJ7BpobHshZEA
-	 NYKcbpVuIICBmTQQ3KWvJJTnxojjDaN2gQJktNevw/ei7xuUQOzG4YIbPics5Q1QzA
-	 2eZiUWjHE4+Mbm5hLEP4vEBkNRhuACS0t0xhUhKWsbAl+m8ZL1Yhd4EsB+WceBWS0u
-	 3aHZDAVojNyelQ0WzJ6L6NJgvQVqV2fZ3gidN1mk9iwro0IJIUElb1w4PY5Rn1XJVa
-	 E42g78wkkBljw==
-Message-ID: <5ddf26ae-9f43-4d22-9589-7c781c2c532e@kernel.org>
-Date: Fri, 21 Nov 2025 18:26:52 +0100
+	s=k20201202; t=1763748223;
+	bh=hWczLQZrWmOZKkgHmVVs6onVe1uMkp2Ve3IptdaS7/o=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+	b=AwgOdXv0Lvo2Yo3qBpMZMB31dTMZ6KR2pl0P9kFSl7g2mVtgGsxccrOppccgo85mU
+	 SV2pelv9NGukiJ2PtHe7mdu628GEDVW28eF/mDRT6o9fohjhxuLByVhN5sk9nfDoFE
+	 sRhhH1VAHdDI4OyH2XOAr9Wax+2gMCuKVzicLiTH+EoFS/9ADCCHbWrr9Xuof0uTNk
+	 /M8nITZkR3Xd3Taap8uz2rukZs7qJowxtg+6GGor1dUPyjrouQpsLMOSpkRM3TCKIZ
+	 QaYMYeviKWh9VLxtECvh6UnvnFrsHU1uiWnXi0PFJoCMyWMAOaLieT/bq4QE+fwPLL
+	 ckUxktsfHbWRA==
+Message-ID: <04f15f7d-6ccb-47df-af63-e3f52b46159d@kernel.org>
+Date: Fri, 21 Nov 2025 19:03:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] dt-bindings: vendor-prefixes: Add ASL Xiamen
- Technology
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 5/7] dt-bindings: arm: qcom: Add TUXEDO Computers
+ device
 To: Georg Gottleuber <ggo@tuxedocomputers.com>,
  Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -61,8 +62,7 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
  stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
 References: <20251121142623.251118-1-ggo@tuxedocomputers.com>
- <20251121142623.251118-2-ggo@tuxedocomputers.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <20251121142623.251118-6-ggo@tuxedocomputers.com>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -107,25 +107,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251121142623.251118-2-ggo@tuxedocomputers.com>
+In-Reply-To: <20251121142623.251118-6-ggo@tuxedocomputers.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21/11/2025 15:26, Georg Gottleuber wrote:
-> From: Ettore Chimenti <ettore.chimenti@linaro.org>
+> Introduce new binding for the TUXEDO Elite 14 Gen1 laptop with X1E78100
+> SoC.
 > 
-> ASL Xiamen Technology Co. Ltd. is a Chinese high-speed interface and
-> display system chip design company. Adding it to the vendor prefixes.
-> 
-> Link: https://www.asl-tek.com/
-> 
-> Signed-off-by: Ettore Chimenti <ettore.chimenti@linaro.org>
 > Signed-off-by: Georg Gottleuber <ggo@tuxedocomputers.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
