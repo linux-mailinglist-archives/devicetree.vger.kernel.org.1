@@ -1,54 +1,55 @@
-Return-Path: <devicetree+bounces-240955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-240953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4025EC77FA5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:48:02 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE63C77F9F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 09:48:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id 1B0552CCD0
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:48:01 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id D6C01241F8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 08:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768EB2FFF9D;
-	Fri, 21 Nov 2025 08:47:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECB2F339B45;
+	Fri, 21 Nov 2025 08:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="h0H8DsNV"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="jy2YRFzQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4193433C18C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1998E33BBA0;
 	Fri, 21 Nov 2025 08:47:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763714874; cv=none; b=ZYokQyYsv75DZheSdaWaFmuetVIoo8Ivurmjste0LIZ27a0RxqMzNWCmA/MhHXM2AgYYYE4NXaytkVEkUMpfsH75awGPRU7awQjQVBUs9UKdAd1/PuNxFzjcdAFjKbCsHNwgR9dRj6s2SmpiGRb5gBNOGHvNJFq7imiOsdb2dCI=
+	t=1763714871; cv=none; b=Dc2jwCo238iVrd2GjV5Zgj+qOF/k4uaCv+lm+SE6T6qtyiVPt37UHsaLHTwYsKYnVbA19DEPn52t6CDQvdwfAVWO+T1qNHyCZtLbmMD2maZRJJaBt5xZVwujX3V/yRJ9y4+M180Q42otHceY4DWcmnDHdGarTtzra6FiHSW4ySs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763714874; c=relaxed/simple;
-	bh=tQBgCb7ikzOmnvItGqntAV1a3R1NgbI6Mo7aHY68sjE=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DYndwS7FejzOcI4JJJIfGdjGRoEiXF61aDtcfUA4AKslFgh90lOV90ya0D760tod4qAcHTZRWv8T8HB+28agYR8h+92UtjBwGtUQibOdbo3+sN4fr+R0hiC4HyqcFeIVrz2Q1EuH2SY7x2aJXzkE908uA/O0t8pU/eBttCI795M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=h0H8DsNV; arc=none smtp.client-ip=211.75.126.72
+	s=arc-20240116; t=1763714871; c=relaxed/simple;
+	bh=HQGZQ1Ff1XjRBXRJSLuuqqLE7nDRF6HZXIJxBGaTJPc=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q9Zq2K0QgwMO74cJDB5lfScMH2k4Zl57bysOKAoaK0H0s9bv06GZIKsKuoTXqgqSWYV95zPBzjthsR4ZUU5Jo/vjnlMPStaMxOSBBjkpBw4egig9PbrjGuTypsWX/AX7cV73A2yurdLNsJPeeEwGzQlE2guYO/fCegHHjJuEsZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=jy2YRFzQ; arc=none smtp.client-ip=211.75.126.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AL8j5clD3255888, This message is accepted by code: ctloc85258
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AL8j5U513255890, This message is accepted by code: ctloc85258
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1763714705; bh=WwL08DBtUA04m9uzunJbXUc8Llp3YbCg4yfS44lD4Ls=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
-	 Content-Transfer-Encoding:Content-Type;
-	b=h0H8DsNVAEj7YDMbNIUZV0orPzMXvQojSN4YCp2kU14mewetgprOM6Jh0pS0NRO9M
-	 1Uw/5qF6ka7dmGzgzJ+BkJyFIAxM2stngr9uyV84HIZ94XQ1nka9iQ58xxNwEh92ih
-	 6fyWTgRejMzXCVoATaTB/8FjNYg9ge39Z3c0vff3bPICpqI872MBeKjtGcjtrRoZEw
-	 iXiCZJhYtoMiGVFCo557LoRsty0pQyZCBPfjFY7RS9JWxV6vOH0eIM/17gyxfK1+d2
-	 C6ba3ILN/F+MrwWId1wsPPsXiM8S8EVkp5xyLJglGbivYTTVFQ8U/CJvkSBsnhwCAc
-	 qhyecSol506dQ==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AL8j5clD3255888
+	t=1763714705; bh=l77XOUJUw+siBdLkNkL/6nxwP2TBf85O5sQ3l2Iab84=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Transfer-Encoding:Content-Type;
+	b=jy2YRFzQUsghN3uqCyyfS3YaW9kknkzWySQnufaPq4sXZzGkXY1AvEQXQcb7iBkp5
+	 hNoc9+gQ3b6hkcLX8EU9TYkc/SnIbJ3kzKWFeeQDGoC9wLX1Sp3gAM9l0A/eviDS24
+	 9O2WxwHQWisNsWnTPLnqCFNIQpxqYp5ajyJC3PdkLO4fK3JCXb22+yiWuqh9f3VU+z
+	 RDIyQXocoDQryvQmQfqJI5LMEHhzllxd/yXxr32OQ1DgzK5h1Mi6VARe53hPKogNon
+	 ujIr4Ftk67IU8pPF//Mfp6MC/ga5LfiX/adqPXt+gdnNFj6Ac9SixmYL7RyPpmqm0c
+	 1uf8ohA6cqebw==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AL8j5U513255890
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
 	Fri, 21 Nov 2025 16:45:05 +0800
 Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.27; Fri, 21 Nov 2025 16:45:05 +0800
+ 15.2.1544.27; Fri, 21 Nov 2025 16:45:06 +0800
 Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
  RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -62,11 +63,15 @@ To: <afaerber@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
 CC: <linux-arm-kernel@lists.infradead.org>,
         <linux-realtek-soc@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <cy.huang@realtek.com>,
-        <stanley_chang@realtek.com>, <eleanor.lin@realtek.com>
-Subject: [PATCH v3 0/2] arm64: dts: Add support for Kent SoC family
-Date: Fri, 21 Nov 2025 16:45:03 +0800
-Message-ID: <20251121084505.3200-1-eleanor.lin@realtek.com>
+        <stanley_chang@realtek.com>, <eleanor.lin@realtek.com>,
+        Conor Dooley
+	<conor.dooley@microchip.com>
+Subject: [PATCH v3 1/2] dt-bindings: arm: realtek: Add Kent Soc family compatibles
+Date: Fri, 21 Nov 2025 16:45:04 +0800
+Message-ID: <20251121084505.3200-2-eleanor.lin@realtek.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20251121084505.3200-1-eleanor.lin@realtek.com>
+References: <20251121084505.3200-1-eleanor.lin@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,84 +81,102 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Hello,
+Define compatible strings for Realtek RTD1501s, RTD1861b and RTD1920s.
 
-This patch series adds initial Device Tree support for Realtek's Kent SoC
-family, including the RTD1501S, RTD1861B, and RTD1920S variants with their
-respective evaluation boards.
+Additionally, convert legacy DTS-style comments to YAML description
+properties, following the pattern from the ARM bindings conversion series
+[1].
 
-The series includes:
+[1] https://lore.kernel.org/lkml/20200622125527.24207-2-afaerber@suse.de/
 
-1. Adds compatible strings for the Kent family.
-2. Add Device Tree files for the Kent SoC, TD1501S Phantom EVB (8GB),
-RTD1861B Krypton EVB (8GB), and RTD1920S Smallville EVB (4GB).
-
-The patches have been validated with 'make dtbs_check' and
-'dt_binding_check' to ensure compliance with DT schema and successful
-compilation.
-
-Cheers,
-Yu-Chun
-
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 ---
-Changes in v3:
+ .../devicetree/bindings/arm/realtek.yaml      | 42 +++++++++++++------
+ 1 file changed, 30 insertions(+), 12 deletions(-)
 
-- Drop the dt-bindings patch (realtek,misc.yaml)
-- Drop 'iso: syscon@7000' node and and re-parent the UART directly to rbus
-- Change all dts/dtsi to license: GPL-2.0
-- Drop all custom bootargs
-
-V2: https://lore.kernel.org/lkml/20251113123009.26568-1-eleanor.lin@realtek.com/
-
-Changes in v2:
-
-[PATCH v2 1/3]
-- Fix YAML syntax: remove duplicate blank lines
-- Validated with 'make dt_binding_check'
-
-[PATCH v2 2/3]
-- Rename: realtek,iso-system.yaml -> realtek,misc.yaml
-- Improve description and example: show child node (UART)
-
-[PATCH v2 3/3]
-- Reorder Makefile targets to alphabetical order.
-- Rename node: use generic names ('arch_timer' -> 'timer', 'reg-bus' -> 'bus')
-- Fix node naming and hex format (remove leading zeros)
-- Inline overlay nodes directly into .dtsi
-- Reorder properties: ranges after reg
-- Remove unnecessary status and custom bootargs
-
-V1: https://lore.kernel.org/lkml/20251105104452.6336-1-eleanor.lin@realtek.com/
-
-Yu-Chun Lin (2):
-  dt-bindings: arm: realtek: Add Kent Soc family compatibles
-  arm64: dts: realtek: Add Kent SoC and EVB device trees
-
- .../devicetree/bindings/arm/realtek.yaml      |  42 +++--
- arch/arm64/boot/dts/realtek/Makefile          |   7 +-
- arch/arm64/boot/dts/realtek/kent.dtsi         | 166 ++++++++++++++++++
- arch/arm64/boot/dts/realtek/rtd1501.dtsi      |  12 ++
- .../boot/dts/realtek/rtd1501s-phantom-8gb.dts |  25 +++
- .../boot/dts/realtek/rtd1501s-phantom.dtsi    | 118 +++++++++++++
- arch/arm64/boot/dts/realtek/rtd1861.dtsi      |  12 ++
- .../boot/dts/realtek/rtd1861b-krypton-8gb.dts |  25 +++
- .../boot/dts/realtek/rtd1861b-krypton.dtsi    |  72 ++++++++
- arch/arm64/boot/dts/realtek/rtd1920.dtsi      |  12 ++
- .../dts/realtek/rtd1920s-smallville-4gb.dts   |  23 +++
- .../boot/dts/realtek/rtd1920s-smallville.dtsi | 128 ++++++++++++++
- 12 files changed, 626 insertions(+), 16 deletions(-)
- create mode 100644 arch/arm64/boot/dts/realtek/kent.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1501.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1861.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1920.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/realtek.yaml b/Documentation/devicetree/bindings/arm/realtek.yaml
+index ddd9a85099e9..be529490640c 100644
+--- a/Documentation/devicetree/bindings/arm/realtek.yaml
++++ b/Documentation/devicetree/bindings/arm/realtek.yaml
+@@ -14,21 +14,21 @@ properties:
+     const: '/'
+   compatible:
+     oneOf:
+-      # RTD1195 SoC based boards
+-      - items:
++      - description: RTD1195 SoC based boards
++        items:
+           - enum:
+               - mele,x1000 # MeLE X1000
+               - realtek,horseradish # Realtek Horseradish EVB
+           - const: realtek,rtd1195
+ 
+-      # RTD1293 SoC based boards
+-      - items:
++      - description: RTD1293 SoC based boards
++        items:
+           - enum:
+               - synology,ds418j # Synology DiskStation DS418j
+           - const: realtek,rtd1293
+ 
+-      # RTD1295 SoC based boards
+-      - items:
++      - description: RTD1295 SoC based boards
++        items:
+           - enum:
+               - mele,v9 # MeLE V9
+               - probox2,ava # ProBox2 AVA
+@@ -36,25 +36,43 @@ properties:
+               - zidoo,x9s # Zidoo X9S
+           - const: realtek,rtd1295
+ 
+-      # RTD1296 SoC based boards
+-      - items:
++      - description: RTD1296 SoC based boards
++        items:
+           - enum:
+               - synology,ds418 # Synology DiskStation DS418
+           - const: realtek,rtd1296
+ 
+-      # RTD1395 SoC based boards
+-      - items:
++      - description: RTD1395 SoC based boards
++        items:
+           - enum:
+               - bananapi,bpi-m4 # Banana Pi BPI-M4
+               - realtek,lion-skin # Realtek Lion Skin EVB
+           - const: realtek,rtd1395
+ 
+-      # RTD1619 SoC based boards
+-      - items:
++      - description: RTD1501s SoC based boards
++        items:
++          - enum:
++              - realtek,phantom # Realtek Phantom EVB (8GB)
++          - const: realtek,rtd1501s
++
++      - description: RTD1619 SoC based boards
++        items:
+           - enum:
+               - realtek,mjolnir # Realtek Mjolnir EVB
+           - const: realtek,rtd1619
+ 
++      - description: RTD1861b SoC based boards
++        items:
++          - enum:
++              - realtek,krypton # Realtek Krypton EVB (8GB)
++          - const: realtek,rtd1861b
++
++      - description: RTD1920s SoC based boards
++        items:
++          - enum:
++              - realtek,smallville # Realtek Smallville EVB (4GB)
++          - const: realtek,rtd1920s
++
+ additionalProperties: true
+ 
+ ...
 -- 
 2.34.1
 
