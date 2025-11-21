@@ -1,56 +1,57 @@
-Return-Path: <devicetree+bounces-241194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B660BC7A9B1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 16:46:56 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8470FC7A9C3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 16:47:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CE8FB4E278B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:42:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 48F373545B7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538542EB861;
-	Fri, 21 Nov 2025 15:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC283242C0;
+	Fri, 21 Nov 2025 15:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ao77SuV1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Yyy9clkS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C280B2D7388;
-	Fri, 21 Nov 2025 15:42:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B282ED154
+	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 15:42:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763739775; cv=none; b=bVmUI+uokSBVtTFbiNlh2Xjknc/m/PWyypx8/mlpWJ0rV01ts2mH/3ySo86OARLwN9V+WlvdaWBW6TIgj/2F8CqCnml9b2ujCov26Q3u40A7BqfSV474UesS0suX6soNTIPfzuvKGlHS6oxBxrAR2dBaFiOhdzamz5do6ma2qvc=
+	t=1763739777; cv=none; b=MToekMQut94XsnFmafld8a2T0lFg9EavdI2ceyQT0Epvp0tBIczkhpEXdRIsvfEiy2CiOo1PIEZM6N1sp3Sdrb0V/5Up2CwrEGlkPkq2Mzs0D6uPxN+cM3HQjTo7++KgJ6FYTGfDbx0FZ0PHENBQU2JOZpOH8KE13GT1K7hdp2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763739775; c=relaxed/simple;
-	bh=AyzzxToqnIAsSlOdhPRR7RN98+9hvID79dbBdLzfwko=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kuWEqDIx0BvaA3sJHxfFE8K+m4ARWXS0tGApeZb+L8AT2JJ2V4mnPpYFF6d4c6PBkZnQjuSEaIPFQiO/vIN/hYZ873L31aKSdrqYTMYEQ1+aLuAGTDdfb+PG01sfbrJTgnqsvNVVEvLcHmbhl9FiLULHcCn0kt+EN/YfGKrzbBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Ao77SuV1; arc=none smtp.client-ip=185.246.84.56
+	s=arc-20240116; t=1763739777; c=relaxed/simple;
+	bh=v8Ay6EqTkhbZBFkjZA8PgCzQZBclbCRf0P+1UkubZZM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=TkjMh9CkHlU28XgTB826s+HcWED7OXmxnG7yZO7bUXhUVZjEHF2Dvv2KfTndGKfn6Y1qpdeYBGmhZlkTpA+RtrZVhVfjVlfYUlF7WZqVN0JcAop5Fx03E3gI6eyyHmlPw6QhGW4G2vo2krib4SQ5cz2yzn//oNP1OqWEi6j/GmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Yyy9clkS; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 522911A1C94;
-	Fri, 21 Nov 2025 15:42:41 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 518664E4182F;
+	Fri, 21 Nov 2025 15:42:43 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 19DEE60719;
-	Fri, 21 Nov 2025 15:42:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1DFBD10372188;
-	Fri, 21 Nov 2025 16:42:37 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 24B9660719;
+	Fri, 21 Nov 2025 15:42:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D153F103721D1;
+	Fri, 21 Nov 2025 16:42:40 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763739760; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=yTl8T9kOPsRlZLi/qxLvoBg6wGqTVmaXfk9LwQI9gG0=;
-	b=Ao77SuV1edzIejLmr9NePiyIi6sDLyET5aHhLyRUZYC3OmM3c5LiAnuKMdqHGrow6OWaCg
-	54OyYzdJpRo81tUPqvjP0zv6xlkRPt85CCRGCRiOYHiBIP2y5cn2YoUj2DjiLR7PJIN3dY
-	71M+9AbGuTSCcGXHjwMlGbxF4E2wt+yNyODv0jKqaOs3pBZq0qJSQxoOZ1i90/MsymcfIS
-	azL8tDVsuXpqOIY9ZmIrQ8/HUB1WlepKdtSH6886eq3/qZQTc3fMjKhPxmNbXsNVoIIXTN
-	Pq0EvQQzy8Nl4Qbs44rAVOTSCz4g+r0LyuACqKWf3f/typfuD+/7/Iu9hTbnjA==
+	t=1763739762; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=v3k4BM6DHfFUns+7M05p2i5ryrAGLPtZpRAsjWs1HE8=;
+	b=Yyy9clkS5cA4HNP14XF8n2mC2J/avKHUerjK23wreJRbhdl861iyuBAA84fC/rVnoSREQd
+	jAknIWgIVGXH4Jvl5xhAaq1Z3p9fgkG4MGWO37avggxKl9Fjq4WciSJQw4ieQDSxlNJQio
+	RUOPTGw9t1lzLSLYIvTMdzkDbcbC9CQ6adFDE/MAFRtPGzeWtXqdPmrJkx5behzsc63YvU
+	ka5v08Lr22y72fXU0Db0+W+JE64HaaTWEUFUNvViWa6ubv9KP3x/FwupUMnzv8shlb9Nkj
+	3rejCxVeTcctwFPFY4b//bfSaP1ykyWeyl2IVr7k038kqeNjCPUZyxIxXJK3ZA==
 From: Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH v2 0/3] MTD physmap: Adding reserved RAM support and fixing
- reserved_mem limitations
-Date: Fri, 21 Nov 2025 16:42:34 +0100
-Message-Id: <20251121-mtd-memregion-v2-0-c5535fdcebe4@bootlin.com>
+Date: Fri, 21 Nov 2025 16:42:35 +0100
+Subject: [PATCH v2 1/3] of: reserved_mem: Support multiple 'reg' entries
+ for memory-region
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,11 +59,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAGqIIGkC/3WMQQ7CIBBFr9LMWgxD01JdeQ/TRQtjO4kUA4RoG
- u4udu/y/fz3dogUmCJcmx0CZY7stwrq1IBZp20hwbYyKKk6RNTCJSscuUBLfYphaKVBa7U0BNV
- 5BXrw++jdx8orx+TD58hn/K3/ShmFFHpuux7R6MvU32bv05O3s/EOxlLKF7EcAKusAAAA
-X-Change-ID: 20251117-mtd-memregion-8830c1dd70ce
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251121-mtd-memregion-v2-1-c5535fdcebe4@bootlin.com>
+References: <20251121-mtd-memregion-v2-0-c5535fdcebe4@bootlin.com>
+In-Reply-To: <20251121-mtd-memregion-v2-0-c5535fdcebe4@bootlin.com>
 To: Rob Herring <robh@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
  Miquel Raynal <miquel.raynal@bootlin.com>, 
  Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
@@ -77,58 +77,255 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
  Gregory CLEMENT <gregory.clement@bootlin.com>
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Fuzzy: 4424144f4218900c354d6490f15d7fd89bd74a90c2a7348481eaef86083880102d8c77ac236285b683c0bd37638dc6a3f0301a0bc431696a6ae2fe169c719249
 
-Hello,
+The Device Tree specification allows a "memory-region" node to have
+multiple 'reg' entries, but the current kernel implementation only
+processes the first entry. This can lead to drivers not being able to
+access all the reserved memory regions specified in the Device Tree.
 
-While working on adding reserved RAM support to the MTD physmap
-driver, I encountered a limitation in the kernel's reserved memory
-support: although the Device Tree specification allows multiple reg
-entries for a memory-region node, the kernel only processed the first
-one. This limitation prevented proper support for reserved RAM regions
-in MTD.
-
-This series addresses both issues:
-
-First, the reserved memory support is extended to fully support
-multiple reg entries per memory-region node, ensuring compliance with
-the Device Tree specification.
-
-Then, with this foundation in place, the series updates the MTD
-physmap driver to support reserved RAM regions. The DT bindings are
-extended to allow memory-region phandles for RAM access, and the
-physmap driver is modified to use these regions.
-
-Gregory
+This patch extends the reserved memory handling to support multiple
+'reg' entries for a single "memory-region" node. The existing exported
+functions remain unchanged for backward compatibility, but new APIs
+are introduced to allow drivers to access all reserved memory regions.
 
 Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 ---
-Changes in v2:
+ drivers/of/of_reserved_mem.c    | 139 ++++++++++++++++++++++++++++++++++++----
+ include/linux/of_reserved_mem.h |   4 ++
+ 2 files changed, 131 insertions(+), 12 deletions(-)
 
-- Properly managed cases where register entries used by the memory
-  region are out of order, particularly when one or more register
-  entries are mixed with memory region entries in an other node.
-- Used "memlog" as the node name instead of "sram," which was misleading.
-- Link to v1: https://lore.kernel.org/r/20251117-mtd-memregion-v1-0-7b35611c79a6@bootlin.com
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 2e9ea751ed2df..ecb3ffe74113f 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -159,6 +159,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+ 	int len;
+ 	const __be32 *prop;
+ 	bool nomap;
++	int count = 0;
+ 
+ 	prop = of_get_flat_dt_prop(node, "reg", &len);
+ 	if (!prop)
+@@ -183,6 +184,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+ 				dma_contiguous_early_fixup(base, size);
+ 			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
+ 				uname, &base, (unsigned long)(size / SZ_1M));
++			count++;
+ 		} else {
+ 			pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
+ 			       uname, &base, (unsigned long)(size / SZ_1M));
+@@ -190,7 +192,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+ 
+ 		len -= t_len;
+ 	}
+-	return 0;
++	return count;
+ }
+ 
+ /*
+@@ -235,7 +237,7 @@ void __init fdt_scan_reserved_mem_reg_nodes(void)
+ 	phys_addr_t base, size;
+ 	const __be32 *prop;
+ 	int node, child;
+-	int len;
++	int len, i;
+ 
+ 	if (!fdt)
+ 		return;
+@@ -273,12 +275,12 @@ void __init fdt_scan_reserved_mem_reg_nodes(void)
+ 		if (len > t_len)
+ 			pr_warn("%s() ignores %d regions in node '%s'\n",
+ 				__func__, len / t_len - 1, uname);
+-
+-		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
+-		size = dt_mem_next_cell(dt_root_size_cells, &prop);
+-
+-		if (size)
+-			fdt_reserved_mem_save_node(child, uname, base, size);
++		for (i = 0; i < len; i += t_len) {
++			base = dt_mem_next_cell(dt_root_addr_cells, &prop);
++			size = dt_mem_next_cell(dt_root_size_cells, &prop);
++			if (size)
++				fdt_reserved_mem_save_node(child, uname, base, size);
++		}
+ 	}
+ 
+ 	/* check for overlapping reserved regions */
+@@ -308,16 +310,16 @@ int __init fdt_scan_reserved_mem(void)
+ 
+ 	fdt_for_each_subnode(child, fdt, node) {
+ 		const char *uname;
+-		int err;
++		int err, ret;
+ 
+ 		if (!of_fdt_device_is_available(fdt, child))
+ 			continue;
+ 
+ 		uname = fdt_get_name(fdt, child, NULL);
+ 
+-		err = __reserved_mem_reserve_reg(child, uname);
+-		if (!err)
+-			count++;
++		ret = __reserved_mem_reserve_reg(child, uname);
++		if (ret > 0)
++			count += ret;
+ 		/*
+ 		 * Save the nodes for the dynamically-placed regions
+ 		 * into an array which will be used for allocation right
+@@ -750,6 +752,35 @@ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np)
+ }
+ EXPORT_SYMBOL_GPL(of_reserved_mem_lookup);
+ 
++/**
++ * of_reserved_mem_array_lookup() - acquire reserved_mem array from a device node
++ * @np:		node pointer of the desired reserved-memory region
++ * @rmrm:	pointer to the first elemennt of the reserved_mem struct of the memory region
++ *
++ * This function allows drivers to acquire a reference to the array of the
++ *  reserved_mem struct based on a device node handle.
++ *
++ * Returns the number reserved_mem elements
++ */
++int of_reserved_mem_array_lookup(struct device_node *np,
++				 struct reserved_mem **rmem)
++{
++	const char *name;
++	int i, count = 0;
++
++	if (!np->full_name)
++		return 0;
++
++	name = kbasename(np->full_name);
++
++	for (i = 0; i < reserved_mem_count; i++)
++		if (!strcmp(reserved_mem[i].name, name))
++			rmem[count++] = &reserved_mem[i];
++
++	return count;
++}
++EXPORT_SYMBOL_GPL(of_reserved_mem_array_lookup);
++
+ /**
+  * of_reserved_mem_region_to_resource() - Get a reserved memory region as a resource
+  * @np:		node containing 'memory-region' property
+@@ -785,6 +816,49 @@ int of_reserved_mem_region_to_resource(const struct device_node *np,
+ }
+ EXPORT_SYMBOL_GPL(of_reserved_mem_region_to_resource);
+ 
++/**
++ * of_reserved_mem_region_to_resource_array() - Get a reserved memory region as a resources
++ * @dev:	device associated to the node
++ * @np:		node containing 'memory-region' property
++ * @idx:	index of 'memory-region' property to lookup
++ * @res:	Pointer to an array of struct resource pointers to fill in with reserved regions
++ *
++ * This function allows drivers to lookup a node's 'memory-region' property
++ * entries by index and fill an array of struct resource pointers for the entries.
++ *
++ * Returns the number of resources filled in @res on success.
++ * Returns -ENODEV if 'memory-region' is missing or unavailable,
++ * -EINVAL for any other error.
++ */
++int of_reserved_mem_region_to_resource_array(struct device *dev, const struct device_node *np,
++					     unsigned int idx, struct resource **res)
++{
++	struct reserved_mem *rmem[MAX_RESERVED_REGIONS];
++	int count, i;
++	struct resource *r;
++
++	if (!np)
++		return -EINVAL;
++
++	struct device_node __free(device_node) *target = of_parse_phandle(np, "memory-region", idx);
++	if (!target || !of_device_is_available(target))
++		return -ENODEV;
++
++	count = of_reserved_mem_array_lookup(target, rmem);
++	if (count <= 0)
++		return -EINVAL;
++
++	*res = devm_kzalloc(dev, count * sizeof(struct resource), GFP_KERNEL);
++	r = res[0];
++	for (i = 0; i < count; i++) {
++		resource_set_range(&r[i], rmem[i]->base, rmem[i]->size);
++		r[i].flags = IORESOURCE_MEM;
++		r[i].name = rmem[i]->name;
++	}
++	return count;
++}
++EXPORT_SYMBOL_GPL(of_reserved_mem_region_to_resource_array);
++
+ /**
+  * of_reserved_mem_region_to_resource_byname() - Get a reserved memory region as a resource
+  * @np:		node containing 'memory-region' property
+@@ -829,3 +903,44 @@ int of_reserved_mem_region_count(const struct device_node *np)
+ 	return of_count_phandle_with_args(np, "memory-region", NULL);
+ }
+ EXPORT_SYMBOL_GPL(of_reserved_mem_region_count);
++
++/**
++ * of_reserved_mem_region_count() - Return the total number of reserved memory regions
++ * @np:		node containing 'memory-region' property
++ *
++ * This function counts the total number of reserved memory regions referenced
++ * by a node's 'memory-region' property. It iterates over each phandle and sums
++ * the number of regions found in each referenced reserved memory node.
++ *
++ * Returns the total number of reserved memory regions on success.
++ * This function allows drivers to retrieve the number of entries for a node's
++ * 'memory-region' property.
++ *
++ * Returns total number of reserved memory regions on success, or negative error
++ * code on a malformed property.
++ */
++int of_reserved_mem_region_total_count(const struct device_node *np)
++{
++	int nregion = of_count_phandle_with_args(np, "memory-region", NULL);
++	struct device_node *target;
++	int i, nregs = 0;
++
++	for (i = 0; i < nregion; i++) {
++		struct reserved_mem *rmem;
++
++		target = of_parse_phandle(np, "memory-region", i);
++		if (!target)
++			return -ENODEV;
++
++		if (!of_device_is_available(target)) {
++			of_node_put(target);
++			return 0;
++		}
++
++		nregs += of_reserved_mem_array_lookup(target, &rmem);
++
++		of_node_put(target);
++	};
++	return nregs;
++}
++EXPORT_SYMBOL_GPL(of_reserved_mem_region_total_count);
+diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
+index f573423359f48..1e0c6afddd812 100644
+--- a/include/linux/of_reserved_mem.h
++++ b/include/linux/of_reserved_mem.h
+@@ -40,11 +40,15 @@ int of_reserved_mem_device_init_by_name(struct device *dev,
+ void of_reserved_mem_device_release(struct device *dev);
+ 
+ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np);
++int of_reserved_mem_array_lookup(struct device_node *np, struct reserved_mem **rmem);
+ int of_reserved_mem_region_to_resource(const struct device_node *np,
+ 				       unsigned int idx, struct resource *res);
++int of_reserved_mem_region_to_resource_array(struct device *dev, const struct device_node *np,
++					     unsigned int idx, struct resource **res);
+ int of_reserved_mem_region_to_resource_byname(const struct device_node *np,
+ 					      const char *name, struct resource *res);
+ int of_reserved_mem_region_count(const struct device_node *np);
++int of_reserved_mem_region_total_count(const struct device_node *np);
+ 
+ #else
+ 
 
----
-Gregory CLEMENT (3):
-      of: reserved_mem: Support multiple 'reg' entries for memory-region
-      dt-bindings: mtd: physmap: Allow using memory-region to access memory resources
-      mtd: physmap: Add support for RAM reserved memory regions
-
- .../devicetree/bindings/mtd/mtd-physmap.yaml       |  59 ++++++---
- drivers/mtd/maps/physmap-core.c                    |  56 +++++++--
- drivers/of/of_reserved_mem.c                       | 139 +++++++++++++++++++--
- include/linux/of_reserved_mem.h                    |   4 +
- 4 files changed, 218 insertions(+), 40 deletions(-)
----
-base-commit: b55d426c390f2a4762b2a88b113cc44c37e08e46
-change-id: 20251117-mtd-memregion-8830c1dd70ce
-
-Best regards,
 -- 
-Grégory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.51.0
 
 
