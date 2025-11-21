@@ -1,251 +1,282 @@
-Return-Path: <devicetree+bounces-241166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE6BC7A76E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 16:18:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48032C7A73D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 16:15:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BE214E3A32
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:08:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27ADA3A0564
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 15:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F70B2D94A1;
-	Fri, 21 Nov 2025 15:08:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8FC5312816;
+	Fri, 21 Nov 2025 15:12:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eCPaurN0";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QmLxhY7R"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="ock5q6a/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010000.outbound.protection.outlook.com [52.101.228.0])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CE702C178E
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 15:08:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763737727; cv=none; b=mZ/3wb0a/f+62i1SNYWIG0KDyiE6hRga4mnVs+HbtzQKVjeYz516+V+wn+6MX6Dx+3G5J56/Pdh6JbqMN2h7leTeA81Ay5zqllFS2Sgmn8p050pSx/ap3U7y+Pa8kwYvKl98BC0VP+/EGI7RApDNJFPkwdIyV7wGEq2i+NpyebM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763737727; c=relaxed/simple;
-	bh=uvPi9ASKPbADZRK8UKix4C8KIl9QlRR9xU1PJwogzMs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MZQkmc7WRPBKw+INXsou5HFuz5RkTLbJW5mfHl1bmd01dl7u3n0FunoBnEm+IuwxhunBNgLfCqt5yMedDZysCLddI1eQ7QXi0xMMwQMAquiLh+6nog/R4AWxi+iloRuUU3NsbAhPBslP1TBs1IonN1ytNnMcAXlmozanF64t1vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eCPaurN0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QmLxhY7R; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ALBfpYg2756749
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 15:08:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GXeMU2t/+YocV/lrKmcdn7FJ/vQLkZ3h6b3+GNAWoV4=; b=eCPaurN0MWzonVcn
-	T4viz7ty/3JGsfRv6ahwhXmtROfnpg7wqhlFlVjtiEv99roNMbuEYU/hlukePkaR
-	EUJNuFK9yd7ajGVJKVqB9pIEW9ZnQx3rcaqhxR7+VWbYx3SYn/BPsmgFeR8YLLP1
-	WCH6BQSvkt+Kkwmx3lnC6Ypl6ASc0ibmT4CTOmZkxojkUH8WTF01NfEo9g5IrEeh
-	bLkkLKuL/Nnbi3kDJgIeFbO5BPT+3YxUOXepuT3Y+mwgIOXi2VaQmnA9M+3YB1W+
-	Q0ITWnip6ZTu0UmE+x+qz1OcpUumB/lSub0wwqzapUqEUTr5iE8E65XSU0CqX5Tm
-	Lgh79w==
-Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com [209.85.217.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ajhy61uyw-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 15:08:43 +0000 (GMT)
-Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-5dfa4d7ed54so341917137.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 07:08:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763737722; x=1764342522; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GXeMU2t/+YocV/lrKmcdn7FJ/vQLkZ3h6b3+GNAWoV4=;
-        b=QmLxhY7RMA82vlAxbGqIaoNbuxZICoFfy2Ou4tJQ63AnM2g5wenitjzsEimI1+tEuT
-         80S63tLhVDuLPDeC4F5yH4fyWiz+oRy5w69ohwlAsWpMof+CiBbxN9M8/l0nqAVfWGjO
-         PSdWiibn+Q0ZD/3itDmrckZcpuEYq1lkIZzTPK7vRMJALMRdj0oerzjGDcyRLLbS7lKg
-         0+0hMsv13DR50Kyt2UqXOXWsz4I6gj1atOMvvMI5CABOXJZf1kO804iG/wjLWir9s+Pt
-         YotJSEW6axJJgtHKEXG7fiGys/ouDTStdxtGPVis3iQZkOKyxhfTnIwxozlgTouj1ejO
-         iS3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763737722; x=1764342522;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GXeMU2t/+YocV/lrKmcdn7FJ/vQLkZ3h6b3+GNAWoV4=;
-        b=DmJl9mvBgA46YIarYDZ5iHq+SskXsdNbSqSthSeenjbZRhTLfL9Lcknbbrw4zqzs6i
-         PlAZPR4lHFvpWoH0exPQSBAghocT/nJNX3d2IZMmqW02zTeOwzfJdI+ia4Lgj3/Dt+y8
-         Sg/P/P0fuVsVRMRNpGNXNhdeqXiKZqMw9n1irgP/pvDkUnkpyIfwEF8+Sdc07H+i2XMj
-         7u+KWsF8LKNcApHlWE/rgHMUX7eIf3rryxQgAmo7Qa41n51HdBxImBwraRkGcsGpNGck
-         YOvuyfiWoliMcpnNzubAaWHK3WFmPIIb75Jh4WdFM3Ahuw2UiNnfj+CoE0ba2GhvoY6D
-         x+hA==
-X-Forwarded-Encrypted: i=1; AJvYcCVP55BBWfbHHTx45FfkHNnjcl1Wc1DQItRPNxQO3rMUSR/mI+iT/JBGQjqQXE1NlRg/LSM4Jhu0Ni2k@vger.kernel.org
-X-Gm-Message-State: AOJu0YymJGAarmkjp+FApOmA3fhJAJ+JgV8zfFbUn+TuvwRlXRbViLEY
-	OJ6SctHMyOx8saZSoi+yDha7plS4iEGfCeE/HaY/g+XceIapZFfjRncxevOClHQWLAwGbCz+1zA
-	3GFjWEilEKDbAC+c2Be9deJ1ViMp1UaGLFyChjB2u93+saOOfseeWR1vdYuo4k1tC
-X-Gm-Gg: ASbGncuw8pB5+xWFWetk/aWviJzW3+cZF9W4VDCgjUpSbhq/ABJgPSUhiKzslGkY9VS
-	+JQeQ9Wj0DX53mxg0iANfpr/mhyrOOF4lwKex0GPO44RIYT2kQoDT0+mipnkZSnkIAhr7Ntl5WF
-	CynLSyBxgMvKkaGsRqayVNvMoYcDtdnMHvBTJ0GNE+w+dPWofbkWncgtweYwqCBw77zFwycFgJv
-	u+AcvSsMLfaJwltu6d5M/9aJMQV5RoFPUumEohU60QRZflVBUXBpAXwAlpp2encRfLhEXPklPM3
-	VTJNCH/Ot7oSOA/3558CUBcmi3r6LnKNeZWMQahymg4TMPuLvB9+uuZXwRg4AhJWr3ubntFaCk7
-	hRrc+SEocKBwR5jFZ6+kBQ1upB3mVOXnQ+xgm4Jlpi0ctR1xRZpeSiEu1NeqKInrBzWw=
-X-Received: by 2002:a05:6102:50a0:b0:5df:aa69:be98 with SMTP id ada2fe7eead31-5e1e6a6e492mr342496137.6.1763737722139;
-        Fri, 21 Nov 2025 07:08:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGO4HZ2HHfuPtxZw+pMyOmNu+f3imzE0i+3JXqRHNARVWLe23jAhWaT+EnRuJOBTWX+AoVknQ==
-X-Received: by 2002:a05:6102:50a0:b0:5df:aa69:be98 with SMTP id ada2fe7eead31-5e1e6a6e492mr342424137.6.1763737721446;
-        Fri, 21 Nov 2025 07:08:41 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654d73430sm485852266b.24.2025.11.21.07.08.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Nov 2025 07:08:39 -0800 (PST)
-Message-ID: <238adfbb-3773-4318-93d3-b23697aa4b18@oss.qualcomm.com>
-Date: Fri, 21 Nov 2025 16:08:36 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E162DC782;
+	Fri, 21 Nov 2025 15:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.0
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763737975; cv=fail; b=rduoEa1G22XNi3ppxe2aN+EIN0D6io0olHpNINC+DJVroMbs5mCLdaVu0+GwDA0GaF6oq4BnTilskWM6Z/QonvENRREb2otCKzWrx8aaUTlu0vNEUpciAbVnqw2lJFc6xT0GMSC0neXM13b6h6SI+BQ13vByvv4NauoDwEm8t/A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763737975; c=relaxed/simple;
+	bh=T5NAkuPMJ8N6h7TEb4J6cY8p2HE0mXmkTl3G9d7gR+c=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=H0r1uTcKUYgjg8OsuwqzRwxlCF7lQGuey9515wAUXh7uOceIetRuvgjmo2P491PmqFIL8HBRjnArgjIwX2qq5m5SVq7m52HnR0alUUvIdSLgNSJ+3kxTKZQP9eFfRxYAkpjOFQAoM74TiaMtNWJ5W86qg9YRlvgtco2MQl3b53o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=ock5q6a/; arc=fail smtp.client-ip=52.101.228.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UxGIubHN2LmClD8SdTO2efYz2wXNhwjkjknxdw3LlUCfALAB6eD3RDIIXctM4erWmcqCHIwnSK/KYOEig2eTdewQbJKecrEjwEnH8jMzdrLaVF0yPf5aTLWFHRsuI+XUVZ5/1ZElKkWJj7P4zf0qjznswUCFikol2LXxljiy0lAh1xUOWj5fKGM4ob8qentln87fYyc1HL8hmgkrgL7AWnjVOOHX3c8+1/t5Tq/FloUzYKMxd3qYTYk2IDWxn+rHJ49oylFsIXVNnc/Kjk7C5TqUqaQCyxvOSYlcC4/s2VNXc15rFODQkGJ0XNgKULZYFHu78xSyDCWeC/6bvye8Bg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=APZuAjnkZAoZNAznap0ETE1HZFaP+z9WuLz81YE8CwE=;
+ b=EgEdVbC1nkzN7hVQa5B1heDh+7asccspOxfuuHjUBoH7PcJJrSjguXSJt6jEAfs/Q8uZmITA9Bm1y4bNCc+ikdYNQ7zcur4HPmf9xQlyHTeIWi8h8YbdH4EirGL4+UwK3NR1v+onU7YUbWmiwyqClqq8v9hV04SDXnkPg74vHXZUiA++TpcVYZAnNW83B3qPwE8nLmYWBZcYJs4iiJxFpwgDE0c7gD4NFYTHOnV/TIjelytQqSpjMafP3FBasaWzY3lHt8OqVxUg0qDPZt8vn3h/vTYyxvaudZrEvRLCTTpvkiBvPl91HDR8Qrg8Ngz5gOsVJ4HNfO1Nvy4a/2iyBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=APZuAjnkZAoZNAznap0ETE1HZFaP+z9WuLz81YE8CwE=;
+ b=ock5q6a/WZmsMWTXkBVYHaJmlEM0eHyFE42xhqEmJOIVEanT0O9prPNBwC1yrQTj/ejQbo9ScmmI4UD9HD/fy1lhKmgnCCAU/bg+RVr4GiMt997/SvJbTK6MMN5zma1lBtcE9JJtB+vCCkJZ+6tsM+O3kY3zzzyK57g/JfWQb4c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
+ by OS7PR01MB16954.jpnprd01.prod.outlook.com (2603:1096:604:41e::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.11; Fri, 21 Nov
+ 2025 15:12:47 +0000
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9343.011; Fri, 21 Nov 2025
+ 15:12:43 +0000
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: tomm.merciai@gmail.com
+Cc: linux-renesas-soc@vger.kernel.org,
+	biju.das.jz@bp.renesas.com,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Peter Rosin <peda@axentia.se>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Subject: [PATCH v4 00/22] Add USB2.0 support for RZ/G3E
+Date: Fri, 21 Nov 2025 16:11:49 +0100
+Message-ID: <cover.1763737324.git.tommaso.merciai.xr@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FRYP281CA0015.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10::25)
+ To TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
- SoCs running Linux host at EL2
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
- <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
- <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Lb0xKzfi c=1 sm=1 tr=0 ts=6920807b cx=c_pps
- a=5HAIKLe1ejAbszaTRHs9Ug==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=JSAmB6C2vfhm-E4Mg70A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=gYDTvv6II1OnSo0itH1n:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: O0Hr0dJIPmZkedDkjpMP3tsc_j91SKXj
-X-Proofpoint-GUID: O0Hr0dJIPmZkedDkjpMP3tsc_j91SKXj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTIxMDExMCBTYWx0ZWRfX+/+bIhRL4e23
- 7TDnD4NabaR++GFB1FormYdzQn0e46dxkoMJhnsCSOTA7I+a4fZdflmizYt94Lxos9X0bdnR9Yz
- vSXkoDdCkuxJ95Msfh1Snq5LuNAKwVaw1WocGhM8OKJSH/7Y6OV6fMLzmb5EIZ5gtsrgpdcOvZG
- aejuFfx4l6X/ZvsEd4EekoWJWADqADNrksFISmZFmUoB6dtQ8ubcUn0jJZp+VkUvR0s7nbr6o9o
- cAYciskm8H/1qeia9RgYGHNuOANsKZO2GQkVd2PrF1nl6O4fnIzYGKp5qvefilZueAkok8TIJFE
- PHGazcPgw1xr82pb+KAZD9w4FLgvuZx+RDnXfCLvm0iBXGojRHvtOVp2C+R8iAQo2V3mDlWqt23
- sMRSAJKfPiS63G9+5JPAdh00EBWM1g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-21_04,2025-11-21_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 impostorscore=0 clxscore=1015 malwarescore=0
- lowpriorityscore=0 suspectscore=0 adultscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511210110
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|OS7PR01MB16954:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0d27d576-660c-4cca-dc9a-08de29106b75
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?xHN1E9KxTck6lHNSr9Kn16ic8TVfO9xfIVnLjsZXI259p1izIt+oc//XVBBk?=
+ =?us-ascii?Q?XG00qLYbJ+oTQomXb7kye2ro8E/mxO17kgHDT3tn4zZ6ZwNL8sYGcK62KA+l?=
+ =?us-ascii?Q?gOhDnw9G8FUWlcET+Xmx3Y7wQ8O7tuQVx0pb7MwkRoZ+k4L/RQV7/BAy0Cug?=
+ =?us-ascii?Q?wOHKXD77LGRl2j9vwXKtn3asRo1jZTYzyuiw22nC1/2uRdBgAG5OcHJtaH6P?=
+ =?us-ascii?Q?ij+sD+ewp9o3R1qnSP9w1e19sl8U8hzVkzYZlvXIHZ11KnuGC2zV+io5je9a?=
+ =?us-ascii?Q?we+9Q4XMa2d/3PBmRcp6r64ykZeBZ5WBZ+GYQSWNnZy65lzmvRe7dTDuQf/U?=
+ =?us-ascii?Q?LDL/UJOlMSmD/bg590VG10tNnOwmLp5aP5/w1qn8fgAIsHauPsH8Tb+pBWeH?=
+ =?us-ascii?Q?iTPqrMRJBlTaHlBkSRIXY/jCQBSOOX9+o/yedQajX9cNYGM5mdlqs27JUNLC?=
+ =?us-ascii?Q?uVCIfr6reWg9qhjs5j21tYFhVw3kmwRcchqfEnUFgd02+J8E90XSa1Glf3KL?=
+ =?us-ascii?Q?3tr1bbdn6OzgagKW0aHF1f59+7tydAlw9HrgVtsCa6KI+bsI1tQa489i5v2W?=
+ =?us-ascii?Q?ydBrQrG+O7dw3lPNcJIYnnKQT9Tp7aB8DXa+2b4Cg2o8TVOhiB0LjZzXzqQg?=
+ =?us-ascii?Q?aoAG3EFmPu2X6lTLTC4TA+xpOGoOPYYuktNONamulBQgX88lT+Cqx2h+EUp3?=
+ =?us-ascii?Q?0nZcIEc9tphEwv4EIcUeXIbiPmNCE96yGEAkXJF2QeEvVZSCSeQ8CK8RjIG1?=
+ =?us-ascii?Q?g+tMH1AAKuWnu2iqwytcOWPjOQHqf3Ke/f9MW6SaDXhopkpCGjA1kjJ+bE7O?=
+ =?us-ascii?Q?8aklmuQmlqen3gVXepAS3DMR+O7DtfJv472nP4V52FzwJSsP9CyIOYZ0OA9g?=
+ =?us-ascii?Q?CHUxy1oFjhfShhizFkB9eiY5LEoO3bHuab1j9Fx6+uQogoMEYDXl7lUhIpM4?=
+ =?us-ascii?Q?x/6XSwVELaz/SFO0hG9QVIxUE4d9bNMMAgmXqZ+QG18UzAHzuw9+Gf/ZYx7X?=
+ =?us-ascii?Q?QH0+mTJ7A+TrQADxozmsoAPKOGhvg8aNh+6uHic+LSSWNcEwhlazGDkPF+VY?=
+ =?us-ascii?Q?GA3cuanBOq0aIMXQlBYgvJS5ofHLd2FIBXHXFupsrhdrCckUyltGz7p34eE7?=
+ =?us-ascii?Q?o3Dw66pNvJyTzsNqai4vtF5cAIH85QKAHwNRXcjoC1/7Nacx8xplOGc6JRuy?=
+ =?us-ascii?Q?Fl6Ah92Xjr1ABOsKhaJtr/5UMgXDXxA8iLJy/KNdANtcwZROhvjNdFXa4i46?=
+ =?us-ascii?Q?1DuT0VVhinjegDp30mFII5TYaPEicV5CG3+atsavUYF7i0UqoV5on7/MlhzU?=
+ =?us-ascii?Q?IqsJeZ2iE6zN+jsWvHY4m55zfkC9Ec5UOByPv4YvORvjEQDmq5XRtc5jLGdW?=
+ =?us-ascii?Q?bwdrdrUGxpKGylqw7tpshbeT+lOaO9L1F7gFZSvEsZHg2rM8v6Ualz8L1Cuk?=
+ =?us-ascii?Q?Fv0f6z6xJfoJsLwcLUc94Qz6PVCoo+ctw0R+PO2GEoBh5SH55qV9BxAf7tsh?=
+ =?us-ascii?Q?droOaOEWhhS4uP0VR3VEc2jiQvHIQ0go236u?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ViTRGUrqzQu3lM2NUDKzQIP8rGMQE+R9sD1tMvZ73pOnyAt7b/VM/kotrRHK?=
+ =?us-ascii?Q?uD/eruskeWMoR6L2Mc47bC/pUOnSKO09JL0SBRsDdnaLBfxdYUGQbUxQkV9k?=
+ =?us-ascii?Q?cdVavtRd2MYH0rj3u3WU9jnFJvTU7BkeNv5YBUUoJ4+J+USKula1CT4pU6Hk?=
+ =?us-ascii?Q?EvksSLwHYXCPJoRMurzZkddIei+Phy/D9dhC+dyA4KwM2Fr4lm3j/l2tKGhp?=
+ =?us-ascii?Q?Ikivi7SwtHvgTeAMScIUXlGpp/eV05Fp5Rpo0zERoueQImkS5OHCcmdbRB/o?=
+ =?us-ascii?Q?rnrP369wP+ZbMSjPur8DTjrfTbL1OilEUkRjs1qO2QgrekoZc90259C8j2E8?=
+ =?us-ascii?Q?OLqnUBmIRvPUzqR9bjjZGWRDqnHFgQsvGPak8cSdr6f2kGTMor7f6sPYZo0i?=
+ =?us-ascii?Q?DllSfbDMMhlbTDy5VfmA04rjUOnAVWr8FkOo6fBnv5NJquYSbfBnrOT3GLoK?=
+ =?us-ascii?Q?cueGn5r9vXw7zGsutIqV4IcPtnmGENKy51chZjjgHr5nT+JGyCxR8toYRFme?=
+ =?us-ascii?Q?eHWwMHG5JUEI/bByhmd4u3xlhW/CZKpnlm4BL6QWwPZFwfmlkCY7WbDsXGP3?=
+ =?us-ascii?Q?94RyfzY4hKmHo3TFBgD6DcTBZ5Y8U90v0E9Mf0an5SpM9Aly3HZmw4lMwZaP?=
+ =?us-ascii?Q?Achyxyf5LIwbF67OkqWpUmN32WXFLppG3SbTS3VgVEMIghyR9xOeV4iZBowf?=
+ =?us-ascii?Q?hBRGUG4TU4lRadYxqG7EsACcXqIx0hVjzR9LMzxN+zMjaWdJ9huw1x1GVhaD?=
+ =?us-ascii?Q?9/kace8JG7b+IDc8JYgx7tPNkAvRRZmHv5ieo8B1lOaxDpQwfObI+cOMnY6Y?=
+ =?us-ascii?Q?74oFOPg5TVq3xOwNb3MhOvkT6blzQASp6OCHoEHfacA6uRFycOFFJc3u0bm3?=
+ =?us-ascii?Q?qdeFrWUMB0LVNDta8QEUsX9nrKnTZ24iIL/X9f+cQLewdjLEAyPaV4GQZBPL?=
+ =?us-ascii?Q?3EuT8cFpOXma+nFondGRGpDrULY1x2TLsagDLmvelNc//SymEVCfDHwZbOk1?=
+ =?us-ascii?Q?DFD0sq8xFCNf4JGOievdT42l7iO4j5tlGdS2QtVOgiwVR40/hx9/QncCn/Qr?=
+ =?us-ascii?Q?3a7nlEgbbyDLIrmAL4dukOX4iPpQaggoKbw//F1C4xqU6qGS40m9iWi16d0z?=
+ =?us-ascii?Q?+tZNzznSmqx9M8eAspdBeoQruxP6pBA7Wly37fG2mvPkOnDx24gFxXOzE203?=
+ =?us-ascii?Q?/q0ivAfn+Ve39UhrXsUYy8JnGwXh8eTO1pDInzfYZ3+CuEivCC5GWe6UaYbC?=
+ =?us-ascii?Q?UCK7RItnskLXLYQ/tc9CoeaIMngmIJ+vMMNwWhvW1EiRl574YUMYEtOvzmC0?=
+ =?us-ascii?Q?sfkanypEfDovdUkdEe2YYsLf0fSCzE/YeDBNyw8TjAHpWo1BX7ygd46w4iI4?=
+ =?us-ascii?Q?vk7aWOTsMNAtkDg/lOBUjSdK5UIO12ok+Is19nZxATjd1UhQCx97UK6P4rhd?=
+ =?us-ascii?Q?FrQylHheqslMxpAzBdLjfJRLrSlIfIVJ5J5KA+BbdrQghEo4vOT45SrxSCu7?=
+ =?us-ascii?Q?44AuwFlAJK90PWjSB7SkWMkOWWqmGKJdZGeoskEnuQujDtbNp4T4W87qoELV?=
+ =?us-ascii?Q?1lqTva2/lxlZq435E8Jp9Svl0B+EU5XCEG+2Ny4ODm+eeLGg2LKP2Q7GKsMk?=
+ =?us-ascii?Q?oPzZhXXKIvKleUI+yBY5uvk=3D?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d27d576-660c-4cca-dc9a-08de29106b75
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2025 15:12:43.6161
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LiM4XI+Dz0nD2CCQYszk0k8Eva7ff7AoRCxMnfjLjNhC+SIm8XuJzC3U48Y6Tu+eqC622Y/M+tBfICH/V585EoF2hIBIz8KFNMmyer5V/Bkc/6I3GLUJZ8FwQyTqv/wP
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS7PR01MB16954
 
-On 11/21/25 12:37 PM, Mukesh Ojha wrote:
-> On Fri, Nov 21, 2025 at 11:27:57AM +0000, Bryan O'Donoghue wrote:
->> On 21/11/2025 11:01, Mukesh Ojha wrote:
->>> In May 2025, we discussed the challenges at Linaro Connect 2025 [1]
->>> related to Secure PAS remoteproc enablement when Linux is running at EL2
->>> for Qualcomm SoCs.
->>>
->>> [1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
->>>
->>> Below, is the summary of the discussion.
->>>
->>> Qualcomm is working to enable remote processors on the SA8775p SoC with
->>> a Linux host running at EL2. In doing so, it has encountered several
->>> challenges related to how the remoteproc framework is handled when Linux
->>> runs at EL1.
->>>
->>> One of the main challenges arises from differences in how IOMMU
->>> translation is currently managed on SoCs running the Qualcomm EL2
->>> hypervisor (QHEE), where IOMMU translation for any device is entirely
->>> owned by the hypervisor. Additionally, the firmware for remote
->>> processors does not contain a resource table, which would typically
->>> include the necessary IOMMU configuration settings.
->>>
->>> Qualcomm SoCs running with QHEE (EL2) have been utilizing the Peripheral
->>> Authentication Service (PAS) from TrustZone (TZ) firmware to securely
->>> authenticate and reset remote processors via a single SMC call,
->>> _auth_and_reset_. This call is first trapped by QHEE, which then invokes
->>> TZ for authentication. Once authentication is complete, the call returns
->>> to QHEE, which sets up the IOMMU translation scheme for the remote
->>> processors and subsequently brings them out of reset. The design of the
->>> Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
->>> is not permitted to configure IOMMU translation for remote processors,
->>> and only a single-stage translation is configured.
->>>
->>> To make the remote processor bring-up (PAS) sequence
->>> hypervisor-independent, the auth_and_reset SMC call is now handled
->>> entirely by TZ. However, the issue of IOMMU configuration remains
->>> unresolved, for example a scenario, when KVM host at EL2 has no
->>> knowledge of the remote processors’ IOMMU settings.  This is being
->>> addressed by overlaying the IOMMU properties when the SoC runs a Linux
->>> host at EL2. SMC call is being provided from the TrustZone firmware to
->>> retrieve the resource table for a given subsystem.
->>>
->>> There are also remote processors such as those for video, camera, and
->>> graphics that do not use the remoteproc framework to manage their
->>> lifecycle. Instead, they rely on the Qualcomm PAS service to
->>> authenticate their firmware. These processors also need to be brought
->>> out of reset when Linux is running at EL2. The client drivers for these
->>> processors use the MDT loader function to load and authenticate
->>> firmware. Similar to the Qualcomm remoteproc PAS driver, they also need
->>> to retrieve the resource table, create a shared memory bridge
->>> (shmbridge), and map the resources before bringing the processors out of
->>> reset.
->>>
->>> It is based on next-20251120 and tested on SA8775p which is now called
->>> Lemans IOT platform and does not addresses DMA problem discussed at
->>> [1] which is future scope of the series.
->>>
->>> Changes in v8: https://lore.kernel.org/lkml/20251113-kvm-rproc-v7-v7-0-df4910b7c20a@oss.qualcomm.com/
->>>   - Addressed suggestion from Stephen which was regarding commit message(9/14),
->>>     debug log(12/14) suggestion, and return type change(4/14).
->>>   - Added R-b tag on 10/14 .
->> Sorry.
->>
->> Did we actually come up with a cogent reason to omit the video firmware
->> loading here ?
->>
->> AFAIU it is required for Lemans and Glymur - leaving it out is blocking
->> getting video stuff done and storing up trouble.
->>
->> What exactly is the blockage - is it something you want help with ?
-> 
-> I replied to you here[1] and given my reason..till something concluded on
-> "multi-cell IOMMU[2]", I can not add video and block what is working
-> already.
-> 
-> [1]
-> https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-hyd.qualcomm.com/
-> 
-> [2]
-> https://lore.kernel.org/lkml/cover.1762235099.git.charan.kalla@oss.qualcomm.com/
+Dear All,
 
-I see that the following files call qcom_scm_pas_auth_.*():
+This patch series adds USB2.0 support for the Renesas R9A09G047 SoC and
+enables it on the RZ/G3E SMARK II board. RZ/G3E has USB2.0 IP that is
+identical to the one's found into the RZ/V2H SoC (R9A09G057).
 
-drivers/firmware/qcom/qcom_scm.c
-drivers/gpu/drm/msm/adreno/adreno_gpu.c
-drivers/media/platform/qcom/iris/iris_firmware.c
-drivers/media/platform/qcom/venus/firmware.c
-drivers/net/ipa/ipa_main.c
-drivers/net/wireless/ath/ath12k/ahb.c
-drivers/remoteproc/qcom_q6v5_pas.c
-drivers/remoteproc/qcom_wcnss.c
+Thanks & Regards,
+Tommaso
 
-iris is difficult, rproc is done, adreno doesn't need it..
+v3->v4:
+ - Rebased on top of next-20251121
+ - Added patch 01/22 to remove nodename pattern from mux-controller schema.
+ - Switch back to v2 implementation for mux controller in patches
+   5/22, 15/22, 16/22, 21/22.
+ - Improved commit bodies for patches 5/22, 15/22, 16/22, 21/22.
+ - Removed mux_chip->dev.of_node not needed in patch 06/22.
+ - Collected CDooley tag in patch 09/22.
+ - Added missing select MULTIPLEXER into Kconfig in patch 11/22.
 
-would ath12k_ahb or IPA be affected by this series as well?
+v2->v3:
+ - Rebased on top of next-20251110 + [1] + [2]
+ - Add missing Cc: stable@vger.kernel.org in patch 03/21
+ - Patch 03/21: Added missing Cc: stable@vger.kernel.org.
+   Improved commit body describing the removal of rzv2h_usbphy_assert_helper()
+   from rzv2h_usb2phy_reset_probe().
+ - Patch 04/21: Manipulate mux-controller as an internal node.
+   Improved commit body.
+ - Patch 05/21: The main driver is using now __devm_auxiliary_device_create()
+   then update the aux driver accordingly.
+ - Patch 06/21: Use __devm_auxiliary_device_create() to create the aux device.
+ - Patch 08/21: Improved commit body and mux-states description.
+ - Patch 14/21: Manipulate the mux controller as an internal node,
+   and update commit body accordingly.
+ - Patch 15/21: Manipulate the mux controller as an internal node,
+   and update commit body accordingly.
+ - Patch 20/21: Manipulate the mux controller as an internal node.
 
-Konrad
+v1->v2:
+ - Rebased on top of next-20251103 + [1] + [2]
+ - Reworked series to use mux-state for controlling VBUS_SEL
+   as suggested by PZabel added also mux bindings documentation
+   on phy and rst side.
+ - Collected Conor Dooley tags
+ - Dropped unnecessary rzv2h_usbphy_assert_helper() function from
+   rzv2h_usb2phy_reset_probe()
+
+Tommaso Merciai (22):
+  dt-bindings: mux: Remove nodename pattern constraints
+  phy: renesas: rcar-gen3-usb2: Use devm_pm_runtime_enable()
+  phy: renesas: rcar-gen3-usb2: Factor out VBUS control logic
+  reset: rzv2h-usb2phy: Keep PHY clock enabled for entire device
+    lifetime
+  dt-bindings: reset: renesas,rzv2h-usb2phy: Add '#mux-state-cells'
+    property
+  mux: Add driver for Renesas RZ/V2H USB VBUS_SEL mux
+  reset: rzv2h-usb2phy: Add support for VBUS mux controller registration
+  dt-bindings: phy: renesas,usb2-phy: Document USB VBUS regulator
+  dt-bindings: phy: renesas,usb2-phy: Document mux-states property
+  phy: renesas: rcar-gen3-usb2: Add regulator for OTG VBUS control
+  phy: renesas: rcar-gen3-usb2: Use mux-state for phyrst management
+  dt-bindings: usb: renesas,usbhs: Add RZ/G3E SoC support
+  dt-bindings: phy: renesas,usb2-phy: Document RZ/G3E SoC
+  dt-bindings: reset: Document RZ/G3E USB2PHY reset
+  arm64: dts: renesas: r9a09g057: Add USB2.0 VBUS_SEL mux-controller
+    support
+  arm64: dts: renesas: r9a09g056: Add USB2.0 VBUS_SEL mux-controller
+    support
+  arm64: dts: renesas: r9a09g056: Add USB2.0 PHY VBUS internal regulator
+    node
+  arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Enable USB2 PHY0 VBUS
+    support
+  arm64: dts: renesas: r9a09g057: Add USB2.0 PHY VBUS internal regulator
+    node
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable USB2 PHY0 VBUS
+    support
+  arm64: dts: renesas: r9a09g047: Add USB2.0 support
+  arm64: dts: renesas: r9a09g047e57-smarc: Enable USB2.0 support
+
+ .../bindings/mux/mux-controller.yaml          |   6 -
+ .../bindings/phy/renesas,usb2-phy.yaml        |  15 +-
+ .../reset/renesas,rzv2h-usb2phy-reset.yaml    |   9 +-
+ .../bindings/usb/renesas,usbhs.yaml           |   1 +
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    | 125 +++++++++
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  49 ++++
+ arch/arm64/boot/dts/renesas/r9a09g056.dtsi    |   7 +
+ .../dts/renesas/r9a09g056n48-rzv2n-evk.dts    |   5 +
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    |   9 +
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |   5 +
+ .../boot/dts/renesas/renesas-smarc2.dtsi      |  23 ++
+ drivers/mux/Kconfig                           |  10 +
+ drivers/mux/Makefile                          |   2 +
+ drivers/mux/rzv2h-usb-vbus.c                  |  97 +++++++
+ drivers/phy/renesas/Kconfig                   |   1 +
+ drivers/phy/renesas/phy-rcar-gen3-usb2.c      | 263 ++++++++++++++----
+ drivers/reset/Kconfig                         |   1 +
+ drivers/reset/reset-rzv2h-usb2phy.c           | 108 ++++---
+ include/linux/reset/reset_rzv2h_usb2phy.h     |  11 +
+ 19 files changed, 644 insertions(+), 103 deletions(-)
+ create mode 100644 drivers/mux/rzv2h-usb-vbus.c
+ create mode 100644 include/linux/reset/reset_rzv2h_usb2phy.h
+
+-- 
+2.43.0
+
 
