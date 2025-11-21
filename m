@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-241222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E172C7B0DE
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 18:22:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9D14C7B0EF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 18:24:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5273C3A209D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 17:22:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93FE83A21A5
+	for <lists+devicetree@lfdr.de>; Fri, 21 Nov 2025 17:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528DA346E47;
-	Fri, 21 Nov 2025 17:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1AE283FC9;
+	Fri, 21 Nov 2025 17:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FV5pDfBV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A2+qaBm7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B0C2DA779;
-	Fri, 21 Nov 2025 17:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12C52836F;
+	Fri, 21 Nov 2025 17:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763745759; cv=none; b=hVq+MiITEF1f48zeMNlXhvXTSdSgRVUwV+I3lBq7d1pkRIDkdSs5TdMAZRk8cGstYV85a+RyLFd4dsd7Es3LBKf6XrK347cZfmBVKXSgKRfd2T/vCFs4YXrTC7fj5zqnvaWwGYt2LwvFyKZxOfDhZtrzvLg89iCO9yHT+tIEyMQ=
+	t=1763745880; cv=none; b=CN95EWHtcVFbkxybbBsblE10dws60wDiJTF1pZGSRorumkYvfGCJUkCg5/aKsp6zo0VeVYcnoxCLhDIdbXn7GUFTyq7c7tmI9BP6xRBWnq/14iyov8tPHnlXNGqHqXf79zcIGylexcMU0KCE9t9/84RsODez+GW/9WCwt1LgAzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763745759; c=relaxed/simple;
-	bh=+h/Yc1dp+CFDd2KN9AzZ5krPiFpi1l2fIrX/TdWsPiY=;
+	s=arc-20240116; t=1763745880; c=relaxed/simple;
+	bh=vxgX1VqggYstAMJH873cI8KBW1I9cdI8Sh2h+6/XtwQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RuQJVR4pErvrPd7xCPqacKvj1pnqOApBJPVZYZ/o30t18rLPtOqOiIV26bAwXbXxAZdhPjPL8jqmphGqFJJ2iBYsxaIkM49EUy7ngRabbz7uTyP6A0jXWyhMbiHa4eEbFz7RJle2e3maOiZf+TUpIk7Zhu3+DMWm/vIOfNiPi58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FV5pDfBV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D175C4CEF1;
-	Fri, 21 Nov 2025 17:22:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JR+CGBJgt1aNNsjM3a68WZftBi34t9WfWM8/7cwhhefVDy4KvOiP7GSieR+o9yzApnDGOY6C9UM1M2JN1iJWb87JKI1Oc5lJeEZ7Yi00tx0lJZ3PLqNbOVur03HL9n9/ixudUekxToLwg54mxuWdBkHtGbLIzlAimmWe0XRInMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A2+qaBm7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B76CC4CEF1;
+	Fri, 21 Nov 2025 17:24:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763745758;
-	bh=+h/Yc1dp+CFDd2KN9AzZ5krPiFpi1l2fIrX/TdWsPiY=;
+	s=k20201202; t=1763745880;
+	bh=vxgX1VqggYstAMJH873cI8KBW1I9cdI8Sh2h+6/XtwQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FV5pDfBV2jcsTBz79mbt5JpGGRP/X4G560gmlcngXYzRsGfIbM+ZvL5KLTBtIhlLD
-	 PN2xJ5REsMsNWGlVLjeQdPPAjhj3zsRgkgpvMFkffUsGrbAWzHKHu2AJdmZ5kgxDp3
-	 3BOIyx/M4oc+4azxtaORJCSDAGV6rw6ZkQyi1TJ7LAUpw64GiySSAEzjBM+dzS62Eb
-	 Jyw4q4fjh3N4F+bRveDoC589oWd8hVQU7WS1Pwz1xKHVvYfoasCTOKyBXUlW0xTemv
-	 +boYsnTURbA3mku4rsSbOEc+j4mmUyMWhTiDl1GLAadLk8TzhknO/maSWnKPRb2uji
-	 UKHZ92926CMaw==
-Message-ID: <88bfaf9f-4483-4bcd-b3a8-de453ce6417f@kernel.org>
-Date: Fri, 21 Nov 2025 18:22:31 +0100
+	b=A2+qaBm7LCLuLlNd/mfyfkmv1E+mEuMU91U315TdWSon7bReyZYxrnpISTPrKdS8P
+	 fRFWY/KWu1h79I6sGoRmDP7xkqtVXKGjcQB3DmBdPxivLJm3F8QTo8D3JOxnnuiO6R
+	 Y1w3roH0ZEpPYiQi5LY+MYo96K7+U1kW6WMsnI0dCqlmxIxw4/CdBuRb5sSSjY8z4p
+	 LcOer5qpYGW7QK7Uh2LMGXqnUrkIW0jl0kDZMECmuhgFmqcW/bWdDVxNVCE4UH5g8Y
+	 DT8bpEyUGh/kxjvgHqBC9XWPkgw4hZwP66lGFnX4N8q3L7MAofoytSxBAn4fEl9oBi
+	 OBS8qLQwYHj+Q==
+Message-ID: <a75675ef-dff6-4f97-854e-a007d289c45d@kernel.org>
+Date: Fri, 21 Nov 2025 18:24:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: vendor-prefixes: Add prefix for
- XuanTie
-To: Guo Ren <guoren@kernel.org>, Conor Dooley <conor@kernel.org>
-Cc: cp0613@linux.alibaba.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, pjw@kernel.org, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, peterz@infradead.org, mingo@redhat.com,
- acme@kernel.org, namhyung@kernel.org, mark.rutland@arm.com,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com,
- adrian.hunter@intel.com, james.clark@linaro.org, devicetree@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251121063439.2545-1-cp0613@linux.alibaba.com>
- <20251121063439.2545-2-cp0613@linux.alibaba.com>
- <20251121-able-terrestrial-spaniel-90c3cf@kuoka>
- <20251121-shortlist-coroner-b29e19293b40@spud>
- <CAJF2gTRUmUHrTsOBM82kNq2cSYmeYr9NC_ORacUnqHAefFSaWw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: ARM: samsung: Add Samsung Manta (Google
+ Nexus 10)
+To: Lukas Timmermann <linux@timmermann.space>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alexandre Marquet <tb@a-marquet.fr>,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251120144018.961604-1-linux@timmermann.space>
+ <20251120144018.961604-2-linux@timmermann.space>
+ <20251121-convivial-wren-of-wind-cefe21@kuoka>
+ <zgyxb6jqfvfr6iah4lw7rvweextbwxrtlysap4dfzeejqgulwo@ik25opshvwxd>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,79 +106,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAJF2gTRUmUHrTsOBM82kNq2cSYmeYr9NC_ORacUnqHAefFSaWw@mail.gmail.com>
+In-Reply-To: <zgyxb6jqfvfr6iah4lw7rvweextbwxrtlysap4dfzeejqgulwo@ik25opshvwxd>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 21/11/2025 14:01, Guo Ren wrote:
-> On Fri, Nov 21, 2025 at 8:31 PM Conor Dooley <conor@kernel.org> wrote:
->>
->> On Fri, Nov 21, 2025 at 10:01:07AM +0100, Krzysztof Kozlowski wrote:
->>> On Fri, Nov 21, 2025 at 02:34:36PM +0800, cp0613@linux.alibaba.com wrote:
->>>> From: Chen Pei <cp0613@linux.alibaba.com>
->>>>
->>>> Add new vendor strings to dt bindings for RISC-V vendor XuanTie.
->>>>
->>>> Signed-off-by: Chen Pei <cp0613@linux.alibaba.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>>>  1 file changed, 2 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>>> index f1d1882009ba..5d28b2da94cd 100644
->>>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>>> @@ -1829,6 +1829,8 @@ patternProperties:
->>>>      description: Xilinx
->>>>    "^xnano,.*":
->>>>      description: Xnano
->>>> +  "^xuantie,.*":
->>>> +    description: C-SKY Microsystems Co., Ltd. (XuanTie)
+On 21/11/2025 14:45, Lukas Timmermann wrote:
+> On Fri, Nov 21, 2025 at 10:04:43AM +0100, Krzysztof Kozlowski wrote:
+>> On Thu, Nov 20, 2025 at 03:40:14PM +0100, Lukas Timmermann wrote:
+>>> From: Alexandre Marquet <tb@a-marquet.fr>
 >>>
->>> We do not create new prefixes for existing entries. You have already
->>> csky, alibaba and thead and probably many more. Choose some appropriate.
-> We could leave the one C-SKY vendor entry, how about:
-> 
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -347,8 +347,8 @@ patternProperties:
->      description: Creative Technology Ltd
->    "^crystalfontz,.*":
->      description: Crystalfontz America, Inc.
-> -  "^csky,.*":
-> -    description: Hangzhou C-SKY Microsystems Co., Ltd
-> +  "^xuantie,.*":
-> +    description: C-SKY Microsystems Co., Ltd. (XuanTie)
->    "^csot,.*":
->      description: Guangzhou China Star Optoelectronics Technology Co., Ltd
->    "^csq,.*":
-> 
-> The arch/csky is the architecture name, which means "xuantie,csky".
-> 
-> The c810 is the CPU product name, which means "xuantie,c810" of the
-> "xuantie,csky" architecture.
-> 
-> The c930 is the CPU product name, which means "xuantie,c930".
-> 
+>>> Add the Google Nexus 10 board to documentation.
+>>>
+>>> Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
+>>> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+>>> ---
+>>>  .../devicetree/bindings/arm/samsung/samsung-boards.yaml          | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+>>> index f8e20e602c20..97a5a678f43c 100644
+>>> --- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+>>> @@ -120,6 +120,7 @@ properties:
+>>>                - google,snow-rev5                # Google Snow Rev 5+
+>>>                - google,spring                   # Google Spring
+>>>                - insignal,arndale                # Insignal Arndale
+>>> +              - samsung,nexus10-manta           # Samsung Manta (Google Nexus 10)
 >>
->> When the vendor literally says "C-SKY", it's hard to buy why csky
->> shouldn't be used here. Xuantie is described as being a brand, where at
->> least t-head was a company. This seems akin to having
->> "snapdragon,msm8660" instead of "qcom,msm8660", for example.
-> Yes, XuanTie is not only a brand, but also the abbreviation of C-SKY
-> Microsystems Co., Ltd.
+>> Google Nexus or Samsung Nexus or Samsung Manta? I am sorry, but I am
+>> 100% sure that Samsung and Google are two different companies. Google
+>> products use only google prefixes, see all other Google devices.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> Google sold the device under it's Nexus brand. But it was built by
+> Samsung, not just it's SoC. It's codename is "manta". Google places it 
+> in the Samsung directory instead of their own.
+> See: https://android.googlesource.com/device/samsung/manta/
+> It is a Samsung board, but also a Google device.
 
-"XuanTie is a brand", so not suitable for vendor prefixes.
+As I said, all Google end-user made by Samsung have Google names, not
+Samsung. Do you see there samsung,spring? Or samsung,nexus for other
+Nexuses? No.
 
-https://www.xrvm.com/declaration
-
-What's more:
-
-<<A reference to “C-SKY”, “we” or “us” is a reference to C-SKY
-Microsystems Co., Ltd. of Room >>
-
-So again c-sky.
-
+There is just no such thing as samsung,nexus. Never was, so you cannot
+use that as product.
 
 Best regards,
 Krzysztof
