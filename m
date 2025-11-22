@@ -1,163 +1,141 @@
-Return-Path: <devicetree+bounces-241323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C386C7CBC4
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 10:35:51 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02B7C7CBFA
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 10:38:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E1CCC3466CA
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 09:35:07 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8A564346878
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 09:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE972F12B6;
-	Sat, 22 Nov 2025 09:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632A922A4CC;
+	Sat, 22 Nov 2025 09:38:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h+svoLMC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RUJRkzdt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601002D7D41;
-	Sat, 22 Nov 2025 09:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38BEF20C490;
+	Sat, 22 Nov 2025 09:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763804102; cv=none; b=OJINRp6khitJj7xtgOlWZ8cGFQQjJdr5EfSR6mtQ2Wq4i4mPZxcDZF8LYeTSofjS2UJSv6Ev/BxxniqoVrtRXMyxagdARe9V4e/ZYPUC9Mjov/cO0bcH2K58l2VAFEqgQvQf8P3wDQXhIXlKhs2Amsjk++fxhs+HJ0KKFFrLViM=
+	t=1763804283; cv=none; b=p1AkyaMa94zU8kvcaBDTB1d25G/VZ86+39lClN7GQOp2r/mVZJiDRxo4l+/+9RhU5yCOMF3bYlaqHQV9+H3ljJvG2uCEtQ8pl4VlQK+o0Y490iQnkYJZga16HXlbB5bjVAp2WdVEAFcZaF9AXWpcD0DpVKwW4aHpJ8YbqisAQwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763804102; c=relaxed/simple;
-	bh=rcfRz5k0GYyw69T9wpTBQasXqUZl3FDwZfjNsTnP7Vs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K9QCMr3FWQeMBHdVXGleCrHjMKCTRWmKxRUeDzjTzf2zNpgFZ6ByMQJIQRVc4ACgAPCJstQbAbN7iGPyaU9C0j6wEuQLv/wjmNQKtXR919bM5ZQlkM56L3ZsIIRbVb/uU/1SDxUItTekTWGs3YxedF3LxssePAuNm3e65Z32980=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h+svoLMC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5DEDC4CEF5;
-	Sat, 22 Nov 2025 09:34:56 +0000 (UTC)
+	s=arc-20240116; t=1763804283; c=relaxed/simple;
+	bh=XYJsNNEAFKWw+GFpRdXSFOCFfouPlV2hU/sp7ovg0ng=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GGMpIdz93qZ5OuXScr+1NnAkeAE35PG2NQq5z0SSiWuuysKTfQGRnWL53pItrUyB9x+uMftmNSGZ3Tv2SiDilWbUYFjioY/wKjdQsbjkIpTfJ1Ta/r43dt3cOTYnRsGnXKzesK7NLgMY1KX2k33xRRVIGsnF0vm2d8ARman/ssE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RUJRkzdt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94781C4CEF5;
+	Sat, 22 Nov 2025 09:38:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763804100;
-	bh=rcfRz5k0GYyw69T9wpTBQasXqUZl3FDwZfjNsTnP7Vs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h+svoLMC57QZg+w9zj0DwWH+dcwWzOaIvjzdzGNXBKjiN5A7l3eqhXWrrclkNtVJM
-	 3AZAgx9a52cDCjlVVoFjNi4w/TShY1Vi0OZ20IXqEwKHdM1xx/6pjBbdmhxtzBpOsy
-	 arKcrzGleCDgnZ1uDKMBmmSNcCns2xW3TzZUMBMDfQnm6D8UEyxZuV85e1ASa7pver
-	 KE+i4VClYuRSDqqTbL2Peq7/fNSWOMJdVUDOhnhSXeR3YOHpB3mV3upzFb4y8dhTnj
-	 PBJcOmV8PsdqtqjNY4ppcCdfwiBl4tLw8gNI7U9dwdVXKl0FdATX9kZpbW6MqC/4iB
-	 X7dkbB+k1azeg==
-Message-ID: <6ec98294-82b1-4d3e-a7b6-95cb1d65f206@kernel.org>
-Date: Sat, 22 Nov 2025 10:34:54 +0100
+	s=k20201202; t=1763804282;
+	bh=XYJsNNEAFKWw+GFpRdXSFOCFfouPlV2hU/sp7ovg0ng=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=RUJRkzdtRToNgW4Uy5JkI2e2Dch22SVdb2x7yUV/20KlwHeEDQYiSywUzeq4rdC9c
+	 J2o4aQPO2LfK812kH5eHQbekl/XxEw804txakvdVtSwu5CC4pgcZXgxnyrvBBuQt4x
+	 kD/cv+zr7+zndCu5SLbt0RiIooG1/OS1c5EeXeiUxJSDxoMnTJ8yz7WiPFMigPpTdo
+	 vPPZ2DYCyk+ERCfCqbChitSkEMcbzeZ6Ftlit0wZ9i0twkG9n6+wfmZ947yNpHrNK0
+	 cW2JGAgWULrKcLZ2Eds3zl3uAjiktb41EaEJswDtO0LMU3NY7oCIC35o+2S+x85v0R
+	 8e36id9jvF0/A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1vMk47-00000007SZ3-3Ecj;
+	Sat, 22 Nov 2025 09:37:59 +0000
+Date: Sat, 22 Nov 2025 09:37:58 +0000
+Message-ID: <87ms4eflvt.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: niliqiang <ni_liqiang@126.com>
+Cc: sunilvl@ventanamicro.com,
+	ajones@ventanamicro.com,
+	anup@brainfault.org,
+	apatel@ventanamicro.com,
+	atishp@atishpatra.org,
+	bjorn@kernel.org,
+	conor+dt@kernel.org,
+	deng.weixian@zte.com.cn,
+	devicetree@vger.kernel.org,
+	frowand.list@gmail.com,
+	hu.yuye@zte.com.cn,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	ni.liqiang@zte.com.cn,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh+dt@kernel.org,
+	saravanak@google.com,
+	tglx@linutronix.de,
+	dai.hualiang@zte.com.cn,
+	liu.qingtao2@zte.com.cn,
+	guo.chang2@zte.com.cn,
+	wu.jiabao@zte.com.cn,
+	liu.wenhong35@zte.com.cn
+Subject: Re: [PATCH v16 6/9] irqchip: Add RISC-V advanced PLIC driver for direct-mode
+In-Reply-To: <20251121135407.53372-1-ni_liqiang@126.com>
+References: <aSAn8DdQVBBzenlJ@sunil-laptop>
+	<20251121135407.53372-1-ni_liqiang@126.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add TI ADS1018/ADS1118
-To: David Lechner <dlechner@baylibre.com>, Kurt Borja <kuurtb@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tobias Sperling <tobias.sperling@softing.com>
-Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20251121-ads1x18-v1-0-86db080fc9a4@gmail.com>
- <20251121-ads1x18-v1-1-86db080fc9a4@gmail.com>
- <32e76bff-f535-40ce-88e2-7bbf7da87620@kernel.org>
- <DEEO8SSA15XY.1SDBZEILR5AHM@gmail.com>
- <2676d37e-fe3c-4504-8990-fbee0ce8407a@baylibre.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <2676d37e-fe3c-4504-8990-fbee0ce8407a@baylibre.com>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: ni_liqiang@126.com, sunilvl@ventanamicro.com, ajones@ventanamicro.com, anup@brainfault.org, apatel@ventanamicro.com, atishp@atishpatra.org, bjorn@kernel.org, conor+dt@kernel.org, deng.weixian@zte.com.cn, devicetree@vger.kernel.org, frowand.list@gmail.com, hu.yuye@zte.com.cn, krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, ni.liqiang@zte.com.cn, palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org, saravanak@google.com, tglx@linutronix.de, dai.hualiang@zte.com.cn, liu.qingtao2@zte.com.cn, guo.chang2@zte.com.cn, wu.jiabao@zte.com.cn, liu.wenhong35@zte.com.cn
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On 21/11/2025 23:40, David Lechner wrote:
-> On 11/21/25 2:56 PM, Kurt Borja wrote:
->> Hi Krzysztof,
->>
->> On Fri Nov 21, 2025 at 2:10 PM -05, Krzysztof Kozlowski wrote:
->>> On 21/11/2025 18:16, Kurt Borja wrote:
->>>> Add documentation for Texas Instruments ADS1018 and ADS1118
->>>> analog-to-digital converters.
->>>>
->>>> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
->>>
->>> You did not test it before sending, so no full review but few nits to
->>> save you one round of reviews:
->>
->> My bad! I will fix the errors. Thanks!
->>
-> 
-> ...
-> 
->>>> +  interrupts:
->>>> +    description: DOUT/DRDY (Data Out/Data Ready) line.
->>>> +    maxitems: 1
->>>> +
->>>> +  drdy-gpios:
->>>> +    description:
->>>> +      Extra GPIO line connected to DOUT/DRDY (Data Out/Data Ready). This allows
->>>> +      distinguishing between latched and real DRDY IRQs.
->>>
->>> I have feeling that you miss proper handling of IRQs (e.g. active level)
->>> on your board.
->>
->> Can you elaborate? Should I specify active level here?
->>
->>>
-> The problem is not about the levels. It is rather that the behavior of the
-> interrupt when disabled/masked is different on different interrupt controllers.
-> 
-> On some controllers, if an event happens while disabled/masked, it "remembers"
-> that and will trigger the interrupt as soon as it is enabled even if the
-> condition doesn't exist anymore. Not a great hardware design IMHO, but there
-> is real hardware that does this.
+On Fri, 21 Nov 2025 13:54:07 +0000,
+niliqiang <ni_liqiang@126.com> wrote:
+>
 
-Isn't it misconfiguration of trigger as I said before? It should be for
-example edge, instead of level?
+[...]
 
-Best regards,
-Krzysztof
+> 2. But the OS enumerates them in random order upon each boot (first boot =
+sequence =E2=89=A0 second boot sequence)
+> first boot sequence ~ # dmesg |grep -i "PCI Root"
+> [ 8794.588531] ACPI: PCI Root Bridge [PC08] (domain 0006 [bus 80-ff])
+> [ 8794.624478] ACPI: PCI Root Bridge [PC06] (domain 0005 [bus 00-ff])
+> [ 8794.672741] ACPI: PCI Root Bridge [PC10] (domain 0008 [bus 00-ff])
+> [ 8794.696680] ACPI: PCI Root Bridge [PC07] (domain 0006 [bus 00-7f])
+> [ 8794.728234] ACPI: PCI Root Bridge [PC11] (domain 0009 [bus 00-ff])
+> [ 8794.755098] ACPI: PCI Root Bridge [PC09] (domain 0007 [bus 00-ff])
+> second boot sequence ~ # dmesg |grep -i "PCI Root"
+> [ 8794.588531] ACPI: PCI Root Bridge [PC09] (domain 0007 [bus 00-ff])
+> [ 8794.624478] ACPI: PCI Root Bridge [PC06] (domain 0005 [bus 00-ff])
+> [ 8794.672741] ACPI: PCI Root Bridge [PC08] (domain 0006 [bus 80-ff])
+> [ 8794.696680] ACPI: PCI Root Bridge [PC11] (domain 0009 [bus 00-ff])
+> [ 8794.728234] ACPI: PCI Root Bridge [PC07] (domain 0006 [bus 00-7f])
+> [ 8794.755098] ACPI: PCI Root Bridge [PC10] (domain 0008 [bus 00-ff])
+>=20
+> This creates a critical issue: when NVMe devices are connected to
+> these host bridges, the unpredictable kernel scanning sequence
+> causes device identifiers (e.g., /dev/nvme0n1, /dev/nvme1n1) to
+> change across reboots. In server environments, such device naming
+> instability is unacceptable as it breaks storage configuration
+> reliability and consistency.
+
+You're barking up the wrong tree. It is *userspace*'s job to ensure
+this consistency. That's why udev exists. That's why device and
+partition UUIDs exist. In short, this isn't the kernel's job. The
+kernel gives you all the tools you need already.
+
+Thanks,
+
+	M.
+
+--=20
+Jazz isn't dead. It just smells funny.
 
