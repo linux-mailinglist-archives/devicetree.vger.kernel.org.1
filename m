@@ -1,184 +1,173 @@
-Return-Path: <devicetree+bounces-241346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45FC2C7CFBA
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 13:35:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 422ADC7CFC9
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 13:36:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D65AF3A8BC6
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:35:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6EE944E50AE
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:35:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C177523EA9D;
-	Sat, 22 Nov 2025 12:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 464841F37A1;
+	Sat, 22 Nov 2025 12:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="zEVBksh0"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="eKyEoFof";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ysQrlLgI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-b3-smtp.messagingengine.com (fout-b3-smtp.messagingengine.com [202.12.124.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6771D6193;
-	Sat, 22 Nov 2025 12:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650D51C695;
+	Sat, 22 Nov 2025 12:35:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763814918; cv=none; b=bn1UDZcdCiJJoXfrmMfDPbAtNillCG9VtpRevYBsBtMP7IkeP+7wm37IDu0qHfaPX9tZ8MBvAeX83qn8pcSjkXnmDIBQ2KxLgzoOhd2R5kHXWQEH6rHoaV5cOFe5K0ni6YH9CWNFNieWDw04FQrV+plSKsGIOv9v+j2IbS771D0=
+	t=1763814943; cv=none; b=LUqSpYqBtBpD1Y+aLxCzRPDWWhgL57P0Lnx5xBgsIyQa5VWSPuvAepgId6kbv4pOIVTxr1KsWujZqvLbToAGwUR/jaNPKGnZDbe18Z0+rLp2nD7dGMmc/uWMvrSDyHI1YHwCN29gbYNimJLlkHLJ8NUnnKxw+c62wvaavfgdNCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763814918; c=relaxed/simple;
-	bh=mXHHgeiUlhJ4Ko8Q0J+WX5MHnWYEekXcVNTmh/1dM7E=;
+	s=arc-20240116; t=1763814943; c=relaxed/simple;
+	bh=XDr/N739gOpO7BYXaKKUzE2qBARN5+9zpX19YZgqgqU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cVmN1/nvUCOrCmyWawJ1AjmOz/vnMbNE9Jm311J6nZ1PmxTV0qbWhDgKewVErgLXFuM2e19F7YEkayqsKbeKufNiVrOMIznwCbCv9zNLbGeQBNb0I5Dn3u3+EDR4jali1U5Xe8BFov0wY79zMyqZ30PBxnyncGsWV3ez3Tm/Etg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=zEVBksh0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DCC3C4CEF5;
-	Sat, 22 Nov 2025 12:35:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1763814917;
-	bh=mXHHgeiUlhJ4Ko8Q0J+WX5MHnWYEekXcVNTmh/1dM7E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=zEVBksh0CtxT5twtiv2E47j8wpEZsf20ttbGryy8TC6LriXJ9I4+iNc20NBh2jsWi
-	 kLKwg9as3qiLVaY2fwiuoUQMmpjDqPQXMH3zrL0TP/fQVX9N2aw+YfBeML2LOihTlY
-	 6Z4qeBMAhnujl8NAav9ilIRS1KANyj6H3UXQD0/g=
-Date: Sat, 22 Nov 2025 13:35:15 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Roy Luo <royluo@google.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=FC16AkR+y1Yj23bPtImimNRz+khcA2r9lXGkpOII/WHpIgGiN6cBL0z5W02C1RuEOB8Ht9prQqieF0oyuWNKIiJONINBeNwFcaBrLXtpy4Pj/kDW2yOxIssCHSmHJH0kNYBWJc/a83swCCbPupJzP2881b80w6pWdWs4utDTKkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=eKyEoFof; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ysQrlLgI; arc=none smtp.client-ip=202.12.124.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+	by mailfout.stl.internal (Postfix) with ESMTP id 0C6391D0013B;
+	Sat, 22 Nov 2025 07:35:40 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-02.internal (MEProxy); Sat, 22 Nov 2025 07:35:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1763814939;
+	 x=1763901339; bh=ElDJVjFIr0ZqCqJwcQweoSpOYPZE4AzT6FtQoJ2Z/7U=; b=
+	eKyEoFof2s8BNCdnTlAdkqYxVkc8RL9wFwKY3G8xFtXOk+FNv3FEsjb8b1BVShUu
+	/QtX3uvRKohvKlkVk7c3sTlZ3RZF/J34mDPquVgtSN3Ac4lKuFzPvLowiw/MAV2O
+	nEiAEVk02LF64QOPyFkX+7OX/AAyhf70oCUi/b+TsaPCh25Qd7m/8hBq9/2QuUEZ
+	sTVizxpgJmh1CeyylEF3vgpTHVbXa5d8tIktxY+BjTW9aYmCtvej/gDufG1kD/57
+	NXWjR7fHt2eXOlORLNLVX8QZ/WpdUWrerFXPQAlhh0Lzl2DnQKa7Wgm0lvqG47u3
+	gb1bcRUxtcy+fTNmuAu65g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1763814939; x=
+	1763901339; bh=ElDJVjFIr0ZqCqJwcQweoSpOYPZE4AzT6FtQoJ2Z/7U=; b=y
+	sQrlLgIASdxG/rwCGeb+8jrf+fZF31BEJZ7IfgTbTWBsrR2H5EyFDmJBxgWUiVUJ
+	ZLEE/8Mr7wB3H/lG+g9oz252uH42qx0VSo1gKsjIJ1YPHY/5pWJlV67PA+In72Rf
+	1j3qlibxDM8i26REUzrMfhzRk7t0GP47R8otUL5JpzvQYNAZ1nCjLuSFLMkuFqlZ
+	jafQxHC6kgAUvCq+Z71n238XvZyLtu11xGG/GLnIIA1l3QtEgGsHWBZp8YcExbeH
+	w/LUemaOe+PNIFKM8ktSpvdjOa1333w/lbKKEF+klPsmFBsLlrNJ73HUEKr6w29i
+	4TtGjzPV/2zeT0IvTRUmg==
+X-ME-Sender: <xms:G64haU178HyFhd9ALtlkGt58WwJ0LLONjjjtKEvfIA_R_XKxo6p_Tw>
+    <xme:G64haSKvnOKuZ5ogVBxyQ_Fs8Ouz0kGbAlRCySBp0J_g_43a3cbO14HgHJjzvPXVl
+    R1U-G7H8D73hv-lG6xxrFp9I9sqbfnPg4dtcQwHuW7qD9OqpgLR0A>
+X-ME-Received: <xmr:G64haXj1hI1rynjSkmQ31xUiBNiHPbIzLlympFD1K3wfwzv_BAcGhzVDNY7fcx3WQOwz1A3ubLQNlL5sSOkzP-lIk3t_Z0I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddvfedvkeeiucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhklhgr
+    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvsh
+    grshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeefhfellefhffej
+    gfefudfggeejlefhveehieekhfeulefgtdefueehffdtvdelieenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhl
+    uhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhope
+    dutddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepmhdrthhrvghtthgvrhesphgv
+    nhhguhhtrhhonhhigidruggvpdhrtghpthhtoheplhgrrhhssehmvghtrghfohhordguvg
+    dprhgtphhtthhopehmtghhvghhrggssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehr
+    ohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvg
+    hlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgt
+    phhtthhopehlihhnuhigqdhmvgguihgrsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtg
+    hpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghp
+    thhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvg
+X-ME-Proxy: <xmx:G64haaDLyOmF3OV7qqYieQy1eKXfbUEGyE5cPi_VffehL0FtyGRCEQ>
+    <xmx:G64haR7csPxe61hOJYABULaZENZ87U0idyREhXfrtYaxpZ_rrVAijg>
+    <xmx:G64haXG9Ki-N3V2_FJUIZSrMXXuZh_YK1cI8nDDVuqJWEwX0P_dwPA>
+    <xmx:G64haUDxDKd0WBXc6WUQ-DxEIThDCoXDYIAk5mUmua7P8uSGtVpQJA>
+    <xmx:G64haQXuSAVgA-qZiS9zUj-8eEsZuY2HvJ3CxO3MIYy5mspnLjGqKEm7>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 22 Nov 2025 07:35:38 -0500 (EST)
+Date: Sat, 22 Nov 2025 13:35:36 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Michael Tretter <m.tretter@pengutronix.de>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Badhri Jagan Sridharan <badhri@google.com>,
-	Doug Anderson <dianders@google.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	Joy Chakraborty <joychakr@google.com>,
-	Naveen Kumar <mnkumar@google.com>
-Subject: Re: [PATCH v8 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
-Message-ID: <2025112248-spoon-waffle-a508@gregkh>
-References: <20251122-controller-v8-0-e7562e0df658@google.com>
- <20251122-controller-v8-2-e7562e0df658@google.com>
- <CADrjBPqPsPBBSbhx8ZFreFWX2tRxaATT=azS-b1H2b=TJoVAAw@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel@pengutronix.de,
+	Thorsten Schmelzer <tschmelzer@topcon.com>
+Subject: Re: [PATCH v3 4/4] media: adv7180: fix frame interval in progressive
+ mode
+Message-ID: <20251122123536.GC991773@ragnatech.se>
+References: <20251120-b4-adv7180-vpp-sub-device-v3-0-c9d80661e7d9@pengutronix.de>
+ <20251120-b4-adv7180-vpp-sub-device-v3-4-c9d80661e7d9@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CADrjBPqPsPBBSbhx8ZFreFWX2tRxaATT=azS-b1H2b=TJoVAAw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251120-b4-adv7180-vpp-sub-device-v3-4-c9d80661e7d9@pengutronix.de>
 
-On Sat, Nov 22, 2025 at 11:58:39AM +0000, Peter Griffin wrote:
-> Hi Roy,
+Hi Michael,
+
+Thanks for your work.
+
+On 2025-11-20 15:22:56 +0100, Michael Tretter wrote:
+> From: Thorsten Schmelzer <tschmelzer@topcon.com>
 > 
-> Thanks for your patch. It's great to see Laguna support being added upstream.
+> The ADV7280-M may internally convert interlaced video input to
+> progressive video. If this mode is enabled, the ADV7280-M delivers
+> progressive video frames at the field rate of 50 fields per second (PAL)
+> or 60 fields per second (NTSC).
 > 
-> On Sat, 22 Nov 2025 at 09:32, Roy Luo <royluo@google.com> wrote:
-> >
-> > Add support for the DWC3 USB controller found on Google Tensor G5
-> > (codename: laguna). The controller features dual-role functionality
-> > and hibernation.
-> >
-> > The primary focus is implementing hibernation support in host mode,
-> > enabling the controller to enter a low-power state (D3). This is
-> > particularly relevant during system power state transition and
-> > runtime power management for power efficiency.
-> > Highlights:
-> > - Align suspend callback with dwc3_suspend_common() for deciding
-> >   between a full teardown and hibernation in host mode.
-> > - Integration with `psw` (power switchable) and `top` power domains,
-> >   managing their states and device links to support hibernation.
-> > - A notifier callback dwc3_google_usb_psw_pd_notifier() for
-> >   `psw` power domain events to manage controller state
-> >   transitions to/from D3.
-> > - Coordination of the `non_sticky` reset during power state
-> >   transitions, asserting it on D3 entry and deasserting on D0 entry
-> >   in hibernation scenario.
-> > - Handling of high-speed and super-speed PME interrupts
-> >   that are generated by remote wakeup during hibernation.
-> >
-> > Co-developed-by: Joy Chakraborty <joychakr@google.com>
-> > Signed-off-by: Joy Chakraborty <joychakr@google.com>
-> > Co-developed-by: Naveen Kumar <mnkumar@google.com>
-> > Signed-off-by: Naveen Kumar <mnkumar@google.com>
-> > Signed-off-by: Roy Luo <royluo@google.com>
-> > ---
-> >  drivers/usb/dwc3/Kconfig       |  13 +
-> >  drivers/usb/dwc3/Makefile      |   1 +
-> >  drivers/usb/dwc3/dwc3-google.c | 628 +++++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 642 insertions(+)
-> >
-> > diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-> > index 4925d15084f816d3ff92059b476ebcc799b56b51..f58c70dabf108878cbefe0abea88572d9ae81e26 100644
-> > --- a/drivers/usb/dwc3/Kconfig
-> > +++ b/drivers/usb/dwc3/Kconfig
-> > @@ -200,4 +200,17 @@ config USB_DWC3_GENERIC_PLAT
-> >           the dwc3 child node in the device tree.
-> >           Say 'Y' or 'M' here if your platform integrates DWC3 in a similar way.
-> >
-> > +config USB_DWC3_GOOGLE
-> > +       tristate "Google Platform"
-> > +       depends on COMPILE_TEST
-> > +       depends on OF && COMMON_CLK && RESET_CONTROLLER
-> > +       help
-> > +         Support the DesignWare Core USB3 IP found on Google Tensor
-> > +         SoCs, starting with the G5 generation. This driver includes
+> Fix the reported frame interval if progressive video is enabled.
 > 
-> consider adding: (Laguna)
+> Signed-off-by: Thorsten Schmelzer <tschmelzer@topcon.com>
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 
-What is "laguna" and why should it be listed here?
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-> > +         support for hibernation in host mode.
-> > +         Say 'Y' or 'M' if you have one such device.
-> > +
-> > +         To compile this driver as a module, choose M here: the
-> > +         module will be called dwc3-google.ko.
-> > +
-> >  endif
-> > diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-> > index 96469e48ff9d189cc8d0b65e65424eae2158bcfe..cf1cd408d938b3ac26d58b9be7fcc5af3ee82660 100644
-> > --- a/drivers/usb/dwc3/Makefile
-> > +++ b/drivers/usb/dwc3/Makefile
-> > @@ -58,3 +58,4 @@ obj-$(CONFIG_USB_DWC3_XILINX)         += dwc3-xilinx.o
-> >  obj-$(CONFIG_USB_DWC3_OCTEON)          += dwc3-octeon.o
-> >  obj-$(CONFIG_USB_DWC3_RTK)             += dwc3-rtk.o
-> >  obj-$(CONFIG_USB_DWC3_GENERIC_PLAT)    += dwc3-generic-plat.o
-> > +obj-$(CONFIG_USB_DWC3_GOOGLE)          += dwc3-google.o
-> > diff --git a/drivers/usb/dwc3/dwc3-google.c b/drivers/usb/dwc3/dwc3-google.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..53e04a5409d8a11eb025b0f5cd351cb1b33281ab
-> > --- /dev/null
-> > +++ b/drivers/usb/dwc3/dwc3-google.c
-> > @@ -0,0 +1,628 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * dwc3-google.c - Google DWC3 Specific Glue Layer
-> > + *
-> > + * Copyright (c) 2025, Google LLC
-> > + * Author: Roy Luo <royluo@google.com>
-> > + */
-> > +
-> > +#include <linux/of.h>
-> > +#include <linux/bitfield.h>
-> > +#include <linux/irq.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/module.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/reset.h>
-> > +#include <linux/pm_domain.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/mfd/syscon.h>
+> ---
+> Changes in v3:
+> - None
+> Changes in v2:
+> - Simplify and document calculation of frame interval
+> ---
+>  drivers/media/i2c/adv7180.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> Please sort the headers alphabetically. It helps avoid duplicates and
-> is easier when adding new headers.
+> diff --git a/drivers/media/i2c/adv7180.c b/drivers/media/i2c/adv7180.c
+> index d289cbc2eefd..669b0b3165b1 100644
+> --- a/drivers/media/i2c/adv7180.c
+> +++ b/drivers/media/i2c/adv7180.c
+> @@ -507,6 +507,13 @@ static int adv7180_get_frame_interval(struct v4l2_subdev *sd,
+>  		fi->interval.denominator = 25;
+>  	}
+>  
+> +	/*
+> +	 * If the de-interlacer is active, the chip produces full video frames
+> +	 * at the field rate.
+> +	 */
+> +	if (state->field == V4L2_FIELD_NONE)
+> +		fi->interval.denominator *= 2;
+> +
+>  	return 0;
+>  }
+>  
+> 
+> -- 
+> 2.47.3
+> 
 
-There is no such requirement for USB drivers.
-
-thanks,
-
-greg k-h
+-- 
+Kind Regards,
+Niklas Söderlund
 
