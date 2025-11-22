@@ -1,275 +1,269 @@
-Return-Path: <devicetree+bounces-241291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E10C7C02E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 01:26:40 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A0D2C7C0D3
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 01:59:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D2299363417
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 00:26:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8843D4E2B6D
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 00:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666DD1F30BB;
-	Sat, 22 Nov 2025 00:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A822223D7D8;
+	Sat, 22 Nov 2025 00:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RHuEdCGo"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="KY/4W5dR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013018.outbound.protection.outlook.com [40.107.159.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6C2B1D618E
-	for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 00:26:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763771190; cv=none; b=jg/Aj5eqxgB/vDro18D5hoRNyZz6DhEY33UhzahBvXMQlHZuf8goO2UIhJhNfArdVZURjx/Ojf8EmEOZtUELoXVBHqpGhJrSyHp1yuRG5lw4Trt++dcjKcLhfFbHpOma9sgrkVpwoPPdC/1+D0mysnRgFIKnd1Nm1/OelojbMjI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763771190; c=relaxed/simple;
-	bh=bDC+LxsuLI7dLZ+JKqVXr59YLNIGptoJM8bUsszq5+Q=;
-	h=Content-Type:Date:Message-Id:Cc:Subject:From:To:Mime-Version:
-	 References:In-Reply-To; b=aIh9IVEsEWOVF8HkSEP+oNjNU3PIk0QXy7wSBVfz/rddEYy/s36S5mi+bbLh3Qz6ghedVSRRPtTi4lu/gr2nLJSIMxmab0y0EDZPJms6RR1vLwIXNvDaCsTpX98RPXXGEHgsIGQq0twUrzYQE9ubCxW5fvUtE8aJ7FxrjUGZJ0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RHuEdCGo; arc=none smtp.client-ip=209.85.217.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5dbe6304b79so952298137.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Nov 2025 16:26:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763771186; x=1764375986; darn=vger.kernel.org;
-        h=in-reply-to:references:content-transfer-encoding:mime-version:to
-         :from:subject:cc:message-id:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eA3LGvlVMXR3Plz0WCz3iOl+L+AbTQoSVlGUy1TH+so=;
-        b=RHuEdCGo+9SaIBHrL8kQ+X3RrA/mG2pS248o4qsnJLpZzXJTRtCZqs0FJ1ZrouWd1m
-         T0jryzU0vHqUeV/hfDLEX4mSo+0pSvr8NdLoWe5RdZHuhcdQTFAM1UFjIImtK6HFjzC5
-         cMZDgtTv0NUnWfbXrddp/X4zOQn1DBScI1arx+xRoRLL0g6HbHwGKjngjosyxS8g7vZ7
-         fyiC/6CKSZFatLLC4o1Fa07JqDmhVips/TE084t3z9OpdLClO6kKBKfzl56ESu5VvTds
-         3WTo1qYfp/HBdoQquO1Zoc9Ie0DbLm9VaDIwuoYJWbVa+93r67vl2adARH50p5IQFG+g
-         cPSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763771186; x=1764375986;
-        h=in-reply-to:references:content-transfer-encoding:mime-version:to
-         :from:subject:cc:message-id:date:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eA3LGvlVMXR3Plz0WCz3iOl+L+AbTQoSVlGUy1TH+so=;
-        b=jlT/4WAv3bPNbqlBXVoHmEApLH0dlpDLcUZHnK8G2EiDqWpU+uxwQy+R8SbxUMJIAY
-         uGost/4lM+tvJD4MhPTM4/ihIdsh8ciGY8gEiFS8swNgqX9YyPC4+SQ56z8j5FSQKuvW
-         gMPYM9Wmf2wbAveqofp0iA9LwewGXefyKC1AtjZ98jlflx0wUCL4Y6uhLINOQGfsya4o
-         KeKg7lm0Td2PT28OPrgnBMiR7Hf5aDFUw87J9vnBL4tBRAzYl/YCRDUVFZZStlvIR59V
-         n//CG3fQBMCkacklQHHWElbVxled1S89VncArkeA4o7k/0hJIhfEjJyi9RSk/X1KAoav
-         4b9A==
-X-Forwarded-Encrypted: i=1; AJvYcCXocIgfq7mktcai6nPtibmfaUrzYjA0KxTkvqlnSijA/bKc6Z4H9LJNnxZ439GGu67G8FVhsQV7UFiF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxypZJidbgsbSA+hWsYzshqJBDWI/WRLhxpRKjbce4D2B6iozl0
-	DMJL245XoDteKKEFL2xMmmPCOeU9RU18EWdmzcPKibej2x8xPkEK1vB0
-X-Gm-Gg: ASbGncvMkaxsrdrybqKLp59GC+0m2GoNoBM83+qBnMfHr8l81gtcmbN23fhtUctRoDp
-	6naq3eisNfPyxllMf0juUG2NMAAPqezkv2LIX5twHiqmh0Q2Og7vlksD3hD+/juYIHZIOwWqD7m
-	VJ/inXOHqh0Laa4MVd4CBIkBh+XjKHuJ6e0jV8bGi05i15N8pASPhA6/cmCw9jacpaHCJoZqSNc
-	qNjm7xbcrnz5Nzlw8ZTV6AImvERdJFjcf9sZxiyqEaVVwQi0acnISL2ew0ZC8oZ1txk8qC/lC9F
-	VD5pCfxOA0UUJKzMWiY+Yz/AdxGZyd6gkG3W4gwigGGm40sSMkPdzlhmH/8iBOsCmwXwO8z1PTl
-	0SeZwi4VZqn9OuPeXjCTFpNmOmZij7eXigsmMY3wroDHWTfTnAF8Wi+Ikkh8GwEympadN1SMGAu
-	ulrQo=
-X-Google-Smtp-Source: AGHT+IFgolZkPHp9RA6XxN56LqJL3IsIaP/ha4/Nx/gmiXo0RsyimYW7lgq5cTmJGYQkc9HbKH4+yA==
-X-Received: by 2002:a05:6102:334c:b0:5dd:b69a:cdce with SMTP id ada2fe7eead31-5e1de0eccc9mr1209279137.1.1763771186484;
-        Fri, 21 Nov 2025 16:26:26 -0800 (PST)
-Received: from localhost ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93c5658147fsm3082065241.15.2025.11.21.16.26.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Nov 2025 16:26:26 -0800 (PST)
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 21 Nov 2025 19:26:24 -0500
-Message-Id: <DEESPC8XZSXI.3G1JISSNEBC3Q@gmail.com>
-Cc: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
- <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jonathan
- Cameron" <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add TI ADS1018/ADS1118
-From: "Kurt Borja" <kuurtb@gmail.com>
-To: "David Lechner" <dlechner@baylibre.com>, "Kurt Borja"
- <kuurtb@gmail.com>, "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Tobias Sperling"
- <tobias.sperling@softing.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8D8186294;
+	Sat, 22 Nov 2025 00:58:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.18
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763773127; cv=fail; b=mU3YoLYXPJiyJG9oSfLWlXZ6OdfO1BiHqstbXqhbctFQfkDlvPROeyfo9+AUaf/Cfj0gVBlgSApRaGj7oJRPTBjG2JISlxwGyscb0Rq+jJy6kk3SNriDUvuHyK3cROuQj9fIvrwpuO8p/7EFk1IjhXUi8VilvZVKlE48R5F0CAQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763773127; c=relaxed/simple;
+	bh=gKqdscI570xp49WSI0nI2ORUSPj/tVJBhoLKOtQTtbw=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=Sx+Cyc+ezKHuPSGhqQxIpa92iPF8+qiyM1d8v6hBqEo8NtZ2oBGC3dkUQ6OJBp8ku0cv4PO6JvsTS6u6jxLMFtd9hOUsb5RnsahqKu2Q3WFdCrxm4a2bniOO94wXuSHFB9SRyTERUZQxjAq/yRfwoSdqZGt8gNAG9Oi/215v2zA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=KY/4W5dR; arc=fail smtp.client-ip=40.107.159.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZoOaPQ+EtJXnUfAzcnHIvufzl+pXIr4/ibTE0dVZLZkJs5ZzDCqUTEAUURdcZQTXK5n2Xs7J/Xv6cwRcyLzn8vIg1WSp2H6pZKdaiF6VfLl902Te6foberaBAgrwffhf4yZJ1zWYTIp4jq0GGd0tfLMuZOZO/oyjESVB5Iskg/sAuF/AJ7bqtS2mKV1iw+RqY+XAwgm6NqSkJM7PucGJgXRcpWC8roS1ZJeV6abrjUDhVtBANfsx8fQnYUZSuJbUJvoyWlFFxxOjLVeui0wnc3HQYYoImON+urRRVOy9SZC9UbrimDq5Kimm9gqjyCDROcy+g37TMyJ2zClPV93wtg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6PMuvKu1ZWKwWn2pk8Q/Z1Ibn8UQyJomQXCflIBg0cs=;
+ b=zKaoiZLEYuj5S7SRiHhJBn4DEo5tFmXuHXdYkiRURhCguzIt6gEK2MR/f9940/NlNA3B0xbI4gwq722fHmHuJMohPoXWlbvCurhv+uoG3R6iV+VdkthIbfpseLyxz7PKpi3vASbmCQPmAkr5MwuHiQDgdxZOkKEyPlsUaX3pQvCKs+J5XNMJ4rvQDahOEBu2pxKzUMhk21suThy4lZDueHUzxHDlG7Ztn1Q6QvHZEq1KXuNshbHu/IDUz9Kf0DA3eneEO6ulzAyF//NSNy8OI0ceWxX0nC1N1bKajSbv97nNakcNFP0Nl3gQpd919XnggNSwoDn6fxplGo6h8anq5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6PMuvKu1ZWKwWn2pk8Q/Z1Ibn8UQyJomQXCflIBg0cs=;
+ b=KY/4W5dRlFmD/YrdNVXfTW/zfAyaJc9RHHHMQ9RgfzTRVSF12mKNpmAK27lguXuMxm2voQFlU/vQ1YYqfVv4XTtkmjF9rCWM9S4o4bt0b5FP9ljgEv6xl2k2U5siKDsJQLraUCJSU3Y5scmFiXppy9pWeoCsczR4Ag0Aae2MrU5v/eIFBpVPP7i5wa9ZvqWSw2tntdAmlp1eS8W6S5lvaEA/egmGSJK9LyV/Eh6OZDlXXGx5LGLbBstCI0lrHvYGZli0NsTmUYJWMkj3/avVaXiR5HzRmE1zjZgdbUlxgtA0TDj32ogPAYaMwJ21xg+zjmR88v8Qfw98p2Zm9dyqAw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by DUZPR04MB9917.eurprd04.prod.outlook.com (2603:10a6:10:4d8::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.11; Sat, 22 Nov
+ 2025 00:58:39 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.9343.009; Sat, 22 Nov 2025
+ 00:58:39 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: [PATCH v3 0/5] remoteproc: imx_rproc: Support i.MX95
+Date: Sat, 22 Nov 2025 08:58:15 +0800
+Message-Id: <20251122-imx95-rproc-2025-11-20-v3-0-9ae6ee619a78@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKgKIWkC/x2MSwqAMAwFryJZG+gHK/Uq4qJq1Cy0JQURxLtbX
+ Q0z8N4NmYQpQ1fdIHRy5ngUsXUF0xaOlZDn4mCUabQ2Cnm/fIOSJE74RdS6EO3orfOuVbMLUMZ
+ JaOHrP+6H53kB8hytHWgAAAA=
+X-Change-ID: 20251120-imx95-rproc-2025-11-20-3b9369670d6a
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
+ Daniel Baluta <daniel.baluta@nxp.com>
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SI1PR02CA0058.apcprd02.prod.outlook.com
+ (2603:1096:4:1f5::9) To PAXPR04MB8459.eurprd04.prod.outlook.com
+ (2603:10a6:102:1da::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251121-ads1x18-v1-0-86db080fc9a4@gmail.com>
- <20251121-ads1x18-v1-1-86db080fc9a4@gmail.com>
- <09d8aa0c-8713-4673-8d70-ff5d59392c12@baylibre.com>
-In-Reply-To: <09d8aa0c-8713-4673-8d70-ff5d59392c12@baylibre.com>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|DUZPR04MB9917:EE_
+X-MS-Office365-Filtering-Correlation-Id: d65963e5-5bcb-4685-4378-08de29624603
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|52116014|376014|366016|7416014|19092799006|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?NmFHVFFRdzcxVUJMUTRqVmxkcVdzYlZZWkNBcnhFM01xR1o0cit5eTI0b1BB?=
+ =?utf-8?B?TjZtb1pldWxjYlExdVZxbEdrK1NJek95VzViTU5SSXRIQ2t3KzV0T3dEbjhv?=
+ =?utf-8?B?R0lxZGVjQlhETTl2NkR3WDdSUzZXQVd4Y2I0cVBNOGlUckNra0RBZHRzQ1VS?=
+ =?utf-8?B?aVZ2MGxNaUZrc01pUGZMRTBqMGZiejN6RThFdHJ1T0NrbWNwM0g0TTgzNzJa?=
+ =?utf-8?B?ejR1WHFVWUtLOW1SQUtNVGp1YWdKRllKc2tIS1UyZnlxR1BWZGJFdGQ5eW5S?=
+ =?utf-8?B?VWx3cWpsT0gydjlpZzBIYUloOW9zc2VKa0llMFp3T2l3Rmd0T2xWVjdMdjJH?=
+ =?utf-8?B?SmJhK3R1ZXZvYklGN0R1VXhEL1hnRkptYkQrZmtNQjNCTVdHb296UmZEOUI1?=
+ =?utf-8?B?dzdSYzQxWWg1aTJPbTRCeXZpOURpdWwwUzRaK2MzVUVIaTh5amZ4RWlDZWhK?=
+ =?utf-8?B?b053TzJ5N3k3WWk5dGM3NFBLNG0wajZreGgvcFM5QVlkQmJhMmFIY0JIenRB?=
+ =?utf-8?B?Mzdqc3ZPNER2dWtqbjdNVnlyYjd3cHVPY1BHaHUrN0FUT3RBWkRuSkxJazcv?=
+ =?utf-8?B?RU1aeWJCK0lYNlpLdmZPK1ZwVGU3UFJ6RU84cVJGcFE2MHI0aFVraDMwdThJ?=
+ =?utf-8?B?SkNVS2U1YjlET2wxa2ViZHFpem5iSjFtSW9Ua21wYjRWbCtEVm1POXVKeVFO?=
+ =?utf-8?B?R3JRa0ZndXVUaTQxa3ZHU3VhdUVJRkxHbU8xd21TZ2lqdHU3eXdoTXkwNmI0?=
+ =?utf-8?B?djQxb0RkSWtHUDBYYVhXcXhNY2QzVnVGSnJ4cGVPVjRXUlVhV1ROUGVHZnZM?=
+ =?utf-8?B?VkVkcURKOEhpL3lVWjhGekpReWVrTENicGxhR0ZUcWpzemVIdUJuVEJwaDJZ?=
+ =?utf-8?B?S012b3dXdUlvcUxBdlowemltS295V2RMZjFwNkd2Wk5pc3NJUFBCdnFJTDUz?=
+ =?utf-8?B?bWdLenFzVWI0b1phd0tqWGR6aE5sWlU3RGY5bUNzMTM1dUNnZzFqbzFLMFhy?=
+ =?utf-8?B?L292RTdGMFdoTVpPQ2xwZDhHOGdvYkg4Z1lHd0ZqMmIrdERBVkhqRFd6NkJN?=
+ =?utf-8?B?RythRk9Ib25iN3JwVitSZXZIUlpzbHl5YWZndVZzYXVSSjE2eEYxQUpWQWVl?=
+ =?utf-8?B?eTYzUzBvdXhDdW1wZjdoWDF6TWQxWGhoVEdJZndFczJHZXRpQTkrZGpYU1ZV?=
+ =?utf-8?B?Z244eERCdmpGTk5PZnJ4Y1dORUVEN0krOVNDR0dvL09zOVoraysyeVFCZnor?=
+ =?utf-8?B?dXRjNDRtZW95TlkzVTI4NERzUWd1eXVENmZrWDlJczVMakZpUGs2MGgvNVlr?=
+ =?utf-8?B?WEF0NkMzMTRJRmE0dFZiV3l2MUovcEhZK0V1QnVmVVpoUGdYWExoanJYeTht?=
+ =?utf-8?B?SDRJb2xWc3V3eGppQW0zNjF1bkg4UThHaWo2c1MyWFdveXFKTUxqK3pBckZU?=
+ =?utf-8?B?YlJ5MUU1VDdtVURBS0hyMW8xbmJwd0dtQ1I5aFJsZCtCOWRBRkd1TWdvNmZC?=
+ =?utf-8?B?ZEUrOXRSV2dldFI5R1lsQVIyY28yZ3hyVGtZcThRTjlSN2F2aVRZSUo1UnR0?=
+ =?utf-8?B?eFlUT2tvbUREWm1mZEo5OW51TVRqdGZYblAzMGxvdXYwNnhZaWo1QlVmRm5C?=
+ =?utf-8?B?N0txaW5Vb091WFBGVnJINjBFdTdEOCtpcXFzekdXNk55SFkzWlJTbzNZMGor?=
+ =?utf-8?B?QVZackJIN0Naa2t4QkZaUGtCUmR3cXh4Nng0K1dadVpueS83RXVsTkxBS3Ex?=
+ =?utf-8?B?czRTSTBHMHZwSTVhWFBVSmNxNlFGeDZYNFgwdkdBVFNVT2VQbUxxcXZoZ2Rp?=
+ =?utf-8?B?ZDJHMkRra3pObTg5elNSSloyZ1h0OTRranc3cUxUOHhlN09ibUx2eEVBd25k?=
+ =?utf-8?B?OTdSWXNjUVlKR09SbGl0bGxMUEc5UE5VOFZLM0d2TkgvV1RjY0czdUdHT3Nw?=
+ =?utf-8?B?c0FMYklSVHoxcDBkS0VON0V5NngrQjJpSmZMeGZiQno5YjQzZTJ5b1hMWmdV?=
+ =?utf-8?B?WDVLRGJXMTFaSlBaVzBCSDZyTkJnMlA4UG94aWJZdHNjZzRpbHVuODVBS1Jq?=
+ =?utf-8?B?bTJFU2RYMGduUEgzK2IybFBuSkF6VDI4REI4MFdNNlFlNlk2ZTN3NVMveUg3?=
+ =?utf-8?Q?tsyM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(366016)(7416014)(19092799006)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OGNDZEs4N2tkMDZjN2M2Tnk2cjRBZElrK3NjbEFQejRFcnIvWXFyVjRFOHVZ?=
+ =?utf-8?B?SldnQ3pkZ1FWUzNVeXB4UDUxSEFmanlkdHpOd2poQ1JTZ01MRS9VSDIxWWYz?=
+ =?utf-8?B?YmpDRVdoTWpRT0g4QUxFREMvUkFWK0V2bFFXc3ovU2ZWa2dva05DNmZwb3NS?=
+ =?utf-8?B?VXVCYzl0OGhCeC8xQytHd0NlKzQzVkhRVngvRWxPSElaY1Bab3hxUW1MMHZm?=
+ =?utf-8?B?bUl4bldmdUxnZ3dOdDR0K0tMVmVybHBYeDNtYXhnaTVhTkVEMWpDbTMxdUdE?=
+ =?utf-8?B?MnQyTGZtV2xYakwwamhoak1ZZXBDbTdUVjBRWHEycnUwU2pHNlRQQVJBd1Fv?=
+ =?utf-8?B?STQzUVhpQzcxbjkzY1RGck5CQUF1aXkxcVVnYnhLVndXaXkrWFo4cHF6UnVI?=
+ =?utf-8?B?ZWhFdUMzWE40MWVmUG9sM0g0cXRRcTN4NUZqTk5vdjlFbXh2WEhIRytvanNP?=
+ =?utf-8?B?ZHVNdnUyZmFad3lIWkg3ZDVvWFNLaEhpMG0vVDNsZWFGMEdnTi8ydFZmZk5D?=
+ =?utf-8?B?YWZNQ0N4bHlCMjMzTGNmQ09tZkREai9jUVRwam5EVFZNS2N4WTRpdVRWc0RR?=
+ =?utf-8?B?ZXQ5SEFUSEl3bXorNDhpekExajFSd05VWWpBTWhYR0Q1R2FsbGRFOHh5Y0hz?=
+ =?utf-8?B?MUxJVXoxTVRqaDZVZk1sSUp2YjZJRWovdW93UlpGa1hFenZmQytxNmtnS2NZ?=
+ =?utf-8?B?TVJFam9kU0VSY0ZsSTVwRFlsbW9QYmlsVlUxeTRqYWNDeTVSazh4cWhVV3NT?=
+ =?utf-8?B?NTQyOGE0cXBsTFNVaUxLY3pVcVMwdzh2SEVxNjVRMG9Cbk5zU1NndjRQTGlt?=
+ =?utf-8?B?d2c3RFRKUnM1Vk1mOGU0V3poYlhUSU9Wd1N5KzlMd0xkemErTkd5KzFFVmRx?=
+ =?utf-8?B?cjRZbHp1RUtjL3pEQU5pOEVvdzlkbXVHdUViRk00bHhYZFNKT1N5ZHVlZENx?=
+ =?utf-8?B?dlk3YzEySFR6RTFLVSs5ZmlnUGM5MTE4VFQyN3k2OVNSUkthRFJJNzgrU09E?=
+ =?utf-8?B?alo5TDVCV0NxYnFmeEJhb0l1VHcyQS9SL3djUjF4L0k3ODdrOW9Ic0tNMnRV?=
+ =?utf-8?B?ZHFVS21yYVd4ai9rY09EU1hkeVdoUzVvNDgxNTkvbEpoTkRNclQySDUwbnhJ?=
+ =?utf-8?B?WmlNT2lndWVwMSt5emRrWDE3MlB1NkFPQUlaa21KMk5SMEI5R2RMVkh0bjFu?=
+ =?utf-8?B?ejhyWEIrS1Nrbnd5SWlXM0FNTy9QS1UvbGlacHJCWWpna0o5Zk9rVjRubkdH?=
+ =?utf-8?B?eUdlQTNnbEJMamZFOGlGNjZvSHljQzUvZWp1N0xHUW94TGE1cjREM2puUnNl?=
+ =?utf-8?B?VWRuZDUyRTE0RWxMRk1hK2xnQWo3ZFA1dkdGTXRRSUMwM1ZDTC9oSDRvejdT?=
+ =?utf-8?B?TEdjRmFGT2pzZWRhTHA5dmNEMC9vVzBCdmE2Z3JuVkwzQUdKRFBEL0l5RFpP?=
+ =?utf-8?B?V2cwclJuUzJXVTFxVjBWeFlrL2k0NXRMYzlPZCtoczN2MVBYclc2VDhycVlp?=
+ =?utf-8?B?VG1qcENsa3VuZ1hlOER1TFg2Snd4cjVuZ2hZYTVESTk2R2I1L1NyM0M4MnlK?=
+ =?utf-8?B?QnF4bmVoUTJock9mVlNnSXFwdHVmZGgyUDZwV2dueThGc2FYU2xXWnhTUTNv?=
+ =?utf-8?B?WXJCclhRejBwdmR2dkwrV1h0di9vNjZzYzIwT2JuSDhDMWk0TU02UlRPUitM?=
+ =?utf-8?B?amNxQnlESDZqMGJvQ0lBc0pYMWNleERsMVZKUnlHVG5LUTAzMVlqSTdmclVa?=
+ =?utf-8?B?TzJVd3V2Q3RJSHBCNk00SlBxQmhNd3lKZEJTcHYrejVmZ0Z1R0dNaEcycEtp?=
+ =?utf-8?B?R2N1ZXRTU2Vnbjdvd3AwVkpUbTdqNjdLOVE5VVErRnpxWVdhNGFTUHR5OVpM?=
+ =?utf-8?B?eDNzaFNmZURoWWtNRTlxNElmTDhYWnlNVTJzTXNlYkpOSlcyTlpBNHNzakdF?=
+ =?utf-8?B?UHUyd2FGem4zWm1sbzVteW5vNnJsSDNSTVo5eUl3OU51VDQ5a21STUs4MzhU?=
+ =?utf-8?B?TjcrTEtCQ0dvU2xiVjB4WXd0cC8xNW40eG9ucHZpRnJnQ3FySDJKSVg3RkRy?=
+ =?utf-8?B?bHNIaWRaRFBZT0UwWHU0b1Z6S2thWHBJODQwMXArNmVEMTJJbUwvZ1RTNUNR?=
+ =?utf-8?Q?h+PaLaeRxhwjJuWEZxRO9MPaW?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d65963e5-5bcb-4685-4378-08de29624603
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2025 00:58:39.3703
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HQCY0Eh+xcATjhyO3pMuIbJkq6Wy0ceuE1jhXWErT5J0xcDZnoXqICxCPLMPLrEewN6MDoT7ifPP6PtUEb+sZA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9917
 
-On Fri Nov 21, 2025 at 5:32 PM -05, David Lechner wrote:
-> On 11/21/25 11:16 AM, Kurt Borja wrote:
->> Add documentation for Texas Instruments ADS1018 and ADS1118
->> analog-to-digital converters.
->>=20
->> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
->> ---
->>  .../devicetree/bindings/iio/adc/ti,ads1118.yaml    | 132 ++++++++++++++=
-+++++++
->>  1 file changed, 132 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml b=
-/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml
->> new file mode 100644
->> index 000000000000..eb7228ed6ddb
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1118.yaml
->
-> I like to make the file name match the lowest number. That way it matches
-> the first item in the compatible list.
->
->> @@ -0,0 +1,132 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->
-> Better to be specific with GPL-2.0-only or GPL-2.0-or-later (your choice)=
-.
+This patchset is pick up a previous patchset [1] with rebased on
+next-20251030, and some changes applied.
+ - Add runtime ops to separate cpu ops and lmm ops
+ - added more comments
+ - moved some check imx_sm_rproc_detect_mode() from imx_rproc_sm_prepare().
 
-I will go for GPL-2.0-only on both files.
+No changes to the dt-binding patch, so R-b/A-b are kept.
+More info could be found in commit message of each patch and below.
 
->
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/adc/ti,ads1118.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TI ADS1018/ADS1118 SPI analog to digital converter
->> +
->> +maintainers:
->> +  - Kurt Borja <kuurtb@gmail.com>
->> +
->> +description: |
->> +  The ADS1018/ADS1118 is a precision, low-power, 12-bit or 16-bit, nois=
-e-free,
->> +  analog-to-digital converter (ADC). It integrates a programmable gain =
-amplifier
->> +  (PGA), voltage reference, oscillator and high-accuracy temperature se=
-nsor.
->> +
->> +  Datasheets:
->> +    - ADS1018: https://www.ti.com/lit/ds/symlink/ads1018.pdf
->> +    - ADS1118: https://www.ti.com/lit/ds/symlink/ads1118.pdf
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,ads1018
->> +      - ti,ads1118
->> +
->> +  reg:
->> +    maxitems: 1
->
-> We know the max SCLK rate from the datasheet, so we can add:
->
-> spi-max-frequency:
->   maximum: 4000000
->
-> And we need to explicitly mention this one (it isn't part of
-> spi-peripheral-props.yaml but rather comes from spi-controller.yaml):
->
-> spi-cpha: true
->
->> +
->> +  interrupts:
->> +    description: DOUT/DRDY (Data Out/Data Ready) line.
->> +    maxitems: 1
->> +
->> +  drdy-gpios:
->> +    description:
->> +      Extra GPIO line connected to DOUT/DRDY (Data Out/Data Ready). Thi=
-s allows
->> +      distinguishing between latched and real DRDY IRQs.
->> +    maxitems: 1
->> +
->> +  '#address-cells':
->> +    const: 1
->> +
->> +  '#size-cells':
->> +    const: 0
->> +
->> +  '#io-channel-cells':
->> +    const: 1
->> +
->
-> All chips need power, so we should have:
->
-> vdd-supply: true
->
-> and make it required.
->
->> +required:
->> +  - compatible
->> +  - reg
->> +  - drdy-gpios
->
-> The chip can be used without needing the DRDY signal, so drdy-gpios and
-> interrupts should not be required.
->
->> +  - '#address-cells'
->> +  - '#size-cells'
->> +
->> +patternProperties:
->> +  "^channel@[0-7]$":
->> +    type: object
->> +    $ref: /schemas/iio/adc/adc.yaml#
->> +    description: Properties for a single ADC channel.
->> +
->> +    properties:
->> +      reg:
->> +        minimum: 0
->> +        maximum: 7
->> +        description: The channel index (0-7).
->> +
->> +      ti,gain:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        minimum: 0
->> +        maximum: 5
->> +        description:
->> +          Programmable gain amplifier configuration, as described in th=
-e PGA
->> +          Config Register Field description. If not present, the defaul=
-t is
->> +          used.
->
-> The gain is programmable, so normally, we would set that by writing
-> to the in_voltageY_scale attribute rather than hard-coding it in the
-> devicetree.
->
->> +
->> +      ti,datarate:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        minimum: 0
->> +        maximum: 7
->> +        description:
->> +          Data rate configuration, as described in the DR Config Regist=
-er Field
->> +          description. If not present, the default is used.
->
-> Likewise, the data rate should be set at runtime using a
-> sampling_frequency attribute rather than being hard-coded
-> in the devicetree.
+[1]https://lore.kernel.org/linux-remoteproc/20250821-imx95-rproc-1-v5-0-e93191dfac51@nxp.com/
 
-I actually took this approach from ti-ads1015. I was debating this
-myself.
+i.MX95 features a Cortex-M33 core, six Cortex-A55 cores, and
+one Cortex-M7 core. The System Control Management Interface(SCMI)
+firmware runs on the M33 core. The i.MX95 SCMI firmware named System
+Manager(SM) includes vendor extension protocols, Logical Machine
+Management(LMM) protocol and CPU protocol and etc.
 
-I'll gladly drop these.
+There are three cases for M7:
+(1) M7 in a separate Logical Machine(LM) that Linux couldn't control it.
+(2) M7 in a separate Logical Machine that Linux could control it using
+    LMM protocol
+(3) M7 runs in same Logical Machine as A55, so Linux could control it
+    using CPU protocol
 
->
->> +
->> +    required:
->> +      - reg
->> +
->> +    additionalProperties: false
->> +
-> So we shouldn't need explicit channel properties at this time.
+In patch 3, Use LMM and CPU protocol to manage M7. More info could be
+found in the patch commit log
+    Current setup relies on pre-Linux software(U-Boot) to do
+M7 TCM ECC initialization. In future, we could add the support in Linux
 
-Ack for the rest of comments.
+Patchset was tested with below boot images when the patchset based on next-20251030:
+imx-boot-variant-rpmsg-imx95-19x19-lpddr5-evk-sd.bin-flash_lpboot_sm_a55 (Use LMM protocol)
+imx-boot-variant-alt-imx95-19x19-lpddr5-evk-sd.bin-flash_alt (Use CPU protocol)
+imx-boot-imx95-19x19-lpddr5-evk-sd.bin-flash_all (M7 not under A55 control)
 
+Also tested i.MX8MP/8ULP-EVK.
 
---=20
- ~ Kurt
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+Changes in v3:
+- Add R-b for patch 2,3,5
+- Patch 4:
+  Rename imx_rproc_ops_sm to imx_rproc_ops_sm_lmm.
+  Add more comments in code
+  Simplify if check in imx_rproc_sm_lmm_prepare()
+  Update commit log
+  Use dev_err for failure path
+- Link to v2: https://lore.kernel.org/linux-remoteproc/20251031-imx95-rproc-2025-10-31-v2-0-758b2e547a55@nxp.com/T/#t
+
+Changes in v2:
+- Patch 2: Change to const pointer for ops, update commit log and add R-b from Frank
+- Patch 3: New patch, introduce prepare ops
+- Patch 4: Rename imx_rproc_sm_prepare to imx_rproc_sm_lmm_prepare
+           drop IMX_RPROC_FLAGS_SM_CPU_OP and IMX_RPROC_FLAGS_SM_LMM_OP
+           Add a bool for dcfg->lmid and info->lmid check.
+           Provide separate plat ops for lmm and cpu setup.
+           Move LM permission check to a separate function.
+- Patch 5: Drop macro IMX95_M7_CPUID and IMX95_M7_LMID
+- Link to v1: https://lore.kernel.org/r/20251028-imx95-rproc-2025-10-28-v1-0-ce9e7db9edcb@nxp.com
+
+---
+Peng Fan (5):
+      dt-bindings: remoteproc: fsl,imx-rproc: Add support for i.MX95
+      remoteproc: imx_rproc: Add runtime ops copy to support dynamic behavior
+      remoteproc: imx_rproc: Introduce prepare ops for imx_rproc_dcfg
+      remoteproc: imx_rproc: Add support for System Manager API
+      remoteproc: imx_rproc: Add support for i.MX95
+
+ .../bindings/remoteproc/fsl,imx-rproc.yaml         |   1 +
+ drivers/remoteproc/Kconfig                         |   2 +
+ drivers/remoteproc/imx_rproc.c                     | 245 +++++++++++++++++++--
+ drivers/remoteproc/imx_rproc.h                     |   4 +
+ 4 files changed, 238 insertions(+), 14 deletions(-)
+---
+base-commit: 88cbd8ac379cf5ce68b7efcfd4d1484a6871ee0b
+change-id: 20251120-imx95-rproc-2025-11-20-3b9369670d6a
+
+Best regards,
+-- 
+Peng Fan <peng.fan@nxp.com>
 
 
