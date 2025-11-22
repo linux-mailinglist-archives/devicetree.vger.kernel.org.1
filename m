@@ -1,202 +1,209 @@
-Return-Path: <devicetree+bounces-241342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59414C7CED9
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:50:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEB1C7CF1B
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:59:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 135263A25D4
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 11:50:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F083A4E7860
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 11:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388A8299923;
-	Sat, 22 Nov 2025 11:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BAC82FD7D0;
+	Sat, 22 Nov 2025 11:58:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="BsZjmNqA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ETVmZu3H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AEF724A05D;
-	Sat, 22 Nov 2025 11:50:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719252857C1
+	for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 11:58:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763812239; cv=none; b=OpNfYOF0naOutQ7mS6A7G0CgBWq9Ggu2ZRtl8ltMD9LMwGIwwhoE5l2UPPkhuezeH/VwhjBkHIful6P5ZIo5loRLpSgSvZYtmrFAKOw9ZdIOnhS4zOwEAp538de23f1bEHTnqhoRP4PfGgktMN5yCnMpx4ZJjAv+unf7U1JnPXE=
+	t=1763812733; cv=none; b=P5kylyx23RtIJkXwriKQjsNNnsFOi3mGmyMmcjtBNhYpOr1zGSSZAJkwocI1FJo3w+fleGh47rpAm6CsomOXyKc09B0MvcNW1Kr+3cuPMANi5OldlA36E5zBkqa56Gys/2XCfx8I0b35T3QzjWsk88KlUhdNlCOAnYXYy444eWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763812239; c=relaxed/simple;
-	bh=OFSEwnamRuB2MNtMzqeCzJDKd4lbApIQ3cHPmcydhUM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:In-Reply-To:
-	 Content-Type:References; b=mFeOxGSXK/ojUdfJfeNDqSvgSf/jbcU4UXTvP4nf6ud36APt8s0u8owwRoPVZdNA1wD6G2ZDVXSYdghExZXWoxM+xteKLwwU01K7RxaZs8xhifpdcmHU/dK8tN7zbo9pxN9qyUWoxkKzevSIL3cGFfq6vMuwF4wmG6I0eEG1fq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=BsZjmNqA; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20251122114223euoutp02a865adc7452e5f90cd2c14db70458d11~6UW_ahNXk1064910649euoutp02D;
-	Sat, 22 Nov 2025 11:42:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20251122114223euoutp02a865adc7452e5f90cd2c14db70458d11~6UW_ahNXk1064910649euoutp02D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1763811743;
-	bh=SGLaM+urYg0Vv3ieWczJVk93J9IdI6KYj5H+J8X+y3M=;
-	h=Date:Subject:From:To:Cc:In-Reply-To:References:From;
-	b=BsZjmNqATOZm6x8qZF7sfQToegD8qekT6vuwMvfrYo3v4HczMnvB8w9pDT7SME9wE
-	 hgQq/EnnoHIVB38YQk0un47ypNrJ1VVX77dAO/f55vwnCbsuW8x/Lg74pRelj2WuYH
-	 EwpiR3kDAgc7iXZjsBNnOkFf7XAclI8K/xkJ0OFo=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20251122114222eucas1p24f8f3e7694749a27fb423cef4feeea98~6UW9WpQF-3156331563eucas1p2M;
-	Sat, 22 Nov 2025 11:42:22 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20251122114221eusmtip29f79269c395c0c2dff1d9551b3d2b603~6UW76k8t21359313593eusmtip2a;
-	Sat, 22 Nov 2025 11:42:21 +0000 (GMT)
-Message-ID: <1b2c290b-5716-4a07-82b3-e53c35af2150@samsung.com>
-Date: Sat, 22 Nov 2025 12:42:20 +0100
+	s=arc-20240116; t=1763812733; c=relaxed/simple;
+	bh=jWHXjaaGYky2DaB1MpNNCj1bQDGpHoWv0BoWUYp+rQo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DA5TYpVIoU4MB4mkoO+zzP3kj0bi0JNI4MB3zzcVsq3Pr3bd7Pt5OkVwrzjXfpquaveng3gSNXVXdi+jVaCRj28+GY4pqTVstZKfpVdft93J3R2yl69zmQ17VX91lmU37hx7rTi0SbavZY8HxuINkSUixU7YyA4RHCAAa6txwuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ETVmZu3H; arc=none smtp.client-ip=209.85.160.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4eddfb8c7f5so24272291cf.1
+        for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 03:58:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763812730; x=1764417530; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MBrm3JMtHLy7FDNmdG9NnfjfQSeL7J0SNX9N6hNH2js=;
+        b=ETVmZu3HY5OeL1UkHeLxB/0LVpNTi9tojGCnrcoE1r2mYAPfUfoC7yOH4gNyTkAJMP
+         y5dfJaHqiLcZ+A6znO6eKlm3i12Tt8yXgytI2qRNb2BbSVuIW86/3zqZMAzti0d5Gyc9
+         5D17RjfGmvBQ5BAm5RTNSQbjK75oIDypoWFd1d+Kg5sAScS7ex6tU1VK7NN5B0R75hzm
+         AXAy7avY69GbeU5vs2KgU8FQLyKsiQcOOSv5r++F1eet+3XVKwQJJftM+2PM97y12d/H
+         DwLJEJF8cL6b7e8LbjvqgwJh4KCnWhGQ6txvTHilgI0D2jJcou3ZbSf7On8ujdwiz/pn
+         ebng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763812730; x=1764417530;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MBrm3JMtHLy7FDNmdG9NnfjfQSeL7J0SNX9N6hNH2js=;
+        b=cM4n1xxvca6cV5kR15DresDDTPN6C58IvV81HAqZSRAm/aWopbKj8Lt5KcgFNRxIjE
+         78xAZa3EGTssuib3eMK/PaTB/eQfMLNgNH7vf5IB0DVkC2PzJr8XFrL+e2x67dd1edxy
+         wTlzw9pDFM1vK8Ufa8FdwJ4mkkKsUzaC5whf4+zeKrbArsV6F6deQ6+I0Vum/YQ0gfeN
+         GsorbMQ4RcQPeKlQGzHiVU1Ex/bVQAN4tl5+nr3XP9sgvVFNy7O2wu/deGogbHXVP+UU
+         bQYjAWU0qiUA5rwabn2UUkiyV/tgNYCK0oxBEPxUZLjNh415O1NUJkor1Uqu3oemVECB
+         EzUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXxBBlesCtEEUkjKienPwoGBciu6jdoNg6Q/8P2FUSgVPn4Bg//s06hvLl70GC7YMkFUcg4YNtUPz0w@vger.kernel.org
+X-Gm-Message-State: AOJu0Yydjlg8mG5t/GaAKKDPnFBPNSLHpSKsJGL/xo51qCifQOBDLFDB
+	3oamEbmroSFIBquR5ioI8s3xPURdep6yvzIyvU4I2bFsWCoblv3FOBUaeoBWC/WpjVylNjbZoRb
+	0rX++ZR5PluDSFtwXvsWeeizl4HutyEmAas1mVstYCg==
+X-Gm-Gg: ASbGncutuOAmi5kJHAXKY2yEpKG6ZwvRBNVHxIiQGu+uZn3yQlpfk2a4crtz+Wqdn29
+	/snJ39uDmZ8RUDVD1ODVT84BXIGP2gH+5alOcYohCF+KEZTQiuCXSBjAr1EGhNiNUZ9d18of0Eb
+	FN/WwDNWVWMEQqk+VDH43E4wRBaAhR/IT4sJNQsm5iP5HoCmtHeG+s3Hl8YI6mxBG5mmzcfhIRx
+	sfNZXp8SVICNBA8lCSfySgHIyrElxIzwDkNT/ht+ORTUS2R4f5s7hpCSvfTB3LlkhbdbbPxsDXQ
+	66Ezdg==
+X-Google-Smtp-Source: AGHT+IHDkZQ+ImU9RTRugkonJf2E+hg917WnNusnwXVOvnWYJ8u+14drqRk1eQk1lC04UEf9Ur7igG1PLO7dWtr7QLg=
+X-Received: by 2002:ac8:5d47:0:b0:4ee:5fc:43da with SMTP id
+ d75a77b69052e-4ee588189c5mr66608501cf.11.1763812730384; Sat, 22 Nov 2025
+ 03:58:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 00/13] drm: starfive: jh7110: Enable display
- subsystem
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: Conor Dooley <conor@kernel.org>, Maxime Ripard <mripard@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>, Robert Foss <rfoss@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>, Hal Feng
-	<hal.feng@starfivetech.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Xingyu
-	Wu <xingyu.wu@starfivetech.com>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
-	Abraham I <kishon@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
-	Armstrong <neil.armstrong@linaro.org>, Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej
-	Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, Simona
-	Vetter <simona@ffwll.ch>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
-	<tzimmermann@suse.de>, Lee Jones <lee@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Icenowy
-	Zheng <uwu@icenowy.me>, Maud Spierings <maudspierings@gocontroll.com>, Andy
-	Yan <andyshrk@163.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	linux-riscv@lists.infradead.org
-Content-Language: en-US
-In-Reply-To: <e1696331-1271-46a8-adb6-9fed4521f22b@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20251122114222eucas1p24f8f3e7694749a27fb423cef4feeea98
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e
-X-EPHeader: CA
-X-CMS-RootMailID: 20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e
-References: <CGME20251108010451eucas1p1c7bf340dbd2b1b7cbfb53d6debce7a2e@eucas1p1.samsung.com>
-	<20251108-jh7110-clean-send-v1-0-06bf43bb76b1@samsung.com>
-	<20251110-clang-baking-b8b27730356e@spud>
-	<00e897dc-9966-439b-a74a-7604a1870027@samsung.com>
-	<20251111-footing-eclair-332f5f0769f2@spud>
-	<20251111-matriarch-diocese-b314e7bdaf81@spud>
-	<e1696331-1271-46a8-adb6-9fed4521f22b@samsung.com>
+References: <20251122-controller-v8-0-e7562e0df658@google.com> <20251122-controller-v8-2-e7562e0df658@google.com>
+In-Reply-To: <20251122-controller-v8-2-e7562e0df658@google.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Sat, 22 Nov 2025 11:58:39 +0000
+X-Gm-Features: AWmQ_bmxr74_zcagVpTKmx_rF_8JcJE4EnUUPe-ZPMt4veKA7v9CBx5wm0awg0g
+Message-ID: <CADrjBPqPsPBBSbhx8ZFreFWX2tRxaATT=azS-b1H2b=TJoVAAw@mail.gmail.com>
+Subject: Re: [PATCH v8 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
+To: Roy Luo <royluo@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Badhri Jagan Sridharan <badhri@google.com>, 
+	Doug Anderson <dianders@google.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Roy,
 
+Thanks for your patch. It's great to see Laguna support being added upstream.
 
-On 11/13/25 15:57, Michal Wilczynski wrote:
-> 
-> 
-> On 11/11/25 19:37, Conor Dooley wrote:
->> On Tue, Nov 11, 2025 at 06:14:48PM +0000, Conor Dooley wrote:
->>> On Tue, Nov 11, 2025 at 04:33:28PM +0100, Michal Wilczynski wrote:
->>>>
->>>>
->>>> On 11/10/25 20:35, Conor Dooley wrote:
->>>>> On Sat, Nov 08, 2025 at 02:04:34AM +0100, Michal Wilczynski wrote:
->>>>>> This series enables the display subsystem on the StarFive JH7110 SoC.
->>>>>> This hardware has a complex set of dependencies that this series aims to
->>>>>> solve.
->>>>>>
->>>>>> I believe this is a PHY tuning issue that can be fixed in the new
->>>>>> phy-jh7110-inno-hdmi.c driver without changing the overall architecture.
->>>>>> I plan to continue debugging these modes and will submit follow up fixes
->>>>>> as needed.
->>>>>>
->>>>>> The core architectural plumbing is sound and ready for review.
->>>>>>
->>>>>> Notes:
->>>>>> - The JH7110 does not have a centralized MAINTAINERS entry like the
->>>>>>   TH1520, and driver maintainership seems fragmented. I have therefore
->>>>>>   added a MAINTAINERS entry for the display subsystem and am willing to
->>>>>>   help with its maintenance.
->>>>>
->>>>> Yeah, bunch of different folks wrote the drivers, so lots of entries.
->>>>> Pretty much all as you've done here, authors are responsible for the
->>>>> individual components and Emil is the platform maintainer but
->>>>> responsible for most drivers.
->>>>>
->>>>> Do you need any feedback dt wise on the RFC, or is it too likely that
->>>>> we'll both waste our breath if the DRM folks don't approve of your
->>>>> approach for the rest of this series?
->>>>
->>>> Hi Conor,
->>>>
->>>> Thank you for your response.
->>>>
->>>> That's a fair point about the risk of the DRM approach being rejected.
->>>> While I can't be certain, I'm hopeful that part is relatively
->>>> straightforward, as it primarily integrates other recently reviewed
->>>> (though not yet merged) components like the inno-hdmi bridge and dc8200
->>>> drivers.
->>>>
->>>> To be honest, I was more concerned that the DT part of the series would
->>>> be more problematic. Given that, I would find it very helpful to get
->>>> your feedback on the DT aspects now, if you have the time.
->>>
->>> Right. You'll definitely want some actual DRM people to weigh in though
->>> before making changes, I am really not familiar enough with this type of
->>> hardware to know if the breakdown is correct.
->>
->> It looks generally sane to me chief, but as I said I am not really
->> familiar enough with this sort of hardware to have a real take on it.
->> Sorry, you'll need to get your affirmation about how you've laid stuff
->> out elsewhere :/
-> 
-> Thanks for the look, Conor.
-> 
-> I appreciate the sanity check on the DT side. I'll focus on getting the
-> necessary feedback from the DRM maintainers regarding the architectural
-> breakdown before spinning a v2.
-> 
-> [Adding Dmitry Baryshkov and highlighting Maxime, Heiko, and Robert]
-> 
-> Could you folks take a brief look at the driver split in this series?
-> 
-> Conor has reviewed the DT bindings and they look sane to him, but we
-> need to verify that the architectural split between the
-> phy-jh7110-inno-hdmi and the DRM bridge driver is acceptable for this
-> Innosilicon IP.
-> 
-> I am particularly interested if the current handling of the PHY tuning
-> parameters (as described in the cover letter) fits the modern DRM
-> bridge/PHY paradigm, or if this should be modeled differently given the
-> similarities to Rockchip implementations.
-> 
-> Best regards,
+On Sat, 22 Nov 2025 at 09:32, Roy Luo <royluo@google.com> wrote:
+>
+> Add support for the DWC3 USB controller found on Google Tensor G5
+> (codename: laguna). The controller features dual-role functionality
+> and hibernation.
+>
+> The primary focus is implementing hibernation support in host mode,
+> enabling the controller to enter a low-power state (D3). This is
+> particularly relevant during system power state transition and
+> runtime power management for power efficiency.
+> Highlights:
+> - Align suspend callback with dwc3_suspend_common() for deciding
+>   between a full teardown and hibernation in host mode.
+> - Integration with `psw` (power switchable) and `top` power domains,
+>   managing their states and device links to support hibernation.
+> - A notifier callback dwc3_google_usb_psw_pd_notifier() for
+>   `psw` power domain events to manage controller state
+>   transitions to/from D3.
+> - Coordination of the `non_sticky` reset during power state
+>   transitions, asserting it on D3 entry and deasserting on D0 entry
+>   in hibernation scenario.
+> - Handling of high-speed and super-speed PME interrupts
+>   that are generated by remote wakeup during hibernation.
+>
+> Co-developed-by: Joy Chakraborty <joychakr@google.com>
+> Signed-off-by: Joy Chakraborty <joychakr@google.com>
+> Co-developed-by: Naveen Kumar <mnkumar@google.com>
+> Signed-off-by: Naveen Kumar <mnkumar@google.com>
+> Signed-off-by: Roy Luo <royluo@google.com>
+> ---
+>  drivers/usb/dwc3/Kconfig       |  13 +
+>  drivers/usb/dwc3/Makefile      |   1 +
+>  drivers/usb/dwc3/dwc3-google.c | 628 +++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 642 insertions(+)
+>
+> diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
+> index 4925d15084f816d3ff92059b476ebcc799b56b51..f58c70dabf108878cbefe0abea88572d9ae81e26 100644
+> --- a/drivers/usb/dwc3/Kconfig
+> +++ b/drivers/usb/dwc3/Kconfig
+> @@ -200,4 +200,17 @@ config USB_DWC3_GENERIC_PLAT
+>           the dwc3 child node in the device tree.
+>           Say 'Y' or 'M' here if your platform integrates DWC3 in a similar way.
+>
+> +config USB_DWC3_GOOGLE
+> +       tristate "Google Platform"
+> +       depends on COMPILE_TEST
+> +       depends on OF && COMMON_CLK && RESET_CONTROLLER
+> +       help
+> +         Support the DesignWare Core USB3 IP found on Google Tensor
+> +         SoCs, starting with the G5 generation. This driver includes
 
-Hi folks,
+consider adding: (Laguna)
 
-Just a gentle ping on this series.
+> +         support for hibernation in host mode.
+> +         Say 'Y' or 'M' if you have one such device.
+> +
+> +         To compile this driver as a module, choose M here: the
+> +         module will be called dwc3-google.ko.
+> +
+>  endif
+> diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
+> index 96469e48ff9d189cc8d0b65e65424eae2158bcfe..cf1cd408d938b3ac26d58b9be7fcc5af3ee82660 100644
+> --- a/drivers/usb/dwc3/Makefile
+> +++ b/drivers/usb/dwc3/Makefile
+> @@ -58,3 +58,4 @@ obj-$(CONFIG_USB_DWC3_XILINX)         += dwc3-xilinx.o
+>  obj-$(CONFIG_USB_DWC3_OCTEON)          += dwc3-octeon.o
+>  obj-$(CONFIG_USB_DWC3_RTK)             += dwc3-rtk.o
+>  obj-$(CONFIG_USB_DWC3_GENERIC_PLAT)    += dwc3-generic-plat.o
+> +obj-$(CONFIG_USB_DWC3_GOOGLE)          += dwc3-google.o
+> diff --git a/drivers/usb/dwc3/dwc3-google.c b/drivers/usb/dwc3/dwc3-google.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..53e04a5409d8a11eb025b0f5cd351cb1b33281ab
+> --- /dev/null
+> +++ b/drivers/usb/dwc3/dwc3-google.c
+> @@ -0,0 +1,628 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * dwc3-google.c - Google DWC3 Specific Glue Layer
+> + *
+> + * Copyright (c) 2025, Google LLC
+> + * Author: Roy Luo <royluo@google.com>
+> + */
+> +
+> +#include <linux/of.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/irq.h>
+> +#include <linux/clk.h>
+> +#include <linux/module.h>
+> +#include <linux/kernel.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/regmap.h>
+> +#include <linux/mfd/syscon.h>
 
-I am primarily waiting on architectural feedback regarding the split
-between the DRM bridge and the PHY driver.
+Please sort the headers alphabetically. It helps avoid duplicates and
+is easier when adding new headers.
 
-If I don't receive any objections soon, I'll assume the current
-structure is acceptable and proceed with addressing the known PHY tuning
-issues for v2.
+Also can you add this file, and the bindings patch to the Tensor SoC
+MAINTAINERS entry, so it's easier to review future patches?
 
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+With those nits  addressed:
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+
+regards,
+
+Peter.
 
