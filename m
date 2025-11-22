@@ -1,255 +1,481 @@
-Return-Path: <devicetree+bounces-241387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8DBC7D409
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 17:50:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FCC8C7D41E
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 17:52:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B28253A90A1
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 16:50:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55E553A90FA
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 16:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53EEF26C384;
-	Sat, 22 Nov 2025 16:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69B628642D;
+	Sat, 22 Nov 2025 16:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="wrijjiAg"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TpAKt8VQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011018.outbound.protection.outlook.com [40.107.74.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6ABE1F5EA;
-	Sat, 22 Nov 2025 16:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.18
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763830219; cv=fail; b=sCB+QPDgObSlEYi8Xjt/tDXJ1YBUYtT1l/jOyqv0l+4SFl84OXSgBeZiWRXJeMfx93gV1lHgGhszB0Z6PXoFH7VYOSLyWfBIUWMXwQ250fNDGFXK3hbyn0T3xySBYbguxEFsFepZW258ZB6ydCj0cKOysmO3tMAPaitZ0t2XcZg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763830219; c=relaxed/simple;
-	bh=Y94QZauY6My3N/hs4UatQfm0eUjsUzfl49scILbXplM=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=N3r5LX7BFpG4sLbVZcySztBffjk2mxHeOaTlroIUx+8XhYi+Jo54OpQ/HDpvrPWQ06cJ32/jD0xCKyDTIU6cj8DkQ2yYqhNOeZHjyR6ahY+GHegzPFpAIFcK3vgw/zKnmCBtGt5kNiXbed/SGHCqUvRSPsh08iiIeqPAjQFfSTc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=wrijjiAg; arc=fail smtp.client-ip=40.107.74.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UaAuUUBYMR1pdt3sqBZCixfru3COZxcXjgcLsO7q4KomyOmSSEJf3eFxE1K9v4r4Y40Ov0jIVRfG6pNJZaC2KIoRpuufUBe+t8naZt9vITJzj7CgW7UyfmTa2Zod2caeMwvF2qZRdxphkhPzECl4xSN9LptfENnGeRumZkULTQqnS31s2G0018sMSbM9riJdqkUgxWNNq/d/IiUO0FNl6Ch6uIXJ1u6AUTuYFFhySjkVQc3ZrTD2IdORm/oWiVvbhdWWTyy4Ww5ruI6IdHU+YkWlPYeDtqiJZbTAuZOs+AEH8MPnAxGqhGSLdrhgvDZPjhhe9ndZdBowx/S14FG4aA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y94QZauY6My3N/hs4UatQfm0eUjsUzfl49scILbXplM=;
- b=DUU7m5RJIne/LuH0o6HuSzdvpVeH0e/dkmEYp179qwivhVMaxEbWtJtBCEf037OJqFcNFPb4aSyjC7z1qJS/pjfuz/ceoYfzNyd53DSY2Iz+RugTK3R4nkvT7sPwaTTmK1kPvPhtLONLA/BIFI+0O5daZMvXAxsPx6Ijj6qBW2rRuQnJhmSYh42pqxLgX3Klrh6UbcCfVk+Qa3a/2jE5ZyyKyAeU2A0+qS1AJ9JOxlsOUqNIdOAoxp4HcSU0aB3ebcjrCoWwUZdknqyMGVEQUkVtoJsaMrjXCBvY6sCsw9QAbLcYjsUtzuMw0WY5SJsN8+nDvw8e/F0J6Eft/A9OAQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y94QZauY6My3N/hs4UatQfm0eUjsUzfl49scILbXplM=;
- b=wrijjiAgMtqVvPwbDv/Z9BbOPl76X+7KSewTDZ2cSaqsQC2ov416oESrnIyxsmzaCjZWpGQWaL3gbsSiDy7nsIB6nqsL0kIGkKCExTK41Ph5e4WXMOLnLDuf8odMAmvBc7kjfJfDaEhohYTsThl3JAlGwfXJDayXGj4lqiu5Hlo=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYYPR01MB12620.jpnprd01.prod.outlook.com (2603:1096:405:15d::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.6; Sat, 22 Nov
- 2025 16:50:09 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%6]) with mapi id 15.20.9366.005; Sat, 22 Nov 2025
- 16:50:09 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: geert <geert@linux-m68k.org>, biju.das.au <biju.das.au@gmail.com>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, magnus.damm
-	<magnus.damm@gmail.com>, wsa+renesas <wsa+renesas@sang-engineering.com>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 09/13] serial: sh-sci: Add support for RZ/G3E RSCI clks
-Thread-Topic: [PATCH v3 09/13] serial: sh-sci: Add support for RZ/G3E RSCI
- clks
-Thread-Index: AQHcVVS9I70+63ZV2U2o3kt4pbthWbT9YCAAgAGU99A=
-Date: Sat, 22 Nov 2025 16:50:09 +0000
-Message-ID:
- <TY3PR01MB11346B7E2793EE439BD5821C786D2A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20251114105201.107406-1-biju.das.jz@bp.renesas.com>
- <20251114105201.107406-10-biju.das.jz@bp.renesas.com>
- <CAMuHMdU_fUhM2-gxhYN3jpzj8F5FOHFYjYT+ahrVs=bsLVBZGw@mail.gmail.com>
-In-Reply-To:
- <CAMuHMdU_fUhM2-gxhYN3jpzj8F5FOHFYjYT+ahrVs=bsLVBZGw@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYYPR01MB12620:EE_
-x-ms-office365-filtering-correlation-id: 40eefc98-800c-453f-9b21-08de29e73271
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?UXVCYXliZGVnQ3ZsSlRFeDYwRUFvRTZFdDZpM294bUp1SElrWmo1MlhNVHdC?=
- =?utf-8?B?MXVmb3FXZjYwV1pIajg0dndRYytNaEt5TndhYXlPR0dSai9yb0tvS2xmb3ND?=
- =?utf-8?B?NEtrRGF5eGl6T1ZTM2JJT1FQQTEyUUg4SXJuZmpHVVo0UlZ2RDl1SDdhSkND?=
- =?utf-8?B?Vk9ZN1pUakhDY0NwbzBSbElrQ3ZpYS8yTUhFbjZTWGRXTW9DMWtlVjhVVTR5?=
- =?utf-8?B?ZUFkMUx4M0lINzVHd1MxWlIvQnBBaHFmTVVxaHMyM3d4QVlHNjdaM1hYaDBZ?=
- =?utf-8?B?ZGx1TFo5aVBmTkFhUmp3eGwvOVIyc2NnQjF6SUF1MzZOK2tlSEtqV0grdlNL?=
- =?utf-8?B?ZENBM2s1VWxnbnhWczBVaFNPcmEyMlkxQjg2ajVGbTFBaXBuTkdtM0ZGZGFj?=
- =?utf-8?B?bGp4RmJkNlZZN01qSWh6Nm9ZcHlkTVlMVkkyTlcvVUtWYjVMZlVLMDdjSCt1?=
- =?utf-8?B?TmpnK2FVOVFYRXhGMUVkd3FZWE9PQVdCNjdxaHp1dTR4MnFiOFIrVXh6ZFpn?=
- =?utf-8?B?ZFRFL0ZaOUhwaWVoeitEKzhYWHFuSCs1ZERYRUpDU3Rqc3dkdGt3VFNXTDVB?=
- =?utf-8?B?RXprZFdXZzFTaS9VL0VVVXBPWEJmSzJEeUpJN2o1cXNpdnE3bkVFT2s5cW96?=
- =?utf-8?B?UFA2c0l1b29IWSt0RktndjFEK1pPVFpFOXlocUF3UmpoemVIdjhlR00yMEt5?=
- =?utf-8?B?cE9GcDdIcDhhOXJ2c1NOc0JvSWFPd0pjaDUzcCtMNGR0aTdlUnpodFF4QTVC?=
- =?utf-8?B?TTE2TjU2M2lFWTVqWXl5OEp3TEcweGRqWFlqcGZPeWVsRHlKZkgyVi8yb3ZD?=
- =?utf-8?B?RXRFaW8rb09wcTlkK3VzYlZUMTlrZEJ1RmRuaGNPbWR0QVgxdnJ4eEdoTzZz?=
- =?utf-8?B?ZXlIbUt3VDhzRUhORWlyVll4K09oWTBHZTF1Vy9HdXZQM3YzVWxVNXFtZ09O?=
- =?utf-8?B?dFZodHdabTUwR05Ra0FpcTV4WHRCblhQWXYxZTk5c041TjRORElrcGE2UzNu?=
- =?utf-8?B?VUU4ZmxMaVZhZnVIQy9rbVR1YWdjMVYyTlF4K2JiQlZsaFVxblNXYUJ3QUh2?=
- =?utf-8?B?eUZBc1ZjeDFDUDlOSkk1L2t4T3VXT2FCT2pFbXIrV211bUJEK1FzdmZzV1JO?=
- =?utf-8?B?alRpcTlWWGRSZjlSeUl1cnlwYlhNcDFtaUdLMmpZeXQ0MmxzWTRqb0ZQZnBO?=
- =?utf-8?B?Q2VlUjhNWS9GejBETGszU0RPQld0YmcycFZxd1g2a3o0dEZoTDhrVTN5cVU3?=
- =?utf-8?B?NXFCU1Fza1FPeTVCelMvOGcvcDdkMS84UTNSSEU2TWlnTmlnV0p3Wmo4c05m?=
- =?utf-8?B?cmp5cmw2Qm5xb1NrdnNSaWliaG1KS082WnA2c3N0bVU5QjBMUHlOaXpoVkY2?=
- =?utf-8?B?WjJEOTVUK1J0MDZwN3pBRUdlSW5GM2FRUWxUTm42OWFsOHJQZ3NyZ1hPeXdN?=
- =?utf-8?B?YjA1RHBhOWIvNXVNdUNYYkJqZnFMWWt6ZmxEV213dEhRV241cGlZSHZaRnov?=
- =?utf-8?B?K09jbW96cG5JdG4vREd1QnVGMVJJdU1mb2prYTBzRy96TU5sbE5GUkhJazBy?=
- =?utf-8?B?Q0k5QVFEMGh5TmpzVHIrdGlHU3RaQ2pqdFF4TURLZHZkT2Y0MC9PTzQ1V0RT?=
- =?utf-8?B?RmN1TFBQUEFRdHA3Y3J0S0FGRWN5NmNEWkRIN1k5RkZmeDBpMnFYY2ZoSThp?=
- =?utf-8?B?TmJaT2J0SFNOSkhFaFJtM0RISFVtaVpvUWRnNHdFZEJvZ0hmTVpyUmNsZFIr?=
- =?utf-8?B?MzNFdnJMS0ovYWE5TVZJa1d6U3FEaDVVbnZDdk5HdFQxOENKMjFQMyswbUFx?=
- =?utf-8?B?eWFLYlBTVzl1ZEpudTNxcjhHK2pVYnF3R2NwRDlFOTV2R2tpa2IrRXdvOHZP?=
- =?utf-8?B?cnpzSUdJMFhKZjMwMW9ETUNoVkdDUkloUTY3ZHkwbUFBckdlT01sREdnK0p3?=
- =?utf-8?B?QVJ4bWk2bDlMb0lPTzY0em9JTkZRWGZHU0JYUEFVUHZ4eXFJRlhBdWwvdTVw?=
- =?utf-8?B?UDNwcDhMQ2dwS0lBRXBPUmVKYzJQMjgzYmhadzAzRmFNeU5IQkRleDcyeEFi?=
- =?utf-8?Q?28qWlH?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?eHNUbkxFb3B1dy8vZ2tMbDNqOWlvZnp0dVZOR08yelExTXQyUk0xYXVSbTVT?=
- =?utf-8?B?R1hkM1lsUGJOcmNMTVFaYXM2REVDaXA2Q1h3TjcvU21PMXV4c2ZjWWlwaEtl?=
- =?utf-8?B?Yk5PVmJnNlN6YU9RME1iN1pWSVNvVGtnckY4bkhPalZyZmgxeHRBL3FkV29k?=
- =?utf-8?B?RjZQY3VLZ1paZDhON1ZjSjhRSWlMVENmVFFlVXQxWGVtUkI1MmFJVlBQdG0z?=
- =?utf-8?B?QzVacXo4eVdoeG9wUW9tREdBdFZUVXBaNmVZMTZvdHNVQ3NFQUtZNUY4NlNz?=
- =?utf-8?B?VkRkMlY0RHR1N3FOS0dxUWdzdWw5eGdmVm5HN0VCMEdDU0VpNEdSMFRWbUlk?=
- =?utf-8?B?aE1GT3NyNUFxZFRjZFZ1TEltTFNRT3l0OERiTlhWRGg1QnpLSkVOUU1GUGd6?=
- =?utf-8?B?SnVsbXl4aWRXQW5mTmxvVTVBc0pHMTk0T1VOYjRMYzVlcG1mdnQ1YXJzclow?=
- =?utf-8?B?M0RIOUhwRWh2N0Fla3JnVWRQdXR2N29LYkpNWkk5L2pvZzZ5NklxV1hWMEpZ?=
- =?utf-8?B?QmE4SnFrcU1mQStLMjRBd0N1UkRIZG1INlQvRG5UTVFwRW5iWm40T2FQaCs5?=
- =?utf-8?B?clZBR2x1NFlPRmErdGozejUrdUFRaTdzN1h0akdwbEFGMS9KVlNCU1o5OTBN?=
- =?utf-8?B?R0x1Nzh6MitBQTVMaDN1VldkU2J1aEdNNW1PY2NhMExmQnNIdVg4Z3ZtMkw1?=
- =?utf-8?B?cHBkTkNVYXBBU21lVG4rSGhJVHdqQTQvT2xFYzZnNzIyR3hMcitkM2N1RlJH?=
- =?utf-8?B?VjVkbFNOZTdkblBUUVlWVUJ2dU1kc2RPV2s2MCtibmgzOW14NjBYUHJObm1m?=
- =?utf-8?B?RndqUEMxOUdVL3dLNDhwcktPMDd0a1Axd0RQSU11VWlpSHNqdTl1dXN4cVNv?=
- =?utf-8?B?K2tFSUNTRDVKZkNRNnpVc3dTbC9MaUpvQWZma1dKeUduR21VWGxnMHFTNnYz?=
- =?utf-8?B?OWhXdmRFakNqb0Y4bXR0Njh5Umppc1R5eitkLzRCbnNnWCtaN1ZnSDBXZnVi?=
- =?utf-8?B?RG04K094RmxFNUVyQndQbDNZZkMwOFYzbUJKUzJPUSt6MHBRS2prV2pYOTFm?=
- =?utf-8?B?NzYybEZqQzdwVllBMWlUbFZpanJBOGxlMkpybjNWRUV2algzMzRvWVVGV2JE?=
- =?utf-8?B?U29lZ0ZrS2kzM0hzcExQakRyUEhic2NrcnlCV0RLdll5U3h6TmV3R04rekZh?=
- =?utf-8?B?T1loRXVIK3lLMGVoZzdPNDEvRVgrdHc1TFVQVmR0c2VwdVFkbi9CSDlacmZ1?=
- =?utf-8?B?R3BEWkhzS1hqdTFCL1JDNW9Ycjk4SWlPUnUyL1FFRDg0N0NkZG9iM1hvelJU?=
- =?utf-8?B?RVllOGQ4dkIvcjVEYjl3a0k5Wk5DeDBZbjIzZ1FPbEJiTWt0RjVGelY3dnVB?=
- =?utf-8?B?TTEzRUJqL1lmTFdJcVBuNkZVTEJvWlIyemhsNFkwc1VqZXF3bVRlUHpISjZh?=
- =?utf-8?B?LzJIYzZ5Smc2b3g5RU1rUnlQeUZpVXhGaUR6ZkVPMGdBUE43enBBcnB2UnlQ?=
- =?utf-8?B?bUpBNnlMRGpSbmZCeVhCbTlIb0poVU5HY1A1cU1Wb25KUVY1dzNjd1UwWTVy?=
- =?utf-8?B?eGVVNHYrS1hsWHR2a050U1VibHlQZ3ZKL3llVUVlUnlSL01VdnlicVpLcUgx?=
- =?utf-8?B?WDBZSGl2TjFkSllQQUtnRXByc0VCTmpNeE1FMEFiWXBRWWZyZE9GRm1rOXFx?=
- =?utf-8?B?b0lnejJwTEFkSHBsbTBiZ3lvRlkxRHdNVXZYT0svaVUvK0dIdm0zdUlBUUpx?=
- =?utf-8?B?K0ttaXluU1U1bGRzY284ZFRDN2ZvRkpmcW4vV2N1VzUwb21EdEFPZmJjY0ov?=
- =?utf-8?B?YTJNbGhyUTRGMjlOK3RGR0tWY1Rncm96cXpwTXcyeE1XaS9XOSt3Ky91RFY4?=
- =?utf-8?B?MUNlRW9uL0xGTW9YNHZCUkl5NWMvN1ZOUDRSWHBGZk1ibEVzVDloMlZRZSt0?=
- =?utf-8?B?MHJzWERKaHd6Vk4yUHRYcy9FWlVLeityb0NLZjd2OTFKaEdMQmpKWlpNSGlS?=
- =?utf-8?B?NzMzRnAvakJNTGN0ejFtSDAzbGNIem43dFFldnlpNVZ3N2MrQS9vOG1hTTZ5?=
- =?utf-8?B?blJxeTRWbFJhenE2SFJaU283UDY2ZUJiZXFxSDZPUlR2cFRJUW91NVBQcnJU?=
- =?utf-8?B?YlMwRUJVeWxlNXBjSzZoYTdEc1NjKzFZb3BJa25iS2p1L2NpMjdjUjJLZHNy?=
- =?utf-8?B?K0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4D41D5160
+	for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 16:52:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763830327; cv=none; b=J+afWIjriM/zDTU0+1xIls7QFHuSuYVMcTh5cQt3iZwHRLod9RT5SWN3nfxy0kkCvFhce40xtCrPYWCIGtYG0soCM+pqukdcELhTObQoxZkGvUEAvpDHj3X1Lmp6Ei3n4Wbpn7fQ8EGejqxVnhBRQZREF4ndm5xHawExxqUkKkA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763830327; c=relaxed/simple;
+	bh=nGheMCBm4X7XH3dYoS6fRfFcwblqlpoRtoJlx7coLJg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=FeGA6pAShi+1bFJFsZPu6edjFsF5C961CJQsTfIYowMdNMOcaQHVKsnZXBL500v5sol2BpJ1ipaFSPeCwwvcl92JmW3K8r19RtpXfgRpM2PQASIxfYwbNG5y9h5ukjP35HS4TXq/eq4lOyQLXb0UPUQwW5vLO+Pv7d8P4Y7tT14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=TpAKt8VQ; arc=none smtp.client-ip=209.85.210.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-7c52fa75cd3so2291306a34.3
+        for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 08:52:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763830324; x=1764435124; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Sh8hHOP9drovdg2rt4Vvr6IFk9L/VFH0Ch9O0TTw990=;
+        b=TpAKt8VQuEiDOqSC7eVoeTXjzBumJrEmbmr0L+5S0LbfyZRO1kxxCQPrbs0NO5zL6f
+         Xx3kq8CWz+L2gAAIWIo3caHkinni75OekZvhKdFIkosxmPSzm/4rC3YTVPVM9GS5bMEh
+         xsIozaG6CH2lA7t6Iwsd3yUprikpCwtSpS4ZQF1x0J1zTRfP2FvRgxqLrOnwS5EZISFv
+         0KfewPwF4/BUPVwLdYWMRNOoTUvf8MEOsISAwI0LwuAiIXt2kgGNLTI7Ii/k1zSXzgZX
+         ft5TRORLysNnleDl35njfVrMVgRPIdGYugzEOeHBjv9QKvMryJxHCYQn7lkb7cvBsCkf
+         49FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763830324; x=1764435124;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Sh8hHOP9drovdg2rt4Vvr6IFk9L/VFH0Ch9O0TTw990=;
+        b=Jf6VJosMA+Wr3olwvsgVYk3oeRBnI0xKJ9626v4WGTEZRAYOiILYyD+axmwfTpz9yg
+         ieq3RFirT/S+wv+USgVwto4kLk5jVEI0jn3QLdjF8St+VrEQX2SiAI3m+i+aK+gyeCo3
+         bsfziPPMJ0ijMtHgk9CwRIpYBZ49JYM0C5g8aeIH9li4IvsU6eOcGlY7e1ZbNCgzBsLS
+         05Zwb+oK9Yt34cEL/DZV4uURlIf3nNiMu5nMTY0pVA7+4Y/wZ6HiB2wxxOOqFE8dg5ky
+         U80tYgYoIMjemz0duBhlExvk8eGUPfrmCtut9mTu5zzsVhg+Y45uRXBTPilN0ndJ34md
+         w9QA==
+X-Forwarded-Encrypted: i=1; AJvYcCW10BNhVPDuqX8FUzguwbtlxIx2mxByjxKuDVDko6ze6jZ/h8O+ppFKDIsralDS83z7stlQLA/1+wiU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyO1qm5BRj+14Yr12KbQq0w6IC9Mcz4YnOj/7sZ5rpxBfu5rVp
+	Oa+oPy92vzqSxt0f12e3cp6gaviWzyfORcDbSWfK878JBJqwRu9eNP+NZvpdjY2QXlk=
+X-Gm-Gg: ASbGnct/tSD4/3pLajyje03cKtDsS2w0XER/Xf/YSZoWBMdaWsnjf3bPk6AIX5kABLP
+	t9Am03skBQE/gq3idsUj8JKAAyWvFCDJdudXRxrdGJTp1tZWIjimGcRKPMFZps/yEf1RQv3d13S
+	t40NL5xzBDubOvzJSrzmOKFNWPezS7kuoUY/qtYxgboaJaW6bC7ljtOgNvl4itCREgUHAEbv3MS
+	KFO+3yXKve8l0IVuoxd2pjfUVdh7PsQehi++8/YYhj0TtNrD3MTueSwwRBeh1b5SfCdDqooSfdn
+	ttChSA7WzABAsHuTutyESqGPgS0T2tfetSvPALMlDW3sHTorwukQ9TT3n6DRk/cqeepyavyorHy
+	Wg4sIvrsNJxTmEPa9HkayqQU/f9qMcnhqVFLdIjjEK2AUzHKShkZ6kEVl2hH1Cp4t9rgkkxBtjR
+	JR4fU+uOjstTESiIlR1/6zJGSeFs59lxJW57wA5KtiQqDzTuq4KUnhTNuOUsEO
+X-Google-Smtp-Source: AGHT+IHa/+72L6QVdDNfQguUxKv6/KAvvwPNWGbh2YzhtqwmZUQcLI9Z8RvvWR2PM29rkEMtk6Csaw==
+X-Received: by 2002:a05:6830:43ab:b0:7c6:ca92:3621 with SMTP id 46e09a7af769-7c798db1dfdmr3366576a34.22.1763830323867;
+        Sat, 22 Nov 2025 08:52:03 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:e782:93d8:7c2f:f9df? ([2600:8803:e7e4:500:e782:93d8:7c2f:f9df])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c78d32cbd9sm3523534a34.11.2025.11.22.08.52.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Nov 2025 08:52:02 -0800 (PST)
+Message-ID: <68452dcc-027a-4170-b9f5-2b064972b618@baylibre.com>
+Date: Sat, 22 Nov 2025 10:52:00 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40eefc98-800c-453f-9b21-08de29e73271
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Nov 2025 16:50:09.3349
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kSQm2ppZt/xZE8IKq2jydBdvW232SQjVM7UbEC8EunbGKGThd18+5a9qGEP1U3rHY3ZSUA0J2yKOVOg/nuUQKEjmOv12aWcULL3CgNeTaAU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB12620
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] iio: amplifiers: adl8113: add driver support
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251121095204.18574-1-antoniu.miclaus@analog.com>
+ <20251121095204.18574-3-antoniu.miclaus@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20251121095204.18574-3-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IC0tLS0tT3JpZ2luYWwg
-TWVzc2FnZS0tLS0tDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnRAbGludXgtbTY4
-ay5vcmc+DQo+IFNlbnQ6IDIxIE5vdmVtYmVyIDIwMjUgMTY6MzkNCj4gU3ViamVjdDogUmU6IFtQ
-QVRDSCB2MyAwOS8xM10gc2VyaWFsOiBzaC1zY2k6IEFkZCBzdXBwb3J0IGZvciBSWi9HM0UgUlND
-SSBjbGtzDQo+IA0KPiBIaSBCaWp1LA0KPiANCj4gT24gRnJpLCAxNCBOb3YgMjAyNSBhdCAxMTo1
-MiwgQmlqdSA8YmlqdS5kYXMuYXVAZ21haWwuY29tPiB3cm90ZToNCj4gPiBGcm9tOiBCaWp1IERh
-cyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+ID4NCj4gPiBSWi9HM0UgUlNDSSBoYXMg
-NiBjbG9ja3MgKDUgbW9kdWxlIGNsb2NrcyArIDEgZXh0ZXJuYWwgY2xvY2spLiBBZGQNCj4gPiBz
-dXBwb3J0IGZvciB0aGUgbW9kdWxlIGNsb2Nrcy4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEJp
-anUgRGFzIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4NCj4gDQo+IFRoYW5rcyBmb3IgeW91
-ciBwYXRjaCENCj4gDQo+ID4gLS0tIGEvZHJpdmVycy90dHkvc2VyaWFsL3NoLXNjaS1jb21tb24u
-aA0KPiA+ICsrKyBiL2RyaXZlcnMvdHR5L3NlcmlhbC9zaC1zY2ktY29tbW9uLmgNCj4gPiBAQCAt
-MTcsNiArMTcsOSBAQCBlbnVtIFNDSV9DTEtTIHsNCj4gPiAgICAgICAgIFNDSV9TQ0ssICAgICAg
-ICAgICAgICAgIC8qIE9wdGlvbmFsIEV4dGVybmFsIENsb2NrICovDQo+ID4gICAgICAgICBTQ0lf
-QlJHX0lOVCwgICAgICAgICAgICAvKiBPcHRpb25hbCBCUkcgSW50ZXJuYWwgQ2xvY2sgU291cmNl
-ICovDQo+ID4gICAgICAgICBTQ0lfU0NJRl9DTEssICAgICAgICAgICAvKiBPcHRpb25hbCBCUkcg
-RXh0ZXJuYWwgQ2xvY2sgU291cmNlICovDQo+ID4gKyAgICAgICBTQ0lfRkNLX0RJVjY0LCAgICAg
-ICAgICAvKiBPcHRpb25hbCBGdW5jdGlvbmFsIENsb2NrIGZyZXF1ZW5jeS1kaXZpZGVkIGJ5IDY0
-ICovDQo+ID4gKyAgICAgICBTQ0lfRkNLX0RJVjE2LCAgICAgICAgICAvKiBPcHRpb25hbCBGdW5j
-dGlvbmFsIENsb2NrIGZyZXF1ZW5jeS1kaXZpZGVkIGJ5IDE2ICovDQo+ID4gKyAgICAgICBTQ0lf
-RkNLX0RJVjQsICAgICAgICAgICAvKiBPcHRpb25hbCBGdW5jdGlvbmFsIENsb2NrIGZyZXF1ZW5j
-eS1kaXZpZGVkIGJ5IDQgKi8NCj4gDQo+IFBlcmhhcHMgcmV2ZXJzZSB0aGUgb3JkZXI/DQoNCk9L
-Lg0KDQo+IA0KPiA+ICAgICAgICAgU0NJX05VTV9DTEtTDQo+ID4gIH07DQo+ID4NCj4gPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy90dHkvc2VyaWFsL3NoLXNjaS5jIGIvZHJpdmVycy90dHkvc2VyaWFs
-L3NoLXNjaS5jDQo+ID4gaW5kZXggMmRhMzZlOGNlNTU1Li4zYjAzZDNkM2YyYzcgMTAwNjQ0DQo+
-ID4gLS0tIGEvZHJpdmVycy90dHkvc2VyaWFsL3NoLXNjaS5jDQo+ID4gKysrIGIvZHJpdmVycy90
-dHkvc2VyaWFsL3NoLXNjaS5jDQo+ID4gQEAgLTMxNzIsNiArMzE3Miw5IEBAIHN0YXRpYyBpbnQg
-c2NpX2luaXRfY2xvY2tzKHN0cnVjdCBzY2lfcG9ydCAqc2NpX3BvcnQsIHN0cnVjdCBkZXZpY2Ug
-KmRldikNCj4gPiAgICAgICAgICAgICAgICAgW1NDSV9TQ0tdID0gInNjayIsDQo+ID4gICAgICAg
-ICAgICAgICAgIFtTQ0lfQlJHX0lOVF0gPSAiYnJnX2ludCIsDQo+ID4gICAgICAgICAgICAgICAg
-IFtTQ0lfU0NJRl9DTEtdID0gInNjaWZfY2xrIiwNCj4gPiArICAgICAgICAgICAgICAgW1NDSV9G
-Q0tfRElWNjRdID0gInRjbGtfZGl2NjQiLA0KPiA+ICsgICAgICAgICAgICAgICBbU0NJX0ZDS19E
-SVYxNl0gPSAidGNsa19kaXYxNiIsDQo+ID4gKyAgICAgICAgICAgICAgIFtTQ0lfRkNLX0RJVjRd
-ID0gInRjbGtfZGl2NCIsDQo+IA0KPiBMaWtld2lzZQ0KT0suDQo+IA0KPiA+ICAgICAgICAgfTsN
-Cj4gPiAgICAgICAgIHN0cnVjdCBjbGsgKmNsazsNCj4gPiAgICAgICAgIHVuc2lnbmVkIGludCBp
-Ow0KPiA+IEBAIC0zMTgxLDYgKzMxODQsOSBAQCBzdGF0aWMgaW50IHNjaV9pbml0X2Nsb2Nrcyhz
-dHJ1Y3Qgc2NpX3BvcnQgKnNjaV9wb3J0LCBzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ID4gICAgICAg
-ICB9IGVsc2UgaWYgKHNjaV9wb3J0LT50eXBlID09IFNDSV9QT1JUX1JTQ0kpIHsNCj4gPiAgICAg
-ICAgICAgICAgICAgY2xrX25hbWVzW1NDSV9GQ0tdID0gIm9wZXJhdGlvbiI7DQo+ID4gICAgICAg
-ICAgICAgICAgIGNsa19uYW1lc1tTQ0lfQlJHX0lOVF0gPSAiYnVzIjsNCj4gPiArICAgICAgIH0g
-ZWxzZSBpZiAoc2NpX3BvcnQtPnR5cGUgPT0gUlNDSV9QT1JUX1NDSSB8fCBzY2lfcG9ydC0+dHlw
-ZSA9PSBSU0NJX1BPUlRfU0NJRikgew0KPiA+ICsgICAgICAgICAgICAgICBjbGtfbmFtZXNbU0NJ
-X0ZDS10gPSAidGNsayI7DQo+ID4gKyAgICAgICAgICAgICAgIGNsa19uYW1lc1tTQ0lfQlJHX0lO
-VF0gPSAiYnVzIjsNCj4gDQo+IHBjbGs/DQpPSy4NCg0KPiANCj4gPiAgICAgICAgIH0NCj4gPg0K
-PiA+ICAgICAgICAgZm9yIChpID0gMDsgaSA8IFNDSV9OVU1fQ0xLUzsgaSsrKSB7IEBAIC0zMTk0
-LDYgKzMyMDAsMTIgQEANCj4gPiBzdGF0aWMgaW50IHNjaV9pbml0X2Nsb2NrcyhzdHJ1Y3Qgc2Np
-X3BvcnQgKnNjaV9wb3J0LCBzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAoaSA9PSBTQ0lfRkNLIHx8IGkgPT0gU0NJX0JSR19JTlQpKQ0KPiA+ICAgICAgICAgICAg
-ICAgICAgICAgICAgIHJldHVybiBkZXZfZXJyX3Byb2JlKGRldiwgLUVOT0RFViwgImZhaWxlZCB0
-bw0KPiA+IGdldCAlc1xuIiwgbmFtZSk7DQo+ID4NCj4gPiArICAgICAgICAgICAgICAgaWYgKCFj
-bGsgJiYgKHNjaV9wb3J0LT50eXBlID09IFJTQ0lfUE9SVF9TQ0kgfHwNCj4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIHNjaV9wb3J0LT50eXBlID09IFJTQ0lfUE9SVF9TQ0lGKSAmJg0K
-PiA+ICsgICAgICAgICAgICAgICAgICAgKGkgPT0gU0NJX0ZDSyB8fCBpID09IFNDSV9CUkdfSU5U
-IHx8IGkgPT0gU0NJX0ZDS19ESVY2NCB8fA0KPiA+ICsgICAgICAgICAgICAgICAgICAgIGkgPT0g
-U0NJX0ZDS19ESVYxNiB8fCBpID09IFNDSV9GQ0tfRElWNCkpDQo+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgcmV0dXJuIGRldl9lcnJfcHJvYmUoZGV2LCAtRU5PREVWLCAiZmFpbGVkIHRvDQo+
-ID4gKyBnZXQgJXNcbiIsIG5hbWUpOw0KPiA+ICsNCj4gPiAgICAgICAgICAgICAgICAgaWYgKCFj
-bGsgJiYgaSA9PSBTQ0lfRkNLKSB7DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgLyoNCj4g
-PiAgICAgICAgICAgICAgICAgICAgICAgICAgKiBOb3QgYWxsIFNIIHBsYXRmb3JtcyBkZWNsYXJl
-IGEgY2xvY2sgbG9va3VwDQo+ID4gZW50cnkNCj4gDQo+IFRoaXMgZnVuY3Rpb24gaXMgYmVjb21p
-bmcgYSBiaXQgY3VtYmVyc29tZS4NCj4gQ2FuIGl0IGJlIHNpbXBsaWZpZWQ/DQo+IENhbiB3ZSBh
-dm9pZCBsb29raW5nIHVwIGNsb2NrcyB0aGF0IGFyZSBub3QgcmVsZXZhbnQgZm9yIHRoZSBwb3J0
-Pw0KDQpPSyB3aWxsIGZpeCB0aGlzIGluIG5leHQgdmVyc2lvbi4NCg0KQ2hlZXJzLA0KQmlqdQ0K
+On 11/21/25 3:52 AM, Antoniu Miclaus wrote:
+> Add support for adl8113 10MHz to 12GHz Low Noise Amplifier with
+> 10MHz to 14GHz bypass switches.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> 
+> Changes in v4:
+> - Replace signal_path sysfs attribute with hardwaregain-only control
+> - Add support for external bypass amplifiers via DT properties
+> - Introduce dynamic gain configuration system with adl8113_gain_config structure
+> ---
+>  drivers/iio/amplifiers/Kconfig   |  12 ++
+>  drivers/iio/amplifiers/Makefile  |   1 +
+>  drivers/iio/amplifiers/adl8113.c | 277 +++++++++++++++++++++++++++++++
+>  3 files changed, 290 insertions(+)
+>  create mode 100644 drivers/iio/amplifiers/adl8113.c
+> 
+> diff --git a/drivers/iio/amplifiers/Kconfig b/drivers/iio/amplifiers/Kconfig
+> index 55eb16b32f6c..a8a604863eed 100644
+> --- a/drivers/iio/amplifiers/Kconfig
+> +++ b/drivers/iio/amplifiers/Kconfig
+> @@ -36,6 +36,18 @@ config ADA4250
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called ada4250.
+>  
+> +config ADL8113
+> +	tristate "Analog Devices ADL8113 Low Noise Amplifier"
+> +	depends on GPIOLIB
+> +	help
+> +	  Say yes here to build support for Analog Devices ADL8113 Low Noise
+> +	  Amplifier with integrated bypass switches. The device supports four
+> +	  operation modes controlled by GPIO pins: internal amplifier,
+> +	  internal bypass, and two external bypass modes.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called adl8113.
+> +
+>  config HMC425
+>  	tristate "Analog Devices HMC425A and similar GPIO Gain Amplifiers"
+>  	depends on GPIOLIB
+> diff --git a/drivers/iio/amplifiers/Makefile b/drivers/iio/amplifiers/Makefile
+> index 2126331129cf..0a76443be1aa 100644
+> --- a/drivers/iio/amplifiers/Makefile
+> +++ b/drivers/iio/amplifiers/Makefile
+> @@ -6,4 +6,5 @@
+>  # When adding new entries keep the list in alphabetical order
+>  obj-$(CONFIG_AD8366) += ad8366.o
+>  obj-$(CONFIG_ADA4250) += ada4250.o
+> +obj-$(CONFIG_ADL8113) += adl8113.o
+>  obj-$(CONFIG_HMC425) += hmc425a.o
+> diff --git a/drivers/iio/amplifiers/adl8113.c b/drivers/iio/amplifiers/adl8113.c
+> new file mode 100644
+> index 000000000000..118789aa2c19
+> --- /dev/null
+> +++ b/drivers/iio/amplifiers/adl8113.c
+> @@ -0,0 +1,277 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ADL8113 Low Noise Amplifier with integrated bypass switches
+> + *
+> + * Copyright 2025 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/slab.h>
+> +#include <linux/sysfs.h>
+> +
+> +enum adl8113_signal_path {
+> +	ADL8113_INTERNAL_AMP,
+> +	ADL8113_INTERNAL_BYPASS,
+> +	ADL8113_EXTERNAL_A,
+> +	ADL8113_EXTERNAL_B,
+> +};
+> +
+> +struct adl8113_gain_config {
+> +	enum adl8113_signal_path path;
+> +	int gain_db;
+> +	int va;
+> +	int vb;
+> +};
+> +
+> +struct adl8113_state {
+> +	struct gpio_desc *gpio_va;
+> +	struct gpio_desc *gpio_vb;
+> +	struct adl8113_gain_config *gain_configs;
+> +	int num_gain_configs;
+> +	enum adl8113_signal_path current_path;
+> +};
+> +
+> +static const char * const adl8113_supply_names[] = {
+> +	"vdd1",
+> +	"vdd2",
+> +	"vss2"
+> +};
+
+Datasheet says recommended power on sequence is VDD_SW, VSS, VDD_PA.
+Don't know why they used different names for just that one section
+in the datasheet, but at least vss2 should go in the middle. Not
+sure which VSS is which though.
+
+> +
+> +static int adl8113_set_path(struct adl8113_state *st,
+> +			    enum adl8113_signal_path path)
+> +{
+> +	int va, vb;
+> +
+> +	/* Determine GPIO values based on signal path */
+> +	switch (path) {
+> +	case ADL8113_INTERNAL_AMP:
+> +		va = 0; vb = 0; /* Internal amplifier */
+> +		break;
+> +	case ADL8113_INTERNAL_BYPASS:
+> +		va = 1; vb = 1; /* Internal bypass */
+> +		break;
+> +	case ADL8113_EXTERNAL_A:
+> +		va = 0; vb = 1; /* External bypass A */
+> +		break;
+> +	case ADL8113_EXTERNAL_B:
+> +		va = 1; vb = 0; /* External bypass B */
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+
+This could be simplified by using a gpiod array.
+
+> +
+> +	gpiod_set_value(st->gpio_va, va);
+> +	gpiod_set_value(st->gpio_vb, vb);
+
+This doesn't need to be atomic, so we can use the _cansleep() versions of
+the gpio functions.
+
+> +	st->current_path = path;
+> +	return 0;
+> +}
+> +
+> +static int adl8113_find_gain_config(struct adl8113_state *st, int gain_db)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < st->num_gain_configs; i++) {
+> +		if (st->gain_configs[i].gain_db == gain_db)
+> +			return i;
+> +	}
+> +	return -EINVAL;
+> +}
+> +
+> +static const struct iio_chan_spec adl8113_channels[] = {
+> +	{
+> +		.type = IIO_VOLTAGE,
+> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN),
+> +		.indexed = 1,
+> +		.channel = 0,
+
+.indexed and .channel have no effect for shared_by_type so can be
+omitted.
+
+> +	},
+> +};
+> +
+> +static int adl8113_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val, int *val2, long mask)
+> +{
+> +	struct adl8113_state *st = iio_priv(indio_dev);
+> +	int i;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_HARDWAREGAIN:
+> +		/* Find current gain configuration */
+> +		for (i = 0; i < st->num_gain_configs; i++) {
+> +			if (st->gain_configs[i].path == st->current_path) {
+> +				*val = st->gain_configs[i].gain_db;
+> +				*val2 = 0;
+> +				return IIO_VAL_INT_PLUS_MICRO_DB;
+> +			}
+> +		}
+> +		return -EINVAL;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int adl8113_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     int val, int val2, long mask)
+> +{
+> +	struct adl8113_state *st = iio_priv(indio_dev);
+> +	int config_idx;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_HARDWAREGAIN:
+> +		if (val2 != 0)
+> +			return -EINVAL;
+> +
+> +		config_idx = adl8113_find_gain_config(st, val);
+> +		if (config_idx < 0)
+> +			return -EINVAL;
+
+			return config_idx; 
+
+would be more typical.
+
+> +
+> +		return adl8113_set_path(st, st->gain_configs[config_idx].path);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static const struct iio_info adl8113_info = {
+> +	.read_raw = adl8113_read_raw,
+> +	.write_raw = adl8113_write_raw,
+> +};
+> +
+> +static int adl8113_init_gain_configs(struct device *dev, struct adl8113_state *st)
+> +{
+> +	int external_a_gain, external_b_gain;
+> +	int num_configs = 2; /* Always have internal amp and internal bypass */
+> +	int i = 0;
+> +
+> +	/* Check for optional external bypass amplifier gains */
+> +	if (!device_property_read_u32(dev, "adi,external-bypass-a-gain-db",
+> +				      &external_a_gain))
+
+Looks like we could just use device_property_present() here.
+
+> +		num_configs++;
+> +
+> +	if (!device_property_read_u32(dev, "adi,external-bypass-b-gain-db",
+> +				      &external_b_gain))
+> +		num_configs++;
+> +
+> +	st->gain_configs = devm_kcalloc(dev, num_configs,
+> +					sizeof(*st->gain_configs), GFP_KERNEL);
+> +	if (!st->gain_configs)
+> +		return -ENOMEM;
+> +
+> +	/* Always include internal amplifier (14dB) */
+> +	st->gain_configs[i].path = ADL8113_INTERNAL_AMP;
+> +	st->gain_configs[i].gain_db = 14;
+> +	i++;
+> +
+> +	/* Always include internal bypass (0dB) */
+> +	st->gain_configs[i].path = ADL8113_INTERNAL_BYPASS;
+> +	st->gain_configs[i].gain_db = 0;
+
+The datasheet says there is actually a loss here. In one place it
+says 2.2dB and in another 1.8db.
+
+So it would make sense for this to be -2.
+
+> +	i++;
+> +
+> +	/* Add external bypass A if configured */
+> +	if (!device_property_read_u32(dev, "adi,external-bypass-a-gain-db",
+> +				      &external_a_gain)) {
+> +		st->gain_configs[i].path = ADL8113_EXTERNAL_A;
+> +		st->gain_configs[i].gain_db = external_a_gain;
+> +		i++;
+> +	}
+> +
+> +	/* Add external bypass B if configured */
+> +	if (!device_property_read_u32(dev, "adi,external-bypass-b-gain-db",
+> +				      &external_b_gain)) {
+> +		st->gain_configs[i].path = ADL8113_EXTERNAL_B;
+> +		st->gain_configs[i].gain_db = external_b_gain;
+> +		i++;
+> +	}
+> +
+> +	st->num_gain_configs = num_configs;
+
+The datasheet mentioned switching to a bypass with nothing connected for
+testing, so it could make sense that if there is a free config, add one
+more with gain of INT_MIN (for near-infinite attenuation) to allow that
+if needed.
+
+> +
+> +	/* Check for duplicate gain values */
+> +	for (i = 0; i < num_configs - 1; i++) {
+> +		for (int j = i + 1; j < num_configs; j++) {
+
+This type of inline variable declaration is usually avoided in the kernel.
+
+> +			if (st->gain_configs[i].gain_db == st->gain_configs[j].gain_db) {
+> +				dev_err(dev, "Duplicate gain values not allowed: %d dB\n",
+> +					st->gain_configs[i].gain_db);
+> +				return -EINVAL;
+
+Should be OK to use dev_err_probe() here.
+
+> +			}
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int adl8113_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct adl8113_state *st;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +
+> +	st->gpio_va = devm_gpiod_get(dev, "va", GPIOD_OUT_LOW);
+> +	if (IS_ERR(st->gpio_va))
+> +		return dev_err_probe(dev, PTR_ERR(st->gpio_va),
+> +				     "failed to get VA GPIO\n");
+> +
+> +	st->gpio_vb = devm_gpiod_get(dev, "vb", GPIOD_OUT_LOW);
+> +	if (IS_ERR(st->gpio_vb))
+> +		return dev_err_probe(dev, PTR_ERR(st->gpio_vb),
+> +				     "failed to get VB GPIO\n");
+> +
+> +	ret = devm_regulator_bulk_get_enable(dev,
+> +					     ARRAY_SIZE(adl8113_supply_names),
+> +					     adl8113_supply_names);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to get and enable supplies\n");
+> +
+> +	/* Initialize gain configurations from devicetree */
+> +	ret = adl8113_init_gain_configs(dev, st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Initialize to internal amplifier path (14dB) */
+> +	ret = adl8113_set_path(st, ADL8113_INTERNAL_AMP);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->info = &adl8113_info;
+> +	indio_dev->name = "adl8113";
+> +	indio_dev->channels = adl8113_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(adl8113_channels);
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+
+This doesn't do single conversions, so no INDIO_DIRECT_MODE (or any
+other mode).
+
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+> +
+> +static const struct of_device_id adl8113_of_match[] = {
+> +	{ .compatible = "adi,adl8113" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, adl8113_of_match);
+> +
+> +static struct platform_driver adl8113_driver = {
+> +	.driver = {
+> +		.name = "adl8113",
+> +		.of_match_table = adl8113_of_match,
+> +	},
+> +	.probe = adl8113_probe,
+> +};
+> +
+> +module_platform_driver(adl8113_driver);
+> +
+> +MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
+> +MODULE_DESCRIPTION("Analog Devices ADL8113 Low Noise Amplifier");
+> +MODULE_LICENSE("GPL");
+
 
