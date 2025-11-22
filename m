@@ -1,363 +1,214 @@
-Return-Path: <devicetree+bounces-241364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B23F5C7D0E1
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 13:52:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0684BC7D0B1
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 13:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 43FA9351BCC
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:48:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C92013A1AE1
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21CF2286417;
-	Sat, 22 Nov 2025 12:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345A028150F;
+	Sat, 22 Nov 2025 12:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e8teUgq+"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="NFcZ8jMw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010025.outbound.protection.outlook.com [52.101.228.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836311C860A
-	for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 12:48:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763815699; cv=none; b=Zhg2hMGPZG3KxZK0KTsmg1XilPdPgiBW0YC9YiqGMFYx0F4Xs3S1+1FsmINcvY4DuoKYHWKBRIxQjq4B+V1rNjVXIOPzfywlVQ29hccKRHo2lfqbIUDbYDoLdWBBJLq1bff6X+Pt/clSrelYuJpPxOyRa0pasjVBIIuInVsisV0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763815699; c=relaxed/simple;
-	bh=Cx5mm+LHEHThWpNfzPBSTyj6Ref7KHNCEdY/Q3eDbfM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rPF4nSP1AZAFBDhzDn+35HoWRyWfeENXMLv9HL8ifvdNXZQ/vg+1SmvJxBRJtGHPvCyU+0pOajRCr7SH3Qx8tfj86fsgsyE/aA2y9AqhdIqGiGBUjI57fyPatmobAXufpdF320G2JAXtpNjX6Vv5WZb72NSaxNpT8Rc1dmxEUL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e8teUgq+; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-88057f5d041so28948356d6.1
-        for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 04:48:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763815694; x=1764420494; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=o8gqhbCltqdqbcHVKZyuU/IaHPWnbH5XRr5u6wrUOXw=;
-        b=e8teUgq+XE6zG57Bnt7hQWKEHeL6VoqOYoAnZqWd7NYUuYV3tYvnXv4QLq5i8Gmygu
-         F9cfIDh7qoCT8aeIHRQKievdbTZMEI2yS3+o8/1veXyLnVxDxv1XAhFkhshZr9BSOixz
-         POPmb09OWEWXFpxziMmraEvA7Bn8ffbFAQIEfAgIfS1gyEyDXvAydp5FqmaqYDgLWfKi
-         ZriXC1msaL/myuv2RYERIIAmVdxNB7Iylsbiso2DCwix8oqiXzQPlX3vhMAlTVYD/M3R
-         XRrmVnBBsAsZkY1/wtj7AuhQwZhINfTlWVenh8ZqNhAB2AJJf048bRgYWMzWQ2ctuOFl
-         7uhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763815694; x=1764420494;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o8gqhbCltqdqbcHVKZyuU/IaHPWnbH5XRr5u6wrUOXw=;
-        b=N3RM+rftcMuOMLGpnoWrJqTyhhfkwUvFZ5wH5n/k6yzXuWFcFOlEsZO39mP6ei+eLn
-         9ovhejTweLkDg/nMjOHfk7QCq2DTACOfbOIO6fWw5sNe17MZDmw7G9LOCMpDFu/VsWqG
-         xE0ffYt/J9NKe7+mzDTuxZHb/N5hqGvRIN6fGaNiARN96Mb/4sboWPojcQgsL1Q3HSdX
-         sbyXA7A67mylN3TfmWb32vayeU7sRY9R9bcQcu45NtkSc0fuVzMXx+llEetjCUia5p4/
-         a16Kk4+/1VSEDZl4LyhD/LDdes3eh7TY17dt4qMfuBwf9LeReXjPVSIv+l+v41w19ygG
-         GXRA==
-X-Forwarded-Encrypted: i=1; AJvYcCWMRvnkdx+7PI9brdet4dQw8s0Pwgvj9qPDckhbaCYBsFUkvhwZymxbJE05uDfnvCpRW4kIfXxpvPqQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxX0IxrofudRJgYN84YjP7b78xh6l0Y6Tw1Fsyr3EMfVNejkBa
-	gCqCNJ0V0GKDFldEgtnnnTyQYWjbHgfA3rdDjE1uDl2rAoE9ejmxVWInCuuxyTd8QL7og6f+MF+
-	nPENHf6EwxqOHDr1VlWHDpJuQTdKplWCK7zm0RIPnUQ==
-X-Gm-Gg: ASbGncvs4SVXazVhV2xo3p2mLFhXXonys7SjCY7nUc0S6eGxR+vcqkho08M7tJsFOXT
-	O2L5toFNh8hSd8xV/RshfUDO8lRzCe9nKx7A8vHV0nAzVAL5WSPvAlPvJdX0PUiRoWLDfOhtY6A
-	t88LbygPUO5NWBzPLG2KLKfzNxO4S4dxQL4EtiRQdJa9lOnSUW3k75AzMr36qo3DBFJgcK2rtXH
-	AZRCuJumyGJFh5sWGusQ7EkpMRqfJj6xv8j4t9HDrBgysuW3cBdVgx7+k89VkdcXgZb7RA=
-X-Google-Smtp-Source: AGHT+IFui2/FcnPBmvVszPdhd9hT5kBneIF+kUNteMJLYssXVSAn66jfA8taiczKqofX0Om2tpq1Aqap3IRQ6R38HV4=
-X-Received: by 2002:a05:6214:21e3:b0:87f:fee5:c3a6 with SMTP id
- 6a1803df08f44-8847c533f24mr88483516d6.49.1763815694379; Sat, 22 Nov 2025
- 04:48:14 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E5720C029;
+	Sat, 22 Nov 2025 12:49:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.25
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763815767; cv=fail; b=Q9eBEKo5ko2qomaA6PzGqTxgTkayL/hagX+cB9GViqOD0ta0SAYrJvBusU3YGCP4dz+xUEvp+egbG3WaCq8c8SkVbhnHauRo8aZUvrJqTvwOV0fO/23+z6OQizwbcc4iRkRmILrBYA1WCIWUFi5T0b+ZraKnqDWJFC1X/U2NhAU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763815767; c=relaxed/simple;
+	bh=l2pNiuQISW0nqyDdbX4I1/eRdQCTFwttfrVRTjm6tjs=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=bW5b8H0jHAVeIJO97ByqNAixR6JuOxKr7aHWiZ7d28E8x3wNgMQ/X99Z4cFRZg5TBs//KnmGhHUke4DsYGzAvZN9pwFzDlb6vn4pOJUfUXNn5mVgy0ZS/pAqX31ntIxJT7oZvdyfR4Hilg4q80Vyi7TGVh0BGu1Jc4vnhYaYunI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=NFcZ8jMw; arc=fail smtp.client-ip=52.101.228.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=W1mDEMSCtB/jQnTp+GUCwORbQzgLdsWjbBlY/fF161w0GZ8AXtjeAxiG2sjUtncI5exwnBQoMjmCTiO5Q4bjYG6fnR1Wwv/Y1qvvFcHX+EROSxpZ39pyAeQjVScf0yHSB/X4CafdeLmHor8iwKGdmbuewmZsO/IWKzP83wrZ37Q2thcHHdjH4JDwEhbeSI8A2JnK4NshogGSmizB9Vmfa166hiCOMKb1epZAqrpLXM4wNvQov+gDPBCm+aK/YGits4S3jN6Jhsx0m3Ikv4PrMqOcEGQpr4reaZA5paylFHktVfQ1MKY+xaG31LH3Q+FLpEQ9QCpl/FgQaz+B+CZQLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l2pNiuQISW0nqyDdbX4I1/eRdQCTFwttfrVRTjm6tjs=;
+ b=Kv2CoqxaLxYDjjX8oIS93dpy8ERS65dUgEzKZBbEsFnamD469KQx0JD1Pi/NPguK+VOFy9eEXzPiPF5Ac07GusDB6rSgTRdEbuRq+jCANgJob8lEHmZ2lvv8tsyjJTBMfwyTu7y2yhs1BdCFzW323ztrci0bneILq3D+aVeUOhuSAUwALooruflZErpiPfGHiwPfjVHAHv7iRWhZK5pB5QaZL/sm/TULh6SIcOxX76krXtnxEV5R0btuhZsrSbdZ/o3hJRgOZ8YlgtQU3DXUdwd3nbzbzcQSyat0cTYXxbYm6jgXDQn6rbHjM8DG+XoX2R4Sh90J7Qyn286iRoINIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l2pNiuQISW0nqyDdbX4I1/eRdQCTFwttfrVRTjm6tjs=;
+ b=NFcZ8jMwjEGOGPZC/HivnHJkDdisO3c8zSi+ktQqn4Fu68YSPR8St7OzdBqMEaqouymtGyCj/BUSqk0XIZvEzOjUMiT2egk0PYStGvZIEZTl0dlGWL6/I3OwzDwH7Vb8VMvPstREacIGdhAUCvNoINwnCpl6Jk1ZzKc7tf2amuU=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYYPR01MB12494.jpnprd01.prod.outlook.com (2603:1096:405:195::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.6; Sat, 22 Nov
+ 2025 12:49:18 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%6]) with mapi id 15.20.9366.005; Sat, 22 Nov 2025
+ 12:49:18 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: geert <geert@linux-m68k.org>, biju.das.au <biju.das.au@gmail.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, magnus.damm
+	<magnus.damm@gmail.com>, wsa+renesas <wsa+renesas@sang-engineering.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v3 02/13] serial: rsci: Drop rsci_clear_CFC()
+Thread-Topic: [PATCH v3 02/13] serial: rsci: Drop rsci_clear_CFC()
+Thread-Index: AQHcVVS6UEGivCY58EypgoQd0iN3m7T9QkqAgAFvmMA=
+Date: Sat, 22 Nov 2025 12:49:18 +0000
+Message-ID:
+ <TY3PR01MB11346856B35E21B24201E95D986D2A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20251114105201.107406-1-biju.das.jz@bp.renesas.com>
+ <20251114105201.107406-3-biju.das.jz@bp.renesas.com>
+ <CAMuHMdV_zCYLTM9gwJJE9nErumC32=2qkfPQDhpDVwKHCsVpYw@mail.gmail.com>
+In-Reply-To:
+ <CAMuHMdV_zCYLTM9gwJJE9nErumC32=2qkfPQDhpDVwKHCsVpYw@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYYPR01MB12494:EE_
+x-ms-office365-filtering-correlation-id: 210c82c9-f12c-4f57-610f-08de29c58d2a
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?aTlUdGhoT0hLdnhBanFqcHhwMG42eHU1c0dhaVh6TW5CTkZsZldtNGw3MXJi?=
+ =?utf-8?B?ZitxU24vd0JiazJTVWZMdVNXVUJuRVZ0S0Y2VDVTRnRzR0lqc0ZOdWN1bW5Z?=
+ =?utf-8?B?OWRLeElxUzk3M0xuNTdQZFhKNlFjUEQ2d21EMjJ4RGI5UzhxN2dDek02RW5q?=
+ =?utf-8?B?S3J3U3MzUHVKQzBUdUJSYnA4NjNKWDFVdDY0WGZSempXcjZjWVhBK0tVYjVP?=
+ =?utf-8?B?M3JraVR4T0tXQjE0eFNtNk8xbDZCakNPUnIrejA0NWlSN01tWG10MWJsN05P?=
+ =?utf-8?B?NS82SUtROWJLNEJFOUFPcHhtR3BtWWp3Um5vOE1taXRHQjVLRWFVNngzSVp6?=
+ =?utf-8?B?QVlBMzdXQkdndi9abytLYUhXRWhEcituYXkzcDIvM1pEcGR4RjI3cVloeEly?=
+ =?utf-8?B?M09XdHlmaEJhY3dMa3FFV3pIdGZqeW1mWXNnT1Uwa3ZDY1lpd1J6eEE3dU5S?=
+ =?utf-8?B?ODEyMHNqVXN1djlNYjZpS1psRGlhUnlaenUza0hsTFZoVEREdGpoekFRYlg4?=
+ =?utf-8?B?YzNTTWVESTN5U0hMTFEvMWhjS04rbUcrT20vODdscmhKVXRseWdJdHN6MHo2?=
+ =?utf-8?B?MTdsQk9GeG1sRmptOW52b3E5SnIzNGMrUUF6OFFpWGV6Ujh5dDBST0psVFVP?=
+ =?utf-8?B?bmRHZ2Urdk9zWTJzUy82WkQ2OVEyR3NIRUVjMTQzY1hGT0UySGwxVUdoa1Bw?=
+ =?utf-8?B?dTZmeC9GTGcxSHlhS0l1dXc3bk1Bd3FROFRBWEJGWVkwVyszTUtKZ21pc2VK?=
+ =?utf-8?B?K3B1cDFJbUNIZHFmQlBTelVOOWJYbWNvNmg1VzJ2cHY0b01SWnU4RnErWEhN?=
+ =?utf-8?B?aERMNUpNTWFnMjJxUW5COTBBN2hIYUttSnpKc0h0bVQyMk4wOCtaNjdsUlJk?=
+ =?utf-8?B?amk2MlRGNlRJNEtPMGtwRkRCRnY4SXludUtjUFhaZFZVNEVCVTlrSGZxWG16?=
+ =?utf-8?B?cUp0NjIzT05IcEZwZEcycWkyOEZmeCtoMVpEV1hNWW9ydCtaRVI3QTF1bEtC?=
+ =?utf-8?B?elRLTS9pSFlUbzFVc1NpOEM4WitWdVZEdVRIcnBYSFJBdzlLSHprY1hBalpm?=
+ =?utf-8?B?ZFFBVU1vVE81ZnZzNGVuQnkvRHhVYjEyN1F4Nzc1aHNVcVF4S1ZvRFN3YUUr?=
+ =?utf-8?B?YjZTZjBHV0VsZFBzMVpXV3BwZmExYkRwVmJsYUppUjFQamI3bHdNWjdHL1F1?=
+ =?utf-8?B?d2lVSlVKYnE2b1JGcXRuR2pBZTRSWDRHOXdpaFRxVUdUQXd3ajdkRDhTb1Az?=
+ =?utf-8?B?TEZLNVNsMDRJdTlNZkVUbUNoQkdPUmpKdkRkQXVXVVMrRUhvY1p5TG9rWFJQ?=
+ =?utf-8?B?RXVIaEpxa2JSSXhtLzBKazRGQlRzd2hqMk5vQUZxc1hiYnVLR0sxbHJpeTc1?=
+ =?utf-8?B?NEliOGFyRTBpMzdkdDROL2k4Q0ZwQTRnRGdNbGRmNlhzN0hkVERnNkZ1Y2dl?=
+ =?utf-8?B?OGRyaFNYOCtXZVhOdE5YQzBzcDM2NjVnSnRZR3dwQUJQa0Y5RE9qdE1rMDhn?=
+ =?utf-8?B?Nk9DaGJ1UDd3c0hwcFNNdzc4ZzZUbThwZ0ZjeDZjbXFybGhsenRTT2ltcGVG?=
+ =?utf-8?B?YktKVnZSSEd3MEtPQW5ZSmZuYm5aWTh6dTNRVXlhVG1uWjZ1VlhOWTJSZ0Jt?=
+ =?utf-8?B?LzR1dExOUFhBY0hIOEFJZlA0eWhuSlR3REVKUlRBd25UV0dPcUZwMUVGTVlR?=
+ =?utf-8?B?cVpsaTNUUjdWeUl1UEhQeXkxTzRkRW43VU5nU2o0cSsvaEx0WGFieGNNdEN2?=
+ =?utf-8?B?aExUUzhjZ2JQT3hYM0ltTE4rdERUNEV5N1QvRDJnWnRFZnViSWtpZ0tLbkF0?=
+ =?utf-8?B?aXhKNlgxaGdYK0phNFRReGJ4Mk5RYnRIS3VtRUVSaVlFMWJlbENkUGg4NlV1?=
+ =?utf-8?B?SkZpc1d3R0RCN3d3Z2NTQVliRVY3NC94NlJ2RmJhYnpkZm4zZ1JWc1pBc0RH?=
+ =?utf-8?B?aFozdTlVcStyanZCajB0Y1pGbWRpcXFwNTNZOW1MYkl5VEtLRjBkZjdaeHds?=
+ =?utf-8?B?MHMxVmN1N0U5ZjJ2YXljcTJPaEgyMHpFRDh1QXhzWjVObmh0a20yQUZ5UEdj?=
+ =?utf-8?Q?B4X96A?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?U2JYZGRVMVYzdEw4cjEvaWRJOTJnbWgzblF3UExwSFE1QUhBcXQzcEdiTVQr?=
+ =?utf-8?B?WXVJcUQwLzVuVktpa1lNNUI1eC9vRjJvU0pzNHFVQzgyNjBVdTVuZ09qY3E1?=
+ =?utf-8?B?cWdIcjRRZUExZlhPaXF1a1RqcEYxejJZWHhKRm1OY1pWUklVWXRuUGZMUnc3?=
+ =?utf-8?B?dzJFZU1rZ01GMXBnMjF4VzhTQ2hEOEZlY2U2eHBiMkZuSEJUeW5lbmlRU1R4?=
+ =?utf-8?B?WDUxMkZ6S3pFNTErT2xKZzZnUXByZUo2bmwrYnZ6cm9qMjhWSFNJZ2NOSFEv?=
+ =?utf-8?B?blkrODVCMXlHRjZIRlRJazF1cmpyQTJUdGRvT29ncmtxUXJHVEJYU2dhM28x?=
+ =?utf-8?B?bHNpSnhpRzQ0MHZVQ2pCK21qc1orR3RZWk05dmNIS0pKakFsOHR0U2RqVGU2?=
+ =?utf-8?B?bVQ5QzJYbUN0cEkzRTRacW5JWnJ3UDlmZWZLTWQxcWsvRjB3bHM1QTRQNU9X?=
+ =?utf-8?B?OExrT0wxdnFQQUZwK0hSbW10ME5MLzZSejVoQ09CV1hWYTM0Tmx6RnhwNUth?=
+ =?utf-8?B?Q0J1T0pzdUFGelJSTktoK0hsYWQ1d2lqZ0lNa3ZzYWM3dmVucS81amkwZkJ3?=
+ =?utf-8?B?UEJ6RVFDcTdiS2tycmphSUdyQjkwd0lzbVpncFA4YytwWkIvMmlTUHN0Ris4?=
+ =?utf-8?B?RHdkSVhqc1dlTU5SbThpdWkyM0xOVHk0WUxCZFJJTENQRUgvcG4vdjNCMkd0?=
+ =?utf-8?B?aVFjNStKeW5LZFhuRDlhWklsOEJLMHJLdEVnaE9zbXZTRkttWVgyNVpvRk5C?=
+ =?utf-8?B?b0NkdFhybjdnRmlKdU9NTmNTQkhpSjhFWjZZSk1uQ2hmR2g5MVlEZFE0WHFv?=
+ =?utf-8?B?aWs3OThMWlBmcGl3VDJvOEZzYXJMU1pYS0ZrZmdqRUdXeSs0N1c1VWhHaFFu?=
+ =?utf-8?B?UDJ6UnA1dWlkTmRtZUVRdGJvVFBWd1B1MUxZK2tLSnU5OXBtOURCclNEKzhz?=
+ =?utf-8?B?VnFZSWVoMThEUlI0THFMcTJFNi9wbElIRVY1bFlsU25JcnkvRkIrTjh4dnRy?=
+ =?utf-8?B?UHlTTHpEcUxNWXNPcUQweU5VYlpFb2I1Ykl2MHpzTk9FZVpiNXBZdDVTL1J5?=
+ =?utf-8?B?cmEwK3haVEpTeHJMLzNtTWJINW0xT0N4WE9peGd1UzdaZzA5Q0hlQWMvaVd6?=
+ =?utf-8?B?WGpOTUY2UkRkUkJTKzFSMmNQZXNKWDY1WnFWK29ITUJvcHEvcEdtVG9VRHlt?=
+ =?utf-8?B?RzhTZ2ovc05icGtQQnVyaGc1cUN1elBmS01ldEFsQmtnNDlVVnRZTU04eWMz?=
+ =?utf-8?B?TGgwT1pHQVBCMXRoSXlzamFmTW11UHptY09rMzNzTHJSNnlQSTQrQ01FbGpL?=
+ =?utf-8?B?blFCdTlxa3NFa0VRWEV6YWVEM0FPako0MmY0WkVlSU9HdlVEWUJuOU9hL1Jr?=
+ =?utf-8?B?ZGtUMTA2dDFNRHg1TnVBV05GQTBmcDlQT0RNTWF1MXNUMTRFeFMrTUJBeVFE?=
+ =?utf-8?B?dlFYdW8xdGRqbFNtNWlUdENyQUdheTR4SzRoWEtwRE5ER0tiNmgxRmFyM2tK?=
+ =?utf-8?B?NiszWlRuK3NoUlNPcjBCbWJZa0xiVitDdEs4KzlLNDVYUnNaMkVUN0pKcGNy?=
+ =?utf-8?B?T2JZRTNML2lLRXpWVWdQSEZMcU1ONzNoUFA2dlN2ZjBhazZsWnV0K3VhRVE4?=
+ =?utf-8?B?ZTFxQk9RTkViSXR0SmUyK0o1eWlWRThnMG16ZlU5aFZZSnlJUXRPaWp1TE53?=
+ =?utf-8?B?RVZmdWliamxaV1RIZFgxZFBsU21ZWEF4MFU2QUllbk40WCsxTXZ2Uzl4eDZj?=
+ =?utf-8?B?RCtORm5oaFhzQlZNYitQNEVscEF6QWpNYzByYytuM3pLbVJiencvRHRKd2lT?=
+ =?utf-8?B?TDYvWWxielZDOHR0NmEzQnlnUGJOUDNTbUFBb0tKaU9WK1graklFVHF4NC9U?=
+ =?utf-8?B?c05Ma2pPTDRzT3RJUFhtdkxyc1VtQVowYUJRVU5oaStUMWdwQmNXdTc4SHFs?=
+ =?utf-8?B?bTlqK0JRRXcvK0FyZS81SEs4WVFtL1JtWE1tYWttaGxEblVwYWlVQ3NscU1D?=
+ =?utf-8?B?bmpBaUlDeUcya3lDWEZqc2pwS1JrYUFWekpoaXJBTXEzM2hzdWVEQ2R1RE0r?=
+ =?utf-8?B?eFRiRFRHeDFGTlNZRlk5N2VzRTRMblRYQTV0VjVTUithVFBoRDNaeEhvTHM4?=
+ =?utf-8?B?QzBJRU84dG1tRTRCWnNET2V2dVUrLzBqRDZER3lVOVU4QTRvYnpITXJyaExS?=
+ =?utf-8?B?QXc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251121-phyb4-v7-0-df644fa62180@google.com> <20251121-phyb4-v7-2-df644fa62180@google.com>
-In-Reply-To: <20251121-phyb4-v7-2-df644fa62180@google.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Sat, 22 Nov 2025 12:48:03 +0000
-X-Gm-Features: AWmQ_bkh4wl1u38i5d0nBSmX9Kkbsr0fGW0dbqVsgNFov-xmgwNb3n62zATaPv8
-Message-ID: <CADrjBPpLn9qzg1y5_c_0CYL2U8p6taMWtPOw5RykAO4=4uNeUA@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] phy: Add Google Tensor SoC USB PHY driver
-To: Roy Luo <royluo@google.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 210c82c9-f12c-4f57-610f-08de29c58d2a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Nov 2025 12:49:18.6542
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dHd1aY0eOS4dlPy0tXAr1dEidCe2iWpRgcHATacpOFqDmZtUXpHnrr5yCSjtpiJZLsDVj63IrYedL8nkkgCMas+MAk+WdQ3vfbRY0FA9CT0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB12494
 
-Hi Roy,
-
-On Fri, 21 Nov 2025 at 08:56, Roy Luo <royluo@google.com> wrote:
->
-> Support the USB PHY found on Google Tensor G5 (Laguna). This
-> particular USB PHY supports both high-speed and super-speed
-> operations, and is integrated with the SNPS DWC3 controller that's
-> also on the SoC. This initial patch specifically adds functionality
-> for high-speed.
->
-> Co-developed-by: Joy Chakraborty <joychakr@google.com>
-> Signed-off-by: Joy Chakraborty <joychakr@google.com>
-> Co-developed-by: Naveen Kumar <mnkumar@google.com>
-> Signed-off-by: Naveen Kumar <mnkumar@google.com>
-> Signed-off-by: Roy Luo <royluo@google.com>
-> ---
->  drivers/phy/Kconfig          |  13 ++
->  drivers/phy/Makefile         |   1 +
->  drivers/phy/phy-google-usb.c | 292 +++++++++++++++++++++++++++++++++++++++++++
-
-Please add this new file to Tensor SoC MAINTAINERS entry so it's
-easier to review future patches.
-
->  3 files changed, 306 insertions(+)
->
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index 678dd0452f0aa0597773433f04d2a9ba77474d2a..af14ec74542a9879c856dee8236753990fdf3705 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -101,6 +101,19 @@ config PHY_NXP_PTN3222
->           schemes. It supports all three USB 2.0 data rates: Low Speed, Full
->           Speed and High Speed.
->
-> +config PHY_GOOGLE_USB
-> +       tristate "Google Tensor SoC USB PHY driver"
-> +       depends on HAS_IOMEM
-> +       depends on OF
-> +       depends on TYPEC
-
-Add COMPILE_TEST for build testing.
-
-> +       select GENERIC_PHY
-> +       help
-> +         Enable support for the USB PHY on Google Tensor SoCs, starting with
-> +         the G5 generation. This driver provides the PHY interfaces to
-> +         interact with the SNPS eUSB2 and USB 3.2/DisplayPort Combo PHY, both
-> +         of which are integrated with the DWC3 USB DRD controller.
-> +         This driver currently supports USB high-speed.
-> +
->  source "drivers/phy/allwinner/Kconfig"
->  source "drivers/phy/amlogic/Kconfig"
->  source "drivers/phy/broadcom/Kconfig"
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index bfb27fb5a494283d7fd05dd670ebd1b12df8b1a1..aeaaaf988554a24bb572d8b34b54638a6a3aed73 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_SNPS_EUSB2)          += phy-snps-eusb2.o
->  obj-$(CONFIG_USB_LGM_PHY)              += phy-lgm-usb.o
->  obj-$(CONFIG_PHY_AIROHA_PCIE)          += phy-airoha-pcie.o
->  obj-$(CONFIG_PHY_NXP_PTN3222)          += phy-nxp-ptn3222.o
-> +obj-$(CONFIG_PHY_GOOGLE_USB)           += phy-google-usb.o
->  obj-y                                  += allwinner/   \
->                                            amlogic/     \
->                                            broadcom/    \
-> diff --git a/drivers/phy/phy-google-usb.c b/drivers/phy/phy-google-usb.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..23b988cc5292111872c4acb32f7666e0ce9a39a3
-> --- /dev/null
-> +++ b/drivers/phy/phy-google-usb.c
-> @@ -0,0 +1,292 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * phy-google-usb.c - Google USB PHY driver
-> + *
-> + * Copyright (C) 2025, Google LLC
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/reset.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/mutex.h>
-> +#include <linux/cleanup.h>
-> +#include <linux/usb/typec_mux.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mfd/syscon.h>
-> +
-
-Sort headers alphabetically
-
-> +#define USBCS_USB2PHY_CFG19_OFFSET 0x0
-> +#define USBCS_USB2PHY_CFG19_PHY_CFG_PLL_FB_DIV GENMASK(19, 8)
-> +
-> +#define USBCS_USB2PHY_CFG21_OFFSET 0x8
-> +#define USBCS_USB2PHY_CFG21_PHY_ENABLE BIT(12)
-> +#define USBCS_USB2PHY_CFG21_REF_FREQ_SEL GENMASK(15, 13)
-> +#define USBCS_USB2PHY_CFG21_PHY_TX_DIG_BYPASS_SEL BIT(19)
-> +
-> +#define USBCS_PHY_CFG1_OFFSET 0x28
-> +#define USBCS_PHY_CFG1_SYS_VBUSVALID BIT(17)
-> +
-> +enum google_usb_phy_id {
-> +       GOOGLE_USB2_PHY,
-> +       GOOGLE_USB_PHY_NUM,
-> +};
-> +
-> +struct google_usb_phy_instance {
-> +       int index;
-> +       struct phy *phy;
-> +       int num_clks;
-> +       struct clk_bulk_data *clks;
-> +       int num_rsts;
-> +       struct reset_control_bulk_data *rsts;
-> +};
-> +
-> +struct google_usb_phy {
-> +       struct device *dev;
-> +       struct regmap *usb_cfg_regmap;
-> +       unsigned int usb2_cfg_offset;
-> +       void __iomem *usbdp_top_base;
-> +       struct google_usb_phy_instance insts[GOOGLE_USB_PHY_NUM];
-> +       /* serialize phy access */
-
-Be more specific with the mutex comment, which code or variables are protected?
-
-> +       struct mutex phy_mutex;
-> +       struct typec_switch_dev *sw;
-> +       enum typec_orientation orientation;
-> +};
-> +
-> +static inline struct google_usb_phy *to_google_usb_phy(struct google_usb_phy_instance *inst)
-> +{
-> +       return container_of(inst, struct google_usb_phy, insts[inst->index]);
-> +}
-> +
-> +static void set_vbus_valid(struct google_usb_phy *gphy)
-> +{
-> +       u32 reg;
-> +
-> +       if (gphy->orientation == TYPEC_ORIENTATION_NONE) {
-> +               reg = readl(gphy->usbdp_top_base + USBCS_PHY_CFG1_OFFSET);
-> +               reg &= ~USBCS_PHY_CFG1_SYS_VBUSVALID;
-> +               writel(reg, gphy->usbdp_top_base + USBCS_PHY_CFG1_OFFSET);
-> +       } else {
-> +               reg = readl(gphy->usbdp_top_base + USBCS_PHY_CFG1_OFFSET);
-> +               reg |= USBCS_PHY_CFG1_SYS_VBUSVALID;
-> +               writel(reg, gphy->usbdp_top_base + USBCS_PHY_CFG1_OFFSET);
-> +       }
-> +}
-> +
-> +static int google_usb_set_orientation(struct typec_switch_dev *sw,
-> +                                     enum typec_orientation orientation)
-> +{
-> +       struct google_usb_phy *gphy = typec_switch_get_drvdata(sw);
-> +
-> +       dev_dbg(gphy->dev, "set orientation %d\n", orientation);
-> +
-> +       gphy->orientation = orientation;
-> +
-> +       if (pm_runtime_suspended(gphy->dev))
-> +               return 0;
-> +
-> +       guard(mutex)(&gphy->phy_mutex);
-> +
-> +       set_vbus_valid(gphy);
-> +
-> +       return 0;
-> +}
-> +
-> +static int google_usb2_phy_init(struct phy *_phy)
-> +{
-> +       struct google_usb_phy_instance *inst = phy_get_drvdata(_phy);
-> +       struct google_usb_phy *gphy = to_google_usb_phy(inst);
-> +       u32 reg;
-> +       int ret = 0;
-> +
-> +       dev_dbg(gphy->dev, "initializing usb2 phy\n");
-> +
-> +       guard(mutex)(&gphy->phy_mutex);
-> +
-> +       regmap_read(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG21_OFFSET, &reg);
-> +       reg &= ~USBCS_USB2PHY_CFG21_PHY_TX_DIG_BYPASS_SEL;
-> +       reg &= ~USBCS_USB2PHY_CFG21_REF_FREQ_SEL;
-> +       reg |= FIELD_PREP(USBCS_USB2PHY_CFG21_REF_FREQ_SEL, 0);
-> +       regmap_write(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG21_OFFSET, reg);
-> +
-> +       regmap_read(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG19_OFFSET, &reg);
-> +       reg &= ~USBCS_USB2PHY_CFG19_PHY_CFG_PLL_FB_DIV;
-> +       reg |= FIELD_PREP(USBCS_USB2PHY_CFG19_PHY_CFG_PLL_FB_DIV, 368);
-> +       regmap_write(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG19_OFFSET, reg);
-> +
-> +       set_vbus_valid(gphy);
-> +
-> +       ret = clk_bulk_prepare_enable(inst->num_clks, inst->clks);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = reset_control_bulk_deassert(inst->num_rsts, inst->rsts);
-> +       if (ret) {
-> +               clk_bulk_disable_unprepare(inst->num_clks, inst->clks);
-> +               return ret;
-> +       }
-> +
-> +       regmap_read(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG21_OFFSET, &reg);
-> +       reg |= USBCS_USB2PHY_CFG21_PHY_ENABLE;
-> +       regmap_write(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG21_OFFSET, reg);
-> +
-> +       return ret;
-> +}
-> +
-> +static int google_usb2_phy_exit(struct phy *_phy)
-> +{
-> +       struct google_usb_phy_instance *inst = phy_get_drvdata(_phy);
-> +       struct google_usb_phy *gphy = to_google_usb_phy(inst);
-> +       u32 reg;
-> +
-> +       dev_dbg(gphy->dev, "exiting usb2 phy\n");
-> +
-> +       guard(mutex)(&gphy->phy_mutex);
-> +
-> +       regmap_read(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG21_OFFSET, &reg);
-> +       reg &= ~USBCS_USB2PHY_CFG21_PHY_ENABLE;
-> +       regmap_write(gphy->usb_cfg_regmap, gphy->usb2_cfg_offset + USBCS_USB2PHY_CFG21_OFFSET, reg);
-> +
-> +       reset_control_bulk_assert(inst->num_rsts, inst->rsts);
-> +       clk_bulk_disable_unprepare(inst->num_clks, inst->clks);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct phy_ops google_usb2_phy_ops = {
-> +       .init           = google_usb2_phy_init,
-> +       .exit           = google_usb2_phy_exit,
-> +};
-> +
-> +static struct phy *google_usb_phy_xlate(struct device *dev,
-> +                                       const struct of_phandle_args *args)
-> +{
-> +       struct google_usb_phy *gphy = dev_get_drvdata(dev);
-> +
-> +       if (args->args[0] >= GOOGLE_USB_PHY_NUM) {
-> +               dev_err(dev, "invalid PHY index requested from DT\n");
-> +               return ERR_PTR(-ENODEV);
-> +       }
-> +       return gphy->insts[args->args[0]].phy;
-> +}
-> +
-> +static int google_usb_phy_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct google_usb_phy *gphy;
-> +       struct phy *phy;
-> +       struct google_usb_phy_instance *inst;
-> +       struct phy_provider *phy_provider;
-> +       struct typec_switch_desc sw_desc = { };
-> +       u32 args[1];
-> +       int ret;
-
-Consider reverse christmas tree ordering.
-
-regards,
-
-Peter
+SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IC0tLS0tT3JpZ2luYWwg
+TWVzc2FnZS0tLS0tDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnRAbGludXgtbTY4
+ay5vcmc+DQo+IFNlbnQ6IDIxIE5vdmVtYmVyIDIwMjUgMTQ6NTMNCj4gU3ViamVjdDogUmU6IFtQ
+QVRDSCB2MyAwMi8xM10gc2VyaWFsOiByc2NpOiBEcm9wIHJzY2lfY2xlYXJfQ0ZDKCkNCj4gDQo+
+IEhpIEJpanUsDQo+IA0KPiBPbiBGcmksIDE0IE5vdiAyMDI1IGF0IDExOjUyLCBCaWp1IDxiaWp1
+LmRhcy5hdUBnbWFpbC5jb20+IHdyb3RlOg0KPiA+IEZyb206IEJpanUgRGFzIDxiaWp1LmRhcy5q
+ekBicC5yZW5lc2FzLmNvbT4NCj4gPg0KPiA+IERyb3AgcnNjaV9jbGVhcl9DRkMoKSBieSByZXVz
+aW5nIHJzY2lfY2xlYXJfU0N4U1IoKSBhcyB0aGUgY29udGVudHMgb2YNCj4gPiBib3RoIGZ1bmN0
+aW9ucyBhcmUgdGhlIHNhbWUuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBCaWp1IERhcyA8Ymlq
+dS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+IA0KPiBUaGFua3MgZm9yIHlvdXIgcGF0Y2ghDQo+
+IA0KPiA+IC0tLSBhL2RyaXZlcnMvdHR5L3NlcmlhbC9yc2NpLmMNCj4gPiArKysgYi9kcml2ZXJz
+L3R0eS9zZXJpYWwvcnNjaS5jDQo+ID4gQEAgLTE5OSwxMSArMTk5LDYgQEAgc3RhdGljIHVuc2ln
+bmVkIGludCByc2NpX2dldF9tY3RybChzdHJ1Y3QgdWFydF9wb3J0ICpwb3J0KQ0KPiA+ICAgICAg
+ICAgcmV0dXJuIDA7DQo+ID4gIH0NCj4gPg0KPiA+IC1zdGF0aWMgdm9pZCByc2NpX2NsZWFyX0NG
+QyhzdHJ1Y3QgdWFydF9wb3J0ICpwb3J0LCB1bnNpZ25lZCBpbnQgbWFzaykNCj4gPiAtew0KPiA+
+IC0gICAgICAgcnNjaV9zZXJpYWxfb3V0KHBvcnQsIENGQ0xSLCBtYXNrKTsNCj4gPiAtfQ0KPiA+
+IC0NCj4gDQo+IFRoaXMgZnVuY3Rpb24gaXMgaW5kZWVkIGlkZW50aWNhbCB0byByc2NpX2NsZWFy
+X1NDeFNSKCksIHNvDQo+IFJldmlld2VkLWJ5OiBHZWVydCBVeXR0ZXJob2V2ZW4gPGdlZXJ0K3Jl
+bmVzYXNAZ2xpZGVyLmJlPg0KPiANCj4gSG93ZXZlciwgd2hpbGUgdGhlIHNjaV9wb3J0X29wcyBt
+ZXRob2QgaXMgaW5kZWVkIGNhbGxlZCAuY2xlYXJfU0N4U1IoKSwgSSB0aGluayBpdCBtYWtlcyBt
+b3JlIHNlbnNlIHRvDQo+IGRyb3AgcnNjaV9jbGVhcl9TQ3hTUigpIGluc3RlYWQsIGFzIHRoaXMg
+ZnVuY3Rpb24gdG91Y2hlcyB0aGUgQ0ZDIHJlZ2lzdGVyLi4uDQoNCk9LLCB3aWxsIGNoYW5nZSB0
+aGlzIGluIG5leHQgdmVyc2lvbi4NCg0KQ2hlZXJzLA0KQmlqdQ0KDQo=
 
