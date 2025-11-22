@@ -1,209 +1,167 @@
-Return-Path: <devicetree+bounces-241343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FEB1C7CF1B
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:59:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B4CDC7CF3C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 13:02:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F083A4E7860
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 11:58:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 976084E6D19
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BAC82FD7D0;
-	Sat, 22 Nov 2025 11:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64CA82F533E;
+	Sat, 22 Nov 2025 12:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ETVmZu3H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nyqmwD47"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719252857C1
-	for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 11:58:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 360702BE7C3;
+	Sat, 22 Nov 2025 12:01:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763812733; cv=none; b=P5kylyx23RtIJkXwriKQjsNNnsFOi3mGmyMmcjtBNhYpOr1zGSSZAJkwocI1FJo3w+fleGh47rpAm6CsomOXyKc09B0MvcNW1Kr+3cuPMANi5OldlA36E5zBkqa56Gys/2XCfx8I0b35T3QzjWsk88KlUhdNlCOAnYXYy444eWI=
+	t=1763812900; cv=none; b=MrIT0zlw+S91IoxRWso4fyPUGg2Yb5Adz6j3zxxZJ3b02sNXMt+5JKDLlTiDMSQDHONfWO9Say19dx1W97fL91CwEMmkJyuRvsJdVxJA3w6aD9hSU5/ffk8hw833z9fwGFfp/urYas/PPjyGtDXIbA50BlGWaLzzpmQY5q3GCAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763812733; c=relaxed/simple;
-	bh=jWHXjaaGYky2DaB1MpNNCj1bQDGpHoWv0BoWUYp+rQo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DA5TYpVIoU4MB4mkoO+zzP3kj0bi0JNI4MB3zzcVsq3Pr3bd7Pt5OkVwrzjXfpquaveng3gSNXVXdi+jVaCRj28+GY4pqTVstZKfpVdft93J3R2yl69zmQ17VX91lmU37hx7rTi0SbavZY8HxuINkSUixU7YyA4RHCAAa6txwuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ETVmZu3H; arc=none smtp.client-ip=209.85.160.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4eddfb8c7f5so24272291cf.1
-        for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 03:58:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763812730; x=1764417530; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MBrm3JMtHLy7FDNmdG9NnfjfQSeL7J0SNX9N6hNH2js=;
-        b=ETVmZu3HY5OeL1UkHeLxB/0LVpNTi9tojGCnrcoE1r2mYAPfUfoC7yOH4gNyTkAJMP
-         y5dfJaHqiLcZ+A6znO6eKlm3i12Tt8yXgytI2qRNb2BbSVuIW86/3zqZMAzti0d5Gyc9
-         5D17RjfGmvBQ5BAm5RTNSQbjK75oIDypoWFd1d+Kg5sAScS7ex6tU1VK7NN5B0R75hzm
-         AXAy7avY69GbeU5vs2KgU8FQLyKsiQcOOSv5r++F1eet+3XVKwQJJftM+2PM97y12d/H
-         DwLJEJF8cL6b7e8LbjvqgwJh4KCnWhGQ6txvTHilgI0D2jJcou3ZbSf7On8ujdwiz/pn
-         ebng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763812730; x=1764417530;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MBrm3JMtHLy7FDNmdG9NnfjfQSeL7J0SNX9N6hNH2js=;
-        b=cM4n1xxvca6cV5kR15DresDDTPN6C58IvV81HAqZSRAm/aWopbKj8Lt5KcgFNRxIjE
-         78xAZa3EGTssuib3eMK/PaTB/eQfMLNgNH7vf5IB0DVkC2PzJr8XFrL+e2x67dd1edxy
-         wTlzw9pDFM1vK8Ufa8FdwJ4mkkKsUzaC5whf4+zeKrbArsV6F6deQ6+I0Vum/YQ0gfeN
-         GsorbMQ4RcQPeKlQGzHiVU1Ex/bVQAN4tl5+nr3XP9sgvVFNy7O2wu/deGogbHXVP+UU
-         bQYjAWU0qiUA5rwabn2UUkiyV/tgNYCK0oxBEPxUZLjNh415O1NUJkor1Uqu3oemVECB
-         EzUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXxBBlesCtEEUkjKienPwoGBciu6jdoNg6Q/8P2FUSgVPn4Bg//s06hvLl70GC7YMkFUcg4YNtUPz0w@vger.kernel.org
-X-Gm-Message-State: AOJu0Yydjlg8mG5t/GaAKKDPnFBPNSLHpSKsJGL/xo51qCifQOBDLFDB
-	3oamEbmroSFIBquR5ioI8s3xPURdep6yvzIyvU4I2bFsWCoblv3FOBUaeoBWC/WpjVylNjbZoRb
-	0rX++ZR5PluDSFtwXvsWeeizl4HutyEmAas1mVstYCg==
-X-Gm-Gg: ASbGncutuOAmi5kJHAXKY2yEpKG6ZwvRBNVHxIiQGu+uZn3yQlpfk2a4crtz+Wqdn29
-	/snJ39uDmZ8RUDVD1ODVT84BXIGP2gH+5alOcYohCF+KEZTQiuCXSBjAr1EGhNiNUZ9d18of0Eb
-	FN/WwDNWVWMEQqk+VDH43E4wRBaAhR/IT4sJNQsm5iP5HoCmtHeG+s3Hl8YI6mxBG5mmzcfhIRx
-	sfNZXp8SVICNBA8lCSfySgHIyrElxIzwDkNT/ht+ORTUS2R4f5s7hpCSvfTB3LlkhbdbbPxsDXQ
-	66Ezdg==
-X-Google-Smtp-Source: AGHT+IHDkZQ+ImU9RTRugkonJf2E+hg917WnNusnwXVOvnWYJ8u+14drqRk1eQk1lC04UEf9Ur7igG1PLO7dWtr7QLg=
-X-Received: by 2002:ac8:5d47:0:b0:4ee:5fc:43da with SMTP id
- d75a77b69052e-4ee588189c5mr66608501cf.11.1763812730384; Sat, 22 Nov 2025
- 03:58:50 -0800 (PST)
+	s=arc-20240116; t=1763812900; c=relaxed/simple;
+	bh=XWBbd8PVRhZM8wc6yBCPmElsypPzxi68MXain8SPJ6w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ktfgLrDQjFUPwyFYDE8c9juR+ZSulsY91WTSpSWXzan9CAneXNmKBs/7oVTeEdFhysOuGRX2oDKxc8K2jo3D+mgdnbhaICJOZZ+eLOu8Zz0kSFM425qTR3fdMUr2hYP18tt0I81yB4a5bBsdwoXHafnVh2xfb0DiLDz6mYIXkRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nyqmwD47; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45832C4CEF5;
+	Sat, 22 Nov 2025 12:01:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763812900;
+	bh=XWBbd8PVRhZM8wc6yBCPmElsypPzxi68MXain8SPJ6w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nyqmwD47tRSFz1kRny8X2MwFl1kyOHTX3ZEDOvg9Fsta24Wv7jlM7yksQ3q2aVGT2
+	 Q9LlQWDWWq2w3xQeNKSK4h4Wyvkm60m85sXFHxmibwoyvyExEGpuvVsMqMz09zi5Cy
+	 wgzuXwBZrKBud6cTnbwPxWErJcy5Ruac0uFH+WvCevaDgp8u8fTwJjrSdjuoUAS56L
+	 LIhTIkFagU0yf1VU/NsHt1QsTy6s9BBpd9/qIrV77JIBnfWI+MqzsJjx3gLDC2Fyfs
+	 Jv6eA9lDnpUtnx2pB9SI5KRmc78owCmfor9KGxg7TSZC382KwFZp9kZPsnX7scinJd
+	 dAEntU42IjtMQ==
+Message-ID: <63be3373-1ab4-4aa4-aa7a-0175727aa9a3@kernel.org>
+Date: Sat, 22 Nov 2025 13:01:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251122-controller-v8-0-e7562e0df658@google.com> <20251122-controller-v8-2-e7562e0df658@google.com>
-In-Reply-To: <20251122-controller-v8-2-e7562e0df658@google.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Sat, 22 Nov 2025 11:58:39 +0000
-X-Gm-Features: AWmQ_bmxr74_zcagVpTKmx_rF_8JcJE4EnUUPe-ZPMt4veKA7v9CBx5wm0awg0g
-Message-ID: <CADrjBPqPsPBBSbhx8ZFreFWX2tRxaATT=azS-b1H2b=TJoVAAw@mail.gmail.com>
-Subject: Re: [PATCH v8 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
-To: Roy Luo <royluo@google.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Badhri Jagan Sridharan <badhri@google.com>, 
-	Doug Anderson <dianders@google.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, Joy Chakraborty <joychakr@google.com>, 
-	Naveen Kumar <mnkumar@google.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
+To: Jon Hunter <jonathanh@nvidia.com>, Aaron Kling <webgeek1234@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+ <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com>
+ <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
+ <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
+ <CALHNRZ-CO5i9jeLkEG2cmHxcW1bcLhxcBSxjmL2euHfQy8yr-w@mail.gmail.com>
+ <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com>
+ <99ca4992-5736-417d-854e-379542549bee@kernel.org>
+ <7f3dad08-cff5-40c2-8e7f-f6441a3d6b91@nvidia.com>
+ <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
+ <CALHNRZ8vFJyfFXbxFehWA9TGkdrEUy9Wsm-DxEOT=tVbYTcU5Q@mail.gmail.com>
+ <249bbe7e-e2da-4493-bdd5-8f4b17aff8fe@nvidia.com>
+ <CALHNRZ8uPaKqSpFWkmYZn==Xw=rxh95Xm0_6LPN1HDj20zofqw@mail.gmail.com>
+ <d16803e5-7b6d-4472-b50c-aa324cf52736@nvidia.com>
+ <CALHNRZ83Q2Ha8VYoWAnqoCZQ=Fd9rtVRVLwRFxAY68ePQ29GHw@mail.gmail.com>
+ <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Roy,
+On 21/11/2025 12:21, Jon Hunter wrote:
+> 
+> On 12/11/2025 07:21, Aaron Kling wrote:
+>> On Wed, Nov 12, 2025 at 12:18 AM Jon Hunter <jonathanh@nvidia.com> wrote:
+>>>
+>>>
+>>> On 11/11/2025 23:17, Aaron Kling wrote:
+>>>
+>>> ...
+>>>
+>>>> Alright, I think I've got the picture of what's going on now. The
+>>>> standard arm64 defconfig enables the t194 pcie driver as a module. And
+>>>> my simple busybox ramdisk that I use for mainline regression testing
+>>>> isn't loading any modules. If I set the pcie driver to built-in, I
+>>>> replicate the issue. And I don't see the issue on my normal use case,
+>>>> because I have the dt changes as well.
+>>>>
+>>>> So it appears that the pcie driver submits icc bandwidth. And without
+>>>> cpufreq submitting bandwidth as well, the emc driver gets a very low
+>>>> number and thus sets a very low emc freq. The question becomes... what
+>>>> to do about it? If the related dt changes were submitted to
+>>>> linux-next, everything should fall into place. And I'm not sure where
+>>>> this falls on the severity scale since it doesn't full out break boot
+>>>> or prevent operation.
+>>>
+>>> Where are the related DT changes? If we can get these into -next and
+>>> lined up to be merged for v6.19, then that is fine. However, we should
+>>> not merge this for v6.19 without the DT changes.
+>>
+>> The dt changes are here [0].
+> 
+> To confirm, applying the DT changes do not fix this for me. Thierry is 
+> having a look at this to see if there is a way to fix this.
+> 
+> BTW, I have also noticed that Thierry's memory frequency test [0] is 
+> also failing on Tegra186. The test simply tries to set the frequency via 
+> the sysfs and this is now failing. I am seeing ..
 
-Thanks for your patch. It's great to see Laguna support being added upstream.
 
-On Sat, 22 Nov 2025 at 09:32, Roy Luo <royluo@google.com> wrote:
->
-> Add support for the DWC3 USB controller found on Google Tensor G5
-> (codename: laguna). The controller features dual-role functionality
-> and hibernation.
->
-> The primary focus is implementing hibernation support in host mode,
-> enabling the controller to enter a low-power state (D3). This is
-> particularly relevant during system power state transition and
-> runtime power management for power efficiency.
-> Highlights:
-> - Align suspend callback with dwc3_suspend_common() for deciding
->   between a full teardown and hibernation in host mode.
-> - Integration with `psw` (power switchable) and `top` power domains,
->   managing their states and device links to support hibernation.
-> - A notifier callback dwc3_google_usb_psw_pd_notifier() for
->   `psw` power domain events to manage controller state
->   transitions to/from D3.
-> - Coordination of the `non_sticky` reset during power state
->   transitions, asserting it on D3 entry and deasserting on D0 entry
->   in hibernation scenario.
-> - Handling of high-speed and super-speed PME interrupts
->   that are generated by remote wakeup during hibernation.
->
-> Co-developed-by: Joy Chakraborty <joychakr@google.com>
-> Signed-off-by: Joy Chakraborty <joychakr@google.com>
-> Co-developed-by: Naveen Kumar <mnkumar@google.com>
-> Signed-off-by: Naveen Kumar <mnkumar@google.com>
-> Signed-off-by: Roy Luo <royluo@google.com>
-> ---
->  drivers/usb/dwc3/Kconfig       |  13 +
->  drivers/usb/dwc3/Makefile      |   1 +
->  drivers/usb/dwc3/dwc3-google.c | 628 +++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 642 insertions(+)
->
-> diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-> index 4925d15084f816d3ff92059b476ebcc799b56b51..f58c70dabf108878cbefe0abea88572d9ae81e26 100644
-> --- a/drivers/usb/dwc3/Kconfig
-> +++ b/drivers/usb/dwc3/Kconfig
-> @@ -200,4 +200,17 @@ config USB_DWC3_GENERIC_PLAT
->           the dwc3 child node in the device tree.
->           Say 'Y' or 'M' here if your platform integrates DWC3 in a similar way.
->
-> +config USB_DWC3_GOOGLE
-> +       tristate "Google Platform"
-> +       depends on COMPILE_TEST
-> +       depends on OF && COMMON_CLK && RESET_CONTROLLER
-> +       help
-> +         Support the DesignWare Core USB3 IP found on Google Tensor
-> +         SoCs, starting with the G5 generation. This driver includes
+The pull request was not yet merged, so I can amend it. The issue was
+reported 12 days ago, so if this cannot be fixed in for such time, then
+it is not yet ready and I will drop the changes.
 
-consider adding: (Laguna)
-
-> +         support for hibernation in host mode.
-> +         Say 'Y' or 'M' if you have one such device.
-> +
-> +         To compile this driver as a module, choose M here: the
-> +         module will be called dwc3-google.ko.
-> +
->  endif
-> diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-> index 96469e48ff9d189cc8d0b65e65424eae2158bcfe..cf1cd408d938b3ac26d58b9be7fcc5af3ee82660 100644
-> --- a/drivers/usb/dwc3/Makefile
-> +++ b/drivers/usb/dwc3/Makefile
-> @@ -58,3 +58,4 @@ obj-$(CONFIG_USB_DWC3_XILINX)         += dwc3-xilinx.o
->  obj-$(CONFIG_USB_DWC3_OCTEON)          += dwc3-octeon.o
->  obj-$(CONFIG_USB_DWC3_RTK)             += dwc3-rtk.o
->  obj-$(CONFIG_USB_DWC3_GENERIC_PLAT)    += dwc3-generic-plat.o
-> +obj-$(CONFIG_USB_DWC3_GOOGLE)          += dwc3-google.o
-> diff --git a/drivers/usb/dwc3/dwc3-google.c b/drivers/usb/dwc3/dwc3-google.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..53e04a5409d8a11eb025b0f5cd351cb1b33281ab
-> --- /dev/null
-> +++ b/drivers/usb/dwc3/dwc3-google.c
-> @@ -0,0 +1,628 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * dwc3-google.c - Google DWC3 Specific Glue Layer
-> + *
-> + * Copyright (c) 2025, Google LLC
-> + * Author: Roy Luo <royluo@google.com>
-> + */
-> +
-> +#include <linux/of.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/irq.h>
-> +#include <linux/clk.h>
-> +#include <linux/module.h>
-> +#include <linux/kernel.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mfd/syscon.h>
-
-Please sort the headers alphabetically. It helps avoid duplicates and
-is easier when adding new headers.
-
-Also can you add this file, and the bindings patch to the Tensor SoC
-MAINTAINERS entry, so it's easier to review future patches?
-
-With those nits  addressed:
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-
-regards,
-
-Peter.
+Best regards,
+Krzysztof
 
