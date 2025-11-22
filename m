@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-241388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FCC8C7D41E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 17:52:10 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C277AC7D42A
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 17:57:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55E553A90FA
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 16:52:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 967654E2324
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 16:57:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69B628642D;
-	Sat, 22 Nov 2025 16:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A1E28C84A;
+	Sat, 22 Nov 2025 16:57:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TpAKt8VQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bi5xUGfn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4D41D5160
-	for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 16:52:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C6A285CA9
+	for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 16:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763830327; cv=none; b=J+afWIjriM/zDTU0+1xIls7QFHuSuYVMcTh5cQt3iZwHRLod9RT5SWN3nfxy0kkCvFhce40xtCrPYWCIGtYG0soCM+pqukdcELhTObQoxZkGvUEAvpDHj3X1Lmp6Ei3n4Wbpn7fQ8EGejqxVnhBRQZREF4ndm5xHawExxqUkKkA=
+	t=1763830631; cv=none; b=BEra/64KD/f3nFnH2D3UHXHBWmFnQEBryFH0J4HHyxZB/O0c+2hUUMumIzxHrudUv5zU7V/IARPQJwxkX24dORUncstL49Ossx2ZDrK6qan78cYSvGvOm5aLsnNaQqAKwJ5KGZQkIH8ABaB67lZv7v1n1Ho2Njz0YcN3QWhB0s8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763830327; c=relaxed/simple;
-	bh=nGheMCBm4X7XH3dYoS6fRfFcwblqlpoRtoJlx7coLJg=;
+	s=arc-20240116; t=1763830631; c=relaxed/simple;
+	bh=KU49GyuiicIEUZngQEr/LeAOc8CyvB2hOuUp4uYqQPI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=FeGA6pAShi+1bFJFsZPu6edjFsF5C961CJQsTfIYowMdNMOcaQHVKsnZXBL500v5sol2BpJ1ipaFSPeCwwvcl92JmW3K8r19RtpXfgRpM2PQASIxfYwbNG5y9h5ukjP35HS4TXq/eq4lOyQLXb0UPUQwW5vLO+Pv7d8P4Y7tT14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=TpAKt8VQ; arc=none smtp.client-ip=209.85.210.49
+	 In-Reply-To:Content-Type; b=txsvMUI3NCNRFnyoKtM+S27wKYm036WCtZdjYBJKwFMQqO3dJO4ivpPia/CmxW2dLetYiv+DLWJqxFhRcT03nVt86Ic/59ytKBTfV5xnJkXHQlecUA6K5r3bWW3RSrFbK1ad7Y6Z0dylK2QMgpYF790AHHVHS/YP6l6W45QCJG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bi5xUGfn; arc=none smtp.client-ip=209.85.160.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-7c52fa75cd3so2291306a34.3
-        for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 08:52:04 -0800 (PST)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-3ec3cdcda4eso2013429fac.1
+        for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 08:57:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763830324; x=1764435124; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763830627; x=1764435427; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:to:subject:user-agent:mime-version:date:message-id:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Sh8hHOP9drovdg2rt4Vvr6IFk9L/VFH0Ch9O0TTw990=;
-        b=TpAKt8VQuEiDOqSC7eVoeTXjzBumJrEmbmr0L+5S0LbfyZRO1kxxCQPrbs0NO5zL6f
-         Xx3kq8CWz+L2gAAIWIo3caHkinni75OekZvhKdFIkosxmPSzm/4rC3YTVPVM9GS5bMEh
-         xsIozaG6CH2lA7t6Iwsd3yUprikpCwtSpS4ZQF1x0J1zTRfP2FvRgxqLrOnwS5EZISFv
-         0KfewPwF4/BUPVwLdYWMRNOoTUvf8MEOsISAwI0LwuAiIXt2kgGNLTI7Ii/k1zSXzgZX
-         ft5TRORLysNnleDl35njfVrMVgRPIdGYugzEOeHBjv9QKvMryJxHCYQn7lkb7cvBsCkf
-         49FA==
+        bh=i48yrAPZ8Xqe0qNk6R5ngVE9StSi81SOfH4muZOsIJM=;
+        b=bi5xUGfnwMcu8/+lN0EPTo93R398aoY1NNXbBzSkkfAZ3aq8uyUq91AIBbF49l0nqi
+         vGw4AKAdCDLn9Keoj8fn4QE7qaWA5pj8DJkjSRQsYveu1OeUg22x+L2QCdxwWjIR1iwD
+         lRPwJL1mZiXMNRgci2qsjqfp4lyz2JMWwOpm4rLsmmNeDPe9dXuLOsVKm4isscSMEI38
+         X9JH4EsxK/KPKcjDWFaoUmvRPIY37V3kro6SWljXRDVXeTN0sLyOfDbTTFnfmcHQxtb8
+         RGsxZOqJ09KZfojbIW8Gz5wxAPP6kyRJyOGRbIT/29n1x6XFPQA1uTGyRCQRVa34cWnw
+         zG6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763830324; x=1764435124;
+        d=1e100.net; s=20230601; t=1763830627; x=1764435427;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Sh8hHOP9drovdg2rt4Vvr6IFk9L/VFH0Ch9O0TTw990=;
-        b=Jf6VJosMA+Wr3olwvsgVYk3oeRBnI0xKJ9626v4WGTEZRAYOiILYyD+axmwfTpz9yg
-         ieq3RFirT/S+wv+USgVwto4kLk5jVEI0jn3QLdjF8St+VrEQX2SiAI3m+i+aK+gyeCo3
-         bsfziPPMJ0ijMtHgk9CwRIpYBZ49JYM0C5g8aeIH9li4IvsU6eOcGlY7e1ZbNCgzBsLS
-         05Zwb+oK9Yt34cEL/DZV4uURlIf3nNiMu5nMTY0pVA7+4Y/wZ6HiB2wxxOOqFE8dg5ky
-         U80tYgYoIMjemz0duBhlExvk8eGUPfrmCtut9mTu5zzsVhg+Y45uRXBTPilN0ndJ34md
-         w9QA==
-X-Forwarded-Encrypted: i=1; AJvYcCW10BNhVPDuqX8FUzguwbtlxIx2mxByjxKuDVDko6ze6jZ/h8O+ppFKDIsralDS83z7stlQLA/1+wiU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyO1qm5BRj+14Yr12KbQq0w6IC9Mcz4YnOj/7sZ5rpxBfu5rVp
-	Oa+oPy92vzqSxt0f12e3cp6gaviWzyfORcDbSWfK878JBJqwRu9eNP+NZvpdjY2QXlk=
-X-Gm-Gg: ASbGnct/tSD4/3pLajyje03cKtDsS2w0XER/Xf/YSZoWBMdaWsnjf3bPk6AIX5kABLP
-	t9Am03skBQE/gq3idsUj8JKAAyWvFCDJdudXRxrdGJTp1tZWIjimGcRKPMFZps/yEf1RQv3d13S
-	t40NL5xzBDubOvzJSrzmOKFNWPezS7kuoUY/qtYxgboaJaW6bC7ljtOgNvl4itCREgUHAEbv3MS
-	KFO+3yXKve8l0IVuoxd2pjfUVdh7PsQehi++8/YYhj0TtNrD3MTueSwwRBeh1b5SfCdDqooSfdn
-	ttChSA7WzABAsHuTutyESqGPgS0T2tfetSvPALMlDW3sHTorwukQ9TT3n6DRk/cqeepyavyorHy
-	Wg4sIvrsNJxTmEPa9HkayqQU/f9qMcnhqVFLdIjjEK2AUzHKShkZ6kEVl2hH1Cp4t9rgkkxBtjR
-	JR4fU+uOjstTESiIlR1/6zJGSeFs59lxJW57wA5KtiQqDzTuq4KUnhTNuOUsEO
-X-Google-Smtp-Source: AGHT+IHa/+72L6QVdDNfQguUxKv6/KAvvwPNWGbh2YzhtqwmZUQcLI9Z8RvvWR2PM29rkEMtk6Csaw==
-X-Received: by 2002:a05:6830:43ab:b0:7c6:ca92:3621 with SMTP id 46e09a7af769-7c798db1dfdmr3366576a34.22.1763830323867;
-        Sat, 22 Nov 2025 08:52:03 -0800 (PST)
+        bh=i48yrAPZ8Xqe0qNk6R5ngVE9StSi81SOfH4muZOsIJM=;
+        b=n43spfABue2Q15ER6ATqhzW0jNI6KHLvLwN8xc5Jv/alqvABtT33NulVQJU9LV0wHZ
+         /O3m7CvOkDVwYK8NPJM8GJ6UwyGLRZTXgqENTmgb/chRiIcYCdiwrweIBwYNtd3dYRbu
+         84hIB89S2OciNXBhDZo0yl/e9zc21QmPVoAqZnUBFApJ4W/ZBhukViiWYxhB00m5+SOs
+         P80vk2IizwElpjPBuZLu34n0w2FmSQmk9jdDIOdfRoUl9FgomBo+RlXktr1EPnMR0tgb
+         5UUoVsd9CaUC8RdRS7cAI7yLlzNoUlARjticeuBThoO3o5T5lLnxnBqvv9ddrwlyxs8K
+         y8uQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVKjTAZAYNFtkHnkctzcRp2a55uP6sSMiUGhZgpvfwOZNjiYVY8TYmfzvjjU627noZnjooeww91ToAs@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAwAeuCmEUF/0ULcBdQwJDHHvVx51DWKeSiX8SWoSzAQVvBpvQ
+	y90cSabrhZRYQwTc3CkOHgrHDadxVMF0FbzD3j1yEIg0248euMINA6j4pFhh+2DH70g=
+X-Gm-Gg: ASbGncsHTZjZXiWH3fQxxEnUscH36fPjXo6O3LUpDdtXhu7ieKDpYsOgctSnwkPxNwX
+	SdBMM4W/cyARSZX/PfcUHjTxe6JdOIDj4IFpgYuVVu4QWH4TfLjYNZJYAsu7ObCD0kc4rgeXh1c
+	KiQn+Rb7R7KCAdtlHPGxzPwwzet7neKNIL558BumTY0IQHJA2BW6LmvypwnDoWEPq6AuoWpGIwV
+	eNYqQHx+G4uKmupK8pR0rsSJzRnl4K0V6fbHZy5poLWUK4ruaxOiJA3dN6fxrgn/FkO7D1fizoO
+	1s8qqCQOCPtrSeE3cAbEBDoiuk7zSfc31cMseND4vRVQnbmGMhz3qhOGB6L0ekFl5IaiAyfvXaW
+	vsZL9yJ2s5dNqYEvlXl29LdkjFpaxQQSwssx3mvVGZNxNj8cJuGq12BRnRssOX2tcr72BBvtwsN
+	IuEkTnZOZmObOIne8rz1q4Q4/CLWAPS9bYnUcB2pcs9XT70T9tTCApLGpENBJYBqas9p3h6oE=
+X-Google-Smtp-Source: AGHT+IGQVghKnkpbLYaT3scrqN+Wey48lVkwLs2TAkvO6IKygoP39K4MsYAJ17pvkp/XW+9haZPUaw==
+X-Received: by 2002:a05:6808:22a6:b0:450:bab2:4ae9 with SMTP id 5614622812f47-45112cde5f9mr2394898b6e.36.1763830627185;
+        Sat, 22 Nov 2025 08:57:07 -0800 (PST)
 Received: from ?IPV6:2600:8803:e7e4:500:e782:93d8:7c2f:f9df? ([2600:8803:e7e4:500:e782:93d8:7c2f:f9df])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c78d32cbd9sm3523534a34.11.2025.11.22.08.52.00
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-450fffbb78fsm2522270b6e.15.2025.11.22.08.57.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Nov 2025 08:52:02 -0800 (PST)
-Message-ID: <68452dcc-027a-4170-b9f5-2b064972b618@baylibre.com>
-Date: Sat, 22 Nov 2025 10:52:00 -0600
+        Sat, 22 Nov 2025 08:57:05 -0800 (PST)
+Message-ID: <37d15b55-4483-428f-9950-46f1b0ab2a56@baylibre.com>
+Date: Sat, 22 Nov 2025 10:57:05 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,398 +84,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] iio: amplifiers: adl8113: add driver support
+Subject: Re: [RESEND PATCH v2 0/2] iio: frequency: adf4377: add clock provider
+ support
 To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
  robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251121095204.18574-1-antoniu.miclaus@analog.com>
- <20251121095204.18574-3-antoniu.miclaus@analog.com>
+References: <20251121095933.19032-1-antoniu.miclaus@analog.com>
 Content-Language: en-US
 From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20251121095204.18574-3-antoniu.miclaus@analog.com>
+In-Reply-To: <20251121095933.19032-1-antoniu.miclaus@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/21/25 3:52 AM, Antoniu Miclaus wrote:
-> Add support for adl8113 10MHz to 12GHz Low Noise Amplifier with
-> 10MHz to 14GHz bypass switches.
+On 11/21/25 3:59 AM, Antoniu Miclaus wrote:
+> This series adds clock provider functionality to the ADF4377 frequency
+> synthesizer driver to address user requests for controlling output
+> frequencies from userspace.
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
+> While implemented as an IIO driver, the ADF4377 is commonly used as a
+> clock source. This patch series enables it to function as either:
+> - A traditional IIO device (when #clock-cells is not specified)
+> - A clock provider (when #clock-cells is present in device tree)
 > 
-> Changes in v4:
-> - Replace signal_path sysfs attribute with hardwaregain-only control
-> - Add support for external bypass amplifiers via DT properties
-> - Introduce dynamic gain configuration system with adl8113_gain_config structure
-> ---
->  drivers/iio/amplifiers/Kconfig   |  12 ++
->  drivers/iio/amplifiers/Makefile  |   1 +
->  drivers/iio/amplifiers/adl8113.c | 277 +++++++++++++++++++++++++++++++
->  3 files changed, 290 insertions(+)
->  create mode 100644 drivers/iio/amplifiers/adl8113.c
+> The implementation provides standard clock framework integration with
+> rate control, enable/disable support, and maintains backward
+> compatibility with existing IIO configurations.
 > 
-> diff --git a/drivers/iio/amplifiers/Kconfig b/drivers/iio/amplifiers/Kconfig
-> index 55eb16b32f6c..a8a604863eed 100644
-> --- a/drivers/iio/amplifiers/Kconfig
-> +++ b/drivers/iio/amplifiers/Kconfig
-> @@ -36,6 +36,18 @@ config ADA4250
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called ada4250.
->  
-> +config ADL8113
-> +	tristate "Analog Devices ADL8113 Low Noise Amplifier"
-> +	depends on GPIOLIB
-> +	help
-> +	  Say yes here to build support for Analog Devices ADL8113 Low Noise
-> +	  Amplifier with integrated bypass switches. The device supports four
-> +	  operation modes controlled by GPIO pins: internal amplifier,
-> +	  internal bypass, and two external bypass modes.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called adl8113.
-> +
->  config HMC425
->  	tristate "Analog Devices HMC425A and similar GPIO Gain Amplifiers"
->  	depends on GPIOLIB
-> diff --git a/drivers/iio/amplifiers/Makefile b/drivers/iio/amplifiers/Makefile
-> index 2126331129cf..0a76443be1aa 100644
-> --- a/drivers/iio/amplifiers/Makefile
-> +++ b/drivers/iio/amplifiers/Makefile
-> @@ -6,4 +6,5 @@
->  # When adding new entries keep the list in alphabetical order
->  obj-$(CONFIG_AD8366) += ad8366.o
->  obj-$(CONFIG_ADA4250) += ada4250.o
-> +obj-$(CONFIG_ADL8113) += adl8113.o
->  obj-$(CONFIG_HMC425) += hmc425a.o
-> diff --git a/drivers/iio/amplifiers/adl8113.c b/drivers/iio/amplifiers/adl8113.c
-> new file mode 100644
-> index 000000000000..118789aa2c19
-> --- /dev/null
-> +++ b/drivers/iio/amplifiers/adl8113.c
-> @@ -0,0 +1,277 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * ADL8113 Low Noise Amplifier with integrated bypass switches
-> + *
-> + * Copyright 2025 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/array_size.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/slab.h>
-> +#include <linux/sysfs.h>
-> +
-> +enum adl8113_signal_path {
-> +	ADL8113_INTERNAL_AMP,
-> +	ADL8113_INTERNAL_BYPASS,
-> +	ADL8113_EXTERNAL_A,
-> +	ADL8113_EXTERNAL_B,
-> +};
-> +
-> +struct adl8113_gain_config {
-> +	enum adl8113_signal_path path;
-> +	int gain_db;
-> +	int va;
-> +	int vb;
-> +};
-> +
-> +struct adl8113_state {
-> +	struct gpio_desc *gpio_va;
-> +	struct gpio_desc *gpio_vb;
-> +	struct adl8113_gain_config *gain_configs;
-> +	int num_gain_configs;
-> +	enum adl8113_signal_path current_path;
-> +};
-> +
-> +static const char * const adl8113_supply_names[] = {
-> +	"vdd1",
-> +	"vdd2",
-> +	"vss2"
-> +};
+> Antoniu Miclaus (2):
+>   dt-bindings: iio: frequency: adf4377: add clk provider
+>   iio: frequency: adf4377: add clk provider support
+> 
+>  .../bindings/iio/frequency/adi,adf4377.yaml   |   8 ++
+>  drivers/iio/frequency/adf4377.c               | 119 +++++++++++++++++-
+>  2 files changed, 125 insertions(+), 2 deletions(-)
+> 
 
-Datasheet says recommended power on sequence is VDD_SW, VSS, VDD_PA.
-Don't know why they used different names for just that one section
-in the datasheet, but at least vss2 should go in the middle. Not
-sure which VSS is which though.
+When doing a RESEND, please add a note that says why.
 
-> +
-> +static int adl8113_set_path(struct adl8113_state *st,
-> +			    enum adl8113_signal_path path)
-> +{
-> +	int va, vb;
-> +
-> +	/* Determine GPIO values based on signal path */
-> +	switch (path) {
-> +	case ADL8113_INTERNAL_AMP:
-> +		va = 0; vb = 0; /* Internal amplifier */
-> +		break;
-> +	case ADL8113_INTERNAL_BYPASS:
-> +		va = 1; vb = 1; /* Internal bypass */
-> +		break;
-> +	case ADL8113_EXTERNAL_A:
-> +		va = 0; vb = 1; /* External bypass A */
-> +		break;
-> +	case ADL8113_EXTERNAL_B:
-> +		va = 1; vb = 0; /* External bypass B */
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
+Also, you still didn't include the clock mailing list or maintainers,
+so I don't expect this to progress since the last time.
 
-This could be simplified by using a gpiod array.
-
-> +
-> +	gpiod_set_value(st->gpio_va, va);
-> +	gpiod_set_value(st->gpio_vb, vb);
-
-This doesn't need to be atomic, so we can use the _cansleep() versions of
-the gpio functions.
-
-> +	st->current_path = path;
-> +	return 0;
-> +}
-> +
-> +static int adl8113_find_gain_config(struct adl8113_state *st, int gain_db)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < st->num_gain_configs; i++) {
-> +		if (st->gain_configs[i].gain_db == gain_db)
-> +			return i;
-> +	}
-> +	return -EINVAL;
-> +}
-> +
-> +static const struct iio_chan_spec adl8113_channels[] = {
-> +	{
-> +		.type = IIO_VOLTAGE,
-> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN),
-> +		.indexed = 1,
-> +		.channel = 0,
-
-.indexed and .channel have no effect for shared_by_type so can be
-omitted.
-
-> +	},
-> +};
-> +
-> +static int adl8113_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan,
-> +			    int *val, int *val2, long mask)
-> +{
-> +	struct adl8113_state *st = iio_priv(indio_dev);
-> +	int i;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_HARDWAREGAIN:
-> +		/* Find current gain configuration */
-> +		for (i = 0; i < st->num_gain_configs; i++) {
-> +			if (st->gain_configs[i].path == st->current_path) {
-> +				*val = st->gain_configs[i].gain_db;
-> +				*val2 = 0;
-> +				return IIO_VAL_INT_PLUS_MICRO_DB;
-> +			}
-> +		}
-> +		return -EINVAL;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int adl8113_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan,
-> +			     int val, int val2, long mask)
-> +{
-> +	struct adl8113_state *st = iio_priv(indio_dev);
-> +	int config_idx;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_HARDWAREGAIN:
-> +		if (val2 != 0)
-> +			return -EINVAL;
-> +
-> +		config_idx = adl8113_find_gain_config(st, val);
-> +		if (config_idx < 0)
-> +			return -EINVAL;
-
-			return config_idx; 
-
-would be more typical.
-
-> +
-> +		return adl8113_set_path(st, st->gain_configs[config_idx].path);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct iio_info adl8113_info = {
-> +	.read_raw = adl8113_read_raw,
-> +	.write_raw = adl8113_write_raw,
-> +};
-> +
-> +static int adl8113_init_gain_configs(struct device *dev, struct adl8113_state *st)
-> +{
-> +	int external_a_gain, external_b_gain;
-> +	int num_configs = 2; /* Always have internal amp and internal bypass */
-> +	int i = 0;
-> +
-> +	/* Check for optional external bypass amplifier gains */
-> +	if (!device_property_read_u32(dev, "adi,external-bypass-a-gain-db",
-> +				      &external_a_gain))
-
-Looks like we could just use device_property_present() here.
-
-> +		num_configs++;
-> +
-> +	if (!device_property_read_u32(dev, "adi,external-bypass-b-gain-db",
-> +				      &external_b_gain))
-> +		num_configs++;
-> +
-> +	st->gain_configs = devm_kcalloc(dev, num_configs,
-> +					sizeof(*st->gain_configs), GFP_KERNEL);
-> +	if (!st->gain_configs)
-> +		return -ENOMEM;
-> +
-> +	/* Always include internal amplifier (14dB) */
-> +	st->gain_configs[i].path = ADL8113_INTERNAL_AMP;
-> +	st->gain_configs[i].gain_db = 14;
-> +	i++;
-> +
-> +	/* Always include internal bypass (0dB) */
-> +	st->gain_configs[i].path = ADL8113_INTERNAL_BYPASS;
-> +	st->gain_configs[i].gain_db = 0;
-
-The datasheet says there is actually a loss here. In one place it
-says 2.2dB and in another 1.8db.
-
-So it would make sense for this to be -2.
-
-> +	i++;
-> +
-> +	/* Add external bypass A if configured */
-> +	if (!device_property_read_u32(dev, "adi,external-bypass-a-gain-db",
-> +				      &external_a_gain)) {
-> +		st->gain_configs[i].path = ADL8113_EXTERNAL_A;
-> +		st->gain_configs[i].gain_db = external_a_gain;
-> +		i++;
-> +	}
-> +
-> +	/* Add external bypass B if configured */
-> +	if (!device_property_read_u32(dev, "adi,external-bypass-b-gain-db",
-> +				      &external_b_gain)) {
-> +		st->gain_configs[i].path = ADL8113_EXTERNAL_B;
-> +		st->gain_configs[i].gain_db = external_b_gain;
-> +		i++;
-> +	}
-> +
-> +	st->num_gain_configs = num_configs;
-
-The datasheet mentioned switching to a bypass with nothing connected for
-testing, so it could make sense that if there is a free config, add one
-more with gain of INT_MIN (for near-infinite attenuation) to allow that
-if needed.
-
-> +
-> +	/* Check for duplicate gain values */
-> +	for (i = 0; i < num_configs - 1; i++) {
-> +		for (int j = i + 1; j < num_configs; j++) {
-
-This type of inline variable declaration is usually avoided in the kernel.
-
-> +			if (st->gain_configs[i].gain_db == st->gain_configs[j].gain_db) {
-> +				dev_err(dev, "Duplicate gain values not allowed: %d dB\n",
-> +					st->gain_configs[i].gain_db);
-> +				return -EINVAL;
-
-Should be OK to use dev_err_probe() here.
-
-> +			}
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int adl8113_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct adl8113_state *st;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +
-> +	st->gpio_va = devm_gpiod_get(dev, "va", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->gpio_va))
-> +		return dev_err_probe(dev, PTR_ERR(st->gpio_va),
-> +				     "failed to get VA GPIO\n");
-> +
-> +	st->gpio_vb = devm_gpiod_get(dev, "vb", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->gpio_vb))
-> +		return dev_err_probe(dev, PTR_ERR(st->gpio_vb),
-> +				     "failed to get VB GPIO\n");
-> +
-> +	ret = devm_regulator_bulk_get_enable(dev,
-> +					     ARRAY_SIZE(adl8113_supply_names),
-> +					     adl8113_supply_names);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to get and enable supplies\n");
-> +
-> +	/* Initialize gain configurations from devicetree */
-> +	ret = adl8113_init_gain_configs(dev, st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Initialize to internal amplifier path (14dB) */
-> +	ret = adl8113_set_path(st, ADL8113_INTERNAL_AMP);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->info = &adl8113_info;
-> +	indio_dev->name = "adl8113";
-> +	indio_dev->channels = adl8113_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(adl8113_channels);
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-
-This doesn't do single conversions, so no INDIO_DIRECT_MODE (or any
-other mode).
-
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-> +
-> +static const struct of_device_id adl8113_of_match[] = {
-> +	{ .compatible = "adi,adl8113" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, adl8113_of_match);
-> +
-> +static struct platform_driver adl8113_driver = {
-> +	.driver = {
-> +		.name = "adl8113",
-> +		.of_match_table = adl8113_of_match,
-> +	},
-> +	.probe = adl8113_probe,
-> +};
-> +
-> +module_platform_driver(adl8113_driver);
-> +
-> +MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-> +MODULE_DESCRIPTION("Analog Devices ADL8113 Low Noise Amplifier");
-> +MODULE_LICENSE("GPL");
 
 
