@@ -1,172 +1,147 @@
-Return-Path: <devicetree+bounces-241328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8959C7CC6C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 11:16:35 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80CBEC7CCB2
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 11:32:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5B484344364
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 10:16:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 388BD4E30ED
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 10:32:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97D612F7ABB;
-	Sat, 22 Nov 2025 10:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D97C2356A4;
+	Sat, 22 Nov 2025 10:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="br9KKYgh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JizNm2M6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E3522F0C66;
-	Sat, 22 Nov 2025 10:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808F71C3F36;
+	Sat, 22 Nov 2025 10:32:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763806590; cv=none; b=N1qtB/uFgAC11rqGDBWbRq+CsmQ003GntsRtc50tZF79Bxtmzd1sne4y7DGdELj5kHjusfwuh8VUi3KRvE7wRPdONobd9o6W+UmkBLL6X+jze9dy43x/4Ug6jkCVCBZ3MFS/LVlqgc+xFka6WiBDy2FiespVchKtNfCSTqNWj2w=
+	t=1763807525; cv=none; b=EwYFBQ9a3KkNYzIw8GUtwsoQp1Uf6optKeEqRTHFuTMsukhpp7xAEOMQFbjhzj925Rl+b4ZdjYOBLg2KgRQ/FBkYZ9vzKQMdN6oTcVawD95ZKTmFAmUWSO27Pe5ZkEOlItzyLZM9BhVOdpPCRcwgz4cwpb+kGEAeV290LvRwVXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763806590; c=relaxed/simple;
-	bh=hZ2wdq4gl82O1Rm4fAtlQLFIoSUKbXjgtpyiNYHEjp4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HD3tcCWNlm/4yeklmPx7EOItiPcU54iBdsTRfVcUHPTARJHiSypzfOOcRII1LBm6OzBushWH0EPo5Qpvm3fWGMq/KRPxsxTnE85BqecXejOL2/rQz5n59R2aVGsRJTvx7ufd8umK05kQzuaOcuaOUzapYm+wfMhOXgvEaf7Hj70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=br9KKYgh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13087C4CEF5;
-	Sat, 22 Nov 2025 10:16:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763806590;
-	bh=hZ2wdq4gl82O1Rm4fAtlQLFIoSUKbXjgtpyiNYHEjp4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=br9KKYghEEw68+Fg2suL5WkeOYj07aYoqtf9rNkdN2z11KwrYwYUvyMbKqrl85dq4
-	 LErRS6+YIRMT2bIDrsZeBJTUlC7jc5UVRtspO+aB67cdnreS6l6PIdGmNPIB8liRxY
-	 HDkF4YgZ/bVOvV8/A1T+crFEbhE9h4f9jbzMLgoGvZItjPA+LBstVJ3Lg6q0r+8D3j
-	 ELxL8fdltbjR2UTq3LBMcjDHajyV+5TAmH6JoMopeuTPqnwXl7vP72OIjvAIVfCblG
-	 EadKvJtPiorJlYR1FdIs9zkGN73NMiRyuG0609qG9oL9hSG5wImug5Ejajo/Zp1CHW
-	 5uPaPv1GhIx5Q==
-Message-ID: <af3d3295-1340-417f-8682-7d7e2bc6c812@kernel.org>
-Date: Sat, 22 Nov 2025 11:16:25 +0100
+	s=arc-20240116; t=1763807525; c=relaxed/simple;
+	bh=wpdyCFZbk7NVeZvDHyBA6YIaYgqFxFMIT40Zw2qft9A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FAB9Cj8k1tIbqOIgmb6HGp4t8uGKkdYZtWS1ZyHkh+mPUy9IiXGkhfs0h3u4siUkBM2Tx60t2Hbfr9Q2VWBZ+oSArn5gy6mEl2ArdTs6eMepHzT1CDUg+dQk+h8tHmPboPiyPfMzEGVYWdaKrx42uBB8XMcXkd55TVJ3RibatQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JizNm2M6; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763807523; x=1795343523;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wpdyCFZbk7NVeZvDHyBA6YIaYgqFxFMIT40Zw2qft9A=;
+  b=JizNm2M69HOnJpJoXa+2UcEu42lYNqm65vLO4IV+zqhUvSZWFsUehkJC
+   OBuIer2iz3pcLhtqHcmmiDfOIYHrjI2hQKr1b/Va3jwMYRzfNSvFbKArq
+   z0DtpiCZlu7XSuMUpjMafJqZmRYXQuCPBh84Cn+OSrAA+RYKnQwArf6q2
+   0CilteqNEV34ezKtG31R3EpxB8jLcVRmsL8ebTfFEtrx1aHMeR444f7HY
+   r8K5gtykCY3DObE07Bq7pvHroxI5IonH0Vo/CSrLsVfiHw2/Ey26orNDb
+   GXAAhNPQMCyzANLeBSJ7URq65J2AvCdNdwol0kPPSe4kM2GwzgwpfHFQF
+   Q==;
+X-CSE-ConnectionGUID: tfQLa7PvSrWnVlOg5VFPhg==
+X-CSE-MsgGUID: E2TQ7JPASiO/05tbb3qjeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11620"; a="88539583"
+X-IronPort-AV: E=Sophos;i="6.20,218,1758610800"; 
+   d="scan'208";a="88539583"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2025 02:32:03 -0800
+X-CSE-ConnectionGUID: xbXfXHmXQBqLtdxObvlFkQ==
+X-CSE-MsgGUID: eSHHYEuIRVGMiBPqgygvYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,218,1758610800"; 
+   d="scan'208";a="229203826"
+Received: from lkp-server01.sh.intel.com (HELO adf6d29aa8d9) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 22 Nov 2025 02:32:01 -0800
+Received: from kbuild by adf6d29aa8d9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vMkuL-0007Pf-2h;
+	Sat, 22 Nov 2025 10:31:57 +0000
+Date: Sat, 22 Nov 2025 18:31:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: Kurt Borja <kuurtb@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tobias Sperling <tobias.sperling@softing.com>
+Cc: oe-kbuild-all@lists.linux.dev, David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Kurt Borja <kuurtb@gmail.com>
+Subject: Re: [PATCH 2/2] iio: adc: Add ti-ads1x18 driver
+Message-ID: <202511221834.DmWdWn3a-lkp@intel.com>
+References: <20251121-ads1x18-v1-2-86db080fc9a4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/7] Add TUXEDO Elite 14 Gen1 (X1E78100)
-To: Georg Gottleuber <ggo@tuxedocomputers.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ettore Chimenti <ettore.chimenti@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
- stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
-References: <20251121142623.251118-1-ggo@tuxedocomputers.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251121142623.251118-1-ggo@tuxedocomputers.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251121-ads1x18-v1-2-86db080fc9a4@gmail.com>
 
-On 21/11/2025 15:26, Georg Gottleuber wrote:
-> Initial support for TUXEDO Elite 14 Gen1 laptop. It is based on Qualcomm
-> Snapdragon X Elite SoC (X1E78100).
-> 
-> Changes in v3:
-> - add DisplayPort audio to dts
-> - add el2.dtb to Makefile
-> - change dts firmware paths
-> - fix dt-binding (x1e78100 instead of x1e80100)
-> - improve commit message for elite14gen1 dt-bindings
-> - remove smb2360_1 from dts (only one USB-C port is present)
-> - remove "VA MIC BIAS1" from dts
-> - remove regulator-always-on from vreg_edp_3p3 (display) in dts
-> - rename vendor prefix of ASL Xiamen Technology to asl-tek
-> - sort dts
-> 
-> Changes in v2:
-> - Rebase to v6.18-rc4/master
-> - Add support for accelerated video decoding
-> - Add support for audio (speakers, microphones, headset)
-> - Add support for Bluetooth
-> - Add support for camera
-> - Add support for fingerprint reader
-> - Add support for HDMI-A port
-> - Add support for QSEECOM
-> - Add support for USB Type-A
-> - Add support for USB-C DP altmode
-> - Add ASL Xiamen Technology Co. Ltd. vendor prefix
-> - Add TUXEDO vendor prefix
-> - Add cover letter
-> - Removal of pointless comments
-> - Coding style fixes
-> - Spell check
-> 
-> The device tree uses the dtschema from Linaro DisplayPort PHY patch [1].
-> ALSA UCM and Audioreach topology patches are available at [2] and [3].
-> The fingerprint reader requires USB IDs to be patched into libfprint.
-> WiFi requires a firmware patch [4].
-> 
-> Announcement and request for comments:
+Hi Kurt,
 
-This should be FIRST part of cover letter, so we won't waste time on
-reviewing it, instead of burying it deep. Additionally, you should have
-named the series RFC.
+kernel test robot noticed the following build warnings:
 
-> Because the SoC is now outdated and some functions still do not work as
-> well as customers would expect from the TUXEDO brand, TUXEDO Elite 14 Gen1
-> will not be offered for sale. We would still like to submit our device
-> tree to the mainline kernel and thus contribute to Linux support for a
-> compatible device sold by Medion (SPRCHRGD 14 S1 Elite). At least in
-> Germany, this device was sold in many large stores. (An official press
-> statement will follow on our website.)
+[auto build test WARNING on f9e05791642810a0cf6237d39fafd6fec5e0b4bb]
 
-For me this is unmergeable, because we do not take stuff which no one
-uses (no one can even use), and I am sad I put effort in reviewing AFTER
-this was known to be cancelled.
+url:    https://github.com/intel-lab-lkp/linux/commits/Kurt-Borja/dt-bindings-iio-adc-Add-TI-ADS1018-ADS1118/20251122-012031
+base:   f9e05791642810a0cf6237d39fafd6fec5e0b4bb
+patch link:    https://lore.kernel.org/r/20251121-ads1x18-v1-2-86db080fc9a4%40gmail.com
+patch subject: [PATCH 2/2] iio: adc: Add ti-ads1x18 driver
+config: openrisc-randconfig-r131-20251122 (https://download.01.org/0day-ci/archive/20251122/202511221834.DmWdWn3a-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 11.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251122/202511221834.DmWdWn3a-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511221834.DmWdWn3a-lkp@intel.com/
 
-Best regards,
-Krzysztof
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/adc/ti-ads1x18.c:237:16: sparse: sparse: cast to restricted __be16
+>> drivers/iio/adc/ti-ads1x18.c:244:28: sparse: sparse: incorrect type in assignment (different base types) @@     expected unsigned short @@     got restricted __be16 [usertype] @@
+   drivers/iio/adc/ti-ads1x18.c:244:28: sparse:     expected unsigned short
+   drivers/iio/adc/ti-ads1x18.c:244:28: sparse:     got restricted __be16 [usertype]
+   drivers/iio/adc/ti-ads1x18.c:788:15: sparse: sparse: cast to restricted __be16
+   drivers/iio/adc/ti-ads1x18.c:813:15: sparse: sparse: cast to restricted __be16
+
+vim +237 drivers/iio/adc/ti-ads1x18.c
+
+   226	
+   227	static int __ads1x18_read_conver(struct ads1x18 *ads1x18, u16 *cnv)
+   228	{
+   229		int ret;
+   230	
+   231		ads1x18->tx_buf[0] = 0;
+   232		ads1x18->tx_buf[1] = 0;
+   233		ret = spi_sync_locked(ads1x18->spi, &ads1x18->message);
+   234		if (ret)
+   235			return ret;
+   236	
+ > 237		*cnv = be16_to_cpu(ads1x18->rx_buf[0]);
+   238	
+   239		return 0;
+   240	}
+   241	
+   242	static int __ads1x18_write_config(struct ads1x18 *ads1x18, u16 cfg)
+   243	{
+ > 244		ads1x18->tx_buf[0] = cpu_to_be16(cfg);
+   245		ads1x18->tx_buf[1] = 0;
+   246	
+   247		return spi_sync_locked(ads1x18->spi, &ads1x18->message);
+   248	}
+   249	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
