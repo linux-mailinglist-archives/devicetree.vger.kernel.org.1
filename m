@@ -1,54 +1,56 @@
-Return-Path: <devicetree+bounces-241337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 363B1C7CE28
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4869C7CE4C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 12:30:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1ADAD341EA8
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 11:24:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9EB96341E6D
+	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 11:28:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CEF274B28;
-	Sat, 22 Nov 2025 11:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3DD274B42;
+	Sat, 22 Nov 2025 11:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="GqjPZSKh"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b="mDhTUOtY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com [157.90.84.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from s2.avantea.pl (s2.avantea.pl [46.242.128.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F062D8387;
-	Sat, 22 Nov 2025 11:23:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=157.90.84.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DAFA19DFA2;
+	Sat, 22 Nov 2025 11:28:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.242.128.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763810637; cv=none; b=B9VAsWmiTtS7E/LfBhVMc6YnizcdBvgWO1dnMNZmgsRBe6CpKMNM7muo5+qUT4458sCztTI6CPznBBAAAXhTNtxvMgUoS0N0Kt3DmMGrVmti3wtVZfFfyA2uuOuLmukmm217Sr/hVr/gyhd6OCXDMylnFSnEgk8FLF3agWYd/Is=
+	t=1763810910; cv=none; b=YulZSdMHrzr/VKWAfLzlEtFGLEr7+6HxC8WH+afkYDeSlJ8oC8kqEJE/kcB2bcGO0bUXqIHw3HCDGu5HiPje/T3HRDxlklqXp5VWq+RnuVqtnd7vr39PzoFJQskErfVSbOFVVWGqDHOYZyelIl9i+ih+OpLHKqwFS0VQk5urWaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763810637; c=relaxed/simple;
-	bh=1YmvoQJ8PirE1SIeaFeIz+ka7SH10h7n8BK/IbvokT4=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=a3it8a8uU2p7VSoD7Q3N6bx8xkRkqIwFvF5y9Pd6UVzPX2YoON2ZRGDwY2LXYG1oS1d6NyRTRbxuqcDc7iN70g0M3W+Npe0rB5UMSmFIWy1p6Yp5one/6GOHK8oaqIR59aGg4bF0l7zKdvSvJ3Ytz7so2wtRIThR5sazvinLPRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com; spf=pass smtp.mailfrom=tuxedocomputers.com; dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b=GqjPZSKh; arc=none smtp.client-ip=157.90.84.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxedocomputers.com
-Received: from [192.168.178.76] (business-24-134-207-61.pool2.vodafone-ip.de [24.134.207.61])
-	(Authenticated sender: g.gottleuber@tuxedocomputers.com)
-	by mail.tuxedocomputers.com (Postfix) with ESMTPSA id F2E802FC0055;
-	Sat, 22 Nov 2025 12:23:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
-	s=default; t=1763810631;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=U5KpPc8w70ov8a7p1A1Nup9baSkb22Rjui7n7KEdlo0=;
-	b=GqjPZSKhXyOr4GGgJ2lXPcVhArbM88OWqXVe8x0+1zU6Uz2sGJuoj44ZUbOuGqVZC+8YsW
-	2iJdvh0KgH3x6dCcL3MbyDamM4gX5KM7MeNDQpbCy0EP3lGbgp5TIPV8wh6sTujejjPAxM
-	wgXZPwEK93FMzsJpGhaDX5Lhym+IAxU=
-Authentication-Results: mail.tuxedocomputers.com;
-	auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com smtp.mailfrom=ggo@tuxedocomputers.com
-Message-ID: <ce0303d4-b6b7-4920-a3f3-9dbee18032f1@tuxedocomputers.com>
-Date: Sat, 22 Nov 2025 12:23:50 +0100
+	s=arc-20240116; t=1763810910; c=relaxed/simple;
+	bh=cCQob1a5LsUVJL0jBHTGi1id3X3grakuIWsHdZn5yC0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=B3+DDPNpdVoU6ctgRV09+ogLeVuUfVI/N52rKJJAoYNastjnAnrbU+SnfQzOnVqoTiHHtPCcRdiVBM2/p3RWLNXpqnDc8OSXwszctq5HRRE+WhdYvOF9f8TazNHWrMeXt7v2o6qfiV/jiym8w0swbHUSfanqAb0wOLjaOIBjgKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl; spf=pass smtp.mailfrom=szczodrzynski.pl; dkim=pass (2048-bit key) header.d=szczodrzynski.pl header.i=@szczodrzynski.pl header.b=mDhTUOtY; arc=none smtp.client-ip=46.242.128.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=szczodrzynski.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczodrzynski.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=szczodrzynski.pl; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To
+	:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=sTIigErOKl7e8JhN8I1UwZxYBcS4CkN23s/oTFvf/Dg=; b=mDhTUOtYYD2PoSPm7+k+UOXoPV
+	lnjPFdJ7GPLaTgHd8oAnqdH61tFnFJMo+j0p8AqaYPNEXbKYIO1unFo8zP+6acOwKlUllA18AC2Gf
+	A3LNGIxH9m8Z+WUNDrZ3DS6+SYiCWrsgVk1z9kV5eM3iGuat8DQW8BMsuaLsm7kq3ON6SmhBakq6e
+	u6Ao6E7/shC+Jc/XKZDjYYbNwiSjQTtFo2mV3LsOIZTi7N9X62HQag+UoeORzEpcXhgJ9MJBNELOu
+	wbZoMRNuqZw/P2W7G/FO8V+Ys7F8+LgqjnwhflrMZheLZyW2OvPvLLCQU0sMMfMRpCQrxHRxr2v7a
+	+u5r/pXA==;
+Received: from d100-78.icpnet.pl ([77.65.100.78] helo=[192.168.0.120])
+	by s2.avantea.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <kuba@szczodrzynski.pl>)
+	id 1vMlml-00000007s2Y-1bfI;
+	Sat, 22 Nov 2025 12:28:11 +0100
+Message-ID: <72fba214-010d-498e-957f-f1d042f18edc@szczodrzynski.pl>
+Date: Sat, 22 Nov 2025 12:27:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,141 +58,170 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/7] arm64: dts: qcom: Add device tree for TUXEDO Elite
- 14 Gen1
-From: Georg Gottleuber <ggo@tuxedocomputers.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Georg Gottleuber <ggo@tuxedocomputers.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 1/6] phy: allwinner: phy-sun6i-mipi-dphy: Support LVDS
+ in combo D-PHY
+To: Parthiban <parthiban@linumiz.com>, Maxime Ripard <mripard@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ettore Chimenti <ettore.chimenti@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
- stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
-References: <20251121142623.251118-1-ggo@tuxedocomputers.com>
- <20251121142623.251118-7-ggo@tuxedocomputers.com>
- <d66c9cd7-bc4c-4cbe-9549-0d24c8a6ae8f@kernel.org>
- <8269aebd-ef1a-42c3-9bf3-580e00589821@kernel.org>
- <63c0a929-4833-420a-88fc-ee6e53b1d5fd@tuxedocomputers.com>
-Content-Language: en-US
-Autocrypt: addr=g.gottleuber@tuxedocomputers.com; keydata=
- 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
- bsxTTcOuRnk=
-In-Reply-To: <63c0a929-4833-420a-88fc-ee6e53b1d5fd@tuxedocomputers.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, paulk@sys-base.io
+References: <20251116134609.447043-1-kuba@szczodrzynski.pl>
+ <20251116134724.447131-1-kuba@szczodrzynski.pl>
+ <6d421d06-c534-40f3-8732-8f80a29b6821@linumiz.com>
+Content-Language: pl
+From: =?UTF-8?Q?Kuba_Szczodrzy=C5=84ski?= <kuba@szczodrzynski.pl>
+Autocrypt: addr=kuba@szczodrzynski.pl; keydata=
+ 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
+In-Reply-To: <6d421d06-c534-40f3-8732-8f80a29b6821@linumiz.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Id: kuba@szczodrzynski.pl
 
+W dniu 2025-11-20 o 07:24:53, Parthiban pisze:
 
-
-Am 22.11.25 um 12:10 schrieb Georg Gottleuber:
-> 
-> Am 22.11.25 um 11:09 schrieb Krzysztof Kozlowski:
->> On 22/11/2025 11:07, Krzysztof Kozlowski wrote:
->>> On 21/11/2025 15:26, Georg Gottleuber wrote:
->>>> Initial support for TUXEDO Elite 14 Gen1 based on Qualcomm Snapdragon X
->>>> Elite SoC (X1E78100).
->>>>
->>>> Working:
->>>> * Touchpad
->>>> * Keyboard
->>>> * eDP (no brightness control yet)
->>>> * NVMe
->>>> * USB Type-C port
->>>> * USB-C DP altmode
->>>> * HDMI-A port
->>>> * WiFi (WiFi 7 untested)
->>>> * Bluetooth
->>>> * GPU
->>>> * Video decoding
->>>> * USB Type-A
->>>> * Audio, speakers, microphones
->>>> 	- 4x speakers.
->>>> 	- 2x dmic
->>>> 	- headset
->>>> * Camera
->>>> * Fingerprint reader
->>>>
->>>> Co-developed-by: Srinivas Kandagatla <srini@kernel.org>
->>>> Signed-off-by: Srinivas Kandagatla <srini@kernel.org>
->>>> Co-developed-by: Ettore Chimenti <ettore.chimenti@linaro.org>
->>>> Signed-off-by: Ettore Chimenti <ettore.chimenti@linaro.org>
->>>> Signed-off-by: Georg Gottleuber <ggo@tuxedocomputers.com>
->>>> ---
->>>
->>>
->>> I guess all our reviews are irrelevant now and this should be abandoned:
->>>
->>> https://www.tuxedocomputers.com/en/Discontinuation-of-ARM-notebooks-with-Snapdragon-X-Elite-SoC.tuxedo
+> Dear Kuba,
+>
+> Thanks for your efforts.
+>
+> On 11/16/25 2:47 PM, Kuba Szczodrzyński wrote:
+>> Some Allwinner chips (notably the D1s/T113 and the A100) have a "combo
+>> MIPI DSI D-PHY" which is required when using single-link LVDS0.
 >>
->> Heh, I see you sent it AFTER the above announcement, so knowing this is
->> not going to be merged. Reviewing code which is not going to be need is
->> waste of time, so I feel tricked. That's not nice.
-> 
-> Hi Krzysztof, I am very sorry about that. That was precisely NOT my
-> intention. That's why I updated the cover letter for v3 and made sure
-> that this information was first released to the kernel maintainers (so
-> that they wouldn't find out about it through the press). My patch set
-> was deliberately published hours before the official press statement.
-> (Maybe the time gap was too short.)
-> 
-> Please read the updated cover letter.
+>> In this mode, the DSI peripheral is not used and the PHY is not
+>> configured for DSI. Instead, the COMBO_PHY_REGx registers are set to
+>> enable LVDS operation.
+>>
+>> Enable the PHY driver to work in LVDS mode on chips with a combo D-PHY.
+>>
+>> Also change the SUN50I_COMBO_PHY_REG1 macro names to reflect the correct
+>> register name.
+>>
+>> Signed-off-by: Kuba Szczodrzyński <kuba@szczodrzynski.pl>
+>> ---
+>>   drivers/phy/allwinner/phy-sun6i-mipi-dphy.c | 70 ++++++++++++++++++++-
+>>   1 file changed, 68 insertions(+), 2 deletions(-)
+> I tried integrating your changes in A133 display pipeline and I couldn't get the LVDS working.
+> Am still narrowing down what is missing in your patch. Driver registration is success and I
+> can see /dev/fb0 as well. But nothing on the display itself.
+>
+> But with below changes from my patch,
+>
+> diff --git a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
+> index 36eab95271b2..d164b2ea5dfd 100644
+> --- a/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
+> +++ b/drivers/phy/allwinner/phy-sun6i-mipi-dphy.c
+> @@ -314,13 +314,11 @@ static void sun50i_a100_mipi_dphy_tx_power_on(struct sun6i_dphy *dphy)
+>          /* Disable sigma-delta modulation. */
+>          regmap_write(dphy->regs, SUN50I_DPHY_PLL_REG2, 0);
+>   
+> -       regmap_update_bits(dphy->regs, SUN6I_DPHY_ANA4_REG,
+> -                          SUN6I_DPHY_ANA4_REG_EN_MIPI,
+> -                          SUN6I_DPHY_ANA4_REG_EN_MIPI);
+> -
+>          regmap_update_bits(dphy->regs, SUN50I_COMBO_PHY_REG0,
+> +                          SUN50I_COMBO_PHY_REG0_EN_LVDS |
+>                             SUN50I_COMBO_PHY_REG0_EN_MIPI |
+>                             SUN50I_COMBO_PHY_REG0_EN_COMBOLDO,
+> +                          SUN50I_COMBO_PHY_REG0_EN_LVDS |
+>                             SUN50I_COMBO_PHY_REG0_EN_MIPI |
+>                             SUN50I_COMBO_PHY_REG0_EN_COMBOLDO);
+>   
+> @@ -528,6 +526,22 @@ static int sun6i_dphy_exit(struct phy *phy)
+>          return 0;
+>   }
+>
+> LVDS works fine.
+>
+> Could you please share the diff of your dts / dtsi?
 
-One more thing: The timestamp on
-https://www.tuxedocomputers.com/en/Discontinuation-of-ARM-notebooks-with-Snapdragon-X-Elite-SoC.tuxedo
-is obviously (for me) the date of creation not the date of publication.
-I can understand that it made you suspicious.
+Hi,
+Here's the DTS overlay I used to enable an LVDS panel on T113. You'll need to adapt the panel specification to your particular display.
+I did not need to change the phy driver, so this extra requirement might be specific to A133.
 
-Regards,
-Georg
+/dts-v1/;
+/plugin/;
 
+&{/} {
+	panel {
+		compatible = "panel-lvds";
+		data-mapping = "jeida-18";
+		ddc-i2c-bus = <&i2c2>;
 
-> Regards,
-> Georg
-> 
->> Best regards,
->> Krzysztof
-> 
+		port {
+			panel_input: endpoint {
+				remote-endpoint = <&tcon_lcd0_out_lvds>;
+			};
+		};
+	};
+};
 
+&tcon_lcd0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&lcd_lvds0_pins>;
+};
+
+&tcon_lcd0_out {
+	reg = <1>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	tcon_lcd0_out_lvds: endpoint@0 {
+		reg = <0>;
+		remote-endpoint = <&panel_input>;
+	};
+};
+
+Regards
+Kuba
+
+>
+> Thanks,
+> Parthiban
 
