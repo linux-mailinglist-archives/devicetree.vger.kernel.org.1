@@ -1,169 +1,171 @@
-Return-Path: <devicetree+bounces-241436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F02C7E013
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 12:23:46 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D091C7E070
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 12:46:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D2C064E2088
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 11:23:40 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5243134CD21
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 11:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753E12D59F7;
-	Sun, 23 Nov 2025 11:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00078284663;
+	Sun, 23 Nov 2025 11:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VqDfgt4z"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nG5TvK5H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE6C2D5946
-	for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 11:23:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E95E84A35;
+	Sun, 23 Nov 2025 11:46:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763897016; cv=none; b=UP1FJWNXdXMUPAo78+xIy29Z75ln8EeVgnrD/ZjAlnFmO+zAUYOjHapDO4yeWv7grLNECHmsY/BwvB0qKEXd1q5SQIHovOFpqa9PHSfueROVY9C3CAIqRXjE8HiphH9ZsXRskMYWNaYnS7JrgtOhPMwjzOmmn8C/ykUWiPpUmnY=
+	t=1763898392; cv=none; b=h+/79aRtVp1irJ3JvXRJ4hQZC9xkWRSNGamp19gFqaTBVgAYnbkCnWE7KoTgHMXFYJvF1XQBjyvmdleGukKMBjhRdfAKEzEHwBH4TSkaYVlYqvdnk3bitUdMTimfVzjlH5MUxzO98rCGm+BbJO7DOb6XsumWEiDird3AXkjSUUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763897016; c=relaxed/simple;
-	bh=uzEHYcoKTcfwr0Zzg183PcKDFO5v0fCFNVn32/9q7Ng=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lMLPRHq6ZOG0kt4Z8aKLSTqUeSM1kq6A79qJdT8ZF422YKGCj7hTTaT/6pmSWKMUgsITdDEWxDOfHYtRy1s9ax3NlvZ9BNybG3zsh/0iCWfW2qaCU0z5R8SVW1uZUIXE+vfAjDklhsYl1Lh7Nr4o2g6mQFZXzmQqw/27BBXS7m4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VqDfgt4z; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42b566859ecso3044111f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 03:23:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763897010; x=1764501810; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cmqYTRbC+N49mXlYWIz0dgPHO+8g2wZzchgn3hv3UQU=;
-        b=VqDfgt4zRFqX17SfJe0Tz5FbP2rsXxHEUYLF8lxzU7w/om8q/MCgNaO7qy9u6I+3eC
-         ycqm8FRwV2JMdsYQ/AnWPO1zeq+nhurjSUvvd/oVeDOv0Ak4YTfGpV+Z8SKIN88nQ0ZH
-         1zKIq8Nv3QG8bo2WeonNJzj/aKUySzsCDD9wpV9OZtOimqEXD/w2DRZXq8oJaucqR5iE
-         c5vW9y4fTXKeb13ARfWC9ZZ4acQLYlPoZ0DJxEQCrIMJxmDBk4SQDYWD07io6TLTTDZn
-         TLarjZyf/qpHdBUCRPH8vpTIes9bCALE3gRB80kEvkp9hgp/rfj9yavGY88J4GfEQ6op
-         BgGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763897010; x=1764501810;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=cmqYTRbC+N49mXlYWIz0dgPHO+8g2wZzchgn3hv3UQU=;
-        b=Kc2a87p79RDru2A09ehTi6xPkrNWVsqgyp3kidUlWnKnhzszRbQBcf0hGbU+aGlN/R
-         THS9Xt1WHhGIutlrsOU0/bqlOrGw0w3gtH4AWaHIGkVvK/O1ITqZ9Wtdbg29RcbX8jwc
-         pplOyrQxFL06QzgKqVBXpR7kUdStNZ7XdEtFlVjoa/k6mm5jqy2vHm19doZmS+YZ/pvo
-         aO9VPND5Sn+wfktOLb33mEIEZCJZAJLBtgNBFNFJekSYr38zcLTWcZtPUGOKobq7U+id
-         wzUvgL32CQUsIdEcEiOxWVxf8dO62amBy4oGGqp7zFY/EWuDzw+SATHzZFQnKS2FXL/Y
-         uanw==
-X-Forwarded-Encrypted: i=1; AJvYcCWr2vAzjmVynwPRCLsqKYniGA0qCDBb1oFvp6huPIeZ2rIVqQukqtCwyb9Aa7GUvcCJFvLYdwEHk7I/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQ2kYbAi7Wyoi8+gEaUoPov1CDiKtYq8UuaSZ0UKIPdJxyiBFy
-	ornxWjMpXdJC2hpY3WOKMgLMeYVoBY9j0MzHQpj6pW87QD15P+qjV/X8
-X-Gm-Gg: ASbGncvAqql08c3ZjxWUeUFtEKGy0MFVppymJww/5GrYLEPgirPfyeqci46NVUoEk31
-	9XwZ3tIlK3QYRlR1YiZ5S20B6tIXQJuJBleFDUKmfYRYmXF+thbPk2rfB7oTp2caYKOnRZqO6aJ
-	LNOFxBngd8h9W2MgcDc4e/6bD6KrhmNROG00Ov7K3mTzcJ1rMJ/bjtaoCjeysWI2Ttrq/VsWhiD
-	qGfAnmE+9j/GizY+A57c0wahWOUh5akqo075caaQJUG2WfDZoBb8/AAPs0oxBY3hRTwW1iLh6gg
-	wQARepBXAJWHlOTaz+IvhFzQR/G6XnUNiVewkEKIPqQTR4XgiEWAvdK1nzmw+mRHndNDrG3b+kP
-	L/usnVzR03MGm1rhD9X/gWBYB8a500d/faHDB2Gen0tX5AOUmOEuMk/9ncUEmpqjNqW7MkXNygv
-	BlXYl5h23eFRQBZQ7GtJ/6V7VO7U2Rzx1pisw5mkOtKAVialPF0o9HSHM74RhD9dka81y8avI=
-X-Google-Smtp-Source: AGHT+IG1sPDsCSPRvqhQ38ght1LpqKVf02yiq3tLeARl0t5UZUBzeiVuumA6ww2SkKNaccehiLsiyw==
-X-Received: by 2002:a05:6000:2f86:b0:42b:32a0:3490 with SMTP id ffacd0b85a97d-42cc1d19ed4mr8434429f8f.49.1763897009604;
-        Sun, 23 Nov 2025 03:23:29 -0800 (PST)
-Received: from biju.lan (host86-162-200-138.range86-162.btcentralplus.com. [86.162.200.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f49a7bsm21765703f8f.19.2025.11.23.03.23.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Nov 2025 03:23:29 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1763898392; c=relaxed/simple;
+	bh=J8EAdss3jxQXAxIWg06xtlDcArhBsRUopUAmrzE9AmU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=maq9kmzahK/UXBpKwwB02oepQHhnrtr1oe3Rfw4jjG1vUeuNpZzUIibm+00HU+VGBGieAyHEGtaqSU2KQcPqrd+nOU9O5zh2VrljtBjvpJtPh/YxvhcEfb1MeiHxnGyFHwwV/d/kxNWGS22M66rLQ/LNBB9duRUvDPswfv03t/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nG5TvK5H; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763898391; x=1795434391;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=J8EAdss3jxQXAxIWg06xtlDcArhBsRUopUAmrzE9AmU=;
+  b=nG5TvK5Hyrys9ix4lq3D9iaXwBUaX+iZd+KWV99ur0Z3hJtvkGCbzI0l
+   tJoeJ9QY1qhcVQNnwQG9tpNXxhGnAqrJP4lsm2BHH+DKFBx4g/wgl0tak
+   d2yq1hr7IU/5zqarLaB1shvfd7MrPqb8Ne1zMDwiii2r5OD3ED74tjgIh
+   feTrXrXVmFdX8aRkXZFUYffDaeVyaFHQhp9QD4ZFHoKBLwFY2zWKm/Ows
+   fBf3nw5rTH1kX9U7LKtJWngGtGSo5+IdkTSQWXDH7n5qJxs14Ad35e6LU
+   6jIqEYBas/n/clNQBsuT638oY+J0URFaavD11hzAo/4qk6es1JYCelVAC
+   A==;
+X-CSE-ConnectionGUID: 09KtdHytTNiU+QdH+3cOWw==
+X-CSE-MsgGUID: 6RwOxXxKTwiqA/zHhWxjlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11621"; a="65964953"
+X-IronPort-AV: E=Sophos;i="6.20,220,1758610800"; 
+   d="scan'208";a="65964953"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2025 03:46:30 -0800
+X-CSE-ConnectionGUID: O7O16Z4qQTWuW6kIf+wemg==
+X-CSE-MsgGUID: IBDF6bbkTd2shJNsWffjLA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,220,1758610800"; 
+   d="scan'208";a="196252991"
+Received: from lkp-server01.sh.intel.com (HELO adf6d29aa8d9) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 23 Nov 2025 03:46:26 -0800
+Received: from kbuild by adf6d29aa8d9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vN8Xv-0008FT-09;
+	Sun, 23 Nov 2025 11:46:23 +0000
+Date: Sun, 23 Nov 2025 19:46:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-can@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 1/2] dt-bindings: can: renesas,rcar-canfd: Document renesas,fd-only property
-Date: Sun, 23 Nov 2025 11:23:20 +0000
-Message-ID: <20251123112326.128448-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251123112326.128448-1-biju.das.jz@bp.renesas.com>
-References: <20251123112326.128448-1-biju.das.jz@bp.renesas.com>
+	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+	Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+	quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+	quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v1 12/12] i2c: qcom-geni: Enable I2C on SA8255p Qualcomm
+ platforms
+Message-ID: <202511231944.MieDLdu8-lkp@intel.com>
+References: <20251122050018.283669-13-praveen.talari@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251122050018.283669-13-praveen.talari@oss.qualcomm.com>
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+Hi Praveen,
 
-The CANFD on RZ/{G2L,G3E} and R-Car Gen4 support 3 modes FD-Only mode,
-Classical CAN mode and CAN-FD mode. In FD-Only mode, communication in
-Classical CAN frame format is disabled. Document renesas,fd-only to handle
-this mode. As these SoCs support 3 modes, update the description of
-renesas,no-can-fd property and disallow it for R-Car Gen3.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- v1->v2:
-  * Added conditional check to disallow fd-only mode for R-Car Gen3.
----
- .../bindings/net/can/renesas,rcar-canfd.yaml  | 24 ++++++++++++++++---
- 1 file changed, 21 insertions(+), 3 deletions(-)
+[auto build test WARNING on d724c6f85e80a23ed46b7ebc6e38b527c09d64f5]
 
-diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-index f4ac21c68427..a52244f0b5d1 100644
---- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-+++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-@@ -125,9 +125,17 @@ properties:
-   renesas,no-can-fd:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
--      The controller can operate in either CAN FD only mode (default) or
--      Classical CAN only mode.  The mode is global to all channels.
--      Specify this property to put the controller in Classical CAN only mode.
-+      The controller can operate in either CAN-FD mode (default) or FD-Only
-+      mode (RZ/{G2L,G3E} and R-Car Gen4) or Classical CAN mode. Specify this
-+      property to put the controller in Classical CAN mode.
-+
-+  renesas,fd-only:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      The CANFD on RZ/{G2L,G3E} and R-Car Gen4 SoCs support 3 modes FD-Only
-+      mode, Classical CAN mode and CAN-FD mode (default). In FD-Only mode,
-+      communication in Classical CAN frame format is disabled. Specify this
-+      property to put the controller in FD-Only mode.
- 
-   assigned-clocks:
-     description:
-@@ -267,6 +275,16 @@ allOf:
-       patternProperties:
-         "^channel[6-7]$": false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rcar-gen3-canfd
-+    then:
-+      properties:
-+        renesas,fd-only: false
-+
- unevaluatedProperties: false
- 
- examples:
+url:    https://github.com/intel-lab-lkp/linux/commits/Praveen-Talari/soc-qcom-geni-se-Refactor-geni_icc_get-and-make-qup-memory-ICC-path-optional/20251122-130449
+base:   d724c6f85e80a23ed46b7ebc6e38b527c09d64f5
+patch link:    https://lore.kernel.org/r/20251122050018.283669-13-praveen.talari%40oss.qualcomm.com
+patch subject: [PATCH v1 12/12] i2c: qcom-geni: Enable I2C on SA8255p Qualcomm platforms
+config: loongarch-randconfig-002-20251123 (https://download.01.org/0day-ci/archive/20251123/202511231944.MieDLdu8-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251123/202511231944.MieDLdu8-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511231944.MieDLdu8-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/i2c/busses/i2c-qcom-geni.c:1176:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+    1176 |         if (gi2c->dev_data->power_state) {
+         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/i2c/busses/i2c-qcom-geni.c:1185:9: note: uninitialized use occurs here
+    1185 |         return ret;
+         |                ^~~
+   drivers/i2c/busses/i2c-qcom-geni.c:1176:2: note: remove the 'if' if its condition is always true
+    1176 |         if (gi2c->dev_data->power_state) {
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/i2c/busses/i2c-qcom-geni.c:1171:9: note: initialize the variable 'ret' to silence this warning
+    1171 |         int ret;
+         |                ^
+         |                 = 0
+   drivers/i2c/busses/i2c-qcom-geni.c:1193:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+    1193 |         if (gi2c->dev_data->power_state) {
+         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/i2c/busses/i2c-qcom-geni.c:1202:9: note: uninitialized use occurs here
+    1202 |         return ret;
+         |                ^~~
+   drivers/i2c/busses/i2c-qcom-geni.c:1193:2: note: remove the 'if' if its condition is always true
+    1193 |         if (gi2c->dev_data->power_state) {
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/i2c/busses/i2c-qcom-geni.c:1190:9: note: initialize the variable 'ret' to silence this warning
+    1190 |         int ret;
+         |                ^
+         |                 = 0
+   2 warnings generated.
+
+
+vim +1176 drivers/i2c/busses/i2c-qcom-geni.c
+
+  1168	
+  1169	static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
+  1170	{
+  1171		int ret;
+  1172		struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
+  1173	
+  1174		disable_irq(gi2c->irq);
+  1175	
+> 1176		if (gi2c->dev_data->power_state) {
+  1177			ret = gi2c->dev_data->power_state(&gi2c->se, false);
+  1178			if (ret) {
+  1179				enable_irq(gi2c->irq);
+  1180				return ret;
+  1181			}
+  1182		}
+  1183	
+  1184		gi2c->suspended = 1;
+  1185		return ret;
+  1186	}
+  1187	
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
