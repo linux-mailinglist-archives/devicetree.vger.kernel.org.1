@@ -1,173 +1,82 @@
-Return-Path: <devicetree+bounces-241430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7897FC7DF64
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 11:24:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F7AEC7DF6F
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 11:25:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3058D3A96D9
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 10:24:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D5033A9246
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 10:25:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBD02C21EC;
-	Sun, 23 Nov 2025 10:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FDBA2D2394;
+	Sun, 23 Nov 2025 10:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q1YJhYT9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NrKNDy2b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A3F299928;
-	Sun, 23 Nov 2025 10:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8EC2C08C2;
+	Sun, 23 Nov 2025 10:25:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763893466; cv=none; b=RS0KHFT0x+Vrg3tyIWfHNGwoHb6wmTw+ty18yIVj8aFyhzsLYMBqApk1rJCzy0p7mINC3mwyn2risbfWqkv06eNo/eAtazC9QZpudPhdQAoqnVSFvaYIBBHEu1Hgtf6ONI3P6xUVPB2TuxNG6HHS4SM0oiVR5QSrsHV7YpzHJuw=
+	t=1763893514; cv=none; b=kA7zT0AeSsEn7QTV4jjMGxk1/6WcsL1nQMU1it12v3sJxIPlyIHjQ2agB5WR5hsgXpaqWXFoabkU4mWZd+VLpDcUCqpTDAmEJvheA7Cz/DetkbJo5G3TXkHeCXRFsvN8G9OnZerpq41YUWjWYJTEZLz1LPnbJ6zSK3KlaXaEO74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763893466; c=relaxed/simple;
-	bh=MqXY389cFH5UMcUPlSXH9uPa/8KZTxgMoJ1/hoC4agI=;
+	s=arc-20240116; t=1763893514; c=relaxed/simple;
+	bh=YFDuGTSodR6gNRk1Q5i9Kj9TtfXkgR6lIRtUYWw+GHQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t7xhbgfXxH4QqWqXmnyj3wwzFjeuh0K3FgvBCfVrvEPhV50Kc0M0VHmuZ6TPO2oqQ+1XAkdrnWaJIcnFS4TikxMVpORYAAqPcLCxEsiuSWKVQvc8N8UjfAmAv9ggQtM3g8KVt74fgao3/GP0tr1qSKeaORHmE6Dse225ITxKWsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q1YJhYT9; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763893464; x=1795429464;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MqXY389cFH5UMcUPlSXH9uPa/8KZTxgMoJ1/hoC4agI=;
-  b=Q1YJhYT9qlD4IjyzC8q1xaxszM40u+nYMXxyvm8D5YOyeKkP0klmCRWY
-   tXDKk1U95nkeqWGaRZW5ho19SbXVnV4JvYXzVaJNiLxreLsR8MgV08KqO
-   JYPd+YOCx1U2sFVqoj5LSCMDPLUdCCi1H1a8G3TEMjTKRwVGSL37nG7kh
-   yeB8ifU04x0Id0r9gteyq4AMH8DWczPBy1SZ1MhZFXC3kpDoq3kGrhWy3
-   fYWP6klGQBTDgnc7n1vNjp4zQTAmRxGouYHq0KKPiGk+KLDok5XJ8lWm8
-   a2gucZlyrchrpft1eoOnDa2fxWl7swASRxkwcKgVj4zzzEDYtjPF6Cc84
-   Q==;
-X-CSE-ConnectionGUID: mz2ovoYBTd6Rb4bd/hcmeA==
-X-CSE-MsgGUID: Y3dFu+nLSEiYx+PFWYNt9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11621"; a="69539478"
-X-IronPort-AV: E=Sophos;i="6.20,220,1758610800"; 
-   d="scan'208";a="69539478"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2025 02:24:23 -0800
-X-CSE-ConnectionGUID: IOlcPXmdTe2zhrKUUd+6tA==
-X-CSE-MsgGUID: wiT+jHJwSv6BnQBDmtjWvA==
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO adf6d29aa8d9) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 23 Nov 2025 02:24:19 -0800
-Received: from kbuild by adf6d29aa8d9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vN7GS-0008D1-1r;
-	Sun, 23 Nov 2025 10:24:16 +0000
-Date: Sun, 23 Nov 2025 18:23:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Praveen Talari <praveen.talari@oss.qualcomm.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
-	Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cuWlLwx7DehKrYWHhr411XEwS9Jl1zLZsFaEyd38Qvm3xoHEoWSPUSPgb0YsqzE09RgsRaHN7Go/pWAI7fams060hD5d4cJqkafsbrb7A/iKVe/wPCWeuVARtiufgj4D/uEw1TGsCkxVfdBj5+ZAaZOnFW4+YBa08H5P3YgFJbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NrKNDy2b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 949C0C113D0;
+	Sun, 23 Nov 2025 10:25:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763893513;
+	bh=YFDuGTSodR6gNRk1Q5i9Kj9TtfXkgR6lIRtUYWw+GHQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NrKNDy2bHKFisvYR6pGpeXC5Gg5Uus/mTj/tjLbQSvpoe8qa+TdG/xkNkBVdd9ApF
+	 K4rAsB+8BVgwUCGkPGXyMRoYtdf0ppMgrqr4Qq8kk3UXI/iTYnpIBWjJ6/eij+RW37
+	 aS4OoZ0dUH/i5bIUwMkZkswFTU7+clZJiE4TbqC+5nm4VFPySqf70NbzTEsK7NbYqm
+	 S1CRsJcGWDo1r6/9GMkAHnYNdPPggg5b3aKw5OAjoFHRst9ajOX5wIvaa5CAZAEYdw
+	 gNb+6W6uBc7PlYv7YDQTxcHiu27dq4QoCP1j8CQr8FbdCWy1JSrUtyOXDyUYD7OJG9
+	 UQS97XVs5bbRg==
+Date: Sun, 23 Nov 2025 11:25:10 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
-	quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
-	quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v1 03/12] soc: qcom: geni-se: Introduce helper API for
- resource initialization
-Message-ID: <202511231819.jiLYo6Fl-lkp@intel.com>
-References: <20251122050018.283669-4-praveen.talari@oss.qualcomm.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: pressure: add honeywell,abp2030pa
+Message-ID: <20251123-kickass-malamute-of-improvement-36cf64@kuoka>
+References: <20251122-honeywell_abp2_driver-v1-0-7a8e265f9627@subdimension.ro>
+ <20251122-honeywell_abp2_driver-v1-1-7a8e265f9627@subdimension.ro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251122050018.283669-4-praveen.talari@oss.qualcomm.com>
+In-Reply-To: <20251122-honeywell_abp2_driver-v1-1-7a8e265f9627@subdimension.ro>
 
-Hi Praveen,
+On Sat, Nov 22, 2025 at 11:42:44PM +0200, Petre Rodan wrote:
+> Adds binding for digital Honeywell ABP2 series pressure and temperature
+> sensors.
+> The i2c address is hardcoded and depends on the part number.
+> There is an optional GPIO interrupt that signals the end of conversion.
 
-kernel test robot noticed the following build errors:
+s/GPIO//. This is not a GPIO pin in this device, but interrupt pin. How
+the pin is on the SoC side in your design is irrelevant.
 
-[auto build test ERROR on d724c6f85e80a23ed46b7ebc6e38b527c09d64f5]
+No need to resend just for that.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Praveen-Talari/soc-qcom-geni-se-Refactor-geni_icc_get-and-make-qup-memory-ICC-path-optional/20251122-130449
-base:   d724c6f85e80a23ed46b7ebc6e38b527c09d64f5
-patch link:    https://lore.kernel.org/r/20251122050018.283669-4-praveen.talari%40oss.qualcomm.com
-patch subject: [PATCH v1 03/12] soc: qcom: geni-se: Introduce helper API for resource initialization
-config: loongarch-randconfig-002-20251123 (https://download.01.org/0day-ci/archive/20251123/202511231819.jiLYo6Fl-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251123/202511231819.jiLYo6Fl-lkp@intel.com/reproduce)
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511231819.jiLYo6Fl-lkp@intel.com/
+Best regards,
+Krzysztof
 
-All errors (new ones prefixed by >>):
-
->> drivers/soc/qcom/qcom-geni-se.c:1046:10: error: incompatible pointer to integer conversion returning 'void *' from a function with result type 'int' [-Wint-conversion]
-    1046 |                 return ERR_PTR(ret);
-         |                        ^~~~~~~~~~~~
-   1 error generated.
-
-
-vim +1046 drivers/soc/qcom/qcom-geni-se.c
-
-  1015	
-  1016	/**
-  1017	 * geni_se_resources_init() - Initialize resources for a GENI SE device.
-  1018	 * @se: Pointer to the geni_se structure representing the GENI SE device.
-  1019	 *
-  1020	 * This function initializes various resources required by the GENI Serial Engine
-  1021	 * (SE) device, including clock resources (core and SE clocks), interconnect
-  1022	 * paths for communication.
-  1023	 * It retrieves optional and mandatory clock resources, adds an OF-based
-  1024	 * operating performance point (OPP) table, and sets up interconnect paths
-  1025	 * with default bandwidths. The function also sets a flag (`has_opp`) to
-  1026	 * indicate whether OPP support is available for the device.
-  1027	 *
-  1028	 * Return: 0 on success, or a negative errno on failure.
-  1029	 */
-  1030	int geni_se_resources_init(struct geni_se *se)
-  1031	{
-  1032		int ret;
-  1033	
-  1034		se->core_clk = devm_clk_get_optional(se->dev, "core");
-  1035		if (IS_ERR(se->core_clk))
-  1036			return dev_err_probe(se->dev, PTR_ERR(se->core_clk),
-  1037					     "Failed to get optional core clk\n");
-  1038	
-  1039		se->clk = devm_clk_get(se->dev, "se");
-  1040		if (IS_ERR(se->clk) && !has_acpi_companion(se->dev))
-  1041			return dev_err_probe(se->dev, PTR_ERR(se->clk),
-  1042					     "Failed to get SE clk\n");
-  1043	
-  1044		ret = devm_pm_opp_set_clkname(se->dev, "se");
-  1045		if (ret)
-> 1046			return ERR_PTR(ret);
-  1047	
-  1048		ret = devm_pm_opp_of_add_table(se->dev);
-  1049		if (ret && ret != -ENODEV)
-  1050			return dev_err_probe(se->dev, ret, "Failed to add OPP table\n");
-  1051	
-  1052		se->has_opp = (ret == 0);
-  1053	
-  1054		ret = geni_icc_get(se, "qup-memory");
-  1055		if (ret)
-  1056			return ret;
-  1057	
-  1058		return geni_icc_set_bw_ab(se, GENI_DEFAULT_BW, GENI_DEFAULT_BW, GENI_DEFAULT_BW);
-  1059	}
-  1060	EXPORT_SYMBOL_GPL(geni_se_resources_init);
-  1061	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
