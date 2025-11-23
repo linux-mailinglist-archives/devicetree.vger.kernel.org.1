@@ -1,240 +1,155 @@
-Return-Path: <devicetree+bounces-241446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9007DC7E278
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 16:23:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64589C7E281
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 16:24:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49E593A4AD2
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 15:23:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 32D6A4E1989
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 15:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB6682D46C0;
-	Sun, 23 Nov 2025 15:23:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABFE12D8776;
+	Sun, 23 Nov 2025 15:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r/vrN2cx"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EbflPeNF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C2B72628;
-	Sun, 23 Nov 2025 15:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF5E1EB5FD
+	for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 15:24:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763911395; cv=none; b=qFQeG2Ft4DcOXjmfu3BNuAHsFo5PcGfUbpA5AQn3Y6/PUPIFP66/vfZmXFtD0/k4PyLbssqNWxA9LLpid3eBjOtewHsFPx1YcNbrHqRtOszEtfZHzhrLUxeXc0bv/qTW0pAaKNYU1JIaE8dxjVOlesuDFekbNwifGSyFZAFWUqM=
+	t=1763911466; cv=none; b=kYhEiOd42vbkTDeKOEiH1DYVI7plgOBuO1Pd6QWrKaXXrQT+NjLZALpVIESTA1f6hMCl5RaZT1NohlrWj6iUdSUmCMjnRRPdkOl4j2KB0P16kOGSBzr402L+M9QmCSNuX/sAjtiZgxkVVc4b9Xrcdj6T3CYKWqp6ErdnxmT/rao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763911395; c=relaxed/simple;
-	bh=bV9VdnDHAk6ZDSrSZtDedSV3EdxNwVB7Nso4BHeAruo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=awTNgNHT22RVKZyiV4phH/UmSSAGRyY1IegIDpPi7qi7UDukkeut/vTqEby++RS/9saRqz6uCR5+pMISCxHTHnuTR05FgYxeFN5+c7lfNW0wX5ruyXGIlLjewE36J2C9dgwo+27KvjcNzY6lnhPYfZPy+E/30p9HQVeJGdsoxtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r/vrN2cx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0666C113D0;
-	Sun, 23 Nov 2025 15:23:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763911395;
-	bh=bV9VdnDHAk6ZDSrSZtDedSV3EdxNwVB7Nso4BHeAruo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r/vrN2cxXj2WcqpJ3uDxA9fa+KOhHks/Qkhg8c2OzsShHOjKUfutKQfrdQylBoujR
-	 z31I1VQjgjenCiU9r2vDpEi9hwEaabTcBFyDnGq9/0J/kHq8Ig/YTQefaU04C5c4JG
-	 2+1tqUVLZA/lGAJiuu0VousXqm+pb5+rv6fYAbGfGZ1laAuleR4aBReD5f97VitGx1
-	 25S49UZi5CglLcAJmcG4Uz3FpX6FrUhc/563+Zbk+jp/ZyJ6atdsgDr/7jBENHskGH
-	 +MdXNqwXCmeAlSTLvw2SA7zx5x6YyZ3w3rWwG5u63RgGM0bdH/poMVgzJQ0h5snkLb
-	 wo2IQFm/72W2A==
-Message-ID: <148f0db8-1c86-479f-9a21-5b9d882fec8b@kernel.org>
-Date: Sun, 23 Nov 2025 16:23:10 +0100
+	s=arc-20240116; t=1763911466; c=relaxed/simple;
+	bh=Bt4lvQ5tWEOJMSObtokBzF/TdUkPAMNtm/HTu/psEx8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jMVPydXaTK8NOaSACcmyLsdY/uZOk9K0yPfW07bNjtaR0T5t/mVe4upzhJvr4CpwdYmsQdt4vuMle/mATRj4RqYAhuXLXX1JbnZUkWYyoEMu7JBO3+IsfYuR8UsTx4hFAYrorFTcSfrsYMdwmYSovAvzrdhXqBalFSkDzjluG1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=EbflPeNF; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (fs276ed015.tkyc509.ap.nuro.jp [39.110.208.21])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 14DAC606;
+	Sun, 23 Nov 2025 16:22:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1763911334;
+	bh=Bt4lvQ5tWEOJMSObtokBzF/TdUkPAMNtm/HTu/psEx8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EbflPeNFP+y3b2qf6OOI8rlkd4xuRtz3rnSvaLoxbJc7QwPSAj9g9f4RbBbvzsWYj
+	 ywbEhANIfkrXp4Qlydvquw1AKvpUWP9AcF5yryvcgR/kNxeQyPsw45FgL5BQrsWs75
+	 r3mIuS3NNd5uQeKwXr6D7jpRiiMmj2atu6ETuvag=
+Date: Mon, 24 Nov 2025 00:23:56 +0900
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Wei Fang <wei.fang@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <20251123152356.GF15447@pendragon.ideasonboard.com>
+References: <aRR3gVsZcr01zwzN@shell.armlinux.org.uk>
+ <20251112222551.GB9135@pendragon.ideasonboard.com>
+ <20251113010627.GC9135@pendragon.ideasonboard.com>
+ <aRW6CxvmIEqkMrfA@shell.armlinux.org.uk>
+ <20251114222654.GI30434@pendragon.ideasonboard.com>
+ <PAXPR04MB8510E17B2B8C612DD02175CE88D6A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <20251122072246.GA16239@pendragon.ideasonboard.com>
+ <aSGJHV9Sga2kBIBX@shell.armlinux.org.uk>
+ <20251123053802.GA25329@pendragon.ideasonboard.com>
+ <aSLLMMNkHnfwyO0y@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: can: renesas,rcar-canfd: Document
- renesas,fd-only property
-To: Biju Das <biju.das.jz@bp.renesas.com>, "biju.das.au"
- <biju.das.au@gmail.com>, Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- "magnus.damm" <magnus.damm@gmail.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20251123112326.128448-1-biju.das.jz@bp.renesas.com>
- <20251123112326.128448-2-biju.das.jz@bp.renesas.com>
- <3928e893-66e1-4873-a78b-75e38e746661@kernel.org>
- <TY3PR01MB113460EC3CED97F90FE121AD486D3A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <TY3PR01MB11346729E8758CFEF18C9E99686D3A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <24a71741-df53-4726-81d1-38c9eb3ad12a@kernel.org>
- <TYCPR01MB113320211AB2810248A021C8286D3A@TYCPR01MB11332.jpnprd01.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <TYCPR01MB113320211AB2810248A021C8286D3A@TYCPR01MB11332.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aSLLMMNkHnfwyO0y@shell.armlinux.org.uk>
 
-On 23/11/2025 16:15, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
+On Sun, Nov 23, 2025 at 08:52:00AM +0000, Russell King (Oracle) wrote:
+> On Sun, Nov 23, 2025 at 02:38:02PM +0900, Laurent Pinchart wrote:
+> > On Sat, Nov 22, 2025 at 09:57:49AM +0000, Russell King (Oracle) wrote:
+> > > On Sat, Nov 22, 2025 at 04:22:46PM +0900, Laurent Pinchart wrote:
+> > > > Hello Wei,
+> > > > 
+> > > > On Tue, Nov 18, 2025 at 01:50:55AM +0000, Wei Fang wrote:
+> > > > > Sorry, I only have a little experience with DWMac, add Clark to help look
+> > > > > at this issue.
+> > > > 
+> > > > Thank you.
+> > > > 
+> > > > I think we're getting close to having a good understanding of the
+> > > > problem. I've debugged it as far as I could based on the information
+> > > > available publicly. Let's try to get to the bottom of this issue, it
+> > > > impacts quite a lot of people and it would be very nice to fix it
+> > > > properly in mainline.
+> > > > 
+> > > > The short summary is that I'm experiencing an interrupt storm on IRQ 135
+> > > > when EEE is enabled with the EQOS interface.
+> > > > 
+> > > > My current theory is that
+> > > > 
+> > > > - The lpi_intr_o signal of the EQOS is OR'ed into IRQ 135.
+> > > > - The issue is triggerted by the PHY exiting LPI mode
+> > > > - When it exits LPI mode, the PHY restarts generating the RX clock
+> > > >   (clk_rx_i).
+> > > > - The MAC detects exit from LPI, and asserts lpi_intr_o.
+> > > > - Before the CPU has time to process the interrupt, the PHY enters LPI
+> > > >   mode again, and stops generating the RX clock.
+> > > > - The CPU processes the interrupt and reads the GMAC4_LPI_CTRL_STATUS
+> > > >   registers. This does not clear lpi_intr_o as there's no clk_rx_i.
+> > > 
+> > > Please try setting STMMAC_FLAG_RX_CLK_RUNS_IN_LPI in dwmac-imx.c and
+> > > see whether that changes the behaviour.
+> > 
+> > I have tested that and it worked like a charm ! I have submitted
+> > https://lore.kernel.org/r/20251123053518.8478-1-laurent.pinchart@ideasonboard.com
+> > 
+> > That was quite an adventure. Thank you so much for all your support, I'm
+> > not sure I would have managed without you (or at least I would have
+> > needed way more time). I really really appreciate it.
+> > 
+> > If the above patch gets accepted, we will probably be able to remove the
+> > eee-broken-* properties from the i.MX8MP device tree files (and possibly
+> > from i.MX8DXL and i.MX93 as well). I have mentioned that below the
+> > commit message of the patch, with a test procedure as it should be
+> > tested on each board.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: 23 November 2025 14:22
->> Subject: Re: [PATCH v2 1/2] dt-bindings: can: renesas,rcar-canfd: Document renesas,fd-only property
->>
->> On 23/11/2025 15:17, Biju Das wrote:
->>> Hi Krzysztof Kozlowski,
->>>
->>>> -----Original Message-----
->>>> From: Biju Das
->>>> Sent: 23 November 2025 14:06
->>>> Subject: RE: [PATCH v2 1/2] dt-bindings: can: renesas,rcar-canfd:
->>>> Document renesas,fd-only property
->>>>
->>>>
->>>>
->>>>> -----Original Message-----
->>>>> From: Krzysztof Kozlowski <krzk@kernel.org>
->>>>> Sent: 23 November 2025 13:26
->>>>> Subject: Re: [PATCH v2 1/2] dt-bindings: can: renesas,rcar-canfd:
->>>>> Document renesas,fd-only property
->>>>>
->>>>> On 23/11/2025 12:23, Biju wrote:
->>>>>> From: Biju Das <biju.das.jz@bp.renesas.com>
->>>>>>
->>>>>> The CANFD on RZ/{G2L,G3E} and R-Car Gen4 support 3 modes FD-Only
->>>>>> mode, Classical CAN mode and CAN-FD mode. In FD-Only mode,
->>>>>> communication in Classical CAN frame format is disabled. Document
->>>>>> renesas,fd-only to handle this mode. As these SoCs support 3 modes,
->>>>>> update the description of renesas,no-can-fd property and disallow it for R-Car Gen3.
->>>>>>
->>>>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
->>>>>> ---
->>>>>>  v1->v2:
->>>>>>   * Added conditional check to disallow fd-only mode for R-Car Gen3.
->>>>>> ---
->>>>>>  .../bindings/net/can/renesas,rcar-canfd.yaml  | 24
->>>>>> ++++++++++++++++---
->>>>>>  1 file changed, 21 insertions(+), 3 deletions(-)
->>>>>>
->>>>>> diff --git
->>>>>> a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
->>>>>> b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
->>>>>> index f4ac21c68427..a52244f0b5d1 100644
->>>>>> ---
->>>>>> a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.
->>>>>> +++ y
->>>>>> +++ am
->>>>>> +++ l
->>>>>> @@ -125,9 +125,17 @@ properties:
->>>>>>    renesas,no-can-fd:
->>>>>>      $ref: /schemas/types.yaml#/definitions/flag
->>>>>>      description:
->>>>>> -      The controller can operate in either CAN FD only mode (default) or
->>>>>> -      Classical CAN only mode.  The mode is global to all channels.
->>>>>> -      Specify this property to put the controller in Classical CAN only mode.
->>>>>> +      The controller can operate in either CAN-FD mode (default) or FD-Only
->>>>>> +      mode (RZ/{G2L,G3E} and R-Car Gen4) or Classical CAN mode. Specify this
->>>>>> +      property to put the controller in Classical CAN mode.
->>>>>> +
->>>>>> +  renesas,fd-only:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
->>>>>> +    description:
->>>>>> +      The CANFD on RZ/{G2L,G3E} and R-Car Gen4 SoCs support 3 modes FD-Only
->>>>>> +      mode, Classical CAN mode and CAN-FD mode (default). In FD-Only mode,
->>>>>> +      communication in Classical CAN frame format is disabled. Specify this
->>>>>> +      property to put the controller in FD-Only mode.
->>>>>>
->>>>>>    assigned-clocks:
->>>>>>      description:
->>>>>> @@ -267,6 +275,16 @@ allOf:
->>>>>>        patternProperties:
->>>>>>          "^channel[6-7]$": false
->>>>>>
->>>>>> +  - if:
->>>>>> +      properties:
->>>>>> +        compatible:
->>>>>> +          contains:
->>>>>> +            enum:
->>>>>> +              - renesas,rcar-gen3-canfd
->>>>>> +    then:
->>>>>> +      properties:
->>>>>> +        renesas,fd-only: false
->>>>>> +
->>>>>
->>>>> You did not respond to my first paragraph from previous version. As
->>>>> I said, you now need oneOf to restrict these, since you are not using simple enum.
->>>>
->>>> This is restricting for R-Car Gen3. DT binding check returns error if 'renesas,fd-only"
->>>> is defined for R-Car Gen3.
->>>>
->>>> Am I missing anything here?
->>
->> Add on G2L no-can-fd and fd-only. What do you see? What is expected?
+> As stated in reply to that patch, while this may reduce the severity of
+> the storm, I don't think it'll completely eliminate it.
 > 
-> Can you please point me to an example where two boolean properties handled
-> like this? I did not find one.
-> 
-> In my case, oneOf check is not valid under allOf??
-> 
-> For eg: RS485, We cannot set both boolean properties active-high and active-low together.
-> 
+> I made the suggestion to set the flag as a test to confirm whether the
+> lpi_intr_o is indeed the problem by ensuring that the receive domain is
+> always clocked, and thus ensuring that the signal clears within four
+> clock cycles, rather than an indefinite period should the remote end
+> re-enter LPI mode quicky.
 
+You're right. I've checked replied to the patch with the following
+numbers.
 
-I none of them are required then indeed not oneOf, but some if:then:.
+100TX link, eee-broken-* set: 7000 interrupts
+1000T link, eee-broken-* set: 2711 interrupts
+100TX link, eee-broken-* unset: 9450 interrupts
+1000T link, eee-broken-* unset: 6066 interrupts
 
-https://elixir.bootlin.com/linux/v6.4-rc7/source/Documentation/devicetree/bindings/net/qcom,ipa.yaml#L174
+-- 
+Regards,
 
-And that's why you should have used enum in the first place for the
-first property.
-
-Best regards,
-Krzysztof
+Laurent Pinchart
 
