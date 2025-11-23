@@ -1,102 +1,120 @@
-Return-Path: <devicetree+bounces-241466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D68C7E805
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 23:04:39 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA5A8C7E812
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 23:27:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BE9D04E0702
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 22:04:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 41579345A18
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 22:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B572727467D;
-	Sun, 23 Nov 2025 22:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3F27269D06;
+	Sun, 23 Nov 2025 22:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="RXXJTQXi"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="eZctvz/A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C38FCA4E;
-	Sun, 23 Nov 2025 22:04:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE6974C14;
+	Sun, 23 Nov 2025 22:27:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763935475; cv=none; b=SvrkWZfqvWYulPU4vFzWtDGV4e37EmfoQ9k5l/TecbD47JWLwTglb2dKhsqrlFkO95oqzKetpAVS1n5lYFuBhLgBuRZS0e8xo7iRGmhGZHj2xbc6ZUDqWgmGULu612S6a8dQ9jHx9+YedQzPWI0GS2ftg67Q3v4mGpq4mbrXf4g=
+	t=1763936848; cv=none; b=jdY8qyMhwntQen4u7AZSbAHcZ7INTllxVN49UotZ4dAZ8QHRLiJ1Bdk2GW29KP9lpEJ0ZuOiGU8oWN9r7l+agFolK0HdlbeFJeGc1xKTbq9GlDlkax6M077m/9JsAnVDWhZqjkwBLloBkmDizxzJrHq+y1glWJIngF6ijzRW4oM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763935475; c=relaxed/simple;
-	bh=z1O+vaWNSIlSxK/1jCe5R7LPNYsWAP5hp9gisL56ucU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hLfsGd0/7zX0382R9aDmqTdmBJNYqKq1xKbs3TmjilUu+8oqqTY0eGEclEWFoNelbfQ6978p96mahvFm8ahz6+teGpU7fwHL9BCcEgSNeZyYgiwWu0ykeiBQsRHSs5QRe70lzie/GUlFjJJ0pg+BAfIUynsDEIZSMge+sd+K98A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=RXXJTQXi; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=87aVKtphPmWH51C+RJV57IlAYwC+mC5UV6mscsFpSJ0=; b=RXXJTQXismvJyTDBN7rfBczTLa
-	F+XWpvrLeB3NEJsyf8s1Qg21HXFvIPhH+3iVpIwfDvSqKBuJ+AsT0uLEhdl54R0vt0Avm6aXzU8JS
-	vV3mfFidjuhfgXAmTSWVuECOY2Vg4Xcv9Mxm2zOgQncJxIBDtV+pe3QCbmnfBu6J1XOEY1Eocg3Py
-	FQ2DPIaTQDoeMLxoqGsOEtsDM7yz3KGcU0S6Y8Qy+Ph6uM6eRM42a3IjvIphoEpQkz4271+Cqtmyc
-	cCGUwqjZ5AT1FoewevopSrMfHFaPugrKKBB4nkK1ah1qWzznAFVel+4YmfSaMKkzxMXnhF8pgPaac
-	LHiHjRyw==;
-Received: from i53875bd2.versanet.de ([83.135.91.210] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vNIC0-00008P-9S; Sun, 23 Nov 2025 23:04:24 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	p.zabel@pengutronix.de,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Elaine Zhang <zhangqing@rock-chips.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	finley.xiao@rock-chips.com
-Subject: Re: [PATCH v9 0/2] clk: rockchip: Add clock controller for the RK3506
-Date: Sun, 23 Nov 2025 23:04:21 +0100
-Message-ID: <176393545901.212596.10640796816193748171.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251121075350.2564860-1-zhangqing@rock-chips.com>
-References: <20251121075350.2564860-1-zhangqing@rock-chips.com>
+	s=arc-20240116; t=1763936848; c=relaxed/simple;
+	bh=quDPOJ1bxIEUTCsg+6JgowNESYD93x73iDlGuTIuswM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GXC1jZPunAcoLJBRYj6X6oUxiqJIJ/rj02ETs9BfLPQJsW6u8Fq+H43yTxsSmxaGxqlqsPQDA0tg/gnpUGGHUfuWsXwy6b8AOJ3h+KWJixk/Ppqput3IlcamDOlrhagcndJLwR6ndkWGNQI3p5SDxgIJ2QxFupLM7r8Co+7pSPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=eZctvz/A; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 953B51C00AB; Sun, 23 Nov 2025 23:27:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1763936843;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5xAznBhU7b6p8zrOxLbtkgNtB3cV8Rju+4Nj3dJJodo=;
+	b=eZctvz/AuXpRgwETlv1Z76brt46sfWxyZhJzJJYhqbkkreqWfOEmZbhoFcyVgHOka59Cq9
+	khR5WEhVnzLBx/wPiaxlkz9oI2vkUApME9IEhexQqCfe8IFDTerizsPYYCji2GnTplKXqw
+	XrwAHnIJkkD0x55zUhov5YKJb4YpzDQ=
+Date: Sun, 23 Nov 2025 23:27:23 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: Douglas Anderson <dianders@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	linux-samsung-soc@vger.kernel.org, Roy Luo <royluo@google.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Julius Werner <jwerner@chromium.org>,
+	William McVicker <willmcvicker@google.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Drew Fustini <fustini@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, soc@lists.linux.dev
+Subject: Re: [PATCH 0/4] arm64: google: Introduce frankel, blazer, and
+ mustang boards
+Message-ID: <aSOKS35/huSWd/RW@duo.ucw.cz>
+References: <20251111192422.4180216-1-dianders@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="YeGGzS8kR2qSk1N0"
+Content-Disposition: inline
+In-Reply-To: <20251111192422.4180216-1-dianders@chromium.org>
 
 
-On Fri, 21 Nov 2025 15:53:48 +0800, Elaine Zhang wrote:
-> [PATCH 1/5] ~ [PATCH 3/5] has applied.
-> 
-> Change in V9:
-> [PATCH v9 1/2]: Fix "clocks"
-> [PATCH v9 2/2]: No change
-> 
-> Change in V8:
-> [PATCH v8 1/2]: Add explanations for "clocks"
-> [PATCH v8 2/2]: No change
-> 
-> [...]
+--YeGGzS8kR2qSk1N0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+Hi!
 
-[1/2] dt-bindings: clock: rockchip: Add RK3506 clock and reset unit
-      commit: 84898f8e9cea06f8178fc5ca53f068180f7bfba0
-[2/2] clk: rockchip: Add clock and reset driver for RK3506
-      commit: 18191dd750e6c9e17fabefd09ff418dd587bcdb9
+> This series adds barebones device trees for Pixel 10 (frankel), Pixel
+> 10 Pro (blazer), and Pixel 10 Pro XL (mustang). With a yet-unreleased
+> bootloader these can boot to a UART command prompt from an initramfs.
+
+Well, booting to full system with working cameras would be nicer, but
+this is good start. Do you plan / do you have resources for full
+support in some reasonable timeframe?=20
+
+Please cc phone-devel@vger with phone related patches.
+
+And... thanks! :-).
 
 Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+								Pavel
+--=20
+I don't work for Nazis and criminals, and neither should you.
+Boycott Putin, Trump, Netanyahu and Musk!
+
+--YeGGzS8kR2qSk1N0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaSOKSwAKCRAw5/Bqldv6
+8sPoAJ9cO3b8E0fHRQKhJnNaeZSI9nez0QCcDEiBnY8VsCk6Oi+ran/TdVPmbIw=
+=DqOt
+-----END PGP SIGNATURE-----
+
+--YeGGzS8kR2qSk1N0--
 
