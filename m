@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-241442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05313C7E1EF
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 15:21:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65D47C7E1FB
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 15:34:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7690E342198
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 14:21:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C9073AA8F0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 14:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA5A2C3274;
-	Sun, 23 Nov 2025 14:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CE442C08CA;
+	Sun, 23 Nov 2025 14:34:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ePF4htYd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c2QfqaDN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBC751DFDB8;
-	Sun, 23 Nov 2025 14:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 710012D780C;
+	Sun, 23 Nov 2025 14:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763907703; cv=none; b=m3V7aV4rxUpmTGSy+vbJNV+dp4iL4s2rL0r5w18fn0YKdL3RKxUpmLTiIksfzocazBPX72yIX7GF2GtFvZIG5OHj8SD/cR4Kdzt3rM/XDYbbQ4KksGeioHHNmrG3sAP9LA0ZRLMDCb+gYnqkBUivXIhI+chEELbZqB5ucFSZLA0=
+	t=1763908439; cv=none; b=PVk+dhoIQk00pipJdXeCoPlKrVESokT99+twsf2uyaRNV99FHdLxbC+Hd1iRygmRGtmqXUwhMaYnQeDfnJYVGuDSvk6DAlEBGd8FW68P9qUTT6revr3dhv415gUTKBC/XPI6yhbkqulRdu+wtVCv7/6rUV9rw75JdxB3bP6a+U0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763907703; c=relaxed/simple;
-	bh=EdEqR0greCo4vN/V/+DFuTUKUXzaY8bkQ7htnKoJF8E=;
+	s=arc-20240116; t=1763908439; c=relaxed/simple;
+	bh=rPIHMk5IxdwCxWHJw0zdrEvCa5CvnaA+RTp2fmmGm2A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XaRb0W8qnetMuuoQhDn3c8t3RMj/gFq24neBNVTSIqglsyAuqCPnzyYEZx3K9sFUa/IAUXdS2WJmubcz+7bUddC924jaQCx8AFzg+bZG560Ea0qNyKb8/79DwD5ZXmnEBNEhBwdKl48D4RRNWoDktg49PwEwxqhKDm+DNLtKL30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ePF4htYd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11008C113D0;
-	Sun, 23 Nov 2025 14:21:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Aa4CvokOrUH1SeV7Blp/gwLQH48mo1OM4DexVlFWNhckP8hnEx3fAYZA0/0WfyRZ/OpyQK9Pd58tvNl0bdATQqF30iukVIp3vTOJB402S8mP09zYXKHbI+a6BvtF7Pk8q+sAXz31CMetgx+Ynj4AJhDv5gPjJBqzXS+7vWluqXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c2QfqaDN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7E5AC113D0;
+	Sun, 23 Nov 2025 14:33:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763907703;
-	bh=EdEqR0greCo4vN/V/+DFuTUKUXzaY8bkQ7htnKoJF8E=;
+	s=k20201202; t=1763908438;
+	bh=rPIHMk5IxdwCxWHJw0zdrEvCa5CvnaA+RTp2fmmGm2A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ePF4htYdnoRbHZ8nxb8lkLWMK1dfskLmwAJb9VLJUaISPEvu1EPdWAW+4SA+KvG1v
-	 mNxkaEcZ7EBfUbO8B+C5gJT3Jrnh0/7JNpU76KWvNMemMvsbme4VI7JETUUz0Tw+Dy
-	 QPCX5T46audWX/Ya+08ZrwqFlvqD9bWaldXMmv1skTvPINwg9UCp9E5l6cGhIrqVVu
-	 m2QYGMjHyDFjmZRjY/4XTNz6jsljyfTRlJionyzSg+PmcLaqXRBRlRzadm+y/d2EZy
-	 m0M5D3aMPmA6vmzMFMsrmwP2s9akjkRmRghCYPjDLFY37Ul4B7aYmWxo3vBsCZ6sjx
-	 RdLitXu3E2S4Q==
-Message-ID: <24a71741-df53-4726-81d1-38c9eb3ad12a@kernel.org>
-Date: Sun, 23 Nov 2025 15:21:37 +0100
+	b=c2QfqaDN3R6GFo/jC7Kn7Eb2apHnuMtzy9qU3IkOQtsaTySQ9JW0q36ga6HxmoaFg
+	 /g0TwkXufsiyOaUMvt4OME0LnSja5Cez3VDEme9en8LQhOQI+z8PLx6vAds6GZvH/G
+	 LjrPWOYNrW6XBQY+zBv2Sa0ujteFZ3z/1K2tt5Tf1HG8VBBlYng/8n2Ue54WpI8ood
+	 avgIv9L1HCgCUm1ak5g4cV4uN4N09DwP/5kIPyFLaPtyFzI/F9wCq278K+5MnjlvTe
+	 lmegrQcUSw0Xkl2iZ9QuqjTGuxdy2nIy/cocUhqZoa8I7lOE0Dces70WNQw1BhBKwC
+	 iWB1JT1EUMUvg==
+Message-ID: <83ba64bf-ce77-4a3f-a6df-ff80c5efbc99@kernel.org>
+Date: Sun, 23 Nov 2025 15:33:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: can: renesas,rcar-canfd: Document
- renesas,fd-only property
-To: Biju Das <biju.das.jz@bp.renesas.com>, "biju.das.au"
- <biju.das.au@gmail.com>, Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- "magnus.damm" <magnus.damm@gmail.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
+Subject: Re: [PATCH v3 1/5] dt-bindings: PCI: starfive,jh7110-pcie: Add
+ enable-gpios property
+To: Hal Feng <hal.feng@starfivetech.com>,
+ Manivannan Sadhasivam <mani@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+ E Shattow <e@freeshell.de>,
  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20251123112326.128448-1-biju.das.jz@bp.renesas.com>
- <20251123112326.128448-2-biju.das.jz@bp.renesas.com>
- <3928e893-66e1-4873-a78b-75e38e746661@kernel.org>
- <TY3PR01MB113460EC3CED97F90FE121AD486D3A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <TY3PR01MB11346729E8758CFEF18C9E99686D3A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20251120082946.109378-1-hal.feng@starfivetech.com>
+ <20251120082946.109378-2-hal.feng@starfivetech.com>
+ <xxswzi4v6gpuqbe3cczj2yjmprhvln26fl5ligsp5vkiogrnwk@hpifxivaps6j>
+ <ZQ2PR01MB1307A802B916620235B87518E6D52@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,98 +116,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <TY3PR01MB11346729E8758CFEF18C9E99686D3A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <ZQ2PR01MB1307A802B916620235B87518E6D52@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/11/2025 15:17, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
+On 21/11/2025 05:23, Hal Feng wrote:
+>> On 12.11.25 21:54, Manivannan Sadhasivam wrote:
+>> On Thu, Nov 20, 2025 at 04:29:42PM +0800, Hal Feng wrote:
+>>> Add enable-gpios property for controlling the PCI bus device power.
+>>> This property had been supported in the driver but not added in the
+>>> dt-bindings.
+>>>
+>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>> Fixes: 22fe32239770 ("dt-bindings: PCI: Add StarFive JH7110 PCIe
+>>> controller")
+>>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>>> ---
+>>>  .../devicetree/bindings/pci/starfive,jh7110-pcie.yaml         | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+>>> b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+>>> index 33c80626e8ec..1e36f92ec852 100644
+>>> --- a/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+>>> +++ b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+>>> @@ -59,6 +59,10 @@ properties:
+>>>      description:
+>>>        The phandle to System Register Controller syscon node.
+>>>
+>>> +  enable-gpios:
+>>> +    description: GPIO used to enable the PCI bus device power
+>>
+>> This feels wrong to me. Is this GPIO associated with the PCIe controller? I bet
+>> this is just controlling some regulator that powers the VDD of the PCIe
+>> device/slot. If so, this should be added as a part of the regulator node and
+>> referenced in the PCIe node using the existing -supply properties.
 > 
->> -----Original Message-----
->> From: Biju Das
->> Sent: 23 November 2025 14:06
->> Subject: RE: [PATCH v2 1/2] dt-bindings: can: renesas,rcar-canfd: Document renesas,fd-only property
->>
->>
->>
->>> -----Original Message-----
->>> From: Krzysztof Kozlowski <krzk@kernel.org>
->>> Sent: 23 November 2025 13:26
->>> Subject: Re: [PATCH v2 1/2] dt-bindings: can: renesas,rcar-canfd:
->>> Document renesas,fd-only property
->>>
->>> On 23/11/2025 12:23, Biju wrote:
->>>> From: Biju Das <biju.das.jz@bp.renesas.com>
->>>>
->>>> The CANFD on RZ/{G2L,G3E} and R-Car Gen4 support 3 modes FD-Only
->>>> mode, Classical CAN mode and CAN-FD mode. In FD-Only mode,
->>>> communication in Classical CAN frame format is disabled. Document
->>>> renesas,fd-only to handle this mode. As these SoCs support 3 modes,
->>>> update the description of renesas,no-can-fd property and disallow it for R-Car Gen3.
->>>>
->>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
->>>> ---
->>>>  v1->v2:
->>>>   * Added conditional check to disallow fd-only mode for R-Car Gen3.
->>>> ---
->>>>  .../bindings/net/can/renesas,rcar-canfd.yaml  | 24
->>>> ++++++++++++++++---
->>>>  1 file changed, 21 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git
->>>> a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
->>>> b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
->>>> index f4ac21c68427..a52244f0b5d1 100644
->>>> ---
->>>> a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.y
->>>> +++ am
->>>> +++ l
->>>> @@ -125,9 +125,17 @@ properties:
->>>>    renesas,no-can-fd:
->>>>      $ref: /schemas/types.yaml#/definitions/flag
->>>>      description:
->>>> -      The controller can operate in either CAN FD only mode (default) or
->>>> -      Classical CAN only mode.  The mode is global to all channels.
->>>> -      Specify this property to put the controller in Classical CAN only mode.
->>>> +      The controller can operate in either CAN-FD mode (default) or FD-Only
->>>> +      mode (RZ/{G2L,G3E} and R-Car Gen4) or Classical CAN mode. Specify this
->>>> +      property to put the controller in Classical CAN mode.
->>>> +
->>>> +  renesas,fd-only:
->>>> +    $ref: /schemas/types.yaml#/definitions/flag
->>>> +    description:
->>>> +      The CANFD on RZ/{G2L,G3E} and R-Car Gen4 SoCs support 3 modes FD-Only
->>>> +      mode, Classical CAN mode and CAN-FD mode (default). In FD-Only mode,
->>>> +      communication in Classical CAN frame format is disabled. Specify this
->>>> +      property to put the controller in FD-Only mode.
->>>>
->>>>    assigned-clocks:
->>>>      description:
->>>> @@ -267,6 +275,16 @@ allOf:
->>>>        patternProperties:
->>>>          "^channel[6-7]$": false
->>>>
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            enum:
->>>> +              - renesas,rcar-gen3-canfd
->>>> +    then:
->>>> +      properties:
->>>> +        renesas,fd-only: false
->>>> +
->>>
->>> You did not respond to my first paragraph from previous version. As I
->>> said, you now need oneOf to restrict these, since you are not using simple enum.
->>
->> This is restricting for R-Car Gen3. DT binding check returns error if 'renesas,fd-only"
->> is defined for R-Car Gen3.
->>
->> Am I missing anything here?
+> This GPIO just controls the power of PCIe devices, not PCIe controller.
+> I think there may be no design adding power control GPIOs for the PCIe controller,
+> because usually we don't need to control the PCIe controller power but the PCIe
+> device power.
 
-Add on G2L no-can-fd and fd-only. What do you see? What is expected?
+So this is not PCIe controller enable gpios...
+
+> 
+> I find a similar "pwren-gpios" in
+> Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml .
+> It uses the GPIO to control the power of PCIe devices too.
+> 
+> Could I continue to do so? Thanks.
+
+No. You already got response what you are supposed to do. Please read it.
 
 Best regards,
 Krzysztof
