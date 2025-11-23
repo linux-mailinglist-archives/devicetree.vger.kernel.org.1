@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-241460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07E30C7E6CE
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 20:48:53 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A401C7E6DA
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 20:49:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 83E91340447
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 19:48:41 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7C08C341C42
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 19:49:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5B725B1FC;
-	Sun, 23 Nov 2025 19:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF9C25F99F;
+	Sun, 23 Nov 2025 19:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nRi4K1M9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KESPAWi7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010CE239E97
-	for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 19:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779AA25BF15
+	for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 19:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763927313; cv=none; b=P5YimgftnRlJfYC0jVeEZ4Ln+kc+WAqoQ9kluY6Cjn6pVMPPiytEDoTR/F/0dyFkcT4zX0A5Mkd7tobvnzk27ISs8Ym4SH5aB4BDoZokMdZPHdFzfmUo3csofNHAD/1Z59gcObbhUpU/L9s2Oua3FAHWyHdkdD0Lm/rGUzbxgfY=
+	t=1763927335; cv=none; b=Oxk7zy8B4iaUYoVEsIxVaYBejZ4XoLwNsr7Q43dWrcjPTFhF0dmk7WpsGSDvNSGYYJYcuz1hPQKmJrzv9MgpUzsdBPsEQyjeW4M/c2xc08WCb0BFP4pTzUkCl9VMo8g2Amk69Vz4It+tRUGx7/Sk4VkR3mPQNTaiHqCotsM0I8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763927313; c=relaxed/simple;
-	bh=z90dP/gmrGc3E3iGgr4xN3P1DyqNNmslhpLsQcT2q7I=;
+	s=arc-20240116; t=1763927335; c=relaxed/simple;
+	bh=+fNKvMvpCmvV9cI0Va6TcyljsLu3F06cewuvY7FNh7k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UqAYVEu4+Q1pyDQsjFy0W5S/WzzZSVJYk7mJTwTTlyj6yQTIdLOLnaxr6S8z4zIS90FlGWQqA2eSzfkdXLMwbHnlqXPeVAFhigjQ6OI3uQdIaKnJEJPYGsOQ/U4rOp0bK3wsKT5035PAWg+s3jrMifhnt/d2hOmy8dcSW1Rz4ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nRi4K1M9; arc=none smtp.client-ip=209.85.218.47
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ux1b8iIgzazEHEQXMT1Iz3lmFYmeZ6W563eDft+6LbRurc4okgfNtfCd7rD8G9X7Nja2RSPLPdkpxo2ooGdeAlubaUGYqmQSIkc19iAl3WMf89GrzuUMeRRhTjBOIEiHxOkf2YStkiI4bRWVbL5wwNMI1r5opsoqreQchnv0ybE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KESPAWi7; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b75c7cb722aso529519266b.1
-        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 11:48:30 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-64320b9bb4bso6444575a12.0
+        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 11:48:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763927309; x=1764532109; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1763927330; x=1764532130; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tw1PE/7RiX5xgeVNMbWvJDSPG8tWD79BqHxtcrrWivA=;
-        b=nRi4K1M9zlUotNKzAINsKbOf7KT4EuBMb1R6jtQ0BKsKr5JjqMTDvsDhdbit3HT1Eo
-         uHhvfsYlqeX4ApR5UUMcUlAzwfwygtGxkjDygtwNIZmcqQhIaKG9Ktl3tEWxqNIs0hat
-         /8xLoZeaw8aYbZbEy/0wczH4MwsHrRA4akM0uq20eLTUtta6sw+ncGBAItU7ks8PDt0D
-         3OC15TT/THczhV7r0etSpu7iQrGg14bOijs2yMI2BiKF/5F4iIXFlzU35yLIa6cRU96o
-         bPCTAU0Dhla78dRSlizlw/CSeuxjcBF1wN1APwt88BmaKUPMeP1w4TQQLUSfZZGsRF24
-         vufw==
+        bh=NY48Fn40WcoOX8kcxK9n3pmoY2MNt9A/pKD1eZjB+vI=;
+        b=KESPAWi7V8eTC9/U7ZZBTAs9mw0zsiGiH5FZw63OJG6U9Mob5i6Mx/qPMXhP3dnLZC
+         ZO0LamDWvVZBFZKuxBW4Bw0pwXhcn4yxW20Ud24Wxw6MN2WuKyAGlWQ5wNCPtQbYvQLI
+         78TtyaUAifoGwRgKmengJVVdv5daAqJzZVDS61YE4U2iJMs/3fy5Zllmg+Ey84gQRE4H
+         rJTZ8VgnjIO6PRgvmXjAVhDCNOoQ2qm1ndphtJdzarXoN4khb0zK3Mu4ISCsOSFEdyIA
+         gHtSSthcOX5rAXr49s9VD/lwRM3Ue0kzwoN2Yg+gdllPrOB53KUqXxslelup24V+TiWs
+         woVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763927309; x=1764532109;
+        d=1e100.net; s=20230601; t=1763927330; x=1764532130;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tw1PE/7RiX5xgeVNMbWvJDSPG8tWD79BqHxtcrrWivA=;
-        b=tOCajdCzdQtqSzeZrzPgrzboC3W8ZYBwr+D4Wnff3DdjbkaFYqWWud2Aios/ww+NAZ
-         Nz3HoAPJcyfb1yex8rAopeUJOa+tmBNdZ5omacUfK7y6dwKnO82YzoJN9mWYXpDIOZLH
-         BVCPOvM2bhH00rsZfhKd1xqLKLG1S7EAi4VdlFKdAMDDFlr5bDmZKfkn3+HDiMG567S/
-         XtoLP8CY4dxTEWEQXOizLqq8Gcvq2lSHo/t1BTbyjoHZhhbCddDx8exXvUCallNyRwSb
-         IbdE1gNRkoxy8wD7hEPqNRiUqAkfuyOSDxzLW8XEQm2EJfljq4qFLw1SHwdx6CP2LW0K
-         r5Jg==
-X-Forwarded-Encrypted: i=1; AJvYcCWGm3DkXOlVK30c4Lu0KrwtJ77gkfv7l2d2usxZ6fecqEsJ6h5ZXEqyLi4zt4vm6pXqfeiPWnAj8c27@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkCHZnIeoFmucftFdDC0CBHxWH0ZieTAVWXL2SC7KFpU1DVtul
-	fDCICIwB/6hY+m5H7GXAws5dxd4PanyDotwDVMRAGMjF+cUINY4bu6ej
-X-Gm-Gg: ASbGncsKxWdrITFQ1TNLT57UhkOpGzdd50w2EgxSI814awtyKCA9qketyxgjjkb1jhP
-	f4ASXjqu3RPkmoX8opgknyaorRJ9WaVolTYHuwP8JsAaDQkFhA4PyIOVTpfV9FZ15iSrqQMvK1x
-	mVD2RJTkBhet34LxHW61GxcXLdsa99tNsjhoYmMHWmMsP6rUPRkXdFMRSfg+RRteytctCWWBxGx
-	zVbvm75cQ5+D9LCB7QTg6nuQBbHw7IbC1rMf1mTCRXoQpS6VX1hSO6wNHiSVSurhqXmo2cPO3v+
-	nXP72POQwIGDZhqLLVkHtRtDt94G/eb14Ezpyl3OfAL8NYqYD/xdhDfbRAPNx9yFjVuMSv98GI/
-	Ie4F1m1aC4mruJWXMnoec4T2177YnfrRs55bmpgaJUlztkz7MWvNuQoVOrF9O2M/W8dL5QUjBcI
-	xOQsmXIagccZcjBLTw4PzdmvLTvQJfewWlPKb35Y8K5N5CrSHoTMp/9ixaJv/J28+r99g=
-X-Google-Smtp-Source: AGHT+IF4rSE58srn42tnY8ETc6zwxuPhwk117QeC9E0pzNnhNh6IzfVuWm+BbG43e5xDM79sc2H10Q==
-X-Received: by 2002:a17:907:c1a:b0:b73:544d:ba2e with SMTP id a640c23a62f3a-b76715e604bmr1050588666b.25.1763927309268;
-        Sun, 23 Nov 2025 11:48:29 -0800 (PST)
+        bh=NY48Fn40WcoOX8kcxK9n3pmoY2MNt9A/pKD1eZjB+vI=;
+        b=PE3KcqC1Xyx8bHmncmyAu5tKdfAowii6foY0cSEZ0+k3FsiTAK55dAd4KX+0YojuhB
+         nxYw8KAJWhIPRQjPlLVfuy10AFiJJ+aU9uXx5w74lEUdBwpcZ3/+UPeCHE0GTxAx+IRL
+         gDzXjl/6znwiR4uOiAvmIsBuH4InncSS6LeOkARFosOqTzrgdoaY4/XH7kcHM2s1UEW6
+         CCl/izIURPMXGzc60OcYOrAWwsOwmZEgSHExhbr00dL/dlmGPE+lXLhOWV8srCnWNK4q
+         5tMCzf2bfkcWv2+3L+vWgcxskb881qP31zGYGBDgQDt0PwOsHEYOb0LQ5LhfVp03BPc1
+         Bpbg==
+X-Forwarded-Encrypted: i=1; AJvYcCXwRvwo29bh9pCm8AmJXjeudBGmfgrIIedG1IN9bksAM2/wkyaLwWaKoDau9I5+XNGgavDZleEkafBj@vger.kernel.org
+X-Gm-Message-State: AOJu0YywwdhrAa9aO6rX0lqkxoLSV7YkIFVzcJ87lh4KrtfIJvUYZ+4v
+	o2U79N9kj00jtQK7gwQa+qZYdWM9wYDB86qlCBNGpon5eJhycce9+aNE
+X-Gm-Gg: ASbGncs9ZS+r7uVKiiA9e3bbh+l4pVmSYUOepZHKz2JD46dpszo727Wokhh1cH7V+Bb
+	y5845zDBcJu7VlZ0IVytaTDoyB+n0pmUBCa7tb5kuMNv9lsMCWlXodeMPT01CbJ812A2uaGowhC
+	cliW5T051xctqLftwAajLWEHF2/zY9gyUbykEKbg67hBqMvfs3VVXfVy4bIz26jg437EDuS5Zas
+	U3HQ39x66kh+0EzriKc5gE1fi6lJWHswpj7my6HuHpmevE91d42b+DbaHsbXnoQp9x2JLwXsgbd
+	84WQfQyXNanamUCBoNQ43lNj5AIe9SuIvfdMx3TBBvBPEsJUJUQJA32mNH8HDGcwjbkpKSlzxw9
+	lqgRTRt+FXcZdzdd1p88hxKhwrsluh2LViXBPTmokJzuLRnbsMguHfOWa/WG+yiZKUsnpX+YVNx
+	r/SIchZRRn88Kd13+eFhpor3tUmNwEbDmyFRywt8eRDoyaobAA9anbbkaNfn6pHWQo0s8=
+X-Google-Smtp-Source: AGHT+IEbd/yP3QJ65f1rfYvuIyzrG6WSCnDa64fB/u4r54gEgSqi1csW3UDCsVIvIHmm0BrHp5Rk6A==
+X-Received: by 2002:a17:906:d54a:b0:b72:6a39:49e6 with SMTP id a640c23a62f3a-b766ef1d09fmr1145143766b.18.1763927329276;
+        Sun, 23 Nov 2025 11:48:49 -0800 (PST)
 Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:38ae:e5e8:159a:3b69])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b765c1379ddsm997748466b.0.2025.11.23.11.48.28
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654d7cb3bsm1096357666b.27.2025.11.23.11.48.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Nov 2025 11:48:29 -0800 (PST)
-Date: Sun, 23 Nov 2025 20:48:27 +0100
+        Sun, 23 Nov 2025 11:48:49 -0800 (PST)
+Date: Sun, 23 Nov 2025 20:48:47 +0100
 From: Jorge Marques <gastmaier@gmail.com>
 To: Jonathan Cameron <jic23@kernel.org>
 Cc: Jorge Marques <jorge.marques@analog.com>, 
@@ -83,11 +83,11 @@ Cc: Jorge Marques <jorge.marques@analog.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 5/7] iio: adc: ad4062: Add IIO Trigger support
-Message-ID: <egfjokiqoo6dxh6m3dhjtj2jtpbnw6p7pxxllth2unycl5fdf4@lirpbye74rtg>
+Subject: Re: [PATCH 7/7] iio: adc: ad4062: Add IIO Events support
+Message-ID: <xxwczo3pno3dkyn3jmtj7hwupeo3ywp27bwbtohexfgpdoo56j@apapxa2pymyw>
 References: <20251013-staging-ad4062-v1-0-0f8ce7fef50c@analog.com>
- <20251013-staging-ad4062-v1-5-0f8ce7fef50c@analog.com>
- <20251018171425.7515d39f@jic23-huawei>
+ <20251013-staging-ad4062-v1-7-0f8ce7fef50c@analog.com>
+ <20251018172625.42f13f4a@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,112 +96,188 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251018171425.7515d39f@jic23-huawei>
+In-Reply-To: <20251018172625.42f13f4a@jic23-huawei>
 
-On Sat, Oct 18, 2025 at 05:14:25PM +0100, Jonathan Cameron wrote:
-> On Mon, 13 Oct 2025 09:28:03 +0200
+On Sat, Oct 18, 2025 at 05:26:25PM +0100, Jonathan Cameron wrote:
+> On Mon, 13 Oct 2025 09:28:05 +0200
 > Jorge Marques <jorge.marques@analog.com> wrote:
 > 
-Hi Jonathan,
-
-> > Adds support for IIO Trigger. Optionally, gp1 is assigned as Data Ready
-> > signal, if not present, fallback to an I3C IBI with the same role.
-> > The software trigger is allocated by the device, but must be attached by
-> > the user before enabling the buffer. The purpose is to not impede
-> > removing the driver due to the increased reference count when
-> > iio_trigger_set_immutable or iio_trigger_get is used.
+> > Adds support for IIO Events. Optionally, gp0 is assigned as Threshold
+> > Either signal, if not present, fallback to an I3C IBI with the same
+> > role.
 > > 
 > > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+Hi Jonathan,
+> The one bit of this that I'm not sure on is the apparent dropping out
+> of monitor mode on most userspace interactions that cause register accesses.
+> That seems like a fairly unintuitive ABI. It might be better to block the access
+> until the events are turned off. Perhaps I missed something?
 > 
-> A few things inline.
+I will change the behaviour to block access until monitor mode is disabled:
+
+          if (!iio_device_claim_direct(indio_dev))
+                  return -EBUSY;
+          if (st->wait_event) {
+                  ret = -EBUSY;
+                  goto out_release;
+          }
 > Thanks,
 > 
+> Jonathan
+> 
+> > ---
+> >  drivers/iio/adc/ad4062.c | 351 ++++++++++++++++++++++++++++++++++++++++++++++-
+> >  1 file changed, 347 insertions(+), 4 deletions(-)
+> > 
 > > diff --git a/drivers/iio/adc/ad4062.c b/drivers/iio/adc/ad4062.c
-> > index e55a69c62694a71a4e29f29b9a2bfeec3b16c990..40b7c10b8ce7145b010bb11e8e4698baacb6b3d3 100644
+> > index 40b7c10b8ce7145b010bb11e8e4698baacb6b3d3..b5b12f81c71b52f244600ed23dad11253290b868 100644
 > > --- a/drivers/iio/adc/ad4062.c
 > > +++ b/drivers/iio/adc/ad4062.c
+> > @@ -13,6 +13,7 @@
 > 
-> > +static irqreturn_t ad4062_poll_handler(int irq, void *p)
+> > +/**
+> > + * A register access will cause the device to drop from monitor mode
+> > + * into configuration mode, update the state to reflect that.
+> > + */
+> > +static void ad4062_exit_monitor_mode(struct ad4062_state *st)
 > > +{
-> > +	struct iio_poll_func *pf = p;
-> > +	struct iio_dev *indio_dev = pf->indio_dev;
-> > +	struct ad4062_state *st = iio_priv(indio_dev);
-> > +	u8 addr = AD4062_REG_CONV_TRIGGER;
-> > +	int ret;
-> > +
-> > +	/* Read current and trigger next conversion */
-> > +	struct i3c_priv_xfer t[2] = {
-> > +		{
-> > +			.data.in = &st->raw,
+> > +	if (st->wait_event) {
+> > +		pm_runtime_mark_last_busy(&st->i3cdev->dev);
 > 
-> If it is safe to use addr on the stack, do we need to have
-> a dma safe buffer for raw?  I'm not sure for i3c!
-> 
-All buffer should be dma aligned, I will use the heap.
-I will use a separate buffer that is written once (CONV_READ or
-CONV_TRIGGER, depending if gp1 is routed or using the IBI fallback).
-> > +			.len = 4,
-> > +			.rnw = true,
-> > +		},
-> > +		{
-> > +			.data.out = &addr,
-> > +			.len = 1,
-> > +			.rnw = false,
-> > +		}
-> > +	};
-> > +
-> > +	/* Separated transfers to not infeer repeated-start */
-> > +	ret = i3c_device_do_priv_xfers(st->i3cdev, &t[0], 1);
-> > +	if (ret)
-> > +		goto out;
-> > +	ret = i3c_device_do_priv_xfers(st->i3cdev, &t[1], 1);
-> 
-> Add a comment on this. I assume it's setting things up for the next
-> scan?
-> 
-yes, the next scan is triggered after the reading of the current scan.
-There are 2 registers that can be used for scans, CONV_READ and
-CONV_TRIGGER:
-* CONV_READ: Stop bit of the previous read (without write address),
-  triggers the next scan. Allows roughly twice the sample rate, since
-  does not requires writing the address every transfer.
-* CONV_TRIGGER: The conversion is triggered by writing the address, so
-  every new conversion requires writing the address again. Only this
-  registers will issue an IBI data ready.
-
-That means, if GPIO is not routed as the IRQ, in the fallback using IBI,
-CONV_TRIGGER needs to be used. v2 will also use schedule_work to avoid
-the IRQF_ONESHOT being triggered (next conversion data ready), before
-the current irq_handler returns.
-> > +	if (ret)
-> > +		goto out;
-> > +
-> > +	iio_push_to_buffers_with_timestamp(indio_dev, &st->raw,
-> > +					   pf->timestamp);
-> > +
-> > +out:
-> > +	iio_trigger_notify_done(indio_dev->trig);
-> > +
-> > +	return IRQ_HANDLED;
-> >  }
-> 
-> > +
-> > +static int ad4062_triggered_buffer_predisable(struct iio_dev *indio_dev)
-> > +{
-> > +	struct ad4062_state *st = iio_priv(indio_dev);
-> > +
-> > +	pm_runtime_mark_last_busy(&st->i3cdev->dev);
-> 
-> Take a look at the changes across the tree recently.
-> Now pm_runtime_put_autosuspend() calls pm_runtime_mark_last_busy()
-> internally to avoid the need for this pair.
+> > +		pm_runtime_put_autosuspend(&st->i3cdev->dev);
+> As elsewhere, no longer need to have the mark_last_busy() call here.
 > 
 Ack.
-> > +	pm_runtime_put_autosuspend(&st->i3cdev->dev);
-> > +	return 0;
+> > +		st->wait_event = 0;
+> > +	}
 > > +}
 > 
+> > +static ssize_t sampling_frequency_available_show(struct device *dev,
+> > +						 struct device_attribute *attr,
+> > +						 char *buf)
+> > +{
+> > +	struct ad4062_state *st = iio_priv(dev_to_iio_dev(dev));
+> > +	int ret = 0;
+> > +
+> > +	for (u8 i = AD4062_FS_OFFSET(st->chip->grade);
+> > +	     i < AD4062_FS_LEN(st->chip->grade); i++)
+> > +		ret += sysfs_emit_at(buf, ret, "%s ", ad4062_conversion_freqs[i]);
+> > +
+> > +	ret += sysfs_emit_at(buf, ret, "\n");
+> > +	return ret;
 > 
+> Has slightly ugly format of " \n" at end rather than "\n"
+> There are various ways to handle this perhaps easiest is something like
+> 	for (u8 i = AD4062_FS_OFFSET(st->chip->grade);
+> 	     i < AD4062_FS_LEN(st->chip->grade); i++)
+> 		ret += sysfs_emit_at(buf, ret, "%s%c", ad4062_conversion_freqs[i],
+> 				      i != (AD4062_FS_LEN(st->chip_grade) - 1) ? "\n", " ");
+Thanks for the suggestion, I will use.
+> 
+> 
+> > +}
+> 
+> >  static irqreturn_t ad4062_poll_handler(int irq, void *p)
+> > @@ -523,6 +645,24 @@ static int ad4062_request_irq(struct iio_dev *indio_dev)
+> >  	struct device *dev = &st->i3cdev->dev;
+> >  	int ret;
+> >  
+> > +	ret = fwnode_irq_get_byname(dev_fwnode(&st->i3cdev->dev), "gp0");
+> > +	if (ret >= 0) {
+> > +		ret = devm_request_threaded_irq(dev, ret, NULL,
+> > +						ad4062_irq_handler_thresh,
+> > +						IRQF_ONESHOT, indio_dev->name,
+> > +						indio_dev);
+> > +		if (ret)
+> > +			return ret;
+> > +	} else if (ret != -EPROBE_DEFER) {
+> > +		ret = regmap_update_bits(st->regmap, AD4062_REG_ADC_IBI_EN,
+> > +					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN,
+> > +					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN);
+> > +		if (ret)
+> > +			return ret;
+> > +	} else {
+> > +		return ret;
+> 
+> As before. I'd prefer error cases handled first. The earlier code suggestion
+> doesn't quite work but something along those lines should be doable.
+> 
+Ack.
+> > +	}
+> > +
+> >  	ret = fwnode_irq_get_byname(dev_fwnode(&st->i3cdev->dev), "gp1");
+> >  	if (ret >= 0) {
+> >  		ret = devm_request_threaded_irq(dev, ret, NULL,
+> 
+> > @@ -779,6 +923,196 @@ static int ad4062_write_raw(struct iio_dev *indio_dev,
+> >  	return ret;
+> >  }
+> >  
+> > +static int ad4062_monitor_mode_enable(struct ad4062_state *st, bool enable)
+> > +{
+> > +	int ret = 0;
+> > +
+> > +	if (!enable)
+> > +		goto out_suspend;
+> > +
+> > +	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = ad4062_conversion_frequency_set(st, st->events_frequency);
+> > +	if (ret)
+> > +		goto out_suspend;
+> > +
+> > +	ret = ad4062_set_operation_mode(st, AD4062_MONITOR_MODE);
+> > +	if (ret)
+> > +		goto out_suspend;
+> > +
+> > +	return ret;
+> return 0;
+>  
+Ack.
+> > +out_suspend:
+> > +	pm_runtime_put_autosuspend(&st->i3cdev->dev);
+> > +	return ret;
+> > +}
+> 
+> >  static int ad4062_triggered_buffer_postenable(struct iio_dev *indio_dev)
+> >  {
+> >  	struct ad4062_state *st = iio_priv(indio_dev);
+> > @@ -788,6 +1122,7 @@ static int ad4062_triggered_buffer_postenable(struct iio_dev *indio_dev)
+> >  	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);
+> >  	if (ret)
+> >  		return ret;
+> > +	ad4062_exit_monitor_mode(st);
+> Hmm. So you always exist monitor mode if we enable the buffer. I assume that doesn't
+> change detection of events because the buffered mode also allows that?
+> 
+> Do we not need something to turn monitor mode on again once we disable buffered capture?
+No, the buffer mode does not work alongside monitor mode, I will add the
+lock 
+
+          if (st->wait_event)
+                  return -EBUSY;
+
+> >  
+> >  	ret = ad4062_set_operation_mode(st, st->mode);
+> >  	if (ret)
+> > @@ -833,6 +1168,7 @@ static int ad4062_debugfs_reg_access(struct iio_dev *indio_dev, unsigned int reg
+> >  
+> >  	if (!iio_device_claim_direct(indio_dev))
+> >  		return -EBUSY;
+> > +	ad4062_exit_monitor_mode(st);
+> 
+> This probably needs a comment. Not obvious to me how you end up in with it enabled
+> again after the debugfs read / write finishes.
+> 
+You don't. Once a register access is done, it will drop of monitor mode
+or sample/buffer mode. But since it is a debug interface, that may be
+alright?
+> >  
+> >  	if (readval)
+> >  		ret = regmap_read(st->regmap, reg, readval);
+
 Best regards,
 Jorge
 
