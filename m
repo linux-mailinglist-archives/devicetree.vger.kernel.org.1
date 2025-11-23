@@ -1,199 +1,123 @@
-Return-Path: <devicetree+bounces-241470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3706CC7E90E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 23:56:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72E2AC7E9D3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 00:48:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 360D934615D
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 22:55:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1EE8B34423B
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 23:48:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B57F2797AC;
-	Sun, 23 Nov 2025 22:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC2D72566E9;
+	Sun, 23 Nov 2025 23:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="hjhT3LRU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nOxm2x8a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E75274B48;
-	Sun, 23 Nov 2025 22:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 316E9239E75
+	for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 23:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763938403; cv=none; b=MYM8pWaKu4SwRB0GrITQcik0JdWPflMs8KLBrAqIAg1fxEwR/MvhMHviUfLS4B60G+++9QGDFfwS/DGT48yVE24QJQ3szVNEgY5UdMiiAuOLhpQvBgan0vGRh7TMB9HflH3WxFAu3BgX5v1BlyBuXeZsnbjK2OkorUZwXBBsr1k=
+	t=1763941678; cv=none; b=BicibF4jBXHEpXSb4awrZZOrA4pY8KAUZCaeqXHlm8woc4j/cDZF6VhDFrDd0KkOj+r/aDd2YqcYuhzblo6FIqdI3E2jbIeAZaYPllHhV8w3TjWxYdOrHuBopI6fyQ2PSn1MDN3esbjuGmaB2/KPKxd7z5nSMz08CQ58dObpuqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763938403; c=relaxed/simple;
-	bh=xEQipELreVFUUrGIFDr8k0h5kciIyrrirrauvivfW70=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kHh9GQk5hASMI40yEXBFbLow+SOL6ytf0mQLewSh29ej65OPeZUbHDkKNSviTc4WQ93Y9uXnjfjLi/B9OfHiBvVrKr3VWdJrQ1ajT656jRjtVu0SLEdwSTz4GlcvIrNfIPHdveQWG1kidOhzGrUWN2JaubrcXhRVRhGGddQLr9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=hjhT3LRU; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1763938311;
-	bh=+7C2Aew/6tLzcZ4pkubvFevq8gNEauyKc69XNTYNN0w=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hjhT3LRUaJZ5IrYrqcCda/dMs/7ycESGlTax3N0xXrm9xoBuKQ+UGf7BAFYE2bUnN
-	 vxnXvjduH3VGlEL3bHjxRixDfcKvTjV98Wy9UBxpL8BhRwDIZKdGoA0epz60+Q6Xtj
-	 hfOAYF7XNV1OC8R+4OeREFjrMBMDNs3uibVSRjLWLBUuXQxFC9K9820PKbsPIK5O//
-	 HKaTqdCOZxa3S4urKqv8XXfXSPxrGQxeBUjkTrPiRzT/+KaPxzCQqS1voGjroCVM1y
-	 cPi8h2Adh2q1FnmCjX36JfigC+cFxR0H2ujN61iXsokd0D4rCqu2sryD7IDUTNoGMz
-	 lutkf/OKfTK6w==
-Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 389FBB2201BD;
-	Sun, 23 Nov 2025 23:51:48 +0100 (CET)
-From: E Shattow <e@freeshell.de>
-To: Conor Dooley <conor@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	E Shattow <e@freeshell.de>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v3 2/2] riscv: dts: starfive: add Orange Pi RV
-Date: Sun, 23 Nov 2025 14:50:45 -0800
-Message-ID: <20251123225059.49665-3-e@freeshell.de>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20251123225059.49665-1-e@freeshell.de>
-References: <20251123225059.49665-1-e@freeshell.de>
+	s=arc-20240116; t=1763941678; c=relaxed/simple;
+	bh=TJIcmKvYcwLavlNS6SXJ/86zVoDsC8q0zbps/byk9vw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UjaW+MLRfu7/qxHJJT3aPcfOkavavUwn/JANvOW4D2xTGpO7ug1d8Y99OlevHVXJ8w0Ex26ovKx0wgN9lZ94oP+gh2kPy7NiRE7zc2Wh/XDVg+Iu+0bsgvePH5NdvlqI9W6sXq+gs0yYjfs/y/wKY19hGUu6t46asuLgV/4+ILw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nOxm2x8a; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-42b3ad51fecso2989206f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 15:47:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763941675; x=1764546475; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9WpSd2LefLOPcYBkAZyB05aqITFj4fqTlh36DvQaccA=;
+        b=nOxm2x8a5wSNm37ObdH4mYUiP0sSwgBDm83oiyPM4k06PVw5QHFtzSvd+/tY1kpSPy
+         8FDn8VMyk8s/93EG8KRk5xQR4fU3CvJ5uPl72UgRac7h1vZ9vMD0/WApAEMSOxD6oHqA
+         iJaB3dtPgJhrdD6W22SiQFrQajjEoqgEg68VhUr4LPKzh71IgFpUOijWdnFPlqS+TygL
+         9jTr6+0DCKTEFq5jB183Sd4vV4LYHaWmZdbMtPJiaNPoApTYX/6Gyzv6NUgvGX1aYoRY
+         2hNvi/Iiz7aL5sjnK37C2VFrYBZ5h/5cEgEY3uxelR2gUvSCe5Yzu86YzDfGYG67txGn
+         rpvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763941675; x=1764546475;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9WpSd2LefLOPcYBkAZyB05aqITFj4fqTlh36DvQaccA=;
+        b=Bk8i+oQxDtlu+eVI3ngzbK1Tx5MMEu3cnFo2mSGgoKak1yQbW4PyWEYYAQ/UgexRVQ
+         mWxYESweHBG+Tx8gc+Tth1fPD/6qNcUhJUaBNwr//eCSYujmAZJTAYniOtucOeJCOO7Q
+         F/kYV/cpX8KGFWI4i8D9B6HfG0DLenEOSedk8P8di5+3AIs9AF6qsJui77RasxHdmu5o
+         om5AXP4JKm7/Icg8E/Iw3tJuO3Z+ofyvVP40HlafTcJMayDbDZlq1ImPJzNJOpTP4/hj
+         m0KZ8kbGfBrr7zvPwZ40hEQ2o7xjd3U0VmKNyJBUsrN5C1kt8PQuXoze+5Yfm8jOI0NG
+         7pBA==
+X-Forwarded-Encrypted: i=1; AJvYcCWJ9ExePFz+S2yyCyMT4s/E/xdx9vXDoARUrUK/j4YndN8i1evuyP1gmVutJ40jC0e2UxMWwdFOlvE5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiBcDHBcJZisuaMxxwxpNWxhNOT+O8YrGIRHzUhsEXcxji5pvX
+	VbTDnhcwpVj8oEJjygWSuyzwFAKqWr1cDSf/baGfaPUS6eomdRKd76a6HUm0I3tMHEA=
+X-Gm-Gg: ASbGnct86hrTZmFXxkliYrU8DeblGDxcj7UUZa0MdtpCQllTAQ7cdTjYb0WfCYoQ4t3
+	GAY9CDbFQtrOl3l5nrSRltnzywOI5FZUpm7SOHTIrP0tmDfD8+m2s33nerqbh98FXqliFnFtGHg
+	U6GVaiCfr2Jmw89ko7QQD8gCmPnORXsqZS6F6JdKnLIRUqlKLVL2OLkogorPL3/lGAQ8tjHsKvg
+	uD952pTg3PuXCHn4xar/fUfvuBM4eeETP8A7DeiynpJdVl59oJGGXFXEwRdUtkkOLNZp3418oRQ
+	oAywCgavqXthQnXxbjtIdjQ4n0RAjhM55J50sagygO+Lg0BZQAzOXX2jIDvRKAhnaThffOe4i74
+	qykJKquxuktqpPwpGuBwjg7NL2gls8WI+PZToWU1Y9wxrZYM/pjeLr3qYfmiSzf7jHoQ2ImaMqy
+	+U6p61HY3hV8gwhLwOGikk6ioKkR2rL2+91JdCQH6PSlkc1ThPqCPz
+X-Google-Smtp-Source: AGHT+IHVxdc0S4p7GcNa9n3stpz6wIbEUwBNlaz8lj7snVGYZFGdUkAQ9qLVQVzs619DRkEviJfz+Q==
+X-Received: by 2002:a05:6000:250a:b0:42b:4961:eb4c with SMTP id ffacd0b85a97d-42cc1cd5cc1mr10385337f8f.1.1763941675585;
+        Sun, 23 Nov 2025 15:47:55 -0800 (PST)
+Received: from [192.168.0.27] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f2e598sm24494734f8f.4.2025.11.23.15.47.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Nov 2025 15:47:54 -0800 (PST)
+Message-ID: <0b2b8352-4ac1-4a5e-be73-67b5cffdb934@linaro.org>
+Date: Sun, 23 Nov 2025 23:47:51 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
+To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Atiya Kailany <atiya.kailany@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+References: <20251120-add-support-for-camss-on-kaanapali-v7-0-de27f9a67ce6@oss.qualcomm.com>
+ <20251120-add-support-for-camss-on-kaanapali-v7-1-de27f9a67ce6@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20251120-add-support-for-camss-on-kaanapali-v7-1-de27f9a67ce6@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Icenowy Zheng <uwu@icenowy.me>
+On 21/11/2025 04:43, Hangxiang Ma wrote:
+> The Kaanapali platform provides:
+> - 3 x VFE, 5 RDI per VFE
+> - 2 x VFE Lite, 4 RDI per VFE Lite
+> - 3 x CSID
+> - 2 x CSID Lite
+> - 6 x CSIPHY
 
-Orange Pi RV is a SBC based on the StarFive VisionFive 2 board.
+Another nit-pick which you don't have to fix, I can do this in the 
+commit log - but, you've not detailed the new regs added below.
 
-Orange Pi RV features:
-
-- StarFive JH7110 SoC
-- GbE port connected to JH7110 GMAC0 via YT8531 PHY
-- 4x USB ports via VL805 PCIe USB controller connected to JH7110 pcie0
-- M.2 M-key slot connected to JH7110 pcie1
-- HDMI video output
-- 3.5mm audio output
-- Ampak AP6256 SDIO Wi-Fi/Bluetooth module on mmc0
-- microSD slot on mmc1
-- SPI NOR flash memory
-- 24c02 EEPROM (read only by default)
-
-Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-Signed-off-by: E Shattow <e@freeshell.de>
 ---
- arch/riscv/boot/dts/starfive/Makefile         |  1 +
- .../boot/dts/starfive/jh7110-orangepi-rv.dts  | 76 +++++++++++++++++++
- 2 files changed, 77 insertions(+)
- create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-index 62b659f89ba7..d34c8c79bc10 100644
---- a/arch/riscv/boot/dts/starfive/Makefile
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-emmc.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-lite.dtb
-+dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-orangepi-rv.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-new file mode 100644
-index 000000000000..16ec2767134e
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
-+ */
-+
-+/dts-v1/;
-+#include "jh7110-common.dtsi"
-+
-+/ {
-+	model = "Xunlong Orange Pi RV";
-+	compatible = "xunlong,orangepi-rv", "starfive,jh7110";
-+
-+	/* This regulator is always on by hardware */
-+	reg_vcc3v3_pcie: regulator-vcc3v3-pcie {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3-pcie";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&sysgpio 62 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&gmac0 {
-+	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
-+	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-+	starfive,tx-use-rgmii-clk;
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	cap-sd-highspeed;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	vmmc-supply = <&reg_vcc3v3_pcie>;
-+	vqmmc-supply = <&vcc_3v3>;
-+	status = "okay";
-+
-+	ap6256: wifi@1 {
-+		compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		/* TODO: out-of-band IRQ on GPIO21 */
-+	};
-+};
-+
-+&mmc1 {
-+	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	status = "okay";
-+};
-+
-+&phy0 {
-+	rx-internal-delay-ps = <1500>;
-+	tx-internal-delay-ps = <1500>;
-+	motorcomm,rx-clk-drv-microamp = <3970>;
-+	motorcomm,rx-data-drv-microamp = <2910>;
-+	motorcomm,tx-clk-adj-enabled;
-+	motorcomm,tx-clk-10-inverted;
-+	motorcomm,tx-clk-100-inverted;
-+	motorcomm,tx-clk-1000-inverted;
-+};
-+
-+&pwmdac {
-+	status = "okay";
-+};
--- 
-2.50.0
-
+bod
 
