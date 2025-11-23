@@ -1,122 +1,146 @@
-Return-Path: <devicetree+bounces-241406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5442C7D867
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 23:18:31 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B616C7DA33
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 01:36:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 40F9134DA55
-	for <lists+devicetree@lfdr.de>; Sat, 22 Nov 2025 22:18:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 002404E04B6
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 00:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97BF1E1A05;
-	Sat, 22 Nov 2025 22:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41123153BED;
+	Sun, 23 Nov 2025 00:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="IKZKTIF5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QekoKF7z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B609C18027
-	for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 22:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 986C212FF69
+	for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 00:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763849908; cv=none; b=TnapshVl/sx9obRjC0K4IKpOhjHoMq+Ct26RXoWkVwt2AEWcJ6KfudtsT0bANF2erF4tZEF/49NWM+egfIzxNLQwqmJWb2dnDDDHxS1HxvUQkUBQyQH+iIFUMqqB3vdYgFb8NuntcLIb8sLr85wL7mDgm/xeivw0Lvx16eGVWiM=
+	t=1763858175; cv=none; b=oK/aOWsYQOuBIu66h55HPFriZczGuCLEtCo76XkLf0796iELCTlHvZ+0zyrN0qawT4aCRG/xy0CRNNKQuI64L+ul/lsPIN3O0BWOw2yKMhMdj8Uk/4ANwEqeM1A4bSaIZ9BXXoyvnONBqtQ0L+hEZKfEdYrO6q/5amUxHAWn0E0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763849908; c=relaxed/simple;
-	bh=MQVrtt9HuNSbiIesc2oaZsDk+/naS53blUl3ztEh/4M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RxidOcwLhU5kNmN7IQda4j+DmZp+953vOKz14iLr9JqrxIORSpbTioO/WCVgMPL7dpdwIc+zvEQxgYXlH1HnaKDPemXkhEnZLLGLGJdXKPELKjItkhzlP9IMQB5dQmy7DV/a10qavdFeKr47sLHDRk6hU3z+6DBDJdqgtNsW4V4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=IKZKTIF5; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-Message-ID: <71c15a78-7a50-4913-b677-e5308fcabfad@packett.cool>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1763849902;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BoMM6Bolfb03l2sUyPTtJho2CMd/eIMtoFQwa8m96vE=;
-	b=IKZKTIF5RO4c094AbTdzudHNXyCIA3kxZoiw2wEiuDicGsHvp/q53rS02WIqe4EZddGa9a
-	JDM60FD63tn3JzFBAxaGOoPfW3J5HVJCqYmTiUkMZVgb4t2pZjUoxpDllf0rJA4L/Cm59M
-	SmJr+DTv3NtCK6uKxp0xx2agBFmcp9In0uqSE/v2BEnAVjE6ZS0iFgLr79mJuNxwUTOqYR
-	QnCNPgDQwA7v5X+BLTySHtHRU+Va62iBnOyMVoXT4lVAhCovOeN8Vd4dHNapaFFLp8fAOp
-	VJbPOd7yn7lgGNtB3HSbAT74xCUeQL2p7egBc3eRybmNwxOhufN23LyYKaM4rw==
-Date: Sat, 22 Nov 2025 19:18:12 -0300
+	s=arc-20240116; t=1763858175; c=relaxed/simple;
+	bh=+LbtG4wlTcCjP7l1QwV5muNNO5Z8XeSappL8ypkY+bY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FFkA0FCT3H4eivczu2PfloM3a9w3vpUP8y9jpUyHVcvmNIsHNrEZi9TLW5bDDFbkdVyqCIMTmll00kIPzTXF/GBBvlrVSfz0jrp+aijoM152KuA9/VEi1WxYDUdY65zpByvB1jwBYW39kvlIzmI3cD0aOIssnoFLfrA6trBjqFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QekoKF7z; arc=none smtp.client-ip=209.85.222.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-8b2d56eaaceso327399685a.0
+        for <devicetree@vger.kernel.org>; Sat, 22 Nov 2025 16:36:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763858172; x=1764462972; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5InH4LAtl8CDeHrHASMmG5Sayd0VJhxUyZTTym7Ptqs=;
+        b=QekoKF7zHou+ArgZlTorRmOJOR5qvI3C+IUAwRzfJNm+xPAkaI7XFH86/7GOLjRERJ
+         sHje3gRRHuBS/mwRCue+5FI+P57waFXyOPUCnG2yKPdrHWu3XFimMex6cgz+/e97ZBXB
+         pwzD68wP5Dw/B4GFNgzwPGx0VsLEVyHGKZjIv3GQ4vN2i3R0M/ENeYxN+isAPF65Eqsc
+         0vixMjjhN7O4gAGKNUiLu8tCMML+ow2WSBSbqCVbUhvknHd7JOpZKztZLztIcEh93muH
+         kBEQtL/lM2ShwgCbTt0/ID9CCE5FTTuu+JZtXwtVoTMaZdfp7tZSsWpHme4f/qbA3WY6
+         ZPng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763858172; x=1764462972;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5InH4LAtl8CDeHrHASMmG5Sayd0VJhxUyZTTym7Ptqs=;
+        b=RNUwlsGrR/lepQ8r2fa4K+bFt8G/bJW217wdAprTbtVPVIsAZjak2PXpOALVLRhxe8
+         El+lSUpI+IeaaVTW044h/5M62+tXva0PUzUkTG2pqnU62F0amsTadSXbIQCrmOuvAaXm
+         9Xk7cOvgwIwMIE2tUZ30efSM2H68ta+o5d7XVmio4tFg0hQm3YEWZ9XBUbwNVXCeDqtC
+         b+ANmshwA8swLKXi2VxXvc6di6u9XFgxXTwvfxlvmHqyR1CKe8LC2x0JUD/66PaFo4S1
+         buldHJJMLtlVOLYSJQszbmg0A0e5XAFQlKCPhcnllfo6p64xv5EQS7sQNbjpfHAG3QFS
+         hQhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVHhop/OVG9d/E0W5n8bfPsC64+CbDVhDqSciZnWBart5Xs7qQWEyGLJtLHci/05NEyHBcfLpUcdQ6b@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzh3F7mWm8ZcB2vAo/4a4FdMuv5I8oEGSQ9osE1vS4URI92enad
+	hJegLzK+MTShrckun5I39fJ3ueavETnt3aG+CBMlVyfhoCOBS0uSB2j4
+X-Gm-Gg: ASbGncvj7GbJxWfk8VsBzC84vWp2urORnf0n/dkJtguoW+u+5peWBf8ybfkpww8y4HP
+	hiq/OzP/S481s/XsAr3zOCJEpeJelwj9EXOwGxYCIOXLZeikNe1kyjTvQpG8idtqIDjzs5xXBwb
+	Y/QiVy7imcAjYm12K0FrAw7skhWgJOk+7Ekw4tIsb8PqwtWVx1UMsks1s8cRuJRh5ZAbyzdgqVB
+	mzANPALVcXSDvzfjg2QvDbGSAwfk92bitTL5mJ8YAe4d7KxPf6U2U/nUFJfRESPWTg5XxFM04PQ
+	5qE4RWouDFgtvUp5hJfAE8bkKr0XA9aPI3FCho1HbfUC8+MC+DHcJsVF73fcjvKi2bflTaiCuaH
+	vgBK2IxyzN7N8XQ2R3KrP85pKhk9MGD4yjAtGingLM+VWhgx3WQFSIAlcEEFRaF2+qYxy2m3OxG
+	XwidfAGQugj8ZPKNj//KdVDHrPB+i0wy8=
+X-Google-Smtp-Source: AGHT+IELZ8fwCDzMQSnKQNoR9E8KUcPXJ16Bu9cxH/L+PxSpCHeZevHF26bxZFfiNniZZE6RK9ZCPQ==
+X-Received: by 2002:a05:620a:4611:b0:8b2:dafb:9089 with SMTP id af79cd13be357-8b33d469027mr939724285a.67.1763858172372;
+        Sat, 22 Nov 2025 16:36:12 -0800 (PST)
+Received: from localhost.localdomain ([142.188.15.215])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8b3294336besm657943885a.19.2025.11.22.16.36.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Nov 2025 16:36:11 -0800 (PST)
+From: Rogerio Pimentel <rpimentel.silva@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	krzk@kernel.org
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	alexander.stein@ew.tq-group.com,
+	dario.binacchi@amarulasolutions.com,
+	marex@denx.de,
+	Markus.Niebel@tq-group.com,
+	y.moog@phytec.de,
+	joao.goncalves@toradex.com,
+	frieder.schrempf@kontron.de,
+	josua@solid-run.com,
+	francesco.dolcini@toradex.com,
+	primoz.fiser@norik.com,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Rogerio Pimentel <rpimentel.silva@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v5 1/2] dt-bindings: arm: fsl: Add i.MX8MP FRDM board
+Date: Sat, 22 Nov 2025 19:36:02 -0500
+Message-Id: <20251123003603.246399-1-rpimentel.silva@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/2] Modify USB controller nodes for USB on X1E80100
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
- Rajendra Nayak <quic_rjendra@quicinc.com>,
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-References: <20251014022121.1850871-1-krishna.kurapati@oss.qualcomm.com>
- <d0c18094-7234-450d-bd9c-e9f545de31e2@packett.cool>
- <81367b57-f60c-48a6-8a59-7e160c312686@oss.qualcomm.com>
- <22ad48ac-e054-4f2f-a5a5-8047266ff4cc@oss.qualcomm.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Val Packett <val@packett.cool>
-In-Reply-To: <22ad48ac-e054-4f2f-a5a5-8047266ff4cc@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
 
+Add device tree compatible string for the i.MX8MP FRDM board.
 
-On 10/27/25 8:46 AM, Konrad Dybcio wrote:
-> On 10/19/25 1:35 PM, Krishna Kurapati PSSNV wrote:
->>
->> On 10/14/2025 2:30 PM, Val Packett wrote:
->>> Hi,
->>>
->>> On 10/13/25 11:21 PM, Krishna Kurapati wrote:
->>>> This series aims to flatten usb dt nodes and use latest bindings.
->>>> While at it, fix a compile time warning on the HS only controller node.
->>>>
->>>> Tests done:
->>>> 1. On CRD, verified host mode operation of the 3 exposed Type-C ports
->>>> and enumeration of the Goodix fingerprint sensor on the multiport
->>>> usb controller.
->>>>
->>>> 2. Modified the dr_mode to otg for the first 3 controllers and
->>>> verified role switching and device mode operation on the 3 exposed
->>>> Type-C ports.
->>>>
->>>> HS only controller was not tested on any platform.
->>> have you tested suspend-resume?
->>>
->>> The flattened dwc driver seems to break it for me on Latitude 7455, upon trying to resume the screen never comes back up and the system just reboots from zero in a couple seconds instead.
->>>
->>> I've looked at the code and I couldn't find the cause so far, but it is fine with the legacy driver and not fine with this one :(
->>>
->> Hi Val,
->>
->>   Thanks for reporting this. I did test runtime suspend resume on all 3 typec ports as mentioned. But I didn't check system suspend case.
->>
->>   I will try to reproduce the issue, fix it and then resend the patches.
-> I can repro on the CRD..
->
-> It's the USB3_0 host that causes the issue
->
-> Removing the clk_bulk_disable_unprepare() call in dwc3_qcom_suspend()
-> helps..
->
-> Konrad
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
+---
 
-friendly ping.. has there been any progress on solving this properly and 
-switching to the flattened nodes?
+Changes in v5:
 
-~val
+ - Include Acked-by tag from Conor Dooley
+
+No changes in v4
+
+No changes in v3
+
+No changes in v2
+
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 68a2d5fecc43..960c0ce8d128 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1099,6 +1099,7 @@ properties:
+               - emcraft,imx8mp-navqp      # i.MX8MP Emcraft Systems NavQ+ Kit
+               - fsl,imx8mp-evk            # i.MX8MP EVK Board
+               - fsl,imx8mp-evk-revb4      # i.MX8MP EVK Rev B4 Board
++              - fsl,imx8mp-frdm           # i.MX8MP Freedom Board
+               - gateworks,imx8mp-gw71xx-2x # i.MX8MP Gateworks Board
+               - gateworks,imx8mp-gw72xx-2x # i.MX8MP Gateworks Board
+               - gateworks,imx8mp-gw73xx-2x # i.MX8MP Gateworks Board
+-- 
+2.25.1
 
 
