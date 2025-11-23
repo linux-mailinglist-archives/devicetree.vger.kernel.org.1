@@ -1,177 +1,202 @@
-Return-Path: <devicetree+bounces-241427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8B3C7DF21
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 10:42:41 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56661C7DF33
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 11:00:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 009654E04CA
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 09:42:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 13D364E151D
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 10:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5E12101AE;
-	Sun, 23 Nov 2025 09:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71DAF2773CC;
+	Sun, 23 Nov 2025 10:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nzjtzajG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dbNzN9G+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E57324315A;
-	Sun, 23 Nov 2025 09:42:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4852A12FF69;
+	Sun, 23 Nov 2025 10:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763890957; cv=none; b=gE9Ou+g3Uw9jpsyRaCk2iZOAU+J+tA6B9kBzO31ZhgRsJrPflzmTauRICHYJon/Thh4xU4boJXJZp+ZGd6DKRrYDwiTKR0Zxg/EJ8oUTj+eWLa5NqIQhKySATviVM0Jpg9Wl4gyhSGVEE+edRL7UA2hNVg7cE+w+zQ4Sr8GGs4I=
+	t=1763892028; cv=none; b=Vgzj8fGlxA/btu5VJ/h03pt2uB8c+NiskXu/8xSXAYdVsNKVn8gZWhidc+0S3l7l1Hk6hJ4zAi9LI5APx3KeGzj9nhexOFcC8DxQ2IAxN80gUvRo12C0pBg8bhTsCyR8eEp0kX0zLs+djS1smQjKFo0ZYrEimxwMkUEJy3RjcNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763890957; c=relaxed/simple;
-	bh=kkM+mQVbzz5/S52nBwvpTsvT8OLm2D5Q0QHcj7SfeT4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=clRCNd0+aMtRoCKo07nu+fBEUpIQbkDqMXFCeGyZDPtH3FsjDCr/d8Dids7TjB/LxQ1UXeNkR1m6W6qVXXXdBKo4PjqsVTAeZSjVQkL5R9a+pvj5C3LITvPTAgmXNgsZqEomR5CJ7C82KH1OoGaz1etdT+ogX/k7PQM5RKRhDsw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nzjtzajG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3070AC113D0;
-	Sun, 23 Nov 2025 09:42:30 +0000 (UTC)
+	s=arc-20240116; t=1763892028; c=relaxed/simple;
+	bh=FSwJ15t9tlE5D0OR1/lOks/3PouYtALN84vg3Jg6ULA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ucgDD9mt5bptZUkrz2OIqcoPgPJo4FiApSatd1eehL1vJSTw3cIm/LTc+Twrl/xczVYIEgCiW5ycROgnCBia1mni7y3RffqJFVdt8p1zaJKy7nNWof7ePr8DnCG2Nq+nLWjvcmQc0nia/A5yZtaIdob3hXgLngoQ+oRZR4EDDZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dbNzN9G+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35581C113D0;
+	Sun, 23 Nov 2025 10:00:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763890956;
-	bh=kkM+mQVbzz5/S52nBwvpTsvT8OLm2D5Q0QHcj7SfeT4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nzjtzajGDAvOL3sjwsn5tDTmrN4oQldYX2ptU8r9Zi47yRQ7jwsPCW/WM4Wi/Xmnc
-	 iy+DDEIymLLXQkwnTFkI9a1UxQ6Qme/4qHq+KJoJdAT1p/AeYDacex+aUzNYld30gT
-	 M0KY6EMboDNvdG/4kdYpEL2h+23EvCq3ws6c7SP073oFA5jhUS+92Db0HdK9VxHLxM
-	 9+ku0YEsGPRFLdAqjCuR+mGSFkRrpBgpVydsXB5FOb96FOr2sgu0yqAqg+y+zVbMqu
-	 O1uwDaEIvleXkerm/DVwsyY4MGR0i1msEzXS2Badpt1JtJ9Dmt+n9SvK7SAqto4mmo
-	 w9ySpPf7vDMQg==
-Message-ID: <7e50c694-af6b-40cc-b1dc-4dd4ecf85a8d@kernel.org>
-Date: Sun, 23 Nov 2025 10:42:29 +0100
+	s=k20201202; t=1763892027;
+	bh=FSwJ15t9tlE5D0OR1/lOks/3PouYtALN84vg3Jg6ULA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dbNzN9G+AZx+w8Rb8FnlVKWUPJUS61L/XSvaVBA1vII7luB9ZjHlgURYVpvoiXg44
+	 FZRIR2BF653Z1kwWw/2SBQWx36HzQglTKu0EPvaVVgRmPnLYaiCZfkGPUzJB2rXVai
+	 2dY/T9fMFQ2MMmqcjh8bx8rX9y8MRvyyXxMFiCtWGJGVhPXHjysBMpHR57jLOtrMc+
+	 ZEoGywukcHZ4bZSS+nNUhtbrAO6Er9GY0Kut8HT3OuWmgGU/XsQa9w/DEvDlqpN1sU
+	 WHeAox9xcDP+FaCsF9NRr6hxrYN+HhJPjq9Wr1NaweCwxwjcoBwvVUnKR/kTPV3HAg
+	 VPh9J43VuZtFw==
+Date: Sun, 23 Nov 2025 11:00:25 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Harikrishna Shenoy <h-shenoy@ti.com>
+Cc: robh@kernel.org, Laurent.pinchart@ideasonboard.com, airlied@gmail.com, 
+	andrzej.hajda@intel.com, conor+dt@kernel.org, devarsht@ti.com, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, jonas@kwiboo.se, krzk+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, s-jain1@ti.com, simona@ffwll.ch, 
+	sjakhade@cadence.com, tzimmermann@suse.de, u-kumar1@ti.com, yamonkar@cadence.com, 
+	pthombar@cadence.com, nm@ti.com
+Subject: Re: [PATCH v3] dt-bindings: drm/bridge: Update reg-name and reg
+ description list for cdns,mhdp8546 compatible
+Message-ID: <20251123-flying-sweet-raven-bf3571@kuoka>
+References: <20251121123437.860390-1-h-shenoy@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
-To: Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de
-Cc: kernel@pengutronix.de, festevam@gmail.com,
- alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com,
- marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de,
- joao.goncalves@toradex.com, frieder.schrempf@kontron.de,
- josua@solid-run.com, francesco.dolcini@toradex.com, primoz.fiser@norik.com,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Xiaofeng Wei <xiaofeng.wei@nxp.com>, Joseph Guo <qijian.guo@nxp.com>,
- Steven Yang <steven.yang@nxp.com>, Lei Xu <lei.xu@nxp.com>
-References: <20251123003603.246399-1-rpimentel.silva@gmail.com>
- <20251123003603.246399-2-rpimentel.silva@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251123003603.246399-2-rpimentel.silva@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251121123437.860390-1-h-shenoy@ti.com>
 
-On 23/11/2025 01:36, Rogerio Pimentel wrote:
-> The FRDM-i.MX8MP is an NXP development platform based on the i.MX8M Plus
-> SoC, featuring a quad Cortex-A53, Cortex-M7 co-processor, 4GB LPDDR4,
-> 32GB eMMC, Wi-Fi 6/Bluetooth 5.4/802.15.4 tri-radio, Ethernet, HDMI/MIPI
-> display interfaces, camera connectors, and standard expansion headers.
+On Fri, Nov 21, 2025 at 06:04:37PM +0530, Harikrishna Shenoy wrote:
+> Remove j721e-intg register name from reg-name list for cdns,mhdp8546
+> compatible. The j721e-integ registers are specific to TI SoCs, so they
+> are not required for compatibles other than ti,j721e-mhdp8546.
 > 
-> Based on the device tree found in the NXP repository at github
-> https://github.com/nxp-imx-support/meta-imx-frdm and on imx8mp-evk
-> board kernel mainline device tree.
+> Update reg and reg-names top level constraints with lists according
+> to compatibles.
 > 
-> This is a basic device tree supporting:
+> Move the register name constraints and reg description list to the
+> appropriate compatibility sections to ensure the correct register
+> names are used with each compatible value also adding the DSC register
+> to make bindings align with what the hardware supports.
 > 
->  - Quad Cortex-A53
->  - 4GB LPDDR4 DRAM
->  - PCA9450C PMIC with regulators
->  - Two NXP PCAL6416 GPIO expanders
->  - RGB LEDs via GPIO expander
->  - I2C1, I2C2, I2C3 controllers
->  - UART2 (console) and UART3 (with RTS/CTS)
->  - USDHC3 (8-bit eMMC)
->  - SNVS power key (onboard power button)
-> 
-> Author: Xiaofeng Wei <xiaofeng.wei@nxp.com>
-
-There is no such tag. Use git commit --amend --reset-author to set the
-author.
-
-> Signed-off-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
-> 
-> Co-developed-by: Joseph Guo <qijian.guo@nxp.com>
-> Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
-> 
-
-There is never blank line between tags.
-
-> Co-developed-by: Steven Yang <steven.yang@nxp.com>
-> Signed-off-by: Steven Yang <steven.yang@nxp.com>
-> 
-> Co-developed-by: Lei Xu <lei.xu@nxp.com>
-> Signed-off-by: Lei Xu <lei.xu@nxp.com>
-> 
-> Co-developed-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
-> Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
+> Fixes: 7169d082e7e6 ("dt-bindings: drm/bridge: MHDP8546 bridge binding changes for HDCP")
+> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
 > ---
 > 
-> Changes in v5:
+> Links to some discussions pointing to need for a fixes patch: 
+> https://lore.kernel.org/all/20250903220312.GA2903503-robh@kernel.org/
+> https://lore.kernel.org/all/d2367789-6b54-4fc2-bb7c-609c0fe084d3@ti.com/
 > 
->  - Replace underscores (_) in node names with dashes (-)
->  - Added missing Co-developed-by and Signed-off-by tags from all contributors
+> Link to v2:
+> <https://lore.kernel.org/all/20251119122447.514729-1-h-shenoy@ti.com/>
+> 
+> Changelog v2 --> v3:
+> -Add the reg description list and reg-name list in top level constraints
+> using oneOf for either of compatible.
+> Logs after testing some cases: https://gist.github.com/h-shenoy/a422f7278859cd95447e674963caabd9
+> 
+> Link to v1:
+> <https://lore.kernel.org/all/20251107131535.1841393-1-h-shenoy@ti.com/>
+> 
+> Changelog v1 --> v2:
+> -Update the reg description list for each compatible and add register space
+> for dsc to make the bindings reflect what hardware supports although 
+> the driver doesn't support dsc yet.
+> 
+> Note: j721e-integ are not optional registers for ti-compatible.
+> 
+>  .../display/bridge/cdns,mhdp8546.yaml         | 85 ++++++++++++++-----
+>  1 file changed, 66 insertions(+), 19 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+> index c2b369456e4e2..632595ef32f63 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+> @@ -17,23 +17,45 @@ properties:
+>        - ti,j721e-mhdp8546
+>  
+>    reg:
+> -    minItems: 1
+> -    items:
+> -      - description:
+> -          Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
+> -          The AUX and PMA registers are not part of this range, they are instead
+> -          included in the associated PHY.
+> -      - description:
+> -          Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
+> -      - description:
+> -          Register block of mhdptx sapb registers.
+> +    oneOf:
+> +      - minItems: 2
+> +      - items:
 
-I assume you actually saw these SoBs in the code you took as your base?
-Remember, do not add SoBs which were never present in the original work
-(if company asks you, you can politely reply that they need to read what
-SoB means)
+This is wrong syntax. You created here a list, so you now allow
+anything with minItems 2.
 
-That's anyway weirdly a lot of co-developed tags, are you sure they
-wrote the code you took as the base here?
+> +          - description:
+> +              Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
+> +              The AUX and PMA registers are not part of this range, they are instead
+> +              included in the associated PHY.
+> +          - description:
+> +              Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
+> +          - description:
+> +              Register block of mhdptx sapb registers.
+> +          - description:
+> +              Register block for mhdptx DSC encoder registers.
+> +
+> +      - minItems: 1
+
+Actually anything with minItems 1... I asked for list of TWO, not FOUR,
+items. Or if syntax is getting to complicated, just min and maxItems.
+
+
+> +      - items:
+> +          - description:
+> +              Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
+> +              The AUX and PMA registers are not part of this range, they are instead
+> +              included in the associated PHY.
+> +          - description:
+> +              Register block of mhdptx sapb registers.
+> +          - description:
+> +              Register block for mhdptx DSC encoder registers.
+>  
+>    reg-names:
+> -    minItems: 1
+> -    items:
+> -      - const: mhdptx
+> -      - const: j721e-intg
+> -      - const: mhdptx-sapb
+> +    oneOf:
+> +      - minItems: 2
+> +      - items:
+
+Also wrong.
+
+> +          - const: mhdptx
+> +          - const: j721e-intg
+> +          - const: mhdptx-sapb
+> +          - const: dsc
+> +
+> +      - minItems: 1
+> +      - items:
+> +          - const: mhdptx
+> +          - const: mhdptx-sapb
+> +          - const: dsc
+>  
+>    clocks:
+>      maxItems: 1
+> @@ -100,18 +122,43 @@ allOf:
+>        properties:
+>          reg:
+>            minItems: 2
+> -          maxItems: 3
+
+Your commit msg says you "remove" but here you ADD one more item, thus
+growing this 3->4.
+
+How remove can result in 3 becoming 4?
+
 
 Best regards,
 Krzysztof
+
 
