@@ -1,184 +1,173 @@
-Return-Path: <devicetree+bounces-241429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F4CC7DF5D
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 11:23:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7897FC7DF64
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 11:24:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6A6DB34CC51
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 10:23:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3058D3A96D9
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 10:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA1872820A4;
-	Sun, 23 Nov 2025 10:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBD02C21EC;
+	Sun, 23 Nov 2025 10:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tarun4EM"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q1YJhYT9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AFD915E5BB;
-	Sun, 23 Nov 2025 10:23:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A3F299928;
+	Sun, 23 Nov 2025 10:24:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763893399; cv=none; b=qn50MelMx+9QbXKUI7SjA1pAZh77VLDRGJbfu0w15ROTGN0VTZHChl6DJaDvgs8qg7AQZs3yuYfQXa9HYE3gC+rhjwI4Ni3JmlE87NNF4rqAT3jGjAGLOvz9If50fEEufluORcZ107kDDeFSJfaLz0LDRhGz8zsodlRey8p0gTQ=
+	t=1763893466; cv=none; b=RS0KHFT0x+Vrg3tyIWfHNGwoHb6wmTw+ty18yIVj8aFyhzsLYMBqApk1rJCzy0p7mINC3mwyn2risbfWqkv06eNo/eAtazC9QZpudPhdQAoqnVSFvaYIBBHEu1Hgtf6ONI3P6xUVPB2TuxNG6HHS4SM0oiVR5QSrsHV7YpzHJuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763893399; c=relaxed/simple;
-	bh=UiX7HVf3vaYnrjH0z8zCjrfqBr/dzzXW1fZ0kqi45VM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=FWtgH2j2Yd7ZD5jV4eWn7NAagD3qKLhB2iaUZHmvIVQKAF81t254gOMz+s5efba+0pYzbchIVeAE6fLLONHvb4X2im6Qfrko8RX0PJmhhuJtXUjCKow+x/sDBJZ+H2Cw8cJEAwZ2jgV52xnLcPCxEqiZnZGq3Vkh5iriDDOaL1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tarun4EM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5D90C113D0;
-	Sun, 23 Nov 2025 10:23:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763893399;
-	bh=UiX7HVf3vaYnrjH0z8zCjrfqBr/dzzXW1fZ0kqi45VM=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=Tarun4EMLm/3AZKunWxcyKCAkMOWd8a/zIZbPLFSEioDD/m45BkNjFJ3Fd1r75o/y
-	 p5kS+YGd29OaLc6tXGR/yb0twr4ByhhFFWg0KX7mqUZpJ9Lu+LjPz6sPCbKZ+L36Xh
-	 zR0CjOMNi3i8wIwq+p+1kV+q0UDGw3ask4WsCugsoJQ4XlncTQ+zuPvXyD+NH3B6D0
-	 XzeeW1CILUZ+BZmbjxLtLPJhH01rvfsSsUcpryW0/arA81mSdItlbcA7hgnBXFwkaz
-	 WqYPdfEkDda1OsYR3YVIktGbjG4XeRqsDaCKN/ogUGc5no/qM6jpJWXzFqN5X8yr4I
-	 NzY8qbUoIwkdg==
-Message-ID: <b8d5e008-d004-4e4f-8229-1d8d23087718@kernel.org>
-Date: Sun, 23 Nov 2025 11:23:12 +0100
+	s=arc-20240116; t=1763893466; c=relaxed/simple;
+	bh=MqXY389cFH5UMcUPlSXH9uPa/8KZTxgMoJ1/hoC4agI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t7xhbgfXxH4QqWqXmnyj3wwzFjeuh0K3FgvBCfVrvEPhV50Kc0M0VHmuZ6TPO2oqQ+1XAkdrnWaJIcnFS4TikxMVpORYAAqPcLCxEsiuSWKVQvc8N8UjfAmAv9ggQtM3g8KVt74fgao3/GP0tr1qSKeaORHmE6Dse225ITxKWsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q1YJhYT9; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763893464; x=1795429464;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MqXY389cFH5UMcUPlSXH9uPa/8KZTxgMoJ1/hoC4agI=;
+  b=Q1YJhYT9qlD4IjyzC8q1xaxszM40u+nYMXxyvm8D5YOyeKkP0klmCRWY
+   tXDKk1U95nkeqWGaRZW5ho19SbXVnV4JvYXzVaJNiLxreLsR8MgV08KqO
+   JYPd+YOCx1U2sFVqoj5LSCMDPLUdCCi1H1a8G3TEMjTKRwVGSL37nG7kh
+   yeB8ifU04x0Id0r9gteyq4AMH8DWczPBy1SZ1MhZFXC3kpDoq3kGrhWy3
+   fYWP6klGQBTDgnc7n1vNjp4zQTAmRxGouYHq0KKPiGk+KLDok5XJ8lWm8
+   a2gucZlyrchrpft1eoOnDa2fxWl7swASRxkwcKgVj4zzzEDYtjPF6Cc84
+   Q==;
+X-CSE-ConnectionGUID: mz2ovoYBTd6Rb4bd/hcmeA==
+X-CSE-MsgGUID: Y3dFu+nLSEiYx+PFWYNt9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11621"; a="69539478"
+X-IronPort-AV: E=Sophos;i="6.20,220,1758610800"; 
+   d="scan'208";a="69539478"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2025 02:24:23 -0800
+X-CSE-ConnectionGUID: IOlcPXmdTe2zhrKUUd+6tA==
+X-CSE-MsgGUID: wiT+jHJwSv6BnQBDmtjWvA==
+X-ExtLoop1: 1
+Received: from lkp-server01.sh.intel.com (HELO adf6d29aa8d9) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 23 Nov 2025 02:24:19 -0800
+Received: from kbuild by adf6d29aa8d9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vN7GS-0008D1-1r;
+	Sun, 23 Nov 2025 10:24:16 +0000
+Date: Sun, 23 Nov 2025 18:23:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+	Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+	quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+	quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v1 03/12] soc: qcom: geni-se: Introduce helper API for
+ resource initialization
+Message-ID: <202511231819.jiLYo6Fl-lkp@intel.com>
+References: <20251122050018.283669-4-praveen.talari@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de
-Cc: kernel@pengutronix.de, festevam@gmail.com,
- alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com,
- marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de,
- joao.goncalves@toradex.com, frieder.schrempf@kontron.de,
- josua@solid-run.com, francesco.dolcini@toradex.com, primoz.fiser@norik.com,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Xiaofeng Wei <xiaofeng.wei@nxp.com>, Joseph Guo <qijian.guo@nxp.com>,
- Steven Yang <steven.yang@nxp.com>, Lei Xu <lei.xu@nxp.com>
-References: <20251123003603.246399-1-rpimentel.silva@gmail.com>
- <20251123003603.246399-2-rpimentel.silva@gmail.com>
- <7e50c694-af6b-40cc-b1dc-4dd4ecf85a8d@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <7e50c694-af6b-40cc-b1dc-4dd4ecf85a8d@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251122050018.283669-4-praveen.talari@oss.qualcomm.com>
 
-On 23/11/2025 10:42, Krzysztof Kozlowski wrote:
-> On 23/11/2025 01:36, Rogerio Pimentel wrote:
->> The FRDM-i.MX8MP is an NXP development platform based on the i.MX8M Plus
->> SoC, featuring a quad Cortex-A53, Cortex-M7 co-processor, 4GB LPDDR4,
->> 32GB eMMC, Wi-Fi 6/Bluetooth 5.4/802.15.4 tri-radio, Ethernet, HDMI/MIPI
->> display interfaces, camera connectors, and standard expansion headers.
->>
->> Based on the device tree found in the NXP repository at github
->> https://github.com/nxp-imx-support/meta-imx-frdm and on imx8mp-evk
->> board kernel mainline device tree.
->>
->> This is a basic device tree supporting:
->>
->>  - Quad Cortex-A53
->>  - 4GB LPDDR4 DRAM
->>  - PCA9450C PMIC with regulators
->>  - Two NXP PCAL6416 GPIO expanders
->>  - RGB LEDs via GPIO expander
->>  - I2C1, I2C2, I2C3 controllers
->>  - UART2 (console) and UART3 (with RTS/CTS)
->>  - USDHC3 (8-bit eMMC)
->>  - SNVS power key (onboard power button)
->>
->> Author: Xiaofeng Wei <xiaofeng.wei@nxp.com>
-> 
-> There is no such tag. Use git commit --amend --reset-author to set the
-> author.
-> 
->> Signed-off-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
->>
->> Co-developed-by: Joseph Guo <qijian.guo@nxp.com>
->> Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
->>
-> 
-> There is never blank line between tags.
-> 
->> Co-developed-by: Steven Yang <steven.yang@nxp.com>
->> Signed-off-by: Steven Yang <steven.yang@nxp.com>
->>
->> Co-developed-by: Lei Xu <lei.xu@nxp.com>
->> Signed-off-by: Lei Xu <lei.xu@nxp.com>
->>
->> Co-developed-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
->> Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
->> ---
->>
->> Changes in v5:
->>
->>  - Replace underscores (_) in node names with dashes (-)
->>  - Added missing Co-developed-by and Signed-off-by tags from all contributors
-> 
-> I assume you actually saw these SoBs in the code you took as your base?
-> Remember, do not add SoBs which were never present in the original work
-> (if company asks you, you can politely reply that they need to read what
-> SoB means)
-> 
-> That's anyway weirdly a lot of co-developed tags, are you sure they
-> wrote the code you took as the base here?
+Hi Praveen,
 
-Although I think you mentioned you wanted all these last time, so it's
-fine. Although I did not think you will literally use that syntax and
-literally all the tags from Daniel's responses, because the syntax was
-not correct.
+kernel test robot noticed the following build errors:
 
-Best regards,
-Krzysztof
+[auto build test ERROR on d724c6f85e80a23ed46b7ebc6e38b527c09d64f5]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Praveen-Talari/soc-qcom-geni-se-Refactor-geni_icc_get-and-make-qup-memory-ICC-path-optional/20251122-130449
+base:   d724c6f85e80a23ed46b7ebc6e38b527c09d64f5
+patch link:    https://lore.kernel.org/r/20251122050018.283669-4-praveen.talari%40oss.qualcomm.com
+patch subject: [PATCH v1 03/12] soc: qcom: geni-se: Introduce helper API for resource initialization
+config: loongarch-randconfig-002-20251123 (https://download.01.org/0day-ci/archive/20251123/202511231819.jiLYo6Fl-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251123/202511231819.jiLYo6Fl-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202511231819.jiLYo6Fl-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/soc/qcom/qcom-geni-se.c:1046:10: error: incompatible pointer to integer conversion returning 'void *' from a function with result type 'int' [-Wint-conversion]
+    1046 |                 return ERR_PTR(ret);
+         |                        ^~~~~~~~~~~~
+   1 error generated.
+
+
+vim +1046 drivers/soc/qcom/qcom-geni-se.c
+
+  1015	
+  1016	/**
+  1017	 * geni_se_resources_init() - Initialize resources for a GENI SE device.
+  1018	 * @se: Pointer to the geni_se structure representing the GENI SE device.
+  1019	 *
+  1020	 * This function initializes various resources required by the GENI Serial Engine
+  1021	 * (SE) device, including clock resources (core and SE clocks), interconnect
+  1022	 * paths for communication.
+  1023	 * It retrieves optional and mandatory clock resources, adds an OF-based
+  1024	 * operating performance point (OPP) table, and sets up interconnect paths
+  1025	 * with default bandwidths. The function also sets a flag (`has_opp`) to
+  1026	 * indicate whether OPP support is available for the device.
+  1027	 *
+  1028	 * Return: 0 on success, or a negative errno on failure.
+  1029	 */
+  1030	int geni_se_resources_init(struct geni_se *se)
+  1031	{
+  1032		int ret;
+  1033	
+  1034		se->core_clk = devm_clk_get_optional(se->dev, "core");
+  1035		if (IS_ERR(se->core_clk))
+  1036			return dev_err_probe(se->dev, PTR_ERR(se->core_clk),
+  1037					     "Failed to get optional core clk\n");
+  1038	
+  1039		se->clk = devm_clk_get(se->dev, "se");
+  1040		if (IS_ERR(se->clk) && !has_acpi_companion(se->dev))
+  1041			return dev_err_probe(se->dev, PTR_ERR(se->clk),
+  1042					     "Failed to get SE clk\n");
+  1043	
+  1044		ret = devm_pm_opp_set_clkname(se->dev, "se");
+  1045		if (ret)
+> 1046			return ERR_PTR(ret);
+  1047	
+  1048		ret = devm_pm_opp_of_add_table(se->dev);
+  1049		if (ret && ret != -ENODEV)
+  1050			return dev_err_probe(se->dev, ret, "Failed to add OPP table\n");
+  1051	
+  1052		se->has_opp = (ret == 0);
+  1053	
+  1054		ret = geni_icc_get(se, "qup-memory");
+  1055		if (ret)
+  1056			return ret;
+  1057	
+  1058		return geni_icc_set_bw_ab(se, GENI_DEFAULT_BW, GENI_DEFAULT_BW, GENI_DEFAULT_BW);
+  1059	}
+  1060	EXPORT_SYMBOL_GPL(geni_se_resources_init);
+  1061	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
