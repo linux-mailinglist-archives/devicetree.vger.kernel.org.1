@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-241426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E676C7DF0A
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 10:30:54 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C8B3C7DF21
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 10:42:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 70A8D34DD8A
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 09:30:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 009654E04CA
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 09:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 049C52BD590;
-	Sun, 23 Nov 2025 09:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5E12101AE;
+	Sun, 23 Nov 2025 09:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BPoLXw+X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nzjtzajG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67B315665C;
-	Sun, 23 Nov 2025 09:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E57324315A;
+	Sun, 23 Nov 2025 09:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763890249; cv=none; b=cwtUEfYykAWcGsmX34oZVuN+k8GxvdEU7x2WGy95vXsYEnCRatNyMgv41V2vAYWE4/eWtzBGhe/NYUBpvyl+AYDq10wSYRSLZXXwhbjf5rBdIZ65Ae9JpPh2WyBSI6acJPFXylAnabd9s4OwxEObgTgLmbMgo7rtDXAX3r/JgRs=
+	t=1763890957; cv=none; b=gE9Ou+g3Uw9jpsyRaCk2iZOAU+J+tA6B9kBzO31ZhgRsJrPflzmTauRICHYJon/Thh4xU4boJXJZp+ZGd6DKRrYDwiTKR0Zxg/EJ8oUTj+eWLa5NqIQhKySATviVM0Jpg9Wl4gyhSGVEE+edRL7UA2hNVg7cE+w+zQ4Sr8GGs4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763890249; c=relaxed/simple;
-	bh=K3TpFSb9ANyNnS8xU/rAnNEn5bG4SKZpFHbcEF2yWDc=;
+	s=arc-20240116; t=1763890957; c=relaxed/simple;
+	bh=kkM+mQVbzz5/S52nBwvpTsvT8OLm2D5Q0QHcj7SfeT4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ss3syIl5opOaUclXfz7FTrRMYUR1uqMy55GNM5Syzc6lSLDcqQuGgQtpXr3Bx+QgHzIxYnWchpFQnlQWsXEQcufs6RBb78QCpkehy1wz9LpVscis8mB08G2Cg6jAxCTkbp2yslWtvIWkSvADGuX3WtjMArIvuTJVm/F+rCwtpjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BPoLXw+X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 353CFC113D0;
-	Sun, 23 Nov 2025 09:30:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=clRCNd0+aMtRoCKo07nu+fBEUpIQbkDqMXFCeGyZDPtH3FsjDCr/d8Dids7TjB/LxQ1UXeNkR1m6W6qVXXXdBKo4PjqsVTAeZSjVQkL5R9a+pvj5C3LITvPTAgmXNgsZqEomR5CJ7C82KH1OoGaz1etdT+ogX/k7PQM5RKRhDsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nzjtzajG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3070AC113D0;
+	Sun, 23 Nov 2025 09:42:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763890248;
-	bh=K3TpFSb9ANyNnS8xU/rAnNEn5bG4SKZpFHbcEF2yWDc=;
+	s=k20201202; t=1763890956;
+	bh=kkM+mQVbzz5/S52nBwvpTsvT8OLm2D5Q0QHcj7SfeT4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BPoLXw+XdWH117b9FBR/onCqy6kVXPJb3E1ZvIjTilTnCsCox4SuljHotuF3Ky5aN
-	 CO/E1LHNxYOZwtXOcMaahZLbFgaWiC2QN3RHEycUOFr8OoWyT1YKKmB/wbgv8UZBwd
-	 XsCBnqGHqnMqnQfcw8yTcYchtgcqOiO1/NkNLMSB2gHbJvPIEdujWz2KhwzMXnSVu6
-	 sGJ6tOkqO76OYbY4yc121Ku9LDIgS+Nk0E4cRj41TKGrV8GmRTY1xsujvhtG7vithP
-	 jhWM0fsXYklEHxLIxgjo8PWBxH5yONGF1D2KuCMgBx7EjbqAeE3NgWx0xlZplx/A2T
-	 UAmxq/1rwk+4w==
-Message-ID: <699d4476-aaaa-4cec-9e2c-240348950e4c@kernel.org>
-Date: Sun, 23 Nov 2025 10:30:42 +0100
+	b=nzjtzajGDAvOL3sjwsn5tDTmrN4oQldYX2ptU8r9Zi47yRQ7jwsPCW/WM4Wi/Xmnc
+	 iy+DDEIymLLXQkwnTFkI9a1UxQ6Qme/4qHq+KJoJdAT1p/AeYDacex+aUzNYld30gT
+	 M0KY6EMboDNvdG/4kdYpEL2h+23EvCq3ws6c7SP073oFA5jhUS+92Db0HdK9VxHLxM
+	 9+ku0YEsGPRFLdAqjCuR+mGSFkRrpBgpVydsXB5FOb96FOr2sgu0yqAqg+y+zVbMqu
+	 O1uwDaEIvleXkerm/DVwsyY4MGR0i1msEzXS2Badpt1JtJ9Dmt+n9SvK7SAqto4mmo
+	 w9ySpPf7vDMQg==
+Message-ID: <7e50c694-af6b-40cc-b1dc-4dd4ecf85a8d@kernel.org>
+Date: Sun, 23 Nov 2025 10:42:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] dt-bindings: mfd: maxim,max77759: add charger child
- node
-To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
- <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
- <20251123-max77759-charger-v1-2-6b2e4b8f7f54@google.com>
+Subject: Re: [PATCH v5 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
+To: Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de, festevam@gmail.com,
+ alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com,
+ marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de,
+ joao.goncalves@toradex.com, frieder.schrempf@kontron.de,
+ josua@solid-run.com, francesco.dolcini@toradex.com, primoz.fiser@norik.com,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Xiaofeng Wei <xiaofeng.wei@nxp.com>, Joseph Guo <qijian.guo@nxp.com>,
+ Steven Yang <steven.yang@nxp.com>, Lei Xu <lei.xu@nxp.com>
+References: <20251123003603.246399-1-rpimentel.silva@gmail.com>
+ <20251123003603.246399-2-rpimentel.silva@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,53 +110,67 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251123-max77759-charger-v1-2-6b2e4b8f7f54@google.com>
+In-Reply-To: <20251123003603.246399-2-rpimentel.silva@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/11/2025 09:35, Amit Sunil Dhamne via B4 Relay wrote:
-> From: Amit Sunil Dhamne <amitsd@google.com>
+On 23/11/2025 01:36, Rogerio Pimentel wrote:
+> The FRDM-i.MX8MP is an NXP development platform based on the i.MX8M Plus
+> SoC, featuring a quad Cortex-A53, Cortex-M7 co-processor, 4GB LPDDR4,
+> 32GB eMMC, Wi-Fi 6/Bluetooth 5.4/802.15.4 tri-radio, Ethernet, HDMI/MIPI
+> display interfaces, camera connectors, and standard expansion headers.
 > 
-> The Maxim MAX77759 MFD includes a charger function, hence add its
-> binding as a property. Also, update the example to include charger.
+> Based on the device tree found in the NXP repository at github
+> https://github.com/nxp-imx-support/meta-imx-frdm and on imx8mp-evk
+> board kernel mainline device tree.
 > 
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> This is a basic device tree supporting:
+> 
+>  - Quad Cortex-A53
+>  - 4GB LPDDR4 DRAM
+>  - PCA9450C PMIC with regulators
+>  - Two NXP PCAL6416 GPIO expanders
+>  - RGB LEDs via GPIO expander
+>  - I2C1, I2C2, I2C3 controllers
+>  - UART2 (console) and UART3 (with RTS/CTS)
+>  - USDHC3 (8-bit eMMC)
+>  - SNVS power key (onboard power button)
+> 
+> Author: Xiaofeng Wei <xiaofeng.wei@nxp.com>
+
+There is no such tag. Use git commit --amend --reset-author to set the
+author.
+
+> Signed-off-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
+> 
+> Co-developed-by: Joseph Guo <qijian.guo@nxp.com>
+> Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
+> 
+
+There is never blank line between tags.
+
+> Co-developed-by: Steven Yang <steven.yang@nxp.com>
+> Signed-off-by: Steven Yang <steven.yang@nxp.com>
+> 
+> Co-developed-by: Lei Xu <lei.xu@nxp.com>
+> Signed-off-by: Lei Xu <lei.xu@nxp.com>
+> 
+> Co-developed-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
+> Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
 > ---
->  Documentation/devicetree/bindings/mfd/maxim,max77759.yaml | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
-> index 525de9ab3c2b..29132f73f2c8 100644
-> --- a/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
-> @@ -37,6 +37,9 @@ properties:
->    nvmem-0:
->      $ref: /schemas/nvmem/maxim,max77759-nvmem.yaml
->  
-> +  charger:
-> +    $ref: /schemas/power/supply/maxim,max77759-charger.yaml
+> Changes in v5:
+> 
+>  - Replace underscores (_) in node names with dashes (-)
+>  - Added missing Co-developed-by and Signed-off-by tags from all contributors
 
-You need to explain dependencies/merging in the cover letter. This patch
-now cannot be merged alone through MFD.
+I assume you actually saw these SoBs in the code you took as your base?
+Remember, do not add SoBs which were never present in the original work
+(if company asks you, you can politely reply that they need to read what
+SoB means)
 
-Or just decouple the dependency and list here only compatible, assuming
-this child node even stays.
-
-> +
->  required:
->    - compatible
->    - interrupts
-> @@ -95,5 +98,14 @@ examples:
->                      };
->                  };
->              };
-> +
-> +            charger {
-> +                compatible = "maxim,max77759-charger";
-> +                power-supplies = <&maxtcpc>;
-
-Feels like you miss here battery.
-
+That's anyway weirdly a lot of co-developed tags, are you sure they
+wrote the code you took as the base here?
 
 Best regards,
 Krzysztof
