@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-241443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65D47C7E1FB
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 15:34:06 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB7CFC7E22F
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 16:06:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C9073AA8F0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 14:34:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 399BE3491BD
+	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 15:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CE442C08CA;
-	Sun, 23 Nov 2025 14:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52AF12D130B;
+	Sun, 23 Nov 2025 15:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c2QfqaDN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Njt/2r2D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 710012D780C;
-	Sun, 23 Nov 2025 14:33:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2297F2882B6;
+	Sun, 23 Nov 2025 15:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763908439; cv=none; b=PVk+dhoIQk00pipJdXeCoPlKrVESokT99+twsf2uyaRNV99FHdLxbC+Hd1iRygmRGtmqXUwhMaYnQeDfnJYVGuDSvk6DAlEBGd8FW68P9qUTT6revr3dhv415gUTKBC/XPI6yhbkqulRdu+wtVCv7/6rUV9rw75JdxB3bP6a+U0=
+	t=1763910413; cv=none; b=Z2zTihMOQZ5OieVnFTrcuzvqOLKtwbTDXyFaGh1FmmFPYdXMne80P1qqViOWL3H3bYkTyX/EkXUJ/ExeR6me+nzyBcRtBFNxbgsnc5VoTOmEptNpbQABYCUz1QZGNMD7He5GZuE9Ht20MMjyp6rtGATD11JlISYmGgjSvJGy6K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763908439; c=relaxed/simple;
-	bh=rPIHMk5IxdwCxWHJw0zdrEvCa5CvnaA+RTp2fmmGm2A=;
+	s=arc-20240116; t=1763910413; c=relaxed/simple;
+	bh=OJvKpMF3u3QTpsswtdDBYiHfYAs3W3wX8WBoyI4FZwg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Aa4CvokOrUH1SeV7Blp/gwLQH48mo1OM4DexVlFWNhckP8hnEx3fAYZA0/0WfyRZ/OpyQK9Pd58tvNl0bdATQqF30iukVIp3vTOJB402S8mP09zYXKHbI+a6BvtF7Pk8q+sAXz31CMetgx+Ynj4AJhDv5gPjJBqzXS+7vWluqXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c2QfqaDN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7E5AC113D0;
-	Sun, 23 Nov 2025 14:33:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Xc8gmntvXWm5MPGxpLt86r1OHLnChavTNHQ53IRTJNGNOLdVg4NhVykWAQho6nWXDy7sbNAludWzhi9w0eARK5RRWfP7TsS9ETejpi6V9OK30OztCz+1n5fq97gq8TI31lQ8l1h3FhdnJV40Rg7uJd03Rm8I6XfKNWsmE2eKszI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Njt/2r2D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 043B3C113D0;
+	Sun, 23 Nov 2025 15:06:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763908438;
-	bh=rPIHMk5IxdwCxWHJw0zdrEvCa5CvnaA+RTp2fmmGm2A=;
+	s=k20201202; t=1763910412;
+	bh=OJvKpMF3u3QTpsswtdDBYiHfYAs3W3wX8WBoyI4FZwg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c2QfqaDN3R6GFo/jC7Kn7Eb2apHnuMtzy9qU3IkOQtsaTySQ9JW0q36ga6HxmoaFg
-	 /g0TwkXufsiyOaUMvt4OME0LnSja5Cez3VDEme9en8LQhOQI+z8PLx6vAds6GZvH/G
-	 LjrPWOYNrW6XBQY+zBv2Sa0ujteFZ3z/1K2tt5Tf1HG8VBBlYng/8n2Ue54WpI8ood
-	 avgIv9L1HCgCUm1ak5g4cV4uN4N09DwP/5kIPyFLaPtyFzI/F9wCq278K+5MnjlvTe
-	 lmegrQcUSw0Xkl2iZ9QuqjTGuxdy2nIy/cocUhqZoa8I7lOE0Dces70WNQw1BhBKwC
-	 iWB1JT1EUMUvg==
-Message-ID: <83ba64bf-ce77-4a3f-a6df-ff80c5efbc99@kernel.org>
-Date: Sun, 23 Nov 2025 15:33:52 +0100
+	b=Njt/2r2DZc2n+eoMPRJeMp/j6VZEMXsb0I9TsBs3h1P9ZhRTTfmTE8mnTcFI1NXMC
+	 AVT4I9ORAnHhrsqtNN7diaSw0CHJtQJyTqS++5TUVjDAzhYraGjZnpJxjK9rUlx7uW
+	 GmtI5Wd6tmcsZmw9zSats8RtvF3sMq/LuQVWFLTFsloNsm98C9fS6O6p4zfX4byP7y
+	 4uwRfXMBCRZH3yfjG3g56LfiI2Z44/g3LX5PiLspkcvH/IKooxGXTP3LT55wDmT40j
+	 SKRkZ1OSr3v6v+pn0whDBBBj6C2l40lraQV7LH8E/mdxp9+zbT6PC6b4EoDBtjYo1G
+	 x9CXmx3qRe0QQ==
+Message-ID: <f449d702-0e7c-4a79-b299-2d09a6d325b1@kernel.org>
+Date: Mon, 24 Nov 2025 00:06:48 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,125 +50,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] dt-bindings: PCI: starfive,jh7110-pcie: Add
- enable-gpios property
-To: Hal Feng <hal.feng@starfivetech.com>,
- Manivannan Sadhasivam <mani@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- E Shattow <e@freeshell.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20251120082946.109378-1-hal.feng@starfivetech.com>
- <20251120082946.109378-2-hal.feng@starfivetech.com>
- <xxswzi4v6gpuqbe3cczj2yjmprhvln26fl5ligsp5vkiogrnwk@hpifxivaps6j>
- <ZQ2PR01MB1307A802B916620235B87518E6D52@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5] dt-bindings: devfreq: tegra30-actmon: Add Tegra124
+ fallback for Tegra210
+To: webgeek1234@gmail.com, MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Dmitry Osipenko <digetx@gmail.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Chanwoo Choi <cw00c.choi@samsung.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20251021-t210-actmon-p1-v5-1-1bc8f9221917@gmail.com>
+From: Chanwoo Choi <chanwoo@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ZQ2PR01MB1307A802B916620235B87518E6D52@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+In-Reply-To: <20251021-t210-actmon-p1-v5-1-1bc8f9221917@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/11/2025 05:23, Hal Feng wrote:
->> On 12.11.25 21:54, Manivannan Sadhasivam wrote:
->> On Thu, Nov 20, 2025 at 04:29:42PM +0800, Hal Feng wrote:
->>> Add enable-gpios property for controlling the PCI bus device power.
->>> This property had been supported in the driver but not added in the
->>> dt-bindings.
->>>
->>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->>> Fixes: 22fe32239770 ("dt-bindings: PCI: Add StarFive JH7110 PCIe
->>> controller")
->>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->>> ---
->>>  .../devicetree/bindings/pci/starfive,jh7110-pcie.yaml         | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
->>> b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
->>> index 33c80626e8ec..1e36f92ec852 100644
->>> --- a/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
->>> @@ -59,6 +59,10 @@ properties:
->>>      description:
->>>        The phandle to System Register Controller syscon node.
->>>
->>> +  enable-gpios:
->>> +    description: GPIO used to enable the PCI bus device power
->>
->> This feels wrong to me. Is this GPIO associated with the PCIe controller? I bet
->> this is just controlling some regulator that powers the VDD of the PCIe
->> device/slot. If so, this should be added as a part of the regulator node and
->> referenced in the PCIe node using the existing -supply properties.
+Hi,
+
+Applied it. Thanks
+
+25. 10. 22. 12:09에 Aaron Kling via B4 Relay 이(가) 쓴 글:
+> From: Aaron Kling <webgeek1234@gmail.com>
 > 
-> This GPIO just controls the power of PCIe devices, not PCIe controller.
-> I think there may be no design adding power control GPIOs for the PCIe controller,
-> because usually we don't need to control the PCIe controller power but the PCIe
-> device power.
-
-So this is not PCIe controller enable gpios...
-
+> The Tegra210 actmon is compatible with the existing Tegra124 driver.
+> Describe the compatibles as such.
 > 
-> I find a similar "pwren-gpios" in
-> Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml .
-> It uses the GPIO to control the power of PCIe devices too.
+> Acked-by: Chanwoo Choi <cw00c.choi@samsung.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+> Changes in v5:
+> - Split series
+> - Link to v4: https://lore.kernel.org/r/20250923-t210-actmon-v4-0-442d1eb6377c@gmail.com
 > 
-> Could I continue to do so? Thanks.
+> Changes in v4:
+> - Various cleanups in patch 5 as requested by review
+> - Fix a couple typos in patch 4
+> - Link to v3: https://lore.kernel.org/r/20250906-t210-actmon-v3-0-1403365d571e@gmail.com
+> 
+> Changes in v3:
+> - In patch 5, don't fail mc probe if opp tables are missing
+> - Add more mc bindings to patch 1
+> - Add patch to use tegra210-mc bindings in the mc driver
+> - Re-order series to align patches within a subsystem to each other
+> - Link to v2: https://lore.kernel.org/r/20250903-t210-actmon-v2-0-e0d534d4f8ea@gmail.com
+> 
+> Changes in v2:
+> - Assume 64-bit dram bus width in patch 4
+> - Add dt-bindings patch to document the new properties on the
+>   tegra210-emc node.
+> - Link to v1: https://lore.kernel.org/r/20250828-t210-actmon-v1-0-aeb19ec1f244@gmail.com
+> ---
+>  .../devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml  | 13 ++++++++-----
+>  1 file changed, 8 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml b/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
+> index e3379d1067283e36d1bee303187c0205b410f610..ea1dc86bc31f635f91a0e36f908f5c0c4f9a804c 100644
+> --- a/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
+> +++ b/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
+> @@ -19,11 +19,14 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - nvidia,tegra30-actmon
+> -      - nvidia,tegra114-actmon
+> -      - nvidia,tegra124-actmon
+> -      - nvidia,tegra210-actmon
+> +    oneOf:
+> +      - enum:
+> +          - nvidia,tegra30-actmon
+> +          - nvidia,tegra114-actmon
+> +          - nvidia,tegra124-actmon
+> +      - items:
+> +          - const: nvidia,tegra210-actmon
+> +          - const: nvidia,tegra124-actmon
+>  
+>    reg:
+>      maxItems: 1
+> 
+> ---
+> base-commit: 211ddde0823f1442e4ad052a2f30f050145ccada
+> change-id: 20251021-t210-actmon-p1-ef2b9164005d
+> 
+> Best regards,
 
-No. You already got response what you are supposed to do. Please read it.
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
 
-Best regards,
-Krzysztof
 
