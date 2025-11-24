@@ -1,136 +1,172 @@
-Return-Path: <devicetree+bounces-241480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA22C7EE3E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 04:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FCB4C7EF56
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 05:45:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7875F345A5A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 03:32:42 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F100C346195
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 04:45:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A0A8299AA3;
-	Mon, 24 Nov 2025 03:32:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2C83A291;
+	Mon, 24 Nov 2025 04:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LIvqdsee"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="hLEZV6MS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5B12853F7;
-	Mon, 24 Nov 2025 03:32:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300994A3E;
+	Mon, 24 Nov 2025 04:45:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763955155; cv=none; b=OMlcFKOqP6KLCzDDfhmqmAMLtx7DDjr3qaO8gMol3iJLeiZ530ZrZczyLzGIwczBP4jlEEz5PqluwSPbqqK5NAD48OBWrfbpd4DxYEodXF3WUsk4zWskB0b+/QyxtG5040PvDa43GINVCutchoSsX8x/545vtTPffqVbnS+yCHc=
+	t=1763959531; cv=none; b=UJG+az4UFdPv/Cm41eLAw0e3vbA5HK6MDOeppqSoBG/AI89ixpnzKa75yRG4Gn5yniaFljEh1G/Rj3TENKnd5f/VIfr0q2CnEq6S68UGml7zl8ZSaBucV4K46xQrlyvACPBl5f8fS/TaIkO6f46km3C0+hOhDLzsxsI8F09hfqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763955155; c=relaxed/simple;
-	bh=nQMpas0P68zqe+jsuAUQuc78OljFGZeSHfJ158LMKlg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bB76r+S2ypRz3M712p7iKKJMFE3MA6Yu7DhILUDz42Nb6NCCoJlXZ9SkrcSbJU03uCll7S1VsdVcuD8FYZGqbUROVn4ppszHtDQfbe8jvpRGzxFNj+QqRhoGNWdo1kEjYhvn8YsHqYkKCKWQbTTdbdITVhYmvck6g+ZaN3moqcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LIvqdsee; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 94261C2BC9E;
-	Mon, 24 Nov 2025 03:32:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763955154;
-	bh=nQMpas0P68zqe+jsuAUQuc78OljFGZeSHfJ158LMKlg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=LIvqdsee1woYL1Q8LlyGqPI8UWC+R3TubGMryLxV0Lbrjw1PUqH1+0rJGHSYq1tzW
-	 eDifwaEwSBYALohqMjo5p22/686Mjw832VBupIP5TTaoZtBobhGXBLaAftNEjtFIco
-	 dX5gzqMTJxLrX2RrCe1r+154pMsLSTq0Is4iJPJ9K7vm1I1fDlSw3Iu567FfLMI9N2
-	 OoNfNVbVdk2YMATkWV2uyfnW7+vyqnaGpvhI0K2dTG39slf9Mw9tFBCKXOEZ1yRDwk
-	 05P/M7Mfirm+JfS8T2VyNAcKtQVFyZEVfqAS+qgUJnEMyhdg352PJA+QpsmmO8+lqT
-	 BT3og9flY3swA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8685BCFD31F;
-	Mon, 24 Nov 2025 03:32:34 +0000 (UTC)
-From: Zhentao Guo via B4 Relay <devnull+zhentao.guo.amlogic.com@kernel.org>
-Date: Mon, 24 Nov 2025 11:32:19 +0800
-Subject: [PATCH RFC v2 3/3] arm64: dts: amlogic: Add video decoder driver
- support for S4 SOCs
+	s=arc-20240116; t=1763959531; c=relaxed/simple;
+	bh=5qigren/FI/FTvylx8vBWZ9DMSjtCIKGekCxHcGrp1Y=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=JkJumlDwsrYwARSWg5gEZI5cPmDOLG4HxYk9krXRXKwhPkhZiklPVyWD3g2LrE1YqUyCd9LMSP4y7TOxlM/rU+lDLKhAMVStly+uors4KzVShAwanVM9RNzREV7yyjAn0DQAwpNoYX2WXlpdBNTN3Y38VNDEm/zHHMUzlRWWf5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=hLEZV6MS; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1763959020;
+	bh=hAUDklng+BZKqI8KusNe8mWtzFQ70FVKUEy2GEFuPik=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=hLEZV6MSqW4qgVqLjIdJTLJBeZMw2XDp88xQXAHJOVtBBvmKT8dd9bNtgY/yYQ4yU
+	 b0KAynblrFCdrVvos9RXuzvRPvqxWpFiPCIke8xLJdNqFntEi0qmJGytgd0ZsvFzpK
+	 Myh1HT3MU8A6IVvivAy4gqwwRdb1jqrfIUr2uMEe5N0Ke6kdKQ28l6q/JXCS0RKBO3
+	 y1gCweF3qsJCwk3oBdTZPfQAHQFZDn02nAYKHMCfcFBUps/gWJ8b8S5rGcZF2OXJb2
+	 dIY7Uo1lrNsPsEOHqsHXvKj+M5Rz8AYo0Mz1d1baUG32sMhaXxdyNdxnQwRguRk8gH
+	 E8Tu2eBdVge6A==
+Received: from [192.168.68.115] (unknown [180.150.112.38])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 30E4464DF5;
+	Mon, 24 Nov 2025 12:36:57 +0800 (AWST)
+Message-ID: <b610d86a2f71bf8289deeaa1c361005146985d2a.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v3 2/2] dts: aspeed: Add a dts for the nvidia msx4 hpm
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Marc Olberding <molberding@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, 	linux-kernel@vger.kernel.org
+Date: Mon, 24 Nov 2025 15:06:56 +1030
+In-Reply-To: <aRbLqH8pLWCQryhu@molberding.nvidia.com>
+References: <20251108-msx1_devicetree-v3-0-c7cb477ade27@nvidia.com>
+	 <20251108-msx1_devicetree-v3-2-c7cb477ade27@nvidia.com>
+	 <a030d7a2e2d36064bd86fe2af1ec6e4baabd9946.camel@codeconstruct.com.au>
+	 <aRbLqH8pLWCQryhu@molberding.nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251124-b4-s4-vdec-upstream-v2-3-bdbbce3f11a6@amlogic.com>
-References: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
-In-Reply-To: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, Zhentao Guo <zhentao.guo@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763955152; l=1441;
- i=zhentao.guo@amlogic.com; s=20251024; h=from:subject:message-id;
- bh=ipvSyoCuAjlj5iGd/O8ZvsuGOB2B3dXxp1S6BN3SOc4=;
- b=+1wPmnRCbaMUs0SfXj44FPENcjNu8W4k/F7Tgy5s0bjQiMcfnJkYcBKCv5+xdb+cSPZT7jend
- eHRRpV6VIQSA8ZOxSqEmAJO5YdnW3ZVx3xXwZdX4csth3oNHl+54ezg
-X-Developer-Key: i=zhentao.guo@amlogic.com; a=ed25519;
- pk=5yfDKrjreXwcAoEUsdtWafy6YN500upXp/CgtnXjLVU=
-X-Endpoint-Received: by B4 Relay for zhentao.guo@amlogic.com/20251024 with
- auth_id=555
-X-Original-From: Zhentao Guo <zhentao.guo@amlogic.com>
-Reply-To: zhentao.guo@amlogic.com
 
-From: Zhentao Guo <zhentao.guo@amlogic.com>
+On Thu, 2025-11-13 at 22:26 -0800, Marc Olberding wrote:
+> On Fri, Nov 14, 2025 at 02:46:19PM +1030, Andrew Jeffery wrote:
+> > > +	model =3D "AST2600 MSX4 Kernel";
+> >=20
+> > I find this to be a curious model name :)
+> >=20
+> > Are there no other reasonable names?
+> >=20
+> For better or worse, this is the most accurate name, and matches the hpm =
+hardware itself.
 
-Add vcodec node to enable Amlogic V4L2 stateless video decoder
-support.
+hpm?
 
-Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+> We may need multi-hpm support for the resulting firmware at some point, s=
+o matching
+> the hpm to the device tree seemed like the simplest thing to do. If this =
+doesn't
+> match the way the kernel deals with this sort of thing, please let me kno=
+w the best path forward.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 9d99ed2994df..80f1b92492a5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -853,5 +853,32 @@ emmc: mmc@fe08c000 {
- 			no-sd;
- 			status = "disabled";
- 		};
-+
-+		canvas: video-lut@fe036048 {
-+			compatible = "amlogic,canvas";
-+			reg = <0x0 0xfe036048 0x0 0x14>;
-+		};
-+
-+		video-codec@fe320000 {
-+			compatible = "amlogic,s4-vcodec-dec";
-+			reg = <0x0 0xfe320000 0x0 0x10000>,
-+			      <0x0 0xfe036000 0x0 0x20>;
-+			amlogic,canvas = <&canvas>;
-+			reg-names = "dos",
-+				    "dmc";
-+			interrupts = <GIC_SPI 91 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 92 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_periphs CLKID_DOS>,
-+				 <&clkc_periphs CLKID_VDEC_SEL>,
-+				 <&clkc_periphs CLKID_HEVCF_SEL>;
-+			clock-names = "vdec",
-+				      "clk_vdec_mux",
-+				      "clk_hevcf_mux";
-+			power-domains = <&pwrc PWRC_S4_DOS_VDEC_ID>,
-+					<&pwrc PWRC_S4_DOS_HEVC_ID>;
-+			power-domain-names = "vdec",
-+					     "hevc";
-+		};
- 	};
- };
+I guess to clarify my concern: what does "Kernel" refer to here?
 
--- 
-2.42.0
+The devicetree describes the hardware, so references to things such as
+"driver" and "kernel" tend to be a little suspicious.
 
+For reference, here's a sample of other model names that have been
+used:
 
+   > git grep model arch/arm/boot/dts/aspeed/ | shuf | head
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts: model =3D "Faceb=
+ook Harma";
+   arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts:       model =
+=3D "ASRock E3C256D4I BMC";
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minipack.dts:      model =
+=3D "Facebook Minipack 100 BMC";
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts:  model =
+=3D "Facebook Santabarbara BMC";
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-elbert.dts:        model =
+=3D "Facebook Elbert BMC";
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-greatlakes.dts:    model =
+=3D "Facebook Greatlakes BMC";
+   arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts:       model =3D "Fuji"=
+;
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-cmm.dts:   model =3D "Faceb=
+ook Backpack CMM BMC";
+   arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dts:   model =3D "Balco=
+nes";
+   arch/arm/boot/dts/aspeed/aspeed-bmc-vegman-rx20.dts:    model =3D "YADRO=
+ VEGMAN Rx20 BMC";
+
+These don't tend to reference either the SoC or the kernel, rather the
+platform that the SoC sits in. "MSX4" might be enough?
+
+>=20
+> > > +	compatible =3D "nvidia,msx4-bmc", "aspeed,ast2600";
+> > > +
+> > > +	aliases {
+> > > +		serial0 =3D &uart1;
+> > > +		serial1 =3D &uart2;
+> > > +		serial2 =3D &uart3;
+> > > +		serial3 =3D &uart4;
+> > > +		serial4 =3D &uart5;
+> >=20
+> > Just checking whether you're actually using all of these? I guess the
+> > uart nodes further down suggest so?
+> >=20
+>=20
+> These UARTs are wired up on this platform. Userspace may not use them tod=
+ay,
+> but we want to enable doing so without needing further device tree update=
+s, in
+> case they are needed for debug where a BMC firmware flash would be unpala=
+table.
+>=20
+> >=20
+> > Seems curious to enable all of these I2C controllers yet have no
+> > devices under them? Can you elaborate?
+> >=20
+> > Andrew
+>=20
+> Unfortunately, the devices that we need over i2c are not
+> guaranteed to be available at BMC boot, and are probed in userspace throu=
+gh
+> the new_device sysfs node from the i2c subsystem. The BMC doesn't
+> have direct control over when these devices are accessible,
+> they are available after the host has completed POST.
+>=20
+> As far as I can tell, there isn't a great way to defer probe for devices
+> that the BMC doesn't have immediate control over whether its accessible.
+> Regulators seem like a match, but it seems to assume that you can directl=
+y
+> turn on the power domain that the device is tied to, which isn't the case=
+ here
+> for various reasons.
+>=20
+> Please let me know if I'm ignorant of a way to deal with this issue.
+
+No dramas, however, I'd appreciate a comment in the devicetree along
+these lines.
+
+Andrew
 
