@@ -1,289 +1,191 @@
-Return-Path: <devicetree+bounces-241722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF7BC8171F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:57:49 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6942C81754
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:01:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AC373A1637
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:57:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B8A6E4E40AF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C9B314A99;
-	Mon, 24 Nov 2025 15:57:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DC23148A3;
+	Mon, 24 Nov 2025 16:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VarxPDuE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fAA428Cq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B9902D59F7;
-	Mon, 24 Nov 2025 15:57:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 710D2139579
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 16:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763999865; cv=none; b=c4lT/JuL4gRLnd+klc6Wx1ZULCHVxluLkxuMYRCbRq0onePqX8EVKG7Nmpfi3u4myunlKvxCjEFHFFt+QLvcHXIf0xbRafhxLjpYb7NfSMnBeRReJonlRVZM0JKnANI6lDsMsRKYE1kojhjqyAVX2QauoQd3YzZp4IBlquwYRYE=
+	t=1764000083; cv=none; b=LlgMpAEa+ymEDYVujM/GR6RDl1UTKT9odGPeTLLmtIleTJ8z4DqVFFQvQK/qwNJ2tW2yTdnaz3GqYw0HfcpwCZUnJ6n7etZHYqJe5GxwbPXeOPO63UrvMrrgYVgQndsb+c24vVela0sthZJPSzCnD3aB+pzOO/P7yD0eJ7DJfyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763999865; c=relaxed/simple;
-	bh=yGI97hDLro8+McOQ+lHZp2VCQuWtN25N7eUBLNYm8jU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rTCsm3F2lnq7TAt/+LcdW13xRmQbXCch6c9ZUKmnAMj/ev38+TWORiKXVad0Mr8ZrqOCBtHIACfQ+775h1cgIMw/cPEzmJocUsX1XkHzOxSlMMcSz6mLyJKWzklWBv36HJvmKyNvQy/6NSHG8E8uAiEIDeC+jzWk+uzxyIGyXw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VarxPDuE; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 9F79A1A1D1F;
-	Mon, 24 Nov 2025 15:57:41 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 71C74606FC;
-	Mon, 24 Nov 2025 15:57:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0297B10371A40;
-	Mon, 24 Nov 2025 16:57:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763999858; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=UX028RVBrtav4WisvLm2dO1F8K5+rUIM4Xp+GTn4l88=;
-	b=VarxPDuEXoNSmVvJFI8GatO2RP9trnXzaYCfsYMM6RiiQJ2m93PBXrieFqWdi7u6Z2RoZg
-	GAGA01Dg63AWsSjF79FfLxVFlCWOLC7nb+Zva16AiZR4LFaDIOkwTjS+1qvXT6UkmCc4TH
-	yzjFgzaGeZFlS18DchOYD0zIe6ixo0ZO9D4JFiPQlx//8nY7IyIYwgA24Z48+/kegy6SN7
-	r9KW3P+aPv0ig9jzpcYgX+xbOwsPSqiPsLbiFMkGf/rdRqa9+vF2g0o12LRVP64iuC5S5t
-	QWlRuX+uUfAmODHQDKv6cyMvrBcyY/vc3NIbj+57IejdauvBbh+DRTxNEjxg7Q==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Peter Rosin <peda@axentia.se>,
- Mariel Tinaco <Mariel.Tinaco@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Kevin Tsai <ktsai@capellamicro.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Eugen Hristev <eugen.hristev@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Sebastian Reichel <sre@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Support Opensource <support.opensource@diasemi.com>,
- Paul Cercueil <paul@crapouillou.net>, Iskren Chernev <me@iskren.info>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Matheus Castello <matheus@castello.eng.br>,
- Saravanan Sekar <sravanhome@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Casey Connolly <casey.connolly@linaro.org>,
- Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>,
- Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Amit Kucheria <amitk@kernel.org>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Dixit Parmar <dixitparmar19@gmail.com>, linux-hwmon@vger.kernel.org,
- linux-input@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Andy Shevchenko <andriy.shevchenko@intel.com>
-Subject: Re: [PATCH v4 0/6] Add support for the LTM8054 voltage regulator
-Date: Mon, 24 Nov 2025 16:57:16 +0100
-Message-ID: <4053840.MHq7AAxBmi@fw-rgant>
-In-Reply-To: <563331EB-2460-4CF5-87B3-5FE60B18BB70@goldelico.com>
-References:
- <20251124-ltm8054-driver-v4-0-107a8a814abe@bootlin.com>
- <23111366.EfDdHjke4D@fw-rgant>
- <563331EB-2460-4CF5-87B3-5FE60B18BB70@goldelico.com>
+	s=arc-20240116; t=1764000083; c=relaxed/simple;
+	bh=BxNg8gs7WNaoKvLGFRKTqLXUTtsfWM5hG3yIT0h6Ccc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Vtqvxhzvk8HQToMVJZ4agNxiJS0wCDP5HPm5gmOSLQi1o7lQQvYUA9gSbIL3v+oI135hQPKxbzNgPjftxgq+5iNlwR61Pvko9lyEK+2LgCYthSRkmFYexXxlKQYLtUHLKCFFMAYEPz+hfhCx17mnkpn5Dq5fRipLyCqF/gF5Y9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fAA428Cq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15F1CC19421
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 16:01:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764000083;
+	bh=BxNg8gs7WNaoKvLGFRKTqLXUTtsfWM5hG3yIT0h6Ccc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=fAA428Cq8fABOVJq0VpMm0c57ytXlW/e61UozuRE0IDDII4Bn/sWmrozVTyYHTXFX
+	 KMFtCzOgkqNQ1OEL4lY2p1W23MqolBBCazFWioabUybV4ZafndUEHy3ErjpjZ2uc7c
+	 idpMExGQnv9P9LDbby2sRcoVRpNRLKJaJBAQjrekgofMRMY84Mo9WGhvzSQW5vV3XH
+	 vX33KkrJ6mS2LhIwGweTtefxUMLUm66AdUn4lFhOU3IrtCOO0iDJ9Vg/u4S9nx/oST
+	 Fe1/yvkMObmdTYHzVVaVfvNADOuUP17JdHOPIpGdwG7iB0glTojIgG/oCBaZKD6X9n
+	 spLTvIRKb7w7w==
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-65749fe614bso730767eaf.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 08:01:23 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUkaCMDcyYzyYkiThoQFNqaawrNqHufPEZmbkhqzJbXr7/cc0+D+5nRP2xOeodnOooY6Yd/0GDez69Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPB+ZNYyNhVTSFrtwhawJ9sAlW8JVtcwQAYbMOOgy5GK4jAdUs
+	7+iUhuwbioVAgkpCGHr9gYLjsFS+lvHwlgW//weVx5D0ugFtihUPMzW8E+Z1INd1e0WeJdKucx5
+	0XMzMNeew8m1P+jIoJV9p05s0/BDsnhM=
+X-Google-Smtp-Source: AGHT+IEvm2FWxa2fcKAG3q3fnxyGT9utxHEMot9Bx/M+VGHVwX7ZA+SGpfVh77Zi4cGoL8rb3JZFFIMv0u2FP8+7mDY=
+X-Received: by 2002:a05:6820:4cc7:b0:657:5723:76c8 with SMTP id
+ 006d021491bc7-657925458ecmr4757740eaf.6.1764000082175; Mon, 24 Nov 2025
+ 08:01:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2111402.atdPhlSkOF";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20251117-rneri-wakeup-mailbox-v7-0-4a8b82ab7c2c@linux.intel.com> <20251117-rneri-wakeup-mailbox-v7-1-4a8b82ab7c2c@linux.intel.com>
+In-Reply-To: <20251117-rneri-wakeup-mailbox-v7-1-4a8b82ab7c2c@linux.intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Mon, 24 Nov 2025 17:01:11 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0gd_6b6s4aEpSvdfb4-+AULTWkqQqM3OE1eg5XzYaxQFQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bm4sOABo--PUFLL3Fnx287B9QjmRWcdT31tXqkGzNeqhEPx9y0Ws0-iwLc
+Message-ID: <CAJZ5v0gd_6b6s4aEpSvdfb4-+AULTWkqQqM3OE1eg5XzYaxQFQ@mail.gmail.com>
+Subject: Re: [PATCH v7 1/9] x86/acpi: Add functions to setup and access the
+ wakeup mailbox
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
+	Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>, 
+	Dexuan Cui <decui@microsoft.com>, Michael Kelley <mhklinux@outlook.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Saurabh Sengar <ssengar@linux.microsoft.com>, 
+	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>, linux-hyperv@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Ricardo Neri <ricardo.neri@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---nextPart2111402.atdPhlSkOF
-Content-Type: multipart/alternative; boundary="nextPart2186563.taCxCBeP46";
- protected-headers="v1"
-Content-Transfer-Encoding: 7Bit
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Date: Mon, 24 Nov 2025 16:57:16 +0100
-Message-ID: <4053840.MHq7AAxBmi@fw-rgant>
-In-Reply-To: <563331EB-2460-4CF5-87B3-5FE60B18BB70@goldelico.com>
-MIME-Version: 1.0
+On Mon, Nov 17, 2025 at 6:04=E2=80=AFPM Ricardo Neri
+<ricardo.neri-calderon@linux.intel.com> wrote:
+>
+> Systems that describe hardware using DeviceTree graphs may enumerate and
+> implement the wakeup mailbox as defined in the ACPI specification but do
+> not otherwise depend on ACPI. Expose functions to setup and access the
+> location of the wakeup mailbox from outside ACPI code.
+>
+> The function acpi_setup_mp_wakeup_mailbox() stores the physical address o=
+f
+> the mailbox and updates the wakeup_secondary_cpu_64() APIC callback.
+>
+> The function acpi_madt_multiproc_wakeup_mailbox() returns a pointer to th=
+e
+> mailbox.
+>
+> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
 
-This is a multi-part message in MIME format.
+Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
 
---nextPart2186563.taCxCBeP46
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-
-Hi Nikolaus,
-
-On Monday, 24 November 2025 16:35:28 CET H. Nikolaus Schaller wrote:
-...
-> > Sorry, I don't quite understand your remark. To integrate this voltage
-> > regulator component into the Linux regulator abstraction, I'm providing a
-> > current limit control function. To provide such a function, the voltage
-> > level on a pin has to be controlled. AFAIK, the kernel abstraction used
-> > to set precise voltages on lines is an IO channel.
-> 
-> I was curious to learn about this topic and looked into the data sheet:
-> 
-> https://www.analog.com/media/en/technical-documentation/data-sheets/8054fa.p
-> df
-> 
-> As far as I see the LTM8054 does not even have a programming interface.
-> So is it reasonable to provide a dedicated driver at all?
-> 
-> The figure on page 20 seems to suggest that there is an external DAC
-> which drives the regulator. And the regulator drives for example a fan.
-> 
-> So I would think of a driver for the specific DAC and ignore the specific
-> LTM chip at all.
-> 
-
-In my use case, the LTM8054 feeds a DC output port on which various devices 
-may be plugged. Dynamic output current limitation and output voltage level 
-control for these devices is a requirement, as well as stepped voltage 
-transitions, thus the need for a proper regulator device.
-
-The LTM8054's feedback pin can be driven by a different DAC, which allows for 
-dynamic output voltage control. This is a more complex upstreaming topic 
-however, so I've left it out of this initial series. There are other component 
-functions which fit in squarely into the regulator framework, such as 
-input current limit control and soft-start. But I understand that the current 
-driver might look a bit "bare".
-
-> What could be necessary is if you really want to be able to "regulate"
-> the current going to Vout, some bridge between regulator API and some
-> IIO DAC.
-> 
-> And enabling/disabling the regulator by some GPIO can be described in
-> the DT already through a "regulator-fixed".
-> 
-
-This is a possibility, but when you bring in all of these other hardware 
-functions that I mentionned e.g. output voltage control and stepping, you'll 
-end up with several different devices which look unrelated from userspace, but 
-actually control the same chip.
-
-Userspace will also have to know about some hardware details to properly 
-control the DACs, such as the values of the sense and feedback resistors. In 
-my opinion, this bypasses the kernel's abstraction of hardware.
-
-Thanks,
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-
---nextPart2186563.taCxCBeP46
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/html; charset="utf-8"
-
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-</head>
-<body><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Hi Nikolaus,</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">On Monday, 24 November 2025 16:35:28 CET H. Nikolaus Schaller wrote:</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">...</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; Sorry, I don't quite understand your remark. To integrate this voltage</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; regulator component into the Linux regulator abstraction, I'm providing a</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; current limit control function. To provide such a function, the voltage</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; level on a pin has to be controlled. AFAIK, the kernel abstraction used</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; to set precise voltages on lines is an IO channel.</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; I was curious to learn about this topic and looked into the data sheet:</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; https://www.analog.com/media/en/technical-documentation/data-sheets/8054fa.p</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; df</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; As far as I see the LTM8054 does not even have a programming interface.</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; So is it reasonable to provide a dedicated driver at all?</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; The figure on page 20 seems to suggest that there is an external DAC</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; which drives the regulator. And the regulator drives for example a fan.</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; So I would think of a driver for the specific DAC and ignore the specific</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; LTM chip at all.</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">In my use case, the LTM8054 feeds a DC output port on which various devices </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">may be plugged. Dynamic output current limitation and output voltage level </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">control for these devices is a requirement, as well as stepped voltage </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">transitions, thus the need for a proper regulator device.</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">The LTM8054's feedback pin can be driven by a different DAC, which allows for </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">dynamic output voltage control. This is a more complex upstreaming topic </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">however, so I've left it out of this initial series. There are other component </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">functions which fit in squarely into the regulator framework, such as </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">input current limit control and soft-start. But I understand that the current </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">driver might look a bit &quot;bare&quot;.</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; What could be necessary is if you really want to be able to &quot;regulate&quot;</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; the current going to Vout, some bridge between regulator API and some</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; IIO DAC.</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; And enabling/disabling the regulator by some GPIO can be described in</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; the DT already through a &quot;regulator-fixed&quot;.</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">This is a possibility, but when you bring in all of these other hardware </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">functions that I mentionned e.g. output voltage control and stepping, you'll </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">end up with several different devices which look unrelated from userspace, but </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">actually control the same chip.</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Userspace will also have to know about some hardware details to properly </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">control the DACs, such as the values of the sense and feedback resistors. In </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">my opinion, this bypasses the kernel's abstraction of hardware.</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Thanks,</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">-- </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Romain Gantois, Bootlin</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Embedded Linux and Kernel engineering</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">https://bootlin.com</p>
-<br /></body>
-</html>
---nextPart2186563.taCxCBeP46--
-
---nextPart2111402.atdPhlSkOF
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmkkgFwACgkQKCYAIARz
-eA6Alg/8COym+7pL1LpZ1EUBzLeuPJJMpNXAoKBsdBPOyD3NnxUoT3dqx1KV6Qxl
-qgm6tINDewDnwWGblDKog18X7I3G9JZVLM4/LwN//KMnkzo+GcECfLyFvnNrzKhg
-X1ZpkaamjbifIadbFXhOy1HQ/A6tO90ICk4ae2Dgye9PCZAqsL/GUGtcwiJzbWTk
-mNNqqvmwxf7KGS/63peSY0oGREjOfo95tZPllfLxP5lgvdVP/kiTot7ErGsaFh5y
-zzUIaEYjpiE86eQ+0/gKRs+Xkn4sAOyPzzRwoycI9JsYuJOPLEkIdChhAKNkKUD9
-MmGR4aMVjgLxKxu2dfNwsJmVQJ8mkVor+3jqyP77XSyM7E71ZesHrujCRodKaicr
-hiTtUMGt5qkalsMDHQLJ8MR3R/hMJWK2u1uKitIC0NhXCNQfR2yGlEothJDFcdQL
-K0cOhaJGpDnxfaopsfnN9ianNPZ5MhUYJj6qvQPAjTtARK8E+uL2ysXgZ9bQ1xKx
-g+URjMLJ49zdR8rHCJw0PLPE7Cb8GcsPFlad9yWPzjhJxk5y8JTMNWAnzZTRH96b
-I/PLDFBC9fy13WU6sj9591J0oxcpRC/k6ctEDZzN5sQZ8J+2rwc9moNFpGRpuLGc
-sefn100uth/gnbi+8IJjmTB564t5KIY0Xpnk7+3vfqFC2a88B+o=
-=Wv+m
------END PGP SIGNATURE-----
-
---nextPart2111402.atdPhlSkOF--
-
-
-
+> ---
+> Changes in v7:
+>  - Moved function declarations to arch/x86/include/asm/acpi.h
+>  - Added stubs for !CONFIG_ACPI.
+>  - Do not use these new functions in madt_wakeup.c.
+>  - Dropped Acked-by and Reviewed-by tags from Rafael and Dexuan as this
+>    patch changed.
+>
+> Changes in v6:
+>  - Fixed grammar error in the subject of the patch. (Rafael)
+>  - Added Acked-by tag from Rafael. Thanks!
+>  - Added Reviewed-by tag from Dexuan. Thanks!
+>
+> Changes in v5:
+>  - None
+>
+> Changes in v4:
+>  - Squashed the two first patches of the series into one, both introduce
+>    helper functions. (Rafael)
+>  - Renamed setup_mp_wakeup_mailbox() as acpi_setup_mp_wakeup_mailbox().
+>    (Rafael)
+>  - Dropped the function prototype for !CONFIG_X86_64. (Rafael)
+>
+> Changes in v3:
+>  - Introduced this patch.
+>
+> Changes in v2:
+>  - N/A
+> ---
+>  arch/x86/include/asm/acpi.h        | 10 ++++++++++
+>  arch/x86/kernel/acpi/madt_wakeup.c | 11 +++++++++++
+>  2 files changed, 21 insertions(+)
+>
+> diff --git a/arch/x86/include/asm/acpi.h b/arch/x86/include/asm/acpi.h
+> index a03aa6f999d1..820df375df79 100644
+> --- a/arch/x86/include/asm/acpi.h
+> +++ b/arch/x86/include/asm/acpi.h
+> @@ -182,6 +182,9 @@ void __iomem *x86_acpi_os_ioremap(acpi_physical_addre=
+ss phys, acpi_size size);
+>  #define acpi_os_ioremap acpi_os_ioremap
+>  #endif
+>
+> +void acpi_setup_mp_wakeup_mailbox(u64 addr);
+> +struct acpi_madt_multiproc_wakeup_mailbox *acpi_get_mp_wakeup_mailbox(vo=
+id);
+> +
+>  #else /* !CONFIG_ACPI */
+>
+>  #define acpi_lapic 0
+> @@ -200,6 +203,13 @@ static inline u64 x86_default_get_root_pointer(void)
+>         return 0;
+>  }
+>
+> +static inline void acpi_setup_mp_wakeup_mailbox(u64 addr) { }
+> +
+> +static inline struct acpi_madt_multiproc_wakeup_mailbox *acpi_get_mp_wak=
+eup_mailbox(void)
+> +{
+> +       return NULL;
+> +}
+> +
+>  #endif /* !CONFIG_ACPI */
+>
+>  #define ARCH_HAS_POWER_INIT    1
+> diff --git a/arch/x86/kernel/acpi/madt_wakeup.c b/arch/x86/kernel/acpi/ma=
+dt_wakeup.c
+> index 6d7603511f52..82caf44b45e3 100644
+> --- a/arch/x86/kernel/acpi/madt_wakeup.c
+> +++ b/arch/x86/kernel/acpi/madt_wakeup.c
+> @@ -247,3 +247,14 @@ int __init acpi_parse_mp_wake(union acpi_subtable_he=
+aders *header,
+>
+>         return 0;
+>  }
+> +
+> +void __init acpi_setup_mp_wakeup_mailbox(u64 mailbox_paddr)
+> +{
+> +       acpi_mp_wake_mailbox_paddr =3D mailbox_paddr;
+> +       apic_update_callback(wakeup_secondary_cpu_64, acpi_wakeup_cpu);
+> +}
+> +
+> +struct acpi_madt_multiproc_wakeup_mailbox *acpi_get_mp_wakeup_mailbox(vo=
+id)
+> +{
+> +       return acpi_mp_wake_mailbox;
+> +}
+>
+> --
+> 2.43.0
+>
 
