@@ -1,176 +1,178 @@
-Return-Path: <devicetree+bounces-241739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78629C81C94
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:04:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA0EC81CE8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:08:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E2113ABA74
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:02:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4D0E3A2015
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 303DC314B84;
-	Mon, 24 Nov 2025 17:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A65B31329E;
+	Mon, 24 Nov 2025 17:06:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="T8R3E8z7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MwUJyBAz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592BD2C11DB;
-	Mon, 24 Nov 2025 17:02:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D40274FFD
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764003738; cv=none; b=CddqK9kug7Y0UCqzg2Ym8OxCLrkdSF+fWdpK0x4D4UwnoMeAGg/FbLIZtFU2AhXq6lVyehUmKStZO29rroR9SpNwGCUyWdcQHmHgTwof8Wu1Y/Suoc7C7YShhAnro5g1+BiCEjR59n5D6KBzRPk7YPnPJci6X4Isy7Q2iIIK3ZE=
+	t=1764003977; cv=none; b=aVPjKO5xmxb0BBH89/9T2E/IjgAWS+mjUltVmBT5iwVopk3L8/+LKvdmrLPZYUgkyw8tlWerF5USOGVjFIO3Fo6Hy4Pj817v3SWxtBc7G7l4jEE96zqS1ODlfN4h5zY9M38XSzDYGp2PGb5U/+wK5Bz6vPK45pygOgbVuTHG6bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764003738; c=relaxed/simple;
-	bh=5bqduxiv/Fu5Uy0UENLzF17SO3VX1iaVaMvWdv2gIY0=;
+	s=arc-20240116; t=1764003977; c=relaxed/simple;
+	bh=JYk0DlsmrYkHa9pnunJP5MMBiIh8+pvQoxXtIvOuszA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WWsgK8gjLkKq5Vmy/XGxBDxddg+INjwYUlK5QxGie4b+t6xe2Jz4Pxqhg8nopF11ohLoUy0Uft3SBOVpaEyFUb1p7fp4R+g+1qpNG2Jg4ndNun+ISfBck0ylUnLRFW+Ek2HDYM+xthwgWuS0SF8to4LWXAW/1GEsiNO2SLwUsEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=T8R3E8z7; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764003737; x=1795539737;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=5bqduxiv/Fu5Uy0UENLzF17SO3VX1iaVaMvWdv2gIY0=;
-  b=T8R3E8z7B45Uc9qnXe+FLEnqUK8pqPcQwIM9DErhpXCjkSjdNaTOYoYM
-   JJGqciOBNVWBnEyZ2LxFphCb+oyX6yVQ4NqcP+H5epOWpipSKQxHL6tPD
-   0FTQzppf6hWKs+ZSySUW/TX2knSPOxxITgRzQ4lWo4gsN+piYzISJmgiL
-   iIEGtHemf5ea5O8npqBQgtAu75QMNycpCNInqAkLvTBF8qi71/n2eLJXE
-   ax5/pmsTRrSSpAFG+24FJqxOGujPPTUIDzdL3ipfnKkd/CwekFxqmUHSo
-   rFeotf3bRPtZqEy0GtMPlArcB3SIHuwler5Bl9mqZeILtYnQK81sOuuCM
-   A==;
-X-CSE-ConnectionGUID: LUdCeqRXTm+CQLee0q82yw==
-X-CSE-MsgGUID: 1IvIu1dNSg6iExfr17Yzbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="77370793"
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; 
-   d="scan'208";a="77370793"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 09:02:09 -0800
-X-CSE-ConnectionGUID: a2B4lZjJTIea4wS+jrDwFA==
-X-CSE-MsgGUID: 3t8wqfHHRsujXadtmbh53A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; 
-   d="scan'208";a="191657370"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.5])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 09:02:03 -0800
-Date: Mon, 24 Nov 2025 19:02:01 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>
-Cc: Andy Shevchenko <andy@kernel.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=JUBTHXFRwYtCnnUXTGBgXQNGcUwGvOOf6X666/12qavmARk9x79raS7v/4ZbZWuStU53EmR7HBBwsZwcpzIARi8wHg55mKzBLVPjpN7wb8hZp9uA4lWQY/XOW6HA18OWm0aKd0VzWrhiRaZdawWgA/OUHGyF73fiVnv8uROx3ZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MwUJyBAz; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2953ad5517dso56108435ad.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:06:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764003975; x=1764608775; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gnHv7SSUkVZXm9MlHQF7vnbKRHnkGY//zn2BWH6fbi8=;
+        b=MwUJyBAzQ9279jRUYy/gey3eDSFddfZgnMDp1XBvmQn2JmUMyA94hFPzfFhvrTxi3A
+         cJj8Wlz3fXhfF1diLtyLd0BBm+X4O57exrGlyqWjKStfYkF7WEGCcg7+hvEeF7ZWP9Z9
+         Li6zEH1tyiNYBB7rSf9Lp/eIIJ9Rnk8JbKeesmrEd/DDc7RDx6LkqhTvo/oQIMGA1MeV
+         4wOoUWi7jhf9NoEjlpkwIZTFhV+Gm8wEOlvFIX2DqJda7DpKTjvHv+8QoRT3UMLxK7XW
+         X9D0JAadElptu76pPK0UGsiRf7D090GanoeURyTrQfBWkJdLWnsO/n8/VEkk5yH5JeaJ
+         7ekQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764003975; x=1764608775;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gnHv7SSUkVZXm9MlHQF7vnbKRHnkGY//zn2BWH6fbi8=;
+        b=AH24uxATur64Lwsyw1dqsSC3DNF/ct65sOGM0zUiugZca2jBn4HPxEh6WzQCE4BoGn
+         VB8qwqUXWwMGWr6KvZgEBAMiAYm0rnF48f9iA1hshqiqS8I96zWXGDXJqmX53lGXwiDE
+         HzZoMF318Vwu3i6IclbHGInL8lp3SSVAjKaWiNcM58zAf+MBlmWl+pDgUMbM0IxuXNDg
+         lepy7Sqboqv8MQ9P2eCSSVs3RhzXgUnmmjjYKCtD/UVHvFsjo0+nIO6cEvVBvxY89T8U
+         JJ+vW66IO9InmbGiCgI9A7VxhxI1xwTEAYxvVXwduRTEI7BMUa7U8kVMmc4MCz5qm3O7
+         BBdw==
+X-Forwarded-Encrypted: i=1; AJvYcCU+qFmvpR9zpMD9ZIeGkduTRLp0XScGpxrd7YiA0eLFHrZuq3GGV7KZ31qiPDH2AYI6nUJGkfsWUTjZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyaq6QfDfoaEKHZ+KDxJSSqr41IVA5uUJ8cI7d7Ve/mJPvHJtZS
+	wHqZFWV6o4zmGBsuVoIfbHPqAgsBOSOv6jMk2bWDt6Kuvkho+vrqN8L7OEIst3tmtqk=
+X-Gm-Gg: ASbGncuo6PtR1KKw3E0eAYyHHFJvuf5KjwtvQdlQFZanf5WTCSoXo2UsUJln5z3PCb2
+	Cy+08pueuILWBZpPJBD4xr8CN98Da3YZZ5mNr3/n46xUMKuyZFXY5nBM/mskruKIGl5vqXYxGW9
+	Vs7G49TGP+tiIGaoDNoHwaIuj/1Ruo30EfvlOdIimkfyBetzVy98OMxoCUc1xIbcVvC5Zp/Z/Tz
+	a0oZSm4oD+vsovlRV7ZAywGIWm2n7F6XQwvDoJxXsmvDwXZmqMe5gxBtoW20WZtuGDP4uTYtEUP
+	bQiBWFxTruXgmM+2IsT2L/KBB3zDC12XewChpp+nMQK+wp2HGxqjsEqnFfd70tDjUUsAejAS0j0
+	P9uGeeGj4PxCAVDMRguJjKupURaxaN2iMIu1jSZaDpR3P76iQ5Dfy9Qc6zWj/Hcx4GFB4O1rj3e
+	buPaXDTGY3aRhg62cbsmeyth/6
+X-Google-Smtp-Source: AGHT+IFFll1ZBv/7+NTNtf66eRKGB3OEh6EXFU3EYSb6koOyW950nZNuI/PfU8U/2nZsnDgImLDneQ==
+X-Received: by 2002:a17:903:384c:b0:27c:56af:88ea with SMTP id d9443c01a7336-29b6bfa1f66mr134598965ad.60.1764003974768;
+        Mon, 24 Nov 2025 09:06:14 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:aebb:f23e:8a7c:d95d])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b13965csm142296595ad.30.2025.11.24.09.06.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 09:06:14 -0800 (PST)
+Date: Mon, 24 Nov 2025 10:06:11 -0700
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 0/7] auxdisplay: Add TM16xx 7-segment LED matrix
- display controllers driver
-Message-ID: <aSSPifA479e9EcR4@smile.fi.intel.com>
-References: <20251121145911.176033-1-jefflessard3@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-imx@nxp.com, Randy Dunlap <rdunlap@infradead.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v5 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
+Message-ID: <aSSQg22Kt-565T8S@p14s>
+References: <20251104203315.85706-1-shenwei.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251121145911.176033-1-jefflessard3@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20251104203315.85706-1-shenwei.wang@nxp.com>
 
-On Fri, Nov 21, 2025 at 09:59:00AM -0500, Jean-François Lessard wrote:
-> This series adds mainline kernel support for TM16xx family LED matrix
-> controllers and compatible chips, widely used in auxiliary displays on TV
-> boxes and embedded devices.
+On Tue, Nov 04, 2025 at 02:33:10PM -0600, Shenwei Wang wrote:
+> Support the remote devices on the remote processor via the RPMSG bus on
+> i.MX platform.
 > 
-> Many consumer devices, particularly TV boxes, use auxiliary displays based
-> on TM16xx controllers to show status information such as time, network
-> connectivity and system state. Currently, there is no mainline kernel
-> support for these displays, forcing users to rely on out-of-tree drivers
-> or userspace solutions that access hardware interfaces directly.
+> Changes in v5:
+>  - move the gpio-rpmsg.rst from admin-guide to staging directory after
+>    discussion with Randy Dunlap.
+>  - add include files with some code improvements per Bartosz's comments.
 > 
-> This driver provides unified TM16xx support through the LED subsystem with
-> both I2C and SPI communication protocols. It integrates with the LED class
-> framework, enabling control via standard sysfs interfaces and LED triggers,
-> while supporting keypad input when hardware connections are available.
+> Changes in v4:
+>  - add a documentation to describe the transport protocol per Andrew's
+>    comments.
+>  - add a new handler to get the gpio direction.
 > 
-> The driver supports multiple controller families from various vendors:
-> - Titan Micro Electronics: TM1618, TM1620, TM1628, TM1638, TM1650
-> - Fuda Hisi Microelectronics: FD620, FD628, FD650, FD655, FD6551
-> - i-Core Electronics: AiP650, AiP1618, AiP1628
-> - Princeton Technology: PT6964
-> - Winrise Technology: HBS658
+> Changes in v3:
+>  - fix various format issue and return value check per Peng 's review
+>    comments.
+>  - add the logic to also populate the subnodes which are not in the
+>    device map per Arnaud's request. (in imx_rproc.c)
+>  - update the yaml per Frank's review comments.
 > 
-> Key features:
-> - 7-segment display support with flexible digit/segment mapping
-> - Individual LED icon control through LED class devices
-> - Optional keypad scanning with configurable key mapping
-> - Device tree configuration for board-specific wiring layouts
-> - LED trigger integration for automatic system event indication
-> - I2C and SPI protocol support depending on controller interface
+> Changes in v2:
+>  - re-implemented the gpio driver per Linus Walleij's feedback by using
+>    GPIOLIB_IRQCHIP helper library.
+>  - fix various format issue per Mathieu/Peng 's review comments.
+>  - update the yaml doc per Rob's feedback
 > 
-> Device tree bindings describe board-specific display wiring since
-> controllers are layout-agnostic. The bindings use separate 'digits' and
-> 'leds' containers with specific addressing schemes to accommodate the
-> hardware's grid/segment matrix organization.
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: linux-gpio@vger.kernel.org
 > 
-> Tested on multiple ARM TV boxes (H96 Max, Magicsee N5, Tanix TX3 Mini,
-> Tanix TX6, X92, X96 Max) across different SoC platforms (Rockchip, Amlogic,
-> Allwinner) in both I2C and SPI configurations.
+> Shenwei Wang (5):
+>   dt-bindings: remoteproc: imx_rproc: Add "rpmsg" subnode support
+>   remoteproc: imx_rproc: Populate devices under "rpmsg" subnode
+>   docs: staging: gpio-rpmsg: gpio over rpmsg bus
+>   gpio: imx-rpmsg: add imx-rpmsg GPIO driver
+>   arm64: dts: imx8ulp: Add rpmsg node under imx_rproc
 > 
-> User space utilities available at:
-> https://github.com/jefflessard/tm16xx-display
-> 
-> Dependencies:
-> - linedisp_attach()/_detach() infrastructure introduced in patch series:
->  "auxdisplay: linedisp: support attribute attachment to auxdisplay devices"
-> - fwnode_for_each_available_child_node_scoped() from patch series:
->  "device property: Add scoped fwnode child node iterators"
-> 
-> Note: This driver is placed in drivers/auxdisplay rather than drivers/leds
-> based on previous maintainer guidance. LED maintainer Pavel Machek
-> recommended auxdisplay for TM1628-based display drivers:
-> https://lore.kernel.org/linux-devicetree/20200226130300.GB2800@duo.ucw.cz/
-> 
-> Regmap Evaluation:
-> TM16xx controllers use command-based 2-wire/3-wire protocols that share
-> sufficient commonalities with I2C/SPI to leverage their subsystems, but
-> are not fully compliant with standard register-based access patterns:
-> - TM1650 example: 0x48 is a control command while 0x4F is a keyscan
->   command. These appear as adjacent I2C "addresses" but are distinct
->   commands with different data directions and payloads, not read/write
->   pairs of the same register.
-> - TM1628 example: Initialization requires coordinated sequences followed
->   by indexed data writes. Single regmap read/write calls cannot express
->   these multi-step transactions and timing constraints.
-> - Protocol requirements: I2C read operations require I2C_M_NO_RD_ACK flags;
->   SPI write-then-read operations require mandatory inter-transfer delays
->   and CS assertion across phases.
-> 
-> While regmap provides valuable synchronization, debugfs, and abstraction
-> benefits, standard I2C/SPI regmap buses cannot handle these requirements.
-> 
-> Custom regmap implementation is technically possible via IO accessors, but
-> demands complex command routing logic and only partially supports paging.
-> It would essentially recreate the existing controller functions while
-> forcing them into register semantics they don't naturally fit.
-> 
-> The current explicit I2C/SPI approach directly expresses the hardware's
-> actual command structure and maintains proper controller abstraction.
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 123 +++++
+>  Documentation/staging/gpio-rpmsg.rst          | 202 ++++++++
+>  Documentation/staging/index.rst               |   1 +
+>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi    |  27 +
+>  drivers/gpio/Kconfig                          |  17 +
+>  drivers/gpio/Makefile                         |   1 +
+>  drivers/gpio/gpio-imx-rpmsg.c                 | 475 ++++++++++++++++++
+>  drivers/remoteproc/imx_rproc.c                | 146 ++++++
+>  include/linux/rpmsg/imx_rpmsg.h               |  48 ++
+>  9 files changed, 1040 insertions(+)
 
-I think I have reviewed everything (except DT bindings, I will rely on
-the respective tags from DT people). There are some comments also given
-recently against previous round, please consider them as well.
+I started reviewing this set.  Given the size and amount of comments to go
+through, it will likely take me several days.  I will tell you when I am done.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Even at this early stage of review on my side, I can already confirm the only
+way to move forward with this set is by reaching a consensus that includes
+Andrew, Arneaud and Linus W.
 
+Thanks,
+Mathieu
 
+>  create mode 100644 Documentation/staging/gpio-rpmsg.rst
+>  create mode 100644 drivers/gpio/gpio-imx-rpmsg.c
+>  create mode 100644 include/linux/rpmsg/imx_rpmsg.h
+> 
+> --
+> 2.43.0
+> 
 
