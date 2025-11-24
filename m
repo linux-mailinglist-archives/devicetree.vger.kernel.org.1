@@ -1,82 +1,48 @@
-Return-Path: <devicetree+bounces-241749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 542B0C81EFC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:38:51 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA680C81F08
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:39:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5DB2E4E5644
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:38:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9FA5A4E32B9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F2B2BEFE8;
-	Mon, 24 Nov 2025 17:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD9D2BDC1C;
+	Mon, 24 Nov 2025 17:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uGvAq5iG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fIoO1afY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A8302BDC1C
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:38:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727E82749D9;
+	Mon, 24 Nov 2025 17:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764005903; cv=none; b=ArdBbUdgvn0bmnRRJQt49DEJhKVmWiAemC6uPg/JS03J1fZK3GkT9+Y7YR4lUaCOW8/yMyWvmLGthkRU1QEF0Pr6KqbvXwhLCSRuB7I3EE/7L5oeMlnoScxNe6YCGGSWr6PKOO6t8aM5VnqcQ/YLoXjWS6ZFcttdVq5OtVeIKSE=
+	t=1764005982; cv=none; b=qkGkYiJgSaefz2gFIwky5BIeC5NS9rvwFByrufCn+D/xkNcOuOXMCEHWc8Fvn1LyNg/Y6lJ3wPISWI9DHEuo/Jo1fUpGBDJz5J/NFNa3G1Peh5R7wzKlU6gPNLX0um2ETtkJKtxFfe8LjPckhSIeLGFMB4nZBubC2luYXrM759s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764005903; c=relaxed/simple;
-	bh=KMlWQB7AOIOzyYJhTj0B28sxJc/jSZAfZdb+tJ7XAUQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LAaamv4JV/ZoG7pEU50NWjPqn1s4Z0viVJ2YZyDLlOKcaoNT7gC22aJa1QFKe7mkO62aiYg7R59mCR6CY94f5n5/wh18+i9tLkXOeM0u+K8RUttMPJ1IDojfep88nFcZqBrGRTQ/XtQoBKVOur2DXFcW8l5Crayy8ePm0owePJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uGvAq5iG; arc=none smtp.client-ip=209.85.160.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-3eae4e590a4so1573010fac.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:38:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1764005900; x=1764610700; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=IM2QtAR8pkeEr/p0bVpusa4zLAxQY32DCc9xBmEC9fA=;
-        b=uGvAq5iGwz7drb5g80IT6X3YsHeomZhRU4rYt3+l2XA5PzDXe0WDlu5aTeR6mQcuM4
-         0YizjKSTZhiQNTWAf6I+tBCXT3jskJ4kpx7BgiyDB4Y37e9ObTJXnq9+z5/iZa8JriCk
-         sPHrBYX2VYCKxdQTZF5Jnh/AAljcW63zEg7s1VaM8gpKkNs52Ii04vu85ahCr8qcIh2Y
-         uy9dok27lG7/m8dGLc+sf+ESCTkDVlAbKUiu2owPZNNTOD1zoF2pk76heVNUDbTI3bMN
-         1y6Fpm2bzYvVVcp7hWp69Adnk3/i0oeJEjpbiPqlwX0Vacv5I3M2YkSo8OpAKq4PdD4r
-         nOgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764005900; x=1764610700;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IM2QtAR8pkeEr/p0bVpusa4zLAxQY32DCc9xBmEC9fA=;
-        b=rYEnR9p9cOeo+DSciBdAFZ+qrP8qrIsNVPpThlk52D4u5J7JBuT3YImgDnPpFH1T9U
-         0Qs5ciq2snPYfurAUQKIFjoUQSPVxje9pyrmqlGfPI+8nv4Fr+zrvjRpQ8mc4uNpiBn7
-         j/MNZfnBKIQwg11BRuar7PpzEmk/nTptMayrPqT0QkyFKtk+BBUYqa5/AvYihJL1YHXM
-         ozRRRXMhTTxndcAP/5xDen1JJLwgG+1XvbtRC2HBZ9GyK8c8LnlGkSYqYrM1QH/IHFkm
-         kIFoT7lJruWwBqEITrfD/f2a26/wYFXb0zS6TQovjmvHWsJVX2hEWa1chwtCCE0Kacho
-         Vzbg==
-X-Forwarded-Encrypted: i=1; AJvYcCVc8haJRHfr/B0dWufjbUF9LURDzcS1rIs/jx873GVELiYVyndmGi2fmtApkjALKzJ+/TeSCHrRsG0L@vger.kernel.org
-X-Gm-Message-State: AOJu0YwO2IlRssZwEE3kpG+T9qaNu5gS95+txiBRvmwyABYx5Hl1VGS+
-	enFcFC0wWjFE+hGJd8Jj9LVl0jKICZTMm2XH6N3VQ8F2E94Tj83dPGj+3OkvDHkcxAE=
-X-Gm-Gg: ASbGncsPK84swVaPB1ixbk0xC4El2qBAKV5RK947oZFu3ieX3t9/uSrfE0ACmJYdOmT
-	0lSiRXS605VHkV2s9hoHSXWDD/QMBoB/Cp7vEoU15vTbLEWxF+/kYY6X2dzYCqhJRBDsCaKzs0C
-	YUmf4aLJzO/A3KoWHlg6dV4wOx2Ge2fe9LZodKyMTx6JEHyc42ZSGdMYyS9Y2mQHXzg5IJH2vKe
-	w5/CV/iagX4NdTu0ma17nWVF49ws0bqGzr9NgKby5v2frRvdllGt2lleJ7b2tG4xVAer/Ujt+Vs
-	3ou9dJXqvjcX0Oo14FWfUGSrzdZyndSwhxmhaMBnZyhMwkAJ7exTHT7x5yl2P7VOpM1MqbHyfhF
-	ZFCiZ1DZnyz2+0YNb3H9j/I8m8cQc3IE2SAMoxVf1xDOKo2EzSEPTxPUEFgAamlT1H7bi6jZFVW
-	/VdLAFhPGwmfucddUdAcNCDjXVaf4lttlWtL1d6yIH+eovfsTzorH6dyc7y/kC
-X-Google-Smtp-Source: AGHT+IGx3mc/Rz3SDW3zPuI+4+eMrrwhqJj6Kmdxvwlw5NVA4vxWo2y830231IUxYrpJWGKOWMA9pQ==
-X-Received: by 2002:a05:6808:1903:b0:450:b0b2:96ea with SMTP id 5614622812f47-4511572ee91mr4339658b6e.1.1764005900291;
-        Mon, 24 Nov 2025 09:38:20 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:1f0e:7ca2:8633:22cb? ([2600:8803:e7e4:500:1f0e:7ca2:8633:22cb])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-65782b4cc31sm3661246eaf.12.2025.11.24.09.38.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Nov 2025 09:38:18 -0800 (PST)
-Message-ID: <531c2dfa-b96b-4fa2-ac45-4a5be14fafca@baylibre.com>
-Date: Mon, 24 Nov 2025 11:38:17 -0600
+	s=arc-20240116; t=1764005982; c=relaxed/simple;
+	bh=a/dt3SO0IBMPj/ZOG+botHjprn85wxhaFe5Ue9Kxg1M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qAtG+yxmEv2Rr/SaRkhs9S+EHm4UAsJ+guMLFt9JOcNtg5KajZEz0oX1rld+27cRRrGanV4pmSvMEUAKw/MmUcjLr/SJBftRopNpH9OGRCldglFMkydf3FmpVfTIK72qCrNvCc+Y98VVl7//2PaZgDR8yfHoxHutydY2EJk5S4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIoO1afY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37583C4CEF1;
+	Mon, 24 Nov 2025 17:39:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764005981;
+	bh=a/dt3SO0IBMPj/ZOG+botHjprn85wxhaFe5Ue9Kxg1M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fIoO1afYA8NKsyxJwtO2RCIaR4mTKYx07g+3YPaDFb3cghv5WctAgyUiQq4WevK8L
+	 3XcoWIem/vQObIj81EEWaoALnsF/Ice6yZ35tKRLWsq+/9/DOPMCCA6kgcdjbxLNsv
+	 ggVDrbei64+ecVzOOFEPiI8aSyXtZk/Asshh+kmz9VxYcpnNuSpBhpREZI5AvJMzU7
+	 pHdYgV/FMuidVydA+sYtM9HwA/1pLW5CxYPF3dhmzwWyw+yFc1mfL8DeFPmD714VsX
+	 ktvWf5mtpM9U+k7rucyVAHtMaxGxMlHSaPd0LbzwtyHlsEacjGU+aMB/7IEHL8myiI
+	 8LW5U8kWOZung==
+Message-ID: <d578fc15-261b-456d-9887-f15417084943@kernel.org>
+Date: Mon, 24 Nov 2025 18:39:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,61 +50,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v2 0/2] iio: frequency: adf4377: add clock provider
- support
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
- "jic23@kernel.org" <jic23@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20251121095933.19032-1-antoniu.miclaus@analog.com>
- <37d15b55-4483-428f-9950-46f1b0ab2a56@baylibre.com>
- <CY4PR03MB3399892478516DB8724CDF549BD0A@CY4PR03MB3399.namprd03.prod.outlook.com>
+Subject: Re: [PATCH v3 0/9] Verisilicon DC8200 driver (and adaption to TH1520)
+To: Icenowy Zheng <uwu@icenowy.me>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20251124105226.2860845-1-uwu@icenowy.me>
+ <374aa38b-c16f-46da-985e-266fdfb4c717@kernel.org>
+ <24a3104c9879519c70554510766aba98afd663e7.camel@icenowy.me>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <CY4PR03MB3399892478516DB8724CDF549BD0A@CY4PR03MB3399.namprd03.prod.outlook.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <24a3104c9879519c70554510766aba98afd663e7.camel@icenowy.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 11/24/25 6:09 AM, Miclaus, Antoniu wrote:
->> On 11/21/25 3:59 AM, Antoniu Miclaus wrote:
->>> This series adds clock provider functionality to the ADF4377 frequency
->>> synthesizer driver to address user requests for controlling output
->>> frequencies from userspace.
+On 24/11/2025 16:23, Icenowy Zheng wrote:
+> 在 2025-11-24星期一的 11:57 +0100，Krzysztof Kozlowski写道：
+>> On 24/11/2025 11:52, Icenowy Zheng wrote:
+>>> This patchset tries to add a driver for Verisilicon DC8200 driver,
+>>> and
+>>> demonstrates the driver on T-Head TH1520 with its HDMI output.
 >>>
->>> While implemented as an IIO driver, the ADF4377 is commonly used as a
->>> clock source. This patch series enables it to function as either:
->>> - A traditional IIO device (when #clock-cells is not specified)
->>> - A clock provider (when #clock-cells is present in device tree)
->>>
->>> The implementation provides standard clock framework integration with
->>> rate control, enable/disable support, and maintains backward
->>> compatibility with existing IIO configurations.
->>>
->>> Antoniu Miclaus (2):
->>>    dt-bindings: iio: frequency: adf4377: add clk provider
->>>    iio: frequency: adf4377: add clk provider support
->>>
->>>   .../bindings/iio/frequency/adi,adf4377.yaml   |   8 ++
->>>   drivers/iio/frequency/adf4377.c               | 119 +++++++++++++++++-
->>>   2 files changed, 125 insertions(+), 2 deletions(-)
->>>
+>>> This display controller IP is used on StarFive JH7110 too, but as
+>>> the
+>>> HDMI controller used there isn't as common as the DesignWare one, I
+>>> choose to use TH1520 in this patchset.
 >>
->> When doing a RESEND, please add a note that says why.
 >>
->> Also, you still didn't include the clock mailing list or maintainers,
->> so I don't expect this to progress since the last time.
+>> That's a v3, so please kindly always write changelog.
 > 
-> I forgot to mention in the resend patch, but i missed some of the changes 
-> when i sent the first v2 series.
-> Should i send a v3 with the mentions + clock mailing list?
-
-Doing a v3 with a proper changelog compared to the original v2
-+ cc the clock list/maintainers seems like the best way to me.
-
-> Or do another RESEND PATCH for v2?
+> Well I list changes in all individual commits.
 > 
+> Should I merge them to the cover letter the next time?
 
-No, I think that would confuse things even more.
+No, it's perfectly fine, I don't know why I did not see them. Sorry for
+the noise.
+
+Best regards,
+Krzysztof
 
