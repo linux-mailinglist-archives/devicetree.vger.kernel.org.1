@@ -1,178 +1,169 @@
-Return-Path: <devicetree+bounces-241740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA0EC81CE8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:08:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8F3C81D00
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:09:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4D0E3A2015
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:06:18 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0BE3E3425FA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A65B31329E;
-	Mon, 24 Nov 2025 17:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4485314B84;
+	Mon, 24 Nov 2025 17:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MwUJyBAz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="E2E9pH8g";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Hdrqmdvv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D40274FFD
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2A9314A9B
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:09:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764003977; cv=none; b=aVPjKO5xmxb0BBH89/9T2E/IjgAWS+mjUltVmBT5iwVopk3L8/+LKvdmrLPZYUgkyw8tlWerF5USOGVjFIO3Fo6Hy4Pj817v3SWxtBc7G7l4jEE96zqS1ODlfN4h5zY9M38XSzDYGp2PGb5U/+wK5Bz6vPK45pygOgbVuTHG6bk=
+	t=1764004147; cv=none; b=ZbhD/1nW7TBOAS5anmd2VxJ+hKkgI9jYjmbS65cgUgsdJ1Lmx+TTO/Q6ueKA4YLtB7jMENFslUDDcAjetKNifVPvBJCRRayxqkvqzx/7aN9obH8whNUlGgOtTzx7brpj85Iq2HVnkkaHme/d1ZYxNEVlFMgMv6XUMf66KEcD7gE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764003977; c=relaxed/simple;
-	bh=JYk0DlsmrYkHa9pnunJP5MMBiIh8+pvQoxXtIvOuszA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JUBTHXFRwYtCnnUXTGBgXQNGcUwGvOOf6X666/12qavmARk9x79raS7v/4ZbZWuStU53EmR7HBBwsZwcpzIARi8wHg55mKzBLVPjpN7wb8hZp9uA4lWQY/XOW6HA18OWm0aKd0VzWrhiRaZdawWgA/OUHGyF73fiVnv8uROx3ZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MwUJyBAz; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2953ad5517dso56108435ad.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:06:15 -0800 (PST)
+	s=arc-20240116; t=1764004147; c=relaxed/simple;
+	bh=GEZkILBQcZuFuSsamTbUDcv0GlYXt84BAbmPewTcedI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FhMgUAFqwNSyLVhDkcjobPRPnNx63L5OBzNPFmhaz8eVGbXPU+3loPjrHkAMB5qP7forJcuPZS1FGbNOlPJdJfBvH5Q+cFgriDnXYIKwKs/98k3Wnoco5H7Yrg0ZmgNgdxv+7A9pxQPLJcIFxYXPvo2J2fU7AnKlrPYASXpZLqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E2E9pH8g; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Hdrqmdvv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AOFuTxg601524
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:09:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=nTaVdnsOVRgvHNDCJYfyB4
+	IZrgcK8LINikYhlVDs7eM=; b=E2E9pH8gGAo/rOGaj53YBawMLhuI8QuH/D6bUQ
+	lL4XkXOG5XMO7m42XtJdpkXXl1F549Ak64vXMDKStIjejuXAYn6ZFPSGFj3BM4Qg
+	/UjoCRMiDfaQUwoJKvknqsZcsKueJSpqANac4mv6O4VNSbV/7quXsiVDS1cAHhRD
+	sKkYanzWV6c9+C2yOFHEFxkm0gzXM7d3/ZqSalmx2ios76WiK5kn8kC89IexiZv0
+	c3q9hwG6P0Omv8DpJi7o/Iqf78bx3d1E6pgwZrnK+hFLMhQ2EMWYIuNn4TgkeKSw
+	jaEHSqra+WVCB+QwPi7dRNCn8q5NFPzlr4hFcmzELRK29Tkg==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amqpe0rjm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:09:03 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-295952a4dd6so56621775ad.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:09:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764003975; x=1764608775; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gnHv7SSUkVZXm9MlHQF7vnbKRHnkGY//zn2BWH6fbi8=;
-        b=MwUJyBAzQ9279jRUYy/gey3eDSFddfZgnMDp1XBvmQn2JmUMyA94hFPzfFhvrTxi3A
-         cJj8Wlz3fXhfF1diLtyLd0BBm+X4O57exrGlyqWjKStfYkF7WEGCcg7+hvEeF7ZWP9Z9
-         Li6zEH1tyiNYBB7rSf9Lp/eIIJ9Rnk8JbKeesmrEd/DDc7RDx6LkqhTvo/oQIMGA1MeV
-         4wOoUWi7jhf9NoEjlpkwIZTFhV+Gm8wEOlvFIX2DqJda7DpKTjvHv+8QoRT3UMLxK7XW
-         X9D0JAadElptu76pPK0UGsiRf7D090GanoeURyTrQfBWkJdLWnsO/n8/VEkk5yH5JeaJ
-         7ekQ==
+        d=oss.qualcomm.com; s=google; t=1764004142; x=1764608942; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nTaVdnsOVRgvHNDCJYfyB4IZrgcK8LINikYhlVDs7eM=;
+        b=Hdrqmdvvpo28CXbITqXxG6zxIJhuqqAwB6yPz6gnW5CllfeinJgxbvaXVwzZVc1A7O
+         kPVHepIGPxZilyH5tL7C7MApbcGRkDtPnQXHSB8xr+Wv9NV+esSQ4o8oxOm7Cl3eMwRw
+         IMVqHAlrhrJaTAskSgNVgpQepCSt4S1opcqbUgMmLUQ+NvML1OCuXS1EtBQXgxavPrH8
+         QaB1SM1uOlkzjiJslX1yohaTIE/tyQPZgbyiRbpA/A4uXlQlZ5ro8ihDU/3yXMP8+uGU
+         LE/fE/niI5s5RjEnbtL+9wFDvc1hodYDZisI0LAJZFK7J2GkpQCYJc2KvSIeCWUipymZ
+         yH3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764003975; x=1764608775;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gnHv7SSUkVZXm9MlHQF7vnbKRHnkGY//zn2BWH6fbi8=;
-        b=AH24uxATur64Lwsyw1dqsSC3DNF/ct65sOGM0zUiugZca2jBn4HPxEh6WzQCE4BoGn
-         VB8qwqUXWwMGWr6KvZgEBAMiAYm0rnF48f9iA1hshqiqS8I96zWXGDXJqmX53lGXwiDE
-         HzZoMF318Vwu3i6IclbHGInL8lp3SSVAjKaWiNcM58zAf+MBlmWl+pDgUMbM0IxuXNDg
-         lepy7Sqboqv8MQ9P2eCSSVs3RhzXgUnmmjjYKCtD/UVHvFsjo0+nIO6cEvVBvxY89T8U
-         JJ+vW66IO9InmbGiCgI9A7VxhxI1xwTEAYxvVXwduRTEI7BMUa7U8kVMmc4MCz5qm3O7
-         BBdw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+qFmvpR9zpMD9ZIeGkduTRLp0XScGpxrd7YiA0eLFHrZuq3GGV7KZ31qiPDH2AYI6nUJGkfsWUTjZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyaq6QfDfoaEKHZ+KDxJSSqr41IVA5uUJ8cI7d7Ve/mJPvHJtZS
-	wHqZFWV6o4zmGBsuVoIfbHPqAgsBOSOv6jMk2bWDt6Kuvkho+vrqN8L7OEIst3tmtqk=
-X-Gm-Gg: ASbGncuo6PtR1KKw3E0eAYyHHFJvuf5KjwtvQdlQFZanf5WTCSoXo2UsUJln5z3PCb2
-	Cy+08pueuILWBZpPJBD4xr8CN98Da3YZZ5mNr3/n46xUMKuyZFXY5nBM/mskruKIGl5vqXYxGW9
-	Vs7G49TGP+tiIGaoDNoHwaIuj/1Ruo30EfvlOdIimkfyBetzVy98OMxoCUc1xIbcVvC5Zp/Z/Tz
-	a0oZSm4oD+vsovlRV7ZAywGIWm2n7F6XQwvDoJxXsmvDwXZmqMe5gxBtoW20WZtuGDP4uTYtEUP
-	bQiBWFxTruXgmM+2IsT2L/KBB3zDC12XewChpp+nMQK+wp2HGxqjsEqnFfd70tDjUUsAejAS0j0
-	P9uGeeGj4PxCAVDMRguJjKupURaxaN2iMIu1jSZaDpR3P76iQ5Dfy9Qc6zWj/Hcx4GFB4O1rj3e
-	buPaXDTGY3aRhg62cbsmeyth/6
-X-Google-Smtp-Source: AGHT+IFFll1ZBv/7+NTNtf66eRKGB3OEh6EXFU3EYSb6koOyW950nZNuI/PfU8U/2nZsnDgImLDneQ==
-X-Received: by 2002:a17:903:384c:b0:27c:56af:88ea with SMTP id d9443c01a7336-29b6bfa1f66mr134598965ad.60.1764003974768;
-        Mon, 24 Nov 2025 09:06:14 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:aebb:f23e:8a7c:d95d])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b13965csm142296595ad.30.2025.11.24.09.06.13
+        d=1e100.net; s=20230601; t=1764004142; x=1764608942;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nTaVdnsOVRgvHNDCJYfyB4IZrgcK8LINikYhlVDs7eM=;
+        b=pQQ4fOpLPfXJge5sw6v5tthglgYF0OvCI5Fc3t4l34INzQ+WzL8b6IIJdsNL9A7iyK
+         nndAhqRSdxmjqputYfHIPNBHLfHeu2afvh/IgaA5yMtAhQmSFFA7lY3Wm/1v0RYWtWsH
+         mMIGKtc3CIhSkC32lEShwAoGqqfGnQRGtf6ZouL169Jw5jY7BctK6/t1H+Ca2BQ7qvx8
+         /opsHw+HdIgkwBiqtnsqUOzCLr0mv5dMaTciirqoIgn/xMQdifYYhhIqOXh4VqkR8bkS
+         tTAgwhVE6ubGC3CG8lz9JHbhcZQ/4RZISGtBAvD81erhFYzL7k88rYhqi35pMlJkqusI
+         nnmg==
+X-Forwarded-Encrypted: i=1; AJvYcCW29yIVfYgNSLPShA9gkCrNSqfEK2HhcWDZYha0ky7WAIr8hY1OB/pWYw8wSb2S2Kcf04cThDkq8U01@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+gzmg8IhN40AzqTR6KPCvjInEah0FOpnNaePIro0qsYeFCloG
+	ugjKzl+ku/RhP3xWYnYudWO7iNsrvk7rv5dB8NZr6F6SUqTYM+oraPzeJ4kBaGCzeOiGu7owI/v
+	J/ze/EF5DSNjK1Kv6CDuh+MCGIREt3tR1qdsY0nS818FTvjPzasGUOGDRNvZetLhB
+X-Gm-Gg: ASbGnctG2WT9D1YPcyPGzZzXzIIjcqy5xll6QhjvkMRVFiZ96PHvTQWaRxturZupu4m
+	iKwOq6s6X6mAmSpp/GNM7hfTEkwEfA66HVQoAYCdTrvngF9Upbvh457TaM1A5cFHbEkJ788uqTG
+	4IqLgTPm3hhoAYHUUKIJZn1Ts9A/0PlqHT7aWjZJBysBFUymamC4O3U/GagrNeP1S4sFdgCLY93
+	ZqFSR0kj0PuoM5JnXGrXP4eoRyvLbdqp7UMX0/H7pHEPHMvkp5zIC70zPYteQKEwC6W4Gx+h8e8
+	Itbk7mbt7Jr49P4C6UuwKwFyC9yImU2IRQ6IB6jq26NT5o9K7DpVOYOWqCnJS0RWYYbTsyFh30k
+	E/+2FFkD9stJ16qxbbcOWfOvvjvSMJWngviU=
+X-Received: by 2002:a17:903:2383:b0:295:557e:7468 with SMTP id d9443c01a7336-29b6c00b02dmr140316575ad.28.1764004142110;
+        Mon, 24 Nov 2025 09:09:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFprP6rxA6/T2c4BwZxvgggU1iahHX7R3rpt90bPcjZsWL3XHIYeUVXg4tgCLb6TIFSE6gKzw==
+X-Received: by 2002:a17:903:2383:b0:295:557e:7468 with SMTP id d9443c01a7336-29b6c00b02dmr140316175ad.28.1764004141639;
+        Mon, 24 Nov 2025 09:09:01 -0800 (PST)
+Received: from hu-hdev-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b107effsm143949275ad.14.2025.11.24.09.08.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Nov 2025 09:06:14 -0800 (PST)
-Date: Mon, 24 Nov 2025 10:06:11 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Shenwei Wang <shenwei.wang@nxp.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-imx@nxp.com, Randy Dunlap <rdunlap@infradead.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v5 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
-Message-ID: <aSSQg22Kt-565T8S@p14s>
-References: <20251104203315.85706-1-shenwei.wang@nxp.com>
+        Mon, 24 Nov 2025 09:09:01 -0800 (PST)
+From: Harshal Dev <harshal.dev@oss.qualcomm.com>
+Subject: [PATCH 0/2] Add TRNG node for x1e80100 SoC
+Date: Mon, 24 Nov 2025 22:38:48 +0530
+Message-Id: <20251124-trng_dt_binding_x1e80100-v1-0-b4eafa0f1077@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251104203315.85706-1-shenwei.wang@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACCRJGkC/x2MQQqAIBAAvxJ7TnDNwPpKRGRuthcLjRCkvyfdZ
+ g4zBRJFpgRjUyDSw4nPUAXbBrZjDZ4Eu+qgpOoRlRZ3DH5x92I5OK6YkYxEKcWgacPddKiVhZp
+ fkXbO/3qa3/cDZ4KccmoAAAA=
+X-Change-ID: 20251124-trng_dt_binding_x1e80100-94ec1f83142b
+To: Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Harshal Dev <harshal.dev@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764004137; l=599;
+ i=harshal.dev@oss.qualcomm.com; s=20251124; h=from:subject:message-id;
+ bh=GEZkILBQcZuFuSsamTbUDcv0GlYXt84BAbmPewTcedI=;
+ b=bHOePMxySrpnBKqm1UMiYIn/NHf0e2w6to4onexOLo6gutSKTgjyDZ70ChhmcigO5wvs2b/Y4
+ U+vgnJrP+WmAdqJjAoVJj+9AMX6Uko4WAUnsCCecsxTXfAq5846jAUp
+X-Developer-Key: i=harshal.dev@oss.qualcomm.com; a=ed25519;
+ pk=SHJ8K4SglF5t7KmfMKXl6Mby40WczSeLs4Qus7yFO7c=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDE1MCBTYWx0ZWRfX61g7zUUQqT0D
+ DwO7YxU5JWoH83+yUcaU64Fi8H7MbWzkQ5YETdvnnlyNmFHhJ6mkCUSzGI/d1xVlcZG/nbudGrz
+ 8XKyGJxT0JmN6EE7/XT37RuOoOlsQbgKIERXeMoMm0PG5bMyr17KHehTRKArzJAntLyQEwIo2j4
+ oN5ts5RCcDiWDD27zX6Uq3ho4NbtVMFfEgRaC49qSgAB4CMCLkPpKX6JG/hp3toz7eNK2MHsQ/G
+ BCr8qk2YYZc4ap3TxW1tOQlDJOZBT3baCHgnY4zD9wHRlmUHQ1OQWyFiFA4q9h3z5e4l4ZnxXO4
+ wOqyJDOthHbOiVE8zbD3TFCWGBP4uBtSrmOQBJsB0eyPMchmhorc6IEkuYAylEQjDwcWW0CS8kD
+ NZsG2XeeUaCbAaYj5/BbNqme877Cng==
+X-Authority-Analysis: v=2.4 cv=OYuVzxTY c=1 sm=1 tr=0 ts=6924912f cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=6ZNt1lSE2E78l_tYFJ4A:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-GUID: FAyfnNcHBKGDN6ZxsMCuYK99Y-lQE5_C
+X-Proofpoint-ORIG-GUID: FAyfnNcHBKGDN6ZxsMCuYK99Y-lQE5_C
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-24_06,2025-11-24_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0 malwarescore=0
+ spamscore=0 clxscore=1011 bulkscore=0 suspectscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240150
 
-On Tue, Nov 04, 2025 at 02:33:10PM -0600, Shenwei Wang wrote:
-> Support the remote devices on the remote processor via the RPMSG bus on
-> i.MX platform.
-> 
-> Changes in v5:
->  - move the gpio-rpmsg.rst from admin-guide to staging directory after
->    discussion with Randy Dunlap.
->  - add include files with some code improvements per Bartosz's comments.
-> 
-> Changes in v4:
->  - add a documentation to describe the transport protocol per Andrew's
->    comments.
->  - add a new handler to get the gpio direction.
-> 
-> Changes in v3:
->  - fix various format issue and return value check per Peng 's review
->    comments.
->  - add the logic to also populate the subnodes which are not in the
->    device map per Arnaud's request. (in imx_rproc.c)
->  - update the yaml per Frank's review comments.
-> 
-> Changes in v2:
->  - re-implemented the gpio driver per Linus Walleij's feedback by using
->    GPIOLIB_IRQCHIP helper library.
->  - fix various format issue per Mathieu/Peng 's review comments.
->  - update the yaml doc per Rob's feedback
-> 
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: linux-gpio@vger.kernel.org
-> 
-> Shenwei Wang (5):
->   dt-bindings: remoteproc: imx_rproc: Add "rpmsg" subnode support
->   remoteproc: imx_rproc: Populate devices under "rpmsg" subnode
->   docs: staging: gpio-rpmsg: gpio over rpmsg bus
->   gpio: imx-rpmsg: add imx-rpmsg GPIO driver
->   arm64: dts: imx8ulp: Add rpmsg node under imx_rproc
-> 
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 123 +++++
->  Documentation/staging/gpio-rpmsg.rst          | 202 ++++++++
->  Documentation/staging/index.rst               |   1 +
->  arch/arm64/boot/dts/freescale/imx8ulp.dtsi    |  27 +
->  drivers/gpio/Kconfig                          |  17 +
->  drivers/gpio/Makefile                         |   1 +
->  drivers/gpio/gpio-imx-rpmsg.c                 | 475 ++++++++++++++++++
->  drivers/remoteproc/imx_rproc.c                | 146 ++++++
->  include/linux/rpmsg/imx_rpmsg.h               |  48 ++
->  9 files changed, 1040 insertions(+)
+Add device-tree nodes to enable TRNG for x1e80100 SoC
 
-I started reviewing this set.  Given the size and amount of comments to go
-through, it will likely take me several days.  I will tell you when I am done.
+Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+---
+Harshal Dev (2):
+      dt-bindings: crypto: qcom,prng: document x1e80100
+      arm64: dts: qcom: x1e80100: add TRNG node
 
-Even at this early stage of review on my side, I can already confirm the only
-way to move forward with this set is by reaching a consensus that includes
-Andrew, Arneaud and Linus W.
+ Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 1 +
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi                  | 5 +++++
+ 2 files changed, 6 insertions(+)
+---
+base-commit: d13f3ac64efb868d09cb2726b1e84929afe90235
+change-id: 20251124-trng_dt_binding_x1e80100-94ec1f83142b
 
-Thanks,
-Mathieu
+Best regards,
+-- 
+Harshal Dev <harshal.dev@oss.qualcomm.com>
 
->  create mode 100644 Documentation/staging/gpio-rpmsg.rst
->  create mode 100644 drivers/gpio/gpio-imx-rpmsg.c
->  create mode 100644 include/linux/rpmsg/imx_rpmsg.h
-> 
-> --
-> 2.43.0
-> 
 
