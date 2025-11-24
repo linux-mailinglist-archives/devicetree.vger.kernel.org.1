@@ -1,223 +1,223 @@
-Return-Path: <devicetree+bounces-241518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E0AC7F7A6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:10:13 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9B1C7F7BB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:10:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 27E483481C5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:09:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DE1AC4E34DE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6B62F49F2;
-	Mon, 24 Nov 2025 09:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB8412F4A16;
+	Mon, 24 Nov 2025 09:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X9EVSicO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RrEXWkJq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D962F5302
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:09:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2912E7F1D;
+	Mon, 24 Nov 2025 09:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763975369; cv=none; b=MQ/UGJ8XHH4i2GQiTKmHX5A9t2dLuOn7voLJXSJ/mLtbvl71/5rN0MxqeIpM2H0Pq0eC8K7aY9NODm00Vs1WktjHNWqzEmRSCGTyFErnb8nlMG+Ln0qHglJTxY7NCqwMkJ80Q0nA1DGNxr/CKWlJ2HESxHMXzjz7G/P4dlreykI=
+	t=1763975440; cv=none; b=A8JKlpvHIj7ZN8owGL2TF5J/sGqDQYoZs2Cn6ZeGG0wt8XHj0OQJX6DK6lJlOejS942MBC0AV3nfzIBLGnk4Wj3VJN1MyxPZGOa7ef5e79F1H2wsVK0JrVGO4Mau8viAVWxse0w0ka/i99li+2m60c6xl9AgMa7z4kORzJYxm+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763975369; c=relaxed/simple;
-	bh=7cucVKRF1i3U03wQQZLLaXMd6VYekFa/vhwxJjBb0wM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=UAAOpqdztp3VmRVNd1OsN80SWUZWClZPsyZCUqb4o5U0KwwkbUW028pDlbPvSyJ5RY0URuY98ydn4ySpT2+BFGDOebAdIYdKbBt6oZB2B8x9soQCdAyYRR5caZbhWDVUgvJ7Nv6wntgWcgYxsMvFvFgWwA4bHyDIFLgpz7juj6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X9EVSicO; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-42b2a0c18caso2458124f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 01:09:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763975365; x=1764580165; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=OvXHuoRgH+XIUx292dJAYC+bXU3Y0ChyF2IbAzcMS/Q=;
-        b=X9EVSicOG5kFedBvxTqDIIeuZHrgVhbmsI9Le4AlBj6Ihivl6ynbpfuufKRyy1ex3s
-         jx1nXKjlbLynhnWJUpG31IwszI9yHnUsGs3Kafbm7Gdx+oTA71dMmslVU/2YxUCf9z8L
-         8zbtDaUkx6Um0kcRoEOVmKxv/F+4/1OmtjIH6ESm0NxDivD3Q6SklCKmb/cQl9S33MKg
-         6HrSjIAXyAKgEjNPuBjYqirBPJ5pprxr4fX6mkJL5cHn1hgvRbK0pOlZZk5PVythSGy7
-         Tf4plCwzPYl8NmAzDJ90x6dzXZkBviqbXTHrqHh7nj9AYr3OmLlwKyUIBfd0n3WN/Tj4
-         m9Og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763975365; x=1764580165;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OvXHuoRgH+XIUx292dJAYC+bXU3Y0ChyF2IbAzcMS/Q=;
-        b=iRFfpeq21zBDQ2uSdfHLVpjwo2R8rORavBfWEBhEE77Q8qSxIpW3AomEiTtwhVrTa/
-         sedI82zSK0s5/ZKZxZfRXaFfwtcrR2b4jDIvoxqC8jWGV13vT1gPG/5VCocYgaKeJS/d
-         F7MKj3Ind6E3Z+416JKIwzGQu6VZS5IPcNq3vOIFoXrF0yhBl12JGyHPczoZTbnSXMm4
-         gGKsBxvqdVmu7kqfYChDFeIxQDhw+oj0fGCvCxvZ2U9V6A3z7Pflhlj2ZokSBjyeuPgn
-         PAdFn+i1mQFZLCBrhHe2OldyL6t/Ov6em2/lATMHjnXwn0JgG03xXo0xM7U/UcOhyxg0
-         5eEA==
-X-Forwarded-Encrypted: i=1; AJvYcCUsj+ol+OBdat4POKiyMY+fhbd6T3X/yGCEoo+rt5oPU4wt8kjHLXWLSilavJOTZHeiP/cK9oPNkBy/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxP/5gdhUQhNrjjV6TdJnfvpkePFEwZGK0SWUGUsOitRwZnPOX
-	wthHiBBiZWStq2PiHW3ERJV8n3DAoxQ0fcxKHUhcq6OdrGjL4zsotn7hJcbiXg44D2M=
-X-Gm-Gg: ASbGncubjhC/LqJY/GRvIMXWOfTwWLjQSG9VDhS9rtLA4Rc5oByFS5ngf27k3CWFsy6
-	Uv9I6WEhZ461NNJGzhJeIChd2jn+rGjh3PTy7yYNn3psoPPnU0Cb3iTtcQ/5e+jc4EObp8fd5BN
-	zqYLr+e61hnPkHhqSa6NPpppWhRZmZgxFPgzYPQLNWP9Co+gx/fAX3KbT83aLo0mi0pEBs1UR/b
-	RfrIUsM+ivAmpLINz59AsZE5I5upl6jGlHkZZEVjV0c0Vch7WqLs9c/A0k4Ri0Hl9m8vgs5dnDu
-	NKiDVL8C6j22wWT+h+c67Do9BkkHKPUVi8a9V4dR25BbGgbMK1cgYLXXUKYWg+J24WhWfWsJBq/
-	0IyJxAgFzg8TC/q4n8NhefXuWC9jY4pj2M0J+tyI+gp91x9YU24Sg8k7+xsLtqDoEW6Rdj8qb7x
-	2IwMbRrTmxKP3lS47WUg==
-X-Google-Smtp-Source: AGHT+IGb2anSnU9yUNqdmZbv+SeaRHh1StnydsjMu/nMg2MY1ixTXj9wwNITrqgGCjoJ7tz/T/jZVA==
-X-Received: by 2002:a5d:5f44:0:b0:42b:41dc:1b58 with SMTP id ffacd0b85a97d-42cc1d19957mr11009024f8f.45.1763975365182;
-        Mon, 24 Nov 2025 01:09:25 -0800 (PST)
-Received: from draszik.lan ([212.129.72.170])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fb9190sm27162766f8f.33.2025.11.24.01.09.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Nov 2025 01:09:24 -0800 (PST)
-Message-ID: <9cad7b42dbfea351fb3b708736bf6f6715bcf694.camel@linaro.org>
-Subject: Re: [PATCH 6/6] usb: typec: tcpm/tcpci_maxim: deprecate WAR for
- setting charger mode
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
- Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
- Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Date: Mon, 24 Nov 2025 09:09:37 +0000
-In-Reply-To: <20251123-max77759-charger-v1-6-6b2e4b8f7f54@google.com>
-References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
-	 <20251123-max77759-charger-v1-6-6b2e4b8f7f54@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1763975440; c=relaxed/simple;
+	bh=4Iw4haa9AZ75DSrYve0C850xo3Bln3Ujtshodh10r8Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GZgeHp3wZ6EcIB+bfO13lHBFWz79449F2GseZSJa8+T7Ni2HzguwOvpUAjeOeXzldCHtZoU1NVB6toQhjpNGZ2ZoN8HGEKHRB9xEAM0g5fjFvU3q/xGwaJpUy4RjKTJJeZjoT/PpoB3ak2nibMckaXl8B4RXshhjS6K00Sxxlu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RrEXWkJq; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763975439; x=1795511439;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4Iw4haa9AZ75DSrYve0C850xo3Bln3Ujtshodh10r8Q=;
+  b=RrEXWkJqEHms8XUXktguL5F75YEyzbF59RUTccKrFSEMzuIJSA+Na2j+
+   31FM7o9YnzDUfxKYTPKkDL2Alr31Ak62Byowge9Eb/YbTAEHSMYLNOyW/
+   gb6wEdaz3uHtDk4KDolrm3f3b3MweW79fNZVnZiMpZXq4hasm8nV2nN71
+   VtHA2f2PACRaRwwC5S6gxRnqiEj6KmGkfb7he5cfvydH2zR9OhIZxZ2Pz
+   l61q4muIAZgUA44ArB1Kjtb6wvaAChGBIZ2JOgMbN4qsk62iBPeW/Bobe
+   ENsz+W3RjLR6ZAudAmGHSlKVcFkyAeb1tYURr8+gL8ywpVs+KAYA+jeAF
+   w==;
+X-CSE-ConnectionGUID: hrHvm2S4SBO0bJNBhO6/4A==
+X-CSE-MsgGUID: hT5BmZ1BRo6HRe1W46VY0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11622"; a="69833878"
+X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
+   d="scan'208";a="69833878"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 01:10:38 -0800
+X-CSE-ConnectionGUID: Dso6PzEeTtioHJeThlGrxQ==
+X-CSE-MsgGUID: AgKA3APWTyqXV4mNT7EQrg==
+X-ExtLoop1: 1
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.5])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 01:10:34 -0800
+Date: Mon, 24 Nov 2025 11:10:32 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Jorge Marques <jorge.marques@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH 3/7] iio: adc: Add support for ad4062
+Message-ID: <aSQhCKBC36T9t-H1@smile.fi.intel.com>
+References: <20251013-staging-ad4062-v1-0-0f8ce7fef50c@analog.com>
+ <20251013-staging-ad4062-v1-3-0f8ce7fef50c@analog.com>
+ <20251018171032.144a126c@jic23-huawei>
+ <ou6qwayt4g7qaoe5dm7tdg6jl5dwquslpfbok6on5r2q2wytyl@wlqxj5y6ircj>
+ <aSQMjZbc75cQtFqJ@smile.fi.intel.com>
+ <o4kt2of4xql4azufjgiecm4jzuexgm6nkvr7aghbwfk6qd7yqd@r4plggehzces>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <o4kt2of4xql4azufjgiecm4jzuexgm6nkvr7aghbwfk6qd7yqd@r4plggehzces>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Amit,
+On Mon, Nov 24, 2025 at 09:57:26AM +0100, Jorge Marques wrote:
+> On Mon, Nov 24, 2025 at 09:43:09AM +0200, Andy Shevchenko wrote:
+> > On Sun, Nov 23, 2025 at 08:48:09PM +0100, Jorge Marques wrote:
+> > > On Sat, Oct 18, 2025 at 05:10:32PM +0100, Jonathan Cameron wrote:
+> > > > On Mon, 13 Oct 2025 09:28:01 +0200
+> > > > Jorge Marques <jorge.marques@analog.com> wrote:
 
-On Sun, 2025-11-23 at 08:35 +0000, Amit Sunil Dhamne via B4 Relay wrote:
-> From: Amit Sunil Dhamne <amitsd@google.com>
->=20
-> TCPCI maxim driver directly writes to the charger's register space to
-> set charger mode depending on the power role. As MAX77759 chg driver
-> exists, this WAR is not required.
->=20
-> Instead, use a regulator interface to set OTG Boost mode.
->=20
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-> ---
-> =C2=A0drivers/usb/typec/tcpm/tcpci_maxim.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-|=C2=A0 1 +
-> =C2=A0drivers/usb/typec/tcpm/tcpci_maxim_core.c | 48 ++++++++++++++++++++=
-+----------
-> =C2=A02 files changed, 34 insertions(+), 15 deletions(-)
->=20
-> diff --git a/drivers/usb/typec/tcpm/tcpci_maxim.h b/drivers/usb/typec/tcp=
-m/tcpci_maxim.h
-> index b33540a42a95..6c82a61efe46 100644
-> --- a/drivers/usb/typec/tcpm/tcpci_maxim.h
-> +++ b/drivers/usb/typec/tcpm/tcpci_maxim.h
-> @@ -60,6 +60,7 @@ struct max_tcpci_chip {
-> =C2=A0	struct tcpm_port *port;
-> =C2=A0	enum contamiant_state contaminant_state;
-> =C2=A0	bool veto_vconn_swap;
-> +	struct regulator *otg_reg;
-> =C2=A0};
-> =C2=A0
-> =C2=A0static inline int max_tcpci_read16(struct max_tcpci_chip *chip, uns=
-igned int reg, u16 *val)
-> diff --git a/drivers/usb/typec/tcpm/tcpci_maxim_core.c b/drivers/usb/type=
-c/tcpm/tcpci_maxim_core.c
-> index 19f638650796..6d819a762fa1 100644
-> --- a/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-> +++ b/drivers/usb/typec/tcpm/tcpci_maxim_core.c
-> @@ -10,6 +10,7 @@
-> =C2=A0#include <linux/kernel.h>
-> =C2=A0#include <linux/module.h>
-> =C2=A0#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> =C2=A0#include <linux/usb/pd.h>
-> =C2=A0#include <linux/usb/tcpci.h>
-> =C2=A0#include <linux/usb/tcpm.h>
-> @@ -202,32 +203,49 @@ static void process_rx(struct max_tcpci_chip *chip,=
- u16 status)
-> =C2=A0	tcpm_pd_receive(chip->port, &msg, rx_type);
-> =C2=A0}
-> =C2=A0
-> +static int get_otg_regulator_handle(struct max_tcpci_chip *chip)
-> +{
-> +	if (IS_ERR_OR_NULL(chip->otg_reg)) {
-> +		chip->otg_reg =3D devm_regulator_get_exclusive(chip->dev,
-> +							=C2=A0=C2=A0=C2=A0=C2=A0 "otg-vbus");
-> +		if (IS_ERR_OR_NULL(chip->otg_reg)) {
-> +			dev_err(chip->dev,
-> +				"Failed to get otg regulator handle");
-> +			return -ENODEV;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> =C2=A0static int max_tcpci_set_vbus(struct tcpci *tcpci, struct tcpci_dat=
-a *tdata, bool source, bool sink)
-> =C2=A0{
-> =C2=A0	struct max_tcpci_chip *chip =3D tdata_to_max_tcpci(tdata);
-> -	u8 buffer_source[2] =3D {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_SOURCE};
-> -	u8 buffer_sink[2] =3D {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_SINK};
-> -	u8 buffer_none[2] =3D {MAX_BUCK_BOOST_OP, MAX_BUCK_BOOST_OFF};
+> > > Mostly acknowledgements and explanations, except a comment on ACQUIRE usage.
 
-You should also remove the corresponding #defines at the top of this file.
+...
 
-> -	struct i2c_client *i2c =3D chip->client;
-> =C2=A0	int ret;
-> =C2=A0
-> -	struct i2c_msg msgs[] =3D {
-> -		{
-> -			.addr =3D MAX_BUCK_BOOST_SID,
-> -			.flags =3D i2c->flags & I2C_M_TEN,
-> -			.len =3D 2,
-> -			.buf =3D source ? buffer_source : sink ? buffer_sink : buffer_none,
-> -		},
-> -	};
-> -
-> =C2=A0	if (source && sink) {
-> =C2=A0		dev_err(chip->dev, "Both source and sink set\n");
-> =C2=A0		return -EINVAL;
-> =C2=A0	}
-> =C2=A0
-> -	ret =3D i2c_transfer(i2c->adapter, msgs, 1);
-> +	ret =3D get_otg_regulator_handle(chip);
-> +	if (ret) {
-> +		/*
-> +		 * Regulator is not necessary for sink only applications. Return
-> +		 * success in cases where sink mode is being modified.
-> +		 */
-> +		return source ? ret : 1;
-> +	}
-> +
-> +	if (source) {
-> +		if (!regulator_is_enabled(chip->otg_reg))
-> +			ret =3D regulator_enable(chip->otg_reg);
-> +	} else {
-> +		if (regulator_is_enabled(chip->otg_reg))
-> +			ret =3D regulator_disable(chip->otg_reg);
-> +	}
+> > > > > +static int ad4062_read_chan_raw(struct iio_dev *indio_dev, int *val)
+> > > > > +{
+> > > > > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);
+> > > > There is a nice new
+> > > > 	ACQUIRE()/ACQUIRE_ERR() related set of conditional guards defined that
+> > > > let you do this using cleanup.h style.
+> > > > 
+> > > > https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9a0abc39450a3123fd52533a662fbd37e0d1508c
+> > > > 
+> > > > This looks like a perfect example of where those help.
+> > > > 
+> > > > When I catch up with review backlog I plan to look for other
+> > > > places to use that infrastructure in IIO.
+> > > > 
+> > > I tried implementing, here becomes
+> > > 
+> > >         ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+> > >         ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+> > > 
+> > > At buffer and monitor, since we put the device as active during the
+> > > lifetime of the buffer and monitor mode, either I leave as is, or I bump
+> > > the counter with pm_runtime_get_noresume, so when the method leaves, the
+> > > counter drops to 1 and not 0, then on disable I drop the counter back to
+> > > 0 and queue the autosuspend with pm_runtime_put_autosuspend.
+> > > > 
+> > > > > +	if (ret)
+> > > > > +		return ret;
+> > > > > +
+> > > > > +	ret = ad4062_set_operation_mode(st, st->mode);
+> > > > > +	if (ret)
+> > > > > +		goto out_error;
+> > > > > +
+> > > > > +	ret = __ad4062_read_chan_raw(st, val);
+> > > > > +
+> > > > > +out_error:
+> > > > > +	pm_runtime_put_autosuspend(&st->i3cdev->dev);
+> > > > > +	return ret;
+> > > > > +}
+> > 
+> > I read the above code, I read it again, I don't understand the reasoning.
+> > The ACQUIRE() doesn't change the behaviour of the above code.
+> > 
+> > If you need to bump the reference counter, it should be done somewhere else
+> > where it affects the flow, or this code has a bug.
+> > 
+> > If I miss something, please elaborate.
+> 
+> The part highlighted does not require bumping the reference counter, but
+> at the buffer acquisition and monitor mode, to not put the device back
+> in low power mode during the lifetime of those operations.
+> 
+> Buffer more:
+> 
+>   static int ad4062_triggered_buffer_postenable(struct iio_dev *indio_dev)
+>   {
+>           struct ad4062_state *st = iio_priv(indio_dev);
+>           int ret;
+> 
+> 	  // [ Some code ]
+> 
+>           ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+>           ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+>           if (ret)
+>                   return ret;
+> 
+> 	  // [ More code ]
 
-Given otg_reg is the fake regulator created by a previous patch in this
-series, this means that the regulator API is really used to configure two
-out of 16 possible charger modes here. That doesn't look right.
+>           pm_runtime_get_noresume(&st->i3cdev->dev);
 
-Cheers,
-Andre'
+
+Yes, this looks good if it makes the error paths cleaner.
+Also consider adding
+
+	struct device *dev = &st->i3cdev->dev;
+
+at the top of the functions that use it, it might make code better to read.
+
+>           return 0;
+>   }
+> 
+>   static int ad4062_triggered_buffer_predisable(struct iio_dev *indio_dev)
+>   {
+>           struct ad4062_state *st = iio_priv(indio_dev);
+> 
+>           pm_runtime_put_autosuspend(&st->i3cdev->dev);
+>           return 0;
+>   }
+> 
+> Monitor mode:
+> 
+>   static int ad4062_monitor_mode_enable(struct ad4062_state *st, bool enable)
+>   {
+>           int ret = 0;
+> 
+>           if (!enable) {
+>                   pm_runtime_put_autosuspend(&st->i3cdev->dev);
+>                   return 0;
+>           }
+> 
+>           ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+>           ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+>           if (ret)
+>                   return ret;
+> 
+> 	  // [ Some code ]
+> 
+>           pm_runtime_get_noresume(&st->i3cdev->dev);
+>           return 0;
+>   }
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
