@@ -1,304 +1,402 @@
-Return-Path: <devicetree+bounces-241732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2384AC81A26
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:44:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE799C818C9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:26:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BFB5F4E2D42
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:44:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8D1084E5A9F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF1729D280;
-	Mon, 24 Nov 2025 16:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E0B3161AC;
+	Mon, 24 Nov 2025 16:25:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="FDRRuZGD";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="UpfJCvMr"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="jrsy4N+w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p03-ob.smtp.rzone.de (mo4-p03-ob.smtp.rzone.de [85.215.255.102])
+Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011021.outbound.protection.outlook.com [40.107.74.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F7628D8DB;
-	Mon, 24 Nov 2025 16:44:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.102
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A93315765;
+	Mon, 24 Nov 2025 16:25:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.21
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764002647; cv=pass; b=LIvhh7cImkQQ5/bf8RxC68gggmKorMmYcwRaWdGOlTYpgaKFMRXPTIMOnL+8chVnT++P4Hk6GuOGNDMXslz5r9A1MIvzbgjSA9dFYVUL0qQ88EywUj3k+kX74bFFIn9Ajd68qIEml/J0sawUH/7BwZH8sDCzOd3Hu3+OtPQHW18=
+	t=1764001557; cv=fail; b=fM2bwmPTIHQnxevJhBzZtBlxwe3+9wGMOc7dWftdI30jATRI67xbmrnBDqDzzrFT0ge4RENDdiNlnj/TKvJNrm3J1PzbOEDyNOAPuVcFkCRIZaimMCn3x21UbyCtPKwpFkfoduptms+fbNLAZ37adQR/BtXZPAvmPkcYyCJ/Gj8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764002647; c=relaxed/simple;
-	bh=YAUaPVN/LGE+6Tp5hwdCL/oWm3I9gZiHnGqVnZITlYs=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=jm3Wx8Ej+cRfg2PsgVJjPTZq0WrMWWcv/IHA99XkxyacY9l6KRiXgiY2+/6Elun7dRduyhM4dR5m+k1IIq50EO5JyhkRtLG0fa/w0k++6M5WVGteq1GZy0rwcRK51zTVO/XyvEmHHZ6ODLn9UCxMfCo+5jzQxWrBy015SJcVSUk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=FDRRuZGD; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=UpfJCvMr; arc=pass smtp.client-ip=85.215.255.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
-ARC-Seal: i=1; a=rsa-sha256; t=1764001204; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=Mi6ffgTzeLDd6by16LVPA9WBGsA3fZVxfsWD+cc37oI6ulg6dD65T95bJgc6HltKK7
-    N4uWDZgtyOZZdYje8gbuVu9T95X4b6tGrirbXguEMFuLjxnmBeIEHwAlx2PfiDgOUf0X
-    Y5unUlSKON44f9TwafsNmg1XK3HCWLwKQQjfA0arXHoDi0VhL9qaRszysZeC26RBdtLK
-    YO6XinkyNSO/eRv4GXglIu2zaNXRdLUGDJVxoPF+Ebn7lEWzAKhSqULCVuldOiLIotTx
-    q8gu653gQC85578icQWFyQi2iHeAZ1lQr+Y9ej1sK6GmFp8zfbiANYXvd+0sRoKehivg
-    eixA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1764001204;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=YAUaPVN/LGE+6Tp5hwdCL/oWm3I9gZiHnGqVnZITlYs=;
-    b=cUCmeEBRlYbwM5vOtKFOqHLCauD/E9W7U80NSRAFCB7CoOMD6R2e9+FINz97vTBUxa
-    EaSR9ryKUBDxRXQpAuCFmDrC0Vlz24ODRPRgx20QLtw0CMv6m9nQcIyaVoFA8Hxfe7Ns
-    oRovNaPokz6MeFJr6evXGsdP1dQAe4qrW7Rhh8UKE+mmCQQTJhJXqs0jPA9JE2TMH1EX
-    +yD6kiySzwCuyWvVMLnxzmucLJJrS/5Vb+Y87JuqTctbDFAEVk5grUxKLv8SBccG9mq+
-    b+y8Oj/N/tdmVhKCQxdC+mP4Lcd2i8XJLq1ejg/w9WMfARWVbl5i+FddPbgbqtCDfNeR
-    mgPQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo03
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1764001204;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=YAUaPVN/LGE+6Tp5hwdCL/oWm3I9gZiHnGqVnZITlYs=;
-    b=FDRRuZGDOWIr7PVjsgzCEoc3WjvlYfn5g1ULeDbZRLMYz5CmpY7CZr3cK7UpgYkx0e
-    MJeOyEuhc+s50fia250GETWkb2KyfPR/uu4luJS0hYtGHVYWjj1C0gj4wgXUQbE8ASZY
-    8cbYgmpw+KOk576zSdy2+AnnWs2yoLYgND53GmUAS0eQCYLLfmWBhCTk49aW9cvhkbHv
-    HX6d1mkeNCVs9FwkkOx2Oz+apKUpgSQwGiZb+KHXhrCBW37hjEaBQ2sr0RL/5DH+ejQ7
-    vB8wAa9r1qfbx9RWiahdkadBDaB5zU34WX42srJQJlf0ZoT8+a2k/5Sm1R8szDOOpyRd
-    RIQw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1764001204;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=YAUaPVN/LGE+6Tp5hwdCL/oWm3I9gZiHnGqVnZITlYs=;
-    b=UpfJCvMrspS72WrTrjWL4jgwZQ8Vv8hqUUkLNHFb0/XXkbAeu7OKuXDGtFnCaVbnqc
-    2w8c+jlmQ0tQ0RvKt+AA==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeT0Z"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 54.0.0 DYNA|AUTH)
-    with ESMTPSA id Qc14a81AOGJvF96
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Mon, 24 Nov 2025 17:19:57 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	s=arc-20240116; t=1764001557; c=relaxed/simple;
+	bh=dCo3I3nZbypq/Cf098jhr0a+BZdv+J74hNwmm9LC+xI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=mjy+ZY0H78rswwAMvC0YYMFgTY1Er8voTq00p6kqEWDvNp6JkQXO+magcQZYdBenc97xg7Bvym1t1nTdTMRfW/Y0LQRZNS2oiV8nE72Pkk3w+8thhcQdApwTpNOo2zpc9ZHTK6Tz1Dqt/LLZoocC6OxAQnSpNaWM4YGaX7jt62o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=jrsy4N+w; arc=fail smtp.client-ip=40.107.74.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CSqReqY2e8NVDd1Z/Un+MyzisriULZdOlXEH939ABBvdBYDeSvpEu1RjnPZQhtCEK5c6eH7S/sX1hlvibsJb7OA85iByp/cZT1tzHrZ0/ktgJzPdq6Mxg6oy86dEx3lMNn+8iLd5dK4hwzI8xO42n/71KHB9AqpluNJkxwsQU+iNfrs9rIUUo3GBTuxwPbwQSwFeHVm8ropSb+T2H/fQO7v64s0+O2gPNw5gEqbXdWe3A+ZYDZ0JiNrzNq1wof71PvRnDUZEqV1mYhMN4ZfezsVMdWImULsUCkbr9priOHYvdYUAzzlvULm7pDj9XSBSuvpKQSEt8UU5pviciT6XBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rV9vw9Z5crKONqDh/mzpBtOeZK2llVZGMHbmpaQXWr4=;
+ b=PKaEGs1FfHwebSWUPZ9Xic9pNbJNQ699QIpWUlmrAsQXTb9OmMB1RZjKw66Kzd8kpvMJv7211tUzTikg/Jm1XF3wtuaaVtPHsf4XE8BMWX32JLyMifS2QovF4ZTlNhQAkvL1lIcYBPJv598BaoyozkhfxFvB0pFeek4CGNMylSv5sHTpZKcOu7Hd4/CVqgdEVSwPNfafsiY+WcyjpeJEpfDg+geibFXW7q8FeCbdv31lDrHIkEzoWDeU+kbnWEPqGbWw+f5Jik3Ycpl4abG1g27zVXoA8V5dyIinFlaqtLRx3oBmZ7+2/f66DbLFST5PRr2UyYt9a2sqMINVwBL/iA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rV9vw9Z5crKONqDh/mzpBtOeZK2llVZGMHbmpaQXWr4=;
+ b=jrsy4N+wpm1ZgAyPL9HtrVptEuBz/M+hnZF2EFLNEoT+3KrEBk1JvOneSDtQRju/vNwG3CC+MXJWd+02vEQxt5E1E4G56lVNIZlv0f9+JxWaCxSPzx4Q3BL9aO2eCfg7DgoG9xVUX/ooI1+pYagmo2UiKg7AlwqXWltHlJQPuSo=
+Received: from TYYPR01MB13955.jpnprd01.prod.outlook.com (2603:1096:405:1a6::6)
+ by TY4PR01MB13095.jpnprd01.prod.outlook.com (2603:1096:405:1dc::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.11; Mon, 24 Nov
+ 2025 16:25:49 +0000
+Received: from TYYPR01MB13955.jpnprd01.prod.outlook.com
+ ([fe80::52be:7d7a:35ec:4b29]) by TYYPR01MB13955.jpnprd01.prod.outlook.com
+ ([fe80::52be:7d7a:35ec:4b29%7]) with mapi id 15.20.9366.009; Mon, 24 Nov 2025
+ 16:25:49 +0000
+From: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Thomas Gleixner
+	<tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH 1/4] dt-bindings: interrupt-controller: document
+ RZ/{T2H,N2H} ICU
+Thread-Topic: [PATCH 1/4] dt-bindings: interrupt-controller: document
+ RZ/{T2H,N2H} ICU
+Thread-Index: AQHcWtgeuYApnjoIckmnbCZssC+8vLUAQxmAgAGUkwA=
+Date: Mon, 24 Nov 2025 16:25:49 +0000
+Message-ID:
+ <TYYPR01MB1395511BA753B32266C15CFEE85D0A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
+References: <20251121111423.1379395-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20251121111423.1379395-2-cosmin-gabriel.tanislav.xa@renesas.com>
+ <32ffb736-d060-4ae9-b4fb-b836a6c869e9@kernel.org>
+In-Reply-To: <32ffb736-d060-4ae9-b4fb-b836a6c869e9@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYYPR01MB13955:EE_|TY4PR01MB13095:EE_
+x-ms-office365-filtering-correlation-id: fc5e34af-277f-46f0-cddf-08de2b762146
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?wMmlnavvsj4vRamBxLgnhFeO3qiRqkeXQ8YXHCHMrYZu87RfMlayfOpuWAZT?=
+ =?us-ascii?Q?7A6716oET/qh5SF10hHGo06nC8OKbernlP8Lcdx0O1U2wWgbvwbqSotBpwdR?=
+ =?us-ascii?Q?EiRCsYEHgwDKp+yjyKl41Gh/LO8Ca1INXYUEOl8RhDEWzKJ6TAkVyZYCwG+A?=
+ =?us-ascii?Q?MOC/LufjY5Igfp/7aAuFv9gutcsF0NWHzLOGaMVIQ//XkI/6Y7opxZGLbBLa?=
+ =?us-ascii?Q?JMTIFCAKxNhqBxlqCRFi4q58NG+zEpULCUkQS/kDf6QaQrDnREzOOoYaoQ8y?=
+ =?us-ascii?Q?wwSGADBpz3L7GKsPo7ZzKVilGLX3d25zY9QWkKFlR+LiCEUCtynQ1ga1Wf0L?=
+ =?us-ascii?Q?+z/W6orH9MebwFeUjg5WgNeDM+lr5ANLtEoBDIdcUDXsIlpVSlmFq3kpa9eG?=
+ =?us-ascii?Q?DQ7K3z5dMfuMbferEELg7lpUQ7Sy/YwnVT6wpNN+U5c7++oHHHbRFWoWCOCT?=
+ =?us-ascii?Q?t5Q/WMKMZM6e93K12VY6SqTtGX33Qmu5vLX7VjcBj/XVZhZUNr76eagNDIki?=
+ =?us-ascii?Q?LPBTqUWak1RhyrJh9BHKSad/HF0qoYQeVe3yKrngp4uBlOcSATPjT0rU+eHb?=
+ =?us-ascii?Q?MZN6Qz2gStBo4qf8Wn0ejAKVmWHGPBdqHm6eeyRpfpp6XXuv2fX7MUKdxNwU?=
+ =?us-ascii?Q?VplR+jspoqQUPIVz7s8Max6EFD9aiiQ2dCpW1ZPEQpbDzXuItUKW1kSddTb8?=
+ =?us-ascii?Q?C14l7r2QCyBhXut8TYdlMAFH/4mAfDIwX7kvDU/5kp2ymXoh3vFCoCqCDTSY?=
+ =?us-ascii?Q?uS7i77NjmAFWCWJ71rLqTcdKEzYn2UhC/MELjrU9LZwbUG2Gxd5c+3hV2rh6?=
+ =?us-ascii?Q?4+UfuUsix+sPThkbiA0b2DeGE5Gx+G/hsorNdya5dKgXV3asB6/oX38yaaIZ?=
+ =?us-ascii?Q?8iwalKrXdqd+03H3EOWkx47cBCb15hfq/vLVdhJIiQJAi7a2Yh0cayr2ntqr?=
+ =?us-ascii?Q?RtG1X4mMERMLF6dbML2/Vo9R8wvvjO6jWdmaMfVOD65lsW7Mx64ir7TrEV27?=
+ =?us-ascii?Q?SRZjTXaY3Q0/6ON+2C5Bf8yR6svFzJPCMl7uWXwnt+GCebwJ4KNdzGZBHGlm?=
+ =?us-ascii?Q?45U1WjgNsiCWLeRGMAaqCThTmvk5llqhM/f3L9rX+YREwprKcnFK0EeA6maQ?=
+ =?us-ascii?Q?dex4vNLbdagBCQBoELtk8rzG1YPYJNjxPrsxNBxmdXqY4qw7N+slC+14z+n7?=
+ =?us-ascii?Q?yw/SzlzlOekGlnrui36qvT6Jkwmy7szY5APjSL9y3eIQIalC0x6SYWmwQa3T?=
+ =?us-ascii?Q?RhUXuMl7Gp4Mpjz5nMdz9xN0ZlO2GakD1mCU5cFsz5TcPwAAlW8t5bj+C4+u?=
+ =?us-ascii?Q?deQcRWFHJ3qwtrIe71s2XqExoc54MOCiF4lnEu3tEUVd1Xw6HL0YU4MT7wyv?=
+ =?us-ascii?Q?Stb7OYBP6z3U3dZblDq4m60at++CyaMy3CiSCGhzo3ff2PXjGgTX98dX3vj5?=
+ =?us-ascii?Q?qQACSh8TdsCRcohE1Urvkgv4FfTrawaArCNqWOJ62TF+4P7Seh8PzF6JxOTB?=
+ =?us-ascii?Q?EZxWE/ojr/uGH0sV/cWJHjsNYxTUVIp71qn+?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYYPR01MB13955.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?POEytzYxHm0ckJz1/xtkBwOtpEVx9JxtMpFPHZRfQ3QPr+GwmWLgfKyht3xo?=
+ =?us-ascii?Q?2lqvLNeYpGitdKuLQ5v1H8EU6deYVao87M9SNyggxGbwnzWdU7ESmcqStWZz?=
+ =?us-ascii?Q?la8ijmbxFC0bx4oYaGPnuCZE3ap3SCTsUQxhIbu+kyFWc+DNDhzNQyxPZsDV?=
+ =?us-ascii?Q?pV1Oi4lgtBJ0PUbH1RINin6y22vE/n0JNP5Eyj94a+PGviLVrDqFNvcHLu+P?=
+ =?us-ascii?Q?8QMdrDozjrgjY8DiEW7NuUvsqO1YQV6BRJxoBv1QpCMEed9UdxwUv8qVr1mo?=
+ =?us-ascii?Q?e7wW7GQusMCHG22+1LJGUqUL5/k4qZes6bQUQsiwgSBYHhVN5ktB9GWLJ8YT?=
+ =?us-ascii?Q?zUNCMYTXVoocLgoZqtskJkDvM/sLruF1+ATS8nXPl/ykMpOo9ybwBtGFHAkJ?=
+ =?us-ascii?Q?GvxUMCzCSUvjQmhIxgkt9Ljrkyeh33YsgHlV1AGs5DEmzpM7EB4js4kIbfxg?=
+ =?us-ascii?Q?SAFBm7QsnwD36IkZQx6hCz9UVfOAQ/4tsHVXn0s7AAF1pOc5jP9tLiNoAZx4?=
+ =?us-ascii?Q?TN2yswbRyq1YL6q/BXr/twd5qMB5LtZtqMmeLIoPF7SXCoim2slrI7cRusbI?=
+ =?us-ascii?Q?4O8PTN5wmgNgClagsvn8Uc9QGFXRw4Md/BdKrBP7VgYvtJ9lX5ZDJB4I+/A4?=
+ =?us-ascii?Q?FvVFGXYQX41XIc2nyO3lRojGyGGtkxbzu+LjMc7rU6CV4DzJQg8C2s1zyW4j?=
+ =?us-ascii?Q?lg6PBhHJljDrvOvixrmCXryXzRf1KAVpvu+s/JDmqO+4npOCdqwGZ5XlelJ9?=
+ =?us-ascii?Q?fiwwWsW32gBCe5F/+yO43e0WvmkUyG5of1uHPRyR39gKft3zJzRaas6aXfav?=
+ =?us-ascii?Q?qPuaM6CNLeIGpKCq/7Kd3rrPHHGDeZXm5VDpByvqVf4SYAZzRso0RZn9Ll/N?=
+ =?us-ascii?Q?UIlqEVVdJ6vVNbuVwHKCIayackWQGYG1sPL8NoQJNwX9h/4fuNPq8ijGMT46?=
+ =?us-ascii?Q?NJqYKs22sTbCrMWCshOeAX4pSc91uGunRb4ZQBB3KwivxrbaEWlYGty2t7Jz?=
+ =?us-ascii?Q?xDoSjZsHWy5GpHuHbOA4/35Uuv6YdXJTTGvVVoT+UmZ5+hdfES6vVGdZt27i?=
+ =?us-ascii?Q?rwaZnx6hMETvQHEJWgwLslFjQ3tHUWiApiQ0VSuXA5amzfB6ILRuGfj27uTe?=
+ =?us-ascii?Q?voJUIAQKYnBTQ9V23UcvAW4aTyQFnEBOO1qcoqwa0Q7mnSFgO3a7TJGFTjZN?=
+ =?us-ascii?Q?DLJ0MdGDkqULCZyils0SXSTIQ96MRvJ278iicV9j0eZGIC6u1njGvgV5XwWB?=
+ =?us-ascii?Q?QKFu+U7B0er2g6lQRSgNQpVH+nDFK5aX4W0h5xqBKUxuJVcQh16/3D2PfD0c?=
+ =?us-ascii?Q?Zu4b9XVL3mmXHGEoYjQQDkbl5jyGIOPnlaMgZV1b8MK0SiNftLRgpuMUU/0p?=
+ =?us-ascii?Q?GaJcxUxI39n2rTXhrqAcRXgWCloQLYPHHZSudp7a1uyz2Z1rVuSp40r5hESW?=
+ =?us-ascii?Q?ZAWiyRBQ9URmThB31oA6v7+amg7VbMhMh9iE/DBNL3I2wuvJB3POjabdUPXF?=
+ =?us-ascii?Q?eSMbTg4+ztkrkwN2csIRg3DePs3uv0cDhqmq3lh1Q+GS3oY3CHIR8YUZYHPk?=
+ =?us-ascii?Q?sVp2ZAko0hGWccv/sKkIOEGlNbH+/Bk1KmcNVsIMBkYxuBTQ8Mf7gBZJe9kR?=
+ =?us-ascii?Q?msPnc10EKMNVSzwwyZ5oiJk=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.3\))
-Subject: Re: [PATCH v4 0/6] Add support for the LTM8054 voltage regulator
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <4053840.MHq7AAxBmi@fw-rgant>
-Date: Mon, 24 Nov 2025 17:19:45 +0100
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- =?utf-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- Peter Rosin <peda@axentia.se>,
- Mariel Tinaco <Mariel.Tinaco@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Kevin Tsai <ktsai@capellamicro.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Eugen Hristev <eugen.hristev@linaro.org>,
- Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Sebastian Reichel <sre@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>,
- Support Opensource <support.opensource@diasemi.com>,
- Paul Cercueil <paul@crapouillou.net>,
- Iskren Chernev <me@iskren.info>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Matheus Castello <matheus@castello.eng.br>,
- Saravanan Sekar <sravanhome@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Casey Connolly <casey.connolly@linaro.org>,
- =?utf-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
- Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>,
- Amit Kucheria <amitk@kernel.org>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Dixit Parmar <dixitparmar19@gmail.com>,
- linux-hwmon@vger.kernel.org,
- linux-input@vger.kernel.org,
- linux-phy@lists.infradead.org,
- linux-pm@vger.kernel.org,
- linux-mips@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org,
- linux-sound@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Andy Shevchenko <andriy.shevchenko@intel.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <732D3F12-0361-4800-8981-EF629B4C491F@goldelico.com>
-References: <20251124-ltm8054-driver-v4-0-107a8a814abe@bootlin.com>
- <23111366.EfDdHjke4D@fw-rgant>
- <563331EB-2460-4CF5-87B3-5FE60B18BB70@goldelico.com>
- <4053840.MHq7AAxBmi@fw-rgant>
-To: Romain Gantois <romain.gantois@bootlin.com>
-X-Mailer: Apple Mail (2.3826.700.81.1.3)
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYYPR01MB13955.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc5e34af-277f-46f0-cddf-08de2b762146
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2025 16:25:49.7378
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nByHRLrc3WV0zEs6scYH+h4/0UWR0/WXxqxtv7gr4P678Gl4iATSC0jyPrave8QbirzhSP3HQfOLIujDBarmov9yyS7+bOYPUYpF/qiYJk2xqH6IgSJIZn4SMDI+ueNs
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB13095
 
-Hi,
-
-> Am 24.11.2025 um 16:57 schrieb Romain Gantois =
-<romain.gantois@bootlin.com>:
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Sent: Sunday, November 23, 2025 3:24 PM
 >=20
-> Hi Nikolaus,
+> On 21/11/2025 12:14, Cosmin Tanislav wrote:
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: renesas,r9a09g077-icu # RZ/T2H
+> > +
+> > +      - items:
+> > +          - enum:
+> > +              - renesas,r9a09g087-icu # RZ/N2H
+> > +          - const: renesas,r9a09g077-icu
+> > +
+> > +  '#interrupt-cells':
+> > +    description: The first cell is the SPI number of the interrupt, as=
+ per user
+> > +      manual. The second cell is used to specify the flag.
+> > +    const: 2
+> > +
+> > +  '#address-cells':
+> > +    const: 0
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: Non-safety registers (INTCPU0-13, IRQ0-13)
+> > +      - description: Safety registers (INTCPU14-15, IRQ14-15, SEI)
 >=20
-> On Monday, 24 November 2025 16:35:28 CET H. Nikolaus Schaller wrote:
-> ...
-> > > Sorry, I don't quite understand your remark. To integrate this =
-voltage
-> > > regulator component into the Linux regulator abstraction, I'm =
-providing a
-> > > current limit control function. To provide such a function, the =
-voltage
-> > > level on a pin has to be controlled. AFAIK, the kernel abstraction =
-used
-> > > to set precise voltages on lines is an IO channel.
-> >=20
-> > I was curious to learn about this topic and looked into the data =
-sheet:
-> >=20
-> > =
-https://www.analog.com/media/en/technical-documentation/data-sheets/8054fa=
-.p
-> > df
-> >=20
-> > As far as I see the LTM8054 does not even have a programming =
-interface.
-> > So is it reasonable to provide a dedicated driver at all?
-> >=20
-> > The figure on page 20 seems to suggest that there is an external DAC
-> > which drives the regulator. And the regulator drives for example a =
-fan.
-> >=20
-> > So I would think of a driver for the specific DAC and ignore the =
-specific
-> > LTM chip at all.
-> >=20
+> reg is always the second property. Please follow DTS coding style.
 >=20
-> In my use case, the LTM8054 feeds a DC output port on which various =
-devices=20
-> may be plugged. Dynamic output current limitation and output voltage =
-level=20
-> control for these devices is a requirement, as well as stepped voltage=20=
 
-> transitions, thus the need for a proper regulator device.
+Ack.
+
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: Software interrupt 0
+> > +      - description: Software interrupt 1
+> > +      - description: Software interrupt 2
+> > +      - description: Software interrupt 3
+> > +      - description: Software interrupt 4
+> > +      - description: Software interrupt 5
+> > +      - description: Software interrupt 6
+> > +      - description: Software interrupt 7
+> > +      - description: Software interrupt 8
+> > +      - description: Software interrupt 9
+> > +      - description: Software interrupt 10
+> > +      - description: Software interrupt 11
+> > +      - description: Software interrupt 12
+> > +      - description: Software interrupt 13
+> > +      - description: Software interrupt 14
+> > +      - description: Software interrupt 15
+> > +      - description: External pin interrupt 0
+> > +      - description: External pin interrupt 1
+> > +      - description: External pin interrupt 2
+> > +      - description: External pin interrupt 3
+> > +      - description: External pin interrupt 4
+> > +      - description: External pin interrupt 5
+> > +      - description: External pin interrupt 6
+> > +      - description: External pin interrupt 7
+> > +      - description: External pin interrupt 8
+> > +      - description: External pin interrupt 9
+> > +      - description: External pin interrupt 10
+> > +      - description: External pin interrupt 11
+> > +      - description: External pin interrupt 12
+> > +      - description: External pin interrupt 13
+> > +      - description: External pin interrupt 14
+> > +      - description: External pin interrupt 15
+> > +      - description: System error interrupt
+> > +      - description: Cortex-A55 error event 0
+> > +      - description: Cortex-A55 error event 1
+> > +      - description: Cortex-R52 CPU 0 error event 0
+> > +      - description: Cortex-R52 CPU 0 error event 1
+> > +      - description: Cortex-R52 CPU 1 error event 0
+> > +      - description: Cortex-R52 CPU 1 error event 1
+> > +      - description: Peripherals error event 0
+> > +      - description: Peripherals error event 1
+> > +      - description: DSMIF error event 0
+> > +      - description: DSMIF error event 1
+> > +      - description: ENCIF error event 0
+> > +      - description: ENCIF error event 1
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: intcpu0
+> > +      - const: intcpu1
+> > +      - const: intcpu2
+> > +      - const: intcpu3
+> > +      - const: intcpu4
+> > +      - const: intcpu5
+> > +      - const: intcpu6
+> > +      - const: intcpu7
+> > +      - const: intcpu8
+> > +      - const: intcpu9
+> > +      - const: intcpu10
+> > +      - const: intcpu11
+> > +      - const: intcpu12
+> > +      - const: intcpu13
+> > +      - const: intcpu14
+> > +      - const: intcpu15
+> > +      - const: irq0
+> > +      - const: irq1
+> > +      - const: irq2
+> > +      - const: irq3
+> > +      - const: irq4
+> > +      - const: irq5
+> > +      - const: irq6
+> > +      - const: irq7
+> > +      - const: irq8
+> > +      - const: irq9
+> > +      - const: irq10
+> > +      - const: irq11
+> > +      - const: irq12
+> > +      - const: irq13
+> > +      - const: irq14
+> > +      - const: irq15
+> > +      - const: sei
+> > +      - const: ca55-err0
+> > +      - const: ca55-err1
+> > +      - const: cr520-err0
+> > +      - const: cr520-err1
+> > +      - const: cr521-err0
+> > +      - const: cr521-err1
+> > +      - const: peri-err0
+> > +      - const: peri-err1
+> > +      - const: dsmif-err0
+> > +      - const: dsmif-err1
+> > +      - const: encif-err0
+> > +      - const: encif-err1
 >=20
-> The LTM8054's feedback pin can be driven by a different DAC, which =
-allows for=20
-> dynamic output voltage control. This is a more complex upstreaming =
-topic=20
-> however, so I've left it out of this initial series. There are other =
-component=20
-> functions which fit in squarely into the regulator framework, such as=20=
+> Why all the interrupt names have nothing in common with previous ICU
+> (renesas,rzv2h-icu.yaml)?
 
-> input current limit control and soft-start. But I understand that the =
-current=20
-> driver might look a bit "bare".
+Unfortunately, the functionality is different compared to what was
+present on RZ/V2H, hence the different names, descriptions, and order,
+which I've taken straight from the User Manual of the SoC.
 
-So you just want to have some user-space mechanism to control voltage
-and current limits? Can't this be done by directly controlling them =
-through
-the iio API?
+If the ICUs were similar, I would have tried to reuse the bindings and
+drivers, but it would have quickly become too complex for what it's
+worth.
 
-Is this for a device that is already in kernel or planned to be =
-supported?
-Or is it "application support" for some SBC?
+> These names are supposed to share, not
+> re-invent every time the name.
+>=20
 
-Are you looking for a virtual "glue" driver to logically combine several =
-low
-level functions?
+Do you think it is worth diverging from the User Manual to bring the
+definition more in line with past SoCs?
+
+The advantage of sticking with the User Manual naming scheme is that
+you can easily cross-reference these descriptions with the User Manual
+and find what you need, whereas "PORT_IRQ0" / "GPIO interrupt" would
+give you no information for RZ/T2H.
+
+> Isn't external interrupt the same as GPIO interrupt? How do they differ
+> for this particular device?
+>=20
+
+External pin interrupts on RZ/T2H are more like the PORT_IRQn on RZ/V2H,
+since the pin is non-selectable (as opposed to "GPIO interrupt, TINTn"
+on RZ/V2H, which has selectable pins). Also, on RZ/T2H, IRQ is a separate
+function entirely, once you switch a pin to the IRQ function it is no
+longer a GPIO.
+
+> And "Error interrupt to CA55" is "icu-error-ca55", but here THE SAME is
+> called "ca55-err0"?
+>=20
+
+Same reason as before, I used the naming scheme from the User Manual.
+
+> No, please start using unified naming, not re-inventing this every time.
+> Order also is supposed to follow older generation, so bindings share
+> common parts.
+>=20
+
+How do you want me to shuffle the order for it to be more like the older
+generation?
+
+I chose the current ordering because it matches the User Manual (and it
+coincidentally results in an ascending GIC SPI numbering).
+
+Do you want me to put the software interrupts (intcpuN) after the
+external pin interrupts (SEI included)?
+
+Eg:
+  interrupt-names:
+    items:
+      - const: irq0
+      ...
+      - const: irq15
+      - const: sei
+      - const: intcpu0
+      ...
+      - const: intcpu15
+      - const: ca55-err0
+      - const: ca55-err1
+      - const: cr520-err0
+      - const: cr520-err1
+      - const: cr521-err0
+      - const: cr521-err1
+      - const: peri-err0
+      - const: peri-err1
+      - const: dsmif-err0
+      - const: dsmif-err1
+      - const: encif-err0
+      - const: encif-err1
 
 >=20
-> > What could be necessary is if you really want to be able to =
-"regulate"
-> > the current going to Vout, some bridge between regulator API and =
-some
-> > IIO DAC.
-> >=20
-> > And enabling/disabling the regulator by some GPIO can be described =
-in
-> > the DT already through a "regulator-fixed".
-> >=20
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#interrupt-cells'
+> > +  - '#address-cells'
+> > +  - interrupt-controller
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - power-domains
 >=20
-> This is a possibility, but when you bring in all of these other =
-hardware=20
-> functions that I mentionned e.g. output voltage control and stepping, =
-you'll=20
-> end up with several different devices which look unrelated from =
-userspace, but=20
-> actually control the same chip.
-
-That is quite usual... I have often heard: user space must fix this as =
-kernel
-just provides basic functions in a harmonized way and integration has to
-be tailored to the device anyways :)
-
-> Userspace will also have to know about some hardware details to =
-properly=20
-> control the DACs, such as the values of the sense and feedback =
-resistors. In=20
-> my opinion, this bypasses the kernel's abstraction of hardware.
-
-I came up with this argument several times in the part and got a lot of =
-contrary :)
-
-What I still wonder: does your hardware warrant an upstream driver for a
-non-programable chip if a different solution (with help of user-space) =
-already
-exist?
-
-Another question: is your scheme generic enough so that it can be =
-expected
-that other devices are using it in the same way?
-
-Or could the power controller framework (/sys/class/power_supply) fit =
-better?
-
-There is an API to ask chargers etc. for battery voltage and current =
-limits or
-even write them.
-
-There is also "generic-adc-battery" which allows to hook up with =
-arbitrary
-iio-adcs for measurements - although you need a DAC in your setup. Maybe =
-an
-extension here is a better strategy than a dedicated ltm8054 driver?
-
-BR,
-Nikolaus
-
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
