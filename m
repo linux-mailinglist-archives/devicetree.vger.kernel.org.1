@@ -1,208 +1,1445 @@
-Return-Path: <devicetree+bounces-241547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B6ACC7FABB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:40:55 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 340FDC7FAE8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:43:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F14C23A45E6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:40:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BF0434E5411
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15CB2F60BC;
-	Mon, 24 Nov 2025 09:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B96E2F60CF;
+	Mon, 24 Nov 2025 09:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XepTROBo";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XoEj6UzV"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iV+2qK4H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 315E62F5465
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:40:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B4712FF69
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763977251; cv=none; b=cDuSUOwUSOWzy5JMV6/sY8bfj+hCPCK9a0y4tCLu/n4f8xmAAZ3YhTwXjbbr38yFL9eze95+IuOtcJIdI+yUPxWPDX5U1yr2caYyTYMSYq1fAmej+skyxckeF5+AS0xWwT2AryTcSvnLIaSq4nlqeGkDCWu7KFZe2CCFeQ3z9W0=
+	t=1763977356; cv=none; b=RL0L6Wb2rb8JMF0WeOBtRiA2Qw6z0jZVxGkhuy0iGH7XlfPJrC0l5MYb52KlScpDGcyPPNs1nPH4nOVoerjc5Fozj1Bvum1ZqLQyVUCVsbL6fNKOMLUE8rbxn1CLInkEhKiVbS3X49DT3FRDZXBgxbs6xQCl45/H8KfO3RkYaF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763977251; c=relaxed/simple;
-	bh=lhvQ0yUi4lNc90U56dIepg6hpvZuJ1yazj6oQhUx9Uk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RUH37+zDbeyMjl8IFNPRxR7dXAjWzGoahx7saQrRlm65b0hIH01sgakZTlAEkw2fFxxkfAWRq3UYNg69Dys5Gn4LOi7khwywahNuyps1nU3/o2CUKlTY972AjyPMu8DHl2n6KSWBxzoKFcj3n7ht5TZ8BQERl+9hVK5fqBl/W3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XepTROBo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XoEj6UzV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AO7lBrL2397579
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:40:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pNFvi7aIbzm8D9aSesKBYi4sjZzrxUjXcfJyayrQXjw=; b=XepTROBoDL6f6jz/
-	5UbiUzOqJcDGnErl1HK8Fmx4Wq2oS9/H8oMSjiM74/zjgD0og0IErwrF6BrrgTut
-	KC4ehyAUJCYfFq6XpdcHDT41SJmPDFkfUl+rzZdxjmJxrN6zmDAVJaNb7WTfQjKB
-	PXOq33FODax8RZZQSR2g3h4PS7se4dnJxDl16+jO5R6BQdcwIN4OUh27S2YdRS49
-	ja4QpWgvEgQbNjhV+JQ3ETWpy56jGVuhi9v/4UGVVMR+6QxEr3dkmMvXeCIzVL/i
-	YSKe5bvyMZ+Jg4sYNtkf5gTL5sIl8YV0Y9I7PACpetQQOxiU4rwo4DK7krxMAZcf
-	JVMZjg==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ak685vjs4-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:40:49 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-297dfae179bso118715505ad.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 01:40:48 -0800 (PST)
+	s=arc-20240116; t=1763977356; c=relaxed/simple;
+	bh=DFY6akt/ddkSldQi+ZCEl/TiXkziHcbo9fwbgfuairk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ahhnRUtMXNfPAAZuQHlv+qCqHBbH2ns5TC+FTbTqD9xrOQPg55WrQvEofYo43WRyueRyzdGchzu5I0u/ehSGVxeun7kvAOcv/a+pz/TETDPnLVw1LAw1aJlgILj3pcuYN7AyfUsUt5GsvjhigCnxu1m54CCWpCHLFenObyqER4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iV+2qK4H; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-429c7869704so3400773f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 01:42:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763977248; x=1764582048; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pNFvi7aIbzm8D9aSesKBYi4sjZzrxUjXcfJyayrQXjw=;
-        b=XoEj6UzVEkSdIUNXOK5ILZTZGC1oovoiVBO8ZN1StEMGmmDeUbe5GlgPuab0+3tiZw
-         BHc7qigCaom8bmmTO87HLQBMetP0V1GpFKLHDn7Fungxxqxypxj6QcOqocYdtUTgun0Z
-         xTEJlU1sBBkiwidIWRUiYuB12s0Nx+c29B0wqnChBYDONa7iq1Du0Cg8sQBXuDSradc9
-         Qk0Vh/41wDHW747nE8SnElvK4vPk8aA24reJcDstlLmDkl2uSi2wZkqxrAKwskD52cTv
-         HX4vM8w2d4CiFmuB3j/d4+FcNM5MF4dUdlGTR0gVqIkoD8qpLtLcQ7vP8PPLqPzUOC3e
-         RCcQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1763977350; x=1764582150; darn=vger.kernel.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5edmLpAJol0ofD/5VwKDeDKVDhKSBzmjsYcc4t6QqVk=;
+        b=iV+2qK4HaS1vWnV8Z1CaWNtb2wpO/D7J6Yok0lbeA0fxVaPwJexISirmJKIKVGNi4b
+         R7Il1p1SGos4NemAm62luVTSjb83uLCqTlSlPIK7AD7qw56taCsjrDfd4CuSQ7hsPAV6
+         nAdRpERsi0rursRNw36RzHkVo/2AaDidg0YNC0xuctF6QU8XFQNkOiHUnK5o/40q2gea
+         pojbeGAcmUB4t5Z8/k9eBAzBsD2uRi9GUuaJMU/oGrW4g/z6wDpbXxP2LrjKEwzlJQcP
+         Beidz5J7U5VwHdgsMtT0uj+mdN5huQCCT/H+mZjWyQUakscVHEJMrv8mVDXDVGy8ffle
+         c1Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763977248; x=1764582048;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pNFvi7aIbzm8D9aSesKBYi4sjZzrxUjXcfJyayrQXjw=;
-        b=LwDLg5Bach/FfglY7J/dYclQmX/lJVGdLVTz9LyESF6Foynhvfjj3Sr/TdsxsAgSya
-         pY0kXCrYmQ2EYdm+XD09FC8Y0MnVlZQ1j5sYTZsk6J6OQHJDohJsedelCHg4Sa2HOIrc
-         npohjIQewfQTsutG53AZEQLFvuqjRagBhJftPIkL/pmBTNB/RYGlYyjwFCMOJ3eUf0cZ
-         FaGffYKClU7zEXOpw7T0ZskBX44UwZwPW2CA6qvaMoVbCvJ+uEK4o/PFZXsPD6OKRVy1
-         waf/JrPzNnTYMvPApSZIU/8rT988nDLFAl1+qiQZuHim9UjklwkO+l230vzszdv51Tsf
-         4r4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXHL2A8KbSe52+tckC8NGMpf8i1FZXK9HF/CdIVuAEIA5rq9eY2YO3qRfif3rfWlyoLYeKmdHCzZwUW@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeIJnQD1rYUQquZzqk4dm4xTuR/Wx52TpkyDw/TmK4WoHLqN0C
-	73JtK7AuM0OQMpdyjjU6RSovGS3kCUBM28XSgou8anRtqUvrEFWy0c2fU91qDnhKeBFyaVVxvL2
-	ibYfurVW53eKZiMQoIj2j3btGd7yVET8tPfMb3SL/2UtPukZuHe5Z/E4pKxNx2EVR
-X-Gm-Gg: ASbGncvYecey0Ge2zmqZHdrhRi4UZQrBoYnhFwXh7gBjmPhTPKD1Hrg9g62Gv089Amp
-	A4yDsmHEwTxCnB8l9SNp5pCSABBZGBRSPo8mwHZcEYKlWCA4XD8Q5zC0ScwOI4dwj7JdPI6ScpW
-	Q9e85wYZ8RFqkMaP/uogO5F+wUIS3tbaJ06O4Ri3kDv/cxTSb1+X+fv/747j5N/CJxYBh0frNa/
-	TS94aX1Qq2t3XDfFK6gu8TDlgG0K7KQl56+mYVIpQTzsw8TbPJe/EHJwobT05rwH8f2Gdsh3kCT
-	jLWewyFwc6euUTRA9Heeo1LbHhXHShgbLY7KnCbSiTPdXAKjX0+zsROl76DlZoQ8KNWPjS2cHM2
-	h87XuM8A4zWT9dRUx5tPlUH06m0K4ydTa8IVzNmCL2w==
-X-Received: by 2002:a17:902:d587:b0:298:39f7:2d83 with SMTP id d9443c01a7336-29b6bf3b849mr143766875ad.28.1763977247900;
-        Mon, 24 Nov 2025 01:40:47 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFydp8fiW8WVoNMuoKv+rgFvWqiuLz4MzGJVcl+ZoU4OhTn7ToiKsUGs0n9JLTW4uyxU4MzEA==
-X-Received: by 2002:a17:902:d587:b0:298:39f7:2d83 with SMTP id d9443c01a7336-29b6bf3b849mr143766625ad.28.1763977247435;
-        Mon, 24 Nov 2025 01:40:47 -0800 (PST)
-Received: from [10.218.4.221] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b29978fsm126901155ad.84.2025.11.24.01.40.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Nov 2025 01:40:47 -0800 (PST)
-Message-ID: <13ea5fd7-b28b-b6c0-752f-a7d4b4677298@oss.qualcomm.com>
-Date: Mon, 24 Nov 2025 15:10:42 +0530
+        d=1e100.net; s=20230601; t=1763977350; x=1764582150;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=5edmLpAJol0ofD/5VwKDeDKVDhKSBzmjsYcc4t6QqVk=;
+        b=SWkyEkUoKEpCDpUEEcfizNzGRbkaU/LU0jSVDwbGJ3+rP6RkAmdV/jHc3X7U86/Nkq
+         ksDYGVHuGW3+auxsNx3xWPOpGGwIqsXqm3RolHLAjMupWslefFlb/jgd26M/rJnpfnZD
+         BOYrAXPHl/BXbGQ5pO0ItQNiiuh3O9mRYGtvNnEmG3/uoKKXhKLUcVSOkAMYN9YWE1Uf
+         siOUJQ8D2g4o7UhfL6+vnCg9PH9Grji0zumj4SH0zR1jnL2GDR4sEJNL1Fp4pJAI2Ayk
+         HVtoL7Zc2pYrt5bTIzg3CGx5cjJ9/Aga19SE4SZtjyA62FILuhVDWKzEaGO62taOmTVw
+         LRWA==
+X-Forwarded-Encrypted: i=1; AJvYcCUTOKtg3m3tzoDhNnXC0GfOyxbTdgl6YHf+wrgz0i1KBtlZRRQSSoMsRxOYEXmyNyXey7KNIJfBfius@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFsoDaogkcsCjNWFmEZTwF2NZ7g7MQE8uHO1mMMCNQwuD4SWGf
+	uYwg5g5PbbDes2XnPtXsqvIcSfjfHEy2rUbB15GrhGobjYjr5EESU5j1356g6oZoFZ4=
+X-Gm-Gg: ASbGncuw2rGsNEK449wsH6I2PP9wiLN6piAxI83HIDJK7ZNWgUaMJeLIU0bw45I3Kc/
+	bHgN4xyJmtr2OoAB8uW79V/53MWDSNCQe3OxXBrdDj4AGPT6BJ6p8S/LCJHmtTIiHPDsYFv3eIC
+	EynGAZjen0E4a7I1cv3K4L8a+mspxfjApaz5FUju4/Exvw0eU5VyRAKzIUl7iCyYXLlzy4bWDPa
+	ATMe/DIas7X/L9UyZodKyxuREF8ZLeYgLc8727WnrGkfDqammTPfw4f0JLDoVpwEbGgtOezCg2J
+	iwuVdhuM5yHZOnr+HuzTT1ceq7s+q7PK99RRCZf/uyY+M+YiZ9P5ufH6SawnhLjg5UBPQjMXou6
+	XbTDt7ph13rnF4h7+9boIQ1AGjCcJU6sqYGkyaHwlY6r8O7p2N/9O0l6I9gBiYx6bcRN5pxT77g
+	XXZjql83UROQ==
+X-Google-Smtp-Source: AGHT+IGwjh8RFllfmQbKPF5ZnK9q9eRxrFyVQQOL6EWNnFbHwQ3xJa9mpcbdAT4H1yHXUMUvUOKx1g==
+X-Received: by 2002:a05:6000:26cf:b0:429:d3e9:661 with SMTP id ffacd0b85a97d-42cc1ce4617mr11610940f8f.15.1763977349616;
+        Mon, 24 Nov 2025 01:42:29 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:4e2e:74ae:77df:106f])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-42cb7f363e4sm27744706f8f.12.2025.11.24.01.42.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 01:42:29 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,  Chuan Liu
+ <chuan.liu@amlogic.com>,  Neil Armstrong <neil.armstrong@linaro.org>,
+  Kevin Hilman <khilman@baylibre.com>,  "Stephen Boyd" <sboyd@kernel.org>,
+  Michael Turquette <mturquette@baylibre.com>,  "Dmitry Rokosov"
+ <ddrokosov@sberdevices.ru>,  robh+dt <robh+dt@kernel.org>,  Rob Herring
+ <robh@kernel.org>,  devicetree <devicetree@vger.kernel.org>,  linux-clk
+ <linux-clk@vger.kernel.org>,  linux-amlogic
+ <linux-amlogic@lists.infradead.org>,  linux-kernel
+ <linux-kernel@vger.kernel.org>,  linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v5 5/5] clk: meson: t7: add t7 clock peripherals
+ controller driver
+In-Reply-To: <20251121105934.1759745-6-jian.hu@amlogic.com> (Jian Hu's message
+	of "Fri, 21 Nov 2025 18:59:34 +0800")
+References: <20251121105934.1759745-1-jian.hu@amlogic.com>
+	<20251121105934.1759745-6-jian.hu@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Mon, 24 Nov 2025 10:42:28 +0100
+Message-ID: <1j4iqjvkaj.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: talos: Drop opp-shared from QUP OPP
- table
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, konradybcio@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@oss.qualcomm.com,
-        dmitry.baryshkov@linaro.org, mukesh.savaliya@oss.qualcomm.com
-References: <20251111170350.525832-1-viken.dadhaniya@oss.qualcomm.com>
- <ivinuu2ofm2hf7jvnw67gjfwo46bepunconf5g4kzdcaxs4jvm@6dm5btokf2zi>
- <efec8f09-8bb7-9739-5a1f-ce4a1c54771e@oss.qualcomm.com>
- <nm4hiy6vd5b3t65dagjx5m5qjfjdcnehz2s5w4lyu44eaqnwkc@hnmyhokxufz5>
-From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-In-Reply-To: <nm4hiy6vd5b3t65dagjx5m5qjfjdcnehz2s5w4lyu44eaqnwkc@hnmyhokxufz5>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Woom8Nfv c=1 sm=1 tr=0 ts=69242821 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=fkNT4l1spcEQcygpf9AA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-GUID: 5X2zuG9c-wnoAv8wl0FKK5QjbUUnLAHD
-X-Proofpoint-ORIG-GUID: 5X2zuG9c-wnoAv8wl0FKK5QjbUUnLAHD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDA4NSBTYWx0ZWRfX/LHBZ9wBLvne
- CHMAn4dTClv+G7uFc0VlFSSQZ0GUTF7nKY3qN30LQ2ZL73+RdDvq9W/yOIckzn4ZK3a9Hz79EOA
- sDv4mS4nu9RD1LmAWNA3MFGLb9aArWbXQnp4K1RTPLSSEcjBzW/A6aaaJ2Slfyvkfgil2uU7RGz
- qdb0vXXnJuOXhrbPBhY4Y4h9yoj1+HcYuICKuHI+5y+7cDB5CK/GEMPl7qKh6Bf+BGSEUiWma7x
- 6BWjmeuup5+cdl3Y/1wuyleGE1gfO5jkTw23JEmKdnvFVk4QkLfUwJjyio+sMc4BW85QahYBNOF
- 6z3IkWNPqqs5G3eirmRtKhpiY6YT4yCCMeqqWhsjUbsmMPp5EIcUcqLSOSd2QWJuY9oweEFSV3d
- SeBSSkRwK/j0Ry5/CdvBTy4KR+o5wA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-24_04,2025-11-21_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 adultscore=0 malwarescore=0 suspectscore=0
- impostorscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240085
+Content-Type: text/plain
 
+On Fri 21 Nov 2025 at 18:59, Jian Hu <jian.hu@amlogic.com> wrote:
 
+> Add Peripheral clock controller driver for the Amlogic T7 SoC family.
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  drivers/clk/meson/Kconfig          |   13 +
+>  drivers/clk/meson/Makefile         |    1 +
+>  drivers/clk/meson/t7-peripherals.c | 1266 ++++++++++++++++++++++++++++
+>  3 files changed, 1280 insertions(+)
+>  create mode 100644 drivers/clk/meson/t7-peripherals.c
+>
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 6cdc6a96e105..d2442ae0f5be 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -215,4 +215,17 @@ config COMMON_CLK_T7_PLL
+>  	  device, AKA T7. PLLs are required by most peripheral to operate
+>  	  Say Y if you are a T7 based device.
+>  
+> +config COMMON_CLK_T7_PERIPHERALS
+> +	tristate "Amlogic T7 SoC peripherals clock controller support"
+> +	depends on ARM64
+> +	default ARCH_MESON
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_CLKC_UTILS
+> +	select COMMON_CLK_MESON_DUALDIV
+> +	imply COMMON_CLK_SCMI
+> +	imply COMMON_CLK_T7_PLL
+> +	help
+> +	  Support for the Peripherals clock controller on Amlogic A311D2 based
+> +	  device, AKA T7. Peripherals are required by most peripheral to operate
+> +	  Say Y if you are a T7 based device.
 
-On 11/21/2025 5:33 PM, Dmitry Baryshkov wrote:
-> On Fri, Nov 21, 2025 at 03:37:21PM +0530, Viken Dadhaniya wrote:
->>
->>
->> On 11/12/2025 1:25 AM, Bjorn Andersson wrote:
->>> On Tue, Nov 11, 2025 at 10:33:50PM +0530, Viken Dadhaniya wrote:
->>>> QUP devices are currently marked with opp-shared in their OPP table,
->>>> causing the kernel to treat them as part of a shared OPP domain. This
->>>> leads to the qcom_geni_serial driver failing to probe with error
->>>> -EBUSY (-16).
->>>>
->>>> Remove the opp-shared property to ensure the OPP framework treats the
->>>> QUP OPP table as device-specific, allowing the serial driver to probe
->>>> successfully
->>>>
->>>> Fixes: f6746dc9e379 ("arm64: dts: qcom: qcs615: Add QUPv3 configuration")
->>>
->>> This was merged 11 months ago, and Yu Zhang added bluetooth support 3
->>> months ago. What changed to break the QUP users? I think it's reasonable
->>> to use this "Fixes", but we should document - at least on the mailing
->>> list, where the regression happened.
->>>
->>> Regards,
->>> Bjorn
->>
->> I’ve checked the older Linux versions and found that this issue started occurring after the following change:
->> https://lore.kernel.org/linux-devicetree/20250630064338.2487409-1-viken.dadhaniya@oss.qualcomm.com/
-> 
-> Hmm, but it's your patch. How was it tested?
+I don't think anybody "is" a clock controller ;)
 
-For this patch, I had verified only the I²C instance and compared it against other SoCs (like sc7280.dtsi). But missed to validate all other instances from  SPI/Serial.
-I realized now and will make sure to test all possible nodes in future changes to avoid such gap.
+>  endmenu
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index 8e3f7f94c639..c6719694a242 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -27,3 +27,4 @@ obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
+>  obj-$(CONFIG_COMMON_CLK_S4_PLL) += s4-pll.o
+>  obj-$(CONFIG_COMMON_CLK_S4_PERIPHERALS) += s4-peripherals.o
+>  obj-$(CONFIG_COMMON_CLK_T7_PLL) += t7-pll.o
+> +obj-$(CONFIG_COMMON_CLK_T7_PERIPHERALS) += t7-peripherals.o
+> diff --git a/drivers/clk/meson/t7-peripherals.c b/drivers/clk/meson/t7-peripherals.c
+> new file mode 100644
+> index 000000000000..10e77456b0d0
+> --- /dev/null
+> +++ b/drivers/clk/meson/t7-peripherals.c
+> @@ -0,0 +1,1266 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +/*
+> + * Copyright (C) 2024-2025 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +#include "clk-dualdiv.h"
+> +#include "clk-regmap.h"
+> +#include "meson-clkc-utils.h"
+> +#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
+> +
+> +#define RTC_BY_OSCIN_CTRL0	0x8
+> +#define RTC_BY_OSCIN_CTRL1	0xc
+> +#define RTC_CTRL		0x10
+> +#define SYS_CLK_CTRL0		0x40
+> +#define SYS_CLK_EN0_REG0	0x44
+> +#define SYS_CLK_EN0_REG1	0x48
+> +#define SYS_CLK_EN0_REG2	0x4c
+> +#define SYS_CLK_EN0_REG3	0x50
+> +#define CECA_CTRL0		0x88
+> +#define CECA_CTRL1		0x8c
+> +#define CECB_CTRL0		0x90
+> +#define CECB_CTRL1		0x94
+> +#define SC_CLK_CTRL		0x98
+> +#define DSPA_CLK_CTRL0		0x9c
+> +#define DSPB_CLK_CTRL0		0xa0
+> +#define CLK12_24_CTRL		0xa8
+> +#define ANAKIN_CLK_CTRL		0xac
+> +#define MIPI_CSI_PHY_CLK_CTRL	0x10c
+> +#define MIPI_ISP_CLK_CTRL	0x110
+> +#define TS_CLK_CTRL		0x158
+> +#define MALI_CLK_CTRL		0x15c
+> +#define ETH_CLK_CTRL		0x164
+> +#define NAND_CLK_CTRL		0x168
+> +#define SD_EMMC_CLK_CTRL	0x16c
+> +#define SPICC_CLK_CTRL		0x174
+> +#define SAR_CLK_CTRL0		0x17c
+> +#define PWM_CLK_AB_CTRL		0x180
+> +#define PWM_CLK_CD_CTRL		0x184
+> +#define PWM_CLK_EF_CTRL		0x188
+> +#define PWM_CLK_AO_AB_CTRL	0x1a0
+> +#define PWM_CLK_AO_CD_CTRL	0x1a4
+> +#define PWM_CLK_AO_EF_CTRL	0x1a8
+> +#define PWM_CLK_AO_GH_CTRL	0x1ac
+> +#define SPICC_CLK_CTRL1		0x1c0
+> +#define SPICC_CLK_CTRL2		0x1c4
+> +
+> +#define T7_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
+> +	MESON_COMP_SEL(t7_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
+> +
+> +#define T7_COMP_DIV(_name, _reg, _shift, _width) \
+> +	MESON_COMP_DIV(t7_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
+> +
+> +#define T7_COMP_GATE(_name, _reg, _bit, _iflags) \
+> +	MESON_COMP_GATE(t7_, _name, _reg, _bit, CLK_SET_RATE_PARENT | _iflags)
+> +
 
-> 
->>
->>>
->>>> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/talos.dtsi | 1 -
->>>>  1 file changed, 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
->>>> index eb6f69be4a82..ed89d2d509d5 100644
->>>> --- a/arch/arm64/boot/dts/qcom/talos.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/talos.dtsi
->>>> @@ -536,7 +536,6 @@ cdsp_smp2p_in: slave-kernel {
->>>>  
->>>>  	qup_opp_table: opp-table-qup {
->>>>  		compatible = "operating-points-v2";
->>>> -		opp-shared;
->>>>  
->>>>  		opp-75000000 {
->>>>  			opp-hz = /bits/ 64 <75000000>;
->>>> -- 
->>>> 2.34.1
->>>>
-> 
+parathesis around _iflags please
+
+> +static struct clk_regmap t7_rtc_dualdiv_in = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = RTC_BY_OSCIN_CTRL0,
+> +		.bit_idx = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "rtc_duandiv_in",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "xtal",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static const struct meson_clk_dualdiv_param t7_dualdiv_table[] = {
+> +	{
+> +		.n1	= 733, .m1	= 8,
+> +		.n2	= 732, .m2	= 11,
+> +		.dual	= 1,
+> +	},
+> +	{}
+> +};
+> +
+> +static struct clk_regmap t7_rtc_dualdiv_div = {
+> +	.data = &(struct meson_clk_dualdiv_data){
+> +		.n1 = {
+> +			.reg_off = RTC_BY_OSCIN_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.n2 = {
+> +			.reg_off = RTC_BY_OSCIN_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.m1 = {
+> +			.reg_off = RTC_BY_OSCIN_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.m2 = {
+> +			.reg_off = RTC_BY_OSCIN_CTRL1,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.dual = {
+> +			.reg_off = RTC_BY_OSCIN_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.table = t7_dualdiv_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "rtc_dualdiv_div",
+> +		.ops = &meson_clk_dualdiv_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_rtc_dualdiv_in.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_rtc_dualdiv_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = RTC_BY_OSCIN_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 24,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "rtc_dualdiv_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_rtc_dualdiv_div.hw,
+> +			&t7_rtc_dualdiv_in.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_rtc_dualdiv = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = RTC_BY_OSCIN_CTRL0,
+> +		.bit_idx = 30,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "rtc_dualdiv",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_rtc_dualdiv_sel.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_rtc = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = RTC_CTRL,
+> +		.mask = 0x3,
+> +		.shift = 0,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "rtc",
+> +		.ops = &clk_regmap_mux_ops,
+> +		/* The first and fourth clock sources are identical in RTC clock design. */
+> +		.parent_data = (const struct clk_parent_data []) {
+> +			{ .fw_name = "xtal", },
+> +			{ .hw = &t7_rtc_dualdiv.hw },
+> +			{ .fw_name = "ext_rtc", },
+> +			{ .fw_name = "xtal", },
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+
+Are you about sure CLK_SET_RATE_PARENT here ?
+
+Also, no need to have the 4th entry:
+* Just drop the the 4th entry in the list above
+* Add comment that xtal is also on parent input #3 but that it is not
+  useful to CCF since the same parent is available with parent input #0
+
+... assuming this is not a mistake
+
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_ceca_dualdiv_in = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = CECA_CTRL0,
+> +		.bit_idx = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "ceca_dualdiv_in",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "xtal",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_ceca_dualdiv_div = {
+> +	.data = &(struct meson_clk_dualdiv_data){
+> +		.n1 = {
+> +			.reg_off = CECA_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.n2 = {
+> +			.reg_off = CECA_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.m1 = {
+> +			.reg_off = CECA_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.m2 = {
+> +			.reg_off = CECA_CTRL1,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.dual = {
+> +			.reg_off = CECA_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.table = t7_dualdiv_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "ceca_dualdiv_div",
+> +		.ops = &meson_clk_dualdiv_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_ceca_dualdiv_in.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_ceca_dualdiv_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CECA_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 24,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "ceca_dualdiv_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_ceca_dualdiv_div.hw,
+> +			&t7_ceca_dualdiv_in.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_ceca_dualdiv = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = CECA_CTRL0,
+> +		.bit_idx = 30,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "ceca_dualdiv",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_ceca_dualdiv_sel.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_ceca = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CECA_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "ceca",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_ceca_dualdiv.hw,
+> +			&t7_rtc.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_cecb_dualdiv_in = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = CECB_CTRL0,
+> +		.bit_idx = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "cecb_dualdiv_in",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "xtal",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_cecb_dualdiv_div = {
+> +	.data = &(struct meson_clk_dualdiv_data){
+> +		.n1 = {
+> +			.reg_off = CECB_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.n2 = {
+> +			.reg_off = CECB_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.m1 = {
+> +			.reg_off = CECB_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.m2 = {
+> +			.reg_off = CECB_CTRL1,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.dual = {
+> +			.reg_off = CECB_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.table = t7_dualdiv_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cecb_dualdiv_div",
+> +		.ops = &meson_clk_dualdiv_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_cecb_dualdiv_in.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_cecb_dualdiv_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CECB_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 24,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cecb_dualdiv_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_cecb_dualdiv_div.hw,
+> +			&t7_cecb_dualdiv_in.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_cecb_dualdiv = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = CECB_CTRL0,
+> +		.bit_idx = 30,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cecb_dualdiv",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_cecb_dualdiv_sel.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_cecb = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = CECB_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "cecb",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_cecb_dualdiv.hw,
+> +			&t7_rtc.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data t7_sc_parents[] = {
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "xtal", },
+> +};
+> +
+> +static T7_COMP_SEL(sc, SC_CLK_CTRL, 9, 0x3, t7_sc_parents);
+> +static T7_COMP_DIV(sc, SC_CLK_CTRL, 0, 8);
+> +static T7_COMP_GATE(sc, SC_CLK_CTRL, 8, 0);
+> +
+> +static const struct clk_parent_data t7_dsp_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "fdiv2p5", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "hifi", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv7", },
+> +	{ .hw = &t7_rtc.hw },
+> +};
+> +
+> +static T7_COMP_SEL(dspa_0, DSPA_CLK_CTRL0, 10, 0x7, t7_dsp_parents);
+> +static T7_COMP_DIV(dspa_0, DSPA_CLK_CTRL0, 0, 10);
+> +static T7_COMP_GATE(dspa_0, DSPA_CLK_CTRL0, 13, CLK_SET_RATE_GATE);
+> +
+> +static T7_COMP_SEL(dspa_1, DSPA_CLK_CTRL0, 26, 0x7, t7_dsp_parents);
+> +static T7_COMP_DIV(dspa_1, DSPA_CLK_CTRL0, 16, 10);
+> +static T7_COMP_GATE(dspa_1, DSPA_CLK_CTRL0, 29, CLK_SET_RATE_GATE);
+> +
+> +static struct clk_regmap t7_dspa = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = DSPA_CLK_CTRL0,
+> +		.mask = 0x1,
+> +		.shift = 15,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "dspa",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_dspa_0.hw,
+> +			&t7_dspa_1.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static T7_COMP_SEL(dspb_0, DSPB_CLK_CTRL0, 10, 0x7, t7_dsp_parents);
+> +static T7_COMP_DIV(dspb_0, DSPB_CLK_CTRL0, 0, 10);
+> +static T7_COMP_GATE(dspb_0, DSPB_CLK_CTRL0, 13, CLK_SET_RATE_GATE);
+> +
+> +static T7_COMP_SEL(dspb_1, DSPB_CLK_CTRL0, 26, 0x7, t7_dsp_parents);
+> +static T7_COMP_DIV(dspb_1, DSPB_CLK_CTRL0, 16, 10);
+> +static T7_COMP_GATE(dspb_1, DSPB_CLK_CTRL0, 29, CLK_SET_RATE_GATE);
+> +
+> +static struct clk_regmap t7_dspb = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = DSPB_CLK_CTRL0,
+> +		.mask = 0x1,
+> +		.shift = 15,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "dspb",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_dspb_0.hw,
+> +			&t7_dspb_1.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_24m = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = CLK12_24_CTRL,
+> +		.bit_idx = 11,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "24m",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "xtal",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor t7_24m_div2 = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "24m_div2",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_24m.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_12m = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = CLK12_24_CTRL,
+> +		.bit_idx = 10,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "12m",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_24m_div2.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_25m_div = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = CLK12_24_CTRL,
+> +		.shift = 0,
+> +		.width = 8,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "25m_div",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "fix",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_25m = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = CLK12_24_CTRL,
+> +		.bit_idx = 12,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "25m",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_25m_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data t7_anakin_parents[] = {
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "vid_pll0", },
+> +	{ .fw_name = "mpll1", },
+> +	{ .fw_name = "mpll2", },
+> +	{ .fw_name = "fdiv2p5", },
+> +};
+> +
+> +static T7_COMP_SEL(anakin_0, ANAKIN_CLK_CTRL, 9, 0x7, t7_anakin_parents);
+> +static T7_COMP_DIV(anakin_0, ANAKIN_CLK_CTRL, 0, 7);
+> +static T7_COMP_GATE(anakin_0, ANAKIN_CLK_CTRL, 8, CLK_SET_RATE_GATE);
+> +
+> +static T7_COMP_SEL(anakin_1, ANAKIN_CLK_CTRL, 25, 0x7, t7_anakin_parents);
+> +static T7_COMP_DIV(anakin_1, ANAKIN_CLK_CTRL, 16, 7);
+> +static T7_COMP_GATE(anakin_1, ANAKIN_CLK_CTRL, 24, CLK_SET_RATE_GATE);
+> +
+> +static struct clk_regmap t7_anakin_01_sel = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = ANAKIN_CLK_CTRL,
+> +		.mask = 1,
+> +		.shift = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "anakin_01_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_anakin_0.hw,
+> +			&t7_anakin_1.hw
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_anakin = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = ANAKIN_CLK_CTRL,
+> +		.bit_idx = 30,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "anakin",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_anakin_01_sel.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data t7_mipi_csi_phy_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "gp1", },
+> +	{ .fw_name = "mpll1", },
+> +	{ .fw_name = "mpll2", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv7", },
+> +};
+> +
+> +static T7_COMP_SEL(mipi_csi_phy_0, MIPI_CSI_PHY_CLK_CTRL, 9, 0x7, t7_mipi_csi_phy_parents);
+> +static T7_COMP_DIV(mipi_csi_phy_0, MIPI_CSI_PHY_CLK_CTRL, 0, 7);
+> +static T7_COMP_GATE(mipi_csi_phy_0, MIPI_CSI_PHY_CLK_CTRL, 8, CLK_SET_RATE_GATE);
+> +
+> +static T7_COMP_SEL(mipi_csi_phy_1, MIPI_CSI_PHY_CLK_CTRL, 25, 0x7, t7_mipi_csi_phy_parents);
+> +static T7_COMP_DIV(mipi_csi_phy_1, MIPI_CSI_PHY_CLK_CTRL, 16, 7);
+> +static T7_COMP_GATE(mipi_csi_phy_1, MIPI_CSI_PHY_CLK_CTRL, 24, CLK_SET_RATE_GATE);
+> +
+> +static struct clk_regmap t7_mipi_csi_phy = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = MIPI_CSI_PHY_CLK_CTRL,
+> +		.mask = 0x1,
+> +		.shift = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "mipi_csi_phy",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mipi_csi_phy_0.hw,
+> +			&t7_mipi_csi_phy_1.hw
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data t7_mipi_isp_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv7", },
+> +	{ .fw_name = "mpll2", },
+> +	{ .fw_name = "mpll3", },
+> +	{ .fw_name = "gp1", },
+> +};
+> +
+> +static T7_COMP_SEL(mipi_isp, MIPI_ISP_CLK_CTRL, 9, 0x7, t7_mipi_isp_parents);
+> +static T7_COMP_DIV(mipi_isp, MIPI_ISP_CLK_CTRL, 0, 7);
+> +static T7_COMP_GATE(mipi_isp, MIPI_ISP_CLK_CTRL, 8, 0);
+> +
+> +static struct clk_regmap t7_ts_div = {
+> +	.data = &(struct clk_regmap_div_data){
+> +		.offset = TS_CLK_CTRL,
+> +		.shift = 0,
+> +		.width = 8,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "ts_div",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "xtal",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_ts = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = TS_CLK_CTRL,
+> +		.bit_idx = 8,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "ts",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_ts_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data t7_mali_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "gp0", },
+> +	{ .fw_name = "gp1", },
+> +	{ .fw_name = "fdiv2p5", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv7", },
+> +};
+> +
+> +static T7_COMP_SEL(mali_0, MALI_CLK_CTRL, 9, 0x7, t7_mali_parents);
+> +static T7_COMP_DIV(mali_0, MALI_CLK_CTRL, 0, 7);
+> +static T7_COMP_GATE(mali_0, MALI_CLK_CTRL, 8, CLK_SET_RATE_GATE);
+> +
+> +static T7_COMP_SEL(mali_1, MALI_CLK_CTRL, 25, 0x7, t7_mali_parents);
+> +static T7_COMP_DIV(mali_1, MALI_CLK_CTRL, 16, 7);
+> +static T7_COMP_GATE(mali_1, MALI_CLK_CTRL, 24, CLK_SET_RATE_GATE);
+> +
+> +static struct clk_regmap t7_mali = {
+> +	.data = &(struct clk_regmap_mux_data){
+> +		.offset = MALI_CLK_CTRL,
+> +		.mask = 1,
+> +		.shift = 31,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "mali",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_mali_0.hw,
+> +			&t7_mali_1.hw,
+> +		},
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +/*
+> + * parent index 2, 3, 4, 5, 6 not connect any clock signal,
+> + * the last parent connect external PAD
+> + */
+> +static u32 t7_eth_rmii_parents_val_table[] = { 0, 1, 7 };
+> +static const struct clk_parent_data t7_eth_rmii_parents[] = {
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "gp1", },
+> +	{ .fw_name = "ext_rmii", },
+> +};
+> +
+> +static struct clk_regmap t7_eth_rmii_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = ETH_CLK_CTRL,
+> +		.mask = 0x7,
+> +		.shift = 9,
+> +		.table = t7_eth_rmii_parents_val_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "eth_rmii_sel",
+> +		.ops = &clk_regmap_mux_ops,
+> +		.parent_data = t7_eth_rmii_parents,
+> +		.num_parents = ARRAY_SIZE(t7_eth_rmii_parents),
+> +		.flags = CLK_SET_RATE_NO_REPARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_eth_rmii_div = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = ETH_CLK_CTRL,
+> +		.shift = 0,
+> +		.width = 7,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "eth_rmii_div",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_eth_rmii_sel.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_eth_rmii = {
+> +	.data = &(struct clk_regmap_gate_data) {
+> +		.offset = ETH_CLK_CTRL,
+> +		.bit_idx = 8,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "eth_rmii",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_eth_rmii_div.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor t7_fdiv2_div8 = {
+> +	.mult = 1,
+> +	.div = 8,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "fdiv2_div8",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "fdiv2",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap t7_eth_125m = {
+> +	.data = &(struct clk_regmap_gate_data) {
+> +		.offset = ETH_CLK_CTRL,
+> +		.bit_idx = 7,
+> +	},
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "eth_125m",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&t7_fdiv2_div8.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data t7_sd_emmc_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "hifi", },
+> +	{ .fw_name = "fdiv2p5", },
+> +	{ .fw_name = "mpll2", },
+> +	{ .fw_name = "mpll3", },
+> +	{ .fw_name = "gp0", },
+> +};
+> +
+> +static T7_COMP_SEL(sd_emmc_c, NAND_CLK_CTRL, 9, 0x7, t7_sd_emmc_parents);
+> +static T7_COMP_DIV(sd_emmc_c, NAND_CLK_CTRL, 0, 7);
+> +static T7_COMP_GATE(sd_emmc_c, NAND_CLK_CTRL, 7, 0);
+> +
+> +static T7_COMP_SEL(sd_emmc_a, SD_EMMC_CLK_CTRL, 9, 0x7, t7_sd_emmc_parents);
+> +static T7_COMP_DIV(sd_emmc_a, SD_EMMC_CLK_CTRL, 0, 7);
+> +static T7_COMP_GATE(sd_emmc_a, SD_EMMC_CLK_CTRL, 7, 0);
+> +
+> +static T7_COMP_SEL(sd_emmc_b, SD_EMMC_CLK_CTRL, 25, 0x7, t7_sd_emmc_parents);
+> +static T7_COMP_DIV(sd_emmc_b, SD_EMMC_CLK_CTRL, 16, 7);
+> +static T7_COMP_GATE(sd_emmc_b, SD_EMMC_CLK_CTRL, 23, 0);
+
+I admit it is a touch pedantic but C, then A then B is odd ...
+
+> +
+> +static const struct clk_parent_data t7_spicc_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "sys", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv7", },
+> +	{ .fw_name = "gp1", },
+> +};
+> +
+> +static T7_COMP_SEL(spicc0, SPICC_CLK_CTRL, 7, 0x7, t7_spicc_parents);
+> +static T7_COMP_DIV(spicc0, SPICC_CLK_CTRL, 0, 6);
+> +static T7_COMP_GATE(spicc0, SPICC_CLK_CTRL, 6, 0);
+> +
+> +static T7_COMP_SEL(spicc1, SPICC_CLK_CTRL, 23, 0x7, t7_spicc_parents);
+> +static T7_COMP_DIV(spicc1, SPICC_CLK_CTRL, 16, 6);
+> +static T7_COMP_GATE(spicc1, SPICC_CLK_CTRL, 22, 0);
+> +
+> +static T7_COMP_SEL(spicc2, SPICC_CLK_CTRL1, 7, 0x7, t7_spicc_parents);
+> +static T7_COMP_DIV(spicc2, SPICC_CLK_CTRL1, 0, 6);
+> +static T7_COMP_GATE(spicc2, SPICC_CLK_CTRL1, 6, 0);
+> +
+> +static T7_COMP_SEL(spicc3, SPICC_CLK_CTRL1, 23, 0x7, t7_spicc_parents);
+> +static T7_COMP_DIV(spicc3, SPICC_CLK_CTRL1, 16, 6);
+> +static T7_COMP_GATE(spicc3, SPICC_CLK_CTRL1, 22, 0);
+> +
+> +static T7_COMP_SEL(spicc4, SPICC_CLK_CTRL2, 7, 0x7, t7_spicc_parents);
+> +static T7_COMP_DIV(spicc4, SPICC_CLK_CTRL2, 0, 6);
+> +static T7_COMP_GATE(spicc4, SPICC_CLK_CTRL2, 6, 0);
+> +
+> +static T7_COMP_SEL(spicc5, SPICC_CLK_CTRL2, 23, 0x7, t7_spicc_parents);
+> +static T7_COMP_DIV(spicc5, SPICC_CLK_CTRL2, 16, 6);
+> +static T7_COMP_GATE(spicc5, SPICC_CLK_CTRL2, 22, 0);
+> +
+> +static const struct clk_parent_data t7_saradc_parents[] = {
+> +	{ .fw_name = "xtal" },
+> +	{ .fw_name = "sys" },
+> +};
+> +
+> +static T7_COMP_SEL(saradc, SAR_CLK_CTRL0, 9, 0x1, t7_saradc_parents);
+> +static T7_COMP_DIV(saradc, SAR_CLK_CTRL0, 0, 8);
+> +static T7_COMP_GATE(saradc, SAR_CLK_CTRL0, 8, 0);
+> +
+> +static const struct clk_parent_data t7_pwm_parents[]  = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "vid_pll0", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +};
+> +
+> +static T7_COMP_SEL(pwm_a, PWM_CLK_AB_CTRL, 9, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_a, PWM_CLK_AB_CTRL, 0, 8);
+> +static T7_COMP_GATE(pwm_a, PWM_CLK_AB_CTRL, 8, 0);
+> +
+> +static T7_COMP_SEL(pwm_b, PWM_CLK_AB_CTRL, 25, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_b, PWM_CLK_AB_CTRL, 16, 8);
+> +static T7_COMP_GATE(pwm_b, PWM_CLK_AB_CTRL, 24, 0);
+> +
+> +static T7_COMP_SEL(pwm_c, PWM_CLK_CD_CTRL, 9, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_c, PWM_CLK_CD_CTRL, 0, 8);
+> +static T7_COMP_GATE(pwm_c, PWM_CLK_CD_CTRL, 8, 0);
+> +
+> +static T7_COMP_SEL(pwm_d, PWM_CLK_CD_CTRL, 25, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_d, PWM_CLK_CD_CTRL, 16, 8);
+> +static T7_COMP_GATE(pwm_d, PWM_CLK_CD_CTRL, 24, 0);
+> +
+> +static T7_COMP_SEL(pwm_e, PWM_CLK_EF_CTRL, 9, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_e, PWM_CLK_EF_CTRL, 0, 8);
+> +static T7_COMP_GATE(pwm_e, PWM_CLK_EF_CTRL, 8, 0);
+> +
+> +static T7_COMP_SEL(pwm_f, PWM_CLK_EF_CTRL, 25, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_f, PWM_CLK_EF_CTRL, 16, 8);
+> +static T7_COMP_GATE(pwm_f, PWM_CLK_EF_CTRL, 24, 0);
+> +
+> +static T7_COMP_SEL(pwm_ao_a, PWM_CLK_AO_AB_CTRL, 9, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_ao_a, PWM_CLK_AO_AB_CTRL, 0, 8);
+> +static T7_COMP_GATE(pwm_ao_a, PWM_CLK_AO_AB_CTRL, 8, 0);
+> +
+> +static T7_COMP_SEL(pwm_ao_b, PWM_CLK_AO_AB_CTRL, 25, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_ao_b, PWM_CLK_AO_AB_CTRL, 16, 8);
+> +static T7_COMP_GATE(pwm_ao_b, PWM_CLK_AO_AB_CTRL, 24, 0);
+> +
+> +static T7_COMP_SEL(pwm_ao_c, PWM_CLK_AO_CD_CTRL, 9, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_ao_c, PWM_CLK_AO_CD_CTRL, 0, 8);
+> +static T7_COMP_GATE(pwm_ao_c, PWM_CLK_AO_CD_CTRL, 8, 0);
+> +
+> +static T7_COMP_SEL(pwm_ao_d, PWM_CLK_AO_CD_CTRL, 25, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_ao_d, PWM_CLK_AO_CD_CTRL, 16, 8);
+> +static T7_COMP_GATE(pwm_ao_d, PWM_CLK_AO_CD_CTRL, 24, 0);
+> +
+> +static T7_COMP_SEL(pwm_ao_e, PWM_CLK_AO_EF_CTRL, 9, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_ao_e, PWM_CLK_AO_EF_CTRL, 0, 8);
+> +static T7_COMP_GATE(pwm_ao_e, PWM_CLK_AO_EF_CTRL, 8, 0);
+> +
+> +static T7_COMP_SEL(pwm_ao_f, PWM_CLK_AO_EF_CTRL, 25, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_ao_f, PWM_CLK_AO_EF_CTRL, 16, 8);
+> +static T7_COMP_GATE(pwm_ao_f, PWM_CLK_AO_EF_CTRL, 24, 0);
+> +
+> +static T7_COMP_SEL(pwm_ao_g, PWM_CLK_AO_GH_CTRL, 9, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_ao_g, PWM_CLK_AO_GH_CTRL, 0, 8);
+> +static T7_COMP_GATE(pwm_ao_g, PWM_CLK_AO_GH_CTRL, 8, 0);
+> +
+> +static T7_COMP_SEL(pwm_ao_h, PWM_CLK_AO_GH_CTRL, 25, 0x3, t7_pwm_parents);
+> +static T7_COMP_DIV(pwm_ao_h, PWM_CLK_AO_GH_CTRL, 16, 8);
+> +static T7_COMP_GATE(pwm_ao_h, PWM_CLK_AO_GH_CTRL, 24, 0);
+> +
+> +static const struct clk_parent_data t7_sys_pclk_parents = { .fw_name = "sys" };
+> +
+> +#define T7_SYS_PCLK(_name, _reg, _bit, _flags) \
+> +	MESON_PCLK(t7_##_name, _reg, _bit, &t7_sys_pclk_parents, _flags)
+> +
+> +static T7_SYS_PCLK(sys_ddr,		SYS_CLK_EN0_REG0, 0,	0);
+> +static T7_SYS_PCLK(sys_dos,		SYS_CLK_EN0_REG0, 1,	0);
+> +static T7_SYS_PCLK(sys_mipi_dsi_a,	SYS_CLK_EN0_REG0, 2,	0);
+> +static T7_SYS_PCLK(sys_mipi_dsi_b,	SYS_CLK_EN0_REG0, 3,	0);
+> +static T7_SYS_PCLK(sys_ethphy,		SYS_CLK_EN0_REG0, 4,	0);
+> +static T7_SYS_PCLK(sys_mali,		SYS_CLK_EN0_REG0, 6,	0);
+> +static T7_SYS_PCLK(sys_aocpu,		SYS_CLK_EN0_REG0, 13,	0);
+> +static T7_SYS_PCLK(sys_aucpu,		SYS_CLK_EN0_REG0, 14,	0);
+> +static T7_SYS_PCLK(sys_cec,		SYS_CLK_EN0_REG0, 16,	0);
+> +static T7_SYS_PCLK(sys_gdc,		SYS_CLK_EN0_REG0, 17,	0);
+> +static T7_SYS_PCLK(sys_deswarp,		SYS_CLK_EN0_REG0, 18,	0);
+> +static T7_SYS_PCLK(sys_ampipe_nand,	SYS_CLK_EN0_REG0, 19,	0);
+> +static T7_SYS_PCLK(sys_ampipe_eth,	SYS_CLK_EN0_REG0, 20,	0);
+> +static T7_SYS_PCLK(sys_am2axi0,		SYS_CLK_EN0_REG0, 21,	0);
+> +static T7_SYS_PCLK(sys_am2axi1,		SYS_CLK_EN0_REG0, 22,	0);
+> +static T7_SYS_PCLK(sys_am2axi2,		SYS_CLK_EN0_REG0, 23,	0);
+> +static T7_SYS_PCLK(sys_sd_emmc_a,	SYS_CLK_EN0_REG0, 24,	0);
+> +static T7_SYS_PCLK(sys_sd_emmc_b,	SYS_CLK_EN0_REG0, 25,	0);
+> +static T7_SYS_PCLK(sys_sd_emmc_c,	SYS_CLK_EN0_REG0, 26,	0);
+> +static T7_SYS_PCLK(sys_smartcard,	SYS_CLK_EN0_REG0, 27,	0);
+> +static T7_SYS_PCLK(sys_acodec,		SYS_CLK_EN0_REG0, 28,	0);
+> +static T7_SYS_PCLK(sys_spifc,		SYS_CLK_EN0_REG0, 29,	0);
+> +static T7_SYS_PCLK(sys_msr_clk,		SYS_CLK_EN0_REG0, 30,	0);
+> +static T7_SYS_PCLK(sys_ir_ctrl,		SYS_CLK_EN0_REG0, 31,	0);
+> +static T7_SYS_PCLK(sys_audio,		SYS_CLK_EN0_REG1, 0,	0);
+> +static T7_SYS_PCLK(sys_eth,		SYS_CLK_EN0_REG1, 3,	0);
+> +static T7_SYS_PCLK(sys_uart_a,		SYS_CLK_EN0_REG1, 5,	0);
+> +static T7_SYS_PCLK(sys_uart_b,		SYS_CLK_EN0_REG1, 6,	0);
+> +static T7_SYS_PCLK(sys_uart_c,		SYS_CLK_EN0_REG1, 7,	0);
+> +static T7_SYS_PCLK(sys_uart_d,		SYS_CLK_EN0_REG1, 8,	0);
+> +static T7_SYS_PCLK(sys_uart_e,		SYS_CLK_EN0_REG1, 9,	0);
+> +static T7_SYS_PCLK(sys_uart_f,		SYS_CLK_EN0_REG1, 10,	0);
+> +static T7_SYS_PCLK(sys_aififo,		SYS_CLK_EN0_REG1, 11,	0);
+> +static T7_SYS_PCLK(sys_spicc2,		SYS_CLK_EN0_REG1, 12,	0);
+> +static T7_SYS_PCLK(sys_spicc3,		SYS_CLK_EN0_REG1, 13,	0);
+> +static T7_SYS_PCLK(sys_spicc4,		SYS_CLK_EN0_REG1, 14,	0);
+> +static T7_SYS_PCLK(sys_ts_a73,		SYS_CLK_EN0_REG1, 15,	0);
+> +static T7_SYS_PCLK(sys_ts_a53,		SYS_CLK_EN0_REG1, 16,	0);
+> +static T7_SYS_PCLK(sys_spicc5,		SYS_CLK_EN0_REG1, 17,	0);
+> +static T7_SYS_PCLK(sys_g2d,		SYS_CLK_EN0_REG1, 20,	0);
+> +static T7_SYS_PCLK(sys_spicc0,		SYS_CLK_EN0_REG1, 21,	0);
+> +static T7_SYS_PCLK(sys_spicc1,		SYS_CLK_EN0_REG1, 22,	0);
+> +static T7_SYS_PCLK(sys_pcie,		SYS_CLK_EN0_REG1, 24,	0);
+> +static T7_SYS_PCLK(sys_usb,		SYS_CLK_EN0_REG1, 26,	0);
+> +static T7_SYS_PCLK(sys_pcie_phy,	SYS_CLK_EN0_REG1, 27,	0);
+> +static T7_SYS_PCLK(sys_i2c_ao_a,	SYS_CLK_EN0_REG1, 28,	0);
+> +static T7_SYS_PCLK(sys_i2c_ao_b,	SYS_CLK_EN0_REG1, 29,	0);
+> +static T7_SYS_PCLK(sys_i2c_m_a,		SYS_CLK_EN0_REG1, 30,	0);
+> +static T7_SYS_PCLK(sys_i2c_m_b,		SYS_CLK_EN0_REG1, 31,	0);
+> +static T7_SYS_PCLK(sys_i2c_m_c,		SYS_CLK_EN0_REG2, 0,	0);
+> +static T7_SYS_PCLK(sys_i2c_m_d,		SYS_CLK_EN0_REG2, 1,	0);
+> +static T7_SYS_PCLK(sys_i2c_m_e,		SYS_CLK_EN0_REG2, 2,	0);
+> +static T7_SYS_PCLK(sys_i2c_m_f,		SYS_CLK_EN0_REG2, 3,	0);
+> +static T7_SYS_PCLK(sys_hdmitx_apb,	SYS_CLK_EN0_REG2, 4,	0);
+> +static T7_SYS_PCLK(sys_i2c_s_a,		SYS_CLK_EN0_REG2, 5,	0);
+> +static T7_SYS_PCLK(sys_hdmirx_pclk,	SYS_CLK_EN0_REG2, 8,	0);
+> +static T7_SYS_PCLK(sys_mmc_apb,		SYS_CLK_EN0_REG2, 11,	0);
+> +static T7_SYS_PCLK(sys_mipi_isp_pclk,	SYS_CLK_EN0_REG2, 17,	0);
+> +static T7_SYS_PCLK(sys_rsa,		SYS_CLK_EN0_REG2, 18,	0);
+> +static T7_SYS_PCLK(sys_pclk_sys_apb,	SYS_CLK_EN0_REG2, 19,	0);
+> +static T7_SYS_PCLK(sys_a73pclk_apb,	SYS_CLK_EN0_REG2, 20,	0);
+> +static T7_SYS_PCLK(sys_dspa,		SYS_CLK_EN0_REG2, 21,	0);
+> +static T7_SYS_PCLK(sys_dspb,		SYS_CLK_EN0_REG2, 22,	0);
+> +static T7_SYS_PCLK(sys_vpu_intr,	SYS_CLK_EN0_REG2, 25,	0);
+> +static T7_SYS_PCLK(sys_sar_adc,		SYS_CLK_EN0_REG2, 28,	0);
+> +/*
+> + * sys_gic provides the clock for GIC(Generic Interrupt Controller).
+> + * After clock is disabled, The GIC cannot work properly. At present, the driver
+> + * used by our GIC is the public driver in kernel, and there is no management
+> + * clock in the driver.
+> + */
+> +static T7_SYS_PCLK(sys_gic,		SYS_CLK_EN0_REG2, 30,	CLK_IS_CRITICAL);
+> +static T7_SYS_PCLK(sys_ts_gpu,		SYS_CLK_EN0_REG2, 31,	0);
+> +static T7_SYS_PCLK(sys_ts_nna,		SYS_CLK_EN0_REG3, 0,	0);
+> +static T7_SYS_PCLK(sys_ts_vpu,		SYS_CLK_EN0_REG3, 1,	0);
+> +static T7_SYS_PCLK(sys_ts_hevc,		SYS_CLK_EN0_REG3, 2,	0);
+> +static T7_SYS_PCLK(sys_pwm_ao_ab,	SYS_CLK_EN0_REG3, 3,	0);
+> +static T7_SYS_PCLK(sys_pwm_ao_cd,	SYS_CLK_EN0_REG3, 4,	0);
+> +static T7_SYS_PCLK(sys_pwm_ao_ef,	SYS_CLK_EN0_REG3, 5,	0);
+> +static T7_SYS_PCLK(sys_pwm_ao_gh,	SYS_CLK_EN0_REG3, 6,	0);
+> +static T7_SYS_PCLK(sys_pwm_ab,		SYS_CLK_EN0_REG3, 7,	0);
+> +static T7_SYS_PCLK(sys_pwm_cd,		SYS_CLK_EN0_REG3, 8,	0);
+> +static T7_SYS_PCLK(sys_pwm_ef,		SYS_CLK_EN0_REG3, 9,	0);
+> +
+> +/* Array of all clocks registered by this provider */
+> +static struct clk_hw *t7_peripherals_hw_clks[] = {
+> +	[CLKID_RTC_DUALDIV_IN]		= &t7_rtc_dualdiv_in.hw,
+> +	[CLKID_RTC_DUALDIV_DIV]		= &t7_rtc_dualdiv_div.hw,
+> +	[CLKID_RTC_DUALDIV_SEL]		= &t7_rtc_dualdiv_sel.hw,
+> +	[CLKID_RTC_DUALDIV]		= &t7_rtc_dualdiv.hw,
+> +	[CLKID_RTC]			= &t7_rtc.hw,
+> +	[CLKID_CECA_DUALDIV_IN]		= &t7_ceca_dualdiv_in.hw,
+> +	[CLKID_CECA_DUALDIV_DIV]	= &t7_ceca_dualdiv_div.hw,
+> +	[CLKID_CECA_DUALDIV_SEL]	= &t7_ceca_dualdiv_sel.hw,
+> +	[CLKID_CECA_DUALDIV]		= &t7_ceca_dualdiv.hw,
+> +	[CLKID_CECA]			= &t7_ceca.hw,
+> +	[CLKID_CECB_DUALDIV_IN]		= &t7_cecb_dualdiv_in.hw,
+> +	[CLKID_CECB_DUALDIV_DIV]	= &t7_cecb_dualdiv_div.hw,
+> +	[CLKID_CECB_DUALDIV_SEL]	= &t7_cecb_dualdiv_sel.hw,
+> +	[CLKID_CECB_DUALDIV]		= &t7_cecb_dualdiv.hw,
+> +	[CLKID_CECB]			= &t7_cecb.hw,
+> +	[CLKID_SC_SEL]			= &t7_sc_sel.hw,
+> +	[CLKID_SC_DIV]			= &t7_sc_div.hw,
+> +	[CLKID_SC]			= &t7_sc.hw,
+> +	[CLKID_DSPA_0_SEL]		= &t7_dspa_0_sel.hw,
+> +	[CLKID_DSPA_0_DIV]		= &t7_dspa_0_div.hw,
+> +	[CLKID_DSPA_0]			= &t7_dspa_0.hw,
+> +	[CLKID_DSPA_1_SEL]		= &t7_dspa_1_sel.hw,
+> +	[CLKID_DSPA_1_DIV]		= &t7_dspa_1_div.hw,
+> +	[CLKID_DSPA_1]			= &t7_dspa_1.hw,
+> +	[CLKID_DSPA]			= &t7_dspa.hw,
+> +	[CLKID_DSPB_0_SEL]		= &t7_dspb_0_sel.hw,
+> +	[CLKID_DSPB_0_DIV]		= &t7_dspb_0_div.hw,
+> +	[CLKID_DSPB_0]			= &t7_dspb_0.hw,
+> +	[CLKID_DSPB_1_SEL]		= &t7_dspb_1_sel.hw,
+> +	[CLKID_DSPB_1_DIV]		= &t7_dspb_1_div.hw,
+> +	[CLKID_DSPB_1]			= &t7_dspb_1.hw,
+> +	[CLKID_DSPB]			= &t7_dspb.hw,
+> +	[CLKID_24M]			= &t7_24m.hw,
+> +	[CLKID_24M_DIV2]		= &t7_24m_div2.hw,
+> +	[CLKID_12M]			= &t7_12m.hw,
+> +	[CLKID_25M_DIV]			= &t7_25m_div.hw,
+> +	[CLKID_25M]			= &t7_25m.hw,
+> +	[CLKID_ANAKIN_0_SEL]		= &t7_anakin_0_sel.hw,
+> +	[CLKID_ANAKIN_0_DIV]		= &t7_anakin_0_div.hw,
+> +	[CLKID_ANAKIN_0]		= &t7_anakin_0.hw,
+> +	[CLKID_ANAKIN_1_SEL]		= &t7_anakin_1_sel.hw,
+> +	[CLKID_ANAKIN_1_DIV]		= &t7_anakin_1_div.hw,
+> +	[CLKID_ANAKIN_1]		= &t7_anakin_1.hw,
+> +	[CLKID_ANAKIN_01_SEL]		= &t7_anakin_01_sel.hw,
+> +	[CLKID_ANAKIN]			= &t7_anakin.hw,
+> +	[CLKID_MIPI_CSI_PHY_0_SEL]	= &t7_mipi_csi_phy_0_sel.hw,
+> +	[CLKID_MIPI_CSI_PHY_0_DIV]	= &t7_mipi_csi_phy_0_div.hw,
+> +	[CLKID_MIPI_CSI_PHY_0]		= &t7_mipi_csi_phy_0.hw,
+> +	[CLKID_MIPI_CSI_PHY_1_SEL]	= &t7_mipi_csi_phy_1_sel.hw,
+> +	[CLKID_MIPI_CSI_PHY_1_DIV]	= &t7_mipi_csi_phy_1_div.hw,
+> +	[CLKID_MIPI_CSI_PHY_1]		= &t7_mipi_csi_phy_1.hw,
+> +	[CLKID_MIPI_CSI_PHY]		= &t7_mipi_csi_phy.hw,
+> +	[CLKID_MIPI_ISP_SEL]		= &t7_mipi_isp_sel.hw,
+> +	[CLKID_MIPI_ISP_DIV]		= &t7_mipi_isp_div.hw,
+> +	[CLKID_MIPI_ISP]		= &t7_mipi_isp.hw,
+> +	[CLKID_TS_DIV]			= &t7_ts_div.hw,
+> +	[CLKID_TS]			= &t7_ts.hw,
+> +	[CLKID_MALI_0_SEL]		= &t7_mali_0_sel.hw,
+> +	[CLKID_MALI_0_DIV]		= &t7_mali_0_div.hw,
+> +	[CLKID_MALI_0]			= &t7_mali_0.hw,
+> +	[CLKID_MALI_1_SEL]		= &t7_mali_1_sel.hw,
+> +	[CLKID_MALI_1_DIV]		= &t7_mali_1_div.hw,
+> +	[CLKID_MALI_1]			= &t7_mali_1.hw,
+> +	[CLKID_MALI]			= &t7_mali.hw,
+> +	[CLKID_ETH_RMII_SEL]		= &t7_eth_rmii_sel.hw,
+> +	[CLKID_ETH_RMII_DIV]		= &t7_eth_rmii_div.hw,
+> +	[CLKID_ETH_RMII]		= &t7_eth_rmii.hw,
+> +	[CLKID_FCLK_DIV2_DIV8]		= &t7_fdiv2_div8.hw,
+> +	[CLKID_ETH_125M]		= &t7_eth_125m.hw,
+> +	[CLKID_SD_EMMC_C_SEL]		= &t7_sd_emmc_c_sel.hw,
+> +	[CLKID_SD_EMMC_C_DIV]		= &t7_sd_emmc_c_div.hw,
+> +	[CLKID_SD_EMMC_C]		= &t7_sd_emmc_c.hw,
+> +	[CLKID_SD_EMMC_A_SEL]		= &t7_sd_emmc_a_sel.hw,
+> +	[CLKID_SD_EMMC_A_DIV]		= &t7_sd_emmc_a_div.hw,
+> +	[CLKID_SD_EMMC_A]		= &t7_sd_emmc_a.hw,
+> +	[CLKID_SD_EMMC_B_SEL]		= &t7_sd_emmc_b_sel.hw,
+> +	[CLKID_SD_EMMC_B_DIV]		= &t7_sd_emmc_b_div.hw,
+> +	[CLKID_SD_EMMC_B]		= &t7_sd_emmc_b.hw,
+> +	[CLKID_SPICC0_SEL]		= &t7_spicc0_sel.hw,
+> +	[CLKID_SPICC0_DIV]		= &t7_spicc0_div.hw,
+> +	[CLKID_SPICC0]			= &t7_spicc0.hw,
+> +	[CLKID_SPICC1_SEL]		= &t7_spicc1_sel.hw,
+> +	[CLKID_SPICC1_DIV]		= &t7_spicc1_div.hw,
+> +	[CLKID_SPICC1]			= &t7_spicc1.hw,
+> +	[CLKID_SPICC2_SEL]		= &t7_spicc2_sel.hw,
+> +	[CLKID_SPICC2_DIV]		= &t7_spicc2_div.hw,
+> +	[CLKID_SPICC2]			= &t7_spicc2.hw,
+> +	[CLKID_SPICC3_SEL]		= &t7_spicc3_sel.hw,
+> +	[CLKID_SPICC3_DIV]		= &t7_spicc3_div.hw,
+> +	[CLKID_SPICC3]			= &t7_spicc3.hw,
+> +	[CLKID_SPICC4_SEL]		= &t7_spicc4_sel.hw,
+> +	[CLKID_SPICC4_DIV]		= &t7_spicc4_div.hw,
+> +	[CLKID_SPICC4]			= &t7_spicc4.hw,
+> +	[CLKID_SPICC5_SEL]		= &t7_spicc5_sel.hw,
+> +	[CLKID_SPICC5_DIV]		= &t7_spicc5_div.hw,
+> +	[CLKID_SPICC5]			= &t7_spicc5.hw,
+> +	[CLKID_SARADC_SEL]		= &t7_saradc_sel.hw,
+> +	[CLKID_SARADC_DIV]		= &t7_saradc_div.hw,
+> +	[CLKID_SARADC]			= &t7_saradc.hw,
+> +	[CLKID_PWM_A_SEL]		= &t7_pwm_a_sel.hw,
+> +	[CLKID_PWM_A_DIV]		= &t7_pwm_a_div.hw,
+> +	[CLKID_PWM_A]			= &t7_pwm_a.hw,
+> +	[CLKID_PWM_B_SEL]		= &t7_pwm_b_sel.hw,
+> +	[CLKID_PWM_B_DIV]		= &t7_pwm_b_div.hw,
+> +	[CLKID_PWM_B]			= &t7_pwm_b.hw,
+> +	[CLKID_PWM_C_SEL]		= &t7_pwm_c_sel.hw,
+> +	[CLKID_PWM_C_DIV]		= &t7_pwm_c_div.hw,
+> +	[CLKID_PWM_C]			= &t7_pwm_c.hw,
+> +	[CLKID_PWM_D_SEL]		= &t7_pwm_d_sel.hw,
+> +	[CLKID_PWM_D_DIV]		= &t7_pwm_d_div.hw,
+> +	[CLKID_PWM_D]			= &t7_pwm_d.hw,
+> +	[CLKID_PWM_E_SEL]		= &t7_pwm_e_sel.hw,
+> +	[CLKID_PWM_E_DIV]		= &t7_pwm_e_div.hw,
+> +	[CLKID_PWM_E]			= &t7_pwm_e.hw,
+> +	[CLKID_PWM_F_SEL]		= &t7_pwm_f_sel.hw,
+> +	[CLKID_PWM_F_DIV]		= &t7_pwm_f_div.hw,
+> +	[CLKID_PWM_F]			= &t7_pwm_f.hw,
+> +	[CLKID_PWM_AO_A_SEL]		= &t7_pwm_ao_a_sel.hw,
+> +	[CLKID_PWM_AO_A_DIV]		= &t7_pwm_ao_a_div.hw,
+> +	[CLKID_PWM_AO_A]		= &t7_pwm_ao_a.hw,
+> +	[CLKID_PWM_AO_B_SEL]		= &t7_pwm_ao_b_sel.hw,
+> +	[CLKID_PWM_AO_B_DIV]		= &t7_pwm_ao_b_div.hw,
+> +	[CLKID_PWM_AO_B]		= &t7_pwm_ao_b.hw,
+> +	[CLKID_PWM_AO_C_SEL]		= &t7_pwm_ao_c_sel.hw,
+> +	[CLKID_PWM_AO_C_DIV]		= &t7_pwm_ao_c_div.hw,
+> +	[CLKID_PWM_AO_C]		= &t7_pwm_ao_c.hw,
+> +	[CLKID_PWM_AO_D_SEL]		= &t7_pwm_ao_d_sel.hw,
+> +	[CLKID_PWM_AO_D_DIV]		= &t7_pwm_ao_d_div.hw,
+> +	[CLKID_PWM_AO_D]		= &t7_pwm_ao_d.hw,
+> +	[CLKID_PWM_AO_E_SEL]		= &t7_pwm_ao_e_sel.hw,
+> +	[CLKID_PWM_AO_E_DIV]		= &t7_pwm_ao_e_div.hw,
+> +	[CLKID_PWM_AO_E]		= &t7_pwm_ao_e.hw,
+> +	[CLKID_PWM_AO_F_SEL]		= &t7_pwm_ao_f_sel.hw,
+> +	[CLKID_PWM_AO_F_DIV]		= &t7_pwm_ao_f_div.hw,
+> +	[CLKID_PWM_AO_F]		= &t7_pwm_ao_f.hw,
+> +	[CLKID_PWM_AO_G_SEL]		= &t7_pwm_ao_g_sel.hw,
+> +	[CLKID_PWM_AO_G_DIV]		= &t7_pwm_ao_g_div.hw,
+> +	[CLKID_PWM_AO_G]		= &t7_pwm_ao_g.hw,
+> +	[CLKID_PWM_AO_H_SEL]		= &t7_pwm_ao_h_sel.hw,
+> +	[CLKID_PWM_AO_H_DIV]		= &t7_pwm_ao_h_div.hw,
+> +	[CLKID_PWM_AO_H]		= &t7_pwm_ao_h.hw,
+> +	[CLKID_SYS_DDR]			= &t7_sys_ddr.hw,
+> +	[CLKID_SYS_DOS]			= &t7_sys_dos.hw,
+> +	[CLKID_SYS_MIPI_DSI_A]		= &t7_sys_mipi_dsi_a.hw,
+> +	[CLKID_SYS_MIPI_DSI_B]		= &t7_sys_mipi_dsi_b.hw,
+> +	[CLKID_SYS_ETHPHY]		= &t7_sys_ethphy.hw,
+> +	[CLKID_SYS_MALI]		= &t7_sys_mali.hw,
+> +	[CLKID_SYS_AOCPU]		= &t7_sys_aocpu.hw,
+> +	[CLKID_SYS_AUCPU]		= &t7_sys_aucpu.hw,
+> +	[CLKID_SYS_CEC]			= &t7_sys_cec.hw,
+> +	[CLKID_SYS_GDC]			= &t7_sys_gdc.hw,
+> +	[CLKID_SYS_DESWARP]		= &t7_sys_deswarp.hw,
+> +	[CLKID_SYS_AMPIPE_NAND]		= &t7_sys_ampipe_nand.hw,
+> +	[CLKID_SYS_AMPIPE_ETH]		= &t7_sys_ampipe_eth.hw,
+> +	[CLKID_SYS_AM2AXI0]		= &t7_sys_am2axi0.hw,
+> +	[CLKID_SYS_AM2AXI1]		= &t7_sys_am2axi1.hw,
+> +	[CLKID_SYS_AM2AXI2]		= &t7_sys_am2axi2.hw,
+> +	[CLKID_SYS_SD_EMMC_A]		= &t7_sys_sd_emmc_a.hw,
+> +	[CLKID_SYS_SD_EMMC_B]		= &t7_sys_sd_emmc_b.hw,
+> +	[CLKID_SYS_SD_EMMC_C]		= &t7_sys_sd_emmc_c.hw,
+> +	[CLKID_SYS_SMARTCARD]		= &t7_sys_smartcard.hw,
+> +	[CLKID_SYS_ACODEC]		= &t7_sys_acodec.hw,
+> +	[CLKID_SYS_SPIFC]		= &t7_sys_spifc.hw,
+> +	[CLKID_SYS_MSR_CLK]		= &t7_sys_msr_clk.hw,
+> +	[CLKID_SYS_IR_CTRL]		= &t7_sys_ir_ctrl.hw,
+> +	[CLKID_SYS_AUDIO]		= &t7_sys_audio.hw,
+> +	[CLKID_SYS_ETH]			= &t7_sys_eth.hw,
+> +	[CLKID_SYS_UART_A]		= &t7_sys_uart_a.hw,
+> +	[CLKID_SYS_UART_B]		= &t7_sys_uart_b.hw,
+> +	[CLKID_SYS_UART_C]		= &t7_sys_uart_c.hw,
+> +	[CLKID_SYS_UART_D]		= &t7_sys_uart_d.hw,
+> +	[CLKID_SYS_UART_E]		= &t7_sys_uart_e.hw,
+> +	[CLKID_SYS_UART_F]		= &t7_sys_uart_f.hw,
+> +	[CLKID_SYS_AIFIFO]		= &t7_sys_aififo.hw,
+> +	[CLKID_SYS_SPICC2]		= &t7_sys_spicc2.hw,
+> +	[CLKID_SYS_SPICC3]		= &t7_sys_spicc3.hw,
+> +	[CLKID_SYS_SPICC4]		= &t7_sys_spicc4.hw,
+> +	[CLKID_SYS_TS_A73]		= &t7_sys_ts_a73.hw,
+> +	[CLKID_SYS_TS_A53]		= &t7_sys_ts_a53.hw,
+> +	[CLKID_SYS_SPICC5]		= &t7_sys_spicc5.hw,
+> +	[CLKID_SYS_G2D]			= &t7_sys_g2d.hw,
+> +	[CLKID_SYS_SPICC0]		= &t7_sys_spicc0.hw,
+> +	[CLKID_SYS_SPICC1]		= &t7_sys_spicc1.hw,
+> +	[CLKID_SYS_PCIE]		= &t7_sys_pcie.hw,
+> +	[CLKID_SYS_USB]			= &t7_sys_usb.hw,
+> +	[CLKID_SYS_PCIE_PHY]		= &t7_sys_pcie_phy.hw,
+> +	[CLKID_SYS_I2C_AO_A]		= &t7_sys_i2c_ao_a.hw,
+> +	[CLKID_SYS_I2C_AO_B]		= &t7_sys_i2c_ao_b.hw,
+> +	[CLKID_SYS_I2C_M_A]		= &t7_sys_i2c_m_a.hw,
+> +	[CLKID_SYS_I2C_M_B]		= &t7_sys_i2c_m_b.hw,
+> +	[CLKID_SYS_I2C_M_C]		= &t7_sys_i2c_m_c.hw,
+> +	[CLKID_SYS_I2C_M_D]		= &t7_sys_i2c_m_d.hw,
+> +	[CLKID_SYS_I2C_M_E]		= &t7_sys_i2c_m_e.hw,
+> +	[CLKID_SYS_I2C_M_F]		= &t7_sys_i2c_m_f.hw,
+> +	[CLKID_SYS_HDMITX_APB]		= &t7_sys_hdmitx_apb.hw,
+> +	[CLKID_SYS_I2C_S_A]		= &t7_sys_i2c_s_a.hw,
+> +	[CLKID_SYS_HDMIRX_PCLK]		= &t7_sys_hdmirx_pclk.hw,
+> +	[CLKID_SYS_MMC_APB]		= &t7_sys_mmc_apb.hw,
+> +	[CLKID_SYS_MIPI_ISP_PCLK]	= &t7_sys_mipi_isp_pclk.hw,
+> +	[CLKID_SYS_RSA]			= &t7_sys_rsa.hw,
+> +	[CLKID_SYS_PCLK_SYS_APB]	= &t7_sys_pclk_sys_apb.hw,
+> +	[CLKID_SYS_A73PCLK_APB]		= &t7_sys_a73pclk_apb.hw,
+> +	[CLKID_SYS_DSPA]		= &t7_sys_dspa.hw,
+> +	[CLKID_SYS_DSPB]		= &t7_sys_dspb.hw,
+> +	[CLKID_SYS_VPU_INTR]		= &t7_sys_vpu_intr.hw,
+> +	[CLKID_SYS_SAR_ADC]		= &t7_sys_sar_adc.hw,
+> +	[CLKID_SYS_GIC]			= &t7_sys_gic.hw,
+> +	[CLKID_SYS_TS_GPU]		= &t7_sys_ts_gpu.hw,
+> +	[CLKID_SYS_TS_NNA]		= &t7_sys_ts_nna.hw,
+> +	[CLKID_SYS_TS_VPU]		= &t7_sys_ts_vpu.hw,
+> +	[CLKID_SYS_TS_HEVC]		= &t7_sys_ts_hevc.hw,
+> +	[CLKID_SYS_PWM_AO_AB]		= &t7_sys_pwm_ao_ab.hw,
+> +	[CLKID_SYS_PWM_AO_CD]		= &t7_sys_pwm_ao_cd.hw,
+> +	[CLKID_SYS_PWM_AO_EF]		= &t7_sys_pwm_ao_ef.hw,
+> +	[CLKID_SYS_PWM_AO_GH]		= &t7_sys_pwm_ao_gh.hw,
+> +	[CLKID_SYS_PWM_AB]		= &t7_sys_pwm_ab.hw,
+> +	[CLKID_SYS_PWM_CD]		= &t7_sys_pwm_cd.hw,
+> +	[CLKID_SYS_PWM_EF]		= &t7_sys_pwm_ef.hw,
+> +};
+> +
+> +static const struct meson_clkc_data t7_peripherals_data = {
+> +	.hw_clks = {
+> +		.hws = t7_peripherals_hw_clks,
+> +		.num = ARRAY_SIZE(t7_peripherals_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct of_device_id t7_peripherals_clkc_match_table[] = {
+> +	{ .compatible = "amlogic,t7-peripherals-clkc", .data = &t7_peripherals_data },
+
+Nitpick again, please use multiline format when it is long like that.
+
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, t7_peripherals_clkc_match_table);
+> +
+> +static struct platform_driver t7_peripherals_clkc_driver = {
+> +	.probe = meson_clkc_mmio_probe,
+> +	.driver = {
+> +		.name = "t7-peripherals-clkc",
+> +		.of_match_table = t7_peripherals_clkc_match_table,
+> +	},
+> +};
+> +module_platform_driver(t7_peripherals_clkc_driver);
+> +
+> +MODULE_DESCRIPTION("Amlogic T7 Peripherals Clock Controller driver");
+> +MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("CLK_MESON");
+
+-- 
+Jerome
 
