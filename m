@@ -1,259 +1,148 @@
-Return-Path: <devicetree+bounces-241496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61454C7F1C6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:46:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7998FC7F251
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:07:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0A64C4E25D7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 06:46:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3D8774E1D4C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0B332DF719;
-	Mon, 24 Nov 2025 06:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0482E0418;
+	Mon, 24 Nov 2025 07:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QsZZAuhj";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AaXx1sfJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1yY+Da0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9262F36D516
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 06:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B4E526F478;
+	Mon, 24 Nov 2025 07:06:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763966770; cv=none; b=USyWIuOtLTynBqg3PAxhkIxzupYP09Cebgy/1GC0AU9buzQ8pPgkDuWqbgw3xL14savu0CZTVQ21YUGtrl4mKDrzAYeU0ZOv1KKU/nz5oJvo+nOxSkc3AMfW6cmYp/o6bRSZ7rAvwCcVBNd786CvB1MfprUTKzfVGRWV2bUYEho=
+	t=1763968018; cv=none; b=UhnFEzR7X43cwZSX9Qip00rX0DTwYS9o3oYdIYr2XRS58Caxkzb7WTNie4szHvzIzJDRhuRnlCLVUHIiNtlU6BkkiBTmelaUM7N5Cstyjp6JW80ugu8OIgAf8VbKoiUb4CQIDxdruXCpu6gtBOo8Pe2U4KSrqu9m78tc0nEbRSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763966770; c=relaxed/simple;
-	bh=23YpPQP4CI1KPsjWwNPJhWoqp9i+7QjgCb/IpMeDpao=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=geSL5jRn/i/w/JwOErKmpJBlO2rX3qz4pgbASED1sU2Rdxr5pPWOR05Kodx4KJTBAiNcor+/fizwYNZXTH2Ci7FQY3xrOir2P3J6Lao7Axa0LgN+Vge1id/L0KncqK1EYOldkcwmPd/17EkY3rvB4TQ6+Ps7EbPJn0jsVDQ1CPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QsZZAuhj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AaXx1sfJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ANMc1gA2273365
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 06:46:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	By/ZQL1FuYeACCKtKvf6JW76324AdceNxDBN+D6hlTo=; b=QsZZAuhjtFkJaUWA
-	IGZbFHvEXXN+U20t3G/C46HttkOJilVtAENXQ5CrzSUSXthrW+Re1yE//tG3mIqi
-	IqLyFKxQBqcfvlP7KXsZcIudYwnGNc6hNFuqnZcqRyWrsQfljY3KnpoqmvuQ8R5M
-	dD+KAhC5VibNnZapwaMz9T80KKVenL3qRKBnGSvmk/PqB15Iyyvs7SNBeFmJHMUY
-	REWxdTvx/JFiTIHGC6ESQvjMmMhFnoRwW+1EYcaFExPpg3oW1/I86+T7OuHGKGYh
-	SBAdrg/RN6PjHKJ1uwemwahewKJpXlSLktHNSN6joukyuvicgDwj5zxVYl03K9c7
-	98SSnw==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ak694uwbg-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 06:46:06 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2958c80fcabso117387705ad.0
-        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 22:46:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1763966766; x=1764571566; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=By/ZQL1FuYeACCKtKvf6JW76324AdceNxDBN+D6hlTo=;
-        b=AaXx1sfJfM+xumCHF3mZs3hvqzbMR/+S53MrwE9kbMhJzUIsy2gTuc3+evcgNFO1N8
-         KcxG2j1GQfgHQOnLN6WG6BdICwZkuuqjxpwWpjypwanTDa+bzHtl6bKFTJ5xpqdtNJbs
-         MxBw/ct8LfdV4ejbaz379JdIMnByBta7Yp5+x4wBdd3pcstZJmFmZbwhl1ngSWaSyUdL
-         pz2+62J0VFdsqq55ZtIcWd5xXWOSoxCf1axoZ0i/RjUFHJKSakxasH43SlVUfDz8+Dpu
-         nhxCviWpyF+vHK27dQJRR81l/OGjEeOmu0+954ZzXxlL/HsX9Di8wGvuJWonstv8SOjh
-         9uGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763966766; x=1764571566;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=By/ZQL1FuYeACCKtKvf6JW76324AdceNxDBN+D6hlTo=;
-        b=pTDHM3GwSWY9oFZzhjTJCyOUz6wS3g0ONxboS6Jk3umTPCPyAfgEtdEBkHo8GAq+0U
-         CV19PIdz8V6n2FZ2LtGtECqZdFey2C67ZzCHn0tnZ0uXiZo/TI3YpmnK1MfK/0ujXZ32
-         flYIAOtGXupc2R+ivnxjsZDCalPlyS7TkpeWd90sh3Mrp+KBjixoxb8vPowSKcQ50UhY
-         HYi45UoHcFC8Bjw+jNTekHXc8fHI7EXT7ugaVP5X2ibawXe810MB9yFENFBazeNBjRdQ
-         d9F4qPLWK1uQ0pYDR93MELz7G7S8UctUQUimzSBGd0hZ2j7rRcHLn413bg70oF7zUDon
-         TeDA==
-X-Forwarded-Encrypted: i=1; AJvYcCUyakDPTRtR/5EbdV2AM1DtQE+dhiVcBjmWdW1EDxPxlKUtAt1UzBITdtqiGHTzK9SDrsZyX+ScdIPC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXSLBQD9cBHSoYQD/EC0SACa5Gu60K+vrulYLRVTiN/h6Jmcp9
-	zV3Ih8y1Lr2t+xunSxnYYvQqvDqcEomOsaNwfGWhsLZiig5sHukHajKJAnCj+s7MkxKxc4ponqa
-	PIecIMPl6y6yXjKCoMsuxcus+xhGGmO0mrkG4oTKrrFoSeNsuoeTjhBcul3PvNniw
-X-Gm-Gg: ASbGncudvFxqIXtnCLZOv/gvBFoVtQg9OQQKyHGmR8WKE0cRJ/TSjaTpj1Ta+mwdA4O
-	LdF8b0b2tCSWQzb69ma+kdzJWJnB06MfvsubPnHRjZ4ToGDOWJhy6Gnv3VUgZTJlxDneyIDxapd
-	t17z1kI820RtVdpdAewaiYyeuDgXS0CQN2jC8yY6GaesVFuF6KUh4apBzmP5DLJjJmRhaLcVvId
-	EglgN3SefYVaGg4iY1bN1xLt1ea7RKPdZHdDjMbmXGwTVJ6k1jBVHBTGPVDwSycs3dAF0t/aCrw
-	+y87+nCvg2ZtPDIwkp3vPLNWkSLhB5gLLb0wnBYkugXvwbPZZ4XoldYNEHtK7sLFlCOIviIXREn
-	LWBi20uDx8UkEOr7hEaNii1ArCkOp1r/0iQiu
-X-Received: by 2002:a17:903:1b10:b0:298:485d:5576 with SMTP id d9443c01a7336-29b6be91657mr100486345ad.8.1763966765851;
-        Sun, 23 Nov 2025 22:46:05 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGtugpB93cxvDvAwOI6vRBpObZNJ1J+RRDzvCpY5YCuleJS0pa1DUKfMcah6KM61/9lkvmBHQ==
-X-Received: by 2002:a17:903:1b10:b0:298:485d:5576 with SMTP id d9443c01a7336-29b6be91657mr100486155ad.8.1763966765128;
-        Sun, 23 Nov 2025 22:46:05 -0800 (PST)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd75e8b37f1sm12313992a12.14.2025.11.23.22.46.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Nov 2025 22:46:04 -0800 (PST)
-Date: Mon, 24 Nov 2025 12:15:58 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
- SoCs running Linux host at EL2
-Message-ID: <20251124064558.aaartbglgvcj7w5r@hu-mojha-hyd.qualcomm.com>
-References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
- <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
- <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
- <238adfbb-3773-4318-93d3-b23697aa4b18@oss.qualcomm.com>
+	s=arc-20240116; t=1763968018; c=relaxed/simple;
+	bh=mAJ0S82zHi/qM+0C5nC7pb5pywLSPi62c7cno0ajWso=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ARbMifcrXqvolqhtb8IpZOTnjCtdrH2hwiyUg8RIOxm/Cjvj3igsVJ05jeoUVsgXFJK4MzlqJR8QeLsd3d0Of0ozxtdEqpFjEavWIiuxQYiWKANbV89Y8J2oqi6bJMK/a52xLq2UXZEi34zrD9sAOL1DPLxOMeo/LHWnjT9/V/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e1yY+Da0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01625C4CEF1;
+	Mon, 24 Nov 2025 07:06:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763968018;
+	bh=mAJ0S82zHi/qM+0C5nC7pb5pywLSPi62c7cno0ajWso=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=e1yY+Da0C3VUWDBOuPm6QFkeq2hnPG2yJh4Vlb9LwfM5q/qVfcvRz0e5ObKG2of4o
+	 j5T6IByhENSMTFV8zyGFIn5F/cAwc75WhUNT5r2TW0QRYwWzLS9i80s1yQJgHdIOQO
+	 BN7I8oWaI6sGqwrXJ+JPHiP7GD6QI8xWoniDway+Z0VJ5+O9zGcqn13TMhB4u7Sp/E
+	 akWRbOE5KmW60H6WSbKgSQ+Thfg/KynIAhkHD50jw4zgSRdQD01GrYo07XPPZ+Yo0O
+	 EXWPg3Rtwdeypaz2I+KhKF9ACNHrjponvVLng6pDvCuCpdd6pmUa+xdIlb66l07zlP
+	 FYWVcyJur7WmQ==
+Message-ID: <7eeed20c-5bad-40bd-95c0-89d140d92ae1@kernel.org>
+Date: Mon, 24 Nov 2025 08:06:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <238adfbb-3773-4318-93d3-b23697aa4b18@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDA1OSBTYWx0ZWRfX8WnHokO/4nAJ
- mRT7gT7CNN85FxeyFYON3xmhrb2u5keKIAYGsqbU8ZjAHy6USBWZDEMedMlZHmP0jmomucl8Xl5
- 0M35mA9m9qsHx1koXN8sdIQhzgVbQTKdgyg4uSUALcdBBahLp6FcmE2vIVqglAITOJeIn0SXiKP
- 4V9K4m0VDb901vmUMOugRPcR+wVziHEs+L4UVYt1twb/b4+MANoANfaM5vg/Zg/CPUD0Zy91iy3
- 7SFOSzfioCAcP/UsnLq9doZu3+kbQKwCAjigRobtXfiXqntDColpi/Yzjy16jnkkS1BCBRfO2pZ
- 0LRDBefhDAU45dRVdtq0YV6oKQsvAzMwTjPy+CWjkEivXMbvl8DrrgJjEyO31j9G1xNU9iU8Kqr
- RrI3caQviQhNJiHVEE/mQHy/HyWNJg==
-X-Authority-Analysis: v=2.4 cv=YJqSCBGx c=1 sm=1 tr=0 ts=6923ff2e cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=fNd15dL9NFL7uWwzahEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: j8dIBs6bm15zcWrvGL9wRs6vdBz912SY
-X-Proofpoint-ORIG-GUID: j8dIBs6bm15zcWrvGL9wRs6vdBz912SY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-24_03,2025-11-21_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 suspectscore=0 phishscore=0 clxscore=1015
- lowpriorityscore=0 malwarescore=0 impostorscore=0 spamscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240059
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
+To: Rogerio Pimentel <rpimentel.silva@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de, festevam@gmail.com,
+ alexander.stein@ew.tq-group.com, dario.binacchi@amarulasolutions.com,
+ marex@denx.de, Markus.Niebel@tq-group.com, y.moog@phytec.de,
+ joao.goncalves@toradex.com, frieder.schrempf@kontron.de,
+ josua@solid-run.com, francesco.dolcini@toradex.com, primoz.fiser@norik.com,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Xiaofeng Wei <xiaofeng.wei@nxp.com>
+References: <20251123181444.266030-1-rpimentel.silva@gmail.com>
+ <20251123181444.266030-2-rpimentel.silva@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20251123181444.266030-2-rpimentel.silva@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Nov 21, 2025 at 04:08:36PM +0100, Konrad Dybcio wrote:
-> On 11/21/25 12:37 PM, Mukesh Ojha wrote:
-> > On Fri, Nov 21, 2025 at 11:27:57AM +0000, Bryan O'Donoghue wrote:
-> >> On 21/11/2025 11:01, Mukesh Ojha wrote:
-> >>> In May 2025, we discussed the challenges at Linaro Connect 2025 [1]
-> >>> related to Secure PAS remoteproc enablement when Linux is running at EL2
-> >>> for Qualcomm SoCs.
-> >>>
-> >>> [1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
-> >>>
-> >>> Below, is the summary of the discussion.
-> >>>
-> >>> Qualcomm is working to enable remote processors on the SA8775p SoC with
-> >>> a Linux host running at EL2. In doing so, it has encountered several
-> >>> challenges related to how the remoteproc framework is handled when Linux
-> >>> runs at EL1.
-> >>>
-> >>> One of the main challenges arises from differences in how IOMMU
-> >>> translation is currently managed on SoCs running the Qualcomm EL2
-> >>> hypervisor (QHEE), where IOMMU translation for any device is entirely
-> >>> owned by the hypervisor. Additionally, the firmware for remote
-> >>> processors does not contain a resource table, which would typically
-> >>> include the necessary IOMMU configuration settings.
-> >>>
-> >>> Qualcomm SoCs running with QHEE (EL2) have been utilizing the Peripheral
-> >>> Authentication Service (PAS) from TrustZone (TZ) firmware to securely
-> >>> authenticate and reset remote processors via a single SMC call,
-> >>> _auth_and_reset_. This call is first trapped by QHEE, which then invokes
-> >>> TZ for authentication. Once authentication is complete, the call returns
-> >>> to QHEE, which sets up the IOMMU translation scheme for the remote
-> >>> processors and subsequently brings them out of reset. The design of the
-> >>> Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
-> >>> is not permitted to configure IOMMU translation for remote processors,
-> >>> and only a single-stage translation is configured.
-> >>>
-> >>> To make the remote processor bring-up (PAS) sequence
-> >>> hypervisor-independent, the auth_and_reset SMC call is now handled
-> >>> entirely by TZ. However, the issue of IOMMU configuration remains
-> >>> unresolved, for example a scenario, when KVM host at EL2 has no
-> >>> knowledge of the remote processors’ IOMMU settings.  This is being
-> >>> addressed by overlaying the IOMMU properties when the SoC runs a Linux
-> >>> host at EL2. SMC call is being provided from the TrustZone firmware to
-> >>> retrieve the resource table for a given subsystem.
-> >>>
-> >>> There are also remote processors such as those for video, camera, and
-> >>> graphics that do not use the remoteproc framework to manage their
-> >>> lifecycle. Instead, they rely on the Qualcomm PAS service to
-> >>> authenticate their firmware. These processors also need to be brought
-> >>> out of reset when Linux is running at EL2. The client drivers for these
-> >>> processors use the MDT loader function to load and authenticate
-> >>> firmware. Similar to the Qualcomm remoteproc PAS driver, they also need
-> >>> to retrieve the resource table, create a shared memory bridge
-> >>> (shmbridge), and map the resources before bringing the processors out of
-> >>> reset.
-> >>>
-> >>> It is based on next-20251120 and tested on SA8775p which is now called
-> >>> Lemans IOT platform and does not addresses DMA problem discussed at
-> >>> [1] which is future scope of the series.
-> >>>
-> >>> Changes in v8: https://lore.kernel.org/lkml/20251113-kvm-rproc-v7-v7-0-df4910b7c20a@oss.qualcomm.com/
-> >>>   - Addressed suggestion from Stephen which was regarding commit message(9/14),
-> >>>     debug log(12/14) suggestion, and return type change(4/14).
-> >>>   - Added R-b tag on 10/14 .
-> >> Sorry.
-> >>
-> >> Did we actually come up with a cogent reason to omit the video firmware
-> >> loading here ?
-> >>
-> >> AFAIU it is required for Lemans and Glymur - leaving it out is blocking
-> >> getting video stuff done and storing up trouble.
-> >>
-> >> What exactly is the blockage - is it something you want help with ?
-> > 
-> > I replied to you here[1] and given my reason..till something concluded on
-> > "multi-cell IOMMU[2]", I can not add video and block what is working
-> > already.
-> > 
-> > [1]
-> > https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-hyd.qualcomm.com/
-> > 
-> > [2]
-> > https://lore.kernel.org/lkml/cover.1762235099.git.charan.kalla@oss.qualcomm.com/
+On 23/11/2025 19:14, Rogerio Pimentel wrote:
+> The FRDM-i.MX8MP is an NXP development platform based on the i.MX8M Plus
+> SoC, featuring a quad Cortex-A53, Cortex-M7 co-processor, 4GB LPDDR4,
+> 32GB eMMC, Wi-Fi 6/Bluetooth 5.4/802.15.4 tri-radio, Ethernet, HDMI/MIPI
+> display interfaces, camera connectors, and standard expansion headers.
 > 
-> I see that the following files call qcom_scm_pas_auth_.*():
+> Based on the device tree found in the NXP repository at github
+> https://github.com/nxp-imx-support/meta-imx-frdm and on imx8mp-evk
+> board kernel mainline device tree.
 > 
-> drivers/firmware/qcom/qcom_scm.c
-> drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> drivers/media/platform/qcom/iris/iris_firmware.c
-> drivers/media/platform/qcom/venus/firmware.c
-> drivers/net/ipa/ipa_main.c
-> drivers/net/wireless/ath/ath12k/ahb.c
-> drivers/remoteproc/qcom_q6v5_pas.c
-> drivers/remoteproc/qcom_wcnss.c
+> This is a basic device tree supporting:
 > 
-> iris is difficult, rproc is done, adreno doesn't need it..
+>  - Quad Cortex-A53
+>  - 4GB LPDDR4 DRAM
+>  - PCA9450C PMIC with regulators
+>  - Two NXP PCAL6416 GPIO expanders
+>  - RGB LEDs via GPIO expander
+>  - I2C1, I2C2, I2C3 controllers
+>  - UART2 (console) and UART3 (with RTS/CTS)
+>  - USDHC3 (8-bit eMMC)
+>  - SNVS power key (onboard power button)
 > 
-> would ath12k_ahb or IPA be affected by this series as well?
+> Co-developed-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
+> Signed-off-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
+> Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
+> ---
 
-Yes, they would be affected, and the modem as well, when Linux is
-running at EL2. However, I do not see them present in any of the QLi and
-targeted compute SoCs at the moment. Therefore, our firmware does not
-support it yet.
 
-> 
-> Konrad
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
--- 
--Mukesh Ojha
+Best regards,
+Krzysztof
 
