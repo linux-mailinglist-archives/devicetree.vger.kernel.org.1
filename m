@@ -1,245 +1,275 @@
-Return-Path: <devicetree+bounces-241734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E6AFC81ABD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:51:30 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE61C81B9D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:55:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 02D8F4E5BDA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:51:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 484274E7DDA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37AD8316196;
-	Mon, 24 Nov 2025 16:51:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC9CE314B8F;
+	Mon, 24 Nov 2025 16:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BNw38J/g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE85B29E113;
-	Mon, 24 Nov 2025 16:51:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03AA82BE05F;
+	Mon, 24 Nov 2025 16:54:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764003088; cv=none; b=iD5PdLrXDoaaV7hJxM5uWHmpYihHmTvbCaN18zfZl/mFaW096qHD8XzAXozNw2BHxn1jPab0XXWDnE0wt+Dbe/sDA6rgwwxsJz0jOsQVbj1g64Yp7+3BPeCopsCDVzjYD1WVRZR7QRwTmzo4WBiPPD5yMg/0iwR3EyH1B36sIng=
+	t=1764003242; cv=none; b=V6j1ot5mVF/L5mt/odDXOCST/DL6jYExt+4RkJNur/YpzwALLMXTR+7dCpwCtV3Tp46OilhXZhrUPP5yD93hRZCEvE86cm48TIsc/oo5he+DbRMGQHYqa6I6J+dBAglUz0yh/P9N3XrzCOVsJY7ty1Zqh7lKfDMVtgSGsY4/qTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764003088; c=relaxed/simple;
-	bh=gDnwfPg9jc5DTHv76+SKqQxhEtEHAC5h//p7/nzJh/s=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=DLq5WQdgd12kY4MEQGpqf8pZx84dfZnQGL6gQi3Yf/mi4FR2nwoaDLduQn6D+NygqVEqj5OVNVazrvwXzKxOpJWEYmczyJOKrax/2vgHUhJBO6clYvPssXz9SJ6MHdSNaDHy+yB/VtGMH4varU4mxtfyEYyNBWLyB8CQJl5GADs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AE0D514BF;
-	Mon, 24 Nov 2025 08:51:16 -0800 (PST)
-Received: from [10.1.30.67] (unknown [10.1.30.67])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 802493F86F;
-	Mon, 24 Nov 2025 08:51:21 -0800 (PST)
-Message-ID: <5237fb86-dec6-46e3-82bc-d41f3d537e53@arm.com>
-Date: Mon, 24 Nov 2025 16:51:19 +0000
+	s=arc-20240116; t=1764003242; c=relaxed/simple;
+	bh=Mk0Gchkw9MwOg+few64zM2hLS7IZoyhOdqKCDhhfur4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DREiTFl4rbI93ZR8/HeHn4fsA9l2/xq0IRw6j06tJruRsloSxcb1OCMQP+gN2AG48GcC2uPA0zWAJ7GALrh/tSLBHkpUMkJESSaDpwGYQcWw1vjJlMyBeePSv2DDCUfJsYbDEcNVcz7dUYccJZLHwFtc+Z6on6HYlMBcRB/32ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BNw38J/g; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764003241; x=1795539241;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Mk0Gchkw9MwOg+few64zM2hLS7IZoyhOdqKCDhhfur4=;
+  b=BNw38J/g4d0bUdJNUYGnuOvw4sRnRZx3UqJkXj2W7GifOxiG3xE/wyJP
+   O2HlM05CCY7ayjbkJviUZU1vxseL3YU7mPxEYf5Kqu37u7Y/H58e3K2yU
+   gPijx+lYNW2FDEZslER4CLUWCO2ukbner3jXFiZxroojuXEIA1I6s/GGm
+   EauK+sSH8+QsRzLnJQt/F7zW25H4SpUAXKiEq7U2Vbpk6XVK6NHzpP1eS
+   o3hNzkbcjzvUuS7nl7/Ilv/O+IZ7m9yMPboauUumLZSoGzWokvlyH511R
+   S4sqjHjtpi+hl04g2DskyWWlxgeCR6RUDi8PZZ9GgpPqD51G42H8qrCIc
+   A==;
+X-CSE-ConnectionGUID: wewSN0MfRxabBGESRasLJg==
+X-CSE-MsgGUID: Ix2D1tpbRwS9jxOYbNSeVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="76622098"
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; 
+   d="scan'208";a="76622098"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 08:54:00 -0800
+X-CSE-ConnectionGUID: bdRNKzb5SOqAlhvhFuHGNA==
+X-CSE-MsgGUID: 1rbhavySTTurkuyCQIYaxg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; 
+   d="scan'208";a="192393371"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.5])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 08:53:58 -0800
+Date: Mon, 24 Nov 2025 18:53:55 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>
+Cc: Andy Shevchenko <andy@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 6/7] auxdisplay: TM16xx: Add support for I2C-based
+ controllers
+Message-ID: <aSSNoyDOOjG2s1Wl@smile.fi.intel.com>
+References: <20251121145911.176033-1-jefflessard3@gmail.com>
+ <20251121145911.176033-7-jefflessard3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH 0/6] of: iommu-map parsing for multi-cell IOMMU
-To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, will@kernel.org,
- joro@8bytes.org, robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
- konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
- bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- saravanak@google.com, prakash.gupta@oss.qualcomm.com,
- vikash.garodia@oss.qualcomm.com
-Cc: iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
- <0319bdf5-0a46-40fc-93f8-30d74cf6475a@arm.com>
- <351373ed-c699-4945-a978-cb35412918bc@oss.qualcomm.com>
- <e6fb7000-7aac-45b6-b4f9-c9efa2a98d57@oss.qualcomm.com>
-Content-Language: en-GB
-In-Reply-To: <e6fb7000-7aac-45b6-b4f9-c9efa2a98d57@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251121145911.176033-7-jefflessard3@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 2025-11-12 2:42 pm, Charan Teja Kalla wrote:
+On Fri, Nov 21, 2025 at 09:59:06AM -0500, Jean-Fran�ois Lessard wrote:
+> Add support for TM16xx-compatible auxiliary display controllers connected
+> via the I2C bus.
 > 
+> The implementation includes:
+> - I2C driver registration and initialization
+> - Probe/remove logic for I2C devices
+> - Controller-specific handling and communication sequences
+> - Integration with the TM16xx core driver for common functionality
 > 
-> On 11/11/2025 11:57 PM, Charan Teja Kalla wrote:
->>
->> On 11/5/2025 10:58 PM, Robin Murphy wrote:
->>>> The other motivation for this patchset is the below usecase.
->>>> USECASE [1]:
->>>> ------------
->>>> Video IP, 32bit, have 2 hardware sub blocks(or can be called as
->>>> functions) called as pixel and nonpixel blocks, that does decode and
->>>> encode of the video stream. These logical blocks are configured to
->>>> generate different stream IDs.
->>>>
->>>> With the classical approach of representing all sids with iommus= end up
->>>> in using a single translation context limited to the 4GB. There are
->>>> video usecases which needs larger IOVA space, like higher concurrent
->>>> video sessions(eg: 32 session and 192MB per session) where 4GB of IOVA
->>>> is not sufficient.
->>>>
->>>> For this case, each functionality is represented in the firmware(device
->>>> tree) by the 'rid' field of the iommu-map property and the video driver
->>>> creates sub platform devices for each of this functionality and call
->>>> into IOMMU configuration. Each rid(function id) in the dt property
->>>> indicates the bit that can be associated by the driver passed input id.
->>>>
->>>> Example:
->>>> iommu {
->>>>      #iommu-cells = 2;
->>>> };
->>>>
->>>> video-codec@foobar {
->>>>      compatible = "qcom,video";
->>>>      iommus = <&apps_smmu 0x1234 0xca>;
->>>>      iommu-map= <0x1 &iommu 0x1940 0x0 0x1>,
->>>>                  <0x1 &iommu 0x1941 0x0 0x1>,
->>>>                  <0x2 &iommu 0x1942 0x0 0x1>,
->>>>                  <0x4 &iommu 0x1943 0x0 0x1>,
->>>>                  <0x4 &iommu 0x1944 0x0 0x1>;
->>>> };
->>>>
->>>> video-driver:
->>>> #define PIXEL_FUNC       (1)
->>>> #define NON_PIXEL_FUNC       (2)
->>>> #define SECURE_FUNC       (4)
->>>>
->>>> case1: All these functionalities requires individual contexts.
->>>> Create 3 subdevices for each of this function and call
->>>> of_dma_configure_id(..,id), id = 0x1, 0x2, 0x4.
->>>>
->>>> Case2: Secure and non-secure functionalities require individual
->>>> contexts. Create 2 subdevices and call of_dma_configure_id(..,id), id =
->>>> 0x3(bitmap of pixel and non-pixel), 0x4 (secure).
->>>>
->>>> Credits: to Dmitry for thorough discussions on the RFC patch and major
->>>> help in getting the consenus on this approach, to Konrad & Bjorn for
->>>> offline discussions and reviews, to Robin for his inputs on IOMMU front,
->>>> to Bod, Rob and Krzysztof for all valuable inputs.
->>>>
->>>> [1] https://lore.kernel.org/all/20250627-video_cb-
->>>> v3-0-51e18c0ffbce@quicinc.com/
->>>> [2] https://lore.kernel.org/all/20250928171718.436440-1-
->>>> charan.kalla@oss.qualcomm.com/#r
->>>>
->>>> Charan Teja Kalla (6):
->>>>     of: create a wrapper for of_map_id()
->>>>     of: introduce wrapper function to query the cell count
->>>>     of: parse #<name>-cells property to get the cell count
->>>>     of: detect and handle legacy iommu-map parsing
->>>>     of: add infra to parse iommu-map per IOMMU cell count
->>>>     of: use correct iommu-map parsing logic from of_iommu layer
->>>>
->>>>    drivers/iommu/of_iommu.c |  59 +++++++--
->>>>    drivers/of/base.c        | 269 +++++++++++++++++++++++++++++++++++----
->>>>    include/linux/of.h       |  19 +++
->>>>    3 files changed, 314 insertions(+), 33 deletions(-)
->>> Hmm, I did actually have a quick go at this the other week too, and
->>> while I though it was a bit clunky, it was still significantly simpler
->>> than this seems to be...
->>>
->>> FWIW: https://gitlab.arm.com/linux-arm/linux-rm/-/commits/iommu-map - I
->> Thanks a lot Robin for taking a look and sorry for the delayed reply as
->> I was on vacation.
->>
->> stripped code_snippet from your patch:
->> 	offset = 0;
->> 	out_base = map + offset + 2;
->> 	id_off = masked_id - id_base;
->> 	if (masked_id < id_base || id_off >= id_len)
->> 		continue;
->> 	for (int i = 0; id_out && i < cells; i++)
->> 		id_out[i] = id_off + be32_to_cpu(out_base[i]);
->>
->>
->> seems way cleaner than mine...
->>
->> Actually, we also have a case of a device emitting 2 distinct
->> identifiers, eg: a device is emitting 0x1940, 0x1944 and 0x1A20 sids and
->> attached to a single context bank. If I use mask to cover all these sids
->> in a single iommu-map entry, it does overlap with other device SID.
->>
->> I don't think that patch you shared can be used to cover the above, or
->> it is?
+> This allows platforms using TM16xx or compatible controllers over I2C to be
+> managed by the TM16xx driver infrastructure.
 
-No, the point of my patch is just to correctly respect #cells and 
-hopefully discourage any further abuse of Linux's current behaviour. The 
-fact that Linux interprets multiple mappings for the same input ID as a 
-set of equivalent choices to pick one of, rather than a set that must 
-all be maintained in parallel, is an orthogonal concern. Again there's 
-not necessarily one right answer there.
+...
 
->> Hence I resorted to the approach where RID used as the bitmap of indices
->> to cover such cases for platform devices, which it seems you clearly
->> didn't like....otherwise, any otherway we can handle such cases?
++ array_size.h
 
-Eww, if the intent of that was to bake further abuse into DT ABI to 
-bodge around Linux behaviour then I double-NAK it even harder :)
+> +#include <linux/bitfield.h>
 
-> Hi Robin,
-> 
-> Don't want to bother you with my ideas, but I can't think of other ways
-> to handle such cases of multi-map than the below. I just tried this code on
-> Qemu on top of your patches(with some nit compilation fixes) and just checked
-> if devices are added to the iommu groups.
+> +#include <linux/device.h>
 
-My initial thought would be to either add an index argument so that 
-callers can keep count and request the Nth match if they want to - like 
-we do in various resource management APIs, for instance - or go all the 
-way and convert the existing target and id_out complexity into 
-usage-specific callbacks too.
+Isn't it simply device/devres.h
 
-> ----------------------8888---------------------------------------------
-> 
-> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> index a511ecf21fcd..ac005e70de7d 100644
-> --- a/drivers/iommu/of_iommu.c
-> +++ b/drivers/iommu/of_iommu.c
-> @@ -16,6 +16,7 @@
->   #include <linux/pci.h>
->   #include <linux/slab.h>
->   #include <linux/fsl/mc.h>
-> +#include <linux/platform_device.h>
->   
->   #include "iommu-priv.h"
->   
-> @@ -41,6 +42,18 @@ static int of_iommu_xlate(struct device *dev,
->   	return ret;
->   }
->   
-> +static int of_iommu_configure_cb(void *arg, u32 *id_out)
+
++ errno.h
+
+> +#include <linux/i2c.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/types.h>
+
+...
+
+> +static int tm16xx_i2c_probe(struct i2c_client *client)
 > +{
-> +	struct of_phandle_args *iommu_spec =
-> +		(struct of_phandle_args *)((void *)id_out - offsetof(struct of_phandle_args, args));
-
-Not sure whether to be impressed or disgusted... If we are to take a 
-callback approach then it should probably standardise on passing a full 
-of_phandle_args to encode the map output. Particularly given what I've 
-just noticed below...
-
-> +	struct device *dev = arg;
-> +	int err;
+> +	const struct tm16xx_controller *controller;
+> +	struct tm16xx_display *display;
+> +	int ret;
 > +
-> +	err = of_iommu_xlate(dev, iommu_spec);
-> +	of_node_put(iommu_spec->np);
-> +	return err;
+> +	controller = i2c_get_match_data(client);
+> +	if (!controller)
+> +		return -EINVAL;
+> +
+> +	display = devm_kzalloc(&client->dev, sizeof(*display), GFP_KERNEL);
+> +	if (!display)
+> +		return -ENOMEM;
+> +
+> +	display->dev = &client->dev;
+> +	display->controller = controller;
+> +
+> +	i2c_set_clientdata(client, display);
+
+> +	ret = tm16xx_probe(display);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+
+	return tm16xx_probe();
+
 > +}
+
+...
+
+> +static int tm16xx_i2c_read(struct tm16xx_display *display, u8 cmd, u8 *data, size_t len)
+> +{
+> +	struct i2c_client *i2c = to_i2c_client(display->dev);
+
+> +	/* expected sequence: S Command [A] [Data] [A] P */
+> +	struct i2c_msg msgs[1] = {{
+> +		.addr = cmd >> 1,
+> +		.flags = I2C_M_RD | I2C_M_NO_RD_ACK,
+> +		.len = len,
+> +		.buf = data,
+> +	}};
+
+No array is needed.
+
+> +	int ret;
 > +
->   static int of_iommu_configure_dev_id(struct device_node *master_np,
->   				     struct device *dev,
->   				     const u32 *id)
-> @@ -48,12 +61,10 @@ static int of_iommu_configure_dev_id(struct device_node *master_np,
->   	struct of_phandle_args iommu_spec = { .args_count = 1 };
+> +	ret = i2c_transfer(i2c->adapter, msgs, ARRAY_SIZE(msgs));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return (ret == ARRAY_SIZE(msgs)) ? 0 : -EIO;
+> +}
 
-Oh dear, I totally overlooked this, and off the top of my head I'm not 
-sure it's simple to fix :(
+...
 
-So it's still not actually working as intended. Oh well, I did say it 
-was untested...
+> +static int tm1650_init(struct tm16xx_display *display)
+> +{
+> +	const enum led_brightness brightness = display->main_led.brightness;
+> +	u8 cmds[2];
+> +
+> +	cmds[0] = TM1650_CMD_CTRL;
+> +	cmds[1] = TM16XX_CTRL_BRIGHTNESS(brightness, brightness, TM1650) |
+> +		  TM1650_CTRL_SEG8_MODE;
+> +
+> +	return tm16xx_i2c_write(display, cmds, ARRAY_SIZE(cmds));
 
-Thanks,
-Robin.
+For u8 / char it's okay to use simple sizeof(). But it's up to you.
+Ditto for the rest similar cases.
+
+> +}
+
+...
+
+> +static void hbs658_swap_nibbles(u8 *data, size_t len)
+> +{
+> +	for (size_t i = 0; i < len; i++)
+> +		data[i] = (data[i] << 4) | (data[i] >> 4);
+> +}
+
+Perhaps make it part of swab.h?
+
+...
+
+> +static int hbs658_init(struct tm16xx_display *display)
+> +{
+> +	const enum led_brightness brightness = display->main_led.brightness;
+> +	u8 cmd;
+> +	int ret;
+> +
+> +	/* Set data command */
+> +	cmd = TM16XX_CMD_WRITE | TM16XX_DATA_ADDR_AUTO;
+> +	hbs658_swap_nibbles(&cmd, 1);
+> +	ret = tm16xx_i2c_write(display, &cmd, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Set control command with brightness */
+> +	cmd = TM16XX_CMD_CTRL |
+> +	      TM16XX_CTRL_BRIGHTNESS(brightness, brightness - 1, TM16XX);
+> +	hbs658_swap_nibbles(&cmd, 1);
+
+> +	ret = tm16xx_i2c_write(display, &cmd, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+
+	return tm16xx_i2c_write(display, &cmd, 1);
+
+> +}
+
+...
+
+> +static int hbs658_keys(struct tm16xx_display *display)
+> +{
+> +	u8 cmd, keycode;
+> +	int col;
+> +	int ret;
+> +
+> +	cmd = TM16XX_CMD_READ;
+> +	hbs658_swap_nibbles(&cmd, 1);
+> +	ret = tm16xx_i2c_read(display, cmd, &keycode, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	hbs658_swap_nibbles(&keycode, 1);
+
+> +	if (keycode != 0xFF) {
+
+Perhaps
+
+	if (keycode == 0xFF) // consider defining 0xFF with useful name
+		return;
+
+?
+
+> +		col = FIELD_GET(HBS658_KEY_COL_MASK, keycode);
+> +		tm16xx_set_key(display, 0, col, true);
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+Probably it is better to split out the additional HW enablement
+to separate changes.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
