@@ -1,127 +1,144 @@
-Return-Path: <devicetree+bounces-241771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0BEC82816
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 22:19:12 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5F9CC8284F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 22:21:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D99454E1DA3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 21:19:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6B20F3490D6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 21:21:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EF532E146;
-	Mon, 24 Nov 2025 21:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EAC232E146;
+	Mon, 24 Nov 2025 21:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iKQQobio"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VtXsdnIJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C9123F431;
-	Mon, 24 Nov 2025 21:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0C6532E15F
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 21:21:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764019148; cv=none; b=Axu4TWSEV1fX2OotGR0goo2zITr0oEI6xWZUh720h3UXdWrfdr6HFDUifokxUxCdgLj7qtNoIGlLwdw9ddtIDU42Yiq2qhg4lAGqDTta2gS7XioIkFpJtG3jaO8BAYMz8ihX/8NdYjwLE2cjB0YHxnnJs/JZpk8gJhIrWPScdWk=
+	t=1764019277; cv=none; b=KtcdAFf75NIZ529u+ZNAf6SCrBwR/PlPPBfINqf9JrFG/NNbAMb/yxNGN5kl6ej68WM9RX9TBDmnnUbSRhDA/NCMiBPZdoSclTmkAI2hoDRErYe8yDrArT15tDYawq9L5OvLyVlfLY/Zz3kkc5jM6w0UXmAuA4V5hPYOjqwor8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764019148; c=relaxed/simple;
-	bh=CGeEtVCjqYIimB5aCikAfOkDAZV0eJ2oLPo8sqSy3dk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rd4N6eJfl5gnImHpJAppsmp32q9f34Vrmj3qDSGM/VsJoHTxe+WJM2A2xWsoX5KKs/phgNVnR79K7400wOoBITD57ckKU0jc/fNm7sL8/9e7Yf5RVXX1TkZaoQJDb031UwNW7VOC99THTQSo8wwpxTBZuwyb+t9KhQnFdZE87zM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iKQQobio; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AF9EC4CEF1;
-	Mon, 24 Nov 2025 21:19:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764019147;
-	bh=CGeEtVCjqYIimB5aCikAfOkDAZV0eJ2oLPo8sqSy3dk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iKQQobioVZwyP4FRsKSwObsqeyBqwGykFvfOKCeEYTmnGgaR3tz05acHXpKFrqg6x
-	 tJSgkBF/pxCkzZM3szfVVkws76+AQa6VDwyYEmphMPgOLePAq4AwCb1Oq7knvHvJy0
-	 VfMIJs2T6XzlfCQ2BsGXkGMX2B/gRHhOVZ+qvjzEnWqeVkVKJwHCv/nHKCzg1z1EFA
-	 KoqOwbLJJ8cykIWM0cE0f8J2M1xzY8BZImvM+h+SYmkf8xjTu/Lsdr6c6WSG7KswKn
-	 L7zflFgLP6cp1Gw03bq6BEIuzdnVUuIelDh0iSHEZEzR84H9sIWnSOUnFhYaRqDMdw
-	 hjF6LYJ7D52RA==
-Message-ID: <6b177a8a-30a5-4210-8b5e-cbea5aef99fd@kernel.org>
-Date: Mon, 24 Nov 2025 22:19:02 +0100
+	s=arc-20240116; t=1764019277; c=relaxed/simple;
+	bh=yc0Af9yMGkpQEt0bZMY5B+ShJNjYZoi8BU75y3Sl1ao=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XMcHoJ/B0wBReUd1TIaCI3p+M9NvdlFstvWP7ZOL/kBg09lWCZPBUHLk3OoOf+KqSdqwc1Wl9xY2/DQABuU/gw0feEuFd/G+gV/ZGMvg6qoIFVSBwr3gOlSN3ZFdq2R7tWk5vMP8M0mBmxEiYoZ6oyQT21nxkiRdcuZVP4hJpWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VtXsdnIJ; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7aab7623f42so4956417b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 13:21:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764019275; x=1764624075; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/9QGz46UYtLMXI1pmFW9bRaeIDfyEN0luwe8T1UQhkk=;
+        b=VtXsdnIJa4QOn9zmT0K+AVNrfXDKicHwQvAw8MOT+xk20VwfOn04FC2tuRJ5avogwp
+         9+NEttMjDDJE2A/dDq5MzrLsCMRY+fA+Rve0hlAr7oqR1Vp5Dhac/kCjyO7+hiqemWnP
+         MUcQLTbC//nOLY8EfVJXVujZgDhoAiNxbakbnZsLbH6ewQ4dNIh9bZUQj9y8+H3UoMev
+         3VJ8sbG7LMk33D+zJGDsaVK3hf9PhCzLv0EB2s4pXTz8CyQt4kxZUSQGzFtLisCVRWU2
+         c0OEpvWYMjLlgeAnH86ONyaAGd56Znafu9D3ygCfvYHAqHwp3pXGhqPd7HokNz2ZcByp
+         4REg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764019275; x=1764624075;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/9QGz46UYtLMXI1pmFW9bRaeIDfyEN0luwe8T1UQhkk=;
+        b=JFvv5yiwXprM4fE150AzG1exG58L4UZBU1OLL0Dp/TUxHj87+YaY0f2DKWAqaiB5Fe
+         B+qjBbTdAP497T4d0c9TtR5ZjLXnXvD0uW+jqA9+/M+Aa/icfjQ561f13yhcTL2/zC9D
+         fus0dTGTiwZ0f1A5xuMmJWsOLjMwOruxLlL976sMf+RnxPdB1GX6coWaIoWj6IhZZZYe
+         FBcNiuuUb/BCNY8iSQ5WqRCkT8RoSolo43z1qwn840X9QwaaGq8H6jnQq1WhMl2Gw9xL
+         Mn0TiyJZ9YRhn+QxV7JQzii22K9Y0w3h803kWDHu72tuJfNdcu1bG6rpsHEdzXuFLTvv
+         GKUw==
+X-Gm-Message-State: AOJu0YyhzUhRZHamalWfxkaUnYRqUP+IPoSnNYCMOnJhI8noKtpg81+D
+	DmS7DlMuJMfcG3FJNUhivN29uqdKnuwsKeSvJUE1evI8r6ilYVQQvhy2Y1I37LkPqJM=
+X-Gm-Gg: ASbGncsMRBF8lVt/A7Kn57JRU6ZBv6rEhuBPjU8R8NfPVS0h+NVyn8lSvsZU24SzjWo
+	YMC4n/deeexgB4qP9irO+52CXfV6VqIAZuy7iLyis61hsgZ+n+oaAI9PILk6rlnQgRqIChPF05+
+	nvWlbugGqUC+9Gpn+vL+IG/rPGVgnrTUG/UwojLt2p5VTcTIpNJ3eD7lsuifS6izaFtWQKrob3T
+	ENOU3hIqOjLV6HMDJrQdhIKhHmFEIOdoRlwxS3cSqeE/TVAezBBYYV5id/Mysy/6vfi5xi23Opt
+	oxBQAiUoOCCaR4C2Z9W49dx5XRRyjZ52t+3pKWyrG5tZ9vQ0mYLo3C3cjjd0e2RSH0wY6fMJKHH
+	kkxdf5TZ/3xLE2ZjYw3tjuon5Y5BLv5jmeO0gkskEL0Cr3RCOwEmC4AQwynMJUo3ykClEdCSoV8
+	H6Tw==
+X-Google-Smtp-Source: AGHT+IHgLL5D3yM9RdlZQ1MwTuPoHc0+CT7LUpZzSIOdrIYHqHAGsgDGRtjFBOllHJFbG3YjuM6J7Q==
+X-Received: by 2002:a05:6a20:734c:b0:35f:cfb:1ee3 with SMTP id adf61e73a8af0-3614ecc9fd3mr13510474637.25.1764019274844;
+        Mon, 24 Nov 2025 13:21:14 -0800 (PST)
+Received: from gmail.com ([218.32.81.133])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7c3ed076eb3sm15702319b3a.1.2025.11.24.13.21.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 13:21:14 -0800 (PST)
+From: Peter Shen <sjg168@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Joel Stanley <joel@jms.id.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	peter.shen@amd.com,
+	colin.huang2@amd.com,
+	Peter Shen <sjg168@gmail.com>
+Subject: [PATCH v8 0/2] ARM: dts: aspeed: Add Device Tree for Facebook Anacapa BMC
+Date: Tue, 25 Nov 2025 05:21:04 +0800
+Message-Id: <20251124212106.2068069-1-sjg168@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: qcom,prng: document x1e80100
-To: Harshal Dev <harshal.dev@oss.qualcomm.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251124-trng_dt_binding_x1e80100-v1-0-b4eafa0f1077@oss.qualcomm.com>
- <20251124-trng_dt_binding_x1e80100-v1-1-b4eafa0f1077@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251124-trng_dt_binding_x1e80100-v1-1-b4eafa0f1077@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/11/2025 18:08, Harshal Dev wrote:
-> Document x1e80100 compatible for the True Random Number Generator.
-> 
-> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+This patch series introduces the initial Device Tree support for the
+Facebook Anacapa BMC platform, which is based on the Aspeed AST2600 SoC.
+It configures the platform-specific peripherals and aliases for OpenBMC
+usage.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+The series is comprised of two patches:
+1. Adds the compatible string for the board to the binding documentation.
+2. Adds the main Device Tree Source file for the Anacapa BMC.
 
-Best regards,
-Krzysztof
+Changes in v8:
+* Dropped the unused 'pcc_memory' reserved memory region as suggested
+    by Andrew Jeffery.
+* Reordered the 'spi-gpio' properties to group all '-gpios' properties
+    together for better readability (Andrew Jeffery).
+* Moved the 'pinctrl_ncsi3_default' pinctrl group from the board DTS
+    file to 'arch/arm/boot/dts/aspeed-g6.dtsi' (assuming this dtsi
+    change is applied separately or already in the base) to make it
+    available for other platforms (Andrew Jeffery).
+* Revised the 'gpio-line-names' for better clarity and alignment with
+    schematic signal names, avoiding confusion with pin-muxed functions
+    (Andrew Jeffery).
+* Improved the formatting and readability of 'sgpio-line-names' list.
+* Removed the unused 'led-2' definition from the 'leds' node.
+* Added support for the ADC128D818 sensor to the I2C bus.
+* No functional changes in the binding patch (1/2).
+* Added clarification for mixed-case signal names (Andrew Jeffery):
+  The mixed-case names (e.g., FM_CPU0_SYS_RESET_N) in gpio-line-names
+  are chosen to directly match the signal names used in the hardware 
+  schematics.
+  This convention is used to maintain strict adherence and clarity when
+  cross-referencing between the Device Tree and the board design documents.
+
+Peter Shen (2):
+  dt-bindings: arm: aspeed: Add compatible for Facebook Anacapa BMC
+  ARM: dts: aspeed: Add Device Tree for Facebook Anacapa BMC
+
+ .../bindings/arm/aspeed/aspeed.yaml           |    1 +
+ arch/arm/boot/dts/aspeed/Makefile             |    1 +
+ .../aspeed/aspeed-bmc-facebook-anacapa.dts    | 1044 +++++++++++++++++
+ 3 files changed, 1046 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+
+-- 
+2.34.1
+
 
