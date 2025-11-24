@@ -1,179 +1,172 @@
-Return-Path: <devicetree+bounces-241744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AE12C81D3C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:12:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE900C81D72
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:14:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A90B24E9AA3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:09:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FD713A14C6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:14:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36AF031815D;
-	Mon, 24 Nov 2025 17:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F8A3148CD;
+	Mon, 24 Nov 2025 17:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P9Rn9uoo";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="I145VlTq"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="QlDRCX7O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 404CF318121
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:09:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA302C11F6;
+	Mon, 24 Nov 2025 17:13:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764004154; cv=none; b=muzPzujBB3l5uH9Nse50Wdw3qP/HE0gJuBFJSGS/Li80b+axuhqAXHVQMOtcZptu/whJL5pzP+0GWz2RFTfG1cy86nR+0qELzf9cIBnq82QXaJ0byr7yxp/xOyh7Lm0yfwS6ABeeX4WsQi2SJL8XCBRFZ/z/eCplIf3eLOYlVYY=
+	t=1764004441; cv=none; b=rpzgtHpubwwkR3v4w6Pni3BshZ+ebU59nPrP2r27K7hROo8UMU2rw/C45x1BJirNzlqvISCEUKROpjpbb2TOQcoC+9VT+0B2+R66Ep+RPXd5Gx6lz7Lf8GR1MGGwPgbWr41MqhKhDdiDJzstIDFZ+TaU2BeGLVKHhyKwcsB6U0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764004154; c=relaxed/simple;
-	bh=ofR3ihwtzlWlypMj/ZJqBpSefmnA44XUKBt8ZlrNmIM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=F7+N40woXNQQFMTvnlyFbUd3pS2Xlz0bogAAbjQYfIcsv3CLJrTW008SDyvzqYArj8m37XPP9kOSkAyn2fDvSQiv2TGlZwN0jBAONPnOcCAyYFdSX+Lbc4W5ZTxCU6hEQtNnJQvqxH2wqIiiLsUSXqAZEs3Fx5FNLTmIZn9xexQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P9Rn9uoo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=I145VlTq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AOFuRgb838276
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:09:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qXj0dS+IAKlzIFNGRz3FAzPlvCUIBa+JNmjbJBENYas=; b=P9Rn9uooJtoz27w8
-	vtVjrcjkW2gAZDFHj1zzUwU+BccBU3iehAOgqmzLFC9rngZy/94ykk0DXygEBBU/
-	4gSaNojDuv5E1cVBCUEVZ1t2Q3qlxXgIJPTZUPqayF0fzRSj4REW0X+2s0kvnSuf
-	4u3By1Hr/NS13mpY5nhHPqa2hvMMis0V1ytbwUtrFPdNHeK7wVvXVJB8T5o4eK4/
-	1JyVEMLBSbTVU7NiJuWZEaANRAKSumr7snaPaUB7vdl2HYKs1czDfekPnT86l7m4
-	80iV8bWisrRFMifjo5E8djT23FFmwAgFAw9RFmcEzjoAjz2jE2F/jS6ctT2y6W/2
-	ZxFc9Q==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amsk68dxy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:09:11 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-297dabf9fd0so57767255ad.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:09:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764004150; x=1764608950; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qXj0dS+IAKlzIFNGRz3FAzPlvCUIBa+JNmjbJBENYas=;
-        b=I145VlTqoMf2c31TmOpOwI0vusjscoM500WMpw2rcjWaYF+d4qmbqDnSCCtn6txkGe
-         nC2AGb86F6wgT+o68DvHX0Zv6kSKRhIGSacxqGUA6bZwf9s8hqJfMyJA111k6ifeB1xR
-         9gnpt1R8IHlT3NtsRcVMvR6ActvMUnBi6VLgjKoGZz0jcs9BRQKm0yiFJqo/IB0pG3Dh
-         EI6YMwyZD95NfudKo5kKjNQHHIt22sLLdClJRQKIfjiODC6Pw1IJrp8AW24VLpkjafLl
-         Ha5eT2CB5MA7ChDY0g8s/C7+agbTB/sh03Fc3X3M99rnAWy/pNNuCtMiGeWRhbWGwq95
-         uKlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764004150; x=1764608950;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qXj0dS+IAKlzIFNGRz3FAzPlvCUIBa+JNmjbJBENYas=;
-        b=hTNJ+kW0e69E3su7yhSpZu3lIj8amjWVNllh1n41JTX61VSDs60V5aT6qofC0T1K4F
-         1l1vAifmdlAXMDdavmpXHJ4avoXtdcxjW4w4iCL663Y4ei/d3oCoBezupriIzovTniwf
-         +sQMHFtz7IBN4B1i2ugUvrgTsuFNqs1rvSJYxuDdrHxU0T36ehxk1dikjKfKRHfZMggF
-         qqvCJa40Tp6lU++4C0DFXB+pI0+6MY3a/JOGNcchCU6mwAfZx/Sac7aakO1aBeuJaeh8
-         kwpKoWpuDuIVvtGBDl6B5mE1bWUv9N32GpFrAD9Ibn46oVDdosf9M0RGxOQuW4YuRu8G
-         u8IQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWygQRlEw7qFJOaWwDG0aATCTu96VavGNxela7PmQxNNbzVlawW0+mCunrYY1u8aEXD2RUBX0BXeo8Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDQR1aUv7lNyemShYaDpt18guEXcAidrv+aj/6xQTj8D8mRaan
-	Pr9Qt18c0tRWy0IYx6DeTq2TUiRjz7tBDDwDoDiBaQDhF2Td28CNVnPNSpNk1eUya/QEXddbhFG
-	ZDHbhbRs2h2nbfPQHVQs3myDhA9FidF1HesKg11YnbYh9ny42PiKFeFVEV0kKMr3d
-X-Gm-Gg: ASbGncsopVrP8WHAn1bb1BG/tYQZrGA10je+KMLWsllEBMjvd5ZbRClTWwQeotSfhlO
-	fpSSus5XZLtyd0nxgzhQBrm7/U5hperOzcsqgj9Kx7HpVR3Au/pxxhrNl4fDB2FaULCLMNNFSO7
-	njCmeK5fgs04fVx4a0TLQttCKuJgcAqjxKEzdgrcFsx+4TopuCoon7XteE7QfrjK5GofM1vsH4u
-	GbdvWitO3S8Itxaq+09TfmRUi5wnp/sXfvKrX9/JUIE6Qr8Z4s/ulXYTwXlrDwJjIK1/02FU1bI
-	RAxfh4pGOgsOawf7zCslDME5Tg65zGHl+n7qNGlyh7moSdK476O+xoMe/Ruinix+FRsLpQZfp3L
-	l1jYBTDNvUhqNGtfjtNfUsY9L5oyzBJ9Nkt4=
-X-Received: by 2002:a17:903:2c9:b0:298:cb9:6ff2 with SMTP id d9443c01a7336-29b6c3e3f1bmr125395785ad.15.1764004150069;
-        Mon, 24 Nov 2025 09:09:10 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFbDD2EFejyNXx7KyZ8WflHqAuidxisctS9ZRCxozEEZI/rIjSILkiUYUK5QQsyPm/0Erq5oA==
-X-Received: by 2002:a17:903:2c9:b0:298:cb9:6ff2 with SMTP id d9443c01a7336-29b6c3e3f1bmr125395295ad.15.1764004149544;
-        Mon, 24 Nov 2025 09:09:09 -0800 (PST)
-Received: from hu-hdev-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b107effsm143949275ad.14.2025.11.24.09.09.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Nov 2025 09:09:09 -0800 (PST)
-From: Harshal Dev <harshal.dev@oss.qualcomm.com>
-Date: Mon, 24 Nov 2025 22:38:50 +0530
-Subject: [PATCH 2/2] arm64: dts: qcom: x1e80100: add TRNG node
+	s=arc-20240116; t=1764004441; c=relaxed/simple;
+	bh=GC0l7TTs/UYHAXBhUCQ4Uc+Q9lq5Vk5HXRFcAAWkfPs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hwtZMPjJ83KU8fduRM0MGp+gQ4iASpiU616ddfH7GH5IL+KEZX6COuo+EDnbL7ks12pAbxoHsWmUdYd8DrcFoMwWxiFZVj8DMEXQUX3neNPjj5pSnnLHpoUZ07VUMakLDP8GbeTKuNU3kUHc1LeP190RQdDoAij+0eOykyyA4WQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=QlDRCX7O; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 06C0D1C00AB; Mon, 24 Nov 2025 18:13:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1764004434;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LdiTuAPMsdSklIdlRlLQFxKoYVhC4YIkUoorfpWkpSo=;
+	b=QlDRCX7OPONlUDTkKv1GHVunDHwbB4oIxye2FqDf9keAfama0I9Rxo6S/fLMbmvmRcA+ih
+	rzdQtu27R/MYcLvHla1y0G2l71UK/8N4sYMwRJjgODoBfeYxMJESlr8qJZsIBgbo6bRb/g
+	rYG7zFWj44Y0OBaUyaqWmqDdQM+2K9g=
+Date: Mon, 24 Nov 2025 18:13:53 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: Alexandre Messier <alex@me.ssier.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Luca Weiss <luca@lucaweiss.eu>,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974pro-htc-m8: add status LEDs
+Message-ID: <aSSSUahMBR8Wujni@duo.ucw.cz>
+References: <20251007-m8-dts-additions-v1-0-53d7ab3594e7@me.ssier.org>
+ <20251007-m8-dts-additions-v1-1-53d7ab3594e7@me.ssier.org>
+ <6c791f05-70e7-49c9-a3ce-50fb82b0c894@oss.qualcomm.com>
+ <fef52764-3092-4375-b9c7-793d85adc102@me.ssier.org>
+ <41c63020-9226-45d9-979d-429b7299da41@oss.qualcomm.com>
+ <77efe2a2-ee81-4096-9145-a76e35954e84@me.ssier.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251124-trng_dt_binding_x1e80100-v1-2-b4eafa0f1077@oss.qualcomm.com>
-References: <20251124-trng_dt_binding_x1e80100-v1-0-b4eafa0f1077@oss.qualcomm.com>
-In-Reply-To: <20251124-trng_dt_binding_x1e80100-v1-0-b4eafa0f1077@oss.qualcomm.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Harshal Dev <harshal.dev@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764004137; l=818;
- i=harshal.dev@oss.qualcomm.com; s=20251124; h=from:subject:message-id;
- bh=ofR3ihwtzlWlypMj/ZJqBpSefmnA44XUKBt8ZlrNmIM=;
- b=6aK7rN5rBS5D6rNIRL0jXwFbmQNqOp6NjeuNq5yPThMUPdqTY3WJm6VU9vtSi3xxPkEzOeaIv
- vV7qjufcr4JDHUHp3gbVsrD8ZBuSCl3CIujBBANC0M6yS9ktUIwZquL
-X-Developer-Key: i=harshal.dev@oss.qualcomm.com; a=ed25519;
- pk=SHJ8K4SglF5t7KmfMKXl6Mby40WczSeLs4Qus7yFO7c=
-X-Proofpoint-GUID: fl8474-en6er0jHANZwL2rKvGiYJl9VX
-X-Proofpoint-ORIG-GUID: fl8474-en6er0jHANZwL2rKvGiYJl9VX
-X-Authority-Analysis: v=2.4 cv=WL5yn3sR c=1 sm=1 tr=0 ts=69249137 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=75mWG-WH9mJFzEGoRSkA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDE1MCBTYWx0ZWRfX56zNHJjQCSWn
- os7eR0/oVJuXkV1E6Og8THHgnRJst/v1I4LIU91hIt8gWJxI8gym6iCBFMpNEZNWc94DiwGq6OS
- dH1sIFDNrJd5o2iRZckkl+3UWYGfcIvz+spjYFKkanhwMb3N1RHZHKfvAZ4M53IAauyK7cVjKes
- gyqznlyxCVYUjQ1m03fQF8Vaa4IDNuik6zXElWwBM7xT1llXzD2csEA0/53HQT+PiRRrc9hFao9
- v7PVLuChY1ppIOCrpyJB/7b6aYtNEPelADiogWYKP3RMiol+qWh+UtDz1Q+9qCL480wEwgwgMpd
- VKnRwoOLDXJrraFa+UkHhbl9ioy3g7qxYe6/GStgCYfyawXjpry+bKUseYtUbTV8eeKsm64cCx4
- I9cr83M/il9prtAL5Myr6bIu1N+d1g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-24_06,2025-11-24_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
- clxscore=1011 impostorscore=0 suspectscore=0 malwarescore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240150
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="xMMfKyXYP5va5Mht"
+Content-Disposition: inline
+In-Reply-To: <77efe2a2-ee81-4096-9145-a76e35954e84@me.ssier.org>
 
-The x1e80100 SoC has a True Random Number Generator, add the node with
-the correct compatible set.
 
-Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+--xMMfKyXYP5va5Mht
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 51576d9c935d..c17c02c347be 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -3033,6 +3033,11 @@ usb_1_ss2_qmpphy_dp_in: endpoint {
- 			};
- 		};
- 
-+		rng: rng@10c3000 {
-+			compatible = "qcom,x1e80100-trng", "qcom,trng";
-+			reg = <0x0 0x10c3000 0x0 0x1000>;
-+		};
-+
- 		cnoc_main: interconnect@1500000 {
- 			compatible = "qcom,x1e80100-cnoc-main";
- 			reg = <0 0x01500000 0 0x14400>;
+Hi!
 
--- 
-2.25.1
+> >>> Do they form a single notification led, or are they supposed
+> >>> to act separately?
+> >>
+> >> Good point, I had to check the phone user manual to confirm. Indeed, i=
+t is
+> >> referred to as a one logical notification LED. It also mentions the co=
+lor can
+> >> be either green or orange, it does not mention using the combined colo=
+r of
+> >> the two LEDs.
+> >>
+> >> So I would say they are supposed to act separately.
+> >>
+> >> Hope this answers your question, and let me know if more details are n=
+eeded.
+> >>
+> >> BTW: I will be sending a V2 to update the color name, since the user
+> >> manual says the color is orange, not amber.
+> >=20
+> > Let's describe it as a single LED then:
+> >=20
+> > multi-led {
+> >         color =3D <LED_COLOR_ID_MULTI>; // notice it's not RGB
+> >         function =3D LED_FUNCTION_STATUS;
+> >=20
+> >         #address-cells =3D <1>;
+> >         #size-cells =3D <0>;
+> >=20
+> >         led@6 {
+> >                 reg =3D <6>;
+> >                 color =3D <LED_COLOR_ID_GREEN>;
+> >         };
+> >=20
+> >         led@7 {
+> >                 reg =3D <7>;
+> >                 color =3D <LED_COLOR_ID_ORANGE>;
+> >         };
+> > };
+>=20
+> Using multi-led is fine for me.
+>=20
+> But currently, the "qcom-lpg" driver doesn't support LED_COLOR_ID_MULTI, =
+only
+> LED_COLOR_ID_RGB. Adding support for LED_COLOR_ID_MULTI is trivial, I tes=
+ted it
+> and it works.
+>=20
+> Or I can also use the "leds-group-multicolor" driver, using the two indiv=
+idual
+> LEDs. I also tested this method and it works.
+>=20
+> >=20
+> > + Pavel the LED maintainer, please take a look if you think it makes se=
+nse
+>=20
+> If Pavel agrees using multi-led makes sense, I think the first option is =
+the
+> best. I will separate the LED patch into a new series, along with the cha=
+nge to
+> the qcom-lpg driver to support LED_COLOR_ID_MULTI.
 
+I see nothing horribly wrong here (and am late to the party). ID_MULTI
+leds are pretty uncommon for phones, but if that's what you have...
+
+Anyway:
+
+LED SUBSYSTEM
+M:      Lee Jones <lee@kernel.org>
+M:      Pavel Machek <pavel@kernel.org>
+L:      linux-leds@vger.kernel.org
+
+Best regards,
+								Pavel
+--=20
+I don't work for Nazis and criminals, and neither should you.
+Boycott Putin, Trump, Netanyahu and Musk!
+
+--xMMfKyXYP5va5Mht
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaSSSUQAKCRAw5/Bqldv6
+8jXhAJ9zJDH/Tv6cujn6IBoZoYOIrHdbWgCgvp78nRFqKpGFXPhA0d+xLRexqqw=
+=iMor
+-----END PGP SIGNATURE-----
+
+--xMMfKyXYP5va5Mht--
 
