@@ -1,123 +1,220 @@
-Return-Path: <devicetree+bounces-241471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72E2AC7E9D3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 00:48:02 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D1FC7EAA4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 01:12:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1EE8B34423B
-	for <lists+devicetree@lfdr.de>; Sun, 23 Nov 2025 23:48:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 564924E01CE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 00:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC2D72566E9;
-	Sun, 23 Nov 2025 23:47:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75973FCC;
+	Mon, 24 Nov 2025 00:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nOxm2x8a"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hlx0NMTR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 316E9239E75
-	for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 23:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4E8632
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 00:12:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763941678; cv=none; b=BicibF4jBXHEpXSb4awrZZOrA4pY8KAUZCaeqXHlm8woc4j/cDZF6VhDFrDd0KkOj+r/aDd2YqcYuhzblo6FIqdI3E2jbIeAZaYPllHhV8w3TjWxYdOrHuBopI6fyQ2PSn1MDN3esbjuGmaB2/KPKxd7z5nSMz08CQ58dObpuqM=
+	t=1763943166; cv=none; b=Jaoj/6fndWWgfALusexpdXGRFMUUrUO/9MA7KeaESqzzsP6NV5HFtGwjWRF7qF8L/SjRcZnsHwphJ5sGKqNY544nBrQ43nZGiAU4WbuyvyPox765LncFnZNMUC10bOi3skanLH4do/wtmfOCfhku1Lg33l4o5DOfdHg3rI0Fu9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763941678; c=relaxed/simple;
-	bh=TJIcmKvYcwLavlNS6SXJ/86zVoDsC8q0zbps/byk9vw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UjaW+MLRfu7/qxHJJT3aPcfOkavavUwn/JANvOW4D2xTGpO7ug1d8Y99OlevHVXJ8w0Ex26ovKx0wgN9lZ94oP+gh2kPy7NiRE7zc2Wh/XDVg+Iu+0bsgvePH5NdvlqI9W6sXq+gs0yYjfs/y/wKY19hGUu6t46asuLgV/4+ILw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nOxm2x8a; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-42b3ad51fecso2989206f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 15:47:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763941675; x=1764546475; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9WpSd2LefLOPcYBkAZyB05aqITFj4fqTlh36DvQaccA=;
-        b=nOxm2x8a5wSNm37ObdH4mYUiP0sSwgBDm83oiyPM4k06PVw5QHFtzSvd+/tY1kpSPy
-         8FDn8VMyk8s/93EG8KRk5xQR4fU3CvJ5uPl72UgRac7h1vZ9vMD0/WApAEMSOxD6oHqA
-         iJaB3dtPgJhrdD6W22SiQFrQajjEoqgEg68VhUr4LPKzh71IgFpUOijWdnFPlqS+TygL
-         9jTr6+0DCKTEFq5jB183Sd4vV4LYHaWmZdbMtPJiaNPoApTYX/6Gyzv6NUgvGX1aYoRY
-         2hNvi/Iiz7aL5sjnK37C2VFrYBZ5h/5cEgEY3uxelR2gUvSCe5Yzu86YzDfGYG67txGn
-         rpvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763941675; x=1764546475;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9WpSd2LefLOPcYBkAZyB05aqITFj4fqTlh36DvQaccA=;
-        b=Bk8i+oQxDtlu+eVI3ngzbK1Tx5MMEu3cnFo2mSGgoKak1yQbW4PyWEYYAQ/UgexRVQ
-         mWxYESweHBG+Tx8gc+Tth1fPD/6qNcUhJUaBNwr//eCSYujmAZJTAYniOtucOeJCOO7Q
-         F/kYV/cpX8KGFWI4i8D9B6HfG0DLenEOSedk8P8di5+3AIs9AF6qsJui77RasxHdmu5o
-         om5AXP4JKm7/Icg8E/Iw3tJuO3Z+ofyvVP40HlafTcJMayDbDZlq1ImPJzNJOpTP4/hj
-         m0KZ8kbGfBrr7zvPwZ40hEQ2o7xjd3U0VmKNyJBUsrN5C1kt8PQuXoze+5Yfm8jOI0NG
-         7pBA==
-X-Forwarded-Encrypted: i=1; AJvYcCWJ9ExePFz+S2yyCyMT4s/E/xdx9vXDoARUrUK/j4YndN8i1evuyP1gmVutJ40jC0e2UxMWwdFOlvE5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiBcDHBcJZisuaMxxwxpNWxhNOT+O8YrGIRHzUhsEXcxji5pvX
-	VbTDnhcwpVj8oEJjygWSuyzwFAKqWr1cDSf/baGfaPUS6eomdRKd76a6HUm0I3tMHEA=
-X-Gm-Gg: ASbGnct86hrTZmFXxkliYrU8DeblGDxcj7UUZa0MdtpCQllTAQ7cdTjYb0WfCYoQ4t3
-	GAY9CDbFQtrOl3l5nrSRltnzywOI5FZUpm7SOHTIrP0tmDfD8+m2s33nerqbh98FXqliFnFtGHg
-	U6GVaiCfr2Jmw89ko7QQD8gCmPnORXsqZS6F6JdKnLIRUqlKLVL2OLkogorPL3/lGAQ8tjHsKvg
-	uD952pTg3PuXCHn4xar/fUfvuBM4eeETP8A7DeiynpJdVl59oJGGXFXEwRdUtkkOLNZp3418oRQ
-	oAywCgavqXthQnXxbjtIdjQ4n0RAjhM55J50sagygO+Lg0BZQAzOXX2jIDvRKAhnaThffOe4i74
-	qykJKquxuktqpPwpGuBwjg7NL2gls8WI+PZToWU1Y9wxrZYM/pjeLr3qYfmiSzf7jHoQ2ImaMqy
-	+U6p61HY3hV8gwhLwOGikk6ioKkR2rL2+91JdCQH6PSlkc1ThPqCPz
-X-Google-Smtp-Source: AGHT+IHVxdc0S4p7GcNa9n3stpz6wIbEUwBNlaz8lj7snVGYZFGdUkAQ9qLVQVzs619DRkEviJfz+Q==
-X-Received: by 2002:a05:6000:250a:b0:42b:4961:eb4c with SMTP id ffacd0b85a97d-42cc1cd5cc1mr10385337f8f.1.1763941675585;
-        Sun, 23 Nov 2025 15:47:55 -0800 (PST)
-Received: from [192.168.0.27] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f2e598sm24494734f8f.4.2025.11.23.15.47.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 23 Nov 2025 15:47:54 -0800 (PST)
-Message-ID: <0b2b8352-4ac1-4a5e-be73-67b5cffdb934@linaro.org>
-Date: Sun, 23 Nov 2025 23:47:51 +0000
+	s=arc-20240116; t=1763943166; c=relaxed/simple;
+	bh=vJG0Qwix1POvTb+AAFX2RrWo0EkB/Z4JteoPIsJvwak=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hffz7KdNIvkRq7zQEuDSXgkeMC/Knd5PmNKnkZMqsVoQVhPRzX0mqBYezRky5cX15Ob+XOtn710aRilgxVyIaqNWmEj9TqS6zBdOchiIdsgm1V7zYMNn/T6ebfTs0AZa+VNsJCbjwcxDAQZ/62hGsyFPhrnFPu8BDCy+R3Mu2BI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hlx0NMTR; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (unknown [210.170.118.136])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 8C7B529A;
+	Mon, 24 Nov 2025 01:10:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1763943032;
+	bh=vJG0Qwix1POvTb+AAFX2RrWo0EkB/Z4JteoPIsJvwak=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hlx0NMTRjzGRyawi2kfkQgIDGesb8d1mI6aGmAWZuzqd4MDMft+ZXjZeJ6DA3TC9j
+	 vdarSP2wQTHIgbBkoX2QOcQde5kLvY2gclcnWQbo0eGjpSi9XizdDG+rFAZprmuVKh
+	 dkzv5wW/f5UeFIE89hMxqmuDlftmor1LozbSZgK8=
+Date: Mon, 24 Nov 2025 09:12:14 +0900
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Wei Fang <wei.fang@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <20251124001214.GI15447@pendragon.ideasonboard.com>
+References: <20251113010627.GC9135@pendragon.ideasonboard.com>
+ <aRW6CxvmIEqkMrfA@shell.armlinux.org.uk>
+ <20251114222654.GI30434@pendragon.ideasonboard.com>
+ <PAXPR04MB8510E17B2B8C612DD02175CE88D6A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <20251122072246.GA16239@pendragon.ideasonboard.com>
+ <aSGJHV9Sga2kBIBX@shell.armlinux.org.uk>
+ <20251123053802.GA25329@pendragon.ideasonboard.com>
+ <aSLLMMNkHnfwyO0y@shell.armlinux.org.uk>
+ <20251123152356.GF15447@pendragon.ideasonboard.com>
+ <aSNAP9G4cwRKvxng@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
-To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Atiya Kailany <atiya.kailany@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-References: <20251120-add-support-for-camss-on-kaanapali-v7-0-de27f9a67ce6@oss.qualcomm.com>
- <20251120-add-support-for-camss-on-kaanapali-v7-1-de27f9a67ce6@oss.qualcomm.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20251120-add-support-for-camss-on-kaanapali-v7-1-de27f9a67ce6@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aSNAP9G4cwRKvxng@shell.armlinux.org.uk>
 
-On 21/11/2025 04:43, Hangxiang Ma wrote:
-> The Kaanapali platform provides:
-> - 3 x VFE, 5 RDI per VFE
-> - 2 x VFE Lite, 4 RDI per VFE Lite
-> - 3 x CSID
-> - 2 x CSID Lite
-> - 6 x CSIPHY
+On Sun, Nov 23, 2025 at 05:11:27PM +0000, Russell King (Oracle) wrote:
+> On Mon, Nov 24, 2025 at 12:23:56AM +0900, Laurent Pinchart wrote:
+> > On Sun, Nov 23, 2025 at 08:52:00AM +0000, Russell King (Oracle) wrote:
+> > > On Sun, Nov 23, 2025 at 02:38:02PM +0900, Laurent Pinchart wrote:
+> > > > On Sat, Nov 22, 2025 at 09:57:49AM +0000, Russell King (Oracle) wrote:
+> > > > > On Sat, Nov 22, 2025 at 04:22:46PM +0900, Laurent Pinchart wrote:
+> > > > > > Hello Wei,
+> > > > > > 
+> > > > > > On Tue, Nov 18, 2025 at 01:50:55AM +0000, Wei Fang wrote:
+> > > > > > > Sorry, I only have a little experience with DWMac, add Clark to help look
+> > > > > > > at this issue.
+> > > > > > 
+> > > > > > Thank you.
+> > > > > > 
+> > > > > > I think we're getting close to having a good understanding of the
+> > > > > > problem. I've debugged it as far as I could based on the information
+> > > > > > available publicly. Let's try to get to the bottom of this issue, it
+> > > > > > impacts quite a lot of people and it would be very nice to fix it
+> > > > > > properly in mainline.
+> > > > > > 
+> > > > > > The short summary is that I'm experiencing an interrupt storm on IRQ 135
+> > > > > > when EEE is enabled with the EQOS interface.
+> > > > > > 
+> > > > > > My current theory is that
+> > > > > > 
+> > > > > > - The lpi_intr_o signal of the EQOS is OR'ed into IRQ 135.
+> > > > > > - The issue is triggerted by the PHY exiting LPI mode
+> > > > > > - When it exits LPI mode, the PHY restarts generating the RX clock
+> > > > > >   (clk_rx_i).
+> > > > > > - The MAC detects exit from LPI, and asserts lpi_intr_o.
+> > > > > > - Before the CPU has time to process the interrupt, the PHY enters LPI
+> > > > > >   mode again, and stops generating the RX clock.
+> > > > > > - The CPU processes the interrupt and reads the GMAC4_LPI_CTRL_STATUS
+> > > > > >   registers. This does not clear lpi_intr_o as there's no clk_rx_i.
+> > > > > 
+> > > > > Please try setting STMMAC_FLAG_RX_CLK_RUNS_IN_LPI in dwmac-imx.c and
+> > > > > see whether that changes the behaviour.
+> > > > 
+> > > > I have tested that and it worked like a charm ! I have submitted
+> > > > https://lore.kernel.org/r/20251123053518.8478-1-laurent.pinchart@ideasonboard.com
+> > > > 
+> > > > That was quite an adventure. Thank you so much for all your support, I'm
+> > > > not sure I would have managed without you (or at least I would have
+> > > > needed way more time). I really really appreciate it.
+> > > > 
+> > > > If the above patch gets accepted, we will probably be able to remove the
+> > > > eee-broken-* properties from the i.MX8MP device tree files (and possibly
+> > > > from i.MX8DXL and i.MX93 as well). I have mentioned that below the
+> > > > commit message of the patch, with a test procedure as it should be
+> > > > tested on each board.
+> > > 
+> > > As stated in reply to that patch, while this may reduce the severity of
+> > > the storm, I don't think it'll completely eliminate it.
+> > > 
+> > > I made the suggestion to set the flag as a test to confirm whether the
+> > > lpi_intr_o is indeed the problem by ensuring that the receive domain is
+> > > always clocked, and thus ensuring that the signal clears within four
+> > > clock cycles, rather than an indefinite period should the remote end
+> > > re-enter LPI mode quicky.
+> > 
+> > You're right. I've checked replied to the patch with the following
+> > numbers.
+> > 
+> > 100TX link, eee-broken-* set: 7000 interrupts
+> > 1000T link, eee-broken-* set: 2711 interrupts
+> > 100TX link, eee-broken-* unset: 9450 interrupts
+> > 1000T link, eee-broken-* unset: 6066 interrupts
+> 
+> Sadly, I think this means for iMX8MP, the correct answer is to disable
+> EEE completely. What I was thinking when I brought this up is as follows
+> and dwmac-imx.c can set STMMAC_FLAG_EEE_DISABLE for iMX8MP to prevent
+> the use of EEE.
 
-Another nit-pick which you don't have to fix, I can do this in the 
-commit log - but, you've not detailed the new regs added below.
+I suppose there's no way to disable EEE in the RX path while keeping it
+enabled in the TX path ?
 
----
-bod
+> This works because, in phylink, pl->mac_supports_eee_ops will be set
+> since stmmac implements the two LPI operations. pl->mac_supports_eee
+> will be clear because pl->config->lpi_capabilities will be zero, and
+> pl->config->lpi_interfaces will be empty. This causes phylink to call
+> phy_disable_eee() on all PHYs that end up being attached to this
+> phylink instance, which should result in the PHY EEE advertisement
+> being cleared.
+> 
+> I'll package this up into a proper patch tomorrow.
+
+Thank you. I can respin my patch on top.
+
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 7 ++++++-
+>  include/linux/stmmac.h                            | 9 +++++----
+>  2 files changed, 11 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 1d37c2b5ad46..113cae2bc593 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -1376,7 +1376,12 @@ static int stmmac_phylink_setup(struct stmmac_priv *priv)
+>  				 config->supported_interfaces,
+>  				 pcs->supported_interfaces);
+>  
+> -	if (priv->dma_cap.eee) {
+> +	/* Some platforms, e.g. iMX8MP, wire lpi_intr_o to the same interrupt
+> +	 * used for stmmac's main interrupts, which leads to interrupt storms.
+> +	 * STMMAC_FLAG_EEE_DISABLE allows EEE to be disabled on such platforms.
+> +	 */
+> +	if (priv->dma_cap.eee &&
+> +	    !(priv->plat->flags & STMMAC_FLAG_EEE_DISABLE)) {
+>  		/* Assume all supported interfaces also support LPI */
+>  		memcpy(config->lpi_interfaces, config->supported_interfaces,
+>  		       sizeof(config->lpi_interfaces));
+> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+> index 8ae068706b63..4c770262a2f8 100644
+> --- a/include/linux/stmmac.h
+> +++ b/include/linux/stmmac.h
+> @@ -187,10 +187,11 @@ enum dwmac_core_type {
+>  #define STMMAC_FLAG_MULTI_MSI_EN		BIT(7)
+>  #define STMMAC_FLAG_EXT_SNAPSHOT_EN		BIT(8)
+>  #define STMMAC_FLAG_INT_SNAPSHOT_EN		BIT(9)
+> -#define STMMAC_FLAG_RX_CLK_RUNS_IN_LPI		BIT(10)
+> -#define STMMAC_FLAG_EN_TX_LPI_CLOCKGATING	BIT(11)
+> -#define STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP	BIT(12)
+> -#define STMMAC_FLAG_HWTSTAMP_CORRECT_LATENCY	BIT(13)
+> +#define STMMAC_FLAG_EEE_DISABLE			BIT(10)
+> +#define STMMAC_FLAG_RX_CLK_RUNS_IN_LPI		BIT(11)
+> +#define STMMAC_FLAG_EN_TX_LPI_CLOCKGATING	BIT(12)
+> +#define STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP	BIT(13)
+> +#define STMMAC_FLAG_HWTSTAMP_CORRECT_LATENCY	BIT(14)
+>  
+>  struct mac_device_info;
+>  
+
+-- 
+Regards,
+
+Laurent Pinchart
 
