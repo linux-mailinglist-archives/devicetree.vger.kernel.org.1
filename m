@@ -1,50 +1,82 @@
-Return-Path: <devicetree+bounces-241704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD39C81382
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:02:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4681C81D1B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:10:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C56AF3A2DF1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:02:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CA0C54E7125
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0EE28D8D9;
-	Mon, 24 Nov 2025 15:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801A0313E0D;
+	Mon, 24 Nov 2025 17:08:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Yes+e4yF";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="rmldshq9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q7/gZ4Bj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A180258CE9;
-	Mon, 24 Nov 2025 15:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CB52BE641
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763996561; cv=none; b=c71wNzMhGVt4y/4B7lsUZCPB7l1F23DueplwgZ7GLa1Gtarax9EuID94IrThu1IrcZWENtuGQAmzcFh8spH4d3ClPborkIk4Pv7S6fohumQrNKYXlG4+mXy+rfWaeuHinAyg+eVsMa0iet4oqb+4tV1buzquzfWQrE6L+INPvaM=
+	t=1764004097; cv=none; b=hE3DWelC+CZIPE98xA7M2MCGYyi4XTdAmCthN0veyMAaz5m/cwVZE+rAjGdFwQMl6IaZk4EdZ4LqAjo3rmexPOYpfmOzbqG036JFEnhWr7Jp9VivGnl4QFy/1BdU/DVqaix91kiid7wfjlQ9VRC9uw0w8TjQEBARj23I6MqS1jQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763996561; c=relaxed/simple;
-	bh=MUSwhtgm3BCGsY/Yl3RMNuN5ZtNDXiP3mjH6apWIBWM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=FfYUjqNVKKsIASvrNXPf0kjOIbzUAralGxvpIBc3fkynQQm2AkLyUdFh1hMu7VPC0yY2poEyG48XwWdGQXDhlaDER+/G5ppAxw1SFMaBbN2Bs4yWeBnTcgzPnlBTf0fDFAHSLUBe3PhdaEqfHhHhKNlK4a/nt6u07X/3QkusXKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Yes+e4yF; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=rmldshq9; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=To:From:Subject:Date:Message-ID; t=1763996550; bh=BEapyRxXsmfjY6bhePE1aSR
-	Gz1P0rziFs5A6ZoN1Afg=; b=Yes+e4yFOvIMy8Iz8H8ZTszQ/5u1gYi4N5VKqISehvrpVLWxD5
-	sGvfSEinL3igowtVgsxe+Uc9/oa+p+PyotLtWmYEVy/tUmoWoXHQy17g5v/POD1sZg1G9bGOiWZ
-	jyorZZRzI0HX2epAjt4qG21H4jHT6qpyScLcXdTiRYLgC7ORzvuqR2Lnfx2/0+P3gQzVqDHU1gG
-	dOL4Nii4TNiKh5JPUV9gNS5AzBC4mbN5o/PW8f+zq8j4/Y8tfjNaBZkv6fVyI7f7AmfAV0/yObs
-	QWzpGryQbCe5aoPVwZpNgId2MrAkLGMWaqBFkBmgNTztkO1dhFBAt0KLq8OvsExMd+A==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=To:From:Subject:Date:Message-ID; t=1763996550; bh=BEapyRxXsmfjY6bhePE1aSR
-	Gz1P0rziFs5A6ZoN1Afg=; b=rmldshq9bDSDnGF49ZzwV0C+EZRzRFERlhUvJjfZFj2Z2Ymra1
-	pmyionvh9Y7d5eWiBBkB/w+lPr1rg6APYEDA==;
-Message-ID: <bacb6293-a4e3-4d23-8a1f-cf42f221ba4b@mainlining.org>
-Date: Mon, 24 Nov 2025 18:02:29 +0300
+	s=arc-20240116; t=1764004097; c=relaxed/simple;
+	bh=U6A+dJ20pXp86qjZBRsjEm03OXYUbqKULhGIn2BanqU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iwYo5jiXFeIztm5PxcnWCJ4qyVWdJk+2vepg3dtjh/j+KeDf0Hh96tRS8PVILkvI7mbbTmzDK/2TaGSyN2SnW8to0OtGfk3PbZz708AJlhEVHL1ShwupfsW+sVftgkUhHaJtB70gCpPJlgjCTkxJXMGshF52b0HuKdEKRzhzKsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q7/gZ4Bj; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b739ef3f739so281561966b.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:08:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764004094; x=1764608894; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gMEOFKOu3v4GJbo9FdKNZBfHGx8q7d1+trMyWhqy/A8=;
+        b=Q7/gZ4BjvyjEip0iDrgEG8xaI4vE+sedpVMKPWOyxA+U24xaz1SLA6bkgUEThE8Kzi
+         yia9JIs6KLI614C+CoJRN3LDLRNdLa44mKgFy8yBpKroAYSC+9/61TDEsWzCqtpycpsD
+         4apPqpLTZKVuRYGEHF/zA/l/oisYI8lMVZrvezuAmF4BCqDHC9kJCPoPPQQ4IdvyZL3g
+         m8+LFxYNHPiIayNJVcjcnMqc5/6wSag2Q/J5aLyVAyU2h/hFZxYMiVNJM9v+3o0nYhp0
+         aqqfH21PfE+L5bPlX63L5InbY4Q+W+x9TmcvEsrtioP0P3pKFnWnYRf0l3APMEFz1NWn
+         /2eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764004094; x=1764608894;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gMEOFKOu3v4GJbo9FdKNZBfHGx8q7d1+trMyWhqy/A8=;
+        b=md5G0cIgQeq+e5BqO/VxfpnKna+EPzcSGpS2EdehemIs2R5rtGxA8WyDqxzIjo/rDl
+         OT7t4ovr5FiN8jVFH9eo9v86c8Cjh8zM1mF3M3dFY8qxME+rjrkfPy8KjWumFENLHL3S
+         NU1Rfg4tvS4U0mPnRm0XtJgKma5YGY/ua8bo7n2JQuNhuIZe9zRRZxDmKWTtFeBur/S1
+         L+ThV697Xpp44hXTY80NOPCvMx8jxavNfDRro3i8/oUVCAmREDjOEfugrwatr96agqJP
+         T/n5vnZY8FhoeQdnwQYyQCX/zzi8w/BZ6k20A0afUocpeDqKlUViXz949m8KPjreZCG5
+         fC2g==
+X-Forwarded-Encrypted: i=1; AJvYcCXPMD3iBTU8mUrYNf2ahMBh1XSTRu26snYy2OkvbfOjk04le8xjXMTdiqb6yk02tc6OVjK1SbWTHtfi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzay+VDiQS8lrpg+KFl+2H10BpiL/wE9B1VTWUK9wD9i3iPyBit
+	rWvkTxEvL7kxHZuuu0KpukEfssOQohxnh1bQfuvp4+CCQ42AaHOuEjO9Akx8FvEj
+X-Gm-Gg: ASbGncvASfZQQMdg0H9ZqN6ls0Hegt8huKYLbMSJB57KCswYpVMROriL4BZBWBhyO6v
+	soOQKoAJ4JIs+dJcKuPopGFzCqhyGi+l6t5aQvZDNAJUVcIon2QuUdrz4ARyqOb2AbgoH7xYyZo
+	Fhfuo9QxeHzy2IMMUeV6yWvy46I8JuFPHkkevFhJXhF7nDNjqvLgpC51j5sb7KhtuKv6FXBCh/Y
+	ezZnqx5KBWalCZUCHnTwxrO3y10NXr1Upa0aMAgbKBZ65M0I3d/qX5v75v6mo3Yis8gxKBaiY2q
+	j5lshJulf8NZXVLx1AQ958Ub/te+Vf2C755kY6q75pCO579A0JUVxeue8KFgqGWdwDmpJvo0E+W
+	XM48AwEMGGwsGOA+bXgRM+ADGkvuWlxBB6koKGWgeDhe4Ghh9nUyOMlf9aBv3WZbOlWtev3LrZ8
+	fbuwT3HBG3j6JlUK0D0/u8jvR/doAtaKgY8jQVAEeZGp9Kkr/c+tYB4SY+CVbD3H4=
+X-Google-Smtp-Source: AGHT+IG13tPufOeCe62IkziqEjMKy77jRIw/n2p1+sO/PACFs+P5/tLtartbx+qzXMxnMkmQoCTh7g==
+X-Received: by 2002:a05:6512:39d5:b0:595:9152:b921 with SMTP id 2adb3069b0e04-596a3ea79camr4199632e87.7.1763996851410;
+        Mon, 24 Nov 2025 07:07:31 -0800 (PST)
+Received: from ?IPV6:2001:14ba:437:c00::190? (2001-14ba-437-c00--190.rev.dnainternet.fi. [2001:14ba:437:c00::190])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-596a0d1493bsm3863273e87.73.2025.11.24.07.07.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Nov 2025 07:07:30 -0800 (PST)
+Message-ID: <5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
+Date: Mon, 24 Nov 2025 17:07:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,214 +84,179 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
- nodes
-From: Nickolay Goppen <setotau@mainlining.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
+ overlays"
+To: Rob Herring <robh@kernel.org>
+Cc: Herve Codina <herve.codina@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
+ Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Charles Keepax <ckeepax@opensource.cirrus.com>,
+ Richard Fitzgerald <rf@opensource.cirrus.com>,
+ David Rhodes <david.rhodes@cirrus.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Dave Jiang <dave.jiang@intel.com>,
+ Alison Schofield <alison.schofield@intel.com>,
+ Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Wolfram Sang <wsa@kernel.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org,
- Chenna Kesava Raju <chennak@qti.qualcomm.com>,
- Bharath Kumar <bkumar@qti.qualcomm.com>
-References: <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
- <83c3aea5-764e-4e60-8b16-67b474f19357@oss.qualcomm.com>
- <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
- <f5c7eb1c-28b1-4cf1-afb0-b993384b7712@oss.qualcomm.com>
- <80836b8f-16a8-4520-ad11-5ca0abb3403e@oss.qualcomm.com>
- <99c22e73-797c-4a30-92ba-bc3bd8cf70f0@oss.qualcomm.com>
- <eddc16cb-d951-401c-8fb8-fccfcf600143@mainlining.org>
- <0b06f744-b695-43d9-8da3-4424e2b53a5e@oss.qualcomm.com>
- <24221ce7-24e4-4eaa-8681-ed9b4b9f2d6e@oss.qualcomm.com>
- <be4e2715-882d-4358-8575-374187f7ee2f@oss.qualcomm.com>
- <2h222ejvc37cldeno7e4qom5tnvdblqn2zypuquvadbcu7d3pr@765qomrwfvwl>
- <f0c41563-dcd1-4cf9-8b73-fb9fedd52710@mainlining.org>
-Content-Language: ru-RU, en-US
-In-Reply-To: <f0c41563-dcd1-4cf9-8b73-fb9fedd52710@mainlining.org>
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
+ patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
+ Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Steen Hegelund <steen.hegelund@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, mazziesaccount@gmail.com
+References: <20251015071420.1173068-1-herve.codina@bootlin.com>
+ <20251015071420.1173068-2-herve.codina@bootlin.com>
+ <f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
+ <CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
+Content-Language: en-US
+From: Kalle Niemi <kaleposti@gmail.com>
+In-Reply-To: <CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
 
-23.11.2025 13:51, Nickolay Goppen пишет:
->
-> 21.11.2025 15:09, Dmitry Baryshkov пишет:
->> On Fri, Nov 21, 2025 at 01:41:21PM +0530, Ekansh Gupta wrote:
+On 11/24/25 16:53, Rob Herring wrote:
+> On Mon, Nov 24, 2025 at 8:48 AM Kalle Niemi <kaleposti@gmail.com> wrote:
+>> On 10/15/25 10:13, Herve Codina wrote:
+>>> From: Saravana Kannan <saravanak@google.com>
 >>>
->>> On 11/20/2025 5:17 PM, Konrad Dybcio wrote:
->>>> On 11/20/25 11:54 AM, Ekansh Gupta wrote:
->>>>> On 11/20/2025 1:27 PM, Nickolay Goppen wrote:
->>>>>> 20.11.2025 07:55, Ekansh Gupta пишет:
->>>>>>> On 11/20/2025 1:58 AM, Srinivas Kandagatla wrote:
->>>>>>>> On 11/12/25 1:52 PM, Konrad Dybcio wrote:
->>>>>>>>> On 11/10/25 6:41 PM, Srinivas Kandagatla wrote:
->>>>>>>>>> On 11/3/25 12:52 PM, Konrad Dybcio wrote:
->>>>>>>>>>> On 10/31/25 12:30 PM, Nickolay Goppen wrote:
->>>>>>>>>>>> 24.10.2025 16:58, Nickolay Goppen пишет:
->>>>>>>>>>>>> 24.10.2025 11:28, Konrad Dybcio пишет:
->>>>>>>>>>>>>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
->>>>>>>>>>>>>>> In order to enable CDSP support for SDM660 SoC:
->>>>>>>>>>>>>>>     * add shared memory p2p nodes for CDSP
->>>>>>>>>>>>>>>     * add CDSP-specific smmu node
->>>>>>>>>>>>>>>     * add CDSP peripheral image loader node
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> Memory region for CDSP in SDM660 occupies the same spot as
->>>>>>>>>>>>>>> TZ buffer mem defined in sdm630.dtsi (which does not 
->>>>>>>>>>>>>>> have CDSP).
->>>>>>>>>>>>>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 
->>>>>>>>>>>>>>> with
->>>>>>>>>>>>>>> cdsp_region, which is also larger in size.
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> SDM636 also doesn't have CDSP, so remove inherited from 
->>>>>>>>>>>>>>> sdm660.dtsi
->>>>>>>>>>>>>>> related nodes and add buffer_mem back.
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
->>>>>>>>>>>>>>> ---
->>>>>>>>>>>>>> [...]
->>>>>>>>>>>>>>
->>>>>>>>>>>>>>> + label = "turing";
->>>>>>>>>>>>>> "cdsp"
->>>>>>>>>>>>> Ok, I'll change this in the next revision.
->>>>>>>>>>>>>>> + mboxes = <&apcs_glb 29>;
->>>>>>>>>>>>>>> +            qcom,remote-pid = <5>;
->>>>>>>>>>>>>>> +
->>>>>>>>>>>>>>> +            fastrpc {
->>>>>>>>>>>>>>> +                compatible = "qcom,fastrpc";
->>>>>>>>>>>>>>> +                qcom,glink-channels = 
->>>>>>>>>>>>>>> "fastrpcglink-apps-dsp";
->>>>>>>>>>>>>>> +                label = "cdsp";
->>>>>>>>>>>>>>> + qcom,non-secure-domain;
->>>>>>>>>>>>>> This shouldn't matter, both a secure and a non-secure 
->>>>>>>>>>>>>> device is
->>>>>>>>>>>>>> created for CDSP
->>>>>>>>>>>>> I've added this property, because it is used in other 
->>>>>>>>>>>>> SoC's, such as SDM845 and SM6115 for both ADSP and CDSP
->>>>>>>>>>>> Is this property not neccessary anymore?
->>>>>>>>>>> +Srini?
->>>>>>>>>> That is true, we do not require this for CDSP, as CDSP allows 
->>>>>>>>>> both
->>>>>>>>>> unsigned and signed loading, we create both secured and 
->>>>>>>>>> non-secure node
->>>>>>>>>> by default. May be we can provide that clarity in yaml 
->>>>>>>>>> bindings so that
->>>>>>>>>> it gets caught during dtb checks.
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> However in ADSP case, we only support singed modules, due to 
->>>>>>>>>> historical
->>>>>>>>>> reasons how this driver evolved over years, we have this flag 
->>>>>>>>>> to allow
->>>>>>>>>> compatiblity for such users.
->>>>>>>>> Does that mean that we can only load signed modules on the 
->>>>>>>>> ADSP, but
->>>>>>>>> the driver behavior was previously such that unsigned modules 
->>>>>>>>> were
->>>>>>>>> allowed (which was presumably fine on devboards, but not on fused
->>>>>>>>> devices)?
->>>>>>>> Yes, its true that we allowed full access to adsp device nodes 
->>>>>>>> when we
->>>>>>>> first started upstreaming fastrpc driver.
->>>>>>>>
->>>>>>>> irrespective of the board only signed modules are supported on 
->>>>>>>> the ADSP.
->>>>>>>> I think there was one version of SoC i think 8016 or some older 
->>>>>>>> one
->>>>>>>> which had adsp with hvx which can load unsigned modules for 
->>>>>>>> compute
->>>>>>>> usecase only.
->>>>>>>>
->>>>>>>> I have added @Ekansh for more clarity.
->>>>>>>>
->>>>>>>> --srini
->>>>>>> For all the available platforms, ADSP supports only signed 
->>>>>>> modules. Unsigned
->>>>>>> modules(as well as signed) are supported by CDSP and GDSP 
->>>>>>> subsystems.
->>>>>>>
->>>>>>> qcom,non-secure-domain property marks the corresponding DSP as 
->>>>>>> non-secure DSP.
->>>>>>> The implications of adding this property would be the following:
->>>>>>> on ADSP, SDSP, MDSP:
->>>>>>> - Only non-secure device node(/dev/fastrpc-Xdsp) is created.
->>>>>>> - Non-secure device node can be used for signed DSP PD offload.
->>>>>>>
->>>>>>> on CDSP, GDSP:
->>>>>>> - Both secure(/dev/fastrpc-Xdsp-secure) and 
->>>>>>> non-secure(/dev/fastrpc-Xdsp) devices
->>>>>>>     are created, regardless of this property.
->>>>>>> - Both the nodes can be used for signed and unsigned DSP PD 
->>>>>>> offload.
->>>>>>>
->>>>>>> Note: If the property is not added for CDSP/GDSP, only secure 
->>>>>>> device node can
->>>>>>> be used for signed PD offload, if non-secure device is used, the 
->>>>>>> request gets
->>>>>>> rejected[1].
->>>>>>>
->>>>>>> [1] 
->>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1245
->>>>>>>
->>>>>>> //Ekansh
->>>>>> Does this mean that the qcom,non-secure-domain property should be 
->>>>>> dropped from both nodes?
->>>>> I checked again and found that unsigned module support for CDSP is
->>>>> not available on this platform. Given this, the safest approach would
->>>>> be to add the property for both ADSP and CDSP, ensuring that all
->>>>> created device nodes can be used for signed PD offload. I can provide
->>>> The property allows *unsigned* PD offload though
->>> I don't think I can directly relate this property to unsigned PD 
->>> offload. This is just
->>> defining what type of device node will be created and whether the 
->>> channel is secure
->>> or not. There is a possibility of making unsigned PD request(on 
->>> CDSP/GDSP) irrespective
->>> of whether this property is added or not. If DSP does not support 
->>> unsigned offload, it
->>> should return failures for such requests.
->> Which part of the hardware and/or firmware interface does it define? If
->> it simply declared Linux behaviour, it is incorrect and probably should
->> be dropped.
-> I still don't understand, do I need this property or not?
-
-I've began testing the FastRPC on CDSP and the command
-
-sudo fastrpc_test -d 3 -U 1 -t linux -a v68
-has caused the following errors:
-
-[   60.810545] arm-smmu 5180000.iommu: Unhandled context fault: 
-fsr=0x402, iova=0xfffff000, fsynr=0x1, cbfrsynra=0x6, cb=3
-[   60.810588] arm-smmu 5180000.iommu: FSR    = 00000402 [Format=2 TF], 
-SID=0x6
-[   60.810603] arm-smmu 5180000.iommu: FSYNR0 = 00000001 [S1CBNDX=0 PLVL=1]
-[   60.815657] qcom_q6v5_pas 1a300000.remoteproc: fatal error received: 
-:0:EX:kernel:0:frpck_0_0:77:PC=c0117de0
-[   60.815684] remoteproc remoteproc2: crash detected in cdsp: type 
-fatal error
-[   60.815738] remoteproc remoteproc2: handling crash #1 in cdsp
-[   60.815754] remoteproc remoteproc2: recovering cdsp
-[   60.819267] (NULL device *): Error: dsp information is incorrect err: -32
-
-
->>>>> a more definitive recommendation once I know the specific use cases
->>>>> you plan to run.
->>>> Why would the usecase affect this?
->>> I'm saying this as per past discussions where some application was 
->>> relying on non-secure
->>> device node on some old platform(on postmarketOS)[1] and having this 
->>> property in place.
->>> So if similar usecase is being enabled here, the property might be 
->>> required[1].
->> DT files are not usecase-based.
+>>> This reverts commit 1a50d9403fb90cbe4dea0ec9fd0351d2ecbd8924.
+>>>
+>>> While the commit fixed fw_devlink overlay handling for one case, it
+>>> broke it for another case. So revert it and redo the fix in a separate
+>>> patch.
+>>>
+>>> Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays")
+>>> Reported-by: Herve Codina <herve.codina@bootlin.com>
+>>> Closes: https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=9F9rZ+-KzjOg@mail.gmail.com/
+>>> Closes: https://lore.kernel.org/all/20240221095137.616d2aaa@bootlin.com/
+>>> Closes: https://lore.kernel.org/lkml/20240312151835.29ef62a0@bootlin.com/
+>>> Signed-off-by: Saravana Kannan <saravanak@google.com>
+>>> Link: https://lore.kernel.org/lkml/20240411235623.1260061-2-saravanak@google.com/
+>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>>> Acked-by: Mark Brown <broonie@kernel.org>
+>>> ---
+>>>    drivers/bus/imx-weim.c    | 6 ------
+>>>    drivers/i2c/i2c-core-of.c | 5 -----
+>>>    drivers/of/dynamic.c      | 1 -
+>>>    drivers/of/platform.c     | 5 -----
+>>>    drivers/spi/spi.c         | 5 -----
+>>>    5 files changed, 22 deletions(-)
+>>>
+>>> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
+>>> index 83d623d97f5f..87070155b057 100644
+>>> --- a/drivers/bus/imx-weim.c
+>>> +++ b/drivers/bus/imx-weim.c
+>>> @@ -327,12 +327,6 @@ static int of_weim_notify(struct notifier_block *nb, unsigned long action,
+>>>                                 "Failed to setup timing for '%pOF'\n", rd->dn);
+>>>
+>>>                if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
+>>> -                     /*
+>>> -                      * Clear the flag before adding the device so that
+>>> -                      * fw_devlink doesn't skip adding consumers to this
+>>> -                      * device.
+>>> -                      */
+>>> -                     rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>>>                        if (!of_platform_device_create(rd->dn, NULL, &pdev->dev)) {
+>>>                                dev_err(&pdev->dev,
+>>>                                        "Failed to create child device '%pOF'\n",
+>>> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
+>>> index eb7fb202355f..30b48a428c0b 100644
+>>> --- a/drivers/i2c/i2c-core-of.c
+>>> +++ b/drivers/i2c/i2c-core-of.c
+>>> @@ -176,11 +176,6 @@ static int of_i2c_notify(struct notifier_block *nb, unsigned long action,
+>>>                        return NOTIFY_OK;
+>>>                }
+>>>
+>>> -             /*
+>>> -              * Clear the flag before adding the device so that fw_devlink
+>>> -              * doesn't skip adding consumers to this device.
+>>> -              */
+>>> -             rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>>>                client = of_i2c_register_device(adap, rd->dn);
+>>>                if (IS_ERR(client)) {
+>>>                        dev_err(&adap->dev, "failed to create client for '%pOF'\n",
+>>> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+>>> index 2eaaddcb0ec4..b5be7484fb36 100644
+>>> --- a/drivers/of/dynamic.c
+>>> +++ b/drivers/of/dynamic.c
+>>> @@ -225,7 +225,6 @@ static void __of_attach_node(struct device_node *np)
+>>>        np->sibling = np->parent->child;
+>>>        np->parent->child = np;
+>>>        of_node_clear_flag(np, OF_DETACHED);
+>>> -     np->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
+>>>
+>>>        raw_spin_unlock_irqrestore(&devtree_lock, flags);
+>>>
+>>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+>>> index f77cb19973a5..ef9445ba168b 100644
+>>> --- a/drivers/of/platform.c
+>>> +++ b/drivers/of/platform.c
+>>> @@ -739,11 +739,6 @@ static int of_platform_notify(struct notifier_block *nb,
+>>>                if (of_node_check_flag(rd->dn, OF_POPULATED))
+>>>                        return NOTIFY_OK;
+>>>
+>>> -             /*
+>>> -              * Clear the flag before adding the device so that fw_devlink
+>>> -              * doesn't skip adding consumers to this device.
+>>> -              */
+>>> -             rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>>>                /* pdev_parent may be NULL when no bus platform device */
+>>>                pdev_parent = of_find_device_by_node(parent);
+>>>                pdev = of_platform_device_create(rd->dn, NULL,
+>>> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+>>> index 2e0647a06890..b22944a207c9 100644
+>>> --- a/drivers/spi/spi.c
+>>> +++ b/drivers/spi/spi.c
+>>> @@ -4791,11 +4791,6 @@ static int of_spi_notify(struct notifier_block *nb, unsigned long action,
+>>>                        return NOTIFY_OK;
+>>>                }
+>>>
+>>> -             /*
+>>> -              * Clear the flag before adding the device so that fw_devlink
+>>> -              * doesn't skip adding consumers to this device.
+>>> -              */
+>>> -             rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>>>                spi = of_register_spi_device(ctlr, rd->dn);
+>>>                put_device(&ctlr->dev);
+>>>
+>> Sorry, some of you will receive this message now for second time. First
+>> message was sent to older series of patches.
+>> -
 >>
->>> [1] https://lkml.org/lkml/2024/8/15/117
+>> Hello,
+>>
+>> Test system testing drivers for ROHM ICs bisected this commit to cause
+>> BD71847 drivers probe to not be called.
+> This driver (and overlay support) is in linux-next or something out of
+> tree on top of linux-next?
 >
--- 
-Best regards,
-Nickolay
+> Rob
 
+Yes the driver is in mainline linux: /drivers/mfd/rohm-bd718x7.c
+
+Kalle
 
