@@ -1,536 +1,172 @@
-Return-Path: <devicetree+bounces-241625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90B4C80285
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:16:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE92FC80270
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:15:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 243173AA699
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:13:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B115B3A21B2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:12:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A72472FCC04;
-	Mon, 24 Nov 2025 11:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE872FD1D3;
+	Mon, 24 Nov 2025 11:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="h3gtvECV"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Tr5M6zu1";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ht/o5hRQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay48-hz3.antispameurope.com (mx-relay48-hz3.antispameurope.com [94.100.134.237])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8252F2FD662
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 11:13:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.237
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763982787; cv=pass; b=YA+N+fCNWmf7vxzhVA/6J2jLI2rEN6sBMMOV2cQiblWi9RVf9jlDOQwDdmdUQYIrgKVEbplDQBl9wK533LUIczFkigob/NBv/RC9sh2I80L+UYBox5lsD24nLRak0P8Q1pf3SwD860W3KOgTOqfGnF9H1kQGBA27DJ1knvL0Ppo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763982787; c=relaxed/simple;
-	bh=AtvTSa5oM7UyfxXNiOqUYa9jZOUxgUUBjZzanN9zivM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jLxZnez9tNM5jS0ZJQRtzS2exywCR7QdNwONLzIw6OspSLD40PhYfYBCjAZXW7xQQXzz5ixfFxF8cB4ENJ27GQCoo6K4cjVgIQpP1aftCyUvkzcIenIhkGSN3QhZyCyMhiu1ZxwDzgshKTsvRwMcaZCpd3N9is2N3iOpn4wqzPM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=h3gtvECV; arc=pass smtp.client-ip=94.100.134.237
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate48-hz3.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
- dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=ZjYtADUvROzundEKwkPFGu3IihgdEbXTEQhIjZMV8/A=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1763982709;
- b=SPwkpSh2hUVa3tLsrGbZHcM9dG9X4r/1UUGWM8xjvHt2D0GlmyZL7cnZ2pEjkGuFvFA9MI7Q
- aAvH3b/udFTI8klRhrd+egG1N1BdmYRXW/ik/9WD4x6JqWlg4zbTuiatV3FoJo7x6blTI5/m+FZ
- dR5f9pAQgCs9Ox1UdQhm3rDVfH+yij3vhgcfI5ntfWowNQN9/nJLAi93Vt6Xku8cp4HaZzaFbb3
- qgoZKZhvu/o7ycPWWQiXvQVE56HvLZdSVuPdrl7NpYrV6/eHY1mdBoR4mHmhzVxcigygb7zQNvV
- Wn1lf8Hl7qnoYQGso3Y5+MHfpbo1FyxrXKFM25b8BkhrQ==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1763982709;
- b=N1naD7TCm0p5n0Mmjl59bjkVIzA97xc79BxXw+Rb80DF8Z8SnPL7hSa7KFhf0iz5bFRfoTvo
- Ji9b+S+NeeRAHEWc8D6XZB2/w5GayNyaNaZ6yxQYsYHOkn2zsp9zP8Zq2bc2Im7TmxizRgYBA51
- C/9OZihikoJ/NrSrvO/ZcywHaIwgSPG3IppLx3swSX1CBdfkXFC5oGrRS5P88dKVTAc2hG/bzZv
- QltWxtX8GPKywaY40f+fAYsvjvej81Y3Nm+HrFeMhppBwZT7NnmoqQBMAo30vpBgbELgecajQsR
- LsgzlvxaLzTXl13pNoPNGzmpOzcNu82/se18gQptLwofA==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay48-hz3.antispameurope.com;
- Mon, 24 Nov 2025 12:11:49 +0100
-Received: from steina-w.localnet (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 98B34A407A5;
-	Mon, 24 Nov 2025 12:11:41 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Dong Aisheng <aisheng.dong@nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- kernel@pengutronix.de, dongas86@gmail.com, krzk+dt@kernel.org,
- robh@kernel.org, shawnguo@kernel.org, frank.li@nxp.com,
- kernel@dh-electronics.com, linux@ew.tq-group.com,
- francesco.dolcini@toradex.com, Anson Huang <Anson.Huang@nxp.com>,
- Dong Aisheng <aisheng.dong@nxp.com>
-Subject:
- Re: [PATCH 1/1] arm64: dts: imx8mp: Update pin function file according to
- Rev.D RM
-Date: Mon, 24 Nov 2025 12:11:41 +0100
-Message-ID: <5946049.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20251124095449.4027676-1-aisheng.dong@nxp.com>
-References: <20251124095449.4027676-1-aisheng.dong@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9772FC873
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 11:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763982770; cv=none; b=eMcHYEfqnMVLRb+AWt9+gy0hZ/T8DEY9wIy49Bc68OQ6I85k/F5qCBkjkG7VxITPIESEFKnptJdSo2Rp2wkJii/l08mCuMdheWKrxVI66EUQIwvw5o30pnfccImh272vbKwFwEdrAyyUMtpQA79kZ+Na6CX2Hp1Omv84vROVr1A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763982770; c=relaxed/simple;
+	bh=GXzOHUcu8jmVZSISxvrMjghCvNltj3MFWdbS2tT+y0c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YrXlBH8d5MxwZolGzF9sCObyDGg5y8x7if6uaOvQpLEzH93xH01Cze1JAlJ7LGW8har+98td2Hfj5EQC52X4k/EdVMgIkl9Kxt4XsGYeDf7o9ge6UeogRoGvn0Tqt36NGpF4zejNKi7WzJJ4iItcIcYvp/q7fhnviV4rEia5Df4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tr5M6zu1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ht/o5hRQ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AO80HNG1686794
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 11:12:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=TXqbpIEBiec+YdCd2w7Tb/
+	wyyfHy7fnw5FPr5MJIDlw=; b=Tr5M6zu1+RTGZczxCJO4GmMG1wEzJL1/NcgYGu
+	5OzHOf1+stA/JUfwI8LQ3ALXKOrJiB+eP6NT9FENyO0lmthYvyUVekYGj0eXzuMD
+	JwqoZsdEkz4IndBCCQ3Ag706mlOYFlsA0RvDxqqLGWwSf8zWstcz/yh5n4RyoSG6
+	/MfsIxXj1eFi0C8dNivA55qh1EByVwKfPo2A73HsbJ1ou6HPF91xm/VcLa7J6y+t
+	q+DeQlfL+N4eBsw+voKTanCP97fuTXwPjldZiQa58+DRm8jPomwlcivS7IW0aLeZ
+	iL/kg0Mw4nUdvob0Zi+d5a6Wd8TkZlxAKKWuV7wKWPKGY3DQ==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ama099rv6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 11:12:47 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7b4933bc4aeso3636211b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 03:12:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763982767; x=1764587567; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TXqbpIEBiec+YdCd2w7Tb/wyyfHy7fnw5FPr5MJIDlw=;
+        b=ht/o5hRQOWteGeQIfeESSpNMe3H2iK3Y2wteStBCP+uaalbOBK7SeUizNx6j0UjNpY
+         0uV15B4HSlQAAmf7RiHruaTDLW+mnVBDpgFKp47sf/soN+FKzj5Hc9M2J29lmibFU3kX
+         ADOOaZR0yTEU7ysP1Yq0hOyumRD9NGgNJ6k3GSxUzDSwg4cwIWHvrRETe62bvNTp36It
+         N6yBVQaPGs68zVlYpQzgVnzl2xxeG8kHnaVfI76nO4ViAE5lc2itofB1e33wrLuAnVN8
+         LM9/o+WxAnHhtplXLjrxG5FVZJ73Z0OYdvgiLlWInoezPdqRa0zbqeDCiyLYzjZlS16t
+         4ZnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763982767; x=1764587567;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TXqbpIEBiec+YdCd2w7Tb/wyyfHy7fnw5FPr5MJIDlw=;
+        b=d6HqxcfzlN5KezcYSNrytYHYTXZ7pZX6162P8UV584o9MxkK/6Gzn4RSb+5KuZdZhj
+         QluIfEGE6R60C9LDltI7f579IXGKuwDu+GgsofIuKiP8eje16oJA3SoBWTdZpMtB+ZKB
+         S11uy2oS46082jAEQkWdth/lwq5Xp+SFdMuDXggbY1n+2IHSGffS0i+HgZ4HWvpYBgzJ
+         lyg+2jpndE2NLzFmKxQbmnDwKFPK+wXODipiSQsPwPc7uw6zQsId8qzQlwqcT+UM1iiT
+         O3SwGHLz59LGmw78fqpep7pAiF2zeY34IjhMWVIh3kbIW+ahR1eXrmBN5ULoecE6ZzYw
+         Zcng==
+X-Forwarded-Encrypted: i=1; AJvYcCUrbo3cDMI6HUcnZntRhjJunnZNYsVGfFIoWrNbS8/QFLeGjsOzsOdm+o6ERa7+/cAjjpP22XKHW1mG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWpsO6XnkfMFuMl46kidIb7VuJ7TyawPDlNu8YgufzkIkwVJzv
+	FPagknQ9cZ3ZQ+Hxi2tkdfNU/HBFz2zNJUSo88mx2z48tjfezzxZfoQvHtkFNp7AR5NeuHoaUcr
+	2wZsG+08islwm8E6Td88oAd5JAS3WyKPcxTWxKmw1CmUCE0w6nORibtDGk2q4JR4=
+X-Gm-Gg: ASbGncsWLYjVbOrOklLHHFn7PJPfersFtuoySBZZxAmK7DCFbf3v+w3RisRFroUcD+l
+	nueA1tUitShljw25KUF+kqyRiS7knTUazkqup2mh8HAHEQKx4EggY2KqjTLIsG/aEx2WnOSSSW3
+	nGh4gLB+P7zaqtLR1FsAjrE5YuxQE3O7slz2qNThal/KnuFDpSl1TfY9+fECXE+3ITZ8wFKrsLZ
+	ho6nhNF998rkrT/FxMYnXgpPZI7gZxoLUkQB4cozNwjU3SHll+wsRsgZCha8CovOPKYxq0R+qJ5
+	fsvUxMAXx/R92B0LVPpFsKKwm+bf70wWSijWpLALWfnrUqLAI2XES6rl/QAi+RfzU8Q3DZUcCsL
+	DmRDr2QcL7ZF7PRFsuv5QuWtMCfVFIxLmmxzGiTc=
+X-Received: by 2002:a05:6a20:1592:b0:35f:68d:430e with SMTP id adf61e73a8af0-3614eb3a0c4mr11232902637.9.1763982767096;
+        Mon, 24 Nov 2025 03:12:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG5DBVr7Qie8oxPbSqRQlj+suGHKQHP5xAj9wdWg1PBGhhTWDP+uMNpEZrPc1J19opeuzRjvQ==
+X-Received: by 2002:a05:6a20:1592:b0:35f:68d:430e with SMTP id adf61e73a8af0-3614eb3a0c4mr11232878637.9.1763982766546;
+        Mon, 24 Nov 2025 03:12:46 -0800 (PST)
+Received: from hu-kotarake-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd7604de68bsm13133780a12.21.2025.11.24.03.12.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 03:12:46 -0800 (PST)
+From: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+Subject: [PATCH 0/2] battery: Add SiLION battery technology
+Date: Mon, 24 Nov 2025 16:42:39 +0530
+Message-Id: <20251124-add_silion_battery-v1-0-3c86b70d2543@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart6217920.lOV4Wx5bFT";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay48-hz3.antispameurope.com with 4dFNSG3YTJz1kPSCd
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:d753f8f66d266273f65c8f8d6314a31b
-X-cloud-security:scantime:1.842
-DKIM-Signature: a=rsa-sha256;
- bh=ZjYtADUvROzundEKwkPFGu3IihgdEbXTEQhIjZMV8/A=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1763982708; v=1;
- b=h3gtvECV7IQZgcmzUC9SWoNfMj5FUmBn5hg8B6W61G4rWucPfJkqTiUznQJZhlSR56VcDQud
- TkaY2L857q4A6mcHUIGnrIUYvNu38nZdTiylY1nhFfl8+L79L09QcSnhWl5dkJaRklsCrEWPoM9
- pvPaU2jZsE0oUMZO7bbONGvQQgDoahtOYkyHfS0RY0Qg1+oqEG/+wOafvcTRolQ3aTNGghDzENb
- fdzI2LLAThZ7F6FBEPN+3dDnTcGlnlQGipJN2eFq8GUisprpWp7JNEBdyXCzOcgg4exltDTJItC
- doanXNcAblljsWImnGQ2a+jxYY9gKApDGHPocSXZr/kBw==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKc9JGkC/x2MQQqAIBAAvxJ7TkhRwr4SIVtutRAVKlFIf086D
+ sxMhkiBKUJXZQh0ceRjLyDrCqYV94UE+8KgGmWkVFqg9y7yVjQ3YkoUHmFGjbbVVhtjoYRnoJn
+ vf9oP7/sBcjruwGQAAAA=
+X-Change-ID: 20251124-add_silion_battery-5b4a97494559
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kamal.wadhwa@oss.qualcomm.com,
+        fenglin.wu@oss.qualcomm.com,
+        Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763982763; l=963;
+ i=rakesh.kota@oss.qualcomm.com; s=20250919; h=from:subject:message-id;
+ bh=GXzOHUcu8jmVZSISxvrMjghCvNltj3MFWdbS2tT+y0c=;
+ b=zZey+HF7diss5s7qGKahFW6LJr8dmboY4qGMBwt6UL/jJg/IWASFwGSCzIMqYauN0VMAVbx3n
+ kMzXkD2xlJSDLycEhWZs2JKYrooBKG0lUwsrlm7XWQVV2rs4b8FftV1
+X-Developer-Key: i=rakesh.kota@oss.qualcomm.com; a=ed25519;
+ pk=dFhv9yPC8egZglsSLDMls08cOvZKZkG6QQn1a/ofwNU=
+X-Proofpoint-ORIG-GUID: rdZhZ_d_KF3APw865_NrBZKqOlkomJm_
+X-Authority-Analysis: v=2.4 cv=PdHyRyhd c=1 sm=1 tr=0 ts=69243daf cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=Tmu3GerIYFeC-vN7JBYA:9
+ a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDA5OCBTYWx0ZWRfX+Ho3W1IuLLYp
+ H5sRiGWhsqOI5ZSA32J7WKOhIrtzDz6wn7e9N3eCw1EMiiTNOSG4bRblsXvUw2kXETc+1tFuZda
+ EE23XxNG9mPnMmAPpDdvLczXBXOF/KsMGKTSCqwIgd4VSBxH2xI6OKKzmg8WD+ED3ICxUKsdhkW
+ L9cAkPqhH07RS+Ga+BJEB0JoEge0S/QfL9NVUeVXs3ODuzCXaR2wonUB9jwg6pXLpQnHJNIEuoP
+ K6GN2pyuvVLr17nzc9sdG2F/GDgU1wc9OseLkXaSOiRj1JcObuONe6z4ayJx86yRnQbZoAJVrb5
+ SLvYugv998fhR1jyjFTYcjbP06tqvp9Mh8WRdKaMd4+WdFbn9bOr9lbhkb1kkirLCmCJZltjTIZ
+ TDoaTvZL1hZEqMEaWVXkGasOWTGMYA==
+X-Proofpoint-GUID: rdZhZ_d_KF3APw865_NrBZKqOlkomJm_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-24_04,2025-11-21_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 bulkscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ clxscore=1015 priorityscore=1501 phishscore=0 lowpriorityscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240098
 
---nextPart6217920.lOV4Wx5bFT
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-Date: Mon, 24 Nov 2025 12:11:41 +0100
-Message-ID: <5946049.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20251124095449.4027676-1-aisheng.dong@nxp.com>
-References: <20251124095449.4027676-1-aisheng.dong@nxp.com>
-MIME-Version: 1.0
+This patch series updates the battery dt-bindings and
+driver to add support for SiLION battery technology.
 
-Am Montag, 24. November 2025, 10:54:49 CET schrieb Dong Aisheng:
-> From: Anson Huang <Anson.Huang@nxp.com>
->=20
-> Update i.MX8MP imx8mp-pinfunc.h file according to reference manual Rev.D.
+Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+---
+Rakesh Kota (2):
+      dt-bindings: battery: Add SiLION battery bindings technology
+      power: supply: core: Add SiLION battery technology
 
-Latest officially available is reference manual 3. 11/2020.
-I can't find Rev D.
+ Documentation/ABI/testing/sysfs-class-power                 | 2 +-
+ Documentation/devicetree/bindings/power/supply/battery.yaml | 1 +
+ drivers/power/supply/power_supply_core.c                    | 2 ++
+ drivers/power/supply/power_supply_sysfs.c                   | 1 +
+ drivers/power/supply/test_power.c                           | 3 ++-
+ include/linux/power_supply.h                                | 1 +
+ 6 files changed, 8 insertions(+), 2 deletions(-)
+---
+base-commit: d724c6f85e80a23ed46b7ebc6e38b527c09d64f5
+change-id: 20251124-add_silion_battery-5b4a97494559
 
 Best regards,
-Alexander
-
->=20
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
-> NOTE: I met the following checkpatch error, could you advise how to
-> handle it?
-> ERROR: Macros with complex values should be enclosed in parentheses
-> +#define MX8MP_IOMUXC_GPIO1_IO00__ANAMIX_REF_CLK_32K                  0x0=
-14 0x274 0x000 0x5 0x0
-> ---
->  .../dts/freescale/imx8mp-data-modul-edm-sbc.dts  |  4 ++--
->  .../boot/dts/freescale/imx8mp-debix-model-a.dts  |  2 +-
->  .../boot/dts/freescale/imx8mp-dhcom-som.dtsi     |  4 ++--
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts     |  2 +-
->  .../boot/dts/freescale/imx8mp-iota2-lumpy.dts    |  2 +-
->  .../boot/dts/freescale/imx8mp-kontron-osm-s.dtsi |  6 +++---
->  .../imx8mp-nitrogen-enc-carrier-board.dts        |  2 +-
->  .../boot/dts/freescale/imx8mp-phycore-fpsc.dtsi  | 12 ++++++------
->  arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h   | 16 ++++++++--------
->  .../dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts  |  4 ++--
->  .../boot/dts/freescale/imx8mp-venice-gw71xx.dtsi |  2 +-
->  .../boot/dts/freescale/imx8mp-venice-gw72xx.dtsi |  2 +-
->  .../boot/dts/freescale/imx8mp-venice-gw73xx.dtsi |  2 +-
->  .../boot/dts/freescale/imx8mp-venice-gw74xx.dts  |  2 +-
->  arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi |  2 +-
->  15 files changed, 32 insertions(+), 32 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts =
-b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-> index 16078ff60ef08..7a05e0692d78d 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-> @@ -1085,8 +1085,8 @@ MX8MP_IOMUXC_GPIO1_IO01__GPIO1_IO01		0x4
-> =20
->  	pinctrl_usb1: usb1-grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR		0x6
-> -			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC		0x80
-> +			MX8MP_IOMUXC_GPIO1_IO12__USB1_PWR		0x6
-> +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OC		0x80
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> index 9422beee30b29..2df6434bde652 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> @@ -485,7 +485,7 @@ MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX				0x49
-> =20
->  	pinctrl_usb1: usb1grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR				0x10
-> +			MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR				0x10
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/a=
-rm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-> index 68c2e0156a5c8..755ea967bb9cb 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-> @@ -1061,8 +1061,8 @@ MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX		0x49
-> =20
->  	pinctrl_usb1_vbus: dhcom-usb1-grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR		0x6
-> -			MX8MP_IOMUXC_GPIO1_IO15__USB2_OTG_OC		0x80
-> +			MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR		0x6
-> +			MX8MP_IOMUXC_GPIO1_IO15__USB2_OC		0x80
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/bo=
-ot/dts/freescale/imx8mp-evk.dts
-> index c6facb2ad9aaa..57accd33ec62c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -1088,7 +1088,7 @@ MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x140
-> =20
->  	pinctrl_usb1_vbus: usb1grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR	0x10
-> +			MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR		0x19
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts b/arch/=
-arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
-> index f48cf22b423db..f66c6b9236fbe 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-iota2-lumpy.dts
-> @@ -363,7 +363,7 @@ MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x0
-> =20
->  	pinctrl_usb_host_vbus: usb1grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR	0x0
-> +			MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR	0x0
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi b/ar=
-ch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-> index b97bfeb1c30f8..6de4d4ace8a73 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-> @@ -734,19 +734,19 @@ MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10		0x1c4 /* USB_A=
-_ID */
-> =20
->  	pinctrl_usb1_oc: usb1ocgrp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC		0x1c0 /* USB_A_OC# */
-> +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OC		0x1c0 /* USB_A_OC# */
->  		>;
->  	};
-> =20
->  	pinctrl_usb2_id: usb2idgrp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO11__USB2_OTG_ID		0x1c4 /* USB_B_ID */
-> +			MX8MP_IOMUXC_GPIO1_IO11__USB2_ID		0x1c4 /* USB_B_ID */
->  		>;
->  	};
-> =20
->  	pinctrl_usb2_oc: usb2ocgrp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO15__USB2_OTG_OC		0x1c0 /* USB_B_OC# */
-> +			MX8MP_IOMUXC_GPIO1_IO15__USB2_OC		0x1c0 /* USB_B_OC# */
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-bo=
-ard.dts b/arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.d=
-ts
-> index 1df9488aaeb22..9ffeeb382bad4 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.dts
-> @@ -406,7 +406,7 @@ MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX		0x140
-> =20
->  	pinctrl_usb3_0: usb3-0grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC		0x1c0
-> +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OC		0x1c0
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-fpsc.dtsi b/arc=
-h/arm64/boot/dts/freescale/imx8mp-phycore-fpsc.dtsi
-> index 8b0e8cf86cadb..7b5c402ff9f27 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-phycore-fpsc.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-fpsc.dtsi
-> @@ -579,17 +579,17 @@ MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX	0x140	/* UART3=
-_TXD */
-> =20
->  	pinctrl_usb0: usb0grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR	0x106	/* USB1_PWR_EN */
-> -			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	0x106	/* USB1_OC */
-> -			MX8MP_IOMUXC_GPIO1_IO10__USB1_OTG_ID	0x106	/* USB1_ID */
-> +			MX8MP_IOMUXC_GPIO1_IO12__USB1_PWR	0x106	/* USB1_PWR_EN */
-> +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OC	0x106	/* USB1_OC */
-> +			MX8MP_IOMUXC_GPIO1_IO10__USB1_ID	0x106	/* USB1_ID */
->  		>;
->  	};
-> =20
->  	pinctrl_usb1: usb1grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR	0x106	/* USB2_PWR_EN */
-> -			MX8MP_IOMUXC_GPIO1_IO15__USB2_OTG_OC	0x106	/* USB2_OC */
-> -			MX8MP_IOMUXC_GPIO1_IO11__USB2_OTG_ID	0x106	/* USB2_ID */
-> +			MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR	0x106	/* USB2_PWR_EN */
-> +			MX8MP_IOMUXC_GPIO1_IO15__USB2_OC	0x106	/* USB2_OC */
-> +			MX8MP_IOMUXC_GPIO1_IO11__USB2_ID	0x106	/* USB2_ID */
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h b/arch/arm64/=
-boot/dts/freescale/imx8mp-pinfunc.h
-> index 16f5899de4152..50f5e674a6b71 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
-> @@ -46,10 +46,12 @@
->  #define MX8MP_IOMUXC_GPIO1_IO00__GPIO1_IO00                          0x0=
-14 0x274 0x000 0x0 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO00__CCM_ENET_PHY_REF_CLK_ROOT           0x0=
-14 0x274 0x000 0x1 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO00__ISP_FL_TRIG_0                       0x0=
-14 0x274 0x5D4 0x3 0x0
-> +#define MX8MP_IOMUXC_GPIO1_IO00__ANAMIX_REF_CLK_32K                  0x0=
-14 0x274 0x000 0x5 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO00__CCM_EXT_CLK1                        0x0=
-14 0x274 0x000 0x6 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO01__GPIO1_IO01                          0x0=
-18 0x278 0x000 0x0 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO01__PWM1_OUT                            0x0=
-18 0x278 0x000 0x1 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO01__ISP_SHUTTER_TRIG_0                  0x0=
-18 0x278 0x5DC 0x3 0x0
-> +#define MX8MP_IOMUXC_GPIO1_IO01__ANAMIX_REF_CLK_24M                  0x0=
-18 0x278 0x000 0x5 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO01__CCM_EXT_CLK2                        0x0=
-18 0x278 0x000 0x6 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO02__GPIO1_IO02                          0x0=
-1C 0x27C 0x000 0x0 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B                        0x0=
-1C 0x27C 0x000 0x1 0x0
-> @@ -91,26 +93,26 @@
->  #define MX8MP_IOMUXC_GPIO1_IO09__USDHC3_RESET_B                      0x0=
-38 0x298 0x000 0x4 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO09__SDMA2_EXT_EVENT00                   0x0=
-38 0x298 0x000 0x5 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10                          0x0=
-3C 0x29C 0x000 0x0 0x0
-> -#define MX8MP_IOMUXC_GPIO1_IO10__USB1_OTG_ID                         0x0=
-3C 0x29C 0x000 0x1 0x0
-> +#define MX8MP_IOMUXC_GPIO1_IO10__USB1_ID                             0x0=
-3C 0x29C 0x000 0x1 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO10__PWM3_OUT                            0x0=
-3C 0x29C 0x000 0x2 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11                          0x0=
-40 0x2A0 0x000 0x0 0x0
-> -#define MX8MP_IOMUXC_GPIO1_IO11__USB2_OTG_ID                         0x0=
-40 0x2A0 0x000 0x1 0x0
-> +#define MX8MP_IOMUXC_GPIO1_IO11__USB2_ID                             0x0=
-40 0x2A0 0x000 0x1 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO11__PWM2_OUT                            0x0=
-40 0x2A0 0x000 0x2 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO11__USDHC3_VSELECT                      0x0=
-40 0x2A0 0x000 0x4 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO11__CCM_PMIC_READY                      0x0=
-40 0x2A0 0x554 0x5 0x1
->  #define MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12                          0x0=
-44 0x2A4 0x000 0x0 0x0
-> -#define MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR                        0x0=
-44 0x2A4 0x000 0x1 0x0
-> +#define MX8MP_IOMUXC_GPIO1_IO12__USB1_PWR                            0x0=
-44 0x2A4 0x000 0x1 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO12__SDMA2_EXT_EVENT01                   0x0=
-44 0x2A4 0x000 0x5 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO13__GPIO1_IO13                          0x0=
-48 0x2A8 0x000 0x0 0x0
-> -#define MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC                         0x0=
-48 0x2A8 0x000 0x1 0x0
-> +#define MX8MP_IOMUXC_GPIO1_IO13__USB1_OC                             0x0=
-48 0x2A8 0x000 0x1 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO13__PWM2_OUT                            0x0=
-48 0x2A8 0x000 0x5 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14                          0x0=
-4C 0x2AC 0x000 0x0 0x0
-> -#define MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR                        0x0=
-4C 0x2AC 0x000 0x1 0x0
-> +#define MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR                            0x0=
-4C 0x2AC 0x000 0x1 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO14__USDHC3_CD_B                         0x0=
-4C 0x2AC 0x608 0x4 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO14__PWM3_OUT                            0x0=
-4C 0x2AC 0x000 0x5 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO14__CCM_CLKO1                           0x0=
-4C 0x2AC 0x000 0x6 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15                          0x0=
-50 0x2B0 0x000 0x0 0x0
-> -#define MX8MP_IOMUXC_GPIO1_IO15__USB2_OTG_OC                         0x0=
-50 0x2B0 0x000 0x1 0x0
-> +#define MX8MP_IOMUXC_GPIO1_IO15__USB2_OC                             0x0=
-50 0x2B0 0x000 0x1 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO15__USDHC3_WP                           0x0=
-50 0x2B0 0x634 0x4 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO15__PWM4_OUT                            0x0=
-50 0x2B0 0x000 0x5 0x0
->  #define MX8MP_IOMUXC_GPIO1_IO15__CCM_CLKO2                           0x0=
-50 0x2B0 0x000 0x6 0x0
-> @@ -291,10 +293,8 @@
->  #define MX8MP_IOMUXC_SD2_DATA3__AUDIOMIX_SPDIF1_IN                   0x0=
-D4 0x334 0x544 0x3 0x1
->  #define MX8MP_IOMUXC_SD2_DATA3__AUDIOMIX_PDM_BIT_STREAM03            0x0=
-D4 0x334 0x4CC 0x4 0x2
->  #define MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18                           0x0=
-D4 0x334 0x000 0x5 0x0
-> -#define MX8MP_IOMUXC_SD2_DATA3__SRC_EARLY_RESET                      0x0=
-D4 0x334 0x000 0x6 0x0
->  #define MX8MP_IOMUXC_SD2_RESET_B__USDHC2_RESET_B                     0x0=
-D8 0x338 0x000 0x0 0x0
->  #define MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19                         0x0=
-D8 0x338 0x000 0x5 0x0
-> -#define MX8MP_IOMUXC_SD2_RESET_B__SRC_SYSTEM_RESET                   0x0=
-D8 0x338 0x000 0x6 0x0
->  #define MX8MP_IOMUXC_SD2_WP__USDHC2_WP                               0x0=
-DC 0x33C 0x000 0x0 0x0
->  #define MX8MP_IOMUXC_SD2_WP__GPIO2_IO20                              0x0=
-DC 0x33C 0x000 0x5 0x0
->  #define MX8MP_IOMUXC_SD2_WP__CORESIGHT_EVENTI                        0x0=
-DC 0x33C 0x000 0x6 0x0
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts =
-b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> index 59642a8a2c445..50c8a7c2a7bd3 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> @@ -976,8 +976,8 @@ pinctrl_uart4: uart4grp {
->  	};
-> =20
->  	pinctrl_usb0: usb0grp {
-> -		fsl,pins =3D <MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	0x1c0>,
-> -			   <MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR	0x1c0>;
-> +		fsl,pins =3D <MX8MP_IOMUXC_GPIO1_IO13__USB1_OC		0x1c0>,
-> +			   <MX8MP_IOMUXC_GPIO1_IO12__USB1_PWR		0x1c0>;
->  	};
-> =20
->  	pinctrl_usbcon0: usb0congrp {
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi b/ar=
-ch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
-> index 4bf818873fe3c..162329b403d30 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
-> @@ -219,7 +219,7 @@ MX8MP_IOMUXC_SAI1_RXD1__GPIO4_IO03	0x146
-> =20
->  	pinctrl_usb1: usb1grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	0x140 /* USB1_FLT# */
-> +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OC	0x140 /* USB1_FLT# */
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi b/ar=
-ch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi
-> index 76020ef89bf3e..02ea0e8bcc6ff 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi
-> @@ -318,7 +318,7 @@ MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12	0x146 /* USB1_EN =
-*/
-> =20
->  	pinctrl_usb1: usb1grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	0x140 /* USB1_FLT# */
-> +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OC	0x140 /* USB1_FLT# */
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi b/ar=
-ch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
-> index 5eb114d2360a3..2b6bb9fcbc7a9 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
-> @@ -359,7 +359,7 @@ MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12	0x146 /* USB1_EN =
-*/
-> =20
->  	pinctrl_usb1: usb1grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	0x140 /* USB1_FLT# */
-> +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OC	0x140 /* USB1_FLT# */
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> index 7662663ff5dad..6d752fe0d1bf5 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-> @@ -1060,7 +1060,7 @@ MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX	0x140
-> =20
->  	pinctrl_usb1: usb1grp {
->  		fsl,pins =3D <
-> -			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	0x140
-> +			MX8MP_IOMUXC_GPIO1_IO13__USB1_OC	0x140
->  		>;
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm6=
-4/boot/dts/freescale/imx8mp-verdin.dtsi
-> index d43ba00871269..28f5983a78469 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> @@ -1316,7 +1316,7 @@ pinctrl_usb_1_id: usb1idgrp {
->  	/* USB_1_OC# */
->  	pinctrl_usb_1_oc_n: usb1ocngrp {
->  		fsl,pins =3D
-> -			<MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC		0x1c4>;	/* SODIMM 157 */
-> +			<MX8MP_IOMUXC_GPIO1_IO13__USB1_OC		0x1c4>;	/* SODIMM 157 */
->  	};
-> =20
->  	pinctrl_usb2_vbus: usb2vbusgrp {
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
---nextPart6217920.lOV4Wx5bFT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEByESxqszIvkmWRwbaS+g2M0Z/iUFAmkkPW0ACgkQaS+g2M0Z
-/iUdXwf/biaEhMgyFdY/0NZJiAZTa6dyI5J/ZF7ZXpFTnyjCqUwYisY37OaGbn28
-MqEYaxLu3lZPLd9YIrM7JWaU1T2euIRluW1u53IAlXb32lQoqPP7sPLhCavWijOC
-s79sK1HVeLEoOI4drKRPCXtRlBHvCItPZIZ4T1QHCgDWBJNUu24jTdDM2PENh9Ti
-Dz1PAZr0BKXYhKMXJiisYOY+BGGxrxgKcFGktxGpVz+eB5w/S6u4Ca9DA5zj82Ux
-wMt0ragdQh5fyshc5LZZwrC4tTBu6AsOih6BxwK8pjG0IwMcKXGhM0ILE264KIbD
-c/XruFWnugZqQkK5Gjr100sVLhBTRg==
-=xmhk
------END PGP SIGNATURE-----
-
---nextPart6217920.lOV4Wx5bFT--
-
-
+-- 
+Rakesh Kota <rakesh.kota@oss.qualcomm.com>
 
 
