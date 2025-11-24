@@ -1,122 +1,202 @@
-Return-Path: <devicetree+bounces-241578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FAD8C7FF9B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:47:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3331EC80010
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:53:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24CF13A5C7C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:47:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4F3C3A73FF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:53:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5171A273D8D;
-	Mon, 24 Nov 2025 10:47:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22272F9DBB;
+	Mon, 24 Nov 2025 10:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="F+flXnpO"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="AZs4DLOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from sender3-op-o15.zoho.com (sender3-op-o15.zoho.com [136.143.184.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C484A21;
-	Mon, 24 Nov 2025 10:47:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763981226; cv=none; b=W0pGpOQvD0i9+lkG3l4uG4sR+DSX12NzgBP2hr0Xjnj06GZtavS+ivl/vyOoYp1jh+bXjMJWa9eXMx/QsKeOOyCkZFa4FZdnPqg8i2RCsC/FDS827eK3LrNLY2FFVc9VLuWrfVosogQqmDLk/sGEohoEwAFv3xISrCNrnyWaZ50=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763981226; c=relaxed/simple;
-	bh=O1DoJQRcsVDEuEHmu6uH3W3rQ/B5VVI6DKhygLJlqCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UCQMYovFKlSvvGTsbdbkn4UsT/rAVvyzAMGwSCHY3AQ4JojhqC8SmCae8VRe4il9onW87YsT2umoyCojtP4iQ8jIc01zYZANnoL+U0s/Gmy+C9SchgA+ZpMQOeKCBywiR8zRqOYQIbBRrrA+BG24VM0hZDieuThyf+n7xlGdG24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=F+flXnpO; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763981225; x=1795517225;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=O1DoJQRcsVDEuEHmu6uH3W3rQ/B5VVI6DKhygLJlqCE=;
-  b=F+flXnpOKar/fNo1lrD4gFT4Xfyj3OU1C8FvYIu5kPUoQItZ5ADTqy4g
-   tss62cy5PFA4LfzajmBgw0XkhIwXmcMDP1D4/F6UeN3xDIfUB944nFqIP
-   TF+S5aMtTY4A28lFiWRMFDGpUMZGJ8lhUjfSceC1McNPDXnyHAYfFdQG2
-   lQm/R7WPpyJajNrPg4w869lmaFdrLAfWv6JradfOSjvcH47/zvRuV6ySn
-   mX3nJmYJDSN7/k13TUYNw9H3lvLrMMd6lmpnH2fNvUmoug53IfyLkl6vK
-   S5HpCt5ELj1muGCfUsxjuG8RWTJ2UzuBFqWcL50XV9ArTLPel1cdTXMVX
-   w==;
-X-CSE-ConnectionGUID: 8Ux/Uzx+QMGvcWsKy6X5Zw==
-X-CSE-MsgGUID: Ka5UeC2RQXCeMGgDuN1JrA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11622"; a="65673774"
-X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
-   d="scan'208";a="65673774"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 02:47:04 -0800
-X-CSE-ConnectionGUID: 504uDi2WTcSU/QPWo04NTA==
-X-CSE-MsgGUID: 0CQkW1s6REqH3Iq/jvAOcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
-   d="scan'208";a="197228550"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 24 Nov 2025 02:47:01 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vNU5y-000000000cX-3mux;
-	Mon, 24 Nov 2025 10:46:58 +0000
-Date: Mon, 24 Nov 2025 18:46:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C959548CFC;
+	Mon, 24 Nov 2025 10:53:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763981612; cv=pass; b=cv7k3csfPkq0tiGq/la2uAh3joDXt5EHmRVioZtdFxfkh7atQsLzpZqBHGG8PmfRUfXxIDzePVcOqjrMXSfJa81Z5+XanyB4/Q+j4G+F/3ii+JT3Sih+RDiArX4tQ5Y0/2Q+rHzLBUhd/NqIhoyphsjyWifXigXoV31n/FURevw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763981612; c=relaxed/simple;
+	bh=qlRpVQc2PYOOPXPJwDodQ9kpiQTvjA3Skk52wXJC2VY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Z4wArvrJt7sj+YWOQPPYexhluHKQr6voOWcbx2ZrbW4YVz61vFdoS7+DOmxa4VyJlmqsEaFe6A+nPZk1qzdKiD13Md6xx8EkY2bxF7SAV/fgh2auoWYubGptVrf2PHDrZyeMSuwrTslAu36VLaRjGA5QPvvGT8b7a69lJl94z7M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=AZs4DLOp; arc=pass smtp.client-ip=136.143.184.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1763981565; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=DfXAcU3AOdEJExd/aWcubjXJgx/VEryj+Lz5clE8Tptwgcmb5BfwiOFG1Lx9b+m/DeJ0X+1OjhnUxIOT/5HzEYcaMzzjTOtkabWbdlWjqx0LR03R4/8b5uAMpbojVedOCoDi/m56hn1e2XveGRrKvjrXWC7SZ1CaKgGJ71r8vps=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1763981565; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=WLHPOQL2gY4iyRqKXWMVrCiY3K6ZeFzt7LPDDQ7BmdQ=; 
+	b=UTlYJwwn3BbdHpBPQjSIX3vtSSFR3+VYKyXKQqtwu3iVtXDxnvoVL9H2+wps82xzPdis+/iKR/od0nT6s72aTOw6zkFBYkWB3gQk2giXjS07afTfciW0uJ4dVK/uorj1TwGYpjRp88OyseAs7NOObfvEB+9C6/UCwiUR/fBp1l0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763981565;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=WLHPOQL2gY4iyRqKXWMVrCiY3K6ZeFzt7LPDDQ7BmdQ=;
+	b=AZs4DLOpmw8q9B5b9Gi9QdtslZte5lC2Po77FObOfqfu6FgO2REL/aAyvcwjVxI4
+	iNjm8vaQvNyiFuRb73En20/ig1cluMXqv/Me4q09JVEb5FaNoPLw5r0a/1oYcVKcbP0
+	4DpgpnV7FAU7Izl4gVZiQL2j+CwBV9Qr/RoAe20oWNz9Q1yN74k/RLAFT6oh0NJB/AU
+	6SWZZJcz+ZxDzij0+I2c1o2gW8PrZSi/yx/Xwit4ttF1ZNCtrcEYntHYFCwGKYGXHex
+	SURj0itwOHHN+qrZtL5mr5EtXi/pgrHyZP0V9weASb/gAELTz0oQ6q3Qga48dof0W7W
+	mh0aUy9F+g==
+Received: by mx.zohomail.com with SMTPS id 1763981562297728.3957582694493;
+	Mon, 24 Nov 2025 02:52:42 -0800 (PST)
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Vishnu Saini <vishsain@qti.qualcomm.com>,
-	prahlad.valluru@oss.qualcomm.com,
-	Prahlad Valluru <vvalluru@qti.qualcomm.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: monaco: add lt8713sx bridge with
- displayport
-Message-ID: <202511241826.Maela061-lkp@intel.com>
-References: <20251120-lt8713sx-bridge-linux-for-next-v1-1-2246fc5fb490@qti.qualcomm.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>,
+	Yao Zi <ziyao@disroot.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH v3 0/9] Verisilicon DC8200 driver (and adaption to TH1520)
+Date: Mon, 24 Nov 2025 18:52:17 +0800
+Message-ID: <20251124105226.2860845-1-uwu@icenowy.me>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251120-lt8713sx-bridge-linux-for-next-v1-1-2246fc5fb490@qti.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-Hi Vishnu,
+This patchset tries to add a driver for Verisilicon DC8200 driver, and
+demonstrates the driver on T-Head TH1520 with its HDMI output.
 
-kernel test robot noticed the following build errors:
+This display controller IP is used on StarFive JH7110 too, but as the
+HDMI controller used there isn't as common as the DesignWare one, I
+choose to use TH1520 in this patchset.
 
-[auto build test ERROR on 3c3d81183061b9e49dd3207fbbbc36314744bf3f]
+The DC driver is written with other DC-series (mainly DC8000, which is
+known to be used on Eswin EIC7700 SoC) display controllers in mind, and
+uses the identification registers available on all Vivante branded IPs.
+A known exception is DCNano display controller, which is unlikely to be
+supported by this driver because of totally different register map and
+no known identification registers. (P.S. the in-tree loongson DRM driver
+seems to be for some DCNano instances based on the register map.)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vishnu-Saini/arm64-dts-qcom-monaco-add-lt8713sx-bridge-with-displayport/20251120-190522
-base:   3c3d81183061b9e49dd3207fbbbc36314744bf3f
-patch link:    https://lore.kernel.org/r/20251120-lt8713sx-bridge-linux-for-next-v1-1-2246fc5fb490%40qti.qualcomm.com
-patch subject: [PATCH 1/2] arm64: dts: qcom: monaco: add lt8713sx bridge with displayport
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20251124/202511241826.Maela061-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251124/202511241826.Maela061-lkp@intel.com/reproduce)
+The HDMI controller seems to come with some common PHY by Synopsys, the
+DesignWare HDMI TX 2.0 PHY. By searching a few register names from the
+BSP driver of that PHY, that PHY seems to be used by a in-tree dw-hdmi
+glue, rcar_dw_hdmi -- an updated downstream version of rcar_dw_hdmi
+contains all 6 registers set here in the th1520-dw-hdmi driver. Some
+more suprising thing is that RK3288 uses the same PHY too, but the
+in-tree dw_hdmi-rockchip driver writes the configuration data array in a
+weird way to reuse the HDMI 3D TX PHY configuring function. It might be
+valuable to add common configuring function and configuration data
+definition for this HDMI 2.0 PHY too, but the current driver in this
+patchset simply duplicated most configuration logic from rcar_dw_hdmi
+driver (but with 3 extra configuration registers configured).
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511241826.Maela061-lkp@intel.com/
+Revision v3 bump is part of my work for ISCAS, so the patches changed
+are added with SoB from my ISCAS mailbox, and a patch modifying mailmap
+is added.
 
-All errors (new ones prefixed by >>):
+Because of gaining knowledge about a chip reusing the whole DC RTL of
+another chip (thus the same identification registers) without
+re-generating, I decided to add SoC-specific compatible string in v3.
 
-   Error: arch/arm64/boot/dts/qcom/monaco-evk.dts:413.1-6 Label or path mdss not found
-   Error: arch/arm64/boot/dts/qcom/monaco-evk.dts:417.1-10 Label or path mdss_dp0 not found
-   Error: arch/arm64/boot/dts/qcom/monaco-evk.dts:421.1-14 Label or path mdss_dp0_out not found
-   Error: arch/arm64/boot/dts/qcom/monaco-evk.dts:426.1-14 Label or path mdss_dp0_phy not found
->> FATAL ERROR: Syntax error parsing input tree
+Icenowy Zheng (9):
+  dt-bindings: vendor-prefixes: add verisilicon
+  dt-bindings: display: add verisilicon,dc
+  drm: verisilicon: add a driver for Verisilicon display controllers
+  dt-bindings: display/bridge: add binding for TH1520 HDMI controller
+  drm/bridge: add a driver for T-Head TH1520 HDMI controller
+  riscv: dts: thead: add DPU and HDMI device tree nodes
+  riscv: dts: thead: lichee-pi-4a: enable HDMI
+  MAINTAINERS: assign myself as maintainer for verisilicon DC driver
+  mailmap: map all Icenowy Zheng's mail addresses
+
+ .mailmap                                      |   4 +
+ .../display/bridge/thead,th1520-dw-hdmi.yaml  | 120 +++++++
+ .../bindings/display/verisilicon,dc.yaml      | 146 ++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ .../boot/dts/thead/th1520-lichee-pi-4a.dts    |  25 ++
+ arch/riscv/boot/dts/thead/th1520.dtsi         |  70 ++++
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/bridge/Kconfig                |  10 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/th1520-dw-hdmi.c       | 173 +++++++++
+ drivers/gpu/drm/verisilicon/Kconfig           |  15 +
+ drivers/gpu/drm/verisilicon/Makefile          |   5 +
+ drivers/gpu/drm/verisilicon/vs_bridge.c       | 330 ++++++++++++++++++
+ drivers/gpu/drm/verisilicon/vs_bridge.h       |  40 +++
+ drivers/gpu/drm/verisilicon/vs_bridge_regs.h  |  54 +++
+ drivers/gpu/drm/verisilicon/vs_crtc.c         | 217 ++++++++++++
+ drivers/gpu/drm/verisilicon/vs_crtc.h         |  29 ++
+ drivers/gpu/drm/verisilicon/vs_crtc_regs.h    |  60 ++++
+ drivers/gpu/drm/verisilicon/vs_dc.c           | 205 +++++++++++
+ drivers/gpu/drm/verisilicon/vs_dc.h           |  39 +++
+ drivers/gpu/drm/verisilicon/vs_dc_top_regs.h  |  27 ++
+ drivers/gpu/drm/verisilicon/vs_drm.c          | 177 ++++++++++
+ drivers/gpu/drm/verisilicon/vs_drm.h          |  29 ++
+ drivers/gpu/drm/verisilicon/vs_hwdb.c         | 150 ++++++++
+ drivers/gpu/drm/verisilicon/vs_hwdb.h         |  29 ++
+ drivers/gpu/drm/verisilicon/vs_plane.c        | 102 ++++++
+ drivers/gpu/drm/verisilicon/vs_plane.h        |  68 ++++
+ .../gpu/drm/verisilicon/vs_primary_plane.c    | 157 +++++++++
+ .../drm/verisilicon/vs_primary_plane_regs.h   |  53 +++
+ 31 files changed, 2348 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/thead,th1520-dw-hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+ create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+ create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+ create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_top_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane_regs.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.52.0
+
 
