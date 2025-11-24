@@ -1,158 +1,95 @@
-Return-Path: <devicetree+bounces-241506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39320C7F3AE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:43:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D88C7F429
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:53:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D486E3426C6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:43:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5D28D4E2DAF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58D12E92D6;
-	Mon, 24 Nov 2025 07:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE0A2E7198;
+	Mon, 24 Nov 2025 07:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C90MiOOU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iMe6OuXO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD9E381C4;
-	Mon, 24 Nov 2025 07:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41F727FB26;
+	Mon, 24 Nov 2025 07:53:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763970197; cv=none; b=S448+BPe9caqhMTUdm1q4a366UIpBxyTSANMUjuVz8snW7vqYP3AjQxTQpmhNlSCn0X7xdgB2D2po5qtM2XkgduS2IhR8WpoTqHWjqxw3scoHH4ziU4p3mXKEugAQojXMyFuzc3qBtS5OmnbySjcy6O0OZ9XK2wP+gx6SMGmtuo=
+	t=1763970813; cv=none; b=XbYOyhhUfyWLNQpqpsadjWPHMGAHdbhzCxAlSXyzdTHwmxagaGvsHBqUamCuR7Ks5d3sRRkjxUDA5d0lZJwWW8AljZlY/Mq3XkxNefG6PpMWipX797taSSsZzOHfjUHpDJV5vKT2ScDClkqI1tZBRaBd254ZvuayfaAE2PM7oH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763970197; c=relaxed/simple;
-	bh=LYf+9XcisUREKO79eSRnlzkTlvJ/bWw47p/chnCxJoQ=;
+	s=arc-20240116; t=1763970813; c=relaxed/simple;
+	bh=Ba/x+lH0Or0r4SZ7ljSij6gkS+YlackfK8oPM3gblmc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LZKLIWeRMHITwBel/cUHz+z7SFrIlvIqoEAUZHBPLPrgof5Tr0MbxR9MhMdS3N5LA3PShwPvEE8tR386yZcMD/cHiPwGM9igSPvj5mU0KEI1kVUiv7VjOtZy3UeN4CTTdVqkvsw5e8BXWQfEw8wHymTZRpR3e+vUqeB8Igs6298=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C90MiOOU; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763970196; x=1795506196;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=LYf+9XcisUREKO79eSRnlzkTlvJ/bWw47p/chnCxJoQ=;
-  b=C90MiOOUE+mg3I1/gfdQ5G6+W5TLMPdM+anPtc5Lbb8EVkicPEmQ57ao
-   6kj9bRdq2AYiW89xFbiKdiF8b4brDIdXV1BztCiJt6h53OB7vm1qufIoz
-   N4367Sp75MPJ36CeZA7tDRbQW8P2ojD2CoRVK+91rfFqr1BrJxL5Yft5V
-   CUMMszkQXiqWzkZgFvWyKlbEaHnbXZu2w0RnD7siLoHvkf3TRHmE7dhbF
-   tV2isEZSXN0QxPRIk9+fwGh6tgGjdWHD4QwlXrmGkUGGujk2X8UwoGezn
-   do9K8X/zYP2TtJrNAAqP3sBC+oALHHyqLBSHBIlyMXF8rj5ejrhtyaTzf
-   A==;
-X-CSE-ConnectionGUID: xt80C35PTRCRI8kjdmwuuw==
-X-CSE-MsgGUID: XYXtV2SqQsqkFgTCZi0D0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11622"; a="77325078"
-X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
-   d="scan'208";a="77325078"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2025 23:43:15 -0800
-X-CSE-ConnectionGUID: 0oyGKiqwTa2T6lCyPNWCJg==
-X-CSE-MsgGUID: L53CV2/pRdS5j+ij0p6v5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
-   d="scan'208";a="191544970"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.5])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2025 23:43:11 -0800
-Date: Mon, 24 Nov 2025 09:43:09 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jorge Marques <gastmaier@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Jorge Marques <jorge.marques@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH 3/7] iio: adc: Add support for ad4062
-Message-ID: <aSQMjZbc75cQtFqJ@smile.fi.intel.com>
-References: <20251013-staging-ad4062-v1-0-0f8ce7fef50c@analog.com>
- <20251013-staging-ad4062-v1-3-0f8ce7fef50c@analog.com>
- <20251018171032.144a126c@jic23-huawei>
- <ou6qwayt4g7qaoe5dm7tdg6jl5dwquslpfbok6on5r2q2wytyl@wlqxj5y6ircj>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VpdUVESAAO41PEIfI27OFyGfuAdeynlkbmhtfRX1XNDZ7CzkRBfjKp0WuMJtlNVP0HgsKUDFuiXVTOnuU0pGzooGv5pyFyx02wUfQ7N29/VdKH/LLNy2iVca977/V/QhRM+uaMiwDe3sg74n47b+kGNub0wEla9tP/FAKxxjf0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iMe6OuXO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5A78C16AAE;
+	Mon, 24 Nov 2025 07:53:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763970813;
+	bh=Ba/x+lH0Or0r4SZ7ljSij6gkS+YlackfK8oPM3gblmc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iMe6OuXOUOmehIt+QzEUuw/lQgOX01lWBrHw8vpL6J/fiWGGpnMLr1BKcIMIDklXT
+	 nyRrJKO6h1TH1Z/aoAY+kFUdN1w/UG1uldfcdYxD+Q428otXYsspogHKBWLwrLyME3
+	 xuDSxuWTo51K2rWpO5QROSuTjtxIOKb0XPIN6obkSiwAh0TWswPy4jQKmKGTR67cJW
+	 cQs6u88OOxEsAzLH6Gq41WXJnOPqogyQ2Ojze2NRDjufgVdWriZmeFCkUWY4hMHSlL
+	 OZN32NR1OQrSIPORWmGLfOZv2njsgyD1xWXZTzLvoqOJTYIQg/Dqk/qJxFau7YPvNp
+	 MUFrgTT33KyKw==
+Date: Mon, 24 Nov 2025 08:53:30 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin <peter.griffin@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Subject: Re: [PATCH 3/6] dt-bindings: usb: maxim,max33359: Add supply
+ property for VBUS in OTG mode
+Message-ID: <20251124-rook-of-exotic-innovation-fedcc5@kuoka>
+References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
+ <20251123-max77759-charger-v1-3-6b2e4b8f7f54@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ou6qwayt4g7qaoe5dm7tdg6jl5dwquslpfbok6on5r2q2wytyl@wlqxj5y6ircj>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20251123-max77759-charger-v1-3-6b2e4b8f7f54@google.com>
 
-On Sun, Nov 23, 2025 at 08:48:09PM +0100, Jorge Marques wrote:
-> On Sat, Oct 18, 2025 at 05:10:32PM +0100, Jonathan Cameron wrote:
-> > On Mon, 13 Oct 2025 09:28:01 +0200
-> > Jorge Marques <jorge.marques@analog.com> wrote:
-
-> Mostly acknowledgements and explanations, except a comment on ACQUIRE usage.
-
-...
-
-> > > +static int ad4062_read_chan_raw(struct iio_dev *indio_dev, int *val)
-> > > +{
-> > > +	struct ad4062_state *st = iio_priv(indio_dev);
-> > > +	int ret;
-> > > +
-> > > +	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);
-> > There is a nice new
-> > 	ACQUIRE()/ACQUIRE_ERR() related set of conditional guards defined that
-> > let you do this using cleanup.h style.
-> > 
-> > https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9a0abc39450a3123fd52533a662fbd37e0d1508c
-> > 
-> > This looks like a perfect example of where those help.
-> > 
-> > When I catch up with review backlog I plan to look for other
-> > places to use that infrastructure in IIO.
-> > 
-> I tried implementing, here becomes
+On Sun, Nov 23, 2025 at 08:35:50AM +0000, Amit Sunil Dhamne wrote:
+> Add a regulator supply property for VBUS when usb is in OTG mode.
 > 
->         ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
->         ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> Reviewed-by: Badhri Jagan Sridharan <badhri@google.com>
+> ---
+>  Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> At buffer and monitor, since we put the device as active during the
-> lifetime of the buffer and monitor mode, either I leave as is, or I bump
-> the counter with pm_runtime_get_noresume, so when the method leaves, the
-> counter drops to 1 and not 0, then on disable I drop the counter back to
-> 0 and queue the autosuspend with pm_runtime_put_autosuspend.
-> > 
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = ad4062_set_operation_mode(st, st->mode);
-> > > +	if (ret)
-> > > +		goto out_error;
-> > > +
-> > > +	ret = __ad4062_read_chan_raw(st, val);
-> > > +
-> > > +out_error:
-> > > +	pm_runtime_put_autosuspend(&st->i3cdev->dev);
-> > > +	return ret;
-> > > +}
+> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> index 3de4dc40b791..a529f18c4918 100644
+> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> @@ -32,6 +32,9 @@ properties:
+>      description:
+>        Properties for usb c connector.
+>  
+> +  otg-vbus-supply:
 
-I read the above code, I read it again, I don't understand the reasoning.
-The ACQUIRE() doesn't change the behaviour of the above code.
+How is the pin or supply called in the datasheet?
 
-If you need to bump the reference counter, it should be done somewhere else
-where it affects the flow, or this code has a bug.
-
-If I miss something, please elaborate.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
 
