@@ -1,361 +1,243 @@
-Return-Path: <devicetree+bounces-241683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6B5C8102C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:29:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C9AC81109
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:38:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 14D9A3418EF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 14:29:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 30CF84E62E7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 14:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B072A311C3F;
-	Mon, 24 Nov 2025 14:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75F8F27B34E;
+	Mon, 24 Nov 2025 14:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j0IKMoaG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HQhlgXhb";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kqkABjkb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7632A30FF36;
-	Mon, 24 Nov 2025 14:28:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD202777FD
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 14:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763994526; cv=none; b=GtSMZv1xZSuSRQdhl95UGMcc9K/ZOuSoItE1IqVvlsxfwkF+syF/K5Fd5jigo3hsnYj+2jFHPrDFfVWWjVR1JxqektYbucf0jGCNVNHDVEEbbxe2YiKDzifKNwoIGfZ1HV8M8T546Y7owVN2A11bQ+IIl2K63oixZBUSzNb2CDc=
+	t=1763994902; cv=none; b=kFJHEI30Tr2YLGHUXSGnQvbA3/w9awk8dRDusehJlJ04U/0wqEwv0DHSMUyLOYvqrvwUxWu9Cqi7OZppioaV3hhx/dA/CC0teTQQ1LNXGSqAkzu88rKknerECm75NGKh0sfxrG8Esh5eRsoXqIbfJc67tlOVZesG7YkD5uxyN+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763994526; c=relaxed/simple;
-	bh=lXpGCOoct+/71A0nTTpJIxCc2V4EGg5C9RDF8s1TsDM=;
-	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=kp2cCYtDQQSDSNHrcEVGGQvHfljVbZ2tjeuyhnZxW7QDp5Y4u2sxauVxpGauIfBR3H9dsgBUU9o9aDjcV6wdIMzobo30vOBgQb5KC3g/LTM4RrStQScz+ZO2p0TjsOX2To+kb63SwBfLfCoWQHDdWKa8aiaU9IMMUJxhf3PUaLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j0IKMoaG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3DD3C116D0;
-	Mon, 24 Nov 2025 14:28:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763994526;
-	bh=lXpGCOoct+/71A0nTTpJIxCc2V4EGg5C9RDF8s1TsDM=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=j0IKMoaG3cR1RpSFy/pSS1sT/DSSUxmH/XIxiptYiVi3V/AgrGTihDFX9CrMhPJqJ
-	 VyrZNFaukQFydNljrew3CdPuuNngkcdw8Jo4rHGI7Sz+GO+cPc56g+FdSQ5W0uY+U9
-	 Z3dv3kujzTvQCwT3CHyGi9xaK37pHTSZBJtFYDzbii/Q74l63WgcwP/TsGSX7uKEpc
-	 ngevVik22fG6Az55vUIvVOu7j/zyK53YWnZZSIMZgqVEf6U9HpI8iPKblSrybm5rCv
-	 O3JwQviLJ97KvreS+xFEJTWL67/Pu2/8kr7gunEkzGovr0VfrZi+C0DgIlffEnZCwN
-	 Z1of9m5q/q6Rw==
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 24 Nov 2025 08:28:44 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1763994902; c=relaxed/simple;
+	bh=YuXTblfA5NTX74Sznhyke7LKxxTrrd1R/1FB7J7tf6w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rqaP72fmAkNzznUcdRpKrVGwwNzAH8Aea4AuOaihvUqYRn7GXBqt7ffcmQrBS3JBR+yV9EEqg6loeEVbiYD+zUuUGhNnYTMDSGQ46joe2m9KNI7PpMw0e2JMtcsjskxfrqYDKzG+kgS5ZEEiP/JX2/1M0/34wBeDsAlMSQz9cD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HQhlgXhb; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kqkABjkb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AOB2qHC3884300
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 14:35:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Zn1ySOe6Byh/9PRZkzUMYzqR
+	PVFn4sNhD9BZkVhXgqI=; b=HQhlgXhbsC7tr3vgXrZoPRMwrIcIqvXjG7B+fl8z
+	N/+lMYO8WITcZQQGUcp8mv1ceKWBOKqGeE/u68BhoLcn/5EoYfqhG/ira8Z2HTi+
+	JFP0COdlKrhtSI89eO8yk7BqnMoF9+8ccAUf1yKcdzYoJlf1fUXUjnDj1pbFZy9Y
+	5OvE/ksW3aq4OQWdCpqqD/A1FsjtP9q5yjyKnqLTl1pK4FEGE3jWGQ47cWWQssZ1
+	dW53e93hWrpZiWHVxmNn0VfJDJ4ERX82UnsQVpqc3QP2inUf1Y9m39uYt4B8BJ2n
+	xi7RqbxU9K+WgttD8eHeeVjZpw9zfFQUrc0/RyBSwvbcMQ==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amp568hjy-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 14:34:59 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed82af96faso101503761cf.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 06:34:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763994899; x=1764599699; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zn1ySOe6Byh/9PRZkzUMYzqRPVFn4sNhD9BZkVhXgqI=;
+        b=kqkABjkb0lZpgAuvcNCHChodV9gWAvjUd5EiRifJ6HzwLrYCBCNy1nsPAG7Xzw5ca8
+         jfBGZRvpeFV3OeM83v6iynEMgFBIxwA/p1OcqHE33DiLO4kVM2Nh2SsaWaGsn6Jbyq9J
+         dicSzGn7b38zTib1exqRKKEc2I2cXEHr1T62fvoG7ozs7UpWAqYESzhPFLkbjVreocG6
+         83JwIfWnZaQpPpZtxRN3+vGKo6ahpOue+TXXLyY0IkT6Xgmu782ZUbAnomC6bQKP7Jl6
+         DdSqFXjjDYQSiJiqxnCe5nOlS/tvNXWt5xOveNTyIKtLEGEeEQCjxwx+bBz6bdXloEz9
+         IwQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763994899; x=1764599699;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Zn1ySOe6Byh/9PRZkzUMYzqRPVFn4sNhD9BZkVhXgqI=;
+        b=RdOYIGr8gS/FRW93mPguj/KbLdLCLpVdmiYxbpaL9DD2G5Ar2yTpgkXYBQ/Xvm/Hil
+         27dsJF5ckOLqRNE9huMpuDPaYDG5UyPy5ZSMqeuRU5kVhQHTeFxKrPAAsc+t6iQ+MPdR
+         gE4+Zva5Y19g6cxK/bbQfIcCJ5ucRy0lf0EVKcCo5GMKl9ghY+1pb6foK1ER4JFi9sUk
+         gI47XnMfm/nw8/WKd8rJT4obqpSqlOcDBkZSclGPBVhOp8+/9xs6DmSDy9u6n4x8FgTk
+         wQW7GqFOy0CEhORFCW1Lq1NnlBbWt1O209xhhbh06B50wVUVEdBlbNS5jTCBXoFgevg2
+         h97g==
+X-Forwarded-Encrypted: i=1; AJvYcCW7rZfwdlAAFK7KvgZzQKA6a8dx6YCo4lePN0gQYck10E6+27r7lIp4lEuKoff4HxeLnHq1p1Y1Su3Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YwC4JzOGo8a+U+wxcVTG2cuQJqYuYRCNS0KIqzBnkF9aW5KsvrQ
+	NlWQuEaAGmVmofG55sqI2gVf6ytT0sjNxuulcej5BVVB+TUExjaUOryUiuVyAO0gwH8rWM/OzQX
+	uQ3IrinmFYjrWlRgUHaMOy7xTDmizFvK0oPBckhY0W+K/JRfGO6/Y/pLnjwuPnfDC
+X-Gm-Gg: ASbGnctIYW5d2xyFqKHvCsHjz81y7tHdLK03iUh4VExhiMZlh1NbYtmE44YoEl2xBqq
+	OGwbhpcHVAS+WERUqKq2PIswbgHNKQQ/QCIzzzAHwLlZSIv6hqKyUhbXA+ifpDohxq3cjhgF8Pb
+	6vOtgw3LxBdBqXwd4yD27AYQjYKFMrXJj2OVGtGKLOksw2xUhFkQJ9kTgruNprLxtj3FFuyxNg9
+	PwGFb0Vof4DANGx3CQCRSdcS/dn+gZ3T5nM0oIaC0d/yKMteTN+DaKY+rfX8GZ7MRCSTeYasJPp
+	sAdMBvRREfJKRVZzDVRJE0pKCciDYLIHEf+0099FubFoTdYVwRl7A3bQNDEKS7kWYKi5DQpXe+1
+	O86XcLZg0w0cI4vOfx7s451vXWMiK1YiklFoPRnSO5CZI9MyXNPhBeY6Sn9oTy1W05wif99/ATb
+	a7HROWOGEkhj+RkvETL/ayMME=
+X-Received: by 2002:a05:622a:3cc:b0:4d2:4df8:4cb5 with SMTP id d75a77b69052e-4ee58a445b5mr187001871cf.4.1763994898792;
+        Mon, 24 Nov 2025 06:34:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGsvFkvnisiXad/8yuRQokbbLi0sqsZdsu0kXS9a46eRqjHT7rOlNQF8coWzbKzpfg/LL9DoA==
+X-Received: by 2002:a05:622a:3cc:b0:4d2:4df8:4cb5 with SMTP id d75a77b69052e-4ee58a445b5mr187000931cf.4.1763994898055;
+        Mon, 24 Nov 2025 06:34:58 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37cc6baf9e6sm27547161fa.26.2025.11.24.06.34.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 06:34:57 -0800 (PST)
+Date: Mon, 24 Nov 2025 16:34:55 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Georg Gottleuber <ggo@tuxedocomputers.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ettore Chimenti <ettore.chimenti@linaro.org>,
+        Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
+        wse@tuxedocomputers.com, cs@tuxedo.de
+Subject: Re: [PATCH v3 0/7] Add TUXEDO Elite 14 Gen1 (X1E78100)
+Message-ID: <tceqigutnu6xqlprxbbm667szlnfwlhfgzxxroj6xldupk2ejt@4izqdv22rmku>
+References: <20251121142623.251118-1-ggo@tuxedocomputers.com>
+ <af3d3295-1340-417f-8682-7d7e2bc6c812@kernel.org>
+ <aSGXu7IhPDNSkYhi@linaro.org>
+ <280982b8-ce86-45aa-812b-ef1bf6e57e3d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Jerome Brunet <jbrunet@baylibre.com>, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Zhentao Guo <zhentao.guo@amlogic.com>
-In-Reply-To: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
-References: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
-Message-Id: <176399402192.138936.11233579649489245455.robh@kernel.org>
-Subject: Re: [PATCH RFC v2 0/3] Add Amlogic stateless H.264 video decoder
- for S4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <280982b8-ce86-45aa-812b-ef1bf6e57e3d@kernel.org>
+X-Proofpoint-GUID: ckXGFTeziHHun_GBvdzM3suhbsGgMCDh
+X-Proofpoint-ORIG-GUID: ckXGFTeziHHun_GBvdzM3suhbsGgMCDh
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDEyNyBTYWx0ZWRfX0HyYZaxCvC0Q
+ +zaFFds49Uq4/Dtcdmi3zprIXMlcXhI1inSd1WRSNjG+ikqWgZ1IceGj9b9EjBuL1HydgdjItJn
+ tbNm7pmLGt8Q/pCW9F8yNzo/M1sCj8C3eX6mBvYIsZitjpey6PtYuIUHY7xlDOeV+j0fSvUDcuI
+ m5YX8VHSREWLwac4k97y4d5m8kWemhJ8w3aJ8iKVsJnxZ8RCw/aeDIMd2y1n9DslM6vuS3J9Qh1
+ +FOBQ1ccBHZvkw3H7tc1+sHl2ELCMUqLyok5XYVmL56hyL2v0T9BC7guEviT1Va3sbB3zDqvKaG
+ Bx8pmAgAZO0wIDSB+covpOo9YEvMnPXnfckELw8k51YtyGlFFKhVyu3ELajtr4Q85LQBq/E9Mz2
+ h+xVM6Z+PuY63UbcRagQZmijaRIc6g==
+X-Authority-Analysis: v=2.4 cv=dPWrWeZb c=1 sm=1 tr=0 ts=69246d13 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=ZGtfkgJT45ulUFgaLlIA:9 a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-24_05,2025-11-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501 bulkscore=0
+ impostorscore=0 phishscore=0 malwarescore=0 clxscore=1015 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240127
 
+On Sat, Nov 22, 2025 at 12:15:40PM +0100, Krzysztof Kozlowski wrote:
+> On 22/11/2025 12:00, Stephan Gerhold wrote:
+> > On Sat, Nov 22, 2025 at 11:16:25AM +0100, Krzysztof Kozlowski wrote:
+> >> On 21/11/2025 15:26, Georg Gottleuber wrote:
+> >>> [...]
+> >>> Initial support for TUXEDO Elite 14 Gen1 laptop. It is based on Qualcomm
+> >>> Snapdragon X Elite SoC (X1E78100).
+> >>>
+> >> [...]
+> >>
+> >>> Because the SoC is now outdated and some functions still do not work as
+> >>> well as customers would expect from the TUXEDO brand, TUXEDO Elite 14 Gen1
+> >>> will not be offered for sale. We would still like to submit our device
+> >>> tree to the mainline kernel and thus contribute to Linux support for a
+> >>> compatible device sold by Medion (SPRCHRGD 14 S1 Elite). At least in
+> >>> Germany, this device was sold in many large stores. (An official press
+> >>> statement will follow on our website.)
+> >>
+> >> For me this is unmergeable, because we do not take stuff which no one
+> >> uses (no one can even use), and I am sad I put effort in reviewing AFTER
+> >> this was known to be cancelled.
+> >>
+> > 
+> > I don't think we have any requirement to have a large user base in order
+> > to merge changes. There is already support for plenty of cancelled
+> > products with only a few (if any) remaining users in mainline, e.g.
+> > 
+> >  - Snapdragon X Elite Dev Kit (x1e001de-devkit), shipped only to a
+> >    handful of users before cancelled
+> >  - All ChromeOS SC7280 devices (including DTB variants for several
+> >    revisions of pre-production samples), never shipped to anyone
+> > 
+> 
+> I discuss here the timing primarily and I don't know the timing about them.
+> 
+> > There are also plenty of internal reference devices that only a handful
+> > of people have access to (MTP, HDK, CRD etc). What makes these any
+> 
+> They are still "maintained" and "offered", even if only for handful
+> (like 3000 EACH variant) people. That's the amount of board of each
+> variant, e.g. MTP8750, and all of them run some sort of Linux, even if
+> downstream. So sorry, but 3000 (or whatever number it is) is not handful.
 
-On Mon, 24 Nov 2025 11:32:16 +0800, Zhentao Guo wrote:
-> Introduce initial driver support for Amlogic's new video acceleration
-> hardware architecture, designed for video stream decoding.
+Where does 3000 come from? The Bible says 10 people were enough to
+maintain Sodom and Gomorrah. For Herobrine we know that there are very
+few people still using those devices (maybe less than 10), but we still
+keep it. Cheeza was dropped after it was known that the count is exactly
+zero.
+
 > 
-> Compared to the current Amlogic video decoder hardware architecture,
-> this new implementation eliminates the Esparser hardware component,
-> enabling direct vb2 buffer input. The driver is designed to support
-> the V4L2 M2M stateless decoder API. The initial phase includes support
-> for H.264 decoding on Amlogic S805X2 platform.
+> > different? Ettore has been actively testing and contributing to the port
+> > for the TUXEDO laptop, so if he wants to continue that, I don't think
+> > anything speaks against merging this device tree.
 > 
-> The driver is capable of:
-> - Supporting stateless H.264 decoding up to a resolution 1920x1088(on the S805X2 platform).
-> - Supporting I/P/B frame handling.
-> - Supporting vb2 mmap and dma-buf modes.
-> - Supporting frame-based decode mode. (Note that some H.264 bitstreams require
->   DPB reordering to generate reference lists, the stateless decoder driver
->   cannot access reordered reference lists in this mode, requiring the driver
->   to perform reference list reordering itself)
-> - Supporting NV12/NV21 output.
-> - Supporting Annex B start codes.
+> I won't be maintaining it, so not my effort in that, but since you speak
+> about that - maintenance is an effort, thus I decide not to spend it on
+> cancelled products.
 > 
-> This driver is tested with Gstreamer.
-> Example:
-> gst-launch-1.0 filesrc location=/tmp/video_640x360_mp4_hevc_450kbps_no_b.mp4 !
-> parsebin ! v4l2slh264dec ! filesink location=/tmp/output.yuv
+> > 
+> > In any case, I don't think the time reviewing these changes is wasted:
 > 
-> Retry the compliance test based on kernel 6.18-rc6:
-> v4l2-compliance 1.30.1, 64 bits, 64-bit time_t
+> I am happy that you do not find my time wasted, but I disagree on that
+> because knowing this is cancelled, I would probably not care and review
+> products which are not cancelled at this time.
+
+There still people owning and being happy with those laptops. It's
+Bjorn's and Konrad's time being spent on maintaining those. What's the
+issue?
+
 > 
-> Compliance test for aml-vdec-drv device /dev/video0:
+> > As Georg wrote, there is also the Medion SPRCHRGD 14 S1 Elite laptop
+> > that uses basically the same hardware design. I'm sure there are (or
+> > eventually will be) users of that device who would appreciate having a
+> > fully-functional device tree ready to use. There is an open issue in one
+> > of the Ubuntu repositories for example [1] to add automatic DTB
+> > selection for it.
+> > 
+> > In other words, even if we decide against adding support for the
+> > "x1e80100-tuxedo-elite-14-gen1", the same changes renamed to
+> > "x1e80100-medion-sprchrgd-14-s1" would still be valid and valuable.
 > 
-> Driver Info:
->         Driver name      : aml-vdec-drv
->         Card type        : platform:aml-vdec-drv
->         Bus info         : platform:fe320000.video-codec
->         Driver version   : 6.18.0
->         Capabilities     : 0x84204000
->                 Video Memory-to-Memory Multiplanar
->                 Streaming
->                 Extended Pix Format
->                 Device Capabilities
->         Device Caps      : 0x04204000
->                 Video Memory-to-Memory Multiplanar
->                 Streaming
->                 Extended Pix Format
->         Detected Stateless Decoder
-> Media Driver Info:
->         Driver name      : aml-vdec-drv
->         Model            : aml-vdec-drv
->         Serial           :
->         Bus info         : platform:fe320000.video-codec
->         Media version    : 6.18.0
->         Hardware revision: 0x00000000 (0)
->         Driver version   : 6.18.0
-> Interface Info:
->         ID               : 0x0300000c
->         Type             : V4L Video
-> Entity Info:
->         ID               : 0x00000001 (1)
->         Name             : aml_dev_drv-source
->         Function         : V4L2 I/O
->         Pad 0x01000002   : 0: Source
->           Link 0x02000008: to remote pad 0x1000004 of entity 'aml_dev_drv-proc' (Video Decoder): Data, Enabled, Immutable
+> That's why you send such patches with RFC title and FIRST (literally
+> first) explanation in cover letter WHY, so people can decide.
 > 
-> Required ioctls:
->         test MC information (see 'Media Driver Info' above): OK
->         test VIDIOC_QUERYCAP: OK
->         test invalid ioctls: OK
+> > I wouldn't expect any other changes to be needed, although obviously
+> > someone with access to the device should confirm that before submitting.
 > 
-> Allow for multiple opens:
->         test second /dev/video0 open: OK
->         test VIDIOC_QUERYCAP: OK
->         test VIDIOC_G/S_PRIORITY: OK
->         test for unlimited opens: OK
+> You still cannot apply my review to that other board, so still wasted
+> time because I would need to review again.
 > 
-> Debug ioctls:
->         test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
->         test VIDIOC_LOG_STATUS: OK (Not Supported)
-> 
-> Input ioctls:
->         test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
->         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->         test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
->         test VIDIOC_ENUMAUDIO: OK (Not Supported)
->         test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
->         test VIDIOC_G/S_AUDIO: OK (Not Supported)
->         Inputs: 0 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
->         test VIDIOC_G/S_MODULATOR: OK (Not Supported)
->         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->         test VIDIOC_ENUMAUDOUT: OK (Not Supported)
->         test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
->         test VIDIOC_G/S_AUDOUT: OK (Not Supported)
->         Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
->         test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
->         test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
->         test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
->         test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Control ioctls:
->         test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
->         test VIDIOC_QUERYCTRL: OK
->         test VIDIOC_G/S_CTRL: OK
->         test VIDIOC_G/S/TRY_EXT_CTRLS: OK
->         test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
->         test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
->         Standard Controls: 6 Private Controls: 0
->         Standard Compound Controls: 4 Private Compound Controls: 0
-> 
-> Format ioctls:
->         test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
->         test VIDIOC_G/S_PARM: OK (Not Supported)
->         test VIDIOC_G_FBUF: OK (Not Supported)
->         test VIDIOC_G_FMT: OK
->         test VIDIOC_TRY_FMT: OK
->         test VIDIOC_S_FMT: OK
->         test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
->         test Cropping: OK (Not Supported)
->         test Composing: OK (Not Supported)
->         test Scaling: OK (Not Supported)
-> 
-> Codec ioctls:
->         test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
->         test VIDIOC_G_ENC_INDEX: OK (Not Supported)
->         test VIDIOC_(TRY_)DECODER_CMD: OK
-> 
-> Buffer ioctls:
->         test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
->         test CREATE_BUFS maximum buffers: OK
->         test VIDIOC_REMOVE_BUFS: OK
->         test VIDIOC_EXPBUF: OK
->         test Requests: OK
->         test blocking wait: OK
-> 
-> Fluster test result of JVT-AVC_V1.
-> Result:
-> Ran 61/135 tests successfully
-> 
-> - 52 test vectors failed due to interlaced or mbaff clips: The Amlogic stateless
->   decoder driver only support bitstreams with frame_mbs_only_flags == 1.
->   Test Vectors:
->         cabac_mot_fld0_full
->         cabac_mot_mbaff0_full
->         cabac_mot_picaff0_full
->         CABREF3_Sand_D
->         CAFI1_SVA_C
->         CAMA1_Sony_C
->         CAMA1_TOSHIBA_B
->         cama1_vtc_c
->         cama2_vtc_b
->         CAMA3_Sand_E
->         cama3_vtc_b
->         CAMACI3_Sony_C
->         CAMANL1_TOSHIBA_B
->         CAMANL2_TOSHIBA_B
->         CAMANL3_Sand_E
->         CAMASL3_Sony_B
->         CAMP_MOT_MBAFF_L30
->         CAMP_MOT_MBAFF_L31
->         CANLMA2_Sony_C
->         CANLMA3_Sony_C
->         CAPA1_TOSHIBA_B
->         CAPAMA3_Sand_F
->         cavlc_mot_fld0_full_B
->         cavlc_mot_mbaff0_full_B
->         cavlc_mot_picaff0_full_B
->         CVCANLMA2_Sony_C
->         CVFI1_Sony_D
->         CVFI1_SVA_C
->         CVFI2_Sony_H
->         CVFI2_SVA_C
->         CVMA1_Sony_D
->         CVMA1_TOSHIBA_B
->         CVMANL1_TOSHIBA_B
->         CVMANL2_TOSHIBA_B
->         CVMAPAQP3_Sony_E
->         CVMAQP2_Sony_G
->         CVMAQP3_Sony_D
->         CVMP_MOT_FLD_L30_B
->         CVNLFI1_Sony_C
->         CVNLFI2_Sony_H
->         CVPA1_TOSHIBA_B
->         FI1_Sony_E
->         MR6_BT_B
->         MR7_BT_B
->         MR8_BT_B
->         MR9_BT_B
->         Sharp_MP_Field_1_B
->         Sharp_MP_Field_2_B
->         Sharp_MP_Field_3_B
->         Sharp_MP_PAFF_1r2
->         Sharp_MP_PAFF_2r
->         CVMP_MOT_FRM_L31_B
-> - 3 test vectors failed due to unsupported bitstream.
->   num_slice_group_minus1 greater than zero is not supported by the
->   hardware.
->   Test Vectors:
->         FM1_BT_B
->         FM1_FT_E
->         FM2_SVA_C
-> - 2 test vectors failed because SP_SLICE type is not supported by the
->   hardware.
->   Test Vectors:
->         SP1_BT_A
->         sp2_bt_b
-> 
-> We are working with the remain failures, these failures have the same root cause.
-> 
-> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
-> ---
-> Changes in v2:
-> - Fixed incorrect generation of the reference lists for some B-frames.
-> - Rename or get rid of some properties in DTS and dt-binding.
-> - Remove some useless code or helper functions, (eg. clk helper functions, reg I/O macros, and some superfluous print messages) replace these functions with existing ones.
-> - Replace all the printk messages with dev_err/dev_info/dev_dbg
-> - Use the helper functions from the existing meson-canvas driver.
-> - Use clk_bulk_data to map clocks from DTS.
-> - Retry the V4L2 Compliance test on 6.18-rc6, fix a newly introduced bug.
-> - Link to v1: https://lore.kernel.org/r/20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com
-> 
-> ---
-> Zhentao Guo (3):
->       media: dt-bindings: Add Amlogic V4L2 video decoder
->       decoder: Add V4L2 stateless H.264 decoder driver
->       arm64: dts: amlogic: Add video decoder driver support for S4 SOCs
-> 
->  .../bindings/media/amlogic,s4-vcodec-dec.yaml      |   87 +
->  MAINTAINERS                                        |    7 +
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |   27 +
->  drivers/media/platform/amlogic/Kconfig             |    1 +
->  drivers/media/platform/amlogic/Makefile            |    1 +
->  drivers/media/platform/amlogic/vdec/Kconfig        |   16 +
->  drivers/media/platform/amlogic/vdec/Makefile       |    4 +
->  drivers/media/platform/amlogic/vdec/TODO           |    7 +
->  drivers/media/platform/amlogic/vdec/aml_vdec.c     |  756 ++++++++
->  drivers/media/platform/amlogic/vdec/aml_vdec.h     |   31 +
->  drivers/media/platform/amlogic/vdec/aml_vdec_drv.c |  239 +++
->  drivers/media/platform/amlogic/vdec/aml_vdec_drv.h |  196 ++
->  drivers/media/platform/amlogic/vdec/aml_vdec_hw.c  |  596 ++++++
->  drivers/media/platform/amlogic/vdec/aml_vdec_hw.h  |  158 ++
->  .../platform/amlogic/vdec/aml_vdec_platform.c      |   37 +
->  .../platform/amlogic/vdec/aml_vdec_platform.h      |   62 +
->  drivers/media/platform/amlogic/vdec/h264.c         | 1933 ++++++++++++++++++++
->  drivers/media/platform/amlogic/vdec/h264.h         |  300 +++
->  drivers/media/platform/amlogic/vdec/reg_defines.h  |  177 ++
->  19 files changed, 4635 insertions(+)
-> ---
-> base-commit: 0c1c7a6a83feaf2cf182c52983ffe330ffb50280
-> change-id: 20251027-b4-s4-vdec-upstream-0603c1a4c84a
 > 
 > Best regards,
-> --
-> Zhentao Guo <zhentao.guo@amlogic.com>
-> 
-> 
-> 
+> Krzysztof
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: 0c1c7a6a83feaf2cf182c52983ffe330ffb50280 (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com:
-
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: video-codec@fe320000 (amlogic,s4-vcodec-dec): 'amlogic,canvas' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/media/amlogic,vcodec-dec.yaml
-
-
-
-
-
+-- 
+With best wishes
+Dmitry
 
