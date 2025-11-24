@@ -1,168 +1,130 @@
-Return-Path: <devicetree+bounces-241531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6308DC7F9A6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:26:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24B92C7F985
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:24:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 695B34E3F52
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:23:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DCE8A3418E0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7636A2EAB83;
-	Mon, 24 Nov 2025 09:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F982F5321;
+	Mon, 24 Nov 2025 09:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="abmtBNy2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZZdtpfeP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11021127.outbound.protection.outlook.com [40.107.130.127])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346E3263C8A;
-	Mon, 24 Nov 2025 09:23:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.127
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763976186; cv=fail; b=ncItm1zFgw7iLDhQbcK0O2FroSMvENJTaBz7pwQ+wNToPfm2brMoY3cVY86tRZY2maCztGas3LfllG98r7geT46J87bbdP/yqHhPkhyVm+alNyKQzBuAfSqVu4k/Y6e3KvVaZktyoA448G47MsoXXnUeDEWIz9unmzJXpHwvf3A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763976186; c=relaxed/simple;
-	bh=R2EU55vzqasLI4B2up/IGkR87IGuw+aZw3p/wnCtPNs=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=E6vIPUfeKcRIm56D7rWq5ZeeTFddV4mDNPXhjC9xt42Yk63ndeVFLj/nUnYMm39gyVMcYS5wKkU5cQRPa9yT8jj7E7KXl0lwlv69YKMQ0jX297oHWeFAuVLlol2nVDl+gXnWQL/8iA4AjTJ/d2sUjEggw1vC0VSe1I63wuuIEnY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=abmtBNy2; arc=fail smtp.client-ip=40.107.130.127
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k8D7+1MvVkW240zngVdzBkvf6vjSb4eJ9ZEd9U/4WZKfWGllOR6l5NcU8sEb+mQsYzvYSS5odTIjlEpmsD2pENu37l7rS6qHWwgXCo+2CDf5I1MoKNaHd8YW4oH86SPI+CzaddRd3IM5X9KSd67ma9H/TMJJKYUACxnB125kDiTJ+9xHxl1o/ROD6SQgmxXGuKy9Q7vdJQjJCza5hc6D5CUDoWchxzSA67o96+5lStGa7aebtcn02n/2p0ZLTKe+yWSs9Nw0NFYl1QHT+FvqY/jQxAHrTs96iFBB94grJxsHsvfyTN0OHGVVThUSspapaaDaLUHZ4hjGvH+XWxXB8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MdhQ3P2v0v69qaVyTFp9hHzy48+cUuFhcgOiXuk+Qzo=;
- b=srpR1+5+4HZWHUCKMDtJR9Dj1jWT5rp2ijW+5/gZ7um0LvuER/Fn/fujY5keQBvVdrDj5YSNZGGEKRm7yDRAVvo9HU7B0d3FedtQdMfSKWnPsNTSrsQd4URSPenSRhLuOCTJTUq9TafC6kny2awsNY0Sd0nlx0zRX3NE4WEUVziFZVG0ppS4/WPYZrj0jlMtW5qiG97SsrUXyWZVFW4OQjQpafLnqtpzgyS/gLMsjdb7llVRRUxrPifv13x7ZkeTNHRazt+xPsRfCGbLQfAC+m2WvZCJTaucFCxGmSdJQYIQ3eACk6+6ur91vuTtdRa5lA3vPNPL6Qgtcjqe9aL4Mg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
- dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=phytec.de; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MdhQ3P2v0v69qaVyTFp9hHzy48+cUuFhcgOiXuk+Qzo=;
- b=abmtBNy2Q8fwXjC9pFeGyRUk1R0nhCbTFRK4KlA4lZHOnqRAWS0sJJ1TqW9uqMnWbmRdqRczFYZQxnwTiaPxqfb9Svyi2J3TRv1D/THDbybT24/zJOaGET+B1GnMrL3v0iPJXPgJ09zV0Xm9RQNE945irlpYtXMFAXBRFdvtOejJ+Gcxmzxx+DE/oeynpy+uf97vYSccP7R56/xt59MdrTyJKhkGmSkHozYTkHG+AxHuW5tJ5rozu5ZBNRh1r+iaMzDuYHTbXl+lr5s8x8usxtutyNdmac6I/Gjj0jXm7LBJufD8dOfQKKvp3Al6YlG7zE2gUqWfRWz5tnwmgmb76g==
-Received: from DU2P251CA0006.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:230::7) by
- PRAP195MB1457.EURP195.PROD.OUTLOOK.COM (2603:10a6:102:278::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9343.17; Mon, 24 Nov 2025 09:22:58 +0000
-Received: from DU6PEPF0000A7DD.eurprd02.prod.outlook.com
- (2603:10a6:10:230:cafe::bf) by DU2P251CA0006.outlook.office365.com
- (2603:10a6:10:230::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.17 via Frontend Transport; Mon,
- 24 Nov 2025 09:22:51 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Postix.phytec.de (91.26.50.189) by
- DU6PEPF0000A7DD.mail.protection.outlook.com (10.167.8.37) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9366.7 via Frontend Transport; Mon, 24 Nov 2025 09:22:57 +0000
-Received: from ls-radium.phytec (172.25.39.17) by Postix.phytec.de
- (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Mon, 24 Nov
- 2025 10:22:54 +0100
-From: Daniel Schultz <d.schultz@phytec.de>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
-	<festevam@gmail.com>, <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: <upstream@lists.phytec.de>, Daniel Schultz <d.schultz@phytec.de>
-Subject: [PATCH] arm64: dts: imx8mm: Add label to thermal-zones
-Date: Mon, 24 Nov 2025 01:22:42 -0800
-Message-ID: <20251124092242.3378017-1-d.schultz@phytec.de>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2F62F5465
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763976269; cv=none; b=B12IMm8EdSoT8UjpIbh1Bn1vdzobJLzgsDPK2xIPhc4RX2sydAXwgsuKewX48MwawasfQUAJTRG7O7AtdT18GFLlAIWpXmaIrzkcw5bc7kDkLmzR+ebHjXdy49qaHKChhI7LC195xWijSyAHax13izxpO2aJCcNQ4J2z+Bda7Dk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763976269; c=relaxed/simple;
+	bh=P3TNnHmbMQ7RiZfj11COEtOadWn9ZwdSOUvW0u0Lo8A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nb5gBV9dFSzvJpNKMWl4zoudPxaBS1FXBIdfUOJJkGyzzgzXneh2X1JyBHDhF3R+PjNNyO6DLJWeSTTCmZLLSt/O4A/BrqbKlODS+nnug9e/hJ9acNazPJhXTAhM+SLtihxPHcgFW4HRmlWE7M3KdVY8joSINcLDxaaoK0WTxUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZZdtpfeP; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b73161849e1so695631466b.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 01:24:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763976266; x=1764581066; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=slSocduRhMtJsbQHXkMC9k8pMNaviAqpRIeDggJm8mI=;
+        b=ZZdtpfePZFfUT/ZvhU2u/xPyRTq5AfkmYgwBxMgiIm7eNwOoFh9ZRn0tZvJR7Js6bv
+         qyaRbzaYX6bvV3RvEsVZm9GQDMRBdu3iRP9eJFDv5Wl2HtYi0i49qYVJA7+2cTVlIPRX
+         Lj1AQvJit2VCRos+jwBKM7u2pqXsbuJAaTJ4iZJ6yPn4X81ufl+9M8c8vmCQmVo67kHM
+         u7wsRiB1AJTQ9L4ETsKRRXA2AkJKdzSAoM4NbvGh0QP1uwPAqZMZkOCq4LGgCHUhhwMX
+         Je8I2P2viPlA2uIsQNLZs2Fwb6gDLY+Cur9+XIHp7LkZyEVBu+X1J0L4XQp4YVzIpUNa
+         s6WQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763976266; x=1764581066;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=slSocduRhMtJsbQHXkMC9k8pMNaviAqpRIeDggJm8mI=;
+        b=Xyl1F2udBRdlVH1PpV3oXbxGgFaOY04U/nHp5dnLoBZbVIFdXANUhgacxqHbhfCvoo
+         TzSk95f8qo0J6nCh5firEyhFvwqFgY/Tc/LTpwohodhQQaGc4kIjCbLrYLqPiZd1c47U
+         077SMNtXfpqqZP6mcgb4Om4MkGlXAwFyvxPdpS7DgavUYg/mY6X0JtNWYhUI/FJyjx6N
+         k0N7SealvO7uPaAzWtW4nGH70wmjifFlNUCSDBOJpuGoiaAB4oYsw60aYGF3Z0iKbp9S
+         1Lji81evZCRkjmn77Qlx0TZkKhpgMh6WkOpaQGwRJyCjpbxt0Xsq23kPAR9083c3H1AP
+         V1PA==
+X-Forwarded-Encrypted: i=1; AJvYcCWo5r4ilRks5L5e2wHWMzFzJhdx+JGwWlZJXFFOrCniLQ2PH1pcwQgXpVQ7dsqongJOm/gSJdSczWCD@vger.kernel.org
+X-Gm-Message-State: AOJu0YycnQEgYB5A2X6bcpVVj2OzhTiD94/KaSWVCf6gdMv+RiNueXPv
+	9leUUVPWp9koWulnmsOVvzBJSSW69FNhVPkQbC2Zbs2KMDmiYpU00/PZ
+X-Gm-Gg: ASbGnct/ZwrIsbAYsKOi3ClzhyPnjBoCvJGGyH5kyve5prRxdrI/PmXDSGaPADEGmAQ
+	K7SBeZm2uz43KhSWDqmnp5oOrr/h+iH7IF5jFPlzfkp6vtMi60J3wv1uIRvkdx2oUf9LidBgkZE
+	EQ9cYLwsk3frkESmEySWX0iox7Ar0zif+ike0Q+sBXDSNTYimFGOX/Rl9WWpYZD0irlvvn89bkl
+	d8Yk4eX0kYVrsH1BrP+QAvwKxtIV9rq/2EMeOIocHeB454wxIC7EYHz5/Vr9TcOV1U3A7D44v4i
+	v+Qr38nG5iM69Z1z6BeRLvE9SbheCLdOpFjW/u8coGo38OTz9lUhS852aMfUYH6K++aPdYkDk9A
+	laOqT1ria6PaV+ze1ZLZh6oldJccmYQvT7rloGV4OsdFdXYJ/Ya+PyIsL4IZEfeCQoovOwMLaGd
+	fGZNp9f90L8SWrTY7ykLyY/6d7TBvFCFXgxusC4jwclDsCsO7sRAH6UMavRRLwxHLYtM91
+X-Google-Smtp-Source: AGHT+IG43taRGXlMb7A2ZG4Z0Lz7XxTi1f/W9lGskn1Ni6JWJYwXfKHzRtFJ/vmRNLd6ClmF9wOYDQ==
+X-Received: by 2002:a17:907:8e96:b0:b47:2be3:bc75 with SMTP id a640c23a62f3a-b76718ab22emr1047239266b.60.1763976265537;
+        Mon, 24 Nov 2025 01:24:25 -0800 (PST)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2a02:3033:267:9a21:9532:f12d:5875:dc2c])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7655028400sm1195719166b.56.2025.11.24.01.24.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 01:24:25 -0800 (PST)
+Date: Mon, 24 Nov 2025 10:24:22 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Jorge Marques <jorge.marques@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 3/7] iio: adc: Add support for ad4062
+Message-ID: <m4a3o4fbs5bhsru6fsmik3qtthvit3565lkp6itjyqzjbd55hd@whjpvtn7xngm>
+References: <20251013-staging-ad4062-v1-0-0f8ce7fef50c@analog.com>
+ <20251013-staging-ad4062-v1-3-0f8ce7fef50c@analog.com>
+ <20251018171032.144a126c@jic23-huawei>
+ <ou6qwayt4g7qaoe5dm7tdg6jl5dwquslpfbok6on5r2q2wytyl@wlqxj5y6ircj>
+ <aSQMjZbc75cQtFqJ@smile.fi.intel.com>
+ <o4kt2of4xql4azufjgiecm4jzuexgm6nkvr7aghbwfk6qd7yqd@r4plggehzces>
+ <aSQhTd5Z7KyvHtbG@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
- (172.25.0.11)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU6PEPF0000A7DD:EE_|PRAP195MB1457:EE_
-X-MS-Office365-Filtering-Correlation-Id: e6f11ab7-d889-40b7-66af-08de2b3b0e67
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?m231ejOjVSKmFN7T/Nj+xsend4ssIos/clpTYX8CSEez3nCQ+USo9xKZiPYU?=
- =?us-ascii?Q?0x2J89BEAQz5sUjbB0GgMK4pp24a6xHVjOJf/Itx1An3gvT0MlIe5oSygslZ?=
- =?us-ascii?Q?r8fC2ml/aavkKrZKBSx2Mhe1ohJYvAJuSNZhPdN7LoFzOPLoMzAM/yQEYoh+?=
- =?us-ascii?Q?85pCPHoyBsQ9Ip2PfZEzgulWTglVFNlNQMyQxqerhv0tySwHp0XqSbg34o+R?=
- =?us-ascii?Q?8J8H/OQwmStTstorGW4typd/5rVJ1xlICztuv/AppSh0iV02G+TB0Q9jurEO?=
- =?us-ascii?Q?qYOU0WVVV75bPcqxQMtEGCJZxkVig9emcOIZgdelPhGxqH0LR3p3zPbWsIdR?=
- =?us-ascii?Q?noPpfmC+95yYbt+t0RZMriLt+0bUEpQFPPxedZ5ukrpmherleROhE6taJz00?=
- =?us-ascii?Q?LUpuI1TqS3TAbZ7hL9M7gaqxCz5ZCe0KGg/p8AhQCz0iKSLWujKh0MPyYLdP?=
- =?us-ascii?Q?nUHUS3pG4JFSUFYaTR7K89Xk7HQO19PWEY04BMvhAzWu25tO9bparMSS0UT7?=
- =?us-ascii?Q?QTCqrtChB/jI19O0iKmLIbOyjKEEkKcgW4MCio69nOXL83dytkvJYBoWRliN?=
- =?us-ascii?Q?UzmPeC5aBl1alA7ibEwF7uIoeRwFBc9OHwirSqfS7SN8H5id0E4/Z0E+oq3C?=
- =?us-ascii?Q?aW/diHMaya3+ogS5OhxKEdRNs7hR1OU0fuUz7bMrFMAorIOYLOvsTzpWugPc?=
- =?us-ascii?Q?aiIE7RKK2wA3BehZ+6IAXquFFSU0x1yUEivxIoqzuWRvJ8iaew2b7vtjIYBE?=
- =?us-ascii?Q?AKhD9b5fHiH4GQfG3QxQ957GsogxwLqhGwWQFCB/ew8lDn8ic+pMHoKTtER6?=
- =?us-ascii?Q?VPIHG2vnRVrt/NxSyVqgfVnpHOdgxcGiP9ATfXrNWKDYOq1SvJVf/GhzWvaj?=
- =?us-ascii?Q?Q/BS026606LxiyzHv0vVKZu9wKlTi3LZh+QeBDHyTHF/7vR1S1KqetE4MVBg?=
- =?us-ascii?Q?FBsdJD/93W/sUSrmoYS8qLSlguOIM3Sq1ewEC8Kfh0rQ7i9q2lzxoZKPEUD6?=
- =?us-ascii?Q?4yQ3JLneHTDsqf7R/ttxzI/G0hQOthSpbmYW6kXw9ojQ3iLyxC9bkthuYyMZ?=
- =?us-ascii?Q?PlFDqyusdijReyxJqeD79Szef+e6TWXWGBbhEKWN75j6SO4DFM60J0Rzkt0i?=
- =?us-ascii?Q?p1eHanEJA2Hi61Pebz/CXG6Zgi0DLc8gZs6SAxGPryLyY+ZHyTMmTe7u3LsP?=
- =?us-ascii?Q?phaPM8PhyYScj30vyjjJN1C/KH/YbO8NuwKcq6XXYlHGl6BJuYObyKiYPO5a?=
- =?us-ascii?Q?tPD26+CBBVHnDnvKLyGBWpfXrncU1Ygvkg5rmksqelEWMklz8kOuwiZzaraA?=
- =?us-ascii?Q?votM2wYNkvXRe0pO7smKRcAPcDmpMrXXnWa8czSQJV6+tL+MyGjtJp7ZRK8W?=
- =?us-ascii?Q?O5pyqrTvkMf01ht7IngqvsnlHpkprnCaNk23k/NA+ANSDBX8y+ho7M87lu1c?=
- =?us-ascii?Q?3e6/sGA925wqOB4mmxWX+mS/5ASTWVlq3h8ekcxOVY0OK+4AWVi63ioQFEqv?=
- =?us-ascii?Q?G+xHGcuVW1U9PUoRxAOXIJ+kV3QQs++rbiVp6CO0bfsbxOF9eTEEAcmxama5?=
- =?us-ascii?Q?cwY9H9E/NwTeORa+pzkPdmv6SdPrIjBoCcXqo9Gw?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 09:22:57.7199
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6f11ab7-d889-40b7-66af-08de2b3b0e67
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU6PEPF0000A7DD.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAP195MB1457
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aSQhTd5Z7KyvHtbG@smile.fi.intel.com>
 
-Add 'thermal_zones' as a label to the thermal-zones node.
+On Mon, Nov 24, 2025 at 11:11:41AM +0200, Andy Shevchenko wrote:
+> On Mon, Nov 24, 2025 at 09:57:26AM +0100, Jorge Marques wrote:
+> > On Mon, Nov 24, 2025 at 09:43:09AM +0200, Andy Shevchenko wrote:
+> 
+> ...
+> 
+> > I will submitted v2 shortly.
+> 
+> I think the "shortly" is not needed, please take your time, this seems missed
+> v6.19-rc1 anyway.
 
-Without this label, it is not possible to add additional
-trip points in board files. For example, to add an active
-trip point for controlling a fan.
+Hi Andy,
 
-Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I was submitting when this reached my mailbox. Still, noted the comment
+on your next e-mail and no pressure on the release window, I just didn't
+have further changes for this revision.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index fc3cd639310e..9f49c0b386d3 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -234,7 +234,7 @@ timer {
- 		arm,no-tick-in-suspend;
- 	};
- 
--	thermal-zones {
-+	thermal_zones: thermal-zones {
- 		cpu-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <2000>;
--- 
-2.25.1
-
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+Thanks,
+Jorge
 
