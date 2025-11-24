@@ -1,199 +1,166 @@
-Return-Path: <devicetree+bounces-241761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00F97C823E1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 20:14:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0945CC82408
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 20:15:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6DFFC348555
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:14:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A68213ABB95
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:15:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EADA2D2493;
-	Mon, 24 Nov 2025 19:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EB02D7DFB;
+	Mon, 24 Nov 2025 19:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="re1arGzk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YDwDzRSO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC562C3272;
-	Mon, 24 Nov 2025 19:14:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DCE2BDC28;
+	Mon, 24 Nov 2025 19:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764011669; cv=none; b=RkNpda7B7j/vRJ4f8vWrJxvgOuqrvmaSAYF9Vaf0Lhkx13I/qr+EGHfFeO9StVSQTNdpGpfOkGDAG6eS+F4Z/a2lbjxew0bVXnzl52VAwHk1Pv2YKnP545mLQNHIzRxVkc5KilzWIj3kvak8wQTrRuHNeRvippCH0ONrCNbhEOI=
+	t=1764011723; cv=none; b=tLNFyjsWO3pIEykflH/iyXxT93PfXUvle36qk2IV2Qqb3xupIXxMPBtqZpfdo9rhgWowigstLj2gSJ01RdYZZwcwPgc88PBkR6bqDW8RWPJ5lMmWGb7qPIVBwmExVcnKA11Or73llSTZOMMmyUpLiBmlx2Dr1ANDGDiQ2Z/uFfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764011669; c=relaxed/simple;
-	bh=IGS//uS2mC9xTjWUgsup5D+zQDZI9ZYBkqzdAiM2/7M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lzZAJ7tmiV/gSPx67Bkh1EClI91/2CJjwSTf9dPJpwj98D52H56ypYDRx65Iq23jRSG1NbEZz5zAryjqjGfJ+rXtjLJQgB8Rmx3L+m97mW8HCvSkm1mqQ6yoB/7BiPHs4K/ISwQat1iR1EB8zOGiNVdsREc5UVISha8gobQDtLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=re1arGzk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF4E5C4CEF1;
-	Mon, 24 Nov 2025 19:14:26 +0000 (UTC)
+	s=arc-20240116; t=1764011723; c=relaxed/simple;
+	bh=U4cTUeem+nwSaf+djPaKwZ6UBmQXpPEdkSJ3JblP3oA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pmVHEzXSkVms6V5LqKnom9mDd1chi4IZLsto7nBSMp9WxiEjvT4tUM0drWgMOh87jHN0NsYTrO5tMPkr5eFGLIrNckXm3awSiPrpg1zk72P/NfCz1D9LRIcEIORDscfQOM/keQ+5EiQS+VixIXaCjMLCVuFVkwnaidbLwez4wyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YDwDzRSO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB289C4CEFB;
+	Mon, 24 Nov 2025 19:15:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764011668;
-	bh=IGS//uS2mC9xTjWUgsup5D+zQDZI9ZYBkqzdAiM2/7M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=re1arGzkZNmD6U366m/hQS9SBEHp000Tv5oZeYdtpTZvuCFu874FDLSmHXfAeMgyP
-	 0u9pla9Hss5+Dsnq7I52wTAdXX/vvoQ6dGsGDl96cP1n4TrE61A8qwDyu+s4XSnmd4
-	 JUYWLdf76ey4S6B6yIFW5GnpVEuZ/DVO2BfSR6nnWi+a/QTjsO/5/NSowbPhSrT1ku
-	 QlkH+yhTRfcENlcsR/d+pnPADtCZNkDB9Ell7QyRasYCBv5Km1nYD6xihhocm6g238
-	 i9G9YCbBqk7d4yAN3DsmwFakyQC6FbFwk7xaTBpyeiZNKs/REikx5P5GS2Q5BG2KdB
-	 TOY7WwlLwfilg==
-Date: Mon, 24 Nov 2025 19:14:24 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
-Message-ID: <20251124-crayfish-lard-cc7519e1119e@spud>
-References: <20251112-lantern-sappy-bea86ff2a7f4@spud>
- <20251112-improving-tassel-06c6301b3e23@spud>
- <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
+	s=k20201202; t=1764011722;
+	bh=U4cTUeem+nwSaf+djPaKwZ6UBmQXpPEdkSJ3JblP3oA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YDwDzRSOwBfNlEtJD1FQHiPATKaSAlfcWkqSUoMITS4GUiiF/yGl1JXDbDhibUFsR
+	 6OLxQrkH8al37hkb1n5h22tpIOY3D3AmbUXOUopKJEDHtI5OV/7d5Xwhx2SYoi/Y6R
+	 fqRnrScPMQLePzI2sk9gXCszF0mRaiaMF72hCc6COhNgSGieym+sg05hu3ma48QyYy
+	 grf/aBMV8WI+WeHu/whxmTFQE9EgrhPjR5/N8T5WyE5SBw4JS5BJQlyHUdqy8FIW2w
+	 sqJBDtoCMFpajSRI5s1aDyG2U12cDBqKsu0rlWi91qeKTKK/+NC5bSu8YaPpc1wXZQ
+	 525IJ8O56Rr8g==
+Message-ID: <ec3741be-4efa-4ea9-a4be-17fa204391dd@kernel.org>
+Date: Mon, 24 Nov 2025 20:15:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rmbc813uVSMJILcK"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
+To: Icenowy Zheng <uwu@icenowy.me>, Conor Dooley <conor@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao
+ <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20251124105226.2860845-1-uwu@icenowy.me>
+ <20251124105226.2860845-3-uwu@icenowy.me>
+ <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
+ <f7bbb57180866a0674fc1d72d4bd3279c7b1c1e9.camel@icenowy.me>
+ <c26dabfb-c4af-428b-a1d4-d626f37ff559@kernel.org>
+ <f944f0b28f62233b1874e0f00c0a130d71845417.camel@icenowy.me>
+ <6ceb41bc-0597-4ea5-84be-51f53e3bc2d8@kernel.org>
+ <20251124-said-overvalue-8a8f49d6c99d@spud>
+ <477bbcbe-17d9-40ae-be10-be4fd107687e@kernel.org>
+ <20251124-pulp-pound-a2b6d749dcfc@spud>
+ <390caea1-bc75-4cde-bd6d-9bc15a12f32d@kernel.org>
+ <a8089e458bdf6fbad45cd6be838b4cf75396918f.camel@icenowy.me>
+ <ee1e4f94-ff9a-4227-b705-74a7eb806ff0@kernel.org>
+ <920b6864f30777640ebaceee1808e96978e6161a.camel@icenowy.me>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <920b6864f30777640ebaceee1808e96978e6161a.camel@icenowy.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 24/11/2025 18:42, Icenowy Zheng wrote:
+>>>>
+>>>> Ah, sure. Yes, if both identities work I would propose to skip
+>>>> second
+>>>> SoB. But I also stopped objecting of having two identities
+>>>> listed, as
+>>>> long as they are correct.
+>>>
+>>> Well it's unfortunate that some policy now requires me to list the
+>>> second identity.
+>>
+>> No policy asked you...
+> 
+> Local policy here, sigh...
 
---rmbc813uVSMJILcK
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It sounded like you complain about our process...
 
-On Wed, Nov 19, 2025 at 01:08:26PM +0100, Linus Walleij wrote:
+> 
+>>
+>>>
+>>> Should I resend the whole patchset with the ISCAS mail?
+>>
+>> You can, it probably would solve the issue, unless you change the
+>> author, but why you cannot do what I asked at the beginning - set
+>> correct order of SoBs, so the @icenowy.me being the last?
+> 
+> Well because previous revisions of the patch comes with only
+> @icenowy.me SoB, and I think SoB is append-only...
 
-> On Wed, Nov 12, 2025 at 3:33=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
+You cannot change other people SoB, but your own you can.
 
-> > +static int mpfs_pinctrl_dt_node_to_map(struct pinctrl_dev *pctrl_dev, =
-struct device_node *np,
-> > +                                      struct pinctrl_map **maps, unsig=
-ned int *num_maps)
->=20
-> I saw in the cover letter that you wanted this to use more generic helper=
-s.
->=20
-> If you see room for improvement of the generic code, do not hesitate.
-> Doing a new driver is the only time when you actually have all these
-> details in your head and can create good helpers.
-
-Started looking at this today too, and I found one of my sources of
-confusion - the recently added helper which I think is confusingly
-named. pinconf_generic_dt_node_to_map_pinmux() works differently to
-pinconf_generic_dt_node_to_map(), because it only works if you have
-the following setup:
-
-label: group {
-	pinmux =3D <asjhdasjhlajskd>;
-	config-item1;
-};
-
-It does not work if you have:
-
-label: cfg {
-	group1 {
-		pinmux =3D <dsjhlfka>;
-		config-item2;
-	};
-	group2 {
-		pinmux =3D <lsdjhaf>;
-		config-item1;
-	};
-};
-
-Specifically, the label must point to a group.
-pinconf_generic_dt_node_to_map() does not work like this, it accepts both!
-I think the pinconf_generic_dt_node_to_map_pinmux() function should
-actually be called pinconf_generic_dt_subnode_to_map_pinmux(), because
-it operates at the same level as pinconf_generic_dt_subnode_to_map().
-
-Probably there should be a "real" pinconf_generic_dt_node_to_map() that
-accepts both setups, since AFAICT it is pretty normal to have different
-pins in a group that get different pinconf settings. Obviously
-
-label: cfg {
-	group1 {
-		pinmux =3D <dsjhlfka>;
-		config-item2;
-	};
-	group2 {
-		pinmux =3D <lsdjhaf>;
-		config-item1;
-	};
-};
-
-peripheral {
-	pinctrl-0 =3D <&label>;
-}
-
-isn't the only way to do things, and the amlogic user of the current
-setup could just go and do
-
-cfg {
-	label1: group1 {
-		pinmux =3D <dsjhlfka>;
-		config-item2;
-	};
-	label2: group2 {
-		pinmux =3D <lsdjhaf>;
-		config-item1;
-	};
-};
-
-peripheral {
-	pinctrl-0 =3D <&label1>, <&label2>;
-}
-
-if it never needs more than one set of configs so this isn't a bug in
-the amlogic stuff, just something I found misleading while trying to
-make my own helper.
-
-Even then though, I'm not really sure that this function does what I
-would have expected it to do, because it won't work as a replacement for
-the custom dt_node_to_map in the spacemit k1 driver, for example, even
-ignoring the requirement about how the labels are done in the dt. That's
-because it doesn't actually do anything with the pinmux property, despite
-that being in the name. It never actually interacts with the pinmux property
-at all AFAICT! It seems to depend on aml_pctl_parse_functions() being called
-during probe which creates the groups and functions.
-There's a weird warning about expecting a function parent node that seems
-very amlogic specific too.
-
-In my eyes, there should be some generic dt_node_to_map helpers that
-do it all for you on the "configuration entirely described in dt"
-platforms because that's what stuff like spacemit k1 driver that do
-this in their dt_node_to_map implementations.
-
-I'm not gonna get in over my head, and just make a helper for doing the
-pins + function thing that I need for my driver, but would you be open
-to an equivalent for the pinmux scenario? I'm thinking of something
-that'd work for both the amlogic platform and for the spacemit k1.
-
-Cheers,
-Conor.
-
---rmbc813uVSMJILcK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSSukAAKCRB4tDGHoIJi
-0v7tAQCE+f8Vu6sOG5cOAzVKQr8MbErGz6Y2M6fG3MXHAQl10AD/Ya51G8APuv5f
-kKCgNoA0MYNJkYeUaYwlwvSo11z7GQc=
-=Ax6Z
------END PGP SIGNATURE-----
-
---rmbc813uVSMJILcK--
+Best regards,
+Krzysztof
 
