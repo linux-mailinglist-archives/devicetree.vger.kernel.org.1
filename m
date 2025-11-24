@@ -1,119 +1,120 @@
-Return-Path: <devicetree+bounces-241786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE15FC829DA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 22:59:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15253C829FF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 23:08:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E5CD24E15E1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 21:59:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DF043AD79D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 22:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35EAA331A78;
-	Mon, 24 Nov 2025 21:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AA5B334C2A;
+	Mon, 24 Nov 2025 22:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="f1oBHbPT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yi4Lmhlp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB10331A46;
-	Mon, 24 Nov 2025 21:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C7022BDC0E;
+	Mon, 24 Nov 2025 22:08:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764021583; cv=none; b=dRCOnT2jDUPwsarx8fPWBw/7hbNQB9ziY/XeYLLJvrjao6bv7T5n5ONzw21U/Bhv2jdOYRka2bNoPBiTNo0auk3C/JPD4Q8cbnScgIte5CDjFlgDYkyiqL8pabSAEhtXzrtG3WpRY1Zskb7V8RUqYLU1kuB9uUpWwl8HQiy95cM=
+	t=1764022084; cv=none; b=JGK2hydwdNg7FvIQMnx1rbU86o1t+uLuIQMvc6yX6WtaTHu7mML45BvroO0gvUm+g+1NMxyJwzYO1wJgXRr3ds9TzRUE4u4So3487tqtSFY0t2NZwCoMpiI+khI+HwfgmlfzFVjG/HpKftnwuqza8jWHcYST4gTJYQ6os8QT1ME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764021583; c=relaxed/simple;
-	bh=mK+QAMIc1p+PHjIilJtkR9BIDapdCJ9FM51rQ+CBi2Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=alQ/MzUMQoFhtYj46Y/8M4OzY0LO6GWfIJoAiyc2CAaBBEV1aRMDQJKBHu8OjULpo+mw58S1/FNJX74xvYcQe0iIYTPkU+cEFK5x0F+lQa3s86fPNESzSBvC0P0JbOs3Nkt2dZHzi0ctDKmd2NxxO9LlzenL+03KVySEnxBOO0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=f1oBHbPT; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1764021550;
-	bh=hA/ZGY6qxxf/8F0kJfLsWVi4AY9tMhPfGGSBzlI1JF8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=f1oBHbPT5U4wCG0QPZkAG80xrZ1G4Wzy2j694ZoyyAELsv+7imqYgvdFVH11YVjg5
-	 NSSH1p3s0L0rvv+S1nOljGJWw3byzCEcqnAI5gfuNvVGqqYwwfaIkOTrOrnQHC0R7m
-	 Z/gSOga64h3WG6PJfo53hyp8FIQW4JuhtxU96p+CO+z+pZEBSeq/wu8BzYm1K7SATT
-	 tEFipsgmTp0V6V44ir+nALY+d3qSFVP+0xy1Osu3o/d/3v4gY9syuXeTQL3vEn2DO8
-	 8l4EIX5QbgQ27ZRjwb11UeKj5H9zFihQnD8twDKsCRUzhf63Qu2zMLnxIt9z02ZFiy
-	 9TslpPsgfONvA==
-Received: from [192.168.2.54] (unknown [143.105.119.236])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 312D2B2211B2;
-	Mon, 24 Nov 2025 22:59:07 +0100 (CET)
-Message-ID: <0e851ca0-1f56-437d-ae14-094c114d3b77@freeshell.de>
-Date: Mon, 24 Nov 2025 13:59:05 -0800
+	s=arc-20240116; t=1764022084; c=relaxed/simple;
+	bh=tRIizhAm0T07j/KjWlRXHqsJfg1L4Mqka5PJmjK76b8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LiH2V/aI1jaXQlZbOTC4ePGEZA/IB2/SdufEOELGleJkrlCHm/S0p8J8PwoK2nVeoOPOZ16BwXNSRfHZ+hb5w25r9/FJpgmRe11Zy45P4r1HNBEAP16mgppvbvjrTB439xw+PW4d5xfpkQI3NUr4VL4rIyJI0zcs45vbjQnyRVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yi4Lmhlp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 442DBC4CEF1;
+	Mon, 24 Nov 2025 22:08:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764022082;
+	bh=tRIizhAm0T07j/KjWlRXHqsJfg1L4Mqka5PJmjK76b8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Yi4Lmhlpw+CmUaQsBeZJ/CC0+dmrJeDNcb2LB4tkQo0gJ1gwcsormH560h7ZdKxZS
+	 f0o5n8vJnBtRz5WTql7AOBmEYgDOdxOYvQqMU842AMM7Q3WkVDHSwwsDBIjPizJQg8
+	 DcgwbQJiluIeZ8MltHdHv0W5vgeAVABVYPYXttj+4ekyBxh+mIRYUJg72/EVSGvmhN
+	 BDlTITqJ5+ixP3E+STbmbZGLSLcBI8ttejkwOOpllGQgPwslKjJeK1wmJXjxQvd3S3
+	 nb0sVqo4SiZJwj3bn4ax/hrbfkMP8MO6kOPacC5KeqEUPouboxVINkO/FDAHmMor6G
+	 YAhEmb2jo6moA==
+Date: Mon, 24 Nov 2025 14:08:00 -0800
+From: Drew Fustini <fustini@kernel.org>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
+Subject: Re: [PATCH 2/7] clk: thead: th1520-ap: Poll for PLL lock and wait
+ for stability
+Message-ID: <aSTXQG5yIIGFjflG@x1>
+References: <20251120131416.26236-1-ziyao@disroot.org>
+ <20251120131416.26236-3-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: riscv: starfive: add
- xunlong,orangepi-rv
-To: Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Michael Zhu <michael.zhu@starfivetech.com>,
- Drew Fustini <drew@beagleboard.org>, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- Icenowy Zheng <uwu@icenowy.me>
-References: <20251123225059.49665-1-e@freeshell.de>
- <20251123225059.49665-2-e@freeshell.de>
- <20251124-free-bandicoot-of-skill-fa7d9a@kuoka>
- <20251124-state-campsite-3e7788a495c1@spud>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20251124-state-campsite-3e7788a495c1@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251120131416.26236-3-ziyao@disroot.org>
 
-
-On 11/24/25 05:22, Conor Dooley wrote:
-> On Mon, Nov 24, 2025 at 08:28:10AM +0100, Krzysztof Kozlowski wrote:
->> On Sun, Nov 23, 2025 at 02:50:44PM -0800, E Shattow wrote:
->>> From: Icenowy Zheng <uwu@icenowy.me>
->>>
->>> Add "xunlong,orangepi-rv" as a StarFive JH7110 SoC-based board.
->>>
->>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
->>> Signed-off-by: E Shattow <e@freeshell.de>
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
+On Thu, Nov 20, 2025 at 01:14:11PM +0000, Yao Zi wrote:
+> All PLLs found on TH1520 SoC take 21250ns at maximum to lock, and their
+> lock status is indicated by register PLL_STS (offset 0x80 inside AP
+> clock controller). We should poll the register to ensure the PLL
+> actually locks after enabling it.
 > 
-> It's from me, don't resubmit just to add it since it'll be me applying
-> anyway.
+> Furthermore, a 30us delay is added after enabling the PLL, after which
+> the PLL could be considered stable as stated by vendor clock code.
 > 
+> Fixes: 56a48c1833aa ("clk: thead: add support for enabling/disabling PLLs")
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> ---
+>  drivers/clk/thead/clk-th1520-ap.c | 34 +++++++++++++++++++++++++++++--
+>  1 file changed, 32 insertions(+), 2 deletions(-)
 
-Hi Conor,
+Thanks for working on this patch series.
 
-Okay. Yes I'd dropped the tag since the commit message is appreciably
-different, and you would be handling it again anyways. Thanks! And thank
-you Krzysztof for the reminder -E
+[...]
+> @@ -299,9 +310,21 @@ static void ccu_pll_disable(struct clk_hw *hw)
+>  static int ccu_pll_enable(struct clk_hw *hw)
+>  {
+>  	struct ccu_pll *pll = hw_to_ccu_pll(hw);
+> +	u32 reg;
+> +	int ret;
+>  
+> -	return regmap_clear_bits(pll->common.map, pll->common.cfg1,
+> -				 TH1520_PLL_VCO_RST);
+> +	regmap_clear_bits(pll->common.map, pll->common.cfg1,
+> +			  TH1520_PLL_VCO_RST);
+> +
+> +	ret = regmap_read_poll_timeout_atomic(pll->common.map, TH1520_PLL_STS,
+> +					      reg, reg & pll->lock_sts_mask,
+> +					      5, TH1520_PLL_LOCK_TIMEOUT_US);
 
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->> versions of patchset, under or above your Signed-off-by tag, unless
->> patch changed significantly (e.g. new properties added to the DT
->> bindings). Tag is "received", when provided in a message replied to you
->> on the mailing list. Tools like b4 can help here. However, there's no
->> need to repost patches *only* to add the tags. The upstream maintainer
->> will do that for tags received on the version they apply.
->>
->> Please read:
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->> </form letter>
+Is there a reason for the specific value of 5 uS polling delay?
 
+> +	if (ret)
+> +		return ret;
+> +
+> +	udelay(TH1520_PLL_STABLE_DELAY_US);
+
+Is it the case that the 30 uS delay after the lock bit is set is just so
+that it has the same behavior as the vendor's code? Or did you notice
+stability problems without this?
+
+Thanks,
+Drew
 
