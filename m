@@ -1,255 +1,165 @@
-Return-Path: <devicetree+bounces-241619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3A23C80225
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:12:25 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84DF1C8020D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:11:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AA7EC348022
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:10:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D4B0F4E6339
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83E8D2FC881;
-	Mon, 24 Nov 2025 11:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E76C2FD675;
+	Mon, 24 Nov 2025 11:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="nPZy+YZv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H/xS5WVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8859F2749FE;
-	Mon, 24 Nov 2025 11:09:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763982566; cv=pass; b=o3MV+gihkiuMSbAk0sn1e0Fk2ByZNBdJJePy5trjSVmm0iqTdv2cHCk5C+h6eEtP/xhu0lbn2o8zWIQoCAQJjWNmSrDSZ6Loxq0jXtPxn7oP/NsE9LupAKwNYfbKUd7HWTZs4uZQIAGk+ka/qeGO4jJg6Ql9FO5Rruwn31HEHYE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763982566; c=relaxed/simple;
-	bh=YDFfcBn0c5x3mM0XZdA1SdYtIMqprY2W/a/3aBZk8eg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Zbqh3CzkOhujpfuNJE/HIwTS4o+fFUWNVnY3aiVCRpKasHdH6YpJpy26Vl6q9cXgo/2sS7kPS4839kqsjYAA+RAqVCvTpyqHcKXSU4+KjkOi+eIS7zKVkb7uujXRAGjAu4iPdrX7//QmzE52DjCdvoaVeU0MqfwZN3R6JXtEIK0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=nPZy+YZv; arc=pass smtp.client-ip=136.143.184.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1763982543; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=fHbRXG5zcPi5U3auT3myCfCfZXNeSkv3n4bnbaf+eOjT2X+1+G+7st0tKRfcLBPrIaAiu2KVHPRauFbtOlo2x3hHcBFsMFxHjKW1t08t2xnIApylZzFNWCKVnNpxzdNDIsraEi/dYXty83B9lemwIMPkPzOYuqsNg9kzkwmYqII=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1763982543; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=YDFfcBn0c5x3mM0XZdA1SdYtIMqprY2W/a/3aBZk8eg=; 
-	b=OJE+FPDFP+NWe7tR+xtxFeAXVNTm19SlFZXR8DaZgQEKkc0Yfi5r4ERWuB/rFbwMeU4kUnAy0qlQNUzBKecUeVdg7r8emQEFkp436JcN8lpVuTlTKDiRJbnD42kol4Lh4AwD8FChPD+xJM9nx8gTfnLVv+ztUVHiIkOmYTgv/Ic=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763982543;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=YDFfcBn0c5x3mM0XZdA1SdYtIMqprY2W/a/3aBZk8eg=;
-	b=nPZy+YZv09KvfuBaoRJtwgaWZn1QGMcqg/PqQmimGXwagT1tALFQOmcMx2D3G+h5
-	4MEkZE81SbnR8cUQvxgYuD13rEJrx0/NXOpFQk2mwr9nnSR2wXbs/ggYT2iSeGTQSI7
-	ScThndxBlOcLhPcO2rfOAvheE2z/htwlAo5aKjDDruqgrfnS+VgxEioDOGMtzzv3OIJ
-	hvByjHNi79SUFCeemQHvbC0U2Yju/k3K82/QPLdhvNv/+bWK3HhVzNHBwnlXSfFACL3
-	RQrxQnnl0NKE/AcB12Fih5gx7jHeLrrg+QteNpAYDu7IyOr6HXbN0KeXkptEcQI0/BX
-	QljCT3VPYQ==
-Received: by mx.zohomail.com with SMTPS id 1763982541277419.2649646713086;
-	Mon, 24 Nov 2025 03:09:01 -0800 (PST)
-Message-ID: <1f0885a31e8fd9f4cd667c05fef818c8a38203e7.camel@icenowy.me>
-Subject: Re: [PATCH v3 2/2] riscv: dts: starfive: add Orange Pi RV
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Conor Dooley <conor@kernel.org>, E Shattow <e@freeshell.de>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org,  devicetree@vger.kernel.org, Conor Dooley
- <conor+dt@kernel.org>
-Date: Mon, 24 Nov 2025 19:08:55 +0800
-In-Reply-To: <20251124-blaming-duplicity-fb1311864b3f@spud>
-References: <20251123225059.49665-1-e@freeshell.de>
-	 <20251123225059.49665-3-e@freeshell.de>
-	 <20251124-blaming-duplicity-fb1311864b3f@spud>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D992C2FB093;
+	Mon, 24 Nov 2025 11:09:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763982592; cv=none; b=lV6JcoYllLHYxKdAjxQz4ovz7VL48NemGUlWTm+c59J/zUuHooEt92x73kGJJ3Vf4YqB1ZG2nfbgtgKNBKoGeNgntK1PMIjwirxzdzZJCH6J+QNFsgM+XrEoPqe991FhS5EPGYqElepGuXlDUxLEXA0hGy7LM8I2EUQP1kg70L0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763982592; c=relaxed/simple;
+	bh=gPHrEfRpBYcJQFCAIEhRO0jHSzp5CJc+al28X0wZFOE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NSj+YCnm5TaCDyhn7cLxLFhJm1FYxaiHkfZ3GcyNCXJ0MJGr9O0qwEVAXdqdDi6L6WBpaO1e6GPvF89ojSf8oWHZmoBpgYp19dnHHYZa8d5Xrkq2eEhHoK1l98uvqdlQ+q9c7p3B4Bb+UKUwnBZwfo+SmuyK6KIorJa+JUVTMbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H/xS5WVU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CC58C4CEF1;
+	Mon, 24 Nov 2025 11:09:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763982592;
+	bh=gPHrEfRpBYcJQFCAIEhRO0jHSzp5CJc+al28X0wZFOE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=H/xS5WVUORZR8PEbfQ6ea2AYAI+MUWKQM/vAozKQ4vt2V+vfSWYqYfVVqEFEBYBwK
+	 uOi2rdsxX5qob2SPQcPqxe6PiSUWBS8zzd5YWDwRFDaoc3jEGdDd0R5S/E/uh6y2Op
+	 kCfnuDH6YhdGrZpwZvQBao1fzSMLa7pXpOjz8HTAoUn6SJ3oTmV4zNFJE9bh5uRbNZ
+	 Zsz1M7lXLWDI1OVA5dTk/UF9xRQOQpEyzjixXsMjfGhxYUumnF+dphIrtwU+FC95mM
+	 3HfWmHVoGLUN/hZWuREynZixfIr1TDRd+0MiLHSOSdt3RLwGs1SyjrsQB/aHgCovBr
+	 SWPkzo6LG7+Fw==
+Message-ID: <c26dabfb-c4af-428b-a1d4-d626f37ff559@kernel.org>
+Date: Mon, 24 Nov 2025 12:09:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
+To: Icenowy Zheng <uwu@icenowy.me>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20251124105226.2860845-1-uwu@icenowy.me>
+ <20251124105226.2860845-3-uwu@icenowy.me>
+ <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
+ <f7bbb57180866a0674fc1d72d4bd3279c7b1c1e9.camel@icenowy.me>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <f7bbb57180866a0674fc1d72d4bd3279c7b1c1e9.camel@icenowy.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-=E5=9C=A8 2025-11-24=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 11:07 +0000=EF=BC=
-=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> On Sun, Nov 23, 2025 at 02:50:45PM -0800, E Shattow wrote:
-> > From: Icenowy Zheng <uwu@icenowy.me>
-> >=20
-> > Orange Pi RV is a SBC based on the StarFive VisionFive 2 board.
-> >=20
-> > Orange Pi RV features:
-> >=20
-> > - StarFive JH7110 SoC
-> > - GbE port connected to JH7110 GMAC0 via YT8531 PHY
-> > - 4x USB ports via VL805 PCIe USB controller connected to JH7110
-> > pcie0
-> > - M.2 M-key slot connected to JH7110 pcie1
-> > - HDMI video output
-> > - 3.5mm audio output
-> > - Ampak AP6256 SDIO Wi-Fi/Bluetooth module on mmc0
-> > - microSD slot on mmc1
-> > - SPI NOR flash memory
-> > - 24c02 EEPROM (read only by default)
-> >=20
-> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > Signed-off-by: E Shattow <e@freeshell.de>
-> > ---
-> > =C2=A0arch/riscv/boot/dts/starfive/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
-> > =C2=A0.../boot/dts/starfive/jh7110-orangepi-rv.dts=C2=A0 | 76
-> > +++++++++++++++++++
-> > =C2=A02 files changed, 77 insertions(+)
-> > =C2=A0create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi-
-> > rv.dts
-> >=20
-> > diff --git a/arch/riscv/boot/dts/starfive/Makefile
-> > b/arch/riscv/boot/dts/starfive/Makefile
-> > index 62b659f89ba7..d34c8c79bc10 100644
-> > --- a/arch/riscv/boot/dts/starfive/Makefile
-> > +++ b/arch/riscv/boot/dts/starfive/Makefile
-> > @@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-
-> > deepcomputing-fml13v01.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-mars.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-marscm-emmc.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-marscm-lite.dtb
-> > +dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-orangepi-rv.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-pine64-star64.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-
-> > v1.2a.dtb
-> > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-
-> > v1.3b.dtb
-> > diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-> > b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-> > new file mode 100644
-> > index 000000000000..16ec2767134e
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-> > @@ -0,0 +1,76 @@
-> > +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> > +/*
-> > + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include "jh7110-common.dtsi"
-> > +
-> > +/ {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0model =3D "Xunlong Orange Pi=
- RV";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "xunlong,oran=
-gepi-rv", "starfive,jh7110";
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* This regulator is always =
-on by hardware */
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg_vcc3v3_pcie: regulator-v=
-cc3v3-pcie {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0compatible =3D "regulator-fixed";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vcc3v3-pcie";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D <3300000>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D <3300000>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0wifi_pwrseq: wifi-pwrseq {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0compatible =3D "mmc-pwrseq-simple";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0reset-gpios =3D <&sysgpio 62 GPIO_ACTIVE_LOW>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> > +};
-> > +
-> > +&gmac0 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0assigned-clocks =3D <&aoncrg=
- JH7110_AONCLK_GMAC0_TX>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0assigned-clock-parents =3D <=
-&aoncrg
-> > JH7110_AONCLK_GMAC0_RMII_RTX>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0starfive,tx-use-rgmii-clk;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
-> > +};
-> > +
-> > +&mmc0 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <0>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cap-sd-highspeed;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmc-pwrseq =3D <&wifi_pwrseq=
->;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vmmc-supply =3D <&reg_vcc3v3=
-_pcie>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vqmmc-supply =3D <&vcc_3v3>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ap6256: wifi@1 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0compatible =3D "brcm,bcm43456-fmac", "brcm,bcm4329-
-> > fmac";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0reg =3D <1>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0/* TODO: out-of-band IRQ on GPIO21 */
->=20
-> What's up with this TODO? Why's the gpio not here? Missing binding
-> support, missing driver support?
+On 24/11/2025 12:04, Icenowy Zheng wrote:
+> 在 2025-11-24星期一的 12:01 +0100，Krzysztof Kozlowski写道：
+>> On 24/11/2025 11:52, Icenowy Zheng wrote:
+>>> Verisilicon has a series of display controllers prefixed with DC
+>>> and
+>>> with self-identification facility like their GC series GPUs.
+>>>
+>>> Add a device tree binding for it.
+>>>
+>>> Depends on the specific DC model, it can have either one or two
+>>> display
+>>> outputs, and each display output could be set to DPI signal or "DP"
+>>> signal (which seems to be some plain parallel bus to HDMI
+>>> controllers).
+>>>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+>>> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+>>
+>> Wrong DCO chain order. You send it as icenowy.me, so this must be
+>> last
+>> SoB. This identity is the last one certifying DCO. Please kindly read
+>> submitting patches, so you know what you are certifying here.
+> 
+> Well I mapped the @iscas.ac.cn mail to the @icenowy.me one in the last
+> patch.
+> 
+> Or maybe I should make it the first patch?
 
-Missing driver support in the pinctrl driver.
+.mailmap has effect on b4 and git send-email, so maybe that's the
+answer. The problem is that:
+1. This email has sender address @icenowy.me
+2. It's SoB is not the last one.
 
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> > +};
-> > +
-> > +&mmc1 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cd-gpios =3D <&sysgpio 41 GP=
-IO_ACTIVE_HIGH>;
-> > +};
-> > +
-> > +&pcie0 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
-> > +};
-> > +
-> > +&pcie1 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
-> > +};
-> > +
-> > +&phy0 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0rx-internal-delay-ps =3D <15=
-00>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0tx-internal-delay-ps =3D <15=
-00>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,rx-clk-drv-microam=
-p =3D <3970>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,rx-data-drv-microa=
-mp =3D <2910>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,tx-clk-adj-enabled=
-;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,tx-clk-10-inverted=
-;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,tx-clk-100-inverte=
-d;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,tx-clk-1000-invert=
-ed;
-> > +};
-> > +
-> > +&pwmdac {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
-> > +};
-> > --=20
-> > 2.50.0
-> >=20
+This needs to be fixed. The order of patches for me does not matter, I
+don't think it would fix the issue here either.
 
+Anyway, please trim your responses, so I will not have to scroll through
+lines of code to find that you did not respond there.
+
+
+
+Best regards,
+Krzysztof
 
