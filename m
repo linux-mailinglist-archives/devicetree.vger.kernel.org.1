@@ -1,274 +1,302 @@
-Return-Path: <devicetree+bounces-241747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F57BC81E4B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:28:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5158C81E72
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:30:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1CD24348C42
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:28:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE6813AB4B3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492BC23816C;
-	Mon, 24 Nov 2025 17:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F6052C11E9;
+	Mon, 24 Nov 2025 17:29:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="AieUxMHp"
+	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="aFxsDuRC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013008.outbound.protection.outlook.com [52.101.72.8])
+Received: from mail.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06489258CE2;
-	Mon, 24 Nov 2025 17:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764005295; cv=fail; b=r0/Xi2rGATdZlB0Qd+kQoiYZe/jPuupBKKEkoypYmCTKiB7MRKsaCUrMaczS26TA2e738MRtJFRDux8UFP4kyXrM8NgXgCOUjncBMDMH27kglkWZsU3EExEriBWs2U549uwUZcLdCBvcECVx3MU1u+rqC2QGVEiZuoPCRL4m9y0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764005295; c=relaxed/simple;
-	bh=L0ECg7rOplhj7d0CC5QvJa6BENbrVwpT6FyCo3davc0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=a1nExz4eml9qhoOiDJOjk7ieVDKLI1PWNH4DR7lIxUd4nyoNRAPmvvqKxqgGd+uAVTrwz3zVJBZpegdmCAMAAsgKrVAJJLA79zyzITLsEYNn6DDp/K2MvdzaPlYirHoxha2GJb4qh4IsdjOy5NfFdNixRmxJ0/oMYausDWSzDUk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=AieUxMHp; arc=fail smtp.client-ip=52.101.72.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sfCSujHyzjTBsiop1ZZIGcr8ARsuaQK02eCYyGib+wlQ/iWAFWRVntMXaNspGjz/RwA84OJ1VWNEz0Bm0Oz3ErPmGzxw/3aNtdrAW/1f4wxjZSWsuIZ91oJUgmjTO8ugciPYizYSI+k/lbj9AdRluKnOMminjU/7BSlzMKmeSO7hIwaBeN4n28slWx0PxniAo82vZqEQ9vaZ/IH7fxwepd486gmPLDHtQH+VWDzHBHEye45Rr6uicqJHPyi4w678LJ1788/YBN9NcVu03ZyVv29fpDVhkGMwYuC08tUlWh3BrDi9LG/iu0yENUofHudBxbIRHi28NT9GRV2ZQFF3DQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Sx+MhwzhVSwplhT9ipuTcXCFgwvnH0gF0LB47snwiUo=;
- b=os3qzTS+YMBs0HtyowQu3T6iRE6DIY0k/tHOijZp8Hv1XU9P9wuWSmppAtUkELjisFrxkmLT5c4l//58hUQjaEY9QKxM/HvcKuUtdCq9xq0vgHROtn1e9aqhyrYy8Q2iXRfGX4ZGGwtpuj6hs8BiyusmbiBXOKE9kYavaMvpHrqyrWiRn0N04yzR3Tfp3RLfr6YVZgdRVooOcy9b51NLa7CWMNsIhkQO7WiMNT8Xir9Z0Gjr6kvz2ouIM4iZPr5bIctxugoJovGwnP5ivfHU3ZXxeVgsQj4oB9KHueAHo4apUHTaFmZrSJqsPy7Yvv5wdXbsBhax8hDCXqLBsx6ETA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Sx+MhwzhVSwplhT9ipuTcXCFgwvnH0gF0LB47snwiUo=;
- b=AieUxMHprTNrqMM1USi1g5SoDdMJ31t+rqN/vizvinrka1Rqi+VOP9VUWC+U/Vpm+RXRKPzki6UKOtzwSlDvggxP/OJoijaOllT0ucBZDzBvriDlvH60y8Tv4nSB4jTqjW2NJThy0/54MY460ZuAohlYAhvgvt5XI5TcgEMee3Y/jCTN6XmakBeNGCd4jAvAfoI4HCHCZyuUdsnqzIulvOQqmuo9oN69E01SiPPxGcWuaDe2xXIYYtqo+tCpKuPJpd0H7x5tCQyc+ZxCsmfAKIL4U1GTbEMV/0SfMODgrvBfEQqn+Sr/HQW1Riac4xhc6c9wjcWVMWBN8VGqxk3uOw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
- by DU2PR04MB8869.eurprd04.prod.outlook.com (2603:10a6:10:2e0::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Mon, 24 Nov
- 2025 17:28:09 +0000
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9343.016; Mon, 24 Nov 2025
- 17:28:09 +0000
-Date: Mon, 24 Nov 2025 12:28:00 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA7AB2C08CA;
+	Mon, 24 Nov 2025 17:29:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764005361; cv=none; b=Bf51ggjOLG4VGhyKnF424L+t7aKm1S+qyY/fOU3F2HUUNpaQOW7auuiWLGoVwgvJry93KgqD+eFCwmAy42S0614jRr89Nvh8K4Nvz5/VDafvjvHedkh8lpTPq6tmECRPKmqjvEYN70rmZIsD/yhvp2aKFBMsZbQUrhv7pfWMzuQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764005361; c=relaxed/simple;
+	bh=pZK7vppatgHDpAKvfeBDFUvY5cNqTwlkjr6axCAT14U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bHzmOkyM0TOQWRQ4uRjScYKlixYPu9AQ1aLNtuIu+eX4+x7EZt+1zGlCPUvRbxIVauN/thggrMRVrYx3zaeHWEKgM1tkKDtXDc3XspAoz+ZPThLV+XzIi3a+q2LespD4nDY62A4yAfqzp5G9jgkGyh75QS9/XFxunh9a6EOEMxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=aFxsDuRC; arc=none smtp.client-ip=172.105.74.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
+Received: from lipo.home.arpa (unknown [IPv6:2a02:2f0e:3e0c:5b00:f1e0:3f4b:286c:9ddb])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 5FD81160209;
+	Mon, 24 Nov 2025 19:29:09 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
+	s=mail; t=1764005349;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/wX3MhZ4d9SWgJbAQdtWpWHsxoS+X0UtYW/P4qrtNcE=;
+	b=aFxsDuRCQZ/nfwG8TI7hBVV4nQ3lyC7V5k02FTjdL7UVhL5OLbSJLlwfhKkjMbzW+ffsMf
+	MkEH5nkUH4LZym/HeBk2f7L37fWlePbdBrNER+KB7xTGgk1nrv2kZVu/hyjhLTsoZz7p3F
+	adTSv5VUI72O4yoK/bnoFbcHVOQZDL09ja5gDdyU+CjRd637AZNwB7bwV8ZwzAb8MZQ9+X
+	argWfxqzjHFgz4DSiqkdvWlvenct1m2WccMRB8EoTUzE6sd5spVUVQ5rhWuzJatsPN8qh0
+	He+czEB5m5HlDzLFcg5O4pUyPYA42JkEeSGCsQI7ZZa2qZzh6JwkeTNfOrCU7w==
+Date: Mon, 24 Nov 2025 19:29:06 +0200
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v3 4/5] remoteproc: imx_rproc: Add support for System
- Manager API
-Message-ID: <aSSVoOi3VIn7LefK@lizhi-Precision-Tower-5810>
-References: <20251122-imx95-rproc-2025-11-20-v3-0-9ae6ee619a78@nxp.com>
- <20251122-imx95-rproc-2025-11-20-v3-4-9ae6ee619a78@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251122-imx95-rproc-2025-11-20-v3-4-9ae6ee619a78@nxp.com>
-X-ClientProxiedBy: PH7PR13CA0013.namprd13.prod.outlook.com
- (2603:10b6:510:174::11) To DU2PR04MB8951.eurprd04.prod.outlook.com
- (2603:10a6:10:2e2::22)
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: pressure: add Honeywell ABP2 driver
+Message-ID: <aSSV4lxzatAFds5e@lipo.home.arpa>
+References: <20251122-honeywell_abp2_driver-v1-0-7a8e265f9627@subdimension.ro>
+ <20251122-honeywell_abp2_driver-v1-2-7a8e265f9627@subdimension.ro>
+ <aSRF-DL3rKjyFleg@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|DU2PR04MB8869:EE_
-X-MS-Office365-Filtering-Correlation-Id: 56fca6ca-9ed9-4cd0-3eaa-08de2b7ed641
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|7416014|376014|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?xymoZBdbsL5cxL/4q4QeKXisQ4EUVS0X7HD2US0tiBpY2nGHtgpzfAz1uvCY?=
- =?us-ascii?Q?6EMdJ6e6zReok3v86sah/xCuoK9I1oowVpeU6tfeLCerovP1AxpeywhW1iVv?=
- =?us-ascii?Q?50Ilc0JzjnTMZkOkQ12NHj3Aa+H/8rIRWUeQpW14cVWQNWIPOFdi4tzbrQjV?=
- =?us-ascii?Q?/JJNr5D035Uvbo7Gx+tCoC8ZlQx6+Xht4En7AFhyqDT/S6t9vNXVlkwbvSHX?=
- =?us-ascii?Q?DEDHikeVt1WHDPK4T+sTJymMyjgwGmSnTEo32wSw0hpmdaX8HVUJo1xnlAps?=
- =?us-ascii?Q?Fvg5oq8m/Mpi/WYIIMCbDMpCIFiuSrdlE7jMSz4m10B8yDR7/Y2qnfk+qhBU?=
- =?us-ascii?Q?bfMuL/EPHPBYqf8L4+XG3X9d97QlOFwfIzMC0P+dXKAq2fv0achCP7fKF6nw?=
- =?us-ascii?Q?1hPe6UBVMdCplJNZLQSL4gX4H0e+1/FfmObEy8SisnAUds5ZaDwbt4v/OhKe?=
- =?us-ascii?Q?WSyPt3V2pJ66KblJt/PrAo+ig8n6fNGzC9Y457I8IlhSYnv8tpXSIHi1DyLa?=
- =?us-ascii?Q?RRsE5Il12v26xf4H0n82BVnx8WtPfYMSRXMN9okPiCgH/XUACWUXY47LK3vC?=
- =?us-ascii?Q?uZGHfMSveyfridquXLwpaUlA79o4gnX8vqXvHO8crG4lQAPG2tCyZeaGhv8x?=
- =?us-ascii?Q?GfjKlqaJZOcDemIFbTDhNreKBWgtGJLQNsRnu2EmLxZtvlhTp3sdsbjtTg1/?=
- =?us-ascii?Q?iuIsk0fDsZAM9Dxnnc6Nx4Dep4BGZNxHyeqsoicVgBBZAcsFTkBC2qT44tWR?=
- =?us-ascii?Q?B7kfjx5ouoQA2EphYC7+baOg5l998DbPOSbnFIBH+XQ0MVmG4QFCM12ABnTm?=
- =?us-ascii?Q?jKG0Yf70xdno+20aI27dMJcB60jEHcDoo0i495lrjXZdfgntyim8lCRAye8H?=
- =?us-ascii?Q?5m4XUnzgoqzV3P4Eez7K++tn2ialfcJWu4oRR+W2KT5ttdDJA5agiCZxarBB?=
- =?us-ascii?Q?oi4c0lR2lGmlesFQwEQzccOWPzUH3qTHV7F5rDi1expCXO3FGGFfTrU6eggS?=
- =?us-ascii?Q?0Gq8aAryGUqci5jWhkq2KXNKyfdDzaMEdN6DrjzCfSPM/ghWVqX9G4wXmK2f?=
- =?us-ascii?Q?SV696XzCpIGiGQrttDizKeJ5fTy4wv2qukmuEhIfIa5zoiU8x02hBFUwrxBv?=
- =?us-ascii?Q?nKpC5m2iWFdINfbxA2iL4SATbBlaJ3Syo/eNRu9RsZ6G4XiGATICyy258QZZ?=
- =?us-ascii?Q?mOoW+xNWDvjbM0vGAnB/8PXd5ByUEubXu1V7GTLc4gmhtrqGg+z2YxDydyAR?=
- =?us-ascii?Q?Bmfknn2dUVk6v4/3MyAZDBunPn8wMaXDVSdtp/tEzZ9VLxIbxr6YMlvINRf+?=
- =?us-ascii?Q?Iv9bL+vcr8bU23FDSxbjms3EA7IbVriSBtmykZjfjDvdRjlSZ9RWEU1GOUKX?=
- =?us-ascii?Q?TgUUcJvbbfTMFZ+gl9LU9jyvu8R06m7+aVJYmzfPW2nVZmsGRJ694Ge062Ji?=
- =?us-ascii?Q?iVlOqxQKsLJ7EqiEKeMrK5W2cvutYrkbaE7WPVzYIWgFxgC4b+DvhiJqbKc6?=
- =?us-ascii?Q?NZzVmIpD2v+45XkJynk1BrhMU+Y73491v0dZ?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?0K7r0H6vMaxlEMGw5nOK+IHYkLD48w3CJw2Tiyp3wE68mb+8MZQH1WJfO5+P?=
- =?us-ascii?Q?b4o9lB6EDGLj8HGucx2zeUrU9D6S0bjEOcgkX3u0V1b7NmeDiCwH6ORlGh8g?=
- =?us-ascii?Q?KY2aW7EbxD8aZ+GbURimIA7or2jA+Xnvxad8S+RbpycHo2IB8zIsx5ZDhxSy?=
- =?us-ascii?Q?GUNg/Hux6hqVyw6lKlSZ5IQhdpW+a5BdnRniTh7RvmVKs4xNPfJFHMwtFP6Z?=
- =?us-ascii?Q?a8piXsROVDXS5BC/XZTJe4mAB6VB6+s5XFk0u/3ofOmxF/r58mB4yjsL7uBM?=
- =?us-ascii?Q?jvS8OtjKOP0AnAvmGTQEN6ShFZ3IrzlJeqpLNd7m3dk/EpJEeiifi7DhcWqV?=
- =?us-ascii?Q?sG6dhcSvVr6thcSxvhzvaA1N5zao4iC60U850vBezzKtmNNtpGdCaLHLY3E6?=
- =?us-ascii?Q?ElCfaoDB+uoVoG7f8pWWPeiT8U6Ow1VBsZhClshTgpXfPUEQFwqJkDDOVci5?=
- =?us-ascii?Q?cOM8BDhYCCuWhEvb17TTgqlh8B8EeBavJPvmFDEHSwVCf57Z/By/BeeBNEEH?=
- =?us-ascii?Q?gy8IONqnUMroM2oz6UxnRLxpkXpagqD0CaZmecmmvfu6gXtuCFuIvFr5DIu1?=
- =?us-ascii?Q?QsXtkNV7yL/+Wr4duXmd7UayDDKhsvGPzOsGOBn4SQV1Vjt3qLy4zKPP7qaA?=
- =?us-ascii?Q?3+/eWBErGBfKb1ykFEMFZmlO8uEgUtl+5VEoGplMpjxQARHr7UiV0CC7f2Vu?=
- =?us-ascii?Q?9YcUk6yoxbn+7/RiHIoH0FDahL7m6DVY0NUV+KM17OepTddv5e6xdyk2YDbY?=
- =?us-ascii?Q?i0uXRT5+r1f6wgV6Jp37079WGvalZgPZAfCefqwEFktZ3RJHkeqfTyM+8oEz?=
- =?us-ascii?Q?QFAtCVNCm3HOrzuAOk6uVC+JcnfEuGJ+bQ9P953WDw8QeTHi0C5QVHxSrKvP?=
- =?us-ascii?Q?GnUC1MNek54i2z5krm9izJcE3n4di6icA/Xqqea7X2FJvDJs+4YQIzhc3cJM?=
- =?us-ascii?Q?wHKHgLVl6GFlBZGfzfbiWo9FDv/IbllDyx/mz48mo+6UUpJrOKWH1MqhsIES?=
- =?us-ascii?Q?7v/ZloCdzp1NpYupeaYOHlj3nkFftKRIBsQNcDo/aQcl7/Q1CxgyOLUkaopW?=
- =?us-ascii?Q?F501QM71u7KNWQ7apQi2yIWmzRuBTrHuPfgDuRAtayS6xCmaQmd38Mzt3kEb?=
- =?us-ascii?Q?cZz6bNgPEWtFRuA1HMnAEoLsIt+N6OgPGxX5TnKndX9D5KKyvrQGDLn53ra2?=
- =?us-ascii?Q?loie9XcDvQo41Ea8SdBim6Vm1R8A21X7S+4N7tXNdtWYVbXZzx92Ihvne0At?=
- =?us-ascii?Q?RmwVQEc5BfKtY6VhAL9ECLrN4I0YhPLJHgr1KsERNPNH+ea7Nvr6P4yoLPS7?=
- =?us-ascii?Q?p0wbwKtTksetrNvZQkc2vCaxhqbE9uZQzL20RUS/i8rkl3YXEVvunkBFsuua?=
- =?us-ascii?Q?MPLxet2qprIszfLxgOb3hKWxMi7UiwqwOnG7LbzihDqltQ9x1874Xy9tbbr3?=
- =?us-ascii?Q?U8QkqkL2C4wITA6ZBDGkN96I3lLeqTHDjfDioX7btMLyZ7WYz21VFxXOMGZU?=
- =?us-ascii?Q?EXbDOAvTr0BjRuJNiIJaLFy4xVmQU5XuzjP7CAcNyGQgQJjX5uK4Cn+iU9RO?=
- =?us-ascii?Q?ACN6GSNqYQhmgfi1euX00NvThbEoTi1Pt890UnIT?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 56fca6ca-9ed9-4cd0-3eaa-08de2b7ed641
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 17:28:09.5144
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: h1EJNFczDfJOME30LniH1cckSPTjfwkvlhvILEHtJ2g3FSLFTSdV6cM3r/w7/qXeKp3yNncvBWhe1yRMHl5JPQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8869
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <aSRF-DL3rKjyFleg@smile.fi.intel.com>
 
-On Sat, Nov 22, 2025 at 08:58:19AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
->
-> i.MX95 features a Cortex-M33 core, six Cortex-A55 cores, and
-> one Cortex-M7 core. The System Control Management Interface(SCMI)
-> firmware runs on the M33 core. The i.MX95 SCMI firmware named System
-> Manager(SM) includes vendor extension protocols, Logical Machine
-> Management(LMM) protocol and CPU protocol and etc.
->
-> Depending on SM configuration, M7 can be used as follows:
->  (1) M7 in a separate Logical Machine (LM) from A55 cores, that Linux
->      can't control
->  (2) M7 in a separate LM from A55 cores that Linux can control using LMM
->      protocol.
->  (3) M7 runs in same Logical Machine as A55 cores, so Linux can control it
->      using CPU protocol
->
-> So extend the driver to using LMM and CPU protocol to manage the M7 core.
->  - Compare linux LM ID(got using scmi_imx_lmm_info) and M7 LM ID(the ID
->    is fixed as 1 in SM firmware if M7 is in a separate LM),
->    if Linux LM ID equals M7 LM ID(linux and M7 in same LM), use CPU
->    protocol to start/stop. Otherwise, use LMM protocol to start/stop.
->    Whether using CPU or LMM protocol to start/stop, the M7 status
->    detection could use CPU protocol to detect started or not. So
->    in imx_rproc_detect_mode, use scmi_imx_cpu_started to check the
->    status of M7.
->  - For above case (1) and (2), Use SCMI_IMX_LMM_POWER_ON to detect whether
->    the M7 LM is under control of A55 LM.
->  - For above case , after using SCMI_IMX_LMM_POWER_ON to check
->    permission, SCMI_IMX_LMM_SHUTDOWN API should be called to shutdown
->    the M7 LM to save power only when M7 LM is going to be started by
->    remoteproc framework. Otherwise bypass SCMI_IMX_LMM_SHUTDOWN API if
->    M7 LM is started before booting Linux.
->
-> Current setup relies on pre-Linux software(U-Boot) to do M7 TCM ECC
-> initialization. In future, we could add the support in Linux to decouple
-> U-Boot and Linux.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/remoteproc/Kconfig     |   2 +
->  drivers/remoteproc/imx_rproc.c | 193 +++++++++++++++++++++++++++++++++++++++++
->  drivers/remoteproc/imx_rproc.h |   3 +
->  3 files changed, 198 insertions(+)
->
-...
-> +
-> +static int imx_rproc_sm_lmm_check(struct rproc *rproc, bool started)
-> +{
-> +	struct imx_rproc *priv = rproc->priv;
-> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
-> +	struct device *dev = priv->dev;
-> +	int ret;
-> +
-> +	/*
-> +	 * Use power on to do permission check. If rproc is in different LM,
-> +	 * and linux has permission to handle the LM, set IMX_RPROC_FLAGS_SM_LMM_AVAIL.
-> +	 */
-> +	ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_POWER_ON, 0);
-> +	if (ret != 0) {
 
-if (ret)
+hello Andy.
 
-> +		if (ret == -EACCES) {
-> +			/*
-> +			 * rproc LM is booted before Linux and not under Linux Control, so only
-> +			 * do IPC between RPROC and Linux, not return failure
-> +			 */
-> +			dev_info(dev, "lmm(%d) not under Linux Control\n", dcfg->lmid);
-> +			return 0;
-> +		}
-> +
-> +		dev_err(dev, "power on lmm(%d) failed: %d\n", dcfg->lmid, ret);
-> +		return ret;
-> +	}
-> +
-> +	priv->flags |= IMX_RPROC_FLAGS_SM_LMM_AVAIL;
-> +
-> +	/* rproc was started before boot Linux and under control of Linux, directly return */
-> +	if (started)
-> +		return 0;
+thank you for the review.
 
-should it be before scmi_imx_lmm_operation()? If started, supposed need
-check scmi_imx_lmm_operation()?
+On Mon, Nov 24, 2025 at 01:48:08PM +0200, Andy Shevchenko wrote:
+> On Sat, Nov 22, 2025 at 11:42:45PM +0200, Petre Rodan wrote:
+[..]
 
-Frank
-> +
-> +	/* else shutdown the LM to save power */
-> +	ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_SHUTDOWN, 0);
-> +	if (ret) {
-> +		priv->flags &= ~IMX_RPROC_FLAGS_SM_LMM_AVAIL;
-> +		dev_err(dev, "shutdown lmm(%d) failed: %d\n", dcfg->lmid, ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-...
->  };
->
->  #endif /* _IMX_RPROC_H */
->
-> --
-> 2.37.1
->
+> > +/*
+> > + * transfer function A: 10%   to 90%   of 2^24
+>=20
+> Too many spaces, also this may be a one-line comment.
+
+it was intentional to have the comment multiline.
+in case we need to add additional transfer functions in the future for comp=
+atible ICs the diff will be a few lines smaller.
+
+> > + */
+> > +static const struct abp2_func_spec abp2_func_spec[] =3D {
+> > +	[ABP2_FUNCTION_A] =3D { .output_min =3D 1677722, .output_max =3D 1509=
+9494 },
+> > +};
+>=20
+> ...
+>=20
+> > +enum abp2_variants {
+>=20
+> Why explicit assignments? Is it related to some HW register?
+
+no registers, I just need to ensure the two arrays
+
+static const char * const abp2_triplet_variants[ABP2_VARIANTS_MAX] =3D {
+	[ABP2001BA] =3D "001BA", [ABP21_6BA] =3D "1.6BA", [ABP22_5BA] =3D "2.5BA",=
+ ..
+
+static const struct abp2_range_config abp2_range_config[ABP2_VARIANTS_MAX] =
+=3D {
+	[ABP2001BA] =3D { .pmin =3D       0, .pmax =3D  100000 },
+   	[ABP21_6BA] =3D { .pmin =3D       0, .pmax =3D  160000 }, ..
+
+keep being consistent and are resistant to later editing.
+
+I feel like I had a better implementation two years ago when I used a singl=
+e struct containing all this information and had a custom/NIH search functi=
+on, but you kindly asked me [1] to use device_property_match_property_strin=
+g() instead and split my single struct into this three parts mess.
+
+[1] https://lore.kernel.org/linux-iio/ZWcUPkzfGqxYsysp@smile.fi.intel.com/
+
+> Can be done easier with a macro with more robustness against typos:
+>=20
+> #define ABP2_VARIANT(v)		[ABP2 ## v] =3D ##v
+>=20
+> static const char * const abp2_triplet_variants[] =3D {
+> 	ABP2_VARIANT(001BA), ABP2_VARIANT(1_6BA), ABP2_VARIANT(2_5BA), ABP2_VARI=
+ANT(004BA),
+> 	...
+> };
+>=20
+> but this will loose the possibility to make '.' in the name. Up to you.
+
+thanks, but I need '.' in the name. the dot is used in the part number (and=
+ thus in the pressure triplet).
+
+> > +static int abp2_get_measurement(struct abp2_data *data)
+> > +{
+> > +	struct device *dev =3D data->dev;
+> > +	int ret;
+> > +
+> > +	memset(data->buffer, 0, sizeof(data->buffer));
+> > +	reinit_completion(&data->completion);
+> > +
+> > +	ret =3D data->ops->write(data, ABP2_CMD_SYNC, ABP2_PKT_SYNC_LEN);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	if (data->irq > 0) {
+> > +		ret =3D wait_for_completion_timeout(&data->completion, HZ);
+>=20
+> Where is HZ defined? Include that.
+>=20
+> > +		if (!ret) {
+> > +			dev_err(dev, "timeout waiting for EOC interrupt\n");
+> > +			return -ETIMEDOUT;
+> > +		}
+> > +	} else
+> > +		fsleep(5000);
+>=20
+> Better to have 5 * USEC_PER_MSEC. Also missed comment why this long delay
+> is needed (will require time.h).
+>=20
+> Missed {} as well.
+
+I'm not sure I understand where are braces needed/not needed in this contex=
+t.
+
+> > +	ret =3D data->ops->read(data, ABP2_CMD_NOP, ABP2_PKT_NOP_LEN);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	/*
+> > +	 * status byte flags
+> > +	 *  bit7 SANITY_CHK     - must always be 0
+> > +	 *  bit6 ABP2_ST_POWER  - 1 if device is powered
+> > +	 *  bit5 ABP2_ST_BUSY   - 1 if device has no new conversion ready
+> > +	 *  bit4 SANITY_CHK     - must always be 0
+> > +	 *  bit3 SANITY_CHK     - must always be 0
+> > +	 *  bit2 MEMORY_ERR     - 1 if integrity test has failed
+> > +	 *  bit1 SANITY_CHK     - must always be 0
+> > +	 *  bit0 MATH_ERR       - 1 during internal math saturation err
+> > +	 */
+> > +
+> > +	if (data->buffer[0] =3D=3D (ABP2_ST_POWER | ABP2_ST_BUSY))
+> > +		return -ETIMEDOUT;
+> > +
+> > +	if (data->buffer[0] !=3D ABP2_ST_POWER) {
+> > +		dev_err(data->dev,
+> > +			"unexpected status byte 0x%02x\n", data->buffer[0]);
+> > +		return -ETIMEDOUT;
+> > +	}
+>=20
+> I am not sure the chosen error code in both cases is good enough.
+
+I'm open to recommendations on better error codes.
+
+first error: chip reports it's busy 5ms after start conversion command. bas=
+ed on the datasheet the conversion should have been ready at this point in =
+time. this sounds to me like a timeout error.
+
+second error: status byte contains unexpected flags being set - either an i=
+nternal error - see table above or a bus read error. yes, timeout is not go=
+od here but what should it be?
+
+I'm using two conditionals because I want to log only invalid statuses and =
+ignore simple 'device busy' errors.
+
+> > +struct abp2_ops {
+> > +	int (*init)(struct device *dev);
+> > +	int (*read)(struct abp2_data *data, const u8 cmd, const u8 cnt);
+> > +	int (*write)(struct abp2_data *data, const u8 cmd, const u8 cnt);
+>=20
+> What is the meaning of const for the POD type parameters? I mean this giv=
+es
+> really a little protection if any. I do not see a point here to have them=
+ being const.
+
+I read a few books about C programming a few decades back and there was a c=
+onsensus on using const in function prototypes wherever a parameter was sup=
+posed to not be changed.
+of course it's not bulletproof, but why do you feel I should stop following=
+ that advice for functions that are not tied to any pre-existing kernel API?
+
+> > +int abp2_common_probe(struct device *dev, const struct abp2_ops *ops, =
+int irq);
+> > +
+> > +#endif
+>=20
+> ...
+>=20
+> > +#include <linux/device.h>
+> > +#include <linux/errno.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/types.h>
+>=20
+> > +static int abp2_i2c_init(struct device *dev)
+> > +{
+> > +	return 0;
+> > +}
+>=20
+> Is this stub required?
+
+do I have a 100% guarantee that the kernel will not try to execute a null p=
+ointer function in abp2_common_probe()?
+
+	ret =3D data->ops->init(data->dev); // needed only for SPI.
+
+later edit:
+since I will remove devm_kzalloc(), the _init will probably go away entirel=
+y together with the stub.
+
+> > +static int abp2_i2c_read(struct abp2_data *data, const u8 unused, cons=
+t u8 cnt)
+> > +{
+> > +	struct i2c_client *client =3D to_i2c_client(data->dev);
+> > +	int ret;
+> > +
+> > +	if (cnt > ABP2_MEASUREMENT_RD_SIZE)
+> > +		return -EOVERFLOW;
+> > +
+> > +	ret =3D i2c_master_recv(client, data->buffer, cnt);
+> > +	if (ret < 0)
+> > +		return ret;
+>=20
+> > +	else if (ret !=3D cnt)
+>=20
+> Redundant 'else'.
+>=20
+> > +		return -EIO;
+> > +
+> > +	return 0;
+> > +}
+
+are you implying that __i2c_transfer() errors out if the number of bytes tr=
+ansfered is not cnt?
+
+> > +static const struct abp2_ops abp2_i2c_ops =3D {
+> > +	.init =3D abp2_i2c_init,
+> > +	.read =3D abp2_i2c_read,
+> > +	.write =3D abp2_i2c_write,
+> > +};
+>=20
+> So, why can't regmap I=B2C be used?
+[..]
+> So, why can't regmap SPI be used?
+
+there are no registers, no memory map, just a 'start conversion' and the eq=
+uivalent of a 'read conversion' command.
+any reason one would use the regmap API in this case?
+
+best regards,
+peter
 
