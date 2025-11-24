@@ -1,140 +1,115 @@
-Return-Path: <devicetree+bounces-241709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 673BEC814A6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:20:18 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE1C1C8157A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:30:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 562194E6231
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:19:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5A18C344EB9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:26:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CBB313E05;
-	Mon, 24 Nov 2025 15:19:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC08313E0E;
+	Mon, 24 Nov 2025 15:23:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="PRcWDjSR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31EE83148BA
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 15:19:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763997554; cv=none; b=lcNT5Oo+L6xY+g1qrTRWYtjgChbo6MF3IDej+g+m0k7vjrmdKecf6k8FbkBekbb032aC8wTMo95AmBhIgZLAJqx/DSWCSvcHJ7Tt08yGDnRRNQB3zC9GBTr17nt8IlLuCpPwgyZS5Mt4oa2ck+YMpHgsE+l/COXLgZvoDBWAVnE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763997554; c=relaxed/simple;
-	bh=rj/A3trtk4Rk41rAV82AFL4Qr0CgnZ8mm/2mh+19lKc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OKbcGRptSrQiTVbIoJTXJMP429eprtoaXcczVYc9EGbn7e5vLXKjQhFfJa7ASCuldeH49gZU+tdXxQ+duYYTSFuFsRraUw9zpdQ+6F7/9ByHe7Ys+gXrIZPjX/JA3Ktovf+fKO7zUaW0CQpIE4po4XNQA3A1ZpCLVdEt/bsIRLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1vNYLM-0002Fk-6e; Mon, 24 Nov 2025 16:19:08 +0100
-Message-ID: <00b6154b-cf95-463d-b46d-2944d2fef8a0@pengutronix.de>
-Date: Mon, 24 Nov 2025 16:19:07 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822EC27FB1E;
+	Mon, 24 Nov 2025 15:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763997833; cv=pass; b=GclzacdcQ03u9XyhU3eYdkoQgV6JyssjbPSf0sLfDUmuSEalWmEWI/824Nxj9PMtqv7LC7chgAtiineaDRO6AuSeqHKwWZccRHfUqv7axqdhSEXYOenY0aRuCLnP6d0HvMpOG3p+RoIKG+zexzNHGbvgjCiywOVhaOCFbMQnpaE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763997833; c=relaxed/simple;
+	bh=Ed8aM3uE6K2wq2P/cGnFcTZ4sC7TrbmDm4/XKpy1kbU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=jQcIgBIzHSquBq9is2rosoL/dOsZJcc2YQOlQUpDS/JdvHNeNLRLHcq//SEADAU2709CMFxx1jmWTwpr6pwGQHBZlE10WyX3D8G+BEyGvA54ttPUnu2V31P5Wv9hw5qjtihfZxDbXsrzyGd3ubaHStPhIuK5sVjkcQWm5rISaUA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=PRcWDjSR; arc=pass smtp.client-ip=136.143.184.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1763997792; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=iNB7BxoqiLAq10HGNy7UNMt+FVvadPlofhvAdncbXm5RVwtSJIsWMy8F/UjgIlRwJ0NVzhVKP93MBcbF5Xjr2AcHs8LmY6hy31oRC39SSk0XK5qqsgTVXB3/8tHFDYT/G3ek0UB7xYV3vpwdZZ1viTrChvOYhEq45Vd/7TRWnx0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1763997792; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Ed8aM3uE6K2wq2P/cGnFcTZ4sC7TrbmDm4/XKpy1kbU=; 
+	b=OyBKSWBa8ciG2bXtDOnJjGzxu+Kn6PqYA3WGzZ6DcxQup0fDF5H5wSFwJa4hXt/mE3KABehj/C7y/rpB834sHe6X9uxsayqI++QRJp5elRS2DkVl5ISehdY68H+hp+RwYEt6FmoZF6pRzPHUVAyl6XzOPafsdmfqgklVBqZLM9g=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763997792;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=Ed8aM3uE6K2wq2P/cGnFcTZ4sC7TrbmDm4/XKpy1kbU=;
+	b=PRcWDjSR64CsYv0s1t2Wf6bNKMc9RQlLGOlTNXqNQW3b3RquFKp8Zh1Viq5LgJy+
+	VaW7DZS4Fg9s11NZpuDBlokGYhxfu83Sm/Ou0EfsVGcAMSCY1ny1tzNpkN2W3rd5ERN
+	KSZjDxVCgqkla6JEweKfsIYaAdeRyyE99adaW0G4iKBm4hUG/oHMcUvXZQ7UC3XuChw
+	bD9sCVSzqS34PWNJwdU0l6BMEIjfWq81v6zdby+4OqpxdyQqUCp1/3hCcp6S63OTDIS
+	io87bLHe+n9+9KarbPqDkPURtsrJRFVS0ULz/DgOCrHDvog9DaV/CeiryDlKc5SQmmG
+	wlS0DwPlHQ==
+Received: by mx.zohomail.com with SMTPS id 1763997790359486.0877922892978;
+	Mon, 24 Nov 2025 07:23:10 -0800 (PST)
+Message-ID: <24a3104c9879519c70554510766aba98afd663e7.camel@icenowy.me>
+Subject: Re: [PATCH v3 0/9] Verisilicon DC8200 driver (and adaption to
+ TH1520)
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Drew
+ Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner
+ <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Michal
+ Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Date: Mon, 24 Nov 2025 23:23:01 +0800
+In-Reply-To: <374aa38b-c16f-46da-985e-266fdfb4c717@kernel.org>
+References: <20251124105226.2860845-1-uwu@icenowy.me>
+	 <374aa38b-c16f-46da-985e-266fdfb4c717@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: Update pin function file
- according to Rev.D RM
-To: Aisheng Dong <aisheng.dong@nxp.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "dongas86@gmail.com" <dongas86@gmail.com>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>, Frank Li <frank.li@nxp.com>,
- "kernel@dh-electronics.com" <kernel@dh-electronics.com>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- Francesco Dolcini <francesco.dolcini@toradex.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux@ew.tq-group.com" <linux@ew.tq-group.com>
-References: <20251124095449.4027676-1-aisheng.dong@nxp.com>
- <5432a356-7694-46a5-966b-29257f37a8f5@pengutronix.de>
- <DU0PR04MB929990AF168DA048D26E993480D0A@DU0PR04MB9299.eurprd04.prod.outlook.com>
- <18901222-fa5a-4e5e-91c9-f252d6bf1a18@pengutronix.de>
- <DU0PR04MB9299811B113C555FD795FDC280D0A@DU0PR04MB9299.eurprd04.prod.outlook.com>
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Content-Language: en-US, de-DE, de-BE
-In-Reply-To: <DU0PR04MB9299811B113C555FD795FDC280D0A@DU0PR04MB9299.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-ZohoMailClient: External
 
-Hello,
+=E5=9C=A8 2025-11-24=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 11:57 +0100=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 24/11/2025 11:52, Icenowy Zheng wrote:
+> > This patchset tries to add a driver for Verisilicon DC8200 driver,
+> > and
+> > demonstrates the driver on T-Head TH1520 with its HDMI output.
+> >=20
+> > This display controller IP is used on StarFive JH7110 too, but as
+> > the
+> > HDMI controller used there isn't as common as the DesignWare one, I
+> > choose to use TH1520 in this patchset.
+>=20
+>=20
+> That's a v3, so please kindly always write changelog.
 
-On 11/24/25 4:08 PM, Aisheng Dong wrote:
->> From: Ahmad Fatoum <a.fatoum@pengutronix.de>
->> Sent: Monday, November 24, 2025 9:54 PM
->>> Could you help elaborate a bit more why need keep the old defines as I
->>> saw the previous update patch also didn't keep them?
->>
->> Which previous update patch do you refer to?
->>
-> 
-> I mean this patch:
-> 
-> commit bcf7206fe9c35e048e1dc90cf62216b0f5eaf091
-> Author: Anson Huang <Anson.Huang@nxp.com>
-> Date:   Fri Aug 14 17:27:19 2020 +0800
-> 
->     arm64: dts: imx8mp: Update pinfunc header file
+Well I list changes in all individual commits.
 
-2020 was the same year the file was added, so any fallout it could have
-caused back then would have been minimal anyway.
+Should I merge them to the cover letter the next time?
 
-
->> Generally, If the defines are wrong or misleading, I am all for renaming them.
->>
->> In this case, NXP changed their mind and renamed the function in an
->> (unreleased)) reference manual.
-> 
-> This is not accurate. The RM with updated names has been released.
-
-Thanks for clarifying. I had meant to add a question mark :)
-
->> The tradeoff here is between:
->>
->> - amount of confusion avoided when we rename USB_OTG to USB
->> - amount of overhead introduced to adapt device trees
->>
->> I think the benefit of the rename is marginal at best and not worth the
->> unnecessary breakage it would impose on countless downstream users with
->> out-of-tree board device trees.
-> 
-> I agree the benefit of USB renaming may be arguable.
-> But how about the remain changes (drop invalid defines and adding new ones)?
-> Are they still need to be fixed?
-
-The other changes are ok, although it would be good to add a short info
-to the commit message especially about the removed macros if you have
-any extra information why these pad functions are no longer applicable.
-
-Thanks,
-Ahmad
-
-
-
-> 
-> Regards
-> Aisheng
-> 
-
--- 
-Pengutronix e.K.                  |                             |
-Steuerwalder Str. 21              | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany         | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686  | Fax:   +49-5121-206917-5555 |
+>=20
+> Best regards,
+> Krzysztof
 
 
