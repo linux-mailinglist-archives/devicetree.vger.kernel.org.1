@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-241750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA680C81F08
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:39:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7236BC81F17
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:41:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9FA5A4E32B9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:39:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 36D6A4E11D8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:41:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD9D2BDC1C;
-	Mon, 24 Nov 2025 17:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 715E22BDC1C;
+	Mon, 24 Nov 2025 17:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fIoO1afY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LbrBvBXB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727E82749D9;
-	Mon, 24 Nov 2025 17:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45AA723C4FA;
+	Mon, 24 Nov 2025 17:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764005982; cv=none; b=qkGkYiJgSaefz2gFIwky5BIeC5NS9rvwFByrufCn+D/xkNcOuOXMCEHWc8Fvn1LyNg/Y6lJ3wPISWI9DHEuo/Jo1fUpGBDJz5J/NFNa3G1Peh5R7wzKlU6gPNLX0um2ETtkJKtxFfe8LjPckhSIeLGFMB4nZBubC2luYXrM759s=
+	t=1764006063; cv=none; b=U8uYEt49p6Cqvaie1op64qL6eRXQdZel34BgTu9LpzFk3c9OAGSpn2oecqo9qJVukeOwgEkluL1drVxsh+xmUsh7SqoqVGH+b2a4a1cCw8bbtYAk+xOMPDOFDyoz2YZ5uzMMf4O49t3/VNHnG6/51SluhnDisvutzvAI8P5pE+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764005982; c=relaxed/simple;
-	bh=a/dt3SO0IBMPj/ZOG+botHjprn85wxhaFe5Ue9Kxg1M=;
+	s=arc-20240116; t=1764006063; c=relaxed/simple;
+	bh=zoUtfR4SGz2BKH5rplabaIYt5wL/apUOQkw2wk/1OPE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qAtG+yxmEv2Rr/SaRkhs9S+EHm4UAsJ+guMLFt9JOcNtg5KajZEz0oX1rld+27cRRrGanV4pmSvMEUAKw/MmUcjLr/SJBftRopNpH9OGRCldglFMkydf3FmpVfTIK72qCrNvCc+Y98VVl7//2PaZgDR8yfHoxHutydY2EJk5S4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIoO1afY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37583C4CEF1;
-	Mon, 24 Nov 2025 17:39:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Re22983qx/L7g93guE1D7dV6W9qhX2fv8in6699YdqZ7nXXx8foC1UBDTrQjnQKBFHlPoLXEI4U7PL9hake7MRJl0yFfWxjjr2+YNcKX2KeWDgEj7cl2xT50RFuq19jDcVYQcg9SeND7BsMLZpRtmCfx2gaMo+nBGHzbhWcAbsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LbrBvBXB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CA6EC4CEF1;
+	Mon, 24 Nov 2025 17:40:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764005981;
-	bh=a/dt3SO0IBMPj/ZOG+botHjprn85wxhaFe5Ue9Kxg1M=;
+	s=k20201202; t=1764006062;
+	bh=zoUtfR4SGz2BKH5rplabaIYt5wL/apUOQkw2wk/1OPE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fIoO1afYA8NKsyxJwtO2RCIaR4mTKYx07g+3YPaDFb3cghv5WctAgyUiQq4WevK8L
-	 3XcoWIem/vQObIj81EEWaoALnsF/Ice6yZ35tKRLWsq+/9/DOPMCCA6kgcdjbxLNsv
-	 ggVDrbei64+ecVzOOFEPiI8aSyXtZk/Asshh+kmz9VxYcpnNuSpBhpREZI5AvJMzU7
-	 pHdYgV/FMuidVydA+sYtM9HwA/1pLW5CxYPF3dhmzwWyw+yFc1mfL8DeFPmD714VsX
-	 ktvWf5mtpM9U+k7rucyVAHtMaxGxMlHSaPd0LbzwtyHlsEacjGU+aMB/7IEHL8myiI
-	 8LW5U8kWOZung==
-Message-ID: <d578fc15-261b-456d-9887-f15417084943@kernel.org>
-Date: Mon, 24 Nov 2025 18:39:34 +0100
+	b=LbrBvBXB7UWI52i0M3DMRx/Wji5wN5f77e8Kd1eSTD9uFjyDa76CcLwRNr/NyKVVF
+	 5eyYHftmnNui+FbyEWO7FEpbRP4kSo6ROJYwFiaGSsPlGBL/1mZv6jyVoMQ8HgBJRk
+	 LjhpKlXkjh7hkrx9hwpsCzyUA8bkkA4zyk1OyOaXn0wsD9J3L5yo1/fGRppwXZFQw+
+	 u45t6xpTknFIvovZbxiWtyF+SZ3D97PzA1Lb2bcG0ZjX+b60cFgnILfU/6f7PK+9l2
+	 M5AjZKYHhpnOyNpgeQBdBDGRxy/XLGQFsJljINK9K7NG6H9XIB5mvMA7hHNErxBLLg
+	 VFA/0X+hK/5ZQ==
+Message-ID: <ee1e4f94-ff9a-4227-b705-74a7eb806ff0@kernel.org>
+Date: Mon, 24 Nov 2025 18:40:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,9 +50,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] Verisilicon DC8200 driver (and adaption to TH1520)
-To: Icenowy Zheng <uwu@icenowy.me>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
+To: Icenowy Zheng <uwu@icenowy.me>, Conor Dooley <conor@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -63,13 +63,22 @@ To: Icenowy Zheng <uwu@icenowy.me>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+ Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao
+ <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
  dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 References: <20251124105226.2860845-1-uwu@icenowy.me>
- <374aa38b-c16f-46da-985e-266fdfb4c717@kernel.org>
- <24a3104c9879519c70554510766aba98afd663e7.camel@icenowy.me>
+ <20251124105226.2860845-3-uwu@icenowy.me>
+ <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
+ <f7bbb57180866a0674fc1d72d4bd3279c7b1c1e9.camel@icenowy.me>
+ <c26dabfb-c4af-428b-a1d4-d626f37ff559@kernel.org>
+ <f944f0b28f62233b1874e0f00c0a130d71845417.camel@icenowy.me>
+ <6ceb41bc-0597-4ea5-84be-51f53e3bc2d8@kernel.org>
+ <20251124-said-overvalue-8a8f49d6c99d@spud>
+ <477bbcbe-17d9-40ae-be10-be4fd107687e@kernel.org>
+ <20251124-pulp-pound-a2b6d749dcfc@spud>
+ <390caea1-bc75-4cde-bd6d-9bc15a12f32d@kernel.org>
+ <a8089e458bdf6fbad45cd6be838b4cf75396918f.camel@icenowy.me>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,31 +124,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <24a3104c9879519c70554510766aba98afd663e7.camel@icenowy.me>
+In-Reply-To: <a8089e458bdf6fbad45cd6be838b4cf75396918f.camel@icenowy.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 24/11/2025 16:23, Icenowy Zheng wrote:
-> 在 2025-11-24星期一的 11:57 +0100，Krzysztof Kozlowski写道：
->> On 24/11/2025 11:52, Icenowy Zheng wrote:
->>> This patchset tries to add a driver for Verisilicon DC8200 driver,
->>> and
->>> demonstrates the driver on T-Head TH1520 with its HDMI output.
+On 24/11/2025 16:25, Icenowy Zheng wrote:
+> 在 2025-11-24星期一的 13:31 +0100，Krzysztof Kozlowski写道：
+>> On 24/11/2025 13:20, Conor Dooley wrote:
+>>> On Mon, Nov 24, 2025 at 01:08:00PM +0100, Krzysztof Kozlowski
+>>> wrote:
+>>>> On 24/11/2025 13:05, Conor Dooley wrote:
+>>>>>
+>>>>> I don't really get what the fuss is with the dual signoff,
+>>>>> what's the
+>>>>> point having both when they represent the same person? Pretty
+>>>>> sure it
+>>>>> was you (Krzysztof) and Arnd that told me not to both doing the
+>>>>> double
+>>>>> signoff.
+>>>>
+>>>> I do not object having or not having dual signed off HERE.
+>>>>
+>>>> I never said that. Just like I never said "From" has to be
+>>>> changed.
 >>>
->>> This display controller IP is used on StarFive JH7110 too, but as
->>> the
->>> HDMI controller used there isn't as common as the DesignWare one, I
->>> choose to use TH1520 in this patchset.
+>>> I didn't say you objected to both being there. *I* am saying that
+>>> it is
 >>
->>
->> That's a v3, so please kindly always write changelog.
+>> Ah, sure. Yes, if both identities work I would propose to skip second
+>> SoB. But I also stopped objecting of having two identities listed, as
+>> long as they are correct.
 > 
-> Well I list changes in all individual commits.
-> 
-> Should I merge them to the cover letter the next time?
+> Well it's unfortunate that some policy now requires me to list the
+> second identity.
 
-No, it's perfectly fine, I don't know why I did not see them. Sorry for
-the noise.
+No policy asked you...
+
+> 
+> Should I resend the whole patchset with the ISCAS mail?
+
+You can, it probably would solve the issue, unless you change the
+author, but why you cannot do what I asked at the beginning - set
+correct order of SoBs, so the @icenowy.me being the last?
+
 
 Best regards,
 Krzysztof
