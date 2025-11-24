@@ -1,48 +1,102 @@
-Return-Path: <devicetree+bounces-241597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496EAC800D8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:00:56 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05960C800E1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:01:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA27F3ABC24
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:58:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7A74C34162F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A4D42FBDFD;
-	Mon, 24 Nov 2025 10:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 234AE2571D8;
+	Mon, 24 Nov 2025 11:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="svMwvO6Q"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="h8hXWE6p";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SGr1O8f+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BB72FB085;
-	Mon, 24 Nov 2025 10:58:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8956013AA2F
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 11:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763981887; cv=none; b=a7GQHxW4cpfPYLXzNr43iq+zla4zNpfjW+YXt+f2BmAkG++5BS2McmW7IyOTyJjk+rOTQlG0v8/D6kG3Mw7grBBL2aAVaBM7d+YkcXGSWIMHCnQF9w6XxcqojHg8KFz2Qp997HRehY0Cuol4ojH/0Og/IAqG0RgPqEOvcN9xBIQ=
+	t=1763982084; cv=none; b=uPuNNOkGYOKbU9GNcHvmXMXNMhRnu+ruhDcKeNbWCxs2LYUnM+u11YqSxNyNW6onjWjq4TpyXT00ErRS7dY7pl7+FTPvSu7XyY9uDOrZzmwjWFx22Z/Zrn2HG6FrGSYVookXwjHSJMkrN5Sg8+82Vd38KY1IdCQHyKDj/Y3O+34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763981887; c=relaxed/simple;
-	bh=xJ32qcMBKxVPDueStveGgZE8sA3LiRciLoObFyqhpOE=;
+	s=arc-20240116; t=1763982084; c=relaxed/simple;
+	bh=kmWnFKuFNtcDWt9VYmAJ6yQ/jTKnqbkS2w3UokWd2XA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HgA8FBYAKdxdmo9o/xgT7nsMw1e1L1hZVE1geZQftWbOZwnolkcOBMI2arJiTHUj717gMeub7OGmGFJqBy9HIaJiqz44mwJvYz2WbzgUieDjkxgReoe1c77/ZFYY943xjK7l9GJspTlK7IbGrcHlTPSN6I3GN/4OcKPLZxzEKi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=svMwvO6Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FF73C4CEF1;
-	Mon, 24 Nov 2025 10:58:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763981886;
-	bh=xJ32qcMBKxVPDueStveGgZE8sA3LiRciLoObFyqhpOE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=svMwvO6Qh+i0nm2PBwRuzMt4SaOUaXLqOfDEi0MKj2HGI0OrU6cJbH6m+GLFi1iZq
-	 bloJlvS2q66VBh8K2CO3wpuN/wlB4Al2AQCssFNh2oQI25+5SjQ0rYaH/nqDJpFTO1
-	 ryv0eUPoz2YE4xEjTicFCBIMTfrg4vuJzN+ZnaryTbqSWly+WKACxwm8Q1lhO3ciS0
-	 S+U7T4Ym/GkjkHuE0tODZAwWc2YDaUNcm+vr3NQt4Ncu5iHKZqfXUnynHp+EaV1pLp
-	 NBGCPZucUOSNdUI+oq67WjQOO3+YlTyPeXCxwTERWq+CJdFnw9oJsAfDD6d6lYgBVq
-	 OENpdeux+1erA==
-Message-ID: <374aa38b-c16f-46da-985e-266fdfb4c717@kernel.org>
-Date: Mon, 24 Nov 2025 11:57:59 +0100
+	 In-Reply-To:Content-Type; b=uC/KKsb/eSOvkFckz5ikPYjD2BcfFHcecOZKufO8MDAlrsA7gIEEOzRqAjU//kxBsEyoi0VEQtnASft3YmVxnN+n+FIPNUFzSiwquoWdeRCXzeStZr6lbJDzNfg9r/pNrSHgyNWCB+/Wlu3pfHmFu/jeZQGGN33LwvsFygTF5GA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h8hXWE6p; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SGr1O8f+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AO8RFJu1946548
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 11:01:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	kmWnFKuFNtcDWt9VYmAJ6yQ/jTKnqbkS2w3UokWd2XA=; b=h8hXWE6p1UNJGR2w
+	bJenDEb4N0liD4ovo5hL8e4kHmedUtZrPntvj9Lnp15Y748baQBPo/H/LLT6CCE3
+	92+yxV6MA27NodhuYQM3WE/hWJwG+oWl6g+1dEBTJGSoj0sZKQCzILJgzqYyPp/y
+	f0zBFNmvJFexj9BHEbi6SA4nuSMfolpuhxaJ05M4llT6ko5aQQAkWmkZHXyPtsq1
+	h16o0RvHEwIeiAPLIIqvFtm4iLPMGLx41pDQZZBlNYiSztzQ1zmtGAwGcCDgU4hS
+	Vi6zCNlEmDgRqxRp7T/AK1qK/eDFIsl+mFWQbPY3Dj7kllYqWNh8jiEjcJCmMVlr
+	oWyMeg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ama099qu4-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 11:01:21 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee409f1880so9414751cf.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 03:01:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763982081; x=1764586881; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kmWnFKuFNtcDWt9VYmAJ6yQ/jTKnqbkS2w3UokWd2XA=;
+        b=SGr1O8f+rHJFfjPFDNjoigwdi2Jli74p6ClpprZpm8qNwNekCHm+eupanKqYH742NZ
+         K0lQwfnjf3uFphpYFBu3v2ervnqpux1JX3JJU4Iwv3uNAxIxA9bNWpnCAcKAv7k9GwLA
+         QU2RUj/tl+eZV5QHMq/UAkkj+JECPMNBQvlQVmk9TOXaI9IYrbDAEoVXSfrguvycu7jv
+         DIApftNbDXJf+yCk6Q33KIMMWq/9ttCpgeVVic70ICF1y8xUfeaqX2bQg9UTCUMNJ8XC
+         fS1js3Bxz7Fz6gJXmOKMIUqZxhKIA0yCH+Wom6PRjxOCK9qiHwSVIMs69vQvlcqBISb0
+         /giw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763982081; x=1764586881;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kmWnFKuFNtcDWt9VYmAJ6yQ/jTKnqbkS2w3UokWd2XA=;
+        b=XP6ZiPSuCjl/+bBFe+ygoM+2GBfwa5rhPky9oMMDJJk2p7vaFVe6uo8CluGLnFuh/Z
+         gs9YZ1j8EM6RLUmCB9ZzM/z0Q95qkR8TMH+QL/EQ3a3ViVL1hxpKTSPZz28VYuBPlJpg
+         29dK77yMTupwmmmT0qlhY7uGZXkX8RlJlPA1tIOmHXfsV8icI5bSGZ4PEv2LeaTD8Pu8
+         zpdpUCWQBKto1LFvqBN8FyfGCMQIUB3JuRUkppu7FMlYTjG7Qxb//jYGA2ovySI7ts1f
+         f/6GEA5mtcF8lLwSfoAbGrgqg09/8M1Z3GNqA3Ssf6iiZ2MMDOcPdU0tA9ET/9wuaTY1
+         TVwg==
+X-Forwarded-Encrypted: i=1; AJvYcCU5EV9qtgxLwJvmZPG3T/sWIwMSeHTTP/PxgQhyDXaidmK81jBnF2D7Cg7Sz6rn8VtZcuys07A8mjkw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5McEaDcziPvnIxHHZrwxpUu7J3NiDCkb7o8gGhl20ieoWVZAt
+	ToR+CynWfjmqoLxswKXN0vJs1knMwQPGe0s3poZfyoy23w9Q32TXrko9VoEwWZxoyT5AAfdgK5S
+	Iln97M1aHFbsf47NRN+MN7m/5vUvBo8FgPTvdXFB5elUkmX5rwx2XdYdILsqRt9qi
+X-Gm-Gg: ASbGnctrfouMjAiVdi9ibChKd+XVgd6DhwiUpfsIxdInvAxMg5HJBrSLyv3OQxjFuDM
+	B9dXHg01naLBMyBx2Mdp14iO+5bVZdQbK/5j9iDwypVZ9uR2im75COZl0zTErKqGDhZs6JwkD64
+	OYB/eWCVlApZjevM93XUqqtv++XZGU7RwvFvlywv3RmKsrGJHc5+4dclIGS/IP5lGmGuPe+ByP0
+	Jd0LXQbC/KeFm5ydJgI9t/nSQR5VDoRpOKKsMcn1hyqie5kxa/8uFvJyFyPj1LPzsErEW8c/jFF
+	zsiPcM4SbLFNUAUVC3kBBJmC3yHL28xdIXJNcwN+op9G4RUOkud8S0ukBSBZBUkBwrP2poiT8xL
+	Y4eceJSgzZy2AdRxagdm8cLpmqqtcUZhjOn7OtN9DpE+Y7cojyhaRrcy4MeDOI6trB9Q=
+X-Received: by 2002:a05:622a:151:b0:4ee:1924:c6fc with SMTP id d75a77b69052e-4ee5883a43cmr108927981cf.1.1763982080623;
+        Mon, 24 Nov 2025 03:01:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGL5sXsmRBw0D0XCsDUFrVI+NEx70UqgwcK6a92gGa0RVxZdcHmClSbnmd1vrTkeOCIyt+AMw==
+X-Received: by 2002:a05:622a:151:b0:4ee:1924:c6fc with SMTP id d75a77b69052e-4ee5883a43cmr108927301cf.1.1763982080014;
+        Mon, 24 Nov 2025 03:01:20 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654d502fasm1245441466b.17.2025.11.24.03.01.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Nov 2025 03:01:19 -0800 (PST)
+Message-ID: <4ec493de-10d9-4a0d-b00c-d6e0f3d92b34@oss.qualcomm.com>
+Date: Mon, 24 Nov 2025 12:01:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,84 +104,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] Verisilicon DC8200 driver (and adaption to TH1520)
-To: Icenowy Zheng <uwu@icenowy.me>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20251124105226.2860845-1-uwu@icenowy.me>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: x1e80100-vivobook-s15: add
+ charge limit nvmem
+To: Maud Spierings <maud_spierings@hotmail.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20251116-asus_usbc_dp-v2-0-cc8f51136c9f@hotmail.com>
+ <20251116-asus_usbc_dp-v2-5-cc8f51136c9f@hotmail.com>
+ <378c611b-f8c6-4f89-a3b3-6d8c22445e83@oss.qualcomm.com>
+ <PR3P189MB1020E7393F72B285173137A2E3C9A@PR3P189MB1020.EURP189.PROD.OUTLOOK.COM>
+ <ff773af3-d843-42ff-b4dc-e5a9d85c2285@oss.qualcomm.com>
+ <PR3P189MB102003218DCCE87EEB69A0E4E3C9A@PR3P189MB1020.EURP189.PROD.OUTLOOK.COM>
+ <57bab427-d8fd-490d-88f6-358b79367ed1@oss.qualcomm.com>
+ <AM7P189MB10093041E89777C2AFAE2CEEE3D2A@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+ <d6018a1f-12a6-431b-9367-65c65e1d920f@oss.qualcomm.com>
+ <AM7P189MB10097E44F277EEC068E4B847E3D3A@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251124105226.2860845-1-uwu@icenowy.me>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <AM7P189MB10097E44F277EEC068E4B847E3D3A@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: kVuAE36F5FFpPeT38ExJMTYeuCuTBVGl
+X-Authority-Analysis: v=2.4 cv=PdHyRyhd c=1 sm=1 tr=0 ts=69243b01 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=69EAbJreAAAA:8 a=EUspDBNiAAAA:8
+ a=b1RjkcaNCWOaYSfdytUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDA5NyBTYWx0ZWRfXwAkF47yVfKfn
+ nHevtsjOl86dc8VTlMhVgrdS/sh47/gAfctAeIVsuYn5AQ16V18sah7vMjMQX27rzf49IpzKYXO
+ J2pcThZX1wPXD+lPO1Fm0xKgD7dpPS5l9cR+6ZtGotgsWNOtn9vP2OhaZe/ZryuFwslI5lDuv/N
+ A3Aj58gHM8X24Zl2fF92fqYkkJhSRFah9xt8bxR0A/CudUYNkxbHwkfW12p68XDeh36rbadHiIo
+ LEqDlocPI+k3HC1QXCx6bGapn44TQ/W9frVi9OblWmbLqXZe0N6UfFjI8yvvwoBO3kzv/nEYB2q
+ k0WlSEeiGAlvrNnq0W0f2OsGtILCeZX5Ed4ZfkcLppLpvZlaKgIEC947NWN0u5R6tWiNaIrl9y4
+ L9MkCmBj84HFyhlr+NlmqsIdndZcZw==
+X-Proofpoint-GUID: kVuAE36F5FFpPeT38ExJMTYeuCuTBVGl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-24_04,2025-11-21_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 bulkscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ clxscore=1015 priorityscore=1501 phishscore=0 lowpriorityscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240097
 
-On 24/11/2025 11:52, Icenowy Zheng wrote:
-> This patchset tries to add a driver for Verisilicon DC8200 driver, and
-> demonstrates the driver on T-Head TH1520 with its HDMI output.
-> 
-> This display controller IP is used on StarFive JH7110 too, but as the
-> HDMI controller used there isn't as common as the DesignWare one, I
-> choose to use TH1520 in this patchset.
+On 11/23/25 12:03 PM, Maud Spierings wrote:
+> On 11/22/25 14:37, Konrad Dybcio wrote:
+>> On 11/22/25 12:07 PM, Maud Spierings wrote:
+>>> On 11/20/25 16:36, Konrad Dybcio wrote:
+>>>> On 11/17/25 4:44 PM, Maud Spierings wrote:
+>>>>> On 11/17/25 16:35, Konrad Dybcio wrote:
+>>>>>> On 11/17/25 3:13 PM, Maud Spierings wrote:
+>>>>>>> Hi Konrad,
+>>>>>>>
+>>>>>>> On 11/17/25 13:59, Konrad Dybcio wrote:
+>>>>>>>> On 11/16/25 11:52 AM, Maud Spierings via B4 Relay wrote:
+>>>>>>>>> From: Maud Spierings <maud_spierings@hotmail.com>
+>>>>>>>>>
+>>>>>>>>> Add nvmem cells for getting charge control thresholds if they have
+>>>>>>>>> been set previously.
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+>>>>>>>>> ---
+>>>>>>>> Have you verified that e.g.
+>>>>>>>>
+>>>>>>>> connecting the charger
+>>>>>>>> setting the charge threshold
+>>>>>>>> rebooting to windows
+>>>>>>>> rebooting to windows once more for good measure
+>>>>>>>> rebooting to linux
+>>>>>>>>
+>>>>>>>> still has the settings persist?
+>>>>>>> Hmm I have tried several things but I can't seem to get the values to stick. I the spmi-sdam driver is compiled in, I am not quite sure if I might be missing something.
+>>>>>> Hm, I wonder if Windows/UEFI overwrites these values or whether they're
+>>>>>> used by something else..
+>>>>>>
+>>>>>> Can you set a threshold in windows and see if Linux can read back that
+>>>>>> data?
+>>>>> the values in /sys/class/power_supply/jada-jada/ are zero when rebooting from Windows into Linux after enabling charge limitting in the Asus application.
+>>>>>
+>>>>> I remember my old vivobook (x86) also forgot its settings each boot, but given the nvmem cells that should not be happing here I guess. It is odd that there seems to be no collision between Windows and Linux. Maybe the Windows mechanism is doing the old trick of writing it in there every boot?
+>>>> Odd indeed.. Does it work if you reboot from Linux to Linux?
+>>> It seems not, I seem to remember testing it quite some time ago, but I cannot get it to remember any way, at least it is not popping up in sysfs, always back to 0
+>> It seems like the driver currently only populates the sysfs start/stop
+>> values if the "enable" bit is set
+>>
+>> Could you check this (hacky and wrong) diff and give it another try?
+>>
+>> diff --git a/drivers/power/supply/qcom_battmgr.c b/drivers/power/supply/qcom_battmgr.c
+>> index c8028606bba0..9ebd8adfb8eb 100644
+>> --- a/drivers/power/supply/qcom_battmgr.c
+>> +++ b/drivers/power/supply/qcom_battmgr.c
+>> @@ -733,7 +733,7 @@ static int qcom_battmgr_charge_control_thresholds_init(struct qcom_battmgr *batt
+>>          u8 en, end_soc, start_soc, delta_soc;
+>>            ret = nvmem_cell_read_u8(battmgr->dev->parent, "charge_limit_en", &en);
+>> -       if (!ret && en != 0) {
+>> +       if (!ret) {
+>>                  ret = nvmem_cell_read_u8(battmgr->dev->parent, "charge_limit_end", &end_soc);
+>>                  if (ret < 0)
+>>                          return ret;
+>>
+>>
+> Nope still nothing, there is one err about "failed to send synthetic uevent: -11" during startup, but I don't know how relevant that is.
 
+Hm, I'm a little puzzled.. It may be that ASUS customized the charge control
+functionality, but I doubt that
 
-That's a v3, so please kindly always write changelog.
+In any case, this patch should let you limit the charging bounds within a
+single boot on Linux, so that's already useful..
 
-Best regards,
-Krzysztof
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+Konrad
 
