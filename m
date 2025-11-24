@@ -1,127 +1,214 @@
-Return-Path: <devicetree+bounces-241574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70367C7FEF5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:36:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B3CC7FF28
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:40:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 442D53A5B70
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:35:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E79023A5EAB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0D92F8BC3;
-	Mon, 24 Nov 2025 10:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09FE2F5A2B;
+	Mon, 24 Nov 2025 10:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WF+lv+fu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lR4PXTcO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6124274B26
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 10:35:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 494A321A449;
+	Mon, 24 Nov 2025 10:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763980525; cv=none; b=hCSqcmWjamJF7AbxHG56cFrDT/xWbkIwCx0BruX82Hje3CikGOhSHzEYIpn4pYzy/uBUQg/5F+1F/dJmoL7oNc0udo7nUjGv8tm4lRJLpWDbKRrT1QZLIxmd3OLVkj7W7cdzlhIk89lFChLHGOrZi5do8Imi5fExtQ/gUobfeHc=
+	t=1763980845; cv=none; b=UiGHr4/zfMZVGivOpm9MCzthOjNdjxX2G3X0UKIpw7eKbwwpBHrjatSF33Jmne2DNt8pJqa01Df3d3DbPkdN+QgRQwJgxTdAUIMdFg7SJfNK8y3+vq/tVs26iQFRmGo/Lt6EnWuL+OoLtMmSIBkDindqBFYeM3M2dMLc/UsMAfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763980525; c=relaxed/simple;
-	bh=7d8DEOx2yg6NDuhtFka3LOEqH41+BuOXBDXoifyZ9PQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ncK7xuIaQYZYmBgjJuaWY9hUhZn3Q+VVvGfjvkU+EHOVJZR1WnNxb6cgRNIJQHhO92ZCA3fcOCWPPq3G9h+cMqfucRidY9Ywz0oup4RfSB4Srd3JM6HjW2rv5JH5kqZkSomF+FyE8NHkn05WZFtTiSJXC0xsKyxKJ0jLVVAoXbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WF+lv+fu; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47790b080e4so21508275e9.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 02:35:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763980522; x=1764585322; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ndD6GFhIDsyYEQSTuUmCfWcKYqCeLVrqI/SLqnCg8Xg=;
-        b=WF+lv+fuAg6M9f14nCe7tOFBPqTIeRR1NvtN9dJ6iKHXhMTzaqx305arZ9VRmL1/Vr
-         yoTvXI2khSBwlHteUGy1rfT9N7qrGT3UwcTw4ZzDGIs/j+jVF/bmcCw9RNBspednnVxy
-         M1xHNZxUPGRGOmXocSwB5tXko8bdeLcCsTSmXswjW9oIvyAKtfF6POqMuOK4zW/EZWai
-         GL5WX+2t3RV4BCBQQt5+LWg2DKFDdUuYUl3NhvsSK2QVgbG/f+VcdeWrZrizjngOGoDq
-         0arxWo6KLNjX1zXXoaBEAS3kn4L6BTJ4cBQbLTWrH5SalTLsFg4aABmvj21jLNzACqSy
-         YWuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763980522; x=1764585322;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ndD6GFhIDsyYEQSTuUmCfWcKYqCeLVrqI/SLqnCg8Xg=;
-        b=OmEBfvDAoqD8ZDzEigFuqycsyMfL0bkmEEm0hEfK9q0k86UME0zG9PbMqiRo25GHtl
-         Ht6RYMmnkNJxOwwvC8pXHAonAbTjRS4TiqkB8F/g0X1drwl6/MLj+Sls1BpOxQ6tpK5c
-         uiTnDAQ1vf76WU2IVHAjUeXaDd5schlZ3Z7uglNCTsP+2bnGcsAxC0wlIZx/1UgkJk/V
-         LqdHoMweYGlTQgx3DbzofQ5EjsBkoyCCto5kl/AvcAl5PZYSphG8/T4HAuHjcYQgkUNa
-         TAyg7glagyhG3XCiAgMY7asWmIG8J0UWBlI5I7QOpqijwyV2MvfnBsnUCqqW53sh+3aW
-         pSHw==
-X-Forwarded-Encrypted: i=1; AJvYcCVP+Qon29pHWgyJvFzqZTSfTtKBqgapBqpx05qkVJewWuKntbH2Fn+VqITa/q3LT0Tx1kl1ErlUkSG9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyO5dx3rspOEgwc+4QZjOfA4z9aG0wbXDJ2DBDwvE8IY9nD3LAx
-	+rstwNYeqE1J1NLLbJGirOZVdHa5oDlAz6yVe35t3hQUa+FSfUvNNC5RXEa6wyoyE6o=
-X-Gm-Gg: ASbGncsYFSX2wVP7MYrQVZtU2ipJ6eqnTsL9xRc0C/vysUYHQX4D89pHVEoL4KEMIP8
-	J2dtEYancLUC69BcoYiUFQZFHSqB5wtuNKuh+ywRXWIGQDvhEjlY1wdYg2GH3x4qSDyzS9eixBw
-	A1P74lx+/r2SnguW0PGQ+SnOJ8XzpbxigSC84IFpdzKy0EvlChAIWJbcuOWgH95bnBduwolWkaN
-	S0WKH9l/VoVp+aIRMuuX1Hnss3SWkdsUhRMPEJ7gX17evP1AtMyaYGiJejVXgDtcqcrCj2pxoaV
-	jREfLRI9JA/raQhf6WCsaijlrf6JzybJ0+eTrLRozLWLYmSL+Bzw2mGsueOIZmIH98RPCYyQvmU
-	1y6a6E3jbRr1JUluh/Es46FGv89Be4PO0Ks7amvuj02QrlS1n4ZgeAO5ZjvvuqNw41T1CWQcetF
-	qmeCRBJM1jcIyzom95yD+YL4E1jNVVVFqPdilcze0eRwTvABVDyMiLedI+hxXfdJyyRA==
-X-Google-Smtp-Source: AGHT+IElNEZ5h3JUQ/4nKEFrG2nnJ9W9xdmqEYug4voX9K+dF3FjdDILyhWbdWr6Fd3WQPE4haywCg==
-X-Received: by 2002:a05:600c:3511:b0:476:d494:41d2 with SMTP id 5b1f17b1804b1-477c112f7b1mr105073885e9.29.1763980522164;
-        Mon, 24 Nov 2025 02:35:22 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:a756:bb6c:7b35:af9b? ([2a05:6e02:1041:c10:a756:bb6c:7b35:af9b])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-477bf1df3d5sm188767955e9.2.2025.11.24.02.35.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Nov 2025 02:35:21 -0800 (PST)
-Message-ID: <ab35c20e-390c-4479-9bb1-9f5e49cba2a0@linaro.org>
-Date: Mon, 24 Nov 2025 11:35:20 +0100
+	s=arc-20240116; t=1763980845; c=relaxed/simple;
+	bh=ODndMX6CiQo0rN0bWUTcqRFHIkrIyq5OhKM+gC7WSlU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pwEW+mhIKeDJLPcpW04ba6RmickgWCysEW52tM+tOAaa//ZGNw0bNVuNlCEiK/zbL45jyQKJL63oF33gYWWECiphTUrxIxTkdtZja4OJuOHLXhz7iDsp2Bv2JXP4babckS0TobecUlgexcoMwp4OLnQrCizgbZUDXPBd5kNFu0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lR4PXTcO; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763980844; x=1795516844;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ODndMX6CiQo0rN0bWUTcqRFHIkrIyq5OhKM+gC7WSlU=;
+  b=lR4PXTcO4KdG1S3geKYOcFHMwNaX1P1aKtxCRW42ohzRA5EaQbg0LP0u
+   RL+L33ckjBcBzvSAnGkrzspZsA7a0tFEGXvm9NZZRA3TuTfH48QN9tMWv
+   mgr1E9T+iWqB0vm8tw/CArMr74JrgArJqhp2s+/enc4e63ESiVbMDHyya
+   9lYApFPuxHaONgY3bSN9UONNIWPdGq0tymA5ZP4pwAvXGSpbXtVL31cis
+   GFiZsUiQgcrux6a0kK89HBDvm1YVwbvNidLSgjUKsDw67uJ6s088V4U0R
+   Tu3g4esSujswxnKrrAMSV9gfqgLiPWMr7/rsD+NBzY57dAuWBKCbmIIJ6
+   w==;
+X-CSE-ConnectionGUID: 3ZRtXh61STaav41K3ezeqA==
+X-CSE-MsgGUID: YxFAtuUnSOm8/AKcKevZ4w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11622"; a="65673374"
+X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
+   d="scan'208";a="65673374"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 02:40:44 -0800
+X-CSE-ConnectionGUID: RfhoPo0NS/CHVVhNnMLJNA==
+X-CSE-MsgGUID: P/Kbpg4aSmqK1jS2+CUXoQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
+   d="scan'208";a="197227696"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.5])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 02:40:40 -0800
+Date: Mon, 24 Nov 2025 12:40:37 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jorge Marques <jorge.marques@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 9/9] iio: adc: ad4062: Add GPIO Controller support
+Message-ID: <aSQ2JUN05vmMQC1I@smile.fi.intel.com>
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
+ <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 RESEND 2/3] thermal: exynos_tmu: Support new hardware
- and update TMU interface
-To: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>,
- 'Bartlomiej Zolnierkiewicz' <bzolnier@gmail.com>,
- 'Krzysztof Kozlowski' <krzk@kernel.org>,
- "'Rafael J . Wysocki'" <rafael@kernel.org>, 'Zhang Rui'
- <rui.zhang@intel.com>, 'Lukasz Luba' <lukasz.luba@arm.com>,
- 'Rob Herring' <robh@kernel.org>, 'Conor Dooley' <conor+dt@kernel.org>,
- 'Alim Akhtar' <alim.akhtar@samsung.com>
-Cc: 'Henrik Grimler' <henrik@grimler.se>, linux-pm@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251113064022.2701578-1-shin.son@samsung.com>
- <CGME20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237@epcas2p1.samsung.com>
- <20251113064022.2701578-3-shin.son@samsung.com>
- <2180a854-8ba6-4424-add2-eb34637530c1@linaro.org>
- <000001dc5d2a$0697bf10$13c73d30$@samsung.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <000001dc5d2a$0697bf10$13c73d30$@samsung.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 11/24/25 11:06, 손신 wrote:
+On Mon, Nov 24, 2025 at 10:18:08AM +0100, Jorge Marques wrote:
+> When gp0 or gp1 is not taken as an interrupt, expose them as gpo if
 
-[ ... ]
+GPO
 
-> However, since ExynosAutov920 diverges significantly from the existing driver,
-> Would introducing a separate driver instead of unifying everything be acceptable?
+> gpio-contoller is set in the devicetree.
 
-So this driver is one controller for multiple sensors while the others 
-drivers are one controller for one sensor, right ?
+Why can't gpio-regmap be used?
 
+...
+
+> +static int ad4062_gpio_get(struct gpio_chip *gc, unsigned int offset)
+> +{
+> +	struct ad4062_state *st = gpiochip_get_data(gc);
+> +	unsigned int reg_val;
+> +	int ret;
+> +
+> +	ret = regmap_read(st->regmap, AD4062_REG_GP_CONF, &reg_val);
+> +	if (ret)
+> +		return 0;
+
+> +	if (st->gpo_irq[offset])
+> +		return -ENODEV;
+
+Consider using valid_mask instead (.init_valid_mask() callback).
+Hmm... And it seems it's in place. I didn't get what is here then and
+why we need to do it after accessing the HW? If there are side-effects
+they must be described.
+
+> +	if (offset)
+> +		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_1, reg_val);
+> +	else
+> +		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_0, reg_val);
+> +
+> +	return reg_val == AD4062_GP_STATIC_HIGH ? 1 : 0;
+
+	return !!(reg_val == AD4062_GP_STATIC_HIGH);
+
+also will work.
+
+> +}
+
+> +static int ad4062_gpio_init_valid_mask(struct gpio_chip *gc,
+> +				       unsigned long *valid_mask,
+> +				       unsigned int ngpios)
+> +{
+> +	struct ad4062_state *st = gpiochip_get_data(gc);
+> +
+> +	bitmap_zero(valid_mask, ngpios);
+> +
+> +	if (!st->gpo_irq[0])
+> +		set_bit(0, valid_mask);
+> +	if (!st->gpo_irq[1])
+> +		set_bit(1, valid_mask);
+
+Why atomic bit set:s?
+
+
+> +	return 0;
+> +}
+> +
+> +static int ad4062_gpio_init(struct ad4062_state *st)
+> +{
+> +	struct device *dev = &st->i3cdev->dev;
+> +	struct gpio_chip *gc;
+> +	u8 val, mask;
+> +	int ret;
+
+> +	if ((st->gpo_irq[0] && st->gpo_irq[1]) ||
+> +	    !device_property_read_bool(dev, "gpio-controller"))
+> +		return 0;
+
+Do you need this? valid_mask should take care of this.
+
+> +	gc = devm_kzalloc(dev, sizeof(*gc), GFP_KERNEL);
+> +	if (!gc)
+> +		return -ENOMEM;
+> +
+> +	val = 0;
+> +	mask = 0;
+> +	if (!st->gpo_irq[0]) {
+> +		mask |= AD4062_REG_GP_CONF_MODE_MSK_0;
+> +		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, AD4062_GP_STATIC_LOW);
+> +	}
+> +	if (!st->gpo_irq[1]) {
+> +		mask |= AD4062_REG_GP_CONF_MODE_MSK_1;
+> +		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_STATIC_LOW);
+> +	}
+> +
+> +	ret = regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
+> +				 mask, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_add_action_or_reset(dev, ad4062_gpio_disable, st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	gc->parent = dev;
+> +	gc->label = st->chip->name;
+> +	gc->owner = THIS_MODULE;
+> +	gc->base = -1;
+> +	gc->ngpio = 2;
+> +	gc->init_valid_mask = ad4062_gpio_init_valid_mask;
+> +	gc->get_direction = ad4062_gpio_get_direction;
+> +	gc->set = ad4062_gpio_set;
+> +	gc->get = ad4062_gpio_get;
+> +	gc->can_sleep = true;
+> +
+> +	ret = devm_gpiochip_add_data(dev, gc, st);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Unable to register GPIO chip\n");
+> +
+> +	return 0;
+> +}
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+With Best Regards,
+Andy Shevchenko
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+
 
