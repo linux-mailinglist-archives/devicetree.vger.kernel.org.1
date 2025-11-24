@@ -1,200 +1,246 @@
-Return-Path: <devicetree+bounces-241600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD45C8011A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:05:19 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23BAFC8005F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:57:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 032474E3C18
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:05:18 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7A60A342955
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8202FCC12;
-	Mon, 24 Nov 2025 11:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C8F2FB085;
+	Mon, 24 Nov 2025 10:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="AzYCxT9v"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ujIZ7J/p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FADF2F549B;
-	Mon, 24 Nov 2025 11:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763982292; cv=pass; b=QP2Q06LbO0+sagh/n5OLhV2APNg45Ls4fcZk6hrpiCvv2lDf+1CJWzZsIuMltjTFB7xz1DG/ltrU5PVGjzlgFMzOIqFxqvQNKRV5BEUeI6409PnVT3pQkCWihqNFWlueYFHihCKmk5Zo0TAyFGG3d866zNnJb8Q2YmpqmsVUJSk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763982292; c=relaxed/simple;
-	bh=D3cbMdsMrEtpzsehF8ze+0hLRetx0a/gTi/Q4jo1cyA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JZVQPHyPivzioF3W+n2/hHP2s2ae59eyjQweD8x/WsoTHktzeJvUdEvInbA6e14TOVDk8RCSHWxiGbTUMf+H8+fH/0jon0wwyxEvcFip9DhawKUAeFO1llmR5vv5SzORcNf6QwnSLSGq8tX/u03Wv+/O5QQGLsr9007CAMN2WMU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=AzYCxT9v; arc=pass smtp.client-ip=136.143.184.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1763982257; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=dQ80TF4tnXqxyvQz39otZp1qJFKuYSQsWVGKlt4OQaRq0jhfKO4RFcSD8yYwl+hE8iWK7kebriRX6AN+f8jXhFqrDErLCnxkwJSAf18Tn0TGtpGrA1/cQyqfuRDqlihaYRZWcH3qWYgchRPbXLMbhZQhcnOlU5q8gtAQLHJBx74=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1763982257; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=D3cbMdsMrEtpzsehF8ze+0hLRetx0a/gTi/Q4jo1cyA=; 
-	b=QR23I/6yedKkXsnYfEAntLVmtHhSTmqmKvLUh+OrXQSYkAD5PIAH73bC4UMKU4o67eM+BsyZJZ0/Q/Stzfc49Vdr/7AX9FD0KttxJaPs1tccW2R+dk+XWxmXcNjG+SeKopz9kO7TsFLx+TELaD4+VbmANRPIzs2yA+573ZKpI9A=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763982257;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=D3cbMdsMrEtpzsehF8ze+0hLRetx0a/gTi/Q4jo1cyA=;
-	b=AzYCxT9vItXc5CVXKohJmJoK9lPWVDhV7Dc3/CSdHRDMA5AHrj9CgxmEjQ5x+AvB
-	2aFH+oP3nW0kF031f2F+LQ+hUftlW0TvANSaXZ9AZupM4jS82B254zku8bssR+nqorG
-	TGwdJDhAcqSNGe7wjko3GtcLCM4A2M+lSmiEBwK3xYGGDtXdyTvFfamvcemo0RzHJTt
-	1DGsDNCfQIZzdHPwNnokGwbdGrX/YAXxq044iHKBwNTopRGHOroLRKbbPKO/IArHEqY
-	H9rnOr3iHNMRAUn20NJiGaji9FkczjSI2UwiC40ILLgtYuQeVKS/vBEXEjyX3MJf6n1
-	GvvjSXUX2w==
-Received: by mx.zohomail.com with SMTPS id 1763982256270972.0326901834951;
-	Mon, 24 Nov 2025 03:04:16 -0800 (PST)
-Message-ID: <f7bbb57180866a0674fc1d72d4bd3279c7b1c1e9.camel@icenowy.me>
-Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Drew
- Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
- <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner
- <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Michal
- Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Date: Mon, 24 Nov 2025 19:04:07 +0800
-In-Reply-To: <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
-References: <20251124105226.2860845-1-uwu@icenowy.me>
-	 <20251124105226.2860845-3-uwu@icenowy.me>
-	 <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 015F62FABED
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 10:56:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763981819; cv=none; b=D1107A5bZ5Y03f4xttrSUeWSe/Htg7GbGAx6OH8WGf2H8D3PPZCFT+boEQ1MjvcRTYF4sWBRzqpbgGAjH5wNB3SIm3Pb/3VNdX2EDvJgREzNCEfhuBixxpFnDM8wb3TBL3WohB36HBlhsmRJfYBISXBuzKQ1UoRMnKAzNP7xif4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763981819; c=relaxed/simple;
+	bh=Ll/QZw45qMoHWykNJsS08sbY3e87fcb8Z8eEZKtMhTY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=iLgaKLb4i9bKKaoHfNJKLdDCmYq4RSStYXZ/0WNIgY9z3/4obqpR+jXbrHZzo4XqtpZ5OX5gappmF+H5JfYrdN4zN06PdPqjZ5ZvLzGFcSa1KVcPTT/F0lYBDcoQ3zh9szaChTUH9V/qpwrNxQbDpDB7/3gpJ6TxqhEE7c6RxRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ujIZ7J/p; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20251124105654epoutp01f3610739321d2cb69301d0d463005bb6~67B0npbR30485004850epoutp01W
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 10:56:54 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20251124105654epoutp01f3610739321d2cb69301d0d463005bb6~67B0npbR30485004850epoutp01W
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1763981814;
+	bh=4pXZKhOe7QyXXq7lgC1cUUIT+gRiFvMsFZpLQRZjmdc=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=ujIZ7J/prNdobJghBxhXast/2F72toIbeyb0LS2SL2CMJJtqbNESFZBpvq5sDE/zh
+	 Ql6HxrgZiqWOIeKzfzF3enRTuXMv3skjiM8HZjxiF8R0rBIZqORBjYVLXob1CXQ4f2
+	 IOR+n76oVLq4erds8fMBO38W1H8L+7MTdcCgsx68=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20251124105653epcas5p247b3c199f45453d974c7069a14dc6e6e~67BzwUogi0227802278epcas5p2z;
+	Mon, 24 Nov 2025 10:56:53 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.90]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4dFN78199Gz6B9m9; Mon, 24 Nov
+	2025 10:56:52 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20251124105651epcas5p20d9987d882d5d3850b599b4b46cf70d5~67ByWtb8_0225902259epcas5p29;
+	Mon, 24 Nov 2025 10:56:51 +0000 (GMT)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20251124105639epsmtip2c2dcf6edea506c44a38072aeab701fb2~67Bm2VBSQ1716317163epsmtip2s;
+	Mon, 24 Nov 2025 10:56:38 +0000 (GMT)
+From: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+	andre.draszik@linaro.org, peter.griffin@linaro.org, kauschluss@disroot.org,
+	johan@kernel.org, ivo.ivanov.ivanov1@gmail.com, m.szyprowski@samsung.com,
+	s.nawrocki@samsung.com, pritam.sutar@samsung.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
+	dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
+	selvarasu.g@samsung.com
+Subject: [PATCH v10 0/6] initial usbdrd phy support for Exynosautov920 soc
+Date: Mon, 24 Nov 2025 16:34:47 +0530
+Message-Id: <20251124110453.2887437-1-pritam.sutar@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20251124105651epcas5p20d9987d882d5d3850b599b4b46cf70d5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20251124105651epcas5p20d9987d882d5d3850b599b4b46cf70d5
+References: <CGME20251124105651epcas5p20d9987d882d5d3850b599b4b46cf70d5@epcas5p2.samsung.com>
 
-=E5=9C=A8 2025-11-24=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 12:01 +0100=EF=BC=
-=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> On 24/11/2025 11:52, Icenowy Zheng wrote:
-> > Verisilicon has a series of display controllers prefixed with DC
-> > and
-> > with self-identification facility like their GC series GPUs.
-> >=20
-> > Add a device tree binding for it.
-> >=20
-> > Depends on the specific DC model, it can have either one or two
-> > display
-> > outputs, and each display output could be set to DPI signal or "DP"
-> > signal (which seems to be some plain parallel bus to HDMI
-> > controllers).
-> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
->=20
-> Wrong DCO chain order. You send it as icenowy.me, so this must be
-> last
-> SoB. This identity is the last one certifying DCO. Please kindly read
-> submitting patches, so you know what you are certifying here.
+This SoC has a single USB 3.1 DRD combo phy and three USB2.0 only
+DRD phy controllers as mentined below
 
-Well I mapped the @iscas.ac.cn mail to the @icenowy.me one in the last
-patch.
+  * Combo phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
+    compatible to the USB3.0 SS(5Gbps). 'Add-on USB2.0' phy is added
+    to support USB2.0 HS(480Mbps), FS(12Mbps) and LS(1.5Mbps) data rates.
+    These two phys are combined to form a combo phy as mentioned below.
 
-Or maybe I should make it the first patch?
 
->=20
-> > ---
-> > Changes in v3:
-> > - Added SoC-specific compatible string, and arm the binding with
-> > clock /
-> > =C2=A0 port checking for the specific SoC (with a 2-output DC).
-> >=20
-> > Changes in v2:
-> > - Fixed misspelt "versilicon" in title.
-> > - Moved minItems in clock properties to be earlier than items.
-> > - Re-aligned multi-line clocks and resets in example.
-> >=20
-> > =C2=A0.../bindings/display/verisilicon,dc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 146
-> > ++++++++++++++++++
-> > =C2=A01 file changed, 146 insertions(+)
-> > =C2=A0create mode 100644
-> > Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > new file mode 100644
-> > index 0000000000000..522a544498bea
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > @@ -0,0 +1,146 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/verisilicon,dc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Verisilicon DC-series display controllers
-> > +
-> > +maintainers:
-> > +=C2=A0 - Icenowy Zheng <uwu@icenowy.me>
-> > +
-> > +properties:
-> > +=C2=A0 $nodename:
-> > +=C2=A0=C2=A0=C2=A0 pattern: "^display@[0-9a-f]+$"
-> > +
-> > +=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0 items:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - thead,th1520-=
-dc8200
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: verisilicon,dc
->=20
-> I do not see any explanation of exception for generic compatibles,
-> maybe
-> except "self-identification" remark. Rob already pointed this out, so
-> be
-> explicit in commit msg why you are using a generic compatible.
->=20
-> > +
-> > +=C2=A0 reg:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +=C2=A0 interrupts:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +=C2=A0 clocks:
-> > +=C2=A0=C2=A0=C2=A0 minItems: 4
->=20
-> This is not flexible. Device either has or has not these clocks.
->=20
-> > +=C2=A0=C2=A0=C2=A0 items:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DC Core clock
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DMA AXI bus clock
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Configuration AHB bus cl=
-ock
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Pixel clock of output 0
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Pixel clock of output 1
-> > +
->=20
->=20
->=20
-> Best regards,
-> Krzysztof
+   USB30DRD_0 port
+
+ +------------------------------------------------------------+
+ |                                                            |
+ |                (combo) USB phy controller                  |
+ |      +----------------------------------------------+      |
+ |      |                  USB HSPHY                   |      |
+ |      |  (samsung,exynosautov920-usbdrd-combo-hsphy) |      |
+ |      +----------------------------------------------+      |
+ |                                                            |
+ |    +--------------------------------------------------+    |
+ |    |                   USB SSPHY                      |    |
+ |    |   (samsung,exynosautov920-usb31drd-combo-ssphy)  |    |
+ |    +--------------------------------------------------+-   |
+ |                                                            |
+ +------------------------------------------------------------+
+ |                                                            |
+ |                     USBDRD30 Link                          |
+ |                       Controller                           |
+ +------------------------------------------------------------+
+
+  * USB2.0 phy supports only UTMI+ interface. USB2.0DRD phy
+    is very similar to the existing Exynos850 support in this driver.
+
+    USB20DRD_0/1/2 ports
+
+      +---------------------------------------------------+
+      |                                                   |
+      |                USB PHY controller                 |
+      |    +-----------------------------------------+    |
+      |    |              USB HSPHY                  |    |
+      |    |  (samsung,exynosautov920-usbdrd-phy)    |    |
+      |    +-----------------------------------------+    |
+      |                                                   |
+      +---------------------------------------------------+
+      |                                                   |
+      |             USBDRD20_* Link                       |
+      |                Controller                         |
+      |                                                   |
+      +---------------------------------------------------+
+
+The "USB20 phy output isolation" is shared across the USB20 phys.
+We have to bypass isolation when any one of the USBs is configured
+and enable it when all are turned off. The "USB31 phy isolation"
+is seperate for USB31 phy.
+
+This patchset only supports device mode and same is verified with
+as NCM device
+
+changelog
+----------
+Changes in v10:
+- Added the RB tag that was given in v9 [1].
+- Fixed typo in commit message.
+- Added discription in commit message for ss phy patch.
+[1]: https://lore.kernel.org/linux-phy/d99d7b54-88af-4649-84c2-02027b4d9655@kernel.org/
+
+Changes in v9:
+- added RB tags those were given in v7 [1] and v8.
+- updated commit message in patch no.1 by adding supplies'
+  names those are taken from phy User Manual [2]
+  link for v8: https://lore.kernel.org/linux-phy/20250903073827.3015662-1-pritam.sutar@samsung.com/
+[1]: https://lore.kernel.org/linux-phy/20250824-mustang-of-glorious-sufficiency-b55bf4@kuoka/
+[2]: https://lore.kernel.org/linux-phy/02ef5180-ad56-45f0-a56f-87f442bf6793@kernel.org/
+
+Changes in v8:
+- modified supplies' names in schema and driver.
+- Since supplies' names are changed, modified patch no 5. to
+  fix warnings in dtbs_check dt_binding_check.
+- updated commit message for patch no. 1, 3 and 5 to describe
+  hardware details.
+  link for v7: https://lore.kernel.org/linux-phy/20250822093845.1179395-1-pritam.sutar@samsung.com/
+
+Changes in v7:
+- added fixes for driver build warnings
+  link for v6: https://lore.kernel.org/linux-phy/20250821073703.2498302-1-pritam.sutar@samsung.com/
+
+Changes in v6:
+- added else part for new supplies in schemas those are only
+  supported for exynosautov920.
+- addressed comments for driver given in v5.
+  link for v5: https://lore.kernel.org/linux-phy/20250805115216.3798121-1-pritam.sutar@samsung.com/
+
+Changes in v5:
+
+- addressed comments from v4 patchset.
+  - patch (1/6)
+    - DTS style is corrected and added required supplies in code/schema.
+    - schema block added to resolve below failure during 'dtbs_check'.
+      Unevaluated properties are not allowed ('dvdd075-usb-supply', 'vdd18-usb20-supply', 'vdd33-usb20-supply' were unexpected.
+  - patch (2/6)
+    - removed usage_counter(take this later in subsequent patch-sets)
+  - patch (3/6)
+    - There are 3 types of the phys in this SoC.
+      - one is simmilar with exynos850 as mentioned in patch no.1.
+      - second supports only USB3.1 SSP+ and denoted in patch no 5
+      - third supports only USB2.0 HS as in patch3.
+    - hs phy in combo phy is "NOT" same as phy. (in patch no. 1)
+    - These three phys(usbdrd-phy, combo-hsphy, combo-ssphy) are totally
+      deferent, "NOT" same, hence added three compatible for three phys.
+  - patch (5/6)
+    - Since there are two phys in combo phy, explaination is given
+      in each patch.
+  link for v4: https://lore.kernel.org/linux-phy/20250701120706.2219355-1-pritam.sutar@samsung.com/
+
+Changes in v4:
+- addressed comments from v3 patchset
+  - removed dts related patches, to be posted in new patchset.
+  - added regulator, pmu and power sequences.
+  - phy isol is shared across USBs, added usage counter to bypass or
+    enable phy isolation.
+  - modified schemas with hs and combo phy compatible names
+    (used "combo" to denote combo phy) and regulators
+- modified code to work with binding and unbinding devices/drivers
+- added "Reviewed-by" tag.
+  link for v3: https://lore.kernel.org/linux-phy/20250613055613.866909-1-pritam.sutar@samsung.com/
+
+Changes in v3:
+- Updated dt-bindings for USB2.0 only.
+- Added dt-bindings for combo phy.
+- Added implementation for combo phy (SS and HS phy).
+- Added added DTS nodes for all the phys
+  link for v2: https://lore.kernel.org/linux-phy/20250516102650.2144487-1-pritam.sutar@samsung.com/
+
+Changes in v2:
+- Used standard GENMASK() and FIELD_GET() to get the major version
+  from controller version register.
+  link for v1: https://lore.kernel.org/linux-phy/20250514134813.380807-1-pritam.sutar@samsung.com/
+
+Pritam Manohar Sutar (6):
+  dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 HS phy
+    compatible
+  phy: exynos5-usbdrd: support HS phy for ExynosAutov920
+  dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo hsphy
+  phy: exynos5-usbdrd: support HS combo phy for ExynosAutov920
+  dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo ssphy
+  phy: exynos5-usbdrd: support SS combo phy for ExynosAutov920
+
+ .../bindings/phy/samsung,usb3-drd-phy.yaml    |  48 ++
+ drivers/phy/samsung/phy-exynos5-usbdrd.c      | 651 ++++++++++++++++++
+ include/linux/soc/samsung/exynos-regs-pmu.h   |   3 +
+ 3 files changed, 702 insertions(+)
+
+-- 
+2.34.1
 
 
