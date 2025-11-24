@@ -1,287 +1,692 @@
-Return-Path: <devicetree+bounces-241559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 824C7C7FCD8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:06:58 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1189C7FD96
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:21:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F08E2341C2F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:06:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9E0B64E510A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:21:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A3F2F60C4;
-	Mon, 24 Nov 2025 10:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEBC7273D77;
+	Mon, 24 Nov 2025 10:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Fi7nIrOp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Fkzf4W/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C2CE26FDAC
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 10:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97EED26E175;
+	Mon, 24 Nov 2025 10:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763978813; cv=none; b=p4+WZqbmy+6A8aqeiWPS04+VjD0etMu+O9utmnmlVZYHksjPGn+dN7ngZAvDnSsbvPEfGPOkYzq1KKDftITd9aWvaQRDgoR0x990YIXldyrQGHjUL6vwDYcIUhwK/zcit6Fhsp2Ta6O5x6PRcUUv1VWFBkCOgvZF9exOX9+TdP8=
+	t=1763979666; cv=none; b=iY22npu/DwTCDIf0XVbeiESNgCQVrn37erSGF9DRIK96RJwNodPrzlPRyPtQtF9PuK7bM7Vw1dZ4Fm9rEsQup71XLLUfRXPIBucw1eKFswG7res4bi0US49gTClRIJmNkgEHHUe8KKZFe2+x5e9BDM2Gyp+6xNo314MgWo35T3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763978813; c=relaxed/simple;
-	bh=ot8hkFeIo/UEuyzJDh/y9H2Galv1zgqlnaHSJR4Vh40=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=DgVCXRqkCnKYAPAKQD7PCKwcmj9oe8NIFwQREx1NVT7FJhTBd33IhAWZVti1U6Go5yJwC6JAvv1BdYI1XwoUvTDzRUL/1iJG5h0EoBp4Z7H5qeNR/tipJ3TWH4clJ68jli5SpTk4yaWKQFaEFnWBzRG4BWDNu2JeGs2ZbUXvODA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Fi7nIrOp; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20251124100641epoutp04ce73c9b9976860535edf3316388cc16b~66V-MHBSo2708327083epoutp04i
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 10:06:41 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20251124100641epoutp04ce73c9b9976860535edf3316388cc16b~66V-MHBSo2708327083epoutp04i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1763978801;
-	bh=518PqviNXgLoda/W13kyXia8krI82Z2gN0kxwjhBdwY=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=Fi7nIrOpoegc7az/EYd3pi6apnrHP7xP+8sareZg4K9ApTXV20sUTtmfHAoRZyy6a
-	 VKysoaT0zHd017Jg1YyilFHcdKU9SEylYjG4QT9BciYD+pdlia4aavHbOT3+Elze8K
-	 MtXbmQN8u1sd5eGxEyK4p8/BRWDM14NnF7ogp9cU=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
-	20251124100641epcas2p155850be961958980e0318057e970fbef~66V_uI9Os1469814698epcas2p1K;
-	Mon, 24 Nov 2025 10:06:41 +0000 (GMT)
-Received: from epcas2p4.samsung.com (unknown [182.195.38.204]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4dFM1D5XcDz2SSKY; Mon, 24 Nov
-	2025 10:06:40 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-	20251124100639epcas2p1497455bf036f5c82178f129b59fbbe86~66V9Qgz4R1469814698epcas2p1G;
-	Mon, 24 Nov 2025 10:06:39 +0000 (GMT)
-Received: from KORCO115296 (unknown [12.80.207.128]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20251124100639epsmtip21c1959008965844f498e49b5c01927d9~66V9JltAm1979019790epsmtip2S;
-	Mon, 24 Nov 2025 10:06:39 +0000 (GMT)
-From: =?utf-8?B?7IaQ7Iug?= <shin.son@samsung.com>
-To: "'Daniel Lezcano'" <daniel.lezcano@linaro.org>, "'Bartlomiej
- Zolnierkiewicz'" <bzolnier@gmail.com>, "'Krzysztof Kozlowski'"
-	<krzk@kernel.org>, "'Rafael J . Wysocki'" <rafael@kernel.org>, "'Zhang Rui'"
-	<rui.zhang@intel.com>, "'Lukasz Luba'" <lukasz.luba@arm.com>, "'Rob
-	Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>, "'Alim
-	Akhtar'" <alim.akhtar@samsung.com>
-Cc: "'Henrik Grimler'" <henrik@grimler.se>, <linux-pm@vger.kernel.org>,
-	<linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<shin.son@samsung.com>
-In-Reply-To: <2180a854-8ba6-4424-add2-eb34637530c1@linaro.org>
-Subject: RE: [PATCH v7 RESEND 2/3] thermal: exynos_tmu: Support new hardware
- and update TMU interface
-Date: Mon, 24 Nov 2025 19:06:33 +0900
-Message-ID: <000001dc5d2a$0697bf10$13c73d30$@samsung.com>
+	s=arc-20240116; t=1763979666; c=relaxed/simple;
+	bh=97Id1iupUhtI/OhnNJgcjDWkaZUiS859ZgDQ6dsjMWI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XQoSwDZRU02GJv6oTeJD7jqh+C2bHWkKOGYClH0DYTghDnI+6E7qqsQTmN0cHi0rHSDyLpibL0H9l84FW0t3Sog3JuKO/n2yRxtbeIqvKyRqhQ3c4sPsL0MGf0lIZZx1V8i7GQeUBY3oEhv7EFqt/l60z8fb67+DvVS0JlFCM5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Fkzf4W/0; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1763979664; x=1795515664;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=97Id1iupUhtI/OhnNJgcjDWkaZUiS859ZgDQ6dsjMWI=;
+  b=Fkzf4W/0Wm+snjb2kbIGcEzHBPb5YBzl8syiZRvsz6uaOOhK8nOc2CWO
+   wrumS+c89ajJ+6pWMHGxNnmvzC9A2nGGv3fNPP+Dm7rpBhr7p/KNnFQdR
+   XPh0gLZ10153fjSqbnB38LBURITSrK1TvsXST6lIBJubymfsjEnyN+Q8g
+   LhsbClXiO44Z1IZyGjobPERied1OEnKiDb3v7v7tZCa47MeauthEEXYz7
+   WfxTpesAbbJu51TtzLDFJkiS61GoREYbQClpBIuG5xM9e2WYotpLgvFik
+   hp6WTNWZK9tAdnUtpxoRIuxnht0NzNCjGJ7Oag65ERS3oYFArt2QEA2SJ
+   Q==;
+X-CSE-ConnectionGUID: MJen92qxRB2iTl9q+bnBpQ==
+X-CSE-MsgGUID: sfKvDJKCRYeSjyza7/ZgHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11622"; a="91461252"
+X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
+   d="scan'208";a="91461252"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 02:21:03 -0800
+X-CSE-ConnectionGUID: 9QJRWjszSRKXAuSPIM0JBA==
+X-CSE-MsgGUID: grgx7fhYSIaex/4j1wecQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
+   d="scan'208";a="196744019"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.5])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 02:20:59 -0800
+Date: Mon, 24 Nov 2025 12:20:57 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jorge Marques <jorge.marques@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] iio: adc: Add support for ad4062
+Message-ID: <aSQxiSoZcI_ol3S5@smile.fi.intel.com>
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
+ <20251124-staging-ad4062-v2-3-a375609afbb7@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQJR08pAfg/+KuTfxFjIW+Bmb4uKqAKoesbtAuyt0KIBiaSaQbPdi13w
-Content-Language: ko
-X-CMS-MailID: 20251124100639epcas2p1497455bf036f5c82178f129b59fbbe86
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237
-References: <20251113064022.2701578-1-shin.son@samsung.com>
-	<CGME20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237@epcas2p1.samsung.com>
-	<20251113064022.2701578-3-shin.son@samsung.com>
-	<2180a854-8ba6-4424-add2-eb34637530c1@linaro.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251124-staging-ad4062-v2-3-a375609afbb7@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hello, Daniel Lezcano
+On Mon, Nov 24, 2025 at 10:18:02AM +0100, Jorge Marques wrote:
+> The AD4060/AD4062 are versatile, 16-bit/12-bit, successive approximation
+> register (SAR) analog-to-digital converter (ADC) with low-power and
+> threshold monitoring modes.
 
-> On 11/13/25 07:40, Shin Son wrote:
-> > +	if (data->soc =3D=3D SOC_ARCH_EXYNOSAUTOV920 && code_diff < 0)
-> > +		temp =3D temp * 65 / (57 + data->slope_comp);
->=20
-> No litterals, comments, etc ...
+...
 
-I'll move those fomulas into the variant data via the .data field in the of=
-_device_id match table.
+> +#define AD4062_SOFT_RESET	0x81
 
-> > +static void update_con_reg(struct exynos_tmu_data *data) =7B
-> > +	u32 val, t_buf_vref_sel, t_buf_slope_sel;
-> > +
-> > +	val =3D readl(data->base + EXYNOS_TMU_REG_TRIMINFO);
-> > +	t_buf_vref_sel =3D (val >> EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_SHIFT)
-> > +				& EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_MASK;
-> > +	t_buf_slope_sel =3D (val >> EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_SHIFT)
-> > +				& EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_MASK;
-> > +
-> > +	val =3D readl(data->base +  EXYNOSAUTOV920_TMU_REG_CONTROL);
-> > +	val &=3D =7E(EXYNOS_TMU_REF_VOLTAGE_MASK <<
-> EXYNOS_TMU_REF_VOLTAGE_SHIFT);
-> > +	val =7C=3D (t_buf_vref_sel << EXYNOS_TMU_REF_VOLTAGE_SHIFT);
-> > +	val &=3D =7E(EXYNOS_TMU_BUF_SLOPE_SEL_MASK <<
-> EXYNOS_TMU_BUF_SLOPE_SEL_SHIFT);
-> > +	val =7C=3D (t_buf_slope_sel << EXYNOS_TMU_BUF_SLOPE_SEL_SHIFT);
-> > +	writel(val, data->base + EXYNOSAUTOV920_TMU_REG_CONTROL);
-> > +
-> > +	val =3D readl(data->base + EXYNOSAUTOV920_TMU_REG_CONTROL1);
-> > +	val &=3D =7E(EXYNOSAUTOV920_TMU_NUM_PROBE_MASK <<
-> EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT);
-> > +	val &=3D =7E(EXYNOSAUTOV920_TMU_LPI_MODE_MASK <<
-> EXYNOSAUTOV920_TMU_LPI_MODE_SHIFT);
-> > +	val =7C=3D (data->sensor_count << EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT)=
-;
-> > +	writel(val, data->base + EXYNOSAUTOV920_TMU_REG_CONTROL1);
-> > +
-> > +	writel(1, data->base + EXYNOSAUTOV920_TMU_SAMPLING_INTERVAL);
-> > +	writel(EXYNOSAUTOV920_TMU_AVG_CON_UPDATE, data->base +
-> EXYNOSAUTOV920_TMU_REG_AVG_CONTROL);
-> > +	writel(EXYNOSAUTOV920_TMU_COUNTER_VALUE0_UPDATE,
-> > +	       data->base + EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE0);
-> > +	writel(EXYNOSAUTOV920_TMU_COUNTER_VALUE1_UPDATE,
-> > +	       data->base + EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE1);
-> > +=7D
-> > +
->=20
-> This is unreadable; please make it understandable for those who don=E2=80=
-=99t=20have=0D=0A>=20the=20documentation=20(explicit=20static=20inline=20fu=
-nctions,=20comments,=20etc=20...).=0D=0A=0D=0AI'll=20restructure=20this=20c=
-ode=20by=20introducing=20explicit=20static=20inline=20helper=20functions=20=
-and=20proper=20comments=20to=20improve=20readability.=0D=0A=0D=0A>=20>=20+s=
-tatic=20void=20exynosautov920_tmu_disable_high(struct=20exynos_tmu_data=0D=
-=0A>=20>=20+*data)=20=7B=0D=0A>=20>=20+=09/*=20Again,=20this=20is=20handled=
-=20by=20polling.=20*/=20=7D=0D=0A>=20=0D=0A>=20The=20driver=20would=20deser=
-ve=20some=20cleanups.=20Instead=20of=20having=20empty=20callbacks,=0D=0A>=
-=20check=20in=20exynos_set_trips()=20if=20the=20ops=20is=20=21NULL.=20Then=
-=20remove=20all=20no-op=20ops.=0D=0A=0D=0AOk,=20I'll=20update=20exynos_set_=
-trips()=20to=20check=20for=20NULL=20ops=20and=20remove=20the=20no-op=20call=
-backs=20accordingly.=0D=0A=0D=0A>=20>=20+static=20void=20exynosautov920_tmu=
-_set_crit_temp(struct=20exynos_tmu_data=0D=0A>=20>=20+*data,=20u8=20temp)=
-=20=7B=0D=0A>=20>=20+=09unsigned=20int=20idx;=0D=0A>=20>=20+=0D=0A>=20>=20+=
-=09for=20(idx=20=3D=200;=20idx=20<=20data->sensor_count;=20idx++)=20=7B=0D=
-=0A>=20>=20+=09=09if=20(=21data->tzd_array=5Bidx=5D)=0D=0A>=20>=20+=09=09=
-=09continue;=0D=0A>=20>=20+=0D=0A>=20>=20+=09=09exynos_tmu_update_temp(data=
-,=0D=0A>=20EXYNOSAUTOV920_TMU_REG_THRESHOLD(idx),=2016,=20temp);=0D=0A>=20>=
-=20+=09=09exynos_tmu_update_bit(data,=0D=0A>=20EXYNOSAUTOV920_TMU_REG_INTEN=
-(idx),=207,=20true);=0D=0A>=20>=20+=09=7D=0D=0A>=20>=20+=7D=0D=0A>=20=0D=0A=
->=20There=20is=20something=20wrong=20in=20the=20driver=20design.=0D=0A>=20=
-=0D=0A>=20exynosautov920_tmu_set_crit_temp()=20is=20called=20from=0D=0A>=20=
-exynos_thermal_zone_configure()=20and=20the=20routine=20above=20sets=20the=
-=20temperature=0D=0A>=20on=20all=20the=20thermal=20zone=20while=20this=20on=
-e=20is=20retrieved=20from=20one=20thermal=20zone.=0D=0A>=20=0D=0A>=20Which=
-=20results=20in:=0D=0A>=20=0D=0A>=20=09for=20all=20tz=20do;=0D=0A>=20=09=09=
-for=20all=20tz=20do;=0D=0A>=20=09=09=09if=20=21tz=20then=20continue;=0D=0A>=
-=20=09=09=09set_crit_temp(tz)=0D=0A>=20=0D=0A>=20No,=20this=20driver=20need=
-s=20to=20be=20revisited=20and=20cleanup=20before=20sending=20changes=0D=0A>=
-=20for=20multiple=20sensors=20support.=0D=0A>=20=0D=0A>=20What=20percentage=
-=20of=20code=20sharing=20is=20there=20with=20the=20existing=20driver=20?=0D=
-=0A=0D=0AOverall,=20I=20would=20say=20that=20roughly=2060%=20of=20the=20log=
-ic=20can=20be=20shared.=0D=0AThe=20temperature=20reading=20and=20emulation=
-=20paths=20are=20similar,=20but=20the=20initialization=20sequence=20differs=
-=20significantly.=0D=0A=0D=0AGiven=20this=20level=20of=20divergence,=20woul=
-d=20introducing=20a=20separate=20driver=20=0D=0A(instead=20of=20extending=
-=20the=20current=20one=20with=20many=20special-case=20paths)=20be=20accepta=
-ble?=0D=0A=0D=0A>=20>=20+static=20void=20exynosautov920_tmu_initialize(stru=
-ct=20platform_device=0D=0A>=20>=20+*pdev)=20=7B=0D=0A>=20>=20+=09struct=20e=
-xynos_tmu_data=20*data=20=3D=20platform_get_drvdata(pdev);=0D=0A>=20>=20+=
-=09unsigned=20int=20val;=0D=0A>=20>=20+=0D=0A>=20>=20+=09data->tmu_control(=
-pdev,=20false);=0D=0A>=20>=20+=0D=0A>=20>=20+=09update_con_reg(data);=0D=0A=
->=20>=20+=0D=0A>=20>=20+=09val=20=3D=20readl(data->base=20+=20EXYNOS_TMU_RE=
-G_TRIMINFO);=0D=0A>=20>=20+=09data->cal_type=20=3D=20TYPE_TWO_POINT_TRIMMIN=
-G;=0D=0A>=20>=20+=09data->slope_comp=20=3D=20(val=20>>=20EXYNOSAUTOV920_SLO=
-PE_COMP)=20&=0D=0A>=20>=20+EXYNOSAUTOV920_SLOPE_COMP_MASK;=0D=0A>=20>=20+=
-=0D=0A>=20>=20+=09val=20=3D=20readl(data->base=20+=20EXYNOSAUTOV920_SENSOR0=
-_TRIM_INFO);=0D=0A>=20>=20+=09data->temp_error1=20=3D=20(val=20>>=20EXYNOSA=
-UTOV920_TRIMINFO_25_SHIFT)=20&=0D=0A>=20EXYNOSAUTOV920_TRIM_MASK;=0D=0A>=20=
->=20+=09data->temp_error2=20=3D=20(val=20>>=20EXYNOSAUTOV920_TRIMINFO_85_SH=
-IFT)=20&=0D=0A>=20>=20+EXYNOSAUTOV920_TRIM_MASK;=0D=0A>=20>=20+=0D=0A>=20>=
-=20+=09val=20=3D=20readl(data->base=20+=20EXYNOSAUTOV920_TMU_REG_TRIMINFO2)=
-;=0D=0A>=20>=20+=09val=20=3D=20(val=20>>=20EXYNOSAUTOV920_CALIB_SEL_TEMP)=
-=20&=0D=0A>=20>=20+EXYNOSAUTOV920_CALIB_SEL_TEMP_MASK;=0D=0A>=20>=20+=0D=0A=
->=20>=20+=09data->calib_temp=20=3D=20(EXYNOS_SECOND_POINT_TRIM=20+=20(20=20=
-*=20val));=20=7D=0D=0A>=20>=20+=0D=0A>=20=0D=0A>=20This=20is=20unreadable;=
-=20please=20make=20it=20understandable=20for=20those=20who=20don=E2=80=99t=
-=20have=0D=0A>=20the=20documentation=20(explicit=20static=20inline=20functi=
-ons,=20comments,=20etc=20...).=0D=0A=0D=0AOk,=20I'll=20refactor=20this=20co=
-de=20using=20explicit=20static=20inline=20helpers=20and=20comments.=0D=0A=
-=0D=0A>=20>=20+static=20void=20exynosautov920_tmu_control(struct=20platform=
-_device=20*pdev,=0D=0A>=20>=20+bool=20on)=20=7B=0D=0A>=20>=20+=09struct=20e=
-xynos_tmu_data=20*data=20=3D=20platform_get_drvdata(pdev);=0D=0A>=20>=20+=
-=09unsigned=20int=20con;=0D=0A>=20>=20+=0D=0A>=20>=20+=09con=20=3D=20readl(=
-data->base=20+=20EXYNOSAUTOV920_TMU_REG_CONTROL);=0D=0A>=20>=20+=0D=0A>=20>=
-=20+=09if=20(on)=20=7B=0D=0A>=20>=20+=09=09con=20=7C=3D=20BIT(EXYNOS_TMU_TH=
-ERM_TRIP_EN_SHIFT);=0D=0A>=20>=20+=09=09con=20=7C=3D=20BIT(EXYNOS_TMU_CORE_=
-EN_SHIFT);=0D=0A>=20>=20+=09=7D=20else=20=7B=0D=0A>=20>=20+=09=09con=20&=3D=
-=20=7EBIT(EXYNOS_TMU_THERM_TRIP_EN_SHIFT);=0D=0A>=20>=20+=09=09con=20&=3D=
-=20=7EBIT(EXYNOS_TMU_CORE_EN_SHIFT);=0D=0A>=20>=20+=09=7D=0D=0A>=20>=20+=0D=
-=0A>=20>=20+=09writel(con,=20data->base=20+=20EXYNOSAUTOV920_TMU_REG_CONTRO=
-L);=20=7D=0D=0A>=20=0D=0A>=20Document=20a=20bit=20the=20code=20please.=0D=
-=0A=0D=0ASure,=20I=E2=80=99ll=20document=20this=20part=20properly=20by=20ad=
-ding=20clear=20comments=20and=20splitting=20the=20register=20options=20into=
-=20explicit=20helper=20functions.=0D=0A=0D=0A>=20>=20=20=20static=20irqretu=
-rn_t=20exynos_tmu_threaded_irq(int=20irq,=20void=20*id)=0D=0A>=20>=20=20=20=
-=7B=0D=0A>=20>=20=20=20=09struct=20exynos_tmu_data=20*data=20=3D=20id;=0D=
-=0A>=20>=20+=09int=20idx;=0D=0A>=20>=0D=0A>=20>=20-=09thermal_zone_device_u=
-pdate(data->tzd,=20THERMAL_EVENT_UNSPECIFIED);=0D=0A>=20>=20+=09for=20(idx=
-=20=3D=200;=20idx=20<=20data->sensor_count;=20idx++)=20=7B=0D=0A>=20>=20+=
-=09=09if=20(=21data->tzd_array=5Bidx=5D)=0D=0A>=20>=20+=09=09=09continue;=
-=0D=0A>=20>=20+=0D=0A>=20>=20+=09=09thermal_zone_device_update(data->tzd_ar=
-ray=5Bidx=5D,=0D=0A>=20>=20+THERMAL_EVENT_UNSPECIFIED);=0D=0A>=20I=20unders=
-tand=20the=20main=20reason=20is=20to=20keep=20a=20common=20isr=20but=20you=
-=20should=0D=0A>=20*not*=20update=20all=20the=20thermal=20zones.=20There=20=
-is=20an=20amount=20of=20processing=0D=0A>=20behind=20this=20function=20addi=
-ng=20a=20significant=20overhead.=0D=0A>=20=0D=0A>=20So=20somehow=20readl(da=
-ta->base=20+=20EXYNOSAUTOV920_TMU_REG_INT_PEND(idx));=0D=0A>=20should=20be=
-=20used=20here=20to=20know=20if=20the=20thermal=20zone=20has=20to=20be=20up=
-dated=20or=20not.=0D=0A=0D=0AOK,=20I'll=20update=20the=20ISR=20so=20that=20=
-it=20checks=20the=20pending=20register=20before=20calling=20'thermal_zone_d=
-evice_update()',=0D=0AAnd=20only=20update=20the=20relevant=20thermal=20zone=
-s.=20=0D=0A=0D=0A>=20>=20=20=20static=20const=20struct=20of_device_id=20exy=
-nos_tmu_match=5B=5D=20=3D=20=7B=0D=0A>=20>=20=20=20=09=7B=0D=0A>=20>=20=20=
-=20=09=09.compatible=20=3D=20=22samsung,exynos3250-tmu=22,=20=40=40=20-833,=
-6=20+1044,9=20=40=40=0D=0A>=20>=20static=20const=20struct=20of_device_id=20=
-exynos_tmu_match=5B=5D=20=3D=20=7B=0D=0A>=20>=20=20=20=09=7D,=20=7B=0D=0A>=
-=20>=20=20=20=09=09.compatible=20=3D=20=22samsung,exynos7-tmu=22,=0D=0A>=20=
->=20=20=20=09=09.data=20=3D=20(const=20void=20*)SOC_ARCH_EXYNOS7,=0D=0A>=20=
->=20+=09=7D,=20=7B=0D=0A>=20>=20+=09=09.compatible=20=3D=20=22samsung,exyno=
-sautov920-tmu=22,=0D=0A>=20>=20+=09=09.data=20=3D=20(const=20void=20*)SOC_A=
-RCH_EXYNOSAUTOV920,=0D=0A>=20=0D=0A>=20Time=20to=20do=20cleanups=20in=20the=
-=20driver.=20Use=20at=20your=20advantage=20the=20.data=20to=0D=0A>=20store=
-=20the=20relevant=20info=20instead=20of=20a=20awful=20else-if=20in=20the=20=
-different=0D=0A>=20functions=20above.=0D=0A=0D=0AOK,=20I'll=20refactor=20th=
-is=20by=20using=20the=20.data=20field.=0D=0AHowever,=20since=20ExynosAutov9=
-20=20diverges=20significantly=20from=20the=20existing=20driver,=0D=0AWould=
-=20introducing=20a=20separate=20driver=20instead=20of=20unifying=20everythi=
-ng=20be=20acceptable?=0D=0A=0D=0A>=20>=20=20=20=09=7D,=0D=0A>=20>=20=20=20=
-=09=7B=20=7D,=0D=0A>=20>=20=20=20=7D;=0D=0A>=20>=20=40=40=20-865,6=20+1079,=
-10=20=40=40=20static=20int=20exynos_map_dt_data(struct=0D=0A>=20>=20platfor=
-m_device=20*pdev)=0D=0A>=20>=0D=0A>=20>=20=20=20=09data->soc=20=3D=20(uintp=
-tr_t)of_device_get_match_data(&pdev->dev);=0D=0A>=20>=0D=0A>=20>=20+=09data=
-->sensor_count=20=3D=20EXYNOS_DEFAULT_SENSOR_COUNT;=0D=0A>=20>=20+=0D=0A>=
-=20>=20+=09data->calib_temp=20=3D=20EXYNOS_SECOND_POINT_TRIM;=0D=0A>=20>=20=
-+=0D=0A>=20>=20=20=20=09switch=20(data->soc)=20=7B=0D=0A>=20>=20=20=20=09ca=
-se=20SOC_ARCH_EXYNOS4210:=0D=0A>=20>=20=20=20=09=09data->tmu_set_low_temp=
-=20=3D=20exynos4210_tmu_set_low_temp;=20=40=40=20-=0D=0A>=20945,6=0D=0A>=20=
->=20+1163,19=20=40=40=20static=20int=20exynos_map_dt_data(struct=20platform=
-_device=20*pdev)=0D=0A>=20>=20=20=20=09=09data->min_efuse_value=20=3D=2015;=
-=0D=0A>=20>=20=20=20=09=09data->max_efuse_value=20=3D=20100;=0D=0A>=20>=20=
-=20=20=09=09break;=0D=0A>=20>=20+=09case=20SOC_ARCH_EXYNOSAUTOV920:=0D=0A>=
-=20>=20+=09=09data->tmu_set_low_temp=20=3D=20exynosautov920_tmu_set_low_tem=
-p;=0D=0A>=20>=20+=09=09data->tmu_set_high_temp=20=3D=20exynosautov920_tmu_s=
-et_high_temp;=0D=0A>=20>=20+=09=09data->tmu_disable_low=20=3D=20exynosautov=
-920_tmu_disable_low;=0D=0A>=20>=20+=09=09data->tmu_disable_high=20=3D=20exy=
-nosautov920_tmu_disable_high;=0D=0A>=20>=20+=09=09data->tmu_set_crit_temp=
-=20=3D=20exynosautov920_tmu_set_crit_temp;=0D=0A>=20>=20+=09=09data->tmu_in=
-itialize=20=3D=20exynosautov920_tmu_initialize;=0D=0A>=20>=20+=09=09data->t=
-mu_control=20=3D=20exynosautov920_tmu_control;=0D=0A>=20>=20+=09=09data->tm=
-u_read=20=3D=20exynosautov920_tmu_read;=0D=0A>=20>=20+=09=09data->tmu_set_e=
-mulation=20=3D=20exynos4412_tmu_set_emulation;=0D=0A>=20>=20+=09=09data->tm=
-u_clear_irqs=20=3D=20exynosautov920_tmu_clear_irqs;=0D=0A>=20>=20+=09=09dat=
-a->sensor_count=20=3D=20EXYNOS_MAX_SENSOR_COUNT;=0D=0A>=20>=20+=09=09break;=
-=0D=0A>=20=0D=0A>=20Same=20comment=20as=20above.=0D=0A=0D=0AOk,=20I'll=20re=
-factor=20this=20by=20using=20the=20.data=20field=20to=20move=20the=20SoC-sp=
-ecific=20callbacks=20into=20a=20proper=0D=0Avariant=20structure.=0D=0A=0D=
-=0A>=20--=0D=0A=0D=0AThank=20you=20for=20your=20detailed=20feedback.=20I=20=
-appreciate=20it.=0D=0A=0D=0A=0D=0A
+The grouping seems a bit strange. Haven't you forgotten a blank line here?
+Ditto for other similar cases.
+
+> +#define AD4060_MAX_AVG		0x7
+> +#define AD4062_MAX_AVG		0xB
+
+> +#define AD4062_MON_VAL_MAX_GAIN		1999970
+
+This is decimal...
+
+> +#define AD4062_MON_VAL_MIDDLE_POINT	0x8000
+
+...and this is hexadecimal. Can you make these consistent?
+Also, is there any explanation of the number above? To me
+it looks like 2000000 - 30. Is it so? Or is this a fraction
+number multiplied by 1000000 or so? In any case some elaboration
+would be good to have.
+
+> +#define AD4062_GP_DRDY		0x2
+> +#define AD4062_INTR_EN_NEITHER	0x0
+> +#define AD4062_TCONV_NS		270
+
+...
+
+> +struct ad4062_state {
+> +	const struct ad4062_chip_info *chip;
+> +	const struct ad4062_bus_ops *ops;
+> +	enum ad4062_operation_mode mode;
+> +	struct completion completion;
+> +	struct iio_trigger *trigger;
+> +	struct iio_dev *indio_dev;
+> +	struct i3c_device *i3cdev;
+> +	struct regmap *regmap;
+> +	u16 sampling_frequency;
+> +	int vref_uv;
+> +	int samp_freqs[ARRAY_SIZE(ad4062_conversion_freqs)];
+> +	u8 oversamp_ratio;
+> +	union {
+> +		__be32 be32;
+> +		__be16 be16;
+> +		u8 bytes[4];
+> +	} buf __aligned(IIO_DMA_MINALIGN);
+> +	u8 reg_addr_conv;
+
+Can't we group u8:s to save a few bytes of memory?
+
+> +};
+
+...
+
+> +static int ad4062_set_oversampling_ratio(struct ad4062_state *st, unsigned int val)
+> +{
+> +	int ret;
+> +
+> +	if (val < 1 || val > BIT(st->chip->max_avg + 1))
+
+in_range() ?
+
+	in_range(val, 1, GENMASK(st->chip->max_avg, 0))
+
+if I am not mistaken. Also note, the GENMASK() approach makes possible
+to have all 32 bits set, however it's most unlikely to happen here anyway.
+
+> +		return -EINVAL;
+> +
+> +	/* 1 disables oversampling */
+> +	val = ilog2(val);
+> +	if (val == 0) {
+> +		st->mode = AD4062_SAMPLE_MODE;
+> +	} else {
+> +		st->mode = AD4062_BURST_AVERAGING_MODE;
+> +		ret = regmap_write(st->regmap, AD4062_REG_AVG_CONFIG, val - 1);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +	st->oversamp_ratio = BIT(val);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int ad4062_get_oversampling_ratio(struct ad4062_state *st,
+> +					 unsigned int *val)
+> +{
+> +	int ret, buf;
+> +
+> +	if (st->mode == AD4062_SAMPLE_MODE) {
+> +		*val = 1;
+> +		return 0;
+> +	}
+
+> +	ret = regmap_read(st->regmap, AD4062_REG_AVG_CONFIG, &buf);
+> +	return 0;
+
+This is strange piece of code. Why do we have ret at all?
+Please, try to compile kernel also with `make LLVM=1 W=1 ...`
+assuming you have clang installed. It catches such issues quite
+well.
+
+> +}
+
+...
+
+> +static int ad4062_calc_sampling_frequency(int fosc, unsigned int n_avg)
+> +{
+> +	/* See datasheet page 31 */
+> +	u64 duration = div_u64((u64)(n_avg - 1) * NSEC_PER_SEC, fosc) + AD4062_TCONV_NS;
+> +
+> +	return DIV_ROUND_UP_ULL(NSEC_PER_SEC, duration);
+
+Why u64?
+
+The DIV_ROUND_UP_ULL() seems an overkill here. Or do you expect duration be
+more than 4 billions?
+
+> +}
+> +
+> +static int ad4062_populate_sampling_frequency(struct ad4062_state *st)
+> +{
+> +	for (int i = 0; i < ARRAY_SIZE(ad4062_conversion_freqs); i++)
+
+Why signed iterator?
+
+> +		st->samp_freqs[i] = ad4062_calc_sampling_frequency(ad4062_conversion_freqs[i],
+> +								   st->oversamp_ratio);
+
+Perhaps
+
+		st->samp_freqs[i] =
+			ad4062_calc_sampling_frequency(ad4062_conversion_freqs[i],
+						       st->oversamp_ratio);
+
+But I am not insisting on this case and similar.
+
+
+> +	return 0;
+> +}
+
+> +static int ad4062_get_sampling_frequency(struct ad4062_state *st, int *val)
+> +{
+> +	*val = ad4062_calc_sampling_frequency(ad4062_conversion_freqs[st->sampling_frequency],
+> +					      st->oversamp_ratio);
+
+Oh, temporary variable makes this better for readability.
+
+> +	return 0;
+> +}
+
+...
+
+> +static int ad4062_check_ids(struct ad4062_state *st)
+> +{
+
+	struct device *dev = &st->i3cdev->dev;
+
+> +	int ret;
+> +	u16 val;
+> +
+> +	ret = regmap_bulk_read(st->regmap, AD4062_REG_PROD_ID_1,
+> +			       &st->buf.be16, sizeof(st->buf.be16));
+> +	if (ret)
+> +		return ret;
+> +
+> +	val = get_unaligned_be16(st->buf.bytes);
+> +	if (val != st->chip->prod_id)
+> +		dev_warn(&st->i3cdev->dev,
+> +			 "Production ID x%x does not match known values", val);
+
+		dev_warn(dev, "Production ID x%x does not match known values", val);
+
+> +	ret = regmap_bulk_read(st->regmap, AD4062_REG_VENDOR_H,
+> +			       &st->buf.be16, sizeof(st->buf.be16));
+> +	if (ret)
+> +		return ret;
+> +
+> +	val = get_unaligned_be16(st->buf.bytes);
+> +	if (val != AD4062_I3C_VENDOR) {
+> +		dev_err(&st->i3cdev->dev,
+> +			"Vendor ID x%x does not match expected value\n", val);
+
+		dev_err(dev, "Vendor ID x%x does not match expected value\n", val);
+
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int ad4062_soft_reset(struct ad4062_state *st)
+> +{
+> +	u8 val = AD4062_SOFT_RESET;
+> +	int ret;
+> +
+> +	ret = regmap_write(st->regmap, AD4062_REG_INTERFACE_CONFIG_A, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Wait AD4062 treset time */
+> +	fsleep(5000);
+
+5 * USEC_PER_MSEC
+
+This gives a hint on the units without even a need to comment or look somewhere
+else.
+
+> +	return 0;
+> +}
+
+...
+
+> +static int ad4062_request_irq(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4062_state *st = iio_priv(indio_dev);
+> +	struct device *dev = &st->i3cdev->dev;
+> +	int ret;
+> +
+> +	ret = fwnode_irq_get_byname(dev_fwnode(&st->i3cdev->dev), "gp1");
+> +	if (ret == -EPROBE_DEFER) {
+> +		return ret;
+
+> +	} else if (ret < 0) {
+
+Redundant 'else'
+
+> +		ret = regmap_update_bits(st->regmap, AD4062_REG_ADC_IBI_EN,
+> +					 AD4062_REG_ADC_IBI_EN_CONV_TRIGGER,
+> +					 AD4062_REG_ADC_IBI_EN_CONV_TRIGGER);
+> +	} else {
+> +		ret = devm_request_threaded_irq(dev, ret,
+> +						ad4062_irq_handler_drdy,
+> +						NULL, IRQF_ONESHOT, indio_dev->name,
+> +						indio_dev);
+> +	}
+> +
+> +	return ret;
+> +}
+
+...
+
+> +static const int ad4062_oversampling_avail[] = {
+> +	1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096,
+
+It's not easy to count them at glance, please add a comment with indices.
+
+> +};
+
+...
+
+> +static int ad4062_read_avail(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan, const int **vals,
+> +			     int *type, int *len, long mask)
+> +{
+> +	struct ad4062_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> +		*vals = ad4062_oversampling_avail;
+> +		*len = ARRAY_SIZE(ad4062_oversampling_avail);
+> +		*type = IIO_VAL_INT;
+> +
+> +		return IIO_AVAIL_LIST;
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		ret = ad4062_populate_sampling_frequency(st);
+> +		if (ret)
+> +			return ret;
+> +		*vals = st->samp_freqs;
+> +		*len = st->oversamp_ratio != 1 ? ARRAY_SIZE(ad4062_conversion_freqs) : 1;
+
+Why not using positive conditional?
+
+Funny trick that Elvis operator can be used in this case, but please don't,
+it will make code harder to follow.
+
+> +		*type = IIO_VAL_INT;
+> +
+> +		return IIO_AVAIL_LIST;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+...
+
+> +static int ad4062_get_chan_scale(struct iio_dev *indio_dev, int *val, int *val2)
+> +{
+> +	struct ad4062_state *st = iio_priv(indio_dev);
+> +	const struct iio_scan_type *scan_type;
+> +
+> +	scan_type = iio_get_current_scan_type(indio_dev, st->chip->channels);
+> +	if (IS_ERR(scan_type))
+> +		return PTR_ERR(scan_type);
+> +
+> +	*val = (st->vref_uv * 2) / MILLI;
+
+It's most likely (MICRO / MILLI) instead of MILLI. Am I right?
+
+> +	*val2 = scan_type->realbits - 1; /* signed */
+> +
+> +	return IIO_VAL_FRACTIONAL_LOG2;
+> +}
+
+...
+
+> +static int ad4062_get_chan_calibscale(struct ad4062_state *st, int *val, int *val2)
+> +{
+> +	u16 gain;
+> +	int ret;
+> +
+> +	ret = regmap_bulk_read(st->regmap, AD4062_REG_MON_VAL,
+> +			       &st->buf.be16, sizeof(st->buf.be16));
+> +	if (ret)
+> +		return ret;
+> +
+> +	gain = get_unaligned_be16(st->buf.bytes);
+> +
+> +	/* From datasheet: code out = code in × mon_val/0x8000 */
+> +	*val = gain / AD4062_MON_VAL_MIDDLE_POINT;
+
+> +	*val2 = mul_u64_u32_div(gain % AD4062_MON_VAL_MIDDLE_POINT, NANO,
+> +				AD4062_MON_VAL_MIDDLE_POINT);
+
+I don't see the need for 64-bit division. Can you elaborate what I miss here?
+
+> +	return IIO_VAL_INT_PLUS_NANO;
+> +}
+
+...
+
+> +static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int, int gain_frac)
+
+Forgot to wrap this line.
+
+> +{
+> +	u64 gain;
+> +	int ret;
+> +
+> +	if (gain_int < 0 || gain_frac < 0)
+> +		return -EINVAL;
+> +
+> +	gain = mul_u32_u32(gain_int, MICRO) + gain_frac;
+
+> +
+
+Redundant blank line.
+
+> +	if (gain > AD4062_MON_VAL_MAX_GAIN)
+> +		return -EINVAL;
+> +
+> +	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL(gain * AD4062_MON_VAL_MIDDLE_POINT,
+> +						 MICRO),
+> +			   st->buf.bytes);
+
+Also in doubt here about 64-bit division.
+
+> +	ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
+> +				&st->buf.be16, sizeof(st->buf.be16));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable scale if gain is not one. */
+
+"...is not equal to one."
+
+Also be consistent with the style for one-line comments. Choose one and
+use it everywhere. Usual cases:
+- my one-line comment
+- My one-line comment
+- My one-line comment.
+
+
+> +	return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
+> +				  AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> +				  FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> +					     !(gain_int == 1 && gain_frac == 0)));
+> +}
+
+...
+
+> +static int __ad4062_read_chan_raw(struct ad4062_state *st, int *val)
+
+Can be named without leading double underscore? Preference is to use
+the suffix, like _no_pm (but you can find better one).
+
+> +{
+> +	struct i3c_device *i3cdev = st->i3cdev;
+> +	struct i3c_priv_xfer t[2] = {
+> +		{
+> +			.data.out = &st->reg_addr_conv,
+> +			.len = sizeof(st->reg_addr_conv),
+> +			.rnw = false,
+> +		},
+> +		{
+> +			.data.in = &st->buf.be32,
+> +			.len = sizeof(st->buf.be32),
+> +			.rnw = true,
+> +		}
+> +	};
+> +	int ret;
+> +
+> +	reinit_completion(&st->completion);
+> +	/* Change address pointer to trigger conversion */
+> +	ret = i3c_device_do_priv_xfers(i3cdev, &t[0], 1);
+
+Why array? Just split them on per transfer and use separately. This gives a bit
+odd feeling that the two goes together, but no. They are semi-related as we
+have a special condition after the first one.
+
+> +	if (ret)
+> +		return ret;
+> +	/*
+> +	 * Single sample read should be used only for oversampling and
+> +	 * sampling frequency pairs that take less than 1 sec.
+> +	 */
+> +	ret = wait_for_completion_timeout(&st->completion,
+> +					  msecs_to_jiffies(1000));
+> +	if (!ret)
+> +		return -ETIMEDOUT;
+> +
+> +	ret = i3c_device_do_priv_xfers(i3cdev, &t[1], 1);
+> +	if (ret)
+> +		return ret;
+> +	*val = get_unaligned_be32(st->buf.bytes);
+> +	return 0;
+> +}
+
+...
+
+> +static int ad4062_read_raw_dispatch(struct ad4062_state *st, int *val, int *val2,
+> +				    long info)
+
+The parameters are split in a logical way here...
+
+(however preference is
+
+static int ad4062_read_raw_dispatch(struct ad4062_state *st,
+				    int *val, int *val2, long info)
+
+to fit 80 characters)
+
+...
+
+> +static int ad4062_read_raw(struct iio_dev *indio_dev,
+> +			   struct iio_chan_spec const *chan, int *val,
+> +			   int *val2, long info)
+
+...but here. Why not
+
+static int ad4062_read_raw(struct iio_dev *indio_dev,
+			   struct iio_chan_spec const *chan,
+			   int *val, int *val2, long info)
+
+?
+
+> +	struct ad4062_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (info == IIO_CHAN_INFO_SCALE)
+> +		return ad4062_get_chan_scale(indio_dev, val, val2);
+> +
+> +	if (!iio_device_claim_direct(indio_dev))
+> +		return -EBUSY;
+> +
+> +	ret = ad4062_read_raw_dispatch(st, val, val2, info);
+> +
+> +	iio_device_release_direct(indio_dev);
+> +	return ret ? ret : IIO_VAL_INT;
+
+	return ret ?: IIO_VAL_INT;
+
+> +}
+
+...
+
+> +static int ad4062_debugfs_reg_access(struct iio_dev *indio_dev, unsigned int reg,
+> +				     unsigned int writeval, unsigned int *readval)
+> +{
+> +	struct ad4062_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (readval)
+> +		ret = regmap_read(st->regmap, reg, readval);
+> +	else
+> +		ret = regmap_write(st->regmap, reg, writeval);
+> +
+> +	return ret;
+
+Do you expand this in the following patches? If not, ret is not needed.
+Just return directly.
+
+> +}
+
+...
+
+> +static int ad4062_regulators_get(struct ad4062_state *st, bool *ref_sel)
+> +{
+> +	struct device *dev = &st->i3cdev->dev;
+> +	int ret;
+> +
+> +	ret = devm_regulator_get_enable(dev, "vio");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to enable vio voltage\n");
+> +
+> +	st->vref_uv = devm_regulator_get_enable_read_voltage(dev, "ref");
+> +	*ref_sel = st->vref_uv == -ENODEV;
+
+_uV ?
+
+> +	if (st->vref_uv < 0 && st->vref_uv != -ENODEV) {
+
+You already has the second part
+
+	if (st->vref_uV < 0 && !*ref_sel) {
+
+I believe this is better to understand as we check that ref_sel is not chosen.
+
+> +		return dev_err_probe(dev, st->vref_uv,
+> +				     "Failed to enable and read ref voltage\n");
+
+> +	} else if (st->vref_uv == -ENODEV) {
+
+Redundant 'else'
+
+	if (*ref_sel) {
+
+(also in similar way as above)
+
+I don't know if the above was asked specifically, but if so, I ask
+the requestor(s) to reconsider.
+
+> +		st->vref_uv = devm_regulator_get_enable_read_voltage(dev, "vdd");
+> +		if (st->vref_uv < 0)
+> +			return dev_err_probe(dev, st->vref_uv,
+> +					     "Failed to enable and read vdd voltage\n");
+> +	} else {
+> +		ret = devm_regulator_get_enable(dev, "vdd");
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to enable vdd regulator\n");
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int ad4062_runtime_resume(struct device *dev)
+> +{
+> +	struct ad4062_state *st = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = regmap_clear_bits(st->regmap, AD4062_REG_DEVICE_CONFIG,
+> +				AD4062_REG_DEVICE_CONFIG_POWER_MODE_MSK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	fsleep(4000);
+
+4 * USEC_PER_MSEC, also would be good to add a comment for this long delay.
+
+> +	return 0;
+> +}
+
+...
+
+> +static DEFINE_RUNTIME_DEV_PM_OPS(ad4062_pm_ops, ad4062_runtime_suspend,
+> +				 ad4062_runtime_resume, NULL);
+
+I think the logical split is slightly better:
+
+static DEFINE_RUNTIME_DEV_PM_OPS(ad4062_pm_ops,
+				 ad4062_runtime_suspend, ad4062_runtime_resume, NULL);
+
+OR
+
+static DEFINE_RUNTIME_DEV_PM_OPS(ad4062_pm_ops,
+				 ad4062_runtime_suspend,
+				 ad4062_runtime_resume,
+				 NULL);
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
