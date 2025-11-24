@@ -1,108 +1,129 @@
-Return-Path: <devicetree+bounces-241789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 968DAC82A1D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 23:14:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2638BC82BBC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 23:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 44E063496D1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 22:14:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B623A3AB850
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 22:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D870F335062;
-	Mon, 24 Nov 2025 22:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E807926F46E;
+	Mon, 24 Nov 2025 22:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mwAGam3o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j6sLIVRM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABBED2F2915;
-	Mon, 24 Nov 2025 22:14:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616E225392D
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 22:47:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764022457; cv=none; b=qm6XOXbIp4YRbmDaFcjWoi38uA3M+dhKN4PdAZHclurNhcVZR7ha5rN1L+URJ0ijFdGpcAH6MOHzFnarbepHcM7l8kJSGQd6IfAzRP7qTA3crgxbV4gG3mhlDgPY9IlGiAMi681cuFVbaKpZEJ/MflxxHc0MyRBmhfIKW98WeCg=
+	t=1764024472; cv=none; b=NVhuymO034XT2I3QWDSuPZD70HyeULz5FQe6J0+IIvHRCfEMvGOBQ8gb9deN8laCSLQxYp6yCWVZ7eRlWe3QvwR3n7cZrFXgu79xHWo3c1CKmKqfTDJhPbWw/tO1d2rZwNjO8cfi602B0e+rn5QTG+ttfFwtpxNkzEeXHWLBDJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764022457; c=relaxed/simple;
-	bh=X5rTnBSBrVgTkVzp28RbqSqmTe/kFqDgUr/E2r+hfVs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hbGgjddVdMZkTbU53PjItbKyUM0rSYoYDA4vecDjTz7J2WbPJ72oCwoKzm4226GErVXN7e3bX9Yk2fMP7egCoj76VR/Egeq1TK4TJwtv1IK/bCNQix190DZN6yPYv87jpcxHkHi02tzORNL3w2cCKeHwH8ZhQR4npg3ALy3Vr1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mwAGam3o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 438F8C4CEF1;
-	Mon, 24 Nov 2025 22:14:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764022457;
-	bh=X5rTnBSBrVgTkVzp28RbqSqmTe/kFqDgUr/E2r+hfVs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mwAGam3oa7VeJpzni0NHbgXIU0YCP3OlbDkDHxRhfvjCeDKMLtMUmeYfMXRqiOP67
-	 MrNXONg5LMA9h00ZLewitRoBiGMLDk60hP/6nVqS+Vd1kwWzh7KFWW6UYVzKLmUysh
-	 XqHQ5UWGssDCvO5efPcOYxHHQu2OTAIRYThzPZEEtOes16BFmPh7DdKlE5wBly1pM0
-	 mPaC+c5MVUukAYoOzI+JaWv97qK0j5SSvsCHX/Swd9wqegDWPEkyPc01fSXi5mHemq
-	 nP2FpH/0tFelPvxKL4efp5BAgwQgLE3J+VrpLZ2m5qxQrFZrGFjlo0/FRJQq3UJTOf
-	 jfBJ5/MY46rGw==
-Date: Mon, 24 Nov 2025 14:14:15 -0800
-From: Drew Fustini <fustini@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
-Subject: Re: [PATCH 5/7] clk: thead: th1520-ap: Add macro to define
- multiplexers with flags
-Message-ID: <aSTYt3mlJCC0f5TG@x1>
-References: <20251120131416.26236-1-ziyao@disroot.org>
- <20251120131416.26236-6-ziyao@disroot.org>
+	s=arc-20240116; t=1764024472; c=relaxed/simple;
+	bh=aA1YUuC43wocVJj+6NswUWK8Q5/HyZu5I5uveCK5vyU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hU76Z6OLnMCC7bmR/zXPpgCrNpeLwP+cqR1cUT3TgW4uy7rJfHAfNvtv59DToP/HTMiI/DBzexjgfQr4YbtZfIdpAleUWr6HBu8BuRUtjvIj+SnpWuxIDHSWCvfy1W6dFSdc4FEL35JhVuAb1/xDug54LRnStP1OyU+QXqIhRtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j6sLIVRM; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7b80fed1505so5590341b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 14:47:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764024471; x=1764629271; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6e3N2N50lDJoWd8HR2Vtb36h0pURk4NZSWfVy+aqbs0=;
+        b=j6sLIVRMwVa9MaNIEl9vbhIoJHK8k48Vu/GvFQjnyJG0AwrcFlXYGhnfT8YhSQX4YS
+         bCI21BE1Z2vmkm3dlGIrILxwpm6b3fIf4OYs9kKQl0WAz5iOFPxrzf+kijjZyn3kcErU
+         abnF7E3uZEiXdv7eIetcrX32wyv+HM6Sd9zXc9ZGqq+UUdTClpv9aGeO3AsPzjW5bjKh
+         J+UpzlB93JWYAvbF86L/rGolOyehdNvUKGNIIFVqk22weB3upQTkukE48BlY+msHfbDb
+         65umKlJyhlsG7WEwDgvVnBRbA/kGCiN6UurfuMD9bNZrX5LW8ecHkKpbbgHSeGuuwQhc
+         ZASw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764024471; x=1764629271;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6e3N2N50lDJoWd8HR2Vtb36h0pURk4NZSWfVy+aqbs0=;
+        b=MjNPcs0DwgLw3b/gqo3CUgIDhs/Ug1ZrOfieDypT5lKfqEBykHfdsWgO5Bqum3n/3Z
+         8xCclr4rNAu6gilb++5HujGUED2yKyWmdnRF10T8U84QKqtEyT9/nokhcyPnaFK2HAnf
+         R+w0gvANOtWRo1SL1PIMMuwqCC66T4bxrOGdP1GS6JBRgpZWLpI8Wk9B6z3ADJsq/OTa
+         mt7effpFaKoqPnrGGCqJScRgU+sfmbdC/XDiOlugs0pA25T8NgbCGApms+uTKvZMrE9V
+         rGhC2zo/tSGPROoX5DZodgQ4f/Twg9PzPyxlr7Y7G8wdsPXhZkEA34F5/Lb9f9lGM1dd
+         oOsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV3eVG9NxNRqpNtGvtCD1cV97RqzsvGD89DLxh8w9pEU2AUAy46o5Yb7UZ1pc+c49/ZbMzepmcTb+w2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzAcFShlFTNxX6EOlw0vKLM1mhNXR6SXVvM43sPlEXEI2K/O+x
+	zG20G/QrVCaVC0n4byMC1ksyutcdpW92/4le+7Cm/RBtLQGeLGos4qCd
+X-Gm-Gg: ASbGncvVNdrTJ2bF5+IlV3mXJ277YiCKHEOLnZZ+1eNtkYUo/bihaDRebbi/vbZ9WYM
+	tCQ98AS1S0TevLWYfuXdPwI/BDfmnEarabnZc0lro39x6naz9UTuwPR6a03udQ9g96EcLWwTAQv
+	cifzqCuFr1jgx0k/JLiYyc4+cZXLKmEe5lc9w/g91sCWp952o5174iYLulIO0a3zxLXT3qgE2Q2
+	ZTEiL0s65SHKmNftlONTKpLjlDXP1F80XY00H6zYC/2qYbZD7FXmKakJ14zZH8xiJzbOT2xNIOi
+	19MwWbvBgRvQI8dD3hRdK570P6sqABWiTAYN2zyrOJpvY0yFdJuzX2v0TW3S77HLoAh9vRiandx
+	59M7Zf4JlkSuDeGjPE9A3/MuyFSwRrx4z2io+KVsHUSYZyw9QGFVT7bxlrTSjW6e22BwGmz4P11
+	2byOz3R6uR54j8X1+8rCmt7x0aUfk+LInpWrrU5seFU4YyBTwUhz6lEE13w29vP3fl
+X-Google-Smtp-Source: AGHT+IGH6IqlruzANVtCT25Q+8rULkZQZIvff4WTLqlZgY+442DpZenW6IpY+Xhp3eFvitb70kqLTA==
+X-Received: by 2002:a05:7022:2390:b0:11b:2de8:6271 with SMTP id a92af1059eb24-11c9d8635bcmr10491404c88.39.1764024470297;
+        Mon, 24 Nov 2025 14:47:50 -0800 (PST)
+Received: from [192.168.68.63] (104-12-136-65.lightspeed.irvnca.sbcglobal.net. [104.12.136.65])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11cc631c236sm1964112c88.7.2025.11.24.14.47.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Nov 2025 14:47:49 -0800 (PST)
+Message-ID: <c68cb4ca-61b4-419a-a4b0-b4d9f77cee4c@gmail.com>
+Date: Mon, 24 Nov 2025 14:47:49 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251120131416.26236-6-ziyao@disroot.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] ARM: dts: qcom: msm8960: expressatt: Add
+ Accelerometer
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251122-expressatt_nfc_accel_magn_light-v3-0-78d198632360@gmail.com>
+ <20251122-expressatt_nfc_accel_magn_light-v3-5-78d198632360@gmail.com>
+ <a6b824d8-9299-475f-bedf-c75d0912e538@oss.qualcomm.com>
+Content-Language: en-US
+From: Rudraksha Gupta <guptarud@gmail.com>
+In-Reply-To: <a6b824d8-9299-475f-bedf-c75d0912e538@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 20, 2025 at 01:14:14PM +0000, Yao Zi wrote:
-> The new macro, TH_CCU_MUX_FLAGS, extends TH_CCU_MUX macro by adding two
-> parameters to specify clock flags and multiplexer flags.
-> 
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  drivers/clk/thead/clk-th1520-ap.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th1520-ap.c
-> index bf8e80c39a9e..79f001a047b2 100644
-> --- a/drivers/clk/thead/clk-th1520-ap.c
-> +++ b/drivers/clk/thead/clk-th1520-ap.c
-> @@ -101,17 +101,22 @@ struct ccu_pll {
->  		.flags	= _flags,					\
->  	}
->  
-> -#define TH_CCU_MUX(_name, _parents, _shift, _width)			\
-> +#define TH_CCU_MUX_FLAGS(_name, _parents, _shift, _width, _flags,	\
-> +			 _mux_flags)					\
->  	{								\
->  		.mask		= GENMASK(_width - 1, 0),		\
 
-checkpatch warns [1] about this line:
+On 11/24/25 02:31, Konrad Dybcio wrote:
+> On 11/23/25 7:44 AM, Rudraksha Gupta via B4 Relay wrote:
+>> From: Rudraksha Gupta <guptarud@gmail.com>
+>>
+>> Add the Bosch Accelerometer.
+>>
+>> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+>> ---
+> I'm assuming this essentially means "the default settings (no
+> mount matrix) work out fine"
 
-CHECK: Macro argument '_width' may be better as '(_width)' to avoid precedence issues
+I initially thought so... but I recently discovered monitor-sensor:
 
-I noticed it in the patchwork CI results [2] but I think we can ignore
-that as this patch is not actually changing that line.
+https://gitlab.freedesktop.org/hadess/iio-sensor-proxy
 
-Thanks,
-Drew
 
-[1] https://gist.github.com/linux-riscv-bot/a335020c99ef628bb38e0a4ea85e0c45
-[2] https://patchwork.kernel.org/project/linux-riscv/patch/20251120131416.26236-6-ziyao@disroot.org/
+And it turns out that my testing is wrong. Will send another revision 
+with the updated mount-matrix and fixing a driver nullptr bug.
+
+
+>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>
+> Konrad
 
