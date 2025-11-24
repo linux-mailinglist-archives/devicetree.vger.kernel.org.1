@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-241636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 844BAC803A0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:35:30 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04BC6C803A6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:37:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2B1863441AD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:35:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9B6F34E351C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02412F60B6;
-	Mon, 24 Nov 2025 11:35:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97CEA2FB99F;
+	Mon, 24 Nov 2025 11:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXT/fn+4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vbku2pR4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7519123B612;
-	Mon, 24 Nov 2025 11:35:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5C223B612;
+	Mon, 24 Nov 2025 11:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763984126; cv=none; b=EcNgzVO8/mdI2JnovRcSv/u6b5bTF2B6t4Kf7rlYj/OD1dQVhhWA4XLVFpSz8Ml/o5i1dOtgLy7FHUcWNh2U85te6tl4lZ5mvJ9E72ja3xemS2+2ovN1tjqUBvFxr8QNQ30mDH2LCTQF39hZJczk+qUg10MvdJwR/rMH0xq79ow=
+	t=1763984227; cv=none; b=uPuJmi9cHQtg9qI1bakCdUVlH5khmNZfd7+YgrwiOjR+vaGCV9Op8PrIrHV88/aMnecfS7B0US+SrLAax/Do9jt5LHtl6V+kyT5yDHpWMKJCNL543W0jx6IkRVjNnXo0q2/g6Rw1MsCr4VS9Xr2Pn+cUfhTS7gxUxTpH+vlJ/EQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763984126; c=relaxed/simple;
-	bh=rV9wEI8xgRRUzZ7YVcq00IiRjy+3+mEvf0TadQmYgJo=;
+	s=arc-20240116; t=1763984227; c=relaxed/simple;
+	bh=hJtmUzWljueWqbsAv7sDroPS+XY96NFx9pUHqQ6wKlQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FZ7j8ODBwQIcHXZTx9Ff6zXLjC7EbUO/4S0CRDAGHha5UuIoCQA10Tv+cHhO5dW0ngXjwQJVmjJCNlLvIdWDip45Z3wupk8kHqZ3+x4qih8vwohxpswKfsCGsINYFr/aFdHzVLe5OzCSq8+gdbhgvTBelAJ6vOql0n6d2d1kw2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXT/fn+4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F343DC4CEF1;
-	Mon, 24 Nov 2025 11:35:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZZyofTokKNJflw1GVzDUt2WRJ5s3sYMQUxCcnD/AT7L8erArW8AN2p24LNqAekvCKhfnYxdhtKL8zDlE/w5plkFJR3/qogLTcrB4HuJ/5aoKXsMIDZ7LmoipjBPTnbOh8xoPELXoReNyuPpHS1IQMugybRZI3IexuDgR9gn61c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vbku2pR4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93D5FC4CEFB;
+	Mon, 24 Nov 2025 11:37:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763984126;
-	bh=rV9wEI8xgRRUzZ7YVcq00IiRjy+3+mEvf0TadQmYgJo=;
+	s=k20201202; t=1763984225;
+	bh=hJtmUzWljueWqbsAv7sDroPS+XY96NFx9pUHqQ6wKlQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RXT/fn+4Fjw7gIpcPvZelNAUR1Kp1D1NBc/avbSIJRnjPwerzfdp+jF9LH6J5DP3n
-	 KOzaJyBte6LWmZMaEioUYqqW3jU0GRwBLX1bgOpVKz34nEy4mxQIhly+38IacW36P+
-	 zbgHB+qs3WPiM835mGUUMRwfFiwO6c79pZ7SbhqkO5VBkbySIjyDJtIsOshVD3wDfS
-	 yCweeXRJm5ldX84phBFVogZdP09No0qgdeAcrUP36OxAthf40NSvCPJYdZX+X8S6VW
-	 q7mVSsQd5V6yyq2WrWRxKu4R2/8ihf3ySFiYvQ15guTwYWRBb5eq578s8c+skqQPkg
-	 h6TNm0bJ3mIvQ==
-Message-ID: <53f5b226-10ab-453b-a739-4bb3582fc665@kernel.org>
-Date: Mon, 24 Nov 2025 12:35:16 +0100
+	b=Vbku2pR49qRcmcrSvUHz32hM/cMIrNSkUMl6XA69LZ/O87SeSY3SnlBEMHZmE9yYX
+	 HZJbONyE52OfqzMffMjp8rOdF6yevN0tAT6IBlNlspovdv4k+oOew7sIiVbAa5KJh3
+	 Ij1JsmOiswrJiXvJXM+2UzysJ9usSa23/iy95V5QSF/tkz2f6TMnaHNdd/diKVbd7T
+	 MGwbX2VltGowbkztWGf8ei35Gd8f/+EdybH6C9Vp6NcT0C0h/eW87IZQHWc/CqGgT4
+	 WSDBugZkrfzvXXyc51i6c7d4TleZIR9f7bTCSLFZ4qpd6f7qHDwnwl6RwqFUupyKoX
+	 BLvsFfgTQB6cQ==
+Message-ID: <2deb7496-3094-4d03-b4d0-fb15cfdc6f0e@kernel.org>
+Date: Mon, 24 Nov 2025 12:37:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/9] riscv: dts: thead: add DPU and HDMI device tree
- nodes
-To: Icenowy Zheng <uwu@icenowy.me>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Icenowy Zheng <zhengxingda@iscas.ac.cn>
-References: <20251124105226.2860845-1-uwu@icenowy.me>
- <20251124105226.2860845-7-uwu@icenowy.me>
+Subject: Re: [PATCH 1/2] dt-bindings: battery: Add SiLION battery bindings
+ technology
+To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kamal.wadhwa@oss.qualcomm.com,
+ fenglin.wu@oss.qualcomm.com
+References: <20251124-add_silion_battery-v1-0-3c86b70d2543@oss.qualcomm.com>
+ <20251124-add_silion_battery-v1-1-3c86b70d2543@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,22 +105,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251124105226.2860845-7-uwu@icenowy.me>
+In-Reply-To: <20251124-add_silion_battery-v1-1-3c86b70d2543@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/11/2025 11:52, Icenowy Zheng wrote:
-> T-Head TH1520 SoC contains a Verisilicon DC8200 display controller
-> (called DPU in manual) and a Synopsys DesignWare HDMI TX controller.
+On 24/11/2025 12:12, Rakesh Kota wrote:
+> Document a new battery chemistry for silicon-anode lithium-ion
+> cells.
 > 
-> Add device tree nodes to them.
+> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/power/supply/battery.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> diff --git a/Documentation/devicetree/bindings/power/supply/battery.yaml b/Documentation/devicetree/bindings/power/supply/battery.yaml
+> index 491488e7b970397b409c248fb0c2a524301686a9..49cbd03956eeb9fc8be72540d8bf35840ccd7156 100644
+> --- a/Documentation/devicetree/bindings/power/supply/battery.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/battery.yaml
+> @@ -44,6 +44,7 @@ properties:
+>        - const: lithium-ion-polymer
+>        - const: lithium-ion-iron-phosphate
+>        - const: lithium-ion-manganese-oxide
+> +      - const: lithium-ion-silicon-anode
 
 
-Also incorrect chain order. What is odd, your next patch has a correct
-SoB matching sender, so this feels a bit random.
+Where is any DTS user of this? You have entire cover letter to explain
+the background WHY you are doing this.
 
 Best regards,
 Krzysztof
