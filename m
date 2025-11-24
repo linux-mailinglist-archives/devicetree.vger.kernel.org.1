@@ -1,89 +1,177 @@
-Return-Path: <devicetree+bounces-241487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B72CAC7EF97
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 06:05:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EA73C7EFA2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 06:07:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 607FE346174
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 05:05:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2630D3A3096
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 05:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC6782BE056;
-	Mon, 24 Nov 2025 05:05:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43372C1586;
+	Mon, 24 Nov 2025 05:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="U4n1f8Na"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="huGqx5uI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB3329D29A;
-	Mon, 24 Nov 2025 05:05:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48AD629D29A
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 05:07:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763960752; cv=none; b=mgvkDUvQ0+f+u/tjSVEwpMBOROwLSx4lzZoHSeOzBKPAqjLwf8/nfzAOWEKnWd6nIhWr27KV1MoMacQSlGCk3xZkSsGkC3DV08CM8dhGqzvf50JaKwuAaVkNKnLP+WsGqTf24JXV+ZIbjb8W/7PDIyvS7LY8TypQrJWnhV+B78c=
+	t=1763960827; cv=none; b=cMUFCXxHMy3RxOFU1kTwFrx6+8RQK1Cfcxx0ECSQdGu3A13Xmcp7HHNEO4kpovVhNhMnV4hOoJX0d4GaS8Nw/1VSVpjT15zxvdTlAVezIfRWYnoAgcsI8J7geMRrECMVBhKP8iHJq0YRBqb/RUdJcIKaz1S9bIiWjjxKiNbHpqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763960752; c=relaxed/simple;
-	bh=MmvYsdYLqi8x/SH3dyd0R5ZjK0zEZ9vTir8J+3U8sXY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=aBaHMzIqOyrb6qaA6UedvDgT+LoTBeycJwLTcB6fEeSiNvvMECrx3DjyXNBzEu3gKwGZ2574/HlQGlNqge7X2e9tgr+0QDhShV/E3PisjR7fBWUXunjMVTJzgKY/myUd7ZbKyRMj9+dnanKX+ZkNI4K6AQV+0hMnl/FbEeuSlmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=U4n1f8Na; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1763960827; c=relaxed/simple;
+	bh=bHA6HQFx71grWgiZiVMPzotW5/atqoFERPTknZaJaPM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WwzjL1b9jwPLjRIH8jlco5jWGcMjdFGV1fbwcQnT++HQ9xMB7fMuALX65qS7V94tkUGpQIywARSJhEj8N0Rx42SQ53SnYrHC7M1Ji9+3rxU54c0Hds+k4i720Yd4zP7rDYBa4NHzfamUyB1WQv3eNQdSnq8aHMDdVFf50yqiTsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=huGqx5uI; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7b7828bf7bcso4747247b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 21:07:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1763960748;
-	bh=MmvYsdYLqi8x/SH3dyd0R5ZjK0zEZ9vTir8J+3U8sXY=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=U4n1f8Nai6P/wji1kcpqWMJCN1Pgwyp7L6Hc/2dmWMe9f19pTgvDvuDOsuOtxq+pP
-	 uQd8JsuBDJxBZZLBWlF+ssOO1J0kLRvyWePn4iSWYMkP6FJBnkxDMqGgppd1LfEMeh
-	 W3rOt5uwLnflvUn5noi9fLGhdHojb/j9cQboiMr6wlA4yO/X3MKjIcM2Bnm50aPzmC
-	 d8hBKLbK0+CssWRCUC/FuzkHdzmqT0tKta1IYs4FC6oRs2gTaYbKYuhjWKFWFBhn3L
-	 XK3BCs8CsNEauTX5dKEm8YEvtLOVzfVF0/GG+EtjPFiYMcV04OC+80oi8JWMVtTVzZ
-	 02lM+KhhKUmog==
-Received: from [192.168.68.115] (unknown [180.150.112.38])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 563C464DF5;
-	Mon, 24 Nov 2025 13:05:47 +0800 (AWST)
-Message-ID: <9e322334bbb18d559c5f1a73947976218f84f3fc.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v3] ARM: dts: aspeed: clemente: add gpio line name to io
- expander
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: kimi.zy.chen@fii-foxconn.com, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
- Stanley <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	george.kw.lee@fii-foxconn.com
-Date: Mon, 24 Nov 2025 15:35:47 +1030
-In-Reply-To: <20251120-dts-add-gpio-to-io-expander-v3-1-cb650ac76f85@fii-foxconn.com>
-References: 
-	<20251120-dts-add-gpio-to-io-expander-v3-1-cb650ac76f85@fii-foxconn.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+        d=gmail.com; s=20230601; t=1763960825; x=1764565625; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PhcCOqzgmJN6F2HgJqP8P4Fbp35gJAyNyrXxslklYZ0=;
+        b=huGqx5uIKVRf6rRVNgAwpLRH9hHg/J967BGfyWnEldqfUmnfsQL32/T6ao/s6o3z9l
+         PJRdQFwwDNXcYY2oMhQi6tLruSlgMB3BWeptdbg+N6ewNnQhCrzxqLxoPO0xmeFDifea
+         Sy3xHELjnHgMbyKvcqmnekGN/iuWbNWRaQAH48G4+aNFMLBqMQAFQdkKvpXbS3oElkIU
+         +H/k8bURFhQon6jX6dL2F9dVvswTc3mnmuZz1V7Us1uKZqE001rY9VkymxrBphGC77fZ
+         kH4DWE0auHx80DD9hhvaNBAwbDlfwAeF72/GcUVaTtsQYfmNGE6d9sVhkNH7fXUVKbiH
+         aGQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763960825; x=1764565625;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PhcCOqzgmJN6F2HgJqP8P4Fbp35gJAyNyrXxslklYZ0=;
+        b=GR9IkQltIWbBit44xR/pyZ1+WJu0ewoBFcMyQeKP/13EABVg6neYarnxOOQ3QEW+eW
+         EUpTCpUADpRQuIg1nuPCkbYWrQkx2gL2MipB2PrB0ZPwh/fnW7vh2s3PasVn7sr6JJ3f
+         jNIsOjNGozyRL9IbGMwTUHgstQnRAIbJn+yI6ghiOXkVqKQnf2MkKpBSIprgYjeZ2pvz
+         +kROm2mJADfp6npmjbX3Ij27N9pWQp0BQBHE0BEEs/w2m4YrMDuAzDN5B9ZrLbe3RK8L
+         Z0GJR2VYuvXq4Wweyl9BxhkmNJy7jnpSzCWL3Ogf4INADaORI73ghhkCHHmM52EzzInv
+         C8rQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWmjclKRZbyhjrjBpbq0v4ZFLhNAG4r2S6lcY3UGgyFeewpZTucseXnfZrLaf+2qm/5FH1nCvkAuPWL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9OGaHV253Aa6bQVWXbDHQZoMxi3Zdf0na2+azp7fxzwN0VwTp
+	3wnWfHanTWkC8pEhQGB1RH77d0VGbn9otSl4hFnKkHi5Pk2UEfvEYBnf
+X-Gm-Gg: ASbGncsgtanpVt+FPo8klnv0G8vXs7t2jUx/rbzsf/o4Fv6rT9mOD9aERLqXRDfoSNP
+	eJ3GaI5GWXYshpQcDAyoezA07o+/Ui7mhY4G9XMbGOw2iJmxHlc85aBY7vAvcUikycPWPoYnW/g
+	pna+xwnz+H64g4rt5FdsTshwFKCtQAC235mYUm8y4cJ0y5Jb1PDk3Idl0GbpPaXyET+EKGu7Pv8
+	D5VaCmKLtcmd+N1GM6Fc5ttkQT93RqWAKv3307O6fuAvNFEeAShzKjm9TcYNxq5a060Q9ws0caz
+	NXzuBTPLGpK+7U1Bf+uJcW8EWrJQO9UsB/PQn+UviXKLe3Ti79PCiYYUvIG4X1o+yiGWEpre1Xh
+	RfqOsBo3iQ4L9s4oIoI1TfR1PJkU0wHFv5mDW3GyZ3wAQ05ZPFozTBfHDzcNrgPn6hGLSYT2pqo
+	o5nvYkDqybhLrzVvwFoZIjh62QKj7cpQH2QpI=
+X-Google-Smtp-Source: AGHT+IEM2Kgb8TlQyecx0p4KgN/dW/pTxN9bPMT3jawCrbVzBpSC9udaTjUxa6J6NHq2xeaq5SEBAQ==
+X-Received: by 2002:a05:6a00:12e1:b0:7b9:e4af:719a with SMTP id d2e1a72fcca58-7c58c4a7d77mr10655880b3a.1.1763960825405;
+        Sun, 23 Nov 2025 21:07:05 -0800 (PST)
+Received: from [172.16.20.12] ([136.226.244.251])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7c3f0b69e1dsm12949353b3a.51.2025.11.23.21.07.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Nov 2025 21:07:04 -0800 (PST)
+Message-ID: <2e0a7e3e-eb20-449a-84a5-6d4e2f147ef9@gmail.com>
+Date: Mon, 24 Nov 2025 10:37:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: talos-evk: Add support for
+ QCS615 talos evk board
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251118130814.3554333-1-tessolveupstream@gmail.com>
+ <20251118130814.3554333-3-tessolveupstream@gmail.com>
+ <ug4n5dpsg5v5jwhwmjaktvydhtfx6gagoum6lul2a27h44xexz@uvdu6ma42wei>
+ <17085f43-22fc-4590-bf42-6869ca3d7bd3@gmail.com>
+ <46k4uvtoit5tty3ojh7da7yliqz27tdcscu2co5tuowy33uicc@v3f3cojpwvzp>
+Content-Language: en-US
+From: tessolveupstream@gmail.com
+In-Reply-To: <46k4uvtoit5tty3ojh7da7yliqz27tdcscu2co5tuowy33uicc@v3f3cojpwvzp>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2025-11-20 at 10:41 +0800, Kimi Chen via B4 Relay wrote:
-> From: Kimi Chen <kimi.zy.chen@fii-foxconn.com>
->=20
-> The chassis power cycle process requires a forced shutdown before
-> cutting off the standby power. The SCM CPLD implements a hard shutdown
-> host function that is controlled through the IO expander in the
-> Clemente platform.
->=20
-> This change adds a new GPIO line named "shdn_force_l_cpld" to the
-> PCA9555 IO expander at line 10.
->=20
 
-This doesn't line up with my count of where you've inserted it in the
-gpio-line-names property? Is there some explanation for that? Are you
-referencing pin 10 of the device? If so I feel it would be more helpful
-to describe it as "IO0_6" or some such.
 
-Andrew
+On 21-11-2025 22:16, Dmitry Baryshkov wrote:
+> On Thu, Nov 20, 2025 at 01:02:39PM +0530, tessolveupstream@gmail.com wrote:
+>>
+>>
+>> On 19-11-2025 15:55, Dmitry Baryshkov wrote:
+>>> On Tue, Nov 18, 2025 at 06:38:14PM +0530, Sudarshan Shetty wrote:
+>>>> Add the device tree for the QCS615-based Talos EVK platform. The
+>>>> platform is composed of a System-on-Module following the SMARC
+>>>> standard, and a Carrier Board.
+>>>>
+>>>> The Carrier Board supports several display configurations, HDMI and
+>>>> LVDS. Both configurations use the same base hardware, with the display
+>>>> selection controlled by a DIP switch.
+>>>>
+>>>> To avoid duplication, use an include file, talos-evk-cb.dtsi, which
+>>>> defines the interfaces and peripherals common to both display
+>>>> variants. Two additional DTs (e.g. talos-evk and talos-evk-lvds)
+>>>> can describe the selected display configuration.
+>>>>
+>>>> The initial device tree includes support for:
+>>>> - CPU and memory
+>>>> - UART
+>>>> - GPIOs
+>>>> - Regulators
+>>>> - PMIC
+>>>> - Early console
+>>>> - AT24MAC602 EEPROM
+>>>> - MCP2515 SPI to CAN
+>>>> - ADV7535 DSI-to-HDMI bridge
+>>>> - DisplayPort interface
+>>>
+>>> You got the question for v6, responded there but didn't update commit
+>>> message. What is not enabled here? E.g. why isn't venus enabled?
+>>
+>> In earlier patch, we have added 'Wi-Fi/BT and ethernet is not 
+>> supported'as a commit message. Later,based on 
+>> Krzysztof Kozlowski’s review comments, we removed the same. 
+>> Please find the below review comment for your reference.
+>> https://lore.kernel.org/all/20251028053248.723560-1-tessolveupstream@gmail.com/T/#mda58996a7abac13780f8ce2cd49b84c32d4c50a6
+>>
+>> We are not clear whether 'Wi-Fi/BT and ethernet is not supported'
+>> should be added back to the commit message or not. 
+>> Could you please confirm your preference?
+> 
+> If you are unsure, you can add this info to the cover letter. Or you can
+> write something like 'Ethernet and WiFi/BT are not (yet) supported.'.
+
+Okay, we will add the info 'Ethernet and WiFi/BT are not (yet) 
+supported' to the cover letter.
+> 
+>>
+>> Venus is enabled in this patch.
+> 
+> Ack, excuse me.
+> 
+>>>
+>>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/Makefile           |   1 +
+>>>>  arch/arm64/boot/dts/qcom/talos-evk-cb.dtsi  |  56 +++
+>>>>  arch/arm64/boot/dts/qcom/talos-evk-som.dtsi | 447 ++++++++++++++++++++
+>>>>  arch/arm64/boot/dts/qcom/talos-evk.dts      |  94 ++++
+>>>>  4 files changed, 598 insertions(+)
+>>>>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-cb.dtsi
+>>>>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
+>>>>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
+>>>>
+>>>
+>>
+> 
+
 
