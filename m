@@ -1,326 +1,168 @@
-Return-Path: <devicetree+bounces-241529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B87C7F934
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:21:58 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6308DC7F9A6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:26:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 76337348F51
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:19:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 695B34E3F52
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:23:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3432F83C5;
-	Mon, 24 Nov 2025 09:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7636A2EAB83;
+	Mon, 24 Nov 2025 09:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="xmUru0DI"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="abmtBNy2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11021127.outbound.protection.outlook.com [40.107.130.127])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824332F5A17;
-	Mon, 24 Nov 2025 09:19:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763975942; cv=none; b=k14Xci5wQbzS8TvUSH+ZveEYhrX4aAAzvqlmzJci2byGjYyPQT1sYzGnpbc0Set9qtO6iPIdeqhznorcN2qsWGqijc7nlehpvqb2+nzVu3b5jyNLJ58dkbj00wGz+n+/ARnIpjIiQdoZTGLYKjNJynaZ/YMCdukqf+PoyCnmgxE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763975942; c=relaxed/simple;
-	bh=K+zt3nceOOODApou1DvNcVnqg8L6U+BAmtwiQUTSD/g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=X8LGjFKPWeXkji7lRYMD4RDblXH73RfYyHmE68rSkYoVZnrwNAFvq08jSm7SOLlFpY4b/nrc6N5wbGXtyjyVKsQwTidZwrrUVymOnVAZlANk8NIxySHgLbBcQDrcFX8Aq0xs0VSUMlze9zBeTKlyjWB0cuYdXOLVavHjjEYJ4Kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=xmUru0DI; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AO9FOq0420237;
-	Mon, 24 Nov 2025 04:18:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=CFxea
-	+0RlEzrXndzpVbk0p5/3GjSlvBMRFAAzli0hlw=; b=xmUru0DI8Es/vIqElXdD8
-	b6vajFlAD5HEAXo8ofI/reNuod3RMJKUF/rOqV2P/XvEXD8VuCDXcimTPsXWrtRQ
-	ZWoZcVB7sh38JKoNo5xidIQyv8q9bNqYnzZOSrmQFREoNNvL0jGg4ywYzvs05rO5
-	jE8GjRcic/OUjzfNGVfwxiHyxB0lQfOiuVBOsY4Jt8eww9ilCgouk/XsOil1N2GX
-	KkllLB72pbkGqwjqOHDPg1sH0a9NYs+FmcVSqcZ2CS7p+3flntKN+w0f6eVtWqe3
-	3nV9t2F58u34L3UHlegiiHb/k2Po9hWyrWXED4SfXuzeRxIflLjWLOaWl1RWFP73
-	g==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4aky424gt7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Nov 2025 04:18:45 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5AO9IikJ007671
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 24 Nov 2025 04:18:44 -0500
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 24 Nov 2025 04:18:44 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 24 Nov 2025 04:18:43 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Mon, 24 Nov 2025 04:18:43 -0500
-Received: from HYB-DlYm71t3hSl.ad.analog.com (HYB-DlYm71t3hSl.ad.analog.com [10.44.3.82])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5AO9I8VS024016;
-	Mon, 24 Nov 2025 04:18:37 -0500
-From: Jorge Marques <jorge.marques@analog.com>
-Date: Mon, 24 Nov 2025 10:18:08 +0100
-Subject: [PATCH v2 9/9] iio: adc: ad4062: Add GPIO Controller support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346E3263C8A;
+	Mon, 24 Nov 2025 09:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.127
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763976186; cv=fail; b=ncItm1zFgw7iLDhQbcK0O2FroSMvENJTaBz7pwQ+wNToPfm2brMoY3cVY86tRZY2maCztGas3LfllG98r7geT46J87bbdP/yqHhPkhyVm+alNyKQzBuAfSqVu4k/Y6e3KvVaZktyoA448G47MsoXXnUeDEWIz9unmzJXpHwvf3A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763976186; c=relaxed/simple;
+	bh=R2EU55vzqasLI4B2up/IGkR87IGuw+aZw3p/wnCtPNs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=E6vIPUfeKcRIm56D7rWq5ZeeTFddV4mDNPXhjC9xt42Yk63ndeVFLj/nUnYMm39gyVMcYS5wKkU5cQRPa9yT8jj7E7KXl0lwlv69YKMQ0jX297oHWeFAuVLlol2nVDl+gXnWQL/8iA4AjTJ/d2sUjEggw1vC0VSe1I63wuuIEnY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=abmtBNy2; arc=fail smtp.client-ip=40.107.130.127
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=k8D7+1MvVkW240zngVdzBkvf6vjSb4eJ9ZEd9U/4WZKfWGllOR6l5NcU8sEb+mQsYzvYSS5odTIjlEpmsD2pENu37l7rS6qHWwgXCo+2CDf5I1MoKNaHd8YW4oH86SPI+CzaddRd3IM5X9KSd67ma9H/TMJJKYUACxnB125kDiTJ+9xHxl1o/ROD6SQgmxXGuKy9Q7vdJQjJCza5hc6D5CUDoWchxzSA67o96+5lStGa7aebtcn02n/2p0ZLTKe+yWSs9Nw0NFYl1QHT+FvqY/jQxAHrTs96iFBB94grJxsHsvfyTN0OHGVVThUSspapaaDaLUHZ4hjGvH+XWxXB8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MdhQ3P2v0v69qaVyTFp9hHzy48+cUuFhcgOiXuk+Qzo=;
+ b=srpR1+5+4HZWHUCKMDtJR9Dj1jWT5rp2ijW+5/gZ7um0LvuER/Fn/fujY5keQBvVdrDj5YSNZGGEKRm7yDRAVvo9HU7B0d3FedtQdMfSKWnPsNTSrsQd4URSPenSRhLuOCTJTUq9TafC6kny2awsNY0Sd0nlx0zRX3NE4WEUVziFZVG0ppS4/WPYZrj0jlMtW5qiG97SsrUXyWZVFW4OQjQpafLnqtpzgyS/gLMsjdb7llVRRUxrPifv13x7ZkeTNHRazt+xPsRfCGbLQfAC+m2WvZCJTaucFCxGmSdJQYIQ3eACk6+6ur91vuTtdRa5lA3vPNPL6Qgtcjqe9aL4Mg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=phytec.de; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MdhQ3P2v0v69qaVyTFp9hHzy48+cUuFhcgOiXuk+Qzo=;
+ b=abmtBNy2Q8fwXjC9pFeGyRUk1R0nhCbTFRK4KlA4lZHOnqRAWS0sJJ1TqW9uqMnWbmRdqRczFYZQxnwTiaPxqfb9Svyi2J3TRv1D/THDbybT24/zJOaGET+B1GnMrL3v0iPJXPgJ09zV0Xm9RQNE945irlpYtXMFAXBRFdvtOejJ+Gcxmzxx+DE/oeynpy+uf97vYSccP7R56/xt59MdrTyJKhkGmSkHozYTkHG+AxHuW5tJ5rozu5ZBNRh1r+iaMzDuYHTbXl+lr5s8x8usxtutyNdmac6I/Gjj0jXm7LBJufD8dOfQKKvp3Al6YlG7zE2gUqWfRWz5tnwmgmb76g==
+Received: from DU2P251CA0006.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:230::7) by
+ PRAP195MB1457.EURP195.PROD.OUTLOOK.COM (2603:10a6:102:278::12) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9343.17; Mon, 24 Nov 2025 09:22:58 +0000
+Received: from DU6PEPF0000A7DD.eurprd02.prod.outlook.com
+ (2603:10a6:10:230:cafe::bf) by DU2P251CA0006.outlook.office365.com
+ (2603:10a6:10:230::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.17 via Frontend Transport; Mon,
+ 24 Nov 2025 09:22:51 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Postix.phytec.de (91.26.50.189) by
+ DU6PEPF0000A7DD.mail.protection.outlook.com (10.167.8.37) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9366.7 via Frontend Transport; Mon, 24 Nov 2025 09:22:57 +0000
+Received: from ls-radium.phytec (172.25.39.17) by Postix.phytec.de
+ (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Mon, 24 Nov
+ 2025 10:22:54 +0100
+From: Daniel Schultz <d.schultz@phytec.de>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
+	<festevam@gmail.com>, <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: <upstream@lists.phytec.de>, Daniel Schultz <d.schultz@phytec.de>
+Subject: [PATCH] arm64: dts: imx8mm: Add label to thermal-zones
+Date: Mon, 24 Nov 2025 01:22:42 -0800
+Message-ID: <20251124092242.3378017-1-d.schultz@phytec.de>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
-In-Reply-To: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich
-	<Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "David
- Lechner" <dlechner@baylibre.com>,
-        =?utf-8?q?Nuno_S=C3=A1?=
-	<nuno.sa@analog.com>,
-        Andy Shevchenko <andy@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Jorge Marques <jorge.marques@analog.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1763975888; l=5730;
- i=jorge.marques@analog.com; s=20250303; h=from:subject:message-id;
- bh=K+zt3nceOOODApou1DvNcVnqg8L6U+BAmtwiQUTSD/g=;
- b=1VAot/oOiNyakNSh6gDyBPRNszQvAcZm8xQNisXkdA/bzEsIP70eTI0VY9+l3Kb9oasJEsf9O
- CueObBm8ZDNBgVKmgjWk9wntp7ztaAUEPhpWEIeTCBsejt4IE8rxTcR
-X-Developer-Key: i=jorge.marques@analog.com; a=ed25519;
- pk=NUR1IZZMH0Da3QbJ2tBSznSPVfRpuoWdhBzKGSpAdbg=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=ffGgCkQF c=1 sm=1 tr=0 ts=692422f5 cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=gAnH3GRIAAAA:8 a=tsAnktj4w5_xAW6w_LAA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: qnndZnCmPiIo8KBvd6zxKRxwrLjot_Oa
-X-Proofpoint-ORIG-GUID: qnndZnCmPiIo8KBvd6zxKRxwrLjot_Oa
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDA4MSBTYWx0ZWRfXzm1H17O3z1ka
- 58Sk6AOif0vFEOksLwDwuI+DxVIxm7//yL+swNiROzxCdBTePaStLBpoVxx6ldZFdgGS6Lw1NW7
- fdwDOc5kVxPEpnF9Vm4CfGyq3TJ28ibutbmB6GeBvol46JNhyb4KIgE/ICTipduEL4dKJ9a4GbL
- KxRRYgCxgl2i8Nng1BJGN20EDPBdlQo/rDcJwOpEjsU8/erMTNQsLLPidK3ZEZHzTFDNb7iV11v
- G7AQzmRQ+r5BJkQ/5LyBzRChHK6lfVW6rx/vvnuBi2b35ke8t/JY95bnb0DY/fp6evucUcFEkK1
- s/6kjx1ZlAQJjGTAF0Y4JgiQ4jOUD74Pb7/QyiZuwd0QytTT2gqCgecR7mvkhIWcMcDS5CCqs0A
- Px0Kz/jNJMMSiFs63DwwofN0yHYm7Q==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-24_03,2025-11-21_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 priorityscore=1501 bulkscore=0 clxscore=1015
- lowpriorityscore=0 adultscore=0 phishscore=0 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240081
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
+ (172.25.0.11)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU6PEPF0000A7DD:EE_|PRAP195MB1457:EE_
+X-MS-Office365-Filtering-Correlation-Id: e6f11ab7-d889-40b7-66af-08de2b3b0e67
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?m231ejOjVSKmFN7T/Nj+xsend4ssIos/clpTYX8CSEez3nCQ+USo9xKZiPYU?=
+ =?us-ascii?Q?0x2J89BEAQz5sUjbB0GgMK4pp24a6xHVjOJf/Itx1An3gvT0MlIe5oSygslZ?=
+ =?us-ascii?Q?r8fC2ml/aavkKrZKBSx2Mhe1ohJYvAJuSNZhPdN7LoFzOPLoMzAM/yQEYoh+?=
+ =?us-ascii?Q?85pCPHoyBsQ9Ip2PfZEzgulWTglVFNlNQMyQxqerhv0tySwHp0XqSbg34o+R?=
+ =?us-ascii?Q?8J8H/OQwmStTstorGW4typd/5rVJ1xlICztuv/AppSh0iV02G+TB0Q9jurEO?=
+ =?us-ascii?Q?qYOU0WVVV75bPcqxQMtEGCJZxkVig9emcOIZgdelPhGxqH0LR3p3zPbWsIdR?=
+ =?us-ascii?Q?noPpfmC+95yYbt+t0RZMriLt+0bUEpQFPPxedZ5ukrpmherleROhE6taJz00?=
+ =?us-ascii?Q?LUpuI1TqS3TAbZ7hL9M7gaqxCz5ZCe0KGg/p8AhQCz0iKSLWujKh0MPyYLdP?=
+ =?us-ascii?Q?nUHUS3pG4JFSUFYaTR7K89Xk7HQO19PWEY04BMvhAzWu25tO9bparMSS0UT7?=
+ =?us-ascii?Q?QTCqrtChB/jI19O0iKmLIbOyjKEEkKcgW4MCio69nOXL83dytkvJYBoWRliN?=
+ =?us-ascii?Q?UzmPeC5aBl1alA7ibEwF7uIoeRwFBc9OHwirSqfS7SN8H5id0E4/Z0E+oq3C?=
+ =?us-ascii?Q?aW/diHMaya3+ogS5OhxKEdRNs7hR1OU0fuUz7bMrFMAorIOYLOvsTzpWugPc?=
+ =?us-ascii?Q?aiIE7RKK2wA3BehZ+6IAXquFFSU0x1yUEivxIoqzuWRvJ8iaew2b7vtjIYBE?=
+ =?us-ascii?Q?AKhD9b5fHiH4GQfG3QxQ957GsogxwLqhGwWQFCB/ew8lDn8ic+pMHoKTtER6?=
+ =?us-ascii?Q?VPIHG2vnRVrt/NxSyVqgfVnpHOdgxcGiP9ATfXrNWKDYOq1SvJVf/GhzWvaj?=
+ =?us-ascii?Q?Q/BS026606LxiyzHv0vVKZu9wKlTi3LZh+QeBDHyTHF/7vR1S1KqetE4MVBg?=
+ =?us-ascii?Q?FBsdJD/93W/sUSrmoYS8qLSlguOIM3Sq1ewEC8Kfh0rQ7i9q2lzxoZKPEUD6?=
+ =?us-ascii?Q?4yQ3JLneHTDsqf7R/ttxzI/G0hQOthSpbmYW6kXw9ojQ3iLyxC9bkthuYyMZ?=
+ =?us-ascii?Q?PlFDqyusdijReyxJqeD79Szef+e6TWXWGBbhEKWN75j6SO4DFM60J0Rzkt0i?=
+ =?us-ascii?Q?p1eHanEJA2Hi61Pebz/CXG6Zgi0DLc8gZs6SAxGPryLyY+ZHyTMmTe7u3LsP?=
+ =?us-ascii?Q?phaPM8PhyYScj30vyjjJN1C/KH/YbO8NuwKcq6XXYlHGl6BJuYObyKiYPO5a?=
+ =?us-ascii?Q?tPD26+CBBVHnDnvKLyGBWpfXrncU1Ygvkg5rmksqelEWMklz8kOuwiZzaraA?=
+ =?us-ascii?Q?votM2wYNkvXRe0pO7smKRcAPcDmpMrXXnWa8czSQJV6+tL+MyGjtJp7ZRK8W?=
+ =?us-ascii?Q?O5pyqrTvkMf01ht7IngqvsnlHpkprnCaNk23k/NA+ANSDBX8y+ho7M87lu1c?=
+ =?us-ascii?Q?3e6/sGA925wqOB4mmxWX+mS/5ASTWVlq3h8ekcxOVY0OK+4AWVi63ioQFEqv?=
+ =?us-ascii?Q?G+xHGcuVW1U9PUoRxAOXIJ+kV3QQs++rbiVp6CO0bfsbxOF9eTEEAcmxama5?=
+ =?us-ascii?Q?cwY9H9E/NwTeORa+pzkPdmv6SdPrIjBoCcXqo9Gw?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 09:22:57.7199
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6f11ab7-d889-40b7-66af-08de2b3b0e67
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF0000A7DD.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAP195MB1457
 
-When gp0 or gp1 is not taken as an interrupt, expose them as gpo if
-gpio-contoller is set in the devicetree.
+Add 'thermal_zones' as a label to the thermal-zones node.
 
-Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+Without this label, it is not possible to add additional
+trip points in board files. For example, to add an active
+trip point for controlling a fan.
+
+Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
 ---
- drivers/iio/adc/ad4062.c | 134 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 134 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/iio/adc/ad4062.c b/drivers/iio/adc/ad4062.c
-index 3df7dbf29ae4a..203b06276431f 100644
---- a/drivers/iio/adc/ad4062.c
-+++ b/drivers/iio/adc/ad4062.c
-@@ -10,6 +10,7 @@
- #include <linux/completion.h>
- #include <linux/delay.h>
- #include <linux/err.h>
-+#include <linux/gpio/driver.h>
- #include <linux/i3c/device.h>
- #include <linux/i3c/master.h>
- #include <linux/iio/buffer.h>
-@@ -85,8 +86,11 @@
- #define AD4062_MAX_AVG		0xB
- #define AD4062_MON_VAL_MAX_GAIN		1999970
- #define AD4062_MON_VAL_MIDDLE_POINT	0x8000
-+#define AD4062_GP_DISABLED	0x0
- #define AD4062_GP_INTR		0x1
- #define AD4062_GP_DRDY		0x2
-+#define AD4062_GP_STATIC_LOW	0x5
-+#define AD4062_GP_STATIC_HIGH	0x6
- #define AD4062_INTR_EN_NEITHER	0x0
- #define AD4062_INTR_EN_EITHER	0x3
- #define AD4062_TCONV_NS		270
-@@ -635,12 +639,14 @@ static int ad4062_request_irq(struct iio_dev *indio_dev)
- 	if (ret == -EPROBE_DEFER) {
- 		return ret;
- 	} else if (ret < 0) {
-+		st->gpo_irq[0] = false;
- 		ret = regmap_update_bits(st->regmap, AD4062_REG_ADC_IBI_EN,
- 					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN,
- 					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN);
- 		if (ret)
- 			return ret;
- 	} else {
-+		st->gpo_irq[0] = true;
- 		ret = devm_request_threaded_irq(dev, ret, NULL,
- 						ad4062_irq_handler_thresh,
- 						IRQF_ONESHOT, indio_dev->name,
-@@ -1263,6 +1269,130 @@ static int ad4062_regulators_get(struct ad4062_state *st, bool *ref_sel)
- 	return 0;
- }
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index fc3cd639310e..9f49c0b386d3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -234,7 +234,7 @@ timer {
+ 		arm,no-tick-in-suspend;
+ 	};
  
-+static int ad4062_gpio_get_direction(struct gpio_chip *gc, unsigned int offset)
-+{
-+	return GPIO_LINE_DIRECTION_OUT;
-+}
-+
-+static int ad4062_gpio_set(struct gpio_chip *gc, unsigned int offset, int value)
-+{
-+	struct ad4062_state *st = gpiochip_get_data(gc);
-+	unsigned int reg_val = value ? AD4062_GP_STATIC_HIGH : AD4062_GP_STATIC_LOW;
-+
-+	if (st->gpo_irq[offset])
-+		return -ENODEV;
-+
-+	if (offset)
-+		return regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+					  AD4062_REG_GP_CONF_MODE_MSK_1,
-+					  FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, reg_val));
-+	else
-+		return regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+					  AD4062_REG_GP_CONF_MODE_MSK_0,
-+					  FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, reg_val));
-+}
-+
-+static int ad4062_gpio_get(struct gpio_chip *gc, unsigned int offset)
-+{
-+	struct ad4062_state *st = gpiochip_get_data(gc);
-+	unsigned int reg_val;
-+	int ret;
-+
-+	ret = regmap_read(st->regmap, AD4062_REG_GP_CONF, &reg_val);
-+	if (ret)
-+		return 0;
-+
-+	if (st->gpo_irq[offset])
-+		return -ENODEV;
-+
-+	if (offset)
-+		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_1, reg_val);
-+	else
-+		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_0, reg_val);
-+
-+	return reg_val == AD4062_GP_STATIC_HIGH ? 1 : 0;
-+}
-+
-+static void ad4062_gpio_disable(void *data)
-+{
-+	struct ad4062_state *st = data;
-+	u8 val = FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, AD4062_GP_DISABLED) |
-+		 FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_DISABLED);
-+
-+	regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+			   AD4062_REG_GP_CONF_MODE_MSK_1 | AD4062_REG_GP_CONF_MODE_MSK_0,
-+			   val);
-+}
-+
-+static int ad4062_gpio_init_valid_mask(struct gpio_chip *gc,
-+				       unsigned long *valid_mask,
-+				       unsigned int ngpios)
-+{
-+	struct ad4062_state *st = gpiochip_get_data(gc);
-+
-+	bitmap_zero(valid_mask, ngpios);
-+
-+	if (!st->gpo_irq[0])
-+		set_bit(0, valid_mask);
-+	if (!st->gpo_irq[1])
-+		set_bit(1, valid_mask);
-+
-+	return 0;
-+}
-+
-+static int ad4062_gpio_init(struct ad4062_state *st)
-+{
-+	struct device *dev = &st->i3cdev->dev;
-+	struct gpio_chip *gc;
-+	u8 val, mask;
-+	int ret;
-+
-+	if ((st->gpo_irq[0] && st->gpo_irq[1]) ||
-+	    !device_property_read_bool(dev, "gpio-controller"))
-+		return 0;
-+
-+	gc = devm_kzalloc(dev, sizeof(*gc), GFP_KERNEL);
-+	if (!gc)
-+		return -ENOMEM;
-+
-+	val = 0;
-+	mask = 0;
-+	if (!st->gpo_irq[0]) {
-+		mask |= AD4062_REG_GP_CONF_MODE_MSK_0;
-+		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, AD4062_GP_STATIC_LOW);
-+	}
-+	if (!st->gpo_irq[1]) {
-+		mask |= AD4062_REG_GP_CONF_MODE_MSK_1;
-+		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_STATIC_LOW);
-+	}
-+
-+	ret = regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+				 mask, val);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, ad4062_gpio_disable, st);
-+	if (ret)
-+		return ret;
-+
-+	gc->parent = dev;
-+	gc->label = st->chip->name;
-+	gc->owner = THIS_MODULE;
-+	gc->base = -1;
-+	gc->ngpio = 2;
-+	gc->init_valid_mask = ad4062_gpio_init_valid_mask;
-+	gc->get_direction = ad4062_gpio_get_direction;
-+	gc->set = ad4062_gpio_set;
-+	gc->get = ad4062_gpio_get;
-+	gc->can_sleep = true;
-+
-+	ret = devm_gpiochip_add_data(dev, gc, st);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Unable to register GPIO chip\n");
-+
-+	return 0;
-+}
-+
- static const struct i3c_device_id ad4062_id_table[] = {
- 	I3C_DEVICE(AD4062_I3C_VENDOR, ad4060_chip_info.prod_id, &ad4060_chip_info),
- 	I3C_DEVICE(AD4062_I3C_VENDOR, ad4062_chip_info.prod_id, &ad4062_chip_info),
-@@ -1351,6 +1481,10 @@ static int ad4062_probe(struct i3c_device *i3cdev)
- 	if (ret)
- 		return dev_err_probe(dev, ret, "Failed to request i3c ibi\n");
- 
-+	ret = ad4062_gpio_init(st);
-+	if (ret)
-+		return ret;
-+
- 	INIT_WORK(&st->trig_conv, ad4062_trigger_work);
- 
- 	return devm_iio_device_register(dev, indio_dev);
-
+-	thermal-zones {
++	thermal_zones: thermal-zones {
+ 		cpu-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <2000>;
 -- 
-2.51.1
+2.25.1
 
 
