@@ -1,203 +1,304 @@
-Return-Path: <devicetree+bounces-241545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 056F9C7FA97
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:36:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DDF6C7FAAC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:37:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C4963A4CBA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:36:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADAA83A5F4F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB7F2F60B4;
-	Mon, 24 Nov 2025 09:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E662F5A33;
+	Mon, 24 Nov 2025 09:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HD5JNrH+"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b="RMnZiwRB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp-out3.simply.com (smtp-out3.simply.com [94.231.106.210])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1FEC2F5465;
-	Mon, 24 Nov 2025 09:36:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1516298CDE;
+	Mon, 24 Nov 2025 09:37:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.231.106.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763976981; cv=none; b=ebGEJHxFfMyP6fj5/A1xpXU0vwCj6V4bDANTQYtXne2ASldlFKdTNmpMn9WSEvZfcAaxHziY4sOTIjjw63wYQrAT8QigZ6J7or4xBh5PDA07GNj6L8SV+Uo0osv0RE3+fA66IZMrxD0ht4Bt6f3n0ptH2/FHiCwhPL+XVDk6ur0=
+	t=1763977072; cv=none; b=mO40HiUpshP3yckypW1+p0dkENZmCJemDFFIOaFwtc4vUViZs7J54dV/SPwRmqKWfFxUjHyUeyxdCItRbecUbaWNxc4aDKJxtAN0qJ9PfWUD6nF/bl3AYkeE8MnezFMVcQauBx2LNfmhm3bEvkHc62p3d7WwMkH6Pyktaxt9wss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763976981; c=relaxed/simple;
-	bh=V0qerlrtNZqBpFKg+N9laGJk6nVd3gEUb27Uxk15PNM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UiMjlu1+WNxiwzbjMc1PFhHz19PFiu+XaB7TaP/NIYRQlLNZkUb4AqDbxYt/cRFw1oKWS3Uqvcu9mZ3Al2MZQ6hwWRqrgtNfiwkxlq73v7u013LM/RIapNCHJxy87LYrRnSBHLpOYxCsLiOSAT83si9Qn+DMQefYxLRFmQ8RJlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HD5JNrH+; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1763976980; x=1795512980;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=V0qerlrtNZqBpFKg+N9laGJk6nVd3gEUb27Uxk15PNM=;
-  b=HD5JNrH+TtgocZv884PL23IyO6mHmdAa6RbaSq2IGGn4CRwRDAAEOI7u
-   +G6PsATyD1XuJbWKomASRihykrWsBiatz7KkZct8uEGWbc9ICrnHcERKH
-   Wu97AU2c06IU7yxoMYGcu3eQwKK/rtr9RmoBJ49BPfI9T1Bze/WpaLA8X
-   YeY8pGlXBzj7FZTlIlStrwn/j5L/Y/R9sZbNejJOH3l6mMiWcxN2uwLWd
-   KWY8rW3vRrKxDrpxvchB13cQjcVZrgmUfzBxIFULtQrwgDP9/OEK6l4ee
-   j1ajaCR0XCD0cSZwh8kks4HY/Qb3oyy5H7HzWwEi3DVnw9GX9MUMvVUYg
-   w==;
-X-CSE-ConnectionGUID: +/5t9wo+Sx+bQHudlKMVxQ==
-X-CSE-MsgGUID: EmQwJSCsRDm9awOGBguw7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11622"; a="83360369"
-X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
-   d="scan'208";a="83360369"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 01:36:19 -0800
-X-CSE-ConnectionGUID: 8Ppew+02R1yotk90oqeDzw==
-X-CSE-MsgGUID: XhIxGgG1RUCS0TUsoDinHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,222,1758610800"; 
-   d="scan'208";a="191446304"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.5])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 01:36:15 -0800
-Date: Mon, 24 Nov 2025 11:36:12 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jorge Marques <jorge.marques@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 5/9] iio: adc: ad4062: Add IIO Trigger support
-Message-ID: <aSQnDMsE13zwM1YO@smile.fi.intel.com>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
- <20251124-staging-ad4062-v2-5-a375609afbb7@analog.com>
+	s=arc-20240116; t=1763977072; c=relaxed/simple;
+	bh=OUcqUXgGbP6eAxa1vKyXPabf+sNbu+8uQMnb93koNbQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=MHGoMryv60cPDs9TK2GMnjEvTq48jKFS8/ulfPF68Wb7XW99qzCEk4PiM6xix88A0jYhrkTl1k/LtxPyS1zH3QiM3oLMalkPIfxwzinFJ273SeXHpxFICGhoLikM+G0qbJ6NASoJ3rvqNTSD57bFVnAg+qU69OayCMv+KGm445I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com; spf=pass smtp.mailfrom=gaisler.com; dkim=fail (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b=RMnZiwRB reason="key not found in DNS"; arc=none smtp.client-ip=94.231.106.210
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gaisler.com
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.simply.com (Simply.com) with ESMTP id 4dFLMm4mFQz1DQqj;
+	Mon, 24 Nov 2025 10:37:40 +0100 (CET)
+Received: from webmail.unoeuro.com (webmail.unoeuro.com [94.231.108.230])
+	by smtp.simply.com (Simply.com) with ESMTPA id 4dFLMm2JG5z1DDMw;
+	Mon, 24 Nov 2025 10:37:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gaisler.com;
+	s=simplycom2; t=1763977060;
+	bh=0vnLtD++Kf5gEEMlvyKAgAvSHBCasjk67eNgc0nbTjM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=RMnZiwRBdYZtC6h0oOjCFotdHY8S5D1MMptKfgN9cjHRUlIF3AzDg+ybacd5YlAgw
+	 XRa1YwN4N4/7dk5Ua7Ts4KajoKJMsx4jCZHhyYs1CmYY9Nll82aAYky+/PI7THG57t
+	 f3JRJniGRWA3AaqPu4rVQdS8oOsit8rRUIGJ2yyRgpTcznUZRpVe5+n1lzoOrS2zU3
+	 JjZv1aQWbgwucgIa3DTvM8D9Djlxp1/BSoyXqohRYxQihKwiT3389IZTEno5TVeH3M
+	 l5gcEa8ukjxi28tkBZZIw4cYPI2YIXYtCSmSHNpLhc1zpvKkvWnAO64aCJfkdW71Vs
+	 /eCamRoSvDUGQ==
+Received: from h-98-128-223-123.NA.cust.bahnhof.se ([98.128.223.123])
+ by webmail.simply.com
+ with HTTP (HTTP/2.0 POST); Mon, 24 Nov 2025 10:37:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251124-staging-ad4062-v2-5-a375609afbb7@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Date: Mon, 24 Nov 2025 10:37:40 +0100
+From: Arun Muthusamy <arun.muthusamy@gaisler.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mkl@pengutronix.de, mailhol@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-can@vger.kernel.org
+Subject: Re: [PATCH 02/10] dt-bindings: net: can: grcan: Convert GRCAN CAN
+ controllers binding from txt to YAML
+In-Reply-To: <c80ff180-b7f1-4f39-b39d-2953ef75a7ad@kernel.org>
+References: <20251118092115.3455-1-arun.muthusamy@gaisler.com>
+ <20251118092115.3455-3-arun.muthusamy@gaisler.com>
+ <c80ff180-b7f1-4f39-b39d-2953ef75a7ad@kernel.org>
+User-Agent: Simply.com webmail
+Message-ID: <a5d8543b27adc6adf8bec2f3548f13b0@gaisler.com>
+X-Sender: arun.muthusamy@gaisler.com
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Nov 24, 2025 at 10:18:04AM +0100, Jorge Marques wrote:
-> Adds support for IIO Trigger. Optionally, gp1 is assigned as Data Ready
-> signal, if not present, fallback to an I3C IBI with the same role.
-> The software trigger is allocated by the device, but must be attached by
-> the user before enabling the buffer. The purpose is to not impede
-> removing the driver due to the increased reference count when
-> iio_trigger_set_immutable or iio_trigger_get is used.
+Hi Krzysztof,
 
-We refer to the functions as func(). Mind the parentheses.
+Thank you for your thorough review and insightful questions. I’d like to 
+clarify a few points regarding the DT binding and get your guidance.
 
-...
+Node name vs. compatible matching:
+SPARC systems do not use DTS files; the device tree is generated by the 
+PROM. On LEON (SPARC32), AMBA Plug & Play information creates the DT 
+properties, and drivers historically match devices based on node names.
+For DTS-based systems such as NOEL, this patch series adds 
+compatible-string matching. To reflect this, I updated the $nodename 
+pattern to support LEON-style node names:
+properties:
+   $nodename:
+     pattern: "^(GAISLER_GRCAN|01_03d|GAISLER_GRHCAN|01_034)$"
+I’d appreciate any suggestions on the preferred way to describe this 
+dual matching approach: node name for PROM-based LEON, compatible string 
+for DTS-based NOEL.
 
-> +	struct ad4062_state *st = container_of(work, struct ad4062_state,
-> +					       trig_conv);
 
-I think the
+Freq and Clocks:
+The driver needs to support both LEON and NOEL platforms:
+LEON: relies on the freq property
+NOEL: uses a standard clocks binding
+Because of this dual approach, the freq property is no longer required 
+in the DTS binding itself.
+It is only relevant for LEON/PROM-based systems and is handled 
+internally by the driver
 
-	struct ad4062_state *st =
-		container_of(work, struct ad4062_state, trig_conv);
 
-reads better.
+Systemid:
+The driver now reads systemid directly from /ambapp0, so the property no 
+longer needs to be defined in the DTS. The previous documentation was 
+outdated and should have been updated after commit:
+1e93ed26acf0 ("can: grcan: grcan_probe(): fix broken system id check for 
+errata workaround needs")
 
-> +	int ret;
 
-...
-
-> +	/* Read current conversion, if at reg CONV_READ, stop bit triggers
-> +	 * next sample and does not need writing the address.
-> +	 */
-
-/*
- * The multi-line comment style is as in
- * this example. Please, check and update.
- */
-
-> +static irqreturn_t ad4062_poll_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct ad4062_state *st = iio_priv(indio_dev);
-> +
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +	schedule_work(&st->trig_conv);
-> +
-> +	return IRQ_HANDLED;
->  }
-
-...
-
-> +static int ad4062_triggered_buffer_postenable(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4062_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad4062_set_operation_mode(st, st->mode);
-> +	if (ret)
-> +		goto out_mode_error;
-> +
-> +	/* CONV_READ requires read to trigger first sample. */
-> +	struct i3c_priv_xfer t[2] = {
-> +		{
-> +			.data.out = &st->reg_addr_conv,
-> +			.len = sizeof(st->reg_addr_conv),
-> +			.rnw = false,
-> +		},
-> +		{
-> +			.data.in = &st->buf.be32,
-> +			.len = sizeof(st->buf.be32),
-> +			.rnw = true,
-> +		}
-> +	};
-> +
-> +	ret = i3c_device_do_priv_xfers(st->i3cdev, t, st->gpo_irq[1] ? 2 : 1);
-> +	if (ret)
-> +		goto out_mode_error;
-> +	return 0;
-> +
-> +out_mode_error:
-> +	pm_runtime_put_autosuspend(&st->i3cdev->dev);
-> +
-> +	return ret;
-
-I guess with ACQUIRE() this function will look better, because the explicit
-reference count bumping (with an associated comment) is more descriptive on
-what's going on here with PM. Same for other related functions.
-
-> +}
-
-...
-
->  	if (ret)
->  		return dev_err_probe(dev, ret, "Failed to request i3c ibi\n");
->  
-> +	INIT_WORK(&st->trig_conv, ad4062_trigger_work);
-
-This is mixture of devm_*() and non-devm_*() calls. How did you (stress) test
-the removal and error paths here? Wouldn't devm-helpers.h APIs help here to
-make / keep order correct?
-
->  	return devm_iio_device_register(dev, indio_dev);
+Thanks,
 
 -- 
-With Best Regards,
-Andy Shevchenko
+BR,
 
+Arun Muthusamy
+Software Engineer
+Frontgrade Gaisler
+T : +46 (0) 700 558 528
+arun.muthusamy@gaisler.com
 
+Frontgrade Gaisler AB, Kungsgatan 12, SE-411 19 GÖTEBORG, Sweden.
++46 (0) 31 775 8650, www.gaisler.com
+
+On 18.11.2025 12:01, Krzysztof Kozlowski wrote:
+> On 18/11/2025 10:21, Arun Muthusamy wrote:
+>> Migrate device tree bindings for Gaisler GRCAN, GRHCAN
+>> and GRCANFD CAN controllers from a text format to YAML format.
+>>     - Add properties such as `compatible`, `reg`, `interrupts`
+> 
+> Odd indentation. Please write readable commit msgs.
+> 
+> Also:
+> 1. Why? You need to explain why you are changing binding during 
+> conversion.
+> 2. Reg was already there, so I don't understand why you need to add it.
+> 
+> 
+>>     and `clocks` for the CAN controllers.
+>>     - Removal of the old `grcan.txt` file as its contents have
+>>     been fully migrated to the YAML file.
+> 
+> Drop, that's not relevant.
+> 
+>>     - YAML file includes examples of device tree bindings for
+>>     the CAN controllers
+> 
+> Drop, not relevant. Please look at git history how commits are written.
+> 
+>> 
+>> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
+>> ---
+>>  .../bindings/net/can/gaisler,grcan.yaml       | 85 
+>> +++++++++++++++++++
+>>  .../devicetree/bindings/net/can/grcan.txt     | 28 ------
+>>  2 files changed, 85 insertions(+), 28 deletions(-)
+>>  create mode 100644 
+>> Documentation/devicetree/bindings/net/can/gaisler,grcan.yaml
+>>  delete mode 100644 
+>> Documentation/devicetree/bindings/net/can/grcan.txt
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/net/can/gaisler,grcan.yaml 
+>> b/Documentation/devicetree/bindings/net/can/gaisler,grcan.yaml
+>> new file mode 100644
+>> index 000000000000..521bdd89f130
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/can/gaisler,grcan.yaml
+>> @@ -0,0 +1,85 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/can/gaisler,grcan.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title:
+>> +  Aeroflex Gaisler GRCAN, GRHCAN and GRCANFD CAN controllers.
+>> +
+>> +description: |
+>> +  GRCAN, GRCANFD, GRHCAN controllers are available in the GRLIB VHDL 
+>> IP core
+>> +  library.
+>> +
+>> +  For further information look in the documentation for the GRLIB IP 
+>> library:
+>> +  https://download.gaisler.com/products/GRLIB/doc/grip.pdf
+>> +
+>> +maintainers:
+>> +  - Arun Muthusamy <arun.muthusamy@gaisler.com>
+>> +  - Andreas Larsson <andreas@gaisler.com>
+>> +
+>> +allOf:
+>> +  - $ref: can-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - gaisler,grcan
+>> +      - gaisler,grcanfd
+> 
+> Blank line
+> 
+>> +  name:
+>> +    description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
+> 
+>> +      Fallback on node name matching for systems that don't provide 
+>> compatible.
+>> +    enum:
+>> +      - GAISLER_GRCAN
+>> +      - 01_03d
+>> +      - GAISLER_GRHCAN
+>> +      - "01_034"
+> 
+> This does not really work. Are you really defining here "name" 
+> property?
+> 
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  freq:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description: |
+>> +      Frequency of the external oscillator clock in Hz (the frequency 
+>> of the
+>> +      amba bus in the ordinary case).
+>> +      This property should be used by systems that utilize the common 
+>> clock
+>> +      framework is not supported.
+> 
+> Missing systemid. Your commit msg must explain any changes done to the
+> binding during conversion.
+> 
+>> +
+>> +unevaluatedProperties: false
+> 
+> This goes after required block.
+> 
+>> +
+>> +required:
+> 
+> compatible as well
+> 
+>> +  - reg
+>> +  - interrupts
+> 
+> Where is freq? It was required in the old binding. Again, you need to
+> explain the changes.
+> 
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    can@ff400000 {
+>> +        compatible = "gaisler,grcanfd";
+>> +        clocks = <&sysclock>;
+>> +        reg = <0xff400000 0x400>;
+>> +        interrupt-parent = <&plic0>;
+>> +        interrupts = <6>;
+>> +    };
+> 
+> One example is enough
+> 
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    can@ff400000 {
+>> +        compatible = "gaisler,grcan";
+>> +        clocks = <&sysclock>;
+>> +        reg = <0xff400000 0x400>;
+>> +        interrupt-parent = <&plic0>;
+>> +        interrupts = <6>;
+>> +    };
+>> +  - |
+>> +    GAISLER_GRCAN@ff840000 {
+> 
+> Especially no such examples. Please read DTS coding style.
+> 
+>> +        reg = <0xff840000 0x400>;
+>> +        freq = <50000000>;
+>> +        interrupts = <16>;
+>> +    };
+>> diff --git a/Documentation/devicetree/bindings/net/can/grcan.txt 
+>> b/Documentation/devicetree/bindings/net/can/grcan.txt
+>> deleted file mode 100644
+>> index 34ef3498f887..000000000000
+>> --- a/Documentation/devicetree/bindings/net/can/grcan.txt
+>> +++ /dev/null
+>> @@ -1,28 +0,0 @@
+> Best regards,
+> Krzysztof
 
