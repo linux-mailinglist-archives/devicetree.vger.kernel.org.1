@@ -1,132 +1,96 @@
-Return-Path: <devicetree+bounces-241498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C397C7F278
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:10:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A891CC7F2C7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:28:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A9D284E2484
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:10:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 640743A5281
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAAA52E0938;
-	Mon, 24 Nov 2025 07:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4D62E7622;
+	Mon, 24 Nov 2025 07:28:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="jn8gVZ0o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V9gguEOe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF43C2EA;
-	Mon, 24 Nov 2025 07:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538D22D0C95;
+	Mon, 24 Nov 2025 07:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763968238; cv=none; b=f7PA5O3e56lNdMmVxxFGnjsXojw2gG0K1hwvpYC7nYsEXuAU5t9nBLWie68c7S2CXGNLBCf2MUdMaFQOFWrjrVcyeeR5RzyK4YjMLCWLBDUMAEAMTYJkeNgQRI3uMhPNqsyqpUPmAkr8z/Ofs0RKw/LOPf7448uPt2syaW9Voxs=
+	t=1763969295; cv=none; b=tjr8FXqzLzX99EUv/TXxvkIzwK9JC999emO22Rhbwb3tyIDIobnVUlqXMydrf13AaQI9/ET1n+/UfsKd17wc1YaJ/zmdNiLirZiubhotpLotnCCOcov7J+cWFmdLOHy92a2iN71LST0SyK+B+VvBWHpNgls2+T8daABUV94QZig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763968238; c=relaxed/simple;
-	bh=+YCaXkWU9YkNV0FRWVSw1NN872qKLHgrqDXqtDa6dJI=;
+	s=arc-20240116; t=1763969295; c=relaxed/simple;
+	bh=ZDZIia8zrNrBXeTrtfnZ0ehnk5iZSLwJEC5c2kAwBrk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QVcrA7oErvaLsKBIzn5gft7Ke48Qqa079PNAC+8XNL10KbXCagO0EPQGsTLZYkpP9ij3BoXnNiMcFsbiEcVqFNC7mHUH1mZRWCTxMTq34ftBy0fQohUlLxGILPdE+5uTIDn6nlgHWRLmmqIQ93nYkarCPjfAdNobJxh/VwUdBiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=jn8gVZ0o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62B46C4CEF1;
-	Mon, 24 Nov 2025 07:10:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1763968237;
-	bh=+YCaXkWU9YkNV0FRWVSw1NN872qKLHgrqDXqtDa6dJI=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=pRa39LsL8gcwgqNlgrjlhJRyxOZVVx/M2dCFBoL4+Uk9tBpUbr9ZCM24XX8RHGHg8GTMVrYgeGg/qfa8bJy83HB4rBA7Pm+5H8zHd6hkKcaLNwyT9qXlC46isx5jNtx0CGLBM4EIhp3S8Y1HLhQlBkJv67QL35cRaPb8Ovr5gv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V9gguEOe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44ABCC4CEF1;
+	Mon, 24 Nov 2025 07:28:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763969292;
+	bh=ZDZIia8zrNrBXeTrtfnZ0ehnk5iZSLwJEC5c2kAwBrk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jn8gVZ0of5w9KSW/6XhTWgtPBbKeXjYsy1Tz7/knQXFS2NI1LeljWM4ESysUJV1fi
-	 iM9S79mQ5WVSRrpzSFjw6zAsnP6v7VF2erwC/MmnM6UablSJzgwywhIQpLl+T3Wsdf
-	 OHRxeObue89UUtbgEqb6NGnyZNBmz8pkePLuqF5A=
-Date: Mon, 24 Nov 2025 08:10:33 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Peter Chen <hzpeterchen@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v10 01/11] usb: typec: Add notifier functions
-Message-ID: <2025112402-unopposed-polio-e6e9@gregkh>
-References: <20251120022343.250-1-kernel@airkyi.com>
- <20251120022343.250-2-kernel@airkyi.com>
- <2025112102-laurel-mulch-58e4@gregkh>
- <462ad1bd-7eec-4f26-b383-96b049e14559@rock-chips.com>
+	b=V9gguEOeakc89TYwr1m6aIV2G4rrfvAmLyNSOMYuVeFhpxuLtNv3/etnMRhbH9awI
+	 rl3h+6nOyylz1Ni63gcSG4tZW5zaI1lZVfaZdeiwSvrGlcuTvkNCSU9mUZEGCA1SGI
+	 2y13CJ7SwIvvB8UYf4qxNwyyCMAsgJxkc21FtNHsaFCozdjdYvdmV18plG73VghOgL
+	 RHlE4mLvuL+RAMLvhjJhPYM7xBAHA/ZlKxN7DEr7c5CRBNJ03kFpKEFdB+sGH38HXV
+	 xCHyr/Y83cOzrcrUlYZONa5h3ksgMF+FR44Weg4L5U2BwedomLfXEMN/71PcRKw2eY
+	 GULryeY5BHq6Q==
+Date: Mon, 24 Nov 2025 08:28:10 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: E Shattow <e@freeshell.de>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Michael Zhu <michael.zhu@starfivetech.com>, Drew Fustini <drew@beagleboard.org>, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH v3 1/2] dt-bindings: riscv: starfive: add
+ xunlong,orangepi-rv
+Message-ID: <20251124-free-bandicoot-of-skill-fa7d9a@kuoka>
+References: <20251123225059.49665-1-e@freeshell.de>
+ <20251123225059.49665-2-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <462ad1bd-7eec-4f26-b383-96b049e14559@rock-chips.com>
+In-Reply-To: <20251123225059.49665-2-e@freeshell.de>
 
-On Mon, Nov 24, 2025 at 09:40:03AM +0800, Chaoyi Chen wrote:
-> Hi Greg,
+On Sun, Nov 23, 2025 at 02:50:44PM -0800, E Shattow wrote:
+> From: Icenowy Zheng <uwu@icenowy.me>
 > 
-> On 11/21/2025 10:07 PM, Greg Kroah-Hartman wrote:
-> > On Thu, Nov 20, 2025 at 10:23:33AM +0800, Chaoyi Chen wrote:
-> > > From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> > > 
-> > > Some other part of kernel may want to know the event of typec bus.
-> > Be specific, WHAT part of the kernel will need to know this?
+> Add "xunlong,orangepi-rv" as a StarFive JH7110 SoC-based board.
 > 
-> For now, it is DRM.
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> Signed-off-by: E Shattow <e@freeshell.de>
 
-Then say this.
+<form letter>
+This is a friendly reminder during the review process.
 
-> > And why a new notifier, why not just use the existing notifiers that you
-> > already have?  And what is this going to be used for?
-> 
-> We have discussed this before, but the current bus notifier cannot achieve the expected notification [0].
-> 
-> [0] https://lore.kernel.org/all/aPsuLREPS_FEV3DS@kuha.fi.intel.com/
+It looks like you received a tag and forgot to add it.
 
-Then you need to document the heck out of this in the changelog text.
-But I'm still not quite understanding why the bus notifier does not work
-here, as you only want this information if the usb device is bound to
-the bus there, you do not want to know this if it did not complete.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
 
-That thread says you want this not "too late", but why?  What is the
-problem there, and how will you handle your code getting loaded after
-the typec code is loaded?  Notifier callbacks don't work for that
-situation, right?
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-> > Notifiers are a pain, and should almost never be added.  Use real
-> > function calls instead.
-> 
-> In v6, I used direct function calls, but had to switch to notifiers because couldn't resolve the dependencies between DRM and Type-C [1]. Do you have any good ideas? Thank you.
-
-Only allow this DRM code to be built if typec code is enabled, do NOT
-use a select, use a depends in the drm code.
-
-thanks,
-
-greg k-h
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
