@@ -1,433 +1,343 @@
-Return-Path: <devicetree+bounces-241477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A140C7EDD4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 04:02:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AE69C7EE3B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 04:32:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D704D3A144D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 03:02:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2AEF3A5031
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 03:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB3E2882D6;
-	Mon, 24 Nov 2025 03:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11B96298CCF;
+	Mon, 24 Nov 2025 03:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MVAmXbmS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TtAeh1Vq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86120259C80
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 03:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4D925C80E;
+	Mon, 24 Nov 2025 03:32:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763953364; cv=none; b=pl/aKcIbCkZXMy9l+1BAqI4C+exw4Yg0xsE/t8bP+fsNr/p/2Kw1S+kIEjXbvl/dNW3snUOaR2r14Ts4IojbP5gyuffcLjqGDLcuUqnzzeXZ0Cyg2lncwPFHqj/M4XyVjSx2WpHD1DIw74kcoAz99PAduVdH0aZChYD6jEIJbvs=
+	t=1763955155; cv=none; b=sY0a624bBz7T68u3DjSOs9BBTNF0g3n+mSZi9lGW5bKJNfH9bFFioCp8sjhoQhiPDLIsBuDDAAdd9d9anoHITmJLhfHT9bv7wREG3o0mtwW11D8eZaefxShiGz5N7b19cwH1dgZDg9umLT8EB9hvHZjrTObhn+Li5ek54U3Gm7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763953364; c=relaxed/simple;
-	bh=7lglDPhhscPmEKRf/7UQETmGZN6t/kqZ2e38UElfHN4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bYh4GJ2xvcFd+/M3RfEYvJrO4mAfe4Et1HJ69PV7foC5GtiMsyrY4x3RhhQbnC5Z+jZNGiTSpH1wjs6ZJ5spGsej2KWu7gGPr1cUaH6bma+jTu9kRLzQxEaTehQ1aSdZo+dnXnogojlnjcvkl5POw6S8FR1fx1WsGAuoVFhXnF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MVAmXbmS; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-340ba29d518so2276846a91.3
-        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 19:02:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763953362; x=1764558162; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EThjVRtG3u91ThHtH8s7htB0Qt2hP8NHKg4Z/0u1oC4=;
-        b=MVAmXbmSW7Fd6KYzUTcIcWzZIVBJDYo7LcDY3hPwDsNA0jeRa+S4ogElHg98etyUQy
-         DPaufFik0PtlgjYMzycv2zaC1sNE1D4UWqg1MSMRPUrn92U58bXfghSsJajMIekGueB8
-         Z5tscZHPLrglDGRpzuU8SXKOOCuS9ogOCzyvaxZqqSrdCBKNiKqKFeopFU0RNrOgCbYZ
-         yTAkLLyTPofxrBkxqkLYGw0zoeic4R4gowdMXbpwcncKRGe/oWbbnK53xcm74YsEoxvs
-         uBCbj9ZMB3wAtFYl6evnzwEXcDp3P7IqKpl77522z+75VX/z31Uat2H6O7gJu0z49AKk
-         5tGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763953362; x=1764558162;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EThjVRtG3u91ThHtH8s7htB0Qt2hP8NHKg4Z/0u1oC4=;
-        b=hkJknFquH1Wqc3/U2+J9HZ0laoGQ39Du8TmU1Curl+cbeyA5i21zRgtexDqtrL0lSr
-         3jxbIYcYUDIM722bKHXDf2rBzbQESUoTXTtIivqv+c33TPbM3HBVni41QSRd2j4alSXV
-         I4YAVYUtGtWDrxxI+4znN9SSz/AToqMMYYkM/XUan3fyqWlFuVGdtm8nrN7YIquKtIL+
-         KQ70ehhG/3bixMyrAyT9YOm0gYtRvnPENvs4G6drepE+KJ2IBNg+9cTBaj5wqZjiHWe+
-         Rgx4X8wxV1J5v5GD0NQNzd90eJsuo4ENnaYiJqLDmenqcL9RO/HfR4HfaZtQZmJbMG1q
-         YHnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV/aMwegYCJSJT8CA80EzHMlzszd1F3wf01kFDLlvjbYq7qZpQBO/IBQOvG9LPTG1c9CEQid3s8lDSZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQ9xvvRmzXNSJtIRt06jRHcM6m4xaEy4JDDSZgt3GJFUs5eJWH
-	r2DsTEeIuZtuTyowPgbYqRkvObOC97+wzFdW7UFTHMVAcBHiGNA2KJPl
-X-Gm-Gg: ASbGncsbaBMeGOxGRZxpA7kA33j93WZjw8sB1zOF/3GhaQRlF9jPjVgyhRV4RjuwVa5
-	g0CeDHhp22u/OoLO/14CFyHv18w1NilyJlVHxsx/JczAZEdP8WdJ9Cb4cW06j7C4e2P1XYdddot
-	Ffl1i7+cWQqSjAbqXzmmCa5DbYs3l17Bg5rq3jZ99fSdNbEqhL8Gv6hFgMDZ7IOrIn+arz//RNg
-	xENRnSn1KynAR4soYZhNxuGMZtmNg3fl+YTRT+NX9+w0t4jSMy6YNJoJU+UsAR0vlpmi/I1IZMH
-	fWm5Hu8M+jDAUjBgEuxWXSp4zocweqNLNIgnzOLY/VzhvVBCB8wKhNJNGa84mq4N02wZkzOJnpM
-	ZSKIWYzA7iqQ31O9Ce8t9hvsR3u2exg2ThDupJRupx2bkYLnBk/Kv0fLPjVe/Rv89U43qu4AG4y
-	E/8kk5dKRuqGE=
-X-Google-Smtp-Source: AGHT+IEMt538xCkv+fqIIYil9IQfkAkpZOfttXOCrxqxU9ijd4Z/n1H3Gpy/X0jI7VxwtTCqcmNbzA==
-X-Received: by 2002:a17:90b:35cc:b0:341:194:5e7d with SMTP id 98e67ed59e1d1-34733f19c00mr11223472a91.24.1763953361678;
-        Sun, 23 Nov 2025 19:02:41 -0800 (PST)
-Received: from archie.me ([210.87.74.117])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34727d5178esm11869866a91.16.2025.11.23.19.02.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Nov 2025 19:02:40 -0800 (PST)
-Received: by archie.me (Postfix, from userid 1000)
-	id 8D1794209E72; Mon, 24 Nov 2025 10:02:37 +0700 (WIB)
-Date: Mon, 24 Nov 2025 10:02:37 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Eugen Hristev <eugen.hristev@linaro.org>, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-	tglx@linutronix.de, andersson@kernel.org, pmladek@suse.com,
-	rdunlap@infradead.org, corbet@lwn.net, david@redhat.com,
-	mhocko@suse.com
-Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-hardening@vger.kernel.org, jonechou@google.com,
-	rostedt@goodmis.org, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	linux-arch@vger.kernel.org, tony.luck@intel.com, kees@kernel.org
-Subject: Re: [PATCH 01/26] kernel: Introduce meminspect
-Message-ID: <aSPKzcsFixn48edg@archie.me>
-References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
- <20251119154427.1033475-2-eugen.hristev@linaro.org>
+	s=arc-20240116; t=1763955155; c=relaxed/simple;
+	bh=Rma4wPqX3YrBdvw49dMz8PSp/KasV1B7VvOywDgOwIk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Shodfg1pvayfd7ztRx+rYZfMWSteXiE9nivTlWLlffqMgVHAZTYHa8f+l/y6DyarKla5oiOb3ePHolJfF8dWblaz/XaonaKfvux96cnLFRC8miKU9XlB7Fum9ugvJsnRCO+T41E/Li0ACOk92/kedPJzjJqIL9O2NzIOAfVU2hM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TtAeh1Vq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4FC1FC4CEF1;
+	Mon, 24 Nov 2025 03:32:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763955154;
+	bh=Rma4wPqX3YrBdvw49dMz8PSp/KasV1B7VvOywDgOwIk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=TtAeh1VqibU1tllGZwnvEKRX8AlfTX1Lcd5oOnseMQwXqrn7rpAjgE5uzFqHFlee6
+	 AtFBji4ARxH6Pauv5QZCf9qiT2Zq9fxPlqlkrotczOsr2RAMaksJPBcaWPJrfD68v0
+	 b70h4SmbPETwpdfDst6/Fg4i7N2N70UWz894PYNRxleJxNGnhUmY7qOFtAGoYlYZLF
+	 GGiSCno5JesM7LXCdWEJix5MZd92dKSa6ba6G7TlbK8C4+h1ISAnlFsZUfBgLttJjl
+	 7wIXx2QfLxEYsbYHm+sr/GFOWyClXwfkRvBWCl1DGIa/jjgSDVknYFUZmHc7Pm305s
+	 qJJSCbOAH/tyw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DA12CFD2F6;
+	Mon, 24 Nov 2025 03:32:34 +0000 (UTC)
+From: Zhentao Guo via B4 Relay <devnull+zhentao.guo.amlogic.com@kernel.org>
+Subject: [PATCH RFC v2 0/3] Add Amlogic stateless H.264 video decoder for
+ S4
+Date: Mon, 24 Nov 2025 11:32:16 +0800
+Message-Id: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jjzv1iO7GRx9l9vd"
-Content-Disposition: inline
-In-Reply-To: <20251119154427.1033475-2-eugen.hristev@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMDRI2kC/32NQQ6CMBBFr0Jm7Zi2FCSuTEw8gFvDopQRJrGUt
+ NhoCHe34QAu3//5768QKTBFOBcrBEoc2U8Z1KEAO5ppIOQ+MyihKinUCTuNUWPqyeJ7jksg41D
+ UorTSaNtoA3k5B3ryZ7c+4H67QpvDkePiw3d/SnKv/kqTRIG1ElrIRpZd1V+Me/mB7dF6B+22b
+ T8gusGIvQAAAA==
+X-Change-ID: 20251027-b4-s4-vdec-upstream-0603c1a4c84a
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Zhentao Guo <zhentao.guo@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1763955152; l=9747;
+ i=zhentao.guo@amlogic.com; s=20251024; h=from:subject:message-id;
+ bh=Rma4wPqX3YrBdvw49dMz8PSp/KasV1B7VvOywDgOwIk=;
+ b=7eiK9AbvnyV9gXLFTpZcAQD4I6wCyibBGhpwhcPp+8k4dMnWbwIHzswp1igFxQQmyeG9NSIv9
+ QfpXMUYCY7nBgLow2EsRMwYYDtrmC+VYlZSEyDAZxVsX9DPvTjREHqI
+X-Developer-Key: i=zhentao.guo@amlogic.com; a=ed25519;
+ pk=5yfDKrjreXwcAoEUsdtWafy6YN500upXp/CgtnXjLVU=
+X-Endpoint-Received: by B4 Relay for zhentao.guo@amlogic.com/20251024 with
+ auth_id=555
+X-Original-From: Zhentao Guo <zhentao.guo@amlogic.com>
+Reply-To: zhentao.guo@amlogic.com
+
+Introduce initial driver support for Amlogic's new video acceleration
+hardware architecture, designed for video stream decoding.
+
+Compared to the current Amlogic video decoder hardware architecture,
+this new implementation eliminates the Esparser hardware component,
+enabling direct vb2 buffer input. The driver is designed to support
+the V4L2 M2M stateless decoder API. The initial phase includes support
+for H.264 decoding on Amlogic S805X2 platform.
+
+The driver is capable of:
+- Supporting stateless H.264 decoding up to a resolution 1920x1088(on the S805X2 platform).
+- Supporting I/P/B frame handling.
+- Supporting vb2 mmap and dma-buf modes.
+- Supporting frame-based decode mode. (Note that some H.264 bitstreams require
+  DPB reordering to generate reference lists, the stateless decoder driver
+  cannot access reordered reference lists in this mode, requiring the driver
+  to perform reference list reordering itself)
+- Supporting NV12/NV21 output.
+- Supporting Annex B start codes.
+
+This driver is tested with Gstreamer.
+Example:
+gst-launch-1.0 filesrc location=/tmp/video_640x360_mp4_hevc_450kbps_no_b.mp4 !
+parsebin ! v4l2slh264dec ! filesink location=/tmp/output.yuv
+
+Retry the compliance test based on kernel 6.18-rc6:
+v4l2-compliance 1.30.1, 64 bits, 64-bit time_t
+
+Compliance test for aml-vdec-drv device /dev/video0:
+
+Driver Info:
+        Driver name      : aml-vdec-drv
+        Card type        : platform:aml-vdec-drv
+        Bus info         : platform:fe320000.video-codec
+        Driver version   : 6.18.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+        Detected Stateless Decoder
+Media Driver Info:
+        Driver name      : aml-vdec-drv
+        Model            : aml-vdec-drv
+        Serial           :
+        Bus info         : platform:fe320000.video-codec
+        Media version    : 6.18.0
+        Hardware revision: 0x00000000 (0)
+        Driver version   : 6.18.0
+Interface Info:
+        ID               : 0x0300000c
+        Type             : V4L Video
+Entity Info:
+        ID               : 0x00000001 (1)
+        Name             : aml_dev_drv-source
+        Function         : V4L2 I/O
+        Pad 0x01000002   : 0: Source
+          Link 0x02000008: to remote pad 0x1000004 of entity 'aml_dev_drv-proc' (Video Decoder): Data, Enabled, Immutable
+
+Required ioctls:
+        test MC information (see 'Media Driver Info' above): OK
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 6 Private Controls: 0
+        Standard Compound Controls: 4 Private Compound Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK
+        test blocking wait: OK
+
+Fluster test result of JVT-AVC_V1.
+Result:
+Ran 61/135 tests successfully
+
+- 52 test vectors failed due to interlaced or mbaff clips: The Amlogic stateless
+  decoder driver only support bitstreams with frame_mbs_only_flags == 1.
+  Test Vectors:
+        cabac_mot_fld0_full
+        cabac_mot_mbaff0_full
+        cabac_mot_picaff0_full
+        CABREF3_Sand_D
+        CAFI1_SVA_C
+        CAMA1_Sony_C
+        CAMA1_TOSHIBA_B
+        cama1_vtc_c
+        cama2_vtc_b
+        CAMA3_Sand_E
+        cama3_vtc_b
+        CAMACI3_Sony_C
+        CAMANL1_TOSHIBA_B
+        CAMANL2_TOSHIBA_B
+        CAMANL3_Sand_E
+        CAMASL3_Sony_B
+        CAMP_MOT_MBAFF_L30
+        CAMP_MOT_MBAFF_L31
+        CANLMA2_Sony_C
+        CANLMA3_Sony_C
+        CAPA1_TOSHIBA_B
+        CAPAMA3_Sand_F
+        cavlc_mot_fld0_full_B
+        cavlc_mot_mbaff0_full_B
+        cavlc_mot_picaff0_full_B
+        CVCANLMA2_Sony_C
+        CVFI1_Sony_D
+        CVFI1_SVA_C
+        CVFI2_Sony_H
+        CVFI2_SVA_C
+        CVMA1_Sony_D
+        CVMA1_TOSHIBA_B
+        CVMANL1_TOSHIBA_B
+        CVMANL2_TOSHIBA_B
+        CVMAPAQP3_Sony_E
+        CVMAQP2_Sony_G
+        CVMAQP3_Sony_D
+        CVMP_MOT_FLD_L30_B
+        CVNLFI1_Sony_C
+        CVNLFI2_Sony_H
+        CVPA1_TOSHIBA_B
+        FI1_Sony_E
+        MR6_BT_B
+        MR7_BT_B
+        MR8_BT_B
+        MR9_BT_B
+        Sharp_MP_Field_1_B
+        Sharp_MP_Field_2_B
+        Sharp_MP_Field_3_B
+        Sharp_MP_PAFF_1r2
+        Sharp_MP_PAFF_2r
+        CVMP_MOT_FRM_L31_B
+- 3 test vectors failed due to unsupported bitstream.
+  num_slice_group_minus1 greater than zero is not supported by the
+  hardware.
+  Test Vectors:
+        FM1_BT_B
+        FM1_FT_E
+        FM2_SVA_C
+- 2 test vectors failed because SP_SLICE type is not supported by the
+  hardware.
+  Test Vectors:
+        SP1_BT_A
+        sp2_bt_b
+
+We are working with the remain failures, these failures have the same root cause. 
+
+Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+---
+Changes in v2:
+- Fixed incorrect generation of the reference lists for some B-frames.
+- Rename or get rid of some properties in DTS and dt-binding.
+- Remove some useless code or helper functions, (eg. clk helper functions, reg I/O macros, and some superfluous print messages) replace these functions with existing ones.
+- Replace all the printk messages with dev_err/dev_info/dev_dbg
+- Use the helper functions from the existing meson-canvas driver.
+- Use clk_bulk_data to map clocks from DTS.
+- Retry the V4L2 Compliance test on 6.18-rc6, fix a newly introduced bug.
+- Link to v1: https://lore.kernel.org/r/20251027-b4-s4-vdec-upstream-v1-0-620401813b5d@amlogic.com
+
+---
+Zhentao Guo (3):
+      media: dt-bindings: Add Amlogic V4L2 video decoder
+      decoder: Add V4L2 stateless H.264 decoder driver
+      arm64: dts: amlogic: Add video decoder driver support for S4 SOCs
+
+ .../bindings/media/amlogic,s4-vcodec-dec.yaml      |   87 +
+ MAINTAINERS                                        |    7 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |   27 +
+ drivers/media/platform/amlogic/Kconfig             |    1 +
+ drivers/media/platform/amlogic/Makefile            |    1 +
+ drivers/media/platform/amlogic/vdec/Kconfig        |   16 +
+ drivers/media/platform/amlogic/vdec/Makefile       |    4 +
+ drivers/media/platform/amlogic/vdec/TODO           |    7 +
+ drivers/media/platform/amlogic/vdec/aml_vdec.c     |  756 ++++++++
+ drivers/media/platform/amlogic/vdec/aml_vdec.h     |   31 +
+ drivers/media/platform/amlogic/vdec/aml_vdec_drv.c |  239 +++
+ drivers/media/platform/amlogic/vdec/aml_vdec_drv.h |  196 ++
+ drivers/media/platform/amlogic/vdec/aml_vdec_hw.c  |  596 ++++++
+ drivers/media/platform/amlogic/vdec/aml_vdec_hw.h  |  158 ++
+ .../platform/amlogic/vdec/aml_vdec_platform.c      |   37 +
+ .../platform/amlogic/vdec/aml_vdec_platform.h      |   62 +
+ drivers/media/platform/amlogic/vdec/h264.c         | 1933 ++++++++++++++++++++
+ drivers/media/platform/amlogic/vdec/h264.h         |  300 +++
+ drivers/media/platform/amlogic/vdec/reg_defines.h  |  177 ++
+ 19 files changed, 4635 insertions(+)
+---
+base-commit: 0c1c7a6a83feaf2cf182c52983ffe330ffb50280
+change-id: 20251027-b4-s4-vdec-upstream-0603c1a4c84a
+
+Best regards,
+-- 
+Zhentao Guo <zhentao.guo@amlogic.com>
 
 
---jjzv1iO7GRx9l9vd
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Nov 19, 2025 at 05:44:02PM +0200, Eugen Hristev wrote:
-> diff --git a/Documentation/dev-tools/index.rst b/Documentation/dev-tools/=
-index.rst
-> index 4b8425e348ab..8ce605de8ee6 100644
-> --- a/Documentation/dev-tools/index.rst
-> +++ b/Documentation/dev-tools/index.rst
-> @@ -38,6 +38,7 @@ Documentation/process/debugging/index.rst
->     gpio-sloppy-logic-analyzer
->     autofdo
->     propeller
-> +   meminspect
-> =20
-> =20
->  .. only::  subproject and html
-> diff --git a/Documentation/dev-tools/meminspect.rst b/Documentation/dev-t=
-ools/meminspect.rst
-> new file mode 100644
-> index 000000000000..2a0bd4d6e448
-> --- /dev/null
-> +++ b/Documentation/dev-tools/meminspect.rst
-> @@ -0,0 +1,139 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +meminspect
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +This document provides information about the meminspect feature.
-> +
-> +Overview
-> +=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +meminspect is a mechanism that allows the kernel to register a chunk of
-> +memory into a table, to be used at a later time for a specific
-> +inspection purpose like debugging, memory dumping or statistics.
-> +
-> +meminspect allows drivers to traverse the inspection table on demand,
-> +or to register a notifier to be called whenever a new entry is being add=
-ed
-> +or removed.
-> +
-> +The reasoning for meminspect is also to minimize the required information
-> +in case of a kernel problem. For example a traditional debug method invo=
-lves
-> +dumping the whole kernel memory and then inspecting it. Meminspect allow=
-s the
-> +users to select which memory is of interest, in order to help this speci=
-fic
-> +use case in production, where memory and connectivity are limited.
-> +
-> +Although the kernel has multiple internal mechanisms, meminspect fits
-> +a particular model which is not covered by the others.
-> +
-> +meminspect Internals
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +API
-> +---
-> +
-> +Static memory can be registered at compile time, by instructing the comp=
-iler
-> +to create a separate section with annotation info.
-> +For each such annotated memory (variables usually), a dedicated struct
-> +is being created with the required information.
-> +To achieve this goal, some basic APIs are available:
-> +
-> +  MEMINSPECT_ENTRY(idx, sym, sz)
-> +is the basic macro that takes an ID, the symbol, and a size.
-> +
-> +To make it easier, some wrappers are also defined:
-> +  MEMINSPECT_SIMPLE_ENTRY(sym)
-> +will use the dedicated MEMINSPECT_ID_##sym with a size equal to sizeof(s=
-ym)
-> +
-> +  MEMINSPECT_NAMED_ENTRY(name, sym)
-> +will be a simple entry that has an id that cannot be derived from the sy=
-m,
-> +so a name has to be provided
-> +
-> +  MEMINSPECT_AREA_ENTRY(sym, sz)
-> +this will register sym, but with the size given as sz, useful for e.g.
-> +arrays which do not have a fixed size at compile time.
-> +
-> +For dynamically allocated memory, or for other cases, the following APIs
-> +are being defined:
-> +  meminspect_register_id_pa(enum meminspect_uid id, phys_addr_t zone,
-> +                            size_t size, unsigned int type);
-> +which takes the ID and the physical address.
-> +Similarly there are variations:
-> +  meminspect_register_pa() omits the ID
-> +  meminspect_register_id_va() requires the ID but takes a virtual address
-> +  meminspect_register_va() omits the ID and requires a virtual address
-> +
-> +If the ID is not given, the next avialable dynamic ID is allocated.
-> +
-> +To unregister a dynamic entry, some APIs are being defined:
-> +  meminspect_unregister_pa(phys_addr_t zone, size_t size);
-> +  meminspect_unregister_id(enum meminspect_uid id);
-> +  meminspect_unregister_va(va, size);
-> +
-> +All of the above have a lock variant that ensures the lock on the table
-> +is taken.
-> +
-> +
-> +meminspect drivers
-> +------------------
-> +
-> +Drivers are free to traverse the table by using a dedicated function
-> +meminspect_traverse(void *priv, MEMINSPECT_ITERATOR_CB cb)
-> +The callback will be called for each entry in the table.
-> +
-> +Drivers can also register a notifier with
-> +  meminspect_notifier_register()
-> +and unregister with
-> +  meminspect_notifier_unregister()
-> +to be called when a new entry is being added or removed.
-> +
-> +Data structures
-> +---------------
-> +
-> +The regions are being stored in a simple fixed size array. It avoids
-> +memory allocation overhead. This is not performance critical nor does
-> +allocating a few hundred entries create a memory consumption problem.
-> +
-> +The static variables registered into meminspect are being annotated into
-> +a dedicated .inspect_table memory section. This is then walked by memins=
-pect
-> +at a later time and each variable is then copied to the whole inspect ta=
-ble.
-> +
-> +meminspect Initialization
-> +-------------------------
-> +
-> +At any time, meminspect will be ready to accept region registration
-> +from any part of the kernel. The table does not require any initializati=
-on.
-> +In case CONFIG_CRASH_DUMP is enabled, meminspect will create an ELF head=
-er
-> +corresponding to a core dump image, in which each region is added as a
-> +program header. In this scenario, the first region is this ELF header, a=
-nd
-> +the second region is the vmcoreinfo ELF note.
-> +By using this mechanism, all the meminspect table, if dumped, can be
-> +concatenated to obtain a core image that is loadable with the `crash` to=
-ol.
-> +
-> +meminspect example
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +A simple scenario for meminspect is the following:
-> +The kernel registers the linux_banner variable into meminspect with
-> +a simple annotation like:
-> +
-> +  MEMINSPECT_SIMPLE_ENTRY(linux_banner);
-> +
-> +The meminspect late initcall will parse the compilation time created tab=
-le
-> +and copy the entry information into the inspection table.
-> +At a later point, any interested driver can call the traverse function to
-> +find out all entries in the table.
-> +A specific driver will then note into a specific table the address of the
-> +banner and the size of it.
-> +The specific table is then written to a shared memory area that can be
-> +read by upper level firmware.
-> +When the kernel freezes (hypothetically), the kernel will no longer feed
-> +the watchdog. The watchdog will trigger a higher exception level interru=
-pt
-> +which will be handled by the upper level firmware. This firmware will th=
-en
-> +read the shared memory table and find an entry with the start and size of
-> +the banner. It will then copy it for debugging purpose. The upper level
-> +firmware will then be able to provide useful debugging information,
-> +like in this example, the banner.
-> +
-> +As seen here, meminspect facilitates the interaction between the kernel
-> +and a specific firmware.
-
-Sphinx reports htmldocs warnings:
-
-Documentation/dev-tools/meminspect.rst:42: WARNING: Block quote ends withou=
-t a blank line; unexpected unindent. [docutils]
-Documentation/dev-tools/meminspect.rst:46: WARNING: Definition list ends wi=
-thout a blank line; unexpected unindent. [docutils]
-Documentation/dev-tools/meminspect.rst:49: WARNING: Block quote ends withou=
-t a blank line; unexpected unindent. [docutils]
-Documentation/dev-tools/meminspect.rst:53: WARNING: Block quote ends withou=
-t a blank line; unexpected unindent. [docutils]
-Documentation/dev-tools/meminspect.rst:58: ERROR: Unexpected indentation. [=
-docutils]
-Documentation/dev-tools/meminspect.rst:60: WARNING: Block quote ends withou=
-t a blank line; unexpected unindent. [docutils]
-Documentation/dev-tools/meminspect.rst:62: ERROR: Unexpected indentation. [=
-docutils]
-Documentation/dev-tools/meminspect.rst:80: WARNING: Inline emphasis start-s=
-tring without end-string. [docutils]
-Documentation/dev-tools/meminspect.rst:88: WARNING: Definition list ends wi=
-thout a blank line; unexpected unindent. [docutils]
-
-I have to fix them up:
-
----- >8 ----
-diff --git a/Documentation/dev-tools/meminspect.rst b/Documentation/dev-too=
-ls/meminspect.rst
-index 2a0bd4d6e4481e..d6a221b1169f04 100644
---- a/Documentation/dev-tools/meminspect.rst
-+++ b/Documentation/dev-tools/meminspect.rst
-@@ -38,37 +38,43 @@ For each such annotated memory (variables usually), a d=
-edicated struct
- is being created with the required information.
- To achieve this goal, some basic APIs are available:
-=20
--  MEMINSPECT_ENTRY(idx, sym, sz)
--is the basic macro that takes an ID, the symbol, and a size.
-+  * MEMINSPECT_ENTRY(idx, sym, sz)
-+    is the basic macro that takes an ID, the symbol, and a size.
-=20
- To make it easier, some wrappers are also defined:
--  MEMINSPECT_SIMPLE_ENTRY(sym)
--will use the dedicated MEMINSPECT_ID_##sym with a size equal to sizeof(sym)
-=20
--  MEMINSPECT_NAMED_ENTRY(name, sym)
--will be a simple entry that has an id that cannot be derived from the sym,
--so a name has to be provided
-+  * MEMINSPECT_SIMPLE_ENTRY(sym)
-+    will use the dedicated MEMINSPECT_ID_##sym with a size equal to sizeof=
-(sym)
-=20
--  MEMINSPECT_AREA_ENTRY(sym, sz)
--this will register sym, but with the size given as sz, useful for e.g.
--arrays which do not have a fixed size at compile time.
-+  * MEMINSPECT_NAMED_ENTRY(name, sym)
-+    will be a simple entry that has an id that cannot be derived from the =
-sym,
-+    so a name has to be provided
-+
-+  * MEMINSPECT_AREA_ENTRY(sym, sz)
-+    this will register sym, but with the size given as sz, useful for e.g.
-+    arrays which do not have a fixed size at compile time.
-=20
- For dynamically allocated memory, or for other cases, the following APIs
--are being defined:
-+are being defined::
-+
-   meminspect_register_id_pa(enum meminspect_uid id, phys_addr_t zone,
-                             size_t size, unsigned int type);
-+
- which takes the ID and the physical address.
-+
- Similarly there are variations:
--  meminspect_register_pa() omits the ID
--  meminspect_register_id_va() requires the ID but takes a virtual address
--  meminspect_register_va() omits the ID and requires a virtual address
-+
-+  * meminspect_register_pa() omits the ID
-+  * meminspect_register_id_va() requires the ID but takes a virtual address
-+  * meminspect_register_va() omits the ID and requires a virtual address
-=20
- If the ID is not given, the next avialable dynamic ID is allocated.
-=20
- To unregister a dynamic entry, some APIs are being defined:
--  meminspect_unregister_pa(phys_addr_t zone, size_t size);
--  meminspect_unregister_id(enum meminspect_uid id);
--  meminspect_unregister_va(va, size);
-+
-+  * meminspect_unregister_pa(phys_addr_t zone, size_t size);
-+  * meminspect_unregister_id(enum meminspect_uid id);
-+  * meminspect_unregister_va(va, size);
-=20
- All of the above have a lock variant that ensures the lock on the table
- is taken.
-@@ -77,15 +83,15 @@ is taken.
- meminspect drivers
- ------------------
-=20
--Drivers are free to traverse the table by using a dedicated function
--meminspect_traverse(void *priv, MEMINSPECT_ITERATOR_CB cb)
-+Drivers are free to traverse the table by using a dedicated function::
-+
-+  meminspect_traverse(void *priv, MEMINSPECT_ITERATOR_CB cb)
-+
- The callback will be called for each entry in the table.
-=20
--Drivers can also register a notifier with
--  meminspect_notifier_register()
--and unregister with
--  meminspect_notifier_unregister()
--to be called when a new entry is being added or removed.
-+Drivers can also register a notifier with meminspect_notifier_register()
-+and unregister with meminspect_notifier_unregister() to be called when a n=
-ew
-+entry is being added or removed.
-=20
- Data structures
- ---------------
-@@ -115,7 +121,7 @@ meminspect example
-=20
- A simple scenario for meminspect is the following:
- The kernel registers the linux_banner variable into meminspect with
--a simple annotation like:
-+a simple annotation like::
-=20
-   MEMINSPECT_SIMPLE_ENTRY(linux_banner);
-=20
-
-Thanks.
-
---=20
-An old man doll... just what I always wanted! - Clara
-
---jjzv1iO7GRx9l9vd
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCaSPKyAAKCRD2uYlJVVFO
-o3X1AQDv/TE1tWTJ8ZXxzegUA8QbZl8nMDxfkacY7FNjZC/xRQD8DSFK9tPqxhS0
-Zf7jek/k/PHFmMUwkhTyDVy+lTogUgc=
-=cIN1
------END PGP SIGNATURE-----
-
---jjzv1iO7GRx9l9vd--
 
