@@ -1,168 +1,307 @@
-Return-Path: <devicetree+bounces-241664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC32C809C1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 13:58:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2DF1C81204
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:49:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2F327344713
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:58:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4D9B54E54A7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 14:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E8C2FF65F;
-	Mon, 24 Nov 2025 12:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE25627A103;
+	Mon, 24 Nov 2025 14:48:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DWuDGZ3v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976D51F4CB3
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 12:58:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB99225A2A2
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 14:48:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763989100; cv=none; b=p5bKgPNjbp6YcthZzVjCp5Sc+n7+qb0wZzVFs9pt8KPAA40APowjy2DnpqT5kVdM/MiXkGS6A8/aXf0ySWN5N+NTpnqcMK3us3Wy2nDD56yQ7ebhkeoBBqXT9afolgYFT3d/Zy9wGa4WhjN0FBh4jKT1RPK0xKRF/OTnTJCcVLo=
+	t=1763995717; cv=none; b=jtyntuL5zRxF2LT7OsoISa/9ur4IJJuBWrq3AU3vHYjfS/PhAheIqe8tk1Uh6BxlcP2QTttdkY+CeIyesf9CJtMjU1gsv3NKpEIqpv5Dze4UGx+evi/mlTZqz68t8kV90mf41IbbLWkK5poMop/HnczjQ+MY79uHSJrhB1PlBR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763989100; c=relaxed/simple;
-	bh=juEwwBHwWVxDO9we5PhqbI1FUp9575Si/nd6yLinO7E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V/k+f4FgR6zmursux7gWUUwnpHNn8E/06jL1UtUs2uPlJ7+MssRilvHMvmDwsMYAcXB5xoVCeNn4ZcbsdrEa/6qYsDYjHCkvTzyRBPSmT8S1wA36BY31l35M+pQtIe6zkMB7EnbbhyeiEK0E8MIsB28QiGStDQB3RBsDwyWoYqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1763995717; c=relaxed/simple;
+	bh=wSQ341CU5vsOctNXexpEakv7qkoHtZ0v3orCbR3i2WA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R00ZoL8tQH2Ic6bm3arf4D0waqdx9dmotp4XpEddr3EiD0kJgfE0F1tluzvjZPp/aVVlpcO/JuUlO1I9w9v9RX4CINZrIfRgAXOWIDSNjocngleg61yHxMmFjmiZqSwqXWaBVwzQ8wZQVll5N6xBxdaimJfO9i+3R4k5xJkZ6P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DWuDGZ3v; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-55b22d3b39fso1043330e0c.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 04:58:18 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-6406f3dcc66so7069903a12.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 06:48:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763995714; x=1764600514; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DMHuhLQ2+QePhLbxyyov6Mwfn5dk2KsNTjCwuBZ/B2U=;
+        b=DWuDGZ3vsSu2YPgHMLMFIU/vLhiOMDhQ24fOQ3CgfesvZ5ikYu5NGI/5+WJTc9Bhxm
+         s6sgF4G8Rq825RdsBu3tOEjnk00RJMZx5eE8bB+OU32b1jUWvt+q1CVUfK4oj3K52hx0
+         vtY0vcf2YM3tzAtuTGfUgoUl+nQWOIHk6pQ5EiXn2lj/WDOOGe6u9fyWYnioDAfeAJty
+         8KVEDDPP6SEv3N1MiIJqKcecJxU8tfxBtSNsti8me9kl+5HVoNLXjNKxBT82FRdNCOv+
+         jt0y+IDo189YYyA/haQghA4EmMq6+AaDdaGRgbw0hRQMyDbPpbvNLF/cIcOwj7aHoNcz
+         u65Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763989097; x=1764593897;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c6ZohreewlB1g3ntJmej8PVH+g85TvJ2XqeezukQsPs=;
-        b=vMpykHNIXPz+U+rju6QX2Dpr/yRF67wY5R0QSUJEvmAlsnpIWYi3f/6kelSD8MvsT1
-         LQb8ZguOHUp5yxJTUqh+krJ6O+kXkDcqi5fnp9zua7yAyo5CeSVfnqgAzs9W2kDneLww
-         9y0cIDPoD4ebewZPQzuOrNwUHmIo4HENMNUFi9VhpxFmzc3B6jK1NOGR2dMYwuLBYk3D
-         tMjcRtwB3es+heidYPUCosqfgJx/sRxpIyybmjDmbDien+/sYtlpmEvoANYg56+iHx/S
-         bN8ZfNSedjYcLJqE7vRffWO1jyONFhUXnFwcu2U/+EIETpdrejXKSyFFTp7yWOU06OZf
-         jiDg==
-X-Forwarded-Encrypted: i=1; AJvYcCXdD6ID5iHwx9iDVj1mW51ukTOKKOYgA4ZmGoIr8kJWzRBDMj+u9zHuF5ZTeRwzTraWyebf8HwTLzqN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJueUTXee/veCMBb/qhedU537PNqWNQBrFxOrJ7p2nrvNvgMXF
-	DA+TDEU0EQg2wQGiyiaLNpMvQUXBD4cHZZLCTAk4Y1+l/+jqk7DFz2zLShoz8DYa
-X-Gm-Gg: ASbGncu4ftzTBMtjjUzldyIu2MGOAZ44DqnnsISiNFrK55PuqxQWIbOp74GjokPPH/x
-	Kc+kgrTJiX7aXyKN07+4IEcGlAqBa+N0mt2K5QyHUvYlci51Msp7uQuajVl72aY7GPDpX9a2m+b
-	fhUgwEWVKQ91ylYtd5tuY/SmrpnBvF5ASbCIeoziQDQ0y2bKfeeGAXDEYTG7wAUQqDx7iem3Xu+
-	pwlNCPlHeMeX44NiqHb35Hu25V4qBNRkBPZHXMyIvPVq2CH3P4czjuwUCK3Evypxzruf8HDUwil
-	lDL0WHke7OmunzuHTjamZ0Em3vf1bkYAGlCeDwPXaDp5uCG50V3QOc7mBKI+LFKazxAreMrL43b
-	RPFqYf/ea4/GhTjWvr2EaHlNMSPTpE3xTMJH5lF4ytPV7gHIaxTd0HTDzJd2DDNVC5RGdCsjqhr
-	xutP6CsVO0+C2PzbZMw603oZZsNPDqxfyKCfHoAngYkn69Q4Q/
-X-Google-Smtp-Source: AGHT+IHfItlR1Fx60adXYzbdEP8ytliFKTf5UTQa94x+UDA5dB7pTxaWf4RYfydDXX7TLN939a/ghg==
-X-Received: by 2002:a05:6122:3115:b0:559:6694:42ac with SMTP id 71dfb90a1353d-55b8d75908amr3009626e0c.10.1763989097410;
-        Mon, 24 Nov 2025 04:58:17 -0800 (PST)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55b7f7a07e1sm5498176e0c.15.2025.11.24.04.58.14
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1763995714; x=1764600514;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DMHuhLQ2+QePhLbxyyov6Mwfn5dk2KsNTjCwuBZ/B2U=;
+        b=KsO0TX4f5jKXAT28HrvlViAqLizUNadUZkvZHATt1o9RIU7ZQXZgra0BMRwqdJ3p+/
+         NuFYLZlZUwzkKwklIDcTGNtlv2uhsR2ob+I32HCrgNF0sXWNupJKPPa2lIWn868LEn1R
+         7SKuVtKdRkfoXDMEDjmZnhqfqpfSX2MDB144RVPW/+c4DGauJwkEexlLSFsCVgdSYTMF
+         eSsxUjdqqTUTrKxMfh7WSts51umD/FB+qoJzAO+RNcbMrLu4Iu0h1/UgBi8oEXUQpRND
+         4nWzwhGEbGXGU23FG/CHBzGFVSg7WZ8sKbXhrl6r5wSLPjtn4BItjxf1lMpx15y02w2h
+         qd8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVbHHiyJDqxHr29FslR+dezVDxUa0g49fVJGPKUcyn5oiEJT8FlOL71yhTiEEcPbqeBb930F3CHWHD/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxszgODKqypOd+1vyX7QL5UptIkEI2W4BXYiI7202iKGsu3IuVh
+	SErr2d/7UV9xZlCo3/jyV4H2koihdlJVotKz2PDLxykWP06qlGsnBmdd
+X-Gm-Gg: ASbGncto7n8uelTbM/FIuEkpVJOx/Al4+Ef/lL/471/NezE82oSvOxFi5lKUFrq5UVr
+	UE0unsY2ZAMX5hiZwn8yDtjg5rk63Msdv+TwG4woLXY9Vqd94C8xVgVYUaRuPN0ts7GsW1XZCH0
+	/vc8bVNK4lgqRR5xxgSURzPLq2F3Z67hPKuQaquYgyZGbgzxeAIY2tg4U2W9se4tHsOxNPUjQCz
+	gHBxp0d9bMWkNmlrOQKDhNQKQbRbhfwgsn7Rytj6KJC+fi8uQ2FhWwE7/IxKllvAkgYdV4rYlLO
+	WyTXpk0ebV3JRpfUDLfjejz6AEr6nB05V5xxUNfhcg2gTFISq8lzqSIYIkXDPgv62f7lcNJZa01
+	Pq3NaZPAtdAYvDAEW2XzbJUXwa9vceAI8iTnV9/wiJzSpEKOnfBWfRptJfm9/AyELgLqBcImHXO
+	nkCypmmfi19luxDg==
+X-Google-Smtp-Source: AGHT+IGs/95/cJ+tL3SsaiiXXgcuCaeuAg21ZTVttRpATbc8iAWB4Al2D0iS745iUZOaE4uems77rg==
+X-Received: by 2002:a2e:95d9:0:b0:37a:5bc6:ab9f with SMTP id 38308e7fff4ca-37cd92392c8mr23746331fa.26.1763989401463;
+        Mon, 24 Nov 2025 05:03:21 -0800 (PST)
+Received: from [10.38.18.76] ([213.255.186.37])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37cc6b48e26sm27317291fa.1.2025.11.24.05.03.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Nov 2025 04:58:16 -0800 (PST)
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-9372310418bso1100804241.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 04:58:14 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXA/rl5GCL84yG2DEstB8kcW2xpv4st5bf1rsJrhQMbdM8V17C4STBePHRVBum9zlR7lEy6Dfqzp99J@vger.kernel.org
-X-Received: by 2002:a05:6102:5e84:b0:5dd:83de:badc with SMTP id
- ada2fe7eead31-5e1de4050c3mr2748242137.38.1763989094662; Mon, 24 Nov 2025
- 04:58:14 -0800 (PST)
+        Mon, 24 Nov 2025 05:03:21 -0800 (PST)
+Message-ID: <f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
+Date: Mon, 24 Nov 2025 15:03:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251114105201.107406-1-biju.das.jz@bp.renesas.com>
- <20251114105201.107406-2-biju.das.jz@bp.renesas.com> <CAMuHMdX41rq-sd6_g1oCrQVPpgb-MXakpJ9mEbS0K+FY8Q7NDg@mail.gmail.com>
- <TY3PR01MB11346D401362BE3B37564C28586D2A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <TY3PR01MB11346A0864AF1CC5A3807E40C86D2A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346A0864AF1CC5A3807E40C86D2A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 24 Nov 2025 13:58:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUwn8Ad3OYRX9jB-gFKskmwYwTna882d4J=28+zra=awQ@mail.gmail.com>
-X-Gm-Features: AWmQ_bkJ9yYGno433AB6_f4xArSaLX1y3Xoz8TuybuRBTCsS8wWuv5G8ykFxnzA
-Message-ID: <CAMuHMdUwn8Ad3OYRX9jB-gFKskmwYwTna882d4J=28+zra=awQ@mail.gmail.com>
-Subject: Re: [PATCH v3 01/13] dt-bindings: serial: renesas,rsci: Document
- RZ/G3E support
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: "biju.das.au" <biju.das.au@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"magnus.damm" <magnus.damm@gmail.com>, "wsa+renesas" <wsa+renesas@sang-engineering.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
+ overlays"
+To: Herve Codina <herve.codina@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
+ Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Charles Keepax <ckeepax@opensource.cirrus.com>,
+ Richard Fitzgerald <rf@opensource.cirrus.com>,
+ David Rhodes <david.rhodes@cirrus.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Dave Jiang <dave.jiang@intel.com>,
+ Alison Schofield <alison.schofield@intel.com>,
+ Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-sound@vger.kernel.org, patches@opensource.cirrus.com,
+ linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-cxl@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Steen Hegelund <steen.hegelund@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20251015071420.1173068-1-herve.codina@bootlin.com>
+ <20251015071420.1173068-2-herve.codina@bootlin.com>
+Content-Language: en-US
+From: Kalle Niemi <kaleposti@gmail.com>
+In-Reply-To: <20251015071420.1173068-2-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Biju,
+On 10/15/25 10:13, Herve Codina wrote:
+> From: Saravana Kannan <saravanak@google.com>
+> 
+> This reverts commit 1a50d9403fb90cbe4dea0ec9fd0351d2ecbd8924.
+> 
+> While the commit fixed fw_devlink overlay handling for one case, it
+> broke it for another case. So revert it and redo the fix in a separate
+> patch.
+> 
+> Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays")
+> Reported-by: Herve Codina <herve.codina@bootlin.com>
+> Closes: https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=9F9rZ+-KzjOg@mail.gmail.com/
+> Closes: https://lore.kernel.org/all/20240221095137.616d2aaa@bootlin.com/
+> Closes: https://lore.kernel.org/lkml/20240312151835.29ef62a0@bootlin.com/
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Link: https://lore.kernel.org/lkml/20240411235623.1260061-2-saravanak@google.com/
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Acked-by: Mark Brown <broonie@kernel.org>
+> ---
+>   drivers/bus/imx-weim.c    | 6 ------
+>   drivers/i2c/i2c-core-of.c | 5 -----
+>   drivers/of/dynamic.c      | 1 -
+>   drivers/of/platform.c     | 5 -----
+>   drivers/spi/spi.c         | 5 -----
+>   5 files changed, 22 deletions(-)
+> 
+> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
+> index 83d623d97f5f..87070155b057 100644
+> --- a/drivers/bus/imx-weim.c
+> +++ b/drivers/bus/imx-weim.c
+> @@ -327,12 +327,6 @@ static int of_weim_notify(struct notifier_block *nb, unsigned long action,
+>   				 "Failed to setup timing for '%pOF'\n", rd->dn);
+>   
+>   		if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
+> -			/*
+> -			 * Clear the flag before adding the device so that
+> -			 * fw_devlink doesn't skip adding consumers to this
+> -			 * device.
+> -			 */
+> -			rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>   			if (!of_platform_device_create(rd->dn, NULL, &pdev->dev)) {
+>   				dev_err(&pdev->dev,
+>   					"Failed to create child device '%pOF'\n",
+> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
+> index eb7fb202355f..30b48a428c0b 100644
+> --- a/drivers/i2c/i2c-core-of.c
+> +++ b/drivers/i2c/i2c-core-of.c
+> @@ -176,11 +176,6 @@ static int of_i2c_notify(struct notifier_block *nb, unsigned long action,
+>   			return NOTIFY_OK;
+>   		}
+>   
+> -		/*
+> -		 * Clear the flag before adding the device so that fw_devlink
+> -		 * doesn't skip adding consumers to this device.
+> -		 */
+> -		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>   		client = of_i2c_register_device(adap, rd->dn);
+>   		if (IS_ERR(client)) {
+>   			dev_err(&adap->dev, "failed to create client for '%pOF'\n",
+> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> index 2eaaddcb0ec4..b5be7484fb36 100644
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
+> @@ -225,7 +225,6 @@ static void __of_attach_node(struct device_node *np)
+>   	np->sibling = np->parent->child;
+>   	np->parent->child = np;
+>   	of_node_clear_flag(np, OF_DETACHED);
+> -	np->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
+>   
+>   	raw_spin_unlock_irqrestore(&devtree_lock, flags);
+>   
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index f77cb19973a5..ef9445ba168b 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -739,11 +739,6 @@ static int of_platform_notify(struct notifier_block *nb,
+>   		if (of_node_check_flag(rd->dn, OF_POPULATED))
+>   			return NOTIFY_OK;
+>   
+> -		/*
+> -		 * Clear the flag before adding the device so that fw_devlink
+> -		 * doesn't skip adding consumers to this device.
+> -		 */
+> -		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>   		/* pdev_parent may be NULL when no bus platform device */
+>   		pdev_parent = of_find_device_by_node(parent);
+>   		pdev = of_platform_device_create(rd->dn, NULL,
+> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> index 2e0647a06890..b22944a207c9 100644
+> --- a/drivers/spi/spi.c
+> +++ b/drivers/spi/spi.c
+> @@ -4791,11 +4791,6 @@ static int of_spi_notify(struct notifier_block *nb, unsigned long action,
+>   			return NOTIFY_OK;
+>   		}
+>   
+> -		/*
+> -		 * Clear the flag before adding the device so that fw_devlink
+> -		 * doesn't skip adding consumers to this device.
+> -		 */
+> -		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>   		spi = of_register_spi_device(ctlr, rd->dn);
+>   		put_device(&ctlr->dev);
+>   
+Sorry, some of you will receive this message now for second time. First 
+message was sent to older series of patches.
+-
 
-On Sat, 22 Nov 2025 at 15:15, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > From: Biju Das <biju.das.jz@bp.renesas.com>
-> > > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > On Fri, 14 Nov 2025 at 11:52, Biju <biju.das.au@gmail.com> wrote:
-> > > > Add documentation for the serial communication interface (RSCI)
-> > > > found on the Renesas RZ/G3E (R9A09G047) SoC. The RSCI IP on this SoC
-> > > > is identical to that on the RZ/T2H (R9A09G077) SoC, but it has a
-> > > > 32-stage FIFO compared to 16 on RZ/T2H. It supports both FIFO and
-> > > > non-FIFO mode operation. RZ/G3E has 6 clocks(5 module clocks + 1
-> > > > external clock) compared to 3 clocks
-> > > > (2 module clocks + 1 external clock) on RZ/T2H, and it has multiple resets.
-> > > >
-> > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Hello,
 
-> > > > --- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> > > > +++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> > > > @@ -10,17 +10,16 @@ maintainers:
-> > > >    - Geert Uytterhoeven <geert+renesas@glider.be>
-> > > >    - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > -allOf:
-> > > > -  - $ref: serial.yaml#
-> > > > -
-> > > >  properties:
-> > > >    compatible:
-> > > >      oneOf:
-> > > > -      - items:
-> > > > -          - const: renesas,r9a09g087-rsci # RZ/N2H
-> > > > -          - const: renesas,r9a09g077-rsci # RZ/T2H
-> > > > +      - enum:
-> > > > +          - renesas,r9a09g047-rsci # RZ/G3E non FIFO mode
-> > > > +          - renesas,r9a09g047-rscif # RZ/G3E FIFO mode
-> > >
-> > > I can't find the non-FIFO ports in the documentation?
-> > > Do you mean "Selectable to 1-stage register or 32-stage FIFO"?
-> > > Isn't that software configuration instead of hardware description?
-> >
-> > Basically, it has 2 modes. FIFO mode(CCR3.FM=1b) and Non-FIFO mode (CCR3.FM=0b).
-> > DMAC can be used only in FIFO mode and there are some hardware differences between two as FIFO reg
-> > block is applicable only for FIFO mode.
+Test system testing drivers for ROHM ICs bisected this commit to cause 
+BD71847 drivers probe to not be called.
 
-Still, sounds like software policy / configuration to me...
+The devicetree blob overlay describing bd71847 enables I2C1 bus on 
+BeagleBone Black aswell.
 
-> > It has to be either a compatible or a boolean property "renesas, rsci-non-fifo"
-> > Or something else
->
-> I believe it must be a compatible to support non-FIFO mode from boot.
->
-> I maybe wrong. Please correct me, if it I am wrong.
+Probe is called when the driver is used with HW connected to I2C2 bus. 
+I2C2 bus is enabled before overlaying devicetree blobs.
 
-Why can't it be configured through e.g. the rx_fifo_trigger device
-attribute, or some setserial option? Any guidance from the serial
-experts?
 
-Gr{oetje,eeting}s,
+---- BD71847 Devicetree overlay source ----
 
-                        Geert
+/dts-v1/;
+/plugin/;
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+/{ /* this is our device tree overlay root node */
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+     compatible = "ti,beaglebone", "ti,beaglebone-black";
+     part-number = "BBB-I2C1";
+      version = "00A0";
+
+     fragment@0 {
+         target = <&am33xx_pinmux>; // this is a link to an already 
+defined node in the device tree, so that node is overlayed with our 
+modification
+
+         __overlay__ {
+             i2c1_pins: pinmux_i2c1_pins {
+                 pinctrl-single,pins = <
+                       0x158 0x72 /* spi0_d1.i2c1_sda */
+                       0x15C 0x72 /* spi0_cs0.i2c1_sdl */
+                     >;
+             };
+         };
+     };
+....
+....
+
+     fragment@2 {
+         target = <&i2c1>;
+
+         __overlay__ {
+             pinctrl-0 = <&i2c1_pins>;
+             clock-frequency = <100000>;
+             status = "okay";
+
+             pmic: pmic@4b { /* the "test" defined as child of the i2c1 
+bus */
+                 compatible = "rohm,bd71847";
+                 reg = <0x4b>;
+                 ....
+                 ....
+}; /* root node end */
+
+---- END OF BD71847 Devicetree overlay source ----
+
+Reverting this patch from linux-next from last friday fixes the issue.
+
+BR
+Kalle Niemi
 
