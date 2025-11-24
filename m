@@ -1,134 +1,116 @@
-Return-Path: <devicetree+bounces-241759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC371C822D8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:54:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E19C823A2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 20:06:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D0AA3AA1B6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:54:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4DABD4E7DB1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444C62D7DEC;
-	Mon, 24 Nov 2025 18:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC08E25F7B9;
+	Mon, 24 Nov 2025 19:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AmpYBxDa"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="MYdVXEb2";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="WZeKbF94"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DE3D2D3727
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 18:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B67D14AD20;
+	Mon, 24 Nov 2025 19:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764010458; cv=none; b=ONaLK0rR4CO942ZeaXm9zW6rRaxHjHxRbehrk8KEHhCkRL6mVYHJ8HLoEVL7kvmO8Ic7sIsSy1Z6oX0CSdp9MTcMbpnMhPyo2ivgmmdnQ4qO0U03HnX06RYqtWFZY8P9U2VKSRH/HqsiJrTAUspKtFFtNG430FvQ5WVRCdzuOqI=
+	t=1764010917; cv=none; b=Gl/Y9fpQB+b2G0MLHuSWbvjVJAL7qDeWLAKaXXQbZG2Wki0palP8WDiqjXsur1ts8m33+y5ApGo/YHCfh95ucsrgnyqgCBTu/5l1lO/V/SPAncNBcgoJ1txNBccpfdFeRuu52iLrnjDlghIVOcHlnye32h8e9B6jB33kY0tG7ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764010458; c=relaxed/simple;
-	bh=TEK7y+I345Za9ATxX+knyA/Uh489WPY9Dd1JCZP1I5g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VzP7O8AODyRf6feRRhZ4aUSa02Mo0uZ13mO1Y1lFkYKCYlJBfHMoCVUF2TgnK4btY1cNRLdsTgLbEXrnXinzQWB7PNXNuOKjDPJaT6hFtmN4nHVssmDbWp7ugdYJ73OTHuEmcvKveDngvhiqUNbLAzVYbWPXwymxSo2ny/+YR6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AmpYBxDa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7836C2BCB0
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 18:54:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764010457;
-	bh=TEK7y+I345Za9ATxX+knyA/Uh489WPY9Dd1JCZP1I5g=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=AmpYBxDaPN5ZX9P0uxZqWlwOpLxvn2PrmdmQy+Ucj2PSpzD1kjzVJQNspQ3O+zzAE
-	 SoyfcVuxENoe6qN/jwgovr+Map/yE1k+ds7flRVlx2SmXzlUGVnFRek18ncwAZHd7S
-	 CmZZxqAIg/l3VjDKxFy7NVIj3yVu8kSd1iexr44ZzLxCtAc/tf/uV7g0Evv7eqHjnm
-	 1YCo41nZXFteqNZB42Xy6mkJWgTsrY3vio3yZSuwLAF9h+4WTNJsjuMD9VktUXg+iG
-	 xqY1spckPyd0iU/VIM2tMeSOPeqRpUk3qI2vXgOXeQZFFERXoX3JYZp2Be25cXhs5B
-	 9ERA2nzw21Whg==
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-64198771a9bso8323536a12.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 10:54:17 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVclpEVOL9SLwfhyqInsJPorzxQL4jJDJtnNi0MGMqjheZzvg5/Ft+Q37iug5jefMxGvRO9rBcLgdF1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzB7z/TdNa3ePdT+eA2JyP7d5H1AaEwIWg1ZQBhsfvt03TyyUlQ
-	BP6rlY7UGoEqhaQNJng3raaT8ZUVtVtZsIeAeuKKNwrcKgT6D25sBHM52lEvE5YSl8tFcGq3zQg
-	VRtIqy+hYZdJm686Va/z58yqAfXIlCQ==
-X-Google-Smtp-Source: AGHT+IFReAtDFuSFDhp918Ohx2vHaiN5KlMAX/uodATZY6O/YB75rQVqkELqtwQbH271c/8FxbJ2Dkum3f0Uu3OWMzM=
-X-Received: by 2002:a05:6402:5252:b0:643:4e9c:d166 with SMTP id
- 4fb4d7f45d1cf-6455443ed4cmr10891528a12.8.1764010456224; Mon, 24 Nov 2025
- 10:54:16 -0800 (PST)
+	s=arc-20240116; t=1764010917; c=relaxed/simple;
+	bh=sz+Y8giwQknN1JPeeAsEOJmAq3bCmXnPgTBhXx0+zPQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=UY+90xMc5ijlHdeEEQDjJksBhOOl7jKLOLww8zUsvdp6mHYB/Tq93W+BbAjWX9bL6vv83rtFtjuwgvaBXCKa7ogANQ8FrTF9ZCWApCKf8G31+jSxaYBHX62ghjmUd6m0HQgEZScGNg9Vvx5ym9pYnYgeyADzMAd17ApmX0b4u+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=MYdVXEb2; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=WZeKbF94; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1764010914;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nYNx1QoM3TDXu2xTjuXSTLwEHNfYf7gMZwpVUu8pe50=;
+	b=MYdVXEb2pFqRvqBzY3b4pWujfixlU580glHBcDdcaRynnRgyXtbzorLYvFBGvaZp3AXZRw
+	yogsueZdqkoHOjQZFrQDKvx+/6evFNZ1dbirF7PR7GMK1a/7ClW5Ra7HFDUc1AJ7NpdxrS
+	VBeAkb5IHD0PgwckoCOibRk3hx5ck7IFWNePC36U1Wcd07ZJhsKgtpZx3P7lEwwatpEfmC
+	NzTNmJBm6ejzw60mXJUvKLAVnbYwUQrqfEFfVwDpx8vL9rQOMuFpBRlIbrAYaE/CQx4BgH
+	eBY+xNl1kk5l6k3rSJAA1POBJ1KM2GcjMO60DrjORrWRX/TRy6RByqNkevuYnA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1764010914;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nYNx1QoM3TDXu2xTjuXSTLwEHNfYf7gMZwpVUu8pe50=;
+	b=WZeKbF94VI3cj/MUVmPoC3lBw5JWQTtdVCzta98XAs5OjNhuyU9447Bm+yV75XtBPveDeS
+	WVZFN2pawK5OJFCg==
+To: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, "magnus.damm" <magnus.damm@gmail.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH 2/4] irqchip: add RZ/{T2H,N2H} Interrupt Controller
+ (ICU) driver
+In-Reply-To: <TYYPR01MB139554C11AC25646D5503985385D0A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
+References: <20251121111423.1379395-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20251121111423.1379395-3-cosmin-gabriel.tanislav.xa@renesas.com>
+ <87see6hxjb.ffs@tglx>
+ <TYYPR01MB139556A313B1377F9306A7F6485D0A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
+ <87ecpnilqw.ffs@tglx>
+ <TYYPR01MB139554C11AC25646D5503985385D0A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
+Date: Mon, 24 Nov 2025 20:01:53 +0100
+Message-ID: <877bvfi7a6.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250911151001.108744-1-ariel.dalessandro@collabora.com>
- <20250911151001.108744-4-ariel.dalessandro@collabora.com> <20250912140619.GA1293647-robh@kernel.org>
- <fb20e4fe-df0a-4089-a7cf-e82bfe1f8e00@collabora.com>
-In-Reply-To: <fb20e4fe-df0a-4089-a7cf-e82bfe1f8e00@collabora.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 24 Nov 2025 12:54:04 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+eeiw9oaqQPWt2=rZSX98Pak_oB=tfQFvEehwLZ=S52g@mail.gmail.com>
-X-Gm-Features: AWmQ_blUF-g1qhHGkKsa6U6HY_V7mtf4Q-WkpVuhZVm09t2HSWt6-IOrweXVTPs
-Message-ID: <CAL_Jsq+eeiw9oaqQPWt2=rZSX98Pak_oB=tfQFvEehwLZ=S52g@mail.gmail.com>
-Subject: Re: [PATCH v2 03/12] dt-bindings: net: Convert Marvell 8897/8997
- bindings to DT schema
-To: "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>
-Cc: airlied@gmail.com, amergnat@baylibre.com, andrew+netdev@lunn.ch, 
-	andrew-ct.chen@mediatek.com, angelogioacchino.delregno@collabora.com, 
-	broonie@kernel.org, chunkuang.hu@kernel.org, conor+dt@kernel.org, 
-	davem@davemloft.net, dmitry.torokhov@gmail.com, edumazet@google.com, 
-	flora.fu@mediatek.com, heiko@sntech.de, houlong.wei@mediatek.com, 
-	jeesw@melfas.com, kernel@collabora.com, krzk+dt@kernel.org, kuba@kernel.org, 
-	lgirdwood@gmail.com, linus.walleij@linaro.org, 
-	louisalexis.eyraud@collabora.com, luiz.dentz@gmail.com, 
-	maarten.lankhorst@linux.intel.com, marcel@holtmann.org, 
-	matthias.bgg@gmail.com, mchehab@kernel.org, minghsiu.tsai@mediatek.com, 
-	mripard@kernel.org, p.zabel@pengutronix.de, pabeni@redhat.com, 
-	sean.wang@kernel.org, simona@ffwll.ch, support.opensource@diasemi.com, 
-	tiffany.lin@mediatek.com, tzimmermann@suse.de, yunfei.dong@mediatek.com, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-bluetooth@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-sound@vger.kernel.org, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-On Wed, Oct 1, 2025 at 12:28=E2=80=AFPM Ariel D'Alessandro
-<ariel.dalessandro@collabora.com> wrote:
+On Mon, Nov 24 2025 at 15:28, Cosmin-Gabriel Tanislav wrote:
+>> From: Thomas Gleixner <tglx@linutronix.de>
+>> Sent: Monday, November 24, 2025 3:49 PM
+>> 
+>> On Mon, Nov 24 2025 at 12:50, Cosmin-Gabriel Tanislav wrote:
+>> >> From: Thomas Gleixner <tglx@linutronix.de>
+>> >> Sent: Saturday, November 22, 2025 5:56 PM
+>> 
+>> Can you please fix your mail-client not to copy the whole header into
+>> the reply?
 >
-> Rob,
->
-> On 9/12/25 11:06 AM, Rob Herring wrote:
-> > On Thu, Sep 11, 2025 at 12:09:52PM -0300, Ariel D'Alessandro wrote:
-> >> Convert the existing text-based DT bindings for Marvell 8897/8997
-> >> (sd8897/sd8997) bluetooth devices controller to a DT schema.
-> >>
-> >> While here:
-> >>
-> >> * bindings for "usb1286,204e" (USB interface) are dropped from the DT
-> >>    schema definition as these are currently documented in file [0].
-> >> * DT binding users are updated to use bluetooth generic name
-> >>    recommendation.
-> >>
-> >> [0] Documentation/devicetree/bindings/net/btusb.txt
-> >>
-> >> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> >> ---
-> >>   .../net/bluetooth/marvell,sd8897-bt.yaml      | 79 +++++++++++++++++=
-+
-> >>   .../devicetree/bindings/net/btusb.txt         |  2 +-
-> >>   .../bindings/net/marvell-bt-8xxx.txt          | 83 -----------------=
---
-> >
-> >>   .../dts/rockchip/rk3288-veyron-fievel.dts     |  2 +-
-> >>   .../boot/dts/rockchip/rk3288-veyron-jaq.dts   |  2 +-
-> >>   arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi  |  2 +-
-> >
-> > .dts files should be separate patches. Please send the bindings patches
-> > separately per subsystem so subsystem maintainers can apply them. All
-> > the Mediatek dts changes can be 1 series.
->
-> Ack, will fix in v3.
+> Outlook, it's unfixable. I can remove it manually each time if it's
+> too much noise.
 
-Are you going to send v3 still?
+Either that or ask your colleagues how they avoid this nonsense.
 
-Rob
+>> >> > +   if (!irq_domain) {
+>> >> > +           pm_runtime_put(dev);
+>> >> > +           return -ENOMEM;
+>> >> > +   }
+>> >>
+>> >> The mix of 'return $ERR' and 'return dev_err_probe()' is confusing at best.
+>> >>
+>> >
+>> > For ENOMEM, dev_err_probe() doesn't really print anything. ENOMEM is
+>> > what other drivers seem to use for a NULL irq_domain_create_hierarchy()
+>> > result.
+>> 
+>> That's what I was missing. Now it makes sense.
+>> 
+> In conclusion, should I keep the bare `return -ENOMEM` in both instances?
+> Just to make sure the next version is proper.
+
+Keep the -ENOMEM.
+
 
