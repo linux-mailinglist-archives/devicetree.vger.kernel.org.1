@@ -1,75 +1,66 @@
-Return-Path: <devicetree+bounces-241763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E9FC82472
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 20:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F6DEC8247E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 20:21:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F325934928B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:20:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9E8D234A955
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629682D77E9;
-	Mon, 24 Nov 2025 19:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6E32DC770;
+	Mon, 24 Nov 2025 19:18:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dvE/K7+Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gbS4fgbF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FDB2D5C68;
-	Mon, 24 Nov 2025 19:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE0E2DC765;
+	Mon, 24 Nov 2025 19:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764011923; cv=none; b=HRB9FAUjJifz0StsGg0IEZEdsyOBXuQ2FyRqKKThsaOuEsLgf0LgGOPgkeWBVt0ZEUQ4+BmiAOrTSnzUt2tw4YDilsM+LilP8YKrMBgxWpwieTvh2CMvpRGRw3r/jkYaD/XAqw6tvYMa49ApMNmy1OjEMrGVOoFITdNX1pTZ1EE=
+	t=1764011932; cv=none; b=D0qMzPF1n/hq53x40Km4Xd6th/11NXVS5kk1lm5k78/2u549idhBMKq2xAZhx8RTHPE/md36wURkhAhd3l055eZt40HRmi/xqKZ4sVJ0tgYce6eM4sz4eM4wOJ982ZqYp7HQkc9k+m5DTw3AfBI/zHbCy5Vvm71z4ATxfaVOTiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764011923; c=relaxed/simple;
-	bh=Tx8AB1SA68OjpJGaBGshivP2neQNWcZSQoIkHV53Fdc=;
+	s=arc-20240116; t=1764011932; c=relaxed/simple;
+	bh=+Y/rUKkCu/Mru/4AM146q7ufP02f6yIOrug7Q4idQeA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=W9Ss0SzMPmq/HpOtbPdbPV4MY9CI+zGRUIMoaZsj5Cp3h2ZtQBNZ1Oo1plxCc50sdl4j73MNyKVIzLKYq1phAfaFNc325pFz9NySPc76t+FmEfxN1yjFkIavxdtevR34pBTD4Kzd9uXRQM5YjZpfuqqT3+qASr9xG9/S2Itq1BM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dvE/K7+Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E117BC4CEF1;
-	Mon, 24 Nov 2025 19:18:38 +0000 (UTC)
+	 MIME-Version:Content-Type; b=RAM/f5KOy7RNPABlVmmGm5A5HsRZI6iwkJoCOmadY763uX5zY0FQ3+8oE3qxsp0hDCdcJSr+DiKfT16swaoE2Mh2Y0R7OpMGQHqfA5KomvruMiABhG/iEefXWJdlrctDfcCTeHlnaJHoK8wj3nF3cHWsXym2m1hkZkJq1FOQXlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gbS4fgbF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C234C4CEF1;
+	Mon, 24 Nov 2025 19:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764011923;
-	bh=Tx8AB1SA68OjpJGaBGshivP2neQNWcZSQoIkHV53Fdc=;
+	s=k20201202; t=1764011931;
+	bh=+Y/rUKkCu/Mru/4AM146q7ufP02f6yIOrug7Q4idQeA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=dvE/K7+Yx5Mgd0+r3X5BUhZ5lArb5ERUn2RxDc4De0sYovnYUBB0PHGcv5PBQ1A1v
-	 be1PUQOAI7nJ3fbWzIiTbl4p+AS74dLMl/1LBZ4tJgs6wJoYlxeFZoaniybyT8ZsgU
-	 bylxn5id1LvzAKZWdnmLsWlziCk/FyEETRZWw0mTeHF4j42QfI549aSdqLmCknFZrK
-	 NLeX46GbzfxfHj7cZg8lxmD5z4KHgr6DNB9oBAwi3flWUci0tvO83nf1ybL/fYFiMy
-	 R4/YFrw2sXVxC+yBrtjXXzHbJl2Q/mN+TAeHLf32dFBpq0LU9K0/Nc/QXjD9kUVYxd
-	 DK3W/w55oHGTw==
+	b=gbS4fgbFVbSkJAETFQ0fD4yylSWtu1g5HHFepTXrzFN7o5aYFpbtSiXBPKnp8t74K
+	 470zZrbFnBNqv5Jv9VDylyLcBqu02GUXVJduoQk0xreg19zJcP45rhEpzssHs+AuVl
+	 7vGLouIeatGUIUMeqbeytYqljMfvuqP3nCkJHu3Msggvx2PCMe3ar0I+bjpe0LhUPz
+	 IroNc08252IK4BfTRUKefy/OY0XJhYdKVj0wPIOudOsk/Xq6EVoSm0ukv0qsQQ0IcR
+	 9rFkyF4k/4EhppRjkdJZfi8rNaTx71gLmO9h3ZzBt2NbWpOeTv56JntsTwG3xyaJ7q
+	 DG4bUezbQUbUg==
 From: Will Deacon <will@kernel.org>
-To: Frank Li <Frank.li@nxp.com>,
-	Xu Yang <xu.yang_2@nxp.com>,
-	Mark Rutland <mark.rutland@arm.com>,
+To: Joerg Roedel <joro@8bytes.org>,
+	Robin Murphy <robin.murphy@arm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>
+	Konrad Dybcio <konradybcio@kernel.org>
 Cc: catalin.marinas@arm.com,
 	kernel-team@android.com,
 	Will Deacon <will@kernel.org>,
-	Frank Li <frank.li@nxp.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	iommu@lists.linux.dev,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Joakim Zhang <qiangqing.zhang@nxp.com>,
-	Jacky Bai <ping.bai@nxp.com>
-Subject: Re: [PATCH v3 0/6] perf/imx_ddr: Add i.MX8QM and pmu in DB (system interconnects)
-Date: Mon, 24 Nov 2025 19:18:30 +0000
-Message-Id: <176399874665.521575.3051557105547982197.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: iommu: qcom_iommu: Allow 'tbu' clock
+Date: Mon, 24 Nov 2025 19:18:32 +0000
+Message-Id: <176400331869.702885.5460533582186170525.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20251103-qm_dts-v3-0-2bfda8ee14c2@nxp.com>
-References: <20251103-qm_dts-v3-0-2bfda8ee14c2@nxp.com>
+In-Reply-To: <20251104-topic-qciommu_bindings_fix-v3-1-09c52a1e5ffb@oss.qualcomm.com>
+References: <20251104-topic-qciommu_bindings_fix-v3-1-09c52a1e5ffb@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,26 +70,21 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Mon, 03 Nov 2025 16:48:27 -0500, Frank Li wrote:
-> dts: add soc specific compatible string for imx8qm, imx8qxp, imx8dxl in db.
-> driver:
->  - did some cleanup
->  - add support for pmu in imx8dxl DB
-> binding:
->  - add compatible string for imx8qm, imx8qxp, imx8dxl in db
+On Tue, 04 Nov 2025 15:47:26 +0100, Konrad Dybcio wrote:
+> Some IOMMUs on some platforms (there doesn't seem to be a good denominator
+> for this) require the presence of a third clock, specifically relating
+> to the instance's Translation Buffer Unit (TBU).
+> 
+> Stephan Gerhold noted [1] that according to Qualcomm Snapdragon 410E
+> Processor (APQ8016E) Technical Reference Manual, SMMU chapter, section
+> "8.8.3.1.2 Clock gating", which reads:
 > 
 > [...]
 
-Applied driver changes to will (for-next/perf), thanks!
+Applied to iommu (arm/smmu/bindings), thanks!
 
-[1/6] dt-bindings: perf: fsl-imx-ddr: Add compatible string for i.MX8QM, i.MX8QXP and i.MX8DXL
-      https://git.kernel.org/will/c/de8209e55408
-[2/6] perf/imx_ddr: Move ida_alloc() from ddr_perf_init() to ddr_perf_probe()
-      https://git.kernel.org/will/c/66db99ffdfcb
-[3/6] perf/imx_ddr: Get and enable optional clks
-      https://git.kernel.org/will/c/037e8cf67178
-[4/6] perf/imx_ddr: Add support for PMU in DB (system interconnects)
-      https://git.kernel.org/will/c/11abb4e87b0e
+[1/1] dt-bindings: iommu: qcom_iommu: Allow 'tbu' clock
+      https://git.kernel.org/iommu/c/fe6262910cd3
 
 Cheers,
 -- 
