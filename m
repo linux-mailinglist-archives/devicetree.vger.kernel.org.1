@@ -1,252 +1,179 @@
-Return-Path: <devicetree+bounces-241491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CE5C7F076
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:20:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E30DC7F17B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:36:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7C0D44E1262
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 06:20:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C21413A9311
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 06:34:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414DE2C376B;
-	Mon, 24 Nov 2025 06:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rTx2fQ4Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970782DEA93;
+	Mon, 24 Nov 2025 06:32:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022122.outbound.protection.outlook.com [52.101.126.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7972BE026
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 06:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763965253; cv=none; b=mIDt+wIpTSau5CXTHuImHKIKodGQB3jvIfHDSXfGiiVltcVZItP2ju76m7JTfwGKw1AhsaE9wI8hvVAACTqxal3daDw/350NnVWJnLlnociBy+QSyOSuC/s5T7p1xAoqg1LfxE8X3czR3H//XekpieYGfVXCzhzNCcakFdO9ctE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763965253; c=relaxed/simple;
-	bh=yknGv046L7yMedwEjSmM6+EdFvU3S2cf1Pirgu5kUDk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HvFpM0z5sRLUXqXNm7WkRMT7tgdWG4/bkOXiAkPDJyt8x7PV6E2KqLryHx/wft/OUh56xhjtYMIDhqz3jxiLBFWWyNsyVahXbh7Vxg8LwNWZBr5Hfub1YMcPzUyuK21ZlunHNlMMb4qKJu9k5T0T+rexfaVheZq/EkCO03rozZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rTx2fQ4Q; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4775e891b5eso16108515e9.2
-        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 22:20:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1763965249; x=1764570049; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=REZ04im9FdK76DRTIwu+Cc/Q2WxCSUPnF2cnra53O5Y=;
-        b=rTx2fQ4Qk8jEIihvh86EgMDzgo6/L1tTd/B3a7eqIVhrkIZlZPWGE+r6rjJ3D1OeS9
-         7Bu/WZot5WHBeTL6PYG3wVXOTvqqTp3HQ2bH0E66J+Oab8OC+2imVrQcRnnB0iIUq11H
-         F9XUfcN7Bf1dNOR42M2RxYWtwslAWeYfGJgvQUfptX8McOnHvPQMbYefbNadDsT/xqhw
-         +rXJ7X5jE4CgHfa4MeOT1KK1l3Rxbo1t+Wwr5WwYL/eYkg1pImmAI7RVYSxSiiF5xlQH
-         htDFq5WFQugeSe9pcdv2XFmUBlkcmbcfdNeTIO9Ud+OEZd2AcEV4Ap1HM97Dca5Im0zR
-         Mpgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763965249; x=1764570049;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=REZ04im9FdK76DRTIwu+Cc/Q2WxCSUPnF2cnra53O5Y=;
-        b=vSLvF+R8UgDGW9GDE/yblGRygqeLc47xOrgeoVxrZAABeRitX3hjTl/EvHXMWzJf/e
-         ShG6duycfQMXYNEjvdLIU2BETf2OY5OlT8E+E6ShNVNMs761LRB3p2YWfp0bbJRilYQP
-         1fOTFJTlQWpocMHwPtO226Q58WPkWNk67G2sJZmsIHr7TqATEUC3NK/Oh4xXpAcPMFk7
-         lPZyimcEYIqVqs1e+MemB3v7J2A3uZfrj0bADTXCLxTui6Qlzst514agKPWYy2RLQsXo
-         Q5007l89VUbJjVtGbvg1bYcthNji6neDu5Dy5QeA7CFemW1b1Ox7gY28Oqq0oJeG167c
-         vR8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWjjMzuef2RtZgIc1EQPrkhH3nY5vZEKGU3C+teJWevpF6+1xAG0oX7zflhckDLcBFxxWQcSL7oLSdt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5pmVO2MB8gA5xosPIMEgn7ERHJhKIzelvYl8K/sPbfHJZW04U
-	b/vM+Kw4JxP16+Z97+EGT3pEVtJUCVCeKp6lVxbIR/bnqbvH6nsg2YEy6UTY0VMATd8=
-X-Gm-Gg: ASbGncuCxfmxgoAMQkhb+cWcvEIR4wg7sZh05Q+QneDxKMIETPN9daiBpYoU2M/Yxnv
-	Ic7ObzeCpSzwGlL6j5mzJsIEzWQNeDBHt1Ccfd6b1KFEnhKs69qWuR1RYq/1eFrwqWpfs+9DAtU
-	awrTd8ZIFfEeBNBv8AAp+lfVWEqQg/ctaptpx8PaBdsexVnsGgo4JvWGoIw9F6kvycBfDWQ8Q4y
-	XMuUT0GbV3ZnVEyYVjKdASanFppIaNBdkAamDf1bVe1JNU5PLntNYgqOg3Q9XKUecojU7mKEPYq
-	Ra5BsRl6KSAoZsl94YltzWVUFZ/V8vOLlLzWLsAjZnAjOgIrU7vs67JZ/20HW4eDE02fTSKF7No
-	7+lm8PH2Hfg/u4ygUKdfcX32u9a3AFls9h40Ib4PEMdgRH+/UOS3kChWRaXHr0e0quxxQMp2VGN
-	uUlwHmBQcSFOLnEqdRTh6E6v30ifQU
-X-Google-Smtp-Source: AGHT+IEkAHuQrVSean0CMnJmgdroQFGEXS2JnDMuJL0ECBf4DUqCtzz0alMdPUQuLJolnNwjmMRrhw==
-X-Received: by 2002:a05:600c:3110:b0:477:632c:5b91 with SMTP id 5b1f17b1804b1-477c01b4b2amr122845505e9.16.1763965249310;
-        Sun, 23 Nov 2025 22:20:49 -0800 (PST)
-Received: from draszik.lan ([212.129.72.170])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f2e454sm26304551f8f.2.2025.11.23.22.20.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Nov 2025 22:20:48 -0800 (PST)
-Message-ID: <5c901a6c831775a04924880cc9f783814f75b6aa.camel@linaro.org>
-Subject: Re: [PATCH 4/6] mfd: max77759: modify irq configs
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
- Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
- Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Date: Mon, 24 Nov 2025 06:21:00 +0000
-In-Reply-To: <20251123-max77759-charger-v1-4-6b2e4b8f7f54@google.com>
-References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
-	 <20251123-max77759-charger-v1-4-6b2e4b8f7f54@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BCCB2D9EE6;
+	Mon, 24 Nov 2025 06:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.122
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763965968; cv=fail; b=g16glOqzgPtqj2Oct1Q5rT9PkmCkEv0CKw8TOP/94Mb1zv8LgaL7c11sSZ+JXbM6TPNKev2a0VKfCPUyuR0HD1HAT3c7q++uLsFmeZKqe/aIS2JDzwYDmpl7OX4Xx++69YIH3J/dUJhdojKC1shd4uiH8x4KDpsLuQFzzr5lFhk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763965968; c=relaxed/simple;
+	bh=dtMP1fJXpMczSmRtfENAS4V35s2jpzHfdenpPUzCzdA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fof3L8utlzI+fUukhqI6fbRm4zQO9ZV/TzyhbXZjedIAQpOA/yjfQYDhaT2GlUQFZPqPzDcJRgS0fdYI5zfpFk8qfYEwtdsYURvBf6TTOFGSOzyMnCmF0zzGuRLtIy8eDqo0e5ihfqJ8WXQDCPWL94/XwaMSknJwNJyN7kKb4iw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bOkOvAQn9fQBggK72cX06JkDYxiQCfcGRGeQufpaPxUzGHdAgziLBvZGhkQh3HQ3A++RgMh+gLmRQ1oncGUBDjfZwd1JysPmOvmHZ/5LTMU0blSmyFNs8BKIYkA6OhoGcwh4opMTb18nuUnZqdK7sCH4xZru6XjDFppdcCncANXnbfkbuxv0/RsMmot/1O662xNLSkO4VL5Qrq6km1h9QwmYGKjMcmh0h4kP50hz+wj4YKYEruJ6lvBymH9bUbMGz+XB8gYOTtyo6PbXjiLhsYWma3YrejSy6x5F2WgDYjV8noXz1rlhQZ+kmMkd0yO1nlOx44CRQFciSq9p+HM3Yw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PtQyyEbuf0vJo6jaxoEqf6/81n6XVJlPwcU/YjlYUL0=;
+ b=pS2Or/ZjTAHJyEhtRcf76bh8NpZBs+vqkbEwEipKFSEWk/v9Ojl9nc0PwJgAqtJW3MLI3NwvXK1wOla+rPFZ6XjTrHMnEdEu2YzVNJsZNtK1BcvHsp6iHOCvBcvy7QmusqTmtuhLovGdjR+izRN++Iwfm3+w3j2paqXhOzBs6KHJj9mMlYrpJj9VP05m6V2oLau2z4yYzaQwfVLNM7zE4W0Edcz8ByEjXa81ADB7l33V6NJQGVHA3P+Nqr0eWezaoUwOKdx6P/+4IJ0mPoPaUD2kWQph1n+6QNPSjgVHt4nndR0k7/V/mwB1sDGzGP3NjE5q+moA5irheVBoV8gbXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SE2P216CA0028.KORP216.PROD.OUTLOOK.COM (2603:1096:101:114::16)
+ by SI2PR06MB5172.apcprd06.prod.outlook.com (2603:1096:4:1bf::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.15; Mon, 24 Nov
+ 2025 06:32:38 +0000
+Received: from TY2PEPF0000AB86.apcprd03.prod.outlook.com
+ (2603:1096:101:114:cafe::21) by SE2P216CA0028.outlook.office365.com
+ (2603:1096:101:114::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.17 via Frontend Transport; Mon,
+ 24 Nov 2025 06:32:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB86.mail.protection.outlook.com (10.167.253.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9366.7 via Frontend Transport; Mon, 24 Nov 2025 06:32:36 +0000
+Received: from localhost.localdomain (unknown [172.16.64.196])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 896AD41C014B;
+	Mon, 24 Nov 2025 14:32:35 +0800 (CST)
+From: Gary Yang <gary.yang@cixtech.com>
+To: p.zabel@pengutronix.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com,
+	Gary Yang <gary.yang@cixtech.com>
+Subject: [PATCH v3 0/3] Add support for Cix Sky1 resets
+Date: Mon, 24 Nov 2025 14:32:32 +0800
+Message-ID: <20251124063235.952136-1-gary.yang@cixtech.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB86:EE_|SI2PR06MB5172:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: edc30697-96f8-4e3a-b008-08de2b234245
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?9NbTyIYnf7GWZuliZD9q9d4GgGzQvwpJEgUYRfpEmH6IED3Z659Yrn7NvPOE?=
+ =?us-ascii?Q?TzGKs9HZVXq8F6nrv7vxfiQv2jo71hN+EglvAbU3aVEG32vE9wR0QDa/39RF?=
+ =?us-ascii?Q?49w4I3QUkL0HR291uMCbOrd7EW/74UmuYq4IASGe0Hx2uCwuoY8UpFfZUguY?=
+ =?us-ascii?Q?y1ywfX34RfwRoqs+fu3c1nDfVYbU/I/yHTLXgzeu6h0HZ3R+iExMgxxgGAU4?=
+ =?us-ascii?Q?xvpteS/97QsV9qfn3j7LvO6NgWF15P0r87X2mY53/PlPEtyiGjhLKlP6MYBa?=
+ =?us-ascii?Q?/jsBTOn7nluCtRDsBZRrW7OWweujpR33/mlNLavAVXuq8HRSrfIrWgEJhpOv?=
+ =?us-ascii?Q?wWrfcEtr/4VGki/yRkQ1TjIM+pVNQIzev2n/fPpDKdRG+U4g4gz6JeY57oIK?=
+ =?us-ascii?Q?rbWAH/+OW1p10kT6bxZ93K4pY1vV07LuSaA+4SmNrFMzOj8FFjdiKKFaXqms?=
+ =?us-ascii?Q?p9HczwZuI5+gKhzFvj6t+4fz55HtRV2IumO9QUp3wrwfGtFF7FrVlWiYBkrf?=
+ =?us-ascii?Q?BdRG6uvQRs0FerQAJafbaU4Ii5h7EH4zRZVEPzCCeuNBWNoPr0LDbQNJKAea?=
+ =?us-ascii?Q?P2bioHi39erqjiVICLcXYMQC/2i5BKcKCY4fbI/F5thqFBz9O5Vc5oer9BvO?=
+ =?us-ascii?Q?OEfLT6l00d0EIxnNS13jW19UECPYUtmsGbeonG8e9jEeA8Eh2bu014+GOW2c?=
+ =?us-ascii?Q?7tkHjMYA2dyFEzyzXtVgKEhN6xCOUxZsDN++cHNE7lc8igI4DxMeDbzOhEHA?=
+ =?us-ascii?Q?7e25WYSnoJCJzT6/A1/iqA3x68ZQ03GcxhGQGhAtCacFDQOInAb/8um8BAHO?=
+ =?us-ascii?Q?TiZ2HanD8719yiEUHmcnb4vWyffNJ+UMeylOA37OQcEC1SSd/vss5EUvD+xY?=
+ =?us-ascii?Q?GgjlT5iKv3q3bjaHicUQXwAdZkcQaOTqjdCSYOQ4wlrsGa7i1oAhB+6fOVrN?=
+ =?us-ascii?Q?xmiLMZF/IODv0oVbG/vKjIfj/aDMFkBgIgVyuvv9rOAhbCAp/C3WKrMXO3+v?=
+ =?us-ascii?Q?C/6mGznFq0pXKlV3YSXHS3oh2lV6XRszFrOhRCzpz4PsUpxmB23JP1MK8xpN?=
+ =?us-ascii?Q?H6WX7lJbTt9ixwHj+gn6ABeLIONz9WlRdyWaMlF4f8lWi0iGTR8gU8ik+0go?=
+ =?us-ascii?Q?aV53IeO1nU++VbhfhKaHzTrGF8Wxan7uEeGkHw/GvM5P/xr0AGQaFtBsadxq?=
+ =?us-ascii?Q?tp+Zq709ecPa/ux/Lic33hlHy3TxrmfLqPePxXl3SHhxTmLJ+geYOvgPHIIE?=
+ =?us-ascii?Q?0ZRe3TnIr3ma9GamdxinBeqVKDK/ZObqYx9+D+1G+7/nXGNyBp5/aUI656NE?=
+ =?us-ascii?Q?vSjWbXPyd9dHM4+SwmjwJqPz2reM7M3kDqC6uzOZ8fPbtKY2ikEctgJxnmzt?=
+ =?us-ascii?Q?VpLZ/b2F6MaI6pJYUDtK9DVFUy7I7oGHaLPqUNDgidoQOZ0vNnH+JVbWSEZ2?=
+ =?us-ascii?Q?z5fOZXtLua5RdoSJ+5VS13fvEgBdpvmMZjn9pmejye6ybTTzoTzDPC3nIvI/?=
+ =?us-ascii?Q?GJSAhZeePAuLmDnY9y06ACJPFpepjCQhYEVP9q/beJpu1A2u0hlJNNLg6hPu?=
+ =?us-ascii?Q?BHEEhYcYYocCJ9manRk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 06:32:36.6322
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: edc30697-96f8-4e3a-b008-08de2b234245
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB86.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR06MB5172
 
-Hi Amit,
+Patch 1: Add yaml file for Cix Sky1 resets
+Patch 2: Add driver codes for Cix Sky1 resets
+Patch 3: Add dts nodes for Cix Sky1 resets
 
-Thanks for your patches to enable the charger!
+v3 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+scripts/checkpatch.pl 000*.patch
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+- remove syscon
 
-> From: Amit Sunil Dhamne <amitsd@google.com>
->=20
-> Define specific bit-level masks for charger's registers and modify the
-> irq mask for charger irq_chip. Also, configure the max77759 interrupt
-> lines as active low to all interrupt registrations to ensure the
-> interrupt controllers are configured with the correct trigger type.
->=20
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-> ---
-> =C2=A0drivers/mfd/max77759.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 24 +++=
-++++++++++++++-------
-> =C2=A0include/linux/mfd/max77759.h |=C2=A0 9 +++++++++
-> =C2=A02 files changed, 26 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/mfd/max77759.c b/drivers/mfd/max77759.c
-> index 6cf6306c4a3b..5fe22884f362 100644
-> --- a/drivers/mfd/max77759.c
-> +++ b/drivers/mfd/max77759.c
-> @@ -256,8 +256,17 @@ static const struct regmap_irq max77759_topsys_irqs[=
-] =3D {
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct regmap_irq max77759_chgr_irqs[] =3D {
-> -	REGMAP_IRQ_REG(MAX77759_CHARGER_INT_1, 0, GENMASK(7, 0)),
-> -	REGMAP_IRQ_REG(MAX77759_CHARGER_INT_2, 1, GENMASK(7, 0)),
-> +	REGMAP_IRQ_REG(MAX77759_CHARGER_INT_1, 0,
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT_AICL |
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT_CHGIN |
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT_CHG |
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT_INLIM),
-> +	REGMAP_IRQ_REG(MAX77759_CHARGER_INT_2, 1,
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_BAT_OI=
-LO |
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_CHG_ST=
-A_CC |
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_CHG_ST=
-A_CV |
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_CHG_ST=
-A_TO |
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_CHG_ST=
-A_DONE),
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct regmap_irq_chip max77759_pmic_irq_chip =3D {
-> @@ -486,8 +495,8 @@ static int max77759_add_chained_irq_chip(struct devic=
-e *dev,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to get parent vIRQ(%d) for chi=
-p %s\n",
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 pirq, chip->name);
-> =C2=A0
-> -	ret =3D devm_regmap_add_irq_chip(dev, regmap, irq,
-> -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IRQF_ONESHOT | IRQF_SHARED, 0, =
-chip,
-> +	ret =3D devm_regmap_add_irq_chip(dev, regmap, irq, IRQF_ONESHOT |
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IRQF_SHARED | IRQF_TRIGGER_LOW,=
- 0, chip,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 data);
+v2 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+scripts/checkpatch.pl 000*.patch
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+- fix dt-bindings style
+- refine reset driver
 
-Please correct me if I'm wrong, but I don't think this makes sense for a
-chained IRQ in this case. What problem does this change fix?
+Gary Yang (3):
+  dt-bindings: reset: add sky1 reset controller
+  reset: cix: add support for cix sky1 resets
+  arm64: dts: cix: add support for cix sky1 resets
 
-> =C2=A0	if (ret)
-> =C2=A0		return dev_err_probe(dev, ret, "failed to add %s IRQ chip\n",
-> @@ -519,8 +528,9 @@ static int max77759_add_chained_maxq(struct i2c_clien=
-t *client,
-> =C2=A0
-> =C2=A0	ret =3D devm_request_threaded_irq(&client->dev, apcmdres_irq,
-> =C2=A0					NULL, apcmdres_irq_handler,
-> -					IRQF_ONESHOT | IRQF_SHARED,
-> -					dev_name(&client->dev), max77759);
-> +					IRQF_ONESHOT | IRQF_SHARED |
-> +					IRQF_TRIGGER_LOW, dev_name(&client->dev),
-> +					max77759);
+ .../bindings/reset/cix,sky1-rst.yaml          |  50 ++
+ arch/arm64/boot/dts/cix/sky1.dtsi             |  14 +
+ drivers/reset/Kconfig                         |   7 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-sky1.c                    | 426 ++++++++++++++++++
+ include/dt-bindings/reset/cix,sky1-rst-fch.h  |  42 ++
+ include/dt-bindings/reset/cix,sky1-rst.h      | 164 +++++++
+ 7 files changed, 704 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml
+ create mode 100644 drivers/reset/reset-sky1.c
+ create mode 100644 include/dt-bindings/reset/cix,sky1-rst-fch.h
+ create mode 100644 include/dt-bindings/reset/cix,sky1-rst.h
 
-dito.
+-- 
+2.49.0
 
-> =C2=A0	if (ret)
-> =C2=A0		return dev_err_probe(&client->dev, ret,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "MAX77759_MAXQ_INT_APCMDRESI failed\n"=
-);
-> @@ -633,7 +643,7 @@ static int max77759_probe(struct i2c_client *client)
-> =C2=A0		return dev_err_probe(&client->dev, -EINVAL,
-> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "invalid IRQ: %d\n", client->irq);
-> =C2=A0
-> -	irq_flags =3D IRQF_ONESHOT | IRQF_SHARED;
-> +	irq_flags =3D IRQF_ONESHOT | IRQF_SHARED | IRQF_TRIGGER_LOW;
-
-I don't believe IRQF_TRIGGER_LOW should be added here, as this is board-spe=
-cific.
-The polarity is meant to be set via DT (and the only current user of this d=
-river
-does so).
-
-> =C2=A0	irq_flags |=3D irqd_get_trigger_type(irq_data);
-
-That's what gets us the config from DT.
-
-> =C2=A0
-> =C2=A0	ret =3D devm_regmap_add_irq_chip(&client->dev, max77759->regmap_to=
-p,
-> diff --git a/include/linux/mfd/max77759.h b/include/linux/mfd/max77759.h
-> index c6face34e385..0ef29a48deec 100644
-> --- a/include/linux/mfd/max77759.h
-> +++ b/include/linux/mfd/max77759.h
-> @@ -62,7 +62,16 @@
-> =C2=A0#define MAX77759_CHGR_REG_CHG_INT=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0xb0
-> =C2=A0#define MAX77759_CHGR_REG_CHG_INT2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0xb1
-> =C2=A0#define MAX77759_CHGR_REG_CHG_INT_MASK=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 0xb2
-> +#define MAX77759_CHGR_REG_CHG_INT_AICL=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 BIT(7)
-> +#define MAX77759_CHGR_REG_CHG_INT_CHGIN=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 BIT(6)
-> +#define MAX77759_CHGR_REG_CHG_INT_CHG=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(4)
-> +#define MAX77759_CHGR_REG_CHG_INT_INLIM=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 BIT(2)
-> =C2=A0#define MAX77759_CHGR_REG_CHG_INT2_MASK=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 0xb3
-> +#define MAX77759_CHGR_REG_CHG_INT2_BAT_OILO=C2=A0=C2=A0=C2=A0=C2=A0 BIT(=
-4)
-> +#define MAX77759_CHGR_REG_CHG_INT2_CHG_STA_CC=C2=A0=C2=A0 BIT(3)
-> +#define MAX77759_CHGR_REG_CHG_INT2_CHG_STA_CV=C2=A0=C2=A0 BIT(2)
-> +#define MAX77759_CHGR_REG_CHG_INT2_CHG_STA_TO=C2=A0=C2=A0 BIT(1)
-> +#define MAX77759_CHGR_REG_CHG_INT2_CHG_STA_DONE BIT(0)
-
-Even if wireless out of scope, it'd still be nice to add macros for
-the remaining bits to make this complete and avoid having to update
-these again in case wireless support gets added in the future.
-
-Also, would be nice to keep existing style and indent the bits from
-the registers (see existing bit definitions in this file a few lines
-further up).
-
-Finally, can you add the bits below the respective register (0xb0 / 0xb1)
-please, to keep suffix meaningful, and to follow existing style for cases
-like this (see MAX77759_MAXQ_REG_UIC_INT1).
-
-
-Cheers,
-Andre'
 
