@@ -1,177 +1,186 @@
-Return-Path: <devicetree+bounces-241488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EA73C7EFA2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 06:07:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A02A5C7F019
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 06:44:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2630D3A3096
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 05:07:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58D1D3A5300
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 05:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43372C1586;
-	Mon, 24 Nov 2025 05:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="huGqx5uI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485C221773F;
+	Mon, 24 Nov 2025 05:44:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48AD629D29A
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 05:07:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0AF94A21
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 05:44:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763960827; cv=none; b=cMUFCXxHMy3RxOFU1kTwFrx6+8RQK1Cfcxx0ECSQdGu3A13Xmcp7HHNEO4kpovVhNhMnV4hOoJX0d4GaS8Nw/1VSVpjT15zxvdTlAVezIfRWYnoAgcsI8J7geMRrECMVBhKP8iHJq0YRBqb/RUdJcIKaz1S9bIiWjjxKiNbHpqY=
+	t=1763963056; cv=none; b=ilJpzWdOyt6H/UvCNk6FuIJvV0GiHriAREuKebzBwNBD8KlJXPT3jiMMT7q5PVwikhzsd4Cccc9HXJfllwVAKxVhoED/5RHJaLh7q/+LLUWJYZCZrowp2B22Vqz2FFexa9FYpYewtPZx2GmRIC0nhp1uY7av0n726buZAFvVggM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763960827; c=relaxed/simple;
-	bh=bHA6HQFx71grWgiZiVMPzotW5/atqoFERPTknZaJaPM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WwzjL1b9jwPLjRIH8jlco5jWGcMjdFGV1fbwcQnT++HQ9xMB7fMuALX65qS7V94tkUGpQIywARSJhEj8N0Rx42SQ53SnYrHC7M1Ji9+3rxU54c0Hds+k4i720Yd4zP7rDYBa4NHzfamUyB1WQv3eNQdSnq8aHMDdVFf50yqiTsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=huGqx5uI; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7b7828bf7bcso4747247b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 21:07:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763960825; x=1764565625; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PhcCOqzgmJN6F2HgJqP8P4Fbp35gJAyNyrXxslklYZ0=;
-        b=huGqx5uIKVRf6rRVNgAwpLRH9hHg/J967BGfyWnEldqfUmnfsQL32/T6ao/s6o3z9l
-         PJRdQFwwDNXcYY2oMhQi6tLruSlgMB3BWeptdbg+N6ewNnQhCrzxqLxoPO0xmeFDifea
-         Sy3xHELjnHgMbyKvcqmnekGN/iuWbNWRaQAH48G4+aNFMLBqMQAFQdkKvpXbS3oElkIU
-         +H/k8bURFhQon6jX6dL2F9dVvswTc3mnmuZz1V7Us1uKZqE001rY9VkymxrBphGC77fZ
-         kH4DWE0auHx80DD9hhvaNBAwbDlfwAeF72/GcUVaTtsQYfmNGE6d9sVhkNH7fXUVKbiH
-         aGQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763960825; x=1764565625;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PhcCOqzgmJN6F2HgJqP8P4Fbp35gJAyNyrXxslklYZ0=;
-        b=GR9IkQltIWbBit44xR/pyZ1+WJu0ewoBFcMyQeKP/13EABVg6neYarnxOOQ3QEW+eW
-         EUpTCpUADpRQuIg1nuPCkbYWrQkx2gL2MipB2PrB0ZPwh/fnW7vh2s3PasVn7sr6JJ3f
-         jNIsOjNGozyRL9IbGMwTUHgstQnRAIbJn+yI6ghiOXkVqKQnf2MkKpBSIprgYjeZ2pvz
-         +kROm2mJADfp6npmjbX3Ij27N9pWQp0BQBHE0BEEs/w2m4YrMDuAzDN5B9ZrLbe3RK8L
-         Z0GJR2VYuvXq4Wweyl9BxhkmNJy7jnpSzCWL3Ogf4INADaORI73ghhkCHHmM52EzzInv
-         C8rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWmjclKRZbyhjrjBpbq0v4ZFLhNAG4r2S6lcY3UGgyFeewpZTucseXnfZrLaf+2qm/5FH1nCvkAuPWL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9OGaHV253Aa6bQVWXbDHQZoMxi3Zdf0na2+azp7fxzwN0VwTp
-	3wnWfHanTWkC8pEhQGB1RH77d0VGbn9otSl4hFnKkHi5Pk2UEfvEYBnf
-X-Gm-Gg: ASbGncsgtanpVt+FPo8klnv0G8vXs7t2jUx/rbzsf/o4Fv6rT9mOD9aERLqXRDfoSNP
-	eJ3GaI5GWXYshpQcDAyoezA07o+/Ui7mhY4G9XMbGOw2iJmxHlc85aBY7vAvcUikycPWPoYnW/g
-	pna+xwnz+H64g4rt5FdsTshwFKCtQAC235mYUm8y4cJ0y5Jb1PDk3Idl0GbpPaXyET+EKGu7Pv8
-	D5VaCmKLtcmd+N1GM6Fc5ttkQT93RqWAKv3307O6fuAvNFEeAShzKjm9TcYNxq5a060Q9ws0caz
-	NXzuBTPLGpK+7U1Bf+uJcW8EWrJQO9UsB/PQn+UviXKLe3Ti79PCiYYUvIG4X1o+yiGWEpre1Xh
-	RfqOsBo3iQ4L9s4oIoI1TfR1PJkU0wHFv5mDW3GyZ3wAQ05ZPFozTBfHDzcNrgPn6hGLSYT2pqo
-	o5nvYkDqybhLrzVvwFoZIjh62QKj7cpQH2QpI=
-X-Google-Smtp-Source: AGHT+IEM2Kgb8TlQyecx0p4KgN/dW/pTxN9bPMT3jawCrbVzBpSC9udaTjUxa6J6NHq2xeaq5SEBAQ==
-X-Received: by 2002:a05:6a00:12e1:b0:7b9:e4af:719a with SMTP id d2e1a72fcca58-7c58c4a7d77mr10655880b3a.1.1763960825405;
-        Sun, 23 Nov 2025 21:07:05 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.244.251])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7c3f0b69e1dsm12949353b3a.51.2025.11.23.21.07.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 23 Nov 2025 21:07:04 -0800 (PST)
-Message-ID: <2e0a7e3e-eb20-449a-84a5-6d4e2f147ef9@gmail.com>
-Date: Mon, 24 Nov 2025 10:37:36 +0530
+	s=arc-20240116; t=1763963056; c=relaxed/simple;
+	bh=emgYiexNsPpCAO52ss4NuADEClHkd1fxuHGn3wixMGg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R958IXHNbXpm3LUCbNXlOyIS7n0ElhaqjsCfa8y0pqJO4UR65aBBOPN+HaqAOuFq8JXDOOdBMZd83HAhtICvS+tvj7P/p1YlyLmWyBnBGEQoTZ262yX6NlWTkIJwuPWg2cIy1uuHWJuB4/P7mGbupzfGJjTvxChyMXSdKr7XXaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vNPMn-000393-DJ; Mon, 24 Nov 2025 06:44:01 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vNPMm-0026fo-1L;
+	Mon, 24 Nov 2025 06:44:00 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vNPMm-003s7i-0p;
+	Mon, 24 Nov 2025 06:44:00 +0100
+Date: Mon, 24 Nov 2025 06:44:00 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Wei Fang <wei.fang@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Stefan Klug <stefan.klug@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
+Message-ID: <aSPwoBC3NftJYtEh@pengutronix.de>
+References: <aRW6CxvmIEqkMrfA@shell.armlinux.org.uk>
+ <20251114222654.GI30434@pendragon.ideasonboard.com>
+ <PAXPR04MB8510E17B2B8C612DD02175CE88D6A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <20251122072246.GA16239@pendragon.ideasonboard.com>
+ <aSGJHV9Sga2kBIBX@shell.armlinux.org.uk>
+ <20251123053802.GA25329@pendragon.ideasonboard.com>
+ <aSLLMMNkHnfwyO0y@shell.armlinux.org.uk>
+ <20251123152356.GF15447@pendragon.ideasonboard.com>
+ <aSNAP9G4cwRKvxng@shell.armlinux.org.uk>
+ <20251124001214.GI15447@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251118130814.3554333-1-tessolveupstream@gmail.com>
- <20251118130814.3554333-3-tessolveupstream@gmail.com>
- <ug4n5dpsg5v5jwhwmjaktvydhtfx6gagoum6lul2a27h44xexz@uvdu6ma42wei>
- <17085f43-22fc-4590-bf42-6869ca3d7bd3@gmail.com>
- <46k4uvtoit5tty3ojh7da7yliqz27tdcscu2co5tuowy33uicc@v3f3cojpwvzp>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <46k4uvtoit5tty3ojh7da7yliqz27tdcscu2co5tuowy33uicc@v3f3cojpwvzp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251124001214.GI15447@pendragon.ideasonboard.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+On Mon, Nov 24, 2025 at 09:12:14AM +0900, Laurent Pinchart wrote:
+> On Sun, Nov 23, 2025 at 05:11:27PM +0000, Russell King (Oracle) wrote:
+> > On Mon, Nov 24, 2025 at 12:23:56AM +0900, Laurent Pinchart wrote:
+> > > On Sun, Nov 23, 2025 at 08:52:00AM +0000, Russell King (Oracle) wrote:
+> > > > On Sun, Nov 23, 2025 at 02:38:02PM +0900, Laurent Pinchart wrote:
+> > > > > On Sat, Nov 22, 2025 at 09:57:49AM +0000, Russell King (Oracle) wrote:
+> > > > > > On Sat, Nov 22, 2025 at 04:22:46PM +0900, Laurent Pinchart wrote:
+> > > > > > > Hello Wei,
+> > > > > > > 
+> > > > > > > On Tue, Nov 18, 2025 at 01:50:55AM +0000, Wei Fang wrote:
+> > > > > > > > Sorry, I only have a little experience with DWMac, add Clark to help look
+> > > > > > > > at this issue.
+> > > > > > > 
+> > > > > > > Thank you.
+> > > > > > > 
+> > > > > > > I think we're getting close to having a good understanding of the
+> > > > > > > problem. I've debugged it as far as I could based on the information
+> > > > > > > available publicly. Let's try to get to the bottom of this issue, it
+> > > > > > > impacts quite a lot of people and it would be very nice to fix it
+> > > > > > > properly in mainline.
+> > > > > > > 
+> > > > > > > The short summary is that I'm experiencing an interrupt storm on IRQ 135
+> > > > > > > when EEE is enabled with the EQOS interface.
+> > > > > > > 
+> > > > > > > My current theory is that
+> > > > > > > 
+> > > > > > > - The lpi_intr_o signal of the EQOS is OR'ed into IRQ 135.
+> > > > > > > - The issue is triggerted by the PHY exiting LPI mode
+> > > > > > > - When it exits LPI mode, the PHY restarts generating the RX clock
+> > > > > > >   (clk_rx_i).
+> > > > > > > - The MAC detects exit from LPI, and asserts lpi_intr_o.
+> > > > > > > - Before the CPU has time to process the interrupt, the PHY enters LPI
+> > > > > > >   mode again, and stops generating the RX clock.
+> > > > > > > - The CPU processes the interrupt and reads the GMAC4_LPI_CTRL_STATUS
+> > > > > > >   registers. This does not clear lpi_intr_o as there's no clk_rx_i.
+> > > > > > 
+> > > > > > Please try setting STMMAC_FLAG_RX_CLK_RUNS_IN_LPI in dwmac-imx.c and
+> > > > > > see whether that changes the behaviour.
+> > > > > 
+> > > > > I have tested that and it worked like a charm ! I have submitted
+> > > > > https://lore.kernel.org/r/20251123053518.8478-1-laurent.pinchart@ideasonboard.com
+> > > > > 
+> > > > > That was quite an adventure. Thank you so much for all your support, I'm
+> > > > > not sure I would have managed without you (or at least I would have
+> > > > > needed way more time). I really really appreciate it.
+> > > > > 
+> > > > > If the above patch gets accepted, we will probably be able to remove the
+> > > > > eee-broken-* properties from the i.MX8MP device tree files (and possibly
+> > > > > from i.MX8DXL and i.MX93 as well). I have mentioned that below the
+> > > > > commit message of the patch, with a test procedure as it should be
+> > > > > tested on each board.
+> > > > 
+> > > > As stated in reply to that patch, while this may reduce the severity of
+> > > > the storm, I don't think it'll completely eliminate it.
+> > > > 
+> > > > I made the suggestion to set the flag as a test to confirm whether the
+> > > > lpi_intr_o is indeed the problem by ensuring that the receive domain is
+> > > > always clocked, and thus ensuring that the signal clears within four
+> > > > clock cycles, rather than an indefinite period should the remote end
+> > > > re-enter LPI mode quicky.
+> > > 
+> > > You're right. I've checked replied to the patch with the following
+> > > numbers.
+> > > 
+> > > 100TX link, eee-broken-* set: 7000 interrupts
+> > > 1000T link, eee-broken-* set: 2711 interrupts
+> > > 100TX link, eee-broken-* unset: 9450 interrupts
+> > > 1000T link, eee-broken-* unset: 6066 interrupts
+> > 
+> > Sadly, I think this means for iMX8MP, the correct answer is to disable
+> > EEE completely. What I was thinking when I brought this up is as follows
+> > and dwmac-imx.c can set STMMAC_FLAG_EEE_DISABLE for iMX8MP to prevent
+> > the use of EEE.
+> 
+> I suppose there's no way to disable EEE in the RX path while keeping it
+> enabled in the TX path ?
 
+In case of 100BaseTX it may work, but not for 1000BaseT - I guess, it is
+not worth it.
 
-On 21-11-2025 22:16, Dmitry Baryshkov wrote:
-> On Thu, Nov 20, 2025 at 01:02:39PM +0530, tessolveupstream@gmail.com wrote:
->>
->>
->> On 19-11-2025 15:55, Dmitry Baryshkov wrote:
->>> On Tue, Nov 18, 2025 at 06:38:14PM +0530, Sudarshan Shetty wrote:
->>>> Add the device tree for the QCS615-based Talos EVK platform. The
->>>> platform is composed of a System-on-Module following the SMARC
->>>> standard, and a Carrier Board.
->>>>
->>>> The Carrier Board supports several display configurations, HDMI and
->>>> LVDS. Both configurations use the same base hardware, with the display
->>>> selection controlled by a DIP switch.
->>>>
->>>> To avoid duplication, use an include file, talos-evk-cb.dtsi, which
->>>> defines the interfaces and peripherals common to both display
->>>> variants. Two additional DTs (e.g. talos-evk and talos-evk-lvds)
->>>> can describe the selected display configuration.
->>>>
->>>> The initial device tree includes support for:
->>>> - CPU and memory
->>>> - UART
->>>> - GPIOs
->>>> - Regulators
->>>> - PMIC
->>>> - Early console
->>>> - AT24MAC602 EEPROM
->>>> - MCP2515 SPI to CAN
->>>> - ADV7535 DSI-to-HDMI bridge
->>>> - DisplayPort interface
->>>
->>> You got the question for v6, responded there but didn't update commit
->>> message. What is not enabled here? E.g. why isn't venus enabled?
->>
->> In earlier patch, we have added 'Wi-Fi/BT and ethernet is not 
->> supported'as a commit message. Later,based on 
->> Krzysztof Kozlowski’s review comments, we removed the same. 
->> Please find the below review comment for your reference.
->> https://lore.kernel.org/all/20251028053248.723560-1-tessolveupstream@gmail.com/T/#mda58996a7abac13780f8ce2cd49b84c32d4c50a6
->>
->> We are not clear whether 'Wi-Fi/BT and ethernet is not supported'
->> should be added back to the commit message or not. 
->> Could you please confirm your preference?
-> 
-> If you are unsure, you can add this info to the cover letter. Or you can
-> write something like 'Ethernet and WiFi/BT are not (yet) supported.'.
+The other question is: will it work if SmartEEE is active?  If I recall
+it correctly, your board is using RTL PHY with SmartEEE support. Will it
+work if we disable LPI on the MAC side, but keep announcing EEE on the
+PHY side? It will be good to test it as long as you have the reproducer.
 
-Okay, we will add the info 'Ethernet and WiFi/BT are not (yet) 
-supported' to the cover letter.
-> 
->>
->> Venus is enabled in this patch.
-> 
-> Ack, excuse me.
-> 
->>>
->>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/Makefile           |   1 +
->>>>  arch/arm64/boot/dts/qcom/talos-evk-cb.dtsi  |  56 +++
->>>>  arch/arm64/boot/dts/qcom/talos-evk-som.dtsi | 447 ++++++++++++++++++++
->>>>  arch/arm64/boot/dts/qcom/talos-evk.dts      |  94 ++++
->>>>  4 files changed, 598 insertions(+)
->>>>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-cb.dtsi
->>>>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
->>>>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
->>>>
->>>
->>
-> 
-
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
