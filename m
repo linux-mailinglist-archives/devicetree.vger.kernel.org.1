@@ -1,122 +1,275 @@
-Return-Path: <devicetree+bounces-241513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57AA2C7F69A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:43:59 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DECBAC7FFFA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:52:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D482334499E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:43:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C2F4A4E3799
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:52:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA2F62EC557;
-	Mon, 24 Nov 2025 08:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF722F99BD;
+	Mon, 24 Nov 2025 10:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="WoPfX9Uk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FMqKVtnH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7262E2EB5D4
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 08:43:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0E02F8BD0
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 10:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763973834; cv=none; b=fY6IoF6coNnimHgmldM/SjHMBdqnFC6FU5MNuL1ijsQli6feT6gKiFRVj/18KOx9c+CY2sWWNcrMzB7QW7s3i6PZ0EV4HM5GqScqW5Fm9NDiUbjjLLizY19PcmHW+wT4JK/tsF0/Xb4B6U9cQzC6upvYT6kp2ZGRlw9oGY4Hm8A=
+	t=1763981559; cv=none; b=guHQFlgU66B8ucBbQWmEzhyH1HJG8ydgjd2BJ7W0NV9qrfOtFhV4o2myvag2Gfe5wH16x3JKBN7TXfWVF0RMQWRGYhV1gVxCssEcIzGvsAZYmSLFBViHHbIcTgOUbnjbHyIXINCBVTqFavNDq6UZPg822UaDiwvEarv9CJSIxyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763973834; c=relaxed/simple;
-	bh=Kws+6hHqLaE358GJ8oQhHsOD8lXagFw7+j3g/9Ifp28=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E75sBnB462I6sVFFzEHypjM9D3G874zsmbm/j620e2PqJoNli57WJtsTT1qgS6DGvFTyBYu+V/sMTviZ99xNAf0OTjl2lesVeYYV7nrJefIjmmhAKQtVzPOzdnnjVc8+DH0vp0/VPXLpN2zsrSSMIuLXUgNm1HQYDVgrfRCPRLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=WoPfX9Uk; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=lsszvakFMADLxt1ailSrb4YFGJxrr+DQEL8j+TCc3fo=; b=WoPfX9Uk8qnphiu8EMJ3Wlfh16
-	fPLyXjYCpwt/dCPT6kNlprnhYXeKIRcWI5lhGA5SPVpmDY4zIb+SQNvHNwTY7q1amDotdwNRZhwxN
-	XRWp2OiV7dOsu6nawrJm5uDsuE/Qg+77SskyUXygzsRmKeFn1MIdaJ3clWI9SMhZovhqHL7kUzk9p
-	WfNK2S01Df+Xmvd4kwQQSpM6azjYTOP6sFMdetNhUpmSTj7HUF2mnA+LyLSNsvIUdWY1bxfsjEcRB
-	ZFdOIpcz85N32G0iv8F/sSNWBrTGJI99SHb2i9oKctm/ypWRfLEP5uKWETLRfla8Tr1hJn6MGpEQh
-	IgHOebmA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40182)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vNSAl-000000001TY-3flY;
-	Mon, 24 Nov 2025 08:43:47 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vNSAj-0000000088I-3hgz;
-	Mon, 24 Nov 2025 08:43:45 +0000
-Date: Mon, 24 Nov 2025 08:43:45 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Wei Fang <wei.fang@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Disable EEE for 1000T
-Message-ID: <aSQawUazSYykHeT4@shell.armlinux.org.uk>
-References: <aRW6CxvmIEqkMrfA@shell.armlinux.org.uk>
- <20251114222654.GI30434@pendragon.ideasonboard.com>
- <PAXPR04MB8510E17B2B8C612DD02175CE88D6A@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <20251122072246.GA16239@pendragon.ideasonboard.com>
- <aSGJHV9Sga2kBIBX@shell.armlinux.org.uk>
- <20251123053802.GA25329@pendragon.ideasonboard.com>
- <aSLLMMNkHnfwyO0y@shell.armlinux.org.uk>
- <20251123152356.GF15447@pendragon.ideasonboard.com>
- <aSNAP9G4cwRKvxng@shell.armlinux.org.uk>
- <20251124001214.GI15447@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1763981559; c=relaxed/simple;
+	bh=MyhVfaLuUMB4FJ2DvvqxwnUvFdn4Yuvt+apgQWbex0s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oZDDQ1gI/Ah937/bjuSmVn8y0h5GzZc/UIM05NzdRn5eTgVYKfxIjkILxXbYC4q6k2wwl4l5jmtHXcp39iynjexchaT3rAnXNnAIMfs5xA+jCuBlJaYGoiIeyhY/PyikHXp/6/KC5TiM3kmVTcZuenbrF+LvWs90OeYVWNFpbkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FMqKVtnH; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-596a055b1b8so3681583e87.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 02:52:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1763981555; x=1764586355; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UvxeS/74nBAEFSf4nVKv65BSIxiE58qrGcTM82uuMOU=;
+        b=FMqKVtnHkOTeXLAWnV4dLBvaVWgmRwVgfFCn+oz2C59WJDBP/bWVapRrPCC/nZ5QuW
+         4bUkZnBQ39esRmGMxpXkJmAOsu5LNGGWi47yqFnEDkEZek/zIx2vTmHBDjli1+7VAGtv
+         bnqMJo8KCGx6nUskCp0Lf9e34BfOJdHDyjQA8hiPw6ydBgJCxLzIeuPj27cLeTDMA3jh
+         KfH8i1WpbR4ulKg3EbhqEyR8Auf8jIyBTH7y3yvEBj0zAgRb2xNwaBsi9dMRzaNuBPRP
+         R2geLXembt8YGRfOhBweuYVhsG4o7/8T6etWl4wCABiUu8VupCCpXHLL1vSzNzzI0Lvh
+         Mk2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763981555; x=1764586355;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UvxeS/74nBAEFSf4nVKv65BSIxiE58qrGcTM82uuMOU=;
+        b=aMNUOXMf/WN+9v1ETGNA6ITEIwqXCqUSMK7xI3eGbP5tCIXbKz8m0AVB8zD1AIRG75
+         onX/an6coXj7MQ2w2vAVZxZ0Eo9jOjfGxOJH2izr9BcRxf1HGD4NFaOptdnqMOHrDqGd
+         sNsiVEV8uMWtm25EEX9FLUHZTVqO+ewGrCvgTQwdcJE6Ahj/NMhKXK4j8Cb8jk6KEgWm
+         iVLkRNZA3khB1pf/X9zorZQqWYnzhAoBbGfV5JXkC1ZQw/bXD3iefEJpc+3SMTpfhMzl
+         bVBqzYss1rXajUn7uTqeE05AleYFquWA1eh5edxtAqhJNpXFcxyGseLCRDHExgIUCaFn
+         rVQw==
+X-Forwarded-Encrypted: i=1; AJvYcCW0ozTaA8rLuVGzB+wa0vqAL/mkw7cLOFfVZzF/ljgATpcylcF6FdkJ26aqspw8CetX/r9UcccDZn0I@vger.kernel.org
+X-Gm-Message-State: AOJu0YxshEc2Pu2ZXbKtXdfOQClK3TqTXXsXfqWiV8lBzR2b/aBFlGiO
+	GARWzTVlY8hG1EQxAju7r4PtbJNbRV+fgYAgZ/XDDWBc6EokyGFcFMG7leOMynTr
+X-Gm-Gg: ASbGncvmbTcZHxeJHwtKu4Odcgt+GRXOZxPLOFZEiXSigEzqzhzAfg7q9wYl4ALBBwi
+	PqpYoBrSRzudaoSX5AGkh+Lzu6+9l1jUwAcRR/cilxzrkt7BTqy9AOXdEbMfZIsNScJX8TdOfPp
+	En2+8fDvcPgUiB2MlF+iYO2v7QvYw+2FLjXBmQVOwKStEr7WZhAjm2J2NeuLauLs0Yw2ytWYiVQ
+	ML03PSbFpjeXTA+z9YvFEdnIe3bj6HkqPgzI1KQMs5wDHY5t75eKpgrucKUwugMjbCf0xB3cBF/
+	6P33Sos0e4V2tmPtFbacboo9DkYmUI9FBvQvbj1h+VxOGzRubhsWyxHcuyT0rlhSaHB1ku8K78X
+	basESAjzbF+cVSe64uOD9HDhrSoHYux7ejK53U0nUFaOHZ72pGcTHTaUVnsB3kVSMMByQ+LF+qx
+	Pj3eSRgejLcBkylBTb1TXM74tA
+X-Google-Smtp-Source: AGHT+IGzb+yApYHtjewkoQzx7FPWIVvgfb9lCElhP6A4EWOQNvayCoMjjLyY5L5QUpilRr8Cj3haxw==
+X-Received: by 2002:a05:6512:104a:b0:595:90ee:f476 with SMTP id 2adb3069b0e04-596a3edab46mr4292946e87.28.1763974136131;
+        Mon, 24 Nov 2025 00:48:56 -0800 (PST)
+Received: from [10.38.18.76] ([213.255.186.37])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5969dbc5c5dsm4019850e87.79.2025.11.24.00.48.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Nov 2025 00:48:55 -0800 (PST)
+Message-ID: <6ee209b3-4d7a-45a8-bd65-6a51730d458d@gmail.com>
+Date: Mon, 24 Nov 2025 10:48:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251124001214.GI15447@pendragon.ideasonboard.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] Revert "treewide: Fix probing of devices in DT
+ overlays"
+To: Saravana Kannan <saravanak@google.com>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Len Brown <lenb@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: kernel-team@android.com, Wolfram Sang <wsa@kernel.org>,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-acpi@vger.kernel.org, Matti Vaittinen <mazziesaccount@gmail.com>
+References: <20240411235623.1260061-1-saravanak@google.com>
+ <20240411235623.1260061-2-saravanak@google.com>
+Content-Language: en-US
+From: Kalle Niemi <kaleposti@gmail.com>
+In-Reply-To: <20240411235623.1260061-2-saravanak@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Nov 24, 2025 at 09:12:14AM +0900, Laurent Pinchart wrote:
-> On Sun, Nov 23, 2025 at 05:11:27PM +0000, Russell King (Oracle) wrote:
-> > On Mon, Nov 24, 2025 at 12:23:56AM +0900, Laurent Pinchart wrote:
-> > > You're right. I've checked replied to the patch with the following
-> > > numbers.
-> > > 
-> > > 100TX link, eee-broken-* set: 7000 interrupts
-> > > 1000T link, eee-broken-* set: 2711 interrupts
-> > > 100TX link, eee-broken-* unset: 9450 interrupts
-> > > 1000T link, eee-broken-* unset: 6066 interrupts
-> > 
-> > Sadly, I think this means for iMX8MP, the correct answer is to disable
-> > EEE completely. What I was thinking when I brought this up is as follows
-> > and dwmac-imx.c can set STMMAC_FLAG_EEE_DISABLE for iMX8MP to prevent
-> > the use of EEE.
+On 4/12/24 02:56, Saravana Kannan wrote:
+> This reverts commit 1a50d9403fb90cbe4dea0ec9fd0351d2ecbd8924.
 > 
-> I suppose there's no way to disable EEE in the RX path while keeping it
-> enabled in the TX path ?
+> While the commit fixed fw_devlink overlay handling for one case, it
+> broke it for another case. So revert it and redo the fix in a separate
+> patch.
+> 
+> Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays")
+> Reported-by: Herve Codina <herve.codina@bootlin.com>
+> Closes: https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=9F9rZ+-KzjOg@mail.gmail.com/
+> Closes: https://lore.kernel.org/all/20240221095137.616d2aaa@bootlin.com/
+> Closes: https://lore.kernel.org/lkml/20240312151835.29ef62a0@bootlin.com/
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>   drivers/bus/imx-weim.c    | 6 ------
+>   drivers/i2c/i2c-core-of.c | 5 -----
+>   drivers/of/dynamic.c      | 1 -
+>   drivers/of/platform.c     | 5 -----
+>   drivers/spi/spi.c         | 5 -----
+>   5 files changed, 22 deletions(-)
+> 
+> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
+> index 837bf9d51c6e..caaf887e0ccc 100644
+> --- a/drivers/bus/imx-weim.c
+> +++ b/drivers/bus/imx-weim.c
+> @@ -331,12 +331,6 @@ static int of_weim_notify(struct notifier_block *nb, unsigned long action,
+>   				 "Failed to setup timing for '%pOF'\n", rd->dn);
+>   
+>   		if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
+> -			/*
+> -			 * Clear the flag before adding the device so that
+> -			 * fw_devlink doesn't skip adding consumers to this
+> -			 * device.
+> -			 */
+> -			rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>   			if (!of_platform_device_create(rd->dn, NULL, &pdev->dev)) {
+>   				dev_err(&pdev->dev,
+>   					"Failed to create child device '%pOF'\n",
+> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
+> index a6c407d36800..a250921bbce0 100644
+> --- a/drivers/i2c/i2c-core-of.c
+> +++ b/drivers/i2c/i2c-core-of.c
+> @@ -178,11 +178,6 @@ static int of_i2c_notify(struct notifier_block *nb, unsigned long action,
+>   			return NOTIFY_OK;
+>   		}
+>   
+> -		/*
+> -		 * Clear the flag before adding the device so that fw_devlink
+> -		 * doesn't skip adding consumers to this device.
+> -		 */
+> -		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>   		client = of_i2c_register_device(adap, rd->dn);
+>   		if (IS_ERR(client)) {
+>   			dev_err(&adap->dev, "failed to create client for '%pOF'\n",
+> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> index 4d57a4e34105..19a1a38554f2 100644
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
+> @@ -224,7 +224,6 @@ static void __of_attach_node(struct device_node *np)
+>   	np->sibling = np->parent->child;
+>   	np->parent->child = np;
+>   	of_node_clear_flag(np, OF_DETACHED);
+> -	np->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
+>   
+>   	raw_spin_unlock_irqrestore(&devtree_lock, flags);
+>   
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 389d4ea6bfc1..efd861fa254f 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -743,11 +743,6 @@ static int of_platform_notify(struct notifier_block *nb,
+>   		if (of_node_check_flag(rd->dn, OF_POPULATED))
+>   			return NOTIFY_OK;
+>   
+> -		/*
+> -		 * Clear the flag before adding the device so that fw_devlink
+> -		 * doesn't skip adding consumers to this device.
+> -		 */
+> -		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>   		/* pdev_parent may be NULL when no bus platform device */
+>   		pdev_parent = of_find_device_by_node(rd->dn->parent);
+>   		pdev = of_platform_device_create(rd->dn, NULL,
+> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> index ff75838c1b5d..17cd417f7681 100644
+> --- a/drivers/spi/spi.c
+> +++ b/drivers/spi/spi.c
+> @@ -4761,11 +4761,6 @@ static int of_spi_notify(struct notifier_block *nb, unsigned long action,
+>   			return NOTIFY_OK;
+>   		}
+>   
+> -		/*
+> -		 * Clear the flag before adding the device so that fw_devlink
+> -		 * doesn't skip adding consumers to this device.
+> -		 */
+> -		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
+>   		spi = of_register_spi_device(ctlr, rd->dn);
+>   		put_device(&ctlr->dev);
+>   
+Hello,
 
-Sadly not, sorry.
+Test system testing drivers for ROHM ICs bisected this commit to cause 
+BD71847 drivers probe to not be called.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+The devicetree blob overlay describing bd71847 enables I2C1 bus on 
+BeagleBone Black aswell.
+
+Probe is called when the driver is used with HW connected to I2C2 bus. 
+I2C2 bus is enabled before overlaying devicetree blobs.
+
+
+---- BD71847 Devicetree overlay source ----
+
+/dts-v1/;
+/plugin/;
+
+/{ /* this is our device tree overlay root node */
+
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
+	part-number = "BBB-I2C1";
+  	version = "00A0";
+
+	fragment@0 {
+		target = <&am33xx_pinmux>; // this is a link to an already defined 
+node in the device tree, so that node is overlayed with our modification
+
+		__overlay__ {
+			i2c1_pins: pinmux_i2c1_pins {
+				pinctrl-single,pins = <
+           			0x158 0x72 /* spi0_d1.i2c1_sda */
+           			0x15C 0x72 /* spi0_cs0.i2c1_sdl */
+         			>;
+			};
+		};
+	};
+....
+....
+
+	fragment@2 {
+		target = <&i2c1>;
+
+		__overlay__ {
+			pinctrl-0 = <&i2c1_pins>;
+			clock-frequency = <100000>;
+			status = "okay";
+
+			pmic: pmic@4b { /* the "test" defined as child of the i2c1 bus */
+				compatible = "rohm,bd71847";
+				reg = <0x4b>;
+				....
+				....
+}; /* root node end */
+
+---- END OF BD71847 Devicetree overlay source ----
+
+Reverting this patch from linux-next from last friday fixes the issue.
+
+BR
+Kalle Niemi
 
