@@ -1,48 +1,41 @@
-Return-Path: <devicetree+bounces-241510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E843EC7F4FE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:02:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 332D6C7F51F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:06:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C80624E2CC0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:02:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0F7A3A44F9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D84E325A2DE;
-	Mon, 24 Nov 2025 08:02:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008CF2E03E6;
+	Mon, 24 Nov 2025 08:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K8rk90lD"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="KJvSMQWn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m21470.qiye.163.com (mail-m21470.qiye.163.com [117.135.214.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D561ACEAF;
-	Mon, 24 Nov 2025 08:02:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB20325B1D2;
+	Mon, 24 Nov 2025 08:06:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.214.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763971339; cv=none; b=VdEI1YksgQiBdi+1WJK1WAAhL2uPt1rF0EdzjGOwX2foAH7G9+R9I0OjeZTF5Wr6Fn1NlydID0I927F7Hm6BO7cv5X1oH+aMlwo5PLaKRDQYOuryxvfjghsOj+6L1pUKnclz1nvC3FcDjBvOWm1JD5y76+w+/BAhkk+bW3QutDc=
+	t=1763971569; cv=none; b=eAkTzoJCMnLtJeTHAk808NRCL1WFD/e5EjKhnzqjrXs/APgNz6PsLbyZzSf+75XWdIrpXJ0dlQT8dAIagKvbShsFk6uQgQd+oxwgh6v5wS731W2Qz7r+fTuD9ZaoL3DRTJgTnMjVhe0opP6vdfFZVQ5ypZaqYeTwZbROi2HFR44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763971339; c=relaxed/simple;
-	bh=afdsnRX4HBFUrqkr3Nb8P1K/tWzrPpFvDPjg8LCT/dU=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bFwlnVieGgX9lxGryINFOI0nNzkQqkyc9XVcAsAPHmFnhkLD7nS8C6jKWJ7Aj6u1OP9EFu/OLv5E9C1vtlB23Q7jA6jVyEZ0ybkb9BLwD2RqE/RXXBz7Ryf8gEGiGEFRPYz6+zV1F6AcHDkEUxXBh3jhJkv/7NNom/yf1CGdpCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K8rk90lD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 370AEC4CEF1;
-	Mon, 24 Nov 2025 08:02:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763971339;
-	bh=afdsnRX4HBFUrqkr3Nb8P1K/tWzrPpFvDPjg8LCT/dU=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=K8rk90lDVmouQkAu9oMo38pu1ANSPw5P++jMK7zdvhruFxU90mrkKVyquiDONxHrG
-	 snJo6TXJacgJcFxeoer8UI9zZ9wdoyvc2yJdO2f8tXJzRWBhRzkdI2oBzMYdZYnlxb
-	 6wPGc5I5arCOyrjmVIiy8OQk9VnqxXiSYBSz4+/IttWR+Q0J+hk4C/AqiIK23oUMZl
-	 xMzDWrD+zDFXpCWSmqVMAP5Pjcqogk1jSZmxm+AJuH6h6ToxOF2kdGeQXjC+cb8W5q
-	 yTGrNGRBWwXOirtOxrVxxWOzn5ZE59gtYnKU9b4GxjrnCYHzwgDRLjLMSRsRhcnYbm
-	 KfzFCJK0rMhQA==
-Message-ID: <74d6319c-535f-4409-a3c4-299ab946af54@kernel.org>
-Date: Mon, 24 Nov 2025 09:02:14 +0100
+	s=arc-20240116; t=1763971569; c=relaxed/simple;
+	bh=qPNY91SDrIBCELOETUIAMUZaWMsxc902AJdatxGf/3E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qToSDNskq+fzrvs6/k3Rd+x4isbvp1zxBpL0QLZlnOCAPXpDNAzZHEX/vBrRY1ck4Z6mLjrEOwpBiwuLjPl3R1KUfi90J/BBshC91/L0Ht6PVHbFJMvC+7jIFCfAa0r+D4l+kbunxjUXktwHTY9IfDTZH1p7pCq1zlUgVyjgNBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=KJvSMQWn; arc=none smtp.client-ip=117.135.214.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.51] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2aa88f2fe;
+	Mon, 24 Nov 2025 16:05:54 +0800 (GMT+08:00)
+Message-ID: <a80483de-518d-45d5-b46a-9b70cca5b236@rock-chips.com>
+Date: Mon, 24 Nov 2025 16:05:53 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,239 +43,126 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v18 1/3] dt-bindings: leds: add TI/National Semiconductor
- LP5812 LED Driver
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nam Tran <trannamatk@gmail.com>
-Cc: lee@kernel.org, pavel@kernel.org, gregkh@linuxfoundation.org,
- rdunlap@infradead.org, christophe.jaillet@wanadoo.fr, krzk+dt@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
- linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20251123191042.116917-1-trannamatk@gmail.com>
- <20251123191042.116917-2-trannamatk@gmail.com>
- <20251124-resolute-wrasse-of-wholeness-aed84d@kuoka>
+Subject: Re: [PATCH v10 01/11] usb: typec: Add notifier functions
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Chaoyi Chen <kernel@airkyi.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20251120022343.250-1-kernel@airkyi.com>
+ <20251120022343.250-2-kernel@airkyi.com>
+ <2025112102-laurel-mulch-58e4@gregkh>
+ <462ad1bd-7eec-4f26-b383-96b049e14559@rock-chips.com>
+ <2025112402-unopposed-polio-e6e9@gregkh>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251124-resolute-wrasse-of-wholeness-aed84d@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <2025112402-unopposed-polio-e6e9@gregkh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9ab4e5daa803abkunma55763e93ea70d
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkxISlZNSktCGh9IGkoaTk9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
+	5VSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=KJvSMQWnhpc4p7xme6emDFe2++rK44pn+ANOLRzg5kiLyjx+/4+yFvS6QcBrrxdhALgpyzrKiSpzwKvymkjs34dszmAkArFI9nKrFKxGwSzH8jEZmbae68cvtp3xcYfv9VmIj6xu/V65TudwLH2r6q/J/2emA/s0k+m7iBbXtjc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=Dm0AUIAI3rBdsSDVXq01oojJAQeP5JCEx7XZOEM8cDU=;
+	h=date:mime-version:subject:message-id:from;
 
-On 24/11/2025 08:57, Krzysztof Kozlowski wrote:
-> On Mon, Nov 24, 2025 at 02:10:40AM +0700, Nam Tran wrote:
->> The LP5812 is a 4x3 RGB LED driver with an autonomous animation
->> engine and time-cross-multiplexing (TCM) support for up to 12 LEDs
->> or 4 RGB LEDs. It supports both analog (256 levels) and PWM (8-bit)
->> dimming, including exponential PWM for smooth brightness control.
+Hi Greg,
+
+On 11/24/2025 3:10 PM, Greg Kroah-Hartman wrote:
+
+> On Mon, Nov 24, 2025 at 09:40:03AM +0800, Chaoyi Chen wrote:
+>> Hi Greg,
 >>
->> Signed-off-by: Nam Tran <trannamatk@gmail.com>
->> ---
->>  .../devicetree/bindings/leds/ti,lp5812.yaml   | 251 ++++++++++++++++++
->>  MAINTAINERS                                   |   6 +
->>  2 files changed, 257 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/leds/ti,lp5812.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/leds/ti,lp5812.yaml b/Documentation/devicetree/bindings/leds/ti,lp5812.yaml
->> new file mode 100644
->> index 000000000000..ea9d6ae92344
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/leds/ti,lp5812.yaml
->> @@ -0,0 +1,251 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/leds/ti,lp5812.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TI LP5812 4x3 Matrix RGB LED Driver with Autonomous Control
->> +
->> +maintainers:
->> +  - Nam Tran <trannamatk@gmail.com>
->> +
->> +description: |
->> +  The LP5812 is a 4x3 matrix RGB LED driver with I2C interface
->> +  and autonomous animation engine control.
->> +  For more product information please see the link below:
->> +  https://www.ti.com/product/LP5812#tech-docs
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,lp5812
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  ti,scan-mode:
->> +    description: |
->> +      Selects the LED scan mode of the LP5812. The device supports
->> +      three modes:
->> +        - Direct-drive mode (by default if 'ti,scan-mode' is omitted)
->> +        drives up to 4 LEDs directly by internal current sinks (LED0-LED3).
->> +        - TCM-drive mode ("tcm:<n>:<order...>") drives up to 12 LEDs
->> +        (4 RGB) using 1-4 scan multiplexing. The <n> specifies the number
->> +        of scans (1-4), and <order...> defines the scan order of the outputs.
->> +        - Mix-drive mode ("mix:<n>:<direct>:<order...>") combines
->> +        direct-drive and TCM-drive outputs. The <n> specifies the number
->> +        of scans, <direct> selects the direct-drive outputs, and <order...>
->> +        defines the scan order.
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    pattern: '^(tcm|mix):[1-4](:[0-3]){1,4}$'
->> +
->> +  vcc-supply:
->> +    description: Regulator providing power to the 'VCC' pin.
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
->> +
->> +patternProperties:
->> +  "^led@[0-3]$":
->> +    type: object
->> +    $ref: common.yaml#
->> +    unevaluatedProperties: false
->> +
->> +    properties:
->> +      reg:
->> +        minimum: 0
->> +        maximum: 3
->> +
->> +    required:
->> +      - reg
->> +      - label
-> 
-> No, why? That's legacy property and color and function are preferred.
-> 
->> +
->> +  "^multi-led@[4-7]$":
->> +    type: object
->> +    $ref: leds-class-multicolor.yaml#
->> +    unevaluatedProperties: false
->> +
->> +    properties:
->> +      reg:
->> +        minimum: 4
->> +        maximum: 7
->> +
->> +      "#address-cells":
->> +        const: 1
->> +
->> +      "#size-cells":
->> +        const: 0
->> +
->> +    patternProperties:
->> +      "^led@[4-9a-f]$":
->> +        type: object
->> +        $ref: common.yaml#
->> +        unevaluatedProperties: false
->> +
->> +        properties:
->> +          reg:
->> +            minimum: 4
->> +            maximum: 15
->> +
->> +        required:
->> +          - reg
->> +
->> +    required:
->> +      - reg
->> +      - label
-> 
-> Why? Same problems.
-> 
-> Please stop making continuous changes to the binding.
-> 
-> 
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/leds/common.h>
->> +
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        led-controller@1b {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +            compatible = "ti,lp5812";
->> +            reg = <0x1b>;
->> +            ti,scan-mode = "tcm:4:0:1:2:3";
->> +            vcc-supply = <&vdd_3v3_reg>;
->> +
->> +            led@0 {
->> +                reg = <0x0>;
->> +                label = "LED0";
->> +                led-max-microamp = <25500>;
->> +            };
->> +
->> +            led@1 {
->> +                reg = <0x1>;
->> +                label = "LED1";
-> 
-> Completely useless label... You require labels, so people need to write
-> something but since they do not know what to write they call LED 1 a
-> LED1. This is just not helping.
-> 
-> Use color and function properties. Same everywhere else.
+>> On 11/21/2025 10:07 PM, Greg Kroah-Hartman wrote:
+>>> On Thu, Nov 20, 2025 at 10:23:33AM +0800, Chaoyi Chen wrote:
+>>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>>
+>>>> Some other part of kernel may want to know the event of typec bus.
+>>> Be specific, WHAT part of the kernel will need to know this?
+>> For now, it is DRM.
+> Then say this.
+
+Okay, please refer to the discussion below.
+
 >
+>>> And why a new notifier, why not just use the existing notifiers that you
+>>> already have?  And what is this going to be used for?
+>> We have discussed this before, but the current bus notifier cannot achieve the expected notification [0].
+>>
+>> [0] https://lore.kernel.org/all/aPsuLREPS_FEV3DS@kuha.fi.intel.com/
+> Then you need to document the heck out of this in the changelog text.
+> But I'm still not quite understanding why the bus notifier does not work
+> here, as you only want this information if the usb device is bound to
+> the bus there, you do not want to know this if it did not complete.
+>
+> That thread says you want this not "too late", but why?  What is the
+> problem there, and how will you handle your code getting loaded after
+> the typec code is loaded?  Notifier callbacks don't work for that
+> situation, right?
 
-And now I went to older versions and I see they were correct - you had
-color! You replace correct code with wrong one and drop review. This
-patchset is not really improving.
+In fact, the typec_register_altmode() function generates two registered events. The first one is the registered event of the port device,
 
-BTW, You actually received review also at v6, so this was reviewed 3 or
-more times. Way too many times.
+and the second one is the registered event of the partner device. The second one event only occurs after a Type-C device is inserted.
 
-Best regards,
-Krzysztof
+The bus notifier event does not actually take effect for the port device, because it only sets the bus for the partner device:
+
+     /* The partners are bind to drivers */
+     if (is_typec_partner(parent))
+         alt->adev.dev.bus = &typec_bus;
+
+
+I hope it's not too late. In fact, the notifier here will notify DRM to establish a bridge chain.
+
+The downstream DP controller driver hopes to obtain the fwnode of the last-level Type-C device
+
+through this bridge chain to create a DRM connector. And when a device is inserted,
+
+drivers/usb/typec/altmodes/displayport.c can notify the HPD (Hot Plug Detect) event.
+
+If relying on the second event, the bridge chain may never be established, and the operations of the DP driver will be
+
+always deferred. Furthermore, other parts of the display controller driver will also be deferred accordingly.
+
+>
+>>> Notifiers are a pain, and should almost never be added.  Use real
+>>> function calls instead.
+>> In v6, I used direct function calls, but had to switch to notifiers because couldn't resolve the dependencies between DRM and Type-C [1]. Do you have any good ideas? Thank you.
+> Only allow this DRM code to be built if typec code is enabled, do NOT
+> use a select, use a depends in the drm code.
+
+Sorry, I didn't get your point. Does this mean that the current notifiers approach still needs to be changed to direct function calls?
+
+If so, then based on the previous discussion, typec should not depend on any DRM components. Does this mean that we should add the if (IS_REACHABLE(CONFIG_DRM_AUX_BRIDGE)) before the direct function call?
+
+Additionally, the current version of CONFIG_DRM_AUX_BRIDGE is selected by the DP driver in patch9.
+
+-- 
+Best,
+Chaoyi
+
 
