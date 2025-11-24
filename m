@@ -1,254 +1,176 @@
-Return-Path: <devicetree+bounces-241738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5A2C81C7F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:04:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78629C81C94
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 18:04:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D36A3AA801
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:02:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E2113ABA74
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 17:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75413191CE;
-	Mon, 24 Nov 2025 17:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 303DC314B84;
+	Mon, 24 Nov 2025 17:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZX/x+hJS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="T8R3E8z7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE9D3191B8
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:01:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592BD2C11DB;
+	Mon, 24 Nov 2025 17:02:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764003719; cv=none; b=OqdKqYyi7aAyPpHKCyxVz9Q77hK49ty8EXjAL7dXrsUd0eh8gtdJVDfYDFh5Ybq1ClIC3mvOkGXF2lIAcLGQ/H8CUnmJX0SqliLXLKm0ascC244X//k4SQHtA78yALjM6bjILW8j1D7D48eUiU61VGObr96HJsU8MFU/BprcvP8=
+	t=1764003738; cv=none; b=CddqK9kug7Y0UCqzg2Ym8OxCLrkdSF+fWdpK0x4D4UwnoMeAGg/FbLIZtFU2AhXq6lVyehUmKStZO29rroR9SpNwGCUyWdcQHmHgTwof8Wu1Y/Suoc7C7YShhAnro5g1+BiCEjR59n5D6KBzRPk7YPnPJci6X4Isy7Q2iIIK3ZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764003719; c=relaxed/simple;
-	bh=94qwcdvISJhCCZRqsIa3gf9UsdjE7+PgQuqqXXX1d/I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AVeGM/kOZT01XDRXaSSDDoaiqS5TVPZSgl/6i29xeQz4E5Ohid+5Enm9yEKWEnVyOk0Pv4did7lroK8dcS/cNAuhheDJcnQkokQzoPC1nciZRQL//3WUUjjsXfIQ1WqtANwcmwvOvWEKnnTR/8+gndDxRlUT5C44E73STMAcSLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZX/x+hJS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DC3AC19424
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:01:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764003719;
-	bh=94qwcdvISJhCCZRqsIa3gf9UsdjE7+PgQuqqXXX1d/I=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ZX/x+hJSP1P0qZ14NE/Hpp1YeMGnHI6Dx+de22oXXzeIPeuZi0tl3P1Qd24pJ0XE0
-	 DRNM1Dd3316lM7xNS7AWRIbFzclkw4gDqqL81VhAQaFzCrk5BozfWNdzxmbc6fYQp8
-	 kn+0NKGkHFOhHeoMv5L1ngwbgDUnIbUbp6tlKYGmdxP0m4yYg2MKsoyZorJ2kn4WTZ
-	 F3bqZjMbyD92+f9gsI095j+0fWID4ZYBYGTJ/rjgAnorVZQK8kiUv1QveAEvgnUYOf
-	 huarqKe2o9quMSVImjx1vZr1QC0jRU0EDKbJpUcFokzIjnKe/JftNOKKvSdJKtX3Z6
-	 h8Bt3/5SbF7cw==
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-641977dc00fso6436713a12.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:01:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXAIQjOHAYhQhekvUovvd+s2iePu1N4Janr6Ri6s2JE6QmTBxg8omPZhMav2XexfEJcmoBGAvkRFHBz@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMWN0SqY8aEqj4sYFUpstov4+jMHqVytXojKYRboUtp34bnA1B
-	40ZvELAbj3JL5ihO34guagdLDoM64L/O/ez4lIYcQYIJaKPkTwVpD5+rTbHi/xi1a0sAavGRLrF
-	55uP6za/6bclGWxqCDTOKapQKwtS17A==
-X-Google-Smtp-Source: AGHT+IFXf67K5MLIAp6akzlHdfYGJk0vOgsjBiRm9AVrjqIUmIUGdpSyKqEED/1RG1dv63/7cyPADsAtAzCIEsIc398=
-X-Received: by 2002:a17:907:724c:b0:b71:cec2:d54 with SMTP id
- a640c23a62f3a-b767183f903mr1306003666b.57.1764003716998; Mon, 24 Nov 2025
- 09:01:56 -0800 (PST)
+	s=arc-20240116; t=1764003738; c=relaxed/simple;
+	bh=5bqduxiv/Fu5Uy0UENLzF17SO3VX1iaVaMvWdv2gIY0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WWsgK8gjLkKq5Vmy/XGxBDxddg+INjwYUlK5QxGie4b+t6xe2Jz4Pxqhg8nopF11ohLoUy0Uft3SBOVpaEyFUb1p7fp4R+g+1qpNG2Jg4ndNun+ISfBck0ylUnLRFW+Ek2HDYM+xthwgWuS0SF8to4LWXAW/1GEsiNO2SLwUsEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=T8R3E8z7; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764003737; x=1795539737;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=5bqduxiv/Fu5Uy0UENLzF17SO3VX1iaVaMvWdv2gIY0=;
+  b=T8R3E8z7B45Uc9qnXe+FLEnqUK8pqPcQwIM9DErhpXCjkSjdNaTOYoYM
+   JJGqciOBNVWBnEyZ2LxFphCb+oyX6yVQ4NqcP+H5epOWpipSKQxHL6tPD
+   0FTQzppf6hWKs+ZSySUW/TX2knSPOxxITgRzQ4lWo4gsN+piYzISJmgiL
+   iIEGtHemf5ea5O8npqBQgtAu75QMNycpCNInqAkLvTBF8qi71/n2eLJXE
+   ax5/pmsTRrSSpAFG+24FJqxOGujPPTUIDzdL3ipfnKkd/CwekFxqmUHSo
+   rFeotf3bRPtZqEy0GtMPlArcB3SIHuwler5Bl9mqZeILtYnQK81sOuuCM
+   A==;
+X-CSE-ConnectionGUID: LUdCeqRXTm+CQLee0q82yw==
+X-CSE-MsgGUID: 1IvIu1dNSg6iExfr17Yzbg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="77370793"
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; 
+   d="scan'208";a="77370793"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 09:02:09 -0800
+X-CSE-ConnectionGUID: a2B4lZjJTIea4wS+jrDwFA==
+X-CSE-MsgGUID: 3t8wqfHHRsujXadtmbh53A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,223,1758610800"; 
+   d="scan'208";a="191657370"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.5])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 09:02:03 -0800
+Date: Mon, 24 Nov 2025 19:02:01 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>
+Cc: Andy Shevchenko <andy@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 0/7] auxdisplay: Add TM16xx 7-segment LED matrix
+ display controllers driver
+Message-ID: <aSSPifA479e9EcR4@smile.fi.intel.com>
+References: <20251121145911.176033-1-jefflessard3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015071420.1173068-1-herve.codina@bootlin.com>
- <20251015071420.1173068-2-herve.codina@bootlin.com> <f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
- <CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com> <5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
-In-Reply-To: <5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 24 Nov 2025 11:01:45 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
-X-Gm-Features: AWmQ_bmkdBVVKkq4S-uwQ2SqCH_pnOkbmYTHFkvDFxh_4sc4_x1p8K7UCt8Q0zg
-Message-ID: <CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
-Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT overlays"
-To: Kalle Niemi <kaleposti@gmail.com>
-Cc: Herve Codina <herve.codina@bootlin.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
-	Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
-	Richard Fitzgerald <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Mark Brown <broonie@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
-	Davidlohr Bueso <dave@stgolabs.net>, Jonathan Cameron <jonathan.cameron@huawei.com>, 
-	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
-	Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	Dan Williams <dan.j.williams@intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-sound@vger.kernel.org, 
-	patches@opensource.cirrus.com, linux-gpio@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, 
-	Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, mazziesaccount@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251121145911.176033-1-jefflessard3@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Mon, Nov 24, 2025 at 10:44=E2=80=AFAM Kalle Niemi <kaleposti@gmail.com> =
-wrote:
->
->
-> On 11/24/25 16:53, Rob Herring wrote:
-> > On Mon, Nov 24, 2025 at 8:48=E2=80=AFAM Kalle Niemi <kaleposti@gmail.co=
-m> wrote:
-> >> On 10/15/25 10:13, Herve Codina wrote:
-> >>> From: Saravana Kannan <saravanak@google.com>
-> >>>
-> >>> This reverts commit 1a50d9403fb90cbe4dea0ec9fd0351d2ecbd8924.
-> >>>
-> >>> While the commit fixed fw_devlink overlay handling for one case, it
-> >>> broke it for another case. So revert it and redo the fix in a separat=
-e
-> >>> patch.
-> >>>
-> >>> Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays=
-")
-> >>> Reported-by: Herve Codina <herve.codina@bootlin.com>
-> >>> Closes: https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJ=
-gyo8x6=3D9F9rZ+-KzjOg@mail.gmail.com/
-> >>> Closes: https://lore.kernel.org/all/20240221095137.616d2aaa@bootlin.c=
-om/
-> >>> Closes: https://lore.kernel.org/lkml/20240312151835.29ef62a0@bootlin.=
-com/
-> >>> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> >>> Link: https://lore.kernel.org/lkml/20240411235623.1260061-2-saravanak=
-@google.com/
-> >>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> >>> Acked-by: Mark Brown <broonie@kernel.org>
-> >>> ---
-> >>>    drivers/bus/imx-weim.c    | 6 ------
-> >>>    drivers/i2c/i2c-core-of.c | 5 -----
-> >>>    drivers/of/dynamic.c      | 1 -
-> >>>    drivers/of/platform.c     | 5 -----
-> >>>    drivers/spi/spi.c         | 5 -----
-> >>>    5 files changed, 22 deletions(-)
-> >>>
-> >>> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
-> >>> index 83d623d97f5f..87070155b057 100644
-> >>> --- a/drivers/bus/imx-weim.c
-> >>> +++ b/drivers/bus/imx-weim.c
-> >>> @@ -327,12 +327,6 @@ static int of_weim_notify(struct notifier_block =
-*nb, unsigned long action,
-> >>>                                 "Failed to setup timing for '%pOF'\n"=
-, rd->dn);
-> >>>
-> >>>                if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
-> >>> -                     /*
-> >>> -                      * Clear the flag before adding the device so t=
-hat
-> >>> -                      * fw_devlink doesn't skip adding consumers to =
-this
-> >>> -                      * device.
-> >>> -                      */
-> >>> -                     rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVI=
-CE;
-> >>>                        if (!of_platform_device_create(rd->dn, NULL, &=
-pdev->dev)) {
-> >>>                                dev_err(&pdev->dev,
-> >>>                                        "Failed to create child device=
- '%pOF'\n",
-> >>> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
-> >>> index eb7fb202355f..30b48a428c0b 100644
-> >>> --- a/drivers/i2c/i2c-core-of.c
-> >>> +++ b/drivers/i2c/i2c-core-of.c
-> >>> @@ -176,11 +176,6 @@ static int of_i2c_notify(struct notifier_block *=
-nb, unsigned long action,
-> >>>                        return NOTIFY_OK;
-> >>>                }
-> >>>
-> >>> -             /*
-> >>> -              * Clear the flag before adding the device so that fw_d=
-evlink
-> >>> -              * doesn't skip adding consumers to this device.
-> >>> -              */
-> >>> -             rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
-> >>>                client =3D of_i2c_register_device(adap, rd->dn);
-> >>>                if (IS_ERR(client)) {
-> >>>                        dev_err(&adap->dev, "failed to create client f=
-or '%pOF'\n",
-> >>> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> >>> index 2eaaddcb0ec4..b5be7484fb36 100644
-> >>> --- a/drivers/of/dynamic.c
-> >>> +++ b/drivers/of/dynamic.c
-> >>> @@ -225,7 +225,6 @@ static void __of_attach_node(struct device_node *=
-np)
-> >>>        np->sibling =3D np->parent->child;
-> >>>        np->parent->child =3D np;
-> >>>        of_node_clear_flag(np, OF_DETACHED);
-> >>> -     np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
-> >>>
-> >>>        raw_spin_unlock_irqrestore(&devtree_lock, flags);
-> >>>
-> >>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> >>> index f77cb19973a5..ef9445ba168b 100644
-> >>> --- a/drivers/of/platform.c
-> >>> +++ b/drivers/of/platform.c
-> >>> @@ -739,11 +739,6 @@ static int of_platform_notify(struct notifier_bl=
-ock *nb,
-> >>>                if (of_node_check_flag(rd->dn, OF_POPULATED))
-> >>>                        return NOTIFY_OK;
-> >>>
-> >>> -             /*
-> >>> -              * Clear the flag before adding the device so that fw_d=
-evlink
-> >>> -              * doesn't skip adding consumers to this device.
-> >>> -              */
-> >>> -             rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
-> >>>                /* pdev_parent may be NULL when no bus platform device=
- */
-> >>>                pdev_parent =3D of_find_device_by_node(parent);
-> >>>                pdev =3D of_platform_device_create(rd->dn, NULL,
-> >>> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> >>> index 2e0647a06890..b22944a207c9 100644
-> >>> --- a/drivers/spi/spi.c
-> >>> +++ b/drivers/spi/spi.c
-> >>> @@ -4791,11 +4791,6 @@ static int of_spi_notify(struct notifier_block=
- *nb, unsigned long action,
-> >>>                        return NOTIFY_OK;
-> >>>                }
-> >>>
-> >>> -             /*
-> >>> -              * Clear the flag before adding the device so that fw_d=
-evlink
-> >>> -              * doesn't skip adding consumers to this device.
-> >>> -              */
-> >>> -             rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
-> >>>                spi =3D of_register_spi_device(ctlr, rd->dn);
-> >>>                put_device(&ctlr->dev);
-> >>>
-> >> Sorry, some of you will receive this message now for second time. Firs=
-t
-> >> message was sent to older series of patches.
-> >> -
-> >>
-> >> Hello,
-> >>
-> >> Test system testing drivers for ROHM ICs bisected this commit to cause
-> >> BD71847 drivers probe to not be called.
-> > This driver (and overlay support) is in linux-next or something out of
-> > tree on top of linux-next?
-> >
-> > Rob
->
-> Yes the driver is in mainline linux: /drivers/mfd/rohm-bd718x7.c
+On Fri, Nov 21, 2025 at 09:59:00AM -0500, Jean-François Lessard wrote:
+> This series adds mainline kernel support for TM16xx family LED matrix
+> controllers and compatible chips, widely used in auxiliary displays on TV
+> boxes and embedded devices.
+> 
+> Many consumer devices, particularly TV boxes, use auxiliary displays based
+> on TM16xx controllers to show status information such as time, network
+> connectivity and system state. Currently, there is no mainline kernel
+> support for these displays, forcing users to rely on out-of-tree drivers
+> or userspace solutions that access hardware interfaces directly.
+> 
+> This driver provides unified TM16xx support through the LED subsystem with
+> both I2C and SPI communication protocols. It integrates with the LED class
+> framework, enabling control via standard sysfs interfaces and LED triggers,
+> while supporting keypad input when hardware connections are available.
+> 
+> The driver supports multiple controller families from various vendors:
+> - Titan Micro Electronics: TM1618, TM1620, TM1628, TM1638, TM1650
+> - Fuda Hisi Microelectronics: FD620, FD628, FD650, FD655, FD6551
+> - i-Core Electronics: AiP650, AiP1618, AiP1628
+> - Princeton Technology: PT6964
+> - Winrise Technology: HBS658
+> 
+> Key features:
+> - 7-segment display support with flexible digit/segment mapping
+> - Individual LED icon control through LED class devices
+> - Optional keypad scanning with configurable key mapping
+> - Device tree configuration for board-specific wiring layouts
+> - LED trigger integration for automatic system event indication
+> - I2C and SPI protocol support depending on controller interface
+> 
+> Device tree bindings describe board-specific display wiring since
+> controllers are layout-agnostic. The bindings use separate 'digits' and
+> 'leds' containers with specific addressing schemes to accommodate the
+> hardware's grid/segment matrix organization.
+> 
+> Tested on multiple ARM TV boxes (H96 Max, Magicsee N5, Tanix TX3 Mini,
+> Tanix TX6, X92, X96 Max) across different SoC platforms (Rockchip, Amlogic,
+> Allwinner) in both I2C and SPI configurations.
+> 
+> User space utilities available at:
+> https://github.com/jefflessard/tm16xx-display
+> 
+> Dependencies:
+> - linedisp_attach()/_detach() infrastructure introduced in patch series:
+>  "auxdisplay: linedisp: support attribute attachment to auxdisplay devices"
+> - fwnode_for_each_available_child_node_scoped() from patch series:
+>  "device property: Add scoped fwnode child node iterators"
+> 
+> Note: This driver is placed in drivers/auxdisplay rather than drivers/leds
+> based on previous maintainer guidance. LED maintainer Pavel Machek
+> recommended auxdisplay for TM1628-based display drivers:
+> https://lore.kernel.org/linux-devicetree/20200226130300.GB2800@duo.ucw.cz/
+> 
+> Regmap Evaluation:
+> TM16xx controllers use command-based 2-wire/3-wire protocols that share
+> sufficient commonalities with I2C/SPI to leverage their subsystems, but
+> are not fully compliant with standard register-based access patterns:
+> - TM1650 example: 0x48 is a control command while 0x4F is a keyscan
+>   command. These appear as adjacent I2C "addresses" but are distinct
+>   commands with different data directions and payloads, not read/write
+>   pairs of the same register.
+> - TM1628 example: Initialization requires coordinated sequences followed
+>   by indexed data writes. Single regmap read/write calls cannot express
+>   these multi-step transactions and timing constraints.
+> - Protocol requirements: I2C read operations require I2C_M_NO_RD_ACK flags;
+>   SPI write-then-read operations require mandatory inter-transfer delays
+>   and CS assertion across phases.
+> 
+> While regmap provides valuable synchronization, debugfs, and abstraction
+> benefits, standard I2C/SPI regmap buses cannot handle these requirements.
+> 
+> Custom regmap implementation is technically possible via IO accessors, but
+> demands complex command routing logic and only partially supports paging.
+> It would essentially recreate the existing controller functions while
+> forcing them into register semantics they don't naturally fit.
+> 
+> The current explicit I2C/SPI approach directly expresses the hardware's
+> actual command structure and maintains proper controller abstraction.
 
-I don't see any support to apply overlays in that driver.
+I think I have reviewed everything (except DT bindings, I will rely on
+the respective tags from DT people). There are some comments also given
+recently against previous round, please consider them as well.
 
-Rob
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
