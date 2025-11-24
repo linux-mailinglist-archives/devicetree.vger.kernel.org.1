@@ -1,237 +1,140 @@
-Return-Path: <devicetree+bounces-241708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23B3EC8143C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:14:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 673BEC814A6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:20:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9DA404E4287
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:14:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 562194E6231
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5EF313293;
-	Mon, 24 Nov 2025 15:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TntYoh8A"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CBB313E05;
+	Mon, 24 Nov 2025 15:19:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8C83128A1;
-	Mon, 24 Nov 2025 15:13:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31EE83148BA
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 15:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763997237; cv=none; b=SbdayHZ5h09UGa/lSUPwz5Ap50wjcD/Hey4qAlhcy5WW6gh+3Y5s/dLtZnq+FLnz7+6z48weBoXdjLwwcdxT/kQLyD45xdWHItS6z8yFCCRSJ/nPB399n4Ywq5EATtj6zHH+31ad2voGeCoAScm2z3VnAzTjPfnKLdHd3mepmxg=
+	t=1763997554; cv=none; b=lcNT5Oo+L6xY+g1qrTRWYtjgChbo6MF3IDej+g+m0k7vjrmdKecf6k8FbkBekbb032aC8wTMo95AmBhIgZLAJqx/DSWCSvcHJ7Tt08yGDnRRNQB3zC9GBTr17nt8IlLuCpPwgyZS5Mt4oa2ck+YMpHgsE+l/COXLgZvoDBWAVnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763997237; c=relaxed/simple;
-	bh=gBhx8Mbf0EyBCb2GMYE7V3/PC7aCPdL0yiJrn3XgNAM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KWlw6EixN0LnJpwnsTwZ0Rg50AmVLL0CWPR3ziKTO00aLwer6hrQ3410EO/qJ1ojjrJUlFBcgloieOVG3rVYygQaPQdhPGTnRPd0xeRlKwo/U5QrtBdRVIKxjqPGW2/U89lB/qwYZvCArg5wwgG66GFPUSWlYLHUQ3rCuqwspT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TntYoh8A; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 2C30A4E418A4;
-	Mon, 24 Nov 2025 15:13:53 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DF0D660705;
-	Mon, 24 Nov 2025 15:13:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8382810371A40;
-	Mon, 24 Nov 2025 16:13:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1763997229; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=KeHRsQWQWHgCUqrAiXnJp1WIeWLgxqdNlTv4+nJhNOg=;
-	b=TntYoh8AeSRn4I+5TNL9anc2ksbdcU3gCGIIM0uCozEReM6pGtWO+C/NwdpLkYeLztP3/w
-	5RuxgzByVoF1vNmgCkNzCXV1qRBqjxwRgvSYjxhVPkkK4flld6reO+1Fq3hyEOMkslukjN
-	8l6OJQAzvyy/7zkY7oB2nW6bvSrtwRW83lB0m3bEi3RMQ8QTbDMmT8ucAdBnLKHO6Yrh12
-	PAIZLO55VpDOobuDS8v4RYmFPVUBdJNkNmKo4n82qa/5ugkeG7xT2UXZl9OV2JNEhITFqj
-	aMjr9X3XwgfbShXaoK3UFtga1GgP/ZO9Y16VJaeDTrgb3pSkfMOtanXC/Tl3og==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Guenter Roeck <linux@roeck-us.net>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Peter Rosin <peda@axentia.se>,
- Mariel Tinaco <Mariel.Tinaco@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Kevin Tsai <ktsai@capellamicro.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Eugen Hristev <eugen.hristev@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Sebastian Reichel <sre@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Support Opensource <support.opensource@diasemi.com>,
- Paul Cercueil <paul@crapouillou.net>, Iskren Chernev <me@iskren.info>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Matheus Castello <matheus@castello.eng.br>,
- Saravanan Sekar <sravanhome@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Casey Connolly <casey.connolly@linaro.org>,
- Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>,
- Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Amit Kucheria <amitk@kernel.org>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Dixit Parmar <dixitparmar19@gmail.com>, linux-hwmon@vger.kernel.org,
- linux-input@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Andy Shevchenko <andriy.shevchenko@intel.com>
-Subject: Re: [PATCH v4 0/6] Add support for the LTM8054 voltage regulator
-Date: Mon, 24 Nov 2025 16:13:26 +0100
-Message-ID: <23111366.EfDdHjke4D@fw-rgant>
-In-Reply-To: <24527d76-4f6a-4008-a369-23510d492a94@roeck-us.net>
-References:
- <20251124-ltm8054-driver-v4-0-107a8a814abe@bootlin.com>
- <24527d76-4f6a-4008-a369-23510d492a94@roeck-us.net>
+	s=arc-20240116; t=1763997554; c=relaxed/simple;
+	bh=rj/A3trtk4Rk41rAV82AFL4Qr0CgnZ8mm/2mh+19lKc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OKbcGRptSrQiTVbIoJTXJMP429eprtoaXcczVYc9EGbn7e5vLXKjQhFfJa7ASCuldeH49gZU+tdXxQ+duYYTSFuFsRraUw9zpdQ+6F7/9ByHe7Ys+gXrIZPjX/JA3Ktovf+fKO7zUaW0CQpIE4po4XNQA3A1ZpCLVdEt/bsIRLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1vNYLM-0002Fk-6e; Mon, 24 Nov 2025 16:19:08 +0100
+Message-ID: <00b6154b-cf95-463d-b46d-2944d2fef8a0@pengutronix.de>
+Date: Mon, 24 Nov 2025 16:19:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4113614.kQq0lBPeGt";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: Update pin function file
+ according to Rev.D RM
+To: Aisheng Dong <aisheng.dong@nxp.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "dongas86@gmail.com" <dongas86@gmail.com>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>, Frank Li <frank.li@nxp.com>,
+ "kernel@dh-electronics.com" <kernel@dh-electronics.com>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux@ew.tq-group.com" <linux@ew.tq-group.com>
+References: <20251124095449.4027676-1-aisheng.dong@nxp.com>
+ <5432a356-7694-46a5-966b-29257f37a8f5@pengutronix.de>
+ <DU0PR04MB929990AF168DA048D26E993480D0A@DU0PR04MB9299.eurprd04.prod.outlook.com>
+ <18901222-fa5a-4e5e-91c9-f252d6bf1a18@pengutronix.de>
+ <DU0PR04MB9299811B113C555FD795FDC280D0A@DU0PR04MB9299.eurprd04.prod.outlook.com>
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Content-Language: en-US, de-DE, de-BE
+In-Reply-To: <DU0PR04MB9299811B113C555FD795FDC280D0A@DU0PR04MB9299.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
---nextPart4113614.kQq0lBPeGt
-Content-Type: multipart/alternative; boundary="nextPart8077299.EvYhyI6sBW";
- protected-headers="v1"
-Content-Transfer-Encoding: 7Bit
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Mon, 24 Nov 2025 16:13:26 +0100
-Message-ID: <23111366.EfDdHjke4D@fw-rgant>
-In-Reply-To: <24527d76-4f6a-4008-a369-23510d492a94@roeck-us.net>
-MIME-Version: 1.0
+Hello,
 
-This is a multi-part message in MIME format.
-
---nextPart8077299.EvYhyI6sBW
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-
-Hello Guenter,
-
-On Monday, 24 November 2025 15:57:41 CET Guenter Roeck wrote:
-> On 11/24/25 06:48, Romain Gantois wrote:
-> > Hello everyone,
-> > 
-> > This is version four of my series which adds initial support of the Linear
-> > Technology LTM8054 voltage regulator. The driver supports a fixed voltage
-> > and a tunable output current limit using a DAC-controlled pin.
-> > 
-> > I'd say that the most unusual part of this series is the usage of the IIO
-> > consumer API in a regulator driver. I think this makes sense here, since
-> > the regulator driver has to access a DAC to read/set the output current
-> > limit.
+On 11/24/25 4:08 PM, Aisheng Dong wrote:
+>> From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+>> Sent: Monday, November 24, 2025 9:54 PM
+>>> Could you help elaborate a bit more why need keep the old defines as I
+>>> saw the previous update patch also didn't keep them?
+>>
+>> Which previous update patch do you refer to?
+>>
 > 
-> I don't think that is a valid reason. Literally every driver measuring
-> voltages or current uses a DAC to do it. How else would one convert an
-> analog value into a digital value ?
+> I mean this patch:
+> 
+> commit bcf7206fe9c35e048e1dc90cf62216b0f5eaf091
+> Author: Anson Huang <Anson.Huang@nxp.com>
+> Date:   Fri Aug 14 17:27:19 2020 +0800
+> 
+>     arm64: dts: imx8mp: Update pinfunc header file
 
-Sorry, I don't quite understand your remark. To integrate this voltage 
-regulator component into the Linux regulator abstraction, I'm providing a 
-current limit control function. To provide such a function, the voltage level 
-on a pin has to be controlled. AFAIK, the kernel abstraction used to set 
-precise voltages on lines is an IO channel.
+2020 was the same year the file was added, so any fallout it could have
+caused back then would have been minimal anyway.
 
-Do you think that using the IIO consumer API is not correct here? What other 
-method do you think I should use?
+
+>> Generally, If the defines are wrong or misleading, I am all for renaming them.
+>>
+>> In this case, NXP changed their mind and renamed the function in an
+>> (unreleased)) reference manual.
+> 
+> This is not accurate. The RM with updated names has been released.
+
+Thanks for clarifying. I had meant to add a question mark :)
+
+>> The tradeoff here is between:
+>>
+>> - amount of confusion avoided when we rename USB_OTG to USB
+>> - amount of overhead introduced to adapt device trees
+>>
+>> I think the benefit of the rename is marginal at best and not worth the
+>> unnecessary breakage it would impose on countless downstream users with
+>> out-of-tree board device trees.
+> 
+> I agree the benefit of USB renaming may be arguable.
+> But how about the remain changes (drop invalid defines and adding new ones)?
+> Are they still need to be fixed?
+
+The other changes are ok, although it would be good to add a short info
+to the commit message especially about the removed macros if you have
+any extra information why these pad functions are no longer applicable.
 
 Thanks,
+Ahmad
+
+
+
+> 
+> Regards
+> Aisheng
+> 
 
 -- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-
---nextPart8077299.EvYhyI6sBW
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/html; charset="utf-8"
-
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-</head>
-<body><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Hello Guenter,</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">On Monday, 24 November 2025 15:57:41 CET Guenter Roeck wrote:</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; On 11/24/25 06:48, Romain Gantois wrote:</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; Hello everyone,</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; This is version four of my series which adds initial support of the Linear</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; Technology LTM8054 voltage regulator. The driver supports a fixed voltage</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; and a tunable output current limit using a DAC-controlled pin.</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; I'd say that the most unusual part of this series is the usage of the IIO</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; consumer API in a regulator driver. I think this makes sense here, since</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; the regulator driver has to access a DAC to read/set the output current</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; limit.</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; I don't think that is a valid reason. Literally every driver measuring</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; voltages or current uses a DAC to do it. How else would one convert an</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; analog value into a digital value ?</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Sorry, I don't quite understand your remark. To integrate this voltage </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">regulator component into the Linux regulator abstraction, I'm providing a </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">current limit control function. To provide such a function, the voltage level </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">on a pin has to be controlled. AFAIK, the kernel abstraction used to set </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">precise voltages on lines is an IO channel.</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Do you think that using the IIO consumer API is not correct here? What other </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">method do you think I should use?</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Thanks,</p>
-<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">-- </p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Romain Gantois, Bootlin</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Embedded Linux and Kernel engineering</p>
-<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">https://bootlin.com</p>
-<br /></body>
-</html>
---nextPart8077299.EvYhyI6sBW--
-
---nextPart4113614.kQq0lBPeGt
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmkkdhYACgkQKCYAIARz
-eA7Qpw//QZmn8Z6KMjxYRaV2oFT+8zEG5iKQ7jzafgDDFy0In7oKyj1RV8ZqVkxI
-5YLcWx1HZUN25O9ysPGCiSE/uSvFGyZeMjCI4vQcEUrjPc2LgrzKc78YE3C2Rzk3
-FVp2JmSU26N8JWgb76E8XsmdQsD9gYFgEvptccUYauluiw98CsLLd416CTRUG4ko
-AWiRXWQc4iNKIV5Xzr+PYzRDp0w0TtqI0jgZZPOsL+QHzrMvq7nIbDvmiCOaSBJG
-BMW5zhT075/cTv0swZYoTdljT18cPC3HqsXeUwADYgzlB/+5z5Ji8Lew3BVtoQmd
-pbsehIp2cC7r5HQvbgtyb1Zbjo534R8rPYMM2vujv3E1N5/+3p7WWr7UQCzm+Hll
-X4MSDSI6FczjKXBEfPUlPAuDPo2Ms5C7cTdh0MdFjXnX6kRZkfawuYhwjxuS6Vl0
-lqtZpG1OlMbm5gRcGYxZehWxhYZW3+fG4gG6V3NdgXJBgT0VoxlA3Wq3uG7sU/MM
-Mn4yZWXRs+JyiVnWoxbg6L3AB6PFChnD29VbJ372najkvwwJKmDoV7BdRNx/K9vC
-3C1215jYC3lElxPoTNmPTV6sdtp+wtPdJ2k5ZN/rGPm4LuMrNfVplLWsqH/U8GY4
-SOtoXDr+y5wsgtsVqvKWrzlJD6HcAeef7v8oIqP/v8LaH3xkhKQ=
-=xKLG
------END PGP SIGNATURE-----
-
---nextPart4113614.kQq0lBPeGt--
-
-
+Pengutronix e.K.                  |                             |
+Steuerwalder Str. 21              | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany         | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686  | Fax:   +49-5121-206917-5555 |
 
 
