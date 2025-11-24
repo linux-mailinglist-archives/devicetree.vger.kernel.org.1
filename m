@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-241632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AB41C80322
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:27:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E29C8033E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:29:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EC7733438B0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:27:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ABE5D4E56D4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C0D62F8BF0;
-	Mon, 24 Nov 2025 11:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0275F2FC891;
+	Mon, 24 Nov 2025 11:28:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lJkFZB65"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DPikX6h5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6946242D6E;
-	Mon, 24 Nov 2025 11:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6052FC880;
+	Mon, 24 Nov 2025 11:28:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763983639; cv=none; b=eSft4DvuRnwDfoPoBd/h/rBIYIH3B3dI6tZipWTyei4+6+21LJTAVeiOwLenTTRO53VMHgchU4DspF9X2nf1wqnUVX9xJ8548/LMCvBJ1oW399RaztxVlbH9SaylZidnwlruSXojPXJNeDP7/88HdunTFwKD0pEk30HNMiuhP88=
+	t=1763983717; cv=none; b=XDPIuTdyc9hRZLwNnI6Ww1ai+efBJEiEPtTMHXz8XFiTTrD2v3wdUTEed7nuLyzxZSnDGHiIgUW4uVIL3W4WCF3OPPO86QV0xmImCjSgUXIGtxvRxKtiZEy2i3VvHocTl/4/PiCkrWgqY1VHqJ9ZCHV1cKs0X5DHFA59ETQmRM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763983639; c=relaxed/simple;
-	bh=1JEFzMHLZ+LdUNBaFXPJzk4rpLUaWj6ad4he7Tqi0nk=;
+	s=arc-20240116; t=1763983717; c=relaxed/simple;
+	bh=bdcL2rO7TQRXGCfjuw9L2Tv3QH9jCcVCKrFREsSNct8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UwUOL9r7kuGupRjtQf1qsFj4xlLO2m3xP74uFKHomKAWq+KhzsKRNhQcvBk5o4dxcIbdTyhzhBHyejW/8sTb68iDHFzpcVSZII2r0hDDw48MvYvfUaaGLS2bpOD/Zp5sx+m3KuMJVlGPaa5rvGICGVweB17eDKJwlJgf3fPAyvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lJkFZB65; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B437AC4CEFB;
-	Mon, 24 Nov 2025 11:27:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=e0xP5aQ7dweYMTNZK93bkJh0ajMYFpwbAGt8US/OorS0QxTT6c4doNpZULPqQLYdb7FzBE089LQKC4gdebZAbFtc0GZPktdOeo6GnW8zzxqJLCX9YGJDEAlGBIRFIP8IJeksoqjERi9B1KjiK95POcOMpvCKivofx4ocJx8tksM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DPikX6h5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53B0CC4CEF1;
+	Mon, 24 Nov 2025 11:28:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763983637;
-	bh=1JEFzMHLZ+LdUNBaFXPJzk4rpLUaWj6ad4he7Tqi0nk=;
+	s=k20201202; t=1763983717;
+	bh=bdcL2rO7TQRXGCfjuw9L2Tv3QH9jCcVCKrFREsSNct8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lJkFZB65k1HGnd6RFqN4M7p0Q1zNHNK3K2O4RP15zqMR6EqH847aLgXWjJCA1FCy5
-	 X8JkIaOK1afTBHT1Ofs7vHIhIwXVriOlrq+W5MZkf23lgetrOQt4106wx3EqM0FPf5
-	 zgOpbvSMzFEEQdZzA6X/dLtG0p4ZC1jtFB3NtUdQlZ7wWfJBfLRV3DVgWJ/o0juhp0
-	 MMmCufEyNCTKCeyhUgZan6O7UF/Fu+fqPexTw/BUo2lYmJtUhrjQy7U89XU6MsRQEa
-	 yFQ9df1Kga/4la2QORlXsaxtsyLRGZS6uDNPidLrpqJN2A5Z2dxETAUp6zkWT4EJnC
-	 1jEPxFI/6Hx+Q==
-Message-ID: <6ceb41bc-0597-4ea5-84be-51f53e3bc2d8@kernel.org>
-Date: Mon, 24 Nov 2025 12:27:09 +0100
+	b=DPikX6h5/01KuVC0o3Rx+0RehHBnKRZ2sqQVBa7hK6FhhVOpWs9p7WVU3qYuMeaa6
+	 TqJ10xUgfMnGs0NkW7OLLJbMCfx7O2+5fbScNh3viczaQ0KGTf8np52d1kVOCvZuwU
+	 KNTb0WpY1tkAONpl3eDiXOLnSrWq5ot3TI0DvCl+MHDxSpyTMxbU1zvT/yOP4p/fRR
+	 H56oYRDjWkNhJO/30Cew4yc2cNggxDdX4J7K/xibBT92DAaoPGP425OZ0XjOiLWpe6
+	 5t4RqvJi0MkcCcpccjFAKLjFbhS4VXa+axH4Hek7WyC8nfdBjIPWTV7sYwhtajhHsq
+	 5BbNpo0Y0Na2g==
+Message-ID: <faa97777-666c-4443-8ced-1a17db0c0945@kernel.org>
+Date: Mon, 24 Nov 2025 12:28:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
-To: Icenowy Zheng <uwu@icenowy.me>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20251124105226.2860845-1-uwu@icenowy.me>
- <20251124105226.2860845-3-uwu@icenowy.me>
- <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
- <f7bbb57180866a0674fc1d72d4bd3279c7b1c1e9.camel@icenowy.me>
- <c26dabfb-c4af-428b-a1d4-d626f37ff559@kernel.org>
- <f944f0b28f62233b1874e0f00c0a130d71845417.camel@icenowy.me>
+Subject: Re: [PATCH 02/10] dt-bindings: net: can: grcan: Convert GRCAN CAN
+ controllers binding from txt to YAML
+To: Arun Muthusamy <arun.muthusamy@gaisler.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mkl@pengutronix.de, mailhol@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-can@vger.kernel.org
+References: <20251118092115.3455-1-arun.muthusamy@gaisler.com>
+ <20251118092115.3455-3-arun.muthusamy@gaisler.com>
+ <c80ff180-b7f1-4f39-b39d-2953ef75a7ad@kernel.org>
+ <a5d8543b27adc6adf8bec2f3548f13b0@gaisler.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,66 +105,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <f944f0b28f62233b1874e0f00c0a130d71845417.camel@icenowy.me>
+In-Reply-To: <a5d8543b27adc6adf8bec2f3548f13b0@gaisler.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 24/11/2025 12:13, Icenowy Zheng wrote:
-> 在 2025-11-24星期一的 12:09 +0100，Krzysztof Kozlowski写道：
->> On 24/11/2025 12:04, Icenowy Zheng wrote:
->>> 在 2025-11-24星期一的 12:01 +0100，Krzysztof Kozlowski写道：
->>>> On 24/11/2025 11:52, Icenowy Zheng wrote:
->>>>> Verisilicon has a series of display controllers prefixed with
->>>>> DC
->>>>> and
->>>>> with self-identification facility like their GC series GPUs.
->>>>>
->>>>> Add a device tree binding for it.
->>>>>
->>>>> Depends on the specific DC model, it can have either one or two
->>>>> display
->>>>> outputs, and each display output could be set to DPI signal or
->>>>> "DP"
->>>>> signal (which seems to be some plain parallel bus to HDMI
->>>>> controllers).
->>>>>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
->>>>> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
->>>>
->>>> Wrong DCO chain order. You send it as icenowy.me, so this must be
->>>> last
->>>> SoB. This identity is the last one certifying DCO. Please kindly
->>>> read
->>>> submitting patches, so you know what you are certifying here.
->>>
->>> Well I mapped the @iscas.ac.cn mail to the @icenowy.me one in the
->>> last
->>> patch.
->>>
->>> Or maybe I should make it the first patch?
->>
->> .mailmap has effect on b4 and git send-email, so maybe that's the
->> answer. The problem is that:
->> 1. This email has sender address @icenowy.me
->> 2. It's SoB is not the last one.
+On 24/11/2025 10:37, Arun Muthusamy wrote:
+> Hi Krzysztof,
 > 
-> Well, I think a patch that is already sent shouldn't have the From
-> field changing when bumping revision, and a patch modified by one
-> identity should have the modifying one's SoB added.
+> Thank you for your thorough review and insightful questions. I’d like to 
+> clarify a few points regarding the DT binding and get your guidance.
 > 
-> So here I am using the @icenowy.me mail (which can represent the
-> @iscas.ac.cn mail according to the mailmap) to send the patch that is
-> processed by @iscas.ac.cn mail.
-> 
-> Sending the patch with @iscas.ac.cn mail needs some extra setup
-> (because of some weird security requirement).
+> Node name vs. compatible matching:
 
-I did not ask you to change from. Please read carefully "You send it as
-icenowy.me, so this must be last sob"
+I don't understand what you are referring to. You cut everything and
+pasted something, which I have no clue what is that. I read many patches
+per day, so you are not helping here to understand the context.
 
-and later I re-iterated.
-
-If you insist on not fixing the chain, that's a NAK from me because you
-must follow the DCO process.
+Please do not top-post.
 
 Best regards,
 Krzysztof
