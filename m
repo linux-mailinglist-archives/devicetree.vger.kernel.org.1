@@ -1,229 +1,233 @@
-Return-Path: <devicetree+bounces-241791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57684C82C07
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 23:54:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 218BBC82CAB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 00:14:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3409D3AD81C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 22:54:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0F6A54E046A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 23:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D83B2EB86A;
-	Mon, 24 Nov 2025 22:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54D82F7ABB;
+	Mon, 24 Nov 2025 23:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AD3fgq99"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="n8QRvA9w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012060.outbound.protection.outlook.com [52.101.53.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FDAE274FEB;
-	Mon, 24 Nov 2025 22:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764024862; cv=none; b=ZHXXIdUbZoQ/i64ixGKHIb5vn/k9br7V0y6BvNE04TSzIOOcl9xn5VxLQO8Kmj5d1b5sp9EKuQ6IKngHGy/Kpd9Rqv41OFHM8S/PlLTwcv3nMrp3lQ8jksBbcw429EpPhwiSMIERjige3eY7Dc9jxM7slZyTKJld9l4/XmwO1lA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764024862; c=relaxed/simple;
-	bh=AzRUifYLrM+cB3aAMES2FpiiW0RYMnzFxQ5EUxME5R8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gD7FJFSYoaebl7vFSPpb1QJSXL1BkyZwkG2a/uZ+k/r91Ce8tP2AAOp5zCKqa8DRNfq4fM2hHV6gnqZwtmaoC8l9IGuQn+yX2+J9t71sb93AKFiQ+dxfBV1CNYcOMpiB4Gr4m2TQg6alV8zQ9d/wZ2G9ZoUUB9TzvO6Kygbwe9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AD3fgq99; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764024861; x=1795560861;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AzRUifYLrM+cB3aAMES2FpiiW0RYMnzFxQ5EUxME5R8=;
-  b=AD3fgq99HDvwB6lTe9lJ4PI8Cj8ePvpMI0EoGKPGLRHXlVWSgIXPxIkF
-   VyEarEM4x5DYo2Fs1XPsVnKw5WPQ7qu2pdo3cOoirZj4oqYi9faeCXQsu
-   LRb8ZBlOXB9Q9OEtQKP0BpTlM+smqF5w0gzRlURdNNTIjW1FcWpFQkVE3
-   oW8CKjwApqmPeKSGuqwzdnNscRvaIuyOHjuQYjJB1kr13p0pLYvJOzJN+
-   FdTFCA4gDmvBjLEfkia8um+vO6YQvg/h4hOXHH8NzCJajznNFfTTxqKWP
-   lbQsJbw8gecZQN+1KNjtj/pQvfhrDyJIaPSHHXvMSTa1PNgp5QFqIvwno
-   Q==;
-X-CSE-ConnectionGUID: i2/CX6hqR8myt1fr394ZnA==
-X-CSE-MsgGUID: 00RivnjDTICSfhUZTnFIXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="66067367"
-X-IronPort-AV: E=Sophos;i="6.20,224,1758610800"; 
-   d="scan'208";a="66067367"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 14:54:21 -0800
-X-CSE-ConnectionGUID: 13jYHsYsQ8+ni+KIRodaeQ==
-X-CSE-MsgGUID: DdfFKowCQY6sJMrK2TQpNw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,224,1758610800"; 
-   d="scan'208";a="223123563"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.5])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2025 14:54:18 -0800
-Date: Tue, 25 Nov 2025 00:54:15 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: pressure: add Honeywell ABP2 driver
-Message-ID: <aSTiFxAolJ0JeUTj@smile.fi.intel.com>
-References: <20251122-honeywell_abp2_driver-v1-0-7a8e265f9627@subdimension.ro>
- <20251122-honeywell_abp2_driver-v1-2-7a8e265f9627@subdimension.ro>
- <aSRF-DL3rKjyFleg@smile.fi.intel.com>
- <aSSV4lxzatAFds5e@lipo.home.arpa>
- <aSSm3JMY3DSg1Nns@smile.fi.intel.com>
- <aSTJML3fxp0sSeCq@lipo.home.arpa>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34CB2F363C;
+	Mon, 24 Nov 2025 23:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764026080; cv=fail; b=Nw9cHGnC/AHA+152y8dh0D01/NrpS1frmHS0LlA5u+k7nmrt9t+dGKd2IRDtaLABpC+FuDbI0i6tmGY2t4VJs+XBuSWK99jn9wYP2D6PxApHkRnFgP5bG74PP4HOfoGqNoGxq8wosU8Gn1MOU5Zy483oOXOUJXPJ8c7cSX8AqFI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764026080; c=relaxed/simple;
+	bh=BH5EC9lCe/k5wmY2NiPJlD677/ptWAiXNK5wN5SJNWw=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=H1Cllfx78xs4tdJ71CimPvex17D6eGgveW4SnzRN1U7PQBkKc+Q16yxqGb8JZkAt9/Wor0sh8aItMiI5BOgzQp7aiX11mVHvTxXWyMQ2m6mYS5LZDOg6w4c4rhXs8cpppkxCasQMUuavLy6Qf/k3OgB9NqBQW2+WenPfORGb98I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=n8QRvA9w; arc=fail smtp.client-ip=52.101.53.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Wqbm46q4Nw/lMYZyl9Ld9JO02O+FmSka6Xr52EiJqDM0D02YUM3XDVmm4+po39jMC5h74biSgFJ/fuaHxZhj88iDbB/J4KoQSz5B/zVDmxT1HWaCeN+KXTmP7saQgf5iDHlUR1mISo0OK0ECAs/4GRZmoFW3cTCUAP2Bk0UqiTC4HqyO3H9ReFq/OPj2L7h/Id3ACelYW7RPmoPaeZr5P2+E6TfHLk4Q4UApIA/kjygAcRrLvRldEShfSZapD2GQHFC1U8PZTSDysFSlXsr/gXUUgtvP8U47hW19rmO5fzYWj9eKeOMoMHhZb88u6KDFm6GDROkSRGvTJzzFCPmqFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4gHvFbipi6itqDGuSVqdxdujIBXcLx0MuRFPd269TGI=;
+ b=T0vJtXa16HVG5JqCdsClXiTPus2ISF6x5RUAkleOWxe4IJf0XCs+7T95Rzd6BebY8UTa8KKyFIIHo009trBsTWJljfp3vtPn/77xk61OamI4PItbIcAuumn9C3IX3i3pC0mBeBE4gbfwRwyYh+8kcWOSLLiJkgFb+KEfQywJ9syiuNnFBJBZEZGyvwoGxPOym2Q20Vm26yQm/3pVzudlD0c1z+pMkfdd6GgbPWN//m7vvYV+a6kqyyRXGeWdDOWBY9wY1UCDXxLuBLPPCD02k0JNu+VSUEm9+TfC6WiZzm3R1iuJIbMLWoO5eSTVVFYnWgopGn7rQFbR1R3TzSENkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4gHvFbipi6itqDGuSVqdxdujIBXcLx0MuRFPd269TGI=;
+ b=n8QRvA9wq2LvDXF7BqKMZ+vvP/puqvgbQsDvEQGIG5V2V0l6qw8sK9j05ifE9wk0wQjmZm425/tUd73VBKDRAbrFaLMhXKiAV3nSeN5/i7NslF6Y6gZv9+VSNGRGs435T7khfIGa8k4xE6Y7OjJ37f6V4839fPp3z6AKwSwDJ7essUZuwmplmNMrvBM8HJx50wfI/NUWZJIEuZ/kn9CnNX8noSG8Or7H80qYFQDqqSQxY+as8VXWF6SC5MiFFOcVvf+owNHR3HCB8Cxq+Gwnquu8UTrLYeockAqidP1CCXdlJdgVl33vitMqXwkLe2utowQ6y4r3iF+TEs+dC8lCeg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH1PPFDAD84AB72.namprd12.prod.outlook.com
+ (2603:10b6:61f:fc00::627) by DM4PR12MB7598.namprd12.prod.outlook.com
+ (2603:10b6:8:10a::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Mon, 24 Nov
+ 2025 23:14:35 +0000
+Received: from CH1PPFDAD84AB72.namprd12.prod.outlook.com
+ ([fe80::7816:ec9f:a1fe:e5c9]) by CH1PPFDAD84AB72.namprd12.prod.outlook.com
+ ([fe80::7816:ec9f:a1fe:e5c9%6]) with mapi id 15.20.9343.016; Mon, 24 Nov 2025
+ 23:14:35 +0000
+From: Marc Olberding <molberding@nvidia.com>
+Subject: [PATCH v4 0/2] Add device tree for Nvidia BMC msx4 cx8 switchboard
+Date: Mon, 24 Nov 2025 15:14:16 -0800
+Message-Id: <20251124-msx1_devicetree-v4-0-a3ebe3110a67@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMnmJGkC/23OzQrCMAwH8FeRnq002UerJ99DRLo2cz1sk3aUy
+ di72w0RZZLTPyS/ZGKBvKPATruJeYouuL5LId/vmGl0dyfubMoMBRbiKBRvwwg3myYNDZ6IS12
+ jgdpAYQVLWw9PtRtX8XJNuXFh6P1zPRBh6b4t2FoReCpljZAkEECdu+is0wfTt2zBIn4AACG3A
+ HLBS8pKqpRUtsINkH0Dfz7IEmCkqXIptSWUP8A8zy8/kHxMMQEAAA==
+X-Change-ID: 20250908-msx1_devicetree-7af2c1fc15d0
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Marc Olberding <molberding@nvidia.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764026073; l=1801;
+ i=molberding@nvidia.com; s=20250815; h=from:subject:message-id;
+ bh=BH5EC9lCe/k5wmY2NiPJlD677/ptWAiXNK5wN5SJNWw=;
+ b=hRhMHY27evIfTKUiLpBceFhRQtF6q/7rzPB2vWyUxx12zybm+7qd2pjPE+zGYjDiErIjnRP3N
+ XmwTrY/Bu7tALSfGmqgp9wUen9RVIH0tVw+iaN3RrZ/2gNdDvJ2mHI1
+X-Developer-Key: i=molberding@nvidia.com; a=ed25519;
+ pk=qCpZ1WFEf5YiaL88PDdYhG+A/bKk7rHp7KF2K3GmkH0=
+X-ClientProxiedBy: MW4PR03CA0109.namprd03.prod.outlook.com
+ (2603:10b6:303:b7::24) To CH1PPFDAD84AB72.namprd12.prod.outlook.com
+ (2603:10b6:61f:fc00::627)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aSTJML3fxp0sSeCq@lipo.home.arpa>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PPFDAD84AB72:EE_|DM4PR12MB7598:EE_
+X-MS-Office365-Filtering-Correlation-Id: d0f10174-9b37-4fbd-e9f5-08de2baf3b94
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?LzdxSVJQV0NQUTVmRTliaGxFVFRuOVg0OExFbjBzMUxUZ0pnQzl2dzFUdzZR?=
+ =?utf-8?B?TW9aYk1JdWZRMWZ4Z094b3dXeU04VmZoOGF6V0pRNkZ0VzE2OWVGaFI0dTlx?=
+ =?utf-8?B?ZzhBUmVOb0I4UTlGc3BWODk1MzdqS2liTEsyVldZSFdYSUVtWmdRaGNqWHdq?=
+ =?utf-8?B?Yk1SY2VqWi9pL08wamdOd3VUeHJ5cVM0V3IxekZkR242VTlzR2JrcGRCalpy?=
+ =?utf-8?B?N3ZhTm9Tc2dzT1BFUWV2TE13bVE5TEgwQ1ZTSmJEMUowcWhPa3ZycjcyemFh?=
+ =?utf-8?B?cFF2ejdtTUxEVVRvZlFBUWhjK094OEF1N1R3NTBTUW9JL1JjSk1mZUZPZUw0?=
+ =?utf-8?B?cXN0b05UaE53aWs4MTlkcnNvS0E1L1A1bzBzaXhBVEZkM1NEYzlPTUlpWVF3?=
+ =?utf-8?B?SEIyN1huMVptbmpENHIwSHdnY3M2eWVlZFFZN0hQOG1oTzc2RzA5SnZsMFpL?=
+ =?utf-8?B?cVBxak5IV0lFZFZFd2VCZktZcml2ZW10T0dneDBGTUNXQW1RdXJuMVhLb0l2?=
+ =?utf-8?B?SzBhMzVGczU4N1FRTExjZHJSeExtdGpvRERsalBJU3g4bEJybHhBL0t6aHIr?=
+ =?utf-8?B?TkU0RVhSaDZuUjUxSkJaNXVrRGJBQkV4K0VkK1RJckp6dEpvWUtkUCtGMXNr?=
+ =?utf-8?B?ZzlsQ0pUSEovc1llTnp0TTVrSUc3ZFRGMjhSbmhZWmRKQ0dKVlhRUVU3ZmZL?=
+ =?utf-8?B?Vzg3Y01CUVJKcVVtU1lreEo1S25HZ0g2dGtmejU0b2dtS3hTRGk2eTBEUVZC?=
+ =?utf-8?B?QVM2MVl4b0xrb0lNT3ZyWWxQKzU1UWxNajFRajFzVE10TjFpZkFlTHhJVW1G?=
+ =?utf-8?B?eW9OVFpyY2xvZW0rVHFYV3FKUk4yWmFlR0lHUkFZT1hQZmV2WFk1M0N3ZmZo?=
+ =?utf-8?B?YnJpQjRkSUEvbitrZTJyYkFORENPSUNHRUJRcHhIbVhBeVlsbFdteEljUGR5?=
+ =?utf-8?B?MktSWWM1bFlvU1F1K0FEdklrVEUySnlYTEVBRldYczhjMFBoaUVQdXlpN3RC?=
+ =?utf-8?B?MEhGditkUHR1bDJjSFRWTXRxR05tV2krZHVBWk9xK3E2UGRodHdjN1d4d0lK?=
+ =?utf-8?B?WGRnZ013bGhDQ3BzYVJuZmtieDU5ZUVpRmJDOXpNM0FseE9BbEcvV3hpNEhj?=
+ =?utf-8?B?bVNpbkdSWTg0dE5aZUJTR0tYd1J1OWdXWVdoc2d2REl3QXJRT1hNa21TOTV0?=
+ =?utf-8?B?UTRvUjh3ZHZHTEN2Q0RERHpGendtMWhybkp6U1gwYTRsT2tkbXZWR3RERE1I?=
+ =?utf-8?B?bFRJbForK2JFbTl2MUFGcDFOc3hyTjdkRkREUlZRK1dPdnVKTGRGc0tab2tD?=
+ =?utf-8?B?RC8xOWx2aERRNVROb0l4Z3NPOGJGdTRBcnMzUkZSVlNCaUM1ZlZGUFZJbldm?=
+ =?utf-8?B?RFRta1JmcVNIR2YvamJJbmp1K3licjVraTBJMk4weS9MQmhuVDcrVWFVMHla?=
+ =?utf-8?B?ZGgrTHJCNGFwOG1QQWk5Mm9Ca1FSNUpMWkQrZmY5Q3hQQ3pzMjE4YXVEVG5P?=
+ =?utf-8?B?UndITWhOVnEyakdpWGwrRVMzRTdKZVdqdUNjQzhkZktqN0F0ZE9FZ090dWF0?=
+ =?utf-8?B?YmRTNWVOUkVoM3UwcDEvZVgzdzZvQWgyUmNHSE02Um9ia1ZHNUNsTG5WOTFl?=
+ =?utf-8?B?NzU4aE8zWHFxU2NSUG1PUjNsc2RCRGhvMUNlZUZDUGIycGxxREEvTDFTNzlu?=
+ =?utf-8?B?bjRLWmxLaHdlQ3BIMzRUeExUSXl6QnR3SHVFMXpSZmpjM3hUZlZnWlpRVDZk?=
+ =?utf-8?B?L2Jmcm5HWENIZERBN2UwY3lSbUpLOXBDUVJ1UDVpeThWNTh1N0dYWEhoYnJm?=
+ =?utf-8?B?dHRuY2xJSWRVeUI2V3J1ZkFoL3JQb01BendCQU5KMVlwWTF1MnV6cjB5ejlT?=
+ =?utf-8?B?NVNtclA3WnhUZkl4cXFWelNtZVVJOUxEZ0Q2T0t1UVdRNkRDQWVqVVdFSUZh?=
+ =?utf-8?B?ZFBsYXRzTUI3RFV3ajhGSlVqNnNHd0t1STI0L3dOa09neEFOS1R5Y3Y5Nzdr?=
+ =?utf-8?B?dDR5WlhMdDl3PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH1PPFDAD84AB72.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OUtTQWVhWE1KaUs4M2t1aGtpSWJWMTlVbWZKZS95OXZCMW1pangyckNyK2JJ?=
+ =?utf-8?B?Z2FYdnhwNGVmMm52b1lvRWcxU0xEWFYwTU4vOWU1ekVGdFA0YTdTbU9CeHM1?=
+ =?utf-8?B?WUpreUpKMEV4dUlMNWcyMW54eVg3SEMvWG5QYlZ2ejJvQjFMd1lsbWZucmdj?=
+ =?utf-8?B?aHhIeDcrUW5uODN5VVJubjlpUFdmcGhnODRsdzc2azRSV0QrTzVpZUlmYU52?=
+ =?utf-8?B?RzhZVHNoZWgxUHpBc1l1M3Zsdjl5VVY4dW93aTVhcTI5ZGU1Z2d1cDNZaWNS?=
+ =?utf-8?B?eXZqK1NybkRmQjlyNHp0djJnbTRTc0RpUGpQelpzZWxvMy9wUlJjVkVZM1ZE?=
+ =?utf-8?B?NDRwbm1QWUEwWDdLM2R0TUMvTWt6Wm1XNmpVUVdJbm8wckhGV1puMzdoMzl5?=
+ =?utf-8?B?c2pGU2dsM0pLSnUvQVNFL1BRd2RtQ0MwNkovOFZvc3RzQ2svUHo3bjFaR01v?=
+ =?utf-8?B?Yys5SjB4elFSNWx3TllMVktzd0ljNVB2dnVUMnpuTk9nUkpIVi8rYjN0bzBW?=
+ =?utf-8?B?QjRzdElmeGVWeEsrdVRzWVZtOTNXV254WHFOSVdEd0RjdGJ1eDZibk1lRkxR?=
+ =?utf-8?B?SmIwOUdFaVE3U21oNFpFOUd6R25la0tYZm1SQUJBb3NIRVBEQnhnVkxEQTlD?=
+ =?utf-8?B?blhBTVFuVURlbmlERzZlVG53bTljUjIzczFGTHdDTXRUVU5RQXpWaCtIVEZG?=
+ =?utf-8?B?UW5GYkcrcjdoQWtnWDJtbHVsU2djYWQxdnIzd0ErK3dKdnRKeWdVeGFkb0Nm?=
+ =?utf-8?B?RVV1QTh0VGYyL1dKdVovb2lSTFVXeFJWbUp1OEt3dHFoYTdPUlFPK0NtM2xT?=
+ =?utf-8?B?ZlJ5TllYUWxESEM3M3graHRhYkpuR1plTTc5RDFsUWMrUmZ3OUpoME45bFJO?=
+ =?utf-8?B?WVhjVDRFM2MzbG1PcVBmSW5wS0ZTeG5HV2FkelljNnY1YmcrRDJuMnYzYisy?=
+ =?utf-8?B?V1V1SHJ0aTRtOUtJdklDYVA5QkZGMGZJSGE4WlNleGczWFI2bTVEM2p4MENQ?=
+ =?utf-8?B?cWZjZWRtR1E4Y1M3WkRlREE3dnAzai9FYjYxN2dNbWh5aU9ObTlMOTNoZFNi?=
+ =?utf-8?B?ZHRpcnE1S1d1cDVkWWNRS3c1WTZiK1NlbWsyN2tteFJYZ08rcEhrZDdCUURi?=
+ =?utf-8?B?bndnV0thbHhIWGx2d3FDN0E0bFJ0VGhjekoyOTdpblRZbTkvMUt0cVdzYXJD?=
+ =?utf-8?B?aEtzQ1RpdFRCcW5qUjdVT3R5RUY4VGRHd0FDOHlvVTRZbW5JRmVCOWF4Y2dD?=
+ =?utf-8?B?YmVBRFRkUlV0SlRaTlBZZ1pTaHdEY0tBMHZVZUZVelZwb3c2TFJJZE1VNGZU?=
+ =?utf-8?B?c01KaGtyUVQzMU5IUVVVYXFqL3dZbDBNUzIzSTBldW5XUHFmVmQ3RTJtK1Rx?=
+ =?utf-8?B?N3BLT0V6N1VjWU9xb2pOUVBlbUhnaWVub0xiRTR1V016MmI5SithSkY5aUNK?=
+ =?utf-8?B?bXhyWTFMVkdnVjZJUElkWHFDNmxwbXJmY3dFQmVoekoyMzc2TW9CYWlCdWhS?=
+ =?utf-8?B?WWdJODM3aG5DTVBwQktuSDJpdDg0em82amFBSG1BdEoyR29kK0d5Z2FmSEhW?=
+ =?utf-8?B?ZCsrZkRZK3I5Q01xMWVKMXppNE4wUVZqbGVNQndlSWNNVGZJUGpxOSthVWxl?=
+ =?utf-8?B?RGltZjQwVzQ0OWl1Smh4d2tpQXZKN2VvRzU3NHdGdFgrNFREQmliMThUdjZv?=
+ =?utf-8?B?UkRXY0NVRE16VEhBckdRSW13a2JFZkpGUDRzNmsrQXpDMXpjYTVDSW4zbW1N?=
+ =?utf-8?B?eWF2U3hpYm82QnMraEEyeUV0RTNLbkZWMUEzNUNmenE3MFlZekZaZExUb0V5?=
+ =?utf-8?B?Z1FnaXYyQmRIMHI3bUVOVGVaOUxMbUFtcldNYjdjcURqaFlWcEYrcXFJcWJE?=
+ =?utf-8?B?VVJkZ09LTU83SWtZUzNOUWFPOHBuUlNCUzM5bnhMNVJNblVDM0laQ0pNL2lk?=
+ =?utf-8?B?R1BaSmFCaWVCMHFCS3NqL3NWRnAzd21XeGt0K0tHVXA2QTZGMHhXRzRzTlFP?=
+ =?utf-8?B?SFRoclkzeEJOclRyem5JR20rcEl1aVo3aC9md28zQlVEMkJwSVc5anh5cWw5?=
+ =?utf-8?B?ZG9WS2U5WTIvZUJlYStIOXVVQnA4TmQrbTdGcEFxdC9kdXRjcVEyMTdMRmFF?=
+ =?utf-8?Q?RTogfG9blq4cLCPNKPJoox6Rs?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0f10174-9b37-4fbd-e9f5-08de2baf3b94
+X-MS-Exchange-CrossTenant-AuthSource: CH1PPFDAD84AB72.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 23:14:35.4581
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tkdR7GM1sBh8jq2vYT7ep7n1raJkLIAHiDoDjzsXzlfrcHJ67Yb+Fx0CAxhZ23/9Xy7PskHHbLqHcXMuAAWTPQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7598
 
-On Mon, Nov 24, 2025 at 11:08:00PM +0200, Petre Rodan wrote:
-> On Mon, Nov 24, 2025 at 08:41:32PM +0200, Andy Shevchenko wrote:
-> > On Mon, Nov 24, 2025 at 07:29:06PM +0200, Petre Rodan wrote:
+Patch 1 Adds the binding for the msx4 cx8 switchboard
+Patch 2 Adds the device tree for the msx4 cx8 switchboard reference implementation.
 
-...
+This is an Aspeed AST2600 based reference implementation for a BMC
+managing the nvidia mgx cx8 switchboard.
 
-> > > > Why explicit assignments? Is it related to some HW register?
-> > > 
-> > > no registers, I just need to ensure the two arrays
-> > > 
-> > > static const char * const abp2_triplet_variants[ABP2_VARIANTS_MAX] = {
-> > > 	[ABP2001BA] = "001BA", [ABP21_6BA] = "1.6BA", [ABP22_5BA] = "2.5BA", ..
-> > > 
-> > > static const struct abp2_range_config abp2_range_config[ABP2_VARIANTS_MAX] = {
-> > > 	[ABP2001BA] = { .pmin =       0, .pmax =  100000 },
-> > >    	[ABP21_6BA] = { .pmin =       0, .pmax =  160000 }, ..
-> > > 
-> > > keep being consistent and are resistant to later editing.
-> > 
-> > So, if it's pure software numbering, just drop assignments in the enum.
-> 
-> so you want the consistency check to be dropped? we have data in two
-> different arrays and they must be kept in perfect sync. if I were to remove
-> the assignments someone comes a few years in the future, inserts a new device
-> in the abp2_triplet_variants array at position 84 out of 113, also inserts a
-> new {pmin, pmax} into the abp2_range_config array accidentally at position 83
-> and the compiler will be none the wiser.
+Reference to Ast2600 Soc [1].
 
-That's why enum is there. Had I told you to remove it? No! enum should stay
-as well as the explicit indexed assignments, assignments in _enum_ should go.
-Just look around how other drivers do with enums which are not related to
-the HW registers.
+Link: https://www.aspeedtech.com/server_ast2600/ [1]
 
-> just the day before I had to remove
-> a variant because of a typo in the datasheet. I cheat and use a script to
-> generate the structs [1], but if I had to modify them by hand, the
-> assignments would make sure I delete the proper line.
-> 
-> am I proud of this? no, and I told you my preference. this is just a
-> compromise that uses the non-specific match function and still provides a
-> guardrail for future editing.
-> 
-> [1] https://codeberg.org/subDIMENSION/lkm_sandbox/src/branch/main/honeywell_abp2030pa/scripts/parse_variants_table.sh
+Signed-off-by: Marc Olberding <molberding@nvidia.com>
+---
+Changes in v4:
+- Changed model name to be accurate per Andrew Jeffery
+- Added comments about why there are no i2c devices described here per Andrew Jeffery
+- Added support for probing the backup spi device through fmc
+- Link to v3: https://lore.kernel.org/r/20251108-msx1_devicetree-v3-0-c7cb477ade27@nvidia.com
 
-[..]
+Changes in v3:
+- Removed mac and mdio node completely per Andrew Lunn's request. Will add back
+    once the mac driver is fixed
+- Link to v2: https://lore.kernel.org/r/20251107-msx1_devicetree-v2-0-6e36eb878db2@nvidia.com
 
-> > > > So, why can't regmap SPI be used?
-> > > 
-> > > there are no registers, no memory map, just a 'start conversion' and the
-> > > equivalent of a 'read conversion' command.
-> > > any reason one would use the regmap API in this case?
-> > 
-> > At bare minimum the commit message should have a justification for the choice
-> > explaining all this.
-> 
-> I had the justification in the cover letter instead, my bad, will include it in
-> the commit message instead.
+Changes in v2:
+- Added ack by Conor Dooley on patch 1 
+- Changed phy-mode attribute after discussion with Andrew Jeffery and feedback from Andrew Lunn
+    and added a comment with a better explanation
+- Link to v1: https://lore.kernel.org/r/20250918-msx1_devicetree-v1-1-18dc07e02118@nvidia.com
 
-It's good to have in both.
+---
+Marc Olberding (2):
+      dt-bindings: arm: aspeed: Add Nvidia msx4 board
+      dts: aspeed: Add a dts for the nvidia msx4 hpm
 
-> > Ideally, try to find a way how to use regmap API. We have several weeks of
-> > time for this exercise.
-> 
-> you did not mention why use an API designed for devices with registers and a
-> memory map on an IC that has neither.
+ .../devicetree/bindings/arm/aspeed/aspeed.yaml     |   1 +
+ arch/arm/boot/dts/aspeed/Makefile                  |   1 +
+ .../boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dts | 248 +++++++++++++++++++++
+ 3 files changed, 250 insertions(+)
+---
+base-commit: ac3fd01e4c1efce8f2c054cdeb2ddd2fc0fb150d
+change-id: 20250908-msx1_devicetree-7af2c1fc15d0
 
-The regmap provides several facilities that we would like to use in the drivers:
-- the generic interface to access to the HW
-- the common locking schema that allows to share the same regmap among
-different drivers (depends on the functionality of the parts of the HW)
-- debugging facilities are available out-of-the-box
-
-> I also have a bughunt in the spi-omap2-mcspi driver related to improper CS
-> delays in queued transfers, regmap will probably just be an extra layer of
-> abstraction I will have to go thru :/
-
-[..]
-
-> oh, and
-> 
-> struct abp2_spi_buf {
-> 	u8 tx[ABP2_MEASUREMENT_RD_SIZE] __aligned(IIO_DMA_MINALIGN);
-> };
-> 
-> static int abp2_spi_init(struct device *dev)
-> {
-> 	struct spi_device *spi = to_spi_device(dev);
-> 	struct abp2_spi_buf *buf;
-> 
-> 	buf = devm_kzalloc(dev, sizeof(*buf), GFP_KERNEL);
-> 
-> > Using devm_*() here is most likely a mistake. What is the object lifetime in
-> > comparison to the used device?
-> 
-> I did think that placing this into the abp2_data struct would be a better
-> idea, but I was not sure how to handle the alignment issue since there is
-> already the read buffer there:
-
-We have drivers in the kernel with two buffers in the same structure.
-
-> #define ABP2_MEASUREMENT_RD_SIZE 7
-> 
-> struct abp2_data {
-> 	struct device *dev;
-> 	const struct abp2_ops *ops;
-> 	s32 pmin;
-> 	s32 pmax;
-[..]
-> 	struct {
-> 		u32 chan[2];
-> 		aligned_s64 timestamp;
-> 	} scan;
-> +	u8 spi_tx_buffer[ABP2_MEASUREMENT_RD_SIZE] __aligned(IIO_DMA_MINALIGN);
-> 	u8 buffer[ABP2_MEASUREMENT_RD_SIZE] __aligned(IIO_DMA_MINALIGN);
-> };
-> 
-> how do I make sure both 7byte buffers are aligned? can I __align twice in a
-> struct as above? or should I align only the first buffer and make it 8bytes
-> long?  I had a close look and even if the SoC's SPI driver supports both DMA
-> and PIO, I've seen it pick PIO every single time while talking to my pressure
-> sensor.
-
-You told you read books about C language...
-
-Alignment is a property of a single member and a data type in general. Each
-field of each data type may have it's own (non-default) alignment along with
-the object alignment.
-
-...
-
-Homework:
-Why do we need both to be aligned? Do you get the idea what is this all about?
-
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Marc Olberding <molberding@nvidia.com>
 
 
