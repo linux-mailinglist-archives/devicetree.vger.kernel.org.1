@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-241586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4369AC8003A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:55:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45311C80055
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:56:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7C44C4E4943
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:54:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FA1F3A8DFE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3222FAC16;
-	Mon, 24 Nov 2025 10:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3982FA0DD;
+	Mon, 24 Nov 2025 10:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="VE/psbDu"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="qdqnGkQI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from sender3-op-o15.zoho.com (sender3-op-o15.zoho.com [136.143.184.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA2A2F9DBC;
-	Mon, 24 Nov 2025 10:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A039048CFC;
+	Mon, 24 Nov 2025 10:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.15
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763981665; cv=pass; b=Yxkz0ARmUT3fxXMhDAjuRPX7Ycra7JUzA6T6mcZfeu64+iPGiqKU6n83OWiMD0P4xQ+gssCj2BCEgM6/2AFfUtwACvzjVcEch0SSynAMTapZuoSvn/g06jNxP7t94ZaWgdwpFOGpZKUMAwvUnSDJwJk7tqLbHcIWOyQrz6QJDI0=
+	t=1763981682; cv=pass; b=WDHlFNr87vn0O93FOV2NvBfpByUom7Zm75Pbq6t6DoZ1CM84Py4S50jmXFY/luABsunJotdArzTZ0dA1DrmIe6PPVazfMTnP7SVMELbi7HWSfUey3PU6yjKYSUaATxaydCDPZ8R483fPaQ1vRK96+ngDGmQhDkRzeGqtSeRGfX0=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763981665; c=relaxed/simple;
-	bh=LVSsx9i+gMQNni4kKjpA8CQ5hM3gGNFF3vGdz3NLExk=;
+	s=arc-20240116; t=1763981682; c=relaxed/simple;
+	bh=4z8lkEX3fHwBsgXn8atCy6Mx7yquFihrmPqkXFFvtL4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QemOiGquhdUXJbTjLBYd/eM7O0LCwzP29TPkNR6VO5fyxCrzNM9u3gVdLg+6N1CTj6c7qvJ7auX7SW8nnPFqjjPs3joAgAIQXbziOReksP4j/T68SSfiuTyhVfyXctxQpZfyU/ABQqe+vQca4+oQxI3M66Btqr9YHnx21WcKVqE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=VE/psbDu; arc=pass smtp.client-ip=136.143.184.15
+	 MIME-Version; b=uNrO8BZaz8ciVdJu7CI4GPBFBqlXk146Qk8bArt5DATYT/WeL1Ij86NgX/A254LOdi93khVoabakOstpJKSxvWFf/lQhwZNdrrHzt1dcy2Mow1xOGR4PlJOqgvZx1QbxUZXo/Nu78eOYiVfn1+aSLbRlijqo0dS39s2A9k9PzDY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=qdqnGkQI; arc=pass smtp.client-ip=136.143.184.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1763981634; cv=none; 
+ARC-Seal: i=1; a=rsa-sha256; t=1763981646; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=J+dQSpLf1tCQCH/hnwGoDengIT8z8WHQl0RD+3JrOyHGuC8IQeh4wKTt2EkuARfJCBT0SPXzRp0FQLWmhyV447+NR15BK7PEezQZxPGZYcAjjXCPYlh2bWUr0JmPjMsrRni/ZAo4ZAzQjmJrQJfddH9IaLU/4mEAQId0cOdiFbM=
+	b=aBm/DY2wciLU1S6JRo4aL6Z/oon/PX3zfe4wFbLqYGCIqHmEEXQVgXOQumUp6+CbT3vyftRHtJsNlOdFD3SA33ToudRl6DG235JYJW7b03nL7rH+t4KPCbfZf9wiHVIH5G6oQHb/qqmhJlq7CCBplrVk2mrp0ZdnacUJPb+mViU=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1763981634; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=AbtvVxeT5KIAkWKQlzdMn2trt33dbUvUYKJcQiCQ0Vs=; 
-	b=ZExr8cm+P060mUxgkUOXxSzFN8WqwhmvnJCnl1WKDkRGuIiS7Gc7DSyEgmUMruOwoBLzxG4vHtX2TZRH+6UI2oqezU7S8oc8iMdzBuTXFEHlv8eLXnlOoberR3bm45rRMesUR7vXieNeiR0r1cGqRb3vYFbvahJopX2ihFlEdkg=
+	t=1763981646; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ZJpqyYfhAERIsGWk+dSoA06vMJ9B8PJ3IpzupKAbgK0=; 
+	b=JwhnijW+2F2Z9eN8HNW6TpYM4elkSs6/URFb15hAw+cA8e2Do/kqPfIjU6P6psgcVI5h6FbWBUdLOoV5SPItKua4jXinUUds7zdmqRjwsBROsWzKBoEeOIAdyGFpOy9TvKhDHJtPEB0TI14L7MjFvoFSWP58LL+iJILTO4vsrGQ=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=icenowy.me;
 	spf=pass  smtp.mailfrom=uwu@icenowy.me;
 	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763981634;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1763981646;
 	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
 	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=AbtvVxeT5KIAkWKQlzdMn2trt33dbUvUYKJcQiCQ0Vs=;
-	b=VE/psbDuLiAqvZw5+xhe75ims4qi9toOcowFJjK43alWqe/xtvm8VhC/zLIrG9Gl
-	T68NO/znhJWOxLjt1wHOzwPiXENGih8FC/4FPqMtAazVxAyUOakRDw6fejsoTSgqFzH
-	fx7VKbqYD+2hkSvaNNjSmVfIqkwI6p5MRuw3kKeaM7HV6e/vOEUblKIhF3UtcwJ7SCm
-	ylznElHLun0+AL1/DJBt7idX8FPoEboR+mwpPvCutzjl6JYsXQr57pyA6eW9GhLUQSt
-	efIjtVYpOg4c9u8o/G/Pa2ixZormtOb/BQTsChRuhHP3Ko63YuUmRUT4/FcN5EyA5b2
-	UQ4lVG371w==
-Received: by mx.zohomail.com with SMTPS id 176398163278473.11165427844367;
-	Mon, 24 Nov 2025 02:53:52 -0800 (PST)
+	bh=ZJpqyYfhAERIsGWk+dSoA06vMJ9B8PJ3IpzupKAbgK0=;
+	b=qdqnGkQIZCxSG2SVuks7tf0dTRXOnwKL4TfM/ut8Rm+w1gl6Y4ayl8q3jyIokA/w
+	VWn9D+k35tQYZ9pMcXRoxKDEvndTCju+HLoYaQXHYLTdNi+AGp2fwSxA5fQPBOnxe6l
+	GJpB5MBnTQvjaR/S6QrLHhdRfTQ1pr4/OhQylYze5fIjf1rmzk5RqYsY2v1Ao2PG3fR
+	1gUzJC8R7+uYxuCyNm3Q14+1II3bKjD5fuWMUVTL0h62QzY5EaZLwXOOoADrYamY63J
+	POu3ViLpAT1dUQ/ZSrDBHvEo1GxaEcikGmLNrDiSIBJlyd1mcE65xr0RQn3vLnlk3ki
+	qtz9vE+rJg==
+Received: by mx.zohomail.com with SMTPS id 1763981645508600.9408522110368;
+	Mon, 24 Nov 2025 02:54:05 -0800 (PST)
 From: Icenowy Zheng <uwu@icenowy.me>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
@@ -81,11 +81,10 @@ Cc: Han Gao <rabenda.cn@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH v3 6/9] riscv: dts: thead: add DPU and HDMI device tree nodes
-Date: Mon, 24 Nov 2025 18:52:23 +0800
-Message-ID: <20251124105226.2860845-7-uwu@icenowy.me>
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH v3 7/9] riscv: dts: thead: lichee-pi-4a: enable HDMI
+Date: Mon, 24 Nov 2025 18:52:24 +0800
+Message-ID: <20251124105226.2860845-8-uwu@icenowy.me>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251124105226.2860845-1-uwu@icenowy.me>
 References: <20251124105226.2860845-1-uwu@icenowy.me>
@@ -98,103 +97,62 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-ZohoMailClient: External
 
-T-Head TH1520 SoC contains a Verisilicon DC8200 display controller
-(called DPU in manual) and a Synopsys DesignWare HDMI TX controller.
+Lichee Pi 4A board features a HDMI Type-A connector connected to the
+HDMI TX controller of TH1520 SoC.
 
-Add device tree nodes to them.
+Add a device tree node describing the connector, connect it to the HDMI
+controller, and enable everything on this display pipeline.
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 ---
-Changes in v3:
-- Adapting to the changed binding.
+No changes in v1, v2.
 
-No changes in v2.
+ .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
- arch/riscv/boot/dts/thead/th1520.dtsi | 70 +++++++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index e680d1a7c821f..1dcb52b78bc69 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -536,6 +536,76 @@ clk_vo: clock-controller@ffef528050 {
- 			#clock-cells = <1>;
- 		};
+diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+index 4020c727f09e8..3e99f905dc316 100644
+--- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
++++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
+@@ -28,6 +28,17 @@ aliases {
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
++
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_con_in: endpoint {
++				remote-endpoint = <&hdmi_out_con>;
++			};
++		};
++	};
+ };
  
-+		hdmi: hdmi@ffef540000 {
-+			compatible = "thead,th1520-dw-hdmi";
-+			reg = <0xff 0xef540000 0x0 0x40000>;
-+			reg-io-width = <4>;
-+			interrupts = <111 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_vo CLK_HDMI_PCLK>,
-+				 <&clk_vo CLK_HDMI_SFR>,
-+				 <&clk_vo CLK_HDMI_CEC>,
-+				 <&clk_vo CLK_HDMI_PIXCLK>;
-+			clock-names = "iahb", "isfr", "cec", "pix";
-+			resets = <&rst TH1520_RESET_ID_HDMI>,
-+				 <&rst TH1520_RESET_ID_HDMI_APB>;
-+			reset-names = "main", "apb";
-+			status = "disabled";
+ &padctrl0_apsys {
+@@ -54,6 +65,20 @@ rx-pins {
+ 	};
+ };
+ 
++&dpu {
++	status = "okay";
++};
 +
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
++&hdmi {
++	status = "okay";
++};
 +
-+				port@0 {
-+					reg = <0>;
++&hdmi_out_port {
++	hdmi_out_con: endpoint {
++		remote-endpoint = <&hdmi_con_in>;
++	};
++};
 +
-+					hdmi_in: endpoint {
-+						remote-endpoint = <&dpu_out_dp1>;
-+					};
-+				};
-+
-+				hdmi_out_port: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+
-+		dpu: display@ffef600000 {
-+			compatible = "thead,th1520-dc8200", "verisilicon,dc";
-+			reg = <0xff 0xef600000 0x0 0x100000>;
-+			interrupts = <93 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_vo CLK_DPU_CCLK>,
-+				 <&clk_vo CLK_DPU_ACLK>,
-+				 <&clk_vo CLK_DPU_HCLK>,
-+				 <&clk_vo CLK_DPU_PIXELCLK0>,
-+				 <&clk_vo CLK_DPU_PIXELCLK1>;
-+			clock-names = "core", "axi", "ahb", "pix0", "pix1";
-+			resets = <&rst TH1520_RESET_ID_DPU_CORE>,
-+				 <&rst TH1520_RESET_ID_DPU_AXI>,
-+				 <&rst TH1520_RESET_ID_DPU_AHB>;
-+			reset-names = "core", "axi", "ahb";
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				dpu_port0: port@0 {
-+					reg = <0>;
-+				};
-+
-+				dpu_port1: port@1 {
-+					reg = <1>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					dpu_out_dp1: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&hdmi_in>;
-+					};
-+				};
-+			};
-+		};
-+
- 		dmac0: dma-controller@ffefc00000 {
- 			compatible = "snps,axi-dma-1.01a";
- 			reg = <0xff 0xefc00000 0x0 0x1000>;
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_pins>;
 -- 
 2.52.0
 
