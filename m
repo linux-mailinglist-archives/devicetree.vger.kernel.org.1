@@ -1,244 +1,197 @@
-Return-Path: <devicetree+bounces-241706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71DFFC813E5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:09:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAB48C813FD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:10:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BF4FC3456F3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:09:01 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6155A345845
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D1930103F;
-	Mon, 24 Nov 2025 15:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3405D3128A1;
+	Mon, 24 Nov 2025 15:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="SkWR7rTy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SgtJb3fS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013028.outbound.protection.outlook.com [40.107.159.28])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A39222333B
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 15:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.28
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763996939; cv=fail; b=au7IyiW4Uu9w8WPyCYRrSV++8GXXvyXkQWSNCui49WQDegyw2cmVF/b7F89XjSm5y1/7mmzGmKtQ2fwpXuuxPG2WA0sWrGlE8siVWG7KzzjKRH+cJLsQUHC5ze+PzbEmpUP28iWtIV4K+joNfOxpw8Vi9lsfSGQagUli5c0Qs9k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763996939; c=relaxed/simple;
-	bh=VrFapd8ZudH769/RJaYVcEWAZEz/rAhPNY+XXPCv//0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=sNR7D2xO/TcOBsa1Frkvw//86UoNpOa8mC65/NyjVYM6M97MatW4VuTmOKXf/4eUFbjgAtB6Gd8azcyPuFoh5aGncABd7qUs3x3bsV1qoVUbuyj7O/lt6v5mKLqAgCiCfwTnLTFnZf0N/48B/qehEbVk3sI6/W/HRORFtR2uQ7g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=SkWR7rTy; arc=fail smtp.client-ip=40.107.159.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=J9gamuQ+HKC2ZvDQQM7B35A8rHN6qSk3diqxHhxQcTHKlHlzM6qRfy1ffzyJZnCMXlqYtWmw710HGjaLsk25gFwHiiZmRjJj/2x8fxac/lr1TX6QaVpJDYTyIEd3wvLnQJC5BBnh5Ku2jw3cyGEPTLzPpOfHj615tWJ/lPS7SrThNRby/i6GdJEEjJs3mrvCVVBR8S9DRA+ge+TGVVKRI1MSsnVWHrANBLvQ8XmVg4S8JU/3lLIkZkX1h1I3SE4msbltCjdKK/uA1M/cc7cnL+1vCfFFImpIdOZgq7p4wtxlaGQIqxrsxKZ/dg4l+82mKS3Ujr0VeIDvCoi8UrlKOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AiFgGOiGzonfYR2R2W4ruskD2Dc+rwWef/8Nlv6mRzM=;
- b=EQpXxcUM/F9Y3SBf8iDoUg3LwIDbAWsDLxyHbBhCo+ZllsIMfjZDrmPTfzcgS8wyaLPgyMswiT9MTmM4Kj4/5xMXiMrA8oBteHNjhTwartfANClYZYcswOZn9Z/upjD0+7SZEnojNEQv3Q2G0kCyrIDjBM5TbxZaHbskT+jC6NHHdR8GmDdfGuNbh0X19KKx2eZBoTDxme3oBpWM5GdGe+mrcFS72X1vFNCwnABBGX1LyvwdKgmTdsewQVZ2IoQ+Fc55I90aYi07Yt4p3SPdEkas5xGTbmMl7S9iKsoQP19AoEDwh/jqyK6WNVtZfxbRWFWdU7GK9ijh/wKS2JLJUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AiFgGOiGzonfYR2R2W4ruskD2Dc+rwWef/8Nlv6mRzM=;
- b=SkWR7rTyllxVHw3rFnS4BVa3KwTOyFX2oLf1npFy3geKOKPjZrK36u4ubwXULAkB+sOSVlIe2K5DJY9frCOkect3Ia/Ed4BT6GW8mmcd8B8JTRwT1ZRT4xfwJMEGPpqGBp+qjRcf3oT3OvRsBmVGHANmiGveVllB0JqdomA8AhjymW6odqUYEZpooWU8hqb0rx7PYE1BelFHJr9Gzr1NZ3pp5QRI/APkS9cnV/MKxDonCp8JYOK7gDzN2LsGx+ghzVr6hacUMQb9gjFN0u8zdAwufWE3oQwaUjAp7bwA9/a6781hevHO3xyn9zRzWYR84PozNuOfW7ADqv3uK37zTQ==
-Received: from DU0PR04MB9299.eurprd04.prod.outlook.com (2603:10a6:10:356::7)
- by PR3PR04MB7276.eurprd04.prod.outlook.com (2603:10a6:102:8c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Mon, 24 Nov
- 2025 15:08:54 +0000
-Received: from DU0PR04MB9299.eurprd04.prod.outlook.com
- ([fe80::43b2:647b:5320:225a]) by DU0PR04MB9299.eurprd04.prod.outlook.com
- ([fe80::43b2:647b:5320:225a%4]) with mapi id 15.20.9343.016; Mon, 24 Nov 2025
- 15:08:54 +0000
-From: Aisheng Dong <aisheng.dong@nxp.com>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-CC: "robh@kernel.org" <robh@kernel.org>, "dongas86@gmail.com"
-	<dongas86@gmail.com>, "imx@lists.linux.dev" <imx@lists.linux.dev>, Frank Li
-	<frank.li@nxp.com>, "kernel@dh-electronics.com" <kernel@dh-electronics.com>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, Francesco Dolcini
-	<francesco.dolcini@toradex.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux@ew.tq-group.com"
-	<linux@ew.tq-group.com>
-Subject: RE: [PATCH 1/1] arm64: dts: imx8mp: Update pin function file
- according to Rev.D RM
-Thread-Topic: [PATCH 1/1] arm64: dts: imx8mp: Update pin function file
- according to Rev.D RM
-Thread-Index: AQHcXShvkeNcu2VmTUKLRIhokyBnebUBu3KAgAAXeFCAAAZ3gIAADvuA
-Date: Mon, 24 Nov 2025 15:08:53 +0000
-Message-ID:
- <DU0PR04MB9299811B113C555FD795FDC280D0A@DU0PR04MB9299.eurprd04.prod.outlook.com>
-References: <20251124095449.4027676-1-aisheng.dong@nxp.com>
- <5432a356-7694-46a5-966b-29257f37a8f5@pengutronix.de>
- <DU0PR04MB929990AF168DA048D26E993480D0A@DU0PR04MB9299.eurprd04.prod.outlook.com>
- <18901222-fa5a-4e5e-91c9-f252d6bf1a18@pengutronix.de>
-In-Reply-To: <18901222-fa5a-4e5e-91c9-f252d6bf1a18@pengutronix.de>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9299:EE_|PR3PR04MB7276:EE_
-x-ms-office365-filtering-correlation-id: dc6dbfc8-9bd2-4396-091e-08de2b6b620c
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|19092799006|1800799024|7416014|376014|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?feQu/ZR0hzgXAGbxsiXusO0/D0x8USOtKdeT1ivRJV+meuslUPkDTK+fVHw2?=
- =?us-ascii?Q?rtbOpQI0Hg7z3E/dL/wF08tQgkj+BAPMoWDx5w+F4bt70TVZ9S66eG+6WYuO?=
- =?us-ascii?Q?Qv2auutUUZsjdUf13DQjxgcTS2YIvogrnEoh+Q1LieQEaAQuBDmuR1Sw0MP5?=
- =?us-ascii?Q?cIgl8yj7TaHeZf3TEfrk7RpM3yiHnfXaX9WyNKxkuvHplnWkAY05JxNQNa6v?=
- =?us-ascii?Q?ntAM+/ZPAZD58zn51wH/JDtYFckx/Lvl3+94Boc8EUmbWFZx4MDckatkvfF+?=
- =?us-ascii?Q?goO+I2TNlJdNU0vImME4mZ6QEaHx3dbIgMLfgVYC/r2I7ToHzmjtNQcZPwYO?=
- =?us-ascii?Q?HoNZGDhPPG7yzCLXhzP3V9hDOtS/ebvXFH2y6AASqRibw+t9j5HWUtelh4sF?=
- =?us-ascii?Q?U93NggiTa7KFXFzvYnlrScYUNClTp7k2D/41FEzmBa+q34JXWvOk9yeKFHMd?=
- =?us-ascii?Q?Gv2yaV8SnitBsdB7F2s67Ne/3YvfoUrEc8rx3qBPuPgIMQ5TDJfrBcl7iP7B?=
- =?us-ascii?Q?BEBQ4U/Ig5ry61IO5AvAYGI1SUVy/NPfOQPAP/QZ2LQMZMUtnum4U6DW6jGW?=
- =?us-ascii?Q?YPslyCUud0AkoE3XJfnn9r4sZEtckwGB3GHaayHWXMd/tUgfvAFT7g15OvlL?=
- =?us-ascii?Q?rEdE2FoUAWsjyz7c6RBceR7s0VKAfXvHvcte6xnzi6KqBMPsjHRp+bzO7l5h?=
- =?us-ascii?Q?gi7UG+86lTdrDX+MUhCiYcAfwEx4bsHsc/snkgUQWKcS1y+FkvHlQ1GNQN+9?=
- =?us-ascii?Q?t3LGq79iZVQosOKCrOSk2BzRHzvg9Rq1rr8M32f3rud2Kv5nP/mevhgxyXCP?=
- =?us-ascii?Q?TlUCHgFdlB8+TnyWcWGa0Bs3OOwHM6qoVhgGyFlnckGyXrBgeuNS7qT0A0BP?=
- =?us-ascii?Q?JpPWgdZ0b+Olld1PieudFFnmjACugDlOzTJ4RHeVdBdzMsHvNIGVg8Hdxle7?=
- =?us-ascii?Q?fVSYSQiiqnr8XOHbqFmyje8FjbkVaPRFtgfmR880wA41ZkKZ2kgrTaoJLf2v?=
- =?us-ascii?Q?FW9M9GzfDzva5VkkBv+9AHt4KJUpOZ04KKcDjcxH219Vg0sk4lDElHodkfNN?=
- =?us-ascii?Q?G6N4esXMxSMiIHhyeMXoT96pr9KtCoGxinwDkMv3+c46vqQwz7RavMpY0o0s?=
- =?us-ascii?Q?ScEUdPGfVI/dL6PgHkQydyZagH9W23KNGtaPARV2e/kghjkQnUN5XhxlbzyD?=
- =?us-ascii?Q?rdKJjDqjAFhGZ53nHyN/KnyuEnD3LHFG9YebQmIBvjHvJ8nHH75tG55nf1is?=
- =?us-ascii?Q?GMtwyORxlZIIH3fjlxdKRTU1ImLKLssci82N2WbbuDkw2oGNmReOVRX7X31z?=
- =?us-ascii?Q?qS2CAahxOHuDIqbl8hWA4pGYe9UzBur3aDUCaue7+36MMyyeks20aI5DRR3m?=
- =?us-ascii?Q?AJkC8CgXsZEBRCbHNkE70islzDFE9fUZKZ/vD+9Mr94vW6trtrP0ti7G57qv?=
- =?us-ascii?Q?0SydPMd931xFe0qPwcs0TG3Kl+XkZ7eBzFwJ2kLPGWUiGVk5ytS8vAnH4/B6?=
- =?us-ascii?Q?zsP0CWz7zGprxSoHsdpYPDlrOXkNtT9Z7u4+?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9299.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(7416014)(376014)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?+QsvnL2NSjpxPMvfIBcnKvxWyTpagaivDoJT4XGfiY7BRwj9UzeRRkLPHiXU?=
- =?us-ascii?Q?g/UdzanPLDvW5VbLtMTVeTyZvEbnP8STHC49HUMF1I/Z/Ko5f0n8CB9CmuNv?=
- =?us-ascii?Q?3+T9Al76fjp7Y79YLQ8NM++BQfEi1GEzKnOAl/d8ZAyZJNwbu9sZdZYH+xYk?=
- =?us-ascii?Q?u/MWoTaYBdi07XGEsHrlcxZz+fI1Uvdw7j2hvAYxSvyQdoB00HP4p0Mkgdrt?=
- =?us-ascii?Q?bLA4UixawtfUyf21qBgSRfJFwP7ks6IeN7ilaRnfjxxfn8Xk3LYFM4LVQtNA?=
- =?us-ascii?Q?hOrau6BVX8qemiRmTHTervHbjWvihnDXAVLoCD6hpv65GE4STDtsyOehBKPz?=
- =?us-ascii?Q?qwOLMlbiVzl/vYLQg5KxT5h+pAQq9l81EPTNk6r+gOfVoIZPGFdQh5VUIpIz?=
- =?us-ascii?Q?CX8aM+wOfaTYHFnWvGBaXZnywGjTgjug6pAoh1thyDtK7hzf7/4FQV4q0tBS?=
- =?us-ascii?Q?33kgn+E6wKgnlkO225xZs8Hbp2tK1e7Oo9ZkT4jncCzozgjwO3i4O9QkBTyc?=
- =?us-ascii?Q?b6fA2sEalcPLpMeFvD4aPNTZiKBe/6RX8u39ym8Ts2o9XOrjOciBPS3ZGQRp?=
- =?us-ascii?Q?GaOfnHkcm9T5ntlW1QgtB2K6ves1sIa5E8lTYME/WbweBrHMCXnBCdgLHnnU?=
- =?us-ascii?Q?dvCUPK0vH/pnOgAup4jYwk8yhJc3AodRVRn9ieyXJFqM+aD+RYOKA1Mbx51n?=
- =?us-ascii?Q?EgX5TUwrWhoX2naZ5eA238dUbD6w1bkb4FWa0NaLOaKj/XylOSHA0sWuYtcS?=
- =?us-ascii?Q?4ev7lVY7vFVN1HOYriOhI5gUz9SqiWigOsCRp95LzbcO95Zo0u4W4w/1Iif/?=
- =?us-ascii?Q?UPtZTMTAXQ2MROKhM1JhDvyWiF2VxAbbaCJyFE2iNG0ZkTRP+r/vrJYbn987?=
- =?us-ascii?Q?3537sVOIwZo0AQ9wJxVgRdK1oISQ5Z18CzCxX6SPOz4Uxr3HNril+2CMl8ow?=
- =?us-ascii?Q?1cEvW9fDJnKqDm5Fby/3pikR2yg7Z9dzG/L9po9K0p9O2h/m82ZncwXAFdFN?=
- =?us-ascii?Q?tOSit2CZz+Kp3N37G/UgLsVaY4W19kgzSgLkGJ00+RakPE3gSkO44Wy3fg6m?=
- =?us-ascii?Q?WkYQLLDe3p4cl97r8W/MFSO+R6C271VYx0BxeYBuD09JkHDpvBNuMeagS4Dq?=
- =?us-ascii?Q?1SOvOu9/A/3KpzQKtyofoIIMxqLOa0cepBtgieMigvTXmyzSeVKsxAYp+/gB?=
- =?us-ascii?Q?QswYUk+a+3NCtfM0xW3e0xLLwsqbu+EcuSbCFRZsVwE9KN4y3nGVaN2N2Ij+?=
- =?us-ascii?Q?wiqvUjNUMl/8IzeOal+1XJuBUlPJCibGVnwnN70/0tcsKdQklYQVazkXFcYb?=
- =?us-ascii?Q?+zNYkFt2zcCcEnfshCo6oyl8e/6Er+YTKjfG+sCkhBhBRXEu88mmKebr5hcm?=
- =?us-ascii?Q?XU3PS+vocT37Tb5W3hKPIe+RelqJWNduwnHu+VN0/2WutnmhLDISM5qmIjcT?=
- =?us-ascii?Q?j50sxQWDh5/GIwcpZFji1NEvSVZDLtz2PwB0Qgv1hZdIszCH9h8hgZreP7sg?=
- =?us-ascii?Q?oW+hSbGyIqKvmUZSgD/qfb0+9ekkDZ1+J5aWqjuPHUn6oCqIhiOOGXgQTXOi?=
- =?us-ascii?Q?axXOtTEcEEH3Cf4/GfhzMufyPx782SBoQ7/5T1IG?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 061FB30DEDC;
+	Mon, 24 Nov 2025 15:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763997002; cv=none; b=DqzBsU2M09ktD1VOX+pAaYf6wv4szAPfNg7FjGR1pIPcbmbGPKGcWUcj8SrXdYjqqJxhGgLL5Fb6a69/Nm0bGAqmTPZAxMeymJ+/HvEOT8zAhzFhUaEqcx8MPVqDCg0fHwwnOjcMvcluXMxesue4tyCkB6QQ2Mztn4hOIc1AAus=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763997002; c=relaxed/simple;
+	bh=z4Z8xdOb++e/GW/xOyGMraTP8foIwEr0+MZSo8Kqt8M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t8IqCJUjKBCTGTidGdeSUG4RwrVFng0xjMmZ2QOKQmht0646wOyokKaqEggX1G4zhxHulq11hyS0y+2LS+9yBOtVBfU/4txrJ8ojHeJqU35uS98YNsrka0cEwcfyrsxTrm67voiQgcrrhiKPST8tNP9rFdxsaOaN4SYnirG7gIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SgtJb3fS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28149C4CEF1;
+	Mon, 24 Nov 2025 15:09:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763997001;
+	bh=z4Z8xdOb++e/GW/xOyGMraTP8foIwEr0+MZSo8Kqt8M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SgtJb3fSPtXcLT9XE6JHdKPFILB/DnMO240LlX5i71DvNe2DXVXRy6fyDGL+OPbBT
+	 kbVJLEl7sjIMSFXIVrDZfdDbc0JKztFOm32vyoCd65L17GpAtR7U/Jtn+flpZ+/4wz
+	 gzgxu5q1+AL0aS1mv9gEccjhkgML2t5CVBNySzJAFc3ahGH+yvpDm5UoMtgR34q/fk
+	 xTJsVIQLrswBg0lDR+YNxfco3NW88lzXfGbRF4OQG2RCbsV/wNtxsIfcY0qKrqRdCG
+	 ZYftXrf0l8tIW2m5YRxhDi9ftT5UPqmRzwrPFwO0FpInWfzwnnqSBO3/20MmlAEGBo
+	 YI8LCz4gw9mLA==
+Message-ID: <1a5d8d8b-a866-4112-a619-11c18547b63a@kernel.org>
+Date: Mon, 24 Nov 2025 16:09:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9299.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc6dbfc8-9bd2-4396-091e-08de2b6b620c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2025 15:08:53.8524
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZLVyc2GTPrFrGUByu1QF3BpbAmiJos2LsnyMzp5bBhq9yE3PkdjSk8aXJ8hoMiNQMc3qCD7UYInuHHa1JlSRcQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7276
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/7] Add TUXEDO Elite 14 Gen1 (X1E78100)
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
+ Georg Gottleuber <ggo@tuxedocomputers.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Ettore Chimenti <ettore.chimenti@linaro.org>,
+ Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
+ wse@tuxedocomputers.com, cs@tuxedo.de
+References: <20251121142623.251118-1-ggo@tuxedocomputers.com>
+ <af3d3295-1340-417f-8682-7d7e2bc6c812@kernel.org>
+ <aSGXu7IhPDNSkYhi@linaro.org>
+ <280982b8-ce86-45aa-812b-ef1bf6e57e3d@kernel.org>
+ <tceqigutnu6xqlprxbbm667szlnfwlhfgzxxroj6xldupk2ejt@4izqdv22rmku>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <tceqigutnu6xqlprxbbm667szlnfwlhfgzxxroj6xldupk2ejt@4izqdv22rmku>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> Sent: Monday, November 24, 2025 9:54 PM
->=20
-> Hi,
->=20
-> On 11/24/25 2:39 PM, Aisheng Dong wrote:
-> >> From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> >> Sent: Monday, November 24, 2025 8:07 PM
-> >> Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: Update pin function file
-> >> according to Rev.D RM
-> >>
-> >> Hi,
-> >>
-> >> On 11/24/25 10:54 AM, Dong Aisheng wrote:
-> >>> From: Anson Huang <Anson.Huang@nxp.com>
-> >>>
-> >>> Update i.MX8MP imx8mp-pinfunc.h file according to reference manual
-> >> Rev.D.
-> >>>
-> >>> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> >>> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> >>
-> >> At the very least, we should keep around the old defines.
-> >>
-> >
-> > Could you help elaborate a bit more why need keep the old defines as I
-> > saw the previous update patch also didn't keep them?
->=20
-> Which previous update patch do you refer to?
->=20
+On 24/11/2025 15:34, Dmitry Baryshkov wrote:
+> On Sat, Nov 22, 2025 at 12:15:40PM +0100, Krzysztof Kozlowski wrote:
+>> On 22/11/2025 12:00, Stephan Gerhold wrote:
+>>> On Sat, Nov 22, 2025 at 11:16:25AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 21/11/2025 15:26, Georg Gottleuber wrote:
+>>>>> [...]
+>>>>> Initial support for TUXEDO Elite 14 Gen1 laptop. It is based on Qualcomm
+>>>>> Snapdragon X Elite SoC (X1E78100).
+>>>>>
+>>>> [...]
+>>>>
+>>>>> Because the SoC is now outdated and some functions still do not work as
+>>>>> well as customers would expect from the TUXEDO brand, TUXEDO Elite 14 Gen1
+>>>>> will not be offered for sale. We would still like to submit our device
+>>>>> tree to the mainline kernel and thus contribute to Linux support for a
+>>>>> compatible device sold by Medion (SPRCHRGD 14 S1 Elite). At least in
+>>>>> Germany, this device was sold in many large stores. (An official press
+>>>>> statement will follow on our website.)
+>>>>
+>>>> For me this is unmergeable, because we do not take stuff which no one
+>>>> uses (no one can even use), and I am sad I put effort in reviewing AFTER
+>>>> this was known to be cancelled.
+>>>>
+>>>
+>>> I don't think we have any requirement to have a large user base in order
+>>> to merge changes. There is already support for plenty of cancelled
+>>> products with only a few (if any) remaining users in mainline, e.g.
+>>>
+>>>  - Snapdragon X Elite Dev Kit (x1e001de-devkit), shipped only to a
+>>>    handful of users before cancelled
+>>>  - All ChromeOS SC7280 devices (including DTB variants for several
+>>>    revisions of pre-production samples), never shipped to anyone
+>>>
+>>
+>> I discuss here the timing primarily and I don't know the timing about them.
+>>
+>>> There are also plenty of internal reference devices that only a handful
+>>> of people have access to (MTP, HDK, CRD etc). What makes these any
+>>
+>> They are still "maintained" and "offered", even if only for handful
+>> (like 3000 EACH variant) people. That's the amount of board of each
+>> variant, e.g. MTP8750, and all of them run some sort of Linux, even if
+>> downstream. So sorry, but 3000 (or whatever number it is) is not handful.
+> 
+> Where does 3000 come from? The Bible says 10 people were enough to
+> maintain Sodom and Gomorrah. For Herobrine we know that there are very
+> few people still using those devices (maybe less than 10), but we still
+> keep it. Cheeza was dropped after it was known that the count is exactly
+> zero.
+> 
+>>
+>>> different? Ettore has been actively testing and contributing to the port
+>>> for the TUXEDO laptop, so if he wants to continue that, I don't think
+>>> anything speaks against merging this device tree.
+>>
+>> I won't be maintaining it, so not my effort in that, but since you speak
+>> about that - maintenance is an effort, thus I decide not to spend it on
+>> cancelled products.
+>>
+>>>
+>>> In any case, I don't think the time reviewing these changes is wasted:
+>>
+>> I am happy that you do not find my time wasted, but I disagree on that
+>> because knowing this is cancelled, I would probably not care and review
+>> products which are not cancelled at this time.
+> 
+> There still people owning and being happy with those laptops. It's
+> Bjorn's and Konrad's time being spent on maintaining those. What's the
+> issue?
 
-I mean this patch:
 
-commit bcf7206fe9c35e048e1dc90cf62216b0f5eaf091
-Author: Anson Huang <Anson.Huang@nxp.com>
-Date:   Fri Aug 14 17:27:19 2020 +0800
+I think I described my issue very precise. Please read my first reply in
+this thread. Joining discussion at the end of it, not reading it and
+then asking "what is the issue" is not really encouraging me to discuss
+whether this is a problem or not.
 
-    arm64: dts: imx8mp: Update pinfunc header file
-
-    Update some pins' name and adjust pin options to i.MX8MP pinfunc
-    header file according to latest reference manual.
-
-    Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-    Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-
-> Generally, If the defines are wrong or misleading, I am all for renaming =
-them.
->=20
-> In this case, NXP changed their mind and renamed the function in an
-> (unreleased)) reference manual.
-
-This is not accurate. The RM with updated names has been released.
-
->=20
-> The tradeoff here is between:
->=20
-> - amount of confusion avoided when we rename USB_OTG to USB
-> - amount of overhead introduced to adapt device trees
->=20
-> I think the benefit of the rename is marginal at best and not worth the
-> unnecessary breakage it would impose on countless downstream users with
-> out-of-tree board device trees.
-
-I agree the benefit of USB renaming may be arguable.
-But how about the remain changes (drop invalid defines and adding new ones)=
-?
-Are they still need to be fixed?
-
-Regards
-Aisheng
+Best regards,
+Krzysztof
 
