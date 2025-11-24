@@ -1,41 +1,82 @@
-Return-Path: <devicetree+bounces-241511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 332D6C7F51F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:06:15 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7ADAC7F616
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:27:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0F7A3A44F9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:06:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DE005344DAB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008CF2E03E6;
-	Mon, 24 Nov 2025 08:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB11F24728F;
+	Mon, 24 Nov 2025 08:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="KJvSMQWn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IN1Ri1PC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m21470.qiye.163.com (mail-m21470.qiye.163.com [117.135.214.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB20325B1D2;
-	Mon, 24 Nov 2025 08:06:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.214.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1EE21D5154
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 08:27:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763971569; cv=none; b=eAkTzoJCMnLtJeTHAk808NRCL1WFD/e5EjKhnzqjrXs/APgNz6PsLbyZzSf+75XWdIrpXJ0dlQT8dAIagKvbShsFk6uQgQd+oxwgh6v5wS731W2Qz7r+fTuD9ZaoL3DRTJgTnMjVhe0opP6vdfFZVQ5ypZaqYeTwZbROi2HFR44=
+	t=1763972840; cv=none; b=QWfXo84f/vBEQ5ggYiT+Wl3ftjy4TT2lQQtP+D8JwzPCL4kIONS7f8e4dU7FWIQhY3oAVA0ilDkK/nzBWqY2ufYyjWAbtByFscoENFx4jNTV2QjBwTgFH8v/Zv4bWb/HRo1qICV62xYlcNvOLRuST6j6tPHLj4X58l7tZ7qz/7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763971569; c=relaxed/simple;
-	bh=qPNY91SDrIBCELOETUIAMUZaWMsxc902AJdatxGf/3E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qToSDNskq+fzrvs6/k3Rd+x4isbvp1zxBpL0QLZlnOCAPXpDNAzZHEX/vBrRY1ck4Z6mLjrEOwpBiwuLjPl3R1KUfi90J/BBshC91/L0Ht6PVHbFJMvC+7jIFCfAa0r+D4l+kbunxjUXktwHTY9IfDTZH1p7pCq1zlUgVyjgNBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=KJvSMQWn; arc=none smtp.client-ip=117.135.214.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2aa88f2fe;
-	Mon, 24 Nov 2025 16:05:54 +0800 (GMT+08:00)
-Message-ID: <a80483de-518d-45d5-b46a-9b70cca5b236@rock-chips.com>
-Date: Mon, 24 Nov 2025 16:05:53 +0800
+	s=arc-20240116; t=1763972840; c=relaxed/simple;
+	bh=hhgginRvZCpZVXffLgkFBiRkhCZVjuXK06sZ4C8b/A4=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Te4q3GZQ6k+sRExl6YyYnie4yQwLjhz6DkpigeSLuCo8ze05o7g024RFPG1T1hlW2h3ZnRnuB9MIGWdCSLeUGeMf7VsvPRalyprg98d8XeCdBQUq+8s966B4B3V6uZ9G84vL60DKZp5u2lMNp7QX1JEUZJZFJfNJve8d1WCmdNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IN1Ri1PC; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47775fb6cb4so25508515e9.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 00:27:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763972837; x=1764577637; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qxBsA+u52Glx00g9dRDSH7FR8fkXTnZDlelCU5NPOqk=;
+        b=IN1Ri1PC0W/wp59cSCEwHrdrJhh1tfok+SB7gKmuDHcrXQ+7VVHxsYxvMZOshWzYHV
+         SNqJB5GCmznSZ6lpWKzQLkSULgccKp+0iTYlQIOkE4oRzduZQMPyd1JhNQJZe9tiIgGL
+         mGCJj7mBvwvPUWDUzOqUWzKjjlVCHa9FXKOlDJTiOm9eYitIFyT/FGkjn+h/TBnbaTpO
+         HxjCr/gfb1k2aJFPdbY+D18FEsEGDYQ8l2doGUhGHo5sZQmTOHMUgmQiFZPkzmGnPaSb
+         pn6rwab4vb/1dQKKGX/q7bOJqNEXAXz/3W/u8sPNVErhyZJrLU4og7dC/0xCkFhW8m7z
+         ynBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763972837; x=1764577637;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qxBsA+u52Glx00g9dRDSH7FR8fkXTnZDlelCU5NPOqk=;
+        b=IVbCEHVPYiU45WLKy4DQ2ATD9siLwa6ki3/ph499bCIKX/iPeKVGulDuZatZ+diByo
+         QM8l7EWbk8YZtCyg5BTVIOsXKbK2lZqoxkMY8Nef8zPy65UoDgewW6/RGSf7fF1JRWro
+         o9jgD9hlFzTPjxm5ZSpQXqY0Q2xxNK5ROHmQ6ymH3dr7ShOFm1FedReEonNvFCzDUrdG
+         5gvyOFbzrnpVquRIHUVwK4Yo1zI/TGeOuPAyhuLLPAUhahI3JG3DEwcC6gs+8iit+cz8
+         3uxFddZLxVfZKsOTGzKGOhKu+0bGpmCm9vMnKeXc5aqDtwu5jUeQO4hlXdcgbYBz+SwP
+         GzYw==
+X-Gm-Message-State: AOJu0YzFTeKwC+ltBegzlnKBUZDHReUnkFLPlSXx1WSwrAtrj+90HKvV
+	sRuzIHuHTLMTBgQj6n1ErFpnWD/HeQXt8gjj2ml3GObkVv60Ud91/wwYkT7hwzOwU2o=
+X-Gm-Gg: ASbGncst0WKatutcn6ve2gGHp31dnr6fMILoHygqD/NoTvmK0VYZ0M5Fh3Hq1c+5M/R
+	4zThGzqdmwnLugJvcWg/dnaq643jcpME8FcrR7zL+1BuBRqMPDLwgOOh0SzRjdV+r5FR9+pGNpZ
+	KRQGXYzG/9C5gnznzftuxK3IXXTXDwSX68fRy6z++xPpIFkdjusLtPcRePS0xqX2ZWO9JLp5IXP
+	DCiCOJ2hYbuzZIGq6U/ltn0yeRm2hO2sAEl9JN5L72Zej0MGKkni+sxEDRMInRpnajRyCeU+JRs
+	0KeHnRnqb3Js3sNk2IK9amm69cugupZQM/TEgsKo6uWIKDY2l38UmNlGz3cYdJUUv4cAYcu7kNx
+	tvJMhfEYWcuK5Zwddcx97s/KJZe9SrLyLMgLZ+RnprYrgWHyUPYhqfbpawPzGrNJpjQ9uHtp+h9
+	B8DSh0U3AdBqRb6PD6Me36DFdkUXgLJjlyfL4RAtX3S80pNrl4uzLzOJ2JdcoiW7A=
+X-Google-Smtp-Source: AGHT+IEmDEtuYmnXYRV6tZiqi54hm2qUz17sARsuhORYI/DXmb/Dj/FFZngja8G3IWf3t5i4YFRQNg==
+X-Received: by 2002:a05:600c:1c98:b0:46e:37fc:def0 with SMTP id 5b1f17b1804b1-477c10d4887mr86783455e9.9.1763972836912;
+        Mon, 24 Nov 2025 00:27:16 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:3d9:2080:ab13:96f5:1459:8396? ([2a01:e0a:3d9:2080:ab13:96f5:1459:8396])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477bf355af6sm183596525e9.3.2025.11.24.00.27.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Nov 2025 00:27:16 -0800 (PST)
+Message-ID: <144870b7-133c-47e6-944f-b780605618a7@linaro.org>
+Date: Mon, 24 Nov 2025 09:27:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,126 +84,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 01/11] usb: typec: Add notifier functions
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Chaoyi Chen <kernel@airkyi.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20251120022343.250-1-kernel@airkyi.com>
- <20251120022343.250-2-kernel@airkyi.com>
- <2025112102-laurel-mulch-58e4@gregkh>
- <462ad1bd-7eec-4f26-b383-96b049e14559@rock-chips.com>
- <2025112402-unopposed-polio-e6e9@gregkh>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <2025112402-unopposed-polio-e6e9@gregkh>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-g12b: Fix L2 cache reference
+ for S922X CPUs
+To: Guillaume La Roque <glaroque@baylibre.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Anand Moon <linux.amoon@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251123-fixkhadas-v1-1-045348f0a4c2@baylibre.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20251123-fixkhadas-v1-1-045348f0a4c2@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9ab4e5daa803abkunma55763e93ea70d
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkxISlZNSktCGh9IGkoaTk9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	5VSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=KJvSMQWnhpc4p7xme6emDFe2++rK44pn+ANOLRzg5kiLyjx+/4+yFvS6QcBrrxdhALgpyzrKiSpzwKvymkjs34dszmAkArFI9nKrFKxGwSzH8jEZmbae68cvtp3xcYfv9VmIj6xu/V65TudwLH2r6q/J/2emA/s0k+m7iBbXtjc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=Dm0AUIAI3rBdsSDVXq01oojJAQeP5JCEx7XZOEM8cDU=;
-	h=date:mime-version:subject:message-id:from;
+Content-Transfer-Encoding: 7bit
 
-Hi Greg,
+On 11/23/25 18:14, Guillaume La Roque wrote:
+> The original addition of cache information for the Amlogic S922X SoC
+> used the wrong next-level cache node for CPU cores 100 and 101,
+> incorrectly referencing `l2_cache_l`. These cores actually belong to
+> the big cluster and should reference `l2_cache_b`. Update the device
+> tree accordingly.
+> 
+> Fixes: e7f85e6c155a ("arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC")
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> index f04efa828256..23358d94844c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> @@ -87,7 +87,7 @@ cpu100: cpu@100 {
+>   			i-cache-line-size = <32>;
+>   			i-cache-size = <0x8000>;
+>   			i-cache-sets = <32>;
+> -			next-level-cache = <&l2_cache_l>;
+> +			next-level-cache = <&l2_cache_b>;
+>   			#cooling-cells = <2>;
+>   		};
+>   
+> @@ -103,7 +103,7 @@ cpu101: cpu@101 {
+>   			i-cache-line-size = <32>;
+>   			i-cache-size = <0x8000>;
+>   			i-cache-sets = <32>;
+> -			next-level-cache = <&l2_cache_l>;
+> +			next-level-cache = <&l2_cache_b>;
+>   			#cooling-cells = <2>;
+>   		};
+>   
+> 
+> ---
+> base-commit: 6a23ae0a96a600d1d12557add110e0bb6e32730c
+> change-id: 20251123-fixkhadas-c84da7d7c47c
+> 
+> Best regards,
 
-On 11/24/2025 3:10 PM, Greg Kroah-Hartman wrote:
-
-> On Mon, Nov 24, 2025 at 09:40:03AM +0800, Chaoyi Chen wrote:
->> Hi Greg,
->>
->> On 11/21/2025 10:07 PM, Greg Kroah-Hartman wrote:
->>> On Thu, Nov 20, 2025 at 10:23:33AM +0800, Chaoyi Chen wrote:
->>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>>>
->>>> Some other part of kernel may want to know the event of typec bus.
->>> Be specific, WHAT part of the kernel will need to know this?
->> For now, it is DRM.
-> Then say this.
-
-Okay, please refer to the discussion below.
-
->
->>> And why a new notifier, why not just use the existing notifiers that you
->>> already have?  And what is this going to be used for?
->> We have discussed this before, but the current bus notifier cannot achieve the expected notification [0].
->>
->> [0] https://lore.kernel.org/all/aPsuLREPS_FEV3DS@kuha.fi.intel.com/
-> Then you need to document the heck out of this in the changelog text.
-> But I'm still not quite understanding why the bus notifier does not work
-> here, as you only want this information if the usb device is bound to
-> the bus there, you do not want to know this if it did not complete.
->
-> That thread says you want this not "too late", but why?  What is the
-> problem there, and how will you handle your code getting loaded after
-> the typec code is loaded?  Notifier callbacks don't work for that
-> situation, right?
-
-In fact, the typec_register_altmode() function generates two registered events. The first one is the registered event of the port device,
-
-and the second one is the registered event of the partner device. The second one event only occurs after a Type-C device is inserted.
-
-The bus notifier event does not actually take effect for the port device, because it only sets the bus for the partner device:
-
-     /* The partners are bind to drivers */
-     if (is_typec_partner(parent))
-         alt->adev.dev.bus = &typec_bus;
-
-
-I hope it's not too late. In fact, the notifier here will notify DRM to establish a bridge chain.
-
-The downstream DP controller driver hopes to obtain the fwnode of the last-level Type-C device
-
-through this bridge chain to create a DRM connector. And when a device is inserted,
-
-drivers/usb/typec/altmodes/displayport.c can notify the HPD (Hot Plug Detect) event.
-
-If relying on the second event, the bridge chain may never be established, and the operations of the DP driver will be
-
-always deferred. Furthermore, other parts of the display controller driver will also be deferred accordingly.
-
->
->>> Notifiers are a pain, and should almost never be added.  Use real
->>> function calls instead.
->> In v6, I used direct function calls, but had to switch to notifiers because couldn't resolve the dependencies between DRM and Type-C [1]. Do you have any good ideas? Thank you.
-> Only allow this DRM code to be built if typec code is enabled, do NOT
-> use a select, use a depends in the drm code.
-
-Sorry, I didn't get your point. Does this mean that the current notifiers approach still needs to be changed to direct function calls?
-
-If so, then based on the previous discussion, typec should not depend on any DRM components. Does this mean that we should add the if (IS_REACHABLE(CONFIG_DRM_AUX_BRIDGE)) before the direct function call?
-
-Additionally, the current version of CONFIG_DRM_AUX_BRIDGE is selected by the DP driver in patch9.
-
--- 
-Best,
-Chaoyi
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
