@@ -1,263 +1,315 @@
-Return-Path: <devicetree+bounces-241715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C33C815DA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:34:43 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15141C815E0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 16:35:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7BD5134ADD2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:30:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9EF77347D8E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 15:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B874315775;
-	Mon, 24 Nov 2025 15:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62EA331355A;
+	Mon, 24 Nov 2025 15:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="Q7nEjiAL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ASyJtzs7";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Z2K+9K0H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010027.outbound.protection.outlook.com [52.101.228.27])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3D4313E24;
-	Mon, 24 Nov 2025 15:28:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.27
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763998131; cv=fail; b=rFA2AzBnRy56OM0HOz6o/LLurJZScAFE/3aP2q5+5KB+ieCYd/Vv6R90md14rEKggu+dn/jV+zhgVDUQ2bw9alLBd5Lt7CMapGVsMXVrfr3moHeENbgXR423PIoLfCIOUb+CfcLqlLsB/1Jn8Zg8m2uRUCaFarsT+0DOhL31B9g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763998131; c=relaxed/simple;
-	bh=+QmPuExkKAgxt4i3ukIy12CZASdHg2oD/Ui5R1WTfWI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=KApmfRjBdlFfaWPpkkQ3iyP8xeEWeBFJZxZ6PxJgozkIIkf4otWWPXPqDK9hXIVI0S0KJZmnNgPtiK8vhEOnsxZluIrHgU+79MWz+5Me8Gyl6YWuU0QT4V0Us5u0CD6AL5cnGtn15sd5RT6901QAlpvtKLhmK/BDPbmjCz9xkFQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=Q7nEjiAL; arc=fail smtp.client-ip=52.101.228.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GF4J8f39aUB5bcZV8nZ2QH1+QYOvXLV3QGfu3tARRyzFAjQFF2himAs4AUhxRtPuJAWp8QbnAlTE8/Zf4j48Q6kzS3WV6sLDN5UJiq6EcirZTA140ErCtaaAfe22eqLlhXpcKsBtANj/1Xccs24QD6/Vjrb7BfyLNgxCed7X7S4U8OUgc4E62sBknR6i29Iou2yzD/WKmRCgfsNepuptjieGe/ONhMqvaZu0yPGc930fQ0/5kUMf37+zf0WwrGxYKQYin8ZiIU/QlJx1l7p60mJm+EhOQ9dWeHjubKNwF3gFwOYSEITw+rSyFyXICU1d1Yf1pvsXuBntwRhQqjA1hQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=toXXFLRrP7F++GjnO1VKL7DdkGISCsvQBvJMcgX0l/8=;
- b=R0sHHHHznBQBqzSb/5PV+mrk5578GNJrBw8pBoLSiu0qCC5oeHStYdhHPw1v3py66/2uwCAVL1uIBWin7cWAxKYFwErdrTgq+nsaa47AKWk0sVqdYu2nbMwGvwXCI5T/30jhzK6+H75s8R+2Err5l8E2uFg38lF4SbrX1a60+YvTZQGU/PZWT6va3bjZbE0bTe988BU8Of4U5XsJSxNvC0/+w+w3ytP98zTRkd2TO/OsCtWt1Lxp8qRJd6JWFeqHHvafv9ZtGcOkKsPXGVH/Dzv7RZwgEN65Io3TZonKoPXWySLnBj4TaqCM3nXeXzSLnD/LIoLzI5tw0SL9bYxS1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=toXXFLRrP7F++GjnO1VKL7DdkGISCsvQBvJMcgX0l/8=;
- b=Q7nEjiALJ2rUrLUGT87pVwf6pD8PhgkZnGTza42GH1zb7wdkwsXDLyiAcSP7Ah0OwzvomxTYilJQ9H14jnn0uZGyAcvAZLhmORhYYTCfZtlB1l2GoZD7gzNgpKySi/Aj6hpIR8vNj6oJR0l55NspaaCLKougVLcFw3QbjTR3MkA=
-Received: from TYYPR01MB13955.jpnprd01.prod.outlook.com (2603:1096:405:1a6::6)
- by TYCPR01MB7920.jpnprd01.prod.outlook.com (2603:1096:400:187::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.10; Mon, 24 Nov
- 2025 15:28:41 +0000
-Received: from TYYPR01MB13955.jpnprd01.prod.outlook.com
- ([fe80::52be:7d7a:35ec:4b29]) by TYYPR01MB13955.jpnprd01.prod.outlook.com
- ([fe80::52be:7d7a:35ec:4b29%7]) with mapi id 15.20.9366.009; Mon, 24 Nov 2025
- 15:28:41 +0000
-From: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>, magnus.damm
-	<magnus.damm@gmail.com>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 2/4] irqchip: add RZ/{T2H,N2H} Interrupt Controller (ICU)
- driver
-Thread-Topic: [PATCH 2/4] irqchip: add RZ/{T2H,N2H} Interrupt Controller (ICU)
- driver
-Thread-Index: AQHcWtghbawqYjnook+9mPCVu+E0SLT+2zEAgALiuHCAAB6zgIAAF7uA
-Date: Mon, 24 Nov 2025 15:28:41 +0000
-Message-ID:
- <TYYPR01MB139554C11AC25646D5503985385D0A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
-References: <20251121111423.1379395-1-cosmin-gabriel.tanislav.xa@renesas.com>
- <20251121111423.1379395-3-cosmin-gabriel.tanislav.xa@renesas.com>
- <87see6hxjb.ffs@tglx>
- <TYYPR01MB139556A313B1377F9306A7F6485D0A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
- <87ecpnilqw.ffs@tglx>
-In-Reply-To: <87ecpnilqw.ffs@tglx>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYYPR01MB13955:EE_|TYCPR01MB7920:EE_
-x-ms-office365-filtering-correlation-id: a0d6100a-f71b-4d11-7b1c-08de2b6e25c7
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?Pc66fNvtyfof+fYqqiByT59MLqvL4cpEHQDtwZqhdOV1y3ub9/S0ByvQLUVH?=
- =?us-ascii?Q?zXZCXchpGOjAp+oUeo6CaTCpVcQXfiV+9w5dE+Rdbsbev4Rwlw1L6x7K5CWn?=
- =?us-ascii?Q?pGSmEtGoyOPLBRJSU0nGKfqfCFLWdG96ER+CUyb5+R29F49SPyxLqwoSWCQO?=
- =?us-ascii?Q?iR2Zcsx2/ogMa60Dst6i5JixfVuQks/A9z5hqfLdgCp15s27Bh5JzBndg0wI?=
- =?us-ascii?Q?oV9cf9i+UfbAA6gT7d+uxD7HFJvOncNI3ac/eAJKnlkdRQZEmZEYYZmwXqZY?=
- =?us-ascii?Q?0Iz+nGTTzQkPSuBbzFuvmYe1sZaVlHhpGjOk8p7+o3FFdaaH/wdC0ZfsfuY3?=
- =?us-ascii?Q?iAi2rts2gvYawJRZFMSifCHPLWoPkH31Tem+FbCCH2mYZIWJS1kfqR+flRmX?=
- =?us-ascii?Q?+9Z45Ywv5o/Qe5jRPtytvp4T+FKeEzUTlWMeOCqVyXXHEUvU7+WfpDVfwjbF?=
- =?us-ascii?Q?X68RpsdRBBxTfidqPAu1A+02ORRN4MiKaYc/xLgmrGBF1whuUq4R8uI5O5VT?=
- =?us-ascii?Q?+b26gV+HDPIu9cO8KO/044jv//j7K0xJgxJgMNnrricwUB8xD5XyinDOb4y4?=
- =?us-ascii?Q?ge8o6446mjsm8ThNzP6h84Ha4tJwsUCxiZGWhscjhBsn/ng/dWDNh7DN0Ukc?=
- =?us-ascii?Q?0AR/sNBnhsWIfMZQbwqr2YOhpcGhCINRJXA82d8lql4ozLtJNqcNldKCJSg2?=
- =?us-ascii?Q?6uBXhyrQlB/DtkiLV4K1b5SP1pXr+KYwd42BuBn5mFdcmFMKMd3UEApGx/mI?=
- =?us-ascii?Q?ipFAfp40AdokvpvGC35ftXwQ467CoFVH1qKpRoO5t2jRJVO1ywh7IYUmPpjQ?=
- =?us-ascii?Q?IS//XLxST+jUz/jBffQzO3BDTN/LB2z7CQrQ2TWYBWgBjhZSQSUJsr0kQKTq?=
- =?us-ascii?Q?mCOlHi4rFvUvq+G171H3kgbLG+f1kB6u8qFKksEKdFWcNxDva45HTHG5Bvp+?=
- =?us-ascii?Q?FOL7XffDzYg5rc/lmTFCSOUn8E8q8iKHT1LF6ALPHjkQ/yjS43jZOGijMvKQ?=
- =?us-ascii?Q?yJ7UHpleVj/AdGPzcRQO2o73TzaVaJwMNAZkI/2SqO7GFW1l3mIY4jW1Si7h?=
- =?us-ascii?Q?vDH95KJ/kiJbyDWNLIHHO1a/zQYVeOw6DFlY24XkmN9DGmdAWc0dr1lTpD87?=
- =?us-ascii?Q?FetzYvI9Wdb1ru2npIAqoj69Xbv72vtI3lp/Fy2u/Tv5gGHEe5/P5gsVZCMP?=
- =?us-ascii?Q?ZXqGcWAi7/3wxS7/YAVjbJmy0MvYtFYUKzyWq8QSiymZfVHP6moyGOqVt7Ac?=
- =?us-ascii?Q?qtqmGwJaTIsfrhqfBW713pOaQrr/lzIPuKfL0bErPx1OsnwqHnXgTE5j6c59?=
- =?us-ascii?Q?un9lcmbblU8Z3HypFVQorFgAJ1s650e5yryybw2jYEyFFTYW/SaDzpfpSArV?=
- =?us-ascii?Q?EyiP3JmD8CVQO9jK7z8rYpLGqtfSvlIWLeGZ0XS21ewF556YU+xwwpXxM0Ja?=
- =?us-ascii?Q?CxoTJD1A2fh/RSKzylEB5KKX5lX9FgKTNV8fY3eNaU134gQANzSwO6aiFk/d?=
- =?us-ascii?Q?nzIew5oSL1L1Bffh5i6y5A/ixW7xhL6yy9nA?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYYPR01MB13955.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?X9AGpQB89H8sccAcu6N6dNH9NXcTeSlQucuejfS8M7CKiPcYHikM5M811O2V?=
- =?us-ascii?Q?RFUpC1DfNMGjJ5Fo/w2CVEGi/ESEqfD3dkQiyuJbGw92YO43ZSc4yXa4t8ep?=
- =?us-ascii?Q?Jm9ynSiJeaiotEk80RyO6T26A2Zp5K7k1qo0Np/pRGWX2ovK62ZF2rFrQdnV?=
- =?us-ascii?Q?pnuHgH/a3yohCGbY7gRsba9Pt9r0GEiyP3VhDeFm9O7AokIfod6lEe82NMtu?=
- =?us-ascii?Q?16UKZP3aoDgPBQpH/2eaGcuOeFIl0bW59zSVcoWJMhsjn5f+W0/IHBMbuKB7?=
- =?us-ascii?Q?At1maZ0KwBa4vw5D1jLbhOnpLNyw+9WPqhy1VS3tv0Ksw77+0KmHeUBU5C2x?=
- =?us-ascii?Q?wg+Lqf+W2H6Ia8RhsmuCSoRmzafra5qD06+LOMXxuNjzsA5hjHSGG9lP/PMS?=
- =?us-ascii?Q?nRj7vsEj4pXx0Gg09uIO4ikwEpurY1L5Ik3fnTQj35FPXPIvu4P7cfn37/7P?=
- =?us-ascii?Q?ejqyjmt6nj7sg9mIkLOe716TTjDeJ9V9dxi+qLVBpbM/lafZABC0chWGesHc?=
- =?us-ascii?Q?aM8kbYbcoI4b1hdTetBsUD4fe0teYzxh1Pz22ffJFH11SIu4q555ai3RGs9n?=
- =?us-ascii?Q?MyrnRrQNVD1a+vUVLVT7FWBtiU9WvlcsaeGoZg9w6cwaditrkp1h2MfebPeG?=
- =?us-ascii?Q?s+XzXPI8MFl8mpWv/8sFNyZQFwrfUd483cThDwisV918JbeQzcQFLQ9XE5c3?=
- =?us-ascii?Q?Oz9hjxOrqhKA8HW1o7Au+y9RRB0COeQ+BnxRec0V6/dRAULXm3APzQHqtryF?=
- =?us-ascii?Q?6UxBSO1PEfO/CDMxMeT6Cj0IVGGetOxLugsVQaDsoLMDVKVqoISDDIbvfcpz?=
- =?us-ascii?Q?sL5QV9ud2t/UXLeGRI8k9YuC3nx19YgVs8Ih0tQhKul6x/OBSZh9ptMvTwJw?=
- =?us-ascii?Q?KCgn36CPKdtx7Y8X1rirNl70tXET8maSVYE+RjBNGhiNXQrUmLw9G2fOo+qg?=
- =?us-ascii?Q?GJ4DW8pvfyLAN5K5+4QHh0ZLxpNH4RjHYy7fInzvgqYwCVfLCYJ8z1Y8waxH?=
- =?us-ascii?Q?/78Rwojr6R4+qFwXRTjjd4F35RRNfLMWe0BLAqFgILZW8yq17HfRp/z13y64?=
- =?us-ascii?Q?3HpIDVDCB7b5kunOtLfOu4smwUts8bBZbTwuBxoalwojbLZtmccop9hoPpAR?=
- =?us-ascii?Q?7UA1vF2FohHx3xv9FToxEoBHfzA9KFs8shS6kFe7BYhzDQplSQfmZFkYPMw4?=
- =?us-ascii?Q?2Yjl55Q2+Bpna8JiDVH4Q+fGfl8ae4ocUuIHfUxCwvP8SsxEoB4mfEy+S/8u?=
- =?us-ascii?Q?OUSAqA3AmUejrjhzd3/E2VYpn+H15Nc6SCxbaQ00cgVW03a4IGliEw/AEk7j?=
- =?us-ascii?Q?1wi6tyqGE/pl513TNKg413M86R6YR331B8+gRpm/Wi6tv84+bMJpq696Wo0n?=
- =?us-ascii?Q?iPzeuVLrNZty+dZIaQtonn3N+h2kcqw7PgeFoOS32GH8aM4HpoFFzbyVALn/?=
- =?us-ascii?Q?wiLGPI/eHpAXLAz4V3i4XtqPfGzrDAk9OJxwWPv8yefvNjtQin6MNCTX2u9l?=
- =?us-ascii?Q?n1HSM0pYgjZzlDXEVKY61h015ifbWqRcoR4HJ6ZrR7GtUWnO7D3ty0ac1oET?=
- =?us-ascii?Q?FCyAVDsQSjsFpeHi3V0bjTOK44AuDCu/XhMv9ElFhxDdCIqY7Ex1QH+jYRgU?=
- =?us-ascii?Q?6ma1f8aokrowRVfkMEXG1mQ=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865F630B52C
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 15:29:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763998167; cv=none; b=rqscgaSD7N9bkRUjP98wurbZ8691Q3Xw0HJHhLcs8p4uMxE1o/2Hu+ZVYt78jEzr2szdxK8VOhY1lClTfXKV+3Enc9j3HYIZ3BaetNdM85Jx7WL64UICXmJuce7yCgaKzB6SWru78E+u2xgo84oBtjYd+/Hua6rWzXY5uR8/TGc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763998167; c=relaxed/simple;
+	bh=yj67WpdXgPciMv5YliCxD6tmkBa2cp1eaItRVjmfVTI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TCu2EOnhaE39WRkY9nftHeCWrgE+PYIJpeOvwiJQJQvg/1NsGT7zUqEOe2ofKvrQnLcWV4N138LnJJ3/o1bGjGi757Wf87VqRNDNTzrP/JOYLihICXIzu7K/X6M/6ILs0z/yLR2PHT5MukioIynfezeenUJaPLl8XPrs7Jsur30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ASyJtzs7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Z2K+9K0H; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AO8U92g2282482
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 15:29:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yj67WpdXgPciMv5YliCxD6tmkBa2cp1eaItRVjmfVTI=; b=ASyJtzs7QCJAJq0y
+	yl1J0mwJzXj1AjNKKXUMqFG6H67llGh4Od3QweM0oRUYOuXn7G+yOBRE7Toxqj9K
+	Z/J6nbhJ4kBMCBnrd9gVmQ9IB5sGqyEweypmGacIZtg8DRbtHl2lMkMGYPwSH0SI
+	NTgIZ0tlowZOfyiW9mtHCafo6wg0spBuxkefTQrwCvUyjJI7i8mRZywxe7vb5Xu8
+	aMrJ6ovGqVaRMg1v11efSX66CLdSk8OT0CEYVtzsrfWcgVeG77PN6QnTSSXA/g0c
+	WS66URjf2izU++Fw/02799sY4Yxfv4CzWrcQA7mI9nihL43TeGH6nWxA1vBXwizj
+	TNxoqg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ak68dwern-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 15:29:25 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-295592eb5dbso98924185ad.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 07:29:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763998164; x=1764602964; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yj67WpdXgPciMv5YliCxD6tmkBa2cp1eaItRVjmfVTI=;
+        b=Z2K+9K0Htn7Sdcqsadr02wrYO9vZfWB3I/brjsYKkZpOrUE9wdEDs9clh/+LamYnnH
+         n3MgXNwiNuyZNXC5uCImLFTIIs4EHXcXE0Z73fs5i1Z6xO4Co+qjfHMGSBkG8i+Zj8sd
+         wjUObl4d3hyOPplrUnuoRAD2iEF+hKuLdFm+FjXGIXN2pyIVrFZcOYSu4nfX6Mke3BbD
+         ezlnfFbdxxmEkraBiQEAzeC9p0isZhwQKf0uyMCRfVaiRvuIUSOJtneKax7q4JAJqUjv
+         2xZYHsYLlYQRu4YIsrfiZ/3icHJ63Gi24ObZLRxBYp2poGM7esXdW6JF3p54kMeLCfA0
+         C/Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763998164; x=1764602964;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yj67WpdXgPciMv5YliCxD6tmkBa2cp1eaItRVjmfVTI=;
+        b=R3KWvIOIq98tjPfxny5I05xxfVyRmsF2V6f5sFL8kGg8yoSayS0F7jvZ9gxOPAkSqu
+         JAzq5lshrf7AB9cP+S4twl+qtWAfgVLAjL0L5j9SNQIQ/Lg9Md0o2dXoCiSNIlW2uLby
+         HuY8T03FWtx/cqSMG3E5nDLuCGJNu19lUzf8q7GnmF+UcazNSv8LOPavBQG4d8kCNmaV
+         tHhPm6XpctuuqLPxpd9XhRurqvHFD/QBEp65EaXTjQ8fue5n7I/sTF4RjIbxmxatH+XO
+         sJYX9Nvy45uHjpkeuiSJkqE0zcirlQF6p2aGKcAhMTQHDa/qVGzGH/HQ+E6Lwao1PR67
+         Da+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW25abVzLZHlxYt9nVY3ybBjAyzFWgGsz/++8RSaNvhdtIU89pgswn1yFf2/50iQO7tzjXHDCrA0xFl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxp5uZcIeOe/RLwiDNsyndXsZ52uWIAdtvPzhHLFvlJh0wpaQAd
+	dASQAOT8dZS2VUJZwLLMtvtQmtY2wVHMK08Rw+l2Qfw3FkCKw+QqrBywIe+wVMzCHi/Qb9HfV3j
+	hkXyYQr/zSvIWeEo/bdFw1l3U1qtsnOaUxTh81HbuPpOhpayP3rVZf+de/MRxgsr1+WRgkq4j
+X-Gm-Gg: ASbGncuTSahOPYF5ynT0m6j0lKBNhPqmLljIYoleJD+2FqrrSsP/88HnfYthVg3yvfc
+	Z2uhH7PMmDctl5QBqfqKH01hOomrinSmu/sowKHBoEowyYO9B4cfE4YCikX4rokqUMEwlYbQKtc
+	EKWNsEGylVby6QGDwF2Fa36MQRNgvWM12jioZcRoorXf6bMQKDDZZaPHHFfrJG7/Ma4Ajv8A8x1
+	h6o6p6fcyqxYn6DBNWXfcF3E+LyFFCeFaAjDvI67KeyGt/uDYMFQTnX/DGWrwbfx1WhPHaCoa45
+	EiZ957a3Sf55AufB8Mgn4jZ2tzlxfDBbZEAt7M6D2DwS5KaNLaPGURFNppb24Lwfv107vb9Jyc3
+	8hX7ipaMlrGe8Nt5LpBt1FB8opWy9a1vf4VtJhh4=
+X-Received: by 2002:a17:902:ce11:b0:298:49db:a9c5 with SMTP id d9443c01a7336-29b6c692349mr111544285ad.43.1763998164040;
+        Mon, 24 Nov 2025 07:29:24 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFngXtSvzh8HbFmiaCMIUXyTtgCimz8ylmbbhZEYrDLV3jcaGA57eyBNwvauRkqSP27EtODDA==
+X-Received: by 2002:a17:902:ce11:b0:298:49db:a9c5 with SMTP id d9443c01a7336-29b6c692349mr111544025ad.43.1763998163491;
+        Mon, 24 Nov 2025 07:29:23 -0800 (PST)
+Received: from [192.168.1.9] ([171.61.230.171])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b111650sm136021045ad.8.2025.11.24.07.29.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Nov 2025 07:29:22 -0800 (PST)
+Message-ID: <51e5945d-e800-4f97-8e2e-f97f61b76fc8@oss.qualcomm.com>
+Date: Mon, 24 Nov 2025 20:59:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYYPR01MB13955.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0d6100a-f71b-4d11-7b1c-08de2b6e25c7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2025 15:28:41.3008
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vp5chyo1pqufMvacdl/wD0ew5CEf7vfKV2D2slQkCKm7grnFN9ETt+Bm6B2aVCDKrXmuiXD7FX4HmAxF7toUtRqt0UKUqW8xy9Yh/ljq642MS0Ws1dedqMDffkOXxec0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB7920
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
+ nodes
+To: Nickolay Goppen <setotau@mainlining.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org,
+        Chenna Kesava Raju <chennak@qti.qualcomm.com>,
+        Bharath Kumar <bkumar@qti.qualcomm.com>
+References: <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
+ <83c3aea5-764e-4e60-8b16-67b474f19357@oss.qualcomm.com>
+ <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
+ <f5c7eb1c-28b1-4cf1-afb0-b993384b7712@oss.qualcomm.com>
+ <80836b8f-16a8-4520-ad11-5ca0abb3403e@oss.qualcomm.com>
+ <99c22e73-797c-4a30-92ba-bc3bd8cf70f0@oss.qualcomm.com>
+ <eddc16cb-d951-401c-8fb8-fccfcf600143@mainlining.org>
+ <0b06f744-b695-43d9-8da3-4424e2b53a5e@oss.qualcomm.com>
+ <24221ce7-24e4-4eaa-8681-ed9b4b9f2d6e@oss.qualcomm.com>
+ <be4e2715-882d-4358-8575-374187f7ee2f@oss.qualcomm.com>
+ <2h222ejvc37cldeno7e4qom5tnvdblqn2zypuquvadbcu7d3pr@765qomrwfvwl>
+ <f0c41563-dcd1-4cf9-8b73-fb9fedd52710@mainlining.org>
+ <bacb6293-a4e3-4d23-8a1f-cf42f221ba4b@mainlining.org>
+Content-Language: en-US
+From: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+In-Reply-To: <bacb6293-a4e3-4d23-8a1f-cf42f221ba4b@mainlining.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: krxnCRvzXZxb6nMbdQS3ezR9Z4oomMuE
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDEzNSBTYWx0ZWRfX13i5z6u9fBbR
+ NMcRZa0yTis/Dv6QzcQI7f4KLjwYkLepGpQfOYYXoasHGEN498LmUSJaKEbhKKbotvgQiBvZpb8
+ v1RopRWViYTzz7ind9Q/xmOpBjo1B+k+Nrn3A8GD0qSASPTPPsqHxbFyiYUD+96lnKr21XkZHkt
+ K5qmydnXuluKIdNHf4neYXiEfvYnhSopCJf8ufjEOuHmU3J1EF+dzIOfx9iN0ivvBhKvfS8DeBk
+ /p6NBxIS53eXpNDe7cRmDrUsp5Q6xU2R1ihVhVn4p+c/tfytMNhRZRnVox8ATqUsDtPk3OPeHgV
+ 9k4/glozkxleKMLlAKYNQ3T05qQuSTE8UI6KVhugQ==
+X-Authority-Analysis: v=2.4 cv=UsBu9uwB c=1 sm=1 tr=0 ts=692479d5 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=/vSWnVNeU9WElhN9+xZJOg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=D19gQVrFAAAA:8 a=OuZLqq7tAAAA:8
+ a=0-YTveZDaAQcLkN9Q34A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22 a=W4TVW4IDbPiebHqcZpNg:22 a=AKGiAy9iJ-JzxKVHQNES:22
+X-Proofpoint-ORIG-GUID: krxnCRvzXZxb6nMbdQS3ezR9Z4oomMuE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-24_06,2025-11-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0
+ malwarescore=0 spamscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511240135
 
-> From: Thomas Gleixner <tglx@linutronix.de>
-> Sent: Monday, November 24, 2025 3:49 PM
->=20
-> On Mon, Nov 24 2025 at 12:50, Cosmin-Gabriel Tanislav wrote:
-> >> From: Thomas Gleixner <tglx@linutronix.de>
-> >> Sent: Saturday, November 22, 2025 5:56 PM
->=20
-> Can you please fix your mail-client not to copy the whole header into
-> the reply?
->=20
 
-Outlook, it's unfixable. I can remove it manually each time if it's
-too much noise.
 
-> >> On Fri, Nov 21 2025 at 13:14, Cosmin Tanislav wrote:
-> >> > +static inline int rzt2h_icu_irq_to_offset(struct irq_data *d, void =
-__iomem **base,
-> >> > +                                     unsigned int *offset)
-> >> > +{
-> >> > +   struct rzt2h_icu_priv *priv =3D irq_data_to_priv(d);
-> >> > +   unsigned int hwirq =3D irqd_to_hwirq(d);
-> >> > +
-> >> > +   if (RZT2H_ICU_IRQ_IN_RANGE(hwirq, IRQ_NS)) {
-> >> > +           *offset =3D hwirq - RZT2H_ICU_IRQ_NS_START;
-> >> > +           *base =3D priv->base_ns;
-> >> > +   } else if (RZT2H_ICU_IRQ_IN_RANGE(hwirq, IRQ_S) ||
-> >> > +              /* SEI follows safety IRQs in registers and in IRQ nu=
-mbers. */
-> >> > +              RZT2H_ICU_IRQ_IN_RANGE(hwirq, SEI)) {
-> >>
-> >> This nested commend in the condition is really unreadable.
-> >>
-> >
-> > Would this read better in your opinion?
-> >
-> >         /*
-> >          * Safety IRQs and SEI use a separate register space from the n=
-on-safety IRQs.
-> >          * SEI interrupt number follows immediately after the safety IR=
-Qs.
-> >          */
-> >         if (RZT2H_ICU_IRQ_IN_RANGE(hwirq, IRQ_NS)) {
-> >                 *offset =3D hwirq - RZT2H_ICU_IRQ_NS_START;
-> >                 *base =3D priv->base_ns;
-> >         } else if (RZT2H_ICU_IRQ_IN_RANGE(hwirq, IRQ_S) ||
-> >                    RZT2H_ICU_IRQ_IN_RANGE(hwirq, SEI)) {
-> >                 *offset =3D hwirq - RZT2H_ICU_IRQ_S_START;
-> >                 *base =3D priv->base_s;
-> >         } else {
-> >                 return -EINVAL;
-> >         }
->=20
-> Yes. Way better.
->=20
+On 11/24/2025 8:32 PM, Nickolay Goppen wrote:
+>
+> 23.11.2025 13:51, Nickolay Goppen пишет:
+>>
+>> 21.11.2025 15:09, Dmitry Baryshkov пишет:
+>>> On Fri, Nov 21, 2025 at 01:41:21PM +0530, Ekansh Gupta wrote:
+>>>>
+>>>> On 11/20/2025 5:17 PM, Konrad Dybcio wrote:
+>>>>> On 11/20/25 11:54 AM, Ekansh Gupta wrote:
+>>>>>> On 11/20/2025 1:27 PM, Nickolay Goppen wrote:
+>>>>>>> 20.11.2025 07:55, Ekansh Gupta пишет:
+>>>>>>>> On 11/20/2025 1:58 AM, Srinivas Kandagatla wrote:
+>>>>>>>>> On 11/12/25 1:52 PM, Konrad Dybcio wrote:
+>>>>>>>>>> On 11/10/25 6:41 PM, Srinivas Kandagatla wrote:
+>>>>>>>>>>> On 11/3/25 12:52 PM, Konrad Dybcio wrote:
+>>>>>>>>>>>> On 10/31/25 12:30 PM, Nickolay Goppen wrote:
+>>>>>>>>>>>>> 24.10.2025 16:58, Nickolay Goppen пишет:
+>>>>>>>>>>>>>> 24.10.2025 11:28, Konrad Dybcio пишет:
+>>>>>>>>>>>>>>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
+>>>>>>>>>>>>>>>> In order to enable CDSP support for SDM660 SoC:
+>>>>>>>>>>>>>>>>     * add shared memory p2p nodes for CDSP
+>>>>>>>>>>>>>>>>     * add CDSP-specific smmu node
+>>>>>>>>>>>>>>>>     * add CDSP peripheral image loader node
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>> Memory region for CDSP in SDM660 occupies the same spot as
+>>>>>>>>>>>>>>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+>>>>>>>>>>>>>>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+>>>>>>>>>>>>>>>> cdsp_region, which is also larger in size.
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+>>>>>>>>>>>>>>>> related nodes and add buffer_mem back.
+>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+>>>>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>>> [...]
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>> + label = "turing";
+>>>>>>>>>>>>>>> "cdsp"
+>>>>>>>>>>>>>> Ok, I'll change this in the next revision.
+>>>>>>>>>>>>>>>> + mboxes = <&apcs_glb 29>;
+>>>>>>>>>>>>>>>> +            qcom,remote-pid = <5>;
+>>>>>>>>>>>>>>>> +
+>>>>>>>>>>>>>>>> +            fastrpc {
+>>>>>>>>>>>>>>>> +                compatible = "qcom,fastrpc";
+>>>>>>>>>>>>>>>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
+>>>>>>>>>>>>>>>> +                label = "cdsp";
+>>>>>>>>>>>>>>>> + qcom,non-secure-domain;
+>>>>>>>>>>>>>>> This shouldn't matter, both a secure and a non-secure device is
+>>>>>>>>>>>>>>> created for CDSP
+>>>>>>>>>>>>>> I've added this property, because it is used in other SoC's, such as SDM845 and SM6115 for both ADSP and CDSP
+>>>>>>>>>>>>> Is this property not neccessary anymore?
+>>>>>>>>>>>> +Srini?
+>>>>>>>>>>> That is true, we do not require this for CDSP, as CDSP allows both
+>>>>>>>>>>> unsigned and signed loading, we create both secured and non-secure node
+>>>>>>>>>>> by default. May be we can provide that clarity in yaml bindings so that
+>>>>>>>>>>> it gets caught during dtb checks.
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> However in ADSP case, we only support singed modules, due to historical
+>>>>>>>>>>> reasons how this driver evolved over years, we have this flag to allow
+>>>>>>>>>>> compatiblity for such users.
+>>>>>>>>>> Does that mean that we can only load signed modules on the ADSP, but
+>>>>>>>>>> the driver behavior was previously such that unsigned modules were
+>>>>>>>>>> allowed (which was presumably fine on devboards, but not on fused
+>>>>>>>>>> devices)?
+>>>>>>>>> Yes, its true that we allowed full access to adsp device nodes when we
+>>>>>>>>> first started upstreaming fastrpc driver.
+>>>>>>>>>
+>>>>>>>>> irrespective of the board only signed modules are supported on the ADSP.
+>>>>>>>>> I think there was one version of SoC i think 8016 or some older one
+>>>>>>>>> which had adsp with hvx which can load unsigned modules for compute
+>>>>>>>>> usecase only.
+>>>>>>>>>
+>>>>>>>>> I have added @Ekansh for more clarity.
+>>>>>>>>>
+>>>>>>>>> --srini
+>>>>>>>> For all the available platforms, ADSP supports only signed modules. Unsigned
+>>>>>>>> modules(as well as signed) are supported by CDSP and GDSP subsystems.
+>>>>>>>>
+>>>>>>>> qcom,non-secure-domain property marks the corresponding DSP as non-secure DSP.
+>>>>>>>> The implications of adding this property would be the following:
+>>>>>>>> on ADSP, SDSP, MDSP:
+>>>>>>>> - Only non-secure device node(/dev/fastrpc-Xdsp) is created.
+>>>>>>>> - Non-secure device node can be used for signed DSP PD offload.
+>>>>>>>>
+>>>>>>>> on CDSP, GDSP:
+>>>>>>>> - Both secure(/dev/fastrpc-Xdsp-secure) and non-secure(/dev/fastrpc-Xdsp) devices
+>>>>>>>>     are created, regardless of this property.
+>>>>>>>> - Both the nodes can be used for signed and unsigned DSP PD offload.
+>>>>>>>>
+>>>>>>>> Note: If the property is not added for CDSP/GDSP, only secure device node can
+>>>>>>>> be used for signed PD offload, if non-secure device is used, the request gets
+>>>>>>>> rejected[1].
+>>>>>>>>
+>>>>>>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1245
+>>>>>>>>
+>>>>>>>> //Ekansh
+>>>>>>> Does this mean that the qcom,non-secure-domain property should be dropped from both nodes?
+>>>>>> I checked again and found that unsigned module support for CDSP is
+>>>>>> not available on this platform. Given this, the safest approach would
+>>>>>> be to add the property for both ADSP and CDSP, ensuring that all
+>>>>>> created device nodes can be used for signed PD offload. I can provide
+>>>>> The property allows *unsigned* PD offload though
+>>>> I don't think I can directly relate this property to unsigned PD offload. This is just
+>>>> defining what type of device node will be created and whether the channel is secure
+>>>> or not. There is a possibility of making unsigned PD request(on CDSP/GDSP) irrespective
+>>>> of whether this property is added or not. If DSP does not support unsigned offload, it
+>>>> should return failures for such requests.
+>>> Which part of the hardware and/or firmware interface does it define? If
+>>> it simply declared Linux behaviour, it is incorrect and probably should
+>>> be dropped.
+>> I still don't understand, do I need this property or not?
+>
+> I've began testing the FastRPC on CDSP and the command
+>
+> sudo fastrpc_test -d 3 -U 1 -t linux -a v68
+> has caused the following errors:
+>
+> [   60.810545] arm-smmu 5180000.iommu: Unhandled context fault: fsr=0x402, iova=0xfffff000, fsynr=0x1, cbfrsynra=0x6, cb=3
+> [   60.810588] arm-smmu 5180000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x6
+> [   60.810603] arm-smmu 5180000.iommu: FSYNR0 = 00000001 [S1CBNDX=0 PLVL=1]
+> [   60.815657] qcom_q6v5_pas 1a300000.remoteproc: fatal error received: :0:EX:kernel:0:frpck_0_0:77:PC=c0117de0
+> [   60.815684] remoteproc remoteproc2: crash detected in cdsp: type fatal error
+> [   60.815738] remoteproc remoteproc2: handling crash #1 in cdsp
+> [   60.815754] remoteproc remoteproc2: recovering cdsp
+> [   60.819267] (NULL device *): Error: dsp information is incorrect err: -32 
+Are you trying out only calculator or all the libs? If yes, can you please
+help with creating an issue in the above mentioned github project?
 
-Ack.
+On older platforms, I would suggest to only try with calculator as other
+libs are not stable.
 
-> > One more thing, for the above cases where the same macro is used twice
-> > in a condition, is it okay to keep it split across two lines to align
-> > them with each other, or do you want them on a single line up to 100
-> > columns?
->=20
-> Usually single line, but in this case it might be more readable. Up to yo=
-u.
->=20
+We are getting a better version of other test libs signed and will update
+the project with new libs post signing.
 
-Ack.
+//Ekansh
 
-> >> > +   if (!irq_domain) {
-> >> > +           pm_runtime_put(dev);
-> >> > +           return -ENOMEM;
-> >> > +   }
-> >>
-> >> The mix of 'return $ERR' and 'return dev_err_probe()' is confusing at =
-best.
-> >>
-> >
-> > For ENOMEM, dev_err_probe() doesn't really print anything. ENOMEM is
-> > what other drivers seem to use for a NULL irq_domain_create_hierarchy()
-> > result.
->=20
-> That's what I was missing. Now it makes sense.
->=20
-
-In conclusion, should I keep the bare `return -ENOMEM` in both instances?
-Just to make sure the next version is proper.
-
-> Thanks,
->=20
->         tglx
+>
+>
+>>>>>> a more definitive recommendation once I know the specific use cases
+>>>>>> you plan to run.
+>>>>> Why would the usecase affect this?
+>>>> I'm saying this as per past discussions where some application was relying on non-secure
+>>>> device node on some old platform(on postmarketOS)[1] and having this property in place.
+>>>> So if similar usecase is being enabled here, the property might be required[1].
+>>> DT files are not usecase-based.
+>>>
+>>>> [1] https://lkml.org/lkml/2024/8/15/117
+>>
 
 
