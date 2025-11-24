@@ -1,218 +1,139 @@
-Return-Path: <devicetree+bounces-241610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 172C0C801A6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:09:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DD4CC801FE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 12:10:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E86034E4CF0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:08:42 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ED7864E5EDF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9409C2FE596;
-	Mon, 24 Nov 2025 11:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC81C2FDC3E;
+	Mon, 24 Nov 2025 11:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wi5I/apX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ijgtDLJ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5936A2FBE0F;
-	Mon, 24 Nov 2025 11:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF782FDC2C
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 11:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763982460; cv=none; b=Ykx1Qtou9L3HKrl3UyBU0kxtE9fHpW3YE+WxpGW3dxx80OtwcmrbGAPH7ADchagCaZYqsNhORpHJMayc/Ij+erYNNuLK4Gvhq3OBDD7EvXh22d3/AU/2UwtCYhYLpoM66nSgScfgk3vz2nvrK7OO1BJiOm69Asm1hJJoUpn95c8=
+	t=1763982517; cv=none; b=kPMZeli96PrdpA/LlMU+fxyAtlZetRwITwIY7z7tIl9NnCOrghYw5ov0rmEOUO4qs/JqIEhbpec7Yu7z6qiWHokaUveXVmH+I85KEfZbpZkC1fxgowg4uu5oXg9i8hni7EazIbVHnRLjqMucnAUp4vZj0TptpesC/DRomxjKuDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763982460; c=relaxed/simple;
-	bh=sbCml/7nmSaH6gPaF7Ndj2Z9wRXVc41vQ2zcx6IMeo0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ub4f2dNED5SEDI7NPturYcY8mzKd1d87YY/hCcQ109KRdX/b2Rb0w71lU0k2Mc5k7mnudJhj1W1Vi/R22J/FIQGxBtNF0/AlbyozioKdvXP8+oXhr1RGL3OZ5Psnx+HuheT1K5Rjk7dcqIHSKnAaVi3I47iroZfBmVUXICyvPwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wi5I/apX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 783F1C116D0;
-	Mon, 24 Nov 2025 11:07:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1763982460;
-	bh=sbCml/7nmSaH6gPaF7Ndj2Z9wRXVc41vQ2zcx6IMeo0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wi5I/apXii6KdXWyWS4fZPIO+lGmfTJPUADNIqyL/Exe7vmHtZ6eRgdzx+8T/lW2g
-	 +TGL+FOrsDvvrYHCPtd86tTkQpFZbETBaNo1aatenV2kg14ZEvJrsXEFMRmmt3XIJT
-	 YMhPLCHOkpF2V4TldSrHDPgFXYF9MJVHBWLtMmJwGnj7jHbXYc6RSCYXZZSpt/n7My
-	 LlI/EWqSOqRbrO44cmC6gXNjwxxDz4nAR6zeg5eCJ8v9YxMx7ilThBogtDdwj9wu6g
-	 jggAGDxutbpoLE343DLYP5TejsIx+4xMuCP71eP5FLkCNMXn9dw25nSGmTChbzr5l5
-	 +f4gFdPP0Ubig==
-Date: Mon, 24 Nov 2025 11:07:35 +0000
-From: Conor Dooley <conor@kernel.org>
-To: E Shattow <e@freeshell.de>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v3 2/2] riscv: dts: starfive: add Orange Pi RV
-Message-ID: <20251124-blaming-duplicity-fb1311864b3f@spud>
-References: <20251123225059.49665-1-e@freeshell.de>
- <20251123225059.49665-3-e@freeshell.de>
+	s=arc-20240116; t=1763982517; c=relaxed/simple;
+	bh=pX8uLa24ufHlLnnLsdkJcwhfxVMAqlg8mivH7rZolUQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YJQwC9hU4KDgK7PeMZbtrtzdOYr6XJvWMLulD/+/z6ZYBjRor31Tb6LgO1WyhmCeCzS0tJWdWfeszPUqPdCr9inQYF50Y1RFHQOY9urRRU8ptyGoeH5CDfyVbsCaMV3d+Rv+UDI32EBSmouqeHAabHZy1kYYmi7L38oCmedWneg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ijgtDLJ6; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47775fb6cb4so26725835e9.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 03:08:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1763982514; x=1764587314; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6+5l3fHno/+RdcEbAfvBbgPLJtbuD4ohAwU1afUy64o=;
+        b=ijgtDLJ6oHUA1HOO3yZn/MmCXSUYorO2nogBZvBDzkP/o11ZGYY2Sv1l/dYiwPJudc
+         lPCXvHw/n4bho6mdlVfhA52Q2u5FMwN3Db2fIcR860IkEGvn16MUOwTeuVuvzmPWnQYH
+         3gt4ilOS3ejCHGYkmQESxgLBB97wqtK/M15z83+ZWz14bL3y3C1NBYH+0sJx6QqjwWH0
+         yTFr17xvak0uLhRDmZn/fvbhorQ54xYp2bCBuKEp6JAkJcT70hD0wsAZhofhtSnl8ZWm
+         7KAZW1I0kGtjkjUpkgaSmVJSLRIrf+oxX3szz40CM546YsERIQV5EzTAX3Km2GaSkCcQ
+         PBUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763982514; x=1764587314;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6+5l3fHno/+RdcEbAfvBbgPLJtbuD4ohAwU1afUy64o=;
+        b=VSyKH8o1F7uhtyRI3fFl0781Nh9mSt3tWw/+m0X1n5J/e0nHW5xsKgupaH/mpwBJUY
+         wC3lmYa+35mUKyjgQ89mvpwt5clxtokLtwDKi+4+7ygoWl1e1Xwr4r0svXtL05jVjtn0
+         kFIHfjk1vg1I+I+Ejapq/dW6gzg6yW5NtzUhRXMgAQfzs3845KznBt3qQEEgMt4yZPfJ
+         3MV0J4RzU2oI1sE8dmBK7hyIWDz+1HMj6E+NvrnC2w1dtjVNpIqp3srXFvSY06oedEm/
+         l5Rb56IiMwTia6rNfcEf42dlzjMAUC7YHSpLT1QgiXFxbkKeLbsj+dj21Hw4N3VwWp5k
+         Wfqg==
+X-Forwarded-Encrypted: i=1; AJvYcCWc25ZeAVwFoCDM6FWyPm1bMEDoKFUtnTylQ/r8uXJABCmgZAxTghKCj19uOv9edGnArfIl0JmarLzU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwPLVvQfJ2ahd8xm7E4EZ0ZHbCQ8fUjxvHo7OTt+GkRfBzZPTo
+	jcLC2dSLoEOg26PFVBdXZ3Fs4IfL6a2UpoRWgLoNkylqK3mK+Igj4yBAE3sq4OTC1q0=
+X-Gm-Gg: ASbGncvbWLgv1hxZtHIrdNhkup9Y5ulr0wjDq9NrnErU9cLkL2/JSpYQGsRyc9vCme4
+	iY75MQ25G5Q3EOwnGRf9oHsyzo83Jm16VYwRmaOg3H2I0cZ5rL9Wx0qNbBpdyqB1HIEtdaR8AHc
+	ShjTUXV+08o0WPOkVbFUG4r55h3fMi1aiRqMocLMXbJZSWPtv3YNxPqLc2ZYTr3Fj+9zibSVLzH
+	haOw13jhMAl3WOeQsYiz1Py7KiXT9oLpiY0R67GuwZVnqEM+cdu+ta33HAAWtjABcQIBF+Oe6VB
+	rzaA149vykWEzncVqjyMJ0j0/IZof6V55Hq9LRUxsknjZq3D1MrwLdaC5lv+pEkIPv3Iki9sb9k
+	o9EbVLzRi6U4XuV+1Znk8jXzANGrU1zFHzN47Z6KA7SCGd5DRqKyN5bLfpn5qo1YtoYXLB0UtLs
+	BGtJVr82y/HeI+yZesZPsHxrsrDYAbGPtyISE2r8OC4E/XUxFVjWVZpqxXA9EPUz0HUQ==
+X-Google-Smtp-Source: AGHT+IFTZFirZPCwnUDDiKfKr7H0K4OzotyW7bjOyOjeldVQNp8jBiM4RwHnhw/nv1j7ENdmzDjRpA==
+X-Received: by 2002:a05:600c:1914:b0:471:114e:5894 with SMTP id 5b1f17b1804b1-477c112587fmr86546865e9.25.1763982513683;
+        Mon, 24 Nov 2025 03:08:33 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:a756:bb6c:7b35:af9b? ([2a05:6e02:1041:c10:a756:bb6c:7b35:af9b])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-477bf3af0e1sm186819905e9.10.2025.11.24.03.08.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Nov 2025 03:08:33 -0800 (PST)
+Message-ID: <2b63c064-ce62-421b-8469-e434bd0c9652@linaro.org>
+Date: Mon, 24 Nov 2025 12:08:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="AcVI3kJ2wz21qqy0"
-Content-Disposition: inline
-In-Reply-To: <20251123225059.49665-3-e@freeshell.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 RESEND 2/3] thermal: exynos_tmu: Support new hardware
+ and update TMU interface
+To: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>,
+ 'Bartlomiej Zolnierkiewicz' <bzolnier@gmail.com>,
+ 'Krzysztof Kozlowski' <krzk@kernel.org>,
+ "'Rafael J . Wysocki'" <rafael@kernel.org>, 'Zhang Rui'
+ <rui.zhang@intel.com>, 'Lukasz Luba' <lukasz.luba@arm.com>,
+ 'Rob Herring' <robh@kernel.org>, 'Conor Dooley' <conor+dt@kernel.org>,
+ 'Alim Akhtar' <alim.akhtar@samsung.com>
+Cc: 'Henrik Grimler' <henrik@grimler.se>, linux-pm@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251113064022.2701578-1-shin.son@samsung.com>
+ <CGME20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237@epcas2p1.samsung.com>
+ <20251113064022.2701578-3-shin.son@samsung.com>
+ <2180a854-8ba6-4424-add2-eb34637530c1@linaro.org>
+ <000001dc5d2a$0697bf10$13c73d30$@samsung.com>
+ <ab35c20e-390c-4479-9bb1-9f5e49cba2a0@linaro.org>
+ <000001dc5d32$2b4bfb20$81e3f160$@samsung.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <000001dc5d32$2b4bfb20$81e3f160$@samsung.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 11/24/25 12:04, 손신 wrote:
+> Hello, Daniel Lezcano.
+> 
+>> On 11/24/25 11:06, 손신 wrote:
+>> [ ... ]
+>>
+>>> However, since ExynosAutov920 diverges significantly from the existing
+>>> driver, Would introducing a separate driver instead of unifying
+>> everything be acceptable?
+>>
+>> So this driver is one controller for multiple sensors while the others
+>> drivers are one controller for one sensor, right ?
+>>
+> 
+> Yes. As far as I understand, the previous Exynos variants used one TMU controller per sensor,
+> while on ExynosAutoV920 the hardware has multiple TMU instances and each instance contains multiple sensors.
+> Therefore, this new automotive SoC requires supporting multiple sensors behind a single TMU controller.
+
+Ok thanks. It makes sense to create a separate driver.
 
 
---AcVI3kJ2wz21qqy0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-On Sun, Nov 23, 2025 at 02:50:45PM -0800, E Shattow wrote:
-> From: Icenowy Zheng <uwu@icenowy.me>
->=20
-> Orange Pi RV is a SBC based on the StarFive VisionFive 2 board.
->=20
-> Orange Pi RV features:
->=20
-> - StarFive JH7110 SoC
-> - GbE port connected to JH7110 GMAC0 via YT8531 PHY
-> - 4x USB ports via VL805 PCIe USB controller connected to JH7110 pcie0
-> - M.2 M-key slot connected to JH7110 pcie1
-> - HDMI video output
-> - 3.5mm audio output
-> - Ampak AP6256 SDIO Wi-Fi/Bluetooth module on mmc0
-> - microSD slot on mmc1
-> - SPI NOR flash memory
-> - 24c02 EEPROM (read only by default)
->=20
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> Signed-off-by: E Shattow <e@freeshell.de>
-> ---
->  arch/riscv/boot/dts/starfive/Makefile         |  1 +
->  .../boot/dts/starfive/jh7110-orangepi-rv.dts  | 76 +++++++++++++++++++
->  2 files changed, 77 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/=
-starfive/Makefile
-> index 62b659f89ba7..d34c8c79bc10 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-deepcomputing-f=
-ml13v01.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-mars.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-marscm-emmc.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-marscm-lite.dtb
-> +dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-orangepi-rv.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-pine64-star64.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts b/arch/r=
-iscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-> new file mode 100644
-> index 000000000000..16ec2767134e
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-> @@ -0,0 +1,76 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
-> + */
-> +
-> +/dts-v1/;
-> +#include "jh7110-common.dtsi"
-> +
-> +/ {
-> +	model =3D "Xunlong Orange Pi RV";
-> +	compatible =3D "xunlong,orangepi-rv", "starfive,jh7110";
-> +
-> +	/* This regulator is always on by hardware */
-> +	reg_vcc3v3_pcie: regulator-vcc3v3-pcie {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "vcc3v3-pcie";
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	wifi_pwrseq: wifi-pwrseq {
-> +		compatible =3D "mmc-pwrseq-simple";
-> +		reset-gpios =3D <&sysgpio 62 GPIO_ACTIVE_LOW>;
-> +	};
-> +};
-> +
-> +&gmac0 {
-> +	assigned-clocks =3D <&aoncrg JH7110_AONCLK_GMAC0_TX>;
-> +	assigned-clock-parents =3D <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-> +	starfive,tx-use-rgmii-clk;
-> +	status =3D "okay";
-> +};
-> +
-> +&mmc0 {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
-> +	cap-sd-highspeed;
-> +	mmc-pwrseq =3D <&wifi_pwrseq>;
-> +	vmmc-supply =3D <&reg_vcc3v3_pcie>;
-> +	vqmmc-supply =3D <&vcc_3v3>;
-> +	status =3D "okay";
-> +
-> +	ap6256: wifi@1 {
-> +		compatible =3D "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
-> +		reg =3D <1>;
-> +		/* TODO: out-of-band IRQ on GPIO21 */
-
-What's up with this TODO? Why's the gpio not here? Missing binding
-support, missing driver support?
-
-> +	};
-> +};
-> +
-> +&mmc1 {
-> +	cd-gpios =3D <&sysgpio 41 GPIO_ACTIVE_HIGH>;
-> +};
-> +
-> +&pcie0 {
-> +	status =3D "okay";
-> +};
-> +
-> +&pcie1 {
-> +	status =3D "okay";
-> +};
-> +
-> +&phy0 {
-> +	rx-internal-delay-ps =3D <1500>;
-> +	tx-internal-delay-ps =3D <1500>;
-> +	motorcomm,rx-clk-drv-microamp =3D <3970>;
-> +	motorcomm,rx-data-drv-microamp =3D <2910>;
-> +	motorcomm,tx-clk-adj-enabled;
-> +	motorcomm,tx-clk-10-inverted;
-> +	motorcomm,tx-clk-100-inverted;
-> +	motorcomm,tx-clk-1000-inverted;
-> +};
-> +
-> +&pwmdac {
-> +	status =3D "okay";
-> +};
-> --=20
-> 2.50.0
->=20
-
---AcVI3kJ2wz21qqy0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSQ8dwAKCRB4tDGHoIJi
-0gKUAQCHaNEzOZ4qPXve3F2aeeKYpr5+2ZMIrhOuqdqsunZydQD9HJ0x2Rvd/w8u
-spF+ZiVUHgtIjbLiGLjxeUxS6sSKFAE=
-=I8Fj
------END PGP SIGNATURE-----
-
---AcVI3kJ2wz21qqy0--
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
