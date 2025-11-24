@@ -1,167 +1,95 @@
-Return-Path: <devicetree+bounces-241554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62AFC7FB42
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:47:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBD31C7FBEB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:55:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65DAE3A475F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:46:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E4A0434840F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C542459EA;
-	Mon, 24 Nov 2025 09:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B40E72F90DC;
+	Mon, 24 Nov 2025 09:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b="nty36YTi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eYSQdkYO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out3.simply.com (smtp-out3.simply.com [94.231.106.210])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 457EF24B28;
-	Mon, 24 Nov 2025 09:46:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.231.106.210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E5AA2F83CB
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763977607; cv=none; b=kS8kkJ+tlMQ6oxaZbFTuxVNugVaypKGsbNmLYP0DfVziN0io3ly3m5ovihM83AXcLNYjRMdz7KAQcd3QUQyV9PMLDnQ1mxiFTlzzX7bnoMIKk3+qcUzurbAGlreZ6jab8CjvrcOfiOBAEoR+rDaWmTgJjEiv5TzgLU3XDSOR5OQ=
+	t=1763977923; cv=none; b=ljs35SWIpqdHB74oHggdbAeLYTOC8T3iz7ctAdBYHC4ZZyJbPVzSNf6ebbQjqKMk8cVRGyyERiolt7Vv9dHCtvVCbA57eoX63voPnxQRs6vhl17KoYG/DYgxM4IQ277WrY+BchmyoLoBheI+49hMK8+zSOO695Cd4RnOQ7PsQYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763977607; c=relaxed/simple;
-	bh=ImApdLVTbj3k2UWHCQ8xG7/FJtbQCEGckuYv0MmoJDg=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=GZVcCFG5Xh4HC1Kf7O+GnKD1mWhDbrh1WfG3zHoWztXbLu2mGgYa9YuSsSq5d6NVCzTX/AyXOYJPCJ1Kg/YZretYfZAeH5r/N3gb9SBX8Qz7DxaqszRM0oMY2yBj/8pePW0p5kAwmNenGfvBd+0OZBbDdwDJMzyoeY8DfQv5R+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com; spf=pass smtp.mailfrom=gaisler.com; dkim=fail (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b=nty36YTi reason="key not found in DNS"; arc=none smtp.client-ip=94.231.106.210
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gaisler.com
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.simply.com (Simply.com) with ESMTP id 4dFLZC3J8Zz1DHbn;
-	Mon, 24 Nov 2025 10:46:43 +0100 (CET)
-Received: from webmail.unoeuro.com (webmail.unoeuro.com [94.231.108.230])
-	by smtp.simply.com (Simply.com) with ESMTPA id 4dFLZC0FFJz1DDTg;
-	Mon, 24 Nov 2025 10:46:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gaisler.com;
-	s=simplycom2; t=1763977603;
-	bh=pa63EyjJ5sZOWS5JBNDVSwA70GTNYplZLtjIqi6BKzs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=nty36YTiU2n8e0vWR7GZ4jzz0LfyTvseXSE04uqKVKoyBjOcdORiN2zcOzgB1hdZY
-	 7LxXchXVFMgZwkMx9mAewKWXhYVvUZm3bA9p5Ba8RnZ88X7NEPhr0Z9SMPgtIFwJEt
-	 PSlOkWkF+0TEybK1EOaUoNP1AScqee6vlmSns3/DWns0WJSfBRN0xrxV2IJkDldkX7
-	 NO4D5jOBoja1skdns48t+48fb58tcFiTZ2sAUOjEXhyqphVluxgn6VI4j6VjfCVliR
-	 sHjbikS4PGbl11YyGgoG8hChRRQFj0/WJQO5j13SXzET1pYuI4qLn+ts4Vt6Cojvc6
-	 PRbxJOqFCxmgQ==
-Received: from h-98-128-223-123.NA.cust.bahnhof.se ([98.128.223.123])
- by webmail.simply.com
- with HTTP (HTTP/2.0 POST); Mon, 24 Nov 2025 10:46:43 +0100
+	s=arc-20240116; t=1763977923; c=relaxed/simple;
+	bh=f8IzbZqTMCeb/MOC5nwDIM5PFvIpVV0LTFnqn+Wk2Pg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pcwiekBmcWfCfNeckP6aEsTBomfOqXDRz1qMcnCogEAkPThMBH7+jlweb/+KBi/7JHg40i4RUgJ7iRVh40igOi7oM7KMP/wy8N98sScaKor4fzRiTyxD9I5dbwXPf+Sy5IKM1rWTvjkzQJ4U5hfeHEfCeomjwAx2tuyrTudVgkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eYSQdkYO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36984C2BCAF
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 09:52:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1763977923;
+	bh=f8IzbZqTMCeb/MOC5nwDIM5PFvIpVV0LTFnqn+Wk2Pg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=eYSQdkYOHyyx/c/Yu3wSutJrFDcJTgM16ycSFZbtHmxJNQxMGEvPwl1c9WVEAg/yk
+	 Kb4H8zo1Sk63eCSk8kN+eQl21EQhQIY7KVQvUNMpH9MDqZn5bjjd4jUWHktM089dqx
+	 /KjDck/44yPo0BV7OTD4lsna24jkFnrSiLZ/WGHqtdB/DYNpf2HR5of0is4Mt6Na/5
+	 LGxN66R0XgF6ivIF6ImAyRYr1hT1Hsbkk1QMZUNL8Yey93pT0Vvs6Wi5iZe0UB0lpr
+	 cue875jcnDBToYyBR7EPduCkCbGuUKbgpd+uwSWSs5znbaFkmLNfEI/63V6spI66K+
+	 zQTv+HeDusNlQ==
+Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-6420c0cf4abso3457906d50.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 01:52:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXQfB6GZbLELyeWMWLAtusiltd0mR0KGD4N0HIkcNTh7afkbdsAxygC89k2pTBgjhQEYUkASgUb2lxp@vger.kernel.org
+X-Gm-Message-State: AOJu0YytUA4JwuIqURGirz9XwMBMc9j/G79312T94DVaxshFB7xkMPYg
+	i+VdTHN377eQqPsI2EeqYNn9k1WD43e+sGy6BmzkGqm0thRA7HamLaWvHv7+qL6k259qBkEY9Us
+	b5XiRc1gCk4Hr1IXK6mUzXhvlbHfOs3o=
+X-Google-Smtp-Source: AGHT+IFoCWzua4d1h8HPXHaHqQJlmJYLHD9RIgw/SyJw9vEkucpSZIOkMOpRjURGkLzo6FVhZaxStxOM3tH52OqYiiA=
+X-Received: by 2002:a05:690e:1904:b0:640:fabf:565d with SMTP id
+ 956f58d0204a3-64302b102a7mr6921804d50.43.1763977922443; Mon, 24 Nov 2025
+ 01:52:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 24 Nov 2025 10:46:43 +0100
-From: Arun Muthusamy <arun.muthusamy@gaisler.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mkl@pengutronix.de, mailhol@kernel.org, Cc <devicetree@vger.kernel.org>,
- linux-kernel@vger.kernel.org, linux-can@vger.kernel.org, Daniel Hellstrom
- <daniel@gaisler.com>
-Subject: Re: [PATCH 04/10] can: grcan: Add clock handling
-In-Reply-To: <bd81118a-5ee3-476e-a7bc-61684a362eea@kernel.org>
-References: <20251118092115.3455-1-arun.muthusamy@gaisler.com>
- <20251118092115.3455-5-arun.muthusamy@gaisler.com>
- <bd81118a-5ee3-476e-a7bc-61684a362eea@kernel.org>
-User-Agent: Simply.com webmail
-Message-ID: <43591fac5bf0df7c6c7c5426f00a2437@gaisler.com>
-X-Sender: arun.muthusamy@gaisler.com
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com> <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
+In-Reply-To: <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Mon, 24 Nov 2025 10:51:50 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmU4F3DBrwm66_ttfENn5N5FOV7JwedBkxVWTpmjD3i8A@mail.gmail.com>
+X-Gm-Features: AWmQ_bkME9bvVabS8y13XZ0UVUDiRQpdihW9D32F9i8Ppba0nUS0lW7F38rMSzc
+Message-ID: <CAD++jLmU4F3DBrwm66_ttfENn5N5FOV7JwedBkxVWTpmjD3i8A@mail.gmail.com>
+Subject: Re: [PATCH v2 9/9] iio: adc: ad4062: Add GPIO Controller support
+To: Jorge Marques <jorge.marques@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Mon, Nov 24, 2025 at 10:19=E2=80=AFAM Jorge Marques <jorge.marques@analo=
+g.com> wrote:
 
-Thank you for your thorough review. I wanted to get your guidance 
-regarding the clock property in the DT binding.
+> When gp0 or gp1 is not taken as an interrupt, expose them as gpo if
+> gpio-contoller is set in the devicetree.
+>
+> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
 
-In the binding, I included the clocks property with maxItems: 1 to 
-indicate that a clock should be described. The driver calls:
+It looks to me like it will work!
 
-clk = devm_clk_get(dev, NULL);
+Reviewed-by: Linus Walleij <linusw@kernel.org>
 
-Since we pass NULL, the driver always requests the first (and only) 
-clock from the clocks property.
-
-I want to ensure the binding is fully compliant with the Linux DT ABI. 
-Could you advise the preferred way to document the clocks and 
-clock-names properties in this scenario? Specifically:
-
-Do we still need a clock-names entry even if the driver never uses it by 
-name?
-For LEON systems, the driver relies on the "freq" property, while NOEL 
-systems use a standard "clocks" binding. Given this dual approach, 
-should the clocks property be marked as optional or required in the 
-binding?
-
-Thank you for your time and help.
-
--- 
-BR,
-
-Arun Muthusamy
-Software Engineer
-Frontgrade Gaisler
-T : +46 (0) 700 558 528
-arun.muthusamy@gaisler.com
-
-Frontgrade Gaisler AB, Kungsgatan 12, SE-411 19 GÖTEBORG, Sweden.
-+46 (0) 31 775 8650, www.gaisler.com
-
-On 18.11.2025 12:01, Krzysztof Kozlowski wrote:
-> On 18/11/2025 10:21, Arun Muthusamy wrote:
->> From: Daniel Hellstrom <daniel@gaisler.com>
->> 
->> Add clock handling and add error messages for missing 'freq' DT 
->> property.
->> 
->> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
->> Signed-off-by: Daniel Hellstrom <daniel@gaisler.com>
->> ---
->>  drivers/net/can/grcan.c | 19 ++++++++++++++++---
->>  1 file changed, 16 insertions(+), 3 deletions(-)
->> 
->> diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
->> index 3b1b09943436..538a9b4f82ab 100644
->> --- a/drivers/net/can/grcan.c
->> +++ b/drivers/net/can/grcan.c
->> @@ -34,7 +34,7 @@
->>  #include <linux/spinlock.h>
->>  #include <linux/of.h>
->>  #include <linux/of_irq.h>
->> -
->> +#include <linux/clk.h>
->>  #include <linux/dma-mapping.h>
->> 
->>  #define DRV_NAME	"grcan"
->> @@ -1644,6 +1644,7 @@ static int grcan_probe(struct platform_device 
->> *ofdev)
->>  {
->>  	struct device_node *np = ofdev->dev.of_node;
->>  	struct device_node *sysid_parent;
->> +	struct clk *clk;
->>  	u32 sysid, ambafreq;
->>  	int irq, err;
->>  	void __iomem *base;
->> @@ -1663,8 +1664,20 @@ static int grcan_probe(struct platform_device 
->> *ofdev)
->> 
->>  	err = of_property_read_u32(np, "freq", &ambafreq);
->>  	if (err) {
->> -		dev_err(&ofdev->dev, "unable to fetch \"freq\" property\n");
->> -		goto exit_error;
->> +		clk = devm_clk_get(&ofdev->dev, NULL);
-> 
-> Nope, your binding said there is no clock... you cannot add 
-> undocumented
-> ABI.
-> 
-> 
-> Best regards,
-> Krzysztof
+Yours,
+Linus Walleij
 
