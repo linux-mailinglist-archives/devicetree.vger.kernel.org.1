@@ -1,96 +1,268 @@
-Return-Path: <devicetree+bounces-241764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6DEC8247E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 20:21:30 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF764C824C6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 20:25:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9E8D234A955
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:21:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 52AC84E549E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:25:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6E32DC770;
-	Mon, 24 Nov 2025 19:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EECF2D7804;
+	Mon, 24 Nov 2025 19:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gbS4fgbF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UuxYxIEK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE0E2DC765;
-	Mon, 24 Nov 2025 19:18:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32A0D2BEC3A
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 19:25:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764011932; cv=none; b=D0qMzPF1n/hq53x40Km4Xd6th/11NXVS5kk1lm5k78/2u549idhBMKq2xAZhx8RTHPE/md36wURkhAhd3l055eZt40HRmi/xqKZ4sVJ0tgYce6eM4sz4eM4wOJ982ZqYp7HQkc9k+m5DTw3AfBI/zHbCy5Vvm71z4ATxfaVOTiY=
+	t=1764012307; cv=none; b=LFk3jQJZMlRkATtdT0bLRF8LZ1bqoIfQ3dsQPC15Df2jlDf5YVRu7kScbD/cK16R1gxWOKbsYFPrqfRi5CyNku25at6ppJ6BNJEVCUEWo/p715lfWy/R4v1LXsNVmz4c0VQ4KGfaClRcVLK3kx1ScKR4b62Ryv82U45BuvRq0KI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764011932; c=relaxed/simple;
-	bh=+Y/rUKkCu/Mru/4AM146q7ufP02f6yIOrug7Q4idQeA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RAM/f5KOy7RNPABlVmmGm5A5HsRZI6iwkJoCOmadY763uX5zY0FQ3+8oE3qxsp0hDCdcJSr+DiKfT16swaoE2Mh2Y0R7OpMGQHqfA5KomvruMiABhG/iEefXWJdlrctDfcCTeHlnaJHoK8wj3nF3cHWsXym2m1hkZkJq1FOQXlw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gbS4fgbF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C234C4CEF1;
-	Mon, 24 Nov 2025 19:18:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764011931;
-	bh=+Y/rUKkCu/Mru/4AM146q7ufP02f6yIOrug7Q4idQeA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=gbS4fgbFVbSkJAETFQ0fD4yylSWtu1g5HHFepTXrzFN7o5aYFpbtSiXBPKnp8t74K
-	 470zZrbFnBNqv5Jv9VDylyLcBqu02GUXVJduoQk0xreg19zJcP45rhEpzssHs+AuVl
-	 7vGLouIeatGUIUMeqbeytYqljMfvuqP3nCkJHu3Msggvx2PCMe3ar0I+bjpe0LhUPz
-	 IroNc08252IK4BfTRUKefy/OY0XJhYdKVj0wPIOudOsk/Xq6EVoSm0ukv0qsQQ0IcR
-	 9rFkyF4k/4EhppRjkdJZfi8rNaTx71gLmO9h3ZzBt2NbWpOeTv56JntsTwG3xyaJ7q
-	 DG4bUezbQUbUg==
-From: Will Deacon <will@kernel.org>
-To: Joerg Roedel <joro@8bytes.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: catalin.marinas@arm.com,
-	kernel-team@android.com,
-	Will Deacon <will@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: iommu: qcom_iommu: Allow 'tbu' clock
-Date: Mon, 24 Nov 2025 19:18:32 +0000
-Message-Id: <176400331869.702885.5460533582186170525.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20251104-topic-qciommu_bindings_fix-v3-1-09c52a1e5ffb@oss.qualcomm.com>
-References: <20251104-topic-qciommu_bindings_fix-v3-1-09c52a1e5ffb@oss.qualcomm.com>
+	s=arc-20240116; t=1764012307; c=relaxed/simple;
+	bh=t6ja05Yoli0eJ2t+zeQEqqmC6VeMw6q0fMbTrPzZhzo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XiIRtf9ioljh1N1me6mZYBMpOycU6NUvQy2bV/ap2ao4eGyMkbZfekIdASVbzbk9GtxGf0WkebwH0UIxN0aZ3PlzyE7n6++370uCpE5hFWoKQAYVVoFkg+UVY0N8NNJj5NvaxdjLt6EJvIhR2Fd20xD5SSnan6xbxNi9hd8JdPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UuxYxIEK; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4779adb38d3so33409585e9.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 11:25:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764012302; x=1764617102; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9jk37GvM71JhaWd5rL6T9q167IOkQkimPTz38uVA1jc=;
+        b=UuxYxIEKuYJ08ERETjGsuxXnbOYcXd1jeHbIs6WuyLprGEFAZQ1cTlMyIoDzSM2P8R
+         wFQkgqWABQ0XQfxOtC0FfuO88ttOUCw5y5rAMLEw4DBUNwUHKEIb0Y1yg4XIx/qgweiu
+         yNPGp/jmTpzMoY/EnU8TYBkg3rQvzcVAU3SSetQtOqpeerG668p5R4NEHUqmpli9p411
+         zoaLr+5g8jIGlt1+tet6q8YXnH7uwemuZ2BxFBXk63OSyJccvY2Si4cts6luEwQ7r4AT
+         tqe5+Ac1Lbsa9CK7fMTlL4S+xBSYqW3ZXvcr+F5ud4+dEwtozgW7VQ7o4brV92Ws4IWZ
+         R08g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764012302; x=1764617102;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9jk37GvM71JhaWd5rL6T9q167IOkQkimPTz38uVA1jc=;
+        b=nNH7xVlvUSF/tZmIlJBrf6lpJlJmrwOLRlzkJZVN8+TZJhXc/1e+JEj7UOum7TVYlm
+         fXc6Ss5QJnjuTHp2HKEmo6veh+wbe6hjVqyroxYOhRtzwbqHsHdN+FMekAuXeeQk4Bm0
+         8E/89xBh/cm+RWDMi+VRJ9W/1wYif3S7wB0zLrd8v6ZNX7B98R37Qf5VBiP7GG1VnAut
+         z/QyG6hb2BNY95Ec4cT9Rlteu4tjxgwSfsCC9co+pEPGFlN0gUXGMv6lgPDmEuZaierx
+         yPcKFnVAVhliBqEc3XGViCC7/r0u9E9umxN0l+AyY7Tt6oOOoukKrNcHRrqiYC37BjDO
+         FQeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXU7Jyzrk/ExSgGpaCyI/XnmnzGb1rRqGpyUBzncDWlu+fLgRaYX6CI5PUkBWlSaD4NxchiMVXAPcT5@vger.kernel.org
+X-Gm-Message-State: AOJu0YytoyK9JyhA7JP2C76TVwPR436NLYF0CV/j65xR7DPAd7zJNBZA
+	2srzaisvlND+R0dKdo8k366H/TA6SehPNG6KOZrgeTs+0DW7Aiy+PCL/
+X-Gm-Gg: ASbGncuooRTw56gEQezN8gAZtribrezmRkin4uCmd/U1Z1MXewDq49MU/ghIyqzDgjO
+	XloLbWqKpJPZuzoH4y/iEbw5Zbq7AyKWoJjshjB2veZ/eIVLsYXBUnnt5my1wSmY/t1DasoKik6
+	Uue2z9/6q34zSRxL5FmaLFq7t7bkmo3ULnSd6VhKUQ2RZ0Qb5Oj8kwIoC+dVbOUmh99aVp8Pr/V
+	8pd9E1JZZg2r2Jvg8UTATJMrS1Mua9ufZJCwybF+seG1Mk2NRSfK6grlc9yEyX3rqnVy+ss0aHO
+	s0Q3CtQxiKic32t9s4fXkGbY936vTznCxC6QxdOPaRhmwdR60gVOr/BsaqjAWOEds5hgPiCkvor
+	yj3rXqNC1N7xyNohqnZ/OOFJTJwf1NBn9ZtTm/cgFijbVxam8PpicYi3+71amfUv/lLBP+1d2ZK
+	BOPGAaM2EIfg3PHfW73+xEAaB6VC9lJAUk10CzWVa7GyAYQVeZXjUKVUuTntS1GWs=
+X-Google-Smtp-Source: AGHT+IFeHLsoYr2AmZntomxO2DLGMgEciJ8EAmlBYd3tNaV7xwLFtpLjqhrJ3Jk53gAvqzID4Fk9Ww==
+X-Received: by 2002:a05:600c:3115:b0:477:b48d:ba7a with SMTP id 5b1f17b1804b1-477c01fd202mr126949555e9.32.1764012302165;
+        Mon, 24 Nov 2025 11:25:02 -0800 (PST)
+Received: from ?IPV6:2a03:83e0:1126:4:ce0:a4eb:eabc:d420? ([2620:10d:c092:500::5:5b96])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477bf3ba1b4sm214863705e9.15.2025.11.24.11.25.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Nov 2025 11:25:01 -0800 (PST)
+Message-ID: <a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
+Date: Mon, 24 Nov 2025 19:24:58 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 12/17] x86/e820: temporarily enable KHO scratch for
+ memory below 1M
+To: Changyuan Lyu <changyuanl@google.com>, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>
+Cc: anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
+ benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
+ corbet@lwn.net, dave.hansen@linux.intel.com, devicetree@vger.kernel.org,
+ dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com, hpa@zytor.com,
+ jgowans@amazon.com, kexec@lists.infradead.org, krzk@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+ linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com,
+ pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org,
+ ptyadav@amazon.de, robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org,
+ saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de,
+ thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org,
+ Breno Leitao <leitao@debian.org>, thevlad@meta.com
+References: <20250509074635.3187114-1-changyuanl@google.com>
+ <20250509074635.3187114-13-changyuanl@google.com>
+Content-Language: en-GB
+From: Usama Arif <usamaarif642@gmail.com>
+In-Reply-To: <20250509074635.3187114-13-changyuanl@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 04 Nov 2025 15:47:26 +0100, Konrad Dybcio wrote:
-> Some IOMMUs on some platforms (there doesn't seem to be a good denominator
-> for this) require the presence of a third clock, specifically relating
-> to the instance's Translation Buffer Unit (TBU).
+
+
+On 09/05/2025 08:46, Changyuan Lyu wrote:
+> From: Alexander Graf <graf@amazon.com>
 > 
-> Stephan Gerhold noted [1] that according to Qualcomm Snapdragon 410E
-> Processor (APQ8016E) Technical Reference Manual, SMMU chapter, section
-> "8.8.3.1.2 Clock gating", which reads:
+> KHO kernels are special and use only scratch memory for memblock
+> allocations, but memory below 1M is ignored by kernel after early boot
+> and cannot be naturally marked as scratch.
 > 
-> [...]
+> To allow allocation of the real-mode trampoline and a few (if any) other
+> very early allocations from below 1M forcibly mark the memory below 1M
+> as scratch.
+> 
+> After real mode trampoline is allocated, clear that scratch marking.
+> 
+> Signed-off-by: Alexander Graf <graf@amazon.com>
+> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Co-developed-by: Changyuan Lyu <changyuanl@google.com>
+> Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+> Acked-by: Dave Hansen <dave.hansen@linux.intel.com>
+> ---
+>  arch/x86/kernel/e820.c   | 18 ++++++++++++++++++
+>  arch/x86/realmode/init.c |  2 ++
+>  2 files changed, 20 insertions(+)
+> 
+> diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
+> index 9920122018a0b..c3acbd26408ba 100644
+> --- a/arch/x86/kernel/e820.c
+> +++ b/arch/x86/kernel/e820.c
+> @@ -1299,6 +1299,24 @@ void __init e820__memblock_setup(void)
+>  		memblock_add(entry->addr, entry->size);
+>  	}
+>  
+> +	/*
+> +	 * At this point memblock is only allowed to allocate from memory
+> +	 * below 1M (aka ISA_END_ADDRESS) up until direct map is completely set
+> +	 * up in init_mem_mapping().
+> +	 *
+> +	 * KHO kernels are special and use only scratch memory for memblock
+> +	 * allocations, but memory below 1M is ignored by kernel after early
+> +	 * boot and cannot be naturally marked as scratch.
+> +	 *
+> +	 * To allow allocation of the real-mode trampoline and a few (if any)
+> +	 * other very early allocations from below 1M forcibly mark the memory
+> +	 * below 1M as scratch.
+> +	 *
+> +	 * After real mode trampoline is allocated, we clear that scratch
+> +	 * marking.
+> +	 */
+> +	memblock_mark_kho_scratch(0, SZ_1M);
+> +
+>  	/*
+>  	 * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
+>  	 * to even less without it.
+> diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
+> index f9bc444a3064d..9b9f4534086d2 100644
+> --- a/arch/x86/realmode/init.c
+> +++ b/arch/x86/realmode/init.c
+> @@ -65,6 +65,8 @@ void __init reserve_real_mode(void)
+>  	 * setup_arch().
+>  	 */
+>  	memblock_reserve(0, SZ_1M);
+> +
+> +	memblock_clear_kho_scratch(0, SZ_1M);
+>  }
+>  
+>  static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
 
-Applied to iommu (arm/smmu/bindings), thanks!
+Hello!
 
-[1/1] dt-bindings: iommu: qcom_iommu: Allow 'tbu' clock
-      https://git.kernel.org/iommu/c/fe6262910cd3
+I am working with Breno who reported that we are seeing the below warning at boot
+when rolling out 6.16 in Meta fleet. It is difficult to reproduce on a single host
+manually but we are seeing this several times a day inside the fleet.
 
-Cheers,
--- 
-Will
+ 20:16:33  ------------[ cut here ]------------
+ 20:16:33  WARNING: CPU: 0 PID: 0 at mm/memblock.c:668 memblock_add_range+0x316/0x330
+ 20:16:33  Modules linked in:
+ 20:16:33  CPU: 0 UID: 0 PID: 0 Comm: swapper Tainted: G S                  6.16.1-0_fbk0_0_gc0739ee5037a #1 NONE 
+ 20:16:33  Tainted: [S]=CPU_OUT_OF_SPEC
+ 20:16:33  RIP: 0010:memblock_add_range+0x316/0x330
+ 20:16:33  Code: ff ff ff 89 5c 24 08 41 ff c5 44 89 6c 24 10 48 63 74 24 08 48 63 54 24 10 e8 26 0c 00 00 e9 41 ff ff ff 0f 0b e9 af fd ff ff <0f> 0b e9 b7 fd ff ff 0f 0b 0f 0b cc cc cc cc cc cc cc cc cc cc cc
+ 20:16:33  RSP: 0000:ffffffff83403dd8 EFLAGS: 00010083 ORIG_RAX: 0000000000000000
+ 20:16:33  RAX: ffffffff8476ff90 RBX: 0000000000001c00 RCX: 0000000000000002
+ 20:16:33  RDX: 00000000ffffffff RSI: 0000000000000000 RDI: ffffffff83bad4d8
+ 20:16:33  RBP: 000000000009f000 R08: 0000000000000020 R09: 8000000000097101
+ 20:16:33  R10: ffffffffff2004b0 R11: 203a6d6f646e6172 R12: 000000000009ec00
+ 20:16:33  R13: 0000000000000002 R14: 0000000000100000 R15: 000000000009d000
+ 20:16:33  FS:  0000000000000000(0000) GS:0000000000000000(0000) knlGS:0000000000000000
+ 20:16:33  CR2: ffff888065413ff8 CR3: 00000000663b7000 CR4: 00000000000000b0
+ 20:16:33  Call Trace:
+ 20:16:33   <TASK>
+ 20:16:33   ? __memblock_reserve+0x75/0x80
+ 20:16:33   ? setup_arch+0x30f/0xb10
+ 20:16:33   ? start_kernel+0x58/0x960
+ 20:16:33   ? x86_64_start_reservations+0x20/0x20
+ 20:16:33   ? x86_64_start_kernel+0x13d/0x140
+ 20:16:33   ? common_startup_64+0x13e/0x140
+ 20:16:33   </TASK>
+ 20:16:33  ---[ end trace 0000000000000000 ]--- 
 
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+
+Rolling out with memblock=debug is not really an option in a large scale fleet due to the
+time added to boot. But I did try on one of the hosts (without reproducing the issue) and I see:
+
+[    0.000616]  memory.cnt  = 0x6
+[    0.000617]  memory[0x0]	[0x0000000000001000-0x000000000009bfff], 0x000000000009b000 bytes flags: 0x40
+[    0.000620]  memory[0x1]	[0x000000000009f000-0x000000000009ffff], 0x0000000000001000 bytes flags: 0x40
+[    0.000621]  memory[0x2]	[0x0000000000100000-0x000000005ed09fff], 0x000000005ec0a000 bytes flags: 0x0
+...
+
+The 0x40 (MEMBLOCK_KHO_SCRATCH) is coming from memblock_mark_kho_scratch in e820__memblock_setup. I believe this
+should be under ifdef like the diff at the end? (Happy to send this as a patch for review if it makes sense).
+We have KEXEC_HANDOVER disabled in our defconfig, therefore MEMBLOCK_KHO_SCRATCH shouldnt be selected and
+we shouldnt have any MEMBLOCK_KHO_SCRATCH type regions in our memblock reservations.
+
+The other thing I did was insert a while(1) just before the warning and inspected the registers in qemu.
+R14 held the base register, and R15 held the size at that point.
+In the warning R14 is 0x100000 meaning that someone is reserving a region with a different flag to MEMBLOCK_NONE
+at the boundary of MEMBLOCK_KHO_SCRATCH.
+
+diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
+index c3acbd26408ba..26e4062a0bd09 100644
+--- a/arch/x86/kernel/e820.c
++++ b/arch/x86/kernel/e820.c
+@@ -1299,6 +1299,7 @@ void __init e820__memblock_setup(void)
+                memblock_add(entry->addr, entry->size);
+        }
+ 
++#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
+        /*
+         * At this point memblock is only allowed to allocate from memory
+         * below 1M (aka ISA_END_ADDRESS) up until direct map is completely set
+@@ -1316,7 +1317,7 @@ void __init e820__memblock_setup(void)
+         * marking.
+         */
+        memblock_mark_kho_scratch(0, SZ_1M);
+-
++#endif
+        /*
+         * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
+         * to even less without it.
+diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
+index 88be32026768c..1cd80293a3e23 100644
+--- a/arch/x86/realmode/init.c
++++ b/arch/x86/realmode/init.c
+@@ -66,8 +66,9 @@ void __init reserve_real_mode(void)
+         * setup_arch().
+         */
+        memblock_reserve(0, SZ_1M);
+-
++#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
+        memblock_clear_kho_scratch(0, SZ_1M);
++#endif
+ }
+ 
+ static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
 
