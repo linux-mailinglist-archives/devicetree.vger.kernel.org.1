@@ -1,184 +1,259 @@
-Return-Path: <devicetree+bounces-241495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1613C7F17E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:36:55 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61454C7F1C6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 07:46:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E65153A93DF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 06:34:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0A64C4E25D7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 06:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF99B2DECA8;
-	Mon, 24 Nov 2025 06:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0B332DF719;
+	Mon, 24 Nov 2025 06:46:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QsZZAuhj";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AaXx1sfJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022132.outbound.protection.outlook.com [52.101.126.132])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF432D9EED;
-	Mon, 24 Nov 2025 06:32:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.132
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763965968; cv=fail; b=oHpFv58KJ0qCluVYO1RMUGaemAGymDyecbMplxkRMibFXcCTLH0ywwRZLauQUzMwnh0DSuIMCDb0FOycmWSJmeOHdj3amQzmk4Mki28sm8s0Sn9AK37v0zrVB9/OJwKmL1LdYC9IE/CTC3VtRwUuLbc5KWGe++m4r5y0XviCais=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763965968; c=relaxed/simple;
-	bh=5GCRj/ZwTADBr0AbcEbcAvMy21mC7GaIJQlC4CFWueg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AI42Eh0d6S4G1aLN9eMo5GdJRxdR9J9UxsDO74QN7tF9w+34KpooXhKm3+hCmBVsDu0cOmK2OvVZ/TT6BX5GvE3CRO46IDaVZqqW3z6O7wiNXKr6GDR1msi3cNkqGVmNTJ6ymvj2PsYSB3QIxqwaqAtCuP1SHXDgKjpHoj4u2T0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D02gPUFqWa9lIlAfR12CdsUvE0W/2RzB0PiY1YkqRQiYON3YKPbcBbz3cdJx8CVvTpRZJNsUzHOlBKwpnPEF+sR/D2TObS7o4Xg9FbwMA124tIydxS/dZiajU9/S85RexkoPxb9l5qxxT/VIjPLI4X+BH/SisfYvStudtxjZMbgnApoioAkJ0zb1ArsVlPcdaLwOVYRB5jMhpe90CmJ5I0c+ZzLGhsJBqHu5yh8AetPJiyfBQuVgN6CRljuuyZWkxabPojACcDHH6bJnxkNWVULQJ4ivlAjJjsEKuFwLvN6tPBnMPiWwGnwI1jQ20lEEmQcGVSa0COOh6MeuOz4ZTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3VQ5M4Kmtc+TWGoRAwzWfTGma9Dl77J/P9PvcN8pii0=;
- b=wk4FbJEbl1XZVUyiVnnkp4lhXksXstAT0GYILEt7p37tH0QrOyqrZSjXpe8fJsCZNVeOB7lwOKKQm78MomHYNAazDH9VyPklnd5iF3XH/+V8rRCFQA2DZvm+8hxGOcxjiYUNnBG9wfyf5ZMPct0YR2e/JWnrHa+HgFKSPgIqtPAi7Mvvl25vNFV7/HfN7D9sAQyP/twdfNrh13zuEQanStDK8A78bWGMFLNT3S5tvY6rn6IkQnWAMu9NifSwUXyrApg5j59oyzZVuXjIuNQXpoAqnn1IbkSX7vBbBy6sZM0JvC/H7yjaggleO8aE+msVB8VPMtRc0QT34n/ZHt/JGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PUZP153CA0018.APCP153.PROD.OUTLOOK.COM (2603:1096:301:c2::14)
- by SE1PPF4D95A16FB.apcprd06.prod.outlook.com (2603:1096:108:1::414) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.15; Mon, 24 Nov
- 2025 06:32:37 +0000
-Received: from OSA0EPF000000C8.apcprd02.prod.outlook.com
- (2603:1096:301:c2:cafe::97) by PUZP153CA0018.outlook.office365.com
- (2603:1096:301:c2::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.3 via Frontend Transport; Mon,
- 24 Nov 2025 06:32:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C8.mail.protection.outlook.com (10.167.240.54) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9366.7 via Frontend Transport; Mon, 24 Nov 2025 06:32:36 +0000
-Received: from localhost.localdomain (unknown [172.16.64.196])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id B8BFE40A5BD8;
-	Mon, 24 Nov 2025 14:32:35 +0800 (CST)
-From: Gary Yang <gary.yang@cixtech.com>
-To: p.zabel@pengutronix.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	cix-kernel-upstream@cixtech.com,
-	Gary Yang <gary.yang@cixtech.com>
-Subject: [PATCH v3 3/3] arm64: dts: cix: add support for cix sky1 resets
-Date: Mon, 24 Nov 2025 14:32:35 +0800
-Message-ID: <20251124063235.952136-4-gary.yang@cixtech.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251124063235.952136-1-gary.yang@cixtech.com>
-References: <20251124063235.952136-1-gary.yang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9262F36D516
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 06:46:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1763966770; cv=none; b=USyWIuOtLTynBqg3PAxhkIxzupYP09Cebgy/1GC0AU9buzQ8pPgkDuWqbgw3xL14savu0CZTVQ21YUGtrl4mKDrzAYeU0ZOv1KKU/nz5oJvo+nOxSkc3AMfW6cmYp/o6bRSZ7rAvwCcVBNd786CvB1MfprUTKzfVGRWV2bUYEho=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1763966770; c=relaxed/simple;
+	bh=23YpPQP4CI1KPsjWwNPJhWoqp9i+7QjgCb/IpMeDpao=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=geSL5jRn/i/w/JwOErKmpJBlO2rX3qz4pgbASED1sU2Rdxr5pPWOR05Kodx4KJTBAiNcor+/fizwYNZXTH2Ci7FQY3xrOir2P3J6Lao7Axa0LgN+Vge1id/L0KncqK1EYOldkcwmPd/17EkY3rvB4TQ6+Ps7EbPJn0jsVDQ1CPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QsZZAuhj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AaXx1sfJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ANMc1gA2273365
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 06:46:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	By/ZQL1FuYeACCKtKvf6JW76324AdceNxDBN+D6hlTo=; b=QsZZAuhjtFkJaUWA
+	IGZbFHvEXXN+U20t3G/C46HttkOJilVtAENXQ5CrzSUSXthrW+Re1yE//tG3mIqi
+	IqLyFKxQBqcfvlP7KXsZcIudYwnGNc6hNFuqnZcqRyWrsQfljY3KnpoqmvuQ8R5M
+	dD+KAhC5VibNnZapwaMz9T80KKVenL3qRKBnGSvmk/PqB15Iyyvs7SNBeFmJHMUY
+	REWxdTvx/JFiTIHGC6ESQvjMmMhFnoRwW+1EYcaFExPpg3oW1/I86+T7OuHGKGYh
+	SBAdrg/RN6PjHKJ1uwemwahewKJpXlSLktHNSN6joukyuvicgDwj5zxVYl03K9c7
+	98SSnw==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ak694uwbg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 06:46:06 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2958c80fcabso117387705ad.0
+        for <devicetree@vger.kernel.org>; Sun, 23 Nov 2025 22:46:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1763966766; x=1764571566; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=By/ZQL1FuYeACCKtKvf6JW76324AdceNxDBN+D6hlTo=;
+        b=AaXx1sfJfM+xumCHF3mZs3hvqzbMR/+S53MrwE9kbMhJzUIsy2gTuc3+evcgNFO1N8
+         KcxG2j1GQfgHQOnLN6WG6BdICwZkuuqjxpwWpjypwanTDa+bzHtl6bKFTJ5xpqdtNJbs
+         MxBw/ct8LfdV4ejbaz379JdIMnByBta7Yp5+x4wBdd3pcstZJmFmZbwhl1ngSWaSyUdL
+         pz2+62J0VFdsqq55ZtIcWd5xXWOSoxCf1axoZ0i/RjUFHJKSakxasH43SlVUfDz8+Dpu
+         nhxCviWpyF+vHK27dQJRR81l/OGjEeOmu0+954ZzXxlL/HsX9Di8wGvuJWonstv8SOjh
+         9uGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1763966766; x=1764571566;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=By/ZQL1FuYeACCKtKvf6JW76324AdceNxDBN+D6hlTo=;
+        b=pTDHM3GwSWY9oFZzhjTJCyOUz6wS3g0ONxboS6Jk3umTPCPyAfgEtdEBkHo8GAq+0U
+         CV19PIdz8V6n2FZ2LtGtECqZdFey2C67ZzCHn0tnZ0uXiZo/TI3YpmnK1MfK/0ujXZ32
+         flYIAOtGXupc2R+ivnxjsZDCalPlyS7TkpeWd90sh3Mrp+KBjixoxb8vPowSKcQ50UhY
+         HYi45UoHcFC8Bjw+jNTekHXc8fHI7EXT7ugaVP5X2ibawXe810MB9yFENFBazeNBjRdQ
+         d9F4qPLWK1uQ0pYDR93MELz7G7S8UctUQUimzSBGd0hZ2j7rRcHLn413bg70oF7zUDon
+         TeDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUyakDPTRtR/5EbdV2AM1DtQE+dhiVcBjmWdW1EDxPxlKUtAt1UzBITdtqiGHTzK9SDrsZyX+ScdIPC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXSLBQD9cBHSoYQD/EC0SACa5Gu60K+vrulYLRVTiN/h6Jmcp9
+	zV3Ih8y1Lr2t+xunSxnYYvQqvDqcEomOsaNwfGWhsLZiig5sHukHajKJAnCj+s7MkxKxc4ponqa
+	PIecIMPl6y6yXjKCoMsuxcus+xhGGmO0mrkG4oTKrrFoSeNsuoeTjhBcul3PvNniw
+X-Gm-Gg: ASbGncudvFxqIXtnCLZOv/gvBFoVtQg9OQQKyHGmR8WKE0cRJ/TSjaTpj1Ta+mwdA4O
+	LdF8b0b2tCSWQzb69ma+kdzJWJnB06MfvsubPnHRjZ4ToGDOWJhy6Gnv3VUgZTJlxDneyIDxapd
+	t17z1kI820RtVdpdAewaiYyeuDgXS0CQN2jC8yY6GaesVFuF6KUh4apBzmP5DLJjJmRhaLcVvId
+	EglgN3SefYVaGg4iY1bN1xLt1ea7RKPdZHdDjMbmXGwTVJ6k1jBVHBTGPVDwSycs3dAF0t/aCrw
+	+y87+nCvg2ZtPDIwkp3vPLNWkSLhB5gLLb0wnBYkugXvwbPZZ4XoldYNEHtK7sLFlCOIviIXREn
+	LWBi20uDx8UkEOr7hEaNii1ArCkOp1r/0iQiu
+X-Received: by 2002:a17:903:1b10:b0:298:485d:5576 with SMTP id d9443c01a7336-29b6be91657mr100486345ad.8.1763966765851;
+        Sun, 23 Nov 2025 22:46:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGtugpB93cxvDvAwOI6vRBpObZNJ1J+RRDzvCpY5YCuleJS0pa1DUKfMcah6KM61/9lkvmBHQ==
+X-Received: by 2002:a17:903:1b10:b0:298:485d:5576 with SMTP id d9443c01a7336-29b6be91657mr100486155ad.8.1763966765128;
+        Sun, 23 Nov 2025 22:46:05 -0800 (PST)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd75e8b37f1sm12313992a12.14.2025.11.23.22.46.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Nov 2025 22:46:04 -0800 (PST)
+Date: Mon, 24 Nov 2025 12:15:58 +0530
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
+ SoCs running Linux host at EL2
+Message-ID: <20251124064558.aaartbglgvcj7w5r@hu-mojha-hyd.qualcomm.com>
+References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
+ <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
+ <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
+ <238adfbb-3773-4318-93d3-b23697aa4b18@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C8:EE_|SE1PPF4D95A16FB:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 3e3cbfa1-013e-4a6f-5f7d-08de2b234233
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?meB1lpPy5pUFUr9bfV58kp98cRNdmUeF5gRgDR4sGh22x+BEmllpAyw42Pyx?=
- =?us-ascii?Q?TKn+827g1mJGNc4VTspadnPznyNShXn7V1sp357Exj3/x9CkyktwnAkUFXNm?=
- =?us-ascii?Q?tHehlspBGvN2GCLYujFXGUZQTv9ffbhQ4YsMwPlnvqXicGg0g+KvuusfWHL2?=
- =?us-ascii?Q?pYCUovOL1Fh3Ft3TNaE/I0TfXFcHWipipKRkPhA+Nwf7x4SCKYPE6gYVGp7x?=
- =?us-ascii?Q?LYxJCeISoNSRpS3lbNPTq5xItQhYCl7XnjkzyOQzXPUuIZYgUCWe5K6Q7ly6?=
- =?us-ascii?Q?xKj5VgniR7U+NHi+1HMoiZSyBwGedf8AhzRsSS+6uiVuadiFsGUJ/Av3AWtq?=
- =?us-ascii?Q?8qLxr+2OTIHPMAys8QsTKkoBqZStVCIP9EVasXzaZVPjG5oV2/EegkiNYVB3?=
- =?us-ascii?Q?gXmz7P2SycWn5MD+thlRZJTKmknw4KgAT70rSRDyzn20hFXqVyPH/iSZPNcv?=
- =?us-ascii?Q?YlTYX3mTiIVimVltPmtpYmGYz499UEyqCctO25GhvNDRwuG6wz1K7mcadpdX?=
- =?us-ascii?Q?QNqsb7NMPie2CWZRBHkNGJso7QbFNe02BmX5PEfFmvbcE9bx33kNJMNr6TAp?=
- =?us-ascii?Q?2ULnO2W+y+9jW/f0g2CPbR9F90vIdrfkpHh9CZKgeq4U8wjt56W9ndgz9FHP?=
- =?us-ascii?Q?K/24BogAyGGpJam16F5gntxiRFXy8xFhaOv6O1weWgZ6qYoJaRNa8YMY5Toy?=
- =?us-ascii?Q?qR3ypLoWwUSgstf/C8PZrdpGOiDWY43s5lYd2T14+mSq9uU5nzpc4Y4DPpi9?=
- =?us-ascii?Q?6l4pDOlzvkvIfIN6AOYCr4hQxxl8SSFtrYBal8rRvyN6K+n3WPrziCzPo12U?=
- =?us-ascii?Q?h779LhjVy62BjFdFVD+BiaPDq6BfwQjPqkp/njAnYK+xdvbG8ospS6h5INEa?=
- =?us-ascii?Q?moNbwhIcRfUXSjaYgoQ75F7qGsyT7SlgTynod4rc5n7AR3hWU9ldNGnPy4Sq?=
- =?us-ascii?Q?C2D3ipxIsz+umBjIYSxZSJFXxywZiXaCYjaM843qgB7BHs9aEjaKaPMw+92Z?=
- =?us-ascii?Q?e22mSzawWaPqG7IolBLFuQm7ggo2Fbk79wbw3WKLDH8SZ+GTszr7NhhlP6ip?=
- =?us-ascii?Q?sp+R3oUOvQS+9ihxl1YQyXhWxyo6Y0mzS66saU4Vm3OnvHRenFl/ymkoZ1Ag?=
- =?us-ascii?Q?Ex02PTJnRajvDAQ1MKuWNp9KEnrpRA9HExHlRlAUUqoo0xdbMs8QaG3LtAJE?=
- =?us-ascii?Q?p6rg9rBahzR2qm5vGUQJNmbiUDj6QErou8WzWyamUcZzeyabavk1RRX/e3Dc?=
- =?us-ascii?Q?HDdT4vSnbFEMSqaXCBL0P2XPuM26yzWV0ZO9dFj+CVLTkY/+AKe0trkzkgNm?=
- =?us-ascii?Q?ATy5ZGCivvG80wl6f5Jt9F1np9rxz7o62Y1fDCiMGys/Fy6uy9yBdVYUk46v?=
- =?us-ascii?Q?ERkeDEhVfCREkCvcu0CKv0sajMnafLIMEXfN/SlENx6LP/VDEyvz04xhi5u+?=
- =?us-ascii?Q?DekBM/oAFdOzvTIJB9tO0N5eT6Iw9Fb6qnAYUkNA0KYbkumbdGuKMWmj8yKv?=
- =?us-ascii?Q?zCMtHKueH7nAhOaE+JoJ4lzWdsGkXPDEuK6O4bQfNAJVcgqDZKxeWv7bShAh?=
- =?us-ascii?Q?/2o86xSFV8uftuFvFCU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 06:32:36.5626
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e3cbfa1-013e-4a6f-5f7d-08de2b234233
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000C8.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE1PPF4D95A16FB
+In-Reply-To: <238adfbb-3773-4318-93d3-b23697aa4b18@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDA1OSBTYWx0ZWRfX8WnHokO/4nAJ
+ mRT7gT7CNN85FxeyFYON3xmhrb2u5keKIAYGsqbU8ZjAHy6USBWZDEMedMlZHmP0jmomucl8Xl5
+ 0M35mA9m9qsHx1koXN8sdIQhzgVbQTKdgyg4uSUALcdBBahLp6FcmE2vIVqglAITOJeIn0SXiKP
+ 4V9K4m0VDb901vmUMOugRPcR+wVziHEs+L4UVYt1twb/b4+MANoANfaM5vg/Zg/CPUD0Zy91iy3
+ 7SFOSzfioCAcP/UsnLq9doZu3+kbQKwCAjigRobtXfiXqntDColpi/Yzjy16jnkkS1BCBRfO2pZ
+ 0LRDBefhDAU45dRVdtq0YV6oKQsvAzMwTjPy+CWjkEivXMbvl8DrrgJjEyO31j9G1xNU9iU8Kqr
+ RrI3caQviQhNJiHVEE/mQHy/HyWNJg==
+X-Authority-Analysis: v=2.4 cv=YJqSCBGx c=1 sm=1 tr=0 ts=6923ff2e cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=fNd15dL9NFL7uWwzahEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: j8dIBs6bm15zcWrvGL9wRs6vdBz912SY
+X-Proofpoint-ORIG-GUID: j8dIBs6bm15zcWrvGL9wRs6vdBz912SY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-24_03,2025-11-21_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 suspectscore=0 phishscore=0 clxscore=1015
+ lowpriorityscore=0 malwarescore=0 impostorscore=0 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240059
 
-There are two reset conctrollers on Cix Sky1 Soc.
-One is located in S0 domain, and the other is located
-in S5 domain.
+On Fri, Nov 21, 2025 at 04:08:36PM +0100, Konrad Dybcio wrote:
+> On 11/21/25 12:37 PM, Mukesh Ojha wrote:
+> > On Fri, Nov 21, 2025 at 11:27:57AM +0000, Bryan O'Donoghue wrote:
+> >> On 21/11/2025 11:01, Mukesh Ojha wrote:
+> >>> In May 2025, we discussed the challenges at Linaro Connect 2025 [1]
+> >>> related to Secure PAS remoteproc enablement when Linux is running at EL2
+> >>> for Qualcomm SoCs.
+> >>>
+> >>> [1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
+> >>>
+> >>> Below, is the summary of the discussion.
+> >>>
+> >>> Qualcomm is working to enable remote processors on the SA8775p SoC with
+> >>> a Linux host running at EL2. In doing so, it has encountered several
+> >>> challenges related to how the remoteproc framework is handled when Linux
+> >>> runs at EL1.
+> >>>
+> >>> One of the main challenges arises from differences in how IOMMU
+> >>> translation is currently managed on SoCs running the Qualcomm EL2
+> >>> hypervisor (QHEE), where IOMMU translation for any device is entirely
+> >>> owned by the hypervisor. Additionally, the firmware for remote
+> >>> processors does not contain a resource table, which would typically
+> >>> include the necessary IOMMU configuration settings.
+> >>>
+> >>> Qualcomm SoCs running with QHEE (EL2) have been utilizing the Peripheral
+> >>> Authentication Service (PAS) from TrustZone (TZ) firmware to securely
+> >>> authenticate and reset remote processors via a single SMC call,
+> >>> _auth_and_reset_. This call is first trapped by QHEE, which then invokes
+> >>> TZ for authentication. Once authentication is complete, the call returns
+> >>> to QHEE, which sets up the IOMMU translation scheme for the remote
+> >>> processors and subsequently brings them out of reset. The design of the
+> >>> Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
+> >>> is not permitted to configure IOMMU translation for remote processors,
+> >>> and only a single-stage translation is configured.
+> >>>
+> >>> To make the remote processor bring-up (PAS) sequence
+> >>> hypervisor-independent, the auth_and_reset SMC call is now handled
+> >>> entirely by TZ. However, the issue of IOMMU configuration remains
+> >>> unresolved, for example a scenario, when KVM host at EL2 has no
+> >>> knowledge of the remote processors’ IOMMU settings.  This is being
+> >>> addressed by overlaying the IOMMU properties when the SoC runs a Linux
+> >>> host at EL2. SMC call is being provided from the TrustZone firmware to
+> >>> retrieve the resource table for a given subsystem.
+> >>>
+> >>> There are also remote processors such as those for video, camera, and
+> >>> graphics that do not use the remoteproc framework to manage their
+> >>> lifecycle. Instead, they rely on the Qualcomm PAS service to
+> >>> authenticate their firmware. These processors also need to be brought
+> >>> out of reset when Linux is running at EL2. The client drivers for these
+> >>> processors use the MDT loader function to load and authenticate
+> >>> firmware. Similar to the Qualcomm remoteproc PAS driver, they also need
+> >>> to retrieve the resource table, create a shared memory bridge
+> >>> (shmbridge), and map the resources before bringing the processors out of
+> >>> reset.
+> >>>
+> >>> It is based on next-20251120 and tested on SA8775p which is now called
+> >>> Lemans IOT platform and does not addresses DMA problem discussed at
+> >>> [1] which is future scope of the series.
+> >>>
+> >>> Changes in v8: https://lore.kernel.org/lkml/20251113-kvm-rproc-v7-v7-0-df4910b7c20a@oss.qualcomm.com/
+> >>>   - Addressed suggestion from Stephen which was regarding commit message(9/14),
+> >>>     debug log(12/14) suggestion, and return type change(4/14).
+> >>>   - Added R-b tag on 10/14 .
+> >> Sorry.
+> >>
+> >> Did we actually come up with a cogent reason to omit the video firmware
+> >> loading here ?
+> >>
+> >> AFAIU it is required for Lemans and Glymur - leaving it out is blocking
+> >> getting video stuff done and storing up trouble.
+> >>
+> >> What exactly is the blockage - is it something you want help with ?
+> > 
+> > I replied to you here[1] and given my reason..till something concluded on
+> > "multi-cell IOMMU[2]", I can not add video and block what is working
+> > already.
+> > 
+> > [1]
+> > https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-hyd.qualcomm.com/
+> > 
+> > [2]
+> > https://lore.kernel.org/lkml/cover.1762235099.git.charan.kalla@oss.qualcomm.com/
+> 
+> I see that the following files call qcom_scm_pas_auth_.*():
+> 
+> drivers/firmware/qcom/qcom_scm.c
+> drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> drivers/media/platform/qcom/iris/iris_firmware.c
+> drivers/media/platform/qcom/venus/firmware.c
+> drivers/net/ipa/ipa_main.c
+> drivers/net/wireless/ath/ath12k/ahb.c
+> drivers/remoteproc/qcom_q6v5_pas.c
+> drivers/remoteproc/qcom_wcnss.c
+> 
+> iris is difficult, rproc is done, adreno doesn't need it..
+> 
+> would ath12k_ahb or IPA be affected by this series as well?
 
-Signed-off-by: Gary Yang <gary.yang@cixtech.com>
----
- arch/arm64/boot/dts/cix/sky1.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Yes, they would be affected, and the modem as well, when Linux is
+running at EL2. However, I do not see them present in any of the QLi and
+targeted compute SoCs at the moment. Therefore, our firmware does not
+support it yet.
 
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index d21387224e79..72ebffe05ef7 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -348,6 +348,12 @@ i3c1: i3c@4100000 {
- 			status = "disabled";
- 		};
- 
-+		src_fch: reset-controller@4160008 {
-+			compatible = "cix,sky1-rst-fch";
-+			reg = <0x0 0x04160008 0x0 0xc>;
-+			#reset-cells = <1>;
-+		};
-+
- 		iomuxc: pinctrl@4170000 {
- 			compatible = "cix,sky1-iomuxc";
- 			reg = <0x0 0x04170000 0x0 0x1000>;
-@@ -568,6 +574,14 @@ ppi_partition1: interrupt-partition-1 {
- 			};
- 		};
- 
-+		src: reset-controller@16000304 {
-+			compatible = "cix,sky1-rst";
-+			reg = <0x0 0x16000304 0x0 0xc>,
-+			      <0x0 0x16000400 0x0 0x10>,
-+			      <0x0 0x16000800 0x0 0x8>;
-+			#reset-cells = <1>;
-+		};
-+
- 		iomuxc_s5: pinctrl@16007000 {
- 			compatible = "cix,sky1-iomuxc-s5";
- 			reg = <0x0 0x16007000 0x0 0x1000>;
+> 
+> Konrad
+
 -- 
-2.49.0
-
+-Mukesh Ojha
 
