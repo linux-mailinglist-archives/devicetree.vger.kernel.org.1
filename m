@@ -1,275 +1,250 @@
-Return-Path: <devicetree+bounces-241579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DECBAC7FFFA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 11:52:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE325C7F703
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 09:57:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C2F4A4E3799
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 10:52:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96D133A6432
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 08:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF722F99BD;
-	Mon, 24 Nov 2025 10:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A42E02F1FF4;
+	Mon, 24 Nov 2025 08:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FMqKVtnH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nd0gYwv6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0E02F8BD0
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 10:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A36F02F2607
+	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 08:57:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1763981559; cv=none; b=guHQFlgU66B8ucBbQWmEzhyH1HJG8ydgjd2BJ7W0NV9qrfOtFhV4o2myvag2Gfe5wH16x3JKBN7TXfWVF0RMQWRGYhV1gVxCssEcIzGvsAZYmSLFBViHHbIcTgOUbnjbHyIXINCBVTqFavNDq6UZPg822UaDiwvEarv9CJSIxyo=
+	t=1763974654; cv=none; b=cRSrVpoCOB1RA1zhmfw/N2tkgUFOjjZudW7ezNEcw0sPCKQIReGKZi3zi/icIOGR402pORGsYOowISJcJi5Yig8R5OlExckGigof93JX6oulLTMqOQPOnuAxdxbsvG1Bln9jfSYXaeDC0sUeQTUC3SO1gEYZR9Cw+Pjr1OeH+80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1763981559; c=relaxed/simple;
-	bh=MyhVfaLuUMB4FJ2DvvqxwnUvFdn4Yuvt+apgQWbex0s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oZDDQ1gI/Ah937/bjuSmVn8y0h5GzZc/UIM05NzdRn5eTgVYKfxIjkILxXbYC4q6k2wwl4l5jmtHXcp39iynjexchaT3rAnXNnAIMfs5xA+jCuBlJaYGoiIeyhY/PyikHXp/6/KC5TiM3kmVTcZuenbrF+LvWs90OeYVWNFpbkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FMqKVtnH; arc=none smtp.client-ip=209.85.167.44
+	s=arc-20240116; t=1763974654; c=relaxed/simple;
+	bh=0AX8ikb3o4EvRfATnP1q7RYE34mOvktGMpe4j6p64os=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=swAMxQ2lV+/g92H7FQIb7k3C1VSaWATO71veTOi/4DOSBIINBsyMAS8Ugm/ezByYyyXWo0lvHOfQogn90W0CROv1haaXEv6wdpDaa9ud2wRLMQ5J2+FBX9XNPuObNPediWKYk2GxkAv79YspxNJsbBKKgO23WKqxiTMoSFvt750=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nd0gYwv6; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-596a055b1b8so3681583e87.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 02:52:36 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b75c7cb722aso585520566b.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 00:57:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763981555; x=1764586355; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UvxeS/74nBAEFSf4nVKv65BSIxiE58qrGcTM82uuMOU=;
-        b=FMqKVtnHkOTeXLAWnV4dLBvaVWgmRwVgfFCn+oz2C59WJDBP/bWVapRrPCC/nZ5QuW
-         4bUkZnBQ39esRmGMxpXkJmAOsu5LNGGWi47yqFnEDkEZek/zIx2vTmHBDjli1+7VAGtv
-         bnqMJo8KCGx6nUskCp0Lf9e34BfOJdHDyjQA8hiPw6ydBgJCxLzIeuPj27cLeTDMA3jh
-         KfH8i1WpbR4ulKg3EbhqEyR8Auf8jIyBTH7y3yvEBj0zAgRb2xNwaBsi9dMRzaNuBPRP
-         R2geLXembt8YGRfOhBweuYVhsG4o7/8T6etWl4wCABiUu8VupCCpXHLL1vSzNzzI0Lvh
-         Mk2g==
+        d=gmail.com; s=20230601; t=1763974650; x=1764579450; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gxRRZFjB1lIqcawHfAYFmVJWZp4LMXEe6DiIUrAIjIM=;
+        b=nd0gYwv6236F+2brovwyy4y3Ei8biyuBL5KCm26dT4OuTVqomRgpnCodYKLTsrVyqh
+         wK4v/lBT/LtOTeiq+zTw8kIzcR/o54JlUIiYGFtC/FRl5dsy7d2zIYvN/lh0G9paq760
+         ZNnxzbO/qzBrPCHCZBGaMt38foP2Ilc7QxR1EbsDG20BeW36SPhdH98dMU/3r9qRbKVX
+         rADRsSuHFh3mOH6WMgHtFOrdI4ZSPWqMpVUgSKTH7ZhViTMZTwxSW43tura2OgtB1+W8
+         7BrkT89EedYCVNPqDsCx6cda1y+fUH5Y77sK83CEUdt2wsg3IjnMFhFpNaNpwF7D87Ul
+         XsWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763981555; x=1764586355;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UvxeS/74nBAEFSf4nVKv65BSIxiE58qrGcTM82uuMOU=;
-        b=aMNUOXMf/WN+9v1ETGNA6ITEIwqXCqUSMK7xI3eGbP5tCIXbKz8m0AVB8zD1AIRG75
-         onX/an6coXj7MQ2w2vAVZxZ0Eo9jOjfGxOJH2izr9BcRxf1HGD4NFaOptdnqMOHrDqGd
-         sNsiVEV8uMWtm25EEX9FLUHZTVqO+ewGrCvgTQwdcJE6Ahj/NMhKXK4j8Cb8jk6KEgWm
-         iVLkRNZA3khB1pf/X9zorZQqWYnzhAoBbGfV5JXkC1ZQw/bXD3iefEJpc+3SMTpfhMzl
-         bVBqzYss1rXajUn7uTqeE05AleYFquWA1eh5edxtAqhJNpXFcxyGseLCRDHExgIUCaFn
-         rVQw==
-X-Forwarded-Encrypted: i=1; AJvYcCW0ozTaA8rLuVGzB+wa0vqAL/mkw7cLOFfVZzF/ljgATpcylcF6FdkJ26aqspw8CetX/r9UcccDZn0I@vger.kernel.org
-X-Gm-Message-State: AOJu0YxshEc2Pu2ZXbKtXdfOQClK3TqTXXsXfqWiV8lBzR2b/aBFlGiO
-	GARWzTVlY8hG1EQxAju7r4PtbJNbRV+fgYAgZ/XDDWBc6EokyGFcFMG7leOMynTr
-X-Gm-Gg: ASbGncvmbTcZHxeJHwtKu4Odcgt+GRXOZxPLOFZEiXSigEzqzhzAfg7q9wYl4ALBBwi
-	PqpYoBrSRzudaoSX5AGkh+Lzu6+9l1jUwAcRR/cilxzrkt7BTqy9AOXdEbMfZIsNScJX8TdOfPp
-	En2+8fDvcPgUiB2MlF+iYO2v7QvYw+2FLjXBmQVOwKStEr7WZhAjm2J2NeuLauLs0Yw2ytWYiVQ
-	ML03PSbFpjeXTA+z9YvFEdnIe3bj6HkqPgzI1KQMs5wDHY5t75eKpgrucKUwugMjbCf0xB3cBF/
-	6P33Sos0e4V2tmPtFbacboo9DkYmUI9FBvQvbj1h+VxOGzRubhsWyxHcuyT0rlhSaHB1ku8K78X
-	basESAjzbF+cVSe64uOD9HDhrSoHYux7ejK53U0nUFaOHZ72pGcTHTaUVnsB3kVSMMByQ+LF+qx
-	Pj3eSRgejLcBkylBTb1TXM74tA
-X-Google-Smtp-Source: AGHT+IGzb+yApYHtjewkoQzx7FPWIVvgfb9lCElhP6A4EWOQNvayCoMjjLyY5L5QUpilRr8Cj3haxw==
-X-Received: by 2002:a05:6512:104a:b0:595:90ee:f476 with SMTP id 2adb3069b0e04-596a3edab46mr4292946e87.28.1763974136131;
-        Mon, 24 Nov 2025 00:48:56 -0800 (PST)
-Received: from [10.38.18.76] ([213.255.186.37])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5969dbc5c5dsm4019850e87.79.2025.11.24.00.48.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Nov 2025 00:48:55 -0800 (PST)
-Message-ID: <6ee209b3-4d7a-45a8-bd65-6a51730d458d@gmail.com>
-Date: Mon, 24 Nov 2025 10:48:54 +0200
+        d=1e100.net; s=20230601; t=1763974650; x=1764579450;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gxRRZFjB1lIqcawHfAYFmVJWZp4LMXEe6DiIUrAIjIM=;
+        b=uIKC7U/Eo5CEkhk281h5BplO6+BEwdSdBrhOm14R5LZMUCeEtpqevSCK9iCpRXJ2Be
+         3QBXEMzwdhR+CI8Nw+lSejRPPsixR8seki73fQuPkmXYVElV80cwA15AURUrAka95a7F
+         bDkYC8naot5T7M7gt0fVF4URoGMTPk40Cwd1NcP0fqyTfHcrKA7IaEGP+6bRLJVIjOlT
+         ytNtQdHu4nPwHDPYImed7Y8rvXSf+F84OmM8OcS8k/njfkHMg946qe2jv8k81LG9i5SJ
+         mXehRVsz8GonjRW6lDpIcdbS4qIcNhXAeswvcnk4CMDKTXJUzA4xHtkQCCrfFwTB4eEF
+         zO4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVPqDL/gRZpCei049mn00YharEqGhQ9rtdUKpXzl6L6ND+/mWb28QZ+xVPTEdUJMVu7G7Q21XbNMb9t@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2T62+5fGlf45NeF7QOCNe1C7ISQUr37cYqOX0fME57IGO5vID
+	zEmfU+BntO/1ajcpzEAB+P5r7lJCh18k6r7RAU3STIHCsEm/A3yB3pxy
+X-Gm-Gg: ASbGncsjs08IfQpdruJzDEfb7pIJWYbREKu74xV7i17WXeTpJ+749WcPxqrj0sr4TFN
+	YwrniHm/QNbIe60cbSOGig4NkGES5fbOT+RoyQbICBjOozUX53PRYRBuSka0WavDwV9F+nSgoZX
+	7quO2oKPpdXs0ulGtkbc1UQkuCvidMIJZzi4I5nGioT9+Rtk9dwYOwxdVqoS7B7ZH/8JAaCQF61
+	SXrpXGkuQ9Pynorr2e3tcmmLlMMNS4V+5mIiePy/7DNrgHwjURJ4cqgeWg5H8sXxrVBl9qTSgHc
+	wwUFAEeAyXlaAF6Gbnv4/PDx1+zAE+eUp4bZliefgaG2eFf3IQgq7bKVYx/kSA0YA21KHC15epf
+	vp/HCPLhdOsgps3g0YmIVrYj352kV+HTEvQoh0frbXy+FhNM0dZWxj6gBcV1MSpZpyd/d4+VCh4
+	VlYMdWwQp1LFKkl3p8yYpvRfnG0z886tahegn6b7AXNanCNCfNIOaK2eQmzR7g4zIf4teR2gUZf
+	rZgveY=
+X-Google-Smtp-Source: AGHT+IF7eVt0kYpi5bJtqaCQupLePEPQbTatmBLQkYhmxJBlR5P/QxBWZ0Gc9LnkJN6rBHjYeAf4FQ==
+X-Received: by 2002:a17:907:3ccb:b0:b73:883e:1517 with SMTP id a640c23a62f3a-b76715e626amr1130898266b.26.1763974650091;
+        Mon, 24 Nov 2025 00:57:30 -0800 (PST)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2a02:3033:267:9a21:9532:f12d:5875:dc2c])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b765502a9cfsm1199697466b.57.2025.11.24.00.57.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 00:57:29 -0800 (PST)
+Date: Mon, 24 Nov 2025 09:57:26 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Jorge Marques <jorge.marques@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 3/7] iio: adc: Add support for ad4062
+Message-ID: <o4kt2of4xql4azufjgiecm4jzuexgm6nkvr7aghbwfk6qd7yqd@r4plggehzces>
+References: <20251013-staging-ad4062-v1-0-0f8ce7fef50c@analog.com>
+ <20251013-staging-ad4062-v1-3-0f8ce7fef50c@analog.com>
+ <20251018171032.144a126c@jic23-huawei>
+ <ou6qwayt4g7qaoe5dm7tdg6jl5dwquslpfbok6on5r2q2wytyl@wlqxj5y6ircj>
+ <aSQMjZbc75cQtFqJ@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] Revert "treewide: Fix probing of devices in DT
- overlays"
-To: Saravana Kannan <saravanak@google.com>,
- Herve Codina <herve.codina@bootlin.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
- Len Brown <lenb@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: kernel-team@android.com, Wolfram Sang <wsa@kernel.org>,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, Matti Vaittinen <mazziesaccount@gmail.com>
-References: <20240411235623.1260061-1-saravanak@google.com>
- <20240411235623.1260061-2-saravanak@google.com>
-Content-Language: en-US
-From: Kalle Niemi <kaleposti@gmail.com>
-In-Reply-To: <20240411235623.1260061-2-saravanak@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aSQMjZbc75cQtFqJ@smile.fi.intel.com>
 
-On 4/12/24 02:56, Saravana Kannan wrote:
-> This reverts commit 1a50d9403fb90cbe4dea0ec9fd0351d2ecbd8924.
+On Mon, Nov 24, 2025 at 09:43:09AM +0200, Andy Shevchenko wrote:
+> On Sun, Nov 23, 2025 at 08:48:09PM +0100, Jorge Marques wrote:
+> > On Sat, Oct 18, 2025 at 05:10:32PM +0100, Jonathan Cameron wrote:
+> > > On Mon, 13 Oct 2025 09:28:01 +0200
+> > > Jorge Marques <jorge.marques@analog.com> wrote:
 > 
-> While the commit fixed fw_devlink overlay handling for one case, it
-> broke it for another case. So revert it and redo the fix in a separate
-> patch.
+> > Mostly acknowledgements and explanations, except a comment on ACQUIRE usage.
 > 
-> Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays")
-> Reported-by: Herve Codina <herve.codina@bootlin.com>
-> Closes: https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=9F9rZ+-KzjOg@mail.gmail.com/
-> Closes: https://lore.kernel.org/all/20240221095137.616d2aaa@bootlin.com/
-> Closes: https://lore.kernel.org/lkml/20240312151835.29ef62a0@bootlin.com/
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->   drivers/bus/imx-weim.c    | 6 ------
->   drivers/i2c/i2c-core-of.c | 5 -----
->   drivers/of/dynamic.c      | 1 -
->   drivers/of/platform.c     | 5 -----
->   drivers/spi/spi.c         | 5 -----
->   5 files changed, 22 deletions(-)
+> ...
 > 
-> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
-> index 837bf9d51c6e..caaf887e0ccc 100644
-> --- a/drivers/bus/imx-weim.c
-> +++ b/drivers/bus/imx-weim.c
-> @@ -331,12 +331,6 @@ static int of_weim_notify(struct notifier_block *nb, unsigned long action,
->   				 "Failed to setup timing for '%pOF'\n", rd->dn);
->   
->   		if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
-> -			/*
-> -			 * Clear the flag before adding the device so that
-> -			 * fw_devlink doesn't skip adding consumers to this
-> -			 * device.
-> -			 */
-> -			rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->   			if (!of_platform_device_create(rd->dn, NULL, &pdev->dev)) {
->   				dev_err(&pdev->dev,
->   					"Failed to create child device '%pOF'\n",
-> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
-> index a6c407d36800..a250921bbce0 100644
-> --- a/drivers/i2c/i2c-core-of.c
-> +++ b/drivers/i2c/i2c-core-of.c
-> @@ -178,11 +178,6 @@ static int of_i2c_notify(struct notifier_block *nb, unsigned long action,
->   			return NOTIFY_OK;
->   		}
->   
-> -		/*
-> -		 * Clear the flag before adding the device so that fw_devlink
-> -		 * doesn't skip adding consumers to this device.
-> -		 */
-> -		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->   		client = of_i2c_register_device(adap, rd->dn);
->   		if (IS_ERR(client)) {
->   			dev_err(&adap->dev, "failed to create client for '%pOF'\n",
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index 4d57a4e34105..19a1a38554f2 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -224,7 +224,6 @@ static void __of_attach_node(struct device_node *np)
->   	np->sibling = np->parent->child;
->   	np->parent->child = np;
->   	of_node_clear_flag(np, OF_DETACHED);
-> -	np->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
->   
->   	raw_spin_unlock_irqrestore(&devtree_lock, flags);
->   
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 389d4ea6bfc1..efd861fa254f 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -743,11 +743,6 @@ static int of_platform_notify(struct notifier_block *nb,
->   		if (of_node_check_flag(rd->dn, OF_POPULATED))
->   			return NOTIFY_OK;
->   
-> -		/*
-> -		 * Clear the flag before adding the device so that fw_devlink
-> -		 * doesn't skip adding consumers to this device.
-> -		 */
-> -		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->   		/* pdev_parent may be NULL when no bus platform device */
->   		pdev_parent = of_find_device_by_node(rd->dn->parent);
->   		pdev = of_platform_device_create(rd->dn, NULL,
-> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> index ff75838c1b5d..17cd417f7681 100644
-> --- a/drivers/spi/spi.c
-> +++ b/drivers/spi/spi.c
-> @@ -4761,11 +4761,6 @@ static int of_spi_notify(struct notifier_block *nb, unsigned long action,
->   			return NOTIFY_OK;
->   		}
->   
-> -		/*
-> -		 * Clear the flag before adding the device so that fw_devlink
-> -		 * doesn't skip adding consumers to this device.
-> -		 */
-> -		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
->   		spi = of_register_spi_device(ctlr, rd->dn);
->   		put_device(&ctlr->dev);
->   
-Hello,
 
-Test system testing drivers for ROHM ICs bisected this commit to cause 
-BD71847 drivers probe to not be called.
+Hi Andy,
 
-The devicetree blob overlay describing bd71847 enables I2C1 bus on 
-BeagleBone Black aswell.
+> > > > +static int ad4062_read_chan_raw(struct iio_dev *indio_dev, int *val)
+> > > > +{
+> > > > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > > > +	int ret;
+> > > > +
+> > > > +	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);
+> > > There is a nice new
+> > > 	ACQUIRE()/ACQUIRE_ERR() related set of conditional guards defined that
+> > > let you do this using cleanup.h style.
+> > > 
+> > > https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9a0abc39450a3123fd52533a662fbd37e0d1508c
+> > > 
+> > > This looks like a perfect example of where those help.
+> > > 
+> > > When I catch up with review backlog I plan to look for other
+> > > places to use that infrastructure in IIO.
+> > > 
+> > I tried implementing, here becomes
+> > 
+> >         ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+> >         ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+> > 
+> > At buffer and monitor, since we put the device as active during the
+> > lifetime of the buffer and monitor mode, either I leave as is, or I bump
+> > the counter with pm_runtime_get_noresume, so when the method leaves, the
+> > counter drops to 1 and not 0, then on disable I drop the counter back to
+> > 0 and queue the autosuspend with pm_runtime_put_autosuspend.
+> > > 
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > +	ret = ad4062_set_operation_mode(st, st->mode);
+> > > > +	if (ret)
+> > > > +		goto out_error;
+> > > > +
+> > > > +	ret = __ad4062_read_chan_raw(st, val);
+> > > > +
+> > > > +out_error:
+> > > > +	pm_runtime_put_autosuspend(&st->i3cdev->dev);
+> > > > +	return ret;
+> > > > +}
+> 
+> I read the above code, I read it again, I don't understand the reasoning.
+> The ACQUIRE() doesn't change the behaviour of the above code.
+> 
+> If you need to bump the reference counter, it should be done somewhere else
+> where it affects the flow, or this code has a bug.
+> 
+> If I miss something, please elaborate.
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
 
-Probe is called when the driver is used with HW connected to I2C2 bus. 
-I2C2 bus is enabled before overlaying devicetree blobs.
+The part highlighted does not require bumping the reference counter, but
+at the buffer acquisition and monitor mode, to not put the device back
+in low power mode during the lifetime of those operations.
 
+Buffer more:
 
----- BD71847 Devicetree overlay source ----
+  static int ad4062_triggered_buffer_postenable(struct iio_dev *indio_dev)
+  {
+          struct ad4062_state *st = iio_priv(indio_dev);
+          int ret;
 
-/dts-v1/;
-/plugin/;
+	  // [ Some code ]
 
-/{ /* this is our device tree overlay root node */
+          ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+          ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+          if (ret)
+                  return ret;
 
-	compatible = "ti,beaglebone", "ti,beaglebone-black";
-	part-number = "BBB-I2C1";
-  	version = "00A0";
+	  // [ More code ]
 
-	fragment@0 {
-		target = <&am33xx_pinmux>; // this is a link to an already defined 
-node in the device tree, so that node is overlayed with our modification
+          pm_runtime_get_noresume(&st->i3cdev->dev);
+          return 0;
+  }
 
-		__overlay__ {
-			i2c1_pins: pinmux_i2c1_pins {
-				pinctrl-single,pins = <
-           			0x158 0x72 /* spi0_d1.i2c1_sda */
-           			0x15C 0x72 /* spi0_cs0.i2c1_sdl */
-         			>;
-			};
-		};
-	};
-....
-....
+  static int ad4062_triggered_buffer_predisable(struct iio_dev *indio_dev)
+  {
+          struct ad4062_state *st = iio_priv(indio_dev);
 
-	fragment@2 {
-		target = <&i2c1>;
+          pm_runtime_put_autosuspend(&st->i3cdev->dev);
+          return 0;
+  }
 
-		__overlay__ {
-			pinctrl-0 = <&i2c1_pins>;
-			clock-frequency = <100000>;
-			status = "okay";
+Monitor mode:
 
-			pmic: pmic@4b { /* the "test" defined as child of the i2c1 bus */
-				compatible = "rohm,bd71847";
-				reg = <0x4b>;
-				....
-				....
-}; /* root node end */
+  static int ad4062_monitor_mode_enable(struct ad4062_state *st, bool enable)
+  {
+          int ret = 0;
 
----- END OF BD71847 Devicetree overlay source ----
+          if (!enable) {
+                  pm_runtime_put_autosuspend(&st->i3cdev->dev);
+                  return 0;
+          }
 
-Reverting this patch from linux-next from last friday fixes the issue.
+          ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+          ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+          if (ret)
+                  return ret;
 
-BR
-Kalle Niemi
+	  // [ Some code ]
+
+          pm_runtime_get_noresume(&st->i3cdev->dev);
+          return 0;
+  }
+
+The raw read does not require this behaviour, when the method returns,
+the device returns to low power mode:
+
+  static int ad4062_read_chan_raw(struct ad4062_state *st, int *val)
+  {
+          int ret;
+
+          ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+          ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+          if (ret)
+                  return ret;
+
+          ret = ad4062_set_operation_mode(st, st->mode);
+          if (ret)
+                  return ret;
+
+          return __ad4062_read_chan_raw(st, val);
+  }
+
+I will submitted v2 shortly.
+
+Best Regards,
+Jorge
 
