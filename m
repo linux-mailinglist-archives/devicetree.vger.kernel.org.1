@@ -1,166 +1,110 @@
-Return-Path: <devicetree+bounces-241762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0945CC82408
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 20:15:49 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31E9FC82472
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 20:21:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A68213ABB95
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:15:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F325934928B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 19:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EB02D7DFB;
-	Mon, 24 Nov 2025 19:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629682D77E9;
+	Mon, 24 Nov 2025 19:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YDwDzRSO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dvE/K7+Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DCE2BDC28;
-	Mon, 24 Nov 2025 19:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FDB2D5C68;
+	Mon, 24 Nov 2025 19:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764011723; cv=none; b=tLNFyjsWO3pIEykflH/iyXxT93PfXUvle36qk2IV2Qqb3xupIXxMPBtqZpfdo9rhgWowigstLj2gSJ01RdYZZwcwPgc88PBkR6bqDW8RWPJ5lMmWGb7qPIVBwmExVcnKA11Or73llSTZOMMmyUpLiBmlx2Dr1ANDGDiQ2Z/uFfg=
+	t=1764011923; cv=none; b=HRB9FAUjJifz0StsGg0IEZEdsyOBXuQ2FyRqKKThsaOuEsLgf0LgGOPgkeWBVt0ZEUQ4+BmiAOrTSnzUt2tw4YDilsM+LilP8YKrMBgxWpwieTvh2CMvpRGRw3r/jkYaD/XAqw6tvYMa49ApMNmy1OjEMrGVOoFITdNX1pTZ1EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764011723; c=relaxed/simple;
-	bh=U4cTUeem+nwSaf+djPaKwZ6UBmQXpPEdkSJ3JblP3oA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pmVHEzXSkVms6V5LqKnom9mDd1chi4IZLsto7nBSMp9WxiEjvT4tUM0drWgMOh87jHN0NsYTrO5tMPkr5eFGLIrNckXm3awSiPrpg1zk72P/NfCz1D9LRIcEIORDscfQOM/keQ+5EiQS+VixIXaCjMLCVuFVkwnaidbLwez4wyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YDwDzRSO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB289C4CEFB;
-	Mon, 24 Nov 2025 19:15:16 +0000 (UTC)
+	s=arc-20240116; t=1764011923; c=relaxed/simple;
+	bh=Tx8AB1SA68OjpJGaBGshivP2neQNWcZSQoIkHV53Fdc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=W9Ss0SzMPmq/HpOtbPdbPV4MY9CI+zGRUIMoaZsj5Cp3h2ZtQBNZ1Oo1plxCc50sdl4j73MNyKVIzLKYq1phAfaFNc325pFz9NySPc76t+FmEfxN1yjFkIavxdtevR34pBTD4Kzd9uXRQM5YjZpfuqqT3+qASr9xG9/S2Itq1BM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dvE/K7+Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E117BC4CEF1;
+	Mon, 24 Nov 2025 19:18:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764011722;
-	bh=U4cTUeem+nwSaf+djPaKwZ6UBmQXpPEdkSJ3JblP3oA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YDwDzRSOwBfNlEtJD1FQHiPATKaSAlfcWkqSUoMITS4GUiiF/yGl1JXDbDhibUFsR
-	 6OLxQrkH8al37hkb1n5h22tpIOY3D3AmbUXOUopKJEDHtI5OV/7d5Xwhx2SYoi/Y6R
-	 fqRnrScPMQLePzI2sk9gXCszF0mRaiaMF72hCc6COhNgSGieym+sg05hu3ma48QyYy
-	 grf/aBMV8WI+WeHu/whxmTFQE9EgrhPjR5/N8T5WyE5SBw4JS5BJQlyHUdqy8FIW2w
-	 sqJBDtoCMFpajSRI5s1aDyG2U12cDBqKsu0rlWi91qeKTKK/+NC5bSu8YaPpc1wXZQ
-	 525IJ8O56Rr8g==
-Message-ID: <ec3741be-4efa-4ea9-a4be-17fa204391dd@kernel.org>
-Date: Mon, 24 Nov 2025 20:15:14 +0100
+	s=k20201202; t=1764011923;
+	bh=Tx8AB1SA68OjpJGaBGshivP2neQNWcZSQoIkHV53Fdc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=dvE/K7+Yx5Mgd0+r3X5BUhZ5lArb5ERUn2RxDc4De0sYovnYUBB0PHGcv5PBQ1A1v
+	 be1PUQOAI7nJ3fbWzIiTbl4p+AS74dLMl/1LBZ4tJgs6wJoYlxeFZoaniybyT8ZsgU
+	 bylxn5id1LvzAKZWdnmLsWlziCk/FyEETRZWw0mTeHF4j42QfI549aSdqLmCknFZrK
+	 NLeX46GbzfxfHj7cZg8lxmD5z4KHgr6DNB9oBAwi3flWUci0tvO83nf1ybL/fYFiMy
+	 R4/YFrw2sXVxC+yBrtjXXzHbJl2Q/mN+TAeHLf32dFBpq0LU9K0/Nc/QXjD9kUVYxd
+	 DK3W/w55oHGTw==
+From: Will Deacon <will@kernel.org>
+To: Frank Li <Frank.li@nxp.com>,
+	Xu Yang <xu.yang_2@nxp.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>
+Cc: catalin.marinas@arm.com,
+	kernel-team@android.com,
+	Will Deacon <will@kernel.org>,
+	Frank Li <frank.li@nxp.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Joakim Zhang <qiangqing.zhang@nxp.com>,
+	Jacky Bai <ping.bai@nxp.com>
+Subject: Re: [PATCH v3 0/6] perf/imx_ddr: Add i.MX8QM and pmu in DB (system interconnects)
+Date: Mon, 24 Nov 2025 19:18:30 +0000
+Message-Id: <176399874665.521575.3051557105547982197.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20251103-qm_dts-v3-0-2bfda8ee14c2@nxp.com>
+References: <20251103-qm_dts-v3-0-2bfda8ee14c2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
-To: Icenowy Zheng <uwu@icenowy.me>, Conor Dooley <conor@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao
- <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20251124105226.2860845-1-uwu@icenowy.me>
- <20251124105226.2860845-3-uwu@icenowy.me>
- <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
- <f7bbb57180866a0674fc1d72d4bd3279c7b1c1e9.camel@icenowy.me>
- <c26dabfb-c4af-428b-a1d4-d626f37ff559@kernel.org>
- <f944f0b28f62233b1874e0f00c0a130d71845417.camel@icenowy.me>
- <6ceb41bc-0597-4ea5-84be-51f53e3bc2d8@kernel.org>
- <20251124-said-overvalue-8a8f49d6c99d@spud>
- <477bbcbe-17d9-40ae-be10-be4fd107687e@kernel.org>
- <20251124-pulp-pound-a2b6d749dcfc@spud>
- <390caea1-bc75-4cde-bd6d-9bc15a12f32d@kernel.org>
- <a8089e458bdf6fbad45cd6be838b4cf75396918f.camel@icenowy.me>
- <ee1e4f94-ff9a-4227-b705-74a7eb806ff0@kernel.org>
- <920b6864f30777640ebaceee1808e96978e6161a.camel@icenowy.me>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <920b6864f30777640ebaceee1808e96978e6161a.camel@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 24/11/2025 18:42, Icenowy Zheng wrote:
->>>>
->>>> Ah, sure. Yes, if both identities work I would propose to skip
->>>> second
->>>> SoB. But I also stopped objecting of having two identities
->>>> listed, as
->>>> long as they are correct.
->>>
->>> Well it's unfortunate that some policy now requires me to list the
->>> second identity.
->>
->> No policy asked you...
+On Mon, 03 Nov 2025 16:48:27 -0500, Frank Li wrote:
+> dts: add soc specific compatible string for imx8qm, imx8qxp, imx8dxl in db.
+> driver:
+>  - did some cleanup
+>  - add support for pmu in imx8dxl DB
+> binding:
+>  - add compatible string for imx8qm, imx8qxp, imx8dxl in db
 > 
-> Local policy here, sigh...
+> [...]
 
-It sounded like you complain about our process...
+Applied driver changes to will (for-next/perf), thanks!
 
-> 
->>
->>>
->>> Should I resend the whole patchset with the ISCAS mail?
->>
->> You can, it probably would solve the issue, unless you change the
->> author, but why you cannot do what I asked at the beginning - set
->> correct order of SoBs, so the @icenowy.me being the last?
-> 
-> Well because previous revisions of the patch comes with only
-> @icenowy.me SoB, and I think SoB is append-only...
+[1/6] dt-bindings: perf: fsl-imx-ddr: Add compatible string for i.MX8QM, i.MX8QXP and i.MX8DXL
+      https://git.kernel.org/will/c/de8209e55408
+[2/6] perf/imx_ddr: Move ida_alloc() from ddr_perf_init() to ddr_perf_probe()
+      https://git.kernel.org/will/c/66db99ffdfcb
+[3/6] perf/imx_ddr: Get and enable optional clks
+      https://git.kernel.org/will/c/037e8cf67178
+[4/6] perf/imx_ddr: Add support for PMU in DB (system interconnects)
+      https://git.kernel.org/will/c/11abb4e87b0e
 
-You cannot change other people SoB, but your own you can.
+Cheers,
+-- 
+Will
 
-Best regards,
-Krzysztof
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
 
