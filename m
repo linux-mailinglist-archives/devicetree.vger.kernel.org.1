@@ -1,52 +1,115 @@
-Return-Path: <devicetree+bounces-241845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7950C83682
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 06:44:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE344C83695
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 06:52:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 787CC3AF24F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 05:44:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1881B3ADC3A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 05:52:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1039627FD4B;
-	Tue, 25 Nov 2025 05:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66A722857EA;
+	Tue, 25 Nov 2025 05:52:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uB8rb81R"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GybhLeGN";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PMDgJDyw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBB3620FA81;
-	Tue, 25 Nov 2025 05:44:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB0627FD4F
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 05:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764049478; cv=none; b=Lury2vwR6XctkHGrxo56+7KyVb2KOljXfTG2toKdYv6FJwF+E4hC7rj2FgZsg3RWKiukIXow+Hv7/WY+dvIcSfTZ9iufRObIBHly2GJJoS3qIUwESIbza5iF7nJdNMxvWx7L8h2eMRBJQqd1wq5GtZBvDh70AWSRY1lKAJ0MWaQ=
+	t=1764049970; cv=none; b=kUassthskF2aOd4EhS6/AtomsGQtXHasoPtczYjK8FId3eGlLOvftPpm3cC+JmX6UdWqBWLSwdL2vqAmQ2AD6ITrZJt4HTW9NCit0iEp0+a1ahCtKGdlkZgDaV2W+yXDH7xudwEW8xgbhvoVub0r/VDjxEPiQfOoiH+ZPy5g1NI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764049478; c=relaxed/simple;
-	bh=qY2QP76VbEE+tQpE3vnVHe7Qa+9ipLp7VVuCWmmPAE0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=M84+QyNLrfoBZ6DRvDvhTqd+EC58zpKBx4hAiyyWHNj+mFfj+WZlZFru2Z8jzPdVEwfxU8PyxkrX24tu2jZmNn5Fq1iQA7lWfhJOQ6kBpa/x4ORaNh7S4/sZfuaO7d6bNMSd1yvwhpx0OyxBZaWICY5DMssSm0zgJUwQr8rF3RI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uB8rb81R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3A3E9C4CEF1;
-	Tue, 25 Nov 2025 05:44:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764049477;
-	bh=qY2QP76VbEE+tQpE3vnVHe7Qa+9ipLp7VVuCWmmPAE0=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=uB8rb81RgN5g1U2MJPK3YTSwg67bDTxqxez1scm+9P/JAtBfft28yvhcQdIs2um3x
-	 CXtQY1dk93LzK0lhK8lUDIUJh9oLHu9ThaVMX7udfEg1fZUQuhkTmOL0oN2w1nOLOs
-	 ml7/h8LDO5OsxNRrKdKRS47spisRzgZnt9EKP6Zvu5W+C6zkyTk//kvq/ptqVrUl9p
-	 4wXfUySn2tvChCK6gkd1TxowWNzauFgVfTET46fLpUrDgeBLGdR5I3la5zT0loM4we
-	 GvM9CCFO+BX1y2S/5QN32GRQHdt5LDv2goMmby7Z/Y0H7mSj9i9NfFZeoDEXFOdZS+
-	 JXV++XHOr7eug==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24DB3CFD315;
-	Tue, 25 Nov 2025 05:44:37 +0000 (UTC)
-From: Kimi Chen via B4 Relay <devnull+kimi.zy.chen.fii-foxconn.com@kernel.org>
-Date: Tue, 25 Nov 2025 13:42:50 +0800
-Subject: [PATCH v4] ARM: dts: aspeed: clemente: add gpio line name to io
- expander
+	s=arc-20240116; t=1764049970; c=relaxed/simple;
+	bh=ZIIzYnv4Q5BekNkR9egX4PMB0Q4mnckLxIhWYuoDy7k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JaMORDAh/nn4ylHagxPvw/kDkmEWJrnySFzATPN+g37orShjDswtLip1FZnaGm4I1wn/4/yxmNXOOwTz4NsbtgtLtefGSR9MXhWLMkH0uwe6+gviHR5Cug8cAAxUSNqMhsC8em63GBl8ysmGcL5Ruz1KK9CpSk++u8OgR8iI5NE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GybhLeGN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PMDgJDyw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AP2ghKQ2148667
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 05:52:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	404nClmNRmrTW1zYFRsUIzncgU8WOWDCjaNO2hfY0lo=; b=GybhLeGNown36iC1
+	S4bsjg/ZywuYGDrpHnYtsWpKMZUfHhWDOl1fzMjH+yZ2LFHIznQyY3p2oc9msxRP
+	irYebswsgp+w9+SyN0bR5x1avvIjCifs/IVnmUQPwPVI8cqtL9pgs1GY2djwnyQZ
+	4C1nZJr6jUsTV/+DgcjOnQfOmGYdqh4IAkHj61XYFsYQlSlm5ltuVos01VDo6sjR
+	oNnpoWRdvIfhFpQc6KsQAWVcqmB8gZIBR9ZiGJ2ffBbemLkQgwmMtYs6H7DMXtIP
+	c21GGsLdxpwWCtyzoZY0hgh6mNd9pCPufjpNBR1AWSX/yu/qLUgbmX/VceJe6Tur
+	PWf3Mg==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amr8sag5t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 05:52:47 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-297dabf9fd0so66898985ad.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 21:52:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764049966; x=1764654766; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=404nClmNRmrTW1zYFRsUIzncgU8WOWDCjaNO2hfY0lo=;
+        b=PMDgJDywtm/IiRc1QuLPoFCpk9AFenHB0SFxR8iZbg2vr0rYgfNy4/ihD3QW1Bmt1z
+         PptajVQYsQ3jfPwHHQqlQxM6ZueDr1tk4sIuwi98UdlcdvF+S7YGHHbA4JZFKXABE3qB
+         gg6mVtcBFn41gkFu9wHnSw+qUUQZ8V2/pvZu0pzDSap6+fG7r0IMb317/Kx9uGls5lRd
+         YSW3OEVgvOn6qvgJ+flImvgUp2h5YHrHulOc7S1M4naaUii2jYBzLU0xVkZCipXn47P2
+         zbgsHJWM+wg/ch2bQL1Gre4XspQDc1soBCE4R8E/ePcqB0TlAODegzY4OThjlCjrE/A8
+         pPOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764049966; x=1764654766;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=404nClmNRmrTW1zYFRsUIzncgU8WOWDCjaNO2hfY0lo=;
+        b=Ph4wtqQGhtFF14oQ2/EKoNCAiSMl/PUz8VwAorsue+IYx4tyPEwElEjV+StkzYLy51
+         ZO9/8RZzSSLLNMOXWG3SkeTLDSihw/6vfHulLLes8HuVuDanRj0R9tjsecTVvi+dKfq8
+         x8pijKfuyZrXwzd69HM6dIIvOltPfnQb2VMlNxqp9PZHi7eiQw72Igpj2f0pk8ozzik+
+         Y9T4A8EHSG/SDPVPUvXBN+yHiwwEoheFG2eKXA0lUNQfvgfDJW88XxTOiXhhipMpJmLk
+         tbDPr9ZKWlwS66rKYHgX+0exHwbS6U304JWQxtHe51l3qCYVAQsnqHHfgbNG2SzZGjGE
+         VdmA==
+X-Forwarded-Encrypted: i=1; AJvYcCU+VS7NLdgsa2CY7rrPIFXJUH+UKOe+1LpcmiS32o7HQV/IcAjzBLB1jLDlbbBm882ElWZq5FtC1ef1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS0J/lHLoxpbEQ9Fk2rQD2oEl0MD670uSIyT07j/X1gIMCRx9t
+	rXP4X1AJ8M+0/K3YGmDKnVKGnR2ZPUQGFTHAlI0nRtmEfZQ8RqnOfqxDCPPJbvX15qzkshVJN9S
+	c/ZpYDXZY4WA4COCcD7KQdttXKV88AxQH770LCryOVXLHoU+ZuQGETY8VGiILDVJ4
+X-Gm-Gg: ASbGncv7ecK6rEJ35MU0dq7YOy5q0lJYIA+LmeFVHxf4Fu16h3gvxIS2no76dyuPBBY
+	j1umqN5yzBcC0idY3KjqURWKJO5pd5kTikPDderEb3awkmPHDx5vGsx4ikDS1uGH1SNYrBc43aQ
+	bcUoL7Qbdxhi8dZKl/T9qImQorvUKZYDZOaEMuZOP8dsc7dVsZy0i+EZnvBqnnCH3bO9jrsPH2D
+	a0gBeFJsTuoIW/zykNgj4lNwFJr1F+j5hEZZgyNqMbXijSsnGsNMOH/SBJQ0G/mqex1V8J7TtLW
+	EnG1eaUFASEo6oP+gFNGr3N01U2FX4wlhQVSw+sForZ7i8ngz9s+yxy3fNa9BxLd/pb/9yh/GDQ
+	M
+X-Received: by 2002:a17:903:2ec4:b0:290:b53b:7455 with SMTP id d9443c01a7336-29b6c3c2ac4mr143359945ad.10.1764049966267;
+        Mon, 24 Nov 2025 21:52:46 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEXMUITLBiR/ZLCoM1NGFajbfCNfqX0jMinzo5hzg/AXj8F8hDegLqk1If4egR7OthdW3Rb5Q==
+X-Received: by 2002:a17:903:2ec4:b0:290:b53b:7455 with SMTP id d9443c01a7336-29b6c3c2ac4mr143359645ad.10.1764049965803;
+        Mon, 24 Nov 2025 21:52:45 -0800 (PST)
+Received: from work.. ([2401:4900:88e8:55c:808f:7bd5:9774:52e7])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b25d787sm155753885ad.66.2025.11.24.21.52.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 21:52:45 -0800 (PST)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+X-Google-Original-From: Manivannan Sadhasivam <mani@kernel.org>
+To: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        geert+renesas@glider.be, magnus.damm@gmail.com, p.zabel@pengutronix.de,
+        Claudiu <claudiu.beznea@tuxon.dev>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, linux-pci@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: (subset) [PATCH v8 0/6] PCI: rzg3s-host: Add PCIe driver for Renesas RZ/G3S SoC
+Date: Tue, 25 Nov 2025 11:22:32 +0530
+Message-ID: <176404979544.19308.1377321354838950467.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20251119143523.977085-1-claudiu.beznea.uj@bp.renesas.com>
+References: <20251119143523.977085-1-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,95 +118,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251125-dts-add-gpio-to-io-expander-v4-1-e6d31f80470c@fii-foxconn.com>
-X-B4-Tracking: v=1; b=H4sIANlBJWkC/43NwY7CIBDG8VcxnHcMUIZ2PfkexgMdBuWw0EDT1
- Ji++6InkzVmL5P85/D77qJyiVzFYXcXhZdYY04tzNdO0NWlC0P0rYWWGpWSFvxcwXkPlylmmDO
- 0y+vkkucCzlCniQJa50QTpsIhrk/9dG59jXXO5fYcW9Tj+z93UaBgNL1Fkt+aRz6GGCHklXJKe
- 8o/4qEv+lXsP4u6iTigN8NgEI19L3Yvopafxa6JNFqUjnobBvwrbtv2CxBfBOlwAQAA
-X-Change-ID: 20251106-dts-add-gpio-to-io-expander-a4c32ccf56aa
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- george.kw.lee@fii-foxconn.com, Kimi Chen <kimi.zy.chen@fii-foxconn.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764049476; l=2917;
- i=kimi.zy.chen@fii-foxconn.com; s=20251105; h=from:subject:message-id;
- bh=XlfLH7aJAuTw4x56m8cEY+a7zkKS1LZ5QGzrmf+4eBo=;
- b=NVYxgBZKetYbHl9F3aQlJ7gp9sSKijq+JKD+rU92nilq7JM5ipsoFXrjWvIGef2z64tNRTNIQ
- qSN5/IqtucmCxhNuRN8OiiBkm4RQXn/SyVOOPkY8buZeVkVwKT1wjQE
-X-Developer-Key: i=kimi.zy.chen@fii-foxconn.com; a=ed25519;
- pk=3zHetsW/3CYYIgQlYV9dqSS7aW7aZXLUaIvc+OKr3NM=
-X-Endpoint-Received: by B4 Relay for kimi.zy.chen@fii-foxconn.com/20251105
- with auth_id=559
-X-Original-From: Kimi Chen <kimi.zy.chen@fii-foxconn.com>
-Reply-To: kimi.zy.chen@fii-foxconn.com
+X-Proofpoint-ORIG-GUID: RrBdDbesqXpBdk0FqmDRPXUfJuELam1d
+X-Authority-Analysis: v=2.4 cv=KP5XzVFo c=1 sm=1 tr=0 ts=6925442f cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=yC-0_ovQAAAA:8 a=VwQbUJbxAAAA:8 a=L_-H442qEDLWYYIWuCAA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI1MDA0NiBTYWx0ZWRfX/qHfyUF+CK+B
+ JytBCERDtNuWMnlxMTPC+9i2+4VM9h8BcCwXgVBwDkePIvJNljatS8ybJzd4rhWVyC0VkUSyTSg
+ eWVp7ybHh/jOlkuaByaqeSCJ2DNc/Xp89CS1Z8+Aul/qpoAlyot5XEX2zvEkh419yUkxCvKwt/9
+ a3YwM3N4uumPchMH6BuvG/0XnBm0Zsc7ad9aF8E5YQkXVl7kYkTqBa6s5KQ31MD8t6PLgsEUpJw
+ aJFUH3fQZv8CTxVWAMTadTVKdL5yaDGplUN9ShbFgu4ZVMnFIMOejP6FfoHax2kNJg94Blq0ND/
+ 40UIzJLOeibXbiwhJBp3F/QvBbf8AaHwpRT9MjEmym7zp2u0THKQo5XPgUkZ+1DWujZdwrZSQMW
+ /CkC0Vx+3fpfc9qt13INT39IuLeSbg==
+X-Proofpoint-GUID: RrBdDbesqXpBdk0FqmDRPXUfJuELam1d
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_01,2025-11-24_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0
+ bulkscore=0 spamscore=0 priorityscore=1501 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511250046
 
-From: Kimi Chen <kimi.zy.chen@fii-foxconn.com>
 
-The chassis power cycle process requires a forced shutdown before
-cutting off the standby power. The SCM CPLD implements a hard shutdown
-host function that is controlled through the IO expander in the
-Clemente platform.
+On Wed, 19 Nov 2025 16:35:17 +0200, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> Hi,
+> 
+> Series adds a PCIe driver for the Renesas RZ/G3S SoC.
+> It is split as follows:
+> - patches 1-2/6:	add PCIe support for the RZ/G3S SoC
+> - patches 3-6/6:	add device tree support and defconfig flag
+> 
+> [...]
 
-This change adds a new GPIO line named "shdn_force_l_cpld" to the
-PCA9555 IO expander's gpio-line-names at index 10. When asserted,
-this GPIO signals the CPLD to pull the HPM's SHDN_FORCE_L pin low,
-which triggers a forced host shutdown.
+Applied, thanks!
 
-Signed-off-by: Kimi Chen <kimi.zy.chen@fii-foxconn.com>
----
-Changes in v4:
-- Rebased onto latest kernel; corrected "shdn_force_l_cpld" positioning
-  in gpio-line-names from line 6 (v3) to index 10 (dts array index, not device pin).
-- Updated commit message to clarify "index 10" refers to gpio-line-names
-  array position, not PCA9555 device pin.
-- Link to v3: https://lore.kernel.org/r/20251120-dts-add-gpio-to-io-expander-v3-1-cb650ac76f85@fii-foxconn.com
-
-Changes in v3:
-- Improve commit message clarity: restructure the description to clarify the 
-  complete signal flow (BMC → IO expander → "shdn_force_l_cpld" GPIO → CPLD → 
-  SHDN_FORCE_L pin → HPM → forced host shutdown).
-- Rename GPIO line to match the schematics net naming convention.
-- Add rationale: The current standby-AC power cycling process is suboptimal.
-  When HSC power is turned off while host power remains active, the FPGA may
-  detect a power fault. During this fault window, the FPGA—sustained by holdup
-  capacitance—asserts power brake and initiates power-down sequence. A forced
-  shutdown before cutting standby power ensures the FPGA properly handles the
-  AC cycle event without spurious fault assertions. This patch enables the BMC
-  to perform forced shutdown via the IO expander GPIO, thereby optimizing the
-  standby-AC power cycling process.
-- Link to v2: https://lore.kernel.org/r/20251107-dts-add-gpio-to-io-expander-v2-1-585d48845546@fii-foxconn.com
-
-Changes in v2:
-- Add "hard_shutdown_host" GPIO line name to PCA9555 IO expander for Clemente platform.
-- Link to v1: https://lore.kernel.org/r/20251106-dts-add-gpio-to-io-expander-v1-1-b4765c092ebe@fii-foxconn.com
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-index 885c50a7d665..dfe8f6d0eeef 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-@@ -1013,7 +1013,7 @@ io_expander4: gpio@4f {
- 			"",
- 			"",
- 			"",
--			"",
-+			"shdn_force_l_cpld",
- 			"",
- 			"",
- 			"",
-
----
-base-commit: f5f4511ccb747e01ed5364e9eec7be8b62020c4b
-change-id: 20251106-dts-add-gpio-to-io-expander-a4c32ccf56aa
+[1/6] dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add Renesas RZ/G3S
+      commit: e7534e790557e9ee18a2c497dc89a6b31e435e48
+[2/6] PCI: rzg3s-host: Add Renesas RZ/G3S SoC host driver
+      commit: b4a5c0c9dd430be2c1b980c2b08078071f465ea8
 
 Best regards,
 -- 
-Kimi Chen <kimi.zy.chen@fii-foxconn.com>
-
-
+Manivannan Sadhasivam <mani@kernel.org>
 
