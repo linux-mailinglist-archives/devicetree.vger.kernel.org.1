@@ -1,120 +1,133 @@
-Return-Path: <devicetree+bounces-241964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF991C84B56
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:21:49 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8FCC84BCE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:30:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6E74235006B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:21:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F0BD24E15C4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:30:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A835314A87;
-	Tue, 25 Nov 2025 11:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9D5313541;
+	Tue, 25 Nov 2025 11:29:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IU07aGLg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19F726C39E;
-	Tue, 25 Nov 2025 11:21:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD4B52E0B5B;
+	Tue, 25 Nov 2025 11:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764069664; cv=none; b=OmaI2zJ1Xbao2BTgPnE37awfg82PfCLYQ4namxZtn5IC2N8exFoaw8QBFg4L6S29f8056LcAy+xtaFY2UqlFn8RsYcbsVlKUncm7KM3M/bgscXWZE2TOTSNfA5SsTM4eHRhIqn6U3tlltU9VUo+xQ692nXi9r8cjO8UXGbLF3f4=
+	t=1764070198; cv=none; b=LqPMDje54TBiUdlw4LjMwBkfh1dDbwM31kMJHT3GvlWyW144M5nKoSncImj2qvJQ3I8NZ2vA9zNmekMghor/seqAh7FVAT+/7xsE/93p/P4mvkTcPhkT0sOr8ArMt3bHmQ7hBJ64n7e6enzqlHHQcvRudTt5ih3ayg0pQcv0GwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764069664; c=relaxed/simple;
-	bh=90IwNIvTFQNIrULrq7DdzIJAwRK020sjuUe2cVoRkUo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JGbBNMwnURCzlIRwbeZc9+6KUJ/89p272TUp+T+gayM2YoRgwx0b4q/Myrdlur308A9oWzIpzlFl3epx8MjiuiXRbymXGle1IwiQQUmdoqBKN25Hn1HUkfg/1tqLqgJfl/skZLsE+9YG4V7JTuT4d2zvsP4IfOSDcLARQdm5BYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dG0cM3Fdvz9tX0;
-	Tue, 25 Nov 2025 12:20:51 +0100 (CET)
-Date: Tue, 25 Nov 2025 12:20:46 +0100
-From: Lukas Timmermann <linux@timmermann.space>
-To: Lee Jones <lee@kernel.org>
-Cc: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 2/2] leds: as3668: Driver for the ams Osram 4-channel
- i2c LED driver
-Message-ID: <lqgf7lmnxy3zwmlzhip56tqwrraunhldghvlm7cafvruvscqby@5ik6mijwqmvg>
-References: <20251117020008.316648-1-linux@timmermann.space>
- <20251117020008.316648-3-linux@timmermann.space>
- <nkdqizx5lmf5mgovt4lv4pkzzaujnqt4zlhuwdlidrlgyqr5s5@dvnhdhkhfuvy>
- <20251120133149.GA661940@google.com>
+	s=arc-20240116; t=1764070198; c=relaxed/simple;
+	bh=xpjGH4cjjo4duVBZAy+5FxOn1KY0mAxLWhQqaiYbBbM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jXf7i9xMVVagjB/+kKyaXLdrU5izaHZCnFHseVX8uKMcLlKjmCxdNkGGrvJStlYxLwYnwhPFU68UTwNens4Ejqo0mZYL7mLCLQqC6vZDC5lDe6b6dNuBFKg8PVSKSuPCEBiKY3XrBsGJawmdrctehqXTng4ys3wyd9lusM048Yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IU07aGLg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66BA1C4CEF1;
+	Tue, 25 Nov 2025 11:29:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764070198;
+	bh=xpjGH4cjjo4duVBZAy+5FxOn1KY0mAxLWhQqaiYbBbM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IU07aGLg63QW3/1nhZZL4l66bu7kE2aogPaiYdga6a0sbfdmVKvT4NNGcWucylzRR
+	 a6kP6gyTYC2/jNYxAb5wh41w07qJwnd5JAQ/xd3X8IlNbCEr0t+mfJxW0HVve5pc9B
+	 mJhnE3hCTXit7CavJu1zzCkrLszf+jPJJYF+bQpiKst96wpepqaLlajVxvGkSwen6q
+	 Wt9NSdfpt+Cr8Z+mFA0TZNECFwqwKqZtcXfaFlxsW57brbMVNDX+OfV4nc4lnWxegl
+	 3css8V7Yv0Ld96o0ACcl30VoYrNDxYyNy07E47Bwe9zRC1gaTBkMtULefZpKlo5FnK
+	 /e2toU0O/gCwQ==
+Message-ID: <ae1fe925-3e3b-428d-9bae-a587ca5e37f6@kernel.org>
+Date: Tue, 25 Nov 2025 12:29:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251120133149.GA661940@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 0/3] Add Amlogic stateless H.264 video decoder for
+ S4
+To: Zhentao Guo <zhentao.guo@amlogic.com>, Rob Herring <robh@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
+ <176399402192.138936.11233579649489245455.robh@kernel.org>
+ <5faeb411-91d0-42e2-9bf8-3051045ff42c@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <5faeb411-91d0-42e2-9bf8-3051045ff42c@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 20, 2025 at 01:31:49PM +0000, Lee Jones wrote:
-> On Thu, 20 Nov 2025, Lukas Timmermann wrote:
-> 
-> > On Mon, Nov 17, 2025 at 03:00:08AM +0100, Lukas Timmermann wrote:
-> > > Since there were no existing drivers for the AS3668 or related devices,
-> > > a new driver was introduced in a separate file. Similar devices were
-> > > reviewed, but none shared enough characteristics to justify code reuse.
-> > > As a result, this driver is written specifically for the AS3668.
-> > > 
-> > > Signed-off-by: Lukas Timmermann <linux@timmermann.space>
-> > > ---
-> > >  MAINTAINERS                |   1 +
-> > >  drivers/leds/Kconfig       |  13 +++
-> > >  drivers/leds/Makefile      |   1 +
-> > >  drivers/leds/leds-as3668.c | 222 +++++++++++++++++++++++++++++++++++++
-> > >  4 files changed, 237 insertions(+)
-> > >  create mode 100644 drivers/leds/leds-as3668.c
-> > > 
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index 091206c54c63..945d78fef380 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
-> > >  L:	linux-leds@vger.kernel.org
-> > >  S:	Maintained
-> > >  F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
-> > > +F:	drivers/leds/leds-as3668.c
-> > >  
-> > >  ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
-> > >  M:	Tianshu Qiu <tian.shu.qiu@intel.com>
-> > > diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> > > index a104cbb0a001..ec37d55ac14e 100644
-> > > --- a/drivers/leds/Kconfig
-> > > +++ b/drivers/leds/Kconfig
-> > > @@ -100,6 +100,19 @@ config LEDS_ARIEL
-> > >  
-> > >  	  Say Y to if your machine is a Dell Wyse 3020 thin client.
-> > >  
-> > > +config LEDS_OSRAM_AMS_AS3668
-> > I've modified this line as requested in patch series v9. After comparing
-> > this with other configuration options in drivers/leds/Kconfig, this
-> > seems out of place. Shouldn't we keep this consistent?
-> 
-> There are a few other examples in there, so consistency is less of an
-> issue.  I personally think it provides a better picture of the device if
-> the manufacture is mentioned as well.
-> 
-> But this is not a blocking point.  Take your preference.
-> 
-> -- 
-> Lee Jones [李琼斯]
-> 
-I agree that including the manufacturer is more descriptive. Thanks for
-explaining that to me, I didn't notice the other entries with
-manufacturers. Also thanks for the continued patience with my newbie patches.
+On 25/11/2025 04:24, Zhentao Guo wrote:
+>> (or use b4 which does this automatically)
+>>
+>> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com:
+>>
+>> arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: video-codec@fe320000 (amlogic,s4-vcodec-dec): 'amlogic,canvas' does not match any of the regexes: '^pinctrl-[0-9]+$'
+>>          from schema $id: http://devicetree.org/schemas/media/amlogic,vcodec-dec.yaml
+> Yes, this is a problem. We renamed the dt-binding file and added new 
+> node to the dts in this patch series, but the dt-binding was not fully 
+> updated. We'll fix this warning in the next version.
+
+
+The problem is that you did not test it before sending.
 
 Best regards,
-Lukas Timmermann
+Krzysztof
 
