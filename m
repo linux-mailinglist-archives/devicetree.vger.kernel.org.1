@@ -1,214 +1,151 @@
-Return-Path: <devicetree+bounces-242117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6525C867B0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 19:10:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C27CDC86AA2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 19:37:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 097D73A8952
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 18:10:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8077F3AF311
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 18:37:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3324732ED4C;
-	Tue, 25 Nov 2025 18:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11F5032D0ED;
+	Tue, 25 Nov 2025 18:37:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DhytB/Yy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hOpAxEHQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D0332ED44;
-	Tue, 25 Nov 2025 18:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F412D73B8;
+	Tue, 25 Nov 2025 18:37:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764094184; cv=none; b=uCa2eSCGLStfTCYO6fZp+rqkdyaCSScpVO/qRz6yc4LsmIHecQ1sdwrEgBvqXUFd/lZ0O2fdjPc+MYdKU4q4Ekmt1JqcYky67bRsGtxFMv2KQOnLTodFzv1u4UDX2rgACmeiuSCFFVdhqShYGxKcxMvs3q02N+HxRxSFvBXAG7Y=
+	t=1764095876; cv=none; b=unCa6BT27O103Iwoqt0jkSQHwpoObXCtXl6v1VxXNV1kPQrfbG7K9cnmH7LTuQwEBCw+ZGMo5qLGN++a1sbenALdc3Z1SXw6fr+eFQh8x69T65CiGopQxWchqhjK4hPdoNy3TOKcJpYKAPwjqde5jFJR6MAXI922j3tuNPVPiqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764094184; c=relaxed/simple;
-	bh=HjDEF+rR2HjSC1NtLftza1kfymvnmlkFiiQz1/5jyl0=;
-	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=mPG8SKtuOH6awkiNNBR3ysqN8js/ZsRt4/RffL8Updgmi/9/Gyp48Y6l1nalXBjlsyEZf/+1H7lxfCbvuRYrbFI3xAKsAttyWmcPJYteNM7BWtnsMsfxNuID+kO4FKxcSb+AOYHW++qkdsTwX8uPZ4ehxk/qFw2TQw9hxz5+mIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DhytB/Yy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC44C19423;
-	Tue, 25 Nov 2025 18:09:43 +0000 (UTC)
+	s=arc-20240116; t=1764095876; c=relaxed/simple;
+	bh=ekM/GMp2sa9jEx3lkipZVfwQ5gWiV3PeEUMvSNxE9Yc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=MMtZkvGSZ/kr+bli0IqkMd7VYBmkBEGyvushcKPKPd1jpWvQAaxPCpWlSHZ++ZB+nAPn1FHFok1+P8OCjRW96v9fgmhCKgDwFKnnnnCNqPbzAQXLL7NFIozy1yaOoabVOL++A0qVGjia8As2Dy1vWXbRrCaCOJTyKdyYbd6Lozg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hOpAxEHQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80990C4CEF1;
+	Tue, 25 Nov 2025 18:37:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764094183;
-	bh=HjDEF+rR2HjSC1NtLftza1kfymvnmlkFiiQz1/5jyl0=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=DhytB/YyKsXq6W2YAPwRRxqykeWKDI+/XsFaiwb+mRTJLgG1w4gBzTXTRU70p2bzA
-	 9g5ejE1PO/YUg9FhjJWzGuWbm6spL1fTvOEjh7qCyNYbWdAB/5axq/3TySE0y4kYkh
-	 Xyr66yKsAPCnNRSfRUgtn2feGRVa3We3SN1CtoKy5k9ButhQGzpIESkwVqnhv5a58Q
-	 JsON5v4LNnMZVATYufL/X9nAHW1l5DtzBlfemHhgBd8b+PMWmd3W/qi5Wo5ncyAuBi
-	 wc8QRegFBHWDf1yo2MZOQjXoGT7/7ON0wnfoIBOrNwk+AAkIUt57HwtBYFwVp12rS9
-	 NdBTqMI5XMQwQ==
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 25 Nov 2025 12:09:42 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1764095875;
+	bh=ekM/GMp2sa9jEx3lkipZVfwQ5gWiV3PeEUMvSNxE9Yc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=hOpAxEHQgvVQFN97lM1F/yj6pSYfm6fjQ8OH9b6TPUvvWcemMnqtauseW/XAWbRbk
+	 zgZVjA2PboZOpMulFvEBNoQzYAAUbukxQHlyepJ/B7OLa5+9xLj1vUGwbFlBEKhhnq
+	 LWhhfmHBMSuFXK3lH4B12rf6x75w+HVFlWOjmq4bov//V6JYIluYhjwdnrfAHkIOJA
+	 mXPsMveW7Hj1xG2L3s6u/KMTd3zYweCUxRc7sMp/pEDUxhium3EXVFH9WGWfX5KqMp
+	 zg8hDYvG/IB1XxHErStf/4Rl80sw90/AyFAKLHOYDjJIKg8WKhH9Z1b2YAb0H0mZ0y
+	 AFhK0BES35ZpQ==
+Date: Tue, 25 Nov 2025 12:37:54 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+	p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v8 2/6] PCI: rzg3s-host: Add Renesas RZ/G3S SoC host
+ driver
+Message-ID: <20251125183754.GA2755815@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Amir Dahan <system64fumo@protonmail.com>, 
- Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Christopher Brown <crispybrown@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- linux-arm-msm@vger.kernel.org, Pavel Machek <pavel@ucw.cz>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- David Heidelberg <david@ixit.cz>
-To: Paul Sajna <sajattack@postmarketos.org>
-In-Reply-To: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
-References: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
-Message-Id: <176409396072.3843973.6607161175162499421.robh@kernel.org>
-Subject: Re: [PATCH v4 00/12] arm64: dts: qcom: sdm845-lg-{common, judyln}:
- Improve HW support in dts
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251119143523.977085-3-claudiu.beznea.uj@bp.renesas.com>
 
-
-On Tue, 25 Nov 2025 00:12:30 -0800, Paul Sajna wrote:
-> Rollup of improved hardware support via devicetree for LG G7 ThinQ
-> (judyln) from sdm845-mainline kernel fork
+On Wed, Nov 19, 2025 at 04:35:19PM +0200, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
-> Notably, this patch-series enables full DRM acceleration and wifi,
-> among other small improvements in individual commits
-> 
-> after this patch-series the main things that remain to be worked
-> on include touchscreen, audio, and modem.
-> 
-> Depends upon panel driver patch-series https://lore.kernel.org/all/20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org/T/#r9a976ca01e309b6c03100e984a26a0ffc2fe2002
-> 
-> Depends upon qcom,snoc-host-cap-skip-quirk https://lore.kernel.org/all/20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz/T/
-> 
-> Co-developed-by: Amir Dahan <system64fumo@protonmail.com>
-> Co-developed-by: Christopher Brown <crispybrown@gmail.com>
-> Signed-off-by: Amir Dahan <system64fumo@protonmail.com>
-> Signed-off-by: Christopher Brown <crispybrown@gmail.com>
-> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
-> ---
-> Changes in v4:
-> - add panel identifier in addition to ddic
-> - make sde_te pull-down
-> - fixup flash current
-> - remove framebuffer reserved-mem
-> - remove manual lower guard
-> - depend upon https://lore.kernel.org/all/20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz/T
-> - reword commits
-> - Link to v3: https://lore.kernel.org/r/20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org
-> 
-> Changes in v3:
-> - change firmware paths to lowercase 'lg' (matching dt-bindings)
-> - fix signoffs
-> - add wifi dmesg to commit message
-> - remove regulator-always-on from ibb
-> - remove framebuffer
-> - remove msm ids
-> - don't continue commit subject into commit messages
-> - split bluetooth node
-> - add sbu uart details to commit message
-> - change ipa gsi-loader to self
-> - Link to v2: https://lore.kernel.org/r/20250916-judyln-dts-v2-0-5e16e60263af@postmarketos.org
-> 
-> Changes in v2:
-> - sort at the start
-> - drop unnecessary labels
-> - drop unnecessary gmu
-> - multi-led
-> - split fb-panel changes
-> - expand upon firmware commit message
-> - use qcom,calibration-variant instead of
->   qcom,ath10k-calibration-variant
-> - change firmware paths to include "LG"
-> - remove framebuffer reservation
-> - add lab/ibb
-> 
-> - Link to v1: https://lore.kernel.org/r/20250913-judyln-dts-v1-0-23b4b7790dce@postmarketos.org
-> 
-> ---
-> Amir Dahan (1):
->       arm64: dts: qcom: sdm845-lg-common: Add LEDs
-> 
-> Christopher Brown (1):
->       arm64: dts: qcom: sdm845-lg-judyln: Add battery and charger
-> 
-> Paul Sajna (10):
->       arm64: dts: qcom: sdm845-lg-common: Sort nodes and properties
->       arm64: dts: qcom: sdm845-lg-common: Add uarts and Bluetooth
->       arm64: dts: qcom: sdm845-lg-judyln: Add display panel
->       arm64: dts: qcom: sdm845-lg-judyln: Add firmware nodes, change path
->       arm64: dts: qcom: sdm845-lg-{common, judyln}: Add wifi node
->       arm64: dts: qcom: sdm845-lg-common: Add chassis-type
->       arm64: dts: qcom: sdm845-lg-common: Add camera flash
->       arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
->       arm64: dts: qcom: sdm845-lg-common: Change ipa gsi-loader to 'self'
->       arm64: dts: qcom: sdm845-lg-common: remove framebuffer reserved-mem
-> 
->  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 238 ++++++++++++++++++-------
->  arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  | 138 ++++++++++++--
->  2 files changed, 296 insertions(+), 80 deletions(-)
-> ---
-> base-commit: 3d53f9ca24dd7492fe88fd0f1a418e3dc8b03515
-> change-id: 20250911-judyln-dts-17c41e59dc0f
-> prerequisite-message-id: <20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org>
-> prerequisite-patch-id: e51151ea7f8fdad6ad7d90713febc5c6b6fc4f9c
-> prerequisite-patch-id: b3dd44250da9cd12bc5b2d0d7e865dbe19ceed92
-> prerequisite-patch-id: fd6c8077806cb03fcf37d0e0d730314c2760e334
-> prerequisite-message-id: <20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz>
-> prerequisite-patch-id: 32934e043aa82e7dccdcb962037e78663eae24a6
-> prerequisite-patch-id: 9c69ab29256c15a0e8ac1c3b9ef64b27661c7815
-> prerequisite-patch-id: 8fce59716f5d0d873c3407937e4f852eb18c75f0
-> 
-> Best regards,
-> --
-> Paul Sajna <sajattack@postmarketos.org>
-> 
-> 
-> 
+> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+> only as a root complex, with a single-lane (x1) configuration. The
+> controller includes Type 1 configuration registers, as well as IP
+> specific registers (called AXI registers) required for various adjustments.
 
+> +/* Serialization is provided by 'pci_lock' in drivers/pci/access.c */
+> +static int rzg3s_pcie_root_write(struct pci_bus *bus, unsigned int devfn,
+> +				 int where, int size, u32 val)
+> +{
+> +	struct rzg3s_pcie_host *host = bus->sysdata;
+> +	int ret;
+> +
+> +	/* Enable access control to the CFGU */
+> +	writel_relaxed(RZG3S_PCI_PERM_CFG_HWINIT_EN,
+> +		       host->axi + RZG3S_PCI_PERM);
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+I suppose this has been asked and answered already, but it's curious
+that you need this for config writes but not for reads.  Obviously it
+must *work*, but it's unusual and might warrant a comment.  "Access
+control" must be a hint, but only means something to experts.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+> +	ret = pci_generic_config_write(bus, devfn, where, size, val);
+> +
+> +	/* Disable access control to the CFGU */
+> +	writel_relaxed(0, host->axi + RZG3S_PCI_PERM);
+> +
+> +	return ret;
+> +}
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+> +static irqreturn_t rzg3s_pcie_msi_irq(int irq, void *data)
+> +{
+> +	u8 regs = RZG3S_PCI_MSI_INT_NR / RZG3S_PCI_MSI_INT_PER_REG;
+> +	DECLARE_BITMAP(bitmap, RZG3S_PCI_MSI_INT_NR);
+> +	struct rzg3s_pcie_host *host = data;
+> +	struct rzg3s_pcie_msi *msi = &host->msi;
+> +	unsigned long bit;
+> +	u32 status;
+> +
+> +	status = readl_relaxed(host->axi + RZG3S_PCI_PINTRCVIS);
+> +	if (!(status & RZG3S_PCI_PINTRCVIS_MSI))
+> +		return IRQ_NONE;
+> +
+> +	/* Clear the MSI */
+> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_PINTRCVIS,
+> +			       RZG3S_PCI_PINTRCVIS_MSI,
+> +			       RZG3S_PCI_PINTRCVIS_MSI);
 
-  pip3 install dtschema --upgrade
+Other writes to RZG3S_PCI_PINTRCVIS are guarded by host->hw_lock.  Is this
+one safe without it?
 
+> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_MSGRCVIS,
+> +			       RZG3S_PCI_MSGRCVIS_MRI, RZG3S_PCI_MSGRCVIS_MRI);
+> +
+> +	for (u8 reg_id = 0; reg_id < regs; reg_id++) {
+> +		status = readl_relaxed(host->axi + RZG3S_PCI_MSIRS(reg_id));
+> +		bitmap_write(bitmap, status, reg_id * RZG3S_PCI_MSI_INT_PER_REG,
+> +			     RZG3S_PCI_MSI_INT_PER_REG);
+> +	}
+> +
+> +	for_each_set_bit(bit, bitmap, RZG3S_PCI_MSI_INT_NR) {
+> +		int ret;
+> +
+> +		ret = generic_handle_domain_irq(msi->domain, bit);
+> +		if (ret) {
+> +			u8 reg_bit = bit % RZG3S_PCI_MSI_INT_PER_REG;
+> +			u8 reg_id = bit / RZG3S_PCI_MSI_INT_PER_REG;
+> +
+> +			/* Unknown MSI, just clear it */
+> +			writel_relaxed(BIT(reg_bit),
+> +				       host->axi + RZG3S_PCI_MSIRS(reg_id));
 
-This patch series was applied (using b4) to base:
- Deps: looking for dependencies matching 6 patch-ids
- Deps: Applying prerequisite patch: [PATCH 1/3] drm/panel: Add LG SW49410 Panel
- Deps: Applying prerequisite patch: [PATCH 2/3] dt-bindings: display: panel: Add devicetree documentation for lg,sw49410
- Deps: Applying prerequisite patch: [PATCH 3/3] Update MAINTAINERS for lg,sw49410
- Deps: Applying prerequisite patch: [PATCH v2 1/3] dt-bindings: wireless: ath10k: Introduce quirk to skip host cap QMI requests
- Deps: Applying prerequisite patch: [PATCH v2 2/3] ath10k: Introduce a devicetree quirk to skip host cap QMI requests
- Deps: Applying prerequisite patch: [PATCH v2 3/3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable ath10k host-cap skip quirk
- Base: base-commit 3d53f9ca24dd7492fe88fd0f1a418e3dc8b03515 not known, ignoring
- Base: attempting to guess base-commit...
- Base: tags/next-20251124 (exact match)
- Base: tags/next-20251124 (use --merge-base to override)
+Other writes to RZG3S_PCI_MSIRS are guarded by host->hw_lock.  Is this
+one safe without it?
 
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org:
-
-arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb: panel@0 (lg,sw49410-lh609qh1): compatible:0: 'lg,sw49410' was expected
-	from schema $id: http://devicetree.org/schemas/display/panel/lg,sw49410.yaml
-arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb: panel@0 (lg,sw49410-lh609qh1): compatible: ['lg,sw49410-lh609qh1', 'lg,sw49410'] is too long
-	from schema $id: http://devicetree.org/schemas/display/panel/lg,sw49410.yaml
-arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb: /soc@0/display-subsystem@ae00000/dsi@ae94000/panel@0: failed to match any schema with compatible: ['lg,sw49410-lh609qh1', 'lg,sw49410']
-
-
-
-
-
+> +		}
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
 
