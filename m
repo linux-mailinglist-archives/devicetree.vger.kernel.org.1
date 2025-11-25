@@ -1,65 +1,100 @@
-Return-Path: <devicetree+bounces-241917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5BE6C8451E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:56:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D22C84548
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:58:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 93D8A34D1E7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:56:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC5733AD7E8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:58:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB642ECEAE;
-	Tue, 25 Nov 2025 09:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 929692ED154;
+	Tue, 25 Nov 2025 09:57:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mvMXhxjU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UsD0n9rb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346A32E9ECA;
-	Tue, 25 Nov 2025 09:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C477A288D6
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:57:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764064614; cv=none; b=t6xECm8z26abQyxm+jORmcMEiGkJTcwe0K+p4KHagCNjdB9qGUzj/GUIZV2w6D/f8C8dEJVyIAXgJFTeOcLwHINx5evCYT+yfrw1PPlqiQAFRKVx34eEOhZx/iWyD/orhJcL5Dtwzx2seFz0NMhMkRYnwiTIt3aSK9lIx5am+ao=
+	t=1764064678; cv=none; b=dtzgCD8FAjpMB+Yzq+aZ3E3g+vNPjUzoPa4IbwlqQ3YsXiEvXQmq2SXis8rtDBzYUM/2wkPlP80w42lIfqY9su4IOwXuaHD+ykXldgKEsLZtF4+cZU8sgpXq1R91EFuSTbaNG229sUyqRnmDRWsUnBFcfRZY+WDBsGRqA1fKeIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764064614; c=relaxed/simple;
-	bh=0GPu1l3zNMQ3cknQLptiKbWwXLYqK3TMJjD3o6Letn4=;
+	s=arc-20240116; t=1764064678; c=relaxed/simple;
+	bh=aWPZQiOwwjPcpqrpyDvxdJ+TS6+Is55C2OdCisYPF/4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N4jDc4tVEMJDZz84uQ3asvdEPP2yA7XmkRaSgemTsRUOrVz9YMMQvFtcvs43VBzd6lkeyvvvdTePT+ElD3XgDY+xgAHhlnuVF3CXn/y3MLSwu6Yr5yDrrjwPveZ0AbirEh5wXlMMrIcDOnFnCzy5S9R54ptMYA0DNztv5LDPcN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mvMXhxjU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AB25C4CEF1;
-	Tue, 25 Nov 2025 09:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764064613;
-	bh=0GPu1l3zNMQ3cknQLptiKbWwXLYqK3TMJjD3o6Letn4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mvMXhxjU+avdAPCZMwmTLGrOugXisDV8TxNjFd/ckVYx57F7wpBupaEDQmOp6ic5Y
-	 hAt/4BAitYk3j7TWIENR3TiWTht/Hgi2ESqIAelLSMdw8FuZ0apEqBEKROwVTvyxKu
-	 pu5ynsTF+1yT1X5eZSvVi5sVQlFSxCFQ9W0GonYMbB+XSpm+qF4g+1KLKnXArbKVMO
-	 mAOahH8DOXmFKBL/mZhbXRQFtgNXXz8DigJMKfuRlvM7ubIORdO58Aa5zlB+DuVuty
-	 mixV1treB52IwXJUUnyOyeMOtWzN4Sa1nT6+93MDHJGLzeV+mEYs1iipWgg+x1XR9o
-	 keERpBjO7epxA==
-Date: Tue, 25 Nov 2025 10:56:51 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Amit Sunil Dhamne <amitsd@google.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=bBcDFXwtaRFdG5cuC481w3whuAti+ZpJcLpJ9t04e180YTIJUXeu53k5Q02Ys7g1DO0tUllQW4Z5Dx/ANSFIAC8AC2Z3qDbbSYoAcvpJYKSwOJTx6Y3ng+1QZHd9iL9XBlm8KHAfVlFEdZYmNnkinoLtlh6kyC76waEhXz3EWho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UsD0n9rb; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b713c7096f9so816897866b.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 01:57:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764064675; x=1764669475; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rUasbkstjniBrT4zxMVBFF99A9HoWusdu4FR+HNi+pw=;
+        b=UsD0n9rbXuYU/baXFEnV/Dv/sShzE3gbYuvgUcQTb3TV6SQGrYY9kwQt+kH86ywX9U
+         eqZZhmiZIIbdj18wggXI0pTEDMY4KOw5SG1uAWf8lKyDaLHrVH38mzSsGAYT7W51N5F0
+         jfDslqG8I7/Jf8ywcD/W+snw1v2dXywVj2B85ndogK/E4z/VmwYqpZ+UhGNuakrBQfdJ
+         SFD5uNQWU2gVD9xeDC66WwX5BDD0U0L4z01xpQ6FObO4yb+JSsQmAFMFjgsADnrCUGX6
+         CFyv7qbNjlloCac6A/MzubGCkN7FMs0+I4mbv073kJZXqvzK35JTGM/wV9gBrznYRGIe
+         6rvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764064675; x=1764669475;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rUasbkstjniBrT4zxMVBFF99A9HoWusdu4FR+HNi+pw=;
+        b=votkWdPlL7aNWObhHQRPFIdRhLTS6Z/0sv/HTK02qFigsDJBM1gMPdpwOcOuSkasfY
+         vIDF3YpKUhOQkqqyPMrkF5+9CMVrFg/QOz6P/rvB7Y8ReFA65S5cufkLgk2MTuHvre5i
+         7PP+T+86uX9W5Gab7T/O2TnoKdq7BWi+so7FWXV90qVohw9Crpd+KRbPhdU0aUyTM5Ph
+         x1eWFGPNDll8K1NuMAotwZSJPOvIq5WoGDHy8PG8Bek/vmLGq/YHCO63Sf6U7i5Gkg0m
+         ua0P5++qtUchxXE6ulte6/29lYk0EvHiMLS8KLrLj9aK00+AzaTKml89b5wgUsjyXzeF
+         b7AA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3sTPhsndT/FKUY8EOSeOVfapWaBq0YlmMCvINPE27OcdvcfgBQhn3rST1YbgvXKjuUnEyYN7gDSru@vger.kernel.org
+X-Gm-Message-State: AOJu0YxW1jAGmTn5Fx1yWD6qBSqKOQWp72dyQWroAMXd6YwD74vIwVDd
+	iTuUQ4IRz/vRjmbqiSUlPHa7ebmlsRmr8RGAF+wnEP6QPIwoHlodajjL
+X-Gm-Gg: ASbGncsSONAd2wACP/FaV/XmAPUGQ/4qvQ2quH3cj3wKSPDIGRrOXffmEhSPVYbSNew
+	8cQVrDuc5eh4q+8OZhanPkQ8XRgPMnhGxg0M+BKtCidaIUzcEzAjsrnxWoWx7v7jcyMlVqkU1SZ
+	CCs3721rIdwXciuJIiJZdYpdetXWF0jmZNCcdNH+qSQ1Oq/y4NfijC4dGgayVbFRZwtPUq76wH3
+	mA5VB97zLyR1ePF4N1oAqe9gfjOOgRE/WP1J2PWcTATLtRsIVY5ZXwruSGA+VfNBWN3SadJeCti
+	Lj+8ujPE6ZeXgQUpYfZ43gY5feAddJZLaGoBJjnQuYxCzUEpELKOx/Gm6FCgXnu0nsATZxuw4+S
+	fTJJqvIhn8BmCQ8Pn4xcuBbvGKifX2pDvNXbXctB6bzDA/rJJtsIpZRI6aE4aL9UeB3k3uOMEyE
+	smBfQhvbTno+yMU8dLZ4qtplcuTgIEWh+IaIv0PTuZ7/XwUbYRW6TXTwMuf1bgO0WxNgW6N+JVq
+	ZWA4sxsPMrXyg==
+X-Google-Smtp-Source: AGHT+IHLisWyuG15RnJSodDThe/ELizaIWdtNrkb9dhnJFuydOtd23t6sLVr0LkGdKB4Y4UIprMu/A==
+X-Received: by 2002:a17:906:c156:b0:b73:7652:ef9e with SMTP id a640c23a62f3a-b7671a28d01mr1625571366b.55.1764064674836;
+        Tue, 25 Nov 2025 01:57:54 -0800 (PST)
+Received: from ernest.hoecke-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654ff3bbesm1539477966b.51.2025.11.25.01.57.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Nov 2025 01:57:54 -0800 (PST)
+Date: Tue, 25 Nov 2025 10:57:53 +0100
+From: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
+	Baochen Qiang <baochen.qiang@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>, 
+	Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin <peter.griffin@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Subject: Re: [PATCH 1/6] dt-bindings: power: supply: Add Maxim MAX77759
- charger
-Message-ID: <20251125-amorphous-bobcat-of-whirlwind-afdab1@kuoka>
-References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
- <20251123-max77759-charger-v1-1-6b2e4b8f7f54@google.com>
- <d4455f4b-2a0f-4bc0-b897-14f2e27af3ea@kernel.org>
- <c9b059f8-9219-4219-95c8-23a3733fea58@google.com>
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, 
+	ath11k@lists.infradead.org, devicetree@vger.kernel.org, ath12k@lists.infradead.org, 
+	Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+Subject: Re: [PATCH 0/2] wifi: ath: Use static calibration variant table for
+ devicetree platforms
+Message-ID: <fasihmiu2szj6m2r3qef5slvzlvdjo2ajhrd6xyqsa5cajrbzq@a5dyulg2dnac>
+References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
+ <2fd84ab2-2e3e-4d05-add5-17930a35fedf@oss.qualcomm.com>
+ <jnggqxqv3rjzhyevovnnxzplfhl3t6auhhvmoz7wxmsf6awgdx@dusdgxwsxvts>
+ <b8277024-f9d4-4f17-946f-c2c390669067@oss.qualcomm.com>
+ <exfmj52dqu3uctwsb2gopcjg7744vq5avlkahtmgfw4opw4mfl@t2svrln72u53>
+ <f853d9b2-47f8-47b5-a02d-6aa8f12a4283@oss.qualcomm.com>
+ <trr5j57vwk2dhoibdgdxnlkftnmfcmjkwmicsiltmhybxanjaf@tzaeeqcyz56l>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,78 +103,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <c9b059f8-9219-4219-95c8-23a3733fea58@google.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <trr5j57vwk2dhoibdgdxnlkftnmfcmjkwmicsiltmhybxanjaf@tzaeeqcyz56l>
 
-On Sun, Nov 23, 2025 at 06:34:05PM -0800, Amit Sunil Dhamne wrote:
-> Hi Krzysztof,
+On Tue, Nov 18, 2025 at 12:23:20PM +0530, Manivannan Sadhasivam wrote:
 > 
-> On 11/23/25 1:28 AM, Krzysztof Kozlowski wrote:
-> > On 23/11/2025 09:35, Amit Sunil Dhamne via B4 Relay wrote:
-> >> From: Amit Sunil Dhamne <amitsd@google.com>
-> >>
-> >> Add bindings for Maxim max77759 charger device.
-> >>
-> >> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-> >> ---
-> >>  .../power/supply/maxim,max77759-charger.yaml       | 36 ++++++++++++++++++++++
-> >>  1 file changed, 36 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max77759-charger.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max77759-charger.yaml
-> >> new file mode 100644
-> >> index 000000000000..71f866419774
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max77759-charger.yaml
-> >> @@ -0,0 +1,36 @@
-> >> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/power/supply/maxim,max77759-charger.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Maxim Integrated MAX77759 Battery charger
-> >> +
-> >> +maintainers:
-> >> +  - Amit Sunil Dhamne <amitsd@google.com>
-> >> +
-> >> +description: |
-> >> +  This module is part of the MAX77759 PMIC. For additional information, see
-> >> +  Documentation/devicetree/bindings/mfd/maxim,max77759.yaml.
-> >> +
-> >> +  The Maxim MAX77759 is a dual input switch mode battery charger for portable
-> >> +  applications. It supports wired and wireless charging and can operate in buck
-> >> +  and boost mode.
-> >> +
-> >> +allOf:
-> >> +  - $ref: power-supply.yaml#
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: maxim,max77759-charger
-> >> +
-> > This should be just folded into parent node, no need for separate
-> > charger device or is just incomplete.
+> ath12k doesn't seem to require a calibration variant. But even if the user
+> replaces ath11k chipset with ath10k one, the calibration variant should be the
+> same as it is platform specific except for WSI.
 > 
-> Thanks for the review! You are right, the binding is incomplete. This
-> charger block actually listens on its own I2C address, distinct from the
-> main PMIC.
+> - Mani
 > 
-> I will update v2 to include the reg property. I will also add the
+> -- 
+> மணிவண்ணன் சதாசிவம்
+> 
 
-AFAIK, the main (parent) device schema does not reference children via
-any sort of addressing, so reg here would not be suitable.
+Hi all,
 
-> standard properties `constant-charge-current-max-microamp` and
-> `constant-charge-voltage-max-microvolt` to configure the hardware
-> limits, as this charger device does not manage the battery profile
-> directly (that is handled by a separate fuel gauge).
+Jumping in on this thread to ask about how we should handle variants.
 
-Well, still, what's the benefit for the bindings to have it as a
-separate child? Kind of depends on your example, which is quite small -
-one regulator and supply. Grow the example with battery and other
-independent resources (if they are) to justify it. Or show arguments why
-this is re-usable.
+We are using the WCN7850 device with the ath12k driver and received three
+board files for this from Silex, signed by Qualcomm. All three support the
+same board (SX-PCEBE), where one is the board file to be used for the
+US/EU/JP and the other two are one for higher emissions in the UK/CA and
+one for lower emissions in the UK/CA.
 
-Best regards,
-Krzysztof
+Since these are needed for regulatory differences but support the same
+board, we were wondering about your views on how to handle that in
+mainline. I see that there is no support for the board file selection in
+the device tree for ath12k, and that there is some discussion on how to
+handle variants in general. We are using a device tree-based setup and no
+ACPI.
 
+Thanks!
+
+Kind regards,
+Ernest
 
