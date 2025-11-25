@@ -1,401 +1,173 @@
-Return-Path: <devicetree+bounces-241820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0352DC8315A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 03:24:33 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89E8EC83175
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 03:28:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 955BC3ADC67
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 02:24:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 53C1134BFBF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 02:28:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEA0A1B4F1F;
-	Tue, 25 Nov 2025 02:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 435171C5F10;
+	Tue, 25 Nov 2025 02:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hQn2cZHZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Lg7CLLda";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UAgX9GQY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011058.outbound.protection.outlook.com [52.101.70.58])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD6719CCF5;
-	Tue, 25 Nov 2025 02:24:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764037469; cv=fail; b=rd5dl9o52pmBKj/oC4QKS5Dt1tDXev2lGUcXeT17tO1Cfb2N9dcgMPDIiO1bxDI5XmmL6Iz5jaxv6hEO5yrHuhfZfFtarMYIlsKE8Okcq/ZXgcQopbDbFQvy/A1zC49gTjSpoCZhm5oQG0j362LJhlw9C3RuhddeJvIqCY9aTtk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764037469; c=relaxed/simple;
-	bh=mcRIYlcRzlYfSJObyK5zMWOi73xg+EzC8Vd7+6zubXY=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=MqghKQueSiCB6MqZSbbeD5wVm0UYfN9hX5SJktbe8XskMs7CaznD45vfcOBtTbRYLN8oGmVEBeVPtU3USPIAimVMXWTJGcr39y80HL8koLw+6pPDkPBQeZsO2bbmieVv3HVLVY+deGYMHJHGSQEH6Cfibbmdv45DKdu5b6bYfx4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hQn2cZHZ; arc=fail smtp.client-ip=52.101.70.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uEMXrHFBCx4zHK55EPlHM6AuYogoUBPviOEdzc2r+hJsVlqhbIS6hYrEh/kGZNLtZ2NrDZOqBJwCzRNUONdVbCrjafkXzyWrDmHBP2iowR+L5QydcK9IYFGuwfN4pn2lkav/o0XTLGKn9/NtCSgZ1x/smk4cbw9Bza670KTZLpI1n/WAkv23F5zVqkKnOdYmbaEfK7iFs9o6rF7b0MgjViaeq2FjQboF1OodaMqXwFBY79x4mt4BvzYpT2J1OuXycatSNue22GYQ9T3K9xh17i7G4cylH94I3eRbspbRGOVroRIrz6DzEAXndI6cjWMAmSt50Tj4YSxm018G1Gfkog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v3f3nXLDIzcdvwKeTYCSstBZ4dqo0GsnKlXaGQsrrR8=;
- b=xhm0Mwem2Aclm9fUVlPfc0sQ7TL+nKKekwdyi05Nii1s1QH5yqlEpS4/f2HmWpD8UVZ0mkfclbXcdH1OXzB/ICuM9lrm3q2GMQIjGncZnZQXqhDi7oerT7DWuVRS/lEh6b4TQ1hRGVxHYO7KMtwSVds+OWJDWyerqhMMNQzWLRleEygnz0jIZjkecmMjtwSd3sgqVd1pypv3YPrcMbweVFTK16XiBQ4AVhYFukvi70QyEvuVAdD47lnIqM5prORpVNezV2DkWidmVeMLcoO+yOfGKWgA31uB/XCODtueV7bUamAwOk4ATnNE4DdNZbQVWkXNHjzsxc6eqgMJpPAWug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v3f3nXLDIzcdvwKeTYCSstBZ4dqo0GsnKlXaGQsrrR8=;
- b=hQn2cZHZp97527jmgII0OSIeRaKz59YPDE7DFozos9s9NaCuP4GQIIcLMRrGLJnMB3VM375a3QOYRhbChosTV1XEh+atOkEj3PnRVlDn49RAO9Ikl5KEl4rMg5UmIZSLUbMWIrfrXK1PaAiiV9EgJGWiU1d6BZwUyioPUER0wwrwVsAEVPgqJEQNXFypX6O7SMf+qzMXdrY0yyfhjB7y/H35xnYfp6jPT0VUPeoeiY3hz5lHyF2g+iFKEQ/ronarTwQ6G7qnfxBJ7n78xPLH8MvMOt3UAdVFw+ubrtLMSXQJ9wBeiPoZd3+S4CQDmAw1kPNSL8DP9D2csPak1PyBdA==
-Received: from DU0PR04MB9496.eurprd04.prod.outlook.com (2603:10a6:10:32d::19)
- by AS8PR04MB8449.eurprd04.prod.outlook.com (2603:10a6:20b:407::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.11; Tue, 25 Nov
- 2025 02:24:23 +0000
-Received: from DU0PR04MB9496.eurprd04.prod.outlook.com
- ([fe80::868b:3935:5e0f:6a33]) by DU0PR04MB9496.eurprd04.prod.outlook.com
- ([fe80::868b:3935:5e0f:6a33%6]) with mapi id 15.20.9343.016; Tue, 25 Nov 2025
- 02:24:23 +0000
-From: Bough Chen <haibo.chen@nxp.com>
-To: Frank Li <frank.li@nxp.com>
-CC: Han Xu <han.xu@nxp.com>, Mark Brown <broonie@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, "linux-spi@vger.kernel.org"
-	<linux-spi@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v5 2/2] spi: add driver for NXP XSPI controller
-Thread-Topic: [PATCH v5 2/2] spi: add driver for NXP XSPI controller
-Thread-Index: AQHcXSQyemrLaYsQdkihJDyose79m7UCCoWAgACf4VA=
-Date: Tue, 25 Nov 2025 02:24:23 +0000
-Message-ID:
- <DU0PR04MB9496647CDAB3D15A5245693390D1A@DU0PR04MB9496.eurprd04.prod.outlook.com>
-References: <20251124-xspi-v5-0-6fd03a6cb766@nxp.com>
- <20251124-xspi-v5-2-6fd03a6cb766@nxp.com>
- <aSSMxU6iNdAGheSc@lizhi-Precision-Tower-5810>
-In-Reply-To: <aSSMxU6iNdAGheSc@lizhi-Precision-Tower-5810>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9496:EE_|AS8PR04MB8449:EE_
-x-ms-office365-filtering-correlation-id: b17be3b5-86c6-4646-553c-08de2bc9bf85
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|19092799006|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?iY1VCHSt6k7nl8VU8yucSSxYh34gmwWyzgGK0Sj4b+UTcUD73B05fRYVuLsA?=
- =?us-ascii?Q?4o6R1S0cBYyvVzYr/T+7EtUmW0vUUT0mf9DCONxHWzvgST4MO6TafeBPUEhc?=
- =?us-ascii?Q?uY4M+s0ijvSmxASfaGbir0p7RzpDQXU82eg2+Rt4IHqUW1KLhsqINDzgNnZb?=
- =?us-ascii?Q?GKkdE57gbkwYP1IG70CZlefgp8CB58GqLp1ovyjU66ogoh+CXls/BUOrHHU9?=
- =?us-ascii?Q?+R7x8g37Frzs90HD7K7rSMNg7OIOcZICh2GkO27xD04RKWO+STQQrXDdM5eU?=
- =?us-ascii?Q?zwKs13+2pjJZ9DUso42ybspQfF6ZCgsEUorPUqntZGCX/rRV1b4Jv7Wm8eZ5?=
- =?us-ascii?Q?LzT/Nf4Od9xWngFWlE7nMO4hVv+nHcyOELxMTPoQUDZiXGMcupCOQu/anCiY?=
- =?us-ascii?Q?NqLnEHNgkkDKUNOVEnYxWtpg23LonuO+NMKnmUuddGXJJdqXM3CLv+3h4UMp?=
- =?us-ascii?Q?6g1D6Kykq5Di/YMXTtP7DvsFbmjRNW2PivP7j5gAU7WhkeBThDCsKczGqPDJ?=
- =?us-ascii?Q?3jncR9KI6BeCrELocsUgSF6k6MmRRI6vZ4YMCTly6fiHjuGx/IZkunZhjKVX?=
- =?us-ascii?Q?+uMqQwelMz7P+DrYF6k5Un7LBPZg6Wo/5hGm9xV9Xl1SqeyBxoCebqUmz3+s?=
- =?us-ascii?Q?6K2Y5uAJ91YrP0zq9FfsbxLdgHe4gLRHNqp4aHv/p7t97rHKuOhB3P/SKcSB?=
- =?us-ascii?Q?3N8hWB9CUp063YQQ/6MihMUgdJy0/dvxQ61FR150vtwGKYm/Z3QiMYsB7jX7?=
- =?us-ascii?Q?/+I7AOybfve/hvsTpZ5K6skmIaFM7/sYLnr9X6NVHAGWyJi5QRch3pDFZr7+?=
- =?us-ascii?Q?+ZI7AOtLorm387EWPrpjKFvbs0qJybwOpHpKyxLoO8ekXKf1PD0nC9ykFWLY?=
- =?us-ascii?Q?r6ALvm4O9NLCkFMKdvOYekZHnGRjiOdndb06rH6Ip2PrQZ5QcRKjIvWyFcJY?=
- =?us-ascii?Q?NuNaPnUmQCOt0cvKBA5Qowwv/m37ToVzBS/WBdfJGMO0g7nY2g7BODKoW6x7?=
- =?us-ascii?Q?z2vwhWU1FN70rQbUtf+0z6nQ4I1j9RtEIGmTlR7q6hYMYIr/IA4NTAJDLe0F?=
- =?us-ascii?Q?8NRGziw0lK2WSvUzK/4oAGt0MP/2a8SjpzcWVVwNArI3jfENQykVp94tqd7/?=
- =?us-ascii?Q?PFo4h/1BM1Ty91/1G2OD3EOeCeMrswT7vI5fW0HiGyuf7bjE+AETT7F479Aj?=
- =?us-ascii?Q?OIyvw229Uo4Ff99fnSZ+xQRUJaA/92tc5LGGsFEacvkSHuXxK8fsOHheN0Cp?=
- =?us-ascii?Q?LrAMJ3puoCziwCHZr1njUAj0tf0JjdRIDGSy7D45iUGsY0e+fAB9LyX9KFQu?=
- =?us-ascii?Q?iP3RVV+HtMoMexibR2i8N45aKHSFOUesc8+BhIWQBxkOMSKgumNyhLaY/RK8?=
- =?us-ascii?Q?+TneygooDjMlL+ELI/iS25q2k+qjQzFUAAqzOwEVj6yRET31jplLAv3+KGEo?=
- =?us-ascii?Q?20FCjdtDhvUq6OiOSDdIwyQuIL3Lp860/rC6j2jxvCZBabemvfCrmV1zU7Or?=
- =?us-ascii?Q?QB7f12gOsagkfLpP5kKUYN+wXnyyWiUHBNsb?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9496.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(19092799006)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?wUtT5b5KbNeqaffHVojLBc7EFg2z4K+0CDXfzgsjWjb8aAK6PMJPFx+u1zOo?=
- =?us-ascii?Q?zswRlacyt/QxH/54cevef2O/KLRHH1NSMe4FrbYAmdcmzaJC3Q8oFUnyKcWn?=
- =?us-ascii?Q?N5VTC9fb/Q5P7CafZRmiSKhhzIJDnMAqSaeXkHmnYI++RoR8aI5T2ywEW9QL?=
- =?us-ascii?Q?9eXdkpFT9ni8v/Q6GPBOFzQTcrLTB/EIfoS6vWQlNQ8lNqDhiZnCIuy3HsWs?=
- =?us-ascii?Q?VbRQZ8vrI5ZSZ4SpJd9czI63ISZ1bSopaJT0Xw+dW8AWIEjmh1AJBH6t9fOF?=
- =?us-ascii?Q?Iv0beuWZIMLldrC/w3gOCG57JrjVvRyFaRZAFI7EcJXngTuIwnndutgwme0x?=
- =?us-ascii?Q?kfySs9zS7Z2Lwvm0WGWAJpDZ5KepfWrf2Gl0NGm1iqWr2vw5ZcS7KDEDYqNb?=
- =?us-ascii?Q?XuyOwb4aI0cxAO7G4DMIIxdX6L2zNBhdCVKQETE5kfFx5kWHrs9bLJreX/e9?=
- =?us-ascii?Q?wA52Z5dLcsLkpOXdwfz+6+ED5kl/uIdeY6m4qz97rOUWcK3VFXxdJW+fgekE?=
- =?us-ascii?Q?99mw+YbumG6WVkgVBcQyyur6N0adOb4b5IZk5oFoVwpJ/dtO4ixRJI79/X83?=
- =?us-ascii?Q?nbIhsf0abEeZ81N2HL2N20z8s4ZQ0DXWa+SBpoqOxb/l/e86TKGmHJ+SOz9M?=
- =?us-ascii?Q?r9y9XgRtDw2av0OtOf3rfYIQahYK46ce8fDcDl3yh26lzI3aVOIwDptnPS/v?=
- =?us-ascii?Q?nnullPpqBMGe3eu8PglKjvV5mSc/psRS5o2yJBf+sPJye25gENRipeE8bZGN?=
- =?us-ascii?Q?P8hD+u34l7Rfiymduj8Ub2ERO4QflWi0aYe8kkkKf3n8WLQHUtYNdLt6/tBM?=
- =?us-ascii?Q?SV9O/mV30EA8VEPLkIlFIH04pS8qXWlla+cBJb1/g1yvGb3nNi1JinGagrSa?=
- =?us-ascii?Q?ahiCplOANcNC3VaYANqwZoty/imZRQsnN6xLzfBpA1jU2r1FoZjK5jN3+1cq?=
- =?us-ascii?Q?WFSpgt18teemsLSpzeS4jsjiJANo3MxFftud697GXGCYYpd0IVrb+IjVxNDK?=
- =?us-ascii?Q?DlmvW7ovBaTECDPAgW6WPfev0968MG2gD5lEURSykYk/EWrzh3Pq7QoYUKJL?=
- =?us-ascii?Q?iIun8NTy9Lwb6D5/L2U5nGC7PAZ/sb6z/HtuMEXUMbFNrH7beYa5tY3nrfvd?=
- =?us-ascii?Q?akQM0iT1nTdJ+t5FN7e1x2UNANMb/mZpAXtTkOE8h8UGPi63aPcEHgGm3257?=
- =?us-ascii?Q?a0BbU2n2brb4aaDeDtnDqjAgJpybfIBtfTHA9itzC1gfWqq4v0aYUlwVKF1f?=
- =?us-ascii?Q?rRnVlQYsOI6+4rUVrDuktEPs3PKECo6dpcylpOf5O3NFvNXMa80qbL4lZMRx?=
- =?us-ascii?Q?BZDTFIkcrQkgZvWc4GYxwsbcpsViAXnJVtUA08yqPPKJ4o8X+wr90T4dyUdR?=
- =?us-ascii?Q?iNFsW7gPe0LI0fS2pbaJj3AgUtR0uXkfLAaaAL+qgS5q+0we9ZKMsmoRiF0s?=
- =?us-ascii?Q?N8tU2exwA4k9ByVAsuWHo/oSiqcnL1U9DiAruFvnxYApA4FPg0x5cFFNC2Cl?=
- =?us-ascii?Q?qwtuPAV/R2MxhIGqJtM2E/nYwJX2hnIjQ3UIBSAjJHD6X56wDU5Oy79Gwho5?=
- =?us-ascii?Q?R+kJZipLQDHNfMeILcM=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1DD19CCF5
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 02:28:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764037703; cv=none; b=AYKNuGkMvqlQbYzfNQzqsf9LfEFbtsQ00zW9zFyq0R2KbYlw/PKVUvNtXAJVIJ64IykZFBBLiv36xvTYfAjIOv52ZxqwQVSu7d05kXDCpeu2JwD5CwP+ubjlWkCW0nmzZmEnlR1AjB9FSdUAWVaQ0WV34ulXko/gqxSYQ5WupaY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764037703; c=relaxed/simple;
+	bh=+6BeB9AecFg1ONQikvBvjirwj4xDOnz8ib/bbpDaxRE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=A3RtY8TGdHYA6QfGTYeNWCwOaMqnljdqePuhp0ySLul41f/LbZHHLCADNasLxvtCrmFuT7qhe1qsZ9OdIhtlkLKhuLqqPybSNuraIk0kDIPQuMC8JwmQM9TGT5hiIV+y9579KiwowzOu/LqcFJzBEGHLx/hbMdfBe2Qaz2ZazNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Lg7CLLda; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UAgX9GQY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AONKg3R817884
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 02:28:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	z+pq6qRKxCnhKAyPN6KlZHH0m2NrWbAeB1YZCoEFrnU=; b=Lg7CLLdaXGPTau6U
+	p4kn7DWh2IytCUkEQac1fWPUe6lk+ntKc0hI/ch58t0n641DJQZQcyqDz8qMUvz9
+	ZQVo1BS2kDQ6Mm4zH571vpbAgG1WAkuvPVevqkCVa/MPsA/kFO3UypqpKiRWNJgj
+	uAdH+V/oP8yw/sQy1eLelmB5VkPQbYMR4uRPMQwfi2DShLDTYwqZNokvuaakBJoi
+	W8rFofmDoxyvOuRcdwTB+jL6+DnXBYYLBOeyM60VSEvEOmYcpjaEGHSXbXXvM8v3
+	JOK2izdlAM8xhdg6vNsFP7kvXNMELEd0QxUax1rs5cBdSrnft//p7ZFtLmRg+ZiW
+	m3l8cg==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4an0xygc9f-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 02:28:20 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7b9c91b814cso15498449b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 18:28:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764037700; x=1764642500; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z+pq6qRKxCnhKAyPN6KlZHH0m2NrWbAeB1YZCoEFrnU=;
+        b=UAgX9GQY7CMGY5nMcAZF2B5gBmzfmIAv51pseWQbEPcKtZV6n7G7xDLmIm/MrmR/Hz
+         hLduZk6jbgsfmjP4je1DjhcyleQs/kbbe6w86e7DLoIYk9mXXeycAFREZfMGaxurz861
+         Fk6+zQh5mih455NOs7tpYZgMvzDQv6IZiMY4SQasbXLd/6DdTa1ya8tPoiTCq91pbgLw
+         JUqcFedjDVJbhuDR2PdCWtYuRbVsT8vQVT7CoE3L6lWdd3uuJuhAzqwgZ6qiZq+FcZXh
+         tlH1LeIuF7r0RWZNBtgL404sngKBsms9oZ2uiqPwqsWwtWvdtJPZeVu1lGG6/pQzqRvC
+         6CHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764037700; x=1764642500;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z+pq6qRKxCnhKAyPN6KlZHH0m2NrWbAeB1YZCoEFrnU=;
+        b=Ybk5CWRYIWlkIhiVqWHbBJHkRyOHeQnp/w1xBEsEJGV4B/V6RXt74dYmJCKeuJMDm/
+         nNq3gzyFrdyMd5Fts2OFl//HJOtQYX31wMSuWJTxltW9E7k1aOcjuw+E763MmdYK2A3E
+         SIeeTkWcLlYlSYsM0MTmBG2iNGklmB8ayARjQi4F4HyWqRi6B1/pKhy/yqKO0XXy4VLs
+         lVq1RAuyKdlDtZhjr0ZozrYEnUVhFxNdAseteU23XwcmWIghQaa7DsmIQo5HCRPIH/UJ
+         C+KNDxbX2MpSyZpalNKiP6AVhcezIXcWZC1eDLYkCzLm5pdogM1VDSnl5kHlFyjhIBkU
+         2nfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWD9VNUO5caUK99YNedYccm6dJos0A5TSo0uxPC1eV5lBR892hNXl2brsg5G5zBibI9NSpXdNmyLwXK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxknJMDT7AfHRBgzPlq5AtlhZ0h8XQAPzglcD+v0qC4/28dXcuP
+	2fBxCLhRW0cGdAj31BvN358Ufld/5XEi2sYHbdcVWstsVjQkmQ8L6bC535yVJMTp6h2Rjg57hMd
+	dNGaMOeBe0Po6AZL26YTJIW2HPdk6LC7kz5SPFZEWYCChxmimDLtXgu5L4aFUIqHr
+X-Gm-Gg: ASbGncukSLtuM4tfMorboE+brVbxFEudEa5PA4NiK+HBxh6VvQ6jzHECt9wyx8YWpKB
+	Ro0vP/6HblNNSoVk8Aq1Gp6cRqnHWDLxK1qZqr9MREg1PBPyCjEQlBTqs7tgIKC+Xl0SIGlDErH
+	tQKevhWA9o/rr72GjFt6qfnuh+D8v6YgbBwpO7FOUGJFdYb70GbNIv3UPzKPwWQ5FtzMVh3olJI
+	K5mYCWce09Fyh6ECKZACsLU4gPqj55NeRmKDbMet6zXorXYTUbqQPZQ+U/2HkWELf2xrzTDOH2r
+	2yUCN02szO59caNKSccniv0EoaOWXG2rtisiMZuiSnwtFpVTsyhlZo08svsWNO//6izZDgIiRFw
+	5ksZS1ubGbHQYfflbA5ciLRWfzc94MjTW4cO1eQ7JgBIdDskdQRrUU28iZREqkd7l3j6aWw==
+X-Received: by 2002:a05:6a00:2d9a:b0:7b6:363b:c678 with SMTP id d2e1a72fcca58-7ca8760d166mr1611668b3a.6.1764037700159;
+        Mon, 24 Nov 2025 18:28:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHi/pnSULoYKIgEeiFvUOw8d9iALk40PhUIbzwODQvglUZ7csFadOXzwG4mNU6XwNDDr2fncQ==
+X-Received: by 2002:a05:6a00:2d9a:b0:7b6:363b:c678 with SMTP id d2e1a72fcca58-7ca8760d166mr1611622b3a.6.1764037699605;
+        Mon, 24 Nov 2025 18:28:19 -0800 (PST)
+Received: from [10.133.33.118] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7c3f095c237sm16291985b3a.45.2025.11.24.18.28.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Nov 2025 18:28:19 -0800 (PST)
+Message-ID: <6eb20ecc-6319-4a5a-bbd5-29e02555dc79@oss.qualcomm.com>
+Date: Tue, 25 Nov 2025 10:28:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9496.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b17be3b5-86c6-4646-553c-08de2bc9bf85
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2025 02:24:23.4474
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dQca7nkOW3L1iLH46pbGuVvsEz+oEDoPdvgpQnkGZRS1QdFq5l4nDTUVoeB4ugPhYRl8F+kg8GXpFD2rO8J+ng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8449
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Atiya Kailany <atiya.kailany@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+References: <20251120-add-support-for-camss-on-kaanapali-v7-0-de27f9a67ce6@oss.qualcomm.com>
+ <20251120-add-support-for-camss-on-kaanapali-v7-1-de27f9a67ce6@oss.qualcomm.com>
+ <0b2b8352-4ac1-4a5e-be73-67b5cffdb934@linaro.org>
+Content-Language: en-US
+From: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+In-Reply-To: <0b2b8352-4ac1-4a5e-be73-67b5cffdb934@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=S+bUAYsP c=1 sm=1 tr=0 ts=69251444 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=DPOBve1R3aP56xOrS2QA:9 a=QEXdDO2ut3YA:10
+ a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI1MDAxOSBTYWx0ZWRfX8Mtyz+R1cmUk
+ 2sWE3tU6Iy0557GRlAs3yUksLFfKvHVc8HrgjrgXB4/KvmA833YGGgimpWbx8BnyzuaHCU3zLZR
+ ngn0vaTNCA4t7M1UOpImphGFQRjGpmw8XQxQSAmyscMGt/ndFMxgsO0Kwy7kTyGoajweT/Dd6jx
+ 399JfpVPW7NOjTnH5kVCzIZd5lLfDYcQILvZzFSNUNU/uV3NMGAvfL+FMnwbcswgzVPO7pGY4Ql
+ X1PsqZVS/7n+lQkU6snbsLeQ+TLC46Qwpdt2+bfmWt+HdUVTHWqAv0daEcutKcNS8oeW381Ge0b
+ s41mKBizBNarpGaX/Guk9v4updb89k9iymnOlJBG4hHJsR60DR7kXhSz7JKq//hzYIwwOm9wt/u
+ twm8vVEYDMmy3H7GEl3X2+Qzure/5A==
+X-Proofpoint-ORIG-GUID: Op6jxaiF7B4RJ9sjjQYPSnDziAng1IRo
+X-Proofpoint-GUID: Op6jxaiF7B4RJ9sjjQYPSnDziAng1IRo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_01,2025-11-24_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 impostorscore=0 clxscore=1015 suspectscore=0 phishscore=0
+ malwarescore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511250019
 
-> On Mon, Nov 24, 2025 at 05:25:22PM +0800, Haibo Chen wrote:
-> > Add driver support for NXP XSPI controller.
-> >
-> > XSPI is a flexible SPI host controller which supports up to
-> > 2 external devices (2 CS). It support Single/Dual/Quad/Octal mode data
-> > transfer.
-> >
-> > The difference between XSPI and Flexspi:
-> > 1.the register layout is total different.
-> > 2.XSPI support multiple independent execution environments
-> > (EENVs) for HW virtualization with some limitations. Each EENV has its
-> > own interrupt and its own set of programming registers that exists in
-> > a specific offset range in the XSPI memory map.
-> > The main environment (EENV0) address space contains all of the
-> > registers for controlling EENV0 plus all of the general XSPI control
-> > and programming registers. The register mnemonics for the user
-> > environments (EENV1 to EENV4) have "_SUB_n" appended to the mnemonic
-> > for the corresponding main-environment register.
->=20
-> Nit: please wrap at 75 char if need respin patch.
+On 11/24/2025 7:47 AM, Bryan O'Donoghue wrote:
+> On 21/11/2025 04:43, Hangxiang Ma wrote:
+>> The Kaanapali platform provides:
+>> - 3 x VFE, 5 RDI per VFE
+>> - 2 x VFE Lite, 4 RDI per VFE Lite
+>> - 3 x CSID
+>> - 2 x CSID Lite
+>> - 6 x CSIPHY
+> 
+> Another nit-pick which you don't have to fix, I can do this in the 
+> commit log - but, you've not detailed the new regs added below.
+> 
+> ---
+> bod
+Ack, thanks Bryan. Will pay attention to it next time.
 
-Okay.
-
->=20
-> >
-> > Current driver based on EENV0, which means system already give
-> > EENV0 right to linux.
-> >
-> ...
-> > +	/* Wait for the CLR_RXF clear */
-> > +	ret =3D readl_poll_timeout(base + XSPI_MCR, reg,
-> > +			      !(reg & XSPI_MCR_CLR_RXF), 1, POLL_TOUT_US);
-> > +	WARN_ON(ret);
-> > +}
-> > +
-> > +static int nxp_xspi_do_op(struct nxp_xspi *xspi, const struct
-> > +spi_mem_op *op) {
-> > +	void __iomem *base =3D xspi->iobase;
-> > +	int watermark, err =3D 0;
-> > +	u32 reg, len;
-> > +
-> > +	len =3D op->data.nbytes;
-> > +	if (op->data.nbytes && op->data.dir =3D=3D SPI_MEM_DATA_OUT) {
-> > +		/* Clear the TX FIFO. */
-> > +		reg =3D readl(base + XSPI_MCR);
-> > +		reg |=3D XSPI_MCR_CLR_TXF;
-> > +		writel(reg, base + XSPI_MCR);
-> > +		/* Wait for the CLR_TXF clear */
-> > +		err =3D readl_poll_timeout(base + XSPI_MCR, reg,
-> > +				      !(reg & XSPI_MCR_CLR_TXF), 1, POLL_TOUT_US);
-> > +		WARN_ON(err);
->=20
-> Is it enough by just print a warning? If timeout happen, is it to continu=
-e below
-> operation? and other void helper function (such as above WARN_ON(ret);)
->=20
-> If clean FIFO fail, suppose garbage data still is in FIFO. It think it sh=
-ould return err
-> to user space to indicate op failure.
-
-Return err seems safer, let me check whether other places also.
-
->=20
-> Or are you sure our hardware can tolerant this error.
->=20
-> > +		/* Cover the no 4bytes alignment data length */
-> > +		watermark =3D (xspi->devtype_data->txfifo - ALIGN(op->data.nbytes, 4=
-))
-> / 4 + 1;
-> > +		reg =3D FIELD_PREP(XSPI_TBCT_WMRK_MASK, watermark);
-> > +		writel(reg, base + XSPI_TBCT);
-> > +		/*
-> > +		 * According to the RM, for TBDR register, a write transaction on th=
-e
-> > +		 * flash memory with data size of less than 32 bits leads to the
-> removal
-> > +		 * of one data entry from the TX buffer. The valid bits are used and
-> the
-> > +		 * rest of the bits are discarded.
-> > +		 * But for data size large than 32 bits, according to test, for no 4=
-bytes
-> > +		 * alignment data, the last 1~3 bytes will lost, because TX buffer u=
-se
-> > +		 * 4 bytes entries.
-> > +		 * So here adjust the transfer data length to make it 4bytes
-> alignment.
-> > +		 * then will meet the upper watermark setting, trigger the 4bytes
-> entries
-> > +		 * pop out.
-> > +		 * Will use extra 0xff to append, refer to nxp_xspi_fill_txfifo().
-> > +		 */
-> > +		if (len > 4)
-> > +			len =3D ALIGN(op->data.nbytes, 4);
-> > +
-> > +	} else if (op->data.nbytes && op->data.dir =3D=3D SPI_MEM_DATA_IN) {
-> > +		/* Invalid RXFIFO first */
-> > +		reg =3D readl(base + XSPI_MCR);
-> > +		reg |=3D XSPI_MCR_CLR_RXF;
-> > +		writel(reg, base + XSPI_MCR);
-> > +		/* Wait for the CLR_RXF clear */
-> > +		err =3D readl_poll_timeout(base + XSPI_MCR, reg,
-> > +				      !(reg & XSPI_MCR_CLR_RXF), 1, POLL_TOUT_US);
-> > +		WARN_ON(err);
-> > +		reg =3D FIELD_PREP(XSPI_RBCT_WMRK_MASK, 31);
-> > +		writel(reg, base + XSPI_RBCT);
-> > +	}
-> > +
-> > +	init_completion(&xspi->c);
-> > +
-> > +	/* Config the data address */
-> > +	writel(op->addr.val + xspi->memmap_phy, base + XSPI_SFP_TG_SFAR);
-> > +
-> > +	/* Config the data size and lut id, trigger the transfer */
-> > +	reg =3D FIELD_PREP(XSPI_SFP_TG_IPCR_SEQID_MASK, XSPI_SEQID_LUT) |
-> > +	      FIELD_PREP(XSPI_SFP_TG_IPCR_IDATSZ_MASK, len);
-> > +	writel(reg, base + XSPI_SFP_TG_IPCR);
-> > +
-> > +	if (op->data.nbytes && op->data.dir =3D=3D SPI_MEM_DATA_OUT)
-> > +		nxp_xspi_fill_txfifo(xspi, op);
-> > +
-> > +	/* Wait for the interrupt. */
-> > +	if (!wait_for_completion_timeout(&xspi->c, msecs_to_jiffies(1000)))
-> > +		err =3D -ETIMEDOUT;
-> > +
-> > +	/* Invoke IP data read, if request is of data read. */
-> > +	if (!err && op->data.nbytes && op->data.dir =3D=3D SPI_MEM_DATA_IN)
-> > +		nxp_xspi_read_rxfifo(xspi, op);
-> > +
-> > +	return err;
-> > +}
-> ...
-> > +static int nxp_xspi_probe(struct platform_device *pdev) {
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct spi_controller *ctlr;
-> > +	struct nxp_xspi *xspi;
-> > +	struct resource *res;
-> > +	int ret, irq;
-> > +
-> > +	ctlr =3D devm_spi_alloc_host(dev, sizeof(*xspi));
-> > +	if (!ctlr)
-> > +		return -ENOMEM;
-> > +
-> > +	ctlr->mode_bits =3D SPI_RX_DUAL | SPI_RX_QUAD | SPI_RX_OCTAL |
-> > +			  SPI_TX_DUAL | SPI_TX_QUAD | SPI_TX_OCTAL;
-> > +
-> > +	xspi =3D spi_controller_get_devdata(ctlr);
-> > +	xspi->dev =3D dev;
-> > +	xspi->devtype_data =3D device_get_match_data(dev);
-> > +	if (!xspi->devtype_data)
-> > +		return -ENODEV;
-> > +
-> > +	platform_set_drvdata(pdev, xspi);
-> > +
-> > +	/* Find the resources - configuration register address space */
-> > +	xspi->iobase =3D devm_platform_ioremap_resource_byname(pdev, "base");
-> > +	if (IS_ERR(xspi->iobase))
-> > +		return PTR_ERR(xspi->iobase);
-> > +
-> > +	/* Find the resources - controller memory mapped space */
-> > +	res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "mmap");
-> > +	if (!res)
-> > +		return -ENODEV;
-> > +
-> > +	/* Assign memory mapped starting address and mapped size. */
-> > +	xspi->memmap_phy =3D res->start;
-> > +	xspi->memmap_phy_size =3D resource_size(res);
-> > +
-> > +	/* Find the clocks */
-> > +	xspi->clk =3D devm_clk_get(dev, "per");
-> > +	if (IS_ERR(xspi->clk))
-> > +		return PTR_ERR(xspi->clk);
-> > +
-> > +	/* Find the irq */
-> > +	irq =3D platform_get_irq(pdev, 0);
-> > +	if (irq < 0)
-> > +		return dev_err_probe(dev, irq,  "Failed to get irq source");
-> > +
-> > +	pm_runtime_set_autosuspend_delay(dev, XSPI_RPM_TIMEOUT_MS);
-> > +	pm_runtime_use_autosuspend(dev);
-> > +	devm_pm_runtime_enable(dev);
->=20
-> need check return value here.
-
-Okay.
-
-Regards
-Haibo Chen
->=20
-> Frank
-> > +
-> > +	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(dev, pm);
-> > +	ret =3D PM_RUNTIME_ACQUIRE_ERR(&pm);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "Failed to enable clock");
-> > +
-> > +	/* Clear potential interrupt by write xspi errstat */
-> > +	writel(0xFFFFFFFF, xspi->iobase + XSPI_ERRSTAT);
-> > +	writel(0xFFFFFFFF, xspi->iobase + XSPI_FR);
-> > +
-> > +	nxp_xspi_default_setup(xspi);
-> > +
-> > +	ret =3D devm_request_irq(dev, irq,
-> > +			nxp_xspi_irq_handler, 0, pdev->name, xspi);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "failed to request irq");
-> > +
-> > +	ret =3D devm_mutex_init(dev, &xspi->lock);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret =3D devm_add_action_or_reset(dev, nxp_xspi_cleanup, xspi);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ctlr->bus_num =3D -1;
-> > +	ctlr->num_chipselect =3D NXP_XSPI_MAX_CHIPSELECT;
-> > +	ctlr->mem_ops =3D &nxp_xspi_mem_ops;
-> > +	ctlr->mem_caps =3D &nxp_xspi_mem_caps;
-> > +	ctlr->dev.of_node =3D dev->of_node;
-> > +
-> > +	return devm_spi_register_controller(dev, ctlr); }
-> > +
-> ...
-> > +MODULE_DESCRIPTION("NXP xSPI Controller Driver");
-> MODULE_AUTHOR("NXP
-> > +Semiconductor"); MODULE_AUTHOR("Haibo Chen
-> <haibo.chen@nxp.com>");
-> > +MODULE_LICENSE("GPL");
-> >
-> > --
-> > 2.34.1
-> >
+Best regards,
+Hangxiang
 
