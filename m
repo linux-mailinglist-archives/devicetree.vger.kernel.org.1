@@ -1,182 +1,267 @@
-Return-Path: <devicetree+bounces-242001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E8DC851C5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:09:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2215CC85225
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:15:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 18E864E9F51
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:08:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B27D43A3288
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:15:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E027320CDB;
-	Tue, 25 Nov 2025 13:08:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414D91EB1A4;
+	Tue, 25 Nov 2025 13:15:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="UaIlOsIx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ASXrhPsa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F28E31A818;
-	Tue, 25 Nov 2025 13:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F2B142E83;
+	Tue, 25 Nov 2025 13:15:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764076082; cv=none; b=dzpilnIgrWLDbgwAoq4Wmhe+jxeCnnJy4w71zEMqkNGtnReNv0Q8HXeiqAdlG7vatsZQFXYE4+UevJFC2HoVPa8c72TymPc1FG10Seof/ziLcdcd0wrj1UmLmKgsAK+MhE5F4lrA0ItT3PgjFqCLVlPzsaAg+vmfizNQFgDPG+k=
+	t=1764076542; cv=none; b=bGmbhOoBfAj2uQIejehqfvrX/lueFpWmLGFWG14miZCHlweqfjUIXm6OVAEOkBXfLfn/czsIwc5FC9WLDUF60rOATaiK5RzzoCjzi9qOJ9dSs8Lp6Gzu7nShMe6iSZjx57HNwmsE6RLKZD6COPyeWAIWJfWkgdpltWr+iKzgpJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764076082; c=relaxed/simple;
-	bh=cu3v1uHTR2Quy+E6MlMjTio/PwnYn+7g3fpuhiZqoig=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CbB9enp1AP305kGcgf479ryzgQU6ZfCwCZpci0u/iSObfeH4L6gDhd7w5Ztp3r7RV4RGHY6c5q37oQXsOIOOx1iicb1n2ama2NsrZXPPbHxMGC9OoK6au24V/z2uWeKF1kx2DSaumO/TlR1yxzYJY0/z42UVu9nsgSAP+Et2kYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=UaIlOsIx; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1764076025;
-	bh=O8pPEWmwuC1hrOwz6iM27BqW82qWb9y2muB3MkxcZlU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UaIlOsIxeq218mJ4EjbDaHlhnI4fEXiIucnhWK8tl0CQFFKMiZRB1/iGCLy6W8c04
-	 dkVo4WVpS3kyTnQKy4XWTijZ17i85JDCIvWDUIjUrdCxuNPBF+JsR13W5tfPw+k2o8
-	 yFoVITTHEhU/bXcODFASowheKXBVJdoaLQQ+UhAcQF701UKmiEH6/XZg/7hvfSUrxm
-	 rPSbWgycfAbnH37hizFMdsj01P0aeF6dYvSA2/8RTRzanOnxCPtk1obmmk34ZMMwGE
-	 01TB112C6t3oG4xFVzdUmDn6Sp0ky3kkBUuH+CHnNdjvc75e4ZE7cVIxiWskJGLBSX
-	 H/gG/Rq5K8iTQ==
-Received: from [192.168.2.54] (unknown [98.97.63.250])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id E5401B221459;
-	Tue, 25 Nov 2025 14:07:02 +0100 (CET)
-Message-ID: <fb9ca9fd-1591-4e43-b055-b6ea8d55a42a@freeshell.de>
-Date: Tue, 25 Nov 2025 05:07:00 -0800
+	s=arc-20240116; t=1764076542; c=relaxed/simple;
+	bh=xyeAb8HK2fahKTFKKpRAL4i0ZxzwGkco4WoE+HqG/is=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=F9xsnvAhpEztGvpWk6DTcYihK3g9KYtxLdIfvs/Pwd593A2QSULAviltxadSG1sPMQYhs0ZMa2Tov6LkhL6Nqfom6tBLF6+XrXQHrJogfERtDE0x8U3YcVDzke1FJr6zvI9oWiyLtPcPpVvp7yU8mkjeyRfydEWimxrcFy17+KU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ASXrhPsa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D137FC4CEF1;
+	Tue, 25 Nov 2025 13:15:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764076541;
+	bh=xyeAb8HK2fahKTFKKpRAL4i0ZxzwGkco4WoE+HqG/is=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=ASXrhPsa3i6t+6CdTp8v5KWjJs1sf9rqFTuzxudbTrrAhu/q0W8ZGbjN1K20e+iDo
+	 205vJs3L9pkqFzjE1+HW7DTV7jrEdcDYd24SFyCVVnDTX/wNahnOd4Qk68Z00J8kXr
+	 j1EUasFL/9VUSInsbdCYWce15cb5xFhleXGzyHy86wq3/CwNrXdMhvVrbdbwIfnv9z
+	 hPmpOxAd9NYhjoyjco93WWyazGjSNWlNkszP0XtmRsjPMJ6z4t9rTrG8MsUBLPsd1q
+	 WHW9cg96yPY9fpYkNVEOZLuzrC8Qr29uF3tWpAYeailnWxDzxKVSoWaleM9Hqkusy3
+	 TBzWlxFPukOsg==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: Usama Arif <usamaarif642@gmail.com>
+Cc: Changyuan Lyu <changyuanl@google.com>,  akpm@linux-foundation.org,
+  linux-kernel@vger.kernel.org,  Mike Rapoport <rppt@kernel.org>,
+  anthony.yznaga@oracle.com,  arnd@arndb.de,  ashish.kalra@amd.com,
+  benh@kernel.crashing.org,  bp@alien8.de,  catalin.marinas@arm.com,
+  corbet@lwn.net,  dave.hansen@linux.intel.com,
+  devicetree@vger.kernel.org,  dwmw2@infradead.org,  ebiederm@xmission.com,
+  graf@amazon.com,  hpa@zytor.com,  jgowans@amazon.com,
+  kexec@lists.infradead.org,  krzk@kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-doc@vger.kernel.org,
+  linux-mm@kvack.org,  luto@kernel.org,  mark.rutland@arm.com,
+  mingo@redhat.com,  pasha.tatashin@soleen.com,  pbonzini@redhat.com,
+  peterz@infradead.org,  robh@kernel.org,  rostedt@goodmis.org,
+  saravanak@google.com,  skinsburskii@linux.microsoft.com,
+  tglx@linutronix.de,  thomas.lendacky@amd.com,  will@kernel.org,
+  x86@kernel.org,  Breno Leitao <leitao@debian.org>,  thevlad@meta.com
+Subject: Re: [PATCH v8 12/17] x86/e820: temporarily enable KHO scratch for
+ memory below 1M
+In-Reply-To: <a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com> (Usama Arif's
+	message of "Mon, 24 Nov 2025 19:24:58 +0000")
+References: <20250509074635.3187114-1-changyuanl@google.com>
+	<20250509074635.3187114-13-changyuanl@google.com>
+	<a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
+Date: Tue, 25 Nov 2025 14:15:34 +0100
+Message-ID: <mafs01plmxngp.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: riscv: starfive: add
- xunlong,orangepi-rv
-To: Icenowy Zheng <uwu@icenowy.me>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Michael Zhu <michael.zhu@starfivetech.com>,
- Drew Fustini <drew@beagleboard.org>, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-References: <20251123225059.49665-1-e@freeshell.de>
- <20251123225059.49665-2-e@freeshell.de>
- <20251124-free-bandicoot-of-skill-fa7d9a@kuoka>
- <20251124-state-campsite-3e7788a495c1@spud>
- <0e851ca0-1f56-437d-ae14-094c114d3b77@freeshell.de>
- <dc48fa76-0a08-4c9d-a3d7-724eb255aff8@kernel.org>
- <ff1f0e6b95150896136ab31ce13e0a2c7a3a5fe3.camel@icenowy.me>
- <489e9d44-fac6-4aa8-b094-ef20196e392b@kernel.org>
- <0a2104faee332ee143b5499c18aea3625971156c.camel@icenowy.me>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <0a2104faee332ee143b5499c18aea3625971156c.camel@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+
+On Mon, Nov 24 2025, Usama Arif wrote:
+
+> On 09/05/2025 08:46, Changyuan Lyu wrote:
+>> From: Alexander Graf <graf@amazon.com>
+>> 
+>> KHO kernels are special and use only scratch memory for memblock
+>> allocations, but memory below 1M is ignored by kernel after early boot
+>> and cannot be naturally marked as scratch.
+>> 
+>> To allow allocation of the real-mode trampoline and a few (if any) other
+>> very early allocations from below 1M forcibly mark the memory below 1M
+>> as scratch.
+>> 
+>> After real mode trampoline is allocated, clear that scratch marking.
+>> 
+>> Signed-off-by: Alexander Graf <graf@amazon.com>
+>> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+>> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+>> Co-developed-by: Changyuan Lyu <changyuanl@google.com>
+>> Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+>> Acked-by: Dave Hansen <dave.hansen@linux.intel.com>
+>> ---
+>>  arch/x86/kernel/e820.c   | 18 ++++++++++++++++++
+>>  arch/x86/realmode/init.c |  2 ++
+>>  2 files changed, 20 insertions(+)
+>> 
+>> diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
+>> index 9920122018a0b..c3acbd26408ba 100644
+>> --- a/arch/x86/kernel/e820.c
+>> +++ b/arch/x86/kernel/e820.c
+>> @@ -1299,6 +1299,24 @@ void __init e820__memblock_setup(void)
+>>  		memblock_add(entry->addr, entry->size);
+>>  	}
+>>  
+>> +	/*
+>> +	 * At this point memblock is only allowed to allocate from memory
+>> +	 * below 1M (aka ISA_END_ADDRESS) up until direct map is completely set
+>> +	 * up in init_mem_mapping().
+>> +	 *
+>> +	 * KHO kernels are special and use only scratch memory for memblock
+>> +	 * allocations, but memory below 1M is ignored by kernel after early
+>> +	 * boot and cannot be naturally marked as scratch.
+>> +	 *
+>> +	 * To allow allocation of the real-mode trampoline and a few (if any)
+>> +	 * other very early allocations from below 1M forcibly mark the memory
+>> +	 * below 1M as scratch.
+>> +	 *
+>> +	 * After real mode trampoline is allocated, we clear that scratch
+>> +	 * marking.
+>> +	 */
+>> +	memblock_mark_kho_scratch(0, SZ_1M);
+>> +
+>>  	/*
+>>  	 * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
+>>  	 * to even less without it.
+>> diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
+>> index f9bc444a3064d..9b9f4534086d2 100644
+>> --- a/arch/x86/realmode/init.c
+>> +++ b/arch/x86/realmode/init.c
+>> @@ -65,6 +65,8 @@ void __init reserve_real_mode(void)
+>>  	 * setup_arch().
+>>  	 */
+>>  	memblock_reserve(0, SZ_1M);
+>> +
+>> +	memblock_clear_kho_scratch(0, SZ_1M);
+>>  }
+>>  
+>>  static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
+>
+> Hello!
+>
+> I am working with Breno who reported that we are seeing the below warning at boot
+> when rolling out 6.16 in Meta fleet. It is difficult to reproduce on a single host
+> manually but we are seeing this several times a day inside the fleet.
+>
+>  20:16:33  ------------[ cut here ]------------
+>  20:16:33  WARNING: CPU: 0 PID: 0 at mm/memblock.c:668 memblock_add_range+0x316/0x330
+>  20:16:33  Modules linked in:
+>  20:16:33  CPU: 0 UID: 0 PID: 0 Comm: swapper Tainted: G S                  6.16.1-0_fbk0_0_gc0739ee5037a #1 NONE 
+>  20:16:33  Tainted: [S]=CPU_OUT_OF_SPEC
+>  20:16:33  RIP: 0010:memblock_add_range+0x316/0x330
+>  20:16:33  Code: ff ff ff 89 5c 24 08 41 ff c5 44 89 6c 24 10 48 63 74 24 08 48 63 54 24 10 e8 26 0c 00 00 e9 41 ff ff ff 0f 0b e9 af fd ff ff <0f> 0b e9 b7 fd ff ff 0f 0b 0f 0b cc cc cc cc cc cc cc cc cc cc cc
+>  20:16:33  RSP: 0000:ffffffff83403dd8 EFLAGS: 00010083 ORIG_RAX: 0000000000000000
+>  20:16:33  RAX: ffffffff8476ff90 RBX: 0000000000001c00 RCX: 0000000000000002
+>  20:16:33  RDX: 00000000ffffffff RSI: 0000000000000000 RDI: ffffffff83bad4d8
+>  20:16:33  RBP: 000000000009f000 R08: 0000000000000020 R09: 8000000000097101
+>  20:16:33  R10: ffffffffff2004b0 R11: 203a6d6f646e6172 R12: 000000000009ec00
+>  20:16:33  R13: 0000000000000002 R14: 0000000000100000 R15: 000000000009d000
+>  20:16:33  FS:  0000000000000000(0000) GS:0000000000000000(0000) knlGS:0000000000000000
+>  20:16:33  CR2: ffff888065413ff8 CR3: 00000000663b7000 CR4: 00000000000000b0
+>  20:16:33  Call Trace:
+>  20:16:33   <TASK>
+>  20:16:33   ? __memblock_reserve+0x75/0x80
+>  20:16:33   ? setup_arch+0x30f/0xb10
+>  20:16:33   ? start_kernel+0x58/0x960
+>  20:16:33   ? x86_64_start_reservations+0x20/0x20
+>  20:16:33   ? x86_64_start_kernel+0x13d/0x140
+>  20:16:33   ? common_startup_64+0x13e/0x140
+>  20:16:33   </TASK>
+>  20:16:33  ---[ end trace 0000000000000000 ]--- 
+>
+>
+> Rolling out with memblock=debug is not really an option in a large scale fleet due to the
+> time added to boot. But I did try on one of the hosts (without reproducing the issue) and I see:
+>
+> [    0.000616]  memory.cnt  = 0x6
+> [    0.000617]  memory[0x0]	[0x0000000000001000-0x000000000009bfff], 0x000000000009b000 bytes flags: 0x40
+> [    0.000620]  memory[0x1]	[0x000000000009f000-0x000000000009ffff], 0x0000000000001000 bytes flags: 0x40
+> [    0.000621]  memory[0x2]	[0x0000000000100000-0x000000005ed09fff], 0x000000005ec0a000 bytes flags: 0x0
+> ...
+>
+> The 0x40 (MEMBLOCK_KHO_SCRATCH) is coming from memblock_mark_kho_scratch in e820__memblock_setup. I believe this
+> should be under ifdef like the diff at the end? (Happy to send this as a patch for review if it makes sense).
+> We have KEXEC_HANDOVER disabled in our defconfig, therefore MEMBLOCK_KHO_SCRATCH shouldnt be selected and
+> we shouldnt have any MEMBLOCK_KHO_SCRATCH type regions in our memblock reservations.
+>
+> The other thing I did was insert a while(1) just before the warning and inspected the registers in qemu.
+> R14 held the base register, and R15 held the size at that point.
+> In the warning R14 is 0x100000 meaning that someone is reserving a region with a different flag to MEMBLOCK_NONE
+> at the boundary of MEMBLOCK_KHO_SCRATCH.
+
+I don't get this... The WARN_ON() is only triggered when the regions
+overlap. Here, there should be no overlap, since the scratch region
+should end at 0x100000 (SZ_1M) and the new region starts at 0x100000
+(SZ_1M).
+
+Anyway, you do indeed point at a bug. memblock_mark_kho_scratch() should
+only be called on a KHO boot, not unconditionally. So even with
+CONFIG_MEMBLOCK_KHO_SCRATCH enabled, this should only be called on a KHO
+boot, not every time.
+
+I think the below diff should fix the warning for you by making sure the
+scratch areas are not present on non-KHO boot. I still don't know why
+you hit the warning in the first place though. If you'd be willing to
+dig deeper into that, it would be great.
+
+Can you give the below a try and if it fixes the problem for you I can
+send it on the list.
+
+diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
+index c3acbd26408ba..0a34dc011bf91 100644
+--- a/arch/x86/kernel/e820.c
++++ b/arch/x86/kernel/e820.c
+@@ -16,6 +16,7 @@
+ #include <linux/firmware-map.h>
+ #include <linux/sort.h>
+ #include <linux/memory_hotplug.h>
++#include <linux/kexec_handover.h>
+ 
+ #include <asm/e820/api.h>
+ #include <asm/setup.h>
+@@ -1315,7 +1316,8 @@ void __init e820__memblock_setup(void)
+ 	 * After real mode trampoline is allocated, we clear that scratch
+ 	 * marking.
+ 	 */
+-	memblock_mark_kho_scratch(0, SZ_1M);
++	if (is_kho_boot())
++		memblock_mark_kho_scratch(0, SZ_1M);
+ 
+ 	/*
+ 	 * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
+diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
+index 88be32026768c..4e9b4dff17216 100644
+--- a/arch/x86/realmode/init.c
++++ b/arch/x86/realmode/init.c
+@@ -4,6 +4,7 @@
+ #include <linux/memblock.h>
+ #include <linux/cc_platform.h>
+ #include <linux/pgtable.h>
++#include <linux/kexec_handover.h>
+ 
+ #include <asm/set_memory.h>
+ #include <asm/realmode.h>
+@@ -67,7 +68,8 @@ void __init reserve_real_mode(void)
+ 	 */
+ 	memblock_reserve(0, SZ_1M);
+ 
+-	memblock_clear_kho_scratch(0, SZ_1M);
++	if (is_kho_boot())
++		memblock_clear_kho_scratch(0, SZ_1M);
+ }
+ 
+ static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
 
 
-
-On 11/25/25 00:01, Icenowy Zheng wrote:
-> 在 2025-11-25星期二的 08:48 +0100，Krzysztof Kozlowski写道：
->> On 25/11/2025 08:33, Icenowy Zheng wrote:
->>> 在 2025-11-25星期二的 08:28 +0100，Krzysztof Kozlowski写道：
->>>> On 24/11/2025 22:59, E Shattow wrote:
->>>>>
->>>>> On 11/24/25 05:22, Conor Dooley wrote:
->>>>>> On Mon, Nov 24, 2025 at 08:28:10AM +0100, Krzysztof Kozlowski
->>>>>> wrote:
->>>>>>> On Sun, Nov 23, 2025 at 02:50:44PM -0800, E Shattow wrote:
->>>>>>>> From: Icenowy Zheng <uwu@icenowy.me>
->>>>>>>>
->>>>>>>> Add "xunlong,orangepi-rv" as a StarFive JH7110 SoC-based
->>>>>>>> board.
->>>>>>>>
->>>>>>>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
->>>>>>>> Signed-off-by: E Shattow <e@freeshell.de>
->>>>>>>
->>>>>>> <form letter>
->>>>>>> This is a friendly reminder during the review process.
->>>>>>>
->>>>>>> It looks like you received a tag and forgot to add it.
->>>>>>
->>>>>> It's from me, don't resubmit just to add it since it'll be me
->>>>>> applying
->>>>>> anyway.
->>>>>>
->>>>>
->>>>> Hi Conor,
->>>>>
->>>>> Okay. Yes I'd dropped the tag since the commit message is
->>>>> appreciably
->>>>> different, and you would be handling it again anyways. Thanks!
->>>>> And
->>>>> thank
->>>>> you Krzysztof for the reminder -E
->>>>
->>>>
->>>> And where did you explain that you dropped the tag because of
->>>> that?
->>>> Please read the form letter carefully.
->>>
->>> Well I think there's no clear definition of "the patch has changed
->>> substantially" here.
->>>
->>> E may think for this such-short patch, the commit message weighs a
->>> lot
->>> and the change to it is significant to the patch (e.g. making the
->>> patch
->>> not clear enough).
->>
->> You still did not bother to read what we expect. I do not discuss if
->> this changed significantly or not, although it is obvious that it did
->> not change and tag should have been retained.
->>
->> Look again:
->> <QUOTE>
->> Please read:
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->> </QUOTE>
->>
->> Where did you explain that?
-> 
-> Sure, I agree that explaination of this should be delivered.
-> 
->>
->>
->> Best regards,
->> Krzysztof
-> 
-
-Krzysztof,
-
-The submitting-patches document does not support your assertion in this
-situation. I evidently have a different understanding of than you, as
-when I read it before sending the series I did arrive at the action of:
-
-1. Acked-by is less formal and so it is a matter of opinion and
-judgement whether to retain it or not. I choose not to here due to
-changes visible in the commit log (the commit messages and titles). I
-would let Conor decide if they will acknowledge the revised series
-instead of making that decision for them.
-
-2. I am not required to mention the drop of any Acked-by tag in the
-cover letter for this situation. Conor is handling this series so I do
-need to participate on the mailing list when there's a question or
-comment about picking up the lack of Acked-by.
-
-I am in the understanding at the exchange between Conor and I that this
-concern of yours will be resolved without my input depending on the
-review from Emil. Let us know what/if more specific and actionable needs
-done and whom by you expect it to be done.
-
-Thank you,
-
--E
+-- 
+Regards,
+Pratyush Yadav
 
