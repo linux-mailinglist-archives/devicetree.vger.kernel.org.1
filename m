@@ -1,351 +1,349 @@
-Return-Path: <devicetree+bounces-241929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150ADC84777
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:26:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F9AC847FE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:32:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01D9D3B490A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:23:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88E3E3A2DFB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:31:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB7E2F0C7E;
-	Tue, 25 Nov 2025 10:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CE02F7460;
+	Tue, 25 Nov 2025 10:31:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="fM+UNel0"
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="NLwgKJhs";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="oxtcGT9p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010002.outbound.protection.outlook.com [52.101.46.2])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B4F22EE274;
-	Tue, 25 Nov 2025 10:22:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF3EF30F526;
+	Tue, 25 Nov 2025 10:31:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.164
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764066151; cv=fail; b=vAdjZ2HMrzX5aCwcSu5Gm2Z2DVhXr0dp59K82lF0pAI5NCWLTUTbBXSxxTL0uLWAhg8oN80/8CynXYuBE58/mVThJbnTQr4kQ+fvvokgfuxyPmxl0Q92sSkWGZXlcXgWVsBjMu6n4Gwaf5VO/Ctq4/bJSm7qZ7SucfUmQ8Hcn7w=
+	t=1764066715; cv=pass; b=c7ktBIjvU7orjAumANiTY5jinII4tDHZ5oMgnPXjZM9e9DeVEl1FR6PFLDzTux4bC9pl1P8s+UxCDh+LWPPsVTwzdsyCQU1shireTHTcMMEXj/ycB+oO6cDsiK6wfXfNja4aeNfji4vGldwU+25ItqFL2lfVsa51VooKPBRiI5g=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764066151; c=relaxed/simple;
-	bh=1REn0KWkJ7V51ah0+RwlY1mKDrNCzQcd57rz3v5LLgs=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=IdQkOSuucuWuzC/BFu/s9rp0bgCnUCLtWLad8fa7YHV+Q0wSmi5PFdx8llHIOvAp7EXWdhCzCrfbtivFWFcz3eCtpthnDP+lVYIPihhVxYRUoSDaYzv18DYcwbQATljLnWxFehoqWq4wF1BRrs4r55YhXV5pl5Fcmap9MLgivIU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=fM+UNel0; arc=fail smtp.client-ip=52.101.46.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UfK1skB5yNfqsWGsXPwFSEqc4hbw/RU6NxRGPVK4rfYUchhLpToE1tJrSfjMK7V+qEbQu5qzXsOWV6ZULpiSHemEVPFQBWKRHCtbWUw3uBz9YZEXOTyCtYDfYjHPK/Oly35pyPxP3Mb+hJUh3nW3o0Ukv+UTf3FytbhbzxJ2qYEQyaNG7Wja0hjC7A2RbOXsRs0KT+ybioP3j1A3TtVyYrG8UUAhRwurlhFEdM6aQSNWAb+KTxjE8iPloChu93QsMspsqPovJQOKkqQfFFlpD9YqhN/DeozQbHWwx9T8WPF3DKLrrNilTx9/OsUM4eIq7JJnjW4gpuSCFtAESFnsGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CS6o1u1wC5bqFFFDPZXzfyazPhIrTWgu3fLsrWbgsDg=;
- b=dtjXq2v9l+g3a03Tvo4Ktre13E1ulNyD2ZGiNX1Ym/L2FW2o/i1HI/09dRaLJEzsWHgHTQiCqpw6WwNHVDET1Af9aydSuS36usqcdt+qLKYGpnOLx5sk68YreDIjJdwucjtJ49DwS8SQzmQMgXkwqaTH5FMX/aIceED/ivzg6lzuM5B0HRqGejx60CCddI9sVLHNevw9zGipNqzA906XoJkUnofyVJmGFxHKiHtKopOcauTIOkRoOdY09OqF85LapS+1gwVAkC6KQwk25JU7c2Hj+s//rO39Ub5W7Q+VudRfDbrWvAXch779oHBaBeh12Fi+IX11jJ1G10jpnsPSeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CS6o1u1wC5bqFFFDPZXzfyazPhIrTWgu3fLsrWbgsDg=;
- b=fM+UNel0dVU0wEPTjYUOuXy0jCGAHiBKCnUg6M2BFbXNeF2mNt1RO4L/JO986yWeIVUxfeRELEkki7aixEbjO9kOWg6x0urlDVRbmY6KwqDtVr5jKZzHYWfG/QRWiDpiqdnullmnAYidv6TuLQCshA1ub61oGAqpoVtyTOP/P/ofTm3UWbjPsZSAKx/RmRs5O4/Lylg+odH2xlHQ7VJiu+fYFoMN2FYrCMX+GK7nzizdTPQ36XtgsZhuPBNPYYGXwsyj8sTdXLrROboS63yXqjN3X714IICQXgw41fbOsyx43JbypyxlpBGiSdxJsnmwSjTxszlgjGM+4GLJJ4w/eA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
- by SN7PR12MB8436.namprd12.prod.outlook.com (2603:10b6:806:2e3::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Tue, 25 Nov
- 2025 10:22:26 +0000
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9%7]) with mapi id 15.20.9343.016; Tue, 25 Nov 2025
- 10:22:26 +0000
-Message-ID: <dff3a962-82dd-4aac-ae11-69f0e95ba04d@nvidia.com>
-Date: Tue, 25 Nov 2025 10:22:20 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 3/3] arm64: dts: nvidia: Add nodes for CMDQV
-To: Ashish Mhetre <amhetre@nvidia.com>, will@kernel.org,
- robin.murphy@arm.com, joro@8bytes.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nicolinc@nvidia.com
-Cc: thierry.reding@gmail.com, vdumpa@nvidia.com, jgg@ziepe.ca,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20251125071659.3048659-1-amhetre@nvidia.com>
- <20251125071659.3048659-4-amhetre@nvidia.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <20251125071659.3048659-4-amhetre@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0397.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:189::6) To SJ2PR12MB8784.namprd12.prod.outlook.com
- (2603:10b6:a03:4d0::11)
+	s=arc-20240116; t=1764066715; c=relaxed/simple;
+	bh=ci29UazI1lhJ06hRQOi/pXDn1T/cUfvDF30uEVyO5pU=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=sRDMOzw8qh2GJph+mO8SOjH24D2dkPZZLbORwYfJjzHU60kFUYTUuISMgWuVs1q9OWkhRBqUGjQZzv0OV52kc9LpPFWWbXzu00Cn6lQx6bX3zWrQwj3Q8A3jY/gsMDyEBiYXd15L7VLRchfztRCD6uTg+FJAaDt65Q9N/Hgk2XA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=NLwgKJhs; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=oxtcGT9p; arc=pass smtp.client-ip=81.169.146.164
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
+ARC-Seal: i=1; a=rsa-sha256; t=1764066342; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=NzivWj6Wl1NM1bZP0RGHpGW+8z5YfYoZZQB6SZ7oE0K379GniDRgLThnVnrKx041yX
+    Rrr7dL+XkCrKJTh0o60YvsuVoKT7Uh7n3rREe9+68nUQy9S5g+2OoiIb6iBTvfWW/ZDO
+    fIEZcRanRPFsMd+6CojEwNrjLylNFN0dHXHaIiBVqJHuoG0erVM6d8EIrsjy/EXFO/3t
+    Nk0/pIr7uEJD1574+egQP950fleFa45S+H9NqGn6FtSGl4H6uLndn49F68NbaDG1aUKY
+    LnMvbnr9MTnxmYThtRMkwU7jN4b5xKAKMJfY2SKF72ThRmxjsOXKACM5i1yiTB21VllR
+    YLjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1764066342;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=ci29UazI1lhJ06hRQOi/pXDn1T/cUfvDF30uEVyO5pU=;
+    b=DUZS90uDQzuXhzfDxKl7aLKA3SD/9FN8JgYePxbDvXNBvInnO0EA0uK+I/U8JLJQ85
+    QGEKw5QvyLAjwMjszBDxIeAxyuXmkqODeBIfy/2NDr2c0g2QyqkZr6Lj7TiTIWMbzwzh
+    kfQ3TFtvhAShsRjZ9k1yiuRBeU9Q59M2W8mTDqtt674+elSuXvjyG/VJk2YLVoCUG9u7
+    TDfy1FKCJDCCIIiXcOT4GoXjB/8gMv5ayEeqVp+A2iBGrZeN5zL2pom0xCBX+lDNq/w4
+    E/IkIUuZiGUr55vimV0zmAdfPaS/4mDfPGWfW1DeVVRwj3G7uEGdRcqIbJxgMKM0Nurd
+    U9Lw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1764066342;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=ci29UazI1lhJ06hRQOi/pXDn1T/cUfvDF30uEVyO5pU=;
+    b=NLwgKJhseBcqf+qUCcNj2+koSRExJGn67iUNx8oZea86hMBXpgTWZDKq+hlNdeo/gV
+    o7wD1yY5AWz/C3RsYz2hqQZZEEsYgy1uxQnCyebl0ji7Q4F7fGIaXOeCjEm2qvyrPs7/
+    PFhRGgDV6t8TEwTjkxNxxpt/dGMRDHDe47Q5iHIgbERY7WPKTCRd3ZMPryIBgHQrQ0iy
+    fh7TMnj8FjEOtPrf5G4DN8w3G6nUyrwAPjKRONUBk39q0C994tE2aWE7tL/lbxUsuD1K
+    FALSXPW4eiXUxz4NbkQHZ0/GajNrgEAqMXAiU+VPN3N73rnqcMc+KkyPJ+5fU42FmEQ5
+    M5fw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1764066342;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=ci29UazI1lhJ06hRQOi/pXDn1T/cUfvDF30uEVyO5pU=;
+    b=oxtcGT9pznqCf1GAkAo8NBELt2UFYQtp5VANAM5oSapF8U4k5ISG7tnH5rFudzvipf
+    ykK//xuRAvGRwjHCB/BQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yfzsZ"
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 54.0.0 DYNA|AUTH)
+    with ESMTPSA id Qc14a81APAPZMQu
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Tue, 25 Nov 2025 11:25:35 +0100 (CET)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|SN7PR12MB8436:EE_
-X-MS-Office365-Filtering-Correlation-Id: fbe35a16-5e38-41ee-3417-08de2c0c87d8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TitlUnRKZGoxTmNDNkd1eUpnTXlkMWdEenl6aU5RMThrTnNPamJ4ZENMMnk5?=
- =?utf-8?B?akRmSlorckhGYVljbFE4QytrcFJEdjN0M3FRai9qRmNhUjVDenBnMDE4MkZx?=
- =?utf-8?B?VjFGQ3A1Q0UxMy9CT1lHcXJ3dkk3TlZjYUtZaG4yYitiT0pHMmkyeUZMaStY?=
- =?utf-8?B?WW00TjNHQ3Z6LzJhT3JYQ2NTem5hQzlOL1I2Vk81eU45R2VrU2l5TUxhaGVK?=
- =?utf-8?B?c0pPNE5iMzVBa1pwcVZRUTJ6bU4rMUFsRGlXanFTZ2k0SlN1cEV3ZTRFb201?=
- =?utf-8?B?ZHBlVEFIaGUwUGpJby9RWCttMmJKSjU1N21rSkEzWHZhT0o4QVRHODRPZVhF?=
- =?utf-8?B?K0cyUEluQVlidlZMUjlkM3NSS1hUbHdiNkdIQVMrK29RSmxzWjM4TGxBZFZZ?=
- =?utf-8?B?bSsvcUpaYUFxV2p3dGlSOVh2dGlHZ29CWUFHbmhXWFdHR2c0WFhpeEpKd2VE?=
- =?utf-8?B?WTM4dnl4SlpEamwxM2ljaTFjSS93b3N2MHo4V0NLdU9rVG1ZRENJQ1R0blVU?=
- =?utf-8?B?NXZkTkZFaFBVMkpRUHFFSGZ5SHVJd1RtemZGaVJNZ1VWZHp4b20vYXYvMElD?=
- =?utf-8?B?SG5zeXo0RUZlcmJtcFFRMTRSWFdldFl2UGdzamdBQmtCQ1FUS3A2cmUxeE0y?=
- =?utf-8?B?RmswTW9UQlRCN3Q4aklGdjhia0kya3F0bmprL3pKMy9YMmxBdEVsSDBwUDd5?=
- =?utf-8?B?RGgxakNEVmVBTHhnOFpsdyswQks0UU0raW9qSktwR0s0N2t4SDNmUXhEM0N1?=
- =?utf-8?B?VStDMTJDQUlua3ZPUFFEcVNEUnBxSGNPaTdNMTlRSkpGL00wbHR3cWZuZ1Ru?=
- =?utf-8?B?enRGM0V4Q01wR0swUVEvVElLZHNXSm91cVN4VHVUYmtsdTU3bzkvZXRoQ3I4?=
- =?utf-8?B?TzVwM2xjWTZwR3dIM0orN01obTRldDhBZnNRUmQzK0s3NytNbEJTNHZsYXpw?=
- =?utf-8?B?aGhrM2VnR0d1MGxNRUMxT3FHTFFuVUdzbnJBU2pmNzFBb3haNG1XSUl0OUNI?=
- =?utf-8?B?Q1VhcW5FVy8zQXdvQnN6Z3lmdWY1MHdiOVE2ZU5qakR0VTZhNUc3Y0FRVFhh?=
- =?utf-8?B?bU5CaGpzYk5GczdualNla09tQlkzNE9qV3ZHcmltN3JoU3pLMXZKdXdkQUZz?=
- =?utf-8?B?Zi9adDQ4OUtjenQ1blBQSG1JM2pSVk9kMnZqSk5mUUVKZ1RBODU4eW50M3My?=
- =?utf-8?B?MnMrTFBvU1V2VytteWFBUnYxcHBMMmpIeG90bVo4SlVmdmFkRFJzSEdEbW5C?=
- =?utf-8?B?K0tZNHZtVnJYcUdVSkorWG4xL3dPdkR3dy9hQ3VkSVlLVVBiUkloZ0htU1BK?=
- =?utf-8?B?ZHhhZHFoWm5rcDVrWXB0cHVkQjNnL3o2aVdpd1dxNkdMeUxBNTNwNk5OZEts?=
- =?utf-8?B?aVJEcDhHQmJhVENsa2ppTS9UZmJ6T3VzS0dnUkVCN0t2bDZQS2t3QTYwSDd4?=
- =?utf-8?B?Tm9kbWttczRRWVIreVlJOUErRysyMnhLYXk0TVh4ZmhmcmdIbHo1VElrQkc3?=
- =?utf-8?B?a0ozM0JHdC96Rm1lYUF3ZGw5THhheFB0L0VzZ215Wm02S1FzTEI5N2x0UGUv?=
- =?utf-8?B?c2VDdGYwbkRVYkVWaHptemlMcDk3UWQ2eGhwUzR2NjdmL01PcGJvTEpXTXdD?=
- =?utf-8?B?Tmw0dHNlQ2V2ZTNWKzFTKy9VMnU2QnFWK1FDSWpoZVNOL251ZU44b05zWnpD?=
- =?utf-8?B?SUhIMUpVdmhYZ0dmQlFmWTdseGxGdVI1ZkJ3aE9SK3FEZEN1VnVOMEZXYkh0?=
- =?utf-8?B?cTVsUU8xOVFqVXZqZFZOZGtmUGduVGgxL080WTRuTDJZUDgzOFJ0QkMrZzYy?=
- =?utf-8?B?MDFzQ3RDb1VKcCtKU0FXcDdwdzl3b1dXbmFVcDA3YmtRNW1sUGxlY25VcXU2?=
- =?utf-8?B?cE4wZnU0MU1GTDZkQXBPVHkrSXBETnp2SmpkeVNVU0FzUkJSSTN5U1JmNGtR?=
- =?utf-8?Q?QmG7PnKDNeAhc+nAyTQPcqNahAiKjS8l?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?S3ROaGlDT3RuV1JzNHVOSmVod0tEajRRWG9PVUp6emJHZU5sdWpINkIrc2Rs?=
- =?utf-8?B?VkVDaVUrbDNpWG5FTFZmbDZYbmhBSi9iRU0zSkcxZzE2S05zajZEWVRNcDRM?=
- =?utf-8?B?VGxlVCtaTUJkNVh6dGFJMHlWem1EWGRaWHVKaEpEcU9QRVJkcDRNOGNJcUNZ?=
- =?utf-8?B?QVl6aXJXYTd0SVJaU1hCSmFHSDJXSTZoeXZQVHk2RmdiYXFSY3JYZGVyTldK?=
- =?utf-8?B?Zm5MamJJR1loWFU0akVabzB2US9HWEgxT1NTSVliUlk1V1VMUnBsYjcwbDNH?=
- =?utf-8?B?Q2JlbmlWRHNGQW9uU1Q5b1JmbTRGQ3BNQjVCb1dlSG5SdEVHWm9aNXNGZk56?=
- =?utf-8?B?N0FkSmVDcno0QzByV0hKL0ZTTWM3VldQdmk3SGxIYzRKQmZWR2N6czBHRUdD?=
- =?utf-8?B?RlNCdEFvTTZ1RVowTUdmbWlCQjdZZWRUTFhUbUdhN0xuKzl6R2xFNUIwM25L?=
- =?utf-8?B?Y0VqSFdQNnhvZjZuZytWNTVyd0p4WW5iQXhQbFliZ0hrMTBLZzNYWldnZExN?=
- =?utf-8?B?dm9uT3ZoQUQ2YmV1cXFRajJjY1NKa2xlS1BOSDc1UG93YVJMWVpqS0ZlYlpE?=
- =?utf-8?B?NzZKZXhhWkNVaitlN0g4VWpRc1hyOEVDWk5MK1diZHh4eWJ5YmdRZmFZZXVz?=
- =?utf-8?B?OTNQMzRvUjJqbENCaDR6YWZGWXlzNjVTbjlWSk9xUEFoYmdBU2puakloQ1NO?=
- =?utf-8?B?WjhJdUpUcjg4V0pHc0hxZmVlekFEMWxNalVwSjU4VC9pdmN3dlRJYmVORmc1?=
- =?utf-8?B?SVI4MjA4VitDQjBtMmg3TE04Um1NRGpsR2xldDU3K0pPdGxad1dCUXVXNWFO?=
- =?utf-8?B?RXFXV0QvczF2cG1uK0QyRUd0dFZHRnBpRGI1UnpYY2dWNURSTEJWM0pSR1dw?=
- =?utf-8?B?d1pDNzQvNUxVUllHcFdaS2lUZ2pzMFBlYysvVmF4c2NjSytGNWpKWGNad1Bh?=
- =?utf-8?B?ZXpPU0ovWWJCVHdseVE0TTZKcmlwMHk1dVRhTW14cHVkOGY2STYzaldvaEQw?=
- =?utf-8?B?SzBnckFMVDVoUVBRaDR4UlFvOVBYTTBIR0tndUJLSENET3JHY0Y2UWdmMEQ2?=
- =?utf-8?B?OWdQTWZKMXV4ZVVQQldUeTV1Z1paUVJCNjF1UE12M3QzUjZPYkRTUFV3RmNy?=
- =?utf-8?B?SjM4bGJha0U3eFBUYXVKdEQya3RsekVzUkk0czNzRitqcVVDZHRhZHlsZDA4?=
- =?utf-8?B?Q1U4enFWbU9hYzlHUmtIYXByQVUrYW10K2t5ZS8yTlIvMGlQZW9zeEVkVWpM?=
- =?utf-8?B?WGpYL1huZk0weFdnaEF4Ym9lWVIzMUlnNXg5NjJaNkI1dm9DYVNlbzhoOHF2?=
- =?utf-8?B?QmJRUklEOURzQStZendmTUVrZjFQcUZBd09nSGtmbTQ2TUdWVnJ5OWY1RXhl?=
- =?utf-8?B?UHcvb3ZVOG41NXR3VWlIOWhMMURFWjJrYmxZbVNpbTVwcThrVGNPSHVXd09l?=
- =?utf-8?B?eU5aTDB0ZDdLZ0NWQUU0SDBZdEhRbmhVRjErMDIxYzhuYUd5K1F1WkkvWGla?=
- =?utf-8?B?eGc5TTA4alJHM2xINzladFNoSnRZZWRqRDBlak8vQWx0SmxHRy9PU1dLTFE3?=
- =?utf-8?B?WlRzS2pNTEVmSGNrTUFJcVB4TjF0S3NQc1FqNDZVamdwSG90V0R3REFEUkR0?=
- =?utf-8?B?TXB4NHAwSmNkQnMvWnE0OUNuUGUxREI2MnVIUW9PV1hhckZxY2tMSXRUaVRt?=
- =?utf-8?B?TmRheThHd1ZiZ0VmWldXSWx1QkVFSFJCUnlGWWpIYnNIZU4zcllCUld3SGNs?=
- =?utf-8?B?VVhHdWp2MURDcHRGNkE1R21USzRkaCtCSmtkSER1WU9LRFpSMVFUemNoTmxw?=
- =?utf-8?B?c0Z2MnhKYnlNZWZMbkZ3SlRpak4vZmtMcG1zZUV4VWU3ak1kcGlYaExMa0th?=
- =?utf-8?B?QXVhN0NXdVRsZi9wRE54UmZ1SkJ3cXprQkhRQmV6eFV4VHIxazJndi82VFJp?=
- =?utf-8?B?VVNnZFdvbXBjdUh0YVhHdTlGUll5cE1vSTY2S2pLTzEvY1BSTTl2Q21oMFUy?=
- =?utf-8?B?aExoUWJSVk95OTBzVCsvb1dIbERyclhHbFpPdGFGdXQyaGViYjB2QUdHcnBj?=
- =?utf-8?B?bFpzOHM4TlBGWTUxcjU2QkZoQ1ZjbmUxY2lFYThaOHZmZzFkYUZwUzBUOFRz?=
- =?utf-8?B?MzJRUmJhWU1tVXE3MjYwOHNKV1ZFUHR3TTBYYXhocTdyV3o2bGVQc2djSXZu?=
- =?utf-8?B?NVE9PQ==?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fbe35a16-5e38-41ee-3417-08de2c0c87d8
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 10:22:26.4796
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JxJoKyQwt7ouPbNAFfbDS+zNvTDIOMOULa2hdEeH5IiaunvbHL09cKG0lgkrMMD/hcpSwbM53a6po4sRsMBpEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8436
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.3\))
+Subject: Re: [PATCH v4 0/6] Add support for the LTM8054 voltage regulator
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <3021060.e9J7NaK4W3@fw-rgant>
+Date: Tue, 25 Nov 2025 11:25:24 +0100
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ =?utf-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Peter Rosin <peda@axentia.se>,
+ Mariel Tinaco <Mariel.Tinaco@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Kevin Tsai <ktsai@capellamicro.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Eugen Hristev <eugen.hristev@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>,
+ Support Opensource <support.opensource@diasemi.com>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Iskren Chernev <me@iskren.info>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Matheus Castello <matheus@castello.eng.br>,
+ Saravanan Sekar <sravanhome@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Casey Connolly <casey.connolly@linaro.org>,
+ =?utf-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+ Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>,
+ Amit Kucheria <amitk@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Dixit Parmar <dixitparmar19@gmail.com>,
+ linux-hwmon@vger.kernel.org,
+ linux-input@vger.kernel.org,
+ linux-phy@lists.infradead.org,
+ linux-pm@vger.kernel.org,
+ linux-mips@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <0E900830-E248-4F0F-A048-075EAF1D2440@goldelico.com>
+References: <20251124-ltm8054-driver-v4-0-107a8a814abe@bootlin.com>
+ <4053840.MHq7AAxBmi@fw-rgant>
+ <732D3F12-0361-4800-8981-EF629B4C491F@goldelico.com>
+ <3021060.e9J7NaK4W3@fw-rgant>
+To: Romain Gantois <romain.gantois@bootlin.com>
+X-Mailer: Apple Mail (2.3826.700.81.1.3)
+
+Hi,
 
 
+> Am 25.11.2025 um 09:41 schrieb Romain Gantois =
+<romain.gantois@bootlin.com>:
+>=20
+>=20
+> This is planned support for a voltage regulator chip.
 
-On 25/11/2025 07:16, Ashish Mhetre wrote:
-> The Command Queue Virtualization (CMDQV) hardware is part of the
-> SMMUv3 implementation on NVIDIA Tegra SoCs. It assists in
-> virtualizing the command queue for the SMMU.
-> 
-> Update SMMU compatible strings to use nvidia,tegra264-smmu to enable
-> CMDQV support. Add device tree nodes for the CMDQV hardware and enable
-> them on the tegra264-p3834 platform where SMMUs are enabled. Each SMMU
-> instance is paired with its corresponding CMDQV instance via the
-> nvidia,cmdqv property.
-> 
-> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
-> ---
->   .../arm64/boot/dts/nvidia/tegra264-p3834.dtsi |  8 +++
->   arch/arm64/boot/dts/nvidia/tegra264.dtsi      | 55 +++++++++++++++++--
->   2 files changed, 58 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi b/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
-> index 06795c82427a..375d122b92fa 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
-> @@ -26,5 +26,13 @@ iommu@5000000 {
->   		iommu@6000000 {
->   			status = "okay";
->   		};
-> +
-> +		cmdqv@5200000 {
-> +			status = "okay";
-> +		};
 
-This needs to be ordered in the file according to its address.
+Well, but one which is not by itself programmable. So IMHO, it does not =
+support that chip,
+but the circuit it is used in.
 
-> +
-> +		cmdqv@6200000 {
-> +			status = "okay";
-> +		};
->   	};
->   };
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra264.dtsi b/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-> index f137565da804..d8287b95221e 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-> @@ -3361,7 +3361,7 @@ bus@8100000000 {
->   			 <0x02 0x00000000 0xd0 0x00000000 0x08 0x80000000>; /* ECAM, prefetchable memory, I/O */
->   
->   		smmu1: iommu@5000000 {
-> -			compatible = "arm,smmu-v3";
-> +			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
->   			reg = <0x00 0x5000000 0x0 0x200000>;
->   			interrupts = <GIC_SPI 12 IRQ_TYPE_EDGE_RISING>,
->   				     <GIC_SPI 13 IRQ_TYPE_EDGE_RISING>;
-> @@ -3370,10 +3370,11 @@ smmu1: iommu@5000000 {
->   
->   			#iommu-cells = <1>;
->   			dma-coherent;
-> +			nvidia,cmdqv = <&cmdqv1>;
->   		};
->   
->   		smmu2: iommu@6000000 {
-> -			compatible = "arm,smmu-v3";
-> +			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
->   			reg = <0x00 0x6000000 0x0 0x200000>;
->   			interrupts = <GIC_SPI 1 IRQ_TYPE_EDGE_RISING>,
->   				     <GIC_SPI 2 IRQ_TYPE_EDGE_RISING>;
-> @@ -3382,6 +3383,23 @@ smmu2: iommu@6000000 {
->   
->   			#iommu-cells = <1>;
->   			dma-coherent;
-> +			nvidia,cmdqv = <&cmdqv2>;
-> +		};
-> +
-> +		cmdqv1: cmdqv@5200000 {
+>=20
+> > Are you looking for a virtual "glue" driver to logically combine =
+several low
+> > level functions?
+> >=20
+>=20
+> I'm looking for a clean userspace abstraction for this component, the =
+low-
+> level functions in this case are those of a voltage regulator.
 
-Same here. Please order according to the address.
+As far as I understood it has
+- constant voltage
+- current can be limited
+- it can be turned on/off
 
-> +			compatible = "nvidia,tegra264-cmdqv";
-> +			status = "disabled";
-> +
-> +			reg = <0x00 0x5200000 0x0 0x830000>;
-> +			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		cmdqv2: cmdqv@6200000 {
-> +			compatible = "nvidia,tegra264-cmdqv";
-> +			status = "disabled";
-> +
-> +			reg = <0x00 0x6200000 0x0 0x830000>;
-> +			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->   		};
->   
->   		mc: memory-controller@8020000 {
-> @@ -3437,7 +3455,7 @@ emc: external-memory-controller@8800000 {
->   		};
->   
->   		smmu0: iommu@a000000 {
-> -			compatible = "arm,smmu-v3";
-> +			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
->   			reg = <0x00 0xa000000 0x0 0x200000>;
->   			interrupts = <GIC_SPI 21 IRQ_TYPE_EDGE_RISING>,
->   				     <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
-> @@ -3446,10 +3464,11 @@ smmu0: iommu@a000000 {
->   
->   			#iommu-cells = <1>;
->   			dma-coherent;
-> +			nvidia,cmdqv = <&cmdqv0>;
->   		};
->   
->   		smmu4: iommu@b000000 {
-> -			compatible = "arm,smmu-v3";
-> +			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
->   			reg = <0x00 0xb000000 0x0 0x200000>;
->   			interrupts = <GIC_SPI 30 IRQ_TYPE_EDGE_RISING>,
->   				     <GIC_SPI 31 IRQ_TYPE_EDGE_RISING>;
-> @@ -3458,6 +3477,23 @@ smmu4: iommu@b000000 {
->   
->   			#iommu-cells = <1>;
->   			dma-coherent;
-> +			nvidia,cmdqv = <&cmdqv4>;
-> +		};
-> +
-> +		cmdqv0: cmdqv@a200000 {
+That means it is a fixed-regulator (for constant voltage and turn =
+on/off)
+and a mechanism to program the current limit (iio-dac). Both have clean
+userspace abstraction.
 
-And here.
+What am I missing?
 
-> +			compatible = "nvidia,tegra264-cmdqv";
-> +			status = "disabled";
-> +
-> +			reg = <0x00 0xa200000 0x0 0x830000>;
-> +			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		cmdqv4: cmdqv@b200000 {
-> +			compatible = "nvidia,tegra264-cmdqv";
-> +			status = "disabled";
-> +
-> +			reg = <0x00 0xb200000 0x0 0x830000>;
-> +			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
->   		};
->   
->   		i2c14: i2c@c410000 {
-> @@ -3690,7 +3726,7 @@ bus@8800000000 {
->   		ranges = <0x00 0x00000000 0x88 0x00000000 0x01 0x00000000>;
->   
->   		smmu3: iommu@6000000 {
-> -			compatible = "arm,smmu-v3";
-> +			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
->   			reg = <0x00 0x6000000 0x0 0x200000>;
->   			interrupts = <GIC_SPI 225 IRQ_TYPE_EDGE_RISING>,
->   				     <GIC_SPI 226 IRQ_TYPE_EDGE_RISING>;
-> @@ -3699,6 +3735,15 @@ smmu3: iommu@6000000 {
->   
->   			#iommu-cells = <1>;
->   			dma-coherent;
-> +			nvidia,cmdqv = <&cmdqv3>;
-> +		};
-> +
-> +		cmdqv3: cmdqv@6200000 {
-> +			compatible = "nvidia,tegra264-cmdqv";
-> +			status = "disabled";
-> +
-> +			reg = <0x00 0x6200000 0x0 0x830000>;
-> +			interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
->   		};
->   
->   		hda@90b0000 {
+> > What I still wonder: does your hardware warrant an upstream driver =
+for a
+> > non-programable chip if a different solution (with help of =
+user-space)
+> > already exist?
+> >=20
+>=20
+> A different solution does not currently exist (although a =
+userspace-based=20
+> solution could be designed). I just think that a kernel-based solution =
+is more=20
+> desirable here.
 
--- 
-nvpublic
+I agree, but that is a common discussion :) For example, years ago I had =
+a long
+discussion if there should be touchscreen pre-calibration in kernel, =
+which is
+desirable to get it almost right after boot, or if it is user-space... =
+In the
+end it was rejected.
+
+>=20
+> > Another question: is your scheme generic enough so that it can be =
+expected
+> > that other devices are using it in the same way?
+> >=20
+>=20
+> Yes, the LTM8054 has a fairly common design as far as buck-boost chips =
+go.=20
+> Things like feedback dividers on the output voltage pin are standard =
+practice.
+
+Yes, I know - but how is this related to the kernel or a driver? To my =
+knowledge
+feedback dividers are never relevant for kernel drivers for buck =
+regulators,
+especially if they are fixed and can not be programmed. They end up in a =
+specification
+of regulator-min-microvolt and regulator-max-microvolt.
+
+So I still wonder why they must be made available to the kernel and =
+user-space.
+
+If you look for example into the schematics of a PocketBeagle 2=20
+(https://docs.beagleboard.org/pocketbeagle-2.pdf).
+
+Figure 3.23 on page 26 shows a 3.3V step-down converter with enable and =
+feedback
+resistors (560k/124k).
+
+Still, this regulator is represented not by a dedicated TLV62595 driver =
+but:
+
+=
+https://elixir.bootlin.com/linux/v6.18-rc7/source/arch/arm64/boot/dts/ti/k=
+3-am62-pocketbeagle2.dts#L91
+
+Well, it does not have a controllable current limit, just a builtin one.
+(And a gpio-control could be added by using a regulator-gpio driver).
+
+> And since the driver doesn't rely on a particular way of integrating =
+the=20
+> LTM8054 with other components, it can be reused wherever the same =
+regulator=20
+> chip is used.
+
+That are my questions:
+- what is so different with an LTM8054 to other buck regulators that it =
+needs a dedicated driver
+- is the feature to control current limit by a DAC to the LTM8054 or is =
+it the DAC (in software perspective)
+- does it need a conversion factor from mA to binary value? Why is this =
+needed in kernel?
+- are there similar designs planned for this chip or already in use =
+which run Linux?
+
+> > Or could the power controller framework (/sys/class/power_supply) =
+fit
+> > better?
+> >=20
+>=20
+> I don't think the power supply abstraction is relevant here. The =
+LTM8054 is a=20
+> voltage regulator, it doesn't have charge, capacity, temperature =
+monitoring,=20
+> power limitation, or other power supply class features.
+
+By current limitation you also have power limitation. Yes, it does not
+need to provide charge, capacity, temperature but IMHO they are not all =
+mandatory.
+It is just a suggestion to look around if there are different =
+abstractions
+that already exist and can be used.
+
+>=20
+> > There is an API to ask chargers etc. for battery voltage and current =
+limits
+> > or even write them.
+> >=20
+> > There is also "generic-adc-battery" which allows to hook up with =
+arbitrary
+> > iio-adcs for measurements - although you need a DAC in your setup. =
+Maybe an
+> > extension here is a better strategy than a dedicated ltm8054 driver?
+>=20
+>=20
+> What if the LTM8054 is not used to supply a battery?
+
+The question remains if you want to solve something for a single board =
+which
+happens to have an LTM8054 or if you are solving a more general design =
+pattern.
+
+In summary my view is that the LTM8054 is just a "fixed-regulator" which
+gets an additional current-limiter feature by adding a DAC chip (which =
+needs a
+driver of course). So software control is required not by the LTM8054 =
+but by
+adding a DAC chip.
+
+Another suggestion: what extending the "regulator-fixed", =
+"regulator-gpio",
+"regulator-fixed-clock" pattern by some =
+"regulator-gpio-iio-dac-current-limiter"
+driver to make it independent of your specific chip?
+
+By the way, are you aware of this feature of the regulator-gpio driver?
+
+=
+https://elixir.bootlin.com/linux/v6.18-rc7/source/drivers/regulator/gpio-r=
+egulator.c#L97
+
+Just to note: I am neither maintainer nor doing any decisions on this, =
+just asking
+questions for curiosity and from experience and giving hints for =
+alternative approaches,
+where I hope they help to find the really best solution.
+
+Best regards,
+Nikolaus
 
 
