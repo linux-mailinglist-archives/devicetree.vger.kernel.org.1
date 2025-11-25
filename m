@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-241913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CE50C843EA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:33:36 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DC99C844A3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:46:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C8C154E8BA3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:33:26 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4784E343AE5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156322E093C;
-	Tue, 25 Nov 2025 09:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C81692E0B71;
+	Tue, 25 Nov 2025 09:46:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XoPGKc+w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cjg7gsGY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA68F2E03F5;
-	Tue, 25 Nov 2025 09:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988DF259CB6;
+	Tue, 25 Nov 2025 09:46:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764063204; cv=none; b=kk8uWhgooQzKgJbCVQASRhaVttYRnQH8dE990C37C/ECAd5KZRjiwIQ2A1J+jOBSKGklnI+RKyKV302ukKoFUQ1CK1aox8FIGVgRGDG51uYp0iKTxLZu5nebIHriSpnmWj0anLwa0/9FbAwJX9iO8XTWzWQZIrdDvEVq7ODtKvk=
+	t=1764064006; cv=none; b=Vdh2elv0t1CjLNGCenpBlsTxZhqulZePnx9kvdbyvT6gonBjQET8KXg4x/zrmvmL9Y/v0Ho44CK7YMf7fTOyiyQThgIHC3pQchGxgYS3Lb2sZImW+eNGGWER5MtJElvfXv7leUmdRe3iHdWNKZt3QwlXdOF85jkqi/lpDFVDhJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764063204; c=relaxed/simple;
-	bh=pGhsmOcrkvPA6u1+azfwJ62zcu/PYOCnqEKaM8TXPUE=;
+	s=arc-20240116; t=1764064006; c=relaxed/simple;
+	bh=0la6SWyMAsfefsuIcI5WCj2pyCbGOA6cqWv/sgKZUgo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LvYVV072lEWXN0xlcYLzr+B5Y7ZMFg8ktxcggvuVhlHNN2jh42ZY8IauGlehDvGzjms9N5skT+qBwKNiujUdfpiDuLN6bweowX6jMzhooFZuFbP1ThKMMBCmAyG1qVtGviVTcgSKVqJtQ9rI/cQSXZ5QjTAyZpWFKIvo4/i5Eco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XoPGKc+w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1D9DC4CEF1;
-	Tue, 25 Nov 2025 09:33:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=umNyFelPZkVD6lKWZlmbiItAofDIJBVqn7Kx82vjClaTDnAnvDccBQ7IdxSgAOt3bI+CfpO7DPGSp+7NsFMuSS6nRLj1xC/h0foHmXScvFk8VNXPRhcW9vFO5xTCjr28Q/rFn/SyT+iA4kn0YaGNXYZ6cR8krw4YKxY1CY4AylI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cjg7gsGY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FBB6C4CEF1;
+	Tue, 25 Nov 2025 09:46:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764063203;
-	bh=pGhsmOcrkvPA6u1+azfwJ62zcu/PYOCnqEKaM8TXPUE=;
+	s=k20201202; t=1764064006;
+	bh=0la6SWyMAsfefsuIcI5WCj2pyCbGOA6cqWv/sgKZUgo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XoPGKc+wd8yWEVmVLfjC5Co7rsKEGsX7bbr4PgEML8eZewwVdj2ceHiuH7WIHvzp6
-	 NE71tg+HT/t2ICyBIZFSlq0/WEmko1/PBIGfNM4FAiybwC6wTAGPsZ+VJryL5UX6OC
-	 0tGJWGYvzRp703ZwD4nzOv84JmdM7UP83zZExwX7v+cNzh7eSAwM897Tb8GPk95UZa
-	 4MDQbx2uy2VmunxOGoqGexQ+s/pQmMY8+LdNVbmqYUVlkBEJpTHjfb5KrOWhGibASF
-	 G0tbEiaRTxZmLed2RY1I7i2TX9mzdgXsz3C1gyuP5s9kZzIDBF7Yyl1aWTJUr1ox1e
-	 G9fXtWIGMIryg==
-Date: Tue, 25 Nov 2025 10:33:20 +0100
+	b=cjg7gsGYrHchBN1nQY2FzOYj1qnoHz88KXyEkZTGP87JgZQR8gOC5VrLZ8BWSR45E
+	 eMUqc9qAIq/bN9poxZadiktWKlpUlIf4qU/azZrvBFsjoFL1BOaIZiMlrg99e0j5w7
+	 FyeMCpBsYGkQ71PyXinvwcpQfIaqCRBzy5IMHT8HQrOEjq9NX4yEn7U0LbMDlidTCq
+	 VRSFfXwADZAWrA2sbH0CXmvnx9UfDF1sdR7Ss/qF4hCteX4bEgNE75tSa97PcpOSB+
+	 ReKHJYg584KeoKBzpAPjv6NcIYlBRX+vrKB6FewqwJcOrrMZ5rm3RoYYVm9bCzMrZf
+	 qC89GG3SEeZog==
+Date: Tue, 25 Nov 2025 10:46:43 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ayushi Makhija <quic_amakhija@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	robdclark@gmail.com, dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run, 
-	marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org, robh+dt@kernel.org, 
-	krzk+dt@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org, 
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonathan@marek.ca, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com
-Subject: Re: [PATCH v3 3/5] dt-bindings: display: msm: document DSI
- controller and phy on QCS8300
-Message-ID: <20251125-obedient-literate-newt-e7f6ce@kuoka>
-References: <20251125013302.3835909-1-quic_amakhija@quicinc.com>
- <20251125013302.3835909-4-quic_amakhija@quicinc.com>
+To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-remoteproc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: add Microchip IPC
+ remoteproc
+Message-ID: <20251125-aromatic-savvy-eagle-b81696@kuoka>
+References: <20251121142157.3582463-1-valentina.fernandezalanis@microchip.com>
+ <20251121142157.3582463-2-valentina.fernandezalanis@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,17 +60,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251125013302.3835909-4-quic_amakhija@quicinc.com>
+In-Reply-To: <20251121142157.3582463-2-valentina.fernandezalanis@microchip.com>
 
-On Tue, Nov 25, 2025 at 07:03:00AM +0530, Ayushi Makhija wrote:
-> Document DSI controller and phy on QCS8300 platform.
+On Fri, Nov 21, 2025 at 02:21:56PM +0000, Valentina Fernandez wrote:
+> Microchip family of RISC-V SoCs typically have one or more application
+> clusters. These clusters can be configured to run in an Asymmetric
+> Multi Processing (AMP) mode.
 > 
-> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> Add a dt-binding for these application clusters.
+> 
+> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
 > ---
->  .../display/msm/qcom,qcs8300-mdss.yaml        | 102 +++++++++++++++++-
->  1 file changed, 101 insertions(+), 1 deletion(-)
+>  .../microchip,ipc-sbi-remoteproc.yaml         | 95 +++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/microchip,ipc-sbi-remoteproc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/microchip,ipc-sbi-remoteproc.yaml b/Documentation/devicetree/bindings/remoteproc/microchip,ipc-sbi-remoteproc.yaml
+> new file mode 100644
+> index 000000000000..348902f9a202
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/microchip,ipc-sbi-remoteproc.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/microchip,ipc-sbi-remoteproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip IPC Remote Processor
+> +
+> +description:
+> +  Microchip family of RISC-V SoCs typically have one or more
+> +  clusters. These clusters can be configured to run in an Asymmetric
+> +  Multi Processing (AMP) mode where clusters are split in independent
+> +  software contexts.
+> +
+> +maintainers:
+> +  - Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,ipc-sbi-remoteproc
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+This should be SoC specific compatible.
 
 Best regards,
 Krzysztof
