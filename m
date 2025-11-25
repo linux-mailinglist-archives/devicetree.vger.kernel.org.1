@@ -1,165 +1,172 @@
-Return-Path: <devicetree+bounces-241880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E337C83E11
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:04:36 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8283C83E4B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:09:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 49757341AD1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:03:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 24AB7346A45
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E3A2D3231;
-	Tue, 25 Nov 2025 08:02:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46EA72D3A89;
+	Tue, 25 Nov 2025 08:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="fTmIb4Ah"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="LNqH9EMA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
+Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com [95.215.58.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 283D3137C52;
-	Tue, 25 Nov 2025 08:02:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764057735; cv=pass; b=WiyIDpbGJheiNahpcDlO7vzp7EV2eFkbFUajmf8S//Fc/HB0i9Owwd970mLu2F5Gp6UZUOxivjuzZX1ubtNkgni1I1zPwqIKYiSDLz1Q5gz4cBImn2GbU68P0ZqK46P57A5L6oA1njkbhkH7UH8qDGml9yFCd/vb1nEuxQJIQA4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764057735; c=relaxed/simple;
-	bh=dNu1Q9j8paX7KuRXYdJHSK/CvB3o9koatthHjbPyQZ0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=PhgsRtckVf8ZpoGAdOyXhqsi9it3ue8Mj4Qqyn1NWuUblWx7bYBau9qBy3L/6xaCO1r+Cm61bcbOTiw/THSF5w5XF+CecFmDi6MN0Lsm40gI9ZjGCSQEVx7k/t1N638R2F752qRzRP+kGovNoahaGyqOseho8K11+YFwYGF5Avc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=fTmIb4Ah; arc=pass smtp.client-ip=136.143.184.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1764057713; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=lA9ZLipFr65F2u+DlZUYR/6ABCel3n59hm0sehjb/EZfebJheHBWCjwjDZD4vb9vazYElibktltxT2ev4vWfPYMgTkawYNnJ3tvDtvPtH/K/sqS6xkSlg6FN39MQme70r5hjDUYmwJoTLc/U1KGrhXdOZ9dPgfBaYNu3+zmD1hY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1764057713; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=dNu1Q9j8paX7KuRXYdJHSK/CvB3o9koatthHjbPyQZ0=; 
-	b=b2mX9exKxA4bG2e1U1YqCP563s0ByItb6u79jgyUyWAYGF0+67a5VPvXDqtcMob/rUnAlV36fPfnZsZKnkWyUR652sDCSmMXT914gYucJzRBah4M7HHygXflPU7PyTmi/AcwEyhEU27/4yjBCrIVr8abw2v2XST55NAo3DkwxWo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764057713;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=dNu1Q9j8paX7KuRXYdJHSK/CvB3o9koatthHjbPyQZ0=;
-	b=fTmIb4AhD2LZwtcCA6w3FJEjsk0nqaTcjcc00GawwqPDcxg1pDIJK8c1+/h7j/3G
-	VZjIeEMedSiohkUgv26hlDY4uiulcoIKBg0KtF1vvSlAq5LxSYNPg6kT1Rn0CfgX9uC
-	A2rNXrV0cnPvBf0JMkRuia+0fwi2CMg7e5FmxEGOHDgX11yOqx6gCbF9JfoivwdxBi0
-	L57xCJSfQtYh58S9AM+jMMlmek84EMvlMPmIOsVDQw3cUmDaSEY056/dytsamj2mMPX
-	jPRMPx4h+bwbhxhF4WHqPPCTGg79mgSdNdPmeuw81MxRKwx+wPwxVCDeujZwlNvcCeI
-	EmfKicyifQ==
-Received: by mx.zohomail.com with SMTPS id 1764057707789534.7662587743201;
-	Tue, 25 Nov 2025 00:01:47 -0800 (PST)
-Message-ID: <0a2104faee332ee143b5499c18aea3625971156c.camel@icenowy.me>
-Subject: Re: [PATCH v3 1/2] dt-bindings: riscv: starfive: add
- xunlong,orangepi-rv
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Krzysztof Kozlowski <krzk@kernel.org>, E Shattow <e@freeshell.de>, Conor
-	Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer
- Dabbelt <palmer@dabbelt.com>,  Albert Ou <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Michael Zhu <michael.zhu@starfivetech.com>, Drew
- Fustini <drew@beagleboard.org>,  linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org,  devicetree@vger.kernel.org
-Date: Tue, 25 Nov 2025 16:01:40 +0800
-In-Reply-To: <489e9d44-fac6-4aa8-b094-ef20196e392b@kernel.org>
-References: <20251123225059.49665-1-e@freeshell.de>
-	 <20251123225059.49665-2-e@freeshell.de>
-	 <20251124-free-bandicoot-of-skill-fa7d9a@kuoka>
-	 <20251124-state-campsite-3e7788a495c1@spud>
-	 <0e851ca0-1f56-437d-ae14-094c114d3b77@freeshell.de>
-	 <dc48fa76-0a08-4c9d-a3d7-724eb255aff8@kernel.org>
-	 <ff1f0e6b95150896136ab31ce13e0a2c7a3a5fe3.camel@icenowy.me>
-	 <489e9d44-fac6-4aa8-b094-ef20196e392b@kernel.org>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA842877D5;
+	Tue, 25 Nov 2025 08:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.187
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764058173; cv=none; b=XVvXd1AYcCya7r05UAmrKuuISC7y2rtYbyiBWNTKGVi5e6QyBo+sf2eBINcyW+Gh2qV+8PUyT3u4sc9qfAlLqQQY3wGTD0nqcUOGBfnHtKFIGqaUXZ0FuxNY2EJML1OP7D6LdKoEtAGIoASaWQYcwAbn9K3D0twHcwshNhIzco4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764058173; c=relaxed/simple;
+	bh=2FiDWAy4dzApR6kN2gSsWRY9om4E1YgQis0mYlV1oaQ=;
+	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
+	 In-Reply-To:References; b=MgxN64MWajhM2QUfk5W3Hk/CSi3slaiab0sv5MJq3H9Yw91F070aEttyy3PgvD3htS7deoDWxws4B1WO9YrbwWn78EkpViIjxToFRMONNpwPJjf0ipEAzfx2t9mMXMqL2n7Iz2hf1JuUQ104Pu6M7hF2vlJtpmu+bOD2yB6P4cA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=LNqH9EMA; arc=none smtp.client-ip=95.215.58.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1764058159;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UZDmlYFu0TJ42/du0B4JgWp/3RyRXiT38keF1ISqat0=;
+	b=LNqH9EMAEFF0AbUTH0YDt4XuZ+Mk1EbNqCT+HoYIgtP4gf/Sl3FTSATS2KYEwI8rTIZzrj
+	PmZvY+iEvSxFv7nlJ5AccIDXsKW2zK8tMVgQ8ew1GdsiZ6uLVIyrvW/rgoIkr9c7uFLMCm
+	QaWAAJQeR8MuIKg/vZk7B9z+aYJgqvtO+chVW58uDKYheXht4YmEtCN3xkylVNPKK2iAFv
+	42qEC4em/MYa8OEAdlYAjHv0lcZFfZDgRbxsWl3aZSR4ZnPrb92ZmA7FFqF63zh6DdqhwR
+	uFDJEB17PPD6zQUe5gYMgqypxrEz7akdNqyJUEZRdyZA9jRyJCF+hzoBfRn9Vw==
+Date: Tue, 25 Nov 2025 08:09:12 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Paul Sajna" <sajattack@postmarketos.org>
+Message-ID: <151736b1b2fc3432ad19631ea359c1679e370259@postmarketos.org>
+TLS-Required: No
+Subject: Re: [PATCH v3 10/11] arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "David Heidelberg" <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
+ <system64fumo@protonmail.com>, "Christopher Brown"
+ <crispybrown@gmail.com>
+In-Reply-To: <38c70e06-f7bf-4ca6-8fe9-2a4012017cff@oss.qualcomm.com>
+References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
+ <20250928-judyln-dts-v3-10-b14cf9e9a928@postmarketos.org>
+ <38c70e06-f7bf-4ca6-8fe9-2a4012017cff@oss.qualcomm.com>
+X-Migadu-Flow: FLOW_OUT
 
-=E5=9C=A8 2025-11-25=E6=98=9F=E6=9C=9F=E4=BA=8C=E7=9A=84 08:48 +0100=EF=BC=
-=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> On 25/11/2025 08:33, Icenowy Zheng wrote:
-> > =E5=9C=A8 2025-11-25=E6=98=9F=E6=9C=9F=E4=BA=8C=E7=9A=84 08:28 +0100=EF=
-=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> > > On 24/11/2025 22:59, E Shattow wrote:
-> > > >=20
-> > > > On 11/24/25 05:22, Conor Dooley wrote:
-> > > > > On Mon, Nov 24, 2025 at 08:28:10AM +0100, Krzysztof Kozlowski
-> > > > > wrote:
-> > > > > > On Sun, Nov 23, 2025 at 02:50:44PM -0800, E Shattow wrote:
-> > > > > > > From: Icenowy Zheng <uwu@icenowy.me>
-> > > > > > >=20
-> > > > > > > Add "xunlong,orangepi-rv" as a StarFive JH7110 SoC-based
-> > > > > > > board.
-> > > > > > >=20
-> > > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > > > > > Signed-off-by: E Shattow <e@freeshell.de>
-> > > > > >=20
-> > > > > > <form letter>
-> > > > > > This is a friendly reminder during the review process.
-> > > > > >=20
-> > > > > > It looks like you received a tag and forgot to add it.
-> > > > >=20
-> > > > > It's from me, don't resubmit just to add it since it'll be me
-> > > > > applying
-> > > > > anyway.
-> > > > >=20
-> > > >=20
-> > > > Hi Conor,
-> > > >=20
-> > > > Okay. Yes I'd dropped the tag since the commit message is
-> > > > appreciably
-> > > > different, and you would be handling it again anyways. Thanks!
-> > > > And
-> > > > thank
-> > > > you Krzysztof for the reminder -E
-> > >=20
-> > >=20
-> > > And where did you explain that you dropped the tag because of
-> > > that?
-> > > Please read the form letter carefully.
+October 1, 2025 at 9:09 AM, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.c=
+om mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%20%3C=
+konrad.dybcio%40oss.qualcomm.com%3E > wrote:
+
+
+>=20
+>=20On 9/29/25 7:05 AM, Paul Sajna wrote:
+>=20
+>=20>=20
+>=20> These regulators seemingly help the lcd to work better
 > >=20
-> > Well I think there's no clear definition of "the patch has changed
-> > substantially" here.
+>=20Electronics generally work better when the required power supplies
+> are enabled..
+>=20
+>=20>=20
+>=20> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+> >  ---
+> >  arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> >=20=20
+>=20>  diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/=
+arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> >  index 3106fdc9b679bc6a43a1a490c61b73a63003f7e1..9c3662a3d93e12466747=
+4753e0f11d0e98698aa0 100644
+> >  --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> >  +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> >  @@ -48,10 +48,27 @@ zap-shader {
+> >  };
+> >  };
+> >=20=20
+>=20>  +&ibb {
+> >  + regulator-min-microvolt =3D <4600000>;
+> >  + regulator-max-microvolt =3D <6000000>;
+> >  + regulator-over-current-protection;
+> >  + regulator-pull-down;
+> >  + regulator-soft-start;
+> >  + qcom,discharge-resistor-kohms =3D <300>;
+> >  +};
+> >  +
+> >  &ipa {
+> >  firmware-name =3D "qcom/sdm845/lg/judyln/ipa_fws.mbn";
+> >  };
+> >=20=20
+>=20>  +&lab {
+> >  + regulator-min-microvolt =3D <4600000>;
+> >  + regulator-max-microvolt =3D <6000000>;
+> >  + regulator-over-current-protection;
+> >  + regulator-pull-down;
+> >  + regulator-soft-start;
+> >  +};
 > >=20
-> > E may think for this such-short patch, the commit message weighs a
-> > lot
-> > and the change to it is significant to the patch (e.g. making the
-> > patch
-> > not clear enough).
+>=20This patch will allow any values between 4.6 V and 6.0 V to
+> be set on your phone, with the kernel defaulting to 4.6 V at
+> boot and staying there until (if?) any driver requests that to
+> change.
 >=20
-> You still did not bother to read what we expect. I do not discuss if
-> this changed significantly or not, although it is obvious that it did
-> not change and tag should have been retained.
+>=20Your panel probably expects a *very* specific pair of voltages
+> and any deviation may cause unpredictable consequences, including
+> magic smoke if you happen to go over a certain limit.
 >=20
-> Look again:
-> <QUOTE>
-> Please read:
-> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/s=
-ubmitting-patches.rst#L577
+>=20You should most likely hardcode that specific expected voltage here
 >=20
-> If a tag was not added on purpose, please state why and what changed.
-> </QUOTE>
->=20
-> Where did you explain that?
+>=20Konrad
+>
 
-Sure, I agree that explaination of this should be delivered.
+Here is the decompiled downstream dts.
 
->=20
->=20
-> Best regards,
-> Krzysztof
+qcom,ibb@dc00 {
+						qcom,qpnp-ibb-init-voltage =3D <0x53ec60>;
+						qcom,qpnp-ibb-init-amoled-voltage =3D "", "=3D\t";
+						qcom,qpnp-ibb-soft-start =3D <0x3e8>;
+						qcom,qpnp-ibb-use-default-voltage;
+						qcom,qpnp-ibb-init-lcd-voltage =3D <0x53ec60>;
+						reg-names =3D "ibb_reg";
+						qcom,qpnp-ibb-slew-rate =3D <0x1e8480>;
+						qcom,qpnp-ibb-en-discharge;
+						qcom,qpnp-ibb-ps-enable;
+						qcom,qpnp-ibb-limit-max-current-enable;
+						interrupts =3D <0x03 0xdc 0x02 0x01>;
+						qcom,qpnp-ibb-lab-pwrup-delay =3D <0x3e8>;
+						phandle =3D <0x4ec>;
+						qcom,qpnp-ibb-debounce-cycle =3D <0x10>;
+						regulator-min-microvolt =3D <0x4630c0>;
+						qcom,qpnp-ibb-limit-maximum-current =3D <0x60e>;
+						reg =3D <0xdc00 0x100>;
+						regulator-max-microvolt =3D <0x5b8d80>;
+						qcom,qpnp-ibb-step-size =3D <0x186a0>;
+						qcom,qpnp-ibb-full-pull-down;
+						qcom,qpnp-ibb-switching-clock-frequency =3D <0x5c8>;
+						regulator-name =3D "ibb_reg";
+						interrupt-names =3D "ibb-sc-err";
+						qcom,qpnp-ibb-min-voltage =3D <0x155cc0>;
+						qcom,qpnp-ibb-pull-down-enable;
+						qcom,qpnp-ibb-lab-pwrdn-delay =3D <0x7d0>;
+					};
+				};
 
+Should I use the init-voltage for min and max microvolt?
 
