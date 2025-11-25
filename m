@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-242113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D03ADC86783
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 19:09:52 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21473C86792
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 19:10:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 894E93A35F7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 18:09:51 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BE01634FC05
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 18:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08BEA32D43C;
-	Tue, 25 Nov 2025 18:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38EA32D7FF;
+	Tue, 25 Nov 2025 18:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T5xXmqeS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vQwKWX5p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5DAE32D42A;
-	Tue, 25 Nov 2025 18:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C57C32D7DE;
+	Tue, 25 Nov 2025 18:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764094177; cv=none; b=baKUJc3LOYP6w3FtiK8eHOEGiEJwGjAbrFyoXMHavNsUoJIGketprEDGwdlhszyTSPZxJYLJHNwy21by1bVL9o6KXwGyvfGLpf+zOQzw5VmwwfZmEiOgaSLXNqj3pni60QNDrAYkMh44zoWI98EE4dj8wCGIFseURBp7wY52M+k=
+	t=1764094179; cv=none; b=fPl99hs4ToojhdieAkrFrH5D3+3i59Gk2b3glngpNxLQDdmyOEDkmyF0oc8w4wfRvYN8wjvpwPAG8O8bEoHTr3ABIY4zkeSBBETrDjJi2MlAvwULuayjvypnarU/N3kX0jOwK5UXVZMol692on132QnseUi+LOGS44a4gEvhSpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764094177; c=relaxed/simple;
-	bh=/mvfUzi1Qw/4Y5kr212cUVhQ1RqPh58sZxHLxmDAY+M=;
+	s=arc-20240116; t=1764094179; c=relaxed/simple;
+	bh=ZGvj91/ocezG1d2ldla9tCcuUOW1xhaG8x2goTgx0m4=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=iY3rJR3ynyPcIrNcznrfdGKBQE6n/Daj9mqXQTuooHn6BJyOrewWS8MrepQHTUa1zzeC1MSKMJ0i7AW9kgKscB6XYYlReKXDDOYQ3NRAYhOwO7Sp+AJKzwISLRNEytZQHC8nuFB/njNCAjWTD5kuaDMgy8V0E5U24jWI0dlYG9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T5xXmqeS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5372CC4CEF1;
-	Tue, 25 Nov 2025 18:09:37 +0000 (UTC)
+	 Message-Id:Subject; b=H5HPPqR2V/PDepgcRzj0zOl1wmfH88pYut3VPowWbej7QGNIdqNUNzKA00f9+72jhVRdTgWjyWtiGfVgwReIMYVBkhlsYaeVasfXP5gWk0SR5QGB8CmWnpL27jEglQNXtsoA4Upivl976js3cxSk66m+NYDy4mDhEN810RZ6/LE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vQwKWX5p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1E6DC16AAE;
+	Tue, 25 Nov 2025 18:09:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764094177;
-	bh=/mvfUzi1Qw/4Y5kr212cUVhQ1RqPh58sZxHLxmDAY+M=;
+	s=k20201202; t=1764094179;
+	bh=ZGvj91/ocezG1d2ldla9tCcuUOW1xhaG8x2goTgx0m4=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=T5xXmqeS+/oH53FIpbyhDSoWH/3vPI/1rNwHCdWGhlaVbQI8Sh8EvfLvn4fgZCN+J
-	 0UhbZVikkjQqQM3F+qdS0qmkYrakKQukVb+NsriVuDgkqs+l/7W1762mlVTl4p/Beo
-	 qaCYC7fvlYxeRYgOcM4gflVSwBtNHLnCgoQoTJC8O05IrFkLUYlV9/3zYTYOX9GbIw
-	 XAuQHRoWoQA9P0McfnRMmBvC2klCkjI2oL3KEVzqO2jDU/1HrwXrJZVnfI5GOCvtqz
-	 x1DeUdbNhxnowfC78YZePpKtK1f4dyOdyD3k4W/h19xwQhXIYk7rs5VnPLTBxHBkaf
-	 GDv0f44YyThOA==
+	b=vQwKWX5piQlQhx9xWkJI+5hkDTAK8fn0RGCXpeiatlqX6wYITNA6bwiAEFUU1gwir
+	 lZ7fYgiCv8DXW2J5ygat6h+VOMD+t2V//Z67nE2da0jLOMAyV/D5sk2JSDLZQ5nJaU
+	 Rq+6o4gECFx2JuWLdUtgnjIYOzljzuIyNi6l6739qBhqWfhAPJLg/UUWqa9C0vtkHs
+	 IMOXXZHWHmLdznDd666v33bTRdbGkImbfz6oXRMq11+m1x+y2QeouQMBSqJsclfub9
+	 faCRzfWB/e+NXJZn8/0di8wWEpEnOZ77I4becloB97493jz/wz5ImQpshlFG8tbfdK
+	 HWHhMdRqeKT1g==
 From: Rob Herring <robh@kernel.org>
-Date: Tue, 25 Nov 2025 12:09:35 -0600
+Date: Tue, 25 Nov 2025 12:09:37 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,65 +51,114 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Conor Dooley <conor.dooley@microchip.com>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Joel Stanley <joel@jms.id.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, linux-kernel@vger.kernel.org, 
- linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org
-To: Marc Olberding <molberding@nvidia.com>
-In-Reply-To: <20251124-msx1_devicetree-v4-0-a3ebe3110a67@nvidia.com>
-References: <20251124-msx1_devicetree-v4-0-a3ebe3110a67@nvidia.com>
-Message-Id: <176409395426.3843808.13226161866300781148.robh@kernel.org>
-Subject: Re: [PATCH v4 0/2] Add device tree for Nvidia BMC msx4 cx8
- switchboard
+Cc: Casey Connolly <casey@connolly.tech>, 
+ Richard Acayan <mailingradian@gmail.com>, 
+ Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Yassine Oudjana <y.oudjana@protonmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Alexander Martinz <amartinz@shiftphones.com>, 
+ Joel Selvaraj <foss@joelselvaraj.com>, devicetree@vger.kernel.org, 
+ linux-pm@vger.kernel.org, Alexey Minnekhanov <alexeymin@postmarketos.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Casey Connolly <casey.connolly@linaro.org>, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+To: David Heidelberg <david@ixit.cz>
+In-Reply-To: <20251124-pmi8998_fuel_gauge-v1-0-dd3791f61478@ixit.cz>
+References: <20251124-pmi8998_fuel_gauge-v1-0-dd3791f61478@ixit.cz>
+Message-Id: <176409395655.3843824.5831772770634369017.robh@kernel.org>
+Subject: Re: [PATCH RFC 0/8] Qualcomm 3rd gen fuel gauge support
 
 
-On Mon, 24 Nov 2025 15:14:16 -0800, Marc Olberding wrote:
-> Patch 1 Adds the binding for the msx4 cx8 switchboard
-> Patch 2 Adds the device tree for the msx4 cx8 switchboard reference implementation.
+On Mon, 24 Nov 2025 22:53:33 +0100, David Heidelberg wrote:
+> This FG (fuel gauge) can be found on Snapdragon 835, 845, 660, 670..
 > 
-> This is an Aspeed AST2600 based reference implementation for a BMC
-> managing the nvidia mgx cx8 switchboard.
+> Series enables the FG, which is used on phones as OnePlus 6, 6T, Pixel 3a..
 > 
-> Reference to Ast2600 Soc [1].
+> Since many downstream trees (sdm845-mainline, sdm660, sdm670) carring
+> these patches, after Barnabás dropped older gen support from the driver,
+> cleaned up the driver, I picked changes and cleaned up device-tree
+> patches and sending the whole bulk for review.
 > 
-> Link: https://www.aspeedtech.com/server_ast2600/ [1]
+> Note:
+> Usually I picked the oldest commits authors.
+> Since there was multiple patches, multiple names and modifications etc.,
+> if someone from the authors, co-developers, contributors etc. missing,
+> please let me know and I'll fix this up in the next series.
 > 
-> Signed-off-by: Marc Olberding <molberding@nvidia.com>
+> Currently some authors are unreachable or haven't given Signed-off-by
+> yet, thus RFC, when this get cleaned up, I'll sent non-RFC or leave it
+> to the authors to continue upstreaming process in case they want to.
+> 
+> Until merged (or taken over by the original authors), the series is
+> available at:
+>   https://gitlab.com/sdm845/sdm845-next/-/commits/b4%2Fpmi8998_fuel_gauge
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
-> Changes in v4:
-> - Changed model name to be accurate per Andrew Jeffery
-> - Added comments about why there are no i2c devices described here per Andrew Jeffery
-> - Added support for probing the backup spi device through fmc
-> - Link to v3: https://lore.kernel.org/r/20251108-msx1_devicetree-v3-0-c7cb477ade27@nvidia.com
-> 
-> Changes in v3:
-> - Removed mac and mdio node completely per Andrew Lunn's request. Will add back
->     once the mac driver is fixed
-> - Link to v2: https://lore.kernel.org/r/20251107-msx1_devicetree-v2-0-6e36eb878db2@nvidia.com
-> 
-> Changes in v2:
-> - Added ack by Conor Dooley on patch 1
-> - Changed phy-mode attribute after discussion with Andrew Jeffery and feedback from Andrew Lunn
->     and added a comment with a better explanation
-> - Link to v1: https://lore.kernel.org/r/20250918-msx1_devicetree-v1-1-18dc07e02118@nvidia.com
+> Changes in v1:
+> - Clean and read charge full and max voltage from dts. (Joel)
+> - Dont put battery info on remove. All the battery info data is devm
+>   tracked so it will be freed for us on removal. (Casey)
+> - Invert charging current. Battery current should be negative for charging
+>   batteries, invert it so it's correct. Fixes upower charging status
+>   reporting. (Casey)
+> - Expose PROP_STATUS to fix upower not detecting charging status properly.
+> - Adopt battery info API changes.
+> - Silence -EPROBE_DEFER error. (Richard)
+> - Add present sysfs property. Required for battery drivers from
+>   UPower>=1.90.0 onwards to work properly. (Alexander)
+> - Drop support for older gen from the driver. (Barnabás)
+> - Rename the driver to pmi8998_fg. (Barnabás)
+> - Remove unnecessary batt_info. (Barnabás)
+> - Fix all checkpatch issues in strict mode. (Barnabás)
+> - Fixed naming, properties sorting, styling issues, few checkpatch
+>   warnings. (David)
+> - Updated Joel to "Joel Selvaraj <foss@joelselvaraj.com>" everywhere
+>   (patch author, author field inside the driver, dt docs). (David)
+> - Link to v0:
+>   - https://gitlab.com/msm8998-mainline/linux/ (very old)
+>   - https://gitlab.com/sdm845-mainline/linux/ (multiple branches)
+>   - https://github.com/sdm660-mainline/linux/
+>   - https://gitlab.com/sdm670-mainline/linux-patches/-/tree/main/stable
 > 
 > ---
-> Marc Olberding (2):
->       dt-bindings: arm: aspeed: Add Nvidia msx4 board
->       dts: aspeed: Add a dts for the nvidia msx4 hpm
+> Alexey Minnekhanov (1):
+>       arm64: dts: qcom: sdm660-xiaomi-lavender: Enable support for battery
 > 
->  .../devicetree/bindings/arm/aspeed/aspeed.yaml     |   1 +
->  arch/arm/boot/dts/aspeed/Makefile                  |   1 +
->  .../boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dts | 248 +++++++++++++++++++++
->  3 files changed, 250 insertions(+)
+> Casey Connolly (2):
+>       arm64: dts: qcom: pmi8998: Add fuel gauge
+>       arm64: dts: qcom: sdm845-shift-axolotl: Enable fuel gauge
+> 
+> Joel Selvaraj (2):
+>       power: supply: Add driver for Qualcomm PMI8998 fuel gauge
+>       arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable fuel gauge
+> 
+> Richard Acayan (2):
+>       arm64: dts: qcom: pm660: Add fuel gauge
+>       arm64: dts: qcom: sdm670-google-sargo: Enable fuel gauge
+> 
+> Yassine Oudjana (1):
+>       dt-bindings: power: supply: Add schema for Qualcomm pmi8998 fuel gauge
+> 
+>  .../bindings/power/supply/qcom,pmi8998-fg.yaml     |  77 +++
+>  arch/arm64/boot/dts/qcom/pm660.dtsi                |  10 +
+>  arch/arm64/boot/dts/qcom/pmi8998.dtsi              |  11 +
+>  .../arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts |  25 +
+>  arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts   |   7 +
+>  arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts  |   7 +
+>  .../dts/qcom/sdm845-xiaomi-beryllium-common.dtsi   |   7 +
+>  drivers/power/supply/Kconfig                       |   8 +
+>  drivers/power/supply/Makefile                      |   1 +
+>  drivers/power/supply/pmi8998_fg.c                  | 687 +++++++++++++++++++++
+>  10 files changed, 840 insertions(+)
 > ---
-> base-commit: ac3fd01e4c1efce8f2c054cdeb2ddd2fc0fb150d
-> change-id: 20250908-msx1_devicetree-7af2c1fc15d0
+> base-commit: 422f3140bbcb657e1b86c484296972ab76f6d1ff
+> change-id: 20251121-pmi8998_fuel_gauge-cfaf78ed103d
 > 
 > Best regards,
 > --
-> Marc Olberding <molberding@nvidia.com>
+> David Heidelberg <david@ixit.cz>
 > 
 > 
 > 
@@ -130,31 +179,71 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
- Base: ac3fd01e4c1efce8f2c054cdeb2ddd2fc0fb150d (use --merge-base to override)
+ Base: 422f3140bbcb657e1b86c484296972ab76f6d1ff (use --merge-base to override)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20251124-msx1_devicetree-v4-0-a3ebe3110a67@nvidia.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251124-pmi8998_fuel_gauge-v1-0-dd3791f61478@ixit.cz:
 
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: timer (arm,armv7-timer): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: sdram@1e6e0000 (aspeed,ast2600-sdram-edac): compatible: ['aspeed,ast2600-sdram-edac', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/edac/aspeed,ast2400-sdram-edac.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: bus@1e600000 (aspeed,ast2600-ahbc): compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: syscon@1e6e2000 (aspeed,ast2600-scu): 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^pinctrl-[0-9]+$', '^silicon-id@[0-9a-f]+$'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: crypto@1e6fa000 (aspeed,ast2600-acry): 'aspeed,ahbc' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
+arch/arm64/boot/dts/qcom/msm8998-mtp.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dtb: pmic@0 (qcom,pm660): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dtb: pmic@0 (qcom,pm660): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb: pmic@0 (qcom,pm660): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm670-google-sargo.dtb: pmic@0 (qcom,pm660): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dtb: pmic@0 (qcom,pm660): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-mtp.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-lilac.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dtb: pmic@0 (qcom,pm660): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dtb: pmic@0 (qcom,pm660): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-db845c.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dtb: pmic@0 (qcom,pm660): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dtb: pmic@2 (qcom,pmi8998): 'fuel-gauge@4000' does not match any of the regexes: '(.*)?(wled|leds)@[0-9a-f]+$', '^adc-tm@[0-9a-f]+$', '^adc@[0-9a-f]+$', '^audio-codec@[0-9a-f]+$', '^battery@[0-9a-f]+$', '^charger@[0-9a-f]+$', '^led-controller@[0-9a-f]+$', '^mpps@[0-9a-f]+$', '^nvram@[0-9a-f]+$', '^pbs@[0-9a-f]+$', '^pinctrl-[0-9]+$', '^rtc@[0-9a-f]+$', '^temp-alarm@[0-9a-f]+$', '^typec@[0-9a-f]+$', '^usb-detect@[0-9a-f]+$', '^usb-vbus-regulator@[0-9a-f]+$', '^vibrator@[0-9a-f]+$', 'gpio@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pon@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
 
 
 
