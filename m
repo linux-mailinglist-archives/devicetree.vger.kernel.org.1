@@ -1,275 +1,344 @@
-Return-Path: <devicetree+bounces-242095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB662C86348
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 18:25:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A394AC8642C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 18:41:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E21EF4E0372
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 17:25:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 821024E2F07
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 17:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88750329E62;
-	Tue, 25 Nov 2025 17:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D52AA32AAC5;
+	Tue, 25 Nov 2025 17:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Y0iYSgkN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ONCD3qlt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010015.outbound.protection.outlook.com [52.101.56.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6552524A046;
-	Tue, 25 Nov 2025 17:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764091537; cv=fail; b=JU8f+J5T2TwH0Uud+PtsPXd2Kam2GnFHOf3kvto5JLHUoX+s/OpAWnc9tmkgad4eIvmFjleOrQ6A1IobxYBIkXkE6Y1YnnUuoxc3q4bt0gp2NQOMaeiJVZOb1KNtejW8HdLBTVjQf4d2PJoQzWKELePBU/ydcdyGOog6HffSBII=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764091537; c=relaxed/simple;
-	bh=zcYF/o9f6BORBB4hGh/WspRjPoYzvbxUru5uA+KZM6E=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=lQ9UlypJ2bVsVFeAIF5hxU9ppHNkY/oznJ1NpUhEyXFWBN24oEVZ9B3uJQjSrFjqG46YNvx4nSI6TPHrTHA5DdSyqSet8Z8UhiL6/cyxG5bslPhcpl2Sx5OzJ/cRgzFudKLH/Zy9L1bIlzKtazH5pdNtQEmyb47+0nZzrzXvKDA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Y0iYSgkN; arc=fail smtp.client-ip=52.101.56.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D1OTn/2bo36bds+npcQFrwzQkzZ3QuPxlus3n488+x+fpuBvEclUWdVDoaUUMOBGMYlaD0dlFieoBwgrI8/LdJJX7k8J2nGZ+prP+aHt31xoPLF8gEx1WatvRxV8j4/R8h530pEeKxb4YOfJVFu7spHU0Sd+IZGCDZmbwCl8/Tv1xWwLGSqsgyxpifdh/me+1jsmnU38qY9A8rgM9rbTGjXdejCDEGf+snWkiJs1CtxsMmBtsxZnHOr3kk2hDWfLyQoH36f4YjHyxj7kQ2DzZjizhZ9jTwCxgt0n7dajTx0DMS6mm/jAAuHkuPBDePQsFo4JsBeCwyGdU5QbBH30fA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zcYF/o9f6BORBB4hGh/WspRjPoYzvbxUru5uA+KZM6E=;
- b=oiU6W4+eNmLj64GdujRucQkSBzIwHCxb9O5aM+wbqI3KUe+KREdEVJG+WX4Pge2kTFG6f+aygmw+J4ESxs/sMYBkjrW4hR3IUoB2Ko0jQmqlrrp5PlxXj1CxRr0oCftPB1TVD8B5m4UbU09VCAVaSyO8pDkQOPJqnH5bIzh1zTX7vr7Agum49xRWEVMP3oZAcXDQ7tvc28hkLMaLgoUEAzGTfhPmRosWPxbQf4NAzcOAjzXku0bQLSQtM4Er10on7RLJ9F9pZoUIfIOEjZFEFWxhgwqqZDOtZ9W1dH3UfHAWCLYidtgaNtcSGlFEJZyHOdPgZY511/uc1INVdyBNmQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zcYF/o9f6BORBB4hGh/WspRjPoYzvbxUru5uA+KZM6E=;
- b=Y0iYSgkNT2OskJrSSnpbrayqtaCXLCzdAbDMnvfFBiJm+5gRbAVx9GKP9cU7vQek6l9yn4jNy/PRuDXztWOhovMoU8W/5AK2i1QLSuJDX1xz3bgKYTnKJ93DsWhzCVL18N+Ud5Snqzl5PzzxG61QnVdgPYbqN9UMU6xfwo924wpPJ4FchkUhrEFJmYI/8iwEMewTpO0coXCPW6DojR943+Mw2X0EzqukAuB2R/7hdDSmgEh/UzWCT48jZzhF9B2CBRkaXDoa1RxfkP6LENeYQyAvQ7jxwicLcNPRIrWs2msR7dQm2dsSVVzW4r8wBF2SnmSBkc0Ew2nUbie83oAeow==
-Received: from PH7PR11MB8251.namprd11.prod.outlook.com (2603:10b6:510:1a9::9)
- by PH8PR11MB6611.namprd11.prod.outlook.com (2603:10b6:510:1ce::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.14; Tue, 25 Nov
- 2025 17:25:30 +0000
-Received: from PH7PR11MB8251.namprd11.prod.outlook.com
- ([fe80::e81b:3e24:1804:5c7c]) by PH7PR11MB8251.namprd11.prod.outlook.com
- ([fe80::e81b:3e24:1804:5c7c%6]) with mapi id 15.20.9366.009; Tue, 25 Nov 2025
- 17:25:29 +0000
-From: <Ariana.Lazar@microchip.com>
-To: <jic23@kernel.org>
-CC: <dlechner@baylibre.com>, <nuno.sa@analog.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, <robh@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <andy@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: adding support for PAC1711
-Thread-Topic: [PATCH 1/2] dt-bindings: iio: adc: adding support for PAC1711
-Thread-Index: AQHcPe+ZUQj9Zje02UW+PpK7+KUCybTJMv4AgDqROIA=
-Date: Tue, 25 Nov 2025 17:25:29 +0000
-Message-ID: <77443ac90eb95fbf355509a7f060c05ee1d24d37.camel@microchip.com>
-References: <20251015-pac1711-v1-0-976949e36367@microchip.com>
-	 <20251015-pac1711-v1-1-976949e36367@microchip.com>
-	 <20251019100454.6bfbc3c7@jic23-huawei>
-In-Reply-To: <20251019100454.6bfbc3c7@jic23-huawei>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB8251:EE_|PH8PR11MB6611:EE_
-x-ms-office365-filtering-correlation-id: ba30a70f-3fd9-4eaf-9863-08de2c47a188
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?ZkYzN3RwL3crWjhxR095Z3dLenhORHk4amZLK3JjVStaSzVqTkhmNVJndUVm?=
- =?utf-8?B?Vk4xNkNua2hJVUROTXpDYTNKOWlQV014QktZVHFYL2YyTTJiZ1M5eUJOV242?=
- =?utf-8?B?Nkw0cG0zRmt0d2dzTWhBT0lmVk5hN2ZWZmU1VENRR25aZSs3WDVZc1JhUDlR?=
- =?utf-8?B?Vk5HUXluTlRzaEEyNjBrM1FTRDlXa3VNVVFEM2FkWmFTSEtsOGJUWUFYOTVm?=
- =?utf-8?B?Q016SjVOVHplYStqTzFSMmxDUHdUelN1MjJ3OVhqK1pOdjVWV01IcVpBWFBa?=
- =?utf-8?B?eFo0SjU0N3RKWDBreU9pZWNTR2JST2cxN3ZFRWdNS0Zrc1gwQVB3bUlHaG9x?=
- =?utf-8?B?RG5CVGJDSG1xbFZsWDM3K3MwSTFPTjlBZHZibWtFc1BzQk1Hc003eGkxbTFT?=
- =?utf-8?B?ZGpMOVNZZ3BRK0pwaktBRiszZXB5UEhaRU1LKzZhNEtSUERWcit0NEJpM1A4?=
- =?utf-8?B?bUZsdFNxT2NCWTVzNVJyU2hXYVBIT25YTnVZQjhaczhaeHpkQld5WWJHZkRu?=
- =?utf-8?B?UGJyUGJZRVUrUHRMMlpxdUs3cFFqT1o3alppOHMvb0tUYjRheXc1Mkt5Ylor?=
- =?utf-8?B?ZmRPS29TRW0vdXhaMVRmQWdIQjVnaldJTUJIM1BxTXljb1IwbkEvcmRUeSth?=
- =?utf-8?B?Yjhkay9SanFSaXViRlRkSGRIYVh2VFZDb3UzYkZiYXZORGxqYll2akZ2ejRO?=
- =?utf-8?B?eDU5bkFDMDRud05nalhiU1JHYjZodmVFU3dPdEYxaFl4YXdSOVcxZzB4VUNa?=
- =?utf-8?B?eDdtV2Z3SGs2SmVrK1BXMzU0K21RS3htRnpVb1FhNXR0Ri82bVgwRVdFc1ZD?=
- =?utf-8?B?MFN6Skh0NzZicEFFc1VxUVR5OUhPQnVIbW1rTFI2UzdhOVNYUks0M1dCN1BQ?=
- =?utf-8?B?QkJoaGtRaUQ3OU00TloyN0hJR3h6TFBWVXhqbFFaVEtsZCtkMEV6M1pyUkty?=
- =?utf-8?B?NWxDZ1ZsNkJBUGtTVGJzYWJRK1BqNHdLZnZuL0Q5S1pWclYzZ2VUSGRCNWUr?=
- =?utf-8?B?NG5UeFQrRFlsaFBnOUExTFY2bGU3NkR2NUxNVUlONlVVYTN0MDlSbU1lcXo3?=
- =?utf-8?B?ajd0djNLN1djcmFEY3FyQTBYdEQ2T3dXc3BtU0hqWmFLWFF6R3FVeCsrbFFH?=
- =?utf-8?B?UzVqSzFLVDNZSVNnK3FkR0d0akFOLzhDcG9BcXJld25wUzZHMndMNUxJVEw3?=
- =?utf-8?B?YmFjLzZpK0NZcDNGaCtJWnh3QTRPMUNtVDl0TUhrd2tod1BCT3ozQ2twR1Yv?=
- =?utf-8?B?OFcvWHRQODZPWG5Lc1QwUldkWmdSQVFTc1FvcWNiV3hZREJRNHFXQm14a2Ir?=
- =?utf-8?B?T3BqazJpcUpMVzdCTWY1MzhxNGNNVVI2Vk8vMFZHa0xpRlc1RE9OZ2xHY2U5?=
- =?utf-8?B?VzhHNHhIa3k1MGk3d0pXbk84MjhFLzB2Q3FRY3lqVUVydWFjbkpYOFJrRTVC?=
- =?utf-8?B?RmJzVVVVcU8yMjEyUmUyeHcyNUQxN2hNUk9Hc3h0MzZ3Z1c0cmJwUHJmdWVO?=
- =?utf-8?B?WVExZGJmbk1Mc214ZzVub3ExcWlSWnUxcFlEK2N5bHpzZHUvTE9kUjBGS0I4?=
- =?utf-8?B?YTE2dk5nWUd2Y0sxdEJzTjFGa0Y5dWtVQWpxbElzUmpoUU5YWldCTFJZMmtn?=
- =?utf-8?B?bmc4VkpnTk5CbU9zQlllSVdib1R2N25aK2xRR2dkRkM4bDgwTnJkaU05cjNQ?=
- =?utf-8?B?a3RnNlhMVFdKaTMwYjluU085VjFscW1tRENzTGZva1FvdkJNWUg2SW5FYUhP?=
- =?utf-8?B?cmUzczAxZ1owZzdsSGxUZTZ6bnh5YXZqSUNzQmVzanBmblVyUTdKdTRFYlJw?=
- =?utf-8?B?N1QrM0FaQmJ0TDBFM1ROSGthWG9vclpDZ2FFNGFuc090eVM0VGpLQ1VQVWF4?=
- =?utf-8?B?bmZLUW5nNFJHSzJ5T3o3U01pWHQ4SkUxaFBrZE90dUd3eVNZTENuR2xzWjVs?=
- =?utf-8?B?YTNTSGZpYUZOeDA5R0sxRzNpL0hkbHJiS2oyZk9TYVBNcU0zdTkwTnVYWm1i?=
- =?utf-8?B?YTNHNjdmKzU1NGNnbjUyelNhcC9tZDRkeVIxNXA1cytTajZJZmdUazJTbFM5?=
- =?utf-8?Q?Dafsn5?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB8251.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?NnNyRnRtSXVGaVlmRXNteGhLVTdsOHVsSWNmYWx6N1VCdFRvOTB1RlUrU3dx?=
- =?utf-8?B?a0czQm9rMUJ0T09PUXFIclhkdmdPV1I1WVgxRHNGSGdlSHZaN3dpSE1DbnVQ?=
- =?utf-8?B?RXY4RlJSRVpzZkNBbE9OZDNuMFdrcUJhYzFQb0x0SWQ1UmNNVmJROHhBV0dl?=
- =?utf-8?B?eTg5RWRyZ2J0QWxudzVDTTljRStMYm1MRmd4ZTh1L3NBYmhlSGx4akIwSzlK?=
- =?utf-8?B?VC80WlV1R1NsbWJ3TFg4N3FMc1NCdDUvUG1mcTE0aEd6UDdDR3ZoZDFyUHdM?=
- =?utf-8?B?dGFuNTF1cndUbVJUaFVWeTRmY2diZ1BhZXhqM05qa1k2REJ3YS9VcmVscGdP?=
- =?utf-8?B?VzlicmZ2ekF4TG1yUEFUZS8wT28vM053VGdIUzBiZHNCdVJKa1JYS1AwVTNW?=
- =?utf-8?B?eEVHR25UTk1xTUVJTVB6UGJvK2M5cWJ3VnVWSldlZzVMYVRteWQ3eEpWK2Zl?=
- =?utf-8?B?S0VEanV5Qys5eGoxZER5VEh3ZmtXdm5SL28rR2k0UStNNTluOG53TjN3dEto?=
- =?utf-8?B?aG5FWFJXTVZOWTF2bG9TaVBXREJ0NjJMU0Fxeld2SlRCUVNFdkJ5c25Xd2sw?=
- =?utf-8?B?VktleHd5dWFwcGxhUzFvRkRmUjNUUitsMGhHU2JsQTlicjdKak1tdysycUxL?=
- =?utf-8?B?VVAza3NaeUVYaXZOSUowWXRlYzJRUUtGMWxOODVVVlJVTDczT0p1QXl0anFy?=
- =?utf-8?B?cmlqbm8zOWt1cXFuVXRDUDY5MEtocFZaWGFtMWdmNW5KMWw0V2JEVWtvNTJF?=
- =?utf-8?B?T0o1T3BNQmgzbFRJaTR3TlprOVY3aXJTYllPMFpmdXJGMUZ6eS94YTFCTmln?=
- =?utf-8?B?TW5VaU96bHZjOXVmUWluaXA5c3Z1ckRRVnZlSS9lSElESlhRRU1sRzVNTStI?=
- =?utf-8?B?N1VBbTZCZnN6MFdYWXVOdjcrbTRVaVpTeUFqRk5sMk1LbnczdEtxRnJGbDBK?=
- =?utf-8?B?NEFCcjdOTXF2akkvTm5vbHJETE05dTh2MnZDcmVzcmNLN0pwZjRRdzFabWhR?=
- =?utf-8?B?enBxV3BWRVZyTGowbXR5WXA0STZXUHo0VmxvOHBCc0FSM0R5L1dmeXROTkJk?=
- =?utf-8?B?RXQydHMvenJKQWVLbUF5VUV2YkNLdWNlSVZhaHNZU29zV0ZuRzNzdUJEQi9q?=
- =?utf-8?B?MXZnNngrTXBWZEdNMkZqd1FpcllmckMxTnZIODJSQnMyT0NJeVVBQlZhdHZH?=
- =?utf-8?B?Tm1Dek50NklwblRjQStEZnZhbnE1bVdkVllURDF6T0p3ZllYcytPYm5uNVBu?=
- =?utf-8?B?YXBKNTduZEg0Ymx2dStIUEJPb1dqYUp4eEVqK2h0bFI0QmVuZFpReU1na3Zn?=
- =?utf-8?B?MkNnd2FieGovV2RIc2N2OUQ4Sm5ibzJLTm9sZy83ZEZyY1ozOG1reWlta2Jl?=
- =?utf-8?B?cU4wbjJJTVFKOGhndTRjOUFPNjZ5TlVNR3J3U3AwTVp3ejF2alVkNXhRZkxz?=
- =?utf-8?B?aXVPQUlSWk1FeFR0WHkvSWQvYmVTb204b09wV3FDVG9oSDNOT28ycjVwWGUz?=
- =?utf-8?B?WFkxMlV1M0JKejVlU2xTRS8vU3dUeUVQWG9EZnFlSTFia29reExEVWxkd0Jj?=
- =?utf-8?B?YmhFa1V2bmpNVzZQOXJ5c2pnM0ZFOXVBSm1IK2luT01SMzRmUFYrOVdLVVF6?=
- =?utf-8?B?MDRhN0F6UkZQN1hjS2RWdHRpcndkSUYyVGYxQW05YU5zK21oOHVkMEs3alMx?=
- =?utf-8?B?UlorblVVN3FRQ0hSMVlrR1F4VDA3ejdoanZQQU9RRGJHYW5JM3ltWE9oMEJI?=
- =?utf-8?B?NkJCTS91c1VBYmVvNUN0OWEwcEMwUVZqSTFoUS9pMEpBd0lJYjUxMksrQ0lz?=
- =?utf-8?B?S3dybUFlZGVCbnNRS0NGbHJ2MkpKbWFYRDYvNFpTVURFc2pad1E4OTZJRnFL?=
- =?utf-8?B?aU5Ga3BrWWFWNTFiTlZ0TndmSjlMNE1sL1pWSUpWQllTVExaR09JMlFtVVlq?=
- =?utf-8?B?Qnd4MFduMU42Tm9qaGxxbExWeDFXdXdid1p4d2E0Z3c4MmhYUXZ4cXBpV0hi?=
- =?utf-8?B?Wk1ZaHhLUTlyemFmQ3g5bFBWaUZlc2Jsa0RQTGpQdkIvYU9hSDlGQTB2cUNk?=
- =?utf-8?B?cmFKaFdHdnpzeFFseVpqMlJ3ZzZDYXFqRVRjb29ZUjNyTVlMYnZEZmtrbmxQ?=
- =?utf-8?B?Zk1ISU94MTRuaGVSZGFQRGNreEVFc3JGRE55aVFINlg1eXdzN0lUcmw0UmNJ?=
- =?utf-8?B?MlE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <35153203DF217247B407FCADBC7F2144@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29496218596
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 17:41:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764092497; cv=none; b=gBtxNXU/lBpg33HGyUXIt2b5mgQs6Sl1/CKttkNOqX1X/J8vUKr233DQSxW7uWtVWBjsrt+qgAyu/vsRY94NJpWl8bkfk2Jvht+YBwO6MrxekfBNvdzePoMMFhCUASfoSHibfDXJu1VIiqQcymngrsWPU5pcS4RzolHpohpGmSs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764092497; c=relaxed/simple;
+	bh=pzgH07XMJ8BB9AS0x7BkF5nizHapBVVD/inP/i1r6i8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Aaau+blZvidf3IHmAt5gS/kXz8EQHbx8mlxiI1POtMZYNyKQDx3r62wMJfcDACaTfkKDshgInV8XZs2ycQIX8dAaO8S474wrIz83cxSCSSwFPRBwmKh7fkGjoApw66irw6qXpIHXng5zcoHFAyGtwtIoShdOSwhDtEjsAgc5b+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ONCD3qlt; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42b3b29153fso3226580f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:41:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764092493; x=1764697293; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=lMQ1rizcjeahBOoSsE4k6lkryIgK2OIH0N/lzinDSjg=;
+        b=ONCD3qltYu1cvBBxkM8cPlbYcdYCK/tW4X22qZuW+inthVLrVEjcvWE0m9SK+MnMg8
+         NNsPeicMtOumOTYeiMLvZ79LdP6gCcUAcT71gZKhJYjhEuKpBtsjskZ3NcmVfwBWmQ5/
+         etTP5uYkzRpwYjoLFbud2eXgOmsqOwDKeoIb6UnxcJVh/ZdfGAht5w0aNaUbGiH1BpiI
+         vSM1ggkBxw+YlMV8cF4dMlCZYRj3CvcCuI378l/m2eVciAt+PLKvvCFwf6yDgxH46JBE
+         Y+11MuiAMdiDGXG+H2TAlLjbxccHsLck9Xwvi9I1C8/jLdKN8LI2HH5tTT0zYak4w9O9
+         tYOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764092493; x=1764697293;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lMQ1rizcjeahBOoSsE4k6lkryIgK2OIH0N/lzinDSjg=;
+        b=TcnWSFdGrhdBEbegwWtZmQLWzzhDjqX3ztnvPittFekVrk2Pt+UP/OOsvSzf43CyO/
+         OaRVLaeQHJYSMlRZ8ZKSCW0phztMSZ4oxyIXY3dxSZhuj22YZiyIQ7QGi5gjO/TapQol
+         cBSpBGy/rvxLhs4uB+EFIzkc2ofBROXok+5rkIOtUehGsbjVKk5ZLOrXYktBNYSzLC6N
+         gG33y0zlm59ELUDdzJw+sZ6wkyDklu7bKFSrz1DmJ+XMh69Ja1bE768JtUgbb+Pw+CAg
+         GS/kOsAMPzS9OrD7bBfC+MKPngXpkoqk1fKtWFcQS9pNRdktgeyxYwKpQjB0HE1ZlcT+
+         awiw==
+X-Forwarded-Encrypted: i=1; AJvYcCWtH4JlaM2AjCm8JKxbwdwG0Gzj8KSS6sb9HV5rX4hpuyCUhaL4yTtLYtu8kubn5R729BJIGWCnW7kb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYPww4Vs1j86Xfdv9++pDWkyc/HeF0d9R3rtwAmXWH+di1g3Fx
+	gwL0gCxqMkgRE5/RqcAlLPmeTcxy7L90T0YDyTZRYg55oMl79pQYVbopeitg3n2Si6U=
+X-Gm-Gg: ASbGnct0Uzuzf7HwKQon3FCftIxxd2pYs+tKyc6wfh9dGx+YbzUPnIf0SXCo2Ojpkfo
+	qpR3GdMOF/cCUnYZ8UWTOXDNRji9MQ8aa1pm59VyBnv7stYOpLqjl7ntouqHBtjzx+wCVggP0wM
+	uamyhNfjmK522w1/K80/gOxvxlB9/RIDddZG3he4INrFPyEQSJJAQuP58oPXgu80z8/KAFR1I9I
+	bX3nRJczsUYwQHcUYt+oH2gVoYMkkAhBVBlnaFeZEKjtiI+5UC/rppJcAHfvzS8dKpWQJtR7w9k
+	LvNBA3N7mLEWgXM55rafzGm2GytsoMhI6MdUMafaGhvhQ4GZP9x3HD68l7Fbr+a3njznWRUVPXo
+	s1kn1LgWmVb5LXXWdnQCU2Bl0n3Ieb4v8X0gwRlSxofZvInp4VMA8Csvhre5ezc1HdkAl3DP0bw
+	W9qGY4AEpojPLVfRJS0tQrZf9rdaCLXVJuwpLgthgyXh3BIFUr510=
+X-Google-Smtp-Source: AGHT+IEEqaPbgKy+ka1s0MF3DwNSw93jKIEgfWM9dePuwGKM32cX2S0zdeAtoK13jXOcd64riwetgw==
+X-Received: by 2002:a05:6000:2f83:b0:429:c711:22d8 with SMTP id ffacd0b85a97d-42cc1cee555mr17252309f8f.15.1764092493462;
+        Tue, 25 Nov 2025 09:41:33 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:1d9d:2362:4539:c68d? ([2a05:6e02:1041:c10:1d9d:2362:4539:c68d])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-42cb7f34ffesm36235988f8f.10.2025.11.25.09.41.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Nov 2025 09:41:32 -0800 (PST)
+Message-ID: <84128d4b-76a9-4054-969a-64cc44afd46d@linaro.org>
+Date: Tue, 25 Nov 2025 18:41:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: microchip.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8251.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba30a70f-3fd9-4eaf-9863-08de2c47a188
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2025 17:25:29.7292
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OTKiqYvsNhQG/8ruyYb4/2olAzbtnYvFJIMw40GxOgB5fVnN7TPHpUviGWblkhshd/RCm/I8Ib21mV24ktER5oP32VHh9s6NcADe1zVlxFA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6611
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] thermal/drivers: airoha: Generalize probe function
+To: Christian Marangi <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20251106225929.1778398-1-ansuelsmth@gmail.com>
+ <20251106225929.1778398-3-ansuelsmth@gmail.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20251106225929.1778398-3-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-SGkgSm9uYXRoYW4sDQoNClRoYW5rcyBmb3IgdGhlIHJldmlldy4NCg0KT24gU3VuLCAyMDI1LTEw
-LTE5IGF0IDEwOjA0ICswMTAwLCBKb25hdGhhbiBDYW1lcm9uIHdyb3RlOg0KPiBFWFRFUk5BTCBF
-TUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdQ0K
-PiBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IE9uIFdlZCwgMTUgT2N0IDIwMjUgMTM6
-MTI6MTUgKzAzMDANCj4gQXJpYW5hIExhemFyIDxhcmlhbmEubGF6YXJAbWljcm9jaGlwLmNvbT4g
-d3JvdGU6DQo+IA0KPiA+IFRoaXMgaXMgdGhlIGRldmljZSB0cmVlIHNjaGVtYSBmb3IgTWljcm9j
-aGlwIFBBQzE3MTEgc2luZ2xlLWNoYW5uZWwNCj4gPiBwb3dlcg0KPiA+IG1vbml0b3Igd2l0aCBh
-Y2N1bXVsYXRvci4gVGhlIGRldmljZSB1c2VzIDEyLWJpdCByZXNvbHV0aW9uIGZvcg0KPiA+IHZv
-bHRhZ2UgYW5kDQo+ID4gY3VycmVudCBtZWFzdXJlbWVudHMgYW5kIDI0IGJpdHMgcG93ZXIgY2Fs
-Y3VsYXRpb25zLiBUaGUgZGV2aWNlDQo+ID4gc3VwcG9ydHMNCj4gPiBvbmUgNTYtYml0IGFjY3Vt
-dWxhdG9yIHJlZ2lzdGVyLg0KPiA+IA0KPiA+IFBBQzE3MTEgbWVhc3VyZXMgdXAgdG8gNDJWIEZ1
-bGwtU2NhbGUgUmFuZ2UuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQXJpYW5hIExhemFyIDxh
-cmlhbmEubGF6YXJAbWljcm9jaGlwLmNvbT4NCj4gPiAtLS0NCj4gPiDCoC4uLi9iaW5kaW5ncy9p
-aW8vYWRjL21pY3JvY2hpcCxwYWMxNzExLnlhbWzCoMKgwqDCoMKgwqDCoCB8IDE5NQ0KPiA+ICsr
-KysrKysrKysrKysrKysrKysrKw0KPiA+IMKgTUFJTlRBSU5FUlPCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgfMKgwqAgNiArDQo+ID4gwqAyIGZpbGVzIGNoYW5nZWQsIDIwMSBpbnNlcnRpb25zKCspDQo+
-ID4gDQo+ID4gZGlmZiAtLWdpdA0KPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL2lpby9hZGMvbWljcm9jaGlwLHBhYzE3MTEueWFtbA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL2lpby9hZGMvbWljcm9jaGlwLHBhYzE3MTEueWFtbA0KPiA+IG5l
-dyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXgNCj4gPiAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
-MDAwMDAwMDAwMDAwMDAwMDAwLi42N2VkZDc3ODk4MWMyZjBlZDIxZGRhMDJmDQo+ID4gMTRlMzgz
-YTE1MzE2OWIxDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKw0KPiA+IGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lpby9hZGMvbWljcm9jaGlwLHBhYzE3MTEueWFtbA0KPiAN
-Cj4gPiArwqAgbWljcm9jaGlwLHZidXMtaW5wdXQtcmFuZ2UtbWljcm92b2x0Og0KPiA+ICvCoMKg
-wqAgZGVzY3JpcHRpb246IHwNCj4gPiArwqDCoMKgwqDCoCBTcGVjaWZpZXMgdGhlIHZvbHRhZ2Ug
-cmFuZ2UgaW4gbWljcm92b2x0cyBjaG9zZW4gZm9yIHRoZQ0KPiA+IHZvbHRhZ2UgZnVsbA0KPiA+
-ICvCoMKgwqDCoMKgIHNjYWxlIHJhbmdlIChGU1IpLiBUaGUgcmFuZ2Ugc2hvdWxkIGJlIHNldCBh
-cyA8bWluaW11bSwNCj4gPiBtYXhpbXVtPiBieQ0KPiA+ICvCoMKgwqDCoMKgIGhhcmR3YXJlIGRl
-c2lnbiBhbmQgc2hvdWxkIG5vdCBiZSBjaGFuZ2VkIGR1cmluZyBydW50aW1lLg0KPiA+ICsNCj4g
-PiArwqDCoMKgwqDCoCBUaGUgVkJVUyBjb3VsZCBiZSBjb25maWd1cmVkIGludG8gdGhlIGZvbGxv
-d2luZyBmdWxsIHNjYWxlDQo+ID4gcmFuZ2U6DQo+ID4gK8KgwqDCoMKgwqDCoMKgIC3CoCBWQlVT
-IGhhcyB1bmlwb2xhciAwViB0byA0MlYgRlNSIChkZWZhdWx0KQ0KPiA+ICvCoMKgwqDCoMKgwqDC
-oCAtwqAgVkJVUyBoYXMgYmlwb2xhciAtNDJWIHRvIDQyViBGU1INCj4gPiArwqDCoMKgwqDCoMKg
-wqAgLcKgIFZCVVMgaGFzIGJpcG9sYXIgLTIxViB0byAyMVYgRlNSDQo+ID4gK8KgwqDCoCBpdGVt
-czoNCj4gPiArwqDCoMKgwqDCoCAtIGVudW06IFstNDIwMDAwMDAsIC0yMTAwMDAwMCwgMF0NCj4g
-PiArwqDCoMKgwqDCoCAtIGVudW06IFsyMTAwMDAwMCwgNDIwMDAwMDBdDQo+ID4gKw0KPiA+ICvC
-oCBtaWNyb2NoaXAsdnNlbnNlLWlucHV0LXJhbmdlLW1pY3Jvdm9sdDoNCj4gPiArwqDCoMKgIGRl
-c2NyaXB0aW9uOiB8DQo+ID4gK8KgwqDCoMKgwqAgU3BlY2lmaWVzIHRoZSB2b2x0YWdlIHJhbmdl
-IGluIG1pY3Jvdm9sdHMgY2hvc2VuIGZvciB0aGUNCj4gPiBjdXJyZW50IGZ1bGwNCj4gPiArwqDC
-oMKgwqDCoCBzY2FsZSByYW5nZSAoRlNSKS4gVGhlIGN1cnJlbnQgaXMgY2FsY3VsYXRlZCBieSBk
-aXZpZGluZyB0aGUNCj4gPiB2c2Vuc2UNCj4gPiArwqDCoMKgwqDCoCB2b2x0YWdlIGJ5IHRoZSB2
-YWx1ZSBvZiB0aGUgc2h1bnQgcmVzaXN0b3IuIFRoZSByYW5nZSBzaG91bGQNCj4gPiBiZSBzZXQg
-YXMNCj4gPiArwqDCoMKgwqDCoCA8bWluaW11bSwgbWF4aW11bT4gYnkgaGFyZHdhcmUgZGVzaWdu
-IGFuZCBpdCBzaG91bGQgbm90IGJlDQo+ID4gY2hhbmdlZCBkdXJpbmcNCj4gPiArwqDCoMKgwqDC
-oCBydW50aW1lLg0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoCBUaGUgVlNFTlNFIGNvdWxkIGJlIGNv
-bmZpZ3VyZWQgaW50byB0aGUgZm9sbG93aW5nIGZ1bGwgc2NhbGUNCj4gPiByYW5nZToNCj4gPiAr
-wqDCoMKgwqDCoMKgwqAgLcKgIFZTRU5TRSBoYXMgdW5pcG9sYXIgMCBtViB0byAxMDBWIEZTUiAo
-ZGVmYXVsdCkNCj4gPiArwqDCoMKgwqDCoMKgwqAgLcKgIFZTRU5TRSBoYXMgYmlwb2xhciAtMTAw
-IG1WIHRvIDEwMCBtViBGU1INCj4gPiArwqDCoMKgwqDCoMKgwqAgLcKgIFZTRU5TRSBoYXMgYmlw
-b2xhciAtNTAgbVYgdG8gNTAgbVYgRlNSDQo+ID4gK8KgwqDCoCBpdGVtczoNCj4gPiArwqDCoMKg
-wqDCoCAtIGVudW06IFstMTAwMDAwLCAtNTAwMDAsIDBdDQo+ID4gK8KgwqDCoMKgwqAgLSBlbnVt
-OiBbNTAwMDAsIDEwMDAwMF0NCj4gDQo+IFRoZXNlIHJhbmdlIHNldHRpbmcgdGhpbmdzIGFyZSBj
-b21tb24gZW5vdWdoIHBlcmhhcHMgaXQncyB0aW1lIHRvDQo+IHN0YW5kYXJkaXplDQo+IHRoZW0g
-YXMgcHJvcGVydGllcyBvZiBjaGFubmVsIHN1YiBub2RlcyAodGhlIHN0dWZmIGluIGFkYy55YW1s
-KS4NCg0KR3JlYXQgaWRlYS4gSSB3aWxsIHRyeSB0byBpbXBsZW1lbnQgdGhpcyBpbnRvIGEgc2Vw
-YXJhdGUgcGF0Y2guDQoNCj4gDQo+ID4gKw0KPiA+ICvCoCBtaWNyb2NoaXAsYWNjdW11bGF0aW9u
-LW1vZGU6DQo+ID4gK8KgwqDCoCAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9u
-cy91aW50MzINCj4gPiArwqDCoMKgIGRlc2NyaXB0aW9uOiB8DQo+ID4gK8KgwqDCoMKgwqAgVGhl
-IEhhcmR3YXJlIEFjY3VtdWxhdG9yIG1heSBiZSB1c2VkIHRvIGFjY3VtdWxhdGUgVlBPV0VSLA0K
-PiA+IFZTRU5TRSBvcg0KPiA+ICvCoMKgwqDCoMKgIFZCVVMgdmFsdWVzIGZvciBhbnkgY2hhbm5l
-bC4gQnkgc2V0dGluZyB0aGUgYWNjdW11bGF0b3IgZm9yDQo+ID4gYSBjaGFubmVsDQo+ID4gK8Kg
-wqDCoMKgwqAgdG8gYWNjdW11bGF0ZSB0aGUgVlBPV0VSIHZhbHVlcyBnaXZlcyBhIG1lYXN1cmUg
-b2YNCj4gPiBhY2N1bXVsYXRlZCBwb3dlcg0KPiA+ICvCoMKgwqDCoMKgIGludG8gYSB0aW1lIHBl
-cmlvZCwgd2hpY2ggaXMgZXF1aXZhbGVudCB0byBlbmVyZ3kuIFNldHRpbmcNCj4gPiB0aGUNCj4g
-PiArwqDCoMKgwqDCoCBhY2N1bXVsYXRvciBmb3IgYSBjaGFubmVsIHRvIGFjY3VtdWxhdGUgVlNF
-TlNFIHZhbHVlcyBnaXZlcw0KPiA+IGEgbWVhc3VyZQ0KPiA+ICvCoMKgwqDCoMKgIG9mIGFjY3Vt
-dWxhdGVkIGN1cnJlbnQsIHdoaWNoIGlzIGVxdWl2YWxlbnQgdG8gY2hhcmdlLg0KPiA+ICsNCj4g
-PiArwqDCoMKgwqDCoCBUaGUgSGFyZHdhcmUgQWNjdW11bGF0b3IgY291bGQgYmUgY29uZmlndXJl
-ZCBhczoNCj4gPiArwqDCoMKgwqDCoMKgIDwwPsKgIC3CoCBBY2N1bXVsYXRvciBhY2N1bXVsYXRl
-cyBWUE9XRVIgKGRlZmF1bHQpDQo+ID4gK8KgwqDCoMKgwqDCoCA8MT7CoCAtwqAgQWNjdW11bGF0
-b3IgYWNjdW11bGF0ZXMgVlNFTlNFDQo+ID4gK8KgwqDCoMKgwqDCoCA8Mj7CoCAtwqAgQWNjdW11
-bGF0b3IgYWNjdW11bGF0ZXMgVkJVUw0KPiANCj4gVGhpcyBmZWVscyBsaWtlIGEgcnVudGltZSB0
-aGluZyB0byBjb250cm9sLiBUbyBiZSBpbiBEVCBpdCBzaG91bGQgYmUNCj4gcmVsYXRlZA0KPiB0
-byB0aGUgYm9hcmQgd2lyaW5nIHJhdGhlciB0aGFuIGJlaW5nIGEgY2hvaWNlIGJldHdlZW4gbXVs
-dGlwbGUNCj4gdGhpbmdzDQo+IGJlaW5nIG1lYXN1cmVkLg0KPiA+IA0KVGhpcyBwcm9wZXJ0eSBh
-aW1zIHRvIHNwZWNpZnkgd2hhdCBraW5kIG9mIGhhcmR3YXJlIGlzIGludGVuZGVkIHRvIGJlDQp1
-c2VkL2F2YWlsYWJsZSBmb3IgdGhlIHVzZXIuDQoNClRoZXJlIGFyZSB0d28gbWFpbiBjYXNlcyBo
-ZXJlOg0KLSB0aGUgdXNlciB3YW50cyB0byBtZWFzdXJlIGFsc28gdGhlIGN1cnJlbnQvcG93ZXIg
-Y29uc3VtZWQgYmVmb3JlIHRoZQ0KZHJpdmVyIGluc2VydGlvbiAoZS5nLiBmcm9tIHRoZSBib290
-IHRvIHVzZXIgY29udHJvbCkgYW5kIGlmIHRoaXMgaXMgYQ0KcnVudGltZSBzZXR0aW5nLCB0aGUg
-aGFyZHdhcmUgYWNjdW11bGF0b3Igd2lsbCBiZSByZXNldCBieSB0aGUgZGVmYXVsdA0KY29uZmln
-dXJhdGlvbiB0aGUgZHJpdmVyIHN0YXJ0cyB3aXRoLg0KLSB0aGUgZHJpdmVyIGRvZXNuJ3Qga25v
-dyB3aGF0IHR5cGUgb2YgaGFyZHdhcmUgaXQncyBkZWFsaW5nIHdpdGguIEluDQpjYXNlIHRoZSBw
-YXJ0IGlzIG1vbml0b3JpbmcgdGhlIGNoYXJnZS9kaXNjaGFyZ2UgY3VycmVudCBpdCBkb2VzIG5v
-dA0KbWFrZSBzZW5zZSBpbiB1c2VyLXNwYWNlIHRvIGNoYW5nZSB0aGUgYWNjdW11bGF0b3IgdG8g
-Y2FsY3VsYXRlIGVuZXJneS4NClNhbWUgaWYgdGhlIGhhcmR3YXJlIGlzIGludGVuZGVkIHRvIGNh
-bGN1bGF0ZSBlbmVyZ3kgaXQgZG9lc24ndCBtYWtlDQpzZW5zZSBpbiB1c2VyLXNwYWNlIHRvIGNo
-YW5nZSB0byBDb3Vsb21iIGNvdW50ZXIuIENoYW5naW5nIHRoZSBzZXR0aW5nDQpmcm9tIG9uZSBt
-b2RlIHRvIGFub3RoZXIgd2lsbCByZXNldCB0aGUgaGFyZHdhcmUgYWNjdW11bGF0b3IgaW5zaWRl
-IHRoZQ0KY2hpcC4gIA0KDQpCZXN0IHJlZ2FyZHMsDQpBcmlhbmENCg0KPiANCg0K
+On 11/6/25 23:59, Christian Marangi wrote:
+> In preparation for support of Airoha AN7583, generalize the probe
+> function to address for the 2 SoC differece.
+> 
+> Implement a match_data struct where it's possible to define a more
+> specific probe and post_probe function and specific thermal ops and
+> pllrg protect value.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>   drivers/thermal/airoha_thermal.c | 102 +++++++++++++++++++++++--------
+>   1 file changed, 75 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/thermal/airoha_thermal.c b/drivers/thermal/airoha_thermal.c
+> index 01ed49a4887e..864a01fd8fd8 100644
+> --- a/drivers/thermal/airoha_thermal.c
+> +++ b/drivers/thermal/airoha_thermal.c
+> @@ -198,12 +198,23 @@ struct airoha_thermal_priv {
+>   	struct regmap *chip_scu;
+>   	struct resource scu_adc_res;
+>   
+> +	u32 pllrg_protect;
+> +
+>   	struct thermal_zone_device *tz;
+>   	int init_temp;
+>   	int default_slope;
+>   	int default_offset;
+>   };
+>   
+> +struct airoha_thermal_soc_data {
+> +	u32 pllrg_protect;
+> +
+> +	const struct thermal_zone_device_ops *thdev_ops;
+> +	int (*probe)(struct platform_device *pdev,
+> +		     struct airoha_thermal_priv *priv);
+> +	int (*post_probe)(struct platform_device *pdev);
+> +};
+> +
+>   static int airoha_get_thermal_ADC(struct airoha_thermal_priv *priv)
+>   {
+>   	u32 val;
+> @@ -220,7 +231,8 @@ static void airoha_init_thermal_ADC_mode(struct airoha_thermal_priv *priv)
+>   	regmap_read(priv->chip_scu, EN7581_PLLRG_PROTECT, &pllrg);
+>   
+>   	/* Give access to thermal regs */
+> -	regmap_write(priv->chip_scu, EN7581_PLLRG_PROTECT, EN7581_SCU_THERMAL_PROTECT_KEY);
+> +	regmap_write(priv->chip_scu, EN7581_PLLRG_PROTECT,
+> +		     priv->pllrg_protect);
+>   	adc_mux = FIELD_PREP(EN7581_MUX_TADC, EN7581_SCU_THERMAL_MUX_DIODE1);
+>   	regmap_write(priv->chip_scu, EN7581_PWD_TADC, adc_mux);
+>   
+> @@ -228,7 +240,7 @@ static void airoha_init_thermal_ADC_mode(struct airoha_thermal_priv *priv)
+>   	regmap_write(priv->chip_scu, EN7581_PLLRG_PROTECT, pllrg);
+>   }
+>   
+> -static int airoha_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+> +static int en7581_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+>   {
+>   	struct airoha_thermal_priv *priv = thermal_zone_device_priv(tz);
+>   	int min_value, max_value, avg_value, value;
+> @@ -253,7 +265,7 @@ static int airoha_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+>   	return 0;
+>   }
+>   
+> -static int airoha_thermal_set_trips(struct thermal_zone_device *tz, int low,
+> +static int en7581_thermal_set_trips(struct thermal_zone_device *tz, int low,
+>   				    int high)
+>   {
+>   	struct airoha_thermal_priv *priv = thermal_zone_device_priv(tz);
+> @@ -290,12 +302,12 @@ static int airoha_thermal_set_trips(struct thermal_zone_device *tz, int low,
+>   	return 0;
+>   }
+>   
+> -static const struct thermal_zone_device_ops thdev_ops = {
+> -	.get_temp = airoha_thermal_get_temp,
+> -	.set_trips = airoha_thermal_set_trips,
+> +static const struct thermal_zone_device_ops en7581_thdev_ops = {
+> +	.get_temp = en7581_thermal_get_temp,
+> +	.set_trips = en7581_thermal_set_trips,
+>   };
+>   
+> -static irqreturn_t airoha_thermal_irq(int irq, void *data)
+> +static irqreturn_t en7581_thermal_irq(int irq, void *data)
+>   {
+>   	struct airoha_thermal_priv *priv = data;
+>   	enum thermal_notify_event event;
+> @@ -326,7 +338,7 @@ static irqreturn_t airoha_thermal_irq(int irq, void *data)
+>   	return IRQ_HANDLED;
+>   }
+>   
+> -static void airoha_thermal_setup_adc_val(struct device *dev,
+> +static void en7581_thermal_setup_adc_val(struct device *dev,
+>   					 struct airoha_thermal_priv *priv)
+>   {
+>   	u32 efuse_calib_info, cpu_sensor;
+> @@ -356,7 +368,7 @@ static void airoha_thermal_setup_adc_val(struct device *dev,
+>   	}
+>   }
+>   
+> -static void airoha_thermal_setup_monitor(struct airoha_thermal_priv *priv)
+> +static void en7581_thermal_setup_monitor(struct airoha_thermal_priv *priv)
+>   {
+>   	/* Set measure mode */
+>   	regmap_write(priv->map, EN7581_TEMPMSRCTL0,
+> @@ -411,30 +423,26 @@ static void airoha_thermal_setup_monitor(struct airoha_thermal_priv *priv)
+>   		     FIELD_PREP(EN7581_ADC_POLL_INTVL, 146));
+>   }
+>   
+> -static const struct regmap_config airoha_thermal_regmap_config = {
+> +static const struct regmap_config en7581_thermal_regmap_config = {
+>   	.reg_bits		= 32,
+>   	.reg_stride		= 4,
+>   	.val_bits		= 32,
+>   };
+>   
+> -static int airoha_thermal_probe(struct platform_device *pdev)
+> +static int en7581_thermal_probe(struct platform_device *pdev,
+> +				struct airoha_thermal_priv *priv)
+>   {
+> -	struct airoha_thermal_priv *priv;
+>   	struct device_node *chip_scu_np;
+>   	struct device *dev = &pdev->dev;
+>   	void __iomem *base;
+>   	int irq, ret;
+>   
+> -	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> -	if (!priv)
+> -		return -ENOMEM;
+> -
+>   	base = devm_platform_ioremap_resource(pdev, 0);
+>   	if (IS_ERR(base))
+>   		return PTR_ERR(base);
+>   
+>   	priv->map = devm_regmap_init_mmio(dev, base,
+> -					  &airoha_thermal_regmap_config);
+> +					  &en7581_thermal_regmap_config);
+>   	if (IS_ERR(priv->map))
+>   		return PTR_ERR(priv->map);
+>   
+> @@ -454,18 +462,55 @@ static int airoha_thermal_probe(struct platform_device *pdev)
+>   		return irq;
+>   
+>   	ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
+> -					airoha_thermal_irq, IRQF_ONESHOT,
+> +					en7581_thermal_irq, IRQF_ONESHOT,
+>   					pdev->name, priv);
+>   	if (ret) {
+>   		dev_err(dev, "Can't get interrupt working.\n");
+>   		return ret;
+>   	}
+>   
+> -	airoha_thermal_setup_monitor(priv);
+> -	airoha_thermal_setup_adc_val(dev, priv);
+> +	en7581_thermal_setup_monitor(priv);
+> +	en7581_thermal_setup_adc_val(dev, priv);
+> +
+> +	return 0;
+> +}
+> +
+> +static int en7581_thermal_post_probe(struct platform_device *pdev)
+> +{
+> +	struct airoha_thermal_priv *priv = platform_get_drvdata(pdev);
+> +
+> +	/* Enable LOW and HIGH interrupt (if supported) */
+> +	regmap_write(priv->map, EN7581_TEMPMONINT,
+> +		     EN7581_HOFSINTEN0 | EN7581_LOFSINTEN0);
+> +
+> +	return 0;
+> +}
+> +
+> +static int airoha_thermal_probe(struct platform_device *pdev)
+> +{
+> +	const struct airoha_thermal_soc_data *soc_data;
+> +	struct airoha_thermal_priv *priv;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	soc_data = device_get_match_data(dev);
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->pllrg_protect = soc_data->pllrg_protect;
+> +
+> +	if (!soc_data->probe)
+> +		return -EINVAL;
+> +
+> +	ret = soc_data->probe(pdev, priv);
+> +	if (ret)
+> +		return ret;
+>   
+>   	/* register of thermal sensor and get info from DT */
+> -	priv->tz = devm_thermal_of_zone_register(dev, 0, priv, &thdev_ops);
+> +	priv->tz = devm_thermal_of_zone_register(dev, 0, priv,
+> +						 soc_data->thdev_ops);
+
+I suggest to move devm_thermal_of_zone_register() in the platform 
+specific probe function, directly pass the corresponding ops.
+
+That will allow to get rid of the post_probe() and the thdev_ops field 
+in the airoha_thermal_soc_data structure.
+
+	devm_thermal_of_zone_register(dev, 0, priv, &en7581_thdev_ops);
+
+
+>   	if (IS_ERR(priv->tz)) {
+>   		dev_err(dev, "register thermal zone sensor failed\n");
+>   		return PTR_ERR(priv->tz);
+> @@ -473,15 +518,18 @@ static int airoha_thermal_probe(struct platform_device *pdev)
+>   
+>   	platform_set_drvdata(pdev, priv);
+>   
+> -	/* Enable LOW and HIGH interrupt */
+> -	regmap_write(priv->map, EN7581_TEMPMONINT,
+> -		     EN7581_HOFSINTEN0 | EN7581_LOFSINTEN0);
+> -
+> -	return 0;
+> +	return soc_data->post_probe ? soc_data->post_probe(pdev) : 0;
+>   }
+>   
+> +static const struct airoha_thermal_soc_data en7581_data = {
+> +	.pllrg_protect = EN7581_SCU_THERMAL_PROTECT_KEY,
+> +	.thdev_ops = &en7581_thdev_ops,
+> +	.probe = &en7581_thermal_probe,
+> +	.post_probe = &en7581_thermal_post_probe,
+> +};
+> +
+>   static const struct of_device_id airoha_thermal_match[] = {
+> -	{ .compatible = "airoha,en7581-thermal" },
+> +	{ .compatible = "airoha,en7581-thermal", .data = &en7581_data },
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, airoha_thermal_match);
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
