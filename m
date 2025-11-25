@@ -1,142 +1,137 @@
-Return-Path: <devicetree+bounces-241918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12D22C84548
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:58:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BCEC84557
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:58:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC5733AD7E8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:58:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2EF13B1D87
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:58:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 929692ED154;
-	Tue, 25 Nov 2025 09:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5F82ED872;
+	Tue, 25 Nov 2025 09:58:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UsD0n9rb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ODnHQgPc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C477A288D6
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:57:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E49012ED14C
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:58:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764064678; cv=none; b=dtzgCD8FAjpMB+Yzq+aZ3E3g+vNPjUzoPa4IbwlqQ3YsXiEvXQmq2SXis8rtDBzYUM/2wkPlP80w42lIfqY9su4IOwXuaHD+ykXldgKEsLZtF4+cZU8sgpXq1R91EFuSTbaNG229sUyqRnmDRWsUnBFcfRZY+WDBsGRqA1fKeIY=
+	t=1764064688; cv=none; b=UNJnmnwstZQWJPHl96DjHboliO2Y6J1hxNDoFbZwnJYbUhe7Bcv7+9tOeaOx8l2R/baY3AkjeFtQHz4NKEsQWVWG1ownXl+4qETYChmP7ljNxDPyK2ZSd9aydavM3Ha5OVGJmYOY0NgkRl8eAyDANU5GR05c4yO51ga7TyS9VQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764064678; c=relaxed/simple;
-	bh=aWPZQiOwwjPcpqrpyDvxdJ+TS6+Is55C2OdCisYPF/4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bBcDFXwtaRFdG5cuC481w3whuAti+ZpJcLpJ9t04e180YTIJUXeu53k5Q02Ys7g1DO0tUllQW4Z5Dx/ANSFIAC8AC2Z3qDbbSYoAcvpJYKSwOJTx6Y3ng+1QZHd9iL9XBlm8KHAfVlFEdZYmNnkinoLtlh6kyC76waEhXz3EWho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UsD0n9rb; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b713c7096f9so816897866b.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 01:57:56 -0800 (PST)
+	s=arc-20240116; t=1764064688; c=relaxed/simple;
+	bh=+Bvp48vIsEAty/4kptj5aE0gOoyNVogt3ZIlOlJPcbw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=elfVEWltgWSI1uF0L4LjMVMb+1eyNmr4kRoPOeBo+wykt6BgvuicHEHGjdo5z8o8ugO857W4NVIvlD7wo7lbDzGjOheFdEHZiEG2/AzVDadp5ZjS8awteykDSl8iXaH9YNrKFY5sTY6bfYD2coCf7xEaeIPvX8DrDmNKl56lKYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ODnHQgPc; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4779aa4f928so43802895e9.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 01:58:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764064675; x=1764669475; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rUasbkstjniBrT4zxMVBFF99A9HoWusdu4FR+HNi+pw=;
-        b=UsD0n9rbXuYU/baXFEnV/Dv/sShzE3gbYuvgUcQTb3TV6SQGrYY9kwQt+kH86ywX9U
-         eqZZhmiZIIbdj18wggXI0pTEDMY4KOw5SG1uAWf8lKyDaLHrVH38mzSsGAYT7W51N5F0
-         jfDslqG8I7/Jf8ywcD/W+snw1v2dXywVj2B85ndogK/E4z/VmwYqpZ+UhGNuakrBQfdJ
-         SFD5uNQWU2gVD9xeDC66WwX5BDD0U0L4z01xpQ6FObO4yb+JSsQmAFMFjgsADnrCUGX6
-         CFyv7qbNjlloCac6A/MzubGCkN7FMs0+I4mbv073kJZXqvzK35JTGM/wV9gBrznYRGIe
-         6rvA==
+        d=linaro.org; s=google; t=1764064685; x=1764669485; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6dOkxs8WqzorGeMW44vvMt1jQg4XWV2o2YphYrM2grQ=;
+        b=ODnHQgPc+cYaDiw52ouplzhUiwUtj7HUhylh1eMaIofCH0fxWO6CUdU7Wq/fIwnTbU
+         2lB8mLVqxlkVlsydssMb04N0l43tcQsET5iX0UZl5B91CCTTwFpCAsaNlrJDOjertVSg
+         3An2DjMNZI+I7RvHCy8f951yfHU2JvkIL/ALMfXBK4sHyEbavPlvpIFPK5UEDPCnqXy0
+         EZtQnwEGdHJi1O3Ji4MnZ60aBmvG2AnuPL40AYhEN37JZ59mCcFJ1OFCepHIy5yz31XO
+         3/ZX5vLQf5YDePQ7B6P1ifwY1J8VP+d7zZp29JVzinELPMxKtk527Aa4drnj2zYesWze
+         ko8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764064675; x=1764669475;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rUasbkstjniBrT4zxMVBFF99A9HoWusdu4FR+HNi+pw=;
-        b=votkWdPlL7aNWObhHQRPFIdRhLTS6Z/0sv/HTK02qFigsDJBM1gMPdpwOcOuSkasfY
-         vIDF3YpKUhOQkqqyPMrkF5+9CMVrFg/QOz6P/rvB7Y8ReFA65S5cufkLgk2MTuHvre5i
-         7PP+T+86uX9W5Gab7T/O2TnoKdq7BWi+so7FWXV90qVohw9Crpd+KRbPhdU0aUyTM5Ph
-         x1eWFGPNDll8K1NuMAotwZSJPOvIq5WoGDHy8PG8Bek/vmLGq/YHCO63Sf6U7i5Gkg0m
-         ua0P5++qtUchxXE6ulte6/29lYk0EvHiMLS8KLrLj9aK00+AzaTKml89b5wgUsjyXzeF
-         b7AA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3sTPhsndT/FKUY8EOSeOVfapWaBq0YlmMCvINPE27OcdvcfgBQhn3rST1YbgvXKjuUnEyYN7gDSru@vger.kernel.org
-X-Gm-Message-State: AOJu0YxW1jAGmTn5Fx1yWD6qBSqKOQWp72dyQWroAMXd6YwD74vIwVDd
-	iTuUQ4IRz/vRjmbqiSUlPHa7ebmlsRmr8RGAF+wnEP6QPIwoHlodajjL
-X-Gm-Gg: ASbGncsSONAd2wACP/FaV/XmAPUGQ/4qvQ2quH3cj3wKSPDIGRrOXffmEhSPVYbSNew
-	8cQVrDuc5eh4q+8OZhanPkQ8XRgPMnhGxg0M+BKtCidaIUzcEzAjsrnxWoWx7v7jcyMlVqkU1SZ
-	CCs3721rIdwXciuJIiJZdYpdetXWF0jmZNCcdNH+qSQ1Oq/y4NfijC4dGgayVbFRZwtPUq76wH3
-	mA5VB97zLyR1ePF4N1oAqe9gfjOOgRE/WP1J2PWcTATLtRsIVY5ZXwruSGA+VfNBWN3SadJeCti
-	Lj+8ujPE6ZeXgQUpYfZ43gY5feAddJZLaGoBJjnQuYxCzUEpELKOx/Gm6FCgXnu0nsATZxuw4+S
-	fTJJqvIhn8BmCQ8Pn4xcuBbvGKifX2pDvNXbXctB6bzDA/rJJtsIpZRI6aE4aL9UeB3k3uOMEyE
-	smBfQhvbTno+yMU8dLZ4qtplcuTgIEWh+IaIv0PTuZ7/XwUbYRW6TXTwMuf1bgO0WxNgW6N+JVq
-	ZWA4sxsPMrXyg==
-X-Google-Smtp-Source: AGHT+IHLisWyuG15RnJSodDThe/ELizaIWdtNrkb9dhnJFuydOtd23t6sLVr0LkGdKB4Y4UIprMu/A==
-X-Received: by 2002:a17:906:c156:b0:b73:7652:ef9e with SMTP id a640c23a62f3a-b7671a28d01mr1625571366b.55.1764064674836;
-        Tue, 25 Nov 2025 01:57:54 -0800 (PST)
-Received: from ernest.hoecke-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654ff3bbesm1539477966b.51.2025.11.25.01.57.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Nov 2025 01:57:54 -0800 (PST)
-Date: Tue, 25 Nov 2025 10:57:53 +0100
-From: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
-	Baochen Qiang <baochen.qiang@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>, 
-	Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, 
-	ath11k@lists.infradead.org, devicetree@vger.kernel.org, ath12k@lists.infradead.org, 
-	Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-Subject: Re: [PATCH 0/2] wifi: ath: Use static calibration variant table for
- devicetree platforms
-Message-ID: <fasihmiu2szj6m2r3qef5slvzlvdjo2ajhrd6xyqsa5cajrbzq@a5dyulg2dnac>
-References: <20251114-ath-variant-tbl-v1-0-a9adfc49e3f3@oss.qualcomm.com>
- <2fd84ab2-2e3e-4d05-add5-17930a35fedf@oss.qualcomm.com>
- <jnggqxqv3rjzhyevovnnxzplfhl3t6auhhvmoz7wxmsf6awgdx@dusdgxwsxvts>
- <b8277024-f9d4-4f17-946f-c2c390669067@oss.qualcomm.com>
- <exfmj52dqu3uctwsb2gopcjg7744vq5avlkahtmgfw4opw4mfl@t2svrln72u53>
- <f853d9b2-47f8-47b5-a02d-6aa8f12a4283@oss.qualcomm.com>
- <trr5j57vwk2dhoibdgdxnlkftnmfcmjkwmicsiltmhybxanjaf@tzaeeqcyz56l>
+        d=1e100.net; s=20230601; t=1764064685; x=1764669485;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6dOkxs8WqzorGeMW44vvMt1jQg4XWV2o2YphYrM2grQ=;
+        b=Kbl8tnSkUHRxO89yXZm/5OWjWzP374ysNAEYf2tYqKxdZBCKaCEqyuKJ8Plf8hnlvt
+         kCODD4ej6hKNMZAYJAPfehXYR4C7Cl2AlL8n5/dPw5/bQEtp8vqGDrluf+JCeZ9YfDqn
+         k0DMmbwV9O3spmioSsykj7jcZM50yFYfw98/v3wGGPazIRvoRKUPQ+sTCCc418lJtHCZ
+         mhcToz3pPwICUYAamrEwOQ8boDlCKl8OD2k9cQbLuk4Xdgv5/XDDlkAyo0rEGRfqKsXc
+         rM3rP/G7u1ZIaKc2iQgX89FT/azcp0ZOFtlt2Eaa/mebPkoQ+m3R2+samPX2cErLudOb
+         PndQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUZdiNhP6oEOD7tjOIRSd96bik/9tsaJn6pZhzpnyBj/XBg4RcMYD64fqqqV0zAo84cz3BB+jwWJHEd@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFsUAboXbRObMpw5KzynMbAe5wyKgQGLRY8GfRMRIUhdLULnfq
+	JSX+A0l2JcrWNVlVoCaTGb5WGgleku96ybCuUHE4HgMugFGkUFoxm+BAmNC3r3lRO9o=
+X-Gm-Gg: ASbGncvXmP2+q0i3j9L2i345fekHtFAii5YELFFc2mzwarEf58wWapDRUx4isjs9wRc
+	6tzK9Q+RrAWSHhVaatXskf2a1k3f3308nFsdoJaPAQ8b0lefgz9o7XQnD6xlnngBpuT55fYT1Q7
+	IEzK/LQ6DVXMeqX4hoa4tNuW/b2kJcBO+DJM5SmdyCPutsPtMktSZpM/ywOYxKR6sApCbN1SXL2
+	9wEXd02OI0/ohebA71N//zwpx13QJ4ORBAcO0XWAHd3onLrazPKADRlAa5lEsUaaWK8xvjO6J+4
+	bFqt932fxYq8CPj2ZWZ7UDsWt2jMyQq4AyQZ0DXyf3XCZsJyPiWl1FlE9Lazyfg+I5a6cdVlSGA
+	fCsqORBLdkzRHGHX2R0T0CJf+iCjOSDdwSTES7Jo3eVqJcCeKCI4PwVCzanDUEKwrP9MV9iePuR
+	4P7KvNRB/t0AuhGN0mi9hv0Mvk3ObInWkXcqG79YaeWiunvjxxpCpBSw+tuQ3wMYP1Lji+H/YET
+	Fbt
+X-Google-Smtp-Source: AGHT+IFoE9OmJaNFhl0oCYA4I5Vz8Lh4b1/CD22Ed+dT5SBsnD4UIM73MCg/02FxSamLM9sqOV5Ppw==
+X-Received: by 2002:a05:600c:3b97:b0:477:9e8f:dae8 with SMTP id 5b1f17b1804b1-47904a685c0mr25597235e9.0.1764064685199;
+        Tue, 25 Nov 2025 01:58:05 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:1d9d:2362:4539:c68d? ([2a05:6e02:1041:c10:1d9d:2362:4539:c68d])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-477bf3ba1b4sm246185395e9.15.2025.11.25.01.58.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Nov 2025 01:58:04 -0800 (PST)
+Message-ID: <fe1efb30-9d23-4291-a21e-80a5ffb954b1@linaro.org>
+Date: Tue, 25 Nov 2025 10:58:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: qcom-tsens: make ipq5018 tsens
+ standalone compatible
+To: george.moussalem@outlook.com, Amit Kucheria <amitk@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250818-ipq5018-tsens-fix-v1-0-0f08cf09182d@outlook.com>
+ <20250818-ipq5018-tsens-fix-v1-1-0f08cf09182d@outlook.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250818-ipq5018-tsens-fix-v1-1-0f08cf09182d@outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <trr5j57vwk2dhoibdgdxnlkftnmfcmjkwmicsiltmhybxanjaf@tzaeeqcyz56l>
 
-On Tue, Nov 18, 2025 at 12:23:20PM +0530, Manivannan Sadhasivam wrote:
+On 8/18/25 13:33, George Moussalem via B4 Relay wrote:
+> From: George Moussalem <george.moussalem@outlook.com>
 > 
-> ath12k doesn't seem to require a calibration variant. But even if the user
-> replaces ath11k chipset with ath10k one, the calibration variant should be the
-> same as it is platform specific except for WSI.
+> The tsens IP found in the IPQ5018 SoC should not use qcom,tsens-v1 as
+> fallback since it has no RPM and, as such, must deviate from the
+> standard v1 init routine as this version of tsens needs to be explicitly
+> reset and enabled in the driver.
 > 
-> - Mani
+> So let's make qcom,ipq5018-tsens a standalone compatible in the bindings.
 > 
-> -- 
-> மணிவண்ணன் சதாசிவம்
-> 
+> Fixes: 77c6d28192ef ("dt-bindings: thermal: qcom-tsens: Add ipq5018 compatible")
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> ---
 
-Hi all,
+Applied patch 1/2
 
-Jumping in on this thread to ask about how we should handle variants.
+Thanks
 
-We are using the WCN7850 device with the ath12k driver and received three
-board files for this from Silex, signed by Qualcomm. All three support the
-same board (SX-PCEBE), where one is the board file to be used for the
-US/EU/JP and the other two are one for higher emissions in the UK/CA and
-one for lower emissions in the UK/CA.
+   -- Daniel
 
-Since these are needed for regulatory differences but support the same
-board, we were wondering about your views on how to handle that in
-mainline. I see that there is no support for the board file selection in
-the device tree for ath12k, and that there is some discussion on how to
-handle variants in general. We are using a device tree-based setup and no
-ACPI.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Thanks!
-
-Kind regards,
-Ernest
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
