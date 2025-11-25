@@ -1,566 +1,99 @@
-Return-Path: <devicetree+bounces-242055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50B02C85B9F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 16:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34ABFC85BBB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 16:18:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C4DAD4EC5DD
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 15:09:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BEEC14EB5F8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 15:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2454132C94B;
-	Tue, 25 Nov 2025 15:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jwzSD3iC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDFF326D4D;
+	Tue, 25 Nov 2025 15:13:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5B432779D
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 15:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E0A3254AD;
+	Tue, 25 Nov 2025 15:12:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764083213; cv=none; b=m6dcmtzJ9529jEyDL1/NPy4pjy51pQp3SoHVtyLV3RTLzqf2vu16GE/RoaNfp7yG3PAAJi5PnFbhkiezng0tOdG2bw7K/TW8y13ekJ51txuhIjYO+1xLol4l8UMHgUoHa8qf2yj2cGITENeEsHC+8zGAhdXtSMU7+9eA/TloEOQ=
+	t=1764083580; cv=none; b=Z/tvQ63tfozIqskRr5VkTKApu3+K2W4cha4lR4S3+Nc9Br68HjJq5n+JoWQcKlly3JVqcB9dOK/p+GIMLWlKRBakXUdsmeXkcqWOF6FBXouo90cBMBAALLCiBMCqC9pQOAZ335hhB8XylSkX6F1IjaezIZdiqQAGQERonA7LDAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764083213; c=relaxed/simple;
-	bh=Hu3Q3V7OclDC6uu2PcyfhwaN1/BAkZSnn5FwWaIGLec=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qrsT1vKesZV0G1FbjSKGbhw/2+h71rGcwx2BtMP9/hVyOWGG6FCjOaYTBdhzI9k6VsQWN4I+vg/qJeYwKbLxDqdarIws5j9NAPv1RWxuytlWd59g1niGKdDYI3fCFjs7Oi7zG55wRxW8iufYnl1gqVm2WthfoVGpBX3Kiaom+Ms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jwzSD3iC; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42b38693c4dso2476480f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 07:06:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764083207; x=1764688007; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=httfXM+8l0sum1iuPhimnyuIWDvW8Bl0comT+k/p0tE=;
-        b=jwzSD3iCLEdfqVWVZvH8CM+3zyJqkQZDsXPsH/55bbzGM5JoAtuGgMJ/aUAlx/sQwz
-         tDPQV2dy8rmWL/Q5LF3hEFFLAW8q38wIpN33xvbILJggwWmjaBOLHiM0/qdWOVfVfaEd
-         TKObGrpsPmhmBDNzCsOoxL91/127v8bEVZ0VVNNfhluFe0rg4Pi0oWscGHVF4GdSMLNU
-         ZqumfTar2UMCdZEoJyOKi5OSF0bPtx/RYpIJEp5KxlmqYyjML03TjaSY19ogoLiDsVOg
-         rgSyGImRoyKDdyHuWQqNzMp93EwQrV6oPNq0iXVJ7M/cRTJj07KnhR7stHBJNYANNqbH
-         mzOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764083207; x=1764688007;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=httfXM+8l0sum1iuPhimnyuIWDvW8Bl0comT+k/p0tE=;
-        b=iysv8+O0NXhDuuf3edg4XpE8vqCT8mIkB6EVXZLUdQivhxxkqo8sBuQ4wflNdsZdQk
-         +DjaHd5WeYKrC7ds+Ifxi906OYplJkrqSnbCggdgqDUbTH4CWzseU5G8ytaOTWlMfibO
-         nbsvzASEV3kzXSMRzwMNbY8UzI6uv9zIcAO/XQ44m33tEK58jrZG+gafNyPDbATxEao5
-         xRIGHr89VzKlNdBHrTzJimbsLfF3LCQgfk3MM++eixER0M5vFOxYr88YDDDm6v7BP40U
-         AAhwd4Xklq2bbr+JqdLlA7j5fKnAWrj1k+qkKHfOzSU3IzPCNLrE46Jx1MlBZGjleOMW
-         DmYw==
-X-Forwarded-Encrypted: i=1; AJvYcCWgsR03Z6cblqX2YkIgS80PUKOBFatfQuqmijipZWUav9I+02YWnxj6ovAZHD6y+44ok6fSxXdZo4VL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9vpPgF2NCEbkkGei9lq7IUNjh8tk8wa8sPHGdZRHyIgScSQVL
-	hsaZKNiOSZizD+/AyaPxOxHv3yVKb+X0DBeeWgpz+Hw6taDlt6UtTAJs
-X-Gm-Gg: ASbGncv5FPhfs9dkk3Fv3bqJTJQBJPJD4VmDfWg9fRXmivql0oRqaVM+9sHEz9Vu3Sb
-	LkPQ5/M8jWOI9bnQa8fz2/kRFzSjbQyy8vWMSM6/xo+gfFqdcgwnxbZt42pWA8e+LgdBzeNrXza
-	OjVvy7kE111xmRrbQyb+D60oX7kb5Ag3M9zY4xtvXRqusUg2xYN2Qb+aMF/FhRc1t8lzKK9zGtS
-	Or70RfEBMAleleJfM3mpzON3xyKudVTsJif3dKWq09who7o/SqFYhaA9bmOPkXoUMZsnqDSsUfA
-	OmmMdTPs16pX9kvSDG6ulaiSWrhn9MhHwmiNrudCWi+z1vmJibc/W0rnwmWexOUdheqbPhSRtWG
-	R/kIreIC1uvWA7b4MHPa8TZKkSsFodxxbvG6VZXbz46UwJOGECgBdcpygWD4ATh9YmBdWadwdBi
-	dHSasnWU/rHEZ2hEFBFfIcX0Sdw80lJBKIm2tW0tNvFb42GYj0U1O5Teff0pXyAllhH6nnlv+5t
-	g==
-X-Google-Smtp-Source: AGHT+IHjNZydxVq7AuLRYXQnRrP8lXXoOKThgfVqZ9Vnj2hHER2VIik477gS/3joBWng93Q7yIowVQ==
-X-Received: by 2002:a5d:588b:0:b0:429:c2fb:c268 with SMTP id ffacd0b85a97d-42e0f35bba3mr3525798f8f.56.1764083207002;
-        Tue, 25 Nov 2025 07:06:47 -0800 (PST)
-Received: from localhost.localdomain (host86-162-200-138.range86-162.btcentralplus.com. [86.162.200.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fba201sm34797809f8f.32.2025.11.25.07.06.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Nov 2025 07:06:46 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v4 16/16] serial: sh-sci: Add support for RZ/G3E RSCI
-Date: Tue, 25 Nov 2025 15:06:18 +0000
-Message-ID: <20251125150632.299890-17-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251125150632.299890-1-biju.das.jz@bp.renesas.com>
-References: <20251125150632.299890-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1764083580; c=relaxed/simple;
+	bh=52nwkri5zEPXSLbRcRahQUz+KdOaiUGi1d7Hr32ZuHE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WCsuAG6H2MKRgzt0Xr8Pf6hGiHCaRFwRdL/e6Ujwc7dV4HscBRtpqsV98WVNPmD+wxJx+2mhU3GLFjULPbfT9VFfvfmEivsMObWlCePWTSsa5CuNuByYMb8LM+zvXJFmkbZ5L80bSHddmo91QRLRmw6z3W+9ENSCadPy5OuukGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dG5m31DRLz9twg;
+	Tue, 25 Nov 2025 16:12:51 +0100 (CET)
+Authentication-Results: outgoing_mbo_mout;
+	dkim=none;
+	spf=pass (outgoing_mbo_mout: domain of linux@timmermann.space designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=linux@timmermann.space
+From: Lukas Timmermann <linux@timmermann.space>
+Subject: [PATCH v2 0/3] Add support for exynos5250-manta (Google Nexus 10)
+Date: Tue, 25 Nov 2025 16:12:39 +0100
+Message-Id: <20251125-google-manta-v2-0-0f097cfff39c@timmermann.space>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGfHJWkC/x3MQQqAIBBA0avIrBNUErGrRAvJyQZKQyMC8e5Jy
+ 7f4v0LBTFhgYhUyPlQoxQ41MFh3FwNy8t2ghNJSKs1DSuFAfrp4O26sHjVKY70U0JMr40bvv5u
+ X1j5BFZOcXgAAAA==
+X-Change-ID: 20251125-google-manta-79545e179d10
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Lukas Timmermann <linux@timmermann.space>, 
+ Alexandre Marquet <tb@a-marquet.fr>
+X-Rspamd-Queue-Id: 4dG5m31DRLz9twg
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+This patch series adds initial support for the google-manta board, known
+as Google Nexus 10 to users. The device is powered by
+the Exynos 5250 SoC. The notification led driver (as3668) is already 
+(tho not applied) in the kernel mailing list and can be found here:
+https://lore.kernel.org/linux-leds/20251125114015.355487-1-linux@timmermann.space/
 
-Add support for RZ/G3E RSCI. RSCI IP found on the RZ/G3E SoC is similar
-to RZ/T2H, but it has a 32-stage FIFO. it has 6 clocks(5 module clocks
-+ 1 external clock) instead of 3 clocks(2 module clocks + 1 external
-clock) on T2H and has multiple resets. Add support for the hardware
-flow control.
+The first two patches add the necessary device tree files and
+bindings, while the last patch makes a small modification to
+allow CPU1 to boot, as it requires a call to it's underlying firmware.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+This first iteration only provides basic support to get the board
+up and running and usable via UART and with WiFi support. We will upstream additional 
+features in future patches. All patches have been tested on real hardware.
+
+Signed-off-by: Lukas Timmermann <linux@timmermann.space>
 ---
-v3->v4:
- * Updated commit description and header
- * Updated rsci_type() to drop "scif" type instead use "rsci"
- * Replaced the compatible "renesas,r9a09g047-rscif" with
-   "renesas,r9a09g047-rsci"
- * Renamed the port enum from RSCI_PORT_SCIF->RSCI_PORT_SCIF32.
- * Renamed of_rsci_scif_data->of_rsci_rzg3e_data
- * Renamed the funvtion rsci_rzg3e_scif_early_console_setup() with
-   rsci_rzg3e_early_console_setup().
-v2->v3:
- * Dropped cpu_relax() from rsci_finish_console_write() and added a
-   comment.
- * Added sci_is_rsci_fifo_type() helper for reuse in probe() and remove().
-v1->v2:
- * Updated commit description.
- * Updated multiline comment to fit into single line.
- * Updated set_termios() for getting baud_rate()
----
- drivers/tty/serial/rsci.c   | 275 ++++++++++++++++++++++++++++++++++--
- drivers/tty/serial/rsci.h   |   1 +
- drivers/tty/serial/sh-sci.c |   5 +
- 3 files changed, 272 insertions(+), 9 deletions(-)
+Alexandre Marquet (3):
+      dt-bindings: ARM: samsung: Add Google Manta (Nexus 10)
+      ARM: dts: exynos: Add Google Manta (Nexus 10)
+      ARM: samsung: exynos5250: Allow CPU1 to boot
 
-diff --git a/drivers/tty/serial/rsci.c b/drivers/tty/serial/rsci.c
-index f6b61f33358c..94107ef3823f 100644
---- a/drivers/tty/serial/rsci.c
-+++ b/drivers/tty/serial/rsci.c
-@@ -11,6 +11,8 @@
- #include <linux/serial_core.h>
- #include <linux/serial_sci.h>
- #include <linux/tty_flip.h>
-+
-+#include "serial_mctrl_gpio.h"
- #include "rsci.h"
- 
- MODULE_IMPORT_NS("SH_SCI");
-@@ -59,6 +61,41 @@ MODULE_IMPORT_NS("SH_SCI");
- #define CCR1_CTSPEN		BIT(1)	/* CTS External Pin Enable */
- #define CCR1_CTSE		BIT(0)	/* CTS Enable */
- 
-+/* CCR2 (Common Control Register 2) */
-+#define CCR2_INIT			0xFF000004
-+#define CCR2_CKS_TCLK			(0)	/* TCLK clock */
-+#define CCR2_CKS_TCLK_DIV4		BIT(20)	/* TCLK/4 clock */
-+#define CCR2_CKS_TCLK_DIV16		BIT(21)	/* TCLK16 clock */
-+#define CCR2_CKS_TCLK_DIV64		(BIT(21) | BIT(20)) /* TCLK/64 clock */
-+#define CCR2_BRME			BIT(16)	/* Bitrate Modulation Enable */
-+#define CCR2_ABCSE			BIT(6)	/* Asynchronous Mode Extended Base Clock Select */
-+#define CCR2_ABCS			BIT(5)	/* Asynchronous Mode Base Clock Select */
-+#define CCR2_BGDM			BIT(4)	/* Baud Rate Generator Double-Speed Mode Select */
-+
-+/* CCR3 (Common Control Register 3) */
-+#define CCR3_INIT			0x1203
-+#define CCR3_BLK			BIT(29)	/* Block Transfer Mode */
-+#define CCR3_GM				BIT(28)	/* GSM Mode */
-+#define CCR3_CKE1			BIT(25)	/* Clock Enable 1 */
-+#define CCR3_CKE0			BIT(24)	/* Clock Enable 0 */
-+#define CCR3_DEN			BIT(21)	/* Driver Enabled */
-+#define CCR3_FM				BIT(20)	/* FIFO Mode Select */
-+#define CCR3_MP				BIT(19)	/* Multi-Processor Mode */
-+#define CCR3_MOD_ASYNC			0	/* Asynchronous mode (Multi-processor mode) */
-+#define CCR3_MOD_IRDA			BIT(16)	/* Smart card interface mode */
-+#define CCR3_MOD_CLK_SYNC		BIT(17)	/* Clock synchronous mode */
-+#define CCR3_MOD_SPI			(BIT(17) | BIT(16)) /* Simple SPI mode */
-+#define CCR3_MOD_I2C			BIT(18)	/* Simple I2C mode */
-+#define CCR3_RXDESEL			BIT(15)	/* Asynchronous Start Bit Edge Detection Select */
-+#define CCR3_STP			BIT(14)	/* Stop bit Length */
-+#define CCR3_SINV			BIT(13)	/* Transmitted/Received Data Invert */
-+#define CCR3_LSBF			BIT(12)	/* LSB First select */
-+#define CCR3_CHR1			BIT(9)	/* Character Length */
-+#define CCR3_CHR0			BIT(8)	/* Character Length */
-+#define CCR3_BPEN			BIT(7)	/* Synchronizer Bypass Enable */
-+#define CCR3_CPOL			BIT(1)	/* Clock Polarity Select */
-+#define CCR3_CPHA			BIT(0)	/* Clock Phase Select */
-+
- /* FCR (FIFO Control Register) */
- #define FCR_RFRST		BIT(23)	/* Receive FIFO Data Register Reset */
- #define FCR_TFRST		BIT(15)	/* Transmit FIFO Data Register Reset */
-@@ -138,21 +175,160 @@ static void rsci_start_rx(struct uart_port *port)
- 	rsci_serial_out(port, CCR0, ctrl);
- }
- 
-+static void rsci_enable_ms(struct uart_port *port)
-+{
-+	mctrl_gpio_enable_ms(to_sci_port(port)->gpios);
-+}
-+
-+static void rsci_init_pins(struct uart_port *port, unsigned int cflag)
-+{
-+	struct sci_port *s = to_sci_port(port);
-+
-+	/* Use port-specific handler if provided */
-+	if (s->cfg->ops && s->cfg->ops->init_pins) {
-+		s->cfg->ops->init_pins(port, cflag);
-+		return;
-+	}
-+
-+	if (!s->has_rtscts)
-+		return;
-+
-+	if (s->autorts)
-+		rsci_serial_out(port, CCR1, rsci_serial_in(port, CCR1) |
-+				CCR1_CTSE | CCR1_CTSPEN);
-+}
-+
-+static int rsci_scif_set_rtrg(struct uart_port *port, int rx_trig)
-+{
-+	unsigned int bits;
-+
-+	if (rx_trig >= port->fifosize)
-+		rx_trig = port->fifosize - 1;
-+	else if (rx_trig < 1)
-+		rx_trig = 1;
-+
-+	bits = rx_trig << 16;
-+	rsci_serial_out(port, FCR, (rsci_serial_in(port, FCR) & ~FCR_RTRG4_0) | bits);
-+
-+	return rx_trig;
-+}
-+
- static void rsci_set_termios(struct uart_port *port, struct ktermios *termios,
- 			     const struct ktermios *old)
- {
-+	unsigned int ccr2_val = CCR2_INIT, ccr3_val = CCR3_INIT;
-+	unsigned int ccr0_val = 0, ccr1_val = 0, ccr4_val = 0;
-+	unsigned int brr1 = 255, cks1 = 0, srr1 = 15;
- 	struct sci_port *s = to_sci_port(port);
-+	unsigned int brr = 255, cks = 0;
-+	int min_err = INT_MAX, err;
-+	unsigned long max_freq = 0;
-+	unsigned int baud, i;
- 	unsigned long flags;
-+	unsigned int ctrl;
-+	int best_clk = -1;
-+
-+	if ((termios->c_cflag & CSIZE) == CS7) {
-+		ccr3_val |= CCR3_CHR0;
-+	} else {
-+		termios->c_cflag &= ~CSIZE;
-+		termios->c_cflag |= CS8;
-+	}
-+
-+	if (termios->c_cflag & PARENB)
-+		ccr1_val |= CCR1_PE;
-+
-+	if (termios->c_cflag & PARODD)
-+		ccr1_val |= (CCR1_PE | CCR1_PM);
-+
-+	if (termios->c_cflag & CSTOPB)
-+		ccr3_val |= CCR3_STP;
-+
-+	/* Enable noise filter function */
-+	ccr1_val |= CCR1_NFEN;
-+
-+	/*
-+	 * earlyprintk comes here early on with port->uartclk set to zero.
-+	 * the clock framework is not up and running at this point so here
-+	 * we assume that 115200 is the maximum baud rate. please note that
-+	 * the baud rate is not programmed during earlyprintk - it is assumed
-+	 * that the previous boot loader has enabled required clocks and
-+	 * setup the baud rate generator hardware for us already.
-+	 */
-+	if (!port->uartclk) {
-+		max_freq = 115200;
-+	} else {
-+		for (i = 0; i < SCI_NUM_CLKS; i++)
-+			max_freq = max(max_freq, s->clk_rates[i]);
-+
-+		max_freq /= min_sr(s);
-+	}
-+
-+	baud = uart_get_baud_rate(port, termios, old, 0, max_freq);
-+	if (!baud)
-+		goto done;
-+
-+	/* Divided Functional Clock using standard Bit Rate Register */
-+	err = sci_scbrr_calc(s, baud, &brr1, &srr1, &cks1);
-+	if (abs(err) < abs(min_err)) {
-+		best_clk = SCI_FCK;
-+		ccr0_val = 0;
-+		min_err = err;
-+		brr = brr1;
-+		cks = cks1;
-+	}
-+
-+done:
-+	if (best_clk >= 0)
-+		dev_dbg(port->dev, "Using clk %pC for %u%+d bps\n",
-+			s->clks[best_clk], baud, min_err);
- 
- 	sci_port_enable(s);
- 	uart_port_lock_irqsave(port, &flags);
- 
--	/* For now, only RX enabling is supported */
--	if (termios->c_cflag & CREAD)
-+	uart_update_timeout(port, termios->c_cflag, baud);
-+
-+	rsci_serial_out(port, CCR0, ccr0_val);
-+
-+	ccr3_val |= CCR3_FM;
-+	rsci_serial_out(port, CCR3, ccr3_val);
-+
-+	ccr2_val |= (cks << 20) | (brr << 8);
-+	rsci_serial_out(port, CCR2, ccr2_val);
-+
-+	rsci_serial_out(port, CCR1, ccr1_val);
-+	rsci_serial_out(port, CCR4, ccr4_val);
-+
-+	ctrl = rsci_serial_in(port, FCR);
-+	ctrl |= (FCR_RFRST | FCR_TFRST);
-+	rsci_serial_out(port, FCR, ctrl);
-+
-+	if (s->rx_trigger > 1)
-+		rsci_scif_set_rtrg(port, s->rx_trigger);
-+
-+	port->status &= ~UPSTAT_AUTOCTS;
-+	s->autorts = false;
-+
-+	if ((port->flags & UPF_HARD_FLOW) && (termios->c_cflag & CRTSCTS)) {
-+		port->status |= UPSTAT_AUTOCTS;
-+		s->autorts = true;
-+	}
-+
-+	rsci_init_pins(port, termios->c_cflag);
-+	rsci_serial_out(port, CFCLR, CFCLR_CLRFLAG);
-+	rsci_serial_out(port, FFCLR, FFCLR_DRC);
-+
-+	ccr0_val |= CCR0_RE;
-+	rsci_serial_out(port, CCR0, ccr0_val);
-+
-+	if ((termios->c_cflag & CREAD) != 0)
- 		rsci_start_rx(port);
- 
- 	uart_port_unlock_irqrestore(port, flags);
- 	sci_port_disable(s);
-+
-+	if (UART_ENABLE_MS(port, termios->c_cflag))
-+		rsci_enable_ms(port);
- }
- 
- static int rsci_txfill(struct uart_port *port)
-@@ -177,13 +353,34 @@ static unsigned int rsci_tx_empty(struct uart_port *port)
- 
- static void rsci_set_mctrl(struct uart_port *port, unsigned int mctrl)
- {
--	/* Not supported yet */
-+	if (mctrl & TIOCM_LOOP) {
-+		/* Standard loopback mode */
-+		rsci_serial_out(port, CCR1, rsci_serial_in(port, CCR1) | CCR1_SPLP);
-+	}
- }
- 
- static unsigned int rsci_get_mctrl(struct uart_port *port)
- {
--	/* Not supported yet */
--	return 0;
-+	struct sci_port *s = to_sci_port(port);
-+	struct mctrl_gpios *gpios = s->gpios;
-+	unsigned int mctrl = 0;
-+
-+	mctrl_gpio_get(gpios, &mctrl);
-+
-+	/*
-+	 * CTS/RTS is handled in hardware when supported, while nothing
-+	 * else is wired up.
-+	 */
-+	if (!mctrl_gpio_to_gpiod(gpios, UART_GPIO_CTS))
-+		mctrl |= TIOCM_CTS;
-+
-+	if (!mctrl_gpio_to_gpiod(gpios, UART_GPIO_DSR))
-+		mctrl |= TIOCM_DSR;
-+
-+	if (!mctrl_gpio_to_gpiod(gpios, UART_GPIO_DCD))
-+		mctrl |= TIOCM_CAR;
-+
-+	return mctrl;
- }
- 
- static void rsci_clear_CFC(struct uart_port *port, unsigned int mask)
-@@ -313,7 +510,8 @@ static void rsci_receive_chars(struct uart_port *port)
- 				continue;
- 			}
- 
--			/* Store data and status.
-+			/*
-+			 * Store data and status.
- 			 * Non FIFO mode is not supported
- 			 */
- 			if (rdat & RDR_FFER) {
-@@ -347,6 +545,28 @@ static void rsci_receive_chars(struct uart_port *port)
- 	}
- }
- 
-+static void rsci_break_ctl(struct uart_port *port, int break_state)
-+{
-+	unsigned short ccr0_val, ccr1_val;
-+	unsigned long flags;
-+
-+	uart_port_lock_irqsave(port, &flags);
-+	ccr1_val = rsci_serial_in(port, CCR1);
-+	ccr0_val = rsci_serial_in(port, CCR0);
-+
-+	if (break_state == -1) {
-+		ccr1_val = (ccr1_val | CCR1_SPB2IO) & ~CCR1_SPB2DT;
-+		ccr0_val &= ~CCR0_TE;
-+	} else {
-+		ccr1_val = (ccr1_val | CCR1_SPB2DT) & ~CCR1_SPB2IO;
-+		ccr0_val |= CCR0_TE;
-+	}
-+
-+	rsci_serial_out(port, CCR1, ccr1_val);
-+	rsci_serial_out(port, CCR0, ccr0_val);
-+	uart_port_unlock_irqrestore(port, flags);
-+}
-+
- static void rsci_poll_put_char(struct uart_port *port, unsigned char c)
- {
- 	u32 status;
-@@ -368,12 +588,21 @@ static void rsci_poll_put_char(struct uart_port *port, unsigned char c)
- static void rsci_prepare_console_write(struct uart_port *port, u32 ctrl)
- {
- 	struct sci_port *s = to_sci_port(port);
--	u32 ctrl_temp =
--		s->params->param_bits->rxtx_enable | CCR0_TIE |
--		s->hscif_tot;
-+	u32 ctrl_temp = s->params->param_bits->rxtx_enable;
-+
-+	if (s->type == RSCI_PORT_SCIF16)
-+		ctrl_temp |= CCR0_TIE | s->hscif_tot;
-+
- 	rsci_serial_out(port, CCR0, ctrl_temp);
- }
- 
-+static void rsci_finish_console_write(struct uart_port *port, u32 ctrl)
-+{
-+	/* First set TE = 0 and then restore the CCR0 value */
-+	rsci_serial_out(port, CCR0, ctrl & ~CCR0_TE);
-+	rsci_serial_out(port, CCR0, ctrl);
-+}
-+
- static const char *rsci_type(struct uart_port *port)
- {
- 	return "rsci";
-@@ -414,6 +643,17 @@ static const struct sci_port_params rsci_port_params = {
- 	.common_regs = &rsci_common_regs,
- };
- 
-+static const struct sci_port_params rsci_rzg3e_scif_port_params = {
-+	.fifosize = 32,
-+	.overrun_reg = CSR,
-+	.overrun_mask = CSR_ORER,
-+	.sampling_rate_mask = SCI_SR(32),
-+	.error_mask = RSCI_DEFAULT_ERROR_MASK,
-+	.error_clear = RSCI_ERROR_CLEAR,
-+	.param_bits = &rsci_port_param_bits,
-+	.common_regs = &rsci_common_regs,
-+};
-+
- static const struct uart_ops rsci_uart_ops = {
- 	.tx_empty	= rsci_tx_empty,
- 	.set_mctrl	= rsci_set_mctrl,
-@@ -421,6 +661,8 @@ static const struct uart_ops rsci_uart_ops = {
- 	.start_tx	= rsci_start_tx,
- 	.stop_tx	= rsci_stop_tx,
- 	.stop_rx	= rsci_stop_rx,
-+	.enable_ms	= rsci_enable_ms,
-+	.break_ctl	= rsci_break_ctl,
- 	.startup	= sci_startup,
- 	.shutdown	= sci_shutdown,
- 	.set_termios	= rsci_set_termios,
-@@ -440,10 +682,18 @@ static const struct sci_port_ops rsci_port_ops = {
- 	.receive_chars		= rsci_receive_chars,
- 	.poll_put_char		= rsci_poll_put_char,
- 	.prepare_console_write	= rsci_prepare_console_write,
-+	.finish_console_write	= rsci_finish_console_write,
- 	.suspend_regs_size	= rsci_suspend_regs_size,
- 	.shutdown_complete	= rsci_shutdown_complete,
- };
- 
-+struct sci_of_data of_rsci_rzg3e_data = {
-+	.type = RSCI_PORT_SCIF32,
-+	.ops = &rsci_port_ops,
-+	.uart_ops = &rsci_uart_ops,
-+	.params = &rsci_rzg3e_scif_port_params,
-+};
-+
- struct sci_of_data of_rsci_rzt2h_data = {
- 	.type = RSCI_PORT_SCIF16,
- 	.ops = &rsci_port_ops,
-@@ -453,12 +703,19 @@ struct sci_of_data of_rsci_rzt2h_data = {
- 
- #ifdef CONFIG_SERIAL_SH_SCI_EARLYCON
- 
-+static int __init rsci_rzg3e_early_console_setup(struct earlycon_device *device,
-+						 const char *opt)
-+{
-+	return scix_early_console_setup(device, &of_rsci_rzg3e_data);
-+}
-+
- static int __init rsci_rzt2h_early_console_setup(struct earlycon_device *device,
- 						 const char *opt)
- {
- 	return scix_early_console_setup(device, &of_rsci_rzt2h_data);
- }
- 
-+OF_EARLYCON_DECLARE(rsci, "renesas,r9a09g047-rsci", rsci_rzg3e_early_console_setup);
- OF_EARLYCON_DECLARE(rsci, "renesas,r9a09g077-rsci", rsci_rzt2h_early_console_setup);
- 
- #endif /* CONFIG_SERIAL_SH_SCI_EARLYCON */
-diff --git a/drivers/tty/serial/rsci.h b/drivers/tty/serial/rsci.h
-index 9547148e8bd1..2aa2ba3973ee 100644
---- a/drivers/tty/serial/rsci.h
-+++ b/drivers/tty/serial/rsci.h
-@@ -5,6 +5,7 @@
- 
- #include "sh-sci-common.h"
- 
-+extern struct sci_of_data of_rsci_rzg3e_data;
- extern struct sci_of_data of_rsci_rzt2h_data;
- 
- #endif /* __RSCI_H__ */
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index e7d4cac39906..e887bca140e7 100644
---- a/drivers/tty/serial/sh-sci.c
-+++ b/drivers/tty/serial/sh-sci.c
-@@ -3329,6 +3329,7 @@ static int sci_init_single(struct platform_device *dev,
- 		sci_port->rx_trigger = 64;
- 		break;
- 	case PORT_SCIFA:
-+	case RSCI_PORT_SCIF32:
- 		sci_port->rx_trigger = 32;
- 		break;
- 	case PORT_SCIF:
-@@ -3670,6 +3671,10 @@ static const struct of_device_id of_sci_match[] __maybe_unused = {
- 		.data = &of_sci_scif_rzv2h,
- 	},
- #ifdef CONFIG_SERIAL_RSCI
-+	{
-+		.compatible = "renesas,r9a09g047-rsci",
-+		.data = &of_rsci_rzg3e_data,
-+	},
- 	{
- 		.compatible = "renesas,r9a09g077-rsci",
- 		.data = &of_rsci_rzt2h_data,
+ .../bindings/arm/samsung/samsung-boards.yaml       |   1 +
+ arch/arm/boot/dts/samsung/Makefile                 |   1 +
+ arch/arm/boot/dts/samsung/exynos5250-manta.dts     | 516 +++++++++++++++++++++
+ arch/arm/mach-exynos/firmware.c                    |   4 +-
+ 4 files changed, 520 insertions(+), 2 deletions(-)
+---
+base-commit: 6a23ae0a96a600d1d12557add110e0bb6e32730c
+change-id: 20251125-google-manta-79545e179d10
+
+Best regards,
 -- 
-2.43.0
+Lukas Timmermann <linux@timmermann.space>
 
 
