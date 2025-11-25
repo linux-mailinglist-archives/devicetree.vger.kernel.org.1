@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-241890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24A08C83EAF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:15:20 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAA23C83ED0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 170B54E6B87
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:15:19 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A39D234E973
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:15:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398032FCC04;
-	Tue, 25 Nov 2025 08:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48CB52FD684;
+	Tue, 25 Nov 2025 08:13:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="Gy690AJ8"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="VP8+kPsv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
+Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C092FBE11;
-	Tue, 25 Nov 2025 08:13:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9159C2FD1D9
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 08:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764058408; cv=none; b=lGhPBmwsDh/HVJsUjMSr46ylwnpyJ2yjnHWBHzJuVH1AQ1uRFRK5nKz3p11Y34fkZXZpNNXIbi6GrzA+iuY8TdtyZOgcqA0gfOHmF8/dSTNtD9vJGHH6hOkdWpz9t4A7jfXxoXDVB80q0KYA8L7MVx3e72qKqZg6dYY50ykCpWo=
+	t=1764058412; cv=none; b=Ct1UYGRM74L2cKZYEWRBEgtIM3pWL7nA1ujAyctwLRzbjjJ08+gNY8HccXL/29DygcG5bPJctbw5brefwPfjitdQEOrW4ctF/z4cJIyOvaou7qNsRWKiuAceMHQS+Tp+Jw7P/Lz6dvoXSZZcu2rx42hahoH1t86nRanW+FQfoLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764058408; c=relaxed/simple;
-	bh=w9wAmXNQBoFL+R5i19c+vkdpO3F1VlOpIMjdaeoCUQ0=;
+	s=arc-20240116; t=1764058412; c=relaxed/simple;
+	bh=6947H6/xb4Y9TK51M02+1TbH/f9gjvhWQorDiD4X0co=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZO+EknoTgs1aPP06iGfG2/3WHxq7DPcBo0ZE1f96Xa/yi9rX5WJsFnnvrITvHkr4S/ktj9Ur6SMYXoRe7UFaZl6S1OMNmXurYODu2UEIVrLBta0UYd0zZt5CS1jRfG2knhd1CGjmtDgA/BC9eIjypWHIckgF5tDOQdH9McYAqlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=Gy690AJ8; arc=none smtp.client-ip=95.215.58.183
+	 In-Reply-To:To:Cc; b=JFb/90CbrRcFB1UIJBeOooCS/8LfvmIEt5S6J0AyX+ezhC0fPLNTllTlBY1i/HlOZy+r+xj1z4yjlEm6rusT9y//mjuRSSweNy08jGg6szkDXRjLwqfqrj1uddWbDkwLJKwB2RCm16m7TVfval1zHQEh4YuteB7QPhWcrm4EJr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=VP8+kPsv; arc=none smtp.client-ip=95.215.58.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1764058404;
+	s=key1; t=1764058408;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Yf+HMlo/PPR6xRo0J6aM6RXFkNHmNADNXzzOlE0Rqfs=;
-	b=Gy690AJ8+//a51VDdLVsotrENxnw/hIrRHTteRGVkNT8xw4KlMxRMtmsPktJAf1WI3hjyS
-	Bh51ra2Md0iCvAkRiI1RkDMGKeiAbcqR5r5EB61fLrRC4XxVT32r2gjxHOBr8gucZ2zW9u
-	sBaiTgxtp4dyLthc5vbmXjW3rzi+nZyjYQPjaDWDfeJp0d1rKeB+MfYxk7/vzbqrcIagX5
-	XIzgENXKcR6eyFULfINKkmpNaSgkg50VXFdQBf8WicBemM2n938VUbUpr1U8V8u0kGnKPi
-	g4/CmxqFuKq1gVNonRh8ZImFeWvM4p/adGz/PSAC2cPnLywTcEicbBQr0SDNLA==
+	bh=TILqy4gjWRXZMMm8Uq0oNN64z2L+nTHnVZZo76yzAaE=;
+	b=VP8+kPsv075ZI5m71pYfxMlSpUSUv4EZJ9XiQD/6encHIYsF64tDBBn7VrutxS8DfxedKh
+	0+N4ZQsTbU19VdG5VPGhTnOBZ1pC3h65YbNcgvN/qC6BOVkII3O5W/bFgK0lqS9b5rBcqx
+	Ki42EsDmXiel/S+KnKRzUtjTB0ev+N/JxAposxFxAyXaJwiKjavcsniUVXIhpHVXNsKqIW
+	t6fGJuSJQBNAVVN1lgT2JELvTG+TI/hZU1ZkwOfgWkMczqOlOpz/ImRlhTlNMTHvl0CcsF
+	IPwAwfHcU/HA14v+ORvIFA0/Wg13hfRUZcfmbcx9ad4Kxipayq2rXAcHUzSOPw==
 From: Paul Sajna <sajattack@postmarketos.org>
-Date: Tue, 25 Nov 2025 00:12:38 -0800
-Subject: [PATCH v4 08/12] arm64: dts: qcom: sdm845-lg-common: Add
- chassis-type
+Date: Tue, 25 Nov 2025 00:12:39 -0800
+Subject: [PATCH v4 09/12] arm64: dts: qcom: sdm845-lg-common: Add camera
+ flash
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +56,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251125-judyln-dts-v4-8-a5a60500b267@postmarketos.org>
+Message-Id: <20251125-judyln-dts-v4-9-a5a60500b267@postmarketos.org>
 References: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
 In-Reply-To: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -68,39 +68,48 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  Amir Dahan <system64fumo@protonmail.com>, 
  Christopher Brown <crispybrown@gmail.com>, 
  Paul Sajna <sajattack@postmarketos.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764058372; l=770;
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764058372; l=950;
  i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
- bh=w9wAmXNQBoFL+R5i19c+vkdpO3F1VlOpIMjdaeoCUQ0=;
- b=OdxJb/ykFKPxeb4Mila/YxDWXFPeZrdQSOc37Sa6mJTZmOlXaIqawSmwnxh71a7JOrsUFIdx8
- TTCZGLsbNA/CnmX8deJebbWQ3Gl80u1MTwKmK9KY+ksuyBAmAE7yi6c
+ bh=6947H6/xb4Y9TK51M02+1TbH/f9gjvhWQorDiD4X0co=;
+ b=27mvmMJxCeD96eMXOSIOVJgxsyVw19KUZ1mvb5fV5ga0qbO1t9YupZAy1LbIzE6mW+U0sQ6w1
+ 6d2DXjx1lumDSC388+4KcqnlshoaOBFhjAy9WAZlQOqTAVLKkrsTRzJ
 X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
  pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
 X-Migadu-Flow: FLOW_OUT
 
-The sdm845-lg devices are all phones, therefore handset chassis
+Camera doesn't work yet (imx351), but we can use the flash as a flashlight.
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-index f12e785db893..93b9a0246510 100644
+index 93b9a0246510..fa664b5120d2 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-@@ -28,6 +28,8 @@
- /delete-node/ &wlan_msa_mem;
+@@ -494,6 +494,19 @@ &pm8998_resin {
+ 	status = "okay";
+ };
  
- / {
-+	chassis-type = "handset";
++&pmi8998_flash {
++	status = "okay";
 +
- 	aliases {
- 		serial0 = &uart9;
- 		serial1 = &uart6;
++	led-0 {
++		function = LED_FUNCTION_FLASH;
++		color = <LED_COLOR_ID_WHITE>;
++		led-sources = <1>;
++		led-max-microamp = <100000>;
++		flash-max-microamp = <500000>;
++		flash-max-timeout-us = <500000>;
++	};
++};
++
+ &pmi8998_lpg {
+ 	status = "okay";
+ 
 
 -- 
 2.52.0
