@@ -1,220 +1,137 @@
-Return-Path: <devicetree+bounces-241853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F32F9C838F9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:50:33 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 118D0C83962
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:54:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A4E33B02C4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 06:49:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7F37D4E8969
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 06:53:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486ED2E888A;
-	Tue, 25 Nov 2025 06:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBB12D94BE;
+	Tue, 25 Nov 2025 06:51:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ije/DkKc"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="Zk6MyQBz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BF52D780A
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 06:49:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4102D97B8
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 06:51:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764053353; cv=none; b=NTIn2yDLzYo0axzRw2C6u8ZM5wdHNk8giwiE9s3Hh5s0LFdmEvcO31LG6SuPx2KtNkhQBqLDx+7xUbwBXuGA4agRxe6cT7iuJRNioeo0G/EScZS9xUL5UOQ7/29vDANn2yqX6EXjW3LEdN61eMqv9n9Xr23zoVIyTp+bpvGsNqU=
+	t=1764053477; cv=none; b=CxUenOK2ijpTrgefxc4NCyF9W6pan7/psjOmZ7o5D1YQaJxl461pr589LtwbqzCUf2091w3dF8fa2ghcw3jcaP51pNVixxP5WjJWZ6HGgwu2ohEibZqLloogy+9MkwvEWXiZvmJ76iKn3vMwpG4MB+rq+57pFMSPSJgi6r14AyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764053353; c=relaxed/simple;
-	bh=rXio99+YvGuyrhKrXNpvTD+TKYC/oil56/4az6zPstM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TTMv97ygdLUxnxgplCddMnxbhK6refWW+5g2VKZ0COpSyJloqf3HIdWX3NMljF8Oxxziyp0qrrJptXNVA5cskY+PEaybycX3LaxfWeSJgC3epMBlDqB3/X+6ACDy9rIu7WBKJY0Z3x7kWOc2gYs/GBbTtdUDm+7PlQU8w/6K2b4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ije/DkKc; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7bf0ad0cb87so5043592b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 22:49:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1764053351; x=1764658151; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=88kFkP2tiIFI/W0cIcRfnFOjGOXOrhask+3UfD3dOMc=;
-        b=ije/DkKcuyzpwBNHSEhTrvdsBuI0xCp399riMIz//kYD364cUp/4rLFu2jJt7uMm2J
-         4DmZqOcIIT+gpywg2eiRzLnkckDux6bCmVIjkL/7fjByGmj2n64XX0k7GrNGVV6YUlAG
-         cHS8aFLLb61xBGMtd+cmh/0sw9VW1EMfCdDf0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764053351; x=1764658151;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=88kFkP2tiIFI/W0cIcRfnFOjGOXOrhask+3UfD3dOMc=;
-        b=F3xEZK064Te+WADWz8pi0PhZPgISLFkN2NkZPGD0j/xK2kuAhG0LZ3VNOStON/pxDR
-         vtRl9VtxYmzTv5tOI9mvP8KYUX4pNeG7uSuKW2/cgP26kEKZbw5SvfF7s5Zu/o/dc7TV
-         tGK6Fdx+Yz7mxGLhsQ4R3FiMJ69+gkLSIq/IsB8yo+kApfWgwEA9hOgwiyKHmFKniQ1A
-         Xclc+de0sAhTwRT6vU8vINLUpuHtRt+3LM6LKOndez/w3pD7OvDlJOYi9qS7UvT6JBqy
-         YXdGz4ButIiO42cp4sGtiK0xr2qyz79ezcY4Xf+c6JxcCROmnMQHHwur/F5jmyr9od6q
-         ksxA==
-X-Forwarded-Encrypted: i=1; AJvYcCWg7vDNRQhyblWXXo9ECU+iCSm726yEmAiRVSZUSPt9ZuGJ/G36mae069PZfBvGbunGexAKZpFTrxht@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqjNitW0QM0Aq3I3duZURVMInoo4DlOFbcPZW23KO4RjmRfVKU
-	2ll6hMrnzR8DWYSrvrE5K+Re6sARdN35n7Q4aBbBMy74/C/6ELNhov1wMlWMxjX/i7vRbSoktDF
-	qd+Q=
-X-Gm-Gg: ASbGnctGnEpHlpAs4C1QKL6Ez1GjMdnZ9f9uM1EhZ1Co1xadhgeeTx+HEqjYugCtc2D
-	whAgNISd7gHkjJ0j1XjWRGwFoByCkE929lExlyxHlJ7LomYBrhsVcCmtiSfmftpioVymSnR44E/
-	3Ladworyiuo6J7cNOo0PsPKAJQOgG6H4oDYEJiI/EoXaiAZTidRvvTUNftzjl1zCsKZchO8TqO2
-	UZ88LMZLMiO8N0T9TPTePIbQ+cbnwyYAkFJYDx3TbgEouIKFwrLV2d7dNAWhKWFtXb+eU2tKPM+
-	JDqN1lzwyhdfXupkblJjgQ9AjQoCK4JUVpMow3WjHpEq0xix1L5cgSuOn6YkQdNoIocdrX06m2/
-	mf1Ubnrj5DOb6VjhSpFCI0I6rky32k5ADd5nZolGrRVJZ6R9+cI3kxGdFqwYQS+23VcNFQ4kE+H
-	2rYdCgQWhZuejcWqIHHiYwm1nOKCaqZo2yGp4Ne+wTrC8aMWecuUNADWMnARM2m9+rKG1I
-X-Google-Smtp-Source: AGHT+IElth1ajKpACCGhmlgof/CcbLxkdUN0v+MBgrJOs6SF5vNzmM++ExuwEs9TPuCVCvtXkQXH5Q==
-X-Received: by 2002:a05:6a00:228a:b0:7aa:a2a8:980f with SMTP id d2e1a72fcca58-7c58db2cd79mr14042173b3a.20.1764053350629;
-        Mon, 24 Nov 2025 22:49:10 -0800 (PST)
-Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:2b48:6622:575f:f283])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7c3ed471022sm16853335b3a.21.2025.11.24.22.49.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Nov 2025 22:49:10 -0800 (PST)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev,
-	Julius Werner <jwerner@chromium.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: firmware: coreboot: Convert to YAML
-Date: Tue, 25 Nov 2025 14:48:49 +0800
-Message-ID: <20251125064851.3781993-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.52.0.460.gd25c4c69ec-goog
+	s=arc-20240116; t=1764053477; c=relaxed/simple;
+	bh=myP9t/M0s1HOxL8j5RESJUEmJJGzpInLbX71tw+vB2E=;
+	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
+	 In-Reply-To:References; b=VIzGmrtpgwt3CKNK/eQ3xJdIgwIL7qBzxCgl9tLExLm62qYn4CbD7aT6liFUa3VTel/JF5S//VboCIK1RAdWq0qjDbIpGrPfydJbRdUlMJgOJYuZq+0aWBdCyZ2BvWbp8FA7C5EBNgmphC794qHujZT+UDlp2LGsmJneJkq8BVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=Zk6MyQBz; arc=none smtp.client-ip=91.218.175.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1764053463;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gQW8nMaLRGDP+1eaBJ0GqDH7FnxtmP/dDngFs5V75Nc=;
+	b=Zk6MyQBzI03GBNnrRNHdB6S/tLonmXEK42hwG7LGubtwJezLYYNw9k+3vXG38j4IkoAGuI
+	GFJQ9rdrNkntEwK92gKPN9r7rSHVYDT+V1XXRbvGGuCuRP0Ga3S1zyjxhM2O6O/dDcPIdq
+	6y7I8mOTaYn5o3xv5N4S5CPou9RfB/PXf9Jye2OSUXeteeRE03CDUxWuTBUf4FqPqKYFDQ
+	oUY9vDDxckmquCKosIbvzWqO2zjlZPoQB8TNgPpSEQjcwvUz3cc32h6km7WMhMtM97DvBx
+	7s6SMtkDfL/nLU32AabDMepA35zxo9E7eEUVuACKyqpnB+bXJCeWUKs0WE0Y2A==
+Date: Tue, 25 Nov 2025 06:51:00 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Paul Sajna" <sajattack@postmarketos.org>
+Message-ID: <fae984c564f240b72bc65bf3eab679587a9d90c4@postmarketos.org>
+TLS-Required: No
+Subject: Re: [PATCH v3 07/11] arm64: dts: qcom: sdm845-lg-{common, judyln}:
+ Add wifi node
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob 
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "David Heidelberg" <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
+ <system64fumo@protonmail.com>, "Christopher Brown"
+ <crispybrown@gmail.com>
+In-Reply-To: <998d44a8500132bc48e6882a5f7b19b45286a965@postmarketos.org>
+References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
+ <20250928-judyln-dts-v3-7-b14cf9e9a928@postmarketos.org>
+ <f58493a9-6def-4610-9c3e-d6a877dc23d3@oss.qualcomm.com>
+ <d38801bc77ad00442b1669ea252ae30a5c6af5b4@postmarketos.org>
+ <7661d9d9-eca3-4708-8162-960df0d7f6c7@oss.qualcomm.com>
+ <998d44a8500132bc48e6882a5f7b19b45286a965@postmarketos.org>
+X-Migadu-Flow: FLOW_OUT
 
-Convert the existing text binding to YAML.
+November 25, 2025 at 6:40 AM, "Paul Sajna" <sajattack@postmarketos.org ma=
+ilto:sajattack@postmarketos.org?to=3D%22Paul%20Sajna%22%20%3Csajattack%40=
+postmarketos.org%3E > wrote:
 
-The description has been change to reflect the possibility of coreboot
-inserting the node itself.
 
-The example has been modified to compile and pass validation without
-any errors. A comment was added to note what the firmware actually
-emits.
+>=20
+>=20October 2, 2025 at 9:37 AM, "Konrad Dybcio" <konrad.dybcio@oss.qualco=
+mm.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%2=
+0%3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote:
+>=20
+>=20>=20
+>=20> On 10/2/25 6:51 AM, Paul Sajna wrote:
+> >=20=20
+>=20>=20=20
+>=20>  October 1, 2025 at 9:14 AM, "Konrad Dybcio" <konrad.dybcio@oss.qua=
+lcomm.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%2=
+2%20%3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote
+> >=20=20
+>=20>=20=20
+>=20>=20=20
+>=20>  >=20
+>=20>  > As the dt-checker points out, there is no such property
+> >  >=20
+>=20>  > If your wi-fi works regardless of that, you probably don't need
+> >  > to set the one you intended to
+> >  >=20
+>=20>  > Konrad
+> >  >=20
+>=20>=20=20
+>=20>  Perhaps this only exists in the postmarketos tree, but it definite=
+ly exists, and doesn't work without it. I'll remove it for upstreaming fo=
+r now but hopefully someone sorts that out. upstream.
+> >=20=20
+>=20>  So you didn't test the tree you sent? :/
+> >=20=20
+>=20>  fwiw
+> >=20=20
+>=20>  drivers/net/wireless/ath/ath10k/snoc.c:
+> >  qcom,snoc-host-cap-8bit-quirk
+> >=20=20
+>=20>  Konrad
+> >=20
+>=20with qcom,snoc-host-cap-8bit-quirk I get=20
+>=20```
+> ath10k_snoc 18800000.wifi: msa info req rejected: 90
+> ```
+>=20
+>=20without it I get=20
+>=20```
+> ath10k_snoc 18800000.wifi: host capability request rejected: 1
+>=20
+>=20```
+>=20
+>=20Please help me understand how I should proceed.
+>
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- .../devicetree/bindings/firmware/coreboot.txt | 33 ----------
- .../bindings/firmware/coreboot.yaml           | 60 +++++++++++++++++++
- 2 files changed, 60 insertions(+), 33 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/firmware/coreboot.txt
- create mode 100644 Documentation/devicetree/bindings/firmware/coreboot.yaml
-
-diff --git a/Documentation/devicetree/bindings/firmware/coreboot.txt b/Documentation/devicetree/bindings/firmware/coreboot.txt
-deleted file mode 100644
-index 4c955703cea8..000000000000
---- a/Documentation/devicetree/bindings/firmware/coreboot.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--COREBOOT firmware information
--
--The device tree node to communicate the location of coreboot's memory-resident
--bookkeeping structures to the kernel. Since coreboot itself cannot boot a
--device-tree-based kernel (yet), this node needs to be inserted by a
--second-stage bootloader (a coreboot "payload").
--
--Required properties:
-- - compatible: Should be "coreboot"
-- - reg: Address and length of the following two memory regions, in order:
--	1.) The coreboot table. This is a list of variable-sized descriptors
--	that contain various compile- and run-time generated firmware
--	parameters. It is identified by the magic string "LBIO" in its first
--	four bytes.
--	See coreboot's src/commonlib/include/commonlib/coreboot_tables.h for
--	details.
--	2.) The CBMEM area. This is a downward-growing memory region used by
--	coreboot to dynamically allocate data structures that remain resident.
--	It may or may not include the coreboot table as one of its members. It
--	is identified by a root node descriptor with the magic number
--	0xc0389481 that resides in the topmost 8 bytes of the area.
--	See coreboot's src/include/imd.h for details.
--
--Example:
--	firmware {
--		ranges;
--
--		coreboot {
--			compatible = "coreboot";
--			reg = <0xfdfea000 0x264>,
--			      <0xfdfea000 0x16000>;
--		}
--	};
-diff --git a/Documentation/devicetree/bindings/firmware/coreboot.yaml b/Documentation/devicetree/bindings/firmware/coreboot.yaml
-new file mode 100644
-index 000000000000..568afd1abb92
---- /dev/null
-+++ b/Documentation/devicetree/bindings/firmware/coreboot.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/firmware/coreboot.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: COREBOOT firmware information
-+
-+maintainers:
-+  - Julius Werner <jwerner@chromium.org>
-+
-+description:
-+  The device tree node to communicate the location of coreboot's
-+  memory-resident bookkeeping structures to the kernel. Coreboot's
-+  FIT image payload can insert the node into the device tree. If a
-+  second-stage bootloader (a coreboot "payload") is used, then it
-+  is responsible for inserting the node.
-+
-+properties:
-+  compatible:
-+    const: coreboot
-+  reg:
-+    description: Address and length of the following two memory regions
-+    items:
-+      - description:
-+          The coreboot table. This is a list of variable-sized descriptors
-+          that contain various compile- and run-time generated firmware
-+          parameters. It is identified by the magic string "LBIO" in its first
-+          four bytes.
-+
-+          See coreboot's src/commonlib/include/commonlib/coreboot_tables.h for
-+          details.
-+      - description:
-+          The CBMEM area. This is a downward-growing memory region used by
-+          coreboot to dynamically allocate data structures that remain resident.
-+          It may or may not include the coreboot table as one of its members. It
-+          is identified by a root node descriptor with the magic number
-+          0xc0389481 that resides in the topmost 8 bytes of the area.
-+
-+          See coreboot's src/include/imd.h for details.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    firmware {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges;
-+
-+        /* Firmware actually emits "coreboot" node without unit name */
-+        coreboot@fdfea000 {
-+            compatible = "coreboot";
-+            reg = <0xfdfea000 0x264>, <0xfdfea000 0x16000>;
-+        };
-+    };
--- 
-2.52.0.460.gd25c4c69ec-goog
-
+I guess I'll just voice my support in https://patchwork.kernel.org/projec=
+t/ath10k/patch/1601058581-19461-1-git-send-email-amit.pundir@linaro.org/ =
+for now.
 
