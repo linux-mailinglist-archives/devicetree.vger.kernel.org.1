@@ -1,230 +1,116 @@
-Return-Path: <devicetree+bounces-241873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA26C83D12
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:56:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CD5EC83D3C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:57:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CB453B0C7B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:54:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B95343B02E4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4100D2F99AD;
-	Tue, 25 Nov 2025 07:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D162FBE1F;
+	Tue, 25 Nov 2025 07:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=vaisala.com header.i=@vaisala.com header.b="WpiS+nF+"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="g7jn8VKO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11021113.outbound.protection.outlook.com [52.101.70.113])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4476D2DF70F;
-	Tue, 25 Nov 2025 07:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.113
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764057272; cv=fail; b=oGiFUTsPkp1Ep/Snim6/YECrv0uCIzxT4HTsFQo+4JFi+2zAOBTIugERzaZv0zr3UmeBy1dFaX9bJQngNuuAJFS5f56/mXDWnJnXhvWSPWDNWOOCb9r0WThQp5DnzYDw0Cw5ap6BsBAnlJPrN2Sb2xs71e5mTFbBhgkDYeV2AHU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764057272; c=relaxed/simple;
-	bh=mBcdbj7LFlhEdmXOt3QcwMpkj5oJiHoF5xx13Y8lnPs=;
-	h=From:Date:Subject:Content-Type:Message-Id:To:Cc:MIME-Version; b=P6dEqLX1PoAj8bbW3Up6tclfHSvNZuRq7hs0bdbzKZKED0pjiuCYyBRo8FsbtxWzoySypVedycWU4dScZjCeWLcavEM0JvKjCIx48z/hmR5KouoDYPI000VR4q2Fx+cE+BuAsjzSgXgNEEc2WzOqYJJScbPA4Qp7qeUpXzwLiiQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vaisala.com; spf=pass smtp.mailfrom=vaisala.com; dkim=pass (2048-bit key) header.d=vaisala.com header.i=@vaisala.com header.b=WpiS+nF+; arc=fail smtp.client-ip=52.101.70.113
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vaisala.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vaisala.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=acyd2Lxln6KKcpEsTHQdxtmumAYhiHsBfTrCWsMGrZ8JZh86z+JRLZBYjW4dYbb5rISi9JuASFxLwaGdQYCGZ6uiz27NcbIcQzmx/i7ybI36gffuZRnct4eanjeI0MPrAS9HPVPjyZQPstIdyE1HGV6Kxz2ruFo3oDj1V2thIOmluidljG7ScjnWafJsW53+Mpz6bLbxW8+pDSlNFL6jhoG7eGh6uPdqV39d74L9Dy1udAUPGU1hR/eS5gUsVZIW0apGZhn+11U6hUSMveWeEXxbygqF+W4iGWBLmDSJokuqioZXTXVpGGJc8z9ychPK9Mher7ihgTORxRt66cnzYA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b3XJDX6qfgBAoycW3wQjEO4MbsbnoYA+2mPDwOZJoRI=;
- b=A+WE9IJ7X0Fv6QKT/oJFG6b8qSHzRUdYQR9ISFByymG10MTnGwh72yeXpromo7MOaedr96bzu1ExPs8lWPAqfAlgiMxxthJmWKYhyaQA278wvWAszjHnJ7hEaUgJJf7awA/oycEGytCfWSuCPAgQfxQHn8I08+1zKGoAI4C1uDtzBnvcZG3wP7Yjv5KSg2cK10g3fOXb3nTh+KyIT6t4YFP5EWx0qda7g+MCeDlqI2uB44zs9d+wwblx9MhoAP6zXRd+bPnLtk7XNXUCxhYI4wvpaTqp5v344k1uGXdezf9jbcriyhuKWP5+kN0mhOkpU3t7mAcX9OlDYH8c+Yyy1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
- dkim=pass header.d=vaisala.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b3XJDX6qfgBAoycW3wQjEO4MbsbnoYA+2mPDwOZJoRI=;
- b=WpiS+nF+YBpQ2WSGIIVjOAwV42bm2B9lVCE8+pHXkRECVMwTSMry1tmzewV/vZXFT/Fm12ft14H6WYe3oXlikEcvJl/thEBj9HTLlp1YQtNk9ApUNXeBzIdj2nfRJaC+QKE/J+Lk593EL2Fj6I+aa/NysRU6nksqvzIUZoWnPgcqt/vZHKM95Unk/E/7qRVULlvc+36fNfI6MOW7peQe6Xhkj6AqxfXbZ12AQUYxdT31INBsYwHsQxYPpskTqUN9HF3aRr3HD4CvjlnlAUPRFt0JyEMgU34LzBLRF8j2fyt6oszgO8QJXtDPIEU8ea2B043bBAvNUO/DWan/UuRSNQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vaisala.com;
-Received: from AMBPR06MB10365.eurprd06.prod.outlook.com (2603:10a6:20b:6f0::7)
- by PAXPR06MB8288.eurprd06.prod.outlook.com (2603:10a6:102:213::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.11; Tue, 25 Nov
- 2025 07:54:23 +0000
-Received: from AMBPR06MB10365.eurprd06.prod.outlook.com
- ([fe80::4606:8e25:96e6:bede]) by AMBPR06MB10365.eurprd06.prod.outlook.com
- ([fe80::4606:8e25:96e6:bede%3]) with mapi id 15.20.9343.016; Tue, 25 Nov 2025
- 07:54:23 +0000
-From: Tomas Melin <tomas.melin@vaisala.com>
-Date: Tue, 25 Nov 2025 09:53:54 +0200
-Subject: [PATCH] Revert "arm64: zynqmp: Add an OP-TEE node to the device
- tree"
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251125-revert-zynqmp-optee-v1-1-d2ce4c0fcaf6@vaisala.com>
-X-B4-Tracking: v=1; b=H4sIAJFgJWkC/x2MywqAIBAAfyX23EJaIvUr0aHHVnvITCV64L8nH
- Qdm5gVPjslDk73g6GTPu0kg8gzGtTcLIU+JQRZSCSEVJolcwOc2x2Zxt4EI+3rSWqh6kFUJqbS
- OZr7+a9vF+AFPci95ZQAAAA==
-X-Change-ID: 20251125-revert-zynqmp-optee-a9d77159b243
-To: Tomas Melin <tomas.melin@vaisala.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 817802FB998;
+	Tue, 25 Nov 2025 07:55:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764057331; cv=none; b=kbwLtUD9QcqA8yyUaOqbwywhfno/u/lVMiwsWjaLpO/A+Agxd3v+Yxnf4bpyl8TQxWyHAfulGu2ZOvoAatsQYX1+GueDvTiuje3oMtaV7z6NFNQrqKupIweISGMb0yWsSZ1aw2k/U/ue9zgB8CMl0NU1ttrv/PDWPQiqI1/uJIo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764057331; c=relaxed/simple;
+	bh=Vy4TCRee8wzLOUhIXvHI0gEdw3K3rTx/ei2NoWNXZ+c=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ULVemkXj80x5htN3q/ke61C+ZvmqcNXLUtNwb+vc3vdXd97wiApIVJuwjMga0k1OMmqPtmT9vhWqbgB5F4jL4YJPthxuUVndE8DT90xdC6tq72X5AhNf46uXiQccavjCR7j8WVBvPtdoOki5U6ohoK+3uCrvbGmYxggp0y2jHPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=g7jn8VKO; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 901CF1A1D3C;
+	Tue, 25 Nov 2025 07:55:24 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 613D960705;
+	Tue, 25 Nov 2025 07:55:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3A5DF10371383;
+	Tue, 25 Nov 2025 08:55:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1764057323; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=DkQimB8WCfZHwJR6M2eL/gng3KSNZMieCo1JlCGsAio=;
+	b=g7jn8VKOSKX1uEcSvzemg+SVKCpbBqiZInOu7t657+6eNDSBpEC/SIt3r5Rk2Z6djg+ImH
+	Ou1IiyPzTK0aM+vdTN9aqVLSzYCi1HcWa9W4YnLRut1l3Gnz+wpynJd/fUyyodHAMTQ+J5
+	uq1V5+EcQ8bRl0ZVSv5SnKS3qJxtNH4kg8XWRYD4jWVCbfbNJglCjvnkk61GoZPSkl+9XJ
+	WqZ41khDLMzfW4N8jXFkbmR92uuP3cdLxCoL/2B7MUiHjopQNhySWnqBbllA2AckP1VCNp
+	UdJxN6tfU3FvjvEizAyN9H9pYM85nTr+bX0gbKSAgl7fZIKxWLG89pJEd1hRpA==
+Date: Tue, 25 Nov 2025 08:55:21 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org,
  linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764057263; l=1397;
- i=tomas.melin@vaisala.com; s=20251125; h=from:subject:message-id;
- bh=mBcdbj7LFlhEdmXOt3QcwMpkj5oJiHoF5xx13Y8lnPs=;
- b=SuCuN5dwBzK/wdXJHN546WH5fOzZnDHUV4p5tzgms8mO85Pfjpv2kXDjkjgdmiGjvt/9jv1bh
- +GfmYC9QWl9C3azETGYZsfZbqBuoNApCB/ur3F4tjm8/UWGXfyiE2Cv
-X-Developer-Key: i=tomas.melin@vaisala.com; a=ed25519;
- pk=6lMiecjZ+OeyZuxYsDm/ADy9D1JKvYrKdsYv58PMepU=
-X-ClientProxiedBy: GVZP280CA0060.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:271::16) To AMBPR06MB10365.eurprd06.prod.outlook.com
- (2603:10a6:20b:6f0::7)
+Subject: Re: [PATCH RFC] of: Add of_parse_map_iter() helper for nexus node
+ map iteration
+Message-ID: <20251125085521.451ea208@bootlin.com>
+In-Reply-To: <7hjyzedgoc.fsf@baylibre.com>
+References: <20251119-topic-lpm-of-map-iterator-v6-18-v1-1-1f0075d771a3@baylibre.com>
+	<CAL_Jsq+2sFzQb8j5bBWbwgyYn5apLTfWOTZW3+9n74uVyph16A@mail.gmail.com>
+	<7hjyzedgoc.fsf@baylibre.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AMBPR06MB10365:EE_|PAXPR06MB8288:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7dce0957-9006-4976-184c-08de2bf7d979
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cGVRRDBNdUpnd05SVzFOYlBrQnAybUVTSi8zek9NRG9iM3hFZmxWSUVVRjJj?=
- =?utf-8?B?b0pZSXlsODl3RmcyZnpsblZvY2xWZHVHTEMrZFdoOW1wWVZwYmI1T1dBa0sx?=
- =?utf-8?B?NmxJNWt0VnoxVTdwd096YnlURGZDTURVamlXN1NGdXlZNnRTeXFvWFhqeHhI?=
- =?utf-8?B?MzJXQUZHTXdHUmp4aW9RM0xtck45VUQxMjFUWS9DTlF2cVdUTWVHYkxDTzZK?=
- =?utf-8?B?NTNQcWZ6b0FQejE4dE1rZnNzbWxtcDVKUWpqd0N1T1JCZTYvZ1AxTk1HV1Bk?=
- =?utf-8?B?ZU1FYTN1WWQ3V3Nac2hobjJBVmJLQXZRbTJWVjhsYWc4cVRFbWFzNWVucU5u?=
- =?utf-8?B?ODNINTZOQWtBeCtMTkZ4UStQcW1GbGVuVU4zQWJWc003VTNpWW8vekZvN3hV?=
- =?utf-8?B?cnF5NDJ1M25TbnlQdml1VWJqKytOemlZQ1FqbkxmYk0rTTkyZTdMcnVSZWRJ?=
- =?utf-8?B?eHFqTUUvRFM2dWVKd1ZJUE5NTWNQK1FVUGNkNndwQzd0T2lDeUh4bFcrbjVn?=
- =?utf-8?B?cFpEdjgvL281bzVtRUFRSDJicW9lVXVRdkhiellDckR3MkplTUdsZkZuMDF1?=
- =?utf-8?B?bkE2WjRnaXFrZkdQYU96cWUrRUw5S3BIdmVZay9CMkViY1BjaWUrWXc3c2FZ?=
- =?utf-8?B?L2RvMENjOHlrSHdic2JITGxNNmlyN0cwRjBCUER2NFg5SjRjSWd1aU42MVZI?=
- =?utf-8?B?RjJrZTBEZG1rV0h1YUkzaU12SXg5Vk1DK0hFT0ZmSFNleEhxRCtlL3NPRnhS?=
- =?utf-8?B?U2JtM21YNnc2U2pVSjRyK3k0Ui9hUWg0eW8rS043K3ZTNlJ0bjhLMWF5dHJY?=
- =?utf-8?B?U1cxWGdrU0FYUHpqSFNIcTBaWXY2Q2tRR1lra3FaR05qcHg4SS9QMlBhaUNL?=
- =?utf-8?B?L1dZTkl1Wlp3UzFNM2FFamFUeUZmczlxbmROTUZZOWZRbXkxcnFOdzV2VXl4?=
- =?utf-8?B?QnhHbHBNSDdhRWw4ajg3MWlWbWE0R1duN3RSV3REQ3Q0WUlHWjNWUmRLWU95?=
- =?utf-8?B?cjJJNGI5THl5dXg2M2Y4R1hwa1ova1JLeWJrRU1xM3FUd3R0K0crQzBiVmNv?=
- =?utf-8?B?OGxOQmNtZy81UVRza0RDTUU2dVFlWktock5jU1pVbWl2Z3RJR0l1bDBSb2tw?=
- =?utf-8?B?V2Z4NWZHK1B4cENkOEFpUG9aU2s1NXZIcjJJcUZOVW9QZ1l1SlBHc3hSUmw3?=
- =?utf-8?B?Z1hpWGtvazJqa3lnOUc5eXRnaVcvakIxMG9XVW5iQkhvUkg1d2VrV1V4blBw?=
- =?utf-8?B?amUwNlRRb2piZUhJQWxrYlRzVlpMMDc1WHliY0ovQk9WcUd5a2xWYjJJYzN1?=
- =?utf-8?B?c2h6UWk5WUZ4MkxDOHdwOTBjanF6TTZHNE9qNUtwUi9zalVBdWRZZkpEZFFr?=
- =?utf-8?B?SW1kUWdVQURkdUJsZnIyNmh0OWZYeUxIQjNtM2x1dkw1dFkvSTdFYTVsRk5F?=
- =?utf-8?B?S2NDa1hxVHJZYk9HMk5vNDdzdGduTHB2dnk1aUNIdk0xSlRCU0xadXdCUURT?=
- =?utf-8?B?KzMxZmZ4dDVwaVBiYmQwa1BmZlZDdnZjWFZaT09HT2FEa1Bkd1V4czVNNS9P?=
- =?utf-8?B?NDF4WnVSWnNhdWl0c1dQWWxzNU9QMXl1TVRBZ3VWY2JjMlhrT0xzb3lQbjJB?=
- =?utf-8?B?TXZvOWtoMC9Ja0JEK01lZ3k2OEpyNmZnc2VnK2h1cmNsdzdsYjVpYXFIVzkw?=
- =?utf-8?B?R0RVTlBWTjJDZzNiSVQxSk9IMUtPeVA1eWExNXE3QldYV0JaNTFVWU9sVlVI?=
- =?utf-8?B?byt5aGlyck84UnlhWEJKZDkrSHNkV1plUjdFNFExUkVFL3dGYmk0c3FwWHBp?=
- =?utf-8?B?UGo0ZXF3eHNLclU5aWJwUmFIMnJqK3BkQlV0NnBnUGNpUnA0ZGdQcFNIcjhY?=
- =?utf-8?B?ckVCeXN2b2pFOGZPVU1kaEJlWmFDbmxmSDNWSVJnYms1V1Z1eUR3SmdBeitr?=
- =?utf-8?B?QXpmMTZDK2V1cUc0QytvWUNMWmJaRVBmOC9ERFZBdjFMSFU2eWVIeVVMUk96?=
- =?utf-8?B?RTFkNUpmV1Q0blJUN0NZWmFEM2hibmhES1RFWG55UCtBYTluQVdOYjJ6YnYz?=
- =?utf-8?Q?jJkrXm?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AMBPR06MB10365.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YWJiekRocTczUXdQZk5jTmFxMStpV3RhaEFwZktYeVlLZVlMcjV6ZXF3RmJM?=
- =?utf-8?B?TDZYcmdZcU5KMktYQjNwbkhwZ0Z4ekxNSEd6MXBsWC9HaEdNbzZ0QzNHdzRB?=
- =?utf-8?B?Uy80UHJna2RMMXlqbkNscnF6N3FuMFk4bml6MVlSL2NHT09GMUF4NzlKVHdX?=
- =?utf-8?B?eSt2eXZiTU13Ymc4ZXlGOUR3d1ZNS0JwU2NENWFzUkpvdncwb1p1Ykk5ZFgw?=
- =?utf-8?B?ckVoTmpFWGxCTVBpMDNJM09pYTNjZWcvcmJzcWlYUmJqVE9lRVpUMzI5dkp5?=
- =?utf-8?B?WHJBTXl2OWZwRHFNNU0xSXNIOEhJQXozbzhuNWVoOVdZVkt0VXFHVFFjUmVp?=
- =?utf-8?B?MDQvczZRclMwdW1Qdmx1WUw5VlBiUm5pa0F6M1RiMExtSDl1VDFOSzRxTVFF?=
- =?utf-8?B?TjloR0U2RS9QeDVLTVNWTmxlS1pzTE92czA3a1gyKytlQjgxeSt0SlFnYjlU?=
- =?utf-8?B?S2UyWDZOcUdVZmg3ZWxUYUdSMExJUGZDNjJxVHN6MW9MNllyY0huTmVhZGpF?=
- =?utf-8?B?eHR5dmxRU0xKenRtK2Vjd3llWFFpTy94c09vdGtoTlFOWTdQcWU5UzhacFYz?=
- =?utf-8?B?em8yY0VFTEZhV2dxWnZmWEdxTnZVZGFSOVNSMWFFMzQzb2Y1QzdWendVQURk?=
- =?utf-8?B?K0NBNkYwaFpXS2RXdEtveFIxc2hIelZPQVFEVGk3NURXeHBqdzNJVDcyYks5?=
- =?utf-8?B?LzJQb1ZFeUlLYU1pZHd1aXRzT3NpekRyTzI4TTRKLzNia1NwVzRDTG55UlQv?=
- =?utf-8?B?ay9CWm1tSkZubnVFZGFyaStLUXZnQ3JyTlJNMEo5SHVHUUZmTk43cUZmc2Zk?=
- =?utf-8?B?Z2x0M01Xb2c0eHVWQXZFN0tkek9UZTFBb3NWanZNSmlncUZZUG9EM2FTRTJ5?=
- =?utf-8?B?QkJIUU5sOTZVenIxQU05TXpnc1QvdWNCc3pGOURlYXp2NEpGZGc3UW42eFAy?=
- =?utf-8?B?WXM0ZjJTNGFjcXdpVGw5WGNHRUhpY0dkSTRKVGdKRnVmT212Rm5CRmtDUWpQ?=
- =?utf-8?B?ajdLcm9aTytCeGMrZE44MzU0YmxvVGh6S1RKYzcyaldiTFFIOXhUSmNabjMr?=
- =?utf-8?B?amJBUVA1MzFYV1o3cmNvbW1nRCtkb1ZYN0tKcXFvRkIvejlnZ01RUndKdkdB?=
- =?utf-8?B?aUVoTys0OFZLRjA3VnVvNVRXTHZOZk9YdG9CQWNrbS9wcmF5ckhTVWFpd0Ru?=
- =?utf-8?B?aklrSmxzdTNhT2JrRDZmdy8vQUNNeFFHK0poVlUwalYvU1lycE1SS0pXNGI5?=
- =?utf-8?B?ZU1wREg1a2I0L2xkVVlzeVM1aC9YTnhnUXRKZkNWeXRxNW9hUis3SVZNUUFj?=
- =?utf-8?B?Nk9KNnpsaVFQRWFIRUNyOGRhcVRjWDV6VEp4N0tYV2ZidWpMZkpNNlZsOXVv?=
- =?utf-8?B?VlNRZS81Tlk1bjB5MTdaZ09uOVU1YmR3OXZBVzcyUnVaekoyNmtVeXh4ek0w?=
- =?utf-8?B?UklVN250ek1qekFOMzdBVVdDNHRRU041OEtHbGRNU3NMejQ2dmMvMVlPRWdk?=
- =?utf-8?B?OXV2WDBmTG5zdXRkdnZyRUl0SHUrdEg3eGZCTEdiSEFFMDh5eWl6eksxZmpF?=
- =?utf-8?B?U2MrMFlDS0swMldEcThaWXI2akgreTVRajlWci9DQU82aDlEaHRVLys1MU14?=
- =?utf-8?B?WUg2Y2I5cWk2ZG16WG5pc1FiWkJrL0cvUDhQQVZ6QjZKZnQrRXY0cU9zOTRZ?=
- =?utf-8?B?NENONjc3c1FrdVlPM1d3TGZBZ2RoZ1JoN3o5bTVOeURUcEFrYXhNNDJ5RTA2?=
- =?utf-8?B?YUtZajdVMFlrclpzV1lIcWk0Ukpia1lpOGFwcmZsK21KZGZiYWV3R3JCME4v?=
- =?utf-8?B?N2JKaFdNenR4czhEWE5hSlRCeGtCT0IxQ3ZtcFIxc2JWL1pZUGdLQTRuM0pT?=
- =?utf-8?B?Y1NWS0w5QVRlS2szMlRtWnM0d1l4b28xUW9QZitmUmlYazUrVzJSQWxZc1lx?=
- =?utf-8?B?Yk9vclJ2SzloVmdOc3VML0xGQ2lqRmJkZFEyTWcwaEFxMjlIdmhWU2JuaFdZ?=
- =?utf-8?B?RGRGb3pEZDkyVTQ0VW1tUXhjNlVTK2NYNWhXREsxelR6S2hGQ3VhRHFmN0Nv?=
- =?utf-8?B?c21acWl2aVMrTHc0SFlKR3A5RW1KVFFycmVLTVl5VHlDWnNYVS9zQkc1Uldv?=
- =?utf-8?B?dWVpVHp2cVZMZkxsRXdtNmVMR05UNHVOOFdLTTh1SCtZN3J1akZMaU5TT2Jl?=
- =?utf-8?B?VUE9PQ==?=
-X-OriginatorOrg: vaisala.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7dce0957-9006-4976-184c-08de2bf7d979
-X-MS-Exchange-CrossTenant-AuthSource: AMBPR06MB10365.eurprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 07:54:23.9351
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ykPGJnMU3XIC1lLCS2PFbZ5ObuWxKa8IjdDNDHTUHnyjV22uRRMrWHs9HXCovDsXAEgvayjM1JmbdVL56o2ABg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR06MB8288
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-This reverts commit 06d22ed6b6635b17551f386b50bb5aaff9b75fbe.
+Hi Kevin,
 
-OP-TEE logic in U-Boot automatically injects a reserved-memory
-node along with optee firmware node to kernel device tree.
-The injection logic is dependent on that there is no manually
-defined optee node. Having the node in zynqmp.dtsi effectively
-breaks OP-TEE's insertion of the reserved-memory node, causing
-memory access violations during runtime.
+On Mon, 24 Nov 2025 17:50:11 -0800
+Kevin Hilman <khilman@baylibre.com> wrote:
 
-Signed-off-by: Tomas Melin <tomas.melin@vaisala.com>
----
-For further information about the U-Boot logic related
-to this, see lib/optee/optee.c in U-Boot repository.
----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 5 -----
- 1 file changed, 5 deletions(-)
+> >
+> > There's also this in flight for interrupt-map:
+> >
+> > https://lore.kernel.org/all/20251027123601.77216-2-herve.codina@bootlin.com/
+> >
+> > There's probably enough quirks with interrupt-map that we can't use
+> > the same code. Though it may boil down to handling #address-cells and
+> > how the parent is looked up.  
+> 
+> Hmm, I wasn't aware of this, thanks for point it out.  It looks very
+> similar to what i need, except for it's hard-coding the properties as
+> "#interrupt-*".
+> 
+> Seems like this should be generalized to handle the generic nexus-node
+> map. But it also seems to rely on an existing function
+> of_irq_parse_imap_parent() which is also specific to interrupt maps.
+> 
+> That being said, I'm not sure if interrupt-maps are really special, or
+> if they are just a specific case of the nexus node map.  This drivers/of
+> code is breaking my brain, so it's more likely that I simply don't
+> understand enough of it to know how to do this correctly.
+> 
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 938b014ca9231d265314c0d6a934d0be706e420b..b55c6b2e8e0e10916fdfe762f9b6ae04f89a2cfc 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -192,11 +192,6 @@ psci {
- 	};
- 
- 	firmware {
--		optee: optee  {
--			compatible = "linaro,optee-tz";
--			method = "smc";
--		};
--
- 		zynqmp_firmware: zynqmp-firmware {
- 			compatible = "xlnx,zynqmp-firmware";
- 			#power-domain-cells = <1>;
+The main difference between interrupt-map [1] and the other nexus node maps
+is that in interrupt-map a child unit address is involved and translated to
+the parent unit address of the matched interrupt-map item.
 
----
-base-commit: ac3fd01e4c1efce8f2c054cdeb2ddd2fc0fb150d
-change-id: 20251125-revert-zynqmp-optee-a9d77159b243
+This child unit address is simply not present in other nexus node maps [2].
+
+[1] https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#interrupt-map
+[2] https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#nexus-node-properties
 
 Best regards,
--- 
-Tomas Melin <tomas.melin@vaisala.com>
-
+Hervé
 
