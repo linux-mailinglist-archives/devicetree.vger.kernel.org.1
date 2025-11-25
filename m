@@ -1,286 +1,191 @@
-Return-Path: <devicetree+bounces-241902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8E4C842C0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:15:37 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5ECBC842D2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:16:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E5B254E2297
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:15:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E1AA734DD71
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437932586C8;
-	Tue, 25 Nov 2025 09:15:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE48E248F78;
+	Tue, 25 Nov 2025 09:16:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X9/YZBC3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="l0J3iZqs";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VCeXhwH7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464E11A316E
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1863C846F
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:16:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764062133; cv=none; b=TmUc2ko1NH9Wc+gxHMxfql4uhqlTVYmPKCRyrSTWqT+q/Tu6mvWwDeObWgXW5wPC8FKo+BT4PvrewcKrJepYsVvteatfh5Rez1deHRfO2nAgGSW79brDG2Tg/ZGQai8YYikN8iS+LMppgz51VcKp6UKHdvqdNEoO1k7hRDuM1wI=
+	t=1764062201; cv=none; b=HJdzjWCu3C9vzeMTgy2EyFVhbMnYaRI0QXbxSvLq88nCKLqnTWSaKIHCTtTGs9pagzp8RPSRQoyRYdsXTByruuPLB86V9ZY3gtulAXfniVn6F813UQFxNnktdMcPiRFU8osfoMa66RpIel+d5qv1k5N8RRYoRfHGv1eDoG4suKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764062133; c=relaxed/simple;
-	bh=t9oCQVEIo08rhMPbsSopQWB9zAEXJx200lMqc8/v+L0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=G+iV2NgjzOCd4s/4jnmbirQJVzsW2dxHeGfcktUaB3O6Sw9DZhHvrHpmyVPwK1u/MuRO8uFAKpHlpPZPjtBRKJL7uwkkheHUIuNm59DLNx35+ygFk9jZLka4nIoy4M2UMG1bbSVXwtb2uTaNHb+LL1ZIBwb0l1HAlhqQUqXGj5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X9/YZBC3; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4775895d69cso21734575e9.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 01:15:31 -0800 (PST)
+	s=arc-20240116; t=1764062201; c=relaxed/simple;
+	bh=lpKqk+txzrx+3eFBp9iWcFlFALJWT0f3evvH5dpVAoU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=U5ijHYSA2ljB7v0EkftqPOtpwOrpdXHYovFuB52uqR+aIAGLgoOBaYyXoaIs+E0fobW1aeS1Kd+3nJSPdTFy3vPWotqf6dJXgPTHH+hGfyJGV9C8VJ2L540fJwlwoB2OG2BjbwzN9SZlAdgQ8u7Cg7qyiav47kmK0NW8XkLFXwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=l0J3iZqs; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VCeXhwH7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AP2gvVK1940187
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:16:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=4n8WnEgH+BqhO0fDi2/HU0
+	87EN2nbA+rpdxtzrTFbjY=; b=l0J3iZqs1ggxG5L2VCVRsT4jXwsoqzfuszMXui
+	+dY7hXC+ByvlUIa+UB+bP+wVpd4zniCSLh10NI5WwafSIm017+zJkHHz0pNbV+BW
+	R4rK1WeydKwD693e5LVmkqzWdAkZtXlb0HHUJpOQziJizMJ+4r3eO1/WlYE9XSre
+	TeaJoux4Kv73hGmz4N3fmovdGZlZYMBRgZEGc8JfnBqhVO5/YqhbnNoMJizB8U8q
+	7ZE0iNCP6Z4tnOPUSbjZAnZI7pVElmHvqayhsauGbau5MOQodVefp3xC9W4h76Uq
+	2P0MyvnBuxZqfKnPEGjTmBMCySY8lsG5avPeoMmAHCOpJenw==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amsst2t0n-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:16:38 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7aa148105a2so4848634b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 01:16:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764062130; x=1764666930; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WbnniyQBYsSv8LXOy0SkndmtRMhR+Nd17w4wSUmMqng=;
-        b=X9/YZBC3gOF25ZeO7sIyXpXjhDNau2abAxKtWe2X5j+KjAbuRbwttII3M4JWh97f5K
-         PU4siMdggdUo/yqGiycOZxsWRr1IQQ0npTfy6b7Rg4Wihih5IkqriQIpFFhSKdaDN5TW
-         moLxAHYR5uWfjUTCGKt5SmXBcF+EOXSwUfzWSk5wvOKUgBo1P+OV6wdwjRKUrPe+VHnR
-         bLQReARoZNzttRBtuAQSyJdklrrkeKTQw0eomc++O3jvbv62RCJGv9gwUSqfvYUYhy+L
-         3f07hvZ5ioaC6nWVdkC4ysu+SA741k4nFBsK0EwiGmGnxD1r8/k5fXXNaIcvulEjN6iw
-         B+8Q==
+        d=oss.qualcomm.com; s=google; t=1764062197; x=1764666997; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4n8WnEgH+BqhO0fDi2/HU087EN2nbA+rpdxtzrTFbjY=;
+        b=VCeXhwH7uCAx5SxJ1BrIjs9qeA4k8nZS8VGEQjsITAjzHhsu9cbZZdhi/etxzCcAK7
+         sK96Sv8VE3WGQPZ80/xFSKL8aqSHpNoCQVJZSbinhYb/A2wLUtplCYYupWD5oU7DNm8m
+         MY5fkKI+Blfm1iLZFkgGa7ZOULcj0uowIMpAdOlyg7Fga5nbC3mc59u81EqOrqfetsH+
+         4BduEP6pqNQFWhCTcQBDApMT9l1QK5wkyQfCaqqIpfzBkd5sz261ptcyzEfKo9dERgcY
+         Y+HX8sTQBtjgJ8G0wU7LS/UWzWR3fi9mxjs+j82/SAlVKhyJ+Fi5oxvVu6uttofffDps
+         0Zvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764062130; x=1764666930;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WbnniyQBYsSv8LXOy0SkndmtRMhR+Nd17w4wSUmMqng=;
-        b=Gq7//HdSJMnrBeWdapk4UGUE2Ymge6x/aB60Vvkgc0NYCnSFKoBM+qGfV0AzkQEGFQ
-         8QAPe+QCpJ4OKrHPrehHKO2XxNYLhgSuUi0gkxYVS0vdsG7K9yRDAiLE18fY42ETqYxI
-         KeFAwl1lrElzj69tlONJyURveueUleA6y/WUhFSAAk9TKzicgzmbhZumuUdXG4BXnzVs
-         apoHrRkLkN35yrojQt8nwOx9Xb0v2zYXEtZMkqIgpkKFmaoARJVOQgz1I2/AaZjEH6j3
-         /VGVOdRgIvKrgrxbGAKLdzT3N5HX8hzZ7HCsT/zOnrhQPMTriOb9YDiy12bPDqZ9imd9
-         mJ9g==
-X-Forwarded-Encrypted: i=1; AJvYcCWdsBZdapKCHAa63wCIgbtD7rczxGnbY7KgS2w9N9Zk/QQExzPX4jWTGtvgahEsi+YZEdyLnHejbpkT@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrzBpwG1+023hiMyQZBhRx8QmxPA2T2VmrmaF6W6QYH8slIjBe
-	W64ya9c8U5v5nR2+yhAkNjnxipoQCl90Qgop3Nfyzc2uoa4qKbKCtnV53lM/DQx1LUs=
-X-Gm-Gg: ASbGnctFaLF7gdmoJ+H5EFmBCq6sEkMu0LoKdyj209NsaJB+jXcaUx5Q0UBlDX94eD0
-	s6oNZI8Li4oR4TOM/IjgEOSAR9MHjkCt6ffoZFjaA57izghNgr/6ECTctzlCrtf5VJDP2YX0Fr9
-	uLyBNsx6P3/Akp4bjf+47nW4gK44Q1a8otXS9rwLRyWnikrRNW1VBvzfBd0keuTTImPN3Qk88Xc
-	LJbF+d0+NieGO7iWm4qJsiW6hrdSnvthi+rqm3c/Q6mmsnNDIT44cFAjOaeIiss9r5BkPKKGjEJ
-	zhBuKOGeIc18DCUM9GhVJhFRd+ZXMP++AMpn08Wx9lcBr62zvpeOKDW7QDL2RKn5yrdTVFZZ2en
-	vhhRJJSi+r/4XCACjKlqaTh/9lGqpefjuNKSzkEPNGkBvGlLQGd0alXIoE320/WweWNxh/L7itp
-	J4Fszcs34n/Hv5Ngak
-X-Google-Smtp-Source: AGHT+IGWFG0HxUIp9tkL1HpcvIFQSl/Uv/HgoNmqz7nTca4y0bOHNVljGRRpohMOzuAV8p5abC+yhg==
-X-Received: by 2002:a05:600c:3545:b0:477:7ab8:aba with SMTP id 5b1f17b1804b1-47904ac3ca4mr16226075e9.1.1764062129519;
-        Tue, 25 Nov 2025 01:15:29 -0800 (PST)
-Received: from [10.11.12.107] ([5.12.85.52])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-479040c70c5sm14596605e9.4.2025.11.25.01.15.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Nov 2025 01:15:28 -0800 (PST)
-Message-ID: <5a6a749b-b2b7-41bb-bcb4-a2342e7f4e98@linaro.org>
-Date: Tue, 25 Nov 2025 11:15:24 +0200
+        d=1e100.net; s=20230601; t=1764062197; x=1764666997;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4n8WnEgH+BqhO0fDi2/HU087EN2nbA+rpdxtzrTFbjY=;
+        b=KSJLvvfS2RqUDeAy6Mz3u71fYpAzFa85Dfl4LJV8kzNqA5LmXpb0/9SONTDq0WQAUP
+         qKRDjXmOQDTrjaXakPF451FnDVFra04+ThuPVbygZGNcq22EJQC1IFUj5Q57m13ePLdh
+         LGB9y2VAVpFPIj9ry0ZaxxwrzeUp58Yx0skL4XLZCymeJAMvucsGgm84qmFWz0Tvqeyh
+         AYw/Phi4MVDrRAP49FC1VCVmbjyTnO/m+fcKPMYWMG+OCo684l/J9AHrkozxUL0R1ntD
+         QseEzz7qHO0xiAeT7y0u8RFQoEJth8rpriCpOth1ftLvqRyQlIWgLae3TXr82tU7GFIb
+         OaWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDrB5EW74TNv1TY+2kObU7g9FPx411BvID+Xf61Kk3oiN96uQiJkj5NCk+I5DI7V1jfjm9yCKNYs9A@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0q/BKd0YWIBW6vULH80GEgTnfkC4y9dJ9lgrIy36Xti6yQ7JQ
+	g5AMd8SC87iQxtzwsYENWENL7cQrfAEtIqE7zI1EyDflLg1VmqGdFhfwwQP7S83+BVJ8AOnmoK1
+	zq0tlr+ZanBrfYkSI4E3GBFZiABTGaIAVjZnsPB3j8uZz2E53wWlvDgxkL/A0M7fzkg4Bm47g
+X-Gm-Gg: ASbGncvhdUo5Bebp+E4uJNBYUU2hlD5feoTXzwDsnuzlhhAVACSFZ0X/P9g80S/0gzN
+	CBQHpor1Wq24IUOaDWf+uA5N7wePyC+FqjQON/JCII46akTqI6xsloQ0Jd01T1NggUJz/yyk73P
+	nzYDdF6Hhu11CAIk+uH96e6IDUTtaHHElKXB2RDDsfAWJdNKxjE1NERFGmKiNj1BxQ9i9yR1rHR
+	MWbceAZo1nyEef4y3tGCSmRO/tHCj7fbQRyykCrLh1at/wGLsb/RQDUnVlTCWZnDF6W/bESl4Zc
+	lpuVG1NEU2e6XV1jRIsIPwxx25ZuHGJKc+yupSKlBuiZC8jEnS9tO4crAXIVZpDacy57d9/mKuA
+	wiapQFk/c1T2sX8lgpHzgznEqmySh3Oz5hs1UH7dOlCWDhORWxX5n1OjsoDC/A+kUcYSvmdd2oB
+	ptC5LFRhp+Z9y1z7HKEISMNN2vgkXdDQ==
+X-Received: by 2002:a05:6a20:9148:b0:334:9b5d:3876 with SMTP id adf61e73a8af0-3637daaf589mr2372757637.4.1764062196849;
+        Tue, 25 Nov 2025 01:16:36 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHktHb35KAVI3HX6XVjNajJJ6Z+gYDQKmRreGn2F5GazLD3+ij1wi2Mz+4vrNkksCxAvH4G7w==
+X-Received: by 2002:a05:6a20:9148:b0:334:9b5d:3876 with SMTP id adf61e73a8af0-3637daaf589mr2372715637.4.1764062196355;
+        Tue, 25 Nov 2025 01:16:36 -0800 (PST)
+Received: from hu-pankpati-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7c3ecf7c29asm17288851b3a.9.2025.11.25.01.16.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Nov 2025 01:16:35 -0800 (PST)
+From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Subject: [PATCH v2 0/3] soc: qcom: llcc: Add support for Glymur SoC
+Date: Tue, 25 Nov 2025 14:46:21 +0530
+Message-Id: <20251125-glymur_llcc_enablement-v2-0-75a10be51d74@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Subject: Re: [PATCH v7 RESEND 2/3] thermal: exynos_tmu: Support new hardware
- and update TMU interface
-To: Shin Son <shin.son@samsung.com>,
- Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, "Rafael J . Wysocki"
- <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Henrik Grimler <henrik@grimler.se>, linux-pm@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- William McVicker <willmcvicker@google.com>, jyescas@google.com
-References: <20251113064022.2701578-1-shin.son@samsung.com>
- <CGME20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237@epcas2p1.samsung.com>
- <20251113064022.2701578-3-shin.son@samsung.com>
-Content-Language: en-US
-In-Reply-To: <20251113064022.2701578-3-shin.son@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOVzJWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDI1NDAyNL3fScytzSovicnOTk+NS8xKSc1NzUvBJds0QLQ6NkA4s0k2RDJaD
+ mgqLUtMwKsMHRsbW1AMBpcWhoAAAA
+X-Change-ID: 20251029-glymur_llcc_enablement-6a812c08f4c1
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Jonathan Cameron <jonathan.cameron@huawei.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764062193; l=1505;
+ i=pankaj.patil@oss.qualcomm.com; s=20251121; h=from:subject:message-id;
+ bh=lpKqk+txzrx+3eFBp9iWcFlFALJWT0f3evvH5dpVAoU=;
+ b=88Vm43Gaxl1wBtQF+hf37aZK8bmzPR+C9iXW50ZB70xRi2keSjnPb0CJ9DUf6h6yedqE9UE2S
+ 9r5h1vQ6or/C95HuXcf/XsPBmhwESaPwc0KKZNweoNkybTOLzPer6i/
+X-Developer-Key: i=pankaj.patil@oss.qualcomm.com; a=ed25519;
+ pk=pWpEq/tlX6TaKH1UQolvxjRD+Vdib/sEkb8bH8AL6gc=
+X-Authority-Analysis: v=2.4 cv=bM0b4f+Z c=1 sm=1 tr=0 ts=692573f6 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=P8xJj-QnlYWevmRsA_UA:9 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-GUID: mr6p7EvLAt9OgCpCfyxLZjFWCuhObD83
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI1MDA3NSBTYWx0ZWRfXxMGIDdiw8ZXW
+ pjxgdgLQMIhr1UfFUIHzYtCjb3pBwcL0lW3tD+w+u1mrXFV6nzh6XH6sADm2L3WuHTK4QlkaiBD
+ QsJB+oIh2K85RbVVQ+jOb8CBCc4rABaxZgJMP1W6O+V9TMZOVqgPeUVIHxAqbjcCR6gHpwQa6BC
+ 78x6BR+v9MICEAZ2cwfTe4DY34zwclz+OEG2jHbIa2OHoUhb9jgAZF3Hy3AErr2wiUKDLtsii1c
+ pG79OeJc9ZtEaIq4y9qTmh5l2T58aRvp2zLZU0Py76VlfNcy3pfZ7xLmxdugbLK1c4GZHYUomFZ
+ fBkhWuefxmMPR1cnhbLjcnBCwY6JBV8sb4TbsoLz2Qp0u/0YZbpblfZ4uFAml6bAC/uMH68B2qR
+ AEGrRb7LyK5PHR11Ht0IoLAkbcFq/A==
+X-Proofpoint-ORIG-GUID: mr6p7EvLAt9OgCpCfyxLZjFWCuhObD83
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-24_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0 impostorscore=0
+ bulkscore=0 priorityscore=1501 phishscore=0 suspectscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511250075
 
-Hi, Shin Son,
+Glymur SoC uses the Last Level Cache Controller (LLCC) as its
+system cache controller, update the device-tree bindings to allow
+maximum of 14 registers for llcc block since GLymur has 12 llcc base
+register regions and an additional AND, OR broadcast base register.
+Updated SCT configuration data in the LLCC driver.
 
-Just trivial notes on registers description for now.
+Enabled additional use case IDs defined in
+include/linux/soc/qcom/llcc-qcom.h:
 
-On 11/13/25 8:40 AM, Shin Son wrote:
-> diff --git a/drivers/thermal/samsung/exynos_tmu.c b/drivers/ 
-> thermal/ samsung/exynos_tmu.c index 47a99b3c5395..8fa188928b79 
-> 100644 --- a/ drivers/thermal/samsung/exynos_tmu.c +++ b/drivers/ 
-> thermal/samsung/ exynos_tmu.c @@ -121,8 +121,51 @@
-> 
-> #define EXYNOS_NOISE_CANCEL_MODE		4
-> 
-> +/* ExynosAutov920 specific registers */ +#define 
-> EXYNOSAUTOV920_SLOPE_COMP		25 +#define 
-> EXYNOSAUTOV920_SLOPE_COMP_MASK		0xf
+OOBM_NS
+OOBM_S
+VIDSC_VSP1
+PCIE_TCU
 
-Register fields shall be named
-SOC_REG_NAME_FIELD_NAME
+Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+---
+Changes in v2:
+- Updated dt-bindings for maximum no of registers to be 14
+- Re-ordered the fix alignment patch to before adding a new entry for Glymur
+- Squashed commit for enablement of usecase id and driver changes
+- Link to v1: https://lore.kernel.org/all/20251121-glymur_llcc_enablement-v1-0-336b851b8dcb@oss.qualcomm.com/
 
-If you include <linux/bits.h> you can substitute the above 2 definitions
-with just one:
-EXYNOSAUTOV920_TRIMINFO_SLOPE_COMP	GENMASK(28, 25)
+---
+Pankaj Patil (3):
+      dt-bindings: cache: qcom,llcc: Document Glymur LLCC block
+      soc: qcom: llcc: Fix usecase id macro alignment
+      soc: qcom: llcc-qcom: Add support for Glymur
 
-and later on in the code, instead of doing the shift and the mask, you
-can include <linux/bitfield.h> and do:
+ .../devicetree/bindings/cache/qcom,llcc.yaml       |  47 ++++-
+ drivers/soc/qcom/llcc-qcom.c                       | 207 +++++++++++++++++++++
+ include/linux/soc/qcom/llcc-qcom.h                 | 152 +++++++--------
+ 3 files changed, 330 insertions(+), 76 deletions(-)
+---
+base-commit: d724c6f85e80a23ed46b7ebc6e38b527c09d64f5
+change-id: 20251029-glymur_llcc_enablement-6a812c08f4c1
 
-data->slope_comp = FIELD_GET(EXYNOSAUTOV920_TRIMINFO_SLOPE_COMP, val);
-
-btw, above matches the GS101 definitions.
-
-> +#define EXYNOSAUTOV920_CALIB_SEL_TEMP		30 +#define 
-> EXYNOSAUTOV920_CALIB_SEL_TEMP_MASK	0x2 +
-
-is this BIT(31)?
-EXYNOSAUTOV920_TRIMINFO2_CALIB_SEL_TEMP		BIT(31)
-
-GS101 differs, it has this field defined at:
-GS101_TRIMINFO_CALIB_SEL_TEMP			BIT(0)
-where TRIMINFO is at Base Address + 0x0, not at Base Address + 0x4 as in
-your case.
-
-> +#define EXYNOSAUTOV920_SENSOR0_TRIM_INFO	0x10
-
-GS101 does not have any SENSOR0 in the reg name, so maybe rename it to:
-#define EXYNOSAUTOV920_TRIMINFO0		0x10
-
-> +#define EXYNOSAUTOV920_TRIM_MASK		0x1ff +#define 
-> EXYNOSAUTOV920_TRIMINFO_25_SHIFT	0 +#define 
-> EXYNOSAUTOV920_TRIMINFO_85_SHIFT	9
-
-#define EXYNOSAUTOV920_TRIMINFO_85_P0		GENMASK(17, 9)
-#define EXYNOSAUTOV920_TRIMINFO_25_P0		GENMASK(8, 0)
-
-> + +#define EXYNOSAUTOV920_TMU_REG_TRIMINFO2	0x04
-
-Is this a TRIMINFO_CONFIG2 register? I don't have such thing on GS101.
-
-> + +#define EXYNOSAUTOV920_TMU_REG_THRESHOLD(p)	(((p)) * 0x50 + 
-> 0x00d0)
-
-#define EXYNOSAUTOV920_THRESHOLD_TEMP_RISE7_6(p)	(((p)) * 0x50 + 0xd0)
-and then:
-#define EXYNOSAUTOV920_THRESHOLD_TEMP_RISE7_6_RISE7 	GENMASK(24, 16)
-#define EXYNOSAUTOV920_THRESHOLD_TEMP_RISE7_6_RISE6 	GENMASK(8, 0)
-you'll stop passing the shift and mask as function arguments :)
-
-
-> +#define EXYNOSAUTOV920_TMU_REG_INTEN(p)		(((p)) * 0x50 + 0x00f0)
-
-#define EXYNOSAUTOV920_INTEN(p)				(((p)) * 0x50 + 0xf0)
-
-I see you use just BIT(7) from this register. Let's define it and stop passing
-the bit offset as function argument:
-
-#define EXYNOSAUTOV920_INTEN_RISE7			BIT(7)
-
-> +#define EXYNOSAUTOV920_TMU_REG_INT_PEND(p)	(((p)) * 0x50 + 0x00f8)
-
-#define EXYNOSAUTOV920_PEND(p)				(((p)) * 0x50 + 0xf8)
-
-Are you using GENMASK(15, 0) for this register?
-
-On GS101 GENMASK(15, 9) is reserved. Here's how the bits are defined for GS101:
-
-#define EXYNOSAUTOV920_PEND_FALL(i)			BIT(16 + (i))
-#define EXYNOSAUTOV920_PEND_RISE_MASK			GENMASK(23, 16)
-#define EXYNOSAUTOV920_PEND_RISE(i)			BIT(i)
-#define EXYNOSAUTOV920_PEND_RISE_MASK			GENMASK(8, 0)
-
-Would you please verify and let me know if EXYNOSAUTOV920 differs or not?
-
-> +#define EXYNOSAUTOV920_CURRENT_TEMP_P1_P0	0x084
-
-no leading 0
-#define EXYNOSAUTOV920_CURRENT_TEMP_P1_P0		0x84
-then define the fields:
-#define EXYNOSAUTOV920_CURRENT_TEMP_P1			GENMASK(24, 16)
-#define EXYNOSAUTOV920_CURRENT_TEMP_P0			GENMASK(8, 0)
-
-
-> +#define EXYNOSAUTOV920_TMU_REG_EMUL_CON		0x0b0
-
-no TMU_REG in the name, no leading 0, define the fields as GENMASK
-#define EXYNOSAUTOV920_EMUL_CON				0xb0
-#define EXYNOSAUTOV920_EMUL_CON_EMUL_NEXT_TIME		GENMASK(31, 16)
-#define EXYNOSAUTOV920_EMUL_CON_EMUL_NEXT_DATA		GENMASK(15, 7)
-#define EXYNOSAUTOV920_EMUL_CON_EMUL_EN			BIT(0)
-
-
-> +
-> +#define EXYNOSAUTOV920_TMU_REG_CONTROL		0x50
-
-no reg in the name, control0
-#define EXYNOSAUTOV920_TMU_CONTROL0			0x50
-
-define fields as GENMASK and BIT
-
-> +#define EXYNOSAUTOV920_TMU_REG_CONTROL1		0x54
-
-ditto
-
-> +#define EXYNOSAUTOV920_TMU_REG_AVG_CONTROL	0x58
-
-ditto
-
-> +#define EXYNOSAUTOV920_TMU_SAMPLING_INTERVAL	0x70
-
-no TMU in the name, respect the registers name from the datasheet please.
-define the full genmask
-#define EXYNOSAUTOV920_SAMPLING_INTERVAL_MASK		GENMASK(31, 0)
-
-> +#define EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE0	0x74
-> +#define EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE1	0x78
-
-no TMU_REG in the name, define fields> +
-> +#define EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_SHIFT		8
-> +#define EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_MASK		0x1f
-> +#define EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_SHIFT	3
-> +#define EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_MASK		0xf
-> +#define EXYNOSAUTOV920_TMU_NUM_PROBE_MASK		0xf
-> +#define EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT		16
-> +#define EXYNOSAUTOV920_TMU_LPI_MODE_MASK		1
-> +#define EXYNOSAUTOV920_TMU_LPI_MODE_SHIFT		10
-
-you won't need these if you define the register fields, isn't it?> +
-> +#define EXYNOSAUTOV920_TMU_AVG_CON_UPDATE		0x0008011a
-
-no leading zeros. You better construct the fields dynamically, by using bitfields,
-no full register magic number, humans don't understand this.
-
-> +#define EXYNOSAUTOV920_TMU_COUNTER_VALUE0_UPDATE	0x030003c0
-> +#define EXYNOSAUTOV920_TMU_COUNTER_VALUE1_UPDATE	0x03c0004d
-
-same for both
-
-> +
->  #define MCELSIUS	1000
->  
-> +#define EXYNOS_DEFAULT_SENSOR_COUNT			1
-> +#define EXYNOS_MAX_SENSOR_COUNT	
-would it make sense to have the tzd_array to fit just the sensor count that
-we're using so that we don't waste memory? i.e. allocate tzd_array dynamically.
-
-Looking at the exynosautov9 registers that you described and comparing them with
-gs101 I see just 2 differences:
-1/ exnosautov2 has a TRIMINFO_CONFIG2 register, while gs101 doesn't
-2/ EXYNOSAUTOV920_PEND register fields differ from GS101
-
-Given the similarities, and considering the EXYNOS9_ registers rename from:
-https://lore.kernel.org/linux-samsung-soc/20251117074140.4090939-5-youngmin.nam@samsung.com/
-would it make sense to use the SoC-era name instead of specific SoC, i.e.
-s/EXYNOSAUTOV920_/EXYNOS9_ and use the latter for both exynosautov9 and gs101?
-
-Cheers,
-ta
+Best regards,
+-- 
+Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 
 
