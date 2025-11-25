@@ -1,109 +1,254 @@
-Return-Path: <devicetree+bounces-242010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEF2C85434
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:53:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D7FC854BE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 15:00:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE4754E50F3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:53:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE4174E9BDA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:59:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431EC23D7DA;
-	Tue, 25 Nov 2025 13:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C78322A22;
+	Tue, 25 Nov 2025 13:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TPCDLMdK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aGJ4aySe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161D223817D;
-	Tue, 25 Nov 2025 13:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D60A32252D;
+	Tue, 25 Nov 2025 13:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764078802; cv=none; b=ZsY7g32KfcXkp9sa2IhVXF5r1Xe3DseAJGC8JMbwuMHYkcKu26i1bX29rQA//4477uxXRcCkNYc9s2pEYpaMhkQwxp3SN2AC5GBmHZEA1IUKMuGsspZpw/i0gB+vSmY2crwY1RIWFqlAa71LTWpmjkPcShTqYDKVd2pr6Maf6+c=
+	t=1764079179; cv=none; b=AMkV+d+BZJHoUf0hg4bi/M/dt+p9aidhw+zGx6Vw+PvFXvRIP05Tvjqh9uE3Ek1TkRf0xcDpRdy98Uz8sa8RzoH1P5VXawYd+ELWi5MOnwniylZWjlph7C0Yq10YB9vfKm5Toju6Nb3TWTkqSQY4ToXY6LzoSu/7Apy8dX8E870=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764078802; c=relaxed/simple;
-	bh=wm6FV3IVT1IV0DpBE30PulkbTqg/dBVhT8sK6JRjf2Y=;
+	s=arc-20240116; t=1764079179; c=relaxed/simple;
+	bh=Z5MZqbhGWCdvXjszxA6M6hsjDa6b0nb6Wcf+buJZgnQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tZENeTfhJ/BW9zcK31Myi85QKCAuvTdEYt47eH4Z8+bAGIGGUPoddv2pd/pGL+pMkX5li9Hp5SYHviY3P5sRWSjSyG2mIWCVAjsg8QABAK5o5rFiiprlK+I0F0lbHJ4X0kQUWuinFYm6sSyGqmsp6W5TCDHjm3nlKPI+ibzSIhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TPCDLMdK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA4CAC4CEF1;
-	Tue, 25 Nov 2025 13:53:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PlBOmbltwt+i+ymADZsL8T8R3Su3c1+Tg0RcNI+62sVsSK08VkZAGVz4JksraSEcRvn0XHzkQ7vtOaEDy4gqEvzHK4iMaRcOcZMGf6iQqlhPwM/QkuN/OzsGHlbmMLTRnv63Ex7xRVV8zZuCDWNiR9og20mDZGltpMeXpc9A7EE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aGJ4aySe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 600E1C4CEF1;
+	Tue, 25 Nov 2025 13:59:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764078801;
-	bh=wm6FV3IVT1IV0DpBE30PulkbTqg/dBVhT8sK6JRjf2Y=;
+	s=k20201202; t=1764079179;
+	bh=Z5MZqbhGWCdvXjszxA6M6hsjDa6b0nb6Wcf+buJZgnQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TPCDLMdKI43zuEecrbT9L31Ory6H5TCx9BWZdKDZON2SHCBPuwYMv0wBVhVS7cB0c
-	 iIJQ1xIVYTxfl0Rpr3BS9XUzqXdlNwS/TPGeaTPVocHFJRKO8Gqc8qpCmxm7HROe5Q
-	 5J3f0ZBm8mupwSBzJh9D3Q7rZJFPalAN5MpOOdFvro4YZWdLqgs4EH0J7U4SHB596+
-	 WcRbnLveEiK3AkGThBNyo3eUk6ZvNRsZ8vEDjV/ONd0ORJY2a2c4GRoZi8rwW+bsk/
-	 ppSENZ3oU8Reh+pE2+BZSB/zRrNw7O4CVBVKu8bHuocb3W76AuFFT5d3fkVQQz7vNb
-	 WbIP1TP22cbbg==
-Date: Tue, 25 Nov 2025 15:53:07 +0200
-From: Mike Rapoport <rppt@kernel.org>
-To: "H. Peter Anvin" <hpa@zytor.com>
-Cc: Usama Arif <usamaarif642@gmail.com>,
-	Changyuan Lyu <changyuanl@google.com>, akpm@linux-foundation.org,
-	linux-kernel@vger.kernel.org, anthony.yznaga@oracle.com,
-	arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org,
-	bp@alien8.de, catalin.marinas@arm.com, corbet@lwn.net,
-	dave.hansen@linux.intel.com, devicetree@vger.kernel.org,
-	dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com,
-	jgowans@amazon.com, kexec@lists.infradead.org, krzk@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-	linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com,
-	mingo@redhat.com, pasha.tatashin@soleen.com, pbonzini@redhat.com,
-	peterz@infradead.org, ptyadav@amazon.de, robh@kernel.org,
-	rostedt@goodmis.org, saravanak@google.com,
-	skinsburskii@linux.microsoft.com, tglx@linutronix.de,
-	thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org,
-	Breno Leitao <leitao@debian.org>, thevlad@meta.com
-Subject: Re: [PATCH v8 12/17] x86/e820: temporarily enable KHO scratch for
- memory below 1M
-Message-ID: <aSW0wySe2kRl1P8e@kernel.org>
-References: <20250509074635.3187114-1-changyuanl@google.com>
- <20250509074635.3187114-13-changyuanl@google.com>
- <a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
- <22BDBF5C-C831-4BBC-A854-20CA77234084@zytor.com>
+	b=aGJ4aySem6cT9OudWMRyoWp+0U4Co6q/cOFLWwJcEBDioUF3z/RfBaCxySh598t+4
+	 fV45qC+0rm5OpAqe2WO3kTZR/jPXmdKIO+/xxuYjCjk7T1ZbFoiTii3x1+3/vXghXs
+	 YWQI9KWB7x05xuLhWA6SdqAZEDlf2PrjSLIgoyNsQEKAXHp5zALjTe6BNK4mhxn1s+
+	 dZuMWQDkEOKB1uyxppoM9JRYfuYUL2AcDis8Ju+eIAscv8TcELO/+aUOUQqGvQBA+m
+	 mR5Vajv+6CID+fvDck5D2l+wzIg/8AWELCRmrMOHcPP8p0uZQ1hcLGzfQb8A79aXZb
+	 ZcosSFpvXdbog==
+Date: Tue, 25 Nov 2025 19:29:27 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	linux-pm@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: connector: Add PCIe M.2 Mechanical
+ Key M connector
+Message-ID: <77wbvss7mgli5nacnjpxwsb4cexxjoykwhsvhwdc3jkn2nm24m@7kwmcchjedwn>
+References: <20251125-pci-m2-v3-0-c528042aea47@oss.qualcomm.com>
+ <20251125-pci-m2-v3-1-c528042aea47@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <22BDBF5C-C831-4BBC-A854-20CA77234084@zytor.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251125-pci-m2-v3-1-c528042aea47@oss.qualcomm.com>
 
-On Mon, Nov 24, 2025 at 04:56:34PM -0800, H. Peter Anvin wrote:
-> On November 24, 2025 11:24:58 AM PST, Usama Arif <usamaarif642@gmail.com> wrote:
->
-> >diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
-> >index 88be32026768c..1cd80293a3e23 100644
-> >--- a/arch/x86/realmode/init.c
-> >+++ b/arch/x86/realmode/init.c
-> >@@ -66,8 +66,9 @@ void __init reserve_real_mode(void)
-> >         * setup_arch().
-> >         */
-> >        memblock_reserve(0, SZ_1M);
-> >-
-> >+#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
-> >        memblock_clear_kho_scratch(0, SZ_1M);
-> >+#endif
-> > }
-> > 
-> > static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
+On Tue, Nov 25, 2025 at 04:42:26PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 > 
-> What does "scratch" mean in this exact context? (Sorry, don't have the code in front of me.)
+> Add the devicetree binding for PCIe M.2 Mechanical Key M connector defined
+> in the PCI Express M.2 Specification, r4.0, sec 5.3. This connector
+> provides interfaces like PCIe and SATA to attach the Solid State Drives
+> (SSDs) to the host machine along with additional interfaces like USB, and
+> SMB for debugging and supplementary features. At any point of time, the
+> connector can only support either PCIe or SATA as the primary host
+> interface.
+> 
+> The connector provides a primary power supply of 3.3v, along with an
+> optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
+> 1.8v sideband signaling.
+> 
+> The connector also supplies optional signals in the form of GPIOs for fine
+> grained power management.
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+>  .../bindings/connector/pcie-m2-m-connector.yaml    | 141 +++++++++++++++++++++
+>  1 file changed, 141 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
+> new file mode 100644
+> index 000000000000..f65a05d93735
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
+> @@ -0,0 +1,141 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/connector/pcie-m2-m-connector.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PCIe M.2 Mechanical Key M Connector
+> +
+> +maintainers:
+> +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> +
+> +description:
+> +  A PCIe M.2 M connector node represents a physical PCIe M.2 Mechanical Key M
+> +  connector. The Mechanical Key M connectors are used to connect SSDs to the
+> +  host system over PCIe/SATA interfaces. These connectors also offer optional
+> +  interfaces like USB, SMB.
+> +
+> +properties:
+> +  compatible:
+> +    const: pcie-m2-m-connector
+> +
+> +  vpcie3v3-supply:
+> +    description: A phandle to the regulator for 3.3v supply.
+> +
+> +  vpcie1v8-supply:
+> +    description: A phandle to the regulator for VIO 1.8v supply.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description: OF graph bindings modeling the interfaces exposed on the
+> +      connector. Since a single connector can have multiple interfaces, every
+> +      interface has an assigned OF graph port number as described below.
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Host interfaces of the connector
+> +
+> +        properties:
+> +          endpoint@0:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: PCIe interface
+> +
+> +          endpoint@1:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: SATA interface
+> +
+> +        anyOf:
+> +          - required:
+> +              - endpoint@0
+> +          - required:
+> +              - endpoint@1
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: USB 2.0 interface
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: SMB interface
+> +
+> +    required:
+> +      - port@0
+> +
+> +  clocks:
+> +    description: 32.768 KHz Suspend Clock (SUSCLK) input from the host system to
+> +      the M.2 card. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.1 for
+> +      more details.
+> +    maxItems: 1
+> +
+> +  pedet-gpios:
+> +    description: GPIO controlled connection to PEDET signal. This signal is used
+> +      by the host systems to determine the communication protocol that the M.2
+> +      card uses; SATA signaling (low) or PCIe signaling (high). Refer, PCI
+> +      Express M.2 Specification r4.0, sec 3.3.4.2 for more details.
+> +    maxItems: 1
+> +
+> +  led1-gpios:
+> +    description: GPIO controlled connection to LED_1# signal. This signal is
+> +      used by the M.2 card to indicate the card status via the system mounted
+> +      LED. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.2 for more
+> +      details.
+> +    maxItems: 1
 
-In this context it's the memory kexec handover used to bootstrap the
-kexec'ed kernel. Everything beyond these scratch areas could contain
-preserved data and kexec handover limits all early memory allocations to
-these scratch areas.
+This led1-gpios property should be removed as this GPIO directly goes to the
+LED, not to the host.
+
+- Mani
+
+> +
+> +  viocfg-gpios:
+> +    description: GPIO controlled connection to IO voltage configuration
+> +      (VIO_CFG) signal. This signal is used by the M.2 card to indicate to the
+> +      host system that the card supports an independent IO voltage domain for
+> +      the sideband signals. Refer, PCI Express M.2 Specification r4.0, sec
+> +      3.1.15.1 for more details.
+> +    maxItems: 1
+> +
+> +  pwrdis-gpios:
+> +    description: GPIO controlled connection to Power Disable (PWRDIS) signal.
+> +      This signal is used by the host system to disable power on the M.2 card.
+> +      Refer, PCI Express M.2 Specification r4.0, sec 3.3.5.2 for more details.
+> +    maxItems: 1
+> +
+> +  pln-gpios:
+> +    description: GPIO controlled connection to Power Loss Notification (PLN#)
+> +      signal. This signal is use to notify the M.2 card by the host system that
+> +      the power loss event is expected to occur. Refer, PCI Express M.2
+> +      Specification r4.0, sec 3.2.17.1 for more details.
+> +    maxItems: 1
+> +
+> +  plas3-gpios:
+> +    description: GPIO controlled connection to Power Loss Acknowledge (PLA_S3#)
+> +      signal. This signal is used by the M.2 card to notify the host system, the
+> +      status of the M.2 card's preparation for power loss.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - vpcie3v3-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # PCI M.2 Key M connector for SSDs with PCIe interface
+> +  - |
+> +    connector {
+> +        compatible = "pcie-m2-m-connector";
+> +        vpcie3v3-supply = <&vreg_nvme>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                reg = <0>;
+> +
+> +                endpoint@0 {
+> +                    reg = <0>;
+> +                    remote-endpoint = <&pcie6_port0_ep>;
+> +                };
+> +            };
+> +        };
+> +    };
+> 
+> -- 
+> 2.48.1
+> 
+> 
 
 -- 
-Sincerely yours,
-Mike.
+மணிவண்ணன் சதாசிவம்
 
