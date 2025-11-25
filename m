@@ -1,221 +1,443 @@
-Return-Path: <devicetree+bounces-242089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF73C8624E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 18:10:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A84C86253
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 18:10:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE7ED3B915E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 17:05:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D214B4EB1CA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 17:06:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 515FB32FA19;
-	Tue, 25 Nov 2025 17:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B1332B9AC;
+	Tue, 25 Nov 2025 17:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Qyb7iBNg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GBgwupMP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013068.outbound.protection.outlook.com [52.101.72.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0094A32AAD1;
-	Tue, 25 Nov 2025 17:03:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764090188; cv=fail; b=c3Q/MFkL+jAWSMWl64sBXOUnwsqVU/AHE6Tmty2yys0M8JsrXluqES2r/anZNocfje4dCDwcZjPbq12r3k0Zkls/LuZlZB/GbNfHIIg1vkqHHjaOEMu1IBDv+xSP7UW2IDzLFmLE721AYxVBf+rxfs4zKcOidgsprpT4v6Hzf+Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764090188; c=relaxed/simple;
-	bh=DForb3i68Qn3GwqA9/1r6/8r/GTPjmC3AaOsJ3ozhIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=HFXoRBkxHgMT2s4mrVFaf6gAKITuGnQuIwW+e9hDkdMooE8a3ISFiDQrHLpu6v//QnduS03vNx67gcmawjnZKy9J29pbqNHIj0OSzgFg7RW62eQM6DqhURykbfma8uGBOLOy+1z/AHuU2ehjAXfedEeLssCsL/DzvqnUkzKjNgY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Qyb7iBNg; arc=fail smtp.client-ip=52.101.72.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VyysDHgCrJs1Nkp95uOibo1v6wgOjFgw6cePwFIFDGeXc21GOUzSu8RsmeWOKJlVMhgsgb1hNjhiz+cQdPX3SGnDjPhZVekKDhyU08+yLyTIrwqA78hrrU9d3x3R4fnUDdd9Ms1cco1ZbFVG0E99XKpkaWVTKvuSecuH/MKpaijmCOkzHOqTbWF8Z9BbXlIt47RaFN6t8wVKqxpK16fZR912rb3DL5GSImLEH6/DPcBIObMigx1oyGcYLJmhHiZOzC9z0taxWXHpoS/Jqg/7vkthBXAvXg0iNc9UJNCnXAXuwypI1ENdz3GSqusam3IKCR4xyaHC78CHvU7d7uE1aQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TWY7MFugZ9CmdVxleLBxwXlELP55Zd08rQW98ZPdUto=;
- b=cdg69Z0v5wG2/Pw0CM0emjhqmqyhGR/QgV7y8EzZXEBgF3MzOvz5X+SccggqrWK/3ViETt4R5b4+pj/AwRDQN+9eIEOLJoXZjZphoqIpkrigMVx5izxl1983/k/DT4kISaXRQbNVrPRxNnQ6nvmmxO7O+ahh87imtOw4fsKzh569+RQXmsgyPoQI9LtcrF26aNHbXmH9nGbpKUp3YwtQSwiRQVCzFpVLYisu0gcpJZp1MlZjEM8HxeqiA4km+1hb46t1Tyo26OAwHXYnrqRfXChkLXW4MIoW8C5Wzg/GXM3hYVmCwRfZhnbH+gvVRnO8w7BwFTFUZuaO/billEFfrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TWY7MFugZ9CmdVxleLBxwXlELP55Zd08rQW98ZPdUto=;
- b=Qyb7iBNgvz8Alw5HAF2z9hiItohZKEIjWfJ622vGI2TDXuZO5FRSPwJvd3cwsGITM02+UwMGxf0HftoZkiem1KH+YiDUxcs4VhFPLuwHraPXVMvy0YWmiD7BH/MMjHpftOg8rJlhJzS0921f3eidwU/+YNUBMNxUjYMCvzWjnEpHbUZAC6uT1AO9w32deHgQqZ4sCpH/qjzV72/UAUuHKepIRdpdhKm0BOXyAggXGqW807aXpAoYXiKpSGq+SCDGhhm/AxubN2p4bK3rkrOEsu1Yw+jTXqWyCXaRcNFr77SsSvvFjPgCi3Fq2kFnAAp7ylNe/FA85lPKdLdPmgpkrw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM9PR04MB8585.eurprd04.prod.outlook.com (2603:10a6:20b:438::13)
- by GV4PR04MB11450.eurprd04.prod.outlook.com (2603:10a6:150:296::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Tue, 25 Nov
- 2025 17:03:01 +0000
-Received: from AM9PR04MB8585.eurprd04.prod.outlook.com
- ([fe80::8063:666f:9a2e:1dab]) by AM9PR04MB8585.eurprd04.prod.outlook.com
- ([fe80::8063:666f:9a2e:1dab%5]) with mapi id 15.20.9343.016; Tue, 25 Nov 2025
- 17:03:01 +0000
-Date: Tue, 25 Nov 2025 19:02:57 +0200
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9A632B991
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 17:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764090299; cv=none; b=CPMKq6ZhM88HUcKR0AuSho0TwE5/OEuwtkUOdG3gyMZkKprB2fyUkJfCDKBkkGwcpbfmuqAFTfimhV4TPF9Cit0gWkLW1zPVQIiG4Ki491mKhhjfnWO6VHSQszH2Aci4n9fjxWbLmCnOQbafzRe/9AvRWF+obFGpMTfaG3sQSHU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764090299; c=relaxed/simple;
+	bh=iJoCUX90kK6Hi6QO8UUOHy3R4sfD1pdw6tyQrAUqqnk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XJEb8SvrgX5qoayESPenNq4+0xAg04EtzRCEU6NsfIpReMluWEl07myENDgoOmkL8yV0z4MNC3w77J2tFAhtFwv8DMV/lOL6XMAdV+iQlsnDI6dOeISteIfHijzqfHdyQk9GYQtUQa9J/gJfpZhgbxJ7Ac6I26ZrFlbTiBFt5+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GBgwupMP; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7ba55660769so5014531b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:04:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764090296; x=1764695096; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pYgo1d5vBv7JwZFnlBuT9v8v0agvYmWOE6awznPlpPk=;
+        b=GBgwupMP3mGm1Df4mi+l6W6mLC5Jzj8Xr/ajiWLRugD9ZSR3Xrnp+Y/8c1wmPXQGUW
+         ma6S/p/kaABVCqIKLz4wY6WHwCa7Gusd00YJtvfvskQ+eHo/yuxy46cLgPuU4aaWLX7e
+         Ih9vQOM2y3nlXxPgClnCcUe0rRtc1Z9xLsFTLlkeKIOJBS36px9ZfRUFAQHAVRhgHRJa
+         LHhAPLxYLUsKkO8duH17+6e2QjwefXblGT0a+TzAo5Yn0t8yAO68p13QYsaS0LgaQpd4
+         ic2mGy/vkB9KavC3qv7oqqCsJPB4ZyG0yOZZvzOad5evUO102t8TAgkqLP8IcneaxiYp
+         1sPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764090296; x=1764695096;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pYgo1d5vBv7JwZFnlBuT9v8v0agvYmWOE6awznPlpPk=;
+        b=JRmAFnqv7xnNi6bilBblzs/v4iv4EN0my0fuvDw7TUugOifIjdHRc9677XYTsCVEBP
+         +Pkdy6vKm1LQf88w2UH/T8TbrYRHqVCh6l4ZmULrkDgkKRsYEzgaPJ4Fan4hS+ABQzYW
+         N2tIasOgeUjKfojmFIdjXc8uBDl/sRSz1I/aF8PShjP4guOmJXqLdBWcRYnIGjtSW7Q8
+         tb651cbkhpNON85jeu+bDcJnefDCDC0DBQAMEptmZveAq05c7a5YkM1/UMomoHYlXgMc
+         LqSDTfwCuhmtt1022UTd8CaUCs92bblyCR8odm2BASv1QEPQsU5LUifVv+jjwhNtBdcW
+         FwXw==
+X-Forwarded-Encrypted: i=1; AJvYcCUzbj5icMp2gDnC4xPdGFGjFzUvN1tukiVLzf0BN5CyTdPjNgV7A5SJPxRXzg2CXz0VS5N7HaosLbrn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzbceb4NI61Vpg2RkpwRmazIPWcI2paprOzxBSto1u+00gOSaBj
+	6pv1HY6oG3wtWZYkFvqAOvetD3ohVZG3Mx7Y+dYA61Scd3eYkPHE4ei7EWBfBT7VPVE=
+X-Gm-Gg: ASbGncuHPOiSgim0luulVDUs5Ebe9WHYYaADTbi6NgcIa0OgqW+azqHDIQDWEAjDRkN
+	nEVLkPWcwNiRWqHq/mQIJzBDaLYOrAudmJ2gKOcNGi+vLtFWDac9xzJ5EdJNeouKrnIhegeydXl
+	HH6th5KtVag6oZcO/sr6Q6DQNa0ir+sUC/z3yzDNwZ92WNyC7rhIJV2u8WxGzbnvyxFMnG3qT+U
+	ae10qyEkVidt0pge3CsXQ1+ODMrdsp9LOZmnFEclE72/MuMdeutKOMqvl/KL94sIx5GYDvghvFT
+	nyWEJuYJVBTVIM7grLVPQ2HHyjocuZcFkarU5cUcTqk9x+QouF03dUHN08b/+kRvB0a3iGZuk5f
+	axHk+iz/VfXl5WQCi3OycBqNCIpWO6FuSzte+aPoUt6hTqlRZMTKNyRfj8T9BPlaTabnmPAzE10
+	0t2kV3K9h5doeIuQ==
+X-Google-Smtp-Source: AGHT+IE3HVI2OSwKYyz2J7aR+dAp3ud2KB0NZWfDEl2yFaQQfh/xXRFxm9LLeRPNFwq1q34sUk9S4w==
+X-Received: by 2002:a05:6a20:7490:b0:35e:bfe5:ee82 with SMTP id adf61e73a8af0-36150f1ed1emr18535116637.48.1764090295883;
+        Tue, 25 Nov 2025 09:04:55 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:c0c0:5a6c:d170:84a1])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7c3ed37b0c7sm18550669b3a.20.2025.11.25.09.04.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Nov 2025 09:04:55 -0800 (PST)
+Date: Tue, 25 Nov 2025 10:04:52 -0700
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Eric Woudstra <ericwouds@gmail.com>,
-	Marek =?utf-8?B?QmVo4oia4oirbg==?= <kabel@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Patrice Chotard <patrice.chotard@foss.st.com>
-Subject: Re: [PATCH net-next 5/9] phy: add phy_get_rx_polarity() and
- phy_get_tx_polarity()
-Message-ID: <20251125170257.pk4cish65mcoeqhn@skbuf>
-References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
- <20251122193341.332324-6-vladimir.oltean@nxp.com>
- <20251124200121.5b82f09e@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251124200121.5b82f09e@kernel.org>
-X-ClientProxiedBy: BE1P281CA0296.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:8a::19) To AM9PR04MB8585.eurprd04.prod.outlook.com
- (2603:10a6:20b:438::13)
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-imx@nxp.com
+Subject: Re: [PATCH v5 2/5] remoteproc: imx_rproc: Populate devices under
+ "rpmsg" subnode
+Message-ID: <aSXhtAcFBOgJoCWd@p14s>
+References: <20251104203315.85706-1-shenwei.wang@nxp.com>
+ <20251104203315.85706-3-shenwei.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB8585:EE_|GV4PR04MB11450:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b34c9ec-75b7-4e55-ae02-08de2c447d76
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|19092799006|376014|1800799024|10070799003|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?IwTVDKRaImw0k3GS5ZlUjyHuqrqPOcro9YFXVFPewx2Tv8SafN/NLXSZxtqE?=
- =?us-ascii?Q?qUzcY/2dsyx+oQEoB1r4+/dTjlewRaifEeEDICxgmpT1Q/lRYDEe9Cfkumv2?=
- =?us-ascii?Q?2wPIedNMqAcYjYhrexC+ydef+LHocJAeIVS4+/9q8t/l1CWweWHViQhlc11E?=
- =?us-ascii?Q?oBO7KNYFqzrOy8EUClSdP+wRlYR4h+tv/DOJxw8SGyWrcnx1+fZ5Wgd8mamy?=
- =?us-ascii?Q?CeB/wehWVarAtf61myExMOGqcLk7XW/XCX+j5AP3518N/O6HcDtVdZ+GPv2T?=
- =?us-ascii?Q?jWST0WCGgvL6Fbr6j5ReynNX7rFrD3jxzomLlPUBoCYesV3Cifls7remd0mY?=
- =?us-ascii?Q?fP4fvTXxI8MKsgx1am5+xeLugkmOqTyL7MqdhujZYHhJBKUceklBZCHizcdE?=
- =?us-ascii?Q?Yq09nqwyCQaTTpW4o2NjXgENrR9cHfhsyyu9nPmvhA6GAt10g2IX0SAP185K?=
- =?us-ascii?Q?Mz9ocSx2ZXEV8U+Rsjn6oyHsQLQyyejFWbl0XEJb+jpRbZ9G06BiYIADofza?=
- =?us-ascii?Q?hEkQJ+61OmCcfSZtXpre+LuzlATRS94ZZ3xkbJqYdB65JVXdKbJuVopen7I4?=
- =?us-ascii?Q?bit1oh3oy/8Efq0k3wjdiyZsnCl8sYnagYla88cqAxkkVTtCGUaEN434ujAl?=
- =?us-ascii?Q?lIg31tM66XerwqMp231GqG1ITm4c7RaKJoCaHbhWBSKnYTrfkvI6OpBFPAtE?=
- =?us-ascii?Q?4LqDcWMqfSznYw4k+GF3oh1/4+5wFRKu2Rk8GWrqeuTiEle55mYXNaFYt4np?=
- =?us-ascii?Q?cE/bBS5rB+l+6IX3yhCVBHPNDQaEmQqQX+y4ZAwTHdJz6lA1MSvrzisY+MQ1?=
- =?us-ascii?Q?X4RPbbXyT0iLWs4x/e/4Tc7xjmnzaC2hOp864LvFsPs/4I7ppK+g2lJshWWp?=
- =?us-ascii?Q?sL6Tk5j+o+0p9QIqzxuJUWn+2jQVLerohgccnd2us5rvj+sRUE4+3XIN68zg?=
- =?us-ascii?Q?0NtURYIXxctMtYhSNoeTN1yh9HgJS9I4QYPvgNBY2/0SdIJekp4WHcAeV9v0?=
- =?us-ascii?Q?8KnLfrcSpT6yu34wwHr3NwWF5T4KL+ucqb3NjVBJM+J8lFMDZbGSfIwq2FKu?=
- =?us-ascii?Q?JVgtf53d+x0kGTJIe87NiCvMuTBniYB+iNLGBVBOx17sygXoqVUAgjxGSONH?=
- =?us-ascii?Q?Z0lnFvvsR73bCuNHR+Ew89x70nUddJ8qh7KIgFcgWUfg9j7kr54JkcmPQnfv?=
- =?us-ascii?Q?g2CZMiyOg6Bp5youIwz8vX3T9uST6SlXlzjjlVpiU1CGSKCJNCvV+1rJIM0b?=
- =?us-ascii?Q?EwL12QXzQrci2XkNir+qF5InxnrFQ2nmHkd1tDpgEr+A+hZo+TjLBo91z/DV?=
- =?us-ascii?Q?Aw1jIcRRLylSTjJg1WDUqQFOPg3PkarffMoOfTbwYs2R0myGmokglH6XS1sT?=
- =?us-ascii?Q?hV4uSzA6lK5SYzKN3ZcIQHSKo1dSEjaOqZi3ZLyWYuUzQWGyHLu+SVJdglqG?=
- =?us-ascii?Q?9zAbGi9yXtJzZVDK69f1bj76oTSpkpJl?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8585.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(19092799006)(376014)(1800799024)(10070799003)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?daH5k/lvwMnLkYcGIDV0xO/dmTyIz61yprFBGyJaGB4IXTq8yDLTQIZXwOtc?=
- =?us-ascii?Q?pBznsTKlFtXH2gdut5YTySI3thXbLKuXnXR/EAM/i0FRsvd1lO/9AEQ+4OWz?=
- =?us-ascii?Q?S27I9t9C4MJ5enIzf8HYQUMPQFVU9v1wwshXVSgg+2f4qkEDoZtn9MKiKRjA?=
- =?us-ascii?Q?VLFV8/WDlyK9KoSinnctUyaCGYh5cMqpkaUexTQJ2yzZMkG14kptYzn4T3Ot?=
- =?us-ascii?Q?ft/rVkOp+SF1PTTYMB/sILot1G6+N5SLr1937w57Q1+CBwFNOgcTEJl5f9RJ?=
- =?us-ascii?Q?R5h/Bsu0+sEGLH2ZhINRJlyxA8rZop4+fI7py/XdmvoMpHqsWVGxtHehBJAw?=
- =?us-ascii?Q?l3MBBfz/vCmL5qDcXoDe2r2iKqoavhogyuVCVriECNv0L4Wtcv6Tj9krHrlc?=
- =?us-ascii?Q?JD6PuYruuH+SK0a7C9DE3Qw99XeXKl2q4405CQSfRYyhV79nu+Ot/yaezgd3?=
- =?us-ascii?Q?dnKt/SKDviaiB+kn8HeYNIsEEe3ZxAVNVUdUl6YXbvOvLQnCWelzCEpMzblv?=
- =?us-ascii?Q?OdvgGPjlIDstplQpWKxrv0++dwkbEYXXRWCh8ddNWR1H8nm8WXvvQJctYrDA?=
- =?us-ascii?Q?SA02oRDzkQuDoKghJTgDQ9X5tl67+WYGQxxx+H77HZgfN1qbQhfbBK2tLjyJ?=
- =?us-ascii?Q?Pjg5aoKdpsqhMlk4JuIxTP/BaVr+RUEI1YqyZLEgVL3Waz0yRLXJKegikDby?=
- =?us-ascii?Q?Q/fnC9ZM9sXFC11zhRhzv9lF9RfwcDpcycFBaztZ9K7cl7ytMVbBVVrKPOZA?=
- =?us-ascii?Q?2+QMwNoTzHfRH8fwFw+nDrV3uRS7uwhv+l2pyq9BwUQui7O74QYgXtwqQvvH?=
- =?us-ascii?Q?bkRPIO7B3+Hx8WDdcZ+RKxBZyfJKddcPiz+UF++0W2skHDEhU6tyvBgET3GA?=
- =?us-ascii?Q?yIws8H1G4BrZwrgfsfKhd9lzkuUuF7P09owTiRgvh+U1PgfAb+3mzdziNGAM?=
- =?us-ascii?Q?tpDdygWvGAi9HMz7i7ZBXMNWFWHoAgRMA+/ZfDl2KfnfNH5d5C9zWMPKz1Ql?=
- =?us-ascii?Q?rn2xFfuRYOBEFXkBNnb5v/NIrcC8b1IbeQ1mbOPxuNYo2hTNmr+qLYXrslsg?=
- =?us-ascii?Q?Q7jDOdm4Mce7qx5qu5ZJG0RRTO7x5TI0JwCBheFeYx5A8A0bZB/2cjsjvtiR?=
- =?us-ascii?Q?egDJK+j0WjUy5+KJZKEc/DmroR+61XoTX47XD0eMFjvaEkEpzXM+1MrozMap?=
- =?us-ascii?Q?olBQIusr7xZwTyHbGHFuHlgPjnlx4b8RhnaMO/egG+qXpGsDG1AdSTGgFsgS?=
- =?us-ascii?Q?tzaZIzYVwUs6H+ECuyXoljfv5U47XcYnp+KrgicaL7moCr9sH44cudbo3ybi?=
- =?us-ascii?Q?CQIO/tvRPIxhOKiQ+IcqTL05ktaXKYoO4WAm8BDNQ5B3+1CCL8OLzorcEJ61?=
- =?us-ascii?Q?rH4uan2QEINDrHOWzbo9Ow3mJ/lCiM/7lJNIhT9ZwT+8EYT0EWSPtTyQAa0z?=
- =?us-ascii?Q?Zj2d97NFjjjAASeJzu6khoLIp4hr5KrUWDIF5GYFd/F7iYXVn1RUEd+MUhhM?=
- =?us-ascii?Q?z6ou0AzFNieRPPDSCdOfojmAgz0S4ZpPzmXO5NzTZLZITHwW2F/1mmMRnOpe?=
- =?us-ascii?Q?7GYoRd74DC1lXUJ9UhveJNOacj07MpK3443Ly5Fjuuwd6IlzjYk9VS4CJbQv?=
- =?us-ascii?Q?7k/b6wS/OGJcEeKgONt/koka0x1pRrWn9QMKHFLRsXPTiogDgggggh0e3oVV?=
- =?us-ascii?Q?XSVsHQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b34c9ec-75b7-4e55-ae02-08de2c447d76
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8585.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 17:03:01.0959
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Q4RB/as5JojhWnUC0kUnmdD3sGAJtoXnSqGTfqgmR7ULoKxlOCZzYCGQ604x0Tro6asKsIUR2K4fPw82C8pnwQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV4PR04MB11450
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251104203315.85706-3-shenwei.wang@nxp.com>
 
-On Mon, Nov 24, 2025 at 08:01:21PM -0800, Jakub Kicinski wrote:
-> > The proposed maintainership model is joint custody between netdev and
-> > linux-phy, because of the fact that these properties can be applied to
-> > Ethernet PCS blocks just as well as Generic PHY devices. I've added as
-> > maintainers those from "ETHERNET PHY LIBRARY", "NETWORKING DRIVERS" and
-> > "GENERIC PHY FRAMEWORK".
+Good morning, 
+
+Here are some first-pass comments - more to come later.
+
+On Tue, Nov 04, 2025 at 02:33:12PM -0600, Shenwei Wang wrote:
+> Register the RPMsg channel driver and populate remote devices defined
+> under the "rpmsg" subnode upon receiving their notification messages.
 > 
-> I dunno.. ain't no such thing as "joint custody" maintainership.
-> We have to pick one tree. Given the set of Ms here, I suspect 
-> the best course of action may be to bubble this up to its own tree.
-> Ask Konstantin for a tree in k.org, then you can "co-post" the patches
-> for review + PR link in the cover letter (e.g. how Tony from Intel
-> submits their patches). This way not networking and PHY can pull
-> the shared changes with stable commit IDs.
-
-I can see how this makes some sense. If nobody has any objection, I'll
-follow up to this by emailing Konstantin about a git tree for shared
-infrastructure between generic PHY and networking.
-
-> We can do out-of-sequence netdev call tomorrow if folks want to talk
-> this thru (8:30am Pacific)
-
-Not sure it's that big of a discussion topic.
-
-> > +GENERIC PHY COMMON PROPERTIES
-> > +M:	Andrew Lunn <andrew@lunn.ch>
-> > +M:	"David S. Miller" <davem@davemloft.net>
-> > +M:	Eric Dumazet <edumazet@google.com>
-> > +M:	Heiner Kallweit <hkallweit1@gmail.com>
-> > +M:	Jakub Kicinski <kuba@kernel.org>
-> > +M:	Kishon Vijay Abraham I <kishon@kernel.org>
-> > +M:	Paolo Abeni <pabeni@redhat.com>
-> > +R:	Russell King <linux@armlinux.org.uk>
-> > +M:	Vinod Koul <vkoul@kernel.org>
+> The following illustrates the expected DTS layout structure:
 > 
-> checkpatch nit: apparently it wants all Ms first, then all Rs.
+> 	cm33: remoteproc-cm33 {
+> 		compatible = "fsl,imx8ulp-cm33";
+> 
+> 		rpmsg {
+> 			rpmsg-io-channel {
+> 				gpio@0 {
+> 					compatible = "fsl,imx-rpmsg-gpio";
+> 					reg = <0>;
+> 				};
+> 
+> 				gpio@1 {
+> 					compatible = "fsl,imx-rpmsg-gpio";
+> 					reg = <1>;
+> 				};
+> 
+> 				...
+> 			};
+> 
+> 			rpmsg-i2c-channel {
+> 				i2c@0 {
+> 					compatible = "fsl,imx-rpmsg-i2c";
+> 					reg = <0>;
+> 				};
+> 			};
+> 
+> 			...
+> 		};
+> 	};
 
-Thanks for pointing this out.
+2 observations here:
 
-This will probably have to be changed quite a bit in v2 if the "separate
-git tree" idea is going to be implemented. I'll probably start with an
-empty list and request volunteers to step up.
+(1) Why are you trying to introduce both i2c and GPIO in the same patchset?
+(2) My first impression is that i2c, GPIO and others should be bundled with the
+platform definitions for i2c and GPIO, with a phandle to the remote processor
+they hang off from.  My opinion may change once I have reviewed the other
+patches in this set.
+
+> 
+> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> ---
+>  drivers/remoteproc/imx_rproc.c  | 146 ++++++++++++++++++++++++++++++++
+>  include/linux/rpmsg/imx_rpmsg.h |  48 +++++++++++
+>  2 files changed, 194 insertions(+)
+>  create mode 100644 include/linux/rpmsg/imx_rpmsg.h
+> 
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> index a6eef0080ca9..e21a7980c490 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/clk.h>
+>  #include <linux/err.h>
+>  #include <linux/firmware/imx/sci.h>
+> +#include <linux/rpmsg/imx_rpmsg.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+>  #include <linux/mailbox_client.h>
+> @@ -15,6 +16,8 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/of_platform.h>
+>  #include <linux/of_reserved_mem.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_domain.h>
+> @@ -22,6 +25,7 @@
+>  #include <linux/reboot.h>
+>  #include <linux/regmap.h>
+>  #include <linux/remoteproc.h>
+> +#include <linux/rpmsg.h>
+>  #include <linux/workqueue.h>
+>  
+>  #include "imx_rproc.h"
+> @@ -1084,6 +1088,144 @@ static int imx_rproc_sys_off_handler(struct sys_off_data *data)
+>  	return NOTIFY_DONE;
+>  }
+>  
+> +struct imx_rpmsg_driver {
+> +	struct rpmsg_driver rpdrv;
+> +	void *driver_data;
+> +};
+> +
+> +static char *channel_device_map[][2] = {
+> +	{"rpmsg-io-channel", "fsl,imx-rpmsg-gpio"},
+> +	{"rpmsg-i2c-channel", "fsl,imx-rpmsg-i2c"},
+> +};
+> +
+> +static int imx_rpmsg_endpoint_cb(struct rpmsg_device *rpdev, void *data,
+> +				 int len, void *priv, u32 src)
+> +{
+> +	struct imx_rpmsg_driver_data *drvdata;
+> +
+> +	drvdata = dev_get_drvdata(&rpdev->dev);
+> +	if (drvdata && drvdata->rx_callback)
+> +		return drvdata->rx_callback(rpdev, data, len, priv, src);
+> +
+> +	return 0;
+> +}
+> +
+> +static void imx_rpmsg_endpoint_remove(struct rpmsg_device *rpdev)
+> +{
+> +	of_platform_depopulate(&rpdev->dev);
+> +}
+> +
+> +static int imx_rpmsg_endpoint_probe(struct rpmsg_device *rpdev)
+> +{
+> +	struct imx_rpmsg_driver_data *drvdata;
+> +	struct imx_rpmsg_driver *imx_rpdrv;
+> +	struct device *dev = &rpdev->dev;
+> +	struct of_dev_auxdata *auxdata;
+> +	struct rpmsg_driver *rpdrv;
+> +	int i;
+> +
+> +	rpdrv = container_of(dev->driver, struct rpmsg_driver, drv);
+> +	imx_rpdrv = container_of(rpdrv, struct imx_rpmsg_driver, rpdrv);
+> +
+> +	if (!imx_rpdrv->driver_data)
+> +		return -EINVAL;
+> +
+> +	drvdata = devm_kmemdup(dev, imx_rpdrv->driver_data, sizeof(*drvdata), GFP_KERNEL);
+
+Something with the overall design of this feature doesn't work if you need to do
+this.
+
+> +	if (!drvdata)
+> +		return -ENOMEM;
+> +
+> +	i = drvdata->map_idx;
+> +	if (i >= ARRAY_SIZE(channel_device_map))
+> +		return -ENODEV;
+> +
+> +	auxdata = devm_kzalloc(dev, sizeof(*auxdata) * 2, GFP_KERNEL);
+> +	if (!auxdata)
+> +		return -ENOMEM;
+> +
+> +	drvdata->rpdev = rpdev;
+> +	auxdata[0].compatible = channel_device_map[i][1];
+> +	auxdata[0].platform_data = drvdata;
+> +	dev_set_drvdata(dev, drvdata);
+> +
+> +	of_platform_populate(drvdata->channel_node, NULL, auxdata, dev);
+> +	of_node_put(drvdata->channel_node);
+
+Why is there a need for of_node_put() when imx_of_rprmsg_node_init() is using
+for_each_child_of_node_scoped()?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx_of_rpmsg_is_in_map(const char *name)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(channel_device_map); i++) {
+> +		if (strcmp(name, channel_device_map[i][0]) == 0)
+> +			return i;
+> +	}
+> +
+> +	return -1;
+
+Please return a real error code.
+
+> +}
+> +
+> +static int imx_of_rpmsg_register_rpdriver(struct device_node *channel,
+> +					  struct device *dev, int idx)
+> +{
+> +	struct imx_rpmsg_driver_data *driver_data;
+> +	struct imx_rpmsg_driver *rp_driver;
+> +	struct rpmsg_device_id *rpdev_id;
+> +
+> +	rpdev_id = devm_kzalloc(dev, sizeof(*rpdev_id) * 2, GFP_KERNEL);
+
+I had a really good time figuring out why 2 instances were needed.  Reviewing
+this work without a single line of comment isn't motivating.
+
+> +	if (!rpdev_id)
+> +		return -ENOMEM;
+> +
+> +	strscpy(rpdev_id[0].name, channel_device_map[idx][0], RPMSG_NAME_SIZE);
+> +
+> +	rp_driver = devm_kzalloc(dev, sizeof(*rp_driver), GFP_KERNEL);
+> +	if (!rp_driver)
+> +		return -ENOMEM;
+> +
+> +	driver_data = devm_kzalloc(dev, sizeof(*driver_data), GFP_KERNEL);
+> +	if (!driver_data)
+> +		return -ENOMEM;
+> +
+> +	driver_data->rproc_name = dev->of_node->name;
+> +	driver_data->channel_node = channel;
+> +	driver_data->map_idx = idx;
+
+struct rpmsg_device_id already contains a @driver_data.  As with my other
+comment above, something in the design of this feature is not working if you
+need to do something like this.
+
+> +
+> +	rp_driver->rpdrv.drv.name = channel_device_map[idx][0];
+> +	rp_driver->rpdrv.id_table = rpdev_id;
+> +	rp_driver->rpdrv.probe = imx_rpmsg_endpoint_probe;
+> +	rp_driver->rpdrv.remove = imx_rpmsg_endpoint_remove;
+> +	rp_driver->rpdrv.callback = imx_rpmsg_endpoint_cb;
+> +	rp_driver->driver_data = driver_data;
+> +
+> +	register_rpmsg_driver(&rp_driver->rpdrv);
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx_of_rpmsg_node_init(struct platform_device *pdev)
+> +{
+> +	struct device_node *np __free(device_node);
+> +	struct device *dev = &pdev->dev;
+> +	int idx, ret;
+> +
+> +	np = of_get_child_by_name(dev->of_node, "rpmsg");
+> +	if (!np)
+> +		return 0;
+> +
+> +	for_each_child_of_node_scoped(np, child) {
+> +		idx = imx_of_rpmsg_is_in_map(child->name);
+> +		if (idx < 0)
+> +			ret = of_platform_default_populate(child, NULL, dev);
+
+Why is this called?
+
+> +		else
+> +			ret = imx_of_rpmsg_register_rpdriver(child, dev, idx);
+> +
+> +		if (ret < 0)
+> +			return ret;
+
+In case of an error, the reference to @np is not released.
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
+If we were to keep the current design, all of the above should be in
+drivers/rpmsg/imx_rpmsg.c.
+
+>  static int imx_rproc_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -1177,6 +1319,10 @@ static int imx_rproc_probe(struct platform_device *pdev)
+>  		goto err_put_clk;
+>  	}
+>  
+> +	ret = imx_of_rpmsg_node_init(pdev);
+> +	if (ret < 0)
+> +		dev_info(dev, "populating 'rpmsg' node failed\n");
+> +
+>  	return 0;
+>  
+>  err_put_clk:
+> diff --git a/include/linux/rpmsg/imx_rpmsg.h b/include/linux/rpmsg/imx_rpmsg.h
+> new file mode 100644
+> index 000000000000..04a5ad2d4a1d
+> --- /dev/null
+> +++ b/include/linux/rpmsg/imx_rpmsg.h
+> @@ -0,0 +1,48 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/* Copyright 2025 NXP */
+> +
+> +/*
+> + * @file linux/imx_rpmsg.h
+> + *
+> + * @brief Global header file for iMX RPMSG
+> + *
+> + * @ingroup RPMSG
+> + */
+> +#ifndef __LINUX_IMX_RPMSG_H__
+> +#define __LINUX_IMX_RPMSG_H__
+> +
+> +/* Category define */
+> +#define IMX_RMPSG_LIFECYCLE	1
+> +#define IMX_RPMSG_PMIC		2
+> +#define IMX_RPMSG_AUDIO		3
+> +#define IMX_RPMSG_KEY		4
+> +#define IMX_RPMSG_GPIO		5
+> +#define IMX_RPMSG_RTC		6
+> +#define IMX_RPMSG_SENSOR	7
+> +
+> +/* rpmsg version */
+> +#define IMX_RMPSG_MAJOR		1
+> +#define IMX_RMPSG_MINOR		0
+> +
+> +#define MAX_DEV_PER_CHANNEL	10
+> +
+> +struct imx_rpmsg_head {
+> +	u8 cate;	/* Category */
+> +	u8 major;	/* Major version */
+> +	u8 minor;	/* Minor version */
+> +	u8 type;	/* Message type */
+> +	u8 cmd;		/* Command code */
+> +	u8 reserved[5];
+> +} __packed;
+
+This structure is not used in this file, please remove.
+
+> +
+> +struct imx_rpmsg_driver_data {
+> +	int map_idx;
+> +	const char *rproc_name;
+> +	struct rpmsg_device *rpdev;
+> +	struct device_node *channel_node;
+> +	int (*rx_callback)(struct rpmsg_device *rpdev, void *data,
+> +			   int len, void *priv, u32 src);
+> +	void *channel_devices[MAX_DEV_PER_CHANNEL];
+> +};
+
+For the above 2 struct, proper documentation is needed.
+
+Thanks,
+Mathieu
+
+> +
+> +#endif /* __LINUX_IMX_RPMSG_H__ */
+> -- 
+> 2.43.0
+> 
 
