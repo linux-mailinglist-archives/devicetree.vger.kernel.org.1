@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-241993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90E1C84EA4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:09:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6283DC84E8F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:09:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 61B89350DB8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:09:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A2FF3B07B4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:09:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DE6D3246E3;
-	Tue, 25 Nov 2025 12:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A63F324709;
+	Tue, 25 Nov 2025 12:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k/ky/l4V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RGLz//ba"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4922B3233E8
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 12:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AC73242A7
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 12:06:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764072398; cv=none; b=VPCq4g67/F6xLtPW9ItoG+vYyjbSNLDNvSV0Y1oXlF1imuInSMzvr+fjK2F6dtKZMUh8KV4IUdbsCwk6lPyuwUeW9dV36qsKJLR0A0ltqJsg1hzk0dapdw0ID/NuPcCMCJYbD33ud2Yu3eN5ZFQGMUYteK6Sr3K9PJGr+kHP+Gs=
+	t=1764072399; cv=none; b=HpcfEIqzv6d5bfesvHEVBoZ6la3X0bsNUxAlQPXY73nv92Ye0KqACX0xncieXqUkz994a5uRvuFNFSZh8/2dd7hQCC8X1gBOkTQFVIAwdwRVRE+i8a60CK2AcrV1QtYiKvzU6CrG3j/Dy59cmZctHsapkuwLIUNpCa7z2zr16ro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764072398; c=relaxed/simple;
-	bh=o77K7lBiiNU3Nw2nvrTyKSx17KCtNvOCyjO6rUUasoQ=;
+	s=arc-20240116; t=1764072399; c=relaxed/simple;
+	bh=YadarWm8iXVMTc3kvOXTZJwKC0IolLXgB3hQl9V7qZ4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mWpzgJz5UEL8hQ7/sdjoMRTEsNrT8wymRft8RUQOQ47d8DRfxw73hoqiigQ4gPpfDDYgENosAL6Wv8ARJVl+/X04dLOahMv9vPe9/1Smk88cgnyV/dXwDQp/Z0UomeYzqswBLK31waMXVPJN2224zD4xgltcPzxCukRc8xYpqTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k/ky/l4V; arc=none smtp.client-ip=209.85.167.45
+	 MIME-Version; b=RTnwhcZsgAXqckszkeVx7RLxN6cTBpioiyf7dCuWjfRPKwtxnulLidDHH0MgQOduLwsMDZQzPSXsVluh8u6aH/RvRV9CpP3c5QlNtiL6o1fs6F5iKsg7Ex5xb+pH4NejTzCeQpsQcGtW8csVWU5KbfWdpsjGJUsaSp5sHtTYD7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RGLz//ba; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5943b62c47dso5300812e87.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 04:06:34 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5958187fa55so4166422e87.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 04:06:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764072393; x=1764677193; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1764072394; x=1764677194; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RsY5WeZZQ7LiYwadFo2jc0S+Rqo5NcKeGdtKvFEJRWQ=;
-        b=k/ky/l4VC+e/cR4toTh7IYh1zLV1ZUr6kM7YJSuSQw9LEDgWjpnMwcpzv/E8RSAn31
-         gEoXnFUFHbGzQRMvjysZq5QsAtaMj6yoi4i6a2yBwJ6y4Jxys7SAwDTYJcuDj7Km8q4M
-         xUwS1W3HVg1DfIUP6lTcWd+A5RdIhn867l/bj17qitb6XDzKckuwCD+5vJMT7sjoweLc
-         LxTNmGNXrJPapNGwaz+LgAlvRgunN5GNVZfZfOC4ADss6MqZBZdFe20gLqOGdVsFssYV
-         4s3MwmJ0+IbIFdwNB/ZBVFZhxeBJ7BEv2wGRd3owIPfI+bTY0VMK5mzX5FBpmkMsICYj
-         N0jA==
+        bh=yQWD0QKdZ0TkCEqYFYnGsqgX6XSV5QR52vBKePlFe20=;
+        b=RGLz//baihWAjD5nCVgsMTRIlPsz7FlyFz1LidxQXKjMnKJ4XLI7nZblQO4b+W83xl
+         B7VVFQy5IMHRgrPkf7qAoP0/Rk/piTDtoOmA07h9Dtk5rQ+ReS6ipC0aWTMY/42jVn3p
+         JF8T1Qdi3ED9C5ofQ2ktByJFLjWnStELGOtwZ+8B/6sXVYRy7Opc7XBhyzTmg5iVsz9m
+         CD4kQQ2qqhvk1AI1iX759I8SeGp9dSh1S0WYR0WJCVVBIdAsVmLRFVVCfelVubtsz+Ij
+         3zDXDNrVa9rDvJGvM/ROWPm9MSkUESuU/w4wO+z13R9MO5EFpDDy8IqZ2hShiiQDct6R
+         1sqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764072393; x=1764677193;
+        d=1e100.net; s=20230601; t=1764072394; x=1764677194;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=RsY5WeZZQ7LiYwadFo2jc0S+Rqo5NcKeGdtKvFEJRWQ=;
-        b=orW9/sLEE5FbQT1OEcncKrF1h52mpAvFDHKPfYcK48fWfJDwgSsLxdNnW/2fgSBXUU
-         mLdKhYp22s4aHJDvFZkeH6wh0esaHgky3wD7CL+ktCe2+ONwOBPVsNCIbeh59Lw5nrk7
-         ZIomS4VVBiSQ9XVGjit1WOMuwNBJOfSgDmItgqEntzq4+fPZ0DQ/xMyElvoMeqSgqUXK
-         ZsvYhLDRso1USOfnlWjWIiAF4xP2wVWdvHhI+adaN36L7MQHghgLMCX2owh218elnCK+
-         vqjaY2p6E5Z7nq3unzbSckV00fuuW2OSDX5MEpxsJgOxRnzOOa78lah/OuVbS2IuF/KA
-         TB5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXt3jRoojiY2J6ZqEIMpZeYEFWJOXCXaT5NgXNDX3fSXtLAtowKCjHLviN3xGqL+LrjLw8H4ylhJ/VJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0s5U8jRibeKNbPfJ8gMHzGxwlDLY6JOp6TtXluMQN9QPjVwWx
-	lhgcmrmimSE1WZ/ucuqDACv0jECrQ0lEBCianSIgiqcQ1wZ82v/XfyC2
-X-Gm-Gg: ASbGncv6vKYCAWlutn3kyezdNhP7NSgoIebv2ES/ys7O+pzY7MK6aMJgOlcT+l/3siI
-	rsqkbgCpYto6RKNUz9ZrDT7dkz4+c5eyefLAxb6SF98ghnkaeVA+K/9j8WDJDbT50MP4kOYtDTa
-	EzDwE9x3LwhB3O+ua4ZkszqDHIA13b9+g9H9ypx1tT/0C/eJgqpcpjQb2XlRxp9SXkrglPgHXue
-	ZrICZ/0duCYxt9fugN62zS5eaLgrfAF3M3AVKVUyZ+ycJKDFMt//WmJvi9jWcj65XGwHqmEL9sE
-	0hreQrggvOviKbW0e10L1Vt3wqypJOzjw1V03emPr3mnpv4RdxTWGo5lC7A6IKiGhNMjXr5/5WH
-	ibz/9KPqW0M8+8U2TflekWWSkTxkd5kK2rxfYAmPJvSBpeYg4GphTQMZ4fllxnTbOnCsITa9wLA
-	m6zhYXtEoYTw==
-X-Google-Smtp-Source: AGHT+IEdP/dQenZ4+0SzEk4HFyKw5rqkBn8Ymno3xnu3Q7iDvc8YpbqmlkGj2FVO2AanGSctKzK0xA==
-X-Received: by 2002:a05:6512:2313:b0:58b:8f:2cf3 with SMTP id 2adb3069b0e04-596a3eb8474mr5564452e87.21.1764072392861;
-        Tue, 25 Nov 2025 04:06:32 -0800 (PST)
+        bh=yQWD0QKdZ0TkCEqYFYnGsqgX6XSV5QR52vBKePlFe20=;
+        b=IAEZjO5BslOOL8R08wFyLQ/mWg/qpM6UHflYKuqBgvN00eoj9QhPeCv4zIB7UgZUJO
+         kLARjNwtmHOkNU7O68ZHEaRuiY81QKs5C1KWwf9KrvsivwhTS35OC0Vo/eTeORQDCcjq
+         cH4TXSJeD2RdIliOrjtoQsNzXO2vu60ht/HQdCI5LuYy7mB3npuvxHHwdE6gQ+oAGLhQ
+         kxSYAiAY4bBHvfnH+UKtk1+4kYF7T6CHbo8xJpuvdfZujMgwN2nu11t4WyqWE7BOl1Ft
+         FA7Hd71XD10LQ5Rgklqiww7hwwedXiqaKWRX2HiHKAu7EUsM+vPgpB4RyLEpU6Fi2gd+
+         NEhA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpq4B47UHuGRqjYJwEYh9jM7rUDoYjf63SYQYxVCjvYsDQf4oJ4ENTmskxBh9bAvIjQA0ngkUC9hfM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyn9MlNsByZiv7I1lAZdgAzUXBNoaSoQdkPTN6oVI0NcdwINQQH
+	EFfR36g4SFmnfLbbeVr6791wf3xcbT3c3UnkbOsCx6vqO+fbtRPzwVBV
+X-Gm-Gg: ASbGncte43uz2zkEdi0TzS+9SBYxYIywKMA9MSXbFgH2RaW/T5oIi532k3xVn2q8/AT
+	7cnrt+CkOTe7B7zwtvY/jQbWI51gTlt/r6H+s/kzNYkSZA0hEF44lPMCrs/mWnEa2G/jAay79D5
+	3Xd4lZcfxV3nKi0GJnta2J2qbf1joxmG4/0hx+HmOFlWVIcWf88Zte8fcTo64TEVBkPV/xykJca
+	nT9rGUOEyeM6jaMl07JNCDqWdz7bCkPgAcflP+IyuNMdOwNQjfrp/5s+ZhLGfHBiqrIBhT9SFrO
+	2L0nzwK1+qwHxCqt9V5vox83FgA2kvXkn+vnFfqcZ1U8hC0Q5vbTy6kZsY9OnLss2sl5IStzRLB
+	WSJxMZtDzl/znxJj4MQMZkqtCbeZkcfbYt0IdFCjsncuraV6Hq/Ut7q1xBSoUdoBgT3ReZmlQky
+	g=
+X-Google-Smtp-Source: AGHT+IFhS9KE1wuZQzl8w9HsDmWL1weqKWL9f1LhqVtawTbvw8WoVOvtMYz13PNxZKJZHBsKo2LqMw==
+X-Received: by 2002:a05:6512:118a:b0:595:82ed:ff28 with SMTP id 2adb3069b0e04-596b5062a6cmr1017970e87.32.1764072394159;
+        Tue, 25 Nov 2025 04:06:34 -0800 (PST)
 Received: from xeon ([188.163.112.74])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5969dbbecb9sm5150993e87.58.2025.11.25.04.06.31
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5969dbbecb9sm5150993e87.58.2025.11.25.04.06.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Nov 2025 04:06:32 -0800 (PST)
+        Tue, 25 Nov 2025 04:06:33 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -95,9 +95,9 @@ Cc: linux-kernel@vger.kernel.org,
 	linux-tegra@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	linux-pm@vger.kernel.org
-Subject: [PATCH v4 11/12] ARM: tegra: Add EMC OPP and ICC properties to Tegra114 EMC and ACTMON device-tree nodes
-Date: Tue, 25 Nov 2025 14:05:58 +0200
-Message-ID: <20251125120559.158860-12-clamor95@gmail.com>
+Subject: [PATCH v4 12/12] ARM: tegra: add DC interconnections for Tegra114
+Date: Tue, 25 Nov 2025 14:05:59 +0200
+Message-ID: <20251125120559.158860-13-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251125120559.158860-1-clamor95@gmail.com>
 References: <20251125120559.158860-1-clamor95@gmail.com>
@@ -109,214 +109,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add EMC OPP tables and interconnect paths that will be used for
-dynamic memory bandwidth scaling based on memory utilization statistics.
+Add DC interconnections to Tegra114 device tree to reflect connections
+between MC, EMC and DC.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- .../dts/nvidia/tegra114-peripherals-opp.dtsi  | 151 ++++++++++++++++++
- arch/arm/boot/dts/nvidia/tegra114.dtsi        |   9 ++
- 2 files changed, 160 insertions(+)
- create mode 100644 arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
+ arch/arm/boot/dts/nvidia/tegra114.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi b/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
-new file mode 100644
-index 000000000000..1a0e68f22039
---- /dev/null
-+++ b/arch/arm/boot/dts/nvidia/tegra114-peripherals-opp.dtsi
-@@ -0,0 +1,151 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/ {
-+	emc_icc_dvfs_opp_table: opp-table-emc {
-+		compatible = "operating-points-v2";
-+
-+		opp-12750000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <12750000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-20400000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <20400000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-40800000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <40800000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-68000000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <68000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-102000000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <102000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-204000000-900 {
-+			opp-microvolt = <900000 900000 1390000>;
-+			opp-hz = /bits/ 64 <204000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-suspend;
-+		};
-+
-+		opp-312000000-1000 {
-+			opp-microvolt = <1000000 1000000 1390000>;
-+			opp-hz = /bits/ 64 <312000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-408000000-1000 {
-+			opp-microvolt = <1000000 1000000 1390000>;
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-528000000-1050 {
-+			opp-microvolt = <1050000 1050000 1390000>;
-+			opp-hz = /bits/ 64 <528000000>;
-+			opp-supported-hw = <0x000E>;
-+		};
-+
-+		opp-528000000-1100 {
-+			opp-microvolt = <1100000 1100000 1390000>;
-+			opp-hz = /bits/ 64 <528000000>;
-+			opp-supported-hw = <0x0001>;
-+		};
-+
-+		opp-624000000-1100 {
-+			opp-microvolt = <1100000 1100000 1390000>;
-+			opp-hz = /bits/ 64 <624000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+
-+		opp-792000000-1100 {
-+			opp-microvolt = <1100000 1100000 1390000>;
-+			opp-hz = /bits/ 64 <792000000>;
-+			opp-supported-hw = <0x000F>;
-+		};
-+	};
-+
-+	emc_bw_dfs_opp_table: opp-table-actmon {
-+		compatible = "operating-points-v2";
-+
-+		opp-12750000 {
-+			opp-hz = /bits/ 64 <12750000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <204000>;
-+		};
-+
-+		opp-20400000 {
-+			opp-hz = /bits/ 64 <20400000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <326400>;
-+		};
-+
-+		opp-40800000 {
-+			opp-hz = /bits/ 64 <40800000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <652800>;
-+		};
-+
-+		opp-68000000 {
-+			opp-hz = /bits/ 64 <68000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <1088000>;
-+		};
-+
-+		opp-102000000 {
-+			opp-hz = /bits/ 64 <102000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		opp-204000000 {
-+			opp-hz = /bits/ 64 <204000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <3264000>;
-+			opp-suspend;
-+		};
-+
-+		opp-312000000 {
-+			opp-hz = /bits/ 64 <312000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <4992000>;
-+		};
-+
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <6528000>;
-+		};
-+
-+		opp-528000000 {
-+			opp-hz = /bits/ 64 <528000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <8448000>;
-+		};
-+
-+		opp-624000000 {
-+			opp-hz = /bits/ 64 <624000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <9984000>;
-+		};
-+
-+		opp-792000000 {
-+			opp-hz = /bits/ 64 <792000000>;
-+			opp-supported-hw = <0x000F>;
-+			opp-peak-kBps = <12672000>;
-+		};
-+	};
-+};
 diff --git a/arch/arm/boot/dts/nvidia/tegra114.dtsi b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-index a920ad041c14..6221423b81d1 100644
+index 6221423b81d1..732f8b5b4eed 100644
 --- a/arch/arm/boot/dts/nvidia/tegra114.dtsi
 +++ b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-@@ -8,6 +8,8 @@
- #include <dt-bindings/soc/tegra-pmc.h>
- #include <dt-bindings/thermal/tegra114-soctherm.h>
+@@ -125,6 +125,17 @@ dc@54200000 {
  
-+#include "tegra114-peripherals-opp.dtsi"
+ 			nvidia,head = <0>;
+ 
++			interconnects = <&mc TEGRA114_MC_DISPLAY0A &emc>,
++					<&mc TEGRA114_MC_DISPLAY0B &emc>,
++					<&mc TEGRA114_MC_DISPLAY1B &emc>,
++					<&mc TEGRA114_MC_DISPLAY0C &emc>,
++					<&mc TEGRA114_MC_DISPLAYHC &emc>;
++			interconnect-names = "wina",
++					     "winb",
++					     "winb-vfilter",
++					     "winc",
++					     "cursor";
 +
- / {
- 	compatible = "nvidia,tegra114";
- 	interrupt-parent = <&lic>;
-@@ -323,6 +325,9 @@ actmon: actmon@6000c800 {
- 		clock-names = "actmon", "emc";
- 		resets = <&tegra_car TEGRA114_CLK_ACTMON>;
- 		reset-names = "actmon";
-+		operating-points-v2 = <&emc_bw_dfs_opp_table>;
-+		interconnects = <&mc TEGRA114_MC_MPCORER &emc>;
-+		interconnect-names = "cpu-read";
- 		#cooling-cells = <2>;
- 	};
+ 			rgb {
+ 				status = "disabled";
+ 			};
+@@ -144,6 +155,17 @@ dc@54240000 {
  
-@@ -655,6 +660,7 @@ mc: memory-controller@70019000 {
+ 			nvidia,head = <1>;
  
- 		#reset-cells = <1>;
- 		#iommu-cells = <1>;
-+		#interconnect-cells = <1>;
- 	};
- 
- 	emc: external-memory-controller@7001b000 {
-@@ -665,6 +671,9 @@ emc: external-memory-controller@7001b000 {
- 		clock-names = "emc";
- 
- 		nvidia,memory-controller = <&mc>;
-+		operating-points-v2 = <&emc_icc_dvfs_opp_table>;
++			interconnects = <&mc TEGRA114_MC_DISPLAY0AB &emc>,
++					<&mc TEGRA114_MC_DISPLAY0BB &emc>,
++					<&mc TEGRA114_MC_DISPLAY1BB &emc>,
++					<&mc TEGRA114_MC_DISPLAY0CB &emc>,
++					<&mc TEGRA114_MC_DISPLAYHCB &emc>;
++			interconnect-names = "wina",
++					     "winb",
++					     "winb-vfilter",
++					     "winc",
++					     "cursor";
 +
-+		#interconnect-cells = <0>;
- 	};
- 
- 	hda@70030000 {
+ 			rgb {
+ 				status = "disabled";
+ 			};
 -- 
 2.51.0
 
