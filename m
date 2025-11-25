@@ -1,142 +1,277 @@
-Return-Path: <devicetree+bounces-241806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF048C82F0C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 01:32:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73710C82F72
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 01:59:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 105E73A70F4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 00:32:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D2763ADC51
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 00:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B01D1DC198;
-	Tue, 25 Nov 2025 00:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DB501EB5FD;
+	Tue, 25 Nov 2025 00:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XyHi3n+F"
+	dkim=pass (2048-bit key) header.d=zytor.com header.i=@zytor.com header.b="pxJB5zld"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zytor.com (terminus.zytor.com [198.137.202.136])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765731A3172
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 00:32:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562951B4F1F;
+	Tue, 25 Nov 2025 00:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.136
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764030721; cv=none; b=lHV8tfHE7JHXnH82E8Lk4zlPtcDmh+JoDLk9RTjmi/HYh3E2AMSiBd15S3aTEulgFEzli7f0/+M8Jejfs/NyUD87EN32iPPLDp6+A2EgqAeGSk/uXPCx0Es8JIJwezxrj9O12MDT3MTH8foqpCSlLctI20y/U+Bexxer2ko7Ovk=
+	t=1764032356; cv=none; b=XoCrVuXz/NtEafX12CJ8s+y9yQDoGrLGMGsDRdLkDUkpXJQxtMwm5yfamjlACcoeLMytTrzTWuZiLRevZqgnQZdVtskKvXnMbDvnAg5ekHN4XZhqfEUz6KU7v+z1VlST97wN3BVPDphKdbWL1qwdkINCsTPq6JTVzSsju4CbMNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764030721; c=relaxed/simple;
-	bh=YXRMmDcOf3SBmF0ybmtdfDmy3iWblMD9XwQvvi9imaI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XAjjO/3MmdR7rRMYk1plK6FNklXqKw/XQ1JxzagGVct0Y0uwbkawUBOrWQQ0lnlvciZ2jN/3t9MqOVqsmtYrBQA41Ra7iRxWRDvB4mpzhSYv1Fce4QgGp1jW+RFOaqcqtDir/UClD9B1aeEGAbPMV2ozwtnyC94b5IRojHjMZgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XyHi3n+F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F2ADC19423
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 00:32:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764030721;
-	bh=YXRMmDcOf3SBmF0ybmtdfDmy3iWblMD9XwQvvi9imaI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=XyHi3n+FXn1U+hyOgxhp2mBGbf72oZT3W7/aMg+rB4S4Q2uLnInvHIHpgNVcknEx7
-	 YBLOHXWxV5GWhYU2XiGzGHdgLF3jCdrq6Nfc6Hm8zMpv6SKXBI0Cgpdl+i2Eo9wr5I
-	 b9oz7hFBEbybb00LPEmM0h5IlRlcj3KmCQ0P+QWDLskEazyaI9cft88uY5Ird1p98G
-	 SPiD0JYccNimu50n9FAQuU42SNxrJpbeai2nPYBw/NfKUyXJu1Db/Wi+KSuIext/NA
-	 4UXM9gY774FkmRZLKAdF7zuXU5lqCMBF8NPlZQaGd6622utTrfv9Z0czz10oZMhp+u
-	 C8EAVhjvebqjw==
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-78a6a7654a4so48552217b3.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 16:32:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWnQ4qOzx4lfW9IlYU3cRSETtDMSl0rvVeV7KHDvWYqO32Woc7m+SwVbdvGH/q4VC7S8GD5J0+2Ctwg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw39a/CpXhv+l3EccgTQBGYjkZxR30tENOcB0vouGQtRLbK7A0A
-	EwZY0y4Wvzu+h0p9xE4eSbAdCMxV2DZs88y+rpeFKPCn3ZcVhjuayLwjnRd+ZAMAC5BjtFadM6d
-	HcUF69ZV1dEpc/dsumLjsipPz+DOkf20=
-X-Google-Smtp-Source: AGHT+IFieSQ/ae+kgkMUYbZx+XFJqpSVSCv1nRKKV5z+TUZTUDYUw/33xebYY0dwRi57SIMyogySO4uHTpRS2JRkK5w=
-X-Received: by 2002:a05:690c:6286:b0:789:4f19:7fc3 with SMTP id
- 00721157ae682-78a8b47a514mr114312557b3.12.1764030720388; Mon, 24 Nov 2025
- 16:32:00 -0800 (PST)
+	s=arc-20240116; t=1764032356; c=relaxed/simple;
+	bh=bR7NNOFO86LfP7sme+9VmUqjADGC7lTrb3ZEzDDgvyM=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=ArjSXqtJHVWFb5Upz2rDSppzzi+KhOyYOrTm5rOT5O7tnZiYtgftxbzudhK+cKBAJop+mMVoHTVZ3UGXhl8IG1IZ56f9JRaeXSE/CHRp7wKbNU0iIWbRKYTU/W9iqW3LCjiXSq45rimaNv0gyFghYk2K/QN0Ju08JM8wjYsUy6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zytor.com; spf=pass smtp.mailfrom=zytor.com; dkim=pass (2048-bit key) header.d=zytor.com header.i=@zytor.com header.b=pxJB5zld; arc=none smtp.client-ip=198.137.202.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zytor.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zytor.com
+Received: from ehlo.thunderbird.net (c-76-133-66-138.hsd1.ca.comcast.net [76.133.66.138])
+	(authenticated bits=0)
+	by mail.zytor.com (8.18.1/8.17.1) with ESMTPSA id 5AP0uYXF996032
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NO);
+	Mon, 24 Nov 2025 16:56:34 -0800
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.zytor.com 5AP0uYXF996032
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zytor.com;
+	s=2025112201; t=1764032198;
+	bh=/30Sv7hB0LicpiampkA1ftcU0prNdSbcPBoiTLyH+p8=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+	b=pxJB5zldasPJ8sdmLh0wioBOAStcMVJqKxpCl7tUXUSINXMmUBeS7dNsEx2DQ1rHr
+	 XyZoVi3mLQNx0QdMP5qZ3kL5TU3TP9vj29/8Aunuv4u/KcysuGO0CgZT2YdLZbZOHg
+	 CGkFHMN332sDzfQymgzLnQJH25bHVdEOD96lQLb3Ds9FuqZ57hJcOWCV1d9Rj/Xt51
+	 to9x6WpheBLmGoLubWu2PfFRTKOhF12Nal4pfE0FarSmtWMnjRKSG/RqDpu2kHeTRq
+	 cqQlhDvFh98P0/3SjxHLqyRLuG/zgpzntAvyphOgr6ZDN768schUUrBkcSXZdA7Qnn
+	 r3ol4NJ3NCiFg==
+Date: Mon, 24 Nov 2025 16:56:34 -0800
+From: "H. Peter Anvin" <hpa@zytor.com>
+To: Usama Arif <usamaarif642@gmail.com>, Changyuan Lyu <changyuanl@google.com>,
+        akpm@linux-foundation.org, linux-kernel@vger.kernel.org,
+        Mike Rapoport <rppt@kernel.org>
+CC: anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
+        benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
+        corbet@lwn.net, dave.hansen@linux.intel.com,
+        devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com,
+        graf@amazon.com, jgowans@amazon.com, kexec@lists.infradead.org,
+        krzk@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-doc@vger.kernel.org, linux-mm@kvack.org, luto@kernel.org,
+        mark.rutland@arm.com, mingo@redhat.com, pasha.tatashin@soleen.com,
+        pbonzini@redhat.com, peterz@infradead.org, ptyadav@amazon.de,
+        robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org,
+        saravanak@google.com, skinsburskii@linux.microsoft.com,
+        tglx@linutronix.de, thomas.lendacky@amd.com, will@kernel.org,
+        x86@kernel.org, Breno Leitao <leitao@debian.org>, thevlad@meta.com
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v8_12/17=5D_x86/e820=3A_temporari?=
+ =?US-ASCII?Q?ly_enable_KHO_scratch_for_memory_below_1M?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
+References: <20250509074635.3187114-1-changyuanl@google.com> <20250509074635.3187114-13-changyuanl@google.com> <a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
+Message-ID: <22BDBF5C-C831-4BBC-A854-20CA77234084@zytor.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251112-lantern-sappy-bea86ff2a7f4@spud> <20251112-improving-tassel-06c6301b3e23@spud>
- <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
- <20251119-bacterium-banana-abcdf5c9fbc5@spud> <CACRpkda3Oz+K1t38QKgWipEseJxxneBSC11sFvzpB7ycnqsjBA@mail.gmail.com>
- <20251120-silicon-oyster-5d973ff822d9@spud> <CACRpkdaM3Hkbxx99uXx6OVdSbdhNNc3voS1FoUsz2oAUEc1-qA@mail.gmail.com>
- <20251121-epidermis-overdue-1ebb1bb85e36@spud> <20251121-skimpily-flagstone-8b96711443df@spud>
- <20251124-operative-elephant-16c2c18aebde@spud>
-In-Reply-To: <20251124-operative-elephant-16c2c18aebde@spud>
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 25 Nov 2025 01:31:49 +0100
-X-Gmail-Original-Message-ID: <CAD++jLn4z9KFTRoROZ8aKnK-1v=_magjgSq7JJJYt0=CO=gH4A@mail.gmail.com>
-X-Gm-Features: AWmQ_bkn9EePTgm0OSsoOxFfH0goMSJAGfSKKK1uQTpQck9jEVcydWtB4EYS7LA
-Message-ID: <CAD++jLn4z9KFTRoROZ8aKnK-1v=_magjgSq7JJJYt0=CO=gH4A@mail.gmail.com>
-Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
-To: Conor Dooley <conor@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Conor Dooley <conor.dooley@microchip.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Valentina.FernandezAlanis@microchip.com, Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+ charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 24, 2025 at 6:16=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
+On November 24, 2025 11:24:58 AM PST, Usama Arif <usamaarif642@gmail=2Ecom>=
+ wrote:
+>
+>
+>On 09/05/2025 08:46, Changyuan Lyu wrote:
+>> From: Alexander Graf <graf@amazon=2Ecom>
+>>=20
+>> KHO kernels are special and use only scratch memory for memblock
+>> allocations, but memory below 1M is ignored by kernel after early boot
+>> and cannot be naturally marked as scratch=2E
+>>=20
+>> To allow allocation of the real-mode trampoline and a few (if any) othe=
+r
+>> very early allocations from below 1M forcibly mark the memory below 1M
+>> as scratch=2E
+>>=20
+>> After real mode trampoline is allocated, clear that scratch marking=2E
+>>=20
+>> Signed-off-by: Alexander Graf <graf@amazon=2Ecom>
+>> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel=2Eorg>
+>> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel=2Eorg>
+>> Co-developed-by: Changyuan Lyu <changyuanl@google=2Ecom>
+>> Signed-off-by: Changyuan Lyu <changyuanl@google=2Ecom>
+>> Acked-by: Dave Hansen <dave=2Ehansen@linux=2Eintel=2Ecom>
+>> ---
+>>  arch/x86/kernel/e820=2Ec   | 18 ++++++++++++++++++
+>>  arch/x86/realmode/init=2Ec |  2 ++
+>>  2 files changed, 20 insertions(+)
+>>=20
+>> diff --git a/arch/x86/kernel/e820=2Ec b/arch/x86/kernel/e820=2Ec
+>> index 9920122018a0b=2E=2Ec3acbd26408ba 100644
+>> --- a/arch/x86/kernel/e820=2Ec
+>> +++ b/arch/x86/kernel/e820=2Ec
+>> @@ -1299,6 +1299,24 @@ void __init e820__memblock_setup(void)
+>>  		memblock_add(entry->addr, entry->size);
+>>  	}
+>> =20
+>> +	/*
+>> +	 * At this point memblock is only allowed to allocate from memory
+>> +	 * below 1M (aka ISA_END_ADDRESS) up until direct map is completely s=
+et
+>> +	 * up in init_mem_mapping()=2E
+>> +	 *
+>> +	 * KHO kernels are special and use only scratch memory for memblock
+>> +	 * allocations, but memory below 1M is ignored by kernel after early
+>> +	 * boot and cannot be naturally marked as scratch=2E
+>> +	 *
+>> +	 * To allow allocation of the real-mode trampoline and a few (if any)
+>> +	 * other very early allocations from below 1M forcibly mark the memor=
+y
+>> +	 * below 1M as scratch=2E
+>> +	 *
+>> +	 * After real mode trampoline is allocated, we clear that scratch
+>> +	 * marking=2E
+>> +	 */
+>> +	memblock_mark_kho_scratch(0, SZ_1M);
+>> +
+>>  	/*
+>>  	 * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
+>>  	 * to even less without it=2E
+>> diff --git a/arch/x86/realmode/init=2Ec b/arch/x86/realmode/init=2Ec
+>> index f9bc444a3064d=2E=2E9b9f4534086d2 100644
+>> --- a/arch/x86/realmode/init=2Ec
+>> +++ b/arch/x86/realmode/init=2Ec
+>> @@ -65,6 +65,8 @@ void __init reserve_real_mode(void)
+>>  	 * setup_arch()=2E
+>>  	 */
+>>  	memblock_reserve(0, SZ_1M);
+>> +
+>> +	memblock_clear_kho_scratch(0, SZ_1M);
+>>  }
+>> =20
+>>  static void __init sme_sev_setup_real_mode(struct trampoline_header *t=
+h)
+>
+>Hello!
+>
+>I am working with Breno who reported that we are seeing the below warning=
+ at boot
+>when rolling out 6=2E16 in Meta fleet=2E It is difficult to reproduce on =
+a single host
+>manually but we are seeing this several times a day inside the fleet=2E
+>
+> 20:16:33  ------------[ cut here ]------------
+> 20:16:33  WARNING: CPU: 0 PID: 0 at mm/memblock=2Ec:668 memblock_add_ran=
+ge+0x316/0x330
+> 20:16:33  Modules linked in:
+> 20:16:33  CPU: 0 UID: 0 PID: 0 Comm: swapper Tainted: G S               =
+   6=2E16=2E1-0_fbk0_0_gc0739ee5037a #1 NONE=20
+> 20:16:33  Tainted: [S]=3DCPU_OUT_OF_SPEC
+> 20:16:33  RIP: 0010:memblock_add_range+0x316/0x330
+> 20:16:33  Code: ff ff ff 89 5c 24 08 41 ff c5 44 89 6c 24 10 48 63 74 24=
+ 08 48 63 54 24 10 e8 26 0c 00 00 e9 41 ff ff ff 0f 0b e9 af fd ff ff <0f> =
+0b e9 b7 fd ff ff 0f 0b 0f 0b cc cc cc cc cc cc cc cc cc cc cc
+> 20:16:33  RSP: 0000:ffffffff83403dd8 EFLAGS: 00010083 ORIG_RAX: 00000000=
+00000000
+> 20:16:33  RAX: ffffffff8476ff90 RBX: 0000000000001c00 RCX: 0000000000000=
+002
+> 20:16:33  RDX: 00000000ffffffff RSI: 0000000000000000 RDI: ffffffff83bad=
+4d8
+> 20:16:33  RBP: 000000000009f000 R08: 0000000000000020 R09: 8000000000097=
+101
+> 20:16:33  R10: ffffffffff2004b0 R11: 203a6d6f646e6172 R12: 000000000009e=
+c00
+> 20:16:33  R13: 0000000000000002 R14: 0000000000100000 R15: 000000000009d=
+000
+> 20:16:33  FS:  0000000000000000(0000) GS:0000000000000000(0000) knlGS:00=
+00000000000000
+> 20:16:33  CR2: ffff888065413ff8 CR3: 00000000663b7000 CR4: 0000000000000=
+0b0
+> 20:16:33  Call Trace:
+> 20:16:33   <TASK>
+> 20:16:33   ? __memblock_reserve+0x75/0x80
+> 20:16:33   ? setup_arch+0x30f/0xb10
+> 20:16:33   ? start_kernel+0x58/0x960
+> 20:16:33   ? x86_64_start_reservations+0x20/0x20
+> 20:16:33   ? x86_64_start_kernel+0x13d/0x140
+> 20:16:33   ? common_startup_64+0x13e/0x140
+> 20:16:33   </TASK>
+> 20:16:33  ---[ end trace 0000000000000000 ]---=20
+>
+>
+>Rolling out with memblock=3Ddebug is not really an option in a large scal=
+e fleet due to the
+>time added to boot=2E But I did try on one of the hosts (without reproduc=
+ing the issue) and I see:
+>
+>[    0=2E000616]  memory=2Ecnt  =3D 0x6
+>[    0=2E000617]  memory[0x0]	[0x0000000000001000-0x000000000009bfff], 0x=
+000000000009b000 bytes flags: 0x40
+>[    0=2E000620]  memory[0x1]	[0x000000000009f000-0x000000000009ffff], 0x=
+0000000000001000 bytes flags: 0x40
+>[    0=2E000621]  memory[0x2]	[0x0000000000100000-0x000000005ed09fff], 0x=
+000000005ec0a000 bytes flags: 0x0
+>=2E=2E=2E
+>
+>The 0x40 (MEMBLOCK_KHO_SCRATCH) is coming from memblock_mark_kho_scratch =
+in e820__memblock_setup=2E I believe this
+>should be under ifdef like the diff at the end? (Happy to send this as a =
+patch for review if it makes sense)=2E
+>We have KEXEC_HANDOVER disabled in our defconfig, therefore MEMBLOCK_KHO_=
+SCRATCH shouldnt be selected and
+>we shouldnt have any MEMBLOCK_KHO_SCRATCH type regions in our memblock re=
+servations=2E
+>
+>The other thing I did was insert a while(1) just before the warning and i=
+nspected the registers in qemu=2E
+>R14 held the base register, and R15 held the size at that point=2E
+>In the warning R14 is 0x100000 meaning that someone is reserving a region=
+ with a different flag to MEMBLOCK_NONE
+>at the boundary of MEMBLOCK_KHO_SCRATCH=2E
+>
+>diff --git a/arch/x86/kernel/e820=2Ec b/arch/x86/kernel/e820=2Ec
+>index c3acbd26408ba=2E=2E26e4062a0bd09 100644
+>--- a/arch/x86/kernel/e820=2Ec
+>+++ b/arch/x86/kernel/e820=2Ec
+>@@ -1299,6 +1299,7 @@ void __init e820__memblock_setup(void)
+>                memblock_add(entry->addr, entry->size);
+>        }
+>=20
+>+#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
+>        /*
+>         * At this point memblock is only allowed to allocate from memory
+>         * below 1M (aka ISA_END_ADDRESS) up until direct map is complete=
+ly set
+>@@ -1316,7 +1317,7 @@ void __init e820__memblock_setup(void)
+>         * marking=2E
+>         */
+>        memblock_mark_kho_scratch(0, SZ_1M);
+>-
+>+#endif
+>        /*
+>         * 32-bit systems are limited to 4BG of memory even with HIGHMEM =
+and
+>         * to even less without it=2E
+>diff --git a/arch/x86/realmode/init=2Ec b/arch/x86/realmode/init=2Ec
+>index 88be32026768c=2E=2E1cd80293a3e23 100644
+>--- a/arch/x86/realmode/init=2Ec
+>+++ b/arch/x86/realmode/init=2Ec
+>@@ -66,8 +66,9 @@ void __init reserve_real_mode(void)
+>         * setup_arch()=2E
+>         */
+>        memblock_reserve(0, SZ_1M);
+>-
+>+#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
+>        memblock_clear_kho_scratch(0, SZ_1M);
+>+#endif
+> }
+>=20
+> static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
 
-> I was looking at the kernel part of this today, trying to figure out
-> where it would make sense to actually check this, but I'm not super keen
-> on what has to be done. I think doing it in parse_dt_cfg() makes the
-> most sense, setting flags if the property is one we care about during
-> the loop and then checking mutual exclusion at the end based on the
-> flags? The gpio example you gave has it easy, since they already appear
-> to have these things stored in flag properties.
-> Is there somewhere else, in addition to creating the config from dt that
-> this would have to be checked?
-
-
-We are right now parsing with an array of
-struct pinconf_generic_params:
-
-static const struct pinconf_generic_params dt_params[] =3D {
-    { "input-disable", PIN_CONFIG_INPUT_ENABLE, 0 },
-    (...)
-};
-
-(Sorry for not using C99 .initializers on the above array)
-
-Struct looks like so:
-
-struct pinconf_generic_params {
-        const char * const property;
-        enum pin_config_param param;
-        u32 default_value;
-        const char * const *values;
-        size_t num_values;
-};
-
-Can't we add a
-    const enum pin_config_param *conflicts;
-    size_t num_conflicts;
-
-And rewrite the parsing table to be more explicit:
-
-static const char * const input_disable_conflicts[] =3D {
-    "input-enable",
-};
-
-static const struct pinconf_generic_params dt_params[] =3D {
-    {
-        .property =3D "input-disable",
-        .param =3D PIN_CONFIG_INPUT_ENABLE,
-        .default_value =3D 0,
-        .conflicting_properties =3D input_disable_conflicts,
-        .num_conflicting_properties =3D ARRAY_SIZE(input_disable_conflicts)=
-,
-     },
-    (...)
-};
-
-Then in the loop we can use of_property_present(np, ...) to check for
-conflicting properties when we encounter something.
-
-Yours,
-Linus Walleij
+What does "scratch" mean in this exact context? (Sorry, don't have the cod=
+e in front of me=2E)
 
