@@ -1,175 +1,165 @@
-Return-Path: <devicetree+bounces-241879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B7C7C83D51
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:58:27 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E337C83E11
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:04:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 932D0344DB3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:58:26 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 49757341AD1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3415A2FB093;
-	Tue, 25 Nov 2025 07:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E3A2D3231;
+	Tue, 25 Nov 2025 08:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ioOqVP7i"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="fTmIb4Ah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 062F42F99AD;
-	Tue, 25 Nov 2025 07:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764057502; cv=none; b=SJCEp13dciLLf/jk+31bHPWXKI7SxTn+pPdiVYMz7lRQZONolHdAL2YJoQ3OMsCoVaGGbu9B+xo6LOSOC7Uj06k6ZdQpC5nPSRh1gFZ+Bi+bZFHrenGy0XsaMuQcOx6Z9Z8oYsS7pAPaKjrTyrXHJk/9vVWn0Hazq3jWS5KhKuY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764057502; c=relaxed/simple;
-	bh=1pmGmJBeXhSAvASam0vRKjUxYf0D5FwlRO1qil6CU68=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UjsrYc1JUBbVmYmbA+WWYXkRLzM9Tdp2XhllCMZlihnBe/71x06WWHSfi+Dxu8G8/KxyPAySf9EF+01zzbvQuGCNxX3TDRrDQ/tqyXDjcyizHCOyIk/DfV/I/lveTEpPkU4Jttll+11MKRgGqdNmxePgjulC6qgzpsTlfBZ91/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ioOqVP7i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEEDEC4CEF1;
-	Tue, 25 Nov 2025 07:58:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764057501;
-	bh=1pmGmJBeXhSAvASam0vRKjUxYf0D5FwlRO1qil6CU68=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ioOqVP7i9feGc23LoNL1OXaBIrYrJMPnOSj0DgwWqun+dBUpfK/u/HWqQ6fM4bwjv
-	 R1N3vIrkmt/MuKIcccnfHz7bcg2UmZaFY6N36+DdV/+/9hcWAx5aN05Pjivh9eOvPL
-	 MwoAdhG6VNevALzQfhilr2W/9oFvni4mcHQApOPIHE5TohSm8IVlItQUzPCtHufd95
-	 Ks4LSsWBa3BKV+A59yutrp3mZsGFdnj1xGzVKlKD1yuOphCPV842DLVNPITWki4Uvu
-	 cedO1gBDUIc96ovOfRfikvUsFrNBEShMH3B6TcTblLZfN7opcCUGTXWifyV6DtHuJ9
-	 Xnk5CooU7OJvg==
-Message-ID: <89601075-a312-478e-925d-3cc0b1e9471a@kernel.org>
-Date: Tue, 25 Nov 2025 08:58:14 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 283D3137C52;
+	Tue, 25 Nov 2025 08:02:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764057735; cv=pass; b=WiyIDpbGJheiNahpcDlO7vzp7EV2eFkbFUajmf8S//Fc/HB0i9Owwd970mLu2F5Gp6UZUOxivjuzZX1ubtNkgni1I1zPwqIKYiSDLz1Q5gz4cBImn2GbU68P0ZqK46P57A5L6oA1njkbhkH7UH8qDGml9yFCd/vb1nEuxQJIQA4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764057735; c=relaxed/simple;
+	bh=dNu1Q9j8paX7KuRXYdJHSK/CvB3o9koatthHjbPyQZ0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=PhgsRtckVf8ZpoGAdOyXhqsi9it3ue8Mj4Qqyn1NWuUblWx7bYBau9qBy3L/6xaCO1r+Cm61bcbOTiw/THSF5w5XF+CecFmDi6MN0Lsm40gI9ZjGCSQEVx7k/t1N638R2F752qRzRP+kGovNoahaGyqOseho8K11+YFwYGF5Avc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=fTmIb4Ah; arc=pass smtp.client-ip=136.143.184.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1764057713; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=lA9ZLipFr65F2u+DlZUYR/6ABCel3n59hm0sehjb/EZfebJheHBWCjwjDZD4vb9vazYElibktltxT2ev4vWfPYMgTkawYNnJ3tvDtvPtH/K/sqS6xkSlg6FN39MQme70r5hjDUYmwJoTLc/U1KGrhXdOZ9dPgfBaYNu3+zmD1hY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1764057713; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=dNu1Q9j8paX7KuRXYdJHSK/CvB3o9koatthHjbPyQZ0=; 
+	b=b2mX9exKxA4bG2e1U1YqCP563s0ByItb6u79jgyUyWAYGF0+67a5VPvXDqtcMob/rUnAlV36fPfnZsZKnkWyUR652sDCSmMXT914gYucJzRBah4M7HHygXflPU7PyTmi/AcwEyhEU27/4yjBCrIVr8abw2v2XST55NAo3DkwxWo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764057713;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=dNu1Q9j8paX7KuRXYdJHSK/CvB3o9koatthHjbPyQZ0=;
+	b=fTmIb4AhD2LZwtcCA6w3FJEjsk0nqaTcjcc00GawwqPDcxg1pDIJK8c1+/h7j/3G
+	VZjIeEMedSiohkUgv26hlDY4uiulcoIKBg0KtF1vvSlAq5LxSYNPg6kT1Rn0CfgX9uC
+	A2rNXrV0cnPvBf0JMkRuia+0fwi2CMg7e5FmxEGOHDgX11yOqx6gCbF9JfoivwdxBi0
+	L57xCJSfQtYh58S9AM+jMMlmek84EMvlMPmIOsVDQw3cUmDaSEY056/dytsamj2mMPX
+	jPRMPx4h+bwbhxhF4WHqPPCTGg79mgSdNdPmeuw81MxRKwx+wPwxVCDeujZwlNvcCeI
+	EmfKicyifQ==
+Received: by mx.zohomail.com with SMTPS id 1764057707789534.7662587743201;
+	Tue, 25 Nov 2025 00:01:47 -0800 (PST)
+Message-ID: <0a2104faee332ee143b5499c18aea3625971156c.camel@icenowy.me>
+Subject: Re: [PATCH v3 1/2] dt-bindings: riscv: starfive: add
+ xunlong,orangepi-rv
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>, E Shattow <e@freeshell.de>, Conor
+	Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer
+ Dabbelt <palmer@dabbelt.com>,  Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+ Ghiti <alex@ghiti.fr>, Michael Zhu <michael.zhu@starfivetech.com>, Drew
+ Fustini <drew@beagleboard.org>,  linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org,  devicetree@vger.kernel.org
+Date: Tue, 25 Nov 2025 16:01:40 +0800
+In-Reply-To: <489e9d44-fac6-4aa8-b094-ef20196e392b@kernel.org>
+References: <20251123225059.49665-1-e@freeshell.de>
+	 <20251123225059.49665-2-e@freeshell.de>
+	 <20251124-free-bandicoot-of-skill-fa7d9a@kuoka>
+	 <20251124-state-campsite-3e7788a495c1@spud>
+	 <0e851ca0-1f56-437d-ae14-094c114d3b77@freeshell.de>
+	 <dc48fa76-0a08-4c9d-a3d7-724eb255aff8@kernel.org>
+	 <ff1f0e6b95150896136ab31ce13e0a2c7a3a5fe3.camel@icenowy.me>
+	 <489e9d44-fac6-4aa8-b094-ef20196e392b@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/6] dt-bindings: display/msm: gpu: Document A612 GPU
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Dan Carpenter <dan.carpenter@linaro.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251122-qcs615-spin-2-v3-0-9f4d4c87f51d@oss.qualcomm.com>
- <20251122-qcs615-spin-2-v3-2-9f4d4c87f51d@oss.qualcomm.com>
- <20251122-savvy-camouflaged-chinchilla-f600ce@kuoka>
- <1207b70e-dcf1-47cf-be26-ff2928932e3e@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <1207b70e-dcf1-47cf-be26-ff2928932e3e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On 24/11/2025 22:39, Akhil P Oommen wrote:
-> On 11/22/2025 4:32 PM, Krzysztof Kozlowski wrote:
->> On Sat, Nov 22, 2025 at 03:22:16AM +0530, Akhil P Oommen wrote:
->>> +
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: qcom,adreno-612.0
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          items:
->>> +            - description: GPU Core clock
->>> +
->>> +        clock-names:
->>> +          items:
->>> +            - const: core
->>> +
->>> +      required:
->>> +        - clocks
->>> +        - clock-names
->>> +
->>>      else:
->>
->> I am pretty sure you break not only intention/logic behindi this else,
->> but actually cause real warnings to appear.
->>
->> The else was intentional, right? So the pattern further will not match
->> some of devices defined in if:. Now else is for different part, so only
->> 612 out of these devices is excluded.
->>
->> There is a reason we do not want ever else:if: in bindings. If it
->> appeared, sure, maybe there is some benefit of it, but it means you need
->> to be more careful now.
-> 
-> Aah! I missed that this comes under an 'allOf'. Not an expert in this
+=E5=9C=A8 2025-11-25=E6=98=9F=E6=9C=9F=E4=BA=8C=E7=9A=84 08:48 +0100=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 25/11/2025 08:33, Icenowy Zheng wrote:
+> > =E5=9C=A8 2025-11-25=E6=98=9F=E6=9C=9F=E4=BA=8C=E7=9A=84 08:28 +0100=EF=
+=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> > > On 24/11/2025 22:59, E Shattow wrote:
+> > > >=20
+> > > > On 11/24/25 05:22, Conor Dooley wrote:
+> > > > > On Mon, Nov 24, 2025 at 08:28:10AM +0100, Krzysztof Kozlowski
+> > > > > wrote:
+> > > > > > On Sun, Nov 23, 2025 at 02:50:44PM -0800, E Shattow wrote:
+> > > > > > > From: Icenowy Zheng <uwu@icenowy.me>
+> > > > > > >=20
+> > > > > > > Add "xunlong,orangepi-rv" as a StarFive JH7110 SoC-based
+> > > > > > > board.
+> > > > > > >=20
+> > > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > > > > Signed-off-by: E Shattow <e@freeshell.de>
+> > > > > >=20
+> > > > > > <form letter>
+> > > > > > This is a friendly reminder during the review process.
+> > > > > >=20
+> > > > > > It looks like you received a tag and forgot to add it.
+> > > > >=20
+> > > > > It's from me, don't resubmit just to add it since it'll be me
+> > > > > applying
+> > > > > anyway.
+> > > > >=20
+> > > >=20
+> > > > Hi Conor,
+> > > >=20
+> > > > Okay. Yes I'd dropped the tag since the commit message is
+> > > > appreciably
+> > > > different, and you would be handling it again anyways. Thanks!
+> > > > And
+> > > > thank
+> > > > you Krzysztof for the reminder -E
+> > >=20
+> > >=20
+> > > And where did you explain that you dropped the tag because of
+> > > that?
+> > > Please read the form letter carefully.
+> >=20
+> > Well I think there's no clear definition of "the patch has changed
+> > substantially" here.
+> >=20
+> > E may think for this such-short patch, the commit message weighs a
+> > lot
+> > and the change to it is significant to the patch (e.g. making the
+> > patch
+> > not clear enough).
+>=20
+> You still did not bother to read what we expect. I do not discuss if
+> this changed significantly or not, although it is obvious that it did
+> not change and tag should have been retained.
+>=20
+> Look again:
+> <QUOTE>
+> Please read:
+> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/s=
+ubmitting-patches.rst#L577
+>=20
+> If a tag was not added on purpose, please state why and what changed.
+> </QUOTE>
+>=20
+> Where did you explain that?
 
-The allOf does not matter here. If these were separate if:then: then it
-would be the same.
+Sure, I agree that explaination of this should be delivered.
 
-> syntax, does moving this entire block under an 'else' make sense? Or is
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
-No, never nest blocks.
-
-> there a saner alternative?
-
-Not sure, I don't remember the code. Original code was not easy to read,
-with your changes it will not be easier. So the only alternative I see
-is to make it simple and obvious.
-
-
-Best regards,
-Krzysztof
 
