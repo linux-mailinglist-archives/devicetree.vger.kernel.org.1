@@ -1,98 +1,120 @@
-Return-Path: <devicetree+bounces-241963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C9DC84B47
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:21:10 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF991C84B56
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:21:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4E9684E2E7B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:21:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6E74235006B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAEBA315D41;
-	Tue, 25 Nov 2025 11:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oaPS1q62"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A835314A87;
+	Tue, 25 Nov 2025 11:21:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE5B283FF5;
-	Tue, 25 Nov 2025 11:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19F726C39E;
+	Tue, 25 Nov 2025 11:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764069650; cv=none; b=emumLxX9qqbodefseg5g6Vqx1FagIgBoxK408UCAe6HFSO92aD3f80HTzJFJh/RFaTAkrPz1OirEi73Zqh74OH3HVwpC86LU0r2XRu7xx+qppoX+KZC4ZY+4fmJKlsvPRBg+BgWXJ04BrIoxpQEfng8mIwo404vxcE56wmKZUPY=
+	t=1764069664; cv=none; b=OmaI2zJ1Xbao2BTgPnE37awfg82PfCLYQ4namxZtn5IC2N8exFoaw8QBFg4L6S29f8056LcAy+xtaFY2UqlFn8RsYcbsVlKUncm7KM3M/bgscXWZE2TOTSNfA5SsTM4eHRhIqn6U3tlltU9VUo+xQ692nXi9r8cjO8UXGbLF3f4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764069650; c=relaxed/simple;
-	bh=XYrx8RmeHb7aOA0CRDqH8AU6e14CroGHa3JB6p/8Hwo=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=QPD6CwQkA3RRZiJaawSG56vyfvN07+TPo/9IUuUvd9ncrJxfUSMTjKTI8oJdYoONCKrJX5vLMVM2rSPHoTrQ80mjZx8wgVwEL+hwmdXRNnFmMxci6kftvKGed95S656OVYbkS8yPl1z6PValJla8Sqck9SFQKmCxYp1qO5PXr3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oaPS1q62; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CE6AC4CEF1;
-	Tue, 25 Nov 2025 11:20:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764069650;
-	bh=XYrx8RmeHb7aOA0CRDqH8AU6e14CroGHa3JB6p/8Hwo=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=oaPS1q62knOE86v73tj8F0OwlgiXC8DDnxnXWuNNzxJtIfVDndEWU/Jgc2boBDHp0
-	 apzOhF0F+qhrSLQDUdm+bd3rsX/F7jW42rnqF23lz6pC9y3pDoMmHWw2ig4JJOscqM
-	 ijQKpXH8HCa7VRENGJpMkSCulaWc7lQS21dbllP3L63hl9bLBNkh20h0+JwSRgxQHw
-	 e0jEjaAVyRPlNyHC8t2UsHZuw6QEM4ID2Icky2NBPwqs/SI6DU5RaJ+SumF/2vGlyQ
-	 LEzOAeij94Uk3Dx1LLLtRPMdeiQ2/STxu5IvTp5YPI3VId+UP6u/JfXrnOyK7JkQFy
-	 JbI8tJKJ8ByJw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB4C33A8D14D;
-	Tue, 25 Nov 2025 11:20:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1764069664; c=relaxed/simple;
+	bh=90IwNIvTFQNIrULrq7DdzIJAwRK020sjuUe2cVoRkUo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JGbBNMwnURCzlIRwbeZc9+6KUJ/89p272TUp+T+gayM2YoRgwx0b4q/Myrdlur308A9oWzIpzlFl3epx8MjiuiXRbymXGle1IwiQQUmdoqBKN25Hn1HUkfg/1tqLqgJfl/skZLsE+9YG4V7JTuT4d2zvsP4IfOSDcLARQdm5BYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dG0cM3Fdvz9tX0;
+	Tue, 25 Nov 2025 12:20:51 +0100 (CET)
+Date: Tue, 25 Nov 2025 12:20:46 +0100
+From: Lukas Timmermann <linux@timmermann.space>
+To: Lee Jones <lee@kernel.org>
+Cc: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 2/2] leds: as3668: Driver for the ams Osram 4-channel
+ i2c LED driver
+Message-ID: <lqgf7lmnxy3zwmlzhip56tqwrraunhldghvlm7cafvruvscqby@5ik6mijwqmvg>
+References: <20251117020008.316648-1-linux@timmermann.space>
+ <20251117020008.316648-3-linux@timmermann.space>
+ <nkdqizx5lmf5mgovt4lv4pkzzaujnqt4zlhuwdlidrlgyqr5s5@dvnhdhkhfuvy>
+ <20251120133149.GA661940@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v2] dt-bindings: net: aspeed: add AST2700 MDIO
- compatible
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <176406961249.690498.6624376735038476395.git-patchwork-notify@kernel.org>
-Date: Tue, 25 Nov 2025 11:20:12 +0000
-References: <20251120-aspeed_mdio_ast2700-v2-1-0d722bfb2c54@aspeedtech.com>
-In-Reply-To: <20251120-aspeed_mdio_ast2700-v2-1-0d722bfb2c54@aspeedtech.com>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
- andrew@aj.id.au, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, conor.dooley@microchip.com
+In-Reply-To: <20251120133149.GA661940@google.com>
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
-
-On Thu, 20 Nov 2025 11:52:03 +0800 you wrote:
-> Add "aspeed,ast2700-mdio" compatible to the binding schema with a fallback
-> to "aspeed,ast2600-mdio".
+On Thu, Nov 20, 2025 at 01:31:49PM +0000, Lee Jones wrote:
+> On Thu, 20 Nov 2025, Lukas Timmermann wrote:
 > 
-> Although the MDIO controller on AST2700 is functionally the same as the
-> one on AST2600, it's good practice to add a SoC-specific compatible for
-> new silicon. This allows future driver updates to handle any 2700-specific
-> integration issues without requiring devicetree changes or complex
-> runtime detection logic.
+> > On Mon, Nov 17, 2025 at 03:00:08AM +0100, Lukas Timmermann wrote:
+> > > Since there were no existing drivers for the AS3668 or related devices,
+> > > a new driver was introduced in a separate file. Similar devices were
+> > > reviewed, but none shared enough characteristics to justify code reuse.
+> > > As a result, this driver is written specifically for the AS3668.
+> > > 
+> > > Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+> > > ---
+> > >  MAINTAINERS                |   1 +
+> > >  drivers/leds/Kconfig       |  13 +++
+> > >  drivers/leds/Makefile      |   1 +
+> > >  drivers/leds/leds-as3668.c | 222 +++++++++++++++++++++++++++++++++++++
+> > >  4 files changed, 237 insertions(+)
+> > >  create mode 100644 drivers/leds/leds-as3668.c
+> > > 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 091206c54c63..945d78fef380 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
+> > >  L:	linux-leds@vger.kernel.org
+> > >  S:	Maintained
+> > >  F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
+> > > +F:	drivers/leds/leds-as3668.c
+> > >  
+> > >  ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
+> > >  M:	Tianshu Qiu <tian.shu.qiu@intel.com>
+> > > diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> > > index a104cbb0a001..ec37d55ac14e 100644
+> > > --- a/drivers/leds/Kconfig
+> > > +++ b/drivers/leds/Kconfig
+> > > @@ -100,6 +100,19 @@ config LEDS_ARIEL
+> > >  
+> > >  	  Say Y to if your machine is a Dell Wyse 3020 thin client.
+> > >  
+> > > +config LEDS_OSRAM_AMS_AS3668
+> > I've modified this line as requested in patch series v9. After comparing
+> > this with other configuration options in drivers/leds/Kconfig, this
+> > seems out of place. Shouldn't we keep this consistent?
 > 
-> [...]
+> There are a few other examples in there, so consistency is less of an
+> issue.  I personally think it provides a better picture of the device if
+> the manufacture is mentioned as well.
+> 
+> But this is not a blocking point.  Take your preference.
+> 
+> -- 
+> Lee Jones [李琼斯]
+> 
+I agree that including the manufacturer is more descriptive. Thanks for
+explaining that to me, I didn't notice the other entries with
+manufacturers. Also thanks for the continued patience with my newbie patches.
 
-Here is the summary with links:
-  - [net-next,v2] dt-bindings: net: aspeed: add AST2700 MDIO compatible
-    https://git.kernel.org/netdev/net-next/c/e3daf0e7fe97
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Best regards,
+Lukas Timmermann
 
