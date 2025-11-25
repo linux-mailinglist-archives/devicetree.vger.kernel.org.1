@@ -1,66 +1,72 @@
-Return-Path: <devicetree+bounces-241824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A3DC8334A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 04:19:08 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD337C83350
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 04:19:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F1CCA34B44B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 03:19:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C364D4E2009
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 03:19:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4805821ABD0;
-	Tue, 25 Nov 2025 03:19:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CAE421CC62;
+	Tue, 25 Nov 2025 03:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hhI68gn7"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Wht6FJHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E94621146C;
-	Tue, 25 Nov 2025 03:19:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8E7421146C;
+	Tue, 25 Nov 2025 03:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764040744; cv=none; b=u7taXnQ+6s7vlNNl6kJOvrzTRGSAdTfMDNyA88HCaDdzy8U66cujqtmP0WUpw+IBjCZW3K//1gO8a7dYyeNrkND+R0LRAylSPY3+1C8myNDEn9/SFaznyl2A5rCyBq/kTukcG6WXNe0lfIZAQQXgcHDwoQDKx2cWMPLL0TWfQw0=
+	t=1764040796; cv=none; b=OVWNFSHVg8rptIweov4sEz2mGupJXoA2LxedWP82fzJ57ShVjdnntCi2gS2Rhbtda+ls77mkRCTwFXXjMsQ3cmEWzUXKiDKqym+A60G0d5hsscYKzihmFVObPDMKYDs2gbia8vWCpdMBbeupeJYbOPImQh9F2pxuQp7VmTic57w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764040744; c=relaxed/simple;
-	bh=vIDD8LFY77iXhoHeON2MfwV+2avvRETkcShcf+gI2PU=;
+	s=arc-20240116; t=1764040796; c=relaxed/simple;
+	bh=JR+sp99N2EqcRAaGQJ7HVli1aoDpzWzkW455mFGvkwc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cTHihZaUcF15/Its7Arpg3mBPRBfKgQfY8FRrMUVgnCoHIITl+1F8UkRhwbUC7FM/YiRml7VabrVpEtJ3MzVaSJu4YxiUvx512d7d9mhKOXRtL9s5iOsLeBzjIBy5LeKH0cS5zt2OGcRJmvkL/4QJ5ZXSn4fETQzXDND+kq0Er0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hhI68gn7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68FB4C4CEF1;
-	Tue, 25 Nov 2025 03:19:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764040743;
-	bh=vIDD8LFY77iXhoHeON2MfwV+2avvRETkcShcf+gI2PU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hhI68gn7YzIa81JBKpRwugug9zQIwWklnQcKcl+bhfiTyzV8YPZFR1iphY18FBlYY
-	 MSgGHzQPxs3iQwec3bYO5/WJa7Hzs/Gkm8TAWJDJpyNG8R/aYr/WTxriuzerpXET1t
-	 Fl7WM0jX+9xgziH7Wk0qIdmB6TYhU8vIRrGKEJSAln8inz7pQ3hrE5o4JqL1awD3My
-	 0UuN57Z82T9Hp2yQ4Sxx414CTxj2rGeQBto/VYC6byfeVXGklzJnAwSVNtZtR7menA
-	 dUiPGj1oFmlt/bDiWL6gi1DJ1F9vsYsCfQlOK1h7s6wEkXJIq83XxivUkI3z3lnhaJ
-	 6I0IlrYeOcpqw==
-Date: Mon, 24 Nov 2025 21:19:01 -0600
-From: Rob Herring <robh@kernel.org>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=rERQHcIpdx7nVWgkyOTEnZww0mgaXnIVBgqgd8xqneBtZ90pN3VE3mAjDzzUE1j2czSMCvPc+W9dsMrj5kV6HcZ2UkbmSpy0niBF0tPQu6tS/xKxDZEicFnpDgGeTXTaTyO0qfT/Eyc6h1x6V6OqaltGsmRF/WHJLm3FAP5wpxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Wht6FJHg; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 28E9F25FF5;
+	Tue, 25 Nov 2025 04:19:51 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id FikJKz6zNPqU; Tue, 25 Nov 2025 04:19:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1764040790; bh=JR+sp99N2EqcRAaGQJ7HVli1aoDpzWzkW455mFGvkwc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Wht6FJHgmMPiddXI45FDaC6u6fM/uyw78Q4mHk13u5YB1X3qk9qjELN246jfQghI4
+	 b1zLTfmim+dXFMyzeV6DbyCdleZpy40EQ+qsYu+FVBi7hLp9pyhCDSY7Z9vIoJwQoZ
+	 PIzEQQyijaPTtRnpjJVxVY2qkD49MgFWcOFp4fApXx8pNXg71joxBLBHMKNhEHgzS7
+	 uaG4DAmImlNjif1Hgs5jDKQuMIsK6LSeEEHXT5ulxwVclr2Ty7JuztZoHk0WUpGxUl
+	 xOVFLcj66ulL65EAaffKdawSHOUnJmKpFeACOQqYyPxVnlYCHGcW0iLw9cJJw60DN5
+	 +yao+mexO2oYQ==
+Date: Tue, 25 Nov 2025 03:19:30 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Drew Fustini <fustini@kernel.org>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: mtd: physmap: Allow using
- memory-region to access memory resources
-Message-ID: <20251125031901.GA1580653-robh@kernel.org>
-References: <20251121-mtd-memregion-v2-0-c5535fdcebe4@bootlin.com>
- <20251121-mtd-memregion-v2-2-c5535fdcebe4@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
+Subject: Re: [PATCH 2/7] clk: thead: th1520-ap: Poll for PLL lock and wait
+ for stability
+Message-ID: <aSUgQpd16Ud8xTx6@pie>
+References: <20251120131416.26236-1-ziyao@disroot.org>
+ <20251120131416.26236-3-ziyao@disroot.org>
+ <aSTXQG5yIIGFjflG@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,121 +75,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251121-mtd-memregion-v2-2-c5535fdcebe4@bootlin.com>
+In-Reply-To: <aSTXQG5yIIGFjflG@x1>
 
-On Fri, Nov 21, 2025 at 04:42:36PM +0100, Gregory CLEMENT wrote:
-> Enable access to memory resources not only via I/O address using reg,
-> but also through a portion of main memory using memory-region. To
-> achieve this, new compatible strings have been introduced: mtd-mem and
-> mtd-memro.
+On Mon, Nov 24, 2025 at 02:08:00PM -0800, Drew Fustini wrote:
+> On Thu, Nov 20, 2025 at 01:14:11PM +0000, Yao Zi wrote:
+> > All PLLs found on TH1520 SoC take 21250ns at maximum to lock, and their
+> > lock status is indicated by register PLL_STS (offset 0x80 inside AP
+> > clock controller). We should poll the register to ensure the PLL
+> > actually locks after enabling it.
+> > 
+> > Furthermore, a 30us delay is added after enabling the PLL, after which
+> > the PLL could be considered stable as stated by vendor clock code.
+> > 
+> > Fixes: 56a48c1833aa ("clk: thead: add support for enabling/disabling PLLs")
+> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > ---
+> >  drivers/clk/thead/clk-th1520-ap.c | 34 +++++++++++++++++++++++++++++--
+> >  1 file changed, 32 insertions(+), 2 deletions(-)
 > 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  .../devicetree/bindings/mtd/mtd-physmap.yaml       | 59 +++++++++++++++-------
->  1 file changed, 40 insertions(+), 19 deletions(-)
+> Thanks for working on this patch series.
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-> index 1b375dee83b0c..323e89aacaacd 100644
-> --- a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-> @@ -13,10 +13,6 @@ description: |
->    Flash chips (Memory Technology Devices) are often used for solid state
->    file systems on embedded devices.
->  
-> -allOf:
-> -  - $ref: mtd.yaml#
-> -  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -61,6 +57,8 @@ properties:
->            - jedec-flash
->            - mtd-ram
->            - mtd-rom
-> +          - mtd-mem
-> +          - mtd-memro
->  
->    reg:
->      description: |
-> @@ -116,6 +114,10 @@ properties:
->      minItems: 1
->      maxItems: 8
->  
-> +  memory-region:
-> +    items:
-> +      - description: Memory regions to map into mtd
-> +
->    '#address-cells':
->      const: 1
->  
-> @@ -129,21 +131,25 @@ properties:
->  
->  required:
->    - compatible
-> -  - reg
-> -
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        const: cortina,gemini-flash
-> -then:
-> -  properties:
-> -    syscon:
-> -      $ref: /schemas/types.yaml#/definitions/phandle
-> -      description:
-> -        Phandle to the syscon controller
-> -  required:
-> -    - syscon
-> +
-> +allOf:
-> +  - $ref: mtd.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mtd-mem
-> +              - mtd-memro
-> +    then:
-> +      required:
-> +        - memory-region
-> +      properties:
-> +        addr-gpios: false
-> +    else:
-> +      $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
-> +      required:
-> +        - reg
->  
->  unevaluatedProperties: false
->  
-> @@ -223,4 +229,19 @@ examples:
->              reg = <0 0x04000000>;
->          };
->      };
-> +
-> +  - |
-> +    /* An example using mtd-mem */
-> +    mem_logs: mem_logs@10000800 {
-> +        reg = <0x1 0x0000800 0x0 0x000f800>;
-> +        no-map;
-> +    };
-> +
-> +    memlog {
-> +        compatible = "mtd-mem";
-> +        memory-region = <&mem_log>;
-> +        bank-width = <4>;
-> +        device-width = <1>;
-> +    };
+> [...]
+> > @@ -299,9 +310,21 @@ static void ccu_pll_disable(struct clk_hw *hw)
+> >  static int ccu_pll_enable(struct clk_hw *hw)
+> >  {
+> >  	struct ccu_pll *pll = hw_to_ccu_pll(hw);
+> > +	u32 reg;
+> > +	int ret;
+> >  
+> > -	return regmap_clear_bits(pll->common.map, pll->common.cfg1,
+> > -				 TH1520_PLL_VCO_RST);
+> > +	regmap_clear_bits(pll->common.map, pll->common.cfg1,
+> > +			  TH1520_PLL_VCO_RST);
+> > +
+> > +	ret = regmap_read_poll_timeout_atomic(pll->common.map, TH1520_PLL_STS,
+> > +					      reg, reg & pll->lock_sts_mask,
+> > +					      5, TH1520_PLL_LOCK_TIMEOUT_US);
+> 
+> Is there a reason for the specific value of 5 uS polling delay?
 
-To repeat v1 comment:
+No, it was picked randomly. A smaller value would reduce latency of
+PLL enabling, and I could tune it more carefully by some testing. But
+it's hard to predict how much improvement it will bring.
 
-> If we do keep this, I'd rather just add the properties below into the
-> /reserved-memory node itself. Devices are created for those nodes if
-> they have 'compatible'.
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	udelay(TH1520_PLL_STABLE_DELAY_US);
+> 
+> Is it the case that the 30 uS delay after the lock bit is set is just so
+> that it has the same behavior as the vendor's code? Or did you notice
+> stability problems without this?
 
-To put it another way, see the ramoops binding and copy that.
+This aligns with the vendor code, and I haven't yet observed stability
+issues without the delay. But I think it's more safe to keep the
+behavior similar since it's hard to test all working conditions.
 
-Rob
+> Thanks,
+> Drew
+
+Best regards,
+Yao Zi
 
