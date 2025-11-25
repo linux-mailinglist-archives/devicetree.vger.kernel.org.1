@@ -1,98 +1,138 @@
-Return-Path: <devicetree+bounces-242069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40EEAC85E0F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 17:10:08 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EA9BC85EA0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 17:17:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 507444E1043
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 16:10:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8A1314E253E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 16:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066F322B584;
-	Tue, 25 Nov 2025 16:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF010235045;
+	Tue, 25 Nov 2025 16:17:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dwzdjhuo"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="OD+EaOhp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57F8226D00
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 16:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8FC1E9B35;
+	Tue, 25 Nov 2025 16:17:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764086994; cv=none; b=QK2dyxxj+pPOtc5aT3QrMcN8SEPkPHw+z1nC7Wqcs2IXOqCzWAMuMkrJXK9n74lAe85RMM4Iw7XPaMBk8LtbOcxuamX0xFHIyl/4tqgcxO8qsLm32/YXTYmEgwvntodCqVPk53NiCTWpc7mQ8KsDk5xHJ9uxwGIVS5azvP7to6E=
+	t=1764087460; cv=none; b=pasfJQ0aAvxU8AY32MY+uvhFiAUfE4gUQm3hGk0m3Djz0CXaSjQ0uR+bsiOsraACGw61qS46HAurrCQAbGnWpX8St728qg4CCz6O0HNYc6sPp8T0P0vYH3UmgARxvpSjPIzgf9O2K+tWxGNl9AdaZuMdp1gEnpEkllTf5wj1yoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764086994; c=relaxed/simple;
-	bh=ZZNDBK2BVhAD768SQkUjkJTdpP4BJ3kiwKCp9pUj3l4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YQtpepUCcYWvjahzAOD9QFey7UP/2mZOM0Bs8RT1Tp/vR6S8BcZJvFbitzn/UG2Z8XTlOie7fAN3jv65RP2o/ns+nrurPrazS+eAAUTRIgEWyUOqC2cuCtKL8HV28olNfNvsUKRg2Kwmnf6PI9GyEh2AdlVPQEnnmaomb6L1Fdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dwzdjhuo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A63BEC116C6
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 16:09:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764086994;
-	bh=ZZNDBK2BVhAD768SQkUjkJTdpP4BJ3kiwKCp9pUj3l4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=dwzdjhuozsktqh1uEqLtWXLE3Y4ijDUN5lGZVSA5tiOJUsx9KYs7h2GZsuM5Gx/Xi
-	 ogdXt1magG4xJGhW0KEfoMhJEgIcc6sMHXcbuBwjaYnHohJ5ofdbiTJ59oDuDPlBsY
-	 k1eAGvo6/O4Vy2M0tV8O2e8HQZf6LIlbsrPobiIZGMKQ/k7xnClYE0OfwWVA0d12uo
-	 KHGWscuG+2wT6bRAzWyDeK2vNJMTgsg+yR8CCQ1IU3p6oDBLH1LHQFNUaF478Jwt5m
-	 AuTnwvUfJEKVQBQqICRAcReGi1K/T+JtrBjY9uUhSg7mT9g8fWntonWoW9RhiAEQ+r
-	 N2+X4WQEyjJqg==
-Received: by mail-yx1-f47.google.com with SMTP id 956f58d0204a3-63fc72db706so4736013d50.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 08:09:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVtc1e7cB6iwIuxw8Y9mPsViXmCp7aN1WEpXGYzfAB8O+OMg/Y40V9NFUbesr6jTk0AZavOTu3PoW8g@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFzL+aY1AVfETeBAb9iJzxuIcavFEKeUdcRZfBTML4Nz+2aaza
-	qTZO4P/gNz9nnnCRVAbtrEmYl3dM9XqnreeZ61Bzm58wkruu4BEz70pSvUQ7r5+5yE4VnazBx2K
-	PzqYaVX2WJT2q+oHkB+5TGYoQ/PR65P0=
-X-Google-Smtp-Source: AGHT+IH0wLbZcZEqWX92Za1hESIG7WAjFRxjfJteZSIoUtcOqh9fEEaG8QJTTVQDJ9zOPgiaGpL5ewrpQlhHsrpqKZ8=
-X-Received: by 2002:a05:690e:4287:20b0:640:dfa4:2a6c with SMTP id
- 956f58d0204a3-6432936847emr2204010d50.63.1764086994039; Tue, 25 Nov 2025
- 08:09:54 -0800 (PST)
+	s=arc-20240116; t=1764087460; c=relaxed/simple;
+	bh=B2nk7PV+5zaefXrB72GFZ6SD1N4A8I+iUXxYutK2H0s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=VbHplXntuG2D2m4Rap2slFyqK+t4/WMBW6PGNlRYEJPxODDNT8/28jcIbGoK0w4Hx77S5bDFNxEuDg9oQF4VQ1hjBCVgq14ykAPosDdwDrEWUwT0lMq9UM97DdkclyRnCEomlOe6F9bP12D7eOaZVGTYs+jsFh/3/3aemgrfJFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=OD+EaOhp; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1764087456;
+	bh=B2nk7PV+5zaefXrB72GFZ6SD1N4A8I+iUXxYutK2H0s=;
+	h=From:To:Cc:Subject:Date:From;
+	b=OD+EaOhpDL4UiZ+EO/YsVjRFyw0CoiJAO7B8aMXG2WtH6KLmuuKmvC0qzTW4ehYRD
+	 PxxVpFmUsZ8jqwO8DGZ6bm93MrMezla+J+X9eeO/qkY4h1Fpn95brJ2iBot4Lvm5W6
+	 sL1U0Lz4hFDfETbsP8Sv0vcuC97ySF59xXKaBWCtIRNwh3zx1rFU1QlkNCpPXy/kXo
+	 N5L/p0ayZmvKgYpZlDc56uEXFIqadO70elP/vRr4ZWzy0oc4R9u2AfkPNxN+8BxHdi
+	 lxSBfqzq3MPGX94PRegcdYriPtwxiGRJ2Y+Z+N+3u4QCavanSMDxbNlVvHf/RiuBrs
+	 LpHCB1waW+teQ==
+Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:feae:4183:be92:e051])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 64BF717E04D6;
+	Tue, 25 Nov 2025 17:17:35 +0100 (CET)
+From: Laura Nao <laura.nao@collabora.com>
+To: srini@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	rafael@kernel.org,
+	daniel.lezcano@linaro.org,
+	rui.zhang@intel.com,
+	lukasz.luba@arm.com,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com
+Cc: nfraprado@collabora.com,
+	arnd@arndb.de,
+	colin.i.king@gmail.com,
+	u.kleine-koenig@baylibre.com,
+	andrew-ct.chen@mediatek.com,
+	lala.lin@mediatek.com,
+	bchihi@baylibre.com,
+	frank-w@public-files.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com,
+	wenst@chromium.org,
+	fshao@chromium.org,
+	Laura Nao <laura.nao@collabora.com>
+Subject: [PATCH v5 0/8] Add thermal sensor driver support for Mediatek MT8196
+Date: Tue, 25 Nov 2025 17:16:50 +0100
+Message-Id: <20251125-mt8196-lvts-v4-v5-0-6db7eb903fb7@collabora.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251112-improving-tassel-06c6301b3e23@spud> <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
- <20251119-bacterium-banana-abcdf5c9fbc5@spud> <CACRpkda3Oz+K1t38QKgWipEseJxxneBSC11sFvzpB7ycnqsjBA@mail.gmail.com>
- <20251120-silicon-oyster-5d973ff822d9@spud> <CACRpkdaM3Hkbxx99uXx6OVdSbdhNNc3voS1FoUsz2oAUEc1-qA@mail.gmail.com>
- <20251121-epidermis-overdue-1ebb1bb85e36@spud> <20251121-skimpily-flagstone-8b96711443df@spud>
- <20251124-operative-elephant-16c2c18aebde@spud> <CAD++jLn4z9KFTRoROZ8aKnK-1v=_magjgSq7JJJYt0=CO=gH4A@mail.gmail.com>
- <20251125-depravity-proofs-17b8d5dba748@spud>
-In-Reply-To: <20251125-depravity-proofs-17b8d5dba748@spud>
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 25 Nov 2025 17:09:42 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmsBFt0rhQRsfynXM9ENjO=NXjenOmox=7_Vdy-t0t0UQ@mail.gmail.com>
-X-Gm-Features: AWmQ_bks6-u6m8wg2c5pyzIP62EmTFwv7qtwcD3UXlwd7p_OO31yyAPjGHSiQTM
-Message-ID: <CAD++jLmsBFt0rhQRsfynXM9ENjO=NXjenOmox=7_Vdy-t0t0UQ@mail.gmail.com>
-Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
-To: Conor Dooley <conor@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Conor Dooley <conor.dooley@microchip.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Valentina.FernandezAlanis@microchip.com, Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20251121-mt8196-lvts-v4-a61fb5c27216
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 25, 2025 at 2:03=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
+This patch series extends the MediaTek LVTS thermal driver to support the
+MT8196 SoC.
 
-> I'm not sure how keen I would be on this of_property_present() idea
-> though, feels like wasteful to search the dt for conflicting properties
-> when we are already going through all possible properties and can do the
-> check at the end, when we've got all the information? Could probably
-> keep a temporay bitmap, using pin_config_param as the index, and use
-> test_bit() using the known-incompatibles to check it somewhat neatly?
+MT8196 requires a different implementation of the lvts_temp_to_raw()
+function.
 
-I think it could work, as all conflicts (I think?) are boolean (this OR tha=
-t).
+To support this, the series introduces:
 
-It's probably a bit ambitious, but I'm game :D
+- A new struct lvts_platform_ops to allow platform-specific
+  conversion logic between raw sensor values and temperature
+- A variant of the lvts_temp_to_raw() implementation
+- Platform data and controller definitions for MT8196
 
-Yours,
-Linus Walleij
+Link to v4: https://lore.kernel.org/r/20251121-mt8196-lvts-v4-v4-0-357f955a3176@collabora.com
+
+Changes in v5:
+- Dropped patch 3
+- Added LVTS_NUM_CAL_OFFSETS_MT7988/LVTS_NUM_CAL_OFFSETS_MT8196 defines
+- Moved code that assembles calibration bytes from the efuse data into 
+  a dedicated lvts_decode_sensor_calibration() helper
+- Fixed prefix in patch 4 commit message
+- Dropped R-b/T-b tags on patch 2
+
+---
+Laura Nao (8):
+      dt-bindings: thermal: mediatek: Add LVTS thermal controller support for MT8196
+      thermal/drivers/mediatek/lvts: Make number of calibration offsets configurable
+      thermal/drivers/mediatek/lvts: Add platform ops to support alternative conversion logic
+      thermal/drivers/mediatek/lvts: Add lvts_temp_to_raw variant
+      thermal/drivers/mediatek/lvts: Add support for ATP mode
+      thermal/drivers/mediatek/lvts: Support MSR offset for 16-bit calibration data
+      thermal/drivers/mediatek/lvts_thermal: Add MT8196 support
+      dt-bindings: nvmem: mediatek: efuse: Add support for MT8196
+
+ .../devicetree/bindings/nvmem/mediatek,efuse.yaml  |   1 +
+ .../bindings/thermal/mediatek,lvts-thermal.yaml    |   2 +
+ drivers/thermal/mediatek/lvts_thermal.c            | 326 +++++++++++++++++++--
+ .../dt-bindings/thermal/mediatek,lvts-thermal.h    |  26 ++
+ 4 files changed, 333 insertions(+), 22 deletions(-)
+---
+base-commit: abadc219d77ce0e61fcac0147cc6cc69164af43e
+change-id: 20251121-mt8196-lvts-v4-a61fb5c27216
+
+Best regards,
+-- 
+Laura Nao <laura.nao@collabora.com>
 
