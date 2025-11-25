@@ -1,230 +1,200 @@
-Return-Path: <devicetree+bounces-241802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C8CDC82D48
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 00:42:11 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40803C82E8F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 01:10:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0DDC04E112B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Nov 2025 23:42:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3C7D44E176D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 00:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E5ED2BDC0B;
-	Mon, 24 Nov 2025 23:42:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACC3282F5;
+	Tue, 25 Nov 2025 00:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FTeFSQCw";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UrdmlG7E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lIQz9Ev4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6472274FF5
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 23:42:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58C01F92E
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 00:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764027726; cv=none; b=fLU6xiueYUheRJWlbxcTxmuPLHr/jwC2ADHZSvNkY9j82LQyqp9K7I2ZF3WakgrCDxloM7xO8EBh3tWcNuR9Vxn0CDRkguAmOjjMAB8ENxFtZEREhF9x+YpQyAE+We5vptn9jVnC+yhFgav0e9QZ5J/Rrl+XjEIq9y/EuhQryoc=
+	t=1764029438; cv=none; b=sPWan7AVvq52qBIA1kYNocjHSaLKTlQI2avN8F7GdYuGGc3yAP+4GOfYfD71sExKfmE1JGOyY5vWoSZU8tP2hJ4YxoOhwLizazEux0NUkLx4cLfMDTiwiz2RDOiuiFOVFnB13VHB277CfKEM8dUH7/hys7LgEiZTjU+jHkqJda0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764027726; c=relaxed/simple;
-	bh=kk0tPV3mHmCi59wW0nMku4WD1N4OJNP402FeCin8WfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UcnLtanPm+NzBQsPSwcNGQ/9qW7BmJOSH4sz+T5IwcMkE5CjhsO1BrFH9rOdDjt5NjKYzl1tIvBQNI97K7GCkEQ4CCVSmyH8fhDLyT+iO9mNNuaLHTgTCo0wBExeHP452ScgitJjndv5b4RdG7B6O+anjy5c0Ek3TAzzDJ1PCsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FTeFSQCw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UrdmlG7E; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AOJrqGA1090562
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 23:42:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=RnvtIigtmuFi+SMEGrDr8fGe
-	6ral46dzE9aXYnwhprw=; b=FTeFSQCwGjvRUvrhVLskjr6Pg37HRVT8dSKrpLuY
-	jRMfVoOsE0OLv9hFno9mvxqeNUJOS7Ih5rwenMfKbd+JRS1M1nqe461E1s7/2tEc
-	OQxVBc15S6OnITahLsJkC4H/1zuVZy8mnpY+O4Gu358NvI444DDbtU6JmY9orLub
-	XQ4gA33VXeeZhDRNz6BYH6ycODu2LFHyAD0V+Px+i4Qj9i+QGHhAsQzwojWEpLMd
-	K8hTR8bTID0vfHa1x6fyZ7xIts69U+cYkH4rXVP30jPeSXubr0lML69u3egqqnBB
-	pz3vBld2nQKSrtvTn/611X8k6Ybn0wzkuQPhylmPFBQfTQ==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amsst1bkh-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 23:42:03 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b2dbd36752so1286989985a.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 15:42:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764027723; x=1764632523; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=RnvtIigtmuFi+SMEGrDr8fGe6ral46dzE9aXYnwhprw=;
-        b=UrdmlG7Eq7M+KREdX861tqVN2+6udoRgB8wsvenhZBqeOI0O0j9BTW5E0T9S5znVL1
-         BcI3YC27WC8a2t3yQzV1Gk7M5wLJWYHoUvrEZqdRmAojSA3Iw2n0c92eAhzsOlTLBDXR
-         2EDjn/UhO387c/N2FxQZAIVurn2Fh7yQQ4UelOfzZqzfxEplXW8kghYJBhA9Sj9dSnnL
-         P9JCIYRGvklbLdYFmcTzBbL/kwf+tXF3y3qUgud7VSNDQnnXfUlraWXxph3xqSV8hjLa
-         JUPv7pRwjZycqrX3kK97Ri3CEJ5go1WSqbvcGdYfTJR4gmwFsooTs/dVa63v6PP5DZiw
-         wT3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764027723; x=1764632523;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RnvtIigtmuFi+SMEGrDr8fGe6ral46dzE9aXYnwhprw=;
-        b=uwpOuxWEWBEh/C7eJlQzCTI98XCiDBq5l7rnUtIZiLoi6KOp2JayEVIBFxbhinPAFG
-         j+aYdTq1PneaVpl9CNkkzU6tGeTqHE0cxfDywlPlss8K8/YiMf5zf3ThWDDPXmR5Q6/o
-         NkmHCdFW5bk4n/pBr8Vn1fzEafxmXKsFaCwbKxKqzRUUWBx4ej94SDaxe/wbPe9UifwM
-         /34F3EV6pH8KzcR0d+rjlmki1bcsMlLvq5s8LL/RmseW0EYEDIaTuE+KqRoi0kBcHChw
-         10iQM3IXmde7LVqsn0E+861Pbp9wZXokjHU4yt3zxIMrD5eGKJxPE6ZsDhkywtZRgFYD
-         OJ5g==
-X-Forwarded-Encrypted: i=1; AJvYcCV0FDVkTNCNRAg5rCKQ0S+39HmjLrdNZD3HM9IW9FZ9c/J8igK3O3XTMPv+psRBbLR3fK1wG0ibtyUc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJKnOF5vOOjz/ttyXtKNyKh2ZT0sJKFUNqEp6vlpDvvWorC7TF
-	/2gHOwEYuVpVPnq4haBkWRZ9PloiHG976AqEP7/eb3F7PaT/MGohcjegpeynSnNpGy2iycQVos6
-	oZsL4d/cYzLibTKYBr5/B0Ontvpfq+UCXv9I44my3HdtZ6eWNe4YQkYeYO3RWQ/wr
-X-Gm-Gg: ASbGnctcFzCsY7CA47EwZyhojF9Wf8tFFX3df+JI3g+hpS7CmXU/3Vcx1GxA4EgrMVH
-	uelIf8ZsQ+3VOhinWkGHtKffQqPv/7wa6nWVNE2zEFGhTW6vdnu6Sz50CwYxak/EBZQrZKgr3gt
-	hyIl+Tg8wKPmG6E6KUDgI9/qJwIheAmJqSniuk5eB4eZB/+3Pnz2yt0I0GJvxJlIFD0HL28em7r
-	Yrl3BxOrLbE35D3wU+DDegm/0xjkBmpza2MYOQ5xEyT+ebYzQNP8mbScmUiiSu+XY08nff5p+0Q
-	Aat0pUR2Ho5U2Az1ZiqjIyJvb8YhIXLiFV02KMyNOAudSvUNwbxvjhgW6J8a32IF3M2LrmRM+B0
-	KuL2jswAaLDbUQLP3PALGuNP2HGtFOKgGPlZs40Eu/VYXNGYuEkKPCGzQvAcqR6m5ww0nDxeiLf
-	VqjUwAM6JHhzbGXCfiLqo1TU0=
-X-Received: by 2002:a05:620a:450c:b0:8b2:e418:81b3 with SMTP id af79cd13be357-8b33d26458amr1727523385a.22.1764027722664;
-        Mon, 24 Nov 2025 15:42:02 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFN7eucSuwhqdLxkfZJHbghQw9Jmczymf6l3dRsf/D03bLDn7c2y1KVw9kSU8AGW9FG4UapqQ==
-X-Received: by 2002:a05:620a:450c:b0:8b2:e418:81b3 with SMTP id af79cd13be357-8b33d26458amr1727519585a.22.1764027722124;
-        Mon, 24 Nov 2025 15:42:02 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-596a710f00dsm2746715e87.0.2025.11.24.15.42.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Nov 2025 15:42:01 -0800 (PST)
-Date: Tue, 25 Nov 2025 01:41:59 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Georg Gottleuber <ggo@tuxedocomputers.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ettore Chimenti <ettore.chimenti@linaro.org>,
-        Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
-        wse@tuxedocomputers.com, cs@tuxedo.de
-Subject: Re: [PATCH v3 0/7] Add TUXEDO Elite 14 Gen1 (X1E78100)
-Message-ID: <ii2ktbb6xcjmy7ktbrdoi5am6wuizhwvmwy4gtr25ykmszh4df@p3rsknzzrzcp>
-References: <20251121142623.251118-1-ggo@tuxedocomputers.com>
- <af3d3295-1340-417f-8682-7d7e2bc6c812@kernel.org>
- <aSGXu7IhPDNSkYhi@linaro.org>
- <280982b8-ce86-45aa-812b-ef1bf6e57e3d@kernel.org>
- <tceqigutnu6xqlprxbbm667szlnfwlhfgzxxroj6xldupk2ejt@4izqdv22rmku>
- <1a5d8d8b-a866-4112-a619-11c18547b63a@kernel.org>
+	s=arc-20240116; t=1764029438; c=relaxed/simple;
+	bh=UfIvDn1uwYWK2cSb+CV7h+BUzMIoM/RGg1Rtiy1DEL8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lt1eXFb2TegKDr3JGpxl155S2cQoMBIS/EZQvb/ULf9+F/aCoommv7vQ2DjKFZ0KqfGaKz+if0WV7cB1+kqO0kFoRUeaSjbi1QY4koaWV0xBuVS77DbTRtDBnJcKzVcIoV8S6CpyLgdAmqBI4VrusURDpWAggAoU4eWMOmn9eJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lIQz9Ev4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49734C19425
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 00:10:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764029438;
+	bh=UfIvDn1uwYWK2cSb+CV7h+BUzMIoM/RGg1Rtiy1DEL8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=lIQz9Ev4djX0vj5PMQvZ/Qr8jDoV4lxV0zLOTrDmTLyROxQ/fI/3Hub/TESNzGutr
+	 tXlb8vvjjVW0Czt7ZmwJoJdzTKscEhayOCHfyZv2Ka+slon43yeRryilUFE1LLXrIf
+	 0FxFK++Vebklb//TmDIOqVjWETMRnxf/nLkfGkwNKToUiw24cBT6CaN28fBJPoFYXc
+	 gUiA0/hNbX4PNdphLd7g5tQ8V3AiluN5mzKjkeUryfjdl05OV7Zogj02A3SxvDeR97
+	 12yxtIZ31Dg1bSc32NXs5igGKuyQtP6X9DvvmSYuE4tO3pyz3dyG+TNG2I25oiDUml
+	 dt+0w0IVVpl3Q==
+Received: by mail-yx1-f49.google.com with SMTP id 956f58d0204a3-641e942242cso4128795d50.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 16:10:38 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXdVQ1Z7DOgu0dPWx8kCM/oAQw7jywg+uooEx+VDf3Wr9A8O44Rsxlz9jHiJU/P5cOrtigVpiBkfVhQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwV+oUvgf1nG8t5kwbJuifGSShNGGGxLRIpdxrkG4sJd5K/KPzX
+	v4bdrZvyhIsfJ5tgl5wxsJujApLiENXf958szu66WvjQLP6AgF4EmO1auYZXiAz4lBeF5lBuuk4
+	MtULRRgiuUAnHkx2GDa2roBBXAB3zyEA=
+X-Google-Smtp-Source: AGHT+IEvQ6ixv9HJzCdIJfSrsIbFsZ6bAYryG3/OH6r1eK7qZnHOG19G4WcJvlUeXUpu95cLSF44Dilf2mapPmdVUr8=
+X-Received: by 2002:a53:e882:0:b0:63e:3994:4ae3 with SMTP id
+ 956f58d0204a3-64302af17b2mr7149841d50.41.1764029437406; Mon, 24 Nov 2025
+ 16:10:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1a5d8d8b-a866-4112-a619-11c18547b63a@kernel.org>
-X-Authority-Analysis: v=2.4 cv=bM0b4f+Z c=1 sm=1 tr=0 ts=6924ed4b cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=WmAht5PVCZuJh6zDFJ4A:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: vJJAJtjz2q7ZgyVCTLhYMd2roBG6T1Qu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI0MDIwNSBTYWx0ZWRfX1Hig+fQpfTuY
- xQ0q3vyUyg64uMMqRzUzIA9NZQz8zF7c7+t7nL4sG3wmEnGzEYkIJvgqEgBHs2ABlYBlimVRsS8
- KDVnyFxFD/y+lHQ8RoP8+CgIYmNXwJQkBJA65nz3A8/MCMY07HED2SilKeLmpU6oBBN0JRhZRnr
- FsDlW0ZomCTa1S8A/q3bg+/v6Pamw9kyqdkMTx5DocafWly0lmEPA91/095xpFG51oyu7GFz4lx
- lvvpgsdJq65SCT4jmTWtipygBRFyJgC0RvVnJnwYBcNOEfo1O6zmKAzMI40E13vgeF8L8NJPkQf
- XgeApVRZmgk+Rd8ui6oNqczpk3kaSIC9gGb2R2nFKauNf8tDI+S/XVAZkLVJM3jgphIBWGvb32e
- MUEZtoBj5Owr/aZ0FY5TOg9Waf2UpQ==
-X-Proofpoint-ORIG-GUID: vJJAJtjz2q7ZgyVCTLhYMd2roBG6T1Qu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-24_09,2025-11-24_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0 impostorscore=0
- bulkscore=0 priorityscore=1501 phishscore=0 suspectscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511240205
+References: <20251112-lantern-sappy-bea86ff2a7f4@spud> <20251112-improving-tassel-06c6301b3e23@spud>
+ <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
+ <20251119-bacterium-banana-abcdf5c9fbc5@spud> <CACRpkda3Oz+K1t38QKgWipEseJxxneBSC11sFvzpB7ycnqsjBA@mail.gmail.com>
+ <20251120-silicon-oyster-5d973ff822d9@spud> <CACRpkdaM3Hkbxx99uXx6OVdSbdhNNc3voS1FoUsz2oAUEc1-qA@mail.gmail.com>
+ <20251121-epidermis-overdue-1ebb1bb85e36@spud> <20251121-skimpily-flagstone-8b96711443df@spud>
+In-Reply-To: <20251121-skimpily-flagstone-8b96711443df@spud>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 25 Nov 2025 01:10:26 +0100
+X-Gmail-Original-Message-ID: <CAD++jLm6iDJkUHQyQ+JnH76yC8FcWtjon9s1yhavoX9Y3=wZcA@mail.gmail.com>
+X-Gm-Features: AWmQ_bktdDObpyWY5XjLyGYCrqS9NmTn6uyte7CToAu4Rk-CgfuczbXLhFak6tA
+Message-ID: <CAD++jLm6iDJkUHQyQ+JnH76yC8FcWtjon9s1yhavoX9Y3=wZcA@mail.gmail.com>
+Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
+To: Conor Dooley <conor@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Conor Dooley <conor.dooley@microchip.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Valentina.FernandezAlanis@microchip.com, Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 24, 2025 at 04:09:56PM +0100, Krzysztof Kozlowski wrote:
-> On 24/11/2025 15:34, Dmitry Baryshkov wrote:
-> > On Sat, Nov 22, 2025 at 12:15:40PM +0100, Krzysztof Kozlowski wrote:
-> >> On 22/11/2025 12:00, Stephan Gerhold wrote:
-> >>> On Sat, Nov 22, 2025 at 11:16:25AM +0100, Krzysztof Kozlowski wrote:
-> >>>> On 21/11/2025 15:26, Georg Gottleuber wrote:
-> >>>>> [...]
-> >>>>> Initial support for TUXEDO Elite 14 Gen1 laptop. It is based on Qualcomm
-> >>>>> Snapdragon X Elite SoC (X1E78100).
-> >>>>>
-> >>>> [...]
-> >>>>
-> >>>>> Because the SoC is now outdated and some functions still do not work as
-> >>>>> well as customers would expect from the TUXEDO brand, TUXEDO Elite 14 Gen1
-> >>>>> will not be offered for sale. We would still like to submit our device
-> >>>>> tree to the mainline kernel and thus contribute to Linux support for a
-> >>>>> compatible device sold by Medion (SPRCHRGD 14 S1 Elite). At least in
-> >>>>> Germany, this device was sold in many large stores. (An official press
-> >>>>> statement will follow on our website.)
-> >>>>
-> >>>> For me this is unmergeable, because we do not take stuff which no one
-> >>>> uses (no one can even use), and I am sad I put effort in reviewing AFTER
-> >>>> this was known to be cancelled.
-> >>>>
-> >>>
-> >>> I don't think we have any requirement to have a large user base in order
-> >>> to merge changes. There is already support for plenty of cancelled
-> >>> products with only a few (if any) remaining users in mainline, e.g.
-> >>>
-> >>>  - Snapdragon X Elite Dev Kit (x1e001de-devkit), shipped only to a
-> >>>    handful of users before cancelled
-> >>>  - All ChromeOS SC7280 devices (including DTB variants for several
-> >>>    revisions of pre-production samples), never shipped to anyone
-> >>>
-> >>
-> >> I discuss here the timing primarily and I don't know the timing about them.
-> >>
-> >>> There are also plenty of internal reference devices that only a handful
-> >>> of people have access to (MTP, HDK, CRD etc). What makes these any
-> >>
-> >> They are still "maintained" and "offered", even if only for handful
-> >> (like 3000 EACH variant) people. That's the amount of board of each
-> >> variant, e.g. MTP8750, and all of them run some sort of Linux, even if
-> >> downstream. So sorry, but 3000 (or whatever number it is) is not handful.
-> > 
-> > Where does 3000 come from? The Bible says 10 people were enough to
-> > maintain Sodom and Gomorrah. For Herobrine we know that there are very
-> > few people still using those devices (maybe less than 10), but we still
-> > keep it. Cheeza was dropped after it was known that the count is exactly
-> > zero.
-> > 
-> >>
-> >>> different? Ettore has been actively testing and contributing to the port
-> >>> for the TUXEDO laptop, so if he wants to continue that, I don't think
-> >>> anything speaks against merging this device tree.
-> >>
-> >> I won't be maintaining it, so not my effort in that, but since you speak
-> >> about that - maintenance is an effort, thus I decide not to spend it on
-> >> cancelled products.
-> >>
-> >>>
-> >>> In any case, I don't think the time reviewing these changes is wasted:
-> >>
-> >> I am happy that you do not find my time wasted, but I disagree on that
-> >> because knowing this is cancelled, I would probably not care and review
-> >> products which are not cancelled at this time.
-> > 
-> > There still people owning and being happy with those laptops. It's
-> > Bjorn's and Konrad's time being spent on maintaining those. What's the
-> > issue?
-> 
-> 
-> I think I described my issue very precise. Please read my first reply in
-> this thread. Joining discussion at the end of it, not reading it and
-> then asking "what is the issue" is not really encouraging me to discuss
-> whether this is a problem or not.
+On Fri, Nov 21, 2025 at 12:21=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
 
-I had read it before replying.
+> ngl, I forget if there's a shorthand for the bias part, so I just want
+> to know if is this an accurate summary of what's exclusive?
+>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b=
+/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> index cbfcf215e571..6865472ac124 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> @@ -153,4 +153,66 @@ properties:
+>        pin. Typically indicates how many double-inverters are
+>        used to delay the signal.
+>
+> +allOf:
+> +  - if:
+> +      required:
+> +        - output-disable
+> +    then:
+> +      properties:
+> +        output-enable: false
+> +        output-impedance-ohms: false
 
--- 
-With best wishes
-Dmitry
+Looks right.
+
+> +  - if:
+> +      required:
+> +        - output-low
+> +    then:
+> +      properties:
+> +        output-high: false
+
+Looks right.
+
+> +  - if:
+> +      required:
+> +        - low-power-enable
+> +    then:
+> +      properties:
+> +        low-power-disable: false
+
+Looks right.
+
+> +  - if:
+> +      required:
+> +        - input-schmitt-disable
+> +    then:
+> +      properties:
+> +        input-schmitt-enable: false
+> +        input-schmitt-microvolt: false
+
+Looks right.
+
+> +  - if:
+> +      required:
+> +        - drive-open-source
+> +    then:
+> +      properties:
+> +        drive-open-drain: false
+
+drive-push-pull is mutually exclusive
+with each of these as well.
+
+> +  - if:
+> +      anyOf:
+> +        - required:
+> +            - bias-disable
+> +        - required:
+> +            - bias-high-impedance
+> +        - required:
+> +            - bias-hold
+> +        - required:
+> +            - bias-up
+> +        - required:
+> +            - bias-down
+> +        - required:
+> +            - bias-pull-pin-default
+> +    then:
+> +      oneOf:
+> +        - required:
+> +            - bias-disable
+> +        - required:
+> +            - bias-high-impedance
+> +        - required:
+> +            - bias-hold
+> +        - required:
+> +            - bias-up
+> +        - required:
+> +            - bias-down
+> +        - required:
+> +            - bias-pull-pin-default
+
+These is a bunch of "pull" infixes missing from the
+above.
+
+After looking at it for a while I concluded this
+is right as well, if just the right names are added.
+I would add a comment like
+
+# We can only ever allow exactly one of these,
+# they are all mutually exclusive.
+
+Additionally:
+
+drive-strength and drive-strength-microamp are mutually
+exclusive.
+
+input-enable and input-disable are mutually exclusive.
+
+low-power-enable and low-power-disable are mutually
+exclusive.
+
+input-schmitt need to be added as deprecated.
+
+Can you cook a patch? Maybe test it on the existing
+device trees first to see that it doesn't wreac havoc.
+
+Yours,
+Linus Walleij
 
