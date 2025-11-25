@@ -1,102 +1,41 @@
-Return-Path: <devicetree+bounces-241941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28ECFC84906
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:51:02 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB2AC84A4B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:10:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0F1A94E0489
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:51:01 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7B4F134D906
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4371C3101B4;
-	Tue, 25 Nov 2025 10:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78BAE314A61;
+	Tue, 25 Nov 2025 11:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MzD0IIJO";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cSfS4u+u"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="JmPSKE0n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m15586.qiye.163.com (mail-m15586.qiye.163.com [101.71.155.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F9830146C
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 10:50:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D09BD3148D7;
+	Tue, 25 Nov 2025 11:10:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764067859; cv=none; b=MAlM9sZZk9XXlm4PUMmCwJsvSyvrFeMoBgKlW/BUKNJl8M9pfNoez/e/GzBYudLQBGyW085l7f4TeNnMdxq3DGv5C+4Iw/PwdvwjNh884EZJKIN8i+73SyLwT0GIuH4LKw7QiuMUcOuX4D92VcGhMn7ESGB/QOMEZHIw4+ARE1g=
+	t=1764069013; cv=none; b=hv+CBYqI/BGv9VUq+EVLBuZV+GkLYbizIlmwiQ9rzYp+I/Tr8iifIYMCRw2eNQ42+Wq5Ozo6Hk+F/H4m8fJ3pgkJV4KFNG09yJWFftW7G3ovYPG/Fi3vGxuGTXhoGyXmkYe9SQl8mV87m6ulVobs+sdSStfgdid8p50FFMmcTE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764067859; c=relaxed/simple;
-	bh=Y8rY+5Au5ZK+QNjSY+KOYQX2N/OPbL1L8+7cdTxyqxw=;
+	s=arc-20240116; t=1764069013; c=relaxed/simple;
+	bh=PlY2BuCDhneYbH4w7uIV/LGEr4KBheFEsaJEsyJEmu4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NMK3uCeM9Bdj85YqJ1Q+iGcUdtU5l9To1z5RhMreJlHcG2sdv4aFdss6H3nHKjjffDV2vcuctc0d0aHgSZQLkBHDXewtYY34rTs2k7HK0gDlqDCSQoW64Rjil5EEwhP7u1EK1X/GKPx03RnJ2ZJLxZjFyjT8yY13sYtMz1aFsTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MzD0IIJO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cSfS4u+u; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5APA9GrH1979152
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 10:50:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yspArwOnLqv223fRoL1R+QUt+mUG8lJU6eNibL7HInw=; b=MzD0IIJO7JBko07m
-	O3pfvDWmH5uJ1mtZa58lO++7IxB0wSLT5tcrugPUDjwO5EmxDSkNVoh/jNdcy1Co
-	pZwLduB6RHC3gAmDCPZRtH3OE9w4+sQStOb/o6Tx2yuEDhirdguByd5FVd9iPpd3
-	uWte/S5Yc8+AsLfPcdJNx3pVaG/2JUxa9DZOxU9TMOregDKLiXuQ8lTvsUMDeV2v
-	gApXcwcOB3sHAwACtiEWJEIPjl3LnKbICv6aRI48v+N2GzU16Oam29JGTF3t2UXE
-	E0PXxpwTUL5sOtmsMSRUQgG9mufb+xDJStpfa0M5GdW02tigNyU7UqKBWf6HPxjj
-	EY+U2w==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amw9gtbk1-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 10:50:56 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4edaa289e0dso25579401cf.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 02:50:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764067856; x=1764672656; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yspArwOnLqv223fRoL1R+QUt+mUG8lJU6eNibL7HInw=;
-        b=cSfS4u+uXf4LSNQZUeu0/Yh9iFRnyxgj95QcmBZdB8mCaDobUSh5koLn+QduG17Rpa
-         E8wp6XIs5VW+2CqXIkM8kpz+e8Riyny0KdgugAJjpSbZEoz+9PmTihAnKpf5vh8Lr0H7
-         BGA9IZVcbr7GH0iHW5M6W9xTVPLacMWtymiJyh3wwqUna5BkUjeiaNV+Yb8YUSDZ6l3t
-         XBzwSmJQQ9jKLKDZdsIu5SvHTLBCaKVG35A6OdKkGvOUfe8juzBOh+q3wXdNKeE0BM9d
-         ZkELjgBmJg4t6DtxXF/VT9F8VgYtVB8iLqPzbDN2BfZGggQO/DndZIWhL0Ckhf4qWq9B
-         ilng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764067856; x=1764672656;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yspArwOnLqv223fRoL1R+QUt+mUG8lJU6eNibL7HInw=;
-        b=qfI6FPo0FPtHZ4MgiHfg6Kzhgu+FMvKyKXBf9jg5gL7tIcHDfY3owBomDoRwuDR/dZ
-         CJO/R2iV9I9w12ksFCDU8e0BAOW7ojNVy2Et9FFz/RejjwvRRtg77w6RII9P0C3cgbkh
-         X3wfzMkilaNyc8FVyDfsR3rsFvQiKpmv/fNppYWZIHXhnqc+jW84U2pa5G0UK0objZAG
-         2nFxPvBlk8Tb9GHt7F3STGuCWmklHSMkyPA9qUTt369cSyrcHDNo+u5bsJjpLm2cYT6I
-         fNuq5d7y6o9+hS7Ri9gbrcc38q2U28KLdaL9osmwKqGNGOwwmpU13PY8B3ORAf100bt3
-         ETcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNLfgilZJz7c/0wijmMq++IXhfiE4w4csDqoE63+VA5yJtjrYGiQpO2WDQKGHawb7MNyWug88Ojpk5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDwHiRtgVVFP2BC7Q5KSSNEwMHoEnrLjznx6SNEYNvQ9TLyuA2
-	N00Du3yBWUqBJs3cdGg0jHei5/XdIniMfKitBMjfJxo7XYv4lZ8213Q6HhS53P/94mkBp7vICNS
-	6EXZUPBeqw5PrYY7VRyVg5eSE/xRLs99b6uc0+Pb2v8VH7A+elu/Cf/q4h20yRZCG
-X-Gm-Gg: ASbGncvxg+2vyOTNHuWWKjgO9rbCrbvWrB5zIFpWomMhdBMTacgGtb8VKyZLPE054DD
-	zSe4djpgZ+vmBxL4FEVHTl0EuB4F15JncChUYe/e56dNEcTa2lbVPcOMiqD6jSFSsLACT0E1YJs
-	770NOQ1DntYAQ+SRvmTuSZvMUU3ZZTJQ8MGh5PZcHwDU0WJFmn6F1obzh+9Z4MpqqIbHKcLdlzf
-	ZeUltsEECKV4SnRHcOpYtiiEpkfXNKUibOo2MZqNpbDuzkzriNsGpVTCA+tj/nsRshGOhMfmTuc
-	MQhCyWq3vmzYa1RUExhpCN+jd20y7zD0MVt6skYrS2ilzsgICkquDfBkP6d5O2zFTO2xWC7i80W
-	QowwT3DgoDT8pzPJ0W/r9Gs97MM7C924obEbvUJqR/hxYNLov22vaZn0JfLc0qjG+Pnc=
-X-Received: by 2002:a05:622a:508:b0:4ed:67c4:b7b9 with SMTP id d75a77b69052e-4ee5883b027mr157643751cf.1.1764067855945;
-        Tue, 25 Nov 2025 02:50:55 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHeRxosmjSzwYIGSlvLWY4dKR1IuLfRK2KLhya3HT9NervKn0yCKlZEa9BiEdQlq+PPGCZpnw==
-X-Received: by 2002:a05:622a:508:b0:4ed:67c4:b7b9 with SMTP id d75a77b69052e-4ee5883b027mr157643611cf.1.1764067855315;
-        Tue, 25 Nov 2025 02:50:55 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-645363ac9a2sm14733927a12.6.2025.11.25.02.50.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Nov 2025 02:50:54 -0800 (PST)
-Message-ID: <7a3e2e3a-1a6d-460c-846c-209474c2311c@oss.qualcomm.com>
-Date: Tue, 25 Nov 2025 11:50:51 +0100
+	 In-Reply-To:Content-Type; b=Q+hhKsulE2n5SH8aybV4SP4Et0WwD5RwK+J+uGKBugAx8QzV1S88PtoLFaHRYsmnhH3i4PrzjUxErkbxRgricgGpuOhbRdu7V4G1K+nyJW5aZF9aplXRUvbGBhqlSxyCZracpVUwbyGoex9xy/DnOWFHfsAtTQlzbthQkwNXg4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=JmPSKE0n; arc=none smtp.client-ip=101.71.155.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2ad58d4a7;
+	Tue, 25 Nov 2025 18:54:38 +0800 (GMT+08:00)
+Message-ID: <d970873f-eb76-432e-a881-72b2c5cb2a9c@rock-chips.com>
+Date: Tue, 25 Nov 2025 18:54:37 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,82 +43,219 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/7] Add TUXEDO Elite 14 Gen1 (X1E78100)
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Georg Gottleuber <g.gottleuber@tuxedocomputers.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Georg Gottleuber <ggo@tuxedocomputers.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ettore Chimenti <ettore.chimenti@linaro.org>,
-        Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
-        wse@tuxedocomputers.com, cs@tuxedo.de
-References: <20251121142623.251118-1-ggo@tuxedocomputers.com>
- <af3d3295-1340-417f-8682-7d7e2bc6c812@kernel.org>
- <aSGXu7IhPDNSkYhi@linaro.org>
- <280982b8-ce86-45aa-812b-ef1bf6e57e3d@kernel.org>
- <f8ebe524-1f0a-4f54-96ce-aa36f8659adc@tuxedocomputers.com>
- <7716b83f-409c-4fa8-8232-89d3d1be5dd6@linaro.org>
+Subject: Re: [PATCH v10 01/11] usb: typec: Add notifier functions
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Chaoyi Chen <kernel@airkyi.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20251120022343.250-1-kernel@airkyi.com>
+ <20251120022343.250-2-kernel@airkyi.com>
+ <2025112102-laurel-mulch-58e4@gregkh>
+ <462ad1bd-7eec-4f26-b383-96b049e14559@rock-chips.com>
+ <2025112402-unopposed-polio-e6e9@gregkh>
+ <a80483de-518d-45d5-b46a-9b70cca5b236@rock-chips.com>
+ <2025112448-brush-porcupine-c851@gregkh>
+ <c9cb7b79-37c8-4fef-97a6-7d6b8898f9c4@rock-chips.com> <aSV_lQYJPxN7oBM-@kuha>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <7716b83f-409c-4fa8-8232-89d3d1be5dd6@linaro.org>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <aSV_lQYJPxN7oBM-@kuha>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI1MDA4OCBTYWx0ZWRfX4RNILnZZevpS
- o4it633V7KRVD375NKkdSYo2ro5I2Ya1hh1x1jaqKlsJno4Ljso1DSZ+OnleQaPyz8g4Pocbbeb
- Hq6h8Ue+exLCJfTwGSMA1f8JZONCUPbp7tTFU/tCWUzKHhxXz1aUIbPRo7JTAAshaHZRT1ye1Fi
- AHs5bM2FtvHrF9dngZkBwW9UMRSPC3le0+mZ3JsAJ2aFvKQYNGnOyafsh4KnBOqd3tRhlGiF03z
- SuETiRMF4jCT5r/QrxYG5Dp97fgB9YWrL2vL/GRrAG//jFRsiN02Pi5+5HOVwRwGSH271QTK74r
- hYPQR1sxupaNzUmWB3J2kVOTpfvPqSaxneAx2jfEbXPL3HONIMsIoJskrEnMxwviFgRgaYuIOdl
- LkPxuy7OPKiRcGwhoIhzUhhmawPtbA==
-X-Authority-Analysis: v=2.4 cv=H53WAuYi c=1 sm=1 tr=0 ts=69258a10 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=jOz9I0nGxiDzdx2m7CwA:9 a=QEXdDO2ut3YA:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-ORIG-GUID: KGh1tdRfAetY2yv735xpplCNeQ4JOLH4
-X-Proofpoint-GUID: KGh1tdRfAetY2yv735xpplCNeQ4JOLH4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-25_02,2025-11-24_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
- adultscore=0 priorityscore=1501 suspectscore=0 malwarescore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511250088
+X-HM-Tid: 0a9abaa6b39603abkunmf8a5d99d4f8c0e
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQh1JGFYeTUJCGUIfHkxKSUpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=JmPSKE0naaEWonVAqnH+ebFcZ8I+ZaubhDn1Lu1sJwZYovoWm9xlCD0EbQr1LZQl4bFixizGQ6l3gHP2TxaD3Zhphb10gZrS7e/ZMixDHMMTdbLuAApeD/UMfz1ch2jrJqkFmLpsQJTb1gQD3kuOJC3jC94P065Hy9hGENQlW/s=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=yI/hAgt1yN84sa7TO1laWAMsbF2HgT2Td6qWpvlvHjM=;
+	h=date:mime-version:subject:message-id:from;
 
-On 11/25/25 11:37 AM, Neil Armstrong wrote:
-> On 11/24/25 15:09, Georg Gottleuber wrote:
->> Hello Krzysztof.
->>
->> Am 22.11.25 um 12:15 schrieb Krzysztof Kozlowski:
->>> On 22/11/2025 12:00, Stephan Gerhold wrote:
->>>> On Sat, Nov 22, 2025 at 11:16:25AM +0100, Krzysztof Kozlowski wrote:
->>>>> On 21/11/2025 15:26, Georg Gottleuber wrote:
->>>>>> [...]
->>>>>> Initial support for TUXEDO Elite 14 Gen1 laptop. It is based on Qualcomm
->>>>>> Snapdragon X Elite SoC (X1E78100).
-
-[...]
-
->> I understand your frustration, but I'm still learning how to contribute
->> to the Linux kernel. However, we may be able to find a constructive
->> solution. Here at TUXEDO, we have the necessary Medion device and have
->> already adapted the device tree.
->>
->> Would you review a patch set for Medion SPRCHRGD 14 S1 Elite?
+On 11/25/2025 6:06 PM, Heikki Krogerus wrote:
+> Tue, Nov 25, 2025 at 10:23:02AM +0800, Chaoyi Chen kirjoitti:
+>> On 11/25/2025 12:33 AM, Greg Kroah-Hartman wrote:
+>>> On Mon, Nov 24, 2025 at 04:05:53PM +0800, Chaoyi Chen wrote:
+>>>> Hi Greg,
+>>>>
+>>>> On 11/24/2025 3:10 PM, Greg Kroah-Hartman wrote:
+>>>>
+>>>>> On Mon, Nov 24, 2025 at 09:40:03AM +0800, Chaoyi Chen wrote:
+>>>>>> Hi Greg,
+>>>>>>
+>>>>>> On 11/21/2025 10:07 PM, Greg Kroah-Hartman wrote:
+>>>>>>> On Thu, Nov 20, 2025 at 10:23:33AM +0800, Chaoyi Chen wrote:
+>>>>>>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>>>>>>
+>>>>>>>> Some other part of kernel may want to know the event of typec bus.
+>>>>>>> Be specific, WHAT part of the kernel will need to know this?
+>>>>>> For now, it is DRM.
+>>>>> Then say this.
+>>>> Okay, please refer to the discussion below.
+>>>>
+>>>>>>> And why a new notifier, why not just use the existing notifiers that you
+>>>>>>> already have?  And what is this going to be used for?
+>>>>>> We have discussed this before, but the current bus notifier cannot achieve the expected notification [0].
+>>>>>>
+>>>>>> [0] https://lore.kernel.org/all/aPsuLREPS_FEV3DS@kuha.fi.intel.com/
+>>>>> Then you need to document the heck out of this in the changelog text.
+>>>>> But I'm still not quite understanding why the bus notifier does not work
+>>>>> here, as you only want this information if the usb device is bound to
+>>>>> the bus there, you do not want to know this if it did not complete.
+>>>>>
+>>>>> That thread says you want this not "too late", but why?  What is the
+>>>>> problem there, and how will you handle your code getting loaded after
+>>>>> the typec code is loaded?  Notifier callbacks don't work for that
+>>>>> situation, right?
+>>>> In fact, the typec_register_altmode() function generates two
+>>>> registered events. The first one is the registered event of the port
+>>>> device, and the second one is the registered event of the partner
+>>>> device. The second one event only occurs after a Type-C device is
+>>>> inserted.
+>>>> The bus notifier event does not actually take effect for the port
+>>>> device, because it only sets the bus for the partner device:
+>>>>
+>>>>      /* The partners are bind to drivers */
+>>>>      if (is_typec_partner(parent))
+>>>>          alt->adev.dev.bus = &typec_bus;
+>>> Setting the bus is correct, then it needs to be registered with the
+>>> driver core so the bus link shows up (and a driver is bound to it.)
+>>> That is when the bus notifier can happen, right?
+>> Yes, this is valid for the partner device. But for the port device, since the bus is not specified here, the corresponding bus notifier will not take effect.
 > 
-> I think it's worth re-spining this patchset for the Medion SPRCHRGD 14 S1 Elite
-> with a comment in the DT mentioning the device tree is compatible with
-> the defunct Tuxedo Elite 14 Gen 1, since the Medion is an actual product
-> people can buy it's worth it.
+> Perhaps we should just fix this part and make also the port altmodes
+> part of the bus.
+> 
+> Some background, in case this is not clear; the port alternate mode
+> devices represent the capability of the ports to support specific
+> alternate modes. The partner alternate mode devices do the same
+> for the partner devices attached to the ports, but on top of the
+> showing the capability, they are also used for the alternate mode
+> specific communication using the USB Power Delivery VDM (vendor
+> defined messages). That's why only the partner altmodes are bound
+> to the generic alternate mode drivers.
+> 
+> And that's why the hack where the port altmodes are not added to the
+> bus. But maybe it's not needed.
+> 
+> Chaoyi, can you try the attached patch?
+> 
 
-+1, especially since you mentioned you have an actual Medion at hand
+Thank you for providing the background information. Maybe this is what
+we really want. I will try this in v11 :)
 
-Konrad
+>>>> I hope it's not too late. In fact, the notifier here will notify DRM to establish a bridge chain.
+>>> What is a "bridge chain"?
+>> In DRM, the bridge chain is often used to describe the chain connection relationship
+>> of the output of multi level display conversion chips. The bridge chain we are referring to here
+>> is actually a chain  structure formed by connecting various devices using a simple transparent bridge [0].
+>>
+>> For example, the schematic diagram of a bridge chain is as follows:
+>>
+>> DP controller bridge -> DP PHY bridge -> onnn,nb7vpq904m retimer bridge -> fsa4480 analog audio switch bridge -> fusb302 HPD bridge
+>>
+>> Here, apart from the DP controller bridge, the rest are transparent DRM bridges, which are used solely to
+>> describe the link relationships between various devices.
+>>
+>>
+>> [0] https://patchwork.freedesktop.org/patch/msgid/20231203114333.1305826-2-dmitry.baryshkov@linaro.org
+>>>
+>>>> The downstream DP controller driver hopes to obtain the fwnode of the last-level Type-C device
+>>>> through this bridge chain to create a DRM connector. And when a device is inserted,
+>>>> drivers/usb/typec/altmodes/displayport.c can notify the HPD (Hot Plug Detect) event.
+>>> But aren't you just the driver for the "partner device"?
+>>>
+>>> If not, why isn't a real device being created that you then bind to,
+>>> what "fake" type of thing are you attempting to do here that would
+>>> require you to do this out-of-band?
+>> The HPD event is pass by drm_connector_oob_hotplug_event(), which does not use the device in Type-C.
+>> This function will find the corresponding DRM connector device, and the lookup of the DRM connector is
+>> done through the fwnode.
+>>
+>> And the partner device and the port device have the same fwnode.
+>>
+>>>
+>>>> If relying on the second event, the bridge chain may never be established, and the operations of the DP driver will be
+>>>> always deferred. Furthermore, other parts of the display controller driver will also be deferred accordingly.
+>>> What operations?  What exactly is delayed?  You should not be touching a
+>>> device before you have it on your bus, right?
+>> To complete the HPD operation, it is necessary to create a drm connector device that
+>> has the appropriate fwnode. This operation will be carried out by the DP controller driver.
+>>
+>> As you can see, since it cross multiple devices, we need to set the fwnode to the last device fusb302.
+>> This requires relying on the bridge chain. We can register bridges for multiple devices and then connect
+>> them to form a chain. The connection process is completed through drm_bridge_attach().
+>>
+>> A brief example of the process of establishing a bridge chain is as follows, starting from the last bridge:
+>>
+>> step1: fusb302 HPD bridge
+>> step2: fsa4480 analog audio switch bridge -> fusb302 HPD bridge
+>> step3: onnn,nb7vpq904m retimer bridge -> fsa4480 analog audio switch bridge -> fusb302 HPD bridge
+>> step4: DP PHY bridge -> onnn,nb7vpq904m retimer bridge -> fsa4480 analog audio switch bridge -> fusb302 HPD bridge
+>> step5: DP controller bridge -> DP PHY bridge -> onnn,nb7vpq904m retimer bridge -> fsa4480 analog audio switch bridge -> fusb302 HPD bridge
+>>
+>> Step 1 is the most crucial, because essentially, regardless of whether we use notifiers or not, what we ultimately want to achieve is to create an HPD bridge.
+>> The DP controller needs to wait for the subsequent bridge chain to be established because it needs to know the connection relationships of the devices.
+>>
+>> The question now is when to create the HPD bridge, during the registration of the port device or during the registration of the partner device.
+>> If it's the latter, then the delay occurs here.
+>>
+>> And I don't think I'm touching the Type-C device here. I'm just using the bridge chain to get a suitable fwnode and create a suitable DRM connector device.
+>> The subsequent Type-C HPD events will be on the DRM connector device.
+>>
+>> This solution is somewhat complex, and I apologize once again for any confusion caused earlier.
+>>
+>>>
+>>>>>>> Notifiers are a pain, and should almost never be added.  Use real
+>>>>>>> function calls instead.
+>>>>>> In v6, I used direct function calls, but had to switch to notifiers because couldn't resolve the dependencies between DRM and Type-C [1]. Do you have any good ideas? Thank you.
+>>>>> Only allow this DRM code to be built if typec code is enabled, do NOT
+>>>>> use a select, use a depends in the drm code.
+>>>> Sorry, I didn't get your point. Does this mean that the current notifiers approach still needs to be changed to direct function calls?
+>>> If you somehow convince me that the existing bus notifiers will not
+>>> work, yes :)
+>>>
+>>>> If so, then based on the previous discussion, typec should not depend
+>>>> on any DRM components. Does this mean that we should add the if
+>>>> (IS_REACHABLE(CONFIG_DRM_AUX_BRIDGE)) before the direct function call?
+>>> No, do it properly like any other function call to another subsystem.
+>>>
+>>>> Additionally, the current version of CONFIG_DRM_AUX_BRIDGE is selected
+>>>> by the DP driver in patch9.
+>>> Don't do "select" if at all possible, always try to do "depends on".
+>> Thank you for clarifying this. However, CONFIG_DRM_AUX_BRIDGE is not exposed in the menu, and it is not intended for the end user to select it by design. Therefore, I think there still needs to be some place to select it?
+> 
+> You don't "select TYPEC", you already "depend on TYPEC", so you are
+> all set with this one.
+> 
+> thanks,
+> 
+
+Ah, it is.
+
+-- 
+Best, 
+Chaoyi
 
