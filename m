@@ -1,308 +1,310 @@
-Return-Path: <devicetree+bounces-242064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21AB0C85D54
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 16:49:13 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 340C2C85D94
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 16:57:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC9AC4E5E5D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 15:49:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8A96934E7F8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 15:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C8920CCDC;
-	Tue, 25 Nov 2025 15:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 781C61E570D;
+	Tue, 25 Nov 2025 15:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="j2S/ekBa"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="PkworHLl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011015.outbound.protection.outlook.com [40.107.74.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DFFC1DF246;
-	Tue, 25 Nov 2025 15:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764085734; cv=none; b=J3Pqk5FmW3406GSfhI7ASGaoejC8yKVtL8FwiDufShNODy7XpBpINEuxpIHFFk0oQn/SMSKYeNcBzQ0+7u5xpu+yyhOLF/IgX8fRbFpkH8j37SNdYLhSC6YyFUL+KLJLw/Al3d0shOSQc+ztmLESym6CWCG1FX1cwjH/XNVD4Vw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764085734; c=relaxed/simple;
-	bh=A+cHX4OWdpsJVrxoqQ6SFODR+TyBkPxuFCtib1swiEo=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kwyzyJRVnCeEfNQfy8PzrxFGx0Q173gpSLiwNzcODK6o658ZG+cxmtpJ0JysWLC7m1ncXiJdffurmSISLye0k5vAA7TwLpfaa5/c1cIuYGb9nR4QpkqXmlwO6mfFpmtKJ/EvO6JcVVR2iGBzDl9a8ciXSxqi5W9zA2G4tZFXAwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=j2S/ekBa; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5APC6S5n043338;
-	Tue, 25 Nov 2025 10:48:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=TsexF
-	ZjiIfs7swlGB616yquPEzzWSSxAARqJyEfwaBw=; b=j2S/ekBawXvwwjfpArpBj
-	gd6r+grDqS57uuqZMyAEpE6apFEBAcihlx/nwW5yM1eAr8WJjylgYb4ZrR4h4Sv9
-	eUIdrFFDBpWMag1K64bO0RK9PGxrpecNbPUmC0J+rJEBNvNwKQwMoqAtfVbK2lls
-	xgU9YKZlf5OYafR+sR74nEElHJRlpD4aIly7IL52Tm1CCVucItieJX4t240zkhxt
-	tan0NRSYkD7D2HKGT5G0J+OI0eHEEKuoqDRjUi/b3+BvP/FFcXSCYU2E4aqL9oq2
-	BbeZhkc67pvUusGs6sfoIGpYH1Hob35giV2uSG2xkDc4YHbFjOObgIHStu10v+uG
-	g==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4amv1gnj31-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Nov 2025 10:48:32 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5APFmVU3016032
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 25 Nov 2025 10:48:31 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Tue, 25 Nov
- 2025 10:48:31 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Tue, 25 Nov 2025 10:48:31 -0500
-Received: from HYB-b1tGeUj4GP1.ad.analog.com (HYB-b1tGeUj4GP1.ad.analog.com [10.48.65.177])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5APFmAEH021473;
-	Tue, 25 Nov 2025 10:48:22 -0500
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Lars-Peter Clausen
-	<lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan
- Cameron <jic23@kernel.org>,
-        David Lechner <dlechner@baylibre.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Andy Shevchenko
-	<andy@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dragos Bogdan
-	<dragos.bogdan@analog.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-Subject: [PATCH v3 2/2] iio: frequency: adf4377: add clk provider support
-Date: Tue, 25 Nov 2025 17:47:36 +0200
-Message-ID: <20251125154738.55869-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251125154738.55869-1-antoniu.miclaus@analog.com>
-References: <20251125154738.55869-1-antoniu.miclaus@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60371D8DFB;
+	Tue, 25 Nov 2025 15:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764086268; cv=fail; b=uHrMkIbt0YpOjFWF6pjgLpBm/U5t6L7f9qJZoB2C3gqfZcf6JYimGReU0amaqF4cP09tJowXSU5gtR/gmgOHpw61neIQIvONXBHAPcIQo9kGfRmoBz0BsEhZGFYg9cSyia1co9pH9hPkQkKwCm5RU5bJFOcDrfTj69Bsj59cuAk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764086268; c=relaxed/simple;
+	bh=SjLHkLCD702JI6A3bM2gI4AzmYWPQEf7l+5zfkCn6g8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=jjYRTQvr6g/UBEYPiwFv64c8a5y48jFiGhBC8IFKMChsNN1iW0x3s5iZlwvQf3DtSg9Lr+pqmVGKMcBL0oUAfPS4Ely3BCmPcayN379ZNRP7KZfTpCJwWZLlzDOObyMFPXPg80t6SMQ0I0CUZIBzZSXQxyvstM5K96tOWg+BM5U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=PkworHLl; arc=fail smtp.client-ip=40.107.74.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CZIMKjeCF7cymk/atsAyvumS/pRu9yy7egFWvAVbQPo1ktpE/0hIPj6pzxWIJ4CHj2zCxoBBaJqKK20ruOXVVXAxf9DIkxB9PDVUDSHOdTXzuX//BCAP21EciyL+N5YOmxgUnLlLCWA+gKJ2R+PRkbo9zj0oZS0uOcwEBX1vWLh1i6f1UQ82Gp6bUAVR7WrEWKDnDvR1SPtJDS5xUSyGFqAZCHwhI9Y0Wu/4R8WRvsP8/zJt1Hn7dlrmbjhLeezpdykKIjtafkBt9q/7JVKtNmjeRbMzA5CkTi89ePaJ2w6FjZCVahlLbfqmeb+k6DMqMOjdr7w1aseZ+oB8Jqm9UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ITzL/VDq8d6r6XtiQu4T3w5kjKHLR+Y4t446d/0g0i8=;
+ b=lTo/Awaxc+dfzI+VJass9fGqXUBhIY9mxiJ3wYwrY3VWbvj/gPgEBl4az/7/mOlqFSeRoyIeW0rX85SwbEaagm4dAJ9Qe5ElBbziC1bycENBKUlinRcsYvNzAlZEiv+/t0H5Z6wF7UIqQvsX3caWN7zYpEBEtw3w/aRNjWL8CeV0hQS6ZO4RvJG/x8WjmQU3uLpV6LrJRnPmCqtQCZC6vQE/Q9n+etk0iupxaYdYdNi3/rn3rjU+fw5MKOy3M89oYKkJ2zf1ZovLnM+wBSsVF7g1+q4Wv54t+CNbaw4Dmp0go634jZt9PghAZdYgfCQ49K8N927CFPxdoijHpRRg/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ITzL/VDq8d6r6XtiQu4T3w5kjKHLR+Y4t446d/0g0i8=;
+ b=PkworHLl/15NSeoeHvEfCsWa46YB9xEjNi78J7ZXt4/0eotTiPJR1mnKl/2iBRuPNfSlBeNk66EVoMMURD+Xs0SRgAlLEFLAvsYT+WE6itmmyV9bFB+S9Y5QIbv2mxRsOaeDc3FF1yOvEmhnRsVMw0ZnkjRci20JYhjBAjySnlM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from TY3PR01MB11948.jpnprd01.prod.outlook.com (2603:1096:400:409::5)
+ by TYRPR01MB16003.jpnprd01.prod.outlook.com (2603:1096:405:2ca::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.11; Tue, 25 Nov
+ 2025 15:57:41 +0000
+Received: from TY3PR01MB11948.jpnprd01.prod.outlook.com
+ ([fe80::1de5:890d:9c69:172]) by TY3PR01MB11948.jpnprd01.prod.outlook.com
+ ([fe80::1de5:890d:9c69:172%4]) with mapi id 15.20.9366.009; Tue, 25 Nov 2025
+ 15:57:35 +0000
+Date: Tue, 25 Nov 2025 16:57:14 +0100
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
+	biju.das.jz@bp.renesas.com, Peter Rosin <peda@axentia.se>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v4 11/22] phy: renesas: rcar-gen3-usb2: Use mux-state for
+ phyrst management
+Message-ID: <aSXR2iEAKjxM8VOR@tom-desktop>
+References: <cover.1763737324.git.tommaso.merciai.xr@bp.renesas.com>
+ <89b6d61854e94966fc9781d5832b6c187c35b4de.1763737324.git.tommaso.merciai.xr@bp.renesas.com>
+ <CAMuHMdXBbzTeiQJQWuUnJ_rRD1Zo=1TBOzrv4WbvC7whL1=E9w@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXBbzTeiQJQWuUnJ_rRD1Zo=1TBOzrv4WbvC7whL1=E9w@mail.gmail.com>
+X-ClientProxiedBy: FR4P281CA0212.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e4::11) To TYCPR01MB11947.jpnprd01.prod.outlook.com
+ (2603:1096:400:3e1::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI1MDEzMSBTYWx0ZWRfX/zEkoTFJbrKt
- n66bH8HpCzFmU6ESgeVXMxrHD04IH2xi41sGKrLT8EYzsOEmzMqRtGHI9AoY1n/B6D7DvFmWA1j
- Ep84xXmS8DC8J6VyTVRxz+FEdxnhYAQEmy71jVpuna8DNQ8A1xGn6vpvQjh93bhf/gfdglNHcuw
- t6ccmT48+VvrfOjYWhmnwkd8+WXIm/6ETb1eSeThpy75hh564jl6CUIykIv3D40ezhQ1aB/dNqW
- gXanm7Eed+9aXWT5EfJCDyuZkT4Km8Gra4of4yZ392eCdwLUVKZH9JR+PpFO1gDZ1JuQyfmBiYq
- BiFPbM+1bM7ISd08SNn7WcRSEk4LQGIFIi/OOwGqhbGxAbsn8VyFXKYFnBaJMMMflzyQlheAgDM
- kDllli3rNwjq4VdMKKWdVdbrcL9cdQ==
-X-Authority-Analysis: v=2.4 cv=D9hK6/Rj c=1 sm=1 tr=0 ts=6925cfd0 cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gAnH3GRIAAAA:8
- a=VGjn6xsyVdTJQteVSj0A:9
-X-Proofpoint-ORIG-GUID: xgvaiYifUmsinv0mCy18oNJamAiwRECr
-X-Proofpoint-GUID: xgvaiYifUmsinv0mCy18oNJamAiwRECr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-25_02,2025-11-25_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 adultscore=0 malwarescore=0 priorityscore=1501
- lowpriorityscore=0 clxscore=1015 bulkscore=0 spamscore=0 suspectscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511250131
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY3PR01MB11948:EE_|TYRPR01MB16003:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7207627-9c77-4b20-24f7-08de2c3b59a4
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|7416014|376014|52116014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?A3lYOceJrvw9fVTBcqtIUErde9Xp7Ii8uk133qhHIdxDh9rusWp238nZkQr7?=
+ =?us-ascii?Q?dSGmchts/2OS4mENS8KdfRU21577W3Bpnul3u3GuGx0QWci6tC3GpgaasUBN?=
+ =?us-ascii?Q?Ej6Ws/N9v6UACnMD+FnxxaWvXDsSQsho62aYS1zIZ/RnkmaTYInex2wq28uW?=
+ =?us-ascii?Q?ynyQCfJIMfzFvnrILySVGHsEc9xaDh3d0s+IgGvgk+OTo3wsr2Y83rU1A2Q9?=
+ =?us-ascii?Q?yIMltIP9JHcWXYCpDNeW+4e4uqpQ2vml4Egk1PsiGrE7VazRnJHj4ds9iGOW?=
+ =?us-ascii?Q?nWwwAMV9/HnjutcXIXPStq4LMygRAi9CEEtnck0VjBBaJGOt7ysBEUUEQEru?=
+ =?us-ascii?Q?c31lvgveSlj/XEKaGVDxo8hgeg9bOxPlkcWTbh60LHceMq08Y3WC5BJOcY1U?=
+ =?us-ascii?Q?Y3gy2VPFCOAGlaTNwD7xQGMScDbzAL7jO5jkn+C/54KkX+ZiEECzCHUStzSR?=
+ =?us-ascii?Q?nCWFJM0mZLUpcZtwFQgpKs9M3GsNz7r6QWKF/ZHf0+M/kdb5/M+93ouxqM2q?=
+ =?us-ascii?Q?AhEZOAubxbQKMGK1S1ZAYLLFYu+Eijsx1PMDXHM/wG7C5lysODhJbZVA9CBM?=
+ =?us-ascii?Q?VxCaAMdLajNmt3Uq3ODfrrauX8r3EnyCJvTumhf8+xIvBeBDbFoVkrD9DUGu?=
+ =?us-ascii?Q?4gA9Xl0lkj0UPu5Ux+wGW6SLT8dkEM5yuceibplR8B6MNp0vVzeFpYfCQ+od?=
+ =?us-ascii?Q?5Ha2L5ftIdbDlvd/l/KoInT5+m5+9lfyyyxvZWEMWET4D7PhE++6KE6w8aD6?=
+ =?us-ascii?Q?n4DO+MtcUwxseGcc3nMnO4w4askntc66y7hYiz0jKN7cc2ffCw99QBH08TQY?=
+ =?us-ascii?Q?VTP4m/zT7VPcxz9EJkXYZSaMtynlaAm1DiwwwLCrGTJeQjvAvu/PGp9G322o?=
+ =?us-ascii?Q?BUEFNKsfArYGkBOV9jvn9GIO7UDT4q+3TpG1/bVYayQ8HUc3KzlTs0A9seP6?=
+ =?us-ascii?Q?gauWblCJf5cd85E95ByEI5/MgcAcFiEmrclpAqLzcWGVMx7oQb1ssg8oVpqm?=
+ =?us-ascii?Q?zKzuY3qJ1P2uLR1wMOH9EmLhmXfX9+Py/2uTTc80ttkjCMQcjEKDWhKRsijU?=
+ =?us-ascii?Q?LMMiyqEd4eF785XhAK3VKIjmb7lNDTtZIp2RMC4DoD8TGJwGlBS2q6D3ke4b?=
+ =?us-ascii?Q?OrqSfOQmdyvnRWGXJzGwqUjhrFTt45qG2S0oR+KJAqaFvPkqMOmyAOyyrp+y?=
+ =?us-ascii?Q?SGuHX9pXddTi/8PMbWKqpA0F0wEptoptg3FM6ZWtP+nJasje9SL+0aG1GP1l?=
+ =?us-ascii?Q?WLfyDNQDl9CZKVl51JLCQ6izFXaJyd5zBdu991VcVI1WZuERrAb8AFzR2R7a?=
+ =?us-ascii?Q?WTQNcwRMu9KHFkTx+wDaCK8dw63Dm+3HdNrnUysWjgzPc9cvbQ8pn+3kh18h?=
+ =?us-ascii?Q?MZT2538mDlLq6Jti19AaLNIppZ6wxEl5pQPGXFDBtHGi8igq6vQ3cKq4tfLr?=
+ =?us-ascii?Q?C6FjMflqdZ4qtKf4VQCIj6d+ClUUamlyBGfE3YqGpYIxvXEy3lGNPSdtQHs0?=
+ =?us-ascii?Q?GKP6dAiCZDBWcl0i6aXVHIIfcwut025gb6dN?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11948.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Mwn3nhVfGqyI2eSRCwv3hUhCjT3XqJ8cmqmbGiWbNj//u/iRuuxsrgS9kmj9?=
+ =?us-ascii?Q?NUgM/s86Wtf9pO3wUZ20UDTLWTIb8cV6uBvmXdE/BGgk8JEozUahUaYbeLT6?=
+ =?us-ascii?Q?x6hVhpeKEAITT1AUNr1PxWjy6rie1+5jO39Zbb8+FSB+Naf/I+z24Nk8+oiC?=
+ =?us-ascii?Q?tHgC1I4/WUkfg3VBDjLrJhve5HRuty+loYCkY/uVWLhG/QOc7/H8s13QvOsM?=
+ =?us-ascii?Q?xXQ18yjUOtAQPuioMPBertA9LR7hVJ4HPgniG9iYjUzVDKv4QjiEA8SQeSvL?=
+ =?us-ascii?Q?zTwVPOo0jz6xTS7p+h5RbbzNv0/Q8cLww7pZj86mkfPeQFRA+AVcwhS/pfsQ?=
+ =?us-ascii?Q?vM+EmvXWXRjx+45+NAOb7LzMFgA7yqDphatkdaX8ZFnJjgAXmxTlth7LgZ7s?=
+ =?us-ascii?Q?VBdH3XSGMY2hlKP21bGWy0cr38Z3BUBjDmDIiW8RCYoN+UOYozsbsVEK8yRy?=
+ =?us-ascii?Q?3fPApoiNgdB2akgiucvPFFmGm1oL18cMjIGWG3v1qMimo24+zp7ocyIHKzeI?=
+ =?us-ascii?Q?/cB1ng+BlSKhAfTjWC8C3IMgwqeKhaHSZjekaz3S927gQRe7l+DOdEQRcTed?=
+ =?us-ascii?Q?d70Gt9ONdCs3B6GStE8HDVmUrAZOdUUpnZWlL6RZZks6KFbBNIjx1T5ewGtz?=
+ =?us-ascii?Q?jLwPcWvLPKI1okENzj/0bn9bvdyLBOOXfM2prDo05BrQAevqLhUGUYnpILKq?=
+ =?us-ascii?Q?BvDSVCyoG/CNlYvuAbiLsiXeCIrmhC5XJQu7umKmjKVizWJreNAlnNqnxHuc?=
+ =?us-ascii?Q?yFtn1mz5mlXp948IJCAGFc+3Y7evqVo9La2rSLksPLJ7BguCotyxnF1R4na/?=
+ =?us-ascii?Q?c/2Y/Msc/R0M8LZNDM/1MDEjRDjIlwmf0ntC8a/9ixPlhsQhAC/u7C6mF0WY?=
+ =?us-ascii?Q?I3+y/Xo1k2UPFBn+2k7cgbwgU0ceguowd7FRJFnRPrmEwVYupETlh4hFCHM1?=
+ =?us-ascii?Q?mqUiifZx+7D+ddDEUccw1rneYhoaQuuqJuOqv/Y2pg68FwYOmwsFpog99Ci4?=
+ =?us-ascii?Q?5W9EDGr4oqgI0a0+bJSLSisBUbnXak+4Jjarjbuuw6O0EvQb/MKnLaey2WAj?=
+ =?us-ascii?Q?txaseeWyLzg6hfly6f8Pz82f1JLD58HtOdlFHVuz4IWChiQTh3S4oj4Q6VDB?=
+ =?us-ascii?Q?77yxV5hGaMEf5dr2IKUNYN+X2chb4KpXveQfwWzsiIOypZ43f4JuHtgZllPU?=
+ =?us-ascii?Q?OqdMdcO2axVshccYI+1Y0iWo6NGNm4C0n52xNWtBQFTd0vopfqL8ETx/TK/8?=
+ =?us-ascii?Q?ObiGxhs5vJBPPoofTc+KSs+4c9RO6U+jzeVnnVAyQ2GXzXHEtsxRgG4Q0+ya?=
+ =?us-ascii?Q?ggPFWz+WYgPOTfik8NcHTzSe4l6NcKCoh8f7VE6Ly2F70eBG3XoTxtd6CY31?=
+ =?us-ascii?Q?RsTPWL4d/Av/et38aawVB/dJkzO2u+kiUmCqdURV7mvCF9vWyM5hLir1aWJK?=
+ =?us-ascii?Q?UDaNlF/lK5EnjrKxSAJ3u4Sq4VqBj5vVungxFVAE6TBcv4Jtxxb1N4oqcUmN?=
+ =?us-ascii?Q?n8xMyzQVwX6GqlBqTXruTTfIqe07o64WvkHHGNaNhiYFru5ON4gOKPLEz9FV?=
+ =?us-ascii?Q?xqHpq/ubGVa+z6d0isQ/Ji7yrHYgNIKs8TMVGvhP7pgrwkf0bA/7AhTZ/G36?=
+ =?us-ascii?Q?qwaUZpDNGGhuNMyuozaJEQc=3D?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7207627-9c77-4b20-24f7-08de2c3b59a4
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 15:57:35.8147
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dDFFI2Ex/5Hr9lOEqHCBf4BVQ4xBSgBdEHSbzJ/h0wggHQ/r6TJG5vrbxG4S9BTzujB/1ZaC/9pRbT63q4ZI2rJkt3DTwwVBI7vhI7/riXIjhvIsUDaQmaVvAM5+Fxmd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYRPR01MB16003
 
-Add clk provider feature for the adf4377.
+Hi Geert,
+Thanks for your review!
 
-Even though the driver was sent as an IIO driver in most cases the
-device is actually seen as a clock provider.
+On Tue, Nov 25, 2025 at 03:10:22PM +0100, Geert Uytterhoeven wrote:
+> Hi Tommaso,
+> 
+> On Fri, 21 Nov 2025 at 16:14, Tommaso Merciai
+> <tommaso.merciai.xr@bp.renesas.com> wrote:
+> > Add support for selecting the phyrst mux-state using the Linux mux
+> > subsystem in the R-Car Gen3 USB2 PHY driver. This ensures correct hardware
+> > initialization and integration with systems utilizing the mux-state device
+> > tree property.
+> >
+> > A temporary wrapper for optional muxes is introduced until native support
+> > is available in the multiplexer subsystem.
+> >
+> > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> 
+> Thanks for your patch!
+> 
+> > --- a/drivers/phy/renesas/phy-rcar-gen3-usb2.c
+> > +++ b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
+> > @@ -938,11 +939,27 @@ static int rcar_gen3_phy_usb2_vbus_regulator_register(struct rcar_gen3_chan *cha
+> >         return rcar_gen3_phy_usb2_vbus_regulator_get_exclusive_enable(channel, enable);
+> >  }
+> >
+> > +/* Temporary wrapper until the multiplexer subsystem supports optional muxes */
+> > +static inline struct mux_state *
+> > +devm_mux_state_get_optional(struct device *dev, const char *mux_name)
+> > +{
+> > +       if (!of_property_present(dev->of_node, "mux-states"))
+> > +               return NULL;
+> > +
+> > +       return devm_mux_state_get(dev, mux_name);
+> > +}
+> > +
+> > +static void rcar_gen3_phy_mux_state_deselect(void *data)
+> > +{
+> > +       mux_state_deselect(data);
+> > +}
+> > +
+> >  static int rcar_gen3_phy_usb2_probe(struct platform_device *pdev)
+> >  {
+> >         struct device *dev = &pdev->dev;
+> >         struct rcar_gen3_chan *channel;
+> >         struct phy_provider *provider;
+> > +       struct mux_state *mux_state;
+> >         int ret = 0, i, irq;
+> >
+> >         if (!dev->of_node) {
+> > @@ -1019,6 +1036,23 @@ static int rcar_gen3_phy_usb2_probe(struct platform_device *pdev)
+> >                 phy_set_drvdata(channel->rphys[i].phy, &channel->rphys[i]);
+> >         }
+> >
+> > +       mux_state = devm_mux_state_get_optional(dev, NULL);
+> > +       if (IS_ERR(mux_state)) {
+> > +               if (PTR_ERR(mux_state) == -EPROBE_DEFER)
+> > +                       return PTR_ERR(mux_state);
+> > +               mux_state = NULL;
+> 
+> No need to set mux_state to NULL, as mux_state is not used below.
+> 
+> However, shouldn't you propagate all errors up?
+> If the mux is not present, mux_state should already be NULL,
+> i.e. IS_ERR(mux_state) would be false.
+> 
+> > +       } else {
+> > +               ret = mux_state_select(mux_state);
+> 
+> This causes a crash on R-Car Gen3 and RZ/Five, as mux_state_select()
+> doesn't handle NULL pointers gracefully yet.
+> 
+> Adding a check like
+> 
+>     -       } else {
+>     +       } else if (mux_state) {
+> 
+> fixes the issue.
 
-This patch aims to cover actual usecases requested by users in order to
-completely control the output frequencies from userspace.
+Thank you for checking this!
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-Changes in v3:
- - Replace .is_enabled clock operation with .is_prepared
- - Use modern devm_clk_hw_register() instead of devm_clk_register()
- - Switch to clk_parent_data with fw_name instead of parent_names array
- - Use devm_of_clk_add_hw_provider() with of_clk_hw_simple_get for modern DT integration
- - Fix indentation alignment in adf4377_clk_recalc_rate function parameter
- - Remove manual clock provider cleanup by using devm_* variants
- drivers/iio/frequency/adf4377.c | 119 +++++++++++++++++++++++++++++++-
- 1 file changed, 117 insertions(+), 2 deletions(-)
+Ack :)
+I will switch to:
 
-diff --git a/drivers/iio/frequency/adf4377.c b/drivers/iio/frequency/adf4377.c
-index 08833b7035e4..045747351ed7 100644
---- a/drivers/iio/frequency/adf4377.c
-+++ b/drivers/iio/frequency/adf4377.c
-@@ -8,6 +8,7 @@
- #include <linux/bitfield.h>
- #include <linux/bits.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/clkdev.h>
- #include <linux/delay.h>
- #include <linux/device.h>
-@@ -435,9 +436,14 @@ struct adf4377_state {
- 	struct gpio_desc	*gpio_ce;
- 	struct gpio_desc	*gpio_enclk1;
- 	struct gpio_desc	*gpio_enclk2;
-+	struct clk		*clk;
-+	struct clk		*clkout;
-+	struct clk_hw		hw;
- 	u8			buf[2] __aligned(IIO_DMA_MINALIGN);
- };
- 
-+#define to_adf4377_state(h)	container_of(h, struct adf4377_state, hw)
-+
- static const char * const adf4377_muxout_modes[] = {
- 	[ADF4377_MUXOUT_HIGH_Z] = "high_z",
- 	[ADF4377_MUXOUT_LKDET] = "lock_detect",
-@@ -929,6 +935,108 @@ static int adf4377_freq_change(struct notifier_block *nb, unsigned long action,
- 	return NOTIFY_OK;
- }
- 
-+static unsigned long adf4377_clk_recalc_rate(struct clk_hw *hw,
-+					     unsigned long parent_rate)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+	u64 freq;
-+	int ret;
-+
-+	ret = adf4377_get_freq(st, &freq);
-+	if (ret)
-+		return 0;
-+
-+	return freq;
-+}
-+
-+static int adf4377_clk_set_rate(struct clk_hw *hw,
-+				unsigned long rate,
-+				unsigned long parent_rate)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+
-+	return adf4377_set_freq(st, rate);
-+}
-+
-+static int adf4377_clk_prepare(struct clk_hw *hw)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+
-+	return regmap_update_bits(st->regmap, 0x1a, ADF4377_001A_PD_CLKOUT1_MSK |
-+				  ADF4377_001A_PD_CLKOUT2_MSK,
-+				  FIELD_PREP(ADF4377_001A_PD_CLKOUT1_MSK, 0) |
-+				  FIELD_PREP(ADF4377_001A_PD_CLKOUT2_MSK, 0));
-+}
-+
-+static void adf4377_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+
-+	regmap_update_bits(st->regmap, 0x1a, ADF4377_001A_PD_CLKOUT1_MSK |
-+			   ADF4377_001A_PD_CLKOUT2_MSK,
-+			   FIELD_PREP(ADF4377_001A_PD_CLKOUT1_MSK, 1) |
-+			   FIELD_PREP(ADF4377_001A_PD_CLKOUT2_MSK, 1));
-+}
-+
-+static int adf4377_clk_is_prepared(struct clk_hw *hw)
-+{
-+	struct adf4377_state *st = to_adf4377_state(hw);
-+	unsigned int readval;
-+	int ret;
-+
-+	ret = regmap_read(st->regmap, 0x1a, &readval);
-+	if (ret)
-+		return ret;
-+
-+	return !(readval & (ADF4377_001A_PD_CLKOUT1_MSK | ADF4377_001A_PD_CLKOUT2_MSK));
-+}
-+
-+static const struct clk_ops adf4377_clk_ops = {
-+	.recalc_rate = adf4377_clk_recalc_rate,
-+	.set_rate = adf4377_clk_set_rate,
-+	.prepare = adf4377_clk_prepare,
-+	.unprepare = adf4377_clk_unprepare,
-+	.is_prepared = adf4377_clk_is_prepared,
-+};
-+
-+static int adf4377_clk_register(struct adf4377_state *st)
-+{
-+	struct spi_device *spi = st->spi;
-+	struct clk_init_data init;
-+	struct clk_parent_data parent_data;
-+	int ret;
-+
-+	if (!device_property_present(&spi->dev, "#clock-cells"))
-+		return 0;
-+
-+	if (device_property_read_string(&spi->dev, "clock-output-names", &init.name)) {
-+		init.name = devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
-+					   fwnode_get_name(dev_fwnode(&spi->dev)));
-+		if (!init.name)
-+			return -ENOMEM;
-+	}
-+
-+	parent_data.fw_name = "ref_in";
-+
-+	init.ops = &adf4377_clk_ops;
-+	init.parent_data = &parent_data;
-+	init.num_parents = 1;
-+	init.flags = CLK_SET_RATE_PARENT;
-+
-+	st->hw.init = &init;
-+	ret = devm_clk_hw_register(&spi->dev, &st->hw);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_of_clk_add_hw_provider(&spi->dev, of_clk_hw_simple_get, &st->hw);
-+	if (ret)
-+		return ret;
-+
-+	st->clkout = st->hw.clk;
-+
-+	return 0;
-+}
-+
- static const struct adf4377_chip_info adf4377_chip_info = {
- 	.name = "adf4377",
- 	.has_gpio_enclk2 = true,
-@@ -958,8 +1066,6 @@ static int adf4377_probe(struct spi_device *spi)
- 
- 	indio_dev->info = &adf4377_info;
- 	indio_dev->name = "adf4377";
--	indio_dev->channels = adf4377_channels;
--	indio_dev->num_channels = ARRAY_SIZE(adf4377_channels);
- 
- 	st->regmap = regmap;
- 	st->spi = spi;
-@@ -979,6 +1085,15 @@ static int adf4377_probe(struct spi_device *spi)
- 	if (ret)
- 		return ret;
- 
-+	ret = adf4377_clk_register(st);
-+	if (ret)
-+		return ret;
-+
-+	if (!st->clkout) {
-+		indio_dev->channels = adf4377_channels;
-+		indio_dev->num_channels = ARRAY_SIZE(adf4377_channels);
-+	}
-+
- 	return devm_iio_device_register(&spi->dev, indio_dev);
- }
- 
--- 
-2.43.0
+	mux_state = devm_mux_state_get_optional(dev, NULL);
+	if (IS_ERR(mux_state)) {
+		return PTR_ERR(mux_state);
+	} else if (mux_state) {
+		ret = mux_state_select(mux_state);
+		if (ret)
+			return dev_err_probe(dev, ret, "Failed to select USB mux\n");
 
+		ret = devm_add_action_or_reset(dev, rcar_gen3_phy_mux_state_deselect,
+					       mux_state);
+		if (ret)
+			return dev_err_probe(dev, ret,
+					     "Failed to register USB mux state deselect\n");
+	}
+
+In v5.
+
+
+Kind Regards,
+Tommaso
+
+> 
+> > +               if (ret)
+> > +                       return dev_err_probe(dev, ret, "Failed to select USB mux\n");
+> > +
+> > +               ret = devm_add_action_or_reset(dev, rcar_gen3_phy_mux_state_deselect,
+> > +                                              mux_state);
+> > +               if (ret)
+> > +                       return dev_err_probe(dev, ret,
+> > +                                            "Failed to register USB mux state deselect\n");
+> > +       }
+> > +
+> >         if (channel->phy_data->no_adp_ctrl && channel->is_otg_channel) {
+> >                 ret = rcar_gen3_phy_usb2_vbus_regulator_register(channel);
+> >                 if (ret)
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+> 
 
