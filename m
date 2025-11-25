@@ -1,104 +1,150 @@
-Return-Path: <devicetree+bounces-241920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE3A5C84566
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:59:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75E12C84569
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:59:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4E96D3426D9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:59:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A7023AC286
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:59:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8992ECEA5;
-	Tue, 25 Nov 2025 09:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0612ED85D;
+	Tue, 25 Nov 2025 09:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="frEiSv5F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iM54Qs/B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8407C2DCC1B;
-	Tue, 25 Nov 2025 09:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7104E2ECEA5
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 09:59:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764064750; cv=none; b=JHqcFzIuCyUszvdnqqXAea1XlVlx1O/wRRVT3yz4+Q4ovt0HgkTCRV3FqCJwm/OEcn0dosv6vTi5UkQGjLenM7t/R0VIv7hppLPdVCqsV8YbNHEYJROjEC9bOv04dLQwQ7ZA/3Pa07P7+RvypWef4ktHtj8USxfmEBWjBuvHBCQ=
+	t=1764064778; cv=none; b=TEDZsTpbF5RnHk6KEO+5Cdh4dS+kCFwgnEgpkWxPx/fd2iNglrAUF9gT0RDoYmz6b8O0Bfp3GU0W5/9zYVwy6SW98jWRXnO8YLI2oQqmeVbh6e10KS1qwGSnaZwfzfIS1rFBMF1pcTEa0R/iBYxdf5FrYP6UFSLWpM2WOE6Qku0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764064750; c=relaxed/simple;
-	bh=ozJ7861GQ6438EySlqEP/tdDJrMAS0tcnOH32xZ6yaA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uQr6Bh1wyDFOeeq6b8gjPP1zGK3qdE1V+GfGX1imPqT6qhlV5vp4k8a1wj3elxvgIBVlW0oHf0NBRnBBdUGrbhFVKoOJHPy9ArxtMkk1De2biyZWpKNhhVqqpBgJBO0J0OO1btTwgLewZp/YqTbepygSSWL8d3/ArGIu7LkAfFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=frEiSv5F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84FA1C4CEF1;
-	Tue, 25 Nov 2025 09:59:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764064749;
-	bh=ozJ7861GQ6438EySlqEP/tdDJrMAS0tcnOH32xZ6yaA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=frEiSv5F27sxmu3HJaoLapJTZYDpn3ED0NgHCMj3jO/8dNSUSGD2er6aH54tr8YD5
-	 qUMxiYOELsgQebR4YiGOu8w7m85s+XA9WLbaNNPzKOBTeEGlL+EdY1OibEUfsVyDmr
-	 lypVc5VB2GCPYOh9lbGSUgRtLAHaMBEEtIm4/ZQW2wy2lvuGHqkGRvs0bp4+q03jWJ
-	 qMf5WjdZS76cdG2szHAUPKXRp1B4JwHQxwnRjoX8t2CMInanoEBMkEjlcVREtlTY6S
-	 sDKXJ8hoX+HLtO+sofjNXN5xQ29/wOHLgUNNW85TOsmzvdrj70ZXsA7sS4iSxYWdm2
-	 Dn/lMtTtFia7g==
-Date: Tue, 25 Nov 2025 10:59:06 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Wasim Nazir <wasim.nazir@oss.qualcomm.com>, 
-	Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>, Yijie Yang <quic_yijiyang@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 1/6] dt-bindings: phy: describe additional regulator for
- Qualcomm SGMII PHY
-Message-ID: <20251125-happy-silver-monkey-569cfd@kuoka>
-References: <20251124-sgmiieth_serdes_regulator-v1-0-73ae8f9cbe2a@oss.qualcomm.com>
- <20251124-sgmiieth_serdes_regulator-v1-1-73ae8f9cbe2a@oss.qualcomm.com>
+	s=arc-20240116; t=1764064778; c=relaxed/simple;
+	bh=R6QMB1wFC2BATzYNPhRuQ8QidzB6qeV3IovdUk/YQTI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=prbbWbjgEtas4Lq7+WClxdZ8m2HXh73WZLDFbxWkVP1hVgqT62gv4KRbivrvZKPiw18U+u4mSbthRknq1mhHjCKbl/KULWBXh62J2mxQHajIczWbdUdquk7qLdEtlJovkt3DBBzQmCdF9B1v7pTS8qkxwBXorMi7+J+gY3NmnoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iM54Qs/B; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b736cd741c1so927849666b.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 01:59:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764064775; x=1764669575; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Fgh4ODFDnXgu6g2WTTqzK1hFnk5Jr1ZOv10EVLwZMBY=;
+        b=iM54Qs/B6/n5IrKlNppjpuL91giWasf+ib/GKeY4wgUM5PapbJNBzhmeYkHOqRmmCn
+         5+hkIxAYrA6m2BPIU1h9DGfcVj/wsd/5nk2BfhwBpOQKiYNmq67jW2qsBDr1qbbEcDnM
+         UNLj1GUL98yAdQA9zCf/i3evPIdBrJH86espWP9SrVA7dFrh4tFtImyt/cWS1BKlerre
+         zcLoGFlx/De2VSolFm8RYGX8ZNOO71XeenEi1aBIMBWdRuaIXi5LXwe+d1lMIDdl3Q8C
+         65xPDlavFwHHZj9mLOYu4d68JP6oQWOg1H73zrIermC6hIxARXM4knK8OAsEMBJ8v2Hz
+         ly7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764064775; x=1764669575;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Fgh4ODFDnXgu6g2WTTqzK1hFnk5Jr1ZOv10EVLwZMBY=;
+        b=hrKjGX/dgYjeAy2VSodxilrs4fcheHKz99Nz02UsavxpUHWxbjFDFiTK2rPML7Jige
+         aoTQ/ER774gp21bW9YaZlBKMlLbM9c33uidJK+WO6yIs/EoVaLFrZOHcV4O9dRzd1B2d
+         q8mkMVRiQTm799WpZdiOjsRQ7CclvWcYi5ooTmecWhIU/kIGfUDVWgj6nwMrlSkm6FA+
+         hkAwPexJ64rTbLzfrT85Ang8rlZUedhckRSgMk/QGoQrPLu2P/Za5JiID18rb2vP6+fR
+         +aXw1rLdHY96gKPvTb9o0lPuc8ctIXXIxUpml9YgMcvjJM2jcl6JCeH2uFJu1ajClDPt
+         F1Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCUh0EPJuOFHRw01Zv5OkvaJkX67cBtg7vcNYPmEFI5/r9O/rw8cNSMhYVtXXVY+OcaXHi+I91pMv6Zg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1PXvyFIDAQv/dO/Wxv894MGADHf7aLMs6fOzJbv8cQQN+QK3b
+	nEYc4GVdKD85N4gleSzJwbMNeE0sQ6247mNAJNpBK5zPPHnsAkRfeuI3
+X-Gm-Gg: ASbGncsQJ593nEiyYzVNa/uXlNA3RZ5yXWv6udafb2BKD9Xo7McfAovXtpJ1K7jIWmt
+	uyA/NugLVHwhwYjj+k+h+3g1/QwS7ItXGY6McgmaHHYqgI1UNGHy283RqU5MMR69QUWee6fSw2h
+	aRsTfWZ/KSGCQv71GFhZo5oNyJH+HNCnwZhEaYkfOWu7NCOSWeXZiBNQgJdH83V9pvn2qPmCOaH
+	aY/D4RbFhjqm2hymGJPZkGWDZfensooKagVygrrFveRySX0aVoVdLr8RbhE+tQ+vo9d680R0cqa
+	PPiQOVRliXURr3LmBogjm6fFEf1yIKPsM/fbdcQLchCGcltQs+s+K73cpDqQULN9/NAeQEd06rA
+	jbZTWe2XNcTDkGFxCDlIG365x9o3zKBnMP8PcvsdmJwnIf12Y0J7GbO8NMNUuTVKcixOkDDWYV7
+	u0t44dClhW5sb7oK9Byarg0074HV31io7ioCA/i4qKY/M=
+X-Google-Smtp-Source: AGHT+IESxJDwS/BJ1YU+rQ3vBeFJBP5tEOROc8lHgEyTp+47bod8zHWxWQ5jr9upDauFLWFNyK0Ddg==
+X-Received: by 2002:a17:907:3daa:b0:b73:57eb:688 with SMTP id a640c23a62f3a-b767183c4b1mr1636055866b.53.1764064774524;
+        Tue, 25 Nov 2025 01:59:34 -0800 (PST)
+Received: from [10.25.216.228] ([128.77.115.157])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654fd51fbsm1498870766b.33.2025.11.25.01.59.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Nov 2025 01:59:34 -0800 (PST)
+Message-ID: <4a022153-009c-44fd-8c4b-39819ae69390@gmail.com>
+Date: Tue, 25 Nov 2025 01:59:31 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251124-sgmiieth_serdes_regulator-v1-1-73ae8f9cbe2a@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/6] reset: imx8mp-audiomix: Replace mask with bit
+ index
+To: Frank Li <Frank.li@nxp.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
+ <shengjiu.wang@nxp.com>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20251114133738.1762-1-laurentiumihalcea111@gmail.com>
+ <20251114133738.1762-3-laurentiumihalcea111@gmail.com>
+ <aSCHjNqj3CV3ahX0@lizhi-Precision-Tower-5810>
+ <6be8a682-6c72-45c8-be0e-880ab66045ff@gmail.com>
+ <aSR8q5cE/XXbZuF0@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+In-Reply-To: <aSR8q5cE/XXbZuF0@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Nov 24, 2025 at 02:55:17PM +0530, Mohd Ayaan Anwar wrote:
-> Describe the additional vdda-0p9-supply for the Qualcomm SGMII PHY.
 
-Why... device was completely described or not? What else is missing?
-Please read writing bindings doc - the bindings are supposed to be
-complete, so you bringing up properties afterwards feels odd.
+On 11/24/2025 7:41 AM, Frank Li wrote:
+> On Mon, Nov 24, 2025 at 01:28:32AM -0800, Laurentiu Mihalcea wrote:
+>> On 11/21/2025 7:38 AM, Frank Li wrote:
+>>> On Fri, Nov 14, 2025 at 05:37:34AM -0800, Laurentiu Mihalcea wrote:
+>>>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>>>>
+>>>> Replace the reset map mask with the bit index to make it clear that all
+>>>> reset lines are managed by exactly 1 bit.
+>>> I don't think there are benefit because I met some periphal need a magic
+>>> number to reset.
+>>
+>> Please provide more information. What SoC? Which peripherals? What block control?
+>>
+> I can't reminder exact one. I grep some code
+>
+> [IMX8MP_MEDIABLK_PD_LCDIF_1] = {
+>                 .name = "mediablk-lcdif-1",
+>                 .clk_names = (const char *[]){ "disp1", "apb", "axi", },
+>                 .num_clks = 3,
+>                 .gpc_name = "lcdif1",
+>                 .rst_mask = BIT(4) | BIT(5) | BIT(23),
+>                 .clk_mask = BIT(4) | BIT(5) | BIT(23),
+>                 .path_names = (const char *[]){"lcdif-rd", "lcdif-wr"},
+>                 .num_paths = 2,
+>         },
+>
+> mask is more extenable and easily support more hardware in future. Change
+> to bit number have not big benefit.
 
-> 
-> Signed-off-by: Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml         | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml
-> index 90fc8c039219c739eae05cc17108a9a2fc6193df..0a1330b9118d63cf5400325c58bca05ebc641055 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sa8775p-dwmac-sgmii-phy.yaml
-> @@ -36,6 +36,10 @@ properties:
->      description:
->        Phandle to a regulator that provides power to the PHY.
->  
-> +  vdda-0p9-supply:
 
-Why not vdda? What other supplies are you missing?
+sure, I'm fine with the mask-based approach. The big idea here is to make this driver
 
-> +    description:
-> +      Phandle to a 0.9V regulator supply to the PHY.
+usable in as many scenarios as possible.
 
-You just duplicated phy-supply, no? Both supply to the phy or how
-exactly does it work?
 
-Best regards,
-Krzysztof
+Philipp, please let me know if you're okay with the proposal. Will also have to tweak
+
+one of the subsequent patches since, so far, we've been operating under the assumption
+
+that reset lines are 1 bit.
 
 
