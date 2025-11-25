@@ -1,158 +1,213 @@
-Return-Path: <devicetree+bounces-241974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788E5C84C9A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:45:41 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23550C84C8E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:45:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EE0D3B18FE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:45:40 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5D48E3470CE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:45:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0261E314A89;
-	Tue, 25 Nov 2025 11:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E651E274B2B;
+	Tue, 25 Nov 2025 11:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="X1/VPxhx"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="HszSkWGM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022111.outbound.protection.outlook.com [52.101.126.111])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45ADF27144B;
-	Tue, 25 Nov 2025 11:45:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764071136; cv=none; b=X20DC5K+UzOIUuSucM+eP982rxUYffnoK3S4CGOQuKn34EOVTpl4r9NsQgoJq2JK6032IbQPEAYKU4xftzp0+YQcCgAoAoQ1RGwpJ3JtxUBd+RLHxVzl2QtkBaTJc/bnQxVYNs8ugwHepV+KB/MfcjcaHMCBTPVCn0CYhDEmLVU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764071136; c=relaxed/simple;
-	bh=wxpR9kK07kWmOlQUvX49zrpQRrvjiKoa6JswBCvlN78=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lprcN6yflKICYC9DICDA+bzcBlFlFsEyJVzb+GAsoKUYNLp2P/QnX3QU/1IC4OYgmGdcbkDHTi61+LGTjumYFqKaZLDIC4VZZNxOXWtJE9dTiZRwIQn7RJCfcfqZ02ShbSXn+VtXJYPzneXwp/hDHCEN4VGm3ZynInlGJ+4XQUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=X1/VPxhx; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764071135; x=1795607135;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wxpR9kK07kWmOlQUvX49zrpQRrvjiKoa6JswBCvlN78=;
-  b=X1/VPxhx+WQznopZ60hliB9kNYmJ/zMgfBvSdvtsuHjCL9OQa3zD9qoT
-   +7ofxvgayD1x9sH691Sj60Y6OO5MfOk2j1LLiJ89sfiPAVfc1J4Q/UVGy
-   iiVPOwlSdgAL5jQvhrnmhUSlapijHe52qAwY3Xy4jDmnftMdt4jAxsAPY
-   BERagq26hJqEwXW/k18pQHbVK15Ps+qoQK1CJEdoqEkrTdJPLbJ2gKYy3
-   V+ArYz604XEpslYn4Mioh54Vxy+vvxFShU35mSc+lIG7IZu3dCWG7IR55
-   uv5WmCfBC8nvm5rn4/8U99J3SFAFas1Dhfc6zLbzkLHn6Fi89o2wH136I
-   Q==;
-X-CSE-ConnectionGUID: CI+AQc2vQFe7jrUGdhTD8A==
-X-CSE-MsgGUID: 3R3Z61LrSF6hyR7XAS4dRA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="69946905"
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; 
-   d="scan'208";a="69946905"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 03:45:35 -0800
-X-CSE-ConnectionGUID: 6gsUeQENROGd5YfL7Bnx1Q==
-X-CSE-MsgGUID: CBsbMmzkSHGg6iZBiRQoAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; 
-   d="scan'208";a="223290658"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 25 Nov 2025 03:45:31 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vNrU9-000000001hl-0tl3;
-	Tue, 25 Nov 2025 11:45:29 +0000
-Date: Tue, 25 Nov 2025 19:45:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Collins <david.collins@oss.qualcomm.com>,
-	konrad.dybcio@oss.qualcomm.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-	kamal.wadhwa@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com
-Subject: Re: [PATCH v4 3/3] spmi: spmi-pmic-arb: add support for PMIC arbiter
- v8
-Message-ID: <202511251730.R2wx1j01-lkp@intel.com>
-References: <20251124-pmic_arb_v8-v4-3-d91dcbf097c7@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 055A830FF13;
+	Tue, 25 Nov 2025 11:45:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.111
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764071116; cv=fail; b=Hg5sTXc30c3t5Z5a8PTsplifGj1eaQsM/XjesgFp852+0i5zS8ODMGaS8pQwA89zYtGthFGHb8sQSpQv5Nu/Kx2lCfHZf7gEbWeT2VAV4mmSYib6ReJUxKHYRczs6eBuUJkhkCE5duki8CWIexPPctQ3OLh4unie9mPAi5BhHb4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764071116; c=relaxed/simple;
+	bh=vBGyCBuT2dsxTCXNHjVRRiP3o2sfpkhqq+i8a3kTn7g=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=HrjafAQP4w0FZty6caDJ5Hx8bse2rsHktonlxkFsMLUWKSFtrvE1qY6tFCkkq/c9CNQr6dhSSMArhGzzb6AGny5qMpPJhW3bmmOXhY7SeogZagSjx+VKEornwWdW3+Ov5HvKRFhYlZbWvyOwVwOdaJI0aEHG7Ot4hKPQD6l0DgE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=HszSkWGM; arc=fail smtp.client-ip=52.101.126.111
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OqBqCuEmaec/jn1uAbZqhJYvoX2fO7YjeUX9ngVLmT6LGoZR15BfwHueIEg1iYi32mg0pDRmhULNZypYNlFpC1eFl4lCbl/QqmBFJARpTJZqNNHWoaYhncqi7ycOBxkjKmYfoUG0QkEuwrlGSx8yS7B42MITMli26s/n4s8Mk1zv8XFeXy6+k2VNrkN3ifaMMNwmL3h9SrbkEbvHsV1YUgv55BCmf4jI2QQRmY8+Q41zqT3E6DStlY7kdgKPYpGW2IvYjY7b9ez+xS3fLnRomtAEZGg/Z4qEm7/gghmHAk3FpdA9VfZ/kVcDzBOP8xD8cx1TJ8RJfnQvVUEI9ExLbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=d0LZ6bOHuh8WYxS6iq6Bb1hXfI+PMVA0JCipaBBZ9ig=;
+ b=W2lMq0ofPQwd6BfpgIivnJJKSbVPOYfP5DR4t6ei8ERx+7HGqVQYRCL+UY9Y2kXomH2k4UT5Nweg8rVQkyiq4wARQJc5yH7gF9cUVE+gLfZ/DVOel282UIM2TePQJr386HNfnGZO6egWvKG4BUUdNzo+G6zooEYvZL1IEU9vPdHBWgeo+9BmhL2lTHpHuGpIQX3h3HdZbUZGFGkfaK8CsjNZDO0uQUNcjwJbaQv4FTmuSQzU3jeOPCXkCJ0YFBT9e/7TWcDmQiM5VpWqXUSL3M33H4NRrCCWTcJQa74+GcChLpOA2ZgKB0gw1ajW2gRv8/vo2WPZmFpfhpTNfqPyuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d0LZ6bOHuh8WYxS6iq6Bb1hXfI+PMVA0JCipaBBZ9ig=;
+ b=HszSkWGMyJOasIRdJZNFDHVJd/7wYN/4yEwAr40XtNuFCBFst4p0c1DKn8PL58vmX4ychH9fgBXAZt2DgJMEVdAfh/kKPr955Ot2pfTQ0SRpO/cAHEle4dJX/1Tw/vCpMEooxHQebJFFMlCXSagVMvFo9gWnVDnyth/CEtL23YyJEnZdS0G6UzyhZpkYf4ilJBr0l9zqy4VRxyZBy0VWE+/SXiWPoPNS+obAiQWio1iADfxoxQbSPU5E7IkQ6aHfOA8CGr86s+81O5y0SiXvOa7UKwShzmt/V6c5HSEuVvRtdsr91E10fxee7jFDgJ661FgGvPdSbmm8e9KAqMQC1g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com (2603:1096:820:51::12)
+ by TYQPR03MB9457.apcprd03.prod.outlook.com (2603:1096:405:2a3::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Tue, 25 Nov
+ 2025 11:45:09 +0000
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e]) by KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e%4]) with mapi id 15.20.9343.016; Tue, 25 Nov 2025
+ 11:45:08 +0000
+Message-ID: <db18fee8-6117-4356-a212-bfbd9cbcdc05@amlogic.com>
+Date: Tue, 25 Nov 2025 19:45:07 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 1/3] media: dt-bindings: Add Amlogic V4L2 video
+ decoder
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
+ <20251124-b4-s4-vdec-upstream-v2-1-bdbbce3f11a6@amlogic.com>
+ <07d0b355-861f-443a-a3a2-e003ecbaa29b@kernel.org>
+From: Zhentao Guo <zhentao.guo@amlogic.com>
+In-Reply-To: <07d0b355-861f-443a-a3a2-e003ecbaa29b@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR06CA0005.apcprd06.prod.outlook.com
+ (2603:1096:4:186::12) To KL1PR03MB5521.apcprd03.prod.outlook.com
+ (2603:1096:820:51::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251124-pmic_arb_v8-v4-3-d91dcbf097c7@oss.qualcomm.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB5521:EE_|TYQPR03MB9457:EE_
+X-MS-Office365-Filtering-Correlation-Id: 34293610-f1cf-47a6-d7ec-08de2c181587
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZXljODd4LzRLcHpzenpaU1hCWWI2SkVxdU9ucklTQlBvZjN0V0lOR0xKQlFo?=
+ =?utf-8?B?czg1UTZzdnhHT1IyL0lGelJoWmdhUER3aGVBQldQY0xlYUxOSDdObHB4bUFG?=
+ =?utf-8?B?c3UzU21tY1Z0MklZWSt3VllJcm51ZDkvMmw1TmErKzkzajFjVmxuQ3RZSjA0?=
+ =?utf-8?B?NkZWTlRWalNyb2Zja000NGpKRkZTRHcxNTBFVVloN1MrY1pzRFpiNWtyNFZB?=
+ =?utf-8?B?QTRjYUxYSU54QjhabTViMXVWYVl2RGNGQlBLMkZnSk9JN0RRSXRvcWF2QkU0?=
+ =?utf-8?B?WU1UZkk3SWpDV284RmRYUTF6RFJlNnMxWGN0bkQrRElnRTh3YmI5QnBTSEJx?=
+ =?utf-8?B?YjNBUjUzUlhOaGpFR3FJcFRNOFFhczlQcjJYb1NJajJZcWo5MUVRQVlscnJZ?=
+ =?utf-8?B?SUdmUmlmcVczMktkWmxIQ1FDOEhLT3N3UTZJQ2k4V1JDN3IrSnYxRGVDZmtU?=
+ =?utf-8?B?bnJMbllyWlBBLzVEMUI1Yi9MN1RsV1oydmRxU1dHTUVkR0k2bmljYTdwbWM1?=
+ =?utf-8?B?Rk1GNXpNQnVKcWdEazY1Zlc3NzVGcHpmSWxtSGVTU3phL2FNSC9PMitBWU5J?=
+ =?utf-8?B?S3BDbjJJcnVVbHdPTmNKRCsvMklvcTZSTWQ2Qis1aGZFL0w1RHh5bHlHTHpU?=
+ =?utf-8?B?cDVLUmNtaFQxQW5hemlteHJocmZkZUN3c1c0dDNyZHNFOXZkaWlhWGVZNDFv?=
+ =?utf-8?B?a2FzSThoTmlBTW02K25HdDhHV2lHcU1hOVEzSXpJU2krai9vRE1yQkJ6eThH?=
+ =?utf-8?B?UTVxVkU5b0U3NEsrQ2k4RU9aMFdvbHJWc2ZaSXZuOVhjNzB2dXBVS203dVdh?=
+ =?utf-8?B?R3hZYlNpWjcvQ29CTFhoejlOb2RZSy92T1VQdnJtYnI1cGZnWmlDNit0Z2Q5?=
+ =?utf-8?B?ZE42c0lvNjZ1UmlpV08vWmtDM1JZZzUwYW9xWE1uR0tSZWlKTk0rcVplZkNG?=
+ =?utf-8?B?bVVQTGE3aDRSMDhGYUkvbWhaeC9nTVhxc28yNU9Ld1VpWVpPam1aVXROaEN1?=
+ =?utf-8?B?TFdHVEthbTk5T0hBOXA5eGt5RFQ4cUh4MkY1cHpXa3I4ZHhpSGxRZ29QbnI2?=
+ =?utf-8?B?NWl3K1h1Y0lUeHlhb1dpQm1zVXV0QzJFSkw1TENNM2lkd3pqSzdaU0RPUkF4?=
+ =?utf-8?B?TDZ5R2k5cEVzeHdIaTN0U2kzZHBVME1HdkVxejg5NDZFUWUvclJFRWRFWnM4?=
+ =?utf-8?B?cDcvdmZTMUN5dU95ZU1yT3VzaGRONGF0M1R4eUt4dk5tVTBWYjFzVWhkaWc2?=
+ =?utf-8?B?ZnVjdUhJdlNjelAxRU1QQStXYzI3MDNGcE4wSHk3QUFJblRpaWFsdFV0bllL?=
+ =?utf-8?B?LzhsaXBid0FiWW9vTTlqNWVCVGpTeEFoV2NLa2ErU1BYTDIzNmU4eFlsREtq?=
+ =?utf-8?B?bGljQVY0NGtSa2JvUEtlQkROdVhWdzZJSHh2akhQTzZZckVUMjI4M2xPUGpC?=
+ =?utf-8?B?TEUrSnhGY1MzTUpCY2U3QWxNMHlnR0Z1eDZPc09kTnZaNm9ydGE3SmlJSCs2?=
+ =?utf-8?B?YmcxR2thQjZoNUZ1QUFmby9DVkpsRkE0dTcvS0paLzlCaVdhUFpHQlMvaS91?=
+ =?utf-8?B?YmtDckFlMWk5d253VlRaVmdrL2xNLzBydGVkU09Yb3gxMjhldi94T0tGTDNH?=
+ =?utf-8?B?ZkhQNmxsMUx0cEY1VUVoR3RadnFQZWhBYkdFQkduVktVRUVOSXgrMGRGNDEr?=
+ =?utf-8?B?RzJtblczVys3L202VThTYkJBQVZzWkZXZktxWW9NdGtjWWJ4ZGtnTkxyTGlL?=
+ =?utf-8?B?a1B6V3U3WVlyMk0ycVhwU1BneHhUNUZ6ZUJYU0o4Nk1vME9Ld2p1a0FLenJP?=
+ =?utf-8?B?MHcydG9UYXdkejFWcWw4VktVaUNyaTBxaHQ0c1FoOWU5RnhMQmJyZjVQYjJh?=
+ =?utf-8?B?MnhBRUtPTThxSHl1aGdaK1kyQjYrVS9UaGx6S0hpRjhqcE9vYTZPRDZyL3kx?=
+ =?utf-8?Q?9vqQny7etci/Fb4ppXZx85dWkofFlx+R?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5521.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dU9nUkhVSnpFTWhnOCtpYWk0OTBCa01BcG81N0xiTkl2VG90cWhWTTBDVUo1?=
+ =?utf-8?B?NG9JNkVGS3BNQzJBNmZGcEZudXlZOXE3OFFjL0pxVjBEU2R4a0wzY3o3aWR6?=
+ =?utf-8?B?VXJhcTJXNjNZTVNaMUhCM2VUM2F0ZkNBdnRxVjdsdE5uVXg1cnpPQ0tpc3lz?=
+ =?utf-8?B?MkMyS0x3cWtuYTdKN0M1dUZJbjIrczFCbm1TYUxsTU9mN0FqdTBpNVNGNHEx?=
+ =?utf-8?B?TjdaNlJ4Z2JCY3FLNFhTekpNbnRZY2dYa2JkQVBYRm03L1p4VFpFYkxocmJp?=
+ =?utf-8?B?RW1oTXQ5UmNmNjQrczl5Y3RxS2ZhSC9wZjhrRTRxYkppK1Z2RWtVcGMyOVVt?=
+ =?utf-8?B?a240Z21SS0tNRW5sRGJPYm9kTVJ4RFoweEZtTG1wdk1BUmtNVHVzWnBHMnVL?=
+ =?utf-8?B?bXdyOE9xTDhIY1RzczlOYll4cjFGYy8wdlZ6U0pGQzRJR01TYkcwREREWU1D?=
+ =?utf-8?B?eXkwbTlpTVNkOW5DUVpKT3d0QVdTVHh1WFIvUFlxZUJSZkVTYmJDMkE2ajJD?=
+ =?utf-8?B?U2Nnb0tGZUUzR3UyWnFFazVUMUVZbXZra2w3RjhmZzVFQ1Z1VnBkNW0xSEl6?=
+ =?utf-8?B?ZmoycTdEdmxWWGRjUUNreDM2SWZTcGNpVkwzTysyWGRKbU9MTmNjenBVZkg3?=
+ =?utf-8?B?Zk1mUjlJSzdkQTE3bUhEM1VybTJhNHFZbTNyVzQwWGYyczBJYUo0c2lWcTV1?=
+ =?utf-8?B?dXVCTGhDZFMwZTJ2WCtZSDYyMjQ0MmJxQk9hYnJtMHlmUE83YTFWWTJENGNO?=
+ =?utf-8?B?OXllSmh2ZW5VdjFXUE4vSDBJQzE3a1hzbVM4bEc3clR1bU52UW1Bd1BLQXJo?=
+ =?utf-8?B?NWQxL1NScXh6a25lWXlnVmhTNWJ6VlBxUnd0Q0Z0ZkUrV0xkMmt2UUdQWFpq?=
+ =?utf-8?B?cE9ER2h1N3hoQU1SWGJvT1k1clJraG9MWktidkxHNnUxRURaV3MvVDFiMEVV?=
+ =?utf-8?B?Q2Q2clJPcDV3TVZhWUlibzV2dVFYRzh5YTgvdVVETXpFcDBQbUppUm0wZ1VD?=
+ =?utf-8?B?bkhyQ0krYXRBRVVubkFGRG9nRnA1ZkR5aldYRitzZy95RFF6cGxKUlpKaFF1?=
+ =?utf-8?B?R1lndWVmVTdBYTQ2eE85QnFGbGZwYU1zZnU3aGxyRStjeUpNb1ZBUnZjYlNU?=
+ =?utf-8?B?YXNuRm03UE1qQk42YW1zSTlMWFh0QzkzTGFNRDhhMEpjZkU2T2VFeHJWS1RW?=
+ =?utf-8?B?V0llWTZoWlBMZUdNcTUzN2VIZ3ZXZm5xdEpqUXZzeEllWGE2STFGS3ppWjF2?=
+ =?utf-8?B?NS9SK2NzK2YrTDR0aGRIaG45eFE1Uzd1aWM2emVGM1BpQy9GclZuK3JEK3g1?=
+ =?utf-8?B?aGpuQVpBNzlxVklqOFpEOXRKaUxNWWxzbklwOHNJU0lwNTRLTjFJR2YrWURj?=
+ =?utf-8?B?QXZEVW1Yb1BMV2E0NVBQUXhKcHZFVk8vUUpTNzdVTlVnKzBNWlBnaVpiUk5h?=
+ =?utf-8?B?cmZxUWtoUS9pTlhHM2hyQ1hXNHVTSFhVbUhqY0o4NUJjMmFESHlHY2pjY2Zq?=
+ =?utf-8?B?MmU5Y2hJRkptYWtIZ3VJZVdtNkpVdnVSTXBNa0FoaTVoZzhrVlQ0MHkyODl4?=
+ =?utf-8?B?dVlLeC9KL3doNFVoeVI3OXp3WVZYVTlxeFZvTlZCVlpSUFJubU1BVEJEeUsv?=
+ =?utf-8?B?Y3dKMnRFTi9Gd29PUEdRSXdvTHRLUXV5Z1dzczZQOWw4WFZLK1lLTHl1UUM4?=
+ =?utf-8?B?RENXTU41bTJlOWkwMTU2UTArdjM1TzRxVHdQMS82WlZqQ3hBNkh2NGtBSnVs?=
+ =?utf-8?B?YVJPZjhMb05wWEFkL3drT2VHSkhoNHlTckcyS0cxdU9YaGUxSk9LUloyQnRW?=
+ =?utf-8?B?VnpIUDhKcTF5UE1Ddy8vQ2JlR01ZTkFQTDg2c1k3bW00K3ZqSkpoNWU2YUl2?=
+ =?utf-8?B?a3pZQ0xLMExGQjRLTC8wRHUxM3B5VXJvT254K1RnT2dJK20xbkNvcERJM2hV?=
+ =?utf-8?B?Uzc1TGVoRExHaG45Tng3eGFHQ1JPUytXS0dNOG1OSWg4WUxpWXlybjU5YTQ3?=
+ =?utf-8?B?WVI4K1FxcHFNelV2SHc5Z3R2S2w4aEJRSzVmQndLaXREVHVSZmI3NWVNS2lH?=
+ =?utf-8?B?UGNWSDU2eWcwdjdZUEZhL1JlYTVyUUhZV0x6WUpPT0dqSEMxamIwQ2JLdENM?=
+ =?utf-8?B?VkwySFBLSDVJVENkN3FMK0duR1p5alVQTm4zWmJ4Tk4xaU1zenp1eHkzTkRD?=
+ =?utf-8?B?aGc9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34293610-f1cf-47a6-d7ec-08de2c181587
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5521.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 11:45:08.6828
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JSFTZX1CEvaD1miDU7OS/T0W6BFT7QYgJsf5kI7KCwVlPdXZDR43GU4HgU6/9KOlP28Cg2hO+wkWYS9yL7C+Mw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYQPR03MB9457
 
-Hi Jishnu,
 
-kernel test robot noticed the following build warnings:
+在 2025/11/25 19:31, Krzysztof Kozlowski 写道:
+> [ EXTERNAL EMAIL ]
+>
+> On 24/11/2025 04:32, Zhentao Guo via B4 Relay wrote:
+>> From: Zhentao Guo <zhentao.guo@amlogic.com>
+>>
+>> Describe the initial support for the V4L2 stateless video decoder
+>> driver used with the Amlogic S4 (S805X2) platform.
+>>
+>> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+>> ---
+>>   .../bindings/media/amlogic,s4-vcodec-dec.yaml      | 87 ++++++++++++++++++++++
+>>   1 file changed, 87 insertions(+)
+>>
+>
+> Never tested, although maybe you imply this by RFC. If that is the case,
+> explain IN THE FIRST paragraph of your cover letter why this is RFC, why
+> this is not ready for review and mention that because of this you did
+> not test your own code.
+This is my fault, I didn't test the dtbs check carefully. This will not 
+happen again! The reason for the RFC tag is that there are still some 
+Fluster test failures and we are resolving them.
+> Best regards,
+> Krzysztof
 
-[auto build test WARNING on 6a23ae0a96a600d1d12557add110e0bb6e32730c]
+BRs
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jishnu-Prakash/dt-bindings-spmi-split-out-common-QCOM-SPMI-PMIC-arbiter-properties/20251124-175115
-base:   6a23ae0a96a600d1d12557add110e0bb6e32730c
-patch link:    https://lore.kernel.org/r/20251124-pmic_arb_v8-v4-3-d91dcbf097c7%40oss.qualcomm.com
-patch subject: [PATCH v4 3/3] spmi: spmi-pmic-arb: add support for PMIC arbiter v8
-config: loongarch-randconfig-002-20251125 (https://download.01.org/0day-ci/archive/20251125/202511251730.R2wx1j01-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 12.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251125/202511251730.R2wx1j01-lkp@intel.com/reproduce)
+Zhentao
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511251730.R2wx1j01-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/spmi/spmi-pmic-arb.c: In function '_pmic_arb_init_apid_v7':
->> drivers/spmi/spmi-pmic-arb.c:1391:13: warning: unused variable 'ret' [-Wunused-variable]
-    1391 |         int ret, i;
-         |             ^~~
-
-
-vim +/ret +1391 drivers/spmi/spmi-pmic-arb.c
-
-  1386	
-  1387	static int _pmic_arb_init_apid_v7(struct spmi_pmic_arb_bus *bus, int index,
-  1388					  int max_buses, unsigned long periph_mask)
-  1389	{
-  1390		struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
-> 1391		int ret, i;
-  1392	
-  1393		if (index < 0 || index >= max_buses) {
-  1394			dev_err(&bus->spmic->dev, "Unsupported bus index %d detected\n",
-  1395				index);
-  1396			return -EINVAL;
-  1397		}
-  1398	
-  1399		bus->base_apid = 0;
-  1400		bus->apid_count = 0;
-  1401		for (i = 0; i <= index; i++) {
-  1402			bus->base_apid += bus->apid_count;
-  1403			bus->apid_count = readl_relaxed(pmic_arb->core +
-  1404							PMIC_ARB_FEATURES + i * 4) &
-  1405							periph_mask;
-  1406		}
-  1407	
-  1408		if (bus->apid_count == 0) {
-  1409			dev_err(&bus->spmic->dev, "Bus %d not implemented\n", index);
-  1410			return -EINVAL;
-  1411		} else if (bus->base_apid + bus->apid_count > pmic_arb->max_periphs) {
-  1412			dev_err(&bus->spmic->dev, "Unsupported max APID %d detected\n",
-  1413				bus->base_apid + bus->apid_count);
-  1414			return -EINVAL;
-  1415		}
-  1416	
-  1417		return pmic_arb_init_apid_min_max(bus);
-  1418	}
-  1419	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
