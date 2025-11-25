@@ -1,173 +1,167 @@
-Return-Path: <devicetree+bounces-242007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F97DC8536A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:40:28 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7917C853E5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:49:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1D6B7350052
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:40:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6860B4EACB0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:49:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D73225A29;
-	Tue, 25 Nov 2025 13:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4222561D9;
+	Tue, 25 Nov 2025 13:48:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WUy1tKwH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cctn4wiv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892183770B;
-	Tue, 25 Nov 2025 13:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05D912571D4;
+	Tue, 25 Nov 2025 13:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764078013; cv=none; b=hR8fapFs2N55Jq83BbZCcDcbd9qNKxW5ikA/QMZ7v2Aut/FG32XcIyzcsMblD5Icok71ZZ2u+OjHIESnMbwLCghnqGnR6L+5BjKWSPdkSOBq9cpmhQRrDPfEeZIXRpR3ELyBK/cUqRF5GKum7uKqnE2X4PFmcQMVGXfYHB14wgo=
+	t=1764078522; cv=none; b=Nt9gq1khj493vwe3fgyZeScntJZnqJAB6+gPAWm+SsmS1aYCTdm8IckZ+gP0/QhL5QIG8Xy4LC+S8CmTS/HeJbrWGHBzv6Mm5SRJhB6XMv8KctCHyXNxTfDMDvhqLseHyDWfEvGaemBFqQYvK6PEDgfol5gQq++gHUxhFsJ/RQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764078013; c=relaxed/simple;
-	bh=AR4eaAaIOGzsHooR2b7iHtaSIHmZEhcfHBGLE4muFFE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=o2oey4AgEMwRGxwZRH/SoP+NBf5vUM8ym0hZNI3ApFcWJ5u0jyukDvUSRd481QaKBDl4sd6ap50jiJ4jibdfprb7I4XA+KZeVbHqj6Owp48pU8bfixh5pLqz3WHAQidLxcll31qQjQt0EKqaFtsRLDGDk6nlXlLgzFX9jLEVfyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WUy1tKwH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A58BC19422;
-	Tue, 25 Nov 2025 13:40:12 +0000 (UTC)
+	s=arc-20240116; t=1764078522; c=relaxed/simple;
+	bh=qMRrDoHOcsks99zvgZZqkBP5LxJkyWPAJLlzUR7nP+k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e8L95kmCYhYA95P7HuON0HGjVGrGEs92ZVUum/QaBQJ4Erd9i18gmkM8IhQoir3U+ZoQe8YMKdm7EJabqfi9dp4uDudLZwZeoYtdIXc9M73ABpc5Yy7xFsrqTJHoLra+E70oQHd09JjrIcgJgqYN2vBWCg6GWJn+b9AAlIOKiuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cctn4wiv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 068CDC4CEF1;
+	Tue, 25 Nov 2025 13:48:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764078013;
-	bh=AR4eaAaIOGzsHooR2b7iHtaSIHmZEhcfHBGLE4muFFE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WUy1tKwHde8vCDFC/0h8Qe33us+wNQQHcNWD4kEa5dP3OD1jIspIj5erZH9l251MV
-	 B4F0OPq2iS4CdjZQjMsGsgLz69RGXUQeFb0uPP+CYgvkZvz5/iuN99U6g/rIS9sz8W
-	 WKcW3VVYkwwlBKj3qTZMFNX6eWAizHvxwwWnDJyzjHw67slf4XV6cH/ovp3dz+eg6Z
-	 AhoVXTZj5UI+27tI1gVxmHOE0xZXAsdsI5h8CbtOKfBQ715j3Us2TATY2sc4jWwceZ
-	 t5xIxW10HoVl+qh81qSMO9PFtVi/pPcPBbKkK7gYfiRTraU9RnJmzDeG9F0Y8P6Jrc
-	 dK5WcTb2NndQQ==
-From: Dinh Nguyen <dinguyen@kernel.org>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: dinguyen@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH 2/2] dt-bindings: soc: altera: combine Intel's SoCFPGA into altera.yaml
-Date: Tue, 25 Nov 2025 07:40:03 -0600
-Message-ID: <20251125134004.261165-2-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.42.0.411.g813d9a9188
-In-Reply-To: <20251125134004.261165-1-dinguyen@kernel.org>
-References: <20251125134004.261165-1-dinguyen@kernel.org>
+	s=k20201202; t=1764078521;
+	bh=qMRrDoHOcsks99zvgZZqkBP5LxJkyWPAJLlzUR7nP+k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Cctn4wivDT5Fe+bxp//YG1wlwcVs966fkjZwcPMXNxK/5ZjPwsTEyI4BoPcZqOiZK
+	 gMSh46t7U92KDynXPlMA6pOWwJov8mWbLqe64FHlhJAlTog5ziqqLoL6aqJmVG0qcq
+	 dzwTI98Hyp1iPzMpymNgQL9PTKEMPZa3GnIB7rtILd6g3EhUUEZ6TVqZaEf10uDrUB
+	 JYn9dP+cG7rFpX04bYPrllH3SNxFgT8KSt2AL+yuQ2JuuGmtCbnL+/x3slNuMLW974
+	 IV2GMTZiturUAthSN4RNTG0e+wDzyCvGscdMnOp0GXs7eQaWUrKDbW401djnwzI0hK
+	 lsM/gY5UZTqmQ==
+Date: Tue, 25 Nov 2025 13:48:36 +0000
+From: Lee Jones <lee@kernel.org>
+To: Nam Tran <trannamatk@gmail.com>
+Cc: pavel@kernel.org, gregkh@linuxfoundation.org, rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, corbet@lwn.net, linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v18 2/3] leds: add basic support for TI/National
+ Semiconductor LP5812 LED Driver
+Message-ID: <20251125134836.GC1127788@google.com>
+References: <20251123191042.116917-1-trannamatk@gmail.com>
+ <20251123191042.116917-3-trannamatk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251123191042.116917-3-trannamatk@gmail.com>
 
-For all SoCFPGA platforms, whether it has the "intel" or "altr" vendor
-prefix are referring to the same business unit that is responsible for
-the platform. Thus, it would make sense to have the device bindings
-documentation in the same location. Move the Intel AgileX board binding
-documentations into the same file that contains the Altera ones.
+On Mon, 24 Nov 2025, Nam Tran wrote:
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- .../bindings/arm/intel,socfpga.yaml           | 40 -------------------
- .../bindings/soc/altera/altera.yaml           | 28 ++++++++++++-
- 2 files changed, 27 insertions(+), 41 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/intel,socfpga.yaml
+> The LP5812 is a 4x3 matrix RGB LED driver with an autonomous animation
+> engine and time-cross-multiplexing (TCM) support for up to 12 LEDs or
+> 4 RGB LEDs. Each LED can be configured through the related registers
+> to realize vivid and fancy lighting effects.
+> 
+> This patch adds minimal driver support for the LP5812, implementing
+> only the essential functionality: I2C communication with the device,
+> LED registration, brightness control in manual mode, and basic sysfs
+> interfaces for LED configuration and fault monitoring.
+> 
+> This patch adds minimal driver support for the LP5812, implementing
+> only the essential functionality: I2C communication with the device,
+> LED registration, brightness control in manual mode, and basic sysfs
+> interfaces for LED configuration and fault monitoring.
+> 
+> Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> ---
+>  MAINTAINERS                    |   4 +
+>  drivers/leds/rgb/Kconfig       |  13 +
+>  drivers/leds/rgb/Makefile      |   1 +
+>  drivers/leds/rgb/leds-lp5812.c | 646 +++++++++++++++++++++++++++++++++
+>  drivers/leds/rgb/leds-lp5812.h | 172 +++++++++
+>  5 files changed, 836 insertions(+)
+>  create mode 100644 drivers/leds/rgb/leds-lp5812.c
+>  create mode 100644 drivers/leds/rgb/leds-lp5812.h
 
-diff --git a/Documentation/devicetree/bindings/arm/intel,socfpga.yaml b/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
-deleted file mode 100644
-index c918837bd41c..000000000000
---- a/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
-+++ /dev/null
-@@ -1,40 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/arm/intel,socfpga.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Intel SoCFPGA platform
--
--maintainers:
--  - Dinh Nguyen <dinguyen@kernel.org>
--
--properties:
--  $nodename:
--    const: "/"
--  compatible:
--    oneOf:
--      - description: AgileX boards
--        items:
--          - enum:
--              - intel,n5x-socdk
--              - intel,socfpga-agilex-n6000
--              - intel,socfpga-agilex-socdk
--          - const: intel,socfpga-agilex
--      - description: Agilex3 boards
--        items:
--          - enum:
--              - intel,socfpga-agilex3-socdk
--          - const: intel,socfpga-agilex3
--          - const: intel,socfpga-agilex5
--      - description: Agilex5 boards
--        items:
--          - enum:
--              - intel,socfpga-agilex5-socdk
--              - intel,socfpga-agilex5-socdk-013b
--              - intel,socfpga-agilex5-socdk-nand
--          - const: intel,socfpga-agilex5
--
--additionalProperties: true
--
--...
-diff --git a/Documentation/devicetree/bindings/soc/altera/altera.yaml b/Documentation/devicetree/bindings/soc/altera/altera.yaml
-index 7c6827837b95..a853ba3daf80 100644
---- a/Documentation/devicetree/bindings/soc/altera/altera.yaml
-+++ b/Documentation/devicetree/bindings/soc/altera/altera.yaml
-@@ -4,7 +4,10 @@
- $id: http://devicetree.org/schemas/soc/altera/altera.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Altera's SoCFPGA platform
-+title: Intel/Altera's SoCFPGA platform
-+
-+description:
-+  Intel/Altera boards with ARM 32/64 bit cores
- 
- maintainers:
-   - Dinh Nguyen <dinguyen@kernel.org>
-@@ -86,6 +89,29 @@ properties:
-           - const: altr,socfpga-vt
-           - const: altr,socfpga
- 
-+      - description: AgileX boards
-+        items:
-+          - enum:
-+              - intel,n5x-socdk
-+              - intel,socfpga-agilex-n6000
-+              - intel,socfpga-agilex-socdk
-+          - const: intel,socfpga-agilex
-+
-+      - description: Agilex3 boards
-+        items:
-+          - enum:
-+              - intel,socfpga-agilex3-socdk
-+          - const: intel,socfpga-agilex3
-+          - const: intel,socfpga-agilex5
-+
-+      - description: Agilex5 boards
-+        items:
-+          - enum:
-+              - intel,socfpga-agilex5-socdk
-+              - intel,socfpga-agilex5-socdk-013b
-+              - intel,socfpga-agilex5-socdk-nand
-+          - const: intel,socfpga-agilex5
-+
- additionalProperties: true
- 
- ...
+[...]
+
+> +static ssize_t parse_drive_mode(struct lp5812_chip *chip, const char *str)
+> +{
+> +	int i;
+> +
+> +	chip->u_drive_mode.s_drive_mode.mix_sel_led_0 = false;
+> +	chip->u_drive_mode.s_drive_mode.mix_sel_led_1 = false;
+> +	chip->u_drive_mode.s_drive_mode.mix_sel_led_2 = false;
+> +	chip->u_drive_mode.s_drive_mode.mix_sel_led_3 = false;
+> +
+> +	if (sysfs_streq(str, LP5812_MODE_DIRECT_NAME)) {
+> +		chip->u_drive_mode.s_drive_mode.led_mode = LP5812_MODE_DIRECT_VALUE;
+> +		return 0;
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(chip_mode_map); i++) {
+> +		if (!sysfs_streq(str, chip_mode_map[i].mode_name))
+> +			continue;
+> +
+> +		chip->u_drive_mode.s_drive_mode.led_mode = chip_mode_map[i].mode;
+> +		chip->u_scan_order.s_scan_order.scan_order_0 = chip_mode_map[i].scan_order_0;
+> +		chip->u_scan_order.s_scan_order.scan_order_1 = chip_mode_map[i].scan_order_1;
+> +		chip->u_scan_order.s_scan_order.scan_order_2 = chip_mode_map[i].scan_order_2;
+> +		chip->u_scan_order.s_scan_order.scan_order_3 = chip_mode_map[i].scan_order_3;
+
+Where are all of these used?
+
+> +
+> +		switch (chip_mode_map[i].selection_led) {
+> +		case LP5812_MODE_MIX_SELECT_LED_0:
+> +			chip->u_drive_mode.s_drive_mode.mix_sel_led_0 = true;
+> +			break;
+> +		case LP5812_MODE_MIX_SELECT_LED_1:
+> +			chip->u_drive_mode.s_drive_mode.mix_sel_led_1 = true;
+> +			break;
+> +		case LP5812_MODE_MIX_SELECT_LED_2:
+> +			chip->u_drive_mode.s_drive_mode.mix_sel_led_2 = true;
+> +			break;
+> +		case LP5812_MODE_MIX_SELECT_LED_3:
+> +			chip->u_drive_mode.s_drive_mode.mix_sel_led_3 = true;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +
+> +		return 0;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+
+[...]
+
+> +union u_scan_order {
+
+What is 'u'?
+
+> +	struct {
+> +		u8 scan_order_0:2;
+> +		u8 scan_order_1:2;
+> +		u8 scan_order_2:2;
+> +		u8 scan_order_3:2;
+> +	} s_scan_order;
+> +	u8 scan_order_val;
+> +};
+
+[...]
+
 -- 
-2.42.0.411.g813d9a9188
-
+Lee Jones [李琼斯]
 
