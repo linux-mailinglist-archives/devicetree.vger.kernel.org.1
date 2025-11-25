@@ -1,124 +1,127 @@
-Return-Path: <devicetree+bounces-241850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202E9C836CB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 06:55:51 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F6FC8382A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:41:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 110CA4E4D03
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 05:55:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EDD1134CA7E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 06:41:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B574028688C;
-	Tue, 25 Nov 2025 05:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F2529B777;
+	Tue, 25 Nov 2025 06:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vEr0CqiO"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="c9psUhMV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8488228507B;
-	Tue, 25 Nov 2025 05:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE7A298CDE
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 06:41:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764050145; cv=none; b=fbmAsw6ljV927fu844T8IR7rCO9b399eBxlb8NlX/bgx30NlX1fehdzNvJzpctXZpx+GbVdMemjUTvD2lgI/y6g+q+HUGlQHuEwD6h7yJDikirbB9IGwedPAehjNvUtPywminuoeqazEo4immVuehEsg92livs7XtiJuFRrxNOc=
+	t=1764052879; cv=none; b=iVVivPWH92xgAk5XbD4xH3Yn+MBluHjpp0bKpu/wB945biCcjnQZ00f4Hr+sTAkPhSgl6TABaMNyhXEk6X+ZklWwVjuaR8YHnhustHO1OW2dhXb671odBB3Vge/qKOSoBW8uR7z/D19M08LVy+M/5t7Za5WPTgB6YinjVupKQE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764050145; c=relaxed/simple;
-	bh=48ErKjGaEtb7aXQCMfQrk3VwREcMQsySK/d0DWH6IOY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lrt+9yC2+Pk/7JM8YIK6IoCmtqoX5NGeyRF9Q1SQBnW14C3GaEsaSHfH5aWwbswIldCh+S5Iqa3N1zF0yv7d9WrZujToBTs1UvHnx5moAnoM4A3fil/fJ01gWLxLuuG9HxeP7iql89QHeFuiLgH0pBKbyfbF0bHzHhOzCPtVZeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vEr0CqiO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A1D4C19421;
-	Tue, 25 Nov 2025 05:55:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764050145;
-	bh=48ErKjGaEtb7aXQCMfQrk3VwREcMQsySK/d0DWH6IOY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vEr0CqiOkp+00ddSKxjuHvXNEPSWKxw5m9NTB6PrKbyuZcqpeohbw7XZ26eJVVfGf
-	 Bz/HV3PKcDk1Nd4RRxF7OVoaa1jEB6B63j0neAMDmKlSlelgnZ1PKd2jXVVrGAuMpz
-	 YsYjrPXJdGl2LgxhlaQGWONafPRE/3K3VOBxm235ZAwQmZfFURDag1N8Rp6lj/ihv0
-	 HuTkCgCDAHrwwGgxefClavytlYh/y4OgY0cxoltRGePqexrCbDb6Qmi8SBOLOroEnS
-	 mptcNCgXVNU44YzON/AX6GTi55OzaFofq5k0QgcDkAvvMz9dlfUX1rbFegcvYz7Zx8
-	 X3qXn15FZDlpA==
-Date: Tue, 25 Nov 2025 11:25:32 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v8 6/6] arm64: defconfig: Enable PCIe for the Renesas
- RZ/G3S SoC
-Message-ID: <c24nuqtczt2jxekl67boramlgullnxftwjfjlwcjjnyv47ykwc@tlpojiyzdk6r>
-References: <20251119143523.977085-1-claudiu.beznea.uj@bp.renesas.com>
- <20251119143523.977085-7-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1764052879; c=relaxed/simple;
+	bh=MHSN32g7JJOyd+8O5BZ5IgXTWk+XLgA51Mwe2VUTCxg=;
+	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
+	 In-Reply-To:References; b=tVzJFonA6aYNKFu2gT+pqOU6/9xulrpkKufdfakE75J5y3Vz+pTJLkOR0qZopp7SGw55vrlFfBBEZ20KlzRzcjVWXUEXB3UxJHNdENVsTMkSjoYgR0Bo5ixLktMoHU+IQjCEhgw5D9YnWO96U9EJkh9QfAGMIr8ToDW9bwgCIbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=c9psUhMV; arc=none smtp.client-ip=95.215.58.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251119143523.977085-7-claudiu.beznea.uj@bp.renesas.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1764052861;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=q7qGTon+mZZxFHOEJqUS8wjA79VPT85tm/oETKgfCr0=;
+	b=c9psUhMVc5G/scJQdVZ2ue286V3W+Z1AOdE382wJ/d1vUnPylr9v0sQk1T2mHcftYjUvN1
+	8qBXcButvb6zbIXw5HGNI9C9em1J5fktvmClg7Mf0q7L2RUSr5zGvNzsznUAMIzyjITzP5
+	18DZgRDYT978wIXe7xUfBjkQAA8OeTMW9ZUut4yWXGxkz+l9wk0ElhVHEy0+wdPjUEi9Vu
+	CXzcc0D08/fFUj3VVOBorV4ur8pN7XNkC/rJKefl17tbH6Hv/193Q6wzEuJnn43pCGVgvA
+	fU25yldEL4WJaxt690eO6kabYRUcUVS5XFU/FkWxvAGhoEucyRKsU2y3kY/Q8g==
+Date: Tue, 25 Nov 2025 06:40:58 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Paul Sajna" <sajattack@postmarketos.org>
+Message-ID: <998d44a8500132bc48e6882a5f7b19b45286a965@postmarketos.org>
+TLS-Required: No
+Subject: Re: [PATCH v3 07/11] arm64: dts: qcom: sdm845-lg-{common, judyln}:
+ Add wifi node
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "David Heidelberg" <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
+ <system64fumo@protonmail.com>, "Christopher Brown"
+ <crispybrown@gmail.com>
+In-Reply-To: <7661d9d9-eca3-4708-8162-960df0d7f6c7@oss.qualcomm.com>
+References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
+ <20250928-judyln-dts-v3-7-b14cf9e9a928@postmarketos.org>
+ <f58493a9-6def-4610-9c3e-d6a877dc23d3@oss.qualcomm.com>
+ <d38801bc77ad00442b1669ea252ae30a5c6af5b4@postmarketos.org>
+ <7661d9d9-eca3-4708-8162-960df0d7f6c7@oss.qualcomm.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, Nov 19, 2025 at 04:35:23PM +0200, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Enable PCIe for the Renesas RZ/G3S SoC.
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+October 2, 2025 at 9:37 AM, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.c=
+om mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%20%3C=
+konrad.dybcio%40oss.qualcomm.com%3E > wrote:
 
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
 
-- Mani
+>=20
+>=20On 10/2/25 6:51 AM, Paul Sajna wrote:
+>=20
+>=20>=20
+>=20> October 1, 2025 at 9:14 AM, "Konrad Dybcio" <konrad.dybcio@oss.qual=
+comm.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22=
+%20%3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote
+> >=20=20
+>=20>=20=20
+>=20>=20
+>=20> >=20
+>=20> > As the dt-checker points out, there is no such property
+> > >=20
+>=20> >  If your wi-fi works regardless of that, you probably don't need
+> > >  to set the one you intended to
+> > >=20
+>=20> >  Konrad
+> > >=20
+>=20>=20=20
+>=20>  Perhaps this only exists in the postmarketos tree, but it definite=
+ly exists, and doesn't work without it. I'll remove it for upstreaming fo=
+r now but hopefully someone sorts that out. upstream.
+> >=20
+>=20So you didn't test the tree you sent? :/
+>=20
+>=20fwiw
+>=20
+>=20drivers/net/wireless/ath/ath10k/snoc.c:
+>  qcom,snoc-host-cap-8bit-quirk
+>=20
+>=20Konrad
+>
 
-> ---
-> 
-> Changes in v8:
-> - none
-> 
-> Changes in v7:
-> - rebased on top of v6.18-rc1
-> 
-> Changes in v6:
-> - collected tags
-> 
-> Changes in v5:
-> - dropped Tb tag
-> 
-> Changes in v4:
-> - made it builtin
-> 
-> Changes in v3:
-> - collected tags
-> 
-> Changes in v2:
-> - none
-> 
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index e3a2d37bd104..54fd09317edf 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -230,6 +230,7 @@ CONFIG_PCIE_MEDIATEK_GEN3=m
->  CONFIG_PCI_TEGRA=y
->  CONFIG_PCIE_RCAR_HOST=y
->  CONFIG_PCIE_RCAR_EP=y
-> +CONFIG_PCIE_RENESAS_RZG3S_HOST=y
->  CONFIG_PCIE_ROCKCHIP_HOST=m
->  CONFIG_PCI_XGENE=y
->  CONFIG_PCI_IMX6_HOST=y
-> -- 
-> 2.43.0
-> 
+with qcom,snoc-host-cap-8bit-quirk I get=20
+```
+ath10k_snoc=2018800000.wifi: msa info req rejected: 90
+```
 
--- 
-மணிவண்ணன் சதாசிவம்
+without it I get=20
+```
+ath10k_snoc=2018800000.wifi: host capability request rejected: 1
+
+```
+
+Please help me understand how I should proceed.
 
