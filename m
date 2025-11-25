@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-241832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 715E5C83423
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 04:47:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B111C83426
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 04:47:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1FB954E340E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 03:47:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 900FD3490BC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 03:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E4327EFF1;
-	Tue, 25 Nov 2025 03:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A22E27FD72;
+	Tue, 25 Nov 2025 03:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZvPGvwS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G7rQxDp6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8FCD1E0DD8;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF94827F727;
 	Tue, 25 Nov 2025 03:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764042421; cv=none; b=h3ZGzBEkUPfPUsYeLCAmNAyE2lg7We4+bi1zv2Rt6ST+pjhMiYrSGeJbqC5Ylbhfh6sBNjQ86AKjQIWAS2GDbxVQlpOhfllDLCxGeGgiQjIw3xYhm7WjwN2cdtfPfguYILXn7Qd71J7EGx9SoWJMtiX090b30Iowmt9wm3K0cR8=
+	t=1764042422; cv=none; b=aX4Gb8O3xvNo1B1z3RJ5LzAwtqTlXO7y+7VjslJtPEbIytCxAw6To+7jG22V/3hDqduJ+28If+N1/aBxp2obe4IBmy+fy5anvC84F4QAV9ZbiWxshwr6EbeZUhy4++wiT1jcmblnAMC8zJP5Y9wedKarlxjN6t30IUqPf2OZjlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764042421; c=relaxed/simple;
-	bh=ycM7LXSKbuEanMKnAqYP54DyEq9xsY1JOHTdVmdmdrs=;
+	s=arc-20240116; t=1764042422; c=relaxed/simple;
+	bh=5l7nup7DC0Y8dqHhsU6KY6mQSCmRILk4Zjbco+Fq9Jg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QiFGAltuHlkdw9NwcsErT9Zxu0MsgtW0T3usHBTNnwAqB1mxuuGbMXCffZ3WL0FVUhqGspZLlXVg6NNcGYpVqo8bPzhemClXE1mTiRORBgADR+SKD7G8CCLGehC+/RLZ7f2em0m7+t/U/XJceuk+Du8YbeoI6GkFIeYihx0hhjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mZvPGvwS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 599AEC116B1;
+	 In-Reply-To:To:Cc; b=T0Ugx6gh+wQkQ4HNurHW/MAMtuIcjwMGFEpVDY+rA1taeGGbb9V5VGWao2hXCS6txio0ry8MIs8UypG2e/zBhHL6tEyneAKAHF2mCH3yg1LgslMPSEWpxi46d0xk24ytICPR4AL6rLRV5e22+T6wMGbqPay4pc17bMogL/13B7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G7rQxDp6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6B11AC19425;
 	Tue, 25 Nov 2025 03:47:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1764042421;
-	bh=ycM7LXSKbuEanMKnAqYP54DyEq9xsY1JOHTdVmdmdrs=;
+	bh=5l7nup7DC0Y8dqHhsU6KY6mQSCmRILk4Zjbco+Fq9Jg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=mZvPGvwSZmfA2Xv76Eaoh2Nq0QduKe/rrFDuNLRmF/sovTWu3WznWhVDq6e1yEPJk
-	 +5G7RUN3Rp7iTWY2fkJpJysWunIJ9gHAZ380zQpx55Awp4Qh46x1TwP+iSuAN29LIT
-	 4lbbLltn6usdBq675cH6sf4FTuqAEMLeNIczboIUgG6qGh+1XyK5ZEFGiMT3mkhGG3
-	 0DMU7kpCUM/Pj+bxV1Hl+Xa1xPYBRlAC16We5yjARQvEV+DWBsmNi759fYcvlcYZBf
-	 m4S12vBolPLc/EFPSw2MG0MG681zKTlI7Pxi+pZUZ1yId+klJa7srRMhsNSXLHjZzp
-	 cqAHFcAZ2sebg==
+	b=G7rQxDp6LFp6SImskkZNkYHvZPColq6OuCe6e4ZatPWGKyMNMwN6pTbMa5mc4UrL8
+	 JJfhHqaO99P9+y4crcXyUSo73vOwoOLudUyuqhazf0q7CQS8Jp0n5mVy0t/a3kUdBx
+	 b+5+c8gTQmWLEvQ/6lhxsplLxr53X+4Z39DX5y6BfGw5jXbV72FkR1b28GFXlWpXQO
+	 NvClOrdOYnW1Cn+v0cc4xmFq226HIfN2QLIe9QdTM6JXjHnfToPuQ3iEa01xGGnz5C
+	 LTSEEvim94ktPiCaakYMkpE3ttBexenN8dfJTp0K2d3midMmVyyzsL6E/TE3ooYyvH
+	 ks0APOMsFFlug==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 50036CFD377;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F4CACFD37A;
 	Tue, 25 Nov 2025 03:47:01 +0000 (UTC)
 From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
-Date: Mon, 24 Nov 2025 19:47:01 -0800
-Subject: [PATCH v5 2/4] arm64: dts: rockchip: Add accelerometer sensor to
+Date: Mon, 24 Nov 2025 19:47:02 -0800
+Subject: [PATCH v5 3/4] arm64: dts: rockchip: Add magnetometer sensor to
  Pinephone Pro
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -55,8 +55,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251124-ppp_light_accel_mag_vol-down-v5-2-f9a10a0a50eb@gmail.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251124-ppp_light_accel_mag_vol-down-v5-3-f9a10a0a50eb@gmail.com>
 References: <20251124-ppp_light_accel_mag_vol-down-v5-0-f9a10a0a50eb@gmail.com>
 In-Reply-To: <20251124-ppp_light_accel_mag_vol-down-v5-0-f9a10a0a50eb@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -64,15 +64,14 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
  phone-devel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>, 
- Ondrej Jirman <megi@xff.cz>, Martijn Braam <martijn@brixit.nl>, 
- =?utf-8?q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>, 
+ Ondrej Jirman <megi@xff.cz>, "Leonardo G. Trombetta" <lgtrombetta@gmx.com>, 
  Pavel Machek <pavel@ucw.cz>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764042420; l=1266;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764042420; l=1356;
  i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
- bh=owuI4HZdlvQp/fF0o2W6LK/Li46MndqpBMI0zHW5OxA=;
- b=FsSvN3r0QicnJ/w3S/WAeTY96iFwVszQDSQC0oT7MLn0LeC4PC5RFl3S5/VDEb1Y/4qGuCgQc
- ciIlNIszl9wDaFG9F9VZCx+tlca+23MeQ1xrJPXA0fj6iVKW99UO08h
+ bh=6kNPA+rufMDaioiLjzVrw3yC2YKarI4Xs7vCiBTyO0Y=;
+ b=mjYYXO4VbxbQzJyStmB8AZAeOSbBj75gjJppJVbTQOdHHt/2CWOeQhbgrytShK5eHi5ku4QNZ
+ fuP4qIKj7w2AxQqtJKaj3+ht/F8kA6jIf1mEFpB6PerrijUO2jTOo6z
 X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
  pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
 X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
@@ -82,39 +81,48 @@ Reply-To: guptarud@gmail.com
 
 From: Ondrej Jirman <megi@xff.cz>
 
-Pinephone Pro uses mpu6500 according to the schematic. This was verified
-via `monitor-sensor --accel`. While rotating the device, the output was
-correct (eg. when it was face up, left edge was up, vertical, etc.).
+Pinephone Pro uses AF8133J according to the schematic.
 
-Co-developed-by: Martijn Braam <martijn@brixit.nl>
-Signed-off-by: Martijn Braam <martijn@brixit.nl>
-Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
-Signed-off-by: Kamil Trzciński <ayufan@ayufan.eu>
+The mount-matrix was added by Leonardo on top of Ondrej's work of adding
+the magnetometer. It was verified with Leonardo's compass app:
+
+https://gitlab.com/lgtrombetta/compass
+
+Co-developed-by: Leonardo G. Trombetta <lgtrombetta@gmx.com>
+Signed-off-by: Leonardo G. Trombetta <lgtrombetta@gmx.com>
 Signed-off-by: Ondrej Jirman <megi@xff.cz>
 Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
 Reviewed-by: Pavel Machek <pavel@ucw.cz>
 ---
- arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 2d2858ee149e..f8c74b43ae9f 100644
+index f8c74b43ae9f..03721d71766c 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -543,7 +543,13 @@ mpu6500@68 {
- 		reg = <0x68>;
- 		interrupt-parent = <&gpio1>;
- 		interrupts = <RK_PC6 IRQ_TYPE_LEVEL_LOW>;
-+		vdd-supply = <&vcc_1v8>;
- 		vddio-supply = <&vcc_1v8>;
-+
-+		mount-matrix =
-+			"1", "0", "0",
-+			"0", "-1", "0",
-+			"0", "0", "-1";
+@@ -553,6 +553,21 @@ mpu6500@68 {
  	};
  };
  
++&i2c4 {
++	af8133j: compass@1c {
++		compatible = "voltafield,af8133j";
++		reg = <0x1c>;
++		reset-gpios = <&gpio1 RK_PA1 GPIO_ACTIVE_LOW>;
++		avdd-supply = <&vcc_3v0>;
++		dvdd-supply = <&vcc_1v8>;
++
++		mount-matrix =
++			"0", "1", "0",
++			"-1", "0", "0",
++			"0", "0", "1";
++	};
++};
++
+ &io_domains {
+ 	bt656-supply = <&vcc1v8_dvp>;
+ 	audio-supply = <&vcca1v8_codec>;
 
 -- 
 2.52.0
