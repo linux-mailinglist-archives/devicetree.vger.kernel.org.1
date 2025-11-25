@@ -1,150 +1,267 @@
-Return-Path: <devicetree+bounces-241935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC320C8486A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:40:50 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9B3EC84870
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:41:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B4603A206C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:40:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 263D13429BC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD9BC2DAFBB;
-	Tue, 25 Nov 2025 10:40:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D64830FF06;
+	Tue, 25 Nov 2025 10:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eWOzLGjK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF73D271
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 10:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E86E221FA0
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 10:41:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764067247; cv=none; b=lS9TeXkzyj2QmRAmfyuLUk39aEcw3oWDT0Rk8ahMBWIIgB8GI0zbIPA7++luSBX9F+ZtY33812B9C3TLlgyNf/g+L3ZNJrlk2eWVWnbGcqmsT3LE2q/tfT9AS5I3ZaY1/OfiG2WsYCPKe4nXUzKLX33Jc4RCa7nkeIXrzaqRwx4=
+	t=1764067283; cv=none; b=KoPsFJ8NGb03A47BaIo35+ZqAj5kp/wEHO7wQtc7Lm3rrhR79dBNtPfPwLxZog4ideWZ2CvtD6xSaG+hMS6TluJFGcuvtfdo4GBZebkIoykQChXW+nLFEmxz+WxcFD8zw4aiJZpGLkpFLpeJOUuXmffD058xYfAvcPupYCoEPkE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764067247; c=relaxed/simple;
-	bh=ipYaxglVLpymTVZW64Iy8faXGWQ0z2w8egFblNhSFnA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ma4jOTA5Lkh/R4vQSOGTvTZ2TKUL4Ovut02qr+ru1ZUoEhVQUMSI20cSQjKvB9cpoi189DNEHfY3wUX748j0oCRZtDthc8ku2b+vbbNfRcxyJwYRWAsoUtUdLjfImR8bSa0Ger18f5pDwF389254DB124lz0IjzDlQxAMZyXwSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vNqTG-0001bn-DK; Tue, 25 Nov 2025 11:40:30 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vNqTF-002NT7-2v;
-	Tue, 25 Nov 2025 11:40:29 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vNqTF-000000003g3-3Plg;
-	Tue, 25 Nov 2025 11:40:29 +0100
-Message-ID: <9f07e541fc000d9065c1ff1716f1edc4c2278c8d.camel@pengutronix.de>
-Subject: Re: [PATCH v5 2/6] reset: imx8mp-audiomix: Replace mask with bit
- index
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>, Frank Li
-	 <Frank.li@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,  Shawn Guo <shawnguo@kernel.org>, Fabio Estevam
- <festevam@gmail.com>, Daniel Baluta	 <daniel.baluta@nxp.com>, Shengjiu Wang
- <shengjiu.wang@nxp.com>, 	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Pengutronix Kernel Team	 <kernel@pengutronix.de>
-Date: Tue, 25 Nov 2025 11:40:29 +0100
-In-Reply-To: <4a022153-009c-44fd-8c4b-39819ae69390@gmail.com>
-References: <20251114133738.1762-1-laurentiumihalcea111@gmail.com>
-	 <20251114133738.1762-3-laurentiumihalcea111@gmail.com>
-	 <aSCHjNqj3CV3ahX0@lizhi-Precision-Tower-5810>
-	 <6be8a682-6c72-45c8-be0e-880ab66045ff@gmail.com>
-	 <aSR8q5cE/XXbZuF0@lizhi-Precision-Tower-5810>
-	 <4a022153-009c-44fd-8c4b-39819ae69390@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1764067283; c=relaxed/simple;
+	bh=KbotNqeeDavJvfEQdPmkb/KEhmUXKqje0HVOv96a9aI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DLAosi6NXsu6rM+pFiT2kT2f/TgI+JiZ3IN7ZdEAPJrlzzecmlbk8GudjqqkuY859YIm5H53cJCRKhD6GiyteJxtgT7O1pwOuwLCOqlDvKKRN8b8Mmf6vXfQUfWBgQP2G2JqIx6yIJvaSHzhEShN9Dl8YO7Hn3bJqN8+zNHPMdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=eWOzLGjK; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5945510fd7aso4496005e87.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 02:41:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1764067279; x=1764672079; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4uRBPHCgSxkmaA78fH0tH+mnux44EIWHYlNpY/Tgdjw=;
+        b=eWOzLGjKWop2QvQYoalZKtlUdqGtnHYKBGIwtUx4jijRImuzO8/sZN8UWJnGJRz8ao
+         7WW+VtyX9iz+/o1/+UaOE4fTfnU70E9b53G7UTLx9NSTv/3zzfBmGU2301BP7UJ88Kfc
+         VYS5Ifz2OgZe4rDqbEV5KSQZRdYAQziZE9owQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764067279; x=1764672079;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=4uRBPHCgSxkmaA78fH0tH+mnux44EIWHYlNpY/Tgdjw=;
+        b=eEqj1jHu4qzYv8LW28ZKfgoF7ad2GJDsFDLokvuQO+OLc7rhIw8eThBo+AvGV1eEw6
+         fkKEY7C83xHTL1gT3cTIP0K9/Edd7Add38pDRcrcNRWzb2gK7ymOo8UGBK61Ynz7OB2A
+         2LzOV6AvkIcINsw9bg6yRFi/jjtdUbA3Ed4WYEZNH81AQbhDILj9/wzmJxVdklUTsDFc
+         1CTiTpXTNuinQylfjEANpq2wgkn08njNslqVE6K/t0oYr5MCTlE1dLi8Ufm4hciv5EUb
+         VXEsvH+FaaAEXDtuC+K+kBTppDX6IzfvgK+I/zRxscbleExTSKd1EJpFKScM07kH0FZq
+         ztzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXf6nIRG6JSpzc5p2tCTFUiGQ8d1V9nP0Q6tEN+9aF/sVxcBNBi4n+Q7oPqhuH9oqbrQi6t3H75u1PB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxApu5C7eAaBCbyiiIU/9I3rc7sO0DWfRpblKzynJNex5RcPMLj
+	5a9nTbMZX8U+zuszuNgrg0r7w2ZSq5w1A8esUykoZBJPnOu6QrOb1FUKESWbKbtHnRwguWaMkWC
+	XuVc4n96+dxJSEzCpXznz2/Ugf/CGSsi94le/VFNX
+X-Gm-Gg: ASbGncuf6UcpFuG+Ay8yqswALbuAFR947S0CWKNgpkQUWgVmZ3YuayNU74m/pvbmiAq
+	Rv3wDzmbi5graI3mkc1ykL2Ot3UXqEbFFdgk7Btz0smZTd8FmWw7kMcnl4XQO3+gwY9ahsqNKRK
+	JvLv+kG8zUdN3eus+4tH73IrD/f4Db7ePOCAxZ/2UkOO45pi3IiHs5EaGQtQTKMCfiNr8hP50Qj
+	tUhXWbr0B6O/NmXd+uzQPTwt1F5AdE/FGt2CC9g10JsBABtikna+2tYLdotMQSpQi4N0LwNhABV
+	UeD0uPTY/D8W2K1YT7KleoZvhg==
+X-Google-Smtp-Source: AGHT+IEvG4Z5BDTpsXarI8urYSbz0Fl43OcTx4ljWTzmBa3AfdjhQoWcQWwcIqnRa4+KmNQLabuz9wzK0SNkgegXMCw=
+X-Received: by 2002:a05:6512:3ba0:b0:595:9152:b921 with SMTP id
+ 2adb3069b0e04-596b4e5295amr1036056e87.7.1764067279453; Tue, 25 Nov 2025
+ 02:41:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20251125064851.3781993-1-wenst@chromium.org> <20251125-outgoing-boisterous-millipede-6dabaf@kuoka>
+In-Reply-To: <20251125-outgoing-boisterous-millipede-6dabaf@kuoka>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 25 Nov 2025 18:41:07 +0800
+X-Gm-Features: AWmQ_bmfVl5k0ztWOG2j8X7oHX9X2PsUhMj61BqVp-yFp5zCJvMWxcyYcL4rKWg
+Message-ID: <CAGXv+5FPaJMuN7wCP7g0Rxa0mXD3Ru0rxka=m8B_rv+XUkJPWA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: coreboot: Convert to YAML
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	chrome-platform@lists.linux.dev, Julius Werner <jwerner@chromium.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Di, 2025-11-25 at 01:59 -0800, Laurentiu Mihalcea wrote:
-> On 11/24/2025 7:41 AM, Frank Li wrote:
-> > On Mon, Nov 24, 2025 at 01:28:32AM -0800, Laurentiu Mihalcea wrote:
-> > > On 11/21/2025 7:38 AM, Frank Li wrote:
-> > > > On Fri, Nov 14, 2025 at 05:37:34AM -0800, Laurentiu Mihalcea wrote:
-> > > > > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> > > > >=20
-> > > > > Replace the reset map mask with the bit index to make it clear th=
-at all
-> > > > > reset lines are managed by exactly 1 bit.
-> > > > I don't think there are benefit because I met some periphal need a =
-magic
-> > > > number to reset.
+On Tue, Nov 25, 2025 at 6:08=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Tue, Nov 25, 2025 at 02:48:49PM +0800, Chen-Yu Tsai wrote:
+> > Convert the existing text binding to YAML.
+> >
+> > The description has been change to reflect the possibility of coreboot
+> > inserting the node itself.
+> >
+> > The example has been modified to compile and pass validation without
+> > any errors. A comment was added to note what the firmware actually
+> > emits.
+> >
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> >  .../devicetree/bindings/firmware/coreboot.txt | 33 ----------
+> >  .../bindings/firmware/coreboot.yaml           | 60 +++++++++++++++++++
+> >  2 files changed, 60 insertions(+), 33 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/firmware/coreboot=
+.txt
+> >  create mode 100644 Documentation/devicetree/bindings/firmware/coreboot=
+.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/firmware/coreboot.txt b/=
+Documentation/devicetree/bindings/firmware/coreboot.txt
+> > deleted file mode 100644
+> > index 4c955703cea8..000000000000
+> > --- a/Documentation/devicetree/bindings/firmware/coreboot.txt
+> > +++ /dev/null
+> > @@ -1,33 +0,0 @@
+> > -COREBOOT firmware information
+> > -
+> > -The device tree node to communicate the location of coreboot's memory-=
+resident
+> > -bookkeeping structures to the kernel. Since coreboot itself cannot boo=
+t a
+> > -device-tree-based kernel (yet), this node needs to be inserted by a
+> > -second-stage bootloader (a coreboot "payload").
+> > -
+> > -Required properties:
+> > - - compatible: Should be "coreboot"
+> > - - reg: Address and length of the following two memory regions, in ord=
+er:
+> > -     1.) The coreboot table. This is a list of variable-sized descript=
+ors
+> > -     that contain various compile- and run-time generated firmware
+> > -     parameters. It is identified by the magic string "LBIO" in its fi=
+rst
+> > -     four bytes.
+> > -     See coreboot's src/commonlib/include/commonlib/coreboot_tables.h =
+for
+> > -     details.
+> > -     2.) The CBMEM area. This is a downward-growing memory region used=
+ by
+> > -     coreboot to dynamically allocate data structures that remain resi=
+dent.
+> > -     It may or may not include the coreboot table as one of its member=
+s. It
+> > -     is identified by a root node descriptor with the magic number
+> > -     0xc0389481 that resides in the topmost 8 bytes of the area.
+> > -     See coreboot's src/include/imd.h for details.
+> > -
+> > -Example:
+> > -     firmware {
+> > -             ranges;
+> > -
+> > -             coreboot {
+> > -                     compatible =3D "coreboot";
+> > -                     reg =3D <0xfdfea000 0x264>,
+> > -                           <0xfdfea000 0x16000>;
+> > -             }
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/firmware/coreboot.yaml b=
+/Documentation/devicetree/bindings/firmware/coreboot.yaml
+> > new file mode 100644
+> > index 000000000000..568afd1abb92
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/firmware/coreboot.yaml
+> > @@ -0,0 +1,60 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/firmware/coreboot.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: COREBOOT firmware information
+>
+> Coreboot
 
-Toggling multiple bits in unison is different from having to write a
-magic number to a register field. The driver currently supports
-neither. That is why I suggested to change from mask to bit.
+OK. Side note, coreboot is stylized in all lowercase letters.
+Should I follow that or just use standard English rules?
 
-> > > Please provide more information. What SoC? Which peripherals? What bl=
-ock control?
-> > >=20
-> > I can't reminder exact one. I grep some code
-> >=20
-> > [IMX8MP_MEDIABLK_PD_LCDIF_1] =3D {
-> >                 .name =3D "mediablk-lcdif-1",
-> >                 .clk_names =3D (const char *[]){ "disp1", "apb", "axi",=
- },
-> >                 .num_clks =3D 3,
-> >                 .gpc_name =3D "lcdif1",
-> >                 .rst_mask =3D BIT(4) | BIT(5) | BIT(23),
-> >                 .clk_mask =3D BIT(4) | BIT(5) | BIT(23),
+> > +
+> > +maintainers:
+> > +  - Julius Werner <jwerner@chromium.org>
+> > +
+> > +description:
+> > +  The device tree node to communicate the location of coreboot's
+> > +  memory-resident bookkeeping structures to the kernel. Coreboot's
+> > +  FIT image payload can insert the node into the device tree. If a
+> > +  second-stage bootloader (a coreboot "payload") is used, then it
+> > +  is responsible for inserting the node.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: coreboot
+>
+> Blank line (it is always here, there is no example without, which makes
+> me wonder which file you took as starting point)
 
-According to the reference manual, these are three separate software
-resets for three separate clocks: lcdif_pixel_clk, lcdif_apb_clk, and
-lcdif_axi_clk.
+I actually converted the existing text file directly, copying
+boilerplate, i.e. the top few lines, from another file.
 
-> >                 .path_names =3D (const char *[]){"lcdif-rd", "lcdif-wr"=
-},
-> >                 .num_paths =3D 2,
-> >         },
-> >=20
-> > mask is more extenable and easily support more hardware in future.
+> > +  reg:
+> > +    description: Address and length of the following two memory region=
+s
+>
+> Drop description, redundant.
 
-If such hardware appears in the future, it will be easy to adapt the
-driver. Usually we don't prematurely add complexity for possible future
-hardware.
+Ack.
 
-> > Change to bit number have not big benefit.
+> > +    items:
+> > +      - description:
+> > +          The coreboot table. This is a list of variable-sized descrip=
+tors
+> > +          that contain various compile- and run-time generated firmwar=
+e
+> > +          parameters. It is identified by the magic string "LBIO" in i=
+ts first
+> > +          four bytes.
+> > +
+> > +          See coreboot's src/commonlib/include/commonlib/coreboot_tabl=
+es.h for
+> > +          details.
+> > +      - description:
+> > +          The CBMEM area. This is a downward-growing memory region use=
+d by
+> > +          coreboot to dynamically allocate data structures that remain=
+ resident.
+> > +          It may or may not include the coreboot table as one of its m=
+embers. It
+> > +          is identified by a root node descriptor with the magic numbe=
+r
+> > +          0xc0389481 that resides in the topmost 8 bytes of the area.
+> > +
+> > +          See coreboot's src/include/imd.h for details.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    firmware {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <1>;
+> > +        ranges;
+> > +
+> > +        /* Firmware actually emits "coreboot" node without unit name *=
+/
+> > +        coreboot@fdfea000 {
+> > +            compatible =3D "coreboot";
+> > +            reg =3D <0xfdfea000 0x264>, <0xfdfea000 0x16000>;
+>
+> That's the same address in both places, so the same one entry. You need
+> two distinctive addresses or binding needs changes to have only one item
+> as well.
 
-It improves readability as it makes immediately clear from the code
-that all resets correspond to a single bit.
+The description does mention that the latter block can include the
+former. It's really up to the firmware. If you like I can include
+two examples to cover both cases.
 
-> sure, I'm fine with the mask-based approach. The big idea here is to make=
- this driver
-> usable in as many scenarios as possible.
->=20
-> Philipp, please let me know if you're okay with the proposal. Will also h=
-ave to tweak
-> one of the subsequent patches since, so far, we've been operating under t=
-he assumption
-> that reset lines are 1 bit.
 
-Given that the current code is already using mask, and if you think it
-is likely that there will be need for reset controls that require
-toggling multiple bits with a single write, I'm fine with keeping the
-mask.
-
-regards
-Philipp
+ChenYu
 
