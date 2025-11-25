@@ -1,358 +1,249 @@
-Return-Path: <devicetree+bounces-241995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A481C84F1A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:20:21 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3477C84F3B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:23:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4E3C94E15D7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:20:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3127834ADA2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:23:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7866D2561A7;
-	Tue, 25 Nov 2025 12:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6535283124;
+	Tue, 25 Nov 2025 12:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hlxiaTCq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PrkIGiiH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11012014.outbound.protection.outlook.com [40.93.195.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55AFC1A9B58;
-	Tue, 25 Nov 2025 12:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764073218; cv=fail; b=UyGTYGghMJHUV6S3moc8CPy1LSMTE2H5i6bDBK0A5NN2Vw5R8TuoX7Q8mM3ZuG8Ft03fWhGSUkI05ySopWHYLcb00IejrVjDV+PEH2+f/ncUQn/WQYTWskQ3D654Oq17eVGJSZttgFyXWzmgZ2eF1rARzB98Y4AYfP8bx/4s0LE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764073218; c=relaxed/simple;
-	bh=7o+McUSVdHGV2Htu4gniMZOw9lkxPix3yFmd+mmJblo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=OdP3nDSjdo8plo5Fvajt3mGgCceFsq/H1UKn+NdvUqsGbzIwFTuLY/w9CsA7aBfQBBL5+z/h6hX/8DFbNcLQGQhCNibCCmVjNlkgRRDxgWJBNNdWCEZ2BjnRHQts1lQwYj2dHw+EXENzh0kR6jN+iVL5Fm154yU1qYLKp26Tdoc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hlxiaTCq; arc=fail smtp.client-ip=40.93.195.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ejhViaj0uwhdqspmeuDmA3FF+PjKasxKhfIQZGqPaaRN+5pAKakWm3I6ugBL4WnrxXH9CVd309w0olaTVT4gITsR/+xHrVXMRG8CW+HOWLDzUeYjM3bzcWsPD+GpTfMYhZ3WHLWhGmh+CqKLlTbQFX4y3xJL1NzWH0Ant/OU8Qo1e/8juka8Nb92KbdoWL5lRiTQIhT6JEsDpRV3WZzq3/23AR2DzBa1ZI386XBbqFnShq08qyu3+wWn1sq+oT2F9sdzRYzanLj/n4rwHnya5zN0I2iaV+WxEuOEDVmD6osR9l5ELutjWNYrLzy1pDDNTPD4bIQUpKDY+yGW7Mxc1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aMR3WLKCR+f8vHGUd+qdwJ4I/l/w8mO/i/9awQF918A=;
- b=YZAdaJ/CO47ACR00NnDUSxRq0+isNGZRhpIvxlwoLgDSIXLiKNyyBGEbyb1auNSIg++DN1FtP5meHj+ZsW45qdesP3GPUArnN3STZh7Gi4FINE9wnNy8fX0rzDoNPEcKGAuuddh3I+MjzIdVqS7rM8MeV4JBi+bRjqVd8Nyn+GqFTXjjIfo8nCD+0Uen8eB4Yl5kL9Nm8UkPBSI3BVpIybZ2CShpIzKXOC3GoZezeuSpwiHY83IZoxsEBteUywqmaxYjwDv4pN5NYyZK1c+1OynYdCLovOfaP2gjnF+Wp0IpIbP6PxrJv9eTQlP+AqdMz3Mbq3pKk7Dt8LNalheXwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=cadence.com smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aMR3WLKCR+f8vHGUd+qdwJ4I/l/w8mO/i/9awQF918A=;
- b=hlxiaTCqsXEOjfWqzWnu32DO3waUtSb8NDdOitPMXOE6Q6+jQplg1N38BiQ9pJMK9WiDlHHi9iJdvEK69es0U+bHplJxe90DJbXPkK66sX7ye8cXGlDED1r6t8x/XpZWBjeb+F7j3D4vrabmajm+/hN2H0oBxZRoyK6GN7sPTXk=
-Received: from BLAPR03CA0135.namprd03.prod.outlook.com (2603:10b6:208:32e::20)
- by MW6PR10MB7591.namprd10.prod.outlook.com (2603:10b6:303:249::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Tue, 25 Nov
- 2025 12:20:10 +0000
-Received: from BL6PEPF0001AB53.namprd02.prod.outlook.com
- (2603:10b6:208:32e:cafe::8d) by BLAPR03CA0135.outlook.office365.com
- (2603:10b6:208:32e::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.14 via Frontend Transport; Tue,
- 25 Nov 2025 12:20:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- BL6PEPF0001AB53.mail.protection.outlook.com (10.167.241.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9366.7 via Frontend Transport; Tue, 25 Nov 2025 12:20:08 +0000
-Received: from DFLE208.ent.ti.com (10.64.6.66) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 25 Nov
- 2025 06:20:02 -0600
-Received: from DFLE215.ent.ti.com (10.64.6.73) by DFLE208.ent.ti.com
- (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 25 Nov
- 2025 06:20:02 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 25 Nov 2025 06:20:02 -0600
-Received: from [172.24.235.208] (hkshenoy.dhcp.ti.com [172.24.235.208])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5APCJt0P3649594;
-	Tue, 25 Nov 2025 06:19:56 -0600
-Message-ID: <a93a7c0a-82f2-4dd9-bf70-40266d7f9b41@ti.com>
-Date: Tue, 25 Nov 2025 17:49:55 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A330C1A9B58;
+	Tue, 25 Nov 2025 12:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764073392; cv=none; b=PxaX5v669m0WCLEWllkGrMqtlCHkfgP/5TL7D1p2bxgcXSp0dHTe15ehHzlbBVCwafeMGLeoKVqp6TXX8A363luVaa3WZz8cH7V2U8NhW95n5tfk8QClogE+xawgQBjZxXlcwLjWDG6oD/wgXVrP9ueZoj62OafIjb5YHTipKDI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764073392; c=relaxed/simple;
+	bh=dgBsZgJWsujT1G5ZZyKp5poEm84jGPGY7WbAbiL0MR0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Bj9A2MgfI2oCN076YQrq7D38d/QPXu/elLrC1gDvg59bDygFnscvoSWavxbwO8PvZgeJ1h0S7UcHHeLDc+f/cvPdwnDWQxc9rMDpejCY3UbJ75n1c3nFh1K+O6wxQ8Ewg+KlrC/JzCsjBP6bknj6lbZWvBVM7etU6lw5+ve8kUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PrkIGiiH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA125C4CEF1;
+	Tue, 25 Nov 2025 12:23:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764073392;
+	bh=dgBsZgJWsujT1G5ZZyKp5poEm84jGPGY7WbAbiL0MR0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=PrkIGiiHSiipdIgzxPoyKCJ4Fy3jRwcIwcp5kblp2SuzY9IJRC9td8hSxj7WBX+OK
+	 tHsOa1jxjoE8ceReNCftcWRT98GvaRM0Ia8paupqWSuu06gNtntWVK2V4LQWr0WsV7
+	 VGIT5x3vE1vHyOipQTu/CVZ/WVCeMe+WT6R2hFP8Jj95v9ajS+QegQGNA9Diro6RHD
+	 FIV26stHU8SOFSWUTETfYamJZmJqnmIg2kx494WXDxRs+HUC0o5o9j6B2MVoEucVx2
+	 vyKGLTcBVIH5jsgc2lFyq6s8Xt3D454mrw3aOT/8J72JonvIU8bLUsk2B2hRd/b7TU
+	 THa3yTkV/FFbA==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Usama Arif <usamaarif642@gmail.com>,  Changyuan Lyu
+ <changyuanl@google.com>,  akpm@linux-foundation.org,
+  linux-kernel@vger.kernel.org,  Mike Rapoport <rppt@kernel.org>,
+  anthony.yznaga@oracle.com,  arnd@arndb.de,  ashish.kalra@amd.com,
+  benh@kernel.crashing.org,  bp@alien8.de,  catalin.marinas@arm.com,
+  corbet@lwn.net,  dave.hansen@linux.intel.com,
+  devicetree@vger.kernel.org,  dwmw2@infradead.org,  ebiederm@xmission.com,
+  graf@amazon.com,  jgowans@amazon.com,  kexec@lists.infradead.org,
+  krzk@kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-doc@vger.kernel.org,  linux-mm@kvack.org,  luto@kernel.org,
+  mark.rutland@arm.com,  mingo@redhat.com,  pasha.tatashin@soleen.com,
+  pbonzini@redhat.com,  peterz@infradead.org,  robh@kernel.org,
+  rostedt@goodmis.org,  saravanak@google.com,
+  skinsburskii@linux.microsoft.com,  tglx@linutronix.de,
+  thomas.lendacky@amd.com,  will@kernel.org,  x86@kernel.org,  Breno Leitao
+ <leitao@debian.org>,  thevlad@meta.com
+Subject: Re: [PATCH v8 12/17] x86/e820: temporarily enable KHO scratch for
+ memory below 1M
+In-Reply-To: <22BDBF5C-C831-4BBC-A854-20CA77234084@zytor.com> (H. Peter
+	Anvin's message of "Mon, 24 Nov 2025 16:56:34 -0800")
+References: <20250509074635.3187114-1-changyuanl@google.com>
+	<20250509074635.3187114-13-changyuanl@google.com>
+	<a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
+	<22BDBF5C-C831-4BBC-A854-20CA77234084@zytor.com>
+Date: Tue, 25 Nov 2025 13:23:05 +0100
+Message-ID: <mafs08qfuxpw6.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: drm/bridge: Update reg-name and reg
- description list for cdns,mhdp8546 compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <robh@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-	<airlied@gmail.com>, <andrzej.hajda@intel.com>, <conor+dt@kernel.org>,
-	<devarsht@ti.com>, <devicetree@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <jernej.skrabec@gmail.com>,
-	<jonas@kwiboo.se>, <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<neil.armstrong@linaro.org>, <rfoss@kernel.org>, <s-jain1@ti.com>,
-	<simona@ffwll.ch>, <sjakhade@cadence.com>, <tzimmermann@suse.de>,
-	<u-kumar1@ti.com>, <yamonkar@cadence.com>, <pthombar@cadence.com>,
-	<nm@ti.com>
-References: <20251121123437.860390-1-h-shenoy@ti.com>
- <20251123-flying-sweet-raven-bf3571@kuoka>
- <7161aa97-7ee3-4468-a53e-8158075aa0a9@ti.com>
- <a9c78805-9b70-4e20-a3f5-36e5973fc272@kernel.org>
-Content-Language: en-US
-From: Harikrishna shenoy <h-shenoy@ti.com>
-In-Reply-To: <a9c78805-9b70-4e20-a3f5-36e5973fc272@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB53:EE_|MW6PR10MB7591:EE_
-X-MS-Office365-Filtering-Correlation-Id: 27a0be99-62a1-40bd-7420-08de2c1cf8f9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|7416014|376014|1800799024|36860700013|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?R2hpeHZCVFpzOVpXMU5SNzRqdjNMaVUvY0NyWVBITVZzVGV1aUowOU1wUGtB?=
- =?utf-8?B?TTAvVGJONUZxdE4wR285a2o1Y1drZlB3ZGJ2aFZLRzRiVGN5eklxSVRuZVYr?=
- =?utf-8?B?SjdzUnJMQ2czZDdRaVAxenVqRS83MURWQ2puZFlSVnpvVmVHZkFiaXRkbVBu?=
- =?utf-8?B?MmJEUi9DZjYvaVB3cU4ycEZYOGhHbmQ1TzlKTFdwdG1hNWFUd1FJK1V2VTR0?=
- =?utf-8?B?QTFCTVhLMnRJMjByS3ZhT0N4RU91MGFvcE9VaXRIN3diRjhiZjhod0RqOHlV?=
- =?utf-8?B?TWRmMTRwWktDd2l3N2wxalhZUW1COHlYYXZtWVVqam1YQmlSMWlKRHE0a2Fa?=
- =?utf-8?B?QTlPRWRDUEp0MFlzZ2RUTUMvSnpNOFVwWHRJbEhZRUd2UlZzbjFCZFFPVUtP?=
- =?utf-8?B?ZkFyNXRudy9KLzZVOVBoVHM4ZWpZLzJVeUp3SVBqL2xjbW15WDBkZ2lTUFAw?=
- =?utf-8?B?VEhvWnBKY3RaYnpsSDl2OTlZK1hsRjVsdnUzd1g5bnRhcGFhakQvUVp6UXBX?=
- =?utf-8?B?RVVuNXNuL29FZ2psVVBLNUxrdEVISzBWZDJyd2MzLytnY2pSbDFjcS9OVDFI?=
- =?utf-8?B?dmdyai82YTArM2ZNeGxkT3JSRERWbzc2NTNuTE1yWUtsL3V5cDVGTXg2Zy9v?=
- =?utf-8?B?cG5ONlR0MmxkWjV3ODlaTUYwdTRyMS9qQWMzcmdNa0tPaVlXbzBzOVNHSDJo?=
- =?utf-8?B?SnpraUhsME0zRkVTYjR6enlMbDJWTUpsNTRTcVY5MVBuMHErK2hEUEZESDZ1?=
- =?utf-8?B?ZXpnVHExUHE1SGZaRndGQ3BycGRzeTIyS0xaYVVxTXptcnVwMkNCUFV6UzVl?=
- =?utf-8?B?VXpFZzA1dncybWZpMjNOVGVGOXpScDR1SG1sNExzQTdsWnZUcHUxdnZ5RDU3?=
- =?utf-8?B?TFU5WlB6Vlk1OEZzRmU3T2xHYStlOTRyQ3o4TDhZd0Z1RXlHNmJZbjFrSG9Z?=
- =?utf-8?B?cVJoK3ZtRi9ZUDZRRk1NUjQwWXU2NXpma21IYy9vV2UrTmpzTFVLNVVDb1Vq?=
- =?utf-8?B?MWcwcXVHVEJlWHV5aXZoSDZQRHhISmJTT2djSVFOMk9Ka3Q5S2J2czkrUVhM?=
- =?utf-8?B?SXR4RVpYOVZYdUhwLzdkcWtWTTFMV3REeVozenU1QXovUmF6T0p5Y01hazlT?=
- =?utf-8?B?cmNtbmhsU2p0U0lEbHFZVkxZWi9MSTBZN24xRHBGK3ROaGZwUmJXT2lPc1FK?=
- =?utf-8?B?VDVVQ0loUTRWZ21QQ1VZWWk1bHZXejVRL2tTTzVRT05VSUJmWENwbk5xTUU1?=
- =?utf-8?B?ekRoL1h3ZFM0SVVyNFVFcytGM00xY05tWU5KOWt2azRYTEZoUnpkSHFwUE9E?=
- =?utf-8?B?T05YQTR0cHhvOWNOVDZYL1QxVUx1WFVMU3I1MUs2U3gvRzRMVDRwa2lyKzhV?=
- =?utf-8?B?RG5TeGs5RXdIUERVaTVtTEw1R2o5d0Rzakt3bGhMdzFEYnFWbHZwOS9SRkM3?=
- =?utf-8?B?YkF6RlVvSkZWUHFSZVp6eGZnSloyRTJ6ZWFhMEIwaUN0TzMyVXVMOEV4MEU0?=
- =?utf-8?B?NFc3ZjdRYTBVZFpoQ2NhQkhuQ3BDeFhHOXoyaTlrdTJ6MlhrREI0ZWt3L2ZC?=
- =?utf-8?B?MWE5MDZtckkrM1p4SzJPaDJWeWEvUXd0aEExT0w1aWZ1b2YzMXA3d1lZaUpn?=
- =?utf-8?B?YnkwbnZhSmN3Qi9mMjFORkpoVkhvOEpBUHROZXZwT2JIWllqTTJYMURNWEZM?=
- =?utf-8?B?b1E5NW5FYTRtR3J0RWN0bERMbWRUOUNzditnWnZLeFRJZGZwamtLOWorVmQ3?=
- =?utf-8?B?SThTMlRqaWJZTFFlU2M1OVcyVmtHVmxCaHFSS0Q4WC9ER1c2c0dyY210ZkNI?=
- =?utf-8?B?SzRFL0JQdWxOU2xRdlRKWTMyOEFLbTA0V1dwVmNsd3dWZld1SStWb3dJbjBl?=
- =?utf-8?B?THBjVmlCVzQ0Qm41S3pYaGVMMWVrNzAwWisvbmk1aG42akdDaGdXdVhWUERR?=
- =?utf-8?B?blI2NWZQcC9RV1NFcm43TTJaSnNFOEdPUk1ubmRrL0crV1Y2cVVISnFhZHVS?=
- =?utf-8?B?bXdPZE5RUVZnRjhjVmpOTG43ZmRpdGM3YzBiNFQ4OWc4ZWlBSks2bFoxWElr?=
- =?utf-8?B?RkIxYWZNTUtacExOZjZ5U0Q2cHRrSFRlRmdrOTZrV09iR05McjJxZGFBUjUv?=
- =?utf-8?Q?71ys=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(1800799024)(36860700013)(13003099007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 12:20:08.0237
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27a0be99-62a1-40bd-7420-08de2c1cf8f9
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF0001AB53.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR10MB7591
+Content-Type: text/plain
 
+On Mon, Nov 24 2025, H. Peter Anvin wrote:
 
-
-On 25/11/25 14:51, Krzysztof Kozlowski wrote:
-> On 25/11/2025 06:26, Harikrishna shenoy wrote:
+> On November 24, 2025 11:24:58 AM PST, Usama Arif <usamaarif642@gmail.com> wrote:
 >>
 >>
->> On 23/11/25 15:30, Krzysztof Kozlowski wrote:
->>> On Fri, Nov 21, 2025 at 06:04:37PM +0530, Harikrishna Shenoy wrote:
->>>> Remove j721e-intg register name from reg-name list for cdns,mhdp8546
->>>> compatible. The j721e-integ registers are specific to TI SoCs, so they
->>>> are not required for compatibles other than ti,j721e-mhdp8546.
->>>>
->>>> Update reg and reg-names top level constraints with lists according
->>>> to compatibles.
->>>>
->>>> Move the register name constraints and reg description list to the
->>>> appropriate compatibility sections to ensure the correct register
->>>> names are used with each compatible value also adding the DSC register
->>>> to make bindings align with what the hardware supports.
->>>>
->>>> Fixes: 7169d082e7e6 ("dt-bindings: drm/bridge: MHDP8546 bridge binding changes for HDCP")
->>>> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
->>>> ---
->>>>
->>>> Links to some discussions pointing to need for a fixes patch:
->>>> https://lore.kernel.org/all/20250903220312.GA2903503-robh@kernel.org/
->>>> https://lore.kernel.org/all/d2367789-6b54-4fc2-bb7c-609c0fe084d3@ti.com/
->>>>
->>>> Link to v2:
->>>> <https://lore.kernel.org/all/20251119122447.514729-1-h-shenoy@ti.com/>
->>>>
->>>> Changelog v2 --> v3:
->>>> -Add the reg description list and reg-name list in top level constraints
->>>> using oneOf for either of compatible.
->>>> Logs after testing some cases: https://gist.github.com/h-shenoy/a422f7278859cd95447e674963caabd9
->>>>
->>>> Link to v1:
->>>> <https://lore.kernel.org/all/20251107131535.1841393-1-h-shenoy@ti.com/>
->>>>
->>>> Changelog v1 --> v2:
->>>> -Update the reg description list for each compatible and add register space
->>>> for dsc to make the bindings reflect what hardware supports although
->>>> the driver doesn't support dsc yet.
->>>>
->>>> Note: j721e-integ are not optional registers for ti-compatible.
->>>>
->>>>    .../display/bridge/cdns,mhdp8546.yaml         | 85 ++++++++++++++-----
->>>>    1 file changed, 66 insertions(+), 19 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->>>> index c2b369456e4e2..632595ef32f63 100644
->>>> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->>>> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->>>> @@ -17,23 +17,45 @@ properties:
->>>>          - ti,j721e-mhdp8546
->>>>    
->>>>      reg:
->>>> -    minItems: 1
->>>> -    items:
->>>> -      - description:
->>>> -          Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
->>>> -          The AUX and PMA registers are not part of this range, they are instead
->>>> -          included in the associated PHY.
->>>> -      - description:
->>>> -          Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
->>>> -      - description:
->>>> -          Register block of mhdptx sapb registers.
->>>> +    oneOf:
->>>> +      - minItems: 2
->>>> +      - items:
->>>
->>> This is wrong syntax. You created here a list, so you now allow
->>> anything with minItems 2.
->> Hi Krzysztof,
+>>On 09/05/2025 08:46, Changyuan Lyu wrote:
+>>> From: Alexander Graf <graf@amazon.com>
+>>> 
+>>> KHO kernels are special and use only scratch memory for memblock
+>>> allocations, but memory below 1M is ignored by kernel after early boot
+>>> and cannot be naturally marked as scratch.
+>>> 
+>>> To allow allocation of the real-mode trampoline and a few (if any) other
+>>> very early allocations from below 1M forcibly mark the memory below 1M
+>>> as scratch.
+>>> 
+>>> After real mode trampoline is allocated, clear that scratch marking.
+>>> 
+>>> Signed-off-by: Alexander Graf <graf@amazon.com>
+>>> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+>>> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+>>> Co-developed-by: Changyuan Lyu <changyuanl@google.com>
+>>> Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+>>> Acked-by: Dave Hansen <dave.hansen@linux.intel.com>
+>>> ---
+>>>  arch/x86/kernel/e820.c   | 18 ++++++++++++++++++
+>>>  arch/x86/realmode/init.c |  2 ++
+>>>  2 files changed, 20 insertions(+)
+>>> 
+>>> diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
+>>> index 9920122018a0b..c3acbd26408ba 100644
+>>> --- a/arch/x86/kernel/e820.c
+>>> +++ b/arch/x86/kernel/e820.c
+>>> @@ -1299,6 +1299,24 @@ void __init e820__memblock_setup(void)
+>>>  		memblock_add(entry->addr, entry->size);
+>>>  	}
+>>>  
+>>> +	/*
+>>> +	 * At this point memblock is only allowed to allocate from memory
+>>> +	 * below 1M (aka ISA_END_ADDRESS) up until direct map is completely set
+>>> +	 * up in init_mem_mapping().
+>>> +	 *
+>>> +	 * KHO kernels are special and use only scratch memory for memblock
+>>> +	 * allocations, but memory below 1M is ignored by kernel after early
+>>> +	 * boot and cannot be naturally marked as scratch.
+>>> +	 *
+>>> +	 * To allow allocation of the real-mode trampoline and a few (if any)
+>>> +	 * other very early allocations from below 1M forcibly mark the memory
+>>> +	 * below 1M as scratch.
+>>> +	 *
+>>> +	 * After real mode trampoline is allocated, we clear that scratch
+>>> +	 * marking.
+>>> +	 */
+>>> +	memblock_mark_kho_scratch(0, SZ_1M);
+>>> +
+>>>  	/*
+>>>  	 * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
+>>>  	 * to even less without it.
+>>> diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
+>>> index f9bc444a3064d..9b9f4534086d2 100644
+>>> --- a/arch/x86/realmode/init.c
+>>> +++ b/arch/x86/realmode/init.c
+>>> @@ -65,6 +65,8 @@ void __init reserve_real_mode(void)
+>>>  	 * setup_arch().
+>>>  	 */
+>>>  	memblock_reserve(0, SZ_1M);
+>>> +
+>>> +	memblock_clear_kho_scratch(0, SZ_1M);
+>>>  }
+>>>  
+>>>  static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
 >>
->> The list defined here restricts what lists are accepted, so for
-> 
-> No. It does not.
-> 
-> Look - you defined list of ONLY minItems:2, without anything else. The
-> problem is that your oneOf consist of four separate cases and you wanted
-> two cases, so only:
-> oneOf:
->   - foo
->     whatever goes here
-> 
->   - bar
->     further schema
-> 
-> Not four.
-
-Got it, the minItems should be bound to the oneOF the 2 lists, will 
-update that.
-Thanks.
-> 
->> cdns,mhdp8546 compatible anything more than 3 items is rejected
->> (example:
->> https://gist.github.com/h-shenoy/a422f7278859cd95447e674963caabd9).
->> Could you please help me with an
->> example where you think the bindings are incorrect?
+>>Hello!
 >>
->>>
->>>> +          - description:
->>>> +              Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
->>>> +              The AUX and PMA registers are not part of this range, they are instead
->>>> +              included in the associated PHY.
->>>> +          - description:
->>>> +              Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
->>>> +          - description:
->>>> +              Register block of mhdptx sapb registers.
->>>> +          - description:
->>>> +              Register block for mhdptx DSC encoder registers.
->>>> +
->>>> +      - minItems: 1
->>>
->>> Actually anything with minItems 1... I asked for list of TWO, not FOUR,
->>> items. Or if syntax is getting to complicated, just min and maxItems.
->>>
->>>
->>>> +      - items:
->>>> +          - description:
->>>> +              Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
->>>> +              The AUX and PMA registers are not part of this range, they are instead
->>>> +              included in the associated PHY.
->>>> +          - description:
->>>> +              Register block of mhdptx sapb registers.
->>>> +          - description:
->>>> +              Register block for mhdptx DSC encoder registers.
->>>>    
->>>>      reg-names:
->>>> -    minItems: 1
->>>> -    items:
->>>> -      - const: mhdptx
->>>> -      - const: j721e-intg
->>>> -      - const: mhdptx-sapb
->>>> +    oneOf:
->>>> +      - minItems: 2
->>>> +      - items:
->>>
->>> Also wrong.
->>>
->>>> +          - const: mhdptx
->>>> +          - const: j721e-intg
->>>> +          - const: mhdptx-sapb
->>>> +          - const: dsc
->>>> +
->>>> +      - minItems: 1
->>>> +      - items:
->>>> +          - const: mhdptx
->>>> +          - const: mhdptx-sapb
->>>> +          - const: dsc
->>>>    
->>>>      clocks:
->>>>        maxItems: 1
->>>> @@ -100,18 +122,43 @@ allOf:
->>>>          properties:
->>>>            reg:
->>>>              minItems: 2
->>>> -          maxItems: 3
->>>
->>> Your commit msg says you "remove" but here you ADD one more item, thus
->>> growing this 3->4.
->>>
->>> How remove can result in 3 becoming 4?
->>>
->> Yes, remove is for j721e-intg for cdns,mhdp8546 compatible, and to make
->> bindings complete have added dsc reg-blocks, these changes reflects
->> correct capabilities of hardware, have mentioned these in commit message
->> as well.
-> 
-> 
-> Again, how a "remove" can result in growing?
-> 
-I am removing the j721e-intg register from non ti compatible that is 
-being done via the oneOf and conditionals, the adding part here comes 
-from adding the DSC registers space which the hardware supports but 
-bindings don't show yet.
+>>I am working with Breno who reported that we are seeing the below warning at boot
+>>when rolling out 6.16 in Meta fleet. It is difficult to reproduce on a single host
+>>manually but we are seeing this several times a day inside the fleet.
+>>
+>> 20:16:33  ------------[ cut here ]------------
+>> 20:16:33  WARNING: CPU: 0 PID: 0 at mm/memblock.c:668 memblock_add_range+0x316/0x330
+>> 20:16:33  Modules linked in:
+>> 20:16:33  CPU: 0 UID: 0 PID: 0 Comm: swapper Tainted: G S                  6.16.1-0_fbk0_0_gc0739ee5037a #1 NONE 
+>> 20:16:33  Tainted: [S]=CPU_OUT_OF_SPEC
+>> 20:16:33  RIP: 0010:memblock_add_range+0x316/0x330
+>> 20:16:33  Code: ff ff ff 89 5c 24 08 41 ff c5 44 89 6c 24 10 48 63 74 24 08 48 63 54 24 10 e8 26 0c 00 00 e9 41 ff ff ff 0f 0b e9 af fd ff ff <0f> 0b e9 b7 fd ff ff 0f 0b 0f 0b cc cc cc cc cc cc cc cc cc cc cc
+>> 20:16:33  RSP: 0000:ffffffff83403dd8 EFLAGS: 00010083 ORIG_RAX: 0000000000000000
+>> 20:16:33  RAX: ffffffff8476ff90 RBX: 0000000000001c00 RCX: 0000000000000002
+>> 20:16:33  RDX: 00000000ffffffff RSI: 0000000000000000 RDI: ffffffff83bad4d8
+>> 20:16:33  RBP: 000000000009f000 R08: 0000000000000020 R09: 8000000000097101
+>> 20:16:33  R10: ffffffffff2004b0 R11: 203a6d6f646e6172 R12: 000000000009ec00
+>> 20:16:33  R13: 0000000000000002 R14: 0000000000100000 R15: 000000000009d000
+>> 20:16:33  FS:  0000000000000000(0000) GS:0000000000000000(0000) knlGS:0000000000000000
+>> 20:16:33  CR2: ffff888065413ff8 CR3: 00000000663b7000 CR4: 00000000000000b0
+>> 20:16:33  Call Trace:
+>> 20:16:33   <TASK>
+>> 20:16:33   ? __memblock_reserve+0x75/0x80
+>> 20:16:33   ? setup_arch+0x30f/0xb10
+>> 20:16:33   ? start_kernel+0x58/0x960
+>> 20:16:33   ? x86_64_start_reservations+0x20/0x20
+>> 20:16:33   ? x86_64_start_kernel+0x13d/0x140
+>> 20:16:33   ? common_startup_64+0x13e/0x140
+>> 20:16:33   </TASK>
+>> 20:16:33  ---[ end trace 0000000000000000 ]--- 
+>>
+>>
+>>Rolling out with memblock=debug is not really an option in a large scale fleet due to the
+>>time added to boot. But I did try on one of the hosts (without reproducing the issue) and I see:
+>>
+>>[    0.000616]  memory.cnt  = 0x6
+>>[    0.000617]  memory[0x0]	[0x0000000000001000-0x000000000009bfff], 0x000000000009b000 bytes flags: 0x40
+>>[    0.000620]  memory[0x1]	[0x000000000009f000-0x000000000009ffff], 0x0000000000001000 bytes flags: 0x40
+>>[    0.000621]  memory[0x2]	[0x0000000000100000-0x000000005ed09fff], 0x000000005ec0a000 bytes flags: 0x0
+>>...
+>>
+>>The 0x40 (MEMBLOCK_KHO_SCRATCH) is coming from memblock_mark_kho_scratch in e820__memblock_setup. I believe this
+>>should be under ifdef like the diff at the end? (Happy to send this as a patch for review if it makes sense).
+>>We have KEXEC_HANDOVER disabled in our defconfig, therefore MEMBLOCK_KHO_SCRATCH shouldnt be selected and
+>>we shouldnt have any MEMBLOCK_KHO_SCRATCH type regions in our memblock reservations.
+>>
+>>The other thing I did was insert a while(1) just before the warning and inspected the registers in qemu.
+>>R14 held the base register, and R15 held the size at that point.
+>>In the warning R14 is 0x100000 meaning that someone is reserving a region with a different flag to MEMBLOCK_NONE
+>>at the boundary of MEMBLOCK_KHO_SCRATCH.
+>>
+>>diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
+>>index c3acbd26408ba..26e4062a0bd09 100644
+>>--- a/arch/x86/kernel/e820.c
+>>+++ b/arch/x86/kernel/e820.c
+>>@@ -1299,6 +1299,7 @@ void __init e820__memblock_setup(void)
+>>                memblock_add(entry->addr, entry->size);
+>>        }
+>> 
+>>+#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
+>>        /*
+>>         * At this point memblock is only allowed to allocate from memory
+>>         * below 1M (aka ISA_END_ADDRESS) up until direct map is completely set
+>>@@ -1316,7 +1317,7 @@ void __init e820__memblock_setup(void)
+>>         * marking.
+>>         */
+>>        memblock_mark_kho_scratch(0, SZ_1M);
+>>-
+>>+#endif
+>>        /*
+>>         * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
+>>         * to even less without it.
+>>diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
+>>index 88be32026768c..1cd80293a3e23 100644
+>>--- a/arch/x86/realmode/init.c
+>>+++ b/arch/x86/realmode/init.c
+>>@@ -66,8 +66,9 @@ void __init reserve_real_mode(void)
+>>         * setup_arch().
+>>         */
+>>        memblock_reserve(0, SZ_1M);
+>>-
+>>+#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
+>>        memblock_clear_kho_scratch(0, SZ_1M);
+>>+#endif
+>> }
+>> 
+>> static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
+>
+> What does "scratch" mean in this exact context? (Sorry, don't have the code in front of me.)
 
-Thanks
-> 
-> Best regards,
-> Krzysztof
+See https://docs.kernel.org/core-api/kho/concepts.html#scratch-regions
 
+-- 
+Regards,
+Pratyush Yadav
 
