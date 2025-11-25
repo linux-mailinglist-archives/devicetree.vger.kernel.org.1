@@ -1,334 +1,224 @@
-Return-Path: <devicetree+bounces-241971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B74EC84C52
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:41:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7610CC84C76
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:42:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DA6CD34ED99
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:41:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5D1B34E1856
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DABB319873;
-	Tue, 25 Nov 2025 11:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95A5E2EF646;
+	Tue, 25 Nov 2025 11:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=vaisala.com header.i=@vaisala.com header.b="aP8Ib48b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11020090.outbound.protection.outlook.com [52.101.84.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002D51487F6;
-	Tue, 25 Nov 2025 11:40:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764070846; cv=none; b=WPraexcU0h2rv2DRnO33U490vc1q4wSKS+I65VsJj3d8zmx7g4wsmvFfaXGFfCCiFI+iXWWRtAi/nub8IpGGBIXvi9ONDHVGlyPiCcEeDnWXeKmv75aqn8pb2a6RR5xYEFkfcIYOzp9e5b0NjeUDWgbPwP0MqcJIz0EJN4CDNtk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764070846; c=relaxed/simple;
-	bh=JChdKJV39gn24JUnTNYPPFkLqVCQwlCau4VN1ByOqgs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jNAWu50tNTnkmw1FOIpY9nJ1BV+GbElXhiMlHg9yrnBpPBOUvF4bTxi6zQkNEfpjH7P/RnqUjDCfX+P7qYRrwm7LmxyxFx7GyaC1mEynGiPgVbXXD7sRt/RKSvmNp34GO8jgiNuJ0IHkdrN1ZMKFMKplwlPLr6kmWSp3PQPSZqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dG13D1d8Mz9vH5;
-	Tue, 25 Nov 2025 12:40:40 +0100 (CET)
-From: Lukas Timmermann <linux@timmermann.space>
-To: lee@kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@timmermann.space
-Subject: [PATCH v11 2/2] leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
-Date: Tue, 25 Nov 2025 12:40:15 +0100
-Message-ID: <20251125114015.355487-3-linux@timmermann.space>
-In-Reply-To: <20251125114015.355487-1-linux@timmermann.space>
-References: <20251125114015.355487-1-linux@timmermann.space>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F2E1487F6;
+	Tue, 25 Nov 2025 11:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.90
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764070973; cv=fail; b=clD9R1DKusVU2PG7mR+xA+VFAl1gqij4GnnxXBz1d5tS1yzBtcIfoPBOfjp43O42QZ+N35OXk8/Gk6dObaQLtT6Tz2VBP98sgNhjJuBft3nQbA/GkMV3eLLbhRO4jf3f+TjEGGZGjB1b1Jt5rY26nxCDX7w6uMenu6MdnncVNVk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764070973; c=relaxed/simple;
+	bh=DGLvrzExkxmAw2mO0hU6cvvAT79twec03jKe5sQIPhQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=h91qjmCWHCIXF1l1RLjtUPUA9UN8INZun9LD+kHXBSwGf6vRSVYG+OYyzb/LjbnmqPgW7v5T5hr/sUL6Bep+/T8YMUHPCmlaIE72EDPesaAZ9DY81Z23uOYJyPOb/a2f3lSs9jni8q/LAHdh7y0lT52hMxlgAOKkhmDUfsOu10k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vaisala.com; spf=pass smtp.mailfrom=vaisala.com; dkim=pass (2048-bit key) header.d=vaisala.com header.i=@vaisala.com header.b=aP8Ib48b; arc=fail smtp.client-ip=52.101.84.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vaisala.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vaisala.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WbYYukhHHcL4BQUMpADF0j/VaYu6ZGvXggWJBfGF+q2aRB1x0tpGeCu3MFym02lAkl04aQgvH7n7nZwwwZuQaVhOQrr5AEKSeDqhf1bEhS1E3D9AGZefBzc6Rl6l/NMTeKk//K+1GTVh58loHlbL9GmbSjef4EupMUj2Nm4conO840ikmAeDvSW+qIgUPMXglQKULTTWhM82Fw80/AlwnUCQuRVJlGUSioJG/dhSxx8y4lsHu2A199RIaM883BIBI0rc6kFmwbx8ct7b2B3re/CchylvgeZZKDU5gg2i7+abGbcSsjre+Gs07sJ7SzG2Nc8A36LfR/VQ0KqOfmYDaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Er2JLMAquwLF/kIiNcATKkxciofz6jxavdRtuIxnaOc=;
+ b=omaY4VcRaxJQ96Pc8BTlKNm1wN3IC935O8aU17Il3VnzuvrMmKMsvJF98eZYwZJJcXKzCzMy58fr1oRZbOyQuOSWEUEifhWRsOlsZkhDjpCE2txSUe2oGRVqI/5LyyOp7tu6Hzd23siuRFOWdupeYQKZuAzWiHhCFHAePHoqvaVWIJzxkCozXMGP8SF+JmpKlJCMQUGn9lIDOUgILuocZbESkXHH8+kp1ZZio9fTzf3qvu8yaVmQdo/dMi4yeqv5+PBJYWYTBxMrl0DuX/sSL+XcI19hp1Za0U8pHYaGvInOv+wLzqik07uWmLM+zdbUvjDPt02OJB+hBkt/KKZzAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Er2JLMAquwLF/kIiNcATKkxciofz6jxavdRtuIxnaOc=;
+ b=aP8Ib48bdemHj2gal1XIBXhAcZofKDQqXphHMPXacmro12xH1ahdBos0SKIuRT6JIIpEhha3XSL2BIvwmVwxYMRvmiHzsO7TmQOwPsQCA+DCqgGr+rnFudsynX5ZnjmiGwmo4VlqEfY5Iwf6W55dbKYc++sIgLwVK2AwpxBrAVx6tvEU3sASOvtJP3TjzNGV5k9tiXY30OO32dIuMQaq21kr/uv5L56k4gqWJpZHCW+GWKBNaRyA5gPG5h0aNFww8KOPzh9DjNUIPah58U+gVgEiJCTSwXOM/w0p4wnZ91PuAIgQDAIV8mtf7ENckdK88lZUQ0wMgXxugeUkMpgjVQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vaisala.com;
+Received: from AMBPR06MB10365.eurprd06.prod.outlook.com (2603:10a6:20b:6f0::7)
+ by GVXPR06MB8922.eurprd06.prod.outlook.com (2603:10a6:150:11d::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.18; Tue, 25 Nov
+ 2025 11:42:42 +0000
+Received: from AMBPR06MB10365.eurprd06.prod.outlook.com
+ ([fe80::4606:8e25:96e6:bede]) by AMBPR06MB10365.eurprd06.prod.outlook.com
+ ([fe80::4606:8e25:96e6:bede%3]) with mapi id 15.20.9343.016; Tue, 25 Nov 2025
+ 11:42:42 +0000
+Message-ID: <199062ba-9a0d-40ae-ac8c-0fbed5615cf8@vaisala.com>
+Date: Tue, 25 Nov 2025 13:42:39 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] Revert "arm64: zynqmp: Add an OP-TEE node to the device
+ tree"
+To: Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20251125-revert-zynqmp-optee-v1-1-d2ce4c0fcaf6@vaisala.com>
+ <88b72343-e86f-4b13-adcc-ba09683eb898@amd.com>
+Content-Language: en-US
+From: Tomas Melin <tomas.melin@vaisala.com>
+In-Reply-To: <88b72343-e86f-4b13-adcc-ba09683eb898@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: GVX0EPF00014AEF.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:401::31d) To AMBPR06MB10365.eurprd06.prod.outlook.com
+ (2603:10a6:20b:6f0::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMBPR06MB10365:EE_|GVXPR06MB8922:EE_
+X-MS-Office365-Filtering-Correlation-Id: 80bf2112-75dc-40b8-5d2b-08de2c17be25
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SnpGV29hcURKK0tDMEYrZ0VBTFBLMjIzenA1STRiN3VCWU1DaUNWbnc5dTNz?=
+ =?utf-8?B?Qmo0NzVLUVZKcnltTDZXcGJxODBEcUMrTGZXaDlpckVSTE44MUw5TndZQ1gr?=
+ =?utf-8?B?bDRXM3pHK1NDd2R2R3NLa01ESW0xK3B5RHkrMGE1YWR3ZkQxSVkxdzZkb1c4?=
+ =?utf-8?B?VEI2c0MwVEFubzBrQTNOVU9wSFFjMTdzTjQzT1lCK0dVbC9TcXdqNkJNck5n?=
+ =?utf-8?B?YTdzNXNGVmhXTkJ4cjI0Q1pmcHJFZjlYUFIrQmkzTzhMTkpDM0VnTy9IdXRR?=
+ =?utf-8?B?RWptMTBPaks1dVhZQ1Nlcmc4V3pSckpDdURKZ1JrTHAyNjlLNDNOZkNqZy9t?=
+ =?utf-8?B?Z2VmKzRQSGdsdFZEVzg5QjRIbjgwOUl0WEVleUE3WEdoMEZtK3VweCtwYnZW?=
+ =?utf-8?B?Y05BZDBVQTVkUytad054WldkakZiQnplU3lFMUw4Tm53SFRLSVdNNkpsTG9S?=
+ =?utf-8?B?andlRUNIMGlnblQwQUd4eFFVM0JrM3pVbWdvTmZ1Y0FreVN3alZDL0FIRlZP?=
+ =?utf-8?B?NjQ2UHoxbGhaeWpNREZSM0pSMTI5RmJNWTBRdU5zQU4xTjAvb1BBZkN0cHky?=
+ =?utf-8?B?Ny9Ba0krMlJZN2d6MnZySFJwL2pWcVdsdkxicVBVK1c0ZDJESlp2REZZcmRj?=
+ =?utf-8?B?TmpOdW1hcTk2WklLNzZTVUJ4SU9Fb1J5S1BEWHVDakp1aGJyZURqSFZYSW1K?=
+ =?utf-8?B?Sm4vc213SHEwdktWSlZjeGN6bUFOUS8xUm1zU3FFNVk2S29qdXpWcGU0eXJO?=
+ =?utf-8?B?UnpyYUtPR3BNS2k4M004TEJPNHVBNzh6TXJSOU9TYy9EeVNKb0VCTXFyOG5P?=
+ =?utf-8?B?ajNrTzNNdnU3MkQ5djcyK0ZmNXhNcHI3SDVjMVBUZGdWN2NrOGJBUHhTUDdP?=
+ =?utf-8?B?eWVLL0VkNTJyMDJpZXF4SUwwTWN3K3ZvOHE3SUd4U3g0cWU0SElPcUIvVXNu?=
+ =?utf-8?B?K0htb1FIRUVvckN4TlFZZlFMbWlPbG5TL1g0cll1S2FuQkpySnZDK0RrYllH?=
+ =?utf-8?B?N2FoeXBPbFdmK1dDK1NQL1RENUZxWkt1UnIxY1VSNUxwQ3hIdGZ6QWcxQjRv?=
+ =?utf-8?B?NWlIU3ZoR2ZZN1dreFFRbkV2RFpMUmQzdTJRWDlQT0dBRUdVN3c0ZzMvR3lK?=
+ =?utf-8?B?bGFrQVpmSG8wbEtKcDE4SHl3S0IwU2FLN2xLUUpBaVZ2Mlo0SU9BQ2R6UVRp?=
+ =?utf-8?B?MzZnK3ZTV1Vyei9DUDVTcFc1Q0VVU0xGZUxVYStFMjd2SG1vc3gwZUZ6d2pS?=
+ =?utf-8?B?aUNWdDlublZYOGJpZ1Q0R0gyN0tNWjZvRmtPb3BCOGlQQWZnUGt6RzB5cGhj?=
+ =?utf-8?B?alVHNzV2ZERGWnIyT0ZvdDE0UXVRSzdOSGVnMTBXSGJYc3BGeDE4cHUyaU9J?=
+ =?utf-8?B?SVRJc25jWHRwc0xpM0dnNDBkWEdROU5yU3RDZ3RuOHJSaGJMSzR2cXdrakdi?=
+ =?utf-8?B?di9kdmllNUw1elRyNUhqZklWZkdlelZrQnlJeUpwZXlqZVp0UFAzTGZ2N0tv?=
+ =?utf-8?B?RWtxeHFaaDhkTHVlNEVzOTRKM21BUkh4R1V1THVEaEpHaXZKZ1p4S1cvMThY?=
+ =?utf-8?B?Z29saGszZSs4bDhNRU1RaCtJZXdXejcvdmd6OTBkTUhtRXF3eU1RcSt5eG50?=
+ =?utf-8?B?QzhabEx6akpmcVBraGNUSW9sbDVDU1loRUtxSTBTRUNkQW5rRFRTMk53TlhQ?=
+ =?utf-8?B?TStadk43bnJxQXZmcDVWS2ExT3pEVVkraTZySFN0Y1NoOHZKL1d5UVdmSFdz?=
+ =?utf-8?B?NTZhQmRjNjZFWVdCVnUyQlhtdDJwbEVZazJGcWZROUo2NEt1S3FqQkhoNnQx?=
+ =?utf-8?B?R0tpSlJkTkdxbVRoUVVJSVZjQkNaT2dTcjQrYW5NdHlaTExJMHM1eUxvR2lS?=
+ =?utf-8?B?cm5tVDI3OWg5QjlnaUt1aGJNNHFZZENxOU5HSlNvOHNVeURTU3lnZGZzaEdK?=
+ =?utf-8?Q?pGyCG736oe60YJ/UQ0r6t60pSpn5O00Q?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AMBPR06MB10365.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Q0R3QkpJMG9oYkl4L0thcFRneGhMKy95R1FWMkxLSWpYQ3N1L2tVYlhFRkQv?=
+ =?utf-8?B?RGkyWG5kQlJiRW0rUWRvNDBybHlSU2xYWVVkcStGbWVvWVVLZGk1NG9pU2ZD?=
+ =?utf-8?B?OVFqcTdQQ2paVlkwaVNuM05hOEJvRlN0MG41N000NC96c0Jqc1ZMZ1BjUkV4?=
+ =?utf-8?B?T3J0TDVvZmp0SzcrL3puU0JRQ3JGQWZhL214dUlneG1OYThxdWJuSVM0YzFE?=
+ =?utf-8?B?emdkSDYyUk93Nkg1N3Zib2wzQW5UL1pkMVJqbnliKzVaRE4xdm1EMFg4ek93?=
+ =?utf-8?B?NEw4OEJYL0czdmR1ODM0VElvQjRzK1ZzWkRYNWtVVCtaZUZONi9uMmpLOFk2?=
+ =?utf-8?B?UlJ6WW5LSGMrWUZ1KzNBTmFDTlN1RlJ1dml3cG1vRGxvMlpsQ1BubEdDalBv?=
+ =?utf-8?B?Y0Zwb3daMDNNaHhCaXdSY3hVRUlwb0FwMi9hVFdjLzlYVUNTOHJMaStaNGpR?=
+ =?utf-8?B?cElFUmlIWU9TOHhnZDcyUmdHcm9TanpxUHZIbzBUUmorclBqSmI5clcxd00r?=
+ =?utf-8?B?ZzNtVWJGaFpneEFyQ1VHNTFoa2RQY2VBZGR6ZmdzYi9EcEZxV2dOK24weFI4?=
+ =?utf-8?B?YnIvc3ZocUdjZDhGVmVHSkNSS3RPODV3cjF0VXhtTTVrbWwxN2p5U2x3a0FR?=
+ =?utf-8?B?T3pYNm10OCtVNElZZlFPbHNsUVAzYUJvNVkvVkQwZ0k2ZkpRUFdoYWhxL0E1?=
+ =?utf-8?B?Qkg1a0RnRVZ6K1pLclZaQy8wVjdTZUxaWmNjMGgyb0VialJPVTBFR2M4bXhW?=
+ =?utf-8?B?bnJKQzR1YWJ4b29pbmF5MjR3cWxvRldRREhORUVCMzRJS2EyaDNPNmd3blRC?=
+ =?utf-8?B?RWtwbFVCRmdMUjRUdE91em5uV3ZsLzgzcnZVYm1INFlOajhKdW0xRzJUTUhE?=
+ =?utf-8?B?bkw2bEZwMkRDZWx0cm14ZzRUTUZsNnB3cUtWK0IxTmxWT0dMVDk4dW5xWkZ5?=
+ =?utf-8?B?RzczWTFTTnl2OFBWdTMzWVVaUEp0eHVyVHRralZ1NzJ0dDZvbXA0R3VwNmF6?=
+ =?utf-8?B?dEtObEJGL2RXWXpRUjdyN0ROdHF4clprNU93SHVGZU5CWVIvTTQ3a3VCZWww?=
+ =?utf-8?B?c2I3VUtsZzh2Z3NyRG5mRnByaGM3L2p4QmprM2lIdGZ5Tk5ZQzBoUVladXR1?=
+ =?utf-8?B?SXB2d2YyYVhSdmk1YmZoYUpXNnhBTjUyZ1gxZFBEUXcvWjJVenBYaHBLK0Ra?=
+ =?utf-8?B?ZUZzYXFEYWZQdnlvQ1NNT3pnWWtodzMwekZiMEJVZnZIeTM1MGFlZXM5bWNY?=
+ =?utf-8?B?Zy9rV2FOcGVFYjdJcjVFMTVOVzlVbTFWRWdObnYvZmxWamRTczYrTkt1NVpB?=
+ =?utf-8?B?VnBsV0duajVlcmlCeDNmMENTOXBkWkwwQ3VsR2Ixa3ZmUEFmZFhBOUtTT2Yz?=
+ =?utf-8?B?b0ViNVZpY0JnUDBzRXp0SWRRclN0RHRnYTIvZ2xmYThSRUhJKzdYd0szK2Iy?=
+ =?utf-8?B?SVY4NjBOMkNMQm5IbnBiL3d5Qkdsa0JKNlJuZ1NmMitMSGF4MGxIbXlpaHlU?=
+ =?utf-8?B?dHE0NEUvM1VZN2puL0c5dHByTktJT1VKbTcxQWRoYW50T0ZGWTFZYWN5anFu?=
+ =?utf-8?B?enB2NnRFZ0hHY3FGTzE5ci80ODIzUU4vd2lhL0dkeDQ5SUpUS2NuN2tsdFZX?=
+ =?utf-8?B?TkZPRThNOU80a1hFN1NFTURzSVJEaERNaURqa0dEVmJ2U0RvaEk3aTlsREhZ?=
+ =?utf-8?B?KytwMVRNOE5CbW8rZndYN1BWMGV5NXBOYXQ5VnFqRjBWOE14ajd6Q0NwYk1j?=
+ =?utf-8?B?Ymt0dzdBT2lXMEV6UEQ5UXErZWZEd3g1UjFyOVlqY29xWEh5Vjk2UXdSZmJo?=
+ =?utf-8?B?VGFrTWdTM1F0QmZyMWFGbWlOOVY5b1EwSWhyaVZvM2JMcUNPNm5tK2JpUUVB?=
+ =?utf-8?B?Wjcyb2J3dVdpT2FLcnNRbjRMSWxFZTJlZkhBR0NTekJVT1A5VHJGVEtONnFO?=
+ =?utf-8?B?bFFlZU4vQ0RJTHRKaUdTcStMV2E2c0x5cVYyNGYwNzZjNnl5ZEx4dC9LdExW?=
+ =?utf-8?B?TGR4ODUxZlU3aGVmamQrQk9yN3RHU0prQkZXT1RPdTNNaVhDQjNFd3F2Y0s1?=
+ =?utf-8?B?VXVsN053cE84WEZCRzcwWm5yUHpFVG5FQ01UdTBnazl2RnByRWQ1OWp3c09O?=
+ =?utf-8?B?V2cvWFRCQ0p0dmNzVHl6ejkwc3dmZzQ5TEFacFZvSFFZNjlwN080NlJzUzI3?=
+ =?utf-8?B?RXc9PQ==?=
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80bf2112-75dc-40b8-5d2b-08de2c17be25
+X-MS-Exchange-CrossTenant-AuthSource: AMBPR06MB10365.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 11:42:42.0406
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3LAv2wIwboFUiahwOMo9/FcH4+kOkGVMNIc7cIlzbGh8L8iJliCmQQnWeslFQZLb50QoHAUA0QUIkhfuyorSdA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR06MB8922
 
-Since there were no existing drivers for the AS3668 or related devices,
-a new driver was introduced in a separate file. Similar devices were
-reviewed, but none shared enough characteristics to justify code reuse.
-As a result, this driver is written specifically for the AS3668.
+Hi,
 
-Signed-off-by: Lukas Timmermann <linux@timmermann.space>
----
- MAINTAINERS                |   1 +
- drivers/leds/Kconfig       |  13 +++
- drivers/leds/Makefile      |   1 +
- drivers/leds/leds-as3668.c | 202 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 217 insertions(+)
- create mode 100644 drivers/leds/leds-as3668.c
+On 25/11/2025 12:30, Michal Simek wrote:
+> 
+> 
+> On 11/25/25 08:53, Tomas Melin wrote:
+>> This reverts commit 06d22ed6b6635b17551f386b50bb5aaff9b75fbe.
+>>
+>> OP-TEE logic in U-Boot automatically injects a reserved-memory
+>> node along with optee firmware node to kernel device tree.
+>> The injection logic is dependent on that there is no manually
+>> defined optee node. Having the node in zynqmp.dtsi effectively
+>> breaks OP-TEE's insertion of the reserved-memory node, causing
+>> memory access violations during runtime.
+>>
+>> Signed-off-by: Tomas Melin <tomas.melin@vaisala.com>
+>> ---
+>> For further information about the U-Boot logic related
+>> to this, see lib/optee/optee.c in U-Boot repository.
+> 
+> What's the behavior with EDK2?
+Sorry, I cannot comment on that.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 091206c54c63..945d78fef380 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
-+F:	drivers/leds/leds-as3668.c
- 
- ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
- M:	Tianshu Qiu <tian.shu.qiu@intel.com>
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index a104cbb0a001..ec37d55ac14e 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -100,6 +100,19 @@ config LEDS_ARIEL
- 
- 	  Say Y to if your machine is a Dell Wyse 3020 thin client.
- 
-+config LEDS_OSRAM_AMS_AS3668
-+	tristate "LED support for Osram AMS AS3668"
-+	depends on LEDS_CLASS
-+	depends on I2C
-+	help
-+	  This option enables support for the Osram AMS AS3668 LED controller.
-+	  The AS3668 provides up to four LED channels and is controlled via
-+	  the I2C bus. This driver offers basic brightness control for each
-+	  channel, without support for blinking or other advanced features.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-as3668.
-+
- config LEDS_AW200XX
- 	tristate "LED support for Awinic AW20036/AW20054/AW20072/AW20108"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 2f170d69dcbf..983811384fec 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_LEDS_ADP5520)		+= leds-adp5520.o
- obj-$(CONFIG_LEDS_AN30259A)		+= leds-an30259a.o
- obj-$(CONFIG_LEDS_APU)			+= leds-apu.o
- obj-$(CONFIG_LEDS_ARIEL)		+= leds-ariel.o
-+obj-$(CONFIG_LEDS_AS3668)		+= leds-as3668.o
- obj-$(CONFIG_LEDS_AW200XX)		+= leds-aw200xx.o
- obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
- obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
-diff --git a/drivers/leds/leds-as3668.c b/drivers/leds/leds-as3668.c
-new file mode 100644
-index 000000000000..4849d7361b5c
---- /dev/null
-+++ b/drivers/leds/leds-as3668.c
-@@ -0,0 +1,202 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ *  Osram AMS AS3668 LED Driver IC
-+ *
-+ *  Copyright (C) 2025 Lukas Timmermann <linux@timmermann.space>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/i2c.h>
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/uleds.h>
-+
-+#define AS3668_MAX_LEDS			4
-+
-+/* Chip Ident */
-+
-+#define AS3668_CHIP_ID1_REG		0x3e
-+#define AS3668_CHIP_ID			0xa5
-+
-+/* Current Control */
-+
-+#define AS3668_CURR_MODE_REG		0x01
-+#define AS3668_CURR_MODE_OFF		0x0
-+#define AS3668_CURR_MODE_ON		0x1
-+#define AS3668_CURR1_MODE_MASK		GENMASK(1, 0)
-+#define AS3668_CURR2_MODE_MASK		GENMASK(3, 2)
-+#define AS3668_CURR3_MODE_MASK		GENMASK(5, 4)
-+#define AS3668_CURR4_MODE_MASK		GENMASK(7, 6)
-+#define AS3668_CURR1_REG		0x02
-+#define AS3668_CURR2_REG		0x03
-+#define AS3668_CURR3_REG		0x04
-+#define AS3668_CURR4_REG		0x05
-+
-+#define AS3668_CURR_MODE_PACK(mode)	((mode) << 0) | \
-+					((mode) << 2) | \
-+					((mode) << 4) | \
-+					((mode) << 6)
-+
-+struct as3668_led {
-+	struct led_classdev cdev;
-+	struct as3668 *chip;
-+	struct fwnode_handle *fwnode;
-+	u8 mode_mask;
-+	u8 current_reg;
-+};
-+
-+struct as3668 {
-+	struct i2c_client *client;
-+	struct as3668_led leds[AS3668_MAX_LEDS];
-+};
-+
-+static void as3668_channel_mode_set(struct as3668_led *led, u8 mode)
-+{
-+	int err;
-+	u8 channel_modes;
-+
-+	channel_modes = i2c_smbus_read_byte_data(led->chip->client, AS3668_CURR_MODE_REG);
-+	if (channel_modes < 0) {
-+		dev_err(led->cdev.dev, "failed to read channel modes\n");
-+		return;
-+	}
-+
-+	channel_modes &= ~led->mode_mask;
-+	channel_modes |= led->mode_mask & (AS3668_CURR_MODE_PACK(mode));
-+
-+	err = i2c_smbus_write_byte_data(led->chip->client, AS3668_CURR_MODE_REG, channel_modes);
-+	if (err)
-+		dev_err(led->cdev.dev, "failed to set channel modes\n");
-+}
-+
-+static enum led_brightness as3668_brightness_get(struct led_classdev *cdev)
-+{
-+	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-+
-+	return i2c_smbus_read_byte_data(led->chip->client, led->current_reg);
-+}
-+
-+static void as3668_brightness_set(struct led_classdev *cdev, enum led_brightness brightness)
-+{
-+	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-+	int err;
-+
-+	as3668_channel_mode_set(led, !!brightness);
-+
-+	err = i2c_smbus_write_byte_data(led->chip->client, led->current_reg, brightness);
-+
-+	if (err)
-+		dev_err(cdev->dev, "failed to set brightness: %d\n", err);
-+}
-+
-+static int as3668_dt_init(struct as3668 *as3668)
-+{
-+	struct device *dev = &as3668->client->dev;
-+	struct as3668_led *led;
-+	struct led_init_data init_data = {};
-+	int err;
-+	u32 reg;
-+
-+	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
-+		err = of_property_read_u32(child, "reg", &reg);
-+		if (err)
-+			return dev_err_probe(dev, err, "failed to read 'reg' property");
-+
-+		if (reg < 0 || reg >= AS3668_MAX_LEDS)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "unsupported LED: %d\n", reg);
-+
-+		led = &as3668->leds[reg];
-+		led->fwnode = of_fwnode_handle(child);
-+
-+		led->current_reg = reg + AS3668_CURR1_REG;
-+		led->mode_mask = AS3668_CURR1_MODE_MASK << (reg * 2);
-+		led->chip = as3668;
-+
-+		led->cdev.max_brightness = U8_MAX;
-+		led->cdev.brightness_get = as3668_brightness_get;
-+		led->cdev.brightness_set = as3668_brightness_set;
-+
-+		init_data.fwnode = led->fwnode;
-+		init_data.default_label = ":";
-+
-+		err = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
-+		if (err)
-+			return dev_err_probe(dev, err, "failed to register LED %d\n", reg);
-+	}
-+
-+	return 0;
-+}
-+
-+static int as3668_probe(struct i2c_client *client)
-+{
-+	struct as3668 *as3668;
-+	int err;
-+	u8 chip_id;
-+
-+	chip_id = i2c_smbus_read_byte_data(client, AS3668_CHIP_ID1_REG);
-+	if (chip_id != AS3668_CHIP_ID)
-+		return dev_err_probe(&client->dev, -ENODEV,
-+				     "expected chip ID 0x%02x, got 0x%02x\n",
-+				     AS3668_CHIP_ID, chip_id);
-+
-+	as3668 = devm_kzalloc(&client->dev, sizeof(*as3668), GFP_KERNEL);
-+	if (!as3668)
-+		return -ENOMEM;
-+
-+	as3668->client = client;
-+
-+	err = as3668_dt_init(as3668);
-+	if (err)
-+		return err;
-+
-+	/* Set all four channel modes to 'off' */
-+	err = i2c_smbus_write_byte_data(client, AS3668_CURR_MODE_REG,
-+					FIELD_PREP(AS3668_CURR1_MODE_MASK, AS3668_CURR_MODE_OFF) |
-+					FIELD_PREP(AS3668_CURR2_MODE_MASK, AS3668_CURR_MODE_OFF) |
-+					FIELD_PREP(AS3668_CURR3_MODE_MASK, AS3668_CURR_MODE_OFF) |
-+					FIELD_PREP(AS3668_CURR4_MODE_MASK, AS3668_CURR_MODE_OFF));
-+
-+	/* Set initial currents to 0mA */
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR1_REG, 0);
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR2_REG, 0);
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR3_REG, 0);
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR4_REG, 0);
-+
-+	if (err)
-+		return dev_err_probe(&client->dev, -EIO, "failed to set zero initial current levels\n");
-+
-+	return 0;
-+}
-+
-+static void as3668_remove(struct i2c_client *client)
-+{
-+	i2c_smbus_write_byte_data(client, AS3668_CURR_MODE_REG, 0);
-+}
-+
-+static const struct i2c_device_id as3668_idtable[] = {
-+	{ "as3668" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, as3668_idtable);
-+
-+static const struct of_device_id as3668_match_table[] = {
-+	{ .compatible = "ams,as3668" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, as3668_match_table);
-+
-+static struct i2c_driver as3668_driver = {
-+	.driver = {
-+		.name = "leds_as3668",
-+		.of_match_table = as3668_match_table,
-+	},
-+	.probe = as3668_probe,
-+	.remove = as3668_remove,
-+	.id_table = as3668_idtable,
-+};
-+module_i2c_driver(as3668_driver);
-+
-+MODULE_AUTHOR("Lukas Timmermann <linux@timmermann.space>");
-+MODULE_DESCRIPTION("AS3668 LED driver");
-+MODULE_LICENSE("GPL");
--- 
-2.52.0
+> 
+> U-Boot also have optee driver. How is it probed when you remove this node?
+This is about the injection of the nodes to the kernel device tree. So
+in the U-Boot side, optee driver can be enabled or not. This passing of
+the optee nodes will happen outside of optee driver context (image-fdt).
+The OP-TEE logic will not insert the required reserved memory regions
+into the kernel side devicetree in case the node is already present and
+that is a real problem.
+If this change eventually is mapped from kernel to U-Boot side, OP-TEE
+needs to be enabled by boards that use OP-TEE from U-Boot. But that
+sounds logical and how it was before, why would OP-TEE be automatically
+enabled.
+
+Thanks,
+Tomas
+
+
+> 
+> Thanks,
+> Michal
+> 
+> 
 
 
