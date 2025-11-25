@@ -1,106 +1,137 @@
-Return-Path: <devicetree+bounces-242127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B4E8C86CA8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 20:23:16 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B32FC86D02
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 20:28:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10F3E3A1A30
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 19:23:15 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 467C8349448
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 19:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50E7E3346B9;
-	Tue, 25 Nov 2025 19:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F4F3338580;
+	Tue, 25 Nov 2025 19:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kG2/IxkA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="losK84xo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19FD12D29C3;
-	Tue, 25 Nov 2025 19:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE385337B91
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 19:28:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764098481; cv=none; b=j1ccMC15TVNjFDISumisWI3Jh73eSL2vaxfYJOBa4m+ChCjp6cxv83PmhQcmODKMnhaNnL3RaJyO9UgmVVwf91Q90tGFizYfteIYwG4GlgvWh57qOXW0A5gF/Is6EHDDX2sREgznF7ZHQ1LB9wptH1WAILf/MScbeZpuTrU5eMM=
+	t=1764098903; cv=none; b=UWvsTAWsiu9zXu89bX8IgKwrS0GJsn3DRPRmldwx94S7KsjoeZBRo32tc7gslbO/wf3UaQpV69xijkfZMMQaM3VUyBPJ3IW4KnzIQcu15uimLoOSN8jcDFzbcf16znHCicmkWZQCLJDhnxp81IsAX1KKMaLbwZqk0tP8Shphi8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764098481; c=relaxed/simple;
-	bh=PXaLfSUsuiuasxe8ptDZqo4sRgBk2ZXuALsf7QVCuE8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=rY22WP5F3lwer0kcSi953OSsNoU00NzIb4Td2CKu1Oe/lBdWX7iYoNhmoE9DEMdHCbM47VVUlizZvVAIXf236RtqF0uxe/oV1XE3QYA891FNeuJU1FzcI4zUAKY6xZT9DZQRK2yDk/YL7uEhOEY8aP2pTxecTQjqHK8W45hGW8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kG2/IxkA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6871BC4CEF1;
-	Tue, 25 Nov 2025 19:21:20 +0000 (UTC)
+	s=arc-20240116; t=1764098903; c=relaxed/simple;
+	bh=fAj9fI/smhHZS2i+arWiP39hGNKYtZ67nqduqRLnfRE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CIp6zagjwPK5MK7cXKG4EAc53aR8JmH655zzr3q4AlWNhYJTJXrAOpGFZ36HE+rW8UHNXCwHYKrfTrKc5ZA9rP+vQ1G2F02jhSsjknlIOcJjigywxbAudAziWUos06QEUDup/1OoCq/2fvFFKKYZ3S2XEFhtpLtHLu6jyjFmz2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=losK84xo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FEE2C19421
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 19:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764098480;
-	bh=PXaLfSUsuiuasxe8ptDZqo4sRgBk2ZXuALsf7QVCuE8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=kG2/IxkADqb5FQMH0ZNvEne5eExlYkB9BxCdsLPKZ0R1x6U5p8Q+e/G99iz8R7gNb
-	 rIjRCk5pklp168zSMPOh56TVmcGFDeoH+GTj8bnmY/awFj04R1/KK7C2aFxMd6vt+6
-	 ALnCNr3KbtbzNp0iId/Bia4e8F2Izpgk53UsI6zHZP7ZYYAByceMDPDmQ+WnkuoKck
-	 w4WLcMnmUJSWsDetaV/F6X3w5ISKZTIzGbAKmYkeKnXgDtpNICtEmemA0LtWSWUbe+
-	 2reFteRwqJRoBVqILlw+MzmJSJM7wHn0Jb1iRJRughegNo7iqLDFOFEKS4KvrRd4zb
-	 jx03grabuD6UQ==
-Date: Tue, 25 Nov 2025 13:21:19 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vincent Guittot <vincent.guittot@linaro.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com,
-	ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, bhelgaas@google.com,
-	jingoohan1@gmail.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com,
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com,
-	bogdan.hamciuc@nxp.com, Frank.li@nxp.com,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, cassel@kernel.org
-Subject: Re: [PATCH 4/4 v6] MAINTAINERS: Add MAINTAINER for NXP S32G PCIe
- driver
-Message-ID: <20251125192119.GA2760316@bhelgaas>
+	s=k20201202; t=1764098902;
+	bh=fAj9fI/smhHZS2i+arWiP39hGNKYtZ67nqduqRLnfRE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=losK84xoOog7/9AFiwLk6RWDGbGuR9vWXxuhWxrYaE71yYPGWVpyd9rmUbkByx6hV
+	 YT98piZaluAl0Ajy30WLAP+KUAMxMVS63/RqLeA0VAfMQj6iz/JkJEUBR3SNTY5927
+	 MJsHa8gSGSJpi0r0fFBksJb0XkKSS+X0mqM+dwG1f6TYjHkt0udkTFmSNY8AhwygBJ
+	 XDnO+bDwMi7nffHqCdscMaJCeXCI5cmdyvE9eQEYRpu/AerdBBLhAjAGreO30OqcBj
+	 7AMY/njRgF/29N4tm6PHl9HcrklpozzxWFRmRrTEVyG/Xnd/W6xF0Bi+xGTIepkVtw
+	 n12kWThzezlTw==
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-78aa642f306so26706007b3.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 11:28:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVdbnfNjPw+HX3xhCxE7m082lyMmxWcBDzyFdItZxBHOb0sJaNhBnKX1LSI3r9H5Q4G/fHa9QWnVvH6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzlPEUPoH3oXV/5KYNY6lBeGDBQJN0w0uRu1e2DYMQ5vHlUJcO
+	L8yFlcguQq8BoRwYnhkjKYgix+D+3K2Q7J3uZRKOp0Dth7YVs0HI/IIZCjIWocvKDDi4vYKa9s5
+	JMYF1s0yvqMyJ2wFqI9VaYHlFmYi4k2g=
+X-Google-Smtp-Source: AGHT+IFIaE/WZGNWyon6qjtdwQo5J2MJCQ9Ctmstcy93GeATkxL1uyhZeJJi0933D8MrHhLOnBgI1zRS2Fgm1CHc9vU=
+X-Received: by 2002:a05:690e:1509:b0:63c:f5a7:3dc with SMTP id
+ 956f58d0204a3-64329366d9dmr2295741d50.56.1764098901987; Tue, 25 Nov 2025
+ 11:28:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251121164920.2008569-5-vincent.guittot@linaro.org>
+References: <20251112-lantern-sappy-bea86ff2a7f4@spud> <20251112-improving-tassel-06c6301b3e23@spud>
+ <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
+ <20251124-crayfish-lard-cc7519e1119e@spud> <CAD++jLkehJNGxxQJV6vOA9xurBjwpYcL1ufYBQEOqRjNG-h-fg@mail.gmail.com>
+ <20251125-kindness-quicken-a70e3fdd0b8c@spud>
+In-Reply-To: <20251125-kindness-quicken-a70e3fdd0b8c@spud>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 25 Nov 2025 20:28:10 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmO33B58WUxJiM7c6VCrkQ4nxOmodbOozNmS9LD1VDt1g@mail.gmail.com>
+X-Gm-Features: AWmQ_bm9ofiMfGUGkR38HCX3KA3LRPetacX6_LAHAloU61i-ZBhAExWFfaDK5JY
+Message-ID: <CAD++jLmO33B58WUxJiM7c6VCrkQ4nxOmodbOozNmS9LD1VDt1g@mail.gmail.com>
+Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
+To: Conor Dooley <conor@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Conor Dooley <conor.dooley@microchip.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Valentina.FernandezAlanis@microchip.com, Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 21, 2025 at 05:49:20PM +0100, Vincent Guittot wrote:
-> Add a new entry for S32G PCIe driver.
-> 
-> Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  MAINTAINERS | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e64b94e6b5a9..bec5d5792a5f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3137,6 +3137,15 @@ F:	arch/arm64/boot/dts/freescale/s32g*.dts*
->  F:	drivers/pinctrl/nxp/
->  F:	drivers/rtc/rtc-s32g.c
->  
-> +ARM/NXP S32G PCIE CONTROLLER DRIVER
-> +M:	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+On Tue, Nov 25, 2025 at 6:47=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
 
-Would be good to have Ghennadi's ack here.  Don't want to sign people
-up for work they're not expecting.
+> > I think it's unfortunate naming, people sometimes use the word
+> > "pinmux" as a DT property, sometimes to describe the subsystem,
+> > sometimes a part of the subsystem, sometimes anything related
+> > to pins.
+>
+> I think I actually understand the naming now. It's called pinmux because
+> the existing function pinconf_generic_dt_node_to_map() doesn't support
+> pinmux, so this is the version you need for platforms that are using
+> pinmux. But then nothing about it limits it actually to pinmuxes, other
+> than arbitrary property checks, it could actually be used for my pins +
+> functions use-case, if I added similar code to amlogics in my probe
+> function that creates the functions and groups.
+>
+> I still think the naming is poor though, and that it is not as generic as
+> it purports to be, since it depends on having the exact dt configuration
+> that amlogic has, and wouldn't work for spacemit that use the first
+> multi-group example that I gave above. I'd be inclined to say that it
+> should be shunted back to the amlogic driver, to avoid baiting people
+> into trying to use it because of the label position problem,
 
-> +R:	NXP S32 Linux Team <s32@nxp.com>
-> +L:	imx@lists.linux.dev
-> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-> +F:	drivers/pci/controller/dwc/pcie-nxp-s32g*
-> +
->  ARM/NXP S32G/S32R DWMAC ETHERNET DRIVER
->  M:	Jan Petrous <jan.petrous@oss.nxp.com>
->  R:	s32@nxp.com
-> -- 
-> 2.43.0
-> 
+You're probably right. I see the problem here.
+
+> > I know I should perhaps have shepherded this better :/
+>
+> idk, I think this is the usual "creating something generic but with only
+> one user" problem. Hard to know if it actually is generic at all.
+
+The problem is mostly too few people working on genericizing
+the pinctrl code I think, it makes me be happy about any such
+attempts. But I should pay more attention, clearly I just looked
+at it superficially.
+
+> > > It seems to depend on aml_pctl_parse_functions() being called
+> > > during probe which creates the groups and functions.
+> > > There's a weird warning about expecting a function parent node that s=
+eems
+> > > very amlogic specific too.
+> > >
+> > > In my eyes, there should be some generic dt_node_to_map helpers that
+> > > do it all for you on the "configuration entirely described in dt"
+> > > platforms because that's what stuff like spacemit k1 driver that do
+> > > this in their dt_node_to_map implementations.
+> >
+> > I think you're right!
+>
+> My dilemma now is what to call them and where to put them.
+> pinconf_generic_dt_node_to_map<something>() feels weird for something
+> that is also creating functions and groups, which I noticed because I
+> was having to include pinmux.h in pinconf.c so that I could call
+> pinmux_generic_add_function().
+
+pinctrl_generic_dt_node_parse_config() or so? Is it vague enough?
+
+Yours,
+Linus Walleij
 
