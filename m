@@ -1,342 +1,312 @@
-Return-Path: <devicetree+bounces-241810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9CFC83049
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 02:33:32 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC8FC830BE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 02:50:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A87604E30FF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 01:33:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 600D13475A1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 01:50:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D5027056F;
-	Tue, 25 Nov 2025 01:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C8A86348;
+	Tue, 25 Nov 2025 01:50:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Te1vjGhM"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="I/2saI4I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D6218D636;
-	Tue, 25 Nov 2025 01:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 793DE49659
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 01:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764034407; cv=none; b=J59vflJcgLvSQhB3XOXEyRsOyBPHVajUhRHR92eyNVMMGYugwqh7bFA2LkPtGkCNawJ7JEEPVUxBlxK3yc9wYx6U6pUDiM4h4d3MmsP9WoUWG8lO5xCV1Y0+axERAhucGAhsmhu/mkTJkveSlL4uMU7DxHH4SHEzShGqicCBewA=
+	t=1764035416; cv=none; b=OqALUqsPkoUAFJFZIYakbklY2Il+H7VWGedePZGwGdSwhj23ONRRW39a40U39FXNOHoFXz+JvPvOy7Dj1V79eyXI4Vw+g0dA3d9SIJ/k3kwY4rQKoIYCUlQfu5ovuI6EKnheIW3+yB64EtZt+i8jC0Syz83011V6OoVdbQTVOOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764034407; c=relaxed/simple;
-	bh=9wYMEmgIf+vhxFvAJDHQ071A7iUcUv/uqobFZEBNVzU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Aau7DgPZSyhwz5wBZqP0/E9Z1LHn62gIidPkjmep6E7E4HJlyPH/RgFVfildj4Novt+ueMzuPwek3PAlBZ+VJLGHkCSkZTLRpscNy23g9tNgya1fiEC9d1nzUmYNLrrrpJElMWDdVHQL2ZIqZPve8Kv/99FI9nWkmxNH3OOnj4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Te1vjGhM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AOJrpMP971239;
-	Tue, 25 Nov 2025 01:33:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=gOAjkzUqT85
-	KWR67cSKQk9ZzT40BYkuCQtXZ6BPOJ5k=; b=Te1vjGhMdulfmxQ2Htv4A6cj15E
-	rYwVTtfA1Mqp+myTFOzz2kzp+6fRrvPqHVXosIOyd570WlxyYyix8y8DaTyBQLE1
-	fbhT1EzJQPSpSG1KHh3GuQ4rtV/bvEvWCSL+0wTAyNx4blUSRCS8jyP+AflT/GuY
-	SrXMe3rQ8kiG1l7mLnft61UGkDEWBm2gCZTtC+6Ht88SbtDZxBK7PiDtO+cp1Nx3
-	NIDAxS1EG32n/LqQTyLdhSj4iK1Sof4wITVeu+R6xQLA/K8ogcfU9QfPmx5bAfDZ
-	K3Wvf5TcKu9sW7hdGRzY8WRxxLqpm/q2GJ8gAklmkekYNlnIzz3Q0i/N5TA==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amp6h27ky-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Nov 2025 01:33:10 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5AP1X6P3027344;
-	Tue, 25 Nov 2025 01:33:07 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4ak68mvfgh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Nov 2025 01:33:07 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5AP1X69W027360;
-	Tue, 25 Nov 2025 01:33:06 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-amakhija-hyd.qualcomm.com [10.213.99.91])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 5AP1X69O027356
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Nov 2025 01:33:06 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4090850)
-	id B43515A5; Tue, 25 Nov 2025 07:03:04 +0530 (+0530)
-From: Ayushi Makhija <quic_amakhija@quicinc.com>
-To: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc: Ayushi Makhija <quic_amakhija@quicinc.com>, robdclark@gmail.com,
-        dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run,
-        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
-        conor+dt@kernel.org, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, rfoss@kernel.org,
-        Laurent.pinchart@ideasonboard.com, jonathan@marek.ca, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, quic_rajeevny@quicinc.com,
-        quic_vproddut@quicinc.com
-Subject: [PATCH v3 5/5] arm64: dts: qcom: qcs8300-ride: add anx7625 DSI to DP bridge node
-Date: Tue, 25 Nov 2025 07:03:02 +0530
-Message-Id: <20251125013302.3835909-6-quic_amakhija@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251125013302.3835909-1-quic_amakhija@quicinc.com>
-References: <20251125013302.3835909-1-quic_amakhija@quicinc.com>
+	s=arc-20240116; t=1764035416; c=relaxed/simple;
+	bh=sa5gZ8o2hZhgM8t0SxAZs8zWrbOBTRpLrJI3JHm7Stc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=RVVdD20wDxEBMwBEN9JHscz/heqQvvVRA0BszOX6nqqV4MIlqsUaX7yAkgt5xMs7HJ6hLYh0UlT8vdbzZY6LQKRS4rUOTFkAWUmO3hetxrKUBMCu82VOca2mgg3v9gz9KOHWsoYHyaDFQ0x0usK3OfSpqLOMrLbRqfORusXP2HE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=I/2saI4I; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-343774bd9b4so3744797a91.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:50:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1764035413; x=1764640213; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4BWHUL2GN8wanhvZvhL4KmgPjjWd1azXkQipkoFyfG8=;
+        b=I/2saI4Ih6eP0HAevw/JuJrImTzmoCs3BWtZuerybxXeyiaf5QHkFUCoBkmEnhR9vt
+         0Ezg33Yd3f6fsJVTN4jE9Q8+AOOcxgtFjyx6sQF9MXqeZwCjamCWUDlZ8e/Y0wGKHYN5
+         JsqZuErvElvGS22wpt6WKRM5Psl1SFCkYJJPOnmzBi+LKhD3FFc9IlLK0YYtmYL0rEBl
+         e4XxAiv7zfyugcGiAVMc6qKOVIGxkubdcHbh4iacxMZSRazuZd0Xt1qRscZ9SbZcm0cR
+         RPJy7R17Pu3BDVvqbYisTngE+2eyPEZaIoRs4b55tJOheqtbtClo8WXxiE41vtgxst0D
+         ULyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764035413; x=1764640213;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4BWHUL2GN8wanhvZvhL4KmgPjjWd1azXkQipkoFyfG8=;
+        b=U1fwAu3v8lPKXzV9cLrR5TCDF44tBmW+zcuEjvOkw4IlYwjN5smAo5dTFvPp9aI7Rm
+         dgBYKwSp/Hu9RbRpyRztZ/ltwjm7p7yqzwGp0BDka91FHpYwXne0rKotANBkt+Gr2O2p
+         N0SWRwJRjizAODtEipDx9qguDE+3SE0ZGqLgo41FrP0xWRi+AB8LE7r5aDqlHq0AQPvm
+         JdMArIVjvfMsa/Pv4FHaQ5ZvsK5u0I76/LYcbI2etMuGuWMKLInSHJzikq2O4pY95VX2
+         x8+FTFs8yFXloyzCLs5YAhJtKMEZjeKXiMbvy/S3sCGW0XI+1rWBw2Nfhq9KL3pkpDtE
+         8I3g==
+X-Forwarded-Encrypted: i=1; AJvYcCWw7k2ah5hiWVOHKSx8OEOuodld2d9zahhAXSUzQpxxXLCK5mzkxMb0yYsa/3/v66wARjNY3VYtp/vn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkrzgrNSXHHHfhCBxWgRlOn+Geut7iMO0ek7SN63f1am+h9WK4
+	KeKAcymAQ4b7GsW7r/Ve25XazKv6j7YE9mV9IZzefJEu+1NO24qczAvoCJoicQS6tGY=
+X-Gm-Gg: ASbGncvuiWppeza1EmpGl2/4W3ixlAq92LY/c6KY41pK+/ZHOEejhBymPGc4unCuzpb
+	3imgth8w7EbhGh2wyPmVtsg2ZApYttjgaqcs+XeoycnNl6U+uMl3JXy0ENSvqqhsV7zfnu+jpjt
+	LrfbqUchZZWqVSPY0xR30qetaXf0xcrS99JI8ES7uX+mZ2/SJ6B2JIb1bPhhlIcQHSj4Miwx4Zs
+	TKSYJm4Ta03NyZMnxPgCHT+weUhQzfN71kaY68WJUUTshbfTC6Xuc1FUhjZOIRSxW2gQ0Ksrhfr
+	AWqP+7tGafGBj/cPR+a1v6arYo7bnPjvRyaBYJck+llw0xCKJ7Gbd25cHy8Gvt2ugbvoXOraqrm
+	+JjVkFAsK2vAUGcF27zg3rv0QK9/moNqu//PIwPtBR7X9Yjd3ybDMVMl1eSLuRg4nhkAeNYaNqh
+	17Gl8tU0sS
+X-Google-Smtp-Source: AGHT+IEHU6A+/8n3mB4jZSrnb+icOKiIn2/QWEg33wEEYpctM5v8n3SmiGWeZYOnJ42kEqB3e5fFuw==
+X-Received: by 2002:a17:90b:5628:b0:32d:e07f:3236 with SMTP id 98e67ed59e1d1-34733f30dccmr13629885a91.22.1764035412693;
+        Mon, 24 Nov 2025 17:50:12 -0800 (PST)
+Received: from localhost ([71.212.208.158])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34727a36bbfsm14828683a91.0.2025.11.24.17.50.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 17:50:11 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Rob Herring <robh@kernel.org>, Herve Codina <herve.codina@bootlin.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC] of: Add of_parse_map_iter() helper for nexus node
+ map iteration
+In-Reply-To: <CAL_Jsq+2sFzQb8j5bBWbwgyYn5apLTfWOTZW3+9n74uVyph16A@mail.gmail.com>
+References: <20251119-topic-lpm-of-map-iterator-v6-18-v1-1-1f0075d771a3@baylibre.com>
+ <CAL_Jsq+2sFzQb8j5bBWbwgyYn5apLTfWOTZW3+9n74uVyph16A@mail.gmail.com>
+Date: Mon, 24 Nov 2025 17:50:11 -0800
+Message-ID: <7hjyzedgoc.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI1MDAxMSBTYWx0ZWRfXxui3RRqOhNYb
- nuhbh116ddau131vvcOZNJMZdf7pHDyTQgb92k90cyX221oTv6trowdXNFqFG/mP82l7/Onmmyg
- CYGummjcfj6wd7xE9WW81joahWuydt3JL8DjSpnMr+LKB1sx0KOZjAHq/DUtNCePMA8bJDJg3ux
- C95neg2eSXdcGv14DZz6GnQix1EgaKod7Pgu0GOR7aP9NtHQE1CUNEZbItsPZLJMv76RzkhV25V
- 9VcJFrLDcpxjEkFPfrMpiaFqns+/d9ETjgfrZgTl2UOS3qqrnwZJjjHyfXj/tJiM/xV0fkKSrCz
- mZ0AqTBsIjq0xIuJIRwqg2waeQyvvjZQ4YtlYX9MuR4ZaPXyiE9z6A0M2Wujn3E3VZVAnPQCRy6
- xdCW0eoxPpFqSfFHay2qvGN5yKxjVg==
-X-Proofpoint-GUID: YtP18NrHZ5t7r1klLwqS6T8aHPtE9YLb
-X-Proofpoint-ORIG-GUID: YtP18NrHZ5t7r1klLwqS6T8aHPtE9YLb
-X-Authority-Analysis: v=2.4 cv=GoFPO01C c=1 sm=1 tr=0 ts=69250757 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=PS1UjZDpBljCGRlzRBMA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-25_01,2025-11-24_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 impostorscore=0 bulkscore=0 adultscore=0
- phishscore=0 clxscore=1015 lowpriorityscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511250011
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Add anx7625 DSI to DP bridge device node.
+Rob Herring <robh@kernel.org> writes:
 
-Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 170 ++++++++++++++++++++++
- 1 file changed, 170 insertions(+)
+> +Herve
+>
+> On Wed, Nov 19, 2025 at 6:41=E2=80=AFPM Kevin Hilman (TI.com)
+> <khilman@baylibre.com> wrote:
+>>
+>> Add a new helper function of_parse_map_iter() to iterate over nexus
+>> node maps (c.f. DT spec, section 2.5.1.)
+>>
+>> This function provides an iterator interface for traversing map
+>> entries, handling the complexity of variable-sized entries based on
+>> <stem>-cells properties, as well as handling the <stem>-skip and
+>> <stem>-pass-thru properties.
+>>
+>> RFC: There's a lot of overlap between this function and
+>> of_parse_phandle_with_args_map().  However the key differences are:
+>>
+>>   - of_parse_phandle_with_args_map() does matching
+>>     it searches for an entry that matches specific child args
+>>   - of_parse_map_iter() does iteration
+>>     it simply walks through all entries sequentially
+>
+> There's also this in flight for interrupt-map:
+>
+> https://lore.kernel.org/all/20251027123601.77216-2-herve.codina@bootlin.c=
+om/
+>
+> There's probably enough quirks with interrupt-map that we can't use
+> the same code. Though it may boil down to handling #address-cells and
+> how the parent is looked up.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index 4a8ac26846c6..ea2cc84e4c7e 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -36,6 +36,18 @@ dp0_connector_in: endpoint {
- 		};
- 	};
- 
-+	dp-dsi0-connector {
-+		compatible = "dp-connector";
-+		label = "DSI0";
-+		type = "full-size";
-+
-+		port {
-+			dp_dsi0_connector_in: endpoint {
-+				remote-endpoint = <&dsi2dp_bridge_out>;
-+			};
-+		};
-+	};
-+
- 	regulator-usb2-vbus {
- 		compatible = "regulator-fixed";
- 		regulator-name = "USB2_VBUS";
-@@ -45,6 +57,64 @@ regulator-usb2-vbus {
- 		enable-active-high;
- 		regulator-always-on;
- 	};
-+
-+	vreg_12p0: regulator-vreg-12p0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_12P0";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vreg_5p0: regulator-vreg-5p0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_5P0";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+
-+		vin-supply = <&vreg_12p0>;
-+	};
-+
-+	vreg_1p8: regulator-vreg-1p8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_1P8";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		vin-supply = <&vreg_5p0>;
-+	};
-+
-+	vreg_1p0: regulator-vreg-1p0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_1P0";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1000000>;
-+		regulator-max-microvolt = <1000000>;
-+
-+		vin-supply = <&vreg_1p8>;
-+	};
-+
-+	vreg_3p0: regulator-vreg-3p0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_3P0";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3000000>;
-+		regulator-max-microvolt = <3000000>;
-+
-+		vin-supply = <&vreg_12p0>;
-+	};
- };
- 
- &apps_rsc {
-@@ -316,6 +386,70 @@ &gpu_zap_shader {
- 	firmware-name = "qcom/qcs8300/a623_zap.mbn";
- };
- 
-+&i2c8 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	io_expander: gpio@74 {
-+		compatible = "ti,tca9539";
-+		reg = <0x74>;
-+		interrupts-extended = <&tlmm 93 IRQ_TYPE_EDGE_BOTH>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		reset-gpios = <&tlmm 66 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&io_expander_intr_active>,
-+			    <&io_expander_reset_active>;
-+		pinctrl-names = "default";
-+	};
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9543";
-+		reg = <0x70>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			bridge@58 {
-+				compatible = "analogix,anx7625";
-+				reg = <0x58>;
-+				interrupts-extended = <&io_expander 2 IRQ_TYPE_EDGE_FALLING>;
-+				enable-gpios = <&io_expander 1 GPIO_ACTIVE_HIGH>;
-+				reset-gpios = <&io_expander 0 GPIO_ACTIVE_HIGH>;
-+				vdd10-supply = <&vreg_1p0>;
-+				vdd18-supply = <&vreg_1p8>;
-+				vdd33-supply = <&vreg_3p0>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						dsi2dp_bridge_in: endpoint {
-+							remote-endpoint = <&mdss_dsi0_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						dsi2dp_bridge_out: endpoint {
-+							remote-endpoint = <&dp_dsi0_connector_in>;
-+						};
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &pmm8650au_1_gpios {
- 	usb2_en: usb2-en-state {
- 		pins = "gpio7";
-@@ -353,10 +487,31 @@ &mdss_dp0_phy {
- 	status = "okay";
- };
- 
-+&mdss_dsi0 {
-+	vdda-supply = <&vreg_l5a>;
-+
-+	status = "okay";
-+};
-+
-+&mdss_dsi0_phy {
-+	vdds-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
-+&mdss_dsi0_out {
-+	data-lanes = <0 1 2 3>;
-+	remote-endpoint = <&dsi2dp_bridge_in>;
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
- &remoteproc_adsp {
- 	firmware-name = "qcom/qcs8300/adsp.mbn";
- 	status = "okay";
-@@ -419,6 +574,21 @@ dp_hot_plug_det: dp-hot-plug-det-state {
- 		function = "edp0_hot";
- 		bias-disable;
- 	};
-+
-+	io_expander_intr_active: io-expander-intr-active-state {
-+		pins = "gpio93";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	io_expander_reset_active: io-expander-reset-active-state {
-+		pins = "gpio66";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-high;
-+	};
- };
- 
- &uart7 {
--- 
-2.34.1
+Hmm, I wasn't aware of this, thanks for point it out.  It looks very
+similar to what i need, except for it's hard-coding the properties as
+"#interrupt-*".
+
+Seems like this should be generalized to handle the generic nexus-node
+map. But it also seems to rely on an existing function
+of_irq_parse_imap_parent() which is also specific to interrupt maps.
+
+That being said, I'm not sure if interrupt-maps are really special, or
+if they are just a specific case of the nexus node map.  This drivers/of
+code is breaking my brain, so it's more likely that I simply don't
+understand enough of it to know how to do this correctly.
+
+Any more detailed help/guidance for how to go forward here would be
+greatly appreciated.
+
+>> There are likely ways to extract some shared code between these two
+>> functions into some shared helpers, but I'm hoping someone more
+>> familiar with this OF code can help here.
+>
+> I would expect of_parse_phandle_with_args_map() could be implemented
+> in terms of the iterator.
+
+I'm not really sure how because the of_parse_phandle* stuff just has to
+handle a single phandle, where what I need (and what the imap stuff is
+doing) is iterating over the whole map.
+
+>> However, before refactoring the shared code, it would be good to have
+>> some feedback on this approach.
+>>
+>> Signed-off-by: Kevin Hilman (TI.com) <khilman@baylibre.com>
+>> ---
+>>  drivers/of/base.c  | 167 ++++++++++++++++++++++++++++++++++++++++++++++=
+++++++
+>>  include/linux/of.h |  13 ++++
+>>  2 files changed, 180 insertions(+)
+>>
+>> diff --git a/drivers/of/base.c b/drivers/of/base.c
+>> index 7043acd971a0..bdb4fde1bfa9 100644
+>> --- a/drivers/of/base.c
+>> +++ b/drivers/of/base.c
+>> @@ -1594,6 +1594,173 @@ int of_parse_phandle_with_args_map(const struct =
+device_node *np,
+>>  }
+>>  EXPORT_SYMBOL(of_parse_phandle_with_args_map);
+>>
+>> +/**
+>> + * of_parse_map_iter() - Iterate through entries in a nexus node map
+>> + * @np:                        pointer to a device tree node containing=
+ the map
+>> + * @stem_name:         stem of property names (e.g., "power-domain" for=
+ "power-domain-map")
+>> + * @index:             pointer to iteration index (set to 0 for first c=
+all)
+>> + * @child_args:                pointer to structure to fill with child =
+specifier (can be NULL)
+>> + * @parent_args:       pointer to structure to fill with parent phandle=
+ and specifier
+>> + *
+>> + * This function iterates through a nexus node map property as defined =
+in DT spec 2.5.1.
+>> + * Each map entry has the format: <child_specifier phandle parent_speci=
+fier>
+>> + *
+>> + * On each call, it extracts one map entry and fills child_args (if pro=
+vided) with the
+>> + * child specifier and parent_args with the parent phandle and specifie=
+r.
+>> + * The index pointer is updated to point to the next entry for the foll=
+owing call.
+>> + *
+>> + * Example usage::
+>> + *
+>> + *  int index =3D 0;
+>> + *  struct of_phandle_args child_args, parent_args;
+>> + *
+>> + *  while (!of_parse_map_iter(np, "power-domain", &index, &child_args, =
+&parent_args)) {
+>> + *      // Process child_args and parent_args
+>> + *      of_node_put(parent_args.np);
+>> + *  }
+>> + *
+>> + * Caller is responsible for calling of_node_put() on parent_args.np.
+>> + *
+>> + * Return: 0 on success, -ENOENT when iteration is complete, or negativ=
+e error code on failure.
+>> + */
+>> +int of_parse_map_iter(const struct device_node *np,
+>> +                      const char *stem_name,
+>> +                      int *index,
+>> +                      struct of_phandle_args *child_args,
+>> +                      struct of_phandle_args *parent_args)
+>> +{
+>> +       char *cells_name __free(kfree) =3D kasprintf(GFP_KERNEL, "#%s-ce=
+lls", stem_name);
+>> +       char *map_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map",=
+ stem_name);
+>> +       char *mask_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-=
+mask", stem_name);
+>> +       char *pass_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-=
+pass-thru", stem_name);
+>> +       static const __be32 dummy_mask[] =3D { [0 ... MAX_PHANDLE_ARGS] =
+=3D cpu_to_be32(~0) };
+>> +       static const __be32 dummy_pass[] =3D { [0 ... MAX_PHANDLE_ARGS] =
+=3D cpu_to_be32(0) };
+>> +       const __be32 *map, *mask, *pass;
+>> +       __be32 child_spec[MAX_PHANDLE_ARGS];
+>> +       u32 child_cells, parent_cells;
+>> +       int map_len, i, entry_idx;
+>> +
+>> +       if (!np || !stem_name || !index || !parent_args)
+>> +               return -EINVAL;
+>> +
+>> +       if (!cells_name || !map_name || !mask_name || !pass_name)
+>> +               return -ENOMEM;
+>> +
+>> +       /* Get the map property */
+>> +       map =3D of_get_property(np, map_name, &map_len);
+>> +       if (!map)
+>> +               return -ENOENT;
+>> +
+>> +       map_len /=3D sizeof(u32);
+>> +
+>> +       /* Get child #cells */
+>> +       if (of_property_read_u32(np, cells_name, &child_cells))
+>> +               return -EINVAL;
+>> +
+>> +       /* Get the mask property (optional) */
+>> +       mask =3D of_get_property(np, mask_name, NULL);
+>> +       if (!mask)
+>> +               mask =3D dummy_mask;
+>> +
+>> +       /* Get the pass-thru property (optional) */
+>> +       pass =3D of_get_property(np, pass_name, NULL);
+>> +       if (!pass)
+>> +               pass =3D dummy_pass;
+>
+> Generally the DT iterators need some state maintained, so there's an
+> init function to do all/most of the above and stash that into a state
+> struct for the iterator.
+
+Are you referring to of_phandle_iterator_init()
+
+>> +
+>> +       /* Iterate through map to find the entry at the requested index =
+*/
+>> +       entry_idx =3D 0;
+>> +       while (map_len > child_cells + 1) {
+>> +               /* If this is the entry we're looking for, extract it */
+>> +               if (entry_idx =3D=3D *index) {
+>> +                       /* Save masked child specifier for pass-thru pro=
+cessing */
+>> +                       for (i =3D 0; i < child_cells && i < MAX_PHANDLE=
+_ARGS; i++)
+>> +                               child_spec[i] =3D map[i] & mask[i];
+>> +
+>> +                       /* Extract child specifier if requested */
+>> +                       if (child_args) {
+>> +                               child_args->np =3D (struct device_node *=
+)np;
+>> +                               child_args->args_count =3D child_cells;
+>> +                               for (i =3D 0; i < child_cells && i < MAX=
+_PHANDLE_ARGS; i++)
+>> +                                       child_args->args[i] =3D be32_to_=
+cpu(map[i]);
+>> +                       }
+>> +
+>> +                       /* Move past child specifier */
+>> +                       map +=3D child_cells;
+>> +                       map_len -=3D child_cells;
+>> +
+>> +                       /* Extract parent phandle */
+>> +                       parent_args->np =3D of_find_node_by_phandle(be32=
+_to_cpup(map));
+>
+> Before you update the parent node, you need to put the previous parent.
+
+OK.
+
+Kevin
 
 
