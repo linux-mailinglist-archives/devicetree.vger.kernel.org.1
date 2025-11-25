@@ -1,158 +1,180 @@
-Return-Path: <devicetree+bounces-242024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141FCC85719
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 15:37:10 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5022C8573C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 15:39:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD9153A86E1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:37:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C4F854E15BF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38B2332572E;
-	Tue, 25 Nov 2025 14:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF00432571B;
+	Tue, 25 Nov 2025 14:39:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C5mHmPkC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5CC918FDBE;
-	Tue, 25 Nov 2025 14:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFBAF1A316E;
+	Tue, 25 Nov 2025 14:39:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764081426; cv=none; b=PvXhGDWSxVrJyM27m396i+VxxD2LleO2DB/7LVSNhtuiZHP3OwTeUHcdy2e95ygLoZUerEE3fVvE8nv3SWjEGv2rrdO0kQQgF4qAO7sxN7LG7FVkAqzfzrBi7d93LwVciNTLbTww5DGeaipQBQGXV/aQM0+12xtaJJw7X7i+PwQ=
+	t=1764081581; cv=none; b=scYgdhR/oLUH74Dcz9LHN4IHc0S3hS2GaVYdacfNxXP0rSbLx68jjc1zkEdBzed8cJCkEM4N3hq9vkB5kAC/LdYPbW0r1SVhHbKOrRhKQiuhdSPOCzf4r6HcqTwXaTw2xev005wcALMDLySVj2au7667iQ82Nh0SLtcjf8/js24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764081426; c=relaxed/simple;
-	bh=YEjq5frnZSrm+C4fWb6Fqm0K59Py4BtM4uY6AlP45Z0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k1B3dM0A0fv+s4omU328YpuYQzuldvxT89vc/H2+jtn0RtL5fhoOWQKSAssqP3gqkRTTzIzFpq4xsJC0ZH3BRgSlc+phljs8Fhs45F2W+Bm6tbgffj6UdMmq3mW9QLCc/oNejsoHTaIWOthXBXkX3r8gbomGM+Au8u3NAlte1fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vNu9y-000000003cW-1OUO;
-	Tue, 25 Nov 2025 14:36:50 +0000
-Date: Tue, 25 Nov 2025 14:36:42 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Eric Woudstra <ericwouds@gmail.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Patrice Chotard <patrice.chotard@foss.st.com>
-Subject: Re: [PATCH net-next 0/9] XPCS polarity inversion via generic device
- tree properties
-Message-ID: <aSW--slbJWpXK0nv@makrotopia.org>
-References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+	s=arc-20240116; t=1764081581; c=relaxed/simple;
+	bh=2Fuz15zAfjHTIJTPmsenTu/BskjaYoQHHrL2SmjKXYk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=LQZdmjvVSMdpqFVbRzPhszSnQR5e6vJjLh1QdI5x/Zt+JvOjIuN/281nJ5hdeigZcQsfB3eD2leMZ5m/HkHx8sVxcB8PYSvJ4Qvp3XcoSm0RvtPk3kt6B5JLLhY7aasxF2Mb/Sty/Ay1dZeI9H485lyS+hnTDA729lNANxB2ZCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C5mHmPkC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9DF4C4CEF1;
+	Tue, 25 Nov 2025 14:39:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764081581;
+	bh=2Fuz15zAfjHTIJTPmsenTu/BskjaYoQHHrL2SmjKXYk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=C5mHmPkCKwmvDCHb2AGO/uD6yDIX5wflqjENKOE0u96jTEyroax2/mk6t8VdkkLCL
+	 ztU1VizvfxGA+SU5X0ikxVqwRZPC5qw+XUqLp9H1ONehVhi7iD0te/PsPxhYPWmugM
+	 B/MBZ9DIXqxy29UEqh1Fi6c/DOWAbkdvvy7GCBXr0flTNCArmLbIWYkWJjyZKnH0HK
+	 DYCMiQpV65gWf5Fk1c0Y0YKHA6S0KfLgn2Hs7kZbhd5tX+Ab11mSnzhrtsi7u2Mymc
+	 bYTrdQv23UZOHtZEXgr95ilKdM0UIzCA4yJY+h2bTydeagOq0myhwMrw9zqgY74uNA
+	 2rVIRQxkN2O6A==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: Usama Arif <usamaarif642@gmail.com>
+Cc: Pratyush Yadav <pratyush@kernel.org>,  Changyuan Lyu
+ <changyuanl@google.com>,  akpm@linux-foundation.org,
+  linux-kernel@vger.kernel.org,  Mike Rapoport <rppt@kernel.org>,
+  anthony.yznaga@oracle.com,  arnd@arndb.de,  ashish.kalra@amd.com,
+  benh@kernel.crashing.org,  bp@alien8.de,  catalin.marinas@arm.com,
+  corbet@lwn.net,  dave.hansen@linux.intel.com,
+  devicetree@vger.kernel.org,  dwmw2@infradead.org,  ebiederm@xmission.com,
+  graf@amazon.com,  hpa@zytor.com,  jgowans@amazon.com,
+  kexec@lists.infradead.org,  krzk@kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-doc@vger.kernel.org,
+  linux-mm@kvack.org,  luto@kernel.org,  mark.rutland@arm.com,
+  mingo@redhat.com,  pasha.tatashin@soleen.com,  pbonzini@redhat.com,
+  peterz@infradead.org,  robh@kernel.org,  rostedt@goodmis.org,
+  saravanak@google.com,  skinsburskii@linux.microsoft.com,
+  tglx@linutronix.de,  thomas.lendacky@amd.com,  will@kernel.org,
+  x86@kernel.org,  Breno Leitao <leitao@debian.org>,  thevlad@meta.com
+Subject: Re: [PATCH v8 12/17] x86/e820: temporarily enable KHO scratch for
+ memory below 1M
+In-Reply-To: <80622f99-0ef4-491b-87f6-c9790dfecef6@gmail.com> (Usama Arif's
+	message of "Tue, 25 Nov 2025 14:31:54 +0000")
+References: <20250509074635.3187114-1-changyuanl@google.com>
+	<20250509074635.3187114-13-changyuanl@google.com>
+	<a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
+	<mafs01plmxngp.fsf@kernel.org>
+	<80622f99-0ef4-491b-87f6-c9790dfecef6@gmail.com>
+Date: Tue, 25 Nov 2025 15:39:34 +0100
+Message-ID: <mafs0ikeyw509.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+Content-Type: text/plain
 
-On Sat, Nov 22, 2025 at 09:33:32PM +0200, Vladimir Oltean wrote:
-> Polarity inversion (described in patch 3/6) is a feature with at least 3
-> potential new users waiting for a generic description:
-> - Horatiu Vultur with the lan966x SerDes
-> - Daniel Golle with the MaxLinear GSW1xx switches
-> - Me with a custom SJA1105 board, switch which uses the DesignWare XPCS
-> 
-> I became interested in exploring the problem space because I was averse
-> to the idea of adding vendor-specific device tree properties to describe
-> a common need.
+On Tue, Nov 25 2025, Usama Arif wrote:
 
-Thank you for coming up with a good solution, and even generalizing
-this beyond networking scope :)
+> On 25/11/2025 13:15, Pratyush Yadav wrote:
+>> On Mon, Nov 24 2025, Usama Arif wrote:
+>> 
+>>> On 09/05/2025 08:46, Changyuan Lyu wrote:
+>>>> From: Alexander Graf <graf@amazon.com>
+>>>>
+>>>> KHO kernels are special and use only scratch memory for memblock
+>>>> allocations, but memory below 1M is ignored by kernel after early boot
+>>>> and cannot be naturally marked as scratch.
+>>>>
+>>>> To allow allocation of the real-mode trampoline and a few (if any) other
+>>>> very early allocations from below 1M forcibly mark the memory below 1M
+>>>> as scratch.
+>>>>
+>>>> After real mode trampoline is allocated, clear that scratch marking.
+>>>>
+>>>> Signed-off-by: Alexander Graf <graf@amazon.com>
+[...]
+>> Anyway, you do indeed point at a bug. memblock_mark_kho_scratch() should
+>> only be called on a KHO boot, not unconditionally. So even with
+>> CONFIG_MEMBLOCK_KHO_SCRATCH enabled, this should only be called on a KHO
+>> boot, not every time.
+>> 
+>> I think the below diff should fix the warning for you by making sure the
+>> scratch areas are not present on non-KHO boot. I still don't know why
+>> you hit the warning in the first place though. If you'd be willing to
+>> dig deeper into that, it would be great.
+>> 
+>> Can you give the below a try and if it fixes the problem for you I can
+>> send it on the list.
+>
+> Is there a reason for compiling this code with is_kho_boot, when we have disabled
+> KEXEC_HANDOVER and dont want this in? i.e. why not just ifdef it with MEMBLOCK_KHO_SCRATCH
+> when that defconfig is designed for it?
 
-> 
-> This set contains an implementation of a generic feature that should
-> cater to all known needs that were identified during my documentation
-> phase. I've added a new user - the XPCS - and I've converted an existing
-> user - the EN8811H Ethernet PHY.
-> 
-> I haven't converted the rest due to various reasons:
-> - "mediatek,pnswap" is defined bidirectionally and the underlying
->   SGMII_PN_SWAP_TX_RX register field doesn't make it clear which bit is
->   RX and which is TX. Needs more work and expert knowledge from maintainer.
+is_kho_boot() will always be false when CONFIG_KEXEC_HANDOVER is not
+enabled. So the compiler should optimize this out.
 
-Just to quickly answer to that one from MediaTek's SDK[1]:
-#define SGMII_PN_SWAP_RX               BIT(1)
-#define SGMII_PN_SWAP_TX               BIT(0)
+Only using the ifdef is not enough. Just because the config is enabled
+doesn't mean every boot will be a KHO boot. You can do regular reboots
+or even regular kexec, without ever having KHO involved. We only want to
+call this for a KHO boot. So a runtime check is needed anyway.
 
-So MediaTek LynxI is ready to be supported via the standard properties
-you are suggesting.
+>
+>> 
+>> diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
+>> index c3acbd26408ba..0a34dc011bf91 100644
+>> --- a/arch/x86/kernel/e820.c
+>> +++ b/arch/x86/kernel/e820.c
+>> @@ -16,6 +16,7 @@
+>>  #include <linux/firmware-map.h>
+>>  #include <linux/sort.h>
+>>  #include <linux/memory_hotplug.h>
+>> +#include <linux/kexec_handover.h>
+>>  
+>>  #include <asm/e820/api.h>
+>>  #include <asm/setup.h>
+>> @@ -1315,7 +1316,8 @@ void __init e820__memblock_setup(void)
+>>  	 * After real mode trampoline is allocated, we clear that scratch
+>>  	 * marking.
+>>  	 */
+>> -	memblock_mark_kho_scratch(0, SZ_1M);
+>> +	if (is_kho_boot())
+>> +		memblock_mark_kho_scratch(0, SZ_1M);
+>>  
+>>  	/*
+>>  	 * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
+>> diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
+>> index 88be32026768c..4e9b4dff17216 100644
+>> --- a/arch/x86/realmode/init.c
+>> +++ b/arch/x86/realmode/init.c
+>> @@ -4,6 +4,7 @@
+>>  #include <linux/memblock.h>
+>>  #include <linux/cc_platform.h>
+>>  #include <linux/pgtable.h>
+>> +#include <linux/kexec_handover.h>
+>>  
+>>  #include <asm/set_memory.h>
+>>  #include <asm/realmode.h>
+>> @@ -67,7 +68,8 @@ void __init reserve_real_mode(void)
+>>  	 */
+>>  	memblock_reserve(0, SZ_1M);
+>>  
+>> -	memblock_clear_kho_scratch(0, SZ_1M);
+>> +	if (is_kho_boot())
+>> +		memblock_clear_kho_scratch(0, SZ_1M);
+>>  }
+>>  
+>>  static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
+>> 
+>> 
+>
 
-[1]: https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/5cecec123e1ab4c7f4eabd5630e8e8b2e89b9cf0/autobuild/unified/filogic/master/files/target/linux/mediatek/patches-6.6/999-2607-net-pcs-mtk-lynxi-add-individual-polarity-control.patch
-
-
-> - "st,px_rx_pol_inv" - its binding is a .txt file and I don't have time
->   for such a large detour to convert it to dtschema.
-> - "st,pcie-tx-pol-inv" and "st,sata-tx-pol-inv" - these are defined in a
->   .txt schema but are not implemented in any driver. My verdict would be
->   "delete the properties" but again, I would prefer not introducing such
->   dependency to this series.
-> 
-> Vladimir Oltean (9):
->   dt-bindings: phy: rename transmit-amplitude.yaml to
->     phy-common-props.yaml
->   dt-bindings: phy-common-props: create a reusable "protocol-names"
->     definition
->   dt-bindings: phy-common-props: RX and TX lane polarity inversion
->   dt-bindings: net: xpcs: allow properties from phy-common-props.yaml
->   phy: add phy_get_rx_polarity() and phy_get_tx_polarity()
->   net: pcs: xpcs: promote SJA1105 TX polarity inversion to core
->   net: pcs: xpcs: allow lane polarity inversion
->   net: phy: air_en8811h: deprecate "airoha,pnswap-rx" and
->     "airoha,pnswap-tx"
->   dt-bindings: net: airoha,en8811h: deprecate "airoha,pnswap-rx" and
->     "airoha,pnswap-tx"
-> 
->  .../bindings/net/airoha,en8811h.yaml          |  11 +-
->  .../bindings/net/pcs/snps,dw-xpcs.yaml        |   5 +-
->  .../bindings/phy/phy-common-props.yaml        | 152 ++++++++++++++++++
->  .../bindings/phy/transmit-amplitude.yaml      | 103 ------------
->  MAINTAINERS                                   |  21 +++
->  drivers/net/pcs/Kconfig                       |   1 +
->  drivers/net/pcs/pcs-xpcs-nxp.c                |  11 --
->  drivers/net/pcs/pcs-xpcs.c                    |  58 ++++++-
->  drivers/net/pcs/pcs-xpcs.h                    |   2 +-
->  drivers/net/phy/Kconfig                       |   1 +
->  drivers/net/phy/air_en8811h.c                 |  50 ++++--
->  drivers/phy/Kconfig                           |   9 ++
->  drivers/phy/Makefile                          |   1 +
->  drivers/phy/phy-common-props.c                | 117 ++++++++++++++
->  include/dt-bindings/phy/phy.h                 |   4 +
->  include/linux/phy/phy-common-props.h          |  20 +++
->  16 files changed, 426 insertions(+), 140 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-common-props.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/transmit-amplitude.yaml
->  create mode 100644 drivers/phy/phy-common-props.c
->  create mode 100644 include/linux/phy/phy-common-props.h
-> 
-> -- 
-> 2.34.1
-> 
+-- 
+Regards,
+Pratyush Yadav
 
