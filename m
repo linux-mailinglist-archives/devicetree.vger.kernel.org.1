@@ -1,152 +1,334 @@
-Return-Path: <devicetree+bounces-241898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86E6C83F51
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:23:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44AF7C84077
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:42:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D4A43AEE14
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:23:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F21603A54A2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:42:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 218C92D8363;
-	Tue, 25 Nov 2025 08:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E5D2DE71A;
+	Tue, 25 Nov 2025 08:42:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="NUGGobgw"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="np8FqZdy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE89F2D7D30
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 08:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDF32DAFB5;
+	Tue, 25 Nov 2025 08:42:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764058992; cv=none; b=jbogSmBOKQELQrLCHfRkhRj7r2loKxoPi0Jwglim5LZmjigz2UpZhHy9DcAtfACYFCdKcoOUtc63QkPw605sFSZYyiIJd0KZzqYvj9AxVwI3Y/OuF142Xkux1yMkcdN6MaCDkzMuV75LVndCPDwDYsPt00d5uzpVQ/COfa71cG0=
+	t=1764060126; cv=none; b=RTtyjybJNed1TAYTyGQDYgxBZ1wfqGZwLDUKGVQqDyDAQzOZvTrCd3uLrm8ctZZz2/9z4S3TQeShRfR97dowJW8xEbAs0rwOsbzEMfI+hOzaQoAHsUWDTCWCjvuO4FYAZDB5QakMsMw4dhke3slB5NDegzBRsdVbr2/4GApaF/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764058992; c=relaxed/simple;
-	bh=ht1OugzOUwV/KrUVMyjQ7leJQSldE8jckGSOW5P0o/g=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=eC3QLaUSOoitErRcfzK+MA1NL/kTujURlLjmo93ybmZqvEhTgGr53lYm7pwkd6Uc5Mjt/eDI5QnK73avq3WYk5o+8pxRE/LdM8fxVH0T39lR9GEQyQrwT6wmJBcvhYk723UHCCxxerIJywuHPzD2QHony77pYbE41634/Oz+Nrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=NUGGobgw; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20251125082307epoutp04c0aa7b6f701671539578de8da5bd088d~7Mk2UqgZn2022220222epoutp04z
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 08:23:07 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20251125082307epoutp04c0aa7b6f701671539578de8da5bd088d~7Mk2UqgZn2022220222epoutp04z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1764058987;
-	bh=ht1OugzOUwV/KrUVMyjQ7leJQSldE8jckGSOW5P0o/g=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=NUGGobgwunfFIVm/RnNL4GpxahnQBJf5tiWmW9VeEKNcjONhmz3aHQCZH6zkzi1o4
-	 j8QaJsZxZ+bbUfXBhL2dKwuNXK6R6sJPAyeUmLxOociGG5ORSlpiAsX5YsbfPzCtEc
-	 bpidDAM5eZkbMf8DTplx2e7GmYMosSjOyLuKQCMY=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
-	20251125082307epcas2p2017c082a27abe4d786ebc4613bd3976d~7Mk1n23d_0875708757epcas2p22;
-	Tue, 25 Nov 2025 08:23:07 +0000 (GMT)
-Received: from epcas2p3.samsung.com (unknown [182.195.38.210]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4dFwgG43YJz6B9mB; Tue, 25 Nov
-	2025 08:23:06 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20251125082305epcas2p407d1d0314c6df8477fd07c4efb1a32f1~7Mk0hflfD3030730307epcas2p4E;
-	Tue, 25 Nov 2025 08:23:05 +0000 (GMT)
-Received: from KORCO115296 (unknown [12.80.207.128]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20251125082305epsmtip161f504ec4fc5f1b153e41448f36076e3~7Mk0Z5LcV1597415974epsmtip1V;
-	Tue, 25 Nov 2025 08:23:05 +0000 (GMT)
-From: =?utf-8?B?7IaQ7Iug?= <shin.son@samsung.com>
-To: "'Tudor Ambarus'" <tudor.ambarus@linaro.org>, "'Daniel Lezcano'"
-	<daniel.lezcano@linaro.org>, "'Bartlomiej Zolnierkiewicz'"
-	<bzolnier@gmail.com>, "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Rafael J
- . Wysocki'" <rafael@kernel.org>, "'Zhang Rui'" <rui.zhang@intel.com>,
-	"'Lukasz	Luba'" <lukasz.luba@arm.com>, "'Rob Herring'" <robh@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>
-Cc: "'Henrik Grimler'" <henrik@grimler.se>, <linux-pm@vger.kernel.org>,
-	<linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	"'Peter	Griffin'" <peter.griffin@linaro.org>,
-	=?utf-8?Q?'Andr=C3=A9_Draszik'?= <andre.draszik@linaro.org>, "'William
- McVicker'" <willmcvicker@google.com>, <jyescas@google.com>
-In-Reply-To: <1baaae91-f712-4965-9105-4358a59ff1d1@linaro.org>
-Subject: RE: [PATCH v7 RESEND 2/3] thermal: exynos_tmu: Support new hardware
- and update TMU interface
-Date: Tue, 25 Nov 2025 17:23:03 +0900
-Message-ID: <00e201dc5de4$b948e0c0$2bdaa240$@samsung.com>
+	s=arc-20240116; t=1764060126; c=relaxed/simple;
+	bh=n7wfBFTS1kGLsWICsHYKAhBOKvlSac+am2uGBQZ1i2E=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VKsou0PMP3K5gI2vhT25nWyMwL9MaDDs7dMCOUHEmRwamdIpzlKxl75gNjPCGctD5CvhmhfuG2V1gj+Jp+dpLMzxG5iQykqvEBJu//eUl6HTa92yJpi9xZr1fQBIW32lObHD2m0jaJ7NHDfoMlSyovJ8EC71Orx27FSHJQO6NZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=np8FqZdy; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id A8EC21A1D30;
+	Tue, 25 Nov 2025 08:42:01 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 76F1D60705;
+	Tue, 25 Nov 2025 08:42:01 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 937281037160A;
+	Tue, 25 Nov 2025 09:41:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1764060118; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=2o0olBqqiCnYMdbfemBfUTVqO9jEfeuMqW3Jkn2wJC0=;
+	b=np8FqZdym2Wty0W93O7w7shgzDAPxvx7OSrXs0VRuETOjjAW8+HA50+CFTcDPlJ1zO4C7W
+	e6PURzgtrculx7tTu8rN97eJwG2WPlJhw8q6DJTImD2KkbiUG+rt8S7g6YHZd4v6vlZzWI
+	4KV0igv0n6z6xtyafwxwCTcHE8Eb5vgS9NMtbd+09MDsbnWaraeS/SLEzkokIKtYa2tQnA
+	LE7CCJQabojoGkiALiJgmhfnKLC74eVKEj0pyAvSQmlvHtLFegfXUAYwlMTCjo3Xo8WnoB
+	XKSt0lq2XmLzPCn6oWlE9BzvoJHvLN1w/658oqxZrLUwOEMDLD4Oop8egVF3iw==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Peter Rosin <peda@axentia.se>,
+ Mariel Tinaco <Mariel.Tinaco@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Kevin Tsai <ktsai@capellamicro.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Eugen Hristev <eugen.hristev@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Support Opensource <support.opensource@diasemi.com>,
+ Paul Cercueil <paul@crapouillou.net>, Iskren Chernev <me@iskren.info>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Matheus Castello <matheus@castello.eng.br>,
+ Saravanan Sekar <sravanhome@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Casey Connolly <casey.connolly@linaro.org>,
+ Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>,
+ Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Amit Kucheria <amitk@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Dixit Parmar <dixitparmar19@gmail.com>, linux-hwmon@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+Subject: Re: [PATCH v4 0/6] Add support for the LTM8054 voltage regulator
+Date: Tue, 25 Nov 2025 09:41:34 +0100
+Message-ID: <3021060.e9J7NaK4W3@fw-rgant>
+In-Reply-To: <732D3F12-0361-4800-8981-EF629B4C491F@goldelico.com>
+References:
+ <20251124-ltm8054-driver-v4-0-107a8a814abe@bootlin.com>
+ <4053840.MHq7AAxBmi@fw-rgant>
+ <732D3F12-0361-4800-8981-EF629B4C491F@goldelico.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQJR08pAfg/+KuTfxFjIW+Bmb4uKqAKoesbtAuyt0KIBiaSaQQHdj7cKAU24glUB3tS++QLNzNdgs6AJmGA=
-Content-Language: ko
-X-CMS-MailID: 20251125082305epcas2p407d1d0314c6df8477fd07c4efb1a32f1
-X-Msg-Generator: CA
+Content-Type: multipart/signed; boundary="nextPart3391484.44csPzL39Z";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
+
+--nextPart3391484.44csPzL39Z
+Content-Type: multipart/alternative; boundary="nextPart3384998.aeNJFYEL58";
+ protected-headers="v1"
+Content-Transfer-Encoding: 7Bit
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: "H. Nikolaus Schaller" <hns@goldelico.com>
+Date: Tue, 25 Nov 2025 09:41:34 +0100
+Message-ID: <3021060.e9J7NaK4W3@fw-rgant>
+In-Reply-To: <732D3F12-0361-4800-8981-EF629B4C491F@goldelico.com>
+MIME-Version: 1.0
+
+This is a multi-part message in MIME format.
+
+--nextPart3384998.aeNJFYEL58
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237
-References: <20251113064022.2701578-1-shin.son@samsung.com>
-	<CGME20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237@epcas2p1.samsung.com>
-	<20251113064022.2701578-3-shin.son@samsung.com>
-	<2180a854-8ba6-4424-add2-eb34637530c1@linaro.org>
-	<000001dc5d2a$0697bf10$13c73d30$@samsung.com>
-	<12346382-7718-4942-a497-4de278b1d5a0@linaro.org>
-	<000b01dc5d37$3f6f5e80$be4e1b80$@samsung.com>
-	<1baaae91-f712-4965-9105-4358a59ff1d1@linaro.org>
 
-Hello, Tudor Ambarus.
+On Monday, 24 November 2025 17:19:45 CET H. Nikolaus Schaller wrote:
+...
+> > The LTM8054's feedback pin can be driven by a different DAC, which allows
+> > for dynamic output voltage control. This is a more complex upstreaming
+> > topic however, so I've left it out of this initial series. There are
+> > other component functions which fit in squarely into the regulator
+> > framework, such as input current limit control and soft-start. But I
+> > understand that the current driver might look a bit "bare".
+> 
+> So you just want to have some user-space mechanism to control voltage
+> and current limits? Can't this be done by directly controlling them through
+> the iio API?
+> 
+> Is this for a device that is already in kernel or planned to be supported?
+> Or is it "application support" for some SBC?
+> 
 
-> -----Original Message-----
-> From: Tudor Ambarus =5Bmailto:tudor.ambarus=40linaro.org=5D
-> Sent: Monday, November 24, 2025 9:24 PM
-> To: =EC=86=90=EC=8B=A0=20<shin.son=40samsung.com>;=20'Daniel=20Lezcano'=
-=0D=0A>=20<daniel.lezcano=40linaro.org>;=20'Bartlomiej=20Zolnierkiewicz'=0D=
-=0A>=20<bzolnier=40gmail.com>;=20'Krzysztof=20Kozlowski'=20<krzk=40kernel.o=
-rg>;=20'Rafael=20J=20.=0D=0A>=20Wysocki'=20<rafael=40kernel.org>;=20'Zhang=
-=20Rui'=20<rui.zhang=40intel.com>;=20'Lukasz=0D=0A>=20Luba'=20<lukasz.luba=
-=40arm.com>;=20'Rob=20Herring'=20<robh=40kernel.org>;=20'Conor=0D=0A>=20Doo=
-ley'=20<conor+dt=40kernel.org>;=20'Alim=20Akhtar'=20<alim.akhtar=40samsung.=
-com>=0D=0A>=20Cc:=20'Henrik=20Grimler'=20<henrik=40grimler.se>;=20linux-pm=
-=40vger.kernel.org;=20linux-=0D=0A>=20samsung-soc=40vger.kernel.org;=20devi=
-cetree=40vger.kernel.org;=20linux-arm-=0D=0A>=20kernel=40lists.infradead.or=
-g;=20linux-kernel=40vger.kernel.org;=20'Peter=20Griffin'=0D=0A>=20<peter.gr=
-iffin=40linaro.org>;=20'Andr=C3=A9=20Draszik'=20<andre.draszik=40linaro.org=
->;=0D=0A>=20'William=20McVicker'=20<willmcvicker=40google.com>;=20jyescas=
-=40google.com=0D=0A>=20Subject:=20Re:=20=5BPATCH=20v7=20RESEND=202/3=5D=20t=
-hermal:=20exynos_tmu:=20Support=20new=0D=0A>=20hardware=20and=20update=20TM=
-U=20interface=0D=0A>=20=0D=0A>=20Hi,=20Shin=20Son,=0D=0A>=20=0D=0A>=20On=20=
-11/24/25=201:41=20PM,=20=EC=86=90=EC=8B=A0=20wrote:=0D=0A>=20>>=20Shin,=20a=
-=20bit=20unrelated=20with=20the=20patch,=20but=20I=20wanted=20to=20let=20yo=
-u=20know=0D=0A>=20>>=20that=20I=20started=20looking=20at=20the=20GS101=20TM=
-U.=20I=20assume=20it's=20very=20similar=0D=0A>=20>>=20with=20the=20TMU=20on=
-=20exynosautov920.=20Do=20you=20know=20if=20they=20share=20the=20same=20IP=
-=0D=0A>=20version?=0D=0A>=20=0D=0A>=20I=20guess=20you=20omitted=20this=20qu=
-estion.=0D=0A>=0D=0AOh,=20Sorry=20-=20I=20missed=20that=20question=20earlie=
-r.=20I=20do=20see=20many=20similarities,=0D=0ABut=20I'm=20not=20sure=20whet=
-her=20Exynosautov920=20actually=20share=20the=20same=20IP=20version=20as=20=
-GS101.=0D=0A=0D=0A>=20>=20Regarding=20ACPM,=20I=20did=20not=20introduce=20i=
-t=20earlier=20because=20I=20was=20trying=20to=0D=0A>=20align=20the=20implem=
-entation=20with=20the=20existing=20framework.=0D=0A>=20>=20However,=20if=20=
-we=20move=20toward=20a=20separate=20driver,=20I=20will=20reconsider=20wheth=
-er=0D=0A>=20ACPM=20integration=20makes=20sense=20there.=0D=0A>=20>=20Would=
-=20it=20be=20possible=20to=20get=20your=20feedback=20again=20when=20I=20pre=
-pare=20the=20next=0D=0A>=20revision=20of=20the=20driver?=0D=0A>=20=0D=0A>=
-=20Yes,=20I'll=20try=20to=20review=20it.=20Add=20me=20to=20cc=20please.=0D=
-=0A=0D=0AThanks=20a=20lot=21=0D=0A=0D=0A>=20Is=20the=20downstream=20exynosa=
-utov9=20code=20publicly=20available?=20Can=20you=20provide=0D=0A>=20some=20=
-links?=0D=0A>=20=0D=0A>=20Thanks=21=0D=0A>=20ta=0D=0A=0D=0AThank=20you=20fo=
-r=20sharing=20the=20links.=20As=20far=20as=20I=20know,=20the=20downstream=
-=20eav9=20code=20is=20not=20publicly=20available.=0D=0AIn=20the=20next=20pa=
-tch=20series,=20I'll=20make=20sure=20to=20add=20you=20to=20CC.=20I=20apprec=
-iate=20your=20help=20and=20feedback.=0D=0A=0D=0AThanks,=0D=0AShin=0D=0A=0D=
-=0A=0D=0A
+This is planned support for a voltage regulator chip.
+
+> Are you looking for a virtual "glue" driver to logically combine several low
+> level functions?
+> 
+
+I'm looking for a clean userspace abstraction for this component, the low-
+level functions in this case are those of a voltage regulator.
+
+> > > What could be necessary is if you really want to be able to "regulate"
+> > > the current going to Vout, some bridge between regulator API and some
+> > > IIO DAC.
+> > > 
+> > > And enabling/disabling the regulator by some GPIO can be described in
+> > > the DT already through a "regulator-fixed".
+> > 
+> > This is a possibility, but when you bring in all of these other hardware
+> > functions that I mentionned e.g. output voltage control and stepping,
+> > you'll end up with several different devices which look unrelated from
+> > userspace, but actually control the same chip.
+> 
+> That is quite usual... I have often heard: user space must fix this as
+> kernel just provides basic functions in a harmonized way and integration
+> has to be tailored to the device anyways :)
+> 
+
+IMHO this is not integration, it's BSP work. As far as regulator functions are 
+concerned, the current status quo is that the kernel handles getting/setting 
+voltage levels, applying current and voltage constraints and other basic 
+regulator features.
+
+> > Userspace will also have to know about some hardware details to properly
+> > control the DACs, such as the values of the sense and feedback resistors.
+> > In my opinion, this bypasses the kernel's abstraction of hardware.
+> 
+> I came up with this argument several times in the part and got a lot of
+> contrary :)
+> 
+> What I still wonder: does your hardware warrant an upstream driver for a
+> non-programable chip if a different solution (with help of user-space)
+> already exist?
+> 
+
+A different solution does not currently exist (although a userspace-based 
+solution could be designed). I just think that a kernel-based solution is more 
+desirable here.
+
+> Another question: is your scheme generic enough so that it can be expected
+> that other devices are using it in the same way?
+> 
+
+Yes, the LTM8054 has a fairly common design as far as buck-boost chips go. 
+Things like feedback dividers on the output voltage pin are standard practice.
+And since the driver doesn't rely on a particular way of integrating the 
+LTM8054 with other components, it can be reused wherever the same regulator 
+chip is used.
+
+> Or could the power controller framework (/sys/class/power_supply) fit
+> better?
+> 
+--nextPart3384998.aeNJFYEL58
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/html; charset="utf-8"
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">On Monday, 24 November 2025 17:19:45 CET H. Nikolaus Schaller wrote:</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">...</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; The LTM8054's feedback pin can be driven by a different DAC, which allows</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; for dynamic output voltage control. This is a more complex upstreaming</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; topic however, so I've left it out of this initial series. There are</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; other component functions which fit in squarely into the regulator</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; framework, such as input current limit control and soft-start. But I</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; understand that the current driver might look a bit &quot;bare&quot;.</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; So you just want to have some user-space mechanism to control voltage</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; and current limits? Can't this be done by directly controlling them through</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; the iio API?</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; Is this for a device that is already in kernel or planned to be supported?</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; Or is it &quot;application support&quot; for some SBC?</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">This is planned support for a voltage regulator chip.</p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; Are you looking for a virtual &quot;glue&quot; driver to logically combine several low</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; level functions?</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">I'm looking for a clean userspace abstraction for this component, the low-</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">level functions in this case are those of a voltage regulator.</p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; &gt; What could be necessary is if you really want to be able to &quot;regulate&quot;</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; &gt; the current going to Vout, some bridge between regulator API and some</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; &gt; IIO DAC.</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; &gt; </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; &gt; And enabling/disabling the regulator by some GPIO can be described in</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; &gt; the DT already through a &quot;regulator-fixed&quot;.</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; This is a possibility, but when you bring in all of these other hardware</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; functions that I mentionned e.g. output voltage control and stepping,</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; you'll end up with several different devices which look unrelated from</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; userspace, but actually control the same chip.</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; That is quite usual... I have often heard: user space must fix this as</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; kernel just provides basic functions in a harmonized way and integration</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; has to be tailored to the device anyways :)</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">IMHO this is not integration, it's BSP work. As far as regulator functions are </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">concerned, the current status quo is that the kernel handles getting/setting </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">voltage levels, applying current and voltage constraints and other basic </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">regulator features.</p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; Userspace will also have to know about some hardware details to properly</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; control the DACs, such as the values of the sense and feedback resistors.</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; &gt; In my opinion, this bypasses the kernel's abstraction of hardware.</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; I came up with this argument several times in the part and got a lot of</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; contrary :)</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; What I still wonder: does your hardware warrant an upstream driver for a</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; non-programable chip if a different solution (with help of user-space)</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; already exist?</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">A different solution does not currently exist (although a userspace-based </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">solution could be designed). I just think that a kernel-based solution is more </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">desirable here.</p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; Another question: is your scheme generic enough so that it can be expected</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; that other devices are using it in the same way?</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Yes, the LTM8054 has a fairly common design as far as buck-boost chips go. </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Things like feedback dividers on the output voltage pin are standard practice.</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">And since the driver doesn't rely on a particular way of integrating the </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">LTM8054 with other components, it can be reused wherever the same regulator </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">chip is used.</p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; Or could the power controller framework (/sys/class/power_supply) fit</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; better?</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">I don't think the power supply abstraction is relevant here. The LTM8054 is a </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">voltage regulator, it doesn't have charge, capacity, temperature monitoring, </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">power limitation, or other power supply class features.</p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; There is an API to ask chargers etc. for battery voltage and current limits</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; or even write them.</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; There is also &quot;generic-adc-battery&quot; which allows to hook up with arbitrary</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; iio-adcs for measurements - although you need a DAC in your setup. Maybe an</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">&gt; extension here is a better strategy than a dedicated ltm8054 driver?</p>
+<br /><br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">What if the LTM8054 is not used to supply a battery?</p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Thanks,</p>
+<br /><p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">-- </p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Romain Gantois, Bootlin</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">Embedded Linux and Kernel engineering</p>
+<p style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;">https://bootlin.com</p>
+<br /></body>
+</html>
+--nextPart3384998.aeNJFYEL58--
+
+--nextPart3391484.44csPzL39Z
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmkla74ACgkQKCYAIARz
+eA4uoA/9H25d5rofXv5yC5jGvCQOKojoS9wGic9EKNLG3RhZlGrCXhEf2dFw9w9I
+KdlTjGKLaXynf0oBz5SfeSL1juql9WOfV2px4AeCeEALikbdQs1ce1O7K126uo4q
+A1zlxkZMPa6Xj3pQ1IIri7WVCjRDiHVFs1hrFJz8XoMbIC0XDycQD+8DEe84cHbk
+aqo/wiWTxLVusXDihmVD2JfaZhDKMKTW6rQ2HW+MJUOGcNtTYNKlQ6PjRQtaAvbq
+0GaffUh2vHyQ0qR1mmhgJibiSX+opzhVeHFua3cA5lfVPZPudubmORMAUnDXeT3j
+coFe7wkMqx34bQG2vf1EUrfl5tM0SLF9yPo3W2Y0rWRpSJhRcnDDqtMBY4LGtU4P
+KzMYczGkdSXG7xA+fT9kR0ANunjMz3ub2kFnR5fJB+B07C1DNAQFA7zA8WRt4iL/
+cNPYb5BX7VDxw33Xripatp9u8hE2Z3CGBKYW7gudC9Jd2U5GoIukMdxn4TJlZHAA
+2TL8/ZJDKBTcUEsca+UU5BUa3tm8gk0jfJpThZwOhB2G+eOuKVbcLejZqAfNN1rG
+quNoBZmTQ51CzAoHiDbTGrnK5oz84q2KWOmHXLAn8O20dlJWEUgb/ghFR79r3EW4
+AuNuKXwXClIOnvF5B9NLbFCwZzFK9L5mIQ69ZwaVN+0kDzg3CAg=
+=LLKl
+-----END PGP SIGNATURE-----
+
+--nextPart3391484.44csPzL39Z--
+
+
+
 
