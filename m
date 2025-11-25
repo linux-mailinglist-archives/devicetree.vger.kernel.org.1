@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-241983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0CCC84DF3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:06:36 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB1E2C84E02
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:06:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AE3D3B092E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:06:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9246B4E8656
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F196E31AF21;
-	Tue, 25 Nov 2025 12:06:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A81CA31B805;
+	Tue, 25 Nov 2025 12:06:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k1czExDw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RqrVM0nU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D0F3195FB
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 12:06:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3B731A810
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 12:06:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764072382; cv=none; b=sGZYTulf4Ej/MLfmbMnstO0YQf0B5VC1AYaU7ODPXpH4i/U+ZbMchclgaeY0ZZPqvb6/OQmULxK4GiOh+z2jVv19GaUjgAJrJYCUV1LQko0myEvOrHOxMQjTi+hxHA6rvv7pFigMUJwXBRCO92gqcHtwYaGLnn1LmSq7Ukvx57s=
+	t=1764072384; cv=none; b=qGHYUnITVVUMNyjD0UpDAQz1v8fHVP2vQLLs/xSYOhHXAnP7TBgTKVNTn8ANfcca3sUxD1NDmwg0MhlxQXeRNVNSKhON8B+8OulBwJSlp/GcTPemQGQ1jTbcnfmVdcRtHMk2+JVSBZyxS9+J2yCzWHAP/OeS989HuqU2Q7zUbDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764072382; c=relaxed/simple;
-	bh=oSxMov1SESrAgpKKZcLn4WtxFn0hZta8BIUSnqu+iNo=;
+	s=arc-20240116; t=1764072384; c=relaxed/simple;
+	bh=VJS7tKi4W2dCRDnFqQGBe73LZKmaMcajj+4bVj7gZPI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Dstdwal63XO1voV9T3esX6+H7BV+TRCv/RBolCxu/vAPjT3E+pL/iy+ZZjCXWWFgjw8t/79cpDu5I1CZjjPeNcWRsOArl348YPVY6ydPgs+JROnOqJvwl2SENhv/deOMHKHn61+AKxow2t8J92/GgFE1fGcpmca/7O5eg04zduE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k1czExDw; arc=none smtp.client-ip=209.85.167.54
+	 MIME-Version; b=G4Lw3PH1xdIXLblMSo+fqEp1yzJkCbiDsUsZ3spbEAx766l5wklR3ReyXEUtpkmu3bDYX6HQl+zClRfB+LogcWaBtNRRrNCMlqnMDE+RGKWpJsWsq2OxlywtQtaXwQbun6gjExp+raVZJSGk3xVD2ApaVKoj+ikIA4UGwQ2Yat8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RqrVM0nU; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5957ac0efc2so5692218e87.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 04:06:20 -0800 (PST)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5958187fa55so4166112e87.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 04:06:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764072379; x=1764677179; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1764072380; x=1764677180; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MQgVO7SUdIDltP6h5MVysIssYHMNX5v/mXvkkoKdSwQ=;
-        b=k1czExDwJZmYSaGUoDNF3wafP+LkiTmWpEq3eJgODWVtvNp97tx3MXr8Dw5vf6OFSl
-         bHyItokgSY/CTT4BbDg/x6WQJD2cZRKZWdCWHtpNLdIkQVYNFCoSbiw08KVPOkXOwthW
-         xMBtUwy9U0m27G8BDMqRKnz/Dp4HLQR9iiGMDOeW5mRkUNoqoZlRH+ss8SFEPMtUlX01
-         nkfe7MivbEsRLI8qUDPeMP+zCB8ORUVtmo9aHOZYoj+U1Z1LJER2HSOonSCzChJvR17u
-         wI2RD7lIOB9XB5QJciVWKRyxxM2stn6KGi68VTBIvJ6qYUt8tqgSjUreKp1qYxpOM1hP
-         yfIg==
+        bh=hW/vKp7i5enJJG2aIk5G1BDDlAi5srul9SKR0E7oEGI=;
+        b=RqrVM0nU7z3YDn+TCWkGIGIom8LqdYPoKnXH7f6erTb5gohkF+rBvm5Blus2itCW5z
+         NVDAzSxU+pzLDmZsRiqC4nDdXT0qmY79W39/XDpKM2EgyacSbCb6sE53FT768kNmAunN
+         E4DjJFhmLGGW3e01nKTVpw+RewbvjTTxtPiqMa51UsYms0f5QSbFBA1uAIlYhj+ZQbz8
+         Ovnwzr9vTh9z5OP+E2c+qEaxEONKAKePfE9m/8T4dalEGBAvInU0HIqiCqBFN439nGA0
+         irQo9dxLGHyvjsA+zI2ZfYJl4Dt3cVAQNAP/1xqF9Kb+NfoXn9t7siIt4gG9IUVnZ4My
+         unCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764072379; x=1764677179;
+        d=1e100.net; s=20230601; t=1764072380; x=1764677180;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=MQgVO7SUdIDltP6h5MVysIssYHMNX5v/mXvkkoKdSwQ=;
-        b=ShaVQf8mELpZaCj/tz87NIofzseXGG7MNdYXVG7S2anL7YgfwMXrdgm3g/BFWlDcFB
-         DFxYbJHeUHb5ZzjymEBlU7z8GIJfrRzDT35Mym4ORAc7nWZevo/Nd1JcK8sT47Vm2rmb
-         eFOqxe7/uSm0yqxpEpJAoz0YFAFORuBtjthJEtaui9swjC72tZo+eF9cr4NSzvr9zUQ8
-         4tIhUgOhiK7ha+xnL9Z4T3o1oCdnMlDVtFbIsgCF4Qqyuz2IiOEF30IhEwe9ID9HJyR7
-         mt36+hAcmikM764vdaTB9L4KexW2rRKaTycwwQy1hyywfhqDWoHgZsE8UmR4PPHlsvH6
-         ohGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3phjIhNnq3a9KWoTwqwk1Ddw5RvcuEfXRlX4AoP8NBKQ3xo8o04oqDiQ96C49E5Ij84xXAHCiOxH/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzV/YTskCbX2ao0coDb4JFHy4MCy1KS3aJlsnJrXucZcU7eGhjO
-	RTPw6mRI2k6vmfE5ywyytrxwJk0GYeluI0Bh8B5YeRe4Bgoop96Rqztw
-X-Gm-Gg: ASbGnctH7SXMKCWLBVTGG8xRQPZkHdkLVmgVmP69C5LKnxWPcfMIYw2CcXlxBYi/M0Q
-	tdTZuKmxhJDBYlZ8sQIK9TTGa99GKK/sx6Lmh1uKUglFIa9EIO1nDGwqZR6GzeuNs4eBMW56KUn
-	SuGmCqmTKde55pZ38uXZoOI8it/7AK4h4HVRTh5g158tFF6TpBBxltH6ff7+iuvWwN0yYH4tA0u
-	JOV3pt9KBIeE4FScbOPI3IUUFq1dwytNtMZV5xZNkXaS5V1+h4Q/tNh+1+O0Ak1QXt5bd1x+hF7
-	dyARvYxCCMe7r/YP6crptv4JEdxG8ahNEN67imD1DBFoT5tgBEjNgFTQquBjvhGH191Uhy6dJc6
-	vqKyrOJKrqlXEhfiIOmLO+RPZXa+bfF42Pyq6bJSukXMitmqV5A7e8HgZqQCsGLBU8f2DyakyeF
-	E=
-X-Google-Smtp-Source: AGHT+IGtM1PyFoR4RY0zhjHY2chTLDIVD6KPz0Yfdd6DO6DZabktBNfX2NguAOJht6zWvGQbtOixQg==
-X-Received: by 2002:a05:6512:234a:b0:594:48e6:26b8 with SMTP id 2adb3069b0e04-596a3edd5e8mr4793046e87.39.1764072378784;
-        Tue, 25 Nov 2025 04:06:18 -0800 (PST)
+        bh=hW/vKp7i5enJJG2aIk5G1BDDlAi5srul9SKR0E7oEGI=;
+        b=uoRseSvDG6WJ46Sy6dpDwx7GpayKKJ4Wtj7MQ2JkpEL1CdaD3YlHo2XXPUL4OQj7CX
+         /9zheSfrJDsZT5Pr8VXZCismZVV35CpGAAWZkptkR36r40KwgvoCCsk2mktRlxo3WG99
+         8cfwJuctggOoLrA9eIcIHudEGsPBpWdlJsz9mjPmch9w3LAoKC2A/ooNFgFYqPu8BRRp
+         2ZXQXW0oWWQxnBX50zyKfe5hl5DeXVjbhCRKblsUtWyPiJdIu1KeZk1dNUrxOqbghPWo
+         g9AlCjS4kSQyPje3DsW49RwFajPFZQ7z5aJz2YcA5PMTHQFpxiG+lSqwfexzxvlbgMsO
+         d1mg==
+X-Forwarded-Encrypted: i=1; AJvYcCVISiyg5Jzf8AjghmSGvNEPdMbTLYEjCOtcIZxE6ZzAhENx86VSpTL0lGCUopS+LbOrIhHk/JYEPFZS@vger.kernel.org
+X-Gm-Message-State: AOJu0YymQRC+oTKuy9W86mf+r8vC2ZJfrf3kzEa7Bi9Wspgt74PhLeP9
+	5NmXsSg1Axxmt5vtYlLjnHqU+JA0N5yWZ9K4TSk2RNsuiGCMZf8tTbc3
+X-Gm-Gg: ASbGncvALsaYOp0r9r9bI+ZrGbNijBeNZDJgjWeZC07guxQv6vOG4d9yO2QtOvsG2ln
+	Xt8eDcr2bxihJiE8pCOVNuyXRvQm+Yu93IpZ2un5HiuDaNWMIoPZ5iSwj2rFR9QZ15Tg5Y1jwTR
+	6cT/x1lfACOGaPZwBu/0ve5lySGrmQXaRLdDFx4aoOWmPU7O68PiTQ71N5jyMGZudMJSfIRnwFI
+	4FGDuGXzF++6LKkuYSdujtlI3PxF/w2jpeWUv4E0I5E8MGkH4YbC5adZLww3LZxe4GMMSFWa48J
+	nUW+CH3mo8o3P209BS8zJuyBh5nZ1EAYY2O3f0sHOZI/gcaPzCVNPrCIsDa9JaSLObYXoRiSD6J
+	vUXZE1uUM4bW/1I/IyWAaBKQuqjLjjZsso4pWZtLG9NvvDk/A28+11nZekP/ZzZNMuE1NHD6l6i
+	o=
+X-Google-Smtp-Source: AGHT+IFhjLrOrFiZOapYoRF+cu0r4FsySebLxdfYS1eENEYxZ3es+l0zFrltALiMuKz3JAOnaS+NTw==
+X-Received: by 2002:a05:6512:2244:b0:595:8258:ccc7 with SMTP id 2adb3069b0e04-596b4e4b8camr1176446e87.1.1764072380177;
+        Tue, 25 Nov 2025 04:06:20 -0800 (PST)
 Received: from xeon ([188.163.112.74])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5969dbbecb9sm5150993e87.58.2025.11.25.04.06.17
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5969dbbecb9sm5150993e87.58.2025.11.25.04.06.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Nov 2025 04:06:18 -0800 (PST)
+        Tue, 25 Nov 2025 04:06:19 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -95,9 +95,9 @@ Cc: linux-kernel@vger.kernel.org,
 	linux-tegra@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	linux-pm@vger.kernel.org
-Subject: [PATCH v4 01/12] devfreq: tegra30-devfreq: add support for Tegra114
-Date: Tue, 25 Nov 2025 14:05:48 +0200
-Message-ID: <20251125120559.158860-2-clamor95@gmail.com>
+Subject: [PATCH v4 02/12] ARM: tegra: Add ACTMON node to Tegra114 device tree
+Date: Tue, 25 Nov 2025 14:05:49 +0200
+Message-ID: <20251125120559.158860-3-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251125120559.158860-1-clamor95@gmail.com>
 References: <20251125120559.158860-1-clamor95@gmail.com>
@@ -109,54 +109,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Lets add Tegra114 support to activity monitor device as a preparation to
-upcoming EMC controller support.
+Add support for ACTMON on Tegra114. This is used to monitor activity from
+different components. Based on the collected statistics, the rate at which
+the external memory needs to be clocked can be derived.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
 ---
- drivers/devfreq/tegra30-devfreq.c | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/nvidia/tegra114.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/devfreq/tegra30-devfreq.c b/drivers/devfreq/tegra30-devfreq.c
-index 8ea5b482bfb3..fa83480a923f 100644
---- a/drivers/devfreq/tegra30-devfreq.c
-+++ b/drivers/devfreq/tegra30-devfreq.c
-@@ -963,16 +963,22 @@ static int tegra_devfreq_probe(struct platform_device *pdev)
- 	return 0;
- }
+diff --git a/arch/arm/boot/dts/nvidia/tegra114.dtsi b/arch/arm/boot/dts/nvidia/tegra114.dtsi
+index 02d2c40dd79a..ef0618e9eec1 100644
+--- a/arch/arm/boot/dts/nvidia/tegra114.dtsi
++++ b/arch/arm/boot/dts/nvidia/tegra114.dtsi
+@@ -312,6 +312,18 @@ ahb: ahb@6000c000 {
+ 		reg = <0x6000c000 0x150>;
+ 	};
  
-+/*
-+ * The activity counter is incremented every 256 memory transactions. However,
-+ * the number of clock cycles required for each transaction varies across
-+ * different SoC generations. For instance, a single transaction takes 2 EMC
-+ * clocks on Tegra30, 1 EMC clock on Tegra114, and 4 EMC clocks on Tegra124.
-+ */
- static const struct tegra_devfreq_soc_data tegra124_soc = {
- 	.configs = tegra124_device_configs,
--
--	/*
--	 * Activity counter is incremented every 256 memory transactions,
--	 * and each transaction takes 4 EMC clocks.
--	 */
- 	.count_weight = 4 * 256,
- };
- 
-+static const struct tegra_devfreq_soc_data tegra114_soc = {
-+	.configs = tegra124_device_configs,
-+	.count_weight = 256,
-+};
++	actmon: actmon@6000c800 {
++		compatible = "nvidia,tegra114-actmon";
++		reg = <0x6000c800 0x400>;
++		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&tegra_car TEGRA114_CLK_ACTMON>,
++			 <&tegra_car TEGRA114_CLK_EMC>;
++		clock-names = "actmon", "emc";
++		resets = <&tegra_car TEGRA114_CLK_ACTMON>;
++		reset-names = "actmon";
++		#cooling-cells = <2>;
++	};
 +
- static const struct tegra_devfreq_soc_data tegra30_soc = {
- 	.configs = tegra30_device_configs,
- 	.count_weight = 2 * 256,
-@@ -980,6 +986,7 @@ static const struct tegra_devfreq_soc_data tegra30_soc = {
- 
- static const struct of_device_id tegra_devfreq_of_match[] = {
- 	{ .compatible = "nvidia,tegra30-actmon",  .data = &tegra30_soc, },
-+	{ .compatible = "nvidia,tegra114-actmon", .data = &tegra114_soc, },
- 	{ .compatible = "nvidia,tegra124-actmon", .data = &tegra124_soc, },
- 	{ },
- };
+ 	gpio: gpio@6000d000 {
+ 		compatible = "nvidia,tegra114-gpio", "nvidia,tegra30-gpio";
+ 		reg = <0x6000d000 0x1000>;
 -- 
 2.51.0
 
