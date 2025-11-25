@@ -1,166 +1,167 @@
-Return-Path: <devicetree+bounces-241808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E72C82F86
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 02:03:14 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED63BC8304F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 02:33:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 18C57346314
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 01:03:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 36EE14E3C5B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 01:33:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E349B191484;
-	Tue, 25 Nov 2025 01:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70267274659;
+	Tue, 25 Nov 2025 01:33:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a/b8LJxw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NAphW0z+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32E136D4E8;
-	Tue, 25 Nov 2025 01:03:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8CA31A254E;
+	Tue, 25 Nov 2025 01:33:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764032590; cv=none; b=JW+Cqnw8X8Mw/0udDhVob+huid4wR+CDxeHNptB2waCMFLbD8Cs8WM0IeTBHR+wdFYRW871HqFUnxpFCAOmrmClS/ZC4ue2TBV4AkM/ef4AOmR815z4McLAmQQMXs9UaIjVRClNfQLoHZO/UJanlmi7tt+6Fz14Ev3AK0ae0KhY=
+	t=1764034407; cv=none; b=GiqoiU06+lnCvR5NZ04RWN9O5MRk//hM3qd7u+wZPMKh2ecAs0cvWofeCpSEahp6q0F/rIayPXaRzYDlGhIvMEJNCjAU/BKMfF6baaHhH8HB8HjzCOxusTnGaCtdzH0Yvn26dEgd1sjZqDkz/+8jThmNNyq6HBRAZdO0KxxrQek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764032590; c=relaxed/simple;
-	bh=TQsjjXEbZyuH4Uh0TUx0pCyqX4lueW+SsVRHxMzIDvs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UArKNC+Eb1ygogIca7ubBSPU/90CE2h2TtI9ttmodWRwpCSBaPZsbbWH7XAy5We8L88P6tpeSY93emsOUA0FnVx72zahUPR232NkWRSWp5OeRclSp7uqaRrTtv9J8XTplBRgz4WSkvry4wYBxixb1mDppBuzYdOnN1dKelzgsxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a/b8LJxw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08C22C4CEF1;
-	Tue, 25 Nov 2025 01:03:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764032587;
-	bh=TQsjjXEbZyuH4Uh0TUx0pCyqX4lueW+SsVRHxMzIDvs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a/b8LJxw+as66OaR0YdXOW0mZnSerUPFK2y5YIVQ/TFcBX5D3dgHeIf43rQRgWlay
-	 5NZZ4S3NgCJYPG1b8e44co10Fw9NKXEsA8J4NdErI4qlj6KFfCY8i/EVSI5C3zCwl8
-	 6IN2FArEBv2sNCVhV5nARlyC2wNeL+khahgnfisjeHiYLOpnXQ0ZgnrvDkK5kMYB/2
-	 Gg33kwz/cq+kvNiMRbBcRdTIg4V3QuIbfG7VFLqWxbgJ1YMx8iBFbVNRfWULr8rezA
-	 2WKLvyFJugmVOgUO2Q3f7o1sQpxpREhUK4FDOhupgxmIn56s55ZDa9nq/7+FkEkIWM
-	 G06JjtVW70d3g==
-Date: Tue, 25 Nov 2025 01:03:02 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
-Message-ID: <20251125-depravity-proofs-17b8d5dba748@spud>
-References: <20251112-improving-tassel-06c6301b3e23@spud>
- <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
- <20251119-bacterium-banana-abcdf5c9fbc5@spud>
- <CACRpkda3Oz+K1t38QKgWipEseJxxneBSC11sFvzpB7ycnqsjBA@mail.gmail.com>
- <20251120-silicon-oyster-5d973ff822d9@spud>
- <CACRpkdaM3Hkbxx99uXx6OVdSbdhNNc3voS1FoUsz2oAUEc1-qA@mail.gmail.com>
- <20251121-epidermis-overdue-1ebb1bb85e36@spud>
- <20251121-skimpily-flagstone-8b96711443df@spud>
- <20251124-operative-elephant-16c2c18aebde@spud>
- <CAD++jLn4z9KFTRoROZ8aKnK-1v=_magjgSq7JJJYt0=CO=gH4A@mail.gmail.com>
+	s=arc-20240116; t=1764034407; c=relaxed/simple;
+	bh=CO6uBDFOak/OjCHqXncQ3TtoB4XefmM5wU+fNLLFB+A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hl9+lFk0I1aRVDkRd/x+T47Eb/Os40YqtbGAIAWjGcJmozzTzcP5mbFvJ3VURJHavoWq5ebmjVp6uVioet9lSHUnfDOZXLwiathDiQNOBN93v5aPW6nv+LGfVO47Om0UOGUhKK8TK8UEy0nOfr45bKXft8r1v33FsiB7/CijbW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NAphW0z+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AOJtDon1303807;
+	Tue, 25 Nov 2025 01:33:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=5s1GUpaHhDBmLyWnK4z7vrDo5bWUi8vrF01
+	2fDReU0A=; b=NAphW0z+aOrn3PEicZogyCPqcpzKvyhntTswyOBaqZPEXRGhBQ9
+	Bm6tliz156X/am57aNeOyrXhiH5+orHrWX7+BYzZL1374bsLuZCURTzFE2BkYijt
+	hi4/l3yyF3DOfmPqR3JD7eEuo9xZRP8DpdHoT8geVkCqjPp4ns3nY73u22xlmgx6
+	QOitEr+ZxPvzbdW/IGzAULW6KhJhXWChGzmdRUm0sqDtMuQdupu/w8P0/DbK2HWA
+	dS8L8DBUl16B/haI881oA8kWtVPbBDB4yCxlp+2JdoFzi4hdGsFLTIvjTkEpVvsh
+	9HpsrhRJnjbNOHyx+lGLwggW7P8/igrNCzQ==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amr8s9u05-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Nov 2025 01:33:09 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5AP1X68L027346;
+	Tue, 25 Nov 2025 01:33:06 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4ak68mvfg6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Nov 2025 01:33:06 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5AP1X5tU027320;
+	Tue, 25 Nov 2025 01:33:05 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-amakhija-hyd.qualcomm.com [10.213.99.91])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 5AP1X5DN027312
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Nov 2025 01:33:05 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4090850)
+	id 9D20B596; Tue, 25 Nov 2025 07:03:04 +0530 (+0530)
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+To: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc: Ayushi Makhija <quic_amakhija@quicinc.com>, robdclark@gmail.com,
+        dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        conor+dt@kernel.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonathan@marek.ca, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_rajeevny@quicinc.com,
+        quic_vproddut@quicinc.com
+Subject: [PATCH v3 0/5] Add DSI display support for QCS8300 target
+Date: Tue, 25 Nov 2025 07:02:57 +0530
+Message-Id: <20251125013302.3835909-1-quic_amakhija@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="41kgqZ51LVEaWcUV"
-Content-Disposition: inline
-In-Reply-To: <CAD++jLn4z9KFTRoROZ8aKnK-1v=_magjgSq7JJJYt0=CO=gH4A@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 9O6U5txyNqDmYeixXFCyR9gBhRbTx57V
+X-Authority-Analysis: v=2.4 cv=KP5XzVFo c=1 sm=1 tr=0 ts=69250755 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=RBJW5-z34AXF7GF-XkcA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI1MDAxMSBTYWx0ZWRfX5N9V645aOTyS
+ h0tHQTCxJO3bxQWdOw3cSnywZzvdfCNkYPMHpqOclvb70fRUDA96xYaSx/PFqhyjiRRbyejm05m
+ EknPKLlISwou8M3JouIkUBqm/McpKDkbAhrGnjnFPMfQHX+c/Xwp+7p0AGBK4ocdnzzKbCnFRWU
+ 3sfjodJ6ga3X7A0xhF8ElZum5oDWKHRaA6O6/I1uHS84TcIro/K1/ODOd334rITTwY5CNsivs19
+ U7qN3iZqdASnhopN+0y2BvzlEbffoOL8rqPWApj6pEpRjHM8QB26yBkLg9QoFK+QSXqwjZmYVWO
+ 6nTCQ1JVngKJHmP8bSMB5CO7n6RMsDszzxqPXFztpP56O1N06r4IjRzAW6rwzkUY7sc2qF9kezZ
+ ilhJ6E2Fi8gj+/SrKsBk62ENGsk7rw==
+X-Proofpoint-GUID: 9O6U5txyNqDmYeixXFCyR9gBhRbTx57V
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_01,2025-11-24_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0
+ bulkscore=0 spamscore=0 priorityscore=1501 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511250011
 
+This series enables the support for DSI to DP bridge port
+(labeled as DSI0) of the Qualcomm's QCS8300 Ride platform.
 
---41kgqZ51LVEaWcUV
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+QCS8300 SoC has DSI controller v2.5.1 and DSI PHY v4.2.
+The Ride platform is having ANX7625 DSI to DP bridge chip from Analogix.
 
-On Tue, Nov 25, 2025 at 01:31:49AM +0100, Linus Walleij wrote:
-> On Mon, Nov 24, 2025 at 6:16=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
->=20
-> > I was looking at the kernel part of this today, trying to figure out
-> > where it would make sense to actually check this, but I'm not super keen
-> > on what has to be done. I think doing it in parse_dt_cfg() makes the
-> > most sense, setting flags if the property is one we care about during
-> > the loop and then checking mutual exclusion at the end based on the
-> > flags? The gpio example you gave has it easy, since they already appear
-> > to have these things stored in flag properties.
-> > Is there somewhere else, in addition to creating the config from dt that
-> > this would have to be checked?
->=20
->=20
-> We are right now parsing with an array of
-> struct pinconf_generic_params:
->=20
-> static const struct pinconf_generic_params dt_params[] =3D {
->     { "input-disable", PIN_CONFIG_INPUT_ENABLE, 0 },
->     (...)
-> };
->=20
-> (Sorry for not using C99 .initializers on the above array)
->=20
-> Struct looks like so:
->=20
-> struct pinconf_generic_params {
->         const char * const property;
->         enum pin_config_param param;
->         u32 default_value;
->         const char * const *values;
->         size_t num_values;
-> };
->=20
-> Can't we add a
->     const enum pin_config_param *conflicts;
->     size_t num_conflicts;
->=20
-> And rewrite the parsing table to be more explicit:
->=20
-> static const char * const input_disable_conflicts[] =3D {
->     "input-enable",
-> };
->=20
-> static const struct pinconf_generic_params dt_params[] =3D {
->     {
->         .property =3D "input-disable",
->         .param =3D PIN_CONFIG_INPUT_ENABLE,
->         .default_value =3D 0,
->         .conflicting_properties =3D input_disable_conflicts,
->         .num_conflicting_properties =3D ARRAY_SIZE(input_disable_conflict=
-s),
->      },
->     (...)
-> };
->=20
-> Then in the loop we can use of_property_present(np, ...) to check for
-> conflicting properties when we encounter something.
+---
+This patch depends on following series:
+https://lore.kernel.org/all/20251117-dts_qcs8300-v7-0-bf42d39e7828@oss.qualcomm.com/
+(Enable DPU and Display Port for Qualcomm QCS8300-ride platform)
 
-ngl, I didn't consider something along these lines cos I was trying not
-to disrupt how things work at the moment and slot in some non-invasive.
-That's probably a bad mindset.
+Changes in v3: Addressed review comments from konard and Dmitry
+   - Patch 2: Remove qcom,qcs8300-dsi-ctrl from clk details. [Dmitry]
+   - Remove PHY and CTRL driver support. The CTRL and PHY versions for
+     Monaco are the same as LeMans, and Monaco will use the same CTRL
+     and PHY based on the fallback compatible string [Dmitry/Konard]
+   - Patch 5: Rename the regulator used and arrange the compatible, reg,
+     address and size cell for i2cmux in proper order. [Dmitry]
+   - Link to v2: https://lore.kernel.org/all/20251006013924.1114833-1-quic_amakhija@quicinc.com/
 
-I'm not sure how keen I would be on this of_property_present() idea
-though, feels like wasteful to search the dt for conflicting properties
-when we are already going through all possible properties and can do the
-check at the end, when we've got all the information? Could probably
-keep a temporay bitmap, using pin_config_param as the index, and use
-test_bit() using the known-incompatibles to check it somewhat neatly?
+Changes in v2: Addressed review comments from Konard and Dmitry
+   - Patch 1: Documented the qcom,qcs8300-dsi-phy-5nm compatible string.
+   - Patch 2: Documented the qcom,qcs8300-dsi-ctrl compatible string.
+   - Patch 3:
+           - Added qcom,qcs8300-dsi-ctrl and qcom,qcs8300-dsi-phy-5nm compatible strings
+             to the Device Tree bindings. [Dmitry/Konard]
+           - Fixed indentation issue. [Dmitry]
+           - Drop the extra empty line. [Dmitry]
+   - Patch 4: Added PHY driver support for qcom,qcs8300-dsi-phy-5nm.
+   - Patch 5: Added CTRL driver support for qcom,qcs8300-dsi-ctrl.
+   - Patch 6: Included qcom,qcs8300-dsi-ctrl and qcom,qcs8300-dsi-phy-5nm
+              compatible strings in the Device Tree. [Dmitry/Konard]
+   - Link to v1: https://lore.kernel.org/all/20250925053602.4105329-1-quic_amakhija@quicinc.com/
 
---41kgqZ51LVEaWcUV
-Content-Type: application/pgp-signature; name="signature.asc"
+Ayushi Makhija (5):
+  dt-bindings: display: msm-dsi-phy-7nm: document the QCS8300 DSI PHY
+  dt-bindings: msm: dsi-controller-main: document the QCS8300 DSI CTRL
+  dt-bindings: display: msm: document DSI controller and phy on QCS8300
+  arm64: dts: qcom: qcs8300: add Display Serial Interface device nodes
+  arm64: dts: qcom: qcs8300-ride: add anx7625 DSI to DP bridge node
 
------BEGIN PGP SIGNATURE-----
+ .../display/msm/dsi-controller-main.yaml      |   5 +
+ .../bindings/display/msm/dsi-phy-7nm.yaml     |  30 ++--
+ .../display/msm/qcom,qcs8300-mdss.yaml        | 102 ++++++++++-
+ arch/arm64/boot/dts/qcom/monaco.dtsi          |  98 +++++++++-
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts     | 170 ++++++++++++++++++
+ 5 files changed, 391 insertions(+), 14 deletions(-)
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSUARgAKCRB4tDGHoIJi
-0lIgAQCjnaJxVyxIx2z3F24phJ2S+iFmiVVqEez5nLJmNmdd8wD/RSCMnjWn/Xbk
-RMEvpSkiN4NCwwWx+WhG2Ws+Wzqj3gg=
-=Gfs+
------END PGP SIGNATURE-----
+base-commit: d724c6f85e80a23ed46b7ebc6e38b527c09d64f5 ("next-20251121")
+-- 
+2.34.1
 
---41kgqZ51LVEaWcUV--
 
