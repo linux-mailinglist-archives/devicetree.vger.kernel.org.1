@@ -1,203 +1,158 @@
-Return-Path: <devicetree+bounces-241926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D740BC84605
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:09:26 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9E7C8466E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:14:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BD0894E8EAF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:08:34 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CD60E34F7D5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79CE12EA756;
-	Tue, 25 Nov 2025 10:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18FE72EAB83;
+	Tue, 25 Nov 2025 10:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hRz+24Kf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AdWXRQrZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D622BF001;
-	Tue, 25 Nov 2025 10:08:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 307942EDD41;
+	Tue, 25 Nov 2025 10:14:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764065311; cv=none; b=gBQlmPIb/C5f/hX/8KIfjIvvn+qwmndmCAIs7ifr/UCpI2YuRsWRpOgO1G6qKoWY2VLUUG4a92av9Yw6Cua7Dua4ReMEc3LKE4TUsrUxeQQhT0d798+CxmTr9YJXhgr1i+uan2OBopi9Hk58O2PuO2Ib5fZxOX0k07bsKvqfX74=
+	t=1764065649; cv=none; b=orWLGMUiOzmDFxUB9pI6o9PP1pDadp/kL38sdheKH5k9GhH9F0C9M0yVHjOtxjVRBpBGs+QMq0FIW06ALV2tYi1uZFa0cEm9GSwHR6BwX7M9L/V2D7V+jFaN8twqiSQogCAKCPVHwNm+0PFao8PM8QCmiUS1B83WP/WnSq7fAMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764065311; c=relaxed/simple;
-	bh=u7nA8naH/Nk9T87dm41ugNF9Vzr3Lh/Iymt452RomTg=;
+	s=arc-20240116; t=1764065649; c=relaxed/simple;
+	bh=+KH7Ypgy6kj3Q59t5+0vx6RYUePPMpPgWugFJSvdq6k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KCY4ap8vHaYeohbZKZj/PGGzcIjZeLCJ2SphFLwqA4ge/4SfOgcXdqVlhFEVxwoIS9/Q4POQxmN3RdG6FIpHGgtv01mmulr2fva/BH33y5jb68cz2Gib5xYpGeMETe9A6FFlQRpwe29N0T6yQKPL3lEGvtMC+Zkc+y6PiDXJPCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hRz+24Kf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 398A2C4CEF1;
-	Tue, 25 Nov 2025 10:08:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764065310;
-	bh=u7nA8naH/Nk9T87dm41ugNF9Vzr3Lh/Iymt452RomTg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hRz+24KfBodAGNL8IFDfGJ0QkUudCNBdNY9ZNHQtdwYNAUSVaqgt/Tk52Xmj2/Aqq
-	 bEmb0rGfzn1u2Zc0Z1gC/15v2TORcGcjDmHkkInQqm8DCsVVPYvwwK6WuE4gJlCh5z
-	 Pi2tTNpuxdaHcoEs7+bxKTefAm8oQqC+djtd5qxcuIgmct2iff/pE+qDfDXvomGCir
-	 gib0/xgHUjrSfREz/5TWiREiDlJOhAtDzM0FrRUuEfqsf4RqEtl2IDJFHBjA4apqGQ
-	 QCsb798xUluwf1mNvgDqmCP9N5VPXTHgx3EbV+GySq8FXpIfxtZGz0ks9ZyxBj0EbS
-	 7LGcLW1mMn/Iw==
-Date: Tue, 25 Nov 2025 11:08:28 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	chrome-platform@lists.linux.dev, Julius Werner <jwerner@chromium.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: firmware: coreboot: Convert to YAML
-Message-ID: <20251125-outgoing-boisterous-millipede-6dabaf@kuoka>
-References: <20251125064851.3781993-1-wenst@chromium.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uwbU5Xd8ZV8nhBCaVLfQZ8VJhrwWwARIMZjcfb1maDtvuA3dscFhUToSdbI2R7teHRae0QsmTWAXW8/6n7PfH8gDIriaJmTxRDrfdBGY3ZTz/QO0S/k81+VomvJJj1VM35CphaEIC9opbmMBFdR+wHorWyvASbKRqH8WMfeTMFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AdWXRQrZ; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764065648; x=1795601648;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+KH7Ypgy6kj3Q59t5+0vx6RYUePPMpPgWugFJSvdq6k=;
+  b=AdWXRQrZyS36nYvyyt7pQEqBONDnQo3bAS89cad2DKTXYjdDSy2HkXM5
+   sXLLJg2Fb63wu53l+hkPd5npMd4jYglZZ/QahHsTqwlttltQ9Mypc+kLf
+   iwAsBrL0Z9WC/JhPZdBXo3FjIIcKbg8+bZhN0oot4KIhOIOC0NsVrojFK
+   pmKwiMfR02SIdwjDM4xGMf74w2zPTMvTMQfBUfgPXRLydQ4NjGiA8zCJ3
+   okqs6+8BM+lq1gBrBtmpTP6uzJwOEUdkh2D+oUl/RKNfquiti79YmyRF4
+   UhNYsHN70ZfVIIYA8M3KrEmM+TlYKMGKyQzjS/2duIaDq5rFuLT4zbeAo
+   Q==;
+X-CSE-ConnectionGUID: uubsW+CATv+KSoLjA5a8XA==
+X-CSE-MsgGUID: fa2isbe7Tz6EdoVK0N/QMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="91565056"
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; 
+   d="scan'208";a="91565056"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 02:14:07 -0800
+X-CSE-ConnectionGUID: b+bhd7nARGGQ5v25jH4xQg==
+X-CSE-MsgGUID: 0jzW2n0PQym93ChWozUx/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; 
+   d="scan'208";a="191859408"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.244.152])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 02:14:03 -0800
+Date: Tue, 25 Nov 2025 12:14:01 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Ray Liu <ray.liu@airoha.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Andreas Gnau <andreas.gnau@iopsys.eu>
+Subject: Re: [PATCH v4 1/3] spi: airoha-snfi: en7523: workaround flash
+ damaging if UART_TXD was short to GND
+Message-ID: <aSWBacH8N5NWO8oV@smile.fi.intel.com>
+References: <20251125021051.857159-1-mikhail.kshevetskiy@iopsys.eu>
+ <20251125021051.857159-2-mikhail.kshevetskiy@iopsys.eu>
+ <aSVYShXLirW--bYe@smile.fi.intel.com>
+ <83a15a9d-8dfa-4949-b483-020bbcf0847a@iopsys.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251125064851.3781993-1-wenst@chromium.org>
+In-Reply-To: <83a15a9d-8dfa-4949-b483-020bbcf0847a@iopsys.eu>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Tue, Nov 25, 2025 at 02:48:49PM +0800, Chen-Yu Tsai wrote:
-> Convert the existing text binding to YAML.
+On Tue, Nov 25, 2025 at 01:04:12PM +0300, Mikhail Kshevetskiy wrote:
+> On 11/25/25 10:18, Andy Shevchenko wrote:
+> > On Tue, Nov 25, 2025 at 05:10:49AM +0300, Mikhail Kshevetskiy wrote:
+> >> Airoha EN7523 specific bug
+> >> --------------------------
+> >> We found that some serial console may pull TX line to GROUND during board
+> >> boot time. Airoha uses TX line as one of it's BOOT pins.
+> > I know the term bootstrap, what does BOOT mean?
 > 
-> The description has been change to reflect the possibility of coreboot
-> inserting the node itself.
-> 
-> The example has been modified to compile and pass validation without
-> any errors. A comment was added to note what the firmware actually
-> emits.
-> 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->  .../devicetree/bindings/firmware/coreboot.txt | 33 ----------
->  .../bindings/firmware/coreboot.yaml           | 60 +++++++++++++++++++
->  2 files changed, 60 insertions(+), 33 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/firmware/coreboot.txt
->  create mode 100644 Documentation/devicetree/bindings/firmware/coreboot.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/coreboot.txt b/Documentation/devicetree/bindings/firmware/coreboot.txt
-> deleted file mode 100644
-> index 4c955703cea8..000000000000
-> --- a/Documentation/devicetree/bindings/firmware/coreboot.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -COREBOOT firmware information
-> -
-> -The device tree node to communicate the location of coreboot's memory-resident
-> -bookkeeping structures to the kernel. Since coreboot itself cannot boot a
-> -device-tree-based kernel (yet), this node needs to be inserted by a
-> -second-stage bootloader (a coreboot "payload").
-> -
-> -Required properties:
-> - - compatible: Should be "coreboot"
-> - - reg: Address and length of the following two memory regions, in order:
-> -	1.) The coreboot table. This is a list of variable-sized descriptors
-> -	that contain various compile- and run-time generated firmware
-> -	parameters. It is identified by the magic string "LBIO" in its first
-> -	four bytes.
-> -	See coreboot's src/commonlib/include/commonlib/coreboot_tables.h for
-> -	details.
-> -	2.) The CBMEM area. This is a downward-growing memory region used by
-> -	coreboot to dynamically allocate data structures that remain resident.
-> -	It may or may not include the coreboot table as one of its members. It
-> -	is identified by a root node descriptor with the magic number
-> -	0xc0389481 that resides in the topmost 8 bytes of the area.
-> -	See coreboot's src/include/imd.h for details.
-> -
-> -Example:
-> -	firmware {
-> -		ranges;
-> -
-> -		coreboot {
-> -			compatible = "coreboot";
-> -			reg = <0xfdfea000 0x264>,
-> -			      <0xfdfea000 0x16000>;
-> -		}
-> -	};
-> diff --git a/Documentation/devicetree/bindings/firmware/coreboot.yaml b/Documentation/devicetree/bindings/firmware/coreboot.yaml
-> new file mode 100644
-> index 000000000000..568afd1abb92
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/firmware/coreboot.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/firmware/coreboot.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: COREBOOT firmware information
+> yes, it's bootstrap pin
 
-Coreboot
+Then use that term.
 
-> +
-> +maintainers:
-> +  - Julius Werner <jwerner@chromium.org>
-> +
-> +description:
-> +  The device tree node to communicate the location of coreboot's
-> +  memory-resident bookkeeping structures to the kernel. Coreboot's
-> +  FIT image payload can insert the node into the device tree. If a
-> +  second-stage bootloader (a coreboot "payload") is used, then it
-> +  is responsible for inserting the node.
-> +
-> +properties:
-> +  compatible:
-> +    const: coreboot
+> >> On the EN7523 SoC this may lead to booting in RESERVED boot mode.
+> >>
+> >> It was found that some flashes operates incorrectly in RESERVED mode.
+> >> Micron and Skyhigh flashes are definitely affected by the issue,
+> >> Winbond flashes are NOT affected.
+> > NOT --> not
+> will fix
 
-Blank line (it is always here, there is no example without, which makes
-me wonder which file you took as starting point)
+> >> Details:
+> >> --------
+> >> DMA reading of odd pages on affected flashes operates incorrectly. Page
+> >> reading offset (start of the page) on hardware level is replaced by 0x10.
+> >> Thus results in incorrect data reading. As result OS loading becomes
+> >> impossible.
+> >>
+> >> Usage of UBI make things even worse. On attaching, UBI will detects
+> >> corruptions (because of wrong reading of odd pages) and will try to
+> >> recover. For recovering UBI will erase and write 'damaged' blocks with
+> >> a valid information. This will destroy all UBI data.
+> >>
+> >> Non-DMA reading is OK.
+> >>
+> >> This patch detects booting in reserved mode, turn off DMA and print big
+> >> fat warning.
 
-> +  reg:
-> +    description: Address and length of the following two memory regions
+...
 
-Drop description, redundant.
+> >> -	err = dma_set_mask(as_ctrl->dev, DMA_BIT_MASK(32));
+> >> -	if (err)
+> >> -		return err;
+> >> +	if (dma_enable) {
+> >> +		err = dma_set_mask(as_ctrl->dev, DMA_BIT_MASK(32));
+> >> +		if (err)
+> >> +			return err;
+> >> +	}
+> > Why do you need this to be conditional? The settings of DMA mask should not
+> > affect the (in)ability of the device to perform DMA. I.o.w. it should not
+> > influence PIO mode. Can you confirm this?
+> >
+> no any particular reason, just see no sense to set mask if dma will not
+> be used
 
-> +    items:
-> +      - description:
-> +          The coreboot table. This is a list of variable-sized descriptors
-> +          that contain various compile- and run-time generated firmware
-> +          parameters. It is identified by the magic string "LBIO" in its first
-> +          four bytes.
-> +
-> +          See coreboot's src/commonlib/include/commonlib/coreboot_tables.h for
-> +          details.
-> +      - description:
-> +          The CBMEM area. This is a downward-growing memory region used by
-> +          coreboot to dynamically allocate data structures that remain resident.
-> +          It may or may not include the coreboot table as one of its members. It
-> +          is identified by a root node descriptor with the magic number
-> +          0xc0389481 that resides in the topmost 8 bytes of the area.
-> +
-> +          See coreboot's src/include/imd.h for details.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    firmware {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +
-> +        /* Firmware actually emits "coreboot" node without unit name */
-> +        coreboot@fdfea000 {
-> +            compatible = "coreboot";
-> +            reg = <0xfdfea000 0x264>, <0xfdfea000 0x16000>;
+So, this is an unneeded churn in the patch. Device is [still] capable of DMA?
+Yes. Set the mask. The DMA/PIO choice is done on the upper layer (as you do it
+via ops).
 
-That's the same address in both places, so the same one entry. You need
-two distinctive addresses or binding needs changes to have only one item
-as well.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Best regards,
-Krzysztof
 
 
