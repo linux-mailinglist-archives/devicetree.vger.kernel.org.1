@@ -1,236 +1,214 @@
-Return-Path: <devicetree+bounces-241944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F37A7C8497C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:56:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7853C849D0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:00:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 786BA34EF8C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:56:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80BBE3AC0F2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:00:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C53C5313E3F;
-	Tue, 25 Nov 2025 10:56:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF392D877D;
+	Tue, 25 Nov 2025 11:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Zy9LGLbW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yb8IaVk8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292892DAFDD;
-	Tue, 25 Nov 2025 10:56:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3FD9D271;
+	Tue, 25 Nov 2025 11:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764068207; cv=none; b=tPd+LYFbIuNkWh8wJVg8skGYjRctc7Mt4LG9XMzOTusQ45UTjWk6v5PmAbDFrGGk/PUgvd18Pp9XMKdVSa8nyD3qxaA8Yd4/D2ol/KH8CYj2D7K5ruEFHZgTuh3qSO94dthDY5CU40vsef1TYPUcF08fIOGVOTCpOkWrFjiHDj8=
+	t=1764068446; cv=none; b=g11tc/5PtuEYfP790G1ym7Im+IhKza2/rkfJmtPWFiLI9U4xI5nvA7mAwfv+9X7ygobm9/wa1rFSLR/STUrTAXZ6yn2o/Tue9J1rvtoKMQq60OwqxQbkDoqlBHWUNMs6Pgm/l3SD/k9gmonlQ7LF+CXyCEaGraVc+ZM7ua8oX6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764068207; c=relaxed/simple;
-	bh=xLGBw1GdSuUs4vrpEFL9poXQyb61uEKZ9HhJIUsvmcE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JGUqDA6jRxopfNAR5D82TvVcg9tQ82faM/+C5eiyYFmhriYb4mxJMVRYSzFN6RnRqeOQeyQH53mqhFBK+12RnEK5FaZpK3+y0OlHuTBhPrF/Mq74Pvd1rDQCcQOOnH+Y6wj0r32ISIgVd/3nkB3FLwOiLve+/cIfIGRpTL5bpcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Zy9LGLbW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AP4wbls1672852;
-	Tue, 25 Nov 2025 10:56:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=kkSfAZfA7pm
-	On8bmQgi9gOw28hEdnMX3ZNzCdbrz+2I=; b=Zy9LGLbWc9TN4PtOx2qnXFKplye
-	qrE7nwLMo81CH5LVByO26UUF64j1b75fzFBmE3jkjjVQLBa9TMIzBQSQHsCnw2yr
-	oHk81M+PA/EhNGyTt8rUAul/BR6r3v4exrqhhKopZOv+lLzHE/Qj96IzWWXvYKft
-	/1QrLs/GQQwDNUppwwP953MP4lFrZLUCLUtCJQfxmqoO4czbzR4Q8Y7Skw/C7RyX
-	DhdDIhbrpVxa5JEdnMUG7TRrUTp9LyApU58zZQ+Z9rF6f6zqDi1kULSKu/w2g0Xd
-	9xZ3/TLJeNDvn46q2c9wVwCi9UkSTKZG0DtH+OzF9wTBHDarOiqdRjPK5Nw==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4an5w812vn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Nov 2025 10:56:31 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5APAuStH009132;
-	Tue, 25 Nov 2025 10:56:28 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4ak68n435n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Nov 2025 10:56:28 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5APAuREr009099;
-	Tue, 25 Nov 2025 10:56:27 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-mkuntuma-hyd.qualcomm.com [10.213.97.145])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 5APAuRYP009093
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Nov 2025 10:56:27 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4582077)
-	id DD4C45C4; Tue, 25 Nov 2025 16:26:26 +0530 (+0530)
-From: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>
-To: dmitry.baryshkov@oss.qualcomm.com, marijn.suijten@somainline.org,
-        swboyd@chromium.org, mripard@kernel.org, abel.vesa@linaro.org,
-        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, robin.clark@oss.qualcomm.com,
-        jessica.zhang@oss.qualcomm.com, abhinav.kumar@linux.dev,
-        sean@poorly.run, airlied@gmail.com, simona@ffwll.ch,
-        alex.vinarskis@gmail.com
-Cc: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
-        quic_riteshk@quicinc.com, quic_amitsi@quicinc.com
-Subject: [PATCH v2 3/3] arm64: dts: qcom: lemans-ride: Enable mdss1 display Port
-Date: Tue, 25 Nov 2025 16:26:22 +0530
-Message-Id: <20251125105622.1755651-4-quic_mkuntuma@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251125105622.1755651-1-quic_mkuntuma@quicinc.com>
-References: <20251125105622.1755651-1-quic_mkuntuma@quicinc.com>
+	s=arc-20240116; t=1764068446; c=relaxed/simple;
+	bh=QiOgoJoXqDk9M6kPeTKYdXRgOzf255a/k246EvsS2gQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ulMV1v2aKLTbznYQaAm+mQAHwwN22wi3oIWGl0MPJHMCCm1Oio/mo4XpLho2tN/sSB3ZIRBOB1zu8O7V70OGEAlvwLZhqYUnve+3z5ZSIXpGCl+hhjZLk4QfM2js/p1/UqOG0cTwbTw8RNAtPX7g68hHgcA1EEFzpFCucpwaLA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yb8IaVk8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7036CC4CEF1;
+	Tue, 25 Nov 2025 11:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764068445;
+	bh=QiOgoJoXqDk9M6kPeTKYdXRgOzf255a/k246EvsS2gQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Yb8IaVk8lxZFuHa84VJqUArkGxDdR1eb6k/enxf2TEAf46rpXl/9aoySTcS0gYEHI
+	 NXmUrLr/haloP6mbpuZJRRz9kPzaQzfoCe9COK7CAG2TEVRE2bjd1vDnmANEK2aYWP
+	 z0qBsks04D/X/DW8rq+UhwUhXLDePpUar1sRQsqbkkZvmTIJp6fEgy8qDtYM+D8gfj
+	 BGFQDR1pAl9J91CsWuOA2AAzZZK9aF3liUM4XPSWWixCuNxNYkItV9ARC0O1AdIgLx
+	 XFuyIjfA7WO9kf3NBNuJPwc1EoYSAZpvvsIzm6Fq3dP8ykasNKiUDAraOr2jFb1zHj
+	 T82gAXSDVItFQ==
+Message-ID: <25ee55eb-91d6-4da2-a798-b704acfae4fe@kernel.org>
+Date: Tue, 25 Nov 2025 12:00:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI1MDA4OSBTYWx0ZWRfXysJpoiGUomwo
- dLpNsgpsYxZepxK6R0TXEMUIw4O3UpU3Kv7F/sFy53utjZCYJxVP2V9mYB6iHLXz9pfKb4TqS4e
- i3JgbPS6nhn/D8XXLAtzX8fOUTrzSvp9BmOIQlOuo0hREJeAzRF85DM+eDveHpOXZ0njc1YbTu5
- eEkH/xKrP/3RF+LFBBaucA28z1y7AQuxOzjHiI95iTlFvECmX/CyaWbC/MUfSCNx1060sc270gS
- zPGWI7CcccYaGI/2L+8j5STZ7bGIRQvdC6UTqdCSCgavE04lXK8oj/P2XrGCVLnVi2JSy1pWzIP
- PdhG6gXYY2XURJS6RE0RtbLFhOu1LeeDXxFWUx7cosFYu42KKdpI4EV0OBjsnUE1LxcZN4acG8G
- zFYr+s2On3JZUKTMWTeH8yXL+24PQw==
-X-Authority-Analysis: v=2.4 cv=RvTI7SmK c=1 sm=1 tr=0 ts=69258b60 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8
- a=lcgM4KOETyTTvZj5T8AA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: qakzOpWQzuTdSqkCDE8DOcCUx90a9BR6
-X-Proofpoint-GUID: qakzOpWQzuTdSqkCDE8DOcCUx90a9BR6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-25_02,2025-11-24_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 spamscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
- bulkscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511250089
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: firmware: coreboot: Convert to YAML
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ chrome-platform@lists.linux.dev, Julius Werner <jwerner@chromium.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251125064851.3781993-1-wenst@chromium.org>
+ <20251125-outgoing-boisterous-millipede-6dabaf@kuoka>
+ <CAGXv+5FPaJMuN7wCP7g0Rxa0mXD3Ru0rxka=m8B_rv+XUkJPWA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAGXv+5FPaJMuN7wCP7g0Rxa0mXD3Ru0rxka=m8B_rv+XUkJPWA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-This change enables DP controllers, DPTX0 and DPTX1 alongside
-their corresponding PHYs of mdss1 which corresponds to edp2
-and edp3.
+On 25/11/2025 11:41, Chen-Yu Tsai wrote:
+>>> diff --git a/Documentation/devicetree/bindings/firmware/coreboot.yaml b/Documentation/devicetree/bindings/firmware/coreboot.yaml
+>>> new file mode 100644
+>>> index 000000000000..568afd1abb92
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/firmware/coreboot.yaml
+>>> @@ -0,0 +1,60 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/firmware/coreboot.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: COREBOOT firmware information
+>>
+>> Coreboot
+> 
+> OK. Side note, coreboot is stylized in all lowercase letters.
+> Should I follow that or just use standard English rules?
 
-Signed-off-by: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>
----
- .../boot/dts/qcom/lemans-ride-common.dtsi     | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
+Just choose one. Here was capitals, but in description not. Preferably
+Coreboot or coreboot
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi b/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-index c69aa2f41ce2..a6d7c3bb3a92 100644
---- a/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-@@ -180,6 +180,30 @@ dp1_connector_in: endpoint {
- 		};
- 	};
- 
-+	dp2-connector {
-+		compatible = "dp-connector";
-+		label = "eDP2";
-+		type = "full-size";
-+
-+		port {
-+			dp2_connector_in: endpoint {
-+				remote-endpoint = <&mdss1_dp0_out>;
-+			};
-+		};
-+	};
-+
-+	dp3-connector {
-+		compatible = "dp-connector";
-+		label = "eDP3";
-+		type = "full-size";
-+
-+		port {
-+			dp3_connector_in: endpoint {
-+				remote-endpoint = <&mdss1_dp1_out>;
-+			};
-+		};
-+	};
-+
- 	dp-dsi0-connector {
- 		compatible = "dp-connector";
- 		label = "DSI0";
-@@ -631,6 +655,50 @@ &mdss0_dsi1_phy {
- 	status = "okay";
- };
- 
-+&mdss1 {
-+	status = "okay";
-+};
-+
-+&mdss1_dp0 {
-+	pinctrl-0 = <&dp2_hot_plug_det>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&mdss1_dp0_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+	remote-endpoint = <&dp2_connector_in>;
-+};
-+
-+&mdss1_dp0_phy {
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
-+&mdss1_dp1 {
-+	pinctrl-0 = <&dp3_hot_plug_det>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&mdss1_dp1_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+	remote-endpoint = <&dp3_connector_in>;
-+};
-+
-+&mdss1_dp1_phy {
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
- &pmm8654au_0_gpios {
- 	gpio-line-names = "DS_EN",
- 			  "POFF_COMPLETE",
-@@ -808,6 +876,18 @@ dp1_hot_plug_det: dp1-hot-plug-det-state {
- 		bias-disable;
- 	};
- 
-+	dp2_hot_plug_det: dp2-hot-plug-det-state {
-+		pins = "gpio104";
-+		function = "edp2_hot";
-+		bias-disable;
-+	};
-+
-+	dp3_hot_plug_det: dp3-hot-plug-det-state {
-+		pins = "gpio103";
-+		function = "edp3_hot";
-+		bias-disable;
-+	};
-+
- 	io_expander_intr_active: io-expander-intr-active-state {
- 		pins = "gpio98";
- 		function = "gpio";
--- 
-2.34.1
 
+> 
+>>> +
+>>> +maintainers:
+>>> +  - Julius Werner <jwerner@chromium.org>
+>>> +
+>>> +description:
+>>> +  The device tree node to communicate the location of coreboot's
+>>> +  memory-resident bookkeeping structures to the kernel. Coreboot's
+>>> +  FIT image payload can insert the node into the device tree. If a
+>>> +  second-stage bootloader (a coreboot "payload") is used, then it
+>>> +  is responsible for inserting the node.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: coreboot
+>>
+>> Blank line (it is always here, there is no example without, which makes
+>> me wonder which file you took as starting point)
+> 
+> I actually converted the existing text file directly, copying
+> boilerplate, i.e. the top few lines, from another file.
+> 
+>>> +  reg:
+>>> +    description: Address and length of the following two memory regions
+>>
+>> Drop description, redundant.
+> 
+> Ack.
+> 
+>>> +    items:
+>>> +      - description:
+>>> +          The coreboot table. This is a list of variable-sized descriptors
+>>> +          that contain various compile- and run-time generated firmware
+>>> +          parameters. It is identified by the magic string "LBIO" in its first
+>>> +          four bytes.
+>>> +
+>>> +          See coreboot's src/commonlib/include/commonlib/coreboot_tables.h for
+>>> +          details.
+>>> +      - description:
+>>> +          The CBMEM area. This is a downward-growing memory region used by
+>>> +          coreboot to dynamically allocate data structures that remain resident.
+>>> +          It may or may not include the coreboot table as one of its members. It
+>>> +          is identified by a root node descriptor with the magic number
+>>> +          0xc0389481 that resides in the topmost 8 bytes of the area.
+>>> +
+>>> +          See coreboot's src/include/imd.h for details.
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    firmware {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <1>;
+>>> +        ranges;
+>>> +
+>>> +        /* Firmware actually emits "coreboot" node without unit name */
+>>> +        coreboot@fdfea000 {
+>>> +            compatible = "coreboot";
+>>> +            reg = <0xfdfea000 0x264>, <0xfdfea000 0x16000>;
+>>
+>> That's the same address in both places, so the same one entry. You need
+>> two distinctive addresses or binding needs changes to have only one item
+>> as well.
+> 
+> The description does mention that the latter block can include the
+> former. It's really up to the firmware. If you like I can include
+> two examples to cover both cases.
+
+Lovely, I don't think we should accept growing this binding at all until
+coreboot fixes this mess (duplicated entry and missing unit address).
+
+
+Best regards,
+Krzysztof
 
