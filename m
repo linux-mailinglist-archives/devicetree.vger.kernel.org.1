@@ -1,100 +1,92 @@
-Return-Path: <devicetree+bounces-242005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C574C85346
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:38:16 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F6A7C85364
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:40:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E1122350F31
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:38:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C556C4E9DCA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:40:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DB621D596;
-	Tue, 25 Nov 2025 13:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19682221DAE;
+	Tue, 25 Nov 2025 13:40:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SDxFN2Vw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eUVQj6we"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8D021CFE0;
-	Tue, 25 Nov 2025 13:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3F3513B7A3;
+	Tue, 25 Nov 2025 13:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764077882; cv=none; b=lIWcUNfLRZRV3Gn8aYLcpXVUcYQtMLDfLbF3y5VqVHIYCU6ybfkrrmGwD8O0iU4L34FuORVGVsKRitdIoymeheWMxCfOLJiMUEhoock1o627vJ47ZdbRhujncjp12u1WgK2W0ssYZbrwMNDYP9/vL7WrQE4crOAYpWBsmw69wU8=
+	t=1764078013; cv=none; b=fvAlCZ882rzbhDA0HLkY/g/cd2huP4levMBvTrCzKplLsFZpBqlCP4BgmZVAs+v3RShIDedcQusglLZKeW422DeHznC2F5MAhundsEB6MgHeBWgEWYWAfZ0f3/GpAjMbNVi2b3NzIRO8iZn05YD9u1uIKTsWj43g2UXwa7EwMPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764077882; c=relaxed/simple;
-	bh=WaWemh3y4rrguqMXrqnYhWnG/SlBCsSr3gHlUzN3BbE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JzI94FFseNExsoWpStpKRZ0bGIChgROjOdu89bPEU5GpoaHobEGA4d1/3gAqi1XHKKpxX5RoatEFeYvoWj5hGjDt4yH+0MU4dtlSG7gNi5INgFUbaflJM8LLC7kZUVBjFIvIfXY7qMCW3twhOsooKwrOycsWhLbZGPlc7BQz4OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SDxFN2Vw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ED79C4CEF1;
-	Tue, 25 Nov 2025 13:37:52 +0000 (UTC)
+	s=arc-20240116; t=1764078013; c=relaxed/simple;
+	bh=EoPsHj+gh927MJHki8m23zPG4r+CNH5Yo+Ev+5+3Sp0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t8YqAdgaHEizSYk2iQyLZgSz99fSSbNuAUrQY17ToHnThDAEScce6RJslMgWFsBdT564YY4STsy6M+YarHyCHUr9LeutLnlNXpU4Ze1hS7xyFsvm6o1ymneVigkch9k/pu1xk09XOYTigSJ44p5mHeIpPHs+PtFQkUIul1I5k/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eUVQj6we; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D78ADC4CEF1;
+	Tue, 25 Nov 2025 13:40:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764077881;
-	bh=WaWemh3y4rrguqMXrqnYhWnG/SlBCsSr3gHlUzN3BbE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SDxFN2VwlYHgP2hGL++9gsMotaav9SpDR56P62Co8GX6f9zpYg7e4gkwnmjAcorZ+
-	 Dfl6j1ysWyde04Th+mzu07A2UDZyqRvfW1I5EXbh8BfEQjqjemJQYv08pgfmp/56Yo
-	 a3WevtUV+ZuR9jGX2kGIQFVGyGf1pEADqEyRK+Rwyd1McDQDRYwc2BMXFNmsj+Ynb3
-	 F8yCBLruj6V6GebC8ChYkYF+GYaDrjor6u8d3eBEt/VyL+peFp8XFUXL8/f01lbfST
-	 jD7FQFBUAuCarOCJzJcrroPKfT3KYIraz8vXypl07No8s4lK8Se65HB6fCn7XfC3Sa
-	 VYWmZx9yDIvEA==
-Date: Tue, 25 Nov 2025 19:07:46 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, 
-	Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	linux-pm@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v3 4/4] power: sequencing: Add the Power Sequencing
- driver for the PCIe M.2 connectors
-Message-ID: <pmwabptoyokh2slcgqwsngxzfa22ivhoqxkkp723fl27gllmrf@s5lgs2fecwct>
-References: <20251125-pci-m2-v3-0-c528042aea47@oss.qualcomm.com>
- <20251125-pci-m2-v3-4-c528042aea47@oss.qualcomm.com>
- <CAMRc=MeutDAwisNUPB1Nkqq2TEifjho+4E3GZ7x2HtbEh=inog@mail.gmail.com>
+	s=k20201202; t=1764078012;
+	bh=EoPsHj+gh927MJHki8m23zPG4r+CNH5Yo+Ev+5+3Sp0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=eUVQj6we1z176Z+xc5V9BGNg2uWtLTPSGo0m/5rjzisvKs36aIgpAsyc5tHFHTPZe
+	 8Y7LTCsFv7XcrpAQgIGu+DLHlWS16uD/1ZURVjPgk0s/d7v8bPHnPwQ/LHjlpKISGA
+	 bfbCIPEBoA6XdWmROng5lBdvo/04rPdPaRmCbqOmPUC6jAJMdKoq+DKzsh0P09bWje
+	 e7yoTuSukoM8o1HwZJpyJ13X/K+ly75UkwGTIXyaiG8HnoelKcsycKjQACD5/OaB/R
+	 6NK+0Gr7p2tisR3mCIFcZULPhct2c/51uabL0asPrZ6/f2y0K58JzVGBY3DCBOh60r
+	 jl2BNHUx4rcEw==
+From: Dinh Nguyen <dinguyen@kernel.org>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dinguyen@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH 1/2] dt-bindings: soc: altera: Move altera.yaml from arm to soc
+Date: Tue, 25 Nov 2025 07:40:02 -0600
+Message-ID: <20251125134004.261165-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.42.0.411.g813d9a9188
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=MeutDAwisNUPB1Nkqq2TEifjho+4E3GZ7x2HtbEh=inog@mail.gmail.com>
 
-On Tue, Nov 25, 2025 at 05:20:36AM -0800, Bartosz Golaszewski wrote:
-> On Tue, 25 Nov 2025 12:12:29 +0100, Manivannan Sadhasivam via B4 Relay
-> <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> said:
-> > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> >
-> > This driver is used to control the PCIe M.2 connectors of different
-> > Mechanical Keys attached to the host machines and supporting different
-> > interfaces like PCIe/SATA, USB/UART etc...
-> >
-> > Currently, this driver supports only the Mechanical Key M connectors with
-> > PCIe interface. The driver also only supports driving the mandatory 3.3v
-> > and optional 1.8v power supplies. The optional signals of the Key M
-> > connectors are not currently supported.
-> >
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> >
-> 
-> This looks good now. Do you think it makes sense to take it for v6.19 (provided
-> the bindings get reviewed) or should it wait for the next cycle and go with the
-> other changes?
-> 
+All Altera boards can hosts soft core CPUs like NIOS V or a RISC V, so
+it makes sense to move from the arm to soc folder. This change is similar
+to what was done for xilinx.yaml by commit 6f3ecaea6324 ("dt-bindings:
+soc: xilinx: Move xilinx.yaml from arm to soc").
 
-This can get merged for v6.19 post bindings review.
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ .../devicetree/bindings/{arm => soc/altera}/altera.yaml         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename Documentation/devicetree/bindings/{arm => soc/altera}/altera.yaml (97%)
 
-- Mani
-
+diff --git a/Documentation/devicetree/bindings/arm/altera.yaml b/Documentation/devicetree/bindings/soc/altera/altera.yaml
+similarity index 97%
+rename from Documentation/devicetree/bindings/arm/altera.yaml
+rename to Documentation/devicetree/bindings/soc/altera/altera.yaml
+index db61537b7115..7c6827837b95 100644
+--- a/Documentation/devicetree/bindings/arm/altera.yaml
++++ b/Documentation/devicetree/bindings/soc/altera/altera.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/arm/altera.yaml#
++$id: http://devicetree.org/schemas/soc/altera/altera.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Altera's SoCFPGA platform
 -- 
-மணிவண்ணன் சதாசிவம்
+2.42.0.411.g813d9a9188
+
 
