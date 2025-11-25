@@ -1,129 +1,135 @@
-Return-Path: <devicetree+bounces-241836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F99C83429
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 04:47:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D97FC83498
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 05:01:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 339F934BEB5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 03:47:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ACC13AEF3A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 04:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D658280CFC;
-	Tue, 25 Nov 2025 03:47:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AFB71A8F84;
+	Tue, 25 Nov 2025 04:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="quWUt6dY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qb4W4Rf6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD1927FD59;
-	Tue, 25 Nov 2025 03:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BAA31A08BC;
+	Tue, 25 Nov 2025 04:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764042422; cv=none; b=H7u3rIVKFqF5eBRpSoKOqmqkX5i6h4VJ+3CtgLd0j1QAiXDA9/PiJvXRoM7aBqu8c76V9M0L9oAvvxFN59eg9ERV28x3nTooIc4eRqF6RKU6pwGh8SZ9w3GcDHnbl218359hzjReRK+MnEzbRM0ufBiK53RkO1T8I2ZwLuDYnZM=
+	t=1764043283; cv=none; b=Wk873pG87ldha0u4BZiyo93llx1H8pjTZ8up7yQ271+N18MQykzMTLqOTqW/QYgFmDrBaxqwEmIu/NQnygmErwcGcMq1WcPtX8Dwo3BwCvS/nfEEgTGZvqipwabSAWmBFsCQGK63Ve3grdHXEoyOnRxFe9FWFFRcWxjK2wk48+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764042422; c=relaxed/simple;
-	bh=U2sKGfrG1AuXfw/WKYwLvQsUXr5m8ldv6cClmddJY0w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YuzhemNd2cHWvkMMYbcYdoeOhho0pnqswh34FEhwTTyohzliD0/g/PXM1upQ5bbCPnGp9jlbVpxsLf/ymFb0ws/UG5av2JOeu5OH2mg7CHovTiETT0F1xwIw5I8tQhvcw1ZhBoddlmVtO9Z5bLenmMaPPLbrRlzTMupcCfjpNgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=quWUt6dY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 93C5EC19421;
-	Tue, 25 Nov 2025 03:47:01 +0000 (UTC)
+	s=arc-20240116; t=1764043283; c=relaxed/simple;
+	bh=noWNmsId45ZeifrOlfH6mMR0VrmwkWZ6zYS8nnrBPoY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=folqLJRNmjbDhysLkXkszUqBFVOZuPsQ0J1zDCJfDkG0WlT8EnCbwDgcm/RSRpeEUAjXeYyP5FGPbiqg56+b3NzyDqB9VRecIeP/Z8AW8zBeL/TZ3FS3ccbZ2w/jhDFASY8BOtMquS18pWFMzhs0q9DP4cOucufQHQVsRP7WO14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qb4W4Rf6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7257C4CEF1;
+	Tue, 25 Nov 2025 04:01:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764042421;
-	bh=U2sKGfrG1AuXfw/WKYwLvQsUXr5m8ldv6cClmddJY0w=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=quWUt6dYC5b3SpWV9Rye7QkchNc+YUPh0c07GZa6QaIChSx+yKRnghUkDylLw3CY2
-	 GxvxziRFCaI7e7ciC0TOlO/ux7iVCdLH6hcdkZtbGVoR2yxlTFRwZiSElB8z8abPSA
-	 ztJVURMqyMexZQtovSdr+jXwk7A0sup7hFOJxITs8LTmR6WMXqAr3srfUStRn9sNBr
-	 8TYqNbXGtI/iFMoVd7zsxzkg/YLcOd1RQsOKHqTbiCu3XG38tqbG68RIPGMTmJuydR
-	 G1YvuU5ChwnRNCxbcz8F2CgSTQuvVJCPgbVggnEMQ+/EeW9o/xEzoMf6G/OG5P7GlM
-	 Ajr3zj6sqQsVQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BD3ECFD370;
-	Tue, 25 Nov 2025 03:47:01 +0000 (UTC)
-From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
-Date: Mon, 24 Nov 2025 19:47:03 -0800
-Subject: [PATCH v5 4/4] arm64: dts: rockchip: Fix voltage threshold for
- volume keys for Pinephone Pro
+	s=k20201202; t=1764043283;
+	bh=noWNmsId45ZeifrOlfH6mMR0VrmwkWZ6zYS8nnrBPoY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Qb4W4Rf6dcMuhndBOCJQPmNvmiFZMdJBcyJv3vvyldUdON0Bmt6qM+LfgW6osuSNK
+	 U38o9WsY9lI+bUq53QM6ZZhTFAXLau8K1phukRoPrXJh2j/AXDyhQCinlBctfG+fgp
+	 6S7J3eOc7OTXdlvNipXaN54KCBAH/+DHl6mEblEiKXs386QpoqIH+69GBL7iIvfwwv
+	 kQrKSO/pGakH4jz2x2vIwvSFL9nExiGeiNvnlDkhu/OiCnbc8Dx/e1xam4Q99UFzsI
+	 LWTIgsAWsD4Ygh3O1/jyuBiot4F4fMU9uYSC/rAmw74hk3JAU+u70LTvAGmW38Obgk
+	 oTQqFyRbTDb/A==
+Date: Mon, 24 Nov 2025 20:01:21 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>, Heiner
+ Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham
+ I <kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Eric
+ Woudstra <ericwouds@gmail.com>, Marek =?UTF-8?B?QmVow7pu?=
+ <kabel@kernel.org>, Lee Jones <lee@kernel.org>, Patrice Chotard
+ <patrice.chotard@foss.st.com>
+Subject: Re: [PATCH net-next 5/9] phy: add phy_get_rx_polarity() and
+ phy_get_tx_polarity()
+Message-ID: <20251124200121.5b82f09e@kernel.org>
+In-Reply-To: <20251122193341.332324-6-vladimir.oltean@nxp.com>
+References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+	<20251122193341.332324-6-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251124-ppp_light_accel_mag_vol-down-v5-4-f9a10a0a50eb@gmail.com>
-References: <20251124-ppp_light_accel_mag_vol-down-v5-0-f9a10a0a50eb@gmail.com>
-In-Reply-To: <20251124-ppp_light_accel_mag_vol-down-v5-0-f9a10a0a50eb@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- phone-devel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>, 
- Ondrej Jirman <megi@xff.cz>, Pavel Machek <pavel@ucw.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764042420; l=1551;
- i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
- bh=8q5u/rrJlx+VcAI9BxZ+DVAqqoWsJx3wKRY3rg0cQgg=;
- b=5gNGjBiWQzw+Cia1/yrUL22IXp/WlWSV5+18Ip8iwkRCq8OzW9u5aVpnA8oMATmi3zDk8EYum
- FxWAeo9EsGXB2vf3+jyx5RVRoYyMrBeFOndSq6t47IXjeuNAi18CpJ6
-X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
- pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
-X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
- auth_id=211
-X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
-Reply-To: guptarud@gmail.com
 
-From: Ondrej Jirman <megi@xff.cz>
+On Sat, 22 Nov 2025 21:33:37 +0200 Vladimir Oltean wrote:
+> Add helpers in the generic PHY folder which can be used using 'select
+> GENERIC_PHY_COMMON_PROPS' from Kconfig, without otherwise needing to
+> enable GENERIC_PHY.
+> 
+> These helpers need to deal with the slight messiness of the fact that
+> the polarity properties are arrays per protocol, and with the fact that
+> there is no default value mandated by the standard properties, all
+> default values depend on driver and protocol (PHY_POL_NORMAL may be a
+> good default for SGMII, whereas PHY_POL_AUTO may be a good default for
+> PCIe).
+> 
+> Push the supported mask of polarities to these helpers, to simplify
+> drivers such that they don't need to validate what's in the device tree
+> (or other firmware description).
+> 
+> The proposed maintainership model is joint custody between netdev and
+> linux-phy, because of the fact that these properties can be applied to
+> Ethernet PCS blocks just as well as Generic PHY devices. I've added as
+> maintainers those from "ETHERNET PHY LIBRARY", "NETWORKING DRIVERS" and
+> "GENERIC PHY FRAMEWORK".
 
-Previously sometimes pressing the volume-down button would register as
-a volume-up button. Match the thresholds as shown in the Pinephone Pro
-schematic.
+I dunno.. ain't no such thing as "joint custody" maintainership.
+We have to pick one tree. Given the set of Ms here, I suspect 
+the best course of action may be to bubble this up to its own tree.
+Ask Konstantin for a tree in k.org, then you can "co-post" the patches
+for review + PR link in the cover letter (e.g. how Tony from Intel
+submits their patches). This way not networking and PHY can pull
+the shared changes with stable commit IDs.
 
-Tests:
+We can do out-of-sequence netdev call tomorrow if folks want to talk
+this thru (8:30am Pacific)
 
-~ $ evtest
-    // Mashed the volume down ~100 times with varying intensity
-    Event: time xxx, type 1 (EV_KEY), code 114 (KEY_VOLUMEDOWN), value 1
-    Event: time xxx, type 1 (EV_KEY), code 114 (KEY_VOLUMEDOWN), value 0
-    // Mashed the volume up ~100 times with varying intensity
-    Event: time xxx, type 1 (EV_KEY), code 115 (KEY_VOLUMEUP), value 1
-    Event: time xxx, type 1 (EV_KEY), code 115 (KEY_VOLUMEUP), value 0
+> +GENERIC PHY COMMON PROPERTIES
+> +M:	Andrew Lunn <andrew@lunn.ch>
+> +M:	"David S. Miller" <davem@davemloft.net>
+> +M:	Eric Dumazet <edumazet@google.com>
+> +M:	Heiner Kallweit <hkallweit1@gmail.com>
+> +M:	Jakub Kicinski <kuba@kernel.org>
+> +M:	Kishon Vijay Abraham I <kishon@kernel.org>
+> +M:	Paolo Abeni <pabeni@redhat.com>
+> +R:	Russell King <linux@armlinux.org.uk>
+> +M:	Vinod Koul <vkoul@kernel.org>
 
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
-Reviewed-by: Pavel Machek <pavel@ucw.cz>
----
- arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+checkpatch nit: apparently it wants all Ms first, then all Rs.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 03721d71766c..5de08a155d10 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -40,13 +40,13 @@ adc-keys {
- 		button-up {
- 			label = "Volume Up";
- 			linux,code = <KEY_VOLUMEUP>;
--			press-threshold-microvolt = <100000>;
-+			press-threshold-microvolt = <2000>;
- 		};
- 
- 		button-down {
- 			label = "Volume Down";
- 			linux,code = <KEY_VOLUMEDOWN>;
--			press-threshold-microvolt = <600000>;
-+			press-threshold-microvolt = <300000>;
- 		};
- 	};
- 
-
+> +L:	linux-phy@lists.infradead.org
+> +L:	netdev@vger.kernel.org
+> +S:	Maintained
+> +Q:	https://patchwork.kernel.org/project/linux-phy/list/
+> +Q:	https://patchwork.kernel.org/project/netdevbpf/list/
+> +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git
+> +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+> +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git
+> +F:	Documentation/devicetree/bindings/phy/phy-common-props.yaml
+> +F:	drivers/phy/phy-common-props.c
 -- 
-2.52.0
-
-
+pw-bot: cr
 
