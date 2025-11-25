@@ -1,267 +1,123 @@
-Return-Path: <devicetree+bounces-242002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2215CC85225
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:15:45 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 149C4C8526E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:20:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B27D43A3288
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:15:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D5FD84E9404
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:20:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414D91EB1A4;
-	Tue, 25 Nov 2025 13:15:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9A431A814;
+	Tue, 25 Nov 2025 13:20:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ASXrhPsa"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="nxJ5ydf5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F2B142E83;
-	Tue, 25 Nov 2025 13:15:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36F8321FF21
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 13:20:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764076542; cv=none; b=bGmbhOoBfAj2uQIejehqfvrX/lueFpWmLGFWG14miZCHlweqfjUIXm6OVAEOkBXfLfn/czsIwc5FC9WLDUF60rOATaiK5RzzoCjzi9qOJ9dSs8Lp6Gzu7nShMe6iSZjx57HNwmsE6RLKZD6COPyeWAIWJfWkgdpltWr+iKzgpJY=
+	t=1764076841; cv=none; b=eQpGSFCX3g8K1G3m/qwq6oImL1U+b1Ld03tNxOFoc3q0SsuvnOiglejV26Sl0+NsDDGby3bSpAcBfsxLjacASpuT6u93PB4JGur9DLtBEtTtzPVnYXXbwjMkUQb1KH3+JT4+oxzDHjJ7fdoRL/Zjb0ZSJTaKBgpQgjYUA1mI+Yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764076542; c=relaxed/simple;
-	bh=xyeAb8HK2fahKTFKKpRAL4i0ZxzwGkco4WoE+HqG/is=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=F9xsnvAhpEztGvpWk6DTcYihK3g9KYtxLdIfvs/Pwd593A2QSULAviltxadSG1sPMQYhs0ZMa2Tov6LkhL6Nqfom6tBLF6+XrXQHrJogfERtDE0x8U3YcVDzke1FJr6zvI9oWiyLtPcPpVvp7yU8mkjeyRfydEWimxrcFy17+KU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ASXrhPsa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D137FC4CEF1;
-	Tue, 25 Nov 2025 13:15:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764076541;
-	bh=xyeAb8HK2fahKTFKKpRAL4i0ZxzwGkco4WoE+HqG/is=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=ASXrhPsa3i6t+6CdTp8v5KWjJs1sf9rqFTuzxudbTrrAhu/q0W8ZGbjN1K20e+iDo
-	 205vJs3L9pkqFzjE1+HW7DTV7jrEdcDYd24SFyCVVnDTX/wNahnOd4Qk68Z00J8kXr
-	 j1EUasFL/9VUSInsbdCYWce15cb5xFhleXGzyHy86wq3/CwNrXdMhvVrbdbwIfnv9z
-	 hPmpOxAd9NYhjoyjco93WWyazGjSNWlNkszP0XtmRsjPMJ6z4t9rTrG8MsUBLPsd1q
-	 WHW9cg96yPY9fpYkNVEOZLuzrC8Qr29uF3tWpAYeailnWxDzxKVSoWaleM9Hqkusy3
-	 TBzWlxFPukOsg==
-From: Pratyush Yadav <pratyush@kernel.org>
-To: Usama Arif <usamaarif642@gmail.com>
-Cc: Changyuan Lyu <changyuanl@google.com>,  akpm@linux-foundation.org,
-  linux-kernel@vger.kernel.org,  Mike Rapoport <rppt@kernel.org>,
-  anthony.yznaga@oracle.com,  arnd@arndb.de,  ashish.kalra@amd.com,
-  benh@kernel.crashing.org,  bp@alien8.de,  catalin.marinas@arm.com,
-  corbet@lwn.net,  dave.hansen@linux.intel.com,
-  devicetree@vger.kernel.org,  dwmw2@infradead.org,  ebiederm@xmission.com,
-  graf@amazon.com,  hpa@zytor.com,  jgowans@amazon.com,
-  kexec@lists.infradead.org,  krzk@kernel.org,
-  linux-arm-kernel@lists.infradead.org,  linux-doc@vger.kernel.org,
-  linux-mm@kvack.org,  luto@kernel.org,  mark.rutland@arm.com,
-  mingo@redhat.com,  pasha.tatashin@soleen.com,  pbonzini@redhat.com,
-  peterz@infradead.org,  robh@kernel.org,  rostedt@goodmis.org,
-  saravanak@google.com,  skinsburskii@linux.microsoft.com,
-  tglx@linutronix.de,  thomas.lendacky@amd.com,  will@kernel.org,
-  x86@kernel.org,  Breno Leitao <leitao@debian.org>,  thevlad@meta.com
-Subject: Re: [PATCH v8 12/17] x86/e820: temporarily enable KHO scratch for
- memory below 1M
-In-Reply-To: <a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com> (Usama Arif's
-	message of "Mon, 24 Nov 2025 19:24:58 +0000")
-References: <20250509074635.3187114-1-changyuanl@google.com>
-	<20250509074635.3187114-13-changyuanl@google.com>
-	<a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
-Date: Tue, 25 Nov 2025 14:15:34 +0100
-Message-ID: <mafs01plmxngp.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1764076841; c=relaxed/simple;
+	bh=aFRgkj8+TshZ/N3ynI03tnObxJnOjZJE8U7i676X7qA=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OVid4NeL9Onmq2ZHRq2S1K8HBYjSq2PRWSEASRotJGY1yuGu5oDGHsF/bXTu2sTcE1InDFOo9nNDwooKtlCRP7kwm31r549p1YQ8VSDgsZokueVlNvMuiOuA6+usZTX5MZrdZWwVE57VWaO20H+O6Hpnk+5s/8ZVdnxpzAxYkkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=nxJ5ydf5; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-59581e32163so6458367e87.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 05:20:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1764076837; x=1764681637; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aFRgkj8+TshZ/N3ynI03tnObxJnOjZJE8U7i676X7qA=;
+        b=nxJ5ydf5C49DcNFNRGusxyfK6OTeLGzmH9vfiaUP2ZuLBXjzvhteZ1ufow3zf9Q1NK
+         4I/BsP+D6GC3UY4Sssx/ngY3WqZrnadN9sERRDdqhFdBv8HdjGpMemwg7eq9g6IYA97O
+         27P6hNCRFKbzn3nN8Jdf9A/gaLO0ncXKNqRqOFWC1JbAupMz9tsqc7Vw08xtNE4zMeIP
+         gVQ4Ajyu/RsTDBVL5CiyqW9oQBpXH/BwDhYPR7pGt0bhsK9olu5qwzF1Iwtub2Zrg9X3
+         ZfwuPfQaFrFgFUGAkLG2urEaJdCTfvLzPfxD7GkSE5WCDDb2RAwzBU0yLCW9ESS0Ma7R
+         1/Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764076837; x=1764681637;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aFRgkj8+TshZ/N3ynI03tnObxJnOjZJE8U7i676X7qA=;
+        b=Qx+1PjPVp20AihA6glGsLBK+RoSc+Kdwd7DLnbE4lWFnXZB4z26maAha+n1jCKtDIH
+         guQcnX4rRiqZ6pZ7kILUFoDFUenuP5h7AoJWs64vWK1dWjwcx7J5Zg2yoaXljhpD95HT
+         9Y7WoYveF1zGO2hERzJwl7ivMaxxgyZ2tedRIndVzU0633VXDni0N4koJqQRaxE245UC
+         qzUdsxEDYdup65jt0lwsgvZklpmlonoO1AzHjUDzMrU2kDLvMCe+VUmk/SRFcPO5Org6
+         fM5rARcnEqWSRfltwe00IENP+4nv2Eu+RK+oolCa3ziKUw7G2nbP0As340ApkXMXig0F
+         hxiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW8btsYEHxGvIJ0YTrCnbsU1iVYCyQ7O5RmFt5mnsavUPHj0KgpFPhlpLG5sq6ew2DBE5dW2RF0lDrj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxb57dJFDqx6g+9H61qdKMpfSFPCSJPRuz4eFuNsfMFwYW8eXvy
+	5/YtdcpnMVdASjYEXa3gM7LhVdctTfhxKuuG7e3dqYhu2JF/W9e762OfD5jhGQtLBfjKdamaUv3
+	26BwWvVr+sH9fMyEJtKOQ7Bh5iUcqPg+/PCIO43htVxPx6LjTjxqi
+X-Gm-Gg: ASbGnctv2R/DtBQpyRNVp8CFCaY6WiT8LIH7VD7TcOal2377ZkjnClOXz1qJt8B3VBW
+	GYBhCk/mQRSIvw4tWxV3RRpEFQiO4cOBnaR6acs9Fyv3F2y3l0434wqQF7uaQxaiyyRaLQerUun
+	zi6WV57L5tk2l7z6xaUspaa1JwKORTyKwZYN+9ZvVCXeWykqrcJsjrtk3p+ETd5LSsoA1RhnhhW
+	tb42hf40BPEQ49rrQsnp64/WMLco5P7lwb+8wqXmAwopthagcZIvS3oGlKLRBu/QYOhF6hbb+Hi
+	OVtL6r0qa3yIw7Tj2BYhiac2zfE=
+X-Google-Smtp-Source: AGHT+IGdHck69+/UXTdbrnCO3t0qqfckfcVyyh/E5LbN6LZwR4x0zr2gNlwq8szXilSzX4To4fvr4kap32stEFrTPTM=
+X-Received: by 2002:a05:6512:159c:b0:595:9152:b932 with SMTP id
+ 2adb3069b0e04-596b526c87bmr860812e87.47.1764076837373; Tue, 25 Nov 2025
+ 05:20:37 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 25 Nov 2025 05:20:36 -0800
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 25 Nov 2025 05:20:36 -0800
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <20251125-pci-m2-v3-4-c528042aea47@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20251125-pci-m2-v3-0-c528042aea47@oss.qualcomm.com> <20251125-pci-m2-v3-4-c528042aea47@oss.qualcomm.com>
+Date: Tue, 25 Nov 2025 05:20:36 -0800
+X-Gm-Features: AWmQ_bmikLZ0Y6IVR06BXpyKHGBWZgvGRHNBpTyF3etpWd-vOF7CyArxmGyFcVw
+Message-ID: <CAMRc=MeutDAwisNUPB1Nkqq2TEifjho+4E3GZ7x2HtbEh=inog@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] power: sequencing: Add the Power Sequencing driver
+ for the PCIe M.2 connectors
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-pm@vger.kernel.org, 
+	Bjorn Helgaas <bhelgaas@google.com>, Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Nov 24 2025, Usama Arif wrote:
-
-> On 09/05/2025 08:46, Changyuan Lyu wrote:
->> From: Alexander Graf <graf@amazon.com>
->> 
->> KHO kernels are special and use only scratch memory for memblock
->> allocations, but memory below 1M is ignored by kernel after early boot
->> and cannot be naturally marked as scratch.
->> 
->> To allow allocation of the real-mode trampoline and a few (if any) other
->> very early allocations from below 1M forcibly mark the memory below 1M
->> as scratch.
->> 
->> After real mode trampoline is allocated, clear that scratch marking.
->> 
->> Signed-off-by: Alexander Graf <graf@amazon.com>
->> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
->> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
->> Co-developed-by: Changyuan Lyu <changyuanl@google.com>
->> Signed-off-by: Changyuan Lyu <changyuanl@google.com>
->> Acked-by: Dave Hansen <dave.hansen@linux.intel.com>
->> ---
->>  arch/x86/kernel/e820.c   | 18 ++++++++++++++++++
->>  arch/x86/realmode/init.c |  2 ++
->>  2 files changed, 20 insertions(+)
->> 
->> diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
->> index 9920122018a0b..c3acbd26408ba 100644
->> --- a/arch/x86/kernel/e820.c
->> +++ b/arch/x86/kernel/e820.c
->> @@ -1299,6 +1299,24 @@ void __init e820__memblock_setup(void)
->>  		memblock_add(entry->addr, entry->size);
->>  	}
->>  
->> +	/*
->> +	 * At this point memblock is only allowed to allocate from memory
->> +	 * below 1M (aka ISA_END_ADDRESS) up until direct map is completely set
->> +	 * up in init_mem_mapping().
->> +	 *
->> +	 * KHO kernels are special and use only scratch memory for memblock
->> +	 * allocations, but memory below 1M is ignored by kernel after early
->> +	 * boot and cannot be naturally marked as scratch.
->> +	 *
->> +	 * To allow allocation of the real-mode trampoline and a few (if any)
->> +	 * other very early allocations from below 1M forcibly mark the memory
->> +	 * below 1M as scratch.
->> +	 *
->> +	 * After real mode trampoline is allocated, we clear that scratch
->> +	 * marking.
->> +	 */
->> +	memblock_mark_kho_scratch(0, SZ_1M);
->> +
->>  	/*
->>  	 * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
->>  	 * to even less without it.
->> diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
->> index f9bc444a3064d..9b9f4534086d2 100644
->> --- a/arch/x86/realmode/init.c
->> +++ b/arch/x86/realmode/init.c
->> @@ -65,6 +65,8 @@ void __init reserve_real_mode(void)
->>  	 * setup_arch().
->>  	 */
->>  	memblock_reserve(0, SZ_1M);
->> +
->> +	memblock_clear_kho_scratch(0, SZ_1M);
->>  }
->>  
->>  static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
+On Tue, 25 Nov 2025 12:12:29 +0100, Manivannan Sadhasivam via B4 Relay
+<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> said:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 >
-> Hello!
+> This driver is used to control the PCIe M.2 connectors of different
+> Mechanical Keys attached to the host machines and supporting different
+> interfaces like PCIe/SATA, USB/UART etc...
 >
-> I am working with Breno who reported that we are seeing the below warning at boot
-> when rolling out 6.16 in Meta fleet. It is difficult to reproduce on a single host
-> manually but we are seeing this several times a day inside the fleet.
+> Currently, this driver supports only the Mechanical Key M connectors with
+> PCIe interface. The driver also only supports driving the mandatory 3.3v
+> and optional 1.8v power supplies. The optional signals of the Key M
+> connectors are not currently supported.
 >
->  20:16:33  ------------[ cut here ]------------
->  20:16:33  WARNING: CPU: 0 PID: 0 at mm/memblock.c:668 memblock_add_range+0x316/0x330
->  20:16:33  Modules linked in:
->  20:16:33  CPU: 0 UID: 0 PID: 0 Comm: swapper Tainted: G S                  6.16.1-0_fbk0_0_gc0739ee5037a #1 NONE 
->  20:16:33  Tainted: [S]=CPU_OUT_OF_SPEC
->  20:16:33  RIP: 0010:memblock_add_range+0x316/0x330
->  20:16:33  Code: ff ff ff 89 5c 24 08 41 ff c5 44 89 6c 24 10 48 63 74 24 08 48 63 54 24 10 e8 26 0c 00 00 e9 41 ff ff ff 0f 0b e9 af fd ff ff <0f> 0b e9 b7 fd ff ff 0f 0b 0f 0b cc cc cc cc cc cc cc cc cc cc cc
->  20:16:33  RSP: 0000:ffffffff83403dd8 EFLAGS: 00010083 ORIG_RAX: 0000000000000000
->  20:16:33  RAX: ffffffff8476ff90 RBX: 0000000000001c00 RCX: 0000000000000002
->  20:16:33  RDX: 00000000ffffffff RSI: 0000000000000000 RDI: ffffffff83bad4d8
->  20:16:33  RBP: 000000000009f000 R08: 0000000000000020 R09: 8000000000097101
->  20:16:33  R10: ffffffffff2004b0 R11: 203a6d6f646e6172 R12: 000000000009ec00
->  20:16:33  R13: 0000000000000002 R14: 0000000000100000 R15: 000000000009d000
->  20:16:33  FS:  0000000000000000(0000) GS:0000000000000000(0000) knlGS:0000000000000000
->  20:16:33  CR2: ffff888065413ff8 CR3: 00000000663b7000 CR4: 00000000000000b0
->  20:16:33  Call Trace:
->  20:16:33   <TASK>
->  20:16:33   ? __memblock_reserve+0x75/0x80
->  20:16:33   ? setup_arch+0x30f/0xb10
->  20:16:33   ? start_kernel+0x58/0x960
->  20:16:33   ? x86_64_start_reservations+0x20/0x20
->  20:16:33   ? x86_64_start_kernel+0x13d/0x140
->  20:16:33   ? common_startup_64+0x13e/0x140
->  20:16:33   </TASK>
->  20:16:33  ---[ end trace 0000000000000000 ]--- 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
 >
->
-> Rolling out with memblock=debug is not really an option in a large scale fleet due to the
-> time added to boot. But I did try on one of the hosts (without reproducing the issue) and I see:
->
-> [    0.000616]  memory.cnt  = 0x6
-> [    0.000617]  memory[0x0]	[0x0000000000001000-0x000000000009bfff], 0x000000000009b000 bytes flags: 0x40
-> [    0.000620]  memory[0x1]	[0x000000000009f000-0x000000000009ffff], 0x0000000000001000 bytes flags: 0x40
-> [    0.000621]  memory[0x2]	[0x0000000000100000-0x000000005ed09fff], 0x000000005ec0a000 bytes flags: 0x0
-> ...
->
-> The 0x40 (MEMBLOCK_KHO_SCRATCH) is coming from memblock_mark_kho_scratch in e820__memblock_setup. I believe this
-> should be under ifdef like the diff at the end? (Happy to send this as a patch for review if it makes sense).
-> We have KEXEC_HANDOVER disabled in our defconfig, therefore MEMBLOCK_KHO_SCRATCH shouldnt be selected and
-> we shouldnt have any MEMBLOCK_KHO_SCRATCH type regions in our memblock reservations.
->
-> The other thing I did was insert a while(1) just before the warning and inspected the registers in qemu.
-> R14 held the base register, and R15 held the size at that point.
-> In the warning R14 is 0x100000 meaning that someone is reserving a region with a different flag to MEMBLOCK_NONE
-> at the boundary of MEMBLOCK_KHO_SCRATCH.
 
-I don't get this... The WARN_ON() is only triggered when the regions
-overlap. Here, there should be no overlap, since the scratch region
-should end at 0x100000 (SZ_1M) and the new region starts at 0x100000
-(SZ_1M).
+This looks good now. Do you think it makes sense to take it for v6.19 (provided
+the bindings get reviewed) or should it wait for the next cycle and go with the
+other changes?
 
-Anyway, you do indeed point at a bug. memblock_mark_kho_scratch() should
-only be called on a KHO boot, not unconditionally. So even with
-CONFIG_MEMBLOCK_KHO_SCRATCH enabled, this should only be called on a KHO
-boot, not every time.
-
-I think the below diff should fix the warning for you by making sure the
-scratch areas are not present on non-KHO boot. I still don't know why
-you hit the warning in the first place though. If you'd be willing to
-dig deeper into that, it would be great.
-
-Can you give the below a try and if it fixes the problem for you I can
-send it on the list.
-
-diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
-index c3acbd26408ba..0a34dc011bf91 100644
---- a/arch/x86/kernel/e820.c
-+++ b/arch/x86/kernel/e820.c
-@@ -16,6 +16,7 @@
- #include <linux/firmware-map.h>
- #include <linux/sort.h>
- #include <linux/memory_hotplug.h>
-+#include <linux/kexec_handover.h>
- 
- #include <asm/e820/api.h>
- #include <asm/setup.h>
-@@ -1315,7 +1316,8 @@ void __init e820__memblock_setup(void)
- 	 * After real mode trampoline is allocated, we clear that scratch
- 	 * marking.
- 	 */
--	memblock_mark_kho_scratch(0, SZ_1M);
-+	if (is_kho_boot())
-+		memblock_mark_kho_scratch(0, SZ_1M);
- 
- 	/*
- 	 * 32-bit systems are limited to 4BG of memory even with HIGHMEM and
-diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
-index 88be32026768c..4e9b4dff17216 100644
---- a/arch/x86/realmode/init.c
-+++ b/arch/x86/realmode/init.c
-@@ -4,6 +4,7 @@
- #include <linux/memblock.h>
- #include <linux/cc_platform.h>
- #include <linux/pgtable.h>
-+#include <linux/kexec_handover.h>
- 
- #include <asm/set_memory.h>
- #include <asm/realmode.h>
-@@ -67,7 +68,8 @@ void __init reserve_real_mode(void)
- 	 */
- 	memblock_reserve(0, SZ_1M);
- 
--	memblock_clear_kho_scratch(0, SZ_1M);
-+	if (is_kho_boot())
-+		memblock_clear_kho_scratch(0, SZ_1M);
- }
- 
- static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
-
-
--- 
-Regards,
-Pratyush Yadav
+Bart
 
