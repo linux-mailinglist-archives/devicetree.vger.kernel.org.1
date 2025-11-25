@@ -1,113 +1,100 @@
-Return-Path: <devicetree+bounces-241894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89032C83ECF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:16:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC776C83F03
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 09:17:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 480923AB6E3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:16:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CD08F4E719D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDA02FF157;
-	Tue, 25 Nov 2025 08:13:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB5E2D8DA9;
+	Tue, 25 Nov 2025 08:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="RsrwLh6a"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="cpZXvtVj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5F82D9EC8;
-	Tue, 25 Nov 2025 08:13:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3F1E2D7813;
+	Tue, 25 Nov 2025 08:17:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764058422; cv=none; b=KjFqzMZUDV+0f3YcCOeBRmBHv4HGYxeQ34Ok2j4+LBdnaYBl0pt3fzQdrNXKhqK2eYzrQAtLJlxmK1xxWAuy3u+Pmv/Ht/MeTckArdUpYz0lIIgSoX48wQoGnnL3PQ1lapD2LwxBmyMWhsMUinzypDfB9m1RIrVUUlUPBA1h9i4=
+	t=1764058649; cv=none; b=K9fTuDui1vDeJuQbkFrPvbOyxJbEizOYSLE98PO0GDj881yGE9brvdvLOH3CsCZlQbJRLReWBlNfYBs1MOy2E+fqjKwDQcAG/iWJybdaTpZgk6w/jkaAnPhbh4IJDFTI2/1I7zNnEned7wPvC8KQzGilFxfFZDlEmP063mmXi/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764058422; c=relaxed/simple;
-	bh=6kUagx2PLiZQhoylE2iSEeJcK7M54MweGvTnZ2pJddo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jyW8gki0r2o5FqCIJC/IgcJ7eYy644zP03W6dcXJ3fb7XOPHF3bXOHnGhxQVKNqmHp+6zjUESBeyfKZEFWRL09K6IFOYaTTji8qVaSKm359Gob3Nxp3ZMPl7UB40TWrfu0faUMf4INZJzGYjeSByGnOrEbKq1oNZfpTQcrkYmBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=RsrwLh6a; arc=none smtp.client-ip=95.215.58.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1764058418;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1YLExmy7DtIyQmmY4byQYrWIkfY+f+HEvOImGQCGaoM=;
-	b=RsrwLh6amVdu3eAxQTVH34sQecPfoAnGpjeunPuAE39+WdqcmJ3OhgOH0WEdMhP7NWd7s3
-	dvpyl3QwNgWNHFOONaZK8VmFx/NrulvdyPgoWBQsHhFMF2e2rDkmg2jtq9jw9ZjT0FKmMq
-	XJ5rJbr3w9K5muUFKCc4fLB/foGHcNeqqEuX1lK7QRw6lOl4jK4ASgnWdsZ6jfIV5HjuWb
-	jaSTJFQe13sJtIFVFtCArpbr2CGVh2lJ4sEJvdPxanagQJfkO+l4ErNYtJxq9gNt9PFK4w
-	qwWoq8ziMnNIulTI3SApq1OLDHv1HtgTlGs4JLjB/iE011jmc67DT3Dr05x7Xg==
-From: Paul Sajna <sajattack@postmarketos.org>
-Date: Tue, 25 Nov 2025 00:12:42 -0800
-Subject: [PATCH v4 12/12] arm64: dts: qcom: sdm845-lg-common: remove
- framebuffer reserved-mem
+	s=arc-20240116; t=1764058649; c=relaxed/simple;
+	bh=6Twb8mgQPk7aj0pXX+bHnIC/oSrtic7qmC+oaQndG4M=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZLUxVctBcmAl0xUEgg8TW5+xOM1qYdHLKEDfP/YL92HREJa/6RFlNrycRRhQfLLE3zPkShqy2IOIydvhxAYhzkUTr2d4LhsaC4jI8w2exxDKvSSbv99fQCKQJgQ+FIXCqJV9cwGGCX78f2h34yh/SDdxhMULjzJtkYIsTEuBTEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=cpZXvtVj; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1764058647; x=1795594647;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=6Twb8mgQPk7aj0pXX+bHnIC/oSrtic7qmC+oaQndG4M=;
+  b=cpZXvtVjbxW6ytb9/3s8L9twORIucjREShudsS0T29Avqu3w329RmlzX
+   crk464uEjpKAoASemxxwB7WylNEMFIe4K9+abNORU//3p5uW59n/kj5Ui
+   EhIiCpKv7485fat+u0RDDWoTJiU1UCmD16e4qVxrcMPrLdv/tVHZh0y4x
+   En8KESsc7CH6RHVKp+pncv8LV2kyJQv/xaLqVKi1oAX7nLxKNHTuYavgt
+   EpNTGsWqGECnDrraqBjlCwLYDRzKNtpROaGRcMU+PdPthJ5ZWZTerggUO
+   inOydyWA/1ZNavz7qldnYjl4xefVZP2kO8uipMkTI6/8nImg71hEtsL+g
+   g==;
+X-CSE-ConnectionGUID: tWv0xuV6SpSm15i19A7SVg==
+X-CSE-MsgGUID: 0oDT14BcQbmdfSmipQbBLA==
+X-IronPort-AV: E=Sophos;i="6.20,224,1758610800"; 
+   d="scan'208";a="216971709"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Nov 2025 01:17:26 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 25 Nov 2025 01:16:56 -0700
+Received: from DEN-DL-M31836.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Tue, 25 Nov 2025 01:16:54 -0700
+From: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <wsa+renesas@sang-engineering.com>,
+	<romain.sioen@microchip.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH v2 0/2] ARM: add support for pcb8385
+Date: Tue, 25 Nov 2025 09:15:49 +0100
+Message-ID: <20251125081551.1390820-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251125-judyln-dts-v4-12-a5a60500b267@postmarketos.org>
-References: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
-In-Reply-To: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- Amir Dahan <system64fumo@protonmail.com>, 
- Christopher Brown <crispybrown@gmail.com>, 
- Paul Sajna <sajattack@postmarketos.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764058372; l=918;
- i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
- bh=6kUagx2PLiZQhoylE2iSEeJcK7M54MweGvTnZ2pJddo=;
- b=V6LvTHiJou5wkswaPKURVe4apup8STlNXXyy8wthzabfuBzip3HQpUo6b+G2gbOFkZOniC/Kr
- FU6XkvAoZcwC5hlPGNcVo1VxA6pxE/MogZPyRZzMwb5h++SpRlQAdjk
-X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
- pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-It causes this warning
+Add pcb8385 and the documentation for it.
+This is a moduler board on which it can add different daughter cards.
 
-[ 0.000000] OF: reserved mem: OVERLAP DETECTED!
-framebuffer@9d400000
-(0x000000009d400000--0x000000009f800000) overlaps with
-memory@9d400000 (0x000000009d400000--0x000000009f800000)
+v1->v2:
+- sort nodes in alphanumerical order
+- move the eeprom nodes under i2c0
 
-Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
----
- arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 6 ------
- 1 file changed, 6 deletions(-)
+Horatiu Vultur (2):
+  dt-bindings: arm: at91: add lan966 pcb8385 board
+  ARM: dts: Add support for pcb8385
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-index 0ba4a2b42028..472a0519c690 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-@@ -98,12 +98,6 @@ spss_mem: memory@99000000 {
- 			no-map;
- 		};
- 
--		/* Framebuffer region */
--		memory@9d400000 {
--			reg = <0x0 0x9d400000 0x0 0x2400000>;
--			no-map;
--		};
--
- 		qseecom_mem: memory@b2000000 {
- 			reg = <0 0xb2000000 0 0x1800000>;
- 			no-map;
+ .../devicetree/bindings/arm/atmel-at91.yaml   |   6 +-
+ arch/arm/boot/dts/microchip/Makefile          |   3 +-
+ .../boot/dts/microchip/lan966x-pcb8385.dts    | 135 ++++++++++++++++++
+ 3 files changed, 141 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm/boot/dts/microchip/lan966x-pcb8385.dts
 
 -- 
-2.52.0
+2.34.1
 
 
