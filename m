@@ -1,123 +1,203 @@
-Return-Path: <devicetree+bounces-242003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 149C4C8526E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:20:48 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83FB6C852B4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 14:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D5FD84E9404
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:20:44 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 026F434EEC2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 13:25:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9A431A814;
-	Tue, 25 Nov 2025 13:20:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D3FB322A30;
+	Tue, 25 Nov 2025 13:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="nxJ5ydf5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NH4TdUYk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36F8321FF21
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 13:20:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6EC31A814
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 13:25:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764076841; cv=none; b=eQpGSFCX3g8K1G3m/qwq6oImL1U+b1Ld03tNxOFoc3q0SsuvnOiglejV26Sl0+NsDDGby3bSpAcBfsxLjacASpuT6u93PB4JGur9DLtBEtTtzPVnYXXbwjMkUQb1KH3+JT4+oxzDHjJ7fdoRL/Zjb0ZSJTaKBgpQgjYUA1mI+Yk=
+	t=1764077107; cv=none; b=PJHFlLqdi8LQyz/G8KEMkh46SFumGB9xEkyRif3mAAUcejmymmr5IgfTEFDXzsVLlg21Dqf4oJJL8QCSf2UDyRRjIFZnY+lMqF3Lzd6N3TVAhTTOmzWxCDd3kGMbhoYOTyg8XbF00CPk4a8aCLSsRzIWL8FMohoxQ/yATpddcYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764076841; c=relaxed/simple;
-	bh=aFRgkj8+TshZ/N3ynI03tnObxJnOjZJE8U7i676X7qA=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OVid4NeL9Onmq2ZHRq2S1K8HBYjSq2PRWSEASRotJGY1yuGu5oDGHsF/bXTu2sTcE1InDFOo9nNDwooKtlCRP7kwm31r549p1YQ8VSDgsZokueVlNvMuiOuA6+usZTX5MZrdZWwVE57VWaO20H+O6Hpnk+5s/8ZVdnxpzAxYkkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=nxJ5ydf5; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-59581e32163so6458367e87.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 05:20:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1764076837; x=1764681637; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aFRgkj8+TshZ/N3ynI03tnObxJnOjZJE8U7i676X7qA=;
-        b=nxJ5ydf5C49DcNFNRGusxyfK6OTeLGzmH9vfiaUP2ZuLBXjzvhteZ1ufow3zf9Q1NK
-         4I/BsP+D6GC3UY4Sssx/ngY3WqZrnadN9sERRDdqhFdBv8HdjGpMemwg7eq9g6IYA97O
-         27P6hNCRFKbzn3nN8Jdf9A/gaLO0ncXKNqRqOFWC1JbAupMz9tsqc7Vw08xtNE4zMeIP
-         gVQ4Ajyu/RsTDBVL5CiyqW9oQBpXH/BwDhYPR7pGt0bhsK9olu5qwzF1Iwtub2Zrg9X3
-         ZfwuPfQaFrFgFUGAkLG2urEaJdCTfvLzPfxD7GkSE5WCDDb2RAwzBU0yLCW9ESS0Ma7R
-         1/Ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764076837; x=1764681637;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aFRgkj8+TshZ/N3ynI03tnObxJnOjZJE8U7i676X7qA=;
-        b=Qx+1PjPVp20AihA6glGsLBK+RoSc+Kdwd7DLnbE4lWFnXZB4z26maAha+n1jCKtDIH
-         guQcnX4rRiqZ6pZ7kILUFoDFUenuP5h7AoJWs64vWK1dWjwcx7J5Zg2yoaXljhpD95HT
-         9Y7WoYveF1zGO2hERzJwl7ivMaxxgyZ2tedRIndVzU0633VXDni0N4koJqQRaxE245UC
-         qzUdsxEDYdup65jt0lwsgvZklpmlonoO1AzHjUDzMrU2kDLvMCe+VUmk/SRFcPO5Org6
-         fM5rARcnEqWSRfltwe00IENP+4nv2Eu+RK+oolCa3ziKUw7G2nbP0As340ApkXMXig0F
-         hxiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW8btsYEHxGvIJ0YTrCnbsU1iVYCyQ7O5RmFt5mnsavUPHj0KgpFPhlpLG5sq6ew2DBE5dW2RF0lDrj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxb57dJFDqx6g+9H61qdKMpfSFPCSJPRuz4eFuNsfMFwYW8eXvy
-	5/YtdcpnMVdASjYEXa3gM7LhVdctTfhxKuuG7e3dqYhu2JF/W9e762OfD5jhGQtLBfjKdamaUv3
-	26BwWvVr+sH9fMyEJtKOQ7Bh5iUcqPg+/PCIO43htVxPx6LjTjxqi
-X-Gm-Gg: ASbGnctv2R/DtBQpyRNVp8CFCaY6WiT8LIH7VD7TcOal2377ZkjnClOXz1qJt8B3VBW
-	GYBhCk/mQRSIvw4tWxV3RRpEFQiO4cOBnaR6acs9Fyv3F2y3l0434wqQF7uaQxaiyyRaLQerUun
-	zi6WV57L5tk2l7z6xaUspaa1JwKORTyKwZYN+9ZvVCXeWykqrcJsjrtk3p+ETd5LSsoA1RhnhhW
-	tb42hf40BPEQ49rrQsnp64/WMLco5P7lwb+8wqXmAwopthagcZIvS3oGlKLRBu/QYOhF6hbb+Hi
-	OVtL6r0qa3yIw7Tj2BYhiac2zfE=
-X-Google-Smtp-Source: AGHT+IGdHck69+/UXTdbrnCO3t0qqfckfcVyyh/E5LbN6LZwR4x0zr2gNlwq8szXilSzX4To4fvr4kap32stEFrTPTM=
-X-Received: by 2002:a05:6512:159c:b0:595:9152:b932 with SMTP id
- 2adb3069b0e04-596b526c87bmr860812e87.47.1764076837373; Tue, 25 Nov 2025
- 05:20:37 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 25 Nov 2025 05:20:36 -0800
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 25 Nov 2025 05:20:36 -0800
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <20251125-pci-m2-v3-4-c528042aea47@oss.qualcomm.com>
+	s=arc-20240116; t=1764077107; c=relaxed/simple;
+	bh=FPyBqqFwWhk6eaB9uetXj3XUshpp/EXVGnOWI7sqz0M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DSlUrRtkkrR8UivWEtUcGOpUwXJfm1+hDJ8yushpz6YV/ZlaFI+Wc/ecw/xmR8D60NYB1VmxxQsdTpfIa0bNMxDGQvfsJjeyM/Nr9pwWgpH1QIJ6tjVP9CwUe6cHPt7yVDgiV1Uyi0Eg1giOPHfbo0eM7cdq6r/0KWly3W8XmxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NH4TdUYk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84C36C2BC86
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 13:25:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764077107;
+	bh=FPyBqqFwWhk6eaB9uetXj3XUshpp/EXVGnOWI7sqz0M=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=NH4TdUYkUh7Xsqj4bit8Gh2ZvW9P7tXUcWNsErvrzWsY2D9LB4KpQw3wElPjYG2Kh
+	 aqt1Crl2OJyO0ozLcw66Bx14K7TrOm9B81kaablokMPuwedRovJqTC8L77kMFpuux+
+	 lliJ2liZBOdjg4Btw3ateKRfqJbNQJgvzEbTugyhHM9+VkVnPuMjbuAci3hi3lU/HS
+	 CI3oXoBBHyJ+ef8nu8zGU9VYZ95Cow3Ke/RHACF66elJvbz1SWrA4B/pItfjuZdItl
+	 sspzHMTs1/PcZe6ADRqeaBQi59UjmdEgvO0Ge78LWQ8EA9I5xnJLSk6loqujEQG73x
+	 HvRZCO/P+reVA==
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-78a7af9ff1dso53290357b3.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 05:25:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVCWT0rUYdGn8WF0GPTKdZU1AB896vpVwheXF0zZ8r9gD7OskL6VTA4NZNCaqDXNCq9/Bb//cSS+67A@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0gSJAY/yurkyWZrcViX4HW7qBQEPYtlkj8Hjuo2YSMj+3STIv
+	sUNCNosIIlOrM6gAVG7aqmsn+f0XBSe2FZXTvt68Xw4L4Tmpw3GAlXbzpH6n26OTs9iJLkKrTFl
+	dR92g/bs/1CsND5/SLk3mOdu2QJxwzQs=
+X-Google-Smtp-Source: AGHT+IFhRE1ILRuTBkbhYwyPnCDEJgxBOhpApftiaGhDTJ+wvAPws2O+6jJqZACEeO0fCVi4LDyQQzOVGTx00oVjtKU=
+X-Received: by 2002:a05:690c:3348:b0:786:a967:5a8a with SMTP id
+ 00721157ae682-78a8b521351mr116767487b3.51.1764077106811; Tue, 25 Nov 2025
+ 05:25:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251125-pci-m2-v3-0-c528042aea47@oss.qualcomm.com> <20251125-pci-m2-v3-4-c528042aea47@oss.qualcomm.com>
-Date: Tue, 25 Nov 2025 05:20:36 -0800
-X-Gm-Features: AWmQ_bmikLZ0Y6IVR06BXpyKHGBWZgvGRHNBpTyF3etpWd-vOF7CyArxmGyFcVw
-Message-ID: <CAMRc=MeutDAwisNUPB1Nkqq2TEifjho+4E3GZ7x2HtbEh=inog@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] power: sequencing: Add the Power Sequencing driver
- for the PCIe M.2 connectors
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-pm@vger.kernel.org, 
-	Bjorn Helgaas <bhelgaas@google.com>, Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20251112-lantern-sappy-bea86ff2a7f4@spud> <20251112-improving-tassel-06c6301b3e23@spud>
+ <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com> <20251124-crayfish-lard-cc7519e1119e@spud>
+In-Reply-To: <20251124-crayfish-lard-cc7519e1119e@spud>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 25 Nov 2025 14:24:55 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkehJNGxxQJV6vOA9xurBjwpYcL1ufYBQEOqRjNG-h-fg@mail.gmail.com>
+X-Gm-Features: AWmQ_blHo1ty5-S0e3NCNZzxGhsqsZf2Biuast8gNGtspqWD6HtMxyy46_tdORk
+Message-ID: <CAD++jLkehJNGxxQJV6vOA9xurBjwpYcL1ufYBQEOqRjNG-h-fg@mail.gmail.com>
+Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
+To: Conor Dooley <conor@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Conor Dooley <conor.dooley@microchip.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Valentina.FernandezAlanis@microchip.com, Bartosz Golaszewski <brgl@bgdev.pl>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 25 Nov 2025 12:12:29 +0100, Manivannan Sadhasivam via B4 Relay
-<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> said:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
->
-> This driver is used to control the PCIe M.2 connectors of different
-> Mechanical Keys attached to the host machines and supporting different
-> interfaces like PCIe/SATA, USB/UART etc...
->
-> Currently, this driver supports only the Mechanical Key M connectors with
-> PCIe interface. The driver also only supports driving the mandatory 3.3v
-> and optional 1.8v power supplies. The optional signals of the Key M
-> connectors are not currently supported.
->
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> ---
->
+On Mon, Nov 24, 2025 at 8:14=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
 
-This looks good now. Do you think it makes sense to take it for v6.19 (provided
-the bindings get reviewed) or should it wait for the next cycle and go with the
-other changes?
+> Started looking at this today too, and I found one of my sources of
+> confusion - the recently added helper which I think is confusingly
+> named. pinconf_generic_dt_node_to_map_pinmux() works differently to
+> pinconf_generic_dt_node_to_map(), because it only works if you have
+> the following setup:
+>
+> label: group {
+>         pinmux =3D <asjhdasjhlajskd>;
+>         config-item1;
+> };
+>
+> It does not work if you have:
+>
+> label: cfg {
+>         group1 {
+>                 pinmux =3D <dsjhlfka>;
+>                 config-item2;
+>         };
+>         group2 {
+>                 pinmux =3D <lsdjhaf>;
+>                 config-item1;
+>         };
+> };
+>
+> Specifically, the label must point to a group.
+> pinconf_generic_dt_node_to_map() does not work like this, it accepts both=
+!
 
-Bart
+My feeling is that this is a bug, it should certainly handle configs
+with subnodes.
+
+> I think the pinconf_generic_dt_node_to_map_pinmux() function should
+> actually be called pinconf_generic_dt_subnode_to_map_pinmux(), because
+> it operates at the same level as pinconf_generic_dt_subnode_to_map().
+
+If it should be renamed, yes. But I think it should be fixed to
+parse subnodes, if present.
+
+> Probably there should be a "real" pinconf_generic_dt_node_to_map() that
+> accepts both setups, since AFAICT it is pretty normal to have different
+> pins in a group that get different pinconf settings. Obviously
+
+I think it should be fine to augment the existing function to handle
+both cases? (configs inside the current node or in subnodes
+alike) I don't see it causing any regressions.
+
+> label: cfg {
+>         group1 {
+>                 pinmux =3D <dsjhlfka>;
+>                 config-item2;
+>         };
+>         group2 {
+>                 pinmux =3D <lsdjhaf>;
+>                 config-item1;
+>         };
+> };
+>
+> peripheral {
+>         pinctrl-0 =3D <&label>;
+> }
+>
+> isn't the only way to do things, and the amlogic user of the current
+> setup could just go and do
+>
+> cfg {
+>         label1: group1 {
+>                 pinmux =3D <dsjhlfka>;
+>                 config-item2;
+>         };
+>         label2: group2 {
+>                 pinmux =3D <lsdjhaf>;
+>                 config-item1;
+>         };
+> };
+>
+> peripheral {
+>         pinctrl-0 =3D <&label1>, <&label2>;
+> }
+
+That works too, because sometimes you want to pick a few
+different configs and collect them as one.
+
+> Even then though, I'm not really sure that this function does what I
+> would have expected it to do, because it won't work as a replacement for
+> the custom dt_node_to_map in the spacemit k1 driver, for example, even
+> ignoring the requirement about how the labels are done in the dt. That's
+> because it doesn't actually do anything with the pinmux property, despite
+> that being in the name. It never actually interacts with the pinmux prope=
+rty
+> at all AFAICT!
+
+I think it's unfortunate naming, people sometimes use the word
+"pinmux" as a DT property, sometimes to describe the subsystem,
+sometimes a part of the subsystem, sometimes anything related
+to pins.
+
+I know I should perhaps have shepherded this better :/
+
+> It seems to depend on aml_pctl_parse_functions() being called
+> during probe which creates the groups and functions.
+> There's a weird warning about expecting a function parent node that seems
+> very amlogic specific too.
+>
+> In my eyes, there should be some generic dt_node_to_map helpers that
+> do it all for you on the "configuration entirely described in dt"
+> platforms because that's what stuff like spacemit k1 driver that do
+> this in their dt_node_to_map implementations.
+
+I think you're right!
+
+> I'm not gonna get in over my head, and just make a helper for doing the
+> pins + function thing that I need for my driver, but would you be open
+> to an equivalent for the pinmux scenario?
+
+Yes!
+
+> I'm thinking of something
+> that'd work for both the amlogic platform and for the spacemit k1.
+
+That's a good start!
+
+Yours,
+Linus Walleij
 
