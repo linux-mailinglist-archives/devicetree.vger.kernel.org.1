@@ -1,154 +1,247 @@
-Return-Path: <devicetree+bounces-241938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A1DC848BB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:46:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B476C848C1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FB073AE5CA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:45:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DABD3B0CC8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 10:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8830331327A;
-	Tue, 25 Nov 2025 10:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81644314B9D;
+	Tue, 25 Nov 2025 10:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fztj7ZXc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="S4hGKNN+";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aSmuPzAO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618763128BD;
-	Tue, 25 Nov 2025 10:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965ED3148D1
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 10:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764067548; cv=none; b=k0lHtJEsIL2A2SX6zezmv6uqKuGsiGEs3QmnIFIfBkshG4WvNIpqz9sBITTqu/lJmmugENsXQB2x3xLVjMC4RSMBT/o3AcWKGzi/v65I+go+mMgEnB1vLh+JUch67QQ7Sh8QoL+THNhzpyDvrscTaDwOYgolRJ7aOaCAPy1L9rg=
+	t=1764067553; cv=none; b=qVEW9st0oREZz4bCovf9tTl/83I5u9C0i7x/aLj6EQVecxx6vPSIKs9cFAw+fM1DMkRRXhnB/eCZHXkAUQY1I1Aa+GX5a6wyU7fKtt8tAs7KfkhhqKeuI9YNJbBhSXhdq6uJ726uLNrAxZ9Qe78XW1FXgdYJFNNIYle9Vc95UB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764067548; c=relaxed/simple;
-	bh=QR44RW1qxqI3DDLLwJK9jBej+inSyT/M3PUxvFe+9yw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AqOrYBfY/PwW5cYXLvK+Dl98p4lD1p9zObOPnmxRuvERex0YwD4Gi4q/iuwPVO9W1Oaqlkbype9N28mR2EEYiPAZ8xPVF/ptNQE3A4efmrorOeRh/CHuL3QJ3t5jPYsvbPehhpWCH+oX89gXK3/cMhu3H4L8SmIDkaRQaDjNZMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fztj7ZXc; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 424FA4E418BE;
-	Tue, 25 Nov 2025 10:45:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 14259606A1;
-	Tue, 25 Nov 2025 10:45:42 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B804C102F0809;
-	Tue, 25 Nov 2025 11:45:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764067541; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=3tb0J18ESDC4ppn4MREj3fd53hd+rDvcI8fF39MlDNM=;
-	b=fztj7ZXczXI0d3tqp627mPVxkOxsQzFPTiEDdQSiRLQPsJocFuI173Q0M3ILmPc0YB7SPV
-	BXkBLY49dfcKd6TW3DYVViMf1kQKdEA6X2Flwg/yaEySlKfqzHnx/lObtS8EBYzaZROO2u
-	YTLlNKPY1EtY4rOBA435c6iaFjMnXDuXe6cA91MgqYuJuRE2OEo+1Y5LxyKFo/HFdNtk6H
-	QFThs9Bk+L8xqkV8gj7bUnQ/bEF8bUiM52+cvS5v6D6wIy0110fPFLh0DUwB79f2Smipci
-	djJLg2sNdUr/jLLlRD+nFe/tnM0qS0hVJjG1It4xf1xZF7KH+hVP8yK/1R3TfQ==
-From: =?UTF-8?B?QmVub8OudA==?= Monin <benoit.monin@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev
-Subject:
- Re: [PATCH v3 7/7] i2c: designware: Support of controller with
- IC_EMPTYFIFO_HOLD_MASTER disabled
-Date: Tue, 25 Nov 2025 11:45:35 +0100
-Message-ID: <3583116.sQuhbGJ8Bu@benoit.monin>
-In-Reply-To: <aR4lVB8FRzHLcXJT@smile.fi.intel.com>
-References:
- <20251119-i2c-dw-v3-0-bc4bc2a2cbac@bootlin.com>
- <20251119-i2c-dw-v3-7-bc4bc2a2cbac@bootlin.com>
- <aR4lVB8FRzHLcXJT@smile.fi.intel.com>
+	s=arc-20240116; t=1764067553; c=relaxed/simple;
+	bh=+BqqpBFcfJv9LiXUZyvYPW0MnNdqhGc9+zw0MiBReHo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mGXLLynA+SAVY4gY20HV+4ZqqYiEj/26M37hcdJSPotr3FGcIqltqOQnN8Dkrm7hIK7SOo9cvWa/SlAjiZJM3MAqtT1/SKRrbqiI8LdygjSSKOh5lc46VKdakcrztFWGTLZgPc2dy9Y8sA6xPMw7/3RGeHwogN4qiTGuGpxGda8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=S4hGKNN+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aSmuPzAO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AP9thcs1741250
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 10:45:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=amvjrNRrfVqIzHSIYmyRllhF
+	vfWonHWIq2wkK0wmVak=; b=S4hGKNN+rgJ9w+E1ZyX58lTr8nh1yVANR9SVTBWu
+	qdcBSHUJ3c+/A3wC6kFS85lUF9891omS0tXHdHUM17y6PeZwBTY0zEqU2ARw1JIr
+	exLuvQtmiRoiXc5Y+M5SXS9z6ro1PWuAl27pDM1IJlp+Pz7WhrwdvgNf7tcNwaLp
+	8f1LB7LR7RYPCm+RdL8g+ddSAd/79567b4hEmDYx0Y+w5SBHzB1xQRFUuv+w/T/0
+	yg8P4Hrf6tDHTXS2zNMgl4gLORcRwlSzd5hzQTlFWzYXR2hqSTpa2aTtj2kTcMeT
+	pMp+uPLH6YLySVnYqTifVSAeGf3jGJmVbE7mGRaoPemslw==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4amtebb133-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 10:45:50 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-343806688cbso13278158a91.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 02:45:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764067550; x=1764672350; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=amvjrNRrfVqIzHSIYmyRllhFvfWonHWIq2wkK0wmVak=;
+        b=aSmuPzAO9VN+ivNJHxVc/YQWMqE1pBk0G/2J5QD2OeppcJqN6RirbK8ap1jD3p9QXc
+         +uJ3r1ybXQrHC0wdtTKETJI2zc2CtaPsEgWjm/Z7y9JdwYNu+Kf/pjTiha/QGHYEj3Zb
+         lgH3AGnqdshoxivzY66UVH0qM53CWZkNRZBe0Eq9eNU8885P/5V2hwrJY50keHOyGmp5
+         aFgbuS0CbKqOatj4ges9YWqlSlHG5ZaOQ9VXi3Us2jl/IJ47L0GeQAQy94GZk5YdxDAD
+         0OLwjgpESWhVXcZwCe15t/y8UvB6tvMafHofSrEw/qLOOkUYQzqiOw2tMWB6/00ESsjS
+         q98g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764067550; x=1764672350;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=amvjrNRrfVqIzHSIYmyRllhFvfWonHWIq2wkK0wmVak=;
+        b=PBuloZDBe2b42DwdVSbaFWY6drBPCHFZtqRsoOcRCPLkidTpd2b1WufcdDQAclKEQb
+         tuZZ3ZFCUzPtRqVP47b60KC4mbQzGxQYSSA33SyprbUnQN+i4F6rq5GnPpimBpIqDjWl
+         x5KCSxAlP/I1tOM0MzyaxU9/mu0IA8yeRggOf6JB8SRi120A+Z08z6aFdlFo83O/ypRI
+         WyCQILjGPr2tZqoetV4v3EJIn4QJp+uNKvFIX+NKVHMfIGSS+5YUAFa2uSTP1w6L4oe/
+         P8ZMC5CB54YCPEULzeS5FzlhXKLVHCP/xdBDGRbHtCZkQpSPFR0gB258v+DlAE8WtQdZ
+         9kVw==
+X-Forwarded-Encrypted: i=1; AJvYcCVhj9V+/v/K222ffeYgrzyILJSl1pgyKWM3ekwUO77fK/3mnXY66yv/nbm62xpbqNfp07+Gh3ivPxLz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQ7mPV89qVNSSuQ4xpL/6jU+zakeGXFh7MSqzzUQrc9XPZaEmO
+	j7Pw3InKnjheO9dnces1bh1jbfIImIbDShA6DSy6FTtwuY+mz1Z7XRPT+xpF7KZ80YEw8yZQ8Ax
+	Rwdb+XMCQZ6/fL+dC/pNkVeqw1sAcrBYoGONu8n4mSyvLwRGk5Vo1GmNVo4WrktIEbwug4n1gN2
+	RKV8AamoR/Aj614X6yZ61R69sJyPvFfGtlGEhuUS4=
+X-Gm-Gg: ASbGnctNcfOGpjOi9zQ8TWlgDztf8uzglAZXXm2APbwS18CP8YmVlFrxS3aap4Ig71g
+	9UeV0VyRBbRfcm+ZMwNOE2ED8TDNw4tgtP+/asEaRd9HOH8uD/bOfUFRJxHBxZxfRY7UqML5PIV
+	jPV569sdKfTsZew4C8aEo1Wq2l093LFy6Ve7Dvx8Ql0oLUQ6wysHAsAiQhZ4Tfx1pxEw==
+X-Received: by 2002:a17:90b:270d:b0:340:2a16:94be with SMTP id 98e67ed59e1d1-34733e5524amr14722198a91.4.1764067549921;
+        Tue, 25 Nov 2025 02:45:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGI094azFzHmR9Mpqh2BRxwu+hIt81IHtiK5UwJ5+gq9ntEsPJXOl2awVYN9lA7/mn4pi8WZXMDuGhgAdl8pSM=
+X-Received: by 2002:a17:90b:270d:b0:340:2a16:94be with SMTP id
+ 98e67ed59e1d1-34733e5524amr14722162a91.4.1764067549382; Tue, 25 Nov 2025
+ 02:45:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20251111-xiaomi-beryllium-firmware-v1-0-836b9c51ad86@ixit.cz>
+ <20251111-xiaomi-beryllium-firmware-v1-1-836b9c51ad86@ixit.cz> <313b36d3-e1b4-4e80-8d5d-d65981abb34b@ixit.cz>
+In-Reply-To: <313b36d3-e1b4-4e80-8d5d-d65981abb34b@ixit.cz>
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Date: Tue, 25 Nov 2025 12:45:38 +0200
+X-Gm-Features: AWmQ_bnWmBdFq8y-6AhUdu26riDbJhJiOAevtOgo1n9d3y03_XHjZCEBqAIS92o
+Message-ID: <CAO9ioeX8hCn3-SQ3etvCT5OfNLRmbqZ6DQg_smQO6PugEg_5Yg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ath10k: Introduce a firmware quirk to skip host cap
+ QMI requests
+To: David Heidelberg <david@ixit.cz>
+Cc: Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Joel Selvaraj <foss@joelselvaraj.com>, linux-wireless@vger.kernel.org,
+        ath10k@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-GUID: BKDQmhKP_k69yjRl2klljfOS5en7DRP-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI1MDA4OCBTYWx0ZWRfX0gXAPZ4ueLsA
+ mW5JQmda6oObqyr3xE4xSdwulJ2g+I0nyeto0JC4aYV/r66PmKZnFgZAZTMARQNLqEpr+q5BFZ4
+ JeKYGxjiOGKGxNr/ZGTySXxYQ6YLXRbwcHsryc0yMjOlyD71jfhudpS73rqMDLxJnyTQBANwEm3
+ hxiPeaFTMYkCM9JCE2fvRIISo/vPx4dCuPMDj+v4Nq4YuFB3s/naeMC6Zrl9Hka+Xv7s77QlgvO
+ oIvKT1GYy/a+kgr2ZmbBu66gOepLpCibGEBzy8md+hB8REa7gbpD8oibSBgFw7z/0B6JRdaQJNT
+ WFs+9zQmzYrmcOvwcANKlRXTkMzXzyF/AtOh66djkTXwFmK48JIActAuixsMpA+tNRK+aue5N+y
+ 8J2CIZyaqWl3Tk7f2jRlqA+RgddyZA==
+X-Proofpoint-ORIG-GUID: BKDQmhKP_k69yjRl2klljfOS5en7DRP-
+X-Authority-Analysis: v=2.4 cv=d7f4CBjE c=1 sm=1 tr=0 ts=692588de cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=1U8LozzuH-I-QAyVdeQA:9 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-24_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 spamscore=0 clxscore=1015 bulkscore=0 suspectscore=0
+ adultscore=0 phishscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511250088
 
-Hi Andy,
+On Tue, 25 Nov 2025 at 11:27, David Heidelberg <david@ixit.cz> wrote:
+>
+> Sadly, this is too early in the initialization process and we get NULL
+> deref, similar to [1].
+>
 
-Thanks for the reviews.
-(ack on other comments)
+[dropped splat]
 
-On Wednesday, 19 November 2025 at 21:15:16 CET, Andy Shevchenko wrote:
-> On Wed, Nov 19, 2025 at 04:05:36PM +0100, Beno=C3=AEt Monin wrote:
-[...]
+>
+> If no objection raised, I would go back to the original device-tree
+> property way then (as also another device in need of this quirk showed up).
 
-> > i2c_dw_msg_is_valid(struct dw_i2c_dev *dev, const struct i2c_msg *msgs,=
- size_t i
->=20
-> > +	/*
-> > +	 * Make sure we don't need explicit RESTART between two messages
-> > +	 * in the same direction for controllers that cannot emit them.
-> > +	 */
-> > +	if (dev->flags & NO_EMPTYFIFO_HOLD_MASTER &&
-> > +	    (msgs[idx - 1].flags & I2C_M_RD) =3D=3D (msgs[idx].flags & I2C_M_=
-RD)) {
-> > +		dev_err(dev->dev, "cannot emit RESTART\n");
-> > +		return false;
-> > +	}
->=20
-> Ah, Now I see the point of checking the idx first, but can we rather call=
- it
-> with idx >=3D 1 to begin with?
->=20
-We would still have to check it when calling i2c_dw_msg_is_valid(), as the
-first message after a STOP don't have any limitation. It is not just for
-protecting against an out-of-bound access to msgs. The validity of a
-message is in relation to the previous message in the same transaction.
+Please fix the NULL deref instead. This is a property of the firmware
+rather than a device.
 
-I will change the comment to make this clearer.
+>
+> David
+>
+> [1]
+> https://lore.kernel.org/ath10k/54ac2295-36b4-49fc-9583-a10db8d9d5d6@freebox.fr/
+>
+> On 11/11/2025 13:34, David Heidelberg via B4 Relay wrote:
+> > From: David Heidelberg <david@ixit.cz>
+> >
+> > There are firmware versions which do not support host capability
+> > QMI request. We suspect either the host cap is not implemented or
+> > there may be firmware specific issues, but apparently there seem
+> > to be a generation of firmware that has this particular behavior.
+> >
+> > For example, firmware build on Xiaomi Poco F1 (sdm845) phone:
+> > "QC_IMAGE_VERSION_STRING=WLAN.HL.2.0.c3-00257-QCAHLSWMTPLZ-1"
+> >
+> > If we do not skip the host cap QMI request on Xiaomi Poco F1,
+> > then we get a QMI_ERR_MALFORMED_MSG_V01 error message in the
+> > ath10k_qmi_host_cap_send_sync(). But this error message is not
+> > fatal to the firmware nor to the ath10k driver and we can still
+> > bring up the WiFi services successfully if we just ignore it.
+> >
+> > Hence introducing this firmware quirk to skip host capability
+> > QMI request for the firmware versions which do not support this
+> > feature.
+> >
+> > Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > Signed-off-by: David Heidelberg <david@ixit.cz>
+> > ---
+> >   drivers/net/wireless/ath/ath10k/core.c |  1 +
+> >   drivers/net/wireless/ath/ath10k/core.h |  3 +++
+> >   drivers/net/wireless/ath/ath10k/qmi.c  | 13 ++++++++++---
+> >   3 files changed, 14 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/net/wireless/ath/ath10k/core.c b/drivers/net/wireless/ath/ath10k/core.c
+> > index 7c2939cbde5f0..7602631696798 100644
+> > --- a/drivers/net/wireless/ath/ath10k/core.c
+> > +++ b/drivers/net/wireless/ath/ath10k/core.c
+> > @@ -773,6 +773,7 @@ static const char *const ath10k_core_fw_feature_str[] = {
+> >       [ATH10K_FW_FEATURE_SINGLE_CHAN_INFO_PER_CHANNEL] = "single-chan-info-per-channel",
+> >       [ATH10K_FW_FEATURE_PEER_FIXED_RATE] = "peer-fixed-rate",
+> >       [ATH10K_FW_FEATURE_IRAM_RECOVERY] = "iram-recovery",
+> > +     [ATH10K_FW_FEATURE_NO_HOST_CAP_QMI_REQ] = "no-host-cap-qmi-req",
+> >   };
+> >
+> >   static unsigned int ath10k_core_get_fw_feature_str(char *buf,
+> > diff --git a/drivers/net/wireless/ath/ath10k/core.h b/drivers/net/wireless/ath/ath10k/core.h
+> > index 73a9db302245d..b20541e4046f8 100644
+> > --- a/drivers/net/wireless/ath/ath10k/core.h
+> > +++ b/drivers/net/wireless/ath/ath10k/core.h
+> > @@ -838,6 +838,9 @@ enum ath10k_fw_features {
+> >       /* Firmware support IRAM recovery */
+> >       ATH10K_FW_FEATURE_IRAM_RECOVERY = 22,
+> >
+> > +     /* Firmware does not support host capability QMI request */
+> > +     ATH10K_FW_FEATURE_NO_HOST_CAP_QMI_REQ = 23,
+> > +
+> >       /* keep last */
+> >       ATH10K_FW_FEATURE_COUNT,
+> >   };
+> > diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
+> > index 8275345631a0b..5dc8ea39372c1 100644
+> > --- a/drivers/net/wireless/ath/ath10k/qmi.c
+> > +++ b/drivers/net/wireless/ath/ath10k/qmi.c
+> > @@ -819,9 +819,16 @@ static void ath10k_qmi_event_server_arrive(struct ath10k_qmi *qmi)
+> >               return;
+> >       }
+> >
+> > -     ret = ath10k_qmi_host_cap_send_sync(qmi);
+> > -     if (ret)
+> > -             return;
+> > +     /*
+> > +      * Skip the host capability request for the firmware versions which
+> > +      * do not support this feature.
+> > +      */
+> > +     if (!test_bit(ATH10K_FW_FEATURE_NO_HOST_CAP_QMI_REQ,
+> > +                   ar->running_fw->fw_file.fw_features)) {
+> > +             ret = ath10k_qmi_host_cap_send_sync(qmi);
+> > +             if (ret)
+> > +                     return;
+> > +     }
+> >
+> >       ret = ath10k_qmi_msa_mem_info_send_sync_msg(qmi);
+> >       if (ret)
+> >
+>
+> --
+> David Heidelberg
+>
 
-> >  	return true;
-> >  }
-[...]
 
-> >  	{ .compatible =3D "baikal,bt1-sys-i2c", .data =3D (void *)MODEL_BAIKA=
-L_BT1 },
-> > +	{ .compatible =3D "mobileye,eyeq6lplus-i2c", .data =3D (void *)NO_EMP=
-TYFIFO_HOLD_MASTER },
->=20
-> Are you expecting more with this? I would rather use a compatible matching
-> instead of the flag,
->=20
-The IC_EMPTYFIFO_HOLD_MASTER_EN parameter is part of the DesignWare IP, it
-is not specific to Mobileye. Given that typical i2c accesses (single read,
-single write, write-then-read) work on non-PREMPT_RT without this patch, I
-suspect there are other controllers that lack the ability to hold the clock
-when the FIFO is empty that could benefit from this flag.
-
-> >  	{ .compatible =3D "mscc,ocelot-i2c", .data =3D (void *)MODEL_MSCC_OCE=
-LOT },
-> >  	{ .compatible =3D "snps,designware-i2c" },
->=20
->=20
-
-Best regards,
-=2D-=20
-Beno=C3=AEt Monin, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-
-
+-- 
+With best wishes
+Dmitry
 
