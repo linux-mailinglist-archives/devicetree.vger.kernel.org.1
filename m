@@ -1,77 +1,75 @@
-Return-Path: <devicetree+bounces-241855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F93AC8398C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:59:37 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24705C839C0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 08:03:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A7CA3AB84C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 06:59:32 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9EECA34752D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10E332D2384;
-	Tue, 25 Nov 2025 06:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DECE42D0C9B;
+	Tue, 25 Nov 2025 07:03:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="RbFACwaL"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="JRPRAfPo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
+Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15B422D0C72
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 06:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9CD92874F5
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 07:03:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764053965; cv=none; b=V14oKdqeI2/P9lM7+nqQgAcsHVt5xhECS75H3Kr3R5yWc58K/qXNtRonkkCSHR+UsnmbTLWIByjmwQ/6uathQOeUpYDCK/p+nLJC0O/Bu1tgIBOZg/B0o9vHv3J57kjhn37qnXlGRVtoNTe+IcPRnQZWrVToUwFhKfd6Kx+j4Pk=
+	t=1764054202; cv=none; b=nfoioTAJyeoZV8sDYP3UOCay9JyERmkO4vFYHLNZ6MrwtyzCMkGb0saMum8otDDIu3LwlsgccLM55ETyJiXcRvQDu91G447tv9Z0mQhhoK3EXS7bKR7Ua+cBQYBqbirEZ8UZvd8Vb7LB2AcwxFdxmPZcOn+CG8FltfNv/B8Kbq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764053965; c=relaxed/simple;
-	bh=A8WtecfCLG/eG0f5MBFzaYx7n/CF2fJamNaFi94TsI0=;
+	s=arc-20240116; t=1764054202; c=relaxed/simple;
+	bh=oUq0yIY8y9uhoiTd7mBKtu3+DyecKsSfAdTK1y+jcUw=;
 	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=gw5uMvXZf4ZQe8025ivk0eNiiaOzKFrcfcecxbIYbzXJUPmV75z/X8vLQ4wlYsTsyIYhXKTmjpvXz/KRsr+hJHiFYrOlY1OTAIbGpJfAipEhmqVQlRYihMGUgGThyXB5kyhtDTFPTlleWlnS2gTJxMReWTMr3Sxd3XoVU/I+Acw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=RbFACwaL; arc=none smtp.client-ip=91.218.175.177
+	 In-Reply-To:Content-Type; b=pD5mOpWzAKzOM6fa9Y01+hElAoiIrAxWnCGreHPfSJTzA4j8/v92JtHJE5q+Xx6I9KFxPhPY2/csg4d/YCEJVOuuIWPq7L5Cdy6aTLUjSMaLEOPgjQj+2l0R0cJ9IQC4H+WNh4HrROSIh4W9tgjd+mnzHHIoYRSwHjKipaTmVRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=JRPRAfPo; arc=none smtp.client-ip=91.218.175.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
-Message-ID: <b0a488db-7965-4b3d-9f12-5effb7b0e3e6@postmarketos.org>
+Message-ID: <33a8c6be-6946-41e3-aad7-fcd572e32a66@postmarketos.org>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1764053950;
+	s=key1; t=1764054189;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=XUudSo+Hu+T3sFFrzKApdVsT231wP8h5fao4Ts27aN4=;
-	b=RbFACwaLxsaWTyOYQRYz4fdRVzcmJ2Cd7kJu9xehcZ/GrLyeXBm7FUlkg1vqRjL66xibg4
-	31/PKuuRA9SSZR9p9cikw8w1dhMMIkHWD6/z9Fx2t4HK6DY8sJEZGwiZRWtXEKX8QIkv5Z
-	v5jDkyLuoQ09DL1tjY7pPYoEi1ohOGAL7G0wfZI650ta2lNBDThb7px1uc5NWZU9KpFxMd
-	b5fFYN2Etq0UZYf8rMs+JwD79yVokSULHUfwdD+XgM0lXseiGCBRKyYHfgOiVF3YyD+Skv
-	914qgtSl5zi6w8z6igVxZhNAbTOTEoIuVQQMXbTpgC77YVgg+UJRWdxYmYYTDQ==
-Date: Mon, 24 Nov 2025 22:59:04 -0800
+	bh=8ZtbG4XYsDqlCvYnjir3vKy2J6xrwor92yZ1D35ysmU=;
+	b=JRPRAfPopHyckZmsphbNveFeTSf0JNPgGMy25aQbcuAqaxGi2159ssntskqldZoZmHfZZX
+	I+9ae27F+jIxuY+/2YkGiTHtPLfzt1ViLcyn63hG9RU5h4yICwGDZseelZqAKRzUNAdxlf
+	7GkRDfxT8mOTRCAeqWzrjwhky4fkHodOWoJLA+Pk0Aga6MtN3BVrYLpbQ6AlkCLQ5tCUr6
+	UFWflGh3lHjYPs57QiaRHSXMvOLJJfxoPe+ihmQPDq7VPKfAYZYXxW9VYFYIOVVycVQKFu
+	MIuaCHz4oC6Zeg9+gGlmXFL+l9fN0r4+6LnuXt3MpfQkQaSw411wTLTP3zyiwA==
+Date: Mon, 24 Nov 2025 23:03:02 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-To: amit.pundir@linaro.org
-Cc: ath10k@lists.infradead.org, bjorn.andersson@linaro.org,
- davem@davemloft.net, devicetree@vger.kernel.org, jeffrey.l.hugo@gmail.com,
- john.stultz@linaro.org, konradybcio@gmail.com, kuba@kernel.org,
- kvalo@codeaurora.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org, robh+dt@kernel.org,
- sumit.semwal@linaro.org
-References: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
-Subject: Re: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap QMI
- requests
+To: devnull+david.ixit.cz@kernel.org
+Cc: amit.pundir@linaro.org, andersson@kernel.org, ath10k@lists.infradead.org,
+ conor+dt@kernel.org, david@ixit.cz, devicetree@vger.kernel.org,
+ jjohnson@kernel.org, johannes@sipsolutions.net, konradybcio@kernel.org,
+ krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+ phone-devel@vger.kernel.org, robh@kernel.org
+References: <20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz>
+Subject: Re: [PATCH v2 0/3] ath10k: Introduce a devicetree quirk to skip host
+ cap QMI requests
 Content-Language: en-US
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: Paul Sajna <sajattack@postmarketos.org>
-In-Reply-To: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
+In-Reply-To: <20251110-skip-host-cam-qmi-req-v2-0-0daf485a987a@ixit.cz>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Migadu-Flow: FLOW_OUT
 
-+1 on this from me. I need it for my patch-series for LG G7 ThinQ 
-(judyln) as well.
-
+Also required for 
 https://lore.kernel.org/all/20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org/T/#m90e8087d4388e588b71a0eff01b88f1721f73b73
 
 
