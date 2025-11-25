@@ -1,137 +1,77 @@
-Return-Path: <devicetree+bounces-241854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 118D0C83962
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:54:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F93AC8398C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 07:59:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7F37D4E8969
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 06:53:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A7CA3AB84C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 06:59:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBB12D94BE;
-	Tue, 25 Nov 2025 06:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10E332D2384;
+	Tue, 25 Nov 2025 06:59:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="Zk6MyQBz"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="RbFACwaL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4102D97B8
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 06:51:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15B422D0C72
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 06:59:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764053477; cv=none; b=CxUenOK2ijpTrgefxc4NCyF9W6pan7/psjOmZ7o5D1YQaJxl461pr589LtwbqzCUf2091w3dF8fa2ghcw3jcaP51pNVixxP5WjJWZ6HGgwu2ohEibZqLloogy+9MkwvEWXiZvmJ76iKn3vMwpG4MB+rq+57pFMSPSJgi6r14AyA=
+	t=1764053965; cv=none; b=V14oKdqeI2/P9lM7+nqQgAcsHVt5xhECS75H3Kr3R5yWc58K/qXNtRonkkCSHR+UsnmbTLWIByjmwQ/6uathQOeUpYDCK/p+nLJC0O/Bu1tgIBOZg/B0o9vHv3J57kjhn37qnXlGRVtoNTe+IcPRnQZWrVToUwFhKfd6Kx+j4Pk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764053477; c=relaxed/simple;
-	bh=myP9t/M0s1HOxL8j5RESJUEmJJGzpInLbX71tw+vB2E=;
-	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
-	 In-Reply-To:References; b=VIzGmrtpgwt3CKNK/eQ3xJdIgwIL7qBzxCgl9tLExLm62qYn4CbD7aT6liFUa3VTel/JF5S//VboCIK1RAdWq0qjDbIpGrPfydJbRdUlMJgOJYuZq+0aWBdCyZ2BvWbp8FA7C5EBNgmphC794qHujZT+UDlp2LGsmJneJkq8BVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=Zk6MyQBz; arc=none smtp.client-ip=91.218.175.188
+	s=arc-20240116; t=1764053965; c=relaxed/simple;
+	bh=A8WtecfCLG/eG0f5MBFzaYx7n/CF2fJamNaFi94TsI0=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=gw5uMvXZf4ZQe8025ivk0eNiiaOzKFrcfcecxbIYbzXJUPmV75z/X8vLQ4wlYsTsyIYhXKTmjpvXz/KRsr+hJHiFYrOlY1OTAIbGpJfAipEhmqVQlRYihMGUgGThyXB5kyhtDTFPTlleWlnS2gTJxMReWTMr3Sxd3XoVU/I+Acw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=RbFACwaL; arc=none smtp.client-ip=91.218.175.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+Message-ID: <b0a488db-7965-4b3d-9f12-5effb7b0e3e6@postmarketos.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1764053950;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=XUudSo+Hu+T3sFFrzKApdVsT231wP8h5fao4Ts27aN4=;
+	b=RbFACwaLxsaWTyOYQRYz4fdRVzcmJ2Cd7kJu9xehcZ/GrLyeXBm7FUlkg1vqRjL66xibg4
+	31/PKuuRA9SSZR9p9cikw8w1dhMMIkHWD6/z9Fx2t4HK6DY8sJEZGwiZRWtXEKX8QIkv5Z
+	v5jDkyLuoQ09DL1tjY7pPYoEi1ohOGAL7G0wfZI650ta2lNBDThb7px1uc5NWZU9KpFxMd
+	b5fFYN2Etq0UZYf8rMs+JwD79yVokSULHUfwdD+XgM0lXseiGCBRKyYHfgOiVF3YyD+Skv
+	914qgtSl5zi6w8z6igVxZhNAbTOTEoIuVQQMXbTpgC77YVgg+UJRWdxYmYYTDQ==
+Date: Mon, 24 Nov 2025 22:59:04 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1764053463;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gQW8nMaLRGDP+1eaBJ0GqDH7FnxtmP/dDngFs5V75Nc=;
-	b=Zk6MyQBzI03GBNnrRNHdB6S/tLonmXEK42hwG7LGubtwJezLYYNw9k+3vXG38j4IkoAGuI
-	GFJQ9rdrNkntEwK92gKPN9r7rSHVYDT+V1XXRbvGGuCuRP0Ga3S1zyjxhM2O6O/dDcPIdq
-	6y7I8mOTaYn5o3xv5N4S5CPou9RfB/PXf9Jye2OSUXeteeRE03CDUxWuTBUf4FqPqKYFDQ
-	oUY9vDDxckmquCKosIbvzWqO2zjlZPoQB8TNgPpSEQjcwvUz3cc32h6km7WMhMtM97DvBx
-	7s6SMtkDfL/nLU32AabDMepA35zxo9E7eEUVuACKyqpnB+bXJCeWUKs0WE0Y2A==
-Date: Tue, 25 Nov 2025 06:51:00 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+To: amit.pundir@linaro.org
+Cc: ath10k@lists.infradead.org, bjorn.andersson@linaro.org,
+ davem@davemloft.net, devicetree@vger.kernel.org, jeffrey.l.hugo@gmail.com,
+ john.stultz@linaro.org, konradybcio@gmail.com, kuba@kernel.org,
+ kvalo@codeaurora.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org, robh+dt@kernel.org,
+ sumit.semwal@linaro.org
+References: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
+Subject: Re: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap QMI
+ requests
+Content-Language: en-US
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Paul Sajna" <sajattack@postmarketos.org>
-Message-ID: <fae984c564f240b72bc65bf3eab679587a9d90c4@postmarketos.org>
-TLS-Required: No
-Subject: Re: [PATCH v3 07/11] arm64: dts: qcom: sdm845-lg-{common, judyln}:
- Add wifi node
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob 
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "David Heidelberg" <david@ixit.cz>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
- <system64fumo@protonmail.com>, "Christopher Brown"
- <crispybrown@gmail.com>
-In-Reply-To: <998d44a8500132bc48e6882a5f7b19b45286a965@postmarketos.org>
-References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
- <20250928-judyln-dts-v3-7-b14cf9e9a928@postmarketos.org>
- <f58493a9-6def-4610-9c3e-d6a877dc23d3@oss.qualcomm.com>
- <d38801bc77ad00442b1669ea252ae30a5c6af5b4@postmarketos.org>
- <7661d9d9-eca3-4708-8162-960df0d7f6c7@oss.qualcomm.com>
- <998d44a8500132bc48e6882a5f7b19b45286a965@postmarketos.org>
+From: Paul Sajna <sajattack@postmarketos.org>
+In-Reply-To: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Migadu-Flow: FLOW_OUT
 
-November 25, 2025 at 6:40 AM, "Paul Sajna" <sajattack@postmarketos.org ma=
-ilto:sajattack@postmarketos.org?to=3D%22Paul%20Sajna%22%20%3Csajattack%40=
-postmarketos.org%3E > wrote:
++1 on this from me. I need it for my patch-series for LG G7 ThinQ 
+(judyln) as well.
 
+https://lore.kernel.org/all/20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org/T/#m90e8087d4388e588b71a0eff01b88f1721f73b73
 
->=20
->=20October 2, 2025 at 9:37 AM, "Konrad Dybcio" <konrad.dybcio@oss.qualco=
-mm.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%2=
-0%3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote:
->=20
->=20>=20
->=20> On 10/2/25 6:51 AM, Paul Sajna wrote:
-> >=20=20
->=20>=20=20
->=20>  October 1, 2025 at 9:14 AM, "Konrad Dybcio" <konrad.dybcio@oss.qua=
-lcomm.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%2=
-2%20%3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote
-> >=20=20
->=20>=20=20
->=20>=20=20
->=20>  >=20
->=20>  > As the dt-checker points out, there is no such property
-> >  >=20
->=20>  > If your wi-fi works regardless of that, you probably don't need
-> >  > to set the one you intended to
-> >  >=20
->=20>  > Konrad
-> >  >=20
->=20>=20=20
->=20>  Perhaps this only exists in the postmarketos tree, but it definite=
-ly exists, and doesn't work without it. I'll remove it for upstreaming fo=
-r now but hopefully someone sorts that out. upstream.
-> >=20=20
->=20>  So you didn't test the tree you sent? :/
-> >=20=20
->=20>  fwiw
-> >=20=20
->=20>  drivers/net/wireless/ath/ath10k/snoc.c:
-> >  qcom,snoc-host-cap-8bit-quirk
-> >=20=20
->=20>  Konrad
-> >=20
->=20with qcom,snoc-host-cap-8bit-quirk I get=20
->=20```
-> ath10k_snoc 18800000.wifi: msa info req rejected: 90
-> ```
->=20
->=20without it I get=20
->=20```
-> ath10k_snoc 18800000.wifi: host capability request rejected: 1
->=20
->=20```
->=20
->=20Please help me understand how I should proceed.
->
-
-I guess I'll just voice my support in https://patchwork.kernel.org/projec=
-t/ath10k/patch/1601058581-19461-1-git-send-email-amit.pundir@linaro.org/ =
-for now.
 
