@@ -1,312 +1,216 @@
-Return-Path: <devicetree+bounces-241815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC8FC830BE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 02:50:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E28C8311A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 03:11:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 600D13475A1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 01:50:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2D5F94E15AF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 02:11:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C8A86348;
-	Tue, 25 Nov 2025 01:50:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793B119EED3;
+	Tue, 25 Nov 2025 02:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="I/2saI4I"
+	dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b="f052gDtU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11020129.outbound.protection.outlook.com [52.101.69.129])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 793DE49659
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 01:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764035416; cv=none; b=OqALUqsPkoUAFJFZIYakbklY2Il+H7VWGedePZGwGdSwhj23ONRRW39a40U39FXNOHoFXz+JvPvOy7Dj1V79eyXI4Vw+g0dA3d9SIJ/k3kwY4rQKoIYCUlQfu5ovuI6EKnheIW3+yB64EtZt+i8jC0Syz83011V6OoVdbQTVOOI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764035416; c=relaxed/simple;
-	bh=sa5gZ8o2hZhgM8t0SxAZs8zWrbOBTRpLrJI3JHm7Stc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=RVVdD20wDxEBMwBEN9JHscz/heqQvvVRA0BszOX6nqqV4MIlqsUaX7yAkgt5xMs7HJ6hLYh0UlT8vdbzZY6LQKRS4rUOTFkAWUmO3hetxrKUBMCu82VOca2mgg3v9gz9KOHWsoYHyaDFQ0x0usK3OfSpqLOMrLbRqfORusXP2HE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=I/2saI4I; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-343774bd9b4so3744797a91.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Nov 2025 17:50:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1764035413; x=1764640213; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4BWHUL2GN8wanhvZvhL4KmgPjjWd1azXkQipkoFyfG8=;
-        b=I/2saI4Ih6eP0HAevw/JuJrImTzmoCs3BWtZuerybxXeyiaf5QHkFUCoBkmEnhR9vt
-         0Ezg33Yd3f6fsJVTN4jE9Q8+AOOcxgtFjyx6sQF9MXqeZwCjamCWUDlZ8e/Y0wGKHYN5
-         JsqZuErvElvGS22wpt6WKRM5Psl1SFCkYJJPOnmzBi+LKhD3FFc9IlLK0YYtmYL0rEBl
-         e4XxAiv7zfyugcGiAVMc6qKOVIGxkubdcHbh4iacxMZSRazuZd0Xt1qRscZ9SbZcm0cR
-         RPJy7R17Pu3BDVvqbYisTngE+2eyPEZaIoRs4b55tJOheqtbtClo8WXxiE41vtgxst0D
-         ULyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764035413; x=1764640213;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4BWHUL2GN8wanhvZvhL4KmgPjjWd1azXkQipkoFyfG8=;
-        b=U1fwAu3v8lPKXzV9cLrR5TCDF44tBmW+zcuEjvOkw4IlYwjN5smAo5dTFvPp9aI7Rm
-         dgBYKwSp/Hu9RbRpyRztZ/ltwjm7p7yqzwGp0BDka91FHpYwXne0rKotANBkt+Gr2O2p
-         N0SWRwJRjizAODtEipDx9qguDE+3SE0ZGqLgo41FrP0xWRi+AB8LE7r5aDqlHq0AQPvm
-         JdMArIVjvfMsa/Pv4FHaQ5ZvsK5u0I76/LYcbI2etMuGuWMKLInSHJzikq2O4pY95VX2
-         x8+FTFs8yFXloyzCLs5YAhJtKMEZjeKXiMbvy/S3sCGW0XI+1rWBw2Nfhq9KL3pkpDtE
-         8I3g==
-X-Forwarded-Encrypted: i=1; AJvYcCWw7k2ah5hiWVOHKSx8OEOuodld2d9zahhAXSUzQpxxXLCK5mzkxMb0yYsa/3/v66wARjNY3VYtp/vn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkrzgrNSXHHHfhCBxWgRlOn+Geut7iMO0ek7SN63f1am+h9WK4
-	KeKAcymAQ4b7GsW7r/Ve25XazKv6j7YE9mV9IZzefJEu+1NO24qczAvoCJoicQS6tGY=
-X-Gm-Gg: ASbGncvuiWppeza1EmpGl2/4W3ixlAq92LY/c6KY41pK+/ZHOEejhBymPGc4unCuzpb
-	3imgth8w7EbhGh2wyPmVtsg2ZApYttjgaqcs+XeoycnNl6U+uMl3JXy0ENSvqqhsV7zfnu+jpjt
-	LrfbqUchZZWqVSPY0xR30qetaXf0xcrS99JI8ES7uX+mZ2/SJ6B2JIb1bPhhlIcQHSj4Miwx4Zs
-	TKSYJm4Ta03NyZMnxPgCHT+weUhQzfN71kaY68WJUUTshbfTC6Xuc1FUhjZOIRSxW2gQ0Ksrhfr
-	AWqP+7tGafGBj/cPR+a1v6arYo7bnPjvRyaBYJck+llw0xCKJ7Gbd25cHy8Gvt2ugbvoXOraqrm
-	+JjVkFAsK2vAUGcF27zg3rv0QK9/moNqu//PIwPtBR7X9Yjd3ybDMVMl1eSLuRg4nhkAeNYaNqh
-	17Gl8tU0sS
-X-Google-Smtp-Source: AGHT+IEHU6A+/8n3mB4jZSrnb+icOKiIn2/QWEg33wEEYpctM5v8n3SmiGWeZYOnJ42kEqB3e5fFuw==
-X-Received: by 2002:a17:90b:5628:b0:32d:e07f:3236 with SMTP id 98e67ed59e1d1-34733f30dccmr13629885a91.22.1764035412693;
-        Mon, 24 Nov 2025 17:50:12 -0800 (PST)
-Received: from localhost ([71.212.208.158])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34727a36bbfsm14828683a91.0.2025.11.24.17.50.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Nov 2025 17:50:11 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Rob Herring <robh@kernel.org>, Herve Codina <herve.codina@bootlin.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC] of: Add of_parse_map_iter() helper for nexus node
- map iteration
-In-Reply-To: <CAL_Jsq+2sFzQb8j5bBWbwgyYn5apLTfWOTZW3+9n74uVyph16A@mail.gmail.com>
-References: <20251119-topic-lpm-of-map-iterator-v6-18-v1-1-1f0075d771a3@baylibre.com>
- <CAL_Jsq+2sFzQb8j5bBWbwgyYn5apLTfWOTZW3+9n74uVyph16A@mail.gmail.com>
-Date: Mon, 24 Nov 2025 17:50:11 -0800
-Message-ID: <7hjyzedgoc.fsf@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A665718D658;
+	Tue, 25 Nov 2025 02:11:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.129
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764036673; cv=fail; b=IJDy/s98lTckBDXUhDmiaeSlv+uTlii6ZCgV2K7td692UMBrD5/vINB0lWRoiNqV16bMSlxegqDPTxaMpiqPhv1haPbu780nCi1eIrCUjpVp6XehqQtnq2pN9LOK8kbu8+NA4xMM0Gpa/QZXCAPRBxLmT0GEyxVd6E5dXm5Q5Ac=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764036673; c=relaxed/simple;
+	bh=CeTAXTX4cq9sAn8fYJyjhuXPxuLjble3frbdrwO/lpY=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=hBYopCwOcGivLGosYGHAih32jBIujHbjzgXOtvDQQODGulR3Oxq9EJ+hcl/llq8+PAgViaTPZbSQtJhFfThCaEpE6XaS1cKFzy/DUqWZpIvwpjTT2LtpU2oEem65/IajLgnUBr/9tiUmMCuU0OYPbZXVRGjL4XPhYs7nzeqExPI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b=f052gDtU; arc=fail smtp.client-ip=52.101.69.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=p0IO9pnN+5xGAd4lUHJXgW/T8113k/UFnVM7SpCyxCgigZ0w6AZLsMf4LptokE/lJwpvDZfS2qx8SPBYgrYyJMxd40epNkiJH4sy4dq5Aetm3l1WmGJEF2OiJGrqip24AjuDXBQoWtPGZjmeQ4g00bCyC5YL2/JY+yNQnVHG5k3PuNWuK1nbaWM51rktY1uz+J638kQOgEXlAJcvjIYXAXELf1UsoBnThzDjBYse3e9lIqk2vuvE7b97bGU5wTfrjXnuHTeGYpMZzS1ZPx2hsUJd9A7fDl6l1gCtgSbzilj2LmBERF+oi++E1F3soetSFiLOegiS0Yhqs1ATaBtF2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lz53KMss4AxZO/tOna3TMjo3QKDwozA7LQiIUQKAhTU=;
+ b=M0sCHYr4RlU5/ikJXwvkggqSy2d2K8tvtxpCI9lCmMSfHb2YFGFufVKIFxVO132eXKRe8jElELiKgVC7B6rB3C5cqAzugpuOy263ooq+rT/gQcu+J/GYBNLsIVwjRxBQ7DFH1Yhp366ogqaMDBo3IJ7ml2SNugLaMyzkRUPjMdC+vO5uhyvcwBNC+WTjeDm5uBCReQUpI6BfPGii+xezy0euF3smpqXoB4x+FkPHv+scXDlF6qGpjKHppzxKPKVkKYYbJfOopN2K4lA/sU6ajElM+z6oG6ma20/bFcPbuMqbSVmsK3BocPq7X4/FiyD7aSN+IEMtu0YLDjPkjsSKLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
+ dkim=pass header.d=iopsys.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lz53KMss4AxZO/tOna3TMjo3QKDwozA7LQiIUQKAhTU=;
+ b=f052gDtUbLKkbSFVpLEyuWsIBBrhBrSrGKyaFIBJUMtbHNjIPoThJiSWsEu/XVy6Eo162AO8x7LeGHGTT64RcYCX8COOg9qEKlH+aFnytcj6jqz5JnSRO8MWbabTTH6Ab4hnhtA1zvFowdEh5WUP+S64gYWHTYXKaPkHMo/1cqV5ub5NnNBVz/IY0+r4vwl3Sn58kLtY6J6jvl5nm1ViJVOBT2XDbh6m0pExz8EGs91BTvHaiyX65OipeMI7az9ImzRlVmQKT9HQWEfX+p5OkJXzOmdKIW1/e6O697sV/Sdb03BLDyfV9Bb4DREhDo7B1vQeb0Er4KRd4intFeJq4g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=iopsys.eu;
+Received: from GV2PR08MB8121.eurprd08.prod.outlook.com (2603:10a6:150:7d::22)
+ by GVXPR08MB10638.eurprd08.prod.outlook.com (2603:10a6:150:14b::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Tue, 25 Nov
+ 2025 02:11:00 +0000
+Received: from GV2PR08MB8121.eurprd08.prod.outlook.com
+ ([fe80::4cd3:da80:2532:daa0]) by GV2PR08MB8121.eurprd08.prod.outlook.com
+ ([fe80::4cd3:da80:2532:daa0%3]) with mapi id 15.20.9343.016; Tue, 25 Nov 2025
+ 02:11:00 +0000
+From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+To: Lorenzo Bianconi <lorenzo@kernel.org>,
+	Ray Liu <ray.liu@airoha.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Cc: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
+	Andreas Gnau <andreas.gnau@iopsys.eu>
+Subject: [PATCH v4 0/3] spi: airoha: add support of en7523 SoC (for 6.19)
+Date: Tue, 25 Nov 2025 05:10:48 +0300
+Message-ID: <20251125021051.857159-1-mikhail.kshevetskiy@iopsys.eu>
+X-Mailer: git-send-email 2.51.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: GV3P280CA0099.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:8::34) To GV2PR08MB8121.eurprd08.prod.outlook.com
+ (2603:10a6:150:7d::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR08MB8121:EE_|GVXPR08MB10638:EE_
+X-MS-Office365-Filtering-Correlation-Id: f2236cbe-f1a3-40aa-16df-08de2bc7e0a6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|7416014|366016|1800799024|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?UJfn86p40Xf7TfJGIfP+nLfXo9btM9y6vx7OIhtsFLyK1iaXcabPeEljMnnd?=
+ =?us-ascii?Q?FZTxELkOquTuNb422XY1fk5AqP8p77kqH+0Y2PqQ21MblkP0FGSYr1Tgc8uC?=
+ =?us-ascii?Q?tQH6vJzaYS+qDl40XH4C2U7SZFzAvy/GUVR/3NMMmXbtVNxuXnZMhriONUcV?=
+ =?us-ascii?Q?rAzjbm49WEdpeqdF3Uhps/g4u6aqjU4+ralrvQwgIyICEM6+Ycd03N1s7Xyf?=
+ =?us-ascii?Q?mBH0DbiabL7eWtgPgNGiM617tN8qP5dkq9j/rIy/gfuqozHYoiV1ozsN3oNg?=
+ =?us-ascii?Q?CpxQNkFVF0Y2mE6yHxWYxLgJSGhDGfgP0+rMv04Md0CrD6sWL0gtlX/TvCaE?=
+ =?us-ascii?Q?ckyuy/4EEzYLXHJogEmXjyxxgj73HL7vWPF5SCGdpWHSYGrQuS1iU+Xrq05H?=
+ =?us-ascii?Q?P5Mz+69SCCdKyVe/xWhzcmMg6qGaUAASlwwA4GmdDb8V9HtzzzmmarexG7e7?=
+ =?us-ascii?Q?6Nm+sMcIZ9zoxHPwDk089T473+qkMRBAM8gu52kbRUxT8HN74h42n9zs4hb0?=
+ =?us-ascii?Q?bsakX6i1hcT9iuf2BtHw1D/rT4CUoPpe1XP1rAsIkLAnmyCvivndhUWv82a5?=
+ =?us-ascii?Q?CQ51C66zZSUjmU/pgZrCRb2gqvlIAGkLXDRveXwFDmFG/bOue9qI1vid3/wf?=
+ =?us-ascii?Q?nfAeBU1yjofEuzXwFeYLTp8W1pxdRFZQPdU7gFWmQpN5vARhjCR+R2Q78c4F?=
+ =?us-ascii?Q?LhMTpIEDoB3WoJ5ALckOZOLRkWESN0kCbR5sDqnhapzaAamK60k0/X89Ahx8?=
+ =?us-ascii?Q?mg8ohNb6nIclIbusBMjYRHpqbj+gc5G3kkWnCnyIaqKAS6NcrVUpTBQMpVc1?=
+ =?us-ascii?Q?hZAWRmPUvFTYWcZKr7O/A8yHdU8FO5r1ylYWaMoBV66p85KkntjQKN+AiZgC?=
+ =?us-ascii?Q?x2VI/SlmblAqsd1/S0DEQT90YM+4zXgURjVhITEnjGU4jv4tludqIAL+swk7?=
+ =?us-ascii?Q?hvYb3X3qzsKzzlTrzuqY0qMaqOQLW9r5FHaiF0bO7m5RcEK/6+OV80dt1eq8?=
+ =?us-ascii?Q?VfxiAgRKzxMlUhqbBH1Ps5sA042vYiMEWRRYNvQR2BQK7NoiykXnNqZuXxbM?=
+ =?us-ascii?Q?En9/OKSMfoR+uJyhOu3glg9ISVJj6mubXzMpRZT9+pvwCus04vJcLu68VZIv?=
+ =?us-ascii?Q?nBMs6UbkWIwud/zY7PNt03eTOmfG6ghYgL4papxZaEKHsmCnDr3avFFniGYx?=
+ =?us-ascii?Q?mPV+aYMuIsyAQvFFGZjqq2drD5Ad266OC0gD5RLTW9UoLNxskEkssndYQ7Sz?=
+ =?us-ascii?Q?PjluikT6p/vmvGGsPHfVI6dOwx6ZIKfKEBknzQsK/83oj5lozJ/YS2Zmcv8L?=
+ =?us-ascii?Q?3kd2SxoMdKQoBS/jMqR/ajpnrd49J7CeKhn5mqXAxar9gAxV50ohKWdFWwD7?=
+ =?us-ascii?Q?nM7DWEnb4oAmtDf8DSvabYsT3EzbQiwUTo3tIyeNUkkUfK8niYJc+OzxUjM3?=
+ =?us-ascii?Q?LGNL+hnUJ1jglSpLs8/FXziYSR9Z6zbqouk3qYSVnoFmwxG0If48WwBccTLm?=
+ =?us-ascii?Q?UIZ4fLBu2CtUR2hGhsTWKLcdl6jEhnGQFfTxEgnL3VO0BK7lL3u5xWIuFw?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB8121.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(366016)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?hMBofpC1Hm9Yf+G5SxqvJWuIo9NtLGopfmHjLILpL0cXjXEeFaDC/fgqgxhS?=
+ =?us-ascii?Q?QhjVveYidusK47dOR6r3KAS21vRS5fULfy3PMMX0TD7NvREgyMB3zV1uGDII?=
+ =?us-ascii?Q?aeEKL3pboOZLBwn5LMR6VWZLvDb5TJHsTx5qmRxJuUwaZ8uVMqS5BkynG0Il?=
+ =?us-ascii?Q?wJd9rGM+s7/fJ67RRh8rVCEDr7W+Xs6A0BUNyvSP4uImxGJYh6GBFi4aCoL0?=
+ =?us-ascii?Q?rwr2qQ1u9QgGF5b/psJL9+B5Dy64VvpL52x6eF/Yf0QB3VuBjXyAmYPn/aUE?=
+ =?us-ascii?Q?RDFHQc3WW5cy0agvKKbQtxmD+pqc/4qlaKy0WIiA37DO9eE68FdyjXA7qvIy?=
+ =?us-ascii?Q?iQPG+/0T1jAu9lGfO0u1h7oakZ02sQ2NBBO7iXSEv/4nUBI73o9sA2WCqPZN?=
+ =?us-ascii?Q?/L4KDvZtMqD4sLtsC4nmCjCELRfQ00F7PRsMVcuqtriYibjqDymqEDEmfogy?=
+ =?us-ascii?Q?uaF4tzi+nqOio0Yd0RgNwAXi9W3rDIT0Nsa52Jm/Y+HSydqGuqUAJkn20v34?=
+ =?us-ascii?Q?BD8CCl5d3EE9hJGo1cwIUDG7VSm81i7Lfq7oP4ItZ0On88pRusxpRognaLIS?=
+ =?us-ascii?Q?2EVvVo5qGPegX2jnDKnmBea2egfePnTDpBZhDzsQ/l4t0faXZ9NifkB3EL1H?=
+ =?us-ascii?Q?poeCJGOSNRSkoygZzl/CpkQB0ycZb8B+mkU46ZjAkFjJ3k41srLUdftmkrMk?=
+ =?us-ascii?Q?jNVTqn6rFb2HYvwwJBOeZmmHHYtM38AdzTjrMPrka0FuQLIaZ6go6GvUjXwy?=
+ =?us-ascii?Q?JBVkrz8CRe1/Vkk3tTF4olf0cv93r0lOcdRTdj5IIxVN9zxYQQ683QKOr5CV?=
+ =?us-ascii?Q?6As3HEH0Kv6XvcFAJj0IEeQbfvGBQdqCgTj6OqGbFmFv7MWo7pFMtETzLoHK?=
+ =?us-ascii?Q?DbkhWSL6fGVtYYoyzLeX1f2CwVm1/LxtMNbjMVnhPgpezjPzQUYyxbAy0G66?=
+ =?us-ascii?Q?euC+RpCnIrBKZxOfqUt9eA8O5TQv0d2pxMcS8ax5pCqTHl8xDgAfx8GcXMyL?=
+ =?us-ascii?Q?JShpJJ5ge+1SrFNVZdDbo9AoIwswU2Uzj7lNhrlIi8D5yd82OBTU+j053RpY?=
+ =?us-ascii?Q?aoPZJpY53rq2RUENvtl3NACj/XN5JwhwUaPg+8p8ahnInJNNk/8HE6kIHess?=
+ =?us-ascii?Q?uCvjlOz/ccDK++YUhoZ2ebO+i+eh4S28phJqvQvKElW5TpKyZMIi8JItujIK?=
+ =?us-ascii?Q?eAXYjDkig/kmIaBPJG/hTqrsleLPQMgIBF+VqGoa78Z6zfRdHWNmZzzz4O6x?=
+ =?us-ascii?Q?IUXARYZuWBjKlkbUvmgNQdw4ri3/ngjM0Od1W6q/YijPPJskUwzZJpIN12p+?=
+ =?us-ascii?Q?3WGqmntnejFqDzdT5DNBjxVuzcpmec5ZZWWVbZh1f1+3AVmI8ICB8bSjGyUW?=
+ =?us-ascii?Q?D7wsdRosDX2Dtq3fT/Wi/rAei/RaelcgsAaKstJU623GilA7RbeudWXyJjWh?=
+ =?us-ascii?Q?JEloMcX48tgJQYvjBks86pjR6o+WW8mBRhCZ4ihh1j4wSTts3Ia8HTK9h2cR?=
+ =?us-ascii?Q?Cfr1drqkOM/7cqzBRFWw88MbReoIzJOvLxTTiYb8W952gMjDj/2VutKie2eS?=
+ =?us-ascii?Q?WhT7nek2Z0HEnk1L42Is2D81YHNlKzL0Bfr6igtL55ocPqTw2kABwfJF7HCx?=
+ =?us-ascii?Q?M94iy4NDrMXxoE3cwrXgctc=3D?=
+X-OriginatorOrg: iopsys.eu
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2236cbe-f1a3-40aa-16df-08de2bc7e0a6
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB8121.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2025 02:11:00.4194
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: P3+Fnh9XxZh9Iu1jj5bNs4K+DIGkBj8DfDpbDlgmuQndt59qNQW0ycOzUtkrR0ynefU5urHQXa13n8SgtZ5zKCR2a/HUtUjjPScO1/KKZxw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR08MB10638
 
-Rob Herring <robh@kernel.org> writes:
+Airoha EN7523 snfi controller almost identical to AN7581 one, so the same
+driver can be used. The only known difference appears in the very specific
+boot conditions, when attached serial console force EN7523 SoC boots
+in undocumented (reserved) mode. In this mode dma reading of the flash
+works incorrectly.
 
-> +Herve
->
-> On Wed, Nov 19, 2025 at 6:41=E2=80=AFPM Kevin Hilman (TI.com)
-> <khilman@baylibre.com> wrote:
->>
->> Add a new helper function of_parse_map_iter() to iterate over nexus
->> node maps (c.f. DT spec, section 2.5.1.)
->>
->> This function provides an iterator interface for traversing map
->> entries, handling the complexity of variable-sized entries based on
->> <stem>-cells properties, as well as handling the <stem>-skip and
->> <stem>-pass-thru properties.
->>
->> RFC: There's a lot of overlap between this function and
->> of_parse_phandle_with_args_map().  However the key differences are:
->>
->>   - of_parse_phandle_with_args_map() does matching
->>     it searches for an entry that matches specific child args
->>   - of_parse_map_iter() does iteration
->>     it simply walks through all entries sequentially
->
-> There's also this in flight for interrupt-map:
->
-> https://lore.kernel.org/all/20251027123601.77216-2-herve.codina@bootlin.c=
-om/
->
-> There's probably enough quirks with interrupt-map that we can't use
-> the same code. Though it may boil down to handling #address-cells and
-> how the parent is looked up.
+This patch series:
+ * add support of EN7523 SoC
+ * add spinand node to en7523 dts (so spinand flash finally becomes usable)
+ * updates dt-bindings to mark driver as compatible with en7523
+ * disable dma usage to prevent possible data damage if booting in
+   reserved mode was detected.
 
-Hmm, I wasn't aware of this, thanks for point it out.  It looks very
-similar to what i need, except for it's hard-coding the properties as
-"#interrupt-*".
+This patch series was a part of a bigger series:
 
-Seems like this should be generalized to handle the generic nexus-node
-map. But it also seems to rely on an existing function
-of_irq_parse_imap_parent() which is also specific to interrupt maps.
+  https://lore.kernel.org/lkml/20251012121707.2296160-1-mikhail.kshevetskiy@iopsys.eu/
 
-That being said, I'm not sure if interrupt-maps are really special, or
-if they are just a specific case of the nexus node map.  This drivers/of
-code is breaking my brain, so it's more likely that I simply don't
-understand enough of it to know how to do this correctly.
+All patches of the bigger series (except these patches) was already accepted
+to linux-next.
 
-Any more detailed help/guidance for how to go forward here would be
-greatly appreciated.
+Changes v2:
+ * small improvement proposed by Lorenzo Bianconi
 
->> There are likely ways to extract some shared code between these two
->> functions into some shared helpers, but I'm hoping someone more
->> familiar with this OF code can help here.
->
-> I would expect of_parse_phandle_with_args_map() could be implemented
-> in terms of the iterator.
+Changes v3:
+ * split multi-line print on a series of single line prints as suggested by
+   Mark Brown
 
-I'm not really sure how because the of_parse_phandle* stuff just has to
-handle a single phandle, where what I need (and what the imap stuff is
-doing) is iterating over the whole map.
+Changes v4:
+ * improve description of Airoha en7523 SoC specific issue that may
+   lead to flash data damaging.
+ * add fixes tag
 
->> However, before refactoring the shared code, it would be good to have
->> some feedback on this approach.
->>
->> Signed-off-by: Kevin Hilman (TI.com) <khilman@baylibre.com>
->> ---
->>  drivers/of/base.c  | 167 ++++++++++++++++++++++++++++++++++++++++++++++=
-++++++
->>  include/linux/of.h |  13 ++++
->>  2 files changed, 180 insertions(+)
->>
->> diff --git a/drivers/of/base.c b/drivers/of/base.c
->> index 7043acd971a0..bdb4fde1bfa9 100644
->> --- a/drivers/of/base.c
->> +++ b/drivers/of/base.c
->> @@ -1594,6 +1594,173 @@ int of_parse_phandle_with_args_map(const struct =
-device_node *np,
->>  }
->>  EXPORT_SYMBOL(of_parse_phandle_with_args_map);
->>
->> +/**
->> + * of_parse_map_iter() - Iterate through entries in a nexus node map
->> + * @np:                        pointer to a device tree node containing=
- the map
->> + * @stem_name:         stem of property names (e.g., "power-domain" for=
- "power-domain-map")
->> + * @index:             pointer to iteration index (set to 0 for first c=
-all)
->> + * @child_args:                pointer to structure to fill with child =
-specifier (can be NULL)
->> + * @parent_args:       pointer to structure to fill with parent phandle=
- and specifier
->> + *
->> + * This function iterates through a nexus node map property as defined =
-in DT spec 2.5.1.
->> + * Each map entry has the format: <child_specifier phandle parent_speci=
-fier>
->> + *
->> + * On each call, it extracts one map entry and fills child_args (if pro=
-vided) with the
->> + * child specifier and parent_args with the parent phandle and specifie=
-r.
->> + * The index pointer is updated to point to the next entry for the foll=
-owing call.
->> + *
->> + * Example usage::
->> + *
->> + *  int index =3D 0;
->> + *  struct of_phandle_args child_args, parent_args;
->> + *
->> + *  while (!of_parse_map_iter(np, "power-domain", &index, &child_args, =
-&parent_args)) {
->> + *      // Process child_args and parent_args
->> + *      of_node_put(parent_args.np);
->> + *  }
->> + *
->> + * Caller is responsible for calling of_node_put() on parent_args.np.
->> + *
->> + * Return: 0 on success, -ENOENT when iteration is complete, or negativ=
-e error code on failure.
->> + */
->> +int of_parse_map_iter(const struct device_node *np,
->> +                      const char *stem_name,
->> +                      int *index,
->> +                      struct of_phandle_args *child_args,
->> +                      struct of_phandle_args *parent_args)
->> +{
->> +       char *cells_name __free(kfree) =3D kasprintf(GFP_KERNEL, "#%s-ce=
-lls", stem_name);
->> +       char *map_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map",=
- stem_name);
->> +       char *mask_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-=
-mask", stem_name);
->> +       char *pass_name __free(kfree) =3D kasprintf(GFP_KERNEL, "%s-map-=
-pass-thru", stem_name);
->> +       static const __be32 dummy_mask[] =3D { [0 ... MAX_PHANDLE_ARGS] =
-=3D cpu_to_be32(~0) };
->> +       static const __be32 dummy_pass[] =3D { [0 ... MAX_PHANDLE_ARGS] =
-=3D cpu_to_be32(0) };
->> +       const __be32 *map, *mask, *pass;
->> +       __be32 child_spec[MAX_PHANDLE_ARGS];
->> +       u32 child_cells, parent_cells;
->> +       int map_len, i, entry_idx;
->> +
->> +       if (!np || !stem_name || !index || !parent_args)
->> +               return -EINVAL;
->> +
->> +       if (!cells_name || !map_name || !mask_name || !pass_name)
->> +               return -ENOMEM;
->> +
->> +       /* Get the map property */
->> +       map =3D of_get_property(np, map_name, &map_len);
->> +       if (!map)
->> +               return -ENOENT;
->> +
->> +       map_len /=3D sizeof(u32);
->> +
->> +       /* Get child #cells */
->> +       if (of_property_read_u32(np, cells_name, &child_cells))
->> +               return -EINVAL;
->> +
->> +       /* Get the mask property (optional) */
->> +       mask =3D of_get_property(np, mask_name, NULL);
->> +       if (!mask)
->> +               mask =3D dummy_mask;
->> +
->> +       /* Get the pass-thru property (optional) */
->> +       pass =3D of_get_property(np, pass_name, NULL);
->> +       if (!pass)
->> +               pass =3D dummy_pass;
->
-> Generally the DT iterators need some state maintained, so there's an
-> init function to do all/most of the above and stash that into a state
-> struct for the iterator.
+Mikhail Kshevetskiy (3):
+  spi: airoha-snfi: en7523: workaround flash damaging if UART_TXD was
+    short to GND
+  dt-bindings: spi: airoha: add compatible for EN7523
+  arm: dts: airoha: en7523: add SNAND node
 
-Are you referring to of_phandle_iterator_init()
+ .../bindings/spi/airoha,en7581-snand.yaml     |  7 +++-
+ arch/arm/boot/dts/airoha/en7523.dtsi          | 20 +++++++++++
+ drivers/spi/spi-airoha-snfi.c                 | 34 ++++++++++++++++---
+ 3 files changed, 56 insertions(+), 5 deletions(-)
 
->> +
->> +       /* Iterate through map to find the entry at the requested index =
-*/
->> +       entry_idx =3D 0;
->> +       while (map_len > child_cells + 1) {
->> +               /* If this is the entry we're looking for, extract it */
->> +               if (entry_idx =3D=3D *index) {
->> +                       /* Save masked child specifier for pass-thru pro=
-cessing */
->> +                       for (i =3D 0; i < child_cells && i < MAX_PHANDLE=
-_ARGS; i++)
->> +                               child_spec[i] =3D map[i] & mask[i];
->> +
->> +                       /* Extract child specifier if requested */
->> +                       if (child_args) {
->> +                               child_args->np =3D (struct device_node *=
-)np;
->> +                               child_args->args_count =3D child_cells;
->> +                               for (i =3D 0; i < child_cells && i < MAX=
-_PHANDLE_ARGS; i++)
->> +                                       child_args->args[i] =3D be32_to_=
-cpu(map[i]);
->> +                       }
->> +
->> +                       /* Move past child specifier */
->> +                       map +=3D child_cells;
->> +                       map_len -=3D child_cells;
->> +
->> +                       /* Extract parent phandle */
->> +                       parent_args->np =3D of_find_node_by_phandle(be32=
-_to_cpup(map));
->
-> Before you update the parent node, you need to put the previous parent.
-
-OK.
-
-Kevin
+-- 
+2.51.0
 
 
