@@ -1,249 +1,98 @@
-Return-Path: <devicetree+bounces-242068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2225C85E09
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 17:09:52 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40EEAC85E0F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 17:10:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 39CA1342172
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 16:09:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 507444E1043
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 16:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 081F7226D00;
-	Tue, 25 Nov 2025 16:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066F322B584;
+	Tue, 25 Nov 2025 16:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="hldxVIUE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dwzdjhuo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.126.com (m16.mail.126.com [117.135.210.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07EED224AED;
-	Tue, 25 Nov 2025 16:09:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57F8226D00
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 16:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764086986; cv=none; b=ZFJjKXtaxoTx1IaYTMfA9fPjrH2+BUsYO+eLyMY8eyT8GQ8YJeWi3P3uIVHAarRUbMcWNhe2D5RZ3yWZSqIAyd+/f5xYfdlNE2Bov5yNHfGP6aCwaMLZm1TwBZmXkrhVnPOQ6RhPCQ7IERdyx99oVdt3YzaKuqmgsRtVAHik6R4=
+	t=1764086994; cv=none; b=QK2dyxxj+pPOtc5aT3QrMcN8SEPkPHw+z1nC7Wqcs2IXOqCzWAMuMkrJXK9n74lAe85RMM4Iw7XPaMBk8LtbOcxuamX0xFHIyl/4tqgcxO8qsLm32/YXTYmEgwvntodCqVPk53NiCTWpc7mQ8KsDk5xHJ9uxwGIVS5azvP7to6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764086986; c=relaxed/simple;
-	bh=J7dC7e7ixvHtjm/nNscX5qdAxrkrv9Vvi/PWHtyN3NI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CcwoKZW9bqfoZI2//hzYyGOTwAfuymCHr0l+tlIrpOYsDOS7cicYlFCUW9O9bIOgREZvukJo0e59Bn1DnSdZWaVLhYrcxvwyevYyEfViwTxGyTVFj35BbWO/A00rgcIqGuBQoRsq94SA9EKuUkFw1wOv0spwgH/K7X6OYvkKfTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=hldxVIUE; arc=none smtp.client-ip=117.135.210.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version:
-	Content-Type; bh=/kch+74Yeq8EILFIjEN7X09q/J2+Myv5D2a42yAnmqc=;
-	b=hldxVIUE8RJV5Cd4vd8+1Bar4p4oQVmUhVYxZ1HlPkBAXQmWuGya8SUlf+oXFV
-	gxi+lYBrYtTIeW0LArfQzDwb1sXXyMfnbb8nvQiPXDErvd+W1O//YD0K9KOL7F+B
-	9eJCQlIFlOP7J7aYf31SwihzsPrWScaUiu2Jld76az1H4=
-Received: from nilq-virtual-machine.. (unknown [])
-	by gzsmtp5 (Coremail) with SMTP id QCkvCgDnr6FD1CVpPd6NCA--.15077S2;
-	Wed, 26 Nov 2025 00:07:33 +0800 (CST)
-From: niliqiang <ni_liqiang@126.com>
-To: maz@kernel.org
-Cc: ajones@ventanamicro.com,
-	anup@brainfault.org,
-	apatel@ventanamicro.com,
-	atishp@atishpatra.org,
-	bjorn@kernel.org,
-	conor+dt@kernel.org,
-	dai.hualiang@zte.com.cn,
-	deng.weixian@zte.com.cn,
-	devicetree@vger.kernel.org,
-	frowand.list@gmail.com,
-	guo.chang2@zte.com.cn,
-	hu.yuye@zte.com.cn,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	liu.qingtao2@zte.com.cn,
-	liu.wenhong35@zte.com.cn,
-	ni.liqiang@zte.com.cn,
-	ni_liqiang@126.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh+dt@kernel.org,
-	saravanak@google.com,
-	sunilvl@ventanamicro.com,
-	tglx@linutronix.de,
-	wu.jiabao@zte.com.cn
-Subject: Re: [PATCH v16 6/9] irqchip: Add RISC-V advanced PLIC driver for direct-mode
-Date: Wed, 26 Nov 2025 00:07:31 +0800
-Message-Id: <20251125160731.4902-1-ni_liqiang@126.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <87ms4eflvt.wl-maz@kernel.org>
-References: <87ms4eflvt.wl-maz@kernel.org>
+	s=arc-20240116; t=1764086994; c=relaxed/simple;
+	bh=ZZNDBK2BVhAD768SQkUjkJTdpP4BJ3kiwKCp9pUj3l4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YQtpepUCcYWvjahzAOD9QFey7UP/2mZOM0Bs8RT1Tp/vR6S8BcZJvFbitzn/UG2Z8XTlOie7fAN3jv65RP2o/ns+nrurPrazS+eAAUTRIgEWyUOqC2cuCtKL8HV28olNfNvsUKRg2Kwmnf6PI9GyEh2AdlVPQEnnmaomb6L1Fdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dwzdjhuo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A63BEC116C6
+	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 16:09:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764086994;
+	bh=ZZNDBK2BVhAD768SQkUjkJTdpP4BJ3kiwKCp9pUj3l4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=dwzdjhuozsktqh1uEqLtWXLE3Y4ijDUN5lGZVSA5tiOJUsx9KYs7h2GZsuM5Gx/Xi
+	 ogdXt1magG4xJGhW0KEfoMhJEgIcc6sMHXcbuBwjaYnHohJ5ofdbiTJ59oDuDPlBsY
+	 k1eAGvo6/O4Vy2M0tV8O2e8HQZf6LIlbsrPobiIZGMKQ/k7xnClYE0OfwWVA0d12uo
+	 KHGWscuG+2wT6bRAzWyDeK2vNJMTgsg+yR8CCQ1IU3p6oDBLH1LHQFNUaF478Jwt5m
+	 AuTnwvUfJEKVQBQqICRAcReGi1K/T+JtrBjY9uUhSg7mT9g8fWntonWoW9RhiAEQ+r
+	 N2+X4WQEyjJqg==
+Received: by mail-yx1-f47.google.com with SMTP id 956f58d0204a3-63fc72db706so4736013d50.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 08:09:54 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVtc1e7cB6iwIuxw8Y9mPsViXmCp7aN1WEpXGYzfAB8O+OMg/Y40V9NFUbesr6jTk0AZavOTu3PoW8g@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFzL+aY1AVfETeBAb9iJzxuIcavFEKeUdcRZfBTML4Nz+2aaza
+	qTZO4P/gNz9nnnCRVAbtrEmYl3dM9XqnreeZ61Bzm58wkruu4BEz70pSvUQ7r5+5yE4VnazBx2K
+	PzqYaVX2WJT2q+oHkB+5TGYoQ/PR65P0=
+X-Google-Smtp-Source: AGHT+IH0wLbZcZEqWX92Za1hESIG7WAjFRxjfJteZSIoUtcOqh9fEEaG8QJTTVQDJ9zOPgiaGpL5ewrpQlhHsrpqKZ8=
+X-Received: by 2002:a05:690e:4287:20b0:640:dfa4:2a6c with SMTP id
+ 956f58d0204a3-6432936847emr2204010d50.63.1764086994039; Tue, 25 Nov 2025
+ 08:09:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=y
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:QCkvCgDnr6FD1CVpPd6NCA--.15077S2
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUjeHqDUUUU
-X-CM-SenderInfo: xqlbzxxtld0wa6rslhhfrp/1tbiYB4R5WklSmqxGAABsO
+References: <20251112-improving-tassel-06c6301b3e23@spud> <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
+ <20251119-bacterium-banana-abcdf5c9fbc5@spud> <CACRpkda3Oz+K1t38QKgWipEseJxxneBSC11sFvzpB7ycnqsjBA@mail.gmail.com>
+ <20251120-silicon-oyster-5d973ff822d9@spud> <CACRpkdaM3Hkbxx99uXx6OVdSbdhNNc3voS1FoUsz2oAUEc1-qA@mail.gmail.com>
+ <20251121-epidermis-overdue-1ebb1bb85e36@spud> <20251121-skimpily-flagstone-8b96711443df@spud>
+ <20251124-operative-elephant-16c2c18aebde@spud> <CAD++jLn4z9KFTRoROZ8aKnK-1v=_magjgSq7JJJYt0=CO=gH4A@mail.gmail.com>
+ <20251125-depravity-proofs-17b8d5dba748@spud>
+In-Reply-To: <20251125-depravity-proofs-17b8d5dba748@spud>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 25 Nov 2025 17:09:42 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmsBFt0rhQRsfynXM9ENjO=NXjenOmox=7_Vdy-t0t0UQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bks6-u6m8wg2c5pyzIP62EmTFwv7qtwcD3UXlwd7p_OO31yyAPjGHSiQTM
+Message-ID: <CAD++jLmsBFt0rhQRsfynXM9ENjO=NXjenOmox=7_Vdy-t0t0UQ@mail.gmail.com>
+Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
+To: Conor Dooley <conor@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Conor Dooley <conor.dooley@microchip.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Valentina.FernandezAlanis@microchip.com, Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dear Marc and all concerned,
+On Tue, Nov 25, 2025 at 2:03=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
 
-> > > > diff --git a/drivers/irqchip/irq-riscv-aplic-main.c b/drivers/irqchip/irq-riscv-aplic-main.c
-> > > > +static const struct of_device_id aplic_match[] = {
-> > > > + { .compatible = "riscv,aplic" },
-> > > > + {}
-> > > > +};
-> > > > +
-> > > > +static struct platform_driver aplic_driver = {
-> > > > + .driver = {
-> > > > +  .name  = "riscv-aplic",
-> > > > +  .of_match_table = aplic_match,
-> > > > + },
-> > > > + .probe = aplic_probe,
-> > > > +};
-> > > > +builtin_platform_driver(aplic_driver);
-> > > 
-> > > Dear Anup Patel and all concerned,
-> > > 
-> > > I am writing to inquire about the historical rationale behind defining the APLIC driver's
-> > > initialization priority using builtin_platform_driver in the current implementation.
-> > > 
-> > > In our environment, we are encountering an issue where this priority level causes ACPI-based PCIe
-> > > enumeration to be executed in the system_unbound_wq work queue. This parallel execution model
-> > > results in PCIe devices being enumerated in an arbitrary order rather than strictly following the
-> > > sequence defined in the ACPI DSDT table.
-> > > 
-> > > The random enumeration order is adversely affecting customer experience, particularly in scenarios
-> > > where device ordering is critical for proper system operation or application compatibility.
-> > > 
-> > > We are considering modifying the APLIC driver's initialization priority to ensure PCIe enumeration
-> > > occurs sequentially according to the DSDT specification. However, before proceeding with such
-> > > changes, we wanted to consult with you regarding:
-> > > 
-> > > 1. Were there specific technical considerations that led to the current priority selection?
-> > > 2. Are there any potential side effects or broader impacts that we might have overlooked?
-> > > 3. Would you support such a priority adjustment, or do you have alternative suggestions to 
-> > > address the enumeration order issue?
-> > > 
-> > > We greatly appreciate your insights and expertise on this matter, as it will help us make an
-> > > informed decision while maintaining system stability and compatibility.
-> > > 
-> > > Thank you for your time and consideration.
-> > > 
-> > 
-> > IRQ subsystem maintainers rejected the idea of relying on initcalls to
-> > enforce probe order because initcalls do not guarantee ordering. The
-> > Linux driver model instead ensures probe order through device
-> > dependencies. Since PCI INTx depends on the APLIC being probed first,
-> > the PCI host bridge probe cannot occur until after the APLIC probe
-> > completes. This requirement and behavior are the same for both DT and
-> > ACPI. In DT, the driver model uses fw_devlink to establish probe
-> > ordering, while in ACPI this is handled through either an explicit _DEP
-> > or, on RISC-V, the GSI mapping.
-> > Typically, this dependency appears in the DSDT only for the PCI host
-> > bridge. Individual PCIe devices are enumerated through the standard PCI
-> > scan once the host bridge has been probed. Therefore, I’m not sure what
-> > you meant by a probe sequence defined in the DSDT for PCIe devices.
-> > Regards,
-> > Sunil
-> 
-> I understand the scenario you described with a single PCI host bridge, where devices are enumerated
-> through standard PCIe scanning after the host bridge completes probing. However, in ARM and RISC-V
-> architectures, systems often have multiple PCI host bridges. We're currently facing an issue in a
-> 6-host-bridge system where all bridges depend on the APLIC driver. They must wait until the APLIC
-> driver completes and callsacpi_dev_clear_dependenciesto resolve dependencies, after which they're
-> sequentially added to the system_unbound_wq work queue. However, during execution in the work queue,
-> these 6 host bridges undergo parallel enumeration, preventing them from following the order defined
-> in the firmware's ACPI DSDT table. Specifically:
-> 1. The ACPI DSDT table declares the 6 host bridges in a fixed sequence
-> Device(PC06) {
->     Name(_HID, "PNP0A08")
->     Name(_CID, "PNP0A03")
->     Name(_UID, 0x6)
->    ......
-> }
-> Device(PC07) {
->     Name(_HID, "PNP0A08")
->     Name(_CID, "PNP0A03")
->     Name(_UID, 0x7)
->     ......
-> }
-> Device(PC08) {
->     Name(_HID, "PNP0A08")
->     Name(_CID, "PNP0A03")
->     Name(_UID, 0x8)
->     .....
-> }
-> ...
-> Device(PC11) {
->     Name(_HID, "PNP0A08")
->     Name(_CID, "PNP0A03")
->     Name(_UID, 0xB)
-> ......
-> }
-> 
-> 2. But the OS enumerates them in random order upon each boot (first boot sequence ≠ second boot sequence)
-> first boot sequence ~ # dmesg |grep -i "PCI Root"
-> [ 8794.588531] ACPI: PCI Root Bridge [PC08] (domain 0006 [bus 80-ff])
-> [ 8794.624478] ACPI: PCI Root Bridge [PC06] (domain 0005 [bus 00-ff])
-> [ 8794.672741] ACPI: PCI Root Bridge [PC10] (domain 0008 [bus 00-ff])
-> [ 8794.696680] ACPI: PCI Root Bridge [PC07] (domain 0006 [bus 00-7f])
-> [ 8794.728234] ACPI: PCI Root Bridge [PC11] (domain 0009 [bus 00-ff])
-> [ 8794.755098] ACPI: PCI Root Bridge [PC09] (domain 0007 [bus 00-ff])
-> second boot sequence ~ # dmesg |grep -i "PCI Root"
-> [ 8794.588531] ACPI: PCI Root Bridge [PC09] (domain 0007 [bus 00-ff])
-> [ 8794.624478] ACPI: PCI Root Bridge [PC06] (domain 0005 [bus 00-ff])
-> [ 8794.672741] ACPI: PCI Root Bridge [PC08] (domain 0006 [bus 80-ff])
-> [ 8794.696680] ACPI: PCI Root Bridge [PC11] (domain 0009 [bus 00-ff])
-> [ 8794.728234] ACPI: PCI Root Bridge [PC07] (domain 0006 [bus 00-7f])
-> [ 8794.755098] ACPI: PCI Root Bridge [PC10] (domain 0008 [bus 00-ff])
-> 
-> This creates a critical issue: when NVMe devices are connected to these host bridges, the
-> unpredictable kernel scanning sequence causes device identifiers (e.g., /dev/nvme0n1, /dev/nvme1n1)
-> to change across reboots. In server environments, such device naming instability is unacceptable as
-> it breaks storage configuration reliability and consistency.
-> 
-> So far, we've only observed this disorderly enumeration in RISC-V multi-host-bridge scenarios, where
-> APLIC dependency leads to enumeration via system_unbound_wq. We'd like to consult kernel experts:
-> 1. Has the impact of enumeration disorder in multi-host-bridge scenarios been considered?
-> 2. Are there viable solutions to address the random enumeration caused by system_unbound_wq?
+> I'm not sure how keen I would be on this of_property_present() idea
+> though, feels like wasteful to search the dt for conflicting properties
+> when we are already going through all possible properties and can do the
+> check at the end, when we've got all the information? Could probably
+> keep a temporay bitmap, using pin_config_param as the index, and use
+> test_bit() using the known-incompatibles to check it somewhat neatly?
 
-Thank you for your previous suggestion regarding the use of udev. We have carefully implemented this
-approach, but found that while udev can create symbolic links, it doesn't resolve the underlying
-issue of device ordering in lsblk output, which remains important for our use case.
+I think it could work, as all conflicts (I think?) are boolean (this OR tha=
+t).
 
-In our large-scale server deployment comprising hundreds of machines, the udev approach presents
-several operational challenges:
-1. Management Complexity: Maintaining per-machine udev rules across our entire infrastructure is not scalable.
-2. Customer Workflow Dependencies: Our customers rely on consistent lsblk output and direct device
-names for their operational workflows and automated scripts.
-3. Scalability Limitations: We use standardized hardware configurations where consistent behavior
-should be the default, rather than requiring per-machine customization.
+It's probably a bit ambitious, but I'm game :D
 
-We've noticed that PCIe enumeration order tends to vary across system reboots (for example: first
-boot showed PC08->PC06->PC10->PC07->PC11->PC09, while second boot showed
-PC09->PC06->PC08->PC11->PC07->PC10), even though the ACPI firmware consistently reports the root
-bridge sequence as PC06->PC07->PC08->PC09->PC10->PC11.
-
-In our testing, we found that adjusting the registration priority of the aplic driver seems to help
-ensure the interrupt controller initializes before PCI enumeration, leading to more consistent
-device ordering.
-
-We'd be grateful for your expert advice on a few questions:
-1. Are there any dependencies or implications we might have missed with this priority adjustment?
-2. Would you happen to know of any other kernel-level approaches that could help with enumeration ordering?
-3. We're curious if there might be any ongoing discussions about making enumeration more
-deterministic for standardized server environments?
-
-We fully understand there are good reasons behind the current design, but the variable ordering has
-been somewhat challenging for our users. We'd appreciate any guidance you might offer on the best
-way forward.
-
-Thank you for your time and valuable insights.
-
-Best regards,
-Liqiang
-
+Yours,
+Linus Walleij
 
