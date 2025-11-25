@@ -1,154 +1,108 @@
-Return-Path: <devicetree+bounces-241960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-241961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DAB1C84ACC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:14:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D709C84AFA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 12:16:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AF10B4E9C56
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:14:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 311B234FD55
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 11:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C33314D1E;
-	Tue, 25 Nov 2025 11:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D842B314D0F;
+	Tue, 25 Nov 2025 11:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="loMX3cpi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hyzGnPcy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5592A314A75;
-	Tue, 25 Nov 2025 11:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DEF03148C4;
+	Tue, 25 Nov 2025 11:14:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764069195; cv=none; b=nvCPGuLfmj3+a4lxLXlo2V2HRMnrxqnOhqGT3C6CGIOD7jJoI1d/20wJ2p0Ae6vC8orzFMwvBryYhMKylYdmcwTQUoj4iKqAOJuhhm2tf19EbcjOl+h1sbgosniEdootYdGVs0y++rU9wmOdGQSZdjOJaEMzUYs/abSmb5OFBSQ=
+	t=1764069284; cv=none; b=L8qJP1RqqvNJtOcGL3GzhF4G5Kq6Rfl446KFqJBA+GtvArGER98PljTB/zWpPVqFlhDOxlIIe9jC2Os94/N0XeWYFocvkzX1EU9LRCr8c0nJ/Z4pguiUKtOzYaWFM7Wgu92gpVdgdpwSM8bQe50FcAS02jkGtwc4pzA+wpZRSjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764069195; c=relaxed/simple;
-	bh=3uqm+MjePg84BAMPvn5vTFxWADyS8ea7euE9WSlVPK4=;
+	s=arc-20240116; t=1764069284; c=relaxed/simple;
+	bh=ZbTIQfo+qtm21lpbeXPAGmpekhzgYHQyoJTK/6bx07M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pZZZNRAj7RSxetHHJSzg+xeRGXJiGU+mAIkcmcsEss04pwO9JRDq2AtPBauZXXEuwW7w4S+lqKbaWWD3BXEwKuEeatt9FY32NtInvqLMBm8XQkgbA23VzB9R01Arw45fxzviQMJvY2m0BsPRMV5OWSR76rL/OBJcuRdSsXYI22A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=loMX3cpi; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=P5afYdfOvXVoYwWHUeuJ42ZGaQ2k/gQTh+Ljlrnv7XUh3GQ4YfXxp0cYvz2uqkh9bO/Mvodg6+lFxnbsK2vdDqDWBj3O8VomTlRKtwdeebRpgKs9zzw0xBxEkeEP4CMLfpcAjDsxKY0+rzgCrvHYiKGryiS/kb93ZotH88D/M4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hyzGnPcy; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764069193; x=1795605193;
+  t=1764069283; x=1795605283;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=3uqm+MjePg84BAMPvn5vTFxWADyS8ea7euE9WSlVPK4=;
-  b=loMX3cpijiK0VmgfM0kd01p70JE8m6tTvF/woltxfaEzfaqbCK+VW89x
-   SO8/zBu3qK41i4pydhqqE9I2dsoJzp6vFR43XJ+W/94zElsrTVxpsxpyJ
-   Bz/LV/ZZVdEWJ/xYFMx4c8hM+rhbFAeXoeMKLRs//3GLs04KOegJaSNDW
-   OkadLqaiQFpDKjPH5fVfga9FlsQhlvat802BGppb9oSF2azoKMHw9SUeK
-   zaIdhXQli5Pb5tuJlacqOQV4zW4vCPTpGsog3t2M8lZ+aLJNwGb9O6s94
-   aIl0TW+Hz8dWtlGJwV9rJqXfN8ZyVz42xEeZIjhPaj0XAOy3Fjg+4FCz8
+   mime-version:in-reply-to;
+  bh=ZbTIQfo+qtm21lpbeXPAGmpekhzgYHQyoJTK/6bx07M=;
+  b=hyzGnPcyDkwYtxOfixxzz4HbLNXHDEu6OqyanmAEtjMOwTGMJnUD86US
+   tTOJuQnOCV6cflDrcAIWoGbjbLdN1xYEg//dUBCrqNy7o8g2QKK78fAJ6
+   zWIALl+8KGzd4prmpwcC4vdbyL5cGmqrcPWwA/80WCpqT7t1Rvr3HyuGu
+   vE4Ti3Ha23o4eG6WmH3gFrmTBvyNrsaA9ZjXKEF4tNaQrzyuS/VrTk4s2
+   uYap/ZzhctXMAoNI3WoBT0no7XZHMdLt/xFBSy0PFVLAWxGWKpONQuD+R
+   2UFs+bWCJ6u3/WeGmihuYn/yJtk2KPcxCtyztM9TsJdwcUMq2RSWS8gwM
    A==;
-X-CSE-ConnectionGUID: t2qKaNypRt62zLlcJ9HolA==
-X-CSE-MsgGUID: VrGbDHOfTHCqOxlnVPnChQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="83476056"
+X-CSE-ConnectionGUID: C7v0lX36Ry+miSpjdVsu+w==
+X-CSE-MsgGUID: hMcwmSn2Ryyt80AUH6MN3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11623"; a="65972474"
 X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; 
-   d="scan'208";a="83476056"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 03:13:03 -0800
-X-CSE-ConnectionGUID: dQwKuBEbSvKV0ggVs+Zgjw==
-X-CSE-MsgGUID: oTraJmbWToeEqdjJhppksA==
+   d="scan'208";a="65972474"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 03:14:42 -0800
+X-CSE-ConnectionGUID: t+oNietcR7q6AXzLLxkbvg==
+X-CSE-MsgGUID: 0jg7QcHpSjStYUMbZIBDiw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.20,225,1758610800"; 
-   d="scan'208";a="192606705"
+   d="scan'208";a="223583514"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.244.152])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 03:12:59 -0800
-Date: Tue, 25 Nov 2025 13:12:56 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 03:14:39 -0800
+Date: Tue, 25 Nov 2025 13:14:37 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: guptarud@gmail.com, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Jan Dabros <jsd@semihalf.com>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Clark Williams <clrkwllms@kernel.org>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Dmitry Guzman <dmitry.guzman@mobileye.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
-Subject: Re: [PATCH v3 7/7] i2c: designware: Support of controller with
- IC_EMPTYFIFO_HOLD_MASTER disabled
-Message-ID: <aSWPOJca9dOz2x6B@smile.fi.intel.com>
-References: <20251119-i2c-dw-v3-0-bc4bc2a2cbac@bootlin.com>
- <20251119-i2c-dw-v3-7-bc4bc2a2cbac@bootlin.com>
- <aR4lVB8FRzHLcXJT@smile.fi.intel.com>
- <3583116.sQuhbGJ8Bu@benoit.monin>
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH v4 5/6] iio: accel: Prevent NULL pointer dereference in
+ interrupt setup
+Message-ID: <aSWPnRBRdPS8vnir@smile.fi.intel.com>
+References: <20251124-expressatt_nfc_accel_magn_light-v4-0-9c5686ad67e2@gmail.com>
+ <20251124-expressatt_nfc_accel_magn_light-v4-5-9c5686ad67e2@gmail.com>
+ <d3318386-2646-4f1c-ab4b-6ae3bc71e9bb@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3583116.sQuhbGJ8Bu@benoit.monin>
+In-Reply-To: <d3318386-2646-4f1c-ab4b-6ae3bc71e9bb@oss.qualcomm.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Tue, Nov 25, 2025 at 11:45:35AM +0100, Benoît Monin wrote:
-> On Wednesday, 19 November 2025 at 21:15:16 CET, Andy Shevchenko wrote:
-> > On Wed, Nov 19, 2025 at 04:05:36PM +0100, Benoît Monin wrote:
-
-[...]
-
-> > > +	/*
-> > > +	 * Make sure we don't need explicit RESTART between two messages
-> > > +	 * in the same direction for controllers that cannot emit them.
-> > > +	 */
-> > > +	if (dev->flags & NO_EMPTYFIFO_HOLD_MASTER &&
-> > > +	    (msgs[idx - 1].flags & I2C_M_RD) == (msgs[idx].flags & I2C_M_RD)) {
-> > > +		dev_err(dev->dev, "cannot emit RESTART\n");
-> > > +		return false;
-> > > +	}
+On Tue, Nov 25, 2025 at 11:45:22AM +0100, Konrad Dybcio wrote:
+> On 11/25/25 12:35 AM, Rudraksha Gupta via B4 Relay wrote:
 > > 
-> > Ah, Now I see the point of checking the idx first, but can we rather call it
-> > with idx >= 1 to begin with?
-> > 
-> We would still have to check it when calling i2c_dw_msg_is_valid(), as the
-> first message after a STOP don't have any limitation. It is not just for
-> protecting against an out-of-bound access to msgs. The validity of a
-> message is in relation to the previous message in the same transaction.
+> > The bmc150_accel_set_interrupt() function assumes that the interrupt
+> > info is provided. However, when no IRQ is provided, the info pointer
+> > remains NULL, leading to a kernel oops:
 > 
-> I will change the comment to make this clearer.
+> Hm, are you sure your device really doesn't have a pin connected to
+> the IC's interrupt line?
 
-OK!
-
-> > >  	return true;
-
-[...]
-
-> > >  	{ .compatible = "baikal,bt1-sys-i2c", .data = (void *)MODEL_BAIKAL_BT1 },
-> > > +	{ .compatible = "mobileye,eyeq6lplus-i2c", .data = (void *)NO_EMPTYFIFO_HOLD_MASTER },
-> > 
-> > Are you expecting more with this? I would rather use a compatible matching
-> > instead of the flag,
-> > 
-> The IC_EMPTYFIFO_HOLD_MASTER_EN parameter is part of the DesignWare IP, it
-> is not specific to Mobileye. Given that typical i2c accesses (single read,
-> single write, write-then-read) work on non-PREMPT_RT without this patch, I
-> suspect there are other controllers that lack the ability to hold the clock
-> when the FIFO is empty that could benefit from this flag.
-
-USB DWC3 driver uses properties for that. We really should go away from this
-MODEL_*/FLAG_* legacy approach in the driver. Either compatible string or
-a specific property would be better than inventing yet another no so scalable
-flag.
-
-> > >  	{ .compatible = "mscc,ocelot-i2c", .data = (void *)MODEL_MSCC_OCELOT },
-> > >  	{ .compatible = "snps,designware-i2c" },
+I don't know the actual case here, but in general such a design occurred
+in real life. So, shouldn't be a surprise to see another polling only mode
+connection like this.
 
 -- 
 With Best Regards,
