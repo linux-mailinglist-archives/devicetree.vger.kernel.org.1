@@ -1,93 +1,108 @@
-Return-Path: <devicetree+bounces-242131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A0F5C86E64
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 21:00:06 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80DDDC86E6D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 21:00:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F39B54E07E2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 20:00:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4E3AE4E5115
+	for <lists+devicetree@lfdr.de>; Tue, 25 Nov 2025 20:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1943C33ADB9;
-	Tue, 25 Nov 2025 20:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F7533343F;
+	Tue, 25 Nov 2025 20:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QkqGEUI3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HwFYoMVo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E836533AD9F
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 20:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FFF2DF6F8;
+	Tue, 25 Nov 2025 20:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764100803; cv=none; b=Y2e3mxj6NgxY+L0ABZI4EpXUZfb+B2ccotdHrcI3MelXOzzPyNCXYNWSF5ugHrzyC+aYjdKz4aApZmY+8x8CaRwTaIVL8/HB0Wu/Q5z21ezyQ1E5QcTodCWVNtfAUkYCcl1e/MyIgqhDh9RrdJlmGrMWjuyH0f3+OPRCmVd45oc=
+	t=1764100821; cv=none; b=uDGGMvcRv7KqQL6JFZlfZWiqjrQnXfMiFe4nI7NAaMh1FaAq70NveXoSsSuIio1eANguj3gSKa2s1TZfqlWU39mxc0VQI+4FtWWcGeNYODWgII003ol3j8KBpPCoQ1oLoRhR48jfhDZZZ7Rn7n/ELPIq0g8qR0nY3mec0Gzpab0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764100803; c=relaxed/simple;
-	bh=DVasmrSeAPh8BUBWnj6uXqD70+XuT+Cm+lWITGpSJvQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EtujiagYQhVaWis3qAwnNdNyuxw1ydYTOY0Z1ARLAtcIJWDY/1YrdbUkc0CTOv7hhlRcbC0d+UoRMMmnXg66ujJ0+OPxODsosOUcQkh0VB3Ucu/bag4wZvYzcaCJNEcO2Yc+llnbk0en6P+TskJE6NDJlMjlFIKXQnFGh9ECdoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QkqGEUI3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DAF7C19423
-	for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 20:00:02 +0000 (UTC)
+	s=arc-20240116; t=1764100821; c=relaxed/simple;
+	bh=7wmgeSUA+y6AQHI41p/L0fxZB3D11yKLxUkqIdhJ4v0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UcJWGCKS0pwaT3DZ2hAQvPawdrbAFo1yHQlOdXjcn8ZnELmP785hSpStJmE6iN6f8EMPCtGa7RVTQ2V3UWiqh4dUs0ygns8VdyX6oGndSPjMTf8FjDEwD6UgVbm2+OYkh4HGy3nwyMqqHQtUemrzsIBECt3bvPLZJLynwnzQB0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HwFYoMVo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25EC3C4CEF1;
+	Tue, 25 Nov 2025 20:00:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764100802;
-	bh=DVasmrSeAPh8BUBWnj6uXqD70+XuT+Cm+lWITGpSJvQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=QkqGEUI3PzKIx2WxgLh+hkefYxT/E5LJdO2Vzxj+/I8LUGtAU+tD+OZB8n26Wthzy
-	 bUXQwy1p95+TDi58n/jj+nWRvlufBxwxuFDwJfpaI6HsAggdmLR59b9v5VPEdjStfq
-	 TkOrNhB7XRvGGZWVNdQbcRZB4Jb4bHpVTAPO0rmz9N8WfMguE17t73C6Xcu/INjv8Q
-	 vkI47GQ9MvNroDLA6cbU3cGGinfSbYysdlbZh6+3dIIQgU/n6R9M9Hgd+KiE/r48fQ
-	 g+Nb/9vsWAClKSB1KapeCyb1hElhKXSnM6IVE+3xnw/Q2iQeeaQPVgUeOg9ALCYkdx
-	 o2JjhvfD1orOw==
-Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-640daf41b19so287920d50.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 12:00:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUYhEHgKaGVoi/O8LgUWZYlrzGK+J/5FOetRsnvpFVbHjZtv2TrXRcaEjHLhI8GCqtg2gOQZQVyTTGY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYe9uG+6aLJsxitDbPjEiCrQAyiXNDKPfqn8FoKGKcIhLIlTDP
-	fZzjtnd0MwmsvHxWLESvHf+KQMomlaTpjXb51HEvAzSU2I+xEx+cqG5AYVWSQLvzUntlPQG28c8
-	zLDL+k3CtlTEtr1caWTAxX3Nq0TGvZ98=
-X-Google-Smtp-Source: AGHT+IEKCwdUK069c55glOB5klmLSXwxDzlEkUhgMQ9zDLu4PV2YqhEE1QQUYXOJdEEP3pCHpxXX2EXrm7kkzmJhpHY=
-X-Received: by 2002:a05:690e:134f:b0:63f:b988:4a91 with SMTP id
- 956f58d0204a3-642f8e2e37emr14337844d50.24.1764100801021; Tue, 25 Nov 2025
- 12:00:01 -0800 (PST)
+	s=k20201202; t=1764100821;
+	bh=7wmgeSUA+y6AQHI41p/L0fxZB3D11yKLxUkqIdhJ4v0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HwFYoMVo8Gk7CKe0VFuuJ3okWlTZi8B5IMClLbbULWvuETHV+Ve9t4puO4DYNor8s
+	 vjJfw8WGh6WkCXAwARpRreAdLkbGZzL44xB6VNiH3/WBaNDBuG9uPq2Nik7aH4f3gb
+	 j5I/LXTfZw7GzlNNHiY/F9eSiSPEDvLweWIgVVUggOxys4bv5KfBFhMT0HGDPoqhP6
+	 YR5Wr2kTiiIX4Ca2IeNwA/ZqULoNzTLNQVILoyPoj3fi/VCeoKrRVEw39cRl5OQ76w
+	 NIXk3HETbGgQrWK5Lj6++ySiZlAdodYHe21dt8Iwi0ChcrvLy8M7a9+dVMix1YEiBg
+	 R2nNqsQAkqO6g==
+Date: Tue, 25 Nov 2025 20:00:14 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Hal Feng <hal.feng@starfivetech.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	E Shattow <e@freeshell.de>, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/6] PCI: starfive: Use regulator APIs instead of GPIO
+ APIs to enable the 3V3 power supply of PCIe slots
+Message-ID: <20251125-encourage-junkie-f80e6933b3af@spud>
+References: <20251125075604.69370-1-hal.feng@starfivetech.com>
+ <20251125075604.69370-2-hal.feng@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251112-lantern-sappy-bea86ff2a7f4@spud> <20251112-improving-tassel-06c6301b3e23@spud>
- <CACRpkdYQ2PO0iysd4L7Qzu6UR1ysHhsUWK6HWeL8rJ_SRqkHYA@mail.gmail.com>
- <20251124-crayfish-lard-cc7519e1119e@spud> <CAD++jLkehJNGxxQJV6vOA9xurBjwpYcL1ufYBQEOqRjNG-h-fg@mail.gmail.com>
- <20251125-kindness-quicken-a70e3fdd0b8c@spud> <CAD++jLmO33B58WUxJiM7c6VCrkQ4nxOmodbOozNmS9LD1VDt1g@mail.gmail.com>
- <20251125-sauciness-those-49593f401322@spud>
-In-Reply-To: <20251125-sauciness-those-49593f401322@spud>
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 25 Nov 2025 20:59:49 +0100
-X-Gmail-Original-Message-ID: <CAD++jLnDA69jZ=6a3QexWn_V+NBymMwTBuJ29RM+R8m51eWOQQ@mail.gmail.com>
-X-Gm-Features: AWmQ_bmQ_cxMgttA8R5T2mQtOUZfU9e0jvp5N_PxSsIJsFJ6E1j35aW5fP3Tagk
-Message-ID: <CAD++jLnDA69jZ=6a3QexWn_V+NBymMwTBuJ29RM+R8m51eWOQQ@mail.gmail.com>
-Subject: Re: [RFC v1 2/4] pinctrl: add polarfire soc mssio pinctrl driver
-To: Conor Dooley <conor@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Conor Dooley <conor.dooley@microchip.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Valentina.FernandezAlanis@microchip.com, Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="j+BWZhcgMt7PqE4k"
+Content-Disposition: inline
+In-Reply-To: <20251125075604.69370-2-hal.feng@starfivetech.com>
+
+
+--j+BWZhcgMt7PqE4k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 25, 2025 at 8:55=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
+On Tue, Nov 25, 2025 at 03:55:59PM +0800, Hal Feng wrote:
+> The "enable-gpio" property is not documented in the dt-bindings and
+> using GPIO APIs is not a standard method to enable or disable PCIe
+> slot power, so use regulator APIs to replace them.
+>=20
+> Tested-by: Matthias Brugger <mbrugger@suse.com>
 
-> Probably too vague, since it's gonna be pins + functions specific, but
-> I'll do something along these lines. Where should I put it? Leave it in
-> pinconf-generic, but do some gating of it to only be exposed for configs
-> with GENERIC_PINMUX_FUNCTIONS enabled?
+Is this actually a valid tag?
+He provided one for the series on v3, which didn't include this patch.
 
-Yeah just add something new and a whole new file like that, we will
-probably add more stuff there as time goes.
+--j+BWZhcgMt7PqE4k
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Yours,
-Linus Walleij
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSYKzgAKCRB4tDGHoIJi
+0iQMAQCnkfFlvRj+TENemCjBkED0QboWJjLXrzEVht+jLtlpwgEA+fnrqb4AUqg4
+NHJcnwNxIAD5Y5XuEaUuHroA7XIZCQk=
+=trKW
+-----END PGP SIGNATURE-----
+
+--j+BWZhcgMt7PqE4k--
 
