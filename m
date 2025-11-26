@@ -1,138 +1,283 @@
-Return-Path: <devicetree+bounces-242532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A356C8B50F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:48:22 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C7CC8B51C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:48:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5A1C435C8F6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:46:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 81DFD35C9E3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D5F3446A8;
-	Wed, 26 Nov 2025 17:42:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CCE8322C77;
+	Wed, 26 Nov 2025 17:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NcAroEv7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cT7W2fXq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AKmryIKf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1913315D25
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:42:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE3F830DEAB
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:43:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764178954; cv=none; b=nnLaUZzvBss5WftrXy3XARnl6JSWz7mWel21TguwZbIsOjy7Sq4mylISG0Ju5dpVLyt189xEQ4gvvlxbBlh7jzdVgSwuuhYw42ZzHzjE6oGKqrQpCz/bExRREI/I54Gjw/XcSjqN4NOQM9aACuU1FtntZ5AlI89D7u6q1fcCWUU=
+	t=1764179004; cv=none; b=RzVu191x8Klvj1tj1/ODIkAUBee5kFOp4TTs4C0fnw0gZ6wD1p4T7bHLezwpYYzHgf2swWZ12yi1XQP3uJ7xej79F3pbBHXaNdXNSjki9Jku2XbyXESl/Qo2AhcFRMHCBQky8+HDFHwa2BwjnByfUghbVSdEh926xOYmDXKvAWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764178954; c=relaxed/simple;
-	bh=H45sT8ifW0O8vWCYPKJuUgHks2mEXGWB8Jd0Vqn88PE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CIwMwy8lRg4y28vnoY5zLwoMr761iwXBLrBt6qwdWbZlovJn4BX6Fdh8qaM57ULHq3wwLK1/OdzLHgCoL++WRhBxNEr9emaoJksY93nV24v6aUynsAwLgRRUB9BxOcEZ60UcA85VsbCQOpe2QOVwwXED/kq+JK4UNbFaV/o3Ljk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NcAroEv7; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4775895d69cso29450385e9.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:42:32 -0800 (PST)
+	s=arc-20240116; t=1764179004; c=relaxed/simple;
+	bh=Dbd+U+20t5jh3oo5fqXo2LWhcFGP1dtMaiMN1N4Ea2s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=B9UWV5winf/QtaX3/vvsTvU2S50KPo3gdJB8WpuS6IdpXZKSpD7kmnHvFb+cTIxNHxYP1Db+hPtZ5KSi5evSXKHYDee+dffNIb6RXTnrj28Yw4oeD6ozUy0BX61K/jdz7a2z5ECEtkPMwGXoYjFfrQsaY5GVwsqhflb+J+Csa4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cT7W2fXq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AKmryIKf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AQB2gVg2122073
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:43:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/4C1ziBJx+mjYUbjAmhSYYfbHlaOdGG35KslyrE3v6A=; b=cT7W2fXqRsVUJVhr
+	soy3LpKx4+EudPDBbmHgPxQC658fh1GhRt3sz0AtOpj5oAlo2lsw/IvKlUlmMLvq
+	9jpZi1PA4ZSz+vkCu7/euX6E9XelQAyIr1Qlmi5sbXlJTIAsPom3kppk35kT6D3o
+	3JgSjtVyPxVE2bo9+QtsviFVMUc4FoWuvCz1BKFp0V/AiJERp+JR91wgboEHUTcz
+	jthMGHIxQwe1BrkYD3b3W/9k3+7Yo839uA7u0IuA2VuEQ76xW2Jipsmyxo799EWY
+	XFvjAoNOV3q8jymyoQAFrdRW8HkmiHMA6Xyow/IPuP95CwPfm3YJ306ePs/+NyQB
+	RKkwnQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ap0b3142a-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:43:21 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7b9090d9f2eso14531837b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:43:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764178951; x=1764783751; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H45sT8ifW0O8vWCYPKJuUgHks2mEXGWB8Jd0Vqn88PE=;
-        b=NcAroEv7WHRM6fVZKueA6AsJXXFNUx4vKjsgGnow64+ziC3ZuhBOfkzR3H88UjZS/k
-         SGAS9JaptHKCBPLYfGfCxZaiJLxDBpSvUlxfySydVen66Akew6OZMZfqQjgTVplDQ//c
-         u7iFhb4nRh/xGhsSVXRoyGtMipZ3AUSLq/P6knWtkxaRphJhdP3Rj9REzJ/u2FwWQtP5
-         VXvq3WqFasmz0xnFkzNv26FDjfsQ/cp3QklWxmELPjCSTxybrQ8ENgfs66zZ3SUMhZe5
-         r7x+k7te4VRA6znZaKmSRTi+idImQfwB1SZnwmA4wasfQdkEKQ8nkzuNNtGW2M/7YkbZ
-         yD0Q==
+        d=oss.qualcomm.com; s=google; t=1764179000; x=1764783800; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/4C1ziBJx+mjYUbjAmhSYYfbHlaOdGG35KslyrE3v6A=;
+        b=AKmryIKfYJhS9OvpL6hbeMV4J31DzUXobfcId8oDliPSsWlC4nQkKihcLQrrvYzxt7
+         Mzo2l9Z/iKubnYASmfHOZFli3GrhNQRAr9ay5JEpfLFOCkFPoaGBCeAZ+JhxwVOrM1/A
+         KNzplsVKiuVe3+bq2WNsNjqGp4s/0/fk6YqHfQGqoDhoWh/4ozxFun/trZMepk7Wlg4S
+         K1TrD6vZqITNoiD3FgBgrzPJ1xoKh2AFxxMV8XIBCzdYIRndWHapDDGFaVMmxHTSNVQs
+         D1glJX/JNMgxVhLZ1SkcZopgEjOzJv1zE+fa4mpadfNn94BVt8b2U2K7iy1xOxNNEGZW
+         yFeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764178951; x=1764783751;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=H45sT8ifW0O8vWCYPKJuUgHks2mEXGWB8Jd0Vqn88PE=;
-        b=gh4l2jnuKKxluHx/ulv8qdjL8Bhu7NtrbdmVKUFUdMYxQOc3uJfFkoQERZZ8NtpZjs
-         9azNHK4ron8c/irB2mwRPsY4lex0q8rhk/RGGFXyja2QfwL+t0i03S0AJcTCwZfo9qAs
-         9VmpmT/WAYJl0zPg6K/4q0TdcMuGNqbQda/pjP8osKZc+JoY4BnkCBhy10dODmLKvfwL
-         WYo7RohrwhoIv+aCb9RQVs69AZpv7raOiGKivl4/NyjTv1NTFEhnoS+d8EAUSyiOfkh/
-         n1ORMHQ4dBkaACB4CXj5tOmunXLbxEnmliGiaFjNsi+5oty4nWTF3eYRYLpkO5mte8Z7
-         bEMA==
-X-Forwarded-Encrypted: i=1; AJvYcCURQwd90I6RZld0jAcY5povBfkvK84O1VNq0LvM43rAQKR4FP05JMzcYsebQ2ZXKTU7k2vMpoUkuHvh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7TrzN+GPOV30PZWg5Il4k4VLwRhVI63c0+4c7JPbrNg2PfMp/
-	ShztoPXw0hv8MwxXXs0RQAPqDJG/s84Y1FsQKA1vgeORXhe478615Q6TYHo3Y+n6W7ZfoDpns72
-	ULLmpcgk5qrtHGSjHvAZhwNHwhaLEz0k=
-X-Gm-Gg: ASbGnct3WhLne1CxsdHPRK03T2A3G0KHcWMKMKxvbEUYbdmzm+SoguADBspkr64AXlB
-	iYs+N5WCSVPYME6ric35g1Di/u3XcCv6/vbwMQk36cdmh4ETwv578u7uyjv5KfIhP/ZA6qnKen/
-	/jF3hTgrWQpIRtLa41V6/pdH40ILEhWR7AastYr/sA21kDLSZb/EfyPYzhBZ64KoV21OFOuSVxP
-	Yx0MU4OCe2TAVlcHnNBGgZ7ug57T2ehR3Wc58okC3P/A0/O5CGexTw1d8TVG1/26hy5bLbcdGn3
-	rT1jTt+4DpwKeNVO9Ckj4fjrkxsD
-X-Google-Smtp-Source: AGHT+IEZ28WwikpNMp28f9cZ8FrUOzBbOzH12B9xnya/BVPaxQoXRRptgOSDjsEI4HuhukMbEvl6ukgR6fFwxUmEXSo=
-X-Received: by 2002:a05:600c:3152:b0:458:a7fa:211d with SMTP id
- 5b1f17b1804b1-47904b24282mr78083805e9.29.1764178951003; Wed, 26 Nov 2025
- 09:42:31 -0800 (PST)
+        d=1e100.net; s=20230601; t=1764179000; x=1764783800;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/4C1ziBJx+mjYUbjAmhSYYfbHlaOdGG35KslyrE3v6A=;
+        b=j0txk6Ilhz9uPg/rw1xhO2/vRfY/DcX59SKzGIwkVuAjm8/pAiW2kcgWRmc1AdGIf8
+         XljgfgAzdzSOneERZkKMnZOD12gHDNW6glUhSQy9/Cg/tTVT6GiDVJLEx+YDnuFzIgVH
+         MXqcDPbGXC0IywcxGulT3LydNllq3ekYN5c49/dTlQKLKSGt2XRtBHlITCs4cT+aOfwy
+         x815RXpPDLcSMNGPFliS762oTIi9xRPo0dcPl4QOAWjwDOJmZ/HkrNpm5CvDL22uOwis
+         KnfdvcmXA6FThdlievz73Q6JR9BQKiRfoAgztL49DH3axgppLBIZFRJ+ZfrxjN5P0rD2
+         W6dA==
+X-Forwarded-Encrypted: i=1; AJvYcCVMOO3dRUtjtydCZxLlbFqrCiOPFwfTpLByfqOMfB0c1OPCEdcms6J0qXSd5dszQ+l5IeCxRtJHBLSO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHchRxgWG9EC2/GZzQDYWraZX1MUSUcv63d4OznjEwVMcYyscc
+	cv8q0rzYuOfSkjstOVKxKGXi85w7IHw27OA5eixXMNTyL7aGZV4Wq0GqAQAFlehrObRfmVbgyq+
+	djDvX1cgAzsMlOTMY0NBF6lbWxbDTnotV5s8kcFfuTemHtLU4HDMbNbL12msaGhv8
+X-Gm-Gg: ASbGncu7Dr4Do+x7HCvFESi497gxssnAbWY9ijT0EiSS8uh/GxNThFHkhREpc2qTT2e
+	jMj4Rwx8FfqphtM2ImeTAiUdCaDcL+L06n/q/8wQ8lZeC8JmD/ksS9fR6ax1y1u2Q6l5Ge2eDXa
+	XZwZqlL2iK/632AdeXaKT7hrDdnkF/2ggbCOUKAnAQ7BBbdXvXCUGgjPEngIzYmxD6eBzlXJAXn
+	g+8e123rCTqhvjDu3KO/k12LSqKTvn6qXkU4x0Apd0OQ4dRhtN9nrqKnXiE2MhkTEwDIP8clnOF
+	W50CaiA7of9IdO9bXtuKt/Am/buJyI2g17R3OqYjZsN8JZ1io/IAIkp+C645zNVp+0PBBifSMQC
+	Dlx0Ajr5/y0qkKvY3pRwkA+2kNo1hxTxiyqolRmo+R6c=
+X-Received: by 2002:a05:6a00:2e28:b0:7b2:2d85:ae53 with SMTP id d2e1a72fcca58-7c58c999ebfmr24059811b3a.8.1764179000446;
+        Wed, 26 Nov 2025 09:43:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFE9auC0BPVxJ4KxcFP48LwF0xTVOASw2feRr55RR8ZX+bZHEyVlBeSIXXDN1cl0ZFO26GaMg==
+X-Received: by 2002:a05:6a00:2e28:b0:7b2:2d85:ae53 with SMTP id d2e1a72fcca58-7c58c999ebfmr24059760b3a.8.1764178999869;
+        Wed, 26 Nov 2025 09:43:19 -0800 (PST)
+Received: from [10.216.6.208] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7c3ed471022sm22183967b3a.21.2025.11.26.09.43.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Nov 2025 09:43:19 -0800 (PST)
+Message-ID: <acd1b134-2c8f-af01-0de9-d9779dd2ebdc@oss.qualcomm.com>
+Date: Wed, 26 Nov 2025 23:13:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251121193942.gsogugfoa6nafwzf@skbuf>
-In-Reply-To: <20251121193942.gsogugfoa6nafwzf@skbuf>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 26 Nov 2025 17:42:05 +0000
-X-Gm-Features: AWmQ_bkZJBm6Wozp4bZ86ADSwgEM8iq01qAWIsEYygFDAD9xEd_cYCJ2C4ftoDY
-Message-ID: <CA+V-a8vAXg9GXn1ee0-02N7-ucHuivioTMLKFEiw1fO0nPQAzA@mail.gmail.com>
-Subject: Re: [PATCH net-next 06/11] net: dsa: rzn1-a5psw: Add support for
- optional timestamp clock
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Russell King <linux@armlinux.org.uk>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v17 07/12] firmware: psci: Implement vendor-specific
+ resets as reboot-mode
+Content-Language: en-US
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>, Arnd Bergmann <arnd@arndb.de>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andre Draszik
+ <andre.draszik@linaro.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Xin Liu <xin.liu@oss.qualcomm.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Umang Chheda <umang.chheda@oss.qualcomm.com>,
+        Nirmesh Kumar Singh <nirmesh.singh@oss.qualcomm.com>
+References: <20251109-arm-psci-system_reset2-vendor-reboots-v17-0-46e085bca4cc@oss.qualcomm.com>
+ <20251109-arm-psci-system_reset2-vendor-reboots-v17-7-46e085bca4cc@oss.qualcomm.com>
+ <aRIfc9iuC2b9DqI+@lpieralisi>
+ <80e68e44-a8e0-464a-056e-9f087ad40d51@oss.qualcomm.com>
+ <aRxmWrAkD0Vu4pF+@lpieralisi>
+ <1da024e7-efb1-3a1c-cc13-0ae5212ed8bd@oss.qualcomm.com>
+ <aR2P4CxQNebac6oU@lpieralisi>
+ <682b1a0c-644f-2aff-1860-cbf9a53bc62b@oss.qualcomm.com>
+ <aSc2Yh3AvLXOBvcz@lpieralisi>
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+In-Reply-To: <aSc2Yh3AvLXOBvcz@lpieralisi>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=E+XAZKdl c=1 sm=1 tr=0 ts=69273c39 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=aq4WiCt_VBwjG6PfwrMA:9 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDE0NCBTYWx0ZWRfXxSi7eWQxqpfY
+ rpg9XYCGN/bXTGTRIeXEbLllwZBtUUnRWlxft6ucJ9arud6KvnxkJvQmXpN9gmBKAEGA1gGU1F8
+ SLnpPFXDLoxTjvdjkbH18Np8ihk4HoBjZnfG95BZHphSsfXOKAXfbtBUU/kGnkN15Gh8xS9Rz3g
+ ll4/3akZU1tgiYZTMV3BKc/uvSVGsUev8mp42sWHI/U6+G7SppYOV/Omre0iIMw/k1v4C435q0T
+ +lPnNOXn9EvV+FzVbCAEUKUl/cQSB++R5WQ0DPwl04ROFhs9rugl2SbAJ7vWfOKOfmr9K86BDoD
+ 2B4UipwvS1Ha4pX0JxWZ+Zfu36Qpekc+iXE55/feesAFB/RVRT339Qk5+6RPKce3zBcQBf/kHvX
+ GR1ixSFEOocm7NgrvY5utLwLApHmDA==
+X-Proofpoint-ORIG-GUID: Lg9wykD2ywP2RgtrUxjig1LgnJN6Gyyt
+X-Proofpoint-GUID: Lg9wykD2ywP2RgtrUxjig1LgnJN6Gyyt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
+ spamscore=0 clxscore=1015 phishscore=0 bulkscore=0 adultscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511260144
 
-Hi Vladimir,
 
-Thank you for the review.
 
-On Fri, Nov 21, 2025 at 7:39=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com>=
- wrote:
->
-> On Fri, Nov 21, 2025 at 11:35:32AM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add support for an optional "ts" (timestamp) clock to the RZN1 A5PSW
-> > driver. Some SoC variants provide a dedicated clock source for
-> > timestamping or time synchronization features within the Ethernet
-> > switch IP.
-> >
-> > Request and enable this clock during probe if defined in the device tre=
-e.
-> > If the clock is not present, the driver continues to operate normally.
-> >
-> > This change prepares the driver for Renesas RZ/T2H and RZ/N2H SoCs, whe=
-re
-> > the Ethernet switch includes a timestamp clock input.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
->
-> What is the impact to the current driver if you get the clock and
-> disable it? I'm trying to understand if it's possible to only enable it
-> when using a feature that requires it.
-I actually cannot test this by disabling the clock. As the clock for
-TS is coming from the core clock which is always ON and we dont have
-control for the ON/OFF for it.
+On 11/26/2025 10:48 PM, Lorenzo Pieralisi wrote:
+> On Wed, Nov 19, 2025 at 05:32:42PM +0530, Shivendra Pratap wrote:
+>>
+>>
+>> On 11/19/2025 3:07 PM, Lorenzo Pieralisi wrote:
+>>> On Tue, Nov 18, 2025 at 11:11:33PM +0530, Shivendra Pratap wrote:
+>>>
+>>> [...]
+>>>
+>>>>> Yes this could be a potential way forward but that's decoupled from the
+>>>>> options below. If we take this route PSCI maintainers should be added
+>>>>> as maintainers for this reboot mode driver.
+>>>>
+>>>> you mean the new psci_reset driver? yes. Maintainer would be PSCI maintainer,
+>>>> if we create a new  psci_reset reboot mode driver.
+>>>
+>>> Yes.
+>>>
+>>>>>> - struct with pre-built psci reset_types - (warm, soft, cold). Currently
+>>>>>>   only two modes supported, anything other than warm/soft defaults to cold.
+>>>>>> - vendor resets to be added as per vendor choice, inside psci device tree(SOC specific).
+>>>>>> - psci_reset registers with reboot-mode for registering  vendor resets. Here, we
+>>>>>>   have a problem, the pre-built psci reset_types - (warm, soft, cold) cannot be added via
+>>>>>>   reboot-mode framework.
+>>>>>
+>>>>> Why ?
+>>>>
+>>>> If we want the new psci_reset to take the reboot-mode framework route, is it ok to
+>>>> add default modes (warm, cold) in the device tree?
+>>>> If not, then the design of reboot-mode framework(power:reset:reboot-mode.c) needs to be
+>>>> further changed to equip this new feature. 
+>>>
+>>> Well, yes, all it needs to do is allowing prepopulated reboot modes on top
+>>> of which DT based ones are added.
+>>
+>> The mode-cold , adds a third variable to reboot-modes as the first parameter for 
+>> invoke_psci_fn is different for cold vs warm/vendor.
+>>
+>> cold reset call       : invoke_psci_fn(PSCI_0_2_FN_SYSTEM_RESET, 0, 0, 0);
+>> vendor/warm reset call: invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2), vendor, cookiee, 0);
+>>
+>> Each mode will have 3 argument - like:
+>> _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ 
+>> MODE   , cold reset, reset_type, cookie
+>> _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ - 
+>> COLD   ,   1       ,    0      ,     0
+>> WARM   ,   0       ,    0      ,     0
+>> vendor1,   0       ,0x80000000 ,     1
+>> vendor2,   0       ,0x80000010 ,     0
+>>
+>> So reboot-mode framework will now define and support upto three 32 bit arguments for each mode?
+> 
+> The cookie value is unused for SYSTEM_WARM_RESET, you can encode there whether
+> it is a cold (SYSTEM_RESET) or warm (SYSTEM_RESET2 - SYSTEM_WARM_RESET) architectural
+> reset when the magic value(aka reset_type) == 0x0 ?
 
-Cheers,
-Prabhakar
+sure that should work. if reset_type is 0, cookie to decide warm vs cold.
+
+> 
+> The reboot mode parameters do not necessarily need to map to PSCI function
+> calls parameters - provided we define that explicitly.
+
+got it.
+
+Sorry for out of inline question - 
+So the psci_sys_reset() may be looking like below after the changes suggested?
+Is this on track?
+
+if( panic_in_progress() || !psci_reset_cmd.valid) {
+        if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
+            psci_system_reset2_supported) {
+                /*
+                 * reset_type[31] = 0 (architectural)
+                 * reset_type[30:0] = 0 (SYSTEM_WARM_RESET)
+                 * cookie = 0 (ignored by the implementation)
+                 */
+                invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2), 0, 0, 0);
+        } else {
+                invoke_psci_fn(PSCI_0_2_FN_SYSTEM_RESET, 0, 0, 0);
+        }
+} else {
+        invoke_psci_fn(<psci_reset_cmd.system_reset>, <psci_reset_cmd.reset_type>, <psci_reset_cmd.cookie>, 0);
+}
+
+------
+where psci_reset_cmd is defined like below?
+
+struct psci_sysreset {
+        u32 system_reset; // this will be set as PSCI_FN_NATIVE(1_1, SYSTEM_RESET2) or PSCI_0_2_FN_SYSTEM_RESET.
+        u32 reset_type;
+        u32 cookie;
+        bool valid;
+};
+
+static struct psci_sysreset psci_reset_cmd;
+--
+
+thanks,
+Shivendra
 
