@@ -1,137 +1,199 @@
-Return-Path: <devicetree+bounces-242304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC18CC890AC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63FCAC89091
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:44:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2077534669D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:45:27 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 909A2353C19
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2806A2F747D;
-	Wed, 26 Nov 2025 09:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFEAB31BC95;
+	Wed, 26 Nov 2025 09:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="GuoOtMI5"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J8dRJe9l";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PamDVdKD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C4E18A94C;
-	Wed, 26 Nov 2025 09:42:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764150149; cv=pass; b=oF0TiC934DLHzYUprptYaiEi8xm+QKxQKXr7xaBgH9sMFh3Thf8AZkaLLCKdC4Bq9jPVs9nR/880SwtcNQSZmjWY9UDUJb1JnSnr/2VHWro2SoExNlEFQzCjAL06wqNM0hmT0/w2XZhNXGeLQDneqejuAcw/TXvdueWo6yTLr6I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764150149; c=relaxed/simple;
-	bh=HCrXWcCJcuxzIq0iHhld0Os9jJmomNGWdXQFSCiiukQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=f5gxsjtpUW8Wqfwe4XQbJ/SvDBqwxtSnixm6p+YhexL6BayVTps7h+vBXXxW/8Yo9R+sq3x3g/R3Htzih2fILAukMDbWOHLuR8UqP7lcFcPaqicXrAq7ZTUxRRRL0tn9WO+3cKvJGeLOUX+P90+IwY5X7gaa/+AxfH5PfVznvxk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=GuoOtMI5; arc=pass smtp.client-ip=136.143.184.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1764150109; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=fQBxAXM9o4uD7mKSWOWobL1/ZdnY+XQbfKv1vZ6rTRPzjKDaHeZrpkSXPAta7rI9UYfGQfYaiHGcm4zZzsrJUbe/YSv/5/XIoWELyYGcOmBNRhNSlBMXdzGVs7ID9Fwlm/Gmk670rXZs1jAA7w8NAEfUsWFf7lN/oVTsDlYTkQA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1764150109; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=HCrXWcCJcuxzIq0iHhld0Os9jJmomNGWdXQFSCiiukQ=; 
-	b=Qu4Gvhj4dSxRhdg16XEqh7T7j0fa2PB0tz1AJgQr0Iwk/5pTheiSzmGdIPnfuafXccBrNls+KYdd/rq9EEY9loOUdD0EjMZ2Wn/WsNTvAcWu4KSMbuUrxu2rveia68Kyf5hRFWjIkSv3iI5CIHtssCyjxAhq7TLoQrIS6Xtf/lg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764150109;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=HCrXWcCJcuxzIq0iHhld0Os9jJmomNGWdXQFSCiiukQ=;
-	b=GuoOtMI51ArFwAwWNXFwtknkxYHunWqeynp9ETTHYp93VhUqA9PlnMkRwE+ZPI70
-	Jqj886oyv3UKkPNNm+Bdd+QUpH152ZDSKh1X4CVwc0RY/gSkMb7JgkMcniXFlTjPETi
-	miDWY/w0OktfRSomKQBXXwS0vv/NRpMETejhKD7ZbNFaCr+j/J6ROTSEoZ61vvXVZ5O
-	yuDeCAQhkg5E0spxe0MSeK27T+pRSRGgqIs4bJIvv9EhFlrwEQfZIOof7ji/eMGJQXW
-	c4j7Zpwu9UH6htZENs6EeD6v/lcKR+6w/5yeHVt5xHOP7By+Fmz+T0+vOLH5CwZ6dMB
-	1w86gnl0JA==
-Received: by mx.zohomail.com with SMTPS id 1764150105282785.1586241129531;
-	Wed, 26 Nov 2025 01:41:45 -0800 (PST)
-Message-ID: <001154b743b9f8364e96b3ebf791ef9920bbfa03.camel@icenowy.me>
-Subject: Re: [PATCH RESEND v3 2/9] dt-bindings: display: add verisilicon,dc
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>, Guo Ren
- <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Philipp Zabel
- <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Michal Wilczynski
- <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, Yao Zi
- <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org
-Date: Wed, 26 Nov 2025 17:41:35 +0800
-In-Reply-To: <b57207ab-a69e-4dad-98ca-f4923cebdf81@kernel.org>
-References: <20251126045233.218286-1-zhengxingda@iscas.ac.cn>
-	 <20251126045233.218286-3-zhengxingda@iscas.ac.cn>
-	 <20251126-gifted-zircon-ibex-a9f1d8@kuoka>
-	 <e2b72b8ef4c2911c4ea44a80f42182bbc78d5626.camel@icenowy.me>
-	 <b57207ab-a69e-4dad-98ca-f4923cebdf81@kernel.org>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D23B2E22A3
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:42:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764150123; cv=none; b=aqCdEmkUNLs/vrSHl0Vfidzmi+YpDPW0pNcjl++c5R8XaFUM/7qXH3jy2kJ/d1LtzJ4xTqOJM9s6sTJkTV/fxujc1xCxXVb1XHvyGdiuA1maFG1DW91fgXX7CyPKX84weT5mgRABxqmgnwksINQEDUsFfrrbyHHw5vEcinlGBW8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764150123; c=relaxed/simple;
+	bh=9IfJm9cYFgvTTHHW71T5NZliI4pprXGXeW+8D2Wr7t8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dYcpeMUsMN55DjQfEFmcxshDHEWUG7fzNktDA+Fi0xg2DwFH9tupLao1AhLrIfxgSIh++1bzYwRqKiGXmngvPeFnbqVGle4oWWfmFS1SIevjrgcjI2DHR2RnCTeA0pehMJHM4SzYSJI+puLGZCLESPgdvOXRNzXG1Xe8CaCQG1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J8dRJe9l; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PamDVdKD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AQ9LMDA4047286
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:42:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=kbs0K887OX5uGgjudk2p0d
+	FLEi8N6+nMPFNSw+qTSoo=; b=J8dRJe9lzn6eHkGXG918s8NV/UMbe1IIRWSZJw
+	Z9aUb1+AICF8tix4ogZ+JC4oGWMc/82h4tWJm9vStR7JVI6XGeVVuP5aaPxP/xXg
+	5HW/uILkJwnVYl4Kqd3359QMIkUBrSSLdmcDAZvwru1lLKJCyYoOW1TZ4E5/+MGQ
+	6UJDBxrZS5bGlZJWV+kFg9+bBMwELIeXsJZCwkQWxgDzvVhYma6sZ1epQ0NvH+7R
+	5aTtl1zvZAZ9kClh0XeFwGzviyhy4fxmjiEgIkPZIEH1XAZR2IFp652U2wmoNQAk
+	urcVjagxhhWc4dPYiw5LJP/wIXT+Blbs2IhbveuN7/gbCVlg==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4anp2nhfsx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:42:01 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-88044215975so197338106d6.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 01:42:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764150120; x=1764754920; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kbs0K887OX5uGgjudk2p0dFLEi8N6+nMPFNSw+qTSoo=;
+        b=PamDVdKDwVk3cN9xmMlaxHQ8VOdSMnulX7t8qDDam4d04Fwh7krKW67U4X/yeCMUY/
+         2Iu3P2Q4QZ7sR8DRxYD26Wj5Zh0GBHAuj/ivTE8ifm0di78NZFX9LTMPwA21a27HtZwy
+         Gpy+OntJMcxZwA5ozpi29dfiSKiLDpvF7piHbIgbAS17FzRVMlIVoz43gRxLKaPAQ2+S
+         vCzMr6cwvD0qatOiFtYoIIxPdUNSyXq24gVNOaBqKEVisNatZ1X/sEYG7pdOj7KuMkz8
+         YW7M9+FVONxx5K8Ga+Z+ZR/n7V++ycnqqynTn9+dwWMeEmpnQU6iQIv1BQqOSGcWu9qx
+         M48w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764150120; x=1764754920;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kbs0K887OX5uGgjudk2p0dFLEi8N6+nMPFNSw+qTSoo=;
+        b=GWItq72y6F854h/Rd84PsIUzUQyYKLXoUN9WLY5dtXHU6IxHBv4+/1Mc78AjouGCqE
+         P2ow3PrrCVrxQF7bFjFWZTvInO/b2M4vjywL/7cE8NaWdVXVTf+X82TqGT9XlQsXAsuu
+         PxjJyQQbRmCvOrkjA9+diFILdWsR332FSVcebeXlrnkVFpq8vk6bRppwWLaf372PLVPR
+         Uc/t3bk9dJIzZu7YyqkEXUe6KfDsMWLO9bVkoANWyqwqu3GqFqe+kaR63ZjNr9c506ux
+         7TIBBXyp2SHufs2Vbz6onx1pPaaA1FPI3DJRAqtBVoRadqwxE+EaXHVDrPZPJh/Nasjx
+         46kw==
+X-Forwarded-Encrypted: i=1; AJvYcCWTHdYxgf84accMAbWoxvY4TJRWHdJ4yX4S/FUqe5kToXv1m13vtAhjnzyMhCRipIRLkd7UMdPMTFz5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1vG9P1N3xQuTRILd0GjnCk2sCxDh2LnYxB7v3dZu6QieYL4OJ
+	OC6ivvImzcNmOySiPd+/nrONR4Q035tLaK36mxdHXpiW+ubBjw3/V1KzwuvALk/l466AEAIsvor
+	z4IvOMYoPYjhMC1UAfse6khED4xe/TXdEbxL1mG4dHRp2En1EFP6peMNYoNZMapnNogy8WisW
+X-Gm-Gg: ASbGncti3vRL28NKAhUPDHAzLqqFdt6WCKll1iZsGsXWzLkccSMqSPR6ZN4ynUkRlm0
+	Flyq21wJkrGJ2ZgQcw77wE0AWJ7aFnqpmFSmgALwEHdzW/X2g1QSm8dkqPa/tHCfxzMe44D6dz0
+	40GdqN0VVNvygypfvz5rkKdKAIj9Ezjyy6kXLv6CbsLBZp/abJrrywJ3suYe2nAA1IsuNfjlpt2
+	9smSHji92aOAMzokb8aIVHP3I/s59qWtDT0cxUNfsSbdcd+xnnHNSKPqFvuYfABAmbJWNtqajYN
+	KFWZ4n/+RSVXrl1oHlxd5hnTWsM6cL/tVOEDB0uk9dRD9prcaGd9I4aP4rVS+O+LxOXKYV0r1Iq
+	0V65/IqHAzqvNDqsQyx3KaxQxTz5QEf9KxjbYkJQXRAtGuLWL7i41cIKPD+SdbgHqhElITI5On7
+	lDqyzmvTV3x9rfGbqN4lGYBr8=
+X-Received: by 2002:ad4:5742:0:b0:87c:2bb6:741 with SMTP id 6a1803df08f44-8847c4d3134mr303252956d6.29.1764150120142;
+        Wed, 26 Nov 2025 01:42:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFescXHmeszXPvqF6uHwOtWeRvko/NiK0Q9+a14yaOdIdRFsZA4aE12LTU3tyOg2jLDYVUQBw==
+X-Received: by 2002:ad4:5742:0:b0:87c:2bb6:741 with SMTP id 6a1803df08f44-8847c4d3134mr303252766d6.29.1764150119733;
+        Wed, 26 Nov 2025 01:41:59 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5969dbbee86sm5772682e87.49.2025.11.26.01.41.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Nov 2025 01:41:59 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH RFC 0/2] drm: bridge: anx7625: implement Type-C support
+Date: Wed, 26 Nov 2025 11:41:55 +0200
+Message-Id: <20251126-anx7625-typec-v1-0-22b30f846a88@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGPLJmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDQyMz3cS8CnMzI1PdksqC1GRdA/MUE1PTNBMj45REJaCegqLUtMwKsHn
+ RSkFuzkqxtbUA9lTgy2QAAAA=
+X-Change-ID: 20251126-anx7625-typec-07d455f423da
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1383;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=9IfJm9cYFgvTTHHW71T5NZliI4pprXGXeW+8D2Wr7t8=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBpJstm5Ty0nmzhElMKy3AXnsm67WGRTrj0T+FWW
+ Fwf3DYNTj6JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaSbLZgAKCRCLPIo+Aiko
+ 1TOzB/9iQBc8sfWSr3SeuIBtpJzY4hArGlzfPYv6wcfxXfWUttOaDJdiWr8VMSEJg/aI+tRzS/W
+ JQtJVrL5KOUWwlp2yUpLKdyxW2snz/tRas6oxkZRyGN2EkXSnA2UT7FMPlH2QBmsVWG8SQVAj/G
+ J5zs26Evk5Z2YGFqcjsP4t0F2Pbhivljh6KSld/brEb88TDdufVxy90sYq80T0eFe9amG5LNsqX
+ 0EWyOoCalN0tYrNUN6JdQfdcICeh6Bz4koMDIsriIb2dvp2Fy911Hf8LiZaErlJCqRU5ZyZVf/R
+ BogeQeVYpP3ENJvr9TbkIfCMkmzgyPenDVCQH1nXeDf/HiiI
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Authority-Analysis: v=2.4 cv=KerfcAYD c=1 sm=1 tr=0 ts=6926cb69 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=lTOfhhQ1OH7yEsO6ukYA:9 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-GUID: -XW7GtM81SzhGh1xknav51g5bh8jp8_A
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDA3OSBTYWx0ZWRfX09e8FCIPAC6n
+ aJtG8EwgeQYI8EnsDHQY/Vh+D1a9xX0bOKUe59dpD54xxi7Clab17BBD4NV1+4v5YIpZSlGf6bR
+ zZJmuiMs8N8VQ2k2Wx/PKcowNgQQWznvfH8AOuahp2Zam0rkKqUk1hpcFm3OCtvSp6wDJwXtW4S
+ kfMRlKqXK3+GsGA4C3/A+8o0e8tiVKZMqHkb6jreLdinTNn2FIsJSo46lIVbpNFuL3fLMXRzCPo
+ /CJZ9RFqsEdIkdzKPD4787ACnsnMOovFxHLvBpHf6gS65L+XaUbYdBDMpDau4RspzAfyFjwnqij
+ AmAa208g2eJ5Ez0lhWhbR8rNcNegU6ks73vY2hyxPavjo8uJzKw8KXCL2gsMqvLt4HHjikHSUPX
+ k3HoDVg2q8Mw3bbQYscy7Nj1BtALvQ==
+X-Proofpoint-ORIG-GUID: -XW7GtM81SzhGh1xknav51g5bh8jp8_A
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-25_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 priorityscore=1501 spamscore=0 bulkscore=0
+ lowpriorityscore=0 phishscore=0 suspectscore=0 adultscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511260079
 
-=E5=9C=A8 2025-11-26=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 10:37 +0100=EF=BC=
-=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> On 26/11/2025 09:57, Icenowy Zheng wrote:
-> > =E5=9C=A8 2025-11-26=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 09:51 +0100=EF=
-=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> > > On Wed, Nov 26, 2025 at 12:52:26PM +0800, Icenowy Zheng wrote:
-> > > > From: Icenowy Zheng <uwu@icenowy.me>
-> > > >=20
-> > > > Verisilicon has a series of display controllers prefixed with
-> > > > DC
-> > > > and
-> > > > with self-identification facility like their GC series GPUs.
-> > > >=20
-> > > > Add a device tree binding for it.
-> > > >=20
-> > > > Depends on the specific DC model, it can have either one or two
-> > > > display
-> > > > outputs, and each display output could be set to DPI signal or
-> > > > "DP"
-> > > > signal (which seems to be some plain parallel bus to HDMI
-> > > > controllers).
-> > > >=20
-> > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> > > > ---
-> > >=20
-> > > You already received review on this. Don't send the same. Read
-> > > the
-> > > review.
-> >=20
-> > Please see the sender (mail header From) of this time.
->=20
-> This improved. I am speaking about the rest of review.
+ANX7625 can be used to mux converted video stream with the USB signals
+on a Type-C connector. Provide minimal Type-C support necessary for
+ANX7625 to register the Type-C port device and properly respond to data
+/ power role events from the Type-C partner.
 
-Well this is why this is a v3 resend, not v4.
+Notes:
+- I'm not 100% happy having Type-C code in the DRM subtree. Should I use
+  AUX device and to move Type-C-related code to drivers/usb/typec?
 
-I will address these issues in v4.
+- Current code doesn't register a Type-C partner device. Would it be
+  okay or should it be registered?
 
->=20
-> Best regards,
-> Krzysztof
+- The code to change data / power roles from the device isn't a part of
+  the series, I'll include it once we settle on the first two items.
+
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+---
+Dmitry Baryshkov (2):
+      dt-bindings: drm/bridge: anx7625: describe Type-C connector
+      drm: bridge: anx7625: implement minimal Type-C support
+
+ .../bindings/display/bridge/analogix,anx7625.yaml  |  98 ++++++++++++-
+ drivers/gpu/drm/bridge/analogix/Kconfig            |   1 +
+ drivers/gpu/drm/bridge/analogix/anx7625.c          | 163 ++++++++++++++++++++-
+ drivers/gpu/drm/bridge/analogix/anx7625.h          |  21 ++-
+ 4 files changed, 272 insertions(+), 11 deletions(-)
+---
+base-commit: 92fd6e84175befa1775e5c0ab682938eca27c0b2
+change-id: 20251126-anx7625-typec-07d455f423da
+
+Best regards,
+-- 
+With best wishes
+Dmitry
 
 
