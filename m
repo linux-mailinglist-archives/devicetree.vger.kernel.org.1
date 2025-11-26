@@ -1,156 +1,200 @@
-Return-Path: <devicetree+bounces-242533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D34C8B58D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:52:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85446C8B593
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:53:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D41E3BDCDF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:47:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9ECF3B85AB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:47:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 752D4314D2C;
-	Wed, 26 Nov 2025 17:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A54733F36B;
+	Wed, 26 Nov 2025 17:44:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t71wDoEP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kznkas2i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F4A3128CA;
-	Wed, 26 Nov 2025 17:43:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A5130E82D
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:44:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764179004; cv=none; b=s6hHnkJu7is2No0K+VCdyQddsQMja8biV9kYptJWIeIFwH7ZNWH4dYcvo+MneT/MkdofoL9X/8St2087ucCeJ9kYZwCnn5JjaA1WCu+hF8f6jo1TZi7kP2HVb7VJCG5wSSK2CdTPKxXv1VbVY7R6e/r6xCVMZyr6R7HdDdt0QjY=
+	t=1764179061; cv=none; b=TE4VL+NgwsHl59igY2fjecvGKpY+RtzXUv7ZPMi86LCMkL3iV9nsQcD0Ct8Bbaalvm4Cf81LD+dYch5IUDQsIxA6JVWoqV0oVgtsUKWNUqlTq7R7DIFoa9M4UFfgyhXrICUXw6UZo7q1zrc02VtHZ3aLk6lr9cqDGUOY0kyhw1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764179004; c=relaxed/simple;
-	bh=s7kogi1zzJmGKeU3OBajrOm18Dhy7srZInmeF6Mv1RU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gS0+qrxckh6WfQV87jIe+naiGfvaqJAczAWa3sEjSRis6QadXVKPjNZkb8aM05Y0sj5iaEGD6EFmpwYAOgZ/ClBkvfnSY/uJP1NbE51FWQRopZR1dgZ8WaUIWOEtmlkkYPbteM3b6UKlce2/6Zqsl7Hfq/1wd9Awfp0OMTkF2dE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t71wDoEP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76916C4CEF7;
-	Wed, 26 Nov 2025 17:43:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764179003;
-	bh=s7kogi1zzJmGKeU3OBajrOm18Dhy7srZInmeF6Mv1RU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t71wDoEPgkrDfD8pHHitejJYk39o2FEFHFSmVT4ygOrZcB73k1A8mkh7b4/S7vge4
-	 I5C3GCpkFVGL6+w17G5PvFbBFaokZw3QsvRJwteYViOO6lazvrtdarUvwP4WzAtR3D
-	 daurM7DWpsmImxIPHNOU/gY1NMUW3UZYrPIGLr5cTxvcvwJKRr9z9M1P0sJ/isdlh/
-	 IqKQxtOsw47XjmxeY280Hx846IvYFyQXOH7Pc0dN0hfE9tX9ffTaBgISBozgRjS5w2
-	 p7OrblkyeQ0ONduKSMGkEepJLD6nwZoVHAe3UHSuCoKWXAe+RpCHINnQTuR8DKTDOA
-	 aFQD4Ru55iDcg==
-Message-ID: <8078408c-b4c4-426f-8801-902b2b6dfd71@kernel.org>
-Date: Wed, 26 Nov 2025 18:43:19 +0100
+	s=arc-20240116; t=1764179061; c=relaxed/simple;
+	bh=DZmAfxsJe8NvUJeI6S9zqA0WF6pPJRkMTm7r9xT3UrQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OK0aAKvxxCui8eX5GWAjefilsk2sA6xaMFjzE1Xg5iRr1M7q8wpsmFF43UJoFTiS1l+JnIdxWIVmjSJS9JflETfWYhnnjyNFRxWk93AaPUZSgazVOsonn8DA/8OPysMt4FrOf3Q/A3DWOdh/YwVBGX6YxY5lCqmTAiBLdR0yyrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kznkas2i; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42b47f662a0so620408f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:44:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764179057; x=1764783857; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PJtndxdQkYWzvy6kDqOv7kQqo1yR4d6wvaKa4OAP+Cc=;
+        b=kznkas2iAfgrVPA3BtK/rYtQI3tQp/qqnbkmrolnZncAiTLFIy6RJUwKKFL/66vwQo
+         bm2qNK/aO4SMGXzMxzUKyPrSJd2xj/R0XfhtM/AaX8yZJ4AmaYCE6sQjBSySj68Dt2lb
+         z/xdc3cFXOap2d6X6dVuQvgxbRT59QMUaOlVMz+hxt8DGVWWHhvVnsMcsps69GwglS2E
+         wSS1A/+gvNIk2rUt60QEgFEduhhcQqeHx+KXQHcdAsPHFEgNCFHGizRDNw4M60MDlL7G
+         eDwcZ3f0OQAA5Z7jAeQyKcRU52AJ+hfCIIzWnPW4EZTMI18vpJrS4q0kkbwx/dHC6+MF
+         1pIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764179057; x=1764783857;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=PJtndxdQkYWzvy6kDqOv7kQqo1yR4d6wvaKa4OAP+Cc=;
+        b=CvSPr+lRHxzYugbhcnB7QapBm8xVnRy+bPU2vsUpyS/gbAD0sOmDKLtJSG1mxsaX6R
+         DG2XQi6PBYqpz6L/1EZjxOV3MTBXPvZmwyQMJFDrfc5dFWTuKiBaf/q2xbbrYxcCO/jx
+         lGGd2BLqptuHyfzlSCtMdXVdRRVMp4xWpmBgyOCucgD0a8+SQSCpHNwY50y6y6HiQG4e
+         89wP3pOF7UDacl/y4kzj+trwiKDw0LBDXGD0STVJQ+F/tigNaaga5PbWadXYsFDt/jmT
+         ISmUswmUe4G4zGhGZfERkKdRRs4DU6dGhhx144+ST7+as5kZR8Fu9YnXtfU2D2FPgE7l
+         c9dw==
+X-Forwarded-Encrypted: i=1; AJvYcCXzWhjEun08hk278dZe2lyDbqwyLbjQBgWBmvuPNjc/elxGMZP1c746XzvGXb1BPwi0yNI5rzTI2c3I@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6XUh6DNOxWpAfOrrVTnDQLiNFpr9XTtTZLxHqVUJexeTqM5pt
+	Jdm8/B1OOyfmkZN50xY/23pgTWY/8BSyk9rHo9XyQ9pYjw6NJH7zTIStrDysNSEAtPzuyN80bv/
+	u03HaV1A1PXVgLQlHeltATiG1OfqAxkXuhGbo
+X-Gm-Gg: ASbGncuzfcMCcXL0oCwi4gwDk7vPviWGVttKU/rBEvfgMKC2i+9V96MWM4g7DT18Lv+
+	bgUGri5tSfa3b1/uA50HAHYIErKRZqecutZKtjA1bpc4727yzFeQHIheDFzF7djnD176wOjTVNx
+	dZ0IqimqG/m31BjwsrdCBPswVc6lGmQdrnf2M90uVNkhyXyTX4VG9BCcsDnBWVoi90vfLa9/fht
+	36iM8RlyRDhMzbuH0pILGP6RLC+CmEcXvje8jX3D1bVSgI9ejdajew17lgBsmDz7WYWM1rg+ZQN
+	UZW4lvXWwme2OaXP3IQIHbVgHxOjApBDu9TBY2E=
+X-Google-Smtp-Source: AGHT+IEMtnBKL8QKEYTLtiH3Qt1JZUzmDtUchvu2N3MeDZa927dTGr16SXLA5t6Vbu7dxUN21qfwG9K9BwkeddOjilM=
+X-Received: by 2002:a05:6000:1a8a:b0:42b:47ef:1d59 with SMTP id
+ ffacd0b85a97d-42cba63b5b2mr28905036f8f.4.1764179056932; Wed, 26 Nov 2025
+ 09:44:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] soc: qcom: llcc: Fix usecase id macro alignment
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>,
- Jonathan Cameron <jonathan.cameron@huawei.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251125-glymur_llcc_enablement-v2-0-75a10be51d74@oss.qualcomm.com>
- <20251125-glymur_llcc_enablement-v2-2-75a10be51d74@oss.qualcomm.com>
- <20251126-gigantic-dinosaur-of-bloom-aca95f@kuoka>
- <7158bde2-bf70-4a2d-b19f-fcc24cc37d28@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <7158bde2-bf70-4a2d-b19f-fcc24cc37d28@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251121113553.2955854-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXrkt0MXOBSvpdJwNVmGrnmt03mSGqj7EhqF16tf4i5Pg@mail.gmail.com>
+In-Reply-To: <CAMuHMdXrkt0MXOBSvpdJwNVmGrnmt03mSGqj7EhqF16tf4i5Pg@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 26 Nov 2025 17:43:50 +0000
+X-Gm-Features: AWmQ_bkhH_0PDV6DBVghT_5kUE0J4e1gar5BbggGmW0QWH2FTGmxRKv3h7arj-0
+Message-ID: <CA+V-a8vhTH7qAbrJrqRimiBfwD4K08zK0_yOHHjhCjfufGWQaw@mail.gmail.com>
+Subject: Re: [PATCH net-next 06/11] net: dsa: rzn1-a5psw: Add support for
+ optional timestamp clock
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Russell King <linux@armlinux.org.uk>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 26/11/2025 12:38, Pankaj Patil wrote:
-> On 11/26/2025 2:29 PM, Krzysztof Kozlowski wrote:
->> On Tue, Nov 25, 2025 at 02:46:23PM +0530, Pankaj Patil wrote:
->>> Aligned macro values for usecase id along the column length
->>> -#define LLCC_CAMOFE	 71
->>> -#define LLCC_CAMRTIP	 72
->>> -#define LLCC_CAMSRTIP	 73
->>> -#define LLCC_CAMRTRF	 74
->>> -#define LLCC_CAMSRTRF	 75
->>> -#define LLCC_VIDEO_APV	 83
->>> -#define LLCC_COMPUTE1	 87
->>> -#define LLCC_CPUSS_OPP	 88
->>> -#define LLCC_CPUSSMPAM	 89
->>> -#define LLCC_CAM_IPE_STROV	 92
->>> -#define LLCC_CAM_OFE_STROV	 93
->>> -#define LLCC_CPUSS_HEU	 94
->>> -#define LLCC_MDM_PNG_FIXED	 100
->>> +#define LLCC_CPUSS         1
->>> +#define LLCC_VIDSC0        2
->>> +#define LLCC_VIDSC1        3
->>> +#define LLCC_ROTATOR       4
->>> +#define LLCC_VOICE         5
->> This does not look right - you still have here spaces, so nothing fixed.
->>
->> I don't think this change is useful. You replaced one poor alignment
->> into another poor alignment, so IMO better not to touch this at all.
->>
->> Best regards,
->> Krzysztof
->>
-> Sure, Will drop this patch in next revision
+Hi Geert,
 
-If fixing this, fix correctly, so these should be tabs accommodating
-future IDs, so you won't be doing the same every 3 months.
+Thank you for the review.
 
-But to me it is a bit of churn, does not improve readability and
-actually affects negatively git blame and backporting, so I would
-propose to drop it.
+On Mon, Nov 24, 2025 at 12:45=E2=80=AFPM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, 21 Nov 2025 at 12:36, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add support for an optional "ts" (timestamp) clock to the RZN1 A5PSW
+> > driver. Some SoC variants provide a dedicated clock source for
+> > timestamping or time synchronization features within the Ethernet
+> > switch IP.
+> >
+> > Request and enable this clock during probe if defined in the device tre=
+e.
+> > If the clock is not present, the driver continues to operate normally.
+> >
+> > This change prepares the driver for Renesas RZ/T2H and RZ/N2H SoCs, whe=
+re
+> > the Ethernet switch includes a timestamp clock input.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+>
+> > --- a/drivers/net/dsa/rzn1_a5psw.c
+> > +++ b/drivers/net/dsa/rzn1_a5psw.c
+> > @@ -1243,6 +1243,13 @@ static int a5psw_probe(struct platform_device *p=
+dev)
+> >                 goto free_pcs;
+> >         }
+> >
+> > +       a5psw->ts =3D devm_clk_get_optional_enabled(dev, "ts");
+> > +       if (IS_ERR(a5psw->ts)) {
+> > +               dev_err(dev, "failed get ts clock\n");
+>
+> I think the error can be -EPROBE_DEFER, so this should use
+> dev_err_probe() instead. Same for the existing calls.
+>
+Agreed. For the existing calls I'll create a separate patch.
 
+> > +               ret =3D PTR_ERR(a5psw->ts);
+> > +               goto free_pcs;
+> > +       }
+> > +
+> >         reset =3D devm_reset_control_get_optional_exclusive_deasserted(=
+dev, NULL);
+> >         if (IS_ERR(reset)) {
+> >                 ret =3D PTR_ERR(reset);
+>
+> > --- a/drivers/net/dsa/rzn1_a5psw.h
+> > +++ b/drivers/net/dsa/rzn1_a5psw.h
+> > @@ -236,6 +236,7 @@ union lk_data {
+> >   * @base: Base address of the switch
+> >   * @hclk: hclk_switch clock
+> >   * @clk: clk_switch clock
+> > + * @ts: Timestamp clock
+> >   * @dev: Device associated to the switch
+> >   * @mii_bus: MDIO bus struct
+> >   * @mdio_freq: MDIO bus frequency requested
+> > @@ -251,6 +252,7 @@ struct a5psw {
+> >         void __iomem *base;
+> >         struct clk *hclk;
+> >         struct clk *clk;
+> > +       struct clk *ts;
+>
+> "ts" is only used inside a5psw_probe(), so it can be a local variable.
+>
+Agreed, I will create a local variable.
 
-Best regards,
-Krzysztof
+Cheers,
+Prabhakar
+
+> >         struct device *dev;
+> >         struct mii_bus  *mii_bus;
+> >         struct phylink_pcs *pcs[A5PSW_PORTS_NUM - 1];
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
