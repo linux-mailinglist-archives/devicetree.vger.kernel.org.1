@@ -1,61 +1,94 @@
-Return-Path: <devicetree+bounces-242477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A18DC8ABAB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:47:34 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B7D0C8AC21
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:55:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AB8A235778F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:47:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 12F844E2056
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA96533A6E6;
-	Wed, 26 Nov 2025 15:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857AC33A03F;
+	Wed, 26 Nov 2025 15:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tuiST38E"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UWmV9y/N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90DE1FC7C5;
-	Wed, 26 Nov 2025 15:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19123019B1
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 15:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764172029; cv=none; b=hL2z8valUwwLZ4eCgcIEWpIx0WqycEpD2BaNKqLJPetLABAUHCUJ+1WnoobCFVU/luEKqL0MZH3DOagPGUF8blZJc+9b5bG2FXu+V/A/Rt6SWhGIHbPA/+fqwLQvS9iypn6/ZXpPXIjvcyMESi331Bbb0gIHBeNsviFFEA21+rU=
+	t=1764172547; cv=none; b=COKeQ2Gr4m9qnn+WmMgpPZiH46qvNgDYi0mMkm0kUlUdiPqIvHIIsKI55XmO7O9U7p2hwqOdt1bj7R5ssgQAjppNGCKEzaul5Xl0y43rySaZapJTiwveg2rKbwGvT5zPNR2sdhEmaqsXUd6tEz50dlEgwhCblscYDZ7fZHpafbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764172029; c=relaxed/simple;
-	bh=DUZirXcwc71Z+jIStyr86QpnCJLfkISWi1F3mf2tlFQ=;
+	s=arc-20240116; t=1764172547; c=relaxed/simple;
+	bh=lASm2siB5AU0w5u55FAD+C2Ou4paYQEnU69Wbb4v2Yo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DT/P802NhjjFKIhqcyzmJe7AN1j97LJJyrB680LGn8FMf7PXthSnNK897qmvJc42I38akNP/RzhW4LI31yy0dUoEkbR2IS6BA2Z/gAxumr8uVs7PzlYhBQ+dMI8UJhUdhaJjLb7es9hhnsWKgAsuhIfD1I63sIFOBc1UgMUiY4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tuiST38E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A630C4CEF7;
-	Wed, 26 Nov 2025 15:47:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764172029;
-	bh=DUZirXcwc71Z+jIStyr86QpnCJLfkISWi1F3mf2tlFQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tuiST38EgaBds+eRYUE5ppHAdvIvOu3T9UgkcRaCE0S5BtIkK2BJXA2coxyDl0qGk
-	 ELowJCjvNi3ZXT7sa+ljCLGtXRrg6/DGy4bwujtqxSf+K1HSnj0tHF0l+eoKHZMJwC
-	 NneMrqaT+ERLHBrrg6tpHCvud/3eNe99tpZeXZWZOgwUZlbD0DlacyxBvHZpm63rzx
-	 U96ABKRB3gXcglDCjqtp4P3Y7BWA4aPwIfVY51UJou33mrqzIIMVFbJ1/7M4fUYzHn
-	 /r2aI/XC/KSmG/yDmN1ngJgyJ6vq6K6loMq0NOZOH0TpNU3kWXeUC+Qn4ndDYY40R1
-	 n6mLZa/XGloXg==
-Date: Wed, 26 Nov 2025 09:52:38 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Praveen Talari <praveen.talari@oss.qualcomm.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=ROg737eduXrkYfDjXWf2ISExDcGmEwLkYhds6GM7mojKaJZc7b9MEvb3Vc0pjafaXkEe2hW1a+Jk9YtdxUTLenhH0boSZ9lwgDy74Ua0GBmUiJjXK+BDprfPtuI1CysnvnHxJwfBU05IA+NruhzTPATQIpnsg4EYNBJW7P1UC38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UWmV9y/N; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-63c489f1e6cso1595165a12.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:55:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764172544; x=1764777344; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rG1nOVu8gVLE+V2Sxzp2pYjIM+pZyr/YOIj56xPih2c=;
+        b=UWmV9y/NodWXuqhJY1TrxxsW5M1ncI40fhICgsktkYPkqohzrKM5KW8gECsBOkUMmc
+         GomMVh5SAwe28JGNT4WeVfyWdctx/9vWYlroKPha9wg8kMPsREvY5d//lXoxsnW1UkFi
+         pGFo7cozZkoNz4/xCnDXm2Aclxz3llxgBJitrL5N9yEG4avTKJKfoG8YwiWv77A9JTTD
+         2zHAuhkmOLH9hE2MlyVtRYbSM5uricdM0rHaz+yHpHE5RIoF8TD0rASiGuNpbWZIqiZc
+         GcR0VeCKBmUrnvceelH7wMbrwnxTuR+mK/r7337QBmHOFLSRwY/TGl7N6YAI1JzZtzps
+         e7zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764172544; x=1764777344;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rG1nOVu8gVLE+V2Sxzp2pYjIM+pZyr/YOIj56xPih2c=;
+        b=W2jGlczly+AtXSIv214Ph8S3IWzyqVlrN4jHACiV1v4LnCg9yHNcyJa1e9o84Qi4Cw
+         beqFMeByqJlrDRox/QZYwRht+tRJD/7OalrBAwU5lRPTWjSA6cNfFaC4irNjeTXLqlDw
+         bpR1VD3WqPcVD/7/bWMR3GJkEMDcORHerevxVsEvCt+H8lpXHz2q6yRf8f+L2KIAhv39
+         39wifmw7F9kMHan7io6jIo9MzBBwWkg7NNiS3Xa+N+hJHWhWXbrhkrnRNC4FHHCpBVe9
+         GOCq0Wj8q5qIh9A5HvcIpcinoIsM7A3mmxsJZNtzVTphOC2xEd4+e5XSNQWLeYRSu1cM
+         eqgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUGzyouXg9Bxt9uzyHMzzSC7eGsTZpco4NThdHKSgTOTtY337isEXMsV1uYEQIeLt1w0QjlaXJxZefN@vger.kernel.org
+X-Gm-Message-State: AOJu0YySyNOK/W/yuclaIoukHjXZpCURhKCD6A1j4fdpcR1LPFcaspba
+	elqd7AALZJEzcUDY8IhD4JMxreK2xBbmjvLbc9KdzrsYyK14RMW5URhf
+X-Gm-Gg: ASbGncsgBJpFKgdWWAfy4cXO0sfQ5omB5Kx7jgzwEszObHSHXj3ryytDJBumJV2XzW/
+	ay/4C9FWJNG0mkzvZS6ledXR7GS5YJyvTN+qErrxsqCiO0zJwDYhiiNF4Xdy2n2ulfG5/4RDMm+
+	q4LzpUwKzfi3f3c1W0loxN2l3rqAzNdD4bpq/Jv1eIiccXnYNXZBK9zKfnEhm1ycH2neaf4xM0z
+	/VRtbVvwRVd7pKGD9VgEncynHerNIuPymNixygG8KtRZaCoVgkH4HrGvMKw7TiBM+VUIVoKrsfC
+	BeflO25AHlEHuSpb/LC4b6cR9e8MSAV0LUZIGbnH/J3hHWMzk7Jn6wWPcDBYWRlVWT4CsGxS4Ix
+	e/VXRm/QVY30c2zqRoh4UI+N6Z2yjUd7nNUIV40vfLtGhBtrLHfOt8xBi9iZ88EKylRv8FHOMj/
+	1zNFfZosUxyPyEqAJUYGcLyZsZ4TvGcp3kPfmmIskZ/q4yUOMWMxwdnKJfdfsKQ514CZ4=
+X-Google-Smtp-Source: AGHT+IFOk4Dc71dAU1PFak6lwxd8NQT+2eJebIKCLnu747O0fz8ysrn20pLcynZiSjtb/k5bFDX7Ag==
+X-Received: by 2002:aa7:d4ce:0:b0:640:931e:ccac with SMTP id 4fb4d7f45d1cf-64539658323mr16418976a12.7.1764172544022;
+        Wed, 26 Nov 2025 07:55:44 -0800 (PST)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:1025:ba00:55dc:4ccc])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6453633fe28sm18380759a12.0.2025.11.26.07.55.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Nov 2025 07:55:43 -0800 (PST)
+Date: Wed, 26 Nov 2025 16:55:41 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>, Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, psodagud@quicinc.com, 
-	djaggi@quicinc.com, quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, 
-	quic_arandive@quicinc.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v1 12/12] i2c: qcom-geni: Enable I2C on SA8255p Qualcomm
- platforms
-Message-ID: <4kjkadmhf67ts4pryhvqdk57b2k27ggwkt2vqdijvhmwygpspb@rpdwcpxpq2up>
-References: <20251122050018.283669-1-praveen.talari@oss.qualcomm.com>
- <20251122050018.283669-13-praveen.talari@oss.qualcomm.com>
+	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 9/9] iio: adc: ad4062: Add GPIO Controller support
+Message-ID: <rk4hmupbrb5ugxft6upj7ru43x3z7ybrobax45rorpwbcwleh6@vzxrr3m7r6ep>
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
+ <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
+ <aSQ2JUN05vmMQC1I@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,175 +97,153 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251122050018.283669-13-praveen.talari@oss.qualcomm.com>
+In-Reply-To: <aSQ2JUN05vmMQC1I@smile.fi.intel.com>
 
-On Sat, Nov 22, 2025 at 10:30:18AM +0530, Praveen Talari wrote:
-> The Qualcomm automotive SA8255p SoC relies on firmware to configure
-> platform resources, including clocks, interconnects and TLMM.
-> The driver requests resources operations over SCMI using power
-> and performance protocols.
+On Mon, Nov 24, 2025 at 12:40:37PM +0200, Andy Shevchenko wrote:
+> On Mon, Nov 24, 2025 at 10:18:08AM +0100, Jorge Marques wrote:
+> > When gp0 or gp1 is not taken as an interrupt, expose them as gpo if
+Hi Andy,
 > 
-> The SCMI power protocol enables or disables resources like clocks,
-> interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
-> such as resume/suspend, to control power states(on/off).
+> GPO
+Ack.
 > 
-> The SCMI performance protocol manages I2C frequency, with each
-> frequency rate represented by a performance level. The driver uses
-> geni_se_set_perf_opp() API to request the desired frequency rate..
+> > gpio-contoller is set in the devicetree.
 > 
-> As part of geni_se_set_perf_opp(), the OPP for the requested frequency
-> is obtained using dev_pm_opp_find_freq_floor() and the performance
-> level is set using dev_pm_opp_set_opp().
+> Why can't gpio-regmap be used?
 > 
-> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
-> ---
->  drivers/i2c/busses/i2c-qcom-geni.c | 46 +++++++++++++++++++++++-------
->  1 file changed, 35 insertions(+), 11 deletions(-)
+Because the device register values (0x5, 0x6) does not fit the gpio-regmap.
+It writes the mask for high and 0 for low.
+But low is 01[01] and
+    high   01[10]
+
+A different series would need to extend the gpio-regmap ops, but if you
+implement your custom reg read/write, then you save at most ~5 lines...
+I will add that to the commit message.
+> ...
 > 
-> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-> index a0f68fdd4078..78154879f02d 100644
-> --- a/drivers/i2c/busses/i2c-qcom-geni.c
-> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
-> @@ -82,6 +82,9 @@ struct geni_i2c_desc {
->  	char *icc_ddr;
->  	bool no_dma_support;
->  	unsigned int tx_fifo_depth;
-> +	int (*resources_init)(struct geni_se *se);
-> +	int (*set_rate)(struct geni_se *se, unsigned long freq);
-> +	int (*power_state)(struct geni_se *se, bool state);
+> > +static int ad4062_gpio_get(struct gpio_chip *gc, unsigned int offset)
+> > +{
+> > +	struct ad4062_state *st = gpiochip_get_data(gc);
+> > +	unsigned int reg_val;
+> > +	int ret;
+> > +
+> > +	ret = regmap_read(st->regmap, AD4062_REG_GP_CONF, &reg_val);
+> > +	if (ret)
+> > +		return 0;
+Should have been
+  		return ret;
+> 
+> > +	if (st->gpo_irq[offset])
+> > +		return -ENODEV;
+> 
+> Consider using valid_mask instead (.init_valid_mask() callback).
+> Hmm... And it seems it's in place. I didn't get what is here then and
+> why we need to do it after accessing the HW? If there are side-effects
+> they must be described.
+> 
+True, this is not necessary the valid mask does the same.
+> > +	if (offset)
+> > +		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_1, reg_val);
+> > +	else
+> > +		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_0, reg_val);
+> > +
+> > +	return reg_val == AD4062_GP_STATIC_HIGH ? 1 : 0;
+> 
+> 	return !!(reg_val == AD4062_GP_STATIC_HIGH);
+> 
+> also will work.
+>
+ 	return reg_val == AD4062_GP_STATIC_HIGH;
+> > +}
+> 
+> > +static int ad4062_gpio_init_valid_mask(struct gpio_chip *gc,
+> > +				       unsigned long *valid_mask,
+> > +				       unsigned int ngpios)
+> > +{
+> > +	struct ad4062_state *st = gpiochip_get_data(gc);
+> > +
+> > +	bitmap_zero(valid_mask, ngpios);
+> > +
+> > +	if (!st->gpo_irq[0])
+> > +		set_bit(0, valid_mask);
+> > +	if (!st->gpo_irq[1])
+> > +		set_bit(1, valid_mask);
+> 
+> Why atomic bit set:s?
+> 
+Not needed, will use
 
-You have isolated this quite nicely now, so I'd prefer 3 (four to keep
-power on/off separate) if statements, over these function pointers, at
-this point.
+	if (!st->gpo_irq[0])
+		*valid_mask |= BIT(0);
+	if (!st->gpo_irq[1])
+		*valid_mask |= BIT(1);
 
-This saves the future reader from having to remember the combination of
-function pointer targets in the various cases - and allow things like
-"jump to definition" in your editor to still work.
-
->  };
->  
->  #define QCOM_I2C_MIN_NUM_OF_MSGS_MULTI_DESC	2
-> @@ -203,8 +206,9 @@ static int geni_i2c_clk_map_idx(struct geni_i2c_dev *gi2c)
->  	return -EINVAL;
->  }
->  
-> -static void qcom_geni_i2c_conf(struct geni_i2c_dev *gi2c)
-> +static int qcom_geni_i2c_conf(struct geni_se *se, unsigned long freq)
-
-This sounds like a qcom_geni_i2c_set_rate() now that it takes a
-frequency argument.
-
-Regards,
-Bjorn
-
->  {
-> +	struct geni_i2c_dev *gi2c = dev_get_drvdata(se->dev);
->  	const struct geni_i2c_clk_fld *itr = gi2c->clk_fld;
->  	u32 val;
->  
-> @@ -217,6 +221,7 @@ static void qcom_geni_i2c_conf(struct geni_i2c_dev *gi2c)
->  	val |= itr->t_low_cnt << LOW_COUNTER_SHFT;
->  	val |= itr->t_cycle_cnt;
->  	writel_relaxed(val, gi2c->se.base + SE_I2C_SCL_COUNTERS);
-> +	return 0;
->  }
->  
->  static void geni_i2c_err_misc(struct geni_i2c_dev *gi2c)
-> @@ -908,7 +913,9 @@ static int geni_i2c_xfer(struct i2c_adapter *adap,
->  		return ret;
->  	}
->  
-> -	qcom_geni_i2c_conf(gi2c);
-> +	ret = gi2c->dev_data->set_rate(&gi2c->se, gi2c->clk_freq_out);
-> +	if (ret)
-> +		return ret;
->  
->  	if (gi2c->gpi_mode)
->  		ret = geni_i2c_gpi_xfer(gi2c, msgs, num);
-> @@ -1041,8 +1048,9 @@ static int geni_i2c_init(struct geni_i2c_dev *gi2c)
->  	return ret;
->  }
->  
-> -static int geni_i2c_resources_init(struct geni_i2c_dev *gi2c)
-> +static int geni_i2c_resources_init(struct geni_se *se)
->  {
-> +	struct geni_i2c_dev *gi2c = dev_get_drvdata(se->dev);
->  	int ret;
->  
->  	ret = geni_se_resources_init(&gi2c->se);
-> @@ -1095,7 +1103,7 @@ static int geni_i2c_probe(struct platform_device *pdev)
->  	spin_lock_init(&gi2c->lock);
->  	platform_set_drvdata(pdev, gi2c);
->  
-> -	ret = geni_i2c_resources_init(gi2c);
-> +	ret = gi2c->dev_data->resources_init(&gi2c->se);
->  	if (ret)
->  		return ret;
->  
-> @@ -1165,10 +1173,12 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
->  
->  	disable_irq(gi2c->irq);
->  
-> -	ret = geni_se_resources_state(&gi2c->se, false);
-> -	if (ret) {
-> -		enable_irq(gi2c->irq);
-> -		return ret;
-> +	if (gi2c->dev_data->power_state) {
-> +		ret = gi2c->dev_data->power_state(&gi2c->se, false);
-> +		if (ret) {
-> +			enable_irq(gi2c->irq);
-> +			return ret;
-> +		}
->  	}
->  
->  	gi2c->suspended = 1;
-> @@ -1180,9 +1190,11 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
->  	int ret;
->  	struct geni_i2c_dev *gi2c = dev_get_drvdata(dev);
->  
-> -	ret = geni_se_resources_state(&gi2c->se, true);
-> -	if (ret)
-> -		return ret;
-> +	if (gi2c->dev_data->power_state) {
-> +		ret = gi2c->dev_data->power_state(&gi2c->se, true);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	enable_irq(gi2c->irq);
->  	gi2c->suspended = 0;
-> @@ -1221,6 +1233,9 @@ static const struct dev_pm_ops geni_i2c_pm_ops = {
->  
->  static const struct geni_i2c_desc geni_i2c = {
->  	.icc_ddr = "qup-memory",
-> +	.resources_init = geni_i2c_resources_init,
-> +	.set_rate = qcom_geni_i2c_conf,
-> +	.power_state = geni_se_resources_state,
->  };
->  
->  static const struct geni_i2c_desc i2c_master_hub = {
-> @@ -1228,11 +1243,20 @@ static const struct geni_i2c_desc i2c_master_hub = {
->  	.icc_ddr = NULL,
->  	.no_dma_support = true,
->  	.tx_fifo_depth = 16,
-> +	.resources_init = geni_i2c_resources_init,
-> +	.set_rate = qcom_geni_i2c_conf,
-> +	.power_state = geni_se_resources_state,
-> +};
-> +
-> +static const struct geni_i2c_desc sa8255p_geni_i2c = {
-> +	.resources_init = geni_se_domain_attach,
-> +	.set_rate = geni_se_set_perf_opp,
->  };
->  
->  static const struct of_device_id geni_i2c_dt_match[] = {
->  	{ .compatible = "qcom,geni-i2c", .data = &geni_i2c },
->  	{ .compatible = "qcom,geni-i2c-master-hub", .data = &i2c_master_hub },
-> +	{ .compatible = "qcom,sa8255p-geni-i2c", .data = &sa8255p_geni_i2c },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, geni_i2c_dt_match);
+> 
+> > +	return 0;
+> > +}
+> > +
+> > +static int ad4062_gpio_init(struct ad4062_state *st)
+> > +{
+> > +	struct device *dev = &st->i3cdev->dev;
+> > +	struct gpio_chip *gc;
+> > +	u8 val, mask;
+> > +	int ret;
+> 
+> > +	if ((st->gpo_irq[0] && st->gpo_irq[1]) ||
+> > +	    !device_property_read_bool(dev, "gpio-controller"))
+> > +		return 0;
+> 
+> Do you need this? valid_mask should take care of this.
+> 
+True, this is not necessary.
+> > +	gc = devm_kzalloc(dev, sizeof(*gc), GFP_KERNEL);
+> > +	if (!gc)
+> > +		return -ENOMEM;
+> > +
+> > +	val = 0;
+> > +	mask = 0;
+> > +	if (!st->gpo_irq[0]) {
+> > +		mask |= AD4062_REG_GP_CONF_MODE_MSK_0;
+> > +		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, AD4062_GP_STATIC_LOW);
+> > +	}
+> > +	if (!st->gpo_irq[1]) {
+> > +		mask |= AD4062_REG_GP_CONF_MODE_MSK_1;
+> > +		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_STATIC_LOW);
+> > +	}
+> > +
+> > +	ret = regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
+> > +				 mask, val);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = devm_add_action_or_reset(dev, ad4062_gpio_disable, st);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	gc->parent = dev;
+> > +	gc->label = st->chip->name;
+> > +	gc->owner = THIS_MODULE;
+> > +	gc->base = -1;
+> > +	gc->ngpio = 2;
+> > +	gc->init_valid_mask = ad4062_gpio_init_valid_mask;
+> > +	gc->get_direction = ad4062_gpio_get_direction;
+> > +	gc->set = ad4062_gpio_set;
+> > +	gc->get = ad4062_gpio_get;
+> > +	gc->can_sleep = true;
+> > +
+> > +	ret = devm_gpiochip_add_data(dev, gc, st);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Unable to register GPIO chip\n");
+> > +
+> > +	return 0;
+> > +}
+> 
 > -- 
-> 2.34.1
+> With Best Regards,
+> Andy Shevchenko
 > 
+> 
+
+Best regards,
+Jorge
 
