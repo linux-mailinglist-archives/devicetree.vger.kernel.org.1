@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-242215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 836F2C881B3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 05:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0A3C881BC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 05:56:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C5BAD356737
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 04:55:07 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1FA15356BB7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 04:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A1630EF72;
-	Wed, 26 Nov 2025 04:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9BC25A2A2;
+	Wed, 26 Nov 2025 04:53:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5F1309EE4;
-	Wed, 26 Nov 2025 04:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0918A2566DD;
+	Wed, 26 Nov 2025 04:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764132802; cv=none; b=YKc3FinVqPOoSqs+rKxR6uD+D693iNf6CPHdqaHe63TaNehAAGXRACDArli8Y42tuQxa725f0x5dWugdqcwZDmZAStzTGAyr5Ir9IUXa7nbwXV7ymUyT3twCY8cVvn0FTH011LuASMiFAlvpmURLyqQW2yrG1Cob/fkjFm8rHv8=
+	t=1764132810; cv=none; b=up4MEE8eBWn1jZIoBxeBAw9IFWoYV8dcpkeJ2kX2On2kkwAUuyAfCh9QZAnDHHdwKgv300iA9jM+PRZFrdr5oO2oWO4AcxDjah5TXeOLG/dS/R6doGTboq2chOj/6xn9DY4ujv+SPa0/T4Zbg2R9+XKXGv3fVAm+B+r8JCLqzFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764132802; c=relaxed/simple;
-	bh=oGRHJb/CexReps1/D5/K+zwXCCzWQv944OiqavKS4h8=;
+	s=arc-20240116; t=1764132810; c=relaxed/simple;
+	bh=roBJcrYxyWEYtjMIWqJwEDKOkEXXHXpT5UqfR3UA/xw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PLFGjW7fQy7h26zQwA4cJtpnpVZDCW247+eePNf8IgjCSu0y1ekT37eJHsoIRacH9tKJivXiO+KDPEUNcXi2ys4YkMR+kOQAaAExYDdWa4siAbbSrg408seDvysODL7HJ+ECh2A7A3BkeF+ZhRCtZhr+5c+A/KbVWqiy2bdxPcA=
+	 MIME-Version; b=tINyqlcK3SvUXLWtU7oJf1sjEbniYeT1EjD/JFooly1Q02PTLQf0T9COXvGplMIo8NHyt4labzNa9x+MTUPviUQHivfk/GnYRJHzE3Lru075NaFfO8bp5/tudN94WfmY1Tn/MuDX9d1KA5S1bee+21kG5PV/iTePf9n/bitVajs=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
 Received: from edelgard.fodlan.icenowy.me (unknown [112.94.101.155])
-	by APP-05 (Coremail) with SMTP id zQCowADn4mOUhyZpi2gbAg--.38374S10;
-	Wed, 26 Nov 2025 12:53:01 +0800 (CST)
+	by APP-05 (Coremail) with SMTP id zQCowADn4mOUhyZpi2gbAg--.38374S11;
+	Wed, 26 Nov 2025 12:53:03 +0800 (CST)
 From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
@@ -61,9 +61,9 @@ Cc: Han Gao <rabenda.cn@gmail.com>,
 	linux-riscv@lists.infradead.org,
 	Icenowy Zheng <uwu@icenowy.me>,
 	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH RESEND v3 8/9] MAINTAINERS: assign myself as maintainer for verisilicon DC driver
-Date: Wed, 26 Nov 2025 12:52:32 +0800
-Message-ID: <20251126045233.218286-9-zhengxingda@iscas.ac.cn>
+Subject: [PATCH RESEND v3 9/9] mailmap: map all Icenowy Zheng's mail addresses
+Date: Wed, 26 Nov 2025 12:52:33 +0800
+Message-ID: <20251126045233.218286-10-zhengxingda@iscas.ac.cn>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251126045233.218286-1-zhengxingda@iscas.ac.cn>
 References: <20251126045233.218286-1-zhengxingda@iscas.ac.cn>
@@ -74,62 +74,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowADn4mOUhyZpi2gbAg--.38374S10
-X-Coremail-Antispam: 1UD129KBjvdXoWrKrW5tFyfCw1kXr18KF4DArb_yoWkJFb_GF
-	4kA34DZw47GFnYk395AFs8Kayav3y5Jr4rZ3Zxtwsay34Utryqg3WkXw15Cw1UCFWfGF1D
-	Aa9rJryfGF4a9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUb98FF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUAVCq3wA2048vs2
-	IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28E
-	F7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr
-	1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oVCq
-	3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7
-	IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4U
-	M4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2
-	kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67
-	AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI
-	42IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF
-	4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBI
-	daVFxhVjvjDU0xZFpf9x0pRJ3kZUUUUU=
+X-CM-TRANSID:zQCowADn4mOUhyZpi2gbAg--.38374S11
+X-Coremail-Antispam: 1UD129KBjvJXoWrKryDWr4ktryDKw4fCFWDXFb_yoW8Jry5pr
+	4xGF4jgFyvywn29r1qgry5WF18Xa95WF4DGw4avw18ZFZ3tr1kWrsxKayDXw18JrWS93y3
+	JFnFvrZagas7A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUmq14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
+	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
+	z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
+	4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE
+	3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2I
+	x0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8
+	JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2
+	ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
+	z7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zV
+	AF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Gr0_Xr1l
+	IxAIcVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r
+	1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIY
+	CTnIWIevJa73UjIFyTuYvjTR_nYFDUUUU
 X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 
 From: Icenowy Zheng <uwu@icenowy.me>
 
-As I am the author of this rewritten driver, it makes sense for me to be
-the maintainer.
+Map all mail addresses Icenowy Zheng had used to the personal mailbox
+prefixed "uwu".
 
-Confirm this in MAINTAINERS file.
+All these mailboxes, except the one of Sipeed (which was only used
+during a summer vacation internship), can accept mails now.
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 ---
-Changes in v3:
-- Switch to my ISCAS mailbox.
+New patch in v3.
 
-No changes in v2.
+ .mailmap | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 32715100a1e10..45f879ee02dc4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8538,6 +8538,13 @@ F:	Documentation/devicetree/bindings/display/brcm,bcm2835-*.yaml
- F:	drivers/gpu/drm/vc4/
- F:	include/uapi/drm/vc4_drm.h
- 
-+DRM DRIVERS FOR VERISILICON DISPLAY CONTROLLER IP
-+M:	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-+F:	drivers/gpu/drm/verisilicon/
-+
- DRM DRIVERS FOR VIVANTE GPU IP
- M:	Lucas Stach <l.stach@pengutronix.de>
- R:	Russell King <linux+etnaviv@armlinux.org.uk>
+diff --git a/.mailmap b/.mailmap
+index d2edd256b19d6..f023a0c4e565c 100644
+--- a/.mailmap
++++ b/.mailmap
+@@ -308,6 +308,10 @@ Henrik Rydberg <rydberg@bitmath.org>
+ Herbert Xu <herbert@gondor.apana.org.au>
+ Huacai Chen <chenhuacai@kernel.org> <chenhc@lemote.com>
+ Huacai Chen <chenhuacai@kernel.org> <chenhuacai@loongson.cn>
++Icenowy Zheng <uwu@icenowy.me> <zhengxingda@iscas.ac.cn>
++Icenowy Zheng <uwu@icenowy.me> <icenowy@aosc.io>
++Icenowy Zheng <uwu@icenowy.me> <icenowy@aosc.xyz>
++Icenowy Zheng <uwu@icenowy.me> <icenowy@sipeed.com>
+ Ike Panhc <ikepanhc@gmail.com> <ike.pan@canonical.com>
+ J. Bruce Fields <bfields@fieldses.org> <bfields@redhat.com>
+ J. Bruce Fields <bfields@fieldses.org> <bfields@citi.umich.edu>
 -- 
 2.52.0
 
