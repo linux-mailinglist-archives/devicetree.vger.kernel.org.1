@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-242313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71AB1C89196
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:51:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC8ABC891A8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:51:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F9F43A6E9A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:51:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 053584E41CE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:51:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D462031B83B;
-	Wed, 26 Nov 2025 09:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34AD531C562;
+	Wed, 26 Nov 2025 09:49:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ud+zlubt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y4yV+1gs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A273731B822;
-	Wed, 26 Nov 2025 09:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04DE22FD1DC;
+	Wed, 26 Nov 2025 09:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764150565; cv=none; b=GcdUMr7HwzfqZZrXzk3NlZ1cw1u5E2AFE/QJ+8qejaUjL1/jzda9U37WGmPKF2i7nelv8X3jqQIeqZbLOOAsrjPXkW8f4C74Eu9i0FgYkzgHziCbhgGFx+GSMVKzU337v0zbS82mxO+MrJRLsa6mWpB5D1GErn7OiLG/8O49+28=
+	t=1764150594; cv=none; b=irezw/yixXRN6i05xo3A3g0bYuX2iU7bb4tKNJe8G0KzMLuC7duVDsO27qxNmOMAsXdJoCDliAKqMpdN7YehGHqYB8fUzGusXolztY3IEO389Dzw05w8GrEhGpi3LKnEdtwshFvnF5/SuP2GLPRayh/O4BaXxiNpzd6Agp9I39g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764150565; c=relaxed/simple;
-	bh=oF8eMEzLWxo3Hz4qhOECk9homyCvsXvaIDH2D4Eo1pI=;
+	s=arc-20240116; t=1764150594; c=relaxed/simple;
+	bh=2VBNoZWHjBUiC+MXXkKX6rZM6nYUKb3iGPgNiGg8uWg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O9Fr/4Z7qbH6PKmMOEwfw159gT9jbgpAA3tUSW5f+VO84uFxhyS6wEvcSN07+r9zIhbF3Cag+c6oTHDj8S9B4AHPbdimjzdi3+FUrWHh+JP0J7ygCzsq/rTUPoYkYaoEt5r2mai2eM7WE0KXTe+77Rx/cHD8HUKgAqyszID9t6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ud+zlubt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2B85C116D0;
-	Wed, 26 Nov 2025 09:49:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qeycz5Vg9flPUJpVSe24Z6lWdUgcihGpxqHN/aSN7cvYl+OeyxX4JtXBJgGZcyHxpUmHjHMyGzL4EpNujZdIj4aMIPg465n3FIEbxvkvyf/OwMK7vtN1ZiplKGRazM6sFsuDuwI+HDk9QdRCw8SZQiirmf4/CdKKY/YRHIR7r7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y4yV+1gs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D9A7C113D0;
+	Wed, 26 Nov 2025 09:49:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764150565;
-	bh=oF8eMEzLWxo3Hz4qhOECk9homyCvsXvaIDH2D4Eo1pI=;
+	s=k20201202; t=1764150593;
+	bh=2VBNoZWHjBUiC+MXXkKX6rZM6nYUKb3iGPgNiGg8uWg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ud+zlubtuTbHUt2lQbv2SQk6nSHoLFo1MZ3+zWQqL3xDH590rf/zNnPkAeIspi6VS
-	 uh/QVS8e0GJwbx9PHyVj7T0AR1cHhL0JLu16Zrwvhd6/pMB7O/yEsT1Y9S1Kr6m3ST
-	 oWIDV6qlqENmVLTcpuRdOVEy6ZRNrgSaUxWYI3mc19tSuC65ubGNHQ8Dl/gey0mq7b
-	 uKlDkDs7uQ5SuM7sMXYaNqANGmcOLzPHpbT9aoYZ3jvqb4mhUN/11IbTs/50nGbiI6
-	 T+StPRx5rV5uIU+JT5U4dWuxCZbHlN+vHLVXEGZn6kvhU4JKiN+hwVltOgyl32C3y5
-	 THwCYi1Bkv9GQ==
-Date: Wed, 26 Nov 2025 10:49:22 +0100
+	b=Y4yV+1gsogmrLcxg2aKldZgYV9/oF6rR7FNxVs9g33BePTwTkp4zVlXvR+J5S7mCB
+	 V2epqRNc66jbLX48N6OjclpOL+dIaB3D84PCR5yh52c2vOZ1Fg0NGPBxAOCL2cLFYG
+	 pzNNoCGTFtOmGCKiDK6tGOs8Q3rQfReI4U8XiQ7lvs0g5PyWW4L3UtT1tX8tcHy0sT
+	 REUlUlXw0wk8mS9bOaVGzLMI3fsh5zP3K9O2YqNa7aGYA8jc5RVLCeeZ0UgLbS6/dq
+	 gW8cM3jmmQIQYw1UvY2wj3/FymahnqF+6rCqErMNqk2iBj7cNiC06hjeWXz+/5vO9v
+	 Ri1VhJkOfFKTQ==
+Date: Wed, 26 Nov 2025 10:49:51 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH 2/2] dt-bindings: soc: altera: combine Intel's
- SoCFPGA into altera.yaml
-Message-ID: <20251126-blond-bat-of-emphasis-81c0a8@kuoka>
-References: <20251125134004.261165-1-dinguyen@kernel.org>
- <20251125134004.261165-2-dinguyen@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: dma: rz-dmac: Document RZ/V2N SoC support
+Message-ID: <20251126-quixotic-gecko-from-avalon-3d7617@kuoka>
+References: <20251125212621.267397-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,20 +61,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251125134004.261165-2-dinguyen@kernel.org>
+In-Reply-To: <20251125212621.267397-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue, Nov 25, 2025 at 07:40:03AM -0600, Dinh Nguyen wrote:
-> For all SoCFPGA platforms, whether it has the "intel" or "altr" vendor
-> prefix are referring to the same business unit that is responsible for
-> the platform. Thus, it would make sense to have the device bindings
-> documentation in the same location. Move the Intel AgileX board binding
-> documentations into the same file that contains the Altera ones.
-
-I had impression that "intel" is the new, thus preferred vendor prefix
-and actual owner, so please describe here why this is the other way.
-
+On Tue, Nov 25, 2025 at 09:26:21PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> Document the DMA controller on the Renesas RZ/V2N SoC, which is
+> architecturally identical to the DMAC found on the RZ/V2H(P) SoC.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
