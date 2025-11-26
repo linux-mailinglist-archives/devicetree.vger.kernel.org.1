@@ -1,283 +1,145 @@
-Return-Path: <devicetree+bounces-242551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF28C8BB96
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:56:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38F72C8BC05
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:03:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EC78135CF1A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 19:55:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 221EE3A5A52
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37FD3331A6F;
-	Wed, 26 Nov 2025 19:54:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80D0133DEF7;
+	Wed, 26 Nov 2025 20:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="oG4F1+oP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AhEfGA74"
 X-Original-To: devicetree@vger.kernel.org
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4C1B33E34E
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 19:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB9662BCF5D
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 20:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764186898; cv=none; b=pavxZyjzQuiI1PSgI8bPiba4o5w+Rdi/CMK3mo7Myoei1JqF7znNj8Dvsl2hbtIlNtn9P+EYSbcVNtSeXPOLQF5FUtA4+X4jJpvWe6j0ZJiqtvfjr7RjBWn6Y4xfhrDLSXwsqp4sVxDF5h44aigucnyMXWhNlLYqyMDIR4zHErw=
+	t=1764187368; cv=none; b=DpyP8IdoDr+hsO5AVKa730OXL5u6rPGR9heTjrop4QP4WR8DCf3yIwv7LCer6aA/8ksx1vkImq5b8vrSw+U7pdbM6URONFusNmyaqmuXZzD1xqyQdiQtvHxhgXDybcvGfxy/sKZ7oWQmzw05DLQvsUnQIeH+38WTOqkevKxMw0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764186898; c=relaxed/simple;
-	bh=2Av56t9uJGDOdh1tiDXLSIs+ur3rFEJiL4aNQMWeziU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=uCkBWLW1Beq896rsYHEjKYwstKGSj9bqN0EEB+IZaPxrP4tJ5RMkX/X1eTMj8PEO4WTYAiT49WkINdrkKzfOIM/FplXSCDwnfqdzFZrzdfdI7tc+ncEDoYFRp2OOzSlq7W/Vo6sJ6gKoaHqsiZJAPcLuV2cPJS3fz+w1D6v0OyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=oG4F1+oP; arc=none smtp.client-ip=84.16.241.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
-Received: from [IPv6:2a02:1812:162c:8f00:74f7:450e:16bb:b45f] (2a02-1812-162c-8f00-74f7-450e-16bb-b45f.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:74f7:450e:16bb:b45f])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sander@svanheule.net)
-	by polaris.svanheule.net (Postfix) with ESMTPSA id 29D066A61AC;
-	Wed, 26 Nov 2025 20:54:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-	s=mail1707; t=1764186887;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bEm82vySwX2e9VO+ntVk9tkKUj/BEzLPKS4pAtBBzwg=;
-	b=oG4F1+oPVjAIYPoSZGOAaiU4VXPJHNUMALBJ/a/+390wM6+ael2S6u8gwV76vDsXV5FfOk
-	wgzyia7gWwWa89Ez1eevZsnV7T/+kl/hETR8r36Z8FMuxmBVouTt0bkpb9OMEkJhj/nisM
-	7DpyBZiYpCSEhfhjahKi4nqg5kpd+AsHvatdycfcGmVt7gZ6DrQpXE7yVqGP9+BhlBaaSb
-	clDaxHitOxCiza73aPU6p31fXliMVrIhSL4Powom0vcV+j2UlVz80KoyLL+uTYiO1hZijH
-	nFijkpVn9aBgxovs3rWk76MmjcBXXGJkTMTavSky2LJZyKvCbISdRl+e4SeU0Q==
-Message-ID: <38c9b9e77029f894dd186305a275231aaa502664.camel@svanheule.net>
-Subject: Re: [PATCH v8 3/6] mfd: Add RTL8231 core device
-From: Sander Vanheule <sander@svanheule.net>
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij	 <linus.walleij@linaro.org>, Michael
- Walle <mwalle@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Date: Wed, 26 Nov 2025 20:54:44 +0100
-In-Reply-To: <20251126130447.GB3070764@google.com>
-References: <20251119200306.60569-1-sander@svanheule.net>
-	 <20251119200306.60569-4-sander@svanheule.net>
-	 <20251126130447.GB3070764@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.1 (3.58.1-1.fc43) 
+	s=arc-20240116; t=1764187368; c=relaxed/simple;
+	bh=io2b3WP5mJSrzoPU9P3LKCt9DN2B8GXCdJ4X44P7TU4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XyW+WPYjrxoUQ/zSivgZiDNqOhgHKZohEtk/yb/+OWIIhalTI9NVyPVncqbhPU32anX8NxXCp8TSik+mUWRVENQS+UPG1rUIR0n7GSihF6fx48bMZDOk8h4dFHuSh3gf6nM84nACbotl/NdILeLNLfXA/8pknKPrvnUVXe6eHWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AhEfGA74; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-42b3669ca3dso99182f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 12:02:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764187365; x=1764792165; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=io2b3WP5mJSrzoPU9P3LKCt9DN2B8GXCdJ4X44P7TU4=;
+        b=AhEfGA74+WtLFdY7FUEVVqG/COqUjj68ANLx3nAvKOy3eGB6YdK2IR8pdSKXMx0UB/
+         zto+FrF2N4GVjCURo5ZE3v++mNOCXPdqt08VuHNhEWisIHjlvMo79+eiX2R7H3pLFKKY
+         ZtZ0v3Has5Hb1Ek31pYuB3E/0YH6evR2f9n1f6H/9WRyEh1lgulbfWwoTpe8zRRrncBr
+         zsXFppqoke0qHuTdFdPQ/sMXa+OgqdiE9ad+1+tVp8BcmPgGqh1e5l/xp0bTScyDCWCJ
+         0uZ3VFuqs4D3YtqnL4ldYgMnfxcp34k3sA0d8wMwfTIaI3Er9MI+jy8+Y7L+BaEbCJ6X
+         exVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764187365; x=1764792165;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=io2b3WP5mJSrzoPU9P3LKCt9DN2B8GXCdJ4X44P7TU4=;
+        b=Z13u2OjcbJR786GH0zKNfG51EYR82IH4CSrdNGdIPA3lZY8EWx/rbISFO8JLY2w5IE
+         CmPoKWg4mondapF2vjpxi1TKzrBPUONt7SsCGghvVL9omPHRbVXB+5Z8DCZrP07WFLXw
+         EMfsOgYHx0QAJkxHC5W3EnRmfukFPB5zAICCYU1SWSvJ1oT8jcu14aixji/9PcFk7xAg
+         78cQIArLCwTs/LExHGfygkjcxmrCe8qvoyu1i28qcyrw+O4JrVwharrExneK8qQA34DE
+         iYqfpYHmuTSz0pIynlVpbei0s/8tP84ijtv8uP6ilo3yXTrnCsTJQDrUp+bgE0tbHSue
+         0+BQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWw9iLsP02RSlpNBVgWw8c3u2giO3BPnCIf7vDshXnQFVWAfYdQOmiaHDQeQZSmvjDcrgL42dOXdI4l@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/1nYnfXlDRRUa5A01AOG2RwDiGM69IuFUMGSvTGFpPC2l6sJ9
+	si/rwV0HH2qnrMx2aeAEyWJrhn0eg1Wh1q0ytHAJj8PumBXJHqr6C+2tziPCbBH54K86fmvjsaI
+	QmoEdSdnm+GAwjalxFbC9qxgHwE+NSk8=
+X-Gm-Gg: ASbGncs5Sni1V6V0/qwhF3AavrReScfkStsAtJR1Pd9tiHTVhy7VItTUoQewFohLbrq
+	1KKdDJKX6l34FB5JLfH8L1+P+5sNqUIhs7Y6P3tB3kLEVqHRjEsZ7KwZqcO4YyZ2YRngXRVoVt3
+	1HgeVF9zdScVgTOsQSsLLJ3ZpJmDvKWYlfiohHNuqA0JlMb4OElG8OJsboP2EcTURHCTmBkkNLK
+	hhj5LBbAClLc2cDJoUZUsgO5YxdTNVKpexvs5IDVo4PyOJRBiR8ksvPGX7SwPhMxQ9GubCGueGp
+	RLzW6EDkCYJTsffW1GU2uzSGIFZJ
+X-Google-Smtp-Source: AGHT+IHhPTLf5CTLCoQ18EsMIZtWnWzd5QhbLVXWFL+PMuHp5nvUjMTQ/DYhFP88GSmklCKy+nnqz6NENwZFNXmLY3I=
+X-Received: by 2002:a05:6000:26cc:b0:427:9d7:86f9 with SMTP id
+ ffacd0b85a97d-42cc1d19d6dmr21241880f8f.47.1764187364909; Wed, 26 Nov 2025
+ 12:02:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251121113553.2955854-9-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251121205546.6bqpo2bn5sp3uxxu@skbuf>
+In-Reply-To: <20251121205546.6bqpo2bn5sp3uxxu@skbuf>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 26 Nov 2025 20:02:17 +0000
+X-Gm-Features: AWmQ_bmTU2niYWdcaSdZep0i6gskfGJjESBHVN_mhWxbtBqTU4OVzxNhhj_FZfk
+Message-ID: <CA+V-a8vH+qCgNti+dHVXqfa02-zMnbUKw2gScWyeuh=EhL8HaA@mail.gmail.com>
+Subject: Re: [PATCH net-next 08/11] net: dsa: rzn1-a5psw: Make DSA tag
+ protocol configurable via OF data
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Russell King <linux@armlinux.org.uk>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Lee,
+Hi Vladimir,
 
-On Wed, 2025-11-26 at 13:04 +0000, Lee Jones wrote:
-> On Wed, 19 Nov 2025, Sander Vanheule wrote:
-> > --- /dev/null
-> > +++ b/drivers/mfd/rtl8231.c
-> > @@ -0,0 +1,193 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
->=20
-> No company copyright or author tags?
->=20
+Thank you for the review.
 
-I'm writing this driver on my own time, so there's no company. My name is a=
-t the
-bottom of the driver, in the MODULE_AUTHOR() macro. That's enough for me.
+On Fri, Nov 21, 2025 at 8:55=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com>=
+ wrote:
+>
+> On Fri, Nov 21, 2025 at 11:35:34AM +0000, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Update the RZN1 A5PSW driver to obtain the DSA tag protocol from
+> > device-specific data instead of using a hard-coded value. Add a new
+> > `tag_proto` field to `struct a5psw_of_data` and use it in
+> > `a5psw_get_tag_protocol()` to return the appropriate protocol for
+> > each SoC.
+> >
+> > This allows future SoCs such as RZ/T2H and RZ/N2H, which use the
+> > DSA_TAG_PROTO_RZT2H_ETHSW tag format, to share the same driver
+> > infrastructure without code duplication.
+>
+> Again the twitching when reading the commit title. I thought this has
+> something to do with the "dsa-tag-protocol" property from
+> Documentation/devicetree/bindings/net/dsa/dsa-port.yaml. The tagger *is*
+> runtime-configurable if you implement the ds->ops->change_tag_protocol()
+> API, and it's also possible to trigger that API function from OF
+> properties. But this is not what the patch does, so it is confusing.
+>
+> I think it would be more natural to say "choose tagging protocol based
+> on compatible string".
+>
+Ok, I will update the commit message in v2.
 
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+>
+> Anyway I'm not reviewing this commit until the reason why you added a
+> new name for this tagger becomes completely clear.
+As discussed in patch 2/11 the format fields vary, so this change is
+needed to support the new SoC.
 
-> > +static int rtl8231_soft_reset(struct regmap *regmap)
-> > +{
-> > +	const unsigned int all_pins_mask =3D GENMASK(RTL8231_BITS_VAL - 1,
-> > 0);
-> > +	unsigned int cfg;
-> > +	int err;
-> > +
-> > +	/* SOFT_RESET bit self-clears when done */
-> > +	regmap_write_bits(regmap, RTL8231_REG_PIN_HI_CFG,
-> > +			=C2=A0 RTL8231_PIN_HI_CFG_SOFT_RESET,
-> > RTL8231_PIN_HI_CFG_SOFT_RESET);
-> > +
-> > +	err =3D regmap_read_poll_timeout(regmap, RTL8231_REG_PIN_HI_CFG, cfg,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 !(cfg &
-> > RTL8231_PIN_HI_CFG_SOFT_RESET), 50, 1000);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	regcache_drop_region(regmap, 0, RTL8231_REG_COUNT - 1);
->=20
-> Nit:
->=20
-> RTL8231_REG_FUNC0, RTL8231_REG_GPIO_DATA2
->=20
-> I'll also accept additional devices for each of these which would make
-> things very clear.
->=20
-> RTL8231_REG_START	0
-> RTL8231_REG_END		RTL8231_REG_COUNT - 1
->=20
-> Or similar.
-
-I went with:
-
-#define RTL8231_REG_START	0x00
-#define RTL8231_REG_END		0x1e
-
-I will also use RTL8231_REG_END for the regmap config's max_register, so
-RTL8231_REG_COUNT can even be dropped.
-
-
-> > +static int rtl8231_init(struct device *dev, struct regmap *regmap)
-> > +{
-> > +	struct regmap_field *led_start;
-> > +	unsigned int ready_code;
-> > +	unsigned int started;
-> > +	unsigned int status;
-> > +	int err;
-> > +
-> > +	err =3D regmap_read(regmap, RTL8231_REG_FUNC1, &status);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to read READY_CODE\n");
-> > +		return err;
-> > +	}
-> > +
-> > +	ready_code =3D FIELD_GET(RTL8231_FUNC1_READY_CODE_MASK, status);
-> > +	if (ready_code !=3D RTL8231_FUNC1_READY_CODE_VALUE) {
-> > +		dev_err(dev, "RTL8231 not present or ready 0x%x !=3D 0x%x\n",
-> > +			ready_code, RTL8231_FUNC1_READY_CODE_VALUE);
-> > +		return -ENODEV;
-> > +	}
-> > +
-> > +	led_start =3D dev_get_drvdata(dev);
-> > +	err =3D regmap_field_read(led_start, &started);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	if (started)
-> > +		return 0;
-> > +
-> > +	err =3D rtl8231_soft_reset(regmap);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	/* LED_START enables power to output pins, and starts the LED
-> > engine */
-> > +	return regmap_field_write(led_start, 1);
->=20
-> Why can't the dedicated LED driver initialise itself?
-
-Perhaps I didn't explain this clearly enough in my previous message, but th=
-e
-"led_start" bit must also be set if all pins are configured for use as GPIO=
- and
-the LED driver isn't even loaded in the kernel. Otherwise the output driver=
-s of
-the pins remain disabled.
-
-I can rename "led_start" to "output_enable" if that would make things clear=
-er.
-
->=20
-> > +}
-> > +
-> > +static const struct regmap_config rtl8231_mdio_regmap_config =3D {
-> > +	.val_bits =3D RTL8231_BITS_VAL,
-> > +	.reg_bits =3D RTL8231_BITS_REG,
-> > +	.volatile_reg =3D rtl8231_volatile_reg,
-> > +	.max_register =3D RTL8231_REG_COUNT - 1,
-
-Changed to RTL8231_REG_END.
-
-> > +	regmap =3D devm_regmap_init_mdio(mdiodev,
-> > &rtl8231_mdio_regmap_config);
-> > +	if (IS_ERR(regmap)) {
-> > +		dev_err(dev, "failed to init regmap\n");
->=20
-> Nit: Let's not shorten user messages - "initialise".
-
-Ack.
-
-
-> > +		return PTR_ERR(regmap);
-> > +	}
-> > +
-> > +	led_start =3D devm_regmap_field_alloc(dev, regmap, field_led_start);
-> > +	if (IS_ERR(led_start))
-> > +		return PTR_ERR(led_start);
-> > +
-> > +	dev_set_drvdata(dev, led_start);
->=20
-> I'd pass the whole Regmap through and let the LED extract its own part.
->=20
-> > +	mdiodev->reset_gpio =3D devm_gpiod_get_optional(dev, "reset",
-> > GPIOD_OUT_LOW);
-> > +	if (IS_ERR(mdiodev->reset_gpio))
-> > +		return PTR_ERR(mdiodev->reset_gpio);
-> > +
-> > +	device_property_read_u32(dev, "reset-assert-delay", &mdiodev-
-> > >reset_assert_delay);
-> > +	device_property_read_u32(dev, "reset-deassert-delay", &mdiodev-
-> > >reset_deassert_delay);
-> > +
-> > +	err =3D rtl8231_init(dev, regmap);
->=20
-> ... then you can omit the 'regmap' argument.
-
-Sure, that's one less allocation too. The field writes become a bit more
-verbose, but it's not too unwieldy.
-
-
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO,
-> > rtl8231_cells,
-> > +				=C2=A0=C2=A0=C2=A0 ARRAY_SIZE(rtl8231_cells), NULL, 0,
-> > NULL);
-> > +}
-> > +
-> > +static int __maybe_unused rtl8231_suspend(struct device *dev)
-
-I've learned the __maybe_unused is (no longer) required, so I dropped these=
-.
-
-> > +{
-> > +	struct regmap_field *led_start =3D dev_get_drvdata(dev);
-> > +
-> > +	return regmap_field_write(led_start, 0);
->=20
-> The LED driver doesn't have its own suspend support?
-
-Because this affects both the GPIO outputs and the LED scanning feature, th=
-is
-does belong in the core driver IMHO.
-
->=20
-> > +}
-> > +
-> > +static int __maybe_unused rtl8231_resume(struct device *dev)
-> > +{
-> > +	struct regmap_field *led_start =3D dev_get_drvdata(dev);
-> > +
-> > +	return regmap_field_write(led_start, 1);
-> > +}
-> > +
->=20
-> Nit: Remove this line.
-
-You mean the blank line above "SIMPLE_DEV_PM_OPS"? AFAICT this is standard =
-style
-for this kind of statement. It feels "ugly" to me to glue the PM_OPS macro =
-to
-the resume function, while the suspend function is separated from it.
-
->=20
-Best,
-Sander
+Cheers,
+Prabhakar
 
