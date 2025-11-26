@@ -1,249 +1,131 @@
-Return-Path: <devicetree+bounces-242479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B7D0C8AC21
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:55:51 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E39C8AC7E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:59:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 12F844E2056
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:55:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3B0F74EDC7D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857AC33A03F;
-	Wed, 26 Nov 2025 15:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D511933C196;
+	Wed, 26 Nov 2025 15:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UWmV9y/N"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XtfqqiCt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19123019B1
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 15:55:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A02433BBD5
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 15:58:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764172547; cv=none; b=COKeQ2Gr4m9qnn+WmMgpPZiH46qvNgDYi0mMkm0kUlUdiPqIvHIIsKI55XmO7O9U7p2hwqOdt1bj7R5ssgQAjppNGCKEzaul5Xl0y43rySaZapJTiwveg2rKbwGvT5zPNR2sdhEmaqsXUd6tEz50dlEgwhCblscYDZ7fZHpafbM=
+	t=1764172700; cv=none; b=nMQ2JeA4fMjoBbUPMO7GuKb/usB68RwZd5pbsksZTasRTP2ko8GpurYdMdOWwFiDzsEtJiE+wTsGXl/T7nEgmZhmBU2BNYuQu/vdKixXD1pNVp5BGCRWqeb+ohKZTjwBwvuW+lt6+T39iytP27YXxF5F5iVuQyxOgn/30zSzX1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764172547; c=relaxed/simple;
-	bh=lASm2siB5AU0w5u55FAD+C2Ou4paYQEnU69Wbb4v2Yo=;
+	s=arc-20240116; t=1764172700; c=relaxed/simple;
+	bh=2ousPSZdcrmDSKIF4Kv3DWGVBuC5nTeu6SKYqw2IWkU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ROg737eduXrkYfDjXWf2ISExDcGmEwLkYhds6GM7mojKaJZc7b9MEvb3Vc0pjafaXkEe2hW1a+Jk9YtdxUTLenhH0boSZ9lwgDy74Ua0GBmUiJjXK+BDprfPtuI1CysnvnHxJwfBU05IA+NruhzTPATQIpnsg4EYNBJW7P1UC38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UWmV9y/N; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=tkXQZ00jh3gQj+QYk4G+2xwVhbPonX8pVskGuo2vj6pMj2fl+0ADhIpA6v1AsoyiOquP2BXQy4p0BuQ+jHYBPfLzgba0+yHx376QnFJWqdNuh/DpWEhYT5b24jlge1efFpH/wR2iVjcBnIjCXxZAWxJ4K1XRd5b73Sxmfbuvz9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XtfqqiCt; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-63c489f1e6cso1595165a12.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:55:45 -0800 (PST)
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7ba92341f83so9767949b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:58:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764172544; x=1764777344; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rG1nOVu8gVLE+V2Sxzp2pYjIM+pZyr/YOIj56xPih2c=;
-        b=UWmV9y/NodWXuqhJY1TrxxsW5M1ncI40fhICgsktkYPkqohzrKM5KW8gECsBOkUMmc
-         GomMVh5SAwe28JGNT4WeVfyWdctx/9vWYlroKPha9wg8kMPsREvY5d//lXoxsnW1UkFi
-         pGFo7cozZkoNz4/xCnDXm2Aclxz3llxgBJitrL5N9yEG4avTKJKfoG8YwiWv77A9JTTD
-         2zHAuhkmOLH9hE2MlyVtRYbSM5uricdM0rHaz+yHpHE5RIoF8TD0rASiGuNpbWZIqiZc
-         GcR0VeCKBmUrnvceelH7wMbrwnxTuR+mK/r7337QBmHOFLSRwY/TGl7N6YAI1JzZtzps
-         e7zg==
+        d=gmail.com; s=20230601; t=1764172698; x=1764777498; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6coizwMX32tnMFy7SCv4fyC/T1+n7CiPp+H9M25tD1k=;
+        b=XtfqqiCtDaomiilVGReSq1eZVLooJgPUq/Vzq51NyyVw7jwTOE91SJDp+rWAomy3Hq
+         6L4w3GcJeQ0iJNSjZQC/PHPp4JEnUOT6iauwghVy0VjVu8B29RkPRWhcm8E7l17CgME/
+         jaSGm7pkvJhZy7RbL9Dl4XCItSLpxoa5YK/5LVtsVP0v/Hx8tzi0DiojdJh6ngT9dmwr
+         GsKccEUH3VaGdQCdNMjdj2ptgLH93VceEmCTfn4dZbd9x1fViTJQoq/4rOXXiZw/tFiO
+         jgNnomfbbOvdq+9v2/cta9SkqGYkXo7Ok3CVChXLLKocnFUzY/rK27z9Yvtwh4SvSCJI
+         ADwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764172544; x=1764777344;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rG1nOVu8gVLE+V2Sxzp2pYjIM+pZyr/YOIj56xPih2c=;
-        b=W2jGlczly+AtXSIv214Ph8S3IWzyqVlrN4jHACiV1v4LnCg9yHNcyJa1e9o84Qi4Cw
-         beqFMeByqJlrDRox/QZYwRht+tRJD/7OalrBAwU5lRPTWjSA6cNfFaC4irNjeTXLqlDw
-         bpR1VD3WqPcVD/7/bWMR3GJkEMDcORHerevxVsEvCt+H8lpXHz2q6yRf8f+L2KIAhv39
-         39wifmw7F9kMHan7io6jIo9MzBBwWkg7NNiS3Xa+N+hJHWhWXbrhkrnRNC4FHHCpBVe9
-         GOCq0Wj8q5qIh9A5HvcIpcinoIsM7A3mmxsJZNtzVTphOC2xEd4+e5XSNQWLeYRSu1cM
-         eqgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUGzyouXg9Bxt9uzyHMzzSC7eGsTZpco4NThdHKSgTOTtY337isEXMsV1uYEQIeLt1w0QjlaXJxZefN@vger.kernel.org
-X-Gm-Message-State: AOJu0YySyNOK/W/yuclaIoukHjXZpCURhKCD6A1j4fdpcR1LPFcaspba
-	elqd7AALZJEzcUDY8IhD4JMxreK2xBbmjvLbc9KdzrsYyK14RMW5URhf
-X-Gm-Gg: ASbGncsgBJpFKgdWWAfy4cXO0sfQ5omB5Kx7jgzwEszObHSHXj3ryytDJBumJV2XzW/
-	ay/4C9FWJNG0mkzvZS6ledXR7GS5YJyvTN+qErrxsqCiO0zJwDYhiiNF4Xdy2n2ulfG5/4RDMm+
-	q4LzpUwKzfi3f3c1W0loxN2l3rqAzNdD4bpq/Jv1eIiccXnYNXZBK9zKfnEhm1ycH2neaf4xM0z
-	/VRtbVvwRVd7pKGD9VgEncynHerNIuPymNixygG8KtRZaCoVgkH4HrGvMKw7TiBM+VUIVoKrsfC
-	BeflO25AHlEHuSpb/LC4b6cR9e8MSAV0LUZIGbnH/J3hHWMzk7Jn6wWPcDBYWRlVWT4CsGxS4Ix
-	e/VXRm/QVY30c2zqRoh4UI+N6Z2yjUd7nNUIV40vfLtGhBtrLHfOt8xBi9iZ88EKylRv8FHOMj/
-	1zNFfZosUxyPyEqAJUYGcLyZsZ4TvGcp3kPfmmIskZ/q4yUOMWMxwdnKJfdfsKQ514CZ4=
-X-Google-Smtp-Source: AGHT+IFOk4Dc71dAU1PFak6lwxd8NQT+2eJebIKCLnu747O0fz8ysrn20pLcynZiSjtb/k5bFDX7Ag==
-X-Received: by 2002:aa7:d4ce:0:b0:640:931e:ccac with SMTP id 4fb4d7f45d1cf-64539658323mr16418976a12.7.1764172544022;
-        Wed, 26 Nov 2025 07:55:44 -0800 (PST)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:1025:ba00:55dc:4ccc])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6453633fe28sm18380759a12.0.2025.11.26.07.55.42
+        d=1e100.net; s=20230601; t=1764172698; x=1764777498;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6coizwMX32tnMFy7SCv4fyC/T1+n7CiPp+H9M25tD1k=;
+        b=DiLWodrFfSDuOhzKv0AGiGBVPry/khbCGx0FWkb2uj/8o0s4LzbDN9d/eX/uCtGGIG
+         /6NNOQujsURYegC2UH0M1fhCAu6oqUX/0XwtoC1RYjGeMhMNONrZ8mTOdXzDn+MRN1EZ
+         +LxyWZBIpZ9cRNhX4fkkBEaRQ1wmTnE67RUi7YMbahwQhgerTVEuG7q+R+FwFiPTGRxp
+         jKoayL/Fn6CfJQvWDCqBqwEeCyO2QjqiNBzGkuBZvshrTqgVn2LkBsNyERMp6qJG1wFf
+         az4AoGL4vXPVkz8wSnKtt3CsG74nNBP887Djbt6FLW8H0BAMSpHZtz5zS64n3fbmdvbe
+         HPxw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHI8VNrEysGb0xWdRcrLg+2YWTG04YvuX40hsPkjYv+OuD7Ezzd1XMOSLL7gqj34gVO3SOcYpaA4ai@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGzBRtDSU3YwbHo375kMHd9cYWfdYZ758LIiLfbCiYlr6oNRPr
+	XA+30mltv5+FIl5snMKzDByHlwl+abGdRCNMi3hd825tK9gYMS8gJVF6h+RF4w==
+X-Gm-Gg: ASbGncsfZgXFqK0KAnNpHlfy05eV896Z8/MwFKzxOXWYoRLu2WmZTQAdF+YMfY8x7qG
+	WmMRHr/NcHARU5QUcIbyv9qyn7LZJATs5rnDRGMmuTAGKFdGHfN/JEC4tuMGaCTlMYBtKX1Q6I2
+	5dnEJs4XIAMikT57/gKCXrhNLhss3wkm2ubxLrblDtcEKRkO1mQQ42LkzrPvccmID3lH5ZOZd5o
+	olHgzjxJJoXUQf872SIZU1YzV3+s0JgY21I6uhJ7w/C++PpkfjWRw3aArD8+ShCqEUGUZG+bbge
+	WtLnXgki3iqnN0RLKlDWSOedHWADcDRUFo3/hPS8AS2cY0WrY7woM0IwOrrxB1J374MVF9bAPLo
+	9wtIDh47jGoOQ18z1FFZkYVyBhThY2KZZO4kQY3ICLke2+r9pCl1ZF6g178nMBTivW5VU/P5goc
+	ML4uAdZbYK9E099gCticXx3MQ=
+X-Google-Smtp-Source: AGHT+IEAlrEBX63dNuljqMvsO08ZhEyk1nD47uVvFnK6rNCBnZjVQlF3NDTXlkiQ1hlZiiZ6Qsu8Wg==
+X-Received: by 2002:a05:7023:b89:b0:11b:3742:1257 with SMTP id a92af1059eb24-11cbba4a6aemr6896636c88.34.1764172698336;
+        Wed, 26 Nov 2025 07:58:18 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11c93de82c1sm68952231c88.3.2025.11.26.07.58.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Nov 2025 07:55:43 -0800 (PST)
-Date: Wed, 26 Nov 2025 16:55:41 +0100
-From: Jorge Marques <gastmaier@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 9/9] iio: adc: ad4062: Add GPIO Controller support
-Message-ID: <rk4hmupbrb5ugxft6upj7ru43x3z7ybrobax45rorpwbcwleh6@vzxrr3m7r6ep>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
- <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
- <aSQ2JUN05vmMQC1I@smile.fi.intel.com>
+        Wed, 26 Nov 2025 07:58:17 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 26 Nov 2025 07:58:17 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Rob Herring <robh@kernel.org>
+Cc: Paul Walmsley <pjw@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Han Gao <rabenda.cn@gmail.com>,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH] of: Skip devicetree kunit tests when RISCV+ACPI doesn't
+ populate root node
+Message-ID: <04241600-c5f7-4b49-80e0-ad4d58355623@roeck-us.net>
+References: <20251023160415.705294-1-linux@roeck-us.net>
+ <176297731621.2151636.2516355929483523874.robh@kernel.org>
+ <f5cc4e3e-ef66-7786-f9b5-f9d5f0846386@kernel.org>
+ <CAL_JsqKzLARKeM8xP+TeVhuksth7F9p8kaU7KtRxHFe=q1Q=9w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aSQ2JUN05vmMQC1I@smile.fi.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKzLARKeM8xP+TeVhuksth7F9p8kaU7KtRxHFe=q1Q=9w@mail.gmail.com>
 
-On Mon, Nov 24, 2025 at 12:40:37PM +0200, Andy Shevchenko wrote:
-> On Mon, Nov 24, 2025 at 10:18:08AM +0100, Jorge Marques wrote:
-> > When gp0 or gp1 is not taken as an interrupt, expose them as gpo if
-Hi Andy,
+On Thu, Nov 20, 2025 at 07:06:46PM -0600, Rob Herring wrote:
+> On Thu, Nov 13, 2025 at 8:53 PM Paul Walmsley <pjw@kernel.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Wed, 12 Nov 2025, Rob Herring (Arm) wrote:
+> >
+> > > I guess the riscv folks don't care about supporting the relevant
+> > > features either, so I've applied it. Can kicked down the road again.
+> >
+> > For the record: we do care.  However, it looks like this problem needs a
+> > more general solution, something that applies across CPU architectures.
+> > Lacking that, we might as well have behavior consistent with ARM64 - and
+> > for its faults, this approach is at least simpler to reason about.
 > 
-> GPO
-Ack.
-> 
-> > gpio-contoller is set in the devicetree.
-> 
-> Why can't gpio-regmap be used?
-> 
-Because the device register values (0x5, 0x6) does not fit the gpio-regmap.
-It writes the mask for high and 0 for low.
-But low is 01[01] and
-    high   01[10]
-
-A different series would need to extend the gpio-regmap ops, but if you
-implement your custom reg read/write, then you save at most ~5 lines...
-I will add that to the commit message.
-> ...
-> 
-> > +static int ad4062_gpio_get(struct gpio_chip *gc, unsigned int offset)
-> > +{
-> > +	struct ad4062_state *st = gpiochip_get_data(gc);
-> > +	unsigned int reg_val;
-> > +	int ret;
-> > +
-> > +	ret = regmap_read(st->regmap, AD4062_REG_GP_CONF, &reg_val);
-> > +	if (ret)
-> > +		return 0;
-Should have been
-  		return ret;
-> 
-> > +	if (st->gpo_irq[offset])
-> > +		return -ENODEV;
-> 
-> Consider using valid_mask instead (.init_valid_mask() callback).
-> Hmm... And it seems it's in place. I didn't get what is here then and
-> why we need to do it after accessing the HW? If there are side-effects
-> they must be described.
-> 
-True, this is not necessary the valid mask does the same.
-> > +	if (offset)
-> > +		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_1, reg_val);
-> > +	else
-> > +		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_0, reg_val);
-> > +
-> > +	return reg_val == AD4062_GP_STATIC_HIGH ? 1 : 0;
-> 
-> 	return !!(reg_val == AD4062_GP_STATIC_HIGH);
-> 
-> also will work.
->
- 	return reg_val == AD4062_GP_STATIC_HIGH;
-> > +}
-> 
-> > +static int ad4062_gpio_init_valid_mask(struct gpio_chip *gc,
-> > +				       unsigned long *valid_mask,
-> > +				       unsigned int ngpios)
-> > +{
-> > +	struct ad4062_state *st = gpiochip_get_data(gc);
-> > +
-> > +	bitmap_zero(valid_mask, ngpios);
-> > +
-> > +	if (!st->gpo_irq[0])
-> > +		set_bit(0, valid_mask);
-> > +	if (!st->gpo_irq[1])
-> > +		set_bit(1, valid_mask);
-> 
-> Why atomic bit set:s?
-> 
-Not needed, will use
-
-	if (!st->gpo_irq[0])
-		*valid_mask |= BIT(0);
-	if (!st->gpo_irq[1])
-		*valid_mask |= BIT(1);
-
-> 
-> > +	return 0;
-> > +}
-> > +
-> > +static int ad4062_gpio_init(struct ad4062_state *st)
-> > +{
-> > +	struct device *dev = &st->i3cdev->dev;
-> > +	struct gpio_chip *gc;
-> > +	u8 val, mask;
-> > +	int ret;
-> 
-> > +	if ((st->gpo_irq[0] && st->gpo_irq[1]) ||
-> > +	    !device_property_read_bool(dev, "gpio-controller"))
-> > +		return 0;
-> 
-> Do you need this? valid_mask should take care of this.
-> 
-True, this is not necessary.
-> > +	gc = devm_kzalloc(dev, sizeof(*gc), GFP_KERNEL);
-> > +	if (!gc)
-> > +		return -ENOMEM;
-> > +
-> > +	val = 0;
-> > +	mask = 0;
-> > +	if (!st->gpo_irq[0]) {
-> > +		mask |= AD4062_REG_GP_CONF_MODE_MSK_0;
-> > +		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, AD4062_GP_STATIC_LOW);
-> > +	}
-> > +	if (!st->gpo_irq[1]) {
-> > +		mask |= AD4062_REG_GP_CONF_MODE_MSK_1;
-> > +		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_STATIC_LOW);
-> > +	}
-> > +
-> > +	ret = regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-> > +				 mask, val);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = devm_add_action_or_reset(dev, ad4062_gpio_disable, st);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	gc->parent = dev;
-> > +	gc->label = st->chip->name;
-> > +	gc->owner = THIS_MODULE;
-> > +	gc->base = -1;
-> > +	gc->ngpio = 2;
-> > +	gc->init_valid_mask = ad4062_gpio_init_valid_mask;
-> > +	gc->get_direction = ad4062_gpio_get_direction;
-> > +	gc->set = ad4062_gpio_set;
-> > +	gc->get = ad4062_gpio_get;
-> > +	gc->can_sleep = true;
-> > +
-> > +	ret = devm_gpiochip_add_data(dev, gc, st);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "Unable to register GPIO chip\n");
-> > +
-> > +	return 0;
-> > +}
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
+> The thing is that problems show up on specific machines which has
+> little to do with the specific CPU arch. I don't have any visibility
+> as to what problem you all had which prompted disabling it (for the
+> arch, not the kunit tests) to be able to think about a solution.
+> Leaving it off just means we're potentially adding regressions in the
+> future when we try to turn it on.
 > 
 
-Best regards,
-Jorge
+Since the patch introducing the problem has now been backported to v6.12
+and v6.17, I disabled CONFIG_OF_KUNIT_TEST for riscv entirely in my test
+system.
+
+Guenter
 
