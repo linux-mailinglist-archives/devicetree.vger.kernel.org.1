@@ -1,134 +1,318 @@
-Return-Path: <devicetree+bounces-242285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8651C88F11
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:28:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A258FC88F4D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:30:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 593573B2E0E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:28:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09FC03B316C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B40E315D27;
-	Wed, 26 Nov 2025 09:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560FD2C026E;
+	Wed, 26 Nov 2025 09:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b="DgiBW3yo"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fCPmO2Au"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010061.outbound.protection.outlook.com [52.101.201.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8FB62E62D1
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764149295; cv=none; b=Sw18VbiLwQI99OHGqsnG+o8X31m2r1EwDRwDIc7rTTPvX7JYnGTbRJfJkaaT6a+7ieip3myWRRwzqSgapSuzWZuo9jl/QP1wSpMO75/q+UCGXCUG8RNJLnLWi2/7Kv1ARdXXrLIs0xV7ztP+xKspkCJbp3GSn1dt5uy4SKKnyS0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764149295; c=relaxed/simple;
-	bh=EQI3YRAOQlsv/50/jtc+m8TveG6L4PJ60t8l+dOtrnQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jad9FMfoYTCD1+B9qYflKxA/n6dylfaLmaP5P2Wgrmw3gYekqf3fxYzufmCrBzjrblcE0+DY4r0ShgudjYmteR/d+nlXr8tYzelatrXPnP97xwC/fNXsBGVpzM2ndUtq7xhzb/Lrmth5xfZE3xzR8++E0FQpm1/CbXu0Vj7VCtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc; spf=pass smtp.mailfrom=arduino.cc; dkim=pass (1024-bit key) header.d=arduino.cc header.i=@arduino.cc header.b=DgiBW3yo; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=arduino.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arduino.cc
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-591c98ebe90so8271529e87.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 01:28:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=arduino.cc; s=google; t=1764149291; x=1764754091; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=84kp7mvpy609O4P8atJgqEkhRccxZ+4bKydmYjW/Bdg=;
-        b=DgiBW3yoTOZhJCRZUMCwemm2CGfjuTLsdJ8ByLI55mvhp1TNvntfhwR196lZ72yrL+
-         BeUOsY8bh8XFUW4oJSmVAtSdo3IM1ChXPuvtSq2cmep6K3a0KJR/jMK6M6pEHvazHA1a
-         i85R9SIpY98WLtnnPwfslr7g28+on78YewR28=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764149291; x=1764754091;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=84kp7mvpy609O4P8atJgqEkhRccxZ+4bKydmYjW/Bdg=;
-        b=oUSAE/oIz2BEuMxuUaNfukbaFEKI1M9AX5AcyLiViq7AsobGMNnKnJ8VPU0jEnreDP
-         9vY0/fTCF+LQD8/ku0WBxTvL7eGWtb6uA/hj2cSbghh2y9I9jTdbc1hnR3q20/ISdZZ1
-         lX18c2zXOw9aGxxl3K8tj+w+wZKQebjl+O2lXlW73Bh3iQBcpHRPpzsPRqg1hFKKQjHs
-         OHmosKJ9QZAXbAsbFl0sM6/50UJFYUQWmZYmhEqWUnBuiT/98s1xlEH5X/C5N9p3We2j
-         vizVWLjbA1To3RSfWPtTtjNbtgl7yfEHVnCZp2NxNUcYrPqaT5VYigiynGJ7UGehkbL0
-         pw/A==
-X-Forwarded-Encrypted: i=1; AJvYcCVPJLD38Stechage24zLMlUhgHmNdX61MNYzBaE/m+5tS0GecCyPqyzPaIr2+sGpn23XsJPSKI5Ixwt@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMVO7wtdtBkR4sDXdRZY1s05xAeKb5CzPW6xaE7k0XQsAl/n77
-	m/Ku1t+qtJJosHxX5WFuOnL/K0MVwfJolCrr0u4PXo0wu2tOB1qSYspo8+KC0iZohnMgmaO7UY8
-	UOon9caOOCqc9Hz76FsJ4y4EGrgv2NOg9T8+fHi4kpw==
-X-Gm-Gg: ASbGncsBet2ZAVEwcpY3gD2FsZGFlw50dBl8d8/Gq2lO3ZtdW2dwy7aJQy847iRZnKF
-	MBkHPbl+pWBUXUuVjPi3W9mU7WWLDwkLS4N4oA+DYQmOCA/L9gKx2gyAtj2KBVRXcf+6i5X5GYi
-	0wdbuI6xJ5FsVx+bhTKoMEyKErbCPtOrBRyW/Ryyo+D3D1sH1JVWb8y5z9JbBRmXrvuGFRU6ItB
-	8rUyilzyRO0Q4GENEBXec6AC8PBGJh25tDk+yyvRgJX6UvYz4sI0xL8vnmmElOG1GoQ4NAd
-X-Google-Smtp-Source: AGHT+IF1+PB8oM28RkeDHPoge6KuDSLw2KinizbNZu9Z/hmrrITwS55K9mgMQr+6rdi6qM9GjhtyjajgRbxpYywLwKI=
-X-Received: by 2002:a05:6512:3d1f:b0:594:2e7e:7897 with SMTP id
- 2adb3069b0e04-596a3ecee86mr6911639e87.29.1764149291029; Wed, 26 Nov 2025
- 01:28:11 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40EE32E1C57;
+	Wed, 26 Nov 2025 09:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.61
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764149411; cv=fail; b=B2SkI5ZhtDkVTNNQo5NbaavuW8pxr82f+fadVpUW2qKNM556L1lFrYCwq32ItldMx4aO6J7HCUAJvTVcI3R4vs4LHKFjn6ESCS6HkT9E+f0ZiygwMXVAnnGfZJu6EsW+t7nXts9azWDUESR+s4VsK3gbYAVPlpavS9jX3I+xoII=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764149411; c=relaxed/simple;
+	bh=vwdhY2gL+uL8r7jS5pUPXbqfhztlBjwLsf/1zMdVXLU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mCX+FNNBvfYfdmpEQvdl+w1lLzLLXH6n8pMt1b+2smVNDy4yY5kN3za8Zlq67pN9o6Sd60zyeml3VUhinJzDwa+mbDA1bKDTtRlDtGWvmCHDFpJGzfsyntPUxcv9olT1vmM/aM814/Y1nY55Ru53+JGgVm2uhrLYz8u282sC6ek=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fCPmO2Au; arc=fail smtp.client-ip=52.101.201.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AoMGZPZJ/TGt5XYwFc2qGdUAcBEmcNwwQLyfY7prXUlg4CBvDaUF9fx87dliMHLaLwm1HkphMf8dozsDY6MvsyOo7d0y6rphA5kKdWLz/zwKIbutFZoITpHDRk3bYO6fWjpZ9Jjs28v1wrYwHD/MKNEYsO+pZqsrqkQFUy7wCu7/+1ir07NAUHF9JHPKMgusktICan1Li44bPKC/Ox3WngDHKaFrho2K/sish2OljWfdtTcc0i0WudpktvXJZUjmqFEL7dgUORPHOR2uv5KoWVFf8m9IQ4Xmlc6Rihj2HGdMMglqTyX10lEFA1fS4NLTELOLVBQuZaZDsMC7NR1oUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o940KvoexCxoDZzI18kL9E8vcYJFhppyG5ZJedfAtr8=;
+ b=iJHT2rVxqiQCbSPSBf0hiaYnX0pHGCKegcnNzEmyHMANGykqGCsNowwEdCVI+78jfPjLBBbcszsGD+f6+/38T5M4PuySlMANFTH3hEgmv0LYLJjoHtHPaoBrrrtS86eIv0xpckv+BkyHgbZzoe42zcCMl4dtmuUEmqBvC4h9JJIGxA9TQMdD4CAl7dW90QHbZ+5x+n14KGHrWQC2nds0ItWgCepWoLBu1oZVCJzjrAEFWVcKob/aU75pQzzTIsKoBsRaS5bAfhHnyfaRkl+5Zo6zryK9fU4eGWjMq7eGEILG1ibqumXhmuQ6J3pnUpV6mtcPoS2vtAAWxaTwmp3ylw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=cadence.com smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o940KvoexCxoDZzI18kL9E8vcYJFhppyG5ZJedfAtr8=;
+ b=fCPmO2AuYPdvGAAQJp8eQYZ2x7CA+tUWSxXgRNen5M4hwlsTJYhln75SEn7ILdwmmnYvQvZ78+i8Rj1dPoDzVS+qy9VenwaneuxZtrh/uzBB/JflPSa3UCU++aMhRgp9M//MCfDS3EcRLed5d8y1TLxRUYbsMvntg05TwdvhxdM=
+Received: from CH2PR08CA0018.namprd08.prod.outlook.com (2603:10b6:610:5a::28)
+ by SA3PR10MB7022.namprd10.prod.outlook.com (2603:10b6:806:317::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Wed, 26 Nov
+ 2025 09:30:00 +0000
+Received: from CH1PEPF0000AD7C.namprd04.prod.outlook.com
+ (2603:10b6:610:5a:cafe::fe) by CH2PR08CA0018.outlook.office365.com
+ (2603:10b6:610:5a::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.12 via Frontend Transport; Wed,
+ 26 Nov 2025 09:29:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ CH1PEPF0000AD7C.mail.protection.outlook.com (10.167.244.84) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9366.7 via Frontend Transport; Wed, 26 Nov 2025 09:29:59 +0000
+Received: from DLEE204.ent.ti.com (157.170.170.84) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 26 Nov
+ 2025 03:29:56 -0600
+Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 26 Nov
+ 2025 03:29:56 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 26 Nov 2025 03:29:56 -0600
+Received: from hkshenoy.dhcp.ti.com (hkshenoy.dhcp.ti.com [172.24.235.208])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AQ9TnVs1000034;
+	Wed, 26 Nov 2025 03:29:50 -0600
+From: Harikrishna Shenoy <h-shenoy@ti.com>
+To: <robh@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+	<airlied@gmail.com>, <andrzej.hajda@intel.com>, <conor+dt@kernel.org>,
+	<devarsht@ti.com>, <devicetree@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <h-shenoy@ti.com>,
+	<jernej.skrabec@gmail.com>, <jonas@kwiboo.se>, <krzk+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <maarten.lankhorst@linux.intel.com>,
+	<mripard@kernel.org>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
+	<s-jain1@ti.com>, <simona@ffwll.ch>, <sjakhade@cadence.com>,
+	<tzimmermann@suse.de>, <u-kumar1@ti.com>, <yamonkar@cadence.com>,
+	<pthombar@cadence.com>, <nm@ti.com>
+Subject: [PATCH v4] dt-bindings: drm/bridge: Update reg-name and reg
+Date: Wed, 26 Nov 2025 14:59:49 +0530
+Message-ID: <20251126092949.298530-1-h-shenoy@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251120155825.121483-1-r.mereu.kernel@arduino.cc>
- <20251120155825.121483-7-r.mereu.kernel@arduino.cc> <45329a9f-545b-4425-9667-26bceca67982@oss.qualcomm.com>
-In-Reply-To: <45329a9f-545b-4425-9667-26bceca67982@oss.qualcomm.com>
-From: Riccardo Mereu Linux Kernel <r.mereu.kernel@arduino.cc>
-Date: Wed, 26 Nov 2025 10:27:59 +0100
-X-Gm-Features: AWmQ_bnksptY2VS0WbIEjjuom7AG_UPOEx3GG-ifRxT1W7-ppfRbkLP9jL5JiOo
-Message-ID: <CAKA1Jha7HuEC-KgGktmuiG-U0ZVbKnmLU4bXTwLg+paoLpQ=kQ@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] arm64: dts: qcom: qrb2210: add dts for Arduino unoq
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org, 
-	linux@roeck-us.net, Jonathan.Cameron@huawei.com, wenswang@yeah.net, 
-	naresh.solanki@9elements.com, michal.simek@amd.com, nuno.sa@analog.com, 
-	chou.cosmo@gmail.com, grantpeltier93@gmail.com, eajames@linux.ibm.com, 
-	farouk.bouabid@cherry.de, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-spi@vger.kernel.org, m.facchin@arduino.cc, 
-	Riccardo Mereu <r.mereu@arduino.cc>, loic.poulain@oss.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD7C:EE_|SA3PR10MB7022:EE_
+X-MS-Office365-Filtering-Correlation-Id: ff6dc82d-50e4-4e70-4c28-08de2cce5eb8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|82310400026|36860700013|921020|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?1D5BhIzapJHWLri7/CZJWh7esTE9lWGjU3dpWh3vFdJ1CWoN7W3LZkAeTbor?=
+ =?us-ascii?Q?JOPbq7blucohuRB8MqmS2SrEg7+rf50TkRRZX/4ZWuZeffxxCSp9aAG8Trt8?=
+ =?us-ascii?Q?Jj3ZPwd0AtWXe6mYNOeXcoj090y27bEvhVtwmHmv9asm/Nj35QsLU02lpsI8?=
+ =?us-ascii?Q?XoTJ5IuPL17cpUo1YVQbWjPu/HN8xYcWqZVNWPyrCHof7DJQ8cboRu57uG0g?=
+ =?us-ascii?Q?LBMeWhamcWaVI0et/z2r1OzlmwTr3RK9TyN11VExP+EEalZO/Dqsgrz3/80b?=
+ =?us-ascii?Q?hBmF2LXvLlvQ2xG58+iNu8D4qMfaK9pnT8kQvp0uhvQ6QzvBhrgYJTpSk+PL?=
+ =?us-ascii?Q?TVHfgOQitVt3mFHaqFoMbxc++Q/VUSbZoxCqZImQnSaA09t2jH/VjF4ZShNP?=
+ =?us-ascii?Q?C3apgqnUju6AoPrJBIxfHWyTSSGXBfNO+aoa6RAOJCpR0zAzwzuHGVtHm+57?=
+ =?us-ascii?Q?PJ7XueMTF7LnmEjnlC4cRFWMFtk/tTIYh6tQgijqvGiTIktZBkTIqmw3WNcE?=
+ =?us-ascii?Q?7CPhmBvawpmq5wHyhNE6fdoscyPsoS1JRo8dge8D0NSaVAW+/eg2lNysqVs3?=
+ =?us-ascii?Q?uwGTlsnk7KKeHhDwsaxQwR2n6eH6RdyqeZQrYUIlqibOvNBKivWTmVBdfHUi?=
+ =?us-ascii?Q?gTuy8IgS0KvasBch+Rbf8Ld0g0pdgXcRxRy0f+/d3PcDJofcvRYtlksr6dkm?=
+ =?us-ascii?Q?9r8gLZNcpWZvSV8XSr0ePDBTqyFcv5Ag3lNrJeA/PSY1l7QFpz1YzVpg/xp+?=
+ =?us-ascii?Q?HSTdaAb7sc1GFfG5/kS+g6wV2/hGoUx6ZUKInS5TK9T5Lr8i+8vd727hz/QH?=
+ =?us-ascii?Q?Lw9BaggKQ9NnwOAH/4Vm37BiwC+D1ewmWiCLY233v8vBLm0ZP0wB43SOcRzK?=
+ =?us-ascii?Q?sK6YU4feaOWse0KFDYpKixjJqTjHTAyxcAfqC1eEtA7wlcGIMzwuFGpzg1Ml?=
+ =?us-ascii?Q?aWEfFrB6sXcLVgd+8cG+979V3nletavLRgdw6Ci9zL9Br3QsjBaeCv0Tjtwj?=
+ =?us-ascii?Q?RhSILzXNLMe/Y7BOlj+pfdNYmkg1Hj0PodG21p6V3xfxDkK0+X/sYgYBBmAH?=
+ =?us-ascii?Q?OW0vYkcqY1PBr9xGrc3wuefwWpokKWK0+V2+RftjrJ1o2/qXym/iwTOzKWp4?=
+ =?us-ascii?Q?QNyPNQUCwNXWQnVtyhSQm4wjo0gQkzIlml59jpVjU5iBaLtLVKHHPEXyVxw4?=
+ =?us-ascii?Q?dYGSucRxRYk6qFqRK8zLy11lA04W1g5EQHdlm37/dmjRqJ5B7O6TzkYO3yiH?=
+ =?us-ascii?Q?ajEIYouBfWGOk8NVb/d0+vQPNFmdyrRmy22M3DV8b1uQ9ogjssncE2y5RZH1?=
+ =?us-ascii?Q?/Y4d7GBQRYhamFys50erCf3Xo08suAG2d7JHw2xTJW3KU/tcrG6Ygu3vcPwK?=
+ =?us-ascii?Q?5AaPrXhYh51K/LGkdXfrZVifUqs8jj7I7qo9FMfNw52tCePR1CJ3P/rU1VZi?=
+ =?us-ascii?Q?LoElEYEqse43MVCpAzp0SlZgc3FDEauJeGWbm6fmcDAWiTM6iZyHTq0736ZY?=
+ =?us-ascii?Q?nIxhK7+r1KYeRn/BYrBapk6v/c7G0jIgTW4t3D5t0ZpCf5dK+1VsglEsrLuV?=
+ =?us-ascii?Q?RB0w/sMCgGf+Pqwe7jHUwT3+iGMiNol2ZYo7KYTk?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(82310400026)(36860700013)(921020)(13003099007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 09:29:59.6273
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff6dc82d-50e4-4e70-4c28-08de2cce5eb8
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH1PEPF0000AD7C.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR10MB7022
 
-On Mon, Nov 24, 2025 at 12:44=E2=80=AFPM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 11/20/25 4:58 PM, Riccardo Mereu wrote:
-> > From: Riccardo Mereu <r.mereu@arduino.cc>
-> >
-> > Arduino UnoQ is a single-board computer combining Qualcomm
-> > Dragonwing=E2=84=A2 QRB2210 microprocessor with STMicroelectronics STM3=
-2U585
-> > microcontroller.
-> > Support to a simply boot to shell environment includes:
-> > - UART, I2C, SPI
-> > - onboard LEDS
-> > - eMMC
-> > - WLAN and BT
-> >
-> > Signed-off-by: Riccardo Mereu <r.mereu@arduino.cc>
-> > ---
->
-> [...]
->
-> > +&wifi {
-> > +     vdd-0.8-cx-mx-supply =3D <&pm4125_l7>;
-> > +     vdd-1.8-xo-supply =3D <&pm4125_l13>;
-> > +     vdd-1.3-rfa-supply =3D <&pm4125_l10>;
-> > +     vdd-3.3-ch0-supply =3D <&pm4125_l22>;
-> > +     qcom,ath10k-calibration-variant =3D "ArduinoImola";
-> > +     firmware-name =3D "qcm2290";
->
-> I'm not sure about this line but otherwise this lgtm
+Move register name constraints and reg description lists to appropriate
+compatibility sections to ensure correct register names are used with each
+compatible value. The j721e-integ registers are specific to TI SoCs and not
+required for other compatibles.
 
-This should be fine, I'll gently ask Loic (added in CC) to confirm that.
+Add DSC register descriptions to align bindings with hardware capabilities.
+Structure the reg and reg-names constraints as lists according to
+compatibles using oneOf schema construct.
 
->
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->
-> Konrad
->
+Fixes: 7169d082e7e6 ("dt-bindings: drm/bridge: MHDP8546 bridge binding changes for HDCP")
+Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+---
+
+Links to some discussions pointing to need for a fixes patch: 
+https://lore.kernel.org/all/20250903220312.GA2903503-robh@kernel.org/
+https://lore.kernel.org/all/d2367789-6b54-4fc2-bb7c-609c0fe084d3@ti.com/
+
+Link to v3:
+<https://lore.kernel.org/all/20251121123437.860390-1-h-shenoy@ti.com/>
+
+Changelog v3 --> v4:
+- Update top level constraints and commit message.
+- Update logs with processed schema- https://gist.github.com/h-shenoy/a422f7278859cd95447e674963caabd9
+
+Link to v2:
+<https://lore.kernel.org/all/20251119122447.514729-1-h-shenoy@ti.com/>
+
+Changelog v2 --> v3:
+-Add the reg description list and reg-name list in top level constraints
+using oneOf for either of compatible.
+Logs after testing some cases: https://gist.github.com/h-shenoy/a422f7278859cd95447e674963caabd9
+
+Link to v1:
+<https://lore.kernel.org/all/20251107131535.1841393-1-h-shenoy@ti.com/>
+
+Changelog v1 --> v2:
+-Update the reg description list for each compatible and add register space
+for dsc to make the bindings reflect what hardware supports although 
+the driver doesn't support dsc yet.
+
+Note: j721e-integ are not optional registers for ti-compatible.
+
+ .../display/bridge/cdns,mhdp8546.yaml         | 85 ++++++++++++++-----
+ 1 file changed, 66 insertions(+), 19 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+index c2b369456e4e2..4cec0f4c22a2b 100644
+--- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+@@ -17,23 +17,45 @@ properties:
+       - ti,j721e-mhdp8546
+ 
+   reg:
+-    minItems: 1
+-    items:
+-      - description:
+-          Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
+-          The AUX and PMA registers are not part of this range, they are instead
+-          included in the associated PHY.
+-      - description:
+-          Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
+-      - description:
+-          Register block of mhdptx sapb registers.
++    oneOf:
++      - items:
++          - description:
++              Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
++              The AUX and PMA registers are not part of this range, they are instead
++              included in the associated PHY.
++          - description:
++              Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
++          - description:
++              Register block of mhdptx sapb registers.
++          - description:
++              Register block for mhdptx DSC encoder registers.
++        minItems: 2
++
++      - items:
++          - description:
++              Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
++              The AUX and PMA registers are not part of this range, they are instead
++              included in the associated PHY.
++          - description:
++              Register block of mhdptx sapb registers.
++          - description:
++              Register block for mhdptx DSC encoder registers.
++        minItems: 1
+ 
+   reg-names:
+-    minItems: 1
+-    items:
+-      - const: mhdptx
+-      - const: j721e-intg
+-      - const: mhdptx-sapb
++    oneOf:
++      - items:
++          - const: mhdptx
++          - const: j721e-intg
++          - const: mhdptx-sapb
++          - const: dsc
++        minItems: 2
++
++      - items:
++          - const: mhdptx
++          - const: mhdptx-sapb
++          - const: dsc
++        minItems: 1
+ 
+   clocks:
+     maxItems: 1
+@@ -100,18 +122,43 @@ allOf:
+       properties:
+         reg:
+           minItems: 2
+-          maxItems: 3
++          items:
++            - description:
++                Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
++                The AUX and PMA registers are not part of this range, they are instead
++                included in the associated PHY.
++            - description:
++                Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
++            - description:
++                Register block of mhdptx sapb registers.
++            - description:
++                Register block for mhdptx DSC encoder registers.
+         reg-names:
+           minItems: 2
+-          maxItems: 3
++          items:
++            - const: mhdptx
++            - const: j721e-intg
++            - const: mhdptx-sapb
++            - const: dsc
+     else:
+       properties:
+         reg:
+           minItems: 1
+-          maxItems: 2
++          items:
++            - description:
++                Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
++                The AUX and PMA registers are not part of this range, they are instead
++                included in the associated PHY.
++            - description:
++                Register block of mhdptx sapb registers.
++            - description:
++                Register block for mhdptx DSC encoder registers.
+         reg-names:
+           minItems: 1
+-          maxItems: 2
++          items:
++            - const: mhdptx
++            - const: mhdptx-sapb
++            - const: dsc
+ 
+ required:
+   - compatible
+-- 
+2.34.1
+
 
