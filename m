@@ -1,192 +1,181 @@
-Return-Path: <devicetree+bounces-242323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C288FC89423
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:23:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 339A0C89444
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:25:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4644D3425BB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:22:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A009034912F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:25:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50D52BEC41;
-	Wed, 26 Nov 2025 10:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48612FFDDF;
+	Wed, 26 Nov 2025 10:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tq5AOqx9"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="kS0+3EoI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6FB25A2C9;
-	Wed, 26 Nov 2025 10:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764152573; cv=none; b=G6c9lOQT/lMP1D0w9zEj2+UFqWuxCfHO9q0RQFDJ28plGuOH3Aw7xUQpd2LYJEw+ELjNZ9BBERnNYQpnqKDk74ed637vboBZbN9FLlsP8kJHQpaQKR4FxQe+3Qhz93X4HFThBMsge706vc9Ec0xkJxpGjZFioMGumXbgXGPmYHU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764152573; c=relaxed/simple;
-	bh=yApvlgYFAq8V1I0DJfjfzUtWA2HTkUFR9FtEgwOym40=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uD47aGTK86B+4uStrtNeeJUdrCw6WIGrvj4CcsTX9tE8dWsHG5xTUdZ+/l3akaKFBO1YKZ8waZUkHHK7swzhMdd97SfQD/YFJVtQDAM0Q7U1jGfVXrkGWuqC9so4yVucdzYa7piSSqJm0Ykbku3b4DdFum4pDJkfVigfnfRTZaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tq5AOqx9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C9FC113D0;
-	Wed, 26 Nov 2025 10:22:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764152573;
-	bh=yApvlgYFAq8V1I0DJfjfzUtWA2HTkUFR9FtEgwOym40=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tq5AOqx9UHeBxhDK48rQ2ZO6G4cleQjzcs8UeBfn9vu2joql4xBcRe1OiYkX1IwgV
-	 3gVt+8mazMAPIGODasAJwMIJ9GwD4ZSCMP3YdQFYw7PYr3g+1ulSqm6NDA/j0+sp3m
-	 LuQy3+1eL6uR8V8wrWlmG8TWAAXwEAdjTTtBCxNpi+vhqUZdaesVsO0Khb9RSqbfnQ
-	 93BWGXRF7nagFTOovb+Dt+I/0iEem+r6eEqoRxocxGf/llGMw+eLJDWPK4Bdsav6QT
-	 L42XWmcTGAEFWjhYDe6N0ZtGsp9H7gaabwQQH+eGe2Nhm6601zjzsIHdRkMlxtvl7o
-	 6IrdzQJbSzESw==
-Message-ID: <0b7ba974-d8d5-4417-8182-3e9299315058@kernel.org>
-Date: Wed, 26 Nov 2025 11:22:45 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8CBC2FBDF4;
+	Wed, 26 Nov 2025 10:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764152713; cv=pass; b=PSHFixO/iQh5urQZIcVSIZbPL2X8bc/NRtrPc/53IOOp/8D0wTZPz3M5D1z7OVtNhkUkD8HCH5gGhgx5L8LPlO0SEk2GpV8xgTKfhsr0iysFQ8T/LP8QsFIVuib0liVbqliiijOVW4NdJ9fZiRYUndKHsOLWanX+8DimdmcZp8U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764152713; c=relaxed/simple;
+	bh=CmdPaoLtlgzN/ALPtVg3jWDe/4Z13eJZhKpYdSPlSEA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CfAj5uD7IIhddSij7uMLhRUgPWnefRzxzqVtqz+Qt7rJuetDjuyCLxnV/mR1D/bOaxrM7Aica9ZJ2ho6zRcAjSxY9I5VAlsKNlkzjjAqbERIX9EMCJjmCIxu9KSl8+2jozJv1xQxEhtnshv+d6dfF0OoQv9s0NeUyb1khtbngPo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=kS0+3EoI; arc=pass smtp.client-ip=136.143.184.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1764152676; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=GjpN7+0mJ4VallUL9S0o2idcDIIb4RYr7NdY3+Sux97oXTaNHiODNMh7AulUDRcr4khwPlZMS8u7xWMRTnux1eSUG/oBHvhdhBu9xgZp11nqH+kjRmnXqvGrxhH+gxfFohIbKwVC5H5FSywGOmdx0eiGfhIa1PgDBLYTY/PACok=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1764152676; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=CmdPaoLtlgzN/ALPtVg3jWDe/4Z13eJZhKpYdSPlSEA=; 
+	b=bj1v56HDVk/YZs7ORWExKkPlUr4hJE8fstR5iWgDFxyqjoSfSYvHg5kGMHw99n/GeISX/melW2lfPlJ84IeLIXOdxgPUJw+yXwOF1+W3BIN0xgRgNRjO+eimytYlQLqQ2u196Hna34fQOeWv3zb9z2LlXQYtiEZCE3bSZa2Fz1g=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764152676;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=CmdPaoLtlgzN/ALPtVg3jWDe/4Z13eJZhKpYdSPlSEA=;
+	b=kS0+3EoIO5eOIKrS4MrbD02t/bQzAirAhx/2dMGekxHGKnZDndv/KMZ8A5PdTmUA
+	M6vPXqRD0ww1laogJKDhESW12lJjxG8spp4M97biXbXpvrPUrG1Yy7NBEG8TweoC5nl
+	5+7FBTTwO4E5i6I0st9V/Z9PBgJXZ3a6VEHz3+4Jrejos5hcY/YGCKUj6NPqXpL/69i
+	uIb9tydZpiz0azY/a96DdRCL4smcrov9Sy5jHK1XZuuUaBZlJH6JapeYunlKI2wzttH
+	F6DYkJYTS+TfSHYOPqhnbLeSTDHsn5uVa+pQaLBjA+GMeY0zvk5ZR3EVevNCQ1EJqFX
+	btTAIuF0VA==
+Received: by mx.zohomail.com with SMTPS id 1764152673442929.6477168746331;
+	Wed, 26 Nov 2025 02:24:33 -0800 (PST)
+Message-ID: <d4f07dbc7edb55d996d4d251acb9631f33e48f5e.camel@icenowy.me>
+Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Drew
+ Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner
+ <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Michal
+ Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Date: Wed, 26 Nov 2025 18:24:22 +0800
+In-Reply-To: <0b7ba974-d8d5-4417-8182-3e9299315058@kernel.org>
+References: <20251124105226.2860845-1-uwu@icenowy.me>
+	 <20251124105226.2860845-3-uwu@icenowy.me>
+	 <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
+	 <544ae21cc1b5f488d03a5650d9275ff22b237d63.camel@icenowy.me>
+	 <0b7ba974-d8d5-4417-8182-3e9299315058@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
-To: Icenowy Zheng <uwu@icenowy.me>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20251124105226.2860845-1-uwu@icenowy.me>
- <20251124105226.2860845-3-uwu@icenowy.me>
- <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
- <544ae21cc1b5f488d03a5650d9275ff22b237d63.camel@icenowy.me>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <544ae21cc1b5f488d03a5650d9275ff22b237d63.camel@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On 26/11/2025 10:50, Icenowy Zheng wrote:
->>> +maintainers:
->>> +  - Icenowy Zheng <uwu@icenowy.me>
->>> +
->>> +properties:
->>> +  $nodename:
->>> +    pattern: "^display@[0-9a-f]+$"
->>> +
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - thead,th1520-dc8200
->>> +      - const: verisilicon,dc
->>
->> I do not see any explanation of exception for generic compatibles,
->> maybe
->> except "self-identification" remark. Rob already pointed this out, so
->> be
->> explicit in commit msg why you are using a generic compatible.
-> 
-> Well I only get the meaning of "a SoC specific compatible is required"
-> in his review message.
-> 
-> I think my binding now requires both a SoC-specific compatible and a
-> generic compatible, which should be okay to satisfy Rob's original
-> review.
+=E5=9C=A8 2025-11-26=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 11:22 +0100=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 26/11/2025 10:50, Icenowy Zheng wrote:
+> > > > +maintainers:
+> > > > +=C2=A0 - Icenowy Zheng <uwu@icenowy.me>
+> > > > +
+> > > > +properties:
+> > > > +=C2=A0 $nodename:
+> > > > +=C2=A0=C2=A0=C2=A0 pattern: "^display@[0-9a-f]+$"
+> > > > +
+> > > > +=C2=A0 compatible:
+> > > > +=C2=A0=C2=A0=C2=A0 items:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - thead,th1=
+520-dc8200
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: verisilicon,dc
+> > >=20
+> > > I do not see any explanation of exception for generic
+> > > compatibles,
+> > > maybe
+> > > except "self-identification" remark. Rob already pointed this
+> > > out, so
+> > > be
+> > > explicit in commit msg why you are using a generic compatible.
+> >=20
+> > Well I only get the meaning of "a SoC specific compatible is
+> > required"
+> > in his review message.
+> >=20
+> > I think my binding now requires both a SoC-specific compatible and
+> > a
+> > generic compatible, which should be okay to satisfy Rob's original
+> > review.
+>=20
+> You will get then the same questions for me - what justifies generic
+> compatible. You should be on this explicit, because otherwise people
+> misinterpret some commits and patches, and they think the generic
+> compatible is allowed for them as well.
+>=20
+> >=20
+> > >=20
+> > > > +
+> > > > +=C2=A0 reg:
+> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > +
+> > > > +=C2=A0 interrupts:
+> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > +
+> > > > +=C2=A0 clocks:
+> > > > +=C2=A0=C2=A0=C2=A0 minItems: 4
+> > >=20
+> > > This is not flexible. Device either has or has not these clocks.
+> >=20
+> > The existence of all these clocks are verified by diagrams in
+> > manuals
+>=20
+> So not flexible, then:
+>=20
+> > of two different SoCs with DC8200 (T-Head TH1520 and StarFive
+> > JH7110).
+> >=20
+> > Maybe a explicit `maxItems: 5` is needed here, but as my DT passes
+> > dtbs_check, I don't think it's necessary?
+>=20
+> No, drop minItems only.
 
-You will get then the same questions for me - what justifies generic
-compatible. You should be on this explicit, because otherwise people
-misinterpret some commits and patches, and they think the generic
-compatible is allowed for them as well.
+Well, okay, sounds reasonable.
 
-> 
->>
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    minItems: 4
->>
->> This is not flexible. Device either has or has not these clocks.
-> 
-> The existence of all these clocks are verified by diagrams in manuals
+>=20
+> >=20
+> > Or maybe I should drop the flexibility now and use a `minItems: 5`
+> > here
+> > (and leave DC8000 support as another story)? (The Eswin EIC7700
+> > manual
+> > does not have a diagram showing external connections of the DC,
+> > like
+> > the two SoCs I mentioned above).
+>=20
+> You document here only the devices explicitly mentioned in the
+> binding.
+> You cannot add here constraints or clocks for some device which is
+> not
+> in the binding and I see only th1520 in the binding.
+>=20
+> Best regards,
+> Krzysztof
 
-So not flexible, then:
-
-> of two different SoCs with DC8200 (T-Head TH1520 and StarFive JH7110).
-> 
-> Maybe a explicit `maxItems: 5` is needed here, but as my DT passes
-> dtbs_check, I don't think it's necessary?
-
-No, drop minItems only.
-
-> 
-> Or maybe I should drop the flexibility now and use a `minItems: 5` here
-> (and leave DC8000 support as another story)? (The Eswin EIC7700 manual
-> does not have a diagram showing external connections of the DC, like
-> the two SoCs I mentioned above).
-
-You document here only the devices explicitly mentioned in the binding.
-You cannot add here constraints or clocks for some device which is not
-in the binding and I see only th1520 in the binding.
-
-Best regards,
-Krzysztof
 
