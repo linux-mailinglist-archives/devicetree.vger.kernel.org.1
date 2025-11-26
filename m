@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-242199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF36DC87E99
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 04:15:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF8C3C87EB0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 04:18:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 84A5F353FD7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 03:15:03 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 667B835405A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 03:18:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3902D30C622;
-	Wed, 26 Nov 2025 03:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624DD30CD80;
+	Wed, 26 Nov 2025 03:18:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GmUNB7jf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dgvjoXGp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com [209.85.216.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8E7309EE4
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 03:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8D82FDC30
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 03:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764126898; cv=none; b=FeG4zIPVi0uHmZDFYYgAOftcXW7WrpZg3doGxY1PXaYCaX/koamLfisjb534PGwitqUUmnJJjRxHhRdwCDxq6Xx8PkTSVIt7ZX0OtE8wHOAMKMKNKHthlJB2SwMwVopcbuJ0wTUORUUIjq/CxtSHIsNjEc0vvYPwMTTjH4VjQew=
+	t=1764127093; cv=none; b=KFnhqbpNyT28sTndqmnh4uAC3/bIBcD6i7DNLlcqAMDXTgkDqll9WglomU0h4ptjnJRN371TwzrIcVCZT2TpjFHMk3jf7ImhqgYmp0zEXXVdka9vepO3GUTS1wREr0tVq2jLvfRxLl9I+82RJ3eKDsH06qripgiPyU82fXczSW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764126898; c=relaxed/simple;
-	bh=nFnsQY4oJTdm/LIKJ6pX4OGfndKb+lBEu1FbJxow3QU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nfwzb4zDFJdxDrZXiiF4V0+VlNBNhnGBNuEPYqU8QZiRvc/XQrYnT+FdVISLSvqcrKwioKmu/EUuNbzzoSbkGiRKxfYbAxNKKc2LADPjrlkhU9GyOK+UQddKac3lLNMPoJf6W5kfDp4u7NoTyN8871B5Y/pYmvqEsz9MqQfVRLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GmUNB7jf; arc=none smtp.client-ip=209.85.214.196
+	s=arc-20240116; t=1764127093; c=relaxed/simple;
+	bh=mFGAf05gZ2JpMz8sAbnQz9cmri70ARBRr6x45PxpHvs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=oGeati4Y2KS1R2za0EIaxfeLGc3qRJcw6H/XWVACzINHFHYq+OrjVJ2908rnla4qMA2EY2Snkn5l7ucQ7QOhN5NCNfbPcmM14MA2cLJwCSJOj5Ix+ZUC11YRK27y9bIkr+5ppBYaVML92/AY3kOVMzIfIu91DM2Z5Y8uAz8LANw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dgvjoXGp; arc=none smtp.client-ip=209.85.216.68
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-298144fb9bcso68925185ad.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 19:14:56 -0800 (PST)
+Received: by mail-pj1-f68.google.com with SMTP id 98e67ed59e1d1-343f35d0f99so5121264a91.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 19:18:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764126896; x=1764731696; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YsF2vXY+Klwy65O0EIOP+EhiNUNtQTtwaMk3rE4EePs=;
-        b=GmUNB7jf9IcAh+Pb5g4QV7rBsQux04TvYYp5aFYN64plaoLgIT7cQXRONQGC1OCVUM
-         ab42tk2H6jyu0nFaSm6dXdxoN6OME+AV9J7WlG/zwFoERCfl7rPqgIVwv+fjqY98iTeV
-         8FblKsX6ovrviT/EWHZNe18kaOilNq1CqSZQT5sI9xwBzJwlOZFhzHHlpc4dXEczVxq5
-         XbCHjBQkv12ZZ+g9v+sqLviBAwfVzr9xNW7Wavzmnb01S9KdllqZD66AkLsYUrAvdTWF
-         /BEE3BpJlqnA2RmOgHxteQmGpSffES1Xuv/eqG8oUQeVutJqtPdLzsFlc+yidYK+YKtJ
-         hZXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764126896; x=1764731696;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1764127091; x=1764731891; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YsF2vXY+Klwy65O0EIOP+EhiNUNtQTtwaMk3rE4EePs=;
-        b=aZQ4EqB1C/HoGOsKocET0vaD5VQPV41BBQcd9+7S8acYeNO110YqaBHNn7dJ1ue3uE
-         fjB8mlKSqguw67Z1VUHAcWL9jsR6y6ClUvP4f57lC48rt5dg0CA8D8ddBTaKR5FuZUoz
-         fPV/e1IZOL6rSvgGdkFB1cYRk54YOWy+sAbHz1RSM7Z7IdOOtkT1BBJ3/gJjt7WiKekK
-         n4WInqjbss6PFe5AeIzJTWLQqRyg28wDr21vxmHBMcooAnxB7wfYCiMKI4/yakklQ1ZN
-         Qv032HoGH36QfUjtNNw8QSZi7sitRqw5m9mwFfUpAGNf5qxztbdC+Q6jylvzv5tPjHjg
-         taOw==
-X-Forwarded-Encrypted: i=1; AJvYcCV0+wJTKyUWddQKRGMi0KImHjXpspCjTCISDhcifb8MQ7qFdY5mJyMpnItO0yN2aHnvubYPwGEchXdF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzM1PfzbkPY/PeIamhXzNV7V6V2Trw+8YX0KIRF1y2t1LPhaEF7
-	HxJWaWshxKHkjNYHVNyySJs2OuBni4LIh8k3e1WV7V3fU4Ievk0Tw4jq
-X-Gm-Gg: ASbGnctj+ZqHEIQg7JPpfEaf0pnyi1UPWS+NQNYsyYvOpdV1hnH7xLAX4NRJvwceWoj
-	Ya6pLk85n91dsZgliBrgEWSszw79V4JzEaUpwtsANkQQMZSWTRPVEywz/DO29wuPBgYPRT/zojz
-	hhiUxMItn1ZvB/3ypdHf9jIQQTYXSzAfw7kpNwlQDt85bKIz/w/K2ajrCeVAhkA7rcD9Ii9ZaSK
-	hcjG+K1MolhM+zhcg2yte2zidHAzkTx8N/zY9OUBLEPglhb1A3Y5jua/lt0W9hGM15nIN3+sNTU
-	D3BQgxSo5DNW+puKuGFNVuPuaWVGPK79QRzUyaK02sygPAZHXrY3eRAKHamuaEGXL4WDrG9OCnx
-	JPm9q0/I9G8GJTwBkrPP1awEP884uTZ/ZIbbs9jBVO/BZgwSwgjRm/8fqv0Tb0YmFbCqPuiV9ZM
-	Vc1G4dfR6ChmQC6g==
-X-Google-Smtp-Source: AGHT+IF3xZUV4fsW48z+Gn4ApB/08WmG2J9vbYXEbvQ68riEYO2xTIOuy/T/mjhjd646cUi6B+XNMA==
-X-Received: by 2002:a17:903:3b87:b0:278:704:d6d0 with SMTP id d9443c01a7336-29baaf75e76mr50882165ad.19.1764126895717;
-        Tue, 25 Nov 2025 19:14:55 -0800 (PST)
+        bh=pJ7IKj64Qr0OZ0iruuUqcxkX7/QCGnNK4nFSticAN6I=;
+        b=dgvjoXGpLfKN29V0UYDxR8nsUL7kliwfTG4HubLHnSVwqsEqa06rp9ASIu8wuCgPvt
+         KEGNxsmEqsm+qAvZAu/lim0+jg4J/bX4ElYLsoo3OgvousPzPhN80DE2g03pa3FcAJoX
+         jaraBmJ853zJ3hqq4kGYIHONm6bTc4sMfPBiNoYtnjx9AUFWzKU3vibsVjKDMwniJ1iX
+         w8/o/iS6gscMy2RY2Y83k9j1RQG9LYC9sD1FeUzuKu2l/+yZdWZqOEt1TnYQQ/brkpjS
+         YElZzmaT0YUV9jlvspBaDROSzr0Ufa/0Fzr/j/xiGRQUNJA/UVWEKgTSdcWcRnCdL199
+         XDcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764127091; x=1764731891;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=pJ7IKj64Qr0OZ0iruuUqcxkX7/QCGnNK4nFSticAN6I=;
+        b=j/I1skd+mnwLbBW5PYifaRdlN8J+5UO/RFtX1mS6o6mAAqXoMs9AeoLDEKui91jCkk
+         lUZKw98O7/n36anp8c38f+q5DLsFZ0FEOhZfmEax2A2hxRAANHkXe9opNanWXiBt0+o8
+         flLGf3ISwvRwfmgLHALT1cak23pmuRrpd9ba3suc64gcsAse7uO7UTap6WENCUoj8mW/
+         LO7O6biLY/+dipTaVfT5aMVxupoIhhdV6ZsiLHVYF54SIqcFh/byxc1BSm4m7iPQAjwb
+         NvjmGBzeA6J1KaLKohmpYONvkkaIXEc3hj77zNFh89QsMMqCUG2fa2H2I69iCL8JAuQ1
+         IgdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW31xjCE9Maz6//V8lGdUgjqbk9E/FDZhlq2vdY8hGuVFWP/FkJHBCiWQQPCGDaU4itxzPHOMDdRFzu@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywtb7Kp58oVu2CB8vuCQR7PykmJkQihNWhgHsE36C7uy2ECaWXv
+	exnh87eJ4oM71Fk4x5HZJ2ZyaW06Pu5mwRNLmh02dYRHREwLo8mtcnaN
+X-Gm-Gg: ASbGncvy6Q7v2Ljy+E52n2g39Crsq1rWQPk0si4wPvkgvpzfnRGgir9f6EdlSH+Fa07
+	zPXdGD9MT1tXQc9mEJxA+FIIOV2tTxydWId04c6CXm63TiRVDI8Rj/OJwzE9LAYm7vew7hbhGCr
+	D3LbnLSRUnrQXnM24IORtJjGh+mzDWBDRmMP95sPUvtMyL9ZF9XD9QNguU2up4IrRQiseE+D7Gh
+	INBWyYOPOecR3IDBJoIgscpqPUDmFLkGqYVkIG6mPt3wSTnNDP+BBIDs5qP3D+rgZeE/UEsvQHm
+	+SdzcqqPaUqveEnlzNjjc9HMScjVr070Pv3nnBUmptRAKdzB9lpp3fjqSSVAotwBrrqPu2LUQ2L
+	ScXcI28KNivKgX3d2sfu+BgTZDdPm1M8poHMTv1R1N4iCz4IUqVhFYsyX8tosfGc6bwpXoKqg57
+	SBGJpLp02OJff8iIYjk8n3oKhC
+X-Google-Smtp-Source: AGHT+IGa1FJoKpUswR5UD+dOiC7H4W7Ds1tZvtbxBdOuvihTQsXPDXj1wGT1F6VG0QJz4aBP57V84A==
+X-Received: by 2002:a17:90b:384c:b0:33e:2934:6e11 with SMTP id 98e67ed59e1d1-3475ebf9acamr4279517a91.11.1764127090901;
+        Tue, 25 Nov 2025 19:18:10 -0800 (PST)
 Received: from Ubuntu24.. ([103.187.64.30])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd760ac62ecsm17935713a12.26.2025.11.25.19.14.50
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd760ac62ecsm17935713a12.26.2025.11.25.19.18.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Nov 2025 19:14:55 -0800 (PST)
+        Tue, 25 Nov 2025 19:18:10 -0800 (PST)
 From: Shrikant Raskar <raskar.shree97@gmail.com>
 To: jic23@kernel.org,
 	robh@kernel.org,
@@ -88,10 +90,12 @@ Cc: dlechner@baylibre.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Shrikant Raskar <raskar.shree97@gmail.com>
-Subject: [PATCH 0/3] iio: proximity: Add DT and interrupt support for RFD77402
-Date: Wed, 26 Nov 2025 08:44:37 +0530
-Message-ID: <20251126031440.30065-1-raskar.shree97@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: iio: proximity: Add YAML binding for RFD77402 ToF sensor
+Date: Wed, 26 Nov 2025 08:44:38 +0530
+Message-ID: <20251126031440.30065-2-raskar.shree97@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251126031440.30065-1-raskar.shree97@gmail.com>
+References: <20251126031440.30065-1-raskar.shree97@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,38 +104,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patch series adds:
- - Add RF Digital vendor prefix
- - YAML binding for RFD77402
- - Device Tree support in the driver
- - Interrupt handling support
- 
-These changes enable DT-based configuration and event-driven
-operation for the RFD77402 Time-of-Flight sensor.
+The RFD77402 driver has existed without a formal device tree binding
+description. With the recent addition of Device Tree support and
+interrupt handling in the driver, it is now necessary to document
+the DT properties used for configuring the device.
 
-These changes are tested on RPi 3B.
-1. Interrupt Mode logs:
-pi@raspberrypi:~$ dmesg | grep rfd
-[   26.907482] rfd77402 1-004c: Using interrupt mode 
-pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
-51
-1. Polling Mode logs:
-pi@raspberrypi:~$ dmesg | grep rfd
-[   26.760403] rfd77402 1-004c: No interrupt specified, using polling mode
-pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
-1990
+Since the binding introduces the compatible string "rfdigital,rfd77402",
+the "rfdigital" vendor prefix is also added to vendor-prefixes.yaml.
 
-Shrikant Raskar (3):
-  dt-bindings: iio: proximity: Add YAML binding for RFD77402 ToF sensor
-  iio: proximity: rfd77402: Add Device Tree support
-  iio: proximity: rfd77402: Add interrupt handling support
-
- .../iio/proximity/rfdigital,rfd77402.yaml     |  55 +++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- drivers/iio/proximity/rfd77402.c              | 134 +++++++++++++++---
- 3 files changed, 171 insertions(+), 20 deletions(-)
+Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
+---
+ .../iio/proximity/rfdigital,rfd77402.yaml     | 55 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ 2 files changed, 57 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
 
+diff --git a/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml b/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+new file mode 100644
+index 000000000000..93deaa4e8b7a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/proximity/rfdigital,rfd77402.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RF Digital RFD77402 ToF sensor
++
++maintainers:
++  - Shrikant Raskar <raskar.shree97@gmail.com>
++
++description: |
++  The RF Digital RFD77402 is a Time-of-Flight (ToF) proximity and distance
++  sensor providing up to 200 mm range measurement over an I2C interface.
++
++properties:
++  compatible:
++    const: rfdigital,rfd77402
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description: |
++      Generated by the device to announce that a new
++      measurement data is ready in result register.
++
++  vdd-supply:
++    description: Regulator that provides power to the sensor
++
++  vddio-supply:
++    description: Regulator providing I/O interface voltage
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        proximity@4c {
++            compatible = "rfdigital,rfd77402";
++            reg = <0x4c>;
++            interrupt-parent = <&gpio>;
++            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index f1d1882009ba..a2e113e29e37 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1341,6 +1341,8 @@ patternProperties:
+     description: Revolution Robotics, Inc. (Revotics)
+   "^rex,.*":
+     description: iMX6 Rex Project
++  "^rfdigital,.*":
++    description: RF Digital Corporation
+   "^richtek,.*":
+     description: Richtek Technology Corporation
+   "^ricoh,.*":
 -- 
 2.43.0
 
