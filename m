@@ -1,249 +1,187 @@
-Return-Path: <devicetree+bounces-242419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025A2C8A227
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:03:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 465C2C8A242
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:04:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7D1F6355453
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 14:03:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D92523A301B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 14:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6436323D288;
-	Wed, 26 Nov 2025 14:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E18E226D18;
+	Wed, 26 Nov 2025 14:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ClfPAeex"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O5uUQ9t0";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QrX7p4kp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4022821E087
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 14:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AFC521E087
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 14:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764165788; cv=none; b=mup72v9EUXbPmjt9eMqYizWYdeT+hNnZQ/vTcZgGEdQkGTElvM2z4DOnrDfJr0uWncYed1jlnD8ijdvJTnawFk3BpESZOe7c+CQVTIM4zWf0rAp0wT0SYfnznHn1PsjITVBs2A4F+O0Q4BeTsLU7bZvxRf+RmXzRAfzfxelfFbc=
+	t=1764165844; cv=none; b=ts6+Nx844zSUOLnDSZyLax/sMhbEkTx52t5D25dK1TjLWMXdhVeLhDZ+3IKIhQXAD1cLadnhOSgSkelx4xiYPzMSeh+JKly8KuffZln5WiXu3og6S8oQMypmTMA8zsKLYwd0Vp1LzU50vPrXkNVmWEIZlkhgpsz3M/VWCSqPfwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764165788; c=relaxed/simple;
-	bh=E4sngIhqOutXvjOl8aX3GMc9+zQwuLNz1SHOZj/U2nQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tAz4/WNhOqTk82rLL9HJT4P0ciZs7KvHd7tX7QHGJjTn3paYCXQudGOeSIeibfnAzKq2QPmI3NkhHy7D0IYM8ja7zkdsqiGbBmYF9DqWY3nB3XMnpE0rj73kjAyb7d26aU7qPTblBCIRo8w9A2UjfzgZZIwrORdaTu9gcdwqByg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ClfPAeex; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64175dfc338so11543798a12.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 06:03:05 -0800 (PST)
+	s=arc-20240116; t=1764165844; c=relaxed/simple;
+	bh=8v1x2RS2pjT3QKt9mvzTfTrPxDuF/2BMWOoPGs7cASs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fMkLQpK+5HbI0fN3Mts4Tp6Zjzuq8giY0ccWkRWPkStP9Mt8ts+yn25/pEsAbYyt8NuAeJfg8z79bnO6WmGiKcC9285utx4cwRTC3cz0zh/pFPcRpgHkeOpK7A1N8cITKUbcZ3wcKkE/C0nU9M0j/ckBWLMj9E71xGmNAeoa1q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O5uUQ9t0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QrX7p4kp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AQACgvV3317751
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 14:04:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	j4Pu61FlX7ik1HTPqKufvU6avYQgm5W31lthRKIaR6E=; b=O5uUQ9t0jKDO1yBw
+	NoMLZMVCy0T2XEbjHzAadosxwOexC41Ckz95dn937mPdH3F+/cG6RtPsVu9ataZW
+	XTAF2FUTDSCE3uMdAaTliiMb1fh7m+wU64VhH1DV0nXl7OgtI9tVzJczewYsQseg
+	54RUtXGey3mEfMwvJqzzd5LuSYP4Xex5t2rg+SGyArKGRsbosR0NrlDXvSo5ay5s
+	7AIFkM2IGKNV/uhCCaf4+EMIXMrdIYzO/HqN8XOQYToyZoCgi/lHM1itKhsN3l4r
+	LaxYFyRwhCrOOX7vXrb8sx9JNk+eXfD6HjKsGQNE6V/HhXDAvpMCn+5ZIGDA3qVn
+	B1/6KA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4and2qks2w-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 14:04:02 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b2e2342803so1730414985a.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 06:04:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764165784; x=1764770584; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Zxq7LFozTa8UOST16z7P92kDr19l2Us3OjrO19iH8s=;
-        b=ClfPAeexFhzHzMmadWORel+/uZKTwMVgjrpuroN34+q+1W9WZWStqIfyADRTAcYKuk
-         rju0pzsIo0WXdU3iPsXdA5+EFrvRv6SF7PkJABT6PzMRYNWZXe/QaQa/SLZI4+iWNiXF
-         IqE0v0iRC4KMVF+jG7JlioRDBTz1De4JcqkDtbbj4gKe3JxrdsiePBfa84ppVhTI4g1H
-         zB/YwR6j/RRsLWlO7UdMw9++65mNHrIst9d8A/vPyLlOGHVRLDLdAzaLjBYQqJskJkwK
-         +RUYEXOECN1Ak4oq8ZeV9aoOkPm9nAm+O2/5RaWiULFK25vbK/SjvyBc6CKy48nORg0N
-         rIDw==
+        d=oss.qualcomm.com; s=google; t=1764165842; x=1764770642; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j4Pu61FlX7ik1HTPqKufvU6avYQgm5W31lthRKIaR6E=;
+        b=QrX7p4kpGsVyWhvtwVhgG88Cquxk0nkja32EECfsltu6xXnAsJt1wdoOhQzUV+ow+C
+         4oUqS+paPeOgHpQ+OFmlcNWZt+/93nJoHB+ouVOimSkZqAkY8EGkzmjsqyzZg3k+dFRK
+         cFP2hAbps9+dlUC+9TylcTodF3e7iA5VBlSclYRD3uuvUMt4AOg1NHlAPkkHERxrORNz
+         WJvcmL7UVcqKVMcZebi/F1E+zqGgfQtCRtHXgZiBxxwIYzIxfy0jKfacAB6qgnj219RD
+         +j9l+HGCe7bK+w65fPigAs5Z5JRFEtJT35JTLDzTZ1l18EAwXStQXgHkFOPuHkochG4r
+         3VgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764165784; x=1764770584;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9Zxq7LFozTa8UOST16z7P92kDr19l2Us3OjrO19iH8s=;
-        b=qB/5OAM8AcbyRpEh0ZxiBknqMqAZ6qSaqt3h4xOf7oVKZ0jDQJXcoH8DVmTFy3RBDN
-         +uK2C/3xrkPE1irbv+ciBMh1hOYDiwc1r6PXNRV3FColZzeJ2VCvzKKMY8CHj7lbV6Np
-         6iUZd624QcHqB0WzzkvqWwOE5FpyIp0w30T2E3Mi+h8wcTWYcH4mZo8RDrt0a1R9t5dH
-         PmKsIsk9vZFR9dl4vxwL/Jmop1VccoQFVoNSa8We+6UvZL3GVsWbvvmUPKcxBuQLesZL
-         S82KM21ZB6gdRpPhUJi8J9b/uQTpznSqBgCZGLVykmIcAOcRH280hdsgrrpLPjvRftWn
-         oV/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWcqYvYvGrONrMBtxZTdZZUrfhSAqPTFvwCbS6YkuMLq9xQrEMfvc+e337omsPoCtI+SIXgW2QNXfz+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwO+5hASVDVKvb27hjErDq/1PJswP6ArWBipcWse4zuhQZInNvl
-	T/BhJYqr5P2MRQFWtTKo7nj9zCzxOzuzUjfmY11LlkJHi+13wwbsjmym
-X-Gm-Gg: ASbGncsiSa3Rg357X7LrgkWksTFU2qCh6LI9t671+48jJSCp1vRlpTcJ3p6LHXbSxPd
-	IjdnNhTS8LzDulqRTK/ufLnhdljy3PR480fIDhlbxXLRKdl1Oz2H8Q3zdwTunGTnCHca7K0XnQY
-	nzdbYfyiBJfHP3Mw/mgtn0V9I0XyP/ZqA4S4CbMuv+QYaCpadSSlHSdiIBoobQq8gW14n2/FhFt
-	GLcNva1NJoB7c34YLrTYDZSZFkgzVnqWVS1/aistyHoIOaQST2IITv2gkCH3YUC01eQs0VUiOmg
-	tZUWU6Lawycz6o5Qsycr07l6Ao1pSdPDibw9pFd+oVd5pJNNFIYWp7r0qlVB4DZ3yKbTvGlXaYL
-	xNDVvA1ja0kV5BAlOXhdOU148LO+Haws9h5kYU1MM/tFuZuoHf/6aYh38khFXNRQaOMiBU43DN+
-	zsLeF/0YXhEay+fesf7NKj93PbZwd/VFW0fJRnVSG9vDfYcs6dg3cP53CxHkMCgsbH7/U=
-X-Google-Smtp-Source: AGHT+IEKc6DMi1rnsiKXGQ7YCm1EduL/BJbWA26zQIPUem7U5uZbM9JaOZh/wc742sj/SZNAl5nqiA==
-X-Received: by 2002:a17:907:2d90:b0:b6d:6c1a:31ae with SMTP id a640c23a62f3a-b767183c1femr2036911366b.49.1764165784185;
-        Wed, 26 Nov 2025 06:03:04 -0800 (PST)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:1025:ba00:55dc:4ccc])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654d73430sm1901764266b.24.2025.11.26.06.03.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Nov 2025 06:03:03 -0800 (PST)
-Date: Wed, 26 Nov 2025 15:03:01 +0100
-From: Jorge Marques <gastmaier@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 5/9] iio: adc: ad4062: Add IIO Trigger support
-Message-ID: <57msi3wjxm7oilpaky2ezurqvun4p5hdsicrhq5rhkljka3ryo@xqvdzdiwnl6y>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
- <20251124-staging-ad4062-v2-5-a375609afbb7@analog.com>
- <aSQnDMsE13zwM1YO@smile.fi.intel.com>
+        d=1e100.net; s=20230601; t=1764165842; x=1764770642;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=j4Pu61FlX7ik1HTPqKufvU6avYQgm5W31lthRKIaR6E=;
+        b=jaedWxCnMwGRsCesevIm1h0eCU8TthpT/HDw1cQaXIceHvTwWxNAK5aEBBnWJwplD3
+         ADFCs5+d3SuNjMsJ8avfUMcrNJagkVMOvGGZfeKhK9FrZqDet3sG4pIQU0bALGCoS3Lg
+         Bc31xhfbro7wIDG0auRO6/jlCnrI1bzijLZmYgKgu1bK87iEJS5QX3acWQnJZTFd0Qgi
+         Nx9Tm4C6SE3ndVliyGK3gnKrpJJhIftZpRW2lN7c7po6we4i3Y0NfmeVwpVoiEFGhyBE
+         ukFa3mwzxxA3ZzgYIZ6lkYyt/vpxmwIDHX31bECaciuvgGaIsn0bW3yGqutx+knLR43V
+         NYWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXrDlzBMPceRChi4w/q6c+n4W8SRH8wbBwO6EZicn69G4Pijfz/owwbeSglI0/jtd3Ih/A+rAKPYQjg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjtykfqHz9JAsrB3sSEkkJ21Y/oyq7sDao7n6viSEvGoaeFO/A
+	riSAZorfdwM8DQMMbREhkH7ETMuHWtuy4egT/3BlYPVEm7lRbdAHYTHL6tIGk2cNsd4qjyrIFhA
+	LjvawKtqD69nprkc2qIXSqxcR1jHg9fwoVI8weC4KXnFWcGlcHYhy7etQPpbEO5Zszxg7uTtreH
+	9Q7a5A/tww1ZKc69GOAluovn5iPZAr1Kmt8IrRgDg=
+X-Gm-Gg: ASbGncsMF+fNfYXPEF28st/X1FKfvz2sOrhdeAj7FPnWErZyve6ziPIx0Pc3WApiKhQ
+	nYhDykwwp0uWlUmxLp7ZaeEdauVt4apmpLwFjad5svBUfTHiN1MO+xMFDS/b+6ujWMjrhSvHZDp
+	m61rbG+gKb1bJukR4sjSeBIG1F50vWxpEnU4DnNn39MzZA16wAgtiMUOtpBmacb4xK8W/kBPLGp
+	Cx8TE3YSExzpTKNBoE6uzZCtao=
+X-Received: by 2002:a05:620a:404f:b0:8b2:e922:5297 with SMTP id af79cd13be357-8b4ebd6fd06mr928363585a.21.1764165841573;
+        Wed, 26 Nov 2025 06:04:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHsbcB5py6KG3ibgJ3gEgq7um1CGHVok1rTCxoPdVhPI5x/5mvjr3hUdeJyz7HAPgluh6fFxRrAfnZqtAPHkl0=
+X-Received: by 2002:a05:620a:404f:b0:8b2:e922:5297 with SMTP id
+ af79cd13be357-8b4ebd6fd06mr928355185a.21.1764165840892; Wed, 26 Nov 2025
+ 06:04:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aSQnDMsE13zwM1YO@smile.fi.intel.com>
+References: <20251120155825.121483-1-r.mereu.kernel@arduino.cc>
+ <20251120155825.121483-7-r.mereu.kernel@arduino.cc> <45329a9f-545b-4425-9667-26bceca67982@oss.qualcomm.com>
+ <CAKA1Jha7HuEC-KgGktmuiG-U0ZVbKnmLU4bXTwLg+paoLpQ=kQ@mail.gmail.com>
+In-Reply-To: <CAKA1Jha7HuEC-KgGktmuiG-U0ZVbKnmLU4bXTwLg+paoLpQ=kQ@mail.gmail.com>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Wed, 26 Nov 2025 15:03:50 +0100
+X-Gm-Features: AWmQ_bnu7I2BV-0kj-pM4cBdPYEuUByoq8WpKikAvYHg-1WklPoc-0N_i0hL9x0
+Message-ID: <CAFEp6-0kHtbXKQRtaLUB1bqRV5s_c_bcoAWPdTOH3JvV69rUqQ@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] arm64: dts: qcom: qrb2210: add dts for Arduino unoq
+To: Riccardo Mereu Linux Kernel <r.mereu.kernel@arduino.cc>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, broonie@kernel.org, linux@roeck-us.net,
+        Jonathan.Cameron@huawei.com, wenswang@yeah.net,
+        naresh.solanki@9elements.com, michal.simek@amd.com, nuno.sa@analog.com,
+        chou.cosmo@gmail.com, grantpeltier93@gmail.com, eajames@linux.ibm.com,
+        farouk.bouabid@cherry.de, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, m.facchin@arduino.cc,
+        Riccardo Mereu <r.mereu@arduino.cc>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDExNSBTYWx0ZWRfXw/WZ3EGgoDb7
+ EScJaO3iWtgZLBnUO4ij4r3wi8/kgcCcIEqhXJfEvcurkiKmYgusQWOJfUVxREJDyTTp7I4MfO9
+ 90TBRSNUlq/B0cCMHp+7oRzCVxZ11s5Xw8V2Doc78QwKXJjQO6ZV/JS8jGONHW47dbU7YxQpJIz
+ 22JjVZgdbCr3zHmGRVuYOxP6LYSzYH9XBo3RV7fw6iGck/UwXiKSWNU8dxuY87OANrSuW5gPEUw
+ 4KWWmorYlMh5duRSPXnnQBjJBapB+lymG+ITqqaatSEbh/Rhk6ufcPyMGDhfWg7cQ67/UFj9qLD
+ VsCuJbujJubFOH9uhILMGXMYBJmh5m2tyzxfJrx19T0E7htjMfyoWMVJA1AbadG5Mhm6bA7DInM
+ 6Msw/qc0tXvO2ZA3LgO5547elN+BAw==
+X-Authority-Analysis: v=2.4 cv=dZyNHHXe c=1 sm=1 tr=0 ts=692708d2 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=JSZs4kpC3w6-UMKaf54A:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: ToCc6gIWhRRDr0ODYF4Ep-Q5OcDljDdK
+X-Proofpoint-GUID: ToCc6gIWhRRDr0ODYF4Ep-Q5OcDljDdK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 lowpriorityscore=0 malwarescore=0
+ adultscore=0 spamscore=0 clxscore=1015 bulkscore=0 phishscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511260115
 
-On Mon, Nov 24, 2025 at 11:36:12AM +0200, Andy Shevchenko wrote:
-> On Mon, Nov 24, 2025 at 10:18:04AM +0100, Jorge Marques wrote:
-Hi Andy,
-> > Adds support for IIO Trigger. Optionally, gp1 is assigned as Data Ready
-> > signal, if not present, fallback to an I3C IBI with the same role.
-> > The software trigger is allocated by the device, but must be attached by
-> > the user before enabling the buffer. The purpose is to not impede
-> > removing the driver due to the increased reference count when
-> > iio_trigger_set_immutable or iio_trigger_get is used.
-> 
-> We refer to the functions as func(). Mind the parentheses.
-> 
-> ...
-> 
-Ack.
-> > +	struct ad4062_state *st = container_of(work, struct ad4062_state,
-> > +					       trig_conv);
-> 
-> I think the
-> 
-> 	struct ad4062_state *st =
-> 		container_of(work, struct ad4062_state, trig_conv);
-> 
-> reads better.
-> 
-Ack.
-> > +	int ret;
-> 
-> ...
-> 
-> > +	/* Read current conversion, if at reg CONV_READ, stop bit triggers
-> > +	 * next sample and does not need writing the address.
-> > +	 */
-> 
-> /*
->  * The multi-line comment style is as in
->  * this example. Please, check and update.
->  */
-> 
-Ack.
-> > +static irqreturn_t ad4062_poll_handler(int irq, void *p)
-> > +{
-> > +	struct iio_poll_func *pf = p;
-> > +	struct iio_dev *indio_dev = pf->indio_dev;
-> > +	struct ad4062_state *st = iio_priv(indio_dev);
-> > +
-> > +	iio_trigger_notify_done(indio_dev->trig);
-> > +	schedule_work(&st->trig_conv);
-> > +
-> > +	return IRQ_HANDLED;
-> >  }
-> 
-> ...
-> 
-> > +static int ad4062_triggered_buffer_postenable(struct iio_dev *indio_dev)
-> > +{
-> > +	struct ad4062_state *st = iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = ad4062_set_operation_mode(st, st->mode);
-> > +	if (ret)
-> > +		goto out_mode_error;
-> > +
-> > +	/* CONV_READ requires read to trigger first sample. */
-> > +	struct i3c_priv_xfer t[2] = {
-> > +		{
-> > +			.data.out = &st->reg_addr_conv,
-> > +			.len = sizeof(st->reg_addr_conv),
-> > +			.rnw = false,
-> > +		},
-> > +		{
-> > +			.data.in = &st->buf.be32,
-> > +			.len = sizeof(st->buf.be32),
-> > +			.rnw = true,
-> > +		}
-> > +	};
-> > +
-> > +	ret = i3c_device_do_priv_xfers(st->i3cdev, t, st->gpo_irq[1] ? 2 : 1);
-> > +	if (ret)
-> > +		goto out_mode_error;
-> > +	return 0;
-> > +
-> > +out_mode_error:
-> > +	pm_runtime_put_autosuspend(&st->i3cdev->dev);
-> > +
-> > +	return ret;
-> 
-> I guess with ACQUIRE() this function will look better, because the explicit
-> reference count bumping (with an associated comment) is more descriptive on
-> what's going on here with PM. Same for other related functions.
-> 
-Oh this one slipped through my fingers, should be using ACQUIRE as well, thanks
-> > +}
-> 
-> ...
-> 
-> >  	if (ret)
-> >  		return dev_err_probe(dev, ret, "Failed to request i3c ibi\n");
-> >  
-> > +	INIT_WORK(&st->trig_conv, ad4062_trigger_work);
-> 
-> This is mixture of devm_*() and non-devm_*() calls. How did you (stress) test
-> the removal and error paths here? Wouldn't devm-helpers.h APIs help here to
-> make / keep order correct?
-> 
-Oh yeah, missed this helper
+On Wed, Nov 26, 2025 at 10:28=E2=80=AFAM Riccardo Mereu Linux Kernel
+<r.mereu.kernel@arduino.cc> wrote:
+>
+> On Mon, Nov 24, 2025 at 12:44=E2=80=AFPM Konrad Dybcio
+> <konrad.dybcio@oss.qualcomm.com> wrote:
+> >
+> > On 11/20/25 4:58 PM, Riccardo Mereu wrote:
+> > > From: Riccardo Mereu <r.mereu@arduino.cc>
+> > >
+> > > Arduino UnoQ is a single-board computer combining Qualcomm
+> > > Dragonwing=E2=84=A2 QRB2210 microprocessor with STMicroelectronics ST=
+M32U585
+> > > microcontroller.
+> > > Support to a simply boot to shell environment includes:
+> > > - UART, I2C, SPI
+> > > - onboard LEDS
+> > > - eMMC
+> > > - WLAN and BT
+> > >
+> > > Signed-off-by: Riccardo Mereu <r.mereu@arduino.cc>
+> > > ---
+> >
+> > [...]
+> >
+> > > +&wifi {
+> > > +     vdd-0.8-cx-mx-supply =3D <&pm4125_l7>;
+> > > +     vdd-1.8-xo-supply =3D <&pm4125_l13>;
+> > > +     vdd-1.3-rfa-supply =3D <&pm4125_l10>;
+> > > +     vdd-3.3-ch0-supply =3D <&pm4125_l22>;
+> > > +     qcom,ath10k-calibration-variant =3D "ArduinoImola";
+> > > +     firmware-name =3D "qcm2290";
+> >
+> > I'm not sure about this line but otherwise this lgtm
+>
+> This should be fine, I'll gently ask Loic (added in CC) to confirm that.
 
-  	ret = devm_work_autocancel(dev, &st->trig_conv, ad4062_trigger_work);
-  	if (ret)
-  		return ret;
+Yes we need to use the firmware APi file under WCN3990/hw1.0/qcm2290
+as it has the correct configuration for the QCM2290 platform.
+From log: The wlanmdsp for QCM2290 / QRB4210 platforms requires
+single-chan-info-per-channe feature bit to be set.
 
-the path was missing clean-up, and did cause issue if there was work
-being done on detach
-
-  ERROR: iio:device0: Unable to get next block: Connection timed out (110)
-  8<--- cut here ---
-  Unable to handle kernel paging request at virtual address bf00715c when execute
-  [bf00715c] *pgd=0b43f811, *pte=00000000, *ppte=00000000
-  Internal error: Oops: 80000007 [#1] PREEMPT SMP ARM
-  Modules linked in: ad4062 regmap_i3c nvmem_axi_sysid [last unloaded: adi_i3c_master]
-  CPU: 0 UID: 0 PID: 8033 Comm: kworker/0:6 Not tainted 6.12.0+ #4
-  Hardware name: Xilinx Zynq Platform
-  Workqueue: events ad4062_trigger_work [ad4062]
-  PC is at 0xbf00715c
-  LR is at wait_for_completion_timeout+0xf0/0x118
-  pc : [<bf00715c>]    lr : [<c07ec920>]    psr: 60000013
-  sp : e0911ec0  ip : 00000000  fp : dfb960e0
-  r10: 00000011  r9 : 00000001  r8 : c4b89d40
-  r7 : c49e4500  r6 : c49da040  r5 : 00000001  r4 : e0911ef4
-  r3 : cb455500  r2 : 00000000  r1 : 00000000  r0 : 00000000
-  Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
-
-thanks,
-
-Best regards,
-Jorge
-> >  	return devm_iio_device_register(dev, indio_dev);
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+Regards,
+Loic
 
