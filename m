@@ -1,48 +1,50 @@
-Return-Path: <devicetree+bounces-242558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26BB3C8BDE0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:32:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47397C8BDF2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:34:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D461B3AB00C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:32:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 256C04E0420
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:34:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8693B34165F;
-	Wed, 26 Nov 2025 20:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0884B34026B;
+	Wed, 26 Nov 2025 20:34:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jx/Kgk+5"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="P6E4fh4i";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="/TAPCxn2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F58034105A;
-	Wed, 26 Nov 2025 20:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F551342530;
+	Wed, 26 Nov 2025 20:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764189130; cv=none; b=DgjW7ixv7a4Q5GlyzesGu5hmUCt4sbBCtWJMIO2FBPeAH6PuYAVpBRaAfRZvubhYFtcSu7LPKXRfvPAOIbWQLweTIL0lypOY52OYi5RS+Okdw4cM0Yo5+SPqNd2WfzBLPCkg4GWLkQS8BSUEDiXYaLy2+VWI4Zyy6tVqv+8HpUQ=
+	t=1764189241; cv=none; b=Dm/+ZrH1IunutJ9ngeOfh66IkhsMmFosMDYGPPUdeYXS7YiFh5SZpwLLMmTFzfdBMZEF10k7iKQo9/7JJ4JmpiyIAr54ImJJHHuiMBOpq6D7n+OmPeuekME/8uqoHFAjpDKvmoxi9pbWbN23KhLfxcE99l99lMlq5Bagbi0HAIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764189130; c=relaxed/simple;
-	bh=khfCF391HTb9ZHzqQ+60+gHc4LAP9io5EVEWBl7iijM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l5qvAg5+KnwHSwBJLWLDr0Wlg7rjMD3nbfUIuHiE/9m8f6Dl3pjbE8PnKDfi0fYTkWoqFAtdN6LDGCRbMBEi5J4SY3DJx6lSp06eHFGTtTd5t+ILcm9u3o4foRlqomWM2/KNaBpFQEeWu2g2tsdjgmsSRlr6Zfn5ut0H+yWRJSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jx/Kgk+5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3847CC4CEF7;
-	Wed, 26 Nov 2025 20:32:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764189129;
-	bh=khfCF391HTb9ZHzqQ+60+gHc4LAP9io5EVEWBl7iijM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Jx/Kgk+52Vj2FhMiZ6roXAU107DOPSpYbR54l0SQDWU1t4R7bMm8s+HInc6989b/V
-	 2cDeU+ZWwLLmnlIHfOpksf+IBP4hNK1ffXi/vUjPpjPeMUHWhngzJAH08bkmRCtygB
-	 JQYHqUKbcZT0vUQ9yMZl+kC9/gmskU6bpNYXfnQDKqkyCGA0RSgB7OzgPbQ8c3/498
-	 Hj59w7VENc7+o6gJI8CLIr1pUNoVV+wBzyXoI68l0omVxKWgWCP/hDOMsqKxthd0sc
-	 wzgbPhsCM4izLtPHPs9w/dlr+8C1vK0GSmWsZcSnhl5za7yLVxWM4Vlo72RSYvYAyJ
-	 DvL8Jn/H8RkGQ==
-Message-ID: <b2fbe58e-f47b-4a76-879b-fd38a915c2ce@kernel.org>
-Date: Wed, 26 Nov 2025 21:31:59 +0100
+	s=arc-20240116; t=1764189241; c=relaxed/simple;
+	bh=2V1WVTsatQen9U9JF7DIJfUZ133XnLHXYaVaNOqlgeY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=HGH9DyWKoa8hg3lIMSQpwhMP05AAULsBef+GAxrIJ+hGCwKD7eLONgPV8N9YnSbJS+WwYzwQgKx19skM/VfoRUbE0mlU6jdWkvIRCrrPDh6bHp+KDh640vEeIxD3ZVVYYeusZNs5lrLYrqNSGmqT92iK9PfGzvONMBEY/Qf90P8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=P6E4fh4i; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=/TAPCxn2; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:From:Subject:Date:Message-ID; t=1764189174; bh=qfeyTQCqs/GpNNiaqKNjXmM
+	YHuM+FPVBQgBAIMYRFf4=; b=P6E4fh4iVbzpLdYlnlaGFraUeQuaCdUdaHeDEMhm5znHWKkSTI
+	l5diVPyVDMHJ7l/nTDi554Eh7v4O5pjdxUtFhGp/z49E5kg4C8JBkwllq9IK0gxwZPi6WcvbbOH
+	5R/DE7fdrtYoRYidtK6hT5olk6XPHQaO4pCB8VHTRhqmnVBziz/cMLVxnsJJCpswHGmciNlWKM9
+	+V7uo7woHapYcP+dUr1tk6BA5cz6hnx8dX5icFJAh8zbRZj9NVRG6SnQM/LJsR6R3Ybb9r4mcba
+	ldq+A8S1DzRVPfzaV+sHBuOCmYp9+rvfYOZzazOXE71b7255o0XQAeUsNcX8AsDuEzQ==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:From:Subject:Date:Message-ID; t=1764189174; bh=qfeyTQCqs/GpNNiaqKNjXmM
+	YHuM+FPVBQgBAIMYRFf4=; b=/TAPCxn27KtJWsnZJHKNtTS9leeYPwW1gckllCchK3IV6bEkhu
+	0IECq8oXjNyAdLWD9V4tXsPzx6M8fQ39QxDg==;
+Message-ID: <c7975038-83ee-406e-a0a3-6a26485556da@mainlining.org>
+Date: Wed, 26 Nov 2025 23:32:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,166 +52,214 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
-To: Ryan Roberts <ryan.roberts@arm.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: Wei Yang <richard.weiyang@gmail.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linux-mm@kvack.org, devicetree@vger.kernel.org,
- Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
- Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
- Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
- Anshuman Khandual <anshuman.khandual@arm.com>
-References: <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
- <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
- <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
- <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
- <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
- <20251126134726.yrya5xxayfcde3kl@master>
- <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
- <6b966403-91e0-4f06-86a9-a4f7780b9557@kernel.org>
- <ab39d448-aa1c-4c93-8e2b-5d97a9c76af5@lucifer.local>
- <1ca9f99f-6266-47ca-8c94-1a9b9aaa717f@kernel.org>
- <37973e21-e8f4-4603-b93d-4e0b1b2499fa@lucifer.local>
- <a1d25bde-3ab6-46b5-a957-db80da7e737b@kernel.org>
- <4505a93b-2bac-4ce1-8971-4c31f1ce1362@arm.com>
- <150ffcb7-2df2-4f3a-a12e-9807f13c6ab9@arm.com>
-From: "David Hildenbrand (Red Hat)" <david@kernel.org>
-Content-Language: en-US
-In-Reply-To: <150ffcb7-2df2-4f3a-a12e-9807f13c6ab9@arm.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
+ nodes
+From: Nickolay Goppen <setotau@mainlining.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org,
+ Chenna Kesava Raju <chennak@qti.qualcomm.com>,
+ Bharath Kumar <bkumar@qti.qualcomm.com>
+References: <a3cb6633-1595-41e7-8e87-ca48a98f822c@mainlining.org>
+ <83c3aea5-764e-4e60-8b16-67b474f19357@oss.qualcomm.com>
+ <d17548bb-ddce-4d60-8dc4-2c0633989299@oss.qualcomm.com>
+ <f5c7eb1c-28b1-4cf1-afb0-b993384b7712@oss.qualcomm.com>
+ <80836b8f-16a8-4520-ad11-5ca0abb3403e@oss.qualcomm.com>
+ <99c22e73-797c-4a30-92ba-bc3bd8cf70f0@oss.qualcomm.com>
+ <eddc16cb-d951-401c-8fb8-fccfcf600143@mainlining.org>
+ <0b06f744-b695-43d9-8da3-4424e2b53a5e@oss.qualcomm.com>
+ <24221ce7-24e4-4eaa-8681-ed9b4b9f2d6e@oss.qualcomm.com>
+ <be4e2715-882d-4358-8575-374187f7ee2f@oss.qualcomm.com>
+ <2h222ejvc37cldeno7e4qom5tnvdblqn2zypuquvadbcu7d3pr@765qomrwfvwl>
+ <515191cf-a8b8-4487-989b-4c1736a67b2c@mainlining.org>
+Content-Language: ru-RU, en-US
+In-Reply-To: <515191cf-a8b8-4487-989b-4c1736a67b2c@mainlining.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/26/25 17:34, Ryan Roberts wrote:
-> On 26/11/2025 16:07, Ryan Roberts wrote:
->> On 26/11/2025 15:12, David Hildenbrand (Red Hat) wrote:
->>> On 11/26/25 16:08, Lorenzo Stoakes wrote:
->>>> On Wed, Nov 26, 2025 at 03:56:13PM +0100, David Hildenbrand (Red Hat) wrote:
->>>>> On 11/26/25 15:52, Lorenzo Stoakes wrote:
->>>>>>
->>>>>> Would the pmdp_get() never get invoked then? Or otherwise wouldn't that end up
->>>>>> requiring a READ_ONCE() further up the stack?
->>>>>
->>>>> See my other reply, I think the pmdp_get() is required because all pud_*
->>>>> functions are just simple stubs.
->>>>
->>>> OK, thought you were saying we should push further down the stack? Or up
->>>> depending on how you view these things :P as in READ_ONCE at leaf?
+26.11.2025 17:00, Nickolay Goppen пишет:
+>
+> 21.11.2025 15:09, Dmitry Baryshkov пишет:
+>> On Fri, Nov 21, 2025 at 01:41:21PM +0530, Ekansh Gupta wrote:
 >>>
->>> I think at leaf because I think the previous ones should essentially be only
->>> used by stubs.
->>>
->>> But I haven't fully digested how this is all working. Or supposed to work.
->>>
->>> I'm trying to chew through the arch/arm/include/asm/pgtable-2level.h example to
->>> see if I can make sense of it,
+>>> On 11/20/2025 5:17 PM, Konrad Dybcio wrote:
+>>>> On 11/20/25 11:54 AM, Ekansh Gupta wrote:
+>>>>> On 11/20/2025 1:27 PM, Nickolay Goppen wrote:
+>>>>>> 20.11.2025 07:55, Ekansh Gupta пишет:
+>>>>>>> On 11/20/2025 1:58 AM, Srinivas Kandagatla wrote:
+>>>>>>>> On 11/12/25 1:52 PM, Konrad Dybcio wrote:
+>>>>>>>>> On 11/10/25 6:41 PM, Srinivas Kandagatla wrote:
+>>>>>>>>>> On 11/3/25 12:52 PM, Konrad Dybcio wrote:
+>>>>>>>>>>> On 10/31/25 12:30 PM, Nickolay Goppen wrote:
+>>>>>>>>>>>> 24.10.2025 16:58, Nickolay Goppen пишет:
+>>>>>>>>>>>>> 24.10.2025 11:28, Konrad Dybcio пишет:
+>>>>>>>>>>>>>> On 10/23/25 9:51 PM, Nickolay Goppen wrote:
+>>>>>>>>>>>>>>> In order to enable CDSP support for SDM660 SoC:
+>>>>>>>>>>>>>>>     * add shared memory p2p nodes for CDSP
+>>>>>>>>>>>>>>>     * add CDSP-specific smmu node
+>>>>>>>>>>>>>>>     * add CDSP peripheral image loader node
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> Memory region for CDSP in SDM660 occupies the same spot as
+>>>>>>>>>>>>>>> TZ buffer mem defined in sdm630.dtsi (which does not 
+>>>>>>>>>>>>>>> have CDSP).
+>>>>>>>>>>>>>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 
+>>>>>>>>>>>>>>> with
+>>>>>>>>>>>>>>> cdsp_region, which is also larger in size.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> SDM636 also doesn't have CDSP, so remove inherited from 
+>>>>>>>>>>>>>>> sdm660.dtsi
+>>>>>>>>>>>>>>> related nodes and add buffer_mem back.
+>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+>>>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>> [...]
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>> + label = "turing";
+>>>>>>>>>>>>>> "cdsp"
+>>>>>>>>>>>>> Ok, I'll change this in the next revision.
+>>>>>>>>>>>>>>> + mboxes = <&apcs_glb 29>;
+>>>>>>>>>>>>>>> +            qcom,remote-pid = <5>;
+>>>>>>>>>>>>>>> +
+>>>>>>>>>>>>>>> +            fastrpc {
+>>>>>>>>>>>>>>> +                compatible = "qcom,fastrpc";
+>>>>>>>>>>>>>>> +                qcom,glink-channels = 
+>>>>>>>>>>>>>>> "fastrpcglink-apps-dsp";
+>>>>>>>>>>>>>>> +                label = "cdsp";
+>>>>>>>>>>>>>>> + qcom,non-secure-domain;
+>>>>>>>>>>>>>> This shouldn't matter, both a secure and a non-secure 
+>>>>>>>>>>>>>> device is
+>>>>>>>>>>>>>> created for CDSP
+>>>>>>>>>>>>> I've added this property, because it is used in other 
+>>>>>>>>>>>>> SoC's, such as SDM845 and SM6115 for both ADSP and CDSP
+>>>>>>>>>>>> Is this property not neccessary anymore?
+>>>>>>>>>>> +Srini?
+>>>>>>>>>> That is true, we do not require this for CDSP, as CDSP allows 
+>>>>>>>>>> both
+>>>>>>>>>> unsigned and signed loading, we create both secured and 
+>>>>>>>>>> non-secure node
+>>>>>>>>>> by default. May be we can provide that clarity in yaml 
+>>>>>>>>>> bindings so that
+>>>>>>>>>> it gets caught during dtb checks.
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> However in ADSP case, we only support singed modules, due to 
+>>>>>>>>>> historical
+>>>>>>>>>> reasons how this driver evolved over years, we have this flag 
+>>>>>>>>>> to allow
+>>>>>>>>>> compatiblity for such users.
+>>>>>>>>> Does that mean that we can only load signed modules on the 
+>>>>>>>>> ADSP, but
+>>>>>>>>> the driver behavior was previously such that unsigned modules 
+>>>>>>>>> were
+>>>>>>>>> allowed (which was presumably fine on devboards, but not on fused
+>>>>>>>>> devices)?
+>>>>>>>> Yes, its true that we allowed full access to adsp device nodes 
+>>>>>>>> when we
+>>>>>>>> first started upstreaming fastrpc driver.
+>>>>>>>>
+>>>>>>>> irrespective of the board only signed modules are supported on 
+>>>>>>>> the ADSP.
+>>>>>>>> I think there was one version of SoC i think 8016 or some older 
+>>>>>>>> one
+>>>>>>>> which had adsp with hvx which can load unsigned modules for 
+>>>>>>>> compute
+>>>>>>>> usecase only.
+>>>>>>>>
+>>>>>>>> I have added @Ekansh for more clarity.
+>>>>>>>>
+>>>>>>>> --srini
+>>>>>>> For all the available platforms, ADSP supports only signed 
+>>>>>>> modules. Unsigned
+>>>>>>> modules(as well as signed) are supported by CDSP and GDSP 
+>>>>>>> subsystems.
+>>>>>>>
+>>>>>>> qcom,non-secure-domain property marks the corresponding DSP as 
+>>>>>>> non-secure DSP.
+>>>>>>> The implications of adding this property would be the following:
+>>>>>>> on ADSP, SDSP, MDSP:
+>>>>>>> - Only non-secure device node(/dev/fastrpc-Xdsp) is created.
+>>>>>>> - Non-secure device node can be used for signed DSP PD offload.
+>>>>>>>
+>>>>>>> on CDSP, GDSP:
+>>>>>>> - Both secure(/dev/fastrpc-Xdsp-secure) and 
+>>>>>>> non-secure(/dev/fastrpc-Xdsp) devices
+>>>>>>>     are created, regardless of this property.
+>>>>>>> - Both the nodes can be used for signed and unsigned DSP PD 
+>>>>>>> offload.
+>>>>>>>
+>>>>>>> Note: If the property is not added for CDSP/GDSP, only secure 
+>>>>>>> device node can
+>>>>>>> be used for signed PD offload, if non-secure device is used, the 
+>>>>>>> request gets
+>>>>>>> rejected[1].
+>>>>>>>
+>>>>>>> [1] 
+>>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1245
+>>>>>>>
+>>>>>>> //Ekansh
+>>>>>> Does this mean that the qcom,non-secure-domain property should be 
+>>>>>> dropped from both nodes?
+>>>>> I checked again and found that unsigned module support for CDSP is
+>>>>> not available on this platform. Given this, the safest approach would
+>>>>> be to add the property for both ADSP and CDSP, ensuring that all
+>>>>> created device nodes can be used for signed PD offload. I can provide
+>>>> The property allows *unsigned* PD offload though
+>>> I don't think I can directly relate this property to unsigned PD 
+>>> offload. This is just
+>>> defining what type of device node will be created and whether the 
+>>> channel is secure
+>>> or not. There is a possibility of making unsigned PD request(on 
+>>> CDSP/GDSP) irrespective
+>>> of whether this property is added or not. If DSP does not support 
+>>> unsigned offload, it
+>>> should return failures for such requests.
+>> Which part of the hardware and/or firmware interface does it define? If
+>> it simply declared Linux behaviour, it is incorrect and probably should
+>> be dropped.
 >>
->> I wonder if we can think about this slightly differently;
+> When I've removed the qcom,non-secure-domain property from cdsp and 
+> tried to run hexagonrpcd via this command:
+>
+> sudo -u fastrpc hexagonrpcd -f /dev/fastrpc-cdsp  -R 
+> /usr/share/qcom/sdm660/Xiaomi/clover/ -d cdsp -c 
+> /usr/share/qcom/sdm660/Xiaomi/clover/dsp/cdsp/fastrpc_shell_3
+>
+> It raised the following error:
+>
+> qcom,fastrpc 
+> 1a300000.remoteproc:glink-edge.fastrpcglink-apps-dsp.-1.-1: Error: 
+> Untrusted application trying to offload to signed PD
+>
+I've tried to add "hlos2_vote_turing_adsp_smmu_clk "as "iface" clock and 
+"hlos2_vote_turing_adsp_gdsc" as a second power-domain and cdsp_smmu 
+gave the following error:
+
+hlos1_vote_turing_adsp_smmu_clk status stuck at 'off'
+
+>
+>
+>>>>> a more definitive recommendation once I know the specific use cases
+>>>>> you plan to run.
+>>>> Why would the usecase affect this?
+>>> I'm saying this as per past discussions where some application was 
+>>> relying on non-secure
+>>> device node on some old platform(on postmarketOS)[1] and having this 
+>>> property in place.
+>>> So if similar usecase is being enabled here, the property might be 
+>>> required[1].
+>> DT files are not usecase-based.
 >>
->> READ_ONCE() has two important properties:
->>
->>   - It guarrantees that a load will be issued, *even if output is unused*
->>   - It guarrantees that the read will be single-copy-atomic (no tearing)
->>
->> I think for the existing places where READ_ONCE() is used for pagetable reads we
->> only care about:
->>
->>   - It guarrantees that a load will be issued, *if output is used*
->>   - It guarrantees that the read will be single-copy-atomic (no tearing)
->>
->> I think if we can weaken to the "if output is used" property, then the compiler
->> will optimize out all the unneccessary reads.
->>
->> AIUI, a C dereference provides neither of the guarrantees so that's no good.
->>
->> What about non-volatile asm? I'm told (thought need to verify) that for
->> non-volatile asm, the compiler will emit it if the output is used and remove it
->> otherwise. So if the asm contains the required single-copy-atomic, perhaps we
->> are in business?
->>
->> So we would need a new READ_SCA() macro that could default to READ_ONCE() (which
->> is stronger) and arches could opt in to providing a weaker asm version. Then the
->> default pXdp_get() could be READ_SCA(). And this should work for all cases.
->>
->> I think.
-> 
-> I'm not sure this works. It looks like the compiler is free to move non-volatile
-> asm sections which might be problematic for places where we are currently using
-> READ_ONCE() in lockless algorithms, (e.g. GUP?). We wouldn't want to end up with
-> a stale value.
-> 
-> Another idea:
-> 
-> Given the main pattern where we are aiming to optimize out the read is something
-> like:
-> 
-> if (!pud_present(*pud))
-> 
-> where for a folded pmd:
-> 
-> static inline int pud_present(pud_t pud)	{ return 1; }
-> 
-> And we will change it to this:
-> 
-> if (!pud_present(pudp_get(pud)))
-> 
-> ...
-> 
-> perhaps we can just define the folded pXd_present(), pXd_none(), pXd_bad(),
-> pXd_user() and pXd_leaf() as macros:
-> 
-> #define pud_present(pud)	1
-> 
-
-Let's take a step back and realize that with __PAGETABLE_PMD_FOLDED
-
-(a) *pudp does not make any sense
-
-For a folded PMD, *pudp == *pmdp and consequently we would actually
-get a PMD, not a PUD.
-
-For this reason all these pud_* helpers ignore the passed value
-completely. It would be wrong.
-
-(b) pmd_offset() does *not* consume a pud but instead a pudp.
-
-That makes sense, just imagine what would happen if someone would pass
-*pudp to that helper (we'd dereference twice ...).
-
-
-So I wonder if we can just teach get_pudp() and friends to ... return
-true garbage instead of dereferencing something that does not make sense?
-
-diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
-index 32e8457ad5352..c95d0d89ab3f1 100644
---- a/include/linux/pgtable.h
-+++ b/include/linux/pgtable.h
-@@ -351,7 +351,13 @@ static inline pmd_t pmdp_get(pmd_t *pmdp)
-  #ifndef pudp_get
-  static inline pud_t pudp_get(pud_t *pudp)
-  {
-+#ifdef __PAGETABLE_PMD_FOLDED
-+       pud_t dummy = { 0 };
-+
-+       return dummy;
-+#else
-         return READ_ONCE(*pudp);
-+#endif
-  }
-  #endif
-  
-set_pud/pud_page/pud_pgtable helper are confusing, I would
-assume they are essentially unused (like documented for set_put)
-and only required to keep compilers happy.
-
+>>> [1] https://lkml.org/lkml/2024/8/15/117
+>
 -- 
-Cheers
+Best regards,
+Nickolay
 
-David
 
