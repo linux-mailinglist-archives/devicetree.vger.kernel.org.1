@@ -1,721 +1,197 @@
-Return-Path: <devicetree+bounces-242221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D9CFC881F9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 06:14:00 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2C7C88224
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 06:17:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 81CE84E67D4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 05:13:51 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 12D6934414B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 05:17:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E64EA315D40;
-	Wed, 26 Nov 2025 05:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71712274B58;
+	Wed, 26 Nov 2025 05:17:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="okWJ+TiI";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MjBAQXyd"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="o2hEyJRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011037.outbound.protection.outlook.com [52.101.52.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11AD4308F33
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 05:13:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764134024; cv=none; b=aDBqQ0YwnoB06znWRMNRpK8PTxu7ECASOpFrXUy0b+XK0elUmLhFB8+Mfu3Nf4se4LcxlEi2u5oqJR8qYaSNTy9q5i4H2xkQMZ0zMJ4pWpOw4nmcrQWiW2LPyAIp3nZIsNZa0QehA7HWILJ3y/Tkz/z/8Tn9ebz4BkVf/CqoFNQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764134024; c=relaxed/simple;
-	bh=GW8yLc2UIqjqkfPJhp8MpdHcNkEAEEJ1L7xbZycQk24=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=moZBxv/ACSt3m8c2kUwZR7SMn3Dyew5HDqm3xcb1UCCavPUUtxb5l4sA7SGEqClbb+0xsGECJHi5qPFqVAdwXIN9G8bUhsd51WKcsbm7hXSL/HQ0OVHmLBnTIBaEz7gvlfTY5Pk8zc+9yJJTC7qQFV4OuHhQZE+hB60lsFjxa40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=okWJ+TiI; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MjBAQXyd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5APH39QR3738821
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 05:13:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	q8BIinWaA4NqNTmmossUuPpNPktueVgjDEDuDc86/kk=; b=okWJ+TiIH21LcqTa
-	KefR6vBu55cmXpa0aPCVzGprE7lu7D0yJRWR1tr9+K4imfDZ9W8ndysFxyeCcoCq
-	xzhswQtW3K+tFx6lq+3DD09GcVQKjHa2ZkHFKBua2j6XPnf5lZS9+b9c+m5F/OGC
-	TsmJbZcHVZSaXPJa3JG4p0BMbbYAXwuiWz/j59D3Kh2Fu7+XlHouNCbjIWW1kxTe
-	XnUJmDFmoLtqw7Xhzj/BATWowH1UlUei/QHOlL95GQmXARZ72GXK2m3L/+59bNwv
-	6pyoDxQCN9w1Og+G+nJGdYeczKBm7yhsPG0x7NxFZdpg78YemtuAQYow56ZKmBOe
-	wsnesA==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4anggyhkew-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 05:13:38 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-297d50cd8c4so203868385ad.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 21:13:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764134017; x=1764738817; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q8BIinWaA4NqNTmmossUuPpNPktueVgjDEDuDc86/kk=;
-        b=MjBAQXydXk0MnULxVWJr4EHjg53I0FDnMqX62FIOryEPFwDSD5mDHb2DPzbCsNibie
-         Ti9rB1Knas0tp2XpoYKvt/jrW0tSPNBALWgMUMpBUY7CSBJrams+7CERH+Uo/E3A6rv6
-         y49ix7JCtVatt1OGnPlPSxxJ7NZi742oa6qmuTjGMQwl9m2XsaePKqHtE+pVwsm0eLDI
-         +kW5JGm2GWPiwF5/lta6K/NZq9VEarvIa+Db+cEIJKfFxNjydhR9tydLhnSzMni8DfL/
-         V9eK31V+uwn7isCC58TNjO/cgF6XLM3ui0o86IlY1kQTcjsNgVekiZ1Z+nlTnaB1kvO0
-         fGWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764134017; x=1764738817;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=q8BIinWaA4NqNTmmossUuPpNPktueVgjDEDuDc86/kk=;
-        b=W9qeZThhrrWJ4Iy+i7eol+J6NeRxkoOJdVD9JCHOwFi9MSGcHt9wu1soap+RAILcRT
-         x4Y1000lfUelYSVA6sT1KxLDhUfHmtMxyOQmR5E9Is8IgwLQwZMea/mp9X8LT/wBhf1V
-         PWy4lt0fJxDpl/mdiwJfaF71JNsGiqGw5MyC4WS4okAch48B2fRpn1CuOOmN01qepKvn
-         BwXf7VitbWj3i7jJWVaRox/yLYxzch1aArFAHFSxooeXvuI5WHK6I+lWoyTJqzsa802T
-         eez3WrzvZD5wHBDdh0XnlrVyQn5d6SHf/eMLlP514UjMHNbJyTG0cMQM2D80349S53xM
-         homA==
-X-Forwarded-Encrypted: i=1; AJvYcCUb7GfCzr5dfj9y/KHZ7zVBak48wPRqGpfpC0eaayEz/Ou8Pgp9dnzecVIN/ibyMCDP17y7L77pyvAZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YynUF28/RPVMIzko1e912SVRoQnuXpCsyk1tYNzUmt32f23wJW0
-	H8+hRUKe8B0L77NnhEYIchFSbKorQ9QwMhaRykK+vWMOKh9t++yq8L+vybD5tagPchemuhl+YTG
-	IhU1q9ZGyjFKR0LPIA14Wy5UJD6CRrizlq3g8wl1P9uxEH8c27vS4ljbCQbFUZywXVEnOhb8n
-X-Gm-Gg: ASbGnctctEIn5CG0qQwDTn7BwXupeDgNhaBKKAFcQMb/ZrXSehKuaxhdxFlyu+36ryc
-	DneewTS2dEDSBlT86c/wIXBDO+OQXrbcYJqSoJ3IxlDqVqZVz9r6euACzHlgRzji/CYwGpW/8Ya
-	Z325UqDxn9Kt9g3dUEtkSJMcuktHIrRLZaLnHNCM21sT7z/0d1cicGxbK7t7nAuEis7yofMwaJ8
-	Q4VX0ek5bxjAZqEgGqT5j41F5iC2zMUdMr5cPjDAkYCs14Lf9QDlbjwEvEPRmC26iFRTQ+V/B4D
-	NbLl6kpF6Pdo50yXyveGG3PvByotQZIB8OgG8hxjeQuOUSZ4iLcijnoxQLpAbqBgkvQuPY8t+N+
-	+cIwXgv22EVdmPeBKQE4b7M7qIxKcp+03VywA55ZIS2yO
-X-Received: by 2002:a17:903:1248:b0:290:b53b:7456 with SMTP id d9443c01a7336-29baae3d5c6mr61466425ad.5.1764134017128;
-        Tue, 25 Nov 2025 21:13:37 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFJ/mICK1p5OtI5F6UBy7XoeMlP0++jnbft3UIeGaH9XzGWPJuZd/xAHxnVydMluNIccJi2mw==
-X-Received: by 2002:a17:903:1248:b0:290:b53b:7456 with SMTP id d9443c01a7336-29baae3d5c6mr61466025ad.5.1764134016574;
-        Tue, 25 Nov 2025 21:13:36 -0800 (PST)
-Received: from hu-jprakash-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b13a870sm183591315ad.34.2025.11.25.21.13.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Nov 2025 21:13:36 -0800 (PST)
-From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Date: Wed, 26 Nov 2025 10:42:55 +0530
-Subject: [PATCH v5 3/3] spmi: spmi-pmic-arb: add support for PMIC arbiter
- v8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813224C9D;
+	Wed, 26 Nov 2025 05:17:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764134252; cv=fail; b=XhNl+/uveeqDX30tLdilMSv9NhwrJW9un6DKLGBagWZ5rQSXAG8CkSxfy0lKEiBwC+4eljrlLPm9Pb1EjWP0LlneZ+okv4cfvJMWAFc8iWeWfWjctrT1Zslt7t0RT13HWxouwhP+79Gr/4nOCHki50mdfEVIFWX/jDf44+/7htY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764134252; c=relaxed/simple;
+	bh=QAlHQQ1SkhFn5aoKyv3nbB6i6BU3/OwuZvebu+o1apQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QywM8mFxpxKBYY0Ukctn2BR9iJ6oeP8vRi4xf+ibdRSjeCTC8p3El0s9s6EAyFsDr22616Gty5XIblPWAoPvR389G1gznrKdrCWbb4vCW2Xwrz5nIOXXTj/vSO0TQY441rpox96Bxsk+Yg2sQaKtE7tQcK7AoUtfuLy9f47bXrs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=o2hEyJRj; arc=fail smtp.client-ip=52.101.52.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NwkUiQKqr5BN3v2Hw+piX43N+Yx/gwXSP30kly+ox+y5KzLqmJod7jrmVxOhLD7Ip1L9ljQHaImyfiDUutpmWJ5kDTGKTQ0KGRhoMj2ZB6OO5a2eqxfJS9w/jEJhRRxEmajKQ4EJb7z6m8IYxr6AqvxN024AtnTuR1oYFgNluqML7dnUNqjgRZC+7ZOCerrsFPJnuxnUQ8B0aFo01CtHMLcZ8EEZ8A7KV2T6YexqHYtItZDxCGIxgz9wvcNHmu20g6b+0JtXmnwcBFyUxd+DV/YYweiCRS/rfkGvTpHoNtj8ChhUbP9Kpc/Vl6WT94+o4CcYnNywf16lvaj9JrwGow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TwEg0U6WynGSW7ntwUYDanmk6MOD1d2L72jr8RdfcwU=;
+ b=gfymW2xxJ+I/jmHxZoCR1GSjQfB/0SXMPOBrQNFSmLlyPv6+K7JsJ6LB/hX5nW/+8HV4ElSY4AChw1CuTih/kc9o+BiYia8xwOv8s673o+baMNjYenPm3LWlsVbiOvfuzPHcS+vwdaz0FVs/Ff6ja4an7+1TMbbyEdWtKL4OrN8ljQBb1p4lGGFoIZsOoJ1/LOnMEAp+/a3JrF77/BMEfzwkpFhHwThqOQjQ+gox/qAY8UulC3fjmhc40gwcTJztXldCvSIGRetAPr1QlZHqiiGBwC6OI+mw5F2wq8RJRn5Heiy2VeMcBdqJNh63p6fiopH9JAG1BMlT9cylmRAixQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TwEg0U6WynGSW7ntwUYDanmk6MOD1d2L72jr8RdfcwU=;
+ b=o2hEyJRjifudbUcmBTR3PiMcBHmrfJ3szyQuo7CRyhPp1/creHFZv6er1ABqdghBXsyEGcSPVT6ydCeY3QUXtKkStLwxhVFBz8M10oG9PzXMkZx03TDdkzY0L03o1IaAMPKy/yVB8i3RMFKU3Po8JLB2AXJouSFTG0YiE2tVlas=
+Received: from SN7PR04CA0105.namprd04.prod.outlook.com (2603:10b6:806:122::20)
+ by IA0PR10MB7623.namprd10.prod.outlook.com (2603:10b6:208:493::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Wed, 26 Nov
+ 2025 05:17:25 +0000
+Received: from SA2PEPF00003F63.namprd04.prod.outlook.com
+ (2603:10b6:806:122:cafe::53) by SN7PR04CA0105.outlook.office365.com
+ (2603:10b6:806:122::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.17 via Frontend Transport; Wed,
+ 26 Nov 2025 05:17:25 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ SA2PEPF00003F63.mail.protection.outlook.com (10.167.248.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9366.7 via Frontend Transport; Wed, 26 Nov 2025 05:17:25 +0000
+Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 25 Nov
+ 2025 23:17:25 -0600
+Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 25 Nov
+ 2025 23:17:25 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 25 Nov 2025 23:17:25 -0600
+Received: from [172.24.233.103] (uda0132425.dhcp.ti.com [172.24.233.103])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AQ5HKHZ657597;
+	Tue, 25 Nov 2025 23:17:21 -0600
+Message-ID: <671625aa-f5da-4e34-9c8c-7a1da282aa5e@ti.com>
+Date: Wed, 26 Nov 2025 10:47:20 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and
+ MBa62xx carrier board Device Trees
+To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, Tony Luck
+	<tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>, "Andrew
+ Lunn" <andrew@lunn.ch>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-hardening@vger.kernel.org>, <linux@ew.tq-group.com>, Nishanth Menon
+	<nm@ti.com>, Tero Kristo <kristo@kernel.org>
+References: <cover.1762775119.git.matthias.schiffer@ew.tq-group.com>
+ <0079cc291c78b94068f3d8c59df103e951247acc.1762775119.git.matthias.schiffer@ew.tq-group.com>
+ <d13a95659bdd1c840dfaa46afd6d8583f1b7c88f.camel@ew.tq-group.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <d13a95659bdd1c840dfaa46afd6d8583f1b7c88f.camel@ew.tq-group.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251126-pmic_arb_v8-v5-3-4dd8dc5dc5a1@oss.qualcomm.com>
-References: <20251126-pmic_arb_v8-v5-0-4dd8dc5dc5a1@oss.qualcomm.com>
-In-Reply-To: <20251126-pmic_arb_v8-v5-0-4dd8dc5dc5a1@oss.qualcomm.com>
-To: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        David Collins <david.collins@oss.qualcomm.com>,
-        konrad.dybcio@oss.qualcomm.com
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        aiqun.yu@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764133999; l=20139;
- i=jishnu.prakash@oss.qualcomm.com; s=20251014; h=from:subject:message-id;
- bh=h0ku4FNo/2pHvhHTLCHbgaiuFPsCdnGG9TKf5qkx7p4=;
- b=ufsxgR34VDqIySiarfJ3/sr7HToZyUD/vmY4gP47u035CV6oIy6WwDt5ttmxSseUByPPqtJGH
- wxWpCjNOveFAjC4z7XkORG2fdTs16VjXjld38zNJAAieLz8FW/S4Rx+
-X-Developer-Key: i=jishnu.prakash@oss.qualcomm.com; a=ed25519;
- pk=g89pXdLVwRjdTeQ+uX1QzvBO346E3hQAc1N7fcTXgmk=
-X-Proofpoint-GUID: AM-cko0Xl25LzsVjdD7-gWeypVR_qku2
-X-Proofpoint-ORIG-GUID: AM-cko0Xl25LzsVjdD7-gWeypVR_qku2
-X-Authority-Analysis: v=2.4 cv=bNUb4f+Z c=1 sm=1 tr=0 ts=69268c82 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=MIFvKxIP_Cdm49Cuf3gA:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDA0MCBTYWx0ZWRfXycpgtG1Pf6aQ
- Y5fLDoPinYNdtB1BqZ2NszCdyOtOK12RaopD9Jl6uz4RGRbtWQZ6vQVbJJEiNh/BBQoC0mvdGwe
- Qf8vXGJbyJA3c+zhTygspnCKXaZLQWC4cBgFgWzzjxAR2UHxpHlqJ2cmPWWDxiZ/ACPiQHs5bXv
- dtHi3KHgD74V40eKdWMYo9OPmJgRsEeuf8MaUAvl65OzbKsmkUFTcmJ5B+Q//RNAhLVW07Qvxgq
- xzvWSmyUbqbr2j6OJd7d7v+9T2SRkvJBXU2IINNLQwIP9FJh/Nl5/+iMjAxpYiwT/4jEQ+C8odt
- FySfjilY4KeSoQIFf3A4L1Digiw8cpIASfbuym345y0Sjsdw/k3uOese5qAXYVNf4uuidxnE43D
- aulV3tSgrCSSi73CYuufS4YEHbZNuA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-25_02,2025-11-25_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 malwarescore=0 phishscore=0 spamscore=0
- lowpriorityscore=0 bulkscore=0 suspectscore=0 clxscore=1015 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511260040
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F63:EE_|IA0PR10MB7623:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9a18369e-895d-4208-c73c-08de2cab1620
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700013|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZER4UmNWYmhISmNwYzJXa3J5eE5oRDZJQzBaYlc1akZ0MXVmbCtUZVBZVjMw?=
+ =?utf-8?B?UWdNVUNYRktsUEwwSFlwQ2dlUEtmK0NGbVdsM2h4ME5BVVpVaUEvTjZTL2t3?=
+ =?utf-8?B?RnVTNnBlMUViY0pkU2pYaitJTC9seGU1YXRnRjFUSXc0RVR2Ykt1T1cwRktG?=
+ =?utf-8?B?YjJxUzRSWEhSTytlOXNFK1ZVa2dHNFA0V1M4M1pDeG1kYUtyYUdjc0llMU5C?=
+ =?utf-8?B?OWJaK3JxTjNlL0FNS2FlNy9TUGNXbm92WkkwdjVseEFOUldRT3ZNMFN3dGhR?=
+ =?utf-8?B?cmkwWTdCQ01YNG4xb2JOUjF1OWJCdVNvNnBFSFRPcnVhTk1Zb3o2VU5UbXR2?=
+ =?utf-8?B?WnpZdXAwNnN6a3FELzByMms3NytyYzZTeDlIVGFZZWVDcjJzYWkvM2creUxZ?=
+ =?utf-8?B?Y016UG9vRy9hemI5VGFlbUlUczc1TGF5cEVvdXJVYzdMUURBWWhDUUZMWjlF?=
+ =?utf-8?B?VFhOZkZid2k5N3djNld3K0ZOTFJleTBXTnZrTzZyVjhubS9yMUhJTGdoRTVT?=
+ =?utf-8?B?dld1emJzb05QQ3lWZkFoa3ZpK2twU0drUFBBYmdTbXZYOFpiL1cyM01VTFYz?=
+ =?utf-8?B?RHpYT1lkcEpna2paYVFScUw0NEJOaHZCdFlCamtZcHhoVXpJVmRkYzJxSUlM?=
+ =?utf-8?B?dmZ3ZDZ0dE4rTm9KVzh2UURMbHBmWE1KbVZuTVNVc3NYNkRkaUk5bFQzZ0tR?=
+ =?utf-8?B?MUc3Snp3UEh1TXBZTFBLcDN1eDFIbkxnVmdjeXNTRHdPM3pzajh2L1Jmck0v?=
+ =?utf-8?B?cHJTRGpudFlQVEFySkZrNWNhUUtJTTBBU3VOeVIzMk1VdEN4eWViNGt3UlpW?=
+ =?utf-8?B?TmpHVmNVRmZ6TCs2SWZ6NFpsak04Tm1WWTdldVIxQW05NEx2Q0syQmkvdDhH?=
+ =?utf-8?B?b3ZxbTQ0eEs5YjZlbU9DdDhOOVh1R3ZRRktJSzBJVUFDT3RQd05qalFPdFNq?=
+ =?utf-8?B?NitkaEpnUm9sc0htQld6QUVLYy94RG9QM2hpc1Zac0FXcHBiMjBNcCtDdU9O?=
+ =?utf-8?B?NWwvVnhWc1FoNE1ERm1adjF3M1I3VE1RL281RlIzUTJXUTR6UlJDYzU2Qkda?=
+ =?utf-8?B?WlExZXMzSHdJK2NmVCttNGQzODA2TWZ2akJrOVIrV0R1Yk90VmNkaVlXdTBu?=
+ =?utf-8?B?cXQvbENFS2hiSTNCa1c0dXBpMFBVSC8vWDdyZ3IrK2N0RzU0TlhrZ3ZmVXY2?=
+ =?utf-8?B?dlA0WW5ZWWlmWStUTnlPR0dQeTFLWXdHZVIvWk94YjZac0kvdE9ncFArZC9N?=
+ =?utf-8?B?MUhsT3Q2V3V5cjFOSVNKWFdudEhBZFZYZUhWTTBjK3JzRTk2TTZRRzBwNUJp?=
+ =?utf-8?B?R2xkNWFwK2hoekVCVFNQMitTNDM5V05jdDV5Snh6STIvVVczR05PejVudTJz?=
+ =?utf-8?B?WUl4V1U2c2pwTzdrVXdoWmx4d1IzczRvTmI0SldJMWRLWXFyZ3dFUXpVNS9P?=
+ =?utf-8?B?YWpZaUtBM2Y2WllqTnBIaWVjMitnSGRnRmtzYmEybDhCNHJZS3M0aXdmdnB4?=
+ =?utf-8?B?d3BpNUQvSFFqU3psQjBQdTBMeEJHdTRZd0FBTkJyTi9QNy9pSUgrRkd1T1Iw?=
+ =?utf-8?B?bzdGeFdzN3lwQmpGV1g3M2Z0aEhFVk5UVTN2Nm9TQkUxOHArN2RBaVVMTGlC?=
+ =?utf-8?B?RVNrUjB2THE2Uy9RWGZSQWZWQXNEdlBWVzB0azBTREsrM3VvUVozNjhwaW03?=
+ =?utf-8?B?V2VlT043SGtlWm9KLytwckNHcjRwUS9NQUd1YzkwbXlPV0x4b3pjQ1Qxdytj?=
+ =?utf-8?B?WFFWSDFqak5jdnJaejdyZHpHMjBMZTBhQUVoTWVUc1FINSs0US95Q1JzQXRq?=
+ =?utf-8?B?Y1dmNXdGKzBmK2ZrWllwczVjZ3A2T0Y0T0dYWXRjK2VVb1owOUxJd0NQUFB3?=
+ =?utf-8?B?KzRKaDVnbnJ4bVRrSW5VRG5mLzJXYkpyQTBuME02ZnhKNjhyZ3lRakROOVNR?=
+ =?utf-8?B?RHBjWkgxdzdVcTFGcG1EcEkveVJ2U2cxSnFLRTFiVklSL3Mra3RGK29vTTJK?=
+ =?utf-8?B?TWhTMUt5dWs5ZlE2dFJyOTlhcC83OWlEQkJNQzM2UElhNHNUQnp1UHJBSm9B?=
+ =?utf-8?B?eTQwMERhdStOeW5Qakp4QnF4TjllU3A0Yk0zVk9nV1dWS1BkMXJyZVAxK1NJ?=
+ =?utf-8?Q?EKZ8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013)(7416014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 05:17:25.5165
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a18369e-895d-4208-c73c-08de2cab1620
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SA2PEPF00003F63.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR10MB7623
 
-From: David Collins <david.collins@oss.qualcomm.com>
+Hi Matthias,
 
-PMIC arbiter v8 supports up to 4 SPMI buses and up to 8192 PMIC
-peripherals.  Its register map differs from v7 as several fields
-increased in size. Add support for PMIC arbiter version 8.
+On 25/11/25 15:32, Matthias Schiffer wrote:
+> On Mon, 2025-11-10 at 12:49 +0100, Matthias Schiffer wrote:
+>> The TQMa62xx is a SoM family with a pluggable board connector based on the
+>> TI AM62x SoCs. Add DTS(I) for the AM625 (2x Cortex-A53) variant and its
+>> combination with our MBa62xx carrier board.
+> 
+> Hi Vignesh,
+> 
+> do you have any further comments? Can we get this in for 6.19?
+> 
 
-Signed-off-by: David Collins <david.collins@oss.qualcomm.com>
-Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
----
- drivers/spmi/spmi-pmic-arb.c | 304 ++++++++++++++++++++++++++++++++++++-------
- 1 file changed, 255 insertions(+), 49 deletions(-)
+Oops, this somehow fell through the crack, my apologies!
 
-diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
-index 91581974ef84..69f8d456324a 100644
---- a/drivers/spmi/spmi-pmic-arb.c
-+++ b/drivers/spmi/spmi-pmic-arb.c
-@@ -2,6 +2,8 @@
- /*
-  * Copyright (c) 2012-2015, 2017, 2021, The Linux Foundation. All rights reserved.
-  */
-+
-+#include <linux/bitfield.h>
- #include <linux/bitmap.h>
- #include <linux/delay.h>
- #include <linux/err.h>
-@@ -25,12 +27,12 @@
- #define PMIC_ARB_VERSION_V3_MIN		0x30000000
- #define PMIC_ARB_VERSION_V5_MIN		0x50000000
- #define PMIC_ARB_VERSION_V7_MIN		0x70000000
-+#define PMIC_ARB_VERSION_V8_MIN		0x80000000
- #define PMIC_ARB_INT_EN			0x0004
- 
- #define PMIC_ARB_FEATURES		0x0004
- #define PMIC_ARB_FEATURES_PERIPH_MASK	GENMASK(10, 0)
--
--#define PMIC_ARB_FEATURES1		0x0008
-+#define PMIC_ARB_FEATURES_V8_PERIPH_MASK	GENMASK(12, 0)
- 
- /* PMIC Arbiter channel registers offsets */
- #define PMIC_ARB_CMD			0x00
-@@ -50,9 +52,11 @@
- #define SPMI_MAPPING_BIT_IS_1_RESULT(X)	(((X) >> 0) & 0xFF)
- 
- #define SPMI_MAPPING_TABLE_TREE_DEPTH	16	/* Maximum of 16-bits */
--#define PMIC_ARB_MAX_PPID		BIT(12) /* PPID is 12bit */
-+#define PMIC_ARB_MAX_PPID		BIT(13)
- #define PMIC_ARB_APID_VALID		BIT(15)
--#define PMIC_ARB_CHAN_IS_IRQ_OWNER(reg)	((reg) & BIT(24))
-+#define PMIC_ARB_CHAN_IS_IRQ_OWNER_MASK	BIT(24)
-+#define PMIC_ARB_V8_CHAN_IS_IRQ_OWNER_MASK	BIT(31)
-+
- #define INVALID_EE				0xFF
- 
- /* Ownership Table */
-@@ -96,30 +100,37 @@ enum pmic_arb_channel {
- 	PMIC_ARB_CHANNEL_OBS,
- };
- 
--#define PMIC_ARB_MAX_BUSES		2
-+#define PMIC_ARB_MAX_BUSES		4
- 
- /* Maximum number of support PMIC peripherals */
- #define PMIC_ARB_MAX_PERIPHS		512
- #define PMIC_ARB_MAX_PERIPHS_V7		1024
-+#define PMIC_ARB_MAX_PERIPHS_V8		8192
- #define PMIC_ARB_TIMEOUT_US		1000
- #define PMIC_ARB_MAX_TRANS_BYTES	(8)
- 
- #define PMIC_ARB_APID_MASK		0xFF
--#define PMIC_ARB_PPID_MASK		0xFFF
-+#define PMIC_ARB_PPID_MASK		GENMASK(11, 0)
-+#define PMIC_ARB_V8_PPID_MASK		GENMASK(12, 0)
- 
- /* interrupt enable bit */
- #define SPMI_PIC_ACC_ENABLE_BIT		BIT(0)
- 
-+#define HWIRQ_SID_MASK	GENMASK(28, 24)
-+#define HWIRQ_PID_MASK	GENMASK(23, 16)
-+#define HWIRQ_IRQID_MASK	GENMASK(15, 13)
-+#define HWIRQ_APID_MASK	GENMASK(12, 0)
-+
- #define spec_to_hwirq(slave_id, periph_id, irq_id, apid) \
--	((((slave_id) & 0xF)   << 28) | \
--	(((periph_id) & 0xFF)  << 20) | \
--	(((irq_id)    & 0x7)   << 16) | \
--	(((apid)      & 0x3FF) << 0))
-+	(FIELD_PREP(HWIRQ_SID_MASK, (slave_id))  | \
-+	 FIELD_PREP(HWIRQ_PID_MASK, (periph_id)) | \
-+	 FIELD_PREP(HWIRQ_IRQID_MASK, (irq_id))  | \
-+	 FIELD_PREP(HWIRQ_APID_MASK, (apid)))
- 
--#define hwirq_to_sid(hwirq)  (((hwirq) >> 28) & 0xF)
--#define hwirq_to_per(hwirq)  (((hwirq) >> 20) & 0xFF)
--#define hwirq_to_irq(hwirq)  (((hwirq) >> 16) & 0x7)
--#define hwirq_to_apid(hwirq) (((hwirq) >> 0)  & 0x3FF)
-+#define hwirq_to_sid(hwirq)  FIELD_GET(HWIRQ_SID_MASK, (hwirq))
-+#define hwirq_to_per(hwirq)  FIELD_GET(HWIRQ_PID_MASK, (hwirq))
-+#define hwirq_to_irq(hwirq)  FIELD_GET(HWIRQ_IRQID_MASK, (hwirq))
-+#define hwirq_to_apid(hwirq) FIELD_GET(HWIRQ_APID_MASK, (hwirq))
- 
- struct pmic_arb_ver_ops;
- 
-@@ -138,11 +149,12 @@ struct spmi_pmic_arb;
-  * @domain:		irq domain object for PMIC IRQ domain
-  * @intr:		address of the SPMI interrupt control registers.
-  * @cnfg:		address of the PMIC Arbiter configuration registers.
-+ * @apid_owner:		on v8: address of APID owner mapping table registers
-  * @spmic:		spmi controller registered for this bus
-  * @lock:		lock to synchronize accesses.
-- * @base_apid:		on v7: minimum APID associated with the particular SPMI
-- *			bus instance
-- * @apid_count:		on v5 and v7: number of APIDs associated with the
-+ * @base_apid:		on v7 and v8: minimum APID associated with the
-+ *			particular SPMI bus instance
-+ * @apid_count:		on v5, v7 and v8: number of APIDs associated with the
-  *			particular SPMI bus instance
-  * @mapping_table:	in-memory copy of PPID -> APID mapping table.
-  * @mapping_table_valid:bitmap containing valid-only periphs
-@@ -159,6 +171,7 @@ struct spmi_pmic_arb_bus {
- 	struct irq_domain	*domain;
- 	void __iomem		*intr;
- 	void __iomem		*cnfg;
-+	void __iomem		*apid_owner;
- 	struct spmi_controller	*spmic;
- 	raw_spinlock_t		lock;
- 	u16			base_apid;
-@@ -181,6 +194,7 @@ struct spmi_pmic_arb_bus {
-  * @wr_base:		on v1 "core", on v2 "chnls"    register base off DT.
-  * @core:		core register base for v2 and above only (see above)
-  * @core_size:		core register base size
-+ * @apid_map:		on v8, APID mapping table register base
-  * @channel:		execution environment channel to use for accesses.
-  * @ee:			the current Execution Environment
-  * @ver_ops:		version dependent operations.
-@@ -193,6 +207,7 @@ struct spmi_pmic_arb {
- 	void __iomem		*wr_base;
- 	void __iomem		*core;
- 	resource_size_t		core_size;
-+	void __iomem		*apid_map;
- 	u8			channel;
- 	u8			ee;
- 	const struct pmic_arb_ver_ops *ver_ops;
-@@ -206,6 +221,7 @@ struct spmi_pmic_arb {
-  *
-  * @ver_str:		version string.
-  * @get_core_resources:	initializes the core, observer and channels
-+ * @get_bus_resources:	requests per-SPMI bus register resources
-  * @init_apid:		finds the apid base and count
-  * @ppid_to_apid:	finds the apid for a given ppid.
-  * @non_data_cmd:	on v1 issues an spmi non-data command.
-@@ -227,6 +243,9 @@ struct spmi_pmic_arb {
- struct pmic_arb_ver_ops {
- 	const char *ver_str;
- 	int (*get_core_resources)(struct platform_device *pdev, void __iomem *core);
-+	int (*get_bus_resources)(struct platform_device *pdev,
-+				 struct device_node *node,
-+				 struct spmi_pmic_arb_bus *bus);
- 	int (*init_apid)(struct spmi_pmic_arb_bus *bus, int index);
- 	int (*ppid_to_apid)(struct spmi_pmic_arb_bus *bus, u16 ppid);
- 	/* spmi commands (read_cmd, write_cmd, cmd) functionality */
-@@ -656,7 +675,7 @@ static int periph_interrupt(struct spmi_pmic_arb_bus *bus, u16 apid)
- 	unsigned int irq;
- 	u32 status, id;
- 	int handled = 0;
--	u8 sid = (bus->apid_data[apid].ppid >> 8) & 0xF;
-+	u8 sid = (bus->apid_data[apid].ppid >> 8) & 0x1F;
- 	u8 per = bus->apid_data[apid].ppid & 0xFF;
- 
- 	status = readl_relaxed(pmic_arb->ver_ops->irq_status(bus, apid));
-@@ -686,7 +705,7 @@ static void pmic_arb_chained_irq(struct irq_desc *desc)
- 	int last = bus->max_apid;
- 	/*
- 	 * acc_offset will be non-zero for the secondary SPMI bus instance on
--	 * v7 controllers.
-+	 * v7 and v8 controllers.
- 	 */
- 	int acc_offset = bus->base_apid >> 5;
- 	u8 ee = pmic_arb->ee;
-@@ -913,7 +932,8 @@ static int qpnpint_irq_domain_translate(struct irq_domain *d,
- 		return -EINVAL;
- 	if (fwspec->param_count != 4)
- 		return -EINVAL;
--	if (intspec[0] > 0xF || intspec[1] > 0xFF || intspec[2] > 0x7)
-+	if (intspec[0] > FIELD_MAX(HWIRQ_SID_MASK) || intspec[1] > FIELD_MAX(HWIRQ_PID_MASK) ||
-+	    intspec[2] > FIELD_MAX(HWIRQ_IRQID_MASK))
- 		return -EINVAL;
- 
- 	ppid = intspec[0] << 8 | intspec[1];
-@@ -1160,7 +1180,9 @@ static int pmic_arb_ppid_to_apid_v2(struct spmi_pmic_arb_bus *bus, u16 ppid)
- 	return apid_valid & ~PMIC_ARB_APID_VALID;
- }
- 
--static int pmic_arb_read_apid_map_v5(struct spmi_pmic_arb_bus *bus)
-+static int _pmic_arb_read_apid_map(struct spmi_pmic_arb_bus *bus,
-+				   void __iomem *ppid_base, unsigned long ppid_mask,
-+				   u8 ppid_shift, unsigned long irq_owner_mask)
- {
- 	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
- 	struct apid_data *apidd;
-@@ -1171,7 +1193,7 @@ static int pmic_arb_read_apid_map_v5(struct spmi_pmic_arb_bus *bus)
- 
- 	/*
- 	 * In order to allow multiple EEs to write to a single PPID in arbiter
--	 * version 5 and 7, there is more than one APID mapped to each PPID.
-+	 * version 5,7 and 8, there can be more than one APID mapped to each PPID.
- 	 * The owner field for each of these mappings specifies the EE which is
- 	 * allowed to write to the APID.  The owner of the last (highest) APID
- 	 * which has the IRQ owner bit set for a given PPID will receive
-@@ -1183,19 +1205,30 @@ static int pmic_arb_read_apid_map_v5(struct spmi_pmic_arb_bus *bus)
- 	 * APID = N to N+M-1 are assigned to the secondary bus
- 	 * where N = number of APIDs supported by the primary bus and
- 	 *       M = number of APIDs supported by the secondary bus
-+	 *
-+	 * In arbiter version 8, the APID numbering space is divided between
-+	 * the SPMI buses according to this mapping:
-+	 * APID = 0     to N-1       --> bus 0
-+	 * APID = N     to N+M-1     --> bus 1
-+	 * APID = N+M   to N+M+P-1   --> bus 2
-+	 * APID = N+M+P to N+M+P+Q-1 --> bus 3
-+	 * where N = number of APIDs supported by bus 0
-+	 *       M = number of APIDs supported by bus 1
-+	 *       P = number of APIDs supported by bus 2
-+	 *       Q = number of APIDs supported by bus 3
- 	 */
-+
- 	apidd = &bus->apid_data[bus->base_apid];
- 	apid_max = bus->base_apid + bus->apid_count;
- 	for (i = bus->base_apid; i < apid_max; i++, apidd++) {
- 		offset = pmic_arb->ver_ops->apid_map_offset(i);
- 		if (offset >= pmic_arb->core_size)
- 			break;
--
--		regval = readl_relaxed(pmic_arb->core + offset);
-+		regval = readl_relaxed(ppid_base + offset);
- 		if (!regval)
- 			continue;
--		ppid = (regval >> 8) & PMIC_ARB_PPID_MASK;
--		is_irq_ee = PMIC_ARB_CHAN_IS_IRQ_OWNER(regval);
-+		ppid = (regval >> ppid_shift) & ppid_mask;
-+		is_irq_ee = regval & irq_owner_mask;
- 
- 		regval = readl_relaxed(pmic_arb->ver_ops->apid_owner(bus, i));
- 		apidd->write_ee = SPMI_OWNERSHIP_PERIPH2OWNER(regval);
-@@ -1237,6 +1270,12 @@ static int pmic_arb_read_apid_map_v5(struct spmi_pmic_arb_bus *bus)
- 	return 0;
- }
- 
-+static int pmic_arb_read_apid_map_v5(struct spmi_pmic_arb_bus *bus)
-+{
-+	return _pmic_arb_read_apid_map(bus, bus->pmic_arb->core, PMIC_ARB_PPID_MASK,
-+				       8, PMIC_ARB_CHAN_IS_IRQ_OWNER_MASK);
-+}
-+
- static int pmic_arb_ppid_to_apid_v5(struct spmi_pmic_arb_bus *bus, u16 ppid)
- {
- 	if (!(bus->ppid_to_apid[ppid] & PMIC_ARB_APID_VALID))
-@@ -1345,37 +1384,46 @@ static int pmic_arb_get_core_resources_v7(struct platform_device *pdev,
- 	return pmic_arb_get_obsrvr_chnls_v2(pdev);
- }
- 
--/*
-- * Only v7 supports 2 buses. Each bus will get a different apid count, read
-- * from different registers.
-- */
--static int pmic_arb_init_apid_v7(struct spmi_pmic_arb_bus *bus, int index)
-+static int _pmic_arb_init_apid_v7(struct spmi_pmic_arb_bus *bus, int index,
-+				  int max_buses, unsigned long periph_mask)
- {
- 	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
--	int ret;
-+	int i;
- 
--	if (index == 0) {
--		bus->base_apid = 0;
--		bus->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES) &
--						   PMIC_ARB_FEATURES_PERIPH_MASK;
--	} else if (index == 1) {
--		bus->base_apid = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES) &
--						  PMIC_ARB_FEATURES_PERIPH_MASK;
--		bus->apid_count = readl_relaxed(pmic_arb->core + PMIC_ARB_FEATURES1) &
--						   PMIC_ARB_FEATURES_PERIPH_MASK;
--	} else {
--		dev_err(&bus->spmic->dev, "Unsupported buses count %d detected\n",
--			bus->id);
-+	if (index < 0 || index >= max_buses) {
-+		dev_err(&bus->spmic->dev, "Unsupported bus index %d detected\n",
-+			index);
- 		return -EINVAL;
- 	}
- 
--	if (bus->base_apid + bus->apid_count > pmic_arb->max_periphs) {
--		dev_err(&bus->spmic->dev, "Unsupported APID count %d detected\n",
-+	bus->base_apid = 0;
-+	bus->apid_count = 0;
-+	for (i = 0; i <= index; i++) {
-+		bus->base_apid += bus->apid_count;
-+		bus->apid_count = readl_relaxed(pmic_arb->core +
-+						PMIC_ARB_FEATURES + i * 4) &
-+						periph_mask;
-+	}
-+
-+	if (bus->apid_count == 0) {
-+		dev_err(&bus->spmic->dev, "Bus %d not implemented\n", index);
-+		return -EINVAL;
-+	} else if (bus->base_apid + bus->apid_count > pmic_arb->max_periphs) {
-+		dev_err(&bus->spmic->dev, "Unsupported max APID %d detected\n",
- 			bus->base_apid + bus->apid_count);
- 		return -EINVAL;
- 	}
- 
--	ret = pmic_arb_init_apid_min_max(bus);
-+	return pmic_arb_init_apid_min_max(bus);
-+}
-+
-+/*
-+ * Arbiter v7 supports 2 buses. Each bus will get a different apid count, read
-+ * from different registers.
-+ */
-+static int pmic_arb_init_apid_v7(struct spmi_pmic_arb_bus *bus, int index)
-+{
-+	int ret = _pmic_arb_init_apid_v7(bus, index, 2, PMIC_ARB_FEATURES_PERIPH_MASK);
- 	if (ret)
- 		return ret;
- 
-@@ -1424,6 +1472,102 @@ static int pmic_arb_offset_v7(struct spmi_pmic_arb_bus *bus, u8 sid, u16 addr,
- 	return offset;
- }
- 
-+static int pmic_arb_get_core_resources_v8(struct platform_device *pdev,
-+					  void __iomem *core)
-+{
-+	struct spmi_pmic_arb *pmic_arb = platform_get_drvdata(pdev);
-+
-+	pmic_arb->apid_map = devm_platform_ioremap_resource_byname(pdev, "chnl_map");
-+	if (IS_ERR(pmic_arb->apid_map))
-+		return PTR_ERR(pmic_arb->apid_map);
-+
-+	pmic_arb->core = core;
-+
-+	pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS_V8;
-+
-+	return pmic_arb_get_obsrvr_chnls_v2(pdev);
-+}
-+
-+static int pmic_arb_get_bus_resources_v8(struct platform_device *pdev,
-+					 struct device_node *node,
-+					 struct spmi_pmic_arb_bus *bus)
-+{
-+	int index;
-+
-+	index = of_property_match_string(node, "reg-names", "chnl_owner");
-+	if (index < 0) {
-+		dev_err(&pdev->dev, "chnl_owner reg region missing\n");
-+		return -EINVAL;
-+	}
-+
-+	bus->apid_owner = devm_of_iomap(&pdev->dev, node, index, NULL);
-+
-+	return PTR_ERR_OR_ZERO(bus->apid_owner);
-+}
-+
-+static int pmic_arb_read_apid_map_v8(struct spmi_pmic_arb_bus *bus)
-+{
-+	return _pmic_arb_read_apid_map(bus, bus->pmic_arb->apid_map,
-+				       PMIC_ARB_V8_PPID_MASK, 0,
-+				       PMIC_ARB_V8_CHAN_IS_IRQ_OWNER_MASK);
-+}
-+
-+/*
-+ * Arbiter v8 supports up to 4 buses. Each bus will get a different apid count, read
-+ * from different registers.
-+ */
-+static int pmic_arb_init_apid_v8(struct spmi_pmic_arb_bus *bus, int index)
-+{
-+	int ret = _pmic_arb_init_apid_v7(bus, index, 4,
-+					 PMIC_ARB_FEATURES_V8_PERIPH_MASK);
-+	if (ret)
-+		return ret;
-+
-+	ret = pmic_arb_read_apid_map_v8(bus);
-+	if (ret) {
-+		dev_err(&bus->spmic->dev, "could not read APID->PPID mapping table, rc= %d\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+/*
-+ * v8 offset per ee and per apid for observer channels and per apid for
-+ * read/write channels.
-+ */
-+static int pmic_arb_offset_v8(struct spmi_pmic_arb_bus *bus, u8 sid, u16 addr,
-+			      enum pmic_arb_channel ch_type)
-+{
-+	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
-+	u16 apid;
-+	int rc;
-+	u32 offset = 0;
-+	u16 ppid = (sid << 8) | (addr >> 8);
-+
-+	rc = pmic_arb->ver_ops->ppid_to_apid(bus, ppid);
-+	if (rc < 0)
-+		return rc;
-+
-+	apid = rc;
-+	switch (ch_type) {
-+	case PMIC_ARB_CHANNEL_OBS:
-+		offset = 0x40000 * pmic_arb->ee + 0x20 * apid;
-+		break;
-+	case PMIC_ARB_CHANNEL_RW:
-+		if (bus->apid_data[apid].write_ee != pmic_arb->ee) {
-+			dev_err(&bus->spmic->dev, "disallowed SPMI write to sid=%u, addr=0x%04X\n",
-+				sid, addr);
-+			return -EPERM;
-+		}
-+		offset = 0x200 * apid;
-+		break;
-+	}
-+
-+	return offset;
-+}
-+
- static u32 pmic_arb_fmt_cmd_v1(u8 opc, u8 sid, u16 addr, u8 bc)
- {
- 	return (opc << 27) | ((sid & 0xf) << 20) | (addr << 4) | (bc & 0x7);
-@@ -1490,6 +1634,14 @@ pmic_arb_acc_enable_v7(struct spmi_pmic_arb_bus *bus, u16 n)
- 	return pmic_arb->wr_base + 0x100 + 0x1000 * n;
- }
- 
-+static void __iomem *
-+pmic_arb_acc_enable_v8(struct spmi_pmic_arb_bus *bus, u16 n)
-+{
-+	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
-+
-+	return pmic_arb->wr_base + 0x100 + 0x200 * n;
-+}
-+
- static void __iomem *
- pmic_arb_irq_status_v1(struct spmi_pmic_arb_bus *bus, u16 n)
- {
-@@ -1516,6 +1668,14 @@ pmic_arb_irq_status_v7(struct spmi_pmic_arb_bus *bus, u16 n)
- 	return pmic_arb->wr_base + 0x104 + 0x1000 * n;
- }
- 
-+static void __iomem *
-+pmic_arb_irq_status_v8(struct spmi_pmic_arb_bus *bus, u16 n)
-+{
-+	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
-+
-+	return pmic_arb->wr_base + 0x104 + 0x200 * n;
-+}
-+
- static void __iomem *
- pmic_arb_irq_clear_v1(struct spmi_pmic_arb_bus *bus, u16 n)
- {
-@@ -1542,6 +1702,14 @@ pmic_arb_irq_clear_v7(struct spmi_pmic_arb_bus *bus, u16 n)
- 	return pmic_arb->wr_base + 0x108 + 0x1000 * n;
- }
- 
-+static void __iomem *
-+pmic_arb_irq_clear_v8(struct spmi_pmic_arb_bus *bus, u16 n)
-+{
-+	struct spmi_pmic_arb *pmic_arb = bus->pmic_arb;
-+
-+	return pmic_arb->wr_base + 0x108 + 0x200 * n;
-+}
-+
- static u32 pmic_arb_apid_map_offset_v2(u16 n)
- {
- 	return 0x800 + 0x4 * n;
-@@ -1557,6 +1725,12 @@ static u32 pmic_arb_apid_map_offset_v7(u16 n)
- 	return 0x2000 + 0x4 * n;
- }
- 
-+static u32 pmic_arb_apid_map_offset_v8(u16 n)
-+{
-+	/* For v8, offset is from "chnl_map" base register, not "core". */
-+	return 0x4 * n;
-+}
-+
- static void __iomem *
- pmic_arb_apid_owner_v2(struct spmi_pmic_arb_bus *bus, u16 n)
- {
-@@ -1564,7 +1738,7 @@ pmic_arb_apid_owner_v2(struct spmi_pmic_arb_bus *bus, u16 n)
- }
- 
- /*
-- * For arbiter version 7, APID ownership table registers have independent
-+ * For arbiter version 7 and 8, APID ownership table registers have independent
-  * numbering space for each SPMI bus instance, so each is indexed starting from
-  * 0.
-  */
-@@ -1574,6 +1748,12 @@ pmic_arb_apid_owner_v7(struct spmi_pmic_arb_bus *bus, u16 n)
- 	return bus->cnfg + 0x4 * (n - bus->base_apid);
- }
- 
-+static void __iomem *
-+pmic_arb_apid_owner_v8(struct spmi_pmic_arb_bus *bus, u16 n)
-+{
-+	return bus->apid_owner + 0x4 * (n - bus->base_apid);
-+}
-+
- static const struct pmic_arb_ver_ops pmic_arb_v1 = {
- 	.ver_str		= "v1",
- 	.get_core_resources	= pmic_arb_get_core_resources_v1,
-@@ -1654,6 +1834,23 @@ static const struct pmic_arb_ver_ops pmic_arb_v7 = {
- 	.apid_owner		= pmic_arb_apid_owner_v7,
- };
- 
-+static const struct pmic_arb_ver_ops pmic_arb_v8 = {
-+	.ver_str		= "v8",
-+	.get_core_resources	= pmic_arb_get_core_resources_v8,
-+	.get_bus_resources	= pmic_arb_get_bus_resources_v8,
-+	.init_apid		= pmic_arb_init_apid_v8,
-+	.ppid_to_apid		= pmic_arb_ppid_to_apid_v5,
-+	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
-+	.offset			= pmic_arb_offset_v8,
-+	.fmt_cmd		= pmic_arb_fmt_cmd_v2,
-+	.owner_acc_status	= pmic_arb_owner_acc_status_v7,
-+	.acc_enable		= pmic_arb_acc_enable_v8,
-+	.irq_status		= pmic_arb_irq_status_v8,
-+	.irq_clear		= pmic_arb_irq_clear_v8,
-+	.apid_map_offset	= pmic_arb_apid_map_offset_v8,
-+	.apid_owner		= pmic_arb_apid_owner_v8,
-+};
-+
- static const struct irq_domain_ops pmic_arb_irq_domain_ops = {
- 	.activate = qpnpint_irq_domain_activate,
- 	.alloc = qpnpint_irq_domain_alloc,
-@@ -1731,6 +1928,12 @@ static int spmi_pmic_arb_bus_init(struct platform_device *pdev,
- 	bus->spmic = ctrl;
- 	bus->id = bus_index;
- 
-+	if (pmic_arb->ver_ops->get_bus_resources) {
-+		ret = pmic_arb->ver_ops->get_bus_resources(pdev, node, bus);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	ret = pmic_arb->ver_ops->init_apid(bus, bus_index);
- 	if (ret)
- 		return ret;
-@@ -1825,8 +2028,10 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
- 		pmic_arb->ver_ops = &pmic_arb_v3;
- 	else if (hw_ver < PMIC_ARB_VERSION_V7_MIN)
- 		pmic_arb->ver_ops = &pmic_arb_v5;
--	else
-+	else if (hw_ver < PMIC_ARB_VERSION_V8_MIN)
- 		pmic_arb->ver_ops = &pmic_arb_v7;
-+	else
-+		pmic_arb->ver_ops = &pmic_arb_v8;
- 
- 	err = pmic_arb->ver_ops->get_core_resources(pdev, core);
- 	if (err)
-@@ -1875,6 +2080,7 @@ static void spmi_pmic_arb_remove(struct platform_device *pdev)
- static const struct of_device_id spmi_pmic_arb_match_table[] = {
- 	{ .compatible = "qcom,spmi-pmic-arb", },
- 	{ .compatible = "qcom,x1e80100-spmi-pmic-arb", },
-+	{ .compatible = "qcom,glymur-spmi-pmic-arb", },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, spmi_pmic_arb_match_table);
+I have already sent out the PRs for v6.19. Sorry, this would need to
+wait for v6.20 cycle.
+
+[...]
+
 
 -- 
-2.25.1
+Regards
+Vignesh
+https://ti.com/opensource
 
 
