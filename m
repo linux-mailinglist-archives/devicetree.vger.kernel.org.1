@@ -1,279 +1,344 @@
-Return-Path: <devicetree+bounces-242234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3746C8865B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:20:20 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8151AC88697
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:26:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C5B244E2C54
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 07:20:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0668234F8E9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 07:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE921EDA2C;
-	Wed, 26 Nov 2025 07:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A8A28DB71;
+	Wed, 26 Nov 2025 07:25:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="D0at0VgC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AiaWVi9M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7AA29BDB5
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:19:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5C9288C26
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:25:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764141604; cv=none; b=KSAbPCXiFZuRYiO9dLj3i2M/tulJ0O+ik9/O2pz+gXmgOPFaIGB765DTtSxkvgcsvk/8CegIPynzpiRyE087BlpHVUbe1QtOl8tOJ2mcdA78z3GgzpdeXk3Mz4uE8doOHJqlttHkujLtySNDMhhnvfrlmRlsf4NOeU8EcxumgXk=
+	t=1764141957; cv=none; b=Yl1L9DJKCLExUuSEhVFUVqFiPMMcIU6DUFNlSpUTwoOeb0382UhSz7FvpxmEi2h6gn2/EAKFT7M5l/u3SYlZWEEf6GsoTgWBDJTUcMmEOy81DLW+d00sATn6bJ4blEBrLzAfdnw5mHzCdd4XvhYxHhoT0BteudJ9MuvoeBmEs44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764141604; c=relaxed/simple;
-	bh=4bi4KMO68dH7w3d/t0Hvvq45GQEDJf0mVLD1A3u8r5g=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=XUn/iqRudZbkPbA5FGXyGkVAuDMSIfLAWAsPlDR/UTT37UY1vVbu/Mwg+sY6hxm+s4k3iUja0fMsfp3tf61DHwMFrTCfhoY2bxjOOv+HXW5qO7LA8AplKXZNB4qIVQGsOupDLdDZ1srvkIhNEHxuZ/Xwu+1yDHugt5nv0/x1WPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=D0at0VgC; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20251126071951epoutp041ecb4d8640657450dd2078a2ff9912fa~7fW5EG7PV1890918909epoutp04L
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:19:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20251126071951epoutp041ecb4d8640657450dd2078a2ff9912fa~7fW5EG7PV1890918909epoutp04L
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1764141591;
-	bh=4bi4KMO68dH7w3d/t0Hvvq45GQEDJf0mVLD1A3u8r5g=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=D0at0VgC2S+Pr03Buy6twkwnbZIjrhDau0zMQg3g/vNZXAf4iC0e/s02mXQJhzDWo
-	 fAOrrkoqqyl9x3816OEdufS2ItUH39yZSFBLfIEoCj5cJHGizg3/nV41e7lIKoo9Ed
-	 yK06TqtECVjibQDWLZ373DmrCOsTQ+/XM/idLBYA=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPS id
-	20251126071950epcas2p3aea5d8a8fa1582663f9d654ce24306ca~7fW4TZHTO0460304603epcas2p3U;
-	Wed, 26 Nov 2025 07:19:50 +0000 (GMT)
-Received: from epcas2p1.samsung.com (unknown [182.195.38.202]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4dGWCp1pmzz6B9m7; Wed, 26 Nov
-	2025 07:19:50 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-	20251126071948epcas2p1197f2f373a91b4383a36f76b012ecd79~7fW2dwifR3238332383epcas2p1Q;
-	Wed, 26 Nov 2025 07:19:48 +0000 (GMT)
-Received: from KORCO115296 (unknown [12.80.207.128]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20251126071948epsmtip2395dc6efec8527355f47688f10b3105b~7fW2Vv2yR1128611286epsmtip2D;
-	Wed, 26 Nov 2025 07:19:48 +0000 (GMT)
-From: =?utf-8?B?7IaQ7Iug?= <shin.son@samsung.com>
-To: "'Tudor Ambarus'" <tudor.ambarus@linaro.org>, "'Bartlomiej
- Zolnierkiewicz'" <bzolnier@gmail.com>, "'Krzysztof Kozlowski'"
-	<krzk@kernel.org>, "'Rafael J . Wysocki'" <rafael@kernel.org>, "'Daniel
- Lezcano'" <daniel.lezcano@linaro.org>, "'Zhang Rui'" <rui.zhang@intel.com>,
-	"'Lukasz Luba'" <lukasz.luba@arm.com>, "'Rob	Herring'" <robh@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>
-Cc: "'Henrik Grimler'" <henrik@grimler.se>, <linux-pm@vger.kernel.org>,
-	<linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	"'Peter	Griffin'" <peter.griffin@linaro.org>,
-	=?utf-8?Q?'Andr=C3=A9_Draszik'?= <andre.draszik@linaro.org>, "'William
- McVicker'" <willmcvicker@google.com>, <jyescas@google.com>,
-	<shin.son@samsung.com>
-In-Reply-To: <5a6a749b-b2b7-41bb-bcb4-a2342e7f4e98@linaro.org>
-Subject: RE: [PATCH v7 RESEND 2/3] thermal: exynos_tmu: Support new hardware
- and update TMU interface
-Date: Wed, 26 Nov 2025 16:19:47 +0900
-Message-ID: <015501dc5ea5$0c7dd460$25797d20$@samsung.com>
+	s=arc-20240116; t=1764141957; c=relaxed/simple;
+	bh=4L/5eL1/ItWCHjyzj3oXYZutZjve9LapJn5GO6pMj+k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PNKyj6uTCmxp8aBxac/H0aFnztNozsHpMiy1r6PWTv/Zn0EjJqtiZgc9clmUZrdVvlQxxyBYescN2wzUjmmFeVc+jIqmqusyTQewKx3sR0drv1QhMg3O3JF2WrzgPlsM3MLAGNnIXWWwMtHINGd2hHTfCJDyNyS5yO0DoIBUWms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AiaWVi9M; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-640a3317b89so9323068a12.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 23:25:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764141953; x=1764746753; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Iv7ZH0U5VwCrSx4pIQP2NujklUNE6c7fxiogNvnqOWg=;
+        b=AiaWVi9MJwUDl0wPYZeXkn4oBQ8BJVKeRanu4DpRo1NgYw4EEgKCRohsyuAxnDvnIh
+         BIEhTfT1uQqvK6Oxt+iSE0h6D2riY/4SwT/0zjG43o3+QRwDJ2k+xc0P7cp/6BkrmlUZ
+         IOCyiadV/oA4LVB/25ZoEErUYqJUhHjZxVPh7dZ0DyMDrUotXDNqM4S4U6nXUl2Qi7RB
+         /Yeh+ljTpG91vHXjIqAFXgUWARprMSxWzMPkeqtn52QEQWok5fec61TFj21hGBJnTheK
+         NLp8wn49uJNyq4gpS7AvIEldl70xXM2vxH0A/ofiwFQ8cK3rIBEMO3byBGjFvpc4uTG4
+         MkNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764141953; x=1764746753;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Iv7ZH0U5VwCrSx4pIQP2NujklUNE6c7fxiogNvnqOWg=;
+        b=hOdqjGT9sxUtZdoIdxOa5GcztgsFn/TN4o5vBEs3KfaQAxb/jcx9qOqg6EGhYof07j
+         2EZgxbrdSBnMWsgVRxkO5sklAOKH12iLNLt7qrIO5HlGWmErHfC54V+LfWzkrpuxR67r
+         ONyq2Uw53vJ8ieY5tRG1rwxp2ZlGek1+4TkSI4Y+kJWZoj1GknYLbp4XsSFe1ZYeHz5P
+         SrOkECjurZQc0tG5j4VHpNGzdBv5hcwZBoZ/TWmhFb9xkRq0NdCOz6arFYOjssIpmkUy
+         YMf9eYM0yCARGPx/zwoIKbsl6AVBT93JejD+k2mdzeuDLnlWjQr+q/p+YOLcEUuA2atO
+         ePCw==
+X-Forwarded-Encrypted: i=1; AJvYcCXp24BdQeroxsV6Ow2NX8UVGgKs/pU2edqRuLiogWLx3XHgW3JKOhHbEYJBD5/U3t0wah3bwFtDVZcM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwX/0emNPACwFqzVssgxahxaFgdfThOp198FCQKgBS4iAIIZMw0
+	wFlYmAjBdeuuK5JEJco7yeGWZl16oFu0L0SoFDucgAcx98qzfHsbIq0F
+X-Gm-Gg: ASbGncuG5xeK1gCdX49gguivaLTcFHwWTIRPGnWeXr4EciMA4IHb561eX3FlDOlM8q2
+	R4BAwoLQKTDvTrvRTGvamwGEE6Na78ZUTVKdAQhT0EM+66gwMt+j0b5rBM1POeObS6qYc8RB0oq
+	yCzoMW3kDARNGhLUVc8zUWJ9Pcd3nix/DqPVYPmteB3LF4OgSsh4p7rvJaWTKXVZwP/8p1QJXVp
+	xAZFc2Av5IoFt6rxg2gXfBaJkfFJNf/AeDerpqa3u3st3MLHwOsw93gfXdHAmWWEqq49kUhdQIg
+	WPi2Dr1Z+h7yFVzGisftq1LFt5e+pQIF/M5H4dw/jpSacbZVTzhFnlfzQJwjE+ffGAm2DXpeQlN
+	bQQF1b0etrGmsRB1r0kFlkgkAccVQxbRMIghf8gY7FNbKjDYsX5UvBnXhr6j4BA0aQXAJ5K7FF2
+	80sBTkqc9uXBZEnMscg4eFGLxK198ZNgZSJoWEJQ8EVCJ6+vSH7AywOZHYSJueyR9q4C1LOLtay
+	whB4sJUF40/
+X-Google-Smtp-Source: AGHT+IHX0rqNNyRTR0dneFys5BvltD8NgTOoyYKLcnywZAT/mxA+kXa1PwfcBV0janZViN7HMFRH3g==
+X-Received: by 2002:a17:907:7fa2:b0:b70:7cd8:9098 with SMTP id a640c23a62f3a-b76c5592b7amr549919866b.61.1764141952922;
+        Tue, 25 Nov 2025 23:25:52 -0800 (PST)
+Received: from ?IPV6:2a02:6b6f:e750:1800:450:cba3:aec3:a1fd? ([2a02:6b6f:e750:1800:450:cba3:aec3:a1fd])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654d55d7fsm1796765066b.21.2025.11.25.23.25.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Nov 2025 23:25:51 -0800 (PST)
+Message-ID: <d38aeb5d-5a46-4e8d-b3c1-f2b4cdb15b04@gmail.com>
+Date: Wed, 26 Nov 2025 07:25:48 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQJR08pAfg/+KuTfxFjIW+Bmb4uKqAKoesbtAuyt0KICEvKvorPcLIjw
-Content-Language: ko
-X-CMS-MailID: 20251126071948epcas2p1197f2f373a91b4383a36f76b012ecd79
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237
-References: <20251113064022.2701578-1-shin.son@samsung.com>
-	<CGME20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237@epcas2p1.samsung.com>
-	<20251113064022.2701578-3-shin.son@samsung.com>
-	<5a6a749b-b2b7-41bb-bcb4-a2342e7f4e98@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 12/17] x86/e820: temporarily enable KHO scratch for
+ memory below 1M
+Content-Language: en-GB
+To: Mike Rapoport <rppt@kernel.org>
+Cc: Pratyush Yadav <pratyush@kernel.org>,
+ Changyuan Lyu <changyuanl@google.com>, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, anthony.yznaga@oracle.com, arnd@arndb.de,
+ ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
+ catalin.marinas@arm.com, corbet@lwn.net, dave.hansen@linux.intel.com,
+ devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com,
+ graf@amazon.com, hpa@zytor.com, jgowans@amazon.com,
+ kexec@lists.infradead.org, krzk@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+ linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com,
+ pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org,
+ robh@kernel.org, rostedt@goodmis.org, saravanak@google.com,
+ skinsburskii@linux.microsoft.com, tglx@linutronix.de,
+ thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org,
+ Breno Leitao <leitao@debian.org>, thevlad@meta.com
+References: <20250509074635.3187114-1-changyuanl@google.com>
+ <20250509074635.3187114-13-changyuanl@google.com>
+ <a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
+ <mafs01plmxngp.fsf@kernel.org> <aSW0MF9BXjLnY2Fr@kernel.org>
+ <ba690e06-c2a1-4d2e-9428-9ca2ea9f2b86@gmail.com>
+ <aSaazgjKX8PfFDXf@kernel.org>
+From: Usama Arif <usamaarif642@gmail.com>
+In-Reply-To: <aSaazgjKX8PfFDXf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello Tudor Ambarus
 
-> -----Original Message-----
-> From: Tudor Ambarus =5Bmailto:tudor.ambarus=40linaro.org=5D
-> Sent: Tuesday, November 25, 2025 6:15 PM
-> To: Shin Son <shin.son=40samsung.com>; Bartlomiej Zolnierkiewicz
-> <bzolnier=40gmail.com>; Krzysztof Kozlowski <krzk=40kernel.org>; Rafael J=
- .
-> Wysocki <rafael=40kernel.org>; Daniel Lezcano <daniel.lezcano=40linaro.or=
-g>;
-> Zhang Rui <rui.zhang=40intel.com>; Lukasz Luba <lukasz.luba=40arm.com>; R=
-ob
-> Herring <robh=40kernel.org>; Conor Dooley <conor+dt=40kernel.org>; Alim A=
-khtar
-> <alim.akhtar=40samsung.com>
-> Cc: Henrik Grimler <henrik=40grimler.se>; linux-pm=40vger.kernel.org; lin=
-ux-
-> samsung-soc=40vger.kernel.org; devicetree=40vger.kernel.org; linux-arm-
-> kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org; Peter Griff=
-in
-> <peter.griffin=40linaro.org>; Andr=C3=A9=20Draszik=20<andre.draszik=40lin=
-aro.org>;=0D=0A>=20William=20McVicker=20<willmcvicker=40google.com>;=20jyes=
-cas=40google.com=0D=0A>=20Subject:=20Re:=20=5BPATCH=20v7=20RESEND=202/3=5D=
-=20thermal:=20exynos_tmu:=20Support=20new=0D=0A>=20hardware=20and=20update=
-=20TMU=20interface=0D=0A>=20=0D=0A>=20Hi,=20Shin=20Son,=0D=0A>=20=0D=0A>=20=
-Just=20trivial=20notes=20on=20registers=20description=20for=20now.=0D=0A>=
-=20=0D=0A>=20On=2011/13/25=208:40=20AM,=20Shin=20Son=20wrote:=0D=0A>=20>=20=
-diff=20--git=20a/drivers/thermal/samsung/exynos_tmu.c=20b/drivers/=20therma=
-l/=0D=0A>=20>=20samsung/exynos_tmu.c=20index=2047a99b3c5395..8fa188928b79=
-=0D=0A>=20>=20100644=20---=20a/=20drivers/thermal/samsung/exynos_tmu.c=20++=
-+=20b/drivers/=0D=0A>=20>=20thermal/samsung/=20exynos_tmu.c=20=40=40=20-121=
-,8=20+121,51=20=40=40=0D=0A>=20>=0D=0A>=20>=20=23define=20EXYNOS_NOISE_CANC=
-EL_MODE=09=094=0D=0A>=20>=0D=0A>=20>=20+/*=20ExynosAutov920=20specific=20re=
-gisters=20*/=20+=23define=0D=0A>=20>=20EXYNOSAUTOV920_SLOPE_COMP=09=0925=20=
-+=23define=0D=0A>=20>=20EXYNOSAUTOV920_SLOPE_COMP_MASK=09=090xf=0D=0A>=20=
-=0D=0A>=20Register=20fields=20shall=20be=20named=0D=0A>=20SOC_REG_NAME_FIEL=
-D_NAME=0D=0A>=20=0D=0A>=20If=20you=20include=20<linux/bits.h>=20you=20can=
-=20substitute=20the=20above=202=20definitions=0D=0A>=20with=20just=20one:=
-=0D=0A>=20EXYNOSAUTOV920_TRIMINFO_SLOPE_COMP=09GENMASK(28,=2025)=0D=0A>=20=
-=0D=0A>=20and=20later=20on=20in=20the=20code,=20instead=20of=20doing=20the=
-=20shift=20and=20the=20mask,=20you=20can=0D=0A>=20include=20<linux/bitfield=
-.h>=20and=20do:=0D=0A>=20=0D=0A>=20data->slope_comp=20=3D=20FIELD_GET(EXYNO=
-SAUTOV920_TRIMINFO_SLOPE_COMP,=20val);=0D=0A>=20=0D=0A>=20btw,=20above=20ma=
-tches=20the=20GS101=20definitions.=0D=0A=0D=0AI=20understand=20your=20point=
-=20and=20will=20apply=20there=20bit=20operations=20in=20the=20new=20patch=
-=20series.=0D=0A=0D=0A>=20>=20+=23define=20EXYNOSAUTOV920_CALIB_SEL_TEMP=09=
-=0930=20+=23define=0D=0A>=20>=20EXYNOSAUTOV920_CALIB_SEL_TEMP_MASK=090x2=20=
-+=0D=0A>=20=0D=0A>=20is=20this=20BIT(31)?=0D=0A>=20EXYNOSAUTOV920_TRIMINFO2=
-_CALIB_SEL_TEMP=09=09BIT(31)=0D=0A>=20=0D=0A=0D=0AThis=20field=20actually=
-=20uses=20both=20bit=2030=20and=20bit=2031,=20so=20the=20mask=20should=20be=
-=20updated=20from=200x2=20to=200x3.=20Sorry=20for=20the=20confusion.=0D=0A=
-=0D=0A>=20GS101=20differs,=20it=20has=20this=20field=20defined=20at:=0D=0A>=
-=20GS101_TRIMINFO_CALIB_SEL_TEMP=09=09=09BIT(0)=0D=0A>=20where=20TRIMINFO=
-=20is=20at=20Base=20Address=20+=200x0,=20not=20at=20Base=20Address=20+=200x=
-4=20as=20in=0D=0A>=20your=20case.=0D=0A=0D=0AAt=20base=20address=20+=200x4,=
-=20the=20register=20actually=20contains=20CALIB_TEMP,=20not=20CALIB_SEL=20i=
-n=20my=20case.=0D=0ASo=20the=20naming=20was=20incorrect,=20and=20I'll=20fix=
-=20it=20in=20the=20next=20patch=20series.=0D=0A=0D=0A>=20>=20+=23define=20E=
-XYNOSAUTOV920_SENSOR0_TRIM_INFO=090x10=0D=0A>=20=0D=0A>=20GS101=20does=20no=
-t=20have=20any=20SENSOR0=20in=20the=20reg=20name,=20so=20maybe=20rename=20i=
-t=20to:=0D=0A>=20=23define=20EXYNOSAUTOV920_TRIMINFO0=09=090x10=0D=0A=0D=0A=
-That's=20correct.=20I'll=20rename=20it=20in=20the=20next=20patch=20series.=
-=0D=0A=20=0D=0A>=20>=20+=23define=20EXYNOSAUTOV920_TRIM_MASK=09=090x1ff=20+=
-=23define=0D=0A>=20>=20EXYNOSAUTOV920_TRIMINFO_25_SHIFT=090=20+=23define=0D=
-=0A>=20>=20EXYNOSAUTOV920_TRIMINFO_85_SHIFT=099=0D=0A>=20=0D=0A>=20=23defin=
-e=20EXYNOSAUTOV920_TRIMINFO_85_P0=09=09GENMASK(17,=209)=0D=0A>=20=23define=
-=20EXYNOSAUTOV920_TRIMINFO_25_P0=09=09GENMASK(8,=200)=0D=0A=0D=0AUnderstood=
-.=20Thanks.=0D=0A=0D=0A>=20>=20+=20+=23define=20EXYNOSAUTOV920_TMU_REG_TRIM=
-INFO2=090x04=0D=0A>=20=0D=0A>=20Is=20this=20a=20TRIMINFO_CONFIG2=20register=
-?=20I=20don't=20have=20such=20thing=20on=20GS101.=0D=0A=0D=0ANo,=20that=20n=
-ame=20is=20incorrect.=20I'll=20rename=20it=20to=20TRIMINFO_CONFIG1.=0D=0A=
-=0D=0A>=20>=20+=20+=23define=20EXYNOSAUTOV920_TMU_REG_THRESHOLD(p)=09(((p))=
-=20*=200x50=20+=0D=0A>=20>=200x00d0)=0D=0A>=20=0D=0A>=20=23define=20EXYNOSA=
-UTOV920_THRESHOLD_TEMP_RISE7_6(p)=09(((p))=20*=200x50=20+=200xd0)=0D=0A>=20=
-and=20then:=0D=0A>=20=23define=20EXYNOSAUTOV920_THRESHOLD_TEMP_RISE7_6_RISE=
-7=20=09GENMASK(24,=2016)=0D=0A>=20=23define=20EXYNOSAUTOV920_THRESHOLD_TEMP=
-_RISE7_6_RISE6=20=09GENMASK(8,=200)=0D=0A>=20you'll=20stop=20passing=20the=
-=20shift=20and=20mask=20as=20function=20arguments=20:)=0D=0A=0D=0AGot=20it.=
-=20Thanks=20:).=0D=0A=0D=0A>=20>=20+=23define=20EXYNOSAUTOV920_TMU_REG_INTE=
-N(p)=09=09(((p))=20*=200x50=20+=0D=0A>=200x00f0)=0D=0A>=20=0D=0A>=20=23defi=
-ne=20EXYNOSAUTOV920_INTEN(p)=09=09=09=09(((p))=20*=200x50=20+=200xf0)=0D=0A=
->=20=0D=0A>=20I=20see=20you=20use=20just=20BIT(7)=20from=20this=20register.=
-=20Let's=20define=20it=20and=20stop=0D=0A>=20passing=20the=20bit=20offset=
-=20as=20function=20argument:=0D=0A>=20=23define=20EXYNOSAUTOV920_INTEN_RISE=
-7=09=09=09BIT(7)=0D=0A=0D=0AOk,=20Thanks.=20I'll=20define=20the=20BIT(7)=20=
-field=20as=20suggested.=0D=0A=0D=0A=20=0D=0A>=20>=20+=23define=20EXYNOSAUTO=
-V920_TMU_REG_INT_PEND(p)=09(((p))=20*=200x50=20+=200x00f8)=0D=0A>=20=0D=0A>=
-=20=23define=20EXYNOSAUTOV920_PEND(p)=09=09=09=09(((p))=20*=200x50=20+=200x=
-f8)=0D=0A=0D=0AUnderstood.=0D=0A=0D=0A>=20Are=20you=20using=20GENMASK(15,=
-=200)=20for=20this=20register?=0D=0A>=20=0D=0A>=20On=20GS101=20GENMASK(15,=
-=209)=20is=20reserved.=20Here's=20how=20the=20bits=20are=20defined=20for=0D=
-=0A>=20GS101:=0D=0A>=20=0D=0A>=20=23define=20EXYNOSAUTOV920_PEND_FALL(i)=09=
-=09=09BIT(16=20+=20(i))=0D=0A>=20=23define=20EXYNOSAUTOV920_PEND_RISE_MASK=
-=09=09=09GENMASK(23,=2016)=0D=0A>=20=23define=20EXYNOSAUTOV920_PEND_RISE(i)=
-=09=09=09BIT(i)=0D=0A>=20=23define=20EXYNOSAUTOV920_PEND_RISE_MASK=09=09=09=
-GENMASK(8,=200)=0D=0A>=20=0D=0A>=20Would=20you=20please=20verify=20and=20le=
-t=20me=20know=20if=20EXYNOSAUTOV920=20differs=20or=20not?=0D=0A=0D=0AIt=20d=
-iffers,=20On=20Exynosautov920m=20bits=208=20-=2015=20are=20reserved,=20so=
-=20only=20bits=200-7=20are=20used.=20=0D=0A=0D=0A>=20>=20+=23define=20EXYNO=
-SAUTOV920_CURRENT_TEMP_P1_P0=090x084=0D=0A>=20=0D=0A>=20no=20leading=200=0D=
-=0A>=20=23define=20EXYNOSAUTOV920_CURRENT_TEMP_P1_P0=09=090x84=0D=0A=0D=0AG=
-ot=20it.=0D=0A=0D=0A>=20then=20define=20the=20fields:=0D=0A>=20=23define=20=
-EXYNOSAUTOV920_CURRENT_TEMP_P1=09=09=09GENMASK(24,=2016)=0D=0A>=20=23define=
-=20EXYNOSAUTOV920_CURRENT_TEMP_P0=09=09=09GENMASK(8,=200)=0D=0A=0D=0AThank=
-=20you.=0D=0A=0D=0A>=20>=20+=23define=20EXYNOSAUTOV920_TMU_REG_EMUL_CON=09=
-=090x0b0=0D=0A>=20=0D=0A>=20no=20TMU_REG=20in=20the=20name,=20no=20leading=
-=200,=20define=20the=20fields=20as=20GENMASK=0D=0A>=20=23define=20EXYNOSAUT=
-OV920_EMUL_CON=09=09=09=090xb0=0D=0A>=20=23define=20EXYNOSAUTOV920_EMUL_CON=
-_EMUL_NEXT_TIME=09=09GENMASK(31,=2016)=0D=0A>=20=23define=20EXYNOSAUTOV920_=
-EMUL_CON_EMUL_NEXT_DATA=09=09GENMASK(15,=207)=0D=0A>=20=23define=20EXYNOSAU=
-TOV920_EMUL_CON_EMUL_EN=09=09=09BIT(0)=0D=0A=0D=0AThat's=20right.=20Thanks.=
-=0D=0A=0D=0A>=20>=20+=0D=0A>=20>=20+=23define=20EXYNOSAUTOV920_TMU_REG_CONT=
-ROL=09=090x50=0D=0A>=20=0D=0A>=20no=20reg=20in=20the=20name,=20control0=0D=
-=0A>=20=23define=20EXYNOSAUTOV920_TMU_CONTROL0=09=09=090x50=0D=0A>=20=0D=0A=
->=20define=20fields=20as=20GENMASK=20and=20BIT=0D=0A=0D=0AGot=20it.=20=0D=
-=0A=0D=0A>=20>=20+=23define=20EXYNOSAUTOV920_TMU_REG_CONTROL1=09=090x54=0D=
-=0A>=20=0D=0A>=20ditto=0D=0A=0D=0AGot=20it.=0D=0A=0D=0A=0D=0A>=20>=20+=23de=
-fine=20EXYNOSAUTOV920_TMU_REG_AVG_CONTROL=090x58=0D=0A>=20=0D=0A>=20ditto=
-=0D=0A=0D=0AGot=20it.=0D=0A=0D=0A>=20>=20+=23define=20EXYNOSAUTOV920_TMU_SA=
-MPLING_INTERVAL=090x70=0D=0A>=20=0D=0A>=20no=20TMU=20in=20the=20name,=20res=
-pect=20the=20registers=20name=20from=20the=20datasheet=20please.=0D=0A>=20d=
-efine=20the=20full=20genmask=0D=0A>=20=23define=20EXYNOSAUTOV920_SAMPLING_I=
-NTERVAL_MASK=09=09GENMASK(31,=200)=0D=0A=0D=0AOk,=20I'll=20follow=20the=20d=
-atasheet=20naming=20update=20it=20accordingly.=0D=0A=0D=0A>=20>=20+=23defin=
-e=20EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE0=090x74=0D=0A>=20>=20+=23define=20=
-EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE1=090x78=0D=0A>=20=0D=0A>=20no=20TMU_RE=
-G=20in=20the=20name,=20define=20fields=0D=0A=0D=0AGot=20it.=0D=0A=0D=0A>=20=
->=20+=23define=20EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_SHIFT=09=098=0D=0A>=20>=
-=20+=23define=20EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_MASK=09=090x1f=0D=0A>=20>=
-=20+=23define=20EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_SHIFT=093=0D=0A>=20>=20+=
-=23define=20EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_MASK=09=090xf=0D=0A>=20>=20+=
-=23define=20EXYNOSAUTOV920_TMU_NUM_PROBE_MASK=09=090xf=0D=0A>=20>=20+=23def=
-ine=20EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT=09=0916=0D=0A>=20>=20+=23define=20=
-EXYNOSAUTOV920_TMU_LPI_MODE_MASK=09=091=0D=0A>=20>=20+=23define=20EXYNOSAUT=
-OV920_TMU_LPI_MODE_SHIFT=09=0910=0D=0A>=20=0D=0A>=20you=20won't=20need=20th=
-ese=20if=20you=20define=20the=20register=20fields,=20isn't=20it?=0D=0A=0D=
-=0AGot=20it.=20I'll=20refactor=20this=20part=20accordingly.=0D=0A=0D=0A>=20=
->=20+=23define=20EXYNOSAUTOV920_TMU_AVG_CON_UPDATE=09=090x0008011a=0D=0A>=
-=20=0D=0A>=20no=20leading=20zeros.=20You=20better=20construct=20the=20field=
-s=20dynamically,=20by=20using=0D=0A>=20bitfields,=20no=20full=20register=20=
-magic=20number,=20humans=20don't=20understand=20this.=0D=0A=0D=0AUnderstood=
-.=20I'll=20replace=20the=20magic=20number=20with=20proper=20bit=20field=20c=
-onstructions.=0D=0A=0D=0A>=20>=20+=23define=20EXYNOSAUTOV920_TMU_COUNTER_VA=
-LUE0_UPDATE=090x030003c0=0D=0A>=20>=20+=23define=20EXYNOSAUTOV920_TMU_COUNT=
-ER_VALUE1_UPDATE=090x03c0004d=0D=0A>=20=0D=0A>=20same=20for=20both=0D=0A=0D=
-=0AGot=20it.=0D=0A=0D=0A>=20>=20+=0D=0A>=20>=20=20=23define=20MCELSIUS=0910=
-00=0D=0A>=20>=0D=0A>=20>=20+=23define=20EXYNOS_DEFAULT_SENSOR_COUNT=09=09=
-=091=0D=0A>=20>=20+=23define=20EXYNOS_MAX_SENSOR_COUNT=0D=0A>=20would=20it=
-=20make=20sense=20to=20have=20the=20tzd_array=20to=20fit=20just=20the=20sen=
-sor=20count=0D=0A>=20that=20we're=20using=20so=20that=20we=20don't=20waste=
-=20memory?=20i.e.=20allocate=20tzd_array=0D=0A>=20dynamically.=0D=0A=0D=0AO=
-k,=20I=20may=20need=20to=20prepare=20a=20separate=20patch=20for=20the=20the=
-rmal=20driver=20on=20eav920=20and=20allocate=20the=20tzd_array=20dynamicall=
-y=20there.=0D=0A=0D=0A>=20Looking=20at=20the=20exynosautov9=20registers=20t=
-hat=20you=20described=20and=20comparing=0D=0A>=20them=20with=0D=0A>=20gs101=
-=20I=20see=20just=202=20differences:=0D=0A>=201/=20exnosautov2=20has=20a=20=
-TRIMINFO_CONFIG2=20register,=20while=20gs101=20doesn't=202/=0D=0A>=20EXYNOS=
-AUTOV920_PEND=20register=20fields=20differ=20from=20GS101=0D=0A=0D=0ATRIMIN=
-FO_CONFIG2=20doesn't=20exist=20on=20eav920=20either;=20I=20simply=20misname=
-d=20it.=0D=0AHowever,=20the=20PEND=20register=20indeed=20differs=20from=20G=
-S101.=0D=0A=0D=0A>=20Given=20the=20similarities,=20and=20considering=20the=
-=20EXYNOS9_=20registers=20rename=20from:=0D=0A>=20https://lore.kernel.org/l=
-inux-samsung-soc/20251117074140.4090939-5-=0D=0A>=20youngmin.nam=40samsung.=
-com/=0D=0A>=20would=20it=20make=20sense=20to=20use=20the=20SoC-era=20name=
-=20instead=20of=20specific=20SoC,=20i.e.=0D=0A>=20s/EXYNOSAUTOV920_/EXYNOS9=
-_=20and=20use=20the=20latter=20for=20both=20exynosautov9=20and=0D=0A>=20gs1=
-01?=0D=0A>=20=0D=0A>=20Cheers,=0D=0A>=20ta=0D=0A=0D=0AFirst=20of=20all,=20a=
-s=20far=20as=20I=20know,=20EXYNOS9=20is=20not=20the=20same=20as=20exynosaut=
-ov9,=20and=20exynosautov920=20also=20differs=20from=20exynosautov9.=0D=0ASo=
-=20while=20sharing=20a=20common=20prefix=20is=20a=20good=20suggestion=20in=
-=20general,=20I=20believe=20it's=20not=20appropriate=20here=0D=0ABecause=20=
-the=20register=20definitions=20are=20not=20fully=20compatible=20across=20th=
-ese=20SoCs.=20Using=20a=20common=20name=20array=20may=20introduce=20confusi=
-on=20later.=0D=0A=0D=0AI'll=20prepare=20a=20new=20patch=20series=20accordin=
-gly=20and=20make=20sure=20to=20CC=20you.=0D=0A=0D=0ABest=20regards,=0D=0ASh=
-in=0D=0A=0D=0A=0D=0A=0D=0A
+
+On 26/11/2025 06:14, Mike Rapoport wrote:
+> On Tue, Nov 25, 2025 at 06:47:15PM +0000, Usama Arif wrote:
+>>
+>>
+>> On 25/11/2025 13:50, Mike Rapoport wrote:
+>>> Hi,
+>>>
+>>> On Tue, Nov 25, 2025 at 02:15:34PM +0100, Pratyush Yadav wrote:
+>>>> On Mon, Nov 24 2025, Usama Arif wrote:
+>>>
+>>>>>> --- a/arch/x86/realmode/init.c
+>>>>>> +++ b/arch/x86/realmode/init.c
+>>>>>> @@ -65,6 +65,8 @@ void __init reserve_real_mode(void)
+>>>>>>  	 * setup_arch().
+>>>>>>  	 */
+>>>>>>  	memblock_reserve(0, SZ_1M);
+>>>>>> +
+>>>>>> +	memblock_clear_kho_scratch(0, SZ_1M);
+>>>>>>  }
+>>>>>>  
+>>>>>>  static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
+>>>>>
+>>>>> Hello!
+>>>>>
+>>>>> I am working with Breno who reported that we are seeing the below warning at boot
+>>>>> when rolling out 6.16 in Meta fleet. It is difficult to reproduce on a single host
+>>>>> manually but we are seeing this several times a day inside the fleet.
+>>>>>
+>>>>>  20:16:33  ------------[ cut here ]------------
+>>>>>  20:16:33  WARNING: CPU: 0 PID: 0 at mm/memblock.c:668 memblock_add_range+0x316/0x330
+>>>>>  20:16:33  Modules linked in:
+>>>>>  20:16:33  CPU: 0 UID: 0 PID: 0 Comm: swapper Tainted: G S                  6.16.1-0_fbk0_0_gc0739ee5037a #1 NONE 
+>>>>>  20:16:33  Tainted: [S]=CPU_OUT_OF_SPEC
+>>>>>  20:16:33  RIP: 0010:memblock_add_range+0x316/0x330
+>>>>>  20:16:33  Code: ff ff ff 89 5c 24 08 41 ff c5 44 89 6c 24 10 48 63 74 24 08 48 63 54 24 10 e8 26 0c 00 00 e9 41 ff ff ff 0f 0b e9 af fd ff ff <0f> 0b e9 b7 fd ff ff 0f 0b 0f 0b cc cc cc cc cc cc cc cc cc cc cc
+>>>>>  20:16:33  RSP: 0000:ffffffff83403dd8 EFLAGS: 00010083 ORIG_RAX: 0000000000000000
+>>>>>  20:16:33  RAX: ffffffff8476ff90 RBX: 0000000000001c00 RCX: 0000000000000002
+>>>>>  20:16:33  RDX: 00000000ffffffff RSI: 0000000000000000 RDI: ffffffff83bad4d8
+>>>>>  20:16:33  RBP: 000000000009f000 R08: 0000000000000020 R09: 8000000000097101
+>>>>>  20:16:33  R10: ffffffffff2004b0 R11: 203a6d6f646e6172 R12: 000000000009ec00
+>>>>>  20:16:33  R13: 0000000000000002 R14: 0000000000100000 R15: 000000000009d000
+>>>>>  20:16:33  FS:  0000000000000000(0000) GS:0000000000000000(0000) knlGS:0000000000000000
+>>>>>  20:16:33  CR2: ffff888065413ff8 CR3: 00000000663b7000 CR4: 00000000000000b0
+>>>>>  20:16:33  Call Trace:
+>>>>>  20:16:33   <TASK>
+>>>>>  20:16:33   ? __memblock_reserve+0x75/0x80
+>>>
+>>> Do you have faddr2line for this?
+>>>>>>  20:16:33   ? setup_arch+0x30f/0xb10
+>>>
+>>> And this?
+>>>
+>>
+>>
+>> Thanks for this! I think it helped narrow down the problem.
+>>
+>> The stack is:
+>>
+>> 20:16:33 ? __memblock_reserve (mm/memblock.c:936) 
+>> 20:16:33 ? setup_arch (arch/x86/kernel/setup.c:413 arch/x86/kernel/setup.c:499 arch/x86/kernel/setup.c:956) 
+>> 20:16:33 ? start_kernel (init/main.c:922) 
+>> 20:16:33 ? x86_64_start_reservations (arch/x86/kernel/ebda.c:57) 
+>> 20:16:33 ? x86_64_start_kernel (arch/x86/kernel/head64.c:231) 
+>> 20:16:33 ? common_startup_64 (arch/x86/kernel/head_64.S:419) 
+>>
+>> This is 6.16 kernel.
+>>
+>> 20:16:33 ? __memblock_reserve (mm/memblock.c:936) 
+>> Thats memblock_add_range call in memblock_reserve
+>>
+>> 20:16:33 ? setup_arch (arch/x86/kernel/setup.c:413 arch/x86/kernel/setup.c:499 arch/x86/kernel/setup.c:956) 
+>> That is parse_setup_data -> add_early_ima_buffer -> add_early_ima_buffer -> memblock_reserve_kern
+>>
+>>
+>> I put a simple print like below:
+>>
+>> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
+>> index 680d1b6dfea41..cc97ffc0083c7 100644
+>> --- a/arch/x86/kernel/setup.c
+>> +++ b/arch/x86/kernel/setup.c
+>> @@ -409,6 +409,7 @@ static void __init add_early_ima_buffer(u64 phys_addr)
+>>         }
+>>  
+>>         if (data->size) {
+>> +               pr_err("PPP %s %s %d data->addr %llx, data->size %llx \n", __FILE__, __func__, __LINE__, data->addr, data->size);
+>>                 memblock_reserve_kern(data->addr, data->size);
+>>                 ima_kexec_buffer_phys = data->addr;
+>>                 ima_kexec_buffer_size = data->size;
+>>
+>>
+>> and I see (without replicating the warning):
+>>
+>> [    0.000000] PPP arch/x86/kernel/setup.c add_early_ima_buffer 412 data->addr 9e000, data->size 1000                                                                                          
+>> ....
+> 
+> So it looks like in cases when the warning reproduces there's something
+> that reserves memory overlapping with IMA buffer before
+> add_early_ima_buffer().
+> 
+>>
+>> [    0.000348] MEMBLOCK configuration:
+>> [    0.000348]  memory size = 0x0000003fea329ff0 reserved size = 0x00000000050c969b
+>> [    0.000350]  memory.cnt  = 0x5
+>> [    0.000351]  memory[0x0]     [0x0000000000001000-0x000000000009ffff], 0x000000000009f000 bytes flags: 0x40
+>> [    0.000353]  memory[0x1]     [0x0000000000100000-0x0000000067c65fff], 0x0000000067b66000 bytes flags: 0x0
+>> [    0.000355]  memory[0x2]     [0x000000006d8db000-0x000000006fffffff], 0x0000000002725000 bytes flags: 0x0
+>> [    0.000356]  memory[0x3]     [0x0000000100000000-0x000000407fff8fff], 0x0000003f7fff9000 bytes flags: 0x0
+>> [    0.000358]  memory[0x4]     [0x000000407fffa000-0x000000407fffffff], 0x0000000000006000 bytes flags: 0x0
+>> [    0.000359]  reserved.cnt  = 0x7
+>>
+>>
+>> So MEMBLOCK_RSRV_KERN and MEMBLOCK_KHO_SCRATCH seem to overlap..
+> 
+> It does not matter, they are set on different arrays. RSRV_KERN is set on
+> regions in memblock.reserved and KHO_SCRATCH is set on regions in
+> memblock.memory.
+> 
+> So dumping memblock.memory is completely irrelevant, you need to check
+> memblock.reserved for potential conflicts.
+>  
+>>>>>  20:16:33   ? start_kernel+0x58/0x960
+>>>>>  20:16:33   ? x86_64_start_reservations+0x20/0x20
+>>>>>  20:16:33   ? x86_64_start_kernel+0x13d/0x140
+>>>>>  20:16:33   ? common_startup_64+0x13e/0x140
+>>>>>  20:16:33   </TASK>
+>>>>>  20:16:33  ---[ end trace 0000000000000000 ]--- 
+>>>>>
+>>>>>
+>>>>> Rolling out with memblock=debug is not really an option in a large scale fleet due to the
+>>>>> time added to boot. But I did try on one of the hosts (without reproducing the issue) and I see:
+>>>
+>>> Is it a problem to roll out a kernel that has additional debug printouts as
+>>> Breno suggested earlier? I.e.
+>>>
+>>> 	if (flags != MEMBLOCK_NONE && flags != rgn->flags) {
+>>> 		pr_warn("memblock: Flag mismatch at region [%pa-%pa]\n",
+>>> 			&rgn->base, &rend);
+>>> 		pr_warn("  Existing region flags: %#x\n", rgn->flags);
+>>> 		pr_warn("  New range flags: %#x\n", flags);
+>>> 		pr_warn("  New range: [%pa-%pa]\n", &base, &end);
+>>> 		WARN_ON_ONCE(1);
+>>> 	}
+>>>
+>>
+>> I can add this, but the only thing is that it might be several weeks between me putting this in the
+>> kernel and that kernel being deployed to enough machines that it starts to show up. I think the IMA coinciding
+>> with memblock_mark_kho_scratch in e820__memblock_setup could be the reason for the warning. It might be better to
+>> fix that case and deploy it to see if the warnings still show up?
+>> I can add these prints as well incase it doesnt fix the problem.
+>  
+> I really don't think that effectively disabling memblock_mark_kho_scratch()
+> when KHO is disabled will solve the problem because as I said the flags it
+> sets are on different structure than the flags set by
+> memblock_reserve_kern().
+> 
+>>> If you have the logs from failing boots up to the point where SLUB reports
+>>> about it's initialization, e.g. 
+>>>
+>>> [    0.134377] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=8, Nodes=1
+>>>
+>>> something there may hint about what's the issue. 
+>>
+>> So the boot doesnt fail, its just giving warnings in the fleet.
+>> I have added the dmesg to the end of the mail.
+>  
+> Thanks, unfortunately nothing jumped at me there.
+> 
+>> Does something like this look good? I can try deploying this (although it will take sometime to find out).
+>> We can get it upstream as well as that makes backports easier.
+>>
+>> diff --git a/mm/memblock.c b/mm/memblock.c
+>> index 154f1d73b61f2..257c6f0eee03d 100644
+>> --- a/mm/memblock.c
+>> +++ b/mm/memblock.c
+>> @@ -1119,8 +1119,13 @@ int __init_memblock memblock_reserved_mark_noinit(phys_addr_t base, phys_addr_t
+>>   */
+>>  __init int memblock_mark_kho_scratch(phys_addr_t base, phys_addr_t size)
+>>  {
+>> -       return memblock_setclr_flag(&memblock.memory, base, size, 1,
+>> -                                   MEMBLOCK_KHO_SCRATCH);
+>> +#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
+>> +       if (is_kho_boot())
+> 
+> Please use 
+> 
+> 	if (IS_ENABLED(CONFIG_MEMBLOCK_KHO_SCRATCH)
+> 
+> instead of indef.
+> 
+> If you send a formal patch with it, I'll take it.
+> I'd suggest still deploying additional debug printouts internally.
+
+
+Thanks! I will add the additional debug prints and [1] in the next release.
+It will be sometime before it makes it into production, so I will try to debug
+this more using the information you provided above.
+
+[1] https://lore.kernel.org/all/20251126072051.546700-1-usamaarif642@gmail.com/
+
+> 
+>> +               return memblock_setclr_flag(&memblock.memory, base, size, 1,
+>> +                                           MEMBLOCK_KHO_SCRATCH);
+>> +#else
+>> +       return 0;
+>> +#endif
+>>  }
+>>  
+>>  /**
+>> @@ -1133,8 +1138,13 @@ __init int memblock_mark_kho_scratch(phys_addr_t base, phys_addr_t size)
+>>   */
+>>  __init int memblock_clear_kho_scratch(phys_addr_t base, phys_addr_t size)
+>>  {
+>> -       return memblock_setclr_flag(&memblock.memory, base, size, 0,
+>> -                                   MEMBLOCK_KHO_SCRATCH);
+>> +#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
+>> +       if (is_kho_boot())
+>> +               return memblock_setclr_flag(&memblock.memory, base, size, 0,
+>> +                                           MEMBLOCK_KHO_SCRATCH);
+>> +#else
+> 
+> If nothing sets the flag _clear is anyway nop, but let's update it as well
+> for symmetry.
+> 
+
 
