@@ -1,156 +1,79 @@
-Return-Path: <devicetree+bounces-242282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E6EC88E78
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:21:50 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77B20C88EA0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:24:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1E5E24E1DCD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:21:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 32C7334437B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E542E62D1;
-	Wed, 26 Nov 2025 09:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B96F31A55E;
+	Wed, 26 Nov 2025 09:24:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pURHCUCD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FkHhohhu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 481732D949F
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:21:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8473195EC;
+	Wed, 26 Nov 2025 09:24:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764148903; cv=none; b=IyTf/fStXd3sCkrus/U3Xdk25nuZT0JPE7V1m0c8DGMSt71twNgr/xLaIm5Ri4dFH03sZLOYRcCdbXhOWy0ik296YZnZTDA4zsyCa2CYmm5mBkXVMVidiV54JX5ToT7Tu6Vd6DMZ0Rsq189CRAyEdZyVsYAmvGONLs7WfAcf4JY=
+	t=1764149046; cv=none; b=aA9al8zHpMKSHu7G1+oiP+2n8u8nFcK/FK3OiK1ELe6cq+fwq7Np+1U2rfMFapxahGQ4mmC9n76KKz96CgyzvausvyxETAxfpCTLyR+zLr/s1dr42C7ST1jHqFgFUzkKuZfclmq/5jiU6nCaKUYrWzxyp9B9a6lsOg/jPkVZ96A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764148903; c=relaxed/simple;
-	bh=CF1ETXPe1PugLHsavs1SU5GJc3PtBPy6SGKx8TYf/E0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aCkIl6dO0C6eUkqFVT25/Oa1UlZzECbGM6/NynlG4cWp55sb235D/Px6iMvk3/TlJC/kgk7fH9fcGkBSFgkvPm2KoZqKit6NN9Gq+aAKk8WmPO8DlKhp2kAO6hdzlISsGWCldVjAM+TOLZJaQC+fBA7L7if9B6jqqwBiEXi98hQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pURHCUCD; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4779ce2a624so56625475e9.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 01:21:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764148899; x=1764753699; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JPZr/XNvb8iNxFUbgomB4BCl6EzqteQOa6tv7krwi+o=;
-        b=pURHCUCD7dh5yvlceB996fV6H2s/Jtxu3c1EEyE0Vlu5xeZWdAPQygVhTSkH315hOE
-         FovsgPHs5yrrSO0Q4P40ZbKcZfO/dkDE8oS+FRytE2m6qba+soWAVet2lzpL2teADnO8
-         ioMe4wzEWYuRkSkJhG2Miax2CP6ccsVzIPdhLgWAheV7jwmMKajm34o2atuc4R7Gl+5C
-         NrqDwYcfz+5v1xsqzY0w4NeMD2EtJLHr/8tWYpijoDEHPPqs2/+wpz0xPduuwyhK29eR
-         iB2Lutu5lPRdRv1bwP7EVf/ayndHvx9YG8qJvqBJYcuJJO8SSI1PiT4V9DtN/ATiGDF2
-         zNfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764148899; x=1764753699;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JPZr/XNvb8iNxFUbgomB4BCl6EzqteQOa6tv7krwi+o=;
-        b=O1V50Ud7SGl+PuWSJBnWVUJwQglUa3I5l1u+pH66oRFX219NUwLcRm1bye2r7Dir+B
-         CRbRg9BS761PhUJg0WhMAl7MAe2vYgN73UCRPyOgRik7dNVcPyo6mfbIqT7jbPXcie7r
-         kbphsNHwn4+MA+T6labuUiPWXwj4WNAkVivZWiTVhjOZ8OjcFsHsbdNkLkyVfz42rV4u
-         9FdjSVgCGEQc795sV5Ik/peu4KFl3c10HoieJcPZhGPK7/47No5MDGAXsenJ7Vahyinu
-         SKkL6mvv1d3Y+SnSK1o1zzgz8R7E4Nbm3lXcw1xz63kMAofWBvD5ALaSIN1g41axOtKW
-         74MA==
-X-Forwarded-Encrypted: i=1; AJvYcCVml5oKtyIQPSoRrUN5y+r3Uu0/tlKrXhcvAGViNcxoTkwUYq0NPH0E0fCcd7M4Xwk50EgcCIVX+agU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7LxnctObs0uZYjscwswsByvgRhZm+hsKGbb4ALpG6F6J1gyqo
-	yphp3//T5Gquias2M17PlHE98tggd5zmC5btB6Xw/lrAhdbOGj8PeBNzeKSRHceMOnA=
-X-Gm-Gg: ASbGncvlEroUD4TgMDvdhakZPs7Q15FVy1mWkiihkjNL/1d9fRfze9jkXlJLTXrRq7v
-	2L/TABU1DPMzJThTxjX7NVF69g2sIs8CfJ4jDtMf2L04OY/c/M3dyM9cuceGiyh/GJeYA6jDriA
-	sUoOkLZNoFnXyZUx5qAH64KPSMD8OOnjZmr82cgEe3c4vIwjhbNwnnqd5v+Bj45rCNNE+NLE+tp
-	8aAFZJaEym7k7nXQV7kRTcpSPllJzHKNITZHgGi83rVLTJ+nr/TabSAj9Uj8vW5EjXlDEBxOa6b
-	zTUgw7prvSqdnlxDhvZWKwDj4tc9gen7l/w4wsT2IaF83WLd0DSrcm/T/zz+PiGU3bmEgPIS8VF
-	SDRi3UTmzuiITX4HlFe3ZVnCFS74tLwi7teVnhH9qAfabvvpJBntlHG55d70tRR98ZiKV9gxrYJ
-	Nd9Pnef2jzOq1JAKe7
-X-Google-Smtp-Source: AGHT+IHu5mjVSJftAmmd8mkUWGgVLFw7C7td0QXt6C37n/EMphfyxyx6zRNAnmmqGIwLaBqQANGUSw==
-X-Received: by 2002:a05:600c:6287:b0:477:7bca:8b34 with SMTP id 5b1f17b1804b1-47904acae5fmr50881635e9.6.1764148899568;
-        Wed, 26 Nov 2025 01:21:39 -0800 (PST)
-Received: from [10.11.12.107] ([5.12.85.52])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-479040b3092sm39152885e9.1.2025.11.26.01.21.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Nov 2025 01:21:38 -0800 (PST)
-Message-ID: <401ed9b9-19a4-4a19-b397-0f353e9f0c97@linaro.org>
-Date: Wed, 26 Nov 2025 11:21:36 +0200
+	s=arc-20240116; t=1764149046; c=relaxed/simple;
+	bh=CP70fC/j4+SpEUytdhUjP0jnYGxEgjsOyK0+A0SlP58=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fBUevWo1jgLRfd4x2f1XckPFB1KHeB9BZeJerDXrDRNChS+TIGaTWz3at9SEIdAjVBPBdCQgGYPrjaNy7+kou1hrZhGARUbLGb2WM567JOOC5dBjeDdJ666BAeqC2+9QEaeHXl2GPS1Qo2AAI7M6YCGugeUSsGbJFz3TX2r2jbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FkHhohhu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 730CFC116D0;
+	Wed, 26 Nov 2025 09:24:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764149044;
+	bh=CP70fC/j4+SpEUytdhUjP0jnYGxEgjsOyK0+A0SlP58=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FkHhohhuTxvgK8J6GeyMAk/X38BBmZ85TbRvSeMd4hT5AyY8rvrZavicyn1BhN+7L
+	 ocpb32Pn7Qq/HGNN5nfB91yVmJbizG+Tg3051F7QvhhzteH9JlkD8NpNkOyoq8C3eY
+	 qSOL2XV3YUZN9hIKw3BTTAtmPlB26v3EEcKg79OJiv7TI3gY1sPru75oNRtIQ1+uVJ
+	 fZbOXMnpNhKjAD1ZgQHUombN0yS89RobjMKIX9L/Bh6WCjnaBnWYAEc4Vk9r/v2B9I
+	 HVcFjw0YGgwiVMWJu52KX/ur1LS3tDog647MXW1O3qYumOSDaItaXc85YcH50rG6DG
+	 /TjuzIp4norGA==
+Date: Wed, 26 Nov 2025 10:24:02 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lukas Timmermann <linux@timmermann.space>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Alexandre Marquet <tb@a-marquet.fr>
+Subject: Re: [PATCH v2 3/3] ARM: samsung: exynos5250: Allow CPU1 to boot
+Message-ID: <20251126-mysterious-pearl-cuckoo-b45d59@kuoka>
+References: <20251125-google-manta-v2-0-0f097cfff39c@timmermann.space>
+ <20251125-google-manta-v2-3-0f097cfff39c@timmermann.space>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 RESEND 2/3] thermal: exynos_tmu: Support new hardware
- and update TMU interface
-To: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>,
- 'Bartlomiej Zolnierkiewicz' <bzolnier@gmail.com>,
- 'Krzysztof Kozlowski' <krzk@kernel.org>,
- "'Rafael J . Wysocki'" <rafael@kernel.org>,
- 'Daniel Lezcano' <daniel.lezcano@linaro.org>,
- 'Zhang Rui' <rui.zhang@intel.com>, 'Lukasz Luba' <lukasz.luba@arm.com>,
- 'Rob Herring' <robh@kernel.org>, 'Conor Dooley' <conor+dt@kernel.org>,
- 'Alim Akhtar' <alim.akhtar@samsung.com>, youngmin.nam@samsung.com
-Cc: 'Henrik Grimler' <henrik@grimler.se>, linux-pm@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- 'Peter Griffin' <peter.griffin@linaro.org>,
- =?UTF-8?Q?=27Andr=C3=A9_Draszik=27?= <andre.draszik@linaro.org>,
- 'William McVicker' <willmcvicker@google.com>, jyescas@google.com
-References: <20251113064022.2701578-1-shin.son@samsung.com>
- <CGME20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237@epcas2p1.samsung.com>
- <20251113064022.2701578-3-shin.son@samsung.com>
- <5a6a749b-b2b7-41bb-bcb4-a2342e7f4e98@linaro.org>
- <015501dc5ea5$0c7dd460$25797d20$@samsung.com>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <015501dc5ea5$0c7dd460$25797d20$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251125-google-manta-v2-3-0f097cfff39c@timmermann.space>
 
-Hi, Shin Son,
-
-On 11/26/25 9:19 AM, 손신 wrote:
->> Looking at the exynosautov9 registers that you described and comparing
->> them with
->> gs101 I see just 2 differences:
->> 1/ exnosautov2 has a TRIMINFO_CONFIG2 register, while gs101 doesn't 2/
->> EXYNOSAUTOV920_PEND register fields differ from GS101
-> TRIMINFO_CONFIG2 doesn't exist on eav920 either; I simply misnamed it.
-> However, the PEND register indeed differs from GS101.
+On Tue, Nov 25, 2025 at 04:12:42PM +0100, Lukas Timmermann wrote:
+> From: Alexandre Marquet <tb@a-marquet.fr>
 > 
->> Given the similarities, and considering the EXYNOS9_ registers rename from:
->> https://lore.kernel.org/linux-samsung-soc/20251117074140.4090939-5-
->> youngmin.nam@samsung.com/
->> would it make sense to use the SoC-era name instead of specific SoC, i.e.
->> s/EXYNOSAUTOV920_/EXYNOS9_ and use the latter for both exynosautov9 and
->> gs101?
->>
-> First of all, as far as I know, EXYNOS9 is not the same as exynosautov9, and exynosautov920 also differs from exynosautov9.
+> Add an exception to let the secondary CPU boot.
 
-See also see this patch, or maybe the entire patch set:
-https://lore.kernel.org/linux-samsung-soc/20251117074140.4090939-2-youngmin.nam@samsung.com/
+Please say here why.
 
-It's not just autov9 and gs101 that have similar TMU registers (with the two
-exceptions AFAICT), it's also exynos850 that seems identical with autov9.
+> 
+> Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
+> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
 
-All seem to be part of the same "Exynos9-era" SoCs. Let's think about how
-gs101/exynos850 TMU addition will follow. Shall one use the EXYNOSAUTOV920
-registers? That seems misleading. Shall one redefine the entire register set?
-That won't fly because of the code duplication.
+Best regards,
+Krzysztof
 
-Thus I propose to use the EXYNOS9 prefix for the register definitions, and if
-there are SoCs with slight differences, that can be handled with compatible
-match data and specific SoC definitions, but only where things differ.
-
-> So while sharing a common prefix is a good suggestion in general, I believe it's not appropriate here
-> Because the register definitions are not fully compatible across these SoCs. Using a common name array may introduce confusion later.
-
-Please reconsider this. Maybe Youngmin Nam or others can intervene.
-
-Thanks!
-ta
 
