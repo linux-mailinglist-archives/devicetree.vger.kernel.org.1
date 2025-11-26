@@ -1,154 +1,84 @@
-Return-Path: <devicetree+bounces-242305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1CA0C890C1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:46:12 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDECCC890EB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:47:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E39884E3CC5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:46:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EF9163577FE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1D1D32145E;
-	Wed, 26 Nov 2025 09:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EB243090C6;
+	Wed, 26 Nov 2025 09:43:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WoXWk7AW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KwFfWPQF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727BF32142B;
-	Wed, 26 Nov 2025 09:43:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701F92DECDF;
+	Wed, 26 Nov 2025 09:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764150198; cv=none; b=Nwug6MAt5P7ThDVXqvEnT/KSzeLgwWGlfCTiR8LqMHPDFIFOddg2JL4XqMNzmXJ8YuHM7qBriWJf0msAri6+UGX7gpYnanp0jJZI7cPGpm1GY2v2/3LtZ3zCiJdZelsE+SV9ucB5Cubr/Igz1h9lw/i63sb/YFLHr+8bR1UWvx0=
+	t=1764150213; cv=none; b=h7C1CMcZRh7NI2wRMUBStY+LR8NfZ94W92Q3juLPjxRHDp1OgtGpSppdhyB9+gW1FheurSE0Xf9uWlI7GQ9vhJ3ZwjLAcqC34nN9ws5zxbD26mx18Re8eShvbp27UOwupxNf/ONiSvfpWIeX0Rt96Nl4G2wD2w41HfTlxMyR12Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764150198; c=relaxed/simple;
-	bh=CCg+lZSEq+WcXEQmJQne7xQ4oE1yxypysTDuDghy64Q=;
+	s=arc-20240116; t=1764150213; c=relaxed/simple;
+	bh=JWPUcitBJ/2M/fR3u302ELJCtt2/p8EGJveANa8B9KM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U7Dfc55aFpvp0DfJ0Zh6bjLMkICoR7AaNh1j3uWwreqChcuULvo6i7MDC48VK0PpRiMsv7rnQ0WtJ4Jo5Lm38vqL6jBqeJ4W/RWw9N3zRQrU+Hdtf/RMh2QtGKGJ6gntHkdWfBTCXgQ/BWiOdXDDW1ALAE5w8hWeOSbx8laMcNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WoXWk7AW; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764150197; x=1795686197;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CCg+lZSEq+WcXEQmJQne7xQ4oE1yxypysTDuDghy64Q=;
-  b=WoXWk7AWy9cksdbhge4h9b1xR7phsEkvAvaJLcfw6JLNGpAthe8mgVfY
-   5Kk30lzPdLRrbT1GDsTRHOZAUm6tAeuo34Thev2jme/iD2P533sKk0Ink
-   yqFCHW10V8wLitUfrlrhUX5gJB23Ph8PgW/EzWfOGMTAACLxnehmxiNPU
-   EGpWoeyXp3e/TIl13N/zDmq72Nu5DKznGAkpGeuB94qXxKB+ZrEixSoCK
-   hCilJX93uhi9XNCBPQftkjrVOBis9/eD2byjIOK3R/gb3dlCVZOxXUkTy
-   H3sB9jpX2TxvFO5PzMd1N8POruaUKBKbNmCjd4Rg/yNabLPJq6dvl0ZFk
-   w==;
-X-CSE-ConnectionGUID: aW8A2IbyTOW9rjSpGGbZcw==
-X-CSE-MsgGUID: ZY42antbTpeOMRMZMOlLXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="65371587"
-X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; 
-   d="scan'208";a="65371587"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2025 01:43:14 -0800
-X-CSE-ConnectionGUID: B+T8YiSeRD+/P6Odm3S47w==
-X-CSE-MsgGUID: B/YD/UVbQWaORjBCGIUAVA==
-X-ExtLoop1: 1
-Received: from iherna2-mobl4.amr.corp.intel.com (HELO kuha) ([10.124.223.25])
-  by fmviesa003.fm.intel.com with SMTP; 26 Nov 2025 01:42:55 -0800
-Received: by kuha (sSMTP sendmail emulation); Wed, 26 Nov 2025 11:42:43 +0200
-Date: Wed, 26 Nov 2025 11:42:43 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Chaoyi Chen <kernel@airkyi.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Peter Chen <hzpeterchen@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v10 01/11] usb: typec: Add notifier functions
-Message-ID: <aSbLkwPG0dUzZvql@kuha>
-References: <20251120022343.250-2-kernel@airkyi.com>
- <2025112102-laurel-mulch-58e4@gregkh>
- <462ad1bd-7eec-4f26-b383-96b049e14559@rock-chips.com>
- <2025112402-unopposed-polio-e6e9@gregkh>
- <a80483de-518d-45d5-b46a-9b70cca5b236@rock-chips.com>
- <2025112448-brush-porcupine-c851@gregkh>
- <c9cb7b79-37c8-4fef-97a6-7d6b8898f9c4@rock-chips.com>
- <aSV_lQYJPxN7oBM-@kuha>
- <2025112554-uncaring-curator-642a@gregkh>
- <cbb38c08-6937-4b7d-a0b0-d5ca6c17f466@rock-chips.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=czEp9VWVQpZJnWpHizNSqkHYqpR/ClD/2pp1RBmeUkdlKWYbl+EOAvFnda7WBdUbZQHEizxbfSIzFJhKa13N6LtHTjisYUN6viB97PUw1OB8zVMLFMBF4NwtKAg5JfUt6D2mHmvTHz0wCDtrj6WL3yWfb/2IQhgBR5WIxoeig3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KwFfWPQF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69459C113D0;
+	Wed, 26 Nov 2025 09:43:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764150212;
+	bh=JWPUcitBJ/2M/fR3u302ELJCtt2/p8EGJveANa8B9KM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KwFfWPQF+efOTX2luRkKb2J9DqVFgF1Yjvb4m4IKWMZEjIIeijoJTpsle/pTzI6WA
+	 PSkW59xXHMvRxLOaKUzRpjTExl44paz/HaeKGh1WZRhMT5CcHxUbJszwzd9o6Rc5FB
+	 7uI4m8GGQtXm6C2Ri8xJE1sPFRHvUxYzywXw0OW62UMG/MGZ71K9s0dUEHrwtgVp3R
+	 +qBK/I9SY1EW/O44uQFkOmU+8Y7wGr9sPtuq7RaLreVftV5u36BDrPfg0ucloovsG5
+	 WqWPLijwDgb3cn2BZDsIQg7oXXhpv/KGJ/xYCulmV9S3s/tphDHCY3Hq7opi5//TlW
+	 jSxvTYrsQqI1Q==
+Date: Wed, 26 Nov 2025 10:43:29 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: soc: imx93-media-blk-ctrl: Fix
+ indentation
+Message-ID: <20251126-singing-stoat-of-valor-2beade@kuoka>
+References: <20251125105006.1612348-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cbb38c08-6937-4b7d-a0b0-d5ca6c17f466@rock-chips.com>
+In-Reply-To: <20251125105006.1612348-1-alexander.stein@ew.tq-group.com>
 
-Wed, Nov 26, 2025 at 09:46:19AM +0800, Chaoyi Chen kirjoitti:
-> On 11/25/2025 7:49 PM, Greg Kroah-Hartman wrote:
-> >> +static umode_t typec_is_visible(struct kobject *kobj, struct attribute *attr, int n)
-> >> +{
-> >> +	if (is_typec_port(kobj_to_dev(kobj)->parent))
-> > 
-> > Why look at the parent?  Doesn't the device have a type that should show
-> > this?
-> > 
-> > Otherwise, looks good to me.
+On Tue, Nov 25, 2025 at 11:50:05AM +0100, Alexander Stein wrote:
+> Indentation is 4 spaces in DT bindings.
+
+2 or 4 spaces. We do not change the indentation alone, if the file uses
+correct 2-spaces indent, it's too much churn. Also, if ever doing it,
+then do it per subsystem, not one file (not sure if that's the case
+here).
+
 > 
-> They have same deivce type "typec_altmode_dev_type".
-> The parent device has a different device type to distinguish between
-> port device and partner device.
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 32 +++++++++----------
+>  1 file changed, 16 insertions(+), 16 deletions(-)
 
-I was already wondering would it make sense to provide separate device
-types for the port, and also plug, alternate modes, but I'm not sure
-if that's the right thing to do.
+Best regards,
+Krzysztof
 
-There is a plan to register an "altmode" also for the USB4 mode,
-which of course is not an alternate mode. So USB4 will definitely need a
-separate device type.
-
-So if we supply separate device types for the port, plug and partner
-alternate modes, we need to supply separate device types for port, plug
-and partner USB4 mode as well.
-
-We certainly can still do that, but I'm just not sure if it makes
-sense?
-
-I'll prepare a new version for this and include a separate patch where
-instead of defining separate device types for the port and plug
-alternate modes I'll just supply helpers is_port_alternate_mode() and
-is_plug_alternate_mode().
-
-thanks,
-
--- 
-heikki
 
