@@ -1,163 +1,338 @@
-Return-Path: <devicetree+bounces-242484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3393AC8AD43
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:08:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62860C8AE3B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:15:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8C73B4E24D2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:07:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 267824E0796
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B53833BBC4;
-	Wed, 26 Nov 2025 16:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73F7933B96F;
+	Wed, 26 Nov 2025 16:14:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="a+adtWVJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BC133CE81;
-	Wed, 26 Nov 2025 16:07:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B98F933B6DA;
+	Wed, 26 Nov 2025 16:14:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764173252; cv=none; b=e8b42pqVtHk9VJOCfLSErEJ7UYJ66LC9u4SY5sXBN/Ye7WkL4Jl6f4xnmqehsawiW6VNrNHr2UpYH22idYFBUtZCdfTVS0E47ETbpWAeMVNIvSvbgX3wdK1Q1oIrIKRnrmqbNNOi1E+J2a+RHBj6jHEdIt1R5Zo8HEtAb5xVvdw=
+	t=1764173664; cv=none; b=AWJ5sTRilwx7QL+ox2+UmQZyjOMJG0a/UAmUD/HQCg3j6Xu22hiyyWCl9RGYykcVR2/Y0LZDJRSVOjrf9l+EkQgcOTVOgpEZYDQtP9Rkvl+eulDJY1nc1a+ggDOltHTR2mCrLPtc47RT/Ix091U4jEadGDdVI+Jt0Sy0av/OsPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764173252; c=relaxed/simple;
-	bh=D5u21sgtki/irD2XESXFalufjgS/F69R9LlqZDg31ZE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fVdYa72jzM6qQox6ptNeP34OPBreYEsZ4geF3hlLd8i+/2BBYuTclC1Rl3DmqQ2lrIYs/lt0djorva2FCPnxpYkuPgrCeDJdRJIpz8rkT6dg3CHyybRwXpo6pRtg+FcLG4gwTiA2Z33bLlVXnsgauvwuBzjDazS3NeFGZqzywQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B9C41692;
-	Wed, 26 Nov 2025 08:07:20 -0800 (PST)
-Received: from [10.1.33.153] (unknown [10.1.33.153])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 051ED3F73B;
-	Wed, 26 Nov 2025 08:07:24 -0800 (PST)
-Message-ID: <4505a93b-2bac-4ce1-8971-4c31f1ce1362@arm.com>
-Date: Wed, 26 Nov 2025 16:07:23 +0000
+	s=arc-20240116; t=1764173664; c=relaxed/simple;
+	bh=x0kK1Zt9GMug1E5KSufQyhfENjqsQBZR+UYh60o3iuw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QW6AA1Dpb7Vu7ObFOWRZWnpg14hSxil2lneBA9JUsPYyWzfzHON/sMlgRLEUqY0U3oZFCNM41hrN5RPI5op3UdPunfQl6HpcsZKBdK8cAl6T9Xw3Jep3bh9oeKKwySN3JiFrF8kL+4jyyyKEJP9dNIWKrQvs8sP9Ux4CtPgm9Jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=a+adtWVJ; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 2CCC620E95;
+	Wed, 26 Nov 2025 17:14:20 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id plvOBBVR04nM; Wed, 26 Nov 2025 17:14:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1764173659; bh=x0kK1Zt9GMug1E5KSufQyhfENjqsQBZR+UYh60o3iuw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=a+adtWVJRPL5kbbUY2jOqIkmrmPlTEZpk3zUcm9uIYtnZHEa7GPIOeT6siRgbKfny
+	 UHZVKelDJF5J7A2zoLHoVxsgsdJAAvmgYr2NUFscOuCvcu25NGG8lzRdkBsHG72FCU
+	 mnT6wIYwmQTcnmzZQvoYW2HcbSEa+6YLNMUssyyb80RovbqPnb1BuoyYsbW95keBUV
+	 M0yy1fo6EIlUCvnTKtdQmDygJiAB04HmseDBEDXcgtAfUN+wEhMstJ8+ZLjp3RMBk5
+	 SSOih19lEyPDE63aSxJIKyzuSfwee4knPASEzbCg85Z8aC3dp6lebLpFC9dbMUmAls
+	 k5o5hRuPXwwCg==
+Date: Wed, 26 Nov 2025 16:13:54 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Shuwei Wu <shuweiwoo@163.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] thermal: K1: Add driver for K1 SoC thermal sensor
+Message-ID: <aScnQgLuV3kMLBJg@pie>
+References: <20251127-b4-k1-thermal-v1-0-f32ce47b1aba@163.com>
+ <20251127-b4-k1-thermal-v1-2-f32ce47b1aba@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
-Content-Language: en-GB
-To: "David Hildenbrand (Red Hat)" <david@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: Wei Yang <richard.weiyang@gmail.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linux-mm@kvack.org, devicetree@vger.kernel.org,
- Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
- Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
- Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
- Anshuman Khandual <anshuman.khandual@arm.com>
-References: <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
- <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
- <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
- <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
- <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
- <20251126134726.yrya5xxayfcde3kl@master>
- <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
- <6b966403-91e0-4f06-86a9-a4f7780b9557@kernel.org>
- <ab39d448-aa1c-4c93-8e2b-5d97a9c76af5@lucifer.local>
- <1ca9f99f-6266-47ca-8c94-1a9b9aaa717f@kernel.org>
- <37973e21-e8f4-4603-b93d-4e0b1b2499fa@lucifer.local>
- <a1d25bde-3ab6-46b5-a957-db80da7e737b@kernel.org>
-From: Ryan Roberts <ryan.roberts@arm.com>
-In-Reply-To: <a1d25bde-3ab6-46b5-a957-db80da7e737b@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251127-b4-k1-thermal-v1-2-f32ce47b1aba@163.com>
 
-On 26/11/2025 15:12, David Hildenbrand (Red Hat) wrote:
-> On 11/26/25 16:08, Lorenzo Stoakes wrote:
->> On Wed, Nov 26, 2025 at 03:56:13PM +0100, David Hildenbrand (Red Hat) wrote:
->>> On 11/26/25 15:52, Lorenzo Stoakes wrote:
->>>>
->>>> Would the pmdp_get() never get invoked then? Or otherwise wouldn't that end up
->>>> requiring a READ_ONCE() further up the stack?
->>>
->>> See my other reply, I think the pmdp_get() is required because all pud_*
->>> functions are just simple stubs.
->>
->> OK, thought you were saying we should push further down the stack? Or up
->> depending on how you view these things :P as in READ_ONCE at leaf?
+On Thu, Nov 27, 2025 at 02:44:08AM +0800, Shuwei Wu wrote:
+> The thermal sensor unit (TSU) on K1 supports monitoring five temperature
+> zones. The driver registers these sensors with the thermal framework
+> and supports standard operations:
+> - Reading temperature (millidegree Celsius)
+> - Setting high/low thresholds for interrupts
 > 
-> I think at leaf because I think the previous ones should essentially be only
-> used by stubs.
-> 
-> But I haven't fully digested how this is all working. Or supposed to work.
-> 
-> I'm trying to chew through the arch/arm/include/asm/pgtable-2level.h example to
-> see if I can make sense of it,
+> Signed-off-by: Shuwei Wu <shuweiwoo@163.com>
+> ---
+>  drivers/thermal/Kconfig      |  14 ++
+>  drivers/thermal/Makefile     |   1 +
+>  drivers/thermal/k1_thermal.c | 307 +++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 322 insertions(+)
 
-I wonder if we can think about this slightly differently;
+...
 
-READ_ONCE() has two important properties:
+> diff --git a/drivers/thermal/k1_thermal.c b/drivers/thermal/k1_thermal.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..a0e9585cbc5a4e0f7c3a47debb3cfa8e82082d88
+> --- /dev/null
+> +++ b/drivers/thermal/k1_thermal.c
+> @@ -0,0 +1,307 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Thermal sensor driver for SpacemiT K1 SoC
+> + *
+> + * Copyright (C) 2025 Shuwei Wu <shuweiwoo@163.com>
+> + */
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/thermal.h>
 
- - It guarrantees that a load will be issued, *even if output is unused*
- - It guarrantees that the read will be single-copy-atomic (no tearing)
+devm_kzalloc() is used in the file, but include for linux/slab.h is
+missing.
 
-I think for the existing places where READ_ONCE() is used for pagetable reads we
-only care about:
+> +#include "thermal_hwmon.h"
+> +
+> +#define MAX_SENSOR_NUMBER		5
+> +#define TEMPERATURE_OFFSET		278
+> +
+> +#define K1_TSU_INT_EN			0x14
+> +#define K1_TSU_INT_CLR			0x10
+> +#define K1_TSU_INT_STA			0x18
 
- - It guarrantees that a load will be issued, *if output is used*
- - It guarrantees that the read will be single-copy-atomic (no tearing)
+...
 
-I think if we can weaken to the "if output is used" property, then the compiler
-will optimize out all the unneccessary reads.
+> +#define K1_TSU_EN			0x8
 
-AIUI, a C dereference provides neither of the guarrantees so that's no good.
+...
 
-What about non-volatile asm? I'm told (thought need to verify) that for
-non-volatile asm, the compiler will emit it if the output is used and remove it
-otherwise. So if the asm contains the required single-copy-atomic, perhaps we
-are in business?
+> +#define K1_TSU_DATA_BASE		0x20
 
-So we would need a new READ_SCA() macro that could default to READ_ONCE() (which
-is stronger) and arches could opt in to providing a weaker asm version. Then the
-default pXdp_get() could be READ_SCA(). And this should work for all cases.
+...
 
-I think.
+> +#define K1_TSU_THRSH_BASE		0x40
 
-> 
->>
->> Anyway. I am now designating you the expert at this ;)
-> 
-> Oh no. :)
-> 
->>
->>>
->>>>
->>>>>
->>>>> IOW, push the READ_ONCE() down to the lowest level so the previous ones
->>>>> (that will get essentially ignore?) will get folded into the last
->>>>> READ_ONCE()?
->>>>>
->>>>> But my head still hurts and I am focusing on something else concurrently :)
->>>>
->>>> Even if we could make this work, I don't love that there's some implicit
->>>> assumption there that could easily break later on.
->>>>
->>>> I'd rather we kept it as stupid/obvious as possible...
->>>
->>> Looking at include/asm-generic/pgtable-nopmd.h I am not sure we are talking
->>> about implicit assumptions here. It's kind-of the design that the pud_t
->>> values are dummies, so why shoul the pudp_get() give you any guarantees.
->>>
->>> At least that's my current understanding, which might be very flawed :)
->>
->> I mean I'm waving my hands around like I'm working on an aircraft carrier here
->> so if you're _sure_ it's _absolutely_ safe then fine :)
-> 
-> Well, not yet ... :)
-> 
+...
 
+> +#define K1_TSU_TIME			0x0C
+
+...
+
+> +#define K1_TSU_PCTRL			0x00
+
+...
+
+> +#define K1_TSU_PCTRL2			0x04
+
+Why not sort these register offsets?
+
+> +struct k1_thermal_sensor {
+> +	struct k1_thermal_priv *priv;
+> +	struct thermal_zone_device *tzd;
+> +	int id;
+> +};
+
+> +struct k1_thermal_priv {
+> +	void __iomem *base;
+> +	struct device *dev;
+
+This variable is set but used nowhere, so I think this could be dropped.
+
+> +	struct clk *clk;
+> +	struct clk *bus_clk;
+> +	struct reset_control *reset;
+
+With devres-managed API, these three variables are only used in the
+probe function, thus could be dropped, too.
+
+> +	struct k1_thermal_sensor sensors[MAX_SENSOR_NUMBER];
+> +};
+> +
+> +static int k1_init_sensors(struct platform_device *pdev)
+
+Suggest passing k1_thermal_priv directly into the function, since
+struct platform_device isn't really necessary for it. Also it could
+return void, since there's no error to happen.
+
+> +{
+
+...
+
+> +	/*
+> +	 * Enable all sensors' auto mode, enable dither control,
+> +	 * consecutive mode, and power up sensor.
+> +	 */
+> +	temp = readl(priv->base + K1_TSU_PCTRL);
+> +	temp |= K1_TSU_PCTRL_RAW_SEL |
+> +		K1_TSU_PCTRL_TEMP_MODE |
+> +		K1_TSU_PCTRL_HW_AUTO_MODE |
+> +		K1_TSU_PCTRL_ENABLE;
+> +	temp &= ~K1_TSU_PCTRL_SW_CTRL;
+> +	temp &= ~K1_TSU_PCTRL_CTUNE;
+> +	writel(temp, priv->base + K1_TSU_PCTRL);
+
+It's a nitpick, but I think it'll be better if you follow the same
+pattern as in other readl-modification-writel blocks, to clear the bits
+then set the desired ones later,
+
+> +	/* Select 24M clk for high speed mode */
+
+This looks a little confusing, in dt-bindings you only listed a core
+clock and a bus clock, but neither core nor bus clock runs at 24MHz. So
+I suspect there's another clock source supplying the "24MHz clk",
+possibly the 24MHz oscillator, and it should be described in
+dt-bindings, too.
+
+> +	temp = readl(priv->base + K1_TSU_PCTRL2);
+> +	temp &= ~K1_TSU_PCTRL2_CLK_SEL_MASK;
+> +	temp |= K1_TSU_PCTRL2_CLK_SEL_24M;
+> +	writel(temp, priv->base + K1_TSU_PCTRL2);
+
+...
+
+> +	/* Enable each sensor */
+> +	for (i = 0; i < MAX_SENSOR_NUMBER; ++i) {
+> +		temp = readl(priv->base + K1_TSU_EN);
+> +		temp &= ~K1_TSU_EN_MASK(i);
+> +		temp |= K1_TSU_EN_MASK(i);
+
+What's the point of clearing a bit and setting it again?
+
+Furthermore, this is the only place K1_TSU_EN_MASK is used. If you fold
+the modified bits into a macro, let's say, K1_TSU_EN_ALL, to be
+GENMASK(MAX_SENSOR_NUNBER - 1, 0), this loop could be replaced with
+readl-or-writel operation, which seems much simpler to me.
+
+> +		writel(temp, priv->base + K1_TSU_EN);
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +/*
+> + * The conversion formula used is:
+> + * T(m°C) = (((raw_value & mask) >> shift) - TEMPERATURE_OFFSET) * 1000
+> + */
+> +static int k1_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+> +{
+> +	struct k1_thermal_sensor *sensor = thermal_zone_device_priv(tz);
+> +	struct k1_thermal_priv *priv = sensor->priv;
+> +
+> +	*temp = readl(priv->base + K1_TSU_DATA(sensor->id));
+> +	*temp &= K1_TSU_DATA_MASK(sensor->id);
+> +	*temp >>= K1_TSU_DATA_SHIFT(sensor->id);
+
+FIELD_GET() would help here.
+
+> +
+> +	*temp -= TEMPERATURE_OFFSET;
+> +
+> +	*temp *= 1000;
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * For each sensor, the hardware threshold register is 32 bits:
+> + * - Lower 16 bits [15:0] configure the low threshold temperature.
+> + * - Upper 16 bits [31:16] configure the high threshold temperature.
+> + */
+> +static int k1_thermal_set_trips(struct thermal_zone_device *tz, int low, int high)
+> +{
+
+...
+
+> +	high_code = high_code / 1000 + TEMPERATURE_OFFSET;
+> +	temp = readl(priv->base + K1_TSU_THRSH(sensor->id));
+> +	temp &= ~K1_TSU_THRSH_HIGH_MASK;
+> +	temp |= (high_code << K1_TSU_THRSH_HIGH_SHIFT);
+> +	writel(temp, priv->base + K1_TSU_THRSH(sensor->id));
+> +
+> +	low_code = low_code / 1000 + TEMPERATURE_OFFSET;
+> +	temp = readl(priv->base + K1_TSU_THRSH(sensor->id));
+> +	temp &= ~K1_TSU_THRSH_LOW_MASK;
+> +	temp |= (low_code << K1_TSU_THRSH_LOW_SHIFT);
+> +	writel(temp, priv->base + K1_TSU_THRSH(sensor->id));
+
+Similarly, FIELD_PUT() could simplify these threshold setting code.
+
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static irqreturn_t k1_thermal_irq_thread(int irq, void *data)
+> +{
+> +	struct k1_thermal_priv *priv = (struct k1_thermal_priv *)data;
+> +	int msk, status, i;
+> +
+> +	status = readl(priv->base + K1_TSU_INT_STA);
+> +
+> +	for (i = 0; i < MAX_SENSOR_NUMBER; i++) {
+> +		if (status & K1_TSU_INT_MASK(i)) {
+> +			msk = readl(priv->base + K1_TSU_INT_CLR);
+> +			msk |= K1_TSU_INT_MASK(i);
+> +			writel(msk, priv->base + K1_TSU_INT_CLR);
+> +			/* Notify thermal framework to update trips */
+
+Purpose of the code looks obvious, do you think the comment should be
+dropped?
+
+> +			thermal_zone_device_update(priv->sensors[i].tzd, THERMAL_EVENT_UNSPECIFIED);
+> +		}
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int k1_thermal_probe(struct platform_device *pdev)
+> +{
+
+...
+
+> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+
+Why not using dev_err_probe() here?
+
+...
+
+> +	ret = k1_init_sensors(pdev);
+
+k1_init_sensors would never fail, suggest changing it to return void,
+and get rid of assignment to ret here.
+
+Best regards,
+Yao Zi
 
