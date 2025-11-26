@@ -1,153 +1,351 @@
-Return-Path: <devicetree+bounces-242461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798ABC8A85D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:06:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52533C8A80F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CA33C4E8754
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 14:59:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3BB63A3409
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:00:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397343043C4;
-	Wed, 26 Nov 2025 14:59:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E780F305E3A;
+	Wed, 26 Nov 2025 15:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="YrLHo9uK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eSXCaNWK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C225326ED54;
-	Wed, 26 Nov 2025 14:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D512B304BCA
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 15:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764169196; cv=none; b=bwhr9328E8iVrTCnbFI6Vh4m1G568JO5DX0d0SF7R1uIh/gSrS+GKPh4PRPECVIW4HV/YQgeb0fpACvOxrd4itHfpJu+bQmxdMaOpnvxBLcNZYeeERCPOfaYqolMjScxbBvUFik4ceA85gtfe6UU2rxvu0ISRlx4VR9ehFrr2PE=
+	t=1764169245; cv=none; b=BWuZ5rFp1lF1gvOjMEKV19FbfrLl7uETYs3qjSW4j2uaqYti1HLVEPYPJVo2RiVK9Wdqz1dm4b6lpyNvFoRCeJUtJl2fU2xVGpuI0IZC5ukVjX1Wxqaz8OVwXj5KtBrlQgL4z8z1mPaFiKNMAKTgCEcbHVWkhLvW5wlwVbGlHh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764169196; c=relaxed/simple;
-	bh=Nt7E8UD7UkkmdpmvO1L9cOyiGWaqO1g7qD9kTbyWOTw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qI50m0mujapkqYpj6sNx0iDsz7L8dVbd6EOv8QZo9B7+N8WUSKmdJ06FDoxq/xtYt4Db6GTlGX2LUb1nA44MLaoDJowA0d2rAQXZ3hWmACFd5q3fTRjccNqPHsPrqDzKrirPgDThNYRCgrxwtMCvxdLlCBef/Ls1fuWIyjCpCHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=YrLHo9uK; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id DACF95341605;
-	Wed, 26 Nov 2025 15:59:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1764169188;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=TsYkSsOo0GY66ZABxmtTbdXC7PotU5PUTzj79Ek+lXw=;
-	b=YrLHo9uK8bNUzEQthpbQsjfBhcOtP/UfOmn3JW8dwUMGBxP4FMfwbhYjjvrkOoU6ZhUHkq
-	AhUxVoYLqagzM/qf9IixgxIj4aFomTFWThxb2hhLBkYqHqp3TzLpN/6T3xarXWN7O9AHbu
-	AWqO4xFUUw1uCrAdOPlfOistdsvVTes=
-Message-ID: <2c7fc579-6d46-4821-9059-4ccce589ffdb@ixit.cz>
-Date: Wed, 26 Nov 2025 15:59:48 +0100
+	s=arc-20240116; t=1764169245; c=relaxed/simple;
+	bh=5QJjkgD4Lg0uyQLZFQujwXLTzVMdno/htIphWOU29XU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GvStHdrB6yXPXL6jvP0kvbQCRtXDwdSip1xzZf2K98ox6fwmNXlQ1qe+yUvbWMGyUambJshQfUNTnKHuC5Dtk989QkkwEZWCBfZ9xsnF8WD7LAcmASsnKxwkTHwLAwcmc74zSjzEA09XY1BwSIF35SV3EOSWPU/+LlJGPUv48cE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eSXCaNWK; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-64175dfc338so11670355a12.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:00:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764169242; x=1764774042; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yz5EmXohUxVRWC4ev9hUhbYDa/f2qaZaDtF0BMtQeAs=;
+        b=eSXCaNWKVXBLdRoGqRRTeoNawi6aez0fAFM0ZMWOu5P5EKfVFQ/AIRrO0TEt66SF0g
+         Z6sHSuzCuKN0wHb7pDvC6tRgELzwHwzW0VYeEj0WrwnsvBZL1SGysImALIa6DoNQ/GCN
+         cIN7vO/DpOVIGk3+oNC6aQOFKcc7rJNcZgc1dPN6fVYIFhguNuxvSCoiMYElx1AkiXxz
+         gX20di/K/Qr6ZzOEiECB49KChioqmOJzdHy9GPcy1+WT40zNJcOnU9b6VGzk7J1r/guF
+         CEu6j29s9SOVS8qP+dshWPG7juBxGxwCcgAu8tJBmgKLqinoG7AYojTlnldB66c/p/83
+         eOCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764169242; x=1764774042;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Yz5EmXohUxVRWC4ev9hUhbYDa/f2qaZaDtF0BMtQeAs=;
+        b=nD4imiBbO7ng5rGTGo77jJObPnbH1D6p7ETiV7NK1uvXkEJwBEqE+XrRoDA5SjNWGa
+         gdsO5y7YM8IM4rnKKJKoKN3RV63geq1dJolekhkOKLDNU/MNz2I4ZldYdSyH/L6BTkbj
+         6FsogeiDcyFQ8gYpG7Jqigm6TWq/c1C6VXoEg/jsG0MPtHiwcAA57zNsDe6dx4kWbwaD
+         eWj/oP/7G1UfyUO0RD1ddagZ+4aUqPstBY12dlQarRyeJ2ctR17uMtZiHsSywuet1BIl
+         qnXtO5G4oJzfDKX+nDebsoLTw80jvbx+WQkwzmws5DcPuFBY7x3wAxzrm1CagQLJ0h4/
+         pBxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXGBN7g7hna854h7lP16+TeARa0EMS5Lb65548TRyhPolr99F92QfSc5XXWrLR92IhMXYRj4ujmPdjS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0CISjcsS7k9fRNBd9/t+MgsjCbR88Yz+j2vWVD01yEMr5qotd
+	7UCUHg/Fn6mAlXf4SElo83cbrUU7BxbVRNZoY0d8wcQ6pO9y58Ohu3Aq
+X-Gm-Gg: ASbGncv+ug4s8ZCra1k4MadkJs/25weCdkUzxCZCWq2uVlQ7GL/xsRn4RMahuUmNK4U
+	5OJ9MpPzQZFH1pK/k42/X8qlBVSOigCop2iJgsZXqNtWHHJCm5TvvvjZbyqu0L7OJsxuwgLfgUk
+	ohy3aex0HZEijzFQCIRQVx6xUv+oTg1BaoEmk7jBJWr0RZlLsuCvbB3iAg5et0jEHWmKxAJHm+9
+	+ILSpR7gxv6ACWFzwoMNbBAYioDn1ZiLK3RmxrvZaA1UF1yiwx31HEVawt6Ud7UeTmMHRyDWrbO
+	/KxjZlzaedgmGQDC/eE6oXoiLU0/Q2eI29TMtsOo7ItPWctZBGqT3rIlS0K9h4fLfrP4hsGkJLn
+	ipjiJaxzpXP656eCzVz54jdHsmi8jlWAGWBiPoWTahNifwuSLiKik8pXw6jhdcNv9e7qoWAV3+K
+	cABvfEdvpgluts+Y18zh/sKISIDcDMpymwSH5zuzleTMtFFsEexo5poXTN6ZC4wImCCZA=
+X-Google-Smtp-Source: AGHT+IGMLKBPp/nalJhT5vdwB6WP7zzO2EVVFWVnhy2g0Kthf4gY+u8ks4h7NDw/yjwO6Ns9fkv+5w==
+X-Received: by 2002:a05:6402:1ed6:b0:640:9aed:6ab6 with SMTP id 4fb4d7f45d1cf-6455468d38amr15839431a12.24.1764169242005;
+        Wed, 26 Nov 2025 07:00:42 -0800 (PST)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:1025:ba00:55dc:4ccc])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64536460ea9sm20379307a12.35.2025.11.26.07.00.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Nov 2025 07:00:39 -0800 (PST)
+Date: Wed, 26 Nov 2025 16:00:36 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 7/9] iio: adc: ad4062: Add IIO Events support
+Message-ID: <zzrtxpcxzqcjxhxmp5miov4f3kx5i3fpzmrt55azvktkgowejm@n6ofgzoaxoxb>
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
+ <20251124-staging-ad4062-v2-7-a375609afbb7@analog.com>
+ <aSQ0aM2u49qzIZDm@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable
- SLPI
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- longnoserob@gmail.com
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251126-slpi-v1-0-c101d08beaf2@gmail.com>
- <20251126-slpi-v1-1-c101d08beaf2@gmail.com>
- <jxlq4fbtl5rkiyyaivoelynw5hjpb3xtg4klcyocyzbs6ncpqa@rhqcwbehisjv>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <jxlq4fbtl5rkiyyaivoelynw5hjpb3xtg4klcyocyzbs6ncpqa@rhqcwbehisjv>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aSQ0aM2u49qzIZDm@smile.fi.intel.com>
 
-On 26/11/2025 15:41, Dmitry Baryshkov wrote:
-> On Wed, Nov 26, 2025 at 09:08:35PM +0900, Robert Eckelmann via B4 Relay wrote:
->> From: Robert Eckelmann <longnoserob@gmail.com>
->>
->> Enable the SLPI dsp on the Xiaomi Pocophone F1 with Qualcom SDM845 SoC.
->>
->> Signed-off-by: Robert Eckelmann <longnoserob@gmail.com>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
->> index 785006a15e97..0fb1d7e724c4 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
->> @@ -425,6 +425,12 @@ &sdhc_2 {
->>   	cd-gpios = <&tlmm 126 GPIO_ACTIVE_HIGH>;
->>   };
->>   
->> +&slpi_pas {
->> +	firmware-name = "qcom/sdm845/beryllium/slpi.mbn";
+On Mon, Nov 24, 2025 at 12:33:12PM +0200, Andy Shevchenko wrote:
+> On Mon, Nov 24, 2025 at 10:18:06AM +0100, Jorge Marques wrote:
+> > Adds support for IIO Events. Optionally, gp0 is assigned as Threshold
+> > Either signal, if not present, fallback to an I3C IBI with the same
+> > role.
 > 
-> qcom/sdm845/Xiaomi/beryllium/slpi.mbn
+> ...
+> 
+Hi Andy,
+> > +static ssize_t ad4062_events_frequency_store(struct device *dev,
+> > +					     struct device_attribute *attr,
+> > +					     const char *buf, size_t len)
+> > +{
+> > +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > +	int val, ret;
+> > +
+> > +	if (!iio_device_claim_direct(indio_dev))
+> > +		return -EBUSY;
+> > +	if (st->wait_event) {
+> > +		ret = -EBUSY;
+> > +		goto out_release;
+> > +	}
+> > +
+> > +	ret = kstrtoint(buf, 10, &val);
+> > +	if (ret < 0)
+> > +		goto out_release;
+> > +
+> > +	st->events_frequency = find_closest_descending(val, ad4062_conversion_freqs,
+> > +						       ARRAY_SIZE(ad4062_conversion_freqs));
+> > +	ret = 0;
+> > +
+> > +out_release:
+> > +	iio_device_release_direct(indio_dev);
+> > +	return ret ? ret : len;
+> 
+> 	return ret ?: len;
+> 
+Ack
+> > +}
+> 
+> ...
+> 
+> > +static IIO_DEVICE_ATTR(sampling_frequency, 0644, ad4062_events_frequency_show,
+> > +		       ad4062_events_frequency_store, 0);
+> 
+> IIO_DEVICE_ATTR_RW()
+> 
+Sure
+> ...
+> 
+> >  {
+> >  	struct ad4062_state *st = i3cdev_get_drvdata(i3cdev);
+> >  
+> > -	if (iio_buffer_enabled(st->indio_dev))
+> > -		iio_trigger_poll_nested(st->trigger);
+> > -	else
+> > -		complete(&st->completion);
+> > +	if (st->wait_event) {
+> > +		iio_push_event(st->indio_dev,
+> > +			       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
+> > +						    IIO_EV_TYPE_THRESH,
+> > +						    IIO_EV_DIR_EITHER),
+> > +			       iio_get_time_ns(st->indio_dev));
+> > +	} else {
+> > +		if (iio_buffer_enabled(st->indio_dev))
+> > +			iio_trigger_poll_nested(st->trigger);
+> > +		else
+> > +			complete(&st->completion);
+> > +	}
+> 
+> Less ping-pong:ish if you simply add a new code.
+> 
+> 	if (st->wait_event) {
+> 		iio_push_event(st->indio_dev,
+> 			       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
+> 						    IIO_EV_TYPE_THRESH,
+> 						    IIO_EV_DIR_EITHER),
+> 			       iio_get_time_ns(st->indio_dev));
+> 
+> 		return;
+> 	}
+> 
+> >  }
+> 
+Sure.
+> ...
+> 
+> > +static int ad4062_monitor_mode_enable(struct ad4062_state *st, bool enable)
+> > +{
+> > +	int ret = 0;
+> 
+> Unneeded assignment.
+Ack.
+> > +	if (!enable) {
+> > +		pm_runtime_put_autosuspend(&st->i3cdev->dev);
+> > +		return 0;
+> > +	}
+> 
+> Just split to two functions and drop parameter 'enable',
+>
+Sure.
+> > +	ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+> > +	ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = ad4062_conversion_frequency_set(st, st->events_frequency);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = ad4062_set_operation_mode(st, AD4062_MONITOR_MODE);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	pm_runtime_get_noresume(&st->i3cdev->dev);
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_write_event_config(struct iio_dev *indio_dev,
+> > +				     const struct iio_chan_spec *chan,
+> > +				     enum iio_event_type type,
+> > +				     enum iio_event_direction dir,
+> > +				     bool state)
+> > +{
+> > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	if (!iio_device_claim_direct(indio_dev))
+> > +		return -EBUSY;
+> > +	if (st->wait_event == state) {
+> > +		ret = 0;
+> > +		goto out_release;
+> > +	}
+> > +
+> > +	ret = ad4062_monitor_mode_enable(st, state);
+> > +	if (!ret)
+> > +		st->wait_event = state;
+> 
+> Please use regular patter to check for errors first.
+> 
+> 	if (st->wait_event == state)
+> 		ret = 0;
+> 	else
+> 		ret = ad4062_monitor_mode_enable(st, state);
+> 	if (ret)
+> 		goto out_release;
+> 
+> 	st->wait_event = state;
+> 
+> Always think about readability first and then about size of the source code.
+> 
+Sure.
+> > +out_release:
+> > +	iio_device_release_direct(indio_dev);
+> > +	return ret;
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_read_event_value(struct iio_dev *indio_dev,
+> > +				   const struct iio_chan_spec *chan,
+> > +				   enum iio_event_type type,
+> > +				   enum iio_event_direction dir,
+> > +				   enum iio_event_info info, int *val,
+> > +				   int *val2)
+> > +{
+> > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	if (!iio_device_claim_direct(indio_dev))
+> > +		return -EBUSY;
+> > +	if (st->wait_event) {
+> > +		ret = -EBUSY;
+> > +		goto out_release;
+> > +	}
+> > +
+> > +	switch (info) {
+> > +	case IIO_EV_INFO_VALUE:
+> > +		ret = __ad4062_read_event_info_value(st, dir, val);
+> > +		break;
+> > +	case IIO_EV_INFO_HYSTERESIS:
+> > +		ret = __ad4062_read_event_info_hysteresis(st, dir, val);
+> > +		break;
+> > +	default:
+> > +		ret = -EINVAL;
+> > +		break;
+> > +	}
+> > +
+> > +out_release:
+> > +	iio_device_release_direct(indio_dev);
+> > +	return ret ? ret : IIO_VAL_INT;
+> 
+> 	return ret ?: IIO_VAL_INT;
+> 
+> > +}
+Ack.
+> 
+> ...
+> 
+> > +static int __ad4062_write_event_info_value(struct ad4062_state *st,
+> > +					   enum iio_event_direction dir, int val)
+> > +{
+> > +	u8 reg;
+> > +
+> > +	if (val > 2047 || val < -2048)
+> > +		return -EINVAL;
+> 
+> There was already magic '11', perhaps define it and use there and here?
+> 
+> #define x11	11 // needs a good name
+> 
+> 	if (val > BIT(x11) || val < -BIT(x11))
+> 	
+Not magic number, but max and min signed 12-bit, maybe
 
-Could be this change done for all the firmware files at once but later?
+	if (val != sign_extend32(val, 11))
+		return -EINVAL;
+to not look like magic numbers, or 
+  	if (val < (-BIT(11)) || val > BIT(11) - 1)
+  		return -EINVAL;
 
-Currently all the firmwares using this legacy path.
+For Hysteresis I will change from
 
-David
+	if (val >= BIT(7))
+to 
+	if (val & ~GENMASK(6,0))
 
-[...]
+I believe iio only passes positive to the hysteresis, but is a little clearer.
+
+> > +	if (dir == IIO_EV_DIR_RISING)
+> > +		reg = AD4062_REG_MAX_LIMIT;
+> > +	else
+> > +		reg = AD4062_REG_MIN_LIMIT;
+> > +	put_unaligned_be16(val, st->buf.bytes);
+> > +
+> > +	return regmap_bulk_write(st->regmap, reg, &st->buf.be16,
+> > +				 sizeof(st->buf.be16));
+> > +}
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+Best regards,
+Jorge
 
