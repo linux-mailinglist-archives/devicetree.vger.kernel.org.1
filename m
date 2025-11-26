@@ -1,344 +1,262 @@
-Return-Path: <devicetree+bounces-242235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8151AC88697
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:26:03 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 958CAC886A6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:26:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0668234F8E9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 07:26:03 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6161D354C54
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 07:26:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A8A28DB71;
-	Wed, 26 Nov 2025 07:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731CF296BB6;
+	Wed, 26 Nov 2025 07:26:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AiaWVi9M"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iHM7HGe5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013000.outbound.protection.outlook.com [52.101.72.0])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5C9288C26
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764141957; cv=none; b=Yl1L9DJKCLExUuSEhVFUVqFiPMMcIU6DUFNlSpUTwoOeb0382UhSz7FvpxmEi2h6gn2/EAKFT7M5l/u3SYlZWEEf6GsoTgWBDJTUcMmEOy81DLW+d00sATn6bJ4blEBrLzAfdnw5mHzCdd4XvhYxHhoT0BteudJ9MuvoeBmEs44=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764141957; c=relaxed/simple;
-	bh=4L/5eL1/ItWCHjyzj3oXYZutZjve9LapJn5GO6pMj+k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PNKyj6uTCmxp8aBxac/H0aFnztNozsHpMiy1r6PWTv/Zn0EjJqtiZgc9clmUZrdVvlQxxyBYescN2wzUjmmFeVc+jIqmqusyTQewKx3sR0drv1QhMg3O3JF2WrzgPlsM3MLAGNnIXWWwMtHINGd2hHTfCJDyNyS5yO0DoIBUWms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AiaWVi9M; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-640a3317b89so9323068a12.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 23:25:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764141953; x=1764746753; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Iv7ZH0U5VwCrSx4pIQP2NujklUNE6c7fxiogNvnqOWg=;
-        b=AiaWVi9MJwUDl0wPYZeXkn4oBQ8BJVKeRanu4DpRo1NgYw4EEgKCRohsyuAxnDvnIh
-         BIEhTfT1uQqvK6Oxt+iSE0h6D2riY/4SwT/0zjG43o3+QRwDJ2k+xc0P7cp/6BkrmlUZ
-         IOCyiadV/oA4LVB/25ZoEErUYqJUhHjZxVPh7dZ0DyMDrUotXDNqM4S4U6nXUl2Qi7RB
-         /Yeh+ljTpG91vHXjIqAFXgUWARprMSxWzMPkeqtn52QEQWok5fec61TFj21hGBJnTheK
-         NLp8wn49uJNyq4gpS7AvIEldl70xXM2vxH0A/ofiwFQ8cK3rIBEMO3byBGjFvpc4uTG4
-         MkNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764141953; x=1764746753;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Iv7ZH0U5VwCrSx4pIQP2NujklUNE6c7fxiogNvnqOWg=;
-        b=hOdqjGT9sxUtZdoIdxOa5GcztgsFn/TN4o5vBEs3KfaQAxb/jcx9qOqg6EGhYof07j
-         2EZgxbrdSBnMWsgVRxkO5sklAOKH12iLNLt7qrIO5HlGWmErHfC54V+LfWzkrpuxR67r
-         ONyq2Uw53vJ8ieY5tRG1rwxp2ZlGek1+4TkSI4Y+kJWZoj1GknYLbp4XsSFe1ZYeHz5P
-         SrOkECjurZQc0tG5j4VHpNGzdBv5hcwZBoZ/TWmhFb9xkRq0NdCOz6arFYOjssIpmkUy
-         YMf9eYM0yCARGPx/zwoIKbsl6AVBT93JejD+k2mdzeuDLnlWjQr+q/p+YOLcEUuA2atO
-         ePCw==
-X-Forwarded-Encrypted: i=1; AJvYcCXp24BdQeroxsV6Ow2NX8UVGgKs/pU2edqRuLiogWLx3XHgW3JKOhHbEYJBD5/U3t0wah3bwFtDVZcM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwX/0emNPACwFqzVssgxahxaFgdfThOp198FCQKgBS4iAIIZMw0
-	wFlYmAjBdeuuK5JEJco7yeGWZl16oFu0L0SoFDucgAcx98qzfHsbIq0F
-X-Gm-Gg: ASbGncuG5xeK1gCdX49gguivaLTcFHwWTIRPGnWeXr4EciMA4IHb561eX3FlDOlM8q2
-	R4BAwoLQKTDvTrvRTGvamwGEE6Na78ZUTVKdAQhT0EM+66gwMt+j0b5rBM1POeObS6qYc8RB0oq
-	yCzoMW3kDARNGhLUVc8zUWJ9Pcd3nix/DqPVYPmteB3LF4OgSsh4p7rvJaWTKXVZwP/8p1QJXVp
-	xAZFc2Av5IoFt6rxg2gXfBaJkfFJNf/AeDerpqa3u3st3MLHwOsw93gfXdHAmWWEqq49kUhdQIg
-	WPi2Dr1Z+h7yFVzGisftq1LFt5e+pQIF/M5H4dw/jpSacbZVTzhFnlfzQJwjE+ffGAm2DXpeQlN
-	bQQF1b0etrGmsRB1r0kFlkgkAccVQxbRMIghf8gY7FNbKjDYsX5UvBnXhr6j4BA0aQXAJ5K7FF2
-	80sBTkqc9uXBZEnMscg4eFGLxK198ZNgZSJoWEJQ8EVCJ6+vSH7AywOZHYSJueyR9q4C1LOLtay
-	whB4sJUF40/
-X-Google-Smtp-Source: AGHT+IHX0rqNNyRTR0dneFys5BvltD8NgTOoyYKLcnywZAT/mxA+kXa1PwfcBV0janZViN7HMFRH3g==
-X-Received: by 2002:a17:907:7fa2:b0:b70:7cd8:9098 with SMTP id a640c23a62f3a-b76c5592b7amr549919866b.61.1764141952922;
-        Tue, 25 Nov 2025 23:25:52 -0800 (PST)
-Received: from ?IPV6:2a02:6b6f:e750:1800:450:cba3:aec3:a1fd? ([2a02:6b6f:e750:1800:450:cba3:aec3:a1fd])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7654d55d7fsm1796765066b.21.2025.11.25.23.25.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Nov 2025 23:25:51 -0800 (PST)
-Message-ID: <d38aeb5d-5a46-4e8d-b3c1-f2b4cdb15b04@gmail.com>
-Date: Wed, 26 Nov 2025 07:25:48 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D24288520;
+	Wed, 26 Nov 2025 07:26:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.0
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764142009; cv=fail; b=QZj3++5p0RgR5V7k6hOxwbhIYSLv6zV8KHSbRr1759m+so/OPTaya43htWb2980kdYWFcCl6+gGV/6/wwnwofvFR5QmzmN6kPq7z8Kn4aLQBh8TttTF3mff6Kkcn8idoUZx9GVzem0YM71+t6oXWrMBufGG5WwbqoeTay67KUuU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764142009; c=relaxed/simple;
+	bh=ZQpAGbz7dvHk8Is+getHp1UVtCB5jNCDxV5Hb13P9Ig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=dT4OpzP7+6UmMpYPWGGzs/enpYGgjGgDa0XYlFG1ZC4pSiR1A6mFC757fYrH9cP1AZtvVgEUOwkOj4W+k43Ax9vsf20hX6W5JE/+7C5wEzb+JQlQcW1A3PVmC7cI3Q37gkFxSfFzFUx3febv8mhD+/ClV6IBlPPR0QNhEmBiF5o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iHM7HGe5; arc=fail smtp.client-ip=52.101.72.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ud3cxRvw1TFuFc4nlhs53X+MxzZ3DK++JURr9Tfyb4ZhqmVWruG9PnwomP55PtGXXQ9949ZjQi58fJvGTgLIxVc+qS6D/mbXsUhv/Rd3MG8RchjpMq/qdVVDoDEI3VhyntZA0L0Xz4lIJBI8hwYs6tlKy7hq3sq6fovUt+h39oAE4WBfjDG4XoFDKQfIXw7HzbaoqIJRxDt2jWpIYsUjwM480kJWQV6N+/iM5KEIAsK6Tu0862te3ZS3S2RSAL3ADsARh2D6M7RbBEGeMLks/Qf7nYvqoMVIncR5kqvJAKCo6r1wA+uw7MfmkLGx1NYlT+Qkgkzb+HMwT2FQ7gfm6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P1a8YRq1WkhCi1TUQNyoig2F7ZtUJ0UZCTpT8mVpydE=;
+ b=jNaLFRuHmReuO7+wiMPdYYPACcn+2Z9s3EVvM+JOth6B+1c7PWhcxxhP5ZzuUIxN6v3SiTuhFmFsKupg6xKXh9rDnW7l6KyzFvVIGvnpz7OOG4thEloXnhOnApEVAKBsSF9EQNgwctubNnNsqiU2Gym/TCujtANK+FMPx/K0p9ogUwCCGFqEs5U8bi/56k7Gtgd0cp+DR3eRGFxWIp6/9yX5Ce2rKhz4f8B7O4KnpE6nm+14PRxK9Q4/6DC8gocTfZYi7thL2XHF3bpWNapxG8Cb25GFeCGpncGcZJyRmwLIzrwxp1D+jWEXwo7hAbHS4k5G6hDOnTDkd/vTNGWPqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=P1a8YRq1WkhCi1TUQNyoig2F7ZtUJ0UZCTpT8mVpydE=;
+ b=iHM7HGe5qRU3EVOMOqC6ewpWqTZIdqKkCUZKw1E/oLlA9OcINVcB1leIUP+uVRuE7UaJ2wBl3PVEoN6LyREQrmd3kndWbCvHG3+TIodZ6ihofqd6mzAEjlI3W94WOdIwJVz69zRE9lFM0JVntlBqDSUb48OSWk1zvdQCqYeesOGa0jlrz47qC/WbjyHPAYNrWTfG3CGxGSU2p+mmR1s75NzAdlto+2oY7ffvGBt54P45vkESu1JnupvSY++ywgH9GerxDPYprpRnYTCMtjOvyqrznPLpvnCaYpcKWbXKEKtgsQgWO3vUcleIbUOLmHvR8cID+z45aVDfietmxsAKZA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com (2603:10a6:20b:438::13)
+ by PAXPR04MB8157.eurprd04.prod.outlook.com (2603:10a6:102:1cf::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Wed, 26 Nov
+ 2025 07:26:43 +0000
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::8063:666f:9a2e:1dab]) by AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::8063:666f:9a2e:1dab%5]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
+ 07:26:42 +0000
+Date: Wed, 26 Nov 2025 09:26:38 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Daniel Golle <daniel@makrotopia.org>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Eric Woudstra <ericwouds@gmail.com>,
+	Marek =?utf-8?B?QmVo4oia4oirbg==?= <kabel@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Holger Brunck <holger.brunck@hitachienergy.com>
+Subject: Re: [PATCH net-next 1/9] dt-bindings: phy: rename
+ transmit-amplitude.yaml to phy-common-props.yaml
+Message-ID: <20251126072638.wqwbhhab3afxvm7x@skbuf>
+References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+ <20251122193341.332324-2-vladimir.oltean@nxp.com>
+ <0faccdb7-0934-4543-9b7f-a655a632fa86@lunn.ch>
+ <20251125214450.qeljlyt3d27zclfr@skbuf>
+ <b4597333-e485-426d-975e-3082895e09f6@lunn.ch>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b4597333-e485-426d-975e-3082895e09f6@lunn.ch>
+X-ClientProxiedBy: BE1P281CA0040.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:22::13) To AM9PR04MB8585.eurprd04.prod.outlook.com
+ (2603:10a6:20b:438::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 12/17] x86/e820: temporarily enable KHO scratch for
- memory below 1M
-Content-Language: en-GB
-To: Mike Rapoport <rppt@kernel.org>
-Cc: Pratyush Yadav <pratyush@kernel.org>,
- Changyuan Lyu <changyuanl@google.com>, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, anthony.yznaga@oracle.com, arnd@arndb.de,
- ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
- catalin.marinas@arm.com, corbet@lwn.net, dave.hansen@linux.intel.com,
- devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com,
- graf@amazon.com, hpa@zytor.com, jgowans@amazon.com,
- kexec@lists.infradead.org, krzk@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com,
- pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org,
- robh@kernel.org, rostedt@goodmis.org, saravanak@google.com,
- skinsburskii@linux.microsoft.com, tglx@linutronix.de,
- thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org,
- Breno Leitao <leitao@debian.org>, thevlad@meta.com
-References: <20250509074635.3187114-1-changyuanl@google.com>
- <20250509074635.3187114-13-changyuanl@google.com>
- <a0f875f1-45ad-4dfc-b5c8-ecb51b242523@gmail.com>
- <mafs01plmxngp.fsf@kernel.org> <aSW0MF9BXjLnY2Fr@kernel.org>
- <ba690e06-c2a1-4d2e-9428-9ca2ea9f2b86@gmail.com>
- <aSaazgjKX8PfFDXf@kernel.org>
-From: Usama Arif <usamaarif642@gmail.com>
-In-Reply-To: <aSaazgjKX8PfFDXf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8585:EE_|PAXPR04MB8157:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9f79047f-2797-4ca0-dd95-08de2cbd2535
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|10070799003|1800799024|19092799006|7416014|376014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?JQu8HNFwD8eEGJZINSdRSTmwU1QgImEqX1+fy7TZhs2rR3+7vbaypArNNvKk?=
+ =?us-ascii?Q?oql0jcz6NKaBRSVu/5iqUZyglUq1IaBWkjt74YuYnR+r5OfB8thI5OVr0C1w?=
+ =?us-ascii?Q?4jkorcMOZh5ryzX0i3JBGRONYr5jFCuS4jmc9hf/rcFv99Wvc/BPqJXMK8tr?=
+ =?us-ascii?Q?d2PDkU0QiMrbP0Tyy/qthJCSf0EIM4Q3oNRsSRfn0VdfeND/ekNCVg4nsYQ2?=
+ =?us-ascii?Q?z4W/+Ei8xxvB3fMYfQP38MaacwhyfCdzNCL0Qf/BLVyFYq6bky2V8JI0S7x5?=
+ =?us-ascii?Q?O2qh0ljjkUo34DRrJqArhgeLda2oTKXOHt2otLCp8hsqUFjc31wtqoDHcEmd?=
+ =?us-ascii?Q?JD9Zmr2cjBfTLWxWIRoK/B03qS/9fu2avJaU0bygho1jbUIhZfPvmjBpg1Q5?=
+ =?us-ascii?Q?T+HPCv4YYutc7YsOlNNm7O1nbzkzMBCKNNxveCt39YOmXD+Iez9mj8A/jWKb?=
+ =?us-ascii?Q?S3pfsNp2gHS/E/0IJ+T3ndTOZAY+58zcUvFd599x6PEL4CAC91UoCJ3ZGm09?=
+ =?us-ascii?Q?s5YqM2vFTbzq/o3d5TujrsDeuj2vWB3ixTDSZxUx2cd2JOucuJmxmvCl7Dc0?=
+ =?us-ascii?Q?sLCbIIXI15YkZFMuu0qk4pATv9TvIRZUPY8C6GDECL7B3j8qM7pF9BqI0PVD?=
+ =?us-ascii?Q?7LRsY1T+JOR15j/G3CTT1yxr7xvAaCMfUT8a9T8R4iqBHtVFDyrG7V3lIjtL?=
+ =?us-ascii?Q?jdb5QtWBmmEnjnImoSy+BKHat6cux04uDa4KPplZeEm0RV/O8qv6GwWXbrvg?=
+ =?us-ascii?Q?5AAMjADD7i36tUCxRcwGq4Lz+PJPFbdnA/JMdcMv1upbj8unjHXwR5RGpMo3?=
+ =?us-ascii?Q?TGbzwk7+vuFIhRBo/5gz9xUHrCMRYLpJzCbT4v7vFTscGduCeET9i7KM70iB?=
+ =?us-ascii?Q?Vc4LqEXQSRdhQkh81xOvcgDGHfLaFBB0q8Y4ftuy7YEg1tDOWMH1k85lVTlM?=
+ =?us-ascii?Q?HfhdKuI6KLQWS/2vByzY+I2CkX2t3gOBLrl5RFa0VEW6YlKUaXl7r/gdRbs2?=
+ =?us-ascii?Q?30n+Ds+N/asAijoKo3FLtE4hGBSm0G/bv9/6A9A9L7QmBljbYmBMLs8aXRNV?=
+ =?us-ascii?Q?k4onxGu/AyWL/SX80AIKm3lO1PkUvECENxnkqQln1/1EvF7B5W3WhN/H7TTc?=
+ =?us-ascii?Q?TBYknA5ULkY+C/u/zogPrWDit6IZunot0ohIwExe7/qfx5/FTwaGIQKl2BmJ?=
+ =?us-ascii?Q?F+NaC7ICCGZV+ZtXZA8ogRhAxqxZ5F6GWjpavCP+FPGHA5SfcH1SQCHr0k0S?=
+ =?us-ascii?Q?zTlpJyP0Qfhg/8SwJ63sjRHuEu7YOdV3rE67o8XkFB14RvydpBVz3BXlY6c2?=
+ =?us-ascii?Q?jFvy8AudeCH2SRhuAvAv+bS9zNAej9fS4ieDmJ3MTvWlBwX9PUJaK8FbSZlh?=
+ =?us-ascii?Q?fqzEbQ56klorCISOGACCRCo50cpMKNHdsDWLRWboImdCRA1aeyO9As17KxBt?=
+ =?us-ascii?Q?5pT+eCW6uznvKLMlqdNuoAjoSCX56ggX9/WEb05pzf/oTR2pf2654A=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8585.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(19092799006)(7416014)(376014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?8GvAWBCBkHaQRDwzX+LQrVwOHDGBOrnFP3lAaTsydcJRJeeRYeSsQOz1ZhmR?=
+ =?us-ascii?Q?axSNXy586OoEZpghzT2m8tkLRnr/ujc3RR30lMaRf7soXj0csOhd3squCYjv?=
+ =?us-ascii?Q?+mqKfIxtNCphCCCOeG2EAqUJbk4VHowaEKhSruiuFHRNWb/69whAOHoxgFuB?=
+ =?us-ascii?Q?sPBAT+hMVaZ+XLPQrFzx2t2ayn6I4c0gXAoq5LJPOyEvWoYhXgaWr0LByqi6?=
+ =?us-ascii?Q?dp++1fPM/Dn7RE6tS+MSz+4EHG//ZXU4x6pTYHjp4mvk+k3TTETrjgYWoZRM?=
+ =?us-ascii?Q?VlBY2YWVxt3MDfqk0WGU0S6hmkqjpC4DUhpg8PzqrI/TRzknuAJcjCgLPBAl?=
+ =?us-ascii?Q?7P++pDd/bY35Gqpu+I8fgLlqj6kkBa0D0uleNOIG47CwtBd7Q3gqvkgJNI7u?=
+ =?us-ascii?Q?we/6hKM7srNLbsLonno5GaduFs4OqulrRlK7eHN94J9/itSxspBq8rqDYKRp?=
+ =?us-ascii?Q?Wvj0hD16Ii8OfGor+TLN8zGDy+FAZS39qsw+Q+952OVhyhstNPedcSnn3xRy?=
+ =?us-ascii?Q?9T3L7Jg7Vlwk318uJCOtlw554SH39UZXNj9fLPq7yq7GZuQ+MNW3xen16UKk?=
+ =?us-ascii?Q?QeT85BX+C9xF2Kn2fXh/2UC8IiZUwErdcOzk0h90JzW7qizhGZYy87He8nNB?=
+ =?us-ascii?Q?XAwtNrA7Gl1Lpmsf7jUTRuw1oWVfpGqpKk28YN/2rbWfELHLO7syIQh9AE53?=
+ =?us-ascii?Q?+Vgz8z8D45PDIWPfH8ebo5zpHbrDCtcd5asIr89V6FAsgZPmQexmsLKQLepf?=
+ =?us-ascii?Q?4Tj1NZrVb8ln9ogzDbWVMi10bT4KKUiIBaO6nSLg7HFZm2iJp8B0HotOzZfk?=
+ =?us-ascii?Q?GbQkVHV35Qdok/wgrrdjsPjkfXq/i+jiZdSAfb8wWLXwzIA+Fx1YGc29jwUq?=
+ =?us-ascii?Q?HZl/keiGFqDXT0RMchSBLtC1RbEOnibwVvnMvdEbS5ajyRi+bkyB6+rsIraO?=
+ =?us-ascii?Q?CzRYoVDIjyBGvObUr+woohVL+0KKOHDP9Ji8tcAxa8Q7ETCvWQ+mjVlM9bVA?=
+ =?us-ascii?Q?WVt2gcbS2sIO1W9UjQLbBlMRr6rpSTz+cORqXeJaBTl14rVGV+DBBxCY69aa?=
+ =?us-ascii?Q?vD/JDjc6A+u8RlyzwYIlA+i9opjvORBsXlmevKwuXyX5xeo9mRxDDJ35A6lG?=
+ =?us-ascii?Q?KZMLpY1Q2hmIF0KjLOiBdg8nzS3/u6R9xu19Cd4AHS5gEjp5P4123uy5xNjU?=
+ =?us-ascii?Q?1iW/jiTy3MaaX1a1bqdgwLZ4h0Lij819eLQTVOMA31oh/w+tSXHLVzGpVO3w?=
+ =?us-ascii?Q?abSD9iJS9LWULWa7vK7Tj21sMsiJd5cCmgHm9QpzM7fbZ/uYmNQp+P2PAmdE?=
+ =?us-ascii?Q?fadl/si0IItfzDdIE6fgxMhjN0tyfrIeq7fmNADUWLbTUTmSAMHJsf5KpTJX?=
+ =?us-ascii?Q?f4LroCdE1lyIuIkRv2ZTicXEDBmtOtZodFUnXJBsT/nrcL+v0hbw6zP7C3YX?=
+ =?us-ascii?Q?YvNvW4YpBscZ5Qev8EPw503JgTBQos420utSwWHpWC0+N+iYnlblsAExRxN0?=
+ =?us-ascii?Q?yvIK358jYuh0DkOcAT41MqepP6WXZ4rJQs1uIdirAOPuttwArEYsp6+MHGc9?=
+ =?us-ascii?Q?Kln/UC7sz2bZCer4e+1ma0lSPvIf34HuzBMJOs98yHcgGNNhp8LV4RPkmc9A?=
+ =?us-ascii?Q?IEioHyGr+QWgLMuxCBzLn2oH/6ls+K6vxzh7y70szltHywWR693Is/DN2Brs?=
+ =?us-ascii?Q?ASe/xw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f79047f-2797-4ca0-dd95-08de2cbd2535
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8585.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 07:26:42.3016
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EpomPosy46JJ4kfQVcc44X3bgH6GdnySlNZ9oRlA4m87oEr8HfLNO9/ZRZ2p+TbZaREXVcvT3zIiTHxq4Pn5vA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8157
 
++Maxime, Holger
+thread at https://lore.kernel.org/netdev/20251122193341.332324-2-vladimir.oltean@nxp.com/
 
+On Tue, Nov 25, 2025 at 11:33:09PM +0100, Andrew Lunn wrote:
+> > Yeah, although as things currently stand, I'd say that is the lesser of
+> > problems. The only user (mv88e6xxx) does something strange: it says it
+> > wants to configure the TX amplitude of SerDes ports, but instead follows
+> > the phy-handle and applies the amplitude specified in that node.
+> > 
+> > I tried to mentally follow how things would work in 2 cases:
+> > 1. PHY referenced by phy-handle is internal, then by definition it's not
+> >    a SerDes port.
+> > 2. PHY referenced by phy-handle is external, then the mv88e6xxx driver
+> >    looks at what is essentially a device tree description of the PHY's
+> >    TX, and applies that as a mirror image to the local SerDes' TX.
+> > 
+> > I think the logic is used in mv88e6xxx through case #2, i.e. we
+> > externalize the mv88e6xxx SerDes electrical properties to an unrelated
+> > OF node, the connected Ethernet PHY.
+> 
+> My understanding of the code is the same, #2. Although i would
+> probably not say it is an unrelated node. I expect the PHY is on the
+> other end of the SERDES link which is having the TX amplitudes
+> set. This clearly will not work if there is an SFP cage on the other
+> end, but it does for an SGMII PHY.
 
-On 26/11/2025 06:14, Mike Rapoport wrote:
-> On Tue, Nov 25, 2025 at 06:47:15PM +0000, Usama Arif wrote:
->>
->>
->> On 25/11/2025 13:50, Mike Rapoport wrote:
->>> Hi,
->>>
->>> On Tue, Nov 25, 2025 at 02:15:34PM +0100, Pratyush Yadav wrote:
->>>> On Mon, Nov 24 2025, Usama Arif wrote:
->>>
->>>>>> --- a/arch/x86/realmode/init.c
->>>>>> +++ b/arch/x86/realmode/init.c
->>>>>> @@ -65,6 +65,8 @@ void __init reserve_real_mode(void)
->>>>>>  	 * setup_arch().
->>>>>>  	 */
->>>>>>  	memblock_reserve(0, SZ_1M);
->>>>>> +
->>>>>> +	memblock_clear_kho_scratch(0, SZ_1M);
->>>>>>  }
->>>>>>  
->>>>>>  static void __init sme_sev_setup_real_mode(struct trampoline_header *th)
->>>>>
->>>>> Hello!
->>>>>
->>>>> I am working with Breno who reported that we are seeing the below warning at boot
->>>>> when rolling out 6.16 in Meta fleet. It is difficult to reproduce on a single host
->>>>> manually but we are seeing this several times a day inside the fleet.
->>>>>
->>>>>  20:16:33  ------------[ cut here ]------------
->>>>>  20:16:33  WARNING: CPU: 0 PID: 0 at mm/memblock.c:668 memblock_add_range+0x316/0x330
->>>>>  20:16:33  Modules linked in:
->>>>>  20:16:33  CPU: 0 UID: 0 PID: 0 Comm: swapper Tainted: G S                  6.16.1-0_fbk0_0_gc0739ee5037a #1 NONE 
->>>>>  20:16:33  Tainted: [S]=CPU_OUT_OF_SPEC
->>>>>  20:16:33  RIP: 0010:memblock_add_range+0x316/0x330
->>>>>  20:16:33  Code: ff ff ff 89 5c 24 08 41 ff c5 44 89 6c 24 10 48 63 74 24 08 48 63 54 24 10 e8 26 0c 00 00 e9 41 ff ff ff 0f 0b e9 af fd ff ff <0f> 0b e9 b7 fd ff ff 0f 0b 0f 0b cc cc cc cc cc cc cc cc cc cc cc
->>>>>  20:16:33  RSP: 0000:ffffffff83403dd8 EFLAGS: 00010083 ORIG_RAX: 0000000000000000
->>>>>  20:16:33  RAX: ffffffff8476ff90 RBX: 0000000000001c00 RCX: 0000000000000002
->>>>>  20:16:33  RDX: 00000000ffffffff RSI: 0000000000000000 RDI: ffffffff83bad4d8
->>>>>  20:16:33  RBP: 000000000009f000 R08: 0000000000000020 R09: 8000000000097101
->>>>>  20:16:33  R10: ffffffffff2004b0 R11: 203a6d6f646e6172 R12: 000000000009ec00
->>>>>  20:16:33  R13: 0000000000000002 R14: 0000000000100000 R15: 000000000009d000
->>>>>  20:16:33  FS:  0000000000000000(0000) GS:0000000000000000(0000) knlGS:0000000000000000
->>>>>  20:16:33  CR2: ffff888065413ff8 CR3: 00000000663b7000 CR4: 00000000000000b0
->>>>>  20:16:33  Call Trace:
->>>>>  20:16:33   <TASK>
->>>>>  20:16:33   ? __memblock_reserve+0x75/0x80
->>>
->>> Do you have faddr2line for this?
->>>>>>  20:16:33   ? setup_arch+0x30f/0xb10
->>>
->>> And this?
->>>
->>
->>
->> Thanks for this! I think it helped narrow down the problem.
->>
->> The stack is:
->>
->> 20:16:33 ? __memblock_reserve (mm/memblock.c:936) 
->> 20:16:33 ? setup_arch (arch/x86/kernel/setup.c:413 arch/x86/kernel/setup.c:499 arch/x86/kernel/setup.c:956) 
->> 20:16:33 ? start_kernel (init/main.c:922) 
->> 20:16:33 ? x86_64_start_reservations (arch/x86/kernel/ebda.c:57) 
->> 20:16:33 ? x86_64_start_kernel (arch/x86/kernel/head64.c:231) 
->> 20:16:33 ? common_startup_64 (arch/x86/kernel/head_64.S:419) 
->>
->> This is 6.16 kernel.
->>
->> 20:16:33 ? __memblock_reserve (mm/memblock.c:936) 
->> Thats memblock_add_range call in memblock_reserve
->>
->> 20:16:33 ? setup_arch (arch/x86/kernel/setup.c:413 arch/x86/kernel/setup.c:499 arch/x86/kernel/setup.c:956) 
->> That is parse_setup_data -> add_early_ima_buffer -> add_early_ima_buffer -> memblock_reserve_kern
->>
->>
->> I put a simple print like below:
->>
->> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
->> index 680d1b6dfea41..cc97ffc0083c7 100644
->> --- a/arch/x86/kernel/setup.c
->> +++ b/arch/x86/kernel/setup.c
->> @@ -409,6 +409,7 @@ static void __init add_early_ima_buffer(u64 phys_addr)
->>         }
->>  
->>         if (data->size) {
->> +               pr_err("PPP %s %s %d data->addr %llx, data->size %llx \n", __FILE__, __func__, __LINE__, data->addr, data->size);
->>                 memblock_reserve_kern(data->addr, data->size);
->>                 ima_kexec_buffer_phys = data->addr;
->>                 ima_kexec_buffer_size = data->size;
->>
->>
->> and I see (without replicating the warning):
->>
->> [    0.000000] PPP arch/x86/kernel/setup.c add_early_ima_buffer 412 data->addr 9e000, data->size 1000                                                                                          
->> ....
-> 
-> So it looks like in cases when the warning reproduces there's something
-> that reserves memory overlapping with IMA buffer before
-> add_early_ima_buffer().
-> 
->>
->> [    0.000348] MEMBLOCK configuration:
->> [    0.000348]  memory size = 0x0000003fea329ff0 reserved size = 0x00000000050c969b
->> [    0.000350]  memory.cnt  = 0x5
->> [    0.000351]  memory[0x0]     [0x0000000000001000-0x000000000009ffff], 0x000000000009f000 bytes flags: 0x40
->> [    0.000353]  memory[0x1]     [0x0000000000100000-0x0000000067c65fff], 0x0000000067b66000 bytes flags: 0x0
->> [    0.000355]  memory[0x2]     [0x000000006d8db000-0x000000006fffffff], 0x0000000002725000 bytes flags: 0x0
->> [    0.000356]  memory[0x3]     [0x0000000100000000-0x000000407fff8fff], 0x0000003f7fff9000 bytes flags: 0x0
->> [    0.000358]  memory[0x4]     [0x000000407fffa000-0x000000407fffffff], 0x0000000000006000 bytes flags: 0x0
->> [    0.000359]  reserved.cnt  = 0x7
->>
->>
->> So MEMBLOCK_RSRV_KERN and MEMBLOCK_KHO_SCRATCH seem to overlap..
-> 
-> It does not matter, they are set on different arrays. RSRV_KERN is set on
-> regions in memblock.reserved and KHO_SCRATCH is set on regions in
-> memblock.memory.
-> 
-> So dumping memblock.memory is completely irrelevant, you need to check
-> memblock.reserved for potential conflicts.
->  
->>>>>  20:16:33   ? start_kernel+0x58/0x960
->>>>>  20:16:33   ? x86_64_start_reservations+0x20/0x20
->>>>>  20:16:33   ? x86_64_start_kernel+0x13d/0x140
->>>>>  20:16:33   ? common_startup_64+0x13e/0x140
->>>>>  20:16:33   </TASK>
->>>>>  20:16:33  ---[ end trace 0000000000000000 ]--- 
->>>>>
->>>>>
->>>>> Rolling out with memblock=debug is not really an option in a large scale fleet due to the
->>>>> time added to boot. But I did try on one of the hosts (without reproducing the issue) and I see:
->>>
->>> Is it a problem to roll out a kernel that has additional debug printouts as
->>> Breno suggested earlier? I.e.
->>>
->>> 	if (flags != MEMBLOCK_NONE && flags != rgn->flags) {
->>> 		pr_warn("memblock: Flag mismatch at region [%pa-%pa]\n",
->>> 			&rgn->base, &rend);
->>> 		pr_warn("  Existing region flags: %#x\n", rgn->flags);
->>> 		pr_warn("  New range flags: %#x\n", flags);
->>> 		pr_warn("  New range: [%pa-%pa]\n", &base, &end);
->>> 		WARN_ON_ONCE(1);
->>> 	}
->>>
->>
->> I can add this, but the only thing is that it might be several weeks between me putting this in the
->> kernel and that kernel being deployed to enough machines that it starts to show up. I think the IMA coinciding
->> with memblock_mark_kho_scratch in e820__memblock_setup could be the reason for the warning. It might be better to
->> fix that case and deploy it to see if the warnings still show up?
->> I can add these prints as well incase it doesnt fix the problem.
->  
-> I really don't think that effectively disabling memblock_mark_kho_scratch()
-> when KHO is disabled will solve the problem because as I said the flags it
-> sets are on different structure than the flags set by
-> memblock_reserve_kern().
-> 
->>> If you have the logs from failing boots up to the point where SLUB reports
->>> about it's initialization, e.g. 
->>>
->>> [    0.134377] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=8, Nodes=1
->>>
->>> something there may hint about what's the issue. 
->>
->> So the boot doesnt fail, its just giving warnings in the fleet.
->> I have added the dmesg to the end of the mail.
->  
-> Thanks, unfortunately nothing jumped at me there.
-> 
->> Does something like this look good? I can try deploying this (although it will take sometime to find out).
->> We can get it upstream as well as that makes backports easier.
->>
->> diff --git a/mm/memblock.c b/mm/memblock.c
->> index 154f1d73b61f2..257c6f0eee03d 100644
->> --- a/mm/memblock.c
->> +++ b/mm/memblock.c
->> @@ -1119,8 +1119,13 @@ int __init_memblock memblock_reserved_mark_noinit(phys_addr_t base, phys_addr_t
->>   */
->>  __init int memblock_mark_kho_scratch(phys_addr_t base, phys_addr_t size)
->>  {
->> -       return memblock_setclr_flag(&memblock.memory, base, size, 1,
->> -                                   MEMBLOCK_KHO_SCRATCH);
->> +#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
->> +       if (is_kho_boot())
-> 
-> Please use 
-> 
-> 	if (IS_ENABLED(CONFIG_MEMBLOCK_KHO_SCRATCH)
-> 
-> instead of indef.
-> 
-> If you send a formal patch with it, I'll take it.
-> I'd suggest still deploying additional debug printouts internally.
+It is unrelated in the sense that the SGMII PHY is a different kernel
+object, and the mv88e6xxx is polluting its OF node with properties which
+it then interprets as its own, when the PHY driver may have wanted to
+configure its SGMII TX amplitude too, via those same generic properties.
 
+> I guess this code is from before the time Russell converted the
+> mv88e6xxx SERDES code into PCS drivers. The register being set is
+> within the PCS register set.  The mv88e6xxx also does not make use of
+> generic phys to represent the SERDES part of the PCS. So there is no
+> phys phandle to follow since there is no phy.
 
-Thanks! I will add the additional debug prints and [1] in the next release.
-It will be sometime before it makes it into production, so I will try to debug
-this more using the information you provided above.
+In my view, the phy-common-props.yaml are supposed to be applicable to either:
+(1) a network PHY with SerDes host-side connection (I suppose the media
+    side electrical properties would be covered by Maxime's phy_port
+    work - Maxime, please confirm).
+(2) a phylink_pcs with SerDes registers within the same register set
+(3) a generic PHY
 
-[1] https://lore.kernel.org/all/20251126072051.546700-1-usamaarif642@gmail.com/
+My patch 8/9 (net: phy: air_en8811h: deprecate "airoha,pnswap-rx" and
+"airoha,pnswap-tx") is an example of case (1) for polarities. Also, for
+example, at least Aquantia Gen3 PHYs (AQR111, AQR112) have a (not very
+well documented) "SerDes Lane 0 Amplitude" field in the PHY XS Receive
+(XAUI TX) Reserved Vendor Provisioning 4 register (address 4.E413).
 
-> 
->> +               return memblock_setclr_flag(&memblock.memory, base, size, 1,
->> +                                           MEMBLOCK_KHO_SCRATCH);
->> +#else
->> +       return 0;
->> +#endif
->>  }
->>  
->>  /**
->> @@ -1133,8 +1138,13 @@ __init int memblock_mark_kho_scratch(phys_addr_t base, phys_addr_t size)
->>   */
->>  __init int memblock_clear_kho_scratch(phys_addr_t base, phys_addr_t size)
->>  {
->> -       return memblock_setclr_flag(&memblock.memory, base, size, 0,
->> -                                   MEMBLOCK_KHO_SCRATCH);
->> +#ifdef CONFIG_MEMBLOCK_KHO_SCRATCH
->> +       if (is_kho_boot())
->> +               return memblock_setclr_flag(&memblock.memory, base, size, 0,
->> +                                           MEMBLOCK_KHO_SCRATCH);
->> +#else
-> 
-> If nothing sets the flag _clear is anyway nop, but let's update it as well
-> for symmetry.
-> 
+My patch 7/9 (net: pcs: xpcs: allow lane polarity inversion) is an
+example of case (2).
 
+I haven't submitted an example of case (3) yet, but the Lynx PCS and
+Lynx SerDes would fall into that category. The PCS would be free of
+describing electrical properties, and those would go to the generic PHY
+(SerDes).
+
+All I'm trying to say is that we're missing an OF node to describe
+mv88e6xxx PCS electrical properties, because otherwise, it collides with
+case (1). My note regarding "phys" was just a guess that the "phy-handle"
+may have been mistaken for the port's SerDes PHY. Although there is a
+chance Holger knew what he was doing. In any case, I think we need to
+sort this one way or another, leaving the phy-handle logic a discouraged
+fallback path.
+
+That being said, I'm not exactly an expert in determining _how_ we could
+best retrofit SerDes/PCS OF nodes on top of the mv88e6xxx bindings.
+It depends on how many SerDes ports there are in these switches
+architecturally, and what is their register access method, so it would
+need to be handled on a case-by-case basis rather than one-size-fits-all.
+PCS node in port node could be a starting point, I guess, but I don't
+know if it would work.
+
+For SJA1105 and the XPCS, I thought the best course of action would be
+to create a "regs" container node in the switch, under which we'd have
+"ethernet-pcs" children, but that seems to be problematic in its own
+ways, due to how MFD is seemingly abused to make that work:
+https://lore.kernel.org/netdev/20251118190530.580267-15-vladimir.oltean@nxp.com/
 
