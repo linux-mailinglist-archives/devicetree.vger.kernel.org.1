@@ -1,83 +1,214 @@
-Return-Path: <devicetree+bounces-242315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 281C0C891BD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:52:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F9EC891FF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:53:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC9273A9F3E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:52:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3DED3A29A4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B73D2E718B;
-	Wed, 26 Nov 2025 09:50:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E724306483;
+	Wed, 26 Nov 2025 09:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="llsKr8Sl"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="O8XkSE8k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4BBB2EBBB4;
-	Wed, 26 Nov 2025 09:50:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764150609; cv=none; b=KO/X0ttPJ55tnXWMKz4gPdNh9N2hOCK00xioyLbXH1MPinLmJItyPHeTcr3WmwMDHWtkTcEL0jCRXFvkLpvMBv1weF/14yE0ZmcyGQR2xjWCqB3XqXSyw3gk/CJ5lObI+5nFjhpnf39BGwxgfXILnv4z4PGKRTMGbvrWEC/Sr0s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764150609; c=relaxed/simple;
-	bh=H+4zx+UsNc04/booLLfbhUc+FC8ScxXoB4fFnM/XB48=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NAR7DqCiHt6U9lJnZ9nch4yV42gvuVXg8DJ4GR8R7sWMx4ZxxiPyE3F8CdDnUb24bndqkY1UkMuOSsbZFYUCPGFa+4roUcvsrC34DyGGmB/srQYEURMFezcW5FsO9j0pUnZv0isNzIO2gJ3AD64HM3NDr6JSkCwAW1RpJuBUd0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=llsKr8Sl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1155C113D0;
-	Wed, 26 Nov 2025 09:50:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764150608;
-	bh=H+4zx+UsNc04/booLLfbhUc+FC8ScxXoB4fFnM/XB48=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=llsKr8Sl929Oau2ZnXLhK8NaO/aWot5j8Wej8OuW+DkhBtaslsnbUKwDSp4L5wwv2
-	 wpJaETkiPab7ShCVnBnP5ARFERkRuUjUrcw7GNqX/OLTAcm63PTLhQEBH0qhJoeRjJ
-	 YA6Hl7iDRZ519eiSQpOsBBU9gwWEoRrW7MEe3Rob3/cTF7yF3DoEApVQQx86XhsjPy
-	 YcRqzEMFw9TRmrks5wjlFDoVU5Z3faDJh3SZhXl86iL/n7R+WRHtYqd0xRPWKFP+Y7
-	 84I47u2FXVHKL8r4Jy0gc/cUafHYroYWqWXfORcePn+BlWI/NFQsSAIz5GTbBZF0Nb
-	 0eEH98aCVduaA==
-Date: Wed, 26 Nov 2025 10:50:05 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH] dt-bindings: spi: renesas,rzv2h-rspi: Document RZ/V2N
- SoC support
-Message-ID: <20251126-nifty-bug-of-music-d9f1cd@kuoka>
-References: <20251125214529.276819-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32DEA3054F5;
+	Wed, 26 Nov 2025 09:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764150682; cv=pass; b=tCrWqQ+p3UDJLKVyWlJs8yXem55XGuPTAaEELUHgNiw8VxSFpG0gg6b8J8vZHyUs1NQ2jZENoiZ8PZdRVFWwrq0eZZoCxvojtBR0zyWWYCLuAHesxSA9KjARE7Zgc+bGsgMsZXz7CXsYcEZkTGhpySBwCgSqvQ5AtnI8MyHTwkw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764150682; c=relaxed/simple;
+	bh=cGcQhwRu7CBTzlhQkSvbP/GEOTbwssNmYI3Qff2lHHE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=nIA902oXmwuYvbfPVRTrbGTf5QzX319CwO0LnFJmwmqEoTIpWiPusdu8Q5eHijWlicN1OFFNu4r3z4B5ZpEQbJrf47KM41jD9Ax9487wUfy/Kh0+KPfjs0P1IUhWVRkGcMMMv3Ble1fzIMS6t/XcEE51UsQrE2KBjxA4roCtj7E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=O8XkSE8k; arc=pass smtp.client-ip=136.143.184.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1764150649; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Vq6V27VOi3pqmFR3nYPN+F28Ob3QjjvrTFNqOJPrCwsPzfq6fgzT8IDbNriOTaksKk5q8g3vRcoMwYKrSDhD5IdRJfOaLWo7d2bvnn6QG01dj1LQtZ7Mlg8lI3rOnRDmolONekN6sdQZUbgLEhaQfAzwFuKNjqetk4cf7hEZC2s=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1764150649; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=cGcQhwRu7CBTzlhQkSvbP/GEOTbwssNmYI3Qff2lHHE=; 
+	b=AFfo/Lj7B+cG+kEr8acGty6ck9Rk2PekB57kbt81WaFZRX5IL5bTbD1bN6zMew/wlYY8hkIuTwiGAp65xiG+QWIg8D/ijtMmmnq7+UwaUN7wj8KyhL8+Wj74i/yBbELAgMxXTg3BK0YHSun46R29mKdjISkaicHfK4INBM2vNQw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764150648;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=cGcQhwRu7CBTzlhQkSvbP/GEOTbwssNmYI3Qff2lHHE=;
+	b=O8XkSE8kw1i4BbMEGqGCFcj2RawPC0MhLnVYFr+RHNIex9ME+g1f2Ufv0PK7FOJ8
+	GXP+/Szy2gGEZkVFMPXRBqdmSI3OjCNXlB3EHAT3OMEVjge+mESSuU0B81YQvCXP1j/
+	uleB4fwMAyuTW8iSC/tp6zRvZrrnRllfiB6dDP6uhBz8ILTnvvbOnA04EyZgZYeOsUK
+	ViTOehL4ta5XDrYbQWl7JfdPvUZzweKrjgA+i1WqlyDhLGq4B/pXTGmpHwWknS8q8Y4
+	JQkieFmpdPVlbjbNPUD8K/QZ9TZh5oLpNnw+FQMMuPL4MCWtiwHVotPppGWgYlei9Sp
+	mDFrVkM5IA==
+Received: by mx.zohomail.com with SMTPS id 1764150647026294.37960967272056;
+	Wed, 26 Nov 2025 01:50:47 -0800 (PST)
+Message-ID: <544ae21cc1b5f488d03a5650d9275ff22b237d63.camel@icenowy.me>
+Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Drew
+ Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner
+ <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Michal
+ Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Date: Wed, 26 Nov 2025 17:50:36 +0800
+In-Reply-To: <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
+References: <20251124105226.2860845-1-uwu@icenowy.me>
+	 <20251124105226.2860845-3-uwu@icenowy.me>
+	 <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251125214529.276819-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-ZohoMailClient: External
 
-On Tue, Nov 25, 2025 at 09:45:29PM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Document the RSPI controller on the Renesas RZ/V2N SoC. The block is
-> compatible with the RSPI implementation found on the RZ/V2H(P) family.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/spi/renesas,rzv2h-rspi.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+=E5=9C=A8 2025-11-24=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 12:01 +0100=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 24/11/2025 11:52, Icenowy Zheng wrote:
+> > Verisilicon has a series of display controllers prefixed with DC
+> > and
+> > with self-identification facility like their GC series GPUs.
+> >=20
+> > Add a device tree binding for it.
+> >=20
+> > Depends on the specific DC model, it can have either one or two
+> > display
+> > outputs, and each display output could be set to DPI signal or "DP"
+> > signal (which seems to be some plain parallel bus to HDMI
+> > controllers).
+> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+>=20
+> Wrong DCO chain order. You send it as icenowy.me, so this must be
+> last
+> SoB. This identity is the last one certifying DCO. Please kindly read
+> submitting patches, so you know what you are certifying here.
+>=20
+> > ---
+> > Changes in v3:
+> > - Added SoC-specific compatible string, and arm the binding with
+> > clock /
+> > =C2=A0 port checking for the specific SoC (with a 2-output DC).
+> >=20
+> > Changes in v2:
+> > - Fixed misspelt "versilicon" in title.
+> > - Moved minItems in clock properties to be earlier than items.
+> > - Re-aligned multi-line clocks and resets in example.
+> >=20
+> > =C2=A0.../bindings/display/verisilicon,dc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 146
+> > ++++++++++++++++++
+> > =C2=A01 file changed, 146 insertions(+)
+> > =C2=A0create mode 100644
+> > Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > new file mode 100644
+> > index 0000000000000..522a544498bea
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > @@ -0,0 +1,146 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/verisilicon,dc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Verisilicon DC-series display controllers
+> > +
+> > +maintainers:
+> > +=C2=A0 - Icenowy Zheng <uwu@icenowy.me>
+> > +
+> > +properties:
+> > +=C2=A0 $nodename:
+> > +=C2=A0=C2=A0=C2=A0 pattern: "^display@[0-9a-f]+$"
+> > +
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - thead,th1520-=
+dc8200
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: verisilicon,dc
+>=20
+> I do not see any explanation of exception for generic compatibles,
+> maybe
+> except "self-identification" remark. Rob already pointed this out, so
+> be
+> explicit in commit msg why you are using a generic compatible.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Well I only get the meaning of "a SoC specific compatible is required"
+in his review message.
 
-Best regards,
-Krzysztof
+I think my binding now requires both a SoC-specific compatible and a
+generic compatible, which should be okay to satisfy Rob's original
+review.
+
+>=20
+> > +
+> > +=C2=A0 reg:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 interrupts:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 clocks:
+> > +=C2=A0=C2=A0=C2=A0 minItems: 4
+>=20
+> This is not flexible. Device either has or has not these clocks.
+
+The existence of all these clocks are verified by diagrams in manuals
+of two different SoCs with DC8200 (T-Head TH1520 and StarFive JH7110).
+
+Maybe a explicit `maxItems: 5` is needed here, but as my DT passes
+dtbs_check, I don't think it's necessary?
+
+Or maybe I should drop the flexibility now and use a `minItems: 5` here
+(and leave DC8000 support as another story)? (The Eswin EIC7700 manual
+does not have a diagram showing external connections of the DC, like
+the two SoCs I mentioned above).
+
+>=20
+> > +=C2=A0=C2=A0=C2=A0 items:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DC Core clock
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DMA AXI bus clock
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Configuration AHB bus cl=
+ock
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Pixel clock of output 0
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Pixel clock of output 1
+> > +
+>=20
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
 
