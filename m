@@ -1,320 +1,106 @@
-Return-Path: <devicetree+bounces-242352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5F3C8973B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:09:59 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D652C897C0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:21:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4173E3411CD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:09:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CC968356B77
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F8DC2FD7D5;
-	Wed, 26 Nov 2025 11:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863B531A81F;
+	Wed, 26 Nov 2025 11:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j4tfa19X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A42B4287506;
-	Wed, 26 Nov 2025 11:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5144F2E1F01;
+	Wed, 26 Nov 2025 11:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764155396; cv=none; b=FMiRwJDnbo0eFws/5EPE9sFDdn4uE6aBOe+XHZ2Z/KEYptTG+UO5BNKjplYv0CGM/zcN5JoUThvdC3p4SAzDlrlVWe5Qs01NBtOjwAjs7H5LT/xuKc7pAFga/lG6MKv1ycXCx+KWHRqZhpjwmNldsoSIk8JWiQwwWmyNukiz1Ok=
+	t=1764156103; cv=none; b=GqbzDNMiC41M8tqf5+Q24Tz18JB7cwwiFAm1sVjlQtU2b880V2oAMKUUmXCwX6yT8z2GowuVO6SnHn45iCbrs7ZzvT9ubJOxfdi5815vPtiA8dASficouOmlKsvEuUWfCOWGGHQkxIWqX2OAO2onHtKambL9Macxfy2+/l+h3TA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764155396; c=relaxed/simple;
-	bh=j46hfZFHPECrwGwJ7qyxlRU6w8tL9ROtm8bFXjxRPjo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=okNQqxsGa+7DZ7bSqR7us5+ZPy8FbeJrvtclW2srOw33oifMBhbeHicVfX7e6nVEJKZ5NeUCpTgjvbMgxowZ2fS3f7C9rXH70o5b23WtT4mGy7fuWPEBdw1+Ea7PbMBXmthMg2ooQnU7vz+7StOunKxflsYXpb31Li9e6cWHZBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 47C0D168F;
-	Wed, 26 Nov 2025 03:09:45 -0800 (PST)
-Received: from [10.1.33.153] (unknown [10.1.33.153])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1DF653F66E;
-	Wed, 26 Nov 2025 03:09:50 -0800 (PST)
-Message-ID: <02e3b3bd-ae6a-4db4-b4a1-8cbc1bc0a1c8@arm.com>
-Date: Wed, 26 Nov 2025 11:09:48 +0000
+	s=arc-20240116; t=1764156103; c=relaxed/simple;
+	bh=+M1dNYDPJDucmTy9XgibG4O3ZcsHHharUUjsVMGS+nA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TQkulGCRYM/4xcqZbpJwAzawrxkqYnX4697j9Rnl4OwmesNqNjcy1R1GlZihLxV7BefmOvHfi/OwcSFWbi7S/SFupcIF/h9NowT+s3FslPFjQH+Med+dBMCl5CdLOdNCYrcs1oaGoGR+V33MpmEp23Hs0YaCCwii/hK9uFytUrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j4tfa19X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F9B2C113D0;
+	Wed, 26 Nov 2025 11:21:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764156102;
+	bh=+M1dNYDPJDucmTy9XgibG4O3ZcsHHharUUjsVMGS+nA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j4tfa19XKP/x/FcIklEc01X3EQ2mi5Z77lcnl1oTTD5GN19QNt7/cnlCR+YYceTIR
+	 fr1KasndG+dNmakai/vmMKtQp1tBEk9875rxJjDRNske+IbaxEgK6TCz1No/IDA96U
+	 YGLrccfS/Da1/Gf7agbu7GcDBaN9TyvloFVyuzrituWVBQVnIcbX66FJ5PPKcrQPCz
+	 0m1aluQ+hHFaGFhCix8oxczRrewLXDA4hiEKXg6csFn1cMxZAtM4cE66NdJsSTVrT8
+	 xoanTaZ6tjv8TVV+PUtXmNTGPc/BDr+4hVFm3zb19gUhUU2jte88LMaeF1p08+7wiD
+	 EhqvulIEzbrBA==
+Date: Wed, 26 Nov 2025 11:21:34 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: spi: renesas,rzv2h-rspi: Document RZ/V2N
+ SoC support
+Message-ID: <a406ed6a-fe64-408e-92fa-e8acd5b5a4b7@sirena.org.uk>
+References: <20251125214529.276819-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
-Content-Language: en-GB
-To: Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- David Hildenbrand <david@redhat.com>, linux-mm@kvack.org
-Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
- linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>,
- Michal Hocko <mhocko@suse.com>, Conor Dooley <conor@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
- Vlastimil Babka <vbabka@suse.cz>, "Liam R . Howlett"
- <Liam.Howlett@oracle.com>, Julia Lawall <Julia.Lawall@inria.fr>,
- Nicolas Palix <nicolas.palix@imag.fr>,
- Anshuman Khandual <anshuman.khandual@arm.com>
-References: <20251113014656.2605447-1-samuel.holland@sifive.com>
- <20251113014656.2605447-7-samuel.holland@sifive.com>
-From: Ryan Roberts <ryan.roberts@arm.com>
-In-Reply-To: <20251113014656.2605447-7-samuel.holland@sifive.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 13/11/2025 01:45, Samuel Holland wrote:
-> Some platforms need to fix up the values when reading or writing page
-> tables. Because of this, the accessors must always be used; it is not
-> valid to simply dereference a pXX_t pointer.
-> 
-> Fix all of the instances of this pattern in generic code, mostly by
-> applying the below coccinelle semantic patch, repeated for each page
-> table level. Some additional fixes were applied manually, mostly to
-> macros where type information is unavailable.
-> 
-> In a few places, a `pte_t *` or `pmd_t *` is actually a pointer to a PTE
-> or PMDE value stored on the stack, not a pointer to a page table. In
-> those cases, it is not appropriate to use the accessors, because the
-> value is not globally visible, and any transformation from pXXp_get()
-> has already been applied. Those places are marked by naming the pointer
-> `ptentp` or `pmdvalp`, as opposed to `ptep` or `pmdp`.
-> 
-> @@
-> pte_t *P;
-> expression E;
-> expression I;
-> @@
-> - P[I] = E
-> + set_pte(P + I, E)
-> 
-> @@
-> pte_t *P;
-> expression E;
-> @@
-> (
-> - WRITE_ONCE(*P, E)
-> + set_pte(P, E)
-> |
-> - *P = E
-> + set_pte(P, E)
-> )
-
-There should absolutely never be any instances of core code directly setting an
-entry at any level. This *must* always go via the arch code helpers. Did you
-find any instances of this? If so, I would consider these bugs and suggest
-sending as a separate bugfix patch. Bad things could happen on arm64 because we
-may need to break a contiguous mapping, which would not happen if the value is
-set directly.
-
-> 
-> @@
-> pte_t *P;
-> expression I;
-> @@
-> (
->   &P[I]
-> |
-> - READ_ONCE(P[I])
-> + ptep_get(P + I)
-> |
-> - P[I]
-> + ptep_get(P + I)
-> )
-> 
-> @@
-> pte_t *P;
-> @@
-> (
-> - READ_ONCE(*P)
-> + ptep_get(P)
-> |
-> - *P
-> + ptep_get(P)
-> )
-
-For reading the *PTE*, conversion over to ptep_get() should have already been
-done (I did this a few years back when implementing support for arm64 contiguous
-mappings). If you find any cases where direct dereference or READ_ONCE() is
-being done in generic code for PTE, then that's a bug and should also be sent as
-a separate patch.
-
-FYI, my experience was that Coccinelle didn't find everything when I was
-converting to ptep_get() - although it could have been that my Cochinelle skills
-were not up to scratch! I ended up using an additional method where I did a
-find/replace to convert "pte_t *" to "ptep_handle_t" and declared pte_handle_t
-as a void* which causes a compiler error on dereference. Then in a few key
-places I did a manual case from pte_handle_t to (pte_t *) and compiled allyesconfig.
-
-I'm assuming the above Cocchinelle template was also used for pmd_t, pud_t,
-p4d_t and pgd_t?
-
-> 
-> Additionally, the following semantic patch was used to convert PMD and
-> PUD references inside struct vm_fault:
-> 
-> @@
-> struct vm_fault vmf;
-> @@
-> (
-> - *vmf.pmd
-> + pmdp_get(vmf.pmd)
-> |
-> - *vmf.pud
-> + pudp_get(vmf.pud)
-> )
-> 
-> @@
-> struct vm_fault *vmf;
-> @@
-> (
-> - *vmf->pmd
-> + pmdp_get(vmf->pmd)
-> |
-> - *vmf->pud
-> + pudp_get(vmf->pud)
-> )
-> 
-> 
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
-> ---
-> This commit covers some of the same changes as an existing series from
-> Anshuman Khandual[1]. Unlike that series, this commit is a purely
-> mechanical conversion to demonstrate the RISC-V changes, so it does not
-> insert local variables to avoid redundant calls to the accessors. A
-> manual conversion like in that series could improve performance.
-> 
-> [1]: https://lore.kernel.org/linux-mm/20240917073117.1531207-1-anshuman.khandual@arm.com/
-
-Hi,
-
-I've just come across this patch and wanted to mention that we could also
-benefit from this improved absraction for some features we are looking at for
-arm64. As you mention, Anshuman had a go but hit some roadblocks.
-
-The main issue is that the compiler was unable to optimize away the READ_ONCE()s
-for the case where certain levels of the pgtable are folded. But it can optimize
-the plain C dereferences. There were complaints the the generated code for arm
-(32) and powerpc was significantly impacted due to having many more (redundant)
-loads.
-
-Were you able to solve this problem?
-
-I think it stems from there really being 2 types of access; READ_ONCE() and
-plain C dereference. The existing READ_ONCE() accesses require the
-single-copy-atomic guarantees but the plain c dereferences don't actually need
-that; they are usually just checking "is the value the same as a value I
-previously read?", "is the pXd none?", etc. so it doesn't matter if they get torn.
-
-It would be nice to have only a single flavour of accessor, but in that case it
-obviously needs to be the strongest (READ_ONCE()). Perhaps we should settle for
-2 flavours, and the compiler should then be able to continue to optimize out the
-c dereferences. There are already 2 flavours for pte (which never gets folded);
-ptep_get() and ptep_get_lockless(), but the semantics don't quite match.
-
-Perhaps:
-
-pXdp_get() -> READ_ONCE()
-pXdp_get_weak() -> c dereference?
-
-or pXdp_deref()? I'm not great with names...
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Hj3JWs8w5xU5M5GX"
+Content-Disposition: inline
+In-Reply-To: <20251125214529.276819-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Cookie: Murphy was an optimist.
 
 
-The other problem is that there is nothing preventing new code from introducing
-new direct dereferences or READ_ONCE()s. One possible solution to this is to use
-an opaque handle type (similar to what I described above with pte_handle_t). But
-that introduces a lot more code churn. I think that's a nice-to-have/incremental
-improvement that could be done later.
+--Hj3JWs8w5xU5M5GX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Changes in v3:
->  - Rebased on top of torvalds/master (v6.18-rc5+)
-> 
-> Changes in v2:
->  - New patch for v2
-> 
->  fs/dax.c                |  4 +-
->  fs/proc/task_mmu.c      | 27 +++++++------
->  fs/userfaultfd.c        |  6 +--
->  include/linux/huge_mm.h |  8 ++--
->  include/linux/mm.h      | 14 +++----
->  include/linux/pgtable.h | 42 +++++++++----------
->  mm/damon/vaddr.c        |  2 +-
->  mm/debug_vm_pgtable.c   |  4 +-
->  mm/filemap.c            |  6 +--
->  mm/gup.c                | 24 +++++------
->  mm/huge_memory.c        | 90 ++++++++++++++++++++---------------------
->  mm/hugetlb.c            | 10 ++---
->  mm/hugetlb_vmemmap.c    |  4 +-
->  mm/kasan/init.c         | 39 +++++++++---------
->  mm/kasan/shadow.c       | 12 +++---
->  mm/khugepaged.c         |  4 +-
->  mm/ksm.c                |  2 +-
->  mm/madvise.c            |  8 ++--
->  mm/memory-failure.c     | 14 +++----
->  mm/memory.c             | 76 +++++++++++++++++-----------------
->  mm/mempolicy.c          |  4 +-
->  mm/migrate.c            |  4 +-
->  mm/migrate_device.c     | 10 ++---
->  mm/mlock.c              |  6 +--
->  mm/mprotect.c           |  2 +-
->  mm/mremap.c             | 30 +++++++-------
->  mm/page_table_check.c   |  4 +-
->  mm/page_vma_mapped.c    |  6 +--
->  mm/pagewalk.c           | 14 +++----
->  mm/percpu.c             |  8 ++--
->  mm/pgalloc-track.h      |  8 ++--
->  mm/pgtable-generic.c    | 23 ++++++-----
->  mm/rmap.c               |  8 ++--
->  mm/sparse-vmemmap.c     |  8 ++--
->  mm/userfaultfd.c        | 10 ++---
->  mm/vmalloc.c            | 49 +++++++++++-----------
->  mm/vmscan.c             | 14 +++----
->  37 files changed, 304 insertions(+), 300 deletions(-)
-> 
+On Tue, Nov 25, 2025 at 09:45:29PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> Document the RSPI controller on the Renesas RZ/V2N SoC. The block is
+> compatible with the RSPI implementation found on the RZ/V2H(P) family.
 
-[...]
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-> --- a/mm/ksm.c
-> +++ b/mm/ksm.c
-> @@ -1322,7 +1322,7 @@ static int write_protect_page(struct vm_area_struct *vma, struct folio *folio,
->  
->  		set_pte_at(mm, pvmw.address, pvmw.pte, entry);
->  	}
-> -	*orig_pte = entry;
-> +	set_pte(orig_pte, entry);
+--Hj3JWs8w5xU5M5GX
+Content-Type: application/pgp-signature; name="signature.asc"
 
-This is incorrect. orig_pte points to a location on stack. Please revert.
+-----BEGIN PGP SIGNATURE-----
 
->  	err = 0;
->  
->  out_unlock:
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkm4r0ACgkQJNaLcl1U
+h9Awqgf8DN0TTmYFzmmCxYiPHzeg7c6VPSH2SKS9WSI0mf8nFuUhRjGy6LC4VMNu
+DJMBO/O1V+BAgV6Trfa5lxP57jSUszP4QSo8RI3CTggxqOMj5gwRZwVA5BtRy6ZT
++oRWZP684KFM5tvKakQFR2Hw9byus9x+o09RdVfapmQ079eEWi7+EjAr5Tc6nmq4
+sWDXPSorRy1sS/v82GbvO77a+UXwNfhcoOtRnw2KpzywJsJl6J1W60qGKQTuIr9/
+bKthw7qdk172gr0eSmpMxSyG7+t0G9wZ3caikN+nmdB0mj+yB7wtLNISuvGeY2oL
+LFkAZq01oenUwShx0VKZWC3S4X/DXw==
+=NAeb
+-----END PGP SIGNATURE-----
 
-[...]
-
-> @@ -1116,7 +1116,7 @@ static int guard_install_set_pte(unsigned long addr, unsigned long next,
->  	unsigned long *nr_pages = (unsigned long *)walk->private;
->  
->  	/* Simply install a PTE marker, this causes segfault on access. */
-> -	*ptep = make_pte_marker(PTE_MARKER_GUARD);
-> +	set_pte(ptep, make_pte_marker(PTE_MARKER_GUARD));
-
-I tried "fixing" this before. But it's correct as is. ptep is pointing to a
-value on the stack. See [2].
-
-https://lore.kernel.org/linux-mm/2308a4d0-273e-4cf8-9c9f-3008c42b6d18@arm.com/
-
->  	(*nr_pages)++;
-
-[...]
-
-It's all very difficult to review at the moment since it is so big. Any chance
-of at least splitting by level in future versions?
-
-Thanks,
-Ryan
-
-
+--Hj3JWs8w5xU5M5GX--
 
