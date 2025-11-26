@@ -1,244 +1,200 @@
-Return-Path: <devicetree+bounces-242491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A843C8AF1A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:23:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4637C8AFCB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:35:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 765F14EC85E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:22:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8BB83A2A1A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B24533ADB3;
-	Wed, 26 Nov 2025 16:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="arfkx32D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E2933D6C3;
+	Wed, 26 Nov 2025 16:35:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013034.outbound.protection.outlook.com [40.107.159.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47BC6331A57;
-	Wed, 26 Nov 2025 16:22:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.34
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764174151; cv=fail; b=lFNfRPSElaxlwJrxIcATuQGQgfKe16aBVgTSPdOTx/jYm14CgKhvGi7hAILVrzD7OMGYYQZQmLaADj2h0NKaBB6RI17wh/GFBaF+60nFiCK6KSOvO30MBhvGE5XaaK0nnGya5on38sFeKur8PwB+JAZYujq/jcobEewNtb60PsU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764174151; c=relaxed/simple;
-	bh=ii/d5Su7G3+REyDKa9RvmSPQRPvYxrYcJZHRmGbx1ig=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=gPhiDPkM9C5DUOFO9MwcnaQKr0CwqvMxNsWAlSeTlLy2STJyjapKnRgrwnzaKOn0WMBlCVS7Uic0lufxTJEH8fLFx4YzM/eD4iR79ILhAWQitmTUk5mvJwLRtUaPXHPd14V4gyywzRF0TIT0XYSpCrryCDVjXOXh3wkytfO8+og=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=arfkx32D; arc=fail smtp.client-ip=40.107.159.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d3325X+0u79KGGYPBHRBPGF35kvWV5guluntgsNC9Cpd7+IHzRTgC5hSKJMlbO3GnaalxjFhutbJs1LmFmsiM4JNJXqeIPz0XsXvPWfaIgt2mh9QTsGtLnnc0N8ZMcssADs042zz+3M6BCqQw+KvQ1Xy16hxC4kTaAiSkfXmydo2OFiK2pQZxCesUe4/f8ixqj0jI2atUn98WWIT3oVxXy+9TQcPvKSZO8xK2B5Qa6WH5rY5lNbowloCR5MShN4y+WHLi0cbhQkLLEhnAdooZzUHDGtLJ4wTI0RxHxyEMhVldpbcrAVVSTFmsxJjBpphIQNRDO3k7CakjxuvTm094A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Zl022SYwzKklrKmeogdLb7HU3I/WyyxLD02uWRb+/bU=;
- b=o73SMzGPlcehS7ZESe1Fx6H5HByRl4gPt8uRRKn8c7wQhQDK85O56lUMvWL+OMZa0WQnhpw0/idnYNlBJPVs4Zb8zzBbMpFCiR9326wzxqBEqMJlkSr+7BiqFV12khNcWWHJELChOVEBuSYuYf8MXmDEhkBrc4iZ/Tr2D7uyobxCnakYa9a8U2z/TQbyMuG2RBQ1H8b0X/kuSwhYYEmP1N+7zvyWoE4d902Bq6tzthl/Ja0GMOHkKaOfrbNIGNk0ckwLWsORwhTQcYIXfMqT1ay3wDsDYLl9vovfpJ0AMLlIqeoCC7hv8S4HOvZiH4w7pFbjNqqTn7311/OOwGScwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Zl022SYwzKklrKmeogdLb7HU3I/WyyxLD02uWRb+/bU=;
- b=arfkx32DkUDLupz4dmpK1IXYICrRFueNJKaqsv7qIl8LOUPhnLPdNv3uAKAQCnwFk3CaS127LYOsh6YIFikdxe7ifYpZq1rOwLiAYSFIMDbOfpocrCvMZo9HiL7xqAOHkX53KOLXMZFHRvO/h3oxSizhgf1N0u4MaHwfCgVZhEHw1xD4ofKZGonvDJ763wHRvKTOtYKRU3fRLFNKaNnU7TINiSu5hAPJvTacXYKa2edXt466LSJBq3pnoUV20X4u0HJJVPSLggQ0+3p56pdHy039usnW/6J3pVzJStU+bIGoQrRC236St6bSxZFUM0k9+z835+l0tKSciD3uKm8jbQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
- by PA1PR04MB10939.eurprd04.prod.outlook.com (2603:10a6:102:489::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Wed, 26 Nov
- 2025 16:22:25 +0000
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
- 16:22:22 +0000
-Date: Wed, 26 Nov 2025 11:22:14 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Haibo Chen <haibo.chen@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx93-9x9-qsb: add CAN support
-Message-ID: <aScpNjZNU5MtfVRc@lizhi-Precision-Tower-5810>
-References: <20251126-b4-9391-can-dts-v1-1-c23145f0d2db@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251126-b4-9391-can-dts-v1-1-c23145f0d2db@nxp.com>
-X-ClientProxiedBy: BY3PR04CA0006.namprd04.prod.outlook.com
- (2603:10b6:a03:217::11) To DU2PR04MB8951.eurprd04.prod.outlook.com
- (2603:10a6:10:2e2::22)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D32326D6A;
+	Wed, 26 Nov 2025 16:35:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764174903; cv=none; b=BRoosIuKL4kuFgOjtFojC8Oj/7aAiPLmOZhni2Vl7+Sai0y4LaEcgkHESndAq1msW3dXoWgG5RCMikaA3PELBaI5EXNkvKEy9ebZTej7rWW9s8oHg4zRM6ooZ4zZ5LbRqSO9/vR4ZZDltn9k+jkRK4Uw4Xmf+R1uTSdoCHtvEko=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764174903; c=relaxed/simple;
+	bh=gxAq95DCSNG2xRY6Jo4wxNF/hQkQq5IKfxEJoPNewi4=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=bWgi3oxOBqbZZctwpKXieQQM041hqAHcGYmjZONybqkH35aNZBkpk3XC+9bhHkdeftpEtlYqZ7UXyNUcSZGPia/d2oCtwKdq+fpncYWo8yUPx35bje6ctgecxFHOXTlzV3gKSReCevzq2hm+1bJP8BCrrsFa6MCm/f3p2ouS21w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0459C168F;
+	Wed, 26 Nov 2025 08:34:48 -0800 (PST)
+Received: from [10.1.33.153] (unknown [10.1.33.153])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B2E773F73B;
+	Wed, 26 Nov 2025 08:34:52 -0800 (PST)
+Message-ID: <150ffcb7-2df2-4f3a-a12e-9807f13c6ab9@arm.com>
+Date: Wed, 26 Nov 2025 16:34:51 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|PA1PR04MB10939:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4950424e-0b78-472e-1fb8-08de2d07fa94
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|7416014|52116014|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?r3dIABBVffIwdBR7d6E0q5iWPEIkTYQ7FDyRbcPiuQgaNjzGIMojriv2iZKR?=
- =?us-ascii?Q?J8lS4UEJ4VS4/X4IteElCB7SR/MwB4kEUFdN+v6TqlIDtp1wQ8qCD1r9jgak?=
- =?us-ascii?Q?6hBeKAGxO4gtoC8UEUAMN3ePrtmCn35U5ye3WoxfBwpcOgn6yVaDO7qBsbOI?=
- =?us-ascii?Q?JZ/3BJDK3uQX6BE0kvo7gy2Zsd0+OUmM346hSCfeXg6TnlpKKd+ejCogAikd?=
- =?us-ascii?Q?wNBQzQtxOaJMv5l0PNZKaqD50YJsWueygBrxYjl2LJYYoxOHt6i5avaWb5tZ?=
- =?us-ascii?Q?ydP2rNyvcF04u8JVaf2pe3WR2+AjyFeVzUD1VKcDemgs9Utvhk9zX2lhkI+v?=
- =?us-ascii?Q?u2rwZJANvTEdfuc7c207PuiXS80gr4/zHVDOasLBAQBwflQ1oNXo3J1UGJ4n?=
- =?us-ascii?Q?LCiPJECh06mGs8mSAoJbaCHB8fhQNR8USZ7uQkE0nFbrLxyit/ABJPYyO3tS?=
- =?us-ascii?Q?HNnRq8JAfSLOP9wD3B4tLMVbgaDFOf+kgm6xSw+9r28IMYa+02v1NIcLKntr?=
- =?us-ascii?Q?d51Zp6xGucQX8JNI+g3n3fB1l5EmQbZdNL1csTIlL1OGpsDRR2u2q0oFCsA4?=
- =?us-ascii?Q?kd5LXtskhcIeHU+en2gmdADyA1WDU0KKdqwK9DY9Ef6/TJWlwyoRTqd4+vb5?=
- =?us-ascii?Q?wj+sUOgp9g5E9hOwxFAQj0m+SlVJ4cIuHIvaAcSWZq5WppWXPGd1vjXshwdm?=
- =?us-ascii?Q?kNQ5XilXm+OXQm9nfOUTIYQ57G1UEJ5EMHw1UXevYdacXwmP2zqZVPYf45/j?=
- =?us-ascii?Q?GrR7YJvak0QkLfGE0up6SsTnl6e0luhKHEtPRbJaf4JVhAURovJo1va9+lsM?=
- =?us-ascii?Q?gimoO4sa7ZCogs+Zt7tiHPwaAH5rD+33iSMWHMUWaywsl13wcH/QXi2uK0e+?=
- =?us-ascii?Q?rr67ti41BGcaM7O9Ab4k1/+TDOb3c6z7ANHitXYKUq1VE7NDQaMLYhMz16vI?=
- =?us-ascii?Q?G0KLp9H6lnAvMbtLZ6aK+XYbkjeuIgXDUlSBrWNUlfTQkSgm3bYkZx+ZYbTd?=
- =?us-ascii?Q?LmcQby/njJiq5FT1qV9fMBkG5K29NWdlMqrCFfurhTwaP/AkH7MaqwkGa3t9?=
- =?us-ascii?Q?tes7yeFLhD8aLALzqmEu2mCXAxTTLxM8VC4EaXForGP/q45/0CqDO9pxLF+e?=
- =?us-ascii?Q?TI/CFZZLN6Ot6+64ywGjHoN1j1XOVTRLKLGGVGVg0ogX1Z0TH/djS81TfdGS?=
- =?us-ascii?Q?bZJPIgecI8WLnFh3EXdmQFVFD4Lzo+/GKigvPThwcZ/jjpkWMZp2/djwPonj?=
- =?us-ascii?Q?Mzime4BX+fFbdh9Mug4HL5FakSSVXjeCypRpVvbK2qV+47vwDDk/cihSeam/?=
- =?us-ascii?Q?/eyvJDWKe3CHH/T8LORZbNZPrOlEC0LzbHaLEWW/0st1atJXhAkB2Gx2oFHb?=
- =?us-ascii?Q?ebjkO4IrEELHLDv1i01obYFQU7D62w1HmZNz0v+EJ9UHgNiOlP0nnLb2HhXI?=
- =?us-ascii?Q?ajKB/4Pqe3JPVgGm6MpjEx6/w0/aa0uUzMwWSl4Fa517fceGXoVnb4A4sxNn?=
- =?us-ascii?Q?k1UqOFqh+nnmxFOGCwy+TUSxATzWR/m3qD7e?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(7416014)(52116014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?8vcCsByBYgoYMkRAeLJ266SHuLO5lg6+fEBr4Nrp5l8yyJJUfxd71Gj8iD26?=
- =?us-ascii?Q?RdItIgCGU94Li5sk50lDm0v2C8pd+Kf7r+pvSc0uBBrwDyoj03Ce6JyK+lNe?=
- =?us-ascii?Q?cpv8FKcSSCS8529IAZmNWwst+SCMWfDz+t07qMHXXdnO2D9GRzKr48GH6c9a?=
- =?us-ascii?Q?bMFhQjLJV/YtRr1Cp5zwHk9eh8jCk+GWkZom3Q3/n6ZeUdO1hYsM+JEfOsFx?=
- =?us-ascii?Q?igXwuU4Iy0T2/+XKW7asmuRz3AHGdHajlwK68t0MZWeO1tFaYZQ2V5GUOM0d?=
- =?us-ascii?Q?VEGq8owvwj9M6/UbvJ0apl9sVwcNDcVyPWg7NWHuwB0fMy8ivwhHQbOeHWWI?=
- =?us-ascii?Q?Tu3v4iilIjr9dGQHC3ddGys5M9aTVa+YXgBI+MxdylnKdzI53XS4Ot35+LZw?=
- =?us-ascii?Q?tA+ogG3P11q+KXuMKQ49ldsEJaxwFh63c7D/ay86ZN2XfxNnmsPGaY/A6XvM?=
- =?us-ascii?Q?xx54iqljSOLt1w9CM+4NgFj7w8RInRq3pCsdTZ1Y6kXld8/ZBX7Sa4ZedXty?=
- =?us-ascii?Q?HsdrzloyPsCWljRUPkxuOAKRDIeH6MhcDxH2K+1oN7WYRehrOhPlnkNKAQZB?=
- =?us-ascii?Q?/HfrJWqU1GcL3DIUFmiahAXQWtR3pkLCIZkPjKRaM0BTpHmMPX/FY3DhfrS+?=
- =?us-ascii?Q?sl73YkBi3pN22MdxRItT8uw7viuvSZumldZXMmn6tbfUrvnEl4MUnRXlIdsG?=
- =?us-ascii?Q?w8RWb/mooi4OTV8SpR/brg2ps3zkgEVbvoSg2gpJMsPnuwtYMD7IXTkp3wfL?=
- =?us-ascii?Q?zv7CDHhUeFAhU3m+9hfuaB5Z3eb3CDKHq14YFp5gKtcK/lBGXFlBJCAJ2vnk?=
- =?us-ascii?Q?TOktBQUJAp+QQ3zoc2SH4O8RqUnK54vkZ38pAkzzWxU7gx7u0DLGE/TXqaqJ?=
- =?us-ascii?Q?fCXlVGCXGO/u/OUGphEsPdKChPnduF8kzU3WiB4bwVOEa5srcLiA867LQSWs?=
- =?us-ascii?Q?YU9rO2md7aeHkBB71HXZ0MawHdTDbhkC8RiBolnBGTMpByJAlJPclyRjvhEX?=
- =?us-ascii?Q?ZWv9V9MW8KDSxamVX87nmgj8rIn+5m0TuP/h0uaM5bXAl9atBbuIiHm/fmyd?=
- =?us-ascii?Q?9/YQ93Ha4isP32RRJ+ztmQ0h2IFrF6EsyAm3MI5+wdWnKqFo/2H2y9zN0ljV?=
- =?us-ascii?Q?v7h/UIBDkkOKMoLik0sCgemoyZgrUq/V29hDDPBImGdD3t2MgZYDroVUBijf?=
- =?us-ascii?Q?A7nUq0gSt6K6lit8IPavyUWLackTW0WEkUswYyybL1fQk3BkQPQ9hbY35hsP?=
- =?us-ascii?Q?W4rvuzq39RsXhyNthkH+S73Xf7HmcHO4N4gxI8chmXfcabYXvv4jMn+S/vvc?=
- =?us-ascii?Q?SqwZqebtIausyVjQWN9EDBTrmpOeBAN2EB45sbk3e+xvHBHsIvfNx0knI2Yu?=
- =?us-ascii?Q?C+N/7cgRP/jrEaJIGKID0tcBNeG86QEU0tYIMRn90Itfig6c7TqYr1fXGIve?=
- =?us-ascii?Q?lMbrGJXNyNr0VMkLgMp3FDejQJS+QDbjTB3+YohteFvHlJAQokArVdMLyhlh?=
- =?us-ascii?Q?gxMWOJ/GJXWairrpRpfdrgqTy07A5P3psn6NWm7O4/mFmUYIFB+xAsNdKAi+?=
- =?us-ascii?Q?edKYX7yEhLVo/ZD8yzKRluAWAJp7IvcX7gQqGT2b?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4950424e-0b78-472e-1fb8-08de2d07fa94
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 16:22:22.6478
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BgCMLUmLY6K2GqC2Q+/ZUrPvRR/sqB1izT5PDLhv0vwx5vdGJZZdEV8K6YQfWWXKq/MsbRMBPtvOG4ffEALBaQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10939
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
+Content-Language: en-GB
+From: Ryan Roberts <ryan.roberts@arm.com>
+To: "David Hildenbrand (Red Hat)" <david@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Wei Yang <richard.weiyang@gmail.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-mm@kvack.org, devicetree@vger.kernel.org,
+ Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
+ Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
+ Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
+ Anshuman Khandual <anshuman.khandual@arm.com>
+References: <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
+ <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
+ <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
+ <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
+ <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
+ <20251126134726.yrya5xxayfcde3kl@master>
+ <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
+ <6b966403-91e0-4f06-86a9-a4f7780b9557@kernel.org>
+ <ab39d448-aa1c-4c93-8e2b-5d97a9c76af5@lucifer.local>
+ <1ca9f99f-6266-47ca-8c94-1a9b9aaa717f@kernel.org>
+ <37973e21-e8f4-4603-b93d-4e0b1b2499fa@lucifer.local>
+ <a1d25bde-3ab6-46b5-a957-db80da7e737b@kernel.org>
+ <4505a93b-2bac-4ce1-8971-4c31f1ce1362@arm.com>
+In-Reply-To: <4505a93b-2bac-4ce1-8971-4c31f1ce1362@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 26, 2025 at 02:20:07PM +0800, Haibo Chen wrote:
+On 26/11/2025 16:07, Ryan Roberts wrote:
+> On 26/11/2025 15:12, David Hildenbrand (Red Hat) wrote:
+>> On 11/26/25 16:08, Lorenzo Stoakes wrote:
+>>> On Wed, Nov 26, 2025 at 03:56:13PM +0100, David Hildenbrand (Red Hat) wrote:
+>>>> On 11/26/25 15:52, Lorenzo Stoakes wrote:
+>>>>>
+>>>>> Would the pmdp_get() never get invoked then? Or otherwise wouldn't that end up
+>>>>> requiring a READ_ONCE() further up the stack?
+>>>>
+>>>> See my other reply, I think the pmdp_get() is required because all pud_*
+>>>> functions are just simple stubs.
+>>>
+>>> OK, thought you were saying we should push further down the stack? Or up
+>>> depending on how you view these things :P as in READ_ONCE at leaf?
+>>
+>> I think at leaf because I think the previous ones should essentially be only
+>> used by stubs.
+>>
+>> But I haven't fully digested how this is all working. Or supposed to work.
+>>
+>> I'm trying to chew through the arch/arm/include/asm/pgtable-2level.h example to
+>> see if I can make sense of it,
+> 
+> I wonder if we can think about this slightly differently;
+> 
+> READ_ONCE() has two important properties:
+> 
+>  - It guarrantees that a load will be issued, *even if output is unused*
+>  - It guarrantees that the read will be single-copy-atomic (no tearing)
+> 
+> I think for the existing places where READ_ONCE() is used for pagetable reads we
+> only care about:
+> 
+>  - It guarrantees that a load will be issued, *if output is used*
+>  - It guarrantees that the read will be single-copy-atomic (no tearing)
+> 
+> I think if we can weaken to the "if output is used" property, then the compiler
+> will optimize out all the unneccessary reads.
+> 
+> AIUI, a C dereference provides neither of the guarrantees so that's no good.
+> 
+> What about non-volatile asm? I'm told (thought need to verify) that for
+> non-volatile asm, the compiler will emit it if the output is used and remove it
+> otherwise. So if the asm contains the required single-copy-atomic, perhaps we
+> are in business?
+> 
+> So we would need a new READ_SCA() macro that could default to READ_ONCE() (which
+> is stronger) and arches could opt in to providing a weaker asm version. Then the
+> default pXdp_get() could be READ_SCA(). And this should work for all cases.
+> 
+> I think.
 
-subject suggested,  add CAN support overlay file
+I'm not sure this works. It looks like the compiler is free to move non-volatile
+asm sections which might be problematic for places where we are currently using
+READ_ONCE() in lockless algorithms, (e.g. GUP?). We wouldn't want to end up with
+a stale value.
 
-> CAN1 and Micfil share pins on imx93-9x9-qsb board, use TMUX1574RSVR
-> to control the connection: put sel to high, select CAN1, put sel to
-> low, select Micfil. In default, sel keep low.
->
-> To support CAN1, need to put the sel to high. Besides, CAN1 use phy
-> TJA1057GT/3.
->
-> ---
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile             |  2 +
->  .../boot/dts/freescale/imx93-9x9-qsb-can1.dtso     | 63 ++++++++++++++++++++++
->  2 files changed, 65 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index f30d3fd724d0ce6b38f7bef10e3970ac34f70f4a..1142d3312c8651b4292837bce3cbe46ab95f7e09 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -373,7 +373,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb.dtb
->
->  imx93-9x9-qsb-i3c-dtbs += imx93-9x9-qsb.dtb imx93-9x9-qsb-i3c.dtbo
-> +imx93-9x9-qsb-can1-dtbs += imx93-9x9-qsb.dtb imx93-9x9-qsb-can1.dtbo
+Another idea:
 
-Keep order by alphabet.
+Given the main pattern where we are aiming to optimize out the read is something
+like:
 
->  dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-can1.dtb
+if (!pud_present(*pud))
 
-the same here
+where for a folded pmd:
 
-can1 should before i3c.
+static inline int pud_present(pud_t pud)	{ return 1; }
 
->
->  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb-can1.dtso b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb-can1.dtso
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..62d4fa6c21d794f91da59f511d6f0162037e9271
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb-can1.dtso
-> @@ -0,0 +1,63 @@
+And we will change it to this:
+
+if (!pud_present(pudp_get(pud)))
+
 ...
-> +
-> +&pcal6524 {
-> +	/*
-> +	 * mic-can-sel-hog have property 'output-low', dt overlay don't
-> +	 * support /delete-property/. Both 'output-low' and 'output-high'
-> +	 * will be exist under hog nodes if overlay file set 'output-high'.
-> +	 * Workaround is disable this hog and create new hog with
-> +	 * 'output-high'.
-> +	 */
-> +	mic-can-sel-hog {
-> +		status = "disabled";
-> +	};
 
-are you sure 'status' work for hogs?
+perhaps we can just define the folded pXd_present(), pXd_none(), pXd_bad(),
+pXd_user() and pXd_leaf() as macros:
 
-Frank
-> +
-> +	/*
-> +	 * Config the MIC/CAN_SEL to high, chose B
-> +	 * port, connect to CAN.
-> +	 */
-> +	mic-can-high-sel-hog {
-> +		gpio-hog;
-> +		gpios = <0x11 0x00>;
-> +		output-high;
-> +	};
-> +};
->
-> ---
-> base-commit: 422f3140bbcb657e1b86c484296972ab76f6d1ff
-> change-id: 20251125-b4-9391-can-dts-2f4849978fc2
->
-> Best regards,
-> --
-> Haibo Chen <haibo.chen@nxp.com>
->
+#define pud_present(pud)	1
+
+Then the compiler will never even see the pudp_get().
+
+Thanks,
+Ryan
+
+
+> 
+>>
+>>>
+>>> Anyway. I am now designating you the expert at this ;)
+>>
+>> Oh no. :)
+>>
+>>>
+>>>>
+>>>>>
+>>>>>>
+>>>>>> IOW, push the READ_ONCE() down to the lowest level so the previous ones
+>>>>>> (that will get essentially ignore?) will get folded into the last
+>>>>>> READ_ONCE()?
+>>>>>>
+>>>>>> But my head still hurts and I am focusing on something else concurrently :)
+>>>>>
+>>>>> Even if we could make this work, I don't love that there's some implicit
+>>>>> assumption there that could easily break later on.
+>>>>>
+>>>>> I'd rather we kept it as stupid/obvious as possible...
+>>>>
+>>>> Looking at include/asm-generic/pgtable-nopmd.h I am not sure we are talking
+>>>> about implicit assumptions here. It's kind-of the design that the pud_t
+>>>> values are dummies, so why shoul the pudp_get() give you any guarantees.
+>>>>
+>>>> At least that's my current understanding, which might be very flawed :)
+>>>
+>>> I mean I'm waving my hands around like I'm working on an aircraft carrier here
+>>> so if you're _sure_ it's _absolutely_ safe then fine :)
+>>
+>> Well, not yet ... :)
+>>
+> 
+
 
