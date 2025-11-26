@@ -1,148 +1,144 @@
-Return-Path: <devicetree+bounces-242578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79783C8C260
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 23:05:22 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79646C8C336
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 23:24:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A85573571D2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 22:05:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3C9604E1017
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 22:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 732BF335553;
-	Wed, 26 Nov 2025 22:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1802E30BB81;
+	Wed, 26 Nov 2025 22:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="WS9TcaZy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mksUA67+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA6BE2E228C
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 22:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9726B1096F
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 22:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764194696; cv=none; b=g2MAzRftKpvMcEmjt0323+qsMggSWFL56Cw/LU+N/vH4NovoKrgsFF3V5zjOHZhpnOgrZWwgIGU7/ropwSAv1uO+xK+MTD0Mm/tRdkjiVQeOqKo3Ft3CnqD7MT7f9WpjBS2ZnMjDzm/u8xyGOpYdFfgt6wpj5q0Hc0fQ6Mo5qqs=
+	t=1764195845; cv=none; b=RbLGxJpwqTpDD/EK5K8CFprJ0uUL5cCjCquk6CK4qNQauifKZ2n5dWjRTAQhoOZjNOVWmJ0+mosqtqR2krLT3JezplZgGv2em8d8r5hhWHJ7Y0Dlnw4LK+dvX9YxdYFE7lidtpT0ObmjOOhRRSZsZwTVpA3PXjhPwcJgUklWHfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764194696; c=relaxed/simple;
-	bh=gqLSwHsrGZkhN+aFNTbmKSZgZc3SbCkcYs3ExiI7vJk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LiQ1Z47ILgDifMKsV+NsUX6xGsoUI7By0yRC8tPWjpt4yVidxjti0XXmqJyMFCLopk0SDaxEBj7n4aVEZhRrOBOfBb9uxfup63JMEfWih1ejynj4NXnr2IkiZeFaaJr9pWA475BptN1FUYLIVhtKedpg7fsjE3MMNcFqTBL3Y5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=WS9TcaZy; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7aae5f2633dso195054b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 14:04:54 -0800 (PST)
+	s=arc-20240116; t=1764195845; c=relaxed/simple;
+	bh=tj2DSsgX/0WGrBP881V3uUX+/SGSqokxbP5df1Yh5lw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S0dfJvXyu2X5fSjjikm591ySKLp2C/a5Q6ed1+pYALcS+IQp9MsR7S2caD/MZIVCirYquD61Mfdp+Nq1cTsoe9I53E5NLc4JG4+emhULjF/qoc6EOt0BW4M7tbGalhnMke3LCZKCf9a4X1GZnrSBZdlJOQTjnWEwF+mEBPJ8HU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mksUA67+; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-297dd95ffe4so2199595ad.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 14:24:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1764194694; x=1764799494; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ay1HyD/YXcJtqug9NBApq+fmqHdHRxdWGXWcfRUTS3Q=;
-        b=WS9TcaZy5nuL1InS9I6cg8WwqY/z6Ctxns7IUCSRhChQqYh2yMEnMxO6jaD0ZdbyR+
-         lVu8SiRoFXlsdMDMV1CePKlW1YyuOBd+ndZfLwgYqh/2/FY5mpExu57DZS0IeCcO8OeG
-         1/KVfvchS0fOaNRA1IO2NFXi3qA6Zf4hfhQl8kqXdChI7hNItu+Gmsr6tSxjSY/Ke2xq
-         gQjTpgMcNNtAex69WlIKxy1C/15AF300gW8aVpKg3n+cKng6u/z7id6POkFNbK1W9LtM
-         G6QlTjUF8jXOw7youvpnryZqExjsOFb7YBWMDNgK2UXe5jjurBkHkqsJMEdTheqORaVX
-         x+3A==
+        d=gmail.com; s=20230601; t=1764195843; x=1764800643; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BZOu5aEyKENky2c9G/LxIdAHXqDSwAK1EmrizLVcA3A=;
+        b=mksUA67+mbZRvlOyS5YRqeMdfu7Sr7s77f33A2PuFhn+6NqKlOCcknxPyNSECMnTNL
+         psB8k62yD8KSnp5nO4GJAQC5rDu7IYjfF8RsUtx3HoBf7ibiX0cto9fzJUID89QZ+3Sl
+         q/vivxEY6Z0w08fKAxn78fDn9DzXjtLAYDCY3ROuValoQDC1+RD20Y8w0ayjW0+ZVxvS
+         /qagt/It80wyIM/zbnUnalpyce8vO7zsXfHS4HLunblRoKpbRIRsFnmHpvoYCXKmO4w2
+         HSvFv1j3OVfL3g8PplYeRN92SBaj157ZsWwhRexFFVV6uZWcvF/3N9BukKeO5xwaBI56
+         yizA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764194694; x=1764799494;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ay1HyD/YXcJtqug9NBApq+fmqHdHRxdWGXWcfRUTS3Q=;
-        b=BesXNjHnlzpzR+lnBhOc8M2yrgU2Hk2adPnd1QoTKDv65EBNPJVUbFI2jauX8/njNG
-         hNPxsyCJk6NaGZYtlRbLvT6eqN0IY70V1OMkiHHNl1cWXiCvSbV2T92m+UG2qhsKDvik
-         gcXaiiklmC9iRBWQOUMEcmF5O99bCipfO3Wgr2Pui70TGAyOIJGLF/inOBYvWqp4Zsys
-         5JMTUjth1Ww5kObok1hJKdDy+k0pwoRmdqwxa21NK8RzH/WSUGtpANQ7XHn6RyHy9QB/
-         wI33JfZmZZJG8XqM9UBiI6xYKlfs09S4X0GbvD+BQ2oVCfIGTkuyAmDOoTBw/MdRBz/5
-         20AA==
-X-Forwarded-Encrypted: i=1; AJvYcCVxdRCF6nUsX4ohS8wcxxKcMTXWeHsEnrsJDqzCH8KQW/cCb1jFSYhX2asOQaUWVZ2Xwk2qIV8+QjQd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzy4ONvTxq6/LgTj4BGOPDoaUMgMC1gPyOQBgUTeEYqFlWX6hFb
-	6u2zmh2ApWH1oUuJs3XXiJ/GIAZUJ33wolxaItPLrikrEDRJ7GWx0QuG4RRIgL/L7A==
-X-Gm-Gg: ASbGnctckRYg3xSDANkunv5R5dBXhAKqVi+UpO1CEEGBamO+ylGWHcYQK1l88qdXy/K
-	2HtWrCtsWkRPPyK8c5x86ICVkhQGHl1lnharPfTDeqAwT0MXZMJuwvON+48Gvs9PDn2F//zxzZK
-	AoiFsHKR/xSaq989veyiurs/O1eh7itmWHGRze/CzRLSPZY/RjP4ApYTb/DBRRFyAKRNPz9TsNu
-	cDTXxpfVZ75r9UXlYvbtVn8OY4Tqwj2r32HbxLYhV/44B6/hEq8Tq5UU0TGtgmmpmDkC+FfJJ0w
-	OmRL1icrkQjALuBBcJXTlwViOqnfeaT0Qe2zEvNpp6Tg1ROy7MgHAUPr65KovvVbjEIGZSQ38wn
-	48UL5kUTOkncxNYsZNw+zoccy6iwMsMeTUaX2VuobEvi00d08JszNWRmV3EyRev5Ifdg86+D2F2
-	3WqRKGKxJReUPqwDZ49sQYsL+jA85jGAp+J4/MncfrffpV5LQ4TIRNrW/+D2XslWJ3sGxCvZRfU
-	f6dweaCE9M23Q==
-X-Google-Smtp-Source: AGHT+IHgCBAVlJ/1/Oj2H+nvmtjVOEfs8Cj4GuvQ7p3t9lR/WHGAMof8mvn31hs8D+Fx43GprBkfMw==
-X-Received: by 2002:a05:6a20:244d:b0:343:64dc:8cc with SMTP id adf61e73a8af0-3614eb15e9fmr24287915637.12.1764194693250;
-        Wed, 26 Nov 2025 14:04:53 -0800 (PST)
-Received: from ?IPV6:2a00:79e0:2e7c:8:c116:b1c9:632d:a902? ([2a00:79e0:2e7c:8:c116:b1c9:632d:a902])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd75def6346sm20451772a12.4.2025.11.26.14.04.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Nov 2025 14:04:52 -0800 (PST)
-Message-ID: <be908072-fd0a-48dc-97e0-b120539f5584@google.com>
-Date: Wed, 26 Nov 2025 14:04:51 -0800
+        d=1e100.net; s=20230601; t=1764195843; x=1764800643;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BZOu5aEyKENky2c9G/LxIdAHXqDSwAK1EmrizLVcA3A=;
+        b=GN/Z5POAUQbGTMS3iPBY9Yyw16tZqUZDg9pf/pXu1PtR84OlyRM/ROQWD2KyN0mELc
+         0LPk8k4WrwQSD8yHHepMGYCowQFP45TpVBQMEQUFbwJ/DCQsJF4IB4qfQmYac0Kb3kqR
+         gJ2IJ9QYFtQuccSCGuwYSGR9fL+mnwLtAvwhHJn1yxoeFofFGoD8+D3HpcwfxUwswl/X
+         hhEbaQlaWuME1PWLFZpr/to7L9QoODItWh/KB6n0tLnm5GEA4MxLlgIRRxiw7WzYgKxm
+         2LAV1F2YL3Tch+S7yYbcc28RAENR6RpwhuXhYZHTQ1lUS5D2gLwe40+A6g4bt8gxNzmn
+         NOJA==
+X-Forwarded-Encrypted: i=1; AJvYcCWyn575i6BMMqeM0WR6HpTJx1uACzZQKnZZCyinsvSCWjj+rEySkRMw5aZ9aPedHZRXh6YQwvThzqRd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwASrZbsFru8lusddB1lxFBr+ucSEcfSA4JNUfutn2R1LveCEKm
+	5qZEmOy16jNvCxl6a5JxU2pyPFTSJS+XZHy/7zg8nejEu2sKKB0sFtO4
+X-Gm-Gg: ASbGncsiupFOIro1awcr/R9kt9Y1yXU5DFfmP2s1dOTyyv53G8xreJDHgnq4mjQP6NF
+	PUzgVkrofYg0DMaHdVfoZpoA5Lxa06YVPATKpjSmOn0n7bA+ZcYYYJrJqFbQ+XZfPUeHVVvPmqH
+	VAdSlzYW0LMIRXwfT/ECbYdrMsLw/nXsWbKTQeddurnrVwPsInfq3yxl9X+9uLeHgbQBQnGEe+y
+	aUiqATOKn2GvkUpIYfM725H4Zkse3/yleyed+Zzw7VZhyuVRDIDatd+OFC8y6wpLnUHOpYtAEAW
+	m3OnGYTm/Oh7fgfE8znOVfwY4tItdous+zoKhloIr6iYzzlLuiSOrUKSVmigGu3MUEsgKV7cdhk
+	ZqxmFs4L4j/LtiRQZiqMNOvsMMiErGSdXlsOwSy5AxVQcZTYYzj3obK1AnBFFMQWmrUlQKjjzmW
+	9jgJcj/G6H5Q==
+X-Google-Smtp-Source: AGHT+IGsvWka9Dm9jnaO3xye2c/MAvR38kBdVohFIuX1a8i2UEEMWVrspUwb2b/Cg5A4pKC1TEkD5w==
+X-Received: by 2002:a05:7022:ec85:b0:11a:61df:252a with SMTP id a92af1059eb24-11cb3ecc587mr5507782c88.6.1764195842702;
+        Wed, 26 Nov 2025 14:24:02 -0800 (PST)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11c93e5674csm99352914c88.8.2025.11.26.14.24.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Nov 2025 14:24:02 -0800 (PST)
+Date: Thu, 27 Nov 2025 06:23:22 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: "Anton D. Stavinskii" <stavinsky@gmail.com>, inochiama@gmail.com
+Cc: alex@ghiti.fr, alexander.sverdlin@gmail.com, aou@eecs.berkeley.edu, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, dlan@gentoo.org, huangze@whut.edu.cn, 
+	krzk+dt@kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	looong.bin@gmail.com, palmer@dabbelt.com, paul.walmsley@sifive.com, robh@kernel.org, 
+	sophgo@lists.linux.dev, thomas.bonnefille@bootlin.com, unicorn_wang@outlook.com, 
+	yu.yuan@sjtu.edu.cn
+Subject: Re: [PATCH] riscv: dts: sophgo: cv180x: fix USB dwc2 FIFO sizes
+Message-ID: <iwp4jewumabd2niwhsvml4p7kfouptirdk6wxv37ejuqyipmr2@p24wd3pv7iub>
+References: <20250611082452.1218817-4-inochiama@gmail.com>
+ <20251126172115.1894190-2-stavinsky@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] power: supply: max77759: add charger driver
-To: kernel test robot <lkp@intel.com>,
- Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>,
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Lee Jones <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-References: <20251123-max77759-charger-v1-5-6b2e4b8f7f54@google.com>
- <202511261521.hSYp4ttf-lkp@intel.com>
-Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <202511261521.hSYp4ttf-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251126172115.1894190-2-stavinsky@gmail.com>
 
+On Wed, Nov 26, 2025 at 09:21:16PM +0400, Anton D. Stavinskii wrote:
+> I've tested the current dwc2 FIFO configuration and found that USB
+> device mode breaks in ECM mode when transmitting frames larger than
+> 128 bytes. For example, large ICMP packets or iperf3 traffic cause
+> the USB link to hang and eventually disconnect without any messages in
+> dmesg.
+> 
+> After switching to more conservative FIFO sizes, ECM becomes stable
+> and no longer drops the connection. iperf3 now shows ~130 Mbit/s RX
+> and ~100 Mbit/s TX on SG2002 (MilkV Duo 256M).
+> 
+> Fix the FIFO sizes accordingly.
+> 
+> Signed-off-by: Anton D. Stavinskii <stavinsky@gmail.com>
+> ---
+>  arch/riscv/boot/dts/sophgo/cv180x.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> index 1b2b1969a648..06b0ce5a2db7 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> @@ -438,8 +438,8 @@ usb: usb@4340000 {
+>  			clocks = <&clk CLK_AXI4_USB>, <&clk CLK_APB_USB>;
+>  			clock-names = "otg", "utmi";
+>  			g-np-tx-fifo-size = <32>;
+> -			g-rx-fifo-size = <536>;
+> -			g-tx-fifo-size = <768 512 512 384 128 128>;
+> +			g-rx-fifo-size = <1536>;
+> +			g-tx-fifo-size = <128 128 64 64 64 64 32 32>;
+>  			interrupts = <SOC_PERIPHERAL_IRQ(14) IRQ_TYPE_LEVEL_HIGH>;
+>  			phys = <&usbphy>;
+>  			phy-names = "usb2-phy";
+> -- 
+> 2.43.0
+> 
 
-On 11/25/25 11:38 PM, kernel test robot wrote:
-> Hi Amit,
->
-> kernel test robot noticed the following build errors:
->
-> [auto build test ERROR on 39f90c1967215375f7d87b81d14b0f3ed6b40c29]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Amit-Sunil-Dhamne-via-B4-Relay/dt-bindings-power-supply-Add-Maxim-MAX77759-charger/20251123-163840
-> base:   39f90c1967215375f7d87b81d14b0f3ed6b40c29
-> patch link:    https://lore.kernel.org/r/20251123-max77759-charger-v1-5-6b2e4b8f7f54%40google.com
-> patch subject: [PATCH 5/6] power: supply: max77759: add charger driver
-> config: um-randconfig-001-20251126 (https://download.01.org/0day-ci/archive/20251126/202511261521.hSYp4ttf-lkp@intel.com/config)
-> compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251126/202511261521.hSYp4ttf-lkp@intel.com/reproduce)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202511261521.hSYp4ttf-lkp@intel.com/
->
-> All errors (new ones prefixed by >>):
->
->     /usr/bin/ld: warning: .tmp_vmlinux1 has a LOAD segment with RWX permissions
->     /usr/bin/ld: drivers/power/supply/max77759_charger.o: in function `max77759_charger_probe':
->>> max77759_charger.c:(.ltext+0x27b): undefined reference to `devm_regulator_register'
->     /usr/bin/ld: drivers/power/supply/max77759_charger.o: in function `enable_usb_otg':
->>> max77759_charger.c:(.ltext+0x983): undefined reference to `rdev_get_drvdata'
->     /usr/bin/ld: drivers/power/supply/max77759_charger.o: in function `disable_usb_otg':
->     max77759_charger.c:(.ltext+0x9c3): undefined reference to `rdev_get_drvdata'
->     /usr/bin/ld: drivers/power/supply/max77759_charger.o: in function `usb_otg_status':
->     max77759_charger.c:(.ltext+0xa06): undefined reference to `rdev_get_drvdata'
->     clang: error: linker command failed with exit code 1 (use -v to see invocation)
-I believe this is because of a missing "depends on REGULATOR". Will fix 
-it in the next revision.
+Please add a fix tag next time, I will add it by myself this time,
+otherwise LGTM.
+
+Reviewed-by: Inochi Amaoto <inochiama@gmail.com>
+Fixes: e307248a3c2d ("riscv: dts: sophgo: Add USB support for cv18xx")
+
+Regards,
+Inochi
 
