@@ -1,214 +1,173 @@
-Return-Path: <devicetree+bounces-242316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F9EC891FF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:53:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD60EC8921D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:55:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3DED3A29A4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:53:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA70B3B1361
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:54:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E724306483;
-	Wed, 26 Nov 2025 09:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE8BF2FD7B3;
+	Wed, 26 Nov 2025 09:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="O8XkSE8k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rHj+qhT5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32DEA3054F5;
-	Wed, 26 Nov 2025 09:51:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764150682; cv=pass; b=tCrWqQ+p3UDJLKVyWlJs8yXem55XGuPTAaEELUHgNiw8VxSFpG0gg6b8J8vZHyUs1NQ2jZENoiZ8PZdRVFWwrq0eZZoCxvojtBR0zyWWYCLuAHesxSA9KjARE7Zgc+bGsgMsZXz7CXsYcEZkTGhpySBwCgSqvQ5AtnI8MyHTwkw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764150682; c=relaxed/simple;
-	bh=cGcQhwRu7CBTzlhQkSvbP/GEOTbwssNmYI3Qff2lHHE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nIA902oXmwuYvbfPVRTrbGTf5QzX319CwO0LnFJmwmqEoTIpWiPusdu8Q5eHijWlicN1OFFNu4r3z4B5ZpEQbJrf47KM41jD9Ax9487wUfy/Kh0+KPfjs0P1IUhWVRkGcMMMv3Ble1fzIMS6t/XcEE51UsQrE2KBjxA4roCtj7E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=O8XkSE8k; arc=pass smtp.client-ip=136.143.184.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1764150649; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Vq6V27VOi3pqmFR3nYPN+F28Ob3QjjvrTFNqOJPrCwsPzfq6fgzT8IDbNriOTaksKk5q8g3vRcoMwYKrSDhD5IdRJfOaLWo7d2bvnn6QG01dj1LQtZ7Mlg8lI3rOnRDmolONekN6sdQZUbgLEhaQfAzwFuKNjqetk4cf7hEZC2s=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1764150649; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=cGcQhwRu7CBTzlhQkSvbP/GEOTbwssNmYI3Qff2lHHE=; 
-	b=AFfo/Lj7B+cG+kEr8acGty6ck9Rk2PekB57kbt81WaFZRX5IL5bTbD1bN6zMew/wlYY8hkIuTwiGAp65xiG+QWIg8D/ijtMmmnq7+UwaUN7wj8KyhL8+Wj74i/yBbELAgMxXTg3BK0YHSun46R29mKdjISkaicHfK4INBM2vNQw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764150648;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=cGcQhwRu7CBTzlhQkSvbP/GEOTbwssNmYI3Qff2lHHE=;
-	b=O8XkSE8kw1i4BbMEGqGCFcj2RawPC0MhLnVYFr+RHNIex9ME+g1f2Ufv0PK7FOJ8
-	GXP+/Szy2gGEZkVFMPXRBqdmSI3OjCNXlB3EHAT3OMEVjge+mESSuU0B81YQvCXP1j/
-	uleB4fwMAyuTW8iSC/tp6zRvZrrnRllfiB6dDP6uhBz8ILTnvvbOnA04EyZgZYeOsUK
-	ViTOehL4ta5XDrYbQWl7JfdPvUZzweKrjgA+i1WqlyDhLGq4B/pXTGmpHwWknS8q8Y4
-	JQkieFmpdPVlbjbNPUD8K/QZ9TZh5oLpNnw+FQMMuPL4MCWtiwHVotPppGWgYlei9Sp
-	mDFrVkM5IA==
-Received: by mx.zohomail.com with SMTPS id 1764150647026294.37960967272056;
-	Wed, 26 Nov 2025 01:50:47 -0800 (PST)
-Message-ID: <544ae21cc1b5f488d03a5650d9275ff22b237d63.camel@icenowy.me>
-Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Drew
- Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
- <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner
- <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Michal
- Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Date: Wed, 26 Nov 2025 17:50:36 +0800
-In-Reply-To: <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
-References: <20251124105226.2860845-1-uwu@icenowy.me>
-	 <20251124105226.2860845-3-uwu@icenowy.me>
-	 <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC412FD1D3;
+	Wed, 26 Nov 2025 09:53:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764150806; cv=none; b=LwfGn1AtNnVDBinz6aAvvMi5PNAbJa3B60L1t2h4v87RT7tJtVBt/8wpY1yS88/h0A3t/ZGgGz2MmAOsqszoQoX35imHjvavPxD0vox8ZqZbdU5h+OV2cm41yoZliJmesoxSAykOxAX3NuneqOUftQAEtocB/y7bKZ2sxVHoDVU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764150806; c=relaxed/simple;
+	bh=VlaG7D/FlaLiJ9zapfWyZLwnWYoNbnCpKlAXt2tJUSY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uxZY1RIW4CSH2J/bpHKbH0M0Z8REjSeNrwSr8xNXXBLoWueEyo3Ug+vtcXkvw7IhsfheUjx7lcON1fNvAacCeTk1DJccIm6Hq/TtxlZSellj/uvv9gWnHsd5jkDtRHTs90/1t6r675KRFWwBgAP9WyPzXrUxJlhlPA4tHGgnQGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rHj+qhT5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C84DFC113D0;
+	Wed, 26 Nov 2025 09:53:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764150806;
+	bh=VlaG7D/FlaLiJ9zapfWyZLwnWYoNbnCpKlAXt2tJUSY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rHj+qhT5ACF0ysunZQQF1Cn1JMMzXvg2wsZk8qxG0DvFFax3lusyEfGT7lNYZcGD0
+	 IpJth5vgUCVj0fOKMaco96wC/+X7HJyXBfjBZmz4JYVGDX2BxzeagLTWqOuzvg2cyQ
+	 mJdEWL8wN8U0WscuCUMNCG0oQ90LinaplhH0mKrUtSk78e8+tj0ui26UfdoJCmgoQA
+	 7fuiV4VGIqHEOdlSrEDDXdF6fBJnvF7gVg5T3im0ILjgWinNREydHFO7+m13Q3vS61
+	 YCwITHCDMD1dVBxryHF94dBb0UDJ8VpP9HAsHTYX3zMpCm1ssSnIo/3TC90WllkvA3
+	 F7IEIF/oexU6w==
+Date: Wed, 26 Nov 2025 10:53:23 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shrikant Raskar <raskar.shree97@gmail.com>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, 
+	heiko@sntech.de, neil.armstrong@linaro.org, skhan@linuxfoundation.org, 
+	david.hunter.linux@gmail.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: proximity: Add YAML binding for
+ RFD77402 ToF sensor
+Message-ID: <20251126-cautious-eagle-from-sirius-83fe52@kuoka>
+References: <20251126031440.30065-1-raskar.shree97@gmail.com>
+ <20251126031440.30065-2-raskar.shree97@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251126031440.30065-2-raskar.shree97@gmail.com>
 
-=E5=9C=A8 2025-11-24=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 12:01 +0100=EF=BC=
-=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> On 24/11/2025 11:52, Icenowy Zheng wrote:
-> > Verisilicon has a series of display controllers prefixed with DC
-> > and
-> > with self-identification facility like their GC series GPUs.
-> >=20
-> > Add a device tree binding for it.
-> >=20
-> > Depends on the specific DC model, it can have either one or two
-> > display
-> > outputs, and each display output could be set to DPI signal or "DP"
-> > signal (which seems to be some plain parallel bus to HDMI
-> > controllers).
-> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
->=20
-> Wrong DCO chain order. You send it as icenowy.me, so this must be
-> last
-> SoB. This identity is the last one certifying DCO. Please kindly read
-> submitting patches, so you know what you are certifying here.
->=20
-> > ---
-> > Changes in v3:
-> > - Added SoC-specific compatible string, and arm the binding with
-> > clock /
-> > =C2=A0 port checking for the specific SoC (with a 2-output DC).
-> >=20
-> > Changes in v2:
-> > - Fixed misspelt "versilicon" in title.
-> > - Moved minItems in clock properties to be earlier than items.
-> > - Re-aligned multi-line clocks and resets in example.
-> >=20
-> > =C2=A0.../bindings/display/verisilicon,dc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 146
-> > ++++++++++++++++++
-> > =C2=A01 file changed, 146 insertions(+)
-> > =C2=A0create mode 100644
-> > Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > new file mode 100644
-> > index 0000000000000..522a544498bea
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-> > @@ -0,0 +1,146 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/verisilicon,dc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Verisilicon DC-series display controllers
-> > +
-> > +maintainers:
-> > +=C2=A0 - Icenowy Zheng <uwu@icenowy.me>
-> > +
-> > +properties:
-> > +=C2=A0 $nodename:
-> > +=C2=A0=C2=A0=C2=A0 pattern: "^display@[0-9a-f]+$"
-> > +
-> > +=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0 items:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - thead,th1520-=
-dc8200
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: verisilicon,dc
->=20
-> I do not see any explanation of exception for generic compatibles,
-> maybe
-> except "self-identification" remark. Rob already pointed this out, so
-> be
-> explicit in commit msg why you are using a generic compatible.
+On Wed, Nov 26, 2025 at 08:44:38AM +0530, Shrikant Raskar wrote:
+> The RFD77402 driver has existed without a formal device tree binding
+> description. With the recent addition of Device Tree support and
+> interrupt handling in the driver, it is now necessary to document
+> the DT properties used for configuring the device.
 
-Well I only get the meaning of "a SoC specific compatible is required"
-in his review message.
+This is all irrelevant here. It does not matter for the bindings if the
+driver existed or not.
 
-I think my binding now requires both a SoC-specific compatible and a
-generic compatible, which should be okay to satisfy Rob's original
-review.
+Please rather document here the hardware.
 
->=20
-> > +
-> > +=C2=A0 reg:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +=C2=A0 interrupts:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +=C2=A0 clocks:
-> > +=C2=A0=C2=A0=C2=A0 minItems: 4
->=20
-> This is not flexible. Device either has or has not these clocks.
+A nit, subject: drop second/last, redundant "YAML binding for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+For sure don't use "YAML binding" - there is no such thing.
 
-The existence of all these clocks are verified by diagrams in manuals
-of two different SoCs with DC8200 (T-Head TH1520 and StarFive JH7110).
+> 
+> Since the binding introduces the compatible string "rfdigital,rfd77402",
+> the "rfdigital" vendor prefix is also added to vendor-prefixes.yaml.
 
-Maybe a explicit `maxItems: 5` is needed here, but as my DT passes
-dtbs_check, I don't think it's necessary?
+Also redundant, we can see the diff.
 
-Or maybe I should drop the flexibility now and use a `minItems: 5` here
-(and leave DC8000 support as another story)? (The Eswin EIC7700 manual
-does not have a diagram showing external connections of the DC, like
-the two SoCs I mentioned above).
+> 
+> Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
+> ---
+>  .../iio/proximity/rfdigital,rfd77402.yaml     | 55 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  2 files changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml b/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+> new file mode 100644
+> index 000000000000..93deaa4e8b7a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/proximity/rfdigital,rfd77402.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RF Digital RFD77402 ToF sensor
+> +
+> +maintainers:
+> +  - Shrikant Raskar <raskar.shree97@gmail.com>
+> +
+> +description: |
 
->=20
-> > +=C2=A0=C2=A0=C2=A0 items:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DC Core clock
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: DMA AXI bus clock
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Configuration AHB bus cl=
-ock
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Pixel clock of output 0
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Pixel clock of output 1
-> > +
->=20
->=20
->=20
-> Best regards,
-> Krzysztof
+Do not need '|' unless you need to preserve formatting.
+
+> +  The RF Digital RFD77402 is a Time-of-Flight (ToF) proximity and distance
+> +  sensor providing up to 200 mm range measurement over an I2C interface.
+> +
+> +properties:
+> +  compatible:
+> +    const: rfdigital,rfd77402
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: |
+
+Same, also a bit odd wrapping of the text below
+
+> +      Generated by the device to announce that a new
+> +      measurement data is ready in result register.
+> +
+> +  vdd-supply:
+> +    description: Regulator that provides power to the sensor
+> +
+> +  vddio-supply:
+> +    description: Regulator providing I/O interface voltage
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+supplies should be required, devices rarely work without power. If you
+think hardware works without power, this is something unusual thus you
+should explain it in the commit msg.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        proximity@4c {
+> +            compatible = "rfdigital,rfd77402";
+> +            reg = <0x4c>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
+
+Supplies
+
+Best regards,
+Krzysztof
 
 
