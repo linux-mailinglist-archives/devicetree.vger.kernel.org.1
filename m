@@ -1,132 +1,161 @@
-Return-Path: <devicetree+bounces-242493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E26F1C8AFD4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:35:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58EF3C8B154
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:55:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36DBB3A49EE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:35:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0852D3A31FF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B5AF296BD6;
-	Wed, 26 Nov 2025 16:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF44D33EB1D;
+	Wed, 26 Nov 2025 16:55:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aChyYbs3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KCJDGi4r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076F524468C;
-	Wed, 26 Nov 2025 16:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4C4281376
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 16:55:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764174922; cv=none; b=TpuuP+cSjsu/GY9Ko98wAorHKvMFgD/sOJ0lGtTsk6SWBTX3O6XemauFmKJ9PSOnDRQwole+aZukC8e7rrukx85WuiWnCMVrswQUZee91Ixvwyrw6RHxANmpbjNBv2wFuj1vPgbCnk0Bkz0rNZGR/nec0Wn0d5lVfoEWQcjKdis=
+	t=1764176141; cv=none; b=M/IYRvAEXZv3f+frxyMHfkpowSOemgNdCFs/z6t0dKEG+/6+mvwHZM0S5S49s8QBHtsc3W/oQXAmquTIkdoIlLAYJNt/XGZFOWl09B+Fbfe2tVDtSL1Y9QXPcyVvi5i4AFsPEe8l+VgGJoEIsHjngCQ0aub/66gbrBmoktHXIXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764174922; c=relaxed/simple;
-	bh=RZSgIuGjiuIn9ptfmZ3PxA/WvIwjacZxfbO81s3iPPE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tpY2K0UGjB6B/JOlomJ5Brls2Yt791XdodwGNCcRsUF2ZF/7ivUdjLIbSN/Xz62GfEiM4612hm2se3kNDlCOmXtVrr3dzgu+yO2gb5fGY5EXDePjlOMIFQmMdPhwY7tz6YISgn4AqGQFv5VwUE61tzra5EEQsO15UAZJ1a0I8Mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aChyYbs3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94016C4CEF7;
-	Wed, 26 Nov 2025 16:35:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764174921;
-	bh=RZSgIuGjiuIn9ptfmZ3PxA/WvIwjacZxfbO81s3iPPE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aChyYbs3wcEnDBk9ckn0RVjg2ebxF+kQ5BoaXn5mFmVNsrlX1FVLRo6a5mWdD93Ey
-	 xXsonGKzRtZ0pmScAgXsEcN+yKCkaRMjlwG7kj5dCNzUspEXCZocHYn4W9yeiKmlyN
-	 A2Zj/K/boSznm6uND59y2H1A9MgyY6MTGyWhiphG7Or1K+UxMK3zOx7lD7u2wCIvxc
-	 hi2gF/Iot+x/USUzskRu07Gp4C+dOeBwzSImrTpmEkEBhNIjs2uYkUZLkmVni8JEeK
-	 gT2HflwH3Ur4vMLCpLr6ud3rW1wkcBAWU8O7XmfvaNIzcq7cEoowc+jSrqzkfT5Fqu
-	 /w337gPxlz0ag==
-Date: Wed, 26 Nov 2025 10:40:51 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 13/14] remoteproc: qcom: pas: Enable Secure PAS
- support with IOMMU managed by Linux
-Message-ID: <pxddyr7c2o7dmnw4zvrakxnekcn5mssisxldd7dercd6njjkh4@2mwntnirmdse>
-References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
- <20251121-kvm_rproc_v8-v8-13-8e8e9fb0eca0@oss.qualcomm.com>
- <d7342610-c37b-4f5e-a2bc-1a683f9acf97@oss.qualcomm.com>
- <20251124120318.oqq42ndefnxyihfb@hu-mojha-hyd.qualcomm.com>
+	s=arc-20240116; t=1764176141; c=relaxed/simple;
+	bh=3Gc11fg7hsjFljk/JqN+H1npRWBl2dMAD1W7UL37tOY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=carc3x4ohjH6sAb4Y7GoKmfngLQ8qJSltmrBdXTpeKj4IYp5uo+JmpTZbmb5J3WTtJWDCMoHf3Ew2VxpV8DRwk0dQC/hSO+CP6bwEVBMIGPnp8CSe/GR0ylJ6JYqHaAph08Ov+I1/Mj6AiwQzhQhKEz53I3yDMPKX3eYPqizeGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KCJDGi4r; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7bc248dc16aso5169019b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 08:55:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764176139; x=1764780939; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YsLR0RJnm38Fp5r7CqZvtnDjOXjaQRJuirTuBdqGYYg=;
+        b=KCJDGi4rY4QXX2mUg28fMahdbCOHR5IMbRTT4p6p+Tw1trwhatcTK9D00Irh9JGjld
+         +fxqyKFVNLlzmQ8dPT2dsEy7YdSWKxRr+KT40peMNUnNnBdBS6dDNtTO8P9XT0R0VfuW
+         jdyriwVOYhVUSdsuuTuVdawn5sXUone/FHQTLOfr6O75vLdTH0M5wCKS/QErgP8qUgiB
+         +wMPWpM/eQxiAj7Sv8t3T33FO4ciOFp1zKjD60BvfsGYshcYmOgro6ksRCTxWlfFGUEI
+         OkL3lo5VIubyRXLRB73hBbwJXWqg/m9zqajRUNMJf5vMK4EKLdIlTH3w2z8hyPNYyfRb
+         sHQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764176139; x=1764780939;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=YsLR0RJnm38Fp5r7CqZvtnDjOXjaQRJuirTuBdqGYYg=;
+        b=axLd2B+oYXS7QYesX+luMSqzrLVd0mE60cR/mxL+WX11gGXg5fzaX19H9TgwBZ3Zng
+         ANfRn3aAGc0y+TpF98dLooZxs4PFEvZ5qaCqT0do+EsvO2t0MkuQjr31DbCjkzuLDvty
+         jlURncCAERcoaTf8pZg6tOo8eKM4dZuoLybG9osiqbQRE/8EwA1D46I1lU52ORFJap6g
+         QZ6k7OxvXEFnsXUbEuZeOaYMEh64trU5KXN25vUr990TRAfUF41dfVOFQtt/2iyR75sv
+         m4p+epjU3RLzF/5D+FACpHCzrW8lKUPucr5mAcivtKn4aOL4G6I7hJNcAUrXla2uDhvv
+         CO2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUWDhD83/qxHQ5W0JfKn+Q4silTtvUqf+6Ka1RRwy+MyrRUj5p4ZZbDw5kNDxQ6+TUJF26qtwzS1izZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxdkSiSCMCq3+Q1QTOK2CjqngylbrfvHXiQfOEFxfE2JiiwrB7
+	IMatWACK+W2SX9sG0yyWwiJ0IVDnj+jhAbYrejxektxwzGVAULYL/k5H
+X-Gm-Gg: ASbGncsr/X+lFuHDS8FpL1B5n0CDlhXYR4x8O4jxbHKUKBeltiPTVYjeB/6W0hgVdpz
+	OWUTOm1BYN1yIg5Wb6yUMAkfAqflatn97jWLq6hLZ246P+OtjwXKVRFsPCD6RRzYmoYRtOEsfEB
+	7LcZfH2FtHnDgwyWwoguDVrOrRLm8aV+ZOekq7dj0Ajkw6qfymIxsfis0o9imrivP/jJvBHrFEV
+	P0yrLwKtFAMgiVqFK+odto/d3oBBJAf1TKxdX9JVr4rrcr4hFH/hB8vA2u1cfsI2dInSC8SLNbk
+	5+yIP9Em0JU8fv/753MVklZIbcPhFcrreXjiQ/f5UALZXEu6YRoAoOvoZqpOMSQVLQIeDOFGXNa
+	1dmI47sNl7Z/7mYLv7PeuylZOPM1JCgQY7ZlW9njHjUBwGqni/jXWER7Ge5AoRj/GQlg92tcjdS
+	kbu6IzlutipjRovPGBhfuJcA==
+X-Google-Smtp-Source: AGHT+IH6cuG9oEeYrc3Fz+ThAFudgaYZ2XGiyeMqLPbjuZeQq1pwyPE1LvTCIEY9wFQ2EuUIbEmwCQ==
+X-Received: by 2002:a05:6a20:9148:b0:35f:4e9d:d28b with SMTP id adf61e73a8af0-3637db14ff6mr7976498637.18.1764176139306;
+        Wed, 26 Nov 2025 08:55:39 -0800 (PST)
+Received: from DESKTOP-P76LG1N.lan ([42.116.199.188])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd75dfed99esm19887078a12.1.2025.11.26.08.55.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Nov 2025 08:55:38 -0800 (PST)
+From: Nam Tran <trannamatk@gmail.com>
+To: krzk+dt@kernel.org
+Cc: lee@kernel.org,
+	gregkh@linuxfoundation.org,
+	pavel@kernel.org,
+	rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v18 1/3] dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
+Date: Wed, 26 Nov 2025 23:55:32 +0700
+Message-Id: <20251126165532.160730-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <74d6319c-535f-4409-a3c4-299ab946af54@kernel.org>
+References: <74d6319c-535f-4409-a3c4-299ab946af54@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251124120318.oqq42ndefnxyihfb@hu-mojha-hyd.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Nov 24, 2025 at 05:33:18PM +0530, Mukesh Ojha wrote:
-> On Mon, Nov 24, 2025 at 12:31:47PM +0100, Konrad Dybcio wrote:
-> > On 11/21/25 12:01 PM, Mukesh Ojha wrote:
-> > > Most Qualcomm platforms feature Gunyah hypervisor, which typically
-> > > handles IOMMU configuration. This includes mapping memory regions and
-> > > device memory resources for remote processors by intercepting
-> > > qcom_scm_pas_auth_and_reset() calls. These mappings are later removed
-> > > during teardown. Additionally, SHM bridge setup is required to enable
-> > > memory protection for both remoteproc metadata and its memory regions.
-> > > When the aforementioned hypervisor is absent, the operating system must
-> > > perform these configurations instead.
-> > > 
-> > > When Linux runs as the hypervisor (@ EL2) on a SoC, it will have its
-> > > own device tree overlay file that specifies the firmware stream ID now
-> > > managed by Linux for a particular remote processor. If the iommus
-> > > property is specified in the remoteproc device tree node, it indicates
-> > > that IOMMU configuration must be handled by Linux. In this case, the
-> > > has_iommu flag is set for the remote processor, which ensures that the
-> > > resource table, carveouts, and SHM bridge are properly configured before
-> > > memory is passed to TrustZone for authentication. Otherwise, the
-> > > has_iommu flag remains unset, which indicates default behavior.
-> > > 
-> > > Enables Secure PAS support for remote processors when IOMMU configuration
-> > > is managed by Linux.
-> > > 
-> > > Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> > > ---
-> > 
-> > [...]
-> > 
-> > > +	pas->pas_ctx->has_iommu = rproc->has_iommu;
-> > > +	pas->dtb_pas_ctx->has_iommu = rproc->has_iommu;
-> > 
-> > Sorry if we've been there before, but I see that IOMMU-mapping happens
-> > before ctx initialization.. can we drop this parameter and just use
-> > device_iommu_mapped(ctx->dev) in qcom_scm_pas_prepare_and_auth_reset()?
-> 
-> You are right and I am not against it, rproc already has variable `has_iommu`
-> which we use in framework and vendor driver too, but what I thought,
-> since this thing we have to do even for Iris or other drivers who are
-> effected, they already have device which are behind IOMMU and if wrong
-> device is passed in device_iommu_mapped() instead of firmware device which
-> could have returned true even when Gunyah is present.
-> 
-> If you feel, has_iommu is not correct name, I could rename it to fw_iommu ?
-> 
+On Mon, 24 Nov 2025, Krzysztof Kozlowski wrote:
 
-While this does relate to "has_iommu" and/or "fw_iommu" when it comes to
-the current PAS context, the "feature flag" is "should we use tzmem or
-not".
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/leds/common.h>
+>>> +
+>>> +    i2c {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        led-controller@1b {
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <0>;
+>>> +            compatible = "ti,lp5812";
+>>> +            reg = <0x1b>;
+>>> +            ti,scan-mode = "tcm:4:0:1:2:3";
+>>> +            vcc-supply = <&vdd_3v3_reg>;
+>>> +
+>>> +            led@0 {
+>>> +                reg = <0x0>;
+>>> +                label = "LED0";
+>>> +                led-max-microamp = <25500>;
+>>> +            };
+>>> +
+>>> +            led@1 {
+>>> +                reg = <0x1>;
+>>> +                label = "LED1";
+>> 
+>> Completely useless label... You require labels, so people need to write
+>> something but since they do not know what to write they call LED 1 a
+>> LED1. This is just not helping.
+>> 
+>> Use color and function properties. Same everywhere else.
+>>
+>
+>And now I went to older versions and I see they were correct - you had
+>color! You replace correct code with wrong one and drop review. This
+>patchset is not really improving.
+>
+>BTW, You actually received review also at v6, so this was reviewed 3 or
+>more times. Way too many times.
 
-Further, in the case of the modem, we don't have an IOMMU, but we still
-need to set this flag on the ctx in order to get the metadata into TZ.
+Thanks for your feedback.
+To address your concerns, I plan to roll back to v17, which was reviewed
+and approved by Rob.
 
-So, I think this should be detached from the "iommu". How about naming
-the "has_iommu" in the context to "use_tzmem"?
+The only intentional addition in v17 compared to v14, which you previously
+reviewed, is the ti,scan-mode property to configure the LP5812 scan mode.
+No other aspects of the binding are modified.
 
-Regards,
-Bjorn
+I hope this resolves the issues and keeps the binding stable.
 
-> -- 
-> -Mukesh Ojha
+Thanks again for your guidance.
+
+Best regards,
+Nam Tran
 
