@@ -1,123 +1,185 @@
-Return-Path: <devicetree+bounces-242336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D9CC894DF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:30:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFBD0C894EE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:31:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0DB773539FB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:30:33 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 245C8354F2A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:31:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95AE2FD1C2;
-	Wed, 26 Nov 2025 10:30:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15450302156;
+	Wed, 26 Nov 2025 10:31:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Z6Yhuagp";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="R1aQ/TDR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E742E5439
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 10:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E742D3218
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 10:31:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764153029; cv=none; b=qV7RCJfKvZFM9tpjfoQNutXazCgrMOm4sYfetRX8lMEi5W6HS2+TIUEIXXP1E33m+Cn/4LtOdm5zImEJ1UPxsP6Xd1PCMvIkrFV9LVC8kze8p0XZ/znjXtb4mjjVWG2xcUUjmRhFuFunsvo+gRkJUIUR/8NLrL927OkUW/95FFg=
+	t=1764153086; cv=none; b=Y2pH1oECmsN8VtSaN8UeH7tb4de/zyBV3yQ20eEUCm3f4Kzy7yv745vYH7+iaxIeHZ2JvtVEK9+XODkr2NO4IYlq6nfYmlETxeSFdIWoTqFumH2pSBET3n9C4HtZ7yF6MoPFYA2IoYuPeMPs9S+5Nbd7ocjosDKCoe904EiYroM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764153029; c=relaxed/simple;
-	bh=jIwJGyuyZYR+5b9pFB0AI93OaCTPPNozIw2p1ftAAmU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nc2Rev51ZhRfM3RC/z1n3JcbU/PDqPTn0Brya/ffipLJ5o9OYSpNCcZSgi97hp9yfYKTCkHkrqZebnn6wTwAMa5ockKosubJm8t2aKU01iztHlAnWy9EiPw/nZnI5gETgcTLK3y90oagU1oBKJImLsBfChYnd15GzCRoyxZxaG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vOCmt-0002y4-Ty; Wed, 26 Nov 2025 11:30:15 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vOCmt-002aVC-2E;
-	Wed, 26 Nov 2025 11:30:15 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 6098D4A898D;
-	Wed, 26 Nov 2025 10:30:15 +0000 (UTC)
-Date: Wed, 26 Nov 2025 11:30:15 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, 
-	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [net-next v2] dt-bindings: can: mpfs: document resets
-Message-ID: <20251126-rapid-quokka-of-wizardry-4f8c58-mkl@pengutronix.de>
-References: <20251121-sample-footsore-743d81772efc@spud>
- <20251126-famous-hummingbird-of-fruition-13a9ac-mkl@pengutronix.de>
- <b1511382-1fce-4a1b-a1c3-962a05fc07b5@kernel.org>
+	s=arc-20240116; t=1764153086; c=relaxed/simple;
+	bh=XBQV6zbTgM5PW/11ScmAaN6KwicooE8rv47r9WmQPd4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dIcmTvk2J7aJuqg8o8Fh/GAGDln7u5Y3UCj/3dkKETH14EuddvKiC654rP/jNyKn/bBc498j6VslJl2qKZkHMsfKjmtU4UTODhIk3Ku8Ou8zEyLX7mheakmoCMtckj/pC1FyR0+bKy8IM0YmuD+fbyJt/6pggc8W7qgris/XPYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Z6Yhuagp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=R1aQ/TDR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AQ9sgMg3317309
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 10:31:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=ysWSZ/rG34suqAdQu+gZ4WZ32lkN3tM8tmq
+	ZfOIp8GY=; b=Z6YhuagpBv6E0NEJQiV2zHRpcwac7Gy1+EoP5JbaFYuFa2+BG2j
+	1JR+OLcuMzO1lsswNzr5hBX8j/1Nmt2a6XLHSH6RqNRQHeHtvw+KOxQdjNMOu1y4
+	FQEUCcTZ6s+alU7s5lCcy65/6KE1N79RkZpnOFgoqTVw8AlJM1ycAZSd0vvr/NOB
+	mQkYmoAIkfoguXyhbLrznm64Xh9oakQQDddd93DM3EbgqvjjBArXy8GA9FFMqMSJ
+	8OvuVu4pIP3rBK26A/2+rarAJBWIvEFDk52nJAUhjtDazp9mdHTYjCXCE4hHr0/D
+	MxnbhnNo8W90grOrYFaIyn6Cj00DgpGJRuA==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4and2qk84n-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 10:31:23 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2958a134514so89249645ad.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 02:31:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764153082; x=1764757882; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ysWSZ/rG34suqAdQu+gZ4WZ32lkN3tM8tmqZfOIp8GY=;
+        b=R1aQ/TDRszkr1IQkOFcWPP0f1BOhsGUgn7K/D8hIuJq9FA+hbbLbgUDSl/OeTywfl4
+         PLThNlrmOjZQcHWPyNRa1hx9c8W87sOR5qUDCZeAb+c/ETxEzTlsuVH1RElTuf2idNoS
+         a38Sk0S9WtEG85/PK1HLZsjjQN7Eeig+Gb0Q37EAURzfUlpcu1UfbdgKYuOGVYEmOyqd
+         qRNMN3jJAzYGdmvlJahLZNV2nD4wwSsWRhlkNNtJhoBtPNUIMH8HaiWq0/tbA6apmBP1
+         oyzaqksg8+bUGJS2NYYxOa+CXlPriKi8orYTupjjng9DoLHyC6Ur2GixGbm1oOTEljW7
+         JbGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764153082; x=1764757882;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ysWSZ/rG34suqAdQu+gZ4WZ32lkN3tM8tmqZfOIp8GY=;
+        b=lc6C/8QlO/VYqFQG0loNAdW4tycQ83bYqtzv2zW/6qPPOnLDREPGE0pifo41JopeYD
+         mMhJcVWrEY7ZVbpCi1CttQkFqeXhh2+trpDEQYq+D73GCBzc3uV1APfss/kX//CjdTna
+         rU0NBn1uh2NLTHvoiiJfFIJN71tWaYv1o0Sk17Kw5TWPwARL9qyWdnCPj05Gg33Cpcd0
+         uX5/TaIxQzw+D8Kk29etfeY93hwiZZrMUxeCX+zpGOl4j9VIH7zeUUblITFdKhGQ4CSU
+         YkbNgHoQE62wh3Q5OwM2VDTKvuWnXob8aAo5iZDcJcnO868t0wOr/KZN+kCET9C5QCvy
+         Oh/w==
+X-Forwarded-Encrypted: i=1; AJvYcCVxkDS/ckOeZPq1tedBbRk7cTGIqwiIEct+F0V6nxvQtJGJd0Q9sJi/KOP9tur297ok6kT40bX6xKBe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWfvoqYTsnkisAy9q8UuHXER7GVqxmdyRspvO/K9Evom0M1g/x
+	F95cmimWvtaAyfdh6SlBF6JK3LYkj7FAFa+/pZUN0SgR3phKXCRrJ3ANLfGu5m0sNKG9ikxMFU5
+	HWTfBvl6gzrcTNpcNdktCcJ0ZMARP0M+VzGpmDhGj+iRv6YqP61eYIlUQtaH/9V1Q
+X-Gm-Gg: ASbGncvyFsAlle3sbe1s9JtXwXZ1QLanpJweA6HpiOrD5xaqfedVeg41je6cbxvxCLX
+	Rx+6mcGxKPdR7RCXSwsfd9WPNxWujRC2Goj0r+OC3wQTqaj9I7ZpzEkyTkCxac98BgwqF77PMJ6
+	SIfO6YvlGf5B6qObIjrZYOq2I0k/ZYceEIbWZQz1sIl3WrWlZpOAPHvrWbi6s9ZKLmkT/rPnJz7
+	7yW9h8APVEd/+uWDLdlUzYXHbptz4S1zyRJDjgHHhaATxcycA6sne9ub8jMO3qlykJymEA2B8JB
+	OXqVopuCUVXIGMJyVM9TaRC9mRLUgHv/86j4DfQqCSfWmgNkytCAVyA7whslOSu1csQ9xkWffbA
+	3AdP/IRGCvNXiguCmRd+ClnqDu+x7oMGgQh8S4hLEb1+2
+X-Received: by 2002:a17:902:d4d1:b0:246:e1b6:f9b0 with SMTP id d9443c01a7336-29baaf9abb7mr68896035ad.18.1764153082185;
+        Wed, 26 Nov 2025 02:31:22 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFtNSOALWZhHSuDXvX3CzC6UbjFFjub+TsW750YdkPPPyau87i9PtTK1ZxruaatUAFQE/8y0Q==
+X-Received: by 2002:a17:902:d4d1:b0:246:e1b6:f9b0 with SMTP id d9443c01a7336-29baaf9abb7mr68895455ad.18.1764153081592;
+        Wed, 26 Nov 2025 02:31:21 -0800 (PST)
+Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b26fed2sm196534635ad.69.2025.11.26.02.31.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Nov 2025 02:31:21 -0800 (PST)
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+To: andersson@kernel.org, robh@kernel.org, mani@kernel.org, krzk@kernel.org,
+        helgaas@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com,
+        krishna.chundru@oss.qualcomm.com, lukas@wunner.de
+Subject: [PATCH v3] schemas: pci: Document PCIe T_POWER_ON
+Date: Wed, 26 Nov 2025 16:01:12 +0530
+Message-Id: <20251126103112.838549-1-krishna.chundru@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mru2i5tjkbyuvlgv"
-Content-Disposition: inline
-In-Reply-To: <b1511382-1fce-4a1b-a1c3-962a05fc07b5@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDA4NiBTYWx0ZWRfX10kbH7sJpkBc
+ yBDaoe9s4onJvAjxAkVSj4KHR9ik4Gxj2E/F3Th8lwgFC3KLTqLquUw6YCmv0Kf4HerpLBfXkXD
+ uxla7A7b362CG+oUUpL1SYZwObTT/39RXLEujL17YqM8r2tngZbtYutCw0I6M8XgX7p2Z2Up791
+ 9IkiyD5YI28nEY28gR+r8rW2063QHgSWgapM4gxTVpL8643veHjxX7LTu1L5OyEynELS7K2Trru
+ Ai5P47OSCLvmDyDvOrcvA2S1aEtCQbD8QhAvLfaiwwBX1Yhy7gwPILMd0dLg3kwqCaedEIDWfR9
+ r/N3RCLCS+qWLkeQuAYq8s4CdObDNuC+hyzwo2rh1CxXgAf5xYLz2S9+gOtrLPNe6ojHgnEz2Cz
+ +S5AFqhEkKN8wpw4S7mGo64lJwwgdQ==
+X-Authority-Analysis: v=2.4 cv=dZyNHHXe c=1 sm=1 tr=0 ts=6926d6fb cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=qIbWdXD6M1inJYch3NYA:9
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: ojOtCkHeKRybxgKytgJcdEME5kcTQYAF
+X-Proofpoint-GUID: ojOtCkHeKRybxgKytgJcdEME5kcTQYAF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-25_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 lowpriorityscore=0 malwarescore=0
+ adultscore=0 spamscore=0 clxscore=1015 bulkscore=0 phishscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511260086
 
+From PCIe r7, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON is the
+minimum amount of time(in us) that each component must wait in L1.2.Exit
+after sampling CLKREQ# asserted before actively driving the interface to
+ensure no device is ever actively driving into an unpowered component and
+these values are based on the components and AC coupling capacitors used
+in the connection linking the two components.
 
---mru2i5tjkbyuvlgv
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [net-next v2] dt-bindings: can: mpfs: document resets
-MIME-Version: 1.0
+This property should be used to indicate the T_POWER_ON and drivers using
+this property are responsible for parsing both the scale and the value of
+T_POWER_ON to comply with the PCIe specification.
 
-On 26.11.2025 11:26:17, Krzysztof Kozlowski wrote:
-> On 26/11/2025 11:24, Marc Kleine-Budde wrote:
-> > Hello,
-> >
-> > can I get a review from the DT people?
->
-> We don't always review each other patches, so you kind of have DT review
-> already. I can review, but I just did not plan to review this... less
-> work needed...
+Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+---
+Changes in v2:
+- Move the property to pci-device.yaml so that it will be applicable to
+  endpoint devices also (Mani).
+- Use latest spec (Lukas)
+- Link to v2: https://lore.kernel.org/all/20251110112947.2071036-1-krishna.chundru@oss.qualcomm.com/
+Changes in v1:
+- Updated the commiit text (Mani).
+- Link to v1: https://lore.kernel.org/all/20251110112550.2070659-1-krishna.chundru@oss.qualcomm.com/#t
 
-Thanks for the quick reply and review.
+ dtschema/schemas/pci/pci-device.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-regards,
-Marc
+diff --git a/dtschema/schemas/pci/pci-device.yaml b/dtschema/schemas/pci/pci-device.yaml
+index ca094a0..4baab71 100644
+--- a/dtschema/schemas/pci/pci-device.yaml
++++ b/dtschema/schemas/pci/pci-device.yaml
+@@ -63,6 +63,15 @@ properties:
+     description: GPIO controlled connection to WAKE# signal
+     maxItems: 1
+ 
++  t-power-on-us:
++    description:
++      The minimum amount of time that each component must wait in
++      L1.2.Exit after sampling CLKREQ# asserted before actively driving
++      the interface to ensure no device is ever actively driving into an
++      unpowered component. This value is based on the components and AC
++      coupling capacitors used in the connection linking the two
++      components(PCIe r7.0, sec 5.5.4).
++
+ required:
+   - reg
+ 
+-- 
+2.34.1
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---mru2i5tjkbyuvlgv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmkm1rQACgkQDHRl3/mQ
-kZwl/Qf+MI4CbcnKrFEQv7+JuZl3o+Jrg14DSr5/3l+5gdJZSbMTK5xO5N+Z5Ih4
-3K4cXamu9YqHL6ZmUpIyOt+qOeTBTeK0wvgggakllupDMldabe6qqPauUkdl4zvf
-cwm1mMQgGHpRzBJvgf12EE4aGVCq/LVJe/ojeZmc6pKM5+721hLEUtEjLii+V+FR
-ZkX8fbTjQ6VRX+3NtR/bleoCHljy0YnBMqUGCe/2EpRJJAsYWTilDMPXnuREnnAV
-DP85ydg8HUBaEzvMzQyygtU1BLlGHUHXONEMToGf8BR2hHtbB2287Xb4sSva0FUJ
-IlQ5JYQ3HfvHf+FTtA1IthD/jLQokw==
-=izFg
------END PGP SIGNATURE-----
-
---mru2i5tjkbyuvlgv--
 
