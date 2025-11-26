@@ -1,138 +1,83 @@
-Return-Path: <devicetree+bounces-242279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496C3C88D28
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:03:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AC9C88B23
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:43:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44D7A3B0428
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:03:17 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 219E934CD67
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB15301033;
-	Wed, 26 Nov 2025 09:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18E8731A55A;
+	Wed, 26 Nov 2025 08:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="mtWFpE/K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5aeBi46"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1827D24166C
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:03:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB5E31A549;
+	Wed, 26 Nov 2025 08:43:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764147794; cv=none; b=t7PdHzEGCdRtv6gTpOiAlghTnqoZkIRsvYqbgLq2HYc+clyQ/zUrmpL0HeRz6ZTrRmFlZlG+3dLqLRQBKJ0IpJrJ2KlLwu7XycLxJQoExejYlXpjSafa2Q+hNZH/Dt41scsLdMQvU7sNo6AtkWBV0Wz2ADTSMYyiuQcjpvu+sbs=
+	t=1764146619; cv=none; b=IKhN5TY85XKySBPs4/TaoXFoy8DWiTV6HCRrjFPrkzpmteGPT85R4b/sONwayCndde8PD0GnJ3QSk7SYkPBZ10zCLqHFXNADO6GOG1IbFdSYlBtqteVKi/+yrIzadB2F/ktxCB+Ao7E6D1CTy/Fp5PKBMwkH/bI9kf8vMYM82u8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764147794; c=relaxed/simple;
-	bh=eYUNXJgZcjlkHLIrIaZBRgr3zEvTHVn0vNT8SQqadvM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j4HJYxh+Qwxu60lOcdje5y4vA3A+1EzzHCVAedfMcMZAwZttIjpsWCnh0f+/MS77ikgnK/I1ClvBUch2eGsNdwjSC5arJZNzZ3gZ6PKihy6i0/8MKS764Pkc7JPCHUREkVe3io3g00/EtQ2k7xyyLnwup8oi5Mrfj+ta/j9wmZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=mtWFpE/K; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1764147791;
- bh=U1OykPAwTcPzSFiUomqrxwP1jDvbUax2InEi27KUlKo=;
- b=mtWFpE/KkQxTUmDu2i2LGX6hMKIWJQOQ+SBNi+L5qIj06t/Et1fxBzfjVsVbSBrYc2YSIuy8B
- wkyaFaVdhQxbXf/5YFJx3g1Ypuss2ad4Kuy/ZlJKwDZAwkmxTWDajhPjPNRQAvWjKG6awc3Pjzk
- gfmRaJ/VSU5ZNoIpBGl5YWKxM55rE8D+OCwlMlHHlzPhJpqeXQE+3mKIM3y4LMTWKbKS9FausuX
- ziv8JjvFTzcBptl0HqbLBdt15wZp89zYD22IycmHPy3bXcmgkR6GI4C8ZSryA0ubG1NJlLJ7x9O
- MGvFg9fZGoKYsDplsUbzBbbPce0okwpbtSL0jb4eOezA==
-X-Forward-Email-ID: 6926bd023968ae208f5ee233
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 1.6.3
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <d66f81e4-9d9f-4df8-916b-e6f68c85d813@kwiboo.se>
-Date: Wed, 26 Nov 2025 09:40:29 +0100
+	s=arc-20240116; t=1764146619; c=relaxed/simple;
+	bh=jC4bQXuzi4917hOc/DiBoUs9OPvTj12PLSG7NCtBDwY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q+pMSS+kSLFhVuDrdzlwsigbsp7DIfW3FC2bziOdPuW1Lq04L7ekaY5C0o5LMDZ/+Egi5BWRGY+vYMsBfuqkCkDtuYV0D4YAu5xzhWICQw2/9isVSx99jYaUwp0CQMBrVBS+/BGG03Hlv8oCRLx7zAlSuoADnq8PhKrRobpHfsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5aeBi46; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEB14C113D0;
+	Wed, 26 Nov 2025 08:43:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764146618;
+	bh=jC4bQXuzi4917hOc/DiBoUs9OPvTj12PLSG7NCtBDwY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M5aeBi46OqJEC+oU0nDRtmy3PE+DyUs3jKNX2ghpyg5NxJFHsJJnP2EjeXP2IWDtP
+	 4ARG4yShnDiP6Jmq9au/gzOeMJztb6vQjg6ChWZRc4Twwi44Al9Cmc0VleK2x8+fQc
+	 Sy1V2ixtTvltgGQ9/+JH7g35yFdO16K9Ko4yEb7iqJf9axW/QIII1iEWJ6YQkJVbgw
+	 Ts5eI86VJbSKsg7sGOTrVMOPfMgTn9pny41ACfVWtv4wIM35fpIi8Q+1rN6TGvAq/7
+	 NWhx2TSLitCDn02eW6Guz14HCVj3+C6nQhWPra0EwdLi2d1I9IETQhPw2BM3hnO66u
+	 mmXzs4VSXjykQ==
+Date: Wed, 26 Nov 2025 09:43:35 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Hao-Wen Ting <haowen.ting@realtek.com>
+Cc: daniel.lezcano@linaro.org, tglx@linutronix.de, jinn.cheng@realtek.com, 
+	edwardwu@realtek.com, phelic@realtek.com, shawn.huang724@realtek.com, 
+	cy.huang@realtek.com, james.tai@realtek.com, stanley_chang@realtek.com, 
+	cylee12@realtek.com, phinex@realtek.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
+	robh@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: timer: Add Realtek SYSTIMER
+Message-ID: <20251126-impartial-spiritual-ibex-31cfcd@kuoka>
+References: <20251126060110.198330-1-haowen.ting@realtek.com>
+ <20251126060110.198330-2-haowen.ting@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable i2c2 on Orange Pi 3B
-To: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20251120-orangepi3-enable-i2c2-v1-1-2e023a74012a@rootcommit.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20251120-orangepi3-enable-i2c2-v1-1-2e023a74012a@rootcommit.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251126060110.198330-2-haowen.ting@realtek.com>
 
-Hi Michael,
-
-On 11/20/2025 8:00 PM, Michael Opdenacker wrote:
-> Enable the "i2c2" bus on header pins 3 (I2C_SDA_M1)
-> and 5 (I2C2_SCL_M1) of the Orange Pi 3B board.
+On Wed, Nov 26, 2025 at 02:01:09PM +0800, Hao-Wen Ting wrote:
+> The Realtek SYSTIMER (System Timer) is a 64-bit global hardware counter
+> operating at a fixed 1MHz frequency. Thanks to its compare match
+> interrupt capability, the timer natively supports oneshot mode for tick
+> broadcast functionality.
 > 
-> As documented on http://www.orangepi.org/img/pi3b/0719-pi3b-19.png
-> such pins are the only ones offering I2C functionality
-> without conflicting with other SoC blocks.
-
-This is strictly not true, these pins are by default used as GPIO, this
-patch change them to use the I2C2 func, something that should normally
-be enabled in an overlay.
-
-Functions for these pins:
-
-	func 0		func 1
-
-	GPIO4_B4_d	I2C2_SDA_M1
-	GPIO4_B5_d	I2C2_SCL_M1
-
-> 
-> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+> Signed-off-by: Hao-Wen Ting <haowen.ting@realtek.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi
-> index d539570f531e..e2f0ccc6dbe7 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi
-> @@ -435,6 +435,11 @@ regulator-state-mem {
->  	};
->  };
->  
-> +&i2c2 {
-> +	pinctrl-0 = <&i2c2m1_xfer>;
+>  .../timer/realtek,rtd1625-systimer.yaml       | 47 +++++++++++++++++++
 
-pinctrl-names should also be added here.
+I received THREE same emails from you. Please read the output of
+commands you run, e.g. when testing git send-email.
 
-> +	status = "okay";
-
-As mentioned above, this should be enabled in an DT overlay not in the
-board DT.
-
-Regards,
-Jonas
-
-> +};
-> +
->  &i2s0_8ch {
->  	status = "okay";
->  };
-> 
-> ---
-> base-commit: 8e621c9a337555c914cf1664605edfaa6f839774
-> change-id: 20251120-orangepi3-enable-i2c2-fe6d25ec681a
-> 
-> Best regards,
+Best regards,
+Krzysztof
 
 
