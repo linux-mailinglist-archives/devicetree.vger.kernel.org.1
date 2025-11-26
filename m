@@ -1,154 +1,138 @@
-Return-Path: <devicetree+bounces-242266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9608C88A92
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:34:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 496C3C88D28
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:03:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0EAEC35082B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:34:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44D7A3B0428
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76F7318149;
-	Wed, 26 Nov 2025 08:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB15301033;
+	Wed, 26 Nov 2025 09:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="QsJTIi9U"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="mtWFpE/K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg151.qq.com (smtpbg151.qq.com [18.169.211.239])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1FC42D29C7;
-	Wed, 26 Nov 2025 08:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.169.211.239
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1827D24166C
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:03:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764146048; cv=none; b=ed5udmhZS2yG8LW8kDRxISMarkgJvlV8XLozwryxNd93SfDYmo7pEe0ELJMAaeIqvHz4U6X+x6wToETBrBy5v5E+oARcTZPyk9N51gw8AyKBkrbkb3qfXEaToVpDneWGZW8UP0y2NwRXpsme+E8vvfdkshzD3m63g4fh7/J3pi8=
+	t=1764147794; cv=none; b=t7PdHzEGCdRtv6gTpOiAlghTnqoZkIRsvYqbgLq2HYc+clyQ/zUrmpL0HeRz6ZTrRmFlZlG+3dLqLRQBKJ0IpJrJ2KlLwu7XycLxJQoExejYlXpjSafa2Q+hNZH/Dt41scsLdMQvU7sNo6AtkWBV0Wz2ADTSMYyiuQcjpvu+sbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764146048; c=relaxed/simple;
-	bh=aTRfWTyi12QLcpVmaAc3UC+SdMqOwRCTQlt0tHus5LQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=P4iILBQafO6yGMJ0L9Pm2EHUHUJ4jkuEacJJunAniYTVFkAjk7Evo5ijioA4oJex7kLvRdfX8dk8cy/NoUQ7QTZGAo0QmZBp7fp9Dg+6jHjSc74mNkXMIvjAzphYRvROxqIU2yQqCrSYzv/ijs4yX9dqf6LszTCS1AqT32hjFbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=QsJTIi9U; arc=none smtp.client-ip=18.169.211.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1764146039;
-	bh=qROQ1d/rJ3p9sDL8V6Cw/YwOWZVH09EJvhZr2XOPZ2A=;
-	h=From:To:Subject:Date:Message-Id;
-	b=QsJTIi9U36FIRtiV9kVMuCjY5RjVp3IAuHbP8TOSuQA0r0nNBowffJDFmkTqZmEpE
-	 HFscdUHdPdQDt2UZWUttEQS1vvIg5tNgGK1YIJ0PWyrIYqRe1LQZ2GJFcjdA5fNz2g
-	 xMVyh49OxKdZfVoxT6V20cqJrUkx5YgJa3R5WumI=
-X-QQ-mid: zesmtpgz4t1764146035tf6f1de73
-X-QQ-Originating-IP: hZmGDUB5pWL4vwPmhqVG5XW5MaCy4rmE9lT7izAS3qE=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 26 Nov 2025 16:33:54 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 10528656724047944160
-From: Chaoyi Chen <kernel@airkyi.com>
-To: Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Subject: [PATCH 2/2] iommu/rockchip: Use devm_clk_bulk_get_all() to get multiple iface clock
-Date: Wed, 26 Nov 2025 16:33:45 +0800
-Message-Id: <20251126083345.88-3-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20251126083345.88-1-kernel@airkyi.com>
-References: <20251126083345.88-1-kernel@airkyi.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
-X-QQ-XMAILINFO: OK8k06hE7wrVfPkY59X0+/pI54ixdz8xGGg68ftZJ02MKwNzDqLg4MgZ
-	UOvu1NYTsoBhJBUxZN9D6BquILYX+KFTD7gRi+Bra9lYkuabeVF2BaNbFosc8pXeY5Gfo7Y
-	6zD2YYGMJlz4e2b86XgKVtlacH5chUk+2IKA9uLgtTtO81jLvF7DcAw1oLzjfgOvMVJx7FQ
-	6LWh8i3s3ET9OXCqyD4fBwIHGvWZy/ewtwMwI9JsUn7wRVa/oU0QgRQeyVx5+WlhMcIAUCh
-	m+VAgeRBPj1USwFd9Dc/xFIpLxuU1q/LXsejEFekCITdY+zUgAbFtO20kgHJUwrU428Ebjg
-	jC9QQQNPSQVbwFpGW67jAqzxWFfaPAhlIx/79Wo1ihbO36tePNPYQrbi8taG5LtXR4r+eZM
-	nVEVzK3xvVN8cYDfdOnD2enmneuIM39aV8HZMSkJ0IMqjIbMsgyiT1QTy+lQUvGQu4VHWVc
-	6IdSKBdJ7Z6icULJFAnDBvAKxY8aD1JXcxN4fBf3x/Ijw9Gl2Y6xRuAeojIqi0BfSIxOphk
-	VrA+j/VnFEsUOPpIbh/O9MkBh8Uh3czS7I90jrkxSFdpagpI+p8+XAmSKcw0ANnC73lH6yZ
-	Go6wuEZ6ZnJUhkXLuBCsZKjOXgsxlTIOyiGUJusP69hqXekrHIghCYAEhbITALGv1QfaE5E
-	SGWHBZ6VUi3kO7wU2OS4FveX4OUwfCeJEA01DKSYA9uJY9L/GzFr+a9CNnbmwaS+qU6TAdL
-	jSRDqF+TQnbQXpMglND4gZb0As3QaeFWG8nycNyOXTWkS78TD1dVBmOBLgyMIgyb+H1P0bQ
-	xQiLtBDolWxZP7uGc6Ca8IHRJUrIK5foNkTfFWQq8RbpFni0fjmGU+I30UniUDCDjcD3JiA
-	DjpWgDL2qIWUWGTgRc7HwgBbzHrPzVD01vGvSCmpaEWIwP5+Cwi0gk5jhnrRyuGcL3X0MKm
-	LVlYw/d+efzAMbOHOAMRfT7bg7hZ2Z8Gs9cE=
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+	s=arc-20240116; t=1764147794; c=relaxed/simple;
+	bh=eYUNXJgZcjlkHLIrIaZBRgr3zEvTHVn0vNT8SQqadvM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j4HJYxh+Qwxu60lOcdje5y4vA3A+1EzzHCVAedfMcMZAwZttIjpsWCnh0f+/MS77ikgnK/I1ClvBUch2eGsNdwjSC5arJZNzZ3gZ6PKihy6i0/8MKS764Pkc7JPCHUREkVe3io3g00/EtQ2k7xyyLnwup8oi5Mrfj+ta/j9wmZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=mtWFpE/K; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1764147791;
+ bh=U1OykPAwTcPzSFiUomqrxwP1jDvbUax2InEi27KUlKo=;
+ b=mtWFpE/KkQxTUmDu2i2LGX6hMKIWJQOQ+SBNi+L5qIj06t/Et1fxBzfjVsVbSBrYc2YSIuy8B
+ wkyaFaVdhQxbXf/5YFJx3g1Ypuss2ad4Kuy/ZlJKwDZAwkmxTWDajhPjPNRQAvWjKG6awc3Pjzk
+ gfmRaJ/VSU5ZNoIpBGl5YWKxM55rE8D+OCwlMlHHlzPhJpqeXQE+3mKIM3y4LMTWKbKS9FausuX
+ ziv8JjvFTzcBptl0HqbLBdt15wZp89zYD22IycmHPy3bXcmgkR6GI4C8ZSryA0ubG1NJlLJ7x9O
+ MGvFg9fZGoKYsDplsUbzBbbPce0okwpbtSL0jb4eOezA==
+X-Forward-Email-ID: 6926bd023968ae208f5ee233
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.6.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <d66f81e4-9d9f-4df8-916b-e6f68c85d813@kwiboo.se>
+Date: Wed, 26 Nov 2025 09:40:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable i2c2 on Orange Pi 3B
+To: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+ Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20251120-orangepi3-enable-i2c2-v1-1-2e023a74012a@rootcommit.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20251120-orangepi3-enable-i2c2-v1-1-2e023a74012a@rootcommit.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Hi Michael,
 
-The iommu found on RK3576 NPU/RKVDEC may contains more than one
-interface clock.
+On 11/20/2025 8:00 PM, Michael Opdenacker wrote:
+> Enable the "i2c2" bus on header pins 3 (I2C_SDA_M1)
+> and 5 (I2C2_SCL_M1) of the Orange Pi 3B board.
+> 
+> As documented on http://www.orangepi.org/img/pi3b/0719-pi3b-19.png
+> such pins are the only ones offering I2C functionality
+> without conflicting with other SoC blocks.
 
-Just use devm_clk_bulk_get_all() to get all the clocks and use them.
+This is strictly not true, these pins are by default used as GPIO, this
+patch change them to use the I2C2 func, something that should normally
+be enabled in an overlay.
 
-Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
----
- drivers/iommu/rockchip-iommu.c | 20 ++++----------------
- 1 file changed, 4 insertions(+), 16 deletions(-)
+Functions for these pins:
 
-diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-index 0861dd469bd8..76f71fb679f8 100644
---- a/drivers/iommu/rockchip-iommu.c
-+++ b/drivers/iommu/rockchip-iommu.c
-@@ -93,11 +93,6 @@ struct rk_iommu_domain {
- 	struct iommu_domain domain;
- };
- 
--/* list of clocks required by IOMMU */
--static const char * const rk_iommu_clocks[] = {
--	"aclk", "iface",
--};
--
- struct rk_iommu_ops {
- 	phys_addr_t (*pt_address)(u32 dte);
- 	u32 (*mk_dtentries)(dma_addr_t pt_dma);
-@@ -1236,25 +1231,18 @@ static int rk_iommu_probe(struct platform_device *pdev)
- 	iommu->reset_disabled = device_property_read_bool(dev,
- 					"rockchip,disable-mmu-reset");
- 
--	iommu->num_clocks = ARRAY_SIZE(rk_iommu_clocks);
--	iommu->clocks = devm_kcalloc(iommu->dev, iommu->num_clocks,
--				     sizeof(*iommu->clocks), GFP_KERNEL);
--	if (!iommu->clocks)
--		return -ENOMEM;
--
--	for (i = 0; i < iommu->num_clocks; ++i)
--		iommu->clocks[i].id = rk_iommu_clocks[i];
--
- 	/*
- 	 * iommu clocks should be present for all new devices and devicetrees
- 	 * but there are older devicetrees without clocks out in the wild.
- 	 * So clocks as optional for the time being.
- 	 */
--	err = devm_clk_bulk_get(iommu->dev, iommu->num_clocks, iommu->clocks);
-+	err = devm_clk_bulk_get_all(dev, &iommu->clocks);
- 	if (err == -ENOENT)
- 		iommu->num_clocks = 0;
--	else if (err)
-+	else if (err < 0)
- 		return err;
-+	else
-+		iommu->num_clocks = err;
- 
- 	err = clk_bulk_prepare(iommu->num_clocks, iommu->clocks);
- 	if (err)
--- 
-2.51.1
+	func 0		func 1
+
+	GPIO4_B4_d	I2C2_SDA_M1
+	GPIO4_B5_d	I2C2_SCL_M1
+
+> 
+> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi
+> index d539570f531e..e2f0ccc6dbe7 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi
+> @@ -435,6 +435,11 @@ regulator-state-mem {
+>  	};
+>  };
+>  
+> +&i2c2 {
+> +	pinctrl-0 = <&i2c2m1_xfer>;
+
+pinctrl-names should also be added here.
+
+> +	status = "okay";
+
+As mentioned above, this should be enabled in an DT overlay not in the
+board DT.
+
+Regards,
+Jonas
+
+> +};
+> +
+>  &i2s0_8ch {
+>  	status = "okay";
+>  };
+> 
+> ---
+> base-commit: 8e621c9a337555c914cf1664605edfaa6f839774
+> change-id: 20251120-orangepi3-enable-i2c2-fe6d25ec681a
+> 
+> Best regards,
 
 
