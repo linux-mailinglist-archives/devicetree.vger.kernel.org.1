@@ -1,48 +1,54 @@
-Return-Path: <devicetree+bounces-242460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE95C8A851
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:06:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 798ABC8A85D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:06:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3CDAB4F1BCE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 14:58:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CA33C4E8754
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 14:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6904309EF1;
-	Wed, 26 Nov 2025 14:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397343043C4;
+	Wed, 26 Nov 2025 14:59:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="snGe7lbC"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="YrLHo9uK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE89309EE9;
-	Wed, 26 Nov 2025 14:56:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C225326ED54;
+	Wed, 26 Nov 2025 14:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764168981; cv=none; b=Qa/gqaFjWaWC1zGgVBzGXXLHXXKUGs0PvXhEV+4773OrPNFZcfx766FMmpwHICGys0t/eDC6yaeEB7CxhZEBvhQSCDqPiVOxhWojiLN8HzfAJaV1YR00BDpMPGY8fXMdRG3S1hFAl79TGNgnB2tycOL38O68b9uYZ5naFDGmfiU=
+	t=1764169196; cv=none; b=bwhr9328E8iVrTCnbFI6Vh4m1G568JO5DX0d0SF7R1uIh/gSrS+GKPh4PRPECVIW4HV/YQgeb0fpACvOxrd4itHfpJu+bQmxdMaOpnvxBLcNZYeeERCPOfaYqolMjScxbBvUFik4ceA85gtfe6UU2rxvu0ISRlx4VR9ehFrr2PE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764168981; c=relaxed/simple;
-	bh=MeTvCvxV+3MFnGJottwhuC9OB5zcau7n3a2ykik7c8M=;
+	s=arc-20240116; t=1764169196; c=relaxed/simple;
+	bh=Nt7E8UD7UkkmdpmvO1L9cOyiGWaqO1g7qD9kTbyWOTw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FaYLhuMDk7UqgEW+v0bU8pE8Qk1gJeRfEGpX39/GWirtilvkjejKOfGC455g8dLJPAeIErHelzkgpTlpttzPmUDDAe+F/oXctsocTgh4jugRF2ZMeah3dU3Xo5mJCWVzKe9V8nobLt5kSiMa2/lTTKa6/yhHW+wogI51PQXS89Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=snGe7lbC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E891EC4CEF7;
-	Wed, 26 Nov 2025 14:56:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764168981;
-	bh=MeTvCvxV+3MFnGJottwhuC9OB5zcau7n3a2ykik7c8M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=snGe7lbCYacch1xuECwqTvMnBkOI7LejV9Q29Sr1sI4VuESWqOzTzi4cajGQeY8Tn
-	 uAyTV8LdLPGTY5p2yq02xOzTfLrefv/J5waZujSxVPQ/KVrQjn1n3FfNfIHfufumd7
-	 bmGIiLCfi4slSlSZVHTBsmiSSdnh4WQYAcW0/JBWL16qr9moAC2hbY1bU22M+7532D
-	 zmn+v3YTcEaI2Nj36GoaMXVa2TBgRfXVrk2zPi1cT7xiYG6+kvKRBoGE2hgiNFIENM
-	 z0Lif+2gOU8Y96CDCaB2W46+eCIAMxYofGQNvNzLdPxvSHDx886s2UKPY/3Zofmuwl
-	 PgpoGSq7E4lKw==
-Message-ID: <1ca9f99f-6266-47ca-8c94-1a9b9aaa717f@kernel.org>
-Date: Wed, 26 Nov 2025 15:56:13 +0100
+	 In-Reply-To:Content-Type; b=qI50m0mujapkqYpj6sNx0iDsz7L8dVbd6EOv8QZo9B7+N8WUSKmdJ06FDoxq/xtYt4Db6GTlGX2LUb1nA44MLaoDJowA0d2rAQXZ3hWmACFd5q3fTRjccNqPHsPrqDzKrirPgDThNYRCgrxwtMCvxdLlCBef/Ls1fuWIyjCpCHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=YrLHo9uK; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id DACF95341605;
+	Wed, 26 Nov 2025 15:59:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1764169188;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=TsYkSsOo0GY66ZABxmtTbdXC7PotU5PUTzj79Ek+lXw=;
+	b=YrLHo9uK8bNUzEQthpbQsjfBhcOtP/UfOmn3JW8dwUMGBxP4FMfwbhYjjvrkOoU6ZhUHkq
+	AhUxVoYLqagzM/qf9IixgxIj4aFomTFWThxb2hhLBkYqHqp3TzLpN/6T3xarXWN7O9AHbu
+	AWqO4xFUUw1uCrAdOPlfOistdsvVTes=
+Message-ID: <2c7fc579-6d46-4821-9059-4ccce589ffdb@ixit.cz>
+Date: Wed, 26 Nov 2025 15:59:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,147 +56,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
-To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: Ryan Roberts <ryan.roberts@arm.com>, Wei Yang
- <richard.weiyang@gmail.com>, Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linux-mm@kvack.org, devicetree@vger.kernel.org,
- Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
- Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
- Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
- Anshuman Khandual <anshuman.khandual@arm.com>
-References: <20251113014656.2605447-7-samuel.holland@sifive.com>
- <02e3b3bd-ae6a-4db4-b4a1-8cbc1bc0a1c8@arm.com>
- <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
- <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
- <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
- <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
- <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
- <20251126134726.yrya5xxayfcde3kl@master>
- <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
- <6b966403-91e0-4f06-86a9-a4f7780b9557@kernel.org>
- <ab39d448-aa1c-4c93-8e2b-5d97a9c76af5@lucifer.local>
-From: "David Hildenbrand (Red Hat)" <david@kernel.org>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable
+ SLPI
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ longnoserob@gmail.com
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251126-slpi-v1-0-c101d08beaf2@gmail.com>
+ <20251126-slpi-v1-1-c101d08beaf2@gmail.com>
+ <jxlq4fbtl5rkiyyaivoelynw5hjpb3xtg4klcyocyzbs6ncpqa@rhqcwbehisjv>
 Content-Language: en-US
-In-Reply-To: <ab39d448-aa1c-4c93-8e2b-5d97a9c76af5@lucifer.local>
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ xsFNBF5v1x4BEADS3EddwsNsvVAI1XF8uQKbdYPY/GhjaSLziwVnbwv5BGwqB1tfXoHnccoA
+ 9kTgKAbiXG/CiZFhD6l4WCIskQDKzyQN3JhCUIxh16Xyw0lECI7iqoW9LmMoN1dNKcUmCO9g
+ lZxQaOl+1bY/7ttd7DapLh9rmBXJ2lKiMEaIpUwb/Nw0d7Enp4Jy2TpkhPywIpUn8CoJCv3/
+ 61qbvI9y5utB/UhfMAUXsaAgwEJyGPAqHlC0YZjaTwOu+YQUE3AFzhCbksq95CwDz4U4gdls
+ dmv9tkATfu2OmzERZQ6vJTehK0Pu4l5KmCAzYg42I9Dy4E6b17x6NncKbcByQFOXMtG0qVUk
+ F1yeeOQUHwu+8t3ZDMBUhCkRL/juuoqLmyDWKMc0hKNNeZ9BNXgB8fXkRLWEUfgDXsFyEkKp
+ NxUy5bDRlivf6XfExnikk5kj9l2gGlNQwqROti/46bfbmlmc/a2GM4k8ZyalHNEAdwtXYSpP
+ 8JJmlbQ7hNTLkc3HQLRsIocN5th/ur7pPMz1Beyp0gbE9GcOceqmdZQB80vJ01XDyCAihf6l
+ AMnzwpXZsjqIqH9r7T7tM6tVEVbPSwPt4eZYXSoJijEBC/43TBbmxDX+5+3txRaSCRQrG9dY
+ k3mMGM3xJLCps2KnaqMcgUnvb1KdTgEFUZQaItw7HyRd6RppewARAQABzSBEYXZpZCBIZWlk
+ ZWxiZXJnIDxkYXZpZEBpeGl0LmN6PsLBlAQTAQgAPgIbAwULCQgHAgYVCgkICwIEFgIDAQIe
+ AQIXgBYhBNd6Cc/u3Cu9U6cEdGACP8TTSSByBQJl+KksBQkPDaAOAAoJEGACP8TTSSBy6IAQ
+ AMqFqVi9LLxCEcUWBn82ssQGiVSDniKpFE/tp7lMXflwhjD5xoftoWOmMYkiWE86t5x5Fsp7
+ afALx7SEDz599F1K1bLnaga+budu55JEAYGudD2WwpLJ0kPzRhqBwGFIx8k6F+goZJzxPDsf
+ loAtXQE62UvEKa4KRRcZmF0GGoRsgA7vE7OnV8LMeocdD3eb2CuXLzauHAfdvqF50IfPH/sE
+ jbzROiAZU+WgrwU946aOzrN8jVU+Cy8XAccGAZxsmPBfhTY5f2VN1IqvfaRdkKKlmWVJWGw+
+ ycFpAEJKFRdfcc5PSjUJcALn5C+hxzL2hBpIZJdfdfStn+DWHXNgBeRDiZj1x6vvyaC43RAb
+ VXvRzOQfG4EaMVMIOvBjBA/FtIpb1gtXA42ewhvPnd5RVCqD9YYUxsVpJ9d+XsAy7uib3BsV
+ W2idAEsPtoqhVhq8bCUs/G4sC2DdyGZK8MRFDJqciJSUbqA+5z1ZCuE8UOPDpZKiW6H/OuOM
+ zDcjh0lOzr4p+/1TSg1PbUh7fQ+nbMuiT044sC1lLtJK0+Zyn0GwhR82oNM4fldNsaHRW42w
+ QGD35+eNo5Pvb3We5XRMlBdhFnj7Siggp4J8/PJ6MJvRyC+RIJPGtbdMB2/RxWunFLn87e5w
+ UgwR9jPMHAstuTR1yR23c4SIYoQ2fzkrRzuazsFNBF5v1x4BEADnlrbta2WL87BlEOotZUh0
+ zXANMrNV15WxexsirLetfqbs0AGCaTRNj+uWlTUDJRXOVIwzmF76Us3I2796+Od2ocNpLheZ
+ 7EIkq8budtLVd1c06qJ+GMraz51zfgSIazVInNMPk9T6fz0lembji5yEcNPNNBA4sHiFmXfo
+ IhepHFOBApjS0CiOPqowYxSTPe/DLcJ/LDwWpTi37doKPhBwlHev1BwVCbrLEIFjY0MLM0aT
+ jiBBlyLJaTqvE48gblonu2SGaNmGtkC3VoQUQFcVYDXtlL9CVbNo7BAt5gwPcNqEqkUL60Jh
+ FtvVSKyQh6gn7HHsyMtgltjZ3NKjv8S3yQd7zxvCn79tCKwoeNevsvoMq/bzlKxc9QiKaRPO
+ aDj3FtW7R/3XoKJBY8Hckyug6uc2qYWRpnuXc0as6S0wfek6gauExUttBKrtSbPPHiuTeNHt
+ NsT4+dyvaJtQKPBTbPHkXpTO8e1+YAg7kPj3aKFToE/dakIh8iqUHLNxywDAamRVn8Ha67WO
+ AEAA3iklJ49QQk2ZyS1RJ2Ul28ePFDZ3QSr9LoJiOBZv9XkbhXS164iRB7rBZk6ZRVgCz3V6
+ hhhjkipYvpJ/fpjXNsVL8jvel1mYNf0a46T4QQDQx4KQj0zXJbC2fFikAtu1AULktF4iEXEI
+ rSjFoqhd4euZ+QARAQABwsF8BBgBCAAmAhsMFiEE13oJz+7cK71TpwR0YAI/xNNJIHIFAmX4
+ qVAFCQ8NoDIACgkQYAI/xNNJIHKN4A/+Ine2Ii7JiuGITjJkcV6pgKlfwYdEs4eFD1pTRb/K
+ 5dprUz3QSLP41u9OJQ23HnESMvn31UENk9ffebNoW7WxZ/8cTQY0JY/cgTTrlNXtyAlGbR3/
+ 3Q/VBJptf04Er7I6TaKAmqWzdVeKTw33LljpkHp02vrbOdylb4JQG/SginLV9purGAFptYRO
+ 8JNa2J4FAQtQTrfOUjulOWMxy7XRkqK3QqLcPW79/CFn7q1yxamPkpoXUJq9/fVjlhk7P+da
+ NYQpe4WQQnktBY29SkFnvfIAwqIVU8ix5Oz8rghuCcAdR7lEJ7hCX9bR0EE05FOXdZy5FWL9
+ GHvFa/Opkq3DPmFl/0nt4HJqq1Nwrr+WR6d0414oo1n2hPEllge/6iD3ZYwptTvOFKEw/v0A
+ yqOoYSiKX9F7Ko7QO+VnYeVDsDDevKic2T/4GDpcSVd9ipiKxCQvUAzKUH7RUpqDTa+rYurm
+ zRKcgRumz2Tc1ouHj6qINlzEe3a5ldctIn/dvR1l2Ko7GBTG+VGp9U5NOAEkGpxHG9yg6eeY
+ fFYnMme51H/HKiyUlFiE3yd5LSmv8Dhbf+vsI4x6BOOOq4Iyop/Exavj1owGxW0hpdUGcCl1
+ ovlwVPO/6l/XLAmSGwdnGqok5eGZQzSst0tj9RC9O0dXO1TZocOsf0tJ8dR2egX4kxM=
+In-Reply-To: <jxlq4fbtl5rkiyyaivoelynw5hjpb3xtg4klcyocyzbs6ncpqa@rhqcwbehisjv>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/26/25 15:52, Lorenzo Stoakes wrote:
-> On Wed, Nov 26, 2025 at 03:46:40PM +0100, David Hildenbrand (Red Hat) wrote:
->> On 11/26/25 15:22, Ryan Roberts wrote:
->>> On 26/11/2025 13:47, Wei Yang wrote:
->>>> On Wed, Nov 26, 2025 at 01:03:42PM +0000, Ryan Roberts wrote:
->>>>> On 26/11/2025 12:35, David Hildenbrand (Red Hat) wrote:
->>>> [...]
->>>>>>>>>> Hi,
->>>>>>>>>>
->>>>>>>>>> I've just come across this patch and wanted to mention that we could also
->>>>>>>>>> benefit from this improved absraction for some features we are looking at for
->>>>>>>>>> arm64. As you mention, Anshuman had a go but hit some roadblocks.
->>>>>>>>>>
->>>>>>>>>> The main issue is that the compiler was unable to optimize away the
->>>>>>>>>> READ_ONCE()s
->>>>>>>>>> for the case where certain levels of the pgtable are folded. But it can
->>>>>>>>>> optimize
->>>>>>>>>> the plain C dereferences. There were complaints the the generated code for arm
->>>>>>>>>> (32) and powerpc was significantly impacted due to having many more
->>>>>>>>>> (redundant)
->>>>>>>>>> loads.
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>> We do have mm_pmd_folded()/p4d_folded() etc, could that help to sort
->>>>>>>>> this out internally?
->>>>>>>>>
->>>>>>>>
->>>>>>>> Just stumbled over the reply from Christope:
->>>>>>>>
->>>>>>>> https://lkml.kernel.org/r/0019d675-ce3d-4a5c-89ed-f126c45145c9@kernel.org
->>>>>>>>
->>>>>>>> And wonder if we could handle that somehow directly in the pgdp_get() etc.
->>>>>
->>>>> I certainly don't like the suggestion of doing the is_folded() test outside the
->>>>> helper, but if we can push that logic down into pXdp_get() that would be pretty
->>>>> neat. Anshuman and I did briefly play with the idea of doing a C dereference if
->>>>> the level is folded and a READ_ONCE() otherwise, all inside each pXdp_get()
->>>>> helper. Although we never proved it to be correct. I struggle with the model for
->>>>> folding. Do you want to optimize out all-but-the-highest level's access or
->>>>> all-but-the-lowest level's access? Makes my head hurt...
->>>>>
->>>>>
->>>>
->>>> You mean sth like:
->>>>
->>>> static inline pmd_t pmdp_get(pmd_t *pmdp)
->>>> {
->>>> #ifdef __PAGETABLE_PMD_FOLDED
->>>> 	return *pmdp;
->>>> #else
->>>> 	return READ_ONCE(*pmdp);
->>>> #endif
->>>> }
->>>
->>> Yes. But I'm not convinced it's correct.
+On 26/11/2025 15:41, Dmitry Baryshkov wrote:
+> On Wed, Nov 26, 2025 at 09:08:35PM +0900, Robert Eckelmann via B4 Relay wrote:
+>> From: Robert Eckelmann <longnoserob@gmail.com>
 >>
->> Yeah, I'm also still trying to understand how it could work.
+>> Enable the SLPI dsp on the Xiaomi Pocophone F1 with Qualcom SDM845 SoC.
 >>
->>>
->>> I *think* (but please correct me if I'm wrong) if the PMD is folded, the PUD and
->>> P4D must also be folded, and you effectively have a 2 level pgtable consisting
->>> of the PGD table and the PTE table. p4dp_get(), pudp_get() and pmdp_get() are
->>> all effectively duplicating the load of the pgd entry? So assuming pgdp_get()
->>> was already called and used READ_ONCE(), you might hope the compiler will just
->>> drop the other loads and just use the value returned by READ_ONCE(). But I doubt
->>> there is any guarantee of that and you might be in a situation where pgdp_get()
->>> never even got called (perhaps you already have the pmd pointer).
->> With __PAGETABLE_PMD_FOLDED we treat the PUD to be fake-present, like
+>> Signed-off-by: Robert Eckelmann <longnoserob@gmail.com>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 7 +++++++
+>>   1 file changed, 7 insertions(+)
 >>
->> static inline int pud_present(pud_t pud)	{ return 1; }
->>
->> And obtaining the pmd_t* is essentially  cast of the pud_t*
->>
->> static inline pmd_t * pmd_offset(pud_t * pud, unsigned long address)
->> {
->> 	return (pmd_t *)pud;
->> }
->>
->> So in that case we might want to have the READ_ONCE() remove from the
->> pudp_get(), not the pmdp_get()?
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>> index 785006a15e97..0fb1d7e724c4 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>> @@ -425,6 +425,12 @@ &sdhc_2 {
+>>   	cd-gpios = <&tlmm 126 GPIO_ACTIVE_HIGH>;
+>>   };
+>>   
+>> +&slpi_pas {
+>> +	firmware-name = "qcom/sdm845/beryllium/slpi.mbn";
 > 
-> Would the pmdp_get() never get invoked then? Or otherwise wouldn't that end up
-> requiring a READ_ONCE() further up the stack?
+> qcom/sdm845/Xiaomi/beryllium/slpi.mbn
 
-See my other reply, I think the pmdp_get() is required because all pud_* 
-functions are just simple stubs.
+Could be this change done for all the firmware files at once but later?
 
-> 
->>
->> IOW, push the READ_ONCE() down to the lowest level so the previous ones
->> (that will get essentially ignore?) will get folded into the last
->> READ_ONCE()?
->>
->> But my head still hurts and I am focusing on something else concurrently :)
-> 
-> Even if we could make this work, I don't love that there's some implicit
-> assumption there that could easily break later on.
-> 
-> I'd rather we kept it as stupid/obvious as possible...
-
-Looking at include/asm-generic/pgtable-nopmd.h I am not sure we are 
-talking about implicit assumptions here. It's kind-of the design that 
-the pud_t values are dummies, so why shoul the pudp_get() give you any 
-guarantees.
-
-At least that's my current understanding, which might be very flawed :)
-
--- 
-Cheers
+Currently all the firmwares using this legacy path.
 
 David
+
+[...]
 
