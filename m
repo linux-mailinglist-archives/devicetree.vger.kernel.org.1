@@ -1,173 +1,152 @@
-Return-Path: <devicetree+bounces-242317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD60EC8921D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:55:03 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 583C5C89290
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:01:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA70B3B1361
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:54:34 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 01DF034438E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE8BF2FD7B3;
-	Wed, 26 Nov 2025 09:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4E92E22BE;
+	Wed, 26 Nov 2025 10:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rHj+qhT5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dKAS426d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC412FD1D3;
-	Wed, 26 Nov 2025 09:53:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B9C2874F6;
+	Wed, 26 Nov 2025 10:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764150806; cv=none; b=LwfGn1AtNnVDBinz6aAvvMi5PNAbJa3B60L1t2h4v87RT7tJtVBt/8wpY1yS88/h0A3t/ZGgGz2MmAOsqszoQoX35imHjvavPxD0vox8ZqZbdU5h+OV2cm41yoZliJmesoxSAykOxAX3NuneqOUftQAEtocB/y7bKZ2sxVHoDVU=
+	t=1764151283; cv=none; b=RA5l7U2/nY0KmR2OU62zSxEUEPXZhhJrVdX18sqRCibDUu0HhreT3W9zj54lb2+sQjRDD8siYAOd5cQ+GVlQjQ/HPya4j0a/A4gwrlrDiI1daEJRvxvofh3glJyj3S5MHUrLdIWbCSOBqmdGkZhdhHpYGMhuZyhFiVe6ek3TlEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764150806; c=relaxed/simple;
-	bh=VlaG7D/FlaLiJ9zapfWyZLwnWYoNbnCpKlAXt2tJUSY=;
+	s=arc-20240116; t=1764151283; c=relaxed/simple;
+	bh=e4cSdFEpo2kqlF5v6+j+zFUBcsT+moYHxEeI0riTT7Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uxZY1RIW4CSH2J/bpHKbH0M0Z8REjSeNrwSr8xNXXBLoWueEyo3Ug+vtcXkvw7IhsfheUjx7lcON1fNvAacCeTk1DJccIm6Hq/TtxlZSellj/uvv9gWnHsd5jkDtRHTs90/1t6r675KRFWwBgAP9WyPzXrUxJlhlPA4tHGgnQGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rHj+qhT5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C84DFC113D0;
-	Wed, 26 Nov 2025 09:53:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764150806;
-	bh=VlaG7D/FlaLiJ9zapfWyZLwnWYoNbnCpKlAXt2tJUSY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rHj+qhT5ACF0ysunZQQF1Cn1JMMzXvg2wsZk8qxG0DvFFax3lusyEfGT7lNYZcGD0
-	 IpJth5vgUCVj0fOKMaco96wC/+X7HJyXBfjBZmz4JYVGDX2BxzeagLTWqOuzvg2cyQ
-	 mJdEWL8wN8U0WscuCUMNCG0oQ90LinaplhH0mKrUtSk78e8+tj0ui26UfdoJCmgoQA
-	 7fuiV4VGIqHEOdlSrEDDXdF6fBJnvF7gVg5T3im0ILjgWinNREydHFO7+m13Q3vS61
-	 YCwITHCDMD1dVBxryHF94dBb0UDJ8VpP9HAsHTYX3zMpCm1ssSnIo/3TC90WllkvA3
-	 F7IEIF/oexU6w==
-Date: Wed, 26 Nov 2025 10:53:23 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shrikant Raskar <raskar.shree97@gmail.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, 
-	heiko@sntech.de, neil.armstrong@linaro.org, skhan@linuxfoundation.org, 
-	david.hunter.linux@gmail.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: iio: proximity: Add YAML binding for
- RFD77402 ToF sensor
-Message-ID: <20251126-cautious-eagle-from-sirius-83fe52@kuoka>
-References: <20251126031440.30065-1-raskar.shree97@gmail.com>
- <20251126031440.30065-2-raskar.shree97@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=adSZVVD8/ULkTgvQDDD+rFbgmgpqNdeex0OVw7mrVlt98WcmloVd5l5CXnRcP+ws7MsSfa4wgjXwNX91HrBcYZTiLDCalQGcyFIMsIA5s1OYlrPgeOLCERxnBLYDocTOlc06Nd2vBESnKiTGTVnOfLe63mre8a5f3TIOX6zB/JA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dKAS426d; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764151282; x=1795687282;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=e4cSdFEpo2kqlF5v6+j+zFUBcsT+moYHxEeI0riTT7Y=;
+  b=dKAS426dyEU3rIHWKnzToP4/hSgdEbMdVVDQiFlbFoMWbRyDhcRHagjt
+   EktW4sqfgOt4naz168e7auWcG+6Z5bvUWbCQtB7R+7mbI6ZRGiPTLdn/L
+   PIADpVRPvxROpP7ZvX2DKEK1hqWS6qs0YlOOxWFfrT0fk8lncdCdMlxYo
+   GVMEc2HDPVUnzsS94FUrByR+FVuyO/kwl/8xlROemxQ40C9VE4T068zcv
+   AUxMzEKQJddM2XP66JMNOX5Ghz+VISoGbGNwzTeV1L+9Y6EkJ3lyxNkea
+   Nk5D5I93vT+y14KEim8bNoCLpPei4DfpINNjEYOQ7Zo3QNF5dEtqfYZsr
+   g==;
+X-CSE-ConnectionGUID: LiYMwGu4Sxmwq01uArf12A==
+X-CSE-MsgGUID: LwcW/V9MQWaR2hh1MB2SbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="76806452"
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; 
+   d="scan'208";a="76806452"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2025 02:01:21 -0800
+X-CSE-ConnectionGUID: t9JDLjGRT8yGW+fJ5xCWzA==
+X-CSE-MsgGUID: JdFY+pn8TA2cP8IiLg/HxA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,228,1758610800"; 
+   d="scan'208";a="192916164"
+Received: from iherna2-mobl4.amr.corp.intel.com (HELO kuha) ([10.124.223.25])
+  by orviesa007.jf.intel.com with SMTP; 26 Nov 2025 02:01:14 -0800
+Received: by kuha (sSMTP sendmail emulation); Wed, 26 Nov 2025 12:01:08 +0200
+Date: Wed, 26 Nov 2025 12:01:08 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: amitsd@google.com
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Lee Jones <lee@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Badhri Jagan Sridharan <badhri@google.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Subject: Re: [PATCH 3/6] dt-bindings: usb: maxim,max33359: Add supply
+ property for VBUS in OTG mode
+Message-ID: <aSbP5OanDUGhEXXV@kuha>
+References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
+ <20251123-max77759-charger-v1-3-6b2e4b8f7f54@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251126031440.30065-2-raskar.shree97@gmail.com>
+In-Reply-To: <20251123-max77759-charger-v1-3-6b2e4b8f7f54@google.com>
 
-On Wed, Nov 26, 2025 at 08:44:38AM +0530, Shrikant Raskar wrote:
-> The RFD77402 driver has existed without a formal device tree binding
-> description. With the recent addition of Device Tree support and
-> interrupt handling in the driver, it is now necessary to document
-> the DT properties used for configuring the device.
-
-This is all irrelevant here. It does not matter for the bindings if the
-driver existed or not.
-
-Please rather document here the hardware.
-
-A nit, subject: drop second/last, redundant "YAML binding for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-For sure don't use "YAML binding" - there is no such thing.
-
+Sun, Nov 23, 2025 at 08:35:50AM +0000, Amit Sunil Dhamne via B4 Relay kirjoitti:
+> From: Amit Sunil Dhamne <amitsd@google.com>
 > 
-> Since the binding introduces the compatible string "rfdigital,rfd77402",
-> the "rfdigital" vendor prefix is also added to vendor-prefixes.yaml.
+> Add a regulator supply property for VBUS when usb is in OTG mode.
 
-Also redundant, we can see the diff.
+What is "OTG mode"?
 
-> 
-> Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
+OTG is usually used to refer to the USB in device role, even though the
+specification actually defines OTG device as a device capable of both
+host and device roles. So the term was confusing already before.
+Nevertheless, the emphasis is always on data-role, _not_ power-role.
+
+Here it seems MAX33359 uses the term OTG as a synonym for "source", so
+power-role?
+
+Please don't use the term OTG unless you really have to - it's too
+confusing. I know the MAX33359 datasheet uses it, but what you really
+do here is regulate VBUS. So please:
+
+        s/otg-vbus/vbus/
+
+thanks,
+
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> Reviewed-by: Badhri Jagan Sridharan <badhri@google.com>
 > ---
->  .../iio/proximity/rfdigital,rfd77402.yaml     | 55 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
->  2 files changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+>  Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml b/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
-> new file mode 100644
-> index 000000000000..93deaa4e8b7a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/proximity/rfdigital,rfd77402.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> index 3de4dc40b791..a529f18c4918 100644
+> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> @@ -32,6 +32,9 @@ properties:
+>      description:
+>        Properties for usb c connector.
+>  
+> +  otg-vbus-supply:
+> +    description: Regulator to control OTG VBUS supply.
 > +
-> +title: RF Digital RFD77402 ToF sensor
-> +
-> +maintainers:
-> +  - Shrikant Raskar <raskar.shree97@gmail.com>
-> +
-> +description: |
+>  required:
+>    - compatible
+>    - reg
+> @@ -53,6 +56,7 @@ examples:
+>              reg = <0x25>;
+>              interrupt-parent = <&gpa8>;
+>              interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+> +            otg-vbus-supply = <&otg_vbus_reg>;
+>  
+>              connector {
+>                  compatible = "usb-c-connector";
+> 
+> -- 
+> 2.52.0.rc2.455.g230fcf2819-goog
+> 
 
-Do not need '|' unless you need to preserve formatting.
-
-> +  The RF Digital RFD77402 is a Time-of-Flight (ToF) proximity and distance
-> +  sensor providing up to 200 mm range measurement over an I2C interface.
-> +
-> +properties:
-> +  compatible:
-> +    const: rfdigital,rfd77402
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: |
-
-Same, also a bit odd wrapping of the text below
-
-> +      Generated by the device to announce that a new
-> +      measurement data is ready in result register.
-> +
-> +  vdd-supply:
-> +    description: Regulator that provides power to the sensor
-> +
-> +  vddio-supply:
-> +    description: Regulator providing I/O interface voltage
-> +
-> +required:
-> +  - compatible
-> +  - reg
-
-supplies should be required, devices rarely work without power. If you
-think hardware works without power, this is something unusual thus you
-should explain it in the commit msg.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        proximity@4c {
-> +            compatible = "rfdigital,rfd77402";
-> +            reg = <0x4c>;
-> +            interrupt-parent = <&gpio>;
-> +            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
-
-Supplies
-
-Best regards,
-Krzysztof
-
+-- 
+heikki
 
