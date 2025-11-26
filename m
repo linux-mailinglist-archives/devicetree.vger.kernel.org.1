@@ -1,84 +1,148 @@
-Return-Path: <devicetree+bounces-242306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDECCC890EB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:47:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D863C89121
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:48:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EF9163577FE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:46:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 24414357ADE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EB243090C6;
-	Wed, 26 Nov 2025 09:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906772FE04C;
+	Wed, 26 Nov 2025 09:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KwFfWPQF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pFr4kcLx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701F92DECDF;
-	Wed, 26 Nov 2025 09:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C936919FA93;
+	Wed, 26 Nov 2025 09:45:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764150213; cv=none; b=h7C1CMcZRh7NI2wRMUBStY+LR8NfZ94W92Q3juLPjxRHDp1OgtGpSppdhyB9+gW1FheurSE0Xf9uWlI7GQ9vhJ3ZwjLAcqC34nN9ws5zxbD26mx18Re8eShvbp27UOwupxNf/ONiSvfpWIeX0Rt96Nl4G2wD2w41HfTlxMyR12Q=
+	t=1764150361; cv=none; b=a5bLysI69fSg6f2N/YaH2MxGaaudzAmi8es3I607xydHc0L90G7soiwlQIx+G4oGC1ri/h7Z2ZyInIqhehsxmxxUa1ly4cKrk1yiDyYQznDFKTt6mRfmXrl2zhRXaQTjxHOkmvWDxaYQ8UL+qslpnZ+N7G0cNMukoDASj8Dj6qM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764150213; c=relaxed/simple;
-	bh=JWPUcitBJ/2M/fR3u302ELJCtt2/p8EGJveANa8B9KM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=czEp9VWVQpZJnWpHizNSqkHYqpR/ClD/2pp1RBmeUkdlKWYbl+EOAvFnda7WBdUbZQHEizxbfSIzFJhKa13N6LtHTjisYUN6viB97PUw1OB8zVMLFMBF4NwtKAg5JfUt6D2mHmvTHz0wCDtrj6WL3yWfb/2IQhgBR5WIxoeig3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KwFfWPQF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69459C113D0;
-	Wed, 26 Nov 2025 09:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764150212;
-	bh=JWPUcitBJ/2M/fR3u302ELJCtt2/p8EGJveANa8B9KM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KwFfWPQF+efOTX2luRkKb2J9DqVFgF1Yjvb4m4IKWMZEjIIeijoJTpsle/pTzI6WA
-	 PSkW59xXHMvRxLOaKUzRpjTExl44paz/HaeKGh1WZRhMT5CcHxUbJszwzd9o6Rc5FB
-	 7uI4m8GGQtXm6C2Ri8xJE1sPFRHvUxYzywXw0OW62UMG/MGZ71K9s0dUEHrwtgVp3R
-	 +qBK/I9SY1EW/O44uQFkOmU+8Y7wGr9sPtuq7RaLreVftV5u36BDrPfg0ucloovsG5
-	 WqWPLijwDgb3cn2BZDsIQg7oXXhpv/KGJ/xYCulmV9S3s/tphDHCY3Hq7opi5//TlW
-	 jSxvTYrsQqI1Q==
-Date: Wed, 26 Nov 2025 10:43:29 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: soc: imx93-media-blk-ctrl: Fix
- indentation
-Message-ID: <20251126-singing-stoat-of-valor-2beade@kuoka>
-References: <20251125105006.1612348-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1764150361; c=relaxed/simple;
+	bh=iNScCOJsLqfoE/IqbiyINf+YmO9uRF0XQZ+yHhohcSs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oAF7zPOTkhUsnZBRSzWSIqmazZFS0lGyNYxfJ7PU5uPvbQB9t+wU/mEdoIEvrC0Z3EWK0aGoIkFWvxb5afBfUPczq0Ikl7ZH+6tN+PzCGmgDC16pTo6gXGvmgaaO09dKl2ztKbFQ0neT2nNiYN4lLS5W23rPw6mE04OzBbaMq9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pFr4kcLx; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AQ92fNk3255839;
+	Wed, 26 Nov 2025 09:45:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=c1QJlbfWy/2dtf1n3VIQWCFVj/DL0FwuReC
+	BFuuqKyk=; b=pFr4kcLxskeztk9kDLFUiMmyfEEfOuclv0dLTXRQbEUN+Xk3L2L
+	ic+zlrUUljCTZbqtJLivhtbwMoJQnft8KgiqyAZKKipHKjOzaJq4jRQp09AO1KzI
+	nemi9hns+F2c2jbkcpdsAce7lL+S8c28T0NtcTL9b2TCTcH1zk8mIsazTJ0zWWUt
+	V+f490gQp3VkzSWqJa7Vzv1TweNkW1nNezrF3aleqDp8R8sUthvuZ+hWpQnVOVN1
+	Pwgptlil2cDSD0vfVGyJ6DQuFgm7OLCY+ZiYfpqP94PrpAEJFeU1cXwv7iN9z5LR
+	iB+khhIosurkFfgfwUwnLa0BzndzDSeM1jA==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4anb9c3cau-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Nov 2025 09:45:53 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5AQ9joYY010071;
+	Wed, 26 Nov 2025 09:45:50 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4anw4ssw7s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Nov 2025 09:45:50 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5AQ9jolf010065;
+	Wed, 26 Nov 2025 09:45:50 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-kpallavi-hyd.qualcomm.com [10.147.243.7])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 5AQ9jo4c010054
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Nov 2025 09:45:50 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4720299)
+	id 09E8B515; Wed, 26 Nov 2025 15:15:49 +0530 (+0530)
+From: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
+To: kpallavi@qti.qualcomm.com, srini@kernel.org, amahesh@qti.qualcomm.com,
+        arnd@arndb.de, gregkh@linuxfoundation.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>, quic_bkumar@quicinc.com,
+        ekansh.gupta@oss.qualcomm.com, linux-kernel@vger.kernel.org,
+        quic_chennak@quicinc.com, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        jingyi.wang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
+        ktadakam@qti.qualcomm.com
+Subject: [PATCH v4 0/4] Add ADSP and CDSP support on Kaanapali SoC
+Date: Wed, 26 Nov 2025 15:15:41 +0530
+Message-Id: <20251126094545.2139376-1-kumari.pallavi@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251125105006.1612348-1-alexander.stein@ew.tq-group.com>
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: pMI0LeOUcywE4L9706-QNIOlLkZNJlAI
+X-Proofpoint-ORIG-GUID: pMI0LeOUcywE4L9706-QNIOlLkZNJlAI
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDA3OSBTYWx0ZWRfX0N/R9/A/9Uls
+ r0PYF5WwPe3i4/60cX1M8JSX255Q8eum0q5UBkvB2riKaRYsjgPVPZ1Tuf0X+AGzMS9uN29q1Ms
+ E90I5OdkO7fvMhmPRW/MlfmfcMGnud0xs+uR3XvXfupSBNtrjTh0xa1lOUw8XcQ9MIRe+871YSP
+ Wcs3WGl6csm73uLEV5TJPytBl/MvZIvTvrtnZK3aWlL1ZmT7AjXa1jLVyQTidMg9rNmEY6TaARL
+ cJq6U7JnjAREKOffUtvDEBiX6AbLVfzfEIpuFvFHt6gTZlVnXpNkjcNvIs9+l1YEAUHfWdcn8eZ
+ RJDEd4QwzBobv7TMs4zzUZ/0tXG1MV8nnEFH1wQtUjQhUFGwaJZKkYn9wvm9LERJW31sFrwalIw
+ ARDRDHipWYuQHNn48x9et4JRUYhHbA==
+X-Authority-Analysis: v=2.4 cv=VKbQXtPX c=1 sm=1 tr=0 ts=6926cc51 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=mRQkYbyLXEYurZiQm2UA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-25_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 bulkscore=0 adultscore=0
+ malwarescore=0 suspectscore=0 phishscore=0 impostorscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511260079
 
-On Tue, Nov 25, 2025 at 11:50:05AM +0100, Alexander Stein wrote:
-> Indentation is 4 spaces in DT bindings.
+Introduces support for new DSP IOVA formatting and hardware-specific
+configuration required to enable ADSP and CDSP functionality on the
+Kaanapali SoC.
 
-2 or 4 spaces. We do not change the indentation alone, if the file uses
-correct 2-spaces indent, it's too much churn. Also, if ever doing it,
-then do it per subsystem, not one file (not sure if that's the case
-here).
+Add support for a new IOVA formatting scheme by adding a sid_pos to the DSP
+driver. Sid_pos standardizes the placement of the stream ID (SID) within the
+physical address, which is required for DSPs to operate correctly on
+Kaanapali. DSP currently supports 32-bit IOVA (32-bit PA + 4-bit SID) for
+both Q6 and user DMA (uDMA) access.
+This is being upgraded to 34-bit PA + 4-bit SID due to a hardware revision
+in CDSP for Kaanapali SoC, which expands the DMA addressable range.
+To support CDSP operation, this series updates the DMA mask configuration
+to reflect the expanded DMA addressable range.
 
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     | 32 +++++++++----------
->  1 file changed, 16 insertions(+), 16 deletions(-)
+Patch [v3]:https://lore.kernel.org/all/20251015045702.3022060-1-kumari.pallavi@oss.qualcomm.com/
 
-Best regards,
-Krzysztof
+Changes in v4:
+  - Resolve warnings reported by make dt_bindings_check
+  - Convert the data type of the dma_addr to dma_addr_t
+  - Replace the macro with an inline function for more readability
+  - Rename the cdsp_dma_bits to dma_addr_bits_extended and default_dma_bits
+    to the dma_addr_bits_default for more clarity 
+
+Kumari Pallavi (4):
+  dt-bindings: misc: qcom,fastrpc: Add compatible for Kaanapali
+  misc: fastrpc: Rename phys to dma_addr for clarity
+  misc: fastrpc: Add support for new DSP IOVA formatting
+  misc: fastrpc: Update dma_bits for CDSP support on Kaanapali SoC
+
+ .../bindings/misc/qcom,fastrpc.yaml           |   5 +-
+ drivers/misc/fastrpc.c                        | 130 ++++++++++++------
+ 2 files changed, 94 insertions(+), 41 deletions(-)
+
+-- 
+2.34.1
 
 
