@@ -1,181 +1,832 @@
-Return-Path: <devicetree+bounces-242362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB5FAC898EF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:38:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00451C89914
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:40:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1ECB03B366B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:38:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 901973AF959
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:40:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8948324B28;
-	Wed, 26 Nov 2025 11:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33DE1322C88;
+	Wed, 26 Nov 2025 11:40:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WORbRial";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BNMMkg5s"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VFAfN93u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C553246F4
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 11:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A22A26F28D
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 11:40:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764157129; cv=none; b=kUuzjyG9RzGr0OR6Lp+ogOFN9bELWtsaKyBZSv8sxkkCcHG9UO8NcBjPc78qHtqcKekZHT5DIV/91rHkePnoAp4exb0oSm7qmmUdJd11scClJeoGumyZXhGsSCAgiaPacjKC76w9uRPZIWbLWp0qRH1amFqxPQpFqPiHvgcnLXs=
+	t=1764157208; cv=none; b=e2W9eJNzSlOfezyrqNJzNmNy6IvjUi82Q3Ojy245BzMes+ajzxokv3TDx6U+cAmgLDKdQqSTPN7MsCNeBdNSHWCTohTUciE9ZSpMGBta8bv/68Jlw6Bg8SVeiT593aHvEsGh6O7bzaFaioHmYfEl8X6bb1NVgVUAlHrl+KJleWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764157129; c=relaxed/simple;
-	bh=uetH1gpQCMGCArNEY+4ysespicgo0/ixJStFpGQYZds=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OLLQqWJrnJDSvCwP7ZNGpy+Ay86s5HyiwLMOEQze79AZ3waZXkG/Zh6hV+6/M00km0i4bebW6rNX0c3+QPfNodxlDmAAeXrKY0EgHva8nhS9UjTNhVw86+uA26LQ8Ly5gTN7W3RAi+dvHcrod+5MjIyUEaCw11ebIK7MM5+Wn3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WORbRial; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BNMMkg5s; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AQ6v06h1457111
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 11:38:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cMZ8nP22oqBJZ2lViVsuNFVcop8rQmSYUY6cSSx6MyM=; b=WORbRialXIZdcz8Z
-	yz1HjchUH9I43W8/w702FxGXAJLYv6Tn8lK3CjrqRKNGYWlna8xzVSXz/KRP+ORr
-	FgohVxnaGiviCgdrdZiXx0dfm2BQLI+UbmK4xuZOryk4bM10x2mrW9yWBnBgL4H3
-	k/jeqGH/zyfo/iCbwtsL5EnZW7RAy33xuvNrfhSSlahzd54pvQH9rZRhW/Nggpkp
-	fZOI2YWPrkMCqYOVS84m9dWEK4aeIA2CwBgf5n8DUs5Fn9OfNH/TY19SHKaU/fNz
-	JQH2IRB9u8u8ZejOWBFtqrN8IjDioxAPtCS4JmMbn0eFe4zrlwvGGXJMfseBZutk
-	QWbcGQ==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4anvqvgttt-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 11:38:42 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-34385d7c4a7so500488a91.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 03:38:42 -0800 (PST)
+	s=arc-20240116; t=1764157208; c=relaxed/simple;
+	bh=jHKAKgyPg3W/G8524ABvZ+B58swKOBhVrdFUeoI8x+8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YeoxzUSD0qaBWRFtqKNX5PNf6jnwZZuGlmmwTeN//qxnzUHngS2bUs7RipIuF4jEleWZ0ia0ocBspHhQH4/c019VuhDDNkk08m8A9/AvglikYaIFEN1FnNGnucQqfJoKXub+Za1Ei2lGegWKSpFqP3aFaWYoDDs70NreZOMs/KU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VFAfN93u; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-42b3377aaf2so3839437f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 03:40:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764157121; x=1764761921; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cMZ8nP22oqBJZ2lViVsuNFVcop8rQmSYUY6cSSx6MyM=;
-        b=BNMMkg5spKjdpryTsgog2MjjCdJqJPNCw50qOxC+GTpbWHkWK75Fn7fiEsTKgde3GB
-         WdvkvcKiRkooeTSyLDuPNrUW9VOh8qYZocSG2bZOPDmU22ASZpRR2VA/uXwz9+PT7Lf3
-         FWg9R5ltB1bdJkU3HhLnMmu/JcwkgaSOXmp7OTbP8iPwNG0eLGU+ISveE83kqyqZSd8O
-         UKAK6oAOkmbYP2vfaluaN1g9Nc/k0bEwXmErFhgbyqFXD+wYMqvBvERtU3GrKNsP+3g9
-         XT/x0NAJcoRni0tn2q8r1mGcyJjRBO/r91LB1Vs+/qKbbjakCeMWtWXLeB48nnuUPqEa
-         PH6Q==
+        d=gmail.com; s=20230601; t=1764157203; x=1764762003; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=80bh3XWCt9HrtGnwRb5ljnRsELmreFDRBDJ96f4NaMY=;
+        b=VFAfN93uVQuI2ssUPxV/pXzYoKRAfM/GjuYJg0s6w/PHC5BcR7fAX/Zh4SOY9CBDEJ
+         A3QeS5yx0Umr3MsQKEZRmjP8ivsFHJmNMH7vFq3M5X/jExxf8bTIlMd9q/QwSLjia2Ac
+         odLjKW9sBwFsh8rMrHmso1F5ZcwadQWfoD4UWi74EiSujGdkuKcE187yKV/7aoSEXZ5S
+         jf5nYwrZa+xlDb7RhysBYAgzfmHp1+zYVQgG+uB+EttKsWvABPWg4ZeSpIAcBu7zsncm
+         Mbwgu4Cueet95L0+lFJOY1wfdre9BKaUAoieoFpSJsClGHNbqDDjgy2vbNf+sT3ipCqa
+         TY+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764157121; x=1764761921;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cMZ8nP22oqBJZ2lViVsuNFVcop8rQmSYUY6cSSx6MyM=;
-        b=c9ZlCUGQhM6ndd0XUDWLbwJk4rrI5xQ5qnf1oHv2BoC4JWmoL+xGclNaBRXnzL6Hjg
-         fqzSHDIdKnc+tjbZqah/g50Yt9/Ctu+KKOCN9aVAMQVS7m7qsHpr6JtqRv3VeELzNqWW
-         6a6n5C6vozzxpACSEL/tYmVOGOO4aX5ssKq/j92n2ANaKw0AcwlVBEghYR2JjlgeQrhu
-         RImWrod6ax01rPpIXO9aEd8cC8jp6ToHUMKqNCFusSzlQRKpeDnaxxUrmQ9MpKP+x9zj
-         Bq2DpqFsxTX/zUGMQPf2UrVpiSE9TkS5bJ12pkbMCnGEAGiPXfeGo9AUk0/K6brtxp6e
-         k1uQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/U8y3xolZw13vjg8zBaSQSiBN7oDBnxTyQPnPT5jADEyvwqSmg5Yev3eCF1hEaLsX+EW4CQ8zrDW6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpgwFxxqHM06Q6dvoOOMtG863SuZmtT08+/LxFT9AOA3gq9NAN
-	igL0FF7h2YNCNHigmI4Mv273MVU3VJY/uJdlOKGSYFe+/H9T3q0gEI/TvtMx1HfLtqLP/5hM5cz
-	lXufav4L6Std+huuY9zEyhmFuxfYcokNZ+TXV5CGLuJkDZ7szK0bGZ/JfM89QcLwL
-X-Gm-Gg: ASbGnctHwFPMgwF77nnOD5YXwYwRMUVpnprTGdUZuJWQteEto2nCNL8cgnjWtcdjNF7
-	qFnzqRZVSBtLZyDVDD93PwzQfdE4Ay5ONWqmCk7jK5T+nSmyubOE7AG/XJwOPO9tBCuL36XiwEc
-	vhCclnal05lDRPfqDU2/UanuU0zvCyM4m3nKrnk9rxQOrQtspRGmKXx1O33CsbgZOMK3yQhFSlJ
-	6lNyXKjriV1U8gX60/dlzhKNjFYoqVt3iv7ICncTvRr0sfCA0h2/uU3d4uIf3cXbx5ERIInzmox
-	rYmx/OYyJGamqkBzI+i0Qp0shSUHy7pA2XHMrFwEKlsIZH19Ga7lD8Y+DZMO6BZSU/odZdCgrwE
-	uaSJyMkwSyj9ELUnXFoU20p4Fb3EmMq8fWaS70WB9W0SSJeZyV2NMmRtPHe1bqyrUSn0ibKLyEi
-	NyHjOiahqLanvS1FgdKFqYMFsXdbIi
-X-Received: by 2002:a17:90b:2d4d:b0:340:9d78:59 with SMTP id 98e67ed59e1d1-3472983a0a1mr22911517a91.3.1764157121311;
-        Wed, 26 Nov 2025 03:38:41 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHEBT+pTARfErEXVdl1abES4By5ZJEcqIH74/QYD4cbt7jTWebv+5raGl664Wuvz/agcEfkOw==
-X-Received: by 2002:a17:90b:2d4d:b0:340:9d78:59 with SMTP id 98e67ed59e1d1-3472983a0a1mr22911487a91.3.1764157120852;
-        Wed, 26 Nov 2025 03:38:40 -0800 (PST)
-Received: from [10.190.200.209] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3476a7a6105sm2319202a91.10.2025.11.26.03.38.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Nov 2025 03:38:40 -0800 (PST)
-Message-ID: <7158bde2-bf70-4a2d-b19f-fcc24cc37d28@oss.qualcomm.com>
-Date: Wed, 26 Nov 2025 17:08:35 +0530
+        d=1e100.net; s=20230601; t=1764157203; x=1764762003;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=80bh3XWCt9HrtGnwRb5ljnRsELmreFDRBDJ96f4NaMY=;
+        b=EYZdyrv+Rdq+Fd3pmrha3eNxdGEQ4lenwel42KY7eJGVHRZ4wEko91AKeFV61N/rjv
+         pxhK+ihUp7AbUaTajoX6LvfG7jKnKNozvgJpG7QBIzr6zLWxd1cznZ7x4z78DARmpARR
+         WyPgFIqqyhpX1ELIE+0OcD5N87IyRn4sfskgUYEE/KnKC3/1xEfkxQ9Dky5Pfz7SNb0/
+         jExDLM1yAWLmvW8H+AMTZdGiB6wxzWeKRBohSJRp/924kagf1VXR4wMZAaYKFXXvtOYr
+         iQaObu4jrXsVGAPGTK0pxkLRhF/JodffrCFr4KNlktO+s6JTQMd7sP6ynSQs5llHeEEX
+         Cbgg==
+X-Forwarded-Encrypted: i=1; AJvYcCXMUyEI1p3VZLqD/OM2UM2CdjWrs5xj3FjsJblWBRnfe6Ont7y61CBNHZeH33iGxNFUwM00Lm7r0GxW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/Y3qzN8MQYx+vaj+WkOHkXrTdp3Q129AfpGq5lJNTOpB1dLty
+	Tp4o2nFhe9SYgjCNj80PZr0//fkSmCaNOwyLmv55X9Imf6D64oMSI/5U
+X-Gm-Gg: ASbGncvJ0pRueYuw5SwyER4UpG0CJ6iji7FIalm722CLuuFKoBg6rdhq6ufLR5TpAaz
+	CHCuLt9HRS5GWqNWR/rUxMZWYsRPEqOT30RvKZpzYFGEbhR91i4TBGg/ImFrVWNGccfRzBYpC5K
+	CoAzzKxDamgBUyIY6+aPyNDy9Z6V3G5UWAvtNg7FdXw+OA9iEvysnEDbCz7oQH58qJkdoCYuK7/
+	X0vUFoi6PS9vK2iKAGQtUgeBgmTU5tc6C/sLThQr+G483njSKrNCGkveDKqFg9xw97+pe9j4N6k
+	ziI0Xm+o3Yq8g1YrjM4Fwks7YeCasAciq5C6RNVlWVgPfsb8uo4+jzpXIG5z35makc3t+k6+mF4
+	174qgpJhRxmIjoiTk+uFgAKvhW97wJ6IAQyklBa0x1LQ2xR3Kzqfru3xfoclrhfSOB6+rxpuizZ
+	JVcj5vdTfOU/H0y7/Cykw3+loLqSXVwXQXN8AsRq7HW+ejEHQtx68CO+rJTQUKRRYxj5BaigMaC
+	Z4YVQ==
+X-Google-Smtp-Source: AGHT+IHzturO050/1zg7Fbh3okV6QiNTnsU5AaJIWtQPP/hc6hDFzi5kyxPzq+8eudXbHxbbzMjGLg==
+X-Received: by 2002:a05:6000:401e:b0:427:690:1d84 with SMTP id ffacd0b85a97d-42cc1d0ce5bmr18273783f8f.32.1764157202441;
+        Wed, 26 Nov 2025 03:40:02 -0800 (PST)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:1025:ba00:55dc:4ccc])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fd8c47sm41757015f8f.38.2025.11.26.03.40.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Nov 2025 03:40:02 -0800 (PST)
+Date: Wed, 26 Nov 2025 12:40:00 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] iio: adc: Add support for ad4062
+Message-ID: <aslj3klmv6heyyhgltzewkdze5p4c3hlkzfbxbfnzwwgd375gv@m6iqpst5sv6b>
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
+ <20251124-staging-ad4062-v2-3-a375609afbb7@analog.com>
+ <aSQxiSoZcI_ol3S5@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] soc: qcom: llcc: Fix usecase id macro alignment
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Jonathan Cameron <jonathan.cameron@huawei.com>,
-        Rob Herring
- <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251125-glymur_llcc_enablement-v2-0-75a10be51d74@oss.qualcomm.com>
- <20251125-glymur_llcc_enablement-v2-2-75a10be51d74@oss.qualcomm.com>
- <20251126-gigantic-dinosaur-of-bloom-aca95f@kuoka>
-Content-Language: en-US
-From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-In-Reply-To: <20251126-gigantic-dinosaur-of-bloom-aca95f@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDA5NSBTYWx0ZWRfXxmvj2V7mP91A
- 0MM1aapVuKaPgBc0CxwxNY7yANUV5Z0Xf4Cm/gbEXnOMAiSWWDt5Xb1fB6hsN844a0WA9YbisYB
- NWBX7hfmgqKmubUkOjLQJ2H5yPDZuTesnqpYNnIl3kNtl3PBLBf2Jg4+wP7KbhD6FpQTajyrAJa
- GZE54WGj5VkKovMMG+TTTOX3moLlS7c38XVWcGs8oshXh4zqXmS9ItH0aeWLIaTK4ngnonQqKE7
- hFflu56x0LAbQ1sOoG8JbmbYqI8CzzvcX5gNMz5ETOFiQJkHucGkEugh6rcyKz87CV22MsMoyCW
- JEatjtU3yqizjP+bbtSqoO5nJbgUM30s0XJgDHmPjqARKBKf8AcIJOjV2oudouLB7+HHNEbFbbV
- lRrLFJ+ru4iYjr6EayJTmSgE9b9sMQ==
-X-Proofpoint-GUID: XLq31faCrdOOYmbmjAjaZdncJlmYqvFS
-X-Proofpoint-ORIG-GUID: XLq31faCrdOOYmbmjAjaZdncJlmYqvFS
-X-Authority-Analysis: v=2.4 cv=feugCkQF c=1 sm=1 tr=0 ts=6926e6c2 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=JLVAI_iM7606iRLUKQwA:9 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-25_02,2025-11-25_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 clxscore=1015
- impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511260095
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aSQxiSoZcI_ol3S5@smile.fi.intel.com>
 
-On 11/26/2025 2:29 PM, Krzysztof Kozlowski wrote:
-> On Tue, Nov 25, 2025 at 02:46:23PM +0530, Pankaj Patil wrote:
->> Aligned macro values for usecase id along the column length
->> -#define LLCC_CAMOFE	 71
->> -#define LLCC_CAMRTIP	 72
->> -#define LLCC_CAMSRTIP	 73
->> -#define LLCC_CAMRTRF	 74
->> -#define LLCC_CAMSRTRF	 75
->> -#define LLCC_VIDEO_APV	 83
->> -#define LLCC_COMPUTE1	 87
->> -#define LLCC_CPUSS_OPP	 88
->> -#define LLCC_CPUSSMPAM	 89
->> -#define LLCC_CAM_IPE_STROV	 92
->> -#define LLCC_CAM_OFE_STROV	 93
->> -#define LLCC_CPUSS_HEU	 94
->> -#define LLCC_MDM_PNG_FIXED	 100
->> +#define LLCC_CPUSS         1
->> +#define LLCC_VIDSC0        2
->> +#define LLCC_VIDSC1        3
->> +#define LLCC_ROTATOR       4
->> +#define LLCC_VOICE         5
-> This does not look right - you still have here spaces, so nothing fixed.
->
-> I don't think this change is useful. You replaced one poor alignment
-> into another poor alignment, so IMO better not to touch this at all.
->
-> Best regards,
-> Krzysztof
->
-Sure, Will drop this patch in next revision
+On Mon, Nov 24, 2025 at 12:20:57PM +0200, Andy Shevchenko wrote:
+> On Mon, Nov 24, 2025 at 10:18:02AM +0100, Jorge Marques wrote:
+> > The AD4060/AD4062 are versatile, 16-bit/12-bit, successive approximation
+> > register (SAR) analog-to-digital converter (ADC) with low-power and
+> > threshold monitoring modes.
+> 
+> ...
+> 
+Hi Andy,
+> > +#define AD4062_SOFT_RESET	0x81
+> 
+> The grouping seems a bit strange. Haven't you forgotten a blank line here?
+> Ditto for other similar cases.
+> 
+Ack.
+> > +#define AD4060_MAX_AVG		0x7
+> > +#define AD4062_MAX_AVG		0xB
+> 
+> > +#define AD4062_MON_VAL_MAX_GAIN		1999970
+> 
+> This is decimal...
+> 
+> > +#define AD4062_MON_VAL_MIDDLE_POINT	0x8000
+> 
+> ...and this is hexadecimal. Can you make these consistent?
+> Also, is there any explanation of the number above? To me
+> it looks like 2000000 - 30. Is it so? Or is this a fraction
+> number multiplied by 1000000 or so? In any case some elaboration
+> would be good to have.
+> 
+Since this is not a magic number, I will use directly below.
+It MAX_MON_VAL/MON_VAL_MIDDLE_POINT = 0xFFFF/0x8000
+> > +#define AD4062_GP_DRDY		0x2
+> > +#define AD4062_INTR_EN_NEITHER	0x0
+> > +#define AD4062_TCONV_NS		270
+> 
+> ...
+> 
+> > +struct ad4062_state {
+> > +	const struct ad4062_chip_info *chip;
+> > +	const struct ad4062_bus_ops *ops;
+> > +	enum ad4062_operation_mode mode;
+> > +	struct completion completion;
+> > +	struct iio_trigger *trigger;
+> > +	struct iio_dev *indio_dev;
+> > +	struct i3c_device *i3cdev;
+> > +	struct regmap *regmap;
+> > +	u16 sampling_frequency;
+> > +	int vref_uv;
+> > +	int samp_freqs[ARRAY_SIZE(ad4062_conversion_freqs)];
+> > +	u8 oversamp_ratio;
+> > +	union {
+> > +		__be32 be32;
+> > +		__be16 be16;
+> > +		u8 bytes[4];
+> > +	} buf __aligned(IIO_DMA_MINALIGN);
+> > +	u8 reg_addr_conv;
+> 
+> Can't we group u8:s to save a few bytes of memory?
+> 
+Sure
 
+  struct ad4062_state {
+  	// ...
+  	union {
+  		__be32 be32;
+  		__be16 be16;
+  		u8 bytes[4];
+  	} buf __aligned(IIO_DMA_MINALIGN);
+  	u16 sampling_frequency;
+  	u8 oversamp_ratio;
+  	u8 reg_addr_conv;
+  };
+
+> > +};
+> 
+> ...
+> 
+> > +static int ad4062_set_oversampling_ratio(struct ad4062_state *st, unsigned int val)
+> > +{
+> > +	int ret;
+> > +
+> > +	if (val < 1 || val > BIT(st->chip->max_avg + 1))
+> 
+> in_range() ?
+> 
+> 	in_range(val, 1, GENMASK(st->chip->max_avg, 0))
+> 
+> if I am not mistaken. Also note, the GENMASK() approach makes possible
+> to have all 32 bits set, however it's most unlikely to happen here anyway.
+> 
+Sure, but requires locals to not trigger suspicious usage of sizeof.
+  	// ...
+  	const u32 _max = GENMASK(st->chip->max_avg, 0);
+  	const u32 _min = 1;
+  	int ret;
+  
+  	if (in_range(val, _min, _max))
+> > +		return -EINVAL;
+> > +
+> > +	/* 1 disables oversampling */
+> > +	val = ilog2(val);
+> > +	if (val == 0) {
+> > +		st->mode = AD4062_SAMPLE_MODE;
+> > +	} else {
+> > +		st->mode = AD4062_BURST_AVERAGING_MODE;
+> > +		ret = regmap_write(st->regmap, AD4062_REG_AVG_CONFIG, val - 1);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +	st->oversamp_ratio = BIT(val);
+> > +
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_get_oversampling_ratio(struct ad4062_state *st,
+> > +					 unsigned int *val)
+> > +{
+> > +	int ret, buf;
+> > +
+> > +	if (st->mode == AD4062_SAMPLE_MODE) {
+> > +		*val = 1;
+> > +		return 0;
+> > +	}
+> 
+> > +	ret = regmap_read(st->regmap, AD4062_REG_AVG_CONFIG, &buf);
+> > +	return 0;
+> 
+> This is strange piece of code. Why do we have ret at all?
+> Please, try to compile kernel also with `make LLVM=1 W=1 ...`
+> assuming you have clang installed. It catches such issues quite
+> well.
+> 
+Can return directly yes.
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_calc_sampling_frequency(int fosc, unsigned int n_avg)
+> > +{
+> > +	/* See datasheet page 31 */
+> > +	u64 duration = div_u64((u64)(n_avg - 1) * NSEC_PER_SEC, fosc) + AD4062_TCONV_NS;
+> > +
+> > +	return DIV_ROUND_UP_ULL(NSEC_PER_SEC, duration);
+> 
+> Why u64?
+> 
+> The DIV_ROUND_UP_ULL() seems an overkill here. Or do you expect duration be
+> more than 4 billions?
+> 
+This is necessary since at fosc 111 Hz and avg 4096 it does take longer
+than 4 seconds, even though I do timeout after 1 seconds in the raw
+acquisition.
+> > +}
+> > +
+> > +static int ad4062_populate_sampling_frequency(struct ad4062_state *st)
+> > +{
+> > +	for (int i = 0; i < ARRAY_SIZE(ad4062_conversion_freqs); i++)
+> 
+> Why signed iterator?
+> 
+Ack, can be u8.
+> > +		st->samp_freqs[i] = ad4062_calc_sampling_frequency(ad4062_conversion_freqs[i],
+> > +								   st->oversamp_ratio);
+> 
+> Perhaps
+> 
+> 		st->samp_freqs[i] =
+> 			ad4062_calc_sampling_frequency(ad4062_conversion_freqs[i],
+> 						       st->oversamp_ratio);
+> 
+> But I am not insisting on this case and similar.
+> 
+> 
+Ack.
+> > +	return 0;
+> > +}
+> 
+> > +static int ad4062_get_sampling_frequency(struct ad4062_state *st, int *val)
+> > +{
+> > +	*val = ad4062_calc_sampling_frequency(ad4062_conversion_freqs[st->sampling_frequency],
+> > +					      st->oversamp_ratio);
+> 
+> Oh, temporary variable makes this better for readability.
+> 
+Ack.
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_check_ids(struct ad4062_state *st)
+> > +{
+> 
+> 	struct device *dev = &st->i3cdev->dev;
+> 
+Ack.
+> > +	int ret;
+> > +	u16 val;
+> > +
+> > +	ret = regmap_bulk_read(st->regmap, AD4062_REG_PROD_ID_1,
+> > +			       &st->buf.be16, sizeof(st->buf.be16));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	val = get_unaligned_be16(st->buf.bytes);
+> > +	if (val != st->chip->prod_id)
+> > +		dev_warn(&st->i3cdev->dev,
+> > +			 "Production ID x%x does not match known values", val);
+> 
+> 		dev_warn(dev, "Production ID x%x does not match known values", val);
+> 
+Ack.
+> > +	ret = regmap_bulk_read(st->regmap, AD4062_REG_VENDOR_H,
+> > +			       &st->buf.be16, sizeof(st->buf.be16));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	val = get_unaligned_be16(st->buf.bytes);
+> > +	if (val != AD4062_I3C_VENDOR) {
+> > +		dev_err(&st->i3cdev->dev,
+> > +			"Vendor ID x%x does not match expected value\n", val);
+> 
+> 		dev_err(dev, "Vendor ID x%x does not match expected value\n", val);
+> 
+Ack.
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_soft_reset(struct ad4062_state *st)
+> > +{
+> > +	u8 val = AD4062_SOFT_RESET;
+> > +	int ret;
+> > +
+> > +	ret = regmap_write(st->regmap, AD4062_REG_INTERFACE_CONFIG_A, val);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Wait AD4062 treset time */
+> > +	fsleep(5000);
+> 
+> 5 * USEC_PER_MSEC
+> 
+> This gives a hint on the units without even a need to comment or look somewhere
+> else.
+>
+// TODO
+Since the device functional blocks are powered when voltage is supplied,
+here we can stick with the treset datasheet value 60ns (ndelay(60)).
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_request_irq(struct iio_dev *indio_dev)
+> > +{
+> > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > +	struct device *dev = &st->i3cdev->dev;
+> > +	int ret;
+> > +
+> > +	ret = fwnode_irq_get_byname(dev_fwnode(&st->i3cdev->dev), "gp1");
+> > +	if (ret == -EPROBE_DEFER) {
+> > +		return ret;
+> 
+> > +	} else if (ret < 0) {
+> 
+> Redundant 'else'
+> 
+Ack.
+> > +		ret = regmap_update_bits(st->regmap, AD4062_REG_ADC_IBI_EN,
+> > +					 AD4062_REG_ADC_IBI_EN_CONV_TRIGGER,
+> > +					 AD4062_REG_ADC_IBI_EN_CONV_TRIGGER);
+> > +	} else {
+> > +		ret = devm_request_threaded_irq(dev, ret,
+> > +						ad4062_irq_handler_drdy,
+> > +						NULL, IRQF_ONESHOT, indio_dev->name,
+> > +						indio_dev);
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> 
+> ...
+> 
+> > +static const int ad4062_oversampling_avail[] = {
+> > +	1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096,
+> 
+> It's not easy to count them at glance, please add a comment with indices.
+> 
+Ack, will use
+  static const int ad4062_oversampling_avail[] = {
+          BIT(0), BIT(1), BIT(2), BIT(3), BIT(4), BIT(5), BIT(6), BIT(7), BIT(8),
+  	BIT(9), BIT(10), BIT(11), BIT(12),
+  };
+> > +};
+> 
+> ...
+> 
+> > +static int ad4062_read_avail(struct iio_dev *indio_dev,
+> > +			     struct iio_chan_spec const *chan, const int **vals,
+> > +			     int *type, int *len, long mask)
+> > +{
+> > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	switch (mask) {
+> > +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> > +		*vals = ad4062_oversampling_avail;
+> > +		*len = ARRAY_SIZE(ad4062_oversampling_avail);
+> > +		*type = IIO_VAL_INT;
+> > +
+> > +		return IIO_AVAIL_LIST;
+> > +	case IIO_CHAN_INFO_SAMP_FREQ:
+> > +		ret = ad4062_populate_sampling_frequency(st);
+> > +		if (ret)
+> > +			return ret;
+> > +		*vals = st->samp_freqs;
+> > +		*len = st->oversamp_ratio != 1 ? ARRAY_SIZE(ad4062_conversion_freqs) : 1;
+> 
+> Why not using positive conditional?
+> 
+> Funny trick that Elvis operator can be used in this case, but please don't,
+> it will make code harder to follow.
+> 
+Ack.
+> > +		*type = IIO_VAL_INT;
+> > +
+> > +		return IIO_AVAIL_LIST;
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_get_chan_scale(struct iio_dev *indio_dev, int *val, int *val2)
+> > +{
+> > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > +	const struct iio_scan_type *scan_type;
+> > +
+> > +	scan_type = iio_get_current_scan_type(indio_dev, st->chip->channels);
+> > +	if (IS_ERR(scan_type))
+> > +		return PTR_ERR(scan_type);
+> > +
+> > +	*val = (st->vref_uv * 2) / MILLI;
+> 
+> It's most likely (MICRO / MILLI) instead of MILLI. Am I right?
+> 
+Sure.
+> > +	*val2 = scan_type->realbits - 1; /* signed */
+> > +
+> > +	return IIO_VAL_FRACTIONAL_LOG2;
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_get_chan_calibscale(struct ad4062_state *st, int *val, int *val2)
+> > +{
+> > +	u16 gain;
+> > +	int ret;
+> > +
+> > +	ret = regmap_bulk_read(st->regmap, AD4062_REG_MON_VAL,
+> > +			       &st->buf.be16, sizeof(st->buf.be16));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	gain = get_unaligned_be16(st->buf.bytes);
+> > +
+> > +	/* From datasheet: code out = code in × mon_val/0x8000 */
+> > +	*val = gain / AD4062_MON_VAL_MIDDLE_POINT;
+> 
+> > +	*val2 = mul_u64_u32_div(gain % AD4062_MON_VAL_MIDDLE_POINT, NANO,
+> > +				AD4062_MON_VAL_MIDDLE_POINT);
+> 
+> I don't see the need for 64-bit division. Can you elaborate what I miss here?
+> 
+> > +	return IIO_VAL_INT_PLUS_NANO;
+> > +}
+> 
+Can be improved to
+
+  static int ad4062_get_chan_calibscale(struct ad4062_state *st, int *val, int *val2)
+  {
+  	int ret;
+  
+  	ret = regmap_bulk_read(st->regmap, AD4062_REG_MON_VAL,
+  			       &st->buf.be16, sizeof(st->buf.be16));
+  	if (ret)
+  		return ret;
+  
+  	/* From datasheet: code out = code in × mon_val/0x8000 */
+  	*val = get_unaligned_be16(st->buf.bytes) * 2;
+  	*val2 = 16;
+  
+  	return IIO_VAL_FRACTIONAL_LOG2;
+  }
+> ...
+> 
+> > +static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int, int gain_frac)
+> 
+> Forgot to wrap this line.
+> 
+ack
+> > +{
+> > +	u64 gain;
+> > +	int ret;
+> > +
+> > +	if (gain_int < 0 || gain_frac < 0)
+> > +		return -EINVAL;
+> > +
+> > +	gain = mul_u32_u32(gain_int, MICRO) + gain_frac;
+> 
+> > +
+> 
+> Redundant blank line.
+> 
+Ack.
+> > +	if (gain > AD4062_MON_VAL_MAX_GAIN)
+> > +		return -EINVAL;
+> > +
+> > +	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL(gain * AD4062_MON_VAL_MIDDLE_POINT,
+> > +						 MICRO),
+> > +			   st->buf.bytes);
+> 
+> Also in doubt here about 64-bit division.
+> 
+This can be slightly improved to
+
+  static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
+  				      int gain_frac)
+  {
+  	u32 gain;
+  	int ret;
+  
+  	if (gain_int < 0 || gain_frac < 0)
+  		return -EINVAL;
+  
+  	gain = gain_int * MICRO + gain_frac;
+  	if (gain > 1999970)
+  		return -EINVAL;
+  
+  	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL((u64)gain * AD4062_MON_VAL_MIDDLE_POINT,
+  						 MICRO),
+  			   st->buf.bytes);
+  
+  	ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
+  				&st->buf.be16, sizeof(st->buf.be16));
+  	if (ret)
+  		return ret;
+  
+  	/* Enable scale if gain is not equal to one */
+  	return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
+  				  AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+  				  FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+  					     !(gain_int == 1 && gain_frac == 0)));
+  }
+
+To provide the enough resolution to compute every step (e.g., 0xFFFF and
+0xFFFE) with the arbitrary user input.
+
+> > +	ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
+> > +				&st->buf.be16, sizeof(st->buf.be16));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Enable scale if gain is not one. */
+> 
+> "...is not equal to one."
+> 
+> Also be consistent with the style for one-line comments. Choose one and
+> use it everywhere. Usual cases:
+> - my one-line comment
+> - My one-line comment
+> - My one-line comment.
+> 
+Ack.
+> 
+> > +	return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
+> > +				  AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> > +				  FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> > +					     !(gain_int == 1 && gain_frac == 0)));
+> > +}
+> 
+> ...
+> 
+> > +static int __ad4062_read_chan_raw(struct ad4062_state *st, int *val)
+> 
+> Can be named without leading double underscore? Preference is to use
+> the suffix, like _no_pm (but you can find better one).
+> 
+Since there is one usage of this method, can be merged into ad4062_read_chan_raw.
+> > +{
+> > +	struct i3c_device *i3cdev = st->i3cdev;
+> > +	struct i3c_priv_xfer t[2] = {
+> > +		{
+> > +			.data.out = &st->reg_addr_conv,
+> > +			.len = sizeof(st->reg_addr_conv),
+> > +			.rnw = false,
+> > +		},
+> > +		{
+> > +			.data.in = &st->buf.be32,
+> > +			.len = sizeof(st->buf.be32),
+> > +			.rnw = true,
+> > +		}
+> > +	};
+> > +	int ret;
+> > +
+> > +	reinit_completion(&st->completion);
+> > +	/* Change address pointer to trigger conversion */
+> > +	ret = i3c_device_do_priv_xfers(i3cdev, &t[0], 1);
+> 
+> Why array? Just split them on per transfer and use separately. This gives a bit
+> odd feeling that the two goes together, but no. They are semi-related as we
+> have a special condition after the first one.
+> 
+For this commit sure, but in the next a fallback method is introduced
+for when the gp1 gpio line is not connected.
+There are two register to trigger and read samples:
+
+* write CONV_READ -> read dummy value - [conversion] -> read value -> [conv ...
+* write CONV_TRIGGER - [conversion] -> read value -> write ...
+
+The first allows almost twice the sampling frequency, but does not work
+with the fallback because In-Band-Interrupt for CONV_READ are not
+yielded.
+
+> > +	if (ret)
+> > +		return ret;
+> > +	/*
+> > +	 * Single sample read should be used only for oversampling and
+> > +	 * sampling frequency pairs that take less than 1 sec.
+> > +	 */
+> > +	ret = wait_for_completion_timeout(&st->completion,
+> > +					  msecs_to_jiffies(1000));
+> > +	if (!ret)
+> > +		return -ETIMEDOUT;
+> > +
+> > +	ret = i3c_device_do_priv_xfers(i3cdev, &t[1], 1);
+> > +	if (ret)
+> > +		return ret;
+> > +	*val = get_unaligned_be32(st->buf.bytes);
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_read_raw_dispatch(struct ad4062_state *st, int *val, int *val2,
+> > +				    long info)
+> 
+> The parameters are split in a logical way here...
+> 
+> (however preference is
+> 
+> static int ad4062_read_raw_dispatch(struct ad4062_state *st,
+> 				    int *val, int *val2, long info)
+> 
+> to fit 80 characters)
+> 
+> ...
+Ack.
+> 
+> > +static int ad4062_read_raw(struct iio_dev *indio_dev,
+> > +			   struct iio_chan_spec const *chan, int *val,
+> > +			   int *val2, long info)
+> 
+> ...but here. Why not
+> 
+> static int ad4062_read_raw(struct iio_dev *indio_dev,
+> 			   struct iio_chan_spec const *chan,
+> 			   int *val, int *val2, long info)
+> 
+> ?
+> 
+Ack.
+> > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	if (info == IIO_CHAN_INFO_SCALE)
+> > +		return ad4062_get_chan_scale(indio_dev, val, val2);
+> > +
+> > +	if (!iio_device_claim_direct(indio_dev))
+> > +		return -EBUSY;
+> > +
+> > +	ret = ad4062_read_raw_dispatch(st, val, val2, info);
+> > +
+> > +	iio_device_release_direct(indio_dev);
+> > +	return ret ? ret : IIO_VAL_INT;
+> 
+> 	return ret ?: IIO_VAL_INT;
+> 
+> > +}
+> 
+> ...
+Ack.
+> 
+> > +static int ad4062_debugfs_reg_access(struct iio_dev *indio_dev, unsigned int reg,
+> > +				     unsigned int writeval, unsigned int *readval)
+> > +{
+> > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	if (readval)
+> > +		ret = regmap_read(st->regmap, reg, readval);
+> > +	else
+> > +		ret = regmap_write(st->regmap, reg, writeval);
+> > +
+> > +	return ret;
+> 
+> Do you expand this in the following patches? If not, ret is not needed.
+> Just return directly.
+> 
+Not anymore, will just return.
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_regulators_get(struct ad4062_state *st, bool *ref_sel)
+> > +{
+> > +	struct device *dev = &st->i3cdev->dev;
+> > +	int ret;
+> > +
+> > +	ret = devm_regulator_get_enable(dev, "vio");
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				     "Failed to enable vio voltage\n");
+> > +
+> > +	st->vref_uv = devm_regulator_get_enable_read_voltage(dev, "ref");
+> > +	*ref_sel = st->vref_uv == -ENODEV;
+> 
+> _uV ?
+> 
+Ack.
+> > +	if (st->vref_uv < 0 && st->vref_uv != -ENODEV) {
+> 
+> You already has the second part
+> 
+> 	if (st->vref_uV < 0 && !*ref_sel) {
+> 
+> I believe this is better to understand as we check that ref_sel is not chosen.
+> 
+Ack.
+> > +		return dev_err_probe(dev, st->vref_uv,
+> > +				     "Failed to enable and read ref voltage\n");
+> 
+> > +	} else if (st->vref_uv == -ENODEV) {
+> 
+> Redundant 'else'
+> 
+> 	if (*ref_sel) {
+> 
+> (also in similar way as above)
+> 
+> I don't know if the above was asked specifically, but if so, I ask
+> the requestor(s) to reconsider.
+> 
+Ack. Asked for returning error first, good path return 0 and not return
+ret;
+> > +		st->vref_uv = devm_regulator_get_enable_read_voltage(dev, "vdd");
+> > +		if (st->vref_uv < 0)
+> > +			return dev_err_probe(dev, st->vref_uv,
+> > +					     "Failed to enable and read vdd voltage\n");
+> > +	} else {
+> > +		ret = devm_regulator_get_enable(dev, "vdd");
+> > +		if (ret)
+> > +			return dev_err_probe(dev, ret,
+> > +					     "Failed to enable vdd regulator\n");
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static int ad4062_runtime_resume(struct device *dev)
+> > +{
+> > +	struct ad4062_state *st = dev_get_drvdata(dev);
+> > +	int ret;
+> > +
+> > +	ret = regmap_clear_bits(st->regmap, AD4062_REG_DEVICE_CONFIG,
+> > +				AD4062_REG_DEVICE_CONFIG_POWER_MODE_MSK);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	fsleep(4000);
+> 
+> 4 * USEC_PER_MSEC, also would be good to add a comment for this long delay.
+> 
+Will add
+	/* Wait device functional blocks to power up */
+Based on hardware tests, I can drop to 2 * USEC_PER_MSEC, lower than
+that the device is not ready to switch to acquisition mode for
+conversions.
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static DEFINE_RUNTIME_DEV_PM_OPS(ad4062_pm_ops, ad4062_runtime_suspend,
+> > +				 ad4062_runtime_resume, NULL);
+> 
+> I think the logical split is slightly better:
+> 
+> static DEFINE_RUNTIME_DEV_PM_OPS(ad4062_pm_ops,
+> 				 ad4062_runtime_suspend, ad4062_runtime_resume, NULL);
+> 
+> OR
+Ack.
+> 
+> static DEFINE_RUNTIME_DEV_PM_OPS(ad4062_pm_ops,
+> 				 ad4062_runtime_suspend,
+> 				 ad4062_runtime_resume,
+> 				 NULL);
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+Best Regards,
+Jorge
 
