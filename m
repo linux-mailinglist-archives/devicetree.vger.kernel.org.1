@@ -1,346 +1,175 @@
-Return-Path: <devicetree+bounces-242340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EFF7C895DF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:46:32 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC4EC895E5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E49E3B2A2B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:45:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 047A34E4620
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:46:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3D62F6180;
-	Wed, 26 Nov 2025 10:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D91831CA7D;
+	Wed, 26 Nov 2025 10:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hitachienergy.com header.i=@hitachienergy.com header.b="p3vUZYr1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eKD/KeAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010007.outbound.protection.outlook.com [52.101.69.7])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E410430170B;
-	Wed, 26 Nov 2025 10:45:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764153937; cv=fail; b=ZmSky/WxjjbgZfICpANzEtK2hfwP7CCW40dM5s2904iZ6muEJ720qE5S+M3EBxyOueapE9Uli9qk9p61vM6/so56SxXmTclohs4e4m0LWBWbY8VTUliTGUu4we49oPzWF6XykP4Im8abePb0FQeQ3Qs84JS/n+QLidgckZXeGV0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764153937; c=relaxed/simple;
-	bh=92HdaufFl8F3RK7rM2axvFJEYq8xTITEC2fvVG4X+7Y=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=QT3wTpaS8IE69jYCnvnMSaBLf5UsIHTKdgM1lwWNd+zCTppbkLQVFcOyyRPG+8cMFU6tD/9bFgKBLspy2266PV5MVs1UehbiV9VWFEu2NAxMfH0U1Lm0UtuRnZ4bg9xJZL1a6La2oixT8SMxF3F2DD/1YOY0O4BDwnCvQvYnYd8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=hitachienergy.com; spf=pass smtp.mailfrom=hitachienergy.com; dkim=pass (2048-bit key) header.d=hitachienergy.com header.i=@hitachienergy.com header.b=p3vUZYr1; arc=fail smtp.client-ip=52.101.69.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=hitachienergy.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hitachienergy.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yeIa0B9vgPbefo6YSXxaY44n2DHORveofC+DfItTQK0AIS5ZPxykCVNB3TIghzydExdACchtN9DWIeJyxETda54iQQCSpsiYaBziSs3TG98mSPcaZwlX52Z/XJ7/owQMF9tQHMLIDwWN2qgLk16kxDKuwekvu9NSwKWT5FBmQ7cEWmhRYOihIaFVri81elqPyhritpGDuzRrFQimpM5Tc6mLqJaQ+pWbW3agF6FOrsASnWfa4FGmr4IUdBrDbJwnUUBO6pegX3scikKdOZC6bmA3683g9fHzS0DL3DSHuPRl5IEQ4b8Kl4YDd/Kk19KjZhk+Ej80im4pAeVea/Ypyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qfEVPr1H4oEuD246IlNjg9OXFNg/g9tpvvf1em+f+jU=;
- b=RyjjLmffswA0i+kzLtCE5uIxDX24QoQgXtEsYOETOWreHP2MCG2euOjoPcF6mWCqYXj5R5FJUVMy7zvbjE6tWhpsKzyZ/rKI6m5vB4BEzKsz1iKAAtzti4Vg97s7mx+h+USFL4Ic4z5Jtc5N3cmaabEj5urm4Jn2vjtSubqGMFA16/7U+JHD1X6DxlYcLSSWzP9VKxZkxX5RN7ufVwWi0Yz0CTGimdf3moo6LWVXViiObZGR3hG60/8kQjDVzTT3I9YgeD+kVyHs+VKTBrkr8NenP2eANzo+RVkRLTifBpJ+gNgGssSriJpwqI3NWF54/ru902N+rD1sJnoRidgy6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hitachienergy.com; dmarc=pass action=none
- header.from=hitachienergy.com; dkim=pass header.d=hitachienergy.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hitachienergy.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qfEVPr1H4oEuD246IlNjg9OXFNg/g9tpvvf1em+f+jU=;
- b=p3vUZYr1M/XHokmlKSFiTTnM8IIDSO3/Iq/zXsPYm5cXt8VqO3WcoOVP76psTkN2apI842T0IQkyDXZfS6I0Vu95H9p9ypf0tAiE3VUhObZgg7EaNLcMCMOxBjuE4PlrswCIS+6IkxpQoortPzF9itkZTSPy6aUFeiOfrEtmdd9v9ILhbAJJnRZB/moWHd2D3Mkx/PrQGJUqfywaFV1Rf+mo05xUUZdAQ6v2sF2hWHq4RU5M3P4r8XLZS007URg95FrlFsgcrBKUZhYs+zYZJj6U7WfFyXpTHOblZ2uVscj+O+J3B28drZoYCYStIT4tFewK3OG3XQG9fwY7dDovbw==
-Received: from AM0PR06MB10396.eurprd06.prod.outlook.com (2603:10a6:20b:6fd::9)
- by AS4PR06MB8518.eurprd06.prod.outlook.com (2603:10a6:20b:4e5::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.18; Wed, 26 Nov
- 2025 10:45:31 +0000
-Received: from AM0PR06MB10396.eurprd06.prod.outlook.com
- ([fe80::f64e:6a20:6d85:183f]) by AM0PR06MB10396.eurprd06.prod.outlook.com
- ([fe80::f64e:6a20:6d85:183f%6]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
- 10:45:31 +0000
-From: Holger Brunck <holger.brunck@hitachienergy.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-CC: Andrew Lunn <andrew@lunn.ch>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-phy@lists.infradead.org"
-	<linux-phy@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, Daniel Golle <daniel@makrotopia.org>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>, Heiner Kallweit
-	<hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
-	<kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Eric
- Woudstra <ericwouds@gmail.com>,
-	=?iso-2022-jp?B?TWFyZWsgQmVoGyRCImUiaRsoQm4=?= <kabel@kernel.org>, Lee Jones
-	<lee@kernel.org>, Patrice Chotard <patrice.chotard@foss.st.com>, Maxime
- Chevallier <maxime.chevallier@bootlin.com>
-Subject: RE: [PATCH net-next 1/9] dt-bindings: phy: rename
- transmit-amplitude.yaml to phy-common-props.yaml
-Thread-Topic: [PATCH net-next 1/9] dt-bindings: phy: rename
- transmit-amplitude.yaml to phy-common-props.yaml
-Thread-Index: AQHcXqYGtlM98xQGlkSgPr5ML7/KzbUEqGywgAAalgCAAADHsA==
-Date: Wed, 26 Nov 2025 10:45:31 +0000
-Message-ID:
- <AM0PR06MB10396E5D3A14C7B32BFAEB264F7DEA@AM0PR06MB10396.eurprd06.prod.outlook.com>
-References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
- <20251122193341.332324-2-vladimir.oltean@nxp.com>
- <0faccdb7-0934-4543-9b7f-a655a632fa86@lunn.ch>
- <20251125214450.qeljlyt3d27zclfr@skbuf>
- <b4597333-e485-426d-975e-3082895e09f6@lunn.ch>
- <20251126072638.wqwbhhab3afxvm7x@skbuf>
- <AM0PR06MB10396D06E6F06F6B8AB3CFCBEF7DEA@AM0PR06MB10396.eurprd06.prod.outlook.com>
- <20251126103350.el6mzde47sg5v6od@skbuf>
-In-Reply-To: <20251126103350.el6mzde47sg5v6od@skbuf>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=hitachienergy.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM0PR06MB10396:EE_|AS4PR06MB8518:EE_
-x-ms-office365-filtering-correlation-id: aa7f3d95-3f27-43c8-4f44-08de2cd8ebf4
-x-he-o365-outbound: HEO365Out
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|366016|1800799024|38070700021;
-x-microsoft-antispam-message-info:
- =?iso-2022-jp?B?RWZsUUFFWU9RcHRYem9OVnpEUFBlQ0dmalBCWFNPanNXVFc5YW9KdGhV?=
- =?iso-2022-jp?B?bGN6UWJReGxmTmFyaWFkVWRWZnFVWnk1Q2NiZDJCQ1Y3VGR0ek43L1li?=
- =?iso-2022-jp?B?WUw3b29UU0M0eEx1Z2Q1ci8wVjR6QTVMZWZiNXlWenphaFNER0xMK3px?=
- =?iso-2022-jp?B?UzRyeFcyU3lDVzYyVXNFdGlWWHN2WmUzN0NWVVFKdDlLbkpFM0ZmTkEv?=
- =?iso-2022-jp?B?OW1vbTB2WjdxYm0waW1hd3ZJcGM4OVVmeWdkRU5INC9YV1AxMGJwVmdG?=
- =?iso-2022-jp?B?ai8wT1IvQ25ieDBMVEF5RDFSaUNQY3A0NXRHa1VVd2lVVWJsaUtteS9n?=
- =?iso-2022-jp?B?QkR1c091VDRJR3liMkdzcWF6Q2Z4eXY1bGVEU0xvZUlxd0VERkIvUmti?=
- =?iso-2022-jp?B?Y3VtUHlUR2ozOWg0dVArWmdGb3FiY002VjdpNVpIblZ3WGFudzFVOG5R?=
- =?iso-2022-jp?B?T0VPblVldVV2aDRJTFlSZmZPSjdPbXZoQ1dTM21MemZaNW9mdVA1aWJS?=
- =?iso-2022-jp?B?cjNSZzVhWGJJODRzR2xLVDJCengzU0lKVnp1UkxQdkx6YWF4elNzTCtS?=
- =?iso-2022-jp?B?VGp1ZlU2TjA4bnFiQWhLRTIvNlFMOUhSSEQvVWdOajFMTHN4eVowZldT?=
- =?iso-2022-jp?B?aVVvVGQwdWdzSEZ1VEtsZ3N1aGdTekh2RmRNdERVN2UrMncya0JtM09Q?=
- =?iso-2022-jp?B?dDNZTVhqMFVHUm9zM3lPSzNpb1FPZ0dVZHhQcEszQ1AwbkpyNE4xRHBX?=
- =?iso-2022-jp?B?ejFwOUhrblVDR2x5bUhVZVJiRGtnM0dNRUlpSytxQ0dTd1M1Q1QvKzEz?=
- =?iso-2022-jp?B?KzZXaFBzN1h3bWoyQ0ZpcEQ0d09sbHBWcjVUdWtjK0tudkVzbytYTk5j?=
- =?iso-2022-jp?B?YWQ0bkkyZXFhb0VUQ2Z6UDdJbGdoWmtIekFTNEtTYS94WUE5WHk5enNi?=
- =?iso-2022-jp?B?MlNpVHF2QVV4N0FUWm4ySjRNM2o5OWJmR0dNNEJ0Y25WZUZNQ2F2MUs4?=
- =?iso-2022-jp?B?TUNsQ2kyQ1ZYa25lVE9kRHVOMFFsS3BMSlBMRVlleXdkQ2RCdytZbFB3?=
- =?iso-2022-jp?B?bmFOKzdKaHdWWGNPK0l5bUVHOUpwN3lmZHBMR240b0xmbE5UVjBPOXZV?=
- =?iso-2022-jp?B?TGRUaVFpV3BnMzdaWmIxMEJXTm9YWWlqdlNveXU0K3VudVZ0SmNZNFVx?=
- =?iso-2022-jp?B?RzJHclR5THJRZUZGQkxRODIrcnFVdnhNYklITXJrQldBVU41a1dGd1pQ?=
- =?iso-2022-jp?B?Y1FnNEpaWDRoVE5pWHM2Q3gyK1BXY1hOZkF1SC90c1lab0hRazVJL2lW?=
- =?iso-2022-jp?B?MHltY1R1T2tTbi9IYWlKRUJ5K3owTHJ6QkNYVHJ2TEVyWjJjaEQ5UEFw?=
- =?iso-2022-jp?B?V29aN09oa1RGclpmNTRLR2VCV0NnMUZPNjVtYU51STY1V2FxbDExazVG?=
- =?iso-2022-jp?B?MWlIUE1ocnYwaFY5RmZtczhCVWFiM0NTVmhNTE5qblZSb2V6MWxGV1Jt?=
- =?iso-2022-jp?B?VkozTzVBSk9kV1M5OWNxNXA2elFlbkhuM1crbmJyT3kxd041SGZaYjZ6?=
- =?iso-2022-jp?B?Yi9BYzBuTk1OTFhNeDRmNVFGa25TUmZKdGI4VDVIYWtJc1BiNlBaaGpI?=
- =?iso-2022-jp?B?OXhCTWk2VWZ2bzhQNXBITXYrc2Jtd3Ryc0YxMWM1bGlpU3RuN2oxa2Mx?=
- =?iso-2022-jp?B?eHBXU01uYTR3RkFKMmlYK1AwOHlmLzN3RzVLVU5LTmVMYmo3MnB0aFhM?=
- =?iso-2022-jp?B?QW9oYW5BRjl0VXpzaE1nZWhiV1FoeVA2VW01OWpCSHk3V0k2TVBsZG9j?=
- =?iso-2022-jp?B?Y1JlSjY5UW44QVdTMVZRWEhQM0Y2aVJPNlc2cVYwVTFhNnQrT0pWM04z?=
- =?iso-2022-jp?B?UUZrczBYb3lwRmNrS2lteTlmcjdFSjJ0RHYrTU82emdCaS8reURTdGdG?=
- =?iso-2022-jp?B?RHFqaXFkcmtVYjY0bzgrektoME5saFN4M3NPNXkxQmJIVHpkMTFFMzNG?=
- =?iso-2022-jp?B?aDlCTE5DSHA4cjgzNFIwRlZBQ3NhM2U4V0VoLzliTjNxTUJpSDhPcUVn?=
- =?iso-2022-jp?B?UE1kZEtUR3B3U2NUM0FhUXFkZjg5S0xqeTRpYitXYzJ1UGtWZU1lbTVt?=
- =?iso-2022-jp?B?MVJYQmxjVGc5WUpIaVlUYmI3bFNFdktQbU1icGlKNm9VV0tHZXRuSGVC?=
- =?iso-2022-jp?B?R1o0QXNhUjRqb21UbEpNT0NkYUZCTUhz?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:ja;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR06MB10396.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-2022-jp?B?QjIySkRlRUVXVjIzL2cvOWFlUnIrU0FGSkRGSGJ6ZHJYbWVENFdvQUhC?=
- =?iso-2022-jp?B?Ly9aTDBkY1FJM3IxLzZTeU5saVZveVQyaEN3QmcxRGN0ai9VaTRacXdj?=
- =?iso-2022-jp?B?YVFTeVBSdWUzTUpnT2NWRUFtYkNWbEt0bXprYnJicjNlQVdPay9vWDlR?=
- =?iso-2022-jp?B?ZWJXYmZlVG05SVBvZWltR2FqYUhYSzBBUXJkVjJQdGtBemc0RjQ0UzR3?=
- =?iso-2022-jp?B?dkQ1S0xoejNwQlFVVm8wd3htTlM4V1RyQjJtZE93aUlFOFdyQy84YnJL?=
- =?iso-2022-jp?B?dGV6M3kvNWpiL0dFWlZVdWw2NkNFamZ1TFFjRFByMlg0NkdMei9MM0Ez?=
- =?iso-2022-jp?B?K00yNE4ycnFnVEp4RmZGUlZLRkpFYi9UcGxRSmkzeGxZdnFyNjdpNHFS?=
- =?iso-2022-jp?B?ZFl1VzNwNzJFZ3QxTldmRVJZOEFVREI4UUVHMGw1djZYc2p1Q0wzdzdw?=
- =?iso-2022-jp?B?SHF1S0ZLbHd2Zlg1YnBBM0U0R2M1emV4TXdDUGRPb1FITjJaMkhJaUZU?=
- =?iso-2022-jp?B?OUh4STVWRUw0ZHVsOUVpZDJ5dWJtc1AxY01BWXRuUEFnZDh5cVJTbElE?=
- =?iso-2022-jp?B?Z3NodHhOQ3NscHVmNURDUUFjV1RHSWtGaWtIYUwrN2o2K3Jhd3plQjdB?=
- =?iso-2022-jp?B?MzR5VmlZMzNncGFjakRBd0NxZ0ZYOWJBQmFiNElINVpjYmF3UUp0QUIy?=
- =?iso-2022-jp?B?aHlKVUlNN091eFY1MVNpOU9BQzhZZnhia0YrczluanFhWDRjK3BOWkMr?=
- =?iso-2022-jp?B?SXlNRUVROW9jQXZiVlE4R29vSFUya3BibGo2KzY1aVdoQzFMNGozbnMx?=
- =?iso-2022-jp?B?Q0RvcjZTejJuclBQTWFQZ3djRmlFWm1HYStTMm94anVIMTUyOXV1SlVu?=
- =?iso-2022-jp?B?c0RzMzVhR3FyK3JjRnZHVXY2aVdoSzlvci9YTExaNE1aVHFTQVgrd21Z?=
- =?iso-2022-jp?B?OXE2Sjc2ektQYVU3b3lYczl3UHRTME9RS0dEakEwd2J2NXZ2akhaTkRF?=
- =?iso-2022-jp?B?NUsxZVl1ZHNtQ2h0dU5ORkRQRkRMMmt2WkRTOGpYZmpJbnY1ZDJHNFh4?=
- =?iso-2022-jp?B?TkFnV05LR0FjekpVY3ZPMnBqNXhac0pQbjJTNkN6VGdtSTV4Rjh1c3FR?=
- =?iso-2022-jp?B?Q0xraFZLSEdXSHNPQVpXQmZtUk1SdUxsVkQ4QTBQYmVoYUpsQkhnelVm?=
- =?iso-2022-jp?B?Q2FSa1FQWVJaM3dXV2NXbEoySVo0MSt1dmgvQkJhTWt1OUlHQ3NjYzZi?=
- =?iso-2022-jp?B?M1BBQndIVVVGZER5V2dYMnN6MmRjUUtscHBUUnZqUHdSMGYvSWc0K0gz?=
- =?iso-2022-jp?B?U0wvckRNY2tzR3FCRlI1ZUJ4bjhpSGptK1V6RytzeHZleXA4NHluTGZK?=
- =?iso-2022-jp?B?ZTRTVEQ5WXZ1SGtNbWpzZ0tpSmVwZ2kybEpsRFlkdVkvT3h6ZTBOUTho?=
- =?iso-2022-jp?B?M2lxcDd4dXkyQXFzLy9pOVplWTJkRi93VTNnZ0dKK0RsLzlHTWJkRWo2?=
- =?iso-2022-jp?B?a2p2ZG10bnNROGl1bnBnOXZvemQ2TDVsd3B3TXZScVFRYnF4RHpEeXlq?=
- =?iso-2022-jp?B?aUk0MVQ5RkNicmJXTWh5WllscDJoMTJlVDNBdkE2N1ptWjdkODJkUldC?=
- =?iso-2022-jp?B?TnE2RmdTQmVFY1ZCOWRVN1dhOEU2QWUzUjM1NWs0UlBPdjNTdTBZc2I4?=
- =?iso-2022-jp?B?UU5TY3ZMdTJTNWFyZElhTmdlTVdIakNINWhabVZFL1ZHQTZmY2JteWRP?=
- =?iso-2022-jp?B?NTdreGxqbTNKaW9jc1Zoc1FkU2VVM0liMUo0ZzAwdGxsUHBYeVpmODYx?=
- =?iso-2022-jp?B?ZzhGZkVGM2lES09MSDRQUVE5c2lNU1p1SGUrUHBtVFRWL1M2WDJoRE45?=
- =?iso-2022-jp?B?Q0tzaFV0UWRxTytDZVZjdDdmZlFrejZKM1BtZ0dPdk1iT0hobTMxSTQr?=
- =?iso-2022-jp?B?OWQ5eW5pWjVXc2F5UjhyQ3RQaERFcURuUVN1bVNQKzhEMWZVMzZ0S1Nn?=
- =?iso-2022-jp?B?NkxrV21tVERxQXh5V2YwWTMxRGhYalc1enhoWFNsN1VoSk1zaDhnZkpI?=
- =?iso-2022-jp?B?NWlMZDFVY2RGeHRiMkVJY2U3bDBNNjVXK0RiUU1mdkpJUDJURVgwbGth?=
- =?iso-2022-jp?B?UHJ1NmViaXUzYVpydmR2SWRua0JmZWNLYitKZlVBYk5hUlg4Zm4vQW9l?=
- =?iso-2022-jp?B?MHBFd2F5U0sybWEzYTdKb2NkYU1NNjJpVTgvdDlBKzJJbGV3VVJnVVhC?=
- =?iso-2022-jp?B?d3NWbFM3RnBQVUhlYTRyQ1k3MDdjNUdyWGlDMXIzUkcwRXZRcWJaellN?=
- =?iso-2022-jp?B?SlQ4RlMyTUJRcVp3aHhMais2OHdtcHQvQVE9PQ==?=
-Content-Type: text/plain; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD8B248F7C;
+	Wed, 26 Nov 2025 10:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764154012; cv=none; b=g1K6PzSOBpv1TMJ6SD4IxznuC91YoEFqDir264q8LsMjNtbqqwwNd/2cwQwQEYbjF5SKhwg2SE/xB/knycoVTdsZNWKpeJlKjLjfuY2+8cd/QBu/ZKjq0/hcHlEXiJDtvzJe4fhx8AVINa3VPhmJEL+8ASQOJuYg5VCRJbTLnKA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764154012; c=relaxed/simple;
+	bh=mIiAraEhSTgJhM9r59CMhCNViKT0ulb2M8CujRugpok=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Yo9ePjxh3lfwgEVi5RYYNqZ7p7QrLxRQw/up413hxU7MK4Q9hISjy62JS8xjCMuQ3XmtH62wDuNDjFkS5MtHlOpWlOXVYm2QAht8H59EJtf+j9M097xrOaVr4PewcyMfCZjxFC6C6IWMOIassfHzq3Wso13Yk5pVNmPxVdQRqtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eKD/KeAe; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id B3DD7C15D76;
+	Wed, 26 Nov 2025 10:46:20 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6229660721;
+	Wed, 26 Nov 2025 10:46:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B044C102F0828;
+	Wed, 26 Nov 2025 11:46:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1764154002; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=yb84UQ4K4Vt3Jb+5rolXm9Z3vaTMJXGhobv4cyvcfeA=;
+	b=eKD/KeAejqF+84cJpJ7wGV8gLEV9V1LWeVBYAGqnFD68y/W8XuLv7nm+ZMY7nRxM+vEgqq
+	VgEgXjs9ErRaMYE92VLFdw389B+MbFax4LARm+boT3jXKLJOaFTPJ+WeXioarAPCM4kuir
+	hmMUEWGyJEVcqZKR/PQz2uk5nNYbBVeX8YRu4OoeJdB7X0VVRX5GgIBRvVn3XssUw1wflt
+	B2g+6m9J+RphlOqUM1s4UzCPdWCf1aiT3k/MVaGEC0tRd9kO1MHYQcmjQWlFQe5lQK0MYl
+	XdTx3NuLK+QLSzCOL/4cKfJOtnqtXJavcA72gm4qL92pwLl3YQn85fjqiqLy6Q==
+From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+Subject: [PATCH v4 0/7] i2c: designware: Improve support of multi-messages
+ transfer
+Date: Wed, 26 Nov 2025 11:46:23 +0100
+Message-Id: <20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: hitachienergy.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR06MB10396.eurprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa7f3d95-3f27-43c8-4f44-08de2cd8ebf4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Nov 2025 10:45:31.6036
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 7831e6d9-dc6c-4cd1-9ec6-1dc2b4133195
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wniMB5ciojiORDr315/Wx4mKgslqD3lqchjs8y+IDSgjrVwP+sDkQlljMZm0HqXNb7rSSpdr0ezQgDRCRTTKGKKW/T2Tubc1Hc3nUFp/v+o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR06MB8518
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAH/aJmkC/2XMTQ6CMBCG4auQrq3p9IeCK+9hXLRDkSZKDZCqI
+ dzdQgJqXH6Ted6R9K7zrieHbCSdi773oU1D7jKCjWkvjvoqbcIZV8BAUs+RVg9aGQGq1qrgZU7
+ S871ztX8uodM57cb3Q+heSzfCfF0Tek1EoIxqWyirAbUp9NGGMFx9u8dwI3Mk8i8oYIM8wZJJy
+ Asta0T2D8UHApQbFAlalBa54WgN/sJpmt4KjiQQEAEAAA==
+X-Change-ID: 20251014-i2c-dw-da315f758296
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
+ Mika Westerberg <mika.westerberg@linux.intel.com>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Jan Dabros <jsd@semihalf.com>, 
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-rt-devel@lists.linux.dev, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
+Add support for the I2C_M_STOP flag to the .xfer() function of the
+designware driver. This allows grouping multiple accesses in a single
+call and changing the target address after a STOP flag. This is achieved
+by splitting i2c_dw_xfer() in two functions. The core logic handling
+the transaction is now in __i2c_dw_xfer_one_part(), while i2c_dw_xfer()
+loops over the messages to search for the I2C_M_STOP flag and calls
+__i2c_dw_xfer_one_part().
 
+Handle controllers that lack the ability to emit a RESTART when two
+consecutive messages have the same address and direction by aborting
+transfers that contain such a sequence of messages. For those controllers,
+we also check that we do not get any unwanted STOP caused by a Tx FIFO
+underrun, as they lack the ability to hold the clock during a transaction.
+And we set the irq as non-threaded to prevent underrun on PREEMPT-RT
+kernel when filling the FIFO.
 
-> On Wed, Nov 26, 2025 at 09:32:30AM +0000, Holger Brunck wrote:
-> > Hi Vladimir,
-> >
-> > > On Tue, Nov 25, 2025 at 11:33:09PM +0100, Andrew Lunn wrote:
-> > > > > Yeah, although as things currently stand, I'd say that is the
-> > > > > lesser of problems. The only user (mv88e6xxx) does something
-> > > > > strange: it says it wants to configure the TX amplitude of
-> > > > > SerDes ports, but instead follows the phy-handle and applies the
-> > > > > amplitude specified in that
-> > > node.
-> > > > >
-> > > > > I tried to mentally follow how things would work in 2 cases:
-> > > > > 1. PHY referenced by phy-handle is internal, then by definition i=
-t's not
-> > > > >    a SerDes port.
-> > > > > 2. PHY referenced by phy-handle is external, then the mv88e6xxx d=
-river
-> > > > >    looks at what is essentially a device tree description of the =
-PHY's
-> > > > >    TX, and applies that as a mirror image to the local SerDes' TX=
-.
-> > > > >
-> > > > > I think the logic is used in mv88e6xxx through case #2, i.e. we
-> > > > > externalize the mv88e6xxx SerDes electrical properties to an
-> > > > > unrelated OF node, the connected Ethernet PHY.
-> > > >
-> > > > My understanding of the code is the same, #2. Although i would
-> > > > probably not say it is an unrelated node. I expect the PHY is on
-> > > > the other end of the SERDES link which is having the TX amplitudes =
-set.
-> > > > This clearly will not work if there is an SFP cage on the other
-> > > > end, but it does for an SGMII PHY.
-> > >
-> > > It is unrelated in the sense that the SGMII PHY is a different
-> > > kernel object, and the mv88e6xxx is polluting its OF node with
-> > > properties which it then interprets as its own, when the PHY driver
-> > > may have wanted to configure its SGMII TX amplitude too, via those sa=
-me
-> generic properties.
-> > >
-> > > > I guess this code is from before the time Russell converted the
-> > > > mv88e6xxx SERDES code into PCS drivers. The register being set is
-> > > > within the PCS register set.  The mv88e6xxx also does not make use
-> > > > of generic phys to represent the SERDES part of the PCS. So there
-> > > > is no phys phandle to follow since there is no phy.
-> > >
-> > > In my view, the phy-common-props.yaml are supposed to be applicable
-> > > to
-> > > either:
-> > > (1) a network PHY with SerDes host-side connection (I suppose the med=
-ia
-> > >     side electrical properties would be covered by Maxime's phy_port
-> > >     work - Maxime, please confirm).
-> > > (2) a phylink_pcs with SerDes registers within the same register set
-> > > (3) a generic PHY
-> > >
-> > > My patch 8/9 (net: phy: air_en8811h: deprecate "airoha,pnswap-rx"
-> > > and
-> > > "airoha,pnswap-tx") is an example of case (1) for polarities. Also,
-> > > for example, at least Aquantia Gen3 PHYs (AQR111, AQR112) have a
-> > > (not very well
-> > > documented) "SerDes Lane 0 Amplitude" field in the PHY XS Receive
-> > > (XAUI TX) Reserved Vendor Provisioning 4 register (address 4.E413).
-> > >
-> > > My patch 7/9 (net: pcs: xpcs: allow lane polarity inversion) is an
-> > > example of case (2).
-> > >
-> > > I haven't submitted an example of case (3) yet, but the Lynx PCS and
-> > > Lynx SerDes would fall into that category. The PCS would be free of
-> > > describing electrical properties, and those would go to the generic P=
-HY
-> (SerDes).
-> > >
-> > > All I'm trying to say is that we're missing an OF node to describe
-> > > mv88e6xxx PCS electrical properties, because otherwise, it collides
-> > > with case (1). My note regarding "phys" was just a guess that the "ph=
-y-
-> handle"
-> > > may have been mistaken for the port's SerDes PHY. Although there is
-> > > a chance Holger knew what he was doing. In any case, I think we need
-> > > to sort this one way or another, leaving the phy-handle logic a disco=
-uraged
-> fallback path.
-> > >
-> >
-> > I was checking our use case, and it is a bit special. We have the port
-> > in question directly connected to a FPGA which has also have a SerDes
-> > interface. We are then configuring a fixed link to the FPGA without a
-> > phy in between so there is also no phy handle in our case. But in
-> > general, the board in question is now in maintenance and there will be
-> > no kernel update anymore in the future. Therefore, it is fine with me i=
-f you
-> remove or rework the code in question completely. Hope that helps.
-> >
-> > Best regards
-> > Holger
->=20
-> Thanks for the response. So given this clarification, how was commit
-> 926eae604403 ("dsa: mv88e6xxx: make serdes SGMII/Fiber tx amplitude
-> configurable") useful for you?
+The I2C controllers found in the EyeQ6Lplus and EyeQ7H SoCs from Mobileye
+lack such capability, so a compatible string is added because this cannot
+be detected at runtime.
 
-the Kirkwood based board in question was OOT. Due to the patch we were
-able to use the mainline driver without patching it to configure the value =
-we
-wanted.
+This patch series also brings four cleanups:
+* Optimize the read of the message flags in i2c_dw_read().
+* Sort the compatible strings alphabetically in dw_i2c_of_match[].
+* Simplify runtime PM handling in i2c_dw_xfer() with guard.
+* Add a dedicated i2c_algorithm for AMD NAVI controller.
 
-The DTS node looked like this:
+Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
+---
+Changes in v4:
+- Use a boolean property instead of a flag for handling controllers
+  IC_EMPTYFIFO_HOLD_MASTER_EN.
+- Reorder the patches so goto and runtime PM auto-cleanup are not mixed
+  in i2c_dw_xfer().
+- Drop goto in __i2c_dw_xfer_one_part() and use return.
+- Tidy up comments for i2c_dw_msg_is_valid() and irq_flags.
+- Link to v3: https://lore.kernel.org/r/20251119-i2c-dw-v3-0-bc4bc2a2cbac@bootlin.com
 
-&mdio {
-        status =3D "okay";
+Changes in v3:
+- Add a compatible entry for Mobileye EyeQ7H i2c controllers.
+- Use runtime PM macro for auto-cleanup in i2c_dw_xfer().
+- Add a dedicated i2c_algorithm for AMD NAVI controllers.
+- Rename __i2c_dw_xfer_unlocked() as it is not about locking at all.
+- Rework the validity check of i2c_msg.
+- Flag the irq as non-threaded for controllers that cannot hold the
+  clock to avoid underrun.
+- Link to v2: https://lore.kernel.org/r/20251031-i2c-dw-v2-0-90416874fcc0@bootlin.com
 
-        switch@10 {
-                compatible =3D "marvell,mv88e6085";
-                #address-cells =3D <1>;
-                #size-cells =3D <0>;
-                reg =3D <0x10>;
-                ports {
-                        #address-cells =3D <1>;
-                        #size-cells =3D <0>;
-                        port@4 {
-                                reg =3D <4>;
-                                label =3D "port4";
-                                phy-connection-type =3D "sgmii";
-                                tx-p2p-microvolt =3D <604000>;
-                                fixed-link {
-                                        speed =3D <1000>;
-                                        full-duplex;
-                                };
-                        };
-	};
-};
+Changes in v2:
+- Add a single compatible for mobileye i2c controllers based in
+  DesignWare IP.
+- Handle the I2C_M_STOP flag instead of emitting a STOP on target address
+  change.
+- Abort transfer when it requires a RESTART on controller that cannot
+  emit them.
+- Detect FIFO underrun instead of disabling threaded interrupt on
+  PREEMPT_RT kernel.
+- Sort the compatible entries in a separate patch.
+- Add a cleanup patch on flag reading in i2c_dw_read().
+- Link to v1: https://lore.kernel.org/r/20251017-i2c-dw-v1-0-7b85b71c7a87@bootlin.com
 
+---
+Benoît Monin (7):
+      dt-bindings: i2c: dw: Add Mobileye I2C controllers
+      i2c: designware: Optimize flag reading in i2c_dw_read()
+      i2c: designware: Sort compatible strings in alphabetical order
+      i2c: designware: Add dedicated algorithm for AMD NAVI
+      i2c: designware: Implement I2C_M_STOP support
+      i2c: designware: Use runtime PM macro for auto-cleanup
+      i2c: designware: Support of controller with IC_EMPTYFIFO_HOLD_MASTER disabled
+
+ .../bindings/i2c/snps,designware-i2c.yaml          |   7 +
+ drivers/i2c/busses/i2c-designware-common.c         |   6 +
+ drivers/i2c/busses/i2c-designware-core.h           |   3 +
+ drivers/i2c/busses/i2c-designware-master.c         | 197 +++++++++++++++------
+ drivers/i2c/busses/i2c-designware-platdrv.c        |   5 +-
+ 5 files changed, 160 insertions(+), 58 deletions(-)
+---
+base-commit: 6772718099e29703ed50dcd0941a135d1fb6e612
+change-id: 20251014-i2c-dw-da315f758296
+
+Best regards,
+-- 
+Benoît Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
