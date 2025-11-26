@@ -1,52 +1,41 @@
-Return-Path: <devicetree+bounces-242192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56760C87BE8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 02:47:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9ECCC87BF4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 02:48:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 20F7F4E4F8D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 01:47:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66E253AF338
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 01:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 264E530AD05;
-	Wed, 26 Nov 2025 01:45:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B45308F3A;
+	Wed, 26 Nov 2025 01:46:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="eSKtMKOe"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ATpEd2pe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from mail-m1973172.qiye.163.com (mail-m1973172.qiye.163.com [220.197.31.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF3A3093DD;
-	Wed, 26 Nov 2025 01:45:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57375308F34;
+	Wed, 26 Nov 2025 01:46:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764121540; cv=none; b=seSNhgR9Wgdo6lDlj9eneXpdZpBOboTHtctRiHsuMPi7gfeG9A2Rrg/EQwXStkfnS6PhkZcQG5JE2Wejm7KrbNjCmizw84zFIE7c8YTyzQA6lGukQuX218XqeNjcs1LqYg1O5yXbK+rRLhBEHHQV1zDjDA/eZjWFfFmthYRO8tw=
+	t=1764121591; cv=none; b=qEmoCC+XxrktL52PNglXT5UdlqmQncgeh+ntuueykfiS+0S0eWIQCGqonCk66Vb6UNSDP9GktO6nmp+8dJKDUJobzMjYZh+aPCxFrwmLYRtOETrBIsP/OM+2gTKDDk2EUs2aV1pyZrPdy6zZCsDAd5dvRwUc2I0Z6qkmOcndrBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764121540; c=relaxed/simple;
-	bh=qiWgpYn16Mf+RYWUWbQFq+6Clsq9w5kNRva8GD5GeDo=;
+	s=arc-20240116; t=1764121591; c=relaxed/simple;
+	bh=/fGHbQS+hKaoMUCdIdSghj4cqUrqtK3xvd6C6paFFGM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HdjVYDecVUaxcwcG6nUPtvHZGoQGQ3ZWJgOi9I09bCCS9Y8I/tgtN4JukTzhe/aiG9WaoLcE5AzzXUHsh4t5yk01ZmJNcFtZxGUrSPmGp2mNz7928DMVlNlecmf5RGad4MN3GI9k2Bu5eg+1OhueM4yAkF6c52K2LejYGT0Tgy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=eSKtMKOe; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1764121510;
-	bh=6jZ3fYnM1SUryJBt+UAWY3sfU2Uv3tDGw4uMv3KY72g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eSKtMKOengyYwTaQaIyLUovIJwqZvdod8idCJH7/x8q4GJtfgvFXh8Q+fw3SaieXS
-	 6xpCvoOGspt3m6EPdgTfuZug1hiTaSl0qsRp8A6Pz8oOCbizsEdhuBBRJmQ7nz3BA2
-	 tHKCy3JE3ooGD0JnmtMM+3YzIVCcx+roAS0N3XsG3DC94fIYMzi9rs2rXDXOwkFNVo
-	 lZZI74EbQni1RzMZW6pp1JJbctLvzzKg3lNBZ8Nj3ePlRK9T8qoXCU0h6eOIQ8qHk5
-	 S/UnANE0lU/Nqyg5cJ+WyPT/g69NudN8YYJg8oFAURDqzxUxwPYSKXfeaJ5XwwkGKy
-	 KUJbk4VYW2waA==
-Received: from [192.168.2.54] (unknown [98.97.63.250])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 136F8B2204B1;
-	Wed, 26 Nov 2025 02:45:05 +0100 (CET)
-Message-ID: <8e422318-1600-4321-928e-1033190d5890@freeshell.de>
-Date: Tue, 25 Nov 2025 17:45:04 -0800
+	 In-Reply-To:Content-Type; b=guo2ngJA3mGOyLWo26R0g94XjSQgQmMspRaH7VQDoEyI/A3Y6FaBKbnDAzG2tvoQ1bI4am7mNGWxZlpbcRE3wyTx8Wu1pmLsYZcytRsHQ8CqeOucNGQS8s3WJn5yiblg99nwWOZTYYdSfWY1g2FxunZNkzQLAV3cYMWNXsGtU0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ATpEd2pe; arc=none smtp.client-ip=220.197.31.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2ae663690;
+	Wed, 26 Nov 2025 09:46:21 +0800 (GMT+08:00)
+Message-ID: <cbb38c08-6937-4b7d-a0b0-d5ca6c17f466@rock-chips.com>
+Date: Wed, 26 Nov 2025 09:46:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,97 +43,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] riscv: dts: starfive: Add VisionFive 2 Lite eMMC
- board device tree
-To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Cc: devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251125075604.69370-1-hal.feng@starfivetech.com>
- <20251125075604.69370-7-hal.feng@starfivetech.com>
+Subject: Re: [PATCH v10 01/11] usb: typec: Add notifier functions
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20251120022343.250-1-kernel@airkyi.com>
+ <20251120022343.250-2-kernel@airkyi.com>
+ <2025112102-laurel-mulch-58e4@gregkh>
+ <462ad1bd-7eec-4f26-b383-96b049e14559@rock-chips.com>
+ <2025112402-unopposed-polio-e6e9@gregkh>
+ <a80483de-518d-45d5-b46a-9b70cca5b236@rock-chips.com>
+ <2025112448-brush-porcupine-c851@gregkh>
+ <c9cb7b79-37c8-4fef-97a6-7d6b8898f9c4@rock-chips.com> <aSV_lQYJPxN7oBM-@kuha>
+ <2025112554-uncaring-curator-642a@gregkh>
 Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20251125075604.69370-7-hal.feng@starfivetech.com>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <2025112554-uncaring-curator-642a@gregkh>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9abdd7181603abkunm097aa0cf565eb1
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0hNTVZMHUtOSR1DTx8ZHRhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=ATpEd2peqV8kESMPjbf3DLHuOAl6CsCl20ltOYkox2RRSvunRK2u2jypMEBLL1VzgX6l9RPhBrbLO0wxxiKsmnmH148nSqotcKB1UTdgbjcic/vs7pkvSKUSgo5tanCci8foVksqRSRVq1sBJmUE4CKTJrgx7g/63nwCaXSG/4U=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=N0tG8/Nj0kl8vFA6L4W6Z+Hthet7cKPX1ZaAwkiqFD4=;
+	h=date:mime-version:subject:message-id:from;
 
-
-
-On 11/24/25 23:56, Hal Feng wrote:
-> VisionFive 2 Lite eMMC board uses a non-removable onboard 64GiB eMMC
-> instead of the MicroSD slot.
+On 11/25/2025 7:49 PM, Greg Kroah-Hartman wrote:
+>> +static umode_t typec_is_visible(struct kobject *kobj, struct attribute *attr, int n)
+>> +{
+>> +	if (is_typec_port(kobj_to_dev(kobj)->parent))
 > 
-> Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Tested-by: Matthias Brugger <mbrugger@suse.com>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/Makefile         |  1 +
->  ...jh7110-starfive-visionfive-2-lite-emmc.dts | 22 +++++++++++++++++++
->  2 files changed, 23 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts
+> Why look at the parent?  Doesn't the device have a type that should show
+> this?
 > 
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-> index 2b1e7fcd6f84..a640ed5dc5a1 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -14,5 +14,6 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-emmc.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-lite.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-lite.dtb
-> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-lite-emmc.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts
-> new file mode 100644
-> index 000000000000..e27a662d4022
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts
-> @@ -0,0 +1,22 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2025 StarFive Technology Co., Ltd.
-> + * Copyright (C) 2025 Hal Feng <hal.feng@starfivetech.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include "jh7110-starfive-visionfive-2-lite.dtsi"
-> +
-> +/ {
-> +	model = "StarFive VisionFive 2 Lite eMMC";
+> Otherwise, looks good to me.
 
-> +	compatible = "starfive,visionfive-2-lite-emmc", "starfive,jh7110s";
+They have same deivce type "typec_altmode_dev_type".
+The parent device has a different device type to distinguish between
+port device and partner device.
 
-Add "starfive,jh7110" to the compatible list as the least-compatible
-(left-to-right order last item):
+> 
+> thanks,
+> 
+> greg k-h
+> 
+> 
 
-compatible = "starfive,visionfive-2-lite-emmc", "starfive,jh7110s",
-"starfive,jh7110";
-
-or if there is review feedback that no new compatible should be added,
-then as usual for new JH-7110 boards:
-
-compatible = "starfive,visionfive-2-lite-emmc", "starfive,jh7110";
-
-> +};
-> +
-> +&mmc0 {
-> +	cap-mmc-highspeed;
-> +	cap-mmc-hw-reset;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&emmc_vdd>;
-> +};
-
--E
+-- 
+Best, 
+Chaoyi
 
