@@ -1,149 +1,103 @@
-Return-Path: <devicetree+bounces-242567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 644E2C8C060
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 22:29:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2601DC8C0DB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 22:41:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 195D13A84A7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:29:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7F233B7CBF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 853712D543D;
-	Wed, 26 Nov 2025 21:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08ED4302CAC;
+	Wed, 26 Nov 2025 21:41:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="kA6HxFiB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uns+OFKR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A710529D265;
-	Wed, 26 Nov 2025 21:28:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09162E9729;
+	Wed, 26 Nov 2025 21:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764192537; cv=none; b=i45y26cYlczb3t/Vw7Zkrq5tLquc5pZUgvUhpmNPmxB3mFT/NVvMY1CgS24zZM+tC+DWNjXc/AaL92e+fiQhBo/+FxDs3h50J3EQNsrZFjC3eO+m3ZfugzIPZCcnz3DlaiXNXvhHhjLPWCB2yyzK8PqRfmcuPkKWR4hy5Wk0GzU=
+	t=1764193293; cv=none; b=I/vIQ1k3RaqZpJnBRQpqtaA7bvEJP77yrp6SIKA4wVpjd/WYT2mC+39fjfirWpkkWVv9BEa8fsKpE50NWpLqtZXzFUhXUfh+0kwa0/fIJj1mmEZIeD+Fl5PUTFAeqMkvckMgkdVoGGahaPw5txqXPjLb/9+Sxmk5DMO8wtd3ft0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764192537; c=relaxed/simple;
-	bh=CssGIMckCwYlvoFRUzLEnjscQLkpYHsbeBgfng32u6Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yz+QjPIBMkLK2cn2Lid0OgvbL+cfKb9/m60ghfUhyd5iHtOxmgK9Z3QxX+mDtXixKg30EnhIgpFQ/FSZmeaLdWGXS9hzSFezNwT9JHM230g/BiVKzAHE4baX5SMNIrc8fxrN1u2CrhKhWPZrUhjqXoauhN9NCTzAG9BTtfrvTMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=kA6HxFiB; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=9X9n7aU/TJ/voAwW/L3k+ydogg1yk6XrLlkSzg40I3k=; b=kA
-	6HxFiB1sY6IB1o70t2byczTUOOsu9RU8YJcSpyw2PA6tyKVqJnVFlKUZXriahBf3CPtZBG0JDzYr3
-	Fqg8Pb5vInoZK1teKCIPN1b4skCruU4JaP6NS2rKIPM3yHSDs2FIWageDVCho5sRbD2mSvyc/6Txx
-	/HrJrdomOHycelk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vON41-00FCJf-Oz; Wed, 26 Nov 2025 22:28:37 +0100
-Date: Wed, 26 Nov 2025 22:28:37 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+	s=arc-20240116; t=1764193293; c=relaxed/simple;
+	bh=VKmA/6mAURUWzEVcZzYO7/+r+cvqBLcFui3VsZzeq5E=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=BX6xKQJvwxmB63hrlgQHeAsYSMn4rrjBi1BCb1n5W84+hqM17++dm3hKbHR/fRR8yhm5VyUwr6M550KC+G7GD98quoRE4dqFv9p5trNlNqcrItcefYC3HnyYGm+hXeIqmaKFaEMj4Dj2yWDolm0mEFwmPD3Qh3Xx6v5tqcuBROc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uns+OFKR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 057E7C4CEF7;
+	Wed, 26 Nov 2025 21:41:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764193293;
+	bh=VKmA/6mAURUWzEVcZzYO7/+r+cvqBLcFui3VsZzeq5E=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=uns+OFKRel+FuTsKfHkbDzNE1hZXYrMcqFMDExplp/C29jVUpES+Osyp92ZmcK8d9
+	 fPE87c5VtNVjjqPvM6B9/5uZeU/YtuZEh8MW2NATGIt5F2omL8gSk5wwFJJ3Nex4UB
+	 5lbGQr6gCY2S5XfjnG0dZSPpeJMga/fOTN6csWcs+K2FZlGDBxWOcvqAHs/iQkX7SB
+	 CKjx507RNExmTvkVFMjxFFEsQ6MtzOiw/J7ZLBkAC4oJu2JDBScX/9eX0AcwtPRCu0
+	 wYazpiGdXgBpgp0v2Ed8Vm87xhgDo2kyIwzD+UCVOJhPeY9xSsm8/3aRQiQa7VCmvX
+	 g1wNrWabfRBwg==
+Date: Wed, 26 Nov 2025 15:41:31 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Vincent Guittot <vincent.guittot@linaro.org>
+Cc: chester62515@gmail.com, mbrugger@suse.com,
+	ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, bhelgaas@google.com,
+	jingoohan1@gmail.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com,
+	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com,
+	bogdan.hamciuc@nxp.com, Frank.li@nxp.com,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: pcs: renesas,rzn1-miic:
- Add renesas,miic-phylink-active-low property
-Message-ID: <116b3a93-2b65-4464-821a-cbc7aa1b3dc1@lunn.ch>
-References: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251112201937.1336854-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <de098757-2088-4b34-8a9a-407f9487991c@lunn.ch>
- <CA+V-a8vgJcJ+EsxSwQzQbprjqhxy-QS84=wE6co+D50wOOOweA@mail.gmail.com>
- <0d13ed33-cb0b-4cb0-8af3-b54c2ad7537b@lunn.ch>
- <CA+V-a8vx5KTUD_j7+1TC9r5JrGo2fJ0D7XXJCc-oHidtbUN=ZA@mail.gmail.com>
+	imx@lists.linux.dev, cassel@kernel.org,
+	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Subject: Re: [PATCH 4/4 v6] MAINTAINERS: Add MAINTAINER for NXP S32G PCIe
+ driver
+Message-ID: <20251126214131.GA2852425@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8vx5KTUD_j7+1TC9r5JrGo2fJ0D7XXJCc-oHidtbUN=ZA@mail.gmail.com>
+In-Reply-To: <20251121164920.2008569-5-vincent.guittot@linaro.org>
 
-On Wed, Nov 26, 2025 at 08:55:53PM +0000, Lad, Prabhakar wrote:
-> Hi Andrew,
+[+cc Ciprian @oss.nxp.com, see email addr question below]
+
+On Fri, Nov 21, 2025 at 05:49:20PM +0100, Vincent Guittot wrote:
+> Add a new entry for S32G PCIe driver.
 > 
-> On Thu, Nov 13, 2025 at 9:58 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > > Each of these IPs has its own link status pin as an input to the SoC:
-> >
-> > > The above architecture is for the RZ/N1 SoC. For RZ/T2H SoC we dont
-> > > have a SERCOS Controller. So in the case of RZ/T2H EVK the
-> > > SWITCH_MII_LINK status pin is connected to the LED1 of VSC8541 PHY.
-> > >
-> > > The PHYLNK register [0] (section 10.2.5 page 763) allows control of
-> > > the active level of the link.
-> > > 0: High active (Default)
-> > > 1: Active Low
-> > >
-> > > For example the SWITCH requires link-up to be reported to the switch
-> > > via the SWITCH_MII_LINK input pin.
-> >
-> > Why does the switch require this? The switch also needs to know the
-> > duplex, speed etc. Link on its own is of not enough. So when phylink
-> > mac_link_up is called, you tell it the speed, duplex and also that the
-> > link is up. When the link goes down, mac_link_down callback will be
-> > called and you tell it the link is down.
-> >
-> Sorry for the delayed response. I was awaiting more info from the HW
-> team on this. Below is the info I got from the HW info.
+> Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  MAINTAINERS | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> EtherPHY link-up and link-down status is required as a hardware IP
-> feature, regardless of whether GMAC or ETHSW is used.
-> In the case of GMAC, the software retrieves this information from
-> EtherPHY via MDC/MDIO and then configures GMAC accordingly. In
-> contrast, ETHSW provides dedicated pins for this purpose.
-> For ETHSW, this information is also necessary for communication
-> between two external nodes (e.g., Node A to Node B) that does not
-> involve the host CPU, as the switching occurs entirely within ETHSW.
-> This is particularly important for DLR (Device Level Ring: a
-> redundancy protocol used in EtherNet/IP). DLR relies on detecting
-> link-down events caused by cable issues as quickly as possible to
-> enable fast switchover to a redundant path. Handling such path
-> switching in software introduces performance impacts, which is why
-> ETHSW includes dedicated pins.
-> As for Active Level configuration, it is designed to provide
-> flexibility to accommodate the specifications of external EtherPHY
-> devices.
-> 
-> Please share your thoughts.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e64b94e6b5a9..bec5d5792a5f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3137,6 +3137,15 @@ F:	arch/arm64/boot/dts/freescale/s32g*.dts*
+>  F:	drivers/pinctrl/nxp/
+>  F:	drivers/rtc/rtc-s32g.c
+>  
+> +ARM/NXP S32G PCIE CONTROLLER DRIVER
+> +M:	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
 
-Please add this to the commit, to make it clear what these pins are
-for.
+I'd be happy to change to
+Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+per https://lore.kernel.org/r/f38396c7-0605-4876-9ea6-0a179d6577c7@oss.nxp.com
 
-It actually seems like it is mostly relevant for link down, not up.
-If the link goes down, it does not matter if it is 10Half, or 1G Full.
-All you want to do is swap to a redundant path as soon as possible.
+I notice that most nxp.com addresses in MAINTAINERS use "@nxp.com"
+addresses, not "@oss.nxp.com".
 
-It would however be interesting it know more about link up. Does the
-hardware start using the port as soon as link up is reported by this
-pin? So it could be blasting frames out at 1G, until software catches
-up and tells the MAC to slow down and do 10Half? So all those frames
-are corrupted, causing your nice redundant network to break for a
-while?
+Let me know your preference.
 
-	Andrew
+Bjorn
 
