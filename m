@@ -1,261 +1,145 @@
-Return-Path: <devicetree+bounces-242256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8466BC88949
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA00FC88964
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:14:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6B5114E257C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:12:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5B1F14E12B9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EEF318152;
-	Wed, 26 Nov 2025 08:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0334F28C035;
+	Wed, 26 Nov 2025 08:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ejs2Lh5B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IgxTNO5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05200318136;
-	Wed, 26 Nov 2025 08:11:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0B228643C;
+	Wed, 26 Nov 2025 08:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764144706; cv=none; b=Fw/PVh9iO7EY9hxRW1WaNrpnAo1qQjsbRf/QhXSaag51LgLKxHfIC9Y19i1acMoaQei/+5U82/2/7Rm3Q0Ibw36yuC7VG9PZosHa5NtRdRecALcetP7QWqjp9ffE9kcDHd81TI8P9Gv1uz0r9bMKxmIfb+AnipNq3dIDfWISWAo=
+	t=1764144867; cv=none; b=lxK/hhcPIVZjFcRR6Hkg30ISnJtJiaWXyd3++jNZw38btdO5epopsdL8TBfPtxhlzYo/+uoNggRAM0clVUsmhUOMfs7vc8I/qdKY66HCwcMwg+D0P0gW2qUH5mKvygicIlhaPjirek1uvMJiaRyUzz5tR3zi/UZwGGaes6bwhr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764144706; c=relaxed/simple;
-	bh=I9EcG0sAwFkS3pWJpQ36oEevnzgXurgJ1oYAHnD/nDI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZiJP8LvVqi4MkvjNx9+Hiaiv7Cg3DLNiJjntxNYGG5wpVl41rA6+lfpYpSPjHPZgreMv5exCggE5SK0RSYC6ZDEfSIR/hRVwdaK8b9u3J1QyPo+BmEU1qmZnp9Q50qYR8Hj1HtbJnKWMPfzKh5MXeGwSObefJ/uCY6564HcqV3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ejs2Lh5B; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AQ5tak72655532;
-	Wed, 26 Nov 2025 08:11:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	L18TXH1N1Sa2VLPNphOpl1AmhAR02/DRmr4yXBbFJEE=; b=ejs2Lh5Bq80NPkA0
-	9Q90t4C8+weg1ZHjQDuN6KFJD+k3XtDO3v0cQZpEiJUWkmXJpKn2yVnrVZ7CqeJt
-	T4ZewQnQpJB7k2McqlN4qGOmesdTH0+/uLwDXPbr1nBrV6KO72jkgFQiElzVDnT3
-	4/Wkcc+8zHBVP8bcH2dsnOl2u7ehrV1EnmrWWJdnGif14WqzMOmwi2jAacsiJyXk
-	py0+KdREEtwmH6bfztKLbxt7oGzrx86bIVciTJHrNozOYrQWM7dLjBHsrL8DsOjk
-	CW9ivKDKaZ0aYo78axYSwTalhy1Kl91WLkf8FNAyQLEZKiHv0m6cJXt3EKCGHxjK
-	mS/cng==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4an9fxujdx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Nov 2025 08:11:35 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5AQ8BYcc017762
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Nov 2025 08:11:34 GMT
-Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 26 Nov 2025 00:11:28 -0800
-From: Vikram Sharma <quic_vikramsa@quicinc.com>
-To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
-        <nihalkum@qti.qualcomm.com>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Ravi Shankar <quic_rshankar@quicinc.com>,
-        Vishal Verma <quic_vishverm@quicinc.com>,
-        Vladimir Zapolskiy
-	<vladimir.zapolskiy@linaro.org>
-Subject: [PATCH v6 3/3] arm64: dts: qcom: monaco-evk-camera: Add DT overlay
-Date: Wed, 26 Nov 2025 13:40:57 +0530
-Message-ID: <20251126081057.4191122-4-quic_vikramsa@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251126081057.4191122-1-quic_vikramsa@quicinc.com>
-References: <20251126081057.4191122-1-quic_vikramsa@quicinc.com>
+	s=arc-20240116; t=1764144867; c=relaxed/simple;
+	bh=l+tJyojqcE/EWfv35i9TlP/pCnVTqivz5ZxL3S3f81I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fslyOr0BMsYBQLrcrjMqQFA4mX4nk+F7w9w0XHTl2ZWiDg1GelKBawwpqPmCwquuMzdH/lFIuLAGsk8YKdiV6AShTEi7iq49QDmQBQEqvpTWWRR+ODq4pOhh/QwHVouQeiY1KTmQyE9bOdKtoai7ahSeefbh+pzlUN6iNtCUyTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IgxTNO5e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 133D8C113D0;
+	Wed, 26 Nov 2025 08:14:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764144867;
+	bh=l+tJyojqcE/EWfv35i9TlP/pCnVTqivz5ZxL3S3f81I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IgxTNO5eYeQxyhrIsunKu3u9cFC2gc7IRljph581duO/OuopJM71Nr+cB/Ch1OkBH
+	 so45wvvoj6XOt/JV7atSu+8+IOQQNqLm61xmYYNkHKkYQHfgwDYOPnh2DJcB99GRIf
+	 HXNoxYzG3yho04Kp511xPkpmBq/0DPtwSEzryXwpfw1iMu06lFRMJu5t3FwtU7Pwn6
+	 du5aMkUujy6Jit7FXOWjmdyVBo3UJRZ0Y6y3Y9Q1ERBzlSe224rotUh1TwfN1n7+p2
+	 ttSph3QTP1sy0EUa7GsXS178UbApAWrFPU3RgGhorDJmuJEh5GuAkZYPMKZZbFESLm
+	 T/JcWomM4cz6A==
+Message-ID: <953f2e57-77a5-42c7-ba3a-9fa40be9d7af@kernel.org>
+Date: Wed, 26 Nov 2025 09:14:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=I6tohdgg c=1 sm=1 tr=0 ts=6926b637 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=UCIxLOB1EF4ELhZYz8wA:9
- a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDA2NiBTYWx0ZWRfX1UtjZUewWrXB
- 7XZRz4jCFZTuwf8J7IPJqouYG9wFCXwWlP0xRDRUOe3sWJxAmQvD8KhE3oVFX0+tgIEKBTSAycM
- fLnu5w8PWFhGFajusPaZtM4SUsk/19lalIFIm1FupjXh6tbVp9ifflSzkOtFWaAc2EOqqGaNBeY
- 5xNOVpf8FaaCFBPMMpr2eICCWOoUeqTa+QSM17sYfFazD0STGKTJ3thqy/Tn12NeD2MwOUdRMgj
- n88G6vW+QqXTx/toASyWbfh0YXslnzBp8Je9ht2j9ymqfmsYFgGXPZCUSbKGlGLeE3oT/w7RF/H
- FFs6gLGsgVjnqZQlpQxoMDcnLj+QVFipI0k2S6Srw==
-X-Proofpoint-ORIG-GUID: csKmrBvp-eZZsnAHyu9G3XUS47bT2dVf
-X-Proofpoint-GUID: csKmrBvp-eZZsnAHyu9G3XUS47bT2dVf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-25_02,2025-11-25_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 phishscore=0 spamscore=0 adultscore=0
- malwarescore=0 bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511260066
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: battery: Add SiLION battery bindings
+ technology
+To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kamal.wadhwa@oss.qualcomm.com,
+ fenglin.wu@oss.qualcomm.com
+References: <20251124-add_silion_battery-v1-0-3c86b70d2543@oss.qualcomm.com>
+ <20251124-add_silion_battery-v1-1-3c86b70d2543@oss.qualcomm.com>
+ <2deb7496-3094-4d03-b4d0-fb15cfdc6f0e@kernel.org>
+ <20251125145929.p4sl43qim4oiyspa@hu-kotarake-hyd.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251125145929.p4sl43qim4oiyspa@hu-kotarake-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+On 25/11/2025 15:59, Rakesh Kota wrote:
+> On Mon, Nov 24, 2025 at 12:37:01PM +0100, Krzysztof Kozlowski wrote:
+>> On 24/11/2025 12:12, Rakesh Kota wrote:
+>>> Document a new battery chemistry for silicon-anode lithium-ion
+>>> cells.
+>>>
+>>> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/power/supply/battery.yaml | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/power/supply/battery.yaml b/Documentation/devicetree/bindings/power/supply/battery.yaml
+>>> index 491488e7b970397b409c248fb0c2a524301686a9..49cbd03956eeb9fc8be72540d8bf35840ccd7156 100644
+>>> --- a/Documentation/devicetree/bindings/power/supply/battery.yaml
+>>> +++ b/Documentation/devicetree/bindings/power/supply/battery.yaml
+>>> @@ -44,6 +44,7 @@ properties:
+>>>        - const: lithium-ion-polymer
+>>>        - const: lithium-ion-iron-phosphate
+>>>        - const: lithium-ion-manganese-oxide
+>>> +      - const: lithium-ion-silicon-anode
+>>
+>>
+>> Where is any DTS user of this? You have entire cover letter to explain
+>> the background WHY you are doing this.
+> This new lithium-ion-silicon-anode chemistry is intended for the
+> Kaanapali platform, where we validate the silicon-anode Li-ion cells.
+> The bindings and driver changes were tested with the Kaanapali device.
+Again: DTS. Please answer that part.
 
-Monaco EVK board does not include a camera sensor in its default hardware
-configuration. Introducing a device tree overlay to support optional
-integration of the IMX577 sensor via CSIPHY1.
-
-Camera reset is handled through an I2C expander, and power is enabled
-via TLMM GPIO74.
-
-An example media-ctl pipeline for the imx577 is:
-
-media-ctl --reset
-media-ctl -V '"imx577 3-001a":0[fmt:SRGGB10/4056x3040 field:none]'
-media-ctl -V '"msm_csiphy1":0[fmt:SRGGB10/4056x3040]'
-media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
-media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
-media-ctl -l '"msm_csiphy1":1->"msm_csid0":0[1]'
-media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
-yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video1
-
-Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-Co-developed-by: Ravi Shankar <quic_rshankar@quicinc.com>
-Signed-off-by: Ravi Shankar <quic_rshankar@quicinc.com>
-Co-developed-by: Vishal Verma <quic_vishverm@quicinc.com>
-Signed-off-by: Vishal Verma <quic_vishverm@quicinc.com>
-Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile             |  4 ++
- .../dts/qcom/monaco-evk-camera-imx577.dtso    | 67 +++++++++++++++++++
- arch/arm64/boot/dts/qcom/monaco-evk.dts       | 10 +++
- 3 files changed, 81 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/monaco-evk-camera-imx577.dtso
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 6f34d5ed331c..b1ba182a0d8d 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -38,6 +38,10 @@ lemans-evk-camera-dtbs	:= lemans-evk.dtb lemans-evk-camera.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera-csi1-imx577.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
-+
-+monaco-evk-camera-imx577-dtbs	:= monaco-evk.dtb monaco-evk-camera-imx577.dtbo
-+dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk-camera-imx577.dtb
-+
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
-diff --git a/arch/arm64/boot/dts/qcom/monaco-evk-camera-imx577.dtso b/arch/arm64/boot/dts/qcom/monaco-evk-camera-imx577.dtso
-new file mode 100644
-index 000000000000..351eb5ee70ba
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/monaco-evk-camera-imx577.dtso
-@@ -0,0 +1,67 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/clock/qcom,sa8775p-camcc.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&camss {
-+	vdda-phy-supply = <&vreg_l4a>;
-+	vdda-pll-supply = <&vreg_l5a>;
-+
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			csiphy1_ep: endpoint {
-+				clock-lanes = <7>;
-+				data-lanes = <0 1 2 3>;
-+				remote-endpoint = <&imx577_ep1>;
-+			};
-+		};
-+	};
-+};
-+
-+&cci1 {
-+	pinctrl-0 = <&cci1_0_default>;
-+	pinctrl-1 = <&cci1_0_sleep>;
-+
-+	status = "okay";
-+};
-+
-+&cci1_i2c0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	camera@1a {
-+		compatible = "sony,imx577";
-+		reg = <0x1a>;
-+
-+		reset-gpios = <&expander2 1 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&cam1_default>;
-+		pinctrl-names = "default";
-+
-+		clocks = <&camcc CAM_CC_MCLK1_CLK>;
-+		assigned-clocks = <&camcc CAM_CC_MCLK1_CLK>;
-+		assigned-clock-rates = <24000000>;
-+
-+		avdd-supply = <&vreg_cam1_2p8>;
-+
-+		port {
-+			imx577_ep1: endpoint {
-+				link-frequencies = /bits/ 64 <600000000>;
-+				data-lanes = <0 1 2 3>;
-+				remote-endpoint = <&csiphy1_ep>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/dts/qcom/monaco-evk.dts
-index bb35893da73d..b1d34c1248d3 100644
---- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
-@@ -76,6 +76,16 @@ platform {
- 			};
- 		};
- 	};
-+
-+	vreg_cam1_2p8: vreg-cam1-2p8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_cam1_2p8";
-+		startup-delay-us = <10000>;
-+		enable-active-high;
-+		gpio = <&tlmm 74 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&cam1_avdd_2v8_en_default>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &apps_rsc {
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
