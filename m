@@ -1,95 +1,137 @@
-Return-Path: <devicetree+bounces-242300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6D1C8907C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:43:44 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC18CC890AC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:45:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772323B1ED2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:43:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2077534669D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:45:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A0F73168E4;
-	Wed, 26 Nov 2025 09:41:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2806A2F747D;
+	Wed, 26 Nov 2025 09:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TH1bGdMA"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="GuoOtMI5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender3-op-o12.zoho.com (sender3-op-o12.zoho.com [136.143.184.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0E763019AA;
-	Wed, 26 Nov 2025 09:41:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764150065; cv=none; b=irzjN7KYfyNR4llT73h/wkU4btUoXNg3KOk4McNGiogjlLoBjmAi5G0VlJEiRC+n9r9SOIdhi+XRHKVg93hEKrzDbGPEmeCV5tV9iphV+FPHh4KPYnspEAMopRaMgnLASM0/FKbFSiG7NW2sJsavtz66JbRidCZYJLIOESmgDKE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764150065; c=relaxed/simple;
-	bh=2A1+6ikQS2cFDqeaqbcWKjj8PkwHoghi5FBELNGe0aw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PAlkcL2vtf7LK7WmQ9iSd8AghIR5tlYM1JaXHvIwjmprIfN2qgquggqCy/uRiCca89pgxsYWzhRygYlAlxGsjdu7H1R8sse1gh4CNIC9EK8EY8jjVbukeBUxEaMuov9upj0nWYovW96XpL8oR+/IrboxHr4lOTCwXT58w3+njZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TH1bGdMA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A450EC113D0;
-	Wed, 26 Nov 2025 09:41:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764150064;
-	bh=2A1+6ikQS2cFDqeaqbcWKjj8PkwHoghi5FBELNGe0aw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TH1bGdMACILrMX7gjEOo0oSzEZdkrQRdVCdJYv6T0aoNouFQv6xl6Rw8WQFO4gFpn
-	 iY59VdF34z58rowyvqP6Vsip/oVwAF6f8NwLWcgxdAdIvNYCGoUWvwm5OXRA4Ubaol
-	 hOcRK7MNsYzOv5G+Vr6LBH4VvfHwbbLBjps4/zi2OSp+55z5U1Uz416YTjze1bpkmu
-	 hm1Ey+aCR0wm+AnvoKF0IEijnODqIdaiwFbZLnQLzcKG+Ad+FjU5rl5mQdNJu9dEK3
-	 DHywWI68zkQlQMCkM+Vc9h0tf/uXtQbcw+w2WhbelVNO1Dcxie1qbaiF0MXMQ+MxuQ
-	 4bFJPHGjBVjRg==
-Date: Wed, 26 Nov 2025 10:41:01 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Romli, Khairul Anuar" <khairul.anuar.romli@altera.com>
-Cc: Rob Herring <robh@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: dma: snps,dw-axi-dmac: Add compatible
- string for Agilex5
-Message-ID: <20251126-frisky-puma-from-valhalla-e3ee05@kuoka>
-References: <cover.1763598785.git.khairul.anuar.romli@altera.com>
- <bd19d05233cb095c097f0274a9c13159af34543b.1763598785.git.khairul.anuar.romli@altera.com>
- <20251120173608.GA1582568-robh@kernel.org>
- <e049a03a-49e3-4b00-a3e8-7560f63fa61a@altera.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C4E18A94C;
+	Wed, 26 Nov 2025 09:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764150149; cv=pass; b=oF0TiC934DLHzYUprptYaiEi8xm+QKxQKXr7xaBgH9sMFh3Thf8AZkaLLCKdC4Bq9jPVs9nR/880SwtcNQSZmjWY9UDUJb1JnSnr/2VHWro2SoExNlEFQzCjAL06wqNM0hmT0/w2XZhNXGeLQDneqejuAcw/TXvdueWo6yTLr6I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764150149; c=relaxed/simple;
+	bh=HCrXWcCJcuxzIq0iHhld0Os9jJmomNGWdXQFSCiiukQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=f5gxsjtpUW8Wqfwe4XQbJ/SvDBqwxtSnixm6p+YhexL6BayVTps7h+vBXXxW/8Yo9R+sq3x3g/R3Htzih2fILAukMDbWOHLuR8UqP7lcFcPaqicXrAq7ZTUxRRRL0tn9WO+3cKvJGeLOUX+P90+IwY5X7gaa/+AxfH5PfVznvxk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=GuoOtMI5; arc=pass smtp.client-ip=136.143.184.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1764150109; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=fQBxAXM9o4uD7mKSWOWobL1/ZdnY+XQbfKv1vZ6rTRPzjKDaHeZrpkSXPAta7rI9UYfGQfYaiHGcm4zZzsrJUbe/YSv/5/XIoWELyYGcOmBNRhNSlBMXdzGVs7ID9Fwlm/Gmk670rXZs1jAA7w8NAEfUsWFf7lN/oVTsDlYTkQA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1764150109; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=HCrXWcCJcuxzIq0iHhld0Os9jJmomNGWdXQFSCiiukQ=; 
+	b=Qu4Gvhj4dSxRhdg16XEqh7T7j0fa2PB0tz1AJgQr0Iwk/5pTheiSzmGdIPnfuafXccBrNls+KYdd/rq9EEY9loOUdD0EjMZ2Wn/WsNTvAcWu4KSMbuUrxu2rveia68Kyf5hRFWjIkSv3iI5CIHtssCyjxAhq7TLoQrIS6Xtf/lg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764150109;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=HCrXWcCJcuxzIq0iHhld0Os9jJmomNGWdXQFSCiiukQ=;
+	b=GuoOtMI51ArFwAwWNXFwtknkxYHunWqeynp9ETTHYp93VhUqA9PlnMkRwE+ZPI70
+	Jqj886oyv3UKkPNNm+Bdd+QUpH152ZDSKh1X4CVwc0RY/gSkMb7JgkMcniXFlTjPETi
+	miDWY/w0OktfRSomKQBXXwS0vv/NRpMETejhKD7ZbNFaCr+j/J6ROTSEoZ61vvXVZ5O
+	yuDeCAQhkg5E0spxe0MSeK27T+pRSRGgqIs4bJIvv9EhFlrwEQfZIOof7ji/eMGJQXW
+	c4j7Zpwu9UH6htZENs6EeD6v/lcKR+6w/5yeHVt5xHOP7By+Fmz+T0+vOLH5CwZ6dMB
+	1w86gnl0JA==
+Received: by mx.zohomail.com with SMTPS id 1764150105282785.1586241129531;
+	Wed, 26 Nov 2025 01:41:45 -0800 (PST)
+Message-ID: <001154b743b9f8364e96b3ebf791ef9920bbfa03.camel@icenowy.me>
+Subject: Re: [PATCH RESEND v3 2/9] dt-bindings: display: add verisilicon,dc
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>, Guo Ren
+ <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Michal Wilczynski
+ <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, Yao Zi
+ <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org
+Date: Wed, 26 Nov 2025 17:41:35 +0800
+In-Reply-To: <b57207ab-a69e-4dad-98ca-f4923cebdf81@kernel.org>
+References: <20251126045233.218286-1-zhengxingda@iscas.ac.cn>
+	 <20251126045233.218286-3-zhengxingda@iscas.ac.cn>
+	 <20251126-gifted-zircon-ibex-a9f1d8@kuoka>
+	 <e2b72b8ef4c2911c4ea44a80f42182bbc78d5626.camel@icenowy.me>
+	 <b57207ab-a69e-4dad-98ca-f4923cebdf81@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <e049a03a-49e3-4b00-a3e8-7560f63fa61a@altera.com>
+X-ZohoMailClient: External
 
-On Wed, Nov 26, 2025 at 07:43:42AM +0000, Romli, Khairul Anuar wrote:
-> On 21/11/2025 1:36 am, Rob Herring wrote:
-> > On Thu, Nov 20, 2025 at 07:31:10PM +0800, Khairul Anuar Romli wrote:
-> >> The address bus on Agilex5 is limited to 40 bits. When SMMU is enable this
-> >> will cause address truncation and translation faults. Hence introducing
-> >> "altr,agilex5-axi-dma" to enable platform specific configuration to
-> >> configure the dma addressable bit mask.
-> > 
-> > That's likely a bus limitation, not an IP limitation. So that should be
-> > handled with dma-ranges.
-> > 
-> > However, adding a specific compatible is perfectly fine.
-> > 
-> Would it be okay if I rephrase and send the next version with a 
-> correction in the commit message body as your comment in this version?
+=E5=9C=A8 2025-11-26=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 10:37 +0100=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 26/11/2025 09:57, Icenowy Zheng wrote:
+> > =E5=9C=A8 2025-11-26=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 09:51 +0100=EF=
+=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> > > On Wed, Nov 26, 2025 at 12:52:26PM +0800, Icenowy Zheng wrote:
+> > > > From: Icenowy Zheng <uwu@icenowy.me>
+> > > >=20
+> > > > Verisilicon has a series of display controllers prefixed with
+> > > > DC
+> > > > and
+> > > > with self-identification facility like their GC series GPUs.
+> > > >=20
+> > > > Add a device tree binding for it.
+> > > >=20
+> > > > Depends on the specific DC model, it can have either one or two
+> > > > display
+> > > > outputs, and each display output could be set to DPI signal or
+> > > > "DP"
+> > > > signal (which seems to be some plain parallel bus to HDMI
+> > > > controllers).
+> > > >=20
+> > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > > > ---
+> > >=20
+> > > You already received review on this. Don't send the same. Read
+> > > the
+> > > review.
+> >=20
+> > Please see the sender (mail header From) of this time.
+>=20
+> This improved. I am speaking about the rest of review.
 
-Yes and your DTS patch might need changes - include proper dma-ranges.
+Well this is why this is a v3 resend, not v4.
 
-I also do not see how separate compatible without any driver change
-solved your case. That's a no-op patch from Linux driver point of view.
+I will address these issues in v4.
 
-See also submitting patches in DT dir about the process how patches are
-grouped together.
-
-Best regards,
-Krzysztof
+>=20
+> Best regards,
+> Krzysztof
 
 
