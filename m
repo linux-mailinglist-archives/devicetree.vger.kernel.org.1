@@ -1,160 +1,163 @@
-Return-Path: <devicetree+bounces-242483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D8E8C8ACD8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:03:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3393AC8AD43
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:08:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0D9D94ED68F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:00:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8C73B4E24D2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AFEE33C19B;
-	Wed, 26 Nov 2025 16:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GznyddyK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B53833BBC4;
+	Wed, 26 Nov 2025 16:07:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DEB833B97F
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 16:00:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BC133CE81;
+	Wed, 26 Nov 2025 16:07:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764172833; cv=none; b=KOLNL25mNKTspmxRSKiGJcff5GwfT0sg+q9jblvaMRQ+bvNpNt8wV86KbTxXMiLRwTTo0TRP5pNOg4HI/sFB6E90hbCKpF///yWoGp1nxPBttmNHIPZLB0w/itrSDNvZk8sJb3KTLLF7XOJarTSqxaQnj3Rf9dEq3h8W8VvMfLQ=
+	t=1764173252; cv=none; b=e8b42pqVtHk9VJOCfLSErEJ7UYJ66LC9u4SY5sXBN/Ye7WkL4Jl6f4xnmqehsawiW6VNrNHr2UpYH22idYFBUtZCdfTVS0E47ETbpWAeMVNIvSvbgX3wdK1Q1oIrIKRnrmqbNNOi1E+J2a+RHBj6jHEdIt1R5Zo8HEtAb5xVvdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764172833; c=relaxed/simple;
-	bh=WBJ9UwUNrgy/X0b0BvnOXQpDRGyYIy7WU+2Gj+p774c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=S2s63JlmQHhgSDzO/jSaJyqaOUKlrP4V5Ht9J5V2lWxvU/Lu2mnVtdZrm0c+AUy8oUFW0jft2INPx13oRvkFzyJ642JWIzR8+rQrkluUQFXgkV+WxXzEpOItlvqqJM6GVyOXo4+802XB+AVGgucNAZcBzaIivndFOhjuUj5GTKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GznyddyK; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-bcfd82f55ebso506804a12.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 08:00:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764172831; x=1764777631; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rZ9M6k/4ewqJkE2TX87HwTQsuW0EN1M63J7M16fS/j8=;
-        b=GznyddyKpf8VEbt0x7coIKsZpiCgiyOza3ZG0WDpm3vX4OlWsyrTmM5SKHqAuS4UYz
-         n7ypeJ0k6VsF3SxHF/VSEBykvU82dWT7h0LDSbjekroXMkqyUKeHI/hbvDpTzc5EH/x+
-         5JwmQ6p/nn1JsN8tqBTx9jQFnu9RaSil8FV65Alz5KnFDxjf6h1C9Bt9B6/I6+P8zcJg
-         mHq+ckc26vQki1ZAMEdh5Wg9iIHjhMPrPvbWoQwLwvKe5x0v32SUUFqQEI9TBtcLaeEk
-         S+ZYHo0XPxBKP/yZ7iBmpQL/n7jq81Quoeq+xb6EB49q4GKsAg/yClET1L1bAZB14Psr
-         o/Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764172831; x=1764777631;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=rZ9M6k/4ewqJkE2TX87HwTQsuW0EN1M63J7M16fS/j8=;
-        b=umeZBrWQrPBMeglD0pVC6Z8x2iT0mf49tr15gZAyyvKB3PVR/p/z7kPLoxgUOudmCH
-         Fx5BbDI9388tqAGJjHy0tBog48Lb+9qUTLOeNOchNx3KXABqbKqTAaEBvVAeOaEPnB0I
-         bK2UlPXL9C/fD1IfAMjPulupwZojGlIivjn4WGXsdN7tl4zUI8t81T/+qxUEljCDxdCJ
-         EhybTTKVrqBe9q9KVu8+hUSgf5LzL8urKJKSewhmK9Fh+UmeE33Lm2+oMQMltMK4qfko
-         VkDkjJJWNunnFrUuoWaSSqFWiFyuWMvfHXheEjzfN/C6E6vhn9DD2h+1gxHUQeg08tKB
-         r5zw==
-X-Forwarded-Encrypted: i=1; AJvYcCVo3LRknKZVc9b1HCWCIn5ZV2RCm0f7Eg/XbFCyAc+vLQ/ePlYA9IG27NlqLmJLqZhpJH/MR6vUI2+T@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxo/xyY2t58GexnjBr1jLp4WexV4XYDQPEde7gEH4+uzs4uviVe
-	ZCdXHcBhNzfESqjBTki4wi0rYhJLtQveLLTkXO1q/DC4FlNgLu6VjgWN
-X-Gm-Gg: ASbGnctN6TdDW4cLpvrfH/MUT4xzQS7MBHSRg9oKYY183il8r4U6kVAHtdth2TNw4zw
-	heP1VDfa1Y8wxhx7lpG7sTxg3vxtCf1iN7uXE9xzwzWqcW/beid6rQAknylDynrSabUJ8Z1GfUr
-	+XqsEfLv52+hqZtGN4oGSZPxK9S9eNA92Pn/mwypYrMtKwwV2EA/yawNW+ETtNVSvYWmJuK5MH+
-	QHMM8wr5iWQZHoVFAHeWdeDeloeYt7VFGCaxbo4fvm0dz9nbzbNQFUmh7SLfG7NkV9n/Ap5wA8A
-	hDSRK0TDdduwHquC8hkFT1qjp6WF8vwMIrJhKYzMfsFmzRJkaDzK0H8jgEeHMB1qkAzMES5WNK0
-	s080ZnK87u9vnf8BR/sVuKy9zyBEiAGouKAY374nRRXcfpNZTtQXmNp5mv9N7Qkg2t17RxAi5G9
-	BKdCTO5Xg6uJjoZXMCIVZ8cQ==
-X-Google-Smtp-Source: AGHT+IHW4vl9EURMb8YJrD3dHKPOSvMXx6AkbqAkBsNYyyUqCnQUvs3T4dn6AYYdWnbh0jPv+aNGrQ==
-X-Received: by 2002:a17:903:384f:b0:297:f527:885f with SMTP id d9443c01a7336-29b5df697dfmr276743665ad.0.1764172830405;
-        Wed, 26 Nov 2025 08:00:30 -0800 (PST)
-Received: from DESKTOP-P76LG1N.lan ([42.116.199.188])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b13a865sm203447045ad.33.2025.11.26.08.00.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Nov 2025 08:00:29 -0800 (PST)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org
-Cc: gregkh@linuxfoundation.org,
-	pavel@kernel.org,
-	rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v18 2/3] leds: add basic support for TI/National Semiconductor LP5812 LED Driver
-Date: Wed, 26 Nov 2025 23:00:24 +0700
-Message-Id: <20251126160024.141129-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251125134836.GC1127788@google.com>
-References: <20251125134836.GC1127788@google.com>
+	s=arc-20240116; t=1764173252; c=relaxed/simple;
+	bh=D5u21sgtki/irD2XESXFalufjgS/F69R9LlqZDg31ZE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fVdYa72jzM6qQox6ptNeP34OPBreYEsZ4geF3hlLd8i+/2BBYuTclC1Rl3DmqQ2lrIYs/lt0djorva2FCPnxpYkuPgrCeDJdRJIpz8rkT6dg3CHyybRwXpo6pRtg+FcLG4gwTiA2Z33bLlVXnsgauvwuBzjDazS3NeFGZqzywQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B9C41692;
+	Wed, 26 Nov 2025 08:07:20 -0800 (PST)
+Received: from [10.1.33.153] (unknown [10.1.33.153])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 051ED3F73B;
+	Wed, 26 Nov 2025 08:07:24 -0800 (PST)
+Message-ID: <4505a93b-2bac-4ce1-8971-4c31f1ce1362@arm.com>
+Date: Wed, 26 Nov 2025 16:07:23 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
+Content-Language: en-GB
+To: "David Hildenbrand (Red Hat)" <david@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Wei Yang <richard.weiyang@gmail.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-mm@kvack.org, devicetree@vger.kernel.org,
+ Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
+ Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
+ Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
+ Anshuman Khandual <anshuman.khandual@arm.com>
+References: <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
+ <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
+ <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
+ <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
+ <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
+ <20251126134726.yrya5xxayfcde3kl@master>
+ <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
+ <6b966403-91e0-4f06-86a9-a4f7780b9557@kernel.org>
+ <ab39d448-aa1c-4c93-8e2b-5d97a9c76af5@lucifer.local>
+ <1ca9f99f-6266-47ca-8c94-1a9b9aaa717f@kernel.org>
+ <37973e21-e8f4-4603-b93d-4e0b1b2499fa@lucifer.local>
+ <a1d25bde-3ab6-46b5-a957-db80da7e737b@kernel.org>
+From: Ryan Roberts <ryan.roberts@arm.com>
+In-Reply-To: <a1d25bde-3ab6-46b5-a957-db80da7e737b@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 25 Nov 2025, Lee Jones wrote:
-
-> > +static ssize_t parse_drive_mode(struct lp5812_chip *chip, const char *str)
-> > +{
-> > +	int i;
-> > +
-> > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_0 = false;
-> > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_1 = false;
-> > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_2 = false;
-> > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_3 = false;
-> > +
-> > +	if (sysfs_streq(str, LP5812_MODE_DIRECT_NAME)) {
-> > +		chip->u_drive_mode.s_drive_mode.led_mode = LP5812_MODE_DIRECT_VALUE;
-> > +		return 0;
-> > +	}
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(chip_mode_map); i++) {
-> > +		if (!sysfs_streq(str, chip_mode_map[i].mode_name))
-> > +			continue;
-> > +
-> > +		chip->u_drive_mode.s_drive_mode.led_mode = chip_mode_map[i].mode;
-> > +		chip->u_scan_order.s_scan_order.scan_order_0 = chip_mode_map[i].scan_order_0;
-> > +		chip->u_scan_order.s_scan_order.scan_order_1 = chip_mode_map[i].scan_order_1;
-> > +		chip->u_scan_order.s_scan_order.scan_order_2 = chip_mode_map[i].scan_order_2;
-> > +		chip->u_scan_order.s_scan_order.scan_order_3 = chip_mode_map[i].scan_order_3;
+On 26/11/2025 15:12, David Hildenbrand (Red Hat) wrote:
+> On 11/26/25 16:08, Lorenzo Stoakes wrote:
+>> On Wed, Nov 26, 2025 at 03:56:13PM +0100, David Hildenbrand (Red Hat) wrote:
+>>> On 11/26/25 15:52, Lorenzo Stoakes wrote:
+>>>>
+>>>> Would the pmdp_get() never get invoked then? Or otherwise wouldn't that end up
+>>>> requiring a READ_ONCE() further up the stack?
+>>>
+>>> See my other reply, I think the pmdp_get() is required because all pud_*
+>>> functions are just simple stubs.
+>>
+>> OK, thought you were saying we should push further down the stack? Or up
+>> depending on how you view these things :P as in READ_ONCE at leaf?
 > 
-> Where are all of these used?
-
-These fields are part of unions (u_drive_mode and u_scan_order).
-The bitfields are packed into drive_mode_val and scan_order_val, which are
-written to DEV_CONFIG1 and DEV_CONFIG2 in lp5812_set_drive_mode_scan_order().
-
-> [...]
+> I think at leaf because I think the previous ones should essentially be only
+> used by stubs.
 > 
-> > +union u_scan_order {
+> But I haven't fully digested how this is all working. Or supposed to work.
 > 
-> What is 'u'?
+> I'm trying to chew through the arch/arm/include/asm/pgtable-2level.h example to
+> see if I can make sense of it,
 
-The u_* and s_* prefixes were originally meant to indicate union/struct, but they are not idiomatic.
-I will rename it to
-        union lp5812_scan_order {
-            struct {
-                u8 order0:2;
-                u8 order1:2;
-                u8 order2:2;
-                u8 order3:2;
-            } bits;
-            u8 val;
-        };
-and do the same for u_drive_mode.
+I wonder if we can think about this slightly differently;
 
-Thanks for reviewing.
+READ_ONCE() has two important properties:
 
-Best regards,
-Nam Tran
+ - It guarrantees that a load will be issued, *even if output is unused*
+ - It guarrantees that the read will be single-copy-atomic (no tearing)
+
+I think for the existing places where READ_ONCE() is used for pagetable reads we
+only care about:
+
+ - It guarrantees that a load will be issued, *if output is used*
+ - It guarrantees that the read will be single-copy-atomic (no tearing)
+
+I think if we can weaken to the "if output is used" property, then the compiler
+will optimize out all the unneccessary reads.
+
+AIUI, a C dereference provides neither of the guarrantees so that's no good.
+
+What about non-volatile asm? I'm told (thought need to verify) that for
+non-volatile asm, the compiler will emit it if the output is used and remove it
+otherwise. So if the asm contains the required single-copy-atomic, perhaps we
+are in business?
+
+So we would need a new READ_SCA() macro that could default to READ_ONCE() (which
+is stronger) and arches could opt in to providing a weaker asm version. Then the
+default pXdp_get() could be READ_SCA(). And this should work for all cases.
+
+I think.
+
+> 
+>>
+>> Anyway. I am now designating you the expert at this ;)
+> 
+> Oh no. :)
+> 
+>>
+>>>
+>>>>
+>>>>>
+>>>>> IOW, push the READ_ONCE() down to the lowest level so the previous ones
+>>>>> (that will get essentially ignore?) will get folded into the last
+>>>>> READ_ONCE()?
+>>>>>
+>>>>> But my head still hurts and I am focusing on something else concurrently :)
+>>>>
+>>>> Even if we could make this work, I don't love that there's some implicit
+>>>> assumption there that could easily break later on.
+>>>>
+>>>> I'd rather we kept it as stupid/obvious as possible...
+>>>
+>>> Looking at include/asm-generic/pgtable-nopmd.h I am not sure we are talking
+>>> about implicit assumptions here. It's kind-of the design that the pud_t
+>>> values are dummies, so why shoul the pudp_get() give you any guarantees.
+>>>
+>>> At least that's my current understanding, which might be very flawed :)
+>>
+>> I mean I'm waving my hands around like I'm working on an aircraft carrier here
+>> so if you're _sure_ it's _absolutely_ safe then fine :)
+> 
+> Well, not yet ... :)
+> 
+
 
