@@ -1,250 +1,179 @@
-Return-Path: <devicetree+bounces-242237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479A5C886E8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:35:17 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F462C886F4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:36:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 298014E308C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 07:35:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1093A354C0B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 07:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15A3A29BDA0;
-	Wed, 26 Nov 2025 07:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B8F72BDC19;
+	Wed, 26 Nov 2025 07:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VsO10XIw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nFyvzeeW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49078246BD5;
-	Wed, 26 Nov 2025 07:35:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964A029BDA0
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:36:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764142513; cv=none; b=AGRIZ+U8lvI3kE+f0WvRTvd5vFPnXjbcbcaZML8dhLGUp9+B0XEjXVo2dCbtDCTkUTP8fhTfaNWAp3vgBs7XKLFtH/JOELlmrN7TWmuSMYHJ6wiKGzxaXPp4pCyWfl7cF2y+2L6KFBflKulbTU/FqSpV/X5EZa7dNLE77efFRM8=
+	t=1764142584; cv=none; b=k1MSfaNthCQZp9JFOHLTmzy3opH+rKntgdoIoNzW2WvWTz84glbqjM6sLdVcBzaq/40TshATlMylNPOQKgMZU4669MATSrCmkdYznjiCgDnyZ2IfSrY3VEzeA6Ad6AoAm6VfRioZp9orIyBnhTX7B2mKn9cCrn9mjVjrQGxpzWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764142513; c=relaxed/simple;
-	bh=8Uc3vhNhhn0AUrcsoAiSh1S8SXneQ0eZI/3bxptZ6pA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mqwSgpmFiFl0xhwkgQGO4srWcEVRuRn7s9h02od0PiJilx1ESMBi0qymeTmWmDPYpWdySOW+z9zosSP41CCbjgYFoik8gT2M7PLm3C9QjaKbve+YZQ6z69pKxxjetcYagFcMP2yDIxHR1YiqkXHT+jVYBKQS+wWO+375tRJYFgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VsO10XIw; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764142512; x=1795678512;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8Uc3vhNhhn0AUrcsoAiSh1S8SXneQ0eZI/3bxptZ6pA=;
-  b=VsO10XIwo867a1bdvT0Lmio+6USQ2lGhB6iFtKxN4PSxejCGO0L3WKO9
-   0KMMB4ZBTJbqyiwsVZTQ6f4njIIPWa4r9prIAoZVYe3kBkKmtmXZ2JvjQ
-   U7NCxMavWKVMGIu9NWNYgI5C9cNKiL8AeDeQBVhkmGcubgOczbZTEr9qX
-   OQooCkEoVQhHepZ+/2ERKgWKecaCb2qLucBx7FLes3xUF2KFM3phInI5l
-   E61sL9teocGLWBF8SDAYdYPQu72bebR0tPoHplIRjUJ3q9K3c9qJZoaP4
-   QLEZIh3dJP1TqgS8DxmrMeugx48YKeQCkQqivEZ89nSdkJ2ZKMJeMUIhq
-   Q==;
-X-CSE-ConnectionGUID: ZWPKtcpjRYCn5mzIpcjsvQ==
-X-CSE-MsgGUID: OUGt4hhnTx+DKwAnEnvABg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="76495571"
-X-IronPort-AV: E=Sophos;i="6.20,227,1758610800"; 
-   d="scan'208";a="76495571"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 23:35:11 -0800
-X-CSE-ConnectionGUID: 7pPw2WRmTZC2lxxcotcgDA==
-X-CSE-MsgGUID: KLKmAt+jRSKBgFaWE3lwJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,227,1758610800"; 
-   d="scan'208";a="192762130"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.89])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 23:35:07 -0800
-Date: Wed, 26 Nov 2025 09:35:04 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Shrikant Raskar <raskar.shree97@gmail.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, heiko@sntech.de, neil.armstrong@linaro.org,
-	skhan@linuxfoundation.org, david.hunter.linux@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] iio: proximity: rfd77402: Add interrupt handling
- support
-Message-ID: <aSatqG9UEqkH0Glw@smile.fi.intel.com>
-References: <20251126031440.30065-1-raskar.shree97@gmail.com>
- <20251126031440.30065-4-raskar.shree97@gmail.com>
+	s=arc-20240116; t=1764142584; c=relaxed/simple;
+	bh=+NYZTcPMfQw8EVvM4OhMcZhhk3laGmdMxWTa5PItr74=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=W4vJcprkIX/X3WMotETbjmthiHnMSGNSbo6j7u7nnMaHVJVAzX+JQ4xmEcY1HESyv/CQ6Gwvs4xQjbOF1URafZqSMshHGVznVEpenf7KDaDqh/UNrcWG73c7RNSNSBOlDzMnym3sK1LUlm0JeiO0xm4CVAMfHGQ3SPU0uvg3EtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nFyvzeeW; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-42b3ac40ae4so3570419f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 23:36:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764142581; x=1764747381; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=uwb4gEZQsVssNNQKKaHnFD1mEjqfKdCKrDRZhkYlGCU=;
+        b=nFyvzeeWb9JDcvgVDAYupEKe6ZHkm4uagrSkxVy2oqcywFoW45d+53JI8Nr5+qYYk5
+         E//hPD8GXgnK0x3i/VMddEYgSaHT3RVgkIU99oOD27WsgW2yYMqTfzD5ZCSoPEChDHqx
+         bGqRS9VW0ZbCXoIB3PShKO1uljkgYEPFZyVglhtvpNYP6YDL2/oYOL26xBnBB1zeQMk7
+         toOfRW7KauApdiCrw7EGdjcPufAEEJvL+bg3gExLqk8LlS+0NgPcDpByO2u3L93zgjhD
+         M6qx7s1XLLnoV6Z4k9Nk1LD/mNWQX0EDxBfESv0dTGZ8AkTjN41+5c+GKID4dkZOAFzN
+         1r1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764142581; x=1764747381;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uwb4gEZQsVssNNQKKaHnFD1mEjqfKdCKrDRZhkYlGCU=;
+        b=l/QNOp6145qtpTeqbpXNlmtp8OETNwT2bF+Q8Lzy2hpdLiZryL+u9aV+8s3VzF9wt6
+         Joy/4vj+Hvsiw67NMWMzfNNBhk3w2lEof49ARGeIKVjQMRCa8glOkS5VAxX669XUjlDU
+         76RyidjRaDS/DHG9Wrb9B+3aewoGVdyYrVX3Yaqif9xzFZJ7O3yMvfCnE0bWhLOzPYYI
+         Ed7oq4v3F3BKyiulhQr/6iipgAt/eKPLDEOVRDoICLez6y28+ZB4PiA5qlNA/lzSVpEj
+         OjfrrNfAb0yRsF9HmnAxP0wKF0c92g8Vgivl/8VwqOuPlmwmEuyKDQNybbnUPMCF7OKJ
+         mV+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUzrIHLqycJbMwPv7YeWAOqymiAQlcuFIMxdHQ3mkA8QR6A2LPI0anuYyxnNfmYQwvRTMiEN33cbM6W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/UyllrK5riALQUhFn60uD7pOpA9bXgJYA7Kx8oI1I29JdIM8a
+	oJ1iJAO3NReZ3dUsTLGC8Cl1Gp17ZNwK9NbW3UNyHmIqTFBnxFqsdJFEoCoNFbUryWQ=
+X-Gm-Gg: ASbGncvfhBFPi/Pi8iRryetfUFaXkl0YA3zMHj+u0+MtBQygc2F/qZbvk7C7FkhJ/s4
+	GUgGbe59f2jgeiB4NULMeAE6Y8S48P3ItA8ziQc0EmB1gR0ypaICLBrCMlPT07equPf+Q09YAMM
+	IQeXSRYm1OivBh9lj4YoBmLrXlzQ1Fzi0QtBRkphmV44Vgdf/Pu7tiEg6KhKZtVskcHehyk89xs
+	8lUsgVYOwsap5YG+jXJ47cBdRMUSG351Nsj5sz05wcg18xU7o3EHH3Ayk0DcpFiHGK2rM/UwlqA
+	uS7VlydErLz82vGVrEkGWaTZxpr4ZdLrcWjT89GOwAFtxat0yamrWQKZaD5cXAY3l5cfkW92GC9
+	jyPFI4HcMiYAytKGzJtfSCbD8WcJTLYnb1KOcTo4Zg3G51vfwnGYwnof5TVatVQaVWcFT92ivps
+	6zCH7WoXK3mIUyMCgN
+X-Google-Smtp-Source: AGHT+IEkJIVmft0K1+fBvK9APlqevDyQqqLhuiwQwAv9PNhWzAVjw6Cn97feu3xnWTKXQ+ps5Ed2JA==
+X-Received: by 2002:a5d:5f91:0:b0:42b:3bc4:16e9 with SMTP id ffacd0b85a97d-42cc1abdf6amr18484142f8f.4.1764142580820;
+        Tue, 25 Nov 2025 23:36:20 -0800 (PST)
+Received: from draszik.lan ([212.129.87.89])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fb919bsm38547158f8f.34.2025.11.25.23.36.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Nov 2025 23:36:20 -0800 (PST)
+Message-ID: <1fafb9117a9faa32222a55efc77794156635d105.camel@linaro.org>
+Subject: Re: [PATCH 4/6] mfd: max77759: modify irq configs
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Amit Sunil Dhamne <amitsd@google.com>, Sebastian Reichel
+ <sre@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Lee Jones
+ <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Badhri
+ Jagan Sridharan	 <badhri@google.com>, Heikki Krogerus
+ <heikki.krogerus@linux.intel.com>,  Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Alim
+ Akhtar	 <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
+ Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Date: Wed, 26 Nov 2025 07:36:35 +0000
+In-Reply-To: <e25ff0e5ff103433942fc7744eea4a3c61ce1daf.camel@linaro.org>
+References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
+		 <20251123-max77759-charger-v1-4-6b2e4b8f7f54@google.com>
+		 <5c901a6c831775a04924880cc9f783814f75b6aa.camel@linaro.org>
+		 <aa7bdeb1-c8a9-4353-af56-869f16a083c2@google.com>
+	 <e25ff0e5ff103433942fc7744eea4a3c61ce1daf.camel@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251126031440.30065-4-raskar.shree97@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Wed, Nov 26, 2025 at 08:44:40AM +0530, Shrikant Raskar wrote:
-> Add interrupt handling support to enable event-driven data acquisition
-> instead of continuous polling. This improves responsiveness, reduces
-> CPU overhead, and supports low-power operation by allowing the system
-> to remain idle until an interrupt occurs.
+On Wed, 2025-11-26 at 06:44 +0000, Andr=C3=A9 Draszik wrote:
+> Hi Amit,
+>=20
+> On Tue, 2025-11-25 at 17:10 -0800, Amit Sunil Dhamne wrote:
+> > Hi Andr=C3=A9,
+> >=20
+> > On 11/23/25 10:21 PM, Andr=C3=A9 Draszik wrote:
+> > > Hi Amit,
+> > >=20
+> > > Thanks for your patches to enable the charger!
+> >=20
+> > Ack!
+> >=20
+> >=20
+> > > > From: Amit Sunil Dhamne <amitsd@google.com>
+> > > >=20
+> > > > Define specific bit-level masks for charger's registers and modify =
+the
+> > > > irq mask for charger irq_chip. Also, configure the max77759 interru=
+pt
+> > > > lines as active low to all interrupt registrations to ensure the
+> > > > interrupt controllers are configured with the correct trigger type.
+> > > >=20
+> > > > Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> > > > ---
+> > > > =C2=A0=C2=A0drivers/mfd/max77759.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 | 24 +++++++++++++++++-------
+> > > > =C2=A0=C2=A0include/linux/mfd/max77759.h |=C2=A0 9 +++++++++
+> > > > =C2=A0=C2=A02 files changed, 26 insertions(+), 7 deletions(-)
+> > > >=20
+> > > > diff --git a/drivers/mfd/max77759.c b/drivers/mfd/max77759.c
+> > > > index 6cf6306c4a3b..5fe22884f362 100644
+> > > > --- a/drivers/mfd/max77759.c
+> > > > +++ b/drivers/mfd/max77759.c
+> > > > @@ -256,8 +256,17 @@ static const struct regmap_irq max77759_topsys=
+_irqs[] =3D {
+> > > > =C2=A0=C2=A0};
+> > > > =C2=A0=20
+> > > > =C2=A0=C2=A0static const struct regmap_irq max77759_chgr_irqs[] =3D=
+ {
+> > > > -	REGMAP_IRQ_REG(MAX77759_CHARGER_INT_1, 0, GENMASK(7, 0)),
+> > > > -	REGMAP_IRQ_REG(MAX77759_CHARGER_INT_2, 1, GENMASK(7, 0)),
+> > > > +	REGMAP_IRQ_REG(MAX77759_CHARGER_INT_1, 0,
+> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT_A=
+ICL |
+> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT_C=
+HGIN |
+> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT_C=
+HG |
+> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT_I=
+NLIM),
+> > > > +	REGMAP_IRQ_REG(MAX77759_CHARGER_INT_2, 1,
+> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_=
+BAT_OILO |
+> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_=
+CHG_STA_CC |
+> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_=
+CHG_STA_CV |
+> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_=
+CHG_STA_TO |
+> > > > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MAX77759_CHGR_REG_CHG_INT2_=
+CHG_STA_DONE),
+> > > > =C2=A0=C2=A0};
+>=20
+> You should also add the remaining bits in each register here, so that the
+> regulator-irq can mask them when no user exists. It will only touch the
+  ^^^^^^^^^^^^^
+  regmap-irq
 
-...
-
->  #include <linux/module.h>
->  #include <linux/i2c.h>
->  #include <linux/delay.h>
-> -
-
-Stray removal of blank line.
-
-> +#include <linux/interrupt.h>
-> +#include <linux/completion.h>
-
-> +#include <linux/of.h>
-
-Please, avoid using of.h in a new code.
-
->  #include <linux/iio/iio.h>
-
-...
-
-> +static irqreturn_t rfd77402_interrupt_handler(int irq, void *dev_id)
-> +{
-> +	struct rfd77402_data *data = dev_id;
-> +	int ret;
-
-> +	/* Check if the interrupt is from our device */
-
-This comment only for the second part and I would split the condition to make
-it clearer.
-
-> +	ret = i2c_smbus_read_byte_data(data->client, RFD77402_ICSR);
-> +	if (ret < 0 || !(ret & RFD77402_ICSR_RESULT))
-> +		return IRQ_NONE;
-
-	ret = i2c_smbus_read_byte_data(data->client, RFD77402_ICSR);
-	if (ret < 0)
-		return IRQ_NONE;
-
-	/* Check if the interrupt is from our device */
-	if (!(ret & RFD77402_ICSR_RESULT))
-		return IRQ_NONE;
-
-> +	/* Signal completion of measurement */
-> +	complete(&data->completion);
-> +	return IRQ_HANDLED;
-> +}
-
-...
-
-> -	while (tries-- > 0) {
-> -		ret = i2c_smbus_read_byte_data(client, RFD77402_ICSR);
-> -		if (ret < 0)
-> +	if (data->irq_en) {
-> +		/* Wait for interrupt-driven completion */
-> +		ret = wait_for_completion_timeout(&data->completion,
-> +						  msecs_to_jiffies(200));
-> +		if (ret == 0) {
-> +			ret = -ETIMEDOUT;
->  			goto err;
-> -		if (ret & RFD77402_ICSR_RESULT)
-> -			break;
-> -		msleep(20);
-> -	}
-> -
-> -	if (tries < 0) {
-> -		ret = -ETIMEDOUT;
-> -		goto err;
-> +		}
-> +	} else {
-> +		/* Fallback to polling mode */
-> +		while (tries-- > 0) {
-> +			ret = i2c_smbus_read_byte_data(client, RFD77402_ICSR);
-> +			if (ret < 0)
-> +				goto err;
-> +			if (ret & RFD77402_ICSR_RESULT)
-> +				break;
-> +			msleep(20);
-> +		}
-> +
-> +		if (tries < 0) {
-> +			ret = -ETIMEDOUT;
-> +			goto err;
-> +		}
->  	}
-
-Instead, move the current code into a helper (in a separate patch) and alter it
-here with new conditional. So in the result it will be something like
-
-	if (...)
-		ret = call_new_helper_for_irq();
-	else
-		ret = call_old_helper_for_polling();
-
-...
-
-> +	if (data->irq_en) {
-> +		/* Configure ICSR: auto-clear on read, push-pull, falling edge */
-> +		ret = i2c_smbus_write_byte_data(client, RFD77402_ICSR,
-> +						RFD77402_ICSR_CLR_CFG |
-> +						RFD77402_ICSR_INT_MODE);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		/* Enable 'new data available' interrupt in IER */
-> +		ret = i2c_smbus_write_byte_data(client, RFD77402_IER,
-> +						RFD77402_IER_RESULT);
-> +		if (ret < 0)
-> +			return ret;
-> +	} else {
-> +		/* Disable interrupts */
-> +		ret = i2c_smbus_write_byte_data(client, RFD77402_ICSR, 0);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = i2c_smbus_write_byte_data(client, RFD77402_IER, 0);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-
-This can be also factored out to a helper(s). Something like this, perhaps
-
-	if (irq_en)
-		ret = call_a_helper(client, $CSR, $ER);
-	else
-		ret = call_a_helper(client, 0, 0);
-
-...
-
-> +	/* Check if interrupt is mentioned in device tree */
-> +	data->irq_en = false;
-> +	if (client->irq > 0) {
-> +		ret = devm_request_threaded_irq(&client->dev, client->irq,
-> +						NULL, rfd77402_interrupt_handler,
-> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> +						"rfd77402", data);
-> +		if (ret == 0) {
-> +			data->irq_en = true;
-> +			dev_info(&client->dev, "Using interrupt mode\n");
-> +		} else {
-> +			dev_warn(&client->dev,
-> +				 "Failed to request IRQ %d, using polling mode: %d\n",
-> +				 client->irq, ret);
-
-If we asked for interrupt and didn't get it due to "linux" errors, we should
-not fallback. No need to work around bugs in the DT, the DT description must
-be fixed instead.
-
-> +		}
-> +	} else {
-> +		dev_info(&client->dev, "No interrupt specified, using polling mode\n");
-> +	}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+A.
 
