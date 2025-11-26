@@ -1,158 +1,193 @@
-Return-Path: <devicetree+bounces-242565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FD2CC8BF57
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 543BBC8C01E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 22:23:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A2FE44EC050
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:58:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 60F704E36B4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:23:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3C034402B;
-	Wed, 26 Nov 2025 20:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79EE829C325;
+	Wed, 26 Nov 2025 21:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AK+cQKal"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RK0+Q5yr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356CB340A4A;
-	Wed, 26 Nov 2025 20:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7375618CC13;
+	Wed, 26 Nov 2025 21:23:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764190657; cv=none; b=A04YevegBFbl0NnLGwhlPE5uKf3yN/7j5wF3jvRdtp8pvkXPrM82iU/vFPrt4+luGZyCwDR0B9+gN0LDvtbo7nh+kTWQ8sLWtKoXCGXhAd3GnS8lm5F29UxieD/r4OkSfEFYoyA/lRiiaE1Ca2q2WFjgZON75QSZ2ms+5i+iulM=
+	t=1764192200; cv=none; b=tQPto4x5pZjsFdEA6eVJOsGgvCuxfxgdt4+OlVr2SAfXi30xVaq5K8Pau7qOlrwmU2UB0FlLDcD2RpDZYDYzxluNiWeF1Q1yKt3Wh20m2pGa+hGi79x6LttSWj8EnXT09ENQ0QHGOwb0TyJt07Pn9HNl47gmEqLCNc9JvS8+RiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764190657; c=relaxed/simple;
-	bh=VgKQqCzbrBVjIoPtkM4peyHjuiSnnuxQpPfmCkt5H8g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f1G6TLuaa9uVI9x9UDqqz+L6daR1nctSSphA3SGVqGM2OGd7jW+P+2zqnDUR2QyGOzTZJk7cYbaFnDjcysOLwN97SS4CVhPnvQx/0KODgteyeDyrhX3WvfyDwvXfqQI6NzBQzBu2k1jbxm+3TjAPBNurG2pfZLqQk/df4q3UyWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AK+cQKal; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1764190653;
-	bh=VgKQqCzbrBVjIoPtkM4peyHjuiSnnuxQpPfmCkt5H8g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AK+cQKal//7op9uk7mWZA/RS+U/uLhe06dbOACt+KmYYf/INHmiu6KGNsEZ5opcnE
-	 FrmzEqCgPLU59sPxYobIkVgzHUCRW413uwe7423r0ReSYJQDSw7bRTgg/GKg0uPbon
-	 BUjaspa1qhS5+sbSonDwO8opoVAqmcXEf3ntee2BXcqyhORnds6T0dFTLC6GFW2ISI
-	 so0C1ngzO8qetp8KgT0nVYT9pZQ1UInsa5EHbYvcAHcVQ24pBwb51WRTa1+tWr7ATy
-	 MMGUA7AmXGKsnWLd6/2AyEYbDnhaH20d5SJ6XoplqPnm1At6up9uHKZltLyMfxHJqX
-	 0XvRnVe/QXCDg==
-Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: mriesch)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 707DE17E0EDB;
-	Wed, 26 Nov 2025 21:57:32 +0100 (CET)
-Message-ID: <87049b4c-df7d-454b-a7f4-073975a7ee94@collabora.com>
-Date: Wed, 26 Nov 2025 21:57:31 +0100
+	s=arc-20240116; t=1764192200; c=relaxed/simple;
+	bh=Knzj3wXNtFQFM0cMx31hCfEq52kta/w8NMBUhJVyL2Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SfGd/i5hiEibqtdjS6OfoMGEHQJDP59h4sN2rhcbgYLM1Bmg6Xz3hbiUJ4S2Wj6HKNg2tn3TGz7Y5OkTEe5YQ8i1CaUA7Guz7eKJaqbWiuhA3UoUgdPBY7qkyN6quWexzfIoZa0KIABxzxybS3AtmDsh+WEh5k85JFzGZuTqZro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RK0+Q5yr; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764192198; x=1795728198;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Knzj3wXNtFQFM0cMx31hCfEq52kta/w8NMBUhJVyL2Y=;
+  b=RK0+Q5yrFDc77WOk4MkDzQr5zpI/9NOKVNtH0ncYesfsRKTKkSwBJzsX
+   Zz1UtIro3Fwg1p/hrStS7FkOCCK/BoDgPrNEyXlt/X48AP9CEzz0Ur1GA
+   NzlMAvbk4Qigap5jWvqde0GYgpCuC2xlarbi5tr2KimceJ1oQq9cAix0D
+   5XI6A3cLV5P0TtURC6bgV43zcv3nMPIw5Cg2lRr9010/tu6NvKyoqwzUX
+   54zdZnCeeaHANup4FDged8oUnZrQdRjd92O7OUplGFhIPedZNurV1RRmB
+   +VfOlA/ikHuu+eFVsIE9pu11wcKcW40XFluhGO1eLJgRYtiSjqAcRm6aO
+   w==;
+X-CSE-ConnectionGUID: 4U3xxnvoR9ClbZt6Pj4ccg==
+X-CSE-MsgGUID: HjTRWnXmQ46F9+up41Utmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77602178"
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; 
+   d="scan'208";a="77602178"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2025 13:23:17 -0800
+X-CSE-ConnectionGUID: ZO1+u+G/R3+SpUStUsLVnw==
+X-CSE-MsgGUID: E9LQqKlyTGSa53XH3mVIGg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; 
+   d="scan'208";a="192955741"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.89])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2025 13:23:14 -0800
+Date: Wed, 26 Nov 2025 23:23:11 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Danny Kaehn <danny.kaehn@plexus.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
+	Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
+	Ting-Kai Chen <tingkaic@nvidia.com>
+Subject: Re: [PATCH v12 2/3] HID: cp2112: Fwnode Support
+Message-ID: <aSdvv3Qss5oz_o6P@smile.fi.intel.com>
+References: <20251126-cp2112-dt-v12-0-2cdba6481db3@plexus.com>
+ <20251126-cp2112-dt-v12-2-2cdba6481db3@plexus.com>
+ <aSdGh3i_KYocE3L3@smile.fi.intel.com>
+ <20251126193251.GA269764@LNDCL34533.neenah.na.plexus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] media: rockchip: add driver for the rockchip mipi
- csi-2 receiver
-To: Frank Li <Frank.li@nxp.com>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hans Verkuil <hverkuil@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251114-rockchip-mipi-receiver-v2-0-eb9b43377fc4@collabora.com>
- <20251114-rockchip-mipi-receiver-v2-2-eb9b43377fc4@collabora.com>
- <aRyplYZOrGsSxSlp@lizhi-Precision-Tower-5810>
- <554971e1-6fde-4b2c-a2de-fe178358a4e3@collabora.com>
- <aRzub5Ak6DZpO5f/@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <aRzub5Ak6DZpO5f/@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251126193251.GA269764@LNDCL34533.neenah.na.plexus.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Frank,
+On Wed, Nov 26, 2025 at 01:32:51PM -0600, Danny Kaehn wrote:
+> On Wed, Nov 26, 2025 at 08:27:19PM +0200, Andy Shevchenko wrote:
+> > On Wed, Nov 26, 2025 at 11:05:25AM -0600, Danny Kaehn wrote:
 
-On 11/18/25 23:08, Frank Li wrote:
-> On Tue, Nov 18, 2025 at 07:59:14PM +0100, Michael Riesch wrote:
->> Hi Frank,
->>
->> On 11/18/25 18:15, Frank Li wrote:
->>> On Tue, Nov 18, 2025 at 12:12:26PM +0100, Michael Riesch via B4 Relay wrote:
->>>> From: Michael Riesch <michael.riesch@collabora.com>
->>>>
->>>> [...]
->>>> +#define CSI2HOST_N_LANES     0x04
->>>> +#define CSI2HOST_CSI2_RESETN 0x10
->>>> +#define CSI2HOST_PHY_STATE   0x14
->>>> +#define CSI2HOST_ERR1	     0x20
->>>> +#define CSI2HOST_ERR2	     0x24
->>>> +#define CSI2HOST_MSK1	     0x28
->>>> +#define CSI2HOST_MSK2	     0x2c
->>>> +#define CSI2HOST_CONTROL     0x40
->>>
->>> Look like that is designware CSI2 controller, can we build common library
->>> for all dwc csi2 controller, instead of every vendor create individual one.
->>>
->>> First try at
->>> https://lore.kernel.org/linux-media/20250821-95_cam-v3-21-c9286fbb34b9@nxp.com/
->>>
->>> Toshiba have similar patch
->>> https://lore.kernel.org/linux-media/aPZd39riAxqfw3mT@lizhi-Precision-Tower-5810/
->>>
->>> Frank
->>
->> This has been discussed already a while ago:
->> https://lore.kernel.org/all/20250507083837.GA11152@pendragon.ideasonboard.com/
-> 
-> https://lore.kernel.org/all/20250702093806.GF16835@pendragon.ideasonboard.com/
-> 
-> Laurent Pinchart prevent imx93 DWC CSI2 driver at Jul, your discussion at
-> May, I think Laurent Pinchart change the mind.
-> 
-> We can choose not base on imx6, but we should create a standard dwc2 under
-> drivers/media/platform/synopsys/
+...
 
-In principle, I agree with refactoring out common code. However, I am
-not sure how similar these IP cores really are. Again, the answer I
-received from Rockchip states that this is *not* a Synopsys IP core.
-
-Can you maybe test whether the Rockchip MIPI CSI-2 Receiver driver in
-this series works on your hardware? Then we will know if (and what)
-parts can be shared.
-
-Best regards,
-Michael
-
-
+> > > For ACPI, the i2c_adapter will use the child with _ADR Zero and the
+> > > gpio_chip will use the child with _ADR One. For DeviceTree, the
+> > > i2c_adapter will use the child with name "i2c", but the gpio_chip
+> > > will share a firmware node with the CP2112.
+> > 
+> > Hmm... Is there any explanation why DT decided to go that way?
 > 
-> Laurent Pinchart:
+> I don't have an explanation, but Rob H. had directed that I make this
+> change in [1].
 > 
-> 	Can you provide direction?
+> In v11, I then removed that child node for both ACPI and DT, hoping to
+> maintain unity, but you had directed that wouldn't be intuitive for ACPI
+> in [2].
 > 
-> Frank
+> Thus, in this v12, I have just entirely split the two, as it seemed
+> unlikely that any compromise to unify the schema between the two
+> firmware languages would be possible for a change/driver this
+> inconsquential to the overall kernel.
+
+Even though, would be nice to try to get a rationale from Rob on this.
+Then we can put it in the commit message to explain. Otherwise it will
+confuse history diggers in the future.
+
+> [1]:
+> https://lore.kernel.org/all/20240213152825.GA1223720-robh@kernel.org/
 > 
->>
->> Bottom line from Laurent:
->>
->> "Let's keep this driver Rockchip-specific then. Thanks for checking."
->>
->>>  [...]
->> Best regards,
->> Michael
+> [2]:
+> https://lore.kernel.org/all/ZmISaEIGlxZVK_jf@smile.fi.intel.com/
+
+...
+
+> > > +			switch (addr) {
+> > > +			case CP2112_I2C_ADR:
+> > > +				device_set_node(&dev->adap.dev, child);
+> > > +				break;
+> > > +			case CP2112_GPIO_ADR:
+> > > +				dev->gc.fwnode = child;
+> > > +				break;
+> > 
+> > If by any chance we have malformed table and there are more devices with
+> > the same address? Maybe we don't need to address this right now, just
+> > asking... (I believe ACPI compiler won't allow that, but table can be
+> > crafted directly in the binary format.)
+> >
+> 
+> You're sugggesting perhaps that we explicitly keep track of which
+> addresses have been encountered, and refuse to do any fwnode parsing
+> if we detect the same address used twice? I believe the current behavior
+> would be that the "last node wins"; not sure if it should be a "first node
+> wins" or a full error scenario...
+
+I'm suggesting to think about this, not acting right now. I don't believe in
+such a case IRL.
+
+> > > +			}
+
+...
+
+> > > +		device_set_node(&dev->adap.dev,
+> > > +			device_get_named_child_node(&hdev->dev, "i2c"));
+> > 
+> > Here we bump the reference count, where is it going to be dropped?
+> > 
+> > Note, in the other branch (ACPI) the reference count is not bumped in
+> > the current code.
+> 
+> Great point, forgot that I had dropped that handling in v9. The old
+> behavior was that the CP2112 driver maintained a reference to each node
+> during the lifetime of the device (and released during probe errors,
+> etc..). I'm still a bit confused as to whether that is correct or not,
+> or if the references should immediately be dropped once they're done
+> being parsed during probe()... My understanding previously was that I
+> should keep the reference count for the child fwnodes for the lifetime
+> of the CP2112, since the pointers to those are stored in the child
+> devices but would usually be managed by the parent bus-level code, does
+> that seem correct?
+
+While there is a (theoretical) possibility to have lifetime of fwnode shorter
+than a device's, I don't think we have or ever will have such a practical
+example. So, assumption is that, the fwnode that struct device holds has
+the same or longer lifetime.
+
+Note, I haven't investigated overlays (DT and ACPI) behaviour. IIRC you
+experimented with ACPI SSDT on this device, perhaps you can try to see
+what happens if there is a confirmed that the above is not only a theoretical
+problem.
+
+TL;DR: I would drop reference count just after we got a respective fwnode.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
