@@ -1,40 +1,55 @@
-Return-Path: <devicetree+bounces-242445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F74C8A4B0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:22:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D925AC8A511
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:26:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C7F22352E76
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 14:22:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 770923A663A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 14:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8517B2F6582;
-	Wed, 26 Nov 2025 14:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548732FD686;
+	Wed, 26 Nov 2025 14:25:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="k0ooTJYI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5CCC1E1DE9;
-	Wed, 26 Nov 2025 14:22:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE69258CDC;
+	Wed, 26 Nov 2025 14:25:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764166941; cv=none; b=TCrtA6yL+pQZOthzx9diYAuL59X5PaS0w+UitwBo35VQ6U05bvEvi38AMcjk/lQseC9Evf+sCVHGz23WuF6gpif9eGjXmshiaFNtVxsOs2yTDJy5OFjpVRrMO7P0CJhRMkSEkmrfMpqC0NtR+Yznp+0RpGXaP52S1f/dZHgR240=
+	t=1764167117; cv=none; b=qdPbgONKLIaWrNheJZCDBmNsrhbTbL0q9S/tibwoQ33GAtuZMvl7EMPNEm4fPE+O6mCGGwT/iPNLXgPLugVOVPAksORfjZGWqD8CSR/pQAhxl4z3nb1ByBQYZ8bnKrDpKmHcR96sKUnyGlzx1L4/YFEM0TpEQg4YN+gEOwxyj8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764166941; c=relaxed/simple;
-	bh=mtEjtPFIsDY94eINCxO5TyctHItxLPCeUAUa9eInnyM=;
+	s=arc-20240116; t=1764167117; c=relaxed/simple;
+	bh=Ocfwjie9+FicOOaIBzOuGpVUjaUpRkYlK9kIutmZR7o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NCx6GVXX+00yFVfiY/jCCkRmFN77Khqcehjm7POQks4IKHeH7wgDT+hBSPmWYQuYzWxltwm6OfbjLQheY6wBauwZSp2mhY2WdqnEAhmEq+HLeIuYPGlGG22L1wOcs6Ulrc9tZ6g3K6nYMGzzWo1hv1GV6k/LyPgwXeCqNBJc5F0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 51E64168F;
-	Wed, 26 Nov 2025 06:22:10 -0800 (PST)
-Received: from [10.1.33.153] (unknown [10.1.33.153])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EFFEE3F73B;
-	Wed, 26 Nov 2025 06:22:14 -0800 (PST)
-Message-ID: <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
-Date: Wed, 26 Nov 2025 14:22:13 +0000
+	 In-Reply-To:Content-Type; b=OU8Hzxd8T9cEWpEQwnFKjE9ny1Ng6Nx1D53nXPkoSp9YZAOBrQLePSwIhcXQ9nNa9ABFShH69AlYJVqYkMaxc9iE4Ye8k1i+ivAMgc0kjjAZerHGGNY9hC7FlJE7VDQH6iZPlsh3AjCXHREKU/YTHUMvX+OJPcT56ya0YdD75DQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=k0ooTJYI; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 8725A4E418F3;
+	Wed, 26 Nov 2025 14:25:12 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 578AB60721;
+	Wed, 26 Nov 2025 14:25:12 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 64B5A102F08EF;
+	Wed, 26 Nov 2025 15:25:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1764167111; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=Sbs0A8qAYuq+r/+1fjxriavvnUhEfhMgY7SBF5X8V08=;
+	b=k0ooTJYIYW0FYBMVhrgVBpA7A6kXMyqERAgQSrzwOurSlWfmkbqR/cAmccU11VWLC5YJEI
+	n6WrPplsAi0/qCeWTP5rC5r6OVtJarSahnvu8/ytGNtL2IhjV2o4qcZLK1BKZ9REOhbIne
+	GpHwbaHF7/xV6QP11Em8OqvJQxr/vpKrq/B/xhMU6iRCotsKbsvezuDAlSdbcWdLA7WkHY
+	PgHtTABkVp75O1gL9djdWOv4/kvWgJGTXQQtoWevSW4VHF0gnednfaSxWzHACT5hKJnynF
+	DcFAau2f9LPmwhjE9ZTrqGuSx7982EfRtb9Sv1Y9Gy4TO0KRoTFUYh71zTNEkA==
+Message-ID: <9c2518d8-a0ea-46ba-9069-999c2574cd24@bootlin.com>
+Date: Wed, 26 Nov 2025 15:25:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,119 +57,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
-Content-Language: en-GB
-To: Wei Yang <richard.weiyang@gmail.com>
-Cc: "David Hildenbrand (Red Hat)" <david@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linux-mm@kvack.org, devicetree@vger.kernel.org,
- Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
- Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
- Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
- Anshuman Khandual <anshuman.khandual@arm.com>
-References: <20251113014656.2605447-1-samuel.holland@sifive.com>
- <20251113014656.2605447-7-samuel.holland@sifive.com>
- <02e3b3bd-ae6a-4db4-b4a1-8cbc1bc0a1c8@arm.com>
- <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
- <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
- <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
- <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
- <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
- <20251126134726.yrya5xxayfcde3kl@master>
-From: Ryan Roberts <ryan.roberts@arm.com>
-In-Reply-To: <20251126134726.yrya5xxayfcde3kl@master>
+Subject: Re: [PATCH net-next 1/9] dt-bindings: phy: rename
+ transmit-amplitude.yaml to phy-common-props.yaml
+To: Vladimir Oltean <vladimir.oltean@nxp.com>, Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Eric Woudstra <ericwouds@gmail.com>, =?UTF-8?B?TWFyZWsgQmVo4oia4oirbg==?=
+ <kabel@kernel.org>, Lee Jones <lee@kernel.org>,
+ Patrice Chotard <patrice.chotard@foss.st.com>,
+ Holger Brunck <holger.brunck@hitachienergy.com>
+References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+ <20251122193341.332324-2-vladimir.oltean@nxp.com>
+ <0faccdb7-0934-4543-9b7f-a655a632fa86@lunn.ch>
+ <20251125214450.qeljlyt3d27zclfr@skbuf>
+ <b4597333-e485-426d-975e-3082895e09f6@lunn.ch>
+ <20251126072638.wqwbhhab3afxvm7x@skbuf>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20251126072638.wqwbhhab3afxvm7x@skbuf>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 26/11/2025 13:47, Wei Yang wrote:
-> On Wed, Nov 26, 2025 at 01:03:42PM +0000, Ryan Roberts wrote:
->> On 26/11/2025 12:35, David Hildenbrand (Red Hat) wrote:
-> [...]
->>>>>>> Hi,
->>>>>>>
->>>>>>> I've just come across this patch and wanted to mention that we could also
->>>>>>> benefit from this improved absraction for some features we are looking at for
->>>>>>> arm64. As you mention, Anshuman had a go but hit some roadblocks.
->>>>>>>
->>>>>>> The main issue is that the compiler was unable to optimize away the
->>>>>>> READ_ONCE()s
->>>>>>> for the case where certain levels of the pgtable are folded. But it can
->>>>>>> optimize
->>>>>>> the plain C dereferences. There were complaints the the generated code for arm
->>>>>>> (32) and powerpc was significantly impacted due to having many more
->>>>>>> (redundant)
->>>>>>> loads.
->>>>>>>
->>>>>>
->>>>>> We do have mm_pmd_folded()/p4d_folded() etc, could that help to sort
->>>>>> this out internally?
->>>>>>
->>>>>
->>>>> Just stumbled over the reply from Christope:
->>>>>
->>>>> https://lkml.kernel.org/r/0019d675-ce3d-4a5c-89ed-f126c45145c9@kernel.org
->>>>>
->>>>> And wonder if we could handle that somehow directly in the pgdp_get() etc.
->>
->> I certainly don't like the suggestion of doing the is_folded() test outside the
->> helper, but if we can push that logic down into pXdp_get() that would be pretty
->> neat. Anshuman and I did briefly play with the idea of doing a C dereference if
->> the level is folded and a READ_ONCE() otherwise, all inside each pXdp_get()
->> helper. Although we never proved it to be correct. I struggle with the model for
->> folding. Do you want to optimize out all-but-the-highest level's access or
->> all-but-the-lowest level's access? Makes my head hurt...
->>
->>
+Hi,
+
+On 26/11/2025 08:26, Vladimir Oltean wrote:
+> +Maxime, Holger
+> thread at https://lore.kernel.org/netdev/20251122193341.332324-2-vladimir.oltean@nxp.com/
 > 
-> You mean sth like:
-> 
-> static inline pmd_t pmdp_get(pmd_t *pmdp)
-> {
-> #ifdef __PAGETABLE_PMD_FOLDED
-> 	return *pmdp;
-> #else
-> 	return READ_ONCE(*pmdp);
-> #endif
-> }
-
-Yes. But I'm not convinced it's correct.
-
-I *think* (but please correct me if I'm wrong) if the PMD is folded, the PUD and
-P4D must also be folded, and you effectively have a 2 level pgtable consisting
-of the PGD table and the PTE table. p4dp_get(), pudp_get() and pmdp_get() are
-all effectively duplicating the load of the pgd entry? So assuming pgdp_get()
-was already called and used READ_ONCE(), you might hope the compiler will just
-drop the other loads and just use the value returned by READ_ONCE(). But I doubt
-there is any guarantee of that and you might be in a situation where pgdp_get()
-never even got called (perhaps you already have the pmd pointer).
-
-So I don't think it works.
-
-Probably we either have to live with the extra loads or have 2 types of helper.
-
-> 
->>>>
->>>> I find that kind of gross to be honest. Isn't the whole point of folding that we
->>>> don't have to think about it...
->>
->> Agreed, but if we can put it inside the default helper implementation, that
->> solves it, I think? An arch has to be careful if they are overriding the
->> defaults, but it's still well contained.
->>
+> On Tue, Nov 25, 2025 at 11:33:09PM +0100, Andrew Lunn wrote:
+>>> Yeah, although as things currently stand, I'd say that is the lesser of
+>>> problems. The only user (mv88e6xxx) does something strange: it says it
+>>> wants to configure the TX amplitude of SerDes ports, but instead follows
+>>> the phy-handle and applies the amplitude specified in that node.
 >>>
->>> If we could adjust generic pgdp_get() and friends to not do a READ_ONCE() once
->>> folded we might not have to think about that in the callers.
+>>> I tried to mentally follow how things would work in 2 cases:
+>>> 1. PHY referenced by phy-handle is internal, then by definition it's not
+>>>    a SerDes port.
+>>> 2. PHY referenced by phy-handle is external, then the mv88e6xxx driver
+>>>    looks at what is essentially a device tree description of the PHY's
+>>>    TX, and applies that as a mirror image to the local SerDes' TX.
 >>>
->>> Just an idea, though, not sure if that would fly the way I envision it.
+>>> I think the logic is used in mv88e6xxx through case #2, i.e. we
+>>> externalize the mv88e6xxx SerDes electrical properties to an unrelated
+>>> OF node, the connected Ethernet PHY.
 >>
->>
+>> My understanding of the code is the same, #2. Although i would
+>> probably not say it is an unrelated node. I expect the PHY is on the
+>> other end of the SERDES link which is having the TX amplitudes
+>> set. This clearly will not work if there is an SFP cage on the other
+>> end, but it does for an SGMII PHY.
 > 
+> It is unrelated in the sense that the SGMII PHY is a different kernel
+> object, and the mv88e6xxx is polluting its OF node with properties which
+> it then interprets as its own, when the PHY driver may have wanted to
+> configure its SGMII TX amplitude too, via those same generic properties.
+> 
+>> I guess this code is from before the time Russell converted the
+>> mv88e6xxx SERDES code into PCS drivers. The register being set is
+>> within the PCS register set.  The mv88e6xxx also does not make use of
+>> generic phys to represent the SERDES part of the PCS. So there is no
+>> phys phandle to follow since there is no phy.
+> 
+> In my view, the phy-common-props.yaml are supposed to be applicable to either:
+> (1) a network PHY with SerDes host-side connection (I suppose the media
+>     side electrical properties would be covered by Maxime's phy_port
+>     work - Maxime, please confirm).
+
+True, but we could definitely conceive applying phy-common-props.yaml on
+the media-side as well :) I don't have a use-case for it right now
+though, and we don't yet have detailed descriptions of the electrical
+properties.
+
+Maxime
 
 
