@@ -1,65 +1,59 @@
-Return-Path: <devicetree+bounces-242273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C1DC88C40
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:53:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6011BC88C76
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:56:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2A7D34EBE99
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:53:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B57643B0EE5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A9C31A56C;
-	Wed, 26 Nov 2025 08:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AD031986E;
+	Wed, 26 Nov 2025 08:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7hAhgNE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CUfz7zoO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C34431BCAF;
-	Wed, 26 Nov 2025 08:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3AC1EEE6;
+	Wed, 26 Nov 2025 08:54:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764147117; cv=none; b=heYpCEA4xPCBIedepx+myIVeQmtz8kY4lZN7giMtajAaBR5aercWmfrnxUvhfThah8Nyxx5ky4uad6+ome5OhK3EKr4saytieTvTfzih9JhPfeyLbzyTUO88mpcjNFn36f7D0T3HqHIFFfTw1wLMESMayGmffv7f8qTgZgb73QM=
+	t=1764147294; cv=none; b=i4CI+FefrMEGJ9fOq/JREpwchWdCrkQ3o0efKco8Jw7h96gLsFXv4DOr854Q/3PEfA//mNuqIT+Rmzqjbczn/0f0zubOrP66mShODujt2lHeVlZu7JVeBc26ORLghyY6y7g7vuk0WDFHtRFrFoqUPWLkFYVlQU0JivBBBOeWPQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764147117; c=relaxed/simple;
-	bh=sWWyiBZaar1uNe7opXiUwYwGj0+GUqGTWFXLEk+AtH8=;
+	s=arc-20240116; t=1764147294; c=relaxed/simple;
+	bh=xCRAyoWbSZNWin2EOaLMWug7Ia709OOAhIVrGrb85T0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oghNZQ91Pwok4w/oPHQz6hoej229xlMH9bs6aQIIkGtQ9hFJswkpGvEDxnu+4sG+XxYCxoKIEntnlQiU48RdrpASGeKJKi8ApeK/5rdVd5lfhiv0EODE+AIr7sc9fJwLTCcpMQoLE3seB1ZZDGzKnhhHaKl07SVOYOm3bdiz2Tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q7hAhgNE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71409C113D0;
-	Wed, 26 Nov 2025 08:51:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kxvKo+BeI2ZQwzdHQT/6TmpW3RrDi53qdWqAiBWIsTU3mkcvcj3bH/MTWxUsaW3ppOfwoFNgAO/L14GtJ8YRCmDPDSA8t8eWEFGUD6IjW0fLMDXeD88nB7eeWH89RHzgOQ7uaYw7YNi7wz1TbO7j1ekNq/MENS3ppZh6cVJHse4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CUfz7zoO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDFF7C113D0;
+	Wed, 26 Nov 2025 08:54:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764147117;
-	bh=sWWyiBZaar1uNe7opXiUwYwGj0+GUqGTWFXLEk+AtH8=;
+	s=k20201202; t=1764147293;
+	bh=xCRAyoWbSZNWin2EOaLMWug7Ia709OOAhIVrGrb85T0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q7hAhgNEyilJ/cUmTs1janOEr65FLvpurCBnQ5CWdgvAmi/uJACNfCyjRmHqUod3z
-	 mh8IokwGgvx0GtaqHr2XVnpmGQUHmIJYGmtv5ufU6qpuDfQouSbGhoK0Ez9vsr6yqV
-	 Uqt+tQY/YpQgh11GDiDEzRP3ZDPz0lAUvvFfv4rWcr1BlLADF2pwXOpB+3sDRbOlrL
-	 I/7vfwFJRJ972jVyNKY2U6JXcfVsHzv6ITSjDh7GYAkyqAE2OImVpniMvdTvCW2IbQ
-	 XNeZQYtF0o4CnrXFDInLvvbYRXPnRwmC2lqcOPIZ/O9sVZZdQjrhdg96YGC8MjCEy2
-	 8aK6jAWisyAiA==
-Date: Wed, 26 Nov 2025 09:51:54 +0100
+	b=CUfz7zoOO0bNvMWjFJAXUC25goct4lLAEaVl55r6xr2XEMrCscCLibUegUS/mCzvF
+	 WI0jXhdGeUKlWnXsCsqB7/y8XGYRLRTVOtf7SwcRNh8O+YJ1ZhKwg+YJlQ9cyH15op
+	 LeNOX1XsG403nQra8uz1Nx9a3fit861WYbYBcAyZ+bt5kEtdz0mvc8gIlmmtdADKqs
+	 flxM9HFPxLl/kYtsrq2jlgI/q/srS0ivNK1RU+MxuuP1ZoCBzUtjkW4+Q55EEkWLSm
+	 r/oJF04sDWZYFRuFuUbXtKhRMr/uByDY7OxWJaQNW9wRx4LrbU6sn0tB0RdNyo1Vjv
+	 XobKNJlPK2ldQ==
+Date: Wed, 26 Nov 2025 09:54:50 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, Icenowy Zheng <uwu@icenowy.me>
-Subject: Re: [PATCH RESEND v3 2/9] dt-bindings: display: add verisilicon,dc
-Message-ID: <20251126-gifted-zircon-ibex-a9f1d8@kuoka>
-References: <20251126045233.218286-1-zhengxingda@iscas.ac.cn>
- <20251126045233.218286-3-zhengxingda@iscas.ac.cn>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>, 
+	Jonathan Cameron <jonathan.cameron@huawei.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: cache: qcom,llcc: Document Glymur
+ LLCC block
+Message-ID: <20251126-augmented-lobster-from-neptune-d7bbb5@kuoka>
+References: <20251125-glymur_llcc_enablement-v2-0-75a10be51d74@oss.qualcomm.com>
+ <20251125-glymur_llcc_enablement-v2-1-75a10be51d74@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,28 +62,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251126045233.218286-3-zhengxingda@iscas.ac.cn>
+In-Reply-To: <20251125-glymur_llcc_enablement-v2-1-75a10be51d74@oss.qualcomm.com>
 
-On Wed, Nov 26, 2025 at 12:52:26PM +0800, Icenowy Zheng wrote:
-> From: Icenowy Zheng <uwu@icenowy.me>
+On Tue, Nov 25, 2025 at 02:46:22PM +0530, Pankaj Patil wrote:
+> Document the Last Level Cache Controller on Glymur SoC
+> Glymur LLCC has 12 base register regions and an additional AND, OR
+> broadcast region, total 14 register regions
+> Increase maxItems for reg and reg-names to allow 14 entries for Glymur
 > 
-> Verisilicon has a series of display controllers prefixed with DC and
-> with self-identification facility like their GC series GPUs.
-> 
-> Add a device tree binding for it.
-> 
-> Depends on the specific DC model, it can have either one or two display
-> outputs, and each display output could be set to DPI signal or "DP"
-> signal (which seems to be some plain parallel bus to HDMI controllers).
-> 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 > ---
+>  .../devicetree/bindings/cache/qcom,llcc.yaml       | 47 +++++++++++++++++++++-
+>  1 file changed, 45 insertions(+), 2 deletions(-)
 
-You already received review on this. Don't send the same. Read the
-review.
-
-NAK
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
