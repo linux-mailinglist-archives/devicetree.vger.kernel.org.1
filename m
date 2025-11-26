@@ -1,318 +1,309 @@
-Return-Path: <devicetree+bounces-242286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A258FC88F4D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:30:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6F97C88F6E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:32:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09FC03B316C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:30:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CB2E3B313D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560FD2C026E;
-	Wed, 26 Nov 2025 09:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950252D8793;
+	Wed, 26 Nov 2025 09:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fCPmO2Au"
+	dkim=pass (2048-bit key) header.d=hitachienergy.com header.i=@hitachienergy.com header.b="z/DFgUWo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010061.outbound.protection.outlook.com [52.101.201.61])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013000.outbound.protection.outlook.com [40.107.159.0])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40EE32E1C57;
-	Wed, 26 Nov 2025 09:30:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF1B22B8B0;
+	Wed, 26 Nov 2025 09:32:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.0
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764149411; cv=fail; b=B2SkI5ZhtDkVTNNQo5NbaavuW8pxr82f+fadVpUW2qKNM556L1lFrYCwq32ItldMx4aO6J7HCUAJvTVcI3R4vs4LHKFjn6ESCS6HkT9E+f0ZiygwMXVAnnGfZJu6EsW+t7nXts9azWDUESR+s4VsK3gbYAVPlpavS9jX3I+xoII=
+	t=1764149556; cv=fail; b=sLEVTg0VgaAaex44wTX7VfWVkW4dYgZ2SCuZzygR36j+HZW/eenZF8FkhUFPwRFXrbmML0xlMvQjCXcKksoy2KU7LsWgeivU3xyOfkLVLohJjdPjqjzQEVU5p/OYpw31aDIJMWt1uTodUItrQt8TDCst957oamEc47bbsBCgPfQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764149411; c=relaxed/simple;
-	bh=vwdhY2gL+uL8r7jS5pUPXbqfhztlBjwLsf/1zMdVXLU=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mCX+FNNBvfYfdmpEQvdl+w1lLzLLXH6n8pMt1b+2smVNDy4yY5kN3za8Zlq67pN9o6Sd60zyeml3VUhinJzDwa+mbDA1bKDTtRlDtGWvmCHDFpJGzfsyntPUxcv9olT1vmM/aM814/Y1nY55Ru53+JGgVm2uhrLYz8u282sC6ek=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fCPmO2Au; arc=fail smtp.client-ip=52.101.201.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+	s=arc-20240116; t=1764149556; c=relaxed/simple;
+	bh=qYHFSHbxXVO3LfG1ud4LLdpJFQ8hJlbqWMtI5fQ/1YA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=PNnEAo8eThjQ8Yl85bDRWBgYB2s2TOtO1OwT0zb1cNXh4tHRC0mdE91vhuMlwLR0un7I/B/hLIMHu8ti3x/BL7K3PxNPzkX2IJNqbtClgd3EBGdNP9JipxisRufZb2qgNqiRVI2Q72qY7tHjMZF2h+UJkFRMPpblQ3a6/CJCI/Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=hitachienergy.com; spf=pass smtp.mailfrom=hitachienergy.com; dkim=pass (2048-bit key) header.d=hitachienergy.com header.i=@hitachienergy.com header.b=z/DFgUWo; arc=fail smtp.client-ip=40.107.159.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=hitachienergy.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hitachienergy.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AoMGZPZJ/TGt5XYwFc2qGdUAcBEmcNwwQLyfY7prXUlg4CBvDaUF9fx87dliMHLaLwm1HkphMf8dozsDY6MvsyOo7d0y6rphA5kKdWLz/zwKIbutFZoITpHDRk3bYO6fWjpZ9Jjs28v1wrYwHD/MKNEYsO+pZqsrqkQFUy7wCu7/+1ir07NAUHF9JHPKMgusktICan1Li44bPKC/Ox3WngDHKaFrho2K/sish2OljWfdtTcc0i0WudpktvXJZUjmqFEL7dgUORPHOR2uv5KoWVFf8m9IQ4Xmlc6Rihj2HGdMMglqTyX10lEFA1fS4NLTELOLVBQuZaZDsMC7NR1oUA==
+ b=M/0IbdLUEjoJ91RnXlAPhhKr2vDRlhEgFoROZclamh1GrE7iyVJI6GJY1fgKgfmcMfExHsEiQ9V3sB40o8EvgFM280+QuDSqr35s6LN0q4xqwJa0OeDFSa7cQZH5WYTFVlH++qjXpNeoyIXxVmoOlfYH0aRVllPMvMtYd/oLfdLG1RGqWSZwUtv5BCCxa3ytnzYbeHUt+JyduhzcdNcEsfgzoYELRhhTQLab+QkVl+zZzOwgem6v1/yVr4uazRpeAUjJkmYDWmKIR2iFMg3WuSutRbhyfg99KB7hj7NPK1XIqGZgwHVkTp9z9dWSUqNUgF7//FIG0gkrapsPtKxm1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o940KvoexCxoDZzI18kL9E8vcYJFhppyG5ZJedfAtr8=;
- b=iJHT2rVxqiQCbSPSBf0hiaYnX0pHGCKegcnNzEmyHMANGykqGCsNowwEdCVI+78jfPjLBBbcszsGD+f6+/38T5M4PuySlMANFTH3hEgmv0LYLJjoHtHPaoBrrrtS86eIv0xpckv+BkyHgbZzoe42zcCMl4dtmuUEmqBvC4h9JJIGxA9TQMdD4CAl7dW90QHbZ+5x+n14KGHrWQC2nds0ItWgCepWoLBu1oZVCJzjrAEFWVcKob/aU75pQzzTIsKoBsRaS5bAfhHnyfaRkl+5Zo6zryK9fU4eGWjMq7eGEILG1ibqumXhmuQ6J3pnUpV6mtcPoS2vtAAWxaTwmp3ylw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=cadence.com smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ bh=Jhp+ji04Rlm5yjPqr+QnGGoyUS8SS2IhMdpWd+7E1HM=;
+ b=WdtNPMs/kzLnmjqLmGGmymASeGI4qiEi/t169rs9ALcRjWfsT+RElq5r5xRtpSr0Tx98orMuTt5elqUsr5iXjJgffRFI2RiIxzMdsVT4ImSBSl7HBFj7h7wo+4lO/W4xxCr3/3BLlsFdG7J7kZT93fNtK9rJAt793spL60bsjERYZb7aPOegi2Pan0bgdhdil9tKrYHtWBdmBJVTFCrkD6tvqj5Z3BGtfqSWP+hEFGmA74SqGG2p/NuaIMrKhiMSx1wbN48XzHyjuz6e/MZ+FyaurA74/nS2Ofe6bMAzdwiSlYHpewKjzza0ZYmZ5kOVIhOBL6PcDIa4Uy4w9SD2rw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hitachienergy.com; dmarc=pass action=none
+ header.from=hitachienergy.com; dkim=pass header.d=hitachienergy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hitachienergy.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o940KvoexCxoDZzI18kL9E8vcYJFhppyG5ZJedfAtr8=;
- b=fCPmO2AuYPdvGAAQJp8eQYZ2x7CA+tUWSxXgRNen5M4hwlsTJYhln75SEn7ILdwmmnYvQvZ78+i8Rj1dPoDzVS+qy9VenwaneuxZtrh/uzBB/JflPSa3UCU++aMhRgp9M//MCfDS3EcRLed5d8y1TLxRUYbsMvntg05TwdvhxdM=
-Received: from CH2PR08CA0018.namprd08.prod.outlook.com (2603:10b6:610:5a::28)
- by SA3PR10MB7022.namprd10.prod.outlook.com (2603:10b6:806:317::21) with
+ bh=Jhp+ji04Rlm5yjPqr+QnGGoyUS8SS2IhMdpWd+7E1HM=;
+ b=z/DFgUWoi0mVKp9DRcJVC++qM8B4gAxfOgx3vYA/ZY9QlZufMtNrVPf0C7Lz0F0nLs8cDlIr4NypQEwhSh4WjzpmLPLXtwzddoH9R1qfh2h3O9vRRl4+XWxrfIuoHA3s+cptAxf1b+zpAXUocrBx3E/VYiAgoA8eY8mq5A7ZnCvoOeYN0MxaZAzaoWs0/vB2GCt9mLp8vDQyCkeZVS6Lqi0Qb9SwYaGPSkxLbjGs4hJw9ruHZc6ai4nELXHjJPW7zhAKARsbPSokwdldz4ml1R/E+UgWfllVAQpcPZZ/Yh1EIczI5gp1vdZ9lCSns6gT86d7mfKxiZ/Zl5wTzdcvtg==
+Received: from AM0PR06MB10396.eurprd06.prod.outlook.com (2603:10a6:20b:6fd::9)
+ by AM0PR06MB6547.eurprd06.prod.outlook.com (2603:10a6:208:196::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Wed, 26 Nov
- 2025 09:30:00 +0000
-Received: from CH1PEPF0000AD7C.namprd04.prod.outlook.com
- (2603:10b6:610:5a:cafe::fe) by CH2PR08CA0018.outlook.office365.com
- (2603:10b6:610:5a::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.12 via Frontend Transport; Wed,
- 26 Nov 2025 09:29:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CH1PEPF0000AD7C.mail.protection.outlook.com (10.167.244.84) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9366.7 via Frontend Transport; Wed, 26 Nov 2025 09:29:59 +0000
-Received: from DLEE204.ent.ti.com (157.170.170.84) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 26 Nov
- 2025 03:29:56 -0600
-Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 26 Nov
- 2025 03:29:56 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 26 Nov 2025 03:29:56 -0600
-Received: from hkshenoy.dhcp.ti.com (hkshenoy.dhcp.ti.com [172.24.235.208])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AQ9TnVs1000034;
-	Wed, 26 Nov 2025 03:29:50 -0600
-From: Harikrishna Shenoy <h-shenoy@ti.com>
-To: <robh@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-	<airlied@gmail.com>, <andrzej.hajda@intel.com>, <conor+dt@kernel.org>,
-	<devarsht@ti.com>, <devicetree@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <h-shenoy@ti.com>,
-	<jernej.skrabec@gmail.com>, <jonas@kwiboo.se>, <krzk+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
-	<s-jain1@ti.com>, <simona@ffwll.ch>, <sjakhade@cadence.com>,
-	<tzimmermann@suse.de>, <u-kumar1@ti.com>, <yamonkar@cadence.com>,
-	<pthombar@cadence.com>, <nm@ti.com>
-Subject: [PATCH v4] dt-bindings: drm/bridge: Update reg-name and reg
-Date: Wed, 26 Nov 2025 14:59:49 +0530
-Message-ID: <20251126092949.298530-1-h-shenoy@ti.com>
-X-Mailer: git-send-email 2.34.1
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.16; Wed, 26 Nov
+ 2025 09:32:31 +0000
+Received: from AM0PR06MB10396.eurprd06.prod.outlook.com
+ ([fe80::f64e:6a20:6d85:183f]) by AM0PR06MB10396.eurprd06.prod.outlook.com
+ ([fe80::f64e:6a20:6d85:183f%6]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
+ 09:32:30 +0000
+From: Holger Brunck <holger.brunck@hitachienergy.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>, Andrew Lunn <andrew@lunn.ch>
+CC: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, Daniel Golle <daniel@makrotopia.org>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>, Heiner Kallweit
+	<hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+	<kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Eric
+ Woudstra <ericwouds@gmail.com>,
+	=?iso-2022-jp?B?TWFyZWsgQmVoGyRCImUiaRsoQm4=?= <kabel@kernel.org>, Lee Jones
+	<lee@kernel.org>, Patrice Chotard <patrice.chotard@foss.st.com>, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>
+Subject: RE: [PATCH net-next 1/9] dt-bindings: phy: rename
+ transmit-amplitude.yaml to phy-common-props.yaml
+Thread-Topic: [PATCH net-next 1/9] dt-bindings: phy: rename
+ transmit-amplitude.yaml to phy-common-props.yaml
+Thread-Index: AQHcXqYGtlM98xQGlkSgPr5ML7/KzbUEqGyw
+Date: Wed, 26 Nov 2025 09:32:30 +0000
+Message-ID:
+ <AM0PR06MB10396D06E6F06F6B8AB3CFCBEF7DEA@AM0PR06MB10396.eurprd06.prod.outlook.com>
+References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+ <20251122193341.332324-2-vladimir.oltean@nxp.com>
+ <0faccdb7-0934-4543-9b7f-a655a632fa86@lunn.ch>
+ <20251125214450.qeljlyt3d27zclfr@skbuf>
+ <b4597333-e485-426d-975e-3082895e09f6@lunn.ch>
+ <20251126072638.wqwbhhab3afxvm7x@skbuf>
+In-Reply-To: <20251126072638.wqwbhhab3afxvm7x@skbuf>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=hitachienergy.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM0PR06MB10396:EE_|AM0PR06MB6547:EE_
+x-ms-office365-filtering-correlation-id: 1b74bb21-4f2c-4e17-f675-08de2cceb890
+x-he-o365-outbound: HEO365Out
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?iso-2022-jp?B?MGVuNmo4WXhsem1oZ3RZK1VrTFlmTEdjNm01L1U3VXkxYmZRSGlYUnd4?=
+ =?iso-2022-jp?B?ZmZGb2liUFVvWC8rOWdLWUZFWVVQczUvMEltWWsweE5ZN1B2U2taaTcv?=
+ =?iso-2022-jp?B?ajNsQ2w3RjVPZXdFVU83UUR5OXZGUEUxdWpXOGl6SW9ITVpHSUk5K2VG?=
+ =?iso-2022-jp?B?ckcxQVIrZ1Y4NVdwblN3L0cwQ2xaYjNvYTBWUXdOTWpzMUFqQkJlbzFl?=
+ =?iso-2022-jp?B?eGR1cWdmNlpMbXJHOEY5T2pvWDVqV0xkeWdHNUZ2TmtvWFRtTDNDMzVX?=
+ =?iso-2022-jp?B?b0ZidlJIOHN1K3p5aEllS2g2dGYxWk5EOUt6eHhsb1F0L0lPQWVlZmgr?=
+ =?iso-2022-jp?B?QkFVVkkyZFNqeUkzTE80bG5pamlCS0d1L1d5R0M5by93S2FHWjRCNDh5?=
+ =?iso-2022-jp?B?L0NtNlpXZmY5YlhFdzNzZDVvQ08yOWtCaUM1MnBqMGovaFJKeEVCQ1F4?=
+ =?iso-2022-jp?B?L05PUnNvTUxxT0w2N1NKamxEUkovNTlBY1pxSWQ0ODd5VmwrOEtlKzBI?=
+ =?iso-2022-jp?B?RmN2T29Md2VZdERoTUVsL0YxMHlDSUxraFYvbm9HVElmeU1uRG10Z0xP?=
+ =?iso-2022-jp?B?YStqeGZJY29iY1NDUWpHcXZUUEZ3RE10MlB4UTN1OHVjZmxwMVBKMVU0?=
+ =?iso-2022-jp?B?ZG4vVGNuK0RhZjEyUFlEMG00YlFSM2lyeW81VERocG1VVHZuSmh3ZkRr?=
+ =?iso-2022-jp?B?dnN4MityY1BMVmlzWHd0UUt6clJpK3ZBR3g3K2ZOak1OWGcvRGtoY2tO?=
+ =?iso-2022-jp?B?QUJIaFVyQWxqTlRRVGdrNDNybnNoTTRtMVJaZmw5OURnVGxEU01oajUz?=
+ =?iso-2022-jp?B?ek1Ed0orZjJ5Q3VoQ1BPNitXMkVCcW52TExvU243WUdZdyt6NjdMUlJC?=
+ =?iso-2022-jp?B?MDBBck54K0FSOVFuWlBwVWtaOTR6T3grUlBQc1FLVTEwOFk3Wm50UitV?=
+ =?iso-2022-jp?B?Nm9VNHhxa09yZjNvQkcydktIV29uU3dFZ0Y0UEZ6TmRRb09yclJwclh4?=
+ =?iso-2022-jp?B?N2dsemNjUU5kZVpWbmV1a0Jza1VoYW5rRm1GZ0ZlY2RpWlllZW5TSjJQ?=
+ =?iso-2022-jp?B?RnVXcEdqT0JISDJkUmswNHRsK0ZYa1lza08zb2s5bjNnT1FOdlFCZGlw?=
+ =?iso-2022-jp?B?djcwU1RVNG9oYTZVRSt6Y0hEZXI1MnNMTzRkbHRFMm9WZ0JreXo3c29h?=
+ =?iso-2022-jp?B?OTVZWWx3bWJkUGE2UTZkK2IyeUtOK3ZIczN3cE4vdzRjWU1tNzRNUVpy?=
+ =?iso-2022-jp?B?b0w5SzJ5eU9BUEluRGVuUUJGa0dsdmRQRSs4cExkaTZSYWs4dE52S1VZ?=
+ =?iso-2022-jp?B?M04yMFdUQ1BER1JWbEc5QXRJd1g1ZmtxS3lhN25TS1VWQ1htMmVzOFlV?=
+ =?iso-2022-jp?B?MDdLdlJTR2JBOTlwdW5QRXRGRjdYUWFCUVNrOE96aHRlWVpwNTEzYkpY?=
+ =?iso-2022-jp?B?L2NST00wbjJsczR4Q1JLTFRxcW9KdHVTUmx4Wm1nN2pvUGtqYUhXa3BE?=
+ =?iso-2022-jp?B?citQakltR3BWWnlZTS9zeHpFZVVhdkdoRk5FTG9UT3dNVHBwWVVFWEdt?=
+ =?iso-2022-jp?B?MUNGMFRLWTFqNWc1Z2o4TGNFUjBqbXA1TkYrMERTYld4eEN1bHNHMHA5?=
+ =?iso-2022-jp?B?MmhMVStrNEc0ajhaWnVHamo1OWxsdGg2bWMyMHlTWjd6SFVRNktxbWQ5?=
+ =?iso-2022-jp?B?UVNBV1R2K1ZaOXRIVkk3NGpteS9PcU1sTzNLVmhORGVJWjBnL2xVbGxt?=
+ =?iso-2022-jp?B?K0Y4QVlaMlliWDV3RXNkUWpxZGd6ZFNpdVlJOTQ5MWxSSVJCeENhYUk1?=
+ =?iso-2022-jp?B?RmpNZzFDeHBWZURkcVpLdFI0ME1jNHB2eWR6eDlxUHJ4WFJrSkp1QnhU?=
+ =?iso-2022-jp?B?TmpYOWhzRDRZSzNOOGJqTGYxSS8wTC9iY0Y3QXFoR3kzWkVNRjFqMk5h?=
+ =?iso-2022-jp?B?QTNGRTBRZTFyMHZzQTZMODJ0SGp2dGZiS1prZW1DOTNYSkUzZWhJZ1lZ?=
+ =?iso-2022-jp?B?WTZ6bWhBQnQ2MEJqckJadEFPbXMvWXhKTjhFWDNrVWIxb2lsV1huZk9v?=
+ =?iso-2022-jp?B?VmVJVk1mRGN5MUZpWDFGV0JJOE9Mc1l2RE0yZ0RVdmZtSXZWb2Rha0JR?=
+ =?iso-2022-jp?B?aXdFNi96dHNEYXJWeUltZmZKbm5abDA2b2RlMnVDQ3FScCtFRWg1Y0dt?=
+ =?iso-2022-jp?B?blpldFByaGFNMVJtNzZvM2hsUFM4b0NB?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:ja;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR06MB10396.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-2022-jp?B?c1JieUliU1pFME9mcVQ2T1BVMVZpZkxXRng2M2E4YmhKRUFSSXo4aWoy?=
+ =?iso-2022-jp?B?UnoxcE50SmQ3Y21TRXZrRWZ5QTRLRERxMENYU2NEUU9Sai9ock9TbDZh?=
+ =?iso-2022-jp?B?RFM5MDMwa2p4bTJESTZScGo1OU1vanl0ZTdoOFVCZUlPY2JqbG9wYXBw?=
+ =?iso-2022-jp?B?U0xaaW5mWkJHVWs4ck5QczF4d3c4Qjd5d1lKd2pZMmMvdzgrMi9hOTV3?=
+ =?iso-2022-jp?B?Z1IraHVITUo3MjFwVVZuYkI1R2V4ZktKVVFORUlTcjI2bUFFaHBNdDNW?=
+ =?iso-2022-jp?B?cCsza0NLU1FLM0FZcXduOTEyNTEvcTRNdVhyRk1rVXFLcWtKRGFKRHRH?=
+ =?iso-2022-jp?B?UHIxRDZldFJ6aVAwam44UU9vaERGSGpieXFiRCtncmFmYUFzNW5CVzlD?=
+ =?iso-2022-jp?B?MmVucXB2czRXTU9XNXltbE16clZzSUo1WDk4V01PY2tCcGtsVEx2b0U4?=
+ =?iso-2022-jp?B?Q0N1MHVScHVLVEo4TEdGTlltZitzUnpPTEo4Ukh3WitJNENkWk9wWXFw?=
+ =?iso-2022-jp?B?YklxUXdKeTcrMTl3T3AzSXovd3pEelBkYzNIYmNvTlBtakVQaG9hUFl6?=
+ =?iso-2022-jp?B?Q0Rjc1dIcUFMMXZIUCthWk9ySFYzVkRVdlNWYS8ySmp5QVE3ZzIzaGsz?=
+ =?iso-2022-jp?B?VURqZHk3V0EvNzRtdTFFNG5vaGJoTTkwMHp3QVcvdmdGazRCUTVaZEdG?=
+ =?iso-2022-jp?B?ZnBhUncwclB5ZHh3S3RJS3NrRGMzVE01Vk4yNFhsbm1wM3VUU3RJbDZy?=
+ =?iso-2022-jp?B?eFJhVmxmSW9vOFQwYjQzeklyY3JmODBWbkp3VldpN0ZVV1F4MkhJc3JV?=
+ =?iso-2022-jp?B?Qy9KWnZxL1VRR2NaT0hTNExmUkJYdEpNWU82SC8xamRPQmhQNkxaVE5h?=
+ =?iso-2022-jp?B?bFBhOU53RzRBM1VOK012Uk9WM0wrTWEyOWRiOG1vMVlCMUZqdHozNTZv?=
+ =?iso-2022-jp?B?UCsyQVlMb2xlUTBNTGNMS0dia3JjVTNZc3o0THA0RUgzaTlIL2ZQeVpZ?=
+ =?iso-2022-jp?B?U2ZsWnVyWElZRHJ0R3RFc00xUnZrVUJIdkk0QzkxN0cwazZyZWNQRDE4?=
+ =?iso-2022-jp?B?b0Q0R2lWcktnMVdRSElML1VSN0c1YSt2ZEIxbCtibkxjUDJzZmlUVnNv?=
+ =?iso-2022-jp?B?RndxdUpiNUZMYjlmR1h1WTVoUzdEUHVDMDI2bVQyblpFdzVXRitiREh3?=
+ =?iso-2022-jp?B?ZG0zRk95S2NyV3BHU1plK2R4T1VPNGRMNzl0TThMWVdqMHVra3JpakxM?=
+ =?iso-2022-jp?B?UFoxWm1GL1RzMjdXZU1PZ1ZTMHpTbUZ2YnhmNlN6V3p2OG94aGk0Qzh1?=
+ =?iso-2022-jp?B?OWorcDRSZWNPZHBMVmdrdTZTL2VhRFkyWmN0dXRSR1VSUEJYMTJ4czJp?=
+ =?iso-2022-jp?B?ZXVCK01xT1JYZUJMM0cvbkorWllDZ28wUG9VUCtuY0htOERXclRJYkl5?=
+ =?iso-2022-jp?B?UitjNDBWNDBESFFKOHZlZnBVNllaeU45V09vYklvRGFzaXgyWW9adlg5?=
+ =?iso-2022-jp?B?Z1pWOThuNXFUUi9QSnF1RUJRT0FuSWpvMmtPc0x2cytSWCtTcFJGMDBW?=
+ =?iso-2022-jp?B?cHd2NnkvZndmaGR4cUhIZnY1TFlvSjBYRmVENXZ5UHNsc3djaElVZWJX?=
+ =?iso-2022-jp?B?Z0ZXdGNYaWRVZm9Pei9jTGhNUmJ4SlRkR2tTSjkxUk9pbkY2dEEvQWk0?=
+ =?iso-2022-jp?B?Zkx1V0lxbWlrMTlaZU5yM2lKUFpwSEZya0p6d3NONEdqYTQ0d2EzMStX?=
+ =?iso-2022-jp?B?Vzg0UUY0bkc2TFVscVk1ejVCNThSWHFQZDRZQWpvZENuajZ1UDZ1a0o1?=
+ =?iso-2022-jp?B?ZUdqWVlGS09iZDl5Tm5Fd1NzTGU4aHJTVDdWZy9tSHpmS0hPMlVMYmxV?=
+ =?iso-2022-jp?B?RURoenpRMVRQWmdOekdRUkJON01GcHVVc3dUdThzMVdaTWNnd1pOSjhw?=
+ =?iso-2022-jp?B?VGNFbGlqZHpTenhRUWZSNkxSQ1I1NWxsUEpvTWhCbStrdHRxdFd2MEZl?=
+ =?iso-2022-jp?B?SGhNTnBvaXhtVnp5Q0E0eGppWkpMY1lmN1lFNXZoNFM4S21CTTladVh0?=
+ =?iso-2022-jp?B?NWs0dm1aTDA2ekFaS3RFL2Q0SSszdzNoOE9GY1BwZWpSVGJBNHdwNFFS?=
+ =?iso-2022-jp?B?Qy92WXFuYWFDdHBBSEhzQjFNQzVraTRyRVI2b3U3K2U5a0NZY1VXNmJa?=
+ =?iso-2022-jp?B?MGo3VjBXbDRNUG1BWWJTbmFub05INnllUHFVTk9Mc1pGNC9HRVZIRHEr?=
+ =?iso-2022-jp?B?ckRISHlFU09SZUUwKzA0ZUlVby9FbHJxMEpSUlNXTEpjVUQ1UzdPV09F?=
+ =?iso-2022-jp?B?NTIzMzhNUWhweCtWUkpsTTI2WlduRmVHSnc9PQ==?=
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD7C:EE_|SA3PR10MB7022:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff6dc82d-50e4-4e70-4c28-08de2cce5eb8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|1800799024|82310400026|36860700013|921020|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?1D5BhIzapJHWLri7/CZJWh7esTE9lWGjU3dpWh3vFdJ1CWoN7W3LZkAeTbor?=
- =?us-ascii?Q?JOPbq7blucohuRB8MqmS2SrEg7+rf50TkRRZX/4ZWuZeffxxCSp9aAG8Trt8?=
- =?us-ascii?Q?Jj3ZPwd0AtWXe6mYNOeXcoj090y27bEvhVtwmHmv9asm/Nj35QsLU02lpsI8?=
- =?us-ascii?Q?XoTJ5IuPL17cpUo1YVQbWjPu/HN8xYcWqZVNWPyrCHof7DJQ8cboRu57uG0g?=
- =?us-ascii?Q?LBMeWhamcWaVI0et/z2r1OzlmwTr3RK9TyN11VExP+EEalZO/Dqsgrz3/80b?=
- =?us-ascii?Q?hBmF2LXvLlvQ2xG58+iNu8D4qMfaK9pnT8kQvp0uhvQ6QzvBhrgYJTpSk+PL?=
- =?us-ascii?Q?TVHfgOQitVt3mFHaqFoMbxc++Q/VUSbZoxCqZImQnSaA09t2jH/VjF4ZShNP?=
- =?us-ascii?Q?C3apgqnUju6AoPrJBIxfHWyTSSGXBfNO+aoa6RAOJCpR0zAzwzuHGVtHm+57?=
- =?us-ascii?Q?PJ7XueMTF7LnmEjnlC4cRFWMFtk/tTIYh6tQgijqvGiTIktZBkTIqmw3WNcE?=
- =?us-ascii?Q?7CPhmBvawpmq5wHyhNE6fdoscyPsoS1JRo8dge8D0NSaVAW+/eg2lNysqVs3?=
- =?us-ascii?Q?uwGTlsnk7KKeHhDwsaxQwR2n6eH6RdyqeZQrYUIlqibOvNBKivWTmVBdfHUi?=
- =?us-ascii?Q?gTuy8IgS0KvasBch+Rbf8Ld0g0pdgXcRxRy0f+/d3PcDJofcvRYtlksr6dkm?=
- =?us-ascii?Q?9r8gLZNcpWZvSV8XSr0ePDBTqyFcv5Ag3lNrJeA/PSY1l7QFpz1YzVpg/xp+?=
- =?us-ascii?Q?HSTdaAb7sc1GFfG5/kS+g6wV2/hGoUx6ZUKInS5TK9T5Lr8i+8vd727hz/QH?=
- =?us-ascii?Q?Lw9BaggKQ9NnwOAH/4Vm37BiwC+D1ewmWiCLY233v8vBLm0ZP0wB43SOcRzK?=
- =?us-ascii?Q?sK6YU4feaOWse0KFDYpKixjJqTjHTAyxcAfqC1eEtA7wlcGIMzwuFGpzg1Ml?=
- =?us-ascii?Q?aWEfFrB6sXcLVgd+8cG+979V3nletavLRgdw6Ci9zL9Br3QsjBaeCv0Tjtwj?=
- =?us-ascii?Q?RhSILzXNLMe/Y7BOlj+pfdNYmkg1Hj0PodG21p6V3xfxDkK0+X/sYgYBBmAH?=
- =?us-ascii?Q?OW0vYkcqY1PBr9xGrc3wuefwWpokKWK0+V2+RftjrJ1o2/qXym/iwTOzKWp4?=
- =?us-ascii?Q?QNyPNQUCwNXWQnVtyhSQm4wjo0gQkzIlml59jpVjU5iBaLtLVKHHPEXyVxw4?=
- =?us-ascii?Q?dYGSucRxRYk6qFqRK8zLy11lA04W1g5EQHdlm37/dmjRqJ5B7O6TzkYO3yiH?=
- =?us-ascii?Q?ajEIYouBfWGOk8NVb/d0+vQPNFmdyrRmy22M3DV8b1uQ9ogjssncE2y5RZH1?=
- =?us-ascii?Q?/Y4d7GBQRYhamFys50erCf3Xo08suAG2d7JHw2xTJW3KU/tcrG6Ygu3vcPwK?=
- =?us-ascii?Q?5AaPrXhYh51K/LGkdXfrZVifUqs8jj7I7qo9FMfNw52tCePR1CJ3P/rU1VZi?=
- =?us-ascii?Q?LoElEYEqse43MVCpAzp0SlZgc3FDEauJeGWbm6fmcDAWiTM6iZyHTq0736ZY?=
- =?us-ascii?Q?nIxhK7+r1KYeRn/BYrBapk6v/c7G0jIgTW4t3D5t0ZpCf5dK+1VsglEsrLuV?=
- =?us-ascii?Q?RB0w/sMCgGf+Pqwe7jHUwT3+iGMiNol2ZYo7KYTk?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(82310400026)(36860700013)(921020)(13003099007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 09:29:59.6273
+X-OriginatorOrg: hitachienergy.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR06MB10396.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b74bb21-4f2c-4e17-f675-08de2cceb890
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Nov 2025 09:32:30.4153
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff6dc82d-50e4-4e70-4c28-08de2cce5eb8
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH1PEPF0000AD7C.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR10MB7022
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7831e6d9-dc6c-4cd1-9ec6-1dc2b4133195
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Mbx1ine+hfUakvsiyE+yNUfXod4LhLph19F6wHbjj0cxEiZzOz5gwXZAiciFAWjvTTRTVqf8SPT4ppt4o3v2jbPHiPvwWOQIST+TCPPENRc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR06MB6547
 
-Move register name constraints and reg description lists to appropriate
-compatibility sections to ensure correct register names are used with each
-compatible value. The j721e-integ registers are specific to TI SoCs and not
-required for other compatibles.
+Hi Vladimir,
+=20
+> On Tue, Nov 25, 2025 at 11:33:09PM +0100, Andrew Lunn wrote:
+> > > Yeah, although as things currently stand, I'd say that is the lesser
+> > > of problems. The only user (mv88e6xxx) does something strange: it
+> > > says it wants to configure the TX amplitude of SerDes ports, but
+> > > instead follows the phy-handle and applies the amplitude specified in=
+ that
+> node.
+> > >
+> > > I tried to mentally follow how things would work in 2 cases:
+> > > 1. PHY referenced by phy-handle is internal, then by definition it's =
+not
+> > >    a SerDes port.
+> > > 2. PHY referenced by phy-handle is external, then the mv88e6xxx drive=
+r
+> > >    looks at what is essentially a device tree description of the PHY'=
+s
+> > >    TX, and applies that as a mirror image to the local SerDes' TX.
+> > >
+> > > I think the logic is used in mv88e6xxx through case #2, i.e. we
+> > > externalize the mv88e6xxx SerDes electrical properties to an
+> > > unrelated OF node, the connected Ethernet PHY.
+> >
+> > My understanding of the code is the same, #2. Although i would
+> > probably not say it is an unrelated node. I expect the PHY is on the
+> > other end of the SERDES link which is having the TX amplitudes set.
+> > This clearly will not work if there is an SFP cage on the other end,
+> > but it does for an SGMII PHY.
+>=20
+> It is unrelated in the sense that the SGMII PHY is a different kernel obj=
+ect, and
+> the mv88e6xxx is polluting its OF node with properties which it then inte=
+rprets as
+> its own, when the PHY driver may have wanted to configure its SGMII TX
+> amplitude too, via those same generic properties.
+>=20
+> > I guess this code is from before the time Russell converted the
+> > mv88e6xxx SERDES code into PCS drivers. The register being set is
+> > within the PCS register set.  The mv88e6xxx also does not make use of
+> > generic phys to represent the SERDES part of the PCS. So there is no
+> > phys phandle to follow since there is no phy.
+>=20
+> In my view, the phy-common-props.yaml are supposed to be applicable to
+> either:
+> (1) a network PHY with SerDes host-side connection (I suppose the media
+>     side electrical properties would be covered by Maxime's phy_port
+>     work - Maxime, please confirm).
+> (2) a phylink_pcs with SerDes registers within the same register set
+> (3) a generic PHY
+>=20
+> My patch 8/9 (net: phy: air_en8811h: deprecate "airoha,pnswap-rx" and
+> "airoha,pnswap-tx") is an example of case (1) for polarities. Also, for e=
+xample,
+> at least Aquantia Gen3 PHYs (AQR111, AQR112) have a (not very well
+> documented) "SerDes Lane 0 Amplitude" field in the PHY XS Receive (XAUI T=
+X)
+> Reserved Vendor Provisioning 4 register (address 4.E413).
+>=20
+> My patch 7/9 (net: pcs: xpcs: allow lane polarity inversion) is an exampl=
+e of case
+> (2).
+>=20
+> I haven't submitted an example of case (3) yet, but the Lynx PCS and Lynx=
+ SerDes
+> would fall into that category. The PCS would be free of describing electr=
+ical
+> properties, and those would go to the generic PHY (SerDes).
+>=20
+> All I'm trying to say is that we're missing an OF node to describe mv88e6=
+xxx PCS
+> electrical properties, because otherwise, it collides with case (1). My n=
+ote
+> regarding "phys" was just a guess that the "phy-handle"
+> may have been mistaken for the port's SerDes PHY. Although there is a cha=
+nce
+> Holger knew what he was doing. In any case, I think we need to sort this =
+one
+> way or another, leaving the phy-handle logic a discouraged fallback path.
+>=20
 
-Add DSC register descriptions to align bindings with hardware capabilities.
-Structure the reg and reg-names constraints as lists according to
-compatibles using oneOf schema construct.
+I was checking our use case, and it is a bit special. We have the port in q=
+uestion
+directly connected to a FPGA which has also have a SerDes interface. We are=
+ then
+configuring a fixed link to the FPGA without a phy in between so there is a=
+lso no
+phy handle in our case. But in general, the board in question is now in mai=
+ntenance
+and there will be no kernel update anymore in the future. Therefore, it is =
+fine with
+me if you remove or rework the code in question completely. Hope that helps=
+.
 
-Fixes: 7169d082e7e6 ("dt-bindings: drm/bridge: MHDP8546 bridge binding changes for HDCP")
-Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
----
+Best regards
+Holger
 
-Links to some discussions pointing to need for a fixes patch: 
-https://lore.kernel.org/all/20250903220312.GA2903503-robh@kernel.org/
-https://lore.kernel.org/all/d2367789-6b54-4fc2-bb7c-609c0fe084d3@ti.com/
 
-Link to v3:
-<https://lore.kernel.org/all/20251121123437.860390-1-h-shenoy@ti.com/>
 
-Changelog v3 --> v4:
-- Update top level constraints and commit message.
-- Update logs with processed schema- https://gist.github.com/h-shenoy/a422f7278859cd95447e674963caabd9
-
-Link to v2:
-<https://lore.kernel.org/all/20251119122447.514729-1-h-shenoy@ti.com/>
-
-Changelog v2 --> v3:
--Add the reg description list and reg-name list in top level constraints
-using oneOf for either of compatible.
-Logs after testing some cases: https://gist.github.com/h-shenoy/a422f7278859cd95447e674963caabd9
-
-Link to v1:
-<https://lore.kernel.org/all/20251107131535.1841393-1-h-shenoy@ti.com/>
-
-Changelog v1 --> v2:
--Update the reg description list for each compatible and add register space
-for dsc to make the bindings reflect what hardware supports although 
-the driver doesn't support dsc yet.
-
-Note: j721e-integ are not optional registers for ti-compatible.
-
- .../display/bridge/cdns,mhdp8546.yaml         | 85 ++++++++++++++-----
- 1 file changed, 66 insertions(+), 19 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-index c2b369456e4e2..4cec0f4c22a2b 100644
---- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-@@ -17,23 +17,45 @@ properties:
-       - ti,j721e-mhdp8546
- 
-   reg:
--    minItems: 1
--    items:
--      - description:
--          Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
--          The AUX and PMA registers are not part of this range, they are instead
--          included in the associated PHY.
--      - description:
--          Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
--      - description:
--          Register block of mhdptx sapb registers.
-+    oneOf:
-+      - items:
-+          - description:
-+              Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
-+              The AUX and PMA registers are not part of this range, they are instead
-+              included in the associated PHY.
-+          - description:
-+              Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
-+          - description:
-+              Register block of mhdptx sapb registers.
-+          - description:
-+              Register block for mhdptx DSC encoder registers.
-+        minItems: 2
-+
-+      - items:
-+          - description:
-+              Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
-+              The AUX and PMA registers are not part of this range, they are instead
-+              included in the associated PHY.
-+          - description:
-+              Register block of mhdptx sapb registers.
-+          - description:
-+              Register block for mhdptx DSC encoder registers.
-+        minItems: 1
- 
-   reg-names:
--    minItems: 1
--    items:
--      - const: mhdptx
--      - const: j721e-intg
--      - const: mhdptx-sapb
-+    oneOf:
-+      - items:
-+          - const: mhdptx
-+          - const: j721e-intg
-+          - const: mhdptx-sapb
-+          - const: dsc
-+        minItems: 2
-+
-+      - items:
-+          - const: mhdptx
-+          - const: mhdptx-sapb
-+          - const: dsc
-+        minItems: 1
- 
-   clocks:
-     maxItems: 1
-@@ -100,18 +122,43 @@ allOf:
-       properties:
-         reg:
-           minItems: 2
--          maxItems: 3
-+          items:
-+            - description:
-+                Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
-+                The AUX and PMA registers are not part of this range, they are instead
-+                included in the associated PHY.
-+            - description:
-+                Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
-+            - description:
-+                Register block of mhdptx sapb registers.
-+            - description:
-+                Register block for mhdptx DSC encoder registers.
-         reg-names:
-           minItems: 2
--          maxItems: 3
-+          items:
-+            - const: mhdptx
-+            - const: j721e-intg
-+            - const: mhdptx-sapb
-+            - const: dsc
-     else:
-       properties:
-         reg:
-           minItems: 1
--          maxItems: 2
-+          items:
-+            - description:
-+                Register block of mhdptx apb registers up to PHY mapped area (AUX_CONFIG_P).
-+                The AUX and PMA registers are not part of this range, they are instead
-+                included in the associated PHY.
-+            - description:
-+                Register block of mhdptx sapb registers.
-+            - description:
-+                Register block for mhdptx DSC encoder registers.
-         reg-names:
-           minItems: 1
--          maxItems: 2
-+          items:
-+            - const: mhdptx
-+            - const: mhdptx-sapb
-+            - const: dsc
- 
- required:
-   - compatible
--- 
-2.34.1
 
 
