@@ -1,63 +1,66 @@
-Return-Path: <devicetree+bounces-242543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12649C8B804
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 19:58:47 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47CFAC8B80B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 19:59:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D2793B9175
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:58:22 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BB2F7345D5B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:58:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73AD33EAE9;
-	Wed, 26 Nov 2025 18:57:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3FEA33DEF7;
+	Wed, 26 Nov 2025 18:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SFP2/FOM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UsP3kyz8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBEB4312836;
-	Wed, 26 Nov 2025 18:57:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8152433D6C3;
+	Wed, 26 Nov 2025 18:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764183463; cv=none; b=lYWYr0UigMCSxbL8rsNCnz6Kjzj/4hYqaTCFxpFpTAr8J/L0KIzczFJOkei8K6nol5M5FB1Dvhoe8fSbpFDk4jeHOM2q7FFRGnGCbGA0XJUop4iNFkCEppB+QRpuVz+3TdiMaR/dYGctaFxhUjQgQBx99zg8MmFI3bTyOKwqMag=
+	t=1764183512; cv=none; b=Sxo5PP5Z7GBvCudB4SI1urKNX/pyAITped11/GH/Xpz+S3oXhzZx/rS07bloxISokypgTeYp7mqPls5DJkgRfr+W4C3S9zG3nbfyGpjrm4armDHYvkNKx9vUHIn0FcUVmWqV5JqMfmhpFPd51NV2RwH202t3lFIqNglrDjZ0wKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764183463; c=relaxed/simple;
-	bh=5WZhiEaQvVblhY9cHM2bDr2i/VGrZtzzWJLLnZPv9/U=;
+	s=arc-20240116; t=1764183512; c=relaxed/simple;
+	bh=fNHZoi3mx99Wn7G7/rAvgQsYmGktpdWgfjY59sxmr8Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rIqFEiRhdIergjneaTTykuwYBj2WzGFaBX8TiEjNSdJUGzcz9VGuQIwMLubHVCH1pZ2oSuuZeIA94ci9eaw9Z3Uady/gOCer1uCkTNHAyG8Lyx4er1YJgEYO+cdDi2jf6AiTuRCaFVh9xGF/MVR+Q8LnLJF1Pf/P9rJa4b6s0Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SFP2/FOM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B269C4CEF7;
-	Wed, 26 Nov 2025 18:57:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XzhjJoH+l36FUzIuv5qXegvfLXV4WN9K6AhhDgpfGWdu+fI700I7qagvUnjPp220EzT7sJFu6cHKFtRBFCfilVQqVBv4d2PN5SOXqKQpHv1HsjAW7LeWUS8yj45AtG5lsgM0/GubMvhR0fHIRmIFrRdS0prw9wMZSO1E/qX7WvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UsP3kyz8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D6E8C4CEF7;
+	Wed, 26 Nov 2025 18:58:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764183463;
-	bh=5WZhiEaQvVblhY9cHM2bDr2i/VGrZtzzWJLLnZPv9/U=;
+	s=k20201202; t=1764183512;
+	bh=fNHZoi3mx99Wn7G7/rAvgQsYmGktpdWgfjY59sxmr8Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SFP2/FOM2zXTrZN2QsYPPCPXEpFVOSFXEAZGmBRZ61FBruYQAQezRO2q3/C8mqgEp
-	 UsmodebIZPM4M50YGMjgQpYsALxbwTOIDGs7D8Tf631RGMUUE48D9SSlRITcFqm4lx
-	 SVNxcMsAhN16tIapEs4jJQsIz587hM82BNqZOdtyQpSv0fxx+4yQe/y5Tz4ChxkhXg
-	 70SBH1LyAPX7iD2SDtkc7RoMXmvX6uH2FipmM/JdEDsWrxHZb5Oun1M49hSPZTkbcz
-	 z1D5gRCMvzAKFYVTfz4xVp2vy0SMTyNu283EW2Xs84tXTSEu5vQvsGIXZbUS9mYqS6
-	 DHWwoc69+l7jA==
-Date: Wed, 26 Nov 2025 18:57:38 +0000
+	b=UsP3kyz87mvZsG4sYztZM8Tz3wq4UGTQoz4pVkH4s+7810XALSScJ16GAIHXc0mNj
+	 16DJbmwRdE0sqgYiO5+cHtBwx5HGi73F01QfgOrmURsMySmM9oppxjzhTDtKxf/MZ8
+	 9gB26BjYmzsvk4x/umgXoHlte/yt9BRG89AHpEA4Ki9g0yUnYCCZa43B9z9AndS5tE
+	 /JyKPSAMA9EPkZep/1x2WoQGRELdkUONvc/yUq3ov5BC6Ve9ys/tnPcrAXpjZKLX6k
+	 qkyqPOG1Bj8AUVY6E9c+Ujkt4rjpwOOi+ra2MRYFkrjYP96LO3VZWXWSxmUHFGD0nN
+	 1wz54ZS9muJwg==
+Date: Wed, 26 Nov 2025 18:58:25 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: John Madieu <john.madieu.xa@bp.renesas.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: usb: aspeed,usb-vhub: Add ast2700
- support
-Message-ID: <20251126-protegee-ragged-067de2fd6488@spud>
-References: <20251126-upstream_vhub-v1-0-910709937ee0@aspeedtech.com>
- <20251126-upstream_vhub-v1-1-910709937ee0@aspeedtech.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 4/9] dt-bindings: thermal: r9a09g047-tsu: document
+ RZ/T2H and RZ/N2H
+Message-ID: <20251126-acutely-unluckily-41b716fc91d1@spud>
+References: <20251126130356.2768625-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20251126130356.2768625-5-cosmin-gabriel.tanislav.xa@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,86 +68,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uyAOyONr3gMni1/q"
+	protocol="application/pgp-signature"; boundary="iG1c6wjSk6CPN4Bw"
 Content-Disposition: inline
-In-Reply-To: <20251126-upstream_vhub-v1-1-910709937ee0@aspeedtech.com>
+In-Reply-To: <20251126130356.2768625-5-cosmin-gabriel.tanislav.xa@renesas.com>
 
 
---uyAOyONr3gMni1/q
+--iG1c6wjSk6CPN4Bw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 26, 2025 at 04:26:30PM +0800, Ryan Chen wrote:
-> Add the "aspeed,ast2700-usb-vhub" compatible. The ast2700 vhub
-> controller requires an reset, so make the "resets" property
-> mandatory for this compatible to reflect the hardware requirement.
+On Wed, Nov 26, 2025 at 03:03:51PM +0200, Cosmin Tanislav wrote:
+> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs include a
+> Temperature Sensor Unit (TSU). The device provides real-time temperature
+> measurements for thermal management, utilizing a single dedicated
+> channel for temperature sensing.
 >=20
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
->  Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml | 14 ++++++++=
-++++++
->  1 file changed, 14 insertions(+)
+> Compared to the previously supported RZ/G3E, the RZ/T2H and RZ/N2H SoCs
+> do not have a reset for the TSU peripheral, and the OTP data is exposed
+> via ARM SMC, as opposed to a system register.
 >=20
-> diff --git a/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml b=
-/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
-> index 7f22f9c031b2..c9ebb6e004d1 100644
-> --- a/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
-> +++ b/Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
-> @@ -26,6 +26,7 @@ properties:
->        - aspeed,ast2400-usb-vhub
->        - aspeed,ast2500-usb-vhub
->        - aspeed,ast2600-usb-vhub
-> +      - aspeed,ast2700-usb-vhub
-> =20
->    reg:
->      maxItems: 1
-> @@ -33,6 +34,9 @@ properties:
->    clocks:
->      maxItems: 1
-> =20
-> +  resets:
-> +    maxItems: 1
-> +
->    interrupts:
->      maxItems: 1
-> =20
-> @@ -107,6 +111,16 @@ required:
->    - aspeed,vhub-downstream-ports
->    - aspeed,vhub-generic-endpoints
-> =20
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: aspeed,ast2700-usb-vhub
-> +
-> +then:
-> +  required:
-> +    - resets
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
-Do other aspeed platforms have resets? If not, please add an else here
-to block its use on other platforms.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-> +
->  additionalProperties: false
-> =20
->  examples:
->=20
-> --=20
-> 2.34.1
->=20
-
---uyAOyONr3gMni1/q
+--iG1c6wjSk6CPN4Bw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSdNogAKCRB4tDGHoIJi
-0vfcAP4+UCM4+9oWQTzC169bxxTWFttidmoFlgVoPjRLljlb4wEA6tOi+qKVBja+
-SvHDIXAz6NXJyWJc8UKtdaXJy+N1sw0=
-=wiN/
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSdN0QAKCRB4tDGHoIJi
+0n4cAQDJ90TY5p/PjkuhtUGt8KJWFDyblhezANv6slZ5ktZePgEAuEprRr31E0eW
+gHcKdaUz/JSHEe2kMpE5njMf5zgBfQk=
+=9Kbd
 -----END PGP SIGNATURE-----
 
---uyAOyONr3gMni1/q--
+--iG1c6wjSk6CPN4Bw--
 
