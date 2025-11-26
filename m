@@ -1,138 +1,113 @@
-Return-Path: <devicetree+bounces-242195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CDDFC87CE3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 03:16:03 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9A85C87CB0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 03:13:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CF2603553CB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 02:15:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 65CE535431B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 02:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70AF30B50A;
-	Wed, 26 Nov 2025 02:14:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B00C3090F1;
+	Wed, 26 Nov 2025 02:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Hr6YCgnG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WuwSWtCg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973179.qiye.163.com (mail-m1973179.qiye.163.com [220.197.31.79])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D21130B50D;
-	Wed, 26 Nov 2025 02:14:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.79
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC713081A2;
+	Wed, 26 Nov 2025 02:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764123249; cv=none; b=V7jkXilHaHNPiRLusvbI0EshFsKfa3qKIOlLILmP304Bi8j3jNS7BWFLkuMPJZbQs0oevCikz7bKSGqvem81Fo/lKTYlPd6n3tibm91otvpW8owRA5urXJYt2frFZWtwbfdUDUXzOEgBQ+4eMaoC4sVSngep0ncDgobnTy1mgkQ=
+	t=1764123196; cv=none; b=ad45G3dMywH9bX5BvM0uvxwM2lhID8ttsTbTJVWhgZ1JWNig3R+AkZc4JuKhSntw+8/IOOJl3mNDC0pg31SPL0CeGGvdRfRb2KwKQbHFtyrEfFLCMpsCbCiUGdHv0JS0+FDmnBxxt9mCh/p0apTrr0SvGhCXR9ERCK2/mZe8DP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764123249; c=relaxed/simple;
-	bh=golNzLLSjS29iU21CW5F7u8ey476VWzR4hUCaqwHi5E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dq1t3YfT70ZNp4VZeI79Z8FY8A1MNJw6ylgTOOuT5Fg/E+d3VDI5PU53MLOqMVVKBKE3vNq6T7EglQf78YlXk3CZRsGV1jHGv3o2D7a+LjNUHr/xh1DkH58IY/om+khYBQC2KnoN/FH+LnA42jEQ7PYnfa1bktQz26s0P8jvCIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Hr6YCgnG; arc=none smtp.client-ip=220.197.31.79
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [127.0.0.1] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2ae76c0ea;
-	Wed, 26 Nov 2025 10:14:00 +0800 (GMT+08:00)
-Message-ID: <db9541d3-bc5c-4907-9dc5-965810ef92d9@rock-chips.com>
-Date: Wed, 26 Nov 2025 10:13:58 +0800
+	s=arc-20240116; t=1764123196; c=relaxed/simple;
+	bh=l33CIgyhKLpLw98GU9xdxzTlqqZv4JzOJGO4WqkP2vM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kmk2cIL6D0U3QuyV7aMAxZTe4FM5kRhj1n7YYW2MFtFkhE4HwqcT8S2cjLKVgsxEqw/DYbxuwQ+5HHQviOeA4S09KfLLs04llVOeDQVFheSetFbcxAsqbAXd59+vaCjof7EG2rTnffYv7+qQ0rcJupfnd7aQIxm/XaLKM3qMiKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WuwSWtCg; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764123194; x=1795659194;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=l33CIgyhKLpLw98GU9xdxzTlqqZv4JzOJGO4WqkP2vM=;
+  b=WuwSWtCgDY4S6LS1DeETc2In1PEyqtIzUB1S4HlbYGjTS6cqkcY/aLty
+   kIS7ugCKX1LhpyA1e52RNYC37/seFHWynOzLvsYPZRUkPcwaTJxaounzY
+   SlsPUtVLw9YVecfz7fw7I+JZ6P6lk7ylUBpt1YS+87BgdqjG6kKYu8vlP
+   /7S//gofj9N/L55Xmi4PanuzpHn0vksb1du8G0IfFoVznH+NTy9shx+bl
+   713BdYUGsnbSJGe65iHzJ6wPh8m6Tovt6gEGEIDE00D8A6xeqmcKSiktV
+   e3KruyD1P6c2AFTW96D4jNCr8XEpPmD8RFzlZngN7IN0f8CNUaB47ALaC
+   w==;
+X-CSE-ConnectionGUID: GTcJl0stTR6Sa5d0yNlsNg==
+X-CSE-MsgGUID: xFhHPKt8TQmnhyhpUe/hMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="66040343"
+X-IronPort-AV: E=Sophos;i="6.20,227,1758610800"; 
+   d="scan'208";a="66040343"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 18:13:13 -0800
+X-CSE-ConnectionGUID: 3F08XkzjQ22fv3h6BukwKg==
+X-CSE-MsgGUID: 9txGjdGPR22BjCj9if3Etw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,227,1758610800"; 
+   d="scan'208";a="192696992"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 18:13:13 -0800
+Date: Tue, 25 Nov 2025 18:20:10 -0800
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>,
+	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ricardo Neri <ricardo.neri@intel.com>
+Subject: Re: [PATCH v7 1/9] x86/acpi: Add functions to setup and access the
+ wakeup mailbox
+Message-ID: <20251126022010.GA27627@ranerica-svr.sc.intel.com>
+References: <20251117-rneri-wakeup-mailbox-v7-0-4a8b82ab7c2c@linux.intel.com>
+ <20251117-rneri-wakeup-mailbox-v7-1-4a8b82ab7c2c@linux.intel.com>
+ <CAJZ5v0gd_6b6s4aEpSvdfb4-+AULTWkqQqM3OE1eg5XzYaxQFQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 03/11] drm/bridge: Implement generic USB Type-C DP HPD
- bridge
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20251120022343.250-1-kernel@airkyi.com>
- <20251120022343.250-4-kernel@airkyi.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20251120022343.250-4-kernel@airkyi.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9abdf0668a03abkunm24c9a3ad56c93f
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ09JTFZLGEJDTxkZSU1DSElWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=Hr6YCgnGlX5GNA/vTj8sVjGPdiIhmMPdJQnyYtxbw3hg6lfKvInidLdPWbW1zoY9j4+tpGlmkTBW1hQjwb4Z9gxpa0ZXKE9DBTBWfsQ5ypJKu7ENzb9BI6KSsu6oCgf8VWCri84W3Qg1rBhVR7tf4N1nKB/LQqKafx0ZEpr82tE=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=4tyc09Ao125oOeQ1/2CjusJ4Ro4JNAsugQFnuIaNAdI=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJZ5v0gd_6b6s4aEpSvdfb4-+AULTWkqQqM3OE1eg5XzYaxQFQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 
-Hi Heikki,
-
-On 11/20/2025 10:23 AM, Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+On Mon, Nov 24, 2025 at 05:01:11PM +0100, Rafael J. Wysocki wrote:
+> On Mon, Nov 17, 2025 at 6:04 PM Ricardo Neri
+> <ricardo.neri-calderon@linux.intel.com> wrote:
+> >
+> > Systems that describe hardware using DeviceTree graphs may enumerate and
+> > implement the wakeup mailbox as defined in the ACPI specification but do
+> > not otherwise depend on ACPI. Expose functions to setup and access the
+> > location of the wakeup mailbox from outside ACPI code.
+> >
+> > The function acpi_setup_mp_wakeup_mailbox() stores the physical address of
+> > the mailbox and updates the wakeup_secondary_cpu_64() APIC callback.
+> >
+> > The function acpi_madt_multiproc_wakeup_mailbox() returns a pointer to the
+> > mailbox.
+> >
+> > Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
 > 
+> Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
 
-[...]
-
-> 
->  drivers/gpu/drm/bridge/Kconfig                | 10 ++++
->  drivers/gpu/drm/bridge/Makefile               |  1 +
->  .../gpu/drm/bridge/aux-hpd-typec-dp-bridge.c  | 50 +++++++++++++++++++
->  3 files changed, 61 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
-> 
-> +
-> +static int drm_typec_bus_event(struct notifier_block *nb,
-> +			       unsigned long action, void *data)
-> +{
-> +	struct typec_altmode *alt = (struct typec_altmode *)data;
-> +
-> +	if (action != TYPEC_ALTMODE_REGISTERED)
-> +		goto done;
-> +
-> +	if (is_typec_partner(&alt->dev) || alt->svid != USB_TYPEC_DP_SID)
-> +		goto done;
-
-It should be "is_typec_partner(alt->dev.parent)".
-Sorry, I didn't notice this earlier. I will fix this in v11.
-
-> +
-> +	/*
-> +	 * alt->dev.parent->parent : USB-C controller device
-> +	 * alt->dev.parent         : USB-C connector device
-> +	 */
-> +	drm_dp_hpd_bridge_register(alt->dev.parent->parent,
-> +				   to_of_node(alt->dev.parent->fwnode));
-> +
-> +done:
-> +	return NOTIFY_OK;
-> +}
-> +
-
--- 
-Best, 
-Chaoyi
+Thanks Rafael!
 
