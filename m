@@ -1,83 +1,48 @@
-Return-Path: <devicetree+bounces-242557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 699D6C8BD92
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:27:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26BB3C8BDE0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:32:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08D233A8C9A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:27:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D461B3AB00C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBAD340D9E;
-	Wed, 26 Nov 2025 20:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8693B34165F;
+	Wed, 26 Nov 2025 20:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="s6AgJ+k+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jx/Kgk+5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14E5313536
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 20:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F58034105A;
+	Wed, 26 Nov 2025 20:32:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764188840; cv=none; b=nncmZuyYCTyt7EbbUQDjfcNF9CQAZkVXnxvQuPu2NukwpaKcJ7lmDe4WA3BFmLMmBnrJv4WVeNF2LjhdGLe+dijOUwnnTppXrSYu7SkxM41rCjCm9PbG44k0boiitBuQko7aQIMc9gVoFHB1+6b6lTNBdkEf1vl9dv8eDvc1O70=
+	t=1764189130; cv=none; b=DgjW7ixv7a4Q5GlyzesGu5hmUCt4sbBCtWJMIO2FBPeAH6PuYAVpBRaAfRZvubhYFtcSu7LPKXRfvPAOIbWQLweTIL0lypOY52OYi5RS+Okdw4cM0Yo5+SPqNd2WfzBLPCkg4GWLkQS8BSUEDiXYaLy2+VWI4Zyy6tVqv+8HpUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764188840; c=relaxed/simple;
-	bh=BUKUk8XbTFbg4rBCIooaYc9015FQ2fbX5halOJx9HyI=;
+	s=arc-20240116; t=1764189130; c=relaxed/simple;
+	bh=khfCF391HTb9ZHzqQ+60+gHc4LAP9io5EVEWBl7iijM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OJoWxeVQp/hRXZ//3dLldWhVN9b4CeG8Sz0DInoZ/AKPs3Z9F3WVyoT65G5ovxcngokEKy70Dhre/9WWRhiPz8bEYfWXss3I2GN3Lz+9Op8AQSvgrRcCOCIuUBJxKXQerkOPN3Ks9HXX5aB9YYLSph8YH1kZXimgERWHuefgrCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=s6AgJ+k+; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-297dd95ffe4so1458715ad.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 12:27:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1764188838; x=1764793638; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A5r3za4Hd/VcLzmDqeRuo9GjhPbaMT68/WQ/4wPSlvg=;
-        b=s6AgJ+k+S05B8VA8DFZWOL2d5TbrYxk6tma4DHRIF0l5l3jtDLGUrbZxPZmH09adwO
-         cg8HXhneoJdVQ2K1tIYT2RJsM0oEkBUC+MNOWOY4XG2pr+GPN1zaR1DiFJ3oSYuoJR6z
-         AqdGwjk0rQJs2ePWrolt5B+OIb9egoFhaZ9AZvt647nS5HsTxdmZnYWOoGythSyIDLVS
-         1z0F+LDYeOR3wrfXDD5ZHnaA/Ozhn0ojJ/OU3dlzmeQJ+kC5puBYCT8H/H5Qyf5d1fAb
-         6MTuupBGvBHCKxHx5eijCK+6sS6rLGq40qfzsdQrrK+lV75TU60t6RJxuJcsBeQUmUOh
-         XBCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764188838; x=1764793638;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A5r3za4Hd/VcLzmDqeRuo9GjhPbaMT68/WQ/4wPSlvg=;
-        b=Wy5gReVRD8xYVSt+N6Jew9rGM4qNRTiIlFy9emkQDcSWeqIMcae921dtWfZEKZLPMp
-         7miku0gigQaUglXHGaKfSsKMRQipNfiOHg/jTDaAbXMLSYbofSZwb863xEuLiA8EgMWC
-         J3PA8UprQ+RaJ7WwdgXGAaAWTPLx104pKeIrTTqbSv266lG726k9rPgCesYH1FafZkTJ
-         SitzGJ6m4XVgoIpNtm0WCvLZEPIVUk8Wnh1eFH+uB670AElniIJJcUJGKPFlJDc4RtCR
-         DXUnQiuLg6s+VSXacswjRzxfIACDP7pTurtXY6J8J+7uUJOmaLwVv/CKJzZwiSVwHjLv
-         MGeg==
-X-Forwarded-Encrypted: i=1; AJvYcCXxYhFvqHVW4soZt35b+GKOfXXszepfq8XCANfNC4oOVoFI/JVyVvNrdlQkI6Us4F3JF3DccAp4b/kl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzXFlIy+lBz12+zydfUkcBNTrziWEQbEdf9zYZw8nr0XgbFl46
-	v8cS1ya6kJT2twFgoUonRaa30Qh7KKCV/9GNcY+mULaNMHW0S+5EgnbJWftfsvS9XA==
-X-Gm-Gg: ASbGncuGZuQDWSLA8k+g/RK7GbjBpvLYLcL+4wy4M9ye7V8SOm4s7KjNBsGDNzc27Di
-	22aYf6DPhB/AKqJGWEkZ55whvYJZK3xEuKoSZ/6JKuPBZRswku1JpdHWGf+gbXwLLuqlGXLxpos
-	M4VOlHL3dKJ61Wd10y4+6rixYEA9rMMb9wbSi3PoHK88yDAtjglYqa9099FmxC32FhIl5ldCaTm
-	Ji1dxPqFJj37DX1Q+/UoNWuBSE8mbN7SZKSObFzKz0QUKAn7ouSC4mIDxHAQkLXI1TZzDcu871W
-	kY1wm0Xw9dVKRO+RNNHLCM0Rv5RS/ufai6gqsU+OJCbQWqEzMXdwOUO1dlKAzV7W4lPGkXbdT3u
-	jKvbf5aMrw1kNDJhoUC5qYv8r0zuFXNIRXBGa0mb85ffmnamNh5KEl9cknb/baydvXsxAeSiLF3
-	+Tru7kMjiBXqoUyJ+I2m67HTUIGors/y8CVSlVPBDaYtL3gS7fsDfxhPVxT3B5s5j6WA2TxzL+o
-	aiG6Z+kwcNr1A==
-X-Google-Smtp-Source: AGHT+IGs7j+rISQURjI4KHJiRtxo72A6EAIFd8qUy73nZRmTVJ6HUMi3Fk8FYXZXKGlB3rSWFkwohg==
-X-Received: by 2002:a17:902:d58c:b0:294:fcae:826 with SMTP id d9443c01a7336-29bab2fa50bmr92368305ad.59.1764188837611;
-        Wed, 26 Nov 2025 12:27:17 -0800 (PST)
-Received: from ?IPV6:2a00:79e0:2e7c:8:c116:b1c9:632d:a902? ([2a00:79e0:2e7c:8:c116:b1c9:632d:a902])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b274752sm205771575ad.75.2025.11.26.12.27.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Nov 2025 12:27:17 -0800 (PST)
-Message-ID: <1be015d7-201b-4e3a-a71a-130162205e5e@google.com>
-Date: Wed, 26 Nov 2025 12:27:15 -0800
+	 In-Reply-To:Content-Type; b=l5qvAg5+KnwHSwBJLWLDr0Wlg7rjMD3nbfUIuHiE/9m8f6Dl3pjbE8PnKDfi0fYTkWoqFAtdN6LDGCRbMBEi5J4SY3DJx6lSp06eHFGTtTd5t+ILcm9u3o4foRlqomWM2/KNaBpFQEeWu2g2tsdjgmsSRlr6Zfn5ut0H+yWRJSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jx/Kgk+5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3847CC4CEF7;
+	Wed, 26 Nov 2025 20:32:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764189129;
+	bh=khfCF391HTb9ZHzqQ+60+gHc4LAP9io5EVEWBl7iijM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jx/Kgk+52Vj2FhMiZ6roXAU107DOPSpYbR54l0SQDWU1t4R7bMm8s+HInc6989b/V
+	 2cDeU+ZWwLLmnlIHfOpksf+IBP4hNK1ffXi/vUjPpjPeMUHWhngzJAH08bkmRCtygB
+	 JQYHqUKbcZT0vUQ9yMZl+kC9/gmskU6bpNYXfnQDKqkyCGA0RSgB7OzgPbQ8c3/498
+	 Hj59w7VENc7+o6gJI8CLIr1pUNoVV+wBzyXoI68l0omVxKWgWCP/hDOMsqKxthd0sc
+	 wzgbPhsCM4izLtPHPs9w/dlr+8C1vK0GSmWsZcSnhl5za7yLVxWM4Vlo72RSYvYAyJ
+	 DvL8Jn/H8RkGQ==
+Message-ID: <b2fbe58e-f47b-4a76-879b-fd38a915c2ce@kernel.org>
+Date: Wed, 26 Nov 2025 21:31:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,68 +50,166 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] dt-bindings: usb: maxim,max33359: Add supply property
- for VBUS in OTG mode
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
- Kyle Tso <kyletso@google.com>
-References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
- <20251123-max77759-charger-v1-3-6b2e4b8f7f54@google.com>
- <20251124-rook-of-exotic-innovation-fedcc5@kuoka>
- <adc2d6ec-e666-4dd0-aaad-7ef014efafb6@google.com>
- <8d8201de13b4694b26812722356a3a55637406c4.camel@linaro.org>
+Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
+To: Ryan Roberts <ryan.roberts@arm.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Wei Yang <richard.weiyang@gmail.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-mm@kvack.org, devicetree@vger.kernel.org,
+ Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
+ Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
+ Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
+ Anshuman Khandual <anshuman.khandual@arm.com>
+References: <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
+ <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
+ <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
+ <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
+ <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
+ <20251126134726.yrya5xxayfcde3kl@master>
+ <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
+ <6b966403-91e0-4f06-86a9-a4f7780b9557@kernel.org>
+ <ab39d448-aa1c-4c93-8e2b-5d97a9c76af5@lucifer.local>
+ <1ca9f99f-6266-47ca-8c94-1a9b9aaa717f@kernel.org>
+ <37973e21-e8f4-4603-b93d-4e0b1b2499fa@lucifer.local>
+ <a1d25bde-3ab6-46b5-a957-db80da7e737b@kernel.org>
+ <4505a93b-2bac-4ce1-8971-4c31f1ce1362@arm.com>
+ <150ffcb7-2df2-4f3a-a12e-9807f13c6ab9@arm.com>
+From: "David Hildenbrand (Red Hat)" <david@kernel.org>
 Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <8d8201de13b4694b26812722356a3a55637406c4.camel@linaro.org>
+In-Reply-To: <150ffcb7-2df2-4f3a-a12e-9807f13c6ab9@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-
-On 11/26/25 8:18 AM, André Draszik wrote:
-> On Tue, 2025-11-25 at 12:13 -0800, Amit Sunil Dhamne wrote:
->> Hi Krzysztof,
+On 11/26/25 17:34, Ryan Roberts wrote:
+> On 26/11/2025 16:07, Ryan Roberts wrote:
+>> On 26/11/2025 15:12, David Hildenbrand (Red Hat) wrote:
+>>> On 11/26/25 16:08, Lorenzo Stoakes wrote:
+>>>> On Wed, Nov 26, 2025 at 03:56:13PM +0100, David Hildenbrand (Red Hat) wrote:
+>>>>> On 11/26/25 15:52, Lorenzo Stoakes wrote:
+>>>>>>
+>>>>>> Would the pmdp_get() never get invoked then? Or otherwise wouldn't that end up
+>>>>>> requiring a READ_ONCE() further up the stack?
+>>>>>
+>>>>> See my other reply, I think the pmdp_get() is required because all pud_*
+>>>>> functions are just simple stubs.
+>>>>
+>>>> OK, thought you were saying we should push further down the stack? Or up
+>>>> depending on how you view these things :P as in READ_ONCE at leaf?
+>>>
+>>> I think at leaf because I think the previous ones should essentially be only
+>>> used by stubs.
+>>>
+>>> But I haven't fully digested how this is all working. Or supposed to work.
+>>>
+>>> I'm trying to chew through the arch/arm/include/asm/pgtable-2level.h example to
+>>> see if I can make sense of it,
 >>
->> On 11/23/25 11:53 PM, Krzysztof Kozlowski wrote:
->>> On Sun, Nov 23, 2025 at 08:35:50AM +0000, Amit Sunil Dhamne wrote:
->>>> Add a regulator supply property for VBUS when usb is in OTG mode.
->>>>
->>>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
->>>> Reviewed-by: Badhri Jagan Sridharan <badhri@google.com>
->>>> ---
->>>>    Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 4 ++++
->>>>    1 file changed, 4 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
->>>> b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
->>>> index 3de4dc40b791..a529f18c4918 100644
->>>> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
->>>> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
->>>> @@ -32,6 +32,9 @@ properties:
->>>>        description:
->>>>          Properties for usb c connector.
->>>>    
->>>> +  otg-vbus-supply:
->>> How is the pin or supply called in the datasheet?
->> The pin that supplies the VBUS power in OTG is referred to as Vchgin in
-> I think that should be chgin (without V prefix)
+>> I wonder if we can think about this slightly differently;
+>>
+>> READ_ONCE() has two important properties:
+>>
+>>   - It guarrantees that a load will be issued, *even if output is unused*
+>>   - It guarrantees that the read will be single-copy-atomic (no tearing)
+>>
+>> I think for the existing places where READ_ONCE() is used for pagetable reads we
+>> only care about:
+>>
+>>   - It guarrantees that a load will be issued, *if output is used*
+>>   - It guarrantees that the read will be single-copy-atomic (no tearing)
+>>
+>> I think if we can weaken to the "if output is used" property, then the compiler
+>> will optimize out all the unneccessary reads.
+>>
+>> AIUI, a C dereference provides neither of the guarrantees so that's no good.
+>>
+>> What about non-volatile asm? I'm told (thought need to verify) that for
+>> non-volatile asm, the compiler will emit it if the output is used and remove it
+>> otherwise. So if the asm contains the required single-copy-atomic, perhaps we
+>> are in business?
+>>
+>> So we would need a new READ_SCA() macro that could default to READ_ONCE() (which
+>> is stronger) and arches could opt in to providing a weaker asm version. Then the
+>> default pXdp_get() could be READ_SCA(). And this should work for all cases.
+>>
+>> I think.
+> 
+> I'm not sure this works. It looks like the compiler is free to move non-volatile
+> asm sections which might be problematic for places where we are currently using
+> READ_ONCE() in lockless algorithms, (e.g. GUP?). We wouldn't want to end up with
+> a stale value.
+> 
+> Another idea:
+> 
+> Given the main pattern where we are aiming to optimize out the read is something
+> like:
+> 
+> if (!pud_present(*pud))
+> 
+> where for a folded pmd:
+> 
+> static inline int pud_present(pud_t pud)	{ return 1; }
+> 
+> And we will change it to this:
+> 
+> if (!pud_present(pudp_get(pud)))
+> 
+> ...
+> 
+> perhaps we can just define the folded pXd_present(), pXd_none(), pXd_bad(),
+> pXd_user() and pXd_leaf() as macros:
+> 
+> #define pud_present(pud)	1
+> 
 
-Right, it's just CHGIN. These CHGIN pins source the USB VBUS power in 
-OTG mode.
+Let's take a step back and realize that with __PAGETABLE_PMD_FOLDED
 
->
->> the datasheet.
-> Cheers,
-> Andre'
+(a) *pudp does not make any sense
+
+For a folded PMD, *pudp == *pmdp and consequently we would actually
+get a PMD, not a PUD.
+
+For this reason all these pud_* helpers ignore the passed value
+completely. It would be wrong.
+
+(b) pmd_offset() does *not* consume a pud but instead a pudp.
+
+That makes sense, just imagine what would happen if someone would pass
+*pudp to that helper (we'd dereference twice ...).
+
+
+So I wonder if we can just teach get_pudp() and friends to ... return
+true garbage instead of dereferencing something that does not make sense?
+
+diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
+index 32e8457ad5352..c95d0d89ab3f1 100644
+--- a/include/linux/pgtable.h
++++ b/include/linux/pgtable.h
+@@ -351,7 +351,13 @@ static inline pmd_t pmdp_get(pmd_t *pmdp)
+  #ifndef pudp_get
+  static inline pud_t pudp_get(pud_t *pudp)
+  {
++#ifdef __PAGETABLE_PMD_FOLDED
++       pud_t dummy = { 0 };
++
++       return dummy;
++#else
+         return READ_ONCE(*pudp);
++#endif
+  }
+  #endif
+  
+set_pud/pud_page/pud_pgtable helper are confusing, I would
+assume they are essentially unused (like documented for set_put)
+and only required to keep compilers happy.
+
+-- 
+Cheers
+
+David
 
