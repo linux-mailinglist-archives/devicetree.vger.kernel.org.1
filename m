@@ -1,48 +1,83 @@
-Return-Path: <devicetree+bounces-242325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EAB5C89438
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:25:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E52A8C89471
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:27:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCECD3A2E9C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:24:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B46053A563F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 536A82FBE1D;
-	Wed, 26 Nov 2025 10:24:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2DA5301466;
+	Wed, 26 Nov 2025 10:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IeHCfS5+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="znVr6Z8I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A2232F7468;
-	Wed, 26 Nov 2025 10:24:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37FAE3016EC
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 10:26:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764152696; cv=none; b=sX8AKIfrtvGb2RNWGSvNeiSDCCVvkd24G7iQCTSin0duRoKMpb3wzNUj5Xl9a/gOvQ0PIfKnA+eukM0/T1wYpQDosFknylcIjx4txApVGC7jgfgww/4WN4OUXnsxYlrmDf8C4zYVXECgkuWGADi/gumCIc41wlpzF1XZoI1Z3qc=
+	t=1764152770; cv=none; b=dhDp8jot+QAZ8vLFsM6RSGusYfL7pMua+TE00DSKnJCuu/r6m/3ow0ZnbkVzNmIyL0MEj/UK+E9RGZXDftqww/rogIqNA1x8MCeVGV56uY1RMNqCksNpRpD+cthUDQftNBjffCuulWCG4kTEuZrvkncdFVZd/3z9SKz+UFDEs3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764152696; c=relaxed/simple;
-	bh=flHwoU2Ejmea62KYBv8nQ0zAUz6VROyYex7uT6xd01w=;
+	s=arc-20240116; t=1764152770; c=relaxed/simple;
+	bh=8TeoVIiYjzF62s7vrUidETTbCqN+NWMj+WIHeNRMlM8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rvEZoHFoffSr/kCo99KwbCitC9dcVAZNVIOAeEPjmKtxB4XY/H1zJAOX7O1+RMkC8ncvxemK5hcyTxb89aYhj3J3ckr2E+gVETSyDH0BsQFT5xvsLB4yGNtqx3Cx7zgx2SesZzTO0sOU6YIu6Wssd6EeqaLNbf4/LXJA++FlIyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IeHCfS5+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CB1AC113D0;
-	Wed, 26 Nov 2025 10:24:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764152695;
-	bh=flHwoU2Ejmea62KYBv8nQ0zAUz6VROyYex7uT6xd01w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IeHCfS5+XCZF+aSrtHqCqW1YGgpBPwmso2WpIaQ+/IpHmUs7fZ3r7nl6qwWk8jIR0
-	 UzXutRw86pSncyZ2i0X7tLPIcVWZJ1UfxYhyDgsO9gRoCA/jXYoyFBJDqmR/vToOl8
-	 5MUqdrnT2oO7wx+0lWBH9AyUNASUCj2b4rJfdA1quym8EAjPpiI4lO5UQsqriinJB/
-	 uPJ7kHa7ZwaX0b4r7VXBPB07e2cIzZhjGrH1PAXmVpkuMGvc5g3d40LK6CGOJFxGTf
-	 z1b3gWk2zw76NPdQu6Tv9tCi++83MKpeLRvEmvS1Lg3MebsxfkpToTlG1OUbaYCXN6
-	 Gk8Tc3HhzkCxQ==
-Message-ID: <4702976d-1b08-4565-88a5-d9a1b36582f9@kernel.org>
-Date: Wed, 26 Nov 2025 11:24:50 +0100
+	 In-Reply-To:Content-Type; b=EneoTexu0+uSIZzlXT+ZQzvF+Ns3arelaymNx29PZieHU9HWLrfyCT/PpnOedbcW4y+n1i8AtPTmaHiCeEHJmhtz2RCagx7t5tI2KaY85ANmcIseh/Xg9e8bH+gmnKj2i5/6siCgqRvVZUoERTJeHVTkMG7dOMxQxsak6RdNPX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=znVr6Z8I; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4779cb0a33fso63681235e9.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 02:26:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764152765; x=1764757565; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NvxsFhXfVQ9j59jgaWngnRAynHeqG34fIlS4CA4ovkY=;
+        b=znVr6Z8IHQ4gklxulnaiwKJVNcDA+AaU4MUJ8MAIDjSlnn7GLs0gAsEpyV4hH0OblS
+         STRpVfMmIS+dqmh4DFhC05AxSF+YW3dMHGrHT4VQs4XRAxF0Qs3UKaNIXNK7OlOHU5Cu
+         cplDwgJx/qF/WUTdOqlGLsfndhVY1ukxJQlwQnPc87/8Wb6nZUa2nZbtV1cL1IuPE3NW
+         R9Bn+q8fQFpAs5w7hBsSYoe3Ar5aI8x711cxanCGCaJahJYfr71KrAWSUTW2bN0fyz/c
+         nljxGeyWcvXhfRcuOBBZMG5EVa3gkXtFVG+w0mA21h8X7LVmKX4QrnSyZGbSVLyDtmuf
+         A2zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764152765; x=1764757565;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NvxsFhXfVQ9j59jgaWngnRAynHeqG34fIlS4CA4ovkY=;
+        b=HBtnv4pEyRSrlAipUP1kJGPP75KhklBXFcraKurG59T0mJ6jD9vJ/8RtjhHje4ubrU
+         mPkJeOH/b8fzjyDi1MW77Rsh3IIwfimS9k4cKwNGjZ4iBttsV2m6f8X1OfRwB81HLcit
+         TDOzxwr39V6HWSUtxgBkNK3b+61Xj5ajt5HVJ7E8Yx3IsuiiGG8TmI6Oh5PDXWI5AgR1
+         UNMg616usURCqoHOI1mga46hwiqSpqu1YMi0tsOxqjeARfRt4KNw/xyaIUsDIDtRNg/o
+         b3/iF3G9fywepUKRSC4wBYjq9C+8uqgv5AyuJvjHJ3NraAtF7JQ6nwK8OExMFfsjs7Qi
+         ZQqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXvFXrD3Pdrrm4a/t1B7/dGsifXlyQFe3kUOQFkE8faN77aPmCRG0PR+G1Mt6jAvmTQkMq5K6uGd5BV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGzH86RHRsxDnOcXTzUTB1/c3YJb4rZsK123i2hR9cyiMQilHW
+	IfPoXOAWLUiInTT88TgeHBqnxNt81lYKgtmcZNg9GCnW4GcNJufZqAoQZZf/KBmBD7E=
+X-Gm-Gg: ASbGncsUxmKrQ9VQGTvjEQb5ckuHtPlVE78t34/K1FFTX+KrVScvKxiRMXe2sjdVsZo
+	fwPX7X/ZX4yww5SuEcEPZ4oIw7cUV9SzhOTgESgQqfMFFmImXzJlMlnwD8/K03AADEOKHOe53sX
+	PR/EzYKVmoNjpWcqCApHncHGK4rq8dqdyOmnbQQaES64TFJWvmxX1ib+aKP72KWCzaOl4eYWCr0
+	2SfpoHuqB7yjL286LMeyrrh4xaPwugSFok6is7Jmkib/DUZyu36b/2LCN33vdVYklKZQcReB410
+	d9rwLtZiXEoFaoR/Bu7h3S89WisPpwe8orfMNvwtBs05cmoIQgj+qee8vYv+CScWS6Y5WMwWa07
+	MucjXNjRPXKCh5pDbh9KTDRrIsbPjKmnbTpJmJUem71x71h0CIjv95R/jXJ+Ji+ea6Gc4LAmigp
+	ERcsC4Pep6X5ZJR6+uy+TBSVWp42TL3XLUUCu33S8Th2fq1KnyW1b8tASPOUtwfsmUENG7j2S5+
+	v5P
+X-Google-Smtp-Source: AGHT+IH+8Ble4HAZIsNwoORdy1L1sOIPcFgL/QjCykwHkc2eO/RoB90to5ULd1S3p5yXNgSFZLaqew==
+X-Received: by 2002:a05:600c:45ce:b0:477:79cf:89d4 with SMTP id 5b1f17b1804b1-477c01ff270mr225218445e9.31.1764152765229;
+        Wed, 26 Nov 2025 02:26:05 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:1d25:f786:80b2:ed3e? ([2a05:6e02:1041:c10:1d25:f786:80b2:ed3e])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47903e5fae6sm42780025e9.0.2025.11.26.02.26.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Nov 2025 02:26:04 -0800 (PST)
+Message-ID: <38bd8a96-2d19-489a-b0ba-e230050f4827@linaro.org>
+Date: Wed, 26 Nov 2025 11:26:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,200 +85,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] ARM: dts: Add support for pcb8385
-To: Horatiu Vultur <horatiu.vultur@microchip.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
- wsa+renesas@sang-engineering.com, Ryan.Wanner@microchip.com,
- romain.sioen@microchip.com
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251126100151.1559590-1-horatiu.vultur@microchip.com>
- <20251126100151.1559590-3-horatiu.vultur@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 0/2] Add Realtek System Timer
+To: Hao-Wen Ting <haowen.ting@realtek.com>, tglx@linutronix.de
+Cc: jinn.cheng@realtek.com, edwardwu@realtek.com, phelic@realtek.com,
+ shawn.huang724@realtek.com, cy.huang@realtek.com, james.tai@realtek.com,
+ stanley_chang@realtek.com, cylee12@realtek.com, phinex@realtek.com,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251126060110.198330-1-haowen.ting@realtek.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251126100151.1559590-3-horatiu.vultur@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20251126060110.198330-1-haowen.ting@realtek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 26/11/2025 11:01, Horatiu Vultur wrote:
-> Add basic support for pcb8385 [1]. It is a modular board which allows
-> to add different daughter cards on which there are different PHYs.
-> This adds support for UART, LEDs and I2C.
+On 11/26/25 07:01, Hao-Wen Ting wrote:
+> Changes v5:
+> PATCH 1/2
+> - Drop redundant description markers in binding documentation.
+> - Add "Reviewed-by" tag
 > 
-> [1] https://www.microchip.com/en-us/development-tool/ev83e85a
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> PATCH 2/2
+> - Add "Acked-by" tag
 > ---
->  arch/arm/boot/dts/microchip/Makefile          |   3 +-
->  .../boot/dts/microchip/lan966x-pcb8385.dts    | 133 ++++++++++++++++++
->  2 files changed, 135 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/microchip/lan966x-pcb8385.dts
-> 
-> diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
-> index 79cd38fdc7dab..08986c24a4700 100644
-> --- a/arch/arm/boot/dts/microchip/Makefile
-> +++ b/arch/arm/boot/dts/microchip/Makefile
-> @@ -102,4 +102,5 @@ dtb-$(CONFIG_SOC_LAN966) += \
->  	lan966x-kontron-kswitch-d10-mmt-8g.dtb \
->  	lan966x-pcb8290.dtb \
->  	lan966x-pcb8291.dtb \
-> -	lan966x-pcb8309.dtb
-> +	lan966x-pcb8309.dtb \
-> +	lan966x-pcb8385.dtb
-> diff --git a/arch/arm/boot/dts/microchip/lan966x-pcb8385.dts b/arch/arm/boot/dts/microchip/lan966x-pcb8385.dts
-> new file mode 100644
-> index 0000000000000..a7ac7854cdaf0
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/microchip/lan966x-pcb8385.dts
-> @@ -0,0 +1,133 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * lan966x-pcb8385.dts - Device Tree file for PCB8385
-> + */
-> +/dts-v1/;
-> +
-> +#include "lan966x.dtsi"
-> +#include "dt-bindings/phy/phy-lan966x-serdes.h"
-> +
-> +/ {
-> +	model = "Microchip EVB - LAN9668";
-> +	compatible = "microchip,lan9668-pcb8385", "microchip,lan9668", "microchip,lan966";
-> +
-> +	aliases {
-> +		serial0 = &usart3;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	gpio-restart {
-> +		compatible = "gpio-restart";
-> +		gpios = <&gpio 59 GPIO_ACTIVE_LOW>;
-> +		open-source;
-> +		priority = <200>;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-p1-green {
-> +			label = "cu0:green";
-> +			gpios = <&sgpio_out 2 0 GPIO_ACTIVE_LOW>;
-> +			default-state = "off";
-> +		};
-> +
-> +		led-p1-yellow {
-> +			label = "cu0:yellow";
-> +			gpios = <&sgpio_out 2 1 GPIO_ACTIVE_LOW>;
-> +			default-state = "off";
-> +		};
-> +
-> +		led-p2-green {
-> +			label = "cu1:green";
-> +			gpios = <&sgpio_out 3 0 GPIO_ACTIVE_LOW>;
-> +			default-state = "off";
-> +		};
-> +
-> +		led-p2-yellow {
-> +			label = "cu1:yellow";
-> +			gpios = <&sgpio_out 3 1 GPIO_ACTIVE_LOW>;
-> +			default-state = "off";
-> +		};
-> +	};
-> +};
-> +
-> +&aes {
-> +	status = "disabled"; /* Reserved by secure OS */
-> +};
-> +
-> +&flx0 {
-> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-> +	status = "okay";
-> +
-> +	i2c0: i2c@600 {
 
-You added a label, so this feels like a new node, but then you miss
-compatible and status feels redundant.
-
-If this is override, you should rather override by labels/phandles in
-the first place. Even when overriding by full node path, you should not
-add custom labels - they belong to the base SoC.
-
-> +		pinctrl-0 = <&fc0_b_pins>;
-> +		pinctrl-names = "default";
-> +		dmas = <0>, <0>;
-> +		i2c-analog-filter;
-> +		i2c-digital-filter;
-> +		i2c-digital-filter-width-ns = <35>;
-> +		i2c-sda-hold-time-ns = <1500>;
-> +		status = "okay";
-
-> +
-> +		eeprom@54 {
-> +			compatible = "atmel,24c01";
-> +			reg = <0x54>;
-> +			status = "okay";
-
-Why? Was it disabled anywhere?
-
-> +		};
-> +
-> +		eeprom@55 {
-> +			compatible = "atmel,24c01";
-> +			reg = <0x55>;
-> +			status = "okay";
-> +		};
-> +	};
-> +};
-> +
+Applied, thanks
 
 
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Best regards,
-Krzysztof
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
