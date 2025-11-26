@@ -1,118 +1,132 @@
-Return-Path: <devicetree+bounces-242541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69807C8B720
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 19:29:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4AB6C899D1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:57:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29D0E3AA023
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:29:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7ADCA3A786D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE75628150F;
-	Wed, 26 Nov 2025 18:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9464F3254BD;
+	Wed, 26 Nov 2025 11:56:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JsUSDprM"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="En1Pf8h/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A763727B34F;
-	Wed, 26 Nov 2025 18:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 305162E7BC2;
+	Wed, 26 Nov 2025 11:56:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764181767; cv=none; b=Y6sDx8jNRNLuY/dwPw4Id0o41m2Qu+hzx9oKd4+HAFmAt9uSFl7M78QLIiYzkuYBhr1K2w60Go6BXooAZqt0pKfF+7AkfN87R+1GFQLPGB0k+857KsbdbD3GoIzTVSUJZ9FGt/NPR9Kb35ehi+LiNb4Gam9XnYZtREAAhd1HBX4=
+	t=1764158216; cv=none; b=Mgayg0JbTIr55yQIFk7sy2D/wGb1rNywHj6NpXYdNTK0JmTLuVeb06Ohhsg856hKoVixFa6G/wC36zIp/5SdjGECLz/T+LcBIyOI8uYEw1iXwcpf/9qRP3hUmQljcMNKxqSkvAa7aOP5HzjmcvvXMhy6tXZLQGFXFNZi00B3kig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764181767; c=relaxed/simple;
-	bh=KDVRjuVOWCsoTHN5KvqPnItMtJWQNi/jShgByr/4idY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bXdskDeSg56K+cVyZx8wQ2TNpqrGNz1NXWjJT3DDcUBiq+XHGZshwK1czAO3pD742o00eJGKEqweV8lBx6AUdkWRRp2D4PBfJem0G0eR9AGrldk3ojrl5wg9t0PgdGfZ6aQRgJNpKnqGu8BC4AA+0E7QWiFC4UOidKZVGRyaIN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JsUSDprM; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764181765; x=1795717765;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KDVRjuVOWCsoTHN5KvqPnItMtJWQNi/jShgByr/4idY=;
-  b=JsUSDprM1Cf5kLdiOe4a7R9ziI4JxQ9sW59tCuGvf4ZglE/Gxuy8u6nk
-   0gXM4V3wIIUhsiyeKMIvy5TNGHK9CY1HiidFis2hpl0j6oyAq7aIkVomz
-   JqVROgBzzQxmDQr6UwfhBCPxTQzrXVNlglEevwnf2bTWnmzoWR6g5xRpH
-   IXNIXRKfrubFegvK7V4a3iJSJS3Gg+B9n4vFKOWcFnseHMTlpTkqoEtmq
-   sck2yozLKQQSZtKdEFGKH5o86/bH6rl6BjZXBxIRBi00fSQGipSBDGLrI
-   hIWGHsfZ1tG9/Ni2R1nb6UdxdkMTUXUZo6r02aK/eLMSWdsw+5sQ/wSgB
-   Q==;
-X-CSE-ConnectionGUID: Iajphja5SOCuUeWaPiDZ7g==
-X-CSE-MsgGUID: ToXSv59AR7uDOwAvam5FuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77701249"
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; 
-   d="scan'208";a="77701249"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2025 10:29:24 -0800
-X-CSE-ConnectionGUID: 8bWqXI8tR6CeO6QrSUXvuw==
-X-CSE-MsgGUID: 2PycYv98SMSkzEtIknmAww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,229,1758610800"; 
-   d="scan'208";a="216363911"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.89])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2025 10:29:21 -0800
-Date: Wed, 26 Nov 2025 20:29:18 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Danny Kaehn <danny.kaehn@plexus.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Ethan Twardy <ethan.twardy@plexus.com>, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Leo Huang <leohu@nvidia.com>,
-	Arun D Patil <arundp@nvidia.com>, Willie Thai <wthai@nvidia.com>,
-	Ting-Kai Chen <tingkaic@nvidia.com>
-Subject: Re: [PATCH v12 0/3] Firmware Support for USB-HID Devices and CP2112
-Message-ID: <aSdG_mXJXgsQ5VUG@smile.fi.intel.com>
-References: <20251126-cp2112-dt-v12-0-2cdba6481db3@plexus.com>
+	s=arc-20240116; t=1764158216; c=relaxed/simple;
+	bh=6Bc8ctkWf0MlDErFTWLIrGe04KSla5uK/67iOY4E08w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mbDmE/bjX0L0RFX2EQiZ+SeGyYwulhjcOUXZhTxcntouTtHO8nsGdwPQoBuP2PjupQBhxDXVL0RmMgMEDtqvfhfT84Nq3BYXjpKng8IvCHBlBwbkIPk3wdsOOk1/eAB8lhOi7T/2yAm2cvCW5trEyIR1iA8XRhSNc6YgqT+3uks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=En1Pf8h/; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version:
+	Content-Type:To; bh=Ufeb2Y1qdBth3LcT17BVdapoAoJh2TGcN1TWOhiBKf0=;
+	b=En1Pf8h/dboQ57E/Xg0GvL4gWJTIP0wuL/u6Ci9gG9Qho59PJDIOomubQhmhWf
+	PD8kyMXDdmsWkDxkxWDZGSu+Z+coheekooSe9hCRIaGTw0/NVohNAGfw70A+AOlW
+	fR4+VgeS7DHPaMbXoB5w+m0Def6yMsr2euRr5wGoLpQG4=
+Received: from [192.168.10.1] (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id PigvCgBnveN26iZpJOi_FQ--.56535S2;
+	Wed, 26 Nov 2025 19:54:32 +0800 (CST)
+From: Shuwei Wu <shuweiwoo@163.com>
+Subject: [PATCH 0/3] thermal: spacemit: Add support for SpacemiT K1 SoC
+ thermal sensor
+Date: Thu, 27 Nov 2025 02:44:06 +0800
+Message-Id: <20251127-b4-k1-thermal-v1-0-f32ce47b1aba@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251126-cp2112-dt-v12-0-2cdba6481db3@plexus.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHZKJ2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDQyMT3SQT3WxD3ZKM1KLcxBzd1ORESwOzVLOUFPNEJaCegqLUtMwKsHn
+ RsbW1AH3F1YdfAAAA
+X-Change-ID: 20251124-b4-k1-thermal-eca906e6dd7a
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Shuwei Wu <shuweiwoo@163.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764182662; l=1444;
+ i=shuweiwoo@163.com; s=20251125; h=from:subject:message-id;
+ bh=6Bc8ctkWf0MlDErFTWLIrGe04KSla5uK/67iOY4E08w=;
+ b=ewyJRJ6JRELmsRZPHaJEV8DBkEtk7N+18zJKoIBSbmPdtwi4m63YqOpjVgAIPRh4VI1SCd20c
+ qSkdZ2ZYXZFDhOZNrSanVi6kHXeT8TrSF8d8Cdcb6eq1OFiZ7rMGVXs
+X-Developer-Key: i=shuweiwoo@163.com; a=ed25519;
+ pk=qZs6i2UZnXkmjUrwO5HJxcfpCvgSNrR4dcU5cjtfTSk=
+X-CM-TRANSID:PigvCgBnveN26iZpJOi_FQ--.56535S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7uw43JF4rJF17GF47Ww1xKrg_yoW8Gr4xpa
+	1Uurn8Cw1DGFs3Jw13uF1DCFZ8tr4ftFy3Xrn3Kw15tr45GryfJrW5Kr15W348GrWvga1D
+	ArsrCr4rCr1DArJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRBOJwUUUUU=
+X-CM-SenderInfo: 5vkx4vplzr0qqrwthudrp/xtbBzxUSjmkm5A563gAAsH
 
-On Wed, Nov 26, 2025 at 11:05:23AM -0600, Danny Kaehn wrote:
-> This patchset allows USB-HID devices to have Firmware bindings through sharing
-> the USB fwnode with the HID driver, and adds such a binding and driver
-> implementation for the CP2112 USB to SMBus Bridge (which necessitated the
-> USB-HID change). This change allows a CP2112 permanently attached in hardware to
-> be described in DT and ACPI and interoperate with other drivers.
-> 
-> Changes in v12:
-> - dt-binding changes:
->   - Drop "on the host controller" from top-level description based on
->       comment from Rob H.
->   - Correct "Properties must precede subnodes" dt_binding_check error by
->       moving gpio_chip-related properties above the i2c subnode in the
->       binding and in the example.
->   - Include `interrupt-controller` property in the example
-> - Modify hid-cp2112.c to support separate schemas for DT vs. ACPI - DT
->   combines gpio subnode with the CP2112's node, but will have an I2C
->   subnode; while ACPI will maintain separate child nodes for the GPIO
->   I2C devices
+Introduce support for the on-die thermal sensor unit (TSU)
+found on the SpacemiT K1 SoC.
 
-Thanks for pursuing this! I have a few comments, but in general I'm fine with
-the design.
+Include the device tree binding documentation in YAML format, the
+thermal sensor driver implementation, and the device tree changes to
+enable the sensor on K1 SoC.
 
+Test logs:
+Hardware: OrangePi-RV2 integrates SpacemiT K1 SoC
+Kernel: 6.18.0-rc4 mainline
+
+Verified that all five thermal sensors are registered and reporting
+valid temperatures.
+
+$ cat /sys/class/thermal/thermal_zone*/type
+soc-thermal
+package-thermal
+gpu-thermal
+cluster0-thermal
+cluster1-thermal
+
+$ cat /sys/class/thermal/thermal_zone3/temp
+28000
+
+Dynamic threshold and interrupt tests passed via sysfs trip_point
+manipulation.
+
+---
+Shuwei Wu (3):
+      dt-bindings: thermal: Add SpacemiT K1 thermal sensor
+      thermal: K1: Add driver for K1 SoC thermal sensor
+      riscv: dts: spacemit: Add thermal sensor for K1 SoC
+
+ .../bindings/thermal/spacemit,k1-thermal.yaml      |  76 +++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi               | 101 +++++++
+ drivers/thermal/Kconfig                            |  14 +
+ drivers/thermal/Makefile                           |   1 +
+ drivers/thermal/k1_thermal.c                       | 307 +++++++++++++++++++++
+ 5 files changed, 499 insertions(+)
+---
+base-commit: f5f2e20b1cbc5f9ea20b372d15967b24921ede19
+change-id: 20251124-b4-k1-thermal-eca906e6dd7a
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Shuwei Wu <shuweiwoo@163.com>
 
 
