@@ -1,200 +1,185 @@
-Return-Path: <devicetree+bounces-242535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85446C8B593
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:53:16 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6E11C8B62C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 19:09:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9ECF3B85AB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:47:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4D8094E0375
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A54733F36B;
-	Wed, 26 Nov 2025 17:44:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E992D837C;
+	Wed, 26 Nov 2025 18:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kznkas2i"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AFylIdLf";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UTiZSxH9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A5130E82D
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:44:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8BF26ED48
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 18:09:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764179061; cv=none; b=TE4VL+NgwsHl59igY2fjecvGKpY+RtzXUv7ZPMi86LCMkL3iV9nsQcD0Ct8Bbaalvm4Cf81LD+dYch5IUDQsIxA6JVWoqV0oVgtsUKWNUqlTq7R7DIFoa9M4UFfgyhXrICUXw6UZo7q1zrc02VtHZ3aLk6lr9cqDGUOY0kyhw1E=
+	t=1764180586; cv=none; b=J6gXhcbicsa7PQpmSS/diEYGd6CiPNCFxLF0UjX6oBmYu0XxBwMSdX5LJnqeAv4+mTLW+on4k+gkf0SwoSTbdu235vAzaIQ+yEb51GRTJzdqTdt5N2Vf86biI96lWbnb26Meu/8mfiwqbwwaBlZI0n06AgVLBn+5MTcx/wIoLqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764179061; c=relaxed/simple;
-	bh=DZmAfxsJe8NvUJeI6S9zqA0WF6pPJRkMTm7r9xT3UrQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OK0aAKvxxCui8eX5GWAjefilsk2sA6xaMFjzE1Xg5iRr1M7q8wpsmFF43UJoFTiS1l+JnIdxWIVmjSJS9JflETfWYhnnjyNFRxWk93AaPUZSgazVOsonn8DA/8OPysMt4FrOf3Q/A3DWOdh/YwVBGX6YxY5lCqmTAiBLdR0yyrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kznkas2i; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42b47f662a0so620408f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:44:18 -0800 (PST)
+	s=arc-20240116; t=1764180586; c=relaxed/simple;
+	bh=hCi2eCKxJ5E8cwkQhQsDZzhvZpag4vydnsTZaV8EP5M=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=nkl/L8WQ2rnCqjcDaul7okWhmxxNDZ4OoLkEYOiYv3iPelTxJl088BIxcHiT7IU1Vwo78cWKn34P36e72T1R7/9mfOQNb5Mn1exHa8x2UC9u757dV/4Qi6qwrbVRsO/Y9Xd6vmNvPOXVzhnMH2gDGsS4EA2oWUoTynXr1OVrRs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AFylIdLf; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UTiZSxH9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AQAskrH1700304
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 18:09:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=j37MaCFjUw62cRuBDaXora
+	U2a8j71cPnRU5B5JQYZZ4=; b=AFylIdLfPWQzCS6fZUe34jVzwihrA2P6RNBEmA
+	avEL0IeHaInyPv86sDhpGV/cjqkXtVLh7DURvzaJg3l/ymMqqkfpSeAOIuYoi48R
+	Cln9zsYsqktELk2XmL4BGwFAFAct1jCZepnvoya9XQazpmyPjJisfX+mw5eIZIH1
+	vzGJxPUOxlU8pRuhMBi4QmX1NjmhmVn216jXW1MFAy5w9dgo7cGtKxh8/iKEBXif
+	RJxVxcMqkH1fUcgh2tQNQaa40oXSb1//EbEJdIultm1E15PkLg8soFLz8o8kxjm8
+	81JRWAJ4SvsU2kRTtVu6H0vcBfl+om1sQrRhWzkQDMyxVH2A==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ap07a167y-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 18:09:44 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3438b1220bcso13771a91.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 10:09:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764179057; x=1764783857; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PJtndxdQkYWzvy6kDqOv7kQqo1yR4d6wvaKa4OAP+Cc=;
-        b=kznkas2iAfgrVPA3BtK/rYtQI3tQp/qqnbkmrolnZncAiTLFIy6RJUwKKFL/66vwQo
-         bm2qNK/aO4SMGXzMxzUKyPrSJd2xj/R0XfhtM/AaX8yZJ4AmaYCE6sQjBSySj68Dt2lb
-         z/xdc3cFXOap2d6X6dVuQvgxbRT59QMUaOlVMz+hxt8DGVWWHhvVnsMcsps69GwglS2E
-         wSS1A/+gvNIk2rUt60QEgFEduhhcQqeHx+KXQHcdAsPHFEgNCFHGizRDNw4M60MDlL7G
-         eDwcZ3f0OQAA5Z7jAeQyKcRU52AJ+hfCIIzWnPW4EZTMI18vpJrS4q0kkbwx/dHC6+MF
-         1pIw==
+        d=oss.qualcomm.com; s=google; t=1764180584; x=1764785384; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=j37MaCFjUw62cRuBDaXoraU2a8j71cPnRU5B5JQYZZ4=;
+        b=UTiZSxH9xDZ6FdNOaozpElcac7bbwwZVRMtZoBwPSVzwnFFVYLfDhRK3XU9FRs92nc
+         pu69Avg5KeEFM/BfgDvRZcTCJv7vgaoLf+KdgvYsDC8plomaXc9Uh6pTEP7+OvbaBFnB
+         AOW1py1vq7I6WgP9ZPQcNJofjkfj9b2tJoPtfI+ti267aDkME8XZfyD94danpjAXhcjC
+         ZENBeOiqOtzCz0736HTjg1A/fxbkEQUjkaTPu7tb3E6oXxW8ylyW6t7GNL+hcDUAuI/q
+         ubZUAZI0s2BXyqCsNxiPGzaCwfDN3MhoYNON4jozD1Fosdlaqc/Y0boQ4etALqQC5vfu
+         Krow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764179057; x=1764783857;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=PJtndxdQkYWzvy6kDqOv7kQqo1yR4d6wvaKa4OAP+Cc=;
-        b=CvSPr+lRHxzYugbhcnB7QapBm8xVnRy+bPU2vsUpyS/gbAD0sOmDKLtJSG1mxsaX6R
-         DG2XQi6PBYqpz6L/1EZjxOV3MTBXPvZmwyQMJFDrfc5dFWTuKiBaf/q2xbbrYxcCO/jx
-         lGGd2BLqptuHyfzlSCtMdXVdRRVMp4xWpmBgyOCucgD0a8+SQSCpHNwY50y6y6HiQG4e
-         89wP3pOF7UDacl/y4kzj+trwiKDw0LBDXGD0STVJQ+F/tigNaaga5PbWadXYsFDt/jmT
-         ISmUswmUe4G4zGhGZfERkKdRRs4DU6dGhhx144+ST7+as5kZR8Fu9YnXtfU2D2FPgE7l
-         c9dw==
-X-Forwarded-Encrypted: i=1; AJvYcCXzWhjEun08hk278dZe2lyDbqwyLbjQBgWBmvuPNjc/elxGMZP1c746XzvGXb1BPwi0yNI5rzTI2c3I@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6XUh6DNOxWpAfOrrVTnDQLiNFpr9XTtTZLxHqVUJexeTqM5pt
-	Jdm8/B1OOyfmkZN50xY/23pgTWY/8BSyk9rHo9XyQ9pYjw6NJH7zTIStrDysNSEAtPzuyN80bv/
-	u03HaV1A1PXVgLQlHeltATiG1OfqAxkXuhGbo
-X-Gm-Gg: ASbGncuzfcMCcXL0oCwi4gwDk7vPviWGVttKU/rBEvfgMKC2i+9V96MWM4g7DT18Lv+
-	bgUGri5tSfa3b1/uA50HAHYIErKRZqecutZKtjA1bpc4727yzFeQHIheDFzF7djnD176wOjTVNx
-	dZ0IqimqG/m31BjwsrdCBPswVc6lGmQdrnf2M90uVNkhyXyTX4VG9BCcsDnBWVoi90vfLa9/fht
-	36iM8RlyRDhMzbuH0pILGP6RLC+CmEcXvje8jX3D1bVSgI9ejdajew17lgBsmDz7WYWM1rg+ZQN
-	UZW4lvXWwme2OaXP3IQIHbVgHxOjApBDu9TBY2E=
-X-Google-Smtp-Source: AGHT+IEMtnBKL8QKEYTLtiH3Qt1JZUzmDtUchvu2N3MeDZa927dTGr16SXLA5t6Vbu7dxUN21qfwG9K9BwkeddOjilM=
-X-Received: by 2002:a05:6000:1a8a:b0:42b:47ef:1d59 with SMTP id
- ffacd0b85a97d-42cba63b5b2mr28905036f8f.4.1764179056932; Wed, 26 Nov 2025
- 09:44:16 -0800 (PST)
+        d=1e100.net; s=20230601; t=1764180584; x=1764785384;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j37MaCFjUw62cRuBDaXoraU2a8j71cPnRU5B5JQYZZ4=;
+        b=EpMk8lNsaQaMWoK8skEQ8JFhmn4O6kOUL+O1Lq/Jo5K3VslhxnCEdVDEX+6wZpIPEO
+         HxHJ46UqJZuBXXFh7jYDmh7pj5L4/50Qd7tC0NlOc8D9Tlp3yOj6XPW1qYgP84cO782P
+         o+dBXldog6SuqXphrQ0yawMuX2+XzskW51L8YWxZXVr/qT2ygRMKrWKIvThsXB+99fTa
+         0hKgiowLAbtHLXb8aAmYI02h5zZSuj8P/4tYu1H5x0d1vUMHZe0dL/GD0THI6xi5LT9r
+         /97Vdi84GU0XBqGlAAIVPsKpOWRd2ZKIbxDFBs6FfRxm3sWFllj2ZOmmCho4W/WImXtw
+         MXcg==
+X-Forwarded-Encrypted: i=1; AJvYcCWy9D5VW0j9CO89a9lLFh2Vq/7gNIQ7jZ6bdd8G5Seqq1qBN/OHxTvTC7wpfNcf9wxKwc8kZo6T0nem@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZYFqNSz3SnKXLdsaoa/KW7gnSVzv0hGgVorv8+vtJqm4LPd7h
+	oyNH1OCd7DZ3K0HApqgJjNAd6bR1V/FrjXq3sjnOS2RAufQVUHn785puGaUVOrqVjqdjW8x3d6d
+	iEa+p+egwOnSb+zRbXQxKqxzYLq7nNffKGBCGACX8baeNRCeKMa0nvKLQY6bGODeY
+X-Gm-Gg: ASbGncvTWVtTHGXPh2pPVy+OPY0lPNc/86wMOyr+x4Z8MHRTcCJytmkArGawcDPnoIm
+	H9HP89S5lGeHYKW9+26u5N46hrhxcCYRzdvkLyc4j7nLyWxMEkwQsRe8VEcvss5jPxZx202+sG4
+	G7u397VH5zpPmlTKe5EeoV0EUfY4Jsb4DG5ZvZ0rnsM14LU6Yb+vGJAb6ViT2LBm1irAdlPcNyy
+	5nL60Rk7GRMazNE0ji1EFPlHlWzvaJRr7laL1uvkcliJ6KFkrr3xm8UIG19979DgjUfuNMPhKOK
+	uV1LaO4TWjUICTIb7Ur5DWwcnp9ymCCUh4kiMMKqzNSfsBWT8NwXZr6KhKX79jg7P82fPiCroVb
+	iEknYe8VI9u9u2lZAZA/Pl3nw2argbbYAvw==
+X-Received: by 2002:a17:90b:4fd1:b0:340:c60b:f362 with SMTP id 98e67ed59e1d1-3475ebe6763mr7667279a91.6.1764180583417;
+        Wed, 26 Nov 2025 10:09:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHYcctD26R7NBEM1n+c5pe2hqEuEJUZCQA30LCjbik/c9HRTpP38oa9B0O5xveVysMMUoeQyg==
+X-Received: by 2002:a17:90b:4fd1:b0:340:c60b:f362 with SMTP id 98e67ed59e1d1-3475ebe6763mr7667251a91.6.1764180582937;
+        Wed, 26 Nov 2025 10:09:42 -0800 (PST)
+Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3476a56b252sm3224890a91.6.2025.11.26.10.09.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Nov 2025 10:09:42 -0800 (PST)
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+Date: Wed, 26 Nov 2025 23:39:29 +0530
+Subject: [PATCH] arm64: dts: qcom: sm8750: Add videocc node for SM8750 SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXrkt0MXOBSvpdJwNVmGrnmt03mSGqj7EhqF16tf4i5Pg@mail.gmail.com>
-In-Reply-To: <CAMuHMdXrkt0MXOBSvpdJwNVmGrnmt03mSGqj7EhqF16tf4i5Pg@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 26 Nov 2025 17:43:50 +0000
-X-Gm-Features: AWmQ_bkhH_0PDV6DBVghT_5kUE0J4e1gar5BbggGmW0QWH2FTGmxRKv3h7arj-0
-Message-ID: <CA+V-a8vhTH7qAbrJrqRimiBfwD4K08zK0_yOHHjhCjfufGWQaw@mail.gmail.com>
-Subject: Re: [PATCH net-next 06/11] net: dsa: rzn1-a5psw: Add support for
- optional timestamp clock
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Russell King <linux@armlinux.org.uk>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251126-sm8750-videocc-dt-v1-1-a848fbfb257f@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAFhCJ2kC/x3MTQqAIBBA4avErBtIU7KuEi1inGoW/aARgXj3p
+ OW3eC9B5CAcYagSBH4kynkUqLoC2uZjZRRfDLrRViltMe6usw0+4vkkQn+jabUjQ70jb6B0V+B
+ F3v85Tjl/HaY/HWMAAAA=
+X-Change-ID: 20251125-sm8750-videocc-dt-4328c4c98cd4
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Taniya Das <taniya.das@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-Authority-Analysis: v=2.4 cv=ZZEQ98VA c=1 sm=1 tr=0 ts=69274268 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=ylueHw9rjOQuq7YDIEsA:9
+ a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-ORIG-GUID: 9L9P2tqvagWyZswUoft-t_eYsZRMeK9H
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDE0OCBTYWx0ZWRfXx5TGuxSNlEKi
+ N6zkOXGhEiq+n5eNQvlq5xE1SQD3BNd9dmtl6e4vWiukkp8foh1PrwuXLAWDDu1jAyDqwdX/ubj
+ oWKC7tHsJ22YLbOCNKBwBf2JhMPSBfYewbhii/Rc1Tf8W+3YtKyJswHbV4XFUNAFzMczfTysX4G
+ +wUONRZChsElo81mzd54AiZoISbMb33TNccp8BBE80Z0UGs5+u1ELIy/eUiM2k8jIDbLPthwn95
+ g1r7IXTSO/EpHCoPEmEu9VEPsfpqFTLXdDf+AMMRrktzKemoz0DDVgKBThYOJxiU6WFCvzKkNS2
+ 27sQjy5PoZJJwAu1Afzs8NrAxUAnGuuUOwrgXX50pt58B9KnP9HBHdgsYiSxzZ8PmPGGiB7dWZE
+ 2LWETU5i/RE67tw4k1fSpY4+v2+26g==
+X-Proofpoint-GUID: 9L9P2tqvagWyZswUoft-t_eYsZRMeK9H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 adultscore=0 priorityscore=1501 lowpriorityscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511260148
 
-Hi Geert,
+Add device node for video clock controller on Qualcomm SM8750 SoC.
 
-Thank you for the review.
+Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/sm8750.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-On Mon, Nov 24, 2025 at 12:45=E2=80=AFPM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Fri, 21 Nov 2025 at 12:36, Prabhakar <prabhakar.csengg@gmail.com> wrot=
-e:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add support for an optional "ts" (timestamp) clock to the RZN1 A5PSW
-> > driver. Some SoC variants provide a dedicated clock source for
-> > timestamping or time synchronization features within the Ethernet
-> > switch IP.
-> >
-> > Request and enable this clock during probe if defined in the device tre=
-e.
-> > If the clock is not present, the driver continues to operate normally.
-> >
-> > This change prepares the driver for Renesas RZ/T2H and RZ/N2H SoCs, whe=
-re
-> > the Ethernet switch includes a timestamp clock input.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
->
-> > --- a/drivers/net/dsa/rzn1_a5psw.c
-> > +++ b/drivers/net/dsa/rzn1_a5psw.c
-> > @@ -1243,6 +1243,13 @@ static int a5psw_probe(struct platform_device *p=
-dev)
-> >                 goto free_pcs;
-> >         }
-> >
-> > +       a5psw->ts =3D devm_clk_get_optional_enabled(dev, "ts");
-> > +       if (IS_ERR(a5psw->ts)) {
-> > +               dev_err(dev, "failed get ts clock\n");
->
-> I think the error can be -EPROBE_DEFER, so this should use
-> dev_err_probe() instead. Same for the existing calls.
->
-Agreed. For the existing calls I'll create a separate patch.
+diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+index 3f0b57f428bbb388521c27d9ae96bbef3d62b2e2..18e43c509f1f24785d55113addc5cd9f96e986f1 100644
+--- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+@@ -2740,6 +2740,20 @@ usb_dwc3_ss: endpoint {
+ 			};
+ 		};
+ 
++		videocc: clock-controller@aaf0000 {
++			compatible = "qcom,sm8750-videocc";
++			reg = <0 0x0aaf0000 0 0x10000>;
++			clocks = <&bi_tcxo_div2>,
++				 <&gcc GCC_VIDEO_AHB_CLK>;
++			power-domains = <&rpmhpd RPMHPD_MMCX>,
++					<&rpmhpd RPMHPD_MXC>;
++			required-opps = <&rpmhpd_opp_low_svs>,
++					<&rpmhpd_opp_low_svs>;
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++			#power-domain-cells = <1>;
++		};
++
+ 		pdc: interrupt-controller@b220000 {
+ 			compatible = "qcom,sm8750-pdc", "qcom,pdc";
+ 			reg = <0x0 0x0b220000 0x0 0x10000>, <0x0 0x164400f0 0x0 0x64>;
 
-> > +               ret =3D PTR_ERR(a5psw->ts);
-> > +               goto free_pcs;
-> > +       }
-> > +
-> >         reset =3D devm_reset_control_get_optional_exclusive_deasserted(=
-dev, NULL);
-> >         if (IS_ERR(reset)) {
-> >                 ret =3D PTR_ERR(reset);
->
-> > --- a/drivers/net/dsa/rzn1_a5psw.h
-> > +++ b/drivers/net/dsa/rzn1_a5psw.h
-> > @@ -236,6 +236,7 @@ union lk_data {
-> >   * @base: Base address of the switch
-> >   * @hclk: hclk_switch clock
-> >   * @clk: clk_switch clock
-> > + * @ts: Timestamp clock
-> >   * @dev: Device associated to the switch
-> >   * @mii_bus: MDIO bus struct
-> >   * @mdio_freq: MDIO bus frequency requested
-> > @@ -251,6 +252,7 @@ struct a5psw {
-> >         void __iomem *base;
-> >         struct clk *hclk;
-> >         struct clk *clk;
-> > +       struct clk *ts;
->
-> "ts" is only used inside a5psw_probe(), so it can be a local variable.
->
-Agreed, I will create a local variable.
+---
+base-commit: 92fd6e84175befa1775e5c0ab682938eca27c0b2
+change-id: 20251125-sm8750-videocc-dt-4328c4c98cd4
 
-Cheers,
-Prabhakar
+Best regards,
+-- 
+Taniya Das <taniya.das@oss.qualcomm.com>
 
-> >         struct device *dev;
-> >         struct mii_bus  *mii_bus;
-> >         struct phylink_pcs *pcs[A5PSW_PORTS_NUM - 1];
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
 
