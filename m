@@ -1,455 +1,295 @@
-Return-Path: <devicetree+bounces-242396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6CE6C89E75
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 14:05:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89E99C89EBD
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 14:07:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06E5B3AFA18
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 13:05:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0AD53A3F44
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 13:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9790D207A38;
-	Wed, 26 Nov 2025 13:04:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90645238D54;
+	Wed, 26 Nov 2025 13:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qK9y8kdh"
+	dkim=pass (2048-bit key) header.d=hitachienergy.com header.i=@hitachienergy.com header.b="WVwtaeTG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012042.outbound.protection.outlook.com [52.101.66.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 655A31F0E34;
-	Wed, 26 Nov 2025 13:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764162293; cv=none; b=OqdaflyR71JAe5+iY0v6psikKC7vHyGjn5/xpky0PKhuzAp8r4eeLwjtjlGkBdSY94a1f6+0z53pBCA2DCkIxvssSgk/x5nTLt1pC5IkRg4ycw/t28xC1I1Jg7mhhJRc6NXC4UrQxte1LVyjvPEHA6Gi93LHUSSgmIcyqf7p12w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764162293; c=relaxed/simple;
-	bh=WQ9FQIL122lVcBFg8BX6czJ7NNg5P9RWcZI1dunrvuY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EkppqL2ab16d+O/xtslOpOAWwzKlx2NYsIgFj02SiSNdT/ahNzsj+VcvVI6AbXBoxtsHGeFIYFt8E9T19xFZUSwIw/dXEFDJsj2HfZn+t7adhDLlU1o38aUSKvao2xaITzgdST26suFUWTUHweiwzoEwisYXzU4BAJdlloZ3n40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qK9y8kdh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 705A4C113D0;
-	Wed, 26 Nov 2025 13:04:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764162293;
-	bh=WQ9FQIL122lVcBFg8BX6czJ7NNg5P9RWcZI1dunrvuY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qK9y8kdhwP0oRo4esBbizmMN1qbrIvwXu+P0JALdpmanp6HnJ6P+e1ANafYEBhQ1Z
-	 eKwjR+/qmw2OEGv8uoDPSfupO+71mpwvSGihN1uJt1wsxz9Wx1AEGf+6YPyOptNtJK
-	 2r/d5v1+BYv0iAd9oRQVAYvGBJSLwc4kIoSLoP+3aJzfImZ450MFW3dA8UAaLQoegm
-	 KUcbj5/CMVnHATPxClA1lcF0uNSA0577mED1wgAY5irkmEBtz0KV5eNKMRT3E9QYZM
-	 NxIymQO/iI7Y5NNEYqYwx8T2xsggLmo8UB3DTCsIts9Y/Oeda3GSqs5dHT199TnjCM
-	 7YZy6MTvw2n4w==
-Date: Wed, 26 Nov 2025 13:04:47 +0000
-From: Lee Jones <lee@kernel.org>
-To: Sander Vanheule <sander@svanheule.net>
-Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v8 3/6] mfd: Add RTL8231 core device
-Message-ID: <20251126130447.GB3070764@google.com>
-References: <20251119200306.60569-1-sander@svanheule.net>
- <20251119200306.60569-4-sander@svanheule.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE972135C5;
+	Wed, 26 Nov 2025 13:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764162324; cv=fail; b=unCqZkqn9ca5rfp/0GYlQGny/3XJLbmmxuefAwC8g3jCDXIV+Gdw/pHd2Qiq1a0aX671UMogizeO055aJPWpqJKZtyoSeYZ5oELx8Omivcmxg5KVD/14jBP2qsS3FK4+Ca4JXs3eF+1dCRxbmx1oN7/zH76q3g0XYN9DE3MbIhg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764162324; c=relaxed/simple;
+	bh=Ae6EFurkm/pvLuBAt6zwTk0KH++VwfBH0SqQ1ZfAjeM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=eKk1EX+vXuFZUMSEjHzs72Oga1vrqwPZtRpsUWLa8mg6Mf9zGcTZTOPdoqupUMTowb7EbkuDOe9muMtxNIAQXDDzGaSHYvFmNf0UMR2G3F2yEStxctCYa+ZI+/rBIR72ZWAMa6gE4mqqNu/TcuOV49PQU9jAlqPw+a91osDDRt0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=hitachienergy.com; spf=pass smtp.mailfrom=hitachienergy.com; dkim=pass (2048-bit key) header.d=hitachienergy.com header.i=@hitachienergy.com header.b=WVwtaeTG; arc=fail smtp.client-ip=52.101.66.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=hitachienergy.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hitachienergy.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=A4YAuGdEe8p7XkaFBmQAZZuduO8OR9MZXB3jwsVkaMrs8Glr7zEQzmWOtVkE/50kIQ5xmHFTJZQlmVVatBzc/Db3yCXORN9QFY3NpsOfTuj48ir4XpHV4RqrNNq0R2FABdgTjkbsHsS0Sy6hPWQw+6Qya2bQu10hh9YAyom2dPe5Mw4svWmMovl3jFWXCg7lBlZwxdWIE48zDVCi/UWHy2ArM7UCXf9M1WK5xjyIeysC8A51NRySKyaLtCU9012cHfKuLQaf5oN2jDt/lda+52sSLt1Uh+KXP33sT7q6PMTvk3f/7XWjg+T85O2HcGDNRLfsgqEe/j9BY74Pfy98rA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rs03IUE6Yhq8Ts+5w43cE8/L0xi1DVYwpv7khh1IoCk=;
+ b=k9Y0Vz/38ZwiCoNyyroFatUe0yZvPsYh7o77OI02uUTuOrHC+f/1YO4TCA1mB7prB24hOEsFU83PiieJnS9yRYxABZxU4QSq5ocr8EAQcmVcmIVXk2LVk1HDHreNi2O0+MhYAuDzixs3yQNKJCSIGjFAXsxRnfr/CrAHJnh44KRTsIPH/FZ/JvosNRfFOMpWXBB47iVfSNS4Bq8196Ncw//ypsGamb1Zv8V5dO6aVBBrtJ+hf+q4Gb8pr73u0Mc9D2T1v+Jd+95rzzKUY0lgDXXedFiiAGLRmXOlTUdRjhy0BGacQ6mdRyWNoLjkdxoDcBuNZQnDIWG3XO+twLmVTQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hitachienergy.com; dmarc=pass action=none
+ header.from=hitachienergy.com; dkim=pass header.d=hitachienergy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hitachienergy.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rs03IUE6Yhq8Ts+5w43cE8/L0xi1DVYwpv7khh1IoCk=;
+ b=WVwtaeTGrZjrXkGT2wpNNtIoi+OIbz8O5ywPrOTQkCkTV8moYPJpVMKHw/4BLg1O55NJ7GNU6GRVSH+okPxKSanf2bHFG4EZJQoKSo1quLYlOGTDBCZDN0ugNgcvCSPKPKNaf7wZS6pZ+FxjBFblVdW7QRDn3KvEm+Yt1VOoEx6VoUieYm0erXq6lljquASSTk8eG4s+Izg8IDM4WI80pxI+ZwIuEdHPmc19rf0T0J7sg/bbw+YGpvFQPsdiz4ML1EqVJY7ISAbrlTT5+ab0l32uZmUCmYOZ5Y/J3k+NDVveDgqsX7XURx38XheI86iyGOK/p18PFXrU7Dr4smdb0A==
+Received: from AM0PR06MB10396.eurprd06.prod.outlook.com (2603:10a6:20b:6fd::9)
+ by AS8PR06MB7877.eurprd06.prod.outlook.com (2603:10a6:20b:3c1::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Wed, 26 Nov
+ 2025 13:05:19 +0000
+Received: from AM0PR06MB10396.eurprd06.prod.outlook.com
+ ([fe80::f64e:6a20:6d85:183f]) by AM0PR06MB10396.eurprd06.prod.outlook.com
+ ([fe80::f64e:6a20:6d85:183f%6]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
+ 13:05:19 +0000
+From: Holger Brunck <holger.brunck@hitachienergy.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+CC: Andrew Lunn <andrew@lunn.ch>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-phy@lists.infradead.org"
+	<linux-phy@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, Daniel Golle <daniel@makrotopia.org>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>, Heiner Kallweit
+	<hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+	<kishon@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Eric
+ Woudstra <ericwouds@gmail.com>,
+	=?iso-2022-jp?B?TWFyZWsgQmVoGyRCImUiaRsoQm4=?= <kabel@kernel.org>, Lee Jones
+	<lee@kernel.org>, Patrice Chotard <patrice.chotard@foss.st.com>, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>
+Subject: RE: [PATCH net-next 1/9] dt-bindings: phy: rename
+ transmit-amplitude.yaml to phy-common-props.yaml
+Thread-Topic: [PATCH net-next 1/9] dt-bindings: phy: rename
+ transmit-amplitude.yaml to phy-common-props.yaml
+Thread-Index: AQHcXqYGtlM98xQGlkSgPr5ML7/KzbUEqGywgAAalgCAAADHsIAABB0AgAAfPYA=
+Date: Wed, 26 Nov 2025 13:05:18 +0000
+Message-ID:
+ <AM0PR06MB10396BBF8B568D77556FC46F8F7DEA@AM0PR06MB10396.eurprd06.prod.outlook.com>
+References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+ <20251122193341.332324-2-vladimir.oltean@nxp.com>
+ <0faccdb7-0934-4543-9b7f-a655a632fa86@lunn.ch>
+ <20251125214450.qeljlyt3d27zclfr@skbuf>
+ <b4597333-e485-426d-975e-3082895e09f6@lunn.ch>
+ <20251126072638.wqwbhhab3afxvm7x@skbuf>
+ <AM0PR06MB10396D06E6F06F6B8AB3CFCBEF7DEA@AM0PR06MB10396.eurprd06.prod.outlook.com>
+ <20251126103350.el6mzde47sg5v6od@skbuf>
+ <AM0PR06MB10396E5D3A14C7B32BFAEB264F7DEA@AM0PR06MB10396.eurprd06.prod.outlook.com>
+ <20251126105120.c7jtuy7rvbu4pqnv@skbuf>
+In-Reply-To: <20251126105120.c7jtuy7rvbu4pqnv@skbuf>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=hitachienergy.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM0PR06MB10396:EE_|AS8PR06MB7877:EE_
+x-ms-office365-filtering-correlation-id: 48f75d09-3a03-47bb-9161-08de2cec7333
+x-he-o365-outbound: HEO365Out
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700021;
+x-microsoft-antispam-message-info:
+ =?iso-2022-jp?B?Tk15c0hRZ2NrQU1zclg1RjRHNUJheFEvcC9adlkwT2hXQStVK3d2VWNv?=
+ =?iso-2022-jp?B?QmNEZGRES1JwYVprbXkvenA4YWRYZTRQZy9mWGVxdGZLc3VWSWoyUlNV?=
+ =?iso-2022-jp?B?cUNoV0xXQUdyU2x6a3hOM0RvYTFmMmo3SDV0UzMzaG9KU2NGTWdaTXBF?=
+ =?iso-2022-jp?B?aHhveDhmWG44alBSRDUwcHd6Wlcxd1BZYUZlcXRCMGlxWCtBVzNCeFkv?=
+ =?iso-2022-jp?B?UHpuS2lpdk5RREI2bW43OENVdTRObXdHT2RRSTlSQlZaUXozVWdoTlhO?=
+ =?iso-2022-jp?B?U0tyUXJBQTcvZkJlTmhVS0JtQmVmdXFsRWcwYldsSEpDUzJYQlJ4Umw4?=
+ =?iso-2022-jp?B?NGVRV2g5VVZmZUJIdjlMbERDNDF5RzRoUmUwcU1OQ0xNQ3ZoL1YyODNG?=
+ =?iso-2022-jp?B?ZDRKakJIZk5PWGlkZzdvZFdZN0hsYWwxS0FoNmxEeUdsUTdHblRvcURi?=
+ =?iso-2022-jp?B?aUVZUjl5YU83cFlBYUdOcFZOS09hR2dqREt1L1cvUWZaVzBXSVROSjhR?=
+ =?iso-2022-jp?B?M3Bnc2hIME9tdi83TnlMN3dxeVcxNUkyL0pPYnZJT0U0UkFyY0ZDSnEw?=
+ =?iso-2022-jp?B?UDlEZ1UxOVc1TGVpTEZBc2FKUkJkaC9aK3pMVnJ0TUg1TGwvWFJCL0h4?=
+ =?iso-2022-jp?B?Wld5dVZaalZudHpVREk2ci8rZmxmQTNNcW1FYWlHYXBQRGxxWGdSbXZ0?=
+ =?iso-2022-jp?B?b1NpZVBmcXliS2ZEbDBYWFZzZmxzZHN4RnVGdUI2WnhGbDJRME5GVGE4?=
+ =?iso-2022-jp?B?Yy9idjJ0d0hXNzk0T25IMTlqZU5lYWdRZWp4Y3ljOXBaS0JnNklkdjhp?=
+ =?iso-2022-jp?B?VTdTcTVhVXF4RTg2S01td3hUS2RsU21WcEVBdkNGakhVb2tCdFhFV2g0?=
+ =?iso-2022-jp?B?Qk5GaHkxMExyOUgrMk5HcVU4NStKZ2ZPRFpFb0lwdDY1blZRUDd0NUUr?=
+ =?iso-2022-jp?B?VnptaGhrU25yM0F3d1YzRXBvREJtUXJJajVxMW1sc081OGFkbVZoVDFH?=
+ =?iso-2022-jp?B?UzYzVzJYU0NDTXM1aHJlUHdiRisyZVJzQXVIcE9hNDNrNTdQYnZpQTNa?=
+ =?iso-2022-jp?B?WW1jeWcwVytGOTl2eDIwb2JIdjlNV3p4WVVDbkp1Q29XS1ZQKyt0SEZy?=
+ =?iso-2022-jp?B?anB5ekNlb0hHaGc1aXhMdmFva2o3cUlBdit6aXcySHJpVnlpcjJ4ak9K?=
+ =?iso-2022-jp?B?YlozSG9YQnFJeWMwSVE1c0JMN0xJbkxuZUVtdDRMVXVhenROTHBVdVZT?=
+ =?iso-2022-jp?B?Um1QUDNVdSs3aERNcXphNmdPVG40b0Q5NmpWZjVBalorSER4QmswK1dB?=
+ =?iso-2022-jp?B?Y0Z2MUJ1dHlLZkJ5THNnZWFLYkxGWVNHZUt3TjFXOWtSdzVIcENyRjdl?=
+ =?iso-2022-jp?B?ZUdvVmJlbDg1VzJUMlQwQ010UHY4ZFNueTlJNGVySjBqSlhXR3QvaHZm?=
+ =?iso-2022-jp?B?R3BkdGo3ODJvRTNSTzdxbjJpY2xvTVVHL2h2Ums4VWdLL0xGUnpiZ0FH?=
+ =?iso-2022-jp?B?YlNrTHd2S2Q3eUVoK3hCRXJPdFpwalRVYXRFZFFVWWRoczZMZU9jTHgv?=
+ =?iso-2022-jp?B?MlZWdURaUldwZXBtSVZUSEcwWlFkbDE5Vm1sRmFhWTB1OEduSUtsd0gx?=
+ =?iso-2022-jp?B?c2FxT1c2azZJbkRwQjcxUnlGVlJ3MHQzTTZTNTFjWkJVR2lNWDZ6cTJy?=
+ =?iso-2022-jp?B?bk1PTC9uRCtIazdNT2psa0tQZWdTNnI4U2dxam5qM1pDK0JKSDhzWGJD?=
+ =?iso-2022-jp?B?OWVWSkdxVzZkdjZnTUw2eWVDdmhUdThqZHVhKytiMmVodk5qUFVDcFd5?=
+ =?iso-2022-jp?B?YW1Tb1lWSy8xcm5kT2M3eVMydTA2UFQ0VHY1aW5LRHluMlZKcXJwY2tn?=
+ =?iso-2022-jp?B?V2l3TThPQWZnbGs1Uk9OWmk5SjFjeUpRYzU2M2hEb0FQelltRWFjMHRy?=
+ =?iso-2022-jp?B?NS9XSkE2VE5SbkpOWFVCZWszY2c5UFJXS2pkbGNEZGM1c1N1ak5aQ1E1?=
+ =?iso-2022-jp?B?ak1NOHdTYTRNZDNSVDdDczZ0ZkdOQUl0QXB0ZU0zVDJJTVo3aXlKUDV1?=
+ =?iso-2022-jp?B?bGFVYmJQYVlBN1hucXFwMnBKTHpBblpYTmduVVpWc0xQenpvSUhlOEtU?=
+ =?iso-2022-jp?B?bXNGV29henlqME83djVkSThBTWY4NkQxT3dBQVV4STJFT2hHYy80dlUx?=
+ =?iso-2022-jp?B?d25kVjJhb3BUNllYcGZvbUpCRkdRMHlJ?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:ja;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR06MB10396.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-2022-jp?B?Y09VRzlFV1VoOFI4aVJ6SWh6MldIOXRVbXVEOHc4MkVsUGVraXFpMEFT?=
+ =?iso-2022-jp?B?enp1SUZhNHBTMXFEb0xOdzB1Ynd4U08yQ0Ywd1BVSHVJK1JxUzhVYjN4?=
+ =?iso-2022-jp?B?dkYyd2dQemxrK3NGUXZKVGxNWDcyMVhuR2l3ODBKNFZhTm9LV1FDVS9p?=
+ =?iso-2022-jp?B?cXhWR2M4eitRZCs1WWhnVVA2ajJBelRVQ0FScFlzb0pIdlRORzFLWkRV?=
+ =?iso-2022-jp?B?VUZPVmJrNkN5M1FpT1pnQXRkMW1aVHk0UU9pWWJzRDlHS0o3cFZ6RXdr?=
+ =?iso-2022-jp?B?Y2FISzdWOFdWSWMzVlY4NmdDMWRZQ3BNRTJ2ZWx0aHc4dnlMUWQxeFY2?=
+ =?iso-2022-jp?B?eGdlSHhsTi9mMFBldGVnaFVmb0NCVGw2OHdWSmgwZ3NiTTdjcTI4Ykxp?=
+ =?iso-2022-jp?B?NTR6Wi8xMWc2ankrZVZnR1JxZWxxbkloZlhYMnlIZ2ZuY2lkT1RjdzMx?=
+ =?iso-2022-jp?B?SUZ3aHRHdkpwcy82blV4Y2tPM2JPRit2SU9oM2N5UkNXTVRwQVpSMHl4?=
+ =?iso-2022-jp?B?SjkrS05PRFBpb1VSbUZDWk5VTEljaHhUM3N3SUdGbjArRS9WNXBtY3F0?=
+ =?iso-2022-jp?B?YkcyVEpaenpYK3RkV0NreCt1cEVLYTM3VElHYmlJZ09oK1N1cWQ2WCs2?=
+ =?iso-2022-jp?B?NUp0SkhNYXI3aG1pTDBrWmx5WVloUDVKVWNCNHFVVmYrNnhzbDFyaXB1?=
+ =?iso-2022-jp?B?YXBla2p4S3BMR0o3UjN3WlcxcnJMN1dqdVgyVmJidk9FWnoxZWJQVDZ5?=
+ =?iso-2022-jp?B?MkpuSGRBWWUyMnpZUWxvdWFsNzBuWCtlYzFZcVV1SVVoajVOQ2VTWHph?=
+ =?iso-2022-jp?B?ZXVNYVRnOTRDN1l1M3lpNmlRZjJmSXN3c2pDcVk4UnA0bUpMdTZxK2ps?=
+ =?iso-2022-jp?B?SXh1YXBOVkVyMTdEd2tnaHNxYzBYYndjUTRhTWpHblpBWnhjeVlWZnNY?=
+ =?iso-2022-jp?B?ek9OOERKc2VnMHFCZ1RjajkyQlFoZ0NIVnJNVHdhUVlQdnhkY2hIZXRR?=
+ =?iso-2022-jp?B?UStMOUZOS2RXUEhPaUxzeGFjTU16M0VlZVA2TG1hbmxCbEtGN0lIN3RM?=
+ =?iso-2022-jp?B?VFlGb0JxNkhKNm5leW53Z2lOVzZORS94SVVISFh1UmZXKzJvUU5IWm4w?=
+ =?iso-2022-jp?B?cVNqWlNkRlhNQkdFajNLbE10NHBFQjJzc3NmSUNlOUkwczJGdXp5QVFz?=
+ =?iso-2022-jp?B?NCt0YVNzaU5pdk9qSWYrbnE3V081dTVNNnZsbXJFOXdFLzZ5VDlUYTlP?=
+ =?iso-2022-jp?B?YXFLVWc0cUVGNzBPT1g4T0dzTHp2eTBCTFJKNkltNmJINS9QRE1LbGF3?=
+ =?iso-2022-jp?B?VHNDUk1ZNGQ2MmNzQXJpNzEyeEpncGJNaUtVQ05uS0YwOTMxVmYwZXA5?=
+ =?iso-2022-jp?B?WFltalZmQWgxQmwxWVQ1Z0VNTmMvOXBndHRVSGM2VWM2Z2kvZ1BKdlJ4?=
+ =?iso-2022-jp?B?WVhLYTMyczBLZlRzaEV2dnFwdlFQd3c4Z3V6WTg0eXAwWW1EdWloaHZN?=
+ =?iso-2022-jp?B?ZjdmTEFSb3hMalRaeWxWQVZtZjJOK2hYZHhZZHZLbHFVK0IrN3hWc1pm?=
+ =?iso-2022-jp?B?Q3NSWG01UnhESlVSUDhsRVNjUzFuM3c4b1NZMTUzS1NjcTFISmVZd1JQ?=
+ =?iso-2022-jp?B?VWJhQ3ZIdVBYaHNHajBxbGJuWkhsV21Ub0pEZ1BsaXY5NFZDVlVqM0gz?=
+ =?iso-2022-jp?B?QW5YM0RnbVcySmFHbHR2eHE1Y2FoRm9LNEhwWWc3Sm9HR09EYjFoRUYr?=
+ =?iso-2022-jp?B?Yk8rRkI5V2l4dXE2Y0RIZEIzVUVRWUJIWmdoUk5hRzgxazZKQ0NWR29x?=
+ =?iso-2022-jp?B?bitWL0JFQytRTVE2OWp5Q1dkeis0aUJkWktiRUhrN25USXRzckZGbTRD?=
+ =?iso-2022-jp?B?ZUdNcTZpamIxOUxkc25JYlAySTRBL2lKWDFPc3RCNXROME0ydW9EOHU1?=
+ =?iso-2022-jp?B?M3AyZkN0NytDU2EyU2hFL1ZpMkJpMkM3dmxscFEwYjZCaWt0QUJCNW5a?=
+ =?iso-2022-jp?B?MDhJdVh0WVVrZTZkNzExSkJDL3dzYWVEbGFNODAvcDlQeFEyR3IxQmxJ?=
+ =?iso-2022-jp?B?bHk3UEtzT2J5K3NmODJLV1p5eWkza2w0V25kc0Nma0dua3pEemdaY09o?=
+ =?iso-2022-jp?B?VHE5c3lQWUwrR01DRkh4VE5sbEN1NGp4RnVIV3l4T3VEYnZIRDJ5YzZy?=
+ =?iso-2022-jp?B?S0MrOGFqdVBDWXAxTnA5dFpoL1psREVYVlJKMzE1S2NDSFdnRzliWnI4?=
+ =?iso-2022-jp?B?cm1rcFYzR3dVckhoVXhGeUNmZTBreFQ0aWJEOUhDQ2hyRzZRaitXMWpI?=
+ =?iso-2022-jp?B?UmdzNUU0TDBOc2psek5ob21oQWR3YmZiMnc9PQ==?=
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251119200306.60569-4-sander@svanheule.net>
+X-OriginatorOrg: hitachienergy.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR06MB10396.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48f75d09-3a03-47bb-9161-08de2cec7333
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Nov 2025 13:05:18.9806
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7831e6d9-dc6c-4cd1-9ec6-1dc2b4133195
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2oKWyXVQrstq0mhME5I6yOrgOuevhlcd2YNbK3MRWsaFjgCO4rNuYRKpzmf6B3lkOmCgrsBU8dUu9jzGgTwkCr0uMrsOXwJ36hpYTf7XAEs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR06MB7877
 
-On Wed, 19 Nov 2025, Sander Vanheule wrote:
+>=20
+> On Wed, Nov 26, 2025 at 10:45:31AM +0000, Holger Brunck wrote:
+> > the Kirkwood based board in question was OOT. Due to the patch we were
+> > able to use the mainline driver without patching it to configure the
+> > value we wanted.
+> >
+> > The DTS node looked like this:
+> >
+> > &mdio {
+> >         status =3D "okay";
+> >
+> >         switch@10 {
+> >                 compatible =3D "marvell,mv88e6085";
+> >                 #address-cells =3D <1>;
+> >                 #size-cells =3D <0>;
+> >                 reg =3D <0x10>;
+> >                 ports {
+> >                         #address-cells =3D <1>;
+> >                         #size-cells =3D <0>;
+> >                         port@4 {
+> >                                 reg =3D <4>;
+> >                                 label =3D "port4";
+> >                                 phy-connection-type =3D "sgmii";
+> >                                 tx-p2p-microvolt =3D <604000>;
+> >                                 fixed-link {
+> >                                         speed =3D <1000>;
+> >                                         full-duplex;
+> >                                 };
+> >                         };
+> >       };
+> > };
+>=20
+> Perhaps there is some bit I'm missing, but let me try and run the code on=
+ your
+> sample device tree.
+>=20
+> mv88e6xxx_setup_port()
+>         if (chip->info->ops->serdes_set_tx_amplitude) {
+>                 dp =3D dsa_to_port(ds, port);
+>                 if (dp)
+>                         phy_handle =3D of_parse_phandle(dp->dn, "phy-hand=
+le", 0);
+>=20
+>                 if (phy_handle && !of_property_read_u32(phy_handle,
+>                                                         "tx-p2p-microvolt=
+",
+>                                                         &tx_amp))
+>                         err =3D chip->info->ops->serdes_set_tx_amplitude(=
+chip,
+>                                                                 port, tx_=
+amp);
+>                 if (phy_handle) {
+>                         of_node_put(phy_handle);
+>                         if (err)
+>                                 return err;
+>                 }
+>         }
+>=20
+> dp->dn is the "port@4" node.
+> phy_handle is NULL, because the "port@4" node has no "phy-handle" propert=
+y.
+> of_property_read_u32(phy_handle, "tx-p2p-microvolt") does not run so chip=
+-
+> >info->ops->serdes_set_tx_amplitude() is never called
+>=20
+> I'm unable to reconcile the placement of the "tx-p2p-microvolt" property =
+in the
+> port OF node with the code that searches for it exclusively in the networ=
+k PHY
+> node.
 
-> The RTL8231 is implemented as an MDIO device, and provides a regmap
-> interface for register access by the core and child devices.
-> 
-> The chip can also be a device on an SMI bus, an I2C-like bus by Realtek.
-> Since kernel support for SMI is limited, and no real-world SMI
-> implementations have been encountered for this device, this is currently
-> unimplemented. The use of the regmap interface should make any future
-> support relatively straightforward.
-> 
-> After a soft reset, all pins are muxed to GPIO inputs before the pin
-> drivers are enabled. This is done to prevent accidental system resets,
-> when a pin is connected to the main SoC's reset line.
-> 
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-> ---
-> Changes since v6:
-> - Sort header includes
-> - Drop comment on cache type (6.19 will support REGCACHE_FLAT_S)
-> - Limit scope of LED_START field definition to init
-> - Variable renames:
->    - map -> regmap
->    - val -> status (register value) and ready_code (field value)
->    - val -> cfg
-> - Invert logic for !started, reducing code indentation
-> - Place __maybe_unused after function return type
-> - Use regmap_field_write() for LED_START field (volatile register)
-> - Use regcache_drop_region() to invalidate cache, replacing
->   regcache_mark_dirty() which invalidates the device state
-> ---
->  drivers/mfd/Kconfig         |   9 ++
->  drivers/mfd/Makefile        |   1 +
->  drivers/mfd/rtl8231.c       | 193 ++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/rtl8231.h |  71 +++++++++++++
->  4 files changed, 274 insertions(+)
->  create mode 100644 drivers/mfd/rtl8231.c
->  create mode 100644 include/linux/mfd/rtl8231.h
-> 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 6cec1858947b..e13e2df63fee 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -1301,6 +1301,15 @@ config MFD_RDC321X
->  	  southbridge which provides access to GPIOs and Watchdog using the
->  	  southbridge PCI device configuration space.
->  
-> +config MFD_RTL8231
-> +	tristate "Realtek RTL8231 GPIO and LED expander"
-> +	select MFD_CORE
-> +	select REGMAP_MDIO
-> +	help
-> +	  Support for the Realtek RTL8231 GPIO and LED expander.
-> +	  Provides up to 37 GPIOs, 88 LEDs, and one PWM output.
-> +	  When built as a module, this module will be named rtl8231.
-> +
->  config MFD_RT4831
->  	tristate "Richtek RT4831 four channel WLED and Display Bias Voltage"
->  	depends on I2C
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 865e9f12faff..ba973382a20f 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -252,6 +252,7 @@ obj-$(CONFIG_MFD_HI6421_PMIC)	+= hi6421-pmic-core.o
->  obj-$(CONFIG_MFD_HI6421_SPMI)	+= hi6421-spmi-pmic.o
->  obj-$(CONFIG_MFD_HI655X_PMIC)   += hi655x-pmic.o
->  obj-$(CONFIG_MFD_DLN2)		+= dln2.o
-> +obj-$(CONFIG_MFD_RTL8231)	+= rtl8231.o
->  obj-$(CONFIG_MFD_RT4831)	+= rt4831.o
->  obj-$(CONFIG_MFD_RT5033)	+= rt5033.o
->  obj-$(CONFIG_MFD_RT5120)	+= rt5120.o
-> diff --git a/drivers/mfd/rtl8231.c b/drivers/mfd/rtl8231.c
-> new file mode 100644
-> index 000000000000..8c74a3497045
-> --- /dev/null
-> +++ b/drivers/mfd/rtl8231.c
-> @@ -0,0 +1,193 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
+you are right I double checked it and it cannot work without a phy-handle. =
+Not
+sure, about the history of this patch anymore, but the board did run a 5.4 =
+kernel
+at that time.
 
-No company copyright or author tags?
+So I agree that the use case I had does not work as it is implemented here.=
+ So the code
+should be either removed or reworked.
 
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/mdio.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <linux/mfd/rtl8231.h>
-> +
-> +static bool rtl8231_volatile_reg(struct device *dev, unsigned int reg)
-> +{
-> +	switch (reg) {
-> +	/*
-> +	 * Registers with self-clearing bits, strapping pin values.
-> +	 * Don't mark the data registers as volatile, since we need
-> +	 * caching for the output values.
-> +	 */
-> +	case RTL8231_REG_FUNC0:
-> +	case RTL8231_REG_FUNC1:
-> +	case RTL8231_REG_PIN_HI_CFG:
-> +	case RTL8231_REG_LED_END:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
-> +static const struct mfd_cell rtl8231_cells[] = {
-> +	{
-> +		.name = "rtl8231-pinctrl",
-> +	},
-> +	{
-> +		.name = "rtl8231-leds",
-> +		.of_compatible = "realtek,rtl8231-leds",
-> +	},
-> +};
-> +
-> +static int rtl8231_soft_reset(struct regmap *regmap)
-> +{
-> +	const unsigned int all_pins_mask = GENMASK(RTL8231_BITS_VAL - 1, 0);
-> +	unsigned int cfg;
-> +	int err;
-> +
-> +	/* SOFT_RESET bit self-clears when done */
-> +	regmap_write_bits(regmap, RTL8231_REG_PIN_HI_CFG,
-> +			  RTL8231_PIN_HI_CFG_SOFT_RESET, RTL8231_PIN_HI_CFG_SOFT_RESET);
-> +
-> +	err = regmap_read_poll_timeout(regmap, RTL8231_REG_PIN_HI_CFG, cfg,
-> +				       !(cfg & RTL8231_PIN_HI_CFG_SOFT_RESET), 50, 1000);
-> +	if (err)
-> +		return err;
-> +
-> +	regcache_drop_region(regmap, 0, RTL8231_REG_COUNT - 1);
 
-Nit:
-
-RTL8231_REG_FUNC0, RTL8231_REG_GPIO_DATA2
-
-I'll also accept additional devices for each of these which would make
-things very clear.
-
-RTL8231_REG_START	0
-RTL8231_REG_END		RTL8231_REG_COUNT - 1
-
-Or similar.
-
-> +
-> +	/*
-> +	 * Chip reset results in a pin configuration that is a mix of LED and GPIO outputs.
-> +	 * Select GPI functionality for all pins before enabling pin outputs.
-> +	 */
-> +	regmap_write(regmap, RTL8231_REG_PIN_MODE0, all_pins_mask);
-> +	regmap_write(regmap, RTL8231_REG_GPIO_DIR0, all_pins_mask);
-> +	regmap_write(regmap, RTL8231_REG_PIN_MODE1, all_pins_mask);
-> +	regmap_write(regmap, RTL8231_REG_GPIO_DIR1, all_pins_mask);
-> +	regmap_write(regmap, RTL8231_REG_PIN_HI_CFG,
-> +		     RTL8231_PIN_HI_CFG_MODE_MASK | RTL8231_PIN_HI_CFG_DIR_MASK);
-> +
-> +	return 0;
-> +}
-> +
-> +static int rtl8231_init(struct device *dev, struct regmap *regmap)
-> +{
-> +	struct regmap_field *led_start;
-> +	unsigned int ready_code;
-> +	unsigned int started;
-> +	unsigned int status;
-> +	int err;
-> +
-> +	err = regmap_read(regmap, RTL8231_REG_FUNC1, &status);
-> +	if (err) {
-> +		dev_err(dev, "failed to read READY_CODE\n");
-> +		return err;
-> +	}
-> +
-> +	ready_code = FIELD_GET(RTL8231_FUNC1_READY_CODE_MASK, status);
-> +	if (ready_code != RTL8231_FUNC1_READY_CODE_VALUE) {
-> +		dev_err(dev, "RTL8231 not present or ready 0x%x != 0x%x\n",
-> +			ready_code, RTL8231_FUNC1_READY_CODE_VALUE);
-> +		return -ENODEV;
-> +	}
-> +
-> +	led_start = dev_get_drvdata(dev);
-> +	err = regmap_field_read(led_start, &started);
-> +	if (err)
-> +		return err;
-> +
-> +	if (started)
-> +		return 0;
-> +
-> +	err = rtl8231_soft_reset(regmap);
-> +	if (err)
-> +		return err;
-> +
-> +	/* LED_START enables power to output pins, and starts the LED engine */
-> +	return regmap_field_write(led_start, 1);
-
-Why can't the dedicated LED driver initialise itself?
-
-> +}
-> +
-> +static const struct regmap_config rtl8231_mdio_regmap_config = {
-> +	.val_bits = RTL8231_BITS_VAL,
-> +	.reg_bits = RTL8231_BITS_REG,
-> +	.volatile_reg = rtl8231_volatile_reg,
-> +	.max_register = RTL8231_REG_COUNT - 1,
-> +	.use_single_read = true,
-> +	.use_single_write = true,
-> +	.reg_format_endian = REGMAP_ENDIAN_BIG,
-> +	.val_format_endian = REGMAP_ENDIAN_BIG,
-> +	.cache_type = REGCACHE_MAPLE,
-> +};
-> +
-> +static int rtl8231_mdio_probe(struct mdio_device *mdiodev)
-> +{
-> +	const struct reg_field field_led_start = REG_FIELD(RTL8231_REG_FUNC0, 1, 1);
-> +	struct device *dev = &mdiodev->dev;
-> +	struct regmap_field *led_start;
-> +	struct regmap *regmap;
-> +	int err;
-> +
-> +	regmap = devm_regmap_init_mdio(mdiodev, &rtl8231_mdio_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(dev, "failed to init regmap\n");
-
-Nit: Let's not shorten user messages - "initialise".
-
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	led_start = devm_regmap_field_alloc(dev, regmap, field_led_start);
-> +	if (IS_ERR(led_start))
-> +		return PTR_ERR(led_start);
-> +
-> +	dev_set_drvdata(dev, led_start);
-
-I'd pass the whole Regmap through and let the LED extract its own part.
-
-> +	mdiodev->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(mdiodev->reset_gpio))
-> +		return PTR_ERR(mdiodev->reset_gpio);
-> +
-> +	device_property_read_u32(dev, "reset-assert-delay", &mdiodev->reset_assert_delay);
-> +	device_property_read_u32(dev, "reset-deassert-delay", &mdiodev->reset_deassert_delay);
-> +
-> +	err = rtl8231_init(dev, regmap);
-
-... then you can omit the 'regmap' argument.
-
-> +	if (err)
-> +		return err;
-> +
-> +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, rtl8231_cells,
-> +				    ARRAY_SIZE(rtl8231_cells), NULL, 0, NULL);
-> +}
-> +
-> +static int __maybe_unused rtl8231_suspend(struct device *dev)
-> +{
-> +	struct regmap_field *led_start = dev_get_drvdata(dev);
-> +
-> +	return regmap_field_write(led_start, 0);
-
-The LED driver doesn't have its own suspend support?
-
-> +}
-> +
-> +static int __maybe_unused rtl8231_resume(struct device *dev)
-> +{
-> +	struct regmap_field *led_start = dev_get_drvdata(dev);
-> +
-> +	return regmap_field_write(led_start, 1);
-> +}
-> +
-
-Nit: Remove this line.
-
-> +static SIMPLE_DEV_PM_OPS(rtl8231_pm_ops, rtl8231_suspend, rtl8231_resume);
-> +
-> +static const struct of_device_id rtl8231_of_match[] = {
-> +	{ .compatible = "realtek,rtl8231" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, rtl8231_of_match);
-> +
-> +static struct mdio_driver rtl8231_mdio_driver = {
-> +	.mdiodrv.driver = {
-> +		.name = "rtl8231-expander",
-> +		.of_match_table	= rtl8231_of_match,
-> +		.pm = pm_ptr(&rtl8231_pm_ops),
-> +	},
-> +	.probe = rtl8231_mdio_probe,
-> +};
-> +mdio_module_driver(rtl8231_mdio_driver);
-> +
-> +MODULE_AUTHOR("Sander Vanheule <sander@svanheule.net>");
-> +MODULE_DESCRIPTION("Realtek RTL8231 GPIO and LED expander");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mfd/rtl8231.h b/include/linux/mfd/rtl8231.h
-> new file mode 100644
-> index 000000000000..003eda3797a3
-> --- /dev/null
-> +++ b/include/linux/mfd/rtl8231.h
-> @@ -0,0 +1,71 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Register definitions the RTL8231 GPIO and LED expander chip
-> + */
-> +
-> +#ifndef __LINUX_MFD_RTL8231_H
-> +#define __LINUX_MFD_RTL8231_H
-> +
-> +#include <linux/bits.h>
-> +
-> +/*
-> + * Registers addresses are 5 bit, values are 16 bit
-> + * Also define a duplicated range of virtual addresses, to enable
-> + * different read/write behaviour on the GPIO data registers
-> + */
-> +#define RTL8231_BITS_VAL		16
-> +#define RTL8231_BITS_REG		5
-> +
-> +/* Chip control */
-> +#define RTL8231_REG_FUNC0		0x00
-> +#define RTL8231_FUNC0_SCAN_MODE		BIT(0)
-> +#define RTL8231_FUNC0_SCAN_SINGLE	0
-> +#define RTL8231_FUNC0_SCAN_BICOLOR	BIT(0)
-> +
-> +#define RTL8231_REG_FUNC1		0x01
-> +#define RTL8231_FUNC1_READY_CODE_VALUE	0x37
-> +#define RTL8231_FUNC1_READY_CODE_MASK	GENMASK(9, 4)
-> +#define RTL8231_FUNC1_DEBOUNCE_MASK	GENMASK(15, 10)
-> +
-> +/* Pin control */
-> +#define RTL8231_REG_PIN_MODE0		0x02
-> +#define RTL8231_REG_PIN_MODE1		0x03
-> +
-> +#define RTL8231_PIN_MODE_LED		0
-> +#define RTL8231_PIN_MODE_GPIO		1
-> +
-> +/* Pin high config: pin and GPIO control for pins 32-26 */
-> +#define RTL8231_REG_PIN_HI_CFG		0x04
-> +#define RTL8231_PIN_HI_CFG_MODE_MASK	GENMASK(4, 0)
-> +#define RTL8231_PIN_HI_CFG_DIR_MASK	GENMASK(9, 5)
-> +#define RTL8231_PIN_HI_CFG_INV_MASK	GENMASK(14, 10)
-> +#define RTL8231_PIN_HI_CFG_SOFT_RESET	BIT(15)
-> +
-> +/* GPIO control registers */
-> +#define RTL8231_REG_GPIO_DIR0		0x05
-> +#define RTL8231_REG_GPIO_DIR1		0x06
-> +#define RTL8231_REG_GPIO_INVERT0	0x07
-> +#define RTL8231_REG_GPIO_INVERT1	0x08
-> +
-> +#define RTL8231_GPIO_DIR_IN		1
-> +#define RTL8231_GPIO_DIR_OUT		0
-> +
-> +/*
-> + * GPIO data registers
-> + * Only the output data can be written to these registers, and only the input
-> + * data can be read.
-> + */
-> +#define RTL8231_REG_GPIO_DATA0		0x1c
-> +#define RTL8231_REG_GPIO_DATA1		0x1d
-> +#define RTL8231_REG_GPIO_DATA2		0x1e
-> +#define RTL8231_PIN_HI_DATA_MASK	GENMASK(4, 0)
-> +
-> +/* LED control base registers */
-> +#define RTL8231_REG_LED0_BASE		0x09
-> +#define RTL8231_REG_LED1_BASE		0x10
-> +#define RTL8231_REG_LED2_BASE		0x17
-> +#define RTL8231_REG_LED_END		0x1b
-> +
-> +#define RTL8231_REG_COUNT		0x1f
-> +
-> +#endif /* __LINUX_MFD_RTL8231_H */
-> -- 
-> 2.51.1
-> 
-
--- 
-Lee Jones [李琼斯]
 
