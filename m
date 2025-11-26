@@ -1,184 +1,158 @@
-Return-Path: <devicetree+bounces-242501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61100C8B2B4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:18:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 932DCC8B2BB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:18:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CFFBA357A67
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:18:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 52B7A4E2C14
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 805BD23F41A;
-	Wed, 26 Nov 2025 17:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605AA271469;
+	Wed, 26 Nov 2025 17:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nzFn56Kq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BHor0WDv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A8223E25B
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:17:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7658E27056F;
+	Wed, 26 Nov 2025 17:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764177479; cv=none; b=tEQC0upsysA/CxrugtFj/fFE7ph5S385f1lr8R2OokDn/t7MziLdqUMmiydEujBj6UEscNPNB2NztRX51Y9VENl3XbA+38wXwhhfPN44VDffNuHkf86Up7MX86iHiU7tZbvP6i0vkCPeiGsZ4sWHAAcO1LkoWidcxB+tZK3jRXs=
+	t=1764177521; cv=none; b=c3S6QWSkZbEDvM9ciOCrdqDZW5s2L7TGe9YLGcNK6Ymge3XvAKmMCUsY6VX4oManFS22lGUhCLImKv7Y4meQrfi/U5xDoGvLr8qJjFOGarvNL0m6GO1v0hnPE2OidF6T+xhucXEX40bJCB1PYVqvoSmVIRE4ailM+J0qwMUeuaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764177479; c=relaxed/simple;
-	bh=3y6SB68ie0txKnHoViDfxbae5Abh2qcvNZUSo+HHpU0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mM4bNGFBUsyysn1JrAxjETKG9whZlrlrhcNI+Pn4UAja02DOCdS53Qk9GwSxMZuTLOlR7JyJat9Cu64/bDGvgxwAt2GZRihlNmntnYjODnwIagJqAz4QnP/mrdKXjRT358fnNmFbZ0Lywg8SNrdFER5pY+b1D5O2+h1QgKoDIp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nzFn56Kq; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-37b657f6e24so44241fa.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:17:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764177476; x=1764782276; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jjVjPsI8gv3VbQ72UKGcVzIQLX4fJScv+tZF2KJrJwk=;
-        b=nzFn56KqAJP+y3Jx2tzHx3IW3n3MmEwK+Hrfe4gZDwrBqhYF75EpKpLZD5zg5E6v+x
-         tYddU6zOAASgvgCiwoM7lKKDFV6YQe4tQMABmg5MECFLtF06nTFRiCWs5LLmTpOhoJQB
-         9ikeE8sFxE0+lH8AmRTYQmBSW1ZBAtlVFyfsjBJjHYWXtEESVPRNgY6yTkfhjGVJnyQ7
-         EdqPZ8U0y9d/+xVWrnG6CD18ARfBkDTDKIfOiznP8w2loahGcXvtZ73idJO+hOlItVGF
-         uM4zwIHfXPL9FT02ZQENzsaPvUC3YEpD5gHjFYDW+wqY4QOQRU4+ehVBsWvG5Am6F76l
-         5c0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764177476; x=1764782276;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jjVjPsI8gv3VbQ72UKGcVzIQLX4fJScv+tZF2KJrJwk=;
-        b=b3CS0OPNUADCI613VxgKNvH+tNsjjVqJYYf3MsVs2l1jbC6Q3NCuHKiOVvSK4HKbAE
-         6bRFoWPynwKg4q5M837BW3yN0rBBd3jF0ePZYz5DnPwumHSX1/w6m9ZvNkJgyzM864nn
-         igkgfPivm6Or1SsIYVkfk1Sn3AFkm8bZ3B3sdsHdAxoAcZeOX8IS1y2Wa0taLUIkrYW6
-         zzxjdTmtgG9I83g91lGpiMvulw/xx+9ia48gKuB+re/ex7Y1wMkagG0c2dQlr2AZftGB
-         l0Hr+KCTyY54vdpq99Ce/cv5l1NVswY0shmvkyLiSbKNSMqvrUP7qTavF6KF5YBK5GrI
-         +XBA==
-X-Forwarded-Encrypted: i=1; AJvYcCVaXxZthgtDu466j662qaGvqa1dkfV6qEOVnTxHijM6RShdbDblVMrDuRZtcrMnkGLYzxuGtenROJ9r@vger.kernel.org
-X-Gm-Message-State: AOJu0YzF7v7MoqvLcMnljKrp4TnQqneqh7JMQNnVj0CoMI/JZXr848pS
-	sf33fkTigB+z7BI4VLeIyCeZkh/7CoeoRdNQpVmX3/5DelgXvyXpDFM3LVBuac3+IZw=
-X-Gm-Gg: ASbGnculQaXOBVKjXz+FBCVTsTdQYFxrU5MC1OfRYFgNhb5hUwXvfz3s/EKovL17NQJ
-	2L177ATLoB8rrpoKY9stLNLopKrrCoYLPM3UNmMj9jZpUPxzECZtsiOfKwNay8f9r/cv/8RBwPH
-	XofAY2OL2Q2x/bdyAnYHXmNCfqPoGB5MI6Q6/oBSSFWJjKH1Oe4qE+dO721ISGzSwIi5H03Cj1U
-	+GcPzQS/i6WEKhSGsBBBjHz3KmqzTOx+N2AqeEiD6UtRHt4E2+N6BreubLLh9W8KZkos9F6T1Rt
-	mjKdA93OTr4OjmNN55sVuVxa3f6uEdq0zAvWOzQ5Ccv93AkENflPCwgvfMEnp672WXL3dvFq2E1
-	5wZ5MkUdJN0t4NJ4xiDlWlvDR9hM1SJn07k/ol6wbTeYXUzhG0G0JeUnyPhKirlKdq5845RB7ji
-	ufAl14ERltL+2pKso0nEwxF2AKTa+dzRhhsrIWtxiZ61gCTjH9Y8C5CdAEEC4HBHr/Hw==
-X-Google-Smtp-Source: AGHT+IEBB9ywUGsZdvYCVjtmtHQkpGExa7GrziZsw3x4zQJsI/QdTZqEjSoQFCogPgMJnvdqJmoa2A==
-X-Received: by 2002:a05:651c:3151:b0:37a:84e5:a0e8 with SMTP id 38308e7fff4ca-37cdc38c2d9mr22822131fa.6.1764177475598;
-        Wed, 26 Nov 2025 09:17:55 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5969dbcd225sm6216283e87.93.2025.11.26.09.17.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Nov 2025 09:17:55 -0800 (PST)
-Message-ID: <ffdeca69-baf8-4c8e-9b48-244255211f9b@linaro.org>
-Date: Wed, 26 Nov 2025 19:17:53 +0200
+	s=arc-20240116; t=1764177521; c=relaxed/simple;
+	bh=QNpZf3xUex3YCkCt1bo+5+Se1H+g3kaaOupJjR57dYs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rr62WNFP7atC1QzbgfL/GWyuLWkxuBoUHFiEzX21CFNwe9iqbjJ/a9hQb8mo57kYkV7s0/29LtefOvZ8yNPwtypghHB19e94T6QydA+40UiIwXmN+/utteJT+aeNuMHpEgluBiiJPRCYAkPc+tgQ867Ky1x9hZnBO+1ONKDQ1qU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BHor0WDv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5784C4CEF7;
+	Wed, 26 Nov 2025 17:18:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764177521;
+	bh=QNpZf3xUex3YCkCt1bo+5+Se1H+g3kaaOupJjR57dYs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BHor0WDvsu5cCGZ1MM77lOYKzwX+hbRxkuaEXcL4019i0PaMKsd3bqxDwrrzDaQbb
+	 K6+Gm2jD0vhvIHIW60L7Sw1iLEMhnB9NlxEKOr3eQHzjmo4GAk0kX8lRXndMVB/qdV
+	 yUeFFG1dNicKXHyOiH1f2lx4pNyisGTsVEAPo7SRAkPEQlrbsh+opctTnQc5yYRloa
+	 BQUXa/PrpdBzWI6iDu2XagLLQzk7lH+hi4riT6+c9I6fm2cOYIMLKcffik434bQO2N
+	 j+Q62yza6zPdMoNkqUeFQm3uFpRn13I+iL+ObWlX8TK/R65xVGwXaqe+20Q4gCtQ2b
+	 /hT+PcTGi7VTw==
+Date: Wed, 26 Nov 2025 18:18:26 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Mark Rutland <mark.rutland@arm.com>, Arnd Bergmann <arnd@arndb.de>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Moritz Fischer <moritz.fischer@ettus.com>,
+	John Stultz <john.stultz@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+	Stephen Boyd <swboyd@chromium.org>,
+	Andre Draszik <andre.draszik@linaro.org>,
+	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	Elliot Berman <quic_eberman@quicinc.com>,
+	Xin Liu <xin.liu@oss.qualcomm.com>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Umang Chheda <umang.chheda@oss.qualcomm.com>,
+	Nirmesh Kumar Singh <nirmesh.singh@oss.qualcomm.com>
+Subject: Re: [PATCH v17 07/12] firmware: psci: Implement vendor-specific
+ resets as reboot-mode
+Message-ID: <aSc2Yh3AvLXOBvcz@lpieralisi>
+References: <20251109-arm-psci-system_reset2-vendor-reboots-v17-0-46e085bca4cc@oss.qualcomm.com>
+ <20251109-arm-psci-system_reset2-vendor-reboots-v17-7-46e085bca4cc@oss.qualcomm.com>
+ <aRIfc9iuC2b9DqI+@lpieralisi>
+ <80e68e44-a8e0-464a-056e-9f087ad40d51@oss.qualcomm.com>
+ <aRxmWrAkD0Vu4pF+@lpieralisi>
+ <1da024e7-efb1-3a1c-cc13-0ae5212ed8bd@oss.qualcomm.com>
+ <aR2P4CxQNebac6oU@lpieralisi>
+ <682b1a0c-644f-2aff-1860-cbf9a53bc62b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: sm8x50: Enable UHS-I SDR50 and
- SDR104 SD card modes
-To: Val Packett <val@packett.cool>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251126012043.3764567-1-vladimir.zapolskiy@linaro.org>
- <bdf3f54d-a223-4eff-aa71-0d74a83ef46d@packett.cool>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <bdf3f54d-a223-4eff-aa71-0d74a83ef46d@packett.cool>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <682b1a0c-644f-2aff-1860-cbf9a53bc62b@oss.qualcomm.com>
 
-Hi Val,
-
-On 11/26/25 18:14, Val Packett wrote:
-> Hi,
+On Wed, Nov 19, 2025 at 05:32:42PM +0530, Shivendra Pratap wrote:
 > 
-> On 11/25/25 10:20 PM, Vladimir Zapolskiy wrote:
->> The reported problem of some non-working UHS-I speed modes on SM8450
->> originates in commit 0a631a36f724 ("arm64: dts: qcom: Add device tree
->> for Sony Xperia 1 IV"), and then it was spread to all SM8450 powered
->> platforms by commit 9d561dc4e5cc ("arm64: dts: qcom: sm8450: disable
->> SDHCI SDR104/SDR50 on all boards").
->>
->> The tests show that the rootcause of the problem was related to an
->> overclocking of SD cards, and it's fixed later on by commit a27ac3806b0a
->> ("clk: qcom: gcc-sm8450: Use floor ops for SDCC RCGs").
->>
->> Due to a missed setting of an appropriate SDCC clock operations in
->> platform GCC driver the workaround of dropping SD card speeds from UHS-I
->> to high speed was spread to SM8550 and SM8650 platforms, and since
->> the fixes in the clock controller drivers are ready [1], it should be
->> safe to remove the speed mode restrictions from SM8450, SM8550 and
->> SM8650 platforms.
->> [..]
 > 
-> I see you have tested with dd on the raw block device, but have you
-> tested hotplugging SD cards that have partition tables and filesystems
-> on them?
-
-the test results given in the commit message are for demonstation purpose,
-the test do serve right the same purpose of performing I/O reading from
-an SD card as reading a partition table.
-
-An important point is that if there are some issues with a filesystem on
-SD card, it just lacks a justification of "forbidding SDR104/SDR50 due
-broken SDHC hardware".
-
-> We have this kind of issue on Hamoa where we get I/O errors early, right
-> after the card is inserted and the partition table / filesystem headers
-> are being read:
-
-Hamoa is X1E80100, is it right? Unfortunately I can not test my set of
-SD cards including one Transcend UHS-I SDR104 speed mode SD card on this
-particular hardware.
-
-> [  714.057106] mmc0: new UHS-I speed SDR104 SDXC card at address 0001
-> [  714.060567] mmcblk0: mmc0:0001 EC2QT 59.6 GiB
-> [  714.503873] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 0x0
-> phys_seg 1 prio class 2
-> [  714.505660] Buffer I/O error on dev mmcblk0, logical block 0, async
-> page read
-> [  714.513632] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 0x0
-> phys_seg 1 prio class 2
-> [  714.516469] Buffer I/O error on dev mmcblk0, logical block 0, async
-> page read
-> [  714.516512]  mmcblk0: unable to read partition table
+> On 11/19/2025 3:07 PM, Lorenzo Pieralisi wrote:
+> > On Tue, Nov 18, 2025 at 11:11:33PM +0530, Shivendra Pratap wrote:
+> > 
+> > [...]
+> > 
+> >>> Yes this could be a potential way forward but that's decoupled from the
+> >>> options below. If we take this route PSCI maintainers should be added
+> >>> as maintainers for this reboot mode driver.
+> >>
+> >> you mean the new psci_reset driver? yes. Maintainer would be PSCI maintainer,
+> >> if we create a new  psci_reset reboot mode driver.
+> > 
+> > Yes.
+> > 
+> >>>> - struct with pre-built psci reset_types - (warm, soft, cold). Currently
+> >>>>   only two modes supported, anything other than warm/soft defaults to cold.
+> >>>> - vendor resets to be added as per vendor choice, inside psci device tree(SOC specific).
+> >>>> - psci_reset registers with reboot-mode for registering  vendor resets. Here, we
+> >>>>   have a problem, the pre-built psci reset_types - (warm, soft, cold) cannot be added via
+> >>>>   reboot-mode framework.
+> >>>
+> >>> Why ?
+> >>
+> >> If we want the new psci_reset to take the reboot-mode framework route, is it ok to
+> >> add default modes (warm, cold) in the device tree?
+> >> If not, then the design of reboot-mode framework(power:reset:reboot-mode.c) needs to be
+> >> further changed to equip this new feature. 
+> > 
+> > Well, yes, all it needs to do is allowing prepopulated reboot modes on top
+> > of which DT based ones are added.
 > 
-> and b1f856b1727c ("mmc: sdhci-msm: Avoid early clock doubling during
-> HS400 transition") did not help..
+> The mode-cold , adds a third variable to reboot-modes as the first parameter for 
+> invoke_psci_fn is different for cold vs warm/vendor.
 > 
+> cold reset call       : invoke_psci_fn(PSCI_0_2_FN_SYSTEM_RESET, 0, 0, 0);
+> vendor/warm reset call: invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2), vendor, cookiee, 0);
+> 
+> Each mode will have 3 argument - like:
+> _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ 
+> MODE   , cold reset, reset_type, cookie
+> _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ - 
+> COLD   ,   1       ,    0      ,     0
+> WARM   ,   0       ,    0      ,     0
+> vendor1,   0       ,0x80000000 ,     1
+> vendor2,   0       ,0x80000010 ,     0
+> 
+> So reboot-mode framework will now define and support upto three 32 bit arguments for each mode?
 
-I've checked that this particular change [1], and it's unlikely that it
-has an impact on the issue reported above due to the fact that the
-problem is reported against an UHS-I SDR104 SD card, and the fix does
-not touch this mode. So, it's kind of expected, and for further analysis
-I need more information.
+The cookie value is unused for SYSTEM_WARM_RESET, you can encode there whether
+it is a cold (SYSTEM_RESET) or warm (SYSTEM_RESET2 - SYSTEM_WARM_RESET) architectural
+reset when the magic value(aka reset_type) == 0x0 ?
 
-Note what is the originally reported problem, which workaround is supposed
-to be reverted now:
+The reboot mode parameters do not necessarily need to map to PSCI function
+calls parameters - provided we define that explicitly.
 
-9d561dc4e5cc ("arm64: dts: qcom: sm8450: disable SDHCI SDR104/SDR50 on all boards"):
-
-       mmc0: card never left busy state
-       mmc0: error -110 whilst initialising SD card
-
-This is very different from your fault report, and this is fixed by
-my recent changes in the SM8x50 GCC drivers, and this one series
-setteles the fix.
-
-[1] https://lore.kernel.org/linux-mmc/20251114082824.3825501-1-sarthak.garg@oss.qualcomm.com/
-
--- 
-Best wishes,
-Vladimir
+Lorenzo
 
