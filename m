@@ -1,256 +1,249 @@
-Return-Path: <devicetree+bounces-242348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7582DC89612
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:48:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F3DBC89654
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:53:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4321D4E06A7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:48:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CCE93A9840
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED676322C7B;
-	Wed, 26 Nov 2025 10:47:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F20833195E8;
+	Wed, 26 Nov 2025 10:51:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TG8YJP0o"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="mV1h5D5y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012040.outbound.protection.outlook.com [52.101.66.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE571322C99
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 10:47:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764154022; cv=none; b=t17TVN4dCb3NihRoAq8vd/PEpalFbTDdyNQemvGDLHdKVpt/CKp+2UM8j4J/V1BlmkCVIfKnct7X+In9aaZ7O4z8pDWF5USc2qdpdfVUV+wXe7mRpbV2anXwIcdYF9Xl19r2PI5uvmQpBO8iS34H8pCzKw1LbEnsk5rH3bEeJf0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764154022; c=relaxed/simple;
-	bh=zfNxIsoGGcHLp4dAZtbBdFX5D0e6AXXZvgFVxvU84fs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gxWCs8QkMxpA0OxAARrCQPXyUfiASyVJQsBTX371VrNaNljMlzrGUh/f2zP1cWsyBB6H4tIb3KtW0qR/wtrUY115CLooCe+pHT5dMoKdQqBMQkftbE31ccy3ufMlB0UMthkFHa65d2gnO5rrjmakfbq2tW1NNncOq6LpKxBByXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TG8YJP0o; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 5F4F81A1D6E;
-	Wed, 26 Nov 2025 10:46:59 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 35DD660721;
-	Wed, 26 Nov 2025 10:46:59 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC19F102F08E5;
-	Wed, 26 Nov 2025 11:46:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764154018; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=aL19MBw9rbt+Wa3zJ/ps4nC2JNiqTqhjMhgiPrDJBog=;
-	b=TG8YJP0o2/imzBbXwob/bYHNMd5Kzoq6+RE73scw4AlMIA0xUvjefKKGhfRAoYUUsRLlpq
-	wf0Fkt/RBgFfl9oZa33bXTR9JVxMWGrSbJHpl5GzoSBTmgDCuMwXx+n039WtTTHhshmB0c
-	utgsV0DohjhFn7XE9FtwEfCeHVwxXfJA0EN7skGh+Hk0JEEzQ1GeVIAeKgVvDjmpy3A/ZJ
-	jKsq9hIZ3LlLBhoB+nwgFE86XfYy9VfN9nUZFsiE9LymvrCGp96eefBROcZagLsGmmOF0A
-	MB4wAaR2WdXyBLypvORJgfjXqkouoOjwkU6olGnU7+ZMuZDZd0zQKhScaqSYgA==
-From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-Date: Wed, 26 Nov 2025 11:46:30 +0100
-Subject: [PATCH v4 7/7] i2c: designware: Support of controller with
- IC_EMPTYFIFO_HOLD_MASTER disabled
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED1C248F7C;
+	Wed, 26 Nov 2025 10:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.40
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764154289; cv=fail; b=T94fQC1wN9CLVfhXOhrMqTt5LsS6qoB3cNFNu8MQHNhjZROpxij2CMkvdPOE/3a7L7Q+UEWxrGTObb8Aqlsh4vdkmknFg7f5R2aa9cTv0PkpdoxIm9hdSMmanDZ3E83nhDzKnJOyY1Jq8KJ6Xt+V9z+A7cAcrys08ZMS64/q940=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764154289; c=relaxed/simple;
+	bh=5FUvYX/9P78O9tB9+LyGvOCbzpnOQuLWWi5IwdHuHBs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=l2Uh+Z5ITN4ZaFU/mSZaPExSOhmEl5gcwKRjWo7vGxvm8JCqTuwzLe9fgl7OkHLX5myH3uLRZzUiOHhiAs3TGndB1Bgzi2WTMAl6GZVIqs3Qw5clkYVC4skq5FWw98bq9WxCHZoSV/gKwPEQ0Caf70eTFco+y6ue/YDAOwZBtxI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=mV1h5D5y; arc=fail smtp.client-ip=52.101.66.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aTNweeZchf8OS2uHAbyCJMx0kaJQFuf4mGEmWf3+dgzyHmVBWnb9gh4ZlVHcrDrDCW1Hqz6ZPonsYgPFN+CYhlQBwagdATtzwMC4x1W4Osdq/+Dz6ZW8Bk8RvhSsI9I8arkw/bA4dlnUK4U9j7fZE11ET2ndHQ+DAngjS+KXGCnVV39UNdb4UDnV8FV/8mFOK2C+nReOA6HF4rxa+yTP9KzzikR6OJH3wbcV/WmtZ5A3vx0hHd12Js7J1Bxf0if11djBsMwo9/hkwcM3xgu4d/DWw8YmrRkccO3S5zqxo240t22hYqbGwYxMmTc35b9IfCJi7eSUql7zuzT3IEkH2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7z8mFHElAJ8hjCpkCtKNJ7XS9m9mK64ZspRldRGXfV8=;
+ b=OkN28qaApY/a4xQm4p0M9tVLCDgTfrjh8D/hZ7gqjgsRKVkHZTu9gS7cRiUAjsJo43MoPGbhvGBLn6qq3tVM5GLjtwUNecMGc3d+l5Nym4Z2Vc0aC8FTB7zu8AG8KkFqNzIRZ94FHD0NdFfAXHvLF+harLEm8HmqKyAer9zVEKSKmHLq8wTDAF8qzc/ufNU3UOhSrCBYdgKkfDI2wUfmOz0MMF/QwN3cTml0JgholYP15rsqIMEM5tCkD9HjPcjzBxaLMt9A5HbhbtwdRzer24ppTEt2YJPOmkLYmDK0ng25ewtsTxRojwSiTQzRR0Lyafbq0a98KLKlTUGkI12fwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7z8mFHElAJ8hjCpkCtKNJ7XS9m9mK64ZspRldRGXfV8=;
+ b=mV1h5D5yjmkVWD1VDbxBwKpE0JhHoeXZmsc8KZGapwZkme8aQCrWWWihVWhxZb35myvsMd70LGHU2M0l6+nI9cHPSHd+avrTfsXZMf8w17ma7iX6WaTWT9qGkckkxa1TbqtThpwF0JPcW/iv4K3cI04AsiX/YAIeRVHuP/xLb0kzWtL+pQjJwS0uW+Dwqq4X2sfPPhWNWNN3tMisXZntI4HtH2/SbpsUIWkgE72HxqlVQ4jeRj9AHe1dsa1Ye11ULgmyoCe7Hxb+B1CUUjCZ5hpsfV7oXC9VAjSSmQFhobJBq+gcF8WlbklZB8t6MuSdtbAnA05UNM6ug1oaK748Sw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com (2603:10a6:20b:438::13)
+ by VI0PR04MB10463.eurprd04.prod.outlook.com (2603:10a6:800:238::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Wed, 26 Nov
+ 2025 10:51:24 +0000
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::8063:666f:9a2e:1dab]) by AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::8063:666f:9a2e:1dab%5]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
+ 10:51:24 +0000
+Date: Wed, 26 Nov 2025 12:51:20 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Holger Brunck <holger.brunck@hitachienergy.com>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Eric Woudstra <ericwouds@gmail.com>,
+	Marek =?utf-8?B?QmVo4oia4oirbg==?= <kabel@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next 1/9] dt-bindings: phy: rename
+ transmit-amplitude.yaml to phy-common-props.yaml
+Message-ID: <20251126105120.c7jtuy7rvbu4pqnv@skbuf>
+References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+ <20251122193341.332324-2-vladimir.oltean@nxp.com>
+ <0faccdb7-0934-4543-9b7f-a655a632fa86@lunn.ch>
+ <20251125214450.qeljlyt3d27zclfr@skbuf>
+ <b4597333-e485-426d-975e-3082895e09f6@lunn.ch>
+ <20251126072638.wqwbhhab3afxvm7x@skbuf>
+ <AM0PR06MB10396D06E6F06F6B8AB3CFCBEF7DEA@AM0PR06MB10396.eurprd06.prod.outlook.com>
+ <20251126103350.el6mzde47sg5v6od@skbuf>
+ <AM0PR06MB10396E5D3A14C7B32BFAEB264F7DEA@AM0PR06MB10396.eurprd06.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM0PR06MB10396E5D3A14C7B32BFAEB264F7DEA@AM0PR06MB10396.eurprd06.prod.outlook.com>
+X-ClientProxiedBy: BE1P281CA0175.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:66::8) To AM9PR04MB8585.eurprd04.prod.outlook.com
+ (2603:10a6:20b:438::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251126-i2c-dw-v4-7-b0654598e7c5@bootlin.com>
-References: <20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com>
-In-Reply-To: <20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com>
-To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
- Mika Westerberg <mika.westerberg@linux.intel.com>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Jan Dabros <jsd@semihalf.com>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-rt-devel@lists.linux.dev, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8585:EE_|VI0PR04MB10463:EE_
+X-MS-Office365-Filtering-Correlation-Id: e24d93d9-283d-41db-26d9-08de2cd9bdea
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|10070799003|19092799006|1800799024|376014|7416014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?7E8xz0QMs65wLZxVpyK3I9KkXG3oMw+rX7zr6mlt/daqS7bc0yqxYvHrjrCC?=
+ =?us-ascii?Q?nzq0VP7es7jb9VR8nMbiXSyCpZfaFpmZBaANZm0cfjroOWG4UWNQC5vCaBnV?=
+ =?us-ascii?Q?3Nt1bb6YU8jEMIj7ULVUAw7J4TK8dTALTL9lIkALc7uZszAxmgxnnODKv/6N?=
+ =?us-ascii?Q?xppmIGoi3f8W9GO3Oc7SF5Nmf5fTi2/7lY9+/5HjeIoxAnXFRJpxxM1H6IkH?=
+ =?us-ascii?Q?J2rECMKx+NrTwgQgutWs7Ogu1bLw+7bjmXE4wPgtc1+nIXvxebCNYxcR3MuZ?=
+ =?us-ascii?Q?uxKXDN3XBIoCCSyS36H0DhXoH6DWYpE7ZDeTmFbYWlBxgH0cvQk1SXnz8HGm?=
+ =?us-ascii?Q?GTgawCZYEtNa4YgvCudoL//A9plyn8KKkou5R7vtd359DZYCzxiR4aFlPYTT?=
+ =?us-ascii?Q?hHebba1r5iSOmSZ6lG1itlo2PakKpUmTew3D35Br/GhG9m8p8V9gjAbhANQF?=
+ =?us-ascii?Q?jYYstGX3mxQEOceJvEzGhUbcMpjR6/FdL5KESvNUCNi7jlelvlNNe3CVNMGM?=
+ =?us-ascii?Q?hI5HE3R9BNuUIXM9YZDmoKd6sp6x3flsU4hhIY3vh6bJaejJ7bu57mu3i6dj?=
+ =?us-ascii?Q?OGI29q8xQHrQXwcYjc1HI5hIr6k3fXJxbzyRif4qtNHKH/pO6fjhAeu5DWnA?=
+ =?us-ascii?Q?rqn7vascWLRdzlrafiP1roIyf9aOV5hgSvriXLFBV/Fck+H6J/Mjn7TdqPL8?=
+ =?us-ascii?Q?iasLpeF7tAZJdJsGPRkcwX1owDmrHALKqznYVZDWB8BtQ9OyoOAfaN6XEUMX?=
+ =?us-ascii?Q?uDf979xgrlfcKr5t9h//bapFthhvAUaOg4nWKwgv5kqdM9b7BmVfRipw9MA6?=
+ =?us-ascii?Q?oLSd+31Z+xbw5y00Euy9OwI9jzWRhj/fHnSobhROksxF7IVmpjJEjdXxfLU8?=
+ =?us-ascii?Q?e5lm1c6qH5OXvM6dIa5hrtMF6nm2WGMCqkT+78zr9ge9ddfHDbAsm0alg46i?=
+ =?us-ascii?Q?bsoiPmO3EPyhcFuof3cwPSkZkFfxzl5CEuTjYNKx6bwUcDoFoSJLD4VHMPNu?=
+ =?us-ascii?Q?3x9C3snXovkNfr6xvw4QnflCsUshUaRKiVqx7nQmXP8Nmn+o0JugV3BTy2al?=
+ =?us-ascii?Q?IjCP+xQJE3DX+QRqZQ3q6kSgSXqKxi+U0e+dhLErbbFxIbrcLEordmGlNkxL?=
+ =?us-ascii?Q?L4mrOlEdm83zUSvS+3+4uNRIztDe5w2AWzIn/asEqPzCn6R9i0rPJqlH1UeJ?=
+ =?us-ascii?Q?WHd48wCsg3DHvdFJaN06Gc5OeOj/Ft76IlsU97E4uJyuk8vCL/zi8d9TPIyn?=
+ =?us-ascii?Q?puDHQ68vrZBQvt96swev+VDYjLXuz+Dw3xJHwg3nEq3batFfsC8pl9IFIyZe?=
+ =?us-ascii?Q?jpvqZUjWaE0lTxwoRF9zrPSyLKlkdoa5Cr6/EbhDYZ1g4+t0tIFFeDrTu1bn?=
+ =?us-ascii?Q?JCXlj/hzYdixzK3Gz1vIBFIb+dtutgKPGLNQxQOU8qJKX+FKFcUUE9prJlEJ?=
+ =?us-ascii?Q?bLSC7RN0+zUUXGHj24EkCb6w7jMdBvz/?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8585.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(19092799006)(1800799024)(376014)(7416014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?vIUShrnQW2bHkorpdBjNhGvYfxj2/op+IWpQY2oMMpsGiZ4qreyYKGvSKEQQ?=
+ =?us-ascii?Q?YqOikEai4YwKZMCX4M/fSe6r5gKF+THep0p/wvwtKLptcUrkkIvdzTZ4sbBM?=
+ =?us-ascii?Q?O6IvEFd/ZbpaOfdj6MeC4JPdSMZQO95fYbOHyaPQt1wLgOQmGpLWELRLxYJZ?=
+ =?us-ascii?Q?Rp+PSPhGJRcoG3QilQex7l3u7zzXjVHbMz3XMi7EdIye4p/1YdfvNhvNCeFU?=
+ =?us-ascii?Q?cxzzSKPuBR/i5d85JxGuQqU1xiKBW+ak6ZhaNGqbFd1sZiPdRelLfKQUoBZD?=
+ =?us-ascii?Q?7s1xoS7cRVZbi5PqVxhTnV5ssgzXf4tOo40w90Hu+OhjjSL7xI+/sQwPjanj?=
+ =?us-ascii?Q?bUub/gKZcmi+PKZWoHcphn128L0ozhXV4N8MHCQ5s06N53eCMvvP5oSeS+jV?=
+ =?us-ascii?Q?noGlw8/JBaOca/J5axLFT40iKCa/EHYlMzwBz+xfqliQgcgC1aCLsA5VRfuC?=
+ =?us-ascii?Q?FPXXL13jAefzLy+O8ljbrFw3sbbQL0kRg0+RxHs5QfsHXSjDzXpy26d/4QHk?=
+ =?us-ascii?Q?+HhQh/wdp6YiAzkTGZiHDlZxGvHbW6kV1tUOr91sgHTewvC9iliWe8BvYgnU?=
+ =?us-ascii?Q?20WathWD2g8DmKGf1FbFsWW97EhFJZoK8b/ljWE5GWOucU+Q7e0kuT7lTadS?=
+ =?us-ascii?Q?XzEh9qg37RHEv9jGI3BtGHzxqlhu17yCu4hWjSrevkK9Mfqxt3rG67RiLDux?=
+ =?us-ascii?Q?g7vyKZAantXQihfOla+4fBx8QMnNSQu0fydoftmN7kqdOFJFPA4Yz65j1m35?=
+ =?us-ascii?Q?tDLciCc7mX9FFYR44KgrEBpny5Uu8Tc4ieOrngSQT7fxAY+M4zJuS+o37u+n?=
+ =?us-ascii?Q?tpJEzZQ/Vb+QhApOCuMBaZKRIQyw3xGSAYlJgBSLRJvoCkAlmmqLwV8+GgV7?=
+ =?us-ascii?Q?PSCJV8Pb0etdC6g/eMnwmXVIxnBZCpY3d1TovnXSBuSTEd0IKVw2rzhZbcRc?=
+ =?us-ascii?Q?8lTlfHBPIsdKb0y9TynkIGZ4bbPZaBYHNhMZZOa5UFcYWKmozM8So31j2BGM?=
+ =?us-ascii?Q?7M4Er97DhmyBM0L8p6aDdXyujir7r22UFGRtsxv7rDOLW808A5dNHFEQufZ6?=
+ =?us-ascii?Q?u+9cvaDkyUyiu34D9sNZ7aNnWHJOiOle0dphCXFFu8EWqMQ/p/GyQG1FkBdx?=
+ =?us-ascii?Q?iw8IimJCRUpTfTDWZRq6kE6Mkpt2Sj30YlF4R+/4HRYvfKRrq8OmNKiVsdv/?=
+ =?us-ascii?Q?TXlsKmo9R3ZiVTvdgAZ3bxFsmF7jOf69ZRJdQK0VenVUIsaV2gbjap8ADLdl?=
+ =?us-ascii?Q?3st123eFzJAin0gdpoqcf2A00PKBG34eSKJ3ueTHk1zTgmUA3H12w4GIhKAx?=
+ =?us-ascii?Q?sLoXBWF+vshvmKwtsi+vDtMFMqo3vCxsMx+Ho2Kg9DPXfF48n2fhX9lHGuPf?=
+ =?us-ascii?Q?ePW3Ngam4Xy+P56K+XedorXFkq9RGSSZBeAgQaGKk2ZcIipw1g1QYHqu7lUx?=
+ =?us-ascii?Q?5//7zgRZRTwBjFIzwJ13HT+OxgyIcZKbZFZXI47qde1KAIn5pgd4eGqsyn4N?=
+ =?us-ascii?Q?Qbvc6Xi+hsCQg2/8kBbvoIM1mrSUcy5h9dA7gAR+Aoa9CCKlODMGe1xLud84?=
+ =?us-ascii?Q?TLcjOLb/wsffHqLtownRsp/2n0cmMQuGYCFz/VAVFcYuv2ztUOvbUglViiRe?=
+ =?us-ascii?Q?MFSeRRuKdRoKFTab945/8ML6oKqj+G9GjOgDshiMViTXonTvd5376H04JwNB?=
+ =?us-ascii?Q?Oqq14w=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e24d93d9-283d-41db-26d9-08de2cd9bdea
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8585.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 10:51:24.0247
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eSgIMhOBSRrq/C7i/OsNirS44R8I2FthBAptGmsWrhzD0S8Q7SPWbMzwqGNSJMSdjIT2SE00r3ONe0EOw5bX8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10463
 
-If IC_EMPTYFIFO_HOLD_MASTER_EN parameter is 0, "Stop" and "Repeated Start"
-bits in command register does not exist, thus it is impossible to send
-several consecutive write messages in a single hardware batch. The
-existing implementation worked with such configuration incorrectly:
-all consecutive write messages are joined into a single message without
-any Start/Stop or Repeated Start conditions. For example, the following
-command:
+On Wed, Nov 26, 2025 at 10:45:31AM +0000, Holger Brunck wrote:
+> the Kirkwood based board in question was OOT. Due to the patch we were
+> able to use the mainline driver without patching it to configure the value we
+> wanted.
+> 
+> The DTS node looked like this:
+> 
+> &mdio {
+>         status = "okay";
+> 
+>         switch@10 {
+>                 compatible = "marvell,mv88e6085";
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+>                 reg = <0x10>;
+>                 ports {
+>                         #address-cells = <1>;
+>                         #size-cells = <0>;
+>                         port@4 {
+>                                 reg = <4>;
+>                                 label = "port4";
+>                                 phy-connection-type = "sgmii";
+>                                 tx-p2p-microvolt = <604000>;
+>                                 fixed-link {
+>                                         speed = <1000>;
+>                                         full-duplex;
+>                                 };
+>                         };
+> 	};
+> };
 
-    i2ctransfer -y 0 w1@0x55 0x00 w1@0x55 0x01
+Perhaps there is some bit I'm missing, but let me try and run the code
+on your sample device tree.
 
-does the same as
+mv88e6xxx_setup_port()
+	if (chip->info->ops->serdes_set_tx_amplitude) {
+		dp = dsa_to_port(ds, port);
+		if (dp)
+			phy_handle = of_parse_phandle(dp->dn, "phy-handle", 0);
 
-    i2ctransfer -y 0 w2@0x55 0x00 0x01
+		if (phy_handle && !of_property_read_u32(phy_handle,
+							"tx-p2p-microvolt",
+							&tx_amp))
+			err = chip->info->ops->serdes_set_tx_amplitude(chip,
+								port, tx_amp);
+		if (phy_handle) {
+			of_node_put(phy_handle);
+			if (err)
+				return err;
+		}
+	}
 
-In i2c_dw_msg_is_valid(), we ensure that we do not have such sequence
-of messages requiring a RESTART, aborting the transfer on controller
-that cannot emit them explicitly.
+dp->dn is the "port@4" node.
+phy_handle is NULL, because the "port@4" node has no "phy-handle" property.
+of_property_read_u32(phy_handle, "tx-p2p-microvolt") does not run
+so chip->info->ops->serdes_set_tx_amplitude() is never called
 
-This behavior is activated by compatible entries because the state of
-the IC_EMPTYFIFO_HOLD_MASTER_EN parameter cannot be detected at runtime.
-The new flag emptyfifo_hold_master reflects the state of the parameter,
-it is set to true for all controllers except those found in Mobileye
-SoCs. For now, the controllers in Mobileye SoCs are the only ones known
-to need the workaround. The behavior of the driver is left unmodified
-for other controllers.
-
-There is another possible problem with this controller configuration:
-When the CPU is putting commands to the FIFO, this process must not be
-interrupted because if FIFO buffer gets empty, the controller finishes
-the I2C transaction and generates STOP condition on the bus.
-
-If we continue writing the remainder of the message to the FIFO, the
-controller will start emitting a new transaction with those data. This
-turns a single a single message into multiple I2C transactions. To
-protect against FIFO underrun, two changes are done:
-
-First we flag the interrupt with IRQF_NO_THREAD, to prevent it from
-running in a thread on PREEMPT-RT kernel. This ensures that we are not
-interrupted when filling the FIFO as it is very time-senstive. For
-example, being preempted after writing a single byte in the FIFO with
-a 1MHz bus gives us only 18µs before an underrun.
-
-Second in i2c_dw_process_transfer(), we abort if a STOP is detected
-while a read or a write is in progress. This can occur when processing
-a message larger than the FIFO. In that case the message is processed in
-parts, and rely on the TX EMPTY interrupt to refill the FIFO when it gets
-below a threshold. If servicing this interrupt is delayed for too long,
-it can trigger a FIFO underrun, thus an unwanted STOP.
-
-Originally-by: Dmitry Guzman <dmitry.guzman@mobileye.com>
-Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
----
- drivers/i2c/busses/i2c-designware-common.c  |  6 ++++++
- drivers/i2c/busses/i2c-designware-core.h    |  3 +++
- drivers/i2c/busses/i2c-designware-master.c  | 32 +++++++++++++++++++++++++++++
- drivers/i2c/busses/i2c-designware-platdrv.c |  1 +
- 4 files changed, 42 insertions(+)
-
-diff --git a/drivers/i2c/busses/i2c-designware-common.c b/drivers/i2c/busses/i2c-designware-common.c
-index 5b1e8f74c4ac..446d567eafeb 100644
---- a/drivers/i2c/busses/i2c-designware-common.c
-+++ b/drivers/i2c/busses/i2c-designware-common.c
-@@ -388,6 +388,12 @@ int i2c_dw_fw_parse_and_configure(struct dw_i2c_dev *dev)
- 
- 	dev->clk_freq_optimized = device_property_read_bool(device, "snps,clk-freq-optimized");
- 
-+	/* Mobileye controllers do not hold the clock on empty FIFO */
-+	if (device_is_compatible(device, "mobileye,eyeq6lplus-i2c"))
-+		dev->emptyfifo_hold_master = false;
-+	else
-+		dev->emptyfifo_hold_master = true;
-+
- 	i2c_dw_adjust_bus_speed(dev);
- 
- 	if (is_of_node(fwnode))
-diff --git a/drivers/i2c/busses/i2c-designware-core.h b/drivers/i2c/busses/i2c-designware-core.h
-index 347843b4f5dd..620472b15730 100644
---- a/drivers/i2c/busses/i2c-designware-core.h
-+++ b/drivers/i2c/busses/i2c-designware-core.h
-@@ -246,6 +246,8 @@ struct reset_control;
-  * @clk_freq_optimized: if this value is true, it means the hardware reduces
-  *	its internal clock frequency by reducing the internal latency required
-  *	to generate the high period and low period of SCL line.
-+ * @emptyfifo_hold_master: true if the controller acting as master holds
-+ *	the clock when the Tx FIFO is empty instead of emitting a stop.
-  *
-  * HCNT and LCNT parameters can be used if the platform knows more accurate
-  * values than the one computed based only on the input clock frequency.
-@@ -305,6 +307,7 @@ struct dw_i2c_dev {
- 	struct i2c_bus_recovery_info rinfo;
- 	u32			bus_capacitance_pF;
- 	bool			clk_freq_optimized;
-+	bool			emptyfifo_hold_master;
- };
- 
- #define ACCESS_INTR_MASK			BIT(0)
-diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/busses/i2c-designware-master.c
-index 907597c7a05c..cef2231a2571 100644
---- a/drivers/i2c/busses/i2c-designware-master.c
-+++ b/drivers/i2c/busses/i2c-designware-master.c
-@@ -710,6 +710,14 @@ static void i2c_dw_process_transfer(struct dw_i2c_dev *dev, unsigned int stat)
- 	if (stat & DW_IC_INTR_TX_EMPTY)
- 		i2c_dw_xfer_msg(dev);
- 
-+	/* Abort if we detect a STOP in the middle of a read or a write */
-+	if ((stat & DW_IC_INTR_STOP_DET) &&
-+	    (dev->status & (STATUS_READ_IN_PROGRESS | STATUS_WRITE_IN_PROGRESS))) {
-+		dev_err(dev->dev, "spurious STOP detected\n");
-+		dev->rx_outstanding = 0;
-+		dev->msg_err = -EIO;
-+	}
-+
- 	/*
- 	 * No need to modify or disable the interrupt mask here.
- 	 * i2c_dw_xfer_msg() will take care of it according to
-@@ -892,6 +900,16 @@ i2c_dw_msg_is_valid(struct dw_i2c_dev *dev, const struct i2c_msg *msgs, size_t i
- 		return false;
- 	}
- 
-+	/*
-+	 * Make sure we don't need explicit RESTART between two messages
-+	 * in the same direction for controllers that cannot emit them.
-+	 */
-+	if (!dev->emptyfifo_hold_master &&
-+	    (msgs[idx - 1].flags & I2C_M_RD) == (msgs[idx].flags & I2C_M_RD)) {
-+		dev_err(dev->dev, "cannot emit RESTART\n");
-+		return false;
-+	}
-+
- 	return true;
- }
- 
-@@ -1110,6 +1128,20 @@ int i2c_dw_probe_master(struct dw_i2c_dev *dev)
- 		irq_flags = IRQF_SHARED | IRQF_COND_SUSPEND;
- 	}
- 
-+	/*
-+	 * The first writing to TX FIFO buffer causes transmission start.
-+	 * If IC_EMPTYFIFO_HOLD_MASTER_EN is not set, when TX FIFO gets
-+	 * empty, I2C controller finishes the transaction. If writing to
-+	 * FIFO is interrupted, FIFO can get empty and the transaction will
-+	 * be finished prematurely. FIFO buffer is filled in IRQ handler,
-+	 * but in PREEMPT_RT kernel IRQ handler by default is executed
-+	 * in thread that can be preempted with another higher priority
-+	 * thread or an interrupt. So, IRQF_NO_THREAD flag is required in
-+	 * order to prevent any preemption when filling the FIFO.
-+	 */
-+	if (!dev->emptyfifo_hold_master)
-+		irq_flags |= IRQF_NO_THREAD;
-+
- 	ret = i2c_dw_acquire_lock(dev);
- 	if (ret)
- 		return ret;
-diff --git a/drivers/i2c/busses/i2c-designware-platdrv.c b/drivers/i2c/busses/i2c-designware-platdrv.c
-index d7d764f7554d..f1714d287462 100644
---- a/drivers/i2c/busses/i2c-designware-platdrv.c
-+++ b/drivers/i2c/busses/i2c-designware-platdrv.c
-@@ -346,6 +346,7 @@ static void dw_i2c_plat_remove(struct platform_device *pdev)
- 
- static const struct of_device_id dw_i2c_of_match[] = {
- 	{ .compatible = "baikal,bt1-sys-i2c", .data = (void *)MODEL_BAIKAL_BT1 },
-+	{ .compatible = "mobileye,eyeq6lplus-i2c" },
- 	{ .compatible = "mscc,ocelot-i2c", .data = (void *)MODEL_MSCC_OCELOT },
- 	{ .compatible = "snps,designware-i2c" },
- 	{}
-
--- 
-2.52.0
-
+I'm unable to reconcile the placement of the "tx-p2p-microvolt" property
+in the port OF node with the code that searches for it exclusively in
+the network PHY node.
 
