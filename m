@@ -1,151 +1,103 @@
-Return-Path: <devicetree+bounces-242365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0883C89995
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:52:10 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 027F0C89AE3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 13:09:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E88E43B4F7A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:51:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CCBE44E98F1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:08:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9929325494;
-	Wed, 26 Nov 2025 11:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1FA3271F8;
+	Wed, 26 Nov 2025 12:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jBANWdfC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F5BT7LFW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15597.qiye.163.com (mail-m15597.qiye.163.com [101.71.155.97])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05DC1325482;
-	Wed, 26 Nov 2025 11:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.97
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4544F32692E;
+	Wed, 26 Nov 2025 12:08:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764157910; cv=none; b=c/GT3mpNI1pEcH6pWtTJ/3wQWF6A6xz+9SQ6Wpvz1G4bYYP9Tn9EuVnQunbINslO8u2Cq7Q+T4A4IswcADYEuFiFNpNxo8FTUKgFzK4PHaDyiSfaIdeAOoCal0KiwY6NucJKpmEgE+7IuMsb9wRAubHe/Tdg7jstoF12HL1T9vc=
+	t=1764158929; cv=none; b=dqVe+U0PbonpgkFRH6/kL5gvux4fL0kXxZ9UXgg1u9NnDqsk+MQNoI9DlnDLxpgCCcEfuUSrfO5jhQUy2WYNW1aD9w5gvShBcJV5JNG6/dGR7n2sZSXkbCr+4SunYX6jCbdtG7Nabx9/d93N0hZ82GEvzuFzfzBBywOeeWHn6VM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764157910; c=relaxed/simple;
-	bh=Qw0OrNg8ENNr6TE56GmukcIumLBGKpgi4DVBCw5ouDw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bk0J2d373zDAeTdFTtbUmBT0DghWOZP3zOnoVI6oBZNphN6VKsCWaE95vNW1uuQ2qVpA1xvRNzwRUSE0rlt0Ckpvd0UO60N+CwNX1kpN3ff1MygIDmn+scSBycoiyaG/CTGxdw0gwZC+WS8TSP1EV9ZTWF/sTIQMOIX10jO20Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jBANWdfC; arc=none smtp.client-ip=101.71.155.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2afc8ccb9;
-	Wed, 26 Nov 2025 19:51:34 +0800 (GMT+08:00)
-Message-ID: <e48e1918-8ee0-4ffe-93d5-e096af241f77@rock-chips.com>
-Date: Wed, 26 Nov 2025 19:51:33 +0800
+	s=arc-20240116; t=1764158929; c=relaxed/simple;
+	bh=ElnGPqFvz62tr9E8HS/4iLIgaALgD3PStTWgfVE+gkE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GmfHx/GePKvkIKUFzMmiVyn+cQJWA5nrAvTwme8Y2qYLrFhHW7KzrHyTNQoVRz/s9JEknPDhOT2h4sAdeuOMw8IhjMgMcN+yDx0jN/DX1PkhFEjwRrNiKnuTAIFdG3nAZxE44RJxnzhn1eejohawwIaIdYpesBv68pTfnEMFJGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F5BT7LFW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 94DB0C113D0;
+	Wed, 26 Nov 2025 12:08:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764158928;
+	bh=ElnGPqFvz62tr9E8HS/4iLIgaALgD3PStTWgfVE+gkE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=F5BT7LFW0080MkX22z7WjzC03Qu6mGiqwKEVKwPICqKbDI6ZSwPtKWOMwX4XKn3KW
+	 AQ5YRh5kPa1WQugrTOW3dYSG8+uSWzpN1QXtFLrHoJItrR+09ozmYvOfm61iH1dbtM
+	 6g6ME8ftLJVYCOwX1xWED50nS/jumCPywnGpXJMxTgRr/1JZi8eZRuC+oKFBzaOc/C
+	 C6BKdJ/Izi0i/+WYzTSwiVmEmZxY26iAFk7pxwwwY/7JhFPhXrR2YSN+MDYd1uju2T
+	 ey5Dnp2NV32RjTUq8ZuwsbLJ4WV+oYAIdBvY+oBzQTBLvwytC0b6rJy+mnkWS6kk8A
+	 Hs96BJgT0aRig==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 83AEBD10381;
+	Wed, 26 Nov 2025 12:08:48 +0000 (UTC)
+From: Robert Eckelmann via B4 Relay <devnull+longnoserob.gmail.com@kernel.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable SLPI
+Date: Wed, 26 Nov 2025 21:08:34 +0900
+Message-Id: <20251126-slpi-v1-0-c101d08beaf2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 01/11] usb: typec: Add notifier functions
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <2025112102-laurel-mulch-58e4@gregkh>
- <462ad1bd-7eec-4f26-b383-96b049e14559@rock-chips.com>
- <2025112402-unopposed-polio-e6e9@gregkh>
- <a80483de-518d-45d5-b46a-9b70cca5b236@rock-chips.com>
- <2025112448-brush-porcupine-c851@gregkh>
- <c9cb7b79-37c8-4fef-97a6-7d6b8898f9c4@rock-chips.com> <aSV_lQYJPxN7oBM-@kuha>
- <2025112554-uncaring-curator-642a@gregkh>
- <cbb38c08-6937-4b7d-a0b0-d5ca6c17f466@rock-chips.com> <aSbLkwPG0dUzZvql@kuha>
- <2025112656-dreamland-retreat-2a65@gregkh>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <2025112656-dreamland-retreat-2a65@gregkh>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9ac001308e03abkunmdaa20eca5ea8c5
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk4dHVZIHUIeGBhNTRlNQh5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=jBANWdfCXUE5gDGcQIlQs4pqUaqXDsXzhdChC4iwSgqp3kPQUaUPgNli4XbRKmNmCnFKOqtpFUnKe9D+Kt7p8xXmLhuiJ9Cw18Swcx5cYBTi/Gz5LHMm7Y0xygV99pjgLmQ02+Ajw3beBLk0/GiLF/nG8ov6UkJaZYaaBF/MbrY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=h7ZJhr+0x5ygBrBW8UPFMD6T08Tpdt0hEWVktbHPqtg=;
-	h=date:mime-version:subject:message-id:from;
+X-B4-Tracking: v=1; b=H4sIAMLtJmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDQyMz3eKcgkzdZDNDs1TjRGNLw+RUJaDSgqLUtMwKsDHRsbW1ALGoOI5
+ WAAAA
+X-Change-ID: 20251126-slpi-c616e3a391ce
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Robert Eckelmann <longnoserob@gmail.com>, David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=595;
+ i=longnoserob@gmail.com; h=from:subject:message-id;
+ bh=ElnGPqFvz62tr9E8HS/4iLIgaALgD3PStTWgfVE+gkE=;
+ b=owGbwMvMwCVmcOAq9/vk/SGMp9WSGDLV3p4vbGzZ4/RCd07c3ZkWx1brZOfwyWufMOr9/nP3+
+ Yh1TI57O0pZGMS4GGTFFFl2uB3TyXRdGrFx9/4ymDmsTCBDGLg4BWAivxcyMkxwF2mqn7e2QVvP
+ csmLTQ/P7p88q+WyaWLvD9Z5eU/6GOMYGXY3nsldrhXDd7zupF8lw/oPwQKno6TdVerrT749kGf
+ 5mRcA
+X-Developer-Key: i=longnoserob@gmail.com; a=openpgp;
+ fpr=B846C62C6945A558B1BBBF7630C0D50BEF63BF54
+X-Endpoint-Received: by B4 Relay for longnoserob@gmail.com/default with
+ auth_id=569
+X-Original-From: Robert Eckelmann <longnoserob@gmail.com>
+Reply-To: longnoserob@gmail.com
 
-On 11/26/2025 7:44 PM, Greg Kroah-Hartman wrote:
-> On Wed, Nov 26, 2025 at 11:42:43AM +0200, Heikki Krogerus wrote:
->> Wed, Nov 26, 2025 at 09:46:19AM +0800, Chaoyi Chen kirjoitti:
->>> On 11/25/2025 7:49 PM, Greg Kroah-Hartman wrote:
->>>>> +static umode_t typec_is_visible(struct kobject *kobj, struct attribute *attr, int n)
->>>>> +{
->>>>> +	if (is_typec_port(kobj_to_dev(kobj)->parent))
->>>>
->>>> Why look at the parent?  Doesn't the device have a type that should show
->>>> this?
->>>>
->>>> Otherwise, looks good to me.
->>>
->>> They have same deivce type "typec_altmode_dev_type".
->>> The parent device has a different device type to distinguish between
->>> port device and partner device.
->>
->> I was already wondering would it make sense to provide separate device
->> types for the port, and also plug, alternate modes, but I'm not sure
->> if that's the right thing to do.
->>
->> There is a plan to register an "altmode" also for the USB4 mode,
->> which of course is not an alternate mode. So USB4 will definitely need a
->> separate device type.
->>
->> So if we supply separate device types for the port, plug and partner
->> alternate modes, we need to supply separate device types for port, plug
->> and partner USB4 mode as well.
->>
->> We certainly can still do that, but I'm just not sure if it makes
->> sense?
->>
->> I'll prepare a new version for this and include a separate patch where
->> instead of defining separate device types for the port and plug
->> alternate modes I'll just supply helpers is_port_alternate_mode() and
->> is_plug_alternate_mode().
-> 
-> That feels like it would be better in the long run as it would be
-> easier to "match" on the device type.
->
+Enable the SLPI dsp on the Xiaomi Pocophone F1 with Qualcom SDM845 SoC.
 
-It make sense. But now can we first use the current "match" device type
-operation and then modify them later?
+Signed-off-by: Robert Eckelmann <longnoserob@gmail.com>
+---
+Robert Eckelmann (2):
+      arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable SLPI
+      arm64: dts: qcom: sdm845-xiaomi-beryllium: Add placeholders and sort
 
-> thanks,
-> 
-> greg k-h
-> 
-> 
+ .../dts/qcom/sdm845-xiaomi-beryllium-common.dtsi   | 30 +++++++++++++++++-----
+ 1 file changed, 23 insertions(+), 7 deletions(-)
+---
+base-commit: d724c6f85e80a23ed46b7ebc6e38b527c09d64f5
+change-id: 20251126-slpi-c616e3a391ce
 
+Best regards,
 -- 
-Best, 
-Chaoyi
+Robert Eckelmann <longnoserob@gmail.com>
+
+
 
