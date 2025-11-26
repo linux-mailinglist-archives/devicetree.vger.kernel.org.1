@@ -1,134 +1,212 @@
-Return-Path: <devicetree+bounces-242240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6144C88733
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:39:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 026F9C887F6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:50:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1DCDE345AB9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 07:39:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B87473B2320
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 07:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5502C0291;
-	Wed, 26 Nov 2025 07:39:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GhLPpFNV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2331E28152A;
+	Wed, 26 Nov 2025 07:50:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4331A2BE04F;
-	Wed, 26 Nov 2025 07:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5C0270ED7
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:50:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764142784; cv=none; b=PfrX6ttp0iN6rCzPvZKREzIcKK9o3vwbeyhZgcm7qpYR6egMeDn/IvlDNlVg8NwakR8Ef9KwOs9+G4nbwptVJENH49zeJH1n7R/ZX4vx9GoLIAQPD9DCL42xST8rUo6j5c6pZSPFjpGhBH6LbSGMkQT1gsKOZGClOjQi402NYYM=
+	t=1764143417; cv=none; b=svBduiBc9JdAODAhpaoo6Lcs9G4arK2PTrG5/1s98nDS8NiBl9lnQbBUZHEDtbEpPhXjxs76AiXvgViQCNUPNGf0TanQZUkiTnBG3QNtm26UBRLgIqJl+A+ESVJyIdhAL+ImwS5yvppRhz+QBTgkUvWU+LVKc7/FCcPRvNrJTtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764142784; c=relaxed/simple;
-	bh=EMct42WoiiGjcksMl7vwP//cvhacHtrR+zrVyuvWuGI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n7Q8M3Gguvxmhf2eZFOhdpg1mCbdbMzQqrf7Y79fiSdyuM7xHtEG76EDZYy0C7OrlSU+gE2ajqzTI37Uv8cKgLB/HoQiztbfD6t/5aH2Ow0a2DI/cfbQhxlQ/YwT14n87H3kbQCogNiZLuaEM68Fbbi08FuWCPLumKDxNGgcOmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GhLPpFNV; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764142784; x=1795678784;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EMct42WoiiGjcksMl7vwP//cvhacHtrR+zrVyuvWuGI=;
-  b=GhLPpFNVgOverOCUQfJGJCSkLsHbY8xqZVaP+7fgRIoy5kDDlWeH8zSx
-   fsDwRTTU1VioNK3pJhS5bH3x/aApBEpixA3ejB3YWJjsuRSrzE8fHmau8
-   hsaTx6bMI7QU79dcISQDdFxLqkPxngUO3zO9gBP6c36RQn3C9DMRKqakp
-   kcXldyFQKpFpvz+w4QkbnMQKVLklZX8DqMJb3unRYTdW5LFy1dVXn0YSg
-   i7o5xvt2kNF1RNEjjoYprOohTS3BmLREZAtVQe4Uc/UqP02EX5wvsHE45
-   RVxKI/vgkxKAT1Tgz4dxeclyUKpUCnf27/buelwASbJq/4fLFV33NxVqm
-   A==;
-X-CSE-ConnectionGUID: qcCy/TseTMC0yI3U/jV/IQ==
-X-CSE-MsgGUID: EAQlX/hCRPeNIt/D5RhMvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11624"; a="83563493"
-X-IronPort-AV: E=Sophos;i="6.20,227,1758610800"; 
-   d="scan'208";a="83563493"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2025 23:39:43 -0800
-X-CSE-ConnectionGUID: U+ariKqbS4mjldTk3ROtsw==
-X-CSE-MsgGUID: LJpZH5gTQ9ah/6mzKzzK6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,227,1758610800"; 
-   d="scan'208";a="193297094"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 25 Nov 2025 23:39:37 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vOA7i-000000002bl-41Uh;
-	Wed, 26 Nov 2025 07:39:34 +0000
-Date: Wed, 26 Nov 2025 15:38:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Lee Jones <lee@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Badhri Jagan Sridharan <badhri@google.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>,
-	Amit Sunil Dhamne <amitsd@google.com>
-Subject: Re: [PATCH 5/6] power: supply: max77759: add charger driver
-Message-ID: <202511261521.hSYp4ttf-lkp@intel.com>
-References: <20251123-max77759-charger-v1-5-6b2e4b8f7f54@google.com>
+	s=arc-20240116; t=1764143417; c=relaxed/simple;
+	bh=bkzwoUtOm01P65u39y77xFFtdrAg9j2KRw6HRKGjyxE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p9Hm05NQo0TqHkRepmuBeFrCaFrOulqDZBaXDTnq8iFuOGPJslHo9auDEnRL6r7t9S/oVlDLWhs3t6rPNUemL3I099MEF9LB/Erl0cN+m90JWa47QxkRCeJfsj29mB21WEbbhHycqx28+8UpqtukBRo8JQH4yBV9kXrcZ21oeu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4ed861eb98cso69031381cf.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 23:50:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764143414; x=1764748214;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yTYhQ3G63lU/atNAXCnWcO1/Wz+JDqjFVpYbXLbGHEE=;
+        b=EIWE3jzD9fJaO2Ynu2GbYSjEAPVY9cmMY3ky1KgShDGSK9viTWtLYhy+F6ai5ZZ1WL
+         2GtYmqYvRRBNWtt4jLILhaVE5NLa8RfdbUTr+jr40Q0O2TLWuFeByBIn9WlblUAYUKAB
+         49L1pFvR7nuQ2vjk/nXamXiVu3h05vuZGkx67dn/uZ7yd8IewReeVaBXEE5wp4y6inzQ
+         SeS7NwSeSWHKw5jPZO6ImL5PYk8EXSjqT8PUUlvYUV8fJKOqdCX9DaiP5YlSVob+2Vzo
+         kvOnV4n72i0IYmFxf2yAW4lKbYrnvmuZz4wPVXDOXuquVZowD4GjnyNBG/OPpOsVzTD9
+         7FHg==
+X-Forwarded-Encrypted: i=1; AJvYcCVRy5794wZYAyh5j/Ssi0MteJCWgX7KUBL+E7/2EBq1cB0jTa52NsRCK5qOkwA1dMziiIkD4plHt3Xl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxC3uwARNkIip7IZD6xukhP41pd28/Y9uzFdHuAryD+kvGiWLsT
+	mX9C8toQ3y3KziUk7+75CLe4xC+pSwbNWVkv0cZhM8aGKrhCNMPRQTdZ2Z3zJIHW
+X-Gm-Gg: ASbGncvRM2U1t/K3oNME7YKE6iTLyPltSiY5jBysAqOW5C8BwzdB6Kame/pCbMQeGch
+	gPOBaE5pGSvGML7L9vf1pg0dwpRdSVyWmaQ6C7+BSpoMRa9kFu2KmJCC5s67r8kTDbWpXKX3bXa
+	5Q0mUO+8TOpVaMUPqzrMnwJ4/YRnp0Nxf8VAOS79BDoXkXIpkutiUcjrlgsqqn4cszpakl/JHvr
+	ZQsBJYhGDSZH5OgMNWabvUYdjd13/aifstsrSycAGnAr5+9U5PRhFkEptGdJP9JJGQ72bhDeogB
+	lW/qlTca0GnJN3VSdQCvyDJ9aVwiBtD2+1n7oGOGVUmL+vI6TQINIkCeK0GD53cBC8llKPedaJ4
+	ZQXVRLn3sRc2SD/d7wqPuSXLfhYXUNBKEpgnveKRDSrbfrl0H4ETjnSpv542Bcw2r+JeT/+5EmK
+	1ldnV41q1qNKpo7BKikI8+9wCA8e/zIgt8wg/pwWTpES55GftJqF2hAsfVF+dzDbzAh5o=
+X-Google-Smtp-Source: AGHT+IEP9QxGeCygDhystErqI1pi0G86qtFdIsIWG8KHLmH02rTmXighie215MVs3hHaWp6BpBmq6A==
+X-Received: by 2002:a05:622a:5ca:b0:4ee:18eb:feb6 with SMTP id d75a77b69052e-4ee58a44091mr235894051cf.11.1764143414362;
+        Tue, 25 Nov 2025 23:50:14 -0800 (PST)
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com. [209.85.222.180])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4ee48d538f6sm122125641cf.10.2025.11.25.23.50.14
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Nov 2025 23:50:14 -0800 (PST)
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-8b22624bcdaso779777985a.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 23:50:14 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW3crghfYjUY8OScNE6cqWnvvyeHsOAeq1YRAq8SvJfZoEj9IOCE1+LgglqozZxns03YkkfvztS7emk@vger.kernel.org
+X-Received: by 2002:a05:6102:1484:b0:5db:d07c:218e with SMTP id
+ ada2fe7eead31-5e1de4a7207mr6895254137.41.1764142991927; Tue, 25 Nov 2025
+ 23:43:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251123-max77759-charger-v1-5-6b2e4b8f7f54@google.com>
+References: <cover.1763737324.git.tommaso.merciai.xr@bp.renesas.com>
+ <89b6d61854e94966fc9781d5832b6c187c35b4de.1763737324.git.tommaso.merciai.xr@bp.renesas.com>
+ <CAMuHMdXBbzTeiQJQWuUnJ_rRD1Zo=1TBOzrv4WbvC7whL1=E9w@mail.gmail.com> <aSXR2iEAKjxM8VOR@tom-desktop>
+In-Reply-To: <aSXR2iEAKjxM8VOR@tom-desktop>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 26 Nov 2025 08:43:00 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVYvV8WXBKmQEMnw_qgMdoUDLreNJM3UqEtoZ29AR6NoA@mail.gmail.com>
+X-Gm-Features: AWmQ_bninuJBRTizSxZYPmdtY-ViJHt3X5imX5OlC4FiWsDPZsFKFDX1UIJfnDk
+Message-ID: <CAMuHMdVYvV8WXBKmQEMnw_qgMdoUDLreNJM3UqEtoZ29AR6NoA@mail.gmail.com>
+Subject: Re: [PATCH v4 11/22] phy: renesas: rcar-gen3-usb2: Use mux-state for
+ phyrst management
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Jonathan Cameron <jonathan.cameron@huawei.com>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Amit,
+Hi Tommaso,
 
-kernel test robot noticed the following build errors:
+On Tue, 25 Nov 2025 at 16:57, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> On Tue, Nov 25, 2025 at 03:10:22PM +0100, Geert Uytterhoeven wrote:
+> > On Fri, 21 Nov 2025 at 16:14, Tommaso Merciai
+> > <tommaso.merciai.xr@bp.renesas.com> wrote:
+> > > Add support for selecting the phyrst mux-state using the Linux mux
+> > > subsystem in the R-Car Gen3 USB2 PHY driver. This ensures correct hardware
+> > > initialization and integration with systems utilizing the mux-state device
+> > > tree property.
+> > >
+> > > A temporary wrapper for optional muxes is introduced until native support
+> > > is available in the multiplexer subsystem.
+> > >
+> > > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-[auto build test ERROR on 39f90c1967215375f7d87b81d14b0f3ed6b40c29]
+> > > --- a/drivers/phy/renesas/phy-rcar-gen3-usb2.c
+> > > +++ b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
+> > > @@ -938,11 +939,27 @@ static int rcar_gen3_phy_usb2_vbus_regulator_register(struct rcar_gen3_chan *cha
+> > >         return rcar_gen3_phy_usb2_vbus_regulator_get_exclusive_enable(channel, enable);
+> > >  }
+> > >
+> > > +/* Temporary wrapper until the multiplexer subsystem supports optional muxes */
+> > > +static inline struct mux_state *
+> > > +devm_mux_state_get_optional(struct device *dev, const char *mux_name)
+> > > +{
+> > > +       if (!of_property_present(dev->of_node, "mux-states"))
+> > > +               return NULL;
+> > > +
+> > > +       return devm_mux_state_get(dev, mux_name);
+> > > +}
+> > > +
+> > > +static void rcar_gen3_phy_mux_state_deselect(void *data)
+> > > +{
+> > > +       mux_state_deselect(data);
+> > > +}
+> > > +
+> > >  static int rcar_gen3_phy_usb2_probe(struct platform_device *pdev)
+> > >  {
+> > >         struct device *dev = &pdev->dev;
+> > >         struct rcar_gen3_chan *channel;
+> > >         struct phy_provider *provider;
+> > > +       struct mux_state *mux_state;
+> > >         int ret = 0, i, irq;
+> > >
+> > >         if (!dev->of_node) {
+> > > @@ -1019,6 +1036,23 @@ static int rcar_gen3_phy_usb2_probe(struct platform_device *pdev)
+> > >                 phy_set_drvdata(channel->rphys[i].phy, &channel->rphys[i]);
+> > >         }
+> > >
+> > > +       mux_state = devm_mux_state_get_optional(dev, NULL);
+> > > +       if (IS_ERR(mux_state)) {
+> > > +               if (PTR_ERR(mux_state) == -EPROBE_DEFER)
+> > > +                       return PTR_ERR(mux_state);
+> > > +               mux_state = NULL;
+> >
+> > No need to set mux_state to NULL, as mux_state is not used below.
+> >
+> > However, shouldn't you propagate all errors up?
+> > If the mux is not present, mux_state should already be NULL,
+> > i.e. IS_ERR(mux_state) would be false.
+> >
+> > > +       } else {
+> > > +               ret = mux_state_select(mux_state);
+> >
+> > This causes a crash on R-Car Gen3 and RZ/Five, as mux_state_select()
+> > doesn't handle NULL pointers gracefully yet.
+> >
+> > Adding a check like
+> >
+> >     -       } else {
+> >     +       } else if (mux_state) {
+> >
+> > fixes the issue.
+>
+> Thank you for checking this!
+>
+> Ack :)
+> I will switch to:
+>
+>         mux_state = devm_mux_state_get_optional(dev, NULL);
+>         if (IS_ERR(mux_state)) {
+>                 return PTR_ERR(mux_state);
+>         } else if (mux_state) {
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Amit-Sunil-Dhamne-via-B4-Relay/dt-bindings-power-supply-Add-Maxim-MAX77759-charger/20251123-163840
-base:   39f90c1967215375f7d87b81d14b0f3ed6b40c29
-patch link:    https://lore.kernel.org/r/20251123-max77759-charger-v1-5-6b2e4b8f7f54%40google.com
-patch subject: [PATCH 5/6] power: supply: max77759: add charger driver
-config: um-randconfig-001-20251126 (https://download.01.org/0day-ci/archive/20251126/202511261521.hSYp4ttf-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251126/202511261521.hSYp4ttf-lkp@intel.com/reproduce)
+Please no else after return.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511261521.hSYp4ttf-lkp@intel.com/
+>                 ret = mux_state_select(mux_state);
+>                 if (ret)
+>                         return dev_err_probe(dev, ret, "Failed to select USB mux\n");
+>
+>                 ret = devm_add_action_or_reset(dev, rcar_gen3_phy_mux_state_deselect,
+>                                                mux_state);
+>                 if (ret)
+>                         return dev_err_probe(dev, ret,
+>                                              "Failed to register USB mux state deselect\n");
+>         }
+>
+> In v5.
 
-All errors (new ones prefixed by >>):
+Gr{oetje,eeting}s,
 
-   /usr/bin/ld: warning: .tmp_vmlinux1 has a LOAD segment with RWX permissions
-   /usr/bin/ld: drivers/power/supply/max77759_charger.o: in function `max77759_charger_probe':
->> max77759_charger.c:(.ltext+0x27b): undefined reference to `devm_regulator_register'
-   /usr/bin/ld: drivers/power/supply/max77759_charger.o: in function `enable_usb_otg':
->> max77759_charger.c:(.ltext+0x983): undefined reference to `rdev_get_drvdata'
-   /usr/bin/ld: drivers/power/supply/max77759_charger.o: in function `disable_usb_otg':
-   max77759_charger.c:(.ltext+0x9c3): undefined reference to `rdev_get_drvdata'
-   /usr/bin/ld: drivers/power/supply/max77759_charger.o: in function `usb_otg_status':
-   max77759_charger.c:(.ltext+0xa06): undefined reference to `rdev_get_drvdata'
-   clang: error: linker command failed with exit code 1 (use -v to see invocation)
+                        Geert
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
