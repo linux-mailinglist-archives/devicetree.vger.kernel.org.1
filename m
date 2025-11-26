@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-242334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1336CC8949B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:27:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76AA4C894CB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:29:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CD21B4EC2B6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:27:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1430F3A438B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 10:29:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968E12FFDF3;
-	Wed, 26 Nov 2025 10:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A5F3016EC;
+	Wed, 26 Nov 2025 10:29:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lhXUUze8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkgK468r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AC322FD69F;
-	Wed, 26 Nov 2025 10:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62B8301473;
+	Wed, 26 Nov 2025 10:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764152824; cv=none; b=qRf124SSYUbQqc9NBERNdMaTttjtOkJS5tTbS54QoYQfToQuijIKzH5TWe6uuL39uYc08CCunkThEbtVxTkE29PiRKkhkDI6w5yRarEFDiO6tRWRTm5Kp6Dz05xh7q5maGxryyNlcr8JcLGdz2yVWyJd5NRNDQr29MeLV6GxrXk=
+	t=1764152945; cv=none; b=TVwisUH7XwaN0up07DR5hqIov9OOAdUUZVDvhuBg7dkDGGWuc35fHFDH3Yr12EJRn/43qDe/aBHxIIMaC7dGYa8DuhS2UcFX8gwrXxqb6xjuHSR70RQJtQX8322LFovRvcQ06TdG1H94eQbNHiHnDkKhjerHpBOlhNQ1hC5odw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764152824; c=relaxed/simple;
-	bh=X173jI6K5WGGNcMt3o1WArskN9T6c5xeSlkd0kXFIic=;
+	s=arc-20240116; t=1764152945; c=relaxed/simple;
+	bh=o4xoOR3FYDcnfcSB/1tq22yzXJeODAX9bkdlETyAHEY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IIp53pEnSuMalSJnHK7QZYGACAm+GfoiAAmV4m7+yJ3mY3OenfPfGPC9c9mYYz7MR1oU0KLeclzRyRtYCkAc27pLCVphwIuX3yrr9wnFRH+MEUyrfaC71/qpLNbkqiU85gTrmK4Q5uKoX8IZHWqT/ILypL/JDNQMwgcSltDsFbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lhXUUze8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67518C113D0;
-	Wed, 26 Nov 2025 10:27:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JhxxneCwGkchq7wKmQv2bfsKVQSN1BE4BBkTt0wOKl892KJSfojeNkXoWk1SjkDxZrPo0ZyEwCGcA9EHlpXDZfq9wXbxCLullnX3xZatZvX1uEfY3ezBH5Ow65Auz5fBpXHySyDMTsc4SQQS3axZgNrgIdIapQiPg5Ts1whG2VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkgK468r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E56DAC116D0;
+	Wed, 26 Nov 2025 10:28:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764152823;
-	bh=X173jI6K5WGGNcMt3o1WArskN9T6c5xeSlkd0kXFIic=;
+	s=k20201202; t=1764152944;
+	bh=o4xoOR3FYDcnfcSB/1tq22yzXJeODAX9bkdlETyAHEY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lhXUUze8aAGxmr3Ajs1eXk3me0sJagbKM5qDigSaRCm5fUB0zQkzAwJKghZyRG2Zr
-	 AQeKVp/EXYs3ymPMJ5ZJrtDOFbn9zysWOS9pEoeiJexX29FTwYgWQfbs7vnAM923/8
-	 7wbD/s4KF8OkgKGYeJErjrd4E+S0IB8g+QMM8A5vRmoXiVzGNzvScTE1wX9tM8Na1+
-	 cwjmSmuCUr8az2VzAEBQu/hX2+rrrS0vfUI5gNpLLtYW0T5avNlVV0il6kZXRunEK9
-	 eaOMq2uyI6+ofT1PgU3AknGgJk4jNx1xeBCZpoWJFObSU3DpDsL7DU77i5xnddX8Ze
-	 vtCpyWce32NKw==
-Message-ID: <40a34f9d-92d7-433a-b7d7-145f5faaf0a8@kernel.org>
-Date: Wed, 26 Nov 2025 11:26:58 +0100
+	b=BkgK468rzrfZlNiOSrreq1w6DnQplV4+t6t7/BA2XqweG84izVeTMvMy/T3emezfN
+	 T/JXctASsoWjI7YCiawD+RcXB4pB3L+mYhL0kl+SmqVBMvASoM1M4vKl0Y/FSuDZuq
+	 aE1EBQXzXPOyXXuUn2iG1IUqJQJ8pjMmwRSlps3ZhsX72k5cDptFjRu374t4bpw49X
+	 cGV4w05ETwMTo0m7M9AsefeupsKL+tInlSuW6yQuznKT+mSNdLG3f05u2KvFsgUBSx
+	 HTjbyleQa3P5LMeWNtYlj5672aAaQOUk+7IzWhTv1k4oT3wxT9+g23Y6TTJwKC1GoM
+	 r+O5Zny9zTW2Q==
+Message-ID: <86c4b848-a94a-4ccb-80a1-59a5c91e8cce@kernel.org>
+Date: Wed, 26 Nov 2025 11:28:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next v2] dt-bindings: can: mpfs: document resets
-To: Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol
- <mailhol@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org,
- linux-can@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251121-sample-footsore-743d81772efc@spud>
+Subject: Re: [PATCH RESEND v3 2/9] dt-bindings: display: add verisilicon,dc
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao
+ <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20251126045233.218286-1-zhengxingda@iscas.ac.cn>
+ <20251126045233.218286-3-zhengxingda@iscas.ac.cn>
+ <20251126-gifted-zircon-ibex-a9f1d8@kuoka>
+ <e2b72b8ef4c2911c4ea44a80f42182bbc78d5626.camel@icenowy.me>
+ <b57207ab-a69e-4dad-98ca-f4923cebdf81@kernel.org>
+ <001154b743b9f8364e96b3ebf791ef9920bbfa03.camel@icenowy.me>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,26 +118,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251121-sample-footsore-743d81772efc@spud>
+In-Reply-To: <001154b743b9f8364e96b3ebf791ef9920bbfa03.camel@icenowy.me>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/11/2025 14:42, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 26/11/2025 10:41, Icenowy Zheng wrote:
+> 在 2025-11-26星期三的 10:37 +0100，Krzysztof Kozlowski写道：
+>> On 26/11/2025 09:57, Icenowy Zheng wrote:
+>>> 在 2025-11-26星期三的 09:51 +0100，Krzysztof Kozlowski写道：
+>>>> On Wed, Nov 26, 2025 at 12:52:26PM +0800, Icenowy Zheng wrote:
+>>>>> From: Icenowy Zheng <uwu@icenowy.me>
+>>>>>
+>>>>> Verisilicon has a series of display controllers prefixed with
+>>>>> DC
+>>>>> and
+>>>>> with self-identification facility like their GC series GPUs.
+>>>>>
+>>>>> Add a device tree binding for it.
+>>>>>
+>>>>> Depends on the specific DC model, it can have either one or two
+>>>>> display
+>>>>> outputs, and each display output could be set to DPI signal or
+>>>>> "DP"
+>>>>> signal (which seems to be some plain parallel bus to HDMI
+>>>>> controllers).
+>>>>>
+>>>>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+>>>>> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+>>>>> ---
+>>>>
+>>>> You already received review on this. Don't send the same. Read
+>>>> the
+>>>> review.
+>>>
+>>> Please see the sender (mail header From) of this time.
+>>
+>> This improved. I am speaking about the rest of review.
 > 
-> The CAN cores on Polarfire SoC both have a reset. The platform firmware
-> brings both cores out of reset, but the linux driver must use them
-> during normal operation. The resets should have been made required, but
-> this is one of the things that can happen when the binding is written
-> without driver support.
+> Well this is why this is a v3 resend, not v4.
 > 
-> Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN controller")
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
+> I will address these issues in v4.
 
-FWIW, if you insist:
+You received review. Do not ever make a resend ignoring the review, even
+if only parts. Make a posting after addressing COMPLETE review.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Otherwise this hides the original review and no one will ever find it.
+It also is quite disrespectful to my time spent on that review.
 
 Best regards,
 Krzysztof
