@@ -1,94 +1,62 @@
-Return-Path: <devicetree+bounces-242462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52533C8A80F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:00:51 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C10CFC8A872
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:07:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3BB63A3409
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:00:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B30D44E21BB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E780F305E3A;
-	Wed, 26 Nov 2025 15:00:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223A1306480;
+	Wed, 26 Nov 2025 15:01:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eSXCaNWK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gSnGmT1m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D512B304BCA
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 15:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4949305969;
+	Wed, 26 Nov 2025 15:01:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764169245; cv=none; b=BWuZ5rFp1lF1gvOjMEKV19FbfrLl7uETYs3qjSW4j2uaqYti1HLVEPYPJVo2RiVK9Wdqz1dm4b6lpyNvFoRCeJUtJl2fU2xVGpuI0IZC5ukVjX1Wxqaz8OVwXj5KtBrlQgL4z8z1mPaFiKNMAKTgCEcbHVWkhLvW5wlwVbGlHh4=
+	t=1764169293; cv=none; b=qwZGzOrUVSNIUoNumgw725UUy0IB/thXOjVzKjPSOaa2F0YnD2n3DOs3BiYHcrEu4akSeYfqwrrPcipCTSXOWeNKsbGDWAb7OQSIBmFDcB5SxExXnHe5HqYeT84sp9h45tB2gG31bLaAXsPg0FGDeAOA6NezREBexmqBbnkgrX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764169245; c=relaxed/simple;
-	bh=5QJjkgD4Lg0uyQLZFQujwXLTzVMdno/htIphWOU29XU=;
+	s=arc-20240116; t=1764169293; c=relaxed/simple;
+	bh=6zhLnYcBNO7oE7VrqoJCi8J+9W+4pP7HaFmoXrIQEk0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GvStHdrB6yXPXL6jvP0kvbQCRtXDwdSip1xzZf2K98ox6fwmNXlQ1qe+yUvbWMGyUambJshQfUNTnKHuC5Dtk989QkkwEZWCBfZ9xsnF8WD7LAcmASsnKxwkTHwLAwcmc74zSjzEA09XY1BwSIF35SV3EOSWPU/+LlJGPUv48cE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eSXCaNWK; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-64175dfc338so11670355a12.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:00:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764169242; x=1764774042; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yz5EmXohUxVRWC4ev9hUhbYDa/f2qaZaDtF0BMtQeAs=;
-        b=eSXCaNWKVXBLdRoGqRRTeoNawi6aez0fAFM0ZMWOu5P5EKfVFQ/AIRrO0TEt66SF0g
-         Z6sHSuzCuKN0wHb7pDvC6tRgELzwHwzW0VYeEj0WrwnsvBZL1SGysImALIa6DoNQ/GCN
-         cIN7vO/DpOVIGk3+oNC6aQOFKcc7rJNcZgc1dPN6fVYIFhguNuxvSCoiMYElx1AkiXxz
-         gX20di/K/Qr6ZzOEiECB49KChioqmOJzdHy9GPcy1+WT40zNJcOnU9b6VGzk7J1r/guF
-         CEu6j29s9SOVS8qP+dshWPG7juBxGxwCcgAu8tJBmgKLqinoG7AYojTlnldB66c/p/83
-         eOCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764169242; x=1764774042;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Yz5EmXohUxVRWC4ev9hUhbYDa/f2qaZaDtF0BMtQeAs=;
-        b=nD4imiBbO7ng5rGTGo77jJObPnbH1D6p7ETiV7NK1uvXkEJwBEqE+XrRoDA5SjNWGa
-         gdsO5y7YM8IM4rnKKJKoKN3RV63geq1dJolekhkOKLDNU/MNz2I4ZldYdSyH/L6BTkbj
-         6FsogeiDcyFQ8gYpG7Jqigm6TWq/c1C6VXoEg/jsG0MPtHiwcAA57zNsDe6dx4kWbwaD
-         eWj/oP/7G1UfyUO0RD1ddagZ+4aUqPstBY12dlQarRyeJ2ctR17uMtZiHsSywuet1BIl
-         qnXtO5G4oJzfDKX+nDebsoLTw80jvbx+WQkwzmws5DcPuFBY7x3wAxzrm1CagQLJ0h4/
-         pBxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXGBN7g7hna854h7lP16+TeARa0EMS5Lb65548TRyhPolr99F92QfSc5XXWrLR92IhMXYRj4ujmPdjS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0CISjcsS7k9fRNBd9/t+MgsjCbR88Yz+j2vWVD01yEMr5qotd
-	7UCUHg/Fn6mAlXf4SElo83cbrUU7BxbVRNZoY0d8wcQ6pO9y58Ohu3Aq
-X-Gm-Gg: ASbGncv+ug4s8ZCra1k4MadkJs/25weCdkUzxCZCWq2uVlQ7GL/xsRn4RMahuUmNK4U
-	5OJ9MpPzQZFH1pK/k42/X8qlBVSOigCop2iJgsZXqNtWHHJCm5TvvvjZbyqu0L7OJsxuwgLfgUk
-	ohy3aex0HZEijzFQCIRQVx6xUv+oTg1BaoEmk7jBJWr0RZlLsuCvbB3iAg5et0jEHWmKxAJHm+9
-	+ILSpR7gxv6ACWFzwoMNbBAYioDn1ZiLK3RmxrvZaA1UF1yiwx31HEVawt6Ud7UeTmMHRyDWrbO
-	/KxjZlzaedgmGQDC/eE6oXoiLU0/Q2eI29TMtsOo7ItPWctZBGqT3rIlS0K9h4fLfrP4hsGkJLn
-	ipjiJaxzpXP656eCzVz54jdHsmi8jlWAGWBiPoWTahNifwuSLiKik8pXw6jhdcNv9e7qoWAV3+K
-	cABvfEdvpgluts+Y18zh/sKISIDcDMpymwSH5zuzleTMtFFsEexo5poXTN6ZC4wImCCZA=
-X-Google-Smtp-Source: AGHT+IGMLKBPp/nalJhT5vdwB6WP7zzO2EVVFWVnhy2g0Kthf4gY+u8ks4h7NDw/yjwO6Ns9fkv+5w==
-X-Received: by 2002:a05:6402:1ed6:b0:640:9aed:6ab6 with SMTP id 4fb4d7f45d1cf-6455468d38amr15839431a12.24.1764169242005;
-        Wed, 26 Nov 2025 07:00:42 -0800 (PST)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:1025:ba00:55dc:4ccc])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64536460ea9sm20379307a12.35.2025.11.26.07.00.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Nov 2025 07:00:39 -0800 (PST)
-Date: Wed, 26 Nov 2025 16:00:36 +0100
-From: Jorge Marques <gastmaier@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=WT8Kl9oK1x6HMTvsNa1vL5NX85s+wM6tPha4JzJ/ATN+YiP3IYeODnw9iSo1KyHE7GRZkuf6GgXRnQC+yt8/QTtatoG9lduDE1Mmru+b9OSOAzzrHI4Mgq8x0V7Kx1d3F76m5Qa7VXCP7lu1VEh+NUHUkudyOgoPHr9gVMiBJSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gSnGmT1m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50307C4CEF7;
+	Wed, 26 Nov 2025 15:01:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764169292;
+	bh=6zhLnYcBNO7oE7VrqoJCi8J+9W+4pP7HaFmoXrIQEk0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gSnGmT1mGiutRvEa6ss3zMDXzIM/lQGRd5WDJaIuzEIsolfytzyiHLYu2KY4b/Vpp
+	 8mS+gas/fnAWTP3nEnoX8KPlVm7XFQXlKZwx5AvgNKHDdszrU8u/XNFDgv9gE+kGzo
+	 0aMHo1yGql+vdfzvCkpjoxCmLA4L9v1jNy/Tgo4iznekwE5m0Ub0PNj+yP8XfTnrkF
+	 xZyMHOypi2faUgWGlHuUXgJfEY5sdiaBXGj+NQWfXMxjWS4gcSfiu63hfFFvP+vdeD
+	 fSCs2CiV/ceTXK8fh2UCgBajWfWqFVS9xrohzcu6LwMcCVj3wJgZe7MQ2BxC0hYN6j
+	 eilZXrfqiP+RQ==
+Date: Wed, 26 Nov 2025 09:07:02 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 7/9] iio: adc: ad4062: Add IIO Events support
-Message-ID: <zzrtxpcxzqcjxhxmp5miov4f3kx5i3fpzmrt55azvktkgowejm@n6ofgzoaxoxb>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
- <20251124-staging-ad4062-v2-7-a375609afbb7@analog.com>
- <aSQ0aM2u49qzIZDm@smile.fi.intel.com>
+	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>, Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, psodagud@quicinc.com, 
+	djaggi@quicinc.com, quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, 
+	quic_arandive@quicinc.com, quic_shazhuss@quicinc.com, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v1 01/12] soc: qcom: geni-se: Refactor geni_icc_get() and
+ make qup-memory ICC path optional
+Message-ID: <c4qgjg3npsi6dkvqyj2z5drd7mfg2w2o4cjjcgepxdsrgiyiic@qdpkcic56iwv>
+References: <20251122050018.283669-1-praveen.talari@oss.qualcomm.com>
+ <20251122050018.283669-2-praveen.talari@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,255 +65,117 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aSQ0aM2u49qzIZDm@smile.fi.intel.com>
+In-Reply-To: <20251122050018.283669-2-praveen.talari@oss.qualcomm.com>
 
-On Mon, Nov 24, 2025 at 12:33:12PM +0200, Andy Shevchenko wrote:
-> On Mon, Nov 24, 2025 at 10:18:06AM +0100, Jorge Marques wrote:
-> > Adds support for IIO Events. Optionally, gp0 is assigned as Threshold
-> > Either signal, if not present, fallback to an I3C IBI with the same
-> > role.
-> 
-> ...
-> 
-Hi Andy,
-> > +static ssize_t ad4062_events_frequency_store(struct device *dev,
-> > +					     struct device_attribute *attr,
-> > +					     const char *buf, size_t len)
-> > +{
-> > +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> > +	struct ad4062_state *st = iio_priv(indio_dev);
-> > +	int val, ret;
-> > +
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
-> > +	if (st->wait_event) {
-> > +		ret = -EBUSY;
-> > +		goto out_release;
-> > +	}
-> > +
-> > +	ret = kstrtoint(buf, 10, &val);
-> > +	if (ret < 0)
-> > +		goto out_release;
-> > +
-> > +	st->events_frequency = find_closest_descending(val, ad4062_conversion_freqs,
-> > +						       ARRAY_SIZE(ad4062_conversion_freqs));
-> > +	ret = 0;
-> > +
-> > +out_release:
-> > +	iio_device_release_direct(indio_dev);
-> > +	return ret ? ret : len;
-> 
-> 	return ret ?: len;
-> 
-Ack
-> > +}
-> 
-> ...
-> 
-> > +static IIO_DEVICE_ATTR(sampling_frequency, 0644, ad4062_events_frequency_show,
-> > +		       ad4062_events_frequency_store, 0);
-> 
-> IIO_DEVICE_ATTR_RW()
-> 
-Sure
-> ...
-> 
-> >  {
-> >  	struct ad4062_state *st = i3cdev_get_drvdata(i3cdev);
-> >  
-> > -	if (iio_buffer_enabled(st->indio_dev))
-> > -		iio_trigger_poll_nested(st->trigger);
-> > -	else
-> > -		complete(&st->completion);
-> > +	if (st->wait_event) {
-> > +		iio_push_event(st->indio_dev,
-> > +			       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
-> > +						    IIO_EV_TYPE_THRESH,
-> > +						    IIO_EV_DIR_EITHER),
-> > +			       iio_get_time_ns(st->indio_dev));
-> > +	} else {
-> > +		if (iio_buffer_enabled(st->indio_dev))
-> > +			iio_trigger_poll_nested(st->trigger);
-> > +		else
-> > +			complete(&st->completion);
-> > +	}
-> 
-> Less ping-pong:ish if you simply add a new code.
-> 
-> 	if (st->wait_event) {
-> 		iio_push_event(st->indio_dev,
-> 			       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
-> 						    IIO_EV_TYPE_THRESH,
-> 						    IIO_EV_DIR_EITHER),
-> 			       iio_get_time_ns(st->indio_dev));
-> 
-> 		return;
-> 	}
-> 
-> >  }
-> 
-Sure.
-> ...
-> 
-> > +static int ad4062_monitor_mode_enable(struct ad4062_state *st, bool enable)
-> > +{
-> > +	int ret = 0;
-> 
-> Unneeded assignment.
-Ack.
-> > +	if (!enable) {
-> > +		pm_runtime_put_autosuspend(&st->i3cdev->dev);
-> > +		return 0;
-> > +	}
-> 
-> Just split to two functions and drop parameter 'enable',
->
-Sure.
-> > +	ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
-> > +	ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = ad4062_conversion_frequency_set(st, st->events_frequency);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = ad4062_set_operation_mode(st, AD4062_MONITOR_MODE);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	pm_runtime_get_noresume(&st->i3cdev->dev);
-> > +	return 0;
-> > +}
-> 
-> ...
-> 
-> > +static int ad4062_write_event_config(struct iio_dev *indio_dev,
-> > +				     const struct iio_chan_spec *chan,
-> > +				     enum iio_event_type type,
-> > +				     enum iio_event_direction dir,
-> > +				     bool state)
-> > +{
-> > +	struct ad4062_state *st = iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
-> > +	if (st->wait_event == state) {
-> > +		ret = 0;
-> > +		goto out_release;
-> > +	}
-> > +
-> > +	ret = ad4062_monitor_mode_enable(st, state);
-> > +	if (!ret)
-> > +		st->wait_event = state;
-> 
-> Please use regular patter to check for errors first.
-> 
-> 	if (st->wait_event == state)
-> 		ret = 0;
-> 	else
-> 		ret = ad4062_monitor_mode_enable(st, state);
-> 	if (ret)
-> 		goto out_release;
-> 
-> 	st->wait_event = state;
-> 
-> Always think about readability first and then about size of the source code.
-> 
-Sure.
-> > +out_release:
-> > +	iio_device_release_direct(indio_dev);
-> > +	return ret;
-> > +}
-> 
-> ...
-> 
-> > +static int ad4062_read_event_value(struct iio_dev *indio_dev,
-> > +				   const struct iio_chan_spec *chan,
-> > +				   enum iio_event_type type,
-> > +				   enum iio_event_direction dir,
-> > +				   enum iio_event_info info, int *val,
-> > +				   int *val2)
-> > +{
-> > +	struct ad4062_state *st = iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
-> > +	if (st->wait_event) {
-> > +		ret = -EBUSY;
-> > +		goto out_release;
-> > +	}
-> > +
-> > +	switch (info) {
-> > +	case IIO_EV_INFO_VALUE:
-> > +		ret = __ad4062_read_event_info_value(st, dir, val);
-> > +		break;
-> > +	case IIO_EV_INFO_HYSTERESIS:
-> > +		ret = __ad4062_read_event_info_hysteresis(st, dir, val);
-> > +		break;
-> > +	default:
-> > +		ret = -EINVAL;
-> > +		break;
-> > +	}
-> > +
-> > +out_release:
-> > +	iio_device_release_direct(indio_dev);
-> > +	return ret ? ret : IIO_VAL_INT;
-> 
-> 	return ret ?: IIO_VAL_INT;
-> 
-> > +}
-Ack.
-> 
-> ...
-> 
-> > +static int __ad4062_write_event_info_value(struct ad4062_state *st,
-> > +					   enum iio_event_direction dir, int val)
-> > +{
-> > +	u8 reg;
-> > +
-> > +	if (val > 2047 || val < -2048)
-> > +		return -EINVAL;
-> 
-> There was already magic '11', perhaps define it and use there and here?
-> 
-> #define x11	11 // needs a good name
-> 
-> 	if (val > BIT(x11) || val < -BIT(x11))
-> 	
-Not magic number, but max and min signed 12-bit, maybe
+On Sat, Nov 22, 2025 at 10:30:07AM +0530, Praveen Talari wrote:
+> Refactor the geni_icc_get() function to replace the loop-based ICC path
+> initialization with explicit handling of each interconnect path. This
+> improves code readability and allows for different error handling per
+> path type.
 
-	if (val != sign_extend32(val, 11))
-		return -EINVAL;
-to not look like magic numbers, or 
-  	if (val < (-BIT(11)) || val > BIT(11) - 1)
-  		return -EINVAL;
+I don't think this "improves code readability", IMO you're turning a
+clean loop into a unrolled mess.
 
-For Hysteresis I will change from
 
-	if (val >= BIT(7))
-to 
-	if (val & ~GENMASK(6,0))
+But then comes the least significant portion of your "problem
+description" (i.e. the last words of it), where you indicate that this
+would allow you to have different error handling for "qup-memory".
 
-I believe iio only passes positive to the hysteresis, but is a little clearer.
+This is actually a valid reason to make this change, so say that!
 
-> > +	if (dir == IIO_EV_DIR_RISING)
-> > +		reg = AD4062_REG_MAX_LIMIT;
-> > +	else
-> > +		reg = AD4062_REG_MIN_LIMIT;
-> > +	put_unaligned_be16(val, st->buf.bytes);
-> > +
-> > +	return regmap_bulk_write(st->regmap, reg, &st->buf.be16,
-> > +				 sizeof(st->buf.be16));
-> > +}
+
 > 
+> The "qup-core" and "qup-config" paths remain mandatory, while "qup-memory"
+> is now optional and skipped if not defined in DT.
+> 
+
+Please rewrite this message to _start_ with the problem description.
+Make it clear on the first line/sentence why the change should be done.
+
+E.g. compare with something like this:
+
+"""
+"qup-memory" is an optional interconnect path, unroll the geni_icc_get()
+loop in order to allow specific error handling for this path.
+"""
+
+You only need to read 4 words to understand exactly why this patch
+exists.
+
+> Co-developed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+> ---
+>  drivers/soc/qcom/qcom-geni-se.c | 36 +++++++++++++++++----------------
+>  1 file changed, 19 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+> index cd1779b6a91a..b6167b968ef6 100644
+> --- a/drivers/soc/qcom/qcom-geni-se.c
+> +++ b/drivers/soc/qcom/qcom-geni-se.c
+> @@ -899,30 +899,32 @@ EXPORT_SYMBOL_GPL(geni_se_rx_dma_unprep);
+>  
+>  int geni_icc_get(struct geni_se *se, const char *icc_ddr)
+>  {
+> -	int i, err;
+> -	const char *icc_names[] = {"qup-core", "qup-config", icc_ddr};
+> +	struct geni_icc_path *icc_paths = se->icc_paths;
+>  
+>  	if (has_acpi_companion(se->dev))
+>  		return 0;
+>  
+> -	for (i = 0; i < ARRAY_SIZE(se->icc_paths); i++) {
+> -		if (!icc_names[i])
+> -			continue;
+> -
+> -		se->icc_paths[i].path = devm_of_icc_get(se->dev, icc_names[i]);
+> -		if (IS_ERR(se->icc_paths[i].path))
+> -			goto err;
+> +	icc_paths[GENI_TO_CORE].path = devm_of_icc_get(se->dev, "qup-core");
+> +	if (IS_ERR(icc_paths[GENI_TO_CORE].path))
+> +		return dev_err_probe(se->dev, PTR_ERR(icc_paths[GENI_TO_CORE].path),
+> +				     "Failed to get 'qup-core' ICC path\n");
+
+To taste, but I think a local variable would be helpful to make this
+less dense.
+
+	path = devm_of_icc_get(se->dev, "qup-core");
+	if (IS_ERR(path))
+		return dev_err_probe(se->dev, PTR_ERR(path), "Failed to get 'qup-core' ICC path\n");
+	icc_paths[GENI_TO_CORE].path = path;
+
+Regards,
+Bjorn
+
+> +
+> +	icc_paths[CPU_TO_GENI].path = devm_of_icc_get(se->dev, "qup-config");
+> +	if (IS_ERR(icc_paths[CPU_TO_GENI].path))
+> +		return dev_err_probe(se->dev, PTR_ERR(icc_paths[CPU_TO_GENI].path),
+> +				     "Failed to get 'qup-config' ICC path\n");
+> +
+> +	/* The DDR path is optional, depending on protocol and hw capabilities */
+> +	icc_paths[GENI_TO_DDR].path = devm_of_icc_get(se->dev, "qup-memory");
+> +	if (IS_ERR(icc_paths[GENI_TO_DDR].path)) {
+> +		if (PTR_ERR(icc_paths[GENI_TO_DDR].path) == -ENODATA)
+> +			icc_paths[GENI_TO_DDR].path = NULL;
+> +		else
+> +			return dev_err_probe(se->dev, PTR_ERR(icc_paths[GENI_TO_DDR].path),
+> +					     "Failed to get 'qup-memory' ICC path\n");
+>  	}
+>  
+>  	return 0;
+> -
+> -err:
+> -	err = PTR_ERR(se->icc_paths[i].path);
+> -	if (err != -EPROBE_DEFER)
+> -		dev_err_ratelimited(se->dev, "Failed to get ICC path '%s': %d\n",
+> -					icc_names[i], err);
+> -	return err;
+> -
+>  }
+>  EXPORT_SYMBOL_GPL(geni_icc_get);
+>  
 > -- 
-> With Best Regards,
-> Andy Shevchenko
+> 2.34.1
 > 
-> 
-Best regards,
-Jorge
 
