@@ -1,199 +1,97 @@
-Return-Path: <devicetree+bounces-242354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B15CAC897C6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:22:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22C1DC88C40
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 09:53:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 997DF4E52FA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 11:22:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2A7D34EBE99
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 08:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEDA32039E;
-	Wed, 26 Nov 2025 11:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A9C31A56C;
+	Wed, 26 Nov 2025 08:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="X6jBVtto"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7hAhgNE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from buffalo.tulip.relay.mailchannels.net (buffalo.tulip.relay.mailchannels.net [23.83.218.24])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E70320A37;
-	Wed, 26 Nov 2025 11:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.218.24
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764156109; cv=pass; b=pwW1++Zooj7AxDJmCoLhGSk5vx3r7lGkDIStJbN49Cl9pU6O5MhzyYZ0iJeOQosvPURvDXZS0ugBdCUxrWbLd4eGmHtpDOKu4ZdkhywfcS33XaUiKQjNmViu2iqaCjh2T2FbJgWpO7wCEEsNKcFLTWH56TZcG9e93x0z9HEObDs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764156109; c=relaxed/simple;
-	bh=qAUUSWRFGw2WF6X6SEHbXtjQSamgTvvRfs2X2DtNXMY=;
-	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:Date; b=PJHKI/4994QbmwVGCOLR60tebdI1/Jh9h8DStkPSfZ7wXoJSOGC/OYOa73APQVHtDSueqi+AGaIVx1vIsI74+EVgoRHmzP76bz5FyTtcCL7KlfdUm+dL9uXyGPa7Xx0XxGUrl32jixvS3wC5kBGps9r2bAp0HblEHOiWVy5GLqM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=X6jBVtto; arc=pass smtp.client-ip=23.83.218.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 7A578441E6C;
-	Wed, 26 Nov 2025 08:49:22 +0000 (UTC)
-Received: from de-fra-smtpout3.hostinger.io (trex-green-7.trex.outbound.svc.cluster.local [100.96.77.42])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 593ED441145;
-	Wed, 26 Nov 2025 08:49:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1764146962;
-	b=3c6GjMIYiw+vY+FoBKHU2nlqtdZzbTL004Q/fu9Ax7Z2rRTILGN2oR/4hXriSmnhLg6vfL
-	FHPfh60BE/uPH/Y7gyuZV1k4g892397WsGGodxe76HMox4SHVKKkJMDGmSZM04f1PSYc7o
-	Rd2ApPASfkDkuWe+5uF97kQv9QB81blOuLupXDLSpKzHG0h1EcwOghlfhrXuys26D//b3p
-	Gxe6z6SCp2bBjs0W6mihJhzEzkA2b56ix/f1gs9eD5UQpIglIqMd2AAWCNQZii0wPYYSGL
-	tBlkU4GJuR71LklhS0KKewa+Sp5CGNK2bGweP8bhfDZJ25jFa8LuF7A5uyFgBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1764146962;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=LRFH/e+EPYkQeoBclAzTE/ypDqMfPq55IAr+yoWm76s=;
-	b=9kJx9uX77hmyGUABE1xGLuSSar7r1QNgTqwPNxFWAMqNA5teIGOxJ3Q2nefJ+Tr84SSQpC
-	/Xmr3gvm4f6fGN29F3S6pR1wi1K05oKlWVtjcJLwNSoHgI3w/cV7gnSK/mSuMc29tVCASA
-	7XHTVuNEW6Ie3hOYOvzLqSoNlfndLUfDEV2pr+bLbicGGne2AB7bYxZmKQTmvrZwLYlZqy
-	Xk8eIK7Is0IAt1pCrpG332/yLDm5bpbkOyyDjBpB6YAuebuhT7Kh9fR+16FzPdz4qozAQ2
-	qeBjp76/3/FKuqIoZo/+OkhTZ8VQ7+2CyQkVVaiSA+1bRUweLKumJlpPWxRj+w==
-ARC-Authentication-Results: i=1;
-	rspamd-7bff5db4cb-6gxzj;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Stretch-Harbor: 5ca944300a683b5f_1764146962264_120106243
-X-MC-Loop-Signature: 1764146962264:3432847594
-X-MC-Ingress-Time: 1764146962264
-Received: from de-fra-smtpout3.hostinger.io (de-fra-smtpout3.hostinger.io
- [148.222.55.15])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.96.77.42 (trex/7.1.3);
-	Wed, 26 Nov 2025 08:49:22 +0000
-Received: from [IPV6:2001:861:4450:d360:9d39:ba01:31fa:9155] (unknown [IPv6:2001:861:4450:d360:9d39:ba01:31fa:9155])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4dGYC221Zkz3x6d;
-	Wed, 26 Nov 2025 08:49:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1764146958;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LRFH/e+EPYkQeoBclAzTE/ypDqMfPq55IAr+yoWm76s=;
-	b=X6jBVttoL3yARGLzIsFqnVB5ahkH4vBfjFRADu/XlO7tZcd8jMS9nwhERpwYkOSpudvedq
-	j6wDwpqztA4o2AsvLyZqhMB7gVpP/b8P/m6N1A8wNIOQ0MvRyyhNfU9k3tgjtjcVGB8xug
-	wNo2/uqFM00hYcx5kexi7tb3vvewLOL+O2FlJgK/QbpCcqv7yeDxlqNLwQpWYCLL6KVIvh
-	pBZj/7BjNS94pJODh0bQDigsqpeLSOcfY62wPsdcF8p4EqEA/nNmxcTf9w+juvYOjbUfWo
-	CsrfWrA6VtcQ/hqkzXgYN19YuzuhIjQInBHLPgJyXUR3L1ZTUCp2xxdqGdAt0A==
-Message-ID: <45aac7ef-a5dc-4e93-bb11-30bb88259974@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C34431BCAF;
+	Wed, 26 Nov 2025 08:51:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764147117; cv=none; b=heYpCEA4xPCBIedepx+myIVeQmtz8kY4lZN7giMtajAaBR5aercWmfrnxUvhfThah8Nyxx5ky4uad6+ome5OhK3EKr4saytieTvTfzih9JhPfeyLbzyTUO88mpcjNFn36f7D0T3HqHIFFfTw1wLMESMayGmffv7f8qTgZgb73QM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764147117; c=relaxed/simple;
+	bh=sWWyiBZaar1uNe7opXiUwYwGj0+GUqGTWFXLEk+AtH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oghNZQ91Pwok4w/oPHQz6hoej229xlMH9bs6aQIIkGtQ9hFJswkpGvEDxnu+4sG+XxYCxoKIEntnlQiU48RdrpASGeKJKi8ApeK/5rdVd5lfhiv0EODE+AIr7sc9fJwLTCcpMQoLE3seB1ZZDGzKnhhHaKl07SVOYOm3bdiz2Tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q7hAhgNE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71409C113D0;
+	Wed, 26 Nov 2025 08:51:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764147117;
+	bh=sWWyiBZaar1uNe7opXiUwYwGj0+GUqGTWFXLEk+AtH8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=q7hAhgNEyilJ/cUmTs1janOEr65FLvpurCBnQ5CWdgvAmi/uJACNfCyjRmHqUod3z
+	 mh8IokwGgvx0GtaqHr2XVnpmGQUHmIJYGmtv5ufU6qpuDfQouSbGhoK0Ez9vsr6yqV
+	 Uqt+tQY/YpQgh11GDiDEzRP3ZDPz0lAUvvFfv4rWcr1BlLADF2pwXOpB+3sDRbOlrL
+	 I/7vfwFJRJ972jVyNKY2U6JXcfVsHzv6ITSjDh7GYAkyqAE2OImVpniMvdTvCW2IbQ
+	 XNeZQYtF0o4CnrXFDInLvvbYRXPnRwmC2lqcOPIZ/O9sVZZdQjrhdg96YGC8MjCEy2
+	 8aK6jAWisyAiA==
+Date: Wed, 26 Nov 2025 09:51:54 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH RESEND v3 2/9] dt-bindings: display: add verisilicon,dc
+Message-ID: <20251126-gifted-zircon-ibex-a9f1d8@kuoka>
+References: <20251126045233.218286-1-zhengxingda@iscas.ac.cn>
+ <20251126045233.218286-3-zhengxingda@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable i2c2 on Orange Pi 3B
-To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>
-References: <20251120-orangepi3-enable-i2c2-v1-1-2e023a74012a@rootcommit.com>
- <d66f81e4-9d9f-4df8-916b-e6f68c85d813@kwiboo.se>
-Content-Language: en-US, fr
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-Organization: Root Commit
-In-Reply-To: <d66f81e4-9d9f-4df8-916b-e6f68c85d813@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Date: Wed, 26 Nov 2025 08:49:16 +0000 (UTC)
-X-CM-Analysis: v=2.4 cv=ALriHGRn c=1 sm=1 tr=0 ts=6926bf0e a=YaLPeadj3FvY5eBQhwgDrg==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=5dAzR5NRAAAA:8 a=d70CFdQeAAAA:8 a=Lmt_ZpWL_zpAlULcO8oA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=ZKAZAlVgJm32z6MX8p4a:22 a=NcxpMcIZDGm-g932nG_k:22
-X-CM-Envelope: MS4xfPRGcvVSXLekHcmNkq6vTuUkhR318co5HtaTHzpmaZ6VNLzeJ0uYr82ojz55048VLXFP+jax2UkHjwRaJWbDiMc+s/jbRrKIUkHnAqZr8oEUoaeGJxtd ZWcSxrHYEY/+2T4GcuyRaEaIcM/+I7Niz2TaeTFiQaoDx/D25Cy37vrrGb/4ytyUvkZbwOcbZPMc+OUJHoMwzZyoayOFqPMJqaRu11GDG/i+4wqQQ3+dq+Rx V3ALG0xjoRffADbWQ9aZ6/diCTQNh7qMCHQ7SUhG2Euggy0NATI/8IeNUTGZAB7iBSP3YztxVjzHN5sTqlNMscxErpvI4DZVHqdV7LkEAO23EVsY9uOUe5i1 69BDFS8Yt3kQuPPn9FryKyrFXwtf9/akntyjMXof76h3ZHIU4GssATbDtQLqgJKQ1sT/n8rS+NIOtetmzLDC5zyye37PkywqS0E7BH7PLUo15tc1/Gv1Dh6w zRqTITaT1jpbZHyZuYLKjLQrGpa6OhLcZtnrfW0kv9quZo5cEGAhOCWkG5Bc2odrKr1GSYxtKvKCwFBNJ2POfw2EcJp0EIT1KmVLDLAwCrSxcZ7kba+hbGtr FJIOZiQWwa9iFuSq7SZxJdbSSVWd1otA+R/Lb4ABOW3b+NCXrFa/avrDMkM5dOMFD/Y=
-X-AuthUser: michael.opdenacker@rootcommit.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251126045233.218286-3-zhengxingda@iscas.ac.cn>
 
-Hi Jonas
+On Wed, Nov 26, 2025 at 12:52:26PM +0800, Icenowy Zheng wrote:
+> From: Icenowy Zheng <uwu@icenowy.me>
+> 
+> Verisilicon has a series of display controllers prefixed with DC and
+> with self-identification facility like their GC series GPUs.
+> 
+> Add a device tree binding for it.
+> 
+> Depends on the specific DC model, it can have either one or two display
+> outputs, and each display output could be set to DPI signal or "DP"
+> signal (which seems to be some plain parallel bus to HDMI controllers).
+> 
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> ---
 
-Thanks for the review!
+You already received review on this. Don't send the same. Read the
+review.
 
-On 11/26/25 09:40, Jonas Karlman wrote:
-> Hi Michael,
->
-> On 11/20/2025 8:00 PM, Michael Opdenacker wrote:
->> Enable the "i2c2" bus on header pins 3 (I2C_SDA_M1)
->> and 5 (I2C2_SCL_M1) of the Orange Pi 3B board.
->>
->> As documented on http://www.orangepi.org/img/pi3b/0719-pi3b-19.png
->> such pins are the only ones offering I2C functionality
->> without conflicting with other SoC blocks.
-> This is strictly not true, these pins are by default used as GPIO, this
-> patch change them to use the I2C2 func, something that should normally
-> be enabled in an overlay.
->
-> Functions for these pins:
->
-> 	func 0		func 1
->
-> 	GPIO4_B4_d	I2C2_SDA_M1
-> 	GPIO4_B5_d	I2C2_SCL_M1
+NAK
 
-
-Correct. My idea was that GPIOs are easy to get on other pins, and I 
-found that I2C2 on such pins would be a convenient default.
-
->
->> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi
->> index d539570f531e..e2f0ccc6dbe7 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3566-orangepi-3b.dtsi
->> @@ -435,6 +435,11 @@ regulator-state-mem {
->>   	};
->>   };
->>   
->> +&i2c2 {
->> +	pinctrl-0 = <&i2c2m1_xfer>;
-> pinctrl-names should also be added here.
-
-
-Actually, the "pinctrl-names" property is already available in the 
-definition of i2c2. That's why I didn't add it again.
-
->
->> +	status = "okay";
-> As mentioned above, this should be enabled in an DT overlay not in the
-> board DT.
-
-I don't mind if my patch is removed, no hard feelings :)
-
-BTW, is there a convenient location for sharing overlays like these? 
-Some overlays are sometimes tricky to develop, and sharing them with 
-others is useful for the community.  I guess the question was asked 
-before, but I don't know its answer :)
-
-Thanks again
-Cheers
-Michael.
-
--- 
-Michael Opdenacker
-Root Commit
-Yocto Project and OpenEmbedded Training course - Learn by doing:
-https://rootcommit.com/training/yocto/
+Best regards,
+Krzysztof
 
 
