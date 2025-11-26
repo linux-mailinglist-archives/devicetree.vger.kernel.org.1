@@ -1,154 +1,158 @@
-Return-Path: <devicetree+bounces-242564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55FBC8BEC7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:56:26 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD2CC8BF57
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:59:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84D963A6E47
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:56:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A2FE44EC050
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5AB33F8D9;
-	Wed, 26 Nov 2025 20:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3C034402B;
+	Wed, 26 Nov 2025 20:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ao41VIod"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AK+cQKal"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 430B3315D30
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 20:56:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356CB340A4A;
+	Wed, 26 Nov 2025 20:57:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764190583; cv=none; b=iYdeO9xsNVFePWL0fRRRFsA+vOsjpGQzQ6XOSrcA/3s9YDnxe0+RpPaGuOTi7U/COjp+kwYJwZ78DzNvPUp98RaNrt/zSA0pwp/jR8f6RlBTMCBYAXOEFmB/HUXWRseiN9D7AQ4Q72Qtr2m8A1ih52w0lSN1KreBPAvGwvPIFuo=
+	t=1764190657; cv=none; b=A04YevegBFbl0NnLGwhlPE5uKf3yN/7j5wF3jvRdtp8pvkXPrM82iU/vFPrt4+luGZyCwDR0B9+gN0LDvtbo7nh+kTWQ8sLWtKoXCGXhAd3GnS8lm5F29UxieD/r4OkSfEFYoyA/lRiiaE1Ca2q2WFjgZON75QSZ2ms+5i+iulM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764190583; c=relaxed/simple;
-	bh=Dt350O4s7/IUq+j9naCofzl4cWJ8WislzSXHIBeUF9w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XZ9fZArw2yve9/TdXXnXy42Dt8maeb4qRizHwbhue8j1hVmHq79oOslJOnPMphWD4+G0Y+Zj+1UMaCaPkI0mnaOnIQ+XNUvPqy+LvBLqVhvOtMa6iTd9AUR2P/J2/e3O3pFwAfsUSgfwuGq3hI7T/al8Cg4rnwtIRpMlKMVvH54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ao41VIod; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4777771ed1aso694035e9.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 12:56:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764190579; x=1764795379; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dt350O4s7/IUq+j9naCofzl4cWJ8WislzSXHIBeUF9w=;
-        b=ao41VIodm6FTNBwsolI2pjkHM5dolV5rBr19ho/wEOfbWyXWxa99W5ZM05PXpUO+zr
-         XeiuL5MPx9U8qwMiY7weF7Jd1TTqlDATdRVLVgY9gor64gBndr5/3wi5DprLjhxaYr29
-         Rmw+PemP6IFnkF0JGn704Bjy0QDEHIW6cOEx5DhUvShdLlmNteGO8mgh/p8dvo+jVAir
-         nXIXj24QPFsIgQViK7rykkHlNlGo0uOaW4RM+TG2R9NHPkH+Q8dPUaKGHLDOO5v5bFlQ
-         3lqyVDA9d3SDwjjkXkVKNRy6Eq6FAsRg03xG3fK+bIJzH5RDjR0K7GwL5FP3SF2GqP0n
-         Nrhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764190579; x=1764795379;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Dt350O4s7/IUq+j9naCofzl4cWJ8WislzSXHIBeUF9w=;
-        b=mKKw72VPAoPqCBo/1Qs/sf2wYe6kmWP1YZX9WNHZyHfXFus0PaNYva3DWcm/KXVSDh
-         3aelinBTBLjLUFRS/BiuVFQV4WGRTKG6fbA0kWvwzN4yzQvq1PXSCuLiog8nfikRyTqx
-         xhUiSwxzteHjFzAeimfuoKAyVpCNf4rLHN/0h5aVstb7jg8+7mp7cykg51OqSPXXfkP/
-         YnIvMs8tdCPElv7U8trgJ9xFBaQsFdLC7eAYfxLhe0Edkh5dfTBQUEJgsmc93Rg3rq5D
-         mSQZ9QmiIih+TYR/JaEqGHJJNHswf7jO2oRjbVABmDgCubNUyU8Z+Utzi2DnrXZvmZhe
-         RtIA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjjKxH22c3FhW50Y11C6HKogEKcXs/l/PBB4S/QvDuTJ1FOpnN81kwsgRWXTYhv1MTU9ArG5FtVPWi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQZ/9+B2XvCUFvxphmfL68othXjO2od1hH23frKD1G7zFWUS6J
-	iPLBSa4lowX6zwquY3snoziEqdPako4HA2d2PY14cIpSTqdjP3TAaEDXonCoqXDcLdgNo9eUYRJ
-	pJllkhf8opwpPRjhnDm+tRvyfKASEBgQ=
-X-Gm-Gg: ASbGncs/QzOUYJtyHzabYuztbxVMhUUzTfSaLa6QcdKeVw0NRdVCxkdD0b5GXsGd9O2
-	RhZDgy7j4oBmKftJOXypEVCvxp/VG8zcRNlmbKjb9cnQEszqycdYrD2gjteKk+1BulaXvKcS1uV
-	IidqrCy5sDmMCCuv+11FPFfHUpye+P0r0VEvXFmDAqguEk28gNu2bAg6nHTevlBHh4OBeuZ1lqL
-	THaR6xYxF5oNeI3l1Zmdux7Qg9+7xr6+SpH1WrKfzdeYK6hHjBQMPLYaXDwOJxdERkluAyjvuft
-	x/5pHjN/
-X-Google-Smtp-Source: AGHT+IG0RXp7g3rwG1N9bVOtQ9ozNjjP0xKrNIIS8B+mwcvqHsgckTZtjgViUtn3Goop7bdPAsM6eed81Zilw5ZfTQI=
-X-Received: by 2002:a05:6000:2f81:b0:429:bc68:6c95 with SMTP id
- ffacd0b85a97d-42cc1d520camr24897838f8f.47.1764190579376; Wed, 26 Nov 2025
- 12:56:19 -0800 (PST)
+	s=arc-20240116; t=1764190657; c=relaxed/simple;
+	bh=VgKQqCzbrBVjIoPtkM4peyHjuiSnnuxQpPfmCkt5H8g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f1G6TLuaa9uVI9x9UDqqz+L6daR1nctSSphA3SGVqGM2OGd7jW+P+2zqnDUR2QyGOzTZJk7cYbaFnDjcysOLwN97SS4CVhPnvQx/0KODgteyeDyrhX3WvfyDwvXfqQI6NzBQzBu2k1jbxm+3TjAPBNurG2pfZLqQk/df4q3UyWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AK+cQKal; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1764190653;
+	bh=VgKQqCzbrBVjIoPtkM4peyHjuiSnnuxQpPfmCkt5H8g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AK+cQKal//7op9uk7mWZA/RS+U/uLhe06dbOACt+KmYYf/INHmiu6KGNsEZ5opcnE
+	 FrmzEqCgPLU59sPxYobIkVgzHUCRW413uwe7423r0ReSYJQDSw7bRTgg/GKg0uPbon
+	 BUjaspa1qhS5+sbSonDwO8opoVAqmcXEf3ntee2BXcqyhORnds6T0dFTLC6GFW2ISI
+	 so0C1ngzO8qetp8KgT0nVYT9pZQ1UInsa5EHbYvcAHcVQ24pBwb51WRTa1+tWr7ATy
+	 MMGUA7AmXGKsnWLd6/2AyEYbDnhaH20d5SJ6XoplqPnm1At6up9uHKZltLyMfxHJqX
+	 0XvRnVe/QXCDg==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 707DE17E0EDB;
+	Wed, 26 Nov 2025 21:57:32 +0100 (CET)
+Message-ID: <87049b4c-df7d-454b-a7f4-073975a7ee94@collabora.com>
+Date: Wed, 26 Nov 2025 21:57:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251112201937.1336854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251112201937.1336854-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <de098757-2088-4b34-8a9a-407f9487991c@lunn.ch> <CA+V-a8vgJcJ+EsxSwQzQbprjqhxy-QS84=wE6co+D50wOOOweA@mail.gmail.com>
- <0d13ed33-cb0b-4cb0-8af3-b54c2ad7537b@lunn.ch>
-In-Reply-To: <0d13ed33-cb0b-4cb0-8af3-b54c2ad7537b@lunn.ch>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 26 Nov 2025 20:55:53 +0000
-X-Gm-Features: AWmQ_bnVIRWusTHYXQG_pEIVx7CON6jGq6AQSdf9oiT5MLxC0fJE8jZLc8Q18PI
-Message-ID: <CA+V-a8vx5KTUD_j7+1TC9r5JrGo2fJ0D7XXJCc-oHidtbUN=ZA@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: pcs: renesas,rzn1-miic:
- Add renesas,miic-phylink-active-low property
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] media: rockchip: add driver for the rockchip mipi
+ csi-2 receiver
+To: Frank Li <Frank.li@nxp.com>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans Verkuil <hverkuil@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251114-rockchip-mipi-receiver-v2-0-eb9b43377fc4@collabora.com>
+ <20251114-rockchip-mipi-receiver-v2-2-eb9b43377fc4@collabora.com>
+ <aRyplYZOrGsSxSlp@lizhi-Precision-Tower-5810>
+ <554971e1-6fde-4b2c-a2de-fe178358a4e3@collabora.com>
+ <aRzub5Ak6DZpO5f/@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <aRzub5Ak6DZpO5f/@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Andrew,
+Hi Frank,
 
-On Thu, Nov 13, 2025 at 9:58=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > Each of these IPs has its own link status pin as an input to the SoC:
->
-> > The above architecture is for the RZ/N1 SoC. For RZ/T2H SoC we dont
-> > have a SERCOS Controller. So in the case of RZ/T2H EVK the
-> > SWITCH_MII_LINK status pin is connected to the LED1 of VSC8541 PHY.
-> >
-> > The PHYLNK register [0] (section 10.2.5 page 763) allows control of
-> > the active level of the link.
-> > 0: High active (Default)
-> > 1: Active Low
-> >
-> > For example the SWITCH requires link-up to be reported to the switch
-> > via the SWITCH_MII_LINK input pin.
->
-> Why does the switch require this? The switch also needs to know the
-> duplex, speed etc. Link on its own is of not enough. So when phylink
-> mac_link_up is called, you tell it the speed, duplex and also that the
-> link is up. When the link goes down, mac_link_down callback will be
-> called and you tell it the link is down.
->
-Sorry for the delayed response. I was awaiting more info from the HW
-team on this. Below is the info I got from the HW info.
+On 11/18/25 23:08, Frank Li wrote:
+> On Tue, Nov 18, 2025 at 07:59:14PM +0100, Michael Riesch wrote:
+>> Hi Frank,
+>>
+>> On 11/18/25 18:15, Frank Li wrote:
+>>> On Tue, Nov 18, 2025 at 12:12:26PM +0100, Michael Riesch via B4 Relay wrote:
+>>>> From: Michael Riesch <michael.riesch@collabora.com>
+>>>>
+>>>> [...]
+>>>> +#define CSI2HOST_N_LANES     0x04
+>>>> +#define CSI2HOST_CSI2_RESETN 0x10
+>>>> +#define CSI2HOST_PHY_STATE   0x14
+>>>> +#define CSI2HOST_ERR1	     0x20
+>>>> +#define CSI2HOST_ERR2	     0x24
+>>>> +#define CSI2HOST_MSK1	     0x28
+>>>> +#define CSI2HOST_MSK2	     0x2c
+>>>> +#define CSI2HOST_CONTROL     0x40
+>>>
+>>> Look like that is designware CSI2 controller, can we build common library
+>>> for all dwc csi2 controller, instead of every vendor create individual one.
+>>>
+>>> First try at
+>>> https://lore.kernel.org/linux-media/20250821-95_cam-v3-21-c9286fbb34b9@nxp.com/
+>>>
+>>> Toshiba have similar patch
+>>> https://lore.kernel.org/linux-media/aPZd39riAxqfw3mT@lizhi-Precision-Tower-5810/
+>>>
+>>> Frank
+>>
+>> This has been discussed already a while ago:
+>> https://lore.kernel.org/all/20250507083837.GA11152@pendragon.ideasonboard.com/
+> 
+> https://lore.kernel.org/all/20250702093806.GF16835@pendragon.ideasonboard.com/
+> 
+> Laurent Pinchart prevent imx93 DWC CSI2 driver at Jul, your discussion at
+> May, I think Laurent Pinchart change the mind.
+> 
+> We can choose not base on imx6, but we should create a standard dwc2 under
+> drivers/media/platform/synopsys/
 
-EtherPHY link-up and link-down status is required as a hardware IP
-feature, regardless of whether GMAC or ETHSW is used.
-In the case of GMAC, the software retrieves this information from
-EtherPHY via MDC/MDIO and then configures GMAC accordingly. In
-contrast, ETHSW provides dedicated pins for this purpose.
-For ETHSW, this information is also necessary for communication
-between two external nodes (e.g., Node A to Node B) that does not
-involve the host CPU, as the switching occurs entirely within ETHSW.
-This is particularly important for DLR (Device Level Ring: a
-redundancy protocol used in EtherNet/IP). DLR relies on detecting
-link-down events caused by cable issues as quickly as possible to
-enable fast switchover to a redundant path. Handling such path
-switching in software introduces performance impacts, which is why
-ETHSW includes dedicated pins.
-As for Active Level configuration, it is designed to provide
-flexibility to accommodate the specifications of external EtherPHY
-devices.
+In principle, I agree with refactoring out common code. However, I am
+not sure how similar these IP cores really are. Again, the answer I
+received from Rockchip states that this is *not* a Synopsys IP core.
 
-Please share your thoughts.
+Can you maybe test whether the Rockchip MIPI CSI-2 Receiver driver in
+this series works on your hardware? Then we will know if (and what)
+parts can be shared.
 
-Cheers,
-Prabhakar
+Best regards,
+Michael
+
+
+> 
+> Laurent Pinchart:
+> 
+> 	Can you provide direction?
+> 
+> Frank
+> 
+>>
+>> Bottom line from Laurent:
+>>
+>> "Let's keep this driver Rockchip-specific then. Thanks for checking."
+>>
+>>>  [...]
+>> Best regards,
+>> Michael
+
 
