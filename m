@@ -1,225 +1,179 @@
-Return-Path: <devicetree+bounces-242472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D3ECC8AAEC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:36:18 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F467C8AB28
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:38:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD1D33B62DD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:36:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1F02F4E3D7E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0DDB2FF169;
-	Wed, 26 Nov 2025 15:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3AA2FF169;
+	Wed, 26 Nov 2025 15:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fvklJMK7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QfHylkrj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454CC30F540
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 15:36:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C1830F7E0
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 15:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764171370; cv=none; b=u7TpPbtePxFdnGIRxU+bgj0JYMMPvQQ8E2a2hIRlyAF+wq5SQFfwf40Nuk0BNmRsxfaOtaymwguI9sgKkgsSG2Omz7OB5TS6F6LvfqAd1SHOq/XpYxU0nvijsU/Am+65n6Xg3leTmhgVa8Ukek/oOXIM/B6lNIRlRW3sa6rTMgE=
+	t=1764171459; cv=none; b=ipOW9/XdnCTdrS+mg/9MD7ugxjC5h1GySCiS7J6et+F6YxDSW/oicf8+UEPGH/eWCRpb4DZHtS2bk+cw8KfVoVavSr7yxkw7EY7mtLxirQTSrlTdHAncLWLlTX4jI5NDDzkKR9WzydmCx0uI4Gb8G0sr0/ewMjT/j7KT1SZ3Cjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764171370; c=relaxed/simple;
-	bh=LlzzsLiv/t3fNeaCdKhq3FPYopoxNZ0lmuHTClS6u54=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l+EczNjd8EfFJTNjPvfEDF4jT4xMuLWXMhSrzTNCJYM2SbLxKNwMytU5EgE1OOouuR7wAt4RVXfFNrqTFHYcv1a+KO7nsUkO5KHyrBiODdaWTiPrvqoDrdKBXRcPGAT1v8oaYAVOaVflyUkWXRsE8TAebI6/L0GWzYCbzabR/tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fvklJMK7; arc=none smtp.client-ip=209.85.221.44
+	s=arc-20240116; t=1764171459; c=relaxed/simple;
+	bh=x4MuLq9lZHdtk8dBA416oF+jIurj83LvXv87JG66REw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=msFtaPJsGGzJtAVKRNu4bTEvGZMdZgT1m+WQJDe5mWCd1VaESoKg4//kP9GOIjaFq/1Oyun0sj7kKoFh9j0SCZbg8Do4rX1IViKIlLq459VwnfFXsb1sxKYyHKt9vYSyr1076XnPWGRbXcORUYzXH+Lj5MXqR7lihsfEvTO/Mns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QfHylkrj; arc=none smtp.client-ip=209.85.128.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42b3c965cc4so531423f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:36:07 -0800 (PST)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-78a76afeff5so66548207b3.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:37:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764171366; x=1764776166; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1764171456; x=1764776256; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qEW5IUsnqhZHbo7o0lYoYpk+rA/ZSKOVlb3MFwI2MDY=;
-        b=fvklJMK7d2kvzfwzUsfhCo+0nHZS+uyrjDWWu2qtyUo4jO5+8Vfx1XQhYlgVN0FOf7
-         Ksq7SVvfmlm46VZnjpjgT3QN14OT194P8SsSoQW8kR1ETmqzDmTpz76W4tSk6fudBFQ2
-         /3i9BrsXPWOH+urxQtR9oe9ThrY2AjjSHJ52x/8r/a27WEVFuESfH2/OulS27Ff9PBKR
-         UXhp8l65RvRZT6pGd91J0CitUblu0FuK4ecBxOKwHlqt4jTpLpOlj87m4JpNDZVK7GaM
-         G6hH7mVD/XYfnvbYNsp8wzwdrYidX85PE+PYuffXIg4TFPRpSYW7FAMxu6gpS6wRb5yZ
-         vIMw==
+        bh=WHDPCwxv0SQBBSmUAXCLvcU1eX9cIYvAgH4jmfdmmRY=;
+        b=QfHylkrjGoTWxJHGqT49elwUEKQ9JpVFlbjQUTgd5LRnNofvs264AVJxzmJyCmGKvL
+         +n87lxiFbZ9afgBiKV15EDhBbhS1pfIEfEagwKppMpSnLylt42VRyH2VpEEKiJNQ8IwI
+         v42gbjlXa28zi39bu7srqy30S+BrQ9a6zzEtlj2YMHl4G+QTeJOu1EcKxoCSMoJNUajk
+         83KTBfRnsnZ2x/tL4NgliJiwE0VCXhhFcQ3dXua+vQmxvmEjtDMVKfMUm5m1DJQeLEIC
+         i7IqUOjXYXu7tAo2k/lH93DNC1b/wszqCRLxFOuRn2LqJH4LRXMchCqWKo2Oh2vR2XfT
+         DVBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764171366; x=1764776166;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1764171456; x=1764776256;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=qEW5IUsnqhZHbo7o0lYoYpk+rA/ZSKOVlb3MFwI2MDY=;
-        b=Ojc+Gmwcw2EStAzny/vE3w+dg/c1e9h7OuVxXzZU8adwhb6tHNKVIXlfhNoqxjWMpi
-         5Kq90RJ4KjhSz7hBy+Y+xJN41fHhnyKltiaju+CdQMrizLlu5TEV2vOXK7EcOT6DGB5C
-         K8VWXvcjo6H2UunUmNqDM/GIo5zzhG0TOLfEZNAjRjQfC/JXq/PEeLcKZgbR2AbK8ls8
-         30yMuakWcHyMpBw08XYjE5QzkK7QVNnWNY6juJJu27Y1f6oDdOmiFwmOpqpzhW4Qkiam
-         UnqETW+kxgY4y8pbzq5MXThSJsGf9UcA6xlXX1U6QBQbgRBPebUWVggFp3M1xZooF39O
-         hGxw==
-X-Forwarded-Encrypted: i=1; AJvYcCXyMcbfiN3VpUm8uvkzu3f2ImdK6OLYGAstO7xSj4a/4p6T/B2RTrb+G4Qa87VfQC7wA9Lj/+L3HLBj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy81D4k4DuWY4Oqm5v0kOhJTTMso3JiV6b5mLGgqS8WlGkUr1yW
-	16+hWUlBIoD+vMWNO+J6En1Q26rOgITAnhLR5nj6WHXnxFWGjk3VwU8/
-X-Gm-Gg: ASbGncv6/9h8oxBKMNVU8wOf+R7BYkiPQRAaFXqMrxrb36f21oZPk0FXUzh1rSBWnD3
-	/Tu7d2n0/t5dFBESD1HvpTAl4M+qtZqtRYBubYdQnS4r+OKXBdc+P2RnIcI3PDxT1hEQ7R7IFwZ
-	afB7EITLm+S7jPUuPXjzr/jeKhuhoWNTLBTvVwZbvV4vY+lE4VuyNTjFkgo/F0eySp1341T256E
-	EeQFwnoW/mTd/HwCfD+E/sQ6q8IHDidwntgejIn+qy+2594no4xBVC8QorpVaNAn6JuZkpriPso
-	g8iOG2g+N+LxY1t3+Krsp08U0yqenPzlfaSkU9FnBRIqBtJPeDgxplspHf/7/4iPs5JY/ZUpiTO
-	+zq/dHYuiLuVUK9jHElUtutZmbOBSDMFzKtId5muajMlSxTTKA9Bck30KCdO7/+R39307H32Njb
-	p1xn4hfHI0Boi4XKV9tqjAXOOuQ5BaYl3hTfQUHVD7fZdQy6YmVFhavOXX0+Hra9sCmpHhXkM=
-X-Google-Smtp-Source: AGHT+IFXrjvffoT84+Zg18zteqdmNwbEWGyGZaxLoTKSfUQyOFdxLB2yLiTn24yxmWfgapFkO6mJsw==
-X-Received: by 2002:a05:6000:1a8a:b0:42b:47ef:1d59 with SMTP id ffacd0b85a97d-42cba63b5b2mr28330678f8f.4.1764171366237;
-        Wed, 26 Nov 2025 07:36:06 -0800 (PST)
-Received: from biju.lan (host86-162-200-138.range86-162.btcentralplus.com. [86.162.200.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f2e454sm41223775f8f.2.2025.11.26.07.36.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Nov 2025 07:36:06 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-can@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v3 1/2] dt-bindings: can: renesas,rcar-canfd: Document renesas,fd-only property
-Date: Wed, 26 Nov 2025 15:35:57 +0000
-Message-ID: <20251126153603.312265-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251126153603.312265-1-biju.das.jz@bp.renesas.com>
-References: <20251126153603.312265-1-biju.das.jz@bp.renesas.com>
+        bh=WHDPCwxv0SQBBSmUAXCLvcU1eX9cIYvAgH4jmfdmmRY=;
+        b=o/q7Zo/W4RqQ4FMKbPQSwKHimJtwvQ7FNfSCvpJ7AJhq8sutjEgmhyykVtAqzlD4TP
+         3No4JYj3GNhnwh/HCN/aiC19hpwzU/MXXFVx87Q/Q+q6De2cz10EZv0jbA+e2OgLj45E
+         MTyMrKUUpIt06EHifqb2JSY/cJqtEigX1VgTCj5tAJEn3lNbLUPbdA+R4Q+LkFe75zAp
+         37VSraZ8D4fV8mwA59ecnaBEKo28o0Pezvpqr/RfxEfUP5+y5lnTjUU0q3JQws0V56oh
+         j/Ato+xTeiBBoq2AgakR0f5T136HaUbazAjum0Qr7cOW/XB68XAGnRzT/D6AXiw/qLAo
+         l1cw==
+X-Forwarded-Encrypted: i=1; AJvYcCW4WZF5+vZbzPRQmxemg8gqRCzRMqcUDaS1EgWa7sVB/4siNJgyUT2SEkv582R69fjSVoOsTwe3hUGU@vger.kernel.org
+X-Gm-Message-State: AOJu0YydLGMy4EUfcGe2K8S2w7AO72kBSpBQNnXNbp4XANPJsPwo7Hvo
+	vTexD0vmdhBguTLd7s9vPCbrG4ZVOtwLuNBB2X35fdL1ruI6M4wch8MMHwRgZQiZUAX43YVslPT
+	LpVb7xtPgsQkOUcnjEiheWgDyW3NrPWE=
+X-Gm-Gg: ASbGncvn03+TgpBNzT9IxQ5Iy2VMKWsRTmBzFaIjmf1GvDhI4je9FXTzJSeDEqQT88f
+	qANidPkb8OhoFiT2Atc8BVDAm5siyyZPupcpvE9jm9GqaX4DLx67iqHYHuIQYF5dMefIIRNLQo+
+	2fNOG5yz0mQF022BcnkeiHR72jiUPD0iJ9QutwlFqRjQHj9X3Q4cWPARa/7kMfSL9Ffejrq06yc
+	sN/5w0i2biQCyeyMgd9bBcX8m7amy1qY6DQhZEdKQjwVE/vv7u+WWQ8DPvthRK4nDh3YiE=
+X-Google-Smtp-Source: AGHT+IE57n3zZx3X1tBPU2cgzpzzXSpf60tCKJP9Fy10vwoAwNJLXV3IlLnaSAZG4w2wBiXVSoYCdVWNh2cUXTgRb24=
+X-Received: by 2002:a05:690c:3349:b0:787:fbe3:fc6a with SMTP id
+ 00721157ae682-78ab6f6ec1fmr72744287b3.52.1764171456610; Wed, 26 Nov 2025
+ 07:37:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251031-st7920-v4-0-35291f8076b2@gmail.com> <20251031-st7920-v4-2-35291f8076b2@gmail.com>
+ <50a4b4a9-afd4-42a3-9740-5e48de312f1d@kernel.org>
+In-Reply-To: <50a4b4a9-afd4-42a3-9740-5e48de312f1d@kernel.org>
+From: Iker Pedrosa <ikerpedrosam@gmail.com>
+Date: Wed, 26 Nov 2025 16:37:24 +0100
+X-Gm-Features: AWmQ_blVQHa4PiJ8hAKBeF36S0QXp1xd_fGzp-lJeY4oF5YsrsYNf8QrcaFoPio
+Message-ID: <CABdCQ=MiuMqrf1LpLP=q0by3v9RZNagkrJnJoWOmwSCKGPVO+w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] drm: Add driver for Sitronix ST7920 LCD displays
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+El lun, 17 nov 2025 a las 11:57, Krzysztof Kozlowski
+(<krzk@kernel.org>) escribi=C3=B3:
+>
+> On 31/10/2025 10:05, Iker Pedrosa wrote:
+> > +
+> > +static void st7920_hw_reset(struct st7920_device *st7920)
+> > +{
+> > +     if (!st7920->reset_gpio)
+> > +             return;
+> > +
+> > +     gpiod_set_value_cansleep(st7920->reset_gpio, 0);
+> > +     usleep_range(15, 20);
+> > +     gpiod_set_value_cansleep(st7920->reset_gpio, 1);
+>
+> This is odd. Why are you keeping device in reset state?
+>
+> I don't think you tested your driver with DTS.
+>
+> > +     msleep(40);
+> > +}
+> > +
+>
+> > +
+> > +     regmap =3D devm_regmap_init_spi(spi, &st7920_spi_regmap_config);
+> > +     if (IS_ERR(regmap))
+> > +             return PTR_ERR(regmap);
+> > +
+> > +     st7920 =3D devm_drm_dev_alloc(dev, &st7920_drm_driver,
+> > +                                 struct st7920_device, drm);
+> > +     if (IS_ERR(st7920))
+> > +             return PTR_ERR(st7920);
+> > +
+> > +     drm =3D &st7920->drm;
+> > +
+> > +     st7920->dev =3D dev;
+> > +     st7920->regmap =3D regmap;
+> > +     st7920->spi =3D spi;
+> > +     st7920->device_info =3D device_get_match_data(dev);
+> > +     st7920->width =3D st7920->device_info->default_width;
+> > +     st7920->height =3D st7920->device_info->default_height;
+> > +
+> > +     st7920->reset_gpio =3D devm_gpiod_get_optional(dev, "reset", GPIO=
+D_OUT_HIGH);
+>
+> So you keep device in reset state, then why do you toggle it in
+> st7920_hw_reset()? Remember that this is the logical, not line level.
 
-The CANFD on RZ/{G2L,G3E} and R-Car Gen4 support 3 modes FD-Only mode,
-Classical CAN mode and CAN-FD mode. In FD-Only mode, communication in
-Classical CAN frame format is disabled. Document renesas,fd-only to handle
-this mode. As these SoCs support 3 modes, update the description of
-renesas,no-can-fd property and disallow it for R-Car Gen3.
+You are right. I was confused between the logical state and the
+physical line level regarding gpiod.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * Added check to disallow the usage of both fd-only and no-can-fd.
-v1->v2:
- * Added conditional check to disallow fd-only mode for R-Car Gen3.
----
- .../bindings/net/can/renesas,rcar-canfd.yaml  | 74 ++++++++++++++++++-
- 1 file changed, 71 insertions(+), 3 deletions(-)
+I have fixed the logic in st7920_hw_reset() to correctly assert the
+reset (logical 1) and then de-assert it (logical 0). Accordingly, I
+have also changed the probe initialization to GPIOD_OUT_LOW to ensure
+the device starts in a non-reset state.
 
-diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-index f4ac21c68427..a504f94d0a20 100644
---- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-+++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-@@ -125,9 +125,17 @@ properties:
-   renesas,no-can-fd:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
--      The controller can operate in either CAN FD only mode (default) or
--      Classical CAN only mode.  The mode is global to all channels.
--      Specify this property to put the controller in Classical CAN only mode.
-+      The controller can operate in either CAN-FD mode (default) or FD-Only
-+      mode (RZ/{G2L,G3E} and R-Car Gen4) or Classical CAN mode. Specify this
-+      property to put the controller in Classical CAN mode.
-+
-+  renesas,fd-only:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      The CANFD on RZ/{G2L,G3E} and R-Car Gen4 SoCs support 3 modes FD-Only
-+      mode, Classical CAN mode and CAN-FD mode (default). In FD-Only mode,
-+      communication in Classical CAN frame format is disabled. Specify this
-+      property to put the controller in FD-Only mode.
- 
-   assigned-clocks:
-     description:
-@@ -267,6 +275,30 @@ allOf:
-       patternProperties:
-         "^channel[6-7]$": false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rcar-gen3-canfd
-+    then:
-+      properties:
-+        renesas,fd-only: false
-+
-+  - if:
-+      required:
-+        - renesas,no-can-fd
-+    then:
-+      properties:
-+        renesas,fd-only: false
-+
-+  - if:
-+      required:
-+        - renesas,fd-only
-+    then:
-+      properties:
-+        renesas,no-can-fd: false
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -297,3 +329,39 @@ examples:
-             channel1 {
-             };
-     };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+
-+    canfd1: can@10050000 {
-+            compatible = "renesas,r9a07g044-canfd", "renesas,rzg2l-canfd";
-+            reg = <0x10050000 0x8000>;
-+            interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "g_err", "g_recc",
-+                              "ch0_err", "ch0_rec", "ch0_trx",
-+                              "ch1_err", "ch1_rec", "ch1_trx";
-+            clocks = <&cpg CPG_MOD R9A07G044_CANFD_PCLK>, <&cpg CPG_CORE R9A07G044_CLK_P0_DIV2>, <&can_clk>;
-+            clock-names = "fck", "canfd", "can_clk";
-+            assigned-clocks = <&cpg CPG_CORE R9A07G044_CLK_P0_DIV2>;
-+            assigned-clock-rates = <50000000>;
-+            resets = <&cpg R9A07G044_CANFD_RSTP_N>, <&cpg R9A07G044_CANFD_RSTC_N>;
-+            reset-names = "rstp_n", "rstc_n";
-+            power-domains = <&cpg>;
-+            renesas,no-can-fd;
-+            renesas,fd-only;
-+
-+            channel0 {
-+            };
-+
-+            channel1 {
-+            };
-+    };
-+
--- 
-2.43.0
+I have also addressed the other comments. These fixes will be
+available in the next version which I will submit shortly.
 
+>
+> > +     if (IS_ERR(st7920->reset_gpio)) {
+> > +             ret =3D PTR_ERR(st7920->reset_gpio);
+> > +             dev_err(dev, "Unable to retrieve reset GPIO: %d\n", ret);
+>
+> return dev_err_probe, didn't you get comment on that?
+>
+> > +             return ret;
+> > +     }
+> > +
+> > +     spi_set_drvdata(spi, st7920);
+> > +
+> > +     ret =3D st7920_init_modeset(st7920);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D drm_dev_register(drm, 0);
+> > +     if (ret)
+> > +             return dev_err_probe(dev, ret, "DRM device register faile=
+d\n");
+> > +
+> > +     drm_client_setup(drm, NULL);
+> > +
+>
+> Best regards,
+> Krzysztof
 
