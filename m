@@ -1,145 +1,104 @@
-Return-Path: <devicetree+bounces-242552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38F72C8BC05
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:03:00 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7389CC8BC17
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:05:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 221EE3A5A52
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:02:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D6CC74E0799
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80D0133DEF7;
-	Wed, 26 Nov 2025 20:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C420335555;
+	Wed, 26 Nov 2025 20:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AhEfGA74"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FdpMkULu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB9662BCF5D
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 20:02:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE5E23AB9D;
+	Wed, 26 Nov 2025 20:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764187368; cv=none; b=DpyP8IdoDr+hsO5AVKa730OXL5u6rPGR9heTjrop4QP4WR8DCf3yIwv7LCer6aA/8ksx1vkImq5b8vrSw+U7pdbM6URONFusNmyaqmuXZzD1xqyQdiQtvHxhgXDybcvGfxy/sKZ7oWQmzw05DLQvsUnQIeH+38WTOqkevKxMw0c=
+	t=1764187520; cv=none; b=Lb1+3quCJL50lhkgBwzYIeuC8Oo2phIHgCTfB/59mHYxlRfxYGK3oLsTKTysD/VxENWrIHm/91C+2ysT1e05bJr+3put5Oz/jHOqzaOfvA3lBKMonVCcUzI0m+0zmOVbNRhMqk01q6WxElJ/IRxjrbb/+c4/bkFCJYBIBoBepEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764187368; c=relaxed/simple;
-	bh=io2b3WP5mJSrzoPU9P3LKCt9DN2B8GXCdJ4X44P7TU4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XyW+WPYjrxoUQ/zSivgZiDNqOhgHKZohEtk/yb/+OWIIhalTI9NVyPVncqbhPU32anX8NxXCp8TSik+mUWRVENQS+UPG1rUIR0n7GSihF6fx48bMZDOk8h4dFHuSh3gf6nM84nACbotl/NdILeLNLfXA/8pknKPrvnUVXe6eHWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AhEfGA74; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-42b3669ca3dso99182f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 12:02:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764187365; x=1764792165; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=io2b3WP5mJSrzoPU9P3LKCt9DN2B8GXCdJ4X44P7TU4=;
-        b=AhEfGA74+WtLFdY7FUEVVqG/COqUjj68ANLx3nAvKOy3eGB6YdK2IR8pdSKXMx0UB/
-         zto+FrF2N4GVjCURo5ZE3v++mNOCXPdqt08VuHNhEWisIHjlvMo79+eiX2R7H3pLFKKY
-         ZtZ0v3Has5Hb1Ek31pYuB3E/0YH6evR2f9n1f6H/9WRyEh1lgulbfWwoTpe8zRRrncBr
-         zsXFppqoke0qHuTdFdPQ/sMXa+OgqdiE9ad+1+tVp8BcmPgGqh1e5l/xp0bTScyDCWCJ
-         0uZ3VFuqs4D3YtqnL4ldYgMnfxcp34k3sA0d8wMwfTIaI3Er9MI+jy8+Y7L+BaEbCJ6X
-         exVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764187365; x=1764792165;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=io2b3WP5mJSrzoPU9P3LKCt9DN2B8GXCdJ4X44P7TU4=;
-        b=Z13u2OjcbJR786GH0zKNfG51EYR82IH4CSrdNGdIPA3lZY8EWx/rbISFO8JLY2w5IE
-         CmPoKWg4mondapF2vjpxi1TKzrBPUONt7SsCGghvVL9omPHRbVXB+5Z8DCZrP07WFLXw
-         EMfsOgYHx0QAJkxHC5W3EnRmfukFPB5zAICCYU1SWSvJ1oT8jcu14aixji/9PcFk7xAg
-         78cQIArLCwTs/LExHGfygkjcxmrCe8qvoyu1i28qcyrw+O4JrVwharrExneK8qQA34DE
-         iYqfpYHmuTSz0pIynlVpbei0s/8tP84ijtv8uP6ilo3yXTrnCsTJQDrUp+bgE0tbHSue
-         0+BQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWw9iLsP02RSlpNBVgWw8c3u2giO3BPnCIf7vDshXnQFVWAfYdQOmiaHDQeQZSmvjDcrgL42dOXdI4l@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/1nYnfXlDRRUa5A01AOG2RwDiGM69IuFUMGSvTGFpPC2l6sJ9
-	si/rwV0HH2qnrMx2aeAEyWJrhn0eg1Wh1q0ytHAJj8PumBXJHqr6C+2tziPCbBH54K86fmvjsaI
-	QmoEdSdnm+GAwjalxFbC9qxgHwE+NSk8=
-X-Gm-Gg: ASbGncs5Sni1V6V0/qwhF3AavrReScfkStsAtJR1Pd9tiHTVhy7VItTUoQewFohLbrq
-	1KKdDJKX6l34FB5JLfH8L1+P+5sNqUIhs7Y6P3tB3kLEVqHRjEsZ7KwZqcO4YyZ2YRngXRVoVt3
-	1HgeVF9zdScVgTOsQSsLLJ3ZpJmDvKWYlfiohHNuqA0JlMb4OElG8OJsboP2EcTURHCTmBkkNLK
-	hhj5LBbAClLc2cDJoUZUsgO5YxdTNVKpexvs5IDVo4PyOJRBiR8ksvPGX7SwPhMxQ9GubCGueGp
-	RLzW6EDkCYJTsffW1GU2uzSGIFZJ
-X-Google-Smtp-Source: AGHT+IHhPTLf5CTLCoQ18EsMIZtWnWzd5QhbLVXWFL+PMuHp5nvUjMTQ/DYhFP88GSmklCKy+nnqz6NENwZFNXmLY3I=
-X-Received: by 2002:a05:6000:26cc:b0:427:9d7:86f9 with SMTP id
- ffacd0b85a97d-42cc1d19d6dmr21241880f8f.47.1764187364909; Wed, 26 Nov 2025
- 12:02:44 -0800 (PST)
+	s=arc-20240116; t=1764187520; c=relaxed/simple;
+	bh=lTxE64UghqbjCwYBFbTZVg1XETR3oqEJqhAJgQ3oMN8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PUzSSpMSHfZX9StrOk5BbQU13qtTzaPZeu94KKdk5+RfVHCkrRgZm3jkjbW3inl0IKp6i86an9IJsHGC+TYQW1YVHoin2dnxGc34cjwGbvfVCW0WULTKOQ+kdYSSMZqMISKtWqv1l5OU2YAGUV8gg5u1OkVO7+lLIRdIU/C80bU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FdpMkULu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E77D0C4CEF7;
+	Wed, 26 Nov 2025 20:05:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764187519;
+	bh=lTxE64UghqbjCwYBFbTZVg1XETR3oqEJqhAJgQ3oMN8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=FdpMkULuaV+5iHWUmteQ/gSJGPOTqqnOzPFz7tLrIe2+zjKJ5MOpkOwEf6hZO/zMK
+	 Qa5AbjjUpRUcA2IjYh7nYs7fWi9Y2FTAT61jTJ7VSyg72pesa97vEkr0vWzFeOB/yh
+	 8qczpawhm09RG58dOf0F3FmxQ9H2LG3kCrWS4ghieOLABj7VQBiYG5U7+Fz7FpzNq7
+	 vxqmak2p/2QNCueaaFxlh8Ap+zZqK2CRePMrJOn6oeTzUpaotSn/a5xLGhN6b/fFJ/
+	 60g16DAVvEk5CHy5vD+rmPVUgr3jAkB3D1pDmWoB21llElEsWOLrwonnitN5fmPPWQ
+	 oeoXbb545MAwg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Imran Shaik <quic_imrashai@quicinc.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH 0/5] Define VDD_MXC for SC8280XP
+Date: Wed, 26 Nov 2025 14:10:41 -0600
+Message-ID: <176418784438.1591314.8587929353938909456.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251104-topic-8280_mxc-v1-0-df545af0ef94@oss.qualcomm.com>
+References: <20251104-topic-8280_mxc-v1-0-df545af0ef94@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-9-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251121205546.6bqpo2bn5sp3uxxu@skbuf>
-In-Reply-To: <20251121205546.6bqpo2bn5sp3uxxu@skbuf>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 26 Nov 2025 20:02:17 +0000
-X-Gm-Features: AWmQ_bmTU2niYWdcaSdZep0i6gskfGJjESBHVN_mhWxbtBqTU4OVzxNhhj_FZfk
-Message-ID: <CA+V-a8vH+qCgNti+dHVXqfa02-zMnbUKw2gScWyeuh=EhL8HaA@mail.gmail.com>
-Subject: Re: [PATCH net-next 08/11] net: dsa: rzn1-a5psw: Make DSA tag
- protocol configurable via OF data
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Russell King <linux@armlinux.org.uk>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Vladimir,
 
-Thank you for the review.
+On Tue, 04 Nov 2025 20:31:05 +0100, Konrad Dybcio wrote:
+> This has somehow been omitted, leading to potentially stale votes.
+> On the flip side, the domain will now be powered off, which will
+> uncover any omissions we've made in the DTs so far.
+> 
+> Reasonably tested on an x13s without pd_ignore_unused (camera still
+> works).
+> 
+> [...]
 
-On Fri, Nov 21, 2025 at 8:55=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com>=
- wrote:
->
-> On Fri, Nov 21, 2025 at 11:35:34AM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Update the RZN1 A5PSW driver to obtain the DSA tag protocol from
-> > device-specific data instead of using a hard-coded value. Add a new
-> > `tag_proto` field to `struct a5psw_of_data` and use it in
-> > `a5psw_get_tag_protocol()` to return the appropriate protocol for
-> > each SoC.
-> >
-> > This allows future SoCs such as RZ/T2H and RZ/N2H, which use the
-> > DSA_TAG_PROTO_RZT2H_ETHSW tag format, to share the same driver
-> > infrastructure without code duplication.
->
-> Again the twitching when reading the commit title. I thought this has
-> something to do with the "dsa-tag-protocol" property from
-> Documentation/devicetree/bindings/net/dsa/dsa-port.yaml. The tagger *is*
-> runtime-configurable if you implement the ds->ops->change_tag_protocol()
-> API, and it's also possible to trigger that API function from OF
-> properties. But this is not what the patch does, so it is confusing.
->
-> I think it would be more natural to say "choose tagging protocol based
-> on compatible string".
->
-Ok, I will update the commit message in v2.
+Applied, thanks!
 
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
->
-> Anyway I'm not reviewing this commit until the reason why you added a
-> new name for this tagger becomes completely clear.
-As discussed in patch 2/11 the format fields vary, so this change is
-needed to support the new SoC.
+[2/5] dt-bindings: remoteproc: qcom,sc8280xp-pas: Fix CDSP power desc
+      commit: ca079ec3ebed19a12c1bf080496dacbc6fdfbb39
 
-Cheers,
-Prabhakar
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
