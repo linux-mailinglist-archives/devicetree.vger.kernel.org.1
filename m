@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-242200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF8C3C87EB0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 04:18:18 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC24C87ECA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 04:18:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 667B835405A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 03:18:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 95D3F4EB1EF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 03:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624DD30CD80;
-	Wed, 26 Nov 2025 03:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC0F30CD82;
+	Wed, 26 Nov 2025 03:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dgvjoXGp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HX1oGGX/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f68.google.com (mail-pj1-f68.google.com [209.85.216.68])
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com [209.85.210.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8D82FDC30
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 03:18:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A6BA30C625
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 03:18:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764127093; cv=none; b=KFnhqbpNyT28sTndqmnh4uAC3/bIBcD6i7DNLlcqAMDXTgkDqll9WglomU0h4ptjnJRN371TwzrIcVCZT2TpjFHMk3jf7ImhqgYmp0zEXXVdka9vepO3GUTS1wREr0tVq2jLvfRxLl9I+82RJ3eKDsH06qripgiPyU82fXczSW4=
+	t=1764127102; cv=none; b=fyevF7l04HM4FH6sTamSdL+dYggP7EVZPpge9JZEnyCyCVxLnrA6WAgOok1yZ3nfV56nPM49n9RZM+NvTeA+so4A1aiArs4hhHdg0RENTMLwdh3EVUMtvfxcLTLf6Syky4TbG6bPsbFzwghNGxjv1gumBYsuSux+WkWmxPXCZiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764127093; c=relaxed/simple;
-	bh=mFGAf05gZ2JpMz8sAbnQz9cmri70ARBRr6x45PxpHvs=;
+	s=arc-20240116; t=1764127102; c=relaxed/simple;
+	bh=p2a1vXXc69O/px1tJS9PHGGSu+bfndAnOjwnw4vFX6M=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oGeati4Y2KS1R2za0EIaxfeLGc3qRJcw6H/XWVACzINHFHYq+OrjVJ2908rnla4qMA2EY2Snkn5l7ucQ7QOhN5NCNfbPcmM14MA2cLJwCSJOj5Ix+ZUC11YRK27y9bIkr+5ppBYaVML92/AY3kOVMzIfIu91DM2Z5Y8uAz8LANw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dgvjoXGp; arc=none smtp.client-ip=209.85.216.68
+	 MIME-Version; b=EfWySZ4M6byH6k6vhTGqzGoLXFN+cKvyOhq2LY7qDhaRi6car3YO8czp2x5eFdKVfPo9EVr+LvvQNozltAhrVkkdM035XDF2iFDoJOflJe09aBMKDYhIgJDVGSYH/PzhAgOGf04jENrP4iKoCINwBq/MP34Ei7dOonL3jZD+vCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HX1oGGX/; arc=none smtp.client-ip=209.85.210.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f68.google.com with SMTP id 98e67ed59e1d1-343f35d0f99so5121264a91.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 19:18:11 -0800 (PST)
+Received: by mail-pf1-f195.google.com with SMTP id d2e1a72fcca58-7b852bb31d9so7124772b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Nov 2025 19:18:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764127091; x=1764731891; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1764127100; x=1764731900; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pJ7IKj64Qr0OZ0iruuUqcxkX7/QCGnNK4nFSticAN6I=;
-        b=dgvjoXGpLfKN29V0UYDxR8nsUL7kliwfTG4HubLHnSVwqsEqa06rp9ASIu8wuCgPvt
-         KEGNxsmEqsm+qAvZAu/lim0+jg4J/bX4ElYLsoo3OgvousPzPhN80DE2g03pa3FcAJoX
-         jaraBmJ853zJ3hqq4kGYIHONm6bTc4sMfPBiNoYtnjx9AUFWzKU3vibsVjKDMwniJ1iX
-         w8/o/iS6gscMy2RY2Y83k9j1RQG9LYC9sD1FeUzuKu2l/+yZdWZqOEt1TnYQQ/brkpjS
-         YElZzmaT0YUV9jlvspBaDROSzr0Ufa/0Fzr/j/xiGRQUNJA/UVWEKgTSdcWcRnCdL199
-         XDcg==
+        bh=B7ozaCRL273ETHkhhjpKcicKScA37yYy2L/hbCujZyo=;
+        b=HX1oGGX/ZtNtbAv3xlF6N5t6A1d5G+/Z/KYXUDau0GaMYNz1LQmKXLOIWBUbFo7t0X
+         TFpUaUh1mc0qQdGyQTgvjMaDaXstmcWtImi+OIFehj138Fb5zUg7l1yiF9LMTZxKJqLJ
+         oyRkwznxCWnEsugjDrgN/s+AQYjA7L6c3UP6VewlEMH14mIUJrG8yOmbsCbXWY8qHaof
+         VCkBRhnqRy0vrSnrPZvob4p69OL9ugYSv4OM+0T5aofDl4+zMMAP2eWiR/k9VGK/1xcU
+         cvi8xAm105GyeBioo3imS64lPguRY+pajT4hFEiC+OoTgZkxGn4r+Br1LaUuyMpoU0j/
+         Jhtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764127091; x=1764731891;
+        d=1e100.net; s=20230601; t=1764127100; x=1764731900;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=pJ7IKj64Qr0OZ0iruuUqcxkX7/QCGnNK4nFSticAN6I=;
-        b=j/I1skd+mnwLbBW5PYifaRdlN8J+5UO/RFtX1mS6o6mAAqXoMs9AeoLDEKui91jCkk
-         lUZKw98O7/n36anp8c38f+q5DLsFZ0FEOhZfmEax2A2hxRAANHkXe9opNanWXiBt0+o8
-         flLGf3ISwvRwfmgLHALT1cak23pmuRrpd9ba3suc64gcsAse7uO7UTap6WENCUoj8mW/
-         LO7O6biLY/+dipTaVfT5aMVxupoIhhdV6ZsiLHVYF54SIqcFh/byxc1BSm4m7iPQAjwb
-         NvjmGBzeA6J1KaLKohmpYONvkkaIXEc3hj77zNFh89QsMMqCUG2fa2H2I69iCL8JAuQ1
-         IgdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW31xjCE9Maz6//V8lGdUgjqbk9E/FDZhlq2vdY8hGuVFWP/FkJHBCiWQQPCGDaU4itxzPHOMDdRFzu@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywtb7Kp58oVu2CB8vuCQR7PykmJkQihNWhgHsE36C7uy2ECaWXv
-	exnh87eJ4oM71Fk4x5HZJ2ZyaW06Pu5mwRNLmh02dYRHREwLo8mtcnaN
-X-Gm-Gg: ASbGncvy6Q7v2Ljy+E52n2g39Crsq1rWQPk0si4wPvkgvpzfnRGgir9f6EdlSH+Fa07
-	zPXdGD9MT1tXQc9mEJxA+FIIOV2tTxydWId04c6CXm63TiRVDI8Rj/OJwzE9LAYm7vew7hbhGCr
-	D3LbnLSRUnrQXnM24IORtJjGh+mzDWBDRmMP95sPUvtMyL9ZF9XD9QNguU2up4IrRQiseE+D7Gh
-	INBWyYOPOecR3IDBJoIgscpqPUDmFLkGqYVkIG6mPt3wSTnNDP+BBIDs5qP3D+rgZeE/UEsvQHm
-	+SdzcqqPaUqveEnlzNjjc9HMScjVr070Pv3nnBUmptRAKdzB9lpp3fjqSSVAotwBrrqPu2LUQ2L
-	ScXcI28KNivKgX3d2sfu+BgTZDdPm1M8poHMTv1R1N4iCz4IUqVhFYsyX8tosfGc6bwpXoKqg57
-	SBGJpLp02OJff8iIYjk8n3oKhC
-X-Google-Smtp-Source: AGHT+IGa1FJoKpUswR5UD+dOiC7H4W7Ds1tZvtbxBdOuvihTQsXPDXj1wGT1F6VG0QJz4aBP57V84A==
-X-Received: by 2002:a17:90b:384c:b0:33e:2934:6e11 with SMTP id 98e67ed59e1d1-3475ebf9acamr4279517a91.11.1764127090901;
-        Tue, 25 Nov 2025 19:18:10 -0800 (PST)
+        bh=B7ozaCRL273ETHkhhjpKcicKScA37yYy2L/hbCujZyo=;
+        b=hLzW1MEj7g4IwMS6W5A8a9qTY/YAcTiaqq7GuGgRDEm870zWHlbnwA37O9kghoNk4U
+         RJMSCYzgUbYXJAQ1XBSCssO4+Gk8CztIm9iklTz2xrfap9LQnVd1pq8FGfpGbGsdXR0u
+         CbpV1HwZjsbpfVQhdWinUnVgXrRzqlkBcyr+JiSYjplvtE7AwcDHAXavtDg6qkBc2xE2
+         ldOLYTSly+RSYnaPl0WvhsyP8RRG/s1AWKZl13e0fiXlqR3S0nhQeeW0wARkIhYQFAzK
+         uv5ERLTLpKak7y3gLTlTFkBL2XX1BPk9zyPg5RW0lswwFIEiHvXGfcVomDsQryi+NqrM
+         U8JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWBzzmPw6ilkmL/2Ytciut7bEgGgdbTEPDFQU+deQKtMV+dYR25EYJiJ0QrYXoEZpZDCg3Hs5fdySiR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMZ+SihqvWAmNQpIhQdaYBKsRxq7Kil1CRGsqfZg7oV9ZFQzOO
+	SwksLg5jqKrrOiMglD2Y+MeY9wklpnw4Ci5CohMvs91EK2odTXKAcWzo
+X-Gm-Gg: ASbGnctsz1STFCZ7850Ze1TgLkgxVKVLjNfU+MhGx3I9F9dh+IIoPulA6t3nhTBJzjB
+	gLeQfzfPZpdN2f+r+ZYPDefRpVYHmrBqD7S/j1ZUwTLz/LhjaqRq0c2KhqmVzwXVVrxCcrTj44o
+	F2gzpRZJxjVHffDuv1VN6iT16n6yeHXvViZUAkQDlDGwStAlluzM2VcfyALYmeJonF772tl7qg8
+	+KDxbVhLEl3Jka30Tzky8cZlnUvZxrKnFzHAl8WuLYhLu/j/OKlrpquexUTawBPas/Wk9hH7HC0
+	LxqXiL+J9atx57pqxRVhc0WEY5SqmZ7XHPDnWzUlAuhtsA1e82fKJjpnSdzbP0m130HuPRYuBYr
+	rj289ap/21L6ypwLWYTEQxtSPp+R0Xph4onNhwNEW0uRBW+qLQnL2qa21WFJYHqw3fIBjRw1Wnj
+	enJt01yawFITZWMw==
+X-Google-Smtp-Source: AGHT+IG4qlNiEEoXWutLGwHJ0G+8UC4lSWmbuW3HpUhf3gSmsfXJsXmVg9/UlI5YsquppzK7NKIpsw==
+X-Received: by 2002:a05:6a21:3384:b0:35f:aa1b:bc09 with SMTP id adf61e73a8af0-36150e6cff9mr20254369637.17.1764127100409;
+        Tue, 25 Nov 2025 19:18:20 -0800 (PST)
 Received: from Ubuntu24.. ([103.187.64.30])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd760ac62ecsm17935713a12.26.2025.11.25.19.18.05
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bd760ac62ecsm17935713a12.26.2025.11.25.19.18.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Nov 2025 19:18:10 -0800 (PST)
+        Tue, 25 Nov 2025 19:18:20 -0800 (PST)
 From: Shrikant Raskar <raskar.shree97@gmail.com>
 To: jic23@kernel.org,
 	robh@kernel.org,
@@ -90,9 +90,9 @@ Cc: dlechner@baylibre.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Shrikant Raskar <raskar.shree97@gmail.com>
-Subject: [PATCH 1/3] dt-bindings: iio: proximity: Add YAML binding for RFD77402 ToF sensor
-Date: Wed, 26 Nov 2025 08:44:38 +0530
-Message-ID: <20251126031440.30065-2-raskar.shree97@gmail.com>
+Subject: [PATCH 2/3] iio: proximity: rfd77402: Add Device Tree support
+Date: Wed, 26 Nov 2025 08:44:39 +0530
+Message-ID: <20251126031440.30065-3-raskar.shree97@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251126031440.30065-1-raskar.shree97@gmail.com>
 References: <20251126031440.30065-1-raskar.shree97@gmail.com>
@@ -104,95 +104,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The RFD77402 driver has existed without a formal device tree binding
-description. With the recent addition of Device Tree support and
-interrupt handling in the driver, it is now necessary to document
-the DT properties used for configuring the device.
-
-Since the binding introduces the compatible string "rfdigital,rfd77402",
-the "rfdigital" vendor prefix is also added to vendor-prefixes.yaml.
+This patch enables seamless integration of the RFD77402 ToF sensor
+on platforms that use Device Tree for hardware description
 
 Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
 ---
- .../iio/proximity/rfdigital,rfd77402.yaml     | 55 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- 2 files changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+ drivers/iio/proximity/rfd77402.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml b/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
-new file mode 100644
-index 000000000000..93deaa4e8b7a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/proximity/rfdigital,rfd77402.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/iio/proximity/rfd77402.c b/drivers/iio/proximity/rfd77402.c
+index aff60a3c1a6f..3262af6f6882 100644
+--- a/drivers/iio/proximity/rfd77402.c
++++ b/drivers/iio/proximity/rfd77402.c
+@@ -313,10 +313,17 @@ static const struct i2c_device_id rfd77402_id[] = {
+ };
+ MODULE_DEVICE_TABLE(i2c, rfd77402_id);
+ 
++static const struct of_device_id rfd77402_of_match[] = {
++	{ .compatible = "rfdigital,rfd77402" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, rfd77402_of_match);
 +
-+title: RF Digital RFD77402 ToF sensor
-+
-+maintainers:
-+  - Shrikant Raskar <raskar.shree97@gmail.com>
-+
-+description: |
-+  The RF Digital RFD77402 is a Time-of-Flight (ToF) proximity and distance
-+  sensor providing up to 200 mm range measurement over an I2C interface.
-+
-+properties:
-+  compatible:
-+    const: rfdigital,rfd77402
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description: |
-+      Generated by the device to announce that a new
-+      measurement data is ready in result register.
-+
-+  vdd-supply:
-+    description: Regulator that provides power to the sensor
-+
-+  vddio-supply:
-+    description: Regulator providing I/O interface voltage
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        proximity@4c {
-+            compatible = "rfdigital,rfd77402";
-+            reg = <0x4c>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index f1d1882009ba..a2e113e29e37 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1341,6 +1341,8 @@ patternProperties:
-     description: Revolution Robotics, Inc. (Revotics)
-   "^rex,.*":
-     description: iMX6 Rex Project
-+  "^rfdigital,.*":
-+    description: RF Digital Corporation
-   "^richtek,.*":
-     description: Richtek Technology Corporation
-   "^ricoh,.*":
+ static struct i2c_driver rfd77402_driver = {
+ 	.driver = {
+ 		.name   = RFD77402_DRV_NAME,
+ 		.pm     = pm_sleep_ptr(&rfd77402_pm_ops),
++		.of_match_table = rfd77402_of_match,
+ 	},
+ 	.probe = rfd77402_probe,
+ 	.id_table = rfd77402_id,
 -- 
 2.43.0
 
