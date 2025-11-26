@@ -1,147 +1,217 @@
-Return-Path: <devicetree+bounces-242504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C90C8B323
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:28:26 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3844CC8B2DB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:22:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7C803A48EC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:28:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D5CEF4E1199
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE2927EFF1;
-	Wed, 26 Nov 2025 17:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DBA9271464;
+	Wed, 26 Nov 2025 17:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L/llcMVL"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NAsy67xM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F33D026CE1E
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147EC26E6E1
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:22:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764178102; cv=none; b=JEs5/JD/InCHc8NE8ib2KD2rfEjTpquBd8qPZZ9/UYmoyT9A7lsTu4ER2jA/CMt5nx1WEBEu1yQEsrm2XYdRLdk7U2d2shty+vbWHbbeLZ8roS3l6+/TDW1sQzFBTXC2DI7Aw17371sFagaGcQsjEHtYe1LCFhWL6VdPfrpqR5A=
+	t=1764177736; cv=none; b=iBi4ww79VojYJ2P+fK8svwfes+Oh1g80EPDf8DdX7W1mWBSh/nIMinOteVgwryIwrWtux2PAhQdmI4k71lfJLychO8VodPmlk41Y8n4dL6WUsubHREpbj08Blv5wrQ96zYMyEopsYyiF1GGfJ8N5E/FPxsi/sVdxuagrK9qpJ38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764178102; c=relaxed/simple;
-	bh=lsSHuC069xpQipphElBW/HG7hp8LOPDCQOeided1vIw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GsUb/3v99HARpI0gqa3c/plkESIHysBPCvWnEGuuQJTH5ad6saZNcOB9eCYyYXkb9c2kNDf7Kj7H5MUp6p2zv7YdVg7S2fNlHEwoUrdSgwe0baNLk6kp2jdz6rK5DdeRvMZHsjUe8R4nxQd3ePpSYIJHZrDq6hMB2CcE+mAHc90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L/llcMVL; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42b2dc17965so68529f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:28:20 -0800 (PST)
+	s=arc-20240116; t=1764177736; c=relaxed/simple;
+	bh=wOW9mr8lkvb1dXWEhI4QVzanyGbtM+zavyrY1/ZkNe4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p2/rBJ/lsZzYSjhpgBBF0nPF1odU1aCfTO8jfSJyFyXiiGeFOoY6O1qfUFT5UU8wiFlT/R9KDgbc9NamIqhju9rGiMgko15LiDaKSs3azdfRGBCxEMoNIAwkmH6xLm0tik1wGonJYF96Q3TGp48zeTL5Wa66HJDsKsUFQ/SY+tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=NAsy67xM; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so73961115e9.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:22:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764178099; x=1764782899; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5iIZajcwOeO3JlEw92TE30lt4StjWSsYhVcOwVzrTLk=;
-        b=L/llcMVLHHt9R8+HFYf05tNHrH/UkHI6bW3eI36vfXjXESdKrWOJC2ABSPkLuBS0z8
-         zmgEIBW9BlA/b8DZ4juOLGECL5t/TPCFbzDQKMcQP3HZcu68WCA81ocge2h6dJ4XWTqs
-         RxnMpRu/BaCn9sE8rVubFZI2pAYHWM2jUvrCI5N9fqZuAUWCaMID/pciYSrH3f700vMl
-         7mQbVa+QkANrYcaYf/YOB/vuSelCWegLVo/Y7VTb3YtcC02uM+eGnpAFQZKmjoMUfVqd
-         IjvNSqnHzdp9PFxYMn8t0z4tPqI9da9CDMz5cZ0F/zPx9GWB3uxD4i11V+sDqQC4L+XX
-         UaHw==
+        d=tuxon.dev; s=google; t=1764177732; x=1764782532; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iMbAlPYdoISwPLiWW5sRnyteylPcxj4Xm9aY2it0S+E=;
+        b=NAsy67xMd2XMwexj7wKUsyD+WCvDYM8wrNYzOK8dManO7VtZc9mgyN/9kqEWqrYS41
+         yKGDmy0l7D9HI2R1zAqYhIamolDIajtSjz3HSZWMflJwDlU+CSqxhAq3+1MPdbqSWvdJ
+         C6ZmG7GMVtDdcO+8e6BjDZpw41m5dPpcwMFTVIfytpaLAArPNc+zqMWZshGfkMcDzwn8
+         GeDJ5RMKOJKrS40wYMsj1/ThQpvzRNBMFKl4zqZQweMxmRYBEiCM4OnfNzwhbQSYEbtY
+         uZxEkcYyT0Mujod8s6QewbQprGSU0H2uwTsObNH6HEvYx9e0yCbU1S52tEORUWjwJ29w
+         a4bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764178099; x=1764782899;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=5iIZajcwOeO3JlEw92TE30lt4StjWSsYhVcOwVzrTLk=;
-        b=E8ZYe0Uokt//r+SlEOfpcYNkNaiKZMH0LGhOqkstz4+yXwsvkUFk9akyieG5OLH5Ve
-         8/Or8tjqxMZjRHeo3uvf/zT6RdXTdUISIyxGNs6X+GRGkBhg6xelpv8A64LpU6XWH6AF
-         PKn/l1IzCbooUzysVuyr4cAZ8tG5IS/rxh9r+R1jHXL86jeK0SKFxHn55HPvv9c4g6Y5
-         KxUIchHUMB+PGCB7CFqagwKNqcE+MSug0Sx+czp8dC9rEg72iO54Qb3sMc/yTgvLsjEJ
-         /IyEVbclA7Bs+yqQLfVsvrdiEzbLEGoDx1BvNFK+WM6wJkuUsBdn1xBMJi7/3ToJWivf
-         1rGA==
-X-Forwarded-Encrypted: i=1; AJvYcCViFbc6k3W/ODl7E5YDXg/9eBvDjSX09VD0GkYC2cEJyI/tj7ph/8F12FE8s8plE7FH/b20DmlblqmL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwO2GKFUVAKrFfFIDHs0Xgf7ePg8LGOJFXQmTqUafeNMmXnqQeh
-	VdBQ4b8htp7Se3C0Vy8CD8tbQAZEiEKpXm94ju9hEJAW2id8P80DbrkH
-X-Gm-Gg: ASbGncvjxi3Me+0YszRAIa12alw2CuBOakFumO8w9kB44n6hb2hAi6BVAPeLJ8QLI7s
-	s4cdqftjnosn8RcBiLyk7y9FOaYCw7Ro9/4PjEXPAcjkhSZ42MVJLq/fyNk9eJH9tXwL/oYLFCp
-	ZD7PIIjYRiX3Z2FmSBOrBbOCjlIl7CyRFskI/titqBWJVjII3Vm0XKEQhSTRFLhmaKUBh5NYgP7
-	QR+tEtREc3CftQLNOCio4lldeJjZmTmNMwHbw/k57ngciyB+G147weVPK9oiD1ERH8dYfF1Djcb
-	xUp9suAwLpLUSIht0W/fT22uBVCbRR3GTF0O2j5JWSUxBDA5R9SCFpDHOmG4yn2mENuthCvq+kG
-	kP4a1/uvq8qC7IZpbnxxt2ID9tFmqp4cW8ELZPonRh7Pxjtnv3zZ3HnL0VbFGjv1P27tHsOS3nK
-	ga/qx3LdpRJ623DxKPt+bluP2lp3Ne+XzTXfKqbPkvibZKlmmOgKjXhrg=
-X-Google-Smtp-Source: AGHT+IHkE1xTyUwd1e1nQxaACHjDh3t9YedvuMNt3v7wo3xJTnJ11as69WRfu3TcTpDawcaME3AxHA==
-X-Received: by 2002:a05:6000:2881:b0:429:bc56:cd37 with SMTP id ffacd0b85a97d-42cc1ac9ce9mr21647296f8f.6.1764178099006;
-        Wed, 26 Nov 2025 09:28:19 -0800 (PST)
-Received: from dev-AI-Series.. (bba-86-96-93-57.alshamil.net.ae. [86.96.93.57])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f34fddsm42423862f8f.14.2025.11.26.09.28.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Nov 2025 09:28:18 -0800 (PST)
-From: "Anton D. Stavinskii" <stavinsky@gmail.com>
-To: inochiama@gmail.com
-Cc: alex@ghiti.fr,
-	alexander.sverdlin@gmail.com,
-	aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dlan@gentoo.org,
-	huangze@whut.edu.cn,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	looong.bin@gmail.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh@kernel.org,
-	sophgo@lists.linux.dev,
-	thomas.bonnefille@bootlin.com,
-	unicorn_wang@outlook.com,
-	yu.yuan@sjtu.edu.cn,
-	"Anton D. Stavinskii" <stavinsky@gmail.com>
-Subject: [PATCH] riscv: dts: sophgo: cv180x: fix USB dwc2 FIFO sizes
-Date: Wed, 26 Nov 2025 21:21:16 +0400
-Message-ID: <20251126172115.1894190-2-stavinsky@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250611082452.1218817-4-inochiama@gmail.com>
-References: <20250611082452.1218817-4-inochiama@gmail.com>
+        d=1e100.net; s=20230601; t=1764177732; x=1764782532;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iMbAlPYdoISwPLiWW5sRnyteylPcxj4Xm9aY2it0S+E=;
+        b=eB5WphXpKoAgNzWbOtqDrSUTc4ctSoP3KRPlWiesYx5zm+rcOAy3d3r7fWNiJdSt1S
+         aQ2xPDIaTgmeB19xOZ9UvjF+6LjSKNlMtARj+w7dox6oh8moh4KusI+SP74u0YWJPt3H
+         hhNQDsCgSnHl3mIYfzDlBew3XXI0oiAIWWJVDZVcGZZpPiDRZM3+doR13LSusqDsUdqg
+         DfYRruu5AcK659NjaYmhZrlUl0ObQUw5JKtKOiadscQcZvBXYw1+K2+OicBajaNpRUYz
+         /CukrqAphjAaBzvBuLDyuHqJSbr9VJ8RSpImwU4FKhYoUl3FNW7fo6Lj4O9IcPT7HUOF
+         0I/w==
+X-Forwarded-Encrypted: i=1; AJvYcCXSe9q/1bjdpWFtHLenSbWCDWdNyeiB/Cvshp7rKFZXky2UEh+7AxqqLj3oCWfbReuGutVClrdvQdre@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2RGD1/ep9hTmq6sptxFWsPV3hxMezSLHzv7728B1xgGvvhmW/
+	cWY9djsarZw6ji5wTHNad1RCJZ58F/FVlxC2bt9GGn6XIEIqC11XEEY/KZlPAhZxvJM=
+X-Gm-Gg: ASbGncvXxHjzGhCGb5PtLSOsCkEGbmEOsO7NG7zROx+UTBxt86HWOjt73A+MbznbFLx
+	lSSf50++Kqddz6520rXb/iHfU3zDIhIk8rJrJKAQHily9BTKv4B1BgDxMxm+82toYggEJtysOZE
+	w5e2Z3/8ksqKOt2Tb5H07XiNP3MdE5NP7mW8YyLG2NEWKq2jrBgDP8sO0dejv+FigDcLrID/ze5
+	20hkkZ+czWiZXrd/wcCAvLo5CiLfAUQdApn3W+0V0X5l5JzYAKwyNp9F4Y3aLR8Z8UhqGHSvzIG
+	lZQi4VJnVAjUfGlcjxCFY1a916UmaV9EjZjMIAUC5rgGVBYZwmRoNmrWp2hEVnc8ud9QyjL22zK
+	dVeaiNCRlZtJaSbvW+GZon5hydqI3bCpc8mCn/E7iQhHrAtyl2jPKZSkFJ3/DEpaH7K8KRWgbPT
+	egB+YGt6upTIECSYRdWPQ=
+X-Google-Smtp-Source: AGHT+IFveJWow1MlKZhvBvDFWET9HTrn614Fkdf0VqG8AOTAuNxSS7l7a/cBAeHUgCNj8XRXHc1RFQ==
+X-Received: by 2002:a05:600c:1f0f:b0:477:1af2:f40a with SMTP id 5b1f17b1804b1-47904b1b27bmr75298265e9.17.1764177731802;
+        Wed, 26 Nov 2025 09:22:11 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.134])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4790b0c44dcsm52202665e9.11.2025.11.26.09.22.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Nov 2025 09:22:11 -0800 (PST)
+Message-ID: <2e7ecbc0-6ce5-403a-b794-93aaff1ddf39@tuxon.dev>
+Date: Wed, 26 Nov 2025 19:22:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/6] PCI: rzg3s-host: Add Renesas RZ/G3S SoC host
+ driver
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, p.zabel@pengutronix.de,
+ linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20251125183754.GA2755815@bhelgaas>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <20251125183754.GA2755815@bhelgaas>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-I've tested the current dwc2 FIFO configuration and found that USB
-device mode breaks in ECM mode when transmitting frames larger than
-128 bytes. For example, large ICMP packets or iperf3 traffic cause
-the USB link to hang and eventually disconnect without any messages in
-dmesg.
+Hi, Bjorn,
 
-After switching to more conservative FIFO sizes, ECM becomes stable
-and no longer drops the connection. iperf3 now shows ~130 Mbit/s RX
-and ~100 Mbit/s TX on SG2002 (MilkV Duo 256M).
+On 11/25/25 20:37, Bjorn Helgaas wrote:
+> On Wed, Nov 19, 2025 at 04:35:19PM +0200, Claudiu wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+>> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+>> only as a root complex, with a single-lane (x1) configuration. The
+>> controller includes Type 1 configuration registers, as well as IP
+>> specific registers (called AXI registers) required for various adjustments.
+> 
+>> +/* Serialization is provided by 'pci_lock' in drivers/pci/access.c */
+>> +static int rzg3s_pcie_root_write(struct pci_bus *bus, unsigned int devfn,
+>> +				 int where, int size, u32 val)
+>> +{
+>> +	struct rzg3s_pcie_host *host = bus->sysdata;
+>> +	int ret;
+>> +
+>> +	/* Enable access control to the CFGU */
+>> +	writel_relaxed(RZG3S_PCI_PERM_CFG_HWINIT_EN,
+>> +		       host->axi + RZG3S_PCI_PERM);
+> 
+> I suppose this has been asked and answered already, but it's curious
+> that you need this for config writes but not for reads.  Obviously it
+> must *work*, but it's unusual and might warrant a comment.  "Access
+> control" must be a hint, but only means something to experts.
 
-Fix the FIFO sizes accordingly.
+After initialization, some PCI registers are read only. To enable write
+access to these registers after initialization, the access control need to
+be enabled.
 
-Signed-off-by: Anton D. Stavinskii <stavinsky@gmail.com>
----
- arch/riscv/boot/dts/sophgo/cv180x.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This is the quote from the HW manual: "Some registers with the RO attribute
+stated in the PCI Express Base Specification are writable at the time of
+initialization.
+ When writing to these registers, CFG_HWINIT_EN (Permission Register
+(offset: H’300) bit[2]) must be set to 1b."
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-index 1b2b1969a648..06b0ce5a2db7 100644
---- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-@@ -438,8 +438,8 @@ usb: usb@4340000 {
- 			clocks = <&clk CLK_AXI4_USB>, <&clk CLK_APB_USB>;
- 			clock-names = "otg", "utmi";
- 			g-np-tx-fifo-size = <32>;
--			g-rx-fifo-size = <536>;
--			g-tx-fifo-size = <768 512 512 384 128 128>;
-+			g-rx-fifo-size = <1536>;
-+			g-tx-fifo-size = <128 128 64 64 64 64 32 32>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(14) IRQ_TYPE_LEVEL_HIGH>;
- 			phys = <&usbphy>;
- 			phy-names = "usb2-phy";
--- 
-2.43.0
+> 
+>> +	ret = pci_generic_config_write(bus, devfn, where, size, val);
+>> +
+>> +	/* Disable access control to the CFGU */
+>> +	writel_relaxed(0, host->axi + RZG3S_PCI_PERM);
+>> +
+>> +	return ret;
+>> +}
+> 
+>> +static irqreturn_t rzg3s_pcie_msi_irq(int irq, void *data)
+>> +{
+>> +	u8 regs = RZG3S_PCI_MSI_INT_NR / RZG3S_PCI_MSI_INT_PER_REG;
+>> +	DECLARE_BITMAP(bitmap, RZG3S_PCI_MSI_INT_NR);
+>> +	struct rzg3s_pcie_host *host = data;
+>> +	struct rzg3s_pcie_msi *msi = &host->msi;
+>> +	unsigned long bit;
+>> +	u32 status;
+>> +
+>> +	status = readl_relaxed(host->axi + RZG3S_PCI_PINTRCVIS);
+>> +	if (!(status & RZG3S_PCI_PINTRCVIS_MSI))
+>> +		return IRQ_NONE;
+>> +
+>> +	/* Clear the MSI */
+>> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_PINTRCVIS,
+>> +			       RZG3S_PCI_PINTRCVIS_MSI,
+>> +			       RZG3S_PCI_PINTRCVIS_MSI);
+> 
+> Other writes to RZG3S_PCI_PINTRCVIS are guarded by host->hw_lock.  Is this
+> one safe without it?
 
+It should be safe as RZG3S_PCI_PINTRCVIS is a R/W1C type of register.
+
+HW manual describes R/W1C registers for PCIe as "Write-1-to-clear status
+. It can be cleared to 0b by writing 1b with a readable register.
+ Writing 0b does not change anything."
+
+With this, it should be safe to drop the guard from rzg3s_pcie_intx_irq_ack().
+
+> 
+>> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_MSGRCVIS,
+>> +			       RZG3S_PCI_MSGRCVIS_MRI, RZG3S_PCI_MSGRCVIS_MRI);
+>> +
+>> +	for (u8 reg_id = 0; reg_id < regs; reg_id++) {
+>> +		status = readl_relaxed(host->axi + RZG3S_PCI_MSIRS(reg_id));
+>> +		bitmap_write(bitmap, status, reg_id * RZG3S_PCI_MSI_INT_PER_REG,
+>> +			     RZG3S_PCI_MSI_INT_PER_REG);
+>> +	}
+>> +
+>> +	for_each_set_bit(bit, bitmap, RZG3S_PCI_MSI_INT_NR) {
+>> +		int ret;
+>> +
+>> +		ret = generic_handle_domain_irq(msi->domain, bit);
+>> +		if (ret) {
+>> +			u8 reg_bit = bit % RZG3S_PCI_MSI_INT_PER_REG;
+>> +			u8 reg_id = bit / RZG3S_PCI_MSI_INT_PER_REG;
+>> +
+>> +			/* Unknown MSI, just clear it */
+>> +			writel_relaxed(BIT(reg_bit),
+>> +				       host->axi + RZG3S_PCI_MSIRS(reg_id));
+> 
+> Other writes to RZG3S_PCI_MSIRS are guarded by host->hw_lock.  Is this
+> one safe without it?
+
+RZG3S_PCI_MSIRS is also a R/W1C type of register. With it, it should be
+safe to drop the guard from rzg3s_pcie_msi_irq_ack() as well.
+
+I'm going to prepare a follow up patch to drop the guard on
+rzg3s_pcie_intx_irq_ack() and rzg3s_pcie_msi_irq_ack(). Please let me know
+if you have something against.
+
+I can also prepare a patch to detail in a comment the "enable access
+control to the CFGU" operation in rzg3s_pcie_root_write(), if you prefer.
+
+Thank you for your review,
+Claudiu
 
