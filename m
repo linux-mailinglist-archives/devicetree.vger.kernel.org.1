@@ -1,243 +1,167 @@
-Return-Path: <devicetree+bounces-242189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9924AC87B58
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 02:38:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0578C87BA9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 02:44:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 510E33B1685
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 01:38:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6673E3B33BB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 01:44:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3681E1DE9;
-	Wed, 26 Nov 2025 01:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF97306B12;
+	Wed, 26 Nov 2025 01:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="GYX1Q4q9"
+	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="KcFDFjZd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011048.outbound.protection.outlook.com [52.101.70.48])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 553831F956;
-	Wed, 26 Nov 2025 01:38:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764121094; cv=fail; b=i5LIsvF2WAqKxoG3yL2dh/A1F1UifDpPtk9li/eBE46tKuwT7aOsqrnIjozz63rQEDYsMmZc9FKa/NSaav+Aba0p0TeyB8foGreBr1HzbjWTpPShRAgfTtfdjD54B8kXJ18luUQ4OTHaP6pFpMJlfdaMCGjvHSXF4uXdoB4jzUw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764121094; c=relaxed/simple;
-	bh=h4Pd3m6O6qdQDqHDSAC1brLwcH7+xF0izOUad0CCdnQ=;
-	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=KvRBVlEoxmRe+Spkit/BR84fiR+m+Dg9Frna4lIgqMERRX99DCaMZ1LV0W1v3mAzy6cyvlBrU2yhOJgqpwWfDRlb2VpQ5Yxgut/sdkNSiQ7HtuSKHWegJrXfmilcppxLfNOweDl6bBuMakamEV4GW5yoQ/N/gLxGYtJko1EWU0I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=GYX1Q4q9; arc=fail smtp.client-ip=52.101.70.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=crXJJgxXA0PlQFWWn2Pu1a6871MXSjMpG04SvGPkIhxRHl1nv8TX4ea8AFBCAIXMxw2wJuEUl+h6zSKx/Vs5biXP4CcKIe/IwDEKKAItN9/YbDbTsASmhikKpDTGZr32bNdspNdgKSq5PmK2w/AwIv35dyd9oAnEFOiPTmhh+S4iXSKYuAThYQf8Bsm0k6CPzhKldzctTVKpItEHb/cj7YPe2/tWV4zsXf9W+HSWWQJL0Ids0x1tJUXGAhKF92Rcn2e7m5KrrZwxnEcVNgANp0BWOOCXCwCH2iZ6x2j3sE48auEflT+hQgLdUr+QJwLnDQz/pcgdzBBeu3TRigLPAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rnw32KkcqINf4xh85FKQ9+1IU7ySXHMcgULriCaY3VU=;
- b=dh3hH2hOOaf/3pvtmO7dHtuqL1bLiWVItR8H07HvBFwAmdZLZ0S2+dbsSH3HPcJwj56dTU649xv0g7J97QwthlMdi+A2kjTJTWh1h+BvXnSdCslkc72d6LlaDPAFU6mQxNWipCK4RnhNQf4gLFmMyeZnrJtxz/QM3TKqfLkLkfEnFShX9LKhVbX7/Yw9YowGaJ4TKktkLLrTilCLtTdnFklnUbZSq4jdOX2xpTvtkO4U3Y/Ta+rKgirhXzIZxrKIbfYIRFBceYHVboovuqvjY/u46ukn44t0tteogelqzi5ng0Le/JVpb8z8glWqAwZvFKhZyZPli4F4xaMLNw0f6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rnw32KkcqINf4xh85FKQ9+1IU7ySXHMcgULriCaY3VU=;
- b=GYX1Q4q9XXZ/0Yol93vnzmyBke1rUt27YSF54y0b74T6P4h0V+xqFOXGMIt0jrXi5bUF1FW44kSBe3GOryMhIeMiWP6gw8mph09O40h03wb77wpqwRmynvVFvQDYrf+pw/pCrOicpkp2nhH8SR2KZrJ3hm1zSpvYoTwtSDHRbfFkq705++5Gp3VQdDGSF4mQGoR4ZP0Kz5tTaDK8ViRA1ofhxJqIgpLIpjN4giJ3UQaUkh0sXiIdBpotdPhalSUv1iGfWg3DgbtQ0Lw1cuszd/2FceOSbPloIOe3Uk9msTIc7MmMBU420ohbLDH7g4CLhTjl0lcY72bt6gT2yOkaZw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AS4PR04MB9436.eurprd04.prod.outlook.com (2603:10a6:20b:4ec::5)
- by GV1PR04MB9214.eurprd04.prod.outlook.com (2603:10a6:150:29::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Wed, 26 Nov
- 2025 01:38:07 +0000
-Received: from AS4PR04MB9436.eurprd04.prod.outlook.com
- ([fe80::afae:fb35:fc8:5c90]) by AS4PR04MB9436.eurprd04.prod.outlook.com
- ([fe80::afae:fb35:fc8:5c90%6]) with mapi id 15.20.9343.016; Wed, 26 Nov 2025
- 01:38:06 +0000
-Message-ID: <cef8f9eb-88aa-4771-b25b-2cfd1ac2c387@oss.nxp.com>
-Date: Wed, 26 Nov 2025 09:37:19 +0800
-User-Agent: Mozilla Thunderbird
-From: Ye Li <ye.li@oss.nxp.com>
-Subject: Re: [PATCH v4] of: reserved_mem: Restructure call site for
- dma_contiguous_early_fixup()
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
- Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>, robh@kernel.org,
- robin.murphy@arm.com
-Cc: saravanak@google.com, quic_obabatun@quicinc.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- iommu@lists.linux.dev, william.zhang@broadcom.com, kernel@oss.qualcomm.com,
- will@kernel.org, djakov@kernel.org, aisheng.dong@nxp.com, joy.zou@nxp.com,
- frank.li@nxp.com, jason.hui.liu@nxp.com
-References: <CGME20250806172503eucas1p264d6731c73592fcc380b0dcc21cdeadf@eucas1p2.samsung.com>
- <20250806172421.2748302-1-oreoluwa.babatunde@oss.qualcomm.com>
- <416dbaed-a68f-4edb-a20c-94cb4c53c748@samsung.com>
-Content-Language: en-US
-In-Reply-To: <416dbaed-a68f-4edb-a20c-94cb4c53c748@samsung.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TP0P295CA0053.TWNP295.PROD.OUTLOOK.COM (2603:1096:910:3::8)
- To AS4PR04MB9436.eurprd04.prod.outlook.com (2603:10a6:20b:4ec::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 606D11F4CB3;
+	Wed, 26 Nov 2025 01:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764121489; cv=none; b=qKfa2HyjaUm6NizmAA6/T0UKb/4tGj2wop66TnSO8p3OSeJktPFUmU/jpgQ50vxaYl/ges82S35d9bhIIVn/jWesJqALkRCbXIHHFjj4rta67FnCJ4ENmJOrIc5KlEjNc3LAfFeCk8klK3KtDMczfLf5IgWJ2zi7MGg66j3/HX4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764121489; c=relaxed/simple;
+	bh=/6Os4pdgO4a25ZgyAJu//NzyxI8ObyZOvvKIbqErUvM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cezvCh5lrWJxHnaK/aYjQkDLmwyMRKZHJG9F4wjThTEHW+4eVH6q11id9LD2vje9usn5l9yMM0tHjtdpc94513Iuw0XB+2JljyHikYaNlXE0G9XiznUVi55NCIJ/wSgijct1vCIkqu6NQ9g9vCFt6lrBHTy+DRV0xDgpmjvb3V0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=KcFDFjZd; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
+	s=s2025; t=1764121449;
+	bh=WQXerLQfEzkCxOdDOg6Z8yEdERJE0Z5dvD249YR9kqE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KcFDFjZdicn3B2fyU1iRSfw/X3bUf1zMLbVL/fVnetFWDlKZV+b6QDpG1Z8al+8+n
+	 suguKOxWOjnW87Jgrcu/S/3t+SP+loLpPbAgLxFM2dc5KiXXIrNnZdkQMpnccHpa0z
+	 UrJiLFPOBnU3cKXNERyaBICh0S+Z0RYrRTPN4Ru947jYSxvMuYi6OJffIwxvxkIZDZ
+	 ZOL/SqTuJUEOJyluxDokqrW2AYoqtJx1gu8UhbkRMHsCxOsdEOsFMKzNcLXrcG55Xo
+	 DrMCW+Vh5MSuFRJC3iVUcWMZhvkTaoTgHyVDpFzg5S9sNrkqOTlkHwxkKFJ49iyosI
+	 b0YCttHUxFGGA==
+Received: from [192.168.2.54] (unknown [98.97.63.250])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 2C58AB2203E8;
+	Wed, 26 Nov 2025 02:44:04 +0100 (CET)
+Message-ID: <24150aee-368b-41e5-bcca-b60c561e31ec@freeshell.de>
+Date: Tue, 25 Nov 2025 17:44:02 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9436:EE_|GV1PR04MB9214:EE_
-X-MS-Office365-Filtering-Correlation-Id: 79f7dade-1b9a-4ca4-8bc0-08de2c8c72b5
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|42112799006|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?UXRFTkNqRGZiaERGTHBpVmdyNllEb29ZcGd5YWlyOUVuR0ZNenFwMWxYOWZP?=
- =?utf-8?B?MW9FcTJjdWtFT3FQYU04eWJtaDV3UzRFY1lpUnhIQWo5TWl3SEJSU3V1WFQz?=
- =?utf-8?B?ZWI0YzlLMXlDQ08zU1dEUmJLTkp6a0JzY3hIeEJkYTBCdVB1d3k0TlovUzYr?=
- =?utf-8?B?eFdsT0E5WUsvS1VrU3pQMGlLYjdCdFhCbzM0WFdRRmhGNjJ1MW5mbnlUNXBZ?=
- =?utf-8?B?Zmc0enNmQ3JzeUIxb0w0azJqcVQwaE11M3ROUjA2cDJ1WUV1RGVlZHZhdDdo?=
- =?utf-8?B?QXRYeXA4dnpxaXB2aTd4KzY5YWpkb1dtN3l0WmlFTEw0K3piWXo5dVdJWnVP?=
- =?utf-8?B?TjJ3OUtjRXNKcmNNU1JoT3hZcEpDZHBUOEhNb3kzWkRSSm5kYm9MalYvektO?=
- =?utf-8?B?Ym9xYUN0d1dlYnJidEpTaTNxM2JzdzNFN3VkbzNMQTdOUkNVMENOMlYrSzR0?=
- =?utf-8?B?bWVTWUk4QTN1NzZoaWVQWGVFczdIWjQ3ZkRGMHF3YUhNcitGQzVNbmZrVjlu?=
- =?utf-8?B?ZC95czFxQ29OY3pXRkRsUjlraFZTL3FzSEJXSExFVjhGVG5hdVBlRUY4UFZy?=
- =?utf-8?B?MHhNU3FEWHdKMXlwNFlqUmtLU1pFcXplVUJmeGd1Rk1rdWoyeVJpbHhkUmVL?=
- =?utf-8?B?MGxqT285elNWMVovTFg2TEtQeDQ5SGRyRnRRNVFSenRpYy9KMU5PMVB0WU13?=
- =?utf-8?B?Ykx1Ukdhb2ZVSWZrMUs5TVlrZXc5VGhMZ0FPZ21nbnpQeitKWjRkeDRjS3Ex?=
- =?utf-8?B?TDBXREdXMngrNHdMUnp4VmdLdEtUVkw3V2g2VnF6UU9kWCtFeEl4QWVZUjFS?=
- =?utf-8?B?Z0Z2c0c1eUxYUktwWkpBNCs2citQS3Y0alR3ZjlvZU56NndHYi9VZzJnejFw?=
- =?utf-8?B?WmxQR3c4cktvc2QvTnN4UHZKYWhRbUxKUCs5Y3h0d04zMitmMUhrZkVqT0gv?=
- =?utf-8?B?ejVSMVk1V3J1cURmWHVHM1JiQWg2d2UxRmNsaW5WUWlSanFTaG5NN242ei91?=
- =?utf-8?B?aWNHZHhyaGlvUGptT2VDQmFwUE9DQTRsMkd3QzkwS2NwSEJuelZ6L3c5ODlh?=
- =?utf-8?B?ZFBlOVIzdkRDOXRJTy95bHo5aHVHUk43WWZuWDI3TWdraVEvZkNVOUdMblYv?=
- =?utf-8?B?RmhvcmpqZmI1M1FzYXBhcFA3Nk9TNytrNmJUM1FIU2Zhalh3N25XY2p4RWov?=
- =?utf-8?B?NVhRc0lWYytBdlRHWU9Jd05yK0E0dEJIbFpXYmM1OFNMZnZHYUFXK1hJU2x6?=
- =?utf-8?B?VVVLbkphQnk2Y0FrQkhNNFpEWmMwTWYvUjcvbFgyL2tIVncvcElubytSZlJG?=
- =?utf-8?B?Sk84WktYZWIvNGQ5MDdQZFJGbFJmSmVUOUpqWkhpcnc5Y3hDT1JlWHlzVFZT?=
- =?utf-8?B?Y01YWm95aUZuSWxyQWhVaDFYSTUwclIrMThTK3VQeCtTVFBuRFY1QjhZcGhM?=
- =?utf-8?B?cUpOeFgydGhzMjB3L0VDazJiNFJCR29uLzZWUlFDWGpPVjFOL2dFTDBJV3k4?=
- =?utf-8?B?dFRvUGdXY0J4elZQbHV5RTFEcHB2ak1od1JDZDN5N2MyNGt1U1IwbDczSTdE?=
- =?utf-8?B?NnkyVVlWRHFNTVJlTGVvN29DVlo3OVRPbFlJeFpZaUpUdS8wY3pRMnhOWW16?=
- =?utf-8?B?VDBVSWJkWFNxTDRRSDFUaEtIQ1YzTnNiT1RuRTlNOU5aYkRvbGd3K3ZVVFNw?=
- =?utf-8?B?K1NJZmNZZXp6RGozOFI5OEVVeC91dlN0aXlGOUExMTlwcEorNHU0bE44TG40?=
- =?utf-8?B?VW5XeDRKVE45ZmVFdFA1SXJyTVVjdmFXTU52c20vWmRSZ2hmQ0xKT0lsYW5Q?=
- =?utf-8?B?QWNtb3JJeDA3Q1NmT3pzenZDbnMwRkRmbEU0UmN4V21TYWNhQWhLeGtMQllX?=
- =?utf-8?B?VGpOTjh3NmVEZytGd2tCcjhlN0xDSCtYYmdUalFKSmxXQWhLczAwZHc3ekJ2?=
- =?utf-8?Q?UN9imF14Cs0fmp+F1bGU4YchUoBkfOgt?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9436.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(42112799006)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MXduTFpVVGxoNHFLSHBKYWthM3lUdG9NK21YOFhOdDhjdzBJM3hZNDZkUTF3?=
- =?utf-8?B?dUxHSTRUajdEK1BXUS9EY0dUNWV2WnNaeGdRWC95NEtUS0c4UTR2L29GMi9z?=
- =?utf-8?B?VlNtTndpaHJzWURWODQvYURrRklPUW93UWJJSks3NGNJMVdOaHR3L3hRcFIy?=
- =?utf-8?B?NEk1RDRrUjYrM3U5S3d6UDhOSG9TNHFCN2RXOG9UenZHTG5rTnRidnNJZ29V?=
- =?utf-8?B?RnNnTE5hM0xYVllJb2FuajJrdFhVemE5MjJHaTN1djZvOHZPeXp1K1gveG1o?=
- =?utf-8?B?NS84dGl0aWJlOHpIZi9iOEI1MWF1TTl3WFk4U1RDRmhhSzNhNHIyeFdOdDI0?=
- =?utf-8?B?YUZpU2ZUKy9oZ0dBSGpzOUkxVmF2aitMYkxvRTdRUjZ1ck5rNnQvSGdHV0NR?=
- =?utf-8?B?WWlBcmxpREE5VGtiUm5hUk1EcTErcEJyQVZ5eldXandnQUplcXRCSm1RdDho?=
- =?utf-8?B?QmxoTVNrU011SVVvUW1hc2Fhck94VXFEQmpENFJrNzdtbFNFWGNSdmNvK1RE?=
- =?utf-8?B?V1Ereks1OVFENjZnNlBpald0TDJDSFdGQjEya1RTeG54blNCbXhielJ4Ujls?=
- =?utf-8?B?YklQaXlzVG9YMElJRlRFM1dPdlVOUzVkWml0ZDRyWWRlTlFvV3FGRk9wMDVE?=
- =?utf-8?B?N3NzTGpYZGZTai9wRmhtVTgrNitrLzd1UXExNmlxMGVuR1ZsQkczZVFvVlFE?=
- =?utf-8?B?cTlFZDlTKzJ3ZGlXTzZzUjlad0RuUHJzR21yWEdkTTNZeXFrcXN2UVQ5UDQ3?=
- =?utf-8?B?SGYwbE5SeHJ1MzM0RXE0Z3lVUGtDQnA5K3BmV2JRM05WRGloTndaclJ5QWxk?=
- =?utf-8?B?UHE4NGROTHBWMS9TZldwUW9qMUZyZDR4VURXRnZWQ2xZN0ZkZGQyOFRaMlUx?=
- =?utf-8?B?MzI5VmZlS25DTkNneGxHQnlxVHRVUTV2QXpUNHdKY2E0bExvbjk2d1VhTkdI?=
- =?utf-8?B?aWtwL0lGamtuR2FLczBUbVlLcDlLNXd6Z3FpUHloT0NNT3FrZkN5ak40TTcv?=
- =?utf-8?B?UFQ5emRyVXljYjIrbENBeDhTam1DbUpYa05kTWlUcXdnNjZlM1l1SVVaWGRL?=
- =?utf-8?B?dm5xbFIwaENhUDgrajlzTG9UWXpDUXYxMjVwbzJxTm1PVUVDaVloWTIrOHpG?=
- =?utf-8?B?TWZEVnNRelV6SFpUMXRYTHZvR25ITTBlOEltYjB6d2NLLzRsSmc5b1UyRTNx?=
- =?utf-8?B?MlVZaFVWcElMVkdBWXI3QlVCSEs2Z1M1aWVLMXJqK01sVWJDc1cyU0s5bisv?=
- =?utf-8?B?SThyOWVMNVFqeVN4RTZlWGoyRlBrN0tyQ3ZtNHlKTnY4ZUFMMjNINHpzVU83?=
- =?utf-8?B?Tm84TkxlZkpEc3hSeEZGUERRbys4RlMzcmlPd3NqSitzRXBsdlQ0TjU3RFhp?=
- =?utf-8?B?eUdKOUFzUzgyeERQRmFOZUp0VTZjUHVlNEp3TEJZanpPeG1kdTRrc3hUMndC?=
- =?utf-8?B?SStqaytWcU53QVhTYzIrelhaUkkvZzl2TjNvb2pRQ1R3RktwQjRid1E5QThE?=
- =?utf-8?B?TzZTUEFFYkorRW9qcHZrZS9xQ1pBY2NDL2Y5M1hHbzBGbXBUaWQycTZBbWhy?=
- =?utf-8?B?eU16UEo5OVc0cklqeEtHcVFaN0hOQ2p0QkhzWVJZSTZTU2lJRTBzNzlES2ZQ?=
- =?utf-8?B?TG8rZUx2TjVId1ZoL3dJUldKVjJCc0VYS2JRUTluak80ZDBPR1cvUUtHb3JJ?=
- =?utf-8?B?TkZXVmJweDNKa21UREhIUFFDSkNTWWNBbHBvLzRPektQcFRWbkpuMUJtaWE3?=
- =?utf-8?B?Z09nVUEwL0ZCcXVYYzYzNkFSSmF5ZkZqaHd4dm9yOEdleDZXY3NrVVllVWlI?=
- =?utf-8?B?MC9IT2IyUmVYYllzaGxyZTd2bHpiaDhjeFlHL1JSN0FPb1Z0SXk0cmdhZkFS?=
- =?utf-8?B?RHVXUXpzTTJhV3NQc25Cc2F5T3NJOTc1ZDJFNUZFM0dHMkVWcnpDNE4zNUNr?=
- =?utf-8?B?TmZjcHhDeHd2TEI2dUdnbXVINlJzNERCOVRQeDNsM0tZc2pvSENDMXRDeXAz?=
- =?utf-8?B?OE53YnQzTFRzdzI1MzR2eElHdlBDby94eUU5WmJvUWlUR0xBU3p2YnhxWWFs?=
- =?utf-8?B?a05ISlUrdFZNdDUwS3lKdkgvY0Z4UmFrOXROcmZaRG1KTGNBaXVvVXdXMnRr?=
- =?utf-8?Q?C5wHjATLysB04gBjad2DE0AlO?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79f7dade-1b9a-4ca4-8bc0-08de2c8c72b5
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9436.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 01:38:06.8353
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qYPJ9v0LcCe+3WJS3PRWeG4Jdk+2NQ6nkHs1f8sRe+9DbSE6Lz3+/u7QdY6Mz5H5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9214
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/6] riscv: dts: starfive: Add VisionFive 2 Lite board
+ device tree
+To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Cc: devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251125075604.69370-1-hal.feng@starfivetech.com>
+ <20251125075604.69370-6-hal.feng@starfivetech.com>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20251125075604.69370-6-hal.feng@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-
-On 8/11/2025 7:07 PM, Marek Szyprowski wrote:
-> On 06.08.2025 19:24, Oreoluwa Babatunde wrote:
->> Restructure the call site for dma_contiguous_early_fixup() to
->> where the reserved_mem nodes are being parsed from the DT so that
->> dma_mmu_remap[] is populated before dma_contiguous_remap() is called.
->>
->> Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
->> Signed-off-by: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
->> Tested-by: William Zhang <william.zhang@broadcom.com>
+On 11/24/25 23:56, Hal Feng wrote:
+> VisionFive 2 Lite is a mini SBC based on the StarFive JH7110S SoC.
 > 
-> Thanks, applied to dma-mapping-fixes branch.
+> Board features:
+> - JH7110S SoC
+> - 4/8 GiB LPDDR4 DRAM
+> - AXP15060 PMIC
+> - 40 pin GPIO header
+> - 1x USB 3.0 host port
+> - 3x USB 2.0 host port
+> - 1x M.2 M-Key (size: 2242)
+> - 1x MicroSD slot (optional non-removable 64GiB eMMC)
+> - 1x QSPI Flash
+> - 1x I2C EEPROM
+> - 1x 1Gbps Ethernet port
+> - SDIO-based Wi-Fi & UART-based Bluetooth
+> - 1x HDMI port
+> - 1x 2-lane DSI
+> - 1x 2-lane CSI
 > 
-> Best regards
+> VisionFive 2 Lite schematics: https://doc-en.rvspace.org/VisionFive2Lite/PDF/VF2_LITE_V1.10_TF_20250818_SCH.pdf
+> VisionFive 2 Lite Quick Start Guide: https://doc-en.rvspace.org/VisionFive2Lite/VisionFive2LiteQSG/index.html
+> More documents: https://doc-en.rvspace.org/Doc_Center/visionfive_2_lite.html
+> 
+> Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> Tested-by: Matthias Brugger <mbrugger@suse.com>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>  .../jh7110-starfive-visionfive-2-lite.dts     | 20 +++++++++++++++++++
+>  2 files changed, 21 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+> index 62b659f89ba7..2b1e7fcd6f84 100644
+> --- a/arch/riscv/boot/dts/starfive/Makefile
+> +++ b/arch/riscv/boot/dts/starfive/Makefile
+> @@ -13,5 +13,6 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-emmc.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-lite.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-lite.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts
+> new file mode 100644
+> index 000000000000..b96eea4fa7d5
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts
+> @@ -0,0 +1,20 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2025 StarFive Technology Co., Ltd.
+> + * Copyright (C) 2025 Hal Feng <hal.feng@starfivetech.com>
+> + */
+> +
+> +/dts-v1/;
+> +#include "jh7110-starfive-visionfive-2-lite.dtsi"
+> +
+> +/ {
+> +	model = "StarFive VisionFive 2 Lite";
 
-Hi Oreoluwa,
+> +	compatible = "starfive,visionfive-2-lite", "starfive,jh7110s";
 
-We observed this patch causing kernel boot hang on iMX6 (armv7) 
-platforms if using "cma=" kernel parameter. It only happens when the 
-size assigned in
-"cma=" parameter is smaller than cma default size in dts.
+Add "starfive,jh7110" to the compatible list as the least-compatible
+(left-to-right order last item):
 
-For example, we use "cma=96M" in command line and below reserved memory 
-node (160M) in dts.
+compatible = "starfive,visionfive-2-lite", "starfive,jh7110s",
+"starfive,jh7110";
 
-         reserved-memory {
-                 #address-cells = <1>;
-                 #size-cells = <1>;
-                 ranges;
+or if there is review feedback that no new compatible should be added,
+then as usual for new JH-7110 boards:
 
-                 linux,cma {
-                         compatible = "shared-dma-pool";
-                         reusable;
-                         size = <0xa000000>;
-                         linux,cma-default;
-                 };
-         };
+compatible = "starfive,visionfive-2-lite", "starfive,jh7110";
 
-The root cause is this patch moving the dma_contiguous_early_fixup from 
-rmem_cma_setup to __reserved_mem_alloc_size. rmem_cma_setup can skip the 
-cma reserved memory if command line has cma parameter. However, the 
-__reserved_mem_alloc_size won't do it. So this leads to have two cma 
-regions added to dma_mmu_remap, one from dts, the other from command 
-line. But the reserved memory of memblock that only records the cma from 
-command line is inconsistent with dma_mmu_remap.
-The dma_contiguous_remap clears the MMU paging for the region of 
-dma_mmu_remap firstly, then create a new mapping by iotable_init. For 
-the cma from dts, this causes incorrect memory mapping cleared. Then any 
-allocation from memblock in iotable_init hitting to the area will meet 
-MMU mapping issue.
+> +};
+> +
+> +&mmc0 {
+> +	bus-width = <4>;
+> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_HIGH>;
+> +	disable-wp;
+> +	cap-sd-highspeed;
+> +};
 
- From commit, I don't understand what issue does this patch fix. Can you 
-look into the regression and provide a fix patch.
-
-Best regards,
-Ye Li
-
-
+-E
 
