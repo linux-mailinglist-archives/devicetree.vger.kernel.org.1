@@ -1,281 +1,183 @@
-Return-Path: <devicetree+bounces-242469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97A4C8AA0E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:27:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE20FC8AAE6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 16:36:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C1EA935A62B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:26:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03A7F3A5524
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 15:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135E83321CE;
-	Wed, 26 Nov 2025 15:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E346633A039;
+	Wed, 26 Nov 2025 15:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J1sjs0Dp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A9Ol+VqS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5AB23321B4;
-	Wed, 26 Nov 2025 15:24:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9465331A57
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 15:36:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764170677; cv=none; b=WUYaagk9ajZEiwKbZnQeayKvsLrs3EFAA5FvWrkbHFMl9mk1wj1HlOsx5OX9O07MHuDIy01oy33GkNRaiChm0NGDdfaRsgCUyenQ+o0pH7eolzjG154RT+LLRCW5KOT7cDu+bp0lYC2tkPf4glWDHISfRBqXOoWUOj1/n1yQqLo=
+	t=1764171369; cv=none; b=KvMNnInYyU4tTcQHtMGxPmrTFbHerxmBVYd5nS9ttBX40fGfLxmcP8RPED9iSYKVENd0WM1P6mDlEtyDZ4px+IWreaMlJmKnPPFkI1hHjbCshmtqfI+JCSNKun2sNck4oALpng89hSi5XsLBzJJ8x7QXJSrjwhG+0f7fv74fwqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764170677; c=relaxed/simple;
-	bh=/3lNvh1iN/Wal4FATU1Ude/FjWT+u4XGFcfHsN1NjkA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DTyNNqnom4toODAtaTDaky/K+Mi9qrgJ6hBOZdQUH1BZbbgUT9txgu1RpVSIRMXoDTerNDyhtvNTZm8pBxQGJnHJkvoO/1nLcjvqvsBJCLSzLjPJqOO7AW2xwA12OL/eSgg6GWVZTp56eQV6gwe8bRDs1lM0/yCVMqSjlpTCG3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J1sjs0Dp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8276CC4CEF7;
-	Wed, 26 Nov 2025 15:24:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764170676;
-	bh=/3lNvh1iN/Wal4FATU1Ude/FjWT+u4XGFcfHsN1NjkA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J1sjs0Dp5AxHQGy9v73u1LsRG352IMqZXkxUdYtPgfQnRF52rS+x6QIV/wkmvBKh+
-	 mX9yaivjDYSPLmfI6Lqz2xcaKeWiqB/8TK/A5vS7fsI6bnqlHtuE0EqlgeuSgL77Kd
-	 t1p8/8s02cE/Pr33A1yNASgzfvB6dgPlyHeFQSzJxrSLy0BYNS5oBgYeXltIq2cSjH
-	 /N0IfVbMg3r8QjWI6aU4c8R4CJh5j+MWjxs37b6rbHjOuNSCsm4ToyMVcQ+cdADJt2
-	 PygytYB+OLXCzvH563eTii2A56UiXgES9ixJlqZWMKJVlOe8ETjF64BQ8Se00FGb0j
-	 tfS6irL4RcBKQ==
-Date: Wed, 26 Nov 2025 09:30:06 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Praveen Talari <praveen.talari@oss.qualcomm.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>, Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, psodagud@quicinc.com, 
-	djaggi@quicinc.com, quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, 
-	quic_arandive@quicinc.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v1 08/12] i2c: qcom-geni: Isolate serial engine setup
-Message-ID: <ar5t2wdmxzvog7smlwbg3skg6ga35au6uiahfe3rlnmumlmpyr@572sf6ru6424>
-References: <20251122050018.283669-1-praveen.talari@oss.qualcomm.com>
- <20251122050018.283669-9-praveen.talari@oss.qualcomm.com>
+	s=arc-20240116; t=1764171369; c=relaxed/simple;
+	bh=Y0m7XkTikj6ospUwLpKvLK5W/cenH+bYDK4ibX8N4fA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kHhQLV3RTiHaGmUmNJoc5cZfTg/NndHT0x5eEPU8eQFnL1x7buMmHnMnBOXJtkdumJq8lQQ3DmXtSoM61bUWef2n7TIU37fSBX++j2ZASfL9/g30JgZcZoXnnG3vTPEhqHMmW0FlLE7NzrPJ0uZLvS6dvtbXBoQmruspvAT0pB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A9Ol+VqS; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-477a219dbcaso61496295e9.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 07:36:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764171366; x=1764776166; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l69M0FfGvAr82YipFqTveTpBnfUfX0eUrFYwwvzwoAA=;
+        b=A9Ol+VqSohRx80s8BpyHIInrvCHA81ZKZMaNTk3tWiJl7On/SeQy9EJtdPF8ZyG1HW
+         WOmBkgYXM+GzQ5yfDQEp5ZItKoCkqMWzGeRf0Y8XKpUKystUBkk8V0N0mqiPIBoGoIaI
+         AN1K9/Ap9yAPlQM2Y8oQhWS2X4xO5NwqdORrdNl8AY5dj+4d/al+7t5rQHtKweVbPtXo
+         ftH7lUtl/e45djQ7+hazLtM7PJqMhxKcbQkoySGtDthOXY3mck00ZM0kk1bY6DdyOArs
+         QxKYk0m0S6uGjMMc2CeM771M1dPW9YQJc1bjP79Zn7BHUMiZXc8Uh1L298PvCw9qvyw/
+         SiQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764171366; x=1764776166;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l69M0FfGvAr82YipFqTveTpBnfUfX0eUrFYwwvzwoAA=;
+        b=hXSojJnTX3aaEXukdbR8ecI3v0QziIbdG3fzXeb5HPBrf1XbBH3O9wFNfr20zkerZk
+         tPMpGgOBg2JpT5dAV6God+zbFs1AiWGUzOnupOkj4vj4MVVpFYG41ONuBrHdkxxQA/s+
+         aOhJDSqXm8CDh3WCh8mEuSh73zx5pJ5dMDMvXjtara7uvVi0Pyk8TuQK67iGx5b3lger
+         aOU7JWK3uQ3XBQ5HsjbLIRChGZhv+jyd7R2JeVS6ihXZ0iFsJlJNNp/pcEtyrtJ00h67
+         Uw9YVaz024Xe4IbGJX/N4xZw1aUp1KnO7vR7Mn4Ljol8+wwlFmxdTiNjAyTf3Pk9iEqn
+         AaXA==
+X-Forwarded-Encrypted: i=1; AJvYcCWABRU+7iGeoBzN5b85cPQ6VXQq1yeiTMNi0NPjz4hRXwvyxWjlc56jWFpvtpZE/4+07cQjT3szMwcG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNrJ2uoB8n1owCmH9HiS8iIrR782NTm8IgbPTGSp2DhiKDRIKj
+	omojN9RJnuabiQ/GPes2apyVTyxd9/+Hn8Pc9F27cX8j26qHMGE980v0
+X-Gm-Gg: ASbGncsNhe/H3quQTgOlSCZS71bpN65BzI1xOL/er8k6EJPd2ejT5637s/iBVuAE1pU
+	gAKJMqTxg7a+up5I+ZQtIp24RbaHaJZRh5hojWzdw8eMtNNC+pvmveSf4K1a70AZOT8+WZn74jB
+	XHrKiYO8onjZGz1YcPoF3wAUmIcPZmAqmlUH9pUPt4hY/h3DJuSroX8AnlXvPu7ldGa+MNFVlSJ
+	qiJOd5g6efL8QY+b1QiCEk1XQ72oP643SjejG4NtDSBmT0I6chKrNgF6BtUmR3l1EZwTRqICQCz
+	2haIIqdOZrBJqJLk7odGsqev5COQwblq5KHLIROJI49VJG3WYSDa28tAR8DBWmBhyu/tzWNYfDj
+	mF4BXkWIG/zjkaSQ8OIHm8xK7RxlIdBwJNjrFSHOnYx7MGoVN9m/Q/+nfpMGsQZjwfnG2deTNtB
+	wu+YvVdbOGd3Ykhy1/1Zh17k8sVeyJVO3BRIQ1e851d640gr2zEGTJCzphLFFBKgrEycGckBifM
+	QonAKg3rRbU6g==
+X-Google-Smtp-Source: AGHT+IHMxbJuNqRMLXan+uNmkq60wu9fS1SvjlHE8P/M25jeGqpRmxpAH1/jCOTWsBqAIVRGO3ZyVw==
+X-Received: by 2002:a05:600c:470d:b0:471:1717:411 with SMTP id 5b1f17b1804b1-477c01edab1mr255084475e9.24.1764171365683;
+        Wed, 26 Nov 2025 07:36:05 -0800 (PST)
+Received: from biju.lan (host86-162-200-138.range86-162.btcentralplus.com. [86.162.200.138])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7f2e454sm41223775f8f.2.2025.11.26.07.36.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Nov 2025 07:36:04 -0800 (PST)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	linux-can@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v3 0/2] Add FD-Only mode support for R-Car CANFD
+Date: Wed, 26 Nov 2025 15:35:56 +0000
+Message-ID: <20251126153603.312265-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251122050018.283669-9-praveen.talari@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Sat, Nov 22, 2025 at 10:30:14AM +0530, Praveen Talari wrote:
-> Move serial engine configuration from probe to geni_i2c_init().
-> 
-> Relocating the serial engine setup to a dedicated initialization function
-> enhances code clarity and simplifies future modifications.
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Please enhance commit message clarity. I don't think "code clarity" is
-your most significant reason for this change, and "simplifies future
-modification" is completely vague.
+The RZ/{G2L,G3E} and R-Car Gen4 SoCs support additional CAN FD mode called
+FD-only mode. In this mode, communication in Classical CAN frame format is
+disabled. Update binding/driver to support this mode.
 
-Be specific, the reader of this commit message hasn't implemented the
-next set of commits, so they don't understand why this helps.
+This patch series depend upon[1]
+[1] https://lore.kernel.org/all/20251118123926.193445-1-biju.das.jz@bp.renesas.com/
 
-If the reason is that this simplifies the error handling around the
-resource acquisition in the next patches, write that.
+v2->v3:
+ * Added check to disallow the usage of both fd-only and no-can-fd.
+v1->v2:
+ * Added conditional check to disallow fd-only mode for R-Car Gen3 in
+   bindings.
+ * Dropped has_fd_only_mode variable from the struct rcar_canfd_hw_info
+   as it is checked by the dt schema validation.
 
-If my guess is wrong and the sole reason for you change is that you
-don't like 179 lines long functions, then just say that.
+Logs:
+root@smarc-rzg3e:~# /cip-test-scripts/canfd_validation.sh FD-ONLY
+[   13.914196] rcar_canfd 12440000.can: global operational state (canfd clk, fd-only mode)
+FD-ONLY
+ [INFO] Testing can0<->can1 with bitrate 1000000 and dbitrate 4000000
+ [INFO] Bringing down can0 can1
+ [INFO] Bringing up can0 can1
+ [INFO] Testing can1 as producer and can0 as consumer
+ [INFO] Testing can0 as producer and can1 as consumer
+FD-ONLY
+ [INFO] Testing can0<->can1 with bitrate 500000 and dbitrate 2000000
+ [INFO] Bringing down can0 can1
+ [INFO] Bringing up can0 can1
+ [INFO] Testing can1 as producer and can0 as consumer
+ [INFO] Testing can0 as producer and can1 as consumer
+FD-ONLY
+ [INFO] Testing can0<->can1 with bitrate 250000 and dbitrate 1000000
+ [INFO] Bringing down can0 can1
+ [INFO] Bringing up can0 can1
+ [INFO] Testing can1 as producer and can0 as consumer
+ [INFO] Testing can0 as producer and can1 as consumer
 
-Regards,
-Bjorn
+EXIT|PASS|canfd_validation.sh|[00:00:19] ||
 
-> 
-> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
-> ---
->  drivers/i2c/busses/i2c-qcom-geni.c | 148 ++++++++++++++---------------
->  1 file changed, 73 insertions(+), 75 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-> index 3a04016db2c3..4111afe2713e 100644
-> --- a/drivers/i2c/busses/i2c-qcom-geni.c
-> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
-> @@ -976,10 +976,75 @@ static int setup_gpi_dma(struct geni_i2c_dev *gi2c)
->  	return ret;
->  }
->  
-> +static int geni_i2c_init(struct geni_i2c_dev *gi2c)
-> +{
-> +	const struct geni_i2c_desc *desc = NULL;
-> +	u32 proto, tx_depth;
-> +	bool fifo_disable;
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(gi2c->se.dev);
-> +	if (ret < 0) {
-> +		dev_err(gi2c->se.dev, "error turning on device :%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	proto = geni_se_read_proto(&gi2c->se);
-> +	if (proto == GENI_SE_INVALID_PROTO) {
-> +		ret = geni_load_se_firmware(&gi2c->se, GENI_SE_I2C);
-> +		if (ret) {
-> +			dev_err_probe(gi2c->se.dev, ret, "i2c firmware load failed ret: %d\n", ret);
-> +			goto err;
-> +		}
-> +	} else if (proto != GENI_SE_I2C) {
-> +		ret = dev_err_probe(gi2c->se.dev, -ENXIO, "Invalid proto %d\n", proto);
-> +		goto err;
-> +	}
-> +
-> +	desc = device_get_match_data(gi2c->se.dev);
-> +	if (desc && desc->no_dma_support)
-> +		fifo_disable = false;
-> +	else
-> +		fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
-> +
-> +	if (fifo_disable) {
-> +		/* FIFO is disabled, so we can only use GPI DMA */
-> +		gi2c->gpi_mode = true;
-> +		ret = setup_gpi_dma(gi2c);
-> +		if (ret)
-> +			goto err;
-> +
-> +		dev_dbg(gi2c->se.dev, "Using GPI DMA mode for I2C\n");
-> +	} else {
-> +		gi2c->gpi_mode = false;
-> +		tx_depth = geni_se_get_tx_fifo_depth(&gi2c->se);
-> +
-> +		/* I2C Master Hub Serial Elements doesn't have the HW_PARAM_0 register */
-> +		if (!tx_depth && desc)
-> +			tx_depth = desc->tx_fifo_depth;
-> +
-> +		if (!tx_depth) {
-> +			ret = dev_err_probe(gi2c->se.dev, -EINVAL,
-> +					    "Invalid TX FIFO depth\n");
-> +			goto err;
-> +		}
-> +
-> +		gi2c->tx_wm = tx_depth - 1;
-> +		geni_se_init(&gi2c->se, gi2c->tx_wm, tx_depth);
-> +		geni_se_config_packing(&gi2c->se, BITS_PER_BYTE,
-> +				       PACKING_BYTES_PW, true, true, true);
-> +
-> +		dev_dbg(gi2c->se.dev, "i2c fifo/se-dma mode. fifo depth:%d\n", tx_depth);
-> +	}
-> +
-> +err:
-> +	pm_runtime_put(gi2c->se.dev);
-> +	return ret;
-> +}
-> +
->  static int geni_i2c_probe(struct platform_device *pdev)
->  {
->  	struct geni_i2c_dev *gi2c;
-> -	u32 proto, tx_depth, fifo_disable;
->  	int ret;
->  	struct device *dev = &pdev->dev;
->  	const struct geni_i2c_desc *desc = NULL;
-> @@ -1059,79 +1124,19 @@ static int geni_i2c_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	ret = clk_prepare_enable(gi2c->core_clk);
-> -	if (ret)
-> -		return ret;
-> -
-> -	ret = geni_se_resources_on(&gi2c->se);
-> -	if (ret) {
-> -		dev_err_probe(dev, ret, "Error turning on resources\n");
-> -		goto err_clk;
-> -	}
-> -	proto = geni_se_read_proto(&gi2c->se);
-> -	if (proto == GENI_SE_INVALID_PROTO) {
-> -		ret = geni_load_se_firmware(&gi2c->se, GENI_SE_I2C);
-> -		if (ret) {
-> -			dev_err_probe(dev, ret, "i2c firmware load failed ret: %d\n", ret);
-> -			goto err_resources;
-> -		}
-> -	} else if (proto != GENI_SE_I2C) {
-> -		ret = dev_err_probe(dev, -ENXIO, "Invalid proto %d\n", proto);
-> -		goto err_resources;
-> -	}
-> -
-> -	if (desc && desc->no_dma_support)
-> -		fifo_disable = false;
-> -	else
-> -		fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
-> -
-> -	if (fifo_disable) {
-> -		/* FIFO is disabled, so we can only use GPI DMA */
-> -		gi2c->gpi_mode = true;
-> -		ret = setup_gpi_dma(gi2c);
-> -		if (ret)
-> -			goto err_resources;
-> -
-> -		dev_dbg(dev, "Using GPI DMA mode for I2C\n");
-> -	} else {
-> -		gi2c->gpi_mode = false;
-> -		tx_depth = geni_se_get_tx_fifo_depth(&gi2c->se);
-> -
-> -		/* I2C Master Hub Serial Elements doesn't have the HW_PARAM_0 register */
-> -		if (!tx_depth && desc)
-> -			tx_depth = desc->tx_fifo_depth;
-> -
-> -		if (!tx_depth) {
-> -			ret = dev_err_probe(dev, -EINVAL,
-> -					    "Invalid TX FIFO depth\n");
-> -			goto err_resources;
-> -		}
-> -
-> -		gi2c->tx_wm = tx_depth - 1;
-> -		geni_se_init(&gi2c->se, gi2c->tx_wm, tx_depth);
-> -		geni_se_config_packing(&gi2c->se, BITS_PER_BYTE,
-> -				       PACKING_BYTES_PW, true, true, true);
-> -
-> -		dev_dbg(dev, "i2c fifo/se-dma mode. fifo depth:%d\n", tx_depth);
-> -	}
-> -
-> -	clk_disable_unprepare(gi2c->core_clk);
-> -	ret = geni_se_resources_off(&gi2c->se);
-> -	if (ret) {
-> -		dev_err_probe(dev, ret, "Error turning off resources\n");
-> -		goto err_dma;
-> -	}
-> -
-> -	ret = geni_icc_disable(&gi2c->se);
-> -	if (ret)
-> -		goto err_dma;
-> -
->  	gi2c->suspended = 1;
->  	pm_runtime_set_suspended(gi2c->se.dev);
->  	pm_runtime_set_autosuspend_delay(gi2c->se.dev, I2C_AUTO_SUSPEND_DELAY);
->  	pm_runtime_use_autosuspend(gi2c->se.dev);
->  	pm_runtime_enable(gi2c->se.dev);
->  
-> +	ret =  geni_i2c_init(gi2c);
-> +	if (ret < 0) {
-> +		dev_err(gi2c->se.dev, "I2C init failed :%d\n", ret);
-> +		pm_runtime_disable(gi2c->se.dev);
-> +		goto err_dma;
-> +	}
-> +
->  	ret = i2c_add_adapter(&gi2c->adap);
->  	if (ret) {
->  		dev_err_probe(dev, ret, "Error adding i2c adapter\n");
-> @@ -1143,13 +1148,6 @@ static int geni_i2c_probe(struct platform_device *pdev)
->  
->  	return ret;
->  
-> -err_resources:
-> -	geni_se_resources_off(&gi2c->se);
-> -err_clk:
-> -	clk_disable_unprepare(gi2c->core_clk);
-> -
-> -	return ret;
-> -
->  err_dma:
->  	release_gpi_dma(gi2c);
->  
-> -- 
-> 2.34.1
-> 
+root@smarc-rzg3e:~# /cip-test-scripts/canfd_validation.sh CANFD
+[   13.914196] rcar_canfd 12440000.can: global operational state (canfd clk, fd-only mode)
+CANFD
+ [INFO] Testing can0<->can1 with bitrate 1000000 and dbitrate 4000000
+ [INFO] Bringing down can0 can1
+ [INFO] Bringing up can0 can1
+ [INFO] Testing can1 as producer and can0 as consumer
+[   37.246104] can: controller area network core
+[   37.250607] NET: Registered PF_CAN protocol family
+[   37.291606] can: raw protocol
+
+EXIT|FAIL|canfd_validation.sh|[00:00:04] Problems while producing data from can1 and consuming from can0||
+
+root@smarc-rzg3e:~# /cip-test-scripts/canfd_validation.sh CAN
+[   13.914196] rcar_canfd 12440000.can: global operational state (canfd clk, fd-only mode)
+CAN
+ [INFO] Testing can0<->can1 with bitrate 1000000
+ [INFO] Bringing down can0 can1
+ [INFO] Bringing up can0 can1
+ [INFO] Testing can1 as producer and can0 as consumer
+
+EXIT|FAIL|canfd_validation.sh|[00:00:03] Problems sending data from can1 to can0||
+
+root@smarc-rzg3e:~#
+
+Biju Das (2):
+  dt-bindings: can: renesas,rcar-canfd: Document renesas,fd-only
+    property
+  can: rcar_canfd: Add support for FD-Only mode
+
+ .../bindings/net/can/renesas,rcar-canfd.yaml  | 74 ++++++++++++++++++-
+ drivers/net/can/rcar/rcar_canfd.c             | 14 +++-
+ 2 files changed, 84 insertions(+), 4 deletions(-)
+
+-- 
+2.43.0
+
 
