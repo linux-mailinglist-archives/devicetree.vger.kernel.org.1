@@ -1,288 +1,187 @@
-Return-Path: <devicetree+bounces-242561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD11C8BE44
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:42:09 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B960C8BEA3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 21:50:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 24685356B51
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:42:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 42EA24E121D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 073E6341066;
-	Wed, 26 Nov 2025 20:42:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85CDB2F83AC;
+	Wed, 26 Nov 2025 20:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V+2v6hwu"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="HGbDdCz7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0BE31A06A
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 20:42:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB89F313557
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 20:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764189723; cv=none; b=X1+1mccJ6OysUA/zMNz6a/SE4B+UWPuc9dH3U5bYvDw3pX0gIvtJNox91uXD/DTHh5ifMMkcKKswkDJ28OgCC8aMvpXijU/JuxehTx3hK7eYppoKwezkstb0anN6DHYTQ1KTJWwxqS/TfvYmreX56Idh6EcFlIizudS0QYG2cYQ=
+	t=1764190223; cv=none; b=VgOpvFTySOpVQaR8YjWfCo7iurT6dfEXz9+tg43QoGhKgvWcH9dXuP3IlhbA3dFQ74atq1wqLSOXqVYAUiRzPW2ft6IaAxQPoUQDlsNJRNkjGTFGl9iysA8T9589p14BjRVrAmB6UEfrQF1TtacnCPC7riBj3fSJ8qIb4oSKnu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764189723; c=relaxed/simple;
-	bh=gPkcXCQlXJNROTcaxmSAMs9kpL1cZWSI3zhIKPHcblo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=nsAS4ov9kJHLDYLNFeULz8yG87z5x+fDTYwTASpbrh4REQlekiC2xbEr7+JlIB9LOtdS6yGLQjFX8u3F0kB3F7GWO+s53klT54ij7htKyp/i7pcpvlvZo3+ptr1d9vUR0j5zJJ3D53Hu8UAZhiFMi0J56sGVWAsSI7z1wqEQsds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V+2v6hwu; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-9372a52af7eso54828241.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 12:42:01 -0800 (PST)
+	s=arc-20240116; t=1764190223; c=relaxed/simple;
+	bh=2hcVpa9scm0PygAHV2yhPwb8b1VqKc8achD9dLmNggM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EczXdHq0Rlkbc76CF8QOBzt7BDTsb9YfOBw95RIMie2PjlMKoJ/Dc1gx2RK8iDeZAcqUbYtmeCFAwLbVDGOFK/Fs92dKKH6fjKAaEDIqNsN+VeY1S5q1AobNinIID7eR5q7OVJYcakQuOa98f2y8rn1AREudiZQFn+8TnEJlO3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=HGbDdCz7; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-299d40b0845so2697915ad.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 12:50:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764189721; x=1764794521; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=beH/zrD36B/kWUfgdvNXJPmVrJ7wkbiE2Bb6drSFFqk=;
-        b=V+2v6hwuCvAzGNmlsdu35q9KVu+fO7ZEvKUiA0sX9H11rGUERa9/UcnBPXzSPVx0Tj
-         fK7BH2EWra+AglnzTSjaUbH6l53N36QICw5eOZK7A3KiKk8eRIFYQKS2XddVO+ATbrv5
-         UhVvrLYWn91S7I1H9eI4kyGwRmE2IDcY8mhTaKdt8f0pY1ymnhVvOeP6bxewS5W+eJ4E
-         yfGkPpz1r96wQmjemm+/5KtEIJDCqFHMadjRlp2JOS8TII5e1trFVffHWmYXC/MNfeh/
-         Mp/JkTtwDs3/BxperV3XA+7SanSle7CTTsXHL/Y/Yz//C7xGIDE5nLeOFUV3v/yeuoAI
-         e8Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764189721; x=1764794521;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+        d=google.com; s=20230601; t=1764190221; x=1764795021; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=beH/zrD36B/kWUfgdvNXJPmVrJ7wkbiE2Bb6drSFFqk=;
-        b=drKG1kVgn9h4NbXvuzjoNpLEYwc4BGuTTK6KfQu8X99YmBenSqs76FLRqiE6HcCGzN
-         qpaN76mSz1VlLvhgDEgSAg8fzwlj9YQ2rjBK2IaRgPc9s/D3hGEKtWsWp5Vv9XrZEbx4
-         yp5LYkrmso5jODXqCoxr3/U8qIXeT4q/3vvsgoTZv6kXVwPHRvT74KfRk+6hR1mfSMcU
-         8o8yy5S0Lc9y4JpEronHy2Ucg8sQkdtjC4IbdHVHHkd0K16K1ZMbJQ5V9ZKZsRTIG8cQ
-         g4Fk+De6+ECH7uB4kcvDqrrU0hABAVVrslDN5Q76T5gevckjUrlMN/qpN67fszxezx0n
-         ssWg==
-X-Forwarded-Encrypted: i=1; AJvYcCWsH15m7LaeNgNtmWk2LV2OMw1usFcVGzwMC4n5ZzXAc52dGiQPaIk6RoSeeMLpNsndB68g/pX2ZN8h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxwo+sATJCtPcVxbiqhPfC/waODG7Q73VhggACYbAEK8RKGCKjj
-	77F1PLNRgbOxizWtxi6m6CtDAPJQ3ODOOOw1rJsPk/x2n6BMoS9I0wtN
-X-Gm-Gg: ASbGnctFjqo8QuGleQoMBrhtmcUdQL7e3EyxQ74B2o/xZp8vFag+wGUjD0kPmzqD8rm
-	g1z/ws+IxSnxT8+pkMSNm/oFg9v90JGpdk79xO78lpbL7oXSj1mpWD8R2g2sZeHihztkKPw5mvG
-	L+oWj9vZznAFdRz8CSuOnTqG0PalGnCPCfjf9b1G1gX9VCmJTM5IJNaVtJFlPWA0g98BOJWd9Sk
-	c2PO71xFBgy2JLPIIwcHGF0jX0n3Xt0dkxVyA0Tc17rxvCKa/4DwJsgO8P2mZjBD0GmxqlvdNiL
-	bsYS8W0dOIOL8xfjqxvbv6PcS32O6ihhYuhFsZxkD8bzPvuUH7dTcE5qe3fV1hBrjrepDO4YWJX
-	sGPqCEsMIcVvfyWfVm8yM26ghF8peU9Z2dsmc9FP88jWL/JS3BmuQ0usiKVAKA1EE1bN6DhNXjK
-	0uDwJHSA==
-X-Google-Smtp-Source: AGHT+IEepyxYSNYcT/rKhpiKM0CVI2kOD4MeYpfdJ9GWVSarvSkIZ5eJZUWsGFJcQABPF4R4jt7LSA==
-X-Received: by 2002:a05:6102:598e:b0:5db:f031:84ce with SMTP id ada2fe7eead31-5e1de35f809mr7277275137.29.1764189720757;
-        Wed, 26 Nov 2025 12:42:00 -0800 (PST)
-Received: from localhost ([2800:bf0:4580:3149:7d4:54b1:c444:6f2f])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93c564c83f5sm8642800241.11.2025.11.26.12.41.59
+        bh=nAe7krNX/FWdcfazYkx0OEalo6w7fciX1p3CljsQHjE=;
+        b=HGbDdCz7fMh9auA5giOKC+up0GbVoGyfdlmnW3fyA3Gxeb/N0VXaJ7h8z9oxYb4vjA
+         g+p+ZRULTy1pYN7EVv5B4HrwMHmGfgjly+28BhEPlXXtD/KWdwSqMfXw9NDqftFHdE/T
+         CXq15IsJHKr6bJHsZs8IrqaLSSTkzKPU2I82uX6u58ZouSHjfKSYxKn/4eti0kglBfqH
+         6FT1XKbMuy2JP+yi2OjHZQnX1+RHfCIkvrp4b5z+VaJHg6EoexoTIpw0JsUIvp4E42Qi
+         xpVhXmwS0s1ou8X0njK31DhtPHOxTRa4nDS1mJWmErhGiynAQh7U5JJC+nlAPID9A7qR
+         FYOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764190221; x=1764795021;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nAe7krNX/FWdcfazYkx0OEalo6w7fciX1p3CljsQHjE=;
+        b=GGUK4aOiR2ChJw1LR4qzFv+kRz8QRJe6jMDvCprxOx6trDmFcZIYTSWosZAvIq+q9i
+         ONUt7MJ+w1qammFcqfaOjFFGK2fNSfr7L+ubFO3FWPUxAiP/5rPSzT3ph4ZPF4ITeaUH
+         rLAvl/n42nAqJJAwg/dKND//G9UrPznKho8TiJiGWUatrg+LfhJpAKRmWF0/3ZngdyNN
+         POzlDxHCHGgWVs/eg09Gtik9ORGuOJqHCFz7HWguhWUq1Q5E/LNVj9BDepWJaf/Yaezb
+         TgtHbdET6B7fTgPPbozbslfRU29Q7i/qcSYTTF2g65sD3qlN4uAZ1IGBp4SLkEjCqPGs
+         EpmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVk9cnOinwodfQqxoJm/gwFsdnBaLsvltcrFj41ZMaZHob+3QDulvhxTo2ayHi2yZW3Uz0v5GbhA7na@vger.kernel.org
+X-Gm-Message-State: AOJu0YzF+vno0/AX2o++y6tb5bbJg+Px/K+dPYR26mrloe+YJSv8j6CK
+	PvtUEokYfCvUNdVPJ3Xw1UChzvcUSA6eK9c1ZrF+GJKxR2+TWiRzgEsc3F2BLP0wSQ==
+X-Gm-Gg: ASbGncsCKPU8kKN0EdILkEB0e+Yx5QLxvzcUYIxgnSoecMxVpl6PzdSBS1DDOb9jOuW
+	QpEdRfOQWaGLLLcL9H1gxpLCBowLUG5WWsjkcFwgNbNT6U2Dgwcvn7yqk2azMLGX4+wlZhMIb77
+	5ALEkxEAE+QpH+8rABJyOKza5FfIAWyRsEdc6/k0XAIQ/LK0vCoOy7v6WwLWYvWrvobA4l3CHnC
+	ZBO58pDY3Dkwm7XXIUoDxJR3RbzkZx+XyUbq3e3oypK6ePFl9ojkyaShhjbuoEyn8a0et6L9pfc
+	CbL5Kyo3B1YRbY5u9/LUKnC18Wfovi9ASMTuPg7S+dRR/uxR1tNZ2ye7uLl6TZnk6ql6skdSUHj
+	weS45DK+fMrIFmCdfjLzCo1H4LGLoE7ZnhfXopMNI4l4O3WVIH5fuE+xuXCTucO05CqfRY7MaEf
+	SnF3nN9z27ouT8brF47kdg7hPwbk8zDq4t2ByB5D2cpMb/YDYzM4oepKMD/C3pxQsUIuE5sV0uw
+	zKH6sXynWPXab516KM4nZxW
+X-Google-Smtp-Source: AGHT+IFjQZz19LkV6uSbQD7V0osJzTvl1J8TedsGIZ78YPP9aLGTQiFmGEhYv2+QMQ+JGAYgRK90Dg==
+X-Received: by 2002:a17:902:d4ce:b0:295:596f:8507 with SMTP id d9443c01a7336-29baac9f621mr97893625ad.0.1764190220828;
+        Wed, 26 Nov 2025 12:50:20 -0800 (PST)
+Received: from ?IPV6:2a00:79e0:2e7c:8:c116:b1c9:632d:a902? ([2a00:79e0:2e7c:8:c116:b1c9:632d:a902])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29b5b12f988sm203367425ad.27.2025.11.26.12.50.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Nov 2025 12:42:00 -0800 (PST)
+        Wed, 26 Nov 2025 12:50:20 -0800 (PST)
+Message-ID: <3c72e1f3-7873-4f13-a5cd-0aecc5163aab@google.com>
+Date: Wed, 26 Nov 2025 12:50:19 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 26 Nov 2025 15:41:58 -0500
-Message-Id: <DEIX2829UYMB.8D3TGUFHXS10@gmail.com>
-Cc: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
- <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jonathan
- Cameron" <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 2/2] iio: adc: Add ti-ads1x18 driver
-From: "Kurt Borja" <kuurtb@gmail.com>
-To: "David Lechner" <dlechner@baylibre.com>, "Kurt Borja"
- <kuurtb@gmail.com>, "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Tobias Sperling"
- <tobias.sperling@softing.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251121-ads1x18-v1-0-86db080fc9a4@gmail.com>
- <20251121-ads1x18-v1-2-86db080fc9a4@gmail.com>
- <30a7e100-5919-4b5f-86cc-589283acd6cc@baylibre.com>
- <DEESNJT0ZQC0.39LYY6I1KWZ7E@gmail.com>
- <9fba8701-a9c2-45b4-9bc1-5c49813e72cc@baylibre.com>
-In-Reply-To: <9fba8701-a9c2-45b4-9bc1-5c49813e72cc@baylibre.com>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] dt-bindings: usb: maxim,max33359: Add supply property
+ for VBUS in OTG mode
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
+ Kyle Tso <kyletso@google.com>
+References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
+ <20251123-max77759-charger-v1-3-6b2e4b8f7f54@google.com>
+ <aSbP5OanDUGhEXXV@kuha>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <aSbP5OanDUGhEXXV@kuha>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sat Nov 22, 2025 at 10:56 AM -05, David Lechner wrote:
-> On 11/21/25 6:24 PM, Kurt Borja wrote:
->> On Fri Nov 21, 2025 at 5:33 PM -05, David Lechner wrote:
->>> On 11/21/25 11:16 AM, Kurt Borja wrote:
->>>
->
-> ...
->
->>> #define ADS1018_CFG_REG			0x0000
->>=20
->> I didn't define these because ads1118 dumps all registers (2) in each
->> transfer.
->
-> Oh, right, there is basically only one register so we don't have to
-> address it. :-)
->
->
->>>
->>> It is a bit confusing to have this here rather than in the buffer
->>> enable callback since that is also setting the config that triggers
->>> the first conversion.
->>>
->>> Having the spi_bus_lock() and enable_irq() in the buffer enable
->>> would make more sense to me too.
->>=20
->> This is the approach ad_sigma_delta takes.
->>=20
->
-> I did some work on that with that module recently. I would not say that
-> it is an ideal reference. IIRC, it still has some race condition with
-> enabling/disabling interrupts in some cases. So hopefully we can do bette=
-r
-> here.
+Hi Heikki,
 
-Oh - I meant haveing spi_bus_lock() and enable_irq() in buffer enable is
-the approach ad_sigma_delta takes.
+On 11/26/25 2:01 AM, Heikki Krogerus wrote:
+> Sun, Nov 23, 2025 at 08:35:50AM +0000, Amit Sunil Dhamne via B4 Relay kirjoitti:
+>> From: Amit Sunil Dhamne <amitsd@google.com>
+>>
+>> Add a regulator supply property for VBUS when usb is in OTG mode.
+> What is "OTG mode"?
+>
+> OTG is usually used to refer to the USB in device role, even though the
+> specification actually defines OTG device as a device capable of both
+> host and device roles. So the term was confusing already before.
+> Nevertheless, the emphasis is always on data-role, _not_ power-role.
 
-I moved them to set_trigger_state() to be able to use other triggers.
-Furthermore if interrupts or drdy-gpios are not defined, we don't really
-have to take spi_bus_lock() and doing it this way ensures that.
-
-For this reason I would like to keep this for v2 and we can discuss it
-further if you disagree.
-
->
->>>> +
->>>> +static int ads1x18_message_init(struct ads1x18 *ads1x18)
->>>> +{
->>>> +	struct spi_device *spi =3D ads1x18->spi;
->>>> +
->>>> +	/*
->>>> +	 * We need to keep CS asserted to catch "data-ready" interrupts.
->>>> +	 * Otherwise the DOUT/DRDY line enters a Hi-Z state and it can't be
->>>> +	 * driven by the ADC.
->>>> +	 */
->>>> +	ads1x18->xfer.cs_change =3D 1;
->>>
->>> I think this is going to be problematic for reading/writing the configu=
-ration
->>> register and for direct reads of a single sample. My suggestion to make=
- a
->>=20
->> Can you elaborate on why it would be problematic?
->
-> This transfer is used for all SPI messages. So it means that CS will stil=
-l
-> be high after every transfer, not just the ones during a buffered read wh=
-ere
-> it is actually needed.
->
-> This would be a problem if there were any other devices on the SPI bus.
-> When the controller communicates with the other device, the ADC will
-> still be listening and responding because CS is still high.
-
-Thanks for the heads up!
-
-This was a misunderstading on my part, I thought the SPI core would
-de-assert CS if another device requested a transfer.
-
->
->
->>>> +
->>>> +static int ads1x18_channels_init(struct ads1x18 *ads1x18,
->>>> +				 const struct ads1x18_chip_info *info,
->>>> +				 struct iio_chan_spec **cs)
->>>> +{
->>>> +	struct device *dev =3D &ads1x18->spi->dev;
->>>> +	struct iio_chan_spec *channels;
->>>> +	int ret, nchans, index =3D 0;
->>>> +
->>>> +	nchans =3D device_get_named_child_node_count(dev, "channel");
->>>> +	if (!nchans)
->>>> +		return dev_err_probe(dev, -ENODEV,
->>>> +				     "No ADC channels described.\n");
->>>> +
->>>> +	channels =3D devm_kcalloc(dev, nchans + 2, sizeof(*channels), GFP_KE=
-RNEL);
->>>> +	if (!channels)
->>>> +		return -ENOMEM;
->>>> +
->>>> +	device_for_each_named_child_node_scoped(dev, child, "channel") {
->>>> +		ret =3D ads1x18_fill_properties(ads1x18, child, &channels[index]);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		channels[index].scan_index =3D index;
->>>> +		ads1x18->bufidx_to_addr[index] =3D channels[index].address;
->>>> +		index++;
->>>> +	}
->>>
->>> There is a small enough number of channels that we shouldn't need any o=
-f this.
->>> We can just make an array big enough for all channels in struct ads1x18=
-.
->>=20
->> Ack.
->>=20
->> Do you think we should just let every channel be visible in sysfs or
->> should we still control visibility with the channel@[0-7] node?
->
-> Yes. It is normal to show all channels. The few exceptions, like multiple=
-xed
-> chips where there can be 100s or 1000s of possible combinations of differ=
-ential
-> channels possible. And sometimes for ADCs built into a SoC, we omit the c=
-hannels
-> that aren't wired up to something.
->
-> It makes it much easier to write userspace software though if every insta=
-nce
-> of the ADC has exactly the same attributes, so I try to advocate for that=
-.
-
-Agreed.
-
->
->
->>>> +	ads1x18->chip_info =3D info;
->>>> +	mutex_init(&ads1x18->msg_lock);
->>>> +	init_completion(&ads1x18->data_ready);
->>>> +	spi_set_drvdata(spi, ads1x18);
->>>
->>> There is no spi_get_drvdata(), so we don't need this.
->>=20
->> I do however use dev_get_drvdata() directly in PM ops.
->>=20
->
-> OK, so dev_set_drvdata() would make it symmetric.
->
->
->>>
->>> I think we could simplify this and avoid needing to use pm runtime (and=
- use
->>> even less power!). During probe, put the chip in power down mode. When =
-doing
->>> direct reads of a single value, put the chip in single-shot mode. When =
-doing
->>> starting a buffered read, put it in continuous mode and when the buffer=
-ed read
->>> is stopped, put it back in shutdown mode.
->>=20
->> These chips only have two modes single-shot (low-power) and continuous.
->> Are you suggesting we shut it down using the vdd regulator?
->>=20
->> Either way, can't the system go to sleep while in buffer mode? If that's
->> the case we should still need these handlers.
->>=20
->
-> I hope not. I would suspect that most IIO drivers are broken in this
-> regard. I've never attempted to try to implement suspend/resume in an
-> IIO driver yet because I didn't have an application that required it
-> and it would be very difficult to get right without very extensive
-> testing.
-
-Then I'll drop it.
-
-Thanks! I will submit v2 soon :)
+Thanks for the insight!
 
 
---=20
- ~ Kurt
+>
+> Here it seems MAX33359 uses the term OTG as a synonym for "source", so
+> power-role?
 
+Essentially. The datasheet refers to the mode where VBUS is sourced as 
+OTG mode.
+
+
+> Please don't use the term OTG unless you really have to - it's too
+> confusing. I know the MAX33359 datasheet uses it, but what you really
+> do here is regulate VBUS. So please:
+>
+>          s/otg-vbus/vbus/
+
+I will drop OTG term at least in the USB world and restrict it to the 
+charger driver.
+
+
+BR,
+
+Amit
+
+>
+> thanks,
+>
+>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>> Reviewed-by: Badhri Jagan Sridharan <badhri@google.com>
+>> ---
+>>   Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+>> index 3de4dc40b791..a529f18c4918 100644
+>> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+>> @@ -32,6 +32,9 @@ properties:
+>>       description:
+>>         Properties for usb c connector.
+>>   
+>> +  otg-vbus-supply:
+>> +    description: Regulator to control OTG VBUS supply.
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> @@ -53,6 +56,7 @@ examples:
+>>               reg = <0x25>;
+>>               interrupt-parent = <&gpa8>;
+>>               interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+>> +            otg-vbus-supply = <&otg_vbus_reg>;
+>>   
+>>               connector {
+>>                   compatible = "usb-c-connector";
+>>
+>> -- 
+>> 2.52.0.rc2.455.g230fcf2819-goog
+>>
 
