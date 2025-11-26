@@ -1,82 +1,102 @@
-Return-Path: <devicetree+bounces-242503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3844CC8B2DB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:22:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DB2BC8B341
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 18:30:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D5CEF4E1199
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:22:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 653343A579A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 17:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DBA9271464;
-	Wed, 26 Nov 2025 17:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379C330AD05;
+	Wed, 26 Nov 2025 17:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NAsy67xM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ejmWNOck";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IFSg8BzX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147EC26E6E1
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810F32DE1E6
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764177736; cv=none; b=iBi4ww79VojYJ2P+fK8svwfes+Oh1g80EPDf8DdX7W1mWBSh/nIMinOteVgwryIwrWtux2PAhQdmI4k71lfJLychO8VodPmlk41Y8n4dL6WUsubHREpbj08Blv5wrQ96zYMyEopsYyiF1GGfJ8N5E/FPxsi/sVdxuagrK9qpJ38=
+	t=1764178214; cv=none; b=RNBYKHTI27v3QbYo9+KJrUE3Q8RzZX4lsbjDtoIMn/CPjAcSZOLVGgNm/JD8PJfQv0PZUbnm1oV1JvkabCYDSPAUWzq9j62T+Xbfroj2O425nDWECC2sG6WL0gPCs2zDd5SUSakbcwTj1L6615+3s1tPMIz3fKXCxVknfyH95bM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764177736; c=relaxed/simple;
-	bh=wOW9mr8lkvb1dXWEhI4QVzanyGbtM+zavyrY1/ZkNe4=;
+	s=arc-20240116; t=1764178214; c=relaxed/simple;
+	bh=Cl7knpSbUZAC0/CoNr3UsqLF86lksrDHgOcfcFynZEQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p2/rBJ/lsZzYSjhpgBBF0nPF1odU1aCfTO8jfSJyFyXiiGeFOoY6O1qfUFT5UU8wiFlT/R9KDgbc9NamIqhju9rGiMgko15LiDaKSs3azdfRGBCxEMoNIAwkmH6xLm0tik1wGonJYF96Q3TGp48zeTL5Wa66HJDsKsUFQ/SY+tM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=NAsy67xM; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so73961115e9.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:22:13 -0800 (PST)
+	 In-Reply-To:Content-Type; b=sUlyy7fp28r4vEHPeGROrp94AfkHMHjM3m0SyHDrfhPTsfSntHPH8XHAORJ1wUb6dQZbq7i2frMuqQbnk93gjqjWeKMKSmg0UeAzQMtCqPD70IpI3NR5cP+ZznHyJDShUVzRHp1T8q9psunoiKkW/teVpl9fBOF1VeBEcZxfcLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ejmWNOck; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IFSg8BzX; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AQBNXes1849220
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:30:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DJcjXg1+RvjOx5A8hSzA1CiyWHl8XyDYL+rBPEwr07o=; b=ejmWNOckF76MxY8V
+	rNu641AM/RJrkE7i8ZXqLBlJM5pn5g9PuAq/Ocub9ingeNFKsqXamOTeClr4A/M1
+	cDkVWxzQ5q/p9qqYyvUrTAn2dfSI3erAhAg8j/UGDcKVQ6dEhJ1dDVsvZ/avuGpH
+	EVEW/DU3WLAY91P/hBiqWsAWR08+MkMcV7X3W2Wp3ZZD+pacT87Pday6DKR31VgR
+	a3u5+un/V7VD0AKW1FQYpZQALL1tGs6Y3ZEGmNBaiWp56bUCOhphwZh1SZ9DUpYR
+	8sed0tL7q4w2vRvwJXhlsHqYk9yErT//dv66lIJ6BpyjfrngoPBjXSPlqjY78twE
+	nRzwiA==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ap0mss1f3-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:30:10 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7c7957d978aso3793436b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 09:30:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1764177732; x=1764782532; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
+        d=oss.qualcomm.com; s=google; t=1764178210; x=1764783010; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iMbAlPYdoISwPLiWW5sRnyteylPcxj4Xm9aY2it0S+E=;
-        b=NAsy67xMd2XMwexj7wKUsyD+WCvDYM8wrNYzOK8dManO7VtZc9mgyN/9kqEWqrYS41
-         yKGDmy0l7D9HI2R1zAqYhIamolDIajtSjz3HSZWMflJwDlU+CSqxhAq3+1MPdbqSWvdJ
-         C6ZmG7GMVtDdcO+8e6BjDZpw41m5dPpcwMFTVIfytpaLAArPNc+zqMWZshGfkMcDzwn8
-         GeDJ5RMKOJKrS40wYMsj1/ThQpvzRNBMFKl4zqZQweMxmRYBEiCM4OnfNzwhbQSYEbtY
-         uZxEkcYyT0Mujod8s6QewbQprGSU0H2uwTsObNH6HEvYx9e0yCbU1S52tEORUWjwJ29w
-         a4bw==
+        bh=DJcjXg1+RvjOx5A8hSzA1CiyWHl8XyDYL+rBPEwr07o=;
+        b=IFSg8BzX6rK0i78RwEo0Sn3NW/Mavdr0arzbRAiwrWHmB1gIVLVysuUchoIYrlIDjV
+         mJPQESluAo0IAn7NNrZIvVL6X0z4QygRBRIVmagNvyZUFmQYl/tNRLOsuWYcLk+ed9iD
+         BrR3iqJOFRIRC+aeijbNa9mHGskHVnTY0DXWFDTuFBAqJaiqLEEIlUM3Hl4jz/ijZCvz
+         +4UFmtu7yBMHCGspO7ZYW6RVXhr+dzK12hkmmDK4wGvzrBmaek2us8/atr9uRVQPkhSk
+         QDweL/pcyH7BWXk12KuBzqyYYS+27tyZACOAyVUZdGNRRcPtsa47cNLpySVOF0wWINah
+         EeEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764177732; x=1764782532;
-        h=content-transfer-encoding:in-reply-to:content-language:from
+        d=1e100.net; s=20230601; t=1764178210; x=1764783010;
+        h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=iMbAlPYdoISwPLiWW5sRnyteylPcxj4Xm9aY2it0S+E=;
-        b=eB5WphXpKoAgNzWbOtqDrSUTc4ctSoP3KRPlWiesYx5zm+rcOAy3d3r7fWNiJdSt1S
-         aQ2xPDIaTgmeB19xOZ9UvjF+6LjSKNlMtARj+w7dox6oh8moh4KusI+SP74u0YWJPt3H
-         hhNQDsCgSnHl3mIYfzDlBew3XXI0oiAIWWJVDZVcGZZpPiDRZM3+doR13LSusqDsUdqg
-         DfYRruu5AcK659NjaYmhZrlUl0ObQUw5JKtKOiadscQcZvBXYw1+K2+OicBajaNpRUYz
-         /CukrqAphjAaBzvBuLDyuHqJSbr9VJ8RSpImwU4FKhYoUl3FNW7fo6Lj4O9IcPT7HUOF
-         0I/w==
-X-Forwarded-Encrypted: i=1; AJvYcCXSe9q/1bjdpWFtHLenSbWCDWdNyeiB/Cvshp7rKFZXky2UEh+7AxqqLj3oCWfbReuGutVClrdvQdre@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2RGD1/ep9hTmq6sptxFWsPV3hxMezSLHzv7728B1xgGvvhmW/
-	cWY9djsarZw6ji5wTHNad1RCJZ58F/FVlxC2bt9GGn6XIEIqC11XEEY/KZlPAhZxvJM=
-X-Gm-Gg: ASbGncvXxHjzGhCGb5PtLSOsCkEGbmEOsO7NG7zROx+UTBxt86HWOjt73A+MbznbFLx
-	lSSf50++Kqddz6520rXb/iHfU3zDIhIk8rJrJKAQHily9BTKv4B1BgDxMxm+82toYggEJtysOZE
-	w5e2Z3/8ksqKOt2Tb5H07XiNP3MdE5NP7mW8YyLG2NEWKq2jrBgDP8sO0dejv+FigDcLrID/ze5
-	20hkkZ+czWiZXrd/wcCAvLo5CiLfAUQdApn3W+0V0X5l5JzYAKwyNp9F4Y3aLR8Z8UhqGHSvzIG
-	lZQi4VJnVAjUfGlcjxCFY1a916UmaV9EjZjMIAUC5rgGVBYZwmRoNmrWp2hEVnc8ud9QyjL22zK
-	dVeaiNCRlZtJaSbvW+GZon5hydqI3bCpc8mCn/E7iQhHrAtyl2jPKZSkFJ3/DEpaH7K8KRWgbPT
-	egB+YGt6upTIECSYRdWPQ=
-X-Google-Smtp-Source: AGHT+IFveJWow1MlKZhvBvDFWET9HTrn614Fkdf0VqG8AOTAuNxSS7l7a/cBAeHUgCNj8XRXHc1RFQ==
-X-Received: by 2002:a05:600c:1f0f:b0:477:1af2:f40a with SMTP id 5b1f17b1804b1-47904b1b27bmr75298265e9.17.1764177731802;
-        Wed, 26 Nov 2025 09:22:11 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.134])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4790b0c44dcsm52202665e9.11.2025.11.26.09.22.10
+        bh=DJcjXg1+RvjOx5A8hSzA1CiyWHl8XyDYL+rBPEwr07o=;
+        b=dekQPhr4YX5fg7Dn0uHOklq6Vt3/6fpZ2ru9xc/14bk0IL9FQ6szS2xPK39oZAD1Tw
+         qCOnDf1fUN0pHdttwB1pEdmjDgtdbSKEaYgLQN7xmwmavKQo+p1o7zT0Zxpi/bE9qQVL
+         cyJzRoy313u5t8i+RIDPirGv4W9cYtRp1UMgnWzAUZTBhbSsXaxz9iKe23+/RzUkNkvz
+         eWII4XXs1inV4gCOm31d6LSvh3K23ebgkXArK0hiqqRonAcD2gOythvR4ZPOp5jP7OCk
+         r8jGqqJ7EYTgMmB0EuhsECbVS6mwWpWU+54jRf5Tom+nebMYibd1bkssnG8o6t3wzNAK
+         GRJw==
+X-Forwarded-Encrypted: i=1; AJvYcCUthJPZ+dHhMAua63DVZVPHHuAyv/YLVOyE/BoOyFivtAUXH4pX05zjtip1Ucp9qZTFf9N/Y8uyRIoD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz19frVDMyf5+vEVfo14A5sxXWB7N/URxis/0U+2vK3DFJAagkq
+	+DPh+QijWwZMxBxs34uySzTIyqT+FgZb7NPyF+TDYUO6RtqnXdjwcL05O+aDqXP6iSIB3yIz22T
+	33yLrFxgUvKlkQnrVPCwwyhmMnb7L+wuu0uOR1hXiml89NjiwQUIffDc8oQe2ZKGN
+X-Gm-Gg: ASbGncvtVaLcGLqVReyz7r5/jntQm0zc52hyDeHBlS1BcTY3MQx5gReX2KIMhZDofMk
+	fbTFiDP9bceXxFgvgrgd1kbyQMe0kFdqdCIqWItt/9ccXHhfKK9ez+UR7BZy/wqaZX/Gf8pdL8b
+	n/EKunD0td9KrKWE+53dlsRqfh/huiWdFxxCUWCAvRkPa4fVnT5rmW/IEf8E4Ao/27ifdvW9NKP
+	3Vyxdq4yYnyYHJGJPG/Tqp/zsyrfTM8ZWgYcZSsLV2ndNVq4jk5ssAy36hjU1pZSOwWP9V+qNEn
+	prQ0vi24hD23/EObq0RO1rk9W/P2bBdmhBOmOFfHJ4XhSPljfQpp5CED7FPNSZeScTF76SjhTHC
+	dUyBY23gNb/IMjh/xLFLYMh/hEfguy1eV4+IJbRhj
+X-Received: by 2002:a05:6a20:e210:b0:344:bf35:2bfa with SMTP id adf61e73a8af0-36150ef9040mr23912007637.33.1764178209834;
+        Wed, 26 Nov 2025 09:30:09 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFgCht1i3mSdLrutDTv1qMY5Sh4WT+aZBZWLtHCFnjknYdzLSmlNABUFcS+YGaiH/R40Vlr/A==
+X-Received: by 2002:a05:6a20:e210:b0:344:bf35:2bfa with SMTP id adf61e73a8af0-36150ef9040mr23911960637.33.1764178209329;
+        Wed, 26 Nov 2025 09:30:09 -0800 (PST)
+Received: from [192.168.1.6] ([122.177.245.123])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7c3ed892396sm22301815b3a.29.2025.11.26.09.30.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Nov 2025 09:22:11 -0800 (PST)
-Message-ID: <2e7ecbc0-6ce5-403a-b794-93aaff1ddf39@tuxon.dev>
-Date: Wed, 26 Nov 2025 19:22:09 +0200
+        Wed, 26 Nov 2025 09:30:08 -0800 (PST)
+Message-ID: <2f0b9803-55ad-4425-85f9-60846fc4bd4e@oss.qualcomm.com>
+Date: Wed, 26 Nov 2025 23:00:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,134 +104,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/6] PCI: rzg3s-host: Add Renesas RZ/G3S SoC host
- driver
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, p.zabel@pengutronix.de,
- linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20251125183754.GA2755815@bhelgaas>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Subject: Re: [PATCH 0/6] of: iommu-map parsing for multi-cell IOMMU
+To: Robin Murphy <robin.murphy@arm.com>, will@kernel.org, joro@8bytes.org,
+        robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
+        konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
+        bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+        saravanak@google.com, prakash.gupta@oss.qualcomm.com,
+        vikash.garodia@oss.qualcomm.com
+Cc: iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <cover.1762235099.git.charan.kalla@oss.qualcomm.com>
+ <0319bdf5-0a46-40fc-93f8-30d74cf6475a@arm.com>
+ <351373ed-c699-4945-a978-cb35412918bc@oss.qualcomm.com>
+ <e6fb7000-7aac-45b6-b4f9-c9efa2a98d57@oss.qualcomm.com>
+ <5237fb86-dec6-46e3-82bc-d41f3d537e53@arm.com>
 Content-Language: en-US
-In-Reply-To: <20251125183754.GA2755815@bhelgaas>
+From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+In-Reply-To: <5237fb86-dec6-46e3-82bc-d41f3d537e53@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: sY7ME6rRc_88utO0DFgY0lVKcB0iTCIX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDE0MiBTYWx0ZWRfXw6HYzuUDNiI7
+ NU71eMrPPGJPalRJTpuYTUWTFf8+ebHe4U/mzVOsZR4Q4qhnSRJckjkgLRF1f5VN7aIFEOpa2cp
+ cYQTLEd2nexPuwvDVX8OUN28EeKj2WuUp/zwlcw2O7knN2ozhubEiFofQ4DARNZ/F+bymvOrhuY
+ BDOJ9fD1UCOvWzSjcnIuVjTfm1HiTiWJPNUn5BnK78i8MPg2u+4iiHvKr9Az86rfmYXY0MGldRu
+ BSkOVvlox89JsEBREN46Mi2zbtQIde9eBnEl2nfA4iM4Wjuq2A5KOI4OK8LyesI4wEU7NOlDV70
+ K1d0yJp0rFDisLn24BEWOIf3IbRDZ2PJB3WV/HlNCRMtWAy2jT5p0aDs7nznRgUrNJ24ocNLSs2
+ je3aS5SpZlmb0ds6HD52mwu9stiIPg==
+X-Authority-Analysis: v=2.4 cv=N5Qk1m9B c=1 sm=1 tr=0 ts=69273922 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=AKoc6KOQV6GO8V7HCDy2DQ==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=ItF2kG97CfwsPVWtkWwA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-ORIG-GUID: sY7ME6rRc_88utO0DFgY0lVKcB0iTCIX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0 spamscore=0
+ clxscore=1015 bulkscore=0 suspectscore=0 impostorscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511260142
 
-Hi, Bjorn,
+Thanks a lot Robin!!
 
-On 11/25/25 20:37, Bjorn Helgaas wrote:
-> On Wed, Nov 19, 2025 at 04:35:19PM +0200, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 11/24/2025 10:21 PM, Robin Murphy wrote:
+>> ----------------------8888---------------------------------------------
 >>
->> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
->> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
->> only as a root complex, with a single-lane (x1) configuration. The
->> controller includes Type 1 configuration registers, as well as IP
->> specific registers (called AXI registers) required for various adjustments.
-> 
->> +/* Serialization is provided by 'pci_lock' in drivers/pci/access.c */
->> +static int rzg3s_pcie_root_write(struct pci_bus *bus, unsigned int devfn,
->> +				 int where, int size, u32 val)
+>> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+>> index a511ecf21fcd..ac005e70de7d 100644
+>> --- a/drivers/iommu/of_iommu.c
+>> +++ b/drivers/iommu/of_iommu.c
+>> @@ -16,6 +16,7 @@
+>>   #include <linux/pci.h>
+>>   #include <linux/slab.h>
+>>   #include <linux/fsl/mc.h>
+>> +#include <linux/platform_device.h>
+>>     #include "iommu-priv.h"
+>>   @@ -41,6 +42,18 @@ static int of_iommu_xlate(struct device *dev,
+>>       return ret;
+>>   }
+>>   +static int of_iommu_configure_cb(void *arg, u32 *id_out)
 >> +{
->> +	struct rzg3s_pcie_host *host = bus->sysdata;
->> +	int ret;
->> +
->> +	/* Enable access control to the CFGU */
->> +	writel_relaxed(RZG3S_PCI_PERM_CFG_HWINIT_EN,
->> +		       host->axi + RZG3S_PCI_PERM);
+>> +    struct of_phandle_args *iommu_spec =
+>> +        (struct of_phandle_args *)((void *)id_out - offsetof(struct
+>> of_phandle_args, args));
 > 
-> I suppose this has been asked and answered already, but it's curious
-> that you need this for config writes but not for reads.  Obviously it
-> must *work*, but it's unusual and might warrant a comment.  "Access
-> control" must be a hint, but only means something to experts.
-
-After initialization, some PCI registers are read only. To enable write
-access to these registers after initialization, the access control need to
-be enabled.
-
-This is the quote from the HW manual: "Some registers with the RO attribute
-stated in the PCI Express Base Specification are writable at the time of
-initialization.
- When writing to these registers, CFG_HWINIT_EN (Permission Register
-(offset: H’300) bit[2]) must be set to 1b."
-
+> Not sure whether to be impressed or disgusted... If we are to take a
+> callback approach then it should probably standardise on passing a full
+> of_phandle_args to encode the map output. Particularly given what I've
+> just noticed below...
 > 
->> +	ret = pci_generic_config_write(bus, devfn, where, size, val);
+Sure... will make patches based on this...
+
+>> +    struct device *dev = arg;
+>> +    int err;
 >> +
->> +	/* Disable access control to the CFGU */
->> +	writel_relaxed(0, host->axi + RZG3S_PCI_PERM);
->> +
->> +	return ret;
+>> +    err = of_iommu_xlate(dev, iommu_spec);
+>> +    of_node_put(iommu_spec->np);
+>> +    return err;
 >> +}
+>> +
+>>   static int of_iommu_configure_dev_id(struct device_node *master_np,
+>>                        struct device *dev,
+>>                        const u32 *id)
+>> @@ -48,12 +61,10 @@ static int of_iommu_configure_dev_id(struct
+>> device_node *master_np,
+>>       struct of_phandle_args iommu_spec = { .args_count = 1 };
 > 
->> +static irqreturn_t rzg3s_pcie_msi_irq(int irq, void *data)
->> +{
->> +	u8 regs = RZG3S_PCI_MSI_INT_NR / RZG3S_PCI_MSI_INT_PER_REG;
->> +	DECLARE_BITMAP(bitmap, RZG3S_PCI_MSI_INT_NR);
->> +	struct rzg3s_pcie_host *host = data;
->> +	struct rzg3s_pcie_msi *msi = &host->msi;
->> +	unsigned long bit;
->> +	u32 status;
->> +
->> +	status = readl_relaxed(host->axi + RZG3S_PCI_PINTRCVIS);
->> +	if (!(status & RZG3S_PCI_PINTRCVIS_MSI))
->> +		return IRQ_NONE;
->> +
->> +	/* Clear the MSI */
->> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_PINTRCVIS,
->> +			       RZG3S_PCI_PINTRCVIS_MSI,
->> +			       RZG3S_PCI_PINTRCVIS_MSI);
+> Oh dear, I totally overlooked this, and off the top of my head I'm not
+> sure it's simple to fix 🙁
 > 
-> Other writes to RZG3S_PCI_PINTRCVIS are guarded by host->hw_lock.  Is this
-> one safe without it?
+> So it's still not actually working as intended. Oh well, I did say it
+> was untested...
+I assume you are talking about the .args_count here,  since of_map_id()
+filling id_out, should we also pass the &args_count and let of_map_id()
+fill that(with cell_count) or as you mentioned, pass the complete
+of_phandle_args ?
 
-It should be safe as RZG3S_PCI_PINTRCVIS is a R/W1C type of register.
-
-HW manual describes R/W1C registers for PCIe as "Write-1-to-clear status
-. It can be cleared to 0b by writing 1b with a readable register.
- Writing 0b does not change anything."
-
-With this, it should be safe to drop the guard from rzg3s_pcie_intx_irq_ack().
-
-> 
->> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_MSGRCVIS,
->> +			       RZG3S_PCI_MSGRCVIS_MRI, RZG3S_PCI_MSGRCVIS_MRI);
->> +
->> +	for (u8 reg_id = 0; reg_id < regs; reg_id++) {
->> +		status = readl_relaxed(host->axi + RZG3S_PCI_MSIRS(reg_id));
->> +		bitmap_write(bitmap, status, reg_id * RZG3S_PCI_MSI_INT_PER_REG,
->> +			     RZG3S_PCI_MSI_INT_PER_REG);
->> +	}
->> +
->> +	for_each_set_bit(bit, bitmap, RZG3S_PCI_MSI_INT_NR) {
->> +		int ret;
->> +
->> +		ret = generic_handle_domain_irq(msi->domain, bit);
->> +		if (ret) {
->> +			u8 reg_bit = bit % RZG3S_PCI_MSI_INT_PER_REG;
->> +			u8 reg_id = bit / RZG3S_PCI_MSI_INT_PER_REG;
->> +
->> +			/* Unknown MSI, just clear it */
->> +			writel_relaxed(BIT(reg_bit),
->> +				       host->axi + RZG3S_PCI_MSIRS(reg_id));
-> 
-> Other writes to RZG3S_PCI_MSIRS are guarded by host->hw_lock.  Is this
-> one safe without it?
-
-RZG3S_PCI_MSIRS is also a R/W1C type of register. With it, it should be
-safe to drop the guard from rzg3s_pcie_msi_irq_ack() as well.
-
-I'm going to prepare a follow up patch to drop the guard on
-rzg3s_pcie_intx_irq_ack() and rzg3s_pcie_msi_irq_ack(). Please let me know
-if you have something against.
-
-I can also prepare a patch to detail in a comment the "enable access
-control to the CFGU" operation in rzg3s_pcie_root_write(), if you prefer.
-
-Thank you for your review,
-Claudiu
+Thanks,
+Charan
 
