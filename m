@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-242388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43386C89D0F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 13:43:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2958AC89D09
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 13:43:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 475CB4E47F0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:43:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D62E13B2D74
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 12:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C79328B77;
-	Wed, 26 Nov 2025 12:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2229432938A;
+	Wed, 26 Nov 2025 12:43:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X9BhvZTE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DG1oegXx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E393328B50
-	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 12:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E60328B66
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 12:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764160989; cv=none; b=sMMqQvOcUXCUBWELJ3h0tmIu6jnKJUC7fWkOLGpWqaygoduRvRDPYR9z3ZIegoJXGP4IXmuO5jCk6f21avDMy6CPQMIHKWL+zXcP5S+QKeuQObsmOgYVQkXJ9E+j3R9eD0OQDEshKKJYLApQ8dkwI5YBxH5TmbyIw+PmYHKP2sw=
+	t=1764160991; cv=none; b=foDc476fjaT1w78z0avjlU/8loMLG4nV9Zty/UA8nmZXXFwPdihuKiJWDtg8l2hTplFKTkXAOi8yYvfqu+3wSBof4UjNutaPX+j0jIcit6DV9P7SP/sVJfW1IxAIxTb0bO/T9UjRbKzM4cCrZ12HxwgZnHJC8YHMQ0HY6NljFac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764160989; c=relaxed/simple;
-	bh=yhPuiR6XrfoigONn7YjeXv5GIwSDKgMVMn3NKSqWbcw=;
+	s=arc-20240116; t=1764160991; c=relaxed/simple;
+	bh=/R8DB6PS5O6Vu0rqhYBkNBWOV2WuuSjtOHLfrZBLXnw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BovotoglE0DNPWt13Ku7j/k0pq/1fqbsDF0t4DTon5AOE28KQO2c47/lrcymnzmTcD3yh/xz2MiJxuTWPhou6DPib6eYp1cYb9gcFBGpj8TtD10n0BI92Ax7GpnwXYyomV50hE8Fx4J4paLca9V+IJEU7UW6W7Rw7nIKFemASeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X9BhvZTE; arc=none smtp.client-ip=209.85.208.52
+	 MIME-Version; b=i+RJHTcjl+yHhyga65k/pKRtnMLSUyteQ45bbdCCCNJc6eNwo1JE3dmkSS+hEmySZMqN6vx+sd/HnpVdzdrk/bPclVp0ukFI5mwSj8Wfsk7m3H7GRubh26mNEbSvh35DnE5L8/ZyS1EYyb6f7k5+cSaO4KckL/o2mlZ7Y6qpAKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DG1oegXx; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-64320b9bb4bso1702787a12.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 04:43:06 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-64074f01a6eso11732520a12.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 04:43:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764160985; x=1764765785; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1764160986; x=1764765786; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=R/PKuQqJhmcmf0FdDQDCr8/x7Yh0ZaImvK0r2Y0Qm/o=;
-        b=X9BhvZTEIGLDZqdiOSObcXENx5IP+UOxdOpXjlRsB3Mm5XM+GESmFrf830xBkS7j9B
-         EwXWz0LTQt+k/bAY9D2dsfW62/YOiwtE2LH8yGu+ycdtFvIVc04AzqQzCl/QsW5Gt7k7
-         VV8XrEnXYQha/Lgg+9d6cbYHVLTxuhoBUpN3xYqBc5DZDg8xYVWn+rizlVZ37qus50B3
-         Wh6cf4wLF1Ib0S1+4832HljjrCMcR/djzDpNU13mTPKZMUJfMUmsiFXuQO0bVBe9O4dO
-         dvBsAUF4H0/mKwbais2f3Ce4ao722b2cxJlJySNCqJ9M3PN5lgcXL/Tj8hXRtzA0mIsS
-         c3ow==
+        bh=QEUrAaAcrC3D3wCSVpJgszh6h9a2J9Zuh9+Hw2rSnjA=;
+        b=DG1oegXx2WDLMDVF8IiJbWLvxvlfm/Do+DjHf3uMnRHHrBK7AqGL8CtJr5sqFLKKuH
+         jlY/4zyFHNeIfR5pCzB4hCNJxVsM7WczU1xeLzefe0DivynN6Hw4BdRw0Xu0+YyR9hrb
+         +kKuvCxv95b9DmKIfVd6ayahs/gYGybm38GgPhAbR1HYxEyHRNya1guPVBJXABaG0Ot3
+         qhEYEsA3DZlMR9i0QEKV/V8ExIsePB76XPkVRW6laqGUUxFVCqjifOHcQQTeNPiV6y3h
+         BOvQbzv6HzemI+3t+vOW/VD01y8HFcNC7yncZWL1DgHBFatK1dTUqFC2NC2WH291HGgv
+         ib9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764160985; x=1764765785;
+        d=1e100.net; s=20230601; t=1764160986; x=1764765786;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=R/PKuQqJhmcmf0FdDQDCr8/x7Yh0ZaImvK0r2Y0Qm/o=;
-        b=ckUa+xTl2TQY6e0Fe3ke4uzrThhiNolqaT1QHNUu5JMBlMV3uQnw0ROW4lNeJDKRiB
-         N13gZuqn2JVmUNJrqSOldShQP55A7rqCDblC6KOafpLvHn8zPwSDNDEPpFho42yQP2hf
-         quSOYozGCaiP2OBmlneKyErykEAvgkV4u/pcHPViZ6zJKE2nZxhCib+LYg86J84G/Rip
-         OTb9iyeke57aJadPq6g+WVwo6JkHOoVcbJeu9hc+qOmT7v1HQKOqh5UtVFH8KfssdnRp
-         mzCL8xKkkJmYBvbGuvIsDOsQPfIIzzktAU62qB41zq3nwjHLHSa6iSRDBFsalQbQI2q0
-         gqpw==
-X-Gm-Message-State: AOJu0YznisugJwLF3gKjfZf0iqMwjvGlpH+JBxUDyhkgIH1vixN6Mp7U
-	iSSXLebmU0QRX0xfLFZmsRJIsyMGMYUaAfA1/VbfJaJfNQttrE6L4fZM
-X-Gm-Gg: ASbGnct35uKg1Wcngi1YWF0JNiFhXZMc5van3eT0BlACoM8BFD6X/GJs47bU6a9yBFI
-	ptJqACPGS16EvSdo0mIa6PATGu8fuezm5T9sWOouecG2pFL9iJVHTHw25Bx+Wzhu2cmEoBzQo95
-	sZB+aw3zcY9TJEaONhD8eCXulERl9egHsnjuoTnw1/xI7Fl5n+Q9nC/KudJGBnC7UND3xl9El+U
-	tFbWeeCpe+JaQTN8FqLC4OpchWU/25bTHEVjDCrLhHgI0a6dqL6JtLvN98B8+vrmFThJr1+DZBv
-	aEAhqGaLExDDA5FJ4aY1/2KnwpZYadrhsiw8YpzZqAVFhk89DbkgOh/027GjJgGOz+LGUAnvkyv
-	xTTKCplFmcVy8whbtOgYIAeBRZcC3LbObHFsB1U5ui4Dbfz7etZBo/x6otMkLDOxfbOPLlxSUpK
-	ar3XwL4D6DEXWYzddTn34dXbBb1MVbGsxAHFG7
-X-Google-Smtp-Source: AGHT+IE/BZ0ev8jczVI6ig5ZypcAIr/hIiYi2tdzGsQKsQ4dJMO7/o1MUW3qqxHJXJn1yXPjYPs2Yg==
-X-Received: by 2002:a05:6402:4499:b0:643:130b:c615 with SMTP id 4fb4d7f45d1cf-64539639594mr18794499a12.6.1764160984613;
-        Wed, 26 Nov 2025 04:43:04 -0800 (PST)
+        bh=QEUrAaAcrC3D3wCSVpJgszh6h9a2J9Zuh9+Hw2rSnjA=;
+        b=qwE3XnQWf++D2RPkVwbBGte4YftShbf1DQ2FehQ+N86abP6dELwJy18RHT3qxb+Hon
+         79tLxvXZ47k1OOTZ7Rseli1n2d3irWj1gJ4PXV3MC7DE2rYc0MXCtCibuxG/uyLu2lRx
+         /4gW7EcyL4jgB7w1W1AZDRnyEyhfHvL444JcxhQXxk1tU9/l1ZxC4q6+GqjLCDGb1ych
+         XELmtXB0A8G8EBNJmtVR/DmSO++IVJffrdJvgEo+TPl0ukRqXtuKoEPZuikX8ijosrFV
+         5XnS3v5GYohMgQjebs5SPpf88ok/S42V2/LXbM0BNbr47BHYMvK9OKtLo/qlytqSdBxF
+         4xZQ==
+X-Gm-Message-State: AOJu0YyGTP69TSL66oapuFOgBPjmBYsPK2bP4OoMrLy9f8mp4kKh0ixZ
+	WJocqdeSISGNdn2lQzY+OngmnQjNANqeyRiUEkQ1C1oa9JiHe3W1ow4t
+X-Gm-Gg: ASbGncumYakJc8tBcZsBgzwd6kdJ2/JUbfnvpqK0VnyRXUvtAko1f5cYNEoU/JBUCx/
+	bNiCfWFRWCRXbPUjphJNGQbF4wqlibq+Le1LlOp6jfQ4N+miSfoZzhHW+Ju0yNWeMnpYVMyFCfP
+	pHdDbwcU26UkEFxyFMTe26RSO+CGJuo22wyEkBwAOgKMFZYgTPIOlURo5l/XI6160SW6jkKa74D
+	RtFmOPp5aasNWiYA6jd2epeajC7pyAwlfD7Egs+r4BpORPanD8jD4hyQBS8fXfAmo4iL0GRh6qk
+	N++EMev2MFroryiX7TiKKvbtJ4thShSlbL69smJAAesc8Pa7SIyLnTYt7ocFeCBNZ7AVOi7PBzl
+	NayekgaEdIUoszUFb+KrdN/Yil5mt14S6otvirg76i/9Eg9OZipIEPlv4ZM+lLoTTy+ceMd6pKX
+	TLkMz8WPE3PaLMXpyMaa9rFkuBYzNO17Ky/yZq
+X-Google-Smtp-Source: AGHT+IGKLPw8td8LrQ0ou6eIh/AvAY0vkGQJXd4hWo3MO0W0vfngL8sRsTQuh8232uCr75jYDD5EoQ==
+X-Received: by 2002:a05:6402:510a:b0:639:d9f4:165e with SMTP id 4fb4d7f45d1cf-64555d057e6mr16359675a12.29.1764160986331;
+        Wed, 26 Nov 2025 04:43:06 -0800 (PST)
 Received: from SMW024614.wbi.nxp.com ([128.77.115.157])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64536459d92sm17654824a12.31.2025.11.26.04.43.03
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64536459d92sm17654824a12.31.2025.11.26.04.43.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Nov 2025 04:43:04 -0800 (PST)
+        Wed, 26 Nov 2025 04:43:06 -0800 (PST)
 From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
 To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
@@ -87,9 +87,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v6 2/5] reset: imx8mp-audiomix: Switch to using regmap API
-Date: Wed, 26 Nov 2025 04:42:15 -0800
-Message-ID: <20251126124218.803-3-laurentiumihalcea111@gmail.com>
+Subject: [PATCH v6 3/5] reset: imx8mp-audiomix: Extend the driver usage
+Date: Wed, 26 Nov 2025 04:42:16 -0800
+Message-ID: <20251126124218.803-4-laurentiumihalcea111@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251126124218.803-1-laurentiumihalcea111@gmail.com>
 References: <20251126124218.803-1-laurentiumihalcea111@gmail.com>
@@ -103,174 +103,88 @@ Content-Transfer-Encoding: 8bit
 
 From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-Switch to using the regmap API to allow performing register operations
-under the same lock. This is needed for cases such as i.MX8ULP's SIM LPAV
-where clock gating, reset control and MUX-ing is performed via the same
-register (i.e. SYSCTRL0) and different subsystem APIs.
+Switch to per-device reset map to allow reusing the driver for other NXP
+block control IPs.
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 Reviewed-by: Frank Li <Frank.Li@nxp.com>
 Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 ---
- drivers/reset/reset-imx8mp-audiomix.c | 92 +++++++++++++++++----------
- 1 file changed, 57 insertions(+), 35 deletions(-)
+ drivers/reset/reset-imx8mp-audiomix.c | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-imx8mp-audiomix.c
-index acfa92b15329..f6152c0cc5ff 100644
+index f6152c0cc5ff..00eee528a2d2 100644
 --- a/drivers/reset/reset-imx8mp-audiomix.c
 +++ b/drivers/reset/reset-imx8mp-audiomix.c
-@@ -12,6 +12,7 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
-+#include <linux/regmap.h>
- #include <linux/reset-controller.h>
+@@ -24,7 +24,12 @@ struct imx8mp_reset_map {
+ 	bool active_low;
+ };
  
- #define IMX8MP_AUDIOMIX_EARC_RESET_OFFSET	0x200
-@@ -43,8 +44,7 @@ static const struct imx8mp_reset_map reset_map[] = {
+-static const struct imx8mp_reset_map reset_map[] = {
++struct imx8mp_reset_info {
++	const struct imx8mp_reset_map *map;
++	int num_lines;
++};
++
++static const struct imx8mp_reset_map imx8mp_reset_map[] = {
+ 	[IMX8MP_AUDIOMIX_EARC_RESET] = {
+ 		.offset	= IMX8MP_AUDIOMIX_EARC_RESET_OFFSET,
+ 		.mask = BIT(0),
+@@ -42,9 +47,15 @@ static const struct imx8mp_reset_map reset_map[] = {
+ 	},
+ };
  
++static const struct imx8mp_reset_info imx8mp_reset_info = {
++	.map = imx8mp_reset_map,
++	.num_lines = ARRAY_SIZE(imx8mp_reset_map),
++};
++
  struct imx8mp_audiomix_reset {
  	struct reset_controller_dev rcdev;
--	spinlock_t lock; /* protect register read-modify-write cycle */
--	void __iomem *base;
-+	struct regmap *regmap;
+ 	struct regmap *regmap;
++	const struct imx8mp_reset_map *map;
  };
  
  static struct imx8mp_audiomix_reset *to_imx8mp_audiomix_reset(struct reset_controller_dev *rcdev)
-@@ -56,26 +56,14 @@ static int imx8mp_audiomix_update(struct reset_controller_dev *rcdev,
+@@ -56,6 +67,7 @@ static int imx8mp_audiomix_update(struct reset_controller_dev *rcdev,
  				  unsigned long id, bool assert)
  {
  	struct imx8mp_audiomix_reset *priv = to_imx8mp_audiomix_reset(rcdev);
--	void __iomem *reg_addr = priv->base;
--	unsigned int mask, offset, active_low;
--	unsigned long reg, flags;
-+	unsigned int mask, offset, active_low, val;
++	const struct imx8mp_reset_map *reset_map = priv->map;
+ 	unsigned int mask, offset, active_low, val;
  
  	mask = reset_map[id].mask;
- 	offset = reset_map[id].offset;
- 	active_low = reset_map[id].active_low;
-+	val = (active_low ^ assert) ? mask : ~mask;
- 
--	spin_lock_irqsave(&priv->lock, flags);
--
--	reg = readl(reg_addr + offset);
--	if (active_low ^ assert)
--		reg |= mask;
--	else
--		reg &= ~mask;
--	writel(reg, reg_addr + offset);
--
--	spin_unlock_irqrestore(&priv->lock, flags);
--
--	return 0;
-+	return regmap_update_bits(priv->regmap, offset, mask, val);
- }
- 
- static int imx8mp_audiomix_reset_assert(struct reset_controller_dev *rcdev,
-@@ -95,6 +83,52 @@ static const struct reset_control_ops imx8mp_audiomix_reset_ops = {
- 	.deassert = imx8mp_audiomix_reset_deassert,
- };
- 
-+static const struct regmap_config regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
-+
-+/* assumption: registered only if not using parent regmap */
-+static void imx8mp_audiomix_reset_iounmap(void *data)
-+{
-+	void __iomem *base = (void __iomem *)data;
-+
-+	iounmap(base);
-+}
-+
-+static int imx8mp_audiomix_reset_get_regmap(struct imx8mp_audiomix_reset *priv)
-+{
-+	void __iomem *base;
-+	struct device *dev;
-+	int ret;
-+
-+	dev = priv->rcdev.dev;
-+
-+	/* try to use the parent's regmap */
-+	priv->regmap = dev_get_regmap(dev->parent, NULL);
-+	if (priv->regmap)
-+		return 0;
-+
-+	/* ... if that's not possible then initialize the regmap right now */
-+	base = of_iomap(dev->parent->of_node, 0);
-+	if (!base)
-+		return dev_err_probe(dev, -ENOMEM, "failed to iomap address space\n");
-+
-+	ret = devm_add_action_or_reset(dev,
-+				       imx8mp_audiomix_reset_iounmap,
-+				       (void __force *)base);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to register action\n");
-+
-+	priv->regmap = devm_regmap_init_mmio(dev, base, &regmap_config);
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-+				     "failed to initialize regmap\n");
-+
-+	return 0;
-+}
-+
+@@ -132,16 +144,20 @@ static int imx8mp_audiomix_reset_get_regmap(struct imx8mp_audiomix_reset *priv)
  static int imx8mp_audiomix_reset_probe(struct auxiliary_device *adev,
  				       const struct auxiliary_device_id *id)
  {
-@@ -106,36 +140,25 @@ static int imx8mp_audiomix_reset_probe(struct auxiliary_device *adev,
++	const struct imx8mp_reset_info *rinfo;
+ 	struct imx8mp_audiomix_reset *priv;
+ 	struct device *dev = &adev->dev;
+ 	int ret;
+ 
++	rinfo = (void *)id->driver_data;
++
+ 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
  	if (!priv)
  		return -ENOMEM;
  
--	spin_lock_init(&priv->lock);
--
  	priv->rcdev.owner     = THIS_MODULE;
- 	priv->rcdev.nr_resets = ARRAY_SIZE(reset_map);
+-	priv->rcdev.nr_resets = ARRAY_SIZE(reset_map);
++	priv->map             = rinfo->map;
++	priv->rcdev.nr_resets = rinfo->num_lines;
  	priv->rcdev.ops       = &imx8mp_audiomix_reset_ops;
  	priv->rcdev.of_node   = dev->parent->of_node;
  	priv->rcdev.dev	      = dev;
- 	priv->rcdev.of_reset_n_cells = 1;
--	priv->base            = of_iomap(dev->parent->of_node, 0);
--	if (!priv->base)
--		return -ENOMEM;
- 
- 	dev_set_drvdata(dev, priv);
- 
-+	ret = imx8mp_audiomix_reset_get_regmap(priv);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to get regmap\n");
-+
- 	ret = devm_reset_controller_register(dev, &priv->rcdev);
- 	if (ret)
--		goto out_unmap;
-+		return dev_err_probe(dev, ret,
-+				     "failed to register reset controller\n");
- 
- 	return 0;
--
--out_unmap:
--	iounmap(priv->base);
--	return ret;
--}
--
--static void imx8mp_audiomix_reset_remove(struct auxiliary_device *adev)
--{
--	struct imx8mp_audiomix_reset *priv = dev_get_drvdata(&adev->dev);
--
--	iounmap(priv->base);
- }
- 
+@@ -164,6 +180,7 @@ static int imx8mp_audiomix_reset_probe(struct auxiliary_device *adev,
  static const struct auxiliary_device_id imx8mp_audiomix_reset_ids[] = {
-@@ -148,7 +171,6 @@ MODULE_DEVICE_TABLE(auxiliary, imx8mp_audiomix_reset_ids);
- 
- static struct auxiliary_driver imx8mp_audiomix_reset_driver = {
- 	.probe		= imx8mp_audiomix_reset_probe,
--	.remove		= imx8mp_audiomix_reset_remove,
- 	.id_table	= imx8mp_audiomix_reset_ids,
+ 	{
+ 		.name = "clk_imx8mp_audiomix.reset",
++		.driver_data = (kernel_ulong_t)&imx8mp_reset_info,
+ 	},
+ 	{ }
  };
- 
 -- 
 2.43.0
 
