@@ -1,232 +1,249 @@
-Return-Path: <devicetree+bounces-242549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B052C8BB0F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:48:41 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA29C8BB45
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 20:51:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45E5F3A6C7A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 19:43:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 032FD359FE8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Nov 2025 19:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC12310782;
-	Wed, 26 Nov 2025 19:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE94343D91;
+	Wed, 26 Nov 2025 19:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="IJZUgyCa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BfbUcXHy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012002.outbound.protection.outlook.com [52.101.66.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3069311969;
-	Wed, 26 Nov 2025 19:43:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764186191; cv=fail; b=naOeQvpm6oVMvszjsTrdyIOOLaNb6qfpBBQcSYuQmX6ndgYv0Xq/stI5olGMJTdL+hMam2zyHuwPhp5Ij4cv4tggSYVKL9qG5mljQfprKDDVTcLZIiY9ArMMSIoKUHfSJs03SFnk6bOOgIHJtbDDlNviH6JQdA49lVxMRiMdhiM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764186191; c=relaxed/simple;
-	bh=ZEdDLbStlNu+RjMbcnmy8asFY6t7UOr4H/SwDxjJjLg=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=nw72hzl9u/8nazYXzmNvHB1h2CzoBM8OKopXIlFM8GEO4T1IBS06R32MOXj9EYa2S+2L02nnceOOYoLRVycVKhTXmXdwC3kGci7vWhB5OTuMxI6J8gYE+zoSlFftM6c8GKvcsqw+G5jeUT1S/qNvU9faqqeLfiTgit1ha8OYEh8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=IJZUgyCa; arc=fail smtp.client-ip=52.101.66.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZMklfARzdoUsMMgpxLyT3ak4nvyNKF0QzjexUExef6u/Q+0HYoOpATNjRygMkivZAmVx/bCAZT11CZWn1eM+fKsyUi4cRx8oF5UDd5lN/ZslVTE2KDtb5vG0lqTr1Am5IlWBMyplWm9h6oVJgZ4BPN3tAjF0MzKghB2FxWIivK+Hb9x/DL/mNCQVw/ENj5ZdHzCy8WwWjctdtrTOuP1fdn7pni0AIrsF8RNzqGuDqmHpoI7e0QK9eIl2HB5VVJqNU3L+zA4bZikrM7bFvsksbh/rMbVgGoZbxu2TtSybwnQXs5vDeUp0zIj0gzctNrswc0eFwAqnweWmUu4PNeCtzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WaG+j5sxiF4efnKmizh9hodyhROzHgwI2tCbvUmkeUo=;
- b=yCrHKv0OuZNKC7tH6fpSC2Vqw3grusLVSwtn3JbIvsiSaZ6h8IMuflx4zAicFf78mF2JhNEYCGhGYbtuGjBo7FI8iZq1kODvxWVv38wjcVRHphLusY+hBXnlzlC/efxfukIo2HrGTzkxpxpjCJj5qoYikUlYY1QQnRbW5qxktV/BABwR3t4MEKCiamicdWXqhkQ24C3M5cx7eIC8EvD8Pc1JpzkwEEdSfGVCtc7lMgx/ShIiBQWcUMvnbjPNeNlwEHbZhoGt8ebIWM9IeVlaYKRk0YinQDcG5t9GgwnQa3avWiDgFC9Yee6lQ99nGM0SSSGRV93FSPHGQtoI0QED2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WaG+j5sxiF4efnKmizh9hodyhROzHgwI2tCbvUmkeUo=;
- b=IJZUgyCabC6rgprDpR2GwmqS+YUxvaCMOpzzA0PIhzVM05qW7dvv1FNd8M9dcC3qlbMWe8/+Vi4Eu0bagLOnjaUI7bQCrCeUuuLYKlRAGw+/d9CWOlrUaZZ/iROut0atuAg8B6/ATC7YWds8l0WIMvsFk9qJxy9LSAGHJY+eKbZbYvshxm6Dyjba8qV7OAWAEK6VA0pvmPwiy5e8Xi8QZxZkUY0oZKwqBZTyCX97s30++JEi6sxHPL2PrN0B15BZvV+HzEVQqG1fmqiybtfc5PHDWLtowmallijlQWSAxeudEetjWCNrsk1XA2q/9xD++pryhh0Evk3upMH/HArpRw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU2PR04MB8582.eurprd04.prod.outlook.com (2603:10a6:10:2d9::24)
- by DB8PR04MB6779.eurprd04.prod.outlook.com (2603:10a6:10:11b::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.13; Wed, 26 Nov
- 2025 19:43:05 +0000
-Received: from DU2PR04MB8582.eurprd04.prod.outlook.com
- ([fe80::eab4:5469:3643:fa12]) by DU2PR04MB8582.eurprd04.prod.outlook.com
- ([fe80::eab4:5469:3643:fa12%6]) with mapi id 15.20.9366.009; Wed, 26 Nov 2025
- 19:43:05 +0000
-Message-ID: <f38396c7-0605-4876-9ea6-0a179d6577c7@oss.nxp.com>
-Date: Wed, 26 Nov 2025 13:42:57 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4 v5] MAINTAINERS: Add MAINTAINER for NXP S32G PCIe
- driver
-Content-Language: en-GB
-To: Vincent Guittot <vincent.guittot@linaro.org>, chester62515@gmail.com,
- mbrugger@suse.com, s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com,
- ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, Frank.li@nxp.com,
- linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, ciprianmarian.costea@oss.nxp.com
-Cc: cassel@kernel.org
-References: <20251118160238.26265-1-vincent.guittot@linaro.org>
- <20251118160238.26265-5-vincent.guittot@linaro.org>
-From: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
-In-Reply-To: <20251118160238.26265-5-vincent.guittot@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PH7P222CA0030.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:510:33a::13) To DU2PR04MB8582.eurprd04.prod.outlook.com
- (2603:10a6:10:2d9::24)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DFBA343D74
+	for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 19:50:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764186633; cv=none; b=OmJlF9kE8EejBUA2aBxLu9Hi1FT5n0ZmR3z6O+hKJgP8vX3jnnb72dRldohdMmFnxnxgREGc4qXfyDlpKT9SIIa1mhRgUUbUKb/APZBGZKkOQ1/M2yKXShqPbIn2OJPZcR8j1IhrZw673HJ79wBRTWFi43VVKphuKa1Sj9NrPdA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764186633; c=relaxed/simple;
+	bh=mYZu6q1mKH3Ia0eJL4ADk5m1+90RiD40dY+YcRXOoo0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=f6Yt3ecQgTnyqdMbesGBtCUC92NvNrMgbyTT8JC/GiyPmx6c0PNW2eOZyovugYU/Sf2MRPiCueSAEqKUQvrzeAUzZLg9msxz2H6EFtMxL9kYfds3RTVWB1e/naCq54KabyWH8MwjPAJESzvoGahc/T/KlD4GSLAOEreq+g2w4fA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BfbUcXHy; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-78a76afeff6so1649347b3.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 11:50:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764186629; x=1764791429; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=V6WTVHEYOh73wJPybBHZpQae4Q31hwe5BpFUWCvD62E=;
+        b=BfbUcXHyTI828ui3+0VhbNCUAJZT1IRcrLsTL65RzCPcGxbfTPh72V4LdJY8YHqdiC
+         aHqEqSWtYrXaNiZPn1xuyuFJmmnoo3iRancIxdjd3VDboE9ELNWJb6EhF50iORfVXdzu
+         a3zNaiprlO/HJ7+Odx+ya7s8S6oIzGY8Lu44c5J9BQCBrLlYgn18XLbNkf+eB5qseYcP
+         NCot5nh96Chj8P+X5WVfKJ6qfrxRumgCRBceJHxajYy4rMXpyDDcQ+/2d2frkQysejqT
+         dQiFv2Zh4+Q94rAZlTKFonSKmcctLZHgGsRyN79Z0iwj68UJ5R59Q41cXV/hpu1OLGm8
+         Leog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764186629; x=1764791429;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=V6WTVHEYOh73wJPybBHZpQae4Q31hwe5BpFUWCvD62E=;
+        b=miCRyqE4NNsc34bydv5T8p9Y5WWBKm1w0wmJX1O8PYPzIv3gzxUAznukux2nRRH7Tm
+         R216t3aS5bCP+rdWb9GkhzwTlH2QCqwXPMwwXGBigtTRWcH/uiN2xgPM5e3BgS069k8X
+         yeqlUlxfOul5qWLqhYmfGAM+u51PQp/EIYE+v2BEPiOtiF8f2Q+ldi1ROML7OllcVuXU
+         PmiKfgVXnfu5megr9Wc3qAnpIYGp2SJ46aXY4fAgCzvcHW3Xpn9TlpbWPkWVwvIi7ZRr
+         A96rXJoMEEYgWJbbxm91lqzKGcPrmDqxYCf8FzJ/h3MtXiCtCCwfXiOZ8X2wbxhbJ0AL
+         iX2w==
+X-Forwarded-Encrypted: i=1; AJvYcCVcfNHD+0Df5N5BMou1IdKU+A0+5c/CO2femoez2irV1GFVBsgitRADgP8V08VxcdS3MsHADsqirjwo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdTO8zmosO3gwGHKEXmLh+Utz/29OKqwfoxBUR2FUrG/6tHFUA
+	XVYS5aumMNYKa6byX0+n+tEF0bsJNElmrRqmno8TCEa1XwhSKhMqSXLBwUWyGq7dHTf8u90N5Ny
+	kgVieOyjwicMQ4UNO6tkRitcLHSuiNCmmoeIJ
+X-Gm-Gg: ASbGncsYFX6+CBK0VE+AcAV4YVaNz+hyvwBh+IQJtXCMsytUGGYQJSYQeuz0TbZrEq8
+	QqlVyo3+pl1MpAgJ1Vo/KQXx3vodTq8t0csylCUaZzV1YQiAONdm4T007Thl7aJUqtdBwIpgDoc
+	NlXW9HNRYj3WGkjZRqKkalLs2NAp0BpVGH+9JikWAe7QoZ8QO7tmFufbYa33/V5q4CThvaZMUIm
+	0US7bwbNN6tueCLN+oA03+VLaTvHMnQsReeGyHpM2oNt+m/pr4daFggRA4vDz7McOd/6lQ=
+X-Google-Smtp-Source: AGHT+IHvxgYlFUja/x9PLOxZsctMcQB9MffkBVjkSSF/6rC2j41Qa8cHUSRaN3PHNh5ycJnVRz/yfDORrgWMoF7/+WI=
+X-Received: by 2002:a05:690c:6a13:b0:78a:6e1d:cc0f with SMTP id
+ 00721157ae682-78a8b572c26mr160683627b3.66.1764186628990; Wed, 26 Nov 2025
+ 11:50:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8582:EE_|DB8PR04MB6779:EE_
-X-MS-Office365-Filtering-Correlation-Id: d85c4944-a43f-4b04-51ea-08de2d24043a
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|376014|7416014|1800799024|7053199007|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?QUZWMk0zaU1uWlppaG9EYmw5N2N0Q09oWVBRT3dveUxyMVlaekppMU1NYXBq?=
- =?utf-8?B?MThDUS9sQ3JWRUJNUjU1NlRTYStJSmZ4dUdlS0xTTEpDa3F5MEcyR1k4RmVI?=
- =?utf-8?B?Zlh1TGNlQzVKQUhHRzlxV2Z3ZGNkSGsycUJxa0t5TzFSd2s0NzBhMnhzbjhW?=
- =?utf-8?B?UzhlTnpiVURXY0RDNnp6WGtUampFT1RSTmhiVUFyNU9MWWxpSk16NGx4cVAx?=
- =?utf-8?B?S29NbkYrNWRSK0RycEdrQjJyekdmcFNwTWJ3T0FCbnA0Lyt5aXZEWUpmc3Jo?=
- =?utf-8?B?dDVxQ3VLRlVpM1hDZ1FZNFphMVpCdHBqMEg1MmQ3ZCtBWnZ6UzQ4dVpQNlpj?=
- =?utf-8?B?am00TVNvdDUwWkpyS0JtYXh3a1ZacW9HS0lUY0lnL1dqcldEZElnM2ZDSU9E?=
- =?utf-8?B?dTNWWmkweU5aYjExMU5SLzlOUklGa2hXbUQ2NnhUVmNZdmRjdEZvenJuLzZE?=
- =?utf-8?B?OERJM0NlTG9lU0I3dkM1VE1uN2pPRHllelhNQU1VN3VaNGQ5UVdJNDRobUpD?=
- =?utf-8?B?cW1ldXYrd2RsSHJCUTlBNVVOcXY0aG81MTRJK1F0bXFKTS9YTTR1VzJadjRm?=
- =?utf-8?B?anV0ejdQTnZWeDlUUkZhQVAvdVJSVlkrL3JZM1FqSzBPTFczenIrQXZxdW5n?=
- =?utf-8?B?dUprTUZSK3NZWUt6SGZHVHQxYzlrengvMkM1aFgySVZpOVNtRkpDdVQvL2NL?=
- =?utf-8?B?Wit1SGZRTE1VNDVPY3UrQjFRRG5kOFpUMTlBU0FIRFU5UXhYVUZlNnBYejZr?=
- =?utf-8?B?MzlwM0QvNi9QQXVHUUNCMWcySWdpMXZvUTcrbENFNFFDUWhTZ3oxeEFQSWtD?=
- =?utf-8?B?dTE0U25FWkxRUWdKWmlqMWIzbm9xR2N3bEw1cEtNMGdMU1R1SUdqMjR1OURT?=
- =?utf-8?B?T3prSGFhcjd3bHNZdVdIaWZYSFIyZ1BiZzdPdDZsQVptRjJDTGJQNjBxY014?=
- =?utf-8?B?WERpRjhSM2cxYjNrejMzTEFkTGt4WVRHajBIdkpVTnBMNUNmdjd2cWtQVTJN?=
- =?utf-8?B?TE4vbU9UcU9EWXBhaVdSUzBybU9QMjI4ZzVPTXFsR0V1NnRuZXhxdU9LWkJk?=
- =?utf-8?B?cWQreFMzSU9QcmE5c2hKdUFETHRZNGhNa3pGMjM1bGlpYkxTL1J6M3B4aXQ1?=
- =?utf-8?B?TnJDa0dKOVpvZitldjdGbGIrVU5mT21yRVd1dnFGNGdCMDhwMUtCYUhOU3lJ?=
- =?utf-8?B?V2ZhaTRiaXRhVW1DclVkOVhQTjJjZ3MveVpRKzB0WmRpTjRwRXN4MmUydG14?=
- =?utf-8?B?TGppK0c4d2M3cnRHWnZoenJUK1FSU01hUzFoaDZ3UzM3SjdFcDBNbk5DQkZq?=
- =?utf-8?B?WnpvWUpOaUpzaEV4SW9LOFdzR0FNNEtYNTlDVlh2MHBIRHZoMDdpWFJ4Nlp4?=
- =?utf-8?B?MEpPV3ZxOGxjRmNVKzY3OHhQNjNFMVdJaXNNSjNxQmpuM1haZHZJYnFlZU9p?=
- =?utf-8?B?TFFGVEJ4cDhjckExaFRhVHNIejNIazdBUzFHUEgvcVdWd1VEVVFUa0lJSHVR?=
- =?utf-8?B?RkxsQVZKeVlFSzV3V0RTSk5uTEQ3QmlXditkTWVSUWV0ekRRSFpPZDI1REtZ?=
- =?utf-8?B?WVlCOXNNWDRzTVpRNlZQdlVFK2pVUG9CbndyNWErZlB0RXVnaEswZitwL2JW?=
- =?utf-8?B?VWhJNkVQSlZVS1R5SGUrUlEwUTM5bmJWTFZZTGdpSkR4eHRBRThYRG51dGtK?=
- =?utf-8?B?OHJoTzF6VklRS2d4d2JHbFZBcmhOZEVzZy9SZXgwYkFxMmE2RGlMVHFETkM3?=
- =?utf-8?B?dTFpemcwVTFodnEyaWpTaFQ4bDJRY0xXcjJjSzQwN3dTTFVsamR5UndicXdl?=
- =?utf-8?B?MUVvalZZK0dxcEhlQ1d0YUl1ZTgzS280T0ZVMWV1OVV6MUIydWUzNFFtZzJt?=
- =?utf-8?B?Y0IvWnUyd2RuZnNiTHBteW4zb0ovUFFxcW1FNDMwZTBaYWd3S0xiOER5cE9x?=
- =?utf-8?B?emlmMGJLd2xrWjhlOFhabWQ4YnZqcHhVRkJhTWRmR2U4bzlsbUVPVElWTzM1?=
- =?utf-8?Q?yT1CnzuViv5/Egm5GpS03UoI3LXoU8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8582.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(376014)(7416014)(1800799024)(7053199007)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OU5LeE5TaEhwZVBucnJKTjFGSkJSNVR2QjNyejk2d0dtRGgydE5uSEVxU0hV?=
- =?utf-8?B?THVEa3pMMjRwUitEOHBiREFPd0dzOTNXaEZtbzBrcVN5NUxlMTEreTV2ZTcx?=
- =?utf-8?B?cDZISGtuSTFtMStwSnJLby9KZWxaTW1jOEVsd0hkamduZ2FOMXZJcmVnenBR?=
- =?utf-8?B?aG1JREVVZXJsSjF0N2VIOElSVTZkbklIbUQzaUE1Ny84NnYvTmdVNjhxWDFo?=
- =?utf-8?B?enRGUVFhNFVFM09YOXBBNVErWnBCK01zUmhHWGdhWXZKR3hzbC9xdlFpcVJZ?=
- =?utf-8?B?ZzZjMnFEeWw3UXd2VGV5OEZlb2hLSEpJQzFKYWx5Yko3SnlwK2VCeUVyTDA4?=
- =?utf-8?B?VjZQb2FYNmY1RmloQlZBcmxld1RRaC9iZmVLTUNleXRGMGRKaHFXTEtwZ0dt?=
- =?utf-8?B?a1llVUUzN25EemNKa1N6bWM2dDA4THZTdFNoUUZHdUV0T0NwOFhVUmgva2tC?=
- =?utf-8?B?YzNNK2phN1NxdXg2bVpiVU9GWjkwZkROY1lvUWFEYUVZKzhiMXZWVUFOVFRh?=
- =?utf-8?B?K3JIU2lBUUN4OGdTUzVzOFZqM1FRWnZmL1ViK3FxbXZZNzRqS255eWJKMVpS?=
- =?utf-8?B?bkROSXk3Yzd2S2JjNTZXakE2R3pBZVRpZU9BRGtCNGdPM0x5aGJNc0svaWN5?=
- =?utf-8?B?Nk91ZEZ2Skl5OVJuV2lTOFh5Rml6T01YSnVqVERxb2txS3RoSGhrNTNJZERp?=
- =?utf-8?B?Z3ppYjlHQStNZUNKTThSb2F4aWdwWjRabWdoMU1NYm5xTG5NeWN0NHhUN2Qw?=
- =?utf-8?B?SnN0a1RmcytUUEcycUdNbmVpN25ieThqckF2ZGdlSUJQTVZmWGlIVE9LaHdy?=
- =?utf-8?B?aVV4NFlnNmRHQWZ5bUtJWnc2b3pmVWltSDloZ1JicFl3WW5WKy9kY1pwZm93?=
- =?utf-8?B?dWc0aVJQMzFNSFR4YWVuWTdydWtzbjdZVW55cm9HYk1XbHVHYVpybW5CQjZB?=
- =?utf-8?B?cHh1SVlvMTdRa1AyeHNmWUgybTM0LzZEZ0VSM3VFOW5QNWV3K1hZNmtmbVJM?=
- =?utf-8?B?S0JCWUNPNVcxMmVocy8zYUJQeHZlQ0hlL2pVNkU1YmR3UGRVY09Nd1VzdGRh?=
- =?utf-8?B?OXY1S3JWejZ6MXhMcmM5WGx1bVllOEhtOWpNdVVITFNLR3JZZjgrWmx0czln?=
- =?utf-8?B?M2I1NE9kWG90NWJoK3QrVERjSnRIaWt1b3ZPMTR2ZTVWb3VNYlVMdUhuMkJt?=
- =?utf-8?B?T01RNWthRVNBMWdOSStuOFJjYXMwaHFwTS9ySzVYUjVaU1JQS1VWdTZnVVRM?=
- =?utf-8?B?MTVNalRaTlJaY3ZhNWxKbU1MVkFqbm95b3RUVTd3eEZNQ1Fyd1hvVVN0VHFp?=
- =?utf-8?B?czlGUkx3ZlF0bG9adWIrbFJ6a01ZdDdLN2hPYmRNS0swNmxGWWtDcSt3c1E3?=
- =?utf-8?B?KzV0UXVzZXlzOXNqWjZvMExmUlM5ZEo5WFI2OEYzWkJ3OGp0MERvQ0VwNlhT?=
- =?utf-8?B?bERuNW1kTFVmRklBZnFNVXlIcDVsNmlMYmJkNXVCL1RDODMwSDJEUVJDVlov?=
- =?utf-8?B?ZXNkclM2Wm51V3AzU3lGdTRmRVpQWnVWSU9QNkJWYTI0TlNKb2U3dXYwb04v?=
- =?utf-8?B?TkNjMDdRVjJLUEQ5U2FwbkQ5OWNqL1hac0ROYVF6VStabXhzNHQ4WFRHN0dF?=
- =?utf-8?B?b1prb2ZiQ2JEWFhQTzZUWTRVRGVxQTIxbmJZSWg2QzZCUVZhOHZuK3U3ZWFq?=
- =?utf-8?B?TjhBbWZUWXk1SGVSTUNYcmdla0Q5TjNEVEIzaG1qaWd5VUxQWUJ2ZlplcTVS?=
- =?utf-8?B?Nks5YlQwWUYrVWkzQ3Y2UWtlKzk4S0EzUmkwem1teW5LME5oaldwekFFMkpH?=
- =?utf-8?B?bjN3bytqWXBnTGwvY0p0bFRVdVRweUhsTXdJeUdobGVyNFlyZXgxMHM5Y1VM?=
- =?utf-8?B?NWorNjNvY2Q2S2czVzZRS1cyR1JqRkErbDdPL0p3ZDBVdkR2VTA2cFJZMFYx?=
- =?utf-8?B?dlp3WXlBS1VYV3ZwbWhSUFBiemE2MFVJSklsMDBIWWxvckwyQ1ZvbW50a01l?=
- =?utf-8?B?ZC9JdTY0Y0NtOU5pYUx3WmtabmE5cUtaTTcwQ0tHcTlVVkpSZmtyb0diSEYz?=
- =?utf-8?B?ckdCSHlTa3A4bkVYZlFuOGpjZ2FIeXFBODNwQmlHSHpOcHlUOUFzeWVVcndL?=
- =?utf-8?B?UFVyU0NGNTFyK2I4QkdWak14Qk1ENzFNb2g5UlBTU1JTMjl2ejRJMjMzak5y?=
- =?utf-8?B?Z0E9PQ==?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d85c4944-a43f-4b04-51ea-08de2d24043a
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8582.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2025 19:43:04.9694
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ImD4EYAbZ2X2WHVAko9TcgGVfQaO8gYFdkDaBFZmVQjIGpQhWXBLhw3Gd4p4HUFu4vqqLN4F4EoWbcO0gdq5CzFuvN/JDfTVJIpTxwHwxsI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6779
+References: <20250721173741.6369-1-bruno.thomsen@gmail.com>
+ <91f764ab-bec1-4791-b01b-3ba0803ce8f8@pengutronix.de> <CAH+2xPAEAfJW+yy-45Y8EpOWb-8vvaNf27GXe1Ch0Xj8ZuLZHA@mail.gmail.com>
+ <6926f5eb.050a0220.2c99cd.7373SMTPIN_ADDED_MISSING@mx.google.com>
+In-Reply-To: <6926f5eb.050a0220.2c99cd.7373SMTPIN_ADDED_MISSING@mx.google.com>
+From: Bruno Thomsen <bruno.thomsen@gmail.com>
+Date: Wed, 26 Nov 2025 20:50:12 +0100
+X-Gm-Features: AWmQ_ble4aghP8TqURUE2X7dadmdcjpcDVwGSTOorI3PTVRp-HDsssWh3NAVXio
+Message-ID: <CAH+2xPDHnG4+t1qt1OCh5JpnAJjLPx8X4qx+H0Rq3urgyBFtpg@mail.gmail.com>
+Subject: Re: DT compatibility break for am335x (Was: Re: [PATCH] ARM: dts:
+ am33xx-l4: fix UART compatible)
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
+	Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"kernel@pengutronix.de" <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/18/2025 10:02 AM, Vincent Guittot wrote:
-> Add a new entry for S32G PCIe driver.
-> 
-> Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  MAINTAINERS | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e64b94e6b5a9..bec5d5792a5f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3137,6 +3137,15 @@ F:	arch/arm64/boot/dts/freescale/s32g*.dts*
->  F:	drivers/pinctrl/nxp/
->  F:	drivers/rtc/rtc-s32g.c
->  
-> +ARM/NXP S32G PCIE CONTROLLER DRIVER
-> +M:	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
-> +R:	NXP S32 Linux Team <s32@nxp.com>
-> +L:	imx@lists.linux.dev
-> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-> +F:	drivers/pci/controller/dwc/pcie-nxp-s32g*
+Hi Ahmad,
 
-Hi Vincent,
+Den ons. 26. nov. 2025 kl. 13.43 skrev Ahmad Fatoum <a.fatoum@pengutronix.de>:
+>
+> Hello Bruno,
+>
+> On 11/11/25 4:15 PM, Bruno Thomsen wrote:
+> > Hi Ahmad,
+> >
+> > Den fre. 7. nov. 2025 kl. 19.47 skrev Ahmad Fatoum <a.fatoum@pengutronix.de>:
+> >>
+> >> Hello Bruno,
+> >>
+> >> On 21.07.25 19:37, Bruno Thomsen wrote:
+> >>> Fixes the following dtschema check warning:
+> >>>
+> >>> serial@0 (ti,am3352-uart): compatible: 'oneOf' conditional failed, one must be fixed:
+> >>>       ['ti,am3352-uart', 'ti,omap3-uart'] is too long
+> >>>       'ti,am3352-uart' is not one of ['ti,am64-uart', 'ti,j721e-uart']
+> >>>       'ti,am654-uart' was expected
+> >>>       from schema $id: http://devicetree.org/schemas/serial/8250_omap.yaml#
+> >>>
+> >>> Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+> >>
+> >> I tripped over this patch, because it broke the console in barebox after the
+> >> device tree sync with Linux v6.18-rc1, fortunately caught before release.
+> >
+> > Sorry to have caused you issues in barebox, that was not my intention.
+> >
+> >>
+> >> I believe the correct resolution for the DT binding warning would have been
+> >> to extend the compatible list in the binding with ti,omap3-uart if they are
+> >> indeed compatible.
+> >
+> > I can see that I forgot to include the full reason for the change in the commit
+> > message. We have some products based on ti,am33xx soc and the serial
+> > the console had many quirks when using the ti,omap3-uart that we did not
+> > see on other soc families. The console did not like opening vi or htop but
+> > could only handle simple kernel log. Switching to ti,am3352-uart fixed these
+> > issues, so that was why I changed the device trees and not the schema.
+>
+> Couldn't the same result have been achieved by disabling
+> CONFIG_SERIAL_OMAP? The driver match logic should already have preferred
+> the more specific compatible, so the problem is that two drivers are
+> matching against the same compatible, right?
 
-Thank you for proposing me as the maintainer for PCIe on S32G.
+Yes, that would have given the same result. I chose to fix the DT schema warning
+as I'm preparing a few boards (2 existing + 1 new) for upstreaming.
+But looking at
+DT schema check was not pretty for an am335x based DT :)
 
-While I consider myself reasonably experienced with the S32G platform, I
-am definitely not a PCIe expert. Therefore, I would prefer Ciprian
-Marian Costea (<ciprianmarian.costea@oss.nxp.com>) to maintain this
-component, given his expertise in PCIe on S32G.
+/Bruno
 
-> +
->  ARM/NXP S32G/S32R DWMAC ETHERNET DRIVER
->  M:	Jan Petrous <jan.petrous@oss.nxp.com>
->  R:	s32@nxp.com
-
-
--- 
-Regards,
-Ghennadi
+>
+> >> I have submitted a patch to add the now sole compatible to the barebox driver[1],
+> >> but please keep DT compatibility in mind with similar changes in future.
+> >
+> > Thank you for maintaining barebox. On our new platforms we only use barebox
+> > as a bootloader as it provides a much easier board boot then u-boot.
+>
+> Happy to hear. :-)
+>
+> Cheers,
+> Ahmad
+>
+>
+> >
+> > /Bruno
+> >
+> >>
+> >> [1]: https://lore.kernel.org/barebox/20251107182805.3367244-1-a.fatoum@pengutronix.de/T/#u
+> >>
+> >> Thanks,
+> >> Ahmad
+> >>
+> >>
+> >>> ---
+> >>>  arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi | 12 ++++++------
+> >>>  1 file changed, 6 insertions(+), 6 deletions(-)
+> >>>
+> >>> diff --git a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+> >>> index d6a143abae5f..cef24aafed1a 100644
+> >>> --- a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+> >>> +++ b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
+> >>> @@ -200,7 +200,7 @@ SYSC_OMAP2_SOFTRESET |
+> >>>                       ranges = <0x0 0x9000 0x1000>;
+> >>>
+> >>>                       uart0: serial@0 {
+> >>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
+> >>> +                             compatible = "ti,am3352-uart";
+> >>>                               clock-frequency = <48000000>;
+> >>>                               reg = <0x0 0x1000>;
+> >>>                               interrupts = <72>;
+> >>> @@ -1108,7 +1108,7 @@ SYSC_OMAP2_SOFTRESET |
+> >>>                       ranges = <0x0 0x22000 0x1000>;
+> >>>
+> >>>                       uart1: serial@0 {
+> >>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
+> >>> +                             compatible = "ti,am3352-uart";
+> >>>                               clock-frequency = <48000000>;
+> >>>                               reg = <0x0 0x1000>;
+> >>>                               interrupts = <73>;
+> >>> @@ -1139,7 +1139,7 @@ SYSC_OMAP2_SOFTRESET |
+> >>>                       ranges = <0x0 0x24000 0x1000>;
+> >>>
+> >>>                       uart2: serial@0 {
+> >>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
+> >>> +                             compatible = "ti,am3352-uart";
+> >>>                               clock-frequency = <48000000>;
+> >>>                               reg = <0x0 0x1000>;
+> >>>                               interrupts = <74>;
+> >>> @@ -1770,7 +1770,7 @@ SYSC_OMAP2_SOFTRESET |
+> >>>                       ranges = <0x0 0xa6000 0x1000>;
+> >>>
+> >>>                       uart3: serial@0 {
+> >>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
+> >>> +                             compatible = "ti,am3352-uart";
+> >>>                               clock-frequency = <48000000>;
+> >>>                               reg = <0x0 0x1000>;
+> >>>                               interrupts = <44>;
+> >>> @@ -1799,7 +1799,7 @@ SYSC_OMAP2_SOFTRESET |
+> >>>                       ranges = <0x0 0xa8000 0x1000>;
+> >>>
+> >>>                       uart4: serial@0 {
+> >>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
+> >>> +                             compatible = "ti,am3352-uart";
+> >>>                               clock-frequency = <48000000>;
+> >>>                               reg = <0x0 0x1000>;
+> >>>                               interrupts = <45>;
+> >>> @@ -1828,7 +1828,7 @@ SYSC_OMAP2_SOFTRESET |
+> >>>                       ranges = <0x0 0xaa000 0x1000>;
+> >>>
+> >>>                       uart5: serial@0 {
+> >>> -                             compatible = "ti,am3352-uart", "ti,omap3-uart";
+> >>> +                             compatible = "ti,am3352-uart";
+> >>>                               clock-frequency = <48000000>;
+> >>>                               reg = <0x0 0x1000>;
+> >>>                               interrupts = <46>;
+> >>>
+> >>> base-commit: 89be9a83ccf1f88522317ce02f854f30d6115c41
+> >>
+> >>
+> >> --
+> >> Pengutronix e.K.                           |                             |
+> >> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> >> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> >> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> >
+>
+> --
+> Pengutronix e.K.                  |                             |
+> Steuerwalder Str. 21              | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany         | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686  | Fax:   +49-5121-206917-5555 |
+>
 
