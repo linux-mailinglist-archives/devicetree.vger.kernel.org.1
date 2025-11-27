@@ -1,393 +1,198 @@
-Return-Path: <devicetree+bounces-242674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC469C8DC80
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 11:34:06 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id E47E3C8DC6B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 11:33:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E85A73B083B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:33:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2965B350D20
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C383332C95C;
-	Thu, 27 Nov 2025 10:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C375932C303;
+	Thu, 27 Nov 2025 10:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="i1gJD/9l";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VxkAkxO2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kF19TsBS";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bRItMzpK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D6932C938
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 10:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84D132ABF7
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 10:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764239562; cv=none; b=BXV6VqnSRxHRELwMZGWaoUpa6dhb3muqYNEYYR0GmH/eW9VWXS3O7YpNwo6vJUNvGvWuzE9ww9QEBFXFyRXloQdBgLpHibUuKJzp9YBhXETfJJlzvW2lVa+6AByeJWZdevJVWO52AdQjd55kv6F9IcFdRsvLLI2JR+ZcMBEdcJ0=
+	t=1764239558; cv=none; b=bCEZI9Fe0yvcRgeuxMtEn09lT+zPLX/q6RGLZ42WkXrg7PNrwdYHtPAWcgEPAgtdEqfw+pb1u+OE9jF15Z8wyX7Qlo6L0ruBQ9ncrYXif5syZRFqxqwMGhb+CiuJSDJfI4bzPao97rLoaUHgosdcCMolw+MQqt1WbtPeZuvozIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764239562; c=relaxed/simple;
-	bh=3jY4jay0fa16bI6Cy4wTjwQK1KlO540uPMJDxUSvlmw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mk7LQmseiYGkyCUfJs3ZJ8//fh4bVw/gNJC3sARnRXPm+IHScok2/x04N9XVaKfHBJYdvmFZetVKKFltfadXLw/viZFxsLKsf4owf4XJAMb/+TUDY5gdlDSlNZVTQ3MVk2CfUdoKQL0ktknsE9jIecc/G1VqdI7UH7pd3erXl1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=i1gJD/9l; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VxkAkxO2; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1764239558; c=relaxed/simple;
+	bh=2CjRwBB9Yb5dLLTv5IaiNjJgQduCZZvkph0bLa59hH4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PauNYOPMec2hTXiWW7NqJM4P2Ma0HF/x5sBA7dEX2MGNTLk9Ys3CZTswEDdYw+V6H6ptbY4TwoB/ZKVlmEFOgEH4FrReN++qkFvIulrVkASw6jAqLouEDeyjI+H0+u3HAQYeeFhI2hoT0Bue7C7fSW5cRQlcnrI9Dijp3aYZq3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kF19TsBS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bRItMzpK; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ARAW2hZ913930
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 10:32:40 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ARA3Mm8642713
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 10:32:35 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4wfsYUiRzfh9JsB1b2aoq8bGnceYTL/wE/22WZWN7Ks=; b=i1gJD/9lf+sOgjHR
-	hEREoKcOKP2AsBizOC1GrB0N1DjxcK41iP9iE+JCCmDGNU7s+TicjUGSDa5HQRgL
-	sMJ/IMVQf7ch5F9vf5YxfeFWhXTRto67kqngheicQTWGYuUVZ047aADpJSi2DxWs
-	C3yBf/Os5ORG66UCj8Y3eaauBF6bYs5EeZrmd3PJhX2NiOAdq7uvvOBSstN8g3/r
-	PVd4B3FIbvuo0dELnN1pqKAI7Z77mXyeCKvA1gLaXFQ43aWVwBumvASqjVvcCi4T
-	ko8p7JrvY22lGLRkF76FpI3HpjfkrUaa/Lzu5mBzV/x/tv0RtNPzCnsvVbVeiTPA
-	eioX9Q==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4apmynr032-1
+	6xBzaMOhRUmv+QMOjmwVE14dkxJT4RBhHpsCsNUiky8=; b=kF19TsBSTllKIdK1
+	QvAdDam4lYKmnwttabaT8sIZu+d7ptgDSq8nhU8HlLOY7fPtwzfeTstPXFsr/en/
+	qzARb86jgR+MczUhNi10cFegBtG7Pu1iiSIfijv5rT33Gt0EqBwzHu8Vn3Jx6w1g
+	SeQ6yhLe/v4KaQEx5m5j6H/4+kE7bzKJXl5SUk7UlAvbePFKqCgi6fihQKHdKVnI
+	TOUjM1U2hppAJbUmYVQLjdNqldBDhb++3KVlFN55iYXEs8rmiJF9jE8qXqLmtYJ2
+	33nuZMzdYeUdWkd/4Cfs8zg4APNpn0RnT0+0YtNfK8+4AZ3wXq+UDMzCr5j+9qfr
+	b8ihgw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4apmja82ud-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 10:32:39 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7b9c91b814cso1814363b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 02:32:39 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 10:32:35 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed6a906c52so1271821cf.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 02:32:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764239559; x=1764844359; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4wfsYUiRzfh9JsB1b2aoq8bGnceYTL/wE/22WZWN7Ks=;
-        b=VxkAkxO2mMaMWi/6qF7nT3JMPLmjX7wwDXVR62ZqiFnA2++l/rAeWWBhSj9LkuW3vD
-         Z2QZ3fP4xhF4GRG3kFV8DeZ/y0Uy55Segq4tSU1toCw6Oc6rPJFRgnhHMfRnKKOaOEBy
-         xZtcE8Fb0ipwQWevQe60KCG65uaLY1PvQXq2YxTOpyXDwCny3HBkaX5nQ4I4KNS7bedj
-         TmhCf4zAfbGCtkRWAciTJc1dzCAmrZ4MwIVItF3M6lZ6wRxe3WPv0D1FPRE6fk19utNB
-         s1RctCq9NtXNl0oWunOFoS6Y/ZpLCa5kp0vFN8vjTBAoZBika6/93E7xF/B6qMkF0jC9
-         Qkdg==
+        d=oss.qualcomm.com; s=google; t=1764239554; x=1764844354; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6xBzaMOhRUmv+QMOjmwVE14dkxJT4RBhHpsCsNUiky8=;
+        b=bRItMzpKDh2RDw+ZLW8UYYnJiGqhjQDiPraZPGKDqXSt1fJmlcZmRUwqmHJ3PuZdsR
+         4/PDAeR4cpaSDb4Ls/i0nEANPes3lVUyrk4pOa3yTRtMwU9UNUOdb8iJFg3nlsE5Qntn
+         PHHN2OfXFoNpmjfflq18nwFu64qtNXv8Jr7GZ4xP8wS977HNeGYCjUf1a3q1cazIEg52
+         DwuPlolG6JTMzXg3ligPE8v0S5R2nLQ5agyEIqRKBxDC/4syCGqXlI6O2wNT49jnx7Ys
+         5mbHL6J1gFFy/1ZCTFcjEHWhILl+xT9H5AzepDHG+6glyYFmtV7AACYkYoDumIxaaA++
+         VYMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764239559; x=1764844359;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4wfsYUiRzfh9JsB1b2aoq8bGnceYTL/wE/22WZWN7Ks=;
-        b=bwMFWxdJnREcDSS3ERJ4DKDod+o+bBFdm8dPLrHsskLBhkk/dJc0HjX3ladp4OD/l6
-         jWVAxe9YyMN4X4/gBqhHZ5qaTCRZ5ka+mgWICAdzmPeplg+4s2Df2Vng69TtwAvwty/d
-         2OdYwPlk+JClwQUqWKxY43PJMOCGT/Fy0bMBGjBaoUIF102XFrIM/Xl61KOYnDKnh7lx
-         5u9whAoxy7MN0LNUQV72NVNIBgk/aeKZpANULO8uwtCPvI8onjlJeAXAfHKQ3G7tAXlH
-         gDOkuhKPS+VrdBvoCbaZYGYLHVu72d3psFHj8Jt3nG67havAqCdHpRDIFsvS/dOjSRLA
-         dKxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUhHEQINJCvAvjDaVC6BQWsMWSZwW6kvdRYhxb+Wa8oL1w3JCx6rfDJkNa5s1RQ2Pbr1IFmJTxAIIWM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLG1i3A7JaGghpLpKYuJe+El1+VE0BTKvx94rZgkYyupjE5Yuy
-	Xx8+/M4vP0qwXrLoWKK8X1Os9/NQF7HR10oE41Yj4JWmJAC6haG+2H1QWa3BVLtXIUFp0X83lgJ
-	jQC0OWyZqsnPfx/npO/GfGxX5m/uV0fxft9sPUDMBSHdoYbqns2lc7P3z/DUvPnku
-X-Gm-Gg: ASbGnctMVXRbwUG+bCzHYf2wWYQZFr+KCvCOBMVuBkwONfU8UUaPq1eui2tor792TJy
-	aTpBjWjxbOjYAA0e697mkUWiSpki6yjjRgfjNtptV3/H3CsOMZmTYuL+2HGb6mfhbTfW5XQXDC7
-	5FhNmBul73k1Q2QmTmXgZ1lzF9IJeoSrBHOQFfO/kqQWEggI0zOxCslQXEG7D2v3s3lZD7DQRMu
-	tgUwvq3AevG6BwRngzH1JVwt9vX3SSQUg06F8Ck448L2IEO4FfsN1VJjHOCXL2CC4f7dl8DUQxV
-	hxYDsWEeda5we3UiREto2i/NS0hok09ZPeuXL8JN2N6U02HWiGirYf0huwZbzgZPRS2bWnjcSpL
-	v6P6XuN3LEExo73iWOsLXOUbjLqo40lOFPk3DTWU=
-X-Received: by 2002:a05:6a00:10cb:b0:7b7:c078:9f7b with SMTP id d2e1a72fcca58-7ca8975f0a5mr14879354b3a.18.1764239559054;
-        Thu, 27 Nov 2025 02:32:39 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFOeS4h4J86AlUYFuq8VUrpWHIhe0O73BqzB2ZXtFJJExi3GnPo/+J0ssWgf74gvRSbwETcMQ==
-X-Received: by 2002:a05:6a00:10cb:b0:7b7:c078:9f7b with SMTP id d2e1a72fcca58-7ca8975f0a5mr14879324b3a.18.1764239558519;
-        Thu, 27 Nov 2025 02:32:38 -0800 (PST)
-Received: from hu-sriramd-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d15f457c38sm1479819b3a.54.2025.11.27.02.32.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Nov 2025 02:32:38 -0800 (PST)
-From: Sriram Dash <sriram.dash@oss.qualcomm.com>
-Date: Thu, 27 Nov 2025 16:01:45 +0530
-Subject: [PATCH 2/2] usb: dwc3: qcom: Support firmware-managed resource
- states for power management
+        d=1e100.net; s=20230601; t=1764239554; x=1764844354;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6xBzaMOhRUmv+QMOjmwVE14dkxJT4RBhHpsCsNUiky8=;
+        b=tOALQB3bPsM8ZFJBS9efs0xi6knG+gRLstpBKkESL7NA23s4D2MC3Thhwz0p/ROTok
+         IE60O7INCqFChBi05Gr+2HS3cVhFNHvI/2q2LPo+ccG8d3+1bh+rhjmj4P5Z9Oxp0zjl
+         6VNRio004Bum+y9oQtFLmN9A5rSj4dOJWgQ5akisvlC+HvKl0/aclmCP6PljzvsYVtD+
+         2oHGz2n7lkGF1SF+pcxFEIRjDZ+N2do+ZUW6Lwx8wtDBy+v3rkJeF3edMOHoGlOlgwWH
+         cyjDPEGb/LKx9AdgoK+9yukTEU+ittcnJcTEiFfduKtWymm0OYnastko+fUTszUAdqod
+         OXeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW4RAeM8X5iRoTKcvnB0tjmkFAGDXxyK7vmiG3qXOBmEmenczG3hqScPWa7MEPJAOd2oGs21nU7B4L1@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywm3nDHvQlvwSGcId17Mnwb5agb+XCfNhxXjA7r8HFvmr1fRGY/
+	yFkAGDvSLwVaTUBvfFG7R+BouflZEXpQQ89dsd7PKCK+m+j8VJoR1F5z02Px5kZofVBv0a0rcBx
+	xUoHaP4xTP4OmNUM0PcXJA7VjrgW8EqmoCmxb3vc8Fh8XBPlTEK/Y/aQJTEgVqJTu
+X-Gm-Gg: ASbGncuD8ZhrjBZUUH0aKm4YC3MXFDWEYC+7opQ/VNttD8KQb2Yd0niRzlUykvMEwaC
+	BR4YZJq+wR5z+St2+MsRhd8DP8GxK/Uvn3wDjOGht34fOcdom0cAqIPILk6GqicRJRJ10S7v5m5
+	ytUmCdBwpLSp4lfF08Jotj5V8NL7P5Qn2AoThP7NhcyCE8+aj7hjmKwl0kKgYApRrjL6xjQo2ja
+	XwSmWqA0u79xcfu+4Ufctw3AKLY5IyAXJdSQ2kHmArV9atULDKk/jsQiKop+g4sne009EX21c4R
+	w5wPzydvF6HN4biX4fGsrRjLQX3IMGolJCJuiMY+HahEyPDInaBd/Us5wM3VIoz+r0PLiLT9WxO
+	9QmSa2MRJOC4Kg6SRxnW/A+cVRjhZ3fBC4orkE6hUWFbZmt/tjT6KhIhKZiFxQYOGQbA=
+X-Received: by 2002:ac8:5d14:0:b0:4e6:eaff:3a4b with SMTP id d75a77b69052e-4ee5b5eeeb3mr235846761cf.4.1764239554372;
+        Thu, 27 Nov 2025 02:32:34 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHvuanT/+hsUReTNJmLheq6TefU/W/FUzZJ2Xkcj7pCGcJhY8sxHtZhKpW0cam2ypvDgTBDTQ==
+X-Received: by 2002:ac8:5d14:0:b0:4e6:eaff:3a4b with SMTP id d75a77b69052e-4ee5b5eeeb3mr235846561cf.4.1764239553880;
+        Thu, 27 Nov 2025 02:32:33 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f59aeb45sm124438666b.40.2025.11.27.02.32.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Nov 2025 02:32:33 -0800 (PST)
+Message-ID: <d9822a0a-1256-46a0-9bbe-8b5c68efba4e@oss.qualcomm.com>
+Date: Thu, 27 Nov 2025 11:32:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251127-controller_scmi_upstream-v1-2-38bcca513c28@oss.qualcomm.com>
-References: <20251127-controller_scmi_upstream-v1-0-38bcca513c28@oss.qualcomm.com>
-In-Reply-To: <20251127-controller_scmi_upstream-v1-0-38bcca513c28@oss.qualcomm.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/8] dt-bindings: power: supply: Add schema for
+ Qualcomm pmi8998 fuel gauge
+To: david@ixit.cz, Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: jack.pham@oss.qualcomm.com, faisal.hassan@oss.qualcomm.com,
-        krishna.kurapati@oss.qualcomm.com, andersson@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sriram Dash <sriram.dash@oss.qualcomm.com>,
+        Casey Connolly <casey.connolly@linaro.org>,
+        Casey Connolly <casey@connolly.tech>,
+        Joel Selvaraj <foss@joelselvaraj.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>,
-        Shazad Hussain <shazad.hussain@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764239543; l=7775;
- i=sriram.dash@oss.qualcomm.com; s=20251022; h=from:subject:message-id;
- bh=3jY4jay0fa16bI6Cy4wTjwQK1KlO540uPMJDxUSvlmw=;
- b=N0Ht/zBgJJWL+0fYK5Xk+/xzqXmfV/mWUqizonEV+bvQscDDDGXXAXkR37csjawbfSkPZaWSD
- uUZz+d8CS97CCN8Ny1HRVUbeTyeO7sV60CJJhNltzRe49g2L+5vege2
-X-Developer-Key: i=sriram.dash@oss.qualcomm.com; a=ed25519;
- pk=balisq+aEVXEJ6Gnze3kqbYZiFlsdHUjTSdCvupAeP4=
-X-Proofpoint-ORIG-GUID: U3NEngcE0gHNFAzKSXT-rVabqQjtzvcv
-X-Authority-Analysis: v=2.4 cv=QOplhwLL c=1 sm=1 tr=0 ts=692828c7 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+        Alexander Martinz <amartinz@shiftphones.com>,
+        =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        phone-devel@vger.kernel.org
+References: <20251124-pmi8998_fuel_gauge-v1-0-dd3791f61478@ixit.cz>
+ <20251124-pmi8998_fuel_gauge-v1-1-dd3791f61478@ixit.cz>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251124-pmi8998_fuel_gauge-v1-1-dd3791f61478@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI3MDA3NyBTYWx0ZWRfX9hSVqAcrEUbw
+ 1PFo2MzC111y/18ncOaCCl4Vyso1GURvGWbWBFziVwi5AR2QOfjx3zl8XdMsko3zfS6h8mUZsUO
+ pRW5aGTBLts4inj3HZv99zC6xV4uRW4Zv9+yh8HcLfEt+jcu3ykmjDV6XwscXoHPDopT1PUMKr+
+ BCsJWs7HwnjcaY99iNp6WWVcvvViwfeiAboMgmRbg1/rMub4Q2oEbcsc6D8f2YuCRCRgTRTnjjs
+ X0kx8Gr42w6/SyW9dkmpPlrrK+CRzPBvl6WDMgYNUo+qkIiWIaBurLbOzlqBVH20X8+HynIXTOC
+ rTU0zon+J2xfVyjpQjnkI1/o7moYZMSPZRaPZDWe6EPVd35DBErDCRPKJv2VGpTAbs0YwkCC50Q
+ 34VcC8VTtz9Scw8BBhZLGjeg28ahkw==
+X-Authority-Analysis: v=2.4 cv=KbvfcAYD c=1 sm=1 tr=0 ts=692828c3 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
  a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=mTzkS-5CbVgYcLmgcBoA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI3MDA3NyBTYWx0ZWRfXz0LHgWBWohOz
- B4QAp10MzFnduULKYRhjAXq5n2cWtK8aOqNu5VXWvJqf6wCupD3PE4XTOnlwYK9QX0DlV9a+xR9
- 33l8oZ2p972J/QrSkUe+AO6OQKwXfmsBrrCHsIA8QNaZY0yYgKmRfyGDicDHViZqrmBgdMy4p/E
- h1pssnb3u7mSIriihlH7x4UkycE2Cq0Q31ZK72AYXG6sEfneVTgcPfPq1Qi5DEGpS/dwuTrYKFa
- P1QxpLGip13rWDwqCQ86OBFV2eYVqgUm7f16yaKschQjPbqE/7MB37h5aOYtja/5mdMr1mWszXw
- sBnP9laNo0pJfpKfQLJQkTxqbsd3w2v5K6uWyhTkh/G2Lcn/Ui4c5pLI4GGALqNAFrskgz3q4l2
- inVa/XjRbIEPdcortDZxnslAM/qTXg==
-X-Proofpoint-GUID: U3NEngcE0gHNFAzKSXT-rVabqQjtzvcv
+ a=VkNPw1HP01LnGYTKEx00:22 a=sfOm8-O8AAAA:8 a=OuZLqq7tAAAA:8
+ a=RJeynrtfwxJuRQOpeUsA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22 a=TvTJqdcANYtsRzA46cdi:22 a=AKGiAy9iJ-JzxKVHQNES:22
+X-Proofpoint-ORIG-GUID: 6XpBKouWHNM7-MiLviynKReVN-94Vlps
+X-Proofpoint-GUID: 6XpBKouWHNM7-MiLviynKReVN-94Vlps
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-25_02,2025-11-26_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
- clxscore=1015 priorityscore=1501 suspectscore=0 phishscore=0 adultscore=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 spamscore=0 adultscore=0
+ malwarescore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511270077
 
-Add support for firmware-managed resource states in the
-Qualcomm DWC3 USB controller driver. On platforms
-like sa8255p, where controller resources are abstracted
-and managed collectively by firmware, the driver communicates
-power management transitions using dedicated resource state
-levels via dev_pm_opp_set_level().
+On 11/24/25 10:53 PM, David Heidelberg via B4 Relay wrote:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
+> 
+> Add a device-tree schema for Qualcomm PMIC 8998 fuel gauge.
+> 
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
 
-Macros are introduced to represent key lifecycle events:
-initialization, system and runtime suspend/resume, and exit.
-The driver sets the appropriate resource state during probe,
-remove, suspend, and resume operations, enabling bulk ON/OFF
-transitions of grouped resources according to the
-controller's operational state.
+[...]
 
-Signed-off-by: Sriram Dash <sriram.dash@oss.qualcomm.com>
-Co-developed-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
-Signed-off-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
----
- drivers/usb/dwc3/dwc3-qcom.c | 97 ++++++++++++++++++++++++++++++++++++++++----
- 1 file changed, 88 insertions(+), 9 deletions(-)
+> +    pmic {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      fuel-gauge@4000 {
+> +        compatible = "qcom,pmi8998-fg";
+> +        reg = <0x4000>;
+> +
+> +        interrupts = <0x2 0x40 0x4 IRQ_TYPE_EDGE_RISING>;
+> +        interrupt-names = "soc-delta";
 
-diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-index 9ac75547820d..9615ca6cfcae 100644
---- a/drivers/usb/dwc3/dwc3-qcom.c
-+++ b/drivers/usb/dwc3/dwc3-qcom.c
-@@ -13,6 +13,8 @@
- #include <linux/kernel.h>
- #include <linux/interconnect.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
-+#include <linux/pm_opp.h>
- #include <linux/phy/phy.h>
- #include <linux/usb/of.h>
- #include <linux/reset.h>
-@@ -85,10 +87,48 @@ struct dwc3_qcom {
- 	struct icc_path		*icc_path_apps;
- 
- 	enum usb_role		current_role;
-+	bool			fw_managed;
- };
- 
- #define to_dwc3_qcom(d) container_of((d), struct dwc3_qcom, dwc)
- 
-+/*
-+ * QCOM DWC3 USB Controller: Firmware-Managed Resource State Levels
-+ *
-+ * On select Qualcomm platforms, the USB controller’s power-related
-+ * resources including GDSC, reset lines, clocks, and interconnects
-+ * are managed collectively by system firmware via SCMI. The driver
-+ * signals the controller’s operational state to firmware using these
-+ * levels, each mapped to a specific power management transition or
-+ * lifecycle event:
-+ *
-+ * DWC3_QCOM_FW_MANAGED_INIT
-+ *	Enable GDSC, Assert and Deassert Resets, and turn ON all clocks
-+ *	and interconnects.
-+ *
-+ * DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME
-+ *	Enable GDSC and turn ON all clocks and interconnects.
-+ *
-+ * DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME
-+ *	Turn ON all clocks and interconnects.
-+ *
-+ * DWC3_QCOM_FW_MANAGED_EXIT
-+ *	Turn OFF all clocks and interconnects, Assert reset and disable GDSC.
-+ *
-+ * DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND
-+ *	Turn OFF all clocks and interconnects and disable GDSC.
-+ *
-+ * DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND
-+ *	Turn OFF clocks and interconnects.
-+ */
-+
-+#define DWC3_QCOM_FW_MANAGED_INIT			1
-+#define DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME		2
-+#define DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME		3
-+#define DWC3_QCOM_FW_MANAGED_EXIT			8
-+#define DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND		9
-+#define DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND		10
-+
- static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
- {
- 	u32 reg;
-@@ -335,7 +375,7 @@ static void dwc3_qcom_enable_interrupts(struct dwc3_qcom *qcom)
- 		dwc3_qcom_enable_port_interrupts(&qcom->ports[i]);
- }
- 
--static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
-+static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup, pm_message_t msg)
- {
- 	u32 val;
- 	int i, ret;
-@@ -348,6 +388,13 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
- 		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
- 			dev_err(qcom->dev, "port-%d HS-PHY not in L2\n", i + 1);
- 	}
-+	if (qcom->fw_managed) {
-+		if (PMSG_IS_AUTO(msg))
-+			dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND);
-+		else
-+			dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND);
-+	}
-+
- 	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
- 
- 	ret = dwc3_qcom_interconnect_disable(qcom);
-@@ -369,7 +416,7 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
- 	return 0;
- }
- 
--static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
-+static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup, pm_message_t msg)
- {
- 	int ret;
- 	int i;
-@@ -380,6 +427,18 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
- 	if (dwc3_qcom_is_host(qcom) && wakeup)
- 		dwc3_qcom_disable_interrupts(qcom);
- 
-+	if (qcom->fw_managed) {
-+		if (PMSG_IS_AUTO(msg))
-+			ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME);
-+		else
-+			ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME);
-+
-+		if (ret < 0) {
-+			dev_err(qcom->dev, "Failed to Resume fw managed device\n");
-+			return ret;
-+		}
-+	}
-+
- 	ret = clk_bulk_prepare_enable(qcom->num_clocks, qcom->clks);
- 	if (ret < 0)
- 		return ret;
-@@ -624,10 +683,18 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 
- 	qcom->dev = &pdev->dev;
- 
-+	qcom->fw_managed = device_get_match_data(dev);
-+	if (qcom->fw_managed) {
-+		ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_INIT);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	qcom->resets = devm_reset_control_array_get_optional_exclusive(dev);
- 	if (IS_ERR(qcom->resets)) {
--		return dev_err_probe(&pdev->dev, PTR_ERR(qcom->resets),
--				     "failed to get resets\n");
-+		dev_err_probe(&pdev->dev, PTR_ERR(qcom->resets),
-+			      "failed to get resets\n");
-+		goto resources_off;
- 	}
- 
- 	ret = devm_clk_bulk_get_all(&pdev->dev, &qcom->clks);
-@@ -638,7 +705,7 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 	ret = reset_control_assert(qcom->resets);
- 	if (ret) {
- 		dev_err(&pdev->dev, "failed to assert resets, err=%d\n", ret);
--		return ret;
-+		goto resources_off;
- 	}
- 
- 	usleep_range(10, 1000);
-@@ -727,6 +794,10 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- clk_disable:
- 	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
- 
-+resources_off:
-+	if (qcom->fw_managed)
-+		dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_EXIT);
-+
- 	return ret;
- }
- 
-@@ -739,6 +810,10 @@ static void dwc3_qcom_remove(struct platform_device *pdev)
- 		return;
- 
- 	dwc3_core_remove(&qcom->dwc);
-+
-+	if (qcom->fw_managed)
-+		dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_EXIT);
-+
- 	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
- 	dwc3_qcom_interconnect_exit(qcom);
- 
-@@ -756,7 +831,7 @@ static int dwc3_qcom_pm_suspend(struct device *dev)
- 	if (ret)
- 		return ret;
- 
--	ret = dwc3_qcom_suspend(qcom, wakeup);
-+	ret = dwc3_qcom_suspend(qcom, wakeup, PMSG_SUSPEND);
- 	if (ret)
- 		return ret;
- 
-@@ -772,7 +847,7 @@ static int dwc3_qcom_pm_resume(struct device *dev)
- 	bool wakeup = device_may_wakeup(dev);
- 	int ret;
- 
--	ret = dwc3_qcom_resume(qcom, wakeup);
-+	ret = dwc3_qcom_resume(qcom, wakeup, PMSG_RESUME);
- 	if (ret)
- 		return ret;
- 
-@@ -809,7 +884,7 @@ static int dwc3_qcom_runtime_suspend(struct device *dev)
- 	if (ret)
- 		return ret;
- 
--	return dwc3_qcom_suspend(qcom, true);
-+	return dwc3_qcom_suspend(qcom, true, PMSG_AUTO_SUSPEND);
- }
- 
- static int dwc3_qcom_runtime_resume(struct device *dev)
-@@ -818,7 +893,7 @@ static int dwc3_qcom_runtime_resume(struct device *dev)
- 	struct dwc3_qcom *qcom = to_dwc3_qcom(dwc);
- 	int ret;
- 
--	ret = dwc3_qcom_resume(qcom, true);
-+	ret = dwc3_qcom_resume(qcom, true, PMSG_AUTO_RESUME);
- 	if (ret)
- 		return ret;
- 
-@@ -839,6 +914,10 @@ static const struct dev_pm_ops dwc3_qcom_dev_pm_ops = {
- };
- 
- static const struct of_device_id dwc3_qcom_of_match[] = {
-+	{
-+		.compatible	= "qcom,snps-dwc3-fw-managed",
-+		.data		= (void *)true,
-+	},
- 	{ .compatible = "qcom,snps-dwc3" },
- 	{ }
- };
+A (much much older but still) similar in functionality, the PM8916
+BMS block has 6 interrupts.
 
--- 
-2.34.1
+pmi8998.dtsi on msm-4.4 defines a total of 16 under the fg-gen3
+megadevice. I would assume that at least a majority of them are useful
+and/or required for full functionality.
 
+There's 8 under 'fg-batt-soc', 5 under 'fg-batt-info' and 3 under
+'fg-memif'
+
+The main node also consumes an IIO channel provided by the RRADC
+
+I'm not asking you to implement all the feature delta in v2, but I
+will ask you to assess what the dt-bindings for a complete solution
+would look like and to fill in all the resources that will be necessary
+down the line, to the best of your knowledge, so that you won't have
+to wrestle with bindings updates with every new feature addition
+
+Konrad
 
