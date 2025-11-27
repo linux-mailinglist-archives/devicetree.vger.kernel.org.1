@@ -1,141 +1,110 @@
-Return-Path: <devicetree+bounces-242608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4058EC8D145
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:25:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5747CC8D18A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0A2514E1C15
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:25:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C7453A62F8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD0F315D47;
-	Thu, 27 Nov 2025 07:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D35831A07C;
+	Thu, 27 Nov 2025 07:30:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="T6sK2G2P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhEyhWE/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D4D3C1F;
-	Thu, 27 Nov 2025 07:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C311487E9;
+	Thu, 27 Nov 2025 07:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764228321; cv=none; b=unwNuewEw9/78ljPpijdHyU8yqTePOpEIo6jPcoGjONsyjhKYpwM4/Ql5Ua4gvnfSr7pvyEWGpQta06/Q3p6OdFEDg47mVCHzdfC7Ms8hZkzunKLthocYJFmombntDWGivf2HK/AYrXfihSi3nQzDNJ5FYRyRQOmNKoM5kj0IvE=
+	t=1764228644; cv=none; b=VB8x8Z8+Qkl1NATV60ok4o0KIqmGHwH9UMV26QT2Kf424e0MP3zmz/6Vih+cp3TR/y245ImjifR2JdB/G7pYbDFcbOVbq6X4vpB3l9eAEksj2OznhcGZE6X6nlbNQzYC/RLmrSbYM1QY4Pv2cWLS0p96xv0CuYOefJ1pawoLJ/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764228321; c=relaxed/simple;
-	bh=n+/fQ/alpef2q01Tg3dUfg5Vy/IgYpSrTAPVea67aQU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RJqkuVbNYTxV5x4Tofzdxc1zXo4VE/4c3qUc3l4IoLf0rrsLRRVJCBlwenf+mmqk5+dVOkO8R8nYKYcIX5a74xWq8+qcyiiSzN9h/Mx5A4PIRqRmT6D/lLZ3mfcOcCtdyNBqpMHZSGukNi7VHXEMuYt11kugnwMdbFRPQZnpafI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=T6sK2G2P; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id D9189C16A12;
-	Thu, 27 Nov 2025 07:24:53 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 971436068C;
-	Thu, 27 Nov 2025 07:25:16 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3130D102F2350;
-	Thu, 27 Nov 2025 08:24:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764228314; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=cGqB1dei6ROTkKi8qgP3hn8JoeylozOmIRsBNS04jmU=;
-	b=T6sK2G2PDUeR+pjSQn/B7iQbPsQ8Wcz+0KiAVYYMspcQnDAs6d3DC6Hizs9V61K96ZYwPT
-	MWPQm0b1UsKDIypmCvUtC60JluxrkH+WKfFHqqbOoynx7SceksEsqTI49+W0M3NodmM4Gk
-	u8QmjuPghMy7oJHohjRpIxX1eawQpRih9ZuMPEQ0h0pbd/nsQLpOja/6nFwVznMd0LaPBv
-	3yN/UTBE/8mIG4ZcZxCMsYz+0i+YTYqv3ut760qDTDvCZcBlLg4Ac5kqxAB6N6H2QvWbI+
-	NsIGmEU3Ztxx27d5aIFFgytJFUJqMRidqHtr/wVwJFwxkyeW3sUCTEw15Hzcmg==
-Date: Thu, 27 Nov 2025 08:24:56 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Kalle Niemi
- <kaleposti@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Arnd
- Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>, Bjorn
- Helgaas <bhelgaas@google.com>, Charles Keepax
- <ckeepax@opensource.cirrus.com>, Richard Fitzgerald
- <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, Linus
- Walleij <linus.walleij@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Mark Brown <broonie@kernel.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, Davidlohr
- Bueso <dave@stgolabs.net>, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Dave Jiang <dave.jiang@intel.com>, Alison Schofield
- <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, Ira
- Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Wolfram Sang <wsa@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
- overlays"
-Message-ID: <20251127082456.08542b8c@bootlin.com>
-In-Reply-To: <CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
-References: <20251015071420.1173068-1-herve.codina@bootlin.com>
-	<20251015071420.1173068-2-herve.codina@bootlin.com>
-	<f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
-	<CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
-	<5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
-	<CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
-	<072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
-	<CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1764228644; c=relaxed/simple;
+	bh=6jPCsfq4CeOnErf3qNwJU7sJXITpGdob9lEfen7L2oQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Jq4yECoZ/dZMEg6CnN4JAvi/PzVFHzWoje4lqpmp2vBN5AC6DqmjmMkT+kCZu8B1u90m2sDT4/BWxkFuQWMHX9aYJoe9590e7hCGXut9maV7jXAILjTYGqdxs+KLB3lxhUjgr4fpwwKt8Rv8fGQQBJXW+7vDMfWpgR9FGrBOo3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhEyhWE/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BE6F7C4CEF8;
+	Thu, 27 Nov 2025 07:30:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764228643;
+	bh=6jPCsfq4CeOnErf3qNwJU7sJXITpGdob9lEfen7L2oQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=OhEyhWE/v3IymteflPwIgo2JT9OM2ts7CmFLMG58IjdqSDWM7Q7dgFMzwfXziXviv
+	 RI9UvAtf8YnKnLoci5DgqgncwsbFAG9XfuiarjQLTeDmQLkGLHeqcE3ioPUYNZ9+ro
+	 kjNqsG76vpgIKKwJ5q0YNsQLe1kw0lInrnyGjl9YbPGAlpYSpNhPc0edfRbYXjgp7w
+	 ZRJxVGpUTg4GQb/nWvJwZ0kQ3+Dt1NY44VpdOUFs0jxn/LRNqt59MOGm7iT7Um5aGs
+	 jN1FQlb4lFPxHiDyekqN67/Ruq45vplg8tyYLwfuIJ1da8oJo6bFB8Po1k2cnfGTPH
+	 yunALonCbhu7A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A7C6FD11183;
+	Thu, 27 Nov 2025 07:30:43 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/4] Add support for Amlogic S6/S7/S7D Reset
+Date: Thu, 27 Nov 2025 15:30:30 +0800
+Message-Id: <20251127-reset-s6-s7-s7d-v1-0-879099ad90d3@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABb+J2kC/x2MuwqAMAwAf0UyGzABn78iDtWmmqVKIyKI/24Rb
+ rnh7gGTpGIwFA8kudR0j1moLGDZXFwF1WcHrrgm4hqTmJxoDVqb8chEoW879sHNkKsjSdD7P47
+ T+34GgAzDYQAAAA==
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764228641; l=1065;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=6jPCsfq4CeOnErf3qNwJU7sJXITpGdob9lEfen7L2oQ=;
+ b=+6Fgb0YDwTd5M6y0wp/2GvdWtmo59GcMmDK77MFLDAdShb4SHZoI+iPLjuyNILLj5UZfC14up
+ 6Mbdyhe6Y3sAbJrrOlAOD0UWC/2QTC94jipkNNnhf168f7iHFilSohw
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hi Matti, Rob,
+Add dt-binding compatibles and device nodes for Amlogic S6/S7/S7D reset.
 
-...
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Xianwei Zhao (4):
+      dt-bindings: reset: Add compatible for Amlogic S6/S7/S7D
+      arm64: dts: amlogic: Add S6 Reset Controller
+      arm64: dts: amlogic: Add S7 Reset Controller
+      arm64: dts: amlogic: Add S7D Reset Controller
 
-> 
-> Seems to be fw_devlink related. I suppose if you turn it off it works?
-> There's info about the dependencies in sysfs or maybe debugfs. I don't
-> remember the details, but that should help to tell you why things
-> aren't probing.
-
-All available links are available the /sys/class/devlink/ directory [1].
-You can check them to see if each each provider/consumer are correct.
-
-
-Also, for each device you can find suppliers [2] the device depends on and
-consumers of the device in its device directory [3].
-for instance in /sys/bus/platform/devices/foo/ for the foo device.
-
-[1] https://elixir.bootlin.com/linux/v6.18-rc7/source/Documentation/ABI/testing/sysfs-class-devlink
-[2] https://elixir.bootlin.com/linux/v6.18-rc7/source/Documentation/ABI/testing/sysfs-devices-supplier
-[3] https://elixir.bootlin.com/linux/v6.18-rc7/source/Documentation/ABI/testing/sysfs-devices-consumer
-
-> 
-> I've dropped the changes for 6.18 for now. No one really seems to be
-> in need of them yet AFAICT.
+ .../bindings/reset/amlogic,meson-reset.yaml        |   3 +
+ arch/arm64/boot/dts/amlogic/amlogic-s6-reset.h     | 171 +++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        |   8 +
+ arch/arm64/boot/dts/amlogic/amlogic-s7-reset.h     | 124 +++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        |   8 +
+ arch/arm64/boot/dts/amlogic/amlogic-s7d-reset.h    | 134 ++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       |   8 +
+ 7 files changed, 456 insertions(+)
+---
+base-commit: 79482f3791c4760b9b0d8d9bfde9f1053ea3dd5e
+change-id: 20251125-reset-s6-s7-s7d-211f9782dfab
 
 Best regards,
-Hervé
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
