@@ -1,125 +1,282 @@
-Return-Path: <devicetree+bounces-242788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB5D5C8EC7E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:36:57 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08BA8C8EC99
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:38:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DE451350327
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:36:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5A53F4E9152
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD4A332EB8;
-	Thu, 27 Nov 2025 14:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8726333739;
+	Thu, 27 Nov 2025 14:37:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="jxF5SLN/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-42af.mail.infomaniak.ch (smtp-42af.mail.infomaniak.ch [84.16.66.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3D76328B73
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 14:36:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.66.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E582E333452
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 14:37:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764254207; cv=none; b=Eergl4fmoKZeVXVR1tY8GjruPqgwWpUWpgKOAAzqJOZQIhBwAcCcTe1CSh29EYvuzA6KclsUG8elBZtpbpDpm5YgZBB79fLjzMBQFGZoSRMRiON9yOZ5whFFcmnbFBrQYTwrzscfieAczdAl/MVgZ3xMvvYceTdXKvFeivtiU2s=
+	t=1764254279; cv=none; b=GMFgbRITUYaWU23cGxiu5cWdChwEN7V9FvhUKcyntEh28aSFsoSC8qUyR+R0V2xyesN2DVwhPVtR3UFeH8aAqV+trrAMcZO/b0fxvmJ/57ctd8ohU05tkgSXjwu/OsEs4QcJNw4cT4lveH2N4al2jHAEDpJVkcCRmhjnJYaLuIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764254207; c=relaxed/simple;
-	bh=NpcXGavA2GSLhgpRlot9CaCkAu2wEmZTZoL4rwwvBlE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=uQjIMB28Iom1qJgNWkdJFHGTEzOIN18zXqUkOWfPA/NregMBW8OI4ndEkXSWRVbnga8Q9njHOowDyNqbIQHxYFDhLeXKsqBocdHULVaTYzBkpPGF6PevpMnHFHpMRZe5Yo3BFLaaMh7M0rdzVowPpgvqdGXIPKYWPeaFSGey7vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=84.16.66.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-4-0001.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10::a6c])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4dHJsH6G1Vzvnt;
-	Thu, 27 Nov 2025 15:36:35 +0100 (CET)
-Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4dHJsF74R5z6t6;
-	Thu, 27 Nov 2025 15:36:33 +0100 (CET)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Thu, 27 Nov 2025 15:36:19 +0100
-Subject: [PATCH] Revert "arm64: dts: rockchip: fix audio-supply for Rock Pi
- 4"
+	s=arc-20240116; t=1764254279; c=relaxed/simple;
+	bh=X1Ldd1pDA8Igmeknj7tlqAQAGac9Gmdov5hMB67qp6c=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M6ipwXVk6b1Rx/SXmz8eGWjKrngPWPtCdQW13qgN6QHpbw8PBd7J2i6AdhObKMBlIELXWReJn1r8GFtU6oyvU56PwZMaYWLTkGeSuHQrEnHzWRFebIG6S9LsvvhizP6yMdIDIxHm/fR+CBIjx7QlZJAVCrpxrW4eCtS1Ld5T350=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=jxF5SLN/; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5942a631c2dso1337266e87.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 06:37:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1764254275; x=1764859075; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VYjGgDc62jC79UPrwBm0Wqe2D8LTyTSAMvzD7Li+ucA=;
+        b=jxF5SLN/pGSuWhG6RX6JQ/iQtzX1+hvCKdXFLQ02hzVEHuibi9lhcOylRZtpgBtYtW
+         Bte1hAnjfpTjYlO+lH0k8ulDN+RfDwbsFNsiJJ8WueffeHIJA2cLYc5vakN5P5V9fLBz
+         HuzcDIwN6oOvYnubDW8nW3VQSYg0f9wTZbNA6eQBLZvE/+bph/TbtrjCtlc/dJupRC5K
+         r0VZslHg4XTIkNjGxZeARcDYEJM2GlJZQBuRx/ptgrDfKM4aOLwIl2L2mcYM2oo+Bn3n
+         V2Omjo9ySA1obEEes0B1Qv1qmMJHzR0rTmONVhwSRQteQM0RwPMIY4DmNeWJIZLMp1AS
+         CYVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764254275; x=1764859075;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VYjGgDc62jC79UPrwBm0Wqe2D8LTyTSAMvzD7Li+ucA=;
+        b=oBqUWlGE/ogRPdzlwhwB3z7hLbmljZQhcAIBRtPSUXAVkoX3aJETvkEf9e7nwV4N9W
+         wB2RYN4l9A0Ihb/Sarfx7npIoOUhJdOnRr5ig56V1xccKdBR0fsaDbePjzA36P3n/Nyj
+         z9efWi+fFf0SvzqI/kE870I5GIuhXXANTwriWicIl7CN5hn4EXYDScitnC+TCV7280iL
+         eOQjD+tUDWQFC1eITOnBLJwB0ui5HDM8qz7E2WaGwxVq+AUPpLS3KBzGujvkqodhChel
+         QuLXVt6faeAGSwc4hi+Yf1TNGRZHzu5Fo7q6oEqAtddMjrV9L0/V6PW2n4w0wj688536
+         DwyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUy+QEusDDYgriROMEZo+Ofd/UJZ529ZCtA1qtTK2cRY70HnPwYGzqvtpbyMU/Ep4AORgMjE0rauV1l@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEsjcii8F6yptOmO21LHQkS2u+vYau+Uh8rHfrpZwifLoyTbl7
+	ez4UStU9n2EOgHuAWenFCKBEki6hbjHA21a5yBUqN20+tVCSCfscX7RZZqh+eIwAi8CiE5QLy7K
+	TVBaBcERXUnkUjKpUtlIqGW0YYz83lkCnXanCUouR2MKqq5bxIxIm
+X-Gm-Gg: ASbGncsL4jMtbNbfqdC335aBnREhzGUh7fU171dd3wLzcx28RX6dsZSl0M0EITg3v/n
+	eDKbTvxDLucVdLgMvSx08MlXza7qQfAhRoiHESTOaqEf7CCySJm0+GIdYHPqKsl2mLpz7pdQtzd
+	Lb1T3ZVYbabxP0sl7e9hjE4aelEnVg6eDc5HXD47OD9PVFCxcR1S6WokQnEfOQhBDx2Scv60bvd
+	ezPwNcBalssZs97QCn2Rk1bTR7vcJ4C+Gd92DtObJ0n1OuUFfyJBxuD1iu3JCtnlLOaVK9z6NgP
+	KhIzpRBOhqKQSWzL4PnuT2lVCm8=
+X-Google-Smtp-Source: AGHT+IH8Ttsbi5KEeEAGk11LiOYQsu2N95FdEs0+cbMJMu5dLDKPCc8OYAk6PKicQIK8vI3aANmTaZiucmGCvDUboNk=
+X-Received: by 2002:a05:6512:3a95:b0:595:a5f0:1110 with SMTP id
+ 2adb3069b0e04-596a3ec065fmr8521200e87.30.1764254274981; Thu, 27 Nov 2025
+ 06:37:54 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 27 Nov 2025 06:37:53 -0800
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 27 Nov 2025 06:37:53 -0800
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <20251125-pci-m2-e-v2-10-32826de07cc5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251127-rock-pi-4-io-domain-apio5-v1-1-9cb92793f734@cherry.de>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQrCMBBG4auUWTvQDK2KVxEX03SqP8VMSKAUS
- u9ucPkt3juoWoFVenQHFdtQ4akhXDqKH01vY8zNJL2MIciNi8eVM3hgOM/+VSTWDB9ZrlMUXfQ
- uMlDrc7EF+//9fJ3nD1ezjDhrAAAA
-X-Change-ID: 20251127-rock-pi-4-io-domain-apio5-26bc2afa8224
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Alex Bee <knaerzche@gmail.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>, 
- stable@vger.kernel.org, Heinrich Schuchardt <xypron.glpk@gmx.de>
-X-Mailer: b4 0.14.3
-X-Infomaniak-Routing: alpha
+References: <20251125-pci-m2-e-v2-0-32826de07cc5@oss.qualcomm.com> <20251125-pci-m2-e-v2-10-32826de07cc5@oss.qualcomm.com>
+Date: Thu, 27 Nov 2025 06:37:53 -0800
+X-Gm-Features: AWmQ_bmnE127PrJJlBfvUEW3R05_jJjqY__HdS6nPt4vVoiWctPQWqo-RlX_yNA
+Message-ID: <CAMRc=McH9u7Y8EZMwSjcCUs6rVx9K+h5OxFOrjwXhKm1td-EeQ@mail.gmail.com>
+Subject: Re: [PATCH v2 10/10] power: sequencing: pcie-m2: Add support for PCIe
+ M.2 Key E connectors
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>, 
+	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+On Tue, 25 Nov 2025 15:45:14 +0100, Manivannan Sadhasivam via B4 Relay
+<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> said:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+>
+> Add support for handling the power sequence of the PCIe M.2 Key E
+> connectors. These connectors are used to attach the Wireless Connectivity
+> devices to the host machine including combinations of WiFi, BT, NFC using
+> interfaces such as PCIe/SDIO for WiFi, USB/UART for BT and I2C for NFC.
+>
+> Currently, this driver supports only the PCIe interface for WiFi and UART
+> interface for BT. The driver also only supports driving the 3.3v/1.8v power
+> supplies and W_DISABLE{1/2}# GPIOs. The optional signals of the Key E
+> connectors are not currently supported.
+>
+> For supporting Bluetooth over the non-discoverable UART interface, the
+> driver currently creates the serdev interface after enumerating the PCIe
+> interface. This is mandatory since the device ID is only known after the
+> PCIe enumeration and the ID is used for creating the serdev device.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+>  drivers/power/sequencing/Kconfig          |   1 +
+>  drivers/power/sequencing/pwrseq-pcie-m2.c | 205 +++++++++++++++++++++++++++++-
+>  2 files changed, 199 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/Kconfig
+> index f5fff84566ba..29bd204319cc 100644
+> --- a/drivers/power/sequencing/Kconfig
+> +++ b/drivers/power/sequencing/Kconfig
+> @@ -38,6 +38,7 @@ config POWER_SEQUENCING_TH1520_GPU
+>  config POWER_SEQUENCING_PCIE_M2
+>  	tristate "PCIe M.2 connector power sequencing driver"
+>  	depends on OF || COMPILE_TEST
+> +	depends on PCI
+>  	help
+>  	  Say Y here to enable the power sequencing driver for PCIe M.2
+>  	  connectors. This driver handles the power sequencing for the M.2
+> diff --git a/drivers/power/sequencing/pwrseq-pcie-m2.c b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> index 4835d099d967..c2cc129f6917 100644
+> --- a/drivers/power/sequencing/pwrseq-pcie-m2.c
+> +++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> @@ -5,14 +5,17 @@
+>   */
+>
 
-This reverts commit 8240e87f16d17a9592c9d67857a3dcdbcb98f10d.
+I think you're missing linux/err.h here.
 
-The original commit claimed that APIO5 IO domain (supplied with
-audio-supply) is supplied by RK808-D Buck 4 as stated in the schematics.
+>  #include <linux/device.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_graph.h>
+>  #include <linux/of_platform.h>
+> +#include <linux/pci.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pwrseq/provider.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/serdev.h>
+>  #include <linux/slab.h>
 
-The linked PDF has two non-schematics pages where APIO5 indeed is said
-to be 1.8V. Reading the actual schematics[1][2][3][4][5][6][7][8], this
-is actually wrong as APIO5 is supplied VCC_3V0 which is LDO8 from
-RK808-D and is 3.0V instead of 1.8V from vcca1v8_codec.
+(snip)
 
-This fixes the console disappearing in U-Boot, where the Device Tree is
-imported from the Linux kernel repo, when the IO domain driver is built,
-as reported by Heinrich[9]. As to why this breaks the console while the
-serial is not exposed on any of the pins on the bank in the APIO5
-domain, that is a well-kept secret by the SoC for now.
+>
+> +static int pwrseq_m2_pcie_notify(struct notifier_block *nb, unsigned long action,
+> +			      void *data)
+> +{
+> +	struct pwrseq_pcie_m2_ctx *ctx = container_of(nb, struct pwrseq_pcie_m2_ctx, nb);
+> +	struct pci_dev *pdev = to_pci_dev(data);
+> +	struct device_node *pci_remote __free(device_node) = NULL;
+> +	struct device_node *serdev_remote __free(device_node) = NULL;
+> +	struct serdev_controller *serdev_ctrl;
+> +	struct serdev_device *serdev;
+> +	struct device *dev = ctx->dev;
+> +	int ret;
+> +
+> +	/*
+> +	 * Check whether the PCI device is associated with this M.2 connector or
+> +	 * not, by comparing the OF node of the PCI device parent and the Port 0
+> +	 * (PCIe) remote node parent OF node.
+> +	 */
+> +	pci_remote = of_graph_get_remote_node(dev_of_node(ctx->dev), 0, 0);
+> +	if (!pci_remote || (pci_remote != pdev->dev.parent->of_node))
+> +		return NOTIFY_DONE;
+> +
+> +	switch (action) {
+> +	case BUS_NOTIFY_ADD_DEVICE:
+> +		/* Create serdev device for WCN7850 */
+> +		if (pdev->vendor == PCI_VENDOR_ID_QCOM && pdev->device == 0x1107) {
+> +			serdev_remote = of_graph_get_remote_node(dev_of_node(ctx->dev), 1, 1);
+> +			if (!serdev_remote)
+> +				return NOTIFY_DONE;
+> +
+> +			serdev_ctrl = of_find_serdev_controller_by_node(serdev_remote);
+> +			if (!serdev_ctrl)
+> +				return NOTIFY_DONE;
+> +
+> +			serdev = serdev_device_alloc(serdev_ctrl);
+> +			if (!serdev)
+> +				return NOTIFY_BAD;
+> +
 
-The issue "fixed" by the original commit will need to be fixed another
-way.
 
-[1] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4ap/radxa_rock_4ap_v1600_schematic.pdf
-[2] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4ap/radxa_rock_4ap_v1730_schematic.pdf
-[3] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4bp/radxa_rock_4bp_v1600_schematic.pdf
-[4] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4bp/radxa_rock_4bp_v1730_schematic.pdf
-[5] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/ROCK-4-SE-V1.53-SCH.pdf
-[6] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4b/ROCK_4B_v1.52_SCH.pdf
-[7] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4a/ROCK_4A_V1.52_SCH.pdf
-[8] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/rockpi4_v13_sch_20181112.pdf
-[9] https://lore.kernel.org/u-boot/e7b7b905-4a6c-4342-b1a5-0ad32a5837cf@gmx.de/
+This is where you'd add the software node I wrote about under another patch
+from this series.
 
-Cc: stable@vger.kernel.org
-Reported-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
-Note: I do not own any of the Rock Pi 4 variants so I cannot work on
-fixing the original issue report by Alex.
----
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> +			ret = serdev_device_add(serdev, "WCN7850");
+> +			if (ret) {
+> +				dev_err(dev, "Failed to add serdev for WCN7850: %d\n", ret);
+> +				serdev_device_put(serdev);
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-index 046dbe3290178..fda7ea87e4efc 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-@@ -516,7 +516,7 @@ &i2s2 {
- };
- 
- &io_domains {
--	audio-supply = <&vcca1v8_codec>;
-+	audio-supply = <&vcc_3v0>;
- 	bt656-supply = <&vcc_3v0>;
- 	gpio1830-supply = <&vcc_3v0>;
- 	sdmmc-supply = <&vcc_sdio>;
+If you're touching serdev code in the same series, maybe you could define
+a cleanup action for serdev devices and use it here?
 
----
-base-commit: 765e56e41a5af2d456ddda6cbd617b9d3295ab4e
-change-id: 20251127-rock-pi-4-io-domain-apio5-26bc2afa8224
+> +				return NOTIFY_BAD;
+> +			}
+> +		}
+> +		break;
+> +	}
+> +
+> +	return NOTIFY_OK;
+> +}
+> +
+> +static bool pwrseq_pcie_m2_check_remote_node(struct device *dev, u8 port, u8 endpoint,
+> +					     const char *node)
+> +{
+> +	struct device_node *remote __free(device_node) = NULL;
+> +
+> +	remote = of_graph_get_remote_node(dev_of_node(dev), port, endpoint);
 
-Best regards,
--- 
-Quentin Schulz <quentin.schulz@cherry.de>
+I'd do it like this to follow the convention of initializing automatic
+variables at definition.
 
+	struct device_node *remote __free(device_node) =
+		of_graph_get_remote_node(dev_of_node(dev), port, endpoint);
+
+> +	if (remote && of_node_name_eq(remote, node))
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+> +/*
+> + * If the connector exposes a non-discoverable bus like UART, the respective
+> + * protocol device needs to be created manually with the help of the notifier
+> + * of the discoverable bus like PCIe.
+> + */
+> +static int pwrseq_pcie_m2_register_notifier(struct pwrseq_pcie_m2_ctx *ctx, struct device *dev)
+> +{
+> +	int ret;
+> +
+> +	/*
+> +	 * Register a PCI notifier for Key E connector that has PCIe as Port
+> +	 * 0/Endpoint 0 interface and Serial as Port 1/Endpoint 1 interface.
+> +	 */
+> +	if (pwrseq_pcie_m2_check_remote_node(dev, 1, 1, "serial")) {
+> +		if (pwrseq_pcie_m2_check_remote_node(dev, 0, 0, "pcie")) {
+> +			ctx->dev = dev;
+> +			ctx->nb.notifier_call = pwrseq_m2_pcie_notify;
+> +			ret = bus_register_notifier(&pci_bus_type, &ctx->nb);
+> +			if (ret) {
+> +				dev_err_probe(dev, ret, "Failed to register notifier for serdev\n");
+> +				return ret;
+> +			}
+
+return dev_err_probe() and save three lines?
+
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
+Bart
 
