@@ -1,155 +1,182 @@
-Return-Path: <devicetree+bounces-242858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FD1C900E8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 20:48:14 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB94C9012A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 21:02:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D7E614E9675
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 19:46:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 348454E2308
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 20:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531A030CD81;
-	Thu, 27 Nov 2025 19:44:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHhD/aQh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C873090DE;
+	Thu, 27 Nov 2025 20:02:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2950230C371;
-	Thu, 27 Nov 2025 19:44:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08182C08C0;
+	Thu, 27 Nov 2025 20:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764272666; cv=none; b=Gqnp3GUhEJ9rW/PCeI5uCtvApP3SJ/jux9THTVfvnM/CGIlAISEq3cxMhNF++ToAeG8bMZhJVmWqQMncsal6z1f9Fau2YhLPgHEOYeIspEXWnJBjCYLKqSPKn4jTsqlapUJM2rR6Ns5plpx8grUd4fJxYO/xZ9lcVenqIPna7y8=
+	t=1764273723; cv=none; b=LewzKzOoxECeO6IiK5+o9c1+EQOflY7w3MJoB618tKpNziFYVhIjdl/uv+ZYDKaQC8/GXxOwBidlTL4BMX0d2OwDWv0Qu28fN0/KUDNb6wwJAwNMxxjzaerCdAWljz4hw9Li3n8LtMiZll7ysdvlWYN1R50nERNgReUHfn9yqHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764272666; c=relaxed/simple;
-	bh=2FTP2tPXd1GWQFRneLLYDqFrpGOgQxqB103gyOVSA4k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DQWTv5KVe4sPY1RjDtvRFF4nvzjboEwJic9QM2wUOjcTIFB0/gHR51C07GnXNFprF24Z1R+olIu9huFXnvuhOUZOSyqC4UUeqKQmIxQu7eDfHHwt2+KgJNFFReJvXcfX3vP8jocdphX9lDusDLomeQmIZB3f3XX1+Q6nG25rQT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHhD/aQh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DF0FC4CEF8;
-	Thu, 27 Nov 2025 19:44:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764272665;
-	bh=2FTP2tPXd1GWQFRneLLYDqFrpGOgQxqB103gyOVSA4k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DHhD/aQhOyARXtDI0hb53vOA6x8+UUybsf+r7ell6SNfujszItV4w+dfeFIi0VVvp
-	 SfUh8H3uoek+9MTu+QV4uvODoSpGySXi0o6d5frjsPAj15Of1utMh7nsvJb974rQD6
-	 F4niZwOZzwHFDuJtR/LiKuHlg7eHU7BRGLvv18H42Kw9FviKkVKPvJALmGQ/V+VhNO
-	 Gdb9h5b6Acg/uJQzdygl3tGNU7KMzqs4YfOU3R9/nzYTx1T8Fo7IgVylHkbTf2yBLR
-	 qH2rfGWT4eDqkPvd+NlC1Xr49i1FAUs47DzrgHd5fldJ4zKIhqGNc++3zPYYD4TB9K
-	 fox1xbw6MnYrQ==
-Message-ID: <f27429f3-9dd8-4006-b2d8-702436ade805@kernel.org>
-Date: Thu, 27 Nov 2025 20:44:16 +0100
+	s=arc-20240116; t=1764273723; c=relaxed/simple;
+	bh=7fkbbGZVuKpixVFx5wr4neYuL3j3VNOm+JKFbBlg9g4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UwzQ4hM+ZDsQc6dMoMPH5bBqZwts40Fl9Tw7q8TlQccsjppH5l3q/iNazjHbGXwVeIiZxGJpi0UTtIRKAyD4w4tImkgN7aZWAX3tTlJ/XgxpTo0G9R/im9q/Y6D6qrbxbkumwQhA6gvvDPANxBa3VwNNoQSDZ5iwYxSJw0gZOns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dHS4h05Nhz9tSr;
+	Thu, 27 Nov 2025 21:01:56 +0100 (CET)
+Date: Thu, 27 Nov 2025 21:01:51 +0100
+From: Lukas Timmermann <linux@timmermann.space>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Alexandre Marquet <tb@a-marquet.fr>
+Subject: Re: [PATCH v2 2/3] ARM: dts: exynos: Add Google Manta (Nexus 10)
+Message-ID: <jqfu76ojoznc7xgyevuzmj7fg3necrr5cp645ye5zk652ytx5w@s4yaxzcq7jzt>
+References: <20251125-google-manta-v2-0-0f097cfff39c@timmermann.space>
+ <20251125-google-manta-v2-2-0f097cfff39c@timmermann.space>
+ <20251126-cunning-locust-of-atheism-e1dd0d@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
-To: Ryan Roberts <ryan.roberts@arm.com>,
- "David Hildenbrand (Red Hat)" <david@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: Wei Yang <richard.weiyang@gmail.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linux-mm@kvack.org, devicetree@vger.kernel.org,
- Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
- Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
- Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
- Anshuman Khandual <anshuman.khandual@arm.com>
-References: <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
- <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
- <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
- <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
- <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
- <20251126134726.yrya5xxayfcde3kl@master>
- <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
- <6b966403-91e0-4f06-86a9-a4f7780b9557@kernel.org>
- <ab39d448-aa1c-4c93-8e2b-5d97a9c76af5@lucifer.local>
- <1ca9f99f-6266-47ca-8c94-1a9b9aaa717f@kernel.org>
- <37973e21-e8f4-4603-b93d-4e0b1b2499fa@lucifer.local>
- <a1d25bde-3ab6-46b5-a957-db80da7e737b@kernel.org>
- <4505a93b-2bac-4ce1-8971-4c31f1ce1362@arm.com>
- <150ffcb7-2df2-4f3a-a12e-9807f13c6ab9@arm.com>
-From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Content-Language: fr-FR
-In-Reply-To: <150ffcb7-2df2-4f3a-a12e-9807f13c6ab9@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251126-cunning-locust-of-atheism-e1dd0d@kuoka>
 
-
-
-Le 26/11/2025 à 17:34, Ryan Roberts a écrit :
-> On 26/11/2025 16:07, Ryan Roberts wrote:
->> On 26/11/2025 15:12, David Hildenbrand (Red Hat) wrote:
->>> On 11/26/25 16:08, Lorenzo Stoakes wrote:
->>>> On Wed, Nov 26, 2025 at 03:56:13PM +0100, David Hildenbrand (Red Hat) wrote:
->>>>> On 11/26/25 15:52, Lorenzo Stoakes wrote:
->>>>>>
->>>>>> Would the pmdp_get() never get invoked then? Or otherwise wouldn't that end up
->>>>>> requiring a READ_ONCE() further up the stack?
->>>>>
->>>>> See my other reply, I think the pmdp_get() is required because all pud_*
->>>>> functions are just simple stubs.
->>>>
->>>> OK, thought you were saying we should push further down the stack? Or up
->>>> depending on how you view these things :P as in READ_ONCE at leaf?
->>>
->>> I think at leaf because I think the previous ones should essentially be only
->>> used by stubs.
->>>
->>> But I haven't fully digested how this is all working. Or supposed to work.
->>>
->>> I'm trying to chew through the arch/arm/include/asm/pgtable-2level.h example to
->>> see if I can make sense of it,
->>
->> I wonder if we can think about this slightly differently;
->>
->> READ_ONCE() has two important properties:
->>
->>   - It guarrantees that a load will be issued, *even if output is unused*
->>   - It guarrantees that the read will be single-copy-atomic (no tearing)
->>
->> I think for the existing places where READ_ONCE() is used for pagetable reads we
->> only care about:
->>
->>   - It guarrantees that a load will be issued, *if output is used*
->>   - It guarrantees that the read will be single-copy-atomic (no tearing)
->>
->> I think if we can weaken to the "if output is used" property, then the compiler
->> will optimize out all the unneccessary reads.
->>
->> AIUI, a C dereference provides neither of the guarrantees so that's no good.
->>
->> What about non-volatile asm? I'm told (thought need to verify) that for
->> non-volatile asm, the compiler will emit it if the output is used and remove it
->> otherwise. So if the asm contains the required single-copy-atomic, perhaps we
->> are in business?
->>
->> So we would need a new READ_SCA() macro that could default to READ_ONCE() (which
->> is stronger) and arches could opt in to providing a weaker asm version. Then the
->> default pXdp_get() could be READ_SCA(). And this should work for all cases.
->>
->> I think.
+On Wed, Nov 26, 2025 at 10:10:46AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Nov 25, 2025 at 04:12:41PM +0100, Lukas Timmermann wrote:
+> > +/ {
+> > +	model = "Google Nexus 10";
+> > +	compatible = "google,manta", "samsung,exynos5250", "samsung,exynos5";
+> > +
 > 
-> I'm not sure this works. It looks like the compiler is free to move non-volatile
-> asm sections which might be problematic for places where we are currently using
-> READ_ONCE() in lockless algorithms, (e.g. GUP?). We wouldn't want to end up with
-> a stale value.
-
-What about adding a memory clobber to the non-volatile asm ? Compiler 
-shouldn't move the asm section in that case.
-
-Christophe
-
+> Everything looks good in general, thanks for working on this. I have
+> few nits below. You can send next version whenever you are ready, but
+> just to let you know - my tree is already closed till RC1.
+> 
+First of all, thank you!
+The as3668 bindings are yet to be applied, no need to rush here.
+> > +	aliases {
+> > +		mmc0 = &mmc_0; /* eMMC */
+> > +		mmc1 = &mmc_1; /* WiFi */
+> > +	};
+> > +
+> > +	memory@40000000 {
+> 
+> Please order the nodes in top level by node name (see DTS coding style).
+> I know that existing files do not follow that, but we try to have new
+> code conforming to the coding style.
+> 
+We ordered them as seen in other devices. I've checked out the coding style 
+guideline and will make modifications accordingly.
+> > +		device_type = "memory";
+> > +		reg = <0x40000000 0x20000000
+> 
+> Separate <> for each entry.
+> 
+Acknowledged.
+> > +		       0x60000000 0x20000000
+> > +		       0x80000000 0x20000000
+> > +		       0xa0000000 0x1ff00000>;
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path = &serial_2;
+> > +	};
+> > +
+> > +	firmware@204f000 {
+> > +		compatible = "samsung,secure-firmware";
+> > +		reg = <0x0204f000 0x1000>;
+> > +	};
+> > +
+> > +	fixed-rate-clocks {
+> > +		xxti {
+> > +			compatible = "samsung,clock-xxti";
+> > +			clock-frequency = <24000000>;
+> > +		};
+> > +
+> > +		xusbxti {
+> > +			compatible = "samsung,clock-xusbxti";
+> 
+> Are you sure you have this clock input? I think on Exynos5250 usually
+> only XXTI was provided, no?
+> 
+We checked with the downstream code and found this clock input. We
+recognize, that downstream kernels aren't 100% correct at times.
+I tested the device without this clock input as you suggested.
+It seems that this is in fact not needed. So I will remove it in v3.
+> > +			clock-frequency = <24000000>;
+> > +		};
+> > +	};
+> > +
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&gpio_keys>;
+> > +
+> > +		key-down {
+> > +			gpios = <&gpx2 1 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_VOLUMEDOWN>;
+> > +			label = "volume down";
+> > +			debounce-interval = <5>;
+> > +		};
+> > +
+> > +		key-up {
+> > +			gpios = <&gpx2 0 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_VOLUMEUP>;
+> > +			label = "volume up";
+> > +			debounce-interval = <5>;
+> > +		};
+> > +
+> > +		key-power {
+> > +			gpios = <&gpx2 7 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_POWER>;
+> > +			label = "power";
+> > +			debounce-interval = <5>;
+> > +			wakeup-source;
+> > +		};
+> > +
+> > +		lid-switch {
+> > +			label = "Lid";
+> > +			gpios = <&gpx1 3 GPIO_ACTIVE_LOW>;
+> > +			linux,input-type = <5>; /* EV_SW */
+> > +			linux,code = <0>; /* SW_LID */
+> > +			debounce-interval = <10>;
+> > +			wakeup-source;
+> > +		};
+> > +	};
+> > +
+> > +	multi-led {
+> > +		compatible = "leds-group-multicolor";
+> > +		color = <LED_COLOR_ID_RGB>;
+> > +		function = LED_FUNCTION_STATUS;
+> > +		leds = <&status_red>, <&status_green>, <&status_blue>, <&status_white>;
+> > +	};
+> > +
+> > +	wlan_pwrseq: mmc1-pwrseq {
+> 
+> Just "pwrseq"
+> 
+Acknowledged.
+Just out of curiosity. Why is that?
+> Best regards,
+> Krzysztof
+> 
+> 
+Best regards,
+Lukas Timmermann
 
