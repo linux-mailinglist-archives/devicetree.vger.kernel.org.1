@@ -1,166 +1,168 @@
-Return-Path: <devicetree+bounces-242633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF0BDC8D54E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:26:49 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E32B8C8D58D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:31:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DF5C3AED5D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:26:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5C1174E4704
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3FE316909;
-	Thu, 27 Nov 2025 08:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89EC2BDC0E;
+	Thu, 27 Nov 2025 08:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WcmFwl3B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hy3wn4pI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40271CEAA3;
-	Thu, 27 Nov 2025 08:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A81527F727;
+	Thu, 27 Nov 2025 08:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764232005; cv=none; b=Hl0nY6YFqjAIDuek3E3Aw8S+mbbUIN75oP6qoG6GNgdPRKKq4uvQLBRRL/jfsFvvB1U5sLz+PSfKf1YW9jx0FJz0fqyLsLPHt1AJ2hmmMip6DSruP+qC85eMRtT2Zw1UVINmEo7WQQeXr5eiAhNOJcvV6bwlfva7gAJFny2pk7k=
+	t=1764232261; cv=none; b=DJe2MOpeiN1gcjuAL9VzIFqTkTNk9z1DzxuIksdSoChpmBhui7BqhuL8Ie4FPMDophBuF4wFNVndH+4obnx06wFQc98t8bS3Xuv7pPwEdETBUXNs2mpt8iJeYglWQqn/yCz9Vkl7Be5DjPJw4A4PmljkUMXFSl4RqnhC336ooaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764232005; c=relaxed/simple;
-	bh=bcPfE1QJFfuPJbcIojv7Nn8Gaq58C6i7WGhcnOmsWd4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UHg1ODisU1bbTe8Lrncnl+JKcqTouRECAym8pJy1dWS6ptw5Lvq9lCMFyCPb9iJ4ON7T8KNJmViRtv1L7auItVrwe9DMRDaZu2o1Ty7E0YLFOLaD21qTEjfdt6dmUSBtZSYUNVgwweviYvSTqyqM6az8IUYwpJE0TDBQ/YLQZqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WcmFwl3B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 336B6C4CEF8;
-	Thu, 27 Nov 2025 08:26:41 +0000 (UTC)
+	s=arc-20240116; t=1764232261; c=relaxed/simple;
+	bh=Hw3rpyjIs5q2m80mOXGPqWY/yNyazFCdz/ULb4y5eE8=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=MiLNRry6sAKj1bIxSZMgZ4eeUJKGzakNaDvioPEJurihRmohOz7obeeG2MCpsNV7odKkDv+J9dPhdCJA97gTMaJ0EerF2BRlNifCO5par3/uz77guq4+Lj1IBiQ+Mje/BJ7auuWI8wtKDhkEyY25esD7RyjGyuDl0962FA/BVr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hy3wn4pI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04754C113D0;
+	Thu, 27 Nov 2025 08:31:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764232005;
-	bh=bcPfE1QJFfuPJbcIojv7Nn8Gaq58C6i7WGhcnOmsWd4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WcmFwl3BFSTa59/qQB3P8sjeCiQkh28Bx5X8iBQfaUe9YSkO9nM6cU7737TjnKOAp
-	 JJkTOlBk92QSIZ2v8m6Y6XbVK9HWVET1oCn6iBF1FjQogwNkbb80I07YujudKOOV/w
-	 jrIBVQvi9EmOYcwjbuxYPeKj4FIh8G+4H+CR5PI3EtQcfNOF6BBZM98kJDPYxtAGma
-	 9DJFGkFyQVPcFXE1Z/hTrfVM345+WrNeKTmw1VLoc3DWXOvGUwLitd1sX0X02raP8b
-	 M5NVBmYkjvj75YhwFp8eFNQl9M+E9BJCXFBZubd8BB0leNXs9KcXf5d4SR52xj4DCC
-	 +M1Pg28PbX3VQ==
-Message-ID: <a33b87ab-b24f-45d5-bd4a-646988b54a2b@kernel.org>
-Date: Thu, 27 Nov 2025 09:26:39 +0100
+	s=k20201202; t=1764232261;
+	bh=Hw3rpyjIs5q2m80mOXGPqWY/yNyazFCdz/ULb4y5eE8=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=hy3wn4pIoJRjHnOpzYoslQqGho8xq0Z9RYYtBYN7+2U4rmY+LWmfVf7QjhnFLU0Mv
+	 QEDP6WThf6o5Q53L7jnlkEhpeYY48FZgFAt4ZuoKkLd8wdchRSGHF/bEWGOnGHYBBT
+	 FZ8xnt7DwDjwc8HuYv/UEioqMANa99L8z5klJ7kXO7QR9T1fKlc6GLVl08SqYFo5Lg
+	 RaTsa2Z8ARaoDxgBAXOvRTYOfrpd22vE5+10ciSjeYr16NsDt0ap+IHbaB2YhBdfA5
+	 1+WTRwoaMqCQwXUJPSdoVgujZPRxtohgp1aIb2iJZsXu+3yC16Y7s79nq8I1k8N+Fe
+	 fXBu/eflyUvhQ==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADE9D380CFC2;
+	Thu, 27 Nov 2025 08:30:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
-To: Ryan Roberts <ryan.roberts@arm.com>, Wei Yang <richard.weiyang@gmail.com>
-Cc: "David Hildenbrand (Red Hat)" <david@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linux-mm@kvack.org, devicetree@vger.kernel.org,
- Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
- Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
- Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
- Anshuman Khandual <anshuman.khandual@arm.com>
-References: <20251113014656.2605447-1-samuel.holland@sifive.com>
- <20251113014656.2605447-7-samuel.holland@sifive.com>
- <02e3b3bd-ae6a-4db4-b4a1-8cbc1bc0a1c8@arm.com>
- <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
- <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
- <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
- <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
- <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
- <20251126134726.yrya5xxayfcde3kl@master>
- <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
-From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Content-Language: fr-FR
-In-Reply-To: <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v23 00/28] riscv control-flow integrity for usermode
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <176423222224.2476283.17736612090314280039.git-patchwork-notify@kernel.org>
+Date: Thu, 27 Nov 2025 08:30:22 +0000
+References: <20251112-v5_user_cfi_series-v23-0-b55691eacf4f@rivosinc.com>
+In-Reply-To: <20251112-v5_user_cfi_series-v23-0-b55691eacf4f@rivosinc.com>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, tglx@linutronix.de, mingo@redhat.com,
+ bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
+ akpm@linux-foundation.org, Liam.Howlett@oracle.com, vbabka@suse.cz,
+ lorenzo.stoakes@oracle.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, conor@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ arnd@arndb.de, brauner@kernel.org, peterz@infradead.org, oleg@redhat.com,
+ ebiederm@xmission.com, kees@kernel.org, corbet@lwn.net, shuah@kernel.org,
+ jannh@google.com, conor+dt@kernel.org, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, a.hindborg@kernel.org, aliceryhl@google.com,
+ tmgross@umich.edu, lossin@kernel.org, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
+ andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+ atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+ alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+ rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+ zong.li@sifive.com, david@redhat.com, cmirabil@redhat.com
 
+Hello:
 
+This series was applied to riscv/linux.git (for-next)
+by Paul Walmsley <pjw@kernel.org>:
 
-Le 26/11/2025 à 15:22, Ryan Roberts a écrit :
-> On 26/11/2025 13:47, Wei Yang wrote:
->> On Wed, Nov 26, 2025 at 01:03:42PM +0000, Ryan Roberts wrote:
->>> On 26/11/2025 12:35, David Hildenbrand (Red Hat) wrote:
->> [...]
->>>>>>>> Hi,
->>>>>>>>
->>>>>>>> I've just come across this patch and wanted to mention that we could also
->>>>>>>> benefit from this improved absraction for some features we are looking at for
->>>>>>>> arm64. As you mention, Anshuman had a go but hit some roadblocks.
->>>>>>>>
->>>>>>>> The main issue is that the compiler was unable to optimize away the
->>>>>>>> READ_ONCE()s
->>>>>>>> for the case where certain levels of the pgtable are folded. But it can
->>>>>>>> optimize
->>>>>>>> the plain C dereferences. There were complaints the the generated code for arm
->>>>>>>> (32) and powerpc was significantly impacted due to having many more
->>>>>>>> (redundant)
->>>>>>>> loads.
->>>>>>>>
->>>>>>>
->>>>>>> We do have mm_pmd_folded()/p4d_folded() etc, could that help to sort
->>>>>>> this out internally?
->>>>>>>
->>>>>>
->>>>>> Just stumbled over the reply from Christope:
->>>>>>
->>>>>> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flkml.kernel.org%2Fr%2F0019d675-ce3d-4a5c-89ed-f126c45145c9%40kernel.org&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C22d0a028b1ec4a8b678108de2cf73769%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638997637481119954%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=ocR6usVgRHfue0MrtbQnDO8whINvy%2FDMAfNE3caiY8c%3D&reserved=0
->>>>>>
->>>>>> And wonder if we could handle that somehow directly in the pgdp_get() etc.
->>>
->>> I certainly don't like the suggestion of doing the is_folded() test outside the
->>> helper, but if we can push that logic down into pXdp_get() that would be pretty
->>> neat. Anshuman and I did briefly play with the idea of doing a C dereference if
->>> the level is folded and a READ_ONCE() otherwise, all inside each pXdp_get()
->>> helper. Although we never proved it to be correct. I struggle with the model for
->>> folding. Do you want to optimize out all-but-the-highest level's access or
->>> all-but-the-lowest level's access? Makes my head hurt...
->>>
->>>
->>
->> You mean sth like:
->>
->> static inline pmd_t pmdp_get(pmd_t *pmdp)
->> {
->> #ifdef __PAGETABLE_PMD_FOLDED
->> 	return *pmdp;
->> #else
->> 	return READ_ONCE(*pmdp);
->> #endif
->> }
+On Wed, 12 Nov 2025 16:42:58 -0800 you wrote:
+> v23:
+> fixed some of the "CHECK:" reported on checkpatch --strict.
+> Accepted Joel's suggestion for kselftest's Makefile.
+> CONFIG_RISCV_USER_CFI is enabled when zicfiss, zicfilp and fcf-protection
+> are all present in toolchain
 > 
-> Yes. But I'm not convinced it's correct.
+> v22: fixing build error due to -march=zicfiss being picked in gcc-13 and above
+> but not actually doing any codegen or recognizing instruction for zicfiss.
+> Change in v22 makes dependence on `-fcf-protection=full` compiler flag to
+> ensure that toolchain has support and then only CONFIG_RISCV_USER_CFI will be
+> visible in menuconfig.
 > 
-> I *think* (but please correct me if I'm wrong) if the PMD is folded, the PUD and
-> P4D must also be folded, and you effectively have a 2 level pgtable consisting
-> of the PGD table and the PTE table. p4dp_get(), pudp_get() and pmdp_get() are
-> all effectively duplicating the load of the pgd entry? So assuming pgdp_get()
-> was already called and used READ_ONCE(), you might hope the compiler will just
-> drop the other loads and just use the value returned by READ_ONCE(). But I doubt
-> there is any guarantee of that and you might be in a situation where pgdp_get()
-> never even got called (perhaps you already have the pmd pointer).
+> [...]
 
-I think you can't assume pgdp_get() was already called, because some 
-parts of code will directly descend to PMD level using pmd_off() or 
-pmd_off_k()
+Here is the summary with links:
+  - [v23,01/28] mm: VM_SHADOW_STACK definition for riscv
+    https://git.kernel.org/riscv/c/ae8460ac9db2
+  - [v23,02/28] dt-bindings: riscv: zicfilp and zicfiss in dt-bindings (extensions.yaml)
+    https://git.kernel.org/riscv/c/b32ccfc268db
+  - [v23,03/28] riscv: zicfiss / zicfilp enumeration
+    https://git.kernel.org/riscv/c/55a811a7f304
+  - [v23,04/28] riscv: zicfiss / zicfilp extension csr and bit definitions
+    https://git.kernel.org/riscv/c/92c96b16548e
+  - [v23,05/28] riscv: usercfi state for task and save/restore of CSR_SSP on trap entry/exit
+    https://git.kernel.org/riscv/c/7720cdd21962
+  - [v23,06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ | VM_WRITE
+    https://git.kernel.org/riscv/c/e60eb198b13d
+  - [v23,07/28] riscv/mm: manufacture shadow stack pte
+    https://git.kernel.org/riscv/c/f8fcb7b5bf30
+  - [v23,08/28] riscv/mm: teach pte_mkwrite to manufacture shadow stack PTEs
+    https://git.kernel.org/riscv/c/0276a5ea1105
+  - [v23,09/28] riscv/mm: write protect and shadow stack
+    https://git.kernel.org/riscv/c/ae615676bc37
+  - [v23,10/28] riscv/mm: Implement map_shadow_stack() syscall
+    https://git.kernel.org/riscv/c/d291fd38f841
+  - [v23,11/28] riscv/shstk: If needed allocate a new shadow stack on clone
+    https://git.kernel.org/riscv/c/d209ea2fa4bb
+  - [v23,12/28] riscv: Implements arch agnostic shadow stack prctls
+    https://git.kernel.org/riscv/c/8b49f512abc2
+  - [v23,13/28] prctl: arch-agnostic prctl for indirect branch tracking
+    https://git.kernel.org/riscv/c/3363a8d1044e
+  - [v23,14/28] riscv: Implements arch agnostic indirect branch tracking prctls
+    https://git.kernel.org/riscv/c/0177891ccdb7
+  - [v23,15/28] riscv/traps: Introduce software check exception and uprobe handling
+    https://git.kernel.org/riscv/c/6f71171a7448
+  - [v23,16/28] riscv: signal: abstract header saving for setup_sigcontext
+    (no matching commit)
+  - [v23,17/28] riscv/signal: save and restore of shadow stack for signal
+    https://git.kernel.org/riscv/c/4f9da7ad3478
+  - [v23,18/28] riscv/kernel: update __show_regs to print shadow stack register
+    https://git.kernel.org/riscv/c/320c96a55d73
+  - [v23,19/28] riscv/ptrace: riscv cfi status and state via ptrace and in core files
+    https://git.kernel.org/riscv/c/7a39f89a817e
+  - [v23,20/28] riscv/hwprobe: zicfilp / zicfiss enumeration in hwprobe
+    https://git.kernel.org/riscv/c/c09b490a9267
+  - [v23,21/28] riscv: kernel command line option to opt out of user cfi
+    https://git.kernel.org/riscv/c/6e0dc40ceb45
+  - [v23,22/28] riscv: enable kernel access to shadow stack memory via FWFT sbi call
+    https://git.kernel.org/riscv/c/dfd087078357
+  - [v23,23/28] arch/riscv: compile vdso with landing pad and shadow stack note
+    https://git.kernel.org/riscv/c/2cfe57e3bd9b
+  - [v23,24/28] arch/riscv: dual vdso creation logic and select vdso based on hw
+    https://git.kernel.org/riscv/c/418316aa61e8
+  - [v23,25/28] riscv: create a config for shadow stack and landing pad instr support
+    https://git.kernel.org/riscv/c/c5f5ce714457
+  - [v23,26/28] riscv: Documentation for landing pad / indirect branch tracking
+    https://git.kernel.org/riscv/c/73d0ccec35b8
+  - [v23,27/28] riscv: Documentation for shadow stack on riscv
+    https://git.kernel.org/riscv/c/6b8214c8cbd6
+  - [v23,28/28] kselftest/riscv: kselftest for user mode cfi
+    https://git.kernel.org/riscv/c/0f226cf6026f
 
-static inline pmd_t *pmd_off(struct mm_struct *mm, unsigned long va)
-{
-	return pmd_offset(pud_offset(p4d_offset(pgd_offset(mm, va), va), va), va);
-}
-
-static inline pmd_t *pmd_off_k(unsigned long va)
-{
-	return pmd_offset(pud_offset(p4d_offset(pgd_offset_k(va), va), va), va);
-}
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-Christophe
 
