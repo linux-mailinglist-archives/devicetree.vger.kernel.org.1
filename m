@@ -1,48 +1,82 @@
-Return-Path: <devicetree+bounces-242784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0619C8EAA0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:00:44 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CDD1C8EC00
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:27:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 76F0D3516EA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:59:19 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C5F54349946
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E8C28314A;
-	Thu, 27 Nov 2025 13:59:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19E23112D5;
+	Thu, 27 Nov 2025 14:27:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eFQbwjzz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nBkcTbUP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CF227703C;
-	Thu, 27 Nov 2025 13:59:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182AB331A41
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 14:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764251942; cv=none; b=bLryU/NmJLt2jEtzqnsnbSzqx90zqeJnDKhKRiOwBFhtswLDc4th/8F428nRcIlhsOEq/ESzI2bZCVoT8t4v7YxwPYtAQz+6aSBFUqa/qBDKq5ruEy2FZQTWeMnsZmOOcLBaQXELQBs1zKMKHzRkwYoHhvPOSEvnIRUnC18fQEM=
+	t=1764253672; cv=none; b=EP1Jd+RXNiXonZUz7lwl//ImTpZCsy5CLAtvZrzyBMcyhXujJOTvbSx6jc7taDAwU8/t20FfWYx6MBowy/H5owDERKXhNcc5rz7+cgjxc6Nie6W3oOg7W+3lo1zq1okic3Q+PaLSXaeRWl9401CugwwZTGVXrtElG8Az+il0x04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764251942; c=relaxed/simple;
-	bh=RAb5JyI+7Eg8dSIG0pq4NFV6UoD+9rhPIqCdXRp9X6Y=;
+	s=arc-20240116; t=1764253672; c=relaxed/simple;
+	bh=VsxF4F1+V+wVbP+TVp2TXSyzJ/baeBpnP51twMV82pM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AHPUbm2ur2lwD6AVCLMbS00pXwLUEm0u5R1xiqAtrHCy3hZv1iJ/UF3DUCYpvkpEd7eSskAMVGYCR7hpgFxnhIVJ3wH4my106NdYq06BvbL6FT9Yp0O8GVjpO9/ECzX58stSdn23NCW58p8lZaiRe3LrmyXfeZaokxGYwMMncFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eFQbwjzz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B3B6C113D0;
-	Thu, 27 Nov 2025 13:58:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764251942;
-	bh=RAb5JyI+7Eg8dSIG0pq4NFV6UoD+9rhPIqCdXRp9X6Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eFQbwjzzwCzmXwWVUfJOe/gvAu/FRjplhO1QM6whjf63EgQ3+FLPH1x3r1W2MZ3+n
-	 PfsuBN2TLU11T0HjnkA0gEaBlw4QgDHn02J7gHRir+GDRaR5J6IsqBlsuDpHL/CHKy
-	 JYhV6vo9Qzt+F5Av5A/Q7nVfsz27CuJUsZk2bbUKnizoGN0MpVN4tgn/2W0HGS7EOn
-	 qH4Bm/A0peR5Q67iT3PT1HxBPDseD+hDsYZohT4xyL/czWq4MUXI6uhGewEwdF09Oo
-	 qU1klZ8k4EW/acpCXfRW3Tjjn2q53lexpk0Jj4S5ofFp8qDtCzg7DvZZOTdxizvOpI
-	 KkFXXn9Qz1yKg==
-Message-ID: <b68f333c-ccf5-4ecb-9d99-05d0f6e36391@kernel.org>
-Date: Thu, 27 Nov 2025 14:58:54 +0100
+	 In-Reply-To:Content-Type; b=pT3wckVmExVxSc7q/W09gY6ewUWkpffx2bqcJg/36nyX1CTcPh1k9LmGlOfltr/NNEVTg9flxsDrHhz6lL4e0bHGAVPbqBIYGoi74svxbUfHbw+OnH9zuztzJaQCtiWREqZu+ag8+uuHJpBmwNgbEi/qLKoiK0W9Z8ZRJLjs6TU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nBkcTbUP; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-37a533a9f26so374001fa.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 06:27:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764253669; x=1764858469; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Izu2FHuEoh3gQsex6rJEdJvdieWvoBfp7SLE5TF7nSY=;
+        b=nBkcTbUP2ihqDxq4MvLepAdnt/JT0GCIn7YLHvJ/AW0uGqhshu+FT0OWnlxwkXQmGB
+         afubwL1lwkjQ2CtJ3gid+B7Lf8sngQQfsWdAH9GNH9/8vVKYmCQHZoE6dHkXbdFXt1si
+         pVrrMm0vrK6QaB21bzHGE/Pzji9y3yuLX3afOTzx+ZQ5HrShSG9LYolNzYzyOApfdb71
+         y99iCZNYBP+qQCvl50mk+WMJBDmM2aG79Mw2y935/G5t2dOtzVk3bGZGpA8AmRel1f3y
+         tD2ZR6K5rq1m0vsPjfNodeE/47Fka93spxNLlv33NCpN2r/4k7uq5GezqwvMc+t7yAvR
+         X91w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764253669; x=1764858469;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Izu2FHuEoh3gQsex6rJEdJvdieWvoBfp7SLE5TF7nSY=;
+        b=pSGssLb/sPvX3Jq0MHmCWe4PCxr1ZooPzT5b4EdxH8sBm05mbvQdYdykn9e3S2rH5v
+         d+gJOArPKo4zaHxWliVIDwYca86v9uAcerdHESc9YogcG3Wd9Xy3MB1ln0zx9H7W2+/S
+         ognmN5mQu74SEi3VyNARthET85M9hfDrhylneU6NQ0/E3MPkMqmIUCOtvpneVB8lMocJ
+         5seoYWXCnXE8mgg3Hy8fdXUAM+ijy6sdn7O3voEndOSzGRMyIKUQn6ELhU6FuuqMOG2B
+         MOZQL/G/ohm7YjCHucgtkqrtXvlaq5/qoIbiwvUoV+iUzMRErPWz+JHQ8+jAyjiGmPzo
+         Swxg==
+X-Forwarded-Encrypted: i=1; AJvYcCXs466o0bGToYamOdGSxGqqCcSDaXhpd3VfKvAKQQ7ZPuWgDMWIwi3uAjzNhT97BI8VzDdg48/dhebP@vger.kernel.org
+X-Gm-Message-State: AOJu0YycT3ahhITk1t8KK8HAk+eT/R3Fk6AtWorKKXsRhnLS0Fn98/Kq
+	cRHcXSpjVuv0QajyOk+1r9v4ks0omPtKkt78IVOtM7rZnsmaYFQJgwq0AuSeVLqzYL8=
+X-Gm-Gg: ASbGncvMkYWvftbhYaSqgIdHEygeeTg2/loDuDgOZUtEEZImGfOuJkZ3k+scGeqSHbh
+	PNQfkxjLkUXIpS/tzR+QTiICk3rQbj5+P55B94/HK7yJSBB/PZWiG9ybjfUlrAEyEBK9r+b9tfH
+	PNtfXPiJe3QDnTaaIrm64XnmU4gpMgv4Awa0VIwULGjdNjtKe2w1QwcpySxuDosTkKvWrFvihnM
+	se4GRI/CWfYb/wC3b6Cnq4hwFHhS0wyOHOMzYTclTbcloLB+orB2zyAF548t6Xxz0468r8epdxj
+	iyPlYHpOjc5Vr6obwhCE2kdzOYo2FlJMv8DM0YimKCbjmqe0ky7GR11BmOvrU5GmsE1+i9zFJqP
+	bYAkl6SUvQ/KfoZPZbF86WraNSfqYCcS9C9xHABYy0iQly/YfccBQc9z1MuyXeRdZrB27AQO/Qn
+	Ol9hqvk6pQysYeiYsfxqaHP4QNLYiQ8ifyYbfwNCvxzLR/gCPXjLd6XvF1keIX5+pTmz4swBef8
+	GNl
+X-Google-Smtp-Source: AGHT+IFt6vU27xKv/0kuU+d2Qo4LF76uFAOV+qiVtW1RJs/5m+HZGfbtFg/MAFAH3yfFrmgDtBZ9LQ==
+X-Received: by 2002:a05:651c:3244:b0:37b:926d:5c06 with SMTP id 38308e7fff4ca-37cdc46f662mr32899781fa.8.1764253669119;
+        Thu, 27 Nov 2025 06:27:49 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37d236e5ec1sm4034821fa.16.2025.11.27.06.27.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Nov 2025 06:27:48 -0800 (PST)
+Message-ID: <d3cccdf4-8c50-4b6c-a29b-5b1388ce2249@linaro.org>
+Date: Thu, 27 Nov 2025 16:27:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,183 +84,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
-To: Icenowy Zheng <uwu@icenowy.me>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20251124105226.2860845-1-uwu@icenowy.me>
- <20251124105226.2860845-3-uwu@icenowy.me>
- <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
- <544ae21cc1b5f488d03a5650d9275ff22b237d63.camel@icenowy.me>
- <0b7ba974-d8d5-4417-8182-3e9299315058@kernel.org>
- <b7b9396950cb92c227acef5461941020a282e551.camel@icenowy.me>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <b7b9396950cb92c227acef5461941020a282e551.camel@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8550: Enable UHS-I SDR50 and
+ SDR104 SD card modes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251126012043.3764567-1-vladimir.zapolskiy@linaro.org>
+ <20251126012043.3764567-3-vladimir.zapolskiy@linaro.org>
+ <b07b88ed-83a3-46d6-8b97-e8661e2cfaa3@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <b07b88ed-83a3-46d6-8b97-e8661e2cfaa3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 27/11/2025 14:47, Icenowy Zheng wrote:
-> 在 2025-11-26星期三的 11:22 +0100，Krzysztof Kozlowski写道：
->> On 26/11/2025 10:50, Icenowy Zheng wrote:
->>>>> +maintainers:
->>>>> +  - Icenowy Zheng <uwu@icenowy.me>
->>>>> +
->>>>> +properties:
->>>>> +  $nodename:
->>>>> +    pattern: "^display@[0-9a-f]+$"
->>>>> +
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - enum:
->>>>> +          - thead,th1520-dc8200
->>>>> +      - const: verisilicon,dc
->>>>
->>>> I do not see any explanation of exception for generic
->>>> compatibles,
->>>> maybe
->>>> except "self-identification" remark. Rob already pointed this
->>>> out, so
->>>> be
->>>> explicit in commit msg why you are using a generic compatible.
->>>
->>> Well I only get the meaning of "a SoC specific compatible is
->>> required"
->>> in his review message.
->>>
->>> I think my binding now requires both a SoC-specific compatible and
->>> a
->>> generic compatible, which should be okay to satisfy Rob's original
->>> review.
+Hi Konrad.
+
+On 11/27/25 15:40, Konrad Dybcio wrote:
+> On 11/26/25 2:20 AM, Vladimir Zapolskiy wrote:
+>> The restriction on UHS-I speed modes was added to all SM8550 platforms
+>> by copying it from SM8450 dtsi file, and due to the overclocking of SD
+>> cards it was an actually reproducible problem. Since the latter issue
+>> has been fixed, UHS-I speed modes are working fine on SM8550 boards,
+>> below is the test performed on SM8550-HDK:
 >>
->> You will get then the same questions for me - what justifies generic
->> compatible. You should be on this explicit, because otherwise people
->> misinterpret some commits and patches, and they think the generic
->> compatible is allowed for them as well.
+>> SDR50 speed mode:
+>>
+>>      mmc0: new UHS-I speed SDR50 SDHC card at address 0001
+>>      mmcblk0: mmc0:0001 00000 14.6 GiB
+>>       mmcblk0: p1
+>>
+>>      % dd if=/dev/mmcblk0p1 of=/dev/null bs=1M count=1024
+>>      1024+0 records in
+>>      1024+0 records out
+>>      1073741824 bytes (1.1 GB, 1.0 GiB) copied, 23.5468 s, 45.6 MB/s
+>>
+>> SDR104 speed mode:
+>>
+>>      mmc0: new UHS-I speed SDR104 SDHC card at address 59b4
+>>      mmcblk0: mmc0:59b4 USDU1 28.3 GiB
+>>       mmcblk0: p1
+>>
+>>      % dd if=/dev/mmcblk0p1 of=/dev/null bs=1M count=1024
+>>      1024+0 records in
+>>      1024+0 records out
+>>      1073741824 bytes (1.1 GB, 1.0 GiB) copied, 11.9819 s, 89.6 MB/s
+>>
+>> Unset the UHS-I speed mode restrictions from the SM8550 platform dtsi
+>> file, there is no indication that the SDHC controller is broken.
+>>
+>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>> ---
 > 
-> I came across a comment on Mali Valhall bindings that says `Mali
-> Valhall GPU model/revision is fully discoverable`, just after the
-> compatible string.
-> 
-> Should I add a comment like this, or should I make things more clear in
-> the commit message?
-
-Just say in the commit msg in the sentence about "self-identification
-facility" that therefore you use generic compatible (or "generic
-compatible is suitable").
-
-Please trim the context when replying. Look below:
-
-> 
->>
->>>
->>>>
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  interrupts:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  clocks:
->>>>> +    minItems: 4
->>>>
->>>> This is not flexible. Device either has or has not these clocks.
->>>
->>> The existence of all these clocks are verified by diagrams in
->>> manuals
->>
->> So not flexible, then:
->>
->>> of two different SoCs with DC8200 (T-Head TH1520 and StarFive
->>> JH7110).
->>>
->>> Maybe a explicit `maxItems: 5` is needed here, but as my DT passes
->>> dtbs_check, I don't think it's necessary?
->>
->> No, drop minItems only.
->>
->>>
->>> Or maybe I should drop the flexibility now and use a `minItems: 5`
->>> here
->>> (and leave DC8000 support as another story)? (The Eswin EIC7700
->>> manual
->>> does not have a diagram showing external connections of the DC,
->>> like
->>> the two SoCs I mentioned above).
->>
->> You document here only the devices explicitly mentioned in the
->> binding.
->> You cannot add here constraints or clocks for some device which is
->> not
->> in the binding and I see only th1520 in the binding.
->>
->> Best regards,
->> Krzysztof
+> 8550 has additional limitations. One was addressed recently with
+> max-sd-hs-hz (HS mode can only run at 37.5 MHz), but when in SDR104,
+> the frequency must also be capped to 148 MHz. I don't know whether
+> the driver respects that today.
 > 
 
-Is all this needed for me? If it is there I will waste time scrolling
-through it looking for your questions.
+This frequency cap tuning for SDR104 speed mode is not done. If I
+remember the story properly, the frequency cap for HS speed mode was
+implemented in dts instead of being a pure Qualcomm SDHC specific
+quirk, because it's possible to workaround the limitation by slightly
+changing a board PCB layout. Then should this new SDR104 quirk be
+considered due to a property in the dtb as well?
 
-Think how your patchset and replies are received by reviewer.
+FWIW, comparing register dumps SD host controllers on SM8550 and SM8650
+SoCs are identical, should HS and SDR104 quirks be ported to SM8650 also?
 
+Thank you a lot for reviews and hints!
 
-Best regards,
-Krzysztof
+-- 
+Best wishes,
+Vladimir
 
