@@ -1,185 +1,191 @@
-Return-Path: <devicetree+bounces-242782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2B46C8EA46
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:57:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46529C8EAFA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:04:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C0E93ABD74
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:53:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45C993AF274
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 513A432E758;
-	Thu, 27 Nov 2025 13:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A20334682;
+	Thu, 27 Nov 2025 13:56:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Dnu4my3I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eSEe7iWw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E600532C93C
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 13:53:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1297332ED1;
+	Thu, 27 Nov 2025 13:56:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764251584; cv=none; b=jB/A5dfr7scSrWOujJZwBMqx5QzCMPiN541iAaeUTy/q1AH7KvrC5/G81OguviBIUNSPXtMM7yyNAXIbwQICJmZ7OSR2lo+hgXqMVLm7PnVKAvFUqH21xLwjfN/uU/FhBN9wurVN5uHC3Kns3rGv6Xat8Z+EG+/2mj1sIXZG3gw=
+	t=1764251783; cv=none; b=B0MvB0TZA9d9HSI7S0wZh+M/77NPWJ/mRqVcTkQ0Iq4uAMFBG+suEvozC1V4TeqMZNsYjRi/MMr7X5KG0PinVNU6PHznVL5L8JBnJIQCwYCVyKtwZKDxWyNAIiSk6QqByz2pfFcl00UKwUNlzgt2BqaBNps/V0gpFlEV/vhZLRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764251584; c=relaxed/simple;
-	bh=uvWSUnAueiEOoFOEIl2JYdtmpK89idUnhb83TwQALwc=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eEL8BvZUOhkvzSFte6ZWhQtLMctdA2DuXsdDDKlROsFwXqXAFNi9Tj2lYTk5j08Qqcv0Xo+mIiZd4fKiedvY1rQyx3nfZldeHf1iNsTTCs4JQ+kMFrrCoM9DGo1XC6lbJyy5LtzLKNH75S2e0by3YzZMQfd0l4D4FfpjjrClNKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Dnu4my3I; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5959187c5a9so820192e87.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 05:53:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1764251580; x=1764856380; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pN64heDHbxqZ2OKQxyJVBsdd0gJZEzFf6zoPDx6GqoA=;
-        b=Dnu4my3Ic1+uyfUIZlX9r952UDUx4Un5aKBPAnOVnWX73cFuzv4Tkz8I9uXsjRJwDy
-         MifpyoIwNOgbL1pELe3kXR/zFqhGUIl3TqjztPcB48bz1ldm4CK7cW0DbdNTve9VIq7P
-         SmrjS9T50H7epBqEQbscoqdLnpPNqiU0laDWV91fA/BfQd7nM0zQKlPMhi9wOxRuytPs
-         pW7vG1oxg9wvtBLXoFuCIc3VDceGbrtGz4hgzfYdTCUe5bBoRDor1kb65LH9mSQsiJ5V
-         XdzxXXZdjPjLFSGngOt53q+/dEXCODNSz3+fNLs1aR99Vz2500fGNy4qAKLDTWsENyVa
-         /eWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764251580; x=1764856380;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pN64heDHbxqZ2OKQxyJVBsdd0gJZEzFf6zoPDx6GqoA=;
-        b=SMkgpiPilBZ6TWaAmSEjwtdpvAQHz1rzkpKMYqfU48Cxw1T1v/XNAl7o702k6/yi+N
-         GEVYgY7ahbEfXVZ9/ssrGkrV/IDnZOt/vYcGnfj/5CNzeOHjRj9Ca398LiGlUb1tc8lG
-         3EXFzr9jGXT+SLlcf6lmhoapBqiz8t9ypmI3O3e85BnIuwN2nfNRqXDZLV0lblhB8dNY
-         zNphi6uiX4Ilkt40Da4BVFOJ9I+fukjVtUF4WUw6czetBeW0KBYhKY1Lg1+8adYe9Tlf
-         IfbGS20QeoJIgaU3v+M77SXzw+TPQe52d9veMlouDhCdqenRrwkS7SeNer+mXXKmBmnj
-         7ptA==
-X-Forwarded-Encrypted: i=1; AJvYcCXZMHAimcU41stM1CzlLGvKXGH+onxB3phQcYT0V4SkBYf8wlTuqzMCPfYW6mY9sHLevMQdBMp5JxHQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJIkDobiibU8Cr6H2dfyYv2uVbUVfMfj4NPx0wAw5Fzf43Xddl
-	YSLpnb45rLKl975r4G+Whhbr4nhsqCqSYXlxbXFbzOwWeNf75rLc1QQIKa3M20XIxq+Mb0wI3lX
-	+egPBxmC6/k28fH6aHmIlSBceHdsqqA0hiHcvNeTXsg==
-X-Gm-Gg: ASbGncuU2tKLbM7E8EchKuQWl0kCipvtmq+Booz1bEMVGSkTafY3kdSbsAAaC5AT71k
-	iXO3sJ0fTSaC+c4diFF8EpUiwAJphQjFvIxCV/FHr4kZd+eKlfCNl6mattQ1nZJZvjsi3L5bWqU
-	gHOPgBjD1NbnJu6ssRUR/p9T4LhKk6nGwt/7vOBilIBDF+dSfpVFcd9v031SFP/ljbBNQgKW/NX
-	KSxAj3LngUBdstl3F2yFg3m4XjJPWjOIEyTn9n08j5VswVoNVl0XF70KBHIGdxUT9BmKCf5p7Hk
-	MPZqzVT9nmgRRbtQmzf2GFJxBBo=
-X-Google-Smtp-Source: AGHT+IG6PL+Jiezoh/uDW8dnWLihyDKxT0NJj0K3mdDXkbk6oKkhSmfyJZwok91yAbizDOVups9BJ+4+9Gf5UTlIkv4=
-X-Received: by 2002:a05:6512:2351:b0:594:93b8:88b6 with SMTP id
- 2adb3069b0e04-596a3eed692mr7226030e87.38.1764251580020; Thu, 27 Nov 2025
- 05:53:00 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 27 Nov 2025 07:52:58 -0600
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 27 Nov 2025 07:52:58 -0600
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <20251125-pci-m2-e-v2-4-32826de07cc5@oss.qualcomm.com>
+	s=arc-20240116; t=1764251783; c=relaxed/simple;
+	bh=9OLyfVO/1eNfRbEqh+BqqV2AQYFykwdWc7Y+7PlW/6c=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=UDIEOkwdv82nBvrsS1126AxQfje/IW/6iViZ1sG8YjmS5GTVNFuGJzdntZNUtTLDvfPvQXzGEBfH4gDb4ql7GqwNT849Ul/m/iU8bKlhEPyVu5RxmaZZf1PKteohFbXUIrtyq0Mkz6ykGqOAFpMWr/hvu+JhiWBkLc1XeCuZgEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSEe7iWw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DF1DC4CEF8;
+	Thu, 27 Nov 2025 13:56:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764251783;
+	bh=9OLyfVO/1eNfRbEqh+BqqV2AQYFykwdWc7Y+7PlW/6c=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=eSEe7iWwWHP2esgh+sw9sF6uGmzgDZ69/dPyKTCCco6WWtKkQhqy7zbjZwSwLLM2i
+	 N9fd6nnWD6bUXjzJYVgy8NUsHCtLlXkEwPBjUcdPE/dRyprjdQGYYL4GzTZrfUAyjS
+	 3/v9B8qSIq2ogTPPoD8ScpkFcxIl4ReG/TmzYmnJgDIeYgcZGoeBxpv5RQPc60EATw
+	 ONV4g6nAaDuqSYUBYOYhcR2xZzHjR62kM5kZbFDoyoEZnNZ9UqMxPXVIUpqogDcO0G
+	 IbwX3UzLmREko9hLFoIzNLDW2nEAe8myXU1atkVALMxk7Mtz7PkJ5xOFny4tscPVu/
+	 xWsngWdq368tg==
+Message-ID: <44593251-795c-4009-8202-06688027e150@kernel.org>
+Date: Thu, 27 Nov 2025 14:56:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251125-pci-m2-e-v2-0-32826de07cc5@oss.qualcomm.com> <20251125-pci-m2-e-v2-4-32826de07cc5@oss.qualcomm.com>
-Date: Thu, 27 Nov 2025 07:52:58 -0600
-X-Gm-Features: AWmQ_bmPoMOTBlwPqpCqq0qp_ZAAK68AQ2h724JshuQcjnDCyPKjaA9BdddHSek
-Message-ID: <CAMRc=MeOfpFME0LL+WDSM3ZVUOiqTCHQN-E3=PZ_qTMLWDKaKQ@mail.gmail.com>
-Subject: Re: [PATCH v2 04/10] serdev: Add an API to find the serdev controller
- associated with the devicetree node
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>, 
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: usb: qcom,snps-dwc3: Add support for
+ firmware-managed resources
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sriram Dash <sriram.dash@oss.qualcomm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: jack.pham@oss.qualcomm.com, faisal.hassan@oss.qualcomm.com,
+ krishna.kurapati@oss.qualcomm.com, andersson@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konradybcio@kernel.org>
+References: <20251127-controller_scmi_upstream-v1-0-38bcca513c28@oss.qualcomm.com>
+ <20251127-controller_scmi_upstream-v1-1-38bcca513c28@oss.qualcomm.com>
+ <e9363a14-183e-4d12-91b0-1ac5655e6e90@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e9363a14-183e-4d12-91b0-1ac5655e6e90@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 25 Nov 2025 15:45:08 +0100, Manivannan Sadhasivam via B4 Relay
-<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> said:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
->
-> Add of_find_serdev_controller_by_node() API to find the serdev controller
-> device associated with the devicetree node.
->
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> ---
->  drivers/tty/serdev/core.c | 16 ++++++++++++++++
->  include/linux/serdev.h    |  9 +++++++++
->  2 files changed, 25 insertions(+)
->
-> diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
-> index 76b89dd0720f..f90095cb778f 100644
-> --- a/drivers/tty/serdev/core.c
-> +++ b/drivers/tty/serdev/core.c
-> @@ -530,6 +530,22 @@ struct serdev_controller *serdev_controller_alloc(struct device *host,
->  }
->  EXPORT_SYMBOL_GPL(serdev_controller_alloc);
->
-> +/**
-> + * of_find_serdev_controller_by_node() - Find the serdev controller associated
-> + *					 with the devicetree node
-> + * @node:	Devicetree node
-> + *
-> + * Return: Pointer to the serdev controller associated with the node. NULL if
-> + * the controller is not found.
-> + */
-> +struct serdev_controller *of_find_serdev_controller_by_node(struct device_node *node)
-> +{
-> +	struct device *dev = bus_find_device_by_of_node(&serdev_bus_type, node);
-> +
-> +	return (dev && dev->type == &serdev_ctrl_type) ? to_serdev_controller(dev) : NULL;
-> +}
-> +EXPORT_SYMBOL_GPL(of_find_serdev_controller_by_node);
-> +
->  static int of_serdev_register_devices(struct serdev_controller *ctrl)
->  {
->  	struct device_node *node;
-> diff --git a/include/linux/serdev.h b/include/linux/serdev.h
-> index ffc6eb13f44b..fa235c92592a 100644
-> --- a/include/linux/serdev.h
-> +++ b/include/linux/serdev.h
-> @@ -337,4 +337,13 @@ static inline bool serdev_acpi_get_uart_resource(struct acpi_resource *ares,
->  }
->  #endif /* CONFIG_ACPI */
->
-> +#ifdef CONFIG_OF
+On 27/11/2025 13:13, Krzysztof Kozlowski wrote:
+> On 27/11/2025 11:31, Sriram Dash wrote:
+>> On Qualcomm automotive SoC sa8255p, platform resources like clocks,
+>> interconnect, resets, regulators and GDSC are configured remotely by
+>> firmware.
+>>
+>> PM OPP is used to abstract these resources in firmware and SCMI perf
+>> protocol is used to request resource operations by using runtime PM
+>> framework APIs such as pm_runtime_get/put_sync to signal firmware
+>> for managing resources accordingly for respective perf levels.
+>>
+>> "qcom,snps-dwc3-fw-managed" compatible helps determine if
+>> the device's resources are managed by firmware.
+>> Additionally, it makes the power-domains property mandatory
+>> and excludes the clocks property for the controller.
+>>
+>> Signed-off-by: Sriram Dash <sriram.dash@oss.qualcomm.com>
+>> ---
+>>  .../devicetree/bindings/usb/qcom,snps-dwc3.yaml    | 173 +++++++++++++--------
+>>  1 file changed, 111 insertions(+), 62 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+>> index 8cee7c5582f2..d2d1b42fbb07 100644
+>> --- a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+>> @@ -12,68 +12,65 @@ maintainers:
+>>  description:
+>>    Describes the Qualcomm USB block, based on Synopsys DWC3.
+>>  
+>> -select:
+>> -  properties:
+>> -    compatible:
+>> -      contains:
+>> -        const: qcom,snps-dwc3
+>> -  required:
+>> -    - compatible
+> 
+> I wonder why do you think dropping some code is fine...
+> 
+> 
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,sa8255p-dwc3
+>> +          - const: qcom,snps-dwc3-fw-managed
+> 
+> No, you cannot keep coming with more generic compatibles.
+> 
+> If you want generic a compatible, you already have - qcom,snps-dwc3 -
+> and that "generic" part already said that everything is compatible with it.
+> 
+> Now you claim that existing generic compatible qcom,snps-dwc3 is not
+> generic enough and you need one more generic compatible.
+> 
+> Next year you will say that two generic compatibles are not generic
+> enough and you need third generic compatible.
+> 
+> In two years we will learn that three generic compatibles are not enough...
+> 
+> I think I was complaining on the lists a lot on this, so I am surprised
+> it is still coming back.
+> 
+> So no, you cannot claim that you need more generic compatibles because
+> one generic is not generic. NAK.
 
-You can make it independent from OF if you base the code on fwnode like:
 
-struct serdev_controller find_serdev_controller_by_fwnode(struct
-fwnode_handle *fwnode);
-{
-	struct device *dev = bus_find_device_by_fwnode(&serdev_bus_type, node);
+What is even weirder is that other patchset for the same SA8255 FW
+managed IP block correctly ignored generic compatible:
+https://lore.kernel.org/all/20251114145646.2291324-3-ram.dwivedi@oss.qualcomm.com/
 
-	(...)
-}
+so somehow you should meet and align on common understanding of things.
+Please do not send completely different patches for the same problem.
 
-Users can always convert OF nodes to firmware nodes.
-
-Bart
-
-> +struct serdev_controller *of_find_serdev_controller_by_node(struct device_node *node);
-> +#else
-> +struct serdev_controller *of_find_serdev_controller_by_node(struct device_node *node)
-> +{
-> +	return NULL;
-> +}
-> +#endif /* CONFIG_OF */
-> +
->  #endif /*_LINUX_SERDEV_H */
->
-> --
-> 2.48.1
->
->
+Best regards,
+Krzysztof
 
