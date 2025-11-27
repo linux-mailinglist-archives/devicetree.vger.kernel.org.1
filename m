@@ -1,134 +1,166 @@
-Return-Path: <devicetree+bounces-242632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97E0C8D51E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:23:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF0BDC8D54E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:26:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90D2A3AEBE4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:23:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DF5C3AED5D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC9531D374;
-	Thu, 27 Nov 2025 08:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3FE316909;
+	Thu, 27 Nov 2025 08:26:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mvvIFTQS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WcmFwl3B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C732DA755;
-	Thu, 27 Nov 2025 08:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40271CEAA3;
+	Thu, 27 Nov 2025 08:26:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764231778; cv=none; b=OmmRe0Y19npHY6EjV8aEWKoOKPSIN3g9xunkHl/WE11juj3zX4GoLxPOZgxTRdKXVTnRkBW7LfrZcs2OJB7VgACllhupEQpojb5z+sJCdFz2szVEogwaI2IYLHyteCBFJvlndWAp4Ji7faSqg4ilHAxTt2jrSXtx731nFPqYpmw=
+	t=1764232005; cv=none; b=Hl0nY6YFqjAIDuek3E3Aw8S+mbbUIN75oP6qoG6GNgdPRKKq4uvQLBRRL/jfsFvvB1U5sLz+PSfKf1YW9jx0FJz0fqyLsLPHt1AJ2hmmMip6DSruP+qC85eMRtT2Zw1UVINmEo7WQQeXr5eiAhNOJcvV6bwlfva7gAJFny2pk7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764231778; c=relaxed/simple;
-	bh=FrDI2ieJqEBfuFRmvhVdPA0bMoE9b3ZQoHAErfl47D0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rWPT6iieuY6J38JLeLRbYzTmxyN6OgXCfSeK96riXp4aXJvVm7QlnYyZ6h1eueTS/jTNHLq+JpdRiBPX3VzRl52/nhIZ92L+uyrczQ4SK6h5XNqeDA7o41Wy1seC8vMbS/3l+yjusZSeEcM+JY11GaZ00VyRb0HkUjYHLXqeUIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mvvIFTQS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D197C4CEF8;
-	Thu, 27 Nov 2025 08:22:57 +0000 (UTC)
+	s=arc-20240116; t=1764232005; c=relaxed/simple;
+	bh=bcPfE1QJFfuPJbcIojv7Nn8Gaq58C6i7WGhcnOmsWd4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UHg1ODisU1bbTe8Lrncnl+JKcqTouRECAym8pJy1dWS6ptw5Lvq9lCMFyCPb9iJ4ON7T8KNJmViRtv1L7auItVrwe9DMRDaZu2o1Ty7E0YLFOLaD21qTEjfdt6dmUSBtZSYUNVgwweviYvSTqyqM6az8IUYwpJE0TDBQ/YLQZqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WcmFwl3B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 336B6C4CEF8;
+	Thu, 27 Nov 2025 08:26:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764231778;
-	bh=FrDI2ieJqEBfuFRmvhVdPA0bMoE9b3ZQoHAErfl47D0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mvvIFTQSEm/78XVyalyb+RBNlDOj1u7ekd4vQAFRbP/SDE3lbDu8CIu00JcyFZ2af
-	 8pKAlwXHVwkcT/fEiLjwIQBgkTposFdi23KEwpOg84LOyokGTwsliUyhh5OkET/Pch
-	 gR38yPLuADhehUAma+ooUkgeWPfAsXLrTSjHK4A6JyoCZNPAI2mXEbD8GEu7wSA8IB
-	 42MXCbeEAJnI44CSFcWBXgr211OfCjBimRCsrO6FXN8UPe1NGcTFDM5f3HNX+cYgWX
-	 E528IaacO0YyLQ19ufgMxfGBLF8SjUGacmgRuVe2W9/llEKRIoyuYHBO5JA5Gjj1cx
-	 gmWjiGw/qr+4A==
-Date: Thu, 27 Nov 2025 09:22:56 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Cc: Jyri Sarha <jyri.sarha@iki.fi>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Tony Lindgren <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Markus Schneider-Pargmann <msp@baylibre.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Louis Chauvet <louis.chauvet@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Miguel Gazquez <miguel.gazquez@bootlin.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH 02/21] dt-bindings: display: tilcdc: Add fifo-threshold
- property
-Message-ID: <20251127-subtle-prophetic-corgi-68aab1@kuoka>
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
- <20251126-feature_tilcdc-v1-2-49b9ef2e3aa0@bootlin.com>
+	s=k20201202; t=1764232005;
+	bh=bcPfE1QJFfuPJbcIojv7Nn8Gaq58C6i7WGhcnOmsWd4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WcmFwl3BFSTa59/qQB3P8sjeCiQkh28Bx5X8iBQfaUe9YSkO9nM6cU7737TjnKOAp
+	 JJkTOlBk92QSIZ2v8m6Y6XbVK9HWVET1oCn6iBF1FjQogwNkbb80I07YujudKOOV/w
+	 jrIBVQvi9EmOYcwjbuxYPeKj4FIh8G+4H+CR5PI3EtQcfNOF6BBZM98kJDPYxtAGma
+	 9DJFGkFyQVPcFXE1Z/hTrfVM345+WrNeKTmw1VLoc3DWXOvGUwLitd1sX0X02raP8b
+	 M5NVBmYkjvj75YhwFp8eFNQl9M+E9BJCXFBZubd8BB0leNXs9KcXf5d4SR52xj4DCC
+	 +M1Pg28PbX3VQ==
+Message-ID: <a33b87ab-b24f-45d5-bd4a-646988b54a2b@kernel.org>
+Date: Thu, 27 Nov 2025 09:26:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251126-feature_tilcdc-v1-2-49b9ef2e3aa0@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
+To: Ryan Roberts <ryan.roberts@arm.com>, Wei Yang <richard.weiyang@gmail.com>
+Cc: "David Hildenbrand (Red Hat)" <david@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-mm@kvack.org, devicetree@vger.kernel.org,
+ Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
+ Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
+ Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
+ Anshuman Khandual <anshuman.khandual@arm.com>
+References: <20251113014656.2605447-1-samuel.holland@sifive.com>
+ <20251113014656.2605447-7-samuel.holland@sifive.com>
+ <02e3b3bd-ae6a-4db4-b4a1-8cbc1bc0a1c8@arm.com>
+ <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
+ <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
+ <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
+ <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
+ <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
+ <20251126134726.yrya5xxayfcde3kl@master>
+ <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
+From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Content-Language: fr-FR
+In-Reply-To: <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 26, 2025 at 06:35:44PM +0100, Kory Maincent (TI.com) wrote:
-> Add the fifo-threshold property to control the DMA FIFO threshold level,
-> which specifies the number of words that must be loaded before the DMA
-> FIFO becomes ready.
+
+
+Le 26/11/2025 à 15:22, Ryan Roberts a écrit :
+> On 26/11/2025 13:47, Wei Yang wrote:
+>> On Wed, Nov 26, 2025 at 01:03:42PM +0000, Ryan Roberts wrote:
+>>> On 26/11/2025 12:35, David Hildenbrand (Red Hat) wrote:
+>> [...]
+>>>>>>>> Hi,
+>>>>>>>>
+>>>>>>>> I've just come across this patch and wanted to mention that we could also
+>>>>>>>> benefit from this improved absraction for some features we are looking at for
+>>>>>>>> arm64. As you mention, Anshuman had a go but hit some roadblocks.
+>>>>>>>>
+>>>>>>>> The main issue is that the compiler was unable to optimize away the
+>>>>>>>> READ_ONCE()s
+>>>>>>>> for the case where certain levels of the pgtable are folded. But it can
+>>>>>>>> optimize
+>>>>>>>> the plain C dereferences. There were complaints the the generated code for arm
+>>>>>>>> (32) and powerpc was significantly impacted due to having many more
+>>>>>>>> (redundant)
+>>>>>>>> loads.
+>>>>>>>>
+>>>>>>>
+>>>>>>> We do have mm_pmd_folded()/p4d_folded() etc, could that help to sort
+>>>>>>> this out internally?
+>>>>>>>
+>>>>>>
+>>>>>> Just stumbled over the reply from Christope:
+>>>>>>
+>>>>>> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flkml.kernel.org%2Fr%2F0019d675-ce3d-4a5c-89ed-f126c45145c9%40kernel.org&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7C22d0a028b1ec4a8b678108de2cf73769%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638997637481119954%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=ocR6usVgRHfue0MrtbQnDO8whINvy%2FDMAfNE3caiY8c%3D&reserved=0
+>>>>>>
+>>>>>> And wonder if we could handle that somehow directly in the pgdp_get() etc.
+>>>
+>>> I certainly don't like the suggestion of doing the is_folded() test outside the
+>>> helper, but if we can push that logic down into pXdp_get() that would be pretty
+>>> neat. Anshuman and I did briefly play with the idea of doing a C dereference if
+>>> the level is folded and a READ_ONCE() otherwise, all inside each pXdp_get()
+>>> helper. Although we never proved it to be correct. I struggle with the model for
+>>> folding. Do you want to optimize out all-but-the-highest level's access or
+>>> all-but-the-lowest level's access? Makes my head hurt...
+>>>
+>>>
+>>
+>> You mean sth like:
+>>
+>> static inline pmd_t pmdp_get(pmd_t *pmdp)
+>> {
+>> #ifdef __PAGETABLE_PMD_FOLDED
+>> 	return *pmdp;
+>> #else
+>> 	return READ_ONCE(*pmdp);
+>> #endif
+>> }
 > 
-> This property is needed to support the da850-evm board configuration
-> which requires a non-default FIFO threshold value. Currently, this value
-> is specified through the deprecated ti,tilcdc,panel binding. Adding this
-> property to the tilcdc binding allows for proper configuration while
-> migrating away from the non-standard panel binding.
+> Yes. But I'm not convinced it's correct.
 > 
-> The default value is 8 words, with valid values being powers of 2 from
-> 8 to 512.
-> 
-> Related commit: 55da73fa7a68c ("ARM: dts: davinci: da850-evm: Increase
-> fifo threshold")
+> I *think* (but please correct me if I'm wrong) if the PMD is folded, the PUD and
+> P4D must also be folded, and you effectively have a 2 level pgtable consisting
+> of the PGD table and the PTE table. p4dp_get(), pudp_get() and pmdp_get() are
+> all effectively duplicating the load of the pgd entry? So assuming pgdp_get()
+> was already called and used READ_ONCE(), you might hope the compiler will just
+> drop the other loads and just use the value returned by READ_ONCE(). But I doubt
+> there is any guarantee of that and you might be in a situation where pgdp_get()
+> never even got called (perhaps you already have the pmd pointer).
 
-Please use syntax pointed out by checkpatch. The checkpatch error (not
-even a warning) is there for reason, so we can apply filter/grep
-easily.
+I think you can't assume pgdp_get() was already called, because some 
+parts of code will directly descend to PMD level using pmd_off() or 
+pmd_off_k()
 
-> 
-> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/display/tilcdc/tilcdc.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.yaml b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.yaml
-> index 34ac1fd04d5c6..bf6d506e25e17 100644
-> --- a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.yaml
-> +++ b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.yaml
-> @@ -46,6 +46,13 @@ properties:
->        The maximum pixel clock that can be supported by the lcd controller
->        in KHz.
->  
-> +  fifo-threshold:
+static inline pmd_t *pmd_off(struct mm_struct *mm, unsigned long va)
+{
+	return pmd_offset(pud_offset(p4d_offset(pgd_offset(mm, va), va), va), va);
+}
 
-Why this is not deducible from the compatible? Feels like a specific SoC
-issue.
+static inline pmd_t *pmd_off_k(unsigned long va)
+{
+	return pmd_offset(pud_offset(p4d_offset(pgd_offset_k(va), va), va), va);
+}
 
-Anyway, missing vendor prefix
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [8, 16, 32, 64, 128, 256, 512]
-> +    description:
-> +      Number of words loaded before the DMA fifo becomes ready. The default
-> +      value is 8.
-
-missing default and drop free form text in description.
-
-> +
->    blue-and-red-wiring:
->      enum: [straight, crossed]
->      description:
-> 
-> -- 
-> 2.43.0
-> 
+Christophe
 
