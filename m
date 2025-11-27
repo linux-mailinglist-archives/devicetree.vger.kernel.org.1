@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-242857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC951C90082
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 20:39:16 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94FD1C900E8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 20:48:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B0E73AA7E4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 19:39:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D7E614E9675
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 19:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80E422F39BD;
-	Thu, 27 Nov 2025 19:39:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531A030CD81;
+	Thu, 27 Nov 2025 19:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CC1qyyXK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHhD/aQh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EF4B285C9F;
-	Thu, 27 Nov 2025 19:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2950230C371;
+	Thu, 27 Nov 2025 19:44:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764272352; cv=none; b=OBmnw+K0oYaKjy5SYTJJ5dTt0EQotCPFDlsqsROFPk9sC7K1djPVWK6KjiWcM30t8DrYwC/ydYwvPOSPQDyyFwg+S5ewJyHVVDwxs/Q9FEUt+H8rV+f9C5QeHKZF5jI8S4FkvVKyPE0fDEMFTnc5hKgNA/iNUtQJ2ZEPeYsZ10U=
+	t=1764272666; cv=none; b=Gqnp3GUhEJ9rW/PCeI5uCtvApP3SJ/jux9THTVfvnM/CGIlAISEq3cxMhNF++ToAeG8bMZhJVmWqQMncsal6z1f9Fau2YhLPgHEOYeIspEXWnJBjCYLKqSPKn4jTsqlapUJM2rR6Ns5plpx8grUd4fJxYO/xZ9lcVenqIPna7y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764272352; c=relaxed/simple;
-	bh=9CmP20l5fh1wI0Qc9aslBQ2/q51oJ57cp2te1agYTJ4=;
+	s=arc-20240116; t=1764272666; c=relaxed/simple;
+	bh=2FTP2tPXd1GWQFRneLLYDqFrpGOgQxqB103gyOVSA4k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Oytfz1/mA81lY17a4rJABzCcZjEaPGuSePj0L+Fme5a2YzL2IWvoxM18lTJpW7wYw2Fuykfd615EZsl6Zp9mFAKb2f9b3+FS2FanAfYUUbGqrHhI7R2s5cHYfpHnX5W5mxX7EejyZWicpcCqetDvasLNRWBxsIHzQT9xwaKRKjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CC1qyyXK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 671B7C4CEF8;
-	Thu, 27 Nov 2025 19:39:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DQWTv5KVe4sPY1RjDtvRFF4nvzjboEwJic9QM2wUOjcTIFB0/gHR51C07GnXNFprF24Z1R+olIu9huFXnvuhOUZOSyqC4UUeqKQmIxQu7eDfHHwt2+KgJNFFReJvXcfX3vP8jocdphX9lDusDLomeQmIZB3f3XX1+Q6nG25rQT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHhD/aQh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DF0FC4CEF8;
+	Thu, 27 Nov 2025 19:44:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764272350;
-	bh=9CmP20l5fh1wI0Qc9aslBQ2/q51oJ57cp2te1agYTJ4=;
+	s=k20201202; t=1764272665;
+	bh=2FTP2tPXd1GWQFRneLLYDqFrpGOgQxqB103gyOVSA4k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CC1qyyXKyo4HeL/hyEiAmjyrdFYZCtsA9ufEs1ZbODnUMjPMpmfB0ekb5LgdLYCLX
-	 CHpUVRLmWiP618uKzGcw7wbVXFiwRW6iCG11whNx4s8RBhJ8T9/2zgzHzeMA5neH+X
-	 jzNpS88WZd5RjEB1yebsUUYBbWhpHDbiEFxPLMdhwQ4oBHPrIE4ZWkloGCINaM2Td4
-	 NRFHi45iMDD6psQhkBxKT8Hte/o1Jf+XR9XXzKyaG1hLm6nKuFwYsMDrEhw0+17Fso
-	 Ig8qddeXGqDngyGmHRXeegLObMvmeRhAeq0whuZCSxPlUukv5cYyvoYlWUMy+FQ+1D
-	 EZxUxaIVmEl9w==
-Message-ID: <cdfb3e14-f85b-4c85-9042-f9bc7728b375@kernel.org>
-Date: Thu, 27 Nov 2025 20:39:01 +0100
+	b=DHhD/aQhOyARXtDI0hb53vOA6x8+UUybsf+r7ell6SNfujszItV4w+dfeFIi0VVvp
+	 SfUh8H3uoek+9MTu+QV4uvODoSpGySXi0o6d5frjsPAj15Of1utMh7nsvJb974rQD6
+	 F4niZwOZzwHFDuJtR/LiKuHlg7eHU7BRGLvv18H42Kw9FviKkVKPvJALmGQ/V+VhNO
+	 Gdb9h5b6Acg/uJQzdygl3tGNU7KMzqs4YfOU3R9/nzYTx1T8Fo7IgVylHkbTf2yBLR
+	 qH2rfGWT4eDqkPvd+NlC1Xr49i1FAUs47DzrgHd5fldJ4zKIhqGNc++3zPYYD4TB9K
+	 fox1xbw6MnYrQ==
+Message-ID: <f27429f3-9dd8-4006-b2d8-702436ade805@kernel.org>
+Date: Thu, 27 Nov 2025 20:44:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -146,34 +146,9 @@ Le 26/11/2025 à 17:34, Ryan Roberts a écrit :
 > asm sections which might be problematic for places where we are currently using
 > READ_ONCE() in lockless algorithms, (e.g. GUP?). We wouldn't want to end up with
 > a stale value.
-> 
-> Another idea:
-> 
-> Given the main pattern where we are aiming to optimize out the read is something
-> like:
-> 
-> if (!pud_present(*pud))
-> 
-> where for a folded pmd:
-> 
-> static inline int pud_present(pud_t pud)	{ return 1; }
-> 
-> And we will change it to this:
-> 
-> if (!pud_present(pudp_get(pud)))
-> 
-> ...
-> 
-> perhaps we can just define the folded pXd_present(), pXd_none(), pXd_bad(),
-> pXd_user() and pXd_leaf() as macros:
-> 
-> #define pud_present(pud)	1
-> 
-> Then the compiler will never even see the pudp_get().
 
-Take care about macros with unused parameters, it can be a problem 
-sometimes, see commit 05a4ab823983 ("powerpc/uaccess: fix warning/error 
-with access_ok()")
+What about adding a memory clobber to the non-volatile asm ? Compiler 
+shouldn't move the asm section in that case.
 
 Christophe
 
