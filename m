@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-242586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797F0C8C6C1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 01:26:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72AA4C8C6EB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 01:38:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6FBB34E2166
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 00:26:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 155313B18C3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 00:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACA91FF7C8;
-	Thu, 27 Nov 2025 00:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF8A21E091;
+	Thu, 27 Nov 2025 00:38:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="nO1lNCri"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="duCJEbmU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF47202F7E;
-	Thu, 27 Nov 2025 00:26:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD233A8F7;
+	Thu, 27 Nov 2025 00:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764203199; cv=none; b=Ar8tGxn9KJQmTzctmcWapZQ0ynMmsP1cquatdRDMCyHKqCdi0eKjPbulo9Y76wFcyhJ3JoVS6rAj4mI8rKou3GiVoeqWai6EE753k2QyzwC4Mruj4Y+YJcWgvary/de2ID1q4JVy65aaOYiYm3+K6+TGi9XwR+9dZkNrcjhz/M4=
+	t=1764203880; cv=none; b=dU47nLI/AmfRaow/X5p+a5CZt9Rd4Q3zyJIAAc/XoVH3qhj6cV6GXg0QC+uO+59WqcN0pEkahne5HALNYhfyoRGXPOaS7OcnXMAydG7MT6GDINxgvAosdECJPXk5Qt4h/c1F7+OwJVCBp0a+2ZotYs7+LTra23GVkW+kICdJzdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764203199; c=relaxed/simple;
-	bh=S8PvOzguiFFvAk0ij9d33PvsxxxwFaOBafwwZijKeLA=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=iP+517jtkMrGVC2hwgpEPC0N2Ob0ZuR1FJGiMUyr7BTIIC8b5U3U91LNEuc1WUtGjf/KzLiVjpSyGOOa09ZiFCyKnQdX1Hb4HrCr9OexV0GcbaKHLAL+VJV9E4Zx3nJX2Y7/e0EiumpIhyzE5/5Ed3jkHyYOwBwQ+GqXffSXIn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=nO1lNCri; arc=none smtp.client-ip=203.29.241.158
+	s=arc-20240116; t=1764203880; c=relaxed/simple;
+	bh=XqENWuQEumTZEw1SapKk7yDHS93oMl0q6jpVGGU35jU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=uHjdNwhFEOFou9BYebk2XaeyZqM0ffTyfCJLgZBUDWTFuyQCAxg2ailuQJknirdyByaOqUwVLBt9FV5PWaSBqI1BS7S2Bq8errAIn5l/SQoSxCv3R1eONK8CvpXOo3BDuOlsTWOB9OhIWjHgzQG/5neFqf49XWlrPXg1u8ZNxbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=duCJEbmU; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1764203195;
-	bh=Hb37+eqY9LuToN0Iyo4OSvoNajzOsts2KWtu7XI2Rvw=;
-	h=From:To:In-Reply-To:References:Subject:Date;
-	b=nO1lNCriYhjd+Th5Ug/C9mLvQyC9pE9be4c8sZStk8tFw6J5AJ2nW8zAaZhYTp8EA
-	 X4iaNX88B0ND7ko441HSsgvZlwY1kt9Kllqyy0a0UXV4/WzE3FliAT0lTKcIi3FXU8
-	 sBbkJAldQFp5XkMQAuccsrp99ASrNFWMZq59J896AGQHIrY8d4fP0XviGOkZPAxLXB
-	 eLnlM1q7kTk5q5LcktGXbTt4po7ygqR0bAgxULD4qEv7FbGy1IhNuZqgPy6+bQXvd7
-	 PrSa5bO3Gcu3cc6gO5A9vtVPcG7mlDKbdk0qn9gsktdz4stm3SneunoNVYVHdOooug
-	 AV+9dcU0djuNA==
+	d=codeconstruct.com.au; s=2022a; t=1764203876;
+	bh=CQ20Iy0RcHBHgkwxq2o8sUHkUfWWwKay7LCggNECWyg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=duCJEbmUPl0A54Y1u8LnbdpsMQtdW7BLOiZvOGnOu3g7CgGd8C886uT4RPZmWiPxi
+	 WK6oX07ebhuv7vmGwct/dxh0g3+0YC+LXiy8r8x5Diam/pncqqi0n1L7tNXl8YKfGA
+	 t0eh5i9ljzCeaL/tIFxhveCHUsxwA1cIUiLZ3yrFbv6LND/8mjpLFOJoQLLDAQiAkn
+	 1AkxzUMuQIyPJYxouzCHDNOdBzoG5WyVa++3k0ZrEiBHMsXfwKgQyCCb0PeojNSZvA
+	 bM/HX8sESNqI82kLc1G0kqEuB0RhvPxavXinraD9tE9xRhDeRtGd2wBO+bjpJCUtpu
+	 vQii4AJok0U6A==
 Received: from [127.0.1.1] (unknown [180.150.112.38])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D43646561D;
-	Thu, 27 Nov 2025 08:26:34 +0800 (AWST)
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id CB7A26561D;
+	Thu, 27 Nov 2025 08:37:55 +0800 (AWST)
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Kimi Chen <kimi.zy.chen@fii-foxconn.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Fred Chen <fredchen.openbmc@gmail.com>
-In-Reply-To: <20251125135934.3138781-1-fredchen.openbmc@gmail.com>
-References: <20251125135934.3138781-1-fredchen.openbmc@gmail.com>
-Subject: Re: [PATCH v1 0/2] Revise Meta Santabarbara devicetree
-Message-Id: <176420319478.134548.6539551998232385591.b4-ty@codeconstruct.com.au>
-Date: Thu, 27 Nov 2025 10:56:34 +1030
+ george.kw.lee@fii-foxconn.com
+In-Reply-To: <20251125-dts-add-gpio-to-io-expander-v4-1-e6d31f80470c@fii-foxconn.com>
+References: <20251125-dts-add-gpio-to-io-expander-v4-1-e6d31f80470c@fii-foxconn.com>
+Subject: Re: [PATCH v4] ARM: dts: aspeed: clemente: add gpio line name to
+ io expander
+Message-Id: <176420387574.173041.5260439773042865128.b4-ty@codeconstruct.com.au>
+Date: Thu, 27 Nov 2025 11:07:55 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,16 +67,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.3
 
-On Tue, 25 Nov 2025 21:59:29 +0800, Fred Chen wrote:
-> Summary:
-> Revise linux device tree entry related to Meta (Facebook) Santabarbara.
-> - Add IO expander node on the switch board
-> - Add SGPIO line names to control ASIC module power
-> - Add IPMB node for OCP debug card
-> Fred Chen (2):
->   ARM: dts: aspeed: santabarbara: Add swb IO expander and gpio line
->     names
->   ARM: dts: aspeed: santabarbara: Enable ipmb device for OCP debug card
+On Tue, 25 Nov 2025 13:42:50 +0800, Kimi Chen wrote:
+> The chassis power cycle process requires a forced shutdown before
+> cutting off the standby power. The SCM CPLD implements a hard shutdown
+> host function that is controlled through the IO expander in the
+> Clemente platform.
+> 
+> This change adds a new GPIO line named "shdn_force_l_cpld" to the
+> PCA9555 IO expander's gpio-line-names at index 10. When asserted,
+> this GPIO signals the CPLD to pull the HPM's SHDN_FORCE_L pin low,
+> which triggers a forced host shutdown.
 > 
 > [...]
 
