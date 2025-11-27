@@ -1,410 +1,208 @@
-Return-Path: <devicetree+bounces-242639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5686C8D6B4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:59:07 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DB40C8D6EA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D0314349AE3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:58:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 004964E1392
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A6F3254B3;
-	Thu, 27 Nov 2025 08:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02324320CC0;
+	Thu, 27 Nov 2025 09:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gqKhSlh0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ctPln5BG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 749323233F4;
-	Thu, 27 Nov 2025 08:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FDB1E9B22
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 09:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764233914; cv=none; b=KKbWqdI9+7CqudPZ7cgaJ8J47g0xuF7e/PRtj8vMhGlDOQXwcAt1cRneNfDmqC2Qe/nxztavP/mkpWi9zZYoJYHgzd9OC2Kr8pdzMIfmnwOTcNJF8w9BCAqvtA8M2axgfGC/SVQ/q5pcRMp4e00cQrYHsT0F4qajxt6ExPQnvhk=
+	t=1764234298; cv=none; b=bjNzgWTWVAmme07kWE0h3hQNXPv+m40IEVKCnAmWN30LJ7VBLpcZTqBNFPK7UZzdS5IVEaVDNR1rJIICtHlDDIdzUB5QXWtiqau5FvnVY1Myd4FqqFxOheL6oO+UfAruaZfdoxkVxA1i57/5r79d5Db1E7QZQhjm15a+vndS9Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764233914; c=relaxed/simple;
-	bh=vwXSsq/ZnzV2AnxGukvGYUkfZ29XaLCdlMJicbSxQyo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i7e0zD6Y59nvpmr/VScfmNMZCZ9xc73ihZUykfqrcPfalnOS6bD2Jc0zhTq+PEH+6TTiFlbvgLJawVbImZdXfb94qaOQfL4jxVcYeADTZqtpdkhYlrTeA6WlwnaG/jvC9KGy73o/ZrUSbsH/QHouR5kTl5UwdTfsxMPs8+LErAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gqKhSlh0; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764233912; x=1795769912;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=vwXSsq/ZnzV2AnxGukvGYUkfZ29XaLCdlMJicbSxQyo=;
-  b=gqKhSlh0agGXkU+hqzY/4FSEhQ+RL3IOj9fl1tzjFKwt+Uc0/p05H3A7
-   igaafgKSRcsPbd0ASiRI2pYH0GPHMzIzydQ5e0mO111j3sWblXL6YCXpU
-   Pq44WyLO12ZY9qTu0SZhzOXjgM4BpflFonJ9YiBsvrMnvfdjl21c5GeuM
-   HamUGlvOJknjXKBdX305C33BXNJJs/eyb5VjdUp8+0P/DpQBzm9V4ENCo
-   kDKnnDGDrtPqTL9e2Y88Mph2bHteW7WYmLwn2xtDfOoOfoq1uHFw+5MVO
-   yrzJSF+YGSvgzPQBKdAdEH96A3qUT1tAKRRVZ+PIzo/YHDwma8YhOnu9L
-   A==;
-X-CSE-ConnectionGUID: mRyFjviqQmyASsti1Z9eKw==
-X-CSE-MsgGUID: zg5zHR55RYe4Z2SCOVFQ2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="77381680"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; 
-   d="scan'208";a="77381680"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2025 00:58:31 -0800
-X-CSE-ConnectionGUID: oerc/rXlTwytrckP62lLig==
-X-CSE-MsgGUID: TjZcryxGQpuM2eNKo5Unyg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; 
-   d="scan'208";a="198122552"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2025 00:58:27 -0800
-Date: Thu, 27 Nov 2025 10:58:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jorge Marques <gastmaier@gmail.com>
-Cc: Jorge Marques <jorge.marques@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 3/9] iio: adc: Add support for ad4062
-Message-ID: <aSgSsGSUuBtMOuro@smile.fi.intel.com>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
- <20251124-staging-ad4062-v2-3-a375609afbb7@analog.com>
- <aSQxiSoZcI_ol3S5@smile.fi.intel.com>
- <aslj3klmv6heyyhgltzewkdze5p4c3hlkzfbxbfnzwwgd375gv@m6iqpst5sv6b>
+	s=arc-20240116; t=1764234298; c=relaxed/simple;
+	bh=XC13jwgiZsbi0CzJcSV+qxZe5K6jOYa8S7iDkcDqslo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=noUXH94lyd31P+/N4iMe3GqivpxToHUee5EIB4ocmP3vGBgcnCZLGeY2sDQPjrMqAAYZaQ0OTryN8yWGMZZb9SqJhza6ydHVm5yJvj95p5Ja49i4QkA3Zvq1G0MS6uBmB3F5EoJuUaMopGoq5GCWPK7+HvpnZHLvyGEE58wJlH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ctPln5BG; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-47789cd2083so2555375e9.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 01:04:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764234295; x=1764839095; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qzNVt4edw+6opeQvEovqvvtpzMRtvUD8paPkTQc5bO0=;
+        b=ctPln5BGwBuVTPFyjXQyNcI+G1+cjMJI5OEt9jDbGV+xQtsUQwOen57MYeVHsmmekf
+         aivxh/l1GWtZZVKv85H/KB3uVfWDVLKpV/qYqKJv2zX890J1UK90/N1lSq+Z+q5xCFK8
+         nWJ920iKik04zO8mPwTIVlV0obLV/iTRHHEYcmLRxowcVa47fXmbnk6wyghZnW1ICloH
+         /9cr3vCaWAmMAH2vEQS1fwp17Rg5s+DvfPUIuM0JAm7sIwnQDNpFpewl9bw+sMHCPVQw
+         mUvVimXafKNAXYBcMwdYjgkVGQMg1eVLG8CTgTJHr5yNmzWlrEOy2zYMzt1HL4vAHFJp
+         zScg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764234295; x=1764839095;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qzNVt4edw+6opeQvEovqvvtpzMRtvUD8paPkTQc5bO0=;
+        b=ll5GxwF67kRoht7iHzinl/Cccilbymd3mzlQE7mg5faJXSNylGV4UKwBsif/UuxKJU
+         omnnuxREDNHPiaYk0smoYWbGdTIcK6XbJRphU5pFXTu8JzfkV86lCqHK4Ii/6DG9ndI1
+         moEfCzLHfBPL+NDPMZ0XvT5FlAck+rKDG+DEjYIQFPdnoCMAoUIAH1gOrtlB72cl6/mD
+         R2w1iFZW/f6wCnpN7ofRW2dcaanqNu72Zb5ZUWgxUQYIeqaA6oYS3DciA3+kRxcMl2Yf
+         5PBPxKI1+v3OlPgcWvX6S4y/PLmfy/l9A503JUrnx+siG1GFzKnEJMdwRlIATfl8A4hR
+         zrwg==
+X-Forwarded-Encrypted: i=1; AJvYcCVS4IDt/J907Z9jV1l5EHcIYCKhWTxPG/7RYwyZGkAkRuN2XJJIwBKRaJhnT0olBGkobeHIm+lT5LlA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzO1ZKSZTlSQgIK8efM16ARI3qNvT6OsGgdgtTWHCl6X5PEXUSc
+	AVe0R8R7ZM3Tn/5GjiOrwt0dVq+VZKGwmiybYFY6LT8WlixTdBieSgHZMLA4YYtJK6E=
+X-Gm-Gg: ASbGncstAUooMRaZAOQ/CZb/SXMJc56V4A7vg2zmu1iFpiyEJanZrLCOFS/QW2jRSZs
+	uwMGE+4jChKdo6iSY8KsSWFIk2o2YOyJeBwMClZl2jOvia7aL8IIN8l8t/AIhcBtI/5H95NlR0i
+	kQ+VIdKWDPkAKQi90ZLZdWO6AgO6io+WvAjMTTl3q+/H6JmCdsiYxlp59LEISQvNQ45NU9WSdk3
+	rP8wDCAwS6sWVegjJrQB0YTpTLMDAFOq1RBe/wdc6Z5OVCDHWfpx7XGMxPsoITV0JYtT3kQuPEt
+	2BzKNFsYmdh5rK6zhhRRj9Iz6fdrPh6Uzh1ssdANKhvwhghRumYh6cIVSd+ZinHFsF4E/vIwar5
+	Bh2yxe2BdTLOSvavUxmfDEgBLPrpO9quXskEjvibiGadx/GxUTUYVK6C60U++EfyhCQNcPfOgpP
+	BkiLnQr0+uA001WMgA
+X-Google-Smtp-Source: AGHT+IFbciJc0QuPqY8817jh9ayaj34ju268qD8qT/yXzTe2XR/9rQ64lR1MMMrRT5JTdMmt+0pm/A==
+X-Received: by 2002:a05:600c:1c25:b0:46e:4586:57e4 with SMTP id 5b1f17b1804b1-477c114ed70mr327208565e9.24.1764234295194;
+        Thu, 27 Nov 2025 01:04:55 -0800 (PST)
+Received: from [10.11.12.107] ([5.12.85.52])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-479111438b9sm24372775e9.2.2025.11.27.01.04.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Nov 2025 01:04:54 -0800 (PST)
+Message-ID: <1704827d-f273-4360-bcd5-c18818a85034@linaro.org>
+Date: Thu, 27 Nov 2025 11:04:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 RESEND 2/3] thermal: exynos_tmu: Support new hardware
+ and update TMU interface
+To: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>,
+ 'Bartlomiej Zolnierkiewicz' <bzolnier@gmail.com>,
+ 'Krzysztof Kozlowski' <krzk@kernel.org>,
+ "'Rafael J . Wysocki'" <rafael@kernel.org>,
+ 'Daniel Lezcano' <daniel.lezcano@linaro.org>,
+ 'Zhang Rui' <rui.zhang@intel.com>, 'Lukasz Luba' <lukasz.luba@arm.com>,
+ 'Rob Herring' <robh@kernel.org>, 'Conor Dooley' <conor+dt@kernel.org>,
+ 'Alim Akhtar' <alim.akhtar@samsung.com>, youngmin.nam@samsung.com
+Cc: 'Henrik Grimler' <henrik@grimler.se>, linux-pm@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ 'Peter Griffin' <peter.griffin@linaro.org>,
+ =?UTF-8?Q?=27Andr=C3=A9_Draszik=27?= <andre.draszik@linaro.org>,
+ 'William McVicker' <willmcvicker@google.com>, jyescas@google.com
+References: <20251113064022.2701578-1-shin.son@samsung.com>
+ <CGME20251113064044epcas2p1b87addb21473eca7cc52052e4e2e9237@epcas2p1.samsung.com>
+ <20251113064022.2701578-3-shin.son@samsung.com>
+ <5a6a749b-b2b7-41bb-bcb4-a2342e7f4e98@linaro.org>
+ <015501dc5ea5$0c7dd460$25797d20$@samsung.com>
+ <401ed9b9-19a4-4a19-b397-0f353e9f0c97@linaro.org>
+ <019301dc5f4a$e9aadd60$bd009820$@samsung.com>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <019301dc5f4a$e9aadd60$bd009820$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aslj3klmv6heyyhgltzewkdze5p4c3hlkzfbxbfnzwwgd375gv@m6iqpst5sv6b>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Wed, Nov 26, 2025 at 12:40:00PM +0100, Jorge Marques wrote:
-> On Mon, Nov 24, 2025 at 12:20:57PM +0200, Andy Shevchenko wrote:
-> > On Mon, Nov 24, 2025 at 10:18:02AM +0100, Jorge Marques wrote:
 
-...
 
-> > > +#define AD4062_MON_VAL_MAX_GAIN		1999970
-> > 
-> > This is decimal...
-> > 
-> > > +#define AD4062_MON_VAL_MIDDLE_POINT	0x8000
-> > 
-> > ...and this is hexadecimal. Can you make these consistent?
-> > Also, is there any explanation of the number above? To me
-> > it looks like 2000000 - 30. Is it so? Or is this a fraction
-> > number multiplied by 1000000 or so? In any case some elaboration
-> > would be good to have.
-> > 
-> Since this is not a magic number, I will use directly below.
-> It MAX_MON_VAL/MON_VAL_MIDDLE_POINT = 0xFFFF/0x8000
+On 11/27/25 5:07 AM, 손신 wrote:
+> Hello, Tudor Ambarus
 
-Okay, at least it will explain the value.
+Hi!
 
-...
-
-> > > +	if (val < 1 || val > BIT(st->chip->max_avg + 1))
-> > 
-> > in_range() ?
-> > 
-> > 	in_range(val, 1, GENMASK(st->chip->max_avg, 0))
-> > 
-> > if I am not mistaken. Also note, the GENMASK() approach makes possible
-> > to have all 32 bits set, however it's most unlikely to happen here anyway.
-> > 
-> Sure, but requires locals to not trigger suspicious usage of sizeof.
->   	// ...
->   	const u32 _max = GENMASK(st->chip->max_avg, 0);
->   	const u32 _min = 1;
->   	int ret;
->   
->   	if (in_range(val, _min, _max))
-> > > +		return -EINVAL;
-
-It's fine.
-
-...
-
-> > > +static int ad4062_calc_sampling_frequency(int fosc, unsigned int n_avg)
-> > > +{
-> > > +	/* See datasheet page 31 */
-> > > +	u64 duration = div_u64((u64)(n_avg - 1) * NSEC_PER_SEC, fosc) + AD4062_TCONV_NS;
-> > > +
-> > > +	return DIV_ROUND_UP_ULL(NSEC_PER_SEC, duration);
-> > 
-> > Why u64?
-> > 
-> > The DIV_ROUND_UP_ULL() seems an overkill here. Or do you expect duration be
-> > more than 4 billions?
-> > 
-> This is necessary since at fosc 111 Hz and avg 4096 it does take longer
-> than 4 seconds, even though I do timeout after 1 seconds in the raw
-> acquisition.
-
-Values above NSEC_PER_SEC+1 do not make sense (it will return 0),
-and that fits u32. Can you refactor to avoid 64-bit arithmetics?
-
-> > > +}
-
-...
-
-> > > +static int ad4062_soft_reset(struct ad4062_state *st)
-> > > +{
-> > > +	u8 val = AD4062_SOFT_RESET;
-> > > +	int ret;
-> > > +
-> > > +	ret = regmap_write(st->regmap, AD4062_REG_INTERFACE_CONFIG_A, val);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	/* Wait AD4062 treset time */
-> > > +	fsleep(5000);
-> > 
-> > 5 * USEC_PER_MSEC
-> > 
-> > This gives a hint on the units without even a need to comment or look somewhere
-> > else.
-> >
-> // TODO
-> Since the device functional blocks are powered when voltage is supplied,
-> here we can stick with the treset datasheet value 60ns (ndelay(60)).
-
-Add a comment and it will work for me, thanks!
-
-> > > +	return 0;
-> > > +}
-
-...
-
-> > > +static const int ad4062_oversampling_avail[] = {
-> > > +	1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096,
-> > 
-> > It's not easy to count them at glance, please add a comment with indices.
-> > 
-> Ack, will use
->   static const int ad4062_oversampling_avail[] = {
->           BIT(0), BIT(1), BIT(2), BIT(3), BIT(4), BIT(5), BIT(6), BIT(7), BIT(8),
->   	BIT(9), BIT(10), BIT(11), BIT(12),
->   };
-
-Of course you can use bit notations, but what I meant is to have
-
-	1, 2, 4, 8, 16, 32, 64, 128,		/*  0 -  7 */
-	256, 512, 1024, 2048, 4096,		/*  8 - 12 */
-
-(or something alike).
-
-> > > +};
-
-...
-
-> > > +static int ad4062_get_chan_calibscale(struct ad4062_state *st, int *val, int *val2)
-> > > +{
-> > > +	u16 gain;
-> > > +	int ret;
-> > > +
-> > > +	ret = regmap_bulk_read(st->regmap, AD4062_REG_MON_VAL,
-> > > +			       &st->buf.be16, sizeof(st->buf.be16));
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	gain = get_unaligned_be16(st->buf.bytes);
-> > > +
-> > > +	/* From datasheet: code out = code in � mon_val/0x8000 */
-> > > +	*val = gain / AD4062_MON_VAL_MIDDLE_POINT;
-> > 
-> > > +	*val2 = mul_u64_u32_div(gain % AD4062_MON_VAL_MIDDLE_POINT, NANO,
-> > > +				AD4062_MON_VAL_MIDDLE_POINT);
-> > 
-> > I don't see the need for 64-bit division. Can you elaborate what I miss here?
-> > 
-> > > +	return IIO_VAL_INT_PLUS_NANO;
-> > > +}
-> > 
-> Can be improved to
 > 
->   static int ad4062_get_chan_calibscale(struct ad4062_state *st, int *val, int *val2)
->   {
->   	int ret;
->   
->   	ret = regmap_bulk_read(st->regmap, AD4062_REG_MON_VAL,
->   			       &st->buf.be16, sizeof(st->buf.be16));
->   	if (ret)
->   		return ret;
->   
->   	/* From datasheet: code out = code in � mon_val/0x8000 */
->   	*val = get_unaligned_be16(st->buf.bytes) * 2;
->   	*val2 = 16;
->   
->   	return IIO_VAL_FRACTIONAL_LOG2;
->   }
-
-Much better, thanks!
-
-...
-
-> > > +static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int, int gain_frac)
-> > 
-> > Forgot to wrap this line.
-> > 
-> ack
-> > > +{
-> > > +	u64 gain;
-> > > +	int ret;
-> > > +
-> > > +	if (gain_int < 0 || gain_frac < 0)
-> > > +		return -EINVAL;
-> > > +
-> > > +	gain = mul_u32_u32(gain_int, MICRO) + gain_frac;
-> > 
-> > > +
-> > 
-> > Redundant blank line.
-> > 
-> Ack.
-> > > +	if (gain > AD4062_MON_VAL_MAX_GAIN)
-> > > +		return -EINVAL;
-> > > +
-> > > +	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL(gain * AD4062_MON_VAL_MIDDLE_POINT,
-> > > +						 MICRO),
-> > > +			   st->buf.bytes);
-> > 
-> > Also in doubt here about 64-bit division.
-> > 
-> This can be slightly improved to
+>> -----Original Message-----
+>> From: Tudor Ambarus [mailto:tudor.ambarus@linaro.org]
+>> Sent: Wednesday, November 26, 2025 6:22 PM
+>> To: 손신 <shin.son@samsung.com>; 'Bartlomiej Zolnierkiewicz'
+>> <bzolnier@gmail.com>; 'Krzysztof Kozlowski' <krzk@kernel.org>; 'Rafael J .
+>> Wysocki' <rafael@kernel.org>; 'Daniel Lezcano' <daniel.lezcano@linaro.org>;
+>> 'Zhang Rui' <rui.zhang@intel.com>; 'Lukasz Luba' <lukasz.luba@arm.com>;
+>> 'Rob Herring' <robh@kernel.org>; 'Conor Dooley' <conor+dt@kernel.org>;
+>> 'Alim Akhtar' <alim.akhtar@samsung.com>; youngmin.nam@samsung.com
+>> Cc: 'Henrik Grimler' <henrik@grimler.se>; linux-pm@vger.kernel.org; linux-
+>> samsung-soc@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; 'Peter Griffin'
+>> <peter.griffin@linaro.org>; 'André Draszik' <andre.draszik@linaro.org>;
+>> 'William McVicker' <willmcvicker@google.com>; jyescas@google.com
+>> Subject: Re: [PATCH v7 RESEND 2/3] thermal: exynos_tmu: Support new
+>> hardware and update TMU interface
+>>
+>> Hi, Shin Son,
+>>
+>> On 11/26/25 9:19 AM, 손신 wrote:
+>>>> Looking at the exynosautov9 registers that you described and
+>>>> comparing them with
+>>>> gs101 I see just 2 differences:
+>>>> 1/ exnosautov2 has a TRIMINFO_CONFIG2 register, while gs101 doesn't
+>>>> 2/ EXYNOSAUTOV920_PEND register fields differ from GS101
+>>> TRIMINFO_CONFIG2 doesn't exist on eav920 either; I simply misnamed it.
+>>> However, the PEND register indeed differs from GS101.
+>>>
+>>>> Given the similarities, and considering the EXYNOS9_ registers rename
+>> from:
+>>>> https://lore.kernel.org/linux-samsung-soc/20251117074140.4090939-5-
+>>>> youngmin.nam@samsung.com/
+>>>> would it make sense to use the SoC-era name instead of specific SoC,
+>> i.e.
+>>>> s/EXYNOSAUTOV920_/EXYNOS9_ and use the latter for both exynosautov9
+>>>> and gs101?
+>>>>
+>>> First of all, as far as I know, EXYNOS9 is not the same as exynosautov9,
+>> and exynosautov920 also differs from exynosautov9.
+>>
+>> See also see this patch, or maybe the entire patch set:
+>> https://lore.kernel.org/linux-samsung-soc/20251117074140.4090939-2-
+>> youngmin.nam@samsung.com/
+>>
+>> It's not just autov9 and gs101 that have similar TMU registers (with the
+>> two exceptions AFAICT), it's also exynos850 that seems identical with
+>> autov9.
 > 
->   static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
->   				      int gain_frac)
->   {
->   	u32 gain;
->   	int ret;
->   
->   	if (gain_int < 0 || gain_frac < 0)
->   		return -EINVAL;
->   
->   	gain = gain_int * MICRO + gain_frac;
->   	if (gain > 1999970)
+> Yes, Do you have any plans to upstream the GS101 TMU code? From what I understand,
 
-But this magic should be changed to what you explained to me
-(as in 0xffff/0x8000 with the proper precision, and this
- can be done in 32-bit space).
+Yes, I'm currently working on upstreaming the GS101 TMU code. My plan is to
+do the acpm tmu helpers and then integrate the gs101 TMU support with what
+will be the new exynos TMU driver.
 
-Or even better
+> Autov9 and exynos850 are unlikely to be upstreamed in their current form.
 
-	if (gain_int < 0 || gain_int > 1)
-		return -EINVAL;
+From what I understand from your email exchanges with Daniel, you're going to
+propose a new driver. Is my understanding correct? Do you have a timeline for it?
+I'll then follow with the gs101 support.
 
-	if (gain_int == 1 && gain_frac > 0x7fff) // did I get this right?
-		return -EINVAL;
-
->   		return -EINVAL;
->   
->   	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL((u64)gain * AD4062_MON_VAL_MIDDLE_POINT,
->   						 MICRO),
-
-...with temporary variable at minimum.
-
-But again, I still don't see the need for 64-bit space.
-
->   			   st->buf.bytes);
->   
->   	ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
->   				&st->buf.be16, sizeof(st->buf.be16));
->   	if (ret)
->   		return ret;
->   
->   	/* Enable scale if gain is not equal to one */
->   	return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
->   				  AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
->   				  FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
->   					     !(gain_int == 1 && gain_frac == 0)));
->   }
 > 
-> To provide the enough resolution to compute every step (e.g., 0xFFFF and
-> 0xFFFE) with the arbitrary user input.
-
-...
-
-> > > +static int __ad4062_read_chan_raw(struct ad4062_state *st, int *val)
-> > 
-> > Can be named without leading double underscore? Preference is to use
-> > the suffix, like _no_pm (but you can find better one).
-> > 
-> Since there is one usage of this method, can be merged into ad4062_read_chan_raw.
-
-Good choice!
-
-...
-
-> > > +	struct i3c_priv_xfer t[2] = {
-> > > +		{
-> > > +			.data.out = &st->reg_addr_conv,
-> > > +			.len = sizeof(st->reg_addr_conv),
-> > > +			.rnw = false,
-> > > +		},
-> > > +		{
-> > > +			.data.in = &st->buf.be32,
-> > > +			.len = sizeof(st->buf.be32),
-> > > +			.rnw = true,
-> > > +		}
-> > > +	};
-
-> > > +	/* Change address pointer to trigger conversion */
-> > > +	ret = i3c_device_do_priv_xfers(i3cdev, &t[0], 1);
-> > 
-> > Why array? Just split them on per transfer and use separately. This gives a bit
-> > odd feeling that the two goes together, but no. They are semi-related as we
-> > have a special condition after the first one.
-> > 
-> For this commit sure, but in the next a fallback method is introduced
-> for when the gp1 gpio line is not connected.
-> There are two register to trigger and read samples:
+>> All seem to be part of the same "Exynos9-era" SoCs. Let's think about how
+>> gs101/exynos850 TMU addition will follow. Shall one use the EXYNOSAUTOV920
+>> registers? That seems misleading. Shall one redefine the entire register
+>> set?
+>> That won't fly because of the code duplication.
 > 
-> * write CONV_READ -> read dummy value - [conversion] -> read value -> [conv ...
-> * write CONV_TRIGGER - [conversion] -> read value -> write ...
+> I kind of admit that.
 > 
-> The first allows almost twice the sampling frequency, but does not work
-> with the fallback because In-Band-Interrupt for CONV_READ are not
-> yielded.
+>> Thus I propose to use the EXYNOS9 prefix for the register definitions, and
+>> if there are SoCs with slight differences, that can be handled with
+>> compatible match data and specific SoC definitions, but only where things
+>> differ.
+> 
+> However, I am not sure whether Exynos2200, 7885, 990, 9810, 8890, 8895, or FSD share the same TMU hardware layout as exynosautov920.
+> So I’m wondering whether the EXYNOS9 prefix should be limited to GS101 and eav920, or if we should consider a different prefix that better reflects the grouping.
 
-Do you mean that the same array is reused differently? If so, then okay.
+exynos850 has the same reg layout as eav920 and gs101 too. If Exynos9-era is
+a common terminology used inside Samsung then we should be good to go with
+Exynos9 prefix I think. Especially since we have a predecessor, the renaming
+tried in pinctrl. But if you're not sure about it, use just EXYNOS_ then.
 
-> > > +	if (ret)
-> > > +		return ret;
-
-...
-
-> > > +	fsleep(4000);
-> > 
-> > 4 * USEC_PER_MSEC, also would be good to add a comment for this long delay.
-> > 
-> Will add
-> 	/* Wait device functional blocks to power up */
-> Based on hardware tests, I can drop to 2 * USEC_PER_MSEC, lower than
-> that the device is not ready to switch to acquisition mode for
-> conversions.
-
-Good!
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Cheers,
+ta
 
