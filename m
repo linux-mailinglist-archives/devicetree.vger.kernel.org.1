@@ -1,181 +1,128 @@
-Return-Path: <devicetree+bounces-242754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0972DC8E643
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:16:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A5EC8E73A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:25:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 206D134D65E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:16:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30C723AE2A7
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B072613A244;
-	Thu, 27 Nov 2025 13:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0766257830;
+	Thu, 27 Nov 2025 13:25:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AZzbizIk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1415E29A1
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 13:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7BA257AEC
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 13:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764249376; cv=none; b=Yav1R6/ZWljKSdATyzHENoQ1VvkDFQwcQHbY2WsgKhU/1sFuspBt2s/moDnmstdVRftpiK8ADK2HlupFmovbI1j95Mj6LrGxtZeFDY0+PsJWLf0wUd1BaAeepth1iUcmcKAx0Dgw0wSkksj9uhRvtabnXRLleuVUcmTLRWDwWGA=
+	t=1764249936; cv=none; b=SMlyvY7XKOlORRGPS5CLQdENwn1cKktuwCZTtMcCGQcekV7HBmSwnRdfTshthrT8MWL+N6fmOK4YcuH8E/nRYcm80ikdkQen425aD8U9bFPwWGQH9HGqW725kR6XL5Tqxxp7KMgy0IBaofFL4cJ0kbwi8NlUG7M4S7SMtEWE5ZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764249376; c=relaxed/simple;
-	bh=i0+NI2Bud3BlBikNUo49+8Zo8rRsxq05UxY0PW6sYJY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pFf1RuXhZAYhWLn99TmL6yvQSPrL3xGwS04CaN568/ZnmyJKYWciEviFbtHTt+q3Jm/CWLSrZDFhUwBoh1jRqPbAQ/4Pp80U97ueDe4oMERC7oR5hlzPwyee6P0wpuPcWR759wwPiNYmATZAnZ1AjpuU+p1Bh9YMCy+RtvzZ9UI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-880570bdef8so8762576d6.3
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 05:16:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764249374; x=1764854174;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=/la0b8NwFw52ANl4NaAU+Zs/xhH8L5L8IfhP5J6VHSo=;
-        b=vNwBT12h3tsrOzDAIOIEgtVjT60wxuGD8ONwYahuAe55dMYqDTwgYSmPDu+kGhbKbG
-         tgzwJoWHgJXuU0ptvuJPNs3uGkO57gCqucVU7YKBLtL7htNJxo8iRqvlOE3MDDhRwM+e
-         xmcqmfhUpo0vxz2hPblGNBloaH2mx0RKi8wxMdiQhVckpdpTAOTZG1UyPTyTPoi33LJI
-         XiLsux1hcbyEhSvHJRngSmiSycd5nDoSJhfdQWeZ1TbDWjK+nMDBCIcKyA0qHqZNXpoy
-         6HwRZaCzJ9aTbFl/QKuVXraSuhdnxbjLX5Hy3UdAJU9ydIgWJEbvVe5QATYhorjAtO7C
-         h7dA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDf+aQI+1hCIpK18qNeOyvC00xu7Rz9GQxVfHIR+5Rran0OT2FpzKBGAwiZMAPUH67CRvjhDBl5UyB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCSGGSscYcnDF2KYh0C+XzKt+oOuY2zwVBHdFTyCtRe9MzmAH0
-	MHJsMfRd6jZBpwKP1pBeW3ivWS6oZM1QIwEpTOW4s3s0atQuKOVyVCkChbEmfqpC
-X-Gm-Gg: ASbGncv6Qw2SkfjbuLIhsmXX+aECUUa01bSDn+JdRwMGMSRI3AlgQhJ5u2gibxkKHe6
-	CvLD3jWRcp8kLbHp9qsHqwTpesMPqeBLjMtf1VmAbyBVAWTaW/UwAExF0x+nodk9Ng/ZRt/3Zev
-	7i1P/Tz5WQy16ls7KuRLPSDn2CKgSeqVdw9I0s18LifK49rWq6W4QBPpEOQKBEOhQ4RSLZwBGPP
-	jC/nO30CN4Dpm9dMo4YPwn7xEeQmRAqgsMhcUpUBK4lHra4rtJoeFxgg7N+eMZk3l2P81nEYmEq
-	wfNmWE+NVN1Dstk61TvOGZReohxtLcTCP1AK/7y/usORoG+ykKQe/Mj54pv+o/vxJRC95hg0lI0
-	CIboeJLdL33rTLwExbvgCW1zf6bjpqeJP2iXM5uMt0aBLZu9wwoWqaQtQTJ9/0ds3R/LKW3YjGe
-	FJHF/Nmlrpgq5/i7iSc8ikZvwTHdamWznMD3k2w5eaXduJeZDp
-X-Google-Smtp-Source: AGHT+IEAG4HhvhXggYRxRBqwNngecusOYmnt3am7I0XJrRLraxbM30zbDIEWOiAy9qDo2EGTykejfw==
-X-Received: by 2002:a05:6214:5192:b0:882:63cf:396f with SMTP id 6a1803df08f44-8863af6dc4amr139541806d6.43.1764249373757;
-        Thu, 27 Nov 2025 05:16:13 -0800 (PST)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88652b73542sm9053156d6.44.2025.11.27.05.16.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Nov 2025 05:16:13 -0800 (PST)
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5dbdb139b5bso717727137.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 05:16:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVI4JrYAHG8Bu8cskmaVHn6oasTnfpwyTje/+L2RjDCCONQ5fNMxe9bbj6q1PqbOHgoOZKqVoUGYtlj@vger.kernel.org
-X-Received: by 2002:a05:6102:5e93:b0:5db:ceaa:1dbf with SMTP id
- ada2fe7eead31-5e224417a9bmr4411857137.41.1764249373279; Thu, 27 Nov 2025
- 05:16:13 -0800 (PST)
+	s=arc-20240116; t=1764249936; c=relaxed/simple;
+	bh=aEiQVMDoMgNcxL4GiRqNIJWzllGGLe7RboB7EQdNgAI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lWbXLhPYtD7s+0aPO52hJXIwcFOdjSnDazABixW09hn3yTWt50TKKpj/KwWU+72v/7EYe73GH5AWOE0q4J7DGa2yMr/EPkmsGlphNS0R2luF/VXih28HoHkqfuIe7CYhBGcBy3MLqPyZZ4/o0k0RD1kc7FiIS92igC5D+WyF7ys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AZzbizIk; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1764249927;
+	bh=aEiQVMDoMgNcxL4GiRqNIJWzllGGLe7RboB7EQdNgAI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AZzbizIkgAjmlxdMrCRH9UpGgY4MV+GjkNFPdScQP/b3jx/kYcK2Dafll06rvzl5l
+	 Dwy5k0aDjZcLSaCr5/DhtxRTfOPLQExZm6jh7bmQSd9C/ca1XjVH7GDgniahP1bXmR
+	 +ldD2Sl3F2bmpvdNgdFttemhwq0mKYaDROEQ9VJWdo9xdWYGSSPod7wYIqmQHp0mF8
+	 2Y0FpjWm/exFALIMAMKG45up+DO54QVk8M8+QOgkp/B+Maer7LvwDu715bw05gOBdD
+	 /7JCrJDdSdfSzYxc0nszBqn/46vwNg473QJnte8AnaTZS6HVAdC2QnTiN4VTHiOSyy
+	 rXhtGXcgIQETA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D28DD17E0117;
+	Thu, 27 Nov 2025 14:25:26 +0100 (CET)
+Message-ID: <fc5febc7-d1ee-4b93-81c7-eca7134e9c39@collabora.com>
+Date: Thu, 27 Nov 2025 14:25:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251121113553.2955854-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20251121113553.2955854-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 27 Nov 2025 14:16:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVtxLCRHdhj5=iOHyDJFQUfALYj8MXGLA+bT=YSvWtbbQ@mail.gmail.com>
-X-Gm-Features: AWmQ_blYrSklJ3vMkio_CRlMnvD_t9kp1obUj6YpfU6Kqg0TYQcNKUPeqWm26t4
-Message-ID: <CAMuHMdVtxLCRHdhj5=iOHyDJFQUfALYj8MXGLA+bT=YSvWtbbQ@mail.gmail.com>
-Subject: Re: [PATCH net-next 04/11] dt-bindings: net: dsa: renesas,rzn1-a5psw:
- Add RZ/T2H and RZ/N2H ETHSW support
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Russell King <linux@armlinux.org.uk>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Fix address range for JPEG
+ decoder core 1
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Arnd Bergmann <arnd@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, soc@kernel.org
+References: <20251127100044.612825-1-wenst@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20251127100044.612825-1-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Prabhakar, Cl=C3=A9ment,
+Il 27/11/25 11:00, Chen-Yu Tsai ha scritto:
+> The base address of JPEG decoder core 1 should start at 0x10000, and
+> have a size of 0x10000, i.e. it is right after core 0.
+> 
+> Instead the core has  the same base address as core 0, and with a crazy
+> large size. This looks like a mixup of address and size cells when the
+> ranges were converted.
+> 
+> This causes the kernel to fail to register the second core due to sysfs
+> name conflicts:
+> 
+>      sysfs: cannot create duplicate filename '/devices/platform/soc/soc:jpeg-decoder@1a040000/1a040000.jpgdec'
+> 
+> Fix up the address range.
+> 
+> Fixes: a9eac43d039f ("arm64: dts: mediatek: mt8195: Fix ranges for jpeg enc/decoder nodes")
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
-On Fri, 21 Nov 2025 at 12:37, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Extend the A5PSW DSA binding to cover the ETHSW variant used on newer
-> Renesas RZ/T2H and RZ/N2H SoCs. ETHSW is derived from the A5PSW switch
-> found on RZ/N1 but differs in register layout, clocking and interrupt
-> topology, and exposes four ports in total (including the CPU/management
-> port) instead of five.
->
-> Update the schema to describe these differences by adding dedicated
-> compatible strings for RZ/T2H and RZ/N2H, tightening requirements on
-> clocks, resets and interrupts, and documenting the expanded 24-interrupt
-> set used by ETHSW for timestamping and timer functions. Conditional
-> validation ensures that RZ/T2H/RZ/N2H instances provide the correct
-> resources while keeping the original A5PSW constraints intact.
->
-> Use the RZ/T2H compatible string as the fallback for RZ/N2H, reflecting
-> that both SoCs integrate the same ETHSW IP.
->
-> Add myself as a co-maintainer of the binding to support ongoing work on
-> the ETHSW family across RZ/T2H and RZ/N2H devices.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Thanks for your patch!
+> ---
+> This was introduced in v6.18-rc1.
+> 
+> Maybe have the soc maintainers take this directly instead of waiting?
 
-> --- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+I'm fine with that; if Arnd wants to take it directly, that'd be easier for me as
+I really don't expect any other Fixes commits for the moment (and I'm currently in
+a very, very... very busy "moment").
 
-> @@ -73,14 +145,48 @@ properties:
->                phandle pointing to a PCS sub-node compatible with
->                renesas,rzn1-miic.yaml#
->
-> -unevaluatedProperties: false
-> -
->  required:
->    - compatible
->    - reg
->    - clocks
->    - clock-names
->    - power-domains
-> +  - interrupts
-> +  - interrupt-names
+Cheers,
+Angelo
 
-FTR, this causes warning for RZ/N1:
+> 
+> Also, I'm not sure if this error could mess up the JPEG decoder driver's
+> internal tracking.
+> 
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index ec452d657031..c7adafaa8328 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -3067,7 +3067,7 @@ jpgdec@0,0 {
+>   
+>   			jpgdec@0,10000 {
+>   				compatible = "mediatek,mt8195-jpgdec-hw";
+> -				reg = <0 0 0x10000 0x10000>;/* JPGDEC_C1 */
+> +				reg = <0 0x10000 0 0x10000>;/* JPGDEC_C1 */
+>   				iommus = <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>,
+>   					 <&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA0>,
+>   					 <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA1>,
 
-    arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dtb: switch@44050000
-(renesas,r9a06g032-a5psw): 'oneOf' conditional failed, one must be
-fixed:
-            'interrupts' is a required property
-            'interrupts-extended' is a required property
-            from schema $id:
-http://devicetree.org/schemas/net/dsa/renesas,rzn1-a5psw.yaml  DTC
-arch/arm/boot/dts/renesas/r8a7740-armadillo800eva-con15-quad-7seg-red.dtbo
 
-    arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dtb: switch@44050000
-(renesas,r9a06g032-a5psw): 'interrupt-names' is a required property
-            from schema $id:
-http://devicetree.org/schemas/net/dsa/renesas,rzn1-a5psw.yaml
-
-Cl=C3=A9ment added the interrupts to the binding, but never sent a patch
-to update the DTS.  I have submitted a fix:
-https://lore.kernel.org/53d45eed3709cba589a4ef3e9ad198d7e44fd9a5.1764249063=
-.git.geert+renesas@glider.be
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
 
