@@ -1,164 +1,137 @@
-Return-Path: <devicetree+bounces-242854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03DF1C8FFB6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 20:04:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5861EC90072
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 20:34:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3037D4E4E6A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 19:03:25 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6E29235071F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 19:34:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 461263019DC;
-	Thu, 27 Nov 2025 19:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A575D3016FA;
+	Thu, 27 Nov 2025 19:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="Vv4DYNI2"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="xKHxy324"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
+Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD2279C8;
-	Thu, 27 Nov 2025 19:03:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA6D91E1A17
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 19:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764270202; cv=none; b=EawYjJvxXaARc7vyQllj8BYpcaSWbhX4gxLiRfERdbH3lnH69cYyWQb087WcM5fALzuaWMF9CAGO2mUabHBRTopiJHcla8j8xTJvXRXvEOcrGPB8O3nIZZ5CTWQMGqIAEKG/2ywOMcHBtSF8uMeXw/Dh5aFUDbSzZnjGBefOGQU=
+	t=1764272038; cv=none; b=rUbhHSQF9QKuK5X+w/mleVY1YOE43AfIXt/ZG0wWFuNTAmEIbF7DzcSfCiNh4DJ19RrZy02jLaTOeL9ytlpVbNfB9Hfz/T8RtI6Iz5yVwgFSlCVbqnLmybsZ/MGy4kgkgFVVYccMl9kC/uLuPdY6DHARCuNbETnGRfuS+UUO0Kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764270202; c=relaxed/simple;
-	bh=wfgiRGOQLwiLM+4FUs/uJ61GxSLx10RXTN/JQQ7sn5c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=W3S0rugkPSRXRpajkQqXAGUYr0KLLJQjVN3aJROKuDC1yExKitQbNnpTu/X1Xyx7lvyAR+gKhIaItrc9DtHxEdef4+/A+jLVo4Mmlgt1Dqdttdeu5IaV0+jjc5K0+RVvUKYoC/GDhAc/7R3NMMROnjT8l9dlxI82cvLiALfd8xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=Vv4DYNI2; arc=none smtp.client-ip=195.113.20.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
-X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560+5C/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
-	serial F5FD910E8FE2121B897F7E55B84E351D
-	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
-	auth type TLS.CUNI
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
-	s=submission; t=1764270177; x=1765570177;
-	bh=12NHg5mpkkfFuDbyCvK5djSM2M++P/Z48X9ciVtOpl4=; h=From;
-	b=Vv4DYNI2rWg9QpBcBsDdAWrqJa5Wu67LMVgifVZOx5r4yu6PrSmW8afuQu5z7TMSJ
-	 xnyrJvrsGi1/oOI7eVkD1IvZgzzkjgtpYdoJSctWaM+YodaneOmndrblSKjP5IysgI
-	 zgjs5d/+jl8nZRwBIv5OYvk4xyz3RY+RlZcezbGwuZ7g6U3LbwV5qCNoJWOVQAZJOV
-	 /nzojzoFyRQHF4Dwugu/1Z+dmRyWs75j4yobsFKv8HO9Ci7veMLN4tlKDoKin45PtP
-	 KUc39RlSwV6RYes+Af14y/bk7fCpn5mgum03Mt2ZMZktr/smAXGKhOEgc6XdPyTGb6
-	 ojQ0UMV4XEcbA==
-Received: from localhost (nat2.prg.suse.com [195.250.132.146])
-	(authenticated)
-	by smtp1.ms.mff.cuni.cz (8.18.1/8.18.1) with ESMTPS id 5ARJ2tWM008160
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Thu, 27 Nov 2025 20:02:57 +0100 (CET)
-	(envelope-from balejk@matfyz.cz)
-From: Karel Balej <balejk@matfyz.cz>
-To: =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje@dujemihanovic.xyz>,
-        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Karel Balej <balejk@matfyz.cz>
-Subject: [PATCH 2/2] pmdomain: add audio power island for Marvell PXA1908 SoC
-Date: Thu, 27 Nov 2025 20:02:03 +0100
-Message-ID: <20251127190237.745-2-balejk@matfyz.cz>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251127190237.745-1-balejk@matfyz.cz>
-References: <20251127190237.745-1-balejk@matfyz.cz>
+	s=arc-20240116; t=1764272038; c=relaxed/simple;
+	bh=fs9vnPDceBUMF0spi5bUKF/L+DAeC19uipcq7XjRaUs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pTLy08N6Z0Flds3esyb+FH3bBAO/7846ehIeWjpE/ZYHfnxGcoZMkhQHdn6/m6x+wXEHGdC1fBmcQGhR3YXjd3s7rSpQO1P8BNrwXHNPxDC8+vTCZ5GyYWdZJ+VDJKKZYle3E2gtRISTRlag5N0+AefrHA+CZIQfX1/5bSjybLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=xKHxy324; arc=none smtp.client-ip=95.215.58.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+Message-ID: <f820c42b-4cd9-430f-a1ee-4f380dc9ca8a@packett.cool>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1764272024;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=twC3DgrcBjAoJ79kbEz8s5y7IoW5MR+ZajnMa5xe4b4=;
+	b=xKHxy324q+linhDJBQ/dINfLg8h80Jwpo+VGm6Yw74EQCGPnLNvAQiRk60QYPEhWCHNXSq
+	zAyWxxytNjsqv/XlJGtAIaLn+hvABnNyqnpcRRkVH3J8/y5Tb0CX/t3HliwOF8QNkQidvg
+	7SOA7pQapN8eX6LcBhX+Mgb5c+aOJIY/bz5vzLBQl86IhQht90t+Mb7I705rxEGkAo/Vyk
+	dLvXMkPEf+d02luwf1lAmPhrX9m4aWA5KNHKXSu/V9b1duG1+sEqsC6eBm6MWyMpnA8Y9C
+	h5IqyC7TutmKbhY6Ubv6RujIEGgxp9ykAZCCD3AFhx6Fi1eWRzqXwdrd9myd0Q==
+Date: Thu, 27 Nov 2025 16:33:29 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: sm8x50: Enable UHS-I SDR50 and
+ SDR104 SD card modes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251126012043.3764567-1-vladimir.zapolskiy@linaro.org>
+ <bdf3f54d-a223-4eff-aa71-0d74a83ef46d@packett.cool>
+ <3b609409-e19f-4685-848d-807a4e840ad8@oss.qualcomm.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Val Packett <val@packett.cool>
+In-Reply-To: <3b609409-e19f-4685-848d-807a4e840ad8@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Level: ****
+X-Migadu-Flow: FLOW_OUT
 
-Define power domain which needs to be enabled in order for audio to work
-on the PXA1908-based samsung,coreprimevelte smartphone. In the
-downstream code, this power-on method is marked as specific to the ulcx
-series which is likely some variant of the board or some part of it. No
-other audio components needed for sound to work on this phone are
-currently available mainline but some successful testing was performed
-with the vendor variants of the respective drivers and with the domain
-forced always-on.
 
-Signed-off-by: Karel Balej <balejk@matfyz.cz>
----
- .../marvell/pxa1908-power-controller.c        | 38 +++++++++++++++++--
- 1 file changed, 34 insertions(+), 4 deletions(-)
+On 11/27/25 10:47 AM, Konrad Dybcio wrote:
+> On 11/26/25 5:14 PM, Val Packett wrote:
+>> Hi,
+>>
+>> On 11/25/25 10:20 PM, Vladimir Zapolskiy wrote:
+>>> The reported problem of some non-working UHS-I speed modes on SM8450
+>>> originates in commit 0a631a36f724 ("arm64: dts: qcom: Add device tree
+>>> for Sony Xperia 1 IV"), and then it was spread to all SM8450 powered
+>>> platforms by commit 9d561dc4e5cc ("arm64: dts: qcom: sm8450: disable
+>>> SDHCI SDR104/SDR50 on all boards").
+>>>
+>>> The tests show that the rootcause of the problem was related to an
+>>> overclocking of SD cards, and it's fixed later on by commit a27ac3806b0a
+>>> ("clk: qcom: gcc-sm8450: Use floor ops for SDCC RCGs").
+>>>
+>>> Due to a missed setting of an appropriate SDCC clock operations in
+>>> platform GCC driver the workaround of dropping SD card speeds from UHS-I
+>>> to high speed was spread to SM8550 and SM8650 platforms, and since
+>>> the fixes in the clock controller drivers are ready [1], it should be
+>>> safe to remove the speed mode restrictions from SM8450, SM8550 and
+>>> SM8650 platforms.
+>>> [..]
+>> I see you have tested with dd on the raw block device, but have you tested hotplugging SD cards that have partition tables and filesystems on them?
+>>
+>> We have this kind of issue on Hamoa where we get I/O errors early, right after the card is inserted and the partition table / filesystem headers are being read:
+>>
+>> [  714.057106] mmc0: new UHS-I speed SDR104 SDXC card at address 0001
+>> [  714.060567] mmcblk0: mmc0:0001 EC2QT 59.6 GiB
+>> [  714.503873] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 2
+>> [  714.505660] Buffer I/O error on dev mmcblk0, logical block 0, async page read
+>> [  714.513632] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 2
+>> [  714.516469] Buffer I/O error on dev mmcblk0, logical block 0, async page read
+>> [  714.516512]  mmcblk0: unable to read partition table
+> Before we start debugging, could you please confirm it's using the internal
+> (&sdhc_2) MMC controller, and not one connected over PCIe, like it's the
+> case on the Surface Laptop?
+Of course it is. I'm quite familiar with the DTS on this device, I 
+pushed it over the finish line into upstream myself :)
+> Are the regulators supplying vmmc and vqmmc in high power mode?
 
-diff --git a/drivers/pmdomain/marvell/pxa1908-power-controller.c b/drivers/pmdomain/marvell/pxa1908-power-controller.c
-index ff5e6e82d3f8..e32eb227f235 100644
---- a/drivers/pmdomain/marvell/pxa1908-power-controller.c
-+++ b/drivers/pmdomain/marvell/pxa1908-power-controller.c
-@@ -29,7 +29,10 @@
- #define POWER_POLL_TIMEOUT_US	(25 * USEC_PER_MSEC)
- #define POWER_POLL_SLEEP_US	6
- 
--#define NR_DOMAINS	5
-+#define APMU_AUD_CLK		0x80
-+#define AUDIO_ULCX_ENABLE	0x0d
-+
-+#define NR_DOMAINS	6
- 
- #define to_pxa1908_pd(_genpd) container_of(_genpd, struct pxa1908_pd, genpd)
- 
-@@ -59,9 +62,13 @@ static inline bool pxa1908_pd_is_on(struct pxa1908_pd *pd)
- {
- 	struct pxa1908_pd_ctrl *ctrl = pd->ctrl;
- 
--	return pd->data.id != PXA1908_POWER_DOMAIN_DSI
--		? regmap_test_bits(ctrl->base, APMU_PWR_STATUS_REG, pd->data.pwr_state)
--		: regmap_test_bits(ctrl->base, APMU_DEBUG, DSI_PHY_DVM_MASK);
-+	switch (pd->data.id) {
-+	case PXA1908_POWER_DOMAIN_AUDIO:
-+		return regmap_test_bits(ctrl->base, APMU_AUD_CLK, AUDIO_ULCX_ENABLE);
-+	case PXA1908_POWER_DOMAIN_DSI:
-+		return regmap_test_bits(ctrl->base, APMU_DEBUG, DSI_PHY_DVM_MASK);
-+	}
-+	return regmap_test_bits(ctrl->base, APMU_PWR_STATUS_REG, pd->data.pwr_state);
- }
- 
- static int pxa1908_pd_power_on(struct generic_pm_domain *genpd)
-@@ -123,6 +130,22 @@ static inline int pxa1908_dsi_power_off(struct generic_pm_domain *genpd)
- 	return regmap_clear_bits(ctrl->base, APMU_DEBUG, DSI_PHY_DVM_MASK);
- }
- 
-+static inline int pxa1908_audio_power_on(struct generic_pm_domain *genpd)
-+{
-+	struct pxa1908_pd *pd = to_pxa1908_pd(genpd);
-+	struct pxa1908_pd_ctrl *ctrl = pd->ctrl;
-+
-+	return regmap_set_bits(ctrl->base, APMU_AUD_CLK, AUDIO_ULCX_ENABLE);
-+}
-+
-+static inline int pxa1908_audio_power_off(struct generic_pm_domain *genpd)
-+{
-+	struct pxa1908_pd *pd = to_pxa1908_pd(genpd);
-+	struct pxa1908_pd_ctrl *ctrl = pd->ctrl;
-+
-+	return regmap_clear_bits(ctrl->base, APMU_AUD_CLK, AUDIO_ULCX_ENABLE);
-+}
-+
- #define DOMAIN(_id, _name, ctrl, mode, state) \
- 	[_id] = { \
- 		.data = { \
-@@ -159,6 +182,13 @@ static struct pxa1908_pd domains[NR_DOMAINS] = {
- 			.keep_on = true,
- 		},
- 	},
-+	[PXA1908_POWER_DOMAIN_AUDIO] = {
-+		.genpd = {
-+			.name = "audio",
-+			.power_on = pxa1908_audio_power_on,
-+			.power_off = pxa1908_audio_power_off,
-+		},
-+	},
- };
- 
- static void pxa1908_pd_remove(struct auxiliary_device *auxdev)
--- 
-2.51.2
+Yes. regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>; and no 
+allow-set-load / allowed-modes (..hm, maybe we can actually add those to 
+save power since sdhci-msm *does* do regulator_set_load..)
+
+But turns out this is not a consistent problem with every card!.. At 
+least *now* one of the two Kingston Canvas Select Plus cards I have 
+attaches perfectly every time. (Another one of those though often fails 
+to probe with "error -84 reading general info of SD ext reg" and 
+sometimes has an early I/O error, but exFAT mounts even after that error 
+— but this seems like just a "microSD cards are crap" thing.)
+
+It's the Samsung Evo Plus card that consistently has early I/O errors 
+preventing the partition table scan from succeeding (or if that 
+succeeds, prevents the exFAT mount). There is a *card compat* issue here 
+for sure, as the card is not corrupted, it mounts every time on a 
+different laptop with a PCIe card reader [1217:8621] in the same SDR104 
+mode. But consistently has these errors on sdhci-msm.
+
+Thanks,
+~val
 
 
