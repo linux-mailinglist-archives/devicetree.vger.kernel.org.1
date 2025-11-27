@@ -1,174 +1,226 @@
-Return-Path: <devicetree+bounces-242602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4488C8CFAF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB9D0C8D0FA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1117E3A2728
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:01:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFA103B71D0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AA842C0F68;
-	Thu, 27 Nov 2025 07:01:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604AF31618C;
+	Thu, 27 Nov 2025 07:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="XbMBNU6o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ksVrEcCC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD133239594;
-	Thu, 27 Nov 2025 07:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3545B315789;
+	Thu, 27 Nov 2025 07:14:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764226904; cv=none; b=fncV5g1MwJAJm76g7+HwTGNJw5/crp63tJlABGzE9dcVrcZmkBM4wl4CuKR9xVu/F5LuJtiogw00pJIA3JOwAsDWu4grIyhod94ulXUeO/FX2U3lxiVMSFopT8oSwqp0F6iuaUIZiC+68kuPIF0azf6/4grZdI/o2KTbxkAf/U8=
+	t=1764227695; cv=none; b=NGldIfTeDVE7qpDDYdXF5g6wnOIDFYrhrrJVOfa0aiWaKqiuR6gGxPNY8molKMPKJf6sFIpbndHa73VPKMMu/CmUSE8Tm9pCAkdyJFooMlmIeJ1uwhWa7oRnMOMvliDVEOSCH4hC7bnIOEIv3xTQTCjQrNlBRSHypXMCgutTopo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764226904; c=relaxed/simple;
-	bh=xJntNp333wIrlXlF1W6tEXDtaFj5tPMTABREK15za5Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NjFCEndGjb9bL0vKVakMsSiDkcp6zpoUl6hxb3kOet1yk2bXnfOezXRso6JnsY36CZzl4v3DPCz57B+VDlqTWYtrYB49vB8UQ8qvijYzhvInLtLWSIUTPblEdVb2POxPdsQ83R6bS0H68eco50f8e/helfmKi86iKEsxRR7ig3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=XbMBNU6o; arc=none smtp.client-ip=172.105.74.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
-Received: from sunspire.home.arpa (unknown [IPv6:2a02:2f0e:3402:a400:e2d5:5eff:fed9:f1c4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id 2026E160209;
-	Thu, 27 Nov 2025 09:01:32 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
-	s=mail; t=1764226892;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CDqCVSZBPA8RkhRJu8iKL0VJie16tBT0LwVuOI/kbT4=;
-	b=XbMBNU6oFFRy5aPcrEUQ4w05eumbDnXWRc/+fTGSGa7lxsQlNEV0Nx43FkiiU9tEyS3JoO
-	/O9eWHQfZweU+q4jrscLBa5yjuKyCxZdeeqwCTgZxrsSH4ne2YpPjgglIffuqH5r62GqcO
-	Jq+wRuM2m9dRZ2e6qCZCvXtvNcJ6cJZpOciL+wtChQvGtTzzj0uMcJa9tDwOeZBZRORX1R
-	7KblokBaE2o90WM0HdH7lP5mRMQRsJyFt0jdXZ0+jlI4S9rJi4hWopir/Qga1ODsF9mW5c
-	gwMjazjTjWuSUjbGeVeF9a9K+vKl8l1h9RtpwFtc2VG4/lF5X4sAT1u3Sjie6g==
-Date: Thu, 27 Nov 2025 09:01:25 +0200
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, Nuno S? <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: pressure: add Honeywell ABP2 driver
-Message-ID: <aSf3RUeghPcC80VG@sunspire.home.arpa>
-References: <20251122-honeywell_abp2_driver-v1-0-7a8e265f9627@subdimension.ro>
- <20251122-honeywell_abp2_driver-v1-2-7a8e265f9627@subdimension.ro>
- <aSRF-DL3rKjyFleg@smile.fi.intel.com>
- <aSSV4lxzatAFds5e@lipo.home.arpa>
- <aSSm3JMY3DSg1Nns@smile.fi.intel.com>
- <aSTJML3fxp0sSeCq@lipo.home.arpa>
- <aSTiFxAolJ0JeUTj@smile.fi.intel.com>
+	s=arc-20240116; t=1764227695; c=relaxed/simple;
+	bh=nG1HIGyDMlgn0rC/3lX9+hsIsnZ635QMJyYQCko+Bio=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=IOXDTrHDdAnH9hIdSbFNFA9pxFSQ0ZLkJIcqMjQ+a1REhNGq5HcoVd0cl9rW6Ldrl1WONb15t0WrsqzC033G+XUqPlIbc2Lmq78zuKemsORAIe2sKlt/EBccgp4OiW7HdGuDtu1bM/64JehdYgpzAFqJMgIc9PU0ov0drfRl0B0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ksVrEcCC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08EE2C4CEF8;
+	Thu, 27 Nov 2025 07:14:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764227694;
+	bh=nG1HIGyDMlgn0rC/3lX9+hsIsnZ635QMJyYQCko+Bio=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=ksVrEcCCQASGC1x7cUjW8qzLgPsEpPh2R7b+sIcTD7eXFEI6M2WxpWQcmIrC/E1iX
+	 EsoMz9AFQVpS3mokC3TqIYlZIok1kDTYNurKw3uyaCTORVJQh630uqj2bO1rvzhGv+
+	 8zfXxfKpIv+xyJcKSv7MmbGj/xgY2oMo+LhDDeV3pj7bwiiR51dBmw+FIhe2nBPPw2
+	 B8FMh2V5FtJDeyHcDjQOwoH8FNRqNoUpO4w6LYgCx7TjPc00Kwhsiq+TtG9gVKpynr
+	 k6RpuSVIoNXfdLS9AB7NaP7zBPA/fXkZhYoW9iML+EGqrIpQcIJztFUuEJKAfEd7Vv
+	 VtPOl+v12EneQ==
+Message-ID: <bcd2a49d-a42f-41e8-9f64-4fd24fc862c7@kernel.org>
+Date: Thu, 27 Nov 2025 08:14:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aSTiFxAolJ0JeUTj@smile.fi.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 06/22] mm: Always use page table accessor functions
+From: "David Hildenbrand (Red Hat)" <david@kernel.org>
+To: Ryan Roberts <ryan.roberts@arm.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Wei Yang <richard.weiyang@gmail.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-mm@kvack.org, devicetree@vger.kernel.org,
+ Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
+ Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
+ Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
+ Anshuman Khandual <anshuman.khandual@arm.com>
+References: <bc88d132-452a-42a1-9ee5-5407334d8aac@kernel.org>
+ <df7d10ba-bb42-4ea1-8c5b-5db88a18eccb@kernel.org>
+ <6bdf2b89-7768-4b90-b5e7-ff174196ea7b@lucifer.local>
+ <71123d7a-641b-41df-b959-88e6c2a3a441@kernel.org>
+ <c0818f5b-b8a1-4730-aa1d-df0f547a3d47@arm.com>
+ <20251126134726.yrya5xxayfcde3kl@master>
+ <ee5f5da3-8c6b-4381-aee8-b0fab56cbf83@arm.com>
+ <6b966403-91e0-4f06-86a9-a4f7780b9557@kernel.org>
+ <ab39d448-aa1c-4c93-8e2b-5d97a9c76af5@lucifer.local>
+ <1ca9f99f-6266-47ca-8c94-1a9b9aaa717f@kernel.org>
+ <37973e21-e8f4-4603-b93d-4e0b1b2499fa@lucifer.local>
+ <a1d25bde-3ab6-46b5-a957-db80da7e737b@kernel.org>
+ <4505a93b-2bac-4ce1-8971-4c31f1ce1362@arm.com>
+ <150ffcb7-2df2-4f3a-a12e-9807f13c6ab9@arm.com>
+ <b2fbe58e-f47b-4a76-879b-fd38a915c2ce@kernel.org>
+Content-Language: en-US
+In-Reply-To: <b2fbe58e-f47b-4a76-879b-fd38a915c2ce@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-Hello Andy,
-
-thank you for your feedback thus far.
-
-On Tue, Nov 25, 2025 at 12:54:15AM +0200, Andy Shevchenko wrote:
-> > > > > So, why can't regmap SPI be used?
-> > > > 
-> > > > there are no registers, no memory map, just a 'start conversion' and the
-> > > > equivalent of a 'read conversion' command.
-> > > > any reason one would use the regmap API in this case?
-> > > 
-> > > At bare minimum the commit message should have a justification for the choice
-> > > explaining all this.
-> > 
-> > I had the justification in the cover letter instead, my bad, will include it in
-> > the commit message instead.
+On 11/26/25 21:31, David Hildenbrand (Red Hat) wrote:
+> On 11/26/25 17:34, Ryan Roberts wrote:
+>> On 26/11/2025 16:07, Ryan Roberts wrote:
+>>> On 26/11/2025 15:12, David Hildenbrand (Red Hat) wrote:
+>>>> On 11/26/25 16:08, Lorenzo Stoakes wrote:
+>>>>> On Wed, Nov 26, 2025 at 03:56:13PM +0100, David Hildenbrand (Red Hat) wrote:
+>>>>>> On 11/26/25 15:52, Lorenzo Stoakes wrote:
+>>>>>>>
+>>>>>>> Would the pmdp_get() never get invoked then? Or otherwise wouldn't that end up
+>>>>>>> requiring a READ_ONCE() further up the stack?
+>>>>>>
+>>>>>> See my other reply, I think the pmdp_get() is required because all pud_*
+>>>>>> functions are just simple stubs.
+>>>>>
+>>>>> OK, thought you were saying we should push further down the stack? Or up
+>>>>> depending on how you view these things :P as in READ_ONCE at leaf?
+>>>>
+>>>> I think at leaf because I think the previous ones should essentially be only
+>>>> used by stubs.
+>>>>
+>>>> But I haven't fully digested how this is all working. Or supposed to work.
+>>>>
+>>>> I'm trying to chew through the arch/arm/include/asm/pgtable-2level.h example to
+>>>> see if I can make sense of it,
+>>>
+>>> I wonder if we can think about this slightly differently;
+>>>
+>>> READ_ONCE() has two important properties:
+>>>
+>>>    - It guarrantees that a load will be issued, *even if output is unused*
+>>>    - It guarrantees that the read will be single-copy-atomic (no tearing)
+>>>
+>>> I think for the existing places where READ_ONCE() is used for pagetable reads we
+>>> only care about:
+>>>
+>>>    - It guarrantees that a load will be issued, *if output is used*
+>>>    - It guarrantees that the read will be single-copy-atomic (no tearing)
+>>>
+>>> I think if we can weaken to the "if output is used" property, then the compiler
+>>> will optimize out all the unneccessary reads.
+>>>
+>>> AIUI, a C dereference provides neither of the guarrantees so that's no good.
+>>>
+>>> What about non-volatile asm? I'm told (thought need to verify) that for
+>>> non-volatile asm, the compiler will emit it if the output is used and remove it
+>>> otherwise. So if the asm contains the required single-copy-atomic, perhaps we
+>>> are in business?
+>>>
+>>> So we would need a new READ_SCA() macro that could default to READ_ONCE() (which
+>>> is stronger) and arches could opt in to providing a weaker asm version. Then the
+>>> default pXdp_get() could be READ_SCA(). And this should work for all cases.
+>>>
+>>> I think.
+>>
+>> I'm not sure this works. It looks like the compiler is free to move non-volatile
+>> asm sections which might be problematic for places where we are currently using
+>> READ_ONCE() in lockless algorithms, (e.g. GUP?). We wouldn't want to end up with
+>> a stale value.
+>>
+>> Another idea:
+>>
+>> Given the main pattern where we are aiming to optimize out the read is something
+>> like:
+>>
+>> if (!pud_present(*pud))
+>>
+>> where for a folded pmd:
+>>
+>> static inline int pud_present(pud_t pud)	{ return 1; }
+>>
+>> And we will change it to this:
+>>
+>> if (!pud_present(pudp_get(pud)))
+>>
+>> ...
+>>
+>> perhaps we can just define the folded pXd_present(), pXd_none(), pXd_bad(),
+>> pXd_user() and pXd_leaf() as macros:
+>>
+>> #define pud_present(pud)	1
+>>
 > 
-> It's good to have in both.
+> Let's take a step back and realize that with __PAGETABLE_PMD_FOLDED
 > 
-> > > Ideally, try to find a way how to use regmap API. We have several weeks of
-> > > time for this exercise.
-> > 
-> > you did not mention why use an API designed for devices with registers and a
-> > memory map on an IC that has neither.
+> (a) *pudp does not make any sense
 > 
-> The regmap provides several facilities that we would like to use in the drivers:
-> - the generic interface to access to the HW
-
-in general I agree that having bus functions behind an abstraction layer can lead
-to cleaner and less duplicated code in the driver.
-
-however, afaict in this case I still have to use the exact same low level i2c/spi
-accesses and hide them behind a regmap_bus instead of an _ops struct.
-plus there seems to be duct tape to make things seem to be what they are not.
-so the complexity would just go up a notch.
-
-sorry but I feel that this regmap iayer would not be a clean implementation.
-I might change my mind in the future of course.
-
-> - the common locking schema that allows to share the same regmap among
-> different drivers (depends on the functionality of the parts of the HW)
-
-is it a good idea for anything external expecting a real regmap to interact with
-a driver that was made to mascarade using one, lock notwithstanding?
-everything about this particular driver is standalone.
-
-> - debugging facilities are available out-of-the-box
-
-in these cases I just use a signal analyzer and compare with the driver's output.
-just out of curiosity, you got any pointers on a non-blocking (asynchronous) bus
-transfer debug facility?
-
-> We have drivers in the kernel with two buffers in the same structure.
-
-yup. some __align twice just like in my example, some __align just once, some use
-a simple buffer placed on the stack with no apparent alignment when sending the
-data.
-
-I've been told during an older review that both buffers need to be aligned due to
-DMA-related requirements.
-as I mentioned before, in my case the SoC's spi driver always uses PIO mode even
-if DMA is also implemented. so testing my code always works no matter the alignment.
-
-> > #define ABP2_MEASUREMENT_RD_SIZE 7
-> > 
-> > struct abp2_data {
-> > 	struct device *dev;
-> > 	const struct abp2_ops *ops;
-> > 	s32 pmin;
-> > 	s32 pmax;
-> [..]
-> > 	struct {
-> > 		u32 chan[2];
-> > 		aligned_s64 timestamp;
-> > 	} scan;
-> > +	u8 spi_tx_buffer[ABP2_MEASUREMENT_RD_SIZE] __aligned(IIO_DMA_MINALIGN);
-> > 	u8 buffer[ABP2_MEASUREMENT_RD_SIZE] __aligned(IIO_DMA_MINALIGN);
-> > };
-> You told you read books about C language...
+> For a folded PMD, *pudp == *pmdp and consequently we would actually
+> get a PMD, not a PUD.
 > 
-> Alignment is a property of a single member and a data type in general. Each
-> field of each data type may have it's own (non-default) alignment along with
-> the object alignment.
+> For this reason all these pud_* helpers ignore the passed value
+> completely. It would be wrong.
+> 
+> (b) pmd_offset() does *not* consume a pud but instead a pudp.
+> 
+> That makes sense, just imagine what would happen if someone would pass
+> *pudp to that helper (we'd dereference twice ...).
+> 
+> 
+> So I wonder if we can just teach get_pudp() and friends to ... return
+> true garbage instead of dereferencing something that does not make sense?
+> 
+> diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
+> index 32e8457ad5352..c95d0d89ab3f1 100644
+> --- a/include/linux/pgtable.h
+> +++ b/include/linux/pgtable.h
+> @@ -351,7 +351,13 @@ static inline pmd_t pmdp_get(pmd_t *pmdp)
+>    #ifndef pudp_get
+>    static inline pud_t pudp_get(pud_t *pudp)
+>    {
+> +#ifdef __PAGETABLE_PMD_FOLDED
+> +       pud_t dummy = { 0 };
+> +
+> +       return dummy;
+> +#else
+>           return READ_ONCE(*pudp);
+> +#endif
+>    }
+>    #endif
+>    
+> set_pud/pud_page/pud_pgtable helper are confusing, I would
+> assume they are essentially unused (like documented for set_put)
+> and only required to keep compilers happy.
 
-I have a hard time following this paragraph so I'm forced to use my 'sorry
-English ain't one of my first languages' excuse.
+Staring at GUP-fast and perf_get_pgtable_size()---which should better be 
+converted to pudp_get() etc--I guess we might have to rework 
+p4d_offset_lockless() to do something that doesn't rely on
+passing variables of local variables.
 
-I tried the code above, printk-ed the pointers of those arrays (and the timestamp)
-and they all get nicely 64byte aligned.
-since I've been told in the past both buffers need to be aligned, I guess this
-is the code you require?
+We might have to enlighten these walkers (and only these) about folded 
+page tables such that they don't depend on the result of pudp_get() and 
+friends.
 
-best regards,
-peter
+-- 
+Cheers
+
+David
 
