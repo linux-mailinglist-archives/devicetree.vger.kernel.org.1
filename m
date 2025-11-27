@@ -1,196 +1,113 @@
-Return-Path: <devicetree+bounces-242820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 194AEC8F90F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 17:57:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 584F6C8F916
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 17:57:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 07FCD348E7E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 16:57:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4D47A4E2C5A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 16:57:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C526F32C95B;
-	Thu, 27 Nov 2025 16:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0BD336EDC;
+	Thu, 27 Nov 2025 16:57:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5838528DB56;
-	Thu, 27 Nov 2025 16:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982813195FB
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 16:57:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764262634; cv=none; b=EgLoWgkmiqSwtd6yMIlpAFryGMx/uMnkrpDSUqwjPeY7IWDCB0nT/FSECiYMH9mkdSvrlpaniksX+SObXit9+jzZU7rtNcXIhtSfI6S5BpWXRG40T4RbvNCxV+g8NVsv9kgfUSjrjZLX8KVRcifQmE+BWn7HPG9qD2F7zaFLXfY=
+	t=1764262647; cv=none; b=gj1qLtgt7SHCT8frAmVPV7/9Kc8Wulgqc8Mr5UOsAYF0cWzJKSjACSxrRFvnpdy2XpSj3btudx+z8FZAH92pijvsTyUYM05jy5rF3fgar8SjhMdswUyyEhdzbJgOYZXxQ28bWl+93trMdWKLw3pfGQS37C0WwtvS/M9uxP8cN04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764262634; c=relaxed/simple;
-	bh=FrBJEg0cXxzCXg+RAjjum6hBih4iAmtPwX05VwBla58=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hMiepJ3s+FOBoMJh79Rob0ViNA6eSHwFPEM0jcFF8lwJj67cBl74EtBJz7fxyNVnFe1Pl9YN1gt5IfQGnKT/TVwzDDX9XlSfdh2k4JoEswEOY3jt2bZoFCJCTf6FhnrGwDbdEulMwe8DJn/9enbIUec3wwcQQUpl2BvhG38qqnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BA0C2176A;
-	Thu, 27 Nov 2025 08:57:03 -0800 (PST)
-Received: from [10.57.87.167] (unknown [10.57.87.167])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 199DA3F66E;
-	Thu, 27 Nov 2025 08:57:07 -0800 (PST)
-Message-ID: <fbfef7fc-4030-462b-b514-498eea6620aa@arm.com>
-Date: Thu, 27 Nov 2025 16:57:06 +0000
+	s=arc-20240116; t=1764262647; c=relaxed/simple;
+	bh=+gfTKNQfNxpo2VKd2xmrMmQCdTXG5qIX9w784pwXKcM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IrjJ2CqwrJz3YXD3Bs71uLge176QGmUmQYjxGGgyAFfHGfGp8tdQ6CFCHuEviyWi5J4vE+j961p6V6ZK/a39EiTlaC5FDeu6Y8DxcJqurow6R1oR9t5LjxozAhjq/XRSNNr//+p8+AVET8dHrZr4aC4n1QaKWuFWxsPzlgIErEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5598b58d816so821937e0c.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 08:57:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764262644; x=1764867444;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TZ55d2fAWB0eCD92XJkHw68sI4LD/Wrz2Y1eABOu7D4=;
+        b=jpPWIrtv1yoOUrCIcQ0HFGE8nuTZF8J/ajBGgdCf58DBwxDQIz8CxTXVkbB1Y0Fw5I
+         dqGrXwVpIvR3+V3TJHHuSfSbqx5z/QO9+BkqMdPXVNz2nIi0znYA7WwA6PWwye3k8Jzm
+         3k1UTiStelmpl7uFIXA61SpzwzuGTaOMRk7X0CQM+EbCofBlenPGlKWKbhPlQIbjNoWE
+         T0BaBZ4PBSGZMhP5woZoBAm9V+5Zi1rqfEG7ewk1RiL86rjAENFZOCJZv1N1E3drEfC3
+         +MAarv4Pyay8112ygQBm6v4J0OtkHJ+1QCfj8npkYiEWYoHWCIQXUVSv4jatk6goLDO5
+         hYuA==
+X-Forwarded-Encrypted: i=1; AJvYcCXeS4qddaWC6yaT6Do0wiuNH8oAcHLbasGOReDHD47vlOqW7EFJNy4rmL7pYFEwqAiTRrr4W50+0Zv8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfAikvE/7w+APgrDmkRyE5OPJICVHM/1PGcPx3MdEHRDZaD0J6
+	co2D+0eH1j2ux5PlYxXnQ1oOrRLnfxEm75F+OAnNIbNlvQWh652nUjq77WFugoL1
+X-Gm-Gg: ASbGncsg0IAVsPuPQoJVyfGPCSvz/F3MVKO3u8soiGau0G69YaHIKIKONbBprL4MgXu
+	n8MXIRZ8gKY7BtErbgIP/xVmQTQfedYSwWfKiVlfEBIe54texe/KBKAMqsEXsiYZA6Ucg67Npj/
+	pxTwsPr/OoTjF64GcwmkphIwSVhzEvT6NhZGVQn+d0ObN2r+udZSECu9RwNKmK5VZeBToNr+HTH
+	XD0OJKA8kDzGWxVfnAqkGIGoEZKFvsnIT/zY09MIKkqazPvWwQSEgsGmYRSRhWnVdTZqMM+z80W
+	k/t+GRQuCBxNBgBFPEh7mSYNDXK8BS3ICK1p/eLjTUcXXE1HBqGSl6bZAnmg3NIOOIuOeLJYGGn
+	qWu7pbwTzDw71RSZnBYLlryrTlD/kTJ1ccxRdCmN5+pybAeVpAPTxpISP2eb6/v+aQROpsa90mH
+	/vemBLgUmh6P4do7lr8E94YORB0rzkUH1fD2WOG+zdjFrbY1WD
+X-Google-Smtp-Source: AGHT+IFi1eGt33Nxn7gbuNVmWCSWj92dgaX+0tMnAYsSPeZqxV22pNRlSj53d1o7esQo3ZsbRD1m5g==
+X-Received: by 2002:a05:6122:2893:b0:55b:1a3a:aae5 with SMTP id 71dfb90a1353d-55b8f00e3c4mr8301484e0c.16.1764262644488;
+        Thu, 27 Nov 2025 08:57:24 -0800 (PST)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93cd75f3948sm772045241.9.2025.11.27.08.57.23
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Nov 2025 08:57:23 -0800 (PST)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-937268fe284so607393241.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 08:57:23 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUFkAWfuoVPhbx9Z2wLvmN6RKRyMwit4qZJio73D1ChFmqYE+aA/2F607Vze5lrYruCwptyD4Dr9MA4@vger.kernel.org
+X-Received: by 2002:a05:6102:e12:b0:5df:ab05:d84c with SMTP id
+ ada2fe7eead31-5e1de4188ccmr9513966137.30.1764262643575; Thu, 27 Nov 2025
+ 08:57:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/22] mm: Allow page table accessors to be
- non-idempotent
-Content-Language: en-GB
-To: Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- David Hildenbrand <david@redhat.com>, linux-mm@kvack.org
-Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
- linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>,
- Michal Hocko <mhocko@suse.com>, Conor Dooley <conor@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
- Vlastimil Babka <vbabka@suse.cz>, "Liam R . Howlett"
- <Liam.Howlett@oracle.com>
-References: <20251113014656.2605447-1-samuel.holland@sifive.com>
- <20251113014656.2605447-9-samuel.holland@sifive.com>
-From: Ryan Roberts <ryan.roberts@arm.com>
-In-Reply-To: <20251113014656.2605447-9-samuel.holland@sifive.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251125224533.294235-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251125224533.294235-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251125224533.294235-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 27 Nov 2025 17:57:12 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVn49pFT-0k6AAUS2+rA9eTo91GGUBw5rfhJHZiTsd7CA@mail.gmail.com>
+X-Gm-Features: AWmQ_bnLAUFifF_HRIqRZYyMedX28WkVft-CUjCnFSmXOfD1C8mWehuw1FdMd6o
+Message-ID: <CAMuHMdVn49pFT-0k6AAUS2+rA9eTo91GGUBw5rfhJHZiTsd7CA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] arm64: dts: renesas: r9a09g056: Add DMAC nodes
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 13/11/2025 01:45, Samuel Holland wrote:
-> Currently, some functions such as pte_offset_map() are passed both
-> pointers to hardware page tables, and pointers to previously-read PMD
-> entries on the stack. To ensure correctness in the first case, these
-> functions must use the page table accessor function (pmdp_get()) to
-> dereference the supplied pointer. However, this means pmdp_get() is
-> called twice in the second case. This double call must be avoided if
-> pmdp_get() applies some non-idempotent transformation to the value.
-> 
-> Avoid the double transformation by calling set_pmd() on the stack
-> variables where necessary to keep set_pmd()/pmdp_get() calls balanced.
+On Tue, 25 Nov 2025 at 23:45, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add nodes for the DMAC IPs found on the Renesas RZ/V2N SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I don't think this is a good solution.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.20.
 
-arm64, at least, expects and requires that only pointers to entries in pgtables
-are passed to the arch helpers (e.g. set_pte(), ptep_get(), etc). For PTEs,
-arm64 accesses adjacent entries within the page table to manage contiguous
-mappings. If it is passed a pointer to a stack variable, it may erroneously
-access other stuff on the stack thinking it is an entry in a page table.
+Gr{oetje,eeting}s,
 
-I think we should formalize this as a clear requirement for all these functions;
-all pte/pmd/pud/p4d/pgd pointers passed to the arch pgtable helpers must always
-point to entries in pgtables.
+                        Geert
 
-arm64 will very likely take advantage of this in future in the pmd/pud/...
-helpers as it does today for the pte level. But even today, arm64's set_pmd()
-will emit barriers which are totally unnecessary when operating on a stack
-variable that the HW PTW will never see.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Thanks,
-Ryan
-
-> 
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
-> ---
-> 
-> (no changes since v2)
-> 
-> Changes in v2:
->  - New patch for v2
-> 
->  kernel/events/core.c  | 2 ++
->  mm/gup.c              | 3 +++
->  mm/khugepaged.c       | 6 ++++--
->  mm/page_table_check.c | 3 +++
->  mm/pgtable-generic.c  | 2 ++
->  5 files changed, 14 insertions(+), 2 deletions(-)
-> 
-> diff --git a/kernel/events/core.c b/kernel/events/core.c
-> index fa4f9165bd94..7969b060bf2d 100644
-> --- a/kernel/events/core.c
-> +++ b/kernel/events/core.c
-> @@ -8154,6 +8154,8 @@ static u64 perf_get_pgtable_size(struct mm_struct *mm, unsigned long addr)
->  	if (pmd_leaf(pmd))
->  		return pmd_leaf_size(pmd);
->  
-> +	/* transform pmd as if &pmd pointed to a hardware page table */
-> +	set_pmd(&pmd, pmd);
->  	ptep = pte_offset_map(&pmd, addr);
->  	if (!ptep)
->  		goto again;
-> diff --git a/mm/gup.c b/mm/gup.c
-> index 549f9e868311..aba61704049e 100644
-> --- a/mm/gup.c
-> +++ b/mm/gup.c
-> @@ -2844,7 +2844,10 @@ static int gup_fast_pte_range(pmd_t pmd, pmd_t *pmdp, unsigned long addr,
->  	int ret = 0;
->  	pte_t *ptep, *ptem;
->  
-> +	/* transform pmd as if &pmd pointed to a hardware page table */
-> +	set_pmd(&pmd, pmd);
->  	ptem = ptep = pte_offset_map(&pmd, addr);
-> +	pmd = pmdp_get(&pmd);
->  	if (!ptep)
->  		return 0;
->  	do {
-> diff --git a/mm/khugepaged.c b/mm/khugepaged.c
-> index 1bff8ade751a..ab1f68a7bc83 100644
-> --- a/mm/khugepaged.c
-> +++ b/mm/khugepaged.c
-> @@ -1724,7 +1724,7 @@ static void retract_page_tables(struct address_space *mapping, pgoff_t pgoff)
->  		struct mmu_notifier_range range;
->  		struct mm_struct *mm;
->  		unsigned long addr;
-> -		pmd_t *pmd, pgt_pmd;
-> +		pmd_t *pmd, pgt_pmd, pmdval;
->  		spinlock_t *pml;
->  		spinlock_t *ptl;
->  		bool success = false;
-> @@ -1777,7 +1777,9 @@ static void retract_page_tables(struct address_space *mapping, pgoff_t pgoff)
->  		 */
->  		if (check_pmd_state(pmd) != SCAN_SUCCEED)
->  			goto drop_pml;
-> -		ptl = pte_lockptr(mm, pmd);
-> +		/* pte_lockptr() needs a value, not a pointer to a page table */
-> +		pmdval = pmdp_get(pmd);
-> +		ptl = pte_lockptr(mm, &pmdval);
->  		if (ptl != pml)
->  			spin_lock_nested(ptl, SINGLE_DEPTH_NESTING);
->  
-> diff --git a/mm/page_table_check.c b/mm/page_table_check.c
-> index 31f4c39d20ef..77d6688db0de 100644
-> --- a/mm/page_table_check.c
-> +++ b/mm/page_table_check.c
-> @@ -260,7 +260,10 @@ void __page_table_check_pte_clear_range(struct mm_struct *mm,
->  		return;
->  
->  	if (!pmd_bad(pmd) && !pmd_leaf(pmd)) {
-> +		/* transform pmd as if &pmd pointed to a hardware page table */
-> +		set_pmd(&pmd, pmd);
->  		pte_t *ptep = pte_offset_map(&pmd, addr);
-> +		pmd = pmdp_get(&pmd);
->  		unsigned long i;
->  
->  		if (WARN_ON(!ptep))
-> diff --git a/mm/pgtable-generic.c b/mm/pgtable-generic.c
-> index 63a573306bfa..6602deb002f1 100644
-> --- a/mm/pgtable-generic.c
-> +++ b/mm/pgtable-generic.c
-> @@ -299,6 +299,8 @@ pte_t *___pte_offset_map(pmd_t *pmd, unsigned long addr, pmd_t *pmdvalp)
->  		pmd_clear_bad(pmd);
->  		goto nomap;
->  	}
-> +	/* transform pmdval as if &pmdval pointed to a hardware page table */
-> +	set_pmd(&pmdval, pmdval);
->  	return __pte_map(&pmdval, addr);
->  nomap:
->  	rcu_read_unlock();
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
