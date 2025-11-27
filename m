@@ -1,142 +1,138 @@
-Return-Path: <devicetree+bounces-242655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F728C8D9D3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:45:00 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DA47C8D9E2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:45:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13EF73A8D2B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:44:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 98B6B4E691A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A08CA325725;
-	Thu, 27 Nov 2025 09:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B34C329E77;
+	Thu, 27 Nov 2025 09:45:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U0WmI92g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xsh/ow1q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7737531771B;
-	Thu, 27 Nov 2025 09:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31A1931771B
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 09:45:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764236696; cv=none; b=HtNc4DBwIji7g64BwGLMWt2/v3PlBtX6+0fCi5qOYd0VtSn7UFnVz2MSipM2X6yAQuKjrcMlabwXk+aDfEG2mJJOvNkeXyE6wM3gWQuR+6C0Fo1ARSMnXtmlphuhkuu6DfkqI4KX61Ex5stykrsYZp5opW9+0c06LEzJvFXPf58=
+	t=1764236703; cv=none; b=SICyBhm9YSqIDbi4fB3NzG/O7EHuxjyplP2wdChDAXHfgFRLANqZINYVIWBcypKwD2mhiJfcS8Ltc//yHDJ8LoqBFFm31enIZpKzUoBWwN5lNSYc2+aJtNZ8LTbb8cv9wCxqVHoem/2d24gTm1/rIQLKGf10cTWhJbCBEyDO3WU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764236696; c=relaxed/simple;
-	bh=wDdtL7Ds9riVbV6ICXm79kvDBRYPemWXZfNDHX2irog=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=SnYGg/ys87VOGqfpsVoIM2SFrU2EsVGZLMO7w6U2A11tY/Mh6kW9lfCZiO2OzdLJXYcTVE5KFVHRgEAtVrXbz8kPs7iPoDBwsscH2qXQyXhg+qeD4+8427FoMslwEVujiZjBndRCqKYyKppyyHjCtCwATtmdirsGI8gsSbZ2h34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U0WmI92g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D7CA2C4CEF8;
-	Thu, 27 Nov 2025 09:44:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764236695;
-	bh=wDdtL7Ds9riVbV6ICXm79kvDBRYPemWXZfNDHX2irog=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=U0WmI92gGBB9JMQhD9F2KjevMPDcnLEq76dYwYYvD0zUwOAZejibICAiMVofNbMaE
-	 2ph8cSjaZy19bvNlEw5RXLOFHRMWnNK1qnHGmUM/StHniZMaW445Sr5fX2WV+w/ZGA
-	 dO4zILc6K3uUUTm6sXebvZ212A84oQIIHvvjL+adgUXrZLiRmT7LuH38Co4u0Y51Dh
-	 5LTEvZqMKSL4A3o6yM98KLFbtY90x0JUsPAAywIYKqkp/nmKtb1tB8cvJ5skxNohqN
-	 VJLTRm51opPilBcWoQZH5q5OAc7q0iGLD+DhwPpDphlAzblpmqTSmumj/K9ksIaxl6
-	 TV2tsZfbw7Chw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1E1BD116E2;
-	Thu, 27 Nov 2025 09:44:55 +0000 (UTC)
-From: Alex Wang via B4 Relay <devnull+alex.ts.wang.fii-foxconn.com@kernel.org>
-Date: Thu, 27 Nov 2025 17:44:51 +0800
-Subject: [PATCH v2] dt: aspeed: clemente: move hdd_led to its own gpio-leds
- group
+	s=arc-20240116; t=1764236703; c=relaxed/simple;
+	bh=8XhADblrsw7crDzwA4YYBlsruSjUl3pdlJRhOO76TFs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JlYEtDUlSRsqYJf9f4bsxkSKPqgVLkzZbauw71pbLogzSrD6wV3EpD2o9sazdZo4QEevaXqdVX2V9MxcM50Es1tUgNPmCnOYkbonHO5XD/7Uv+ysM5GuG1iscVt0p/rSn1dr6MK4AFwn5RElR81K52BNGysrTyWYp/zl0vY15nQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xsh/ow1q; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-47790b080e4so2684335e9.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 01:45:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764236698; x=1764841498; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KUyjSzf+6qkKbRlbXTsyYQMvsZwUMyzkw7vuF4dlBN8=;
+        b=xsh/ow1qwYSJWHi5hQsmJv6QOKd4U/XBAmjrNyesJXCKV61PKmbYFnIbHxaczS57aA
+         9Kw+sh593UWvqoHWOO79nNYB5m85I2p8p8JH93OzPfksMmY7tj3qDh2/F+HuuKYypR42
+         PWmJpEw4PLCg/s9vJ9syguhGHbA8Uh34KH4fj73ANKfHKilsYel2b/xUTywfW6luzhOF
+         E744STY4RsJjGUtypKkkEJRYTXHlYJoGdwEH9yOq5LcnYxgQWFy6hCSH9ra1jCUhZelr
+         iwufsO5yogq9L4rDVLNrqt1vdOv43r31NnD8XD0ylz2//Klz8IeLsVR6UMIUGF+B/ArF
+         5r4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764236698; x=1764841498;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KUyjSzf+6qkKbRlbXTsyYQMvsZwUMyzkw7vuF4dlBN8=;
+        b=R8v/x0eBXQTCyRFJMmSOCIGnY6czQkJipUbgTuiRZ+SO8UDRDQi8hMfNamweuLCTjL
+         MDEIUzxhR9ZmDCWb/5sMLWSNiWVljLZxlfaCLvXXxK5ZSF/n2M+p8wwh0O/17wZbpo49
+         ljtA9Xe+bbGhNzdkMnWXJeXend2Z6o5jW580V2xrT26u443OfY1zL+eZTnWrEf8/Gwef
+         7Q1wy5Cm9A4RuitMtDXyNJ5nAC2tR7WXReM0NF4sbA0zohqJhpMU2v+uUy4gShrxovWO
+         rf+0vVVsVT6EeM7p4XnXDgarD5Gu9yOVHLN51WTgzsFA3Apy2SxQQvlXhx5aCGz3NUri
+         Fniw==
+X-Forwarded-Encrypted: i=1; AJvYcCUnTnKREWfvDovwJ8GGA23M9kUCVwaA7Wu+22uIFkxetegoMT9BK76PKdC04IQ4i5WhHvk7id/M2CMi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4NUoc7kWYqFfhrRi1/LcHTXeZh/E5ofk32iqFK4LT/RdNIKrs
+	8HpKiA5Grxsx1Kma9nr8Gc1T1hTlBJAGUtB8SHoNVoCoJMDCMWGRqjDAh+3krA+Hazc=
+X-Gm-Gg: ASbGncuaeCjTFbH2kcZBTojpq3kberxqKERldiSPji5SRERl3dE7noJlZQtFR8kPwCa
+	pSVMVD8wsG+NyS6qD14VC19tzaGM1EGxa5/XcsuIyXJMf9rsoUqH+SF7sC2w8PWY/ZDnM8//VTx
+	/SwwgIyuqigpFv4rr9EYA2Ecv8fVSl0VkRbpL8IwqADj/selnus+IhvTg+m9/8uGn9SBFHgkbFa
+	rW2p5swt3IUTg/LrSxBPn/hBDK3oS8WyJrphkH37nad/dEsy4dT+pJ1Srtx2r8Qh0LzCcOaZODP
+	fW7h9Xax3BMgFYFNLpthXYzrA0mFdCW4CdyMA4iwjEZBwLcJ0gvbwYpAtTDKs1Sn7/h0+ddXRFq
+	46UXNPqaOsNjZrBn7GIGMjoiOWITYIwr8ZbLvOcGHVHTehv5fyndiRHiWR1mqqM3k2NcDLGGLiJ
+	wQPqKEhyGKHYhc0ovyuniodRWihr1O4r0mxp9SYFn3M81lskHqKIif
+X-Google-Smtp-Source: AGHT+IEPdwKsbg3Zp0AsKlru/Ylx+PdP+Q8dS3H5IQzMopRv9eF2iSzXCwIE5M8ELtc1p21MvXd50w==
+X-Received: by 2002:a05:600c:c490:b0:477:b734:8c41 with SMTP id 5b1f17b1804b1-477c10c8596mr213198165e9.1.1764236698497;
+        Thu, 27 Nov 2025 01:44:58 -0800 (PST)
+Received: from [192.168.0.27] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1c5c3c8csm3238104f8f.2.2025.11.27.01.44.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Nov 2025 01:44:57 -0800 (PST)
+Message-ID: <c5b629b8-2bee-4027-9205-6e7f74cda133@linaro.org>
+Date: Thu, 27 Nov 2025 09:44:55 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251127-leo-dts-add-shunt-resistor-v2-1-c77dfbfb826c@fii-foxconn.com>
-X-B4-Tracking: v=1; b=H4sIAJIdKGkC/42NQQrCMBBFr1Jm7UiSEmldeQ/pIiZTO6CJZGqol
- N7d2BO4fJ/H+ysIZSaBc7NCpsLCKVYwhwb85OKdkENlMMpYrUyLD0oYZkEXAsr0jjNmEpY5ZTR
- dNdTJ2eAIauCVaeRlj1+HytOuffavon/rX9miUaMNfd8pd3Ot6i4jM45p8SnGo09PGLZt+wI3H
- A6KygAAAA==
-X-Change-ID: 20251023-leo-dts-add-shunt-resistor-2810206a5dae
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- george.kw.lee@fii-foxconn.com, Alex Wang <alex.ts.wang@fii-foxconn.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764236694; l=2118;
- i=alex.ts.wang@fii-foxconn.com; s=20251023; h=from:subject:message-id;
- bh=XvfoAuDaFi0LEYIxrGZlYJX6g2aVVWHGpukneXb5b2k=;
- b=SXG/ZRsEzAm0y+7zt1tH9Ydnb+YuQ8Z7nkeAo5L/ekXuavdkD1Ale8faYlW8bQmxmf8E7FYoW
- 4p9x7BbeD/6BzqaKejgS49RqwnHxC/r9cz33N53NCEPzRlctPJ3nLVM
-X-Developer-Key: i=alex.ts.wang@fii-foxconn.com; a=ed25519;
- pk=m/IrKXb14uSdDm4KGXemjNIxgL6TrqXCc9NX09SUJp0=
-X-Endpoint-Received: by B4 Relay for alex.ts.wang@fii-foxconn.com/20251023
- with auth_id=551
-X-Original-From: Alex Wang <alex.ts.wang@fii-foxconn.com>
-Reply-To: alex.ts.wang@fii-foxconn.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: i2c: qcom-cci: Document SM8750
+ compatible
+To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, jeyaprakash.soundrapandian@oss.qualcomm.com,
+ Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
+References: <20251126-add-support-for-camss-on-sm8750-v1-0-646fee2eb720@oss.qualcomm.com>
+ <20251126-add-support-for-camss-on-sm8750-v1-1-646fee2eb720@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20251126-add-support-for-camss-on-sm8750-v1-1-646fee2eb720@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Alex Wang <alex.ts.wang@fii-foxconn.com>
-
-The gpio-leds driver requires all GPIOs in a group to be available;
-if any GPIO in the group is not available the whole group will not be
-created. The hdd_led GPIO is only present after standby power is
-enabled, which can prevent other LEDs in the same group from being
-created and blocks properly setting 'bmc_ready_noled'.
-
-Move the 'hdd_led' node into a separate gpio-leds group so that other
-LEDs are not blocked and the 'bmc_ready_noled' flag can be set
-correctly.
-
-Signed-off-by: Alex Wang <alex.ts.wang@fii-foxconn.com>
----
-Changes in v2:
-- I changed “missing” to “not available”. The hdd_led and bmc_ready_noled 
-do not disappear; it's just that hdd_led only becomes available after 
-standby power is enabled, and this process takes some time. The hdd_led 
-becomes available only after bmc_ready_noled is supposed to be set, 
-which causes bmc_ready_noled to fail to be generated and set in time.
-
-- Standby power is enabled during the BMC boot process.
-
-- The hdd_led will only be configured after the BMC boots, when a 
-dedicated service starts and applies the settings.
-
-- Link to v1: https://lore.kernel.org/r/20251023-leo-dts-add-shunt-resistor-v1-1-5d9980aba308@fii-foxconn.com
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-index dfe8f6d0eeef..ea1bf6f402bd 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-@@ -96,7 +96,12 @@ led-3 {
- 			gpios = <&gpio0 ASPEED_GPIO(P, 5) (GPIO_ACTIVE_HIGH|GPIO_TRANSITORY)>;
- 		};
- 
--		led-hdd {
-+	};
-+
-+	hdd-leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
- 			label = "hdd_led";
- 			gpios = <&io_expander13 1 GPIO_ACTIVE_LOW>;
- 		};
-
----
-base-commit: c6fea62a8379f9e24b243ea4ba1fd482f8cd0d83
-change-id: 20251023-leo-dts-add-shunt-resistor-2810206a5dae
-
-Best regards,
--- 
-Alex Wang <alex.ts.wang@fii-foxconn.com>
-
-
+On 26/11/2025 09:38, Hangxiang Ma wrote:
+> Add SM8750 compatible consistent with CAMSS CCI interfaces.
+> 
+> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+> ---
+>   Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> index 33852a5ffca8..a3fe1eea6aec 100644
+> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> @@ -38,6 +38,7 @@ properties:
+>                 - qcom,sm8450-cci
+>                 - qcom,sm8550-cci
+>                 - qcom,sm8650-cci
+> +              - qcom,sm8750-cci
+>                 - qcom,x1e80100-cci
+>             - const: qcom,msm8996-cci # CCI v2
+>   
+> @@ -132,6 +133,7 @@ allOf:
+>               enum:
+>                 - qcom,kaanapali-cci
+>                 - qcom,qcm2290-cci
+> +              - qcom,sm8750-cci
+>       then:
+>         properties:
+>           clocks:
+> 
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
