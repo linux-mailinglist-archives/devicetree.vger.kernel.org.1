@@ -1,467 +1,290 @@
-Return-Path: <devicetree+bounces-242590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91DEEC8C712
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 01:43:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF521C8C9AD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 02:55:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 541AD4E3390
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 00:43:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54D4F3B479A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 01:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8712623BF9E;
-	Thu, 27 Nov 2025 00:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F143823F422;
+	Thu, 27 Nov 2025 01:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="GwK3NF/1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nj3THp1r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010042.outbound.protection.outlook.com [52.101.61.42])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1779F22F389;
-	Thu, 27 Nov 2025 00:43:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764204205; cv=fail; b=XggbWa4V678QJ5knRu1WkEoFr6CAc+ZCZwXJbIJfwVfqdSgLPd14dCJgyB7v+5CLVl7eGFyxNeW75hTnvPka/+BljddgTEmwW0ztEXFkcjzptRKMxgsYGniCKGaCwHZ3g63haCDYqF8F013hG7+CSqw9g4xhLHKAJX8oELve4IM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764204205; c=relaxed/simple;
-	bh=UOsOwWcqiAkVpyJW+zB0afJ1MOeTNAPYgDYWt4CTId4=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=D7L7RHAKNrJ5DdbCD328HTsofQaNWaUwpwCEsnkXARJ7NelaUJyE4CIe3lt6fXlfHWw4uyO/xN8fviTmmW/j9PY8y+rkloOVneBSJBe7yMeMBDPNu+BAZ2NgogQGn9+9rJuUN5WqP+C+CVgnri/N9R+zNTBF5T3ZWiRfs5PVwHU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=GwK3NF/1; arc=fail smtp.client-ip=52.101.61.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XahmF5RMsVDHDeWOhWMEuBZ5rRqBWFkJdiAuBXP4B33LVz9vulZmsNqfr7q4JsipOkSGj0+d8yVu/HZSRkz0bY6tTmjdxKb2twqnIIX0ShPw48MzwukHG8jAXVW3doj9kQ8skpB4f9NzF3mz6F8tazXN6SFiRnhfzc1RLwbTm2ysQyvf6T6H9qDZZUZffC4md7LLejTLCwzbbGWR3niAgbMdP4iXV8+Tk87W3ivHtCNXhn1CZr42ux1/IFjBS9BG0fTX2DIHSyoWhuCPGk4gMKC0w8bjmrpcVJ0CBhXJr3JfQ78SJXMuQPHnM6lJAErvtAFeCvQACix21iHCekRxfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9ynIO/gsPV3Fqu+kUX9t7XebHkiTmFbUF5OQmH8TfwM=;
- b=Uv0IbCV0XyWsCt1Fsc/Qtfr+R1vhYXONmVovtY1FkQbtt0aAbLnFbW6euUnXYyVgyMmDGMeGfCUUfoUqqzzlk54PmVoDazRTOr7WOlRIqbMjuQYzBRnhifCLkdRLrhl0u73t47yCTErG2UwoJJYuYRV+AI06Xzv0zojNBWWLfG0G7NS1bzGGpf/cOJ7zvLbVNCN7ve1b1P1U5V1KE7VmaXXuK65odUsAtKL++Ggia1cifae9R1lxlj8YDwhcjZezp6uqVlsdaaBk4tuCF7x40gSsgXSizHFSNQxkTiXMwCT8kjzmYVY6QAJnVrBjm2begCCnxsY8atIDpN+hU/lx4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9ynIO/gsPV3Fqu+kUX9t7XebHkiTmFbUF5OQmH8TfwM=;
- b=GwK3NF/1ktQKcumm5siL06cOukPGd+ZnDwTJCbh31+N7iKPzMdWzJM35Tfsy8cQSIRe8S+Z00dYkMukp9LzTXWmbvxRDMjAHtTd9AHXeKhkmRB1Q7v0vmWKw7135jF5yC8j8IjGetD57Si0+qny2fKI2uDW7WNUJdQiaINkuSg+gD6nrucW/f+cZIvXaLThyzRNOHK4joSA3VEFh0QDOTSxawMG8qpldNxkYfqEVvjp7SeX3i4kQatU1trQ2w7ln9P4QMphOPdUwGbMHAODR5VUaJzmisz4/oKi0u2+w3RyvTW9tdZbqSVcYe2X4u5YHxXkiSTTPwKDQjdB7n7wWug==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CH1PPFDAD84AB72.namprd12.prod.outlook.com
- (2603:10b6:61f:fc00::627) by SN7PR12MB7855.namprd12.prod.outlook.com
- (2603:10b6:806:343::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Thu, 27 Nov
- 2025 00:43:18 +0000
-Received: from CH1PPFDAD84AB72.namprd12.prod.outlook.com
- ([fe80::7816:ec9f:a1fe:e5c9]) by CH1PPFDAD84AB72.namprd12.prod.outlook.com
- ([fe80::7816:ec9f:a1fe:e5c9%6]) with mapi id 15.20.9366.009; Thu, 27 Nov 2025
- 00:43:17 +0000
-From: Marc Olberding <molberding@nvidia.com>
-Date: Wed, 26 Nov 2025 16:43:07 -0800
-Subject: [PATCH v5 2/2] ARM: dts: aspeed: Add NVIDIA MSX4 HPM
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251126-msx1_devicetree-v5-2-e508d13e2dda@nvidia.com>
-References: <20251126-msx1_devicetree-v5-0-e508d13e2dda@nvidia.com>
-In-Reply-To: <20251126-msx1_devicetree-v5-0-e508d13e2dda@nvidia.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Marc Olberding <molberding@nvidia.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764204193; l=6124;
- i=molberding@nvidia.com; s=20250815; h=from:subject:message-id;
- bh=UOsOwWcqiAkVpyJW+zB0afJ1MOeTNAPYgDYWt4CTId4=;
- b=+LruXktQ25tG3o3t3KcukcnfWy0VrXQKdZ22g4LqcHAzrKEjV1Ab3AkCS+tWH6UXSK7Fd9JQB
- AUKkznxYtleAr5bCkitJZ2ch5YRFKoXHc2RfDq8YeJ4Pyof7kflVIWv
-X-Developer-Key: i=molberding@nvidia.com; a=ed25519;
- pk=qCpZ1WFEf5YiaL88PDdYhG+A/bKk7rHp7KF2K3GmkH0=
-X-ClientProxiedBy: MW4PR02CA0029.namprd02.prod.outlook.com
- (2603:10b6:303:16d::34) To CH1PPFDAD84AB72.namprd12.prod.outlook.com
- (2603:10b6:61f:fc00::627)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF2823EAB4
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 01:54:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764208488; cv=none; b=pbZ36hCPaetL3SVTEF8zTMNfKJxS52wmh4WCCU12fUrRMjGZb1YBxt6WMWYVhw83ipF8t9m5f541Vk4qJaGQdbSGbtndPwvJ+/1ED9paxM00ilToXKqAJBPFoJO9zXjAJ2CGJY+qPZWBN4x8pLlM6fHEZmzQXPbdVV6X9SQDJJE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764208488; c=relaxed/simple;
+	bh=f0EdgUznNZO54LZecInfA4y5+ELOv8o96l9SDsv2F0k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZJYUy/db0qxKBeGRybWoJQI9Z36C8RalaQd3uEdPKwYpyrhBgcPBWHXKpzxHfF0RAcZaArQSXW6hLd70eVpyFlhUGow3hq2uS8jfO7xTe/1FqBtKx738+HyM1dB5JXQ7lrr6AjJHr+J0gHbL5Bk+31YcX59K389y1QPqaUuastk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nj3THp1r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA8EC4CEF8
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 01:54:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764208487;
+	bh=f0EdgUznNZO54LZecInfA4y5+ELOv8o96l9SDsv2F0k=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=nj3THp1rcpdtkT3yeXdFSYqGpgv4f9R30RUyhSfbiRBL5j4fSFBJGV9VaWkwF3qsG
+	 zjwZicy5NFkSmZ+nh5sUNhme+2Du/zWh08fMSK9ccFupeg1GTOvgOKD8KZFDah6CUJ
+	 6HALQe+7g7tX2MuM8bLQMVGhbivIOnMTmyMqFWkDrQ0K9xX85qs+Bk0VT0YJLuIl0n
+	 B1HnKUGG/X1C0TBEVeSMLOB5qS2VjlhqolPOeEU3DGPUvW5cxrrsVID7XRsdVMMHfv
+	 h7dSQtqgellJgUSuYj5mjpBSeqjWtGSXBa6sTkOGztkNJu25mxLtzN7zIXmdh+tHvw
+	 N2CFz124qpgKg==
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-644fcafdce9so705168a12.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 17:54:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX/we6JZcG4DE3yZNeXfUUQQMQdhBXEl3dDI9tcL2fvs+LrlJXIe8C5sUVppgyCMx1TEfvAUq7OZqwG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiinWqiatPT6qJ1qVH+i0FGZg897wbsYow1HshFW9us57jMXjZ
+	yrdyAU41NcrGvE/Uk94am/I6WVEH0LuRQK0SZNZQ8xFHbgGtO/WUvyP14VVO78DdpuF65dheaJ7
+	sjYHcy1h+unGI3MXop4GdfrQP/aqxWg==
+X-Google-Smtp-Source: AGHT+IEKWFjQTeH/gw4l8j+96xvyDrFErJSXFFFwjwYJm2zw06q8mwVDlJH1+0djMgauaqAXyS9qMnoqGjEF33qExow=
+X-Received: by 2002:a05:6402:2803:b0:634:ce70:7c5 with SMTP id
+ 4fb4d7f45d1cf-645eb2b8003mr8895933a12.17.1764208485058; Wed, 26 Nov 2025
+ 17:54:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PPFDAD84AB72:EE_|SN7PR12MB7855:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87746ea4-38d8-45e6-5156-08de2d4df4d4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?SEY4OCtuUlA2MjRjU2Y1NXBBQStHZEppM25iOFluVUpUNWw1clJYZEFqQVp6?=
- =?utf-8?B?aGM4KzZ4MFBjeFY1cjVzSS9HN3VDZ2JuTDlobDJUcGw5MVM3azF6azROa3pD?=
- =?utf-8?B?dFRPU3BqNkpCZzc1OHhUSzlsQWlWbVZHT2pZbDdmb3Y0V1lZcWVoQUxXM01y?=
- =?utf-8?B?cjJCVHQrb1VFV3JQMUxVcklFclpSYndtS1N3a25YRmVoeTREY2xxTFFOekRj?=
- =?utf-8?B?SlJtQnhpbnlyTDhmVGRqVGQ1Y3BSZUlHSlV0V3FYVThTdnkydmNyVmo4ZlMz?=
- =?utf-8?B?QXlSUFNNaC9YNHNYWDdyU0oraG1FcHJ6cGxMM0IxVnBSVDlBWG13TFBna1BS?=
- =?utf-8?B?ZGZ4YXY4NkNzVmtvdEUvU1N1S3BCWFJPcGk4bGNOMGxZV1gzaEZ1L1ZmbS9h?=
- =?utf-8?B?RWphTEEwWU1RVTBaSzNBeEdHTFZENGVQalloek1CQXd3amNXNDFtdzJyTUdw?=
- =?utf-8?B?NVlETUpGMkgwYkZ0K1NkenRvenlqQzhQUHpGM0VVK2h5VUlvU1NKbzNYcVlZ?=
- =?utf-8?B?cVkwVE40Y3UwL2ZzMkNmWFJEbEZ5OHJHUW90V3o2WUo3eVZhOWNyMXJUaDRj?=
- =?utf-8?B?TWp4QnowM0pza1pYZ0g3ZFNpS0lNcms3bTkxZjJLc1VwUjFMTnRJU3p5WkZn?=
- =?utf-8?B?ZGl2T1NqcnhrMWhEbjU0ZXlrRENIZndMV2wwcCtNRUsvRmZMc2RPamx2UGc4?=
- =?utf-8?B?S29kSDRQR1FMY2V2dXJHdjl0UWVZSDkrc2dBVmRSZG5lRzdzV2dQOSttU0Fr?=
- =?utf-8?B?cUtsRUd0bWpLYUUrZW9lTUtIUkRacDVTVmg0eU42TzF4L0lHMFNUVmcwYStk?=
- =?utf-8?B?d3UyYUQxdDlBMXE0R3FWSnZPUEZ4UkJ2Sm1tUG5WY012NnJPSTFrU3F3UmxH?=
- =?utf-8?B?bEtNcXE4L0ZrZ2JCNm13Q2orUkZSSkE0MlJqTzFXektnOWIzeFJ1V3VJNmh0?=
- =?utf-8?B?dnRQc3hEOS9PK1A5dGs2RlFsd0lBRkdVMFF3UzkxTTRiN1JSd2lBZi9aRk4z?=
- =?utf-8?B?eHF0UVNKNFB6cjhWRkV2eEVZa2xIRFRlMHVWcUlLWFlOQXE3SU13c20yZXNJ?=
- =?utf-8?B?Q0xjclk5Yll2ZitIS3ZZcTRCKzJJL0hqVFROMk9CK25mL3Z6bi9hUUVHLzln?=
- =?utf-8?B?cUdUSnBVc0dXc2t0N21DNEloaGJPVzE2ZXJIT0R1bHJrMmNTaHd1TTZhYm1E?=
- =?utf-8?B?YStHb2tKTlVFQkhPUTRWWE83MGxJeVFNRE5YNDNiY1Q0RVVKd05LVzM1S1dH?=
- =?utf-8?B?ZEpZY3hJOWRFb0xFZnBoRVpHMFlySmYrbVR6NnpVeExzVnRxZE15a0d1U2Y0?=
- =?utf-8?B?dGdPOXdqaW5KQjFJWHhnaklrZERNOHEvVE9UTTdCNW90WUNtcXVwRHRCNm5K?=
- =?utf-8?B?TTBrd05pZTUyZ2I3QmlhbE9NSWhLc3dXVkZqRHk5WHlHSjBITWhFaTFnbkNU?=
- =?utf-8?B?UDhIMHhtVUVDNTQ4TGVKcGFHUk1VYXpRR3AwUWxrRHVqSExaaHI2UDFBQ2pV?=
- =?utf-8?B?MUtzbDZYS05lRFVKT3B1U3NtNW1pSTlLeTQvOUJXdzI5V2tjcnJUczhnME1o?=
- =?utf-8?B?UnI1VWkycGtvd0Y2ZTRWQ2NWb1pVd2tBWkpUN0Y2VTVybmdrN3QxYTh3Wllx?=
- =?utf-8?B?M09lakxTa2lTRXdKRktyYzhRdVRmTDhZaG0xdjFORlN4NEJVRCtwZUc5clZZ?=
- =?utf-8?B?TUgwWFBMR0RFVUIydXpqREU5SXY4dFUxZlFHbGtBQWFBVGU2NWg1U2grYVUw?=
- =?utf-8?B?cW9qYXc2RWdRZnYxOGhRcnNHUVdtdFFXSENBRk8yNUlzdnhmVG4xYlN3NFR4?=
- =?utf-8?B?VE1McFFmSldJM0NRQ3VhSkViWU1vTUE5SXpCT2dnRW5WTnBwclFocnFIMGRp?=
- =?utf-8?B?dTcwR3FDd1gvaXpQeUpoYnBPODc0dERIaC9yYU9zb0JRczF0cGpQL3dDdzVI?=
- =?utf-8?B?aEc5ekhpN2dGMTZIcklhOCsxbUJNRDM4RXNoNG1XQUpaVEhQWStrOW5ucGRk?=
- =?utf-8?B?NlBpNkt1REJnPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH1PPFDAD84AB72.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UFlpb2ZxR0lLSWpDSnlLcE9BTnBwcmxldW84TTExOElMamRudEdYK3dBL1Nx?=
- =?utf-8?B?ampLRC8wZ240QTJvYlU3dW82S1UwcDNKSTYxdkhuaXUvVGZjNXRsV1dvS3E3?=
- =?utf-8?B?bmFTdE44K2VKcWZDZmtXdFVoL0pVdktLcnhpUTN5bmM3K1ZMeHFlcDRyWEpi?=
- =?utf-8?B?cGh0dE84SFVydDBjek1tQlpMcTIvYnd3dGxGNW52a0EvSlF0aFhoS1paNGpt?=
- =?utf-8?B?SlBLWlMyaW8vLzhMS2t3encwS1ZFUGQ2L3g0Q3BjNWU5OTlkdlVvQTFxbDNi?=
- =?utf-8?B?YTk4U2J2RUNvdnhlQzdGTmZRTkc3Slg4YTJzQ1NZd1d1TzBMWWF3MGpUdENu?=
- =?utf-8?B?YmNKWC9UYU5hSk1WZCtoTXB1UENBR3o4ZjdacTdRcUl1M3BoSlBIdkdwVVU1?=
- =?utf-8?B?VHhwY1JQeFl2RWJ2ajhkTXVwMXc0ckw4RWZQTzZFVjRncTBxMGRTclJJVStx?=
- =?utf-8?B?Nk1xSnpYc0hvMDB0cWl1eDFSVnJPaWFJM0VZMFVHeG1tcFNESWlHUmU2VGxC?=
- =?utf-8?B?eWxPZm1teUFhb1N3SXJmVVNSd2R3NXhsMFlkK3J3UDZRNWZLQThYQXROdmJ4?=
- =?utf-8?B?c1FKMDRYVlQ1MGVHVjFXaTRyMWZON0hGcUo0UFE0bDZtWHJPTnNFbi9pWjFY?=
- =?utf-8?B?R0N5a0FFdEZ0OVhQMXh1QzhJMitpa1BMdEduVjNsSnJvOWsxZnNCZTRkTDd1?=
- =?utf-8?B?VXIra0N5V3RwOTZlRk5EVVpyREdpMTd5bkNhenZLbWN0NHZyRURzOU1XMWFz?=
- =?utf-8?B?TXlQSXBIRmVhK2duRC9CUkVWci9ENXJlOUo3RmNuejJvY3NiZXYvcE16anVz?=
- =?utf-8?B?NVpHWVdYem82MjN5ZDBCV1hyVlRxQWVVRkRXZmVZaSt6L1NDZ2xCZXRmVWhi?=
- =?utf-8?B?OHk5TnQrNTY2LzQwV0YxK2cyMnRWK0FKQ1dLY0tiZW05WXBYdWRFYmF0SDJa?=
- =?utf-8?B?K1N0ZC92NG5KSmpBaDR3TlkrZklOSVJEdUppZnRtSkhpN2lRSjVoY3hnUXp3?=
- =?utf-8?B?cHpidDFMWjkyODAwRXVkeHkvK2xGVXNlcVluK3F6Q25vZHlNTDRsWHBBYkR0?=
- =?utf-8?B?UHR3b29PUUpQdE8wV2gvQzNua0xVSE5jYWJkV1NaWmlsZ3NjMklsNTFYNDVE?=
- =?utf-8?B?YU9IQmxPRjA5VWlxQUIxa0hERktkZERqRDFaWkMzOGFZc3BPdzhQZVExWEo4?=
- =?utf-8?B?VktnSmVJRXE1Q3hGNXkrTlplc0lQM24wMWs0ZFRFRkh5Y3VMT0l3SEF2U0th?=
- =?utf-8?B?cC8xeHZBR1pDZFpsZ0xIQ0lPdUdjczNGR3NJbko1Qnp3OFV5U3R6TU1YMm1T?=
- =?utf-8?B?VUJrRmdLV2NEeVVXR2daTGFjbzNJQkJubDl5VXdVT3Q1d1B2KzZHM3o5Rkwz?=
- =?utf-8?B?WUMyV29PM1JBVVpzSzgvRGhvQVhIUytGUHJMTk94dUo1UkNLNjhteGhKempB?=
- =?utf-8?B?akdhSlBSb0FHNmxPZktDT2RqbGVTdFRLTGwyb0swc2R3WjBNSmI4a0xDYUFs?=
- =?utf-8?B?NjczeXBIV29pejRjK2FvU2JwVEpKQTFYalZXd3hteEI2RmpRWHNwM0dydWRy?=
- =?utf-8?B?aWszcUxNWnl1dWFoYk93SnVYS2tWWjRETUo2dEFwRFJOZDR6NEVLeW5OZndW?=
- =?utf-8?B?Q284YzQwMmIrQmZacGg4MndQQzZQQVdZRkFBT2Fxc3AxcEcrL3JmRExyR3RO?=
- =?utf-8?B?VEwyS2pLQ2tXdDZWbkpDWnBsQ1VXcGxvUzZPU0F3QnNoRjFHUXlpVy8vR3B3?=
- =?utf-8?B?WE1kcEU4UXQwbk95TytkTnpweEhNNHZJT3FYNlYvQ29xWGF2ZXFOT0hUVzlU?=
- =?utf-8?B?OGczWEdHeDRMQiszMzJlNVo2Q1NyVGl4RFBCODIyZlRKRzh1eTkxRTlQd2xj?=
- =?utf-8?B?UFQ2ZytZZE5Jc1hucWdiSGRpRzlPYTE1N1VkTUdoUllyRnVaa0h2dE90MHF5?=
- =?utf-8?B?MU5oOUxaUy9wUW1zbjFJeTd0ZGFuQUZ6ZG1KVkpXckUxU1R5dXZaR3pqWnN2?=
- =?utf-8?B?dDlqNm1COFl1ZUNtcG13QnRhTWI5cnZSYjZHOC9uTVhUb2Roc2NsZDRnRHFm?=
- =?utf-8?B?Smd3KzRoTmxPRjBoRnIxUXpLOGxZOE92dFowSi9XbnBTMnhucVZxVzlpNDRk?=
- =?utf-8?Q?cMhPpIP937lntJxoUredIXMXD?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87746ea4-38d8-45e6-5156-08de2d4df4d4
-X-MS-Exchange-CrossTenant-AuthSource: CH1PPFDAD84AB72.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2025 00:43:17.7633
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: faqB5vJFxdZV7NyseGu+YTbFQigG1Q77TaLke4nnut+ZstMXF5nlBMhyEFHZVxvxfChC5WmVDQoLVK7K5u4eBg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7855
+References: <20251015071420.1173068-1-herve.codina@bootlin.com>
+ <20251015071420.1173068-2-herve.codina@bootlin.com> <f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
+ <CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
+ <5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com> <CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
+ <072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
+In-Reply-To: <072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 26 Nov 2025 19:54:33 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
+X-Gm-Features: AWmQ_bmOuLhKUl5W5zrcj5AQOjs5kC_X5Om5_otgYtq0JTdMygrEymDVT57WU48
+Message-ID: <CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
+Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT overlays"
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Kalle Niemi <kaleposti@gmail.com>, Herve Codina <herve.codina@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
+	Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
+	Richard Fitzgerald <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Mark Brown <broonie@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
+	Davidlohr Bueso <dave@stgolabs.net>, Jonathan Cameron <jonathan.cameron@huawei.com>, 
+	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
+	Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+	Dan Williams <dan.j.williams@intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-sound@vger.kernel.org, 
+	patches@opensource.cirrus.com, linux-gpio@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, 
+	Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The NVIDIA MSX4 HPM (host platform module) is a reference
-board for managing up to 8 PCIe connected NVIDIA GPU's via
-ConnectX-8 (CX8) SuperNICs. The BMC manages all GPU's and CX8's
-for both telemetry and firmware update via MCTP over USB.
-The host CPU's are dual socket Intel Granite Rapids processors.
+On Tue, Nov 25, 2025 at 12:43=E2=80=AFAM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
+>
+> On 24/11/2025 19:01, Rob Herring wrote:
+> > On Mon, Nov 24, 2025 at 10:44=E2=80=AFAM Kalle Niemi <kaleposti@gmail.c=
+om> wrote:
+> >>
+> >>
+> >> On 11/24/25 16:53, Rob Herring wrote:
+> >>> On Mon, Nov 24, 2025 at 8:48=E2=80=AFAM Kalle Niemi <kaleposti@gmail.=
+com> wrote:
+> >>>> On 10/15/25 10:13, Herve Codina wrote:
+> >>>>> From: Saravana Kannan <saravanak@google.com>
+> >>>>>
+> >>>>> This reverts commit 1a50d9403fb90cbe4dea0ec9fd0351d2ecbd8924.
+> >>>>>
+> >>>>> While the commit fixed fw_devlink overlay handling for one case, it
+> >>>>> broke it for another case. So revert it and redo the fix in a separ=
+ate
+> >>>>> patch.
+> >>>>>
+> >>>>> Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overla=
+ys")
+> >>>>> Reported-by: Herve Codina <herve.codina@bootlin.com>
+> >>>>> Closes: https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_=
+rJgyo8x6=3D9F9rZ+-KzjOg@mail.gmail.com/
+> >>>>> Closes: https://lore.kernel.org/all/20240221095137.616d2aaa@bootlin=
+.com/
+> >>>>> Closes: https://lore.kernel.org/lkml/20240312151835.29ef62a0@bootli=
+n.com/
+> >>>>> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> >>>>> Link: https://lore.kernel.org/lkml/20240411235623.1260061-2-saravan=
+ak@google.com/
+> >>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> >>>>> Acked-by: Mark Brown <broonie@kernel.org>
+> >>>>> ---
+> >>>>>     drivers/bus/imx-weim.c    | 6 ------
+> >>>>>     drivers/i2c/i2c-core-of.c | 5 -----
+> >>>>>     drivers/of/dynamic.c      | 1 -
+> >>>>>     drivers/of/platform.c     | 5 -----
+> >>>>>     drivers/spi/spi.c         | 5 -----
+> >>>>>     5 files changed, 22 deletions(-)
+> >>>>>
+> >>>>> diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
+> >>>>> index 83d623d97f5f..87070155b057 100644
+> >>>>> --- a/drivers/bus/imx-weim.c
+> >>>>> +++ b/drivers/bus/imx-weim.c
+> >>>>> @@ -327,12 +327,6 @@ static int of_weim_notify(struct notifier_bloc=
+k *nb, unsigned long action,
+> >>>>>                                  "Failed to setup timing for '%pOF'=
+\n", rd->dn);
+> >>>>>
+> >>>>>                 if (!of_node_check_flag(rd->dn, OF_POPULATED)) {
+> >>>>> -                     /*
+> >>>>> -                      * Clear the flag before adding the device so=
+ that
+> >>>>> -                      * fw_devlink doesn't skip adding consumers t=
+o this
+> >>>>> -                      * device.
+> >>>>> -                      */
+> >>>>> -                     rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DE=
+VICE;
+> >>>>>                         if (!of_platform_device_create(rd->dn, NULL=
+, &pdev->dev)) {
+> >>>>>                                 dev_err(&pdev->dev,
+> >>>>>                                         "Failed to create child dev=
+ice '%pOF'\n",
+> >>>>> diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
+> >>>>> index eb7fb202355f..30b48a428c0b 100644
+> >>>>> --- a/drivers/i2c/i2c-core-of.c
+> >>>>> +++ b/drivers/i2c/i2c-core-of.c
+> >>>>> @@ -176,11 +176,6 @@ static int of_i2c_notify(struct notifier_block=
+ *nb, unsigned long action,
+> >>>>>                         return NOTIFY_OK;
+> >>>>>                 }
+> >>>>>
+> >>>>> -             /*
+> >>>>> -              * Clear the flag before adding the device so that fw=
+_devlink
+> >>>>> -              * doesn't skip adding consumers to this device.
+> >>>>> -              */
+> >>>>> -             rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+> >>>>>                 client =3D of_i2c_register_device(adap, rd->dn);
+> >>>>>                 if (IS_ERR(client)) {
+> >>>>>                         dev_err(&adap->dev, "failed to create clien=
+t for '%pOF'\n",
+> >>>>> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> >>>>> index 2eaaddcb0ec4..b5be7484fb36 100644
+> >>>>> --- a/drivers/of/dynamic.c
+> >>>>> +++ b/drivers/of/dynamic.c
+> >>>>> @@ -225,7 +225,6 @@ static void __of_attach_node(struct device_node=
+ *np)
+> >>>>>         np->sibling =3D np->parent->child;
+> >>>>>         np->parent->child =3D np;
+> >>>>>         of_node_clear_flag(np, OF_DETACHED);
+> >>>>> -     np->fwnode.flags |=3D FWNODE_FLAG_NOT_DEVICE;
+> >>>>>
+> >>>>>         raw_spin_unlock_irqrestore(&devtree_lock, flags);
+> >>>>>
+> >>>>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> >>>>> index f77cb19973a5..ef9445ba168b 100644
+> >>>>> --- a/drivers/of/platform.c
+> >>>>> +++ b/drivers/of/platform.c
+> >>>>> @@ -739,11 +739,6 @@ static int of_platform_notify(struct notifier_=
+block *nb,
+> >>>>>                 if (of_node_check_flag(rd->dn, OF_POPULATED))
+> >>>>>                         return NOTIFY_OK;
+> >>>>>
+> >>>>> -             /*
+> >>>>> -              * Clear the flag before adding the device so that fw=
+_devlink
+> >>>>> -              * doesn't skip adding consumers to this device.
+> >>>>> -              */
+> >>>>> -             rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+> >>>>>                 /* pdev_parent may be NULL when no bus platform dev=
+ice */
+> >>>>>                 pdev_parent =3D of_find_device_by_node(parent);
+> >>>>>                 pdev =3D of_platform_device_create(rd->dn, NULL,
+> >>>>> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> >>>>> index 2e0647a06890..b22944a207c9 100644
+> >>>>> --- a/drivers/spi/spi.c
+> >>>>> +++ b/drivers/spi/spi.c
+> >>>>> @@ -4791,11 +4791,6 @@ static int of_spi_notify(struct notifier_blo=
+ck *nb, unsigned long action,
+> >>>>>                         return NOTIFY_OK;
+> >>>>>                 }
+> >>>>>
+> >>>>> -             /*
+> >>>>> -              * Clear the flag before adding the device so that fw=
+_devlink
+> >>>>> -              * doesn't skip adding consumers to this device.
+> >>>>> -              */
+> >>>>> -             rd->dn->fwnode.flags &=3D ~FWNODE_FLAG_NOT_DEVICE;
+> >>>>>                 spi =3D of_register_spi_device(ctlr, rd->dn);
+> >>>>>                 put_device(&ctlr->dev);
+> >>>>>
+> >>>> Sorry, some of you will receive this message now for second time. Fi=
+rst
+> >>>> message was sent to older series of patches.
+> >>>> -
+> >>>>
+> >>>> Hello,
+> >>>>
+> >>>> Test system testing drivers for ROHM ICs bisected this commit to cau=
+se
+> >>>> BD71847 drivers probe to not be called.
+> >>> This driver (and overlay support) is in linux-next or something out o=
+f
+> >>> tree on top of linux-next?
+> >>>
+> >>> Rob
+> >>
+> >> Yes the driver is in mainline linux: /drivers/mfd/rohm-bd718x7.c
+> >
+> > I don't see any support to apply overlays in that driver.
+>
+> Ah. Sorry for the confusion peeps. I asked Kalle to report this without
+> proper consideration. 100% my bad.
+>
+> While the bd718x7 drive indeed is mainline (and tested), the actual
+> 'glue-code' doing the overlay is part of the downstream test
+> infrastructure. So yes, this is not a bug in upstream kernel - this
+> falls in the category of an upstream change causing downstream things to
+> break. So, feel free to say: "Go fix your code" :)
+>
+> Now that this is sorted, if someone is still interested in helping us to
+> get our upstream drivers tested - the downstream piece is just taking
+> the compiled device-tree overlay at runtime (via bin-attribute file),
+> and applying it using the of_overlay_fdt_apply(). The approach is
+> working for our testing purposes when the device is added to I2C/SPI
+> node which is already enabled. However, in case where we have the I2C
+> disabled, and enable it in the same overlay where we add the new device
+> - then the new device does not get probed.
+>
+> I would be really grateful if someone had a pointer for us.
 
-For more detail on this architecture:
-https://developer.nvidia.com/blog/nvidia-connectx-8-supernics-advance-ai-platform-architecture-with-pcie-gen6-connectivity/
+Seems to be fw_devlink related. I suppose if you turn it off it works?
+There's info about the dependencies in sysfs or maybe debugfs. I don't
+remember the details, but that should help to tell you why things
+aren't probing.
 
-Signed-off-by: Marc Olberding <molberding@nvidia.com>
----
- arch/arm/boot/dts/aspeed/Makefile                  |   1 +
- .../boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dts | 246 +++++++++++++++++++++
- 2 files changed, 247 insertions(+)
+I've dropped the changes for 6.18 for now. No one really seems to be
+in need of them yet AFAICT.
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index 0f0b5b7076545e6babb2f25f302b5d70b71d8a19..c3ce0d218b53f2b4c37061cace483f5f2c6d3bf1 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -56,6 +56,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-lenovo-hr855xg2.dtb \
- 	aspeed-bmc-microsoft-olympus.dtb \
- 	aspeed-bmc-nvidia-gb200nvl-bmc.dtb \
-+	aspeed-bmc-nvidia-msx4-bmc.dtb \
- 	aspeed-bmc-opp-lanyang.dtb \
- 	aspeed-bmc-opp-mowgli.dtb \
- 	aspeed-bmc-opp-nicole.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..44f95a3986cb9e2c6902ba9b3c1ed56e782438b3
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-msx4-bmc.dts
-@@ -0,0 +1,246 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "AST2600 MSX4 BMC";
-+	compatible = "nvidia,msx4-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial0 = &uart1;
-+		serial1 = &uart2;
-+		serial2 = &uart3;
-+		serial3 = &uart4;
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = "uart5:115200n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		gfx_memory: framebuffer {
-+			compatible = "shared-dma-pool";
-+			size = <0x01000000>;
-+			alignment = <0x01000000>;
-+			reusable;
-+		};
-+
-+		video_engine_memory: jpegbuffer {
-+			compatible = "shared-dma-pool";
-+			size = <0x02000000>;	/* 32M */
-+			alignment = <0x01000000>;
-+			reusable;
-+		};
-+	};
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		label = "bmc";
-+		status = "okay";
-+		#include "openbmc-flash-layout-128.dtsi"
-+	};
-+
-+	flash@1 {
-+		compatible = "jedec,spi-nor";
-+		label = "alt-bmc";
-+		spi-tx-bus-width = <1>;
-+		spi-rx-bus-width = <1>;
-+		status = "okay";
-+	};
-+};
-+
-+&gfx {
-+	memory-region = <&gfx_memory>;
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	gpio-line-names =
-+	/*A0-A7*/	"","","","","","","","",
-+	/*B0-B7*/	"ASSERT_BMC_READY","","","","","","","",
-+	/*C0-C7*/	"MON_PWR_GOOD","","","","","","","FP_ID_LED_N",
-+	/*D0-D7*/	"","","","","","","","",
-+	/*E0-E7*/	"","","","","","","","",
-+	/*F0-F7*/	"","","","","","","","",
-+	/*G0-G7*/	"","","FP_LED_STATUS_GREEN_N","FP_LED_STATUS_AMBER_N",
-+			"","","","",
-+	/*H0-H7*/	"","","","","","","","",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"","","","","","","","",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"MON_PWR_BTN_L","ASSERT_PWR_BTN_L","MON_RST_BTN_L",
-+			"ASSERT_RST_BTN_L","","ASSERT_NMI_BTN_L","","",
-+	/*Q0-Q7*/	"","","MEMORY_HOT_0","MEMORY_HOT_1","","","","",
-+	/*R0-R7*/	"ID_BTN","","","","","VBAT_GPIO","","",
-+	/*S0-S7*/	"","","RST_PCA_MUX","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","";
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+	/*18A0-18A7*/ "","","","","","","","",
-+	/*18B0-18B7*/ "","","","","","","","",
-+	/*18C0-18C7*/ "","","","","","","","",
-+	/*18D0-18D7*/ "","","","","","","","",
-+	/*18E0-18E3*/ "","","BMC_INIT_DONE","";
-+};
-+
-+// Devices on these busses are available after POST
-+// however there isn't a great way to defer probing
-+// until that point today, as the BMC doesn't
-+// have direct control over when the host completes
-+// POST, especially from the kernel.
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c256";
-+		reg = <0x51>;
-+		pagesize = <64>;
-+		label = "sku";
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+};
-+
-+&i2c15 {
-+	status = "okay";
-+};
-+
-+&kcs1 {
-+	aspeed,lpc-io-reg = <0xca0>;
-+	status = "okay";
-+};
-+
-+&kcs2 {
-+	aspeed,lpc-io-reg = <0xca8>;
-+	status = "okay";
-+};
-+
-+&kcs3 {
-+	aspeed,lpc-io-reg = <0xca2>;
-+	status = "okay";
-+};
-+
-+&lpc_reset {
-+	status = "okay";
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&sgpiom0 {
-+	ngpios = <80>;
-+	status = "okay";
-+};
-+
-+&uart_routing {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&video {
-+	memory-region = <&video_engine_memory>;
-+	status = "okay";
-+};
-
--- 
-2.34.1
-
+Rob
 
