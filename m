@@ -1,113 +1,155 @@
-Return-Path: <devicetree+bounces-242620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id B27B1C8D256
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:43:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26693C8D2C2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:46:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5D8EA349C46
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:43:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 16F0D4E477E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6AB631A553;
-	Thu, 27 Nov 2025 07:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B18F8322A21;
+	Thu, 27 Nov 2025 07:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="P7R/K4sc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sL6otSG/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332DD31C58A;
-	Thu, 27 Nov 2025 07:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 706F9322A0A;
+	Thu, 27 Nov 2025 07:45:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764229400; cv=none; b=EjQ7u3is/VAi48BwVUl4SRV3cW+zXtEOWI9b5owgbdGPUvVHhiv6uXNXMS4q/DzvIDua5XJQ/Nr9AOL9IOl0Z+Yv/RZNmDhPF6kXDQuaD57uLYmdDhcaTDXtAx/pmu94vkoZfPa0gdkzMC5wbis+P8bNmO0gjvSKUTPcoQe/HJY=
+	t=1764229527; cv=none; b=t6t4hOFcJE/gYMuzi6/ZeesI0JJyDFa+Ur3Fj5eMRskCSuQ3mMXWxgK+4k734nBahxOP6zPm2TXCyPBa4KLtlabG+ikuzm0YMd3WRjywxuMKC8Z+KH+VzIq4XSomTE8I6pys/b6StlAY7VY1fO7k8zzlXrKtW5ZqIvsX5PboAJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764229400; c=relaxed/simple;
-	bh=IgSnVci3DoQXYjVvI5E+txl5IZvhgQkySPJ6PPebZwM=;
+	s=arc-20240116; t=1764229527; c=relaxed/simple;
+	bh=SQkbKg+mYENU74Dce0PVRLxFiBMp0l2CgZfktdP5n+4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B7U9NHsiYktAby2HHRnLLq6UYacP0JoxkoRE50FbChz0koQ1JujilTVWqTJcQiYmukHFFYqpau4plJjJmtkUTEAOne9G6rD7YaOiLewNVy3BO4S31ewU6SbGKR9mCvs7434twUaH3q7sM2DlgWNoLCtmb91OreT1GH5OtBfOyLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=P7R/K4sc; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764229398; x=1795765398;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=IgSnVci3DoQXYjVvI5E+txl5IZvhgQkySPJ6PPebZwM=;
-  b=P7R/K4scGQRkY0jJHEyJQPrCgQkRcDTBpzNnbnjx4WPJFfN36mF7F8tz
-   qgRwcODy5hWttr6/Mcretia/1iWafevHMx72mGiCRiIWKJ8QN1I4quQ1j
-   IxXAhpW97uc7gREvbwV6gJ4ltCekKzTpeUHI15UEq3d8697K5e/NDuqRW
-   0aGI7IlryJ/nu5k2E6KT2DNZ6to6EJAItOzRs3FI+mvQOjIrY1EWXr6Xt
-   zJnYLqJx1jof8ioL5QbLBO6GA6BAgqQ6OCKy+ne9gOvhtb4zE3SCnp0Re
-   nR3oRkh0RxqQpR2ADPcHk9vMqlAgttx58ZOJ/lf7QCCWoIeCmSZI+k2TW
-   Q==;
-X-CSE-ConnectionGUID: dzqTVSPiS9SMbByL6dc4Lw==
-X-CSE-MsgGUID: JdxrF2ZYSpuiur3f/LJk2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="68864879"
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; 
-   d="scan'208";a="68864879"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2025 23:43:17 -0800
-X-CSE-ConnectionGUID: cI3DtGSsR3O+b0/Z0bHTvA==
-X-CSE-MsgGUID: POdg8W7zQ8yPeWjbmMRjug==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; 
-   d="scan'208";a="197320014"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2025 23:43:13 -0800
-Date: Thu, 27 Nov 2025 09:43:10 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Jan Dabros <jsd@semihalf.com>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Clark Williams <clrkwllms@kernel.org>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Dmitry Guzman <dmitry.guzman@mobileye.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
-Subject: Re: [PATCH v4 6/7] i2c: designware: Use runtime PM macro for
- auto-cleanup
-Message-ID: <aSgBDvQ9hqaJDKTM@smile.fi.intel.com>
-References: <20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com>
- <20251126-i2c-dw-v4-6-b0654598e7c5@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ONWypT7wFrtQ72uX8PYfOPWcnesfiOsI40OJE74lDPtKjOkSyXK3ppoLnty308iERCaGamg3LM8iy5Pm7cZog1t/1V8Kpsmxjtx734+EajutvdnKIPpmojXHRcUECrXv1XQEPWKVP6xeO+DQiL69GwJezeLY8n94Rp6IWehLfhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sL6otSG/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D565C113D0;
+	Thu, 27 Nov 2025 07:45:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764229526;
+	bh=SQkbKg+mYENU74Dce0PVRLxFiBMp0l2CgZfktdP5n+4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sL6otSG/IWUVfR+94s9WVDUSq+wccI1m26tGr6odY6hgE2jFrU29SymECwAaXyFlt
+	 lIzDK3Rq7gTmREKJzFpSuGQ7D1BVNV6r1AqHXxUJlKio+XVh4oOXjiJKF5Rpp15+O7
+	 W5oGlw2g8b7aG6Hn0JsEz0fcSK8qD666PEVqDBd6RfoYj0iAihoAJCzsad4htHKXAe
+	 oMTAO+7e6jiLEVbIqf6ucyNc6vY/U1LGNSNlHKhmNw5oIQ+ez1CbC92T2208JDpZko
+	 blVdhRmYkCt9dVDR8gBIFQeQKazj1YoYKb1+h0PKcF1CkkJ6vZDEvE9PgnaE1wyRIr
+	 PXw5J4DfmhIsQ==
+Date: Thu, 27 Nov 2025 08:45:24 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Swamil Jain <s-jain1@ti.com>
+Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	aradhya.bhatia@linux.dev, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devarsht@ti.com, praneeth@ti.com, h-shenoy@ti.com, 
+	u-kumar1@ti.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: ti,am65x-dss: Add am62p dss
+ compatible
+Message-ID: <20251127-quizzical-mussel-of-discourse-bfeaab@kuoka>
+References: <20251125165942.2586341-1-s-jain1@ti.com>
+ <20251125165942.2586341-2-s-jain1@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251126-i2c-dw-v4-6-b0654598e7c5@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20251125165942.2586341-2-s-jain1@ti.com>
 
-On Wed, Nov 26, 2025 at 11:46:29AM +0100, Benoît Monin wrote:
-> Simplify runtime PM handling in i2c_dw_xfer() by using the
-> pm_runtime_active_auto_try guard. This adds the proper handling for
-> runtime PM resume errors and allows us to get rid of the done and
-> done_nolock labels.
+On Tue, Nov 25, 2025 at 10:29:40PM +0530, Swamil Jain wrote:
+> TI's AM62P SoC contains two instances of the TI Keystone Display
+> SubSystem (DSS), each with two video ports and two video planes. These
+> instances support up to three independent video streams through OLDI,
+> DPI, and DSI interfaces.
+> 
+> DSS0 (first instance) supports:
+>  - Two OLDI transmitters on video port 1, configurable in dual-link or
+>    single-link mode.
+>  - DPI output on video port 2.
+> 
+> DSS1 (second instance) supports:
+>  - One OLDI transmitter on video port 1 (single-link mode only).
+>  - DSI controller output on video port 2.
+> 
+> The two OLDI transmitters can be configured in clone mode to drive a
+> pair of identical OLDI single-link displays. DPI outputs from
+> DSS0 VP2, DSS1 VP1, and DSS1 VP2 are multiplexed, allowing only one
+> DPI output at a time.
+> 
+> Add the compatible string "ti,am62p-dss" and update related
+> description accordingly.
+> 
+> AM62P has different power domains for DSS and OLDI compared to other
+> Keystone SoCs. Therefore, add 'minItems' and set to 1 and 'maxItems'
+> field in the power-domains property to 3 for the "ti,am62p-dss"
+> compatible entry to reflect this hardware difference.
+> 
+> Signed-off-by: Swamil Jain <s-jain1@ti.com>
+> ---
+>  .../bindings/display/ti/ti,am65x-dss.yaml     | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> index 361e9cae6896..3945ae048b8f 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> @@ -24,6 +24,19 @@ description: |
+>    DPI signals are also routed internally to DSI Tx controller present within the
+>    SoC. Due to clocking limitations only one of the interface i.e. either DSI or
+>    DPI can be used at once.
+> +  The AM62P has two instances of TI Keystone Display SubSystem, each with two
+> +  video ports and two video planes. These instances can support up to 3
+> +  independent video streams through OLDI, DPI, and DSI interfaces.
+> +  DSS0 (first instance) supports:
+> +    - Two OLDI TXes on video port 1, configurable in dual-link or
+> +      single link clone mode
+> +    - DPI output on video port 2
+> +  DSS1 (second instance) supports:
+> +    - One OLDI TX on video port 1 (single-link mode only)
+> +    - DSI controller output on video port 2
+> +  The two OLDI TXes can be configured in clone mode to drive a pair of
+> +  identical OLDI single-link displays. DPI outputs from DSS0 VP2, DSS1 VP1,
+> +  and DSS1 VP2 are muxed, allowing only one DPI output at a time.
+>  
+>  properties:
+>    compatible:
+> @@ -31,6 +44,7 @@ properties:
+>        - ti,am625-dss
+>        - ti,am62a7-dss
+>        - ti,am62l-dss
+> +      - ti,am62p-dss
+>        - ti,am65x-dss
+>  
+>    reg:
+> @@ -197,6 +211,17 @@ allOf:
+>                properties:
+>                  endpoint@1: false
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,am62p-dss
+> +    then:
+> +      properties:
+> +        power-domains:
+> +          minItems: 1
+> +          maxItems: 3
 
-LGTM,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+This is conflicting with top-level constraints. You need to update these
+and then narrow each variants. See also writing schema (Property Schema
+chapter).
 
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
 
