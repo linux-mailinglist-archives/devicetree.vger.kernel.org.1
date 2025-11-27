@@ -1,234 +1,175 @@
-Return-Path: <devicetree+bounces-242751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 818C1C8E538
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:48:18 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA82DC8E4EA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:46:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A0B024E7F26
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 12:48:03 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 35413350B05
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 12:46:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117C13328EF;
-	Thu, 27 Nov 2025 12:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DBD31E5B64;
+	Thu, 27 Nov 2025 12:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="NUJzg2x6"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="FmqeQw0Z";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="S+8P6TEk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender3-of-g92.zoho.com (sender3-of-g92.zoho.com [136.143.184.92])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C6B32E721;
-	Thu, 27 Nov 2025 12:47:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764247628; cv=pass; b=GJMMc/rCGghyQBn0wKPUiW4pkSzuB/78ex008LGBmtPiqb/b8ulgVCifhlSetcbzpwqo60jInCRlOIsNHk4TR9mJAHSnlIWnvQqYsNgtYt7H+rCWh7WIohFhUFcFBqQa/oXo/lPoO6D+GBHn5HaEegcq1hofxaWW4/PmWNIcCOw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764247628; c=relaxed/simple;
-	bh=+jfpVhIQhTByohDJO+xAoBewgjlpm5J5XMktEz6dzw8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GsN3gKUcPJIx3Ik5PLT+8z9rRR1R//wrP9MJhLUwVkMCOQpi0iCg/edQPSh5KYOOdexqONvCStbmNbtcgE6DoOeeB4UOqa1eTKJIrPHLfrqO9SKt5uUWlICIHRVVJ9jFXzu+RAEbUOxTJ5+QT3yaqU+DoKKbleReYfazD3pIOo4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=NUJzg2x6; arc=pass smtp.client-ip=136.143.184.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1764247595; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=K/KuTZPUGXxLRAm94FZJe5TWKKtBlD0iOxEB7sfCOO04HFSFqhGEIaxRrp7WX2gcIqGkWaNgOMT+rESZFq7V+TtWns81Jdr3tnitP6OSvPzPBQaoDlOARG1tcREqeKORTenors/VY/NrgAtP9enEGLtVuMB0MnrarF4eVGfgHHE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1764247595; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Uk8p9LgpPoAiawj3uNhnu3nSqrQyd8EhyLBL85bAStc=; 
-	b=lYfM16RkkvePPKbE5y86epCRytsmMa7UIJdYc+gNggQhXjph28wrG4tY7TvO0BgTgYrQnMfgpUToeXaRTMl1+g+tyWYGah2tewO+t/d3xwT/PHfnxCTbNgxp6KK+4wI8WZxfUcIqWlSzQb9eJpiYKz2LgH/DnmSkA0ZldhSv588=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764247595;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Feedback-ID:Reply-To;
-	bh=Uk8p9LgpPoAiawj3uNhnu3nSqrQyd8EhyLBL85bAStc=;
-	b=NUJzg2x6Ywe9f7iu9S4/wFVkPmCiiJRWzgIr2MJk9BUIvEBKyw7JGwRRHrFzH48m
-	SMnz72SkxqFkgcbzUfjYGYXBqPcDlei/vTgSWH0mfFb4XemqLqyf+3GKeWJvAiC07dJ
-	IWD0+7Y605Co9jJG7DbQVaBCXJNLths+9P1ON1JI=
-Received: by mx.zohomail.com with SMTPS id 1764247593154975.9506260730468;
-	Thu, 27 Nov 2025 04:46:33 -0800 (PST)
-From: Xukai Wang <kingxukai@zohomail.com>
-Date: Thu, 27 Nov 2025 20:45:14 +0800
-Subject: [PATCH v9 3/3] riscv: dts: canaan: Add clock definition for K230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D425117BA2
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 12:46:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764247583; cv=none; b=NPe7MsjXWKaGe1iJOeCLDGN4xsT+s73/W7wrzVURqg/3DhbFUsBme8y6SthpOKDHySxUeKHF8kwjKe27+HH2pn13YMgY3Vo/9lnpwKxJQNF8ln3q94+gr1I5ubk/lmFI/+OMp3oJX8ewqh+hMnHE/O+JLcA53WjpiECwY892exs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764247583; c=relaxed/simple;
+	bh=sbR8rj5HdwNUwTJf7rPxcnFUE8stUOVZpJasHjCHCzs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MZmnBAciHyEZVPBlni6+O13WIvr4orqJote+2ZotVFsZsjkIfoRbfjpnqnp9maFdrODgFSEmSrN8d9nOzBQajN03R1yhKWldxCaUkYbAxp6sNjmscIe17ZzqP+AopUOrt7ik3gKcs6hV3KkjRHpsZ2ANQeD6lrOnEAA580/GIq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=FmqeQw0Z; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=S+8P6TEk; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1764247580;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=lU4Q69fwFr8kha5ORL2VucV6zKxUebFEBdC5v2fRfrc=;
+	b=FmqeQw0ZNOMWobmmNXbFe9EeVuNj2U60ST/o9IlidZXjQCIlfIvlnZV4fGgVN89k8v1lbo
+	iCJOMVy1ESeTjHPeBxKWg5TobdT/SirSYkf9pNLmR6kljmJkSY4paTMNpfzIuOJwUjWyyT
+	natwBeKEIJY8CF1QwHvih7L0C2tq4jU=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-664-tI2eL5a0M9aRWidbtfBZjQ-1; Thu, 27 Nov 2025 07:46:19 -0500
+X-MC-Unique: tI2eL5a0M9aRWidbtfBZjQ-1
+X-Mimecast-MFC-AGG-ID: tI2eL5a0M9aRWidbtfBZjQ_1764247578
+Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-42b56125e77so495528f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 04:46:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1764247578; x=1764852378; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lU4Q69fwFr8kha5ORL2VucV6zKxUebFEBdC5v2fRfrc=;
+        b=S+8P6TEkMeIs+7F2yiYJbnOYj+YuzYd78buBHXa7YJemsmZume7ntc50Ap/D36PaLt
+         BvdJms7thPv08rgGqoqpdAJ3JUM5UwOlPR3mJTzsz8aSfv4iHPDyEtpNCZFKekOk+5nC
+         oYXatcBy8c/Du8gHRJ8gT6sujRvNO6jfeY2PtLPleL1HVutRwkcW1dHaF/xk4M9RfLFb
+         HzlB37M+JrXpzQ/3TT7H53yeXc6cSBHGGznga4YCYMdCsPG0Az1tXpRyeQ8UsGgnvExA
+         JLFOmUXgFKjqeaUAM/q9X46r3KR/qRjkze6IACHEThqXWI2jn+f8XjwADjJDr7BIvca5
+         5QEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764247578; x=1764852378;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lU4Q69fwFr8kha5ORL2VucV6zKxUebFEBdC5v2fRfrc=;
+        b=G6YTTmHSjga9TIFOB4oyWyaLtviGfIrhZZXUwXW68iNfquvDUmIoBFYDlVw5JoxtBZ
+         ufgSKxlxv9nT+68bUbKOSbnVbX/klJ31FP48me9a9quFovBdUzkjcbTF+GaEuKJTziTx
+         +Mk0S9T5GATpgF7MA+Rq+zyAWJ4yfKuMCzNYFSjff3mWbsb4N2i0tpEMrJgVmcSsrgDZ
+         IZPO2837tZkty1DdTCe6TUtuEuotcExiIhxkSFeQAtist8TuqTsrp7cXcJkEaul8XMKr
+         uyrF/UtYp02s+O/3osTMqwwCaoiAqkCQCLCknM6MjFPfzBSrpCqaWSPx3vVC5ikGyh12
+         k21A==
+X-Forwarded-Encrypted: i=1; AJvYcCXmNr5e6MisHRCdWvV4MXpRfbRGWY74/Qc33jY+vvGrxA5xXQhIO2eygos38nHgq8pSHTRVO+T7Xbf/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPIMmVnpyag+pvqqOoM9vXYezlBAEPi54zdnLHJiRHk0BL5k2g
+	NEaAledSErnKBGouKlmztgFrzPWNufp3vYcuPWvIsGSvQ6kFLux44aZEKRnSXFK566KAsZuCjFf
+	3v67nXEQCxnTJmFdGcCVZtKQLzUnprZxv8QhfIdKbu27jtX7NWEfb+ApNrZEEYp0=
+X-Gm-Gg: ASbGncuub4UD8iuZ89EcKCTGVAqIboUKA9KrYcomvdw21Rw7ho0DqOdLEoxbHWB0j99
+	RW/WUKCvccdePpgqAvtT8BijTU1n+Leu5crFRWut6OMoFyiFOjTeWp4Yhhcl1hhsdI/Q2A1phlc
+	wOD1LUgm2M53QidAAX2VZQ3KGx9vgwgviF4e0g71aPSbw31kvQ1EOHPUk97G3MY5blDBz8N7k0X
+	GwAearfiuJM2Bomez2t956ehEK0ZmcyDkbLQZXuAJ625Hakq9MJRvR3GeGShI2Qa3YL2pPT7E8X
+	/2ErATzrtj5slEtDirMOkfpJAvH1gHzk/RLzrlkGLYUzrqWrdI+mbYp8d5TK0xfaik4YBrrJ7xj
+	Gwrr9pha1qSAnTg==
+X-Received: by 2002:a5d:588c:0:b0:3ee:3dce:f672 with SMTP id ffacd0b85a97d-42e0f1e3428mr10930151f8f.4.1764247578252;
+        Thu, 27 Nov 2025 04:46:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFxtcXT2mGT29Cj2YqBl/we77yTx8kGjUHM5RCqeOMm5jzSp7i0tYkAfQYuvbu+j+zndDkpzg==
+X-Received: by 2002:a5d:588c:0:b0:3ee:3dce:f672 with SMTP id ffacd0b85a97d-42e0f1e3428mr10930122f8f.4.1764247577824;
+        Thu, 27 Nov 2025 04:46:17 -0800 (PST)
+Received: from [192.168.88.32] ([212.105.155.212])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1c5d6049sm3525667f8f.10.2025.11.27.04.46.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Nov 2025 04:46:16 -0800 (PST)
+Message-ID: <9c88eec2-0985-4e05-8f0b-8ce525ddca94@redhat.com>
+Date: Thu, 27 Nov 2025 13:46:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v19 00/15] net: phy: Introduce PHY ports
+ representation
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Jakub Kicinski <kuba@kernel.org>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+ Eric Dumazet <edumazet@google.com>, Russell King <linux@armlinux.org.uk>,
+ linux-arm-kernel@lists.infradead.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
+ =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
+ Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+ Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Romain Gantois <romain.gantois@bootlin.com>,
+ Daniel Golle <daniel@makrotopia.org>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+ Tariq Toukan <tariqt@nvidia.com>
+References: <20251122124317.92346-1-maxime.chevallier@bootlin.com>
+ <20251126190035.2a4e0558@kernel.org>
+ <966bb724-59bd-4f45-a2a6-89a1967a851e@bootlin.com>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <966bb724-59bd-4f45-a2a6-89a1967a851e@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251127-b4-k230-clk-v9-3-3aa09e17faf5@zohomail.com>
-References: <20251127-b4-k230-clk-v9-0-3aa09e17faf5@zohomail.com>
-In-Reply-To: <20251127-b4-k230-clk-v9-0-3aa09e17faf5@zohomail.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xukai Wang <kingxukai@zohomail.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Conor Dooley <conor@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Troy Mitchell <TroyMitchell988@gmail.com>
-X-Mailer: b4 0.14.2
-Feedback-ID: rr0801122734571273cfab92a4d0b5d2ce000019ece0c9857013a3952af54177a777664bcb1d8b9c3da11570:zu08011227bfbc3da15590c35381310a3e0000d4a068accd49835ab720fc4ae1755e3ae1073c1ad70a1e3437:rf0801122cc83acc86e681fc278a999b56000048a42f561c6034a28b3975bf377070f72447941adf3868707055cf987bbe:ZohoMail
-X-ZohoMailClient: External
 
-This patch describes the clock controller integrated in K230 SoC
-and replace dummy clocks with the real ones for UARTs.
+On 11/27/25 11:10 AM, Maxime Chevallier wrote:
+> On 27/11/2025 04:00, Jakub Kicinski wrote:
+>> On Sat, 22 Nov 2025 13:42:59 +0100 Maxime Chevallier wrote:
+>>> This is v19 of the phy_port work. Patches 2 and 3 lack PHY maintainers reviews.
+>>>
+>>> This v19 has no changes compared to v18, but patch 2 was rebased on top
+>>> of the recent 1.6T linkmodes.
+>>>
+>>> Thanks for everyone's patience and reviews on that work ! Now, the
+>>> usual blurb for the series description.
+>>
+>> Hopefully we can still make v6.19, but we hooked up Claude Code review
+>> to patchwork this week, and it points out some legit issues here :(
+>> Some look transient but others are definitely legit, please look thru
+>> this:
+>>
+>> https://netdev-ai.bots.linux.dev/ai-review.html?id=5388d317-98c9-458e-8655-d60f31112574
+> 
+> Is there a canonical way to reply to these reviews ? Some are good, some
+> aren't.
 
-For k230-canmv and k230-evb, they provide an additional external
-pulse input through a pin to serve as clock source.
+AFAIK there isn't yet a formalized process for that.
 
-Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
-Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
----
- arch/riscv/boot/dts/canaan/k230-canmv.dts | 11 +++++++++++
- arch/riscv/boot/dts/canaan/k230-evb.dts   | 11 +++++++++++
- arch/riscv/boot/dts/canaan/k230.dtsi      | 26 ++++++++++++++++++--------
- 3 files changed, 40 insertions(+), 8 deletions(-)
+> I'll summarize what I've done in the changelog, but it skips any
+> potential discussions that could've been triggered by these reviews. I
+> guess this is a matter of letting this process stabilize :)
 
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv.dts b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-index 9565915cead6ad2381ea8249b616e79575feb896..cf33a5df9ff520a0dbb408864e615f61a115b673 100644
---- a/arch/riscv/boot/dts/canaan/k230-canmv.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-@@ -17,8 +17,19 @@ ddr: memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x20000000>;
- 	};
-+
-+	timerx_pulse_in: clock-50m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
- };
- 
- &uart0 {
- 	status = "okay";
- };
-+
-+&sysclk {
-+	clocks = <&osc24m>, <&timerx_pulse_in>;
-+	clock-names = "osc24m", "timer-pulse-in";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230-evb.dts b/arch/riscv/boot/dts/canaan/k230-evb.dts
-index f898b8e62368c3740d6795fd1e3cb0b261a460ac..24dba44955690e01e53f11d6720e60a81a9f435d 100644
---- a/arch/riscv/boot/dts/canaan/k230-evb.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-evb.dts
-@@ -17,8 +17,19 @@ ddr: memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x20000000>;
- 	};
-+
-+	timerx_pulse_in: clock-50m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
- };
- 
- &uart0 {
- 	status = "okay";
- };
-+
-+&sysclk {
-+	clocks = <&osc24m>, <&timerx_pulse_in>;
-+	clock-names = "osc24m", "timer-pulse-in";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index 95c1a3d8fb1192e30113d96d3e96329545bc6ae7..7868cd4c6c9e9d82c9271f8585a71b67738d1ca7 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -3,6 +3,7 @@
-  * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-  */
- 
-+#include <dt-bindings/clock/canaan,k230-clk.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- 
- /dts-v1/;
-@@ -58,11 +59,11 @@ l2_cache: l2-cache {
- 		};
- 	};
- 
--	apb_clk: apb-clk-clock {
-+	osc24m: clock-24m {
- 		compatible = "fixed-clock";
--		clock-frequency = <50000000>;
--		clock-output-names = "apb_clk";
- 		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+		clock-output-names = "osc24m";
- 	};
- 
- 	soc {
-@@ -89,10 +90,19 @@ clint: timer@f04000000 {
- 			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
- 		};
- 
-+		sysclk: clock-controller@91102000 {
-+			compatible = "canaan,k230-clk";
-+			reg = <0x0 0x91102000 0x0 0x40>,
-+			      <0x0 0x91100000 0x0 0x108>;
-+			clocks = <&osc24m>;
-+			clock-names = "osc24m";
-+			#clock-cells = <1>;
-+		};
-+
- 		uart0: serial@91400000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91400000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART0_RATE>;
- 			interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -102,7 +112,7 @@ uart0: serial@91400000 {
- 		uart1: serial@91401000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91401000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART1_RATE>;
- 			interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -112,7 +122,7 @@ uart1: serial@91401000 {
- 		uart2: serial@91402000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91402000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART2_RATE>;
- 			interrupts = <18 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -122,7 +132,7 @@ uart2: serial@91402000 {
- 		uart3: serial@91403000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91403000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART3_RATE>;
- 			interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -132,7 +142,7 @@ uart3: serial@91403000 {
- 		uart4: serial@91404000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91404000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART4_RATE>;
- 			interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
+If you have time it would be great if you could send an email to Chris
+Mason (clm@meta.com) detailing the bad parts and why are incorrect.
 
--- 
-2.34.1
+Thanks,
+
+Paolo
 
 
