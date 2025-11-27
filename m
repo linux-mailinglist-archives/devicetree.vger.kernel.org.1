@@ -1,150 +1,169 @@
-Return-Path: <devicetree+bounces-242646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67FB3C8D88E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:26:25 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A41D3C8D957
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:38:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B29243ACC45
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:26:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1A61D4E7029
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDEB332AABD;
-	Thu, 27 Nov 2025 09:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A973329381;
+	Thu, 27 Nov 2025 09:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ESavtwV0"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="As4k8cuN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E670329E74;
-	Thu, 27 Nov 2025 09:25:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E351B31771B;
+	Thu, 27 Nov 2025 09:37:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764235525; cv=none; b=u1OUB3XbnL1foGfG5anL+VK8QhDzTxX3viud+l72i15tmmSdQ7O/TiDDyezA20pJgKshPf9WYUT2b0mHDIpTtzOID/mdApqY4P0XFySLMfvvCtuGXw+tFKPrz6J2ZJhV+UX3hw7FuPIf+RuhXIk9K7Wa3ORMMgANFLTdOnd1c90=
+	t=1764236278; cv=none; b=Fg8xBVmOypKaRgnD0dQZ6pyNVA1sHPzCiU+45HzMeT21KDNqpQpBKmIqJT598lrTeDxuE5wZVNAA7v1iln1a+fe27Z5M6y8pGg+ERMxbIF6ebRx1FCrOHeAht+B+JrTiqaxUNzZeh9SaIHUGPeccJ7xX+Gbu8KxmPhz/lrEpKIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764235525; c=relaxed/simple;
-	bh=zGs0fOo6tXBdm2tLzw1qB8zGuJHcZAMDiT7yFjCFgFM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uYMB1Txf0nY0NiPJ3XWtQ0FsZrmx8QkMJT078XaFpLfmYkamQAe1rdXBBSz7MfRQyrrePMzT2FlKkN5craIjIv+uoWOI1Bd0CCeszsSQIHuYSW051oiLUfDkcj0Eb8BuPap3xmSxQ5mCaxgMAmBRQsiQI6PgNODn2evHRPxbhog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ESavtwV0; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1764235523; x=1795771523;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zGs0fOo6tXBdm2tLzw1qB8zGuJHcZAMDiT7yFjCFgFM=;
-  b=ESavtwV0qywFtkFUAHKSsCaZHgvixq8sLhVj9+2E8hbaXMxUBCWfTQVg
-   azYUpz77D+zRA06D2EEUUg9LM7umEoJvKJTXAFQl0fVSHz5oHezRbsmZI
-   QT1jdZkQtpPMX8mgm2Mc9Sjk09JoF17XM64Yf7im1/DjQB41iYmmpn8nX
-   TR2H4DEBqyM73Tb+nkVxGzUmHWSiugZGOG4DGLnbyPYznDOuHItUMQ1tF
-   Hg+F46ezXrGZ8mbTnYa4EhQtErSNCqQAbivZKUYEL7xG8/quClDxMz8Xc
-   125yRccvnH5Piuf6v+uS/votnUHFBR+5njeaFBsfYMq4qeYHjeWXN0wH9
-   w==;
-X-CSE-ConnectionGUID: h4V7cGYyRjS5kOD0W8j29A==
-X-CSE-MsgGUID: RAgQNsCSRsK43X2m+wdQWg==
-X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; 
-   d="scan'208";a="56355110"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Nov 2025 02:25:22 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Thu, 27 Nov 2025 02:24:56 -0700
-Received: from localhost (10.10.85.11) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Thu, 27 Nov 2025 02:24:55 -0700
-Date: Thu, 27 Nov 2025 10:24:50 +0100
-From: Horatiu Vultur <horatiu.vultur@microchip.com>
+	s=arc-20240116; t=1764236278; c=relaxed/simple;
+	bh=0umA7AV3QLPprkzNQBE18YPabiRf/OoQS7dKfXP9CJU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=n30gpiaOxq6M5wtufnAfMF0AbQMywee9jY3ta72LAiXQwWrGDlCYzvhejXsIQ1ZNjrIzVGguejVUd2ewTFCdWzL91vVAfzCpGNmFlezCvaR9wDZPUAp/X9rOF3bjmiLG77dX68yIRyc31O3UcSB2NCFH6KonfeIICyW5ZiOypOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=As4k8cuN; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 28AF11A1DA3;
+	Thu, 27 Nov 2025 09:37:55 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id EDAD46068C;
+	Thu, 27 Nov 2025 09:37:54 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4E220102F260E;
+	Thu, 27 Nov 2025 10:37:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1764236273; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=L9S1rZGl/rz9YmM+17xHKDLknXmtbmaZyBYHTmnGq6Y=;
+	b=As4k8cuN5pEobUrrB5p5aNhgjO75O4U+DBpJNotM5YUCxyK0GtFJZ4JzIIWdJEmCQ1PyX/
+	Zp2y39HKpUoIchvF1tSu70/0a7GUdW8jtFoCOJNREtHW0x67OZXfM+cmUnVhUDoW+rzwlC
+	qA3sX7z9yr4imuwTY/i/4M5dA+fAYPVgaYzJzurRGjpRcFIVx4qAz+9eFYTyryyHqHe8WU
+	3vfBu/b8T96rzP4XrywexXFog2TH/83l4GEfzOouJQwTwk+0dhnDraNMm76UttUoAVNmUH
+	dGQhhUfrG12gVjO74EWiTalQrmTEZa0iPtjz0M+O1hZCvSLkDvAseQCzeLQenw==
+Date: Thu, 27 Nov 2025 10:37:45 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <wsa+renesas@sang-engineering.com>,
-	<Ryan.Wanner@microchip.com>, <romain.sioen@microchip.com>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] ARM: dts: Add support for pcb8385
-Message-ID: <20251127092450.h3t5vxdfvseartx2@DEN-DL-M31836.microchip.com>
-References: <20251126100151.1559590-1-horatiu.vultur@microchip.com>
- <20251126100151.1559590-3-horatiu.vultur@microchip.com>
- <4702976d-1b08-4565-88a5-d9a1b36582f9@kernel.org>
+Cc: Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen
+ <tomi.valkeinen@ideasonboard.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Russell
+ King <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, Tony
+ Lindgren <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Markus
+ Schneider-Pargmann <msp@baylibre.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Miguel Gazquez
+ <miguel.gazquez@bootlin.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH 02/21] dt-bindings: display: tilcdc: Add fifo-threshold
+ property
+Message-ID: <20251127103745.7c5d55e6@kmaincent-XPS-13-7390>
+In-Reply-To: <20251127-subtle-prophetic-corgi-68aab1@kuoka>
+References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
+	<20251126-feature_tilcdc-v1-2-49b9ef2e3aa0@bootlin.com>
+	<20251127-subtle-prophetic-corgi-68aab1@kuoka>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <4702976d-1b08-4565-88a5-d9a1b36582f9@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-The 11/26/2025 11:24, Krzysztof Kozlowski wrote:
-> 
+On Thu, 27 Nov 2025 09:22:56 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Hi Krzysztof,
+> On Wed, Nov 26, 2025 at 06:35:44PM +0100, Kory Maincent (TI.com) wrote:
+> > Add the fifo-threshold property to control the DMA FIFO threshold level,
+> > which specifies the number of words that must be loaded before the DMA
+> > FIFO becomes ready.
+> >=20
+> > This property is needed to support the da850-evm board configuration
+> > which requires a non-default FIFO threshold value. Currently, this value
+> > is specified through the deprecated ti,tilcdc,panel binding. Adding this
+> > property to the tilcdc binding allows for proper configuration while
+> > migrating away from the non-standard panel binding.
+> >=20
+> > The default value is 8 words, with valid values being powers of 2 from
+> > 8 to 512.
+> >=20
+> > Related commit: 55da73fa7a68c ("ARM: dts: davinci: da850-evm: Increase
+> > fifo threshold") =20
+>=20
+> Please use syntax pointed out by checkpatch. The checkpatch error (not
+> even a warning) is there for reason, so we can apply filter/grep
+> easily.
+>=20
+> >=20
+> > Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+> > ---
+> >  Documentation/devicetree/bindings/display/tilcdc/tilcdc.yaml | 7 +++++=
+++
+> >  1 file changed, 7 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.ya=
+ml
+> > b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.yaml index
+> > 34ac1fd04d5c6..bf6d506e25e17 100644 ---
+> > a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.yaml +++
+> > b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.yaml @@ -46,6
+> > +46,13 @@ properties: The maximum pixel clock that can be supported by =
+the
+> > lcd controller in KHz.
+> > =20
+> > +  fifo-threshold: =20
+>=20
+> Why this is not deducible from the compatible? Feels like a specific SoC
+> issue.
 
+This is indeed deductible from the compatible as ti,da850-tilcdc is only us=
+e in
+the related devicetree. Thanks for the pointer this will avoid adding a new=
+ dt
+parameter.
+
+>=20
+> Anyway, missing vendor prefix
+>=20
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [8, 16, 32, 64, 128, 256, 512]
+> > +    description:
+> > +      Number of words loaded before the DMA fifo becomes ready. The de=
+fault
+> > +      value is 8. =20
+>=20
+> missing default and drop free form text in description.
+>=20
 > > +
-> > +&flx0 {
-> > +     atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-> > +     status = "okay";
-> > +
-> > +     i2c0: i2c@600 {
-> 
-> You added a label, so this feels like a new node, but then you miss
-> compatible and status feels redundant.
+> >    blue-and-red-wiring:
+> >      enum: [straight, crossed]
+> >      description:
+> >=20
+> > --=20
+> > 2.43.0
+> >  =20
 
-Ah.. OK. I didn't want to add a new node.
 
-> 
-> If this is override, you should rather override by labels/phandles in
-> the first place. Even when overriding by full node path, you should not
-> add custom labels - they belong to the base SoC.
 
-I can remove the label.
-So, when I want to override or extend with new properties I should
-labels?
-
-> 
-> > +             pinctrl-0 = <&fc0_b_pins>;
-> > +             pinctrl-names = "default";
-> > +             dmas = <0>, <0>;
-> > +             i2c-analog-filter;
-> > +             i2c-digital-filter;
-> > +             i2c-digital-filter-width-ns = <35>;
-> > +             i2c-sda-hold-time-ns = <1500>;
-> > +             status = "okay";
-> 
-> > +
-> > +             eeprom@54 {
-> > +                     compatible = "atmel,24c01";
-> > +                     reg = <0x54>;
-> > +                     status = "okay";
-> 
-> Why? Was it disabled anywhere?
-
-It wasn't disabled anywhere. I will remove this.
-
-> 
-> > +             };
-> > +
-> > +             eeprom@55 {
-> > +                     compatible = "atmel,24c01";
-> > +                     reg = <0x55>;
-> > +                     status = "okay";
-> > +             };
-> > +     };
-> > +};
-> > +
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-
--- 
-/Horatiu
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
