@@ -1,97 +1,378 @@
-Return-Path: <devicetree+bounces-242796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B52BC8F41F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 16:25:57 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6443BC8F440
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 16:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 976AE4E9EE3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:23:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EBC824E8E5A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:28:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45CD53358A3;
-	Thu, 27 Nov 2025 15:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86B7336ED3;
+	Thu, 27 Nov 2025 15:28:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mHgPTi/Y"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iHOX/0Pq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EzT5nIFf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9CF335577;
-	Thu, 27 Nov 2025 15:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0032D3358D6
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 15:28:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764257014; cv=none; b=jetH6z9UyOilWm7CSbuzzFXY98scxwdMH4pMS6TpE2L+qBI8xLIewExkPltqlv001FH2GPNBooNE9u1wOOw/2tHeTZVlHWRzZAI2PSid4uVlQf+X/TiADAlKJEc9iiLMisoq5FevFtvkdoTsXGLV17bXYlohHSVnLpVs4Ps1M+M=
+	t=1764257300; cv=none; b=PzbafYjGylUu3Ica+VZhpBFbIQQXP7mW7+42feZdAbzAvpl0iga+2wCAo6FREKaUGVQ0nyDjFe2pelJ1MmDpSt32DongW8QxZWL6ke7AI44g8CZ0wO4Fw3+pZq5A/BQXQ+1hazNPe5z2OPNCHSgS40Gr738rGp2X4khBbN9YJIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764257014; c=relaxed/simple;
-	bh=O9bWq3Heg35xP9iDR9rxoZbeizhO9yXx4rGvMP+yDEc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MQKSnXZQpdNLo28i2XKgoVq6foX+tSPAYr3xrgvUJMZ5D07NUl63NFUQBCvwVcsupHtj/CpYxuri/bW/vAwMpBJoTcsFOmN+NWdkl2wPvxi1ht21MPRh8smRCg2zUbLYoMFm3N5YWjurcpT7NlfQWZLiUlfjE5dZjxLcPmH4YhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mHgPTi/Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F109AC116C6;
-	Thu, 27 Nov 2025 15:23:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764257013;
-	bh=O9bWq3Heg35xP9iDR9rxoZbeizhO9yXx4rGvMP+yDEc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mHgPTi/Y6FvkFtq5W7gpBTlylNDrFbLTF3sKnHq2agIVBZURnlMnRGb5BAaUK0kU0
-	 5g2pfv0XTxxzbBoIrws+4SyLWw7FHhnRvUj5S6VAOlF86n7edzYVDKNA3uIWqTxx8x
-	 KeHTD8ldmEuRYbIHYh5AhcZrnm+CXgYAbEwaAiP0cxnWpYA/mcBopsqvMc6SAKjl3/
-	 DFxXqkPAF6Mb4TgnPs+WJgbAMxg66pldzo/laQxz9TBaCWvoadjgIuZzDX5zsvqnIS
-	 c/NBZspp1DvEoYe5empBgfu9DfvDb1OItQBaHfL8qCDBzXYIDQqcCCLZEUkGtBVzj4
-	 HjnrRtosj+Gag==
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: devicetree@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>
-Subject: Re: [PATCH v2 0/4] Exynos4: turn off SDIO WLAN chip during system suspend
-Date: Thu, 27 Nov 2025 16:23:28 +0100
-Message-ID: <176425697745.207453.7551239525844517303.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251126102618.3103517-1-m.szyprowski@samsung.com>
-References: <CGME20251126102626eucas1p1ff6379819c325f0dfcf067ca0588ff5c@eucas1p1.samsung.com> <20251126102618.3103517-1-m.szyprowski@samsung.com>
+	s=arc-20240116; t=1764257300; c=relaxed/simple;
+	bh=Z4GHwBbqqBLmBjW3cseRdkpTdHaLbZeRIAfeUz1ASfY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t9Yi6YTypInthTTR9CjHz6Fb21IVX8Dq5BL0KvuuE6lQzPJjCY1OXfcOCuzMxwG+p5LB7VaA9XYbq1H0w1k2huprmQ/CfV1IKWvFf1G7ruoOwhzjk1rdZG+uub0zIsanFwvppCLKzRNJDJAKKLvGbpe4eE/Cb+Q+NgQE+qgRc48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iHOX/0Pq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EzT5nIFf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ARAVwfA913880
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 15:28:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ndxdMdbzvZF/I4cZm8HOJZvbZdGMtw1Vn3ORVS+oD8Q=; b=iHOX/0Pqd+GA/PNO
+	h2o5AeFEFuQcYL+DssWotOyw8zguwdaUEkJ87AqdDEI3vdBipRYHJJasP3LTvaAc
+	0KM4FttnxD+Y2oq5jEtYDFrEZS/R3FD2xdwTbqdSRKXQicRMVPGKRE7i7NjQXv5a
+	muUsvE0SvM1x76nLSKDWRvUL9bVIOC0s8QVO7np5UDvj6c6JmkVtQ1SVI7mSB7BG
+	vA/B775gUhUCJG6Os9p8lvnJUZa8yTfoEZytIUtMjHqg8kZ41+ViD5FBDj6e3Jok
+	A5M2pz18qYZYGOVtpnkjTmBoAI1RUhdQ8eHzWA5Vw6QziMRRQydxlnBNjInMLFQF
+	KoJBpw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4apmynrpd6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 15:28:18 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4edaa289e0dso4033001cf.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 07:28:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764257297; x=1764862097; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ndxdMdbzvZF/I4cZm8HOJZvbZdGMtw1Vn3ORVS+oD8Q=;
+        b=EzT5nIFfxQq4LuqcOy9+hB+P/cc0w4sClVrZBF+5y3/K9gfi286zcn1Qu6/whLdpwZ
+         T+DViKwvXo6YngOR5XKW2ssH9xVNaKdhXSIoHI5pU2CPWP4bhwC22gMT5dz0UTu8OzCp
+         9j/x2+H9xEMo8E8NPJPEVS07hZkrzxTZ1I5r1Pt6rnerb5uU5b2onmTbjRJIYOi9Jd4J
+         hYXHbTXGHnICN9LbcDgQ0PoxKueP9u5OtOkZQqInkJhU1hswBSebEtn5h8ZcNjm2250E
+         OyjWWxDx5KmmvOY7Jl6KQ3lQwfGRljzeGKqMcgFr2fA+3d9LEsOLLWrdEMalp6KJ6w6n
+         ZV+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764257297; x=1764862097;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ndxdMdbzvZF/I4cZm8HOJZvbZdGMtw1Vn3ORVS+oD8Q=;
+        b=m3gUIwqa4u09O0kad9of+kGKFfrNvCWSrIuyWdJZd9dNrSGvxNka9ZEsbuxyo1O9qb
+         SRsGjIUQ8ROmAtAWGRb854ykYYxxno3iNyRT6xizSWtOXDz/0+BZ2XiDM1YuORcG6RL5
+         MZQbWOH2PdVkFd+hmH94vl/M/K6RwB5GF0/atXOWDUL/Vm/3E3V/T0JHsWEdcZpK19ux
+         fX5UecTbO+zOWSLgN89yKa5592aaFz84ziRP5EEitBxGmYnBmZatMlcRTmxp0Xe5o2tv
+         pJdN6fm8PFjfVM0BZyIE+oc15Z/utTtxqEeDd5r2gos7H/0xE3G0d7/lF4dN9gsznAr1
+         J9yg==
+X-Forwarded-Encrypted: i=1; AJvYcCUCmezxBVQPRmq02GMRg+vnSfiIEuWdyLJg665CXZfMifoGfRXkWWKXOuoP0a7x/EAzGmuLTL6TNeRg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQqwQXQ86LVLwu1H080EEqX8jrHpTRlNFBx3bTiYt/M53gfBRy
+	yq3/gE0ZbW/fvgI6o9Ogbiv3aDD7vNnSmap5xXAeCMzCsTzJQ6eWyeBQSO7MKp/3RXFJ4irDz0x
+	2u7KE+l2uUWVOc0hG+DIIqUlYy4hNm3mYh1haN3C0RX2OlC9vAa/RErgyvihgW/iq
+X-Gm-Gg: ASbGnctdXDkKczyZMEaB0RHn28g3AwFhamX6TPM1DTWFaGhYpr+WpaTSMXe3s0ShuCK
+	Y28I+qiAPWZ9cPl2euWRvbd7lg6jgnokKp//UNVtEtLeHfPJ8qbfbup189KrFC3b1E0x9xVIKv7
+	6Pjxby3J0wv0+wXyCion/KzzUY0nt5/QorkTXJMMSdqzUhqmK4EKnvZRqHqTGyUsvJwHkXvcG55
+	BI22sakcdjLhzR0iznTYtILPo+LtWXWqPm5mmC4dssXTw9JABif6oMs1rJbROI0AOk8/NYlPptx
+	tkP97U5JXKNbdcM5PSzyF3nkNrArTe8PTV+iVuyw5oFFWvOb3BeD3Mp2coxY+HBEboDTf7qFUtA
+	b4sQ2onbkFh9qm6E4N+1PW2uq3XAoroW0m/KJaGfbF3Wil8jtHzrqrfqJGL9aacOd5cs=
+X-Received: by 2002:a05:622a:206:b0:4ed:e2dc:dae4 with SMTP id d75a77b69052e-4ee58780ccemr236846601cf.0.1764257296856;
+        Thu, 27 Nov 2025 07:28:16 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHix/8idFxBj5zD5bC/rE9LqDNBbvzU8nEEOyiI7hOsESnJb73ZJwmHLH1WFWYZ6SQ9IHWdKQ==
+X-Received: by 2002:a05:622a:206:b0:4ed:e2dc:dae4 with SMTP id d75a77b69052e-4ee58780ccemr236846331cf.0.1764257296373;
+        Thu, 27 Nov 2025 07:28:16 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f59a63dfsm176945366b.37.2025.11.27.07.28.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Nov 2025 07:28:15 -0800 (PST)
+Message-ID: <5d6c3dda-71cd-4684-8546-bc4918b560de@oss.qualcomm.com>
+Date: Thu, 27 Nov 2025 16:28:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1428; i=krzk@kernel.org; h=from:subject:message-id; bh=orC31108z6E/ytBErZUsAxLYgQfQjSgrQiycB0wWT1c=; b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpKGzvVM1hD6edJiqDjSfOCPsAbIPkwyIcnaTYc uJDXgwgoy6JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaShs7wAKCRDBN2bmhouD 16JLD/94o2U+CndUZ2g8a0+Qu2+eslZIa+oKrDtjvuFRjXB4hmlhyw4w3tFNaPkDRR2VPMV/hoz Q0A/SOh2enLNX/7qJHXLodzewQpEbzBZNWOch0PepqO67KQ7f/S6W2RrqC7a8wK4ciUqoQfKgih c2hhphP4qncCMkwbWVz3sJtw+S42pC5XhvHe81c5alyryg7ZwK2hbO0+lk7uZQOPd7Rx1Ev848A GOpC8uaZnzwtO1sfcwwxsvIms9EEVUUsKBjjJ3YdK0j18Fb0Ln881FU7dr4w86ZRA7Ew9WrGnGu 0BP7DOQNckAsJ28G/3TvjBQo93TgfDRexgZ/Hzmrdwc/vuSoOoKGOtYrwK/1ZqF0nlcatOznNd7 599FSKF8GNJtpm90HQSwmdQsFarNxM4WMpns+5QEB7BIDPe1Dkn/hlDhPW4ZfzKzTEX/mdlTJPJ zRwRDYR96UeYCjakmVjn0YtFqxcUP3LKSyZ0yYq4LMur/wZ84bKtL4tlGmPZcC7vfa6RE46UVGy tbDK3sK/3Ary7XZS6jMv0oxVX/EGl4O5Hur5OwljUnFjsLJUFHePS6cMRxbUVKUBy3yQWHwcRqb H+Z2AL/JVNXd8n79GlVQlKMVzo4JL0zCiKcfz+YCkFbkChWJMRp0WOxrDa9L3uJKoM/RdJDJJBK caaM1dnx9sZmJ
- zg==
-X-Developer-Key: i=krzk@kernel.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 2/8] power: supply: Add driver for Qualcomm PMI8998
+ fuel gauge
+To: david@ixit.cz, Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Casey Connolly <casey.connolly@linaro.org>,
+        Casey Connolly <casey@connolly.tech>,
+        Joel Selvaraj <foss@joelselvaraj.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Alexander Martinz <amartinz@shiftphones.com>,
+        =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        phone-devel@vger.kernel.org
+References: <20251124-pmi8998_fuel_gauge-v1-0-dd3791f61478@ixit.cz>
+ <20251124-pmi8998_fuel_gauge-v1-2-dd3791f61478@ixit.cz>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251124-pmi8998_fuel_gauge-v1-2-dd3791f61478@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: TUat_Aw3TgfdaormwBWnj9n6rf52rMiA
+X-Authority-Analysis: v=2.4 cv=QOplhwLL c=1 sm=1 tr=0 ts=69286e12 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=WFa1dZBpAAAA:8 a=OuZLqq7tAAAA:8 a=sfOm8-O8AAAA:8
+ a=V67mNnR7AAxaKjwIKscA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22 a=MZguhEFr_PtxzKXayD1K:22 a=AKGiAy9iJ-JzxKVHQNES:22
+ a=TvTJqdcANYtsRzA46cdi:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI3MDExNSBTYWx0ZWRfX/wsId52yDPMZ
+ 5CkPp1GX9WeFNN2dulYIuHeRWoXzRzDIkfirrJt9yBH1NYH4hfZ4X7/8GN2GfX/lFgSE6OxP0P2
+ yu/xcS1DaBrDtEiPMyG2MEpD3jYfZy01eeRpQtcnZCqhbcMvMuyXocsGvEMVa5MyBBlBGcyE/Gw
+ 7aQrbAqnzdlvciKwWmvnnA/1cczFEyOqFTcFd7o2XjWYHagQj1d2WV+lZszMTdIRsV2GyoBBESW
+ j2JFbvNWNhxEaM8+jnoe2BxMoWcQh59Wgfm8Q74gRpwSuwkmG5BxdLn6ukzbvOa4q3FoujP5oaK
+ 6rr9SGByRCqjXgwAzcONICHjYtkCCQDjsTYJ+lssxl2ciRAXKUtNf1pN2AgRYtvvpVwKbZJqTnH
+ Q7i3NB+QT1z4aqthacbQsTop6+DZZQ==
+X-Proofpoint-GUID: TUat_Aw3TgfdaormwBWnj9n6rf52rMiA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-27_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
+ clxscore=1015 priorityscore=1501 suspectscore=0 phishscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511270115
 
-
-On Wed, 26 Nov 2025 11:26:14 +0100, Marek Szyprowski wrote:
-> Commit 8c3170628a9c ("wifi: brcmfmac: keep power during suspend if board
-> requires it") changed default behavior of the BRCMFMAC driver, which now
-> keeps SDIO card powered during system suspend to enable optional support
-> for WOWL. This feature is not supported by the legacy Exynos4 based
-> boards and leads to WLAN disfunction after system suspend/resume cycle.
-> Fix this by annotating SDIO host used by WLAN chip with
-> 'cap-power-off-card' property, which should have been there from the
-> beginning.
+On 11/24/25 10:53 PM, David Heidelberg via B4 Relay wrote:
+> From: Joel Selvaraj <foss@joelselvaraj.com>
 > 
-> [...]
+> Ths driver supports the fuel gauge hardware available on PMICs known as
+> 3rd generation fuel gauge hardware available on PMI8998.
+> 
+> Co-developed-by: Casey Connolly <casey@connolly.tech>
+> Co-developed-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> Co-developed-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
 
-Applied for late, might also slip a bit for the next merge window, thanks!
+[...]
 
-[1/4] ARM: dts: samsung: universal_c210: turn off SDIO WLAN chip during system suspend
-      https://git.kernel.org/krzk/linux/c/97aee67e2406ea381408915e606c5f86448f3949
-[2/4] ARM: dts: samsung: exynos4210-i9100: turn off SDIO WLAN chip during system suspend
-      https://git.kernel.org/krzk/linux/c/863d69923bdb6f414d0a3f504f1dfaeacbc00b09
-[3/4] ARM: dts: samsung: exynos4210-trats: turn off SDIO WLAN chip during system suspend
-      https://git.kernel.org/krzk/linux/c/97cc9c346b2c9cde075b9420fc172137d2427711
-[4/4] ARM: dts: samsung: exynos4412-midas: turn off SDIO WLAN chip during system suspend
-      https://git.kernel.org/krzk/linux/c/2ff147fdfa99b8cbb8c2833e685fde7c42580ae6
+> +/**
+> + * @brief pmi8998_fg_read() - Read multiple registers with regmap_bulk_read
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzk@kernel.org>
+I think this won't pass kerneldoc checks (make W=1)
+
+[...]
+
+> +static int pmi8998_fg_write(struct pmi8998_fg_chip *chip, u8 *val, u16 addr, int len)
+> +{
+> +	bool sec_access = (addr & 0xff) > 0xd0;
+
+Downstream checks if the address is > 0xBA which is what you want
+at least for pmi8998
+
+You can de-abbreviate this to 'secure_access' (not to be confused
+with 'secondary' or so). There's a locking mechanism which needs a
+0xa5 byte written to the base+0xd0 register (applies to all FG
+peripherals with the 'last non-secure register' value possibly
+varying).
+
+[...]
+
+> +	u8 sec_addr_val = 0xa5;
+> +	int ret;
+> +
+> +	if (((chip->base + addr) & 0xff00) == 0)
+
+The 'fuel gauge' consists of:
+
+FG_BATT_SOC @ 0x4000 (state of charge monitor)
+FG_BATT_INFO @ 0x4100 ("general fg minus SoC")
+FG_BCL @ 0x4200 (battery current limiter)
+FG_LMH @ 0x4300 (limits management hardware)
+FG_MEM_IF @ 0x4400 (DMA engine)
+RRADC @ 0x4500 (today handled by its own driver)
+
+and a couple other peripherals that Linux doesn't need to worry about
+
+Each one of them should have its own 'reg' entry (which is assumed
+to be 0x100-long), which will let you skip such interesting checks
+and rely on the regmap framework disallowing address spillover (or
+you can just then make the addr argument a u8)
+
+It would be good to keep in mind their relationship and think about how
+to model them together. I don't think they must all necessarily be part
+of a single big "fg" dt node, particularly the LMH/BCL part seems to be
+rather self-contained
+
+[...]
+
+> +		return -EINVAL;
+> +
+> +	dev_vdbg(chip->dev, "%s: Writing 0x%x to 0x%x", __func__, *val, addr);
+> +
+> +	if (sec_access) {
+> +		ret = regmap_bulk_write(chip->regmap,
+> +					((chip->base + addr) & 0xff00) | 0xd0,
+> +				&sec_addr_val, 1);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return regmap_bulk_write(chip->regmap, chip->base + addr, val, len);
+> +}
+> +
+> +/**
+> + * @brief pmi8998_fg_masked_write() - like pmi8998_fg_write but applies
+> + * a mask first.
+> + *
+> + * @param chip Pointer to chip
+> + * @param val Pointer to write values from
+> + * @param addr Address to write to
+> + * @param len Number of registers (bytes) to write
+> + * @return int 0 on success, negative errno on error
+> + */
+> +static int pmi8998_fg_masked_write(struct pmi8998_fg_chip *chip, u16 addr, u8 mask, u8 val)
+> +{
+> +	u8 reg;
+> +	int ret;
+> +
+> +	ret = pmi8998_fg_read(chip, &reg, addr, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	reg &= ~mask;
+> +	reg |= val & mask;
+> +
+> +	return pmi8998_fg_write(chip, &reg, addr, 1);
+> +}
+> +
+> +/*
+> + * Battery status
+> + */
+> +
+> +/**
+> + * @brief pmi8998_fg_get_capacity() - Get remaining capacity of battery
+> + *
+> + * @param chip Pointer to chip
+> + * @param val Pointer to store value at
+> + * @return int 0 on success, negative errno on error
+> + */
+> +static int pmi8998_fg_get_capacity(struct pmi8998_fg_chip *chip, int *val)
+> +{
+> +	u8 cap[2];
+> +	int ret;
+> +
+> +	ret = pmi8998_fg_read(chip, cap, BATT_MONOTONIC_SOC, 2);
+> +	if (ret) {
+> +		dev_err(chip->dev, "Failed to read capacity: %d", ret);
+> +		return ret;
+> +	}
+
+Downstream tries for 5 times to get this (raw) pair of values and fails if
+they don't match - 0x400a is a shadow register of 0x4009 and this is very
+much intended
+
+> +	if (cap[0] != cap[1])
+> +		cap[0] = cap[0] < cap[1] ? cap[0] : cap[1];
+> +
+> +	*val = DIV_ROUND_CLOSEST((cap[0] - 1) * 98, 0xff - 2) + 1;
+
+98 comes from "FULL_CAPACITY (100) - 2", 0xff denotes "FULL_SOC_RAW", i.e. the
+raw value of this register that corresponds to 100% (again not sure where the
+minus2 comes from - perhaps some rounding fixups)
+
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * @brief pmi8998_fg_get_temperature() - Get temperature of battery
+> + *
+> + * @param chip Pointer to chip
+> + * @param val Pointer to store value at
+> + * @return int 0 on success, negative errno on error
+> + */
+> +static int pmi8998_fg_get_temperature(struct pmi8998_fg_chip *chip, int *val)
+> +{
+> +	int ret, temp;
+> +	u8 readval[2];
+> +
+> +	ret = pmi8998_fg_read(chip, readval, PARAM_ADDR_BATT_TEMP, 2);
+> +	if (ret) {
+> +		dev_err(chip->dev, "Failed to read temperature: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	temp = ((readval[1] & BATT_TEMP_MSB_MASK) << 8) |
+> +		(readval[0] & BATT_TEMP_LSB_MASK);
+> +	temp = DIV_ROUND_CLOSEST(temp * 10, 4);
+> +
+> +	*val = temp - 2730;
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * @brief pmi8998_fg_get_current() - Get current being drawn from battery
+> + *
+> + * @param chip Pointer to chip
+> + * @param val Pointer to store value at
+> + * @return int 0 on success, negative errno on error
+> + */
+> +static int pmi8998_fg_get_current(struct pmi8998_fg_chip *chip, int *val)
+> +{
+> +	s16 temp;
+> +	u8 readval[2];
+> +	int ret;
+> +
+> +	ret = pmi8998_fg_read(chip, readval, PARAM_ADDR_BATT_CURRENT, 2);
+> +	if (ret) {
+> +		dev_err(chip->dev, "Failed to read current: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* handle rev 1 too */
+
+PMI8998v1 has flipped the order of the registers and I would guesstimate
+that it wouldn't actually be present in the wild
+
+> +	temp = (s16)(readval[1] << 8 | readval[0]);
+> +	*val = div_s64((s64)temp * 488281, 1000);
+
+This is a funny way to say that this is a 2s complement-encoded
+16b value, where 5 bits are reserved for the integer portion
+
+[...]
+
+> +		power_supply_changed(chip->batt_psy);
+> +
+> +		if (chip->status == POWER_SUPPLY_STATUS_UNKNOWN) {
+> +			/*
+> +			 * REVISIT: Find better solution or remove current-based
+> +			 * status checking once checking is properly implemented
+> +			 * in charger drivers
+> +
+> +			 * Sometimes it take a while for current to stabilize,
+> +			 * so signal property change again later to make sure
+> +			 * current-based status is properly detected.
+> +			 */
+
+On downstream, it's the charger counterpart that signals PSY_STATUS_(DIS)CHARGING
+
+Konrad
 
