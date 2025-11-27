@@ -1,151 +1,118 @@
-Return-Path: <devicetree+bounces-242793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6C8DC8F38F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 16:18:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28BEEC8F3A4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 16:19:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E8E754EE273
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:11:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E9013A21DD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A69528A3F2;
-	Thu, 27 Nov 2025 15:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13EFF3115A6;
+	Thu, 27 Nov 2025 15:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="FW8crPtd"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="o1345l8G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA62257830
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 15:10:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0AF12E1DC;
+	Thu, 27 Nov 2025 15:14:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764256262; cv=none; b=EPGJ4D4Q1kJKs6jP5uKi6tit8vFwOAntLs4hWz8eFWsMPZL6OGMrjW/+vOh/pF6lYJ9QEhQ2MedCfzHDBjKwej5Xd1LToL6g5w++lvmP3a+M+dJ/Gp0cLCRnGCa7yqjkQLyrwUkJO36Lwhz/8a9qsGZYPes5J2KAEbf/0EPig60=
+	t=1764256484; cv=none; b=tOcZTxwgPHbHDyQj2+ye4ZjLfDjm2pSthTx867dc63dFz6Nhe77MAuxyFIq7cLIUcM45MTA+1bqfOAaN4r3bBieNdVvVZrkW06F/FLwVEkDKsiHbQ0Dahn1utHhyuvNFnfAy9VmTv6op+rkthEAz39KUFouFd8n0nNmsw+3u52c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764256262; c=relaxed/simple;
-	bh=2qqKLxzsznQmxl3EGbTOvkQ53kf5KLCsBW+pMPJTFnE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SYfLqY8uWm4/Z4Au1urmS7NJn+n9Mu+NC2WAKV8Hx2AM1ZIggi0zphvkAFfpOrA1pqXp4cvJMyqiCqUlBki7ztZ1CQTWWc8+HozOyPmGycob3UPYSdgqd8InUfZNlXDR2BJ22gAQ+wH55otY+8YqgS1OYuTU1xrFkAHqDsUjgbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=FW8crPtd; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1764256253;
- bh=EaTOVJoMb3GVdUlxOvtR/lv+2wvrGaK2bk6xiFUlwXc=;
- b=FW8crPtdP04Zr1xLgu3id7U+WGk2+UWjet+Lt6DBADNZH8Bt1A2RtUBu+oO8nECUOiT7bKm9c
- DfFsX0v5rGsCLf7rM7b8PVL5vJt2p4Iw4ad4bkGdTkS4EvenjyHn/cghizxpfuY3ulbtF9nWh78
- Cu1JzTfFhIGNTMgu6GUhROTNcM5ey8mInvwd2GYq+lW4DG6tZcu0tVpabUuDDShM9YB/mZMln5k
- w064YMJoQOiVDQnHLwhDwOFJ1I3HIUBAFdjvdi+J3i3AHhRVzzCHT42kZ/2vZMmWXAiFPOPtMl2
- wiVN66MoNOopqvRdmO9DY4cRCJHdtatoTdIEN7dnXJvA==
-X-Forward-Email-ID: 692869f2361c660d902bad35
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.6.3
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <ab1d240f-4130-4088-9ead-9fb562ee9ad2@kwiboo.se>
-Date: Thu, 27 Nov 2025 16:10:38 +0100
+	s=arc-20240116; t=1764256484; c=relaxed/simple;
+	bh=GISJZlbMjRMH3FLgOAE/n7aeSYqibczCRUShnMLEDl0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HeIN1430NPldo9IoyoVOWq2xXbHHQ4jEYE1C+HBnQKN6eTQX5HnMcfAj4aIl3GnaJLHNRSRn4wc34vag3qLTGiv+qVbpaaAr0McDXWPysARLQBmgVsCKfUX2oN9cFX7jp2M6ifRFyl8DeghspEALF5q8oNGuPWLk4uTqiCOHbsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=o1345l8G; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Ya793UL1t6ZXjE9Jutk32ViGQVOdRhEUj5I2c8rJ+v4=; b=o1345l8GjSsxF78GHz7VRDhwD1
+	i+YJDPWDThMyKLUKfRMesM4wz2zGO72lbjlX2BvFQnTNn5+bk0uc47aPcECfvoTw6gCPxHfk/Tl25
+	h/mlFmhSLc9mhY2J/TIrMSYfD4RyLMHyeTUHWejYNVFhfy/50Z8NSHUzyxxg327j/eKI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vOdhS-00FH0H-SV; Thu, 27 Nov 2025 16:14:26 +0100
+Date: Thu, 27 Nov 2025 16:14:26 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, davem@davemloft.net,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+	Tariq Toukan <tariqt@nvidia.com>
+Subject: Re: [PATCH net-next v19 00/15] net: phy: Introduce PHY ports
+ representation
+Message-ID: <858378a8-263d-473b-8a74-e9cdc8b6e3f6@lunn.ch>
+References: <20251122124317.92346-1-maxime.chevallier@bootlin.com>
+ <20251126190035.2a4e0558@kernel.org>
+ <e4bdc937-04db-421b-bbce-e71f0466672a@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "arm64: dts: rockchip: fix audio-supply for Rock
- Pi 4"
-To: Quentin Schulz <foss+kernel@0leil.net>, FUKAUMI Naoki <naoki@radxa.com>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Quentin Schulz <quentin.schulz@cherry.de>, stable@vger.kernel.org,
- Heinrich Schuchardt <xypron.glpk@gmx.de>
-References: <20251127-rock-pi-4-io-domain-apio5-v1-1-9cb92793f734@cherry.de>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20251127-rock-pi-4-io-domain-apio5-v1-1-9cb92793f734@cherry.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e4bdc937-04db-421b-bbce-e71f0466672a@bootlin.com>
 
-Hi Quentin,
+On Thu, Nov 27, 2025 at 09:43:23AM +0100, Maxime Chevallier wrote:
+> Hi Jakub,
+> 
+> On 27/11/2025 04:00, Jakub Kicinski wrote:
+> > On Sat, 22 Nov 2025 13:42:59 +0100 Maxime Chevallier wrote:
+> >> This is v19 of the phy_port work. Patches 2 and 3 lack PHY maintainers reviews.
+> >>
+> >> This v19 has no changes compared to v18, but patch 2 was rebased on top
+> >> of the recent 1.6T linkmodes.
+> >>
+> >> Thanks for everyone's patience and reviews on that work ! Now, the
+> >> usual blurb for the series description.
+> > 
+> > Hopefully we can still make v6.19, but we hooked up Claude Code review
+> > to patchwork this week, and it points out some legit issues here :(
+> > Some look transient but others are definitely legit, please look thru
+> > this:
+> > 
+> > https://netdev-ai.bots.linux.dev/ai-review.html?id=5388d317-98c9-458e-8655-d60f31112574
+> 
+> Heh this is actually fairly impressive, I'll go through that :)
 
-On 11/27/2025 3:36 PM, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
-> 
-> This reverts commit 8240e87f16d17a9592c9d67857a3dcdbcb98f10d.
-> 
-> The original commit claimed that APIO5 IO domain (supplied with
-> audio-supply) is supplied by RK808-D Buck 4 as stated in the schematics.
-> 
-> The linked PDF has two non-schematics pages where APIO5 indeed is said
-> to be 1.8V. Reading the actual schematics[1][2][3][4][5][6][7][8], this
-> is actually wrong as APIO5 is supplied VCC_3V0 which is LDO8 from
-> RK808-D and is 3.0V instead of 1.8V from vcca1v8_codec.
-> 
-> This fixes the console disappearing in U-Boot, where the Device Tree is
-> imported from the Linux kernel repo, when the IO domain driver is built,
-> as reported by Heinrich[9]. As to why this breaks the console while the
-> serial is not exposed on any of the pins on the bank in the APIO5
-> domain, that is a well-kept secret by the SoC for now.
-> 
-> The issue "fixed" by the original commit will need to be fixed another
-> way.
-> 
-> [1] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4ap/radxa_rock_4ap_v1600_schematic.pdf
-> [2] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4ap/radxa_rock_4ap_v1730_schematic.pdf
-> [3] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4bp/radxa_rock_4bp_v1600_schematic.pdf
-> [4] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4bp/radxa_rock_4bp_v1730_schematic.pdf
-> [5] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/ROCK-4-SE-V1.53-SCH.pdf
-> [6] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4b/ROCK_4B_v1.52_SCH.pdf
-> [7] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4a/ROCK_4A_V1.52_SCH.pdf
-> [8] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/rockpi4_v13_sch_20181112.pdf
-> [9] https://lore.kernel.org/u-boot/e7b7b905-4a6c-4342-b1a5-0ad32a5837cf@gmx.de/
-> 
-> Cc: stable@vger.kernel.org
-> Reported-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
-> ---
-> Note: I do not own any of the Rock Pi 4 variants so I cannot work on
-> fixing the original issue report by Alex.
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> index 046dbe3290178..fda7ea87e4efc 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> @@ -516,7 +516,7 @@ &i2s2 {
->  };
->  
->  &io_domains {
-> -	audio-supply = <&vcca1v8_codec>;
-> +	audio-supply = <&vcc_3v0>;
+Always verify what it says. This is still early testing phase, and we
+expect it gets things wrong with quite a high probability.
 
-This revert/patch seem to be identical to the following patch from a
-month ago:
+When it does get it wrong, we would appreciate feedback saying what is
+wrong. We can then ask the developer to update the rules to try to
+prevent the false positive.
 
-https://lore.kernel.org/all/20251027005220.22298-1-naoki@radxa.com/
-
-Regards,
-Jonas
-
->  	bt656-supply = <&vcc_3v0>;
->  	gpio1830-supply = <&vcc_3v0>;
->  	sdmmc-supply = <&vcc_sdio>;
-> 
-> ---
-> base-commit: 765e56e41a5af2d456ddda6cbd617b9d3295ab4e
-> change-id: 20251127-rock-pi-4-io-domain-apio5-26bc2afa8224
-> 
-> Best regards,
-
+	Andrew
 
