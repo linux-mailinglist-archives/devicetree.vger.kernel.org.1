@@ -1,98 +1,404 @@
-Return-Path: <devicetree+bounces-242626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465BDC8D46F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:07:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F52C8D481
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:10:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 185D24E35E8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:07:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 855003ABB08
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D4223372C;
-	Thu, 27 Nov 2025 08:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C3E31DDBB;
+	Thu, 27 Nov 2025 08:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Vl7ExnL0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ANCh9v21"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3274.qiye.163.com (mail-m3274.qiye.163.com [220.197.32.74])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7D531985F;
-	Thu, 27 Nov 2025 08:07:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.74
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B231E1C84D7;
+	Thu, 27 Nov 2025 08:10:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764230862; cv=none; b=Vyw/YBY8ZqNIrDxetUTuuFIRP29kpl+3w7pZ8BpmxabORHnPa8sSNmwFzqvrkXbAJ3gI97HT014ZVXNNC73AQd8+2nYLJ2uYfWhbSfMswnjt4OkuwWqYJC9BGKG63kPQtR9oh4tynYQuXpeW/7HwrqaC6b40xAbbRQSeALi0+cw=
+	t=1764231010; cv=none; b=NH9LSZS4/FFaLIFz9PLjmf0aYE1eOiCxSHvXDh5asiutIloLHMaL4j3XStxrI6LfPuIcCwDsS17REymnqpX8jPdAZrX+T2s8MGJVumVZlgyVtvseyKrFXcvpWGq3ydRq/z5IKhuE7BHO/XxzQqWA5tSaTGsHTHpmho7jK+6tf4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764230862; c=relaxed/simple;
-	bh=nf6fxmWmCJCzyXYRt1QH2rnmEZB5RFiqYgs0IKHWgwc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U7/HTZb3YOBYAeXkrd0xHLKT9pxcj0oVrHPHgr9iBJ4/nWdncpZe4yyek4DJVsnZ9zb+8fGfA3R6gdFjipAPLOti58eMsxUwkT/BZvBtqVvhCFQGugcqCvDX9jtNgbvsgZKT4JU3bNd7EG94IK8G8PFw8RYrOA05tvdO6uTrqw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Vl7ExnL0; arc=none smtp.client-ip=220.197.32.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2b1921d28;
-	Thu, 27 Nov 2025 16:02:21 +0800 (GMT+08:00)
-Message-ID: <324ba201-8cfb-4a7c-87c8-366f657ffd8a@rock-chips.com>
-Date: Thu, 27 Nov 2025 16:02:20 +0800
+	s=arc-20240116; t=1764231010; c=relaxed/simple;
+	bh=PdrV2s211vzsOKAkVUJkuhuqZI/NLZfBDOnRCXc94H8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q3QpZtzw8yarfWjygzIYWXWQ0ru4t5kWXlr5Pn6apqIkpazes02KJXBIXmQIyaZBQGCPa3vNR/eOm5TmeWpLOVVnijpOZDEhoJ7TkTOCdkb0bGAtxqxqC1OUlZA1E3j8wolqsyTSbGVDD300mvikdiaOg+XY9O8FpxGk2ZsY/B0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ANCh9v21; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BD7DC4CEF8;
+	Thu, 27 Nov 2025 08:10:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764231010;
+	bh=PdrV2s211vzsOKAkVUJkuhuqZI/NLZfBDOnRCXc94H8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ANCh9v21kSrU7qAWFhYhC/uM4h4IB+EBTeT1eADxILm5UbTYQ6H5OPw4fcR50vQ4O
+	 EXldBMkBNLFvn65r8swmaAkLL3r43LwthtavXFU0u5sRF1x70th9yYLbRCH8p9/z3L
+	 El4Vn9SuhqQpo65+kEI04lIuyq/8JnvCo1iP1KhGoHhFanz0HkVLhI5Wi/20Q/VCCN
+	 71w1i99WeoaFR9v0tRrBrUq+pwFNTQnv+Ch2+yquMtsjPDgZ7m3kam/p1LzVrvgnvv
+	 vtsa2FzWEFb3sCA3i+XyOFrXQ1mCnPKglxZrjracYJ8kEj9waeKBHPdVXYAjQztVNj
+	 2doO4IpWrd4Sg==
+Date: Thu, 27 Nov 2025 09:10:08 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>, 
+	Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	jeyaprakash.soundrapandian@oss.qualcomm.com, Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
+Subject: Re: [PATCH 2/7] media: dt-bindings: Add CAMSS device for SM8750
+Message-ID: <20251127-smart-tuatara-of-downpour-88c16d@kuoka>
+References: <20251126-add-support-for-camss-on-sm8750-v1-0-646fee2eb720@oss.qualcomm.com>
+ <20251126-add-support-for-camss-on-sm8750-v1-2-646fee2eb720@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iommu: rockchip: Add support for
- multiple interface clocks
-To: Krzysztof Kozlowski <krzk@kernel.org>, Chaoyi Chen <kernel@airkyi.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251126083345.88-1-kernel@airkyi.com>
- <20251126083345.88-2-kernel@airkyi.com>
- <20251127-enigmatic-faithful-viper-baefa2@kuoka>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20251127-enigmatic-faithful-viper-baefa2@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9ac455afef03abkunm152125166ae01b
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh5CSlZMHR1CGhhCTE0ZQxpWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=Vl7ExnL0xwkuLXb9VOoyo6qNANWdAmo/wYjgMpjdol9LR0oDRuJIwvUB+uCSp3LmuwKg8GUhDBBFhdwxkt5Ndf2jTHRZsjhN/+N8p3l5sbNwtWGCwWc8tecJo5tKGPPmsCnMSyjCX65Uqrnik2BFx57hgN9yLvkLNU4wCozEvyY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=1LYx8D2nnDemgXO9g6TLvymKor13ip90yPxjnDbRoRs=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251126-add-support-for-camss-on-sm8750-v1-2-646fee2eb720@oss.qualcomm.com>
 
-On 11/27/2025 3:49 PM, Krzysztof Kozlowski wrote:
-> On Wed, Nov 26, 2025 at 04:33:44PM +0800, Chaoyi Chen wrote:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>
->> The iommu found on RK3576 NPU/RKVDEC may contains more than one
->> interface clock.
-> 
-> So you need to restrict this per each variant. See writign schema doc in
-> DT dir.
+On Wed, Nov 26, 2025 at 01:38:35AM -0800, Hangxiang Ma wrote:
+> Add the compatible string "qcom,sm8750-camss" to support the Camera
 
-Oh, I will rewrite it in v2. Thank you.
+s/to support the/for the/
 
+Bindings do not support hardware.
 
+> Subsystem (CAMSS) on the Qualcomm SM8750 platform.
 > 
-> Best regards,
-> Krzysztof
+> The SM8750 platform provides:
+> - 3 x VFE, 5 RDI per VFE
+> - 2 x VFE Lite, 4 RDI per VFE Lite
+> - 3 x CSID
+> - 2 x CSID Lite
+> - 6 x CSIPHY
+> - 2 x ICP
+> - 1 x IPE
+> - 2 x JPEG DMA & Downscaler
+> - 2 x JPEG Encoder
+> - 1 x OFE
+> - 5 x RT CDM
+> - 3 x TPG
 > 
+> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+> ---
+>  .../bindings/media/qcom,sm8750-camss.yaml          | 664 +++++++++++++++++++++
+>  1 file changed, 664 insertions(+)
 > 
-> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8750-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8750-camss.yaml
+> new file mode 100644
+> index 000000000000..6b2b0b5a7e19
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,sm8750-camss.yaml
+> @@ -0,0 +1,664 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,sm8750-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SM8750 Camera Subsystem (CAMSS)
+> +
+> +maintainers:
+> +  - Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+> +
+> +description:
+> +  This binding describes the camera subsystem hardware found on SM8750 Qualcomm
 
--- 
-Best, 
-Chaoyi
+s/This binding ..../SM8750 CAMSS (Camera Subsystem) is foo bar..../
+
+or any other form which will describe the hardware. There is no point to
+say that binding describes hardware. It cannot describe anything else.
+
+> +  SoCs. It includes submodules such as CSIPHY (CSI Physical layer) and CSID
+> +  (CSI Decoder), which comply with the MIPI CSI2 protocol.
+> +
+> +  The subsystem also integrates a set of real-time image processing engines and
+> +  their associated configuration modules, as well as non-real-time engines.
+> +
+> +  Additionally, it encompasses a test pattern generator (TPG) submodule.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm8750-camss
+> +
+> +  reg:
+> +    items:
+> +      - description: Registers for CSID 0
+> +      - description: Registers for CSID 1
+> +      - description: Registers for CSID 2
+> +      - description: Registers for CSID Lite 0
+> +      - description: Registers for CSID Lite 1
+> +      - description: Registers for CSIPHY 0
+> +      - description: Registers for CSIPHY 1
+> +      - description: Registers for CSIPHY 2
+> +      - description: Registers for CSIPHY 3
+> +      - description: Registers for CSIPHY 4
+> +      - description: Registers for CSIPHY 5
+> +      - description: Registers for VFE (Video Front End) 0
+> +      - description: Registers for VFE 1
+> +      - description: Registers for VFE 2
+> +      - description: Registers for VFE Lite 0
+> +      - description: Registers for VFE Lite 1
+> +      - description: Registers for ICP (Imaging Control Processor) 0
+> +      - description: Registers for ICP SYS 0
+> +      - description: Registers for ICP 1
+> +      - description: Registers for ICP SYS 1
+> +      - description: Registers for IPE (Image Processing Engine)
+> +      - description: Registers for JPEG DMA & Downscaler 0
+> +      - description: Registers for JPEG Encoder 0
+> +      - description: Registers for JPEG DMA & Downscaler 1
+> +      - description: Registers for JPEG Encoder 1
+> +      - description: Registers for OFE (Offline Front End)
+> +      - description: Registers for RT CDM (Camera Data Mover) 0
+> +      - description: Registers for RT CDM 1
+> +      - description: Registers for RT CDM 2
+> +      - description: Registers for RT CDM 3
+> +      - description: Registers for RT CDM 4
+> +      - description: Registers for TPG 0
+> +      - description: Registers for TPG 1
+> +      - description: Registers for TPG 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite0
+> +      - const: csid_lite1
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: csiphy4
+> +      - const: csiphy5
+
+I had impression there were talks and plans to split CSI PHY out of
+camss. Some other patches got blocked by this, so unfortunately this as
+well. Your cover letter does not answer on this, so unfortuntaly this
+concludes the review.
+
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe2
+> +      - const: vfe_lite0
+> +      - const: vfe_lite1
+> +      - const: icp0
+> +      - const: icp0_sys
+> +      - const: icp1
+> +      - const: icp1_sys
+> +      - const: ipe
+> +      - const: jpeg_dma0
+> +      - const: jpeg_enc0
+> +      - const: jpeg_dma1
+> +      - const: jpeg_enc1
+> +      - const: ofe
+> +      - const: rt_cdm0
+> +      - const: rt_cdm1
+> +      - const: rt_cdm2
+> +      - const: rt_cdm3
+> +      - const: rt_cdm4
+> +      - const: tpg0
+> +      - const: tpg1
+> +      - const: tpg2
+> +
+> +  clocks:
+> +    maxItems: 61
+> +
+> +  clock-names:
+> +    items:
+> +      - const: camnoc_nrt_axi
+> +      - const: camnoc_rt_axi
+> +      - const: camnoc_rt_vfe0
+> +      - const: camnoc_rt_vfe1
+> +      - const: camnoc_rt_vfe2
+> +      - const: camnoc_rt_vfe_lite
+> +      - const: cam_top_ahb
+
+cpas_ahb?
+
+> +      - const: cam_top_fast_ahb
+
+Isn't this cpas_fast_ahb? Why every schema comes with its own naming...
+
+> +      - const: csid
+> +      - const: csid_csiphy_rx
+> +      - const: csiphy0
+> +      - const: csiphy0_timer
+> +      - const: csiphy1
+> +      - const: csiphy1_timer
+> +      - const: csiphy2
+> +      - const: csiphy2_timer
+> +      - const: csiphy3
+> +      - const: csiphy3_timer
+> +      - const: csiphy4
+> +      - const: csiphy4_timer
+> +      - const: csiphy5
+> +      - const: csiphy5_timer
+> +      - const: gcc_hf_axi
+
+Look at previous generation how this is called: gcc_axi_hf. Use that
+name.
+
+> +      - const: vfe0
+> +      - const: vfe0_fast_ahb
+> +      - const: vfe1
+> +      - const: vfe1_fast_ahb
+> +      - const: vfe2
+> +      - const: vfe2_fast_ahb
+> +      - const: vfe_lite
+> +      - const: vfe_lite_ahb
+> +      - const: vfe_lite_cphy_rx
+> +      - const: vfe_lite_csid
+> +      - const: qdss_debug_xo
+> +      - const: camnoc_ipe_nps
+> +      - const: camnoc_ofe
+> +      - const: gcc_sf_axi
+> +      - const: icp0
+> +      - const: icp0_ahb
+> +      - const: icp1
+> +      - const: icp1_ahb
+> +      - const: ipe_nps
+> +      - const: ipe_nps_ahb
+> +      - const: ipe_nps_fast_ahb
+> +      - const: ipe_pps
+> +      - const: ipe_pps_fast_ahb
+> +      - const: jpeg0
+> +      - const: jpeg1
+> +      - const: ofe_ahb
+> +      - const: ofe_anchor
+> +      - const: ofe_anchor_fast_ahb
+> +      - const: ofe_hdr
+> +      - const: ofe_hdr_fast_ahb
+> +      - const: ofe_main
+> +      - const: ofe_main_fast_ahb
+> +      - const: vfe0_bayer
+> +      - const: vfe0_bayer_fast_ahb
+> +      - const: vfe1_bayer
+> +      - const: vfe1_bayer_fast_ahb
+> +      - const: vfe2_bayer
+> +      - const: vfe2_bayer_fast_ahb
+> +
+> +  interrupts:
+> +    maxItems: 32
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite0
+> +      - const: csid_lite1
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: csiphy4
+> +      - const: csiphy5
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe2
+> +      - const: vfe_lite0
+> +      - const: vfe_lite1
+> +      - const: camnoc_nrt
+> +      - const: camnoc_rt
+> +      - const: icp0
+> +      - const: icp1
+> +      - const: jpeg_dma0
+> +      - const: jpeg_enc0
+> +      - const: jpeg_dma1
+> +      - const: jpeg_enc1
+> +      - const: rt_cdm0
+> +      - const: rt_cdm1
+> +      - const: rt_cdm2
+> +      - const: rt_cdm3
+> +      - const: rt_cdm4
+> +      - const: tpg0
+> +      - const: tpg1
+> +      - const: tpg2
+> +
+> +  interconnects:
+> +    maxItems: 4
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: ahb
+> +      - const: hf_mnoc
+> +      - const: sf_icp_mnoc
+> +      - const: sf_mnoc
+
+Which previous generation you used as ordering style? X1E has it
+different.
+
+> +
+> +  iommus:
+> +    items:
+> +      - description: VFE non-protected stream
+> +      - description: ICP0 shared stream
+> +      - description: ICP1 shared stream
+> +      - description: IPE CDM non-protected stream
+> +      - description: IPE non-protected stream
+> +      - description: JPEG non-protected stream
+> +      - description: OFE CDM non-protected stream
+> +      - description: OFE non-protected stream
+> +      - description: VFE / VFE Lite CDM non-protected stream
+> +
+> +  power-domains:
+> +    items:
+> +      - description:
+> +          VFE0 GDSC - Global Distributed Switch Controller for VFE0.
+> +      - description:
+> +          VFE1 GDSC - Global Distributed Switch Controller for VFE1.
+> +      - description:
+> +          VFE2 GDSC - Global Distributed Switch Controller for VFE2.
+> +      - description:
+> +          Titan GDSC - Global Distributed Switch Controller for the entire camss.
+> +      - description:
+> +          IPE GDSC - Global Distributed Switch Controller for IPE.
+> +      - description:
+> +          OFE GDSC - Block Global Distributed Switch Controller for OFE.
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe2
+
+Previous generations call these IFE, I already raised this and you
+changed to ife in Kaanapali. So are all future devices going to use
+rather VFE name?
+
+> +      - const: top
+> +      - const: ipe
+> +      - const: ofe
+> +
+> +  vdd-csiphy0-0p88-supply:
+
+88->8, so: vdd-csiphy0-0p8-supply:
+
+Same in other places. This is how it is called for every binding.
+
+> +    description:
+> +      Phandle to a 0.88V regulator supply to CSIPHY0 core block.
+> +
+> +  vdd-csiphy0-1p2-supply:
+> +    description:
+> +      Phandle to a 1.2V regulator supply to CSIPHY0 pll block.
+> +
+> +  vdd-csiphy1-0p88-supply:
+> +    description:
+> +      Phandle to a 0.88V regulator supply to CSIPHY1 core block.
+
+Best regards,
+Krzysztof
+
 
