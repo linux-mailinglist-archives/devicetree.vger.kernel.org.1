@@ -1,335 +1,83 @@
-Return-Path: <devicetree+bounces-242622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C973C8D2E0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:48:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A09AFC8D3DC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:53:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CC53E35043A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:47:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C26CE34EFD4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43926322DD4;
-	Thu, 27 Nov 2025 07:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010E131E11F;
+	Thu, 27 Nov 2025 07:48:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nSmq4RHR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ERnlZ02D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D17321437
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 07:46:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F6E32E727;
+	Thu, 27 Nov 2025 07:48:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764229577; cv=none; b=Qg/vx1uwvR1j5pYKlcztMzdxDaHJr9DMaspt3nLK4Og95co880siCRXAQ0swA4k2kFJGNpxmNH0t5JRcgS+g4t83oz77a2sJVyHAA5ZBqfuplS93TRoMwArlLnp3vGXHFyl6aV2uAoPu5+oBLdo8IlzphtayrZ3f0TAr+hMbr1k=
+	t=1764229690; cv=none; b=tqIh7O17a2U51v/jo9spb1D2ukOku2hgqW2U1yO0pqvNEMi8YYTV2f5kyDcR4g8IYf6Bj0XP6yH28cAIWPcauPFQ9VznmGPD0RJPxvQExjDlQFUApDMXYPpWUS1768mgTWANhyZU0uH4IjRVeR+ZEUoic2EonOgafwX/yLHjUFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764229577; c=relaxed/simple;
-	bh=eixrv2CdiGHk1MmiwyukM55rvIC4y05XI7ZWqeHAQvk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Cdx7ZwWlCuAIv6EMN3ZxYsjja/ryLl/sFdYOI3z/aHim1U44Hctl7v2bZapF/E7Rm2ZpQyhDT8pX+ddvDzfwuYAw1Z2weHj4TgpN41Z8p1Wg3HoDuVVoVqdakJAV82D887GtQznX7o6imDevbd2ixRlACT2ZbpNMiLjwMqfFvEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nSmq4RHR; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-595825c8eb3so558116e87.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Nov 2025 23:46:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764229572; x=1764834372; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hnj14zijJRhbSEOBE/unb9XqHQn52yQ1cvvxZ0DFyqE=;
-        b=nSmq4RHRUsjIsmho2ujm1TeyNB0Mfs92BmkhKmaKjrxY5Hxp3Pg34YrahjAlDnNN1/
-         dG7ktJFimwoUG8rq7oWKmVvhI396ad68pO1UziJ/QDZ5I+lhAk97mnZUmgPiGd2K/1Uf
-         oL02pjbheZoUh5e94mnbVCNR9yIavH0WGqyfk70pxPYI0H+xt0GCB7URFrtVWqRke/0P
-         5NlO6t4H97b4q+8GDUZxBg+QMol4YtasALG9EP8IURnDt2rw8/CoEe0NaDCpLQP/vTMb
-         SbKWw+ebzNOCObefJMkJIqWC097X0J+M3tXPuyEcfocyAjsp/85bzMRwSMI/GD7YglER
-         30Hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764229572; x=1764834372;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Hnj14zijJRhbSEOBE/unb9XqHQn52yQ1cvvxZ0DFyqE=;
-        b=TSvjH5gZkHbthSH0FXNzkKWTijIxsEEYuo0Ixbi/qwGmy1qMt7C5/hAyuk0tGsTev3
-         HOIMx8dSkcS952L9EE8fAByXq2o9EKG39LDRcvOn5WYGlO4Queg2tRIGj1EP5g/xlUsx
-         kejV4GrNOwvnKnaT0cvVFIEvxlgN0RT9r5oyF3hjFCQuLeZygxiRAu4Gr+BtPunPSzL/
-         9zcaikmlur3PQyvNoe2dPXlSYNQMle/Zm7dlfare6kQq7yYvIuwD4RBB0fV4O2Lq54KV
-         bbsuKQdLyVUDpFWxLEDcU6K5d0whcK0OfuqcaBCUKNWvWKwx3T+vTzyTQSZoG37BlaM0
-         RZUg==
-X-Forwarded-Encrypted: i=1; AJvYcCVpghNlSqQp8DhrWVFCCu10zZ2wEJgZWN9JjTmicbH3prCL4es3fh4WZoShsH6u/WIeT135D4NQ6obE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6eym7+X+L5SacYa7Qj+4pCysRPSnCpHd03vBLdMdUEqB9wp/y
-	X4o3XLnMQsO8QZT6Pei5ZaBRtjS+fwCKXkofh7pZRQmwigV+7dM2aZ/v
-X-Gm-Gg: ASbGncvbDzoI3yXpeFs8uy4x8NDj86hh2Cf8lMdKpmwwQ81CJtLThg8+lxRqrGl3RRG
-	MaDUUYtrdZtGxlUtPecn+2QpXzRksxv3gcQGbkdIneObSiN023zT/OBlcYEGS8FSPRS4fTxIWe9
-	oxFpCxXW+g4m47pO4dsgLUbi90d983vAZxImYyc2W3VRnwiLXiRtnHrdHEDFqnH6ZEA5o7Ejcyp
-	ZlSOHRAf+hhPlfbnqe8ePK0RtTVsMimynNHFmi5CyTpTEndERklZUd9zEUJle+DH7LROZbzOPsV
-	LdkPZCdBxhDHHXJsDJiE/5IvsvuJCFLFAlhHI5E8uincwcyFBK9fupzfOdbOBwQn9QntTYnAnAE
-	8U+1SxtCynpQvA9PWIPWS0bBB18k5J6Pki1458v5TC96DprJUFWGqjCR50DVbiV6aNkqnL73Ecc
-	T49xKj6yH8+g7viTfEsBbsM41sGa2e89tWxGjjXfikcTIYIjHvaf5CrvMwVsCaUmJQl6x5
-X-Google-Smtp-Source: AGHT+IE0AX+RugWE0+4LM7mYSSpRxls5r75Ssa4ZNDWg6K4RRVvhPkZhmvV5UTirnjSMOo+4ntezOw==
-X-Received: by 2002:a05:6512:b17:b0:595:7854:af7c with SMTP id 2adb3069b0e04-596b5277bfemr3434647e87.24.1764229571533;
-        Wed, 26 Nov 2025 23:46:11 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-596bf8a7cffsm202938e87.18.2025.11.26.23.46.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Nov 2025 23:46:10 -0800 (PST)
-Message-ID: <01285891-a73f-4916-8c5a-ef187c676edd@gmail.com>
-Date: Thu, 27 Nov 2025 09:46:09 +0200
+	s=arc-20240116; t=1764229690; c=relaxed/simple;
+	bh=/Qr2YmhnCABhQkXWrs0mkP1C3iyMiGCgJI+FA1RUxxg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bo0nQ1cMty4DEojH9yF07+J0d/ff0kXr9d0QF0o5vJ7sjBFQr52sHpAR9WGYNhx+F7f725qkBKDYmyb8tcRfzQZFa5S+C8t0pknXLgpu3olD7kN2oyaDP1Gg3l98j2tLjTPcZmLH5zGNc52PL5SsaSJZPGfQy/EFlTtJB3kQJ3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ERnlZ02D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC2A6C4CEF8;
+	Thu, 27 Nov 2025 07:48:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764229688;
+	bh=/Qr2YmhnCABhQkXWrs0mkP1C3iyMiGCgJI+FA1RUxxg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ERnlZ02DZtcomfDUwdOPNDbq2+IAQhnC5+D+aG07Pst/ssaq5yf4iwefopb2l1IYJ
+	 LRRo71fdopoXg+6DbBz3PQ2efaOJC81Z4Hr+PQYVR5FFANJ1TgEbUvd8herlOwRhjW
+	 tS5te/acaTNLUwdANynhx+0gLDHfTe6+dxUWPl+GorMuDaqJnI+fFJ1tZMjA8UNk/z
+	 KzC3um+Fzuq8xMV1+UxvkFRuROQGRucG9d+Sl5XGVLaxLP3iQ9ngPkMl8JC7x+qdyK
+	 /rp7inSy0f4gvHMqHVBCqkAsmEaxu87PEXUxdlUaDNOLJEBN8Qwzu9Y30iDzx+UEnr
+	 15sz9WYYaGURg==
+Date: Thu, 27 Nov 2025 08:48:05 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Vinod Koul <vkoul@kernel.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Niravkumar L Rabara <niravkumar.l.rabara@intel.com>, 
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mtd@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: mtd: cdns,hp-nfc: Add dma-coherent
+ property
+Message-ID: <20251127-logical-gerbil-of-destiny-bd6d4f@kuoka>
+References: <cover.1764143105.git.khairul.anuar.romli@altera.com>
+ <af528a83b4749fb3e6062bbc75bcb4fd5a6fec23.1764143105.git.khairul.anuar.romli@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 08/16] mfd: bd71828: Support ROHM BD72720
-To: Lee Jones <lee@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
-References: <cover.1763625920.git.mazziesaccount@gmail.com>
- <ffdc1c2f380959c792ad39817ba5e9cf4bbc1131.1763625920.git.mazziesaccount@gmail.com>
- <20251126142809.GD3070764@google.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20251126142809.GD3070764@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <af528a83b4749fb3e6062bbc75bcb4fd5a6fec23.1764143105.git.khairul.anuar.romli@altera.com>
 
-On 26/11/2025 16:28, Lee Jones wrote:
-> On Thu, 20 Nov 2025, Matti Vaittinen wrote:
-> 
->> From: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> The ROHM BD72720 is a power management IC which continues the BD71828
->> family of PMICs. Similarly to the BD71815 and BD71828, the BD72720
->> integrates regulators, charger, RTC, clock gate and GPIOs.
->>
->> The main difference to the earlier PMICs is that the BD72720 has two
->> different I2C slave addresses. In addition to the registers behind the
->> 'main I2C address', most of the charger (and to some extent LED) control
->> is done via registers behind a 'secondary I2C slave address', 0x4c.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> ---
->> Revision history:
->>   v2 =>:
->>   - no changes
->>
->>   RFCv1 => v2: (Mostly addressed comments from Lee and Andreas)
->>   - Use stacked regmaps to avoid platform data and the tango with
->>     multiple regmaps in the power-supply driver
->>   - Use regmap_reg_range()
->>   - make it clear bd72720_irq_type_base is an array
->>   - tab-out definitions in the bd72720 header
->>   - minor styling
->>
->> Note: This patch depends on the series: "power: supply: add charger for
->> BD71828" by Andreas:
->> https://lore.kernel.org/all/20250918-bd71828-charger-v5-0-851164839c28@kemnade.info/
->>
->> There are some new variants being planned. Most notably, the BD73900
->> should be almost identical to the BD72720 - for everything else except
->> the charger block.
->> ---
->>   drivers/mfd/Kconfig              |  18 +-
->>   drivers/mfd/rohm-bd71828.c       | 488 +++++++++++++++++++++++-
->>   include/linux/mfd/rohm-bd72720.h | 634 +++++++++++++++++++++++++++++++
->>   include/linux/mfd/rohm-generic.h |   1 +
->>   4 files changed, 1126 insertions(+), 15 deletions(-)
->>   create mode 100644 include/linux/mfd/rohm-bd72720.h
+On Wed, Nov 26, 2025 at 04:06:22PM +0800, Khairul Anuar Romli wrote:
+> The Cadence HP NAND Flash Controller on Agilex5 device performs DMA
+> transactions through a coherent interconnect. dma-coherent property
+> presents in device tree will allow the kernel=E2=80=99s DMA subsystem
+> controller=E2=80=99s to performs DMA transaction in dma coherent mode.
 
-// snip
+Last sentence is redundant. You say basically "dma-coherent means
+dma coherent". Write informative commit msgs, so something which is not
+obvious, e.g. why this is dma coherent NOW but wasn't before?
 
->> diff --git a/drivers/mfd/rohm-bd71828.c b/drivers/mfd/rohm-bd71828.c
->> index 2a43005b67ee..2e546aa60ffd 100644
->> --- a/drivers/mfd/rohm-bd71828.c
->> +++ b/drivers/mfd/rohm-bd71828.c
->> @@ -2,7 +2,7 @@
->>   //
->>   // Copyright (C) 2019 ROHM Semiconductors
->>   //
->> -// ROHM BD71828/BD71815 PMIC driver
->> +// ROHM BD718[15/28/79] and BD72720 PMIC driver
-> 
-> Looks like this header format slipped in.
-> 
-> I would appreciate a follow-up patch to change it to standard C
-> multi-line format (except the SPDX line).
+Best regards,
+Krzysztof
 
-Sure.
-
-// snip
-
->>   
->> +static int regmap_write_wrapper(void *context, unsigned int reg, unsigned int val)
->> +{
->> +	struct bd72720_regmaps *maps = context;
->> +
->> +	if (reg < 0x100)
-> 
-> Define this to something human readable please.
-> 
-> Some kind of PAGE or BOUNDARY.  Perhaps something better.
-
-I will use 'BD72720_SECONDARY_I2C_REG_OFFSET'. A tad long, but it's not 
-used on a long lines.
-
-> 
->> +		return regmap_write(maps->map1_4b, reg, val);
->> +
->> +	reg = BD72720_REG_UNWRAP(reg);
->> +
->> +	return regmap_write(maps->map2_4c, reg, val);
->> +}
-
-// snip
-
-> 
->> +		return (struct regmap *)secondary_i2c;
-> 
-> *shudders* -- that's a hack, right!
-> 
-> /me does some grepping around ...
-> 
-> Shouldn't this be:
-> 
-> 		return ERR_CAST(secondary_i2c);
-
-I didn't know about the ERR_CAST(). Thanks for going the extra mile and 
-looking
-
-> 
->> +	}
-
-//snip
-
->> diff --git a/include/linux/mfd/rohm-bd72720.h b/include/linux/mfd/rohm-bd72720.h
->> new file mode 100644
->> index 000000000000..42fcf8f81b2f
->> --- /dev/null
->> +++ b/include/linux/mfd/rohm-bd72720.h
->> @@ -0,0 +1,634 @@
->> +/* SPDX-License-Identifier: GPL-2.0-or-later */
->> +/*
->> + * Copyright 2024 ROHM Semiconductors.
-> 
-> Still out of date.
-
-Ah. Indeed. Thanks.
-
->> + * Author: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
->> + */
->> +
-// snip
-
->> +
->> +/* BD72720 interrupts */
->> +#define BD72720_INT_LONGPUSH_MASK	BIT(0)
->> +#define BD72720_INT_MIDPUSH_MASK	BIT(1)
->> +#define BD72720_INT_SHORTPUSH_MASK	BIT(2)
->> +#define BD72720_INT_PUSH_MASK		BIT(3)
->> +#define BD72720_INT_HALL_DET_MASK	BIT(4)
->> +#define BD72720_INT_HALL_TGL_MASK	BIT(5)
->> +#define BD72720_INT_WDOG_MASK		BIT(6)
->> +#define BD72720_INT_SWRESET_MASK	BIT(7)
->> +#define BD72720_INT_SEQ_DONE_MASK	BIT(0)
->> +#define BD72720_INT_PGFAULT_MASK	BIT(4)
->> +#define BD72720_INT_BUCK1_DVS_MASK	BIT(0)
->> +#define BD72720_INT_BUCK2_DVS_MASK	BIT(1)
->> +#define BD72720_INT_BUCK3_DVS_MASK	BIT(2)
->> +#define BD72720_INT_BUCK4_DVS_MASK	BIT(3)
->> +#define BD72720_INT_BUCK5_DVS_MASK	BIT(4)
->> +#define BD72720_INT_BUCK6_DVS_MASK	BIT(5)
->> +#define BD72720_INT_BUCK7_DVS_MASK	BIT(6)
->> +#define BD72720_INT_BUCK8_DVS_MASK	BIT(7)
->> +#define BD72720_INT_BUCK9_DVS_MASK	BIT(0)
->> +#define BD72720_INT_BUCK10_DVS_MASK	BIT(1)
->> +#define BD72720_INT_LDO1_DVS_MASK	BIT(4)
->> +#define BD72720_INT_LDO2_DVS_MASK	BIT(5)
->> +#define BD72720_INT_LDO3_DVS_MASK	BIT(6)
->> +#define BD72720_INT_LDO4_DVS_MASK	BIT(7)
->> +#define BD72720_INT_VBUS_RMV_MASK	BIT(0)
->> +#define BD72720_INT_VBUS_DET_MASK	BIT(1)
->> +#define BD72720_INT_VBUS_MON_RES_MASK	BIT(2)
->> +#define BD72720_INT_VBUS_MON_DET_MASK	BIT(3)
->> +#define BD72720_INT_VSYS_MON_RES_MASK	BIT(0)
->> +#define BD72720_INT_VSYS_MON_DET_MASK	BIT(1)
->> +#define BD72720_INT_VSYS_UV_RES_MASK	BIT(2)
->> +#define BD72720_INT_VSYS_UV_DET_MASK	BIT(3)
->> +#define BD72720_INT_VSYS_LO_RES_MASK	BIT(4)
->> +#define BD72720_INT_VSYS_LO_DET_MASK	BIT(5)
->> +#define BD72720_INT_VSYS_OV_RES_MASK	BIT(6)
->> +#define BD72720_INT_VSYS_OV_DET_MASK	BIT(7)
->> +#define BD72720_INT_BAT_ILIM_MASK	BIT(0)
->> +#define BD72720_INT_CHG_DONE_MASK	BIT(1)
->> +#define BD72720_INT_EXTEMP_TOUT_MASK	BIT(2)
->> +#define BD72720_INT_CHG_WDT_EXP_MASK	BIT(3)
->> +#define BD72720_INT_BAT_MNT_OUT_MASK	BIT(4)
->> +#define BD72720_INT_BAT_MNT_IN_MASK	BIT(5)
->> +#define BD72720_INT_CHG_TRNS_MASK	BIT(7)
->> +#define BD72720_INT_VBAT_MON_RES_MASK	BIT(0)
->> +#define BD72720_INT_VBAT_MON_DET_MASK	BIT(1)
->> +#define BD72720_INT_VBAT_SHT_RES_MASK	BIT(2)
->> +#define BD72720_INT_VBAT_SHT_DET_MASK	BIT(3)
->> +#define BD72720_INT_VBAT_LO_RES_MASK	BIT(4)
->> +#define BD72720_INT_VBAT_LO_DET_MASK	BIT(5)
->> +#define BD72720_INT_VBAT_OV_RES_MASK	BIT(6)
->> +#define BD72720_INT_VBAT_OV_DET_MASK	BIT(7)
->> +#define BD72720_INT_BAT_RMV_MASK	BIT(0)
->> +#define BD72720_INT_BAT_DET_MASK	BIT(1)
->> +#define BD72720_INT_DBAT_DET_MASK	BIT(2)
->> +#define BD72720_INT_BAT_TEMP_TRNS_MASK	BIT(3)
->> +#define BD72720_INT_LOBTMP_RES_MASK	BIT(4)
->> +#define BD72720_INT_LOBTMP_DET_MASK	BIT(5)
->> +#define BD72720_INT_OVBTMP_RES_MASK	BIT(6)
->> +#define BD72720_INT_OVBTMP_DET_MASK	BIT(7)
->> +#define BD72720_INT_OCUR1_RES_MASK	BIT(0)
->> +#define BD72720_INT_OCUR1_DET_MASK	BIT(1)
->> +#define BD72720_INT_OCUR2_RES_MASK	BIT(2)
->> +#define BD72720_INT_OCUR2_DET_MASK	BIT(3)
->> +#define BD72720_INT_OCUR3_RES_MASK	BIT(4)
->> +#define BD72720_INT_OCUR3_DET_MASK	BIT(5)
->> +#define BD72720_INT_CC_MON1_DET_MASK	BIT(0)
->> +#define BD72720_INT_CC_MON2_DET_MASK	BIT(1)
->> +#define BD72720_INT_CC_MON3_DET_MASK	BIT(2)
->> +#define BD72720_INT_GPIO1_IN_MASK	BIT(4)
->> +#define BD72720_INT_GPIO2_IN_MASK	BIT(5)
->> +#define BD72720_INT_VF125_RES_MASK	BIT(0)
->> +#define BD72720_INT_VF125_DET_MASK	BIT(1)
->> +#define BD72720_INT_VF_RES_MASK		BIT(2)
->> +#define BD72720_INT_VF_DET_MASK		BIT(3)
->> +#define BD72720_INT_RTC0_MASK		BIT(4)
->> +#define BD72720_INT_RTC1_MASK		BIT(5)
->> +#define BD72720_INT_RTC2_MASK		BIT(6)
-> 
-> I'd be able to sleep better if these all lined up.
-
-Hm. I think they are when this is applied?
-
-Thanks for the review! I agree with all the comments I didn't comment 
-on. I'll prepare v6 fixing these :)
-
-Yours,
-	-- Matti
-
----
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
 
