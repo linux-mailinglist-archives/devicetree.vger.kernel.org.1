@@ -1,158 +1,233 @@
-Return-Path: <devicetree+bounces-242791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D9F9C8F0D0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 16:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3FCC8F315
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 16:14:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 029D04EEFE4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:59:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 93C674F1D83
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55163334C31;
-	Thu, 27 Nov 2025 14:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B29334C0A;
+	Thu, 27 Nov 2025 15:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cHTwg0Xa"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KsDxrTwJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D50D334C07
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 14:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B3683128A6;
+	Thu, 27 Nov 2025 15:07:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764255506; cv=none; b=YAjeLKIhXVu52G0IhTzYd3n3j+WXJjtrZw68NzlmIgchRBevZypBtGN6WhZbQaYap57VK60wAotk1m+WY03R3hxXXFswk1qHULmPN3lKgwcOkLjShjhLPOvAbhQY/RHFB9g8EQYJWScvarEKPWH7U0gC6hLfQFoyYVcNRlF/uqc=
+	t=1764256039; cv=none; b=OQkdJy6XXKvAYesWEDW4wnCO2M702y/u1tI/RFnq4GjxMfaFPp8bPKxVof3np8DojhLUcSWmklG6wRD3U1VgjdOaPiCPXm1ZUJMqurUdSKhQh15PNj6Xuj/X05PMSJfWaBvw9nWxKP8D9K09y5C1qPhi8xNs9FRiJo7u9XcBKyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764255506; c=relaxed/simple;
-	bh=EdT5rHOj/uOOThgmjWa/IHFKAYOs+mZlMeM3C+jyHaM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=txHW86loboJHhNICjliV16uC281vtEuSy2lB/xdO+GlPRjYen+I9v6xSqQo8+eLP6XBHWfu1FVr8zAQMY4Tb8EoneMs0Jor9nBZYM0k/Q56BJbUIcWVaZ9yT00ARYl9eOZtvP3UEtKmIOuUAHIt/Shc2L/HeUvAVspBUUHnTK/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cHTwg0Xa; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7aae5f2633dso1006636b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 06:58:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764255504; x=1764860304; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bshIT03RXVpYAx2QOnAzStF6XTavPN9dCPyAspH0y8k=;
-        b=cHTwg0XayGXP/cX+b7Z52pU9UljV4vwuNWArQ2Sbpx4IOEk1sszczy5msjCcnRhHNi
-         04xvHkKnkAslslaao7duIis25Ia+CL8L6eXhCo3Wuif1cAjDkReDokBXk+/BIgAot/LY
-         HVM0i6k6iWzp88Ap9rZy/yzworZQoZBHSjYYF0HR9sYcUcbSkRwejbiqaeNuRfgFQtyA
-         KBH6eGbdcXj67T0WFq74qQAL8xCN7YGfpfJEw2u7CE+h/44BfslCyjoU248NzmOoWfPi
-         CId19FpK888wwtxzs+fIDieVWDAxSKQLEcEiR/8wQWKrQJWc5Ow6IAtA/6egL2KQ8ITI
-         BWBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764255504; x=1764860304;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=bshIT03RXVpYAx2QOnAzStF6XTavPN9dCPyAspH0y8k=;
-        b=k2bVRF0VTj+KNPbyxGUY/XA0oN5WrKDlu5odBa3zjYBRNak4fi+v6MfUUETgrlSEk0
-         06imyEVZ2hdWkvqLlEA93P1xRorTfMdP7vpfGswujKyXZk922sL7Is3MF9o+qCigtifp
-         0iYnarHLp+RgEJnVr+knAuapplxZAlBdS8rF3+iomuF0StdjrA4CzemALEK8Pms+Tn8K
-         xgXYSdWlmaKV6290pBbzog3IzY+dz1ETWx987ikdt4qpEOaCYFG6njOV9LxS5PnQWBFY
-         WBX1IBWOJBTQT0FMdaSDX66o21ioljK9kKr7DfDf8du9xjSh5o/CCDXh06YFJAuiDdVe
-         JAMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWBSzkj1JUVZVsQxt1zoIVThTt51pkCtZKDrPZ0Wzhs8usGU/IOuKAJuzRcLIJ0PMArT2y3Ki+6TCo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+cBhWcAeC+Kby03qOu0dDyplPESAMVXDwoaE3Ylg3U87+CVYF
-	WV0Coh3xqN+JxoH/hTvMWM+URcnF6TZ00qrsG+OKZR+4k3+7rISkGIo6
-X-Gm-Gg: ASbGncth5o6r4mC4EF8plHF4wHRT0fYzS+t43ct4R7BEZyc851ON4Tm+jWQGI5Kddz5
-	rvmth/hKcsvWenKPbyW3vQ7W8azvBl2DmAl3NuORgW4rhzcvtnE/kGYu2llUUMdPXIYm4PbSOLn
-	xcUAd2IAt04z2fAYZoy1qqUrbsfxMqd462COfRvFRDq3oKgXgEnmacxJulVqUmSVb7QrV8lSh/h
-	UrQFIENRuaHIkzWcsoazns7lsJG0H1+JL0njDW4IweBiSYDqplliARXNSU7TsMo3GfXtigqAQSL
-	esDZn8GO/8b8OkPp1doyhitHw8tTKLqpFaMKyV9/hbOXk+J+ZFKMHQVYk4iKwmQDMSDwjph8dMf
-	kK1Ca6QYzZW4whAlanqlBNkLB6a+uWYyCQrWyiHibHBxZA8jI5zc1NDYFa2zUJydBDyHXg6hzeX
-	cpJ8BQKuOzN5FN4O4tOVujTA==
-X-Google-Smtp-Source: AGHT+IEKx5CCbH38MnNhrI6IDEmd+w6puHRkJx1sqX503mnKJpgOPtQnM7atYk4oRY+4tTRV0hoQpA==
-X-Received: by 2002:a05:6a00:2e0f:b0:7ab:3454:6f2b with SMTP id d2e1a72fcca58-7c58e113fc4mr24347692b3a.19.1764255503666;
-        Thu, 27 Nov 2025 06:58:23 -0800 (PST)
-Received: from DESKTOP-P76LG1N.lan ([42.116.199.188])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d15f177566sm2205249b3a.51.2025.11.27.06.58.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Nov 2025 06:58:22 -0800 (PST)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org
-Cc: gregkh@linuxfoundation.org,
-	pavel@kernel.org,
-	rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v18 2/3] leds: add basic support for TI/National Semiconductor LP5812 LED Driver
-Date: Thu, 27 Nov 2025 21:58:17 +0700
-Message-Id: <20251127145817.172871-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251127113213.GI3070764@google.com>
-References: <20251127113213.GI3070764@google.com>
+	s=arc-20240116; t=1764256039; c=relaxed/simple;
+	bh=NyPHAxEuBfxhiJKrWsktUqr6mdKRf3cbmidwmHAlulY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t15wy+0pnSRZ/B+lcJW6rRj9Vrd+eo/KMBluXZhg2SZ8cMWqp26Hby8fVKV9m+T+jD/07E3CNGvoK0JqHfbTUrRaXXh/7e880PGhFQfuf/CuHDO3+v0j3762zCsrI0HIND4fZjjhbeR6OYsc+rJqrC4042WsiiVRPKKzsMNQwNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KsDxrTwJ; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id C61A4C16A19;
+	Thu, 27 Nov 2025 15:06:52 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8520D6072A;
+	Thu, 27 Nov 2025 15:07:15 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EE57C102F218C;
+	Thu, 27 Nov 2025 16:06:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1764256032; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=Xb2gYHXIhVp2zaSFmlDMNszWhEx2yHpcG9wfBD9WQ6Q=;
+	b=KsDxrTwJZ35P4V4zqNgBRz6dueQQQ479lYnTv33vH6BaAZQ6mqaBR8WEopD6/WxoiDZf3C
+	Ic4RTSKoLEfjd0/q+TBQmqIrfWBRSTeCoErZlb34wHoEcX2HAzuN2RzutFpS6+d2ln9KMJ
+	TSvAsAUfwMfwSBd4rCMr2Fdi3SKnKSNaEM9vqWiV42ClnoYd2t6PVCTiOsInGdUD2yiqj4
+	ZzTUOWwdLINFYrJ9uWeuCkQFxLH7ib2+v5JAxnvTykYWonFW1xB3OWNxxohmbmwdgPC/rA
+	Ba8/f4uTLQUuaOMbgPFSeaBwbd+ExYFXfFw+9W2+71ncOaO/+QIwmKbAGZv6Rw==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Peter Rosin <peda@axentia.se>,
+ Mariel Tinaco <Mariel.Tinaco@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Kevin Tsai <ktsai@capellamicro.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Eugen Hristev <eugen.hristev@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Support Opensource <support.opensource@diasemi.com>,
+ Paul Cercueil <paul@crapouillou.net>, Iskren Chernev <me@iskren.info>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Matheus Castello <matheus@castello.eng.br>,
+ Saravanan Sekar <sravanhome@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Casey Connolly <casey.connolly@linaro.org>,
+ Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>,
+ Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Amit Kucheria <amitk@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Dixit Parmar <dixitparmar19@gmail.com>, linux-hwmon@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+Subject: Re: [PATCH v4 0/6] Add support for the LTM8054 voltage regulator
+Date: Thu, 27 Nov 2025 16:06:47 +0100
+Message-ID: <8695751.T7Z3S40VBb@fw-rgant>
+In-Reply-To: <0E900830-E248-4F0F-A048-075EAF1D2440@goldelico.com>
+References:
+ <20251124-ltm8054-driver-v4-0-107a8a814abe@bootlin.com>
+ <3021060.e9J7NaK4W3@fw-rgant>
+ <0E900830-E248-4F0F-A048-075EAF1D2440@goldelico.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="nextPart10847283.nUPlyArG6x";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu, 27 Nov 2025, Lee Jones wrote:
+--nextPart10847283.nUPlyArG6x
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: "H. Nikolaus Schaller" <hns@goldelico.com>
+Date: Thu, 27 Nov 2025 16:06:47 +0100
+Message-ID: <8695751.T7Z3S40VBb@fw-rgant>
+In-Reply-To: <0E900830-E248-4F0F-A048-075EAF1D2440@goldelico.com>
+MIME-Version: 1.0
 
-> On Wed, 26 Nov 2025, Nam Tran wrote:
+On Tuesday, 25 November 2025 11:25:24 CET H. Nikolaus Schaller wrote:
+> Hi,
 > 
-> > On Tue, 25 Nov 2025, Lee Jones wrote:
+> > Am 25.11.2025 um 09:41 schrieb Romain Gantois
+> > <romain.gantois@bootlin.com>:
 > > 
-> > > > +static ssize_t parse_drive_mode(struct lp5812_chip *chip, const char *str)
-> > > > +{
-> > > > +	int i;
-> > > > +
-> > > > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_0 = false;
-> > > > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_1 = false;
-> > > > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_2 = false;
-> > > > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_3 = false;
-> > > > +
-> > > > +	if (sysfs_streq(str, LP5812_MODE_DIRECT_NAME)) {
-> > > > +		chip->u_drive_mode.s_drive_mode.led_mode = LP5812_MODE_DIRECT_VALUE;
-> > > > +		return 0;
-> > > > +	}
-> > > > +
-> > > > +	for (i = 0; i < ARRAY_SIZE(chip_mode_map); i++) {
-> > > > +		if (!sysfs_streq(str, chip_mode_map[i].mode_name))
-> > > > +			continue;
-> > > > +
-> > > > +		chip->u_drive_mode.s_drive_mode.led_mode = chip_mode_map[i].mode;
-> > > > +		chip->u_scan_order.s_scan_order.scan_order_0 = chip_mode_map[i].scan_order_0;
-> > > > +		chip->u_scan_order.s_scan_order.scan_order_1 = chip_mode_map[i].scan_order_1;
-> > > > +		chip->u_scan_order.s_scan_order.scan_order_2 = chip_mode_map[i].scan_order_2;
-> > > > +		chip->u_scan_order.s_scan_order.scan_order_3 = chip_mode_map[i].scan_order_3;
-> > > 
-> > > Where are all of these used?
 > > 
-> > These fields are part of unions (u_drive_mode and u_scan_order).
-> > The bitfields are packed into drive_mode_val and scan_order_val, which are
-> > written to DEV_CONFIG1 and DEV_CONFIG2 in lp5812_set_drive_mode_scan_order().
+> > This is planned support for a voltage regulator chip.
 > 
-> Sure, but where.  What line of code?
+> Well, but one which is not by itself programmable. So IMHO, it does not
+> support that chip, but the circuit it is used in.
+> 
 
-These fields are used in lp5812_set_drive_mode_scan_order() when writing the
-packed register values
+The boundary is a bit blurry in this case, sure.
 
-	val = chip->u_drive_mode.drive_mode_val;
-	ret = lp5812_write(chip, LP5812_DEV_CONFIG1, val);
-	if (ret)
-		return ret;
+> > > Are you looking for a virtual "glue" driver to logically combine several
+> > > low level functions?
+> > 
+> > I'm looking for a clean userspace abstraction for this component, the low-
+> > level functions in this case are those of a voltage regulator.
+> 
+> As far as I understood it has
+> - constant voltage
+> - current can be limited
+> - it can be turned on/off
+> 
+> That means it is a fixed-regulator (for constant voltage and turn on/off)
+> and a mechanism to program the current limit (iio-dac). Both have clean
+> userspace abstraction.
+> 
+> What am I missing?
+> 
 
-	val = chip->u_scan_order.scan_order_val;
-	ret = lp5812_write(chip, LP5812_DEV_CONFIG2, val);
+In my case, the regulator has a DAC tapping into the feedback divider with 
+allows modifying the output voltage level. This isn't specific to the LTM8054 
+though, you can theoretically do this with any regulator chip that has a 
+feedback pin.
 
-This is where the bitfields set in parse_drive_mode() are used.
+...
+> The question remains if you want to solve something for a single board which
+> happens to have an LTM8054 or if you are solving a more general design
+> pattern.
+> 
+> In summary my view is that the LTM8054 is just a "fixed-regulator" which
+> gets an additional current-limiter feature by adding a DAC chip (which needs
+> a driver of course). So software control is required not by the LTM8054 but
+> by adding a DAC chip.
+> 
+> Another suggestion: what extending the "regulator-fixed", "regulator-gpio",
+> "regulator-fixed-clock" pattern by some
+> "regulator-gpio-iio-dac-current-limiter" driver to make it independent of
+> your specific chip?
+> 
+> By the way, are you aware of this feature of the regulator-gpio driver?
+> 
+> https://elixir.bootlin.com/linux/v6.18-rc7/source/drivers/regulator/gpio-reg
+> ulator.c#L97
+> 
 
-Best regards,
-Nam Tran
+That could be a preferable solution given that similar current limit and 
+output voltage limit control methods could apply to other regulator chips... 
+I'll have to think about it some more.
+
+> Just to note: I am neither maintainer nor doing any decisions on this, just
+> asking questions for curiosity and from experience and giving hints for
+> alternative approaches, where I hope they help to find the really best
+> solution.
+
+Sure, I appreciate that.
+
+Thanks,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart10847283.nUPlyArG6x
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmkoaQcACgkQKCYAIARz
+eA4wIA//cR+gzKtW78qSkS/qn3QD4fmem8sIoJemjJ96zZS/fPrrD7BVbwlzmT8Z
+PX35PtLLxRdN0CRWsdmEqAAwFLRMn0/UBGpROLNSqKZT9c3SisrVH5XlVV0s95LB
+fS6l3xzgbIjdqhGxwXgV+43B2OuuBLE9AopgYIwRunAam9+nECFHo9hU/4glxqrS
+O54WKxLhs7/BMJdpAv4T8UYjqKiC7Lvpd4oq43g64sacplSnZNv4iwqkga0oOtd8
+2IayCT5+gRm6xd9Xt/cVkQUQAFsoiieLLt87+JZP1ECtjcfwIsDiPBf49DvppELP
+SLg8qwG44QYRhfsPvdBRLFuvkmsu1rGZaBdRQZ+npfBkkwljuh6EllMbFgUOpuCR
+aFQleHJ/6naNsAZGxp4mW6x1YPwsiYeCQuQdffSq2DrTLEAnG3EV3wIB5TbMsF72
+p6glXdEj3uYECnRJ9Lql1PWO9MHGnubF2xCDqRIn7HDxq+DLmZkkZzg4c69/V1fy
+O7go8T5OfK1233Kqb1VDvY9SDRL5+nLo1tacht8yyrhq3LEUumAf7TFLXzBmN+QQ
+5TURL5uovvulw4c6SXs9sa7yriUKuayb9s5CKLsJJI4uYBt+Csyhm/fOfpuvKVm5
+Bryk0xixSfV1ekLMojoBFaS3AFNPGNCHqSmjGOEsaK8hrJ5HgkM=
+=KPmo
+-----END PGP SIGNATURE-----
+
+--nextPart10847283.nUPlyArG6x--
+
+
+
 
