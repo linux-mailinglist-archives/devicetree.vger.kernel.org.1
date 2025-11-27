@@ -1,159 +1,128 @@
-Return-Path: <devicetree+bounces-242861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED3FC902E6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 22:14:15 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE08CC90315
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 22:31:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B1F03AAA37
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 21:14:14 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4AACF34AC04
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 21:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FC6304968;
-	Thu, 27 Nov 2025 21:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE2A31D38C;
+	Thu, 27 Nov 2025 21:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="khkgOJ3j"
+	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="eiHqGIBg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5515C770FE;
-	Thu, 27 Nov 2025 21:14:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD21930148A
+	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 21:31:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764278050; cv=none; b=M4jzvk+AOKyB8+xVmO+bQTqF9PgW1FOwrgFKo1OA9f83lnNaWAmwHGuK026evj72mtDjEXIOrVIiJAFmgLl+7Fpt7hlDyPxUgNbAawN0VdCQ5Ln38+oP/9uC0NySvHzKe7cMJSUHMOQj1XNF3fNHavOUF7NVFGYsUvRMNBSqq7I=
+	t=1764279086; cv=none; b=ZL9nOhlQG39OhSNHWRT1TAG+33nWvYz6AMavD1xOd5jpiFQgIVNqMwkY05bWjRg9L6/XCz8fCWOYf9lO8wVBZCbyy7OD2RKxDhrmA/nKSHwFyETIgu6Bh6SmYNEjgPGLJgQOkqnCxgKdFQ5z+xl0YH0Y6eCXS6QNedi0IxjOGNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764278050; c=relaxed/simple;
-	bh=Fi9uBpjCD9vm8iluPdYQEZRrTQxH47uO4POYpNrObW4=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=IWU72LE3VW5wKl0TjsBgjSmJITKR9+8tAg+WddshZs4oZUlxNqyq7eaUUZvcsaUCzopisIbolI6rEmfqbiP39Soyi+Wi7zzxKc96lRJhuzNGyXWMErO33zyGbUvjwlZlPNuemZ8cRCbxpfI6Mbhr1myZOZDldyERvdc+1rmXFt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=khkgOJ3j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDA79C4CEF8;
-	Thu, 27 Nov 2025 21:14:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764278049;
-	bh=Fi9uBpjCD9vm8iluPdYQEZRrTQxH47uO4POYpNrObW4=;
-	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-	b=khkgOJ3jyY5Z1bRFubXx8+PfzwwpzTLhKmfop/KpcKgOZsNorgafnpms8HWthBlZm
-	 Qjd+fBibf2KNWHwA60kRIHSzeqjIvG22F7oj5vdloc93fv9hv4l8KaBkJrRVc+ix3A
-	 qNW9H3ZKe0qRJMBV3nBa8qM1pz0GxGYSnGlezZ1NnfqTcyE8nX44WgR2tKPkYUEgbJ
-	 3hnD1zdApuKj+qKpcUvRaPdSb99IEx4ut3J/Re5H872dPTVyRnff2sxsVeH6S+e7Jz
-	 l8F4gH+/wnKZ+XCg81W1LX+OH0VsQa/DCQaWbyYoHg+PnmOL68kDGpGTByinNHagPP
-	 od+aoTIJWdbgg==
-Date: Thu, 27 Nov 2025 14:14:03 -0700 (MST)
-From: Paul Walmsley <pjw@kernel.org>
-To: linux-riscv@lists.infradead.org
-cc: Deepak Gupta <debug@rivosinc.com>, tglx@linutronix.de, mingo@redhat.com, 
-    bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, 
-    akpm@linux-foundation.org, Liam.Howlett@oracle.com, vbabka@suse.cz, 
-    lorenzo.stoakes@oracle.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-    aou@eecs.berkeley.edu, conor@kernel.org, robh@kernel.org, 
-    krzk+dt@kernel.org, arnd@arndb.de, brauner@kernel.org, 
-    peterz@infradead.org, oleg@redhat.com, ebiederm@xmission.com, 
-    kees@kernel.org, corbet@lwn.net, shuah@kernel.org, jannh@google.com, 
-    conor+dt@kernel.org, ojeda@kernel.org, alex.gaynor@gmail.com, 
-    boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
-    a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
-    lossin@kernel.org, linux-kernel@vger.kernel.org, 
-    linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
-    devicetree@vger.kernel.org, linux-arch@vger.kernel.org, 
-    linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-    alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com, 
-    andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com, 
-    atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
-    alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
-    rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org, 
-    zong.li@sifive.com, david@redhat.com, cmirabil@redhat.com
-Subject: Re: [PATCH v23 00/28] riscv control-flow integrity for usermode
-In-Reply-To: <176423222224.2476283.17736612090314280039.git-patchwork-notify@kernel.org>
-Message-ID: <b82ffcca-3173-8c07-4a8a-c42d8d092a72@kernel.org>
-References: <20251112-v5_user_cfi_series-v23-0-b55691eacf4f@rivosinc.com> <176423222224.2476283.17736612090314280039.git-patchwork-notify@kernel.org>
+	s=arc-20240116; t=1764279086; c=relaxed/simple;
+	bh=tPW1bpPIWJ0CADx+eKJZJl6RdfM1Bd5PXpVP1HAYXR0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L5Bmvji1FXE9tR8FY50tQLIq+Mrgwk0+MOVz9cSR/k8VuPWSFLjMmS5YsG9s+nm2Qmko6he9hOKXblEZJdCooOf3KvWp91F82N4XiCZnvlwbqWHBQFNBRXhDEf9/VSQs+/UieNu3RKkPk/fBVFGWExUa7O4cg5zN2jlIxSz39+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=eiHqGIBg; arc=none smtp.client-ip=209.85.160.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-4ee0ce50b95so19681551cf.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 13:31:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek.ca; s=google; t=1764279084; x=1764883884; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b4g6GOhzvAVpoxPftm+uHcKV+iFO3W6xh3Ht/X1kJXA=;
+        b=eiHqGIBgXhG0IIinQOGzolCicP78YRV7trYhhxgAZQFUVZpIlorv8eox2wmOryCH2w
+         Kbin230/AkFczJiHSxRWr60FHH7hxPybOVfHf9Bxl2UCq+YqYR89KhlpvW4Yr36P4hp2
+         jB3XYYdqtQqeHDzVKexa/IhkOAqJ04Yi7xG8RFWAj5zzQk7MIelZDWV9tM9eNnOL4Z0x
+         YpakrnR94SHmMOcfI0AaXBfuoIyGRAOg1w4RtUNo9+Hp4p2AxGzzdNzy+grxDKbZxhQ4
+         eIhS/ZmRcI/tfKYijVsIsLT/yLO7edIfNiUbsbMZsibrrM158tfTMQaCS0O5+jZDyOJE
+         IYWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764279084; x=1764883884;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b4g6GOhzvAVpoxPftm+uHcKV+iFO3W6xh3Ht/X1kJXA=;
+        b=YAz7FvZSukVtljG37Z6/pIqIh9k5zFCfZuCEePrYuaklViQzo/pPklbB7CGcX/vZt3
+         /THPNndt/vKdOil2csMkfrX19W3HLhjtSpDXnRJXCW1r2zS+D/ZZgMANsWgI/jfhBGOi
+         XAUp5nPTLQbI7+VHSj4+xVXip94hppTG6kMVe4zxq0nmf3BwKnUtW421wa2XfTh6P6+0
+         gOWZHOKEDVCYBtksVrxI9w3Zc8JF2DWMZHPe9PkbD+DVPjbUFdsd1y7x1Q58Q2b7dtuY
+         xYBSv12Gs4XZoZ0QWS7Dm08cAL2sp4St6BK8HAYpHIVfmEEBzSVbIW86OR7vFH435UqJ
+         1dGg==
+X-Forwarded-Encrypted: i=1; AJvYcCWPbAyrK8DPDWSH7CMqy2J9mo1GK+KqZevpUg9fm2A5zeuEFvIi5vH3lgvss3OZxq2db21VHDtCS0l3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDQBDOAa4LrEANPibF0jii9x2KwsaOQXEXxW1Rp3k6mfKGuMg8
+	Y5s4TKFpOeGVCjsem7hbRmyCOHj3ZgIQLq/0d2Bfgo4BlSEwm4b1btKI0jPpHCtKhSE=
+X-Gm-Gg: ASbGncvnh2uWdWT2tG03CeLZ8jnsE3sMQdQiXG1GXvhu2Lfe0rvNHM+MQjLIZm+e3xJ
+	cZeX89WtVcIgPoxwbNCJLeEUMUfSbs9g/G0ciSZMiIdAuZAkPCCRnq7IxAA3n2npfcgIUE19ZRp
+	XOvZM34wHLyQMYT+SeGEcwY8gYBFC9Xf4SZ938kxkgrtOIOQdvAzD8Q/gHvLtcglcnIlDuymP5u
+	9AS3H4rZ5i3GEXXK3uuZQyI7MfSeusRilruyzp9CjoTtMD6YN5b3tJEsyq/m7mVRNoUp/eUoomw
+	qupc8/Ac4VxWE8BZuelQuDCfQoLOUIBslJJvwvYDNx2LbPJPfEYbdouwnOdltGPyPwP+9uYJLLF
+	rijL/rCvZmifx2WokVEuB5QrDPyB+HY7e6hNYVaXVrIhGxe5UVIEiHJolC+bTXnTyJS/3xqrIYK
+	AgA7JisKMRZvCVWBhOFiFUfl2kFhD+8bU+KYThKWVFakRXBodKsyuz4m0a5t1qB2zqeQ==
+X-Google-Smtp-Source: AGHT+IGUEdxHiyCWperhHsuDIhEO8V9sJUM1A2kjTrgtL+dCAbFKdPYVCFKjJJ08pF2S64in52/XSg==
+X-Received: by 2002:a05:622a:14ce:b0:4ee:58b:72f2 with SMTP id d75a77b69052e-4ee4b444ae0mr440157101cf.12.1764279083539;
+        Thu, 27 Nov 2025 13:31:23 -0800 (PST)
+Received: from localhost.localdomain (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4efd3449703sm14437431cf.32.2025.11.27.13.31.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Nov 2025 13:31:23 -0800 (PST)
+From: Jonathan Marek <jonathan@marek.ca>
+To: linux-arm-msm@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
+Date: Thu, 27 Nov 2025 16:29:42 -0500
+Message-ID: <20251127212943.24480-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 
-On Thu, 27 Nov 2025, patchwork-bot+linux-riscv@kernel.org wrote:
+Unlike the phone SoCs this was copied from, x1e has a 40-bit physical bus.
+The upper address space is used to support more than 32GB of memory.
 
-> This series was applied to riscv/linux.git (for-next)
-> by Paul Walmsley <pjw@kernel.org>:
-> 
+This fixes issues when DMA buffers are allocated outside the 36-bit range.
 
-[ the RISC-V CFI patch series ]
+Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> 
-> Here is the summary with links:
->   - [v23,01/28] mm: VM_SHADOW_STACK definition for riscv
->     https://git.kernel.org/riscv/c/ae8460ac9db2
->   - [v23,02/28] dt-bindings: riscv: zicfilp and zicfiss in dt-bindings (extensions.yaml)
->     https://git.kernel.org/riscv/c/b32ccfc268db
->   - [v23,03/28] riscv: zicfiss / zicfilp enumeration
->     https://git.kernel.org/riscv/c/55a811a7f304
->   - [v23,04/28] riscv: zicfiss / zicfilp extension csr and bit definitions
->     https://git.kernel.org/riscv/c/92c96b16548e
->   - [v23,05/28] riscv: usercfi state for task and save/restore of CSR_SSP on trap entry/exit
->     https://git.kernel.org/riscv/c/7720cdd21962
->   - [v23,06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ | VM_WRITE
->     https://git.kernel.org/riscv/c/e60eb198b13d
->   - [v23,07/28] riscv/mm: manufacture shadow stack pte
->     https://git.kernel.org/riscv/c/f8fcb7b5bf30
->   - [v23,08/28] riscv/mm: teach pte_mkwrite to manufacture shadow stack PTEs
->     https://git.kernel.org/riscv/c/0276a5ea1105
->   - [v23,09/28] riscv/mm: write protect and shadow stack
->     https://git.kernel.org/riscv/c/ae615676bc37
->   - [v23,10/28] riscv/mm: Implement map_shadow_stack() syscall
->     https://git.kernel.org/riscv/c/d291fd38f841
->   - [v23,11/28] riscv/shstk: If needed allocate a new shadow stack on clone
->     https://git.kernel.org/riscv/c/d209ea2fa4bb
->   - [v23,12/28] riscv: Implements arch agnostic shadow stack prctls
->     https://git.kernel.org/riscv/c/8b49f512abc2
->   - [v23,13/28] prctl: arch-agnostic prctl for indirect branch tracking
->     https://git.kernel.org/riscv/c/3363a8d1044e
->   - [v23,14/28] riscv: Implements arch agnostic indirect branch tracking prctls
->     https://git.kernel.org/riscv/c/0177891ccdb7
->   - [v23,15/28] riscv/traps: Introduce software check exception and uprobe handling
->     https://git.kernel.org/riscv/c/6f71171a7448
->   - [v23,16/28] riscv: signal: abstract header saving for setup_sigcontext
->     (no matching commit)
->   - [v23,17/28] riscv/signal: save and restore of shadow stack for signal
->     https://git.kernel.org/riscv/c/4f9da7ad3478
->   - [v23,18/28] riscv/kernel: update __show_regs to print shadow stack register
->     https://git.kernel.org/riscv/c/320c96a55d73
->   - [v23,19/28] riscv/ptrace: riscv cfi status and state via ptrace and in core files
->     https://git.kernel.org/riscv/c/7a39f89a817e
->   - [v23,20/28] riscv/hwprobe: zicfilp / zicfiss enumeration in hwprobe
->     https://git.kernel.org/riscv/c/c09b490a9267
->   - [v23,21/28] riscv: kernel command line option to opt out of user cfi
->     https://git.kernel.org/riscv/c/6e0dc40ceb45
->   - [v23,22/28] riscv: enable kernel access to shadow stack memory via FWFT sbi call
->     https://git.kernel.org/riscv/c/dfd087078357
->   - [v23,23/28] arch/riscv: compile vdso with landing pad and shadow stack note
->     https://git.kernel.org/riscv/c/2cfe57e3bd9b
->   - [v23,24/28] arch/riscv: dual vdso creation logic and select vdso based on hw
->     https://git.kernel.org/riscv/c/418316aa61e8
->   - [v23,25/28] riscv: create a config for shadow stack and landing pad instr support
->     https://git.kernel.org/riscv/c/c5f5ce714457
->   - [v23,26/28] riscv: Documentation for landing pad / indirect branch tracking
->     https://git.kernel.org/riscv/c/73d0ccec35b8
->   - [v23,27/28] riscv: Documentation for shadow stack on riscv
->     https://git.kernel.org/riscv/c/6b8214c8cbd6
->   - [v23,28/28] kselftest/riscv: kselftest for user mode cfi
->     https://git.kernel.org/riscv/c/0f226cf6026f
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index cff34d1c74b60..cd34ce5dfd63a 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -792,8 +792,8 @@ soc: soc@0 {
+ 
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-		dma-ranges = <0 0 0 0 0x10 0>;
+-		ranges = <0 0 0 0 0x10 0>;
++		dma-ranges = <0 0 0 0 0x100 0>;
++		ranges = <0 0 0 0 0x100 0>;
+ 
+ 		gcc: clock-controller@100000 {
+ 			compatible = "qcom,x1e80100-gcc";
+-- 
+2.51.0
 
-As I noted with the SSE series (before we removed it from for-next), I may 
-not ultimately send this in a PR this merge window, for several reasons.  
-The series has been around for a while, and although I know some vendors 
-have tested it privately, I'd really like to have more public testing of 
-this code, particularly on hardware emulation platforms or unreleased 
-silicon.  It would be good to see some Tested-by:s. 
-
-Thanks to everyone who has helped test this so far over the past few weeks 
-- particularly Joel Stanley of TensTorrent.
-
-
-- Paul
 
