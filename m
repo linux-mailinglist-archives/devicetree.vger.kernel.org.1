@@ -1,135 +1,106 @@
-Return-Path: <devicetree+bounces-242705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0BC5C8E0CB
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 12:29:59 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA01C8E0E6
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 12:32:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F0C73AA1FC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 11:29:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9368E34E3E9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 11:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C50DE32BF4C;
-	Thu, 27 Nov 2025 11:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53F83246EC;
+	Thu, 27 Nov 2025 11:32:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J5Evt9o+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A6OkcU2+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D2E32BF24;
-	Thu, 27 Nov 2025 11:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C101CEAA3;
+	Thu, 27 Nov 2025 11:32:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764242992; cv=none; b=g7kSNRvUcPbTcbkk8BulAJG+QGosEjn1x3aTbr0zsGcE1O67BR+XivAACdHtMMqPEEVj5qWSicb/JnPGganFDoWled6+fACp5l0mvbUQj9EYxuePwRmHFQuL1P7cyh2lkit//Tc6xuPPfo7q0HlbLYt5X5vnpJT4VbOp0UoMWtI=
+	t=1764243139; cv=none; b=f9y1ztXVO0ADFSEEuyvsIbkl7ac/qfJIEHS9yjoJPnRK57fhz9I9s6DWol/1pbhAwhnr8YpGWdus7sCJ2nECG6SFbmoMh4fjpH6NY7T+iYpsks1AM4tbndhrLBLRxnxIP5Y6eHl7zSH07aouqqRMCJA47OrVD5zFUF++mGswacY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764242992; c=relaxed/simple;
-	bh=CQgoFBd79VcsQ4RZAJQcFjQ439SnTQyomNvXL8kZETQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=lMC4ItQj31/hsypuho6/vvtM5rY5xvtqos2F3G1DiO2r6qdNb/FvU50SKSMXCb2oGNJ9hdvEyU1KwkSIsTiGR7nOvNoOIx5BgCpsx/e3EW8Q9ibMIDa+lo6BxAjllH0NKnEMadaXjU3wzJ5gLnkIqgZa/aosm3St/ZlbtKY1wdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J5Evt9o+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD929C4CEF8;
-	Thu, 27 Nov 2025 11:29:51 +0000 (UTC)
+	s=arc-20240116; t=1764243139; c=relaxed/simple;
+	bh=tj0lS7DdoAPQr2ERf+1y9nts1ZyFCni7ZhxheEkBTvg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V9bHEkNe7qAxkPQRxrmCLfPsGLVHFIbI+jsSGspSfIPsurbVocRWLU6id7l9F6ZG3QHjQ7lRPLsMEg2fa72DsyGbmSDLnQ0TyE5Bu7Rah/BR/uMqO8bLsNWmhi7di7vWkYv1oyDkacXyyMcN11f3bE7z3pbemWDCkBLPVFZYIFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A6OkcU2+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 543A5C4CEF8;
+	Thu, 27 Nov 2025 11:32:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764242992;
-	bh=CQgoFBd79VcsQ4RZAJQcFjQ439SnTQyomNvXL8kZETQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=J5Evt9o+U9srFc6Jzfb8in4lXjd4vFmP6GfTCOc8sqYg9la5nlDeAPCpzknXod8GL
-	 eotC959ferZV9gQqy/Y7g7PP+ZONm2U9Fnd/vq5NhTBWn1AS76mxhIZEvhm7SCF9pi
-	 HcTQ0l1LV1afGx2XXYIaeV0KsPq7q1lfOgmoZEqsCwmWX3zDZ/lgG+zkOX8m+39QJj
-	 yL2jvLJR4rVk2FPcH8SScaIq7OEafl+nELueJZJrPDg6aIkPB0xbjT4L2wYet451X3
-	 fZEkT7elK4vLEVQws7qVYB+oVKAIw1QHmPrqurGygFHUpD2zwnUzrYYIcQoE3sEMNW
-	 9r6szCqx5WNPQ==
-Date: Thu, 27 Nov 2025 05:29:50 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1764243139;
+	bh=tj0lS7DdoAPQr2ERf+1y9nts1ZyFCni7ZhxheEkBTvg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=A6OkcU2+6vY+ruG5rNfD4I2Q0lW8Xx8u7um9781+twFJpfMSP0eI/nHoDT5lud0Tn
+	 3Iv+q1EID5qMZwczSqUrcLaTzLzhQpPKdPxYi5f1y5HoLmFSbUIOvc7QLeNmo2iAZb
+	 /iEm6J4imT4tFFCYCA8TdkBvFAxSYreQB0Jy0o6VXsi36AfHY8JypZzxH+272BX9cU
+	 yASq2HgE64s/4G4q5SqaL2Z6P7QuQ6Zh7j+u6weD4X3dR0123qxWOj7WMMhZqOmlXh
+	 2fkjnLd/oV6R3gC1oKK7acgYGy2jXvL249MTa52xJbPWkD9SIymA1LXk9SZJ5IXJ22
+	 F8AqGFErnV12A==
+Date: Thu, 27 Nov 2025 11:32:13 +0000
+From: Lee Jones <lee@kernel.org>
+To: Nam Tran <trannamatk@gmail.com>
+Cc: gregkh@linuxfoundation.org, pavel@kernel.org, rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, corbet@lwn.net, linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v18 2/3] leds: add basic support for TI/National
+ Semiconductor LP5812 LED Driver
+Message-ID: <20251127113213.GI3070764@google.com>
+References: <20251125134836.GC1127788@google.com>
+ <20251126160024.141129-1-trannamatk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krishna.kurapati@oss.qualcomm.com, faisal.hassan@oss.qualcomm.com, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, 
- jack.pham@oss.qualcomm.com, Konrad Dybcio <konradybcio@kernel.org>, 
- Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org, 
- andersson@kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-To: Sriram Dash <sriram.dash@oss.qualcomm.com>
-In-Reply-To: <20251127-controller_scmi_upstream-v1-1-38bcca513c28@oss.qualcomm.com>
-References: <20251127-controller_scmi_upstream-v1-0-38bcca513c28@oss.qualcomm.com>
- <20251127-controller_scmi_upstream-v1-1-38bcca513c28@oss.qualcomm.com>
-Message-Id: <176424299042.3819969.16561802248968376640.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: qcom,snps-dwc3: Add support for
- firmware-managed resources
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251126160024.141129-1-trannamatk@gmail.com>
 
+On Wed, 26 Nov 2025, Nam Tran wrote:
 
-On Thu, 27 Nov 2025 16:01:44 +0530, Sriram Dash wrote:
-> On Qualcomm automotive SoC sa8255p, platform resources like clocks,
-> interconnect, resets, regulators and GDSC are configured remotely by
-> firmware.
+> On Tue, 25 Nov 2025, Lee Jones wrote:
 > 
-> PM OPP is used to abstract these resources in firmware and SCMI perf
-> protocol is used to request resource operations by using runtime PM
-> framework APIs such as pm_runtime_get/put_sync to signal firmware
-> for managing resources accordingly for respective perf levels.
+> > > +static ssize_t parse_drive_mode(struct lp5812_chip *chip, const char *str)
+> > > +{
+> > > +	int i;
+> > > +
+> > > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_0 = false;
+> > > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_1 = false;
+> > > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_2 = false;
+> > > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_3 = false;
+> > > +
+> > > +	if (sysfs_streq(str, LP5812_MODE_DIRECT_NAME)) {
+> > > +		chip->u_drive_mode.s_drive_mode.led_mode = LP5812_MODE_DIRECT_VALUE;
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	for (i = 0; i < ARRAY_SIZE(chip_mode_map); i++) {
+> > > +		if (!sysfs_streq(str, chip_mode_map[i].mode_name))
+> > > +			continue;
+> > > +
+> > > +		chip->u_drive_mode.s_drive_mode.led_mode = chip_mode_map[i].mode;
+> > > +		chip->u_scan_order.s_scan_order.scan_order_0 = chip_mode_map[i].scan_order_0;
+> > > +		chip->u_scan_order.s_scan_order.scan_order_1 = chip_mode_map[i].scan_order_1;
+> > > +		chip->u_scan_order.s_scan_order.scan_order_2 = chip_mode_map[i].scan_order_2;
+> > > +		chip->u_scan_order.s_scan_order.scan_order_3 = chip_mode_map[i].scan_order_3;
+> > 
+> > Where are all of these used?
 > 
-> "qcom,snps-dwc3-fw-managed" compatible helps determine if
-> the device's resources are managed by firmware.
-> Additionally, it makes the power-domains property mandatory
-> and excludes the clocks property for the controller.
-> 
-> Signed-off-by: Sriram Dash <sriram.dash@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/usb/qcom,snps-dwc3.yaml    | 173 +++++++++++++--------
->  1 file changed, 111 insertions(+), 62 deletions(-)
-> 
+> These fields are part of unions (u_drive_mode and u_scan_order).
+> The bitfields are packed into drive_mode_val and scan_order_val, which are
+> written to DEV_CONFIG1 and DEV_CONFIG2 in lp5812_set_drive_mode_scan_order().
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Sure, but where.  What line of code?
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dtb: usb@a6f8800 (qcom,sdm845-dwc3): #address-cells: 1 was expected
-	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dtb: usb@a6f8800 (qcom,sdm845-dwc3): #size-cells: 0 was expected
-	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dtb: usb@a6f8800 (qcom,sdm845-dwc3): interrupt-names:0: 'dwc_usb3' was expected
-	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dtb: usb@a6f8800 (qcom,sdm845-dwc3): interrupt-names:1: 'pwr_event' was expected
-	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dtb: usb@a6f8800 (qcom,sdm845-dwc3): interrupt-names:2: 'hs_phy_irq' was expected
-	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dtb: usb@a6f8800 (qcom,sdm845-dwc3): interrupt-names:3: 'dp_hs_phy_irq' was expected
-	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dtb: usb@a6f8800 (qcom,sdm845-dwc3): interrupt-names:4: 'dm_hs_phy_irq' was expected
-	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dtb: usb@a6f8800 (qcom,sdm845-dwc3): compatible: 'oneOf' conditional failed, one must be fixed:
-	'qcom,sdm845-dwc3' is not one of ['qcom,sa8255p-dwc3']
-	'qcom,snps-dwc3' was expected
-	'qcom,snps-dwc3-fw-managed' was expected
-	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,dwc3.example.dtb: usb@a6f8800 (qcom,sdm845-dwc3): Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'ranges', 'usb@a600000' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251127-controller_scmi_upstream-v1-1-38bcca513c28@oss.qualcomm.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Lee Jones [李琼斯]
 
