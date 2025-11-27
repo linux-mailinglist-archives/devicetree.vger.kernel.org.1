@@ -1,83 +1,98 @@
-Return-Path: <devicetree+bounces-242625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5741C8D3F6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:55:12 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 465BDC8D46F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:07:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BE8F634BA9B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:54:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 185D24E35E8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:07:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08ADB32145E;
-	Thu, 27 Nov 2025 07:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D4223372C;
+	Thu, 27 Nov 2025 08:07:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnpgmxYE"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Vl7ExnL0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m3274.qiye.163.com (mail-m3274.qiye.163.com [220.197.32.74])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1C430EF69;
-	Thu, 27 Nov 2025 07:50:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7D531985F;
+	Thu, 27 Nov 2025 08:07:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.74
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764229826; cv=none; b=t7mSaY05DNFpbbht5Sz/MAUmZ6TOq1/tjphhPcJcZPgsqTrREPCHsSYH5N9LVMKfj5dIeyRhgdVA/X6/VfAebCpNYzoc/QyFdtUOGesl37FkOx47iheqrvw11k6MWHdXuKyR3L4nXHzf2lC5bii4Hv1Iwtaw9QgVcrlN2mQSGnU=
+	t=1764230862; cv=none; b=Vyw/YBY8ZqNIrDxetUTuuFIRP29kpl+3w7pZ8BpmxabORHnPa8sSNmwFzqvrkXbAJ3gI97HT014ZVXNNC73AQd8+2nYLJ2uYfWhbSfMswnjt4OkuwWqYJC9BGKG63kPQtR9oh4tynYQuXpeW/7HwrqaC6b40xAbbRQSeALi0+cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764229826; c=relaxed/simple;
-	bh=I0c0lFPDgvGQY8PKRQiKOwUlcX1D5LAJUrx1QAepxhE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cAJ62o8R2SVele9oIWbwEU5Bxp7C7fWBdm9QbuucI9Nqo/yaAOu4F0RH8FCXd5vwOfGOlWHecJbW4S2+HLxBryiGacxWmTwPrSCNO9yLoF3lVALerCY6CYJx+N+ziNpCvm6lQaxVAmjleecp5IXTZIbw4sthV8qi2dgLI6VFwok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnpgmxYE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE269C4CEF8;
-	Thu, 27 Nov 2025 07:50:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764229826;
-	bh=I0c0lFPDgvGQY8PKRQiKOwUlcX1D5LAJUrx1QAepxhE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BnpgmxYEPtHEuPIBs5FwWpEYHRPskCUXeAR0PBuTVU6DvTRujSWJtMdK7+c3ISYvj
-	 fl43DVYQpbdlrP/UpWiRUu63ZhQz7uS7RR/OLxJ7Gy3Fs0HLsMAgj6MBTC+Q5z9iPo
-	 r5Pb7GSFX2ymSO4SiCeA2OCYM46/Lu5ba6od+zwzB8qQ0+D3i5KSGIl/+MB/yVbFqy
-	 eVIoLy2SY3V45xiV2qgtExTChYw7BTNrbiNJiy4LWdrNPWfJ1DuWcekwmSlQvHCpfz
-	 0t7UtsH8qs7zAU3l0WUeDc6MAknBKHmAAlmuNYxM5bGdppP2jcFZ/PiEIuwJtEDThm
-	 5v7r6sVXEsLoA==
-Date: Thu, 27 Nov 2025 08:50:23 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>, 
-	Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	jeyaprakash.soundrapandian@oss.qualcomm.com, Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
-Subject: Re: [PATCH 1/7] dt-bindings: i2c: qcom-cci: Document SM8750
- compatible
-Message-ID: <20251127-shiny-outgoing-starfish-cc8fab@kuoka>
-References: <20251126-add-support-for-camss-on-sm8750-v1-0-646fee2eb720@oss.qualcomm.com>
- <20251126-add-support-for-camss-on-sm8750-v1-1-646fee2eb720@oss.qualcomm.com>
+	s=arc-20240116; t=1764230862; c=relaxed/simple;
+	bh=nf6fxmWmCJCzyXYRt1QH2rnmEZB5RFiqYgs0IKHWgwc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U7/HTZb3YOBYAeXkrd0xHLKT9pxcj0oVrHPHgr9iBJ4/nWdncpZe4yyek4DJVsnZ9zb+8fGfA3R6gdFjipAPLOti58eMsxUwkT/BZvBtqVvhCFQGugcqCvDX9jtNgbvsgZKT4JU3bNd7EG94IK8G8PFw8RYrOA05tvdO6uTrqw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Vl7ExnL0; arc=none smtp.client-ip=220.197.32.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.51] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2b1921d28;
+	Thu, 27 Nov 2025 16:02:21 +0800 (GMT+08:00)
+Message-ID: <324ba201-8cfb-4a7c-87c8-366f657ffd8a@rock-chips.com>
+Date: Thu, 27 Nov 2025 16:02:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251126-add-support-for-camss-on-sm8750-v1-1-646fee2eb720@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iommu: rockchip: Add support for
+ multiple interface clocks
+To: Krzysztof Kozlowski <krzk@kernel.org>, Chaoyi Chen <kernel@airkyi.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20251126083345.88-1-kernel@airkyi.com>
+ <20251126083345.88-2-kernel@airkyi.com>
+ <20251127-enigmatic-faithful-viper-baefa2@kuoka>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <20251127-enigmatic-faithful-viper-baefa2@kuoka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9ac455afef03abkunm152125166ae01b
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh5CSlZMHR1CGhhCTE0ZQxpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=Vl7ExnL0xwkuLXb9VOoyo6qNANWdAmo/wYjgMpjdol9LR0oDRuJIwvUB+uCSp3LmuwKg8GUhDBBFhdwxkt5Ndf2jTHRZsjhN/+N8p3l5sbNwtWGCwWc8tecJo5tKGPPmsCnMSyjCX65Uqrnik2BFx57hgN9yLvkLNU4wCozEvyY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=1LYx8D2nnDemgXO9g6TLvymKor13ip90yPxjnDbRoRs=;
+	h=date:mime-version:subject:message-id:from;
 
-On Wed, Nov 26, 2025 at 01:38:34AM -0800, Hangxiang Ma wrote:
-> Add SM8750 compatible consistent with CAMSS CCI interfaces.
+On 11/27/2025 3:49 PM, Krzysztof Kozlowski wrote:
+> On Wed, Nov 26, 2025 at 04:33:44PM +0800, Chaoyi Chen wrote:
+>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>
+>> The iommu found on RK3576 NPU/RKVDEC may contains more than one
+>> interface clock.
 > 
-> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> So you need to restrict this per each variant. See writign schema doc in
+> DT dir.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Oh, I will rewrite it in v2. Thank you.
 
-Best regards,
-Krzysztof
 
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+> 
+
+-- 
+Best, 
+Chaoyi
 
