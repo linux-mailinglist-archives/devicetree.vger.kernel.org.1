@@ -1,128 +1,174 @@
-Return-Path: <devicetree+bounces-242862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE08CC90315
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 22:31:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB92C90509
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 23:58:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4AACF34AC04
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 21:31:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E75EB3AACB1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 22:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE2A31D38C;
-	Thu, 27 Nov 2025 21:31:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="eiHqGIBg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5AEF325703;
+	Thu, 27 Nov 2025 22:58:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD21930148A
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 21:31:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2F2730E0C8;
+	Thu, 27 Nov 2025 22:58:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764279086; cv=none; b=ZL9nOhlQG39OhSNHWRT1TAG+33nWvYz6AMavD1xOd5jpiFQgIVNqMwkY05bWjRg9L6/XCz8fCWOYf9lO8wVBZCbyy7OD2RKxDhrmA/nKSHwFyETIgu6Bh6SmYNEjgPGLJgQOkqnCxgKdFQ5z+xl0YH0Y6eCXS6QNedi0IxjOGNY=
+	t=1764284335; cv=none; b=k6NlcOiaehdLufh/IBKNIuBAB764hFci1kDjzrKOSP3rbS/O/T83MV5tPdUMbDPDhTn6GVZ0kOGdZM+y0OG+lIjMZmeDjmutkOxpiQKItZhWTR5wgLiZsOPgpFRXQJ1sWqcaX76GL7XSeIoFN5n3BI7/fhVveY6S7CrFLnCEfJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764279086; c=relaxed/simple;
-	bh=tPW1bpPIWJ0CADx+eKJZJl6RdfM1Bd5PXpVP1HAYXR0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L5Bmvji1FXE9tR8FY50tQLIq+Mrgwk0+MOVz9cSR/k8VuPWSFLjMmS5YsG9s+nm2Qmko6he9hOKXblEZJdCooOf3KvWp91F82N4XiCZnvlwbqWHBQFNBRXhDEf9/VSQs+/UieNu3RKkPk/fBVFGWExUa7O4cg5zN2jlIxSz39+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=eiHqGIBg; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-4ee0ce50b95so19681551cf.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 13:31:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek.ca; s=google; t=1764279084; x=1764883884; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=b4g6GOhzvAVpoxPftm+uHcKV+iFO3W6xh3Ht/X1kJXA=;
-        b=eiHqGIBgXhG0IIinQOGzolCicP78YRV7trYhhxgAZQFUVZpIlorv8eox2wmOryCH2w
-         Kbin230/AkFczJiHSxRWr60FHH7hxPybOVfHf9Bxl2UCq+YqYR89KhlpvW4Yr36P4hp2
-         jB3XYYdqtQqeHDzVKexa/IhkOAqJ04Yi7xG8RFWAj5zzQk7MIelZDWV9tM9eNnOL4Z0x
-         YpakrnR94SHmMOcfI0AaXBfuoIyGRAOg1w4RtUNo9+Hp4p2AxGzzdNzy+grxDKbZxhQ4
-         eIhS/ZmRcI/tfKYijVsIsLT/yLO7edIfNiUbsbMZsibrrM158tfTMQaCS0O5+jZDyOJE
-         IYWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764279084; x=1764883884;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b4g6GOhzvAVpoxPftm+uHcKV+iFO3W6xh3Ht/X1kJXA=;
-        b=YAz7FvZSukVtljG37Z6/pIqIh9k5zFCfZuCEePrYuaklViQzo/pPklbB7CGcX/vZt3
-         /THPNndt/vKdOil2csMkfrX19W3HLhjtSpDXnRJXCW1r2zS+D/ZZgMANsWgI/jfhBGOi
-         XAUp5nPTLQbI7+VHSj4+xVXip94hppTG6kMVe4zxq0nmf3BwKnUtW421wa2XfTh6P6+0
-         gOWZHOKEDVCYBtksVrxI9w3Zc8JF2DWMZHPe9PkbD+DVPjbUFdsd1y7x1Q58Q2b7dtuY
-         xYBSv12Gs4XZoZ0QWS7Dm08cAL2sp4St6BK8HAYpHIVfmEEBzSVbIW86OR7vFH435UqJ
-         1dGg==
-X-Forwarded-Encrypted: i=1; AJvYcCWPbAyrK8DPDWSH7CMqy2J9mo1GK+KqZevpUg9fm2A5zeuEFvIi5vH3lgvss3OZxq2db21VHDtCS0l3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDQBDOAa4LrEANPibF0jii9x2KwsaOQXEXxW1Rp3k6mfKGuMg8
-	Y5s4TKFpOeGVCjsem7hbRmyCOHj3ZgIQLq/0d2Bfgo4BlSEwm4b1btKI0jPpHCtKhSE=
-X-Gm-Gg: ASbGncvnh2uWdWT2tG03CeLZ8jnsE3sMQdQiXG1GXvhu2Lfe0rvNHM+MQjLIZm+e3xJ
-	cZeX89WtVcIgPoxwbNCJLeEUMUfSbs9g/G0ciSZMiIdAuZAkPCCRnq7IxAA3n2npfcgIUE19ZRp
-	XOvZM34wHLyQMYT+SeGEcwY8gYBFC9Xf4SZ938kxkgrtOIOQdvAzD8Q/gHvLtcglcnIlDuymP5u
-	9AS3H4rZ5i3GEXXK3uuZQyI7MfSeusRilruyzp9CjoTtMD6YN5b3tJEsyq/m7mVRNoUp/eUoomw
-	qupc8/Ac4VxWE8BZuelQuDCfQoLOUIBslJJvwvYDNx2LbPJPfEYbdouwnOdltGPyPwP+9uYJLLF
-	rijL/rCvZmifx2WokVEuB5QrDPyB+HY7e6hNYVaXVrIhGxe5UVIEiHJolC+bTXnTyJS/3xqrIYK
-	AgA7JisKMRZvCVWBhOFiFUfl2kFhD+8bU+KYThKWVFakRXBodKsyuz4m0a5t1qB2zqeQ==
-X-Google-Smtp-Source: AGHT+IGUEdxHiyCWperhHsuDIhEO8V9sJUM1A2kjTrgtL+dCAbFKdPYVCFKjJJ08pF2S64in52/XSg==
-X-Received: by 2002:a05:622a:14ce:b0:4ee:58b:72f2 with SMTP id d75a77b69052e-4ee4b444ae0mr440157101cf.12.1764279083539;
-        Thu, 27 Nov 2025 13:31:23 -0800 (PST)
-Received: from localhost.localdomain (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4efd3449703sm14437431cf.32.2025.11.27.13.31.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Nov 2025 13:31:23 -0800 (PST)
-From: Jonathan Marek <jonathan@marek.ca>
-To: linux-arm-msm@vger.kernel.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	s=arc-20240116; t=1764284335; c=relaxed/simple;
+	bh=RVBTJiUR7zh4n+gWYRke44xVtV9Onf4/4V8rM+noByw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nJ6kRF4NBgMq/a/kb6jNN98vLxWUNZFH5vosUaL6Jyo7wziLDbLcnJWkMYnk3aVsTD9UvOnGlgR2E15YwZEHmwhoxgOWc0Tc/WNNsfjY5I95Eq7VEaVYjMiH4ApGzrPLrfAhRkgD1Xgh+rVMOzH6DgfYJt5nAsfJZhyEx5pTIxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 0560C341F8A;
+	Thu, 27 Nov 2025 22:58:52 +0000 (UTC)
+Date: Fri, 28 Nov 2025 06:58:48 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Shuwei Wu <shuweiwoo@163.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
-Date: Thu, 27 Nov 2025 16:29:42 -0500
-Message-ID: <20251127212943.24480-1-jonathan@marek.ca>
-X-Mailer: git-send-email 2.51.0
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] thermal: K1: Add driver for K1 SoC thermal sensor
+Message-ID: <20251127225848-GYA1797866@gentoo.org>
+References: <20251127-b4-k1-thermal-v1-0-f32ce47b1aba@163.com>
+ <20251127-b4-k1-thermal-v1-2-f32ce47b1aba@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251127-b4-k1-thermal-v1-2-f32ce47b1aba@163.com>
 
-Unlike the phone SoCs this was copied from, x1e has a 40-bit physical bus.
-The upper address space is used to support more than 32GB of memory.
+Hi Shuwei, 
 
-This fixes issues when DMA buffers are allocated outside the 36-bit range.
+for the title, you could simplify it by adding short prefix/annotation with
+my previous comments
 
-Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+thermal: K1: Add driver for K1 SoC thermal sensor
+-> thermal: spacemit: k1: Add thermal sensor support
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index cff34d1c74b60..cd34ce5dfd63a 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -792,8 +792,8 @@ soc: soc@0 {
- 
- 		#address-cells = <2>;
- 		#size-cells = <2>;
--		dma-ranges = <0 0 0 0 0x10 0>;
--		ranges = <0 0 0 0 0x10 0>;
-+		dma-ranges = <0 0 0 0 0x100 0>;
-+		ranges = <0 0 0 0 0x100 0>;
- 
- 		gcc: clock-controller@100000 {
- 			compatible = "qcom,x1e80100-gcc";
+
+On 02:44 Thu 27 Nov     , Shuwei Wu wrote:
+> The thermal sensor unit (TSU) on K1 supports monitoring five temperature
+> zones. The driver registers these sensors with the thermal framework
+> and supports standard operations:
+> - Reading temperature (millidegree Celsius)
+> - Setting high/low thresholds for interrupts
+> 
+> Signed-off-by: Shuwei Wu <shuweiwoo@163.com>
+> ---
+>  drivers/thermal/Kconfig      |  14 ++
+>  drivers/thermal/Makefile     |   1 +
+>  drivers/thermal/k1_thermal.c | 307 +++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 322 insertions(+)
+> 
+> +}
+[snip]..
+> +
+> +static int k1_thermal_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct k1_thermal_priv *priv;
+> +	int i, irq, ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->dev = dev;
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +
+> +	priv->reset = devm_reset_control_get_exclusive_deasserted(dev, NULL);
+> +	if (IS_ERR(priv->reset))
+> +		return dev_err_probe(dev, PTR_ERR(priv->reset),
+> +				     "Failed to get/deassert reset control\n");
+no need to break the line, it's ok to have 100 column per line
+https://elixir.bootlin.com/linux/v6.18-rc7/source/Documentation/dev-tools/checkpatch.rst#L688
+
+P.S: this isn't hard rule and may still up to maintainer..
+> +
+> +	priv->clk = devm_clk_get_enabled(dev, "core");
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk),
+> +				     "Failed to get core clock\n");
+ditto
+> +
+> +	priv->bus_clk = devm_clk_get_enabled(dev, "bus");
+> +	if (IS_ERR(priv->bus_clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->bus_clk),
+> +				     "Failed to get bus clock\n");
+ditto
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+I suggest to group this with dev_request_threaded_irq(), since both of them
+are taking care of IRQ related operation
+> +
+> +	ret = k1_init_sensors(pdev);
+> +
+> +	for (i = 0; i < MAX_SENSOR_NUMBER; ++i) {
+> +		priv->sensors[i].id = i;
+> +		priv->sensors[i].priv = priv;
+> +		priv->sensors[i].tzd = devm_thermal_of_zone_register(dev,
+> +									i, priv->sensors + i,
+> +									&k1_thermal_ops);
+                                                                  ~~~~~~~~
+here is wrong, alignment should match open parentheses, didn't checkpatch.pl warn about this?
+
+> +		if (IS_ERR(priv->sensors[i].tzd))
+> +			return dev_err_probe(dev, PTR_ERR(priv->sensors[i].tzd),
+> +						"Failed to register thermal zone: %d\n", i);
+I'd say, no need to do the verbose print, almost every error path has
+print message already
+> +
+> +		/* Attach sysfs hwmon attributes for userspace monitoring */
+> +		ret = devm_thermal_add_hwmon_sysfs(dev, priv->sensors[i].tzd);
+> +		if (ret)
+> +			dev_warn(dev, "Failed to add hwmon sysfs attributes\n");
+> +
+> +		k1_enable_sensor_irq(priv->sensors + i);
+> +	}
+> +
+> +	ret = devm_request_threaded_irq(dev, irq, NULL,
+> +					k1_thermal_irq_thread,
+> +					IRQF_ONESHOT, "k1_thermal", priv);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to request IRQ\n");
+no need to print extra error message, please refer to:
+ https://lore.kernel.org/all/20250805092922.135500-2-panchuang@vivo.com
+ https://github.com/torvalds/linux/commit/55b48e23f5c4b6f5ca9b7ab09599b17dcf501c10
+
 -- 
-2.51.0
-
+Yixun Lan (dlan)
 
