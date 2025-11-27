@@ -1,54 +1,55 @@
-Return-Path: <devicetree+bounces-242648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB49C8D9A9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:43:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB53C8D9B5
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:43:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D362F4E1814
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:43:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23AA33A8E55
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7DD32863B;
-	Thu, 27 Nov 2025 09:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3864C329E42;
+	Thu, 27 Nov 2025 09:43:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022097.outbound.protection.outlook.com [40.107.75.97])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023077.outbound.protection.outlook.com [40.107.44.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B2DB322524;
-	Thu, 27 Nov 2025 09:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.97
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B66E325732;
+	Thu, 27 Nov 2025 09:43:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.77
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764236599; cv=fail; b=CrpWP390b0D3clC6oLGotURJF7Co6vYMMmw+My3TVRC1omRcadCMTTADvtBtXbSxf2eRLI+1KxvttzyjTO4+HPL2EDpjcOIJDISho//X/d6DFqoq+0/6LMP2HZ2LwLMa4ALKcK6uMKx+yi3lg2H7CfJeAUoWN3sGcMEygKluGjY=
+	t=1764236600; cv=fail; b=aRLOLturktpdGLtusaSqAhYSQoTImk5G4dDvD4pilSRjnMKFCgS2uak1h3NQpV6K83XTq8uug4qQa2fBm2x+KL911/MTkvldrDXYpdbi7rNcabAbLobNP4eznHFyboRf5xfKrcspq3ijDYPE2Ay2RabX2mS2dqqg+Kob1erzlls=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764236599; c=relaxed/simple;
-	bh=EUzfdqrDDX26jK5OunYWlPnIJ8UAZffueY4QFfEPylQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bJSfREAseQjc5JJVl5W+1Rv5pDOL5BASMEYAwVl7yjbVf6tmIAORFA1adgw8Wp7/MQOoEJM1d5px0NY0rOuOIL5GTLuxO9O3G36q+yPFSbbhJ6RgwD8PV6AQg6myKYrir0M1KPTuZcsPz6cP8mRLEsewckx/e2KftWkFmg6GQtY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.97
+	s=arc-20240116; t=1764236600; c=relaxed/simple;
+	bh=oDqG1sNpXOn4XQbl4sNmA/OKBmJ26rJ3rUdkYyQmoRs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lZ1shGeTjd4bKN5FLxLee4QWSUdHOYh4YBMvtt2CDxWtUWu3S7d1o9JWMAojlfJq91JvyUsL0ZAuPhAspixYukugf6kNPikssUJqL88pHuGGo9KpmuiiWFvz/6Ie+2t3d/SOIH+xkssPM0kk421wMSDI+Q2MjvRHXwQJca3aMi0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ujjvTQEWHJwXNXahsA+jaDYbdkXuqEHu6LzJ8ww9W3Q/gHwk3+3iwhGpiLjEWVB97LCIUdqaxoJHnZnMOkFmP7zePQz9F7yGNODfU0NjyB6tDRKHNTBN/dPzqHdTjDVP6EWP8HQSshjpxHp0//ZqbshPxdoXRHrazu5kHd/5jVfgMDVQjgqzssc+XWnIhYcaJk+Gn8Z/BWwJlQ9m0hpaTuIfuW6P3IkKkZoKI/6HhtPqgE+Tkky31dIf6r3USrAPJLOL4CoyzmHUhNBtkaFQzwj1TdfVLOose+1iQ4oVcPdLgf4CCrl/LHEq5EPHHfHZsxWWGy4EWW48i2SSAP8NhA==
+ b=szNrBARfXNjdbZAKnNrrb+rjL1Wwkn3dfWs3HSalUL/VKIbZX+ljKVHRzIsjVF0vcVQtkKvM9vk0XDbLUF/vgZAnqxqHeB5QOjQTXbzPptoKk/U/UI/vN9ZHdNINu8EELTxa7t7NvZuY8X1RVvuQK0yzHz5gTAJ8ziE7zeObzjQGA2CN8b2hNK4dksJVNBJ3gdh9soecNZS4LXYLklpDwa70UGdfpdGcBusZFVAftvlH5Fo88qYgQ3ijlNM08qmehpA8ipJ/TmGybMxXbNtjDBV6MijAPAdRvwqeB0zvcL86PvQAdSXGLaNmgMxRzDVjqI8mkAx9YOQy/KtlbADLiQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jVqFcXmFp0WQaKE+R7XWQOubm+NAvWQt2BB+IluGfY4=;
- b=RDis0W4ZTgSZyxCTmSoXK4OBDnbDysZYFefeoEc/fjk0ES9xuyYE/SDUhLU8cB6WjNSOPNYKcv3uJz8WufostIgUDAzLgjuQoVm/Abin+3AXL+AOSrXdkKa0gIPcwnROPdeuiqc7CO21GPB8Kanl5UO0pY6drCyEsnAJvUy4fd+uVlIp2Xr9uvtIpalLxe3J0sncWs45VkHzVVPAynA2769mMe1epuwTW7CJ/g3n2vh6jR5zrMwOWhVOSjYCmZTRSiAynmUT5rw2+xc+mvdXCrVzZqUcNUUeubIIrA9qBU8Nw2o55DQFsdVW/owvD+yuAisuenR70SvRQG1VPBplsg==
+ bh=dld8OVSxTlm3s9FuCFaOV3HggMZmXXlvrzb+RHFHgTM=;
+ b=KzbmiiRSI8e0ToRVJFtmkUnByOGOzpGthQa4vrGPdB2nZKBM2KA0UFn158lU1wYheQ3f5l1lRfd1FzE1h42xgaRvVICXGhZDotTTZyieC9ssf518bnRGYMq4qpdfAo6D2wFg7FuPw8YjT0ApXA5GpBN+MiBZeb20Py36toIqQ9Z+YMvlQM9j55+zD5rk41FA2+xIDXJ6bArGf+9BNc40EYZgIkQm1V0xgeFl9NoksFRp/ZFiecHH6QWghIi8puQD9wzwYU3YZ14RfPunwdHdvy8NOyKfG5LDXI0A06QyM9vnhe0QP1HvO36irXNsmRPsKwWqM0B3/J/KYXfNE2MKTg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
  dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
  not signed); arc=none (0)
-Received: from TYCP286CA0293.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:3c8::11)
- by SG2PR06MB5131.apcprd06.prod.outlook.com (2603:1096:4:1ce::6) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from SG2PR01CA0140.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:8f::20) by SEYPR06MB6983.apcprd06.prod.outlook.com
+ (2603:1096:101:1e3::6) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.12; Thu, 27 Nov
  2025 09:43:11 +0000
-Received: from TY2PEPF0000AB88.apcprd03.prod.outlook.com
- (2603:1096:400:3c8:cafe::3b) by TYCP286CA0293.outlook.office365.com
- (2603:1096:400:3c8::11) with Microsoft SMTP Server (version=TLS1_3,
+Received: from SG2PEPF000B66CF.apcprd03.prod.outlook.com
+ (2603:1096:4:8f:cafe::bb) by SG2PR01CA0140.outlook.office365.com
+ (2603:1096:4:8f::20) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.13 via Frontend Transport; Thu,
- 27 Nov 2025 09:43:08 +0000
+ 27 Nov 2025 09:43:17 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
  smtp.mailfrom=cixtech.com; dkim=none (message not signed)
  header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
@@ -56,11 +57,11 @@ Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
  222.71.101.198 as permitted sender) receiver=protection.outlook.com;
  client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
 Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB88.mail.protection.outlook.com (10.167.253.11) with Microsoft
+ SG2PEPF000B66CF.mail.protection.outlook.com (10.167.240.23) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.9366.7 via Frontend Transport; Thu, 27 Nov 2025 09:43:10 +0000
 Received: from localhost.localdomain (unknown [172.18.64.15])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 5C5F940A5BD7;
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 7939440A5BD8;
 	Thu, 27 Nov 2025 17:43:09 +0800 (CST)
 From: joakim.zhang@cixtech.com
 To: lgirdwood@gmail.com,
@@ -74,10 +75,12 @@ To: lgirdwood@gmail.com,
 	devicetree@vger.kernel.org
 Cc: cix-kernel-upstream@cixtech.com,
 	Joakim Zhang <joakim.zhang@cixtech.com>
-Subject: [PATCH v2 0/4] ALSA: hda: add CIX IPBLOQ HDA controller support
-Date: Thu, 27 Nov 2025 17:42:57 +0800
-Message-ID: <20251127094301.4107982-1-joakim.zhang@cixtech.com>
+Subject: [PATCH v2 1/4] ASoC: dt-bindings: add CIX IPBLOQ HDA controller support
+Date: Thu, 27 Nov 2025 17:42:58 +0800
+Message-ID: <20251127094301.4107982-2-joakim.zhang@cixtech.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20251127094301.4107982-1-joakim.zhang@cixtech.com>
+References: <20251127094301.4107982-1-joakim.zhang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,89 +90,141 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB88:EE_|SG2PR06MB5131:EE_
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CF:EE_|SEYPR06MB6983:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 014343bc-a436-4046-24cc-08de2d99607e
+X-MS-Office365-Filtering-Correlation-Id: 9d7f5b0b-3205-407f-2784-08de2d996050
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
+	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?amTOUy278amTkOQaY+FpPe7Uu3lgi4bBCRgQ1jidBaYbqBl8XoGbu+rfT/IV?=
- =?us-ascii?Q?bStplDeDY9Ut40OUIbmFrj5x4D04QwfRwLEusohrSTF1bvVxqvq57W4DtSN1?=
- =?us-ascii?Q?qkWqP4BS44xOgfgihEZkGu8VV+YIXSXIaL8AoYTOzkvlQYwv8K9YTN8vqNBi?=
- =?us-ascii?Q?kzmu7QoHJyM2bShp1aSce1ZprUE883baluSH3/ewvEXnLuerk2Wj+mtqvuw1?=
- =?us-ascii?Q?Fz2m81y86ShTivE/YTAtDYz1ekns/trMYyp37pOjURgBH4l/y/C/jXaFBJ5S?=
- =?us-ascii?Q?tBhLp000L2igkCMbyXUl6QKZL1V6kbHxn2+kDhLeXy7HjoM73nktefHBdrCZ?=
- =?us-ascii?Q?by5B1irvobLtSOmjBXvctwJpSC8bKY1xTMdC1fe9oxYUmP0bzxNsE3rNFndS?=
- =?us-ascii?Q?k1rIVBl7b341Yf4OkcIrMUMf02eecDGGIxr1eXrLd6KCyeYiJQh5N0yaGH+t?=
- =?us-ascii?Q?q7/X6RwDalkzuiR6WEPv4xftJCF9V5p805xXbvnSx4siqIQK62RECsr/srrg?=
- =?us-ascii?Q?JEkDPgl2HBG8SDb2T6j5sHSyExhd25sHQytf0O6W9Zl4mDRPgwTqHdjwB6Jt?=
- =?us-ascii?Q?0X1V7leCrgosbNZP4sm4Dx8+543igBQloUR6Pr3PnklotbwbRi9AQRmE/nM7?=
- =?us-ascii?Q?KcI+5oj3buThMVlT0YIsVnGHU7G1K8HnRlNnCoi8fAweRs/3f0cr996qB1SD?=
- =?us-ascii?Q?UvSaQHNSC8fxohOAYtTSRTzkzi3lECgg38Kc/kY0UQIXgJve/POagH9ferTC?=
- =?us-ascii?Q?4ncGZ8DgAgiovrJCPv7B5imQKHPI8am8IRpGPhl//+fi/DtAR6mKEEcT5kEy?=
- =?us-ascii?Q?90mYD3wwLMta5ETiVD//hNhn6Ff+6ZCPAJAIxeuCdim6ym9fXCtWcmZ0YsTA?=
- =?us-ascii?Q?L++vTPFjFm4W9r9u2DR7pi1bgMyBa+i/EX1wt2oVGEhs6NtOCAbtRoRuCCBK?=
- =?us-ascii?Q?FN0wdF2oPHIWSfRigH3b8Dp99PGgFOqB+5Fslz+X69DbQrspgQHiXlz+/xUw?=
- =?us-ascii?Q?xMZw8kBcAy0O6a7MzSl4mARuGfiyb4GCorCR5qptYJf59VCgE+bJqKS7A0aN?=
- =?us-ascii?Q?RCbcPmo2rYS00/L/lpEMunT0cOlk7ntpcMjpOErEJFUWuytqSotQcBgLcR1a?=
- =?us-ascii?Q?b1GGit/mMRCppW9iKyG2GNf2dK5kdVxyMujZO9NrDulgMttqitXHLBjoUx5h?=
- =?us-ascii?Q?cSukLJCLKtUGogek/RYKZVLurk3HRDE889fHJPTFyTOzu8QS8ivjOufQdyfZ?=
- =?us-ascii?Q?hgMUWho66A03nMadAvxWizFjjtv+D2ocHzvkaEc08zF7b5umoWbyDz/zM5Xa?=
- =?us-ascii?Q?KQGG7TZ5hY9OVB+qdp5C5UzbAD4pd4YZKKM/v+TNu9eJUAhV/husYJKN/n7x?=
- =?us-ascii?Q?6V41tFFiibpKpf00hOR+2cI2ECvLRRkZA+ZOfbMJ/HTKuBEt9yscKGQWddyW?=
- =?us-ascii?Q?6te500rUNLcHp8d4MLxs/mCx5oZ4495+zvnu3+KTn7W3VSx5Ygo+GnV4Gt1A?=
- =?us-ascii?Q?BXqc+a1un1bypQ8Cdi7JzYPFDw6QhzpwtzN5XZ48KVKUVPUr/Lpc92WFzI3a?=
- =?us-ascii?Q?UNPtrBJAaj4K65jZidQ=3D?=
+	=?us-ascii?Q?OwP+D+pk22tCX9WOUgPOP+x7zLJQFRdLq6yEWioXh2OhNp3Jv7pO6Q0QEnYu?=
+ =?us-ascii?Q?C6BFGe1OwSEiSGDcxB7esFXY1/t4k1AtanB4Dy6SajkqqYwSgAfAHcGrp63y?=
+ =?us-ascii?Q?Cs3UslUO4X7xypRg5r8j1GFNvEmCG03qIzZm0Lcugiq1XY78brTmL85I3z6m?=
+ =?us-ascii?Q?DsleL3fJZnZj+F2POk00ikqwqVs1UxCoylFubWmH0dY0ARvl71ZL2OE2erCV?=
+ =?us-ascii?Q?cfCHNZ4I3908YwApdMr7MfP8fOeVYIIiR9ySDFkzdA3BjtbvpsgV3tQQLpF6?=
+ =?us-ascii?Q?rMav1Wyzo4jvJvZ2I135oEju79MCrUGF2cu1QqT1b01DBZNho89bzMwgJ6fD?=
+ =?us-ascii?Q?E+2WYdyHj75T87xOuI12fljjabgiqTpzaItGug+z8fmV3hlTGZUvTRZT+gFZ?=
+ =?us-ascii?Q?zWRCLpbCJu2P98JCIv6l/Bod5IiRWEW2Ad5k6YM+/Y0kSLEPOd7Vd+vmlvHS?=
+ =?us-ascii?Q?tYyqmmNqwFhRAYgYjUAIgV6OQK8oOgcVfLIDPUFe6pkGMfbY4S+TabFP7GEE?=
+ =?us-ascii?Q?stOlmaAK5jXdt9D3BbIs+p2nPJH4s6iDkfcVaO11HttRu6wWifItKkDeZRuN?=
+ =?us-ascii?Q?nenWUz7N3vz+hIwujAsq5h/EqW+AlrsXxNwBufODeR8K8G0fs198D92t8gB4?=
+ =?us-ascii?Q?Bv3B22+3nlBRlZZOvT6m/w/e5/NMth9h0MbCAL5Kn+YAHCKA/Q3DJozETv8v?=
+ =?us-ascii?Q?RRnJ+fpyP8KKrDIaIU1V7/e3bapu2LuPPhXMK2Y3rodg+DX+a+XqwLFfs9ra?=
+ =?us-ascii?Q?et/Yxp2e8BX9ZPFiOi06RM4Wpeq85tRj3POF0Vfjixd8UyxOPquEZVsiaRR/?=
+ =?us-ascii?Q?EEVOu8g/upP8Ze5VIqTWdCCrxkX9Os4zXslf37x/UmuD4JBO9nlGxZbVl9L1?=
+ =?us-ascii?Q?Llevt8nzvgVhQQd6Zlr1E4QqoSjdVbEkHEuZLtDWsfQg71kD8nQt/lNy1tjw?=
+ =?us-ascii?Q?9fis2wpFkOZa0XWseZyyOsr6vAoUSDClFK4dBLZ+6Is/tyxhFD2m6774X4+c?=
+ =?us-ascii?Q?NaG04LRCk4JkMCBXy9aGjVkaHOG0bz721dSoLuQawlHRGcCKafxdrYAln56C?=
+ =?us-ascii?Q?uPvL/0xc37osjTO9aw2Icq5Tf/SE1H2afxZQvzKKDF2GUUCy2/IG0/dlewFY?=
+ =?us-ascii?Q?NbExQ1ncRKU7OuYhhOtWqXD3Qb9yvqv9oQVLqPUKdGnQmBMATCAUjNtrXch6?=
+ =?us-ascii?Q?P0oFQWNrizzEgRzr6AjUO4cwLGNm+hyKi3lCM0+thHEzXMmaSW5PUnV1Sges?=
+ =?us-ascii?Q?1cG4SOBO/Pc2WcBE50cpcIDNsaR/7NJ6LC51mxwJRtv5FEsFGI/X0jpKd0Jd?=
+ =?us-ascii?Q?bTlAJ1liedemYjaOhN+A4e90zGbEi8xLH9ql8lGCYuk/bqMnV2/ejyPLsUw1?=
+ =?us-ascii?Q?pB0g19o7UoyRxEo23peoWz4n1HNqesH98PMitPpFd1ti2QG4nefwg/med17O?=
+ =?us-ascii?Q?cz/JHsyJsKGpLgYpsvK7sfDmKOhC0nnMIhWUpqT+yZj7pJTcJwP6KRqYzlx7?=
+ =?us-ascii?Q?QR7VaNj26AuI3wTEF0q/hm5hjBdY9hzMULGQ?=
 X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1102;
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1102;
 X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2025 09:43:10.2993
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2025 09:43:10.0657
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 014343bc-a436-4046-24cc-08de2d99607e
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d7f5b0b-3205-407f-2784-08de2d996050
 X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB88.apcprd03.prod.outlook.com
+	SG2PEPF000B66CF.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR06MB5131
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB6983
 
 From: Joakim Zhang <joakim.zhang@cixtech.com>
 
  - add CIX IPBLOQ HDA controller support
 
---
-ChangeLogs:
-v1->v2:
-  - fix dt-binding issues
-  - remove delayed work for probing
-  - refine dma address traslation
-
-Joakim Zhang (4):
-  ASoC: dt-bindings: add CIX IPBLOQ HDA controller support
-  ALSA: hda: core: add bus ops for dma address translation
-  ALSA: hda: controller: specifyhdac bus ops from azx_bus_init()
-  ALSA: hda: add CIX IPBLOQ HDA controller support
-
- .../bindings/sound/cix,ipbloq-hda.yaml        |  71 +++
- include/sound/hdaudio.h                       |   4 +
- sound/hda/common/controller.c                 |  17 +-
- sound/hda/common/hda_controller.h             |   6 +-
- sound/hda/controllers/Kconfig                 |  14 +
- sound/hda/controllers/Makefile                |   2 +
- sound/hda/controllers/acpi.c                  |   2 +-
- sound/hda/controllers/cix-ipbloq.c            | 452 ++++++++++++++++++
- sound/hda/controllers/intel.c                 |   2 +-
- sound/hda/controllers/tegra.c                 |   2 +-
- sound/hda/core/bus.c                          |  17 +
- sound/hda/core/controller.c                   |  18 +-
- sound/hda/core/stream.c                       |  11 +-
- 13 files changed, 599 insertions(+), 19 deletions(-)
+Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
+---
+ .../bindings/sound/cix,ipbloq-hda.yaml        | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
- create mode 100644 sound/hda/controllers/cix-ipbloq.c
 
+diff --git a/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml b/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
+new file mode 100644
+index 000000000000..c9e4015a8174
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/cix,ipbloq-hda.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: CIX IPBLOQ HDA controller
++
++description:
++  CIX IPBLOQ High Definition Audio (HDA) Controller
++
++maintainers:
++  - Joakim Zhang <joakim.zhang@cixtech.com>
++
++properties:
++  compatible:
++    const: cix,ipbloq-hda
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: sysclk
++      - const: clk48m
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: hda
++
++  cix,model:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      The user-visible name of this sound complex. If this property is
++      not specified then boards can use default name provided in hda driver.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include<dt-bindings/interrupt-controller/arm-gic.h>
++
++    hda@70c0000 {
++        compatible = "cix,ipbloq-hda";
++        reg = <0x70c0000 0x10000>;
++        interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&audss_clk 7>,
++                 <&audss_clk 8>;
++        clock-names = "sysclk", "clk48m";
++        resets = <&audss_rst 14>;
++        reset-names = "hda";
++        cix,model = "CIX EVB HDA";
++    };
 -- 
 2.49.0
 
