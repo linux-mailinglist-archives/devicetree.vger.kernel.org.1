@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-242623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A09AFC8D3DC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:53:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C21C8D3EE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 08:54:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C26CE34EFD4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:53:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0956A3A7313
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 07:53:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010E131E11F;
-	Thu, 27 Nov 2025 07:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7551531E10C;
+	Thu, 27 Nov 2025 07:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ERnlZ02D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FQwfqP/Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F6E32E727;
-	Thu, 27 Nov 2025 07:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4960427FD49;
+	Thu, 27 Nov 2025 07:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764229690; cv=none; b=tqIh7O17a2U51v/jo9spb1D2ukOku2hgqW2U1yO0pqvNEMi8YYTV2f5kyDcR4g8IYf6Bj0XP6yH28cAIWPcauPFQ9VznmGPD0RJPxvQExjDlQFUApDMXYPpWUS1768mgTWANhyZU0uH4IjRVeR+ZEUoic2EonOgafwX/yLHjUFk=
+	t=1764229750; cv=none; b=N6gCE/VhkgQgDnX6UVZgdENPmLFFxylHwJ/I+eTB/chIAZsPx4p5UAIEPfBVvgpB3q7SbDGj0f5i7bnX5ezomdJvbOx/IOMJ/Tx4C8PGQS6O14xKyb3kGfbLXx1u05TIXHlxmUj5qRhA6VohkbyiBJLMfKYzUUC9g9WwwnyeXEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764229690; c=relaxed/simple;
-	bh=/Qr2YmhnCABhQkXWrs0mkP1C3iyMiGCgJI+FA1RUxxg=;
+	s=arc-20240116; t=1764229750; c=relaxed/simple;
+	bh=xCHxcpEIdv+cYmEpWP1sxWzNhSIiDpBmJZwuNZkMZtk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bo0nQ1cMty4DEojH9yF07+J0d/ff0kXr9d0QF0o5vJ7sjBFQr52sHpAR9WGYNhx+F7f725qkBKDYmyb8tcRfzQZFa5S+C8t0pknXLgpu3olD7kN2oyaDP1Gg3l98j2tLjTPcZmLH5zGNc52PL5SsaSJZPGfQy/EFlTtJB3kQJ3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ERnlZ02D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC2A6C4CEF8;
-	Thu, 27 Nov 2025 07:48:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rsJzAQLSEOCJRjXVEDrmlye7tRmyHWOh4KNnHSTJKcs4QCTA57/OIJjp4YnFciSG2AWeW0jZdA2g9O4S864KqKX7xrBt+ohd30x2vS8Sj2GLjEq6ppy/7v7BVlGfds/pL+TRh3cz/iCMHFeuwi5cROz4W2ZEA5fZPmVpWanFAic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FQwfqP/Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CF33C4CEF8;
+	Thu, 27 Nov 2025 07:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764229688;
-	bh=/Qr2YmhnCABhQkXWrs0mkP1C3iyMiGCgJI+FA1RUxxg=;
+	s=k20201202; t=1764229749;
+	bh=xCHxcpEIdv+cYmEpWP1sxWzNhSIiDpBmJZwuNZkMZtk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ERnlZ02DZtcomfDUwdOPNDbq2+IAQhnC5+D+aG07Pst/ssaq5yf4iwefopb2l1IYJ
-	 LRRo71fdopoXg+6DbBz3PQ2efaOJC81Z4Hr+PQYVR5FFANJ1TgEbUvd8herlOwRhjW
-	 tS5te/acaTNLUwdANynhx+0gLDHfTe6+dxUWPl+GorMuDaqJnI+fFJ1tZMjA8UNk/z
-	 KzC3um+Fzuq8xMV1+UxvkFRuROQGRucG9d+Sl5XGVLaxLP3iQ9ngPkMl8JC7x+qdyK
-	 /rp7inSy0f4gvHMqHVBCqkAsmEaxu87PEXUxdlUaDNOLJEBN8Qwzu9Y30iDzx+UEnr
-	 15sz9WYYaGURg==
-Date: Thu, 27 Nov 2025 08:48:05 +0100
+	b=FQwfqP/QVZii9l8ecWYPqL+DhTc2gEZKdzPKZe3sPat/h7wPoswC6nqt25oEbfI6X
+	 AJ9VlIQp7MkXckUpVg5sf4thLKbOR7D3ncXL+cVNTd+jA8GfsXMxp3q6k0kLGeGKBq
+	 wZc50SuOI2+9aJI4j7aHrVGZWcKj1uAMfWyTlw8AL3zaR++iE5651KdiynSbupz92T
+	 HrG6MpTWaGD8bmDZWJgP0HebESgwtDG8TVq9izwQYCdI8EEIKH1ECFhPfOZPFmPsNG
+	 mnZcOker27snb9SaAQYHemgr/fRGAD9Eehoxe5gVmiSoZ33k9LM03qHOMYL2vYP4eH
+	 Qw8fNHFSpnFmQ==
+Date: Thu, 27 Nov 2025 08:49:07 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Chaoyi Chen <kernel@airkyi.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Vinod Koul <vkoul@kernel.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Niravkumar L Rabara <niravkumar.l.rabara@intel.com>, 
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: mtd: cdns,hp-nfc: Add dma-coherent
- property
-Message-ID: <20251127-logical-gerbil-of-destiny-bd6d4f@kuoka>
-References: <cover.1764143105.git.khairul.anuar.romli@altera.com>
- <af528a83b4749fb3e6062bbc75bcb4fd5a6fec23.1764143105.git.khairul.anuar.romli@altera.com>
+	Heiko Stuebner <heiko@sntech.de>, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iommu: rockchip: Add support for
+ multiple interface clocks
+Message-ID: <20251127-enigmatic-faithful-viper-baefa2@kuoka>
+References: <20251126083345.88-1-kernel@airkyi.com>
+ <20251126083345.88-2-kernel@airkyi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,18 +63,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <af528a83b4749fb3e6062bbc75bcb4fd5a6fec23.1764143105.git.khairul.anuar.romli@altera.com>
+In-Reply-To: <20251126083345.88-2-kernel@airkyi.com>
 
-On Wed, Nov 26, 2025 at 04:06:22PM +0800, Khairul Anuar Romli wrote:
-> The Cadence HP NAND Flash Controller on Agilex5 device performs DMA
-> transactions through a coherent interconnect. dma-coherent property
-> presents in device tree will allow the kernel=E2=80=99s DMA subsystem
-> controller=E2=80=99s to performs DMA transaction in dma coherent mode.
+On Wed, Nov 26, 2025 at 04:33:44PM +0800, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> 
+> The iommu found on RK3576 NPU/RKVDEC may contains more than one
+> interface clock.
 
-Last sentence is redundant. You say basically "dma-coherent means
-dma coherent". Write informative commit msgs, so something which is not
-obvious, e.g. why this is dma coherent NOW but wasn't before?
+So you need to restrict this per each variant. See writign schema doc in
+DT dir.
 
 Best regards,
 Krzysztof
