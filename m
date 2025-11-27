@@ -1,115 +1,96 @@
-Return-Path: <devicetree+bounces-242853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB4CC8FF40
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 19:55:18 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5AB7C8FFAA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 20:03:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E2D3C345247
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 18:55:17 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 372EC34AF7C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 19:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF0A29D288;
-	Thu, 27 Nov 2025 18:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C305302CA2;
+	Thu, 27 Nov 2025 19:03:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KisMf1vu"
+	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="h/ey+QDy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4258879C8;
-	Thu, 27 Nov 2025 18:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CE5245020;
+	Thu, 27 Nov 2025 19:03:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764269715; cv=none; b=sc5Do5MaGEDkG83GJLtZTzh1x+/CCzosHK1lv4yYM6K0egJwTs6iMdg+mb5eTLICgGYDIvAcfjAYPra19rfprqQZVMnSbAgx4FBkdJniCquv3r8DAJGWO4c6qF/cqHoLoPbz+Q5gMf+Tg+89ThruZDVoVff2muG0TrRbTwcq8iE=
+	t=1764270202; cv=none; b=H1j0R6joMum3/hc3PjoiHg9J+p8Bws7VyMTi4ZEA6BudChjhWCELMRxnqZ0k053CO8JiNNEUg52Fw/1Z7PNCFi6WbBU4k16KUCLIrQAU1rXjUjGpRA4bVztjyiWqX/SFNlLQ4Ow8CXoEYCNH52UtllVHw/AV5eCHNFSB+2j0wTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764269715; c=relaxed/simple;
-	bh=9OGJoKTTeNxpXd4hc6X0kluLEJb7Wr89HVeKcgy60A0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G4dPqvuK15d+3Y/lan6xkV23Jrpps922Ba1JWPn8malNOViZ7koC5oevobCeZWUMpgl1oeyrclXRInbau7TTK0jpbJ9VP+PGy2qSkmF0S7NWBvGbljdy+QZMqK55vqYKyNu/Ej7ixhvGoKaeexGeYbjATK2zdQDasqpD8ODhALQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KisMf1vu; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764269714; x=1795805714;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9OGJoKTTeNxpXd4hc6X0kluLEJb7Wr89HVeKcgy60A0=;
-  b=KisMf1vu5yWDxl3sKOZiy4n948PZURq7GVrdpwxfw1ubml2PKKxBOVUv
-   YUS8stGmX74xehqtnhD86WfNgE165thsiN59fOb8Ql7HLTyz+pXT58z5p
-   ZJrGMvZi4EnAi/rzQOP5oynzfzyzkRnBzOtQvjgKwIE5KStlYtqWCk9y7
-   W2dqiPQT9EalSSF5Uf63osIb8kpUH7sHxgmbz85KGUO5RGHGEW0rUpRUx
-   X0F2GO1tt94dlPm1CwK2d/2Asmscsr4bUe4nvlx1lU6tr83aSZkbv3uJM
-   GfHUcSt4JqJAy0DXvRdoBBXCXj7LToxzLdGWqwRNIIC3uWOeLssoe94mg
-   A==;
-X-CSE-ConnectionGUID: 2P4BxRLQQz6RQ6c2cGvZ6Q==
-X-CSE-MsgGUID: JLEBgqDMRnmCawtgE8Z2dA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="77005533"
-X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; 
-   d="scan'208";a="77005533"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2025 10:55:13 -0800
-X-CSE-ConnectionGUID: zo+cvfkTRcKAgq9F5Plxnw==
-X-CSE-MsgGUID: 3AiLodaiQaqJirxYhFXt5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,231,1758610800"; 
-   d="scan'208";a="193092258"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2025 10:55:09 -0800
-Date: Thu, 27 Nov 2025 20:55:06 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Rudraksha Gupta <guptarud@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v4 5/6] iio: accel: Prevent NULL pointer dereference in
- interrupt setup
-Message-ID: <aSieijZt117wOh-6@smile.fi.intel.com>
-References: <20251124-expressatt_nfc_accel_magn_light-v4-0-9c5686ad67e2@gmail.com>
- <20251124-expressatt_nfc_accel_magn_light-v4-5-9c5686ad67e2@gmail.com>
- <d3318386-2646-4f1c-ab4b-6ae3bc71e9bb@oss.qualcomm.com>
- <aSWPnRBRdPS8vnir@smile.fi.intel.com>
- <61e860e7-fc3b-49ad-bf6a-9745f205d52b@gmail.com>
- <c627fc05-6980-44bd-bdde-4750b3bafe2d@oss.qualcomm.com>
+	s=arc-20240116; t=1764270202; c=relaxed/simple;
+	bh=Hq+ia8yuvWeSgRBSknYS+Lxj4lqFaONNtRJe0qwPyDQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SROc27k9GO3wjqhL+ay77+GvnmSnNL1UnY6lbbDjjXl4h8Yc3L8rWd0OElQiYCB1TtFxTogiKDo8T0kRBniNa1fLWqyEkz1HKwx4LINLLf7cqcdvhsP76QrX+tR666dDr80ZK1atfXq4dEbwZxAFGMoB1Q0/g4+SIuvve+iANtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=h/ey+QDy; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560+5C/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
+	s=submission; t=1764270174; x=1765570174;
+	bh=bbDeeML+5/PqsYJ+tyaJ3n3d7uxwNPB/ux5rFNomCWA=; h=From;
+	b=h/ey+QDyOMcWQcdbkE8ek4GGzy1XZshTm5L0n32Yl3nI/SmWo7NrnIYNYNzqOlN+h
+	 zuT4nzBeYjCaZTrZ5EYPLqr74Yi1ViAODeVDK6LV55/BCS9lPG3zbqXMT2HZPi5ZvO
+	 WrBglNjewAq4elAGQQ6XecpIK/IwEABTiMAEtc+0g9+eNrteL5w6+kwd0hdkyis61r
+	 mYSAzyNOPAybpJtVIbHoMVzbs0xCtUAv7BtDZ5w1HwYDRYzzG3M6QKC4mOQyy7tIA4
+	 Tn9ZIKGLR+9ydOKGCTL0agcr/gUHoTnAOWsT0DrkiJXh9NXdNKn73bpv8AVE2TFy62
+	 h3WMxBNXLw1IA==
+Received: from localhost (nat2.prg.suse.com [195.250.132.146])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.18.1/8.18.1) with ESMTPS id 5ARJ2rYV008156
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Thu, 27 Nov 2025 20:02:54 +0100 (CET)
+	(envelope-from balejk@matfyz.cz)
+From: Karel Balej <balejk@matfyz.cz>
+To: =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje@dujemihanovic.xyz>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Karel Balej <balejk@matfyz.cz>
+Subject: [PATCH 1/2] dt-bindings: power: define ID for Marvell PXA1908 audio domain
+Date: Thu, 27 Nov 2025 20:02:02 +0100
+Message-ID: <20251127190237.745-1-balejk@matfyz.cz>
+X-Mailer: git-send-email 2.51.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c627fc05-6980-44bd-bdde-4750b3bafe2d@oss.qualcomm.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: ****
 
-On Thu, Nov 27, 2025 at 07:38:45PM +0100, Konrad Dybcio wrote:
-> On 11/25/25 10:23 PM, Rudraksha Gupta wrote:
+Define an identifier for the SoC's audio power island so that it can be
+referenced through device tree.
 
-[...]
+Signed-off-by: Karel Balej <balejk@matfyz.cz>
+---
+ include/dt-bindings/power/marvell,pxa1908-power.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-> We won't be taking any non-urgent patches until rc1 drops (~3 weeks)
-> so if the IIO folks decide to pick it up in meantime, just send it as
-> one
-
-AFAIK IIO is closed as well till v6.19-rc1.
-The patch can be taken to a deferred queue though,
-but in the result it will wait for a new cycle.
-
+diff --git a/include/dt-bindings/power/marvell,pxa1908-power.h b/include/dt-bindings/power/marvell,pxa1908-power.h
+index 19b088351af1..173f47e0e69d 100644
+--- a/include/dt-bindings/power/marvell,pxa1908-power.h
++++ b/include/dt-bindings/power/marvell,pxa1908-power.h
+@@ -13,5 +13,6 @@
+ #define PXA1908_POWER_DOMAIN_GPU2D	2
+ #define PXA1908_POWER_DOMAIN_DSI	3
+ #define PXA1908_POWER_DOMAIN_ISP	4
++#define PXA1908_POWER_DOMAIN_AUDIO	5
+ 
+ #endif
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.51.2
 
 
