@@ -1,163 +1,390 @@
-Return-Path: <devicetree+bounces-242785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CDD1C8EC00
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:27:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84FBBC8EC24
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:31:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C5F54349946
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:27:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6E9474E221E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:31:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19E23112D5;
-	Thu, 27 Nov 2025 14:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1115A2163B2;
+	Thu, 27 Nov 2025 14:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nBkcTbUP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ObnpTdqh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182AB331A41
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 14:27:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDC2149C6F;
+	Thu, 27 Nov 2025 14:30:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764253672; cv=none; b=EP1Jd+RXNiXonZUz7lwl//ImTpZCsy5CLAtvZrzyBMcyhXujJOTvbSx6jc7taDAwU8/t20FfWYx6MBowy/H5owDERKXhNcc5rz7+cgjxc6Nie6W3oOg7W+3lo1zq1okic3Q+PaLSXaeRWl9401CugwwZTGVXrtElG8Az+il0x04=
+	t=1764253857; cv=none; b=l3Yx68zdLzo2duyOe0fA3kyA4IiRD8mG27i39a6yTwsRVGvMrqHPRTyRFOcvBqRXw3k6z4p/APGTOh1KOALO12jrVliquoqywKdccxCCP/fU9+0VKVfJQVVT18JD4HOj4TDR9xWdwaDNH9V7BeUKff6GxXx+qpDRnVYDHTYbszA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764253672; c=relaxed/simple;
-	bh=VsxF4F1+V+wVbP+TVp2TXSyzJ/baeBpnP51twMV82pM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pT3wckVmExVxSc7q/W09gY6ewUWkpffx2bqcJg/36nyX1CTcPh1k9LmGlOfltr/NNEVTg9flxsDrHhz6lL4e0bHGAVPbqBIYGoi74svxbUfHbw+OnH9zuztzJaQCtiWREqZu+ag8+uuHJpBmwNgbEi/qLKoiK0W9Z8ZRJLjs6TU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nBkcTbUP; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-37a533a9f26so374001fa.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 06:27:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764253669; x=1764858469; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Izu2FHuEoh3gQsex6rJEdJvdieWvoBfp7SLE5TF7nSY=;
-        b=nBkcTbUP2ihqDxq4MvLepAdnt/JT0GCIn7YLHvJ/AW0uGqhshu+FT0OWnlxwkXQmGB
-         afubwL1lwkjQ2CtJ3gid+B7Lf8sngQQfsWdAH9GNH9/8vVKYmCQHZoE6dHkXbdFXt1si
-         pVrrMm0vrK6QaB21bzHGE/Pzji9y3yuLX3afOTzx+ZQ5HrShSG9LYolNzYzyOApfdb71
-         y99iCZNYBP+qQCvl50mk+WMJBDmM2aG79Mw2y935/G5t2dOtzVk3bGZGpA8AmRel1f3y
-         tD2ZR6K5rq1m0vsPjfNodeE/47Fka93spxNLlv33NCpN2r/4k7uq5GezqwvMc+t7yAvR
-         X91w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764253669; x=1764858469;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Izu2FHuEoh3gQsex6rJEdJvdieWvoBfp7SLE5TF7nSY=;
-        b=pSGssLb/sPvX3Jq0MHmCWe4PCxr1ZooPzT5b4EdxH8sBm05mbvQdYdykn9e3S2rH5v
-         d+gJOArPKo4zaHxWliVIDwYca86v9uAcerdHESc9YogcG3Wd9Xy3MB1ln0zx9H7W2+/S
-         ognmN5mQu74SEi3VyNARthET85M9hfDrhylneU6NQ0/E3MPkMqmIUCOtvpneVB8lMocJ
-         5seoYWXCnXE8mgg3Hy8fdXUAM+ijy6sdn7O3voEndOSzGRMyIKUQn6ELhU6FuuqMOG2B
-         MOZQL/G/ohm7YjCHucgtkqrtXvlaq5/qoIbiwvUoV+iUzMRErPWz+JHQ8+jAyjiGmPzo
-         Swxg==
-X-Forwarded-Encrypted: i=1; AJvYcCXs466o0bGToYamOdGSxGqqCcSDaXhpd3VfKvAKQQ7ZPuWgDMWIwi3uAjzNhT97BI8VzDdg48/dhebP@vger.kernel.org
-X-Gm-Message-State: AOJu0YycT3ahhITk1t8KK8HAk+eT/R3Fk6AtWorKKXsRhnLS0Fn98/Kq
-	cRHcXSpjVuv0QajyOk+1r9v4ks0omPtKkt78IVOtM7rZnsmaYFQJgwq0AuSeVLqzYL8=
-X-Gm-Gg: ASbGncvMkYWvftbhYaSqgIdHEygeeTg2/loDuDgOZUtEEZImGfOuJkZ3k+scGeqSHbh
-	PNQfkxjLkUXIpS/tzR+QTiICk3rQbj5+P55B94/HK7yJSBB/PZWiG9ybjfUlrAEyEBK9r+b9tfH
-	PNtfXPiJe3QDnTaaIrm64XnmU4gpMgv4Awa0VIwULGjdNjtKe2w1QwcpySxuDosTkKvWrFvihnM
-	se4GRI/CWfYb/wC3b6Cnq4hwFHhS0wyOHOMzYTclTbcloLB+orB2zyAF548t6Xxz0468r8epdxj
-	iyPlYHpOjc5Vr6obwhCE2kdzOYo2FlJMv8DM0YimKCbjmqe0ky7GR11BmOvrU5GmsE1+i9zFJqP
-	bYAkl6SUvQ/KfoZPZbF86WraNSfqYCcS9C9xHABYy0iQly/YfccBQc9z1MuyXeRdZrB27AQO/Qn
-	Ol9hqvk6pQysYeiYsfxqaHP4QNLYiQ8ifyYbfwNCvxzLR/gCPXjLd6XvF1keIX5+pTmz4swBef8
-	GNl
-X-Google-Smtp-Source: AGHT+IFt6vU27xKv/0kuU+d2Qo4LF76uFAOV+qiVtW1RJs/5m+HZGfbtFg/MAFAH3yfFrmgDtBZ9LQ==
-X-Received: by 2002:a05:651c:3244:b0:37b:926d:5c06 with SMTP id 38308e7fff4ca-37cdc46f662mr32899781fa.8.1764253669119;
-        Thu, 27 Nov 2025 06:27:49 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37d236e5ec1sm4034821fa.16.2025.11.27.06.27.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Nov 2025 06:27:48 -0800 (PST)
-Message-ID: <d3cccdf4-8c50-4b6c-a29b-5b1388ce2249@linaro.org>
-Date: Thu, 27 Nov 2025 16:27:47 +0200
+	s=arc-20240116; t=1764253857; c=relaxed/simple;
+	bh=H/3GnlU+cVOGm7Hm4LXCbkZdGoRGLlj0ZG8SNSH1ISk=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=qR6X3QOvxv5pVwT0KSwoSMT2NJCD186JlhIVoDH6stuy4AYN+l3x+bbf8HpFHr9Vzwe114hm9BjvTSN9KT5PZ38dYfbSmv0799rYDAo4BA+SCp04P46OlX/TU+JwoYEdQ6gz1YQgZEEIpe6OWNaxkQt34Qb//1EPk3o/yD3UuOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ObnpTdqh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19493C4CEF8;
+	Thu, 27 Nov 2025 14:30:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764253856;
+	bh=H/3GnlU+cVOGm7Hm4LXCbkZdGoRGLlj0ZG8SNSH1ISk=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ObnpTdqht2jogCous70VeM7lgEVTn+ifBsWJWHg8G27fR9S107o543k4purpw/DY5
+	 LafYan3nSlK1BMZEsxHKGb7SJJJeFd+QRPZZWges0dr3gs0zDTDzveFqOf1Aa9WNkj
+	 FJDnfDd2Quu3gw27+YWLmuzVjHL8TQXc2h6XM22nmy+P497n59i1HkajCiaWRKhpGJ
+	 MyMBuqTV+E9jEp6CpubJzZ+2M07LTcxAeRRFy4O1Djpc0tLrcyzGfgafg4pG17DzPC
+	 8SKdk+yh/U1cJArmlI5n55avoLyoE1+GWzDh2j77u9hNd/acMhIC0kvIygT2eU0rtu
+	 XHfoHnGESosyA==
+Date: Thu, 27 Nov 2025 08:30:54 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8550: Enable UHS-I SDR50 and
- SDR104 SD card modes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251126012043.3764567-1-vladimir.zapolskiy@linaro.org>
- <20251126012043.3764567-3-vladimir.zapolskiy@linaro.org>
- <b07b88ed-83a3-46d6-8b97-e8661e2cfaa3@oss.qualcomm.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <b07b88ed-83a3-46d6-8b97-e8661e2cfaa3@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: stephan.gerhold@linaro.org, subbaraman.narayanamurthy@oss.qualcomm.com, 
+ rafael@kernel.org, linux-kernel@vger.kernel.org, 
+ krzysztof.kozlowski@linaro.org, sboyd@kernel.org, linux-pm@vger.kernel.org, 
+ anjelique.melendez@oss.qualcomm.com, linux-iio@vger.kernel.org, 
+ lukasz.luba@arm.com, neil.armstrong@linaro.org, 
+ david.collins@oss.qualcomm.com, lumag@kernel.org, 
+ cros-qcom-dts-watchers@chromium.org, rui.zhang@intel.com, 
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+ dmitry.baryshkov@oss.qualcomm.com, agross@kernel.org, andersson@kernel.org, 
+ daniel.lezcano@linaro.org, quic_kotarake@quicinc.com, 
+ konradybcio@kernel.org, krzk+dt@kernel.org, lee@kernel.org, 
+ thara.gopinath@gmail.com, jic23@kernel.org, kamal.wadhwa@oss.qualcomm.com, 
+ devicetree@vger.kernel.org, amitk@kernel.org
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+In-Reply-To: <20251127133903.208760-1-jishnu.prakash@oss.qualcomm.com>
+References: <20251127133903.208760-1-jishnu.prakash@oss.qualcomm.com>
+Message-Id: <176425385464.79996.16817084593997529435.robh@kernel.org>
+Subject: Re: [PATCH V8] dt-bindings: iio/adc: Move QCOM ADC channel
+ definitions out of bindings folder
 
-Hi Konrad.
 
-On 11/27/25 15:40, Konrad Dybcio wrote:
-> On 11/26/25 2:20 AM, Vladimir Zapolskiy wrote:
->> The restriction on UHS-I speed modes was added to all SM8550 platforms
->> by copying it from SM8450 dtsi file, and due to the overclocking of SD
->> cards it was an actually reproducible problem. Since the latter issue
->> has been fixed, UHS-I speed modes are working fine on SM8550 boards,
->> below is the test performed on SM8550-HDK:
->>
->> SDR50 speed mode:
->>
->>      mmc0: new UHS-I speed SDR50 SDHC card at address 0001
->>      mmcblk0: mmc0:0001 00000 14.6 GiB
->>       mmcblk0: p1
->>
->>      % dd if=/dev/mmcblk0p1 of=/dev/null bs=1M count=1024
->>      1024+0 records in
->>      1024+0 records out
->>      1073741824 bytes (1.1 GB, 1.0 GiB) copied, 23.5468 s, 45.6 MB/s
->>
->> SDR104 speed mode:
->>
->>      mmc0: new UHS-I speed SDR104 SDHC card at address 59b4
->>      mmcblk0: mmc0:59b4 USDU1 28.3 GiB
->>       mmcblk0: p1
->>
->>      % dd if=/dev/mmcblk0p1 of=/dev/null bs=1M count=1024
->>      1024+0 records in
->>      1024+0 records out
->>      1073741824 bytes (1.1 GB, 1.0 GiB) copied, 11.9819 s, 89.6 MB/s
->>
->> Unset the UHS-I speed mode restrictions from the SM8550 platform dtsi
->> file, there is no indication that the SDHC controller is broken.
->>
->> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->> ---
+On Thu, 27 Nov 2025 19:09:03 +0530, Jishnu Prakash wrote:
+> There are several header files containing QCOM ADC macros for channel names
+> right now in the include/dt-bindings/iio folder. Since these are hardware
+> constants mostly used in devicetree and not exactly bindings, move the
+> files to the arch/arm(64)/boot/dts/qcom folders.
 > 
-> 8550 has additional limitations. One was addressed recently with
-> max-sd-hs-hz (HS mode can only run at 37.5 MHz), but when in SDR104,
-> the frequency must also be capped to 148 MHz. I don't know whether
-> the driver respects that today.
+> Correct the header file paths in all affected devicetree files to fix
+> compilation errors seen with this move. Update documentation files
+> similarly to fix dtbinding check errors for the same. Make a copy
+> of the header file with constants used in ADC driver files in the
+> /include/linux/iio/adc folder and update driver files to use this
+> path to include it.
+> 
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> ---
+> Changes since v7:
+> - Based on a discussion with Krzysztof concluded here:
+>   https://lore.kernel.org/all/d10e2eea-4b86-4e1a-b7a0-54c55907a605@oss.qualcomm.com/,
+>   moved ADC macro header files to arch/arm(64)/boot/dts/qcom folders. The file
+>   include/dt-bindings/iio/qcom,spmi-vadc.h is moved to arch/arm/boot/dts/qcom/
+>   as it is used in both arm and arm64 SoCs and other per-PMIC adc7 header files
+>   are moved to arch/arm64/boot/dts/qcom.
+> - Updated affected devicetree and documentation files based on path changes above.
+> - Made a copy of qcom,spmi-vadc.h in /include/linux/iio/adc folder
+>   for inclusion in ADC driver files and updated affected driver files to use it.
+> - Dropped Acked-by tags from Lee, Rob and Jonathan due to these significant changes
+>   made in latest patch version.
+> - Updated some more devicetree files affected by this change.
+> - Pushing this as a standalone change separate from ADC5 Gen3 series, as that
+>   series will no longer depend upon this patch for the location of
+>   qcom,spmi-vadc.h, as ADC5 Gen3 macros will be added in separate new files.
+> - Link to v7: https://lore.kernel.org/all/20250826083657.4005727-2-jishnu.prakash@oss.qualcomm.com/
+> 
+> Changes since v6:
+> - Collected Acked-by tag from Jonathan.
+> 
+> Changes since v5:
+> - Updated one more devicetree file requiring this change.
+>   Ran full dt_binding_check and dtbs_check and verified that no
+>   errors were reported related to this patch.
+> 
+>   Mentioning this explicitly as there was an invalid error reported on
+>   this patch in the last two patch series, from upstream kernel
+>   automation:
+> 
+>   fatal error: dt-bindings/iio/adc/qcom,spmi-vadc.h: No such file or directory
+> 
+>   The error is invalid as this file does get added in this patch, in
+>   previous patch series too.
+> 
+>   Links to discussion for same in v5:
+>   https://lore.kernel.org/all/cc328ade-a05e-4b1d-a8f0-55b18b4a0873@oss.qualcomm.com/
+>   https://lore.kernel.org/all/9f24e85d-f762-4c29-a58f-ed7652f50919@oss.qualcomm.com/
+> 
+>   Links to discussion for same in v4:
+>   https://lore.kernel.org/all/16aaae04-4fe8-4227-9374-0919960a4ca2@quicinc.com/
+> 
+> Changes since v4:
+> - Updated some more devicetree files requiring this change.
+> 
+> Changes since v3:
+> - Updated files affected by adc file path change in /arch/arm, which
+>   were missed earlier. Updated some more new devicetree files requiring
+>   this change in /arch/arm64.
+> 
+> Changes since v2:
+> - Updated some more new devicetree files requiring this change.
+> - Collected Acked-by tags from Rob and Lee.
+> 
+>  .../bindings/iio/adc/qcom,spmi-vadc.yaml      |   4 +-
+>  .../bindings/mfd/qcom,spmi-pmic.yaml          |   2 +-
+>  .../bindings/thermal/qcom-spmi-adc-tm-hc.yaml |   2 +-
+>  .../bindings/thermal/qcom-spmi-adc-tm5.yaml   |   6 +-
+>  arch/arm/boot/dts/qcom/pm8226.dtsi            |   2 +-
+>  arch/arm/boot/dts/qcom/pm8941.dtsi            |   3 +-
+>  arch/arm/boot/dts/qcom/pma8084.dtsi           |   2 +-
+>  arch/arm/boot/dts/qcom/pmx55.dtsi             |   2 +-
+>  .../arm/boot/dts/qcom}/qcom,spmi-vadc.h       |   0
+>  arch/arm64/boot/dts/qcom/pm4125.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm6125.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm6150.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm6150l.dtsi         |   2 +-
+>  arch/arm64/boot/dts/qcom/pm660.dtsi           |   2 +-
+>  arch/arm64/boot/dts/qcom/pm660l.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm7250b.dtsi         |   2 +-
+>  arch/arm64/boot/dts/qcom/pm8150.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm8150b.dtsi         |   2 +-
+>  arch/arm64/boot/dts/qcom/pm8150l.dtsi         |   2 +-
+>  arch/arm64/boot/dts/qcom/pm8916.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm8937.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm8950.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm8953.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm8994.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pm8998.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pmi632.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/pmi8950.dtsi         |   2 +-
+>  arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi     |   2 +-
+>  arch/arm64/boot/dts/qcom/pmp8074.dtsi         |   2 +-
+>  arch/arm64/boot/dts/qcom/pms405.dtsi          |   2 +-
+>  .../boot/dts/qcom/qcm6490-fairphone-fp5.dts   |   4 +-
+>  .../dts/qcom/qcm6490-particle-tachyon.dts     |   4 +-
+>  .../boot/dts/qcom/qcm6490-shift-otter.dts     |   4 +-
+>  .../boot/dts/qcom}/qcom,spmi-adc7-pm7325.h    |   2 +-
+>  .../boot/dts/qcom}/qcom,spmi-adc7-pm8350.h    |   2 +-
+>  .../boot/dts/qcom}/qcom,spmi-adc7-pm8350b.h   |   2 +-
+>  .../boot/dts/qcom}/qcom,spmi-adc7-pmk8350.h   |   2 +-
+>  .../boot/dts/qcom}/qcom,spmi-adc7-pmr735a.h   |   2 +-
+>  .../boot/dts/qcom}/qcom,spmi-adc7-pmr735b.h   |   2 +-
+>  .../boot/dts/qcom}/qcom,spmi-adc7-smb139x.h   |   2 +-
+>  .../dts/qcom/qcs6490-radxa-dragon-q6a.dts     |   4 +-
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts  |   4 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts       |   2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |   2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |   4 +-
+>  arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi   |   2 +-
+>  .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts |   2 +-
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |   2 +-
+>  .../dts/qcom/sc8280xp-microsoft-blackrock.dts |   2 +-
+>  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi  |   6 +-
+>  .../boot/dts/qcom/sm7225-fairphone-fp4.dts    |   2 +-
+>  .../boot/dts/qcom/sm7325-nothing-spacewar.dts |   6 +-
+>  arch/arm64/boot/dts/qcom/sm8450-hdk.dts       |   9 +-
+>  drivers/iio/adc/qcom-spmi-adc5.c              |   3 +-
+>  drivers/iio/adc/qcom-spmi-vadc.c              |   3 +-
+>  include/linux/iio/adc/qcom,spmi-vadc.h        | 303 ++++++++++++++++++
+>  56 files changed, 374 insertions(+), 73 deletions(-)
+>  rename {include/dt-bindings/iio => arch/arm/boot/dts/qcom}/qcom,spmi-vadc.h (100%)
+>  rename {include/dt-bindings/iio => arch/arm64/boot/dts/qcom}/qcom,spmi-adc7-pm7325.h (98%)
+>  rename {include/dt-bindings/iio => arch/arm64/boot/dts/qcom}/qcom,spmi-adc7-pm8350.h (98%)
+>  rename {include/dt-bindings/iio => arch/arm64/boot/dts/qcom}/qcom,spmi-adc7-pm8350b.h (99%)
+>  rename {include/dt-bindings/iio => arch/arm64/boot/dts/qcom}/qcom,spmi-adc7-pmk8350.h (98%)
+>  rename {include/dt-bindings/iio => arch/arm64/boot/dts/qcom}/qcom,spmi-adc7-pmr735a.h (96%)
+>  rename {include/dt-bindings/iio => arch/arm64/boot/dts/qcom}/qcom,spmi-adc7-pmr735b.h (96%)
+>  rename {include/dt-bindings/iio => arch/arm64/boot/dts/qcom}/qcom,spmi-adc7-smb139x.h (93%)
+>  create mode 100644 include/linux/iio/adc/qcom,spmi-vadc.h
 > 
 
-This frequency cap tuning for SDR104 speed mode is not done. If I
-remember the story properly, the frequency cap for HS speed mode was
-implemented in dts instead of being a pure Qualcomm SDHC specific
-quirk, because it's possible to workaround the limitation by slightly
-changing a board PCB layout. Then should this new SDR104 quirk be
-considered due to a property in the dtb as well?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-FWIW, comparing register dumps SD host controllers on SM8550 and SM8650
-SoCs are identical, should HS and SDR104 quirks be ported to SM8650 also?
+yamllint warnings/errors:
 
-Thank you a lot for reviews and hints!
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/slimbus/slimbus.example.dtb: slim@28080000 (qcom,slim-ngd-v1.5.0): 'audio-codec@1,0' does not match any of the regexes: '^pinctrl-[0-9]+$', '^slim@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/slimbus/slimbus.example.dtb: slim@28080000 (qcom,slim-ngd-v1.5.0): #address-cells: 1 was expected
+	from schema $id: http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/slimbus/slimbus.example.dtb: slim@28080000 (qcom,slim-ngd-v1.5.0): 'dmas' is a required property
+	from schema $id: http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/slimbus/slimbus.example.dtb: slim@28080000 (qcom,slim-ngd-v1.5.0): 'dma-names' is a required property
+	from schema $id: http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 428, in get_or_retrieve
+    resource = registry._retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 426, in retrieve
+    return DRAFT201909.create_resource(self.schemas[uri])
+                                       ~~~~~~~~~~~~^^^^^
+KeyError: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
 
--- 
-Best wishes,
-Vladimir
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
+    retrieved = self._registry.get_or_retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 435, in get_or_retrieve
+    raise exceptions.Unretrievable(ref=uri) from error
+referencing.exceptions.Unretrievable: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 463, in _validate_reference
+    resolved = self._resolver.lookup(ref)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 686, in lookup
+    raise exceptions.Unresolvable(ref=ref) from error
+referencing.exceptions.Unresolvable: /schemas/thermal/qcom-tsens.yaml#
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-validate", line 8, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 158, in main
+    sg.check_dtb(filename)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 95, in check_dtb
+    self.check_subtree(dt, subtree, False, "/", "/", filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 83, in check_subtree
+    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 34, in check_node
+    for error in self.validator.iter_errors(node, filter=match_schema_file,
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                            compatible_match=compatible_match):
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 448, in iter_errors
+    for error in self.DtValidator(schema, registry=self.registry).iter_errors(instance):
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 384, in iter_errors
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 296, in properties
+    yield from validator.descend(
+    ...<4 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 275, in ref
+    yield from validator._validate_reference(ref=ref, instance=instance)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 465, in _validate_reference
+    raise exceptions._WrappedReferencingError(err) from err
+jsonschema.exceptions._WrappedReferencingError: Unresolvable: /schemas/thermal/qcom-tsens.yaml#
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 428, in get_or_retrieve
+    resource = registry._retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 426, in retrieve
+    return DRAFT201909.create_resource(self.schemas[uri])
+                                       ~~~~~~~~~~~~^^^^^
+KeyError: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
+    retrieved = self._registry.get_or_retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 435, in get_or_retrieve
+    raise exceptions.Unretrievable(ref=uri) from error
+referencing.exceptions.Unretrievable: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 463, in _validate_reference
+    resolved = self._resolver.lookup(ref)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 686, in lookup
+    raise exceptions.Unresolvable(ref=ref) from error
+referencing.exceptions.Unresolvable: /schemas/thermal/qcom-tsens.yaml#
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-validate", line 8, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 158, in main
+    sg.check_dtb(filename)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 95, in check_dtb
+    self.check_subtree(dt, subtree, False, "/", "/", filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 83, in check_subtree
+    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 34, in check_node
+    for error in self.validator.iter_errors(node, filter=match_schema_file,
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                            compatible_match=compatible_match):
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 448, in iter_errors
+    for error in self.DtValidator(schema, registry=self.registry).iter_errors(instance):
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 384, in iter_errors
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 296, in properties
+    yield from validator.descend(
+    ...<4 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 334, in allOf
+    yield from validator.descend(instance, subschema, schema_path=index)
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 275, in ref
+    yield from validator._validate_reference(ref=ref, instance=instance)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 465, in _validate_reference
+    raise exceptions._WrappedReferencingError(err) from err
+jsonschema.exceptions._WrappedReferencingError: Unresolvable: /schemas/thermal/qcom-tsens.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251127133903.208760-1-jishnu.prakash@oss.qualcomm.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
