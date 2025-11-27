@@ -1,129 +1,172 @@
-Return-Path: <devicetree+bounces-242643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 306ACC8D76F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:15:17 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0959EC8D7E9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 10:21:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 26EC234D121
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:14:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C78E34E1064
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 09:21:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491DF327214;
-	Thu, 27 Nov 2025 09:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE870322524;
+	Thu, 27 Nov 2025 09:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="WYFUaeHT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L55cH3Ew"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 181B6326D6A
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 09:14:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432271CEAA3;
+	Thu, 27 Nov 2025 09:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764234891; cv=none; b=OKHrUvRgu0e6P58MUASjV2bVpd+ejhBdCwTvEXfPaRHmIAHeZ4ka5SE6d9AtQDvv7bt2JsuD//LAhuXSV2MO9Wz8Jk7GPd9TyF9T0cmsYvVvqUaoYUh7ZpYOJUvyvUUBU//B0/csQoOfoXL4WUI6kyYM3YbZar+ytCdKIIZYJXg=
+	t=1764235262; cv=none; b=Iyyk4jrNUFiROqCeQ1nug9oxETZfjI0m0v4xHDbGS/GZtetDtR+c6TaWY5ZeoLqp6jIiyQ8bvmsAzyuLHfwfAek0SJyI5mebVx2TyrseKmo8eU0m8aaub81y6nEjFxbIUPId4NoFrjAiT5Rjtx41x442w6tnRtsUq2M6hr1tR7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764234891; c=relaxed/simple;
-	bh=X03jox/gV8bqLBLEBTR625O9w1oSc+eeKS2ioi2DhKA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jNUKZ9Vm4oTs2zKtUpnPhOCKMsEqVbu3e1YTIH04CEmQKb1b83jrePJ+1AqdwYBEZegkRsvoJWPyurG2/1BgBMrS50sHmw5PpvEf5QXhbdEEhiB7FSznfPn1NYNiVlgJMHABORIvrF76j603piUto3vyyJhPoY5gbOt0uNHk+i0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=WYFUaeHT; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5957d7e0bf3so1868028e87.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 01:14:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1764234887; x=1764839687; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X03jox/gV8bqLBLEBTR625O9w1oSc+eeKS2ioi2DhKA=;
-        b=WYFUaeHTCcZh99fNLyg4ZjCVWMHQInJ4eA1K7+hq/WQJjQDsK/MkEK+wSVvyqeuXla
-         KQa1t3ugiAEhdhvw5FvDcYQF8hkf+S9JRACEIlFnj3VNJmxNFmVmloBvRI9XUUrMNNfO
-         NmPNMA4MP0Rw/2YFqK6ctPM4s19cMSCQdeQgtQMihpOQsIDy96B/KeuwAEo1tirvPgTB
-         pAev8SvLVNCUeU227JfrXqZ9bW0ISv9TY3tN8kx3JZMvbUwnG4hz8CC8GNCYSqsMUPVm
-         4p4cqX3cEnv8LNJgZ6I2AGQm235EbNo/jgAtE2WSpViVqhBgk85pcb+xn31/dvq+fQgL
-         1yhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764234887; x=1764839687;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=X03jox/gV8bqLBLEBTR625O9w1oSc+eeKS2ioi2DhKA=;
-        b=jCZlwhtvr07ia6qbfrMflHsiWlYZxBwhpFBAuUzJjTfZ36yn6K5sR/7NtQq1lOAp7P
-         EOIeqkV6g2nJKwpeKjZZ0E96vj6UG7K39VTSBN8m8vZlRFcKeQHaJ8Bs/Il3FWIevmxv
-         I7R1IxZ7o0OZD49QeAvgQESUL144EYazXU0fbPHcR/mhs2iwAAwMpMDbdr7ecXmdXk0X
-         RccIl0crtS/zYYUUioiUK2wAfHNNwljbSGlb3QRoFNAaLCHfXJnq/rq8y+iWaqZQnPQu
-         UQj599gMochJwYtJRmG7VA/ADp0kzufqULhoMo+FaCd0U0SlWM0RH7o/ms1mW8BNorDi
-         NDeA==
-X-Forwarded-Encrypted: i=1; AJvYcCWPFZR/N7MTGsZOufOqINR+6A3YBiBvqjM1D25/clcSBVQQUTIyXxw6N1OWkP+KONaoyAzHbpI8JUlD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/zvdRm42yzck6BrusmdQBkviOhgxWE29mqRqnhEzdI5Lrjura
-	dzWNrO4pkyShxChayK6gVZpdSQZhIr8rpyABedOi0rEFfBvUgLwAj8+6r7dbJirW2eFLjBLodpV
-	o1ODOFOP8WNBbvH8/WX5tQXHDWeuabGgmXIT453k37A==
-X-Gm-Gg: ASbGncv9Su+qpi44I4WF6jWU9tTxy+wKvO5CnHGSvW9wjvWv+2sbKyrPxqYA0TaRyvh
-	tgMxNo9fAt4AowtJl1/eX/Y2kkQwQi/JXCh5FjZB2PxBkJvFAhh1NRCzf7qJXIYDrwykJN6VY91
-	LpfZorVX4oDab1Xlf8KeiBB6NS3VWW3sRUk3oD+coN56k7LdyjJSTkn7L1pGStMW2/Cnwy0lpGj
-	cUAucRda0HJpwgVHm1eGN8VSNvhdqh71a9UCRDEUsqInpiIZmK2ReUFlWP7zS1wMeKzdSSgD/58
-	Jl/qAWjR+lcNMKRvVEYgFcpJ9IY=
-X-Google-Smtp-Source: AGHT+IEbc2TbO/tYVAauVYSWlsGPpU9aKscxV4CCCOtz2gTp8D6aQtAJcJ71cXNyLsAVeBjOKBJwqCStf35Mbf46OXA=
-X-Received: by 2002:a05:6512:8010:20b0:596:9ebf:25a2 with SMTP id
- 2adb3069b0e04-5969ebf25d0mr6811454e87.19.1764234887164; Thu, 27 Nov 2025
- 01:14:47 -0800 (PST)
+	s=arc-20240116; t=1764235262; c=relaxed/simple;
+	bh=sQVDTm7V9eoCg2eR6hxPIlog0wcTppn1isSj+AvHDYU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oTJw8To/QcYl8M51BTb2SpucJroxcMKBwSghZaTKZkBxJgxGZgd3keho3Wqd2y9FtRiL4VdJM+FIHYBxIq8CRCwNBVN2zlphqDbltx5ICHXltAoLefKVmZmn1HIjuhr54YQZM0ZfJKqn5bhHiX/xIQrLG0CsW+zsYKocWrAhGgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L55cH3Ew; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764235262; x=1795771262;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sQVDTm7V9eoCg2eR6hxPIlog0wcTppn1isSj+AvHDYU=;
+  b=L55cH3Ew6mmTw82NuPk8z8ZPPj5A7qDfMdORcILaJHdan6MpGa3pAgDZ
+   ymyQUbHW4hEngWXwSXuhUUEOgFvY0Qhcllucq16eKl9W5LZQekya/zYOv
+   g6A3cmGEg3ZauzmyCGnHelUatHWKEr1pROl7gkKf8WheydAd1t49dr06g
+   d04STfhZoCiwC8W6K4dkrWJ1k8G/JCPF/jz9eDIXLX4+e78lIsZJYPNyZ
+   lORY/CppXK+YPwoBizze/Ige0aPhrqa1Cx1Yz7qYfwijPf7C1QkcneROw
+   N+aNdmsBF/4QbymKbbcpCufguOq9VOtpw/Qfitw+Nw/CWPbj/GEh4GfKj
+   Q==;
+X-CSE-ConnectionGUID: OJOQcjtET0+I90xQsYRhSA==
+X-CSE-MsgGUID: Hw4OFjjUTcGdMDakm30Pbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11625"; a="66441046"
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; 
+   d="scan'208";a="66441046"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2025 01:21:01 -0800
+X-CSE-ConnectionGUID: d2/cnP5tQfihZkSkbK4qXA==
+X-CSE-MsgGUID: fPDm1rD4RMqoJx7Mj2TmzQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,230,1758610800"; 
+   d="scan'208";a="216538289"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.225])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2025 01:20:56 -0800
+Date: Thu, 27 Nov 2025 11:20:54 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: Jorge Marques <jorge.marques@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 9/9] iio: adc: ad4062: Add GPIO Controller support
+Message-ID: <aSgX9nMBwBtAlSyj@smile.fi.intel.com>
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
+ <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
+ <aSQ2JUN05vmMQC1I@smile.fi.intel.com>
+ <rk4hmupbrb5ugxft6upj7ru43x3z7ybrobax45rorpwbcwleh6@vzxrr3m7r6ep>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251125-pci-m2-e-v2-0-32826de07cc5@oss.qualcomm.com> <20251125-pci-m2-e-v2-3-32826de07cc5@oss.qualcomm.com>
-In-Reply-To: <20251125-pci-m2-e-v2-3-32826de07cc5@oss.qualcomm.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 27 Nov 2025 10:14:35 +0100
-X-Gm-Features: AWmQ_bkMx1pQI7KIzXZheaED5_3WOsSVYkYxsGF26N74WOl7tj2ktgI1roknym0
-Message-ID: <CAMRc=Mc_=F3HiKCVh26RtJ-8vcFWbdRRFS5R8tJa7320W-Tcig@mail.gmail.com>
-Subject: Re: [PATCH v2 03/10] serdev: Allow passing the serdev device name to serdev_device_add()
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, linux-serial@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <rk4hmupbrb5ugxft6upj7ru43x3z7ybrobax45rorpwbcwleh6@vzxrr3m7r6ep>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Tue, Nov 25, 2025 at 3:45=E2=80=AFPM Manivannan Sadhasivam via B4 Relay
-<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> wrote:
->
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
->
-> Instead of always setting the serdev device name from 'struct device' nam=
-e,
-> allow the callers to pass an optional name and set it as the serdev devic=
-e
-> name.
->
-> This will be used by the future callers passing the serdev device ID as t=
-he
-> name.
->
-> Acked-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.=
-com>
-> ---
+On Wed, Nov 26, 2025 at 04:55:41PM +0100, Jorge Marques wrote:
+> On Mon, Nov 24, 2025 at 12:40:37PM +0200, Andy Shevchenko wrote:
+> > On Mon, Nov 24, 2025 at 10:18:08AM +0100, Jorge Marques wrote:
 
-Instead of modifying the existing callers with an unneeded argument,
-I'd suggest adding a new call - serdev_device_add_full() or something
-like that - that takes more arguments and make the existing function
-wrap it.
+...
 
-Bart
+> > Why can't gpio-regmap be used?
+> > 
+> Because the device register values (0x5, 0x6) does not fit the gpio-regmap.
+> It writes the mask for high and 0 for low.
+> But low is 01[01] and
+>     high   01[10]
+> 
+> A different series would need to extend the gpio-regmap ops, but if you
+> implement your custom reg read/write, then you save at most ~5 lines...
+> I will add that to the commit message.
+
+OK.
+
+...
+
+> > > +	return reg_val == AD4062_GP_STATIC_HIGH ? 1 : 0;
+> > 
+> > 	return !!(reg_val == AD4062_GP_STATIC_HIGH);
+> > 
+> > also will work.
+> >
+>  	return reg_val == AD4062_GP_STATIC_HIGH;
+
+Hmm... This will include implicit bool->int. The !! guarantees values 0 or 1,
+but I don't remember about implicit bool->int case.
+
+...
+
+> > > +static int ad4062_gpio_init_valid_mask(struct gpio_chip *gc,
+> > > +				       unsigned long *valid_mask,
+> > > +				       unsigned int ngpios)
+> > > +{
+> > > +	struct ad4062_state *st = gpiochip_get_data(gc);
+> > > +
+> > > +	bitmap_zero(valid_mask, ngpios);
+> > > +
+> > > +	if (!st->gpo_irq[0])
+> > > +		set_bit(0, valid_mask);
+> > > +	if (!st->gpo_irq[1])
+> > > +		set_bit(1, valid_mask);
+> > 
+> > Why atomic bit set:s?
+> > 
+> Not needed, will use
+
+Note, bitops are xxx_bit() -- atomic, __xxx_bit() -- non-atomic,
+that's what I had in mind.
+
+> 	if (!st->gpo_irq[0])
+> 		*valid_mask |= BIT(0);
+> 	if (!st->gpo_irq[1])
+> 		*valid_mask |= BIT(1);
+
+Can't it be rather something like
+
+	for (unsigned int i = 0; i < ...; i++)
+		__assign_bit(i, valid_mask, st->gpo_irq[i]);
+
+?
+This shorter and does the same independently on the length of the bitmask
+(and effectively the array size of gpo_irq)
+
+> > > +	return 0;
+> > > +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
