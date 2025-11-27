@@ -1,132 +1,186 @@
-Return-Path: <devicetree+bounces-242776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B3EC8E9A6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:51:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D509EC8E9C2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 14:52:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 912693B09FB
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:47:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F9FC3AD477
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:48:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE0E2749D3;
-	Thu, 27 Nov 2025 13:47:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB52628CF5E;
+	Thu, 27 Nov 2025 13:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Mqi7wt8o"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="NevznnII"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0971EB1A4
-	for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 13:47:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764251247; cv=none; b=m04KHO+eyqHDVSUWJSOxBl8czT+czIzAI1G2MUszF/zIUWcj2NNFJCYfY6Qvm4hecFM/NlkqYWaB6JfdzNAfTKC0YjK21aFjTF8Ol1uC1CNh9r/kDDs3wnXhfIKgLxuhj9Vhn8UhP9Q460MHGarFZ9UnYFQiJqXGAGqdPxEYQIs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764251247; c=relaxed/simple;
-	bh=27yd/l6012XaQH/g8Ixa+D6cMcVdfn8d9/IVn2JOVCI=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Dm6KFixQnxaDe7yxwqjmykf6mBkIQR9d4wX5UZotPqN6NhdEtv0uUah8EDjMYHykr0qwkRaDeCmQeTsYF6wUPnKm1b/Ge8y7hackMtqnlQNLakToamx+bqk0DiFwLt9qi8KiGLA5ZC84QuYBctlzdWSZesUjd1VM32RBhILhIRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Mqi7wt8o; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-591c98ebe90so1244910e87.3
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 05:47:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1764251243; x=1764856043; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:references
-         :mime-version:in-reply-to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=27yd/l6012XaQH/g8Ixa+D6cMcVdfn8d9/IVn2JOVCI=;
-        b=Mqi7wt8oNrr+2+e4XNhQBFHjbbJlNk2prXtZZdeiWDpubDuSNPjtqVuc6fFI7gQTNW
-         vlhDRF8Ikv07ZhquMqzkqlRbUqUBvhhznOF0yf+VzMxYMKnOLOCd6txDRXhkTGnAwFfn
-         9q/AFxkcnrl71n9rhoZuu/08jdMh/RFnG0Cl63G8H+FblB9m8ujHai9LfGR+WngJj2Dd
-         TjMLWQA1KgMyWpako1U/QHpPDjlp8y4V15h620/0cvt4YsBCRXEygHzP/Lbbhj6NIsYB
-         DsZitljR6hDpZnbRH3U5UlgO5Ha0pWvDDCPBmOt/Z+Dos4I7Or/n2AinAFdgzuAfJvVY
-         hiLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764251243; x=1764856043;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:references
-         :mime-version:in-reply-to:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=27yd/l6012XaQH/g8Ixa+D6cMcVdfn8d9/IVn2JOVCI=;
-        b=K+7nyPwA39E5r88rKO2RKKhaMf673OLxquUal386omh5wT6sfO+rJqQwP2mHc7UEAW
-         fXliV77WR1IinbB5Ehl53SDopeaiTk26jrIwO5qD0EHffLZCMD3WUU17GbAL9G52efyp
-         WnEbK+YtiL2KndRcyqqG4cPg8eech51Ug1AREXYkKt5WnmDBwVP3NLAgGkrW5b9+jz2V
-         8xiva2AealeOeMic/1JN0s1bBmCCcqvD9KjxKDrgVel32I+xw9FW/f60oK80EeQfzH3A
-         BZC1fUKk2t8coumAxuxL7Dh/CenC+a4MfObCKusH6DDEeiNaqw6CmfHkm8+KhHsHEJjt
-         846Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXs4PhgrwyateLnVpPNIwhqFXzHt0pJEh5hOmYd2Av6jEv7rOPs0tKvkhCwj0O3bShtD/2lsbQ11tWF@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXlxFe2yFIX7k8SyDUwvflagWCnagYMDun65Kche+7axU14hvC
-	iSADUGLtOE8oympD4fpjf8UWwjP+Ny9MjkNxsUdSJ9fZBPWG76uZCzhEimLAw5l/kxWmrsjHnWF
-	a2Y/n/xJjZRo8ocHydr3gMIBdABB0xt9TWrWlmpkETw==
-X-Gm-Gg: ASbGncsGGcfhE+cHjZtSALDk1srrhFh7lDFhrp61OT5kefCsOlANW657Q6pdkOfiSwX
-	+R8Iy3Dsg+lhjFT9D0xGWreqTpi4uCeTjildKW2F1oW80xVVY53Ul8Ej5xjjoe4D8GZku90Oq4m
-	YWFbEiz7zPAFsaT+796aNsbyQ+Byd8qdwd5WBH8Emms7MItm66M+hhzUg9xND43VoCWOZZLsVvM
-	HkoYr1aBTEkivFOmvjouIx1sWDOzxEv0hWQA50/UJeYmfDHg2BlFsh5DIFPOu4BQm+4QOD9YKz9
-	EA+8rphtfYrdGRc21556sqe/B9A=
-X-Google-Smtp-Source: AGHT+IHIByvzTN9XhwquV0dZ7CSOzT2wtZW2aRAexw9uGkGjWx9uXnsQQnkc0lHm6G8MnJ63g3o+AbKWIIpqZ/ETI6E=
-X-Received: by 2002:a05:6512:2354:b0:594:36b3:d1f9 with SMTP id
- 2adb3069b0e04-596a3ec4221mr8118131e87.25.1764251243268; Thu, 27 Nov 2025
- 05:47:23 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 27 Nov 2025 08:47:21 -0500
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 27 Nov 2025 08:47:21 -0500
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <20251125-pci-m2-e-v2-1-32826de07cc5@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972FC267B94;
+	Thu, 27 Nov 2025 13:48:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764251302; cv=pass; b=DcSpKNAy7JHcaSd/gcuutVmaZEKgsEyQnGgCJLPEmxUAN1cYq4dw6KMiHggfNZj8TpDsnou8Q17kg9Gd+rtRN9VXqH7AqezJflcp5rwt/nfLf2bgstzHt7eaFtRF2ccBSuqiCWeE2MlcQTS9dga7iYPxzu1N2BGWpDylep1+4TM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764251302; c=relaxed/simple;
+	bh=b0oMnunnjuobG7eO1qvntmjm1GhyPkGJUrptzNeT38o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ThA90JS+g4SEFHdxIPQX5K/B4oCwXFwQAYHbQm91GRJZOZPCjZx6zBmRhwJGWdyg/YqGA8UG+St8BNOTp3n9UXZqEU5B1tTUhkiKJpO9Ao/uHdmZ0ZrL27HZcFcy4ZAjBlIn0uRyhfdBNoZdVQ8bt6lgjn9xfNxw+bhy5KQ6dvg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=NevznnII; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1764251255; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=AMwSHeQ/vxT8K1YbNvYUSgylTjKlArp4r4fiaGvm/cKDv4dbjwctTi2yaqWmZM6jhAjFqYDOF0Dj1UEV2d5SEFmnkkfDhk4tvycGdn5RMxD4BD5tr25eiAZELRy92Lsw6Qbmi7tNl3213hU7tO8NxwGrwVzuI7uYL3vi4bvc6sQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1764251255; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=b0oMnunnjuobG7eO1qvntmjm1GhyPkGJUrptzNeT38o=; 
+	b=Mo9WfSq+g0Y1vhrbyK04/qyxAhbaUDVNbty788sHNudiHszZWuGQdWhPs3X1MHlnAEAwH2+effveKIICSGYbIE98uFhaGibmAoekoIbCqNJBOTsEt1lymitxYAuY718/gw1B56aXVl6akGW0TRx6CgVYKlLHeZ8wzqHOh1Yfgto=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1764251255;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=b0oMnunnjuobG7eO1qvntmjm1GhyPkGJUrptzNeT38o=;
+	b=NevznnIIn59XEHlVsufetcVaa7qfNmwKdJLGscdLrhvL/rJhsbh+zKjlDzPYGDnn
+	V0SwbK4ECYIb3eC849j5CX32dSlOqdPZlD3QjYehC6NvCo9DwnZN0tjza431fXhTKRq
+	9fV9FZxWzvrE46QSslYmerkr2/E8fKzMhSVzU+8lqc7oaHhJ9EzUsfnHev4cqWMqI2h
+	Dx+dHQt6a2cyuwJQUUXvb9+oj2RRxEsRrhj1uZk4zq350udzqwAVo/NKsSKtJsaPotz
+	6KpnXzeV+NmAE5jMUSlGWV/O3sWqKlp+b9Y9wK9OQ0T4ZMzxZfw5uB6oI852mF8ITdC
+	l6LveB5DmQ==
+Received: by mx.zohomail.com with SMTPS id 1764251253052907.8324349863465;
+	Thu, 27 Nov 2025 05:47:33 -0800 (PST)
+Message-ID: <b7b9396950cb92c227acef5461941020a282e551.camel@icenowy.me>
+Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Drew
+ Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner
+ <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Michal
+ Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Date: Thu, 27 Nov 2025 21:47:23 +0800
+In-Reply-To: <0b7ba974-d8d5-4417-8182-3e9299315058@kernel.org>
+References: <20251124105226.2860845-1-uwu@icenowy.me>
+	 <20251124105226.2860845-3-uwu@icenowy.me>
+	 <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
+	 <544ae21cc1b5f488d03a5650d9275ff22b237d63.camel@icenowy.me>
+	 <0b7ba974-d8d5-4417-8182-3e9299315058@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251125-pci-m2-e-v2-0-32826de07cc5@oss.qualcomm.com> <20251125-pci-m2-e-v2-1-32826de07cc5@oss.qualcomm.com>
-Date: Thu, 27 Nov 2025 08:47:21 -0500
-X-Gm-Features: AWmQ_blvAAM2uq578ciPVCG4M9rg3fVM1qAGhRvJTTtDZYm9qOnYz1mkG_i5iVY
-Message-ID: <CAMRc=Me+mWYaa4ZKTmch-NtuvP-2ifbY1Zwi9E9KMyUgFSt0fA@mail.gmail.com>
-Subject: Re: [PATCH v2 01/10] serdev: Convert to_serdev_*() helpers to macros
- and use container_of_const()
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>, 
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
 
-On Tue, 25 Nov 2025 15:45:05 +0100, Manivannan Sadhasivam via B4 Relay
-<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> said:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
->
-> If these helpers receive the 'const struct device' pointer, then the cons=
-t
-> qualifier will get dropped, leading to below warning:
->
-> warning: passing argument 1 of =E2=80=98to_serdev_device_driver=E2=80=99 =
-discards 'const'
-> qualifier from pointer target type [-Wdiscarded-qualifiers]
->
-> This is not an issue as of now, but with the future commits adding serdev
-> device based driver matching, this warning will get triggered. Hence,
-> convert these helpers to macros so that the qualifier get preserved and
-> also use container_of_const() as container_of() is deprecated.
->
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.=
-com>
-> ---
+=E5=9C=A8 2025-11-26=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 11:22 +0100=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 26/11/2025 10:50, Icenowy Zheng wrote:
+> > > > +maintainers:
+> > > > +=C2=A0 - Icenowy Zheng <uwu@icenowy.me>
+> > > > +
+> > > > +properties:
+> > > > +=C2=A0 $nodename:
+> > > > +=C2=A0=C2=A0=C2=A0 pattern: "^display@[0-9a-f]+$"
+> > > > +
+> > > > +=C2=A0 compatible:
+> > > > +=C2=A0=C2=A0=C2=A0 items:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - thead,th1=
+520-dc8200
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: verisilicon,dc
+> > >=20
+> > > I do not see any explanation of exception for generic
+> > > compatibles,
+> > > maybe
+> > > except "self-identification" remark. Rob already pointed this
+> > > out, so
+> > > be
+> > > explicit in commit msg why you are using a generic compatible.
+> >=20
+> > Well I only get the meaning of "a SoC specific compatible is
+> > required"
+> > in his review message.
+> >=20
+> > I think my binding now requires both a SoC-specific compatible and
+> > a
+> > generic compatible, which should be okay to satisfy Rob's original
+> > review.
+>=20
+> You will get then the same questions for me - what justifies generic
+> compatible. You should be on this explicit, because otherwise people
+> misinterpret some commits and patches, and they think the generic
+> compatible is allowed for them as well.
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+I came across a comment on Mali Valhall bindings that says `Mali
+Valhall GPU model/revision is fully discoverable`, just after the
+compatible string.
+
+Should I add a comment like this, or should I make things more clear in
+the commit message?
+
+>=20
+> >=20
+> > >=20
+> > > > +
+> > > > +=C2=A0 reg:
+> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > +
+> > > > +=C2=A0 interrupts:
+> > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > +
+> > > > +=C2=A0 clocks:
+> > > > +=C2=A0=C2=A0=C2=A0 minItems: 4
+> > >=20
+> > > This is not flexible. Device either has or has not these clocks.
+> >=20
+> > The existence of all these clocks are verified by diagrams in
+> > manuals
+>=20
+> So not flexible, then:
+>=20
+> > of two different SoCs with DC8200 (T-Head TH1520 and StarFive
+> > JH7110).
+> >=20
+> > Maybe a explicit `maxItems: 5` is needed here, but as my DT passes
+> > dtbs_check, I don't think it's necessary?
+>=20
+> No, drop minItems only.
+>=20
+> >=20
+> > Or maybe I should drop the flexibility now and use a `minItems: 5`
+> > here
+> > (and leave DC8000 support as another story)? (The Eswin EIC7700
+> > manual
+> > does not have a diagram showing external connections of the DC,
+> > like
+> > the two SoCs I mentioned above).
+>=20
+> You document here only the devices explicitly mentioned in the
+> binding.
+> You cannot add here constraints or clocks for some device which is
+> not
+> in the binding and I see only th1520 in the binding.
+>=20
+> Best regards,
+> Krzysztof
+
 
