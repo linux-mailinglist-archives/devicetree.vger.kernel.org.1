@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-242783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46529C8EAFA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:04:50 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0619C8EAA0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 15:00:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45C993AF274
-	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:58:09 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 76F0D3516EA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Nov 2025 13:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A20334682;
-	Thu, 27 Nov 2025 13:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E8C28314A;
+	Thu, 27 Nov 2025 13:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eSEe7iWw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eFQbwjzz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1297332ED1;
-	Thu, 27 Nov 2025 13:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CF227703C;
+	Thu, 27 Nov 2025 13:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764251783; cv=none; b=B0MvB0TZA9d9HSI7S0wZh+M/77NPWJ/mRqVcTkQ0Iq4uAMFBG+suEvozC1V4TeqMZNsYjRi/MMr7X5KG0PinVNU6PHznVL5L8JBnJIQCwYCVyKtwZKDxWyNAIiSk6QqByz2pfFcl00UKwUNlzgt2BqaBNps/V0gpFlEV/vhZLRs=
+	t=1764251942; cv=none; b=bLryU/NmJLt2jEtzqnsnbSzqx90zqeJnDKhKRiOwBFhtswLDc4th/8F428nRcIlhsOEq/ESzI2bZCVoT8t4v7YxwPYtAQz+6aSBFUqa/qBDKq5ruEy2FZQTWeMnsZmOOcLBaQXELQBs1zKMKHzRkwYoHhvPOSEvnIRUnC18fQEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764251783; c=relaxed/simple;
-	bh=9OLyfVO/1eNfRbEqh+BqqV2AQYFykwdWc7Y+7PlW/6c=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=UDIEOkwdv82nBvrsS1126AxQfje/IW/6iViZ1sG8YjmS5GTVNFuGJzdntZNUtTLDvfPvQXzGEBfH4gDb4ql7GqwNT849Ul/m/iU8bKlhEPyVu5RxmaZZf1PKteohFbXUIrtyq0Mkz6ykGqOAFpMWr/hvu+JhiWBkLc1XeCuZgEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSEe7iWw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DF1DC4CEF8;
-	Thu, 27 Nov 2025 13:56:19 +0000 (UTC)
+	s=arc-20240116; t=1764251942; c=relaxed/simple;
+	bh=RAb5JyI+7Eg8dSIG0pq4NFV6UoD+9rhPIqCdXRp9X6Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AHPUbm2ur2lwD6AVCLMbS00pXwLUEm0u5R1xiqAtrHCy3hZv1iJ/UF3DUCYpvkpEd7eSskAMVGYCR7hpgFxnhIVJ3wH4my106NdYq06BvbL6FT9Yp0O8GVjpO9/ECzX58stSdn23NCW58p8lZaiRe3LrmyXfeZaokxGYwMMncFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eFQbwjzz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B3B6C113D0;
+	Thu, 27 Nov 2025 13:58:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764251783;
-	bh=9OLyfVO/1eNfRbEqh+BqqV2AQYFykwdWc7Y+7PlW/6c=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=eSEe7iWwWHP2esgh+sw9sF6uGmzgDZ69/dPyKTCCco6WWtKkQhqy7zbjZwSwLLM2i
-	 N9fd6nnWD6bUXjzJYVgy8NUsHCtLlXkEwPBjUcdPE/dRyprjdQGYYL4GzTZrfUAyjS
-	 3/v9B8qSIq2ogTPPoD8ScpkFcxIl4ReG/TmzYmnJgDIeYgcZGoeBxpv5RQPc60EATw
-	 ONV4g6nAaDuqSYUBYOYhcR2xZzHjR62kM5kZbFDoyoEZnNZ9UqMxPXVIUpqogDcO0G
-	 IbwX3UzLmREko9hLFoIzNLDW2nEAe8myXU1atkVALMxk7Mtz7PkJ5xOFny4tscPVu/
-	 xWsngWdq368tg==
-Message-ID: <44593251-795c-4009-8202-06688027e150@kernel.org>
-Date: Thu, 27 Nov 2025 14:56:18 +0100
+	s=k20201202; t=1764251942;
+	bh=RAb5JyI+7Eg8dSIG0pq4NFV6UoD+9rhPIqCdXRp9X6Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eFQbwjzzwCzmXwWVUfJOe/gvAu/FRjplhO1QM6whjf63EgQ3+FLPH1x3r1W2MZ3+n
+	 PfsuBN2TLU11T0HjnkA0gEaBlw4QgDHn02J7gHRir+GDRaR5J6IsqBlsuDpHL/CHKy
+	 JYhV6vo9Qzt+F5Av5A/Q7nVfsz27CuJUsZk2bbUKnizoGN0MpVN4tgn/2W0HGS7EOn
+	 qH4Bm/A0peR5Q67iT3PT1HxBPDseD+hDsYZohT4xyL/czWq4MUXI6uhGewEwdF09Oo
+	 qU1klZ8k4EW/acpCXfRW3Tjjn2q53lexpk0Jj4S5ofFp8qDtCzg7DvZZOTdxizvOpI
+	 KkFXXn9Qz1yKg==
+Message-ID: <b68f333c-ccf5-4ecb-9d99-05d0f6e36391@kernel.org>
+Date: Thu, 27 Nov 2025 14:58:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: usb: qcom,snps-dwc3: Add support for
- firmware-managed resources
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sriram Dash <sriram.dash@oss.qualcomm.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Subject: Re: [PATCH v3 2/9] dt-bindings: display: add verisilicon,dc
+To: Icenowy Zheng <uwu@icenowy.me>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: jack.pham@oss.qualcomm.com, faisal.hassan@oss.qualcomm.com,
- krishna.kurapati@oss.qualcomm.com, andersson@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konradybcio@kernel.org>
-References: <20251127-controller_scmi_upstream-v1-0-38bcca513c28@oss.qualcomm.com>
- <20251127-controller_scmi_upstream-v1-1-38bcca513c28@oss.qualcomm.com>
- <e9363a14-183e-4d12-91b0-1ac5655e6e90@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20251124105226.2860845-1-uwu@icenowy.me>
+ <20251124105226.2860845-3-uwu@icenowy.me>
+ <d4cfe8bb-5ca2-40a9-bfe0-96e7ded5586c@kernel.org>
+ <544ae21cc1b5f488d03a5650d9275ff22b237d63.camel@icenowy.me>
+ <0b7ba974-d8d5-4417-8182-3e9299315058@kernel.org>
+ <b7b9396950cb92c227acef5461941020a282e551.camel@icenowy.me>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -110,81 +118,114 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <e9363a14-183e-4d12-91b0-1ac5655e6e90@kernel.org>
+In-Reply-To: <b7b9396950cb92c227acef5461941020a282e551.camel@icenowy.me>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 27/11/2025 13:13, Krzysztof Kozlowski wrote:
-> On 27/11/2025 11:31, Sriram Dash wrote:
->> On Qualcomm automotive SoC sa8255p, platform resources like clocks,
->> interconnect, resets, regulators and GDSC are configured remotely by
->> firmware.
+On 27/11/2025 14:47, Icenowy Zheng wrote:
+> 在 2025-11-26星期三的 11:22 +0100，Krzysztof Kozlowski写道：
+>> On 26/11/2025 10:50, Icenowy Zheng wrote:
+>>>>> +maintainers:
+>>>>> +  - Icenowy Zheng <uwu@icenowy.me>
+>>>>> +
+>>>>> +properties:
+>>>>> +  $nodename:
+>>>>> +    pattern: "^display@[0-9a-f]+$"
+>>>>> +
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - enum:
+>>>>> +          - thead,th1520-dc8200
+>>>>> +      - const: verisilicon,dc
+>>>>
+>>>> I do not see any explanation of exception for generic
+>>>> compatibles,
+>>>> maybe
+>>>> except "self-identification" remark. Rob already pointed this
+>>>> out, so
+>>>> be
+>>>> explicit in commit msg why you are using a generic compatible.
+>>>
+>>> Well I only get the meaning of "a SoC specific compatible is
+>>> required"
+>>> in his review message.
+>>>
+>>> I think my binding now requires both a SoC-specific compatible and
+>>> a
+>>> generic compatible, which should be okay to satisfy Rob's original
+>>> review.
 >>
->> PM OPP is used to abstract these resources in firmware and SCMI perf
->> protocol is used to request resource operations by using runtime PM
->> framework APIs such as pm_runtime_get/put_sync to signal firmware
->> for managing resources accordingly for respective perf levels.
->>
->> "qcom,snps-dwc3-fw-managed" compatible helps determine if
->> the device's resources are managed by firmware.
->> Additionally, it makes the power-domains property mandatory
->> and excludes the clocks property for the controller.
->>
->> Signed-off-by: Sriram Dash <sriram.dash@oss.qualcomm.com>
->> ---
->>  .../devicetree/bindings/usb/qcom,snps-dwc3.yaml    | 173 +++++++++++++--------
->>  1 file changed, 111 insertions(+), 62 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
->> index 8cee7c5582f2..d2d1b42fbb07 100644
->> --- a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
->> +++ b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
->> @@ -12,68 +12,65 @@ maintainers:
->>  description:
->>    Describes the Qualcomm USB block, based on Synopsys DWC3.
->>  
->> -select:
->> -  properties:
->> -    compatible:
->> -      contains:
->> -        const: qcom,snps-dwc3
->> -  required:
->> -    - compatible
+>> You will get then the same questions for me - what justifies generic
+>> compatible. You should be on this explicit, because otherwise people
+>> misinterpret some commits and patches, and they think the generic
+>> compatible is allowed for them as well.
 > 
-> I wonder why do you think dropping some code is fine...
+> I came across a comment on Mali Valhall bindings that says `Mali
+> Valhall GPU model/revision is fully discoverable`, just after the
+> compatible string.
 > 
-> 
->> +      - items:
->> +          - enum:
->> +              - qcom,sa8255p-dwc3
->> +          - const: qcom,snps-dwc3-fw-managed
-> 
-> No, you cannot keep coming with more generic compatibles.
-> 
-> If you want generic a compatible, you already have - qcom,snps-dwc3 -
-> and that "generic" part already said that everything is compatible with it.
-> 
-> Now you claim that existing generic compatible qcom,snps-dwc3 is not
-> generic enough and you need one more generic compatible.
-> 
-> Next year you will say that two generic compatibles are not generic
-> enough and you need third generic compatible.
-> 
-> In two years we will learn that three generic compatibles are not enough...
-> 
-> I think I was complaining on the lists a lot on this, so I am surprised
-> it is still coming back.
-> 
-> So no, you cannot claim that you need more generic compatibles because
-> one generic is not generic. NAK.
+> Should I add a comment like this, or should I make things more clear in
+> the commit message?
 
+Just say in the commit msg in the sentence about "self-identification
+facility" that therefore you use generic compatible (or "generic
+compatible is suitable").
 
-What is even weirder is that other patchset for the same SA8255 FW
-managed IP block correctly ignored generic compatible:
-https://lore.kernel.org/all/20251114145646.2291324-3-ram.dwivedi@oss.qualcomm.com/
+Please trim the context when replying. Look below:
 
-so somehow you should meet and align on common understanding of things.
-Please do not send completely different patches for the same problem.
+> 
+>>
+>>>
+>>>>
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    minItems: 4
+>>>>
+>>>> This is not flexible. Device either has or has not these clocks.
+>>>
+>>> The existence of all these clocks are verified by diagrams in
+>>> manuals
+>>
+>> So not flexible, then:
+>>
+>>> of two different SoCs with DC8200 (T-Head TH1520 and StarFive
+>>> JH7110).
+>>>
+>>> Maybe a explicit `maxItems: 5` is needed here, but as my DT passes
+>>> dtbs_check, I don't think it's necessary?
+>>
+>> No, drop minItems only.
+>>
+>>>
+>>> Or maybe I should drop the flexibility now and use a `minItems: 5`
+>>> here
+>>> (and leave DC8000 support as another story)? (The Eswin EIC7700
+>>> manual
+>>> does not have a diagram showing external connections of the DC,
+>>> like
+>>> the two SoCs I mentioned above).
+>>
+>> You document here only the devices explicitly mentioned in the
+>> binding.
+>> You cannot add here constraints or clocks for some device which is
+>> not
+>> in the binding and I see only th1520 in the binding.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+
+Is all this needed for me? If it is there I will waste time scrolling
+through it looking for your questions.
+
+Think how your patchset and replies are received by reviewer.
+
 
 Best regards,
 Krzysztof
