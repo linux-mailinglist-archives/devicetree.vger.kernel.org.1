@@ -1,905 +1,366 @@
-Return-Path: <devicetree+bounces-242895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 842DAC90C9C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 04:38:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B48C90D74
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 05:42:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 298913A876E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 03:38:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 88A434E4651
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 04:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 985902D59EF;
-	Fri, 28 Nov 2025 03:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACDCF2C2368;
+	Fri, 28 Nov 2025 04:42:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IycEQook"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kTmlwuLx";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LeEHoqbl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B36202D8396
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 03:37:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4CFF2773FE
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 04:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764301056; cv=none; b=P1HXnwQPZNFKupArwVg4eMyenIB0X8SV+vdHx21r0oeYUgdOy96GPkEO2d2swPKI9RwEBMtCnMF3Og2nqmmUOQTmcB1QKrqT1Mome/k+sum3PNxqRuRdZM2vJx/6yxWPaSwTdyHNwS26X5Vsa7Lj3AMOnpjy58W2AvVwJUT0eLY=
+	t=1764304951; cv=none; b=RaGFTOzLb6pnSn2RQoOWAedU/1o6I8LowzA4DoTUaLS+a4MDgnPdfanmBD2JLCqgLkrmWWzSOzbwqRVH3quZaPZfnzLB/o4/lPGN8HVaaGcyankDqZ2Pgu4iG06YkPkihFYy9/EXi1/oB0xQZwTChupOLYsUsrLpazxaZcPQwT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764301056; c=relaxed/simple;
-	bh=kV1OALCUnGKVOlxwRw/qBr1IuNZxZdZwM6EY+WCt1WQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VvZb0u0GfjWUffMLDswtj4MF685/87fVSQqayD4LCin+4U2pBUE3YSNsQiFBWJheiKTi9kfYa/od1o5OUxIXCFqhbOkOXx/1FeE31LGXSGE55fXOfGacIZV6e3rJzA9B84wiwX1YOyaj5J+sBCqSxgbdHYCWDDX2GqUUcc2mcs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IycEQook; arc=none smtp.client-ip=209.85.217.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5dfd380cd9eso921294137.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 19:37:32 -0800 (PST)
+	s=arc-20240116; t=1764304951; c=relaxed/simple;
+	bh=8rl0QrU3MlRdwHNYRZG/3TlzxVsvny1fEpzP63WAjJc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uA1ykwaoti69rzCUxfjZQV/VHBpO+JLGg0iVFsgg/GHRL45Wtuo07R79Dn3DEU+VpXkaS1Xqr3ZdVsM+c06dly8LUWrNoUloPw3esNGapqkackFS7WX8ClXb2CiroIjRiTMWyEoQaqg9ZiAzb2qM1xFjEqU2wODM6Pk+YYeO1HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kTmlwuLx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LeEHoqbl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AS0TNQU785313
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 04:42:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XB4p3JALjAdaEds41Kpv7aXiJdteIXPc5KCCtJz6euc=; b=kTmlwuLx2TObGY5n
+	0ZMAKlUT2p2oyHcbJwK1dw7Q47LvSVVeHmDRls5dyvF7Tqk56hyHwSHGCLf4Vcv7
+	wv7uHLpg1Z4WCkYU8IK5auaVIwfe+sJwZP2YU7E74xMKMU0RoMPppSRI4YYyZn2u
+	DjZTWE9M/BtcVtDK3mBCQkKKK7Izphr2/FsgFfN0bT0xbJfenxEBVqndivZ458HA
+	oebKsN/hxYGyhuW/uQk80YeSjBSmwpT7CiW+EB2VfBxzWiHWlUDyevsaIe8usYhj
+	qdqTQzYcyuk0dqCm/UUNFWEDnAXSrl/HulQ4yDboNJh5CZ7ov6GUtZDwvj2RSxWU
+	C+sLkQ==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4apm61t71j-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 04:42:28 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-297f3710070so28043495ad.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 20:42:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764301052; x=1764905852; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pD/zLHdmoPpI8ayLItX7Z6XnekUdFadeWRXh3YqTLPA=;
-        b=IycEQookOMxNCf3BwkUWlIn5K9WuG3aujwjN4w3AsfU2eECtH+uHQrwDgNI5uh0abH
-         Rn9qurExBbCNmLNY6cINqqi+6V/l8Sm4wDjw/OVn5ue9u+Uod2NQvXAManxSuKln1bzS
-         CLHczBpEhHnCv7kq1DviLtvF5E2zj6LbbmZAjcibGbPgKT8WscaoZhRAxfPEFXqghwOo
-         TGx114mrrsNN7IAoEFFVNPXKiF7bNDQeaBHyxT2U7xI93zN1jJulUG4hPdKQwKapYcRv
-         7N5N7FJ0klnMtGn48jc60T6QVsyacCBXWIgC2c4/paOskHKQP4GtjIPw2zkBRSJW/ny8
-         fg5Q==
+        d=oss.qualcomm.com; s=google; t=1764304948; x=1764909748; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XB4p3JALjAdaEds41Kpv7aXiJdteIXPc5KCCtJz6euc=;
+        b=LeEHoqbl+uoM6lK2B0M50HLeqA4WzIcDIalqfKavFSbiuBu+8wOSHOiMQWzcl0UHc5
+         azCfXUZHutsIPl2GQY+sKbjHS/Y+jllT4j6Y0XuIK3JECJhvZP2C8tPB0Ls/zLs4KyYp
+         igfCI/7Pp6vAerYW130EGkXtI2Q85elqJLap1aDzdaArsq5Dej3MIUFlaw6NVE1EqxCm
+         8kYA1xyQLMqGSttRLoNiQKhGVPRow7wPs+ado5rms+7/926LKlrq/t2JjpMLzeh8mmwF
+         GKenlw2UCVU9vExhStThVUFszQbj5Nqheufzl6HzBHTKEGYA3xzWAoWxdSQAmQ2UhAXN
+         xqVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764301052; x=1764905852;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=pD/zLHdmoPpI8ayLItX7Z6XnekUdFadeWRXh3YqTLPA=;
-        b=WR/g46xZroRfoWUTGe5zrtaTFxFOH7bslBr5mA2akUJfKprgqQeNOpzuEFpMpqNbh9
-         hwuAq9qeavOaPQujPvf7aV3quz5teGimd+mrq+aeeM9AfezolfUvnIigO2ELViz3MdrC
-         9/n54dBowv7u9ZWv7JrN6fiSlvWpBS+hRswz0CzqMm6/xrQ7gCfKLLhkm9x5f40jL7/e
-         nf+D9Mddvj3s5pVbe6kA2x4pDWclC2BbKaFh4El/oGSf5CS9zlpGQHGIjkxPPpjH6K9v
-         +pyNKhXqhcRFLor4EW8T6oQNwSGe8Bgrr5JPZTw3fNXez9+8JhvlOMadvaNbsU4wS5dk
-         Sb2g==
-X-Forwarded-Encrypted: i=1; AJvYcCUeZOlT6xENyZyaV38vrvdBvb0/lmqKW/u2FhGPs5eBuk5l0AriHzH5+xtHXqFtj5KbqJs3lZmUZiHQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxR/1HiQ3YBLyvgRwaZfhpDb/SKyWTa9gLdShQmzW438MFNXQV1
-	9grSuMSHhDvOEPDMn6Nu90i9M/untOYOAd+F+oG4ybu0IDDtIEcI39mh
-X-Gm-Gg: ASbGncs1WUrHxlRsvCWku7SyrwuJSYtMXFNQQQ6qmSfU4MCvSQQt3CYKG05V7LBDk2z
-	gy3N7oUzx7t8GBKmcMKrLkZz1em9ZEXf1EY9e6Oj27G22X3gWmOKepRP/OlCDJgl+00T8gshwtG
-	bd1XAc+yhyLMfdlZ+H+egQeOwJAzb6DG9LO0etIa2F+Mbpv7VlnGZRwxqkdPgt4/YQiIwJX/htU
-	YXlTb1SECbr82pV9askNdJepw7ehV/zsFrTU+4FYH97O9Mw/upoU9Hle9bt3zp6Ou3zABZZtK2M
-	a4tTCpZ+ApBFOrw+jWdJuzMD6dUTJFNItj89/P93KYPVlmo99KEhAsWmPjeOCExkQl+NHFwwudk
-	//rh7b6rO/AgLq8xncvwZLewJ5ZXmwtzhYOoJSJwaU/ji6Qxxw8wAph9exzhZ4bdxMnXFaOOGpF
-	A6cpkiC7C/Yvni
-X-Google-Smtp-Source: AGHT+IFyg04p4vmAWYYqYopDiA9K0c+5VO3S1p5ojQc9nDKgbYghvFqLnysYQ8mR4kxsaglbDHmmCA==
-X-Received: by 2002:a05:6102:448a:b0:5db:cec7:810b with SMTP id ada2fe7eead31-5e1de2cfa1dmr10324686137.29.1764301051479;
-        Thu, 27 Nov 2025 19:37:31 -0800 (PST)
-Received: from [192.168.100.70] ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5e24d94f2d2sm1170483137.8.2025.11.27.19.37.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Nov 2025 19:37:31 -0800 (PST)
-From: Kurt Borja <kuurtb@gmail.com>
-Date: Thu, 27 Nov 2025 22:37:11 -0500
-Subject: [PATCH v2 2/2] iio: adc: Add ti-ads1018 driver
+        d=1e100.net; s=20230601; t=1764304948; x=1764909748;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XB4p3JALjAdaEds41Kpv7aXiJdteIXPc5KCCtJz6euc=;
+        b=bdh2JtHH/APoOOzAJEBYhuULqtOJDNtnGrB/JmZujDxugONBcFYMrV9svCNY6dX8/P
+         aVwP3xRnDCzQW45K3FlvOlJioX5gjAHBQrejpVQmYwyZ3Qm5kYN14jRnlwekr/V3UQAP
+         GoGjL2pmPSb81PUulvysqoRuUkMCfNrjJyY5flsFl1LDSCOTxJSrbtHallo8cwcOexpo
+         lOw9VwsR1Q/HrONx20iCGjLY5+rKU2DO37AtM+pLyKWLxqiT1fB37GANnxgnNh8yG5jN
+         u/jsA+dSdwsy/64vOk3js7RoPH/cKjvW9OWvsA3iYWw4PCbh6akOZ4/8FqIExIIDQA4I
+         mP5g==
+X-Forwarded-Encrypted: i=1; AJvYcCXkWn4bUISPT0DtmBvjuPNJMcuM2zbK4qwgkT5sBG3CRyLARUgvUjeElv+DGHtYF43A2XsXmR7rM54S@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywz9Y2IlwTMhhXCoMorBzj1EwQVJssLlpsrccbRjsN1JZpEBEQQ
+	equwNofqVMN1+cYY8pKB7SLrVIA3Y/RbuCSwmyefsBclmMrZ0arYRmIgtgYR2obRz2JRRilDAXv
+	Mwmrnd02XLilE7pu7PhDUK4hZR3bTqjyrvWXvQcTLgy/qO/6suDlUyhWsrSHoLcWO
+X-Gm-Gg: ASbGncto0MEV3C3rH30B4saTOgPqBOuHNuRPO+pjl25vtKdFP2GBBwoy1W2bwUOE1PH
+	eqTday1Exc63c+f5AfrmUlQzehvv9SfFgXy2EJEJvXqUiXgkiwfHOLPxHia/MaHiZK6Napk0C5k
+	Sv7Dpv9qNX/KizqBHPfAYh+HcHeNdohqCyO633F5yhs7RZyW3V14F3cEqV9uCkp9sYCc4sXc+NB
+	D8LWxDTgty0GnQtEhvpPe34vGNeN2MG2NIfb/7TuBRLwocVH3oMJNiclTc17RX6kVvhH5GZ3kiC
+	zlvAFiCniPHbt9AbOu/8rl3ia8+qvcMwwXUMcNMTn1JsArmLMK247jz5DKws7Vw0/Zttq/z/wFd
+	hriKLytI2B1f/Ds1tvGUNqmQwoKS1X+1/5pKVgrRQkg==
+X-Received: by 2002:a17:902:d2cd:b0:298:3892:3279 with SMTP id d9443c01a7336-29b6c40542cmr296229705ad.17.1764304947728;
+        Thu, 27 Nov 2025 20:42:27 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEKoSQAoyWlLvG9Vcnnkn7v1pyhIqUhELgGxaiA4ZAottbIZWLZGceYNfF/YTGLtSDABNSzoQ==
+X-Received: by 2002:a17:902:d2cd:b0:298:3892:3279 with SMTP id d9443c01a7336-29b6c40542cmr296229155ad.17.1764304947087;
+        Thu, 27 Nov 2025 20:42:27 -0800 (PST)
+Received: from [192.168.1.4] ([49.204.106.218])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29bceb276a7sm31043815ad.48.2025.11.27.20.42.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Nov 2025 20:42:26 -0800 (PST)
+Message-ID: <18c151c7-5c64-48ca-b6a5-3363544f292d@oss.qualcomm.com>
+Date: Fri, 28 Nov 2025 10:12:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251127-ads1x18-v2-2-2ebfd780b633@gmail.com>
-References: <20251127-ads1x18-v2-0-2ebfd780b633@gmail.com>
-In-Reply-To: <20251127-ads1x18-v2-0-2ebfd780b633@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Tobias Sperling <tobias.sperling@softing.com>
-Cc: David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Kurt Borja <kuurtb@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=23363; i=kuurtb@gmail.com;
- h=from:subject:message-id; bh=kV1OALCUnGKVOlxwRw/qBr1IuNZxZdZwM6EY+WCt1WQ=;
- b=kA0DAAoWFmBDOPSf1GYByyZiAGkpGPWhmKo9I0g2abTB9QC9aFj0Xn5p9f/VA+i56XtKYTYu1
- Ih1BAAWCgAdFiEEh2Ci9uJabu1OwFXfFmBDOPSf1GYFAmkpGPUACgkQFmBDOPSf1GaKqwEApbZ+
- CusRbPorOqQDRxI1vVGnJjdQ1BYULNRql36Q08MA/0nJBISPlNPRuV/8FguGrSo7/x3Z48GqMhL
- Zk6gl+5QA
-X-Developer-Key: i=kuurtb@gmail.com; a=openpgp;
- fpr=54D3BE170AEF777983C3C63B57E3B6585920A69A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 04/12] soc: qcom: geni-se: Add geni_se_resource_state()
+ helper
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com,
+        quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
+        quic_arandive@quicinc.com, quic_shazhuss@quicinc.com
+References: <20251122050018.283669-1-praveen.talari@oss.qualcomm.com>
+ <20251122050018.283669-5-praveen.talari@oss.qualcomm.com>
+ <bskhxahakxpc74rdoz54eqlplb4obaoleouh4pn6qdy6yjmggw@fojwzct2haxa>
+Content-Language: en-US
+From: Praveen Talari <praveen.talari@oss.qualcomm.com>
+In-Reply-To: <bskhxahakxpc74rdoz54eqlplb4obaoleouh4pn6qdy6yjmggw@fojwzct2haxa>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: hq4Kmia0_mvW7X3B1oZLXvQyEnJZnxZV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDAzMSBTYWx0ZWRfX+mmfAORYj5rI
+ 4CCHUY4GktEYJpyUe12MNfYU7Woqu+3IK0cXia1SEjD1XVrgmKuUoJ49v84/LUQVLmF5l7uJ0sw
+ V/8Yna8XYuSgaw8VBZ7wMrsHhxvVM1YN7GozAcYvGvjqmWebWib3z+/MwuAHjgq70Xm/UcnJiJI
+ gACzloHQHGBBBFG0kYj5EWS9Ml26tXWJgAzyFoMsBFGntqfWsFkLS6Tk4Tl3yUNGBVHwrGSGSeI
+ Nwpxq55u5O7fhSUbvfIh6zHRFUkn4Im75APtfHLrduFYTL7DUNXk11bb1Peqyg/wiN4H+WAr8sd
+ KdSvz2FCcdkREHWAHhphP8AZd9ANsEzcgnSKMO/r5ZXzj4x0jwAzPBQQiN4icVE5MWxhvNW7JHY
+ 8eNMGyVgMG6vg2wlcFsqPf6RvnkqHg==
+X-Proofpoint-ORIG-GUID: hq4Kmia0_mvW7X3B1oZLXvQyEnJZnxZV
+X-Authority-Analysis: v=2.4 cv=IciKmGqa c=1 sm=1 tr=0 ts=69292834 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=knFCEH6M0+SSkFC620ieTA==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=1NPS5M18cN_QFYAy7wgA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-25_02,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0
+ priorityscore=1501 bulkscore=0 adultscore=0 spamscore=0 malwarescore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511280031
 
-Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
-analog-to-digital converters.
+H Bjorn
 
-These chips' MOSI pin is shared with a data-ready interrupt. Defining
-this interrupt in devicetree is optional, therefore we only create an
-IIO trigger if one is found.
+On 11/26/2025 8:49 PM, Bjorn Andersson wrote:
+> On Sat, Nov 22, 2025 at 10:30:10AM +0530, Praveen Talari wrote:
+>> The GENI SE protocol drivers (I2C, SPI, UART) implement similar resource
+>> activation/deactivation sequences independently, leading to code
+>> duplication.
+>>
+>> Introduce geni_se_resource_state() to control power state of GENI SE
+>> resources. This function provides a unified interface that calls either
+>> geni_se_resources_activate() to power on resources or
+>> geni_se_resources_deactivate() to power off resources based on the
+>> power_on parameter.
+>>
+>> The activate function enables ICC, clocks, and TLMM with proper error
+>> handling and cleanup paths. The deactivate function disables resources
+>> in reverse order including OPP rate reset, clocks, ICC and TLMM.
+>>
+>> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+>> ---
+>>   drivers/soc/qcom/qcom-geni-se.c  | 61 ++++++++++++++++++++++++++++++++
+>>   include/linux/soc/qcom/geni-se.h |  2 ++
+>>   2 files changed, 63 insertions(+)
+>>
+>> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+>> index 726b77650007..7aee7fd2e240 100644
+>> --- a/drivers/soc/qcom/qcom-geni-se.c
+>> +++ b/drivers/soc/qcom/qcom-geni-se.c
+>> @@ -1013,6 +1013,67 @@ int geni_icc_disable(struct geni_se *se)
+>>   }
+>>   EXPORT_SYMBOL_GPL(geni_icc_disable);
+>>   
+>> +static int geni_se_resources_deactivate(struct geni_se *se)
+>> +{
+>> +	int ret;
+>> +
+>> +	if (se->has_opp)
+>> +		dev_pm_opp_set_rate(se->dev, 0);
+>> +
+>> +	ret = geni_se_resources_off(se);
+> 
+> Why do we end this series with two different APIs for turning (on/) off
 
-Handling this interrupt requires some considerations. When enabling the
-trigger the CS line is tied low (active), thus we need to hold
-spi_bus_lock() too, to avoid state corruption. This is done inside the
-set_trigger_state() callback, to let users use other triggers without
-wasting a bus lock.
+Currently, we have resources_off() which only manages clocks and 
+pinctrl. I’m leveraging that in the new API.
 
-Signed-off-by: Kurt Borja <kuurtb@gmail.com>
----
- MAINTAINERS                  |   1 +
- drivers/iio/adc/Kconfig      |  12 +
- drivers/iio/adc/Makefile     |   1 +
- drivers/iio/adc/ti-ads1018.c | 716 +++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 730 insertions(+)
+If you agree, I can migrate the logic from resources_off() into the new 
+API and remove resources_off() once support for all protocols is 
+implemented.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3d5295b5d6eb..b3822cbff2c6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25651,6 +25651,7 @@ M:	Kurt Borja <kuurtb@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
-+F:	drivers/iio/adc/ti-ads1018.c
- 
- TI ADS7924 ADC DRIVER
- M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 58da8255525e..aa3f7023c64b 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -1664,6 +1664,18 @@ config TI_ADS1015
- 	  This driver can also be built as a module. If so, the module will be
- 	  called ti-ads1015.
- 
-+config TI_ADS1018
-+       tristate "Texas Instruments ADS1018 ADC"
-+       depends on SPI
-+       select IIO_BUFFER
-+       select IIO_TRIGGERED_BUFFER
-+       help
-+         If you say yes here you get support for Texas Instruments ADS1018 and
-+         ADS1118 ADC chips.
-+
-+         This driver can also be built as a module. If so, the module will be
-+         called ti-ads1018.
-+
- config TI_ADS1100
- 	tristate "Texas Instruments ADS1100 and ADS1000 ADC"
- 	depends on I2C
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index 7cc8f9a12f76..72ef79becdec 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -145,6 +145,7 @@ obj-$(CONFIG_TI_ADC12138) += ti-adc12138.o
- obj-$(CONFIG_TI_ADC128S052) += ti-adc128s052.o
- obj-$(CONFIG_TI_ADC161S626) += ti-adc161s626.o
- obj-$(CONFIG_TI_ADS1015) += ti-ads1015.o
-+obj-$(CONFIG_TI_ADS1018) += ti-ads1018.o
- obj-$(CONFIG_TI_ADS1100) += ti-ads1100.o
- obj-$(CONFIG_TI_ADS1119) += ti-ads1119.o
- obj-$(CONFIG_TI_ADS124S08) += ti-ads124s08.o
-diff --git a/drivers/iio/adc/ti-ads1018.c b/drivers/iio/adc/ti-ads1018.c
-new file mode 100644
-index 000000000000..e351d8bc9cd7
---- /dev/null
-+++ b/drivers/iio/adc/ti-ads1018.c
-@@ -0,0 +1,716 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Texas Instruments ADS1018 ADC driver
-+ *
-+ * Copyright (C) 2025 Kurt Borja <kuurtb@gmail.com>
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bitfield.h>
-+#include <linux/bitmap.h>
-+#include <linux/bitops.h>
-+#include <linux/bits.h>
-+#include <linux/byteorder/generic.h>
-+#include <linux/dev_printk.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/math.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/spi/spi.h>
-+#include <linux/units.h>
-+
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/trigger.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+
-+#define ADS1018_CFG_DEFAULT		0x058b
-+
-+#define ADS1018_CFG_OS_TRIG		BIT(15)
-+#define ADS1018_CFG_TS_MODE_EN		BIT(4)
-+#define ADS1018_CFG_PULL_UP		BIT(3)
-+#define ADS1018_CFG_NOP			BIT(1)
-+#define ADS1018_CFG_VALID		(ADS1018_CFG_PULL_UP | ADS1018_CFG_NOP)
-+
-+#define ADS1018_CFG_MUX_MASK		GENMASK(14, 12)
-+
-+#define ADS1018_CFG_PGA_MASK		GENMASK(11, 9)
-+#define ADS1018_PGA_DEFAULT		2
-+
-+#define ADS1018_CFG_MODE_MASK		GENMASK(8, 8)
-+#define ADS1018_MODE_CONTINUOUS		0
-+#define ADS1018_MODE_ONESHOT		1
-+
-+#define ADS1018_CFG_DRATE_MASK		GENMASK(7, 5)
-+#define ADS1018_DRATE_DEFAULT		4
-+
-+#define ADS1018_CHANNELS_MAX		10
-+
-+struct ads1018_chan_data {
-+	u8 pga_mode;
-+	u8 data_rate_mode;
-+};
-+
-+struct ads1018_chip_info {
-+	const char *name;
-+
-+	const struct iio_chan_spec *channels;
-+	unsigned long num_channels;
-+
-+	/* IIO_VAL_INT */
-+	const int *data_rate_mode_to_hz;
-+	unsigned long num_data_rate_mode_to_hz;
-+
-+	/* IIO_VAL_INT_PLUS_NANO */
-+	const int (*pga_mode_to_gain)[2];
-+	unsigned long num_pga_mode_to_gain;
-+
-+	/* IIO_VAL_INT_PLUS_MICRO */
-+	const int temp_scale[2];
-+};
-+
-+struct ads1018 {
-+	struct spi_device *spi;
-+	struct iio_trigger *indio_trig;
-+
-+	struct gpio_desc *drdy_gpiod;
-+	int drdy_irq;
-+
-+	bool restore_mode;
-+
-+	struct ads1018_chan_data chan_data[ADS1018_CHANNELS_MAX];
-+	const struct ads1018_chip_info *chip_info;
-+
-+	struct spi_message msg_read;
-+	struct spi_transfer xfer;
-+	__be16 tx_buf[2] __aligned(IIO_DMA_MINALIGN);
-+	__be16 rx_buf[2];
-+};
-+
-+#define ADS1018_VOLT_DIFF_CHAN(_addr, _chan, _chan2, _realbits) {		\
-+	.type = IIO_VOLTAGE,							\
-+	.channel = _chan,							\
-+	.channel2 = _chan2,							\
-+	.scan_index = _addr,							\
-+	.scan_type = {								\
-+		.sign = 's',							\
-+		.realbits = _realbits,						\
-+		.storagebits = 16,						\
-+		.shift = 16 - _realbits,					\
-+		.endianness = IIO_BE,						\
-+	},									\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-+			      BIT(IIO_CHAN_INFO_SCALE) |			\
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),		\
-+	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-+	.indexed = true,							\
-+	.differential = true,							\
-+}
-+
-+#define ADS1018_VOLT_CHAN(_addr, _chan, _realbits) {				\
-+	.type = IIO_VOLTAGE,							\
-+	.channel = _chan,							\
-+	.scan_index = _addr,							\
-+	.scan_type = {								\
-+		.sign = 's',							\
-+		.realbits = _realbits,						\
-+		.storagebits = 16,						\
-+		.shift = 16 - _realbits,					\
-+		.endianness = IIO_BE,						\
-+	},									\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-+			      BIT(IIO_CHAN_INFO_SCALE) |			\
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),		\
-+	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-+	.indexed = true,							\
-+}
-+
-+#define ADS1018_TEMP_CHAN(_addr, _realbits) {					\
-+	.type = IIO_TEMP,							\
-+	.channel = 0,								\
-+	.scan_index = _addr,							\
-+	.scan_type = {								\
-+		.sign = 's',							\
-+		.realbits = _realbits,						\
-+		.storagebits = 16,						\
-+		.shift = 16 - _realbits,					\
-+		.endianness = IIO_BE,						\
-+	},									\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-+			      BIT(IIO_CHAN_INFO_SCALE) |			\
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-+}
-+
-+static const struct iio_chan_spec ads1118_iio_channels[] = {
-+	ADS1018_VOLT_DIFF_CHAN(0, 0, 1, 16),
-+	ADS1018_VOLT_DIFF_CHAN(1, 0, 3, 16),
-+	ADS1018_VOLT_DIFF_CHAN(2, 1, 3, 16),
-+	ADS1018_VOLT_DIFF_CHAN(3, 2, 3, 16),
-+	ADS1018_VOLT_CHAN(4, 0, 16),
-+	ADS1018_VOLT_CHAN(5, 1, 16),
-+	ADS1018_VOLT_CHAN(6, 2, 16),
-+	ADS1018_VOLT_CHAN(7, 3, 16),
-+	ADS1018_TEMP_CHAN(8, 14),
-+	IIO_CHAN_SOFT_TIMESTAMP(9),
-+};
-+
-+static const struct iio_chan_spec ads1018_iio_channels[] = {
-+	ADS1018_VOLT_DIFF_CHAN(0, 0, 1, 12),
-+	ADS1018_VOLT_DIFF_CHAN(1, 0, 3, 12),
-+	ADS1018_VOLT_DIFF_CHAN(2, 1, 3, 12),
-+	ADS1018_VOLT_DIFF_CHAN(3, 2, 3, 12),
-+	ADS1018_VOLT_CHAN(4, 0, 12),
-+	ADS1018_VOLT_CHAN(5, 1, 12),
-+	ADS1018_VOLT_CHAN(6, 2, 12),
-+	ADS1018_VOLT_CHAN(7, 3, 12),
-+	ADS1018_TEMP_CHAN(8, 12),
-+	IIO_CHAN_SOFT_TIMESTAMP(9),
-+};
-+
-+static u8 ads1018_get_data_rate_mode(struct ads1018 *ads1018, unsigned int address)
-+{
-+	return ads1018->chan_data[address].data_rate_mode;
-+}
-+
-+static u8 ads1018_get_pga_mode(struct ads1018 *ads1018, unsigned int address)
-+{
-+	return ads1018->chan_data[address].pga_mode;
-+}
-+
-+static void ads1018_set_data_rate_mode(struct ads1018 *ads1018,
-+				       unsigned int address, u8 val)
-+{
-+	ads1018->chan_data[address].data_rate_mode = val;
-+}
-+
-+static void ads1018_set_pga_mode(struct ads1018 *ads1018,
-+				 unsigned int address, u8 val)
-+{
-+	ads1018->chan_data[address].pga_mode = val;
-+}
-+
-+static unsigned long ads1018_calc_delay(struct ads1018 *ads1018)
-+{
-+	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
-+	unsigned long mode = chip_info->num_data_rate_mode_to_hz - 1;
-+	int hz = chip_info->data_rate_mode_to_hz[mode];
-+
-+	/* We subtract -10% data-rate error */
-+	hz -= DIV_ROUND_UP(hz, 10);
-+
-+	/* Calculate time per sample in usecs */
-+	return DIV_ROUND_UP(MICROHZ_PER_HZ, hz);
-+}
-+
-+static int ads1018_read_locked(struct ads1018 *ads1018, __be16 *cnv, bool hold_cs)
-+{
-+	int ret;
-+
-+	ads1018->xfer.cs_change = hold_cs;
-+
-+	ret = spi_sync_locked(ads1018->spi, &ads1018->msg_read);
-+	if (ret)
-+		return ret;
-+
-+	*cnv = ads1018->rx_buf[0];
-+
-+	return 0;
-+}
-+
-+static int ads1018_oneshot(struct ads1018 *ads1018, u16 cfg, u16 *cnv)
-+{
-+	struct spi_transfer xfer[2] = {
-+		{
-+			.tx_buf = ads1018->tx_buf,
-+			.len = sizeof(ads1018->tx_buf),
-+			.delay = {
-+				.value = ads1018_calc_delay(ads1018),
-+				.unit = SPI_DELAY_UNIT_USECS,
-+			},
-+		},
-+		{
-+			.rx_buf = ads1018->rx_buf,
-+			.len = sizeof(ads1018->rx_buf),
-+		},
-+	};
-+	int ret;
-+
-+	ads1018->tx_buf[0] = cpu_to_be16(cfg);
-+	ads1018->tx_buf[1] = 0;
-+
-+	ret = spi_sync_transfer(ads1018->spi, xfer, ARRAY_SIZE(xfer));
-+	if (ret)
-+		return ret;
-+
-+	*cnv = be16_to_cpu(ads1018->rx_buf[0]);
-+
-+	return 0;
-+}
-+
-+static int
-+__ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		   int *val, int *val2, long mask)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
-+	u8 drate_mode = ads1018_get_data_rate_mode(ads1018, chan->scan_index);
-+	u8 pga_mode = ads1018_get_pga_mode(ads1018, chan->scan_index);
-+	u8 max_drate_mode = chip_info->num_data_rate_mode_to_hz - 1;
-+	u16 cnv, cfg = 0;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		cfg |= ADS1018_CFG_VALID;
-+		cfg |= ADS1018_CFG_OS_TRIG;
-+		cfg |= FIELD_PREP(ADS1018_CFG_MUX_MASK, chan->scan_index);
-+		cfg |= FIELD_PREP(ADS1018_CFG_PGA_MASK, pga_mode);
-+		cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_ONESHOT);
-+		cfg |= FIELD_PREP(ADS1018_CFG_DRATE_MASK, max_drate_mode);
-+		if (chan->type == IIO_TEMP)
-+			cfg |= ADS1018_CFG_TS_MODE_EN;
-+
-+		ret = ads1018_oneshot(ads1018, cfg, &cnv);
-+		if (ret)
-+			return ret;
-+
-+		cnv >>= chan->scan_type.shift;
-+		*val = sign_extend32(cnv, chan->scan_type.realbits - 1);
-+
-+		return IIO_VAL_INT;
-+
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_VOLTAGE:
-+			*val = chip_info->pga_mode_to_gain[pga_mode][0];
-+			*val2 = chip_info->pga_mode_to_gain[pga_mode][1];
-+			return IIO_VAL_INT_PLUS_NANO;
-+
-+		case IIO_TEMP:
-+			*val = chip_info->temp_scale[0];
-+			*val2 = chip_info->temp_scale[1];
-+			return IIO_VAL_INT_PLUS_MICRO;
-+
-+		default:
-+			return -EOPNOTSUPP;
-+		}
-+
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*val = chip_info->data_rate_mode_to_hz[drate_mode];
-+		return IIO_VAL_INT;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int
-+ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		 int *val, int *val2, long mask)
-+{
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+	ret = __ads1018_read_raw(indio_dev, chan, val, val2, mask);
-+	iio_device_release_direct(indio_dev);
-+
-+	return ret;
-+}
-+
-+static int
-+ads1018_read_avail(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		   const int **vals, int *type, int *length, long mask)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		*type = IIO_VAL_INT_PLUS_NANO;
-+		*vals = (const int *)ads1018->chip_info->pga_mode_to_gain;
-+		*length = ads1018->chip_info->num_pga_mode_to_gain * 2;
-+		return IIO_AVAIL_LIST;
-+
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*type = IIO_VAL_INT;
-+		*vals = ads1018->chip_info->data_rate_mode_to_hz;
-+		*length = ads1018->chip_info->num_data_rate_mode_to_hz;
-+		return IIO_AVAIL_LIST;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int
-+__ads1018_write_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		    int val, int val2, long mask)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	const struct ads1018_chip_info *info = ads1018->chip_info;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		for (int i = 0; i < info->num_pga_mode_to_gain; i++) {
-+			if (val != info->pga_mode_to_gain[i][0] ||
-+			    val2 != info->pga_mode_to_gain[i][1])
-+				continue;
-+
-+			ads1018_set_pga_mode(ads1018, chan->scan_index, i);
-+			return 0;
-+		}
-+
-+		return -EINVAL;
-+
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		for (int i = 0; i < info->num_data_rate_mode_to_hz; i++) {
-+			if (val != info->data_rate_mode_to_hz[i])
-+				continue;
-+
-+			ads1018_set_data_rate_mode(ads1018, chan->scan_index, i);
-+			return 0;
-+		}
-+
-+		return -EINVAL;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int
-+ads1018_write_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		  int val, int val2, long mask)
-+{
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+	ret = __ads1018_write_raw(indio_dev, chan, val, val2, mask);
-+	iio_device_release_direct(indio_dev);
-+
-+	return ret;
-+}
-+
-+static int
-+ads1018_write_raw_get_fmt(struct iio_dev *indio_dev,
-+			  struct iio_chan_spec const *chan, long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		return IIO_VAL_INT_PLUS_NANO;
-+	default:
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	}
-+}
-+
-+static const struct iio_info ads1018_iio_info = {
-+	.read_raw = ads1018_read_raw,
-+	.read_avail = ads1018_read_avail,
-+	.write_raw = ads1018_write_raw,
-+	.write_raw_get_fmt = ads1018_write_raw_get_fmt,
-+};
-+
-+static int ads1018_set_trigger_state(struct iio_trigger *trig, bool state)
-+{
-+	struct ads1018 *ads1018 = iio_trigger_get_drvdata(trig);
-+	__be16 cnv;
-+
-+	/*
-+	 * We need to lock the SPI bus and tie CS low (hold_cs) to catch
-+	 * data-ready interrupts, otherwise the MISO line enters a Hi-Z state.
-+	 */
-+
-+	if (state) {
-+		spi_bus_lock(ads1018->spi->controller);
-+		ads1018_read_locked(ads1018, &cnv, true);
-+		enable_irq(ads1018->drdy_irq);
-+	} else {
-+		disable_irq(ads1018->drdy_irq);
-+		ads1018_read_locked(ads1018, &cnv, false);
-+		spi_bus_unlock(ads1018->spi->controller);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct iio_trigger_ops ads1018_trigger_ops = {
-+	.set_trigger_state = ads1018_set_trigger_state,
-+	.validate_device = iio_trigger_validate_own_device,
-+};
-+
-+static int ads1018_buffer_preenable(struct iio_dev *indio_dev)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
-+	unsigned int pga, drate, addr;
-+	u16 cfg = 0;
-+
-+	addr = find_first_bit(indio_dev->active_scan_mask,
-+			      iio_get_masklength(indio_dev));
-+	pga = ads1018_get_pga_mode(ads1018, addr);
-+	drate = ads1018_get_data_rate_mode(ads1018, addr);
-+
-+	cfg |= ADS1018_CFG_VALID;
-+	cfg |= FIELD_PREP(ADS1018_CFG_MUX_MASK, addr);
-+	cfg |= FIELD_PREP(ADS1018_CFG_PGA_MASK, pga);
-+	cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_CONTINUOUS);
-+	cfg |= FIELD_PREP(ADS1018_CFG_DRATE_MASK, drate);
-+	if (chip_info->channels[addr].type == IIO_TEMP)
-+		cfg |= ADS1018_CFG_TS_MODE_EN;
-+
-+	ads1018->tx_buf[0] = cpu_to_be16(cfg);
-+	ads1018->tx_buf[1] = 0;
-+
-+	return spi_write(ads1018->spi, ads1018->tx_buf, sizeof(ads1018->tx_buf));
-+}
-+
-+static int ads1018_buffer_postdisable(struct iio_dev *indio_dev)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+
-+	ads1018->tx_buf[0] = cpu_to_be16(ADS1018_CFG_DEFAULT);
-+	ads1018->tx_buf[1] = 0;
-+
-+	return spi_write(ads1018->spi, ads1018->tx_buf, sizeof(ads1018->tx_buf));
-+}
-+
-+static const struct iio_buffer_setup_ops ads1018_buffer_ops = {
-+	.preenable = ads1018_buffer_preenable,
-+	.postdisable = ads1018_buffer_postdisable,
-+	.validate_scan_mask = iio_validate_scan_mask_onehot,
-+};
-+
-+static irqreturn_t ads1018_irq_handler(int irq, void *dev_id)
-+{
-+	struct ads1018 *ads1018 = dev_id;
-+
-+	/*
-+	 * We need to check if the "drdy" pin is actually active or if it's a
-+	 * pending interrupt triggered by the SPI transfer.
-+	 */
-+	if (ads1018->drdy_gpiod && !gpiod_get_value(ads1018->drdy_gpiod))
-+		return IRQ_HANDLED;
-+
-+	iio_trigger_poll(ads1018->indio_trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t ads1018_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	struct {
-+		__be16 conv;
-+		aligned_s64 ts;
-+	} scan = {};
-+	int ret;
-+
-+	if (iio_device_claim_buffer_mode(indio_dev))
-+		goto out_notify_done;
-+
-+	if (iio_trigger_using_own(indio_dev)) {
-+		disable_irq(ads1018->drdy_irq);
-+		ret = ads1018_read_locked(ads1018, &scan.conv, true);
-+		enable_irq(ads1018->drdy_irq);
-+	} else {
-+		ret = spi_read(ads1018->spi, ads1018->rx_buf,
-+			       sizeof(ads1018->rx_buf));
-+		scan.conv = ads1018->rx_buf[0];
-+	}
-+
-+	iio_device_release_buffer_mode(indio_dev);
-+
-+	if (!ret)
-+		iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan),
-+					    pf->timestamp);
-+
-+out_notify_done:
-+	iio_trigger_notify_done(ads1018->indio_trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int ads1018_trigger_setup(struct iio_dev *indio_dev)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	struct spi_device *spi = ads1018->spi;
-+	int ret;
-+
-+	ads1018->drdy_gpiod = devm_gpiod_get_optional(&spi->dev, "drdy",
-+						      GPIOD_IN);
-+	if (IS_ERR(ads1018->drdy_gpiod))
-+		return dev_err_probe(&spi->dev, PTR_ERR(ads1018->drdy_gpiod),
-+				     "Failed to get 'drdy' GPIO.\n");
-+
-+	if (spi->irq > 0) {
-+		ads1018->drdy_irq = spi->irq;
-+	} else if (ads1018->drdy_gpiod) {
-+		ads1018->drdy_irq = gpiod_to_irq(ads1018->drdy_gpiod);
-+		if (ads1018->drdy_irq < 0)
-+			return dev_err_probe(&spi->dev, ads1018->drdy_irq,
-+					     "Failed to get IRQ from 'drdy' GPIO.\n");
-+	} else {
-+		return 0;
-+	}
-+
-+	ads1018->indio_trig = devm_iio_trigger_alloc(&spi->dev, "%s-dev%d-drdy",
-+						     indio_dev->name,
-+						     iio_device_id(indio_dev));
-+	if (!ads1018->indio_trig)
-+		return -ENOMEM;
-+
-+	iio_trigger_set_drvdata(ads1018->indio_trig, ads1018);
-+	ads1018->indio_trig->ops = &ads1018_trigger_ops;
-+
-+	ret = devm_iio_trigger_register(&spi->dev, ads1018->indio_trig);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The "data-ready" IRQ line is shared with the MOSI pin, thus we need
-+	 * to keep it disabled until we actually request data.
-+	 */
-+	return devm_request_irq(&spi->dev, ads1018->drdy_irq, ads1018_irq_handler,
-+			       IRQF_NO_AUTOEN, ads1018->chip_info->name, ads1018);
-+}
-+
-+static int ads1018_spi_probe(struct spi_device *spi)
-+{
-+	const struct ads1018_chip_info *info = spi_get_device_match_data(spi);
-+	struct iio_dev *indio_dev;
-+	struct ads1018 *ads1018;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*ads1018));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	ads1018 = iio_priv(indio_dev);
-+	ads1018->spi = spi;
-+	ads1018->chip_info = info;
-+	spi_set_drvdata(spi, ads1018);
-+
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->name = info->name;
-+	indio_dev->info = &ads1018_iio_info;
-+	indio_dev->channels = info->channels;
-+	indio_dev->num_channels = info->num_channels;
-+
-+	for (int i = 0; i < ADS1018_CHANNELS_MAX; i++) {
-+		ads1018->chan_data[i].data_rate_mode = ADS1018_DRATE_DEFAULT;
-+		ads1018->chan_data[i].pga_mode = ADS1018_PGA_DEFAULT;
-+	}
-+
-+	ads1018->xfer.rx_buf = ads1018->rx_buf;
-+	ads1018->xfer.len = sizeof(ads1018->rx_buf);
-+	spi_message_init_with_transfers(&ads1018->msg_read, &ads1018->xfer, 1);
-+
-+	ret = ads1018_trigger_setup(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-+					      iio_pollfunc_store_time,
-+					      ads1018_trigger_handler,
-+					      &ads1018_buffer_ops);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(&spi->dev, indio_dev);
-+}
-+
-+#define ADS1018_FSR_TO_SCALE(_fsr, _res) \
-+	{ 0, ((_fsr) * MICRO) / BIT(_res) }
-+
-+static const int ads1018_gain_table[][2] = {
-+	ADS1018_FSR_TO_SCALE(6144, 11),
-+	ADS1018_FSR_TO_SCALE(4096, 11),
-+	ADS1018_FSR_TO_SCALE(2048, 11),
-+	ADS1018_FSR_TO_SCALE(1024, 11),
-+	ADS1018_FSR_TO_SCALE(512, 11),
-+	ADS1018_FSR_TO_SCALE(256, 11),
-+};
-+
-+static const int ads1118_gain_table[][2] = {
-+	ADS1018_FSR_TO_SCALE(6144, 15),
-+	ADS1018_FSR_TO_SCALE(4096, 15),
-+	ADS1018_FSR_TO_SCALE(2048, 15),
-+	ADS1018_FSR_TO_SCALE(1024, 15),
-+	ADS1018_FSR_TO_SCALE(512, 15),
-+	ADS1018_FSR_TO_SCALE(256, 15),
-+};
-+
-+static const unsigned int ads1018_data_rate_table[] = {
-+	128, 250, 490, 920, 1600, 2400, 3300
-+};
-+
-+static const unsigned int ads1118_data_rate_table[] = {
-+	8, 16, 32, 64, 128, 250, 475, 860
-+};
-+
-+static const struct ads1018_chip_info ads1018_chip_info = {
-+	.name = "ads1018",
-+
-+	.channels = ads1018_iio_channels,
-+	.num_channels = ARRAY_SIZE(ads1018_iio_channels),
-+
-+	.pga_mode_to_gain = ads1018_gain_table,
-+	.num_pga_mode_to_gain = ARRAY_SIZE(ads1018_gain_table),
-+
-+	.data_rate_mode_to_hz = ads1018_data_rate_table,
-+	.num_data_rate_mode_to_hz = ARRAY_SIZE(ads1018_data_rate_table),
-+
-+	.temp_scale = { 0, 125000 },
-+};
-+
-+static const struct ads1018_chip_info ads1118_chip_info = {
-+	.name = "ads1118",
-+
-+	.channels = ads1118_iio_channels,
-+	.num_channels = ARRAY_SIZE(ads1118_iio_channels),
-+
-+	.pga_mode_to_gain = ads1118_gain_table,
-+	.num_pga_mode_to_gain = ARRAY_SIZE(ads1118_gain_table),
-+
-+	.data_rate_mode_to_hz = ads1118_data_rate_table,
-+	.num_data_rate_mode_to_hz = ARRAY_SIZE(ads1118_data_rate_table),
-+
-+	.temp_scale = { 0, 31250 },
-+};
-+
-+static const struct of_device_id ads1018_of_match[] = {
-+	{ .compatible = "ti,ads1018", .data = &ads1018_chip_info },
-+	{ .compatible = "ti,ads1118", .data = &ads1118_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ads1018_of_match);
-+
-+static const struct spi_device_id ads1018_spi_match[] = {
-+	{ "ads1018", (kernel_ulong_t)&ads1018_chip_info },
-+	{ "ads1118", (kernel_ulong_t)&ads1118_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, ads1018_spi_match);
-+
-+static struct spi_driver ads1018_spi_driver = {
-+	.driver = {
-+		.name = "ads1018",
-+		.of_match_table = ads1018_of_match,
-+	},
-+	.probe = ads1018_spi_probe,
-+	.id_table = ads1018_spi_match,
-+};
-+
-+module_spi_driver(ads1018_spi_driver);
-+
-+MODULE_DESCRIPTION("Texas Instruments ADS1018 ADC Driver");
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Kurt Borja <kuurtb@gmail.com>");
+Code snippet:
 
--- 
-2.52.0
+static int geni_se_resources_deactivate(struct geni_se *se)
+{
+         int ret;
 
+         if (has_acpi_companion(se->dev))
+                 return 0;
+
+         if (se->has_opp)
+                 dev_pm_opp_set_rate(se->dev, 0);
+
+         ret = pinctrl_pm_select_sleep_state(se->dev);
+         if (ret)
+                 return ret;
+
+         geni_se_clks_off(se);
+
+         if (se->core_clk)
+                 clk_disable_unprepare(se->core_clk);
+
+         return geni_icc_disable(se);
+}
+
+static int geni_se_resources_activate(struct geni_se *se)
+{
+         int ret;
+
+         if (has_acpi_companion(se->dev))
+                 return 0;
+
+         ret = geni_icc_enable(se);
+         if (ret)
+                 return ret;
+
+         if (se->core_clk) {
+                 ret = clk_prepare_enable(se->core_clk);
+                 if (ret)
+                         goto out_icc_disable;
+         }
+
+         ret = geni_se_clks_on(se);
+         if (ret)
+                 goto out_clk_disable;
+
+         ret = pinctrl_pm_select_default_state(se->dev);
+         if (ret) {
+                 geni_se_clks_off(se);
+                 goto out_clk_disable;
+         }
+
+         return ret;
+
+out_clk_disable:
+         if (se->core_clk)
+                 clk_disable_unprepare(se->core_clk);
+out_icc_disable:
+         geni_icc_disable(se);
+         return ret;
+}
+
+> the GENI resources? Can't there be a single geni_se_resources_"off"()?
+> 
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (se->core_clk)
+>> +		clk_disable_unprepare(se->core_clk);
+>> +
+>> +	return geni_icc_disable(se);
+>> +}
+>> +
+>> +static int geni_se_resources_activate(struct geni_se *se)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = geni_icc_enable(se);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (se->core_clk) {
+>> +		ret = clk_prepare_enable(se->core_clk);
+>> +		if (ret)
+>> +			goto out_icc_disable;
+>> +	}
+>> +
+>> +	ret = geni_se_resources_on(se);
+>> +	if (ret)
+>> +		goto out_clk_disable;
+>> +
+>> +	return 0;
+>> +
+>> +out_clk_disable:
+>> +	if (se->core_clk)
+>> +		clk_disable_unprepare(se->core_clk);
+>> +out_icc_disable:
+>> +	geni_icc_disable(se);
+>> +	return ret;
+>> +}
+
+
+>> +
+>> +/**
+>> + * geni_se_resources_state() - Control power state of GENI SE resources
+>> + * @se: Pointer to the geni_se structure
+>> + * @power_on: Boolean flag for desired power state (true = on, false = off)
+>> + *
+>> + * Controls GENI SE resource power state by calling activate or deactivate
+>> + * functions based on the power_on parameter.
+>> + *
+>> + * Return: 0 on success, negative error code on failure
+>> + */
+>> +int geni_se_resources_state(struct geni_se *se, bool power_on)
+> 
+> It seems the purpose of this "helper function" is to allow replacing
+> geni_se_resource_on() with geni_se_resources_state(true) and
+> geni_se_resource_off() with geni_se_resources_state(false) in patch 10.
+> 
+> 
+> Naming a function "on", "activate", or "enable" provides a clear
+> indication of what will happen when you call the function. Calling a
+> function to "set state to true" is not as clear.
+> 
+> Further, the code paths that needs to have resources turned on should be
+> separate from those who signal that those resources can be turned off.
+> So there should not be any gain from this function, unless the same
+> obfuscation happens further up the stack.
+> 
+> Just call the activate/deactivate in the respective code path.
+
+Thank you for the inputs.
+Sure, will review and update next patch.
+
+Thanks,
+Praveen Talari
+> 
+> Regards,
+> Bjorn
+> 
+>> +{
+>> +	return power_on ? geni_se_resources_activate(se) : geni_se_resources_deactivate(se);
+>> +}
+>> +EXPORT_SYMBOL_GPL(geni_se_resources_state);
+>> +
+>>   /**
+>>    * geni_se_resources_init() - Initialize resources for a GENI SE device.
+>>    * @se: Pointer to the geni_se structure representing the GENI SE device.
+>> diff --git a/include/linux/soc/qcom/geni-se.h b/include/linux/soc/qcom/geni-se.h
+>> index c182dd0f0bde..d1ca13a4e54c 100644
+>> --- a/include/linux/soc/qcom/geni-se.h
+>> +++ b/include/linux/soc/qcom/geni-se.h
+>> @@ -541,6 +541,8 @@ int geni_icc_disable(struct geni_se *se);
+>>   
+>>   int geni_se_resources_init(struct geni_se *se);
+>>   
+>> +int geni_se_resources_state(struct geni_se *se, bool power_on);
+>> +
+>>   int geni_load_se_firmware(struct geni_se *se, enum geni_se_protocol_type protocol);
+>>   #endif
+>>   #endif
+>> -- 
+>> 2.34.1
+>>
 
