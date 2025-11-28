@@ -1,102 +1,44 @@
-Return-Path: <devicetree+bounces-242980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 380F7C91CF7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 12:39:01 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE91DC91F44
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 13:11:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1DCD3AB828
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 11:38:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5753934BFE9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 12:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CDB830F543;
-	Fri, 28 Nov 2025 11:38:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fDy5aqLW";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XlmZtjuM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42E2532570F;
+	Fri, 28 Nov 2025 12:11:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E8030EF9D
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 11:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91FF330EF85
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 12:11:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764329935; cv=none; b=YcjBLkMZAo56a8QcEj3w9kvGQ7VKyDGYjuQ/hUdsPP8+JPn3mhaZHcP1BXuKsfGozQXVb5czef8mlgGrHAaWI3x2Vi9h9TTmhiCmiA8vhONuNzkZOJBS6p739le42NmI9+SgZU458XZZypw78bg5w2ZF2sQ58bsl4w5h7lIQtyI=
+	t=1764331886; cv=none; b=VxwnVGxQ/hb0x5mA6oNwc4sl2TMOGwUfYV1S0UvAEZto+Mu/Q61tXxv+agzJWKJKhuaRZR1KL3cq45lMxlW4JbrHY1xWy0BtPilbBZaidTMsTzW7Jc3IfSC2p+nTWmy9nu9PX4Id0m7Ze7U8sCJzEbhpR08qNkMsR/ZSFObEJLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764329935; c=relaxed/simple;
-	bh=P+1AfN5DqeR+EpIra8enoM3WHW4B26d8GcRcbWUuTZk=;
+	s=arc-20240116; t=1764331886; c=relaxed/simple;
+	bh=qF+qx5Iy3k9QBpsa0K83/tLj6smrnwPMstwvUoJU6qY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VNWA+0EQ3l3AL2U6Lmb3I1nEqCYllQU0HqXICMURxv9dJ7JeOXCq1NO3VDt2rE/1ai/b32Nxl/sezFa9SEPqY26G6/NR1ZJqCknn3BzI1+Mm4tYW/cdld823RYV1YR7LwEkeKsKA6+g8lvP6Yt1z91vlLxG2R6oZXCI/F4fvRzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fDy5aqLW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XlmZtjuM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AS8OMRC3967427
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 11:38:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZvLEIquG+R91vUFM2QSbUtYc/Izhyl0C/lp2PfxZJr0=; b=fDy5aqLWbiprRbQr
-	kyO2u3TnTw23TFckDUPvlCMDh17aEuSDAmYkVVq5UzfInqXvrnQZGmjTSPXc9Leo
-	Dd7xyRDEw+8WCRXB/cFVe49mfhYogn+2ol+X9DT99XV1HpkgFnVzYSLYpQEXlWrt
-	diDRcGhpnfi+ddADjMm4NpRiLy1XlriOAV2Yk6pYLH/MMeNFDp2HOspd3FB6Eaoi
-	ffA3samvOzYkyuehEy9UjUtaz431wdaixXAGV7C7ZflTHkksGQm2VykAsv07H2b7
-	WRJqyeNiHr+xfIj9IlUD7nGtlFEJmQ6A5H2SyQCqgY3TrCaRI7Dv9g4gx6URvb7Y
-	gHApYw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4apkv5kcpc-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 11:38:51 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b2fd6ec16aso31076685a.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 03:38:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764329931; x=1764934731; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZvLEIquG+R91vUFM2QSbUtYc/Izhyl0C/lp2PfxZJr0=;
-        b=XlmZtjuM1S+6Q+PNtKHE/r4b2SK9XNwc8rQGd+t85xQ17mzHGBNpJPtF5f9UsvhM1O
-         CQBp/V2Ac4T/49oxm2l+skNiDwxYGN5jE2p9uXVSlfzAj7Bp+sluq+IuDevSHWcOiPMq
-         BYi4jYsDEL2HO6NSsRodtoC6t42tNmugmTSY9659S3b4Oz7ItHvBUVTTkhjp7kqoOpmO
-         jLMf8TNxC/crFjRyqmgcbbq2jbhs61MNrkrC7kEP6ZSG99kOefKyHwhSy2L4cwwwhETX
-         u/fqi5N/dbwtZQ0LgDq1ZkmoUY1krncJIZpfrN6yanAEC3StyEEhrg4aEHUy1V11/GEK
-         Ieww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764329931; x=1764934731;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZvLEIquG+R91vUFM2QSbUtYc/Izhyl0C/lp2PfxZJr0=;
-        b=fzRfZefkeBTQIspYNR8HZJC/GIzJjL9Wx7Lc86imQtPGtQ5yDT2D1pBbDtpPnTsvHY
-         a4DkCf46BwcXcKUdB1QpmLkGDjYNUIYQsu2oKEcWE/A9eCibGn3FHsf+qmCDCMFhEfwl
-         Mwb1S5KcSVIEtKLKJXOSuw8pkizAWxNPzyhSCmMVn+Fe2wmAAeAgjwnmYtxMaMEdJE6/
-         HoLhqMnPV5I43HKLdVKSAVhPSFuMtD5h7baVN1eAi8auaWg5Yzlm5V4gDNb2vX14L3k7
-         xL0rbVecihwPArK4VkAJuvFa43czHJSTgkdaVY1swEPbdoxRSGK6kj4ED7hoacitPiTs
-         b7Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbdW9sKGHLdq6z0ANc9okxIXL1yaoouMZYYy6qTjiYN/Q0uJeIJANsGyXulrsav1CoKsm3lY3RZhjR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTTeJz7SYp00fhvxl4HESfKfBvZvCYEUwSPe/roXQ21zmjYSbR
-	S7Lxgxh5WJ/f+coNmkTAvGslFC7n0Y8a5YiXbLonblzIA/pRtszHDbjRwbejw62EsgUbZcZWXMf
-	JNz0yn2KoOygmv+bzr0s3LNrU4b3fqcLjAdAwL8RsKh1P1uCdnb3qaPQotVOdWfzH
-X-Gm-Gg: ASbGncvvzLxwwb494n2950k8oVDRT2L2uyabc7LhgeSHuiLepPG0BtoJJ5LKTQNZXFi
-	RILeVsCfztjfsl4MiN/V7TlShs4yldVjOnl3BCCUHN9/fIZqUAlngBnCZYAyGD93KxS+gHOugbR
-	EY27yWQ8+FNfmDNkimCQ4bvbvJM43C+mXHIthCINd/WVocvmRKrb59dy6MKzq4FxRfThUn5//Gc
-	1oCPeeJT/6lIJKGOhP+UXFdnsOrHDiJ8coichrt4EFjQBaSwANzwm737pgXgfY5C/5gct+YUIHO
-	q71OzfeadnyYkIV9IL2V4ieWW2/zOMzaUPWqwK5arQZbDMGigsNSZBIk0sN5QPAIdSlJ7cm3hNu
-	2g4kMXc5eIwN0eldTTypD/s82TnZ/hjgkZ2DmhX7gJmPQN6Narnowdje+ogWl5l7SmFI=
-X-Received: by 2002:a05:620a:370f:b0:89f:63e7:b085 with SMTP id af79cd13be357-8b341d50dd1mr2641059385a.10.1764329931059;
-        Fri, 28 Nov 2025 03:38:51 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFrqdAmLRsM6lL4fCg98iG57U4IEsWhBTf0YdtW12v6s9emKaE0W/wAYg9OozB+Dhu5sP6GoQ==
-X-Received: by 2002:a05:620a:370f:b0:89f:63e7:b085 with SMTP id af79cd13be357-8b341d50dd1mr2641055485a.10.1764329930530;
-        Fri, 28 Nov 2025 03:38:50 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f5163903sm441919266b.7.2025.11.28.03.38.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Nov 2025 03:38:49 -0800 (PST)
-Message-ID: <2d83f0d3-4798-4183-9e3d-9972db706cdb@oss.qualcomm.com>
-Date: Fri, 28 Nov 2025 12:38:47 +0100
+	 In-Reply-To:Content-Type; b=YBBukZ4tV81AlBE3SKq7Y4fgOTe6AkY1Jh4l6rgmlYH4DZfgM5RLpDMx6/R2PwG4uvzREwEaFUoyuohS4Tuxd7ODtG4aw2SlR8Cyw5zqOLb7D+7mdmnqMhemcbbWyY/5oN9mSmt91P22igUHIwsoZofdCkWbUsIPvGHrO08znu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.22.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip2t1764331798t16b6af85
+X-QQ-Originating-IP: cfnGSLqLqGTMnzWcT3j8p1pKNNvNYptMtg78vW/KmaU=
+Received: from [IPV6:240f:10b:7440:1:9018:e26c ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 28 Nov 2025 20:09:55 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 14202036780138722348
+Message-ID: <20486653DCCA80ED+7f87a03c-519e-4d6a-a47c-7670e5ae502c@radxa.com>
+Date: Fri, 28 Nov 2025 21:09:55 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,68 +46,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] clk: qcom: cmnpll: Account for reference clock
- divider
-To: Luo Jie <jie.luo@oss.qualcomm.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-        quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
-        quic_suruchia@quicinc.com
-References: <20251128-qcom_ipq5332_cmnpll-v1-0-55127ba85613@oss.qualcomm.com>
- <20251128-qcom_ipq5332_cmnpll-v1-1-55127ba85613@oss.qualcomm.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix audio-supply for ROCK Pi 4
+To: Quentin Schulz <quentin.schulz@cherry.de>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ knaerzche@gmail.com, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Heinrich Schuchardt <xypron.glpk@gmx.de>
+References: <20251027005220.22298-1-naoki@radxa.com>
+ <acfc2185-0cb9-4620-abdb-ee25028e8374@cherry.de>
+ <a93ace02-a952-4727-957b-0ed790b47676@cherry.de>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251128-qcom_ipq5332_cmnpll-v1-1-55127ba85613@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <a93ace02-a952-4727-957b-0ed790b47676@cherry.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 62JwdZjxbYXTTDGXb4wgA3KcLpqgEBeP
-X-Authority-Analysis: v=2.4 cv=O8k0fR9W c=1 sm=1 tr=0 ts=692989cb cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=3bdS15YPOoxvJoD-rdwA:9 a=QEXdDO2ut3YA:10
- a=zgiPjhLxNE0A:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDA4NCBTYWx0ZWRfXwcyXFvMoiTtv
- ANy1QliIZ88ELQLxGCQttGpQlMu50cFQ6+c6T2DVbVKXuvFfws+putIEq5pCqRJC5cScQM4LWBp
- EtM2iVOEHJKwM5DHezoDyWQ/kgt7QEsZeLFBkpOvCzv7JoNud1OH2igeCXCvrITBKd3oN0t+5b9
- apnanS9oM/44im/+bYX/5l1nu9qyrzHMoXoYlFdTYRGVy/ECjXSIxqra8Zj8BuoywQfplhCeTSk
- Z7wFPUNEBH+LFLlvjB1ZRW2EkkmV72vx3X2LDQd6olyVXVzY6waPRs1yyRu3AfwThj0G66ZVQdz
- EitByAgBU8XSOsKoCWwnM8Xu0IjLRPuyZDD0NkkMIjhtjrK81QpgtbSPzrY2aQxIk0gLOjmWH9K
- vVayDLsFG7WrOaW45gRQWmHwk4UdNQ==
-X-Proofpoint-GUID: 62JwdZjxbYXTTDGXb4wgA3KcLpqgEBeP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-28_03,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 adultscore=0 clxscore=1015 impostorscore=0
- spamscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511280084
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: M4K5nIxZYv59u1FlJQcKLzFeregahmkPUk2Y8zv0tuOSF+ilKOhjrdbO
+	7NkGKqOpv6ig9IPcpvzbp7VtjY+kqTOngZnHvlvlzKaN0pNDSGHZ1x/4Ve/EXzGPRhnqAFf
+	X9w/1gwU6445tfjjr0ujjIXv9kUG8BWN8mQXd3CuCq1aMvQdnunFbO6nacRK6oyH9j3UXgR
+	iWMosvHWysTokLYb1wiS3sfjw0QsEUIdEBL+pD53Ucvn3Pb6xTUTxF4TYRcntwWVggawPH6
+	AqZZpQ3Nx6L9dCU8ppKOanEV0Yyxi4+qrGjFpO29JYJhE/E9EXGBVrscC3ts4zq1S6ENNkM
+	z2FE4n4bMLIfZ7OmOMN/MJ+l5OuqrAWcQLDoUhNu9h8mCnylhNxfruJPRSlt2J4DkMsy3tP
+	sDt9n6cJehOnfUxROkkkEllwBdV1N3qJjVlpjGuN+W4RJ5JqTWC50sVS4gIoz/Q50Gf+zl1
+	K9SY641fMtRuTp1xd6Bm3y+tI/ZNAp8FneuGbtibxTbzt6VKO/Q4rdpuV4fvWxVHWpZt+Bx
+	08MV2UydcjDyoToSoTlTulDXLawCXfSL8TQyXsZKaPi0/TLgN7l6ARWd2tR0xtAkTrDGzEe
+	SCHFcsu3cTb0uOyQLBxWCUXZ/uJPBTwHhX4LuwDh1J36wTiSEeEuVtts/HGFIwGQ1JBVC8e
+	UQAae3mR+CefOtYgq0H5JYoHf0HUjffgGaNjP5eTpzJalK583N6yWxjPbnIv8zQg3ZTKqkG
+	Q/FVbM0/7ilGeW/I59hceZN4IJ8JapKQCi53/clkrseYTeb7MIIVkGmcDoMSSI6pPGNJ2Th
+	SZILx/lzx5LBZ1Ey6qGZXHksgRBmoT1b48hrkY1nb2cbrtpmkcFOsHFnN72SNUGkqcNP7Nb
+	CFccSAhxrQyEbOLO+oMf2c1ZFdypSshrOpPiV9Y1PXKQw98hy6zZkeKeKRYJy2JkOY5AX2R
+	74uZsLicI8IKcOv0aaE3Q43B/j6+i0SR6tSJPoriB1Wuw+A==
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
+X-QQ-RECHKSPAM: 0
 
-On 11/28/25 9:40 AM, Luo Jie wrote:
-> The clk_cmn_pll_recalc_rate() function must account for the reference clock
-> divider programmed in CMN_PLL_REFCLK_CONFIG. Without this fix, platforms
-> with a reference divider other than 1 calculate incorrect CMN PLL rates.
-> For example, on IPQ5332 where the reference divider is 2, the computed rate
-> becomes twice the actual output.
+Hi Quentin,
+
+On 11/28/25 19:24, Quentin Schulz wrote:
+> Hi Naoki,
 > 
-> Read CMN_PLL_REFCLK_DIV and divide the parent rate by this value before
-> applying the 2 * FACTOR scaling. This yields the correct rate calculation:
-> rate = (parent_rate / ref_div) * 2 * factor.
+> On 11/27/25 4:20 PM, Quentin Schulz wrote:
+>> Hi Naoki,
+>>
+>> On 10/27/25 1:52 AM, FUKAUMI Naoki wrote:
+>>> This reverts commit 8240e87f16d17 ("arm64: dts: rockchip: fix
+>>> audio-supply for Rock Pi 4").
+>>>
+>>> Fix the APIO5_VDD power supply to vcc_3v0 as per the schematics[1][2]
+>>> [3][4][5].
+>>>
+>>> This fixes the SPI-NOR flash probe failure when the blue LED is on[6],
+>>> and the garbled serial console output on Linux.
+>>>
+>>> The ES8316 headphone and microphone are confirmed to work correctly
+>>> after this fix.
+>>>
 > 
-> Maintain backward compatibility with earlier platforms (e.g. IPQ9574,
-> IPQ5424, IPQ5018) that use ref_div = 1.
+> Please test the ES8316 works when booting Linux from a U-Boot where 
+> ROCKCHIP_IODOMAIN and SPL_ROCKCHIP_IODOMAIN is *disabled*.
 
-I'm not sure how to interpret this. Is the value fixed on these platforms
-you mentioned, and always shows up as 0?
+I tried below, and confirmed that ES8316 is still working.
 
-Konrad
+diff --git a/configs/rock-pi-4-rk3399_defconfig 
+b/configs/rock-pi-4-rk3399_defconfig
+index 219f42bc7d4..276ca961c10 100644
+--- a/configs/rock-pi-4-rk3399_defconfig
++++ b/configs/rock-pi-4-rk3399_defconfig
+@@ -53,6 +53,7 @@ CONFIG_ROCKCHIP_GPIO=y
+  CONFIG_SYS_I2C_ROCKCHIP=y
+  CONFIG_LED=y
+  CONFIG_LED_GPIO=y
++# CONFIG_ROCKCHIP_IODOMAIN is not set
+  CONFIG_MMC_DW=y
+  CONFIG_MMC_DW_ROCKCHIP=y
+  CONFIG_MMC_SDHCI=y
+diff --git a/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi 
+b/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
+index 046dbe32901..c734f7824c0 100644
+--- a/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
++++ b/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
+@@ -51,7 +51,7 @@
+
+         sound: sound {
+                 compatible = "audio-graph-card";
+-               label = "Analog";
++               label = "rk3588-es8316";
+                 dais = <&i2s0_p0>;
+         };
+
+@@ -516,7 +516,7 @@
+  };
+
+  &io_domains {
+-       audio-supply = <&vcca1v8_codec>;
++       audio-supply = <&vcc_3v0>;
+         bt656-supply = <&vcc_3v0>;
+         gpio1830-supply = <&vcc_3v0>;
+         sdmmc-supply = <&vcc_sdio>;
+
+Notes:
+- SPL_ROCKCHIP_IODOMAIN is not set by default
+- I don't understand alsa ucm2 ;) so I modified /sound/label
+
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> Having the IO domain properly configured from U-Boot may make you think 
+> that the ES8316 always work in the Linux kernel but that may not be the 
+> case depending on probe order e.g. between the IO domain driver in Linux 
+> and the ES8316 (if the original issue is indeed related to IO domain).
+> 
+> Cheers,
+> Quentin
+> 
+
 
