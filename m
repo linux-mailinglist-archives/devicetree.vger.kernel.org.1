@@ -1,227 +1,275 @@
-Return-Path: <devicetree+bounces-243017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC22CC927E9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 17:03:54 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 955A0C9287C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 17:11:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 52265344C43
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 16:03:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 525204E6B11
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 16:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB47628850E;
-	Fri, 28 Nov 2025 16:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44C8330D51;
+	Fri, 28 Nov 2025 16:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aY+FW38i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iordjL9T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6659F288C30
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 16:03:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3A4331229
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 16:06:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764345830; cv=none; b=IWTuAXKRO97WHg+wVvzpC+ihe5cfL6CtixvilmECCYb2ZfLhG5WxmOWQSoXEvTzxJteuPciFJVfb16dbpM3vg/df7vxKSYqqcYi/zgqbkWPjLyB/OKJpFar87c/zWd3npt4dgz2CAfmmm9f/z9Uc3mxb7V1X6H6WBEs0fIL9pfw=
+	t=1764346018; cv=none; b=d7eB7Cqd0TStqhlf57NQAr+8jpUJcGh8f4g966nmXVNq9hVJ2UDSkjrMZHsbcvKG7E3iBv10pqVlrEm2GfUTi/LQx8Z6FCTotLZXdS0L6iQD9N2EllSLlN1N7/B6Lci5ntuPjZ2SsXalx3t91NIbX8yBWtGDo3RmOTgJx1hUx4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764345830; c=relaxed/simple;
-	bh=8LtIKEYNPDtP7Bg4bOutf+DgxMqkbcmKE29hYsQYC60=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G3+4bySvLlCDu4sNWsUnjgpMB8J0teTUxUKj6z7O0Bhl3beOsZUctQhSnT58A/2vvngYuNmS4xr66MwSAngXbpIZtZ+WhkHYCO41BI7GRQzvZKGR25Zzn5ksWUr1QMRkaYcn9IrLGV7JJ7WWRF5SWRiNaYErsCNuKCiW+LU4xVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aY+FW38i; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4775ae5684fso9543755e9.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 08:03:46 -0800 (PST)
+	s=arc-20240116; t=1764346018; c=relaxed/simple;
+	bh=+XNRveZYx4pZqARFqxEgHOejSyZET7D2UZAv8GTCH6I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JzK1VHjaUjAcsKYoC003j2FksV16YZjqmnxgzNfyqI8uhG65LMO86EM0f1lcJAfgxENTQJ4/iKXrmOEWVTu+OALCNmtFk98xgE9pmUWJ+lHgU//9najtke9ef+VKjHphLcEVPcgbJOjMv7jEUwbNqYihD8546nokHanZ7eci650=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iordjL9T; arc=none smtp.client-ip=209.85.208.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-64175dfc338so3968421a12.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 08:06:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764345825; x=1764950625; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=29oMiGOlEBo8VSbo7iR6xJMVH+/RNxSH1akBqs10TE0=;
-        b=aY+FW38iz8M0bYneCv+gXiKBqEvc1J1gZwKqbAeDafoYovvqtEmNZ4BTqugE46CWUo
-         j1rG8xDcG6I3hRltuXsMgipws/+U1/VZQ/2MNWh7yFwThbmEW2IJvzks40e41cy7mIZd
-         4Nv/jn4/N6wK3rqGEq1VujuLCKiX1fBX9ewDJL0NxSm3gmSL82A3YkbZ+Mc+e+QgMjvn
-         cRxdl3cWE/qaLjcNLCl04gU2C5G0WbhDmUMuxK5wEI/IcacxtaXBNVwcMVI8hQKD65Yz
-         /XVnYmJTIVF29pcjlCXR4gIr0MjsKMMjn0h6ik9fLqu1hx4QXDvQ2RXUelBZCN3S8zAt
-         cSfw==
+        d=gmail.com; s=20230601; t=1764346015; x=1764950815; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P1o5g0vSaU70RhLYZ7B+DWVUfgzWu3JhrXwtWGhtC4s=;
+        b=iordjL9TQmbMDmspiTJe8kvHIuJ9gbrvSMfwa5ECSSQk3uy3/ICGffSqIfrOQ1nFwv
+         k4tidFm2U2Gyohdv58HqFrYQTwUvCKeyStTi6rdcGRWWOJCA4ZwrYG9J0T8HxHo+5uRP
+         bAKkoM/Dj7TjsrvbYJRg5CVRLEersdEWtYb5PWjxLrfzIq8D3EsxPH6hbvaWa5I51izE
+         s+LI5Bv69VqH+wSlVviMiDJpaVDsog9hC896gs+v4nJ9clQs0dVl7aLp5/iWNKjHMh5K
+         UN/NgR5o3w0yrTHNc9gPul2glDg/24vy/bcUimlb4iXK76AJzwGJVIScNceywhglrmd0
+         ffkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764345825; x=1764950625;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=29oMiGOlEBo8VSbo7iR6xJMVH+/RNxSH1akBqs10TE0=;
-        b=CzPSVdKVmyYoOQQsyR/GY+22cpCAH0aT26p5lk2lMai11ErqyfSK3c805LS82MxpT7
-         1vGMbIodSXVVDok55UdODRTY42klu56kvdmxfpIgI7T/+oikaBcZ56iod52zfoUFqHsj
-         NGNrpyINwSDEusKK2TRf8aKR0i6ocyScGz7KXyBfySUbe+dQeUlM8e/ABCkqeirB6nhA
-         g2XyRPmKaQDpTMo9DfHX9NSAxKrdTZk/gC0ZeDSJK5k+8YgIPZGVko33HvB1xq1twMQJ
-         nmyqb9AwW7w7JJXkdA9pY/B7BdFwVOJeLUlKaZN4ApZCDnOer6ET1eE8hbDKvP2uCcPb
-         TmRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXAc2Ch5I2WnwPQi2xv2MBTs8yS1WhZCysbZQxmHWxdSdNxcEsklH8PbwQJ/kdn8+pVsbWy6dAjzVoj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzN2wNJZdy9r1CGpH7Gjl2CF8IsDWh+bgzCw76q6yuWPU87Ub3l
-	Un3f97OSIWBsX1TG7wjKg4E3FENd5eKt/k6Hcfs//c0JE+NRWJRJSKTM0RI1YtUTb7c=
-X-Gm-Gg: ASbGncsMqQ+BzvZ4aDova8T+n1DMjKgg8Jk3tvKk4c9sTis6Wo5G/SS7+sY/3gSABpl
-	O70SGh6rEukkoNmoPKmOnF1sjzrjIqKZZddMCSwubylzvvnuscLMW3ivbKtGvqH+poN4A3IDVm4
-	Lx55wlWhtfNmZ/aHRY2ZSpDZkjhYpDMRwyyAsq9t0ZJlKR7t5eLUaiPPnCe8IeqaXq82DMEoOBx
-	7M4XVWUWdDB6B3mXQiLElosWIybYgdKIJOCC8IPjyYar2aEhi/9mtsMctXCC91PlwhXXsjwfabT
-	6RTUDMj3WTQhw5Gg5iV3cMnna+jLYjPr613WXifC5lp8UPCu6vKUluMAZgMTV5hPbWZUUURyHz6
-	zvAlvNLJbuhDTknObCVg73gemr5bWpSqxxIwLvBosKGwPoST/HvoRfDe2CJknXS6dPXVmUBoVGf
-	F8jOOQHNswQPYrhfdqwmsTzW0=
-X-Google-Smtp-Source: AGHT+IEIdiWgI6ShKK8zf0LsF9J/VMydu3xKcInB74BGagkNqrUSnaFzoxtYNlD0dYCR2h1EdMMqrA==
-X-Received: by 2002:a05:600c:a01:b0:477:55ce:f3c2 with SMTP id 5b1f17b1804b1-477c111d3camr301614565e9.14.1764345825032;
-        Fri, 28 Nov 2025 08:03:45 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff23:4430:e122:53f9:35dd:da27])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1c5c30c4sm11016931f8f.9.2025.11.28.08.03.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Nov 2025 08:03:44 -0800 (PST)
-Date: Fri, 28 Nov 2025 17:03:40 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Jonathan Marek <jonathan@marek.ca>
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
-Message-ID: <aSnH3C8s5xVSk_ti@linaro.org>
-References: <20251127212943.24480-1-jonathan@marek.ca>
- <aSl48gV9laFb-MR1@linaro.org>
- <d969b3e6-a6e1-6dd3-45b9-539ba7a9f42d@marek.ca>
+        d=1e100.net; s=20230601; t=1764346015; x=1764950815;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=P1o5g0vSaU70RhLYZ7B+DWVUfgzWu3JhrXwtWGhtC4s=;
+        b=fFPT3FAh+7KJiOblpCp0m36BKQh0dzXhgANxNmx/Yj8Z0QseyAxkHgkbJslTP2WrWF
+         m+/9Ly4jPSEYWn8UDW7kvMc5jpS951c8kidvEUDLiDUVwil5RxHWh+zUwZ7JmQULTd+v
+         Pxrx28wFqpRXcAiXDP6CtJm0VcDOzuY+9JERomZf3NZAcQhcvhqQkplcQlR/AnznIxHY
+         tBv3fWTdOB+wEvWane94GKF3AOBzU07ImTtObtxvl6lJY9ZAJ0fR5eS6T6OoGoeq/QG7
+         44kBB90kgblN7QUDEAlIxis6rCOUq4+6bYyl5xVnTtYL0ri/KJajuQ5cmqGB5T95ofAb
+         J1dg==
+X-Forwarded-Encrypted: i=1; AJvYcCU77OHtxvPrgfLL7EV4VDBfeQX4afBXOcCQYqjBrO/JJLbsptpKzoLzQBIq+f/WxNCvI0/iDS64eMka@vger.kernel.org
+X-Gm-Message-State: AOJu0YyehrEwjei3yNi8v9CQqlWAJvpWTQtpepC2BpwiD4NaNFUzrOHm
+	WTUgr6GLfxcJCPLAr1ZkgRttKYplQ/TxxjX7kDLNLvcVmCx2NY31TWeSCYpAXGyoWbLzBsp/t/3
+	qUhPgeWcZ31D00x+IIoky++aAdBNSnZw=
+X-Gm-Gg: ASbGncselen/rmejEWine7TC0qOy6dP2wlUS80F+fOMHPTR4T0eeP6Axn/w2jl8B1eW
+	kavSeM0faVGpnLLE4jSY5ohJLftsDFrFFLCLZzoYnFCIBvr+ylViLuRQ2ixYSqBU3GNpXcZa9zY
+	CEQcX9vqKlSLSuCzKHHXI3ZizC31b591OyIYY3KpoP41hIOtdpJBU1V8zGgiL7poVQsuh5bbX7N
+	GUTvb+SN2rza9LYhrjmBLryt1sKlUh6LD2wtOIXHdNBq9G+jSZL3+DjNpoqttoTqOi604Q=
+X-Google-Smtp-Source: AGHT+IEI3VNRff9VO8vTEBTDo7uxAU6C/mVJQbEpPfMkIuxLxn5S+pBTLhRAl9UY8ROCPgC7OMHcg/CFRwSQL6LemvM=
+X-Received: by 2002:a17:907:cd0e:b0:b73:5d8c:dd0d with SMTP id
+ a640c23a62f3a-b76718aab40mr3181044566b.52.1764346014938; Fri, 28 Nov 2025
+ 08:06:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d969b3e6-a6e1-6dd3-45b9-539ba7a9f42d@marek.ca>
+References: <20251126031440.30065-1-raskar.shree97@gmail.com>
+ <20251126031440.30065-4-raskar.shree97@gmail.com> <aSatqG9UEqkH0Glw@smile.fi.intel.com>
+In-Reply-To: <aSatqG9UEqkH0Glw@smile.fi.intel.com>
+From: Shrikant <raskar.shree97@gmail.com>
+Date: Fri, 28 Nov 2025 21:36:43 +0530
+X-Gm-Features: AWmQ_bkxfyjnjo5lTo92Q2QQmKRO2D0ZMmxnBP8Ut477GZINSUCiiqSyaBdQDOA
+Message-ID: <CAHc1_P5pgBGiHpyNBGMf8yDKZttVG0XoC0Bb5mWCeGyKbc6q7Q@mail.gmail.com>
+Subject: Re: [PATCH 3/3] iio: proximity: rfd77402: Add interrupt handling support
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, heiko@sntech.de, 
+	neil.armstrong@linaro.org, skhan@linuxfoundation.org, 
+	david.hunter.linux@gmail.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 28, 2025 at 09:39:52AM -0500, Jonathan Marek wrote:
-> On 11/28/25 5:26 AM, Stephan Gerhold wrote:
-> > On Thu, Nov 27, 2025 at 04:29:42PM -0500, Jonathan Marek wrote:
-> > > Unlike the phone SoCs this was copied from, x1e has a 40-bit physical bus.
-> > > The upper address space is used to support more than 32GB of memory.
-> > > 
-> > > This fixes issues when DMA buffers are allocated outside the 36-bit range.
-> > > 
-> > > Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
-> > > Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 4 ++--
-> > >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > > index cff34d1c74b60..cd34ce5dfd63a 100644
-> > > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > > @@ -792,8 +792,8 @@ soc: soc@0 {
-> > >   		#address-cells = <2>;
-> > >   		#size-cells = <2>;
-> > > -		dma-ranges = <0 0 0 0 0x10 0>;
-> > > -		ranges = <0 0 0 0 0x10 0>;
-> > > +		dma-ranges = <0 0 0 0 0x100 0>;
-> > > +		ranges = <0 0 0 0 0x100 0>;
-> > 
-> > Could you clarify which "issues" (crashes?) you are referring to?
-> > 
-> > We need to distinguish two distinct use cases here, which are both
-> > (somewhat) supported upstream: Running in EL1 with the Gunyah hypervisor
-> > with the regular DTB and in EL2 with the x1-el2.dtbo applied.
-> > 
-> > # EL2 with x1-el2.dtbo
-> > 
-> > For EL2, I think the 40-bit dma-ranges should indeed work correctly, so
-> > we could add your proposed change inside x1-el2.dtso. I'm not sure which
-> > issues we are fixing with that though (besides correctness of the
-> > hardware description). In EL2, all DMA devices should be behind an
-> > IOMMU. In this case, the dma-ranges limit the size of the I/O virtual
-> > addresses (DMA addresses) that are given to the devices. The IOMMU maps
-> > the DMA buffers to arbitrary physical memory addresses (including
-> > outside of the 36-bit range, dma-ranges limits only the DMA address).
-> > 
-> > I would expect that applying your change effectively just enlarges the
-> > I/O virtual address space, which will then be 40-bit instead of just
-> > 36-bit. For most devices, even 32-bit of virtual address space should be
-> > enough. A larger address space will only be applied for drivers that
-> > explicitly request a larger DMA mask (e.g. the nvme driver).
-> > 
-> > We can make this change for correctness, but given that it is only about
-> > the IOVA space, there shouldn't be much functional difference.
-> > 
-> > # EL1 with Gunyah hypervisor
-> > 
-> > For EL1, the hypervisor firmware used on most retail laptops limits the
-> > usable DMA memory in the SMMUs to the physical 36-bit range. You are
-> > right that laptops with 64 GiB memory are essentially unusable in EL1
-> > without disabling the physical memory outside the 36-bit range, but
-> > applying this patch would make it even worse.
-> > 
-> > There are two separate cases:
-> > 
-> >   - For devices behind the SMMUv2, the situation should be the same as
-> >     above. Increased IOVA space, but no effect on physical address range.
-> >     This is what is currently causing crashes with 64 GiB RAM in EL1.
-> > 
-> >   - Devices behind the SMMUv3 (PCIe) do not have an IOMMU assigned when
-> >     running in EL1. In this case, the 36-bit dma-ranges prevents PCIe
-> >     devices from using memory outside the 36-bit range. They will fall
-> >     back to bounce buffers in that case. Applying your patch will disable
-> >     that, making it even more likely to crash than before.
-> > 
-> > Given that x1e80100.dtsi / hamoa.dtsi primarily models the EL1 setup
-> > with Gunyah hypervisor, I don't think it makes sense to apply this patch
-> > as-is. It will just make it even more likely to crash than before.
-> > I suggest adding these overrides in x1-el2.dtso, with the expected
-> > limited effect I described above.
-> > 
-> > Thanks,
-> > Stephan
-> > 
-> 
-> I am using EL2.
-> 
-> Without this patch, DMA buffers allocated in the upper 36-bit physical range
-> will try to use bounce buffers. The dma range from the dts is compared
-> against the physical address, not the virtual address.
+On Wed, Nov 26, 2025 at 1:05=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@intel.com> wrote:
+>
+> On Wed, Nov 26, 2025 at 08:44:40AM +0530, Shrikant Raskar wrote:
+> > Add interrupt handling support to enable event-driven data acquisition
+> > instead of continuous polling. This improves responsiveness, reduces
+> > CPU overhead, and supports low-power operation by allowing the system
+> > to remain idle until an interrupt occurs.
+>
+> ...
+>
+> >  #include <linux/module.h>
+> >  #include <linux/i2c.h>
+> >  #include <linux/delay.h>
+> > -
+>
+> Stray removal of blank line.
+>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/completion.h>
+>
+> > +#include <linux/of.h>
+>
+> Please, avoid using of.h in a new code.
+>
+> >  #include <linux/iio/iio.h>
+>
+> ...
+>
+> > +static irqreturn_t rfd77402_interrupt_handler(int irq, void *dev_id)
+> > +{
+> > +     struct rfd77402_data *data =3D dev_id;
+> > +     int ret;
+>
+> > +     /* Check if the interrupt is from our device */
+>
+> This comment only for the second part and I would split the condition to =
+make
+> it clearer.
+>
+> > +     ret =3D i2c_smbus_read_byte_data(data->client, RFD77402_ICSR);
+> > +     if (ret < 0 || !(ret & RFD77402_ICSR_RESULT))
+> > +             return IRQ_NONE;
+>
+>         ret =3D i2c_smbus_read_byte_data(data->client, RFD77402_ICSR);
+>         if (ret < 0)
+>                 return IRQ_NONE;
+>
+>         /* Check if the interrupt is from our device */
+>         if (!(ret & RFD77402_ICSR_RESULT))
+>                 return IRQ_NONE;
+>
+> > +     /* Signal completion of measurement */
+> > +     complete(&data->completion);
+> > +     return IRQ_HANDLED;
+> > +}
+>
+> ...
+>
+> > -     while (tries-- > 0) {
+> > -             ret =3D i2c_smbus_read_byte_data(client, RFD77402_ICSR);
+> > -             if (ret < 0)
+> > +     if (data->irq_en) {
+> > +             /* Wait for interrupt-driven completion */
+> > +             ret =3D wait_for_completion_timeout(&data->completion,
+> > +                                               msecs_to_jiffies(200));
+> > +             if (ret =3D=3D 0) {
+> > +                     ret =3D -ETIMEDOUT;
+> >                       goto err;
+> > -             if (ret & RFD77402_ICSR_RESULT)
+> > -                     break;
+> > -             msleep(20);
+> > -     }
+> > -
+> > -     if (tries < 0) {
+> > -             ret =3D -ETIMEDOUT;
+> > -             goto err;
+> > +             }
+> > +     } else {
+> > +             /* Fallback to polling mode */
+> > +             while (tries-- > 0) {
+> > +                     ret =3D i2c_smbus_read_byte_data(client, RFD77402=
+_ICSR);
+> > +                     if (ret < 0)
+> > +                             goto err;
+> > +                     if (ret & RFD77402_ICSR_RESULT)
+> > +                             break;
+> > +                     msleep(20);
+> > +             }
+> > +
+> > +             if (tries < 0) {
+> > +                     ret =3D -ETIMEDOUT;
+> > +                     goto err;
+> > +             }
+> >       }
+>
+> Instead, move the current code into a helper (in a separate patch) and al=
+ter it
+> here with new conditional. So in the result it will be something like
+>
+>         if (...)
+>                 ret =3D call_new_helper_for_irq();
+>         else
+>                 ret =3D call_old_helper_for_polling();
+>
+> ...
+>
+> > +     if (data->irq_en) {
+> > +             /* Configure ICSR: auto-clear on read, push-pull, falling=
+ edge */
+> > +             ret =3D i2c_smbus_write_byte_data(client, RFD77402_ICSR,
+> > +                                             RFD77402_ICSR_CLR_CFG |
+> > +                                             RFD77402_ICSR_INT_MODE);
+> > +             if (ret < 0)
+> > +                     return ret;
+> > +
+> > +             /* Enable 'new data available' interrupt in IER */
+> > +             ret =3D i2c_smbus_write_byte_data(client, RFD77402_IER,
+> > +                                             RFD77402_IER_RESULT);
+> > +             if (ret < 0)
+> > +                     return ret;
+> > +     } else {
+> > +             /* Disable interrupts */
+> > +             ret =3D i2c_smbus_write_byte_data(client, RFD77402_ICSR, =
+0);
+> > +             if (ret < 0)
+> > +                     return ret;
+> > +
+> > +             ret =3D i2c_smbus_write_byte_data(client, RFD77402_IER, 0=
+);
+> > +             if (ret < 0)
+> > +                     return ret;
+> > +     }
+>
+> This can be also factored out to a helper(s). Something like this, perhap=
+s
+>
+>         if (irq_en)
+>                 ret =3D call_a_helper(client, $CSR, $ER);
+>         else
+>                 ret =3D call_a_helper(client, 0, 0);
+>
+> ...
+>
+> > +     /* Check if interrupt is mentioned in device tree */
+> > +     data->irq_en =3D false;
+> > +     if (client->irq > 0) {
+> > +             ret =3D devm_request_threaded_irq(&client->dev, client->i=
+rq,
+> > +                                             NULL, rfd77402_interrupt_=
+handler,
+> > +                                             IRQF_TRIGGER_FALLING | IR=
+QF_ONESHOT,
+> > +                                             "rfd77402", data);
+> > +             if (ret =3D=3D 0) {
+> > +                     data->irq_en =3D true;
+> > +                     dev_info(&client->dev, "Using interrupt mode\n");
+> > +             } else {
+> > +                     dev_warn(&client->dev,
+> > +                              "Failed to request IRQ %d, using polling=
+ mode: %d\n",
+> > +                              client->irq, ret);
+>
+> If we asked for interrupt and didn't get it due to "linux" errors, we sho=
+uld
+> not fallback. No need to work around bugs in the DT, the DT description m=
+ust
+> be fixed instead.
+>
+> > +             }
+> > +     } else {
+> > +             dev_info(&client->dev, "No interrupt specified, using pol=
+ling mode\n");
+> > +     }
+>
+Thank you for the detailed feedback. I will update the code as per
+feedback and will share the v2 of the patch.
 
-I don't think this is the case for the dma-iommu layer. I debugged a
-crash caused by USB in EL1 on a 64 GiB device earlier this year and it
-was happily using buffers above the 36-bit physical range without using
-bounce buffers. There is some code inside dma-iommu for using swiotlb,
-but it's used only for "untrusted" PCI devices and some edge cases with
-unaligned/small buffers.
-
-> 
-> The crash I see is display driver crashes/freezes once a buffer is allocated
-> in the upper 36-bit range and it tries to use bounce buffers. This can
-> happens very quickly under load.
-> 
-
-You could be right about the MSM display driver though, since that
-bypasses dma-iommu and manages the IOMMU itself. I stared at the code a
-bit and I'm not immediately seeing where it would end up calling into
-swiotlb, but it might be hidden somewhere in the endless nesting.
-
-> The same crash would happen for EL1 as well. I wasn't aware of the EL1
-> broken firmware when I sent this patch, but instead of display freezing I
-> guess the behavior would a hard reset now, which is a bit worse but still
-> unusable unles display/gpu driver is disabled.
-> 
-> This patch is correct and should be applied regardless of broken-firmware
-> EL1 cases (where 64GB isn't usable anyway), but I guess the Fixes tag
-> can/should be dropped.
-> 
-
-Please clarify the commit message a bit and mention the two separate use
-cases (EL1 and EL2). I'll leave it up to Bjorn/Konrad to decide whether
-to merge it. At the end you are right and using 64 GiB RAM in EL1 is
-kind of a lost cause anyway.
-
-Thanks,
-Stephan
+Regards,
+Shrikant
 
