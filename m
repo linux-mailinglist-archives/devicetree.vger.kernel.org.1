@@ -1,183 +1,139 @@
-Return-Path: <devicetree+bounces-242866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C8FBC906E1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 01:28:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 330AAC9077E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 02:09:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 74E674E1B3C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 00:28:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE5E03AA434
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 01:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21D722FDEC;
-	Fri, 28 Nov 2025 00:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70712236EB;
+	Fri, 28 Nov 2025 01:09:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="KWtPd9Tk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from mail-m19731109.qiye.163.com (mail-m19731109.qiye.163.com [220.197.31.109])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4032236FC;
-	Fri, 28 Nov 2025 00:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683EF1A9F9D;
+	Fri, 28 Nov 2025 01:09:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.109
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764289668; cv=none; b=D3P7vVJgmjgc+bpziEkWtctLPKlp2Z/alTT1U7sigK72g4LEfkWry4nVC0jujNZRPpWq3G1Ks941ygoMknX6S9ddHyXZvU5eEHtsYyK1zQEsknm58q7MTAVnfiseva3dUv2REKh0Vg1OwhRxsacJE6jSeVut7uTulrjg5GFu+k8=
+	t=1764292158; cv=none; b=qa7SlJAna2/3d9tN3dBb4Bp+RgfAVizfqb1QIda8LPS4JEI306OOp+W9Rlm1kj77icXTpzgvxBZcPUSlKnPwSraAZxmlSd8jd15sJL8eJncsazgJLsz0pybLHvlrffnc6VBtbrfEvgwx+mtjhXM5jSDMBx2OaHKl9sCY0gHSFD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764289668; c=relaxed/simple;
-	bh=XJdF9MCn8Pm6rI4iV4Bh37iuRCq4FiLatSLLzYg37h8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=pU0/e/qnPAf4MVHCaKURFKz73rwDNuM0B1iqdmZ20VK3Cag6Qe3J8ARdxHk0DTJR9/oDD592rjHqDihbaZmpZzQGmftpK0F5hg/XXu1Bl5yshnLJ7inhSiiavzOP3qDFvT2HRCWs11YKHxk5liKysRgfeRPx8DJR68uu7tpcZxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 28 Nov
- 2025 08:27:34 +0800
-Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Fri, 28 Nov 2025 08:27:34 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-Date: Fri, 28 Nov 2025 08:27:31 +0800
-Subject: [PATCH v2 2/2] usb: gadget: aspeed-vhub: Add ast2700 support
+	s=arc-20240116; t=1764292158; c=relaxed/simple;
+	bh=g9ZBThi+XNu/ViU1HkBvkomkDdQeigxQ/QTvaFlI7Pk=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=KoP5cQBi62s/qCIDO8ptpksv231LidVuYH/g+ga0486O8ZbzuPJwAyc/o4Y+SInnGObuo/HRIskNlF1MI3/QyGM6ua9PTefTshvAvjM2b5lgkF+9aeDQ02K+7NY0RbeNRk+0z+Pg3H3a2KU+relSNLQWor/fohF2hRyhtux9Rqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=KWtPd9Tk; arc=none smtp.client-ip=220.197.31.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2b2e9237e;
+	Fri, 28 Nov 2025 09:03:56 +0800 (GMT+08:00)
+Message-ID: <09aed728-51ca-42dd-b680-f6597e0ac00a@rock-chips.com>
+Date: Fri, 28 Nov 2025 09:03:52 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251128-upstream_vhub-v2-2-1fa66a5833c2@aspeedtech.com>
-References: <20251128-upstream_vhub-v2-0-1fa66a5833c2@aspeedtech.com>
-In-Reply-To: <20251128-upstream_vhub-v2-0-1fa66a5833c2@aspeedtech.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
-	<andrew@codeconstruct.com.au>, Benjamin Herrenschmidt
-	<benh@kernel.crashing.org>, Philipp Zabel <p.zabel@pengutronix.de>
-CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, Ryan Chen <ryan_chen@aspeedtech.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764289654; l=3392;
- i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
- bh=XJdF9MCn8Pm6rI4iV4Bh37iuRCq4FiLatSLLzYg37h8=;
- b=ecy2bG+wRDjEzJOpOxKlviBm2AUu1tXkDbMaZbOZAMJKnr+T61vmMRfng60CdMHf5b11i88JH
- 5V9Q4kE/96JAiITGpu8kf/ByIdNx4H92oqfH6VEF9Fq8MREdY0/DBMv
-X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
- pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] PCI: dwc: Program device-id
+To: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Manivannan Sadhasivam <mani@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20251127-program-device-id-v1-0-31ad36beda2c@quicinc.com>
+ <20251127-program-device-id-v1-1-31ad36beda2c@quicinc.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20251127-program-device-id-v1-1-31ad36beda2c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9ac7fcf84c09cckunma2bff526693f46
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR9PH1YZSU9KHh5PGkodGB1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=KWtPd9Tk8o/15mVxcrXi6kjy/rSGzCH9tyJgy3FXvt6mrM+qs+KwycnK4Eg9qzw/m72nyKlskHraSrBLaHYWb1wV1DGEm2gWzjPaE+Uqi5joNxt/1N/RvTT1LOdlt9q6OdieiOWeKQbesx65DDNSwN/rhLZtjZN4Pv/+gvTCUD0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=XMS+KJ5HUPJOKP519mm/6YRXCethP2LMIjLGg+exrR8=;
+	h=date:mime-version:subject:message-id:from;
 
-Add support for the AST2700 SOC in the vhub gadget driver. AST2700
-uses a 64-bit DMA addressing capability, so select 64-bit DMA mask
-for compatible. AST2700 vhub also requires an reset line, so hook
-up the optional reset control and assert/deassert it during probe
-and remove.
+在 2025/11/27 星期四 23:30, Sushrut Shree Trivedi 写道:
+> For some controllers, HW doesn't program the correct device-id
+> leading to incorrect identification in lspci. For ex, QCOM
+> controller SC7280 uses same device id as SM8250. This would
+> cause issues while applying controller specific quirks.
+> 
+> So, program the correct device-id after reading it from the
+> devicetree.
+> 
+> Signed-off-by: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
+> ---
+>   drivers/pci/controller/dwc/pcie-designware-host.c | 7 +++++++
+>   drivers/pci/controller/dwc/pcie-designware.h      | 2 ++
+>   2 files changed, 9 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index e92513c5bda5..e8b975044b22 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -619,6 +619,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>   		}
+>   	}
+>   
+> +	pp->device_id = 0xffff;
+> +	of_property_read_u32(np, "device-id", &pp->device_id);
+> +
+>   	dw_pcie_version_detect(pci);
+>   
+>   	dw_pcie_iatu_detect(pci);
+> @@ -1094,6 +1097,10 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
+>   
+>   	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0);
+>   
+> +	/* Program correct device id */
+> +	if (pp->device_id != 0xffff)
+> +		dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, pp->device_id);
+> +
+>   	/* Program correct class for RC */
+>   	dw_pcie_writew_dbi(pci, PCI_CLASS_DEVICE, PCI_CLASS_BRIDGE_PCI);
+>   
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index e995f692a1ec..eff6da9438c4 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -431,6 +431,8 @@ struct dw_pcie_rp {
+>   	struct pci_config_window *cfg;
+>   	bool			ecam_enabled;
+>   	bool			native_ecam;
+> +	u32			vendor_id;
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
----
- drivers/usb/gadget/udc/aspeed-vhub/core.c | 30 ++++++++++++++++++++++++++++++
- drivers/usb/gadget/udc/aspeed-vhub/vhub.h |  1 +
- 2 files changed, 31 insertions(+)
+I don't see where vendor_id is used.
+And why should dwc core take care of per HW bugs, could someone else
+will argue their HW doesn't program correct vender id/class code, then
+we add more into dw_pcie_rp to fix these?
 
-diff --git a/drivers/usb/gadget/udc/aspeed-vhub/core.c b/drivers/usb/gadget/udc/aspeed-vhub/core.c
-index f2685f89b3e5..19c1849ae665 100644
---- a/drivers/usb/gadget/udc/aspeed-vhub/core.c
-+++ b/drivers/usb/gadget/udc/aspeed-vhub/core.c
-@@ -23,6 +23,7 @@
- #include <linux/of.h>
- #include <linux/regmap.h>
- #include <linux/dma-mapping.h>
-+#include <linux/reset.h>
- 
- #include "vhub.h"
- 
-@@ -280,6 +281,8 @@ static void ast_vhub_remove(struct platform_device *pdev)
- 	if (vhub->clk)
- 		clk_disable_unprepare(vhub->clk);
- 
-+	reset_control_assert(vhub->rst);
-+
- 	spin_unlock_irqrestore(&vhub->lock, flags);
- 
- 	if (vhub->ep0_bufs)
-@@ -294,6 +297,7 @@ static void ast_vhub_remove(struct platform_device *pdev)
- static int ast_vhub_probe(struct platform_device *pdev)
- {
- 	enum usb_device_speed max_speed;
-+	const u64 *dma_mask_ptr;
- 	struct ast_vhub *vhub;
- 	struct resource *res;
- 	int i, rc = 0;
-@@ -348,6 +352,16 @@ static int ast_vhub_probe(struct platform_device *pdev)
- 		goto err;
- 	}
- 
-+	vhub->rst = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
-+	if (IS_ERR(vhub->rst)) {
-+		rc = PTR_ERR(vhub->rst);
-+		goto err;
-+	}
-+
-+	rc = reset_control_deassert(vhub->rst);
-+	if (rc)
-+		goto err;
-+
- 	/* Check if we need to limit the HW to USB1 */
- 	max_speed = usb_get_maximum_speed(&pdev->dev);
- 	if (max_speed != USB_SPEED_UNKNOWN && max_speed < USB_SPEED_HIGH)
-@@ -370,6 +384,12 @@ static int ast_vhub_probe(struct platform_device *pdev)
- 		goto err;
- 	}
- 
-+	dma_mask_ptr = (u64 *)of_device_get_match_data(&pdev->dev);
-+	if (dma_mask_ptr) {
-+		rc = dma_coerce_mask_and_coherent(&pdev->dev, *dma_mask_ptr);
-+		if (rc)
-+			goto err;
-+	}
- 	/*
- 	 * Allocate DMA buffers for all EP0s in one chunk,
- 	 * one per port and one for the vHub itself
-@@ -412,15 +432,25 @@ static int ast_vhub_probe(struct platform_device *pdev)
- 	return rc;
- }
- 
-+static const u64 dma_mask_32 =	DMA_BIT_MASK(32);
-+static const u64 dma_mask_64 =	DMA_BIT_MASK(64);
-+
- static const struct of_device_id ast_vhub_dt_ids[] = {
- 	{
- 		.compatible = "aspeed,ast2400-usb-vhub",
-+		.data = &dma_mask_32,
- 	},
- 	{
- 		.compatible = "aspeed,ast2500-usb-vhub",
-+		.data = &dma_mask_32,
- 	},
- 	{
- 		.compatible = "aspeed,ast2600-usb-vhub",
-+		.data = &dma_mask_32,
-+	},
-+	{
-+		.compatible = "aspeed,ast2700-usb-vhub",
-+		.data = &dma_mask_64,
- 	},
- 	{ }
- };
-diff --git a/drivers/usb/gadget/udc/aspeed-vhub/vhub.h b/drivers/usb/gadget/udc/aspeed-vhub/vhub.h
-index 6b9dfa6e10eb..aca2050e2db0 100644
---- a/drivers/usb/gadget/udc/aspeed-vhub/vhub.h
-+++ b/drivers/usb/gadget/udc/aspeed-vhub/vhub.h
-@@ -388,6 +388,7 @@ struct ast_vhub {
- 	spinlock_t			lock;
- 	struct work_struct		wake_work;
- 	struct clk			*clk;
-+	struct reset_control		*rst;
- 
- 	/* EP0 DMA buffers allocated in one chunk */
- 	void				*ep0_bufs;
+How about do it in the defective HW drivers?
 
--- 
-2.34.1
+
+> +	u32			device_id;
+>   };
+>   
+>   struct dw_pcie_ep_ops {
+> 
 
 
