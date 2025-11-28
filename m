@@ -1,48 +1,102 @@
-Return-Path: <devicetree+bounces-242934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18C50C917FD
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:46:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F79C9180C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:46:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BC79334A605
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:46:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0537F34A970
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A03221FB4;
-	Fri, 28 Nov 2025 09:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 619EA2E06E4;
+	Fri, 28 Nov 2025 09:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lH+zof+k"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ayk4GHCr";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ibB4Lqmp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690D53C1F;
-	Fri, 28 Nov 2025 09:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B03B13054E8
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 09:46:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764323172; cv=none; b=NtsX5R+M9Vs5VWVK50Jx23uly6psa/aOs4H8gjSQ5mZqItqUPr2i6jwT+WNi34FqOx0JMp2SxMMQXmnY288O15bSJTsB/dYCSCoMoI9T4cnUIc8j7uYXgQEEMp7mtSgpv+1wyEQIfXuwpXeA4msmcTvFVau5JIZpUmFHy8H/iTw=
+	t=1764323199; cv=none; b=rbJbKEcynjpXQnbIZfhak2AV1Ld2lqS+idS+sMHdXXMsztm7/EwvK4yjASDU60PQqsuhOzojd47BQg4jN5rUa+E2e9UYCh5WEAl4zGj+bRnyXf3k6AVpG6oXT+VyzKqy+M0lcmeYLHRMbqGlyGL6wDm2UKdIVWhnJ+umsZ/EixE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764323172; c=relaxed/simple;
-	bh=JZmVVDf/2IVFWddvgioDxXF7J1xFnKWvCQQnTxck6wE=;
+	s=arc-20240116; t=1764323199; c=relaxed/simple;
+	bh=7OzJaWaM5lyXpZBh6bMCU8NMZdoqoAZvFlym2Ju0qcI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nhdg2AJp43+jdJUMa/M6bewf9I9VdXIA3Bv1b/XgAtrJL5mFUiDzKOliaJa7GHh6ib5tbuGgNwc4Fd0pwNemi0nDCUzwc6zBwluEX1E2iH5rKZRsgGt7uYRr1WCR7XGrUP8u2rn5q+RqrjPN41IkYEX5gOR6BnLpFAudk8kRdaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lH+zof+k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30DF7C4CEF1;
-	Fri, 28 Nov 2025 09:46:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764323172;
-	bh=JZmVVDf/2IVFWddvgioDxXF7J1xFnKWvCQQnTxck6wE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lH+zof+kyQOTcnpH9BgQaQDFUIKPhS0pyJMibR32EstBiQ7yeOaS9NZuGFyYknbXo
-	 WLCupw29wviTX4hRjX273n+Mo8jBc5AnzFfhj+/8rcz9FHUSmEhVtDsd7ct7dAQH0c
-	 tvi6KUxAveQhkzEFJtBMpSm76Ta+Xpph35AXj/DWNUQTO0BCl8p1mlKScfy5m09hsP
-	 CL61ugNYszkyn1xzFzcSt0zmP2/xRfVoy0qJT8JdIZXULYgcMSl956gynyjhRPmPJZ
-	 pvy4I8WeCPuldZCMeMdheVc1qnOhgdm7HmS5eR4Xo/SMh8//duIborbXV9g9s6rBql
-	 nn/xPiZKxl9Nw==
-Message-ID: <b71a40ce-a70e-49ee-be61-5ec1f45ef2ec@kernel.org>
-Date: Fri, 28 Nov 2025 10:46:07 +0100
+	 In-Reply-To:Content-Type; b=UEj+bsvzgBMDHgqdi42XbGAW5jovrqhXpzvsyx8gsMi8fvEbbOkho0epW3Q7Ctm3Ci7AKQT+Qo033MXcuLRmoO1PZ9c67uiu2ASDW66qRkCVhIpv6tRfLOv8folUSErzTxRchZKQTysYhlHX+bveHWs037z9eIazKhwevp+8xhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ayk4GHCr; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ibB4Lqmp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AS8rkL03989812
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 09:46:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MpMn4VRpJDtfIU++J/SixgW+7oaCQy9UgpDukSQPW6U=; b=ayk4GHCrEHmD2++b
+	FV+xg/QzFTWKQVihrrPIb8+DJZexSxJ9fSAj9NJB/vRuDN0G+rqlB1SOP39rc5aw
+	AdvE7+a4rGGuVSQ4vEmETjKhEJODf+SVQZULTbXytcg2DooJ6S76H5ZY6EOXsZbi
+	ZTFF6jSQ3NudeskAIJwPXmsXvLcnXTNsub2UaIQ8JFNsdzgXYFmkGRhCDWRjg5fn
+	OPllAosXAaDBU/q6CYtmanGlgXbxMO2/4ekM0vhrM+uTrrrd03+etq3WTjfwsz6b
+	xO9CqC/SVNf9/IeRuYD+zwiyFUj8yoo2GzzTekX187Cyu4PTAl2e5GXd/UbMy17m
+	tE9R9w==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aq8mm85v9-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 09:46:36 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-8804372387fso4302696d6.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 01:46:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764323196; x=1764927996; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MpMn4VRpJDtfIU++J/SixgW+7oaCQy9UgpDukSQPW6U=;
+        b=ibB4Lqmp6tcTeVmUWvypoi6PHfxyN+BRLZVtpgh6N9Uu3i+SupUJrFg0zmxwS9Z137
+         VNaFDIvQMIRgQ7zv8v2HM/5lOR99EvyrZhgu8bFStby4PBHOIgGp7ihkYSF8iJL2BIpr
+         Xol2/mYcEv4EFfUzfs0TBRfk0Pn08Kn9x+sYltq7MiWhPxMKI2l+pguQI2+GylzZug8z
+         y7Xu5+wt1YNq4Cc85OvYJcmmWy8gbspJro+XR0V3oqyFgfX8BILYrUO7JoqSk7Mar0F0
+         RwanrZTC2Fc+PIPHSS75J54qcfK21Z8P9cSNeoR7m50skkstbAPCoVc9RI+koFTWsK8V
+         zwrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764323196; x=1764927996;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MpMn4VRpJDtfIU++J/SixgW+7oaCQy9UgpDukSQPW6U=;
+        b=ubWwLTkg84sZlQqFj5XF3mYIp+bxXkLKxis3npWayLxYLNS4ZHNYE+5Wqcwuy9ONUk
+         YzI/kY/LxGyO/U/PYcwn1mvvJKyKe66KiRJWRjTZOjvdJ761kAd6MMmU+s4oGgLBLcza
+         FnO5i0UwTOo8nJVJqOsnBEJ5scmINBY6gQOruwH6D8ScHPBYQ4Ncwy0C3dH9TFBRtm0n
+         bU4XkFtXixEmjh1DCi8UIJm4kviMXVNjks8qoQVvDWDR+LiJEOz9soPsZ0UMmfPF5j8M
+         H1JcvfEzq0sWn17qA8sDXmC5oc0i8Nu0E86D+uOTDKyCcpzGKS1WhwwTWLVmRW6kLDBz
+         SmVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0w7mwbkadeHpUjKlvbg0QfyAJywgXXDho0Ien06ZxA2APytzv4jPCfQumb47g0MWcyGj4hM1cMbPz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMqAlSUZ7VxTq6sU5V/M+66nzHE0YXDatwNFzYj4mj+1KiUmRu
+	01NUAUW3TLAI5HAgwIr0VrBlUza5PSh/uHSKZlV4PD904291jQ/lo7GMPEgRsM20TLEIdCwLguc
+	40j3KQjIx2Z+PiI4UH4WNDuhQnwTaZprrrtxaF1MdFTbdMc7gjkt1JqpcKCY7zT4rYXlFOpzN
+X-Gm-Gg: ASbGncvprb3DtKrHmJAU8nVRKzlocwr5M9gwceAugY4l19BBMJtpqjaMsZHbp44itqY
+	LJkQ6Qh1blGCobzo+nj1jGYVojIdU0yxgsa0rGNR5UDkbZmca4+TMBswi3n4CjFXS7tKcD+r36a
+	p6Vk+vIJnANwctznbYSxTZctMrVvsYDRAIeH0nybHyZ6bYcQcbfCsj4k79sRrTSS0NpuIShNeQ8
+	kxJBMF6bNMnm841HaQIq7UWAeTT4UBXtcudzJVcEDYR9i6y1+wQ2DjhmauXDWMWW7iXzMeMJU+H
+	Y6xiwv7e8NENrGfBoyoKVnptvljvLBA6E0fsTksVxSP17ZJGmmPbDD5W3IlBFm865nUsPjmJkg+
+	yIWOq+ikILlmkmBoR2M6Xa6h2/uqj+zFB0AwxAQxew082SRhsTwY1KO2mJ0E5Ox6flyg=
+X-Received: by 2002:ac8:5fd3:0:b0:4ed:6e12:f576 with SMTP id d75a77b69052e-4ee5b768c8dmr270031981cf.8.1764323195457;
+        Fri, 28 Nov 2025 01:46:35 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEJtbIudD1ugx8e0TKffv8v8kePYm5B390qcQmgp7kOWlH47WKEdh7RV8Fmhyygqvz0mmc40Q==
+X-Received: by 2002:ac8:5fd3:0:b0:4ed:6e12:f576 with SMTP id d75a77b69052e-4ee5b768c8dmr270031771cf.8.1764323195063;
+        Fri, 28 Nov 2025 01:46:35 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f519e2b2sm412360466b.20.2025.11.28.01.46.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Nov 2025 01:46:34 -0800 (PST)
+Message-ID: <75c088de-7a6b-4d24-8ca2-3fad39ca7861@oss.qualcomm.com>
+Date: Fri, 28 Nov 2025 10:46:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,77 +104,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: power: define ID for Marvell PXA1908
- audio domain
-To: Karel Balej <balejk@matfyz.cz>, =?UTF-8?Q?Duje_Mihanovi=C4=87?=
- <duje@dujemihanovic.xyz>, Ulf Hansson <ulf.hansson@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20251127190237.745-1-balejk@matfyz.cz>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: sm8x50: Enable UHS-I SDR50 and
+ SDR104 SD card modes
+To: Val Packett <val@packett.cool>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20251126012043.3764567-1-vladimir.zapolskiy@linaro.org>
+ <bdf3f54d-a223-4eff-aa71-0d74a83ef46d@packett.cool>
+ <3b609409-e19f-4685-848d-807a4e840ad8@oss.qualcomm.com>
+ <f820c42b-4cd9-430f-a1ee-4f380dc9ca8a@packett.cool>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251127190237.745-1-balejk@matfyz.cz>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <f820c42b-4cd9-430f-a1ee-4f380dc9ca8a@packett.cool>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: wbMCZGZWATQLEJezNIUuF3B2CYIJRYBz
+X-Proofpoint-GUID: wbMCZGZWATQLEJezNIUuF3B2CYIJRYBz
+X-Authority-Analysis: v=2.4 cv=Cvqys34D c=1 sm=1 tr=0 ts=69296f7c cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=ztM18gu7BI-AWQJq1_AA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDA3MSBTYWx0ZWRfX4sdzKCxHrvS6
+ vNpgCHWvmanqV+aOP9gRhDllZm1N1FO1y807+SfGVD1c9zh/4eq2CBjpNQb0bsh8egGM43FbmGR
+ aXuw2J9zqjt6erogzXCAwr2xZwZIZQJoOfNetUesiez16vjOSbhQqnb14ZbVu1mdn2hhIluL1PV
+ j3QTGGnpc1mvG+YudbS43wDKFlhUu73tQN1QtZCpFun4DrQvonX9fgtY1K1hlQ8VAdSEBianQAK
+ vHX5C7XG/57BnVd6DvNu000PQkXUMZf9wjdK/tF+Dj+d2JZsZhhqNbOpKZsDFUZ4WNqJaKm3W4h
+ yomk9Jq7y4WO6gdYT9jaSW7i2zCaviQOQ4uMyoIsPDPt9vHcJv2iqczLXTXEtgsISrkKW89rCtw
+ Y9E00hU3aa2kH4ltUh7aUXEFmuYq8Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-28_03,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
+ suspectscore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511280071
 
-On 27/11/2025 20:02, Karel Balej wrote:
-> Define an identifier for the SoC's audio power island so that it can be
-> referenced through device tree.
+On 11/27/25 8:33 PM, Val Packett wrote:
 > 
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> ---
->  include/dt-bindings/power/marvell,pxa1908-power.h | 1 +
->  1 file changed, 1 insertion(+)
+> On 11/27/25 10:47 AM, Konrad Dybcio wrote:
+>> On 11/26/25 5:14 PM, Val Packett wrote:
+>>> Hi,
+>>>
+>>> On 11/25/25 10:20 PM, Vladimir Zapolskiy wrote:
+>>>> The reported problem of some non-working UHS-I speed modes on SM8450
+>>>> originates in commit 0a631a36f724 ("arm64: dts: qcom: Add device tree
+>>>> for Sony Xperia 1 IV"), and then it was spread to all SM8450 powered
+>>>> platforms by commit 9d561dc4e5cc ("arm64: dts: qcom: sm8450: disable
+>>>> SDHCI SDR104/SDR50 on all boards").
+>>>>
+>>>> The tests show that the rootcause of the problem was related to an
+>>>> overclocking of SD cards, and it's fixed later on by commit a27ac3806b0a
+>>>> ("clk: qcom: gcc-sm8450: Use floor ops for SDCC RCGs").
+>>>>
+>>>> Due to a missed setting of an appropriate SDCC clock operations in
+>>>> platform GCC driver the workaround of dropping SD card speeds from UHS-I
+>>>> to high speed was spread to SM8550 and SM8650 platforms, and since
+>>>> the fixes in the clock controller drivers are ready [1], it should be
+>>>> safe to remove the speed mode restrictions from SM8450, SM8550 and
+>>>> SM8650 platforms.
+>>>> [..]
+>>> I see you have tested with dd on the raw block device, but have you tested hotplugging SD cards that have partition tables and filesystems on them?
+>>>
+>>> We have this kind of issue on Hamoa where we get I/O errors early, right after the card is inserted and the partition table / filesystem headers are being read:
+>>>
+>>> [  714.057106] mmc0: new UHS-I speed SDR104 SDXC card at address 0001
+>>> [  714.060567] mmcblk0: mmc0:0001 EC2QT 59.6 GiB
+>>> [  714.503873] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 2
+>>> [  714.505660] Buffer I/O error on dev mmcblk0, logical block 0, async page read
+>>> [  714.513632] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 2
+>>> [  714.516469] Buffer I/O error on dev mmcblk0, logical block 0, async page read
+>>> [  714.516512]  mmcblk0: unable to read partition table
+>> Before we start debugging, could you please confirm it's using the internal
+>> (&sdhc_2) MMC controller, and not one connected over PCIe, like it's the
+>> case on the Surface Laptop?
+> Of course it is. I'm quite familiar with the DTS on this device, I pushed it over the finish line into upstream myself :)
+>> Are the regulators supplying vmmc and vqmmc in high power mode?
+> 
+> Yes. regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>; and no allow-set-load / allowed-modes (..hm, maybe we can actually add those to save power since sdhci-msm *does* do regulator_set_load..)
+> 
+> But turns out this is not a consistent problem with every card!.. At least *now* one of the two Kingston Canvas Select Plus cards I have attaches perfectly every time. (Another one of those though often fails to probe with "error -84 reading general info of SD ext reg" and sometimes has an early I/O error, but exFAT mounts even after that error — but this seems like just a "microSD cards are crap" thing.)
+> 
+> It's the Samsung Evo Plus card that consistently has early I/O errors preventing the partition table scan from succeeding (or if that succeeds, prevents the exFAT mount). There is a *card compat* issue here for sure, as the card is not corrupted, it mounts every time on a different laptop with a PCIe card reader [1217:8621] in the same SDR104 mode. But consistently has these errors on sdhci-msm.
 
+Would you happen to have access to a Snapdragon phone from a similar era?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Could you insert it there and see if you have any issues?
 
-Best regards,
-Krzysztof
+Konrad
 
