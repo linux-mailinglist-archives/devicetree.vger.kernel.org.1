@@ -1,267 +1,237 @@
-Return-Path: <devicetree+bounces-242994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63EEAC92275
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 14:39:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99C97C9229B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 14:41:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4D8E94E1C2C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 13:39:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C3BFE4E3878
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 13:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE30F30FF39;
-	Fri, 28 Nov 2025 13:39:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0GuLsoz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9700C32E15A;
+	Fri, 28 Nov 2025 13:41:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E56303CAB;
-	Fri, 28 Nov 2025 13:39:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B03CB30FF39
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 13:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764337159; cv=none; b=MLzpL7qSDDPGdvEyjwr5NdTkoSQ0wEKGNhSjpm6Ks7CvDagKTU8yOQn2WfU5mXMmUUzw/VD+/TykGGazU+QE9TjiZSXriRdtMI693w0c7JFB7l5Q4dG51jIAA9No+7KK/8UDeYVtA+mi1+vg8EyJSpPy1ZNu+ZWwhEEHjjV9nsU=
+	t=1764337281; cv=none; b=fkbOY9z0IQRPrdUlCaWJIR+h1lqgPe5ES4gMHSmM9SQbd4Zm/+yJ4q9sVweb0QTGbYAmaIg9fZ6/fDK2a3rW633FojJjazbBk+fmde6i+FnaD6LjRo5MeDvTOwoWYL1G6SNxbn0elK6/Nb+E8rzVjpkXbOc4gte9SKnFa+uaw1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764337159; c=relaxed/simple;
-	bh=Db60yLo56lVNCkOpbrtRB8OCxZlj1CHYmJJBxuJbga4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L791KIbEbZYxBf/QQ9Zvm5DDoIC8IAn+R67oRc+4Np1YzC+FUYj6zfpHMfio+V/p92MEhjvChDjVp/lD+JER4JkQh0gbM2drjfG5WciJ/SZ6Pb3B2L7fpqLVXsPSiHORBS5CapuNTjgwdt2yuiMnBAsLAct85ZwJLPOXp2A4d5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0GuLsoz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 707BCC4CEF1;
-	Fri, 28 Nov 2025 13:39:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764337159;
-	bh=Db60yLo56lVNCkOpbrtRB8OCxZlj1CHYmJJBxuJbga4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e0GuLsozQIDXT7i7aqBipiwvzmzxCnplaHx3WgEpZ3U5QjG7SzEjuY/AnJAVZ83zC
-	 4I/+zoqzrkUkPissWbsF0bKKJWW068KbMZ2COR2APLZxhQ3MritjGEykEB+Ob1cvki
-	 yoc/OG5GDFxvM2k82V38DMYTAsSypUItXjMPRVq/h6NC1HT1jLP+taHXJbH8zE0tX2
-	 VVSqV/MVEY8me0RBSnl8LGsLB24gDJ9Q9Werq+uqr8xOiBOI2ZZ+L1SYyNyscFbu9B
-	 anTqUOq+ch1LypSfjCqUJ6/+DX0RqXQSmcA+SBE1l61HhLvfBMhwrJ7RcIesNA8wG/
-	 idG30Hzy5zYRg==
-Message-ID: <b54d9584-4de4-4c7a-ae12-73fab6d02e19@kernel.org>
-Date: Fri, 28 Nov 2025 14:39:14 +0100
+	s=arc-20240116; t=1764337281; c=relaxed/simple;
+	bh=/1wVI+iuc0gFZ8+A7nHo4n1BMQMwbsV9wxbEtR/EQMU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mvIOUo7SsRIuZeAc5D8Rv/TPd9VHeLQQXZEvRZq2TFtV1Nq+d6LXbkSuHPma+Hs/7HvfK2BplOWG4mmPXfojfaArvTJJUbSgi4JYztMJTQa5RQueu7/X2IRe2/kBLWsh0ncrL9utT24lWLe734mWhQzW8bOqgtbXec0VTz3uNzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-935134ef989so1112506241.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 05:41:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764337277; x=1764942077;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fvQV5mJknlf/F/i/hi54Q0gVHnAOGRFZnf6lqryPBFQ=;
+        b=jVuaK2z58MUV1LVljjcff4rtNib2Yv89ZrJeW8wvCEPCkK9Tr77UUZWexIumajUT9i
+         wWpzGfoXXZO8yZwpgWNt39r/8KeXOTOnvYGtw9+2jO82RMBZv/iKgSJyCAwLqd7Xagj1
+         IE4xM/aY5pWYqdVnds5UyNahtMXplviur24uLqDcpHpYBDP9AqDG36mXfghnuGx8lCfU
+         jJJqBk/MXP3y45q0yuerQM1EQJHOZOYhGYW68ZQ2lnvIEVoEqBxdZe8IG03QoR0iJoMS
+         vLwkEQnXJYvgJojrblqYn6itSdsWlwD0IlNKQSEMVPL5bSVNNOUa24WhUFblmY/klA35
+         ZDbw==
+X-Forwarded-Encrypted: i=1; AJvYcCVpxShRnCxCixoGmUuChv2qbybdmsgdFAv0vz9O26B2KcyeRYmk52Lp8nKSUAuwrBaaJn+6zLxkmKUN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzt8kSidNvdnSgYK46mxSjJAAO4FB3NI22XUjvKP6LtCh06uWZV
+	bcw6Fz23blqj3bJtFKhRLI1okhd39EFlKQDW3EImfDwOx4RxVy5p7t469suu1Him
+X-Gm-Gg: ASbGncs7y2MUeTsLyTVlJXFtSqFryQp6CLXNxomIzwwSvU+bfYLHCZqFEi6SwOAOw3X
+	S8GjBlo/Z1jIyQ4aaqOo5J1HEkfU9DQnUTWVghHKZapyxjuwgE+qp5ZfNXxWnS67nE1PgST3w9j
+	ZlxZDYQdaM1OgdXJ6ow9JbrPrL3mOoK7+QSynO88XOx7JPnQ2w2uRluE1QdfU6WMO07aujZqzEP
+	qZrQVFeKlZffjnb1QDhkYC9QE+XxF5sej2pc02CfGCumoSCEeqilYoq1Y0UkMhQb+2DJLhlTORA
+	rDjpPzqlNS6hWP2cP5UdwDrJ7ZaFQVWse9c9Bcy75AKx4s7RlhCgBIa7lIruoKXG4y9sKBp5C3R
+	D9nzO1nAV6R/g1gR4aWqzJko2dLLb3Fgco/FxNAoTr7GpKDwGOn0C+GhWvpRPRxhXjsQAsnWHSH
+	GCjqfLIFAbDGGAPekndMvLGUvpdzYEHPQZgM99IPVfpaFtZas4A4yj1f7KHyw=
+X-Google-Smtp-Source: AGHT+IF2CLeijnYmTxYxrPOH4+knNJ27Zmkqhqj849CdS+jf9s9ns4HWd3rdnPg6+shXCm+nC8hV4Q==
+X-Received: by 2002:a05:6102:5113:b0:5dd:8992:e38d with SMTP id ada2fe7eead31-5e1de009870mr9471430137.7.1764337277524;
+        Fri, 28 Nov 2025 05:41:17 -0800 (PST)
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5e24d91798csm1688790137.3.2025.11.28.05.41.17
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Nov 2025 05:41:17 -0800 (PST)
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-9371aca0a4dso1087668241.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 05:41:17 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXqeVFq1XHOZ0SJ3MJLbxxH9l4MCem3wKLhOsKd75iuGQWXuOoErYQ5SWMJOiapepnawW/ouFjGH82A@vger.kernel.org
+X-Received: by 2002:a05:6102:a4a:b0:5d6:12fc:76e1 with SMTP id
+ ada2fe7eead31-5e1de088f11mr10211448137.17.1764337276827; Fri, 28 Nov 2025
+ 05:41:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: add CIX IPBLOQ HDA controller
- support
-To: Joakim Zhang <joakim.zhang@cixtech.com>
-Cc: "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "broonie@kernel.org" <broonie@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "perex@perex.cz"
- <perex@perex.cz>, "tiwai@suse.com" <tiwai@suse.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-References: <20251127094301.4107982-1-joakim.zhang@cixtech.com>
- <20251127094301.4107982-2-joakim.zhang@cixtech.com>
- <20251128-fearless-kittiwake-from-arcadia-662dbc@kuoka>
- <SEYPR06MB6226157DB7A5D5486500063A82DCA@SEYPR06MB6226.apcprd06.prod.outlook.com>
- <f9ce51ce-6fe9-4612-9be3-552736ea19a7@kernel.org>
- <SEYPR06MB62266F00FF610A9506807A3282DCA@SEYPR06MB6226.apcprd06.prod.outlook.com>
- <679b49b8-c965-4bee-943c-2e2af7e4d8fe@kernel.org>
- <SEYPR06MB6226B5A5CDEE8F917B86A3A082DCA@SEYPR06MB6226.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <SEYPR06MB6226B5A5CDEE8F917B86A3A082DCA@SEYPR06MB6226.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251027154615.115759-1-biju.das.jz@bp.renesas.com> <20251027154615.115759-20-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20251027154615.115759-20-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 28 Nov 2025 14:41:05 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVWMMaUV92mGF8u4E+FsyKQ5_JbQhm9pbUwzSr58ZgNHw@mail.gmail.com>
+X-Gm-Features: AWmQ_bmVZy7Igy0rQiiUUnku2WyRTS7pf9zUlS2EAWatubJ3zFTBdy-9_bBU1nU
+Message-ID: <CAMuHMdVWMMaUV92mGF8u4E+FsyKQ5_JbQhm9pbUwzSr58ZgNHw@mail.gmail.com>
+Subject: Re: [PATCH 19/19] arm64: dts: renesas: renesas-smarc2: Enable
+ rsci{2,4,9} nodes
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 28/11/2025 14:23, Joakim Zhang wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Friday, November 28, 2025 8:24 PM
->> To: Joakim Zhang <joakim.zhang@cixtech.com>
->> Cc: lgirdwood@gmail.com; broonie@kernel.org; robh@kernel.org;
->> krzk+dt@kernel.org; conor+dt@kernel.org; perex@perex.cz;
->> tiwai@suse.com; linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
->> cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
->> Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: add CIX IPBLOQ HDA controller
->> support
->>
->> EXTERNAL EMAIL
->>
->> On 28/11/2025 13:15, Joakim Zhang wrote:
->>>
->>>
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzk@kernel.org>
->>>> Sent: Friday, November 28, 2025 6:29 PM
->>>> To: Joakim Zhang <joakim.zhang@cixtech.com>
->>>> Cc: lgirdwood@gmail.com; broonie@kernel.org; robh@kernel.org;
->>>> krzk+dt@kernel.org; conor+dt@kernel.org; perex@perex.cz;
->>>> tiwai@suse.com; linux-sound@vger.kernel.org;
->>>> devicetree@vger.kernel.org; cix-kernel-upstream
->>>> <cix-kernel-upstream@cixtech.com>
->>>> Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: add CIX IPBLOQ HDA
->>>> controller support
->>>>
->>>> EXTERNAL EMAIL
->>>>
->>>> On 28/11/2025 10:54, Joakim Zhang wrote:
->>>>>
->>>>> Hello Krzysztof,
->>>>>
->>>>> Thanks for your review.
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: Krzysztof Kozlowski <krzk@kernel.org>
->>>>>> Sent: Friday, November 28, 2025 5:28 PM
->>>>>> To: Joakim Zhang <joakim.zhang@cixtech.com>
->>>>>> Cc: lgirdwood@gmail.com; broonie@kernel.org; robh@kernel.org;
->>>>>> krzk+dt@kernel.org; conor+dt@kernel.org; perex@perex.cz;
->>>>>> tiwai@suse.com; linux-sound@vger.kernel.org;
->>>>>> devicetree@vger.kernel.org; cix-kernel-upstream
->>>>>> <cix-kernel-upstream@cixtech.com>
->>>>>> Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: add CIX IPBLOQ HDA
->>>>>> controller support
->>>>>>
->>>>>> EXTERNAL EMAIL
->>>>>>
->>>>>> On Thu, Nov 27, 2025 at 05:42:58PM +0800, joakim.zhang@cixtech.com
->>>>>> wrote:
->>>>>>> From: Joakim Zhang <joakim.zhang@cixtech.com>
->>>>>>>
->>>>>>>  - add CIX IPBLOQ HDA controller support
->>>>>>
->>>>>> Please write full sentences. Loook how other commits were created,
->>>>>> it is not the first cix commit, right?
->>>>>
->>>>> Yes, not the first cix commit, I will have a look.
->>>>>
->>>>>>
->>>>>>>
->>>>>>> Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
->>>>>>> ---
->>>>>>>  .../bindings/sound/cix,ipbloq-hda.yaml        | 71
->> +++++++++++++++++++
->>>>>>>  1 file changed, 71 insertions(+)
->>>>>>>  create mode 100644
->>>>>>> Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
->>>>>>>
->>>>>>> diff --git
->>>>>>> a/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
->>>>>>> b/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..c9e4015a8174
->>>>>>> --- /dev/null
->>>>>>> +++ b/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
->>>>>>> @@ -0,0 +1,71 @@
->>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML
->>>>>>> +1.2
->>>>>>> +---
->>>>>>> +$id: http://devicetree.org/schemas/sound/cix,ipbloq-hda.yaml#
->>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>> +
->>>>>>> +title: CIX IPBLOQ HDA controller
->>>>>>> +
->>>>>>> +description:
->>>>>>> +  CIX IPBLOQ High Definition Audio (HDA) Controller
->>>>>>> +
->>>>>>> +maintainers:
->>>>>>> +  - Joakim Zhang <joakim.zhang@cixtech.com>
->>>>>>> +
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    const: cix,ipbloq-hda
->>>>>>
->>>>>> What happened here? You miss SoC compatible. I did not ask to
->>>>>> change compatible.
->>>>>
->>>>> I used the cix,sky1-ipbloq-hda before, but you ask to use the
->>>>> compatible as
->>>> the file name, I think it's may not quite suitable, since we may have
->>>> sky1p, sky2... later, so I add a unified compatible here as a fallback.
->>>>
->>>> "Filename must match the compatible.". Your explanation "use
->>>> compatible as the filename" is also correct - use what? the
->>>> compatible? as what? as the filename so in place of filename. So how could
->> you make it reversed?
->>>> filename as the compatible?
->>>
->>> Yes, "Filename must match the compatible." is meaningful, I updated
->> "cix,sky1-ipbloq-hda" to "cix,ipbloq-hda", since here use IP name is more
->> suitable and may for all CIX SoCs later, if there is any difference, we can all
->> other compatibles.
->>
->> So why did you reverse the logic? Anyway cix,ipbloq-hda is not correct,
->> because it is generic. See also writing bindings doc for more explanation.
-> 
-> Hello Krzysztof,
-> 
-> For the v1, I know you ask me to update the cix,ipbloq-hda.yaml to cix,sky1-ipbloq-hda.yaml, not to change the compatible. The reason why I went to reverse the logic in v2, since I think it may reasonable. 
-> 
-> Documentation/devicetree/bindings/writing-bindings.rst
-> - Bindings files should be named like compatible: vendor,device.yaml. In case
->   of multiple compatibles in the binding, use one of the fallbacks or a more
->   generic name, yet still matching compatible style.
-> 
-> You mean that must list the SoC as the device here , cannot use the IP name?
+Hi Biju,
 
-You are mixing topics. You must rename filename, so it will match the
-compatible. You correctly quoted paragraph describing this.
+On Mon, 27 Oct 2025 at 16:47, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Enable device rsci{2,4,9} nodes for the RZ SMARC Carrier-II Board.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-But you missed that your compatible is not correct:
+Thanks for your patch!
 
-"DO use a SoC-specific compatible for all SoC devices," and further. Or
-any of my slides from speeches giving guidelines for basic DT.
+> --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+> @@ -38,6 +38,9 @@ / {
+>
+>         aliases {
+>                 i2c0 = &i2c0;
+> +               serial0 = &rsci4;
+> +               serial1 = &rsci9;
+> +               serial2 = &rsci2;
+>                 serial3 = &scif0;
+>                 mmc1 = &sdhi1;
+>         };
+> @@ -141,6 +144,26 @@ nmi_pins: nmi {
+>                 input-schmitt-enable;
+>         };
+>
+> +       rsci2_pins: rsci2 {
+> +               pinmux = <RZG3E_PORT_PINMUX(1, 1, 1)>, /* SER2_TX */
+> +                        <RZG3E_PORT_PINMUX(1, 0, 1)>, /* SER2_RX */
 
-Define what is your SoC. Then define what is your device name in that
-SoC (IP block). Then your compatible is: vendor,soc-ipblockname.
+Why not order by port number?
 
-Best regards,
-Krzysztof
+> +                        <RZG3E_PORT_PINMUX(1, 2, 6)>, /* SER2_CTS# */
+> +                        <RZG3E_PORT_PINMUX(1, 3, 1)>; /* SER2_RTS# */
+
+These comments reflect the board signals?  Usually we put the pin
+functions ("TXD2", "RXD2", "CTS2N", "RTS2N") in the comments.
+
+> +               bias-pull-up;
+> +       };
+> +
+> +       rsci4_pins: rsci4 {
+> +               pinmux = <RZG3E_PORT_PINMUX(7, 7, 5)>, /* SER0_TX */
+> +                        <RZG3E_PORT_PINMUX(7, 6, 5)>; /* SER0_RX */
+
+Why not order by port number?
+
+Pin functions are "TXD4" and "RXD4".
+
+CTS4N and RTS4N seem to be wired, too?
+
+> +               bias-pull-up;
+> +       };
+> +
+> +       rsci9_pins: rsci9 {
+> +               pinmux = <RZG3E_PORT_PINMUX(8, 3, 5)>, /* SER1_TX */
+> +                        <RZG3E_PORT_PINMUX(8, 2, 5)>; /* SER1_RX */
+
+Why not order by port number?
+
+Pin functions are "TXD9" and "RXD9".
+
+> +               bias-pull-up;
+> +       };
+> +
+>         scif_pins: scif {
+>                 pins = "SCIF_TXD", "SCIF_RXD";
+>                 renesas,output-impedance = <1>;
+> @@ -172,6 +195,23 @@ sd1-data {
+>         };
+>  };
+>
+> +&rsci2 {
+> +       pinctrl-0 = <&rsci2_pins>;
+> +       pinctrl-names = "default";
+> +
+> +       uart-has-rtscts;
+> +};
+
+Shouldn't this be wrapped inside an #ifdef controlled by new defines
+SW_SER2_EN and SW_SER0_PMOD?
+
+> +
+> +&rsci4 {
+> +       pinctrl-0 = <&rsci4_pins>;
+> +       pinctrl-names = "default";
+
+uart-has-rtscts?
+
+> +};
+
+Shouldn't this be wrapped inside an #ifdef controlled by SW_LCD_EN?
+The port seems to be available irrespective of the setting of
+SW_SER0_PMOD, which merely controls routing to either the PMOD or the
+M.2 connector.
+
+> +
+> +&rsci9 {
+> +       pinctrl-0 = <&rsci9_pins>;
+> +       pinctrl-names = "default";
+> +};
+> +
+>  &scif0 {
+>         pinctrl-0 = <&scif_pins>;
+>         pinctrl-names = "default";
+> diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+> index a296c2c1c7ab..305215cdaeb3 100644
+> --- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+> @@ -89,6 +89,18 @@ &i2c0 {
+>         clock-frequency = <400000>;
+>  };
+>
+> +&rsci2 {
+> +       status = "okay";
+> +};
+> +
+> +&rsci4 {
+> +       status = "okay";
+> +};
+> +
+> +&rsci9 {
+> +       status = "okay";
+> +};
+
+Given "[PATCH 18/19] arm64: dts: renesas: renesas-smarc2: Move aliases
+to board DTS" because RZ/G3S does not have RSCI interfaces, why are
+these added here instead of to r9a09g047e57-smarc.dts?
+
+> +
+>  &scif0 {
+>         status = "okay";
+>  };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
