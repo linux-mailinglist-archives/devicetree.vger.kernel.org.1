@@ -1,474 +1,190 @@
-Return-Path: <devicetree+bounces-243040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D52C92EF9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 19:50:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 063DCC92F9B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 19:55:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29EB33A68A6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 18:50:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C9AB34E3416
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 18:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 128F42C3278;
-	Fri, 28 Nov 2025 18:50:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84FC32F74A;
+	Fri, 28 Nov 2025 18:53:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZLUQgNlF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JX55c0T5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B8427FB21
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 18:50:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCBB32ED3D;
+	Fri, 28 Nov 2025 18:53:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764355810; cv=none; b=EY1yFIrg6CITuM2FZYzHRGrHnqeT3lGGSjmCpXI3ZZ7gqPZkgV9YNXyVvaulQkydTrFNBTdiVmE/2BJUFSkonmld5Hb4PpCIOtc4S3p/d6/7h+SoPOcK7NAyWBvCvr8USWV656hxkL5+xkgQi1EZdSXhyvPP6Ze+cd6cm2TqcAs=
+	t=1764355999; cv=none; b=Fx60ZofvgnerZdDHo25e3oNNh5/sabetg8SbMIRWT+d6Gj+0FPqBvNClEXaeKMvBBL/BwNGab4aSd1Fl+3EDEyO6WVfykuoIssHEMRA9VP2qs+9iUdEvvfvcu8C/h98iT9nwCo5gGJW0D5N0ajTMrhJWdfEpwJkzasle+ikWl8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764355810; c=relaxed/simple;
-	bh=/h8yBxablWPek+7hHxFXlQhCloZaZBbzt6CtKnqg49U=;
+	s=arc-20240116; t=1764355999; c=relaxed/simple;
+	bh=7bZ1EBA5WKef53nvg8PukmKyNC1CgMK/oDKy7Wic0tU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QbHzY1ruhMNszD4hcfIgE+0XKysWXRsHEZCrhoZuzknHQLJp1gVKa9j5z0r5RkZSMa0LRjy+EfMcFMFl6GjnZWzgHG7a91y3YFZ06XIP/OLDPM21PXoDIIZUut332HNvl9pJoGsIgGWizeGv3ZsoxgzLRHJ0G9h5Gp2fZmATSPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZLUQgNlF; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b73161849e1so500576466b.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:50:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764355805; x=1764960605; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WX7GZ7QIiC0YJ3z3A28BFLchPllyieUl7kC9JuxEexI=;
-        b=ZLUQgNlFXiLH6Rlo7oZ0ws+ftdsP+cuH7kkzkn38g6xObqeiZBQ3c/QhiKOxpeDi+O
-         2u5lUiIXOY/6mEIhrheLGBi6VDXNmm/WIXDaAjgifdVLyB63XaBRRPbtJP6u8fBIijNr
-         p3l6OoImDwHrdXRU4yk7z2XtyuKDFaI/xgwUD8cooasj3FeIPC7SYxB9PqMVgrh5SXNV
-         gYYuStITzxHWBNnLc1bjUYHwGFpAN+diIu4Lu9IOOHwQl/4BauLfGSmdBX6Ul2Hy5u7A
-         WuYm2XDglEsERBAMetrm9k58jCfqgk3OalK0ZOQeWijqlcTZyFf7wGWk7Rv6s/FvFlYs
-         4ZHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764355805; x=1764960605;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WX7GZ7QIiC0YJ3z3A28BFLchPllyieUl7kC9JuxEexI=;
-        b=GuDD2XX7tHLHgzlm+/8JBv3t0MyyfTBI6f2/t2kdiQjv8Jsxs6deow+rpzHrOoQS4K
-         8sRyQQWqcIZnHiT6tJeLtzGZYW2GaQDEsZ62v7JFVqMWHGtnRSPUOgpamBEyfBZOJJYO
-         5d8PmavdD+4oEJO6FvFTwz4rBNTqN+ADBMRQdju21MElG7GlCaVyvzQCh6dQz1IRomAG
-         pZ1xaWVM0PB6cxUWgTKTcc/eyzqr8jXTV3hCVzpWz9sG1LpEVYbLQ/y8EwU+vncqXT/O
-         pdh6FGYhH80qEMUkOPg39RWVr73LBphpd9OgWs0Ow22Ihhw7xUfH3+99aHffTk6gU1ad
-         NfFg==
-X-Forwarded-Encrypted: i=1; AJvYcCXpyt3yymMDMkGSu9ohIC1KhT0Aq30L8u/Bn8UqecVWPokmfhtZg1rwWb0fuF+TKS6XYlAqyy04Z719@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSICzIBdecR5tHybXTsq5h/8ppqwE6V6IFE+0E5mbKdEim95zX
-	z4QqyStfX4l3uqenn0RDz6XkqInPirUiea1e+P8BmihoU6qPDPqOq42n
-X-Gm-Gg: ASbGncsRAEG+Gx66tugai2OeqO8GX/TrMARBUMcYlhiqsbTC9DxHd2/9KznOHglgHPx
-	q38o0figibS6JWPZOZhtKK7F3rXKbrl4t9nC3O2yoGyDhE7kje0lphr+rHsGIfjflQSKNhePvSB
-	cDRZFNEUPhIeaypjVulgkeY0QEYH3PI9DCVdT42Yf92PeCgkgfytECj5i5hzfPofX28LNxlDcwF
-	umDfYOiFJJzCOkHhRy770oB+ZQW6imTZxyNrqUoUyHvhyN5w+UF144xuujuBxpQ1eVfA49e4B6k
-	iZu7/BmghkOQqx4xzHHhRK6doSgHC3aZM37zVjkk/AsH7cOYYipv1hApNhk0MGjzaahBBAKzGAt
-	0IUMDzHuRsYgAwk8+0AeWZi5XNCKvAug/LRV7SUNrFbLgPAzIyNHoktUkCSsv8PHaxi2//MoWM2
-	aubWUs/K/qb10Ydy9/imEk6VQa/wNR82wa2Yg5L66vnfp2xja9MXHuxblnDcPC20kaY5E=
-X-Google-Smtp-Source: AGHT+IEfDY4uJ23hVVMVaAzxQghRjOMG1yRqhMDfjHc9KdSb/oNvxNcfvVZLVHw5LrgA3lbTv/qKSQ==
-X-Received: by 2002:a17:907:d93:b0:b73:3028:93a1 with SMTP id a640c23a62f3a-b767150b284mr2641160466b.9.1764355804992;
-        Fri, 28 Nov 2025 10:50:04 -0800 (PST)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:6960:7067:c8e2:c770])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f516416esm518395066b.4.2025.11.28.10.50.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Nov 2025 10:50:04 -0800 (PST)
-Date: Fri, 28 Nov 2025 19:50:02 +0100
-From: Jorge Marques <gastmaier@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 3/9] iio: adc: Add support for ad4062
-Message-ID: <zryqws2h2i4duejczo2rptwhlzhile7fa7brriqh2hmtarwjxn@cr2cyzymwpav>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
- <20251124-staging-ad4062-v2-3-a375609afbb7@analog.com>
- <aSQxiSoZcI_ol3S5@smile.fi.intel.com>
- <aslj3klmv6heyyhgltzewkdze5p4c3hlkzfbxbfnzwwgd375gv@m6iqpst5sv6b>
- <aSgSsGSUuBtMOuro@smile.fi.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nSOalLB7yao0tgK/+vF1yiJlRd1aU0D0kf31p9LZWKp3mhUXDvW9XdoZu7yGUVAdPo19SrLb5wK0Jj1dAGERULFzb+z7NCq4NAoRnGI+Haz8/6wnaGJ9zEtQ7yk6+pMUgsH4R4/Jxt/taK9Uv8mVVVjvY7uztu5TndCIDmkso8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JX55c0T5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE0D5C4CEF1;
+	Fri, 28 Nov 2025 18:53:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764355999;
+	bh=7bZ1EBA5WKef53nvg8PukmKyNC1CgMK/oDKy7Wic0tU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JX55c0T5ZU03ShwuRj+rV5WdMVxI4V+dirr7WuDwpr3iay3+ZDoHCIdrjVgydLndk
+	 puP1pVRn7HJD//m2AC5U/PjZ7I8WiA+hdZB6HLatubwEBxAxpdNyIO/YVRQLUKPWa6
+	 coKqsb3IDJ58ep/pypCGeaaiIb4MAhPT0mwvNinQ+Y+mNsUIVKLZ6hXvJrvHf1J2KI
+	 4tdU0DRYC39Ly265ewLQqZIKN3+FaAywTAplgEB0UGpFCyt3jaG6QO44ssT0wbEZHA
+	 emn+2G0g57I38n4jySYgytHfcdEOXwwcB6mGGDdMJaWk9n/aj3/2pTj/+SyFbvWCv8
+	 1UZuZKMWV38Vg==
+Date: Fri, 28 Nov 2025 18:53:15 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: switch: adg1712: add ADG1712 SPST
+ switch binding
+Message-ID: <20251128-heftiness-viability-4208bceffb89@spud>
+References: <20251128144627.24910-1-antoniu.miclaus@analog.com>
+ <20251128144627.24910-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="95XNqKbKwqJS7HFu"
+Content-Disposition: inline
+In-Reply-To: <20251128144627.24910-2-antoniu.miclaus@analog.com>
+
+
+--95XNqKbKwqJS7HFu
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aSgSsGSUuBtMOuro@smile.fi.intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 27, 2025 at 10:58:24AM +0200, Andy Shevchenko wrote:
-> On Wed, Nov 26, 2025 at 12:40:00PM +0100, Jorge Marques wrote:
-> > On Mon, Nov 24, 2025 at 12:20:57PM +0200, Andy Shevchenko wrote:
-> > > On Mon, Nov 24, 2025 at 10:18:02AM +0100, Jorge Marques wrote:
-> 
-> ...
-> 
-> > > > +#define AD4062_MON_VAL_MAX_GAIN		1999970
-> > > 
-> > > This is decimal...
-> > > 
-> > > > +#define AD4062_MON_VAL_MIDDLE_POINT	0x8000
-> > > 
-> > > ...and this is hexadecimal. Can you make these consistent?
-> > > Also, is there any explanation of the number above? To me
-> > > it looks like 2000000 - 30. Is it so? Or is this a fraction
-> > > number multiplied by 1000000 or so? In any case some elaboration
-> > > would be good to have.
-> > > 
-> > Since this is not a magic number, I will use directly below.
-> > It MAX_MON_VAL/MON_VAL_MIDDLE_POINT = 0xFFFF/0x8000
-> 
-> Okay, at least it will explain the value.
-> 
-> ...
-> 
-> > > > +	if (val < 1 || val > BIT(st->chip->max_avg + 1))
-> > > 
-> > > in_range() ?
-> > > 
-> > > 	in_range(val, 1, GENMASK(st->chip->max_avg, 0))
-> > > 
-> > > if I am not mistaken. Also note, the GENMASK() approach makes possible
-> > > to have all 32 bits set, however it's most unlikely to happen here anyway.
-> > > 
-> > Sure, but requires locals to not trigger suspicious usage of sizeof.
-> >   	// ...
-> >   	const u32 _max = GENMASK(st->chip->max_avg, 0);
-> >   	const u32 _min = 1;
-> >   	int ret;
-> >   
-> >   	if (in_range(val, _min, _max))
-> > > > +		return -EINVAL;
-> 
-> It's fine.
-> 
-> ...
-> 
-> > > > +static int ad4062_calc_sampling_frequency(int fosc, unsigned int n_avg)
-> > > > +{
-> > > > +	/* See datasheet page 31 */
-> > > > +	u64 duration = div_u64((u64)(n_avg - 1) * NSEC_PER_SEC, fosc) + AD4062_TCONV_NS;
-> > > > +
-> > > > +	return DIV_ROUND_UP_ULL(NSEC_PER_SEC, duration);
-> > > 
-> > > Why u64?
-> > > 
-> > > The DIV_ROUND_UP_ULL() seems an overkill here. Or do you expect duration be
-> > > more than 4 billions?
-> > > 
-> > This is necessary since at fosc 111 Hz and avg 4096 it does take longer
-> > than 4 seconds, even though I do timeout after 1 seconds in the raw
-> > acquisition.
-> 
-> Values above NSEC_PER_SEC+1 do not make sense (it will return 0),
-> and that fits u32. Can you refactor to avoid 64-bit arithmetics?
->
+On Fri, Nov 28, 2025 at 04:46:13PM +0200, Antoniu Miclaus wrote:
+> Add devicetree bindings for the ADG1712 quad SPST switch.
+>=20
+> The ADG1712 contains four independent single-pole, single-throw (SPST)
+> switches, each controlled by a dedicated GPIO pin. While the device
+> uses the existing gpio-mux driver infrastructure (as each switch can be
+> modeled as a simple 2-state mux), a dedicated binding document is needed
+> to provide clear documentation on how to properly represent the ADG1712
+> in devicetree, following the pattern of one mux-controller node per
+> independent switch.
+>=20
+> The binding references the gpio-mux schema and demonstrates how each of
+> the four independent switches should be instantiated as separate
+> mux-controller nodes in the devicetree.
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+>  .../bindings/switch/adi,adg1712.yaml          | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/switch/adi,adg1712.=
+yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/switch/adi,adg1712.yaml b/=
+Documentation/devicetree/bindings/switch/adi,adg1712.yaml
+> new file mode 100644
+> index 000000000000..7de9ec1b7447
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/switch/adi,adg1712.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/switch/adi,adg1712.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADG1712 quad SPST switch
+> +
+> +maintainers:
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +
+> +description: |
+> +  The ADG1712 contains four independent single-pole, single-throw (SPST)
+> +  switches controlled by GPIO pins. The device operates with a low-volta=
+ge
+> +  single supply range from +1.08V to +5.5V or a low-voltage dual supply
+> +  range from =B11.08V to =B12.75V.
+> +
+> +  Datasheet: https://www.analog.com/en/products/adg1712.html
+> +
+> +select: false
 
-Ok, any frequency lower than 1 Hz does not make sense.
+I think this pretty clearly demonstrates that the binding is not
+correct.
+If these are independent switches as part of one device, they should
+probably be represented as child nodes of a node with an adg1712
+compatible, similar to how adc channels etc are done.
 
-  static int ad4062_calc_sampling_frequency(int fosc, unsigned int oversamp_ratio)
-  {
-  	/* See datasheet page 31 */
-  	u32 period = NSEC_PER_SEC / fosc;
-  	u32 n_avg = BIT(oversamp_ratio) - 1;
-  
-  	/* Result is less than 1 Hz */
-  	if (n_avg >= fosc)
-  		return 1;
-  	return NSEC_PER_SEC / (n_avg * period + AD4062_TCONV_NS);
-  }
+pw-bot: changes-requested
 
-> > > > +}
-> 
-> ...
-> 
-> > > > +static int ad4062_soft_reset(struct ad4062_state *st)
-> > > > +{
-> > > > +	u8 val = AD4062_SOFT_RESET;
-> > > > +	int ret;
-> > > > +
-> > > > +	ret = regmap_write(st->regmap, AD4062_REG_INTERFACE_CONFIG_A, val);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	/* Wait AD4062 treset time */
-> > > > +	fsleep(5000);
-> > > 
-> > > 5 * USEC_PER_MSEC
-> > > 
-> > > This gives a hint on the units without even a need to comment or look somewhere
-> > > else.
-> > >
-> > // TODO
-> > Since the device functional blocks are powered when voltage is supplied,
-> > here we can stick with the treset datasheet value 60ns (ndelay(60)).
-> 
-> Add a comment and it will work for me, thanks!
-> 
-> > > > +	return 0;
-> > > > +}
-> 
-> ...
-> 
-> > > > +static const int ad4062_oversampling_avail[] = {
-> > > > +	1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096,
-> > > 
-> > > It's not easy to count them at glance, please add a comment with indices.
-> > > 
-> > Ack, will use
-> >   static const int ad4062_oversampling_avail[] = {
-> >           BIT(0), BIT(1), BIT(2), BIT(3), BIT(4), BIT(5), BIT(6), BIT(7), BIT(8),
-> >   	BIT(9), BIT(10), BIT(11), BIT(12),
-> >   };
-> 
-> Of course you can use bit notations, but what I meant is to have
-> 
-> 	1, 2, 4, 8, 16, 32, 64, 128,		/*  0 -  7 */
-> 	256, 512, 1024, 2048, 4096,		/*  8 - 12 */
-> 
-> (or something alike).
-> 
-Ack
-> > > > +};
-> 
-> ...
-> 
-> > > > +static int ad4062_get_chan_calibscale(struct ad4062_state *st, int *val, int *val2)
-> > > > +{
-> > > > +	u16 gain;
-> > > > +	int ret;
-> > > > +
-> > > > +	ret = regmap_bulk_read(st->regmap, AD4062_REG_MON_VAL,
-> > > > +			       &st->buf.be16, sizeof(st->buf.be16));
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	gain = get_unaligned_be16(st->buf.bytes);
-> > > > +
-> > > > +	/* From datasheet: code out = code in × mon_val/0x8000 */
-> > > > +	*val = gain / AD4062_MON_VAL_MIDDLE_POINT;
-> > > 
-> > > > +	*val2 = mul_u64_u32_div(gain % AD4062_MON_VAL_MIDDLE_POINT, NANO,
-> > > > +				AD4062_MON_VAL_MIDDLE_POINT);
-> > > 
-> > > I don't see the need for 64-bit division. Can you elaborate what I miss here?
-> > > 
-> > > > +	return IIO_VAL_INT_PLUS_NANO;
-> > > > +}
-> > > 
-> > Can be improved to
-> > 
-> >   static int ad4062_get_chan_calibscale(struct ad4062_state *st, int *val, int *val2)
-> >   {
-> >   	int ret;
-> >   
-> >   	ret = regmap_bulk_read(st->regmap, AD4062_REG_MON_VAL,
-> >   			       &st->buf.be16, sizeof(st->buf.be16));
-> >   	if (ret)
-> >   		return ret;
-> >   
-> >   	/* From datasheet: code out = code in × mon_val/0x8000 */
-> >   	*val = get_unaligned_be16(st->buf.bytes) * 2;
-> >   	*val2 = 16;
-> >   
-> >   	return IIO_VAL_FRACTIONAL_LOG2;
-> >   }
-> 
-> Much better, thanks!
-> 
-> ...
-> 
-> > > > +static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int, int gain_frac)
-> > > 
-> > > Forgot to wrap this line.
-> > > 
-> > ack
-> > > > +{
-> > > > +	u64 gain;
-> > > > +	int ret;
-> > > > +
-> > > > +	if (gain_int < 0 || gain_frac < 0)
-> > > > +		return -EINVAL;
-> > > > +
-> > > > +	gain = mul_u32_u32(gain_int, MICRO) + gain_frac;
-> > > 
-> > > > +
-> > > 
-> > > Redundant blank line.
-> > > 
-> > Ack.
-> > > > +	if (gain > AD4062_MON_VAL_MAX_GAIN)
-> > > > +		return -EINVAL;
-> > > > +
-> > > > +	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL(gain * AD4062_MON_VAL_MIDDLE_POINT,
-> > > > +						 MICRO),
-> > > > +			   st->buf.bytes);
-> > > 
-> > > Also in doubt here about 64-bit division.
-> > > 
-> > This can be slightly improved to
-> > 
-> >   static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
-> >   				      int gain_frac)
-> >   {
-> >   	u32 gain;
-> >   	int ret;
-> >   
-> >   	if (gain_int < 0 || gain_frac < 0)
-> >   		return -EINVAL;
-> >   
-> >   	gain = gain_int * MICRO + gain_frac;
-> >   	if (gain > 1999970)
-> 
-> But this magic should be changed to what you explained to me
-> (as in 0xffff/0x8000 with the proper precision, and this
->  can be done in 32-bit space).
-> 
-> Or even better
-> 
-> 	if (gain_int < 0 || gain_int > 1)
-> 		return -EINVAL;
-> 
-> 	if (gain_int == 1 && gain_frac > 0x7fff) // did I get this right?
-> 		return -EINVAL;
-> 
-gain_frac would be 999999 max, or 999970 for the limit that fits in the
-register after the math. I think > 1.999.970 is self explanatory.
-> >   		return -EINVAL;
-> >   
-> >   	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL((u64)gain * AD4062_MON_VAL_MIDDLE_POINT,
-> >   						 MICRO),
-> 
-> ...with temporary variable at minimum.
-> 
-> But again, I still don't see the need for 64-bit space.
-> 
+> +
+> +allOf:
+> +  - $ref: /schemas/mux/gpio-mux.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: gpio-mux
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    /* ADG1712 with four independent switches, each as a 2-state mux */
+> +    adg1712_sw1: mux-controller-0 {
+> +        compatible =3D "gpio-mux";
+> +        #mux-control-cells =3D <0>;
+> +        mux-gpios =3D <&gpio 10 GPIO_ACTIVE_HIGH>;
+> +        idle-state =3D <0>;  /* Switch open */
+> +    };
+> +
+> +    adg1712_sw2: mux-controller-1 {
+> +        compatible =3D "gpio-mux";
+> +        #mux-control-cells =3D <0>;
+> +        mux-gpios =3D <&gpio 11 GPIO_ACTIVE_HIGH>;
+> +        idle-state =3D <0>;  /* Switch open */
+> +    };
+> +
+> +    adg1712_sw3: mux-controller-2 {
+> +        compatible =3D "gpio-mux";
+> +        #mux-control-cells =3D <0>;
+> +        mux-gpios =3D <&gpio 12 GPIO_ACTIVE_HIGH>;
+> +        idle-state =3D <1>;  /* Switch closed */
+> +    };
+> +
+> +    adg1712_sw4: mux-controller-3 {
+> +        compatible =3D "gpio-mux";
+> +        #mux-control-cells =3D <0>;
+> +        mux-gpios =3D <&gpio 13 GPIO_ACTIVE_HIGH>;
+> +        idle-state =3D <0>;  /* Switch open */
+> +    };
+> +...
+> --=20
+> 2.43.0
+>=20
 
-Well, by dividing mon_val and micro values by a common divisor the
-operation fit in 32-bits:
+--95XNqKbKwqJS7HFu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
-                                        int gain_frac)
-  {
-          const u32 mon_val = AD4062_MON_VAL_MIDDLE_POINT / 64;
-          const u32 micro = MICRO / 64;
-          const u32 gain = gain_int * MICRO + gain_frac;
-          int ret;
+-----BEGIN PGP SIGNATURE-----
 
-          if (gain_int < 0 || gain_frac < 0)
-                  return -EINVAL;
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSnvmwAKCRB4tDGHoIJi
+0qU/AP9UfmkC2T1IQVErmcquNjhgXDY864+rc1HSNMy/mNoobwD9Gu3ou1dV1HFu
+wzUWl7AHkyC2oarwtRaaJM4FyZvhJAc=
+=S8G4
+-----END PGP SIGNATURE-----
 
-          if (gain > 1999970)
-                  return -EINVAL;
-
-          put_unaligned_be16(DIV_ROUND_CLOSEST(gain * mon_val, micro), st->buf.bytes);
-
-          ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
-                                  &st->buf.be16, sizeof(st->buf.be16));
-          if (ret)
-                  return ret;
-
-          /* Enable scale if gain is not equal to one */
-          return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
-                                    AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
-                                    FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
-                                               !(gain_int == 1 && gain_frac == 0)));
-  }
-
-
-> >   			   st->buf.bytes);
-> >   
-> >   	ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
-> >   				&st->buf.be16, sizeof(st->buf.be16));
-> >   	if (ret)
-> >   		return ret;
-> >   
-> >   	/* Enable scale if gain is not equal to one */
-> >   	return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
-> >   				  AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
-> >   				  FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
-> >   					     !(gain_int == 1 && gain_frac == 0)));
-> >   }
-> > 
-> > To provide the enough resolution to compute every step (e.g., 0xFFFF and
-> > 0xFFFE) with the arbitrary user input.
-> 
-> ...
-> 
-> > > > +static int __ad4062_read_chan_raw(struct ad4062_state *st, int *val)
-> > > 
-> > > Can be named without leading double underscore? Preference is to use
-> > > the suffix, like _no_pm (but you can find better one).
-> > > 
-> > Since there is one usage of this method, can be merged into ad4062_read_chan_raw.
-> 
-> Good choice!
-> 
-> ...
-> 
-> > > > +	struct i3c_priv_xfer t[2] = {
-> > > > +		{
-> > > > +			.data.out = &st->reg_addr_conv,
-> > > > +			.len = sizeof(st->reg_addr_conv),
-> > > > +			.rnw = false,
-> > > > +		},
-> > > > +		{
-> > > > +			.data.in = &st->buf.be32,
-> > > > +			.len = sizeof(st->buf.be32),
-> > > > +			.rnw = true,
-> > > > +		}
-> > > > +	};
-> 
-> > > > +	/* Change address pointer to trigger conversion */
-> > > > +	ret = i3c_device_do_priv_xfers(i3cdev, &t[0], 1);
-> > > 
-> > > Why array? Just split them on per transfer and use separately. This gives a bit
-> > > odd feeling that the two goes together, but no. They are semi-related as we
-> > > have a special condition after the first one.
-> > > 
-> > For this commit sure, but in the next a fallback method is introduced
-> > for when the gp1 gpio line is not connected.
-> > There are two register to trigger and read samples:
-> > 
-> > * write CONV_READ -> read dummy value - [conversion] -> read value -> [conv ...
-> > * write CONV_TRIGGER - [conversion] -> read value -> write ...
-> > 
-> > The first allows almost twice the sampling frequency, but does not work
-> > with the fallback because In-Band-Interrupt for CONV_READ are not
-> > yielded.
-> 
-> Do you mean that the same array is reused differently? If so, then okay.
-> 
-Yes
-> > > > +	if (ret)
-> > > > +		return ret;
-> 
-> ...
-> 
-> > > > +	fsleep(4000);
-> > > 
-> > > 4 * USEC_PER_MSEC, also would be good to add a comment for this long delay.
-> > > 
-> > Will add
-> > 	/* Wait device functional blocks to power up */
-> > Based on hardware tests, I can drop to 2 * USEC_PER_MSEC, lower than
-> > that the device is not ready to switch to acquisition mode for
-> > conversions.
-> 
-> Good!
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
-Best regards,
-Jorge
+--95XNqKbKwqJS7HFu--
 
