@@ -1,111 +1,277 @@
-Return-Path: <devicetree+bounces-243044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF0F1C93015
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 20:20:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92951C9302F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 20:26:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB0063A99D8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 19:20:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 142A2349824
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 19:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BCDE24A058;
-	Fri, 28 Nov 2025 19:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E342BDC32;
+	Fri, 28 Nov 2025 19:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZmeTvPuV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NNEe8VWr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDE22080C8;
-	Fri, 28 Nov 2025 19:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8813B2080C8;
+	Fri, 28 Nov 2025 19:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764357600; cv=none; b=hr4cfBJuDv5LE28I6+1DUMh+8cxUX//iO+8OVD5fV42XF3G30qAA+UW7s3UpSFrrowWTiG4vMqpo3LGk7E/f4SGlSgPKTCck/LtC3JAcEnJW6ukk61XVY+kfMr9nvEWnmS+4ZPUxzFDxi+Tr27dXrQKAZeSZ++V/Ya1geaFRRzQ=
+	t=1764357959; cv=none; b=UgkEbjMDgDLm0nfxhe7QRv+5xWs9TWiGqaoegIbapEJRC4qQaEkXsm50bYq6/GVNU/82dsE2h/BZB9bC0uUrfVqeZDN8uviE2VllG2k0RKOrMtK5qmv1HaqpDMql18sEPj1I//W6rIiPVlOIPafMqXI+CRdWpaIvJvPLsK/SJFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764357600; c=relaxed/simple;
-	bh=dTkANfMGELC3lBBkiGRU6SrZpu6EpsHNDVpjSuigasA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=MQeuk1pnnFhVkf8O8lx+xZ7i7Qeimq9Bpu6O04j5mEIoRxzkxHGMWro0RGppIyp9H3jae49dWtMSkSQCqewZ1mrG0PPItwyhR5GJxm6StldYhz8C0H552D+n87jVgB0SWlM1j1x+vC1Uhj19Y5YzKBdfO5d7Q3JAnij+O6VjOYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZmeTvPuV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A805C4CEF1;
-	Fri, 28 Nov 2025 19:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764357598;
-	bh=dTkANfMGELC3lBBkiGRU6SrZpu6EpsHNDVpjSuigasA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ZmeTvPuVnLVm4XEV+kHaxbPTKdnnxpr7CHeNoShPX576G5V6U0T5V7IlLnbjo2Gte
-	 5kMdywSvxQbx79gbtmdeauCKDAxgy0lLN/gUeS6rvqtHQqJ1xwJvVKrbBOtKb2mflY
-	 nrvfWFixcSq/c5cHQnBPg8vg80ft9BEQVgC9F3h4cFnab5Yha7H3JbBcw73o2t0+YB
-	 1lO0Oaku6CwKVGonf9IFez9Gqq2Yhm2H+RSQ9NHSIs+eM6TbrN767vRjI8nUCJ7jfR
-	 FbsDiLOslXmlczOko3GACiJmuFk9yw+5Jrftwisvm/hH9bvNFumUOceb9t3fXYW/5A
-	 syWynqU6ZWYZw==
-Date: Fri, 28 Nov 2025 13:19:56 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1764357959; c=relaxed/simple;
+	bh=ZgJg19JgVapqtEPwhxxKRypueCcS657c0JxAgQtWkMk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ud8W+QLTnEEPhNEUcjylXtKL/nOZZBC5sdcsOxrXzNaV/38Di9dl3V4qRtUwcNgiB0LaHdBPFwm6NxveBjjJJgyh6ZcUH+ir9lYmeePVwb6wiMAj+ImrnmmGo1Rp+Kbri2YDigm0evysANlQ2vSSR7xxB5AYoQcVUO1uUBrgimQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NNEe8VWr; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764357958; x=1795893958;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZgJg19JgVapqtEPwhxxKRypueCcS657c0JxAgQtWkMk=;
+  b=NNEe8VWrVO7M40Ry48W+bzgwdwoJneBDaOXmp18kTfWNk/Z1GreQDtCO
+   7qFATVcNHlwxBNuwkQawtefOoJW9h9Axr6Ds5f6vhohaBLnnIm8HAu8DB
+   r05QD0Vxec/dgViut2ABgdcnElV/xDt9CfX7bd4hWYZXVOhTzELF1CO08
+   1PKUnyxS6bgFoY+bJhp9MqvkglCwhK/POnQlSEqzsHD/0AG4ZCJQ8atY/
+   4kPI3A98k2snFJySOdlZ/wCh6cS8+7RR/Q8TH3MtFlyMms855n5AUp6lF
+   Sc43+ho51yHQ2V63aSI7QQ2zd8Bda3RbDPgTMIK0Apqlmf5DCZtylPt/e
+   g==;
+X-CSE-ConnectionGUID: D7jH7Jp1QIylLMOiDbt1fg==
+X-CSE-MsgGUID: D7eRvhlHRQqnP1jkEOlTIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11627"; a="66339621"
+X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; 
+   d="scan'208";a="66339621"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2025 11:25:57 -0800
+X-CSE-ConnectionGUID: Vn3gvOaiSiazneVBYPV21w==
+X-CSE-MsgGUID: xgpQSso1RDSsHXKA92I+Cw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; 
+   d="scan'208";a="193419743"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.17])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2025 11:25:53 -0800
+Date: Fri, 28 Nov 2025 21:25:50 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: Jorge Marques <jorge.marques@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] iio: adc: Add support for ad4062
+Message-ID: <aSn3PthKIvFAhDS6@smile.fi.intel.com>
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
+ <20251124-staging-ad4062-v2-3-a375609afbb7@analog.com>
+ <aSQxiSoZcI_ol3S5@smile.fi.intel.com>
+ <aslj3klmv6heyyhgltzewkdze5p4c3hlkzfbxbfnzwwgd375gv@m6iqpst5sv6b>
+ <aSgSsGSUuBtMOuro@smile.fi.intel.com>
+ <zryqws2h2i4duejczo2rptwhlzhile7fa7brriqh2hmtarwjxn@cr2cyzymwpav>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: lee@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
- krzk+dt@kernel.org, linux-kernel@vger.kernel.org, pavel@kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-leds@vger.kernel.org
-To: Lukas Timmermann <linux@timmermann.space>
-In-Reply-To: <20251128175827.649481-2-linux@timmermann.space>
-References: <20251128175827.649481-1-linux@timmermann.space>
- <20251128175827.649481-2-linux@timmermann.space>
-Message-Id: <176435759680.2396163.4980372483978246141.robh@kernel.org>
-Subject: Re: [PATCH v12 1/2] dt-bindings: leds: Add new as3668 support
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <zryqws2h2i4duejczo2rptwhlzhile7fa7brriqh2hmtarwjxn@cr2cyzymwpav>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
+On Fri, Nov 28, 2025 at 07:50:02PM +0100, Jorge Marques wrote:
+> On Thu, Nov 27, 2025 at 10:58:24AM +0200, Andy Shevchenko wrote:
+> > On Wed, Nov 26, 2025 at 12:40:00PM +0100, Jorge Marques wrote:
+> > > On Mon, Nov 24, 2025 at 12:20:57PM +0200, Andy Shevchenko wrote:
+> > > > On Mon, Nov 24, 2025 at 10:18:02AM +0100, Jorge Marques wrote:
 
-On Fri, 28 Nov 2025 18:58:26 +0100, Lukas Timmermann wrote:
-> The bindings are incomplete, as the GPIO/Audio Input pin
-> is still undocumented. The hardware used for testing this patch series
-> does not allow modification, so the mentioned pin has been omitted.
+Please, remove the context you are agree with or which has no need
+to be answered, it helps to parse and reply.
+
+...
+
+> > > > > +static int ad4062_calc_sampling_frequency(int fosc, unsigned int n_avg)
+> > > > > +{
+> > > > > +	/* See datasheet page 31 */
+> > > > > +	u64 duration = div_u64((u64)(n_avg - 1) * NSEC_PER_SEC, fosc) + AD4062_TCONV_NS;
+> > > > > +
+> > > > > +	return DIV_ROUND_UP_ULL(NSEC_PER_SEC, duration);
+> > > > 
+> > > > Why u64?
+> > > > 
+> > > > The DIV_ROUND_UP_ULL() seems an overkill here. Or do you expect duration be
+> > > > more than 4 billions?
+> > > > 
+> > > This is necessary since at fosc 111 Hz and avg 4096 it does take longer
+> > > than 4 seconds, even though I do timeout after 1 seconds in the raw
+> > > acquisition.
+> > 
+> > Values above NSEC_PER_SEC+1 do not make sense (it will return 0),
+> > and that fits u32. Can you refactor to avoid 64-bit arithmetics?
 > 
-> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/leds/ams,as3668.yaml  | 74 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/ams,as3668.yaml
+> Ok, any frequency lower than 1 Hz does not make sense.
+
+Depends on the cases, we have sub-Hz sensors or some other stuff.
+So, "...does not make sense in _this_ case." That's what I implied.
+
+>   static int ad4062_calc_sampling_frequency(int fosc, unsigned int oversamp_ratio)
+
+Shouldn't fosc be unsigned?
+
+>   {
+>   	/* See datasheet page 31 */
+
+It's fine, but better to add a formula here or more information about
+the calculations done in the function.
+
+>   	u32 period = NSEC_PER_SEC / fosc;
+
+period_ns ?
+
+(We usually add units to this kind of variables for better understanding
+ of the calculations)
+
+>   	u32 n_avg = BIT(oversamp_ratio) - 1;
+>   
+>   	/* Result is less than 1 Hz */
+>   	if (n_avg >= fosc)
+>   		return 1;
+
++ blank line.
+
+>   	return NSEC_PER_SEC / (n_avg * period + AD4062_TCONV_NS);
+>   }
+
+LGTM, thanks!
+
+> > > > > +}
+
+...
+
+> > >   static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
+> > >   				      int gain_frac)
+> > >   {
+> > >   	u32 gain;
+> > >   	int ret;
+> > >   
+> > >   	if (gain_int < 0 || gain_frac < 0)
+> > >   		return -EINVAL;
+> > >   
+> > >   	gain = gain_int * MICRO + gain_frac;
+> > >   	if (gain > 1999970)
+> > 
+> > But this magic should be changed to what you explained to me
+> > (as in 0xffff/0x8000 with the proper precision, and this
+> >  can be done in 32-bit space).
+> > 
+> > Or even better
+> > 
+> > 	if (gain_int < 0 || gain_int > 1)
+> > 		return -EINVAL;
+> > 
+> > 	if (gain_int == 1 && gain_frac > 0x7fff) // did I get this right?
+> > 		return -EINVAL;
+
+> gain_frac would be 999999 max, or 999970 for the limit that fits in the
+> register after the math. I think > 1.999.970 is self explanatory.
+
+On the place of unprepared reader this is a complete magic number without
+scale, without understanding where it came from, etc.
+
+So, can you define it as a derivative from the other constants and with
+a comment perhaps?
+
+> > >   		return -EINVAL;
+> > >   
+> > >   	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL((u64)gain * AD4062_MON_VAL_MIDDLE_POINT,
+> > >   						 MICRO),
+> > 
+> > ...with temporary variable at minimum.
+> > 
+> > But again, I still don't see the need for 64-bit space.
 > 
+> Well, by dividing mon_val and micro values by a common divisor the
+> operation fit in 32-bits:
+> 
+>   static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
+>                                         int gain_frac)
+>   {
 
-My bot found errors running 'make dt_binding_check' on your patch:
+	/* Divide numerator and denumerator by known great common divider */
 
-yamllint warnings/errors:
+>           const u32 mon_val = AD4062_MON_VAL_MIDDLE_POINT / 64;
+>           const u32 micro = MICRO / 64;
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Yep, I suggested the same in another patch under review (not yours) for
+the similar cases where we definitely may easily avoid overflow.
 
-doc reference errors (make refcheckdocs):
+Alternatively you can use gcd().
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251128175827.649481-2-linux@timmermann.space
+>           const u32 gain = gain_int * MICRO + gain_frac;
+>           int ret;
+> 
+>           if (gain_int < 0 || gain_frac < 0)
+>                   return -EINVAL;
+> 
+>           if (gain > 1999970)
+>                   return -EINVAL;
+> 
+>           put_unaligned_be16(DIV_ROUND_CLOSEST(gain * mon_val, micro), st->buf.bytes);
+> 
+>           ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
+>                                   &st->buf.be16, sizeof(st->buf.be16));
+>           if (ret)
+>                   return ret;
+> 
+>           /* Enable scale if gain is not equal to one */
+>           return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
+>                                     AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+>                                     FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+>                                                !(gain_int == 1 && gain_frac == 0)));
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Btw, I think you can move this check up and save in a temporary variable which
+might affect the binary size of the compiled object as accesses to the gain_int
+and gain_frac will be grouped in the same place with potential of the reusing
+the CPU register(s)..
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+>   }
 
-pip3 install dtschema --upgrade
+> > >   			   st->buf.bytes);
+> > >   
+> > >   	ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
+> > >   				&st->buf.be16, sizeof(st->buf.be16));
+> > >   	if (ret)
+> > >   		return ret;
+> > >   
+> > >   	/* Enable scale if gain is not equal to one */
+> > >   	return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
+> > >   				  AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> > >   				  FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> > >   					     !(gain_int == 1 && gain_frac == 0)));
+> > >   }
+> > > 
+> > > To provide the enough resolution to compute every step (e.g., 0xFFFF and
+> > > 0xFFFE) with the arbitrary user input.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
