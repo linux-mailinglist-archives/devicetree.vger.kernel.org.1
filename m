@@ -1,89 +1,79 @@
-Return-Path: <devicetree+bounces-243000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E887FC925AC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 15:45:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC5A9C925D3
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 15:50:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 61D334E0F9E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 14:45:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E7893AB4F2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 14:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABA032ABC3;
-	Fri, 28 Nov 2025 14:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1888527F16C;
+	Fri, 28 Nov 2025 14:50:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="RssnllxR"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="ossTzV0k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43CC41A9F93;
-	Fri, 28 Nov 2025 14:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84EF227B336;
+	Fri, 28 Nov 2025 14:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764341131; cv=none; b=oOaU5yOuzQ8s9KnZS+ELbAeGX1kuYE0TM++BEuTApkH3on7UmS0kjO8sZYSp626YSxfUFmsymFlJkgwdR3kkPLOyEhztNkGjKUye3TlTtvCJMaZCt3OyvlUEsvxrAC3L/MYLLQoz8ZjwmmJnL2mftGzj7FH85Up35Ugra4HSgUo=
+	t=1764341410; cv=none; b=B9eDkFZsL/94zDyBxsRJJKvdScVyEIORFwqn0p1Y0gUMkN0qAXioP006yd0Lja/pdwE+TBUMUGVFq07n8XY5Ohlx21ky2I648/E9VqIvzjcJeW4b9rdFr5FOHPzLpbZIX6NZlGi/yAfqhPSq6lcO9dPJaYU7PN0khNJrqN/HEpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764341131; c=relaxed/simple;
-	bh=wUzItuozp3DqDKc+58vB2xGM56xJa2p7o/ogg260SLY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NA/ZFtkaZwnnbvo7fIUg+4xqgOkplF8iMKe8esOtFPJn1Bx7o43pKznASqLKQZymXe6y/8a8PCUyip2HztWpd3R9eF2/f3a/8UeaXcySt7ZBfnCMXF9BJKoU7H6LstI+4diiyvcf3PTunwsQepTIbHiR3ndfBd5zv5XpnocyhAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=RssnllxR; arc=none smtp.client-ip=148.163.135.77
+	s=arc-20240116; t=1764341410; c=relaxed/simple;
+	bh=8pwHNqUBy4hYh93P/6NARNx+r581uCQTvJE2cYL8hQI=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=S84xxn6qovhExx5my67iXPQ3sZPJxUSZWQaZ6cSgAIkWPAfF/iFf+19OEoNSRoRtzNy896eJFtEOE17qi3mK0slX8kB03zExdAjr8J6aByxzVR2Y5cJmXY66zjvIC/5QmIy7nl2dRtQJO3rr3tuX6QN0l3i6zC589yXXGmZE1NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=ossTzV0k; arc=none smtp.client-ip=148.163.135.77
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AS9tUAT3943744;
-	Fri, 28 Nov 2025 09:45:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=+KB3Z
-	t8ELYRAtYQyrCQBqRBUrU7iGXJyy/+bdj6EGUg=; b=RssnllxRfoBvx+it4bL50
-	nP2YNTv2FzWwEPR4IpJRxjO3jeOY2LXBV/TigyytVjO1XGiYv4gjlkti7B8LY/Pj
-	+Wwmh1Nv+/zaUTV1WeBI3UCxz+RWT/GUFJktu1Y8+IgLk+EAnS9oHg5R58ZWUYFn
-	4YY2ufwdze6JwOBtRcZhYN/TMvSDAfYHwfb9ki4mBIlytkZt1ZTHtbwtBVHz1Fny
-	FaCgPNg4EOUCu32QBT0J8vGYpZn2Ng2/kWZzCpejmGL+7EYJ902TNqqZmM5dh4QL
-	/b/vTuLmmlmbgC23gQmFnuGhSJH3CVIWjQ1b+L48PgY7RGnD5d7X8s2HQQrAyO/p
-	w==
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ASCnkX22284613;
+	Fri, 28 Nov 2025 09:50:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=/FKoaye++d3/P0nvjkR/T+zq1RM
+	720Z2BiOhPMPjILk=; b=ossTzV0kLFeFYXkrdyc+2QpxM0wNQbWo2hmJl2OYg/U
+	q7oeeR8zfXXT7Tk44ATibrYSE7vNWloAjxkOnXqLha5gYVOGEAkiXCwk8k2urWab
+	3NiW3vBfG7Z8bTvyhoxnakZua/og11eCLOpe8okzRLQfFMOR3HV7qWjz1ZZhIMzA
+	GChJDcyT43xbVizuemIp9t059sdgPM9Y5omf40Smqb9EJNoobPNfbOO8noC5wvJm
+	GFNtppuLtvjy7eYReFcIP8NTt2pLCI4jOQpus0mK+Gst3bvicVj6bPSyjeBvqxF7
+	3iSvJMxkaFGm3yJ5W0ppmmcn+edd/Eor2cJRFbB5tNA==
 Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4aph60prjn-1
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4aq370ajy8-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Nov 2025 09:45:13 -0500 (EST)
+	Fri, 28 Nov 2025 09:50:04 -0500 (EST)
 Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5ASEjCTU026755
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 5ASEo3YB027513
 	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 28 Nov 2025 09:45:12 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Fri, 28 Nov
- 2025 09:45:12 -0500
+	Fri, 28 Nov 2025 09:50:03 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 28 Nov 2025 09:50:03 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 28 Nov 2025 09:50:03 -0500
 Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
  (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 28 Nov 2025 09:45:12 -0500
+ Transport; Fri, 28 Nov 2025 09:50:03 -0500
 Received: from HYB-b1tGeUj4GP1.ad.analog.com ([10.32.13.98])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5ASEilHq011408;
-	Fri, 28 Nov 2025 09:45:06 -0500
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5ASEnshK011641;
+	Fri, 28 Nov 2025 09:49:57 -0500
 From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich
-	<Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        David
- Lechner <dlechner@baylibre.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?=
-	<nuno.sa@analog.com>,
-        Andy Shevchenko <andy@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Antoniu Miclaus
+	<antoniu.miclaus@analog.com>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v5 2/2] iio: amplifiers: adl8113: add driver support
-Date: Fri, 28 Nov 2025 16:44:11 +0200
-Message-ID: <20251128144428.24450-3-antoniu.miclaus@analog.com>
+Subject: [PATCH 0/1] dt-bindings: switch: add ADG1712 SPST switch binding
+Date: Fri, 28 Nov 2025 16:46:12 +0200
+Message-ID: <20251128144627.24910-1-antoniu.miclaus@analog.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251128144428.24450-1-antoniu.miclaus@analog.com>
-References: <20251128144428.24450-1-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,379 +83,43 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: WhJKHhNx5u_6myQyeJ0czklIFp4wNG2o
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDEwOCBTYWx0ZWRfXzPeoNl2cKR6l
- jfKOJTRxKZeIGCo79CnPC9xKdjZJaDWcHhU1qF6frcmMVL3exrZ1ZixaUNOEdipra0JiOHs2VR/
- 9cnEQ982j6F4aHAqnfxdKFobaBtUxeAKl7srgg/WPIxazZS28KX2X5FFY6kPlnC8J+VSRnQXX4v
- Eik9bb0TGxFH+AKsTLvnt0aA4vRh2gtXdUgB9uU4NsJiXdLBA/u4bNY6/3eguzvQUT5/YTd3CO6
- Sxa64QB6zy8hPrjnW9s8za+jFP4o/FvhnXtnZ50+dALZdjZzbi0m9pUp0mmO6ryjMT43pv+q3PV
- JloN+ecMmgFi3jZgH7c44YVjbFPFmbWiE7n/LFBn0jSCQJZy0GiBMwxZoLDerQMFnw8iMpt/FPp
- 4TFfzqBBIdxXge+VQhXPi82eZRPkXg==
-X-Authority-Analysis: v=2.4 cv=BN2+bVQG c=1 sm=1 tr=0 ts=6929b57a cx=c_pps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDEwOSBTYWx0ZWRfXw1LmK5KGjnGC
+ VRAZSThCDZrUjU21iVBgNW67t49GBvQ7G23OSLGZGkNxVNETDeOHl2TbUEOb4uvf7XSNjQHZcjg
+ lZ2589UjO8IA3bqgccbkXK+Q3JPeO+c0svevQuJXoCWlz/clk43Dy6XwkooYPuDiPzWr19yS3hc
+ BJazbgAYtIQyxzFQ6LxLTMvvcym+JlLRf4zye0/fimlKJVLbWI7zItTScdN0v5lUoEYpNmKL6rh
+ /yBKIHX11U+YYINK9o6inBxsW5Ybt61ZAfMMnqWmfq7xkraOclh6JX/xMfG6jXGG9IRnoSIrAZS
+ NdJSRFsLj4MDKvZXxzQR4uQkwepMJINa6dFWcZYUqrl96+of1O1ywrPY/jPFfwV++7sw92VlSr6
+ RVuCdnt7U0B4TCTRerjARpd8FTkYHg==
+X-Proofpoint-GUID: iJklt0Pdhy0VphpNygUGUoiXmA_HsPz2
+X-Proofpoint-ORIG-GUID: iJklt0Pdhy0VphpNygUGUoiXmA_HsPz2
+X-Authority-Analysis: v=2.4 cv=PpeergM3 c=1 sm=1 tr=0 ts=6929b69c cx=c_pps
  a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gAnH3GRIAAAA:8
- a=hAzo1ZWYCqDvnDRTSZMA:9
-X-Proofpoint-ORIG-GUID: WhJKHhNx5u_6myQyeJ0czklIFp4wNG2o
+ a=6UeiqGixMTsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=ggEV3rZny3h1ZReJJYwA:9
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-28_03,2025-11-27_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
- impostorscore=0 bulkscore=0 clxscore=1015 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 bulkscore=0 impostorscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 suspectscore=0 clxscore=1015 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511280108
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511280109
 
-Add support for adl8113 10MHz to 12GHz Low Noise Amplifier with
-10MHz to 14GHz bypass switches.
+This series adds devicetree bindings documentation for the Analog Devices
+ADG1712 quad SPST switch. The ADG1712 contains four independent single-pole,
+single-throw (SPST) switches, each controlled by a dedicated GPIO pin.
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-Changes in v5:
-- Replace separate gpio_va and gpio_vb with gpio_descs array
-- Use devm_gpiod_get_array() instead of devm_gpiod_get() with validation
-- Update adl8113_set_path() to use bitmap and gpiod_set_array_value_cansleep()
-- Change internal bypass gain from 0dB to -2dB (insertion loss)
-- Add INT_MIN gain value for unused external bypass paths (testing)
-- Fix error propagation in adl8113_write_raw() to return actual error code
-- Change duplicate gain error handling to use dev_err_probe()
-- Remove indexed and channel fields from IIO channel spec
-- Reorder supply names array (vss2 before vdd2)
+While the device uses the existing gpio-mux driver infrastructure, a
+dedicated binding document provides clear documentation on how to properly
+represent the ADG1712 in devicetree, following the pattern of one
+mux-controller node per independent switch.
 
- drivers/iio/amplifiers/Kconfig   |  12 ++
- drivers/iio/amplifiers/Makefile  |   1 +
- drivers/iio/amplifiers/adl8113.c | 290 +++++++++++++++++++++++++++++++
- 3 files changed, 303 insertions(+)
- create mode 100644 drivers/iio/amplifiers/adl8113.c
+Antoniu Miclaus (1):
+  dt-bindings: switch: adg1712: add ADG1712 SPST switch binding
 
-diff --git a/drivers/iio/amplifiers/Kconfig b/drivers/iio/amplifiers/Kconfig
-index 55eb16b32f6c..a8a604863eed 100644
---- a/drivers/iio/amplifiers/Kconfig
-+++ b/drivers/iio/amplifiers/Kconfig
-@@ -36,6 +36,18 @@ config ADA4250
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called ada4250.
- 
-+config ADL8113
-+	tristate "Analog Devices ADL8113 Low Noise Amplifier"
-+	depends on GPIOLIB
-+	help
-+	  Say yes here to build support for Analog Devices ADL8113 Low Noise
-+	  Amplifier with integrated bypass switches. The device supports four
-+	  operation modes controlled by GPIO pins: internal amplifier,
-+	  internal bypass, and two external bypass modes.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called adl8113.
-+
- config HMC425
- 	tristate "Analog Devices HMC425A and similar GPIO Gain Amplifiers"
- 	depends on GPIOLIB
-diff --git a/drivers/iio/amplifiers/Makefile b/drivers/iio/amplifiers/Makefile
-index 2126331129cf..0a76443be1aa 100644
---- a/drivers/iio/amplifiers/Makefile
-+++ b/drivers/iio/amplifiers/Makefile
-@@ -6,4 +6,5 @@
- # When adding new entries keep the list in alphabetical order
- obj-$(CONFIG_AD8366) += ad8366.o
- obj-$(CONFIG_ADA4250) += ada4250.o
-+obj-$(CONFIG_ADL8113) += adl8113.o
- obj-$(CONFIG_HMC425) += hmc425a.o
-diff --git a/drivers/iio/amplifiers/adl8113.c b/drivers/iio/amplifiers/adl8113.c
-new file mode 100644
-index 000000000000..eed5fe69280b
---- /dev/null
-+++ b/drivers/iio/amplifiers/adl8113.c
-@@ -0,0 +1,290 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ADL8113 Low Noise Amplifier with integrated bypass switches
-+ *
-+ * Copyright 2025 Analog Devices Inc.
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/slab.h>
-+#include <linux/sysfs.h>
-+
-+enum adl8113_signal_path {
-+	ADL8113_INTERNAL_AMP,
-+	ADL8113_INTERNAL_BYPASS,
-+	ADL8113_EXTERNAL_A,
-+	ADL8113_EXTERNAL_B,
-+};
-+
-+struct adl8113_gain_config {
-+	enum adl8113_signal_path path;
-+	int gain_db;
-+	int va;
-+	int vb;
-+};
-+
-+struct adl8113_state {
-+	struct gpio_descs *gpios;
-+	struct adl8113_gain_config *gain_configs;
-+	int num_gain_configs;
-+	enum adl8113_signal_path current_path;
-+};
-+
-+static const char * const adl8113_supply_names[] = {
-+	"vdd1",
-+	"vss2",
-+	"vdd2"
-+};
-+
-+static int adl8113_set_path(struct adl8113_state *st,
-+			    enum adl8113_signal_path path)
-+{
-+	DECLARE_BITMAP(values, 2);
-+	int ret;
-+
-+	bitmap_zero(values, 2);
-+
-+	/* Determine GPIO values based on signal path */
-+	switch (path) {
-+	case ADL8113_INTERNAL_AMP:
-+		/* va=0, vb=0 - already zero */
-+		break;
-+	case ADL8113_INTERNAL_BYPASS:
-+		/* va=1, vb=1 */
-+		__set_bit(0, values);
-+		__set_bit(1, values);
-+		break;
-+	case ADL8113_EXTERNAL_A:
-+		/* va=0, vb=1 */
-+		__set_bit(1, values);
-+		break;
-+	case ADL8113_EXTERNAL_B:
-+		/* va=1, vb=0 */
-+		__set_bit(0, values);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = gpiod_set_array_value_cansleep(st->gpios->ndescs, st->gpios->desc,
-+					     st->gpios->info, values);
-+	if (ret)
-+		return ret;
-+
-+	st->current_path = path;
-+	return 0;
-+}
-+
-+static int adl8113_find_gain_config(struct adl8113_state *st, int gain_db)
-+{
-+	int i;
-+
-+	for (i = 0; i < st->num_gain_configs; i++) {
-+		if (st->gain_configs[i].gain_db == gain_db)
-+			return i;
-+	}
-+	return -EINVAL;
-+}
-+
-+static const struct iio_chan_spec adl8113_channels[] = {
-+	{
-+		.type = IIO_VOLTAGE,
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN),
-+	},
-+};
-+
-+static int adl8113_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan,
-+			    int *val, int *val2, long mask)
-+{
-+	struct adl8113_state *st = iio_priv(indio_dev);
-+	int i;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		/* Find current gain configuration */
-+		for (i = 0; i < st->num_gain_configs; i++) {
-+			if (st->gain_configs[i].path == st->current_path) {
-+				*val = st->gain_configs[i].gain_db;
-+				*val2 = 0;
-+				return IIO_VAL_INT_PLUS_MICRO_DB;
-+			}
-+		}
-+		return -EINVAL;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int adl8113_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan,
-+			     int val, int val2, long mask)
-+{
-+	struct adl8113_state *st = iio_priv(indio_dev);
-+	int config_idx;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		if (val2 != 0)
-+			return -EINVAL;
-+
-+		config_idx = adl8113_find_gain_config(st, val);
-+		if (config_idx < 0)
-+			return config_idx;
-+
-+		return adl8113_set_path(st, st->gain_configs[config_idx].path);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info adl8113_info = {
-+	.read_raw = adl8113_read_raw,
-+	.write_raw = adl8113_write_raw,
-+};
-+
-+static int adl8113_init_gain_configs(struct device *dev, struct adl8113_state *st)
-+{
-+	int external_a_gain, external_b_gain, i = 0, j;
-+
-+	/*
-+	 * Allocate for all 4 possible paths:
-+	 * - Internal amp and bypass (always present)
-+	 * - External bypass A and B (optional, or INT_MIN for testing)
-+	 */
-+	st->gain_configs = devm_kcalloc(dev, 4,
-+					sizeof(*st->gain_configs), GFP_KERNEL);
-+	if (!st->gain_configs)
-+		return -ENOMEM;
-+
-+	/* Always include internal amplifier (14dB) */
-+	st->gain_configs[i].path = ADL8113_INTERNAL_AMP;
-+	st->gain_configs[i].gain_db = 14;
-+	i++;
-+
-+	/* Always include internal bypass (-2dB insertion loss) */
-+	st->gain_configs[i].path = ADL8113_INTERNAL_BYPASS;
-+	st->gain_configs[i].gain_db = -2;
-+	i++;
-+
-+	/* Add external bypass A if configured */
-+	if (!device_property_read_u32(dev, "adi,external-bypass-a-gain-db",
-+				      &external_a_gain)) {
-+		st->gain_configs[i].path = ADL8113_EXTERNAL_A;
-+		st->gain_configs[i].gain_db = external_a_gain;
-+		i++;
-+	}
-+
-+	/* Add external bypass B if configured */
-+	if (!device_property_read_u32(dev, "adi,external-bypass-b-gain-db",
-+				      &external_b_gain)) {
-+		st->gain_configs[i].path = ADL8113_EXTERNAL_B;
-+		st->gain_configs[i].gain_db = external_b_gain;
-+		i++;
-+	}
-+
-+	/*
-+	 * If there's a free external bypass path, add one with INT_MIN gain
-+	 * to represent "nothing connected" for testing purposes
-+	 */
-+	if (!device_property_present(dev, "adi,external-bypass-a-gain-db")) {
-+		st->gain_configs[i].path = ADL8113_EXTERNAL_A;
-+		st->gain_configs[i].gain_db = INT_MIN;
-+		i++;
-+	} else if (!device_property_present(dev, "adi,external-bypass-b-gain-db")) {
-+		st->gain_configs[i].path = ADL8113_EXTERNAL_B;
-+		st->gain_configs[i].gain_db = INT_MIN;
-+		i++;
-+	}
-+
-+	st->num_gain_configs = i;
-+
-+	/* Check for duplicate gain values */
-+	for (i = 0; i < st->num_gain_configs - 1; i++) {
-+		for (j = i + 1; j < st->num_gain_configs; j++) {
-+			if (st->gain_configs[i].gain_db == st->gain_configs[j].gain_db)
-+				return dev_err_probe(dev, -EINVAL,
-+						     "Duplicate gain values not allowed: %d dB\n",
-+						     st->gain_configs[i].gain_db);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int adl8113_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct adl8113_state *st;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	st = iio_priv(indio_dev);
-+
-+	st->gpios = devm_gpiod_get_array(dev, "ctrl", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->gpios))
-+		return dev_err_probe(dev, PTR_ERR(st->gpios),
-+				     "failed to get control GPIOs\n");
-+
-+	if (st->gpios->ndescs != 2)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "expected 2 control GPIOs, got %d\n",
-+				     st->gpios->ndescs);
-+
-+	ret = devm_regulator_bulk_get_enable(dev,
-+					     ARRAY_SIZE(adl8113_supply_names),
-+					     adl8113_supply_names);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "failed to get and enable supplies\n");
-+
-+	/* Initialize gain configurations from devicetree */
-+	ret = adl8113_init_gain_configs(dev, st);
-+	if (ret)
-+		return ret;
-+
-+	/* Initialize to internal amplifier path (14dB) */
-+	ret = adl8113_set_path(st, ADL8113_INTERNAL_AMP);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->info = &adl8113_info;
-+	indio_dev->name = "adl8113";
-+	indio_dev->channels = adl8113_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(adl8113_channels);
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct of_device_id adl8113_of_match[] = {
-+	{ .compatible = "adi,adl8113" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, adl8113_of_match);
-+
-+static struct platform_driver adl8113_driver = {
-+	.driver = {
-+		.name = "adl8113",
-+		.of_match_table = adl8113_of_match,
-+	},
-+	.probe = adl8113_probe,
-+};
-+
-+module_platform_driver(adl8113_driver);
-+
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices ADL8113 Low Noise Amplifier");
-+MODULE_LICENSE("GPL");
+ .../bindings/switch/adi,adg1712.yaml          | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/switch/adi,adg1712.yaml
+
 -- 
 2.43.0
 
