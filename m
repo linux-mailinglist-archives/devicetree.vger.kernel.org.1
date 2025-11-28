@@ -1,277 +1,213 @@
-Return-Path: <devicetree+bounces-243045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92951C9302F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 20:26:04 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2941EC9305C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 20:30:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 142A2349824
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 19:26:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A5776344A31
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 19:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E342BDC32;
-	Fri, 28 Nov 2025 19:25:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F52733345C;
+	Fri, 28 Nov 2025 19:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NNEe8VWr"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iWX1aI3X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8813B2080C8;
-	Fri, 28 Nov 2025 19:25:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFDB52D3A9E;
+	Fri, 28 Nov 2025 19:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764357959; cv=none; b=UgkEbjMDgDLm0nfxhe7QRv+5xWs9TWiGqaoegIbapEJRC4qQaEkXsm50bYq6/GVNU/82dsE2h/BZB9bC0uUrfVqeZDN8uviE2VllG2k0RKOrMtK5qmv1HaqpDMql18sEPj1I//W6rIiPVlOIPafMqXI+CRdWpaIvJvPLsK/SJFY=
+	t=1764358211; cv=none; b=pXmE/f1ipz9b0/J4GJe4RSAjBBNb7WdaYkKkBjDMLmrlyEDSwNuDluZZJOthbm5px1bagwe5ZIUiBcmnng8Nru8HfqZ1Tk23ihQK2GGYxnOHdw+sy2SKvRFDmsAHKtFmVmBQRhFX0yQoa91PcBjC8/0nnACXKYAPgB4lwwC7LhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764357959; c=relaxed/simple;
-	bh=ZgJg19JgVapqtEPwhxxKRypueCcS657c0JxAgQtWkMk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ud8W+QLTnEEPhNEUcjylXtKL/nOZZBC5sdcsOxrXzNaV/38Di9dl3V4qRtUwcNgiB0LaHdBPFwm6NxveBjjJJgyh6ZcUH+ir9lYmeePVwb6wiMAj+ImrnmmGo1Rp+Kbri2YDigm0evysANlQ2vSSR7xxB5AYoQcVUO1uUBrgimQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NNEe8VWr; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764357958; x=1795893958;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZgJg19JgVapqtEPwhxxKRypueCcS657c0JxAgQtWkMk=;
-  b=NNEe8VWrVO7M40Ry48W+bzgwdwoJneBDaOXmp18kTfWNk/Z1GreQDtCO
-   7qFATVcNHlwxBNuwkQawtefOoJW9h9Axr6Ds5f6vhohaBLnnIm8HAu8DB
-   r05QD0Vxec/dgViut2ABgdcnElV/xDt9CfX7bd4hWYZXVOhTzELF1CO08
-   1PKUnyxS6bgFoY+bJhp9MqvkglCwhK/POnQlSEqzsHD/0AG4ZCJQ8atY/
-   4kPI3A98k2snFJySOdlZ/wCh6cS8+7RR/Q8TH3MtFlyMms855n5AUp6lF
-   Sc43+ho51yHQ2V63aSI7QQ2zd8Bda3RbDPgTMIK0Apqlmf5DCZtylPt/e
-   g==;
-X-CSE-ConnectionGUID: D7jH7Jp1QIylLMOiDbt1fg==
-X-CSE-MsgGUID: D7eRvhlHRQqnP1jkEOlTIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11627"; a="66339621"
-X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; 
-   d="scan'208";a="66339621"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2025 11:25:57 -0800
-X-CSE-ConnectionGUID: Vn3gvOaiSiazneVBYPV21w==
-X-CSE-MsgGUID: xgpQSso1RDSsHXKA92I+Cw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,234,1758610800"; 
-   d="scan'208";a="193419743"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.17])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2025 11:25:53 -0800
-Date: Fri, 28 Nov 2025 21:25:50 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jorge Marques <gastmaier@gmail.com>
-Cc: Jorge Marques <jorge.marques@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 3/9] iio: adc: Add support for ad4062
-Message-ID: <aSn3PthKIvFAhDS6@smile.fi.intel.com>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
- <20251124-staging-ad4062-v2-3-a375609afbb7@analog.com>
- <aSQxiSoZcI_ol3S5@smile.fi.intel.com>
- <aslj3klmv6heyyhgltzewkdze5p4c3hlkzfbxbfnzwwgd375gv@m6iqpst5sv6b>
- <aSgSsGSUuBtMOuro@smile.fi.intel.com>
- <zryqws2h2i4duejczo2rptwhlzhile7fa7brriqh2hmtarwjxn@cr2cyzymwpav>
+	s=arc-20240116; t=1764358211; c=relaxed/simple;
+	bh=GKLsWL2UJZT8YzvnFQWt17ICJextffL/hToJMRkULxg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Z1rJnrNwfop1M+iA30B6jEyGdAQ0X4/30rxHQiMsKn9IQV+z05fMRYVLwxm1eJgCCeNk4g6spkILkY5FANCKH0Vide1Srd8R753C/Lml6kf/FPlwkApduyOk/4TLRG/CuFtlso5CDKhDDDl2NY+V2e1Qji7ei+Frgg9iFq8bEWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iWX1aI3X; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1764358204;
+	bh=GKLsWL2UJZT8YzvnFQWt17ICJextffL/hToJMRkULxg=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=iWX1aI3XLUnGygk4sTlR502FeNE+j8homIRurMgFurgXC8B5K4GniAa/L1jy000cC
+	 W740NFiQQtAGrZ1QJt08M54uwESyNZBErnUxtjdoZdzUnO+05Mcx++DjYPd7YbidF8
+	 EfGfXbcy/n8ShLRE4hOimwqkCUQlbA0D8xybYDj/tlMptot+MG/KrZSTMv0+h6OrlZ
+	 O2YImC3loxZklSdVu/Cn2Btm5KsenPsXIzL3Dxc/KwXXVpy92wW0sqc7aQQKAnUDbz
+	 oPen+AwzhWyAX8NfqaJwqplZyH8uciaxkI6ps7o1dMx3eSuP7ifcGpv+ZpFxTMKmF3
+	 X125keiZH9I+g==
+Received: from [IPv6:2606:6d00:17:7b4b::c41] (unknown [IPv6:2606:6d00:17:7b4b::c41])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C339F17E013C;
+	Fri, 28 Nov 2025 20:30:02 +0100 (CET)
+Message-ID: <84173ee52723100637570e05536cb534aae00793.camel@collabora.com>
+Subject: Re: [PATCH v2 00/14] media: mediatek: vcodec: support video decoder
+ in mt8196
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>, =?ISO-8859-1?Q?N=EDcolas?= "F .
+ R . A . Prado" <nfraprado@collabora.com>, Sebastian Fricke
+ <sebastian.fricke@collabora.com>, Hans Verkuil	 <hverkuil-cisco@xs4all.nl>,
+ AngeloGioacchino Del Regno	 <angelogioacchino.delregno@collabora.com>,
+ Benjamin Gaignard	 <benjamin.gaignard@collabora.com>, Nathan Hebert
+ <nhebert@chromium.org>,  Daniel Almeida <daniel.almeida@collabora.com>
+Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig
+ <frkoenig@chromium.org>,  Daniel Vetter <daniel@ffwll.ch>, Steve Cho
+ <stevecho@chromium.org>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Date: Fri, 28 Nov 2025 14:30:00 -0500
+In-Reply-To: <20250815085232.30240-1-yunfei.dong@mediatek.com>
+References: <20250815085232.30240-1-yunfei.dong@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-9fbPwPdhRMk4l4MW20f2"
+User-Agent: Evolution 3.58.1 (3.58.1-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <zryqws2h2i4duejczo2rptwhlzhile7fa7brriqh2hmtarwjxn@cr2cyzymwpav>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-
-On Fri, Nov 28, 2025 at 07:50:02PM +0100, Jorge Marques wrote:
-> On Thu, Nov 27, 2025 at 10:58:24AM +0200, Andy Shevchenko wrote:
-> > On Wed, Nov 26, 2025 at 12:40:00PM +0100, Jorge Marques wrote:
-> > > On Mon, Nov 24, 2025 at 12:20:57PM +0200, Andy Shevchenko wrote:
-> > > > On Mon, Nov 24, 2025 at 10:18:02AM +0100, Jorge Marques wrote:
-
-Please, remove the context you are agree with or which has no need
-to be answered, it helps to parse and reply.
-
-...
-
-> > > > > +static int ad4062_calc_sampling_frequency(int fosc, unsigned int n_avg)
-> > > > > +{
-> > > > > +	/* See datasheet page 31 */
-> > > > > +	u64 duration = div_u64((u64)(n_avg - 1) * NSEC_PER_SEC, fosc) + AD4062_TCONV_NS;
-> > > > > +
-> > > > > +	return DIV_ROUND_UP_ULL(NSEC_PER_SEC, duration);
-> > > > 
-> > > > Why u64?
-> > > > 
-> > > > The DIV_ROUND_UP_ULL() seems an overkill here. Or do you expect duration be
-> > > > more than 4 billions?
-> > > > 
-> > > This is necessary since at fosc 111 Hz and avg 4096 it does take longer
-> > > than 4 seconds, even though I do timeout after 1 seconds in the raw
-> > > acquisition.
-> > 
-> > Values above NSEC_PER_SEC+1 do not make sense (it will return 0),
-> > and that fits u32. Can you refactor to avoid 64-bit arithmetics?
-> 
-> Ok, any frequency lower than 1 Hz does not make sense.
-
-Depends on the cases, we have sub-Hz sensors or some other stuff.
-So, "...does not make sense in _this_ case." That's what I implied.
-
->   static int ad4062_calc_sampling_frequency(int fosc, unsigned int oversamp_ratio)
-
-Shouldn't fosc be unsigned?
-
->   {
->   	/* See datasheet page 31 */
-
-It's fine, but better to add a formula here or more information about
-the calculations done in the function.
-
->   	u32 period = NSEC_PER_SEC / fosc;
-
-period_ns ?
-
-(We usually add units to this kind of variables for better understanding
- of the calculations)
-
->   	u32 n_avg = BIT(oversamp_ratio) - 1;
->   
->   	/* Result is less than 1 Hz */
->   	if (n_avg >= fosc)
->   		return 1;
-
-+ blank line.
-
->   	return NSEC_PER_SEC / (n_avg * period + AD4062_TCONV_NS);
->   }
-
-LGTM, thanks!
-
-> > > > > +}
-
-...
-
-> > >   static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
-> > >   				      int gain_frac)
-> > >   {
-> > >   	u32 gain;
-> > >   	int ret;
-> > >   
-> > >   	if (gain_int < 0 || gain_frac < 0)
-> > >   		return -EINVAL;
-> > >   
-> > >   	gain = gain_int * MICRO + gain_frac;
-> > >   	if (gain > 1999970)
-> > 
-> > But this magic should be changed to what you explained to me
-> > (as in 0xffff/0x8000 with the proper precision, and this
-> >  can be done in 32-bit space).
-> > 
-> > Or even better
-> > 
-> > 	if (gain_int < 0 || gain_int > 1)
-> > 		return -EINVAL;
-> > 
-> > 	if (gain_int == 1 && gain_frac > 0x7fff) // did I get this right?
-> > 		return -EINVAL;
-
-> gain_frac would be 999999 max, or 999970 for the limit that fits in the
-> register after the math. I think > 1.999.970 is self explanatory.
-
-On the place of unprepared reader this is a complete magic number without
-scale, without understanding where it came from, etc.
-
-So, can you define it as a derivative from the other constants and with
-a comment perhaps?
-
-> > >   		return -EINVAL;
-> > >   
-> > >   	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL((u64)gain * AD4062_MON_VAL_MIDDLE_POINT,
-> > >   						 MICRO),
-> > 
-> > ...with temporary variable at minimum.
-> > 
-> > But again, I still don't see the need for 64-bit space.
-> 
-> Well, by dividing mon_val and micro values by a common divisor the
-> operation fit in 32-bits:
-> 
->   static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
->                                         int gain_frac)
->   {
-
-	/* Divide numerator and denumerator by known great common divider */
-
->           const u32 mon_val = AD4062_MON_VAL_MIDDLE_POINT / 64;
->           const u32 micro = MICRO / 64;
-
-Yep, I suggested the same in another patch under review (not yours) for
-the similar cases where we definitely may easily avoid overflow.
-
-Alternatively you can use gcd().
-
->           const u32 gain = gain_int * MICRO + gain_frac;
->           int ret;
-> 
->           if (gain_int < 0 || gain_frac < 0)
->                   return -EINVAL;
-> 
->           if (gain > 1999970)
->                   return -EINVAL;
-> 
->           put_unaligned_be16(DIV_ROUND_CLOSEST(gain * mon_val, micro), st->buf.bytes);
-> 
->           ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
->                                   &st->buf.be16, sizeof(st->buf.be16));
->           if (ret)
->                   return ret;
-> 
->           /* Enable scale if gain is not equal to one */
->           return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
->                                     AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
->                                     FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
->                                                !(gain_int == 1 && gain_frac == 0)));
-
-Btw, I think you can move this check up and save in a temporary variable which
-might affect the binary size of the compiled object as accesses to the gain_int
-and gain_frac will be grouped in the same place with potential of the reusing
-the CPU register(s)..
-
->   }
-
-> > >   			   st->buf.bytes);
-> > >   
-> > >   	ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
-> > >   				&st->buf.be16, sizeof(st->buf.be16));
-> > >   	if (ret)
-> > >   		return ret;
-> > >   
-> > >   	/* Enable scale if gain is not equal to one */
-> > >   	return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
-> > >   				  AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
-> > >   				  FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
-> > >   					     !(gain_int == 1 && gain_frac == 0)));
-> > >   }
-> > > 
-> > > To provide the enough resolution to compute every step (e.g., 0xFFFF and
-> > > 0xFFFE) with the arbitrary user input.
-
--- 
-With Best Regards,
-Andy Shevchenko
 
 
+--=-9fbPwPdhRMk4l4MW20f2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Le vendredi 15 ao=C3=BBt 2025 =C3=A0 16:52 +0800, Yunfei Dong a =C3=A9crit=
+=C2=A0:
+> Using vcp micro processor to support video decoder in mt8196 platform,
+> need to add new firmware interface to communicate with vcp in kernel
+> side. Then add mt8196 compatible, codec levels/profiles and private data.
+> Re-write av1 driver to support extend vsi struct, then change irq table
+> and cdf table size.
+
+Please reword, things seems a little reverse, say what you are doing, and t=
+hen
+what is used to do it. This cover should include some level of tests report=
+,
+v4l2-compliance (hopefully unchanged) and fluster results (ideally with
+regression testing on lets say MT8195, since a driver rewrite is not a litt=
+le
+affaire).
+
+>=20
+> This patch set depends on "Add VCP support for mt8196"[1]
+>=20
+> [1]
+> https://patchwork.kernel.org/project/linux-remoteproc/patch/2025040209213=
+4.12293-2-xiangzhi.tang@mediatek.com/
+
+This seems to have stalled at v2, is there an update coming ?
+
+Nicolas
+
+> ---
+> Changed in v2:
+> - re-write the commit message for patch 1
+> ---
+> Yunfei Dong (14):
+> =C2=A0 dt-bindings: media: mediatek: vcodec: add decoder dt-bindings for
+> =C2=A0=C2=A0=C2=A0 mt8196
+> =C2=A0 media: mediatek: vcodec: add decoder compatible to support mt8196
+> =C2=A0 media: mediatek: vcodec: add driver to support vcp
+> =C2=A0 media: mediatek: vcodec: add driver to support vcp encoder
+> =C2=A0 media: mediatek: vcodec: get different firmware ipi id
+> =C2=A0 media: mediatek: vcodec: get share memory address
+> =C2=A0 media: mediatek: vcodec: define MT8196 vcodec levels.
+> =C2=A0 media: mediatek: vcodec: support vcp architecture
+> =C2=A0 media: mediatek: vcodec: support 36bit iova address
+> =C2=A0 media: mediatek: vcodec: clean xpc status
+> =C2=A0 media: mediatek: vcodec: add debug information
+> =C2=A0 media: mediatek: vcodec: send share memory address to vcp
+> =C2=A0 media: mediatek: decoder: fill av1 buffer size with picinfo
+> =C2=A0 media: mediatek: decoder: support av1 extend vsi
+>=20
+> =C2=A0.../media/mediatek,vcodec-subdev-decoder.yaml |=C2=A0=C2=A0 1 +
+> =C2=A0.../media/platform/mediatek/vcodec/Kconfig=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 4 +
+> =C2=A0.../platform/mediatek/vcodec/common/Makefile=C2=A0 |=C2=A0=C2=A0 4 =
++
+> =C2=A0.../mediatek/vcodec/common/mtk_vcodec_dbgfs.c |=C2=A0 21 +-
+> =C2=A0.../mediatek/vcodec/common/mtk_vcodec_fw.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 16 +
+> =C2=A0.../mediatek/vcodec/common/mtk_vcodec_fw.h=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 2 +
+> =C2=A0.../vcodec/common/mtk_vcodec_fw_priv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 12 +
+> =C2=A0.../vcodec/common/mtk_vcodec_fw_vcp.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 493 ++++++++++++++++++
+> =C2=A0.../vcodec/common/mtk_vcodec_fw_vcp.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 151 ++++++
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 16 +
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_hw.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 28 +
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_hw.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 13 +-
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_stateless.c |=C2=A0=C2=A0 6 +
+> =C2=A0.../vcodec/decoder/vdec/vdec_av1_req_lat_if.c |=C2=A0 85 ++-
+> =C2=A0.../decoder/vdec/vdec_h264_req_multi_if.c=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 10 +-
+> =C2=A0.../decoder/vdec/vdec_hevc_req_multi_if.c=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 11 +-
+> =C2=A0.../vcodec/decoder/vdec/vdec_vp8_req_if.c=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 4 +-
+> =C2=A0.../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c |=C2=A0 20 +-
+> =C2=A0.../mediatek/vcodec/decoder/vdec_ipi_msg.h=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 2 +
+> =C2=A0.../mediatek/vcodec/decoder/vdec_vpu_if.c=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 9 +-
+> =C2=A0.../mediatek/vcodec/encoder/mtk_vcodec_enc.c=C2=A0 |=C2=A0=C2=A0 1 =
+-
+> =C2=A0.../mediatek/vcodec/encoder/mtk_vcodec_enc.h=C2=A0 |=C2=A0=C2=A0 2 =
++
+> =C2=A0include/linux/remoteproc/mtk_vcp_public.h=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 2 +-
+> =C2=A024 files changed, 871 insertions(+), 43 deletions(-)
+> =C2=A0create mode 100644
+> drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
+> =C2=A0create mode 100644
+> drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.h
+
+--=-9fbPwPdhRMk4l4MW20f2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHQEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaSn4OAAKCRDZQZRRKWBy
+9D9PAPd+sxF1+5bZ4x6B4sLG0Pw6d76Afz5VXtPK3V590sBSAQD2eUD0B1jhhSFx
+/k5IyT450xs58R5lNPEP/eAC4e1yDA==
+=D1vh
+-----END PGP SIGNATURE-----
+
+--=-9fbPwPdhRMk4l4MW20f2--
 
