@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-242933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339A8C917D0
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:44:06 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18C50C917FD
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:46:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2E123A8240
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:44:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BC79334A605
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:46:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D0D52FD667;
-	Fri, 28 Nov 2025 09:44:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A03221FB4;
+	Fri, 28 Nov 2025 09:46:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2b+lwx+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lH+zof+k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AE217736;
-	Fri, 28 Nov 2025 09:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690D53C1F;
+	Fri, 28 Nov 2025 09:46:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764323041; cv=none; b=SrlW68zZscaO+Wtd78d+1Q7KELL+KBQ3H+VlNaE7W6BBi6gb7Vyqt4sxVoyFpEhAMUYa9bA05Lq4OphGg3Q2eOx1D05de8TNOfFFbPb30PYGjrt6XFztb6sEmwvWc4h8n0vIBPhVZCGmomjuLTvqJYL0knftTRrBlexmAb+BY28=
+	t=1764323172; cv=none; b=NtsX5R+M9Vs5VWVK50Jx23uly6psa/aOs4H8gjSQ5mZqItqUPr2i6jwT+WNi34FqOx0JMp2SxMMQXmnY288O15bSJTsB/dYCSCoMoI9T4cnUIc8j7uYXgQEEMp7mtSgpv+1wyEQIfXuwpXeA4msmcTvFVau5JIZpUmFHy8H/iTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764323041; c=relaxed/simple;
-	bh=0vCK8wOZ+C0MGWprzTTCMnzn1OxByA3wk6cSJdzkJiA=;
+	s=arc-20240116; t=1764323172; c=relaxed/simple;
+	bh=JZmVVDf/2IVFWddvgioDxXF7J1xFnKWvCQQnTxck6wE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uwnmfwDtMSBjO3ugps6hJXmvFl2Cd9NfCb06yl8wWOzPYhp8HuYa7FwNBI7NCygn98pHCTfKmicBhd1SjylpfrVft4YV3INsC9c0Q+GPfShcPOKsL+HP4oBg2i7Y7aAJIc9Db3myJiOFiskM0crhrxc6DwInv3NS4gJpkCuiQeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2b+lwx+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE996C4CEF1;
-	Fri, 28 Nov 2025 09:43:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Nhdg2AJp43+jdJUMa/M6bewf9I9VdXIA3Bv1b/XgAtrJL5mFUiDzKOliaJa7GHh6ib5tbuGgNwc4Fd0pwNemi0nDCUzwc6zBwluEX1E2iH5rKZRsgGt7uYRr1WCR7XGrUP8u2rn5q+RqrjPN41IkYEX5gOR6BnLpFAudk8kRdaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lH+zof+k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30DF7C4CEF1;
+	Fri, 28 Nov 2025 09:46:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764323040;
-	bh=0vCK8wOZ+C0MGWprzTTCMnzn1OxByA3wk6cSJdzkJiA=;
+	s=k20201202; t=1764323172;
+	bh=JZmVVDf/2IVFWddvgioDxXF7J1xFnKWvCQQnTxck6wE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=b2b+lwx+f0SkgT3kkPuAgKm92lR7CyhDvuqg9t6Db0C2EPokXXOH+Imixnj14kl6n
-	 AqS5wSqLJl5zh0Wk1SRE0+w3aLfZZb7o8ykwBvrkrPmB9xis6SA2ZgWuzxLrxFxRIT
-	 05YNl51PWNAH5bFQDeZHhjeieiQopjha4lGOyW4XMSYO3P+M5mYw1oirFKSrUhxqb5
-	 6mOV73GGjS9TsF+/H5IDy/d+BjRfWMGkql4CvCGwLblHQvP2DA95ghGxx1bDRXvLyL
-	 7eDRcVbeJlA5aAr3OirsjC35iG5dFv4QNWQN3UTi3nYGZVKY4w7vR7NLU3MPcM0Uay
-	 b2WIP3AC3tzpA==
-Message-ID: <bc76c2c9-ceb6-4ba4-80f0-8a114c5da033@kernel.org>
-Date: Fri, 28 Nov 2025 10:43:56 +0100
+	b=lH+zof+kyQOTcnpH9BgQaQDFUIKPhS0pyJMibR32EstBiQ7yeOaS9NZuGFyYknbXo
+	 WLCupw29wviTX4hRjX273n+Mo8jBc5AnzFfhj+/8rcz9FHUSmEhVtDsd7ct7dAQH0c
+	 tvi6KUxAveQhkzEFJtBMpSm76Ta+Xpph35AXj/DWNUQTO0BCl8p1mlKScfy5m09hsP
+	 CL61ugNYszkyn1xzFzcSt0zmP2/xRfVoy0qJT8JdIZXULYgcMSl956gynyjhRPmPJZ
+	 pvy4I8WeCPuldZCMeMdheVc1qnOhgdm7HmS5eR4Xo/SMh8//duIborbXV9g9s6rBql
+	 nn/xPiZKxl9Nw==
+Message-ID: <b71a40ce-a70e-49ee-be61-5ec1f45ef2ec@kernel.org>
+Date: Fri, 28 Nov 2025 10:46:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add TI ADS1018/ADS1118
-To: Kurt Borja <kuurtb@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: power: define ID for Marvell PXA1908
+ audio domain
+To: Karel Balej <balejk@matfyz.cz>, =?UTF-8?Q?Duje_Mihanovi=C4=87?=
+ <duje@dujemihanovic.xyz>, Ulf Hansson <ulf.hansson@linaro.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Tobias Sperling <tobias.sperling@softing.com>
-Cc: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20251127-ads1x18-v2-0-2ebfd780b633@gmail.com>
- <20251127-ads1x18-v2-1-2ebfd780b633@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20251127190237.745-1-balejk@matfyz.cz>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,44 +105,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251127-ads1x18-v2-1-2ebfd780b633@gmail.com>
+In-Reply-To: <20251127190237.745-1-balejk@matfyz.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/11/2025 04:37, Kurt Borja wrote:
-> +
-> +  interrupts:
-> +    description: DOUT/DRDY (Data Out/Data Ready) line.
-> +    maxItems: 1
-> +
-> +  drdy-gpios:
-> +    description:
-> +      Extra GPIO line connected to DOUT/DRDY (Data Out/Data Ready). This allows
-> +      distinguishing between interrupts triggered by the data-ready signal and
-> +      interrupts triggered by an SPI transfer.
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
+On 27/11/2025 20:02, Karel Balej wrote:
+> Define an identifier for the SoC's audio power island so that it can be
+> referenced through device tree.
+> 
+> Signed-off-by: Karel Balej <balejk@matfyz.cz>
+> ---
+>  include/dt-bindings/power/marvell,pxa1908-power.h | 1 +
+>  1 file changed, 1 insertion(+)
 
-These two properties are not correct now - you do not have any children.
 
-> +
-> +  '#io-channel-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +  - '#address-cells'
-> +  - '#size-cells'
-
-And they should not be required.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
