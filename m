@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-242921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA26C9157C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:01:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9166C915C7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:07:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DC2B63499D5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:01:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B02A73A6064
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A302FD7A4;
-	Fri, 28 Nov 2025 09:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1EC73009D4;
+	Fri, 28 Nov 2025 09:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u6V9Kwwt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LXCvDJFV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222D7280CFC;
-	Fri, 28 Nov 2025 09:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845B23002DF;
+	Fri, 28 Nov 2025 09:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764320510; cv=none; b=puFGHV242xZCu8fzJ5dzmWTzKbQLniJtGUYjHUSO8vuzTQFh9VnB4WW6g2lfQEZ077ABgJGAMDdpBEBiSMZ4IOIjgyi79nfQMHulmni/cSf9jyHuVdIgqFtG6RIeeMbd7q5DscWvpg8B0iimGs/BwRzhVpdagJ1G3dYs244M7uE=
+	t=1764320811; cv=none; b=p89ziClqJCj9KnRJ+x30vSeWMCHgFSZNB8TahY7mW8Hit/yXQkGFKqloCYX2WMC3tXoPGXF201cAYEFWnJjlKIapjVs7w+en2iweajPUwdBpWmV4PlT+x4VNKYWPwTHofmlV3RaX7oCRzE6GIaOovH0/zKQ/u58JZn+yBsaL4k8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764320510; c=relaxed/simple;
-	bh=BQHSr2Fsvv9EapDNce6yQrV+s8lPf++8pxkb25Qmq+Y=;
+	s=arc-20240116; t=1764320811; c=relaxed/simple;
+	bh=Vh0LuF0gS+lrMM9WoJmSq8MPQZpCzrMImlm3Z3WqzOU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=faDy5onvsn5AflkkFZtM6STvOb3ITBl+xpzC8k+RDSoNVq5Q0kZ0diP8PveHI+EkeTUl2zqy7k+8Lrbnwt4Xf+M4lpIGNJaXndzzVtH85o0V4Tz1zlAMxUwiTeWd+5uMHBP8Y5KdW9pDDqZbR6Ab4i3u2nFjyl2rsA5vcmJdHgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u6V9Kwwt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EE6DC116D0;
-	Fri, 28 Nov 2025 09:01:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZZpAWXsAVIEVi+TEq1VsA91TRvAfLSsc0/gh+UvxpLllyo9gXN6aDPJwKaJQ3DT2u5Oz6amgeHL0Wa23QSLobGW+U6M90KedgTTAittioJE0djObvllhAkq/VKcQRi8ZAdPEEhf3RJaKkV18tW1RlddPqMBv5Uj9SvXtmIqDdZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LXCvDJFV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60B38C4CEF1;
+	Fri, 28 Nov 2025 09:06:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764320508;
-	bh=BQHSr2Fsvv9EapDNce6yQrV+s8lPf++8pxkb25Qmq+Y=;
+	s=k20201202; t=1764320811;
+	bh=Vh0LuF0gS+lrMM9WoJmSq8MPQZpCzrMImlm3Z3WqzOU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=u6V9KwwtxUg+BENRkInQvAYQGgRejHHQnN1Mmkb7cPldeR8GqH82YNv8UKQtaT8UR
-	 +WXxpVKXjNaSTD4oInBXC8wYIAKGN7vK6Z0DOXgUYIBHYJ3rJyFcVE9PrZKaCwaEJF
-	 sH/ZxxbcxJCc8uFd/xH+rkvDjRf30JvWoaq6tiOfKqKZ6yrZCytWT9uE7lytP41NHo
-	 Fu9vaPeHt3T0bkPngi5lSJhf5rsmBPrKLNXwCf9xU0SMNPjyzlvuYtwL2Ty+BpRgj4
-	 sFxDaMAl0zcj1Ur41W2RuS6PAac3AbWv0+eYTFdqfN6/CubYxmVIpk3Sr1HIOBM1rb
-	 SDIS/HJUISqGA==
-Message-ID: <9ff65dc6-6f13-47f0-966c-f9885288843e@kernel.org>
-Date: Fri, 28 Nov 2025 10:01:44 +0100
+	b=LXCvDJFVHr13m/4MhEEIua5oEaw6YY4UgHWyJJjH+QJ//LF+5t54hsTjFZyDC/2Se
+	 Ba3YlV1sJUjKAq0aCTR5gO4mC93dXVI7aPGyMx0jep07ZEKNRVnW5sLmNRHvJvR0+F
+	 cmnC1DIo1VUIipB1OukKXsjWsmsvSbZp2HbQr57rgyfCKOTV5/71++uhEGC9nW8Ab6
+	 sLFzhQaaTtRbdxfJvfikqTC76uaJEN4kGKX6XegG1PbvUdsX3GwT9fMHS70FeAGnSA
+	 OD1WFHM5UZ6yAtctjTGFyALwYqxd551bLKvI/qe/MCSJr5Rhe3iyC5hTmgRd1ec43q
+	 q7VzrBoQboJVA==
+Message-ID: <369271f5-8ada-4c72-a9f2-852346b07867@kernel.org>
+Date: Fri, 28 Nov 2025 10:06:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] ARM: dts: exynos: Add Google Manta (Nexus 10)
-To: Lukas Timmermann <linux@timmermann.space>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Alexandre Marquet <tb@a-marquet.fr>
-References: <20251125-google-manta-v2-0-0f097cfff39c@timmermann.space>
- <20251125-google-manta-v2-2-0f097cfff39c@timmermann.space>
- <20251126-cunning-locust-of-atheism-e1dd0d@kuoka>
- <jqfu76ojoznc7xgyevuzmj7fg3necrr5cp645ye5zk652ytx5w@s4yaxzcq7jzt>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8750: Add videocc node for SM8750 SoC
+To: Taniya Das <taniya.das@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+ Imran Shaik <imran.shaik@oss.qualcomm.com>,
+ Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251126-sm8750-videocc-dt-v1-1-a848fbfb257f@oss.qualcomm.com>
+ <7a69ced3-c698-4eb1-b705-58a48048e684@kernel.org>
+ <9a3c2518-3a32-4165-a7e7-22171488991c@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,41 +108,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <jqfu76ojoznc7xgyevuzmj7fg3necrr5cp645ye5zk652ytx5w@s4yaxzcq7jzt>
+In-Reply-To: <9a3c2518-3a32-4165-a7e7-22171488991c@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/11/2025 21:01, Lukas Timmermann wrote:
->>> +
->>> +		lid-switch {
->>> +			label = "Lid";
->>> +			gpios = <&gpx1 3 GPIO_ACTIVE_LOW>;
->>> +			linux,input-type = <5>; /* EV_SW */
->>> +			linux,code = <0>; /* SW_LID */
->>> +			debounce-interval = <10>;
->>> +			wakeup-source;
->>> +		};
->>> +	};
->>> +
->>> +	multi-led {
->>> +		compatible = "leds-group-multicolor";
->>> +		color = <LED_COLOR_ID_RGB>;
->>> +		function = LED_FUNCTION_STATUS;
->>> +		leds = <&status_red>, <&status_green>, <&status_blue>, <&status_white>;
->>> +	};
->>> +
->>> +	wlan_pwrseq: mmc1-pwrseq {
+On 28/11/2025 09:41, Taniya Das wrote:
+> 
+> 
+> On 11/27/2025 6:00 PM, Krzysztof Kozlowski wrote:
+>> On 26/11/2025 19:09, Taniya Das wrote:
+>>> Add device node for video clock controller on Qualcomm SM8750 SoC.
+>>>
+>>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 14 ++++++++++++++
+>>>  1 file changed, 14 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>>> index 3f0b57f428bbb388521c27d9ae96bbef3d62b2e2..18e43c509f1f24785d55113addc5cd9f96e986f1 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>>> @@ -2740,6 +2740,20 @@ usb_dwc3_ss: endpoint {
+>>>  			};
+>>>  		};
+>>>  
+>>> +		videocc: clock-controller@aaf0000 {
+>>> +			compatible = "qcom,sm8750-videocc";
+>>> +			reg = <0 0x0aaf0000 0 0x10000>;
 >>
->> Just "pwrseq"
+>> ... and the code is not here matching style.
 >>
-> Acknowledged.
-> Just out of curiosity. Why is that?
+> 
+> I can fix that in the next version. Will you drop it from your patch set?
 
+No, of course not! Because as I said - this was sent already. Please do
+not send in parallel code which is upstreamed already since long time.
+> 
 
-You have only one pwrseq device, so not need to precise which one is
-that and node names should be generic.
-
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
 Best regards,
 Krzysztof
