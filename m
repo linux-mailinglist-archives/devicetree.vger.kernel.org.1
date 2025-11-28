@@ -1,80 +1,208 @@
-Return-Path: <devicetree+bounces-243063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ACAFC9334A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 22:48:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05F05C933C2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 23:10:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CFF8034594A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 21:48:47 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7E34E3424AF
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 22:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BC02E0902;
-	Fri, 28 Nov 2025 21:48:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EC92E339B;
+	Fri, 28 Nov 2025 22:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="pOop7/G5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IT16xfEK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C237F2DC334;
-	Fri, 28 Nov 2025 21:48:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5572DC791
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 22:10:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764366522; cv=none; b=l6wcHbsDlT5KsS+pvl0wRNYh4HwzymFuL1kdqYGS9yFwOznpCrnhkIzMJrApoNGrF+EOTnd1HdLm94N1AWLFb85IP+G9a5CS8MVu0nZ5xKiTVtXnz8ubcYZmqAwy/BQU5TpLEvUHSVgkDc8/tjB69AxUHGmsOC99pbwe27hHVEA=
+	t=1764367828; cv=none; b=N0Lzd/U262psNzfmJOkeiOeLOvKgopm6+1PRSMQOZvQrbS99b105ch1ACb3Fo/+MmJDvlmPd0yZHpMAwt1kCEwbsH2q35ag2nrG80MxAIIiF8XajwEpNR7/Umo6P8iSEGYy89dE/sfKRQP4ruCwNhaQSQbacR1buvYilm6CgfUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764366522; c=relaxed/simple;
-	bh=Tx0Qw3xQh9++IV3pmMkC/NoM1bk28feF8F2RtIPrlR8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CmiKnfh6EvS8+UsQtWpTgqYzAidZ7un31SiwFbnCtRBKAPezCZucYRCpz/FUMeXF9KxUrpnRYNcIj/0F7oELVwmUZdwdKjKXwHb4N1hVs9eFDujVyLTXMEIMBjNR6gTp8Fb/vIK7k5NhLhGCjiJzUrLOvMArVfn4ptuklRy/Hd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=pOop7/G5; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=uolVDxZ9uNM6iJV67STmTU/q18EXFVQS2j96RNuR9Ic=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1764365527; v=1; x=1764797527;
- b=pOop7/G5LS5cpY5MSUX3qUDcOdPAycyzEdsXPPf7x67JCzZLV9ldpc0iMIFFEbLdlLoE4tbf
- eYmISdewALW/Cg7aNWmuKFSBAtLPeiGOwr+8JbnzHdwPUbElB5oLclYWGI+ZBhsE2lvS5vD95z4
- jfubpV2hCn2i327e2eQBm0qUW/KwPvK8GchqBmAi/AH2XZHLEyyziVSgB2iqYKLUzXUw8EPxbe3
- vJ14vBu4qVI1WbQoDgBTfuerEzkUrB5xvJtfuaikbeQAGFUJ+vJ39zlK30Z3dsI9O3+1eq9xBOI
- KbSksq5HOZi7ftCZipw+U9UjrbiEoOKQSOLeEGK0BHH6g==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 0e1da1da; Fri, 28 Nov 2025 22:32:07 +0100
-Message-ID: <8167f52b-0a2a-4f7f-8fc3-30673f7197b3@dujemihanovic.xyz>
-Date: Fri, 28 Nov 2025 22:32:06 +0100
+	s=arc-20240116; t=1764367828; c=relaxed/simple;
+	bh=3JnUxTFqvd2KTODtt1gzQT9xC6ENBY6FPjaEH91L+8o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MFIS0n18C6Eag26/FEIPBs1EnNmFhhdDUH0czHW0Y19IHl++y28AIFvy34u1npFKTxWD9bD/S+dv3UtpxG+c6nIaYtJZibBUmNZ/UtMQP9dy9ybgLwP5zugheWFIeWO5NZuDRI8J4fLC/7LGKKyyrDjWhZRPg0iFvFsHe/x1nqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IT16xfEK; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so25295065e9.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 14:10:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764367825; x=1764972625; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TtryFy/Jnn1lu6emaHIQgv0be1BBuqd7mtOuBSPgxH4=;
+        b=IT16xfEKjr97xOW0MisRL09JvkY9JfTdsWEUP28BYoNKNVFAW2qg9DdR5ZKcT3SRFn
+         KFOCxGAGcwop/rXiq1evrIxp31e4/3E6zNXCre9S5gijvRou8lPlLRgPLQuE6IYa6B7p
+         Rr5kLhUomikblDUYiAs79hqQBXo2KL62v966X/dRMj1GoT8p0Akk0CeyHXPt95Uz7V6V
+         pW0zC2FnPoo7r6nMi8wGupb6E0mW/phojzNj/uQ+xH1XGef5greTjzQaIh72IuzPns7y
+         yupjrhURyOnXk76PqJMxp8NR70QIpFKQsjFCDhltJEEYDbY77pSQsYJZocAC1l1xakOn
+         913A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764367825; x=1764972625;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TtryFy/Jnn1lu6emaHIQgv0be1BBuqd7mtOuBSPgxH4=;
+        b=iRg7zrJduIyqo4szA01/3+2nQstBHnD3Bq+VDQ3M7eAJkZ71le9xWboqqi/YjBo3g0
+         4HKPBFYQPBLN2NLAKVZdpogTCb7zURlsJLyYzF9wcHZ7TeOqPEvrJA5rx2c+73anct9j
+         ESBP10G7cwzeCAwnRMjeyUvrOIEJAeGHZz+oE6pa8Mq0fiT8XTf6CyPzJ85+2VCRYi8M
+         1Ui/Xlyy5e8UXg71/BKhBSq+cm4Qt9Jdrkv+x4lrPAfKIDSp7xCyK1BzG1vu5lXVxJfO
+         DRjvw0JFKifi62wFEfZA/VSsCIAulNMmxmOADL37rCXShWVtUXX/xLvoWAZfOvfmTtT0
+         AqZg==
+X-Forwarded-Encrypted: i=1; AJvYcCXAxztMcVcL5Spx+1HQf+/6E354ALQ+8qsIliQYw2T/czmOa1nYPmTQceYbKnaDjb9SdQT9DeBxRDZU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPzNan0MFwaQFzdIKnMANuFysnzoiGeEpiJsZIMUVwaCzbwS2I
+	YwGCeH+oJxmwG0LiInRTNcJMEel5jvtHLUUM0XngJ5vrADyUG52Ydx00EoPte5XwMrs0YTtx1zN
+	JZNakoZNi9oku2pEXRYj87uqXHpsHLK0hWSfMaYGZ2g==
+X-Gm-Gg: ASbGnct4ekx47pGqng8sFVUA3iDsND+dCceI5Jj9YB0wy2z5nOK1+hI6aT4w/z15aF0
+	57mVg7XSL/Tc8kEl3oADSpjn4XOzqJ7YkKrApiDv40PEZzoKex+hIYy/fFy2PDTqweHD9o7U/5h
+	ntDttX5u1C+TvZL25Lk93aeUHUQ+6L8Z32nbLd7DQQR5Y/Lo5k5dyCzBZL7cR5a+bJr3kZ6i7+n
+	SX0UmG/Qk3g+XozQfDw0kiChpR+cipsrRAyGD86VlZniyBrRu4IDKnZiBneykag6ILP5BBm+IQ4
+	r7Awsg==
+X-Google-Smtp-Source: AGHT+IF6uxs1MOaBwYS98Bn0GzrW1q1f1zZrvVB4FXm2OpQgyMwELD0Ap/9eb3cd8DdR7+aYEeGYiDaYLG+JtqKO+og=
+X-Received: by 2002:a05:600c:3541:b0:477:7991:5d1e with SMTP id
+ 5b1f17b1804b1-47904b24871mr180614205e9.25.1764367824947; Fri, 28 Nov 2025
+ 14:10:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: power: define ID for Marvell PXA1908
- audio domain
-To: Karel Balej <balejk@matfyz.cz>, Ulf Hansson <ulf.hansson@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20251127190237.745-1-balejk@matfyz.cz>
-Content-Language: en-US
-From: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-In-Reply-To: <20251127190237.745-1-balejk@matfyz.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251127212943.24480-1-jonathan@marek.ca> <aSl48gV9laFb-MR1@linaro.org>
+ <d969b3e6-a6e1-6dd3-45b9-539ba7a9f42d@marek.ca> <aSnH3C8s5xVSk_ti@linaro.org> <1aa75dd2-6fb4-e9ca-ca27-c0bd910246fe@marek.ca>
+In-Reply-To: <1aa75dd2-6fb4-e9ca-ca27-c0bd910246fe@marek.ca>
+From: Christopher Obbard <christopher.obbard@linaro.org>
+Date: Fri, 28 Nov 2025 22:10:14 +0000
+X-Gm-Features: AWmQ_bmdJ03bV1nSh2BOH8_pHW0yfc-GdIlZ-CyzYJDmHBPZ0i6Mx6j9iK0lNgw
+Message-ID: <CACr-zFBLC+dhM1Unv6iWaqg2H8DC2UbHQ_aQ9-am++MPUgg8ow@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
+To: Jonathan Marek <jonathan@marek.ca>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Abel Vesa <abel.vesa@linaro.org>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/27/2025 8:02 PM, Karel Balej wrote:
-> Define an identifier for the SoC's audio power island so that it can be
-> referenced through device tree.
-> 
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
+Hi,
 
-Reviewed-by: Duje Mihanović <duje@dujemihanovic.xyz>
+Sorry to hijack this thread, but I've been carrying this patch to
+workaround the buggy firmware from Stephan for my Lenovo T14s with
+64gb RAM which seems to make Linux boot & work just fine with
+systemd-boot.
+Of course, it's a hack and not ready for upstream.
 
-Regards,
---
-Duje
+On another topic, perhaps we need to add this to
+https://gitlab.com/Linaro/arm64-laptops/linux , what do you think
+Stephan ?
+
+Chris
+
+
+commit 16e21600c6a65ace0c75b5a722e27ced8e1bfc48
+Author: Stephan Gerhold <stephan.gerhold@linaro.org>
+Date:   Thu Mar 6 17:41:15 2025 +0000
+
+    HACK: efi-stub: Exclude 40-bit memory
+
+diff --git a/drivers/firmware/efi/libstub/efi-stub.c
+b/drivers/firmware/efi/libstub/efi-stub.c
+index 874f63b4a383..355a9b2c0818 100644
+--- a/drivers/firmware/efi/libstub/efi-stub.c
++++ b/drivers/firmware/efi/libstub/efi-stub.c
+@@ -106,6 +106,17 @@ efi_status_t
+efi_handle_cmdline(efi_loaded_image_t *image, char **cmdline_ptr)
+ {
+        char *cmdline __free(efi_pool) = NULL;
+        efi_status_t status;
++       efi_physical_addr_t addr;
++       unsigned long pages;
++
++       addr = 0x0000008800000000;
++       pages = 0x800000000 / EFI_PAGE_SIZE;
++       status = efi_bs_call(allocate_pages, EFI_ALLOCATE_ADDRESS,
++                                                EFI_RESERVED_TYPE,
+pages, &addr);
++       if (status != EFI_SUCCESS) {
++               efi_err("failed to reserve upper 32 GiB (40-bit memory)\n");
++               return EFI_OUT_OF_RESOURCES;
++       }
+
+        /*
+         * Get the command line from EFI, using the LOADED_IMAGE
+
+
+
+
+Cheers!
+
+Chris
+
+
+On Fri, 28 Nov 2025 at 16:36, Jonathan Marek <jonathan@marek.ca> wrote:
+>
+> On 11/28/25 11:03 AM, Stephan Gerhold wrote:
+> > On Fri, Nov 28, 2025 at 09:39:52AM -0500, Jonathan Marek wrote:
+> >> On 11/28/25 5:26 AM, Stephan Gerhold wrote:
+>
+> ...
+>
+> >>
+> >> I am using EL2.
+> >>
+> >> Without this patch, DMA buffers allocated in the upper 36-bit physical range
+> >> will try to use bounce buffers. The dma range from the dts is compared
+> >> against the physical address, not the virtual address.
+> >
+> > I don't think this is the case for the dma-iommu layer. I debugged a
+> > crash caused by USB in EL1 on a 64 GiB device earlier this year and it
+> > was happily using buffers above the 36-bit physical range without using
+> > bounce buffers. There is some code inside dma-iommu for using swiotlb,
+> > but it's used only for "untrusted" PCI devices and some edge cases with
+> > unaligned/small buffers.
+> >
+> >>
+> >> The crash I see is display driver crashes/freezes once a buffer is allocated
+> >> in the upper 36-bit range and it tries to use bounce buffers. This can
+> >> happens very quickly under load.
+> >>
+> >
+> > You could be right about the MSM display driver though, since that
+> > bypasses dma-iommu and manages the IOMMU itself. I stared at the code a
+> > bit and I'm not immediately seeing where it would end up calling into
+> > swiotlb, but it might be hidden somewhere in the endless nesting.
+> >
+>
+> Looks like you are right about this, MSM driver ends up going through
+> dma_direct_map_phys(), which decides to use bounce buffers. I didn't try
+> to see if other drivers end up using bounce buffers, but it would make
+> sense that only MSM driver is affected.
+>
+> >> The same crash would happen for EL1 as well. I wasn't aware of the EL1
+> >> broken firmware when I sent this patch, but instead of display freezing I
+> >> guess the behavior would a hard reset now, which is a bit worse but still
+> >> unusable unles display/gpu driver is disabled.
+> >>
+> >> This patch is correct and should be applied regardless of broken-firmware
+> >> EL1 cases (where 64GB isn't usable anyway), but I guess the Fixes tag
+> >> can/should be dropped.
+> >>
+> >
+> > Please clarify the commit message a bit and mention the two separate use
+> > cases (EL1 and EL2). I'll leave it up to Bjorn/Konrad to decide whether
+> > to merge it. At the end you are right and using 64 GiB RAM in EL1 is
+> > kind of a lost cause anyway.
+> >
+> > Thanks,
+> > Stephan
+> >
+>
 
