@@ -1,157 +1,136 @@
-Return-Path: <devicetree+bounces-242902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4393FC91028
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 08:14:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6289C91059
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 08:19:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B24384E7396
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 07:14:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A3E694E271B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 07:19:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 977692D94BD;
-	Fri, 28 Nov 2025 07:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F1BE2D6E61;
+	Fri, 28 Nov 2025 07:19:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="umjIAeWJ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Eubeh8xN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B77322D6E67;
-	Fri, 28 Nov 2025 07:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 770B82D6608;
+	Fri, 28 Nov 2025 07:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764314029; cv=none; b=NmmHSRgcFfcxWv6CU18vO7mwU/x9yVvhIKDn790/2HAi2RCFvLQfAwY7cn9yRZZh3kYz2K+Ods6RldBRoxf3phgXDXrFevP1mX0eJyZp35zBGm7OLN294hhuacd0/iULBYJ9EueH6f8iezvCiY28KKeVSIV7sznuIlcVMpoGtQ4=
+	t=1764314369; cv=none; b=FaFE7+SlIi998ggbHE7TK2hYakskQwrMugkS7bLYYd6rY1Vnx/S9dtvmfLVzJXKDN7mi40xaXSrZyJyjif9hG1gfpJY4siJOVMLz5tRBQRJWqB0UBwboEjTsepo6h/Uc/6NqObLnrh4Tilo24Ekzuyk7z8vl+liibynRlYvLqjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764314029; c=relaxed/simple;
-	bh=XqwFJKKGSF/A+veq+3NwtTC/uUIoZoJY8eUi10dvx7M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=CwQIWmX5GuJHDMKLB2VXAWsraWo1abtfB/voWOJ87KZPRzr9vgg/D89yDp4SYNWR6g0gv/ZcuZqGhUHyBUZPtkb7yG2wd/afWJlyKA3bytZIMzA3AEWGmfy1YsvTj4yiWU3U7sugeeqMBwmFh2h1YNNs+QWSLS04Q/coo5khjQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=umjIAeWJ; arc=none smtp.client-ip=54.204.34.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1764314016;
-	bh=bU/9WUN/59AwNz4ANd+6SuKrCznrmNWalFyjyHF+iy4=;
-	h=From:To:Subject:Date:Message-Id;
-	b=umjIAeWJn6ebjtRdBNCSevWwHZuARyGM/xpN0ytDhQyLS3QWmepVGMcZcpX89rvpT
-	 3EpxYGiH3rgvaMpvWzVRNo19D4CGy3dodNoqDGbXqiMeifUw5JzxU5xnr94S6iCqPx
-	 wX4nz5cQ1J9WrZIO/q0M7dZm+YogelV6cup97cSQ=
-X-QQ-mid: zesmtpsz7t1764314012t7986102a
-X-QQ-Originating-IP: fQ38+bagafd/aNZJRKe4NdW9zDnds+/df0ZWXL1qErc=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 28 Nov 2025 15:13:30 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 5273393561638931469
-From: Chaoyi Chen <kernel@airkyi.com>
-To: Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1764314369; c=relaxed/simple;
+	bh=46/udGBccKTCWu2bDFQe4uYCsNXACon1T2esAT+O8rQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RFdfsGADZORNS0RdpdAyus2090rdKdD3irQ576NFvNCGGrGFOXHt2NFv2z8uJHZHNwG0GfU6CaW0C6cnpCqErJ3f3Q03emp6USOa6FtKnw2So165OU8AZ1rMsc8w7Zc8l+AVrdefkMgrNywMtWi7NwyOc+1rOPsAVOaOpZImJTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Eubeh8xN; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764314366; x=1795850366;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=46/udGBccKTCWu2bDFQe4uYCsNXACon1T2esAT+O8rQ=;
+  b=Eubeh8xNgQi0K4C0mygpSarbQ9kffR63J8RzTDZAIpky7U7K0C7TmZA1
+   ckgsDj+RJ+SfDSwp0sfc/Q7O6k6W+UWkTHFUBw94xyt1pdOMD37OGSOoR
+   LU0xjCPtVoZdYJAn4NYS6PDKy1tr8fk9htLhl8dg8IXvv4+doAd3t1aV+
+   tVxCNka+GbKd2rSC03aacPdTPrRUG5WhekvW7/cN9Ek/HbKB1wNJgE/xP
+   U3HODJA+pPqK4o9cKVm/cDKbOMUVksXyuvS07jDA6330GBo9R2bCWrVJK
+   zlm+3eI8MDQZYcDmUpCKen3YLj4a8pCtuqvTwXBeghXYugdq3HS8X5yxC
+   g==;
+X-CSE-ConnectionGUID: CeyBtmoES9655RP8NQhMww==
+X-CSE-MsgGUID: 2+tXysmVSAmMTmMGTZygmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="77707380"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; 
+   d="scan'208";a="77707380"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2025 23:19:24 -0800
+X-CSE-ConnectionGUID: bYzWvcD+SHK3vhpLBErs8Q==
+X-CSE-MsgGUID: je9/Vqt8TOyDit1rPPBh7g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; 
+   d="scan'208";a="198353882"
+Received: from black.igk.intel.com ([10.91.253.5])
+  by fmviesa004.fm.intel.com with ESMTP; 27 Nov 2025 23:19:14 -0800
+Received: by black.igk.intel.com (Postfix, from userid 1001)
+	id 8B3F3A0; Fri, 28 Nov 2025 08:19:08 +0100 (CET)
+Date: Fri, 28 Nov 2025 08:19:08 +0100
+From: Mika Westerberg <mika.westerberg@linux.intel.com>
+To: =?utf-8?Q?Beno=C3=AEt?= Monin <benoit.monin@bootlin.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Subject: [PATCH v2 2/2] iommu/rockchip: Use devm_clk_bulk_get_all() to get multiple iface clock
-Date: Fri, 28 Nov 2025 15:13:22 +0800
-Message-Id: <20251128071322.92-3-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20251128071322.92-1-kernel@airkyi.com>
-References: <20251128071322.92-1-kernel@airkyi.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
-X-QQ-XMAILINFO: M58CI+QHpTskHy8BRZuj/91KW4IzwRNnXz6pUDMTnWo1Wlq/oUPxh8vp
-	CofL+olcz7XhfRv1YwbUvZPm+INHoOT2EB9zacr8O5q1YoGQtaikuSDk04k47xU2KeRbRD5
-	140LfLsAv5o+yE3jhHsrY2Uj8aD6glznMOhqqDsloej01MF+b7/2XtuE0zxdXLMAol+ZLNz
-	XRVogQd+332wFeKGGDrVmLQyV8n5sSgMPkZQwCJ7Zw/0t+tLsoQitqaj/gs3g9ZpOO5w9B1
-	E/f7iCvwsVylIuYDHl78kkOX6D6py/nXB6zlTgRCh9orHyNMHe4K3tBT3NiAPsr/9+OYOq7
-	3gCORD5hzb4ELQlXZscpmKEltPVB19WzX1+CtpsB25RZEVdU8OZ3CgmtBeVbr0Mv2ubRuYR
-	f0DF4CZe4P+TkdgfUeX2e+Vu3zP1GJSikLQ3eftOM7YKmyVN82oc3xpiLZ58ONhZmDrhWvI
-	ZlDoMKb5t0h10X+ppCKevmIhS3oaN4PMNF8i1V/c3Y2mJToDbZA58kRxLRk3BrCb4T4l6ui
-	LBKlPJPIBm/UR8IsN5a0ySsKl+0rrP/ZSSqThgDK1bxzNq7UctQaxIgSePHnxx+aQ+DM+9+
-	IOjR63mlETakocluucEcVc9QRk/dituI7Qy6ZEhXzI/71fK/04iSFQfbMzF3hhmdiY+Gjgh
-	U2wqVzXZYb4rpmAWzrU7ZYDKNlB2gCE57foOmdoLMUbiEJxppmziLfwoRtIQxXxq3vWciCs
-	8OMjPSVCO0TTA8+wuJZwDUuyNnKlXnndlHeXNnkb8iSfy78erpY+Yt8fVabjDUjpoOH3Ju2
-	fu9vU2cGZl04TkDudPedd4aZYmCjAoSK5X8ujo/zpKh4OKPWOlxPc1TZrSeoV7uOdcIqRPK
-	z7+F2WTIMC1A4VPtCKtm88Wqre3yv6ReuBNa5L0PM7JJjVcC4DWwV7bSAKESAqyXey1MkOu
-	RU1cbfO/QAMGjwZhYGwLCWu07npLL3eGBx0HYwOYjbQonq63Ht1asMeLoscDS4URoJFA=
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Jan Dabros <jsd@semihalf.com>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Clark Williams <clrkwllms@kernel.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Dmitry Guzman <dmitry.guzman@mobileye.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 0/7] i2c: designware: Improve support of
+ multi-messages transfer
+Message-ID: <20251128071908.GA2580184@black.igk.intel.com>
+References: <20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com>
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Hi,
 
-The iommu found on RK3576 NPU and RK3576 RKVDEC contain 4 clock.
+On Wed, Nov 26, 2025 at 11:46:23AM +0100, Benoît Monin wrote:
+> Add support for the I2C_M_STOP flag to the .xfer() function of the
+> designware driver. This allows grouping multiple accesses in a single
+> call and changing the target address after a STOP flag. This is achieved
+> by splitting i2c_dw_xfer() in two functions. The core logic handling
+> the transaction is now in __i2c_dw_xfer_one_part(), while i2c_dw_xfer()
+> loops over the messages to search for the I2C_M_STOP flag and calls
+> __i2c_dw_xfer_one_part().
+> 
+> Handle controllers that lack the ability to emit a RESTART when two
+> consecutive messages have the same address and direction by aborting
+> transfers that contain such a sequence of messages. For those controllers,
+> we also check that we do not get any unwanted STOP caused by a Tx FIFO
+> underrun, as they lack the ability to hold the clock during a transaction.
+> And we set the irq as non-threaded to prevent underrun on PREEMPT-RT
+> kernel when filling the FIFO.
+> 
+> The I2C controllers found in the EyeQ6Lplus and EyeQ7H SoCs from Mobileye
+> lack such capability, so a compatible string is added because this cannot
+> be detected at runtime.
+> 
+> This patch series also brings four cleanups:
+> * Optimize the read of the message flags in i2c_dw_read().
+> * Sort the compatible strings alphabetically in dw_i2c_of_match[].
+> * Simplify runtime PM handling in i2c_dw_xfer() with guard.
+> * Add a dedicated i2c_algorithm for AMD NAVI controller.
+> 
+> Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
 
-Just use devm_clk_bulk_get_all() to get all the clocks and use them.
+All look good to me now, thanks! I also checked that this did not break
+anything -> my laptop I2C connected touchscreen & touchpad still works.
 
-Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
----
+For the series,
 
-Changes in v2:
-- Change comment.
-
- drivers/iommu/rockchip-iommu.c | 20 ++++----------------
- 1 file changed, 4 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-index 0861dd469bd8..76f71fb679f8 100644
---- a/drivers/iommu/rockchip-iommu.c
-+++ b/drivers/iommu/rockchip-iommu.c
-@@ -93,11 +93,6 @@ struct rk_iommu_domain {
- 	struct iommu_domain domain;
- };
- 
--/* list of clocks required by IOMMU */
--static const char * const rk_iommu_clocks[] = {
--	"aclk", "iface",
--};
--
- struct rk_iommu_ops {
- 	phys_addr_t (*pt_address)(u32 dte);
- 	u32 (*mk_dtentries)(dma_addr_t pt_dma);
-@@ -1236,25 +1231,18 @@ static int rk_iommu_probe(struct platform_device *pdev)
- 	iommu->reset_disabled = device_property_read_bool(dev,
- 					"rockchip,disable-mmu-reset");
- 
--	iommu->num_clocks = ARRAY_SIZE(rk_iommu_clocks);
--	iommu->clocks = devm_kcalloc(iommu->dev, iommu->num_clocks,
--				     sizeof(*iommu->clocks), GFP_KERNEL);
--	if (!iommu->clocks)
--		return -ENOMEM;
--
--	for (i = 0; i < iommu->num_clocks; ++i)
--		iommu->clocks[i].id = rk_iommu_clocks[i];
--
- 	/*
- 	 * iommu clocks should be present for all new devices and devicetrees
- 	 * but there are older devicetrees without clocks out in the wild.
- 	 * So clocks as optional for the time being.
- 	 */
--	err = devm_clk_bulk_get(iommu->dev, iommu->num_clocks, iommu->clocks);
-+	err = devm_clk_bulk_get_all(dev, &iommu->clocks);
- 	if (err == -ENOENT)
- 		iommu->num_clocks = 0;
--	else if (err)
-+	else if (err < 0)
- 		return err;
-+	else
-+		iommu->num_clocks = err;
- 
- 	err = clk_bulk_prepare(iommu->num_clocks, iommu->clocks);
- 	if (err)
--- 
-2.51.1
-
+Acked-by: Mika Westerberg <mika.westerberg@linux.intel.com>
 
