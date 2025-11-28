@@ -1,206 +1,385 @@
-Return-Path: <devicetree+bounces-242945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 987ACC919AA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 11:25:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FD69C919BC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 11:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D91A8349BBD
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:25:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A3048349D63
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:25:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF6F30AACD;
-	Fri, 28 Nov 2025 10:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDC330B538;
+	Fri, 28 Nov 2025 10:25:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="Gk0lWmuQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RTdSCiuT";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Gf7YO2SN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011059.outbound.protection.outlook.com [52.101.65.59])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94743054DE
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:25:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764325503; cv=fail; b=Sa9HJspUIj28UXfRVs+ydDoVcS3hplrMUYmti+pqH+Sjwe9dLdzt33xkudBuDx9hNOKmtX7+BLDBrOfH257RSsxI3R3+V95nSGEiO6lWoJqPlBmjCs1gE9MxQwdztwln8BvT4M9rCBUSI/Fno1RVGRLYFnt4S//4GuCrKfw+KAI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764325503; c=relaxed/simple;
-	bh=3G9/rHj9vaR6MV4yz11D6Koijx4UKH44inpmqwMQgG4=;
-	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=gFM6OTGx2/+ETU1Id3UEbLBNdCqqvTA1pofjZjVLFtPCXCQxnmR/pemB1jQKET86m3AhpSZl5UFYFJWGEsNNQW4Eq3ifAb/zH8CpJZ35frgB+AOFNz2Q12kfmNfMlBwUzXNjQryIP1PhQMypL/+bZsu5th9ozKp00kd2eQ8NmVY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=Gk0lWmuQ; arc=fail smtp.client-ip=52.101.65.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b6hmuKhhGV33y5EEc5HGRlgFT2gKdb1OiaPTZPJ8WpZLM5NaPm2+iT5niMDHNpTVE/a/eqDWHgh5shxvYJaJKFRtKU8FgieasRraAPY7vKYnIKUzMTE5xLWAZ+ZAj2Vgv23MvoJDE+BFUfeJhTwdSqCd/KkuyeTbWjsC1YczDY6pa1spGDcXBzv1UtFSdlLC5ZIZ8C7uIyHso4xRyi60XKveYTKQmsLg98SybTJAVxvhxgX3uyRzhwW6j3ioJFDUc7aIm3a513cBpao+9MnaB/4a1ZKc/AbVDV80gt3SlhPIBY/mtrks7a4N9cKWgU9Z0+g11oMngY387sUSABOU5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uqiI/DSODNW3edtgmI2C8ROPplmY1haUEGC2COb+vAs=;
- b=KrGS/UQLAJ0iRn4LTkFv6AmNO6lYh4bDi1qFRyBTx6RKqSiKQR86hef/Acjvg+DbF45tuRHW65hB5Zys00FEO/1e4bfb4Y/GitzH0D0b6oqhTG8M6947H9MVsGsxvrIk5rTZFOtQUGhBcG5uvih0jk8yWweotyzGkw34BPrEO+smqtzyUBn71bbRCQ4WeKKRPASgCBzUUMV3sWoZL2mo1KcUF8/rQnWErPNtgWxscleN3LTnXwApdqhI1ncF7w3T3thKdoRVUfqD/mrnkxkPg3DOBhGnK76cqeE9FswLNIwILpSNctQi3poXVmnIWpPr61Oq49SJ0wBof5UXfV18aQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uqiI/DSODNW3edtgmI2C8ROPplmY1haUEGC2COb+vAs=;
- b=Gk0lWmuQvqsdToNmWQMiBF6KrAhYQ0ectyhHyyd8WWuxKHMMS8DbfcW2y0OMDacuM0lWP5+y0iOgFxXknhaBGNhYaO3/Z2vq5b20S8iMiJDoQd0kFUF2aq0ZoKOw1QZnEtvULPoq0C2i2ftdVh/Oo5etzV7KNBWvee9npSQZqIU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com (2603:10a6:150:2be::5)
- by DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.13; Fri, 28 Nov
- 2025 10:24:54 +0000
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::1033:5a9a:dc18:dad]) by GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::1033:5a9a:dc18:dad%4]) with mapi id 15.20.9366.012; Fri, 28 Nov 2025
- 10:24:54 +0000
-Message-ID: <a93ace02-a952-4727-957b-0ed790b47676@cherry.de>
-Date: Fri, 28 Nov 2025 11:24:49 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix audio-supply for ROCK Pi 4
-From: Quentin Schulz <quentin.schulz@cherry.de>
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- knaerzche@gmail.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Heinrich Schuchardt <xypron.glpk@gmx.de>
-References: <20251027005220.22298-1-naoki@radxa.com>
- <acfc2185-0cb9-4620-abdb-ee25028e8374@cherry.de>
-Content-Language: en-US
-In-Reply-To: <acfc2185-0cb9-4620-abdb-ee25028e8374@cherry.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: WA0P291CA0020.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1::17) To GVXPR04MB12038.eurprd04.prod.outlook.com
- (2603:10a6:150:2be::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC3630B505
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:25:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764325519; cv=none; b=QAB3CQgfCqDUJGONOJnFw7EN/CwqLct7Z+5k/T42AS/KywCgVT5hVQ26drv6WE9xy+4qCjlBiT1BlK0w7aoPSrUqEKZOU2yLU+jfNmvkQevVuNmXuUn5f4+pq0pFqrmOX9f8REfZ8Y9fj7p3bF9bI/C5qiBi8DpffyMUOs0VOFc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764325519; c=relaxed/simple;
+	bh=fZgWizBnPPlVTWS2nuOlSWwPJtzT5jETR+QI+4Hy6j0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=YMCDFyPkOhPGzOlbdI8ULhbVsN3jUU5Va5bIC2aj3zyq+U0Wuu2mTUx4NCXwFrxAihX30tophr7kMDgVAG053n/6E0yLBtwg+bJ4oKpQDyuzK1MMvzSx99pQAOc7+maisaByJVjkt8QHJ+VeLzz0g1p9I2zTDLXuRx/Dpynb0aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RTdSCiuT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Gf7YO2SN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AS8P9xB2986640
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:25:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=vxrCpTObh+sq8TpBfdVpWIOw/J1PvdPRar/
+	7svAe1Ms=; b=RTdSCiuT+ZrAtcmrWHLcsKkF3kxC1NSMTWNaQipQelKqJ048qfq
+	IIsxoZuAOpKGfHBWhWFqDO5X22iGtkWvcGNcUiAXtngk9yT/b841WQGC/a7ZAhJ1
+	v2hB7pYiV066lNyfM9sByg3YhyWddc/TdvZISK/NZggvej1xdRiW1yp8/pk49Q93
+	txWZEMc84OS2vn6btJ5wyHTFZXtjInHU7yJygLU4SuxvcQeCqkPhCCC0A+DZolCa
+	nx1pZpZM788eeh/JtEbzvSzdxQjJWc31+74219xGsyhK5CrrmfvV9ZsxOmdnb197
+	9rN1nFusoEx2fpJVKWSsBS2bvJMfdTktTBw==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4apmvxjy6t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:25:16 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7b80de683efso2589188b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 02:25:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764325515; x=1764930315; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vxrCpTObh+sq8TpBfdVpWIOw/J1PvdPRar/7svAe1Ms=;
+        b=Gf7YO2SNE+2JhUrtSvdBctpSj1n0Bondl4blivTcKCoVca3sXiRBkU310BXbgQYubB
+         QXm6PvsAjiCTwvmvSQKem+9i7Kwr++htykhVwda/rB730u3ysIdiVS6kJ1noSi/ElOF4
+         eXO6IQBArtBFyj6zl0KlsN9aq5zy4O7q4rG3C+Ohtwjvgi1fwUT8csMesqyw1dkMzzyT
+         P7CdernAu/qOrUrirh0wRLllQ4v68WZ084Rl5KoD6H+4RP0gmSb523E276y9NZO/wVEx
+         nFIPPztrmFiHkJQgVxQhkiNljQPvUAw7Dh5nUq3XznEeM/0F+qsXywbLlYZSU5J0M1W+
+         4kzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764325515; x=1764930315;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vxrCpTObh+sq8TpBfdVpWIOw/J1PvdPRar/7svAe1Ms=;
+        b=aNwGCMgxwwLY3rr5jXYuq7eeQn+mrE43jSOIjZb9YMfK4/XtDTe/QFXmPM/J35XfId
+         8zN9cDCgFgXdm59oIjxuvAfZoDYfkW1AwXIJbUPnkG/kS/Gavq+Mrln5GCR08eTkyVKx
+         kVwChUY7E/uFzBWpJ+1Fm8aratsaUP2A0AqLK2d08QvJL2fiwyRTC/12dRj6qNoOzrCS
+         WczEoZjCLsEBFR7s60H8s2tO+RBYKVu20PsvRHFX/EqmUYsngDhbBa2nEJbCnrepxxr5
+         5XOKTICnUrXEclkjhr+OcZIEjWcDCHuGOYlIVmfQLqNlwAR3f0D3jxkrKhtIOaRDkYDT
+         ympw==
+X-Forwarded-Encrypted: i=1; AJvYcCWpBjjU72gisuSk4BnjIVwAay5Cv9Ka/TFXNwVnHBT1pXnNrUZ5WfLt98FqCaiFiqby8Ay4rxyOYr6L@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKgiesMsR432u68S8P0FNfHNG5D2ff7eklLBrJlcseg54Rr7FD
+	wED6uXEjcrEduLFhrPGNZVy3R/GQ3QoU+S5thcwpw5vVUBowDNcxXQDgqhP9iR2ZkmeNfmxtG6o
+	7cSaw8qadv6S95yHn3Lt/v3RRP/fE7ssxn62QM+xR15+WjG66zU7/GlxQH4b68mnh
+X-Gm-Gg: ASbGnctF1vmkqSOqEVbhFrYovhMK/ER4e/NBILhZMmB48KSLDLz5FFrI2SSPak1bBFD
+	4UmsmQTy9ugvc/gdzC923+1DTznoq7FOeNUSs2JzMNEwuuOxJkNVxMpcnwzXsPHft61BBt1tpFM
+	dBhi4rJxCXuQDHHjL071TxL7knFuvk7h61O0Yjwg03sSZje5twcejrkyb0lwv9aWqVJCDNkiP3p
+	PPymr5bOZuvrS+nI4HNXtu95aP1lWuFordlVW/t3PRXeb0FVBITKeKnv7pEd87aAx9yMrXBI4du
+	NfZW48aTc/SDHkdGxs454fGSTaZMcKAAeriWc+GJSCWbM+NmWL/9TF+Iwj2oe8tw0ZHUdQmZ6qv
+	b/zr7aupY1pmmLT1DwTkCmmoijPFZMfjMBw4WMRpw3quitDs=
+X-Received: by 2002:aa7:989d:0:b0:7aa:ac12:2c33 with SMTP id d2e1a72fcca58-7c58c2a7354mr21421316b3a.1.1764325515317;
+        Fri, 28 Nov 2025 02:25:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IElceZ+5sXf28FIfmwcALeTyEwrEaZoHYrPc4zex0f3/yT0I2F4BVk4hndXZaNhkmXYfAWmIA==
+X-Received: by 2002:aa7:989d:0:b0:7aa:ac12:2c33 with SMTP id d2e1a72fcca58-7c58c2a7354mr21421293b3a.1.1764325514750;
+        Fri, 28 Nov 2025 02:25:14 -0800 (PST)
+Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d1520a03a3sm4621255b3a.29.2025.11.28.02.25.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Nov 2025 02:25:14 -0800 (PST)
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Subject: [PATCH v7] arm64: dts: qcom: lemans-evk: Add OTG support for primary USB controller
+Date: Fri, 28 Nov 2025 15:55:07 +0530
+Message-Id: <20251128102507.3206169-1-krishna.kurapati@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12038:EE_|DU2PR04MB8536:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9baf9d38-348b-45ec-c969-08de2e685f4d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|10070799003|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?azVwUkZ5MjRmZ3l0alErTjMvd1k5QXpWMFIybm1VT1gvZjNwUG5TWjBuVU05?=
- =?utf-8?B?djJXU1k1N0lWdEkxeXBLUml1c3ljSURZWXNTNnQ4bjZYM3ZMMFNYalBDQzAw?=
- =?utf-8?B?Q09NR2JsaTRlcDUrUVFBdkdSYzBKWWdyS0txUS9JZHVKMWZJQXE3WEJyc1RL?=
- =?utf-8?B?bDNPRU9sQWNXbkZydmhWRy8xZUNqbDU1UkRqdk03d2R0ZzNGKzRkU1pYMk1N?=
- =?utf-8?B?VzRLNS9Ec3orbmNFaG5ZU1dNU0d0dWZQN1FKeDdBZmd1YXkvaGtnWHoxVGRh?=
- =?utf-8?B?K2JKS3NhVzNwV3VtcWVEK1ZqUEhhendCQWJkY3l6QWxQOWtyeVEvU2FkTXlp?=
- =?utf-8?B?OVJvZGVSQUNQZjJGcjRwWnkrOFpPQ1o1UXBhMGhReG83em4zSXl2ZzZ0M0dj?=
- =?utf-8?B?emdwaE8wMXEzVC8raStIcmpaQ21Xa1NOWWtjazVmeFNJMTdwK3IzR2xHOXFj?=
- =?utf-8?B?TWtFaDg5Q0V6c2IvdWF0eWFEbkZqdUxja1hOWjhJZndkRkx0SG11S1BRQXRl?=
- =?utf-8?B?SjcxdmtGNmtsTHJmT25ncWVZMUVvTXI0N0hDNks1cXVjdk9QODhGY0FvZHk2?=
- =?utf-8?B?UktiWDNwZ3c2N3pDVERmM1E3cGJ4anZTMXZSZmdHTlIvREt2TVpJTi9OdlI2?=
- =?utf-8?B?djFOTXcyV0VqZkhKZFZRSGJCcDhSSFpwK1N4Tk51aGp0N3JVc2NTcHdPenRO?=
- =?utf-8?B?WlA1RGd0b3FHd0lmN2hMQllNd2VwY3B4a0RUR0lQR2ZmZm43SndkQ1lNMmxG?=
- =?utf-8?B?am5DOThLM1FyVWlOWC81bHVBUkR3Nml0NnhaUWQvbE4zOTVyWkg2S3QxSzhx?=
- =?utf-8?B?VC9peGlxSng3bmNkWWJabzlhTXlVQlVZc2Uxa1R4eGQxVUM5TngvejA3MFBa?=
- =?utf-8?B?YWxkc0IvMFcyeXhINngwWGduVlpPdGZSNjVneG5JM3lzaElab2lKQUNoMW5Q?=
- =?utf-8?B?S05XUlVTL3FNaUpUdXpjdllabG9Pdk42Smw1RFVaZm9zanYxaVFJTDhVSW90?=
- =?utf-8?B?ejZHZmlKNk9ZdEY2bE1KbGN5T2VjaHNubTkrdVJqRnRlUkZsOVZmd0N5c0tI?=
- =?utf-8?B?WVZFcEtLTnM1U1REU3NTMkQxZ2phWHZuRXVyWnN2ek4xZU80MUxxYlpoNDVu?=
- =?utf-8?B?R1p3MFJJRzM3NWhHLzhXYVExRFlpUnM4dzlENlJXcUdwaWk5bEZRN0pjUjY5?=
- =?utf-8?B?bFdHWG1ZYWdFZENSRlM3WUNKNjB6bnF1Uy9JZnFITDl4QWJoU1BwRWxsb2F3?=
- =?utf-8?B?MUlnUW92M3FHdWkvT2tEdk1FMDJ2Z1lWR3BFNHN2d0ZuLzQ1T2hUNGFwOGlG?=
- =?utf-8?B?cmtLNHhrS3BJOEJXb0lUOGtMUHFxTFRJR2QwV0hFYnNjVVJmWS9mVW0rREVR?=
- =?utf-8?B?VThPVkVMRGpZN2t1VXBJY1VzZlQzSm1JRUdPV3hxUkVybi9TSjRqdmh1MDUx?=
- =?utf-8?B?QlN3UVBMOFpLZ21LeXZkRURjbnlTTFB0SXBCcDd3SmphT2l5ZzY1dnlkU0wx?=
- =?utf-8?B?VTFKck1LWDcwdGhDalBLNnFjUWllR2J4Qnp0SzVrV3U2cFlyUnE1OXF0cU80?=
- =?utf-8?B?V3k0aGhwbzR1TmlaY0NydW5iOWNDZFErSTZDeGJjR0V3dEcwUVFTdWdmbDdI?=
- =?utf-8?B?UHdxNTcvMjVNUE1LRjd6Njk5cTN5QnFqWFVWSlQ1L0ZPNnVTaVRiZU02QTVM?=
- =?utf-8?B?ajNML2M5NXZoMmNCN01yQlk1ZkFDVjN1S0d0Y0psRUpVQzAyYm9CN2tqaWpE?=
- =?utf-8?B?UkFydVMwM1M1enJhNWx1cmZqMk94VzNtTmJkVVRUL3dQT0hRM1FmbFhJd01m?=
- =?utf-8?B?aGtwdU80SjQ4dG9uZWl3NVdPanFHNHRBNzZvWi96S0lNdUZodjYwWkhxUCt6?=
- =?utf-8?B?cTBwNGRiWU5QQytBYU9TaHhEVFpWYi9Od0lnY2czZ0tNUmdkU0pQdTZiNDZ6?=
- =?utf-8?Q?biAFvSCAvRWfZ5xoHR0gjPT6YKV+J72h?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12038.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?N2MyTFcxUVVFUjNqOFNUYUhROFlaUzNNNnNSYWwvV0x1dkFOUG4yV29TcXMx?=
- =?utf-8?B?aG5Fb29Jdk5lZUk1a0hySkZ6N1FxU043Mzd4eG1zSUZPc01wOU54anBkRGxY?=
- =?utf-8?B?cFBSb3haRW9COGxPYTRQSzJOekNTNjA5MDJMdDhpVkpDOU0xK3dtVEdleFZp?=
- =?utf-8?B?QTNhS25ZR1ZaVmlmbW1aT1h4eHNhSmJvako1cmpHN0p2bzRxd2xLaVRjWUIv?=
- =?utf-8?B?bVhydHAyWDY4NkxPN0FXaHJ2cm5pelJHWGxISWFhbDJ5bnZmR2tkUEVsZGpH?=
- =?utf-8?B?R2cxZ1BlaHltTk82N2o2VTNqYXBicHl0UXV1KzV4eCtZcFUyaTVRU1BySFZ1?=
- =?utf-8?B?eWdTZnArcmtTSXdJa0pVbnBkdCtnaFlITzRFbzBGSjN2SnQrR28rc1RBT0RZ?=
- =?utf-8?B?WlR2US83SkhzN0xNdkxiSUFmSTMvTWhldTYvaUN2UG0xTGpiRkRDNkFqT3hi?=
- =?utf-8?B?bDFMdW83eUk2SUVFaTVwaFQ2dXo0c1AwY2FHSnZvZHZzOUpkaWV2WmswQlM2?=
- =?utf-8?B?L1MydGt6eTd2NGdBYU5iN09ZSkpNeE1JcXNLSGZlR3hkUk8zMWZaZlIxTVBD?=
- =?utf-8?B?U3dXMnNtc2lPUUJTemRMeUZIMmFoZzNzdWFydEtvak5scy9HZko3RGUwejFF?=
- =?utf-8?B?OTFSdURtS0htWlM1b3JxU0N1U2JKa3JIQW44Z245OXdCYXRZRWEzSE15SEs2?=
- =?utf-8?B?RjJtZXNMZ3d3QTBuUTl5VWdUSlYxYll1Smh0WHltVHFiMlhNZmRvaDZZOTFT?=
- =?utf-8?B?VFpCZ2ZHMEJSdlJ0K3hwVFcwdGFYb1NHQllObHlSUTBuajZDSTNJd3FsdXJR?=
- =?utf-8?B?bUhQbVJvVVFPbFVLU0VRa3hiYm1xL0oxTDBjb2FtMXgvd3g1YlVoRkRuaWZ5?=
- =?utf-8?B?RWY2VVpyeElWWk0wRWlOUEdRclc4T0VsOXF2d0txRXBoZ0RTQmVRVmRuMmtZ?=
- =?utf-8?B?R24rZVptSGtoT1pBR1NQNHRacmZCbFZkRnNzZDNSTjEwWmlmaHZRcCs1SThh?=
- =?utf-8?B?K0RZWmlTNlBOdVJjODlyRHB6c2toMUxqU2JwK2Q1U2dRSVVqWTB0cy9yeHhF?=
- =?utf-8?B?YUhqZFVXcVZBT2lhVTVybUhYREMyczV5NWQvbFk2REVCWTdKLzBlRWZBRXQy?=
- =?utf-8?B?ZWlTNW1JNVY0TFMra1luQVk2dkRqekZXS1lOK3p0ZmthSGU4RzhQS2txSnhs?=
- =?utf-8?B?YmttK1F1aGdxaDBzdUhMQm05UFM0eCtsYlE2WG1KamVhVElaK1VLcUFNN2RN?=
- =?utf-8?B?MHpwT3FqMlRQSUpZVUJMMnVDS0NmUXlHa3BGUmt4MU9EdG4xK3crWjYrMmdw?=
- =?utf-8?B?UmpXV0taVWltMzhHendsS0x6NHc2ejRTQUNPTkwvQnpaKzZocVdybVRJc3FK?=
- =?utf-8?B?MWkrYWErNkVtT283d0RLRk9RVnNSRkRub2x4Rjdzd3R6cXpqWmFqMFU5TTEy?=
- =?utf-8?B?bnltNEtGc1Y3QzFJN3IzMDd2clVrOWNTZUxDRmRNdGR1czRhbW43UWh0Zzcx?=
- =?utf-8?B?T05LaFV6NURxeTNIenYvdTA1RFNIaGFsUWhNdXhvMU5SZXRGRVVOQ0J5ZTJX?=
- =?utf-8?B?WmFxem5DUllIR1l4RTB5WndXQk5jbkhDQVVQSVFWYnRqVE4wWFZ3UWJDOFdy?=
- =?utf-8?B?dUJzWkF1Y01DL3BJTnVJTjRTSlpWa3Z1N0xjYi9lZWpLalRPRFpWd1BzT1ht?=
- =?utf-8?B?RzFVWjlNRDcwWHZPWjJWc1FSdXJybkwvTFhYWUpESUlhV01jd2RZRnpmbEtp?=
- =?utf-8?B?L05rdi95QStCdDlMWVc1UmJsREtBWkRJT2kwOHdZaEVMdWM3czduckRXYXJi?=
- =?utf-8?B?MGkvWDd5MVg0RVdINUc3WmhJNm1URFJIcys3WDk4MWRRV2tFOEpJWHNEN095?=
- =?utf-8?B?alNjR3k1eVlyWWk5NTFZNU4vbXE2OXozdHpzTXNDT3BGb0lIaFZtWkdTOHly?=
- =?utf-8?B?Q1JpcUg5QXNUZVQ3SkhmVmtTRUtHUWF5VXUvTEl6enp3U2FpR3QxelRuMEdJ?=
- =?utf-8?B?N204SnBsVnpoZDlTTi9zaXFiZktQSk9aRnB3YUl2dXVINkgxdlYrTFJSM3Z4?=
- =?utf-8?B?aldCSjZWSjJtNEFURWlKSE9nSjdtUUhaWlE2eU5HWjIwOVNMQVY3andiM0ZJ?=
- =?utf-8?B?VGZJNDByVE1Cc0RoSE0yU1JTaCtsaFJIYVJWUFVxOUNwRWJ4dFFDWEhEMk9X?=
- =?utf-8?Q?6dZobX9RIDJd+fc7qoZ/mTw=3D?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9baf9d38-348b-45ec-c969-08de2e685f4d
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12038.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2025 10:24:54.4711
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: c8pt7o0BfpwaOtn4KlyhxUMsC0V2i7cQIDh/nBHPg+Lo7FijUgz5jJCPEdvz0KSPmDg5IOcYoudiIwFUXZP3H9M6Gwou9NYU/1oyDquTBbE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8536
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=Vtguwu2n c=1 sm=1 tr=0 ts=6929788c cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=QAzQKOYyiUK49Y4y4FoA:9
+ a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-GUID: MEaDKZq5xdGYnX74fFoHKmGsNNAUwt6F
+X-Proofpoint-ORIG-GUID: MEaDKZq5xdGYnX74fFoHKmGsNNAUwt6F
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDA3NiBTYWx0ZWRfX5tG0bVStgCA1
+ Mm7B0yH9G0h5Cc4RnKbpFwsBras0/BCn+HJ1lD/nssJ6Z2EuYy0k9ZnxQ7HJptbkZFZrow29brV
+ pJPEP77FXm+ckWEdfnOl/L1hvn8aIMHHbNYZrXLppwxpBevN5MW8GI8NHr4tRoV0yG/Tbqz6loJ
+ lP+j64j71OVoLvBgAu16iPwTDD99IgzZKQX6OxtUbivV6zm5Xmewvrb1EVtsbEF411iPTlyeAfR
+ 4wAKHrFjyWnUcU7awABnAiizWBpVSF2gCG7REy3JejDS4DHf3CgiVNY+wgfUBQ3zwwCxobMXCxN
+ Xa6XEIhEDJ/MbcJATo61p5ntfDszm0Rhz3jUelenpYtok+N/df2hP/poFfXNEvtNK0dDHhHIzIL
+ HSg89vvOhZL2MiyvNFvrg4GFXHcfkw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-28_03,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 impostorscore=0 phishscore=0 adultscore=0
+ lowpriorityscore=0 bulkscore=0 clxscore=1015 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511280076
 
-Hi Naoki,
+Enable OTG support for primary USB controller on EVK Platform. Add
+HD3SS3220 Type-C port controller present between Type-C port and SoC
+that provides role switch notifications to controller.
 
-On 11/27/25 4:20 PM, Quentin Schulz wrote:
-> Hi Naoki,
-> 
-> On 10/27/25 1:52 AM, FUKAUMI Naoki wrote:
->> This reverts commit 8240e87f16d17 ("arm64: dts: rockchip: fix
->> audio-supply for Rock Pi 4").
->>
->> Fix the APIO5_VDD power supply to vcc_3v0 as per the schematics[1][2]
->> [3][4][5].
->>
->> This fixes the SPI-NOR flash probe failure when the blue LED is on[6],
->> and the garbled serial console output on Linux.
->>
->> The ES8316 headphone and microphone are confirmed to work correctly
->> after this fix.
->>
+Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+---
+Changes in v7:
+- Renamed hd3ss3220@67 to usb-typec@67
+- Compile tested since its only node name change
 
-Please test the ES8316 works when booting Linux from a U-Boot where 
-ROCKCHIP_IODOMAIN and SPL_ROCKCHIP_IODOMAIN is *disabled*.
+Link to v6:
+https://lore.kernel.org/all/20251127073537.1218832-1-krishna.kurapati@oss.qualcomm.com/
 
-Having the IO domain properly configured from U-Boot may make you think 
-that the ES8316 always work in the Linux kernel but that may not be the 
-case depending on probe order e.g. between the IO domain driver in Linux 
-and the ES8316 (if the original issue is indeed related to IO domain).
+Changes in v6:
+- Renamed remote endpoints in controller node
 
-Cheers,
-Quentin
+Link to v5:
+https://lore.kernel.org/all/20251125110420.2192971-1-krishna.kurapati@oss.qualcomm.com/
+
+Changes in v5:
+- Re-organised pmic gpio node to maintain alphanumeric order
+
+Link to v4:
+https://lore.kernel.org/all/20251102165126.2799143-1-krishna.kurapati@oss.qualcomm.com/
+
+Changes in v4:
+- Moved remote endpoints to SoC file.
+- Renamed vbus regulator name.
+- Moved usb-role-swich property to SoC file.
+
+Link to v3:
+https://lore.kernel.org/all/20251024182138.2744861-1-krishna.kurapati@oss.qualcomm.com/
+
+Changes in v3:
+- Moved "usb-role-switch" to lemans dtsi file
+- Moved vbus supply to connector node
+
+Link to v2:
+https://lore.kernel.org/all/20251008180036.1770735-1-krishna.kurapati@oss.qualcomm.com/
+
+Changes in v2:
+- Removed redundant property of dr_mode setting.
+- Added power-role property in connector node.
+
+Link to v1:
+https://lore.kernel.org/all/20251002172946.589061-1-krishna.kurapati@oss.qualcomm.com/
+
+ arch/arm64/boot/dts/qcom/lemans-evk.dts | 108 +++++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/lemans.dtsi    |  20 +++++
+ 2 files changed, 126 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+index b40fa203e4a2..2536ebe36edb 100644
+--- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
++++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+@@ -38,6 +38,35 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	connector-0 {
++		compatible = "usb-c-connector";
++		label = "USB0-Type-C";
++		data-role = "dual";
++		power-role = "dual";
++
++		vbus-supply = <&vbus_supply_regulator_0>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				usb0_con_hs_ep: endpoint {
++					remote-endpoint = <&usb_0_dwc3_hs>;
++				};
++			};
++			port@1 {
++				reg = <1>;
++
++				usb0_con_ss_ep: endpoint {
++					remote-endpoint = <&hd3ss3220_in_ep>;
++				};
++			};
++		};
++	};
++
+ 	edp0-connector {
+ 		compatible = "dp-connector";
+ 		label = "EDP0";
+@@ -102,6 +131,15 @@ platform {
+ 		};
+ 	};
+ 
++	vbus_supply_regulator_0: regulator-vbus-supply-0 {
++		compatible = "regulator-fixed";
++		regulator-name = "vbus_supply_0";
++		gpio = <&expander1 2 GPIO_ACTIVE_HIGH>;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		enable-active-high;
++	};
++
+ 	vmmc_sdc: regulator-vmmc-sdc {
+ 		compatible = "regulator-fixed";
+ 
+@@ -454,6 +492,43 @@ &gpi_dma2 {
+ 	status = "okay";
+ };
+ 
++&i2c11 {
++	status = "okay";
++
++	usb-typec@67 {
++		compatible = "ti,hd3ss3220";
++		reg = <0x67>;
++
++		interrupts-extended = <&pmm8654au_2_gpios 5 IRQ_TYPE_EDGE_FALLING>;
++
++		id-gpios = <&tlmm 50 GPIO_ACTIVE_HIGH>;
++
++		pinctrl-0 = <&usb_id>, <&usb0_intr_state>;
++		pinctrl-names = "default";
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				hd3ss3220_in_ep: endpoint {
++					remote-endpoint = <&usb0_con_ss_ep>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				hd3ss3220_out_ep: endpoint {
++					remote-endpoint = <&usb_0_dwc3_ss>;
++				};
++			};
++		};
++	};
++};
++
+ &i2c18 {
+ 	status = "okay";
+ 
+@@ -607,6 +682,16 @@ &pmm8654au_0_pon_resin {
+ 	status = "okay";
+ };
+ 
++&pmm8654au_2_gpios {
++	usb0_intr_state: usb0-intr-state {
++		pins = "gpio5";
++		function = "normal";
++		input-enable;
++		bias-pull-up;
++		power-source = <0>;
++	};
++};
++
+ &qup_i2c19_default {
+ 	drive-strength = <2>;
+ 	bias-pull-up;
+@@ -746,11 +831,24 @@ wake-pins {
+ 		};
+ 	};
+ 
++	qup_i2c11_default: qup-i2c11-state {
++		pins = "gpio48", "gpio49";
++		function = "qup1_se4";
++		drive-strength = <2>;
++		bias-pull-up;
++	};
++
+ 	sd_cd: sd-cd-state {
+ 		pins = "gpio36";
+ 		function = "gpio";
+ 		bias-pull-up;
+ 	};
++
++	usb_id: usb-id-state {
++		pins = "gpio50";
++		function = "gpio";
++		bias-pull-up;
++	};
+ };
+ 
+ &uart10 {
+@@ -779,11 +877,17 @@ &ufs_mem_phy {
+ };
+ 
+ &usb_0 {
+-	dr_mode = "peripheral";
+-
+ 	status = "okay";
+ };
+ 
++&usb_0_dwc3_hs {
++	remote-endpoint = <&usb0_con_hs_ep>;
++};
++
++&usb_0_dwc3_ss {
++	remote-endpoint = <&hd3ss3220_out_ep>;
++};
++
+ &usb_0_hsphy {
+ 	vdda-pll-supply = <&vreg_l7a>;
+ 	vdda18-supply = <&vreg_l6c>;
+diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+index 0b154d57ba24..bf869c5b5ee0 100644
+--- a/arch/arm64/boot/dts/qcom/lemans.dtsi
++++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+@@ -4026,7 +4026,27 @@ usb_0: usb@a600000 {
+ 			snps,dis-u1-entry-quirk;
+ 			snps,dis-u2-entry-quirk;
+ 
++			usb-role-switch;
+ 			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_0_dwc3_hs: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usb_0_dwc3_ss: endpoint {
++					};
++				};
++			};
+ 		};
+ 
+ 		usb_1: usb@a800000 {
+-- 
+2.34.1
+
 
