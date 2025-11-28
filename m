@@ -1,137 +1,187 @@
-Return-Path: <devicetree+bounces-242936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5DCEC91815
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:48:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 679BAC91848
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:49:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92ADE3A7138
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:48:05 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 16CD13488E8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0DE3064B9;
-	Fri, 28 Nov 2025 09:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD65306498;
+	Fri, 28 Nov 2025 09:49:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mpWl2GQE"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JOi7Dg/L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5C03064AC;
-	Fri, 28 Nov 2025 09:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49459302749;
+	Fri, 28 Nov 2025 09:49:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764323276; cv=none; b=g4u5EgUVvcM21yZR7rueuO8Bi38wGzyVIY/cGzNO98DDDMJCYfPPplnpzCo7/AYpyVC3znrFxG0V2eaFAXcpwbfRboZ9WVKe3+vEJGtqoBL1jPoB037VFYF6z+Foah7oAr0iUgAiDzONA2E75T4UwYpPrNUUvmBpD+gH4bCutVY=
+	t=1764323363; cv=none; b=YiN7+2/niD/Wmc7K3D1GKUPXyTOxq3fhjqGKSU6P5QcuXhM4+VZAADVUN0TuoTGOJw5W18qwvpE1beaeMVd+EgXlSbDjAEvpIqbWKUTpzWySUak1blPGVNzLWAWnZfrODSFhWN1LuTjvDnqIdO0+dm66GBMwSdUfChIdpGCFO5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764323276; c=relaxed/simple;
-	bh=YLnj9ZTyFf97ofpEDuw2TCbN6wT+YLXzojFM128oeHM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dNYX7seQQ/o0VOnII7UD9YDUtDuYn6+Q3dhbXHicyfE5RkrSBRBDmr+hGkr6vo7qq6Wq9iZVX/t4y6yUXn9Ys9w/QXezRFz2FJfCkhZvGiKFRD5/52n8Bl4sbW4UKYA6grNF+ug+f7VLeFvFh+9W9XYUwIkbuWEuSKgysPa6F5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mpWl2GQE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 271C5C4CEF1;
-	Fri, 28 Nov 2025 09:47:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764323275;
-	bh=YLnj9ZTyFf97ofpEDuw2TCbN6wT+YLXzojFM128oeHM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mpWl2GQE6VpIn2HXkNx0RABlCMscby6SE/HyzLwGE66jXiI8X8oenPKfYPGogt/hN
-	 DhN1a4OKvVvWFamBqDSD+yoI+YmOduks7NFYvx19cBhrF8ClPQcGf6KBaWcFsRp3Co
-	 9QVaZSD7PWlGLTCYjLxHUd+BC9JnAQeZ1KyC3QVtQFB0k14zUOHsiivLyKCdH57AZd
-	 WkgQUYKQGaFek8t7ECBAQvlaLk6by3PD7ZB8HT16phaDBwTYNH/gkzpo/0vB75siI0
-	 8gzep1VL2kJmW9CJzQNjsVMTc28/CE3wwjZvbRhrRzec29gSa1s+PwUQvtHWFO9AoB
-	 TJgfWnDcUnzvQ==
-Message-ID: <d9dc17ce-c1a4-4476-a299-b4cd9a28d607@kernel.org>
-Date: Fri, 28 Nov 2025 10:47:51 +0100
+	s=arc-20240116; t=1764323363; c=relaxed/simple;
+	bh=0ZspJz73evHURHmiLCyoJ0nhxF39VWjJkTDbSFMIEZE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ZRvURK2TFJ8qgZqXfNpxXUH4CkBikoOqxjyDiWt5k42JriAA/r2bKbBsdbX7paFsPf80MDF+ATLoETscFlCbl4NYJ7dd1FIDpGb9ElzOxE5TJUvf5KqR7APIcdfculPpsQRkGujTLs9xumWx+WYwiQWr4fQ/kW1EF4KcPdz9K20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JOi7Dg/L; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 918FDC16A3A;
+	Fri, 28 Nov 2025 09:48:56 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6C16E60706;
+	Fri, 28 Nov 2025 09:49:19 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 341BA103C8F6E;
+	Fri, 28 Nov 2025 10:49:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1764323358; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=poFRywdDw4b5kkwZmyK4oI1lM/Jt1iTCeXkK8T/qMZI=;
+	b=JOi7Dg/LM5TzombJrQ065O6lY82NOE0PqDpI62p9G+hCU2Nny6Zibx6DElFKgfJlkaOgGs
+	lkKgXIj8WeA098pZeP3jZ6qod1/LwYfFdaLkOzROuR5VSMPwvZrWDHcUb5WCNdX614W4cg
+	/uNXuPuUS5aGYOTAjWLsNMLKmGNdc9a7L48csqvGS3C+bG7XtEHNsY6/zoiGhyaQAoIVvq
+	3NUZYfA4cGXi8RJqMy2OWkRV4yeY/5wm8hPtelwVrh9Hy1rXMBolEEbSxA7lMZTOQ3B3l1
+	ZBsyHAn8D6rfGXu6KZ2SpHYGc/ubtfv2kqLstQlKxC0cIbeeexd4fWcOYXslbQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: =?utf-8?Q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>, Vladimir
+ Kondratiev
+ <vladimir.kondratiev@mobileye.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham
+ I <kishon@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-clk@vger.kernel.org, =?utf-8?Q?Beno=C3=AEt?= Monin
+ <benoit.monin@bootlin.com>, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>, Tawfik Bayouk
+ <tawfik.bayouk@mobileye.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v4 6/7] MIPS: mobileye: eyeq5: add two Cadence GEM
+ Ethernet controllers
+In-Reply-To: <20251124-macb-phy-v4-6-955c625a81a7@bootlin.com>
+References: <20251124-macb-phy-v4-0-955c625a81a7@bootlin.com>
+ <20251124-macb-phy-v4-6-955c625a81a7@bootlin.com>
+Date: Fri, 28 Nov 2025 10:49:13 +0100
+Message-ID: <87y0nq4hd2.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] soc: qcom: llcc-qcom: Add support for Glymur
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>,
- Jonathan Cameron <jonathan.cameron@huawei.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251125-glymur_llcc_enablement-v2-0-75a10be51d74@oss.qualcomm.com>
- <20251125-glymur_llcc_enablement-v2-3-75a10be51d74@oss.qualcomm.com>
- <80c26f33-aaee-44f2-ab7f-767467423396@oss.qualcomm.com>
- <19ebab89-e0f2-425a-a95d-01637f324170@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <19ebab89-e0f2-425a-a95d-01637f324170@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 27/11/2025 11:37, Pankaj Patil wrote:
-> On 11/27/2025 3:52 PM, Konrad Dybcio wrote:
->> On 11/25/25 10:16 AM, Pankaj Patil wrote:
->>> Add system cache table(SCT) and configs for Glymur SoC
->>> Updated the list of usecase id's to enable additional clients for Glymur
->>>
->>> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
->>> ---
->> What happened to my tag? :(
->>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>
->> Konrad
-> The commit was updated since I squashed the patch for enabling additional
-> usecase id's.
-> That makes the tag obsolete?
+Hello Thomas,
 
-Where did you explain these reasons? Please read submitting patches
-document about handling tags.
+> Add both MACB/GEM instances found in the Mobileye EyeQ5 SoC.
+>
+> Acked-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
 
-Best regards,
-Krzysztof
+Can you confirm that you will include this patch and the following one
+in your mips-next branch?
+
+As you gave your Acked-by on it, I believe this will be the case, but I
+want to be sure they aren't forgotten.
+
+Thanks!
+
+Gregory
+
+> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  arch/mips/boot/dts/mobileye/eyeq5.dtsi | 45 ++++++++++++++++++++++++++++=
+++++++
+>  1 file changed, 45 insertions(+)
+>
+> diff --git a/arch/mips/boot/dts/mobileye/eyeq5.dtsi b/arch/mips/boot/dts/=
+mobileye/eyeq5.dtsi
+> index 36a73e8a63a1..cec5ad875228 100644
+> --- a/arch/mips/boot/dts/mobileye/eyeq5.dtsi
+> +++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
+> @@ -77,6 +77,8 @@ aliases {
+>  		serial0 =3D &uart0;
+>  		serial1 =3D &uart1;
+>  		serial2 =3D &uart2;
+> +		ethernet0 =3D &macb0;
+> +		ethernet1 =3D &macb1;
+>  	};
+>=20=20
+>  	cpu_intc: interrupt-controller {
+> @@ -231,6 +233,7 @@ olb: system-controller@e00000 {
+>  			#clock-cells =3D <1>;
+>  			clocks =3D <&xtal>;
+>  			clock-names =3D "ref";
+> +			#phy-cells =3D <1>;
+>  		};
+>=20=20
+>  		gic: interrupt-controller@140000 {
+> @@ -305,6 +308,48 @@ gpio1: gpio@1500000 {
+>  			#interrupt-cells =3D <2>;
+>  			resets =3D <&olb 0 26>;
+>  		};
+> +
+> +		iocu-bus {
+> +			compatible =3D "simple-bus";
+> +			#address-cells =3D <2>;
+> +			#size-cells =3D <2>;
+> +			ranges;
+> +			dma-coherent;
+> +			dma-ranges =3D <0x10 0x00000000 0x0 0x0 0x10 0>;
+> +
+> +			macb0: ethernet@2a00000 {
+> +				compatible =3D "mobileye,eyeq5-gem";
+> +				reg =3D <0x0 0x02a00000 0x0 0x4000>;
+> +				interrupt-parent =3D <&gic>;
+> +				/* One interrupt per queue */
+> +				interrupts =3D <GIC_SHARED 23 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SHARED 23 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SHARED 23 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SHARED 23 IRQ_TYPE_LEVEL_HIGH>;
+> +				clock-names =3D "pclk", "hclk", "tsu_clk";
+> +				clocks =3D <&pclk>, <&pclk>, <&tsu_clk>;
+> +				nvmem-cells =3D <&eth0_mac>;
+> +				nvmem-cell-names =3D "mac-address";
+> +				phys =3D <&olb 0>;
+> +			};
+> +
+> +			macb1: ethernet@2b00000 {
+> +				compatible =3D "mobileye,eyeq5-gem";
+> +				reg =3D <0x0 0x02b00000 0x0 0x4000>;
+> +				interrupt-parent =3D <&gic>;
+> +				/* One interrupt per queue */
+> +				interrupts =3D <GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>,
+> +					     <GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>;
+> +				clock-names =3D "pclk", "hclk", "tsu_clk";
+> +				clocks =3D <&pclk>, <&pclk>, <&tsu_clk>;
+> +				nvmem-cells =3D <&eth1_mac>;
+> +				nvmem-cell-names =3D "mac-address";
+> +				phys =3D <&olb 1>;
+> +			};
+> +		};
+> +
+>  	};
+>  };
+>=20=20
+>
+> --=20
+> 2.51.2
+>
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
