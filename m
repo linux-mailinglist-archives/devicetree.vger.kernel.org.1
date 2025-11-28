@@ -1,116 +1,155 @@
-Return-Path: <devicetree+bounces-242909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4768C9124D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:29:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6FE5C913B8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:38:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 72E98347A3D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 08:29:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E9A93AE871
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 08:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56D4D2D5932;
-	Fri, 28 Nov 2025 08:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ACC22E716A;
+	Fri, 28 Nov 2025 08:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jL2lRw+t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDBA115278E
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 08:29:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C452E7185;
+	Fri, 28 Nov 2025 08:34:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764318549; cv=none; b=Yod23gtxuggZ651mr4aYr0C8U5t8zN9+TSamlPu6uW6vwWk14dA/KKvgAAQOiC0CSb8WZ7p4OLWuqjspIVfKcV7yiY88LqA0pByCIeQbGurn1+NQ5lOGxALI7qC0A2rU43vmu0b84AuGvKIy4dULXp9J0p5yBfFsGSWZgGOB8wg=
+	t=1764318868; cv=none; b=L3n0UPeltnL/Xs/L+tsWaxIfnQb+K4Q7HIn7OBOLjLF6CYDGxeD1yJEIeF0bpGmkpK8HiSS+0cSCsNAwl+vlNM+kSzUsezcWoWl3D/UDm2bIqkx+Zl4XWh66wOXR5uc1sjib8rG0mC6Cb1rOjGp1qTrSmd6UUlOAI3zWbhrNrtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764318549; c=relaxed/simple;
-	bh=0ZgCTv/Geux3x3SUFX8YOIFnK7oyYlxxmU4d1i7olsY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=b9Kg6QLHKwPzx94zT+GEjkrKDHypdYwt5E0Qft/YPATDTqMXhpwGzxZSfdAqi78/GtuALAGWdmY1MI2ZZG/nO6KNuIaBxuaRh5nLgsnslxGAhx8Awjm4d7e19uyZseye0AiXlV+fILU948By/b3cD+IZNOW5jiXaqjhgkGVnxcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-55b265f5122so420245e0c.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 00:29:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764318546; x=1764923346;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JdpMn32zBbLdSwv++ygUci+KXGTrW9TQWy7WAC04eCA=;
-        b=LuJ2XD6pgimgpygOYtI4yHQdWoGORtPBMAxwo96QHfoBqrlGRH/oTeXIO22C/Rc9ox
-         iI7bsQZNitnWbXhzMmnaWqGlSOzKs+wgpL9Eq0mWqidoC9HpMDl/St01xIgE7jDm8A6r
-         L2MAT22Yx2TVeNUzw2dcHTEbvAm8hCsSQfMkiGL/5O0SXR66mhNmgrN6GFLpAi+YVfEg
-         EehKCcBCExQ5/O10Ki11UHuPtRwgcVfa4PiyZ9NykRGFqvXaNhKMnutpf6I5T6cSh+7n
-         kSdZs7S2MadWQ+LuSojvdSumZKii7EICH60tYH5ZY83YgcXl9vw3Rn0R9WOtuHdj+iag
-         nCgg==
-X-Forwarded-Encrypted: i=1; AJvYcCUAoB0FcE9MPdInjGu8CFapOU0eoj3NdHNu9COZydF18wjN8h15sTLZNICpMovtUrCARp9Y1CWH7cEk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiroA6hYlP84umKfhyxiLQ2SAX42FXwU/L41bWREbf63inVaaT
-	K/n+mqNlcVzYB05rvPTZOqklHnshe0h0cB2aWdHuIaA5fVaNh3uRaCaED+6Iav/3
-X-Gm-Gg: ASbGncs8DrsnpkceHdc1/W6Wri1zcBMKr6vQK/g4nwS9XuQDOBrcq78MITWsPmxnjJ1
-	VtjGyt1j0wrtFKr9f8oLJgD8/J+wyfNZq62gn6UsCgwfF3FW3Dko7US4GeBO0dlfHJntnak8dsl
-	XER8x4U1SQebFXX6V1KYzeACDfTpkBdcKMZCN/GPziHsA2dhsC0DhNg4rcZlD7BSPr1B32xa7Gb
-	DVrF6btj2fn00ZPXUi/dI44FaIjYkynA9YnjhnY/1A28uDS7gyLQxVhMAgwTccyQDaklCo4XbpT
-	Y0EpPJ+zmSLhSKnJTjWrQaacwzRIpwSleAqozmi/joTEO+wg8p2DJO/YbnT4zik1g+C33cV+wWm
-	oQNr1ZyG30yYfXriMy7U6g14kpf+1AXQAXGfORx1XF0Fupa2dJ0Dbm8aWl4eGtAUAeq2lvzVpxh
-	bg8HRANQLIlrT7p0azI4AqTWZqPHmtuI9XmJigj9X6CDpi0Itt
-X-Google-Smtp-Source: AGHT+IErV35UNkF6udSMMSh5QA1ZbMRPKLy9u/HAZmls9Y8UCOkGMQZwjqThJIcrxcuf2GqldiMVWA==
-X-Received: by 2002:a05:6122:c81:b0:54a:1e96:e958 with SMTP id 71dfb90a1353d-55b8d5aa4a2mr8741714e0c.0.1764318546540;
-        Fri, 28 Nov 2025 00:29:06 -0800 (PST)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55cf4e1d580sm1521338e0c.1.2025.11.28.00.29.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Nov 2025 00:29:06 -0800 (PST)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5dbd9c7e468so607966137.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 00:29:05 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWAsiehm8kIDkXZvr/Y/U+9hsG5wI92qAHzr8bJIY7vz5AJ0K5N+TqEqjAORB9hylAhhH74WI2RIzU7@vger.kernel.org
-X-Received: by 2002:a05:6102:510d:b0:5df:a914:bbdf with SMTP id
- ada2fe7eead31-5e1de2fdf3amr8043647137.27.1764318545497; Fri, 28 Nov 2025
- 00:29:05 -0800 (PST)
+	s=arc-20240116; t=1764318868; c=relaxed/simple;
+	bh=Us60MkmM1JBxfHUQhViQbEpdjWLDx5b8qa9Za3ab5F0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=r1TWiuD7Zfo5TWucBWjf5eTTMKAgs3x1iBfxS0UAJ6in0eUas5vY8djnpDtpUTewnYjc11cngiEkSPlydmRjvafE77MyjKcgD9Q6DDyO51Y9qDsu1+7ZA/Mm+j5w0B2zCwocn/GuyIq40iFrC6MinA+x0spC8QFPrkbUzlVFaIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jL2lRw+t; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 645351A1DF7;
+	Fri, 28 Nov 2025 08:34:24 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 3542F60706;
+	Fri, 28 Nov 2025 08:34:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98471103C8EF1;
+	Fri, 28 Nov 2025 09:34:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1764318862; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=tgzdODyZLz4GqNmYM3p+s4koXLC462zunCov83SK9t0=;
+	b=jL2lRw+ta61DisBvuQJKHw75eiScP4u/1eTq3Dj/KyRjxC3HVIySdyvLe8gSIopegLCoT/
+	+Uia2DSqjS8XMe8u1I2OTmhBnCvSELWEu+5Ehg+vwRe6VOy+dmWcv/qVFteEOwoB2G+t2r
+	joPlaQWkBOl8qiD1HuDQFn7nSwQgb/S/Ei2ayADTXDtoxlOav4V4ZnWfrtBn7k7BOkgWDC
+	KID8FwOyJXvlt1wtcFRKgExuatU20+T1XHrO5LSpGMdbMe682d6vpu+kX5RDlTr+F3PhvL
+	BsTDqkzZGLpxkRR0H8HwX3fiM4cVIesD2WLVhzB4FFz6ZAlzdjfggDZ6b5O64A==
+Message-ID: <b8d12481-2637-470d-a3f1-784c0d7b4b3e@bootlin.com>
+Date: Fri, 28 Nov 2025 09:34:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251125224533.294235-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251125224533.294235-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20251125224533.294235-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 28 Nov 2025 09:28:54 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV+zGd5vjw7i3tah_TEsC9K2QtV-SshTdfZHt0y4fhkXw@mail.gmail.com>
-X-Gm-Features: AWmQ_blxOjK2K0cDtOGsZALn7AfonTpGtKH-CtNYMSf-HQs578XzjUSEy8mUZ4I
-Message-ID: <CAMuHMdV+zGd5vjw7i3tah_TEsC9K2QtV-SshTdfZHt0y4fhkXw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: renesas: r9a09g056n48-rzv2n-evk: Add NMI
- wakeup button support
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v20 01/14] dt-bindings: net: Introduce the
+ ethernet-connector description
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, davem@davemloft.net,
+ Daniel Golle <daniel@makrotopia.org>, Florian Fainelli
+ <f.fainelli@gmail.com>, Romain Gantois <romain.gantois@bootlin.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+ Herve Codina <herve.codina@bootlin.com>, =?UTF-8?Q?Marek_Beh=C3=BAn?=
+ <kabel@kernel.org>, mwojtas@chromium.org, Antoine Tenart
+ <atenart@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
+ thomas.petazzoni@bootlin.com, Russell King <linux@armlinux.org.uk>,
+ Simon Horman <horms@kernel.org>, linux-arm-msm@vger.kernel.org,
+ Eric Dumazet <edumazet@google.com>, Vladimir Oltean
+ <vladimir.oltean@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
+ Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ devicetree@vger.kernel.org, Tariq Toukan <tariqt@nvidia.com>
+References: <20251127171800.171330-1-maxime.chevallier@bootlin.com>
+ <20251127171800.171330-2-maxime.chevallier@bootlin.com>
+ <176426738405.367554.14295793625592890396.robh@kernel.org>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <176426738405.367554.14295793625592890396.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, 25 Nov 2025 at 23:45, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add support for the NMI connected user pushbutton on the RZ/V2N EVK.
-> The button is wired to the SoC NMI input and can be used to wake the
-> system from low-power states.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.20.
+On 27/11/2025 19:16, Rob Herring (Arm) wrote:
+> 
+> On Thu, 27 Nov 2025 18:17:44 +0100, Maxime Chevallier wrote:
+>> The ability to describe the physical ports of Ethernet devices is useful
+>> to describe multi-port devices, as well as to remove any ambiguity with
+>> regard to the nature of the port.
+>>
+>> Moreover, describing ports allows for a better description of features
+>> that are tied to connectors, such as PoE through the PSE-PD devices.
+>>
+>> Introduce a binding to allow describing the ports, for now with 2
+>> attributes :
+>>
+>>  - The number of pairs, which is a quite generic property that allows
+>>    differentating between multiple similar technologies such as BaseT1
+>>    and "regular" BaseT (which usually means BaseT4).
+>>
+>>  - The media that can be used on that port, such as BaseT for Twisted
+>>    Copper, BaseC for coax copper, BaseS/L for Fiber, BaseK for backplane
+>>    ethernet, etc. This allows defining the nature of the port, and
+>>    therefore avoids the need for vendor-specific properties such as
+>>    "micrel,fiber-mode" or "ti,fiber-mode".
+>>
+>> The port description lives in its own file, as it is intended in the
+>> future to allow describing the ports for phy-less devices.
+>>
+>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>> Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> Tested-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+>> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> ---
+>>  .../bindings/net/ethernet-connector.yaml      | 57 +++++++++++++++++++
+>>  .../devicetree/bindings/net/ethernet-phy.yaml | 18 ++++++
+>>  MAINTAINERS                                   |  1 +
+>>  3 files changed, 76 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/ethernet-connector.yaml
+>>
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
 
-Gr{oetje,eeting}s,
+Hmm I don't see the connection between this error and my patch...
 
-                        Geert
+Make dt_binding_check doesn't show any issue related to the binding
+introduced by this patch :(
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Maxime
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
