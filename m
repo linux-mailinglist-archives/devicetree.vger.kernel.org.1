@@ -1,132 +1,161 @@
-Return-Path: <devicetree+bounces-243006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F381C92616
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 16:01:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F197C92646
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 16:02:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 192E54E5347
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 15:00:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D93003AA757
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 15:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5A032E755;
-	Fri, 28 Nov 2025 15:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067F332ED38;
+	Fri, 28 Nov 2025 15:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cHcuRq2j"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R7+SIvSg";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VkpECwNK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A277332C950
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 15:00:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7464A32E727
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 15:01:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764342046; cv=none; b=hgrDoQVmQ6s7mC55sRIOatDl12STlM99l+TZKxJNOSXKcvOqSpH/VeS2hjnQdWNn0n0o76YdK9KRanoS68vC6fRq8dw6ESU8Zy3J2tHk1D+KagwG4oJwE+7Q4wunFCSOLoZ8yACvj8eMIRgfTcoq8JKChke6XNrg7ou3uH9da8I=
+	t=1764342112; cv=none; b=EpAbJ+EIm+zhbNz3/HLm1Gl4jyEtOzwM5OVCapL5i0oI0harU2wHUaYPMk1aMS2fm4o4kYSjmvjzhE8kLRtUS7j/zqz59kUw04xLQJjfcilsPsm3qkNntvKo+BQ0JryzVpSTqMyZcOlc5i9kzw4Y7f+s0DnxMvUey5yjPQIth6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764342046; c=relaxed/simple;
-	bh=s2B9NGkEnUaejgEZuS8NbMN+acHyrFZnwnWMuimegO8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oeQ/+Y8102U4oUCxfe1WNcfH0bv2xIvbNt18OFqgbg0jq83bPUAieq+sMDhDTXK6QAPsHd/hdKiJG20/9w62eNxx3zuu55WiSDptgv+hzUNtlsu+e+zX+aCqqH6YU9vrvxXjNPFze5bm9+9H5cqfjaX/Y5iS0b1mooirX5F5rXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cHcuRq2j; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-477770019e4so15673015e9.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 07:00:44 -0800 (PST)
+	s=arc-20240116; t=1764342112; c=relaxed/simple;
+	bh=xEfRUtmqH7shVoSYTWEh+/jIlgLDvmWXykH2vAbwbU4=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=FFyz7Iyq+ydQ1gO9Ne0uuWYxESRAkNAwkamz4iaXhVwdz7wOcoKe/LzFoWXLGaMBHgw128dx7hrjhPDHoNtLHdJJ2HK8mcmG5knWc78reseu5C7bKEabloiB9bDH0qhuXCRyNaoY5kSgzhEfSzFT9N+8bAK2uNHo84QVO5oVvZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R7+SIvSg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VkpECwNK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ASEjKj0738392
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 15:01:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:date:from:message-id:subject:to; s=qcppdkim1; bh=y7p6yQCcke6d
+	kbfGd76T3swz046SLZ5QbkD0+DxbteA=; b=R7+SIvSgiQNW28881A/JuOXei/An
+	Q1tLuuIJ2WW/+W5eGC/EBcLtQ4BG60dsjVYMkxi/ERTf3le7MnaHtuA1ZNQl+/0U
+	1GjbX7WABw/MtgMEphMi9DkiEZm1PTFxZs5b6omg7+J2qK/tID5ZyewY/3yePkeT
+	5VqFEAPWPxIFJR4qWm09k9uTuU5BATq/t562dWbDVZtFgGZD137j3H6Tl6bPZXmm
+	KXAsyABt8F7/QuDZ8yAqtbSDzudiIZe/OTtQ5t/uZQvlIq5E6eEkjaiQ7cmzqgBF
+	unlDsNbJy+PXjqMVx7mfj85pDgIePyulWCeAsZwmH1TpDUe5k1LXAmCTTw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aqdsfg1ew-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 15:01:50 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2956a694b47so25659355ad.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 07:01:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764342043; x=1764946843; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=oss.qualcomm.com; s=google; t=1764342109; x=1764946909; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=apczRWkrHKfV9oaltwvcd28nddE2zoSisgUmol/eatA=;
-        b=cHcuRq2jiefIZEjJL8Q08MXofYtu+q70WuJilQG6+Tt1pt9bggFdlQzeA4ZMO4G1qk
-         Hp7Kl2Enc2HbjNrXBZgrj77+JqzazKKfvqiZvvob4xrTJkh/PZ3x/tE/4UIlHYUR1a+e
-         t7sx1g7Kih2WmY3zmdnBgqnSoXvQEWJd/gMAwxzmU7vuwuUEJICp+SGCEL6ymmRmdkaH
-         GQTHw9UF/sIliTNHv6PD3ASSg2FBFpgAmdR3pebngOzTT9yS+GsFH3U2ZYdEVOFrlVVI
-         ZMfLeX5+YaM4LpZbJD6cMh+v2eG0i+b8DsOr91lUk1TFcVhhgfUOONjkSgdtfXuCvQN0
-         NAzg==
+        bh=y7p6yQCcke6dkbfGd76T3swz046SLZ5QbkD0+DxbteA=;
+        b=VkpECwNKqYn5YSpdfl4q9Qs3+8YRzSo2AULn4EcQ55sJsPK7u10z0wiIHZiyY5S9lK
+         q0K68DvHD7ksJrIu5f/Sd2UHF9nPEkHWkjEsmfFuHUWLJhQBsneAYtnIkp4yzyQeZM1d
+         R5Hx6an6ApWUiUcw6hgzRf+vgJCNuP5mrQstkSyjYIMX1jlqzNKg/QAeYK2EHGODFHkU
+         LDTfknj1eR0D41ekvRJW4ouRTaib2MdM3343whAstE4NZSh6lfpAjqM2FIZtvPglq+Mr
+         vrlE7+ycQewFSjhJ49qXhEdrj3CBEtUBmBQD1nKMqjlMfCAspLyMD+EtVmjnVwNOgQDP
+         dHyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764342043; x=1764946843;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1764342109; x=1764946909;
+        h=message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=apczRWkrHKfV9oaltwvcd28nddE2zoSisgUmol/eatA=;
-        b=Xvq85IP1ri6m8bM5HcOopCw9GqMoryWTTSRkc1kQ8qmeoyZopRUGw9ja/S4Dy3a1qD
-         TloyOIqseT38mKVnyoZkevKNCXxU3G4CKOA4M5kybQekvb7kUj0kp48uO5H6P1tlQBEZ
-         GkLpVU5i1yUIi6JdmqRPVzzPZtw32q3/rxAau+Cqe2i+ScmbN8uu5C7fsOIaNJKVKRK/
-         ecXqNPIEW3ookPN8zWYxLsx1PuJnnALGixXXDUm+3cyOKaHXGeN25GLTw1WN0hqiytfV
-         fx/0gFVRyF0jx5tJBalp0Gtbt+HEPFYeCVWB492wB1JdeKz0ZCzEXQ4eSJBpHKm2QqU6
-         /j/g==
-X-Forwarded-Encrypted: i=1; AJvYcCXc3UwXQVNdMBhnqeES+mJbIEqrKpuv3V4G4M21o17a2HFcCc9b1G6obNjpQXugrbG3oYa9Gdbycei0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzU0uzOJgeb9tDcbX758Q5YPGyOZdctSw4IAw+K0UQyfV6dkIXR
-	zPftLh6CIia7mjYGKU9827+j2WcWqSR1Enj2imuxeQt5/N9BAAJjZ/e7
-X-Gm-Gg: ASbGnctSEYXY9nnpytVxIj3wXNCfcghn3tKCGMGJO3qh5tn7fV203FsFE+goUZq+4Wx
-	Ec0QqkymQMvFQONvGxmwWj27uzR9Vik9lFo/92xFG+Sv0Iv0CjyoO/jtQ3NQsnHLlzJw7/kkoG4
-	PjwV/uj9qiu7ut5x58veIZZVt84RVNogSQHx3t4PZ48Fnz6pBgKnJv3iPv0zpg4BIMRZCxsts4q
-	LHmuQB0IKU/fKGIH2hhRXNxnEyHIJF6piyhhCWPSm3TL9oACMzuKRERKFc0p5ZHhCHLQ4pRW7y8
-	u7n2NNlsHDe3NG2RLuKedghtouBA/qgqi864B1J1l99IqzwKQSf/1ept7c3+HxuXj4ekkWu8Rfw
-	TG58TkIUaLmzGsvKI0KOslTmp35SQ4b7i2bO2UBMKRBvjLJyNwfblSEbbWApac9rAGFoifFIF6+
-	C8q8swRO7Jog2YuIzw3sVSCP+xUUE=
-X-Google-Smtp-Source: AGHT+IGZ5phRRYX+v7P/fz+XER6nFyz0G4tY9Gcl8oDgTYqo9/i0jpjq8twM7C3UskdUr1BNUjh8fA==
-X-Received: by 2002:a05:600c:1c24:b0:477:aed0:f40a with SMTP id 5b1f17b1804b1-47904b1af90mr189698325e9.19.1764342041970;
-        Fri, 28 Nov 2025 07:00:41 -0800 (PST)
-Received: from vitor-nb (bl19-170-125.dsl.telepac.pt. [2.80.170.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47905303963sm93117975e9.7.2025.11.28.07.00.40
+        bh=y7p6yQCcke6dkbfGd76T3swz046SLZ5QbkD0+DxbteA=;
+        b=EdF/9QrohDqPV69JTprG0+uCxIU9QEXOlv9JEsPYBoVp6tx8HMFRRgqWud057yOkuB
+         iM3p/PPQJPv84aAWOiRXjbe+oNOzpX4BnHK+mD9NWDYqlH37HoNMzzV01FGsFg7LkOg+
+         g870z2fbY5LFJqrYwqPIpEcRcdlW37otDq9D1xFeKDxs7BBsCeXNhrL4k7BNbm//LEih
+         lm5K2Phgo5ABxOL9Brd5H2UMKNewYLWtvxAftO3L9DSDNr5WJtXGldMytfA39L96c1dR
+         bS+Et93HKI/RZ7Ir8S5w9zq6/JH9ZibsVg4q7dEYM3XkObHg6Bd2sDj7pon+L75H+OF7
+         YXLg==
+X-Forwarded-Encrypted: i=1; AJvYcCVfbGx0xjvS0U7nDACigP+2BNHBBfciXzRB2YOC2uy1JXo1jIHWKfTeY2CqwuGlneGsi+3WKPXhaRQP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTmrTsfUHG4KAgSfLwWTKK+WjXHJQwPF8kEkCntNFf+XBVnpRO
+	JilOFDKbXEwx0Bm+Lb29fydiAezhc9LGnJfVtl2ZpQF02/CIA1JehmkRxbweQuEj6W8vpvM/NkY
+	8v7k26uAV9aOLgdzQmcvBHTuXhdpG2iC66hdxSca9I8aqQZBJIVPgc3axePHdZGcl
+X-Gm-Gg: ASbGncum4bMddvaX1Syd8MzWCRom6I2BTxg3TPqkwqVPuSUEEseCWIKFc6epXdMqiLq
+	m9wI+Edjh8nLU0EHc1gB9dJ+Ff1pvG36ruG0DpFOE1JrgngAGfi+mvHea3DManbZHXqxObbsbW6
+	ajJiJoqF9efL6NmER7KLQDYDEzTW9nGjn+W1W1V/6PngTIzSnLDCbY6FP0T91qoNyAbyE1S2OEb
+	sYIeOlZP4GLBAvGiigyRWHR7e6+KuvOASPBbZCW/Ql14DP/+/Dqo1lRRGy21lNiY/JAQEMREZkU
+	iwui/uhmZhmcoUctjwuFAjW9x+iZsTKntFVoibqc0YSHJd6P606vuAI0Mvkr9+v5OPg/rL7yA/j
+	glnmqTBIoC8GvGKQsfpdWTncDHxoJIxrDOHkFZoYIrGs=
+X-Received: by 2002:a17:902:ef50:b0:298:34b:492c with SMTP id d9443c01a7336-29bab2de50amr165713515ad.54.1764342106363;
+        Fri, 28 Nov 2025 07:01:46 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEpI/BufIbwOVwPHLz/kJYkcxerhQ6rcnfU87Bqc+reHKOFkzwqLvCM71gMvDDQnwywkhuxDQ==
+X-Received: by 2002:a17:902:ef50:b0:298:34b:492c with SMTP id d9443c01a7336-29bab2de50amr165712795ad.54.1764342105618;
+        Fri, 28 Nov 2025 07:01:45 -0800 (PST)
+Received: from hu-okukatla-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29bceb7cf89sm48930635ad.99.2025.11.28.07.01.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Nov 2025 07:00:41 -0800 (PST)
-From: Vitor Soares <ivitro@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Vitor Soares <vitor.soares@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	ivitro@gmail.com
-Subject: [PATCH v1 2/2] arm64: dts: freescale: imx95-toradex-smarc: fix SMARC_SDIO_WP label position
-Date: Fri, 28 Nov 2025 15:00:28 +0000
-Message-ID: <20251128150030.35931-3-ivitro@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251128150030.35931-1-ivitro@gmail.com>
-References: <20251128150030.35931-1-ivitro@gmail.com>
+        Fri, 28 Nov 2025 07:01:45 -0800 (PST)
+From: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+        Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mike Tipton <mike.tipton@oss.qualcomm.com>
+Subject: [PATCH 0/3] Enable QoS configuration on QCS8300
+Date: Fri, 28 Nov 2025 20:31:03 +0530
+Message-Id: <20251128150106.13849-1-odelu.kukatla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDExMCBTYWx0ZWRfX8se1n9PDZ+qo
+ BjGDkb7p+gCIG6WhnzuDUHQ309AZxsUhfNlcIHPeo2J62kBPVcVAAb2LZtFL7DIP5tC0OHxihty
+ zwi+v8BZMILeBAVU6qnCJOMlPyqDjhWpEpB+2957noMtyH+epKXqiGb4pKqLwCWo/SW2G5ZTtAj
+ HaHIlO4jQvg7xVz1BkDsdifGrYR2os2ShRdKmPY5i7vbzwgW8BRgfvEMZW1UMr+4CUJKaDoiyVL
+ FiBues0R5YMudZZGSWw0hDGk9Zd7/vyLWfmpjI37Wfq15c4UM+twBVAePRJdMkAAvMRi6n7785l
+ vVOjeI45Dvy7Uy06vKVhGB1Rk4k3woG1cd4c6vP3FLbNGzYQSMGGclvLPR4Bzx+7ZoJV4MFfLoF
+ QFVo1AaDKYWJTIEjDXDdwUZMz9jAfQ==
+X-Proofpoint-GUID: aNfBlRmb_1XyZPlN9IkoNcm16c8iL-rE
+X-Authority-Analysis: v=2.4 cv=Qc5rf8bv c=1 sm=1 tr=0 ts=6929b95e cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=fIl7fISSXmXrEScvsbQA:9 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: aNfBlRmb_1XyZPlN9IkoNcm16c8iL-rE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-28_03,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 impostorscore=0 bulkscore=0 priorityscore=1501
+ clxscore=1011 adultscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511280110
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-From: Vitor Soares <vitor.soares@toradex.com>
+This series enables QoS configuration for QNOC type device which
+can be found on QCS8300 platform. It enables QoS configuration
+for master ports with predefined priority and urgency forwarding.
+This helps in prioritizing the traffic originating from different
+interconnect masters at NOC (Network On Chip). 
+The system may function normally without this feature. However,
+enabling QoS helps optimize latency and bandwidth across subsystems
+like CPU, GPU, and multimedia engines, which becomes important in
+high-throughput scenarios. This is a feature aimed at performance
+enhancement to improve system performance under concurrent workloads.
 
-Fix the SMARC_SDIO_WP gpio-line-name position. It should be on line 15
-of som_gpio_expander_1, not line 17.
+Odelu Kukatla (3):
+  dt-bindings: interconnect: add clocks property to enable QoS on
+    qcs8300
+  interconnect: qcom: qcs8300: enable QoS configuration
+  arm64: dts: qcom: qcs8300: Add clocks for QoS configuration
 
-Fixes: 90bbe88e0ea6 ("arm64: dts: freescale: add Toradex SMARC iMX95")
-Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+ .../interconnect/qcom,qcs8300-rpmh.yaml       |  53 ++-
+ arch/arm64/boot/dts/qcom/monaco.dtsi          |   6 +
+ drivers/interconnect/qcom/qcs8300.c           | 375 ++++++++++++++++++
+ 3 files changed, 428 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi b/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-index 2cbd5606cb19..115a16e44a99 100644
---- a/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-@@ -406,8 +406,6 @@ som_gpio_expander_1: gpio@21 {
- 			"",
- 			"",
- 			"",
--			"",
--			"",
- 			"SMARC_SDIO_WP";
- 	};
- 
 -- 
-2.51.0
+2.17.1
 
 
