@@ -1,102 +1,102 @@
-Return-Path: <devicetree+bounces-242966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F20AEC91BB1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 11:52:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDAB5C91BFB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 12:04:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D4FE64E3596
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:52:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 869D63AC58B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 11:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0797830E82D;
-	Fri, 28 Nov 2025 10:52:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86A630DEB8;
+	Fri, 28 Nov 2025 11:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FvrxJgYP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h+KXACsd"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lpj3UCBg";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EAriEkaq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561D530DED3
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB05307AC7
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 11:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764327131; cv=none; b=PaFnz2NNGnE0OqyNQBId9h9FQXURp4okZjYID3NzMzH8TwWTtKA0BE+P4ImKYkvTWhe740rG52ND6e7PlHWseHAXi1AnggWTjWb7wY3KkHlg6A7b5ynETUNoE5frdUKgmOxhlgSlSZQeyP4LHH8Yr585sUQ2eBDaqhLUFqw0lwU=
+	t=1764327862; cv=none; b=QGs5Pn9a4l0UEZXTQqP/74lZJafae6gkXr35pexyplm6RLZ9xh4UpQuEHdy/ciUlRA1vrNz/Tfbqc6VaPqoGoBUTc91sq8+lxmGgsEcaKN70Vk4lFxIRRM7jwHVcvA2ONgSR6bnDRfQXx/B66yRvrZjOJuBAQL/KI6sRINnKKBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764327131; c=relaxed/simple;
-	bh=RPmxVLBfpCHVLHwRjkIdjCGzbN28a0PTPzEMX/3sFlw=;
+	s=arc-20240116; t=1764327862; c=relaxed/simple;
+	bh=io2qTwYQTp6q1yk4V6dF1s16CO0Ve7WhukxEkDZ29Ck=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iA4gNGIUVDIaib61UF6VTjRGaGvpMT5Wl5mlDoddb8WndzwZfEmplnRTWBjOEwSzhWqbfX7ZRmPLL5LPn8S6vjHiZYDgytxQyW5s/bt27YSbMfonr4yFomCnvMQ8zIeNWamATvppG6rT+l7JgYIx1xw4hbeq3EBOfkNV8wa5ldc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FvrxJgYP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h+KXACsd; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=dQ76YvdBpnrnRTvf+T0I+gGZU+hsblMKfTQ7crWBatvFy8v65VtZ9R+c78ZOswF9SYxYe2S6pyhhUd0WR2SFvSDKEMhsbsbjZ2zaMm5XN0yrirkNgUXdwDZ9qWuqVH0QQKEkn6Mm9dro56+49EWZODAy8ZFHkGAkqGYmkKE3H74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lpj3UCBg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EAriEkaq; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AS8NlQV3122998
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:52:09 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AS8OZuj3530973
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 11:04:18 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	86KnzvGu3GEj7n2OOgrtzoYiFDBvCiTUgmN8lQcrmNg=; b=FvrxJgYP2KlyfPNd
-	f3zibxh/13UnLllrD+Bmo7nM5c5k61++HFTqbPydw+dH/BgpUVVUikcb06gxcQ0h
-	jY98lEeR+LQudUpJ0F6bdtud8pMy9CNe9YtQLah7VhIpA4O9RjVPzSJVV5gW+iMr
-	XPA2rIK/7pB/eTbg3spLupE+c6zBkZLp8t4siT0qjnoXZwLv6PWkh7z6IDvR4ynu
-	bxB8BVSyyX0uElTvTHfhPRQSZYlbnw/TLZ/veZ+kbO+THy33AFYjrT6o8G1CbykH
-	2FYKpFaxTd5CljXEnWHMm2O7ZPnZezat84nrZvWn5nxWEFAso2i9aui9spz5Owgq
-	OKAZQA==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aq58ugxmy-1
+	hkor8fAqAL5jcHpNVd/wYoQjdbh3Wm5P2F/U2e70reE=; b=lpj3UCBgfLKg1Wvu
+	Ru0YjyBGSj4wjl2BRBkbnUPT42jhdxzUOi8/XO5CgaCrdMgfKV4IGT6P+YL4zeCK
+	tAkbcF5tjc0g8kc8IBvhfGFUZ+Igxv+xjC//F2WROxKFR3gUecW0Xa6MLClhYwaM
+	IuiGLEXBHhgv6TLtXm3JZN3aRna22UffUxwtgdR/9SZ8zLUGpiVLLpgGifoj/1Gq
+	SV/PNf3cq1Xr81i9zUgiFaS3bwRRiCjfrtZzyL4KPUgboI3zPX5Gdb1nycvKJXFS
+	c9Ue6m40QAdK4XMSNQiC9EyF4n4uCFk2AjrYUklsxXhOZCwXk2Hr66Mi/W+wFGLl
+	aiXlUg==
+Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4apm2ru9d8-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:52:09 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed5ff5e770so2354931cf.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 02:52:09 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 11:04:18 +0000 (GMT)
+Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-5e1fde1f025so174284137.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 03:04:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764327128; x=1764931928; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1764327857; x=1764932657; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=86KnzvGu3GEj7n2OOgrtzoYiFDBvCiTUgmN8lQcrmNg=;
-        b=h+KXACsdjDpXnzG52pEKzH4+be+WpVo46dIWTBr2nXcq3EJ3OorsQKXFoYYFr5Nqfh
-         PDdcOGbEqKEos2k0DqzWJp6kVSbCgwrT1K7H4xVYZO88XbLLnsRAU6QwkANrqebaPjdH
-         ymykGLXSrEkDxQyHPkLZovKB4SwOB/MpgdH6o8MeMGZLvlxnSHJaMIjYyagOTjP0t8sA
-         aVLIu0adMBB2fuWnA02umto4SEftBYbuXWFfqaX5Fa6vafw283SPKq349SImxceYW/8A
-         eFI7lPGSN2bL8FgTwxxZzq+TLH56zrzXNkduwy2aupxkz/VcekSDBe45H0dTz9bcIjhr
-         nb2A==
+        bh=hkor8fAqAL5jcHpNVd/wYoQjdbh3Wm5P2F/U2e70reE=;
+        b=EAriEkaq8unNUAkEyNDc+W208ik7viDlB2VWjhiEEHZrfz8Ll0SlOBfwIXljFa8R1T
+         2HVEcrWaLxQuFTFvSwT8uVKMDaRVpl4bhPeKIzNaNzaMPzofcU9WRD17sl8DgpYhyRy/
+         s/5gf2+llkSXtn27DXErZStWJ+q60OrDsVcnsU2BLHKElGToQEuVic5/HPvABvQs6ivH
+         i2Ow5jfYPzZbLapq4Cj2YvO4q2dzABFrF5cvZX+gp5BO7yZgRulPHEwqpdRWNuetv2w6
+         532mZ0O4lFfsynZeBe8OMFUWKf59WyrDkpqXS287nRpF/MVm2sEz+HwaUJEPwr4FVfus
+         DM/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764327128; x=1764931928;
+        d=1e100.net; s=20230601; t=1764327857; x=1764932657;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=86KnzvGu3GEj7n2OOgrtzoYiFDBvCiTUgmN8lQcrmNg=;
-        b=EkFxua8Aizyt9EAhId/b/txD0u1hZkgDyzz2yk/VpvTlno2d00SOzvaUPo6tjb1EAL
-         UbfvKMfdXK6qvnB3j/ntf3P78sbYDAERc7mjCvW/R1qgTjntL/egY5PaBCBasv9ah/50
-         IwqP8zDhSYg3wDQuLOiRDLUIqhTQEaXk7hof+KZSm9c+Tg48ZsmoabZ5NaXHIrRCqpGQ
-         Ij+2+wsmHfyTxCzVdFZbkOXpFAwGend4KwUAM+vVCo3iWwYwUIDdYhjoOQYbwOIT6OCj
-         zvGLHjFUemksu46K6eXJHIPOIqXQ1IN/tQlYfhDSWP7VfskwMJ60YDfW4XwOCgO1xMq7
-         9ELA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8FrnyaaX5FuY1P/Oeo6WKg30Lp2qpyNZ3fCYBaEzrAgNj8MGvgz8P0XaBsIu0gf1s50mL+zzdejQ5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3dqBjt8fBPRBzaSGEB0JvHRUZLNRW/FD/3h+KHyiyzyvnjpEU
-	Ngbbtb3GEJ3e0cEGCLfewSMTiB6ObR2+e/3ylYzNCUM3azAZrp3sA//CLPQEqQsK4eo83QI0gsu
-	vWWTEC9G09LaHk+UPLnkZb0NPMsz/c8Rwfl5mvnwldKDoh/Yu44UrDhNlMWZCYXn+
-X-Gm-Gg: ASbGncucFlcRN3iJUelwvrgCzkYSpQknPQODwgcORNDE92+7qfhHBqMYHFEQ/ehQ6WZ
-	1fwfLDE472luOdOBW0IaIeChSBXuuMbnVLvAhGCw/Zi4CKbdU8FdECBLpKHrdQuXSKJQEzkkdnx
-	5VTrFA3OQ9v+DIeU7m2RYHtf0s8PgERnKLKzP4t31X5xaZ74u8go9q0a+BSf6fQI0nQvTFPDDyP
-	ztKi+81Jm0BXv1XRN/zM8w0WFUoJY0UAzY3lvDJYNflsctddKPGdhA3aVEh+eVZJMN2g+XMtdX3
-	swHb9snsKx4Jb8YaGUyuECKRlyhsbz5BC2BUj9Ia0ZikPpJ7u4IbtcNDvH/xK51O5yPfA08gAhA
-	nSdXgZOscGqjtYGyplyOsTYaIv+K1a3mvodeNJd6q/7ri8zV5GEeRnQZErS0Xclztvqc=
-X-Received: by 2002:ac8:5882:0:b0:4ee:4214:3226 with SMTP id d75a77b69052e-4ee5890a538mr263138101cf.6.1764327128343;
-        Fri, 28 Nov 2025 02:52:08 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE/MIO+8FIzsXep4B/K57A72tSDQlBayZ3YTQpTuQMWVPS7WSrr05XyaZaNVpxOe7smpAv5jg==
-X-Received: by 2002:ac8:5882:0:b0:4ee:4214:3226 with SMTP id d75a77b69052e-4ee5890a538mr263137811cf.6.1764327127865;
-        Fri, 28 Nov 2025 02:52:07 -0800 (PST)
+        bh=hkor8fAqAL5jcHpNVd/wYoQjdbh3Wm5P2F/U2e70reE=;
+        b=dxtUza4YCaW5hluPf6iEo9CoDwrB3dyIquxN6KUpU+o7daWajdl2ybxbRJrWdO4D7H
+         /Jq2HoDO997aJO1dpWy3AvxwuTZ+jwOfHmU1Jg3KmvthWdghmFniZFL13Bs+UGIlVDh8
+         K8FwosdrnohVAB5t2uymfby6ItvQR9v44A4nLPjxdCWAZqPi/rrFjPw0CWanq4T50ZAg
+         1+mVol3VTV0YtL0dqWcTYoXmzwk6P2c//BECagupJyw+khs2dtgVleZJ0FHihKul3q8U
+         naqBVvHN3db9WcdkZb3oQ8pGG/st2k/QZiNqBDt85CFmLqvMK+IGnm8S35CZPjjuz2bo
+         CEhg==
+X-Forwarded-Encrypted: i=1; AJvYcCVxV0m5vav2B3FcVkJfWtcsMIpmstd3Eq6cLbgxzE6BUm3W8MgbXlPkUDCalwwb/a76OQ/cIYUux65H@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBQIH6NxYPzmRsUtCLm8F7J5G0BkQTRhkt6QhIkkSrkXj5FetN
+	vZaGq5M5VDkBNPDBrTrtjMARSCwuhWeZvaIivDmqUSEZJL2faj+l4Ih2h0A5uE6UTCW1Zz5q66j
+	gQpslZZCJhPfQm+18eJacFp3Mu8HEOvn1zQswaS4QLIRjlqZkbkPQeN7JNj+5MKS3RoLMG3Xl
+X-Gm-Gg: ASbGncvX4/VB+b/Pkf3Ebf52ymCM/zyP29xtn79I3XOFHKM6F7q43/qWcGD3Gcuf0no
+	Y6ZfAJ3uRSBAbDGw8NGa5vbazqD0sEcNCsu7JR391+oBxLZybQtU4cljrvd3p74QpgR64yskhCs
+	mFlSILMk9Xl4MK3324FvSbIx+RjFsXm/RDgV1CY4MnJQvK8NeA5L+d5wo3HJFrisHLSS/OlIUrz
+	fKAOvnVApRhbVZ4vWl129Z2ZtwQSNsal1oXoQq3OleJYKIe1/22e5oQsBW3L7sBDkJlvvhuWiHY
+	i+BP9gZo+FBEG0j2oPdGJNXtF42iU08PdtDU8hGDDaCtju71iDJqvryoFd/De1o2tUrf6vlUg55
+	kOKviXL3foQlvubJHq0JDFzNgoP7LtKbRZEd7XbNAEYRgB+Vc7UZNDNJippxCPsjpJLg=
+X-Received: by 2002:a05:6102:5e84:b0:5db:36c1:17bd with SMTP id ada2fe7eead31-5e1de56cb5emr4715592137.7.1764327856845;
+        Fri, 28 Nov 2025 03:04:16 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFoeuS0Wic0v+kDByv3hBDuYERXOu+EYGDY/250dogexYk1Ma2jd9eWsvwx6B/onkqhQDAIYw==
+X-Received: by 2002:a05:6102:5e84:b0:5db:36c1:17bd with SMTP id ada2fe7eead31-5e1de56cb5emr4715543137.7.1764327856395;
+        Fri, 28 Nov 2025 03:04:16 -0800 (PST)
 Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f51c68d0sm420699666b.28.2025.11.28.02.52.05
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f5162093sm429910166b.2.2025.11.28.03.04.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Nov 2025 02:52:07 -0800 (PST)
-Message-ID: <1f2c4e5b-2d7d-41cd-9772-374e3de46a50@oss.qualcomm.com>
-Date: Fri, 28 Nov 2025 11:52:04 +0100
+        Fri, 28 Nov 2025 03:04:15 -0800 (PST)
+Message-ID: <d4f58ebd-631f-4ccd-a36b-ac562be7bc68@oss.qualcomm.com>
+Date: Fri, 28 Nov 2025 12:04:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,106 +104,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
-To: Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20251127212943.24480-1-jonathan@marek.ca>
- <aSl48gV9laFb-MR1@linaro.org>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8550: Enable UHS-I SDR50 and
+ SDR104 SD card modes
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Sarthak Garg <sarthak.garg@oss.qualcomm.com>
+References: <20251126012043.3764567-1-vladimir.zapolskiy@linaro.org>
+ <20251126012043.3764567-3-vladimir.zapolskiy@linaro.org>
+ <b07b88ed-83a3-46d6-8b97-e8661e2cfaa3@oss.qualcomm.com>
+ <d3cccdf4-8c50-4b6c-a29b-5b1388ce2249@linaro.org>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <aSl48gV9laFb-MR1@linaro.org>
+In-Reply-To: <d3cccdf4-8c50-4b6c-a29b-5b1388ce2249@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: dBZlqig7G4S6hEWZQLhDaO3j9742q3WF
-X-Authority-Analysis: v=2.4 cv=UKvQ3Sfy c=1 sm=1 tr=0 ts=69297ed9 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDA4MCBTYWx0ZWRfX70BS9tZbXsyo
+ 1exLONRoIv4MXowFcvgDc9TMC3z92Ryah2xP8tA+NtnkLeKSrTScojCGrq5OJPcwhqRfwjTdqgw
+ X9BTUaxaHnzeWrO1+UyI3RTwRjpSHTLVMh7/V6ayDj/L4YvddAdaKl2AwwwnOmt9vr9EK8GPGoj
+ 5kEGMEI/gaFmcqB7dw145GGx8kRsz/J8Qp8IvLg0HHAD+2LGBrOWTytGVWzxlUKbBAiuL57JIfV
+ QRKtvZAEgIFcGe7sd4TdFV1UNWezlUsvILePihoGqDYa8J6ERaIFgMxVo0rR+60suf7KJmRD7j6
+ idn5xQVj8m7p4bmpDyyemuLf5pWPPbPjq06JAErwn6BWe2UsRT7M3bRFp8WVLIEW9F0bKkjVdPb
+ vara7E6BbDI1cGXppvw+fIYPDQIbrQ==
+X-Proofpoint-ORIG-GUID: vYNfpQt0JY85Y5uI2QRophTV-8hGhVyy
+X-Authority-Analysis: v=2.4 cv=W941lBWk c=1 sm=1 tr=0 ts=692981b2 cx=c_pps
+ a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
  a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=RAbU-raeAAAA:8 a=5eqlAXZ72RyB-Na0XcUA:9
- a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22 a=JiizpSU_mAIq9zsZDqn2:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDA3OSBTYWx0ZWRfXxsmWvKU5t5NH
- 2WJlB/ePknF/mToyJiSKUOGW0199MRmvaCvEVb4Jm1PCiwSm4xu2XYAz5r4gU0Q5rGXvfQeAVWU
- awPGV184oihOgZFmGIYblWGOaX5uftVUCLhBJCpSj+/bZKxLHb+liN0AoForqo01zA9rp2jnLln
- 4QLSBux9zX7Z1uwWUcLSIAXZSiQc5dmJ6VhWn+jHWIfiBlCmZakri7IVu1I8xI2EB4mQRgWDLlt
- Yl8SdPXsPBIO2yzklFA7ot5lthzl2jnhm8ZFuk1Ka87jmsgwMuvUj4Ny84S79kHKHDSE89uFbjr
- 32D8ER/0QsjSFpKyIzpMdKF99zNac83tYeJcQcuWRM38h7zZblOVZQCAvMrHaoG1UoE4seaNdCN
- cV0G9XTsGHFzZGuZjHAZ/sRex30Ieg==
-X-Proofpoint-ORIG-GUID: dBZlqig7G4S6hEWZQLhDaO3j9742q3WF
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=BRLZTvTzQiK5oUZ-ObUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=crWF4MFLhNY0qMRaF8an:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: vYNfpQt0JY85Y5uI2QRophTV-8hGhVyy
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-11-28_03,2025-11-27_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 phishscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
- lowpriorityscore=0 adultscore=0 clxscore=1015 spamscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511280079
+ clxscore=1015 spamscore=0 malwarescore=0 phishscore=0 suspectscore=0
+ priorityscore=1501 impostorscore=0 lowpriorityscore=0 bulkscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2511280080
 
-On 11/28/25 11:26 AM, Stephan Gerhold wrote:
-> On Thu, Nov 27, 2025 at 04:29:42PM -0500, Jonathan Marek wrote:
->> Unlike the phone SoCs this was copied from, x1e has a 40-bit physical bus.
->> The upper address space is used to support more than 32GB of memory.
+On 11/27/25 3:27 PM, Vladimir Zapolskiy wrote:
+> Hi Konrad.
+> 
+> On 11/27/25 15:40, Konrad Dybcio wrote:
+>> On 11/26/25 2:20 AM, Vladimir Zapolskiy wrote:
+>>> The restriction on UHS-I speed modes was added to all SM8550 platforms
+>>> by copying it from SM8450 dtsi file, and due to the overclocking of SD
+>>> cards it was an actually reproducible problem. Since the latter issue
+>>> has been fixed, UHS-I speed modes are working fine on SM8550 boards,
+>>> below is the test performed on SM8550-HDK:
+>>>
+>>> SDR50 speed mode:
+>>>
+>>>      mmc0: new UHS-I speed SDR50 SDHC card at address 0001
+>>>      mmcblk0: mmc0:0001 00000 14.6 GiB
+>>>       mmcblk0: p1
+>>>
+>>>      % dd if=/dev/mmcblk0p1 of=/dev/null bs=1M count=1024
+>>>      1024+0 records in
+>>>      1024+0 records out
+>>>      1073741824 bytes (1.1 GB, 1.0 GiB) copied, 23.5468 s, 45.6 MB/s
+>>>
+>>> SDR104 speed mode:
+>>>
+>>>      mmc0: new UHS-I speed SDR104 SDHC card at address 59b4
+>>>      mmcblk0: mmc0:59b4 USDU1 28.3 GiB
+>>>       mmcblk0: p1
+>>>
+>>>      % dd if=/dev/mmcblk0p1 of=/dev/null bs=1M count=1024
+>>>      1024+0 records in
+>>>      1024+0 records out
+>>>      1073741824 bytes (1.1 GB, 1.0 GiB) copied, 11.9819 s, 89.6 MB/s
+>>>
+>>> Unset the UHS-I speed mode restrictions from the SM8550 platform dtsi
+>>> file, there is no indication that the SDHC controller is broken.
+>>>
+>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>>> ---
 >>
->> This fixes issues when DMA buffers are allocated outside the 36-bit range.
+>> 8550 has additional limitations. One was addressed recently with
+>> max-sd-hs-hz (HS mode can only run at 37.5 MHz), but when in SDR104,
+>> the frequency must also be capped to 148 MHz. I don't know whether
+>> the driver respects that today.
 >>
->> Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
->> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
->> ---
->>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->> index cff34d1c74b60..cd34ce5dfd63a 100644
->> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->> @@ -792,8 +792,8 @@ soc: soc@0 {
->>  
->>  		#address-cells = <2>;
->>  		#size-cells = <2>;
->> -		dma-ranges = <0 0 0 0 0x10 0>;
->> -		ranges = <0 0 0 0 0x10 0>;
->> +		dma-ranges = <0 0 0 0 0x100 0>;
->> +		ranges = <0 0 0 0 0x100 0>;
->>  
 > 
-> Could you clarify which "issues" (crashes?) you are referring to?
-> 
-> We need to distinguish two distinct use cases here, which are both
-> (somewhat) supported upstream: Running in EL1 with the Gunyah hypervisor
-> with the regular DTB and in EL2 with the x1-el2.dtbo applied.
-> 
-> # EL2 with x1-el2.dtbo
-> 
-> For EL2, I think the 40-bit dma-ranges should indeed work correctly, so
-> we could add your proposed change inside x1-el2.dtso. I'm not sure which
-> issues we are fixing with that though (besides correctness of the
-> hardware description). In EL2, all DMA devices should be behind an
-> IOMMU. In this case, the dma-ranges limit the size of the I/O virtual
-> addresses (DMA addresses) that are given to the devices. The IOMMU maps
-> the DMA buffers to arbitrary physical memory addresses (including
-> outside of the 36-bit range, dma-ranges limits only the DMA address).
+> This frequency cap tuning for SDR104 speed mode is not done. If I
+> remember the story properly, the frequency cap for HS speed mode was
+> implemented in dts instead of being a pure Qualcomm SDHC specific
+> quirk, because it's possible to workaround the limitation by slightly
+> changing a board PCB layout. Then should this new SDR104 quirk be
+> considered due to a property in the dtb as well?
 
-I've been carrying something similar in my working tree for quite
-some time too.. The USB4 PCIe controllers have BAR spaces in the >36b
-region, so this will be necessary anyway.
+I think so.
 
-As for the broken-firmware laptops, there's only so much we can do.
-A fix for this has been *long* released, but it's up to the OEMs to
-pull it in.
+> FWIW, comparing register dumps SD host controllers on SM8550 and SM8650
+> SoCs are identical, should HS and SDR104 quirks be ported to SM8650 also?
 
+A document says that in 8650 and 8750 (and hamoa) and newer, these issues
+are not present, however the original author added the same limitation to
+sm8750:
 
-I'm not fully sure, but I think certain subsystems still have the 36b
-address limitation (camera?), so it would be good to know whether that
-needs to be accounted for
+https://lore.kernel.org/linux-arm-msm/20251026111746.3195861-3-sarthak.garg@oss.qualcomm.com/
+
++Sarthak could you please remind us why it'd be necessary on !8550?
 
 Konrad
 
