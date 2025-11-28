@@ -1,57 +1,62 @@
-Return-Path: <devicetree+bounces-243041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063DCC92F9B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 19:55:24 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8F7EC92FB9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 19:56:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C9AB34E3416
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 18:55:22 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 12EDD346829
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 18:56:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84FC32F74A;
-	Fri, 28 Nov 2025 18:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948F22D3A9E;
+	Fri, 28 Nov 2025 18:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JX55c0T5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u1QM8VQ6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCBB32ED3D;
-	Fri, 28 Nov 2025 18:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D792D0620;
+	Fri, 28 Nov 2025 18:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764355999; cv=none; b=Fx60ZofvgnerZdDHo25e3oNNh5/sabetg8SbMIRWT+d6Gj+0FPqBvNClEXaeKMvBBL/BwNGab4aSd1Fl+3EDEyO6WVfykuoIssHEMRA9VP2qs+9iUdEvvfvcu8C/h98iT9nwCo5gGJW0D5N0ajTMrhJWdfEpwJkzasle+ikWl8Q=
+	t=1764356157; cv=none; b=bay2cWxUElLNEnKNn7tmtWXFoYiGjFX/p2ZP0wWXcuW168H0UuJxNArsqkbHzbVOT4+xkwHYxK4y7p4tPol5xC9n413sY8oc/ulP61XjmjSdhuQ5Mnrm91GtpaPliD6zbdMNHWD78gPfs42hqNm0MZTUkrdshUs9Cp8KKaNFKEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764355999; c=relaxed/simple;
-	bh=7bZ1EBA5WKef53nvg8PukmKyNC1CgMK/oDKy7Wic0tU=;
+	s=arc-20240116; t=1764356157; c=relaxed/simple;
+	bh=hyie6P9EaJ0NKDV9t8Ekku21uHrWOUai2S3ZBSnIKiE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nSOalLB7yao0tgK/+vF1yiJlRd1aU0D0kf31p9LZWKp3mhUXDvW9XdoZu7yGUVAdPo19SrLb5wK0Jj1dAGERULFzb+z7NCq4NAoRnGI+Haz8/6wnaGJ9zEtQ7yk6+pMUgsH4R4/Jxt/taK9Uv8mVVVjvY7uztu5TndCIDmkso8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JX55c0T5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE0D5C4CEF1;
-	Fri, 28 Nov 2025 18:53:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jZk3mTjApRFhWv2dM2pqa9Ca7Jogbb945ijjo96tzNBnLJja28POXvmwS+49fMkvwiENbLSt5vawTVSTf7NKAGxDVORYWZ6KqZBR+u4A5D8qS+rCoROkPqyhPSE09C7fGrwYk3VS4El5cMXAp7oz0f0gWLW6qsUnTFClv7r3igI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u1QM8VQ6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BF0FC4CEF1;
+	Fri, 28 Nov 2025 18:55:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764355999;
-	bh=7bZ1EBA5WKef53nvg8PukmKyNC1CgMK/oDKy7Wic0tU=;
+	s=k20201202; t=1764356157;
+	bh=hyie6P9EaJ0NKDV9t8Ekku21uHrWOUai2S3ZBSnIKiE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JX55c0T5ZU03ShwuRj+rV5WdMVxI4V+dirr7WuDwpr3iay3+ZDoHCIdrjVgydLndk
-	 puP1pVRn7HJD//m2AC5U/PjZ7I8WiA+hdZB6HLatubwEBxAxpdNyIO/YVRQLUKPWa6
-	 coKqsb3IDJ58ep/pypCGeaaiIb4MAhPT0mwvNinQ+Y+mNsUIVKLZ6hXvJrvHf1J2KI
-	 4tdU0DRYC39Ly265ewLQqZIKN3+FaAywTAplgEB0UGpFCyt3jaG6QO44ssT0wbEZHA
-	 emn+2G0g57I38n4jySYgytHfcdEOXwwcB6mGGDdMJaWk9n/aj3/2pTj/+SyFbvWCv8
-	 1UZuZKMWV38Vg==
-Date: Fri, 28 Nov 2025 18:53:15 +0000
+	b=u1QM8VQ62wQZklrFKocM2Vyz5LuEi5qxrWqulQKovtBfjXaySompWxgWPqwYZzkoW
+	 epdEKhoL+k7ko0bKVAvaKNZZBf6XZTBzFc6pw5jzCzDjFIeIaMZh94ikXSTZ6YpT6x
+	 kxVa6ktgiysGz1/PFUoxoEWehgcJO/GVvt9XusLAsZSB5EfLEZpeSMCd+0Igwh/Im8
+	 YSYB6+N9eCFxiB6iiCQE4JxxTDtx/BYV1r043NtOKWXirgHOo/Rv9yKJtQwthC/1iv
+	 U+gPN9VAGguBMHjP7CbhcWqKaUOUuFcr44LMX763PZhUXG+j0gL/aAsA1lYWQ9DqNM
+	 iq/pQ9C75Fagw==
+Date: Fri, 28 Nov 2025 18:55:52 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: switch: adg1712: add ADG1712 SPST
- switch binding
-Message-ID: <20251128-heftiness-viability-4208bceffb89@spud>
-References: <20251128144627.24910-1-antoniu.miclaus@analog.com>
- <20251128144627.24910-2-antoniu.miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: iio: amplifiers: add adl8113
+Message-ID: <20251128-precision-outplayed-6148633ee669@spud>
+References: <20251128144428.24450-1-antoniu.miclaus@analog.com>
+ <20251128144428.24450-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,132 +64,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="95XNqKbKwqJS7HFu"
+	protocol="application/pgp-signature"; boundary="l9Y1Kiz8pfoFTBck"
 Content-Disposition: inline
-In-Reply-To: <20251128144627.24910-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20251128144428.24450-2-antoniu.miclaus@analog.com>
 
 
---95XNqKbKwqJS7HFu
-Content-Type: text/plain; charset=iso-8859-1
+--l9Y1Kiz8pfoFTBck
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 28, 2025 at 04:46:13PM +0200, Antoniu Miclaus wrote:
-> Add devicetree bindings for the ADG1712 quad SPST switch.
->=20
-> The ADG1712 contains four independent single-pole, single-throw (SPST)
-> switches, each controlled by a dedicated GPIO pin. While the device
-> uses the existing gpio-mux driver infrastructure (as each switch can be
-> modeled as a simple 2-state mux), a dedicated binding document is needed
-> to provide clear documentation on how to properly represent the ADG1712
-> in devicetree, following the pattern of one mux-controller node per
-> independent switch.
->=20
-> The binding references the gpio-mux schema and demonstrates how each of
-> the four independent switches should be instantiated as separate
-> mux-controller nodes in the devicetree.
+On Fri, Nov 28, 2025 at 04:44:10PM +0200, Antoniu Miclaus wrote:
+> Add devicetree bindings for adl8113.
 >=20
 > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->  .../bindings/switch/adi,adg1712.yaml          | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/switch/adi,adg1712.=
-yaml
+> Changes in v5:
+> - Replace separate va-gpios and vb-gpios properties with single ctrl-gpio=
+s array
+> - Remove second example, keep only one with external bypass configuration
+> - Add comments to external bypass gains in example
 >=20
-> diff --git a/Documentation/devicetree/bindings/switch/adi,adg1712.yaml b/=
-Documentation/devicetree/bindings/switch/adi,adg1712.yaml
+>  .../bindings/iio/amplifiers/adi,adl8113.yaml  | 89 +++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,=
+adl8113.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/amplifiers/adi,adl8113=
+=2Eyaml b/Documentation/devicetree/bindings/iio/amplifiers/adi,adl8113.yaml
 > new file mode 100644
-> index 000000000000..7de9ec1b7447
+> index 000000000000..43ba51f8a235
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/switch/adi,adg1712.yaml
-> @@ -0,0 +1,63 @@
+> +++ b/Documentation/devicetree/bindings/iio/amplifiers/adi,adl8113.yaml
+> @@ -0,0 +1,89 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/switch/adi,adg1712.yaml#
+> +$id: http://devicetree.org/schemas/iio/amplifiers/adi,adl8113.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Analog Devices ADG1712 quad SPST switch
+> +title: Analog Devices ADL8113 Low Noise Amplifier with integrated bypass=
+ switches
 > +
 > +maintainers:
 > +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
 > +
 > +description: |
-> +  The ADG1712 contains four independent single-pole, single-throw (SPST)
-> +  switches controlled by GPIO pins. The device operates with a low-volta=
-ge
-> +  single supply range from +1.08V to +5.5V or a low-voltage dual supply
-> +  range from =B11.08V to =B12.75V.
+> +  The ADL8113 is a 10MHz to 12GHz Low Noise Amplifier with integrated by=
+pass
+> +  switches controlled by two GPIO pins (VA and VB). The device supports =
+four
+> +  operation modes:
+> +    - Internal Amplifier: VA=3D0, VB=3D0 - Signal passes through the int=
+ernal LNA
+> +    - Internal Bypass: VA=3D1, VB=3D1 - Signal bypasses through internal=
+ path
+> +    - External Bypass A: VA=3D0, VB=3D1 - Signal routes from RFIN to OUT=
+_A and from IN_A to RFOUT
+> +    - External Bypass B: VA=3D1, VB=3D0 - Signal routes from RFIN to OUT=
+_B and from IN_B to RFOUT
 > +
-> +  Datasheet: https://www.analog.com/en/products/adg1712.html
-> +
-> +select: false
-
-I think this pretty clearly demonstrates that the binding is not
-correct.
-If these are independent switches as part of one device, they should
-probably be represented as child nodes of a node with an adg1712
-compatible, similar to how adc channels etc are done.
-
-pw-bot: changes-requested
-
-> +
-> +allOf:
-> +  - $ref: /schemas/mux/gpio-mux.yaml#
+> +    https://www.analog.com/en/products/adl8113.html
 > +
 > +properties:
 > +  compatible:
-> +    const: gpio-mux
+> +    const: adi,adl8113
 > +
-> +unevaluatedProperties: false
+> +  vdd1-supply: true
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
+> +  vdd2-supply: true
 > +
-> +    /* ADG1712 with four independent switches, each as a 2-state mux */
-> +    adg1712_sw1: mux-controller-0 {
-> +        compatible =3D "gpio-mux";
-> +        #mux-control-cells =3D <0>;
-> +        mux-gpios =3D <&gpio 10 GPIO_ACTIVE_HIGH>;
-> +        idle-state =3D <0>;  /* Switch open */
-> +    };
+> +  vss2-supply: true
 > +
-> +    adg1712_sw2: mux-controller-1 {
-> +        compatible =3D "gpio-mux";
-> +        #mux-control-cells =3D <0>;
-> +        mux-gpios =3D <&gpio 11 GPIO_ACTIVE_HIGH>;
-> +        idle-state =3D <0>;  /* Switch open */
-> +    };
-> +
-> +    adg1712_sw3: mux-controller-2 {
-> +        compatible =3D "gpio-mux";
-> +        #mux-control-cells =3D <0>;
-> +        mux-gpios =3D <&gpio 12 GPIO_ACTIVE_HIGH>;
-> +        idle-state =3D <1>;  /* Switch closed */
-> +    };
-> +
-> +    adg1712_sw4: mux-controller-3 {
-> +        compatible =3D "gpio-mux";
-> +        #mux-control-cells =3D <0>;
-> +        mux-gpios =3D <&gpio 13 GPIO_ACTIVE_HIGH>;
-> +        idle-state =3D <0>;  /* Switch open */
-> +    };
-> +...
-> --=20
-> 2.43.0
->=20
+> +  ctrl-gpios:
+> +    description:
+> +      GPIOs connected to the VA and VB control pins (in that order).
+> +      Must be specified as GPIO_ACTIVE_HIGH.
+> +    minItems: 2
+> +    maxItems: 2
 
---95XNqKbKwqJS7HFu
+"maxItems: 2" should suffice here, minItems defaults to maxItems if not
+specified. Although, this seems like it should be an items list, since
+that avoids defining ordering in free-form text as you are.
+
+pw-bot: changes-requested
+
+Cheers,
+Conor.
+
+--l9Y1Kiz8pfoFTBck
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSnvmwAKCRB4tDGHoIJi
-0qU/AP9UfmkC2T1IQVErmcquNjhgXDY864+rc1HSNMy/mNoobwD9Gu3ou1dV1HFu
-wzUWl7AHkyC2oarwtRaaJM4FyZvhJAc=
-=S8G4
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaSnwOAAKCRB4tDGHoIJi
+0hqRAQC0MVCMTA66ZV44aeubvXf10Xr5mfE+FmJaBVw0c+86AQD+LZ9/1VAAxYYe
+sfq9d8+OOed4+RwVMFNgC2JWOHGrLAI=
+=KuNP
 -----END PGP SIGNATURE-----
 
---95XNqKbKwqJS7HFu--
+--l9Y1Kiz8pfoFTBck--
 
