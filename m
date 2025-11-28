@@ -1,160 +1,244 @@
-Return-Path: <devicetree+bounces-243025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67D4C9297A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 17:36:18 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB4AC9299B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 17:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 00CFE34C224
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 16:36:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A81724E12BA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 16:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932A3265632;
-	Fri, 28 Nov 2025 16:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7792D285C84;
+	Fri, 28 Nov 2025 16:43:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="AKGvIonl"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hWG3upRm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012023.outbound.protection.outlook.com [52.101.66.23])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32F62882A8
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 16:35:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764347751; cv=none; b=H420zaNwtwSO4Bl1YUU6zO1Hbihn28+haKmcy+W69gyqJAEIBu7baHvobzKYV2IGvGCRi+lQwPkb1KNDEQZNjk8rM39IvSoOjtsMByVIZoXl6re+wuXO86Wb15ZOQX38abAjhpRF7IZQ/bojVquFXcgRv7prT+lI5BYDX9y4Cu8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764347751; c=relaxed/simple;
-	bh=GOP/kpxv/SiG8IleAVvu3y+ovNM3AHbdlm/tdl/uDsI=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=uWgDMF0kr59oy0UgkadP0ydoWnZUBipPwOIfB+PKCIPXC8nNj1AQ9rTMa9C1K4L+fim1ooC+4nKl9WIRyIsOesxJx8pne+a0ktxcy/ERnG1eVcDURgxc0M/jTlc4GXLAHqSHa+GKrJF8Ly7SHvQ556tS2ZCCL1WOTMCAK2H1UgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=AKGvIonl; arc=none smtp.client-ip=209.85.160.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4ee05b2b1beso17541831cf.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 08:35:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek.ca; s=google; t=1764347749; x=1764952549; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dsIiGN2rbV6QEaM41dIcddlDyFwba69ep6ezkRocLRE=;
-        b=AKGvIonlFOQigaHBKSSeGgckHwdMJM9QTUckb5hessWdzB+1Y0kaicVncYT9owjoQj
-         YBe/S/psKdU158bN/jOWntQoHYfOZW8v2OJs+jfpL5hY2DSendg7/vJM80+gHqTLAOmK
-         rd0hm9+ijsZvgekLw/CtV9Y4zSIDPd/IhoFX9f0mAPmYQV4gE5H1IfikUa1rr2jymL1P
-         gUq13GOECj2nH0LWnC5pP5QXOnNDFd+oo/MbkngWoY15SqO0vDi9RnfJ36f9hgjEf+Zx
-         YQHQuSsoBO8UAdPxPFN5FigAH0rczTnvB0y7pxi8Zw5CGAQdlSHopKQSHBWJckqq5+dV
-         DBEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764347749; x=1764952549;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dsIiGN2rbV6QEaM41dIcddlDyFwba69ep6ezkRocLRE=;
-        b=f8bih2aof8RXG6ZZzFYr2nBb+fADCsbljPs/uyZMJ5fXvSXbiyBJhi83p2KO7lwLHw
-         Q8Hf9sDsNczMSs5ngojGjWp1UspExEmcJEmEWSJGp6C2SLvDW13mvhUp+H36zg//M3md
-         9DXfqMCR0cFwSguzsEXGVpRXbuffKAdROgGiZc8OolNRV5o7cI9r5AV3GEaP8Qxeu8gW
-         e36YRcri8W6cqFpHlxcJaWedXZyue0w1M5CYg1Qoy4jAAOySXufHyzwCxraDaHPE7ZCb
-         oDTnxQmbguraojZzQq0USWdDztCMVsq8b0wBq6agBRF+2RGx7TAZqn7Gl2diXZ0B8QOQ
-         tNvg==
-X-Forwarded-Encrypted: i=1; AJvYcCU+7C0R6cTtgkxKHB2DiK4h8GvKB6fXJw13nkVD+iuIE4PWeIfYh6xoHQKeNokBVE9HBGTIkUia01GH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzW2crwifOddSPPQOXWC8Zc3RAyWccQMnLHsYUGNCBc5fXYLxDg
-	/RcO/HSNtWNAQxCIu5NRGFODrbsYFe0HoSPFtoKtLI4//ikWM9kmJKrKAPC91JSm7UM=
-X-Gm-Gg: ASbGnctbZt9uG/Wl1DefnbnYlyv9XMYdpitRVHSxLkZjiRQuGIeMAbRSSVCu0tvjTaX
-	oHfOfPjGzkzDbYUk5ynPGsYu7zVZSuQutvIEQZf1b5NsP8xJ7ZI2l3vnWFesKadDjMrebEV4p5g
-	4KxI3lhH05gDB+pYvK0kyk/3Y8VC+RQaZLBgH4NVV5++I77Q23cj20VxL78oapfnbdvX79dleUJ
-	ui18TF9tSRY5SSifrUs1mD39c8SK4lTzu5k8HqHEu49yRjWdcvnG1OrMoeq6AbyoUQp8CXtv6vf
-	0lcAr/0IynSKPcgUWdALc1vwtuuUeREVQw5iCB3fmBWPf1tHLxHMxeAUrG+huWmVSbnywC/wppC
-	E7ocaesVqSzJ3lerGaRjSv8JeugBzz4vQY4ogmfX6Tgtu52yKRfefPVL7rgAytseGR4y7m5JlUg
-	kSIx5ftb8cvljd6/YYNJrWrsr1MCljSg3keWXfX+2CLTwHG/1uB9iPyHhCRQ==
-X-Google-Smtp-Source: AGHT+IEid5PwFVhxwHcg2m8sj1oMjCxEDjABwlPhJ94vWnRIxAYTmRy804ezhMM72PRfoULBpaYSRw==
-X-Received: by 2002:a05:622a:591:b0:4d2:f9e3:c12d with SMTP id d75a77b69052e-4ee5883f8f2mr405538631cf.14.1764347747428;
-        Fri, 28 Nov 2025 08:35:47 -0800 (PST)
-Received: from [192.168.0.189] (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4efd34365b4sm28012621cf.26.2025.11.28.08.35.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Nov 2025 08:35:47 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
- Abel Vesa <abel.vesa@linaro.org>, Rajendra Nayak <quic_rjendra@quicinc.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20251127212943.24480-1-jonathan@marek.ca>
- <aSl48gV9laFb-MR1@linaro.org> <d969b3e6-a6e1-6dd3-45b9-539ba7a9f42d@marek.ca>
- <aSnH3C8s5xVSk_ti@linaro.org>
-From: Jonathan Marek <jonathan@marek.ca>
-Message-ID: <1aa75dd2-6fb4-e9ca-ca27-c0bd910246fe@marek.ca>
-Date: Fri, 28 Nov 2025 11:34:40 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146791A9FB5;
+	Fri, 28 Nov 2025 16:43:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.23
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764348186; cv=fail; b=bgsXRKvafmXlnH8fjRnmj6DMrRRWebe1RZTdHQLuDntXfV/Rmxi6Uc5GmSRk869YcBu7al1q/ZC7hGbEiNEcchWuoWJyo5Ste1PVAsnaOUIeZk4nEnyosN5g30FzjN+9JeypMkkTFXPr2TMG/jkMiy703EfGqpNkSOd9F8ZUUoA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764348186; c=relaxed/simple;
+	bh=BWclbSHswna5BShH1kIV/DpyA6zIuDZletFE4bC68DQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=p2aFCBXrHp74Mfx4iQW1TW/KCHMs0SUyxntZyQIFt//iiYoOU1DchD+OtbWNABpC+R7pLGJgaFe4044twahVrmo8bAeaiDOfcF8d98L4v3RA/yRjD79lgWWXaN9ivMRX91/JVoL5zqWE8yksUMyUiEBCIYV5408u842EPxz/Jn8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hWG3upRm; arc=fail smtp.client-ip=52.101.66.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jZpVqpXWKt5LwcWMtudyr+U9Cc7bPRDjdgZ032oY/Nmyas+YQ0nDRPk+m10oB0Tc7LkFCnUspXX6pEIXIKGOtgWE55D4Dh8LWBQ85bnkEhdvQ8JfDNutgjm8tFEbDVbqwc+oEM4YGbwMhdT2JEvdDFxfSh5HtZT/3d+RFcvdBtfVn7SMuKyjSYJyIoobWlD4DPfl6kRgaITzmcE2BHNs7/9Fr37JFVvwvIQroFfuN8KqTrS0q+zrO5FIx0u+AvP8LCbWmLadcmSth0ptyzn0cApocafxvQHEAgLtmL7KzNr0UwPbwcSbEpsepzgzF5LW/BjCdehCAtYas95LzIVCAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rzfTifcbYdCdJZBa4ESaPGSU6PbM64pk9YqHmaHutD0=;
+ b=YE3tLGH5ZvsE34sk9JKz3yV04MvKWPM95kAgY7a97+Mbp7IGJjk1prjKBkr0jr27PObKItL93ua3ZAA5f28j5US+bcEBD//GpCEugTL6wyxEVQ8QsO4J1udRe0Ts5ENVav6qkzL/42kcvgexJatBF2Tf6o1Co1CV04Sc6JtrqGnkO3f6wmUv/q5eNmdB7KhBCvU+OTSCcd1eVZTamLuARCSl91oHP23R019fYqRgKIfBSvlE4/7K0rAvssSO4IhcUEl5qKQcFZVy1SIPFxOFfaaNP0JggcstQl5Sf0m2nsetFtnOxrZXkkG8W3QckGGR0dGsi3mcr02jXWCzW2akTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rzfTifcbYdCdJZBa4ESaPGSU6PbM64pk9YqHmaHutD0=;
+ b=hWG3upRmMvWFA2FAyOhxY0sGHTPRk1ykDJkKg0HEuGLUZAs+AKWBj+TAHPD+riIg4IMH6fRA6tqkPEmb0mRimxl2pRgXTZrbM/LwcwJgqP+eZteQ2y4GBouintpNFLvUe4PFyRoHyGXBO1diFS5YpgZoHhmdiAGoQdR36BNyYgdw/+tRgoSFmkBlflOsRKH7GhfgitNhx3nj+/O+JRbehnnRat1cfK4RKdFmEO+9biMthewyirzUAZA+jGXqFZqO4UrxTZVyczqV7vU+Yv71GtUfgKXgIZNj8OyRDnEje8oEvlqICdNr+74Md8TLjNeGBg2OxJ08obhTNxn1yE5W+w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB8253.eurprd04.prod.outlook.com (2603:10a6:102:1bf::7)
+ by AM9PR04MB8668.eurprd04.prod.outlook.com (2603:10a6:20b:43f::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.16; Fri, 28 Nov
+ 2025 16:42:58 +0000
+Received: from PAXPR04MB8253.eurprd04.prod.outlook.com
+ ([fe80::b853:e05b:c1e5:41b7]) by PAXPR04MB8253.eurprd04.prod.outlook.com
+ ([fe80::b853:e05b:c1e5:41b7%5]) with mapi id 15.20.9366.012; Fri, 28 Nov 2025
+ 16:42:58 +0000
+Date: Fri, 28 Nov 2025 18:42:53 +0200
+From: Ioana Ciornei <ioana.ciornei@nxp.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Samuel Holland <samuel@sholland.org>, Marc Zyngier <maz@kernel.org>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] of/irq: Ignore interrupt parent for nodes without
+ interrupts
+Message-ID: <dyaqe3ssrn65r5xndlwe7tlbiw2lbwvu3q3lzusfgr5mgycp6h@gfzyxk7uyva7>
+References: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
+X-ClientProxiedBy: AS4PR10CA0028.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5d8::13) To PAXPR04MB8253.eurprd04.prod.outlook.com
+ (2603:10a6:102:1bf::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <aSnH3C8s5xVSk_ti@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8253:EE_|AM9PR04MB8668:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7d4a644d-278d-4705-64d5-08de2e9d2fed
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|19092799006|7416014|376014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?QhfPGgTWakZuCmVMKF7jWB1HaByJjlXkteLItiv9hah/k5ijcMavTHY5dhqV?=
+ =?us-ascii?Q?Rl3W+LKyxppq0QSTtLY0V9Iw4vcxnH5zu2QoF5EJ+zPrX+JYPCytCxZQIyxj?=
+ =?us-ascii?Q?unPYew8E5av5M9QdhWeSOnxitxzV9CYv2vWTgCSAfDp4BKRwzb8XoBtaRDX7?=
+ =?us-ascii?Q?lfSz2F7kpE2O2duYEk5S4MuDKJEkbrwXlnIloPk5uOGSgWj7fgY9rjYgy6BB?=
+ =?us-ascii?Q?OKAbvhK0W5H2/dnbzCcOCii+AF7huu/8yhB5DppLS3GmldtloOEX1pIqQxlp?=
+ =?us-ascii?Q?t8QzpM9MYU8fCZBQZfRfrg6HAGAZQlSOnMdtoJkDZPCJ2Ejpbtj0UZbqZV7/?=
+ =?us-ascii?Q?gnP2f0Rn++EiJaZBg00tNB3/90RjL95f6ruSP7m+bIHj+daYWOn8c05OVfA8?=
+ =?us-ascii?Q?t1t3sx+1C2tmNlsBzAPp556VQl8MBk5jQQITsEBt+M+HfeJwyi/d4qY3P/3b?=
+ =?us-ascii?Q?8yDoqs6LHFKIjsnRe3o/rL+yPTHjW4tDVHHYYMoKmeNA/ZF069YCThoSApre?=
+ =?us-ascii?Q?KemRZsUqwh1lxGQPT5tEMUB6N59EAQAAUn9jRQkK6JatrJRmd7j9UIXI8hmd?=
+ =?us-ascii?Q?cH3lJP1qNCHPoJ+hhSI1FwL84ejDGfyqyu6sBBF0Ru+9yHGeicmLyE1boNls?=
+ =?us-ascii?Q?5rugo8mS1XpNbqbiiQasQgVtPHytcw09oE2LcR1kHe1G3sZ/L0TI8EqSnauR?=
+ =?us-ascii?Q?ziBjhtF1v1PXJWRXRg8SLokBM9q4gAWtIjoC1v4j7po12oGP8hEzA+8ZLEoE?=
+ =?us-ascii?Q?LXaN2vCssoHdahm9/SSHr8ABMzGjSwkLUX/SYrvxL5QKaK8zv/EEHFHqkDzH?=
+ =?us-ascii?Q?1a5sfAOlrVoSezecGLzg3gZeXAJh0vbzYliKdb9GWqy3SXrBY+YTn7tMyjGo?=
+ =?us-ascii?Q?o94ngReskx3V2dOCAzRtpRz89u8rKaS8LthOsTVMcmOw9k068uz0Bk9BSxPY?=
+ =?us-ascii?Q?JfT0Jmkpw1rje1i+dKBhNVSjWK8Pe3MwJmIY7LP3W/hoqE1p6bHMsfuAnX+a?=
+ =?us-ascii?Q?lUeby6JzCfSTXy7rCz56FHUMte7KU6fYSV7k3iqTjm6/QtBDKWUn/P0ybCKt?=
+ =?us-ascii?Q?Vb7nx6KoaKU3fxpFGCal6LsAZXkk+hht3gc7AYGCAwyoU7zuxRXEpVGHxj2F?=
+ =?us-ascii?Q?Tug6o7wEoLGO4xQKvGsh6KNrXN4rj7YRDQ2QmoMcggqo7dOf22imnTSkaxil?=
+ =?us-ascii?Q?uXo3x5Zdnbc3gEbyWw75MxxXe/44BJeCiCKOijOgQK6oqO2lZlkiy2gOMZsC?=
+ =?us-ascii?Q?Eos9IHqm8FpWq4Zvz9XD8tmjrBRV7Awjrt7GYoLPOaNJHlKaHrDQOp7iLIFR?=
+ =?us-ascii?Q?hS47p0H82sYXhdfNGktpdn4X9EWjemQAFqpb4mgWwI7OAW2+IKCa47RZ1H4V?=
+ =?us-ascii?Q?fdrkTKGEsaIP7AdABVRr+CFBh+yybuUtwRGCeert/xjVoT+SJrkdIxMPnjvV?=
+ =?us-ascii?Q?6VGKxbxetBig9oj+ETQ1C5W55j+ykHtOH1+huwmVyDA8xyo1ZtzcaQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8253.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(7416014)(376014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ZiE8rX3c1RYZ8mTW2w/CUszSwzwM8YGgt/91rmgeKo9LKHxjACI0tIpGJlzx?=
+ =?us-ascii?Q?bNzLHyuXZlQYmmpWaRjL6AC5mCHZ3i8Bu2NsSOgpY49LAMWksj2zLAUkcAdI?=
+ =?us-ascii?Q?7wz+eWZgJNc20xqHYt5TLF9QfJ6OQSVr9ia7Ncn2hfw5Z4cvz8FvLP5davaU?=
+ =?us-ascii?Q?H6s0aRyzZKxs6p20q8ZzbXHMO+8tVsY0eUTvETDayisFXOlER3oM2j7KB7c3?=
+ =?us-ascii?Q?leH5tN9/8Dg2bCNH4dGjzUqOTpI/aweCHANvLAM+TPteQ89g6axtC5h0fhdi?=
+ =?us-ascii?Q?GL05aHfzERSCftNCep1OEBIOPo+i5YiQSP8jo5W3Z8EQFyLYXV//Fk99LAd9?=
+ =?us-ascii?Q?P2J6geeuvj09Uh1nRH3jfTitgCxfKncVyQdNzG9sCRkJYS8K7/BIqIRV4aI0?=
+ =?us-ascii?Q?1evPjsL+DN/3DOqOzORR4oRZ45243yX3dvjCjer/xQd68+zrN6SgRAJ7Fy5w?=
+ =?us-ascii?Q?HLk4oVNb7ZrpbMX2ZmLJN7YwTBsiH4fe8TPiL2XWlvtvEKEaAbl0X1FxWfEf?=
+ =?us-ascii?Q?X7rDAgiWlfYrq2pGRvLulZJiyB2KPbyZ6WEmGBulZVRMB0+FcyoKkzGMsdd0?=
+ =?us-ascii?Q?zzLZpbqeyoRsbBeJHYjPlqpzYLbyZkExt5+8BVxbIvwKUHybQUvG1l16Z0Ez?=
+ =?us-ascii?Q?ZjN6BZ9C449anDfusQvcN9XC6ppiOTNFuLFzqN5+i0QJ155wRukHbaY4BSch?=
+ =?us-ascii?Q?KW6/805A5INJNGTzHL6uU/BWHl1IMkIKmUdxQ6u3iTiXgdW8keGQPnNXNTkr?=
+ =?us-ascii?Q?3+WqnWhXNckKDYvC9bt9QBRmdYTD/GVmIt0BATCjUdpd/XCpzhYXGVTp5HKv?=
+ =?us-ascii?Q?10hrljD+EGbV5GXIqVq1Djf0+DajV4n3HFGf/JU6q+O73MD6M0Nc+n0Cwli1?=
+ =?us-ascii?Q?tXng+mgxh6/40MdgR82SGzm5WPsW17dD5vxk0Oqswv1S7nq/glRcwViFjg6t?=
+ =?us-ascii?Q?d5Gioxq8YV8Q2bcAXiG1RG0FYfYrIZlqosDIvKaPtOe8+6lW9NERRzFncwjb?=
+ =?us-ascii?Q?s4/KkZjjU5zJjDXhQ0vXDD0XHG760palmcI7Y0dvhJaCnMra4c6/IHEQbsw/?=
+ =?us-ascii?Q?QcxIpef3rfqD9RGczJgMD89eU1bECfg0xA+XWXmY920ZOJKhKh1fmeDNek6N?=
+ =?us-ascii?Q?rrJJiAbJtF35uoQoYURjgDb2oV3tVKr1CBBMjnuyLuLi8arHcMxhkfqZOi4F?=
+ =?us-ascii?Q?3CT3c8vbCMdScBuWaP/7ld7vTjV35IktkNSwMyhUULai5xLziZQSE6vDfZqv?=
+ =?us-ascii?Q?XSeTVHEW40wUx/eHskxXN0DH+D4btCH/gof6nzhd8Jt0WbMyBkGfIwpFCbf1?=
+ =?us-ascii?Q?6q0EPcgWfEUFjGjg5B5O0u10KRIVtjxEp3D/np3O+jYHvVRSCDvP3gVtCYgS?=
+ =?us-ascii?Q?RGvCawTlZ03299WKD5sL1kpM4oXulD4KbdL9ZtZ3fQdsKIu52cEAyrKL8uN9?=
+ =?us-ascii?Q?Z7+vgTzVl/MXTEjbFrpbM3HgqD51VzrHWFb+56pHcslb25eg1LCFxqS4CoJ+?=
+ =?us-ascii?Q?C68CYUDGZ+39z5Tcfr9OVSpcnKOyX5w302eiJm3F13VL+AfpPkMhSa7csKmo?=
+ =?us-ascii?Q?IIn9FcjBkIe8HceDPeTx7W4qExsq25G7wcNGA3Rh?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d4a644d-278d-4705-64d5-08de2e9d2fed
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8253.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2025 16:42:58.4460
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sQNPLRhK+EA9n08OniJkAtIbzIaOOSBUP6qtUUQxcEyu+xEt7mOrK9+oajlP9E0ytNS8Z5ekTW7VjeJTYrB0ig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8668
 
-On 11/28/25 11:03 AM, Stephan Gerhold wrote:
-> On Fri, Nov 28, 2025 at 09:39:52AM -0500, Jonathan Marek wrote:
->> On 11/28/25 5:26 AM, Stephan Gerhold wrote:
+On Fri, Nov 14, 2025 at 11:47:54AM +0100, Geert Uytterhoeven wrote:
+> The Devicetree Specification states:
+> 
+>     The root of the interrupt tree is determined when traversal of the
+>     interrupt tree reaches an interrupt controller node without an
+>     interrupts property and thus no explicit interrupt parent.
+> 
+> However, of_irq_init() gratuitously assumes that a node without
+> interrupts has an actual interrupt parent if it finds an
+> interrupt-parent property higher up in the device tree.  Hence when such
+> a property is present (e.g. in the root node), the root interrupt
+> controller may not be detected as such, causing a panic:
+> 
+>     OF: of_irq_init: children remain, but no parents
+>     Kernel panic - not syncing: No interrupt controller found.
+> 
+> Commit e91033621d56e055 ("of/irq: Use interrupts-extended to find
+> parent") already fixed a first part, by checking for the presence of an
+> interrupts-extended property.  Fix the second part by only calling
+> of_irq_find_parent() when an interrupts property is present.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> v2:
+>   - Split off from series "[PATCH/RFC 0/2] of/irq: Fix root interrupt
+>     controller handling"[1] to relax dependencies,
+>   - Drop RFC.
+> 
+> [1] https://lore.kernel.org/all/cover.1759485668.git.geert+renesas@glider.be
+> ---
+>  drivers/of/irq.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> index b174ec29648955c6..5cb1ca89c1d8725d 100644
+> --- a/drivers/of/irq.c
+> +++ b/drivers/of/irq.c
+> @@ -613,7 +613,7 @@ void __init of_irq_init(const struct of_device_id *matches)
+>  		 * are the same distance away from the root irq controller.
+>  		 */
+>  		desc->interrupt_parent = of_parse_phandle(np, "interrupts-extended", 0);
+> -		if (!desc->interrupt_parent)
+> +		if (!desc->interrupt_parent && of_property_present(np, "interrupts"))
+>  			desc->interrupt_parent = of_irq_find_parent(np);
+>  		if (desc->interrupt_parent == np) {
+>  			of_node_put(desc->interrupt_parent);
+> -- 
+> 2.43.0
+> 
+>
 
-...
+This change irq-ls-extirq and commit 6ba51b7b34ca ("of/irq: Handle
+explicit interrupt parent") does not help with the issue.
 
->>
->> I am using EL2.
->>
->> Without this patch, DMA buffers allocated in the upper 36-bit physical range
->> will try to use bounce buffers. The dma range from the dts is compared
->> against the physical address, not the virtual address.
-> 
-> I don't think this is the case for the dma-iommu layer. I debugged a
-> crash caused by USB in EL1 on a 64 GiB device earlier this year and it
-> was happily using buffers above the 36-bit physical range without using
-> bounce buffers. There is some code inside dma-iommu for using swiotlb,
-> but it's used only for "untrusted" PCI devices and some edge cases with
-> unaligned/small buffers.
-> 
->>
->> The crash I see is display driver crashes/freezes once a buffer is allocated
->> in the upper 36-bit range and it tries to use bounce buffers. This can
->> happens very quickly under load.
->>
-> 
-> You could be right about the MSM display driver though, since that
-> bypasses dma-iommu and manages the IOMMU itself. I stared at the code a
-> bit and I'm not immediately seeing where it would end up calling into
-> swiotlb, but it might be hidden somewhere in the endless nesting.
-> 
+This is how the DT node in lx2160a.dtsi looks like:
 
-Looks like you are right about this, MSM driver ends up going through 
-dma_direct_map_phys(), which decides to use bounce buffers. I didn't try 
-to see if other drivers end up using bounce buffers, but it would make 
-sense that only MSM driver is affected.
+	extirq: interrupt-controller@14 {
+		compatible = "fsl,lx2160a-extirq", "fsl,ls1088a-extirq";
+		#interrupt-cells = <2>;
+		#address-cells = <0>;
+		interrupt-controller;
+		reg = <0x14 4>;
+		interrupt-map =
+			<0 0 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+			<1 0 &gic GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+			<2 0 &gic GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+			<3 0 &gic GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+			<4 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+			<5 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+			<6 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+			<7 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+			<8 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+			<9 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+			<10 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+			<11 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-map-mask = <0xf 0x0>;
+	};
 
->> The same crash would happen for EL1 as well. I wasn't aware of the EL1
->> broken firmware when I sent this patch, but instead of display freezing I
->> guess the behavior would a hard reset now, which is a bit worse but still
->> unusable unles display/gpu driver is disabled.
->>
->> This patch is correct and should be applied regardless of broken-firmware
->> EL1 cases (where 64GB isn't usable anyway), but I guess the Fixes tag
->> can/should be dropped.
->>
-> 
-> Please clarify the commit message a bit and mention the two separate use
-> cases (EL1 and EL2). I'll leave it up to Bjorn/Konrad to decide whether
-> to merge it. At the end you are right and using 64 GiB RAM in EL1 is
-> kind of a lost cause anyway.
-> 
-> Thanks,
-> Stephan
-> 
+with the following being in the root node:
+
+	interrupt-parent = <&gic>;
+
+Ioana
+
 
