@@ -1,151 +1,160 @@
-Return-Path: <devicetree+bounces-242922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9166C915C7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:07:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46780C915E2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:11:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B02A73A6064
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:07:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2057C4E1853
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:11:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1EC73009D4;
-	Fri, 28 Nov 2025 09:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252172FD7C8;
+	Fri, 28 Nov 2025 09:11:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LXCvDJFV"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="sF3aWXXZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845B23002DF;
-	Fri, 28 Nov 2025 09:06:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B222A24DCF6;
+	Fri, 28 Nov 2025 09:11:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764320811; cv=none; b=p89ziClqJCj9KnRJ+x30vSeWMCHgFSZNB8TahY7mW8Hit/yXQkGFKqloCYX2WMC3tXoPGXF201cAYEFWnJjlKIapjVs7w+en2iweajPUwdBpWmV4PlT+x4VNKYWPwTHofmlV3RaX7oCRzE6GIaOovH0/zKQ/u58JZn+yBsaL4k8=
+	t=1764321083; cv=none; b=FkLxqRuTi+mlzEY+QXAwFefPoCcRsq/IOuVHbr9Pt1Jp3miFlS+S7fYw4/aJXNwKQ4h0qc+PrtHcJivtEo8hRo5jkqVhgJ1UfrQilb8O5COpMs+kDnTTO04YzdwmmU79QiGJjYpPGuP4MqG/8HZbY7aKPIUDcJ4MsFVolI3CN0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764320811; c=relaxed/simple;
-	bh=Vh0LuF0gS+lrMM9WoJmSq8MPQZpCzrMImlm3Z3WqzOU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZZpAWXsAVIEVi+TEq1VsA91TRvAfLSsc0/gh+UvxpLllyo9gXN6aDPJwKaJQ3DT2u5Oz6amgeHL0Wa23QSLobGW+U6M90KedgTTAittioJE0djObvllhAkq/VKcQRi8ZAdPEEhf3RJaKkV18tW1RlddPqMBv5Uj9SvXtmIqDdZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LXCvDJFV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60B38C4CEF1;
-	Fri, 28 Nov 2025 09:06:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764320811;
-	bh=Vh0LuF0gS+lrMM9WoJmSq8MPQZpCzrMImlm3Z3WqzOU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LXCvDJFVHr13m/4MhEEIua5oEaw6YY4UgHWyJJjH+QJ//LF+5t54hsTjFZyDC/2Se
-	 Ba3YlV1sJUjKAq0aCTR5gO4mC93dXVI7aPGyMx0jep07ZEKNRVnW5sLmNRHvJvR0+F
-	 cmnC1DIo1VUIipB1OukKXsjWsmsvSbZp2HbQr57rgyfCKOTV5/71++uhEGC9nW8Ab6
-	 sLFzhQaaTtRbdxfJvfikqTC76uaJEN4kGKX6XegG1PbvUdsX3GwT9fMHS70FeAGnSA
-	 OD1WFHM5UZ6yAtctjTGFyALwYqxd551bLKvI/qe/MCSJr5Rhe3iyC5hTmgRd1ec43q
-	 q7VzrBoQboJVA==
-Message-ID: <369271f5-8ada-4c72-a9f2-852346b07867@kernel.org>
-Date: Fri, 28 Nov 2025 10:06:46 +0100
+	s=arc-20240116; t=1764321083; c=relaxed/simple;
+	bh=tQBgCb7ikzOmnvItGqntAV1a3R1NgbI6Mo7aHY68sjE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Z0zfvex7zOh0iyRD+y8vtjNgTBZQw6cJ2y6nlr871F9gzduWtU0Rzcry6ef8doCOpXY0ePNhLT/pqTE5iiOL5+XAZCl9VK7+DQrtdIm6ibzH/N7bxKIT7PTmJlH2Lz6HiYYtynUp981tczr73Tdg+OYsPTxVCxE2UdD6fPhecEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=sF3aWXXZ; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5AS98QwE4394704, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1764320906; bh=WwL08DBtUA04m9uzunJbXUc8Llp3YbCg4yfS44lD4Ls=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=sF3aWXXZtPN4zIvSWVtMamRcVGMf7a0aZyrLEpq0jXiM2DdwG67OFHd14o+cQ6eu1
+	 cCBoDjYr50AjqwNH0/DCcZN0pi3rWiDuvkM8LaIdV6tx26Uh0ZkBBvpRhxVbUp6guc
+	 P9INQD/k9LTvO+WeDV383iUNEpzQStGrZb5PRci2FUFFmGd30dhz0PgRyIcL2gynfX
+	 1aMAjxF/ezQZcXpytoVJTYNdLebnH0RfECX9JZdf7rn9sBeYZbokmVn/ZNXThVBxCJ
+	 AUJnJOiDcBikAtc/4NbADH3+iMqClRdDbOHT97jplk2pqFoVf3nbsf1oQYeqCHPhB8
+	 W/g2VBD0TuvhQ==
+Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5AS98QwE4394704
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 28 Nov 2025 17:08:26 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Fri, 28 Nov 2025 17:08:26 +0800
+Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
+ RTKEXHMBS06.realtek.com.tw (10.21.1.56) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Fri, 28 Nov 2025 17:08:26 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS04.realtek.com.tw
+ (10.21.1.54) with Microsoft SMTP Server id 15.2.1544.27 via Frontend
+ Transport; Fri, 28 Nov 2025 17:08:25 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <afaerber@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <lee@kernel.org>, <james.tai@realtek.com>
+CC: <linux-arm-kernel@lists.infradead.org>,
+        <linux-realtek-soc@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <cy.huang@realtek.com>,
+        <stanley_chang@realtek.com>, <eleanor.lin@realtek.com>
+Subject: [PATCH v3 0/2 RESEND] arm64: dts: Add support for Kent SoC family
+Date: Fri, 28 Nov 2025 17:08:23 +0800
+Message-ID: <20251128090825.27365-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8750: Add videocc node for SM8750 SoC
-To: Taniya Das <taniya.das@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
- Imran Shaik <imran.shaik@oss.qualcomm.com>,
- Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251126-sm8750-videocc-dt-v1-1-a848fbfb257f@oss.qualcomm.com>
- <7a69ced3-c698-4eb1-b705-58a48048e684@kernel.org>
- <9a3c2518-3a32-4165-a7e7-22171488991c@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <9a3c2518-3a32-4165-a7e7-22171488991c@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 28/11/2025 09:41, Taniya Das wrote:
-> 
-> 
-> On 11/27/2025 6:00 PM, Krzysztof Kozlowski wrote:
->> On 26/11/2025 19:09, Taniya Das wrote:
->>> Add device node for video clock controller on Qualcomm SM8750 SoC.
->>>
->>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 14 ++++++++++++++
->>>  1 file changed, 14 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->>> index 3f0b57f428bbb388521c27d9ae96bbef3d62b2e2..18e43c509f1f24785d55113addc5cd9f96e986f1 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->>> @@ -2740,6 +2740,20 @@ usb_dwc3_ss: endpoint {
->>>  			};
->>>  		};
->>>  
->>> +		videocc: clock-controller@aaf0000 {
->>> +			compatible = "qcom,sm8750-videocc";
->>> +			reg = <0 0x0aaf0000 0 0x10000>;
->>
->> ... and the code is not here matching style.
->>
-> 
-> I can fix that in the next version. Will you drop it from your patch set?
+Hello,
 
-No, of course not! Because as I said - this was sent already. Please do
-not send in parallel code which is upstreamed already since long time.
-> 
+This patch series adds initial Device Tree support for Realtek's Kent SoC
+family, including the RTD1501S, RTD1861B, and RTD1920S variants with their
+respective evaluation boards.
 
+The series includes:
 
-Best regards,
-Krzysztof
+1. Adds compatible strings for the Kent family.
+2. Add Device Tree files for the Kent SoC, TD1501S Phantom EVB (8GB),
+RTD1861B Krypton EVB (8GB), and RTD1920S Smallville EVB (4GB).
+
+The patches have been validated with 'make dtbs_check' and
+'dt_binding_check' to ensure compliance with DT schema and successful
+compilation.
+
+Cheers,
+Yu-Chun
+
+Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+---
+Changes in v3:
+
+- Drop the dt-bindings patch (realtek,misc.yaml)
+- Drop 'iso: syscon@7000' node and and re-parent the UART directly to rbus
+- Change all dts/dtsi to license: GPL-2.0
+- Drop all custom bootargs
+
+V2: https://lore.kernel.org/lkml/20251113123009.26568-1-eleanor.lin@realtek.com/
+
+Changes in v2:
+
+[PATCH v2 1/3]
+- Fix YAML syntax: remove duplicate blank lines
+- Validated with 'make dt_binding_check'
+
+[PATCH v2 2/3]
+- Rename: realtek,iso-system.yaml -> realtek,misc.yaml
+- Improve description and example: show child node (UART)
+
+[PATCH v2 3/3]
+- Reorder Makefile targets to alphabetical order.
+- Rename node: use generic names ('arch_timer' -> 'timer', 'reg-bus' -> 'bus')
+- Fix node naming and hex format (remove leading zeros)
+- Inline overlay nodes directly into .dtsi
+- Reorder properties: ranges after reg
+- Remove unnecessary status and custom bootargs
+
+V1: https://lore.kernel.org/lkml/20251105104452.6336-1-eleanor.lin@realtek.com/
+
+Yu-Chun Lin (2):
+  dt-bindings: arm: realtek: Add Kent Soc family compatibles
+  arm64: dts: realtek: Add Kent SoC and EVB device trees
+
+ .../devicetree/bindings/arm/realtek.yaml      |  42 +++--
+ arch/arm64/boot/dts/realtek/Makefile          |   7 +-
+ arch/arm64/boot/dts/realtek/kent.dtsi         | 166 ++++++++++++++++++
+ arch/arm64/boot/dts/realtek/rtd1501.dtsi      |  12 ++
+ .../boot/dts/realtek/rtd1501s-phantom-8gb.dts |  25 +++
+ .../boot/dts/realtek/rtd1501s-phantom.dtsi    | 118 +++++++++++++
+ arch/arm64/boot/dts/realtek/rtd1861.dtsi      |  12 ++
+ .../boot/dts/realtek/rtd1861b-krypton-8gb.dts |  25 +++
+ .../boot/dts/realtek/rtd1861b-krypton.dtsi    |  72 ++++++++
+ arch/arm64/boot/dts/realtek/rtd1920.dtsi      |  12 ++
+ .../dts/realtek/rtd1920s-smallville-4gb.dts   |  23 +++
+ .../boot/dts/realtek/rtd1920s-smallville.dtsi | 128 ++++++++++++++
+ 12 files changed, 626 insertions(+), 16 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/realtek/kent.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1501.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1861.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1920.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
+
+-- 
+2.34.1
+
 
