@@ -1,180 +1,124 @@
-Return-Path: <devicetree+bounces-243057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1058C9319E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 21:20:41 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A18CC931B0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 21:21:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 992FF4E0739
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 20:20:40 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ABBAC34BD6B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 20:21:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBB82D7DD5;
-	Fri, 28 Nov 2025 20:20:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920C02D46AF;
+	Fri, 28 Nov 2025 20:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RGhYv+wY"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="c1CbRaqC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com [95.215.58.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2FE11713;
-	Fri, 28 Nov 2025 20:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C21F2DC34D
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 20:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764361237; cv=none; b=sQgqq15K2jglfkGOMkU0A5gw02PYu6Zw3a9z1RSLe9XtHaBOMj1tE860CkC3JE0+/4wfUDuVJjKcqBpShUyvquFc5g6/Db5Dw2L4l6/AnzqgAxOzmJkeQbV3Em4wIzkZ7nEAmqbjS3zqmdcxsms/ztnZ5NOwQ/UsN4lGx7HEwZ0=
+	t=1764361258; cv=none; b=YdxD2VPTPf52/76C5pD3PVdyWtQvdl/zhMPiN3RIuFffNSr/256xYCcARKtAji6bqE9oASfO8v6NE39lQW5LAdiSzzfzTypOAq+2K0+w+Viw6WGTu1wpQlp9kwqo4JBpaZRk9d1s2tUljXMnkwZDKkFyyqzYHW+50QCLuBBzRbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764361237; c=relaxed/simple;
-	bh=EGRRPK5ChhZ6UOVAU/NNKnsQdzi6sHOvH1O8qX4aSzw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AryWyymPJUbQhasvLugAekbEEieEJBK93ZigoDSTymFtoDR7kdWCW55wambcIHAqIvILJuF3C0v70dOEWIqcIqfZblJFTh60vUWAYLj+5CTh1lCPccd9+hmM0N3sWnzAkf6Wx86g4LFXPdzjiz+qce6cHNFOU7QozMUy/yNBAaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RGhYv+wY; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1764361233;
-	bh=EGRRPK5ChhZ6UOVAU/NNKnsQdzi6sHOvH1O8qX4aSzw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=RGhYv+wYBDp8sARUUdx80orGwEEo4dLwuwoaDItwmq7oW25X8u/wntQ2ZiFxoDaZn
-	 LJWw2zi9SoHTIYs/lrtm6PUtuUsvJGVYIx0QDOI7tqcqzVNKoc61avmvJZhpo3s87W
-	 60GWKMsuGodhW13Qkls2oxrdLTnflmhJ75/uHFwyZp9SvlVjUcxqXeNbbHPiHLYMWh
-	 3g7GUYbZt0JCz4/Bs+5sWmF/ZFkREhw0Gu7iuhbYRtAzVvZ5+Hxv65nLXFlidUua7X
-	 CgWWxDJ7fhaTX12148W5ogz5IjfK6Nbv4Kii/2ox1DNkt2Hz3nZewGsWXxF4raGlZ9
-	 pg2ZDUZjcjYdg==
-Received: from [IPv6:2606:6d00:17:7b4b::c41] (unknown [IPv6:2606:6d00:17:7b4b::c41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id DD81C17E10F2;
-	Fri, 28 Nov 2025 21:20:31 +0100 (CET)
-Message-ID: <a08a1f352ded0453f1cf94756e497bf5c8efb9ed.camel@collabora.com>
-Subject: Re: [PATCH v2 11/14] media: mediatek: vcodec: add debug information
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Yunfei Dong <yunfei.dong@mediatek.com>, =?ISO-8859-1?Q?N=EDcolas?= "F .
- R . A . Prado" <nfraprado@collabora.com>, Sebastian Fricke
- <sebastian.fricke@collabora.com>, Hans Verkuil	 <hverkuil-cisco@xs4all.nl>,
- AngeloGioacchino Del Regno	 <angelogioacchino.delregno@collabora.com>,
- Benjamin Gaignard	 <benjamin.gaignard@collabora.com>, Nathan Hebert
- <nhebert@chromium.org>,  Daniel Almeida <daniel.almeida@collabora.com>
-Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig
- <frkoenig@chromium.org>,  Daniel Vetter <daniel@ffwll.ch>, Steve Cho
- <stevecho@chromium.org>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Date: Fri, 28 Nov 2025 15:20:31 -0500
-In-Reply-To: <20250815085232.30240-12-yunfei.dong@mediatek.com>
-References: <20250815085232.30240-1-yunfei.dong@mediatek.com>
-	 <20250815085232.30240-12-yunfei.dong@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-qMRUpiDxjzjPbEExtovR"
-User-Agent: Evolution 3.58.1 (3.58.1-1.fc43) 
+	s=arc-20240116; t=1764361258; c=relaxed/simple;
+	bh=gYo416o9IIzWH09EnRsTCKup+QS2AuPBTASyfAf3lBs=;
+	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
+	 In-Reply-To:References; b=LDl0rCfKhzHNMhlyHEkLhxss86AHpwqgCMMiHlblFhwEqaY6ai1C1cPuAK9DsY2wVJ7yd8AopgLiyFA69aQ+dYycsSKByD8eLzXiA1a2dw5KlNhlcInYgbmWxaU6HnYFolF5EBhEAZwH7z+bvnXANiiJabqL6lSn8h1JnLVPY6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=c1CbRaqC; arc=none smtp.client-ip=95.215.58.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-qMRUpiDxjzjPbEExtovR
-Content-Type: text/plain; charset="UTF-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1764361243;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dx+rQtRDLcWj+YM9GvZ9aZmUEN7f7LnjwZA1J3GYuzE=;
+	b=c1CbRaqCJnAKuRjgMufb3x1Hw3hnL4PUs4qrIRLgjLRBqmHgMts2MhKAMC24grCCw9Z/tt
+	aoCr7C27Q7qJ4equHb4oB+Pc7l7chh4jcbLkbO6PDECBkhYfwe3EJCBvdXQNrSOvMUtIMI
+	hsW7Gyhzfny5DyOGC1RW6y9Ktfu1YWijQaYNova7XSHyC/lbJndDzinKOFJL6jCccPthtf
+	QbVgaIWDmds0anS00V/m2LNRXRZhHVaV0aOJW1hU8+UZ8rfe8eO6KiWlVPnm8LXDqIBx+L
+	rzzVhn1hJkluCLX6sXlWYBBX3b/IB9g0xOkpp2ytgd/ecb3WEfVCJ/Oxx3EKHA==
+Date: Fri, 28 Nov 2025 20:20:40 +0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Paul Sajna" <sajattack@postmarketos.org>
+Message-ID: <62ce91326c0e1d5aef1ad5ecad9b99695f983347@postmarketos.org>
+TLS-Required: No
+Subject: Re: [PATCH v4 09/12] arm64: dts: qcom: sdm845-lg-common: Add camera
+ flash
+To: "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "David Heidelberg" <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
+ <system64fumo@protonmail.com>, "Christopher Brown"
+ <crispybrown@gmail.com>, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251125-judyln-dts-v4-9-a5a60500b267@postmarketos.org>
+References: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
+ <20251125-judyln-dts-v4-9-a5a60500b267@postmarketos.org>
+X-Migadu-Flow: FLOW_OUT
 
-Le vendredi 15 ao=C3=BBt 2025 =C3=A0 16:52 +0800, Yunfei Dong a =C3=A9crit=
-=C2=A0:
-> Print hevc/av1 output format and 10bit capture format
-> information to debug.
+I did more testing on this, and the led only comes on if it's brightness =
+is set to approx 150/255 or lower. In that case, should I set led-max-mic=
+roamp to 60mA?
+
+
+
+November 25, 2025 at 8:12 AM, "Paul Sajna" <sajattack@postmarketos.org ma=
+ilto:sajattack@postmarketos.org?to=3D%22Paul%20Sajna%22%20%3Csajattack%40=
+postmarketos.org%3E > wrote:
+
+
 >=20
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
+>=20Camera doesn't work yet (imx351), but we can use the flash as a flash=
+light.
+>=20
+>=20Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 > ---
-> =C2=A0.../mediatek/vcodec/common/mtk_vcodec_dbgfs.c | 21 ++++++++++++++++=
-+--
-> =C2=A01 file changed, 19 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 >=20
-> diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_dbg=
-fs.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_dbgfs.c
-> index 5ad3797836db..79ccbe13735a 100644
-> --- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_dbgfs.c
-> +++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_dbgfs.c
-> @@ -29,6 +29,14 @@ static void mtk_vdec_dbgfs_get_format_type(struct mtk_=
-vcodec_dec_ctx *ctx, char
-> =C2=A0		curr_len =3D snprintf(buf + *used, total - *used,
-> =C2=A0				=C2=A0=C2=A0=C2=A0 "\toutput format: vp9 slice\n");
-> =C2=A0		break;
-> +	case V4L2_PIX_FMT_HEVC_SLICE:
-> +		curr_len =3D snprintf(buf + *used, total - *used,
-> +				=C2=A0=C2=A0=C2=A0 "\toutput format: hevc slice\n");
-> +		break;
-> +	case V4L2_PIX_FMT_AV1_FRAME:
-> +		curr_len =3D snprintf(buf + *used, total - *used,
-> +				=C2=A0=C2=A0=C2=A0 "\toutput format: av1 slice\n");
-> +		break;
-> =C2=A0	default:
-> =C2=A0		curr_len =3D snprintf(buf + *used, total - *used,
-> =C2=A0				=C2=A0=C2=A0=C2=A0 "\tunsupported output format: 0x%x\n",
-> @@ -45,6 +53,14 @@ static void mtk_vdec_dbgfs_get_format_type(struct mtk_=
-vcodec_dec_ctx *ctx, char
-> =C2=A0		curr_len =3D snprintf(buf + *used, total - *used,
-> =C2=A0				=C2=A0=C2=A0=C2=A0 "\tcapture format: MT21C\n");
-> =C2=A0		break;
-> +	case V4L2_PIX_FMT_MT2110T:
-> +		curr_len =3D snprintf(buf + *used, total - *used,
-> +				=C2=A0=C2=A0=C2=A0 "\tcapture format: MT2110T (10bit tile mode)\n");
-> +		break;
-> +	case V4L2_PIX_FMT_MT2110R:
-> +		curr_len =3D snprintf(buf + *used, total - *used,
-> +				=C2=A0=C2=A0=C2=A0 "\tcapture format: MT2110T (10bit raster mode)\n"=
-);
-> +		break;
-> =C2=A0	default:
-> =C2=A0		curr_len =3D snprintf(buf + *used, total - *used,
-> =C2=A0				=C2=A0=C2=A0=C2=A0 "\tunsupported capture format: 0x%x\n",
-> @@ -122,9 +138,10 @@ static ssize_t mtk_vdec_dbgfs_read(struct file *filp=
-, char __user *ubuf,
-> =C2=A0
-> =C2=A0		if (dbgfs_index[MTK_VDEC_DBGFS_PICINFO]) {
-> =C2=A0			curr_len =3D snprintf(buf + used_len, total_len - used_len,
-> -					=C2=A0=C2=A0=C2=A0 "\treal(%dx%d)=3D>align(%dx%d)\n",
-> +					=C2=A0=C2=A0=C2=A0 "\treal(%dx%d)=3D>align(%dx%d) 10bit(%d)\n",
-> =C2=A0					=C2=A0=C2=A0=C2=A0 ctx->picinfo.pic_w, ctx->picinfo.pic_h,
-> -					=C2=A0=C2=A0=C2=A0 ctx->picinfo.buf_w, ctx->picinfo.buf_h);
-> +					=C2=A0=C2=A0=C2=A0 ctx->picinfo.buf_w, ctx->picinfo.buf_h,
-> +					=C2=A0=C2=A0=C2=A0 ctx->is_10bit_bitstream);
-> =C2=A0			used_len +=3D curr_len;
-> =C2=A0		}
-> =C2=A0
-
---=-qMRUpiDxjzjPbEExtovR
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaSoEDwAKCRDZQZRRKWBy
-9BXYAQDbnDHra1tyk/aTmYyV5oQuRDa36Wz32b2Il7KwTz2xhAD/c5rOFl8xF3gl
-Dek+4kE/1lezd3tQ4jk5dJ+dAnv0rAE=
-=V52H
------END PGP SIGNATURE-----
-
---=-qMRUpiDxjzjPbEExtovR--
+>=20diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/ar=
+m64/boot/dts/qcom/sdm845-lg-common.dtsi
+> index 93b9a0246510..fa664b5120d2 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> @@ -494,6 +494,19 @@ &pm8998_resin {
+>  status =3D "okay";
+>  };
+>=20=20
+>=20+&pmi8998_flash {
+> + status =3D "okay";
+> +
+> + led-0 {
+> + function =3D LED_FUNCTION_FLASH;
+> + color =3D <LED_COLOR_ID_WHITE>;
+> + led-sources =3D <1>;
+> + led-max-microamp =3D <100000>;
+> + flash-max-microamp =3D <500000>;
+> + flash-max-timeout-us =3D <500000>;
+> + };
+> +};
+> +
+>  &pmi8998_lpg {
+>  status =3D "okay";
+>=20=20
+>=20
+> --=20
+>=202.52.0
+>
 
