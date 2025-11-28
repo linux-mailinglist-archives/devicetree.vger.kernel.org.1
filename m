@@ -1,384 +1,246 @@
-Return-Path: <devicetree+bounces-243011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03398C9269D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 16:09:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A57FC926BB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 16:11:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 806713A382A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 15:07:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3B053A5801
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 15:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1CD3128C0;
-	Fri, 28 Nov 2025 15:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67B9A32ED24;
+	Fri, 28 Nov 2025 15:10:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j7kgq84Y"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="AtLfMI0t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010038.outbound.protection.outlook.com [52.101.229.38])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1FB27F16C;
-	Fri, 28 Nov 2025 15:07:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764342446; cv=none; b=ZiGZIrl1rOIFqAlqECMMOrxNFy0D67xT1yTfUW1eH1IhQscQGZjOftkvv/YQLAFJx1Bu129Etb8zr5nXQOQsMIq7Oyj3zdZofRDejE6t266ygS/HvBrxcH4rqh4KeWC85VG82TTJkjsjJKMVFhz3q/bTONqlgbVTcwdGOFjj9I4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764342446; c=relaxed/simple;
-	bh=GrbE07r2E073o3pD0gBlXX3rA7I9NgkjmY0FvJaiPbA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KeYl+8bgyQs0UuDCTyycThaoMCbBf9+awhDuJtIeRgKeyNtEFH0cGbcuRDqJlAkLLzjhdfokeVY+mbClopJde1rmX3zs8NchNGXPWLCbbW7OFc6ZmUHxrz+mc7A3GzARX17foN5JdvDwHqXc0lIihQUiAC5jVWYXTLBpx1u3ZcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j7kgq84Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 965EBC4CEF1;
-	Fri, 28 Nov 2025 15:07:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764342446;
-	bh=GrbE07r2E073o3pD0gBlXX3rA7I9NgkjmY0FvJaiPbA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j7kgq84YXr6/d3ixxfg1FImVbo8sZV4VvRRhuNvKPKdzSyqvjcy+e1YQiRsBZazAP
-	 HXcyoAVp3N8Dw6KziDzCxYnPyn/BPkdcq7ZtgeGqz8cTdgf2N6jSZSeKw0p2crRsF0
-	 zpRAarLchO9c/NlejFh5i2hY9eNgBx24igpAMnoVuW9x0adROSxrPHCmPvuUXu4Br2
-	 yYZ6QqGzIDe3B3UA8p03viWYzs7MWaPlOaTEXkHBx6U9arF7vW7rbZXnjnMIwg2ZIy
-	 FW8x4bM1plC38avzbRnKp30ykcFp8ox03wm+Tllv+sY2puzhRTCkoD4iLgv5D+TlGL
-	 a1t+qlM6VeWng==
-Date: Fri, 28 Nov 2025 20:37:07 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, 
-	jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, 
-	mayank.rana@oss.qualcomm.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
-	thippeswamy.havalige@amd.com, inochiama@gmail.com, ningyu@eswincomputing.com, 
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com, 
-	Frank.li@nxp.com
-Subject: Re: [PATCH v6 2/3] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <xkfoddg6n3fr26maq4a647y36tbigjpivsz2n3tqfmxi3wmwo3@fhajg6zgl2wv>
-References: <20251120101018.1477-1-zhangsenchuan@eswincomputing.com>
- <20251120101206.1518-1-zhangsenchuan@eswincomputing.com>
- <uijg47suvluvamftyxwc65kl34eo2eu2af2o5aia4nu45hanqc@grcr2bjgph2i>
- <63945b54.9c7.19ac016ce19.Coremail.zhangsenchuan@eswincomputing.com>
- <vuguabbekf7fhippxgyedi25qctnhsuzdxscgc7andlpt2euyz@obhdxmcyssp3>
- <3fb8b957.b81.19ac991e9f5.Coremail.zhangsenchuan@eswincomputing.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E9130BBB7;
+	Fri, 28 Nov 2025 15:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.38
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764342659; cv=fail; b=SajR17zjy2VIk4gT5yPDV95QH/zdXAcW/UDeJlqmaYIJP3FFsrXIofQUAgcx7StOoNyl5RIA0tG0gIxgzrhL+EqqsMMiZOHsfh0sEI4J95tVgGq+v+tziNDacOZQM1liXXRUJiOPkoqvXu4DHjztAFH5X4U+KZeytx0Uyg+yx88=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764342659; c=relaxed/simple;
+	bh=+bxnpLBtt5qW2pBtEE8AgT5MApnYbUnr5tEhlmVrG6M=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=DyCZLIRrfzdi9XiZo6p5z85vkwFtyk3WwA3nQ/dBJ4nJBvs7HC3WY4iHvKSG/KVUFjzoJ6JVpEE2BI8r316qAFjsUqzHGUtXWyR3I/z1vd42QxZIGgPk2qRSg6QoXjGlX+bGP5i3EF4ZKSiRqoUPb0lCwblwSoe6J4gB8inSyHg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=AtLfMI0t; arc=fail smtp.client-ip=52.101.229.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Fmr1Lv3Lu9cg8w5CXLATmd648J90j6phXHtQQhce643AmkR+PiJ1C6iPDOKiJ1QzTolrvrliHb977WpnzXR2cwoR+8CqCMWJzFYHifQgkdUMXiE9rAcM7hHjwybhgrNSCXfkd2zWlC7tVbO2GuKWwhqlp9gme7tHGPCe9iuRkgytpnohj1Tjr/se6zusvOcK9WMagfNFnL4X04YBAdJKrejHrurZVt07jmopQlUxSaga5o4gwnstOmkEoDhfDGjqageQVViz0mvPjrkKW5R+tP64HNOJH/yFKeglnLS3N/6jlTWVqFY0qhkzAHPN8hb7ag7JoD0n+ah0dR8YpcRMwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+bxnpLBtt5qW2pBtEE8AgT5MApnYbUnr5tEhlmVrG6M=;
+ b=fVbsFONmvkbOFLtsr50AgYKA33+w1iyhhC2uHiY+R0ipF2JXHHCYcY6Ar7ghHRO/AnWe0Pe5W2i6aFkhev4rtKfUF/w6PcKDJ4XxXTvenLoISoe3cvFGBO6GOP973ZibCWT7HAHqNUinzpWFowe/PF7nslDXEBTFvD5ioY7CVU/+oKvK2xqNBEvLnELboMZLpcGfT47e+fWLpHBGEl6EbHgio6AxOpMVcwLGHN4vqfrDVGbbeJc5PtKaOU1tN4Xc2vvh2vwN7FH6hEfdiiLc8XPMItR1WdfrSWO7y7reODpJaHe2IPD8M7HWcuHscQ6riubFOKu6WfVJ3QEI2CWatA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+bxnpLBtt5qW2pBtEE8AgT5MApnYbUnr5tEhlmVrG6M=;
+ b=AtLfMI0tvaGS6YVTVu/dsQLVeCbrjoBFLmNkyN8VQMHP+pnQanZG2fMHftBeq0FULcw3a6cGVVKNXJmQk2AsBGXu1xvn45wQ/dOmNZdJO/feSI3EKqt0ukxdLYjD26ogDGwZsqMNRnab26217D85WPn+5ClJsEPU81hdqqZ0Zn8=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by OSZPR01MB7098.jpnprd01.prod.outlook.com (2603:1096:604:13f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.6; Fri, 28 Nov
+ 2025 15:10:50 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%6]) with mapi id 15.20.9388.003; Fri, 28 Nov 2025
+ 15:10:45 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: geert <geert@linux-m68k.org>, biju.das.au <biju.das.au@gmail.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>, wsa+renesas
+	<wsa+renesas@sang-engineering.com>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-serial@vger.kernel.org"
+	<linux-serial@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, Conor Dooley
+	<conor.dooley@microchip.com>
+Subject: RE: [PATCH v4 01/16] dt-bindings: serial: renesas,rsci: Document
+ RZ/G3E support
+Thread-Topic: [PATCH v4 01/16] dt-bindings: serial: renesas,rsci: Document
+ RZ/G3E support
+Thread-Index: AQHcXh0bVzrle3W7okC71p3jKSGrkrUID8SAgAAlozA=
+Date: Fri, 28 Nov 2025 15:10:45 +0000
+Message-ID:
+ <TY3PR01MB1134676EBFEF0DDBD1E81912286DCA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20251125150632.299890-1-biju.das.jz@bp.renesas.com>
+ <20251125150632.299890-2-biju.das.jz@bp.renesas.com>
+ <CAMuHMdVaqnCmHBk+Zxo23KU7e+GuH022nDgpR59dH6K8Ei9O4Q@mail.gmail.com>
+In-Reply-To:
+ <CAMuHMdVaqnCmHBk+Zxo23KU7e+GuH022nDgpR59dH6K8Ei9O4Q@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OSZPR01MB7098:EE_
+x-ms-office365-filtering-correlation-id: ae6e7372-b0ba-4b4a-162a-08de2e904e00
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?Slo4ODQwbUxGZHc2UkdaeXVuQnNseTUyV1R2ZlUxTzF0Nk1UMlh1eFZZWXFx?=
+ =?utf-8?B?QUREMFZucERBQnVidTJmRjhXeXdRTHNhRGhlNHN1aGdpY2NOeFIvQ0hieHIx?=
+ =?utf-8?B?bUFrOHc4b2M4b0FFN040dUxDRWVDWlJlQkduSWxzVHZPakxNcFBJZW15Z2E1?=
+ =?utf-8?B?Ynk2R2pLU3pIN1QvMEdNMUhVQXUyenB6NTAzbGlyTHBud0tiYUJMYldaL0RB?=
+ =?utf-8?B?THQxMURFdG1VYUNGRE1keXU0KzVjSWhRek5aRGw2ZkRtOG9vUWNwaFYzOXEx?=
+ =?utf-8?B?OHZkMlpwNHhPMUQwTnF5dnpLSlFrdm15dnlBcEJxVXRNYXNRbzZxaFR3Q0po?=
+ =?utf-8?B?cnNzQVNmVExBYzdGWE5yY1JYYVJYTGFDbGxrVkk0amlkZjJ4T1N4ZTFkSkx1?=
+ =?utf-8?B?QkszTFpMYmFyTit6ZGR0NVFKdGdkY3JDUnlEVkp4OW81Wm9xL3BJM1Q0enNT?=
+ =?utf-8?B?TU1EaFQ4VGpBbktxRUlDU1FEUHhDTFBNOFNPVmMxUVd2Y1Z1NTcyRWxrSTRC?=
+ =?utf-8?B?akVpUXJvSW5CMUZaajVxRGtHRnJuUy9GbkVxcTVEeVF3c2F4TzRhemN0UEdG?=
+ =?utf-8?B?Um01Mk11bTlVVU5ZK1V0d0x2WU1Jd3hUcDVCRlY0T0VZbzVlQlI5aTg5RnZ5?=
+ =?utf-8?B?UTNsb01tdHBlMGFqUUdzdVNlYnY5amRnUHJQdDlHSlFSb3gwcTVHcGZHQmZ3?=
+ =?utf-8?B?cFk1WUNUSkR0WXZjSnJEOGlWTGZsNUx1aXVnT1RTVitZc2k3bVVGUGhUeWtu?=
+ =?utf-8?B?Y2kxdnBkZnhaaVp5MXlyMGVHNEVZaExzOXZHSzN1dWRxc3l4NUZPbi8zRlgv?=
+ =?utf-8?B?UkRpRmcySjZYeGFvcVQxQWQ3NkdhQ2NYa1IvcU1EVUJhMCtlYndleTEzYlZN?=
+ =?utf-8?B?Y01KaWNHU1YzcVJvU0RyTmRXSGJGY1hBNFFzeHNWVkdPU051RzFBMW5aY2pR?=
+ =?utf-8?B?S2xHbFJGTnVOMDZibmFuSEhPUkxjLy9TclAzYnMrTjZSN3dGMUdHVEVCVGwy?=
+ =?utf-8?B?L0RURmd2dnZoMXcwVURPREQwS01DcVM2alkxUjhpLzgyd2J3THlGUFF5UWJN?=
+ =?utf-8?B?a2h6SHhURUhYWXp3YjlxUHZCNHFNN0hPVlM0ZWlGSU85c0tQajdVTjZKaEdv?=
+ =?utf-8?B?NVBDNktXSFhKU2ZZYUhzbW1ZWlM1bENjQnpIdGF0eGEyMWtKWkJxSFQ2RDBi?=
+ =?utf-8?B?YnJzQnJEYzNRMFJNSm80dGo1SlZIZEhMNkwyb1IvZzVZTXJLS1NySldzWUNr?=
+ =?utf-8?B?d1Fjenl1U2o0dEJaMmcxZ205aXdaQ3FlNlU5ZzY5ZHh3Vjd2UGpzMGVTWkRY?=
+ =?utf-8?B?TlFLbVAyalhiU2gva05rMGNkSXlTVk94QWRMMlNUM2Mwc3h4UWhleGtGaWRp?=
+ =?utf-8?B?TFF5bktrZklwZ1UrWlFYZG03dllEUTVHejZQRHZJVVdzMHhqaWdveE0wckRv?=
+ =?utf-8?B?Sk9FM2hjVGIza1ZhSmMzZFRYVjFsdjFyV0JWeXhTYmc1V0VzakhHaDlTOFJK?=
+ =?utf-8?B?MDY0TEpWdW9Hc01tZHU3S0pZZWtLejB6Rnp5MloxSkpMK2ZoNUxZVmQrTVg1?=
+ =?utf-8?B?WnRNSVFRRXgvekRzdEJaNTBITUg2OE4waTliOXZaL2JhdVBTcXZobEpDalk1?=
+ =?utf-8?B?cGozTkpkVjBENGtvSVZQcjY1K2xGQ29HVG5ZaElWNnh0QlNUbDdLUkhiTXF1?=
+ =?utf-8?B?ZGRBR0ZMdUd3Wmp2cmRCNEoxQkdqRVE4RXhQc3d4bHI2eU92UllTVW1oUmNt?=
+ =?utf-8?B?RmM4ekhFLzl6NkxobnNHMEcrK2JlSmpTRTI1SFZHTDFMZlRVOWJYQzd4Q0NF?=
+ =?utf-8?B?MlBla2JjS2hTQ3VxU09BbXA1Z0orWEwxa1F3bDJSMmFHSjhIMVUycmo3MWh2?=
+ =?utf-8?B?NmJSRG9jcEVFUmVlRDV0dUFhRldiOXRuSXdReHk5L0NZT25DR093ZGQ4ZGJZ?=
+ =?utf-8?B?ekVjVEdpY2J6UDgrTjNZOERkTUJydmdOVmlxTmh3ZFBiZDNOZTNxVzhFUmlH?=
+ =?utf-8?B?TnlrNzZ6bGdEazUzQThTaUxhaTZ5WVNrUEVFU0tsQ1R1QUlUSDVNK3NhYTIx?=
+ =?utf-8?Q?SjGaEc?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?dnlIbWpVNzNKdVJURE1vWG1yV2FVZmhYS1FmUkk1WHN3bUNEeWdBaEFZY3Ja?=
+ =?utf-8?B?SUlsNDA3YjRkejRxTWZHRXFqSVdxOTNLZ1E2eVF1Q1pwaXpSYUlPVGJNUkN3?=
+ =?utf-8?B?SGE1VHhoZEVoa3V2U09DMElHd04xOVBJZFJkVE42YXJqVldWUSsxY2M1blBS?=
+ =?utf-8?B?ZUtCM1UweFo3dUZRcVJSQ0U5UjJ3QWxIdFYwTjkzTG9qaENwelVEcnA0VHVp?=
+ =?utf-8?B?ZXhPNFV3cnJiVTNLVTg1ZFRtUE1ScG96Vk1EUU1IckEySTM0R09QOExZMTNV?=
+ =?utf-8?B?SUVtWVVNR0hQMXdxYkRTYmZYdkVjZjJJRXlQNXU5aUxiYzlSc1ArdGJ1LzF6?=
+ =?utf-8?B?YjdVUFZzTzhyZFNZQTN4YVY2M1dEZkE4QU5Ed0trWTAvTWlvRnByYkVUdXhq?=
+ =?utf-8?B?WGVaRnRuNWRlNnBoaUd5KzZLbm9xOUkrbmZtNnBQSThMZ1Y5aWtXNVp4dGRU?=
+ =?utf-8?B?Qk9SQzNXVVZDaFcrQmM3SE1XbmN3WmNabUJsVXpRNVlSQWQ3QjM1WGx3LzRt?=
+ =?utf-8?B?OU1YdVNkSzMyNFRHSTBqNFhaYktUbHpiaWJINnVIbGFjVVozNUtJVnpGOS8y?=
+ =?utf-8?B?WS91NDlyUFo2SzA4azdlUHNJaHR1RU80TjJLV0ZkcWhVZ0hJRDRIOUdQTk1I?=
+ =?utf-8?B?clcySnF4SDlubHU3YzQ1K0Y5RU51WC9MZ053Vm1kbi9sTFVmMW1UWnE3QWVy?=
+ =?utf-8?B?S3dMdk15aU9EN1NJc0pMeGN1THQ3Rm1qZFlpNndnSmtlQ1FZWENaOXFzbE5h?=
+ =?utf-8?B?bVovQStySnFhRTJjcEtTU0IwMFZ2SnZLRC9iamtuTE1wdGxGcGNkdzd4ZE1F?=
+ =?utf-8?B?QTZCRVdWdU56YmNWbjZUNlJWR1RSWXJPd2FBMCt5dFE2U2xvQ0k3M1RQdW8z?=
+ =?utf-8?B?Y2N0dkhDK1hxanFkTmQ5eUQwS1RYMHJMNWQwVW9iS1VxeWNFMEZyT3lINUlJ?=
+ =?utf-8?B?bW9aT3ZXMHdTZFRZRFNhZWZ1Y2pBTVRRSmNaNVVXL3I0S0VVZjBXUWVhUU9h?=
+ =?utf-8?B?MUNxYVhZaXNsSFRaL3VqOVFQa3J1dmdIWXBwWUtKM3RwNXR1cVJ2ZmFEcXZE?=
+ =?utf-8?B?eXRIalRCeE1MZkd3TzJ4d2prVWt5Zm1lSnZZQWFINU4xSTJheXBHR0JORnFx?=
+ =?utf-8?B?ZW9zdFV6WFVIUkJjQ0tiNHl2RWt6NkdkUjZFZnYvangxbytkcWZtdGxrRlhX?=
+ =?utf-8?B?SFd0VUtBYnNlamR4Q244a25VS2M0eWgveUorS2lUTVRQRnQyTncveVRhTkZE?=
+ =?utf-8?B?OG1iVDF5RDNHMHJCamtXM0tIVU0xajFtdkZBVU53VDVLbnVkQ1daUk1iOWZ5?=
+ =?utf-8?B?dnYrU1ZjU2F1RFN1bmN0VTlKOWJDNkFNVGJBM2FBNDNMKys5MkhZMktmWDkw?=
+ =?utf-8?B?L0RiMjNoSTBqMnIrNE9NNUovUE12Qlc4U1JJMEs0UzZ4S0xlQWJORGZCWHl3?=
+ =?utf-8?B?bUxxVjk2cG14UjZVclVHZlpzNjZDRi9rK3hGL0lGaHhlb2FsSVI1TGpUb1di?=
+ =?utf-8?B?cnZRdDlyZ2NyNXFDWEtHRjh6b2sxc0pUdTlxNWFkZ2hBNmNMeWRROC8yUGp6?=
+ =?utf-8?B?L1JWVTdIOEhEbUY4dzJ1M2Nqa0tkZHFTM1ZRR0Y2VngxL2lUU0dLQlNNK2dJ?=
+ =?utf-8?B?TmJ0YS9hUGZIK1V4UHNKZlRZRnB1a0kyUzF4ZWZoazl5V1BLR0tvTHhFbWZI?=
+ =?utf-8?B?YVNyWkp0UU1QOTVheFZJSUVPU2pTYlgzT2dhUU0xZmlIYjVNOUZZWnpBT2E0?=
+ =?utf-8?B?VzArclFncWQ0VkcwQnh1M3FsSE9Vc0VtQm42Zk5NOHhPbnhhQUR1bTl2RG5B?=
+ =?utf-8?B?Qm44bWlzODF2QnBNZXdPNEdRYnYrU0ZPV05LS1paeTZKeVVTajZxaWFlNjB0?=
+ =?utf-8?B?OEs4cUo4eG0zTDAxbzhvWVFxMWFQQ042bVdkcXplUTlSdlBmZlNKMHdmUzFD?=
+ =?utf-8?B?anA2V3lwdUFtTWprSDZySlRzYm9OWERjWG9WS3M4bzFudS9OOUlqZVAzOGs1?=
+ =?utf-8?B?TkJqY0dCOG9xdjdMa1p3UFBxbmhkY1BzcTRKeEdVcmt3OG9QQS9MNzZlM05E?=
+ =?utf-8?B?ckZuVU5vS3ZlSXVvYWpUbVoya2k3azZ1Tlk3TU5QbTc0UkpDVUU5Q0VLbith?=
+ =?utf-8?B?azFLNVdQQ1U4R2FBY1E1QlRtY1R3L1lib3JYeFJOTGJsRlU5QVFsditSQi9Z?=
+ =?utf-8?B?aGc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3fb8b957.b81.19ac991e9f5.Coremail.zhangsenchuan@eswincomputing.com>
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae6e7372-b0ba-4b4a-162a-08de2e904e00
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Nov 2025 15:10:45.1586
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PJ8cwFdoDe3qOnUhyLt/HJQX9ev93PioAVyGUqzOY3JwGvDKA20SipB2IzTkszMAYdDPlsF6gFXCov4+xLjYajurze8syjgmu4CAyR7GFSA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB7098
 
-On Fri, Nov 28, 2025 at 04:26:14PM +0800, zhangsenchuan wrote:
-> 
-> 
-> 
-> > -----Original Messages-----
-> > From: "Manivannan Sadhasivam" <mani@kernel.org>
-> > Send time:Wednesday, 26/11/2025 21:14:54
-> > To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-> > Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, inochiama@gmail.com, ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com, Frank.li@nxp.com
-> > Subject: Re: [PATCH v6 2/3] PCI: eic7700: Add Eswin PCIe host controller driver
-> > 
-> > On Wed, Nov 26, 2025 at 08:15:11PM +0800, zhangsenchuan wrote:
-> > > 
-> > > 
-> > > 
-> > > > -----Original Messages-----
-> > > > From: "Manivannan Sadhasivam" <mani@kernel.org>
-> > > > Send time:Thursday, 20/11/2025 20:43:47
-> > > > To: zhangsenchuan@eswincomputing.com
-> > > > Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, inochiama@gmail.com, ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com, Frank.li@nxp.com
-> > > > Subject: Re: [PATCH v6 2/3] PCI: eic7700: Add Eswin PCIe host controller driver
-> > > > 
-> > > > On Thu, Nov 20, 2025 at 06:12:06PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > > > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > > > 
-> > > > > Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> > > > > the DesignWare PCIe core, IP revision 6.00a. The PCIe Gen.3 controller
-> > > > > supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
-> > > > > interrupts.
-> > > > > 
-> > > > > Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
-> > > > > Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
-> > > > > Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > > > ---
-> > > > >  drivers/pci/controller/dwc/Kconfig        |  11 +
-> > > > >  drivers/pci/controller/dwc/Makefile       |   1 +
-> > > > >  drivers/pci/controller/dwc/pcie-eic7700.c | 387 ++++++++++++++++++++++
-> > > > >  3 files changed, 399 insertions(+)
-> > > > >  create mode 100644 drivers/pci/controller/dwc/pcie-eic7700.c
-> > > > > 
-> > > > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> > > > > index 349d4657393c..66568efb324f 100644
-> > > > > --- a/drivers/pci/controller/dwc/Kconfig
-> > > > > +++ b/drivers/pci/controller/dwc/Kconfig
-> > > > > @@ -93,6 +93,17 @@ config PCIE_BT1
-> > > > >  	  Enables support for the PCIe controller in the Baikal-T1 SoC to work
-> > > > >  	  in host mode. It's based on the Synopsys DWC PCIe v4.60a IP-core.
-> > > > >  
-> > > > > +config PCIE_EIC7700
-> > > > > +	bool "Eswin EIC7700 PCIe controller"
-> > > > 
-> > > > You can make it tristate as you've used builtin_platform_driver() which
-> > > > guarantees that this driver won't be removed once loaded.
-> > > 
-> > > Okey, thanks
-> > > 
-> > > > 
-> > > > > +	depends on ARCH_ESWIN || COMPILE_TEST
-> > > > > +	depends on PCI_MSI
-> > > > > +	select PCIE_DW_HOST
-> > > > > +	help
-> > > > > +	  Say Y here if you want PCIe controller support for the Eswin EIC7700.
-> > > > > +	  The PCIe controller on EIC7700 is based on DesignWare hardware,
-> > > > > +	  enables support for the PCIe controller in the EIC7700 SoC to work in
-> > > > > +	  host mode.
-> > > > > +
-> > > > >  config PCI_IMX6
-> > > > >  	bool
-> > > > >  
-> > > > > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> > > > > index 7ae28f3b0fb3..04f751c49eba 100644
-> > > > > --- a/drivers/pci/controller/dwc/Makefile
-> > > > > +++ b/drivers/pci/controller/dwc/Makefile
-> > > > > @@ -6,6 +6,7 @@ obj-$(CONFIG_PCIE_DW_EP) += pcie-designware-ep.o
-> > > > >  obj-$(CONFIG_PCIE_DW_PLAT) += pcie-designware-plat.o
-> > > > >  obj-$(CONFIG_PCIE_AMD_MDB) += pcie-amd-mdb.o
-> > > > >  obj-$(CONFIG_PCIE_BT1) += pcie-bt1.o
-> > > > > +obj-$(CONFIG_PCIE_EIC7700) += pcie-eic7700.o
-> > > > >  obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
-> > > > >  obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
-> > > > >  obj-$(CONFIG_PCIE_FU740) += pcie-fu740.o
-> > > > > diff --git a/drivers/pci/controller/dwc/pcie-eic7700.c b/drivers/pci/controller/dwc/pcie-eic7700.c
-> > > > > new file mode 100644
-> > > > > index 000000000000..239fdbc501fe
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/pci/controller/dwc/pcie-eic7700.c
-> > > > > @@ -0,0 +1,387 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > > +/*
-> > > > > + * ESWIN EIC7700 PCIe root complex driver
-> > > > > + *
-> > > > > + * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd.
-> > > > > + *
-> > > > > + * Authors: Yu Ning <ningyu@eswincomputing.com>
-> > > > > + *          Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > > > + *          Yanghui Ou <ouyanghui@eswincomputing.com>
-> > > > > + */
-> > > > > +
-> > > > > +#include <linux/interrupt.h>
-> > > > > +#include <linux/iopoll.h>
-> > > > > +#include <linux/module.h>
-> > > > > +#include <linux/of.h>
-> > > > > +#include <linux/pci.h>
-> > > > > +#include <linux/platform_device.h>
-> > > > > +#include <linux/resource.h>
-> > > > > +#include <linux/reset.h>
-> > > > > +#include <linux/types.h>
-> > > > > +
-> > > > > +#include "pcie-designware.h"
-> > > > > +
-> > > > > +/* ELBI registers */
-> > > > > +#define PCIEELBI_CTRL0_OFFSET		0x0
-> > > > > +#define PCIEELBI_STATUS0_OFFSET		0x100
-> > > > > +
-> > > > > +/* LTSSM register fields */
-> > > > > +#define PCIEELBI_APP_LTSSM_ENABLE	BIT(5)
-> > > > > +
-> > > > > +/* APP_HOLD_PHY_RST register fields */
-> > > > > +#define PCIEELBI_APP_HOLD_PHY_RST	BIT(6)
-> > > > > +
-> > > > > +/* PM_SEL_AUX_CLK register fields */
-> > > > > +#define PCIEELBI_PM_SEL_AUX_CLK		BIT(16)
-> > > > > +
-> > > > > +/* DEV_TYPE register fields */
-> > > > > +#define PCIEELBI_CTRL0_DEV_TYPE		GENMASK(3, 0)
-> > > > > +
-> > > > > +/* Vendor and device ID value */
-> > > > > +#define PCI_VENDOR_ID_ESWIN		0x1fe1
-> > > > > +#define PCI_DEVICE_ID_ESWIN		0x2030
-> > > > > +
-> > > > > +#define EIC7700_NUM_RSTS		ARRAY_SIZE(eic7700_pcie_rsts)
-> > > > > +
-> > > > > +static const char * const eic7700_pcie_rsts[] = {
-> > > > > +	"pwr",
-> > > > > +	"dbi",
-> > > > > +};
-> > > > > +
-> > > > > +struct eic7700_pcie_data {
-> > > > > +	bool msix_cap;
-> > > > > +	bool no_suspport_L2;
-> > > > 
-> > > > support?
-> > > 
-> > > Okey, spelling mistake:)
-> > > 
-> > > mani, by the way, our controller cannot broadcast PME_Turn_Off. Previously,
-> > > i skip broadcast PME_Turn_Off in our controller code. Frank suggested that 
-> > > set the flag bit to skip in the public code. At present, do you think it's 
-> > > okay for me to add no_support_L2?
-> > > 
-> > 
-> > This sounds weird. As per the spec r6.0, sec 5.2, "L2/L3 Ready transition
-> > protocol support is required." So this means the controller has to support
-> > PME_Turn_Off broadcast. Are you saying that your controller is not spec
-> > compliant? and the link can only enter L3 (power off) abruptly?
-> 
-> Hi, Mani
-> 
-> Clarification
-> After confirmation with the hardware team, L2/L3 low-power link state is not 
-> supported, and cannot be controlled to enter L2/L3 through trigger 
-> PME_turn_off/PME_To-Ack handshake, because this function is not implemented in 
-> hardware, nor is the Vmain/Vaux power domain implemented to implement L2/L3 
-> low-power wake-up mechanism.
-> 
-
-Ok, thanks for checking.
-
-> Our PCIe only implements L0s/L1/L1.1 low-power mode. if want to put PCIe into 
-> a more energy-efficient state, only power down PCIe. Although the PCIe Spec 
-> requires the implementation of L2/L3 ready state, it is regrettable that we
-> have not been able to match the protocol requirements at this point. We will
-> gradually improve more features required by the Spec in future products.
-> 
-> Regarding the handling of skipping PME_Turn_Off broadcast, should I add a 
-> flag bit to skip it in Synopsys public code or register a callback function 
-> to skip it in our platform driver? Which approach is better? I'd like to hear
-> your suggestions. Thanks!
-> 
-
-I'd prefer a flag, like, 'struct dw_pcie::no_pme_handshake'.
-
-> Kind regards,
-> Senchuan Zhang
-> 
-> > 
-> > > > > +static void eic7700_pcie_hide_broken_msix_cap(struct dw_pcie *pci)
-> > > > > +{
-> > > > > +	u16 offset, val;
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Hardware doesn't support MSI-X but it advertises MSI-X capability,
-> > > > > +	 * to avoid this problem, the MSI-X capability in the PCIe capabilities
-> > > > > +	 * linked-list needs to be disabled. Since the PCI Express capability
-> > > > > +	 * structure's next pointer points to the MSI-X capability, and the
-> > > > > +	 * MSI-X capability's next pointer is null (00H), so only the PCI
-> > > > > +	 * Express capability structure's next pointer needs to be set 00H.
-> > > > > +	 */
-> > > > > +	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> > > > > +	val = dw_pcie_readl_dbi(pci, offset);
-> > > > > +	val &= ~PCI_CAP_LIST_NEXT_MASK;
-> > > > > +	dw_pcie_writel_dbi(pci, offset, val);
-> > > > 
-> > > > I hate to enforce dependency for your series, but this is properly handled here:
-> > > > https://lore.kernel.org/linux-pci/20251109-remove_cap-v1-2-2208f46f4dc2@oss.qualcomm.com
-> > > 
-> > > Okey, then I can rely on this patch to solve the problem of the missing MSI-X. 
-> > > Thank you for the reminder.
-> > > 
-> > > > 
-> > > > > +}
-> > > > > +
-> > > > > +static int eic7700_pcie_host_init(struct dw_pcie_rp *pp)
-> > > > > +{
-> > > > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > > > +	struct eic7700_pcie *pcie = to_eic7700_pcie(pci);
-> > > > > +	struct eic7700_pcie_port *port;
-> > > > > +	u8 msi_cap;
-> > > > > +	u32 val;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
-> > > > > +	if (pcie->num_clks < 0)
-> > > > > +		return dev_err_probe(pci->dev, pcie->num_clks,
-> > > > > +				     "Failed to get pcie clocks\n");
-> > > > > +
-> > > > > +	ret = reset_control_bulk_deassert(EIC7700_NUM_RSTS, pcie->resets);
-> > > > 
-> > > > I think this is being called too early.
-> > > 
-> > > Before accessing the register. I need to deassert, otherwise, there will
-> > > be problems with register access.
-> > > 
-> > > > 
-> > > > > +	if (ret) {
-> > > > > +		dev_err(pcie->pci.dev, "Failed to deassert resets\n");
-> > > > > +		return ret;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* Configure Root Port type */
-> > > > > +	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
-> > > > > +	val &= ~PCIEELBI_CTRL0_DEV_TYPE;
-> > > > > +	val |= FIELD_PREP(PCIEELBI_CTRL0_DEV_TYPE, PCI_EXP_TYPE_ROOT_PORT);
-> > > > > +	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
-> > > > > +
-> > > > > +	list_for_each_entry(port, &pcie->ports, list) {
-> > > > > +		ret = eic7700_pcie_perst_deassert(port, pcie);
-> > > > > +		if (ret)
-> > > > > +			goto err_perst;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* Configure app_hold_phy_rst */
-> > > > > +	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
-> > > > > +	val &= ~PCIEELBI_APP_HOLD_PHY_RST;
-> > > > > +	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
-> > > > > +
-> > > > > +	/* The maximum waiting time for the clock switch lock is 20ms */
-> > > > > +	ret = readl_poll_timeout(pci->elbi_base + PCIEELBI_STATUS0_OFFSET,
-> > > > > +				 val, !(val & PCIEELBI_PM_SEL_AUX_CLK), 1000,
-> > > > > +				 20000);
-> > > > > +	if (ret) {
-> > > > > +		dev_err(pci->dev, "Timeout waiting for PM_SEL_AUX_CLK ready\n");
-> > > > > +		goto err_phy_init;
-> > > > > +	}
-> > > > 
-> > > > You seem to be configuring the PHY reset and Aux clock, which should come before
-> > > > deasserting PERST# IMO. PERST# deassertion indicates that the power and clock
-> > > > are stable and the endpoint can start its operation. I don't know the impact of
-> > > > these configurations, but it is safe to do them earlier.
-> > > 
-> > > I think your understanding is correct. Unfortunately, in our hardware design, we 
-> > > need to deassert perst first before we can operate the configuration of the phy.
-> > > 
-> > 
-> > Sorry, I don't understand how it is possible, unless this reset is not PERST#.
-> > PERST# is just an indication to the component and has no relation with the
-> > controller.
-> 
-> After confirmation with the hardware team, Clarification as follows:
-> 
-> The power and reference clk of phy for our product PCIe are provided by the power
-> module and reference clock crystal oscillator on the board, and the power and 
-> reference clk of phy for the remote EP are also provided by the power and reference
-> clock crystal oscillator on the board through slots, using PCIe common reference 
-> clock mode. 
->    
-> PERST# is sent to the local PCIe through the configuration register inside our 
-> chip, and this PERST# is also sent to the remote EP through the slot. Therefore,
-> in order to deassert PERST#, we first need our system to boot and configure it
-> through software, hen app_hold_phy_rst can be configured through software, the 
-> entire chip is already in a stable state, including the stability of power and 
-> reference clock.
-> 
-> Both our PCIe controller and phy require PERST# as the primary reset source, 
-> the configuration of app_hold_phy_rst is controlled by the controller to control
-> the state of phy through the pipe_raneX_powerdown signal in the pipe interface. 
-> Therefore, it is necessary to first deassert PERST# release controller and phy's 
-> Perst_n before configuring app_hold_phy_rst to allow the controller to control 
-> the pipe_raneX_powerdown signal.
-> 
-
-It looks crazy (using PERST# for both controller and the endpoint). Anyway, you
-should include this information in the comment above
-reset_control_bulk_deassert().
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+SGkgR2VlcnQgVXl0dGVyaG9ldmVuLA0KDQpUaGFua3MgZm9yIHRoZSBmZWVkYmFjay4NCg0KPiAt
+LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBHZWVydCBVeXR0ZXJob2V2ZW4gPGdl
+ZXJ0QGxpbnV4LW02OGsub3JnPg0KPiBTZW50OiAyOCBOb3ZlbWJlciAyMDI1IDEyOjU0DQo+IFN1
+YmplY3Q6IFJlOiBbUEFUQ0ggdjQgMDEvMTZdIGR0LWJpbmRpbmdzOiBzZXJpYWw6IHJlbmVzYXMs
+cnNjaTogRG9jdW1lbnQgUlovRzNFIHN1cHBvcnQNCj4gDQo+IEhpIEJpanUsDQo+IA0KPiBPbiBU
+dWUsIDI1IE5vdiAyMDI1IGF0IDE2OjA2LCBCaWp1IDxiaWp1LmRhcy5hdUBnbWFpbC5jb20+IHdy
+b3RlOg0KPiA+IEZyb206IEJpanUgRGFzIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4NCj4g
+Pg0KPiA+IEFkZCBkb2N1bWVudGF0aW9uIGZvciB0aGUgc2VyaWFsIGNvbW11bmljYXRpb24gaW50
+ZXJmYWNlIChSU0NJKSBmb3VuZA0KPiA+IG9uIHRoZSBSZW5lc2FzIFJaL0czRSAoUjlBMDlHMDQ3
+KSBTb0MuIFRoZSBSU0NJIElQIG9uIHRoaXMgU29DIGlzDQo+ID4gaWRlbnRpY2FsIHRvIHRoYXQg
+b24gdGhlIFJaL1QySCAoUjlBMDlHMDc3KSBTb0MsIGJ1dCBpdCBoYXMgYSAzMi1zdGFnZQ0KPiA+
+IEZJRk8gY29tcGFyZWQgdG8gMTYgb24gUlovVDJILiBJdCBzdXBwb3J0cyBib3RoIEZJRk8gYW5k
+IG5vbi1GSUZPIG1vZGUNCj4gPiBvcGVyYXRpb24uIFJaL0czRSBoYXMgNiBjbG9ja3MoNSBtb2R1
+bGUgY2xvY2tzICsgMSBleHRlcm5hbCBjbG9jaykNCj4gPiBjb21wYXJlZCB0byAzIGNsb2Nrcw0K
+PiA+ICgyIG1vZHVsZSBjbG9ja3MgKyAxIGV4dGVybmFsIGNsb2NrKSBvbiBSWi9UMkgsIGFuZCBp
+dCBoYXMgbXVsdGlwbGUgcmVzZXRzLg0KPiA+DQo+ID4gQWNrZWQtYnk6IENvbm9yIERvb2xleSA8
+Y29ub3IuZG9vbGV5QG1pY3JvY2hpcC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogQmlqdSBEYXMg
+PGJpanUuZGFzLmp6QGJwLnJlbmVzYXMuY29tPg0KPiA+IC0tLQ0KPiA+IHYzLT52NDoNCj4gPiAg
+KiBEcm9wcGVkIHNlcGFyYXRlIGNvbXBhdGlibGUgZm9yIG5vbi1GSUZPIG1vZGUgYW5kIGluc3Rl
+YWQgdXNpbmcgc2luZ2xlDQo+ID4gICAgY29tcGF0aWJsZSAicmVuZXNhcyxyOWEwOWcwNDctcnNj
+aSIgYXMgbm9uLUZJRk8gbW9kZSBjYW4gYmUgYWNoaWV2ZWQNCj4gPiAgICBieSBzb2Z0d2FyZSBj
+b25maWd1cmF0aW9uLg0KPiA+ICAqIFJlbmFtZWQgY2xvY2stbmFtZXMgYnVzLT5wY2xrDQo+ID4g
+ICogUmVhcnJhbmdlZCBjbG9jay1uYW1lcyB0Y2xrezQsIDE2LCA2NH0NCj4gPiAgKiBSZXRhaW5l
+ZCB0aGUgdGFnIGFzIHRoZSBjaGFuZ2VzIGFyZSB0cml2aWFsLg0KPiANCj4gVGhhbmtzIGZvciB0
+aGUgdXBkYXRlIQ0KPiANCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3Mvc2VyaWFsL3JlbmVzYXMscnNjaS55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3NlcmlhbC9yZW5lc2FzLHJzY2kueWFtbA0KPiANCj4gPiBAQCAtNjIs
+NiArODIsNDYgQEAgcmVxdWlyZWQ6DQo+ID4gICAgLSBjbG9jay1uYW1lcw0KPiA+ICAgIC0gcG93
+ZXItZG9tYWlucw0KPiA+DQo+ID4gK2FsbE9mOg0KPiA+ICsgIC0gJHJlZjogc2VyaWFsLnlhbWwj
+DQo+ID4gKw0KPiA+ICsgIC0gaWY6DQo+ID4gKyAgICAgIHByb3BlcnRpZXM6DQo+ID4gKyAgICAg
+ICAgY29tcGF0aWJsZToNCj4gPiArICAgICAgICAgIGNvbnRhaW5zOg0KPiA+ICsgICAgICAgICAg
+ICBjb25zdDogcmVuZXNhcyxyOWEwOWcwNzctcnNjaQ0KPiA+ICsgICAgdGhlbjoNCj4gPiArICAg
+ICAgcHJvcGVydGllczoNCj4gPiArICAgICAgICBjbG9ja3M6DQo+ID4gKyAgICAgICAgICBtaW5J
+dGVtczogMg0KPiA+ICsgICAgICAgICAgbWF4SXRlbXM6IDMNCj4gPiArDQo+ID4gKyAgICAgICAg
+Y2xvY2stbmFtZXM6DQo+ID4gKyAgICAgICAgICBtaW5JdGVtczogMg0KPiA+ICsgICAgICAgICAg
+bWF4SXRlbXM6IDMNCj4gPiArDQo+ID4gKyAgLSBpZjoNCj4gPiArICAgICAgcHJvcGVydGllczoN
+Cj4gPiArICAgICAgICBjb21wYXRpYmxlOg0KPiA+ICsgICAgICAgICAgY29udGFpbnM6DQo+ID4g
+KyAgICAgICAgICAgIGNvbnN0OiByZW5lc2FzLHI5YTA5ZzA0Ny1yc2NpDQo+ID4gKyAgICB0aGVu
+Og0KPiA+ICsgICAgICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgICAgIGNsb2NrczoNCj4gPiArICAg
+ICAgICAgIG1pbkl0ZW1zOiA1DQo+ID4gKyAgICAgICAgICBtYXhJdGVtczogNg0KPiA+ICsNCj4g
+PiArICAgICAgICBjbG9jay1uYW1lczoNCj4gPiArICAgICAgICAgIG1pbkl0ZW1zOiA1DQo+ID4g
+KyAgICAgICAgICBtYXhJdGVtczogNg0KPiA+ICsNCj4gPiArICAgICAgcmVxdWlyZWQ6DQo+ID4g
+KyAgICAgICAgLSByZXNldHMNCj4gPiArICAgICAgICAtIHJlc2V0LW5hbWVzDQo+ID4gKyAgICBl
+bHNlOg0KPiA+ICsgICAgICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgICAgIHJlc2V0czogZmFsc2UN
+Cj4gDQo+IFdoaWxlIHRlY2huaWNhbGx5IGNvcnJlY3QsIHBsZWFzZSBtb3ZlIHRoZSBjb250ZW50
+cyBvZiB0aGUgImVsc2UiIGJyYW5jaCB0byB0aGUgImlmIC4uLg0KPiByZW5lc2FzLHI5YTA5ZzA3
+Ny1yc2NpIiBhYm92ZSwgdG8gaW5jcmVhc2UgdW5pZm9ybWl0eS4NCg0KT0ssIHdpbGwgbW92ZSAi
+cmVzZXRzOiBmYWxzZSIgdGhlcmUuDQoNCj4gDQo+IEFsc28sIFJaL0czRSBSU0NJIGhhcyB0d28g
+bW9yZSBpbnRlcnJ1cHRzOiBBRUQgKGFjdGl2ZSBlZGdlIGRldGVjdGlvbikgYW5kIEJGRCAoYnVz
+IGNvbGxpc2lvbg0KPiBkZXRlY3Rpb24pLiAgU29ycnkgZm9yIG1pc3NpbmcgdGhhdCBiZWZvcmUu
+DQoNCk9vcHMuIFdpbGwgYWRkIHRoaXMgYXMgd2VsbC4NCg0KQ2hlZXJzLA0KQmlqdQ0K
 
