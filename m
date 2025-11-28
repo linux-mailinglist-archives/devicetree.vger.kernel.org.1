@@ -1,129 +1,239 @@
-Return-Path: <devicetree+bounces-242905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84202C91107
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 08:49:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FA1DC911C2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:12:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2C1E134BFF8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 07:49:44 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B260134F7E5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 08:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53F22798E5;
-	Fri, 28 Nov 2025 07:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C162DCF7C;
+	Fri, 28 Nov 2025 08:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E9T06tps"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SiVskeq6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4865D23EAB6
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 07:49:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08E31CEAA3
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 08:10:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764316181; cv=none; b=X9srVXkp4rR2q+JkfvuKA8JsErzpg8SKqeBAr3WSUOXI9/6BpKSNx7BSbf1Vn/5ac89haX7zDqv7rYpzb4S6qdzmhfTgmEztx4OoCnmFxWcSemSmf8f0vcpj5uCvZZZ2bq0fcfbKhc2BLirFwFwBeDdRgL4ARMEAJd7LI94eKqg=
+	t=1764317449; cv=none; b=JUV/qPxGfog5AdWmfQzPDlQ5XAWqRLtB8KUkxpdsDLZ8rweO2NiMNNMAMHgFBDzQkCElLzZ27+j57bTjSY1L2DUvi14vhD7a3yOfg7GZPooSPA27dWLXCLmzwrLcsTmaKuntbmiS0Ty2u5KmpFUZg7jh7q+ey3+DlcKYvFNRlL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764316181; c=relaxed/simple;
-	bh=Xzb4o6woI0sKd6leSwCGnufqfj0RdO1VKVEpocSGcGU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O3aEUJ4RSnlRxo49N+qJidnpjdlUevyHxqPMNkEweIhCO/ci+pcUJjvUxZCD3lbyFWclcmSoAtxskJ9CSmu7dOXsJd/oqT+23yaWfwqHOlgu2FSqMvQUhu4ZJ5fC3//cjI70rvBVGhMtQqX5B40kcjwYJ9qhqCnwtBxsacOGPyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E9T06tps; arc=none smtp.client-ip=209.85.160.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4ed7a7ddc27so14253991cf.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 23:49:40 -0800 (PST)
+	s=arc-20240116; t=1764317449; c=relaxed/simple;
+	bh=BI6d5r9H0oVhcgY7hqM0ujL/0z2q9c72cR3/Pq4ycVA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WmgLqIqnefC/ZcKjdlRouSoVNOfpw0iAikiSDXGz+HmALhMV3zORaovJgt31Jt8ZRoamGMyKPBBveDSmVFEAU0IIbUiP4AupRy6CYSCjkWfKPq13OHbZVKJh0BAaqARwiSSthMZ84z5ZvAj7PhffuUaYz5Ap3JhTecLoFOAKm5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SiVskeq6; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477b198f4bcso10192055e9.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 00:10:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764316179; x=1764920979; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xzb4o6woI0sKd6leSwCGnufqfj0RdO1VKVEpocSGcGU=;
-        b=E9T06tpsyCcdjDqrjgkPE4fUfzxY5JE0PkltORz9aSzZDPWcYJd4JmgrIuDt1nU25K
-         ZvGPKrwBSlrvmofQ0+mYuxgfNL7TcwDXevKRZGcq5QJ2A+37aogIS4+i3PKnTZMvcua/
-         7v8LKe9lhSJlEjzahQL9ZSHIa4U8yxTZmuc9Xr6BcCqr5tzkD55uRZkovzsgAjAsbNP/
-         2bf5juQOXy+9pa3UGVMuo38G5d0sb2dJ6uyRtHs6NV99aGCw2nI8TLx9xbcaPPBP3DjJ
-         vFxuHlP+cGpf3oC4TIqboslT68/US2S8fao7Mx41ZsZ8iY/7nudorYdB/LVLIv+Hfmgn
-         nmZg==
+        d=linaro.org; s=google; t=1764317445; x=1764922245; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+2bFlIh8I9NZQcRpDPD+Djsorg8bRceb3xQr+grKSRk=;
+        b=SiVskeq6fS1FHwAMamNK5PYuedSA93M5Bzg0yrtGs3Vr5Llc40P2NzcfRmz5J66o1k
+         m84N4iWTxOtr5b+x3qLpUlRBHt63gzQeDCIGj5jYZgRCLb5RSMFZmIzCasHW4NyPJ+8w
+         qy9SeOQrTLcZEfLvmgF2A7uUDuw14KblgaXULzw7pyaOMl9AApiYAmtpQaX9wFf2/IgA
+         go9jqHKAiaHvocJYzxJnrhfIdZMaGqmhfahg/7qCKuvy78e/qW2hMB+jdJh1CRvn3+up
+         7ynNV8oJz3Ruq+ZLVcJh9as3+qkkL1seDWmmo+gl2x00y7kjuANKol0ocDQVguNQM2fc
+         6ung==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764316179; x=1764920979;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Xzb4o6woI0sKd6leSwCGnufqfj0RdO1VKVEpocSGcGU=;
-        b=mbDbW9KZ4L7zai+6ZVsYpOU04Nn21bESNUXEcoDyUBTd7B40TiawDwqPb3gvPWgq4a
-         kctyDZ8Phy04oFKvMQzd8z8e7aTlLZ6sX/AuJG1nZUaqv+aiqfJJV3dRqdwAKhv/IFrq
-         QY/OnhlKqovrmprnH6k77RhoEkkcyUCFkrHedHGfx6GB3ghXUrCd+Dvy/ZdBefNZ38Eb
-         1LMJcqgzeEwHH+OLM024cGi3fwwLeqtTz2bVauQJ8GZh+af4l4ZGBybV0BZzidZwKEu6
-         g+fdWCNqKAsqED1/g5nWDa/nE6KGneB285cOVhYBpGK0lg2YpcCGDTplb5z0rgIE4q7E
-         y/bw==
-X-Gm-Message-State: AOJu0YyOPH1YzHhIxcI0Jr44evVZt5niVCoiof+E8cx3n7RkUg7982Z9
-	oGeWsN4LBWK4uvJw1JL67RSsERYs5nF+hqyPSvhUtFraS6+XfdLT0cWLkJ/LU+dNoCTw+P9vt3q
-	eyCqlxbbtC5FsiIQ/ySmZZrsJDtf1KYQ=
-X-Gm-Gg: ASbGncvo7fLC3hxE4ehtYAgGMjzow1gFbBz0Huv+f77lApgj6QL6okM0jY5QooPO3NS
-	PVhGf5QUdPXe6V3IjaJEH6QUoetfD62Ibed8bcOog5zzJ56HIcDTZm5mbOCaS/3xStbGFexLSwj
-	9y2PS6O3dpfWkvGns2vegF7QaernO30c5gsQTb9Umu94skoo8hddkT7rSKHwdKsDkDZ5tVn62xL
-	NKGZgA/l1zTU9lF1t3930iq1bJ0mXB6GGta98KrpMezLyYGmkKyNuNXxSMEavFh+TufFEsRZ/IN
-	qS5GegNShtYqValnCryQMUbxd7wc
-X-Google-Smtp-Source: AGHT+IHYzLcGh+cWGpJkei51y/kYklMPmBU3wbElTrGhOhOpPSp6GAM0EV8iuyukCLvsobhwpt+JVDig/00Wu3PpzZo=
-X-Received: by 2002:a05:622a:4d4b:b0:4e8:aff9:a7a8 with SMTP id
- d75a77b69052e-4efc3f2a0efmr187482101cf.52.1764316179224; Thu, 27 Nov 2025
- 23:49:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1764317445; x=1764922245;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+2bFlIh8I9NZQcRpDPD+Djsorg8bRceb3xQr+grKSRk=;
+        b=SVSpKNBogG6S524YB5vqSzPQytB59GuK/YR4zSHk4mwmxHvA3PAuWHeQEaPJBu8unU
+         GxptoXvM2VxguYUIioFSOfURPq8JH1cHQEejQeBGJpdOqPV79y72VTKcMgF5lB6/r268
+         iW+HfmhLyqcdsXh6InT9xrvrVxRWtr1f64te5oT1G8dHryUiGyHXzJULuiOyxqw5YbLN
+         lF9L2xVBXZZ8+Y3QQ6ZjJeSLFqcQNSKXP/CwPCsZHYckF/Rl16X84yUTDnONpByZTknd
+         nAJ0+fNauSDKQhPgEi5pxVLEW60SzbqDXV1rk6R/4NzUMIi9QPR1n4owbiPv5D10QL3y
+         /hUg==
+X-Forwarded-Encrypted: i=1; AJvYcCXb2VC3FCoTiBf0RMW4Bbw2qnjP6eZwDywvZaCcEZvA1uxqMrLOE1hnH71IEdf8pVwZswYmQCnDTlwn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGdaaFPfZpouKkYd3h6sG3B6ChmdkMDHt+XF+lWiyFfVdJF34I
+	nu+viNLh0iIY5iq6T11nmHIsma28ufx9gVb0jvtF0l9NoLTQnN6+JIDGH1JXm9UYhWA=
+X-Gm-Gg: ASbGncvZgrXnytGs9dohJBnhzuC+JawyR8MBM2S7VEmsCVJygcfHl7yjTUrC7hsGyy+
+	zSbW4z/1GYE38waMmRXR7L2aqIYxNnHlbJe2mMlInrPsiE9/wlgwTYkWjJsYA/KcD0Gv2cMBwyL
+	OWVO7F4e3lnqsfYtLb3CvKFa0pDX2KJngYSLjBVm7tvECFX7QwP4+6idF+xZ0W6fpAgWBwvEgde
+	Pz/y3UrHSA4dI1H4fhAo8CEeyfeiLSjqXkkU0yK9ybhtU2ZV24d7fNW0n+7gBEPqeV/CKJrrjwJ
+	GWx2j41OjFlXGcm6mZoCaPdpwJVbBhaXY1yJzRyoy2D+pWg/QVwYmWPI/YEKerzU8v8/YIMYi9g
+	wJuqP+l/4Pgw+A1bQX4MqoOZWYt70QUyFQSAo0caiTGzm2o0oWF9FVtK3lgUyz3OWEAXGnw1joy
+	AfJRXGM8NDPeBkzDJS
+X-Google-Smtp-Source: AGHT+IHVNGxLHdQSfNonRBBq78f347/I8I+ulkCPlaTONnGVXYiUFj038obXmFsDqBT8iAGXzvuP8A==
+X-Received: by 2002:a05:600c:1d1d:b0:477:7c7d:d9b7 with SMTP id 5b1f17b1804b1-477c01ec3f5mr247354265e9.33.1764317445111;
+        Fri, 28 Nov 2025 00:10:45 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47911143bb6sm83247115e9.3.2025.11.28.00.10.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Nov 2025 00:10:43 -0800 (PST)
+Date: Fri, 28 Nov 2025 11:10:39 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Jonathan Corbet <corbet@lwn.net>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 06/11] hwmon: Add Apple Silicon SMC hwmon driver
+Message-ID: <aSlY_w-nXA38PrBO@stanley.mountain>
+References: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
+ <20251112-macsmc-subdevs-v5-6-728e4b91fe81@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251127-nanopi-m5-ufs-v1-1-0d28d157712c@gmail.com>
-In-Reply-To: <20251127-nanopi-m5-ufs-v1-1-0d28d157712c@gmail.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 28 Nov 2025 11:49:31 +0400
-X-Gm-Features: AWmQ_bnfm67nHyppKcn_WewzrQOH_TFdC0fMKR8wgi2rranNPLttVu9G4ijWIFw
-Message-ID: <CABjd4Yx0wJG-RjbGo1EZXK=bDp0sBJvcwA8tJ5jNOZRmGq3r3g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: enable UFS controller on
- FriendlyElec NanoPi M5
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251112-macsmc-subdevs-v5-6-728e4b91fe81@gmail.com>
 
-On Thu, Nov 27, 2025 at 3:46=E2=80=AFPM Alexey Charkov <alchark@gmail.com> =
-wrote:
->
-> The NanoPi M5 board supports pluggable UFS modules using the UFSHC
-> inside its Rockchip RK3576 SoC.
->
-> Enable the respective devicetree node.
->
-> Board specific supply regulators are not added, because they are all
-> non-gateable descendants of other regulators marked always-on.
+On Wed, Nov 12, 2025 at 09:16:52PM +1000, James Calligeros wrote:
+> +static int macsmc_hwmon_populate_sensors(struct macsmc_hwmon *hwmon,
+> +					 struct device_node *hwmon_node)
+> +{
+> +	struct device_node *key_node __maybe_unused;
 
-On a second thought, I'll add those regulators in v2, and also include
-a link to the relevant schematic [1]. Explicitly listing the
-regulators has a slight benefit of fewer complaints from the driver at
-boot time, and maybe at some point we'll want to try and remove some
-of the "always-on" markings (which would require a reasonably complete
-description of the power graph inside the device tree). They are also
-actual devices on board and not pure aliases of other existing power
-lines, which IMO qualifies them for inclusion in the DT.
+The for_each_child_of_node_with_prefix() macros declare key_node so this
+declaration is never used so far as I can see.  I thought Sparse had a
+warning where we declared shadow variables where two variables have the
+same name but it doesn't complain here. #strange
 
-FTR:
-VCC_UFS is directly fed by VCC_3V3_S3, no fancy circuitry in between
-VCC1V2_UFS_VCCQ is fed by VCC5V0_SYS_S5 via a DCDC buck converter,
-whose EN pin is driven by VCC_3V3_S3
-VCC1V8_UFS_VCCQ2 is fed by VCC_1V8_S3 via a MOSFET gated by voltage on
-VDDA_1V2_S0
-UFS host controller itself is part of the VCCIO7 domain, whose logic
-is driven by VDD_0V75_S3 and whose VCC is fed by VDDA_1V2_S0
+> +	struct macsmc_hwmon_sensor *sensor;
+> +	u32 n_current = 0, n_fan = 0, n_power = 0, n_temperature = 0, n_voltage = 0;
+> +
+> +	for_each_child_of_node_with_prefix(hwmon_node, key_node, "current-") {
+                                                       ^^^^^^^^
 
-Will wait for 24h to elapse since v1 submission and send a v2 later today.
+regards,
+dan carpenter
 
-Best regards,
-Alexey
+> +		n_current++;
+> +	}
+> +
+> +	if (n_current) {
+> +		hwmon->curr.sensors = devm_kcalloc(hwmon->dev, n_current,
+> +						   sizeof(struct macsmc_hwmon_sensor), GFP_KERNEL);
+> +		if (!hwmon->curr.sensors)
+> +			return -ENOMEM;
+> +
+> +		for_each_child_of_node_with_prefix(hwmon_node, key_node, "current-") {
+> +			sensor = &hwmon->curr.sensors[hwmon->curr.count];
+> +			if (!macsmc_hwmon_create_sensor(hwmon->dev, hwmon->smc, key_node, sensor)) {
+> +				sensor->attrs = HWMON_C_INPUT;
+> +
+> +				if (*sensor->label)
+> +					sensor->attrs |= HWMON_C_LABEL;
+> +
+> +				hwmon->curr.count++;
+> +			}
+> +		}
+> +	}
+> +
+> +	for_each_child_of_node_with_prefix(hwmon_node, key_node, "fan-") {
+> +		n_fan++;
+> +	}
+> +
+> +	if (n_fan) {
+> +		hwmon->fan.fans = devm_kcalloc(hwmon->dev, n_fan,
+> +					       sizeof(struct macsmc_hwmon_fan), GFP_KERNEL);
+> +		if (!hwmon->fan.fans)
+> +			return -ENOMEM;
+> +
+> +		for_each_child_of_node_with_prefix(hwmon_node, key_node, "fan-") {
+> +			if (!macsmc_hwmon_create_fan(hwmon->dev, hwmon->smc, key_node,
+> +						     &hwmon->fan.fans[hwmon->fan.count]))
+> +				hwmon->fan.count++;
+> +		}
+> +	}
+> +
+> +	for_each_child_of_node_with_prefix(hwmon_node, key_node, "power-") {
+> +		n_power++;
+> +	}
+> +
+> +	if (n_power) {
+> +		hwmon->power.sensors = devm_kcalloc(hwmon->dev, n_power,
+> +						    sizeof(struct macsmc_hwmon_sensor), GFP_KERNEL);
+> +		if (!hwmon->power.sensors)
+> +			return -ENOMEM;
+> +
+> +		for_each_child_of_node_with_prefix(hwmon_node, key_node, "power-") {
+> +			sensor = &hwmon->power.sensors[hwmon->power.count];
+> +			if (!macsmc_hwmon_create_sensor(hwmon->dev, hwmon->smc, key_node, sensor)) {
+> +				sensor->attrs = HWMON_P_INPUT;
+> +
+> +				if (*sensor->label)
+> +					sensor->attrs |= HWMON_P_LABEL;
+> +
+> +				hwmon->power.count++;
+> +			}
+> +		}
+> +	}
+> +
+> +	for_each_child_of_node_with_prefix(hwmon_node, key_node, "temperature-") {
+> +		n_temperature++;
+> +	}
+> +
+> +	if (n_temperature) {
+> +		hwmon->temp.sensors = devm_kcalloc(hwmon->dev, n_temperature,
+> +						   sizeof(struct macsmc_hwmon_sensor), GFP_KERNEL);
+> +		if (!hwmon->temp.sensors)
+> +			return -ENOMEM;
+> +
+> +		for_each_child_of_node_with_prefix(hwmon_node, key_node, "temperature-") {
+> +			sensor = &hwmon->temp.sensors[hwmon->temp.count];
+> +			if (!macsmc_hwmon_create_sensor(hwmon->dev, hwmon->smc, key_node, sensor)) {
+> +				sensor->attrs = HWMON_T_INPUT;
+> +
+> +				if (*sensor->label)
+> +					sensor->attrs |= HWMON_T_LABEL;
+> +
+> +				hwmon->temp.count++;
+> +			}
+> +		}
+> +	}
+> +
+> +	for_each_child_of_node_with_prefix(hwmon_node, key_node, "voltage-") {
+> +		n_voltage++;
+> +	}
+> +
+> +	if (n_voltage) {
+> +		hwmon->volt.sensors = devm_kcalloc(hwmon->dev, n_voltage,
+> +						   sizeof(struct macsmc_hwmon_sensor), GFP_KERNEL);
+> +		if (!hwmon->volt.sensors)
+> +			return -ENOMEM;
+> +
+> +		for_each_child_of_node_with_prefix(hwmon_node, key_node, "volt-") {
+> +			sensor = &hwmon->temp.sensors[hwmon->temp.count];
+> +			if (!macsmc_hwmon_create_sensor(hwmon->dev, hwmon->smc, key_node, sensor)) {
+> +				sensor->attrs = HWMON_I_INPUT;
+> +
+> +				if (*sensor->label)
+> +					sensor->attrs |= HWMON_I_LABEL;
+> +
+> +				hwmon->volt.count++;
+> +			}
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
 
-[1] https://wiki.friendlyelec.com/wiki/images/9/97/NanoPi_M5_LP5_2411_SCH.p=
-df
 
