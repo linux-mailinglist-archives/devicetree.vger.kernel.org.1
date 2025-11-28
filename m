@@ -1,245 +1,660 @@
-Return-Path: <devicetree+bounces-242939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD611C91872
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:54:24 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id D505AC91884
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:54:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBCD43AB795
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:54:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D495034C048
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 09:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2951630749A;
-	Fri, 28 Nov 2025 09:54:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DD83306B24;
+	Fri, 28 Nov 2025 09:54:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nIIbGS6k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022129.outbound.protection.outlook.com [40.107.75.129])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2373002BA;
-	Fri, 28 Nov 2025 09:54:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.129
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764323656; cv=fail; b=ShBg7c16WLAluwtKPU1aTNfjU0Us8JGHAf8kEaZCc915NL+qlIDC6e7O2GZnySEFXNS3DxiKQtyyZQu1dWlvgyNo0LjrSWsoFa/riPb/SGk1VjV884tC4QJARgUcZ2va4ya9dYkWTKDga0mUhEEabpFLT2cpFMP5xErdPJzHXy8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764323656; c=relaxed/simple;
-	bh=MSoTXOdtsjTDoqlgfr5X1+0d0wPW9GtfOrdTCFFcINw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=k9sYP/sKPcLVzxD8UCMazallCThfbssJ3LnnnunuXVVYrFtxvcFy69MLRs85Ort+UCRoUHkDFDVsYKOdoE0IoMIH0/S+oYUTHLT08j8jQTSmRKQO7gA0K4eFi+Oy6Z6FvHD5dEQB3CCE6CwHxeuVoNhzmlI7PShu6Tq/eEDKlCo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=M6UUVF7Atwdsevw5QRGFJEcn05JZDeMdNow77aXxyPV+JsScPOQsNYvVOdoxgfv8p6sZRsoe4G5iOxw9RJyNQzw9Us1PSHLQSBc6QlO9B10lA0a8kpFTzhhpXrKNUAldHqxhrUb6pqtqORzGpaF6Mx38/qcUqRTRKML13fQ7vd6xB6tv33/SSbDI5bV5xrhgD0a3Y6Pd59LLLND8tg3ZC0NDYtZw1QAwTyN5gH/V/Jl2AqC+NWgnSROPcEshbiQfnoQylxTC/nZzsR6BO9kKtpf3Jj+MiuzEoR9x/ioouPzps87YCzYu0gNn2VGASKSAvRK4FjDPebHI6H9gNnOQTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MSoTXOdtsjTDoqlgfr5X1+0d0wPW9GtfOrdTCFFcINw=;
- b=Ck6ieKy4F7AW0GATiS48P/C0JP5SSzOBrHVCkfcHXsbsRC4Z9+prcv23knEgX98TarsM4g4gjwzlxeUrPJNzXbyy53e1v5AE9yKieKtgESjIrJdfI8uSoq7H9RoGx3lTNw3Qist8VyorlGEzkwrEtAmNv0o783a+friKY/DEAifOzqK+IvcEssZny8c0qugGP5pHHVUyfQ5IoMX/t9QcbNA6NgOSPZF5utfc+SK3iFV7s18zT3wBprJ6T6NdoYuX2Oi37RQV/nd5KLCJd99kODowD7s3U7UmNS/rZFkhqcFPxvvhqwlGDC60h/pa8lUindissQ5wgCHz2TSFAtRLyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cixtech.com; dmarc=pass action=none header.from=cixtech.com;
- dkim=pass header.d=cixtech.com; arc=none
-Received: from SEYPR06MB6226.apcprd06.prod.outlook.com (2603:1096:101:df::13)
- by SEZPR06MB5344.apcprd06.prod.outlook.com (2603:1096:101:64::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.13; Fri, 28 Nov
- 2025 09:54:04 +0000
-Received: from SEYPR06MB6226.apcprd06.prod.outlook.com
- ([fe80::56e8:777c:d80e:d364]) by SEYPR06MB6226.apcprd06.prod.outlook.com
- ([fe80::56e8:777c:d80e:d364%5]) with mapi id 15.20.9366.009; Fri, 28 Nov 2025
- 09:54:04 +0000
-From: "Joakim  Zhang" <joakim.zhang@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "broonie@kernel.org"
-	<broonie@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com"
-	<tiwai@suse.com>, "linux-sound@vger.kernel.org"
-	<linux-sound@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, cix-kernel-upstream
-	<cix-kernel-upstream@cixtech.com>
-Subject: RE: [PATCH v2 1/4] ASoC: dt-bindings: add CIX IPBLOQ HDA controller
- support
-Thread-Topic: [PATCH v2 1/4] ASoC: dt-bindings: add CIX IPBLOQ HDA controller
- support
-Thread-Index: AQHcX4I/rWYXEfmiWkK1OjlzuYyFLbUH03+AgAACkFA=
-Date: Fri, 28 Nov 2025 09:54:04 +0000
-Message-ID:
- <SEYPR06MB6226157DB7A5D5486500063A82DCA@SEYPR06MB6226.apcprd06.prod.outlook.com>
-References: <20251127094301.4107982-1-joakim.zhang@cixtech.com>
- <20251127094301.4107982-2-joakim.zhang@cixtech.com>
- <20251128-fearless-kittiwake-from-arcadia-662dbc@kuoka>
-In-Reply-To: <20251128-fearless-kittiwake-from-arcadia-662dbc@kuoka>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cixtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR06MB6226:EE_|SEZPR06MB5344:EE_
-x-ms-office365-filtering-correlation-id: 2e952ee3-81ee-4058-4177-08de2e64107a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?aGFkVWIvQUtHZ09pUmo1YXN0Z2p2Wm5FQzZnYmxlLzdOQkIyRHIvczRFYitz?=
- =?utf-8?B?Zk05UFpwSW9ETDl4dzdaenR0L2ltdS92QkRNN0ZINjF6WndkeVZ0aVE0UWhS?=
- =?utf-8?B?dkQyb3oybG01V1F2ekZacE9wQ1J0RU1LL0U1M3A4dU1JenozaWgzZUs4YUFp?=
- =?utf-8?B?a0sxUXJVd2tBUlQ5SXhYQzdPTXpSemppbUV6MEpVdzI4N25IRW5TMjFoSSt2?=
- =?utf-8?B?THRKQ3FEcUZ5OGJqWVYrcmpCRWhzbkFIRTc5OTcvbDFvK3lqcDRPWlArKzRz?=
- =?utf-8?B?OGNNZmdRWFNRQnNmQXRrQTQxaU44QmRYL0xNUm5hQ0JFYVYrZU00SS9EZ1J0?=
- =?utf-8?B?dTd3QXhRN2xvUlBtWnFNYytqMDV4UTZ2R0FTTGFUUWcyNmVMaEk4MXk5eUxD?=
- =?utf-8?B?ajBTTnREUmNka2lTRnRTdW5FUmUwN2g3NUZOUjcrbGpJb09DcXFMVWtxV0d3?=
- =?utf-8?B?YjZ0dXdwRlJSdVFkRjY1R0FtaHhsUVhSK3lCS1ZOVjE5dDh1SUZ6Yi8zanNs?=
- =?utf-8?B?dG1rZUJCZnJOVXVydER4SFVFUVVBR3ByOGVCdnFCK1lxU2lwQWZKN2t2Nlh0?=
- =?utf-8?B?TkxZZ3RTNXhuQ1JGTE1PQmtkZDNGdHMrd2RYT2VETG1wS2REWEVuUjBaVXp2?=
- =?utf-8?B?SE1KajcyQWtkTm14Q0xkREZtc1dYc29halljcGd3NFplVmNCV002U0dyRkNK?=
- =?utf-8?B?VFhaOXpaWUpSVTViSGRvUmR5S2Y2UDRnQmxvNjd6QUg1YUNwbU1yMlBTOWlm?=
- =?utf-8?B?S3VYeHFkbzU4RFlnWjQ1NEtLNkxlNzV2bVVYSGsxOUpSeWwxWlc1aDZMVk1q?=
- =?utf-8?B?VW12SVR4TUZLaW5TQml2U3h2c2hXbzVxRUhxNmlpa3FNZ3VyQW04L3BjeUcw?=
- =?utf-8?B?SUtWOWY5SWFYNFV0dW5QZmZIVTc5Z25CWUJtbVFOQ3Q4dEVqK3pZK0E0cXZD?=
- =?utf-8?B?Z3FRRGN5MUtWTERoQy93WlMrWERNZHlraXpQZ1dyMWw0UXlaSTBvRWNqY1pz?=
- =?utf-8?B?dEdmb2t1K2pvdWt2QmxtTHJHNXFod2F6OVlTdUVFZXZGOUxBTWU4dVRLVHNO?=
- =?utf-8?B?WmJ4UWYwV3BEVGxHeVI0WmpLclFRMnc0S3NUekxhdzl0N3hoVWw3aUZLQ1NT?=
- =?utf-8?B?ZVIrN1ViTDV2cHhZUUhIMm5ra2tjTWNhZTF3OWt1TXljcWxXM0ZGRSs4czJJ?=
- =?utf-8?B?bERGTlBocHlobG1uQXZDSnNWUXAzTm5oc2pDMEtOUjNSRElpOXJJamZxN3Zp?=
- =?utf-8?B?VjVoTlJ5Ly9kQUl6UG9YdDZ2cW0wS0pNbnFrWXdLMTVsa2t6TVFoQUdyS3li?=
- =?utf-8?B?djdjdFBYdmR5dmxZY002UnZPZXRrM0xFWFVaOGJXcnVOaW9tR0d5cTgrSHVq?=
- =?utf-8?B?ZXlaR0ZDM2NFQUFUWXN3a0tVcGc2a0cxTUNpeFo3MnJ3WHc1MXZPNHpVWHdh?=
- =?utf-8?B?VjN1enNBR29TM3QyVG1LR1F3dU5QMElUT0prSnlsUDhHTHRKcTJEa3dzSGpQ?=
- =?utf-8?B?TWIyOWhEaE9PbDVkSFU2RFFUN0pvd2lsTzBsUUhuUkRrN0FEK3NlMG1pZEtM?=
- =?utf-8?B?R291Q0FjbU93UXpNVlZlc2hUWXlCamZUZ1lvNjRZRktWZWJRb0tITjdiZzRJ?=
- =?utf-8?B?blFLRjJlRlBLa2JNQ291QUswdE1VMEdGRnBTTHlIRnhaZ3BoSkVoMDZ2WlVo?=
- =?utf-8?B?cit1OGhTbm85blBhY0xHNit6dzhJK0poU2MwT3VGb2ovZXlEb1VTd2FtL0tp?=
- =?utf-8?B?UFhISnFTb3JWMlFJWm95TWFWK3U0dWRLK0pKVHdsdW9ZdXZQTDlPNFkvK2Vz?=
- =?utf-8?B?aHFBelhLQzRDbzlsV29ib1V4TGFlVzBjRTFVS004R2NVZ2RSblozUFZ0cExY?=
- =?utf-8?B?d0E1WHR5U1NlN01McUd5SUtXZnQzdm85bGJqbnZVaUJuMSs1Z0w0VEdpWlR0?=
- =?utf-8?B?OXNXbXh5bmNPL2F2OEdVWnFhRHp2dE9RSXJ4Ym9mN0J1eERuZUY3QVNhZzh5?=
- =?utf-8?B?OUVNQWxmUVF3PT0=?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB6226.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?NnJINEFTS0JHUFdjRUlKOGFYVGc1MFIwS2MyZllpSzRjSTEySlVMVGFtV21I?=
- =?utf-8?B?Ky92SWRhUkFXSHlLSnBvbDQvT0wwV2h4Q1JHOHNPTU5pMVNpdHg4enZSUXpY?=
- =?utf-8?B?amZtcW9KdTZyZENxd3U3b0lhQncvMWI1MkUzZHhNOHBheTk5SHY2L1BrME95?=
- =?utf-8?B?OUlObGFLczJ3WWdTUkh3Q0x3d1o0WGJVY29vZSs4WWw3TTZqZUhDU3FHSTFY?=
- =?utf-8?B?ekdhU3R4elE5TXBUYkJnVG9NSFZHcnlZbDdOSjFuZUlQZUdKS0licEFEZGdm?=
- =?utf-8?B?R1pIZlJGd2pEdHZaMkJ3Nm8xWEJyaVRHMTRScTZlY2ZUTUFsWkJLZXRlc3NO?=
- =?utf-8?B?Um44OXBKaGN4Z0VWVVZsUTV1SzBBQVU0K3RZMzA3YmtxdXdjSkppNUF0MWhq?=
- =?utf-8?B?Y3RibzNST0RWSStqT1VSejZPUE9WQ0ppdkZXSnk4ZFliM2xJQTBKT1J1MDk1?=
- =?utf-8?B?N1lIRWFZdTdCRmpBRFRuZklnL2ptamFZUFgwWjlHWWpBM2dQbFBNUU1rQkJq?=
- =?utf-8?B?ZHpjbUNPMjJ4UG5LcVUwbUNFWnJKZzZnRHBGVDZvT3ZrdFNoN1BEK0VoLys4?=
- =?utf-8?B?aGdkSEdGZVBoVGFkUmlvYk5haHQ3eHhzbEI0aklmeEhYRDRJSEhlQzM4eUpY?=
- =?utf-8?B?REt5MkpNcnhKSGhaNkxoYWs1cmxTWkt2THZsNE1XT0J5YWs5dmlJTy9SUnds?=
- =?utf-8?B?VjRydXh1VTY2bkJIdGJNT09zdDEzTkVYc2d0eCtqY3VrYzAxTWYyQmEvd05M?=
- =?utf-8?B?cFlzc2JnbHFpMWlBVlZrSDZzS0svci9yeXUwKzJjZmtucmt4T3d3STZwRERv?=
- =?utf-8?B?NERGbjRKcjFoYTc1d0xzWlA0SnhkZGhuWlV4SWdmbnFiVkt5b3ZIeGRXVWRs?=
- =?utf-8?B?ZjliVUR1Y0VvZWpoL1gzNVZCcEZmcGJFU3J5aEgwdlRTRkYvN0hLbllxZVBq?=
- =?utf-8?B?TmcvNGx3S1VkK1VJUFExb201d1BoSncwdGNZblBBQWZSandpWW9VbzNValAv?=
- =?utf-8?B?RnlKUmpvYUpzZDl4cmN1Nm9ibXZ0clE2c0xOdUJhWmphYXhLeFRuc0dJMmk4?=
- =?utf-8?B?RkZyTDcxTm9va0JNWjE2TjlZelhvd2p4TS9nSWxUMHVwakY5cmxoamIzZEhk?=
- =?utf-8?B?UzVoSFZXNmN2QUFBYXh3d3hNYnBpalJFTGJxVHVyVDJQaGsrM2c0STdVRGF5?=
- =?utf-8?B?bmZ2UG5KRnRIclJsQkJsU2RSQjVkMEZRamZsM2QybUViL2hNbi9SMzJIWUow?=
- =?utf-8?B?andBVmtFS1MrdTFoSU84SDVtVk53M1dkcmJPeXhxL0FOdmhGeTVaY2x0VzVs?=
- =?utf-8?B?TFFka1ExTVVmQUFEYVdRbkJ2OHlCMFByN0owTjZNcHljb29LU1ZhMHNtRzFX?=
- =?utf-8?B?OG5pcmllTDJIMGkyek10eEZoWFFQbHZVUVpkaEhzR3BDOTBSbCtzRytWcFN0?=
- =?utf-8?B?QnVUL2R6VHJGazlWVmxCMnQyL1pmQ2dLc0xpVkx0UU13dzRpaEVyVFZLeWFh?=
- =?utf-8?B?VWpjTkJ6WEhhZ3Q1UDUzeFlEaXdWNWVzMS85R3hPTkczT2JMV282TWNxSlZZ?=
- =?utf-8?B?SktrNHRsQkF5ems3WjRkS0NYYk80YlIySTBMR05ZcTJzL29uQjJOWG44T3pN?=
- =?utf-8?B?OXZueVJ4eHE0azBiSzlMSTBabEcxejRiQ0g0RXAvYThydjFTT3IxLzI4TXcy?=
- =?utf-8?B?SWYxNjk0UTRmQk1nNE9VcFdJZWhHa1Z6NXFZMjJ3Y0Rta1ViRGhFa1RVVXlU?=
- =?utf-8?B?d2RzYXlnMHdQS1l0MXZQRkRROUd2R2VlOFM4RGdQclY3N2VQU0VnZlJUNTZE?=
- =?utf-8?B?VjhwSUk3dmNBaDcvczdZRkdQbEsrbmVadGE2UDVIMXVNMmhKcDlLOHM4Sk5t?=
- =?utf-8?B?YUprWFdWN1hGRFJSTnJVTCtYRGtzZmNFcXdqSWxPVElUQS95RG9VUmRjbmVQ?=
- =?utf-8?B?VEhPZnd1dEZSQ2pTMVdWUHAwdm9XOE1EZTRFS1hMcHZmR0FsWVNKV2VaMk1o?=
- =?utf-8?B?NVJxaHplcmY5VXJTNDFwOUFzQmxpbS9iNndjclY4VnlpUTRMZENxbWs4VVhz?=
- =?utf-8?B?REtYdW9pWXBzVi9FWFE3KzB5LzNYakNVNmhKelVjSnRJYzl6WERhL1loS1Br?=
- =?utf-8?Q?CZks+SIPB+ALzFmJY9cEHdeyL?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC273064B1;
+	Fri, 28 Nov 2025 09:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764323666; cv=none; b=tYjzgnQFx7Sqg8+fyuLVzuaesNrcyOwwJ6lFAKMwtcEKKbw4CiaTU0dDN4FWK7sTFlFP4kpeEHOYP43liun+N7AoCywO/BgMIy1liXG0D93Llm2x7BuZIqNkaWsikJelCfRPlXh9aZU3L0MMnjV4zbWPof69OvOaB9J5IpBW8+8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764323666; c=relaxed/simple;
+	bh=tjssuWR6KbgsD/MtimQilEnqEDcMFswBxDHSLLguTmI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k/+LgEsmv0zoDgHt+frPTQ8AYviZ0qnhsmM2c2qzHpVQtai1sNOVcBpKSpCDri310ti4hkO7HT1t+kXSaAwGCV4gdRrpFhItpopVJJUfhwGvDuGYCGHIGZTuTKsk2QJTYlmHJwvYj/0WwYLywodKOxWJlMP+vdls/JgwLnQHPRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nIIbGS6k; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764323664; x=1795859664;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=tjssuWR6KbgsD/MtimQilEnqEDcMFswBxDHSLLguTmI=;
+  b=nIIbGS6kiTc6QpJQ6p+Tu6YTNfALfPGI+HWpovthDAU4RtFqhYxKSzxy
+   0QBI0HQkWVNVcX7FNQVh2bjlMRb0faXRg4U6Xlpk07//3DddEHm29c+C4
+   vZn4ymITghlCvJn9kHm01pHyxYQQv1C9cQLfYqtvkYvdrLWjWMjGxuo8N
+   Tu+jlJNUG+S7lUkXhceHJrMvBQ7RUbR4oTKc/ef3p8H/ikW//EvewwVry
+   I1lzKRjNB0en+433MgKP39fTZJwBElG36ZyYd5E5kBD0J2/4RIUWbJCef
+   8L8Rx5744zcMkwqoDf/vq45pV5j4JvkQcMk+6LYe2Up6/ARkkKOsFakzv
+   g==;
+X-CSE-ConnectionGUID: 8u5TEMh7R8ybFkuI2ayMow==
+X-CSE-MsgGUID: WE++zOXzRySYPg9AlaHFmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11626"; a="66520796"
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; 
+   d="scan'208";a="66520796"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2025 01:54:23 -0800
+X-CSE-ConnectionGUID: UMcDwBZnQGWU7qEh8gIoTg==
+X-CSE-MsgGUID: kqQ9c9qARmmi0N8QmjkGEw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,232,1758610800"; 
+   d="scan'208";a="193428754"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.244.154])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2025 01:54:20 -0800
+Date: Fri, 28 Nov 2025 11:54:18 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Kurt Borja <kuurtb@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tobias Sperling <tobias.sperling@softing.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: Add ti-ads1018 driver
+Message-ID: <aSlxSj7XEq7PUxsk@smile.fi.intel.com>
+References: <20251127-ads1x18-v2-0-2ebfd780b633@gmail.com>
+ <20251127-ads1x18-v2-2-2ebfd780b633@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB6226.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e952ee3-81ee-4058-4177-08de2e64107a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Nov 2025 09:54:04.1209
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /d4TmWU3ot5ULPggiGRDfj/e3L5kUnVKsIVi7Px9q4TaMJ2lBfbMsFAVK2cNmDLT4p61VhnvfY4yioaPDr0SZByQ6ZoVb8UDSHC3ru4VQak=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5344
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251127-ads1x18-v2-2-2ebfd780b633@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-DQpIZWxsbyBLcnp5c3p0b2YsDQoNClRoYW5rcyBmb3IgeW91ciByZXZpZXcuDQoNCj4gLS0tLS1P
-cmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6a0Br
-ZXJuZWwub3JnPg0KPiBTZW50OiBGcmlkYXksIE5vdmVtYmVyIDI4LCAyMDI1IDU6MjggUE0NCj4g
-VG86IEpvYWtpbSBaaGFuZyA8am9ha2ltLnpoYW5nQGNpeHRlY2guY29tPg0KPiBDYzogbGdpcmR3
-b29kQGdtYWlsLmNvbTsgYnJvb25pZUBrZXJuZWwub3JnOyByb2JoQGtlcm5lbC5vcmc7DQo+IGty
-emsrZHRAa2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsgcGVyZXhAcGVyZXguY3o7DQo+
-IHRpd2FpQHN1c2UuY29tOyBsaW51eC1zb3VuZEB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVA
-dmdlci5rZXJuZWwub3JnOw0KPiBjaXgta2VybmVsLXVwc3RyZWFtIDxjaXgta2VybmVsLXVwc3Ry
-ZWFtQGNpeHRlY2guY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYyIDEvNF0gQVNvQzogZHQt
-YmluZGluZ3M6IGFkZCBDSVggSVBCTE9RIEhEQSBjb250cm9sbGVyDQo+IHN1cHBvcnQNCj4gDQo+
-IEVYVEVSTkFMIEVNQUlMDQo+IA0KPiBPbiBUaHUsIE5vdiAyNywgMjAyNSBhdCAwNTo0Mjo1OFBN
-ICswODAwLCBqb2FraW0uemhhbmdAY2l4dGVjaC5jb20NCj4gd3JvdGU6DQo+ID4gRnJvbTogSm9h
-a2ltIFpoYW5nIDxqb2FraW0uemhhbmdAY2l4dGVjaC5jb20+DQo+ID4NCj4gPiAgLSBhZGQgQ0lY
-IElQQkxPUSBIREEgY29udHJvbGxlciBzdXBwb3J0DQo+IA0KPiBQbGVhc2Ugd3JpdGUgZnVsbCBz
-ZW50ZW5jZXMuIExvb29rIGhvdyBvdGhlciBjb21taXRzIHdlcmUgY3JlYXRlZCwgaXQgaXMgbm90
-DQo+IHRoZSBmaXJzdCBjaXggY29tbWl0LCByaWdodD8NCg0KWWVzLCBub3QgdGhlIGZpcnN0IGNp
-eCBjb21taXQsIEkgd2lsbCBoYXZlIGEgbG9vay4NCg0KPiANCj4gPg0KPiA+IFNpZ25lZC1vZmYt
-Ynk6IEpvYWtpbSBaaGFuZyA8am9ha2ltLnpoYW5nQGNpeHRlY2guY29tPg0KPiA+IC0tLQ0KPiA+
-ICAuLi4vYmluZGluZ3Mvc291bmQvY2l4LGlwYmxvcS1oZGEueWFtbCAgICAgICAgfCA3MSArKysr
-KysrKysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA3MSBpbnNlcnRpb25zKCspDQo+
-ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9zb3VuZC9jaXgsaXBibG9xLWhkYS55YW1sDQo+ID4NCj4gPiBkaWZmIC0tZ2l0DQo+ID4g
-YS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvY2l4LGlwYmxvcS1oZGEu
-eWFtbA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5kL2NpeCxp
-cGJsb3EtaGRhLnlhbWwNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAw
-MDAwMDAwMC4uYzllNDAxNWE4MTc0DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3Vt
-ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9jaXgsaXBibG9xLWhkYS55YW1sDQo+
-ID4gQEAgLTAsMCArMSw3MSBAQA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BM
-LTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVzZSkgJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6
-IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3NvdW5kL2NpeCxpcGJsb3EtaGRhLnlhbWwj
-DQo+ID4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55
-YW1sIw0KPiA+ICsNCj4gPiArdGl0bGU6IENJWCBJUEJMT1EgSERBIGNvbnRyb2xsZXINCj4gPiAr
-DQo+ID4gK2Rlc2NyaXB0aW9uOg0KPiA+ICsgIENJWCBJUEJMT1EgSGlnaCBEZWZpbml0aW9uIEF1
-ZGlvIChIREEpIENvbnRyb2xsZXINCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0g
-Sm9ha2ltIFpoYW5nIDxqb2FraW0uemhhbmdAY2l4dGVjaC5jb20+DQo+ID4gKw0KPiA+ICtwcm9w
-ZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBjb25zdDogY2l4LGlwYmxvcS1o
-ZGENCj4gDQo+IFdoYXQgaGFwcGVuZWQgaGVyZT8gWW91IG1pc3MgU29DIGNvbXBhdGlibGUuIEkg
-ZGlkIG5vdCBhc2sgdG8gY2hhbmdlDQo+IGNvbXBhdGlibGUuDQoNCkkgdXNlZCB0aGUgY2l4LHNr
-eTEtaXBibG9xLWhkYSBiZWZvcmUsIGJ1dCB5b3UgYXNrIHRvIHVzZSB0aGUgY29tcGF0aWJsZSBh
-cyB0aGUgZmlsZSBuYW1lLCBJIHRoaW5rIGl0J3MgbWF5IG5vdCBxdWl0ZSBzdWl0YWJsZSwgc2lu
-Y2Ugd2UgbWF5IGhhdmUgc2t5MXAsIHNreTIuLi4gbGF0ZXIsIHNvIEkgYWRkIGEgdW5pZmllZCBj
-b21wYXRpYmxlIGhlcmUgYXMgYSBmYWxsYmFjay4NCg0KPiA+ICsNCj4gPiArICByZWc6DQo+ID4g
-KyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gPiArICBpbnRlcnJ1cHRzOg0KPiA+ICsgICAgbWF4
-SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgY2xvY2tzOg0KPiA+ICsgICAgbWF4SXRlbXM6IDINCj4g
-PiArDQo+ID4gKyAgY2xvY2stbmFtZXM6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBj
-b25zdDogc3lzY2xrDQo+ID4gKyAgICAgIC0gY29uc3Q6IGNsazQ4bQ0KPiANCj4gY2xrNDhtIGlz
-IHRoZSBuYW1lIG9mIHRoZSBwaW4vc2lnbmFsPw0KDQpZZXMsIHRoaXMgSVAgcmVxdWVzdHMgYSA0
-OE0gY2xvY2suDQoNCj4gDQo+ID4gKw0KPiA+ICsgIHJlc2V0czoNCj4gPiArICAgIG1heEl0ZW1z
-OiAxDQo+ID4gKw0KPiA+ICsgIHJlc2V0LW5hbWVzOg0KPiA+ICsgICAgaXRlbXM6DQo+ID4gKyAg
-ICAgIC0gY29uc3Q6IGhkYQ0KPiANCj4gV2h5IHRoaXMgaXMgaGVyZSBzdGlsbD8NCg0KSSBhbSBu
-b3QgcXVpdGUgdW5kZXJzdG9vZCwgZG9uJ3QgbmVlZCB0byBsaXN0IHRoZSBuYW1lIG9mIHRoZSBy
-ZXNldC1uYW1lcyBwcm9wZXJ0eT8NCg0KPiA+ICsNCj4gPiArICBjaXgsbW9kZWw6DQo+ID4gKyAg
-ICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9zdHJpbmcNCj4gPiArICAg
-IGRlc2NyaXB0aW9uOg0KPiA+ICsgICAgICBUaGUgdXNlci12aXNpYmxlIG5hbWUgb2YgdGhpcyBz
-b3VuZCBjb21wbGV4LiBJZiB0aGlzIHByb3BlcnR5IGlzDQo+ID4gKyAgICAgIG5vdCBzcGVjaWZp
-ZWQgdGhlbiBib2FyZHMgY2FuIHVzZSBkZWZhdWx0IG5hbWUgcHJvdmlkZWQgaW4gaGRhIGRyaXZl
-ci4NCj4gDQo+IFlvdSBkaWQgbm90IHJlc3BvbmQgdG8gc2V2ZXJhbCBjb21tZW50cyBhbmQgZGlk
-IG5vdCBpbXBsZW1lbnQgdGhlbS4NCg0KSSBpbnZlc3RpZ2F0ZSBpdCBzZXJpb3VzbHksIEkgdHJp
-ZWQgdG8gdXNlIHRoZSBzb3VuZC1jYXJkLWNvbW1vbi55YW1sIGJ1dCBpdCBzaG91bGQgZm9yIEFT
-b0MsIGFuZCB0aGlzIGhkYSBjb250cm9sbGVyIGRyaXZlciBkb2Vzbid0IGJlbG9uZyBBU29DLCBz
-byBJIGp1c3QgcmVmZXIgIHRvIHRoZSBoZGEgZHJpdmVyIGFzIHRoZXkgZG9uZSwgc3VjaCBhcyBu
-dmlkaWEsdGVncmEzMC1oZGEueWFtbC4NCg0KQW5kIHRoZSAiIEFTb0M6IGR0LWJpbmRpbmdzOiBh
-ZGQgQ0lYIElQQkxPUSBIREEgY29udHJvbGxlciBzdXBwb3J0ICIgYWxzbyBub3Qgc3VpdGFibGUs
-IGFzIG1lbnRpb25lZCBpdCBub3QgdGhlIEFTb0MgZHJpdmVyLCBDYW4gSSBjaGFuZ2UgdG8gIkFM
-U0E6IGhkYTogYWRkIENJWCBJUEJMT1EgSERBIGNvbnRyb2xsZXIgc3VwcG9ydCAiPw0K
+On Thu, Nov 27, 2025 at 10:37:11PM -0500, Kurt Borja wrote:
+> Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
+> analog-to-digital converters.
+> 
+> These chips' MOSI pin is shared with a data-ready interrupt. Defining
+> this interrupt in devicetree is optional, therefore we only create an
+> IIO trigger if one is found.
+> 
+> Handling this interrupt requires some considerations. When enabling the
+> trigger the CS line is tied low (active), thus we need to hold
+> spi_bus_lock() too, to avoid state corruption. This is done inside the
+> set_trigger_state() callback, to let users use other triggers without
+> wasting a bus lock.
+
+...
+
+> +#include <linux/array_size.h>
+> +#include <linux/bitfield.h>
+
+> +#include <linux/bitmap.h>
+> +#include <linux/bitops.h>
+> +#include <linux/bits.h>
+
+bits.h and bitops.h are guaranteed by bitmap.h, so
+
+#include <linux/bitmap.h>
+
+is enough for all three.
+
+> +#include <linux/byteorder/generic.h>
+> +#include <linux/dev_printk.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/math.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/spi/spi.h>
+
++ types.h // E.g., u8 just a page below :-)
+
+> +#include <linux/units.h>
+
+...
+
+> +static unsigned long ads1018_calc_delay(struct ads1018 *ads1018)
+> +{
+> +	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
+> +	unsigned long mode = chip_info->num_data_rate_mode_to_hz - 1;
+> +	int hz = chip_info->data_rate_mode_to_hz[mode];
+
+Can frequency be negative?
+
+> +	/* We subtract -10% data-rate error */
+> +	hz -= DIV_ROUND_UP(hz, 10);
+> +
+> +	/* Calculate time per sample in usecs */
+
+Spell it fully "microseconds" or use proper unit with a Greek latter "µs".
+
+> +	return DIV_ROUND_UP(MICROHZ_PER_HZ, hz);
+> +}
+
+...
+
+> +static int
+> +__ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
+> +		   int *val, int *val2, long mask)
+
+Better naming is something like ads1018_read_raw_unlocked() if I got
+the context right.
+
+> +{
+> +	struct ads1018 *ads1018 = iio_priv(indio_dev);
+> +	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
+> +	u8 drate_mode = ads1018_get_data_rate_mode(ads1018, chan->scan_index);
+> +	u8 pga_mode = ads1018_get_pga_mode(ads1018, chan->scan_index);
+> +	u8 max_drate_mode = chip_info->num_data_rate_mode_to_hz - 1;
+> +	u16 cnv, cfg = 0;
+
+Unneeded cfg assignment. See below.
+
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+
+> +		cfg |= ADS1018_CFG_VALID;
+> +		cfg |= ADS1018_CFG_OS_TRIG;
+
+		cfg = ADS1018_CFG_VALID | ADS1018_CFG_OS_TRIG;
+
+> +		cfg |= FIELD_PREP(ADS1018_CFG_MUX_MASK, chan->scan_index);
+> +		cfg |= FIELD_PREP(ADS1018_CFG_PGA_MASK, pga_mode);
+> +		cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_ONESHOT);
+> +		cfg |= FIELD_PREP(ADS1018_CFG_DRATE_MASK, max_drate_mode);
+
++ blank line.
+
+> +		if (chan->type == IIO_TEMP)
+> +			cfg |= ADS1018_CFG_TS_MODE_EN;
+> +
+> +		ret = ads1018_oneshot(ads1018, cfg, &cnv);
+> +		if (ret)
+> +			return ret;
+> +
+> +		cnv >>= chan->scan_type.shift;
+> +		*val = sign_extend32(cnv, chan->scan_type.realbits - 1);
+> +
+> +		return IIO_VAL_INT;
+> +
+> +	case IIO_CHAN_INFO_SCALE:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			*val = chip_info->pga_mode_to_gain[pga_mode][0];
+> +			*val2 = chip_info->pga_mode_to_gain[pga_mode][1];
+> +			return IIO_VAL_INT_PLUS_NANO;
+> +
+> +		case IIO_TEMP:
+> +			*val = chip_info->temp_scale[0];
+> +			*val2 = chip_info->temp_scale[1];
+> +			return IIO_VAL_INT_PLUS_MICRO;
+> +
+> +		default:
+> +			return -EOPNOTSUPP;
+> +		}
+> +
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		*val = chip_info->data_rate_mode_to_hz[drate_mode];
+> +		return IIO_VAL_INT;
+> +
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+
+...
+
+> +static int
+> +__ads1018_write_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
+> +		    int val, int val2, long mask)
+
+Naming...
+
+> +{
+> +	struct ads1018 *ads1018 = iio_priv(indio_dev);
+> +	const struct ads1018_chip_info *info = ads1018->chip_info;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SCALE:
+> +		for (int i = 0; i < info->num_pga_mode_to_gain; i++) {
+
+Why is 'i' signed?
+
+> +			if (val != info->pga_mode_to_gain[i][0] ||
+> +			    val2 != info->pga_mode_to_gain[i][1])
+> +				continue;
+
+> +			ads1018_set_pga_mode(ads1018, chan->scan_index, i);
+> +			return 0;
+
+This is an invariant to the loop, perhaps
+
+> +		}
+
+> +		return -EINVAL;
+
+		for (unsigned int i = 0; i < info->num_pga_mode_to_gain; i++) {
+			if (val == info->pga_mode_to_gain[i][0] ||
+			    val2 == info->pga_mode_to_gain[i][1])
+				break;
+		}
+		if (i == info->num_pga_mode_to_gain)
+			return -EINVAL;
+
+		ads1018_set_pga_mode(ads1018, chan->scan_index, i);
+		return 0;
+
+This also will follow the traditional pattern: Check for the error cases first.
+
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		for (int i = 0; i < info->num_data_rate_mode_to_hz; i++) {
+
+Ditto, same comments as per previous loop.
+
+> +			if (val != info->data_rate_mode_to_hz[i])
+> +				continue;
+> +
+> +			ads1018_set_data_rate_mode(ads1018, chan->scan_index, i);
+> +			return 0;
+> +		}
+> +
+> +		return -EINVAL;
+> +
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+
+...
+
+> +static int ads1018_set_trigger_state(struct iio_trigger *trig, bool state)
+> +{
+> +	struct ads1018 *ads1018 = iio_trigger_get_drvdata(trig);
+> +	__be16 cnv;
+> +
+> +	/*
+> +	 * We need to lock the SPI bus and tie CS low (hold_cs) to catch
+> +	 * data-ready interrupts, otherwise the MISO line enters a Hi-Z state.
+> +	 */
+> +
+> +	if (state) {
+> +		spi_bus_lock(ads1018->spi->controller);
+> +		ads1018_read_locked(ads1018, &cnv, true);
+> +		enable_irq(ads1018->drdy_irq);
+> +	} else {
+> +		disable_irq(ads1018->drdy_irq);
+> +		ads1018_read_locked(ads1018, &cnv, false);
+> +		spi_bus_unlock(ads1018->spi->controller);
+> +	}
+> +
+> +	return 0;
+
+This function is basically
+
+	if (foo)
+		do this
+	else
+		do that
+
+please make just two distinct functions instead.
+
+> +}
+
+That's how it will look like:
+
+static void ads1018_set_trigger_enable(struct ads1018 *ads1018)
+{
+	__be16 cnv;
+
+	spi_bus_lock(ads1018->spi->controller);
+	ads1018_read_locked(ads1018, &cnv, true);
+	enable_irq(ads1018->drdy_irq);
+}
+
+static void ads1018_set_trigger_disable(struct ads1018 *ads1018)
+{
+	__be16 cnv;
+
+	disable_irq(ads1018->drdy_irq);
+	ads1018_read_locked(ads1018, &cnv, false);
+	spi_bus_unlock(ads1018->spi->controller);
+}
+
+static int ads1018_set_trigger_state(struct iio_trigger *trig, bool state)
+{
+	struct ads1018 *ads1018 = iio_trigger_get_drvdata(trig);
+
+	/*
+	 * We need to lock the SPI bus and tie CS low (hold_cs) to catch
+	 * data-ready interrupts, otherwise the MISO line enters a Hi-Z state.
+	 */
+	if (state)
+		ads1018_set_trigger_enable(ads1018);
+	else
+		ads1018_set_trigger_disable(ads1018);
+
+	return 0;
+}
+
+Now is the question, can we get rid of dummy variables by checking for
+the pointer in the _read_locked()? If so, the above become as simple as
+
+static void ads1018_set_trigger_enable(struct ads1018 *ads1018)
+{
+	spi_bus_lock(ads1018->spi->controller);
+	ads1018_read_locked(ads1018, NULL, true);
+	enable_irq(ads1018->drdy_irq);
+}
+
+static void ads1018_set_trigger_disable(struct ads1018 *ads1018)
+{
+	disable_irq(ads1018->drdy_irq);
+	ads1018_read_locked(ads1018, NULL, false);
+	spi_bus_unlock(ads1018->spi->controller);
+}
+
+Or if you make _read_locked() to return the data, just ignoring it as in
+
+	ads1018_read_locked(ads1018, ...);
+
+...
+
+> +static int ads1018_buffer_preenable(struct iio_dev *indio_dev)
+> +{
+> +	struct ads1018 *ads1018 = iio_priv(indio_dev);
+> +	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
+> +	unsigned int pga, drate, addr;
+
+> +	u16 cfg = 0;
+
+Unneeded assignment.
+
+> +	addr = find_first_bit(indio_dev->active_scan_mask,
+> +			      iio_get_masklength(indio_dev));
+> +	pga = ads1018_get_pga_mode(ads1018, addr);
+> +	drate = ads1018_get_data_rate_mode(ads1018, addr);
+
+> +	cfg |= ADS1018_CFG_VALID;
+
+	cfg = ADS1018_CFG_VALID;
+
+> +	cfg |= FIELD_PREP(ADS1018_CFG_MUX_MASK, addr);
+> +	cfg |= FIELD_PREP(ADS1018_CFG_PGA_MASK, pga);
+> +	cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_CONTINUOUS);
+> +	cfg |= FIELD_PREP(ADS1018_CFG_DRATE_MASK, drate);
+
++ blank line.
+
+> +	if (chip_info->channels[addr].type == IIO_TEMP)
+> +		cfg |= ADS1018_CFG_TS_MODE_EN;
+> +
+> +	ads1018->tx_buf[0] = cpu_to_be16(cfg);
+> +	ads1018->tx_buf[1] = 0;
+> +
+> +	return spi_write(ads1018->spi, ads1018->tx_buf, sizeof(ads1018->tx_buf));
+> +}
+
+...
+
+> +static irqreturn_t ads1018_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct ads1018 *ads1018 = iio_priv(indio_dev);
+> +	struct {
+> +		__be16 conv;
+> +		aligned_s64 ts;
+> +	} scan = {};
+> +	int ret;
+> +
+> +	if (iio_device_claim_buffer_mode(indio_dev))
+> +		goto out_notify_done;
+> +
+> +	if (iio_trigger_using_own(indio_dev)) {
+> +		disable_irq(ads1018->drdy_irq);
+> +		ret = ads1018_read_locked(ads1018, &scan.conv, true);
+> +		enable_irq(ads1018->drdy_irq);
+> +	} else {
+> +		ret = spi_read(ads1018->spi, ads1018->rx_buf,
+> +			       sizeof(ads1018->rx_buf));
+> +		scan.conv = ads1018->rx_buf[0];
+> +	}
+> +
+> +	iio_device_release_buffer_mode(indio_dev);
+
+> +	if (!ret)
+> +		iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan),
+> +					    pf->timestamp);
+
+	if (ret)
+		goto out_notify_done;
+
+// see a comment about traditional pattern somewhere above.
+
+	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
+
+(and yes, leave the above on a single 82 characters long line).
+
+> +out_notify_done:
+> +	iio_trigger_notify_done(ads1018->indio_trig);
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+...
+
+> +static int ads1018_trigger_setup(struct iio_dev *indio_dev)
+> +{
+> +	struct ads1018 *ads1018 = iio_priv(indio_dev);
+> +	struct spi_device *spi = ads1018->spi;
+
+	struct device *dev = &spi->dev;
+
+> +	int ret;
+
+	const char con_id = "drdy";
+
+> +	ads1018->drdy_gpiod = devm_gpiod_get_optional(&spi->dev, "drdy",
+> +						      GPIOD_IN);
+
+	ads1018->drdy_gpiod = devm_gpiod_get_optional(dev, con_id, GPIOD_IN);
+
+and so on...
+
+// here we already make the diff 0 LoCs
+
+> +	if (IS_ERR(ads1018->drdy_gpiod))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(ads1018->drdy_gpiod),
+> +				     "Failed to get 'drdy' GPIO.\n");
+
+		return dev_err_probe(dev, PTR_ERR(ads1018->drdy_gpiod),
+				     "Failed to get '%s' GPIO.\n", con_id);
+
+> +	if (spi->irq > 0) {
+> +		ads1018->drdy_irq = spi->irq;
+> +	} else if (ads1018->drdy_gpiod) {
+> +		ads1018->drdy_irq = gpiod_to_irq(ads1018->drdy_gpiod);
+> +		if (ads1018->drdy_irq < 0)
+> +			return dev_err_probe(&spi->dev, ads1018->drdy_irq,
+> +					     "Failed to get IRQ from 'drdy' GPIO.\n");
+
+			return dev_err_probe(dev, ads1018->drdy_irq,
+					     "Failed to get IRQ from '%s' GPIO.\n",
+					     con_id);
+
+> +	} else {
+> +		return 0;
+> +	}
+
+Can be refactored to have less indentation, though
+
+	/* Try to retrieve an IRQ from SPI core then from GPIO */
+	if (spi->irq > 0)
+		ads1018->drdy_irq = spi->irq;
+	else if (ads1018->drdy_gpiod)
+		ads1018->drdy_irq = gpiod_to_irq(ads1018->drdy_gpiod);
+	if (ads1018->drdy_irq < 0)
+		return dev_err_probe(dev, ads1018->drdy_irq,
+				     "Failed to get IRQ from '%s' GPIO.\n", con_id);
+	/* No IRQ is fine, avoid supporting triggers */
+	if (ads1018->drdy_irq == 0)
+		return 0;
+
+> +	ads1018->indio_trig = devm_iio_trigger_alloc(&spi->dev, "%s-dev%d-drdy",
+> +						     indio_dev->name,
+> +						     iio_device_id(indio_dev));
+
+// and here I believe we make it 1 LoC less.
+
+> +	if (!ads1018->indio_trig)
+> +		return -ENOMEM;
+> +
+> +	iio_trigger_set_drvdata(ads1018->indio_trig, ads1018);
+> +	ads1018->indio_trig->ops = &ads1018_trigger_ops;
+> +
+> +	ret = devm_iio_trigger_register(&spi->dev, ads1018->indio_trig);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * The "data-ready" IRQ line is shared with the MOSI pin, thus we need
+> +	 * to keep it disabled until we actually request data.
+> +	 */
+> +	return devm_request_irq(&spi->dev, ads1018->drdy_irq, ads1018_irq_handler,
+> +			       IRQF_NO_AUTOEN, ads1018->chip_info->name, ads1018);
+> +}
+
+...
+
+> +static int ads1018_spi_probe(struct spi_device *spi)
+> +{
+> +	const struct ads1018_chip_info *info = spi_get_device_match_data(spi);
+> +	struct iio_dev *indio_dev;
+> +	struct ads1018 *ads1018;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*ads1018));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	ads1018 = iio_priv(indio_dev);
+> +	ads1018->spi = spi;
+> +	ads1018->chip_info = info;
+> +	spi_set_drvdata(spi, ads1018);
+> +
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->name = info->name;
+> +	indio_dev->info = &ads1018_iio_info;
+> +	indio_dev->channels = info->channels;
+> +	indio_dev->num_channels = info->num_channels;
+> +
+> +	for (int i = 0; i < ADS1018_CHANNELS_MAX; i++) {
+
+unsigned int
+
+> +		ads1018->chan_data[i].data_rate_mode = ADS1018_DRATE_DEFAULT;
+> +		ads1018->chan_data[i].pga_mode = ADS1018_PGA_DEFAULT;
+> +	}
+> +
+> +	ads1018->xfer.rx_buf = ads1018->rx_buf;
+> +	ads1018->xfer.len = sizeof(ads1018->rx_buf);
+> +	spi_message_init_with_transfers(&ads1018->msg_read, &ads1018->xfer, 1);
+> +
+> +	ret = ads1018_trigger_setup(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
+> +					      iio_pollfunc_store_time,
+> +					      ads1018_trigger_handler,
+> +					      &ads1018_buffer_ops);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
+
+...
+
+> +#define ADS1018_FSR_TO_SCALE(_fsr, _res) \
+> +	{ 0, ((_fsr) * MICRO) / BIT(_res) }
+> +
+> +static const int ads1018_gain_table[][2] = {
+> +	ADS1018_FSR_TO_SCALE(6144, 11),
+
+This won't (hmm... might not? see below for the details) work on 32-bit.
+
+> +	ADS1018_FSR_TO_SCALE(4096, 11),
+> +	ADS1018_FSR_TO_SCALE(2048, 11),
+> +	ADS1018_FSR_TO_SCALE(1024, 11),
+> +	ADS1018_FSR_TO_SCALE(512, 11),
+> +	ADS1018_FSR_TO_SCALE(256, 11),
+> +};
+> +
+> +static const int ads1118_gain_table[][2] = {
+> +	ADS1018_FSR_TO_SCALE(6144, 15),
+
+Ditto.
+
+> +	ADS1018_FSR_TO_SCALE(4096, 15),
+> +	ADS1018_FSR_TO_SCALE(2048, 15),
+> +	ADS1018_FSR_TO_SCALE(1024, 15),
+> +	ADS1018_FSR_TO_SCALE(512, 15),
+> +	ADS1018_FSR_TO_SCALE(256, 15),
+> +};
+
+To address that you need to divide MICRO at least by 2
+(note, by 2⁶ is also possible without loosing in precision).
+
+// Assuming that you want to keep the initialisers as is now:
+#define ADS1018_FSR_TO_SCALE(_fsr, _res) \
+	{ 0, ((_fsr) * (MICRO >> 6)) / BIT((_res) - 6) }
+
+OTOH, these all are constants, so the clever compiler (even 32-bit compiler)
+may do it for you and won't complain as there is no overflow in the result.
+
+TL;DR: Try to compile this with 32-bit compiler on 32-bit machine before
+changing as suggested.
+
+...
+
+> +static const unsigned int ads1018_data_rate_table[] = {
+> +	128, 250, 490, 920, 1600, 2400, 3300
+
+Leave trailing comma.
+
+> +};
+> +
+> +static const unsigned int ads1118_data_rate_table[] = {
+> +	8, 16, 32, 64, 128, 250, 475, 860
+
+Ditto.
+
+> +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
