@@ -1,385 +1,182 @@
-Return-Path: <devicetree+bounces-242946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD69C919BC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 11:25:25 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34C04C919E9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 11:28:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A3048349D63
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:25:23 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 27969352749
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDC330B538;
-	Fri, 28 Nov 2025 10:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62F630B538;
+	Fri, 28 Nov 2025 10:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RTdSCiuT";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Gf7YO2SN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J8Tel4Xr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC3630B505
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:25:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D771030B525
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:27:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764325519; cv=none; b=QAB3CQgfCqDUJGONOJnFw7EN/CwqLct7Z+5k/T42AS/KywCgVT5hVQ26drv6WE9xy+4qCjlBiT1BlK0w7aoPSrUqEKZOU2yLU+jfNmvkQevVuNmXuUn5f4+pq0pFqrmOX9f8REfZ8Y9fj7p3bF9bI/C5qiBi8DpffyMUOs0VOFc=
+	t=1764325627; cv=none; b=OVZXhWnBNSlKE998ngu/BpV9iOghLWvz/FvRBz3unG4B0+1zZr7mgl8aqdaMir/31wAyhpaTGLzdkf5poXyTt838gEZZ/tSN0lAxeWfofLy3ltY8m+lJ6n43DcA29KI19VtBWyBHxKzbIYh5dR29YNVvAE3uTMiL09HB4+dD3Jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764325519; c=relaxed/simple;
-	bh=fZgWizBnPPlVTWS2nuOlSWwPJtzT5jETR+QI+4Hy6j0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=YMCDFyPkOhPGzOlbdI8ULhbVsN3jUU5Va5bIC2aj3zyq+U0Wuu2mTUx4NCXwFrxAihX30tophr7kMDgVAG053n/6E0yLBtwg+bJ4oKpQDyuzK1MMvzSx99pQAOc7+maisaByJVjkt8QHJ+VeLzz0g1p9I2zTDLXuRx/Dpynb0aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RTdSCiuT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Gf7YO2SN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5AS8P9xB2986640
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:25:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=vxrCpTObh+sq8TpBfdVpWIOw/J1PvdPRar/
-	7svAe1Ms=; b=RTdSCiuT+ZrAtcmrWHLcsKkF3kxC1NSMTWNaQipQelKqJ048qfq
-	IIsxoZuAOpKGfHBWhWFqDO5X22iGtkWvcGNcUiAXtngk9yT/b841WQGC/a7ZAhJ1
-	v2hB7pYiV066lNyfM9sByg3YhyWddc/TdvZISK/NZggvej1xdRiW1yp8/pk49Q93
-	txWZEMc84OS2vn6btJ5wyHTFZXtjInHU7yJygLU4SuxvcQeCqkPhCCC0A+DZolCa
-	nx1pZpZM788eeh/JtEbzvSzdxQjJWc31+74219xGsyhK5CrrmfvV9ZsxOmdnb197
-	9rN1nFusoEx2fpJVKWSsBS2bvJMfdTktTBw==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4apmvxjy6t-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 10:25:16 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7b80de683efso2589188b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 02:25:16 -0800 (PST)
+	s=arc-20240116; t=1764325627; c=relaxed/simple;
+	bh=37phGjIVAssP5qEajtizGVtsPCnjB7wlJw1GmaPAjs8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q+9OeS7ODUI0Co2yfzh9L9f/iYWQLT+YGqt59RRwMFeFd5bJ3+YXyzRvHQJoOxNCgyeuoS/vTYPrxtuiC4C21O1grhZ0f66jd7uOcKmOFTH6XtLZ9RTw9eLjSslN0RJSxST9LyyP/Bd4YL0hGGGQeZFkTKVfIrtwDm2Z6WJ81NA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J8Tel4Xr; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4779adb38d3so11268535e9.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 02:27:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764325515; x=1764930315; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vxrCpTObh+sq8TpBfdVpWIOw/J1PvdPRar/7svAe1Ms=;
-        b=Gf7YO2SNE+2JhUrtSvdBctpSj1n0Bondl4blivTcKCoVca3sXiRBkU310BXbgQYubB
-         QXm6PvsAjiCTwvmvSQKem+9i7Kwr++htykhVwda/rB730u3ysIdiVS6kJ1noSi/ElOF4
-         eXO6IQBArtBFyj6zl0KlsN9aq5zy4O7q4rG3C+Ohtwjvgi1fwUT8csMesqyw1dkMzzyT
-         P7CdernAu/qOrUrirh0wRLllQ4v68WZ084Rl5KoD6H+4RP0gmSb523E276y9NZO/wVEx
-         nFIPPztrmFiHkJQgVxQhkiNljQPvUAw7Dh5nUq3XznEeM/0F+qsXywbLlYZSU5J0M1W+
-         4kzg==
+        d=linaro.org; s=google; t=1764325624; x=1764930424; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dbpi+XplKObBTQRgoiJ9xznPNTXhWsk7UT7K9zwL4SU=;
+        b=J8Tel4XrgvnoBrOz9s5Ky3EHiLikaR3BmqJ+1OfT/Bfa7fCA6OHWqXdEOVE2m+0Gui
+         nqdSDLzeJ7OE18xeZzZ+5ubzJT9QeEslfBTCd7iFFr9zhFIlCGbDx9f0MRp9Ja54WWoM
+         iTc0oWVpyrnZDjxWRA9xhkSJytS4xdzFzL//wCe7+jojHnfxsf+fXicUw5blg2wSi9iH
+         46HylSRHiFRGSru0hF3s9SdnAGl+x35571DlFmOLqfrq7HHXHY1wNPLZ07bDdSWzoSqr
+         oTkwOx79MMupTNr6I03lKWgbptwyQtAvsgQ7/mSuifxP/HeeTfOrRmNcoN6UsfOAOfy+
+         4v/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764325515; x=1764930315;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vxrCpTObh+sq8TpBfdVpWIOw/J1PvdPRar/7svAe1Ms=;
-        b=aNwGCMgxwwLY3rr5jXYuq7eeQn+mrE43jSOIjZb9YMfK4/XtDTe/QFXmPM/J35XfId
-         8zN9cDCgFgXdm59oIjxuvAfZoDYfkW1AwXIJbUPnkG/kS/Gavq+Mrln5GCR08eTkyVKx
-         kVwChUY7E/uFzBWpJ+1Fm8aratsaUP2A0AqLK2d08QvJL2fiwyRTC/12dRj6qNoOzrCS
-         WczEoZjCLsEBFR7s60H8s2tO+RBYKVu20PsvRHFX/EqmUYsngDhbBa2nEJbCnrepxxr5
-         5XOKTICnUrXEclkjhr+OcZIEjWcDCHuGOYlIVmfQLqNlwAR3f0D3jxkrKhtIOaRDkYDT
-         ympw==
-X-Forwarded-Encrypted: i=1; AJvYcCWpBjjU72gisuSk4BnjIVwAay5Cv9Ka/TFXNwVnHBT1pXnNrUZ5WfLt98FqCaiFiqby8Ay4rxyOYr6L@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKgiesMsR432u68S8P0FNfHNG5D2ff7eklLBrJlcseg54Rr7FD
-	wED6uXEjcrEduLFhrPGNZVy3R/GQ3QoU+S5thcwpw5vVUBowDNcxXQDgqhP9iR2ZkmeNfmxtG6o
-	7cSaw8qadv6S95yHn3Lt/v3RRP/fE7ssxn62QM+xR15+WjG66zU7/GlxQH4b68mnh
-X-Gm-Gg: ASbGnctF1vmkqSOqEVbhFrYovhMK/ER4e/NBILhZMmB48KSLDLz5FFrI2SSPak1bBFD
-	4UmsmQTy9ugvc/gdzC923+1DTznoq7FOeNUSs2JzMNEwuuOxJkNVxMpcnwzXsPHft61BBt1tpFM
-	dBhi4rJxCXuQDHHjL071TxL7knFuvk7h61O0Yjwg03sSZje5twcejrkyb0lwv9aWqVJCDNkiP3p
-	PPymr5bOZuvrS+nI4HNXtu95aP1lWuFordlVW/t3PRXeb0FVBITKeKnv7pEd87aAx9yMrXBI4du
-	NfZW48aTc/SDHkdGxs454fGSTaZMcKAAeriWc+GJSCWbM+NmWL/9TF+Iwj2oe8tw0ZHUdQmZ6qv
-	b/zr7aupY1pmmLT1DwTkCmmoijPFZMfjMBw4WMRpw3quitDs=
-X-Received: by 2002:aa7:989d:0:b0:7aa:ac12:2c33 with SMTP id d2e1a72fcca58-7c58c2a7354mr21421316b3a.1.1764325515317;
-        Fri, 28 Nov 2025 02:25:15 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IElceZ+5sXf28FIfmwcALeTyEwrEaZoHYrPc4zex0f3/yT0I2F4BVk4hndXZaNhkmXYfAWmIA==
-X-Received: by 2002:aa7:989d:0:b0:7aa:ac12:2c33 with SMTP id d2e1a72fcca58-7c58c2a7354mr21421293b3a.1.1764325514750;
-        Fri, 28 Nov 2025 02:25:14 -0800 (PST)
-Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d1520a03a3sm4621255b3a.29.2025.11.28.02.25.11
+        d=1e100.net; s=20230601; t=1764325624; x=1764930424;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dbpi+XplKObBTQRgoiJ9xznPNTXhWsk7UT7K9zwL4SU=;
+        b=VDsSEzjROp+APRPHPZudLEcpB/dlsZo1Hhpit4DhOXk1gqEAT5fLaP3L7VxRMAnKS/
+         7RBO8Kr4AEZQ8djK6/Y9s7Def5m5QoPVF8B/FtdcVSt6J7DODO5gLIv2yrpBc/KPgusy
+         jWeK96dVHxB9iMDQiMdq04dSm+EZl2zTukVW39a3BcekuRXLlxlsZMJQc/66Tz/5u3QY
+         5BVKL4i5b1Q5SlO7cxqgS/kb2HPurYNdjYXrpa+ZJUxhzlBV5Av152gwmsEQebRFe/A7
+         BqvfA/v4MTOl7L7B7IhT1sHACSTi+7vyAo2IFzFryrCqiUUH+2s/xmHwciFIcKFNCo88
+         nU4A==
+X-Forwarded-Encrypted: i=1; AJvYcCWFE6Pqw0FGKul3wHbthjNvwXbLrOQ/VDapJR7ZM9m2LG2cIVAZyZn0V0AjsPLnQ/lP0ZYc7aUgQoP5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy81Qa/ntfIX9ZdZgRrMtWwhOzfUJGCO3BRUhphYRSBGUo+LVA/
+	aeSPzJGBMjfiM984d+PaHmsRjyjWO6sklqZ6yxC1KxB3GwhOeIH2TgKKIJAdCIo6Ypk=
+X-Gm-Gg: ASbGncvYENF1a/pElJJo8ZeNEfJnPKxK2HZVomptz/1IsEeH8PpKFYZquZl3ZKz6ldC
+	FoXqhhJ0fuSHYUSAkri6nquPAptPlu5GUN6cWfsjSVWlX+wfJKoTa5RZKcqcJIszJFyyrLorn/p
+	80J3JbdqazGW8V8xKIpKmiGLkc4mUNr5rdWZmz4Ft9e9xW250R5iRBlAxQ/zAnGOK+pCkljcg6C
+	itgbdDg9tXSqkEFLNuck54FCk6l/N4Nr1hJbMoX5/JmZsHYNSwFfWR2hgPKBpIWhPaQJpVs8RhD
+	t8/fa7cFHZN+Wxi/lBQGLbx3QKwf5Z6+CigeDYSiiUJczegQStU1JbRgh3TWnpmVVTfxb3Ix0GW
+	N9+6Lb7PjRuCV9N/UfLHP8I+bDL92HTo5Xwt3J8tuQEATwcY00FWczh1xyMkeoszJ6AVxTeQq9G
+	8+3glXOw++1sKWZANCqaWpwA==
+X-Google-Smtp-Source: AGHT+IFMGYOm3SMfcVpu0IsfzHVtCsWKYIglxU9Q43LM68jB71pDIyavHuI0Cl7IwNyGL3XVJDmyYg==
+X-Received: by 2002:a05:600c:6287:b0:477:7925:f7fb with SMTP id 5b1f17b1804b1-47904ad0724mr117659975e9.10.1764325624089;
+        Fri, 28 Nov 2025 02:27:04 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff23:4430:31d5:c51:afbd:e2c4])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4791116c0acsm79482385e9.7.2025.11.28.02.27.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Nov 2025 02:25:14 -0800 (PST)
-From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Subject: [PATCH v7] arm64: dts: qcom: lemans-evk: Add OTG support for primary USB controller
-Date: Fri, 28 Nov 2025 15:55:07 +0530
-Message-Id: <20251128102507.3206169-1-krishna.kurapati@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+        Fri, 28 Nov 2025 02:27:03 -0800 (PST)
+Date: Fri, 28 Nov 2025 11:26:58 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Jonathan Marek <jonathan@marek.ca>
+Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
+Message-ID: <aSl48gV9laFb-MR1@linaro.org>
+References: <20251127212943.24480-1-jonathan@marek.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Vtguwu2n c=1 sm=1 tr=0 ts=6929788c cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=QAzQKOYyiUK49Y4y4FoA:9
- a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-GUID: MEaDKZq5xdGYnX74fFoHKmGsNNAUwt6F
-X-Proofpoint-ORIG-GUID: MEaDKZq5xdGYnX74fFoHKmGsNNAUwt6F
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI4MDA3NiBTYWx0ZWRfX5tG0bVStgCA1
- Mm7B0yH9G0h5Cc4RnKbpFwsBras0/BCn+HJ1lD/nssJ6Z2EuYy0k9ZnxQ7HJptbkZFZrow29brV
- pJPEP77FXm+ckWEdfnOl/L1hvn8aIMHHbNYZrXLppwxpBevN5MW8GI8NHr4tRoV0yG/Tbqz6loJ
- lP+j64j71OVoLvBgAu16iPwTDD99IgzZKQX6OxtUbivV6zm5Xmewvrb1EVtsbEF411iPTlyeAfR
- 4wAKHrFjyWnUcU7awABnAiizWBpVSF2gCG7REy3JejDS4DHf3CgiVNY+wgfUBQ3zwwCxobMXCxN
- Xa6XEIhEDJ/MbcJATo61p5ntfDszm0Rhz3jUelenpYtok+N/df2hP/poFfXNEvtNK0dDHhHIzIL
- HSg89vvOhZL2MiyvNFvrg4GFXHcfkw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-28_03,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 impostorscore=0 phishscore=0 adultscore=0
- lowpriorityscore=0 bulkscore=0 clxscore=1015 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511280076
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251127212943.24480-1-jonathan@marek.ca>
 
-Enable OTG support for primary USB controller on EVK Platform. Add
-HD3SS3220 Type-C port controller present between Type-C port and SoC
-that provides role switch notifications to controller.
+On Thu, Nov 27, 2025 at 04:29:42PM -0500, Jonathan Marek wrote:
+> Unlike the phone SoCs this was copied from, x1e has a 40-bit physical bus.
+> The upper address space is used to support more than 32GB of memory.
+> 
+> This fixes issues when DMA buffers are allocated outside the 36-bit range.
+> 
+> Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
+> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index cff34d1c74b60..cd34ce5dfd63a 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -792,8 +792,8 @@ soc: soc@0 {
+>  
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> -		dma-ranges = <0 0 0 0 0x10 0>;
+> -		ranges = <0 0 0 0 0x10 0>;
+> +		dma-ranges = <0 0 0 0 0x100 0>;
+> +		ranges = <0 0 0 0 0x100 0>;
+>  
 
-Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
----
-Changes in v7:
-- Renamed hd3ss3220@67 to usb-typec@67
-- Compile tested since its only node name change
+Could you clarify which "issues" (crashes?) you are referring to?
 
-Link to v6:
-https://lore.kernel.org/all/20251127073537.1218832-1-krishna.kurapati@oss.qualcomm.com/
+We need to distinguish two distinct use cases here, which are both
+(somewhat) supported upstream: Running in EL1 with the Gunyah hypervisor
+with the regular DTB and in EL2 with the x1-el2.dtbo applied.
 
-Changes in v6:
-- Renamed remote endpoints in controller node
+# EL2 with x1-el2.dtbo
 
-Link to v5:
-https://lore.kernel.org/all/20251125110420.2192971-1-krishna.kurapati@oss.qualcomm.com/
+For EL2, I think the 40-bit dma-ranges should indeed work correctly, so
+we could add your proposed change inside x1-el2.dtso. I'm not sure which
+issues we are fixing with that though (besides correctness of the
+hardware description). In EL2, all DMA devices should be behind an
+IOMMU. In this case, the dma-ranges limit the size of the I/O virtual
+addresses (DMA addresses) that are given to the devices. The IOMMU maps
+the DMA buffers to arbitrary physical memory addresses (including
+outside of the 36-bit range, dma-ranges limits only the DMA address).
 
-Changes in v5:
-- Re-organised pmic gpio node to maintain alphanumeric order
+I would expect that applying your change effectively just enlarges the
+I/O virtual address space, which will then be 40-bit instead of just
+36-bit. For most devices, even 32-bit of virtual address space should be
+enough. A larger address space will only be applied for drivers that
+explicitly request a larger DMA mask (e.g. the nvme driver).
 
-Link to v4:
-https://lore.kernel.org/all/20251102165126.2799143-1-krishna.kurapati@oss.qualcomm.com/
+We can make this change for correctness, but given that it is only about
+the IOVA space, there shouldn't be much functional difference.
 
-Changes in v4:
-- Moved remote endpoints to SoC file.
-- Renamed vbus regulator name.
-- Moved usb-role-swich property to SoC file.
+# EL1 with Gunyah hypervisor
 
-Link to v3:
-https://lore.kernel.org/all/20251024182138.2744861-1-krishna.kurapati@oss.qualcomm.com/
+For EL1, the hypervisor firmware used on most retail laptops limits the
+usable DMA memory in the SMMUs to the physical 36-bit range. You are
+right that laptops with 64 GiB memory are essentially unusable in EL1
+without disabling the physical memory outside the 36-bit range, but
+applying this patch would make it even worse.
 
-Changes in v3:
-- Moved "usb-role-switch" to lemans dtsi file
-- Moved vbus supply to connector node
+There are two separate cases:
 
-Link to v2:
-https://lore.kernel.org/all/20251008180036.1770735-1-krishna.kurapati@oss.qualcomm.com/
+ - For devices behind the SMMUv2, the situation should be the same as
+   above. Increased IOVA space, but no effect on physical address range.
+   This is what is currently causing crashes with 64 GiB RAM in EL1.
 
-Changes in v2:
-- Removed redundant property of dr_mode setting.
-- Added power-role property in connector node.
+ - Devices behind the SMMUv3 (PCIe) do not have an IOMMU assigned when
+   running in EL1. In this case, the 36-bit dma-ranges prevents PCIe
+   devices from using memory outside the 36-bit range. They will fall
+   back to bounce buffers in that case. Applying your patch will disable
+   that, making it even more likely to crash than before.
 
-Link to v1:
-https://lore.kernel.org/all/20251002172946.589061-1-krishna.kurapati@oss.qualcomm.com/
+Given that x1e80100.dtsi / hamoa.dtsi primarily models the EL1 setup
+with Gunyah hypervisor, I don't think it makes sense to apply this patch
+as-is. It will just make it even more likely to crash than before.
+I suggest adding these overrides in x1-el2.dtso, with the expected
+limited effect I described above.
 
- arch/arm64/boot/dts/qcom/lemans-evk.dts | 108 +++++++++++++++++++++++-
- arch/arm64/boot/dts/qcom/lemans.dtsi    |  20 +++++
- 2 files changed, 126 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-index b40fa203e4a2..2536ebe36edb 100644
---- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-@@ -38,6 +38,35 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector-0 {
-+		compatible = "usb-c-connector";
-+		label = "USB0-Type-C";
-+		data-role = "dual";
-+		power-role = "dual";
-+
-+		vbus-supply = <&vbus_supply_regulator_0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				usb0_con_hs_ep: endpoint {
-+					remote-endpoint = <&usb_0_dwc3_hs>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+
-+				usb0_con_ss_ep: endpoint {
-+					remote-endpoint = <&hd3ss3220_in_ep>;
-+				};
-+			};
-+		};
-+	};
-+
- 	edp0-connector {
- 		compatible = "dp-connector";
- 		label = "EDP0";
-@@ -102,6 +131,15 @@ platform {
- 		};
- 	};
- 
-+	vbus_supply_regulator_0: regulator-vbus-supply-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vbus_supply_0";
-+		gpio = <&expander1 2 GPIO_ACTIVE_HIGH>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+	};
-+
- 	vmmc_sdc: regulator-vmmc-sdc {
- 		compatible = "regulator-fixed";
- 
-@@ -454,6 +492,43 @@ &gpi_dma2 {
- 	status = "okay";
- };
- 
-+&i2c11 {
-+	status = "okay";
-+
-+	usb-typec@67 {
-+		compatible = "ti,hd3ss3220";
-+		reg = <0x67>;
-+
-+		interrupts-extended = <&pmm8654au_2_gpios 5 IRQ_TYPE_EDGE_FALLING>;
-+
-+		id-gpios = <&tlmm 50 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&usb_id>, <&usb0_intr_state>;
-+		pinctrl-names = "default";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				hd3ss3220_in_ep: endpoint {
-+					remote-endpoint = <&usb0_con_ss_ep>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				hd3ss3220_out_ep: endpoint {
-+					remote-endpoint = <&usb_0_dwc3_ss>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2c18 {
- 	status = "okay";
- 
-@@ -607,6 +682,16 @@ &pmm8654au_0_pon_resin {
- 	status = "okay";
- };
- 
-+&pmm8654au_2_gpios {
-+	usb0_intr_state: usb0-intr-state {
-+		pins = "gpio5";
-+		function = "normal";
-+		input-enable;
-+		bias-pull-up;
-+		power-source = <0>;
-+	};
-+};
-+
- &qup_i2c19_default {
- 	drive-strength = <2>;
- 	bias-pull-up;
-@@ -746,11 +831,24 @@ wake-pins {
- 		};
- 	};
- 
-+	qup_i2c11_default: qup-i2c11-state {
-+		pins = "gpio48", "gpio49";
-+		function = "qup1_se4";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- 	sd_cd: sd-cd-state {
- 		pins = "gpio36";
- 		function = "gpio";
- 		bias-pull-up;
- 	};
-+
-+	usb_id: usb-id-state {
-+		pins = "gpio50";
-+		function = "gpio";
-+		bias-pull-up;
-+	};
- };
- 
- &uart10 {
-@@ -779,11 +877,17 @@ &ufs_mem_phy {
- };
- 
- &usb_0 {
--	dr_mode = "peripheral";
--
- 	status = "okay";
- };
- 
-+&usb_0_dwc3_hs {
-+	remote-endpoint = <&usb0_con_hs_ep>;
-+};
-+
-+&usb_0_dwc3_ss {
-+	remote-endpoint = <&hd3ss3220_out_ep>;
-+};
-+
- &usb_0_hsphy {
- 	vdda-pll-supply = <&vreg_l7a>;
- 	vdda18-supply = <&vreg_l6c>;
-diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
-index 0b154d57ba24..bf869c5b5ee0 100644
---- a/arch/arm64/boot/dts/qcom/lemans.dtsi
-+++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
-@@ -4026,7 +4026,27 @@ usb_0: usb@a600000 {
- 			snps,dis-u1-entry-quirk;
- 			snps,dis-u2-entry-quirk;
- 
-+			usb-role-switch;
- 			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usb_0_dwc3_hs: endpoint {
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usb_0_dwc3_ss: endpoint {
-+					};
-+				};
-+			};
- 		};
- 
- 		usb_1: usb@a800000 {
--- 
-2.34.1
-
+Thanks,
+Stephan
 
