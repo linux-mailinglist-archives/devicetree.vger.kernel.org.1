@@ -1,41 +1,81 @@
-Return-Path: <devicetree+bounces-242867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 330AAC9077E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 02:09:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56BB7C907AC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 02:20:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE5E03AA434
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 01:09:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5EB13A8B72
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 01:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70712236EB;
-	Fri, 28 Nov 2025 01:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6532F207DF7;
+	Fri, 28 Nov 2025 01:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="KWtPd9Tk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sEzO12M+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731109.qiye.163.com (mail-m19731109.qiye.163.com [220.197.31.109])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683EF1A9F9D;
-	Fri, 28 Nov 2025 01:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.109
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5201E1509AB
+	for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 01:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764292158; cv=none; b=qa7SlJAna2/3d9tN3dBb4Bp+RgfAVizfqb1QIda8LPS4JEI306OOp+W9Rlm1kj77icXTpzgvxBZcPUSlKnPwSraAZxmlSd8jd15sJL8eJncsazgJLsz0pybLHvlrffnc6VBtbrfEvgwx+mtjhXM5jSDMBx2OaHKl9sCY0gHSFD4=
+	t=1764292801; cv=none; b=dDvvgu6FED29a2KE8USO5L+MwL2pUQq+9Hh35HRCy+wXPpTd7ucMNXOJywFBYj2/C7xNQEK2Z5aP4H3vGHwogCytnBaH1ISHRYrpetJtRDExm4dFG3OgfTeA1gMhhoRXFlogDsnBj7fmniTbl4wo5Aw0WKVOC/y5TvFKp/laVCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764292158; c=relaxed/simple;
-	bh=g9ZBThi+XNu/ViU1HkBvkomkDdQeigxQ/QTvaFlI7Pk=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=KoP5cQBi62s/qCIDO8ptpksv231LidVuYH/g+ga0486O8ZbzuPJwAyc/o4Y+SInnGObuo/HRIskNlF1MI3/QyGM6ua9PTefTshvAvjM2b5lgkF+9aeDQ02K+7NY0RbeNRk+0z+Pg3H3a2KU+relSNLQWor/fohF2hRyhtux9Rqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=KWtPd9Tk; arc=none smtp.client-ip=220.197.31.109
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.14] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2b2e9237e;
-	Fri, 28 Nov 2025 09:03:56 +0800 (GMT+08:00)
-Message-ID: <09aed728-51ca-42dd-b680-f6597e0ac00a@rock-chips.com>
-Date: Fri, 28 Nov 2025 09:03:52 +0800
+	s=arc-20240116; t=1764292801; c=relaxed/simple;
+	bh=Xh8FidNQEs184MgopMgAshY0wsFIouLntNkVMgKSSFk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SVWyyhqePRwSZAnWD8bwT6T0AKKILLUYjfd+osCjPSqKQVINSUWwGkOvRhs8/7f8gX/Q5H7kjXeR/2Omfp8I2aAY6J39rn7q6qd61BJdccoG0CmM9SjaLLQrU3ARhAOLcweSoGB9F71BhMWS2sZFWBbxVsxLNp4u4QjSiVA5SsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sEzO12M+; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-37b657f6e24so2010471fa.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Nov 2025 17:19:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764292797; x=1764897597; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1xDF0EDM6IMGCavyFBHjGw9HJGxUae+QwmkNBhQa+yU=;
+        b=sEzO12M+XCcTVo6dXmJp80fvvoPFgbgiBTikS980gkg9T8p3vVj/dkCM8W1e0QUWQY
+         sbxKDiAax3XzlQYJHLTth+vzuAx+AGiSM/6hmoA0CcGxUurIMl9EKWEjM7JTd5EC9bkh
+         zWysY64/1EEy0LqDdmj+qJGfrsuSRe1yqCGMqgPTC03iv5NsDRAoVFC1Wl9mnm9uWAhJ
+         xKCl3AwEWkbFTHKi8D1cqZqp2JjkPQrV0imiOAHd3tAmgTEPZkmzNEaeNys64UlqYikj
+         ZB5REQAiBZ0GSZh+TFhuMqbzHyXeqWLEX84CHBWCbiwP/DGMuN06E/DcRjdtMDLAKZij
+         T7cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764292797; x=1764897597;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1xDF0EDM6IMGCavyFBHjGw9HJGxUae+QwmkNBhQa+yU=;
+        b=Mvp+SIgGLg8DkE8BE+gYyU+176Utk+h4ZGZFHnSVy89dq7TkMZxAtOk29rHHHGpx/k
+         BALftNdfiQTigBiPMkCyh9ztjB6ccNLWinB1lY0Ytg1ZqU8uuIUHog5LUdotgvCAKpUz
+         Dp78n8aKryprYe5PC+kjJKZKYRwFGVM/PoPYlj9ztyxJ6fPMqv7GGz0h1LA47zp5KMz7
+         TX5+4zqWliLIMgusunG516XvnGmluo+eh65ruAJoxZaSQG6jmGCc6LXULoJPCPCfRWdq
+         NLZlNGKLSAlSrS9U36FLAAPPLRwyioYmY+GfGWT3fvzFvH4QLPOYSj5VS6m0xfG1lRFW
+         bsZg==
+X-Forwarded-Encrypted: i=1; AJvYcCWvFj6aQiwFfetm1W5BtmMufQizWhG/n9dQ9JaciULsE1goNqAdF1GMij7HrwWHXhw4WW1xfFLQcoIK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwH4t/pzN6kKecF30SNC3g0CD7PLybkPhBtQn79bBDWFIOJtyqA
+	Vog2lkTWRHO4Lt1dZGmurbGdkLm02ZteYxnLc24NMt1ULzJM9IV8e07gv/vNoZgQJCQ=
+X-Gm-Gg: ASbGnctLkLHkf1Djoruvddg2GN+AePf3EDfRfgru/i76TWtTehwfgxNnxnJDjYt5Lhq
+	M71jBrIljxLVsw/MUoVVU8IjXGNS52NzFJYSuqca3JSC4cMHvezX1vf+ZrSBBOBTuxvg3l+x7Y3
+	Me5H6FAaGrbWuPLUbo0LhbbhWax1UEsWX8LQiaYSP6V7quvteJ2/trncASdnuFDMnD1zAVUPTDq
+	X5HQVlnazGrzmWeTFhD5qk4d8tPhE1yTXs6psw4NVV7p2Jr0KQoaQ2phzE5JL7S4fiKcL5u63uf
+	fZm4N8QKi0u0ACTaKMkbR25xTSwhVoBMkdbOBG7XZ+K8G5UmTyfm6Js1S2EP5YaKOO1TIf8YBUr
+	ifl328fwcNQW3yUKfgp1ET5m2OWbrF7EDwwfpS6EXDKQ3583bfozC8nURL+cuTjTKFt1Dk8tY2N
+	3kNTtYAPw6637usyhxgi/6F5MEff6Ujxl3dKMNgAoIgr8gAsYpJ45cQZme+7sATwzIsQ==
+X-Google-Smtp-Source: AGHT+IHeUKobSKShByGKOG8AH/8FuEh/1k4+K0a8G021A9UAm4AYIoKpHsWdJBUNVgcktttj9wAAzA==
+X-Received: by 2002:a2e:2a41:0:b0:375:f6b9:c95d with SMTP id 38308e7fff4ca-37cdc3e3c4fmr34380401fa.8.1764292796702;
+        Thu, 27 Nov 2025 17:19:56 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37d236efb16sm6918701fa.20.2025.11.27.17.19.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Nov 2025 17:19:56 -0800 (PST)
+Message-ID: <820ac446-a55c-402a-8c53-e83ca0c3f654@linaro.org>
+Date: Fri, 28 Nov 2025 03:19:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,97 +83,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] PCI: dwc: Program device-id
-To: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>,
- Jingoo Han <jingoohan1@gmail.com>, Manivannan Sadhasivam <mani@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: sm8x50: Enable UHS-I SDR50 and
+ SDR104 SD card modes
+To: Val Packett <val@packett.cool>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20251127-program-device-id-v1-0-31ad36beda2c@quicinc.com>
- <20251127-program-device-id-v1-1-31ad36beda2c@quicinc.com>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <20251127-program-device-id-v1-1-31ad36beda2c@quicinc.com>
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251126012043.3764567-1-vladimir.zapolskiy@linaro.org>
+ <bdf3f54d-a223-4eff-aa71-0d74a83ef46d@packett.cool>
+ <3b609409-e19f-4685-848d-807a4e840ad8@oss.qualcomm.com>
+ <f820c42b-4cd9-430f-a1ee-4f380dc9ca8a@packett.cool>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <f820c42b-4cd9-430f-a1ee-4f380dc9ca8a@packett.cool>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9ac7fcf84c09cckunma2bff526693f46
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR9PH1YZSU9KHh5PGkodGB1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=KWtPd9Tk8o/15mVxcrXi6kjy/rSGzCH9tyJgy3FXvt6mrM+qs+KwycnK4Eg9qzw/m72nyKlskHraSrBLaHYWb1wV1DGEm2gWzjPaE+Uqi5joNxt/1N/RvTT1LOdlt9q6OdieiOWeKQbesx65DDNSwN/rhLZtjZN4Pv/+gvTCUD0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=XMS+KJ5HUPJOKP519mm/6YRXCethP2LMIjLGg+exrR8=;
-	h=date:mime-version:subject:message-id:from;
 
-在 2025/11/27 星期四 23:30, Sushrut Shree Trivedi 写道:
-> For some controllers, HW doesn't program the correct device-id
-> leading to incorrect identification in lspci. For ex, QCOM
-> controller SC7280 uses same device id as SM8250. This would
-> cause issues while applying controller specific quirks.
+On 11/27/25 21:33, Val Packett wrote:
+> On 11/27/25 10:47 AM, Konrad Dybcio wrote:
+>> On 11/26/25 5:14 PM, Val Packett wrote:
+>>> Hi,
+>>>
+>>> On 11/25/25 10:20 PM, Vladimir Zapolskiy wrote:
+>>>> The reported problem of some non-working UHS-I speed modes on SM8450
+>>>> originates in commit 0a631a36f724 ("arm64: dts: qcom: Add device tree
+>>>> for Sony Xperia 1 IV"), and then it was spread to all SM8450 powered
+>>>> platforms by commit 9d561dc4e5cc ("arm64: dts: qcom: sm8450: disable
+>>>> SDHCI SDR104/SDR50 on all boards").
+>>>>
+>>>> The tests show that the rootcause of the problem was related to an
+>>>> overclocking of SD cards, and it's fixed later on by commit a27ac3806b0a
+>>>> ("clk: qcom: gcc-sm8450: Use floor ops for SDCC RCGs").
+>>>>
+>>>> Due to a missed setting of an appropriate SDCC clock operations in
+>>>> platform GCC driver the workaround of dropping SD card speeds from UHS-I
+>>>> to high speed was spread to SM8550 and SM8650 platforms, and since
+>>>> the fixes in the clock controller drivers are ready [1], it should be
+>>>> safe to remove the speed mode restrictions from SM8450, SM8550 and
+>>>> SM8650 platforms.
+>>>> [..]
+>>> I see you have tested with dd on the raw block device, but have you tested hotplugging SD cards that have partition tables and filesystems on them?
+>>>
+>>> We have this kind of issue on Hamoa where we get I/O errors early, right after the card is inserted and the partition table / filesystem headers are being read:
+>>>
+>>> [  714.057106] mmc0: new UHS-I speed SDR104 SDXC card at address 0001
+>>> [  714.060567] mmcblk0: mmc0:0001 EC2QT 59.6 GiB
+>>> [  714.503873] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 2
+>>> [  714.505660] Buffer I/O error on dev mmcblk0, logical block 0, async page read
+>>> [  714.513632] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 2
+>>> [  714.516469] Buffer I/O error on dev mmcblk0, logical block 0, async page read
+>>> [  714.516512]  mmcblk0: unable to read partition table
+>> Before we start debugging, could you please confirm it's using the internal
+>> (&sdhc_2) MMC controller, and not one connected over PCIe, like it's the
+>> case on the Surface Laptop?
+> Of course it is. I'm quite familiar with the DTS on this device, I
+> pushed it over the finish line into upstream myself :)
+>> Are the regulators supplying vmmc and vqmmc in high power mode?
 > 
-> So, program the correct device-id after reading it from the
-> devicetree.
+> Yes. regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>; and no
+> allow-set-load / allowed-modes (..hm, maybe we can actually add those to
+> save power since sdhci-msm *does* do regulator_set_load..)
 > 
-> Signed-off-by: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
-> ---
->   drivers/pci/controller/dwc/pcie-designware-host.c | 7 +++++++
->   drivers/pci/controller/dwc/pcie-designware.h      | 2 ++
->   2 files changed, 9 insertions(+)
+> But turns out this is not a consistent problem with every card!.. At
+> least *now* one of the two Kingston Canvas Select Plus cards I have
+> attaches perfectly every time. (Another one of those though often fails
+> to probe with "error -84 reading general info of SD ext reg" and
+> sometimes has an early I/O error, but exFAT mounts even after that error
+> — but this seems like just a "microSD cards are crap" thing.)
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index e92513c5bda5..e8b975044b22 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -619,6 +619,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->   		}
->   	}
->   
-> +	pp->device_id = 0xffff;
-> +	of_property_read_u32(np, "device-id", &pp->device_id);
-> +
->   	dw_pcie_version_detect(pci);
->   
->   	dw_pcie_iatu_detect(pci);
-> @@ -1094,6 +1097,10 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
->   
->   	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0);
->   
-> +	/* Program correct device id */
-> +	if (pp->device_id != 0xffff)
-> +		dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, pp->device_id);
-> +
->   	/* Program correct class for RC */
->   	dw_pcie_writew_dbi(pci, PCI_CLASS_DEVICE, PCI_CLASS_BRIDGE_PCI);
->   
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index e995f692a1ec..eff6da9438c4 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -431,6 +431,8 @@ struct dw_pcie_rp {
->   	struct pci_config_window *cfg;
->   	bool			ecam_enabled;
->   	bool			native_ecam;
-> +	u32			vendor_id;
+> It's the Samsung Evo Plus card that consistently has early I/O errors
+> preventing the partition table scan from succeeding (or if that
 
-I don't see where vendor_id is used.
-And why should dwc core take care of per HW bugs, could someone else
-will argue their HW doesn't program correct vender id/class code, then
-we add more into dw_pcie_rp to fix these?
+For the last 10 years it's known that a multitude of Samsung Evo SD cards
+are fake.
 
-How about do it in the defective HW drivers?
-
-
-> +	u32			device_id;
->   };
->   
->   struct dw_pcie_ep_ops {
+> succeeds, prevents the exFAT mount). There is a *card compat* issue here
+> for sure, as the card is not corrupted, it mounts every time on a
+> different laptop with a PCIe card reader [1217:8621] in the same SDR104
+> mode. But consistently has these errors on sdhci-msm.
 > 
 
+Please check the actual I/O speed of this card on a host, the given dd
+command should be sufficient for that purpose. It might happen that if
+the actually supported max speed is not close to SDR104, however the mode
+is set by the Qualcomm SDHC driver due to info read from the card out,
+the I/O may be faulty.
+
+-- 
+Best wishes,
+Vladimir
 
