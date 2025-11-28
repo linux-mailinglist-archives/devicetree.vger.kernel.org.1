@@ -1,252 +1,258 @@
-Return-Path: <devicetree+bounces-242948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-242949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4662C919FE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 11:29:35 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53694C91A31
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 11:30:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBF133A2B20
-	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:29:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 185D5352F54
+	for <lists+devicetree@lfdr.de>; Fri, 28 Nov 2025 10:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7DF30C345;
-	Fri, 28 Nov 2025 10:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5857430BF68;
+	Fri, 28 Nov 2025 10:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t6dXWyRi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N2ODpLdl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031EA3054FE;
-	Fri, 28 Nov 2025 10:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27EFE30B515;
+	Fri, 28 Nov 2025 10:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764325751; cv=none; b=nQCKLuF5E7QE4zaKBuwf0xf9qU/ufMyj+xmahEd278pawpeNNPFATGROJ0zilag37ZhezZYJZOaSz6ifnoYwB0WuwhLAWqVI1xpqKfD1xlZa3ePGxmK4b/1DeBBg79hccVC4BYukIOOKPEenq02NoWXgZa/+qjcgPCXJ8bav7yA=
+	t=1764325763; cv=none; b=l5M81s5Y+TaZmH75o4OJWOOHJSUXZw97u6jEKVmvQRTtfB35fIA2Elxze0rSXZAckRxYlVabSy6VCfq4bKClDvyAA1RHuFll7alFtxXBQM5iaW2eBKA45KkgiBJgponLT5T8nOSums085c5bRzRaAPdJM++8J73nBWj3HShlYM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764325751; c=relaxed/simple;
-	bh=+4cZiJHjxPfc6J65GfEcXgkECtDCsaJQYV4W3cBQUGE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gDpH77uzDCasUBRXiQpDZHQk7dEH8ao5/8wFUMTdR1Pc819MnOIyMmeCCs508i9S6k3a0hU29CyETefKVUssiFa0wk6U6QFlz15XJWS039Bd30M4JMFStnNi/l4Sp7jclEcL9OI7YEiW+Gii31k4b7joecnanVusdaKNlxDFGsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t6dXWyRi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4883C113D0;
-	Fri, 28 Nov 2025 10:29:07 +0000 (UTC)
+	s=arc-20240116; t=1764325763; c=relaxed/simple;
+	bh=UAdMTYVBsBNbXk/Og0eSznO5zDi4I0I2Y1uL6nPcnLo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gnctjzkRVEc/wPlAExH4Vh+2dqyFL1QUPuz04vvEZ6uDcf2GPF9rq7lfXRzhgmeGusW8pOGBHWgXtEKAEjZqzkRSouYKcz+JV57biPmzd3WLAAMH9WCUubai0rsBdhjOdKehK7G9AX7L3CWz6Ru/hSbHKOLnuD3ai7ePHBHN5kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N2ODpLdl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A62CFC4CEF1;
+	Fri, 28 Nov 2025 10:29:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764325750;
-	bh=+4cZiJHjxPfc6J65GfEcXgkECtDCsaJQYV4W3cBQUGE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t6dXWyRiQeC8MwpSiRS7YJo3TF3gx4NmUpmZNzdjYgb7ce0Du+21H/XsOnnqVwYvu
-	 b+zssIj9clG20vuZTr+Il75gLeBsUpORY4/T72FoDWh5xQDFMI2cMbaGaTIKyUadi/
-	 FJiSK9uVOWtePbZhW0usPQmTAkm843umPcznfbnUY9VS6n4b8H1DSEHNLEzV6j8fLw
-	 tz9E0kfttrZoD2Q6MasRRtkAntnexCBz4RSvx9VHDcF+PPLBl3HraabbJdIguzKum7
-	 eJFUyUkqPnnRULLMe44gk9V7bu/HzpJhoSrgShSfu4Y3GnU2XwFJ6ybQg7Moq26Fyi
-	 qea2d2xdbs+dg==
-Message-ID: <f9ce51ce-6fe9-4612-9be3-552736ea19a7@kernel.org>
-Date: Fri, 28 Nov 2025 11:29:05 +0100
+	s=k20201202; t=1764325762;
+	bh=UAdMTYVBsBNbXk/Og0eSznO5zDi4I0I2Y1uL6nPcnLo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=N2ODpLdlZwP+TDz0Sam1++zyyQFOVWlvgiAu1VTFdFcYD6v3vP9+JYxlPwuWU+m06
+	 DCW60O4ik2i2BDyTUHfpS+dy6M0k8Dv2pqQFPv8Gra4R+M4Q40noOV1652uWdjYmwu
+	 2qPfmiZXAzvg+ZhuGIgaQP2ckkjfPcVRz/aOQpJk0XHIZGXqKSXrInKAoylO9t1MB0
+	 N4EDL4tAhumUSniDiaZ7Sw/Vrm4nw0iPbz0txDzPEdyHvGmL6HhNcFrqxJ5a/4qa2p
+	 QX1niwMhAEa9/RV7KBmkQ5Q7konK54rSS8vSLtd7ClwJKt1Lp4VooSI6n7M5795hjX
+	 4QkEVLEbwbvOw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8EAF9D116E2;
+	Fri, 28 Nov 2025 10:29:22 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH v19 0/6] Add PWM support for IPQ chipsets
+Date: Fri, 28 Nov 2025 14:29:12 +0400
+Message-Id: <20251128-ipq-pwm-v19-0-13bc704cc6a5@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: add CIX IPBLOQ HDA controller
- support
-To: Joakim Zhang <joakim.zhang@cixtech.com>
-Cc: "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "broonie@kernel.org" <broonie@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "perex@perex.cz"
- <perex@perex.cz>, "tiwai@suse.com" <tiwai@suse.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-References: <20251127094301.4107982-1-joakim.zhang@cixtech.com>
- <20251127094301.4107982-2-joakim.zhang@cixtech.com>
- <20251128-fearless-kittiwake-from-arcadia-662dbc@kuoka>
- <SEYPR06MB6226157DB7A5D5486500063A82DCA@SEYPR06MB6226.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <SEYPR06MB6226157DB7A5D5486500063A82DCA@SEYPR06MB6226.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAHh5KWkC/22O0W6DMAxFf6XK81I5CSGhT/2PqppK4gxrg9BAW
+ auKf29A2sSkPV7b5/g+2YCJcGCH3ZMlnGig2OUgqrcdc82l+0BOPg+YBKmhkpJTf+X9d8uddUY
+ 7URivJcvXfcJA91V1OuccUmz52CS8/PBKAGhRgtawl4VUYDQX/Hoj9+7z6z7R47gk6tzexXaRN
+ jSMMT3WepMoF/faJJvEb5O84MAVQJDKIGBpj/E2fsX4uWqWMpMwW9ZuWJPZqvaFQh+cCeYf1m5
+ YWW1Ym1n0NQaLoa4t/mXneX4Bl743AWABAAA=
+X-Change-ID: 20250922-ipq-pwm-c8c75c147d52
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Baruch Siach <baruch@tkos.co.il>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ George Moussalem <george.moussalem@outlook.com>, 
+ Devi Priya <quic_devipriy@quicinc.com>, 
+ Baruch Siach <baruch.siach@siklu.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764325760; l=6711;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=UAdMTYVBsBNbXk/Og0eSznO5zDi4I0I2Y1uL6nPcnLo=;
+ b=gWI9mpKgpavSFSWg0DtSwQ8yEo0P2JFddT9ymaCWdcz/rJdWSXg4ItUAQMOrMKPvJF8w7fzGq
+ pw1hy5DLfMUC78Bn9p8HP55a8rGWECgtAiY4hV6U4Rs0wKblLG8RKvk
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 
-On 28/11/2025 10:54, Joakim Zhang wrote:
-> 
-> Hello Krzysztof,
-> 
-> Thanks for your review.
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Friday, November 28, 2025 5:28 PM
->> To: Joakim Zhang <joakim.zhang@cixtech.com>
->> Cc: lgirdwood@gmail.com; broonie@kernel.org; robh@kernel.org;
->> krzk+dt@kernel.org; conor+dt@kernel.org; perex@perex.cz;
->> tiwai@suse.com; linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
->> cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
->> Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: add CIX IPBLOQ HDA controller
->> support
->>
->> EXTERNAL EMAIL
->>
->> On Thu, Nov 27, 2025 at 05:42:58PM +0800, joakim.zhang@cixtech.com
->> wrote:
->>> From: Joakim Zhang <joakim.zhang@cixtech.com>
->>>
->>>  - add CIX IPBLOQ HDA controller support
->>
->> Please write full sentences. Loook how other commits were created, it is not
->> the first cix commit, right?
-> 
-> Yes, not the first cix commit, I will have a look.
-> 
->>
->>>
->>> Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
->>> ---
->>>  .../bindings/sound/cix,ipbloq-hda.yaml        | 71 +++++++++++++++++++
->>>  1 file changed, 71 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
->>> b/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
->>> new file mode 100644
->>> index 000000000000..c9e4015a8174
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/sound/cix,ipbloq-hda.yaml
->>> @@ -0,0 +1,71 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/sound/cix,ipbloq-hda.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: CIX IPBLOQ HDA controller
->>> +
->>> +description:
->>> +  CIX IPBLOQ High Definition Audio (HDA) Controller
->>> +
->>> +maintainers:
->>> +  - Joakim Zhang <joakim.zhang@cixtech.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: cix,ipbloq-hda
->>
->> What happened here? You miss SoC compatible. I did not ask to change
->> compatible.
-> 
-> I used the cix,sky1-ipbloq-hda before, but you ask to use the compatible as the file name, I think it's may not quite suitable, since we may have sky1p, sky2... later, so I add a unified compatible here as a fallback.
+Add PWM driver and binding support for IPQ chipsets.
+Also, add nodes to add support for pwm in ipq6018, ipq5018, ipq5332, and
+ipq9574.
 
-"Filename must match the compatible.". Your explanation "use compatible
-as the filename" is also correct - use what? the compatible? as what? as
-the filename so in place of filename. So how could you make it reversed?
-filename as the compatible?
+I've picked up work based on Devi's last submission (v15) which dates
+back to 05 October 2023 as below SoCs are still active.
 
-Your changelog is very vague and does not describe here anything. It's
-really not useful.
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+Changes in v19:
+- Changed pwm-cells property in dt bindings from 2 to 3 as per Uwe's
+  recommendation
+- Added hardware notes and limitations based on own findings as
+  requested. NOTE: there's no publically available datasheet though.
+- Expanded comment on REG1_UPDATE to indicate that when this bit is set,
+  values for div and pre-div take effect. The hardware automatically
+  unsets it when the change is completed.
+- Added newline between MACRO definition and next comment
+- In config_div_and_duty, used mul_u64_u64_div_u64 to avoid overflow
+- Removed unncessary restriction of pwm_div to MAX_DIV - 1 after testing
+- Constrain pre_div to MAX_DIV is pre_div calculated is > MAX_DIV
+- Use of mul_u64_u64_div_u64 in .apply
+- Skip calculation of period and duty cycle when PWM_ENABLE REG is unset
+- Set duty cycle to period value when calculated duty cycle > period to
+  return a valid config
+- Removed .npwm as it's taken care of in devm_pwmchip_alloc
+- Added call to devm_clk_rate_exclusive_get to lock the clock rate
+- Start all kernel messages with a capital letter and end with \n.
+- Changed pwm-cells property in all dtsi from 2->3 for in scope IPQ SOCs 
+- Link to v18: https://lore.kernel.org/r/20251029-ipq-pwm-v18-0-edbef8efbb8e@outlook.com
 
-> 
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 2
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: sysclk
->>> +      - const: clk48m
->>
->> clk48m is the name of the pin/signal?
-> 
-> Yes, this IP requests a 48M clock.
-> 
->>
->>> +
->>> +  resets:
->>> +    maxItems: 1
->>> +
->>> +  reset-names:
->>> +    items:
->>> +      - const: hda
->>
->> Why this is here still?
-> 
-> I am not quite understood, don't need to list the name of the reset-names property?
+Changes in v18:
+- Updated maintainer info in binding
+- Squashed dt bindings patches into the first for adding compatibles for
+  IPQ5018, IPQ5332, and IPQ9574
+- Link to v17: https://lore.kernel.org/r/20251008-ipq-pwm-v17-0-9bd43edfc7f7@outlook.com
 
-My bad, I thought you received review to drop it completely.
+Changes in v17:
+- Picked up RB tags from Dmitry and Rob
+- Removed unnecessary code comments
+- Corrected reg property in PWM node in ipq6018 DTS in line with
+  expected nr of bytes for address and size cells
+- Link to v16: https://lore.kernel.org/r/20251001-ipq-pwm-v16-0-300f237e0e68@outlook.com
 
-> 
->>> +
->>> +  cix,model:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +    description:
->>> +      The user-visible name of this sound complex. If this property is
->>> +      not specified then boards can use default name provided in hda driver.
->>
->> You did not respond to several comments and did not implement them.
-> 
-> I investigate it seriously, I tried to use the sound-card-common.yaml but it should for ASoC, and this hda controller driver doesn't belong ASoC, so I just refer  to the hda driver as they done, such as nvidia,tegra30-hda.yaml.
+Changes in v16:
+- Removed reg description in bindings as the offset is not relative to
+  the TCSR region anymore since simple-mfd support was dropped and PWM
+  nodes defined as their own nodes, not child nodes. Updated the example
+  too.
+- Dropped patch to add simple-mfd support to the qcom,tcsr bindings
+- Simplified code to calculate divs and duty cycle as per Uwe's comments
+- Removed unused pwm_chip struct from ipq_pwm_chip struct
+- Removed unnecessary cast as per Uwe's comment
+- Replaced devm_clk_get & clk_prepare_enable by devm_clk_get_enabled
+- Replaced pwmchip_add by devm_pwmchip_add and removed .remove function
+- Removed .owner from driver struct
+- Added compatibles to the bindings and nodes to the device trees to add
+  PWM support in the IPQ5018, IPQ5332, and IPQ9574 SoCs
+- Link to v15: https://lore.kernel.org/r/20231005160550.2423075-1-quic_devipriy@quicinc.com
 
-You still should use a generic property common for everyone, not come
-with own flavor of it.
+Changes in v15:
+- No change
+- Link to v14: https://lore.kernel.org/r/20231005033053.2626465-1-quic_devipriy@quicinc.com
 
-> 
-> And the " ASoC: dt-bindings: add CIX IPBLOQ HDA controller support " also not suitable, as mentioned it not the ASoC driver, Can I change to "ALSA: hda: add CIX IPBLOQ HDA controller support "?
+Changes in v14:
+- Picked up the R-b tag
+- Link to v13: https://lore.kernel.org/r/20231004090449.256229-1-quic_devipriy@quicinc.com
 
+Changes in v13:
+- Updated the file name to match the compatible
+- Sorted the properties and updated the order in the required field
+- Dropped the syscon node from examples
+- Link to v12: https://lore.kernel.org/r/20230925065915.3467964-1-quic_devipriy@quicinc.com
 
+Changes in v12:
+- Picked up the R-b tag
 
+Changes in v11:
+- No change
+
+Changes in v10:
+- No change
+
+Changes in v9:
+- Add 'ranges' property to example (Rob)
+- Drop label in example (Rob)
+
+Changes in v8:
+- Add size cell to 'reg' (Rob)
+
+Changes in v7:
+- Use 'reg' instead of 'offset' (Rob)
+- Drop 'clock-names' and 'assigned-clock*' (Bjorn)
+- Use single cell address/size in example node (Bjorn)
+- Move '#pwm-cells' lower in example node (Bjorn)
+- List 'reg' as required
+
+Changes in v6:
+- Device node is child of TCSR; remove phandle (Rob Herring)
+- Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
+
+Changes in v5:
+- Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
+    Andersson, Kathiravan T)
+
+Changes in v4:
+- Update the binding example node as well (Rob Herring's bot)
+
+Changes in v3:
+- s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
+
+Changes in v2:
+- Make #pwm-cells const (Rob Herring)
+
+---
+George Moussalem (6):
+      dt-bindings: pwm: qcom,ipq6018-pwm: Add compatible for ipq5018
+      dt-bindings: pwm: qcom,ipq6018-pwm: Add compatible for ipq5332
+      dt-bindings: pwm: qcom,ipq6018-pwm: Add compatible for ipq9574
+      arm64: dts: qcom: ipq5018: add pwm node
+      arm64: dts: qcom: ipq5332: add pwm node
+      arm64: dts: qcom: ipq9574: add pwm node
+
+Devi Priya (3):
+      dt-bindings: pwm: add IPQ6018 binding
+      pwm: driver for qualcomm ipq6018 pwm block
+      arm64: dts: qcom: ipq6018: add pwm node
+
+ .../devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml  |  51 +++++
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  10 +
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi              |  10 +
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              |  10 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  10 +
+ drivers/pwm/Kconfig                                |  12 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-ipq.c                              | 212 +++++++++++++++++++++
+ 8 files changed, 316 insertions(+)
+---
+
+---
+Devi Priya (3):
+      dt-bindings: pwm: add IPQ6018 binding
+      pwm: driver for qualcomm ipq6018 pwm block
+      arm64: dts: qcom: ipq6018: add pwm node
+
+George Moussalem (3):
+      arm64: dts: qcom: ipq5018: add pwm node
+      arm64: dts: qcom: ipq5332: add pwm node
+      arm64: dts: qcom: ipq9574: add pwm node
+
+ .../devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml  |  51 +++++
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  10 +
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi              |  10 +
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              |  10 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  10 +
+ drivers/pwm/Kconfig                                |  12 ++
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-ipq.c                              | 239 +++++++++++++++++++++
+ 8 files changed, 343 insertions(+)
+---
+base-commit: e15625dc543c0fbb8db84589678613efd6fd4f27
+change-id: 20250922-ipq-pwm-c8c75c147d52
 
 Best regards,
-Krzysztof
+-- 
+George Moussalem <george.moussalem@outlook.com>
+
+
 
