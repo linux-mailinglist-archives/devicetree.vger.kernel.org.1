@@ -1,131 +1,151 @@
-Return-Path: <devicetree+bounces-243080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02F8CC938C3
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 07:52:23 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C6CCC938D1
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 08:28:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD3F23A821E
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 06:52:22 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1EF153477CB
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 07:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF542222CA;
-	Sat, 29 Nov 2025 06:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF4125783C;
+	Sat, 29 Nov 2025 07:28:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hHVPeijD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NTmefG1q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F643182B7
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 06:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69B3A1D8E01;
+	Sat, 29 Nov 2025 07:28:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764399139; cv=none; b=cMpb2wp9O04SFXG/fcU7YYDGV3WPWRQcnDTob/peu3MLAHctLfeXIQeX/dN+YhYGgwkz8WQwnQEPuZzft5ecs9zkvF2kqWi6ldYlTBG2PBjH4WCS5Njrl49bhZ1ie6Zs4STDg91wqf1qrnll/FX5SsiP4btFW5S3artkoMlNKe4=
+	t=1764401325; cv=none; b=Ghtp2WyptQcjG+EHsZ2pW1zJSCpdx7gjPBNNcwhH1VJL01s9TevgXFlcxL1SnHWEXVuL2GtLsOTJ6Co+KkfXpBBhTStDCff2jKb95rWk7Y9hXY7VZ7X8vRnYJpof6gcJB4AiusvZbyApG3i0KHseLdxobCK5mTlZOdUxs415OKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764399139; c=relaxed/simple;
-	bh=StAmDM+RBMgLY4g0B3fBIPUslp6t7Z6DBRumRbY0nRk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hYgBVhhDCXfNS1Gwb6P2YtmaZ+Antq8iHiUd2z41SnyWV1y5v7z1z7PZ2bqW1NInNttHfgba9I5TfWQm6oa/TSM1KIJvXq1roBQd84uV7vRmxgwiDMjObmhaNDGHBdAVex5IP1CdPLDSlXmGc55wHsjjDOUpRnXWptwxsVW3vS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hHVPeijD; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-640a503fbe8so4773972a12.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 22:52:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764399136; x=1765003936; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mY57t/v7l7+q+SXGdGf8+i198PFB2EV4ssC0luXesUA=;
-        b=hHVPeijDIQJ95+sLgOT0HF40eiF38es/N05ppSanKxPlBfnfFZIbNMNxYP27z7qSd6
-         jAC+hJn1gUNsdu9iwqi2bdurHtAnVhRuL7DmhCDlrcV6ldP7QOiZwRaQ+5ERxytm4zGN
-         ZM1uRKoUkCy8FN4sWO1rSACl1D6zR1CV+ebu8PFrBGCIxkmKict6qLKWtd8Kyw7SQ3zO
-         u0ozwvGPhhLTj+PHZt+ikTUqZrn7hI+KUeMeQzZ8PEdu0K6cwcNkYf+lpI3yHbUgJNFi
-         UboD4bG77S/j6CCfsQe89Gs8UQarbwc67dkyxHOIxBOwszLxVo9b4Mshu+9G/lIuioii
-         xsIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764399136; x=1765003936;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mY57t/v7l7+q+SXGdGf8+i198PFB2EV4ssC0luXesUA=;
-        b=gO6idREc+hlrdwab28Kd8hoDAEn+3gUCXD4cGv7ItInAT7j3IX463IwiTaAaOedCmu
-         chiNI4w9+JJTMUB6Kb4vdaa/WbLxnBecqoJOvqr2ANGQRRnUoT1oJBFR/BlmEVEErsOF
-         yLr0g98x3gMT9Z6kQB7F7J+uvBpe+SZgZ4KIfXffPkpivo+XfBkXyI91aoH4M2lSA4LE
-         ImYZ2zXfceTESbg4JTY0G2O6wRIvsaEMBbvESyG0+3lcPpL9oyGRAdFxXxumthawMr6w
-         z7M9wd8iV/1wBanCKcePeN2nV/ZOj+WZlDmuGj8SvjI2JZVP/O8zCZO3SDecBygEBOzr
-         lnjA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3iLU9KO9mcp2v6LRxrcsUFpbIwpQKq24CjrkokZ3jwN4k2Csslc0EAXj14LAiRozrkqphW86JgLZR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVtpLKWCvWpJZiJLICUgxwDCalfWUCDUreSjLYvHf6Qf2MJ235
-	OGWijO12J6SQFqeKuCglYDIqPYyCowaHl49aYpp0K6kLCK9VaqxVk6+4//1j0vDnaiVCHpmBEZu
-	+Gg0EJ4ORHwqp2hIjyvZ5dxMeOi0APeE=
-X-Gm-Gg: ASbGncsUCU+yWTjPfe0cirAftNEKCJX+kDGXDgH9n5Up4hKCDeDqKNvPDORbRfELLtG
-	IJmdyLAfTGCimwf9LK/4bBdveBXip8YUObgyRxDAMgPqk9vhWbZiiMBcnG2ow8Vam5sBMqzEpV5
-	2ttV9RAzguuUuQuLaQYVv4wqXVhcnq9eiTfUXIfd0CR5oPXL3eqe0ax1dxf/VVCC+atANAUvV6D
-	nvU2o90xYfruSs+5nGB7hJsBctfenZoXCB8c9wVfY2lahqPpyonnX/pVLr5HRIZASNAKg==
-X-Google-Smtp-Source: AGHT+IEWbCpvWmUs2vHbk6WH4VEpZA3VDYQCv5LZHzbValWzg3sRI2GhxxXJjnqqkRLwKiso/m6RqBqq2D87EH2dXfM=
-X-Received: by 2002:a05:6402:26c1:b0:647:5c87:8668 with SMTP id
- 4fb4d7f45d1cf-6475c8786c8mr5315010a12.14.1764399135812; Fri, 28 Nov 2025
- 22:52:15 -0800 (PST)
+	s=arc-20240116; t=1764401325; c=relaxed/simple;
+	bh=oHArvf5IFFUhUcZ+kfT/89S9/yoeGiFA0H+i1F2XiLI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pOzZZA212/F8CsPv+l5HpE7wkVTp+Q1uSzhMVOd2E8xXZTXPYtRLDNYhFZXOhVDFxGM7EVIcE1QGCpWdwijokm0kSaPh2dng/yy8jy0+6CaDJryruk1fy6NcjASAR8DjoLMkCmJH3/thC/ctp16zLcqHLyaR8cNX6FbtMg1i3pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NTmefG1q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 465CBC4CEF7;
+	Sat, 29 Nov 2025 07:28:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764401324;
+	bh=oHArvf5IFFUhUcZ+kfT/89S9/yoeGiFA0H+i1F2XiLI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NTmefG1qES3NuCoS3/XcNz40ck+ccDehgDnrnGZZU4Pk071LGsYSGWktohwEBrKSY
+	 TN+hdT/1SvuSRUnlYZYyW0cey6YZ6/pkDzJ5soNf0eHDXZJK5/taJfW0qYdzJJD6lk
+	 JMrwSRzLpG1527R5fuKsDJo3yv/ZZEezmMi+1fFprNa9qhJY+uJcnSXH4O/cevkuFk
+	 JoguoMuFiUjvrCX7kyy9ozjek8TPgm8eUnPuXUoSKz4XxYLDmAymdW+d9BfKLWHooT
+	 xwaUuKJejBEwMmcEG1mbo/LfAVcccRhjP839W/Htn1gPRwCdD/iypdud8C9WPB8PtN
+	 v+CEmlUUqCKTw==
+Date: Sat, 29 Nov 2025 12:58:29 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
+Cc: Jingoo Han <jingoohan1@gmail.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] PCI: dwc: Program device-id
+Message-ID: <c4sfp6mr65jbt3pfjc5ozeijum3pehjjlxocaloweu4g6y4v7a@p62qqui55tu7>
+References: <20251127-program-device-id-v1-0-31ad36beda2c@quicinc.com>
+ <20251127-program-device-id-v1-1-31ad36beda2c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027005220.22298-1-naoki@radxa.com>
-In-Reply-To: <20251027005220.22298-1-naoki@radxa.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sat, 29 Nov 2025 12:21:58 +0530
-X-Gm-Features: AWmQ_bmJZvas800HhmEpnUFfX62SZoRx2KXDDiwowp2UV_htK6hrUPjWWrOs7bw
-Message-ID: <CANAwSgS-OxBoRy4jwb+XkuxYwws3P97eAFaOJAPBvK5gtgHuLg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix audio-supply for ROCK Pi 4
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	knaerzche@gmail.com, devicetree@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251127-program-device-id-v1-1-31ad36beda2c@quicinc.com>
 
-Hi FUKAUMI,
+On Thu, Nov 27, 2025 at 09:00:51PM +0530, Sushrut Shree Trivedi wrote:
+> For some controllers, HW doesn't program the correct device-id
+> leading to incorrect identification in lspci. For ex, QCOM
+> controller SC7280 uses same device id as SM8250.
 
-On Mon, 27 Oct 2025 at 06:24, FUKAUMI Naoki <naoki@radxa.com> wrote:
->
-> This reverts commit 8240e87f16d17 ("arm64: dts: rockchip: fix
-> audio-supply for Rock Pi 4").
->
-> Fix the APIO5_VDD power supply to vcc_3v0 as per the schematics[1][2]
-> [3][4][5].
->
-> This fixes the SPI-NOR flash probe failure when the blue LED is on[6],
-> and the garbled serial console output on Linux.
->
-> The ES8316 headphone and microphone are confirmed to work correctly
-> after this fix.
->
-> [1] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4a/ROCK_4A_V1.52_SCH.pdf p.14
-> [2] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4ap/radxa_rock_4ap_v1730_schematic.pdf p.14
-> [3] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4b/ROCK_4B_v1.52_SCH.pdf p.14
-> [4] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/4bp/radxa_rock_4bp_v1730_schematic.pdf p.14
-> [5] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/ROCK-4-SE-V1.53-SCH.pdf p.14
->
-> [6]
-> => led blue:status off
-> => sf probe
-> SF: Detected w25q128 with page size 256 Bytes, erase size 4 KiB, total 16 MiB
-> => led blue:status on
-> => sf probe
-> jedec_spi_nor flash@0: unrecognized JEDEC id bytes: ff, ff, ff
-> Failed to initialize SPI flash at 1:0 (error -2)
->
-> Fixes: 7ebfd4f6b52a6 ("arm64: dts: rockchip: add LED for ROCK Pi 4A/B/C/A+/B+")
-> Fixes: 8240e87f16d17 ("arm64: dts: rockchip: fix audio-supply for Rock Pi 4")
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+The Device ID you are programming is for the Root Port, not for the
+controller/Host bridge.
 
-Tested-by: Anand Moon <linux.amoon@gmail.com>
+> This would
+> cause issues while applying controller specific quirks.
+> 
 
-With this patch applied,  I can get my console working.
+This statement is misleading and wrong. Controller specific quirks cannot be
+applied using Root Port IDs. We have controller specific DT compatible propery
+for that purpose.
 
-Thanks
--Anand
+> So, program the correct device-id after reading it from the
+> devicetree.
+> 
+
+Even though the dtschema allows having these Root Port IDs in the controller
+node, it is deprecated (odd that we don't mark it as such). These properties are
+supposed to be added to the Root Port binding and the DWC core should parse them
+and program the IDs if available.
+
+But the DWC driver doesn't parse Root Port nodes atm. OTOH, your colleague is
+working on a series that does that and once that gets submitted, please rebase
+this series on top and resend.
+
+- Mani
+
+> Signed-off-by: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 7 +++++++
+>  drivers/pci/controller/dwc/pcie-designware.h      | 2 ++
+>  2 files changed, 9 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index e92513c5bda5..e8b975044b22 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -619,6 +619,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  		}
+>  	}
+>  
+> +	pp->device_id = 0xffff;
+> +	of_property_read_u32(np, "device-id", &pp->device_id);
+> +
+>  	dw_pcie_version_detect(pci);
+>  
+>  	dw_pcie_iatu_detect(pci);
+> @@ -1094,6 +1097,10 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
+>  
+>  	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0);
+>  
+> +	/* Program correct device id */
+> +	if (pp->device_id != 0xffff)
+> +		dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, pp->device_id);
+> +
+>  	/* Program correct class for RC */
+>  	dw_pcie_writew_dbi(pci, PCI_CLASS_DEVICE, PCI_CLASS_BRIDGE_PCI);
+>  
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index e995f692a1ec..eff6da9438c4 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -431,6 +431,8 @@ struct dw_pcie_rp {
+>  	struct pci_config_window *cfg;
+>  	bool			ecam_enabled;
+>  	bool			native_ecam;
+> +	u32			vendor_id;
+> +	u32			device_id;
+>  };
+>  
+>  struct dw_pcie_ep_ops {
+> 
+> -- 
+> 2.25.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
