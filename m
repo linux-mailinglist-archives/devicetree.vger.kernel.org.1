@@ -1,123 +1,144 @@
-Return-Path: <devicetree+bounces-243159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE192C9457F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 18:08:30 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B76C94598
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 18:23:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 797B834381B
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 17:08:30 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B8EA3346B65
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 17:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF6124291E;
-	Sat, 29 Nov 2025 17:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68DDA26E165;
+	Sat, 29 Nov 2025 17:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jej8diPT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BmZnVym6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E500823E325;
-	Sat, 29 Nov 2025 17:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A829475;
+	Sat, 29 Nov 2025 17:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764436107; cv=none; b=LW8He29gENUbYEV3sL8zdUaGDco5zmVKKjOHlX9zkJ4B9btSo74FVMEM6aRqfPPt5JouP/P9TibfDXOcTQBtpCj6cvrudoc533J3JdcLS1BZ0dEGO2HlHRBZFiselipgI1idliaR25LsyUmIDL34OuViW3XOHLVwxMgKfDKMmhM=
+	t=1764436995; cv=none; b=IaeZAwskRnmAZA+PfI0pg9uGWGqhkg2ol1rWGDMzllR77GFDsMg1CBVqWM3AjZxsZRwv2auTiYMo7fMDk/xRogjgoVcfeZ9JrUkzqp8yPg/NP34PaFgHCEsgPH7TZraZaxUayKwgWGSs+KOWn6sMNRai077SIioUl4LCBZWIULg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764436107; c=relaxed/simple;
-	bh=+bevP/0R/VoXIhpIIKnzgq5Z8RfHu4MVErQ3XrbNF3E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cs/0msTzouIP9I7nZM3nYvZf4BsIeYGK4yE5+SxuqKYZH2JmVCgb95to/olAWbmdnHQPXJRtFcXJX+9ePwVYmLTjdPoEqjva1aQvJbZXL+och0X6QHNnfQI3Rd0dXvOKAilNrq4LxQpaxTEAjYkyjnkXeGDYnrGMFFgk2ibJKYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jej8diPT; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764436105; x=1795972105;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+bevP/0R/VoXIhpIIKnzgq5Z8RfHu4MVErQ3XrbNF3E=;
-  b=jej8diPTsA8IUFRe4EoeJaFh6IHAJ7w4MP5cX18xf33Zgn9uNeJZEC2V
-   cwPfp47oy/Q1tPHfLT2LcaTpGJzEvkSmf5Y2qYy/YQUB/U8xFFOkmk6x/
-   5yns75l7ZA0OQbDrFjSObQz0DUiCIJKKSK5JHE7v2/TCfsAOtnYjJvbnJ
-   pwpsUBABVlBGStrlLfzZH0ZSrnw6KMdKxhy92ChHvHHfIy+yIOTOCgnk1
-   oY8KPKvGhCutKchSGm7DNRl3v0fv+X4VyRk73CeeyYpp+iU4x3gxaClJ3
-   /Yfiv2CaltEEWrZhbsEXlcKw/Ps4UUYqHqOfHnRz0vGASrSvW+l7NpSMm
-   Q==;
-X-CSE-ConnectionGUID: URbHHc9ZR/eogLZ4PURrpw==
-X-CSE-MsgGUID: I+fJuZY5RtSe3assQOhGFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11628"; a="76749359"
-X-IronPort-AV: E=Sophos;i="6.20,236,1758610800"; 
-   d="scan'208";a="76749359"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2025 09:08:24 -0800
-X-CSE-ConnectionGUID: EziT+gQLTu2QFv3RtSKfyg==
-X-CSE-MsgGUID: HPx5jHnCTAmAzzOq8iOJSQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,236,1758610800"; 
-   d="scan'208";a="197886281"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 29 Nov 2025 09:08:21 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vPOQk-000000007PR-2yvB;
-	Sat, 29 Nov 2025 17:08:18 +0000
-Date: Sun, 30 Nov 2025 01:08:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kurt Borja <kuurtb@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tobias Sperling <tobias.sperling@softing.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kurt Borja <kuurtb@gmail.com>
-Subject: Re: [PATCH v3 2/2] iio: adc: Add ti-ads1018 driver
-Message-ID: <202511300040.bsFH07WD-lkp@intel.com>
-References: <20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
+	s=arc-20240116; t=1764436995; c=relaxed/simple;
+	bh=hcf0tmmS2hYQVgxM04bUNP6aZ50+ZdT+pgjr2voqQZs=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=WODRA1mx9XPsTiCUIbXFpi07uxF6XVrWxlpNPDApqg1CoyTrxDV45qfeOhrtiWtxwMZohXsSDRdR9u+TBOG1+ercYMyWe5dYbMVjpCZYqpQGR1Rd/1vA9HZ8KUjQ8S2IKG4/Kz8HW6BU6nkI3P6sMzHcCsLFhbtOKSNxU/a7iq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BmZnVym6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F234C4CEF7;
+	Sat, 29 Nov 2025 17:23:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764436994;
+	bh=hcf0tmmS2hYQVgxM04bUNP6aZ50+ZdT+pgjr2voqQZs=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=BmZnVym62T9pOToXgo3TRIXQhqhDaqGCp9apcAXQKDne8ZpnzBipOiq8zF2iFiiW3
+	 E6QTN/G9phedlmcC6mCMkLUttvRLcjTDkdyVCKT7pjOQnvK/OyhAUAStID3yTMqqFy
+	 y1e7cf5dzWpeKnTfJ9LVeCLEi5nTO97RKbap97EH80o0xy7Xedxlpo9BHTlVRzTuAj
+	 c4IBrmwl611PE/f6fRIyx8x+MK0kz6z0ePXgLhS2iAiAyBGHSaCeS7uMqm75Ic+euI
+	 OY6rXsrCrJgN17273rWFrjq9uKjMmSKZUIBFJ8YjCJ5nKMOhal2qCFNdJV/6oLdstW
+	 mYJhdPrxbzUHA==
+Date: Sat, 29 Nov 2025 11:23:13 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Jiri Slaby <jirislaby@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Biju Das <biju.das.jz@bp.renesas.com>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Biju <biju.das.au@gmail.com>
+In-Reply-To: <20251129164325.209213-2-biju.das.jz@bp.renesas.com>
+References: <20251129164325.209213-1-biju.das.jz@bp.renesas.com>
+ <20251129164325.209213-2-biju.das.jz@bp.renesas.com>
+Message-Id: <176443699313.11808.1467058497468917565.robh@kernel.org>
+Subject: Re: [PATCH v5 01/17] dt-bindings: serial: renesas,rsci: Document
+ RZ/G3E support
 
-Hi Kurt,
 
-kernel test robot noticed the following build warnings:
+On Sat, 29 Nov 2025 16:42:57 +0000, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+> 
+> Add documentation for the serial communication interface (RSCI) found on
+> the Renesas RZ/G3E (R9A09G047) SoC. The RSCI IP on this SoC is identical
+> to that on the RZ/T2H (R9A09G077) SoC, but it has a 32-stage FIFO compared
+> to 16 on RZ/T2H. It supports both FIFO and non-FIFO mode operation. RZ/G3E
+> has 6 clocks(5 module clocks + 1 external clock) compared to 3 clocks
+> (2 module clocks + 1 external clock) on RZ/T2H, and it has multiple resets.
+> It has 6 interrupts compared to 4 on RZ/T2H.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v4->v5:
+>  * Updated commit description related to IRQ difference
+>  * Added aed and bfd irqs for RZ/G3E.
+>  * Moved reset: false to RZ/T2H SoC and dropped the else part for RZ/G3E.
+>  * Updated conditional schema with interrupts and interrupts-names.
+>  * Dropped the tag as there are new changes.
+> v3->v4:
+>  * Dropped separate compatible for non-FIFO mode and instead using single
+>    compatible "renesas,r9a09g047-rsci" as non-FIFO mode can be achieved
+>    by software configuration.
+>  * Renamed clock-names bus->pclk
+>  * Rearranged clock-names tclk{4, 16, 64}
+>  * Retained the tag as the changes are trivial.
+> v2->v3:
+>  * Dropped 1st and 3rd items from clk-names and added minItems for the
+>    range.
+>  * Added minItems for clk and clk-names for RZ/T2H as the range is 2-3
+>  * Added maxItems for clk and clk-names for RZ/G3E as the range is 5-6
+>  * Retained the tag as it is trivial change.
+> v1->v2:
+>  * Updated commit message
+>  * Added resets:false for non RZ/G3E SoCs.
+> ---
+>  .../bindings/serial/renesas,rsci.yaml         | 99 ++++++++++++++++---
+>  1 file changed, 88 insertions(+), 11 deletions(-)
+> 
 
-[auto build test WARNING on f9e05791642810a0cf6237d39fafd6fec5e0b4bb]
+My bot found errors running 'make dt_binding_check' on your patch:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kurt-Borja/dt-bindings-iio-adc-Add-TI-ADS1018-ADS1118/20251129-120153
-base:   f9e05791642810a0cf6237d39fafd6fec5e0b4bb
-patch link:    https://lore.kernel.org/r/20251128-ads1x18-v3-2-a6ebab815b2d%40gmail.com
-patch subject: [PATCH v3 2/2] iio: adc: Add ti-ads1018 driver
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20251130/202511300040.bsFH07WD-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251130/202511300040.bsFH07WD-lkp@intel.com/reproduce)
+yamllint warnings/errors:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202511300040.bsFH07WD-lkp@intel.com/
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
 
-All warnings (new ones prefixed by >>):
+doc reference errors (make refcheckdocs):
 
->> Warning: drivers/iio/adc/ti-ads1018.c:183 function parameter 'ads1018' not described in 'ads1018_get_data_rate_mode'
->> Warning: drivers/iio/adc/ti-ads1018.c:197 function parameter 'ads1018' not described in 'ads1018_get_pga_mode'
->> Warning: drivers/iio/adc/ti-ads1018.c:213 function parameter 'ads1018' not described in 'ads1018_set_data_rate_mode'
->> Warning: drivers/iio/adc/ti-ads1018.c:229 function parameter 'ads1018' not described in 'ads1018_set_pga_mode'
->> Warning: drivers/iio/adc/ti-ads1018.c:246 function parameter 'ads1018' not described in 'ads1018_calc_delay'
->> Warning: drivers/iio/adc/ti-ads1018.c:272 function parameter 'ads1018' not described in 'ads1018_read_unlocked'
->> Warning: drivers/iio/adc/ti-ads1018.c:302 function parameter 'ads1018' not described in 'ads1018_oneshot'
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251129164325.209213-2-biju.das.jz@bp.renesas.com
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
