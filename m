@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82AAEC93F93
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 15:27:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCC41C93FB4
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 15:31:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5A4194E1CF7
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 14:27:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9143A4E1BC5
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 14:31:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB21530EF9F;
-	Sat, 29 Nov 2025 14:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9849A30FC34;
+	Sat, 29 Nov 2025 14:31:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uvXC1hcF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWj4NUCZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DE71FBEB0;
-	Sat, 29 Nov 2025 14:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C30E2475CF;
+	Sat, 29 Nov 2025 14:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764426470; cv=none; b=L2/LDfchOSBn4BBaL//T9Gjy7WEZS0k3NMNuz4CyrnZCrUz/UkrXuXklnO1GXqvILZAKRQaIAclzMWkygLOa98k3AJIeCdTPlG2pwPjeUtqm88+XuFofe+iqTSbHRxCovVnqhgIbhXwTSz06UUzczwPc171df0BpUlNS4gNH8Ic=
+	t=1764426674; cv=none; b=Sxo1hPp3WSd5PqN2GqITi1mZoFmIeGeo/36jarfEx8lnSxPMgawifVPSIz06jZ/DF7BV1RhbdK1rU0HRklUySiXM+6Q+3dm7o4xbODItXmaY36zkXJt6zGyibeOUbEhOUOP7tcy3Ln0klK5Swd4/FnL2Zo7cfcMPeEZG7gkFQ6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764426470; c=relaxed/simple;
-	bh=uS7GGlQpWIhTFQCtrFobDBHk9BaN05HGWWFfDn6mwl0=;
+	s=arc-20240116; t=1764426674; c=relaxed/simple;
+	bh=OOXM+8VJNr1jofMq1aDwIoY/tJO1ZvIsD3b19brw7lc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p7P4LGkG6qbta6IxGsMz34lCZ2C/5ZSZVa7QEc/Ms0XUZzWOCdQ+annv5cG2pT5X7jIagBgDuPKaAagPUgiBVhDJ0WkNHmgWvJZAqkmRh4745+RzxJIzbP1mGmXckwOKEAzZlUMAot6itZUU3QbWBvPtw/DEFu7yAuGIoIBVgL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uvXC1hcF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 863A4C4CEF7;
-	Sat, 29 Nov 2025 14:27:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FCdDzs/duUsn4BXITUAsA78yUYV+ycWDFrOKQqPRv09WDwaYOG8NQ5VyRJWb7smtVbyLITP7KxwocUlAhoNl4N5VHqA9AR8qi9carSdI/ASsPPzqDzDXaSf/eUJ+F+MgnUkLypMKFzWgcPPnlfupXu38/SqX9mNx6/XDnkA91Og=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWj4NUCZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E083AC4CEF7;
+	Sat, 29 Nov 2025 14:31:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764426470;
-	bh=uS7GGlQpWIhTFQCtrFobDBHk9BaN05HGWWFfDn6mwl0=;
+	s=k20201202; t=1764426671;
+	bh=OOXM+8VJNr1jofMq1aDwIoY/tJO1ZvIsD3b19brw7lc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uvXC1hcF3No3MKFbAhvGQOaBQELoFTueTuLtR45c2yqAOaSDIG76e2kB9eL9Z216c
-	 z5DubgWYj/2MvOny74Qtwdw4Ch3CB8XL5cKQpXMpVGw3CfYC+JR07ou7d7VlQu1fkp
-	 htpGfhks6OpQYSap0q/p6bVoBioiIfpqCYb27/c7hV8gylwcIuA/1YqbzctoDx7Z6L
-	 qq3DLY5D5NyV/fYFvOlqq/8fvx1RyKyfA4R7VlpNR3oSskNIjKFBW1TX9lPQAJ2PBt
-	 5yEZCQuKmJqt13KRzn7uPaT8cGFWLBgd8bke40hlzi+OoDG1eKtZDFgBk0mTRM9Tm7
-	 VaXvHFeNjvTyg==
-Message-ID: <3baa27d7-f76e-4038-b481-57bd446ce866@kernel.org>
-Date: Sat, 29 Nov 2025 15:27:44 +0100
+	b=PWj4NUCZXJCf0cQOQb/LwGSzkgtSkTq3JT0SBX/1zyzCien82/KxUzpcFPaPNswO1
+	 LPsmXmQGJaV/nsBwXaRc+feT5qhOHUyfve6rwdiYNZTuZDq4ve43Lr9B6KzaOEx1BT
+	 3zmN40bldzF85pdUb/lerOgzou1GFRyUUPNCnRVlHr1SUTob626mzl5IcZJvMWTvAt
+	 OANnR3Mpymo9zIAywoq14c/rXgiM7+MbSLIw+wWZzQrHmOWro44T3QcT70eaQ626DY
+	 MvjC4jKdWWhEH5sfrKC/+iEzAFN9Gm2uGILsrHvsHzIGHMqlgMtiMcR6i1cpV+wLao
+	 gm220dgQpILkw==
+Message-ID: <9efa0a3c-ffef-488a-97f3-45b9649d35fd@kernel.org>
+Date: Sat, 29 Nov 2025 15:31:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/6] clk: conf: Support assigned-clock-sscs
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 10/10] power: sequencing: pcie-m2: Add support for PCIe
+ M.2 Key E connectors
+To: manivannan.sadhasivam@oss.qualcomm.com, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>,
+ Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Mark Pearson <mpearson-lenovo@squebb.ca>,
+ "Derek J. Clark" <derekjohn.clark@gmail.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Cristian Marussi <cristian.marussi@arm.com>,
- Sebin Francis <sebin.francis@ti.com>, Brian Masney <bmasney@redhat.com>
-Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, arm-scmi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-References: <20251128-clk-ssc-v6-2-v6-0-cfafdb5d6811@nxp.com>
- <20251128-clk-ssc-v6-2-v6-3-cfafdb5d6811@nxp.com>
+ <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20251125-pci-m2-e-v2-0-32826de07cc5@oss.qualcomm.com>
+ <20251125-pci-m2-e-v2-10-32826de07cc5@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,41 +117,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251128-clk-ssc-v6-2-v6-3-cfafdb5d6811@nxp.com>
+In-Reply-To: <20251125-pci-m2-e-v2-10-32826de07cc5@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/11/2025 04:14, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Parse the Spread Spectrum Configuration(SSC) from device tree and configure
-> them before using the clock.
-> 
-> Each SSC is three u32 elements which means '<modfreq spreaddepth
-> modmethod>', so assigned-clock-sscs is an array of multiple three u32
-> elements.
-> 
-> Reviewed-by: Brian Masney <bmasney@redhat.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/clk/clk-conf.c | 69 ++++++++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 69 insertions(+)
-> 
-> diff --git a/drivers/clk/clk-conf.c b/drivers/clk/clk-conf.c
-> index 303a0bb26e54a95655ce094a35b989c97ebc6fd8..dd6083597db3f8f27d86abf5640dfc3fb39a9b88 100644
-> --- a/drivers/clk/clk-conf.c
-> +++ b/drivers/clk/clk-conf.c
-> @@ -155,6 +155,71 @@ static int __set_clk_rates(struct device_node *node, bool clk_supplier)
->  	return 0;
+On 25/11/2025 15:45, Manivannan Sadhasivam via B4 Relay wrote:
+>  static const struct pwrseq_pcie_m2_pdata pwrseq_pcie_m2_m_of_data = {
+>  	.targets = pwrseq_pcie_m2_m_targets,
+>  };
+> @@ -92,6 +174,96 @@ static int pwrseq_pcie_m2_match(struct pwrseq_device *pwrseq,
+>  	return PWRSEQ_NO_MATCH;
 >  }
 >  
-> +static int __set_clk_spread_spectrum(struct device_node *node, bool clk_supplier)
+> +static int pwrseq_m2_pcie_notify(struct notifier_block *nb, unsigned long action,
+> +			      void *data)
 > +{
-> +	struct clk_spread_spectrum *sscs __free(kfree) = NULL;
+> +	struct pwrseq_pcie_m2_ctx *ctx = container_of(nb, struct pwrseq_pcie_m2_ctx, nb);
+> +	struct pci_dev *pdev = to_pci_dev(data);
+> +	struct device_node *pci_remote __free(device_node) = NULL;
+
 
 This is an undesired syntax explicitly documented as one to avoid. You
 need here proper assignment, not NULL. Please don't use cleanup.h if you
 do not intend to follow it because it does not make the code simpler.
+
+> +	struct device_node *serdev_remote __free(device_node) = NULL;
+
+This is even worse. Instead of making it local scope, you have automatic
+cleanup for entire function with completely redundant constructor.
+
+Please, use cleanup.h only if you really want to follow its spirit.
+Otherwise it does not make the code easier.
+
 
 Best regards,
 Krzysztof
