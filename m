@@ -1,330 +1,110 @@
-Return-Path: <devicetree+bounces-243166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED09C946CB
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 19:53:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABCD5C94757
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 20:54:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 608AD4E1603
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 18:53:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C72AB4E3B9E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 19:53:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1002580FB;
-	Sat, 29 Nov 2025 18:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6287C30FC03;
+	Sat, 29 Nov 2025 19:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="IWP+C0BC"
+	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="hbJujqS6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011017.outbound.protection.outlook.com [52.101.125.17])
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80DC2220F3E;
-	Sat, 29 Nov 2025 18:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764442424; cv=fail; b=Lk9VHU/SVmleEx77dRtgzh+QTS870i1ioFUuZYPy79UPqG4FxovPXkRdCG1pPc28EokZ7yoidmQRljAIQrDHtqG6nOr8nsypQqA2QjdKoR62PWOei9dR4EuMdTjoSD4MmKzIDmzHCq+VeQtI1ammKzR4yypbixv5EN8UkyhsNi8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764442424; c=relaxed/simple;
-	bh=Ir4MLG4BT3pTS+IwmzOv7YSf017chmI/neF/mMMxwrk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=jQYh/rqdhqaTbgMEltt9wIBIyOZdz29a5wrDU7qQKDWx45fAwRrgUw78z6vNohXuCRveHeaODROsM1G3546atTZA8YtO0IDJrzXa+jOGBgnqICzy8FJIv2feT1oaVo/Nx+E7txEatZQlDzVIfCoWMAIH40HIGUEYFjZ4tNTnbNU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=IWP+C0BC; arc=fail smtp.client-ip=52.101.125.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I5YyJ3hra4SToYPJSHyDg2wIiACMACjdWqpFjUzw1AtIPToX7mIZKSpjSCruJ0+j/0dGcOuXFFPgK7/YKQWWhYvjnWp4ZUZZ8RNR9mwVcpG9vBjzQ/64qQOyME3Cu3uKJdO+nAGoUcrlVDhHKRc8C8wjv2a5w3m/CHpNyvLQSLVMn/UPSyQgpQ3TQTZbqCfnvz7n60kBatbiy92rN0jqmZqolcsDAvSvCGq0X9eNp2PMHVquBvrIQfTdKah7VqwGjKOajJqhPbkVzIjFO/Rbw8l1NKbWsnAveSbVdkBKOzdBE+hIbAKDsB3J+9d9y1rN9IEYzww0jTg0g1OZbNpsPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CRXR25fZTl2Zfuu/duSZj56F9tsEyclDuivjSRjpFg0=;
- b=GWcAvzeUH7ue0h2KZrD4nv/PHRDQ3AYmgtDf8rJPJUO2uLo+Ei1rvCy4rv7BUN1ln0W64CH/FT7YuFKYNZ5vr7q/KizZSlqgy+n/AdFC8UP9rlHW1wQ116T7PQY/mPKkhHtDVuZqpLtwfNFl4d+BeekxiAaaIF8N1+EpcZFgNIHmq9tEJK/0UeXlieMjWfa0Ze6i6NqTiqxFK2Dv08cSY//3UZyyOTi5wl/Er4Dcf23Qo2ko+hWJxmgNeWJxFaogSKEdT42QNwm3waCMckpnvKohwxWmDw8XDPWwO+SDoyIgJ9BSt19oMub53n+xwJ2RrxZyHm3c7BkPPoJBlvxNkw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CRXR25fZTl2Zfuu/duSZj56F9tsEyclDuivjSRjpFg0=;
- b=IWP+C0BCP0Aai84MXOPyBkrwRuwW/DRnrBBguM+Q9H4VLL/TCC6wUcpBtW3YZUV+NGNMCRuOIW3sC0evKW4OyV5eim9+Zc7qGpgN829Oa+NnCKMZBcmebD3wKFkQmUrWUeTU2VT4sEFTBGVvj8EZdZauM42tm9nyh9jHScShQ+0=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYWPR01MB11060.jpnprd01.prod.outlook.com (2603:1096:400:398::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.8; Sat, 29 Nov
- 2025 18:53:34 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%6]) with mapi id 15.20.9388.003; Sat, 29 Nov 2025
- 18:53:34 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: biju.das.au <biju.das.au@gmail.com>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Prabhakar
- Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
-	<biju.das.au@gmail.com>
-Subject: RE: [PATCH v2 4/4] arm64: dts: renesas: r9a09g047e57-smarc: Add
- support for WIFI + BT test
-Thread-Topic: [PATCH v2 4/4] arm64: dts: renesas: r9a09g047e57-smarc: Add
- support for WIFI + BT test
-Thread-Index: AQHcYWFGIkGa/4oRsEOyQV4avsZfZLUJ/+Ow
-Date: Sat, 29 Nov 2025 18:53:33 +0000
-Message-ID:
- <TY3PR01MB11346098C68AF3DC9147F0E5C86DDA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20251129185203.380002-1-biju.das.jz@bp.renesas.com>
- <20251129185203.380002-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20251129185203.380002-5-biju.das.jz@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYWPR01MB11060:EE_
-x-ms-office365-filtering-correlation-id: ea825211-f338-4e19-6cfa-08de2f7898df
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?nsB9Qmmazb9zyyLF1zxslfAJQFpURjiFs8uW5MVSKSEx0L7F6cYtFuamyoda?=
- =?us-ascii?Q?YWAgBPh4ky8NuP+aTKcIx8SnACt21jHAD901kBDEQ4rV3Vk9326XOTW8dS0L?=
- =?us-ascii?Q?ObuvG3fJpE202N3NFh32Ja39FPSQ59Jba/CNU1p3hrA4EFH788UdTf8SCcR6?=
- =?us-ascii?Q?BnZXQJ3NXXLF3m1wBNmOQCcW4NaLymK7xHBzg+OUbzCimJRs8L8hr+xuQC83?=
- =?us-ascii?Q?BjS+X5D2GYNgmlAsI7TMvEbvHudFejq1bpeNU5XCXlu1l5c1EwzsK7e2/gsI?=
- =?us-ascii?Q?GemRi7AlNJG5UudRwAEma8e+nbcrXBBZtUMUo4NafP+QNv6JwCIMF8DtAnzm?=
- =?us-ascii?Q?1H8yNIHJc6D/DBz/D7r9MjjiqJfxH3ZOT2/3rzKUFggproa5FBtEQc/4ma2j?=
- =?us-ascii?Q?MXVvJ4kPDOk3DXH1mt4j9RcdHq0nwuTSWwWBFkS85HSLaZqhE83/Zv7UWbLU?=
- =?us-ascii?Q?M3Khr/LJezJlIufsk2SkkLkpcDZ83NG7QBvoc9ICinJlwH9DnNxKEKkIbjd0?=
- =?us-ascii?Q?Cpd+rLzrlorCdwFoezZocL3+qRPCwIAu78dUDg/AZTrFN6Ut0us+2V6JIobc?=
- =?us-ascii?Q?vdGLzm9+k0O1d4sAcWLRE1BA+dS/fumOFyvl/a55pv0nWRaVLWXfyO4Xx93O?=
- =?us-ascii?Q?MNqH4ZKOJ6+JPL/zYbJwNbf+UMFtTReHtt8fVE/U5iqX33FsTRb/V1EBfKTS?=
- =?us-ascii?Q?F6IWrTfG1EbU5fV+CqYZj9w0O0pVoAiENKhPbOliZb3XpTEHGLs3VJsW8zoN?=
- =?us-ascii?Q?Zg8IBQA6eH28BLz8wcbJmfT2pN09MPdqLKpH5D1hvouKZQaujvKtb6a+XKKY?=
- =?us-ascii?Q?eXzoC7CO3nHojj7rtSYtoxruUGEvyg7Gkrq+GDBTeckinKeRNQPz+ukQ1DWf?=
- =?us-ascii?Q?fFiG6zSRT9WuN2R04C+PEJax6hISQE2oC/zO2XozeFDo1EB/lf8poStXCk7z?=
- =?us-ascii?Q?2no90Cm1XUxLb9TpI4dk7DVYO844wM6buf/S/hopN0RpUhzwtI08ZXx9shBE?=
- =?us-ascii?Q?rNz7xt2avs48DYaopDr+Z7g2IsTf1M/lnWICO+t9ZXYYggOALINhpsEr1nQ+?=
- =?us-ascii?Q?c6LMjFD6UteC/ciT2xXqwWP0BG5qlF4XtWoOFN7ZGGoyUEJNn4K6Lyo+K5O8?=
- =?us-ascii?Q?w3Vj6UGBW1SYV/e2J1K0cr8KIHrHX6kjY8gsF4otXvCy1UVAV/lSa6zKMEfo?=
- =?us-ascii?Q?AuLEwlgCTCX5R0hxSoHjmQnOVN0gV9dJmVIZulaP6UMO3Nqhq7NZLc/dBcJ3?=
- =?us-ascii?Q?GrRuP1Ihphl/umZseDksACKR5yctyYOeuw7iPb4iI64mopCmdjqiYQ3zWcAg?=
- =?us-ascii?Q?gTGwsFd8Aa1gWx29TRtSC0ctQmEon3wSOTAYT8D6T7VqjD3bkx7MJO4O+hSx?=
- =?us-ascii?Q?BXLbe1pctviwkI74HMHJPR7Eftp+aIEuJiCvzRBZFGvNqOp+CWg3ceD70GDJ?=
- =?us-ascii?Q?9FxeKUCyUxVyOlnjLoEDwuKe1fo7mwZxMzxSODSCIWbU+Eqfr1dlgYYeKc+k?=
- =?us-ascii?Q?KZ0pW8ABkVZBCBXdn2jYVI44PuhE4LBbEvpI?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?05GOydy4iQIz/1O8+PVGH62QUrSAA7uuzO3YcRSOyPkqP58PENykZCY7EWOI?=
- =?us-ascii?Q?+S+QDtXCPXO/9f4wtz6/rgGW568F0r9U1/ut8o8XgwEHSo3ARvNmjOKyx0Rm?=
- =?us-ascii?Q?SesZipBms22wKvrUgbPwDZGkG8kyrFoJTh6GxUJDWSYI4URA9YcN808qS6z6?=
- =?us-ascii?Q?ZteEDonWC+/EC+Lznj9re7X4QajFrlfWtzqhSxXYb/zIyRGhzqEM+nXWe6qQ?=
- =?us-ascii?Q?BDCf5tWd6O1+Iprh2wjQrEnTxRALEraRMZSaVihEuV8CiPCIQyC8dB5pppDi?=
- =?us-ascii?Q?QrilNPwfMDC+LuWfqC4hEpzZnrkJN6nz2n6lAJF9z+MfIcxbXC374J1IAeBa?=
- =?us-ascii?Q?2KrSIYIrLZhGi3xI3XNU5MyCoYLoWrCtuTdfokfonQp0aBgxrZvviDpEPJMA?=
- =?us-ascii?Q?MKPA7WFpYmBK9mTnIgqTYEuH2T0b9CSGqWCm01hlwPsUTBLcuroT0Hr3SVDj?=
- =?us-ascii?Q?0tZOwwzanYaPCVZ7X87n0gljQkDP2BKFFv81ltIrS8kZ936ngEDDsTn2iEhn?=
- =?us-ascii?Q?wxTsk+GvXTE2CCBTOdalitJ3BH2XyzJ64JOh3f4qqEhyOpx84xa8w4m18NPJ?=
- =?us-ascii?Q?U0sKWcQflQHyAvAdtmnx+lKy3yD3txbTDPLlyVTr3zBUamT1MWrNwaCA/R6i?=
- =?us-ascii?Q?nQVB8LDEuPky6M8uHQv32FJ7Pvknr3AoWMSO7CBvXR48IbWjuV3XIsL4+R8/?=
- =?us-ascii?Q?rlUshm1GGfsCM32yVgnQy8sd0N+6O7BiZqnuONiOQ94vCXA5q7Dm+AYKG7d5?=
- =?us-ascii?Q?KWWbRqtFKzr+HWCpXQMBilUt8HpYB/UQqG44CCUxPWLu6vaatj5j8nmfabE6?=
- =?us-ascii?Q?iblgkBqkTyOWmnp9FExBi+5lVWAdoTmchTNqoQ5sBGyGvNDhRLZePLNPt4L5?=
- =?us-ascii?Q?6bLBg4YYWeoRQCPRlpsE8mNpvAerdjJFGHy7oGcUUkq2muluBNDHZxROcBUN?=
- =?us-ascii?Q?wLx9Zh5e7Ludx+/xv6MIGFyJq4Zncg9okBlhtcZWlwfownrcQ3GDgpmoSBbg?=
- =?us-ascii?Q?ddEfmbc+b+RyAjxupOvmM7K/g831l0nDIGado/83ajCY/Vo9IYYsSZ11K/4Q?=
- =?us-ascii?Q?epKpKkHZ2x2LLc1Gth+YrlNcDw9NenbiWc8294iCtlMJ9dgnNpMvzMe8By94?=
- =?us-ascii?Q?79nuz1TGBhJTM2Q9xR5mMrrXTSI2avxpkWTiXtRoMRfZKUh5KPvhJu45VrGo?=
- =?us-ascii?Q?NcWd9rgb8HxKS2zlWyr1DrMZaCeO6i3Qsg3V9rAfaIzfDYAInUwx3ZfsTeHr?=
- =?us-ascii?Q?4VVOJi9sMSveiBcJplPQkypHam0f0b3cyfwFw0ETpaLnxv5o8SnboBkuX6CX?=
- =?us-ascii?Q?Bdx8OhU/mIEJzMoaAf8bFFpFRxe7KXyNBieAkk8tsDXDOJBW+IB/czm+3Lht?=
- =?us-ascii?Q?mZJ9mrWafvmjhsDZcfI6szjCAhuwLx1dIzlsLBfr95CXPiAsXMD0sLGhydrK?=
- =?us-ascii?Q?PT9IO/DMc7JGpAnEeyf2ck2Y4SpRD/VkVOJKwO9OsIcFyD6/opByMMzQz1Cm?=
- =?us-ascii?Q?hE9XQJTwPROdNU+vHrVg1emogfb01LwXqnEm5BaqqeJh5IrUYTmfKTfPZTjn?=
- =?us-ascii?Q?I4jmpPnt9jFqNseABcj8ifMahwjKWoYaZXzZPDEEiF9Nw0RzJDb0/c2avSN1?=
- =?us-ascii?Q?QA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06143126C9
+	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 19:53:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764446002; cv=none; b=fOXla8DtBTEn5rKn8ln4WBpaQ/RUvQ/Ukqfd4IB1Rhtt0jdoPUzNiT77zZ4bmvel231OH7EbP4rwIotukLRlS4P5L8DNg1MLacKa7e6tIknY7na6xj20qi7y2gNetCC3f3xRENUOOOWzHBlewFgpimNTzoEehzjOgzK6mxxnfH8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764446002; c=relaxed/simple;
+	bh=MrhO1nc68GfeCMgWnvVqz/TZa6wly1L1saVWsed5rlA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=aqpkz9nASCMNtPtrCm5LtNe7uE3yf3tNwPsnlVGSkISyisRf4hm1uLB165hUCia8sF1x7qjznZQAJZA7PhLDRxRoKLv1962eOsTmL36CJprpCMjIp+uS73k/BPhCZv25JaR2QAlUWkUhx3V/vHwRMeDoyBQFh1PjdhKTzm23Kn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=hbJujqS6; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560+5C/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
+	s=submission; t=1764445987; x=1765745987;
+	bh=MQ3uT13n6qq7JkXGN76vfu9uM1WotpK8bIRwkXByhyw=; h=From;
+	b=hbJujqS6Ism7p3H8rRTZ68IE3mNac7tqLmvIL2l9Na3TfRMx4DmOECmVsJtPqzlVY
+	 cTgIqYvqt5PJZ54Rr3P031LjRgRQOUbhM7xLsQDaEv9Kix6eZQ9oNNxgnU7igun29M
+	 ibL801xOd7E4HtiKnuZQpDYXI6qip5W80YOH+s1xJndVCUN/ROyKwcoEEIt0e+AQ4s
+	 GqUdzuNoUEP8WxiQt6JdJbUxzQhm+63LfjgSODijNKHWBmLnqqajXAuKn4dkcZGJwh
+	 ZLdpUa+797t71bez1HjtAs6JxFE5Z5f/fHw88xeqj/oaLLgULyeNlHuBTmRTv61BL0
+	 uK8E69NWw0rtw==
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.18.1/8.18.1) with ESMTPS id 5ATJr5HC007466
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Sat, 29 Nov 2025 20:53:07 +0100 (CET)
+	(envelope-from balejk@matfyz.cz)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea825211-f338-4e19-6cfa-08de2f7898df
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2025 18:53:33.9941
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: G2oCHZASZ2OOfIn5SSX6I0VqaBFFCnzvwY5uSjn1tht5dWLIUyWwKUc+EoLulolYSCxZCyzRFOPPW/Fd1zOe4Mbmxjq5oXHuJSZ+QD000r8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB11060
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sat, 29 Nov 2025 20:53:05 +0100
+Message-Id: <DELFWFLO1M8G.1AMPX0VKEOJND@matfyz.cz>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>,
+        "Rob Herring" <robh@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        "Conor Dooley"
+ <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/2] pmdomain: add audio power island for Marvell
+ PXA1908 SoC
+To: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+From: "Karel Balej" <balejk@matfyz.cz>
+References: <20251127190237.745-1-balejk@matfyz.cz>
+ <20251127190237.745-2-balejk@matfyz.cz>
+ <51c9408e-45e7-4ce7-9e95-6e0a45bcc8fa@dujemihanovic.xyz>
+In-Reply-To: <51c9408e-45e7-4ce7-9e95-6e0a45bcc8fa@dujemihanovic.xyz>
+X-Spam-Level: ****
 
-Hi Geert,
+Duje Mihanovi=C4=87, 2025-11-28T22:30:55+01:00:
+> On 11/27/2025 8:02 PM, Karel Balej wrote:
+>> diff --git a/drivers/pmdomain/marvell/pxa1908-power-controller.c b/drive=
+rs/pmdomain/marvell/pxa1908-power-controller.c
+>> index ff5e6e82d3f8..e32eb227f235 100644
+>> --- a/drivers/pmdomain/marvell/pxa1908-power-controller.c
+>> +++ b/drivers/pmdomain/marvell/pxa1908-power-controller.c
+>> @@ -29,7 +29,10 @@
+>>  #define POWER_POLL_TIMEOUT_US	(25 * USEC_PER_MSEC)
+>>  #define POWER_POLL_SLEEP_US	6
+>> =20
+>> -#define NR_DOMAINS	5
+>> +#define APMU_AUD_CLK		0x80
+>> +#define AUDIO_ULCX_ENABLE	0x0d
+>
+> I would group these with the other register definitions.
+>
+> Also, it's probably better to be more consistent with the naming, so I'd
+> prefer APMU_AUDIO_CLK.
 
-> -----Original Message-----
-> From: Biju <biju.das.au@gmail.com>
-> Sent: 29 November 2025 18:52
-> Subject: [PATCH v2 4/4] arm64: dts: renesas: r9a09g047e57-smarc: Add supp=
-ort for WIFI + BT test
->=20
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->=20
-> Add support for WIFI + BT test M.2 board [1] [1] https://www.embeddedarti=
-sts.com/wp-
-> content/uploads/2021/05/2AE_2BC_M2_Datasheet.pdf
->=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2:
->  * New patch
-> ---
->  .../boot/dts/renesas/r9a09g047e57-smarc.dts   | 43 ++++++++++++++++++-
->  arch/arm64/configs/defconfig                  | 26 +++++++++++
->  2 files changed, 68 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> index 696903dc7a63..76f43c098123 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> @@ -15,7 +15,7 @@
->  #define SW_SER0_PMOD		1
->  #define SW_SER2_EN		1
->  #define SW_SD0_DEV_SEL		0
-> -#define SW_SDIO_M2E		0
-> +#define SW_SDIO_M2E		1
->=20
->  #define PMOD_GPIO4		0
->  #define PMOD_GPIO6		0
-> @@ -46,6 +46,7 @@ aliases {
->  		mmc1 =3D &sdhi1;
->  	};
->=20
-> +#if (!SW_SDIO_M2E)
->  	vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
->  		compatible =3D "regulator-gpio";
->  		regulator-name =3D "SD1_PVDD";
-> @@ -55,6 +56,7 @@ vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
->  		gpios-states =3D <0>;
->  		states =3D <3300000 0>, <1800000 1>;
->  	};
-> +#endif
->  };
->=20
->  &canfd {
-> @@ -201,6 +203,15 @@ usb3_pins: usb3 {
->  		pinmux =3D <RZG3E_PORT_PINMUX(4, 1, 12)>, /* USB30_VBUSEN */
->  			 <RZG3E_PORT_PINMUX(4, 0, 12)>; /* USB30_OVRCURN */
->  	};
-> +
-> +#if (SW_SDIO_M2E)
-> +	wifi18-hog {
-> +		gpio-hog;
-> +		gpios =3D <RZG3E_GPIO(1, 5) GPIO_ACTIVE_HIGH>;
-> +		output-high;
-> +		line-name =3D "wifi1.8";
-> +	};
-> +#endif
->  };
->=20
->  #if SW_SER0_PMOD && SW_SER2_EN
-> @@ -211,6 +222,11 @@ &rsci2 {
->  	uart-has-rtscts;
->=20
->  	status =3D "okay";
-> +
-> +	bluetooth {
-> +		compatible =3D "brcm,bcm43438-bt";
-> +		max-speed =3D <2000000>;
-> +	};
->  };
->  #endif
->=20
-> @@ -239,6 +255,7 @@ &scif0 {
->  	pinctrl-names =3D "default";
->  };
->=20
-> +#if (!SW_SDIO_M2E)
->  &sdhi1 {
->  	pinctrl-0 =3D <&sdhi1_pins>;
->  	pinctrl-1 =3D <&sdhi1_pins>;
-> @@ -247,6 +264,30 @@ &sdhi1 {
->  	vmmc-supply =3D <&reg_3p3v>;
->  	vqmmc-supply =3D <&vqmmc_sd1_pvdd>;
->  };
-> +#else
-> +&sdhi1 {
-> +	pinctrl-0 =3D <&sdhi1_pins>;
-> +	pinctrl-1 =3D <&sdhi1_pins>;
-> +	pinctrl-names =3D "default", "state_uhs";
-> +	status =3D "okay";
-> +
-> +	vmmc-supply =3D <&reg_3p3v>;
-> +	vqmmc-supply =3D <&reg_1p8v>;
-> +	bus-width =3D <4>;
-> +
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +
-> +	non-removable;
-> +	cap-power-off-card;
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
-> +	brcmf: wifi@1 {
-> +		reg =3D <1>;
-> +		compatible =3D "brcm,bcm4329-fmac";
-> +	};
-> +};
-> +#endif
->=20
->  &xhci {
->  	pinctrl-0 =3D <&usb3_pins>;
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig =
-index
-> 370211c50d12..fc684cf56a6c 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1910,3 +1910,29 @@ CONFIG_CORESIGHT_STM=3Dm  CONFIG_CORESIGHT_CPU_DEB=
-UG=3Dm  CONFIG_CORESIGHT_CTI=3Dm
-> CONFIG_MEMTEST=3Dy
-> +CONFIG_BRCMUTIL=3Dm
-> +CONFIG_BRCMFMAC_PROTO_BCDC=3Dy
-> +CONFIG_BRCMFMAC_SDIO=3Dy
-> +CONFIG_SERIAL_DEV_CTRL_TTYPORT=3Dy
-> +CONFIG_BT_BREDR=3Dy
-> +CONFIG_BT_RFCOMM=3Dy
-> +CONFIG_BT_RFCOMM_TTY=3Dy
-> +CONFIG_BT_BNEP=3Dy
-> +CONFIG_BT_BNEP_MC_FILTER=3Dy
-> +CONFIG_BT_BNEP_PROTO_FILTER=3Dy
-> +CONFIG_BT_HS=3Dy
-> +CONFIG_BT_HCIUART_NOKIA=3Dm
-> +CONFIG_BT_HCIUART_BCSP=3Dy
-> +CONFIG_BT_HCIUART_ATH3K=3Dy
-> +CONFIG_BT_HCIUART_3WIRE=3Dy
-> +CONFIG_BT_HCIUART_INTEL=3Dy
-> +CONFIG_SND_SOC_MTK_BTCVSD=3Dy
-> +CONFIG_SND_SOC_BT_SCO=3Dy
-> +CONFIG_CRYPTO_RSA=3Dy
-> +CONFIG_CRYPTO_HASH_INFO=3Dy
-> +CONFIG_ASYMMETRIC_KEY_TYPE=3Dy
-> +CONFIG_ASYMMETRIC_PUBLIC_KEY_SUBTYPE=3Dy
-> +CONFIG_X509_CERTIFICATE_PARSER=3Dy
-> +CONFIG_PKCS7_MESSAGE_PARSER=3Dy
-> +CONFIG_SYSTEM_TRUSTED_KEYRING=3Dy
-> +CONFIG_SYSTEM_TRUSTED_KEYS=3Dy
+So would I, but this is how the downstream code calls it so my idea was
+that it possibly matches the datasheet and it would seem preferable to
+me to match that even though we don't have it available.
 
-Please don't apply this patch. Added here for testing purpose.
+I could then do the reverse of what you say and call the other
+definition AUD_ULCX_ENABLE but AUDIO seems nicer to me too and this one
+is not defined in the downstream code.
 
-Cheers,
-Biju
+What do you think?
 
