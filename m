@@ -1,423 +1,188 @@
-Return-Path: <devicetree+bounces-243113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64038C93F33
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 15:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5756C93F69
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 15:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C69B3346E46
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 14:21:52 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 463A23416F3
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 14:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0553093BC;
-	Sat, 29 Nov 2025 14:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3706530F92E;
+	Sat, 29 Nov 2025 14:23:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gnl7+dd/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I+AUmgHz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70F0F205E02;
-	Sat, 29 Nov 2025 14:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8313030F80D
+	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 14:23:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764426108; cv=none; b=SseLbE+tpunJhTxxo2l9FpnWroHM/iWdP/ld9jcfNF9XQ2KzrwuKXDT+lCNnc5GTPPzWNJrViTeGeh4iPFpaFY3UBu5CmuO949qJn65J5MGim9OWNFzUCr5kzukg70i46ZKFbBfhUQ4Yaqm8s1vaISXwE4jwMf6j99kHspVNx1Q=
+	t=1764426187; cv=none; b=ofHTTQZL9iLJ4Jbvp7v0SUxkPG7otmrt7sHTTZlF784jit8mi3B5Ry5Wmjrs377M/+9i1Zge6x5a2SaF0r6jY+fvGXYLIo33m6uLQASkZG267Qki8ImLbCOuTe7+dopUIuP4cR2J73g0KbwSy+b30Rgai1O7hDp43fk6DC5s2fg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764426108; c=relaxed/simple;
-	bh=UdDbD5UtZgU/9GIr/N6IdLUsM5nwsb0t+buYE61fspA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UkAzSfGdrN4Z8VieiHibHasxQM6dznWdTAZpvKLEOOllj54T9wt/SX2wn9HB0GhzvbetOz0kEh5Odnq3eihdAzyLWhB8CEkPpMyPjp7EWtPdIjEp9uRsyLjadkIqLkKKOJ3xVM3reW54iMjAiHP04HooXm5WVp3M3/QvlE0i9a0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gnl7+dd/; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764426107; x=1795962107;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UdDbD5UtZgU/9GIr/N6IdLUsM5nwsb0t+buYE61fspA=;
-  b=gnl7+dd/sJmaEQoJp8+n7VZy/HoHjY8tsXRr4iO4GXCxqa6tGRmRBUox
-   0qI+2cWx0DsvJgxW77m/i2EaNRZEbgQbSkOusBNYnQvdmdWEjZdQofMTD
-   vw0qVqKrNoFlWh0Vr94/JejHsxYDztt238DbItCOah884ZvGj/qu+pv3W
-   wXMQbTcMyG0Ub1mx7G1tfkzRDhqtZIl48mswstZrTAQZwh7W/nYT4jrij
-   hugEJ6KyDAewNfTUz1e3PzK+VP36u8KutDVlzdOFVvjjr160q/equP2PX
-   Ef7jhXqb+jLLdN+30CIX1Zg+fb1kYkblwYEa02N1p1HYlhiVT+SL0hwqP
-   w==;
-X-CSE-ConnectionGUID: RoW91CGJTcmLoKlFxEuKaw==
-X-CSE-MsgGUID: Rakh417nQei+Tzhp97WkyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11627"; a="89070756"
-X-IronPort-AV: E=Sophos;i="6.20,236,1758610800"; 
-   d="scan'208";a="89070756"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2025 06:21:46 -0800
-X-CSE-ConnectionGUID: l6/GZCkJQ7Kj/tixSQk0iA==
-X-CSE-MsgGUID: XgHuhJcOT3WBAhUw9NUrWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,236,1758610800"; 
-   d="scan'208";a="193453296"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.50])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2025 06:21:42 -0800
-Date: Sat, 29 Nov 2025 16:21:40 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Kurt Borja <kuurtb@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v3 2/2] iio: adc: Add ti-ads1018 driver
-Message-ID: <aSsBdJZDWcadxEHC@smile.fi.intel.com>
-References: <20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com>
- <20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
+	s=arc-20240116; t=1764426187; c=relaxed/simple;
+	bh=lN5QjyW8AqhnM2NvvPoN2Y87KsW7Fh+/CHqjUYXImis=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=FUtEPemM9dSLLGeNgs4yV3b3LpsZLQA9NPvP6vHa8PWp7t4Lc81ctczmwYrD8Bm39Xhr01HyrgRaywXjKxLiy57eLk8sVBhiDrJdhz8ne+bMYOppri62dz9iFkBl7nhLkk9tOP3pNeGgo9LOXlATdWnhEnm8xsLF2QkGuYsR3pI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I+AUmgHz; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-298287a26c3so33142935ad.0
+        for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 06:23:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764426184; x=1765030984; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rH3A+KGeRgqNkZWfdUBvJzIgerremRicGb0nG6VTDjg=;
+        b=I+AUmgHzAI8TiY4NgeUCFYxdwKalquLeIPpz5vWqCzjIJBO9On0et1rX9cdr6ZhoG+
+         IINhr5fXkzrNJKrNqXKznJ4bFkhBOmsbKbBwz2wHczfZVBMf4CSDC+DnftgiNZYO1QjR
+         06z12LJ520OTAznOs7UkJhM5X204kyiwS/dGIK57+dPXAnTWmNTfR7FcBdvAedU+fQ3v
+         vFqYULKZP21akkfGM3Nf6sirw2efgwH2NI1RwEhZ9BvEVq1UJ+KI7EckBxxT7sSGRf/D
+         5VR2lEPinTQrcfcTF3vQRo/y4d8sjaYWG0NS+pMgwRAbKweihvTFe4wBZBAdXNMtsyuF
+         JGxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764426184; x=1765030984;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rH3A+KGeRgqNkZWfdUBvJzIgerremRicGb0nG6VTDjg=;
+        b=PsptYe2U4R7FL8TG8bmkbL0P+oA1Y95tQ07vvINKLVVgdeJyHp/dG9lkVEbdJ6yJCa
+         DYyXvQwTMcr+ytd3izCAwKhzbOlamp0tT46Pn9C4IOLAiShgtY1V5nYSCykS8zNdQ6oP
+         azWFA2u+poW3Q3ogHafdSTovgu/1D1qIm795+FNc0mNKRqa9U7pR5rXrGniaJ7EL+10Z
+         ULSEx4E3ooXBbMEYAqnhrZgMgIsnt1Y+2x0xlGTEQ5JenkdEYSvgXPSrJyZsBctVVx4J
+         auGFlcqBkeLHYBXB+ZkQCKzWvYBYm1tNiUAvFBkpKm2wvvGaRcFkNFiiNMKQiUFTVZwZ
+         RCXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXp5AlYfKsR+xsc5eO0cljNJ2t1bYL/2cOuhXMmjm1PhBCEQElwB6a3pLtKY5n52xHGcBveyA4FYzB7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy77aAWUMfYYhTUCNdlSV10UAkvQsPQ9vfaETsPTdUxBBcTq188
+	2wl9vQaZv33ZEFVsRhJrVxNc9fJ+V62NmXroMf7sgY8PVHr2dWaY1dq+
+X-Gm-Gg: ASbGncvb0UN5dV3EyviGZJkoe4br5fq3UPIaLX/kEIWt32AQFQl1JsGeUWKuspj1AoI
+	VDz5jDkDy1GzrNeE1W/clMqqdd3wya0cYOJukGbSlWU6Y3ZhEoTrIadaourjncf+wbTbpQR2G/H
+	v1UK8eB/klJteCMYOitsKjsFgAML8FGrmsYMpaoc7kJaHs0KVHqnI+YBYgCtisoQ9sF07DFNJkp
+	Yurej6D5YPi6JF6wOFaO/OBQRKEgqzbgnqSSwp+vuCzOFhP5IBdgNMr3NYkxYLQZHdiXiMFFwFx
+	TZuvyG654WD3fkW2oGSr2JsaxmRqa5vh6mmQ8XyJw2qOMXPILvrKvpaXL86WtFDgviRiEoMKICP
+	070RxdUJqyOpP+5Gm065gnkNSBWyZkWrCeIhUIMkmsiQfiU49pd2P+I7oXG9hTyonoXt3zITs/t
+	kF82lJhN+KT+P5DlMntqLEx8tZbeCsN2702dC6
+X-Google-Smtp-Source: AGHT+IE1jVu9V4HoOeG1lE++xCPlgzcqWH9hmHrVrU/tNRZlwrCcI97tULkhBzUlkSO9Nrzx58Brdw==
+X-Received: by 2002:a17:902:d48f:b0:295:24c3:8b49 with SMTP id d9443c01a7336-29b6bf5d77dmr348278625ad.46.1764426183629;
+        Sat, 29 Nov 2025 06:23:03 -0800 (PST)
+Received: from test-HP-Desktop-Pro-G3.. ([103.218.174.23])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29bceb27532sm75641435ad.57.2025.11.29.06.23.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Nov 2025 06:23:02 -0800 (PST)
+From: Sudarshan Shetty <tessolveupstream@gmail.com>
+To: andersson@kernel.org,
+	konradybcio@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sudarshan Shetty <tessolveupstream@gmail.com>
+Subject: [PATCH v8 0/2] Add Qualcomm Technologies, Inc. Talos EVK SMARC support
+Date: Sat, 29 Nov 2025 19:52:40 +0530
+Message-Id: <20251129142242.3661349-1-tessolveupstream@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-
-On Fri, Nov 28, 2025 at 10:47:13PM -0500, Kurt Borja wrote:
-> Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
-> analog-to-digital converters.
-> 
-> These chips' MOSI pin is shared with a data-ready interrupt. Defining
-> this interrupt in devicetree is optional, therefore we only create an
-> IIO trigger if one is found.
-> 
-> Handling this interrupt requires some considerations. When enabling the
-> trigger the CS line is tied low (active), thus we need to hold
-> spi_bus_lock() too, to avoid state corruption. This is done inside the
-> set_trigger_state() callback, to let users use other triggers without
-> wasting a bus lock.
-
-Thank you for the update, my comments below.
-
-...
-
-> +#include <linux/array_size.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bitmap.h>
-
-> +#include <linux/byteorder/generic.h>
-
-Must be asm/byteorder.h after the linux/* generic group...
-
-> +#include <linux/dev_printk.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/math.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/types.h>
-> +#include <linux/units.h>
-> +
-
-...here
-
-#include <asm/byteorder.h>
-+ blank line.
-
-...
-
-> +static void ads1018_set_data_rate_mode(struct ads1018 *ads1018, unsigned int address,
-> +				       u8 val)
-
-It's a bit too long.
-
-static void ads1018_set_data_rate_mode(struct ads1018 *ads1018,
-				       unsigned int address, u8 val)
-
-...
-
-> +static void ads1018_set_pga_mode(struct ads1018 *ads1018, unsigned int address,
-> +				 u8 val)
-
-This is not so, but I would resplit logically, either
-
-static void ads1018_set_pga_mode(struct ads1018 *ads1018, unsigned int address, u8 val)
-
-(however it's significantly longer than 80 limit)
-
-OR
-
-static void ads1018_set_pga_mode(struct ads1018 *ads1018,
-				 unsigned int address, u8 val)
-
-(better and consistent with the above).
-
-...
-
-> +/**
-> + * ads1018_calc_delay - Calculates an appropriate delay for a single-shot
-> + *			reading
-
-Having this on a single line is fine I suppose.
-
-> + * @ad1018: Device data
-> + *
-> + * Calculates an appropriate delay for a single shot reading, assuming the
-> + * device's maximum data-rate is used.
-> + *
-> + * Context: Expects iio_device_claim_direct() is held.
-> + *
-> + * Return: Delay in microseconds.
-
-Does 0 have any special meaning?
-
-> + */
-
-...
-
-> +	/* We subtract 10% data-rate error */
-> +	hz -= DIV_ROUND_UP(hz, 10);
-
-Hmm... For delays I expect to see adding 10% to have a good margin.
-
-...
-
-> + * Context: Expects spi_bus_lock() is held.
-
-Do we have a lockdep assert for this?
-
-...
-
-> +static int ads1018_read_unlocked(struct ads1018 *ads1018, __be16 *cnv, bool hold_cs)
-
-Hmm... Don't we want to return value in CPU order? I don't know the answer
-here, and IIRC IIO triggers might be actually good with endianess conversion
-done, if required, in user space.
-
-...
-
-> + * Context: Expects iio_device_claim_direct() is held.
-
-Jonathan et al., do we have lockdep assert available for this?
-I really prefer to see the code for it, while comment is good,
-it is not good enough.
-
-...
-
-> +static int
-> +ads1018_write_raw_unlocked(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-> +			   int val, int val2, long mask)
-> +{
-> +	struct ads1018 *ads1018 = iio_priv(indio_dev);
-> +	const struct ads1018_chip_info *info = ads1018->chip_info;
-> +	unsigned int i;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		for (i = 0; i < info->num_pga_mode_to_gain; i++) {
-> +			if (val == info->pga_mode_to_gain[i][0] &&
-> +			    val2 == info->pga_mode_to_gain[i][1])
-> +				break;
-> +		}
-
-> +
-
-You can remove this blank line as the condition is tighten with the for-loop.
-But up to you, I'm fine with either.
-
-> +		if (i == info->num_pga_mode_to_gain)
-> +			return -EINVAL;
-> +
-> +		ads1018_set_pga_mode(ads1018, chan->scan_index, i);
-> +		return 0;
-> +
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		for (i = 0; i < info->num_data_rate_mode_to_hz; i++) {
-> +			if (val == info->data_rate_mode_to_hz[i])
-> +				break;
-> +		}
-
-> +
-
-Ditto.
-
-> +		if (i == info->num_data_rate_mode_to_hz)
-> +			return -EINVAL;
-> +
-> +		ads1018_set_data_rate_mode(ads1018, chan->scan_index, i);
-> +		return 0;
-> +
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-
-...
-
-> +	if (iio_device_claim_buffer_mode(indio_dev))
-> +		goto out_notify_done;
-> +
-> +	if (iio_trigger_using_own(indio_dev)) {
-> +		disable_irq(ads1018->drdy_irq);
-> +		ret = ads1018_read_unlocked(ads1018, &scan.conv, true);
-> +		enable_irq(ads1018->drdy_irq);
-> +	} else {
-> +		ret = spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf));
-> +		scan.conv = ads1018->rx_buf[0];
-> +	}
-> +
-> +	iio_device_release_buffer_mode(indio_dev);
-> +
-> +	if (ret)
-> +		goto out_notify_done;
-> +
-> +	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
-> +
-> +out_notify_done:
-> +	iio_trigger_notify_done(ads1018->indio_trig);
-
-Jonathan et al., maybe we need an ACQUIRE() class for this? It will solve
-the conditional scoped guard case, no?
-
-...
-
-> +static int ads1018_trigger_setup(struct iio_dev *indio_dev)
-> +{
-> +	struct ads1018 *ads1018 = iio_priv(indio_dev);
-> +	struct spi_device *spi = ads1018->spi;
-> +	struct device *dev = &spi->dev;
-> +	const char *con_id = "drdy";
-> +	int ret;
-> +
-> +	ads1018->drdy_gpiod = devm_gpiod_get_optional(dev, con_id, GPIOD_IN);
-> +	if (IS_ERR(ads1018->drdy_gpiod))
-> +		return dev_err_probe(dev, PTR_ERR(ads1018->drdy_gpiod),
-> +				     "Failed to get %s GPIO.\n", con_id);
-> +
-> +	/* First try to get IRQ from SPI core, then from GPIO */
-> +	if (spi->irq > 0)
-> +		ads1018->drdy_irq = spi->irq;
-> +	else if (ads1018->drdy_gpiod)
-> +		ads1018->drdy_irq = gpiod_to_irq(ads1018->drdy_gpiod);
-> +	if (ads1018->drdy_irq < 0)
-> +		return dev_err_probe(dev, ads1018->drdy_irq,
-> +				     "Failed to get IRQ from %s GPIO.\n", con_id);
-> +
-> +	/* An IRQ line is only an optional requirement for the IIO trigger */
-> +	if (ads1018->drdy_irq == 0)
-> +		return 0;
-> +
-> +	ads1018->indio_trig = devm_iio_trigger_alloc(dev, "%s-dev%d-drdy", indio_dev->name,
-> +						     iio_device_id(indio_dev));
-
-	ads1018->indio_trig = devm_iio_trigger_alloc(dev, "%s-dev%d-%s",
-						     indio_dev->name,
-						     iio_device_id(indio_dev),
-						     con_id);
-
-This also will be kept below 80 limit.
-
-> +	if (!ads1018->indio_trig)
-> +		return -ENOMEM;
-> +
-> +	iio_trigger_set_drvdata(ads1018->indio_trig, ads1018);
-> +	ads1018->indio_trig->ops = &ads1018_trigger_ops;
-> +
-> +	ret = devm_iio_trigger_register(dev, ads1018->indio_trig);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * The "data-ready" IRQ line is shared with the MOSI pin, thus we need
-> +	 * to keep it disabled until we actually request data.
-> +	 */
-> +	return devm_request_irq(dev, ads1018->drdy_irq, ads1018_irq_handler,
-> +				IRQF_NO_AUTOEN, ads1018->chip_info->name, ads1018);
-> +}
-
-...
-
-> +static int ads1018_spi_probe(struct spi_device *spi)
-> +{
-> +	const struct ads1018_chip_info *info = spi_get_device_match_data(spi);
-
-	struct device *dev = &spi->dev;
-
-> +	struct iio_dev *indio_dev;
-> +	struct ads1018 *ads1018;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*ads1018));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	ads1018 = iio_priv(indio_dev);
-> +	ads1018->spi = spi;
-> +	ads1018->chip_info = info;
-> +	spi_set_drvdata(spi, ads1018);
-> +
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->name = info->name;
-> +	indio_dev->info = &ads1018_iio_info;
-> +	indio_dev->channels = info->channels;
-> +	indio_dev->num_channels = info->num_channels;
-> +
-> +	for (unsigned int i = 0; i < ADS1018_CHANNELS_MAX; i++) {
-> +		ads1018->chan_data[i].data_rate_mode = ADS1018_DRATE_DEFAULT;
-> +		ads1018->chan_data[i].pga_mode = ADS1018_PGA_DEFAULT;
-> +	}
-> +
-> +	ads1018->xfer.rx_buf = ads1018->rx_buf;
-> +	ads1018->xfer.len = sizeof(ads1018->rx_buf);
-> +	spi_message_init_with_transfers(&ads1018->msg_read, &ads1018->xfer, 1);
-> +
-> +	ret = ads1018_trigger_setup(indio_dev);
-> +	if (ret)
-> +		return ret;
-
-> +	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev, iio_pollfunc_store_time,
-> +					      ads1018_trigger_handler, &ads1018_buffer_ops);
-
-Too long. With the above done
-
-	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-					      iio_pollfunc_store_time,
-					      ads1018_trigger_handler,
-					      &ads1018_buffer_ops);
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
-> +}
-
-...
-
-> +/**
-> + * ADS1018_FSR_TO_SCALE - Converts FSR into scale
-> + * @_fsr: Full-scale range in millivolts
-> + * @_res: ADC resolution
-
-Add here something like this:
-
-*
-* The macro is crafted to avoid potential overflows on 32-bit machines.
-* This imposes restrictions to the possible values for @_fsr (less
-* than 274878), and @_res (great or equal to 6 bits).
-*
-
-> + * Return: Scale in IIO_VAL_INT_PLUS_NANO format
-> + */
-> +#define ADS1018_FSR_TO_SCALE(_fsr, _res) \
-> +	{ 0, ((_fsr) * (MICRO >> 6)) / BIT((_res) - 6) }
+Content-Type: text/plain; charset=yes
+Content-Transfer-Encoding: 8bit
+
+Hi all,
+
+This patch series adds device tree binding and board support for the
+Qualcomm Technologies, Inc. Talos EVK SMARC platform based on the
+QCS615 SoC.
+
+The first patch introduces the DT binding entry for the Talos EVK
+SMARC board, and the second patch adds the corresponding DTS
+files for the platform.
+
+Note:
+USB(usb_1_dwc3) supports host-only mode based on the switch SW1 on
+the SoM, which is purely a hardware controlled as USB-ID and USB-VBUS
+is not connected the switching cannot be handled from SW.
+Hence from SW Host-only mode is supported on Linux boot up.
+
+Changes in v8:
+ - This patch series depends on the below url
+   https://lists.freedesktop.org/archives/dri-devel/2025-November/534473.html
+ - Moved the contents of `talos-evk-cb.dtsi` to `talos-evk.dtsi`
+   which will describe all the standard configuration of the EVK.
+ - Introduced 'talos-evk-lvds-auo,g133han01.dtso' which has overlay
+   to disable HDMI and adds the LVDS-related on top of the base
+   dts file. (suggested by Bjorn)
+ - Ethernet and Wi-Fi/BT are not (yet) supported.
+ - Updated commit message.
+ - No functional change in bindings file.
+
+Changes in v7:
+ - Added i2c clock frequency for i2c5 node.
+ - Moved adv7535 controller section to talos-evk.dts file.
+ - Reorder the usb nodes.
+ - GPI_DMA nodes added in the device tree files.
+ - No functional change in bindings file.
+
+Changes in v6:
+ - Clarified description of `talos-evk-cb.dtsi` to explain that it
+   defines common carrier board interfaces shared between HDMI and
+   LVDS variants, And It’s a single carrier board. HDMI and LVDS
+   share the same DSI interface, and only one can be active at a
+   time depending on a DIP switch.
+ - Added missing newlines before 'status' and between the last property
+   and subnode (suggested by Konrad).
+ - Updated commit messages for clarity.
+
+Changes in v5:
+ - Updated commit message. (suggested by Krzysztof)
+ - Introduced generic node name for can, dp, hdmi-bridge. (suggested by
+   Krzysztof)
+ - Introduced talos-evk-cb.dtsi, which has common carrier board
+   interfaces.
+ - No functional change in bindings file.
+
+Changes in v4:
+ - Updated product name to full form per Krzysztof’s feedback in
+   dt-binding comment.
+ - Hook up the ADV7535 DSI-to-HDMI bridge to base DTS file.
+ - Add DP connector node and MDSS DisplayPort controller.
+ - Added USB note in the cover letter for maintainers' awareness.
+
+Changes in v3:
+ - Addressed comments from Dmitry regarding USB1 `dr_mode` and
+   added a DTS comment.
+ - No functional change in bindings file.
+
+Changes in v2:
+ - Renamed compatible to "qcom,talos-evk" (suggested by Dmitry/Bjorn)
+ - Merged enum entry with existing `qcs615-ride` block (Krzysztof)
+ - Fixed subject and commit message to use imperative mood.
+
+Thanks,
+Sudarshan
+
+Sudarshan Shetty (2):
+  dt-bindings: arm: qcom: talos-evk: Add QCS615 Talos EVK SMARC platform
+  arm64: dts: qcom: talos-evk: Add support for QCS615 talos evk board
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   3 +
+ .../qcom/talos-evk-lvds-auo,g133han01.dtso    | 131 +++++
+ arch/arm64/boot/dts/qcom/talos-evk-som.dtsi   | 447 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/talos-evk.dts        | 137 ++++++
+ 5 files changed, 719 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
+ create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
