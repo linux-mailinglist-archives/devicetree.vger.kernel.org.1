@@ -1,123 +1,149 @@
-Return-Path: <devicetree+bounces-243122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78487C93F87
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 15:24:42 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82AAEC93F93
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 15:27:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 625FE3452A8
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 14:24:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5A4194E1CF7
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 14:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5903530FC0E;
-	Sat, 29 Nov 2025 14:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB21530EF9F;
+	Sat, 29 Nov 2025 14:27:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I+Dug8zT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uvXC1hcF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9958226F299;
-	Sat, 29 Nov 2025 14:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DE71FBEB0;
+	Sat, 29 Nov 2025 14:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764426226; cv=none; b=c2RorHvQo7T3AYgVEimQYCjFQagYNXzTAhzMM2v3nGmi2AIIFxNHlR3EIVwVic76a2NYTsO1zbjPqD2SJZfCyQVZc/6AXrYPnoExLD96Ulw/g4Bdw0Sr0K+EqiS+kMdt7MRV4x5FI6P6BboRAQhg9Oe6Q1YQnynFJHub+vPReMA=
+	t=1764426470; cv=none; b=L2/LDfchOSBn4BBaL//T9Gjy7WEZS0k3NMNuz4CyrnZCrUz/UkrXuXklnO1GXqvILZAKRQaIAclzMWkygLOa98k3AJIeCdTPlG2pwPjeUtqm88+XuFofe+iqTSbHRxCovVnqhgIbhXwTSz06UUzczwPc171df0BpUlNS4gNH8Ic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764426226; c=relaxed/simple;
-	bh=B4czCDpM9F3GFULphnSrx1V2m/jmkkrTK0tJU9Z21qE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mVCXU9AP7Xt+SHjMsq2wKIG8qqLA+APEDdf4rC8vt8jj4IiucFAYN5ZgAQL7sFklik0yqlKHnRznRAyzCiac65UL4gTwKLJ5D7K8VXN0KNZ0vwCWEfrzzNh2bUm1pRNDrXYt/EoCK9djbz4SPsnq2yvwnb60QcLk/WbL9iLWfYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I+Dug8zT; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764426223; x=1795962223;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=B4czCDpM9F3GFULphnSrx1V2m/jmkkrTK0tJU9Z21qE=;
-  b=I+Dug8zT2tWNKJxmCTrxB3R969Ax6PLiBg6bFhmFgXG2HQlkyaoRlyIU
-   T83BjMghmaG9iVnBJTtwQcDxoHWD0PquRim3xuZmornw9qqZubHJ92nx+
-   f0fl9nv803b1i0mhu/L9B0yV2sb/mMxtWhhJyxGty0f0pM0ROJG8LpwXt
-   ECMlzh4O/NPcsQyj19JoU9roXyJ199xK1vDWSKqaE4XB2Lt97Q2rfV9p4
-   1jiP6EaLFXFOK7NNARaI39NwCQyyCvfv2RdjJMsFYWMgF6D6mLdho/M9+
-   QM63UjhGEcfqqHz2ndw/Zzw43qPvIXeLfsk6KVVluwRPUKn69j5t+irbD
-   A==;
-X-CSE-ConnectionGUID: 0A20LIXqQGG7khmGVznV1Q==
-X-CSE-MsgGUID: w+BJuLeRRCWagVi6vW16ng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11627"; a="77106704"
-X-IronPort-AV: E=Sophos;i="6.20,236,1758610800"; 
-   d="scan'208";a="77106704"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2025 06:23:43 -0800
-X-CSE-ConnectionGUID: TLQHIr30Qgq2G4QM4hUeTg==
-X-CSE-MsgGUID: aYVQc0LSQLSTbwChoAAm2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,236,1758610800"; 
-   d="scan'208";a="230949871"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.50])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2025 06:23:39 -0800
-Date: Sat, 29 Nov 2025 16:23:36 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Kurt Borja <kuurtb@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v3 2/2] iio: adc: Add ti-ads1018 driver
-Message-ID: <aSsB6JmmSdMT23YM@smile.fi.intel.com>
-References: <20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com>
- <20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
- <aSsBdJZDWcadxEHC@smile.fi.intel.com>
+	s=arc-20240116; t=1764426470; c=relaxed/simple;
+	bh=uS7GGlQpWIhTFQCtrFobDBHk9BaN05HGWWFfDn6mwl0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p7P4LGkG6qbta6IxGsMz34lCZ2C/5ZSZVa7QEc/Ms0XUZzWOCdQ+annv5cG2pT5X7jIagBgDuPKaAagPUgiBVhDJ0WkNHmgWvJZAqkmRh4745+RzxJIzbP1mGmXckwOKEAzZlUMAot6itZUU3QbWBvPtw/DEFu7yAuGIoIBVgL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uvXC1hcF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 863A4C4CEF7;
+	Sat, 29 Nov 2025 14:27:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764426470;
+	bh=uS7GGlQpWIhTFQCtrFobDBHk9BaN05HGWWFfDn6mwl0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uvXC1hcF3No3MKFbAhvGQOaBQELoFTueTuLtR45c2yqAOaSDIG76e2kB9eL9Z216c
+	 z5DubgWYj/2MvOny74Qtwdw4Ch3CB8XL5cKQpXMpVGw3CfYC+JR07ou7d7VlQu1fkp
+	 htpGfhks6OpQYSap0q/p6bVoBioiIfpqCYb27/c7hV8gylwcIuA/1YqbzctoDx7Z6L
+	 qq3DLY5D5NyV/fYFvOlqq/8fvx1RyKyfA4R7VlpNR3oSskNIjKFBW1TX9lPQAJ2PBt
+	 5yEZCQuKmJqt13KRzn7uPaT8cGFWLBgd8bke40hlzi+OoDG1eKtZDFgBk0mTRM9Tm7
+	 VaXvHFeNjvTyg==
+Message-ID: <3baa27d7-f76e-4038-b481-57bd446ce866@kernel.org>
+Date: Sat, 29 Nov 2025 15:27:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aSsBdJZDWcadxEHC@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/6] clk: conf: Support assigned-clock-sscs
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Cristian Marussi <cristian.marussi@arm.com>,
+ Sebin Francis <sebin.francis@ti.com>, Brian Masney <bmasney@redhat.com>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, arm-scmi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+References: <20251128-clk-ssc-v6-2-v6-0-cfafdb5d6811@nxp.com>
+ <20251128-clk-ssc-v6-2-v6-3-cfafdb5d6811@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251128-clk-ssc-v6-2-v6-3-cfafdb5d6811@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Nov 29, 2025 at 04:21:46PM +0200, Andy Shevchenko wrote:
-> On Fri, Nov 28, 2025 at 10:47:13PM -0500, Kurt Borja wrote:
-
-...
-
-> > +/**
-> > + * ADS1018_FSR_TO_SCALE - Converts FSR into scale
-> > + * @_fsr: Full-scale range in millivolts
-> > + * @_res: ADC resolution
+On 28/11/2025 04:14, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Add here something like this:
+> Parse the Spread Spectrum Configuration(SSC) from device tree and configure
+> them before using the clock.
 > 
-> *
-> * The macro is crafted to avoid potential overflows on 32-bit machines.
-> * This imposes restrictions to the possible values for @_fsr (less
-> * than 274878), and @_res (great or equal to 6 bits).
-
- * than 274878), and @_res (great than or equal to 6 bits).
-
-(I missed "than")
-
-> *
+> Each SSC is three u32 elements which means '<modfreq spreaddepth
+> modmethod>', so assigned-clock-sscs is an array of multiple three u32
+> elements.
 > 
-> > + * Return: Scale in IIO_VAL_INT_PLUS_NANO format
-> > + */
-> > +#define ADS1018_FSR_TO_SCALE(_fsr, _res) \
-> > +	{ 0, ((_fsr) * (MICRO >> 6)) / BIT((_res) - 6) }
+> Reviewed-by: Brian Masney <bmasney@redhat.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/clk/clk-conf.c | 69 ++++++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+> 
+> diff --git a/drivers/clk/clk-conf.c b/drivers/clk/clk-conf.c
+> index 303a0bb26e54a95655ce094a35b989c97ebc6fd8..dd6083597db3f8f27d86abf5640dfc3fb39a9b88 100644
+> --- a/drivers/clk/clk-conf.c
+> +++ b/drivers/clk/clk-conf.c
+> @@ -155,6 +155,71 @@ static int __set_clk_rates(struct device_node *node, bool clk_supplier)
+>  	return 0;
+>  }
+>  
+> +static int __set_clk_spread_spectrum(struct device_node *node, bool clk_supplier)
+> +{
+> +	struct clk_spread_spectrum *sscs __free(kfree) = NULL;
 
--- 
-With Best Regards,
-Andy Shevchenko
+This is an undesired syntax explicitly documented as one to avoid. You
+need here proper assignment, not NULL. Please don't use cleanup.h if you
+do not intend to follow it because it does not make the code simpler.
 
-
+Best regards,
+Krzysztof
 
