@@ -1,213 +1,214 @@
-Return-Path: <devicetree+bounces-243075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA43C9374B
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 04:41:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4358EC9375D
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 04:47:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5E32B4E0EE1
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 03:41:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0D923A8FD8
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 03:47:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F83C15A864;
-	Sat, 29 Nov 2025 03:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4727D199252;
+	Sat, 29 Nov 2025 03:47:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TIOvKzlc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B907849C
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 03:41:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890B15733E
+	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 03:47:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764387687; cv=none; b=hjfptymC9Jn5/8u/TSl6lqTzZti2AxyiG3l7EP0k2tCdy5YQ8oJp7X3ffWABtgt0kMukHNo8iAE4XSrY9sC0xU/qWqszsiSN1KmpRtbkxq/2APeRYojvyucizDwoN9rELAJ7cQpVDSUecdqZfdwaOnfLDm9Yv6YxCTaA90MrlTs=
+	t=1764388059; cv=none; b=hOAV7q01TXUFC3slcz9Dw5LVimKaNBLnKwuurQ8sug6Wzu4+v7amPUdvg/iI/ESscXJ8aKRe6cBn8shtXIoKvqzA9PnVw++5UddVDbNL9Tq8IvXHKX9OmNMkMFH0UXotu6ArYWrhAZT48zUVIJbVXO59IRJVUQ5HTdRRrpeG5TE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764387687; c=relaxed/simple;
-	bh=JHW8++nTFcgbsz61czu8Twjj0Ajp1J3ybLw5eosCTLk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g1pxBKrBcUi7rq3BMfNEG4Z8gGpmS+8Vi/Xs9tNVO9TMb8LRPLaVUijyFFE02fluoYOH/8JtL9Plur5IlPGuESWyRNbDhkjgo4dWX+jWuaIaseWYeU3LR5wDzqwgAWWIHymvXsPJAVkhJ3B3ePHdajh3QMS843/putVNp2Q5uA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.16.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1764387613t6198e465
-X-QQ-Originating-IP: ExziU2EWH7I35K9c3wktBasCtFpddUdAlqtUdEacOQw=
-Received: from [IPV6:240f:10b:7440:1:380f:45ef ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Sat, 29 Nov 2025 11:40:11 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2782995150907448899
-Message-ID: <60D749559660CD94+62b923bb-f852-4e83-b9fb-a2a25030ef73@radxa.com>
-Date: Sat, 29 Nov 2025 12:40:10 +0900
+	s=arc-20240116; t=1764388059; c=relaxed/simple;
+	bh=yvuiPhp54wO6JJ8+rqOVUCDwrN2fpqtAXT2pT5bMb+E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jNkEHgSBfUtsk9ounVUPAUt52GOi2r7N1J/OEFfuJEq6/UsSrwWfIbU98JDfgcgXDNWyhmfcfsITk+X4BPOtqM+TJYl+IMcXBDvPvplzyCkS7Eh9G4vFDgQpN07rCS/RpkONfFv2t4g3xkAuYqkm7ieDdKbagMW0vqfTiu29BdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TIOvKzlc; arc=none smtp.client-ip=209.85.217.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-5dfd2148bf3so783757137.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 19:47:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764388056; x=1764992856; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o+WemKR66A2jsYlrCntI/kxVeNaQ2VT5vDEXnzsmvfI=;
+        b=TIOvKzlcVgtUyU3mqVy1pWDfN3RMiNILg8/rp7Kr3HfWIGX8kkuCaZU8iFlf3l7i4K
+         QoosmPeYl9BjIeDXrWy2sWCUH9r+K8u/J6vAwzkTGpQKXsiK9kmMCVUDkD35vVQ7eJGK
+         bDek1kRWNvEHr2JrIAlN7pGJIyFqz4jDU+Xl9iLIld9RW2Wrzu9A+XX79l8AtXJSJcjS
+         4ZZ9wFhOTGlMSUGgoXNYRdOFWqusdaP7az0syumZ4Sad+ONR3qNjPhcrZTSNmsjsSras
+         s7KTQNqy9CL28R8BrKgOnyUfXopGE6T6xIdCrLxmIn5Gg7OvH6Cz4rr5El2N1WoSHc+r
+         0LEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764388056; x=1764992856;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o+WemKR66A2jsYlrCntI/kxVeNaQ2VT5vDEXnzsmvfI=;
+        b=UXR8KyM4XJ2jrrcpQQ6Kuw1aOvqgMkkLoqG9ZWW0HEdQ+cXaCCw+rF+kakcOJEq2fN
+         wX4JKnQeXf9/rolc9QfbLLZZDQ/llAoK5ydLvdQLXKEUhhcS9nnE5nTsFl4uxASEkbls
+         1TBX5YK3EDuLK5DjonqAnnPzv0254vZmJ2zLzdneCt2uASAZuUHi718MNZKmbiOawzzF
+         kYWfB4gMb+r7E1b7nd0N42urheCXX+iug+AGOHLaklwB6ZdENqgrHryYIji6kN1D3lkg
+         DeCTwlHDoFXA9iE0sD7rOELvWkN3Xy/rKkSXQO+ReG2ifXugpL2swDP2NDMs6HIRJNKW
+         FfRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUD/mh2NfMAujVEwwFaKCGdBqzbatM7HmZsk6j2qo6zxB8LTbbVrogwPm+l2x3YjyVMpThnlq9NMNQN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrE6LbHJ7kRs/s8BXDyqLm4zEC+OmT9yNhU0udOfwwOVcQXA3f
+	KbQTHovtZ3XA5dpHgW+NFf6fZP/ppaIPd6Akr4/SMD5JGLjxPjsFntZF
+X-Gm-Gg: ASbGncv37eB8HxXwDeIc2wk7KIygOzbBlf52pn0JkwPzFIy/IIvweTYOv+1V3Z+Rugz
+	hcmjBqstF55zcfuL5DNW7r12Vr6IhqvzY+w+gq6gCIJtfYwqWvyo5FKd0M+XOnffv8xaXOmK1iW
+	B65Y7RXwXm57ZPriiUOBU/d54g4mc5bTOJBvSkgLS+7OQEJsvBg8Xt3UlZu2xULuAv+RixzTHTz
+	/E9kZ9RhGRiVi32XCRCscLa3dgAahPsfeDxVliRo8YdXxdt8AvBkqS+kcjOD/+b6eHdCVf7IqJk
+	PgVFcnTW0ZqDlihpJEiTjKIiXCXDKEYB53QGuYS/aewHyP2vgv557Eq4PzyLAdWDNFWMiBRJjnL
+	vglJO7zDoYYEEsBpgPEcs+3RURj6KkwvsnPksemd754VXQ6en3Y17t+D3z8CAOAVWFKT5PWBz4L
+	nfFr8dTuQz8YKTNXzVqaXZsPQ=
+X-Google-Smtp-Source: AGHT+IFriGnbvZfMgscLKz2M7HYz15cqGgb8idOJzTIt6/dQmhOawxZPI7HO4ranmrj6t7PICDwHSQ==
+X-Received: by 2002:a67:e707:0:b0:5db:f710:497e with SMTP id ada2fe7eead31-5e1de3444c6mr11030831137.21.1764388056399;
+        Fri, 28 Nov 2025 19:47:36 -0800 (PST)
+Received: from [192.168.100.70] ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5e24d917860sm2562662137.2.2025.11.28.19.47.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Nov 2025 19:47:36 -0800 (PST)
+From: Kurt Borja <kuurtb@gmail.com>
+Subject: [PATCH v3 0/2] iio: Add support for TI ADS1X18 ADCs
+Date: Fri, 28 Nov 2025 22:47:11 -0500
+Message-Id: <20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix audio-supply for ROCK Pi 4
-To: Alex Bee <knaerzche@gmail.com>, Quentin Schulz
- <quentin.schulz@cherry.de>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Heinrich Schuchardt <xypron.glpk@gmx.de>
-References: <20251027005220.22298-1-naoki@radxa.com>
- <acfc2185-0cb9-4620-abdb-ee25028e8374@cherry.de>
- <a93ace02-a952-4727-957b-0ed790b47676@cherry.de>
- <20486653DCCA80ED+7f87a03c-519e-4d6a-a47c-7670e5ae502c@radxa.com>
- <ffe5e4d1-49d8-4075-a5c4-6f27dda7f35a@cherry.de>
- <acbbef49-02ad-47e9-9874-68d058b95f21@gmail.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <acbbef49-02ad-47e9-9874-68d058b95f21@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: ObRDf3flJ9WfAr60yFyssVktXuCfbpPU+ECrQ8xSztp472KnJsZaMLrq
-	a6V4S/Nd/1FWv4AMoHqrc+YGRzTD7GTazbb6QvDVPmQ3ywi2wUBgPOZcO/RRzZcIsUq2CqH
-	X/MVHSIzUFZ0IaZzecCowcam99Os3PjzlE4J8aRQaIW9xLYFjI96IikHDjkf47YN0+8ucxn
-	CcH+8el0buIZ/29VjSDy19R3Km3UvXOSvLVNtQBHcfBqZDF3axkPyQ9hb5JMoTHckAP774b
-	9x+hfu3AGOzlnIX5jS520cPxyBx+2XJpGb+tOoMGwiAIAb9TCMl9rDMzZNY3RfyBALdCZ6g
-	O3TkuwHfDX7l1dJOWGAvCJC0wPyLTMRL2z6+HLLmaMLtSPIb2S8fh7kr5l5a4wvoBNNKK8R
-	88YeekQkJquNPFkNf9YSGbJp7sGhGv2L9gfeKHaDZM9EPbzbiM92X9npEH8Kbva+pGnl1Dt
-	+Yo9WWSNPY+IAhtMV881B3Izy+SP7+zzyOoVaE/Pkk2udRi9stgEl2ZBLXDnIXA1J5qHZtc
-	L9YnNj6CL60lCbToS3vDlYkl4mFIfhG75ci88TlIKni0Pct9L3PwL57O4osV4JZAtnSyGYA
-	QZRUTVCOuY/vv/mu3qhflnZdnFn1pxCg402EvGg+h9TKhw2BOY3fDt62CrEhVKaZf7tapJf
-	hJFsVJeN6JLrjhM66U1RbOvij4UkmFmTMq8yGUqdlmsPSMD5gKY1YzQvpZ3+a/QYmJfUmj0
-	3EMadl6d4tdx1vpxuCvTjewTgws8WFEdQsyOyHjPulnt9C/ckptnMxI+AXST57ZkS6JOdqK
-	Fs/NHRwrLq9jNJlcrqNAX2aXseIXOE0KHjkZXh+q4qEzGzEjfXOmGZGobsKOhS/y9aDYNuH
-	aF8kEnsuZXuzqE7nP5/YCvJ2gWjhar55QFSvfncl0FYRxw/x+MDPCvSL4zYscaL1029qFDl
-	F/n7r653jxTqj4QVmb0xfrg5J
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL9sKmkC/02MwQ6CMBAFf4X0bM3uom3x5H8YD4UWaCLUtKbBE
+ P7dgolynJc3M7Nog7ORXYqZBZtcdH7MUB4K1vR67Cx3JjMjoDMCEtcm4oSKgwEpKwNCVMDy+xl
+ s66atdLtn7l18+fDewgnX9dtAwl8jIQeuhKlBQdtU+nTtBu0ex8YPbG0k2nvy71H2yNatkQpqU
+ ZZ7b1mWDzSV8UjWAAAA
+X-Change-ID: 20251012-ads1x18-0d0779d06690
+To: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Tobias Sperling <tobias.sperling@softing.com>
+Cc: David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ Kurt Borja <kuurtb@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3910; i=kuurtb@gmail.com;
+ h=from:subject:message-id; bh=yvuiPhp54wO6JJ8+rqOVUCDwrN2fpqtAXT2pT5bMb+E=;
+ b=owGbwMvMwCUmluBs8WX+lTTG02pJDJlaOUd+/Tv1dOMl4TVvJlr/Pnf2goFrjpjGhUCX6aHTj
+ B6Ui3Zt6yhlYRDjYpAVU2RpT1j07VFU3lu/A6H3YeawMoEMYeDiFICJPJVh+MU0+3/0jQ2XPwrN
+ 4p27SShVfVZOxIkJD6aF8c+YvW/JmZS7DH/FQwM3Hbdj1r5S/4vtYFKI95YNxW//Ff33v5lo2vR
+ DfgcPAA==
+X-Developer-Key: i=kuurtb@gmail.com; a=openpgp;
+ fpr=54D3BE170AEF777983C3C63B57E3B6585920A69A
 
-Hi Alex,
+Hi,
 
-On 11/29/25 10:36, Alex Bee wrote:
-> Hi,
-> 
-> Am 28.11.25 um 13:33 schrieb Quentin Schulz:
->> Hi Naoki,
->>
->> On 11/28/25 1:09 PM, FUKAUMI Naoki wrote:
->>> Hi Quentin,
->>>
->>> On 11/28/25 19:24, Quentin Schulz wrote:
->>>> Hi Naoki,
->>>>
->>>> On 11/27/25 4:20 PM, Quentin Schulz wrote:
->>>>> Hi Naoki,
->>>>>
->>>>> On 10/27/25 1:52 AM, FUKAUMI Naoki wrote:
->>>>>> This reverts commit 8240e87f16d17 ("arm64: dts: rockchip: fix
->>>>>> audio-supply for Rock Pi 4").
->>>>>>
->>>>>> Fix the APIO5_VDD power supply to vcc_3v0 as per the schematics[1][2]
->>>>>> [3][4][5].
->>>>>>
->>>>>> This fixes the SPI-NOR flash probe failure when the blue LED is 
->>>>>> on[6],
->>>>>> and the garbled serial console output on Linux.
->>>>>>
->>>>>> The ES8316 headphone and microphone are confirmed to work correctly
->>>>>> after this fix.
->>>>>>
->>>>
->>>> Please test the ES8316 works when booting Linux from a U-Boot where 
->>>> ROCKCHIP_IODOMAIN and SPL_ROCKCHIP_IODOMAIN is *disabled*.
->>>
->>> I tried below, and confirmed that ES8316 is still working.
->>>
->>> diff --git a/configs/rock-pi-4-rk3399_defconfig b/configs/rock-pi-4- 
->>> rk3399_defconfig
->>> index 219f42bc7d4..276ca961c10 100644
->>> --- a/configs/rock-pi-4-rk3399_defconfig
->>> +++ b/configs/rock-pi-4-rk3399_defconfig
->>> @@ -53,6 +53,7 @@ CONFIG_ROCKCHIP_GPIO=y
->>>   CONFIG_SYS_I2C_ROCKCHIP=y
->>>   CONFIG_LED=y
->>>   CONFIG_LED_GPIO=y
->>> +# CONFIG_ROCKCHIP_IODOMAIN is not set
->>>   CONFIG_MMC_DW=y
->>>   CONFIG_MMC_DW_ROCKCHIP=y
->>>   CONFIG_MMC_SDHCI=y
->>> diff --git a/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi b/ 
->>> dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
->>> index 046dbe32901..c734f7824c0 100644
->>> --- a/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
->>> +++ b/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
->>> @@ -51,7 +51,7 @@
->>>
->>>          sound: sound {
->>>                  compatible = "audio-graph-card";
->>> -               label = "Analog";
->>> +               label = "rk3588-es8316";
->>>                  dais = <&i2s0_p0>;
->>>          };
->>>
->>> @@ -516,7 +516,7 @@
->>>   };
->>>
->>>   &io_domains {
->>> -       audio-supply = <&vcca1v8_codec>;
->>> +       audio-supply = <&vcc_3v0>;
->>>          bt656-supply = <&vcc_3v0>;
->>>          gpio1830-supply = <&vcc_3v0>;
->>>          sdmmc-supply = <&vcc_sdio>;
->>>
->>> Notes:
->>> - SPL_ROCKCHIP_IODOMAIN is not set by default
->>> - I don't understand alsa ucm2 ;) so I modified /sound/label
->>>
->>
->> Thanks for testing. Let's hope the original issue doesn't appear for 
->> *some* boots (depending on probe order or some timing for example). 
->> For now I guess this will do. Adding Alex in Cc maybe they are able to 
->> reproduce the issue they had 4 years ago with their board?
->>
->> Cheers,
->> Quentin
-> 
-> 
-> I can confirm that with this change analog audio is _broken_ for me again.
-> 
-> I never had any issues with uart2 or spi - neither in kernel nor in u-boot
-> (also not after io-domain driver has been added to u-boot for RK3399).
-> Given this commit is now ~4 years in tree  I'd guess that someone else
-> would have reported that issue earlier. It's correct that this information
-> came from a "Power Domain Map"  which you call "non schematic" and the
-> "schematic part"  says something else -  it would have been indeed be
-> better to have clearer information.
+This series adds a new driver for TI ADS1X18 SPI devices.
 
-We can confirm that "schematic part" is correct.
+This is my first time contributing to the IIO subsystem and making
+dt-bindings documentation, so (don't) go easy on me :p.
 
-> Anyway: I can't neither see how this change should relate to uart2 or spi
-> which are both in different io-domain, nor why it would happen only in
-> u-boot. My strongest guess is, that radxa changed something along the way.
+As explained in Patch 2 changelog, the DRDY interrupt line is shared
+with the MOSI pin. This awkward quirk is also found on some Analog
+Devices sigma-delta SPI ADCs, so the interrupt and trigger design is
+inspired by those.
 
-I'm sorry, I can't explain the relationship between UART2/SPI and APIO5.
+@ David:
 
-However, I had been seeing "the garbled serial console output on Linux" 
-for a long time, and couldn't figure out how to fix it.
+I didn't move enable_irq() and spi_bus_lock() out of .set_trigger_state.
+I explained some of my reasoning in v1 and I expanded patch 2 changelog
+on that. If you disagree with this, let me know!
 
-What version of your ROCK Pi 4 board do you have?
+Thank you in advance for your reviews.
 
-Best regards,
+Signed-off-by: Kurt Borja <kuurtb@gmail.com>
+---
+v2:
+  - [Patch 1]:
+    - Move MAINTAINERS change here
+    - Use generic node names: ads1118@0 -> adc@0
+    - Rename file to ti,ads1118.yaml -> ti,ads1018.yaml
+    - Drop ti,gain and ti,datarate
+    - Add spi-cpha and spi-max-frecuency properties as they are fixed in
+      all models
+    - Add vdd-supply
+    - Make interrupts and drdy-gpios optional properties
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+  - [Patch 2]:
+    - Update probe based on dt-bindings changes
+    - Rename file to ti-ads1x18.c -> ti-ads1018.c
+    - Rework ads1018_oneshot(), instead of waiting for IRQ wait an
+      appropriate delay before reading again
+    - Only alloc and register a trigger if we have an IRQ line
+    - Drop ads1x18->msg_lock in favor of IIO API locks
+    - Read conver before enabling and after disabling IRQ to ensure CS
+      state is correct
+    - Add ads1018_read_locked() which takes an additional argument
+      `hold_cs` to explicitly control CS state in trigger and buffer
+    - Fix ADS1X18_CHANNELS_MAX limit 9 -> 10
+    - Call iio_trigger_notify_done() in all IRQ handler paths
+    - Drop unused includes
+    - Drop BIT_U16 and GENMASK_U16 macros
+    - Drop unnecessary named defines
+    - Use u8 types in ads1018_chan_data
+    - Rename some struct members for clarity
+    - Move tx_buf and rx_buf to the end of struct ads1018
+    - Rework channel handling to just make everything visible and add
+      ADS1018_VOLT_DIFF_CHAN
+    - Use .scan_index instead of .address in IIO channels
+    
+  - v1: https://lore.kernel.org/r/20251121-ads1x18-v1-0-86db080fc9a4@gmail.com
 
-> Or maybe it would be worth to double-check the io-domain driver in u-boot.
-> 
-> 
-> Regards,
-> Alex
-> 
-> 
-> 
+---
+v3:
+  - [Patch 1]:
+    - Use unevaluatedProperties: false
+    - Drop #address-cells and #size-cells
 
+  - [Patch 2:]
+    - Add kernel-doc to internal API
+    - Drop bits.h and bitops.h includes
+    - Add types.h include
+    - Use unsigned type for data_rate_mode_to_hz
+    - Rename __ads1018_read_raw() -> ads1018_read_raw_unlocked()
+    - Rename __ads1018_write_raw() -> ads1018_write_raw_unlocked()
+    - Rename ads1018_read_locked -> ads1018_read_unlocked() for
+      consistency
+    - Let ads1018_read_unlocked() take NULL cnv pointers
+    - Add ads1018_set_trigger_{enable,disable}()
+    - Refactor ads1018_write_raw_unlocked() loop matching
+    - Invert ads1018_trigger_handler() logic to follow traditional error
+      handling pattern
+    - Refactor ads1018_trigger_setup() cleaner
+    - Make ADS1018_FSR_TO_SCALE() calculation be 32-bit compatible
+    - Some additionall minor cleanups
+
+  - Link to v2: https://lore.kernel.org/r/20251127-ads1x18-v2-0-2ebfd780b633@gmail.com
+
+---
+Kurt Borja (2):
+      dt-bindings: iio: adc: Add TI ADS1018/ADS1118
+      iio: adc: Add ti-ads1018 driver
+
+ .../devicetree/bindings/iio/adc/ti,ads1018.yaml    |  82 +++
+ MAINTAINERS                                        |   7 +
+ drivers/iio/adc/Kconfig                            |  12 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/ti-ads1018.c                       | 811 +++++++++++++++++++++
+ 5 files changed, 913 insertions(+)
+---
+base-commit: f9e05791642810a0cf6237d39fafd6fec5e0b4bb
+change-id: 20251012-ads1x18-0d0779d06690
+
+-- 
+ ~ Kurt
 
 
