@@ -1,121 +1,131 @@
-Return-Path: <devicetree+bounces-243170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30542C948BE
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 00:03:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 860B6C948DD
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 00:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D79043A6588
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 23:03:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B2253A6A22
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 23:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A41A226165;
-	Sat, 29 Nov 2025 23:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B353D263C91;
+	Sat, 29 Nov 2025 23:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="qKKu+ohq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pLf3Fvd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6165DD27E;
-	Sat, 29 Nov 2025 23:03:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845A51946DF;
+	Sat, 29 Nov 2025 23:22:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764457389; cv=none; b=MYvHz4E2kimVinwu87NW3j08FRTHJ1F4AX5yxwiAuGoerrEuux1/hOKXBsv9Cw7wD9lwOzpNsqmNlF/nlt2GJksGWRpuYoAtlVVhRtUXBGljifz07A/00bzKGKeMLbheo3h3IB0wjBn0fSeI4t7fk0erBHo9NRns2Q1moCiED9A=
+	t=1764458564; cv=none; b=P7B5i4iCOJ/o/wPK5tJOaNSuenCb7+0Q0rnXtM7MHmcc2mT0PSm5s37+5P6kzYPUb87xIp3iRgnvMwISiUicx+v1ZdbqnN64I14m6+d8cZAc4T0kxnQEa5i5wFtNE8YL1JVslE0CEb9DUNQVvGb27FYXWH7l3l0KxItr8DJjzHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764457389; c=relaxed/simple;
-	bh=mgXfxylVhwi5gIj+YRMh5lhm1brcwJLLHDr8VW0uBI4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MU5wZR6ismOTLDrgXv23Y6OfivRXuWZlwR6V7MjIQYi6jXxiHjRtbXoFrWjS5qyhLZTx+9Ba5pgaPnewQ6Pc7KOOZ+H8ECy2zzN+G44KizRhJZHGgZrPU4OnMB7kkyeuO7ALoed77W8kNqkDn16NwjhXKwl2gQSlRM3KYd+0sMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=qKKu+ohq; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=OhkaxTXYbFwBVT95vUBVttCOVL60xkD5u6rG8NP8cIU=; b=qKKu+ohqNwccUiBW/QUjuA473c
-	kEjo9KTIeYzq5/yF2WBxhbV1PJdHAwezeimvacjpwTRHq3gGsgizqXJK3wGEulb0wOG9kWup2EJKp
-	KPw1RijZF1/aZ9gCXnI9mBAqqAj7LQY+2/3u9or6gr91SIb5OUfyo3CRs0YgUUNbGG2T8B+JzEecZ
-	7IyURIQUSJvWRdSsSzsDDuDf2anBF5G8tcrbK83kp2OxhJ7FwBFwqT82fQs7J8oDcBMTRKRixvr6s
-	Z2E2egA0S21sFDyNuKM7CwLfaBc7KuAPXd+NMEbvM5kGJeGNT6NZuSjAYGFBBxEzHUt9s3dKv/Q3h
-	P2TiqEYQ==;
-Date: Sun, 30 Nov 2025 00:02:59 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Richard Weinberger <richard@nod.at>, linux-kernel
- <linux-kernel@vger.kernel.org>, linux-omap <linux-omap@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>, Lee
- Jones <lee@kernel.org>, dakr <dakr@kernel.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Mark
- Brown <broonie@kernel.org>, tony <tony@atomide.com>, rogerq
- <rogerq@kernel.org>, khilman <khilman@baylibre.com>, aaro koskinen
- <aaro.koskinen@iki.fi>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, robh <robh@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: Document new common property:
- has-inaccessible-regs
-Message-ID: <20251130000259.36c37b4e@kemnade.info>
-In-Reply-To: <4fc059f0-8aab-4bd2-a7a2-33a532117e71@kernel.org>
-References: <20251129142042.344359-1-richard@nod.at>
-	<20251129142042.344359-2-richard@nod.at>
-	<7d9fcf24-5ad5-48cf-b36d-83025976f3aa@kernel.org>
-	<771947541.4509.1764430418744.JavaMail.zimbra@nod.at>
-	<8b0e2b8a-314f-40ee-8f30-c281f3799705@kernel.org>
-	<4fc059f0-8aab-4bd2-a7a2-33a532117e71@kernel.org>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1764458564; c=relaxed/simple;
+	bh=pzgpggSffjmu4LyW+d6SIZrFFzwDKwKno0dUJdce0W8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=keMxl5vyi9KGHB8swPzNSqzvAByYzdcVVgsnH0bNaVejTmkv2jdIyDaF1NZOtBrvaFMXjuV8qmgDfSpx/b3R6Nbtasc14E7YO5hl0OarPBosQTZ4PxueDOVohIA89B9JsWHF0hRE8ZJTC+ec84XK1JOyDmt7GwsBNr8sJ0ndJJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pLf3Fvd3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 49BBDC4CEF7;
+	Sat, 29 Nov 2025 23:22:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764458564;
+	bh=pzgpggSffjmu4LyW+d6SIZrFFzwDKwKno0dUJdce0W8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=pLf3Fvd3QpWHBhiXXEJcRqkC5teWhyGlQQwynQxpKUG41zNZ47KUWSH37w03GyTBQ
+	 M3lqIGqAVWc/q+Qqc1sdO775YR0jPdkLttATyCpt9YcFx0h+aJ8FH7ejlRB6tqkI1O
+	 OdFBZCRHJGY5rETK4jTqGExlWqAe0LjuPpFlj0yuogcJYtQBadeAHnsTq8yguRU8Jo
+	 8hyrx/Wvjxd5ZL3Lntq9ZxYRjkSWK6+QWWUmOwE6s2agi+CI0/lEn+PD3/O7yxEOTf
+	 oOMUQnfefK/VJcI01AizZbxEAQ399XFrLwPCOk33OX5DZuQgtV1QrzyO44lDVyPQlA
+	 qEGGIcUsOBH5A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 32248D116E2;
+	Sat, 29 Nov 2025 23:22:44 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Date: Sun, 30 Nov 2025 00:22:39 +0100
+Subject: [PATCH] arm64: dts: qcom: oneplus-enchilada: Specify i2c4 clock
+ frequency
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20251130-enchilada-i2c-freq-v1-1-2932480a0261@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIAD6AK2kC/x3MQQqAIBBA0avErBtQI4SuEi2GccyBsFKIILp70
+ vIt/n+gSlGpMHUPFLm06p4bbN8BJ8qroIZmcMaN1g4GJXPSjQKhOsZY5ERi8pHEsjcRWngUiXr
+ /03l53w+3sAF1ZAAAAA==
+X-Change-ID: 20251130-enchilada-i2c-freq-aca7fae1c70f
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1148; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=ReqOoZR6+itmM36ehLoW61mYST+VhDMpNFMsVslQ+Q8=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpK4BDigd2kU+6OyzeCvnrAaf/24n9+rMDNj4yM
+ EIfKKjAipuJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaSuAQwAKCRBgAj/E00kg
+ chrKEACQtzXZBAt0JWqvwythGdzHmGcWesX03W8+6/rbLK0qc9qrDoKF6YKVQDXGC6yCrH6TCzM
+ 9qcxM78oEc0x0uC5ek6JgiPzNy7qJM31jtNXCu5nGuddY4wSRADDYdcTnI29jMAu0Rl2Tn3725b
+ VFoPCq6bp5azKKDkzZxo+/TH6SJNTdUDbAFCjLg3yYlb1G1AMPgbUOevnIXLoCiJkj0SF3g4A9N
+ 1OLnLa1TKzq7Kpt2tA96wsROR2PeRUBHgGP1YmgjC2Jmvu1eO/7Bx0hu9lPT24HAZwZSKjQtcmw
+ G5ps5lIdFBofr90xPTVPCbGB9755Iag/VzPb2ZlPfw1Tcfenbvq8NWrqKKqNO/6xXYB8L/16mR+
+ HDrJksP3AfNPri6Kj6i8JzfvEdquknF9tmNYTTeR5ny85D04iRiYOpHhvym8BLFlZ7OLedPTO6j
+ lb43z/VGmZCsyOlO2bXez0GQ0NhQBeVo2I+8oQ4seQrZu3qU7cZijoEDaYP03p4D3zh9deWyeua
+ /TL7KfpsRnkoTBF+8rCyNi2NXs66CYLrg+HgheYQfXv5qskKa+ZpROjzqqtCtk64qD7UdZSWEAE
+ VvVrZTTWWzC52KLY3Bgfl+lJ3M5X1klODvZEfjCBTOIZYIBSE4L4dDf3NeMxQQkMq8XxazX67Su
+ cQ7P3FrnZmtgZEA==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-On Sat, 29 Nov 2025 16:49:11 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+From: David Heidelberg <david@ixit.cz>
 
-> On 29/11/2025 16:44, Krzysztof Kozlowski wrote:
-> >>         scm_conf_clocks: clocks {
-> >>                 #address-cells = <1>;
-> >>                 #size-cells = <0>;
-> >>         };      
-> >> };
-> >>
-> >> So, drivers like ti,pbias-dra7 or ti,dra7xx-phy-gmii-sel touch only registers
-> >> they know about and this works well.
-> >> But syscon manages the whole register map via regmap, and regmap exposes it all
-> >> via debugfs.
-> >>
-> >> What solution do you propose?
-> >> Splitting reg = <0x0 0x1400> into many tiny fractions and not using an mfd anymore?  
-> > 
-> > Fix the driver. In your case, the syscon driver.  
-> 
-> BTW, the state of existing TI DRA code is so poor that you don't have
-> many choices... or rather every choice has drawbacks. If this was proper
-> DTS, then I would say - define register map, used by regmap, for your
-> compatible either in syscon driver or dedicated driver (thus new driver
-> will be the syscon provider for you, just like Google GS101 syscon is
-> special).
-> 
-> Or maybe this is not syscon at all!
-> 
-> Remember that syscon is a collection of miscellaneous system controller
-> registers. You should not use syscon for other things, like devices with
-> incomplete hardware description.
-> 
-It is referenced in mmu0_disp1, it looks like some syscon.
-mmu0_dsp1:
-...
-   ti,syscon-mmuconfig = <&dsp1_system 0x0>;
+Per the binding, omitting the clock frequency from a Geni I2C controller
+node defaults the bus to 100 kHz. But at least in Linux, a friendly info
+print highlights the lack of explicitly defined frequency in the
+DeviceTree.
 
-So it looks valid. In code omap-iommu.c, aparrently only one register is
-written.
+Specify the frequency, to give it an explicit value, and to silence the
+log print in Linux.
 
-But again, DRA7 is not my area, OMAP3-5: yes.
+Downstream doesn't define any frequency, thus also using 100 kHz.
 
-Regards,
-Andreas
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+index a259eb9d45ae0..881d0f3ebca31 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+@@ -41,6 +41,8 @@ &bq27441_fg {
+ };
+ 
+ &i2c4 {
++	clock-frequency = <100000>;
++
+ 	status = "okay";
+ 
+ 	max98927_codec: max98927@3a {
+
+---
+base-commit: 7d31f578f3230f3b7b33b0930b08f9afd8429817
+change-id: 20251130-enchilada-i2c-freq-aca7fae1c70f
+
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
+
+
 
