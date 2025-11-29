@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-243143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9491C94395
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 17:43:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 698F6C9439B
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 17:43:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BC857345FDF
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 16:43:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22ED83A5B12
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 16:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9933230FF23;
-	Sat, 29 Nov 2025 16:43:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1AF3101AA;
+	Sat, 29 Nov 2025 16:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dNsTJgl2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m77s565E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A5830F804
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 16:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 674B930F938
+	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 16:43:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764434615; cv=none; b=b0v9zmPmE1xZ2roSYpHylXbA6As5YVK1mKu+ByOc0bw/MsEqCxFFR4Av9UZ4pha9r3Si9A8b6mZLRLKj9DBu92AsnlL+h6Dr85YC6BOXnJxFDtLzgHwRG+WfpEndJZM2U/aejAT9+0Zy5/G4PCEpZEhoT37ewl5IS94XcuWLeTY=
+	t=1764434615; cv=none; b=aGYrM82DjyZ7/L2wSpIYZkZ0Ng4eBoZQ3wo6bkgW/wDwPCMGBPtbWYEs2Z60KQNwVMIPsX/wvskHBJuP+rhv5V2X5NQ3ikbHWIjrDgHDdSXrIRGpvXtde6VPZNdfTp1Wc1X5aJ4u2FaNrRL666ty8Z4wEpJ0pG+gHWOGwl91Q08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1764434615; c=relaxed/simple;
-	bh=7Gt1YgAJEEGKJpT8m2zJjrNGSESqnzyY5pcLamcAVl8=;
+	bh=Jyr2CHVhr92k//wyRYmvtRWJKSE0xW9i+OMuWE/VQ3E=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fGZsaHkv8ho0D+X76YhnBoWQ8u0O3fw0t/KkNI8Oon/B7qZ0l7ViLaO2vbzOjGa9rG1FRUrD/0QGo6fmLxpOJBT6N23nq9d3SXy9l4C2bkwgYCLtZShykSUMNY/m3pSqom8BtVJWFjpsfYaRuC2aN/7gOpSdGEA2J7VXac0fxqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dNsTJgl2; arc=none smtp.client-ip=209.85.221.46
+	 MIME-Version; b=eqVSgVGqVdOse2q8i8vG3FVhBTKHM+pVOf17xM3p7FSglrwmd1zc7lSIJgQPY7cOirqrss//+UrLlzWw6lrL9MtUEyKKOc957Sxn/9wmQAiXDEem627k7CcwkgS5tHzSNT9rLISWRMGLodDoBTvZ0geS/dCE/rIMKcqE4/3MJu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m77s565E; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42e2d44c727so58316f8f.0
-        for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 08:43:32 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-477b1cc8fb4so16203135e9.1
+        for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 08:43:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1764434611; x=1765039411; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=C0GL9llKMJnY7Y99yoS1OtzGt53dvO/rcRpUYrh4ZOU=;
-        b=dNsTJgl2gQcLyP2NMhqyEPOUB4/8Xj0OPLHMzeig5M9x6xzHFagHM/P7e5EIVeaWfs
-         uQr6KaYSNdshiTGSeccOxTPGer8jc3IUbJly6UIKNE9DY7NwxYNQS1whXBHQjtYmFxN/
-         FtTxrlLPUs0XI5XymM5ZoQqtC99I6kYKRV5opb3vS2rHOKGd+ADbLvT7q1FX2VaL2Ndw
-         9ar+0IIZt0whfz/+Mr0SMV6QlvqIT7+0ZPUYWR4xiYrKv/eyDE950GWDxu9jwc2OGeRn
-         kKo2iKY2SIhngtQB2MFGURlbBHxdas5EZJvMPnPrwqbYEP96CflgtfBhsTfMiBBYcKMs
-         1SJQ==
+        bh=1laVFJ5J/2PogvGPArKDBntximPg68iaWIWh3V2PMC8=;
+        b=m77s565EkotB4BJCJQBhXEToYm61Mb548kx8KAOur8XI9cBMIFz0ccOG8A1bkMhR3b
+         5PEzEqj2s6Jb2whhBZHncBXkrNZVP6HouqllVTw3ziWTV6I+ehlKWkLuGtGFSDF4u+FQ
+         nCcAF4sqU9NnrBQMjZQJPmZNnRyhdGtK9jW6D5LigoZ36EvPs4AuAzFlUaSqYdPL9jxB
+         Gt2XzZZFUeEl2LGb/enVROVp6NbsebuwUSenRGLc1erbSZ2mokwxZ8jghauzWodB3veR
+         JK1puyZ0dCqwlnmHPSd3fqMdxooLvEMgtWZgneZ05Pj/KPGoOa2H8Z84jn4fulKo2PJC
+         Ep8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1764434611; x=1765039411;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=C0GL9llKMJnY7Y99yoS1OtzGt53dvO/rcRpUYrh4ZOU=;
-        b=ttNHBNn8sTE4HkR8wy1NnSFzK/vnQ0s+SLgb/RXlr7gTqr7Y1ips49PhRxWCEnUW9s
-         sGewAvMIHKn8keHRIBGQKLmZL3pTYs71Ggf6jka9CPWnBBGh7FXp4FE4pYd9ArkkJC2m
-         Z7rndOnNrU/PnS2QsmM27CiXGXycjTgczdasU+iGhFQVk/VBrV6uP4FoMiQvc4CLZowD
-         Xf+CTIINnpfeNa6J8rWgR5jLu2m+zYQViXXWLEouwhfsZsyfy3EzCWzqvBxyJ4ag0UUn
-         3YYaOnfZdFZFk2Vgrf3pMqQbIm2h85YXqmaw3AN0IqvJKZ4pcsTwx1bI8JTLunhcRK1A
-         M0lg==
-X-Forwarded-Encrypted: i=1; AJvYcCVHMyJBiGeW87h16SK+o9QmYBq940g7BFnaQMDf5TADyY+Y5BRxsSYd7PayBlcXv2oq333cFdOIs4hY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyiSjXYL9su38twzuHlox7jHyMuHvp0xIEhu4RaUkrHa7wxG5u
-	FaEAM7js1b5An0SVVOcTQtRFkJ27V93F4cFuy6esGtwwyWmxFyeCgcrG
-X-Gm-Gg: ASbGncvVaQRLYENk+rh+SKOjxhjSeIVAta35g3zIYlbooEHBBp1e/sHk2Uu2Px7r9kd
-	zuepdTbFHuCGXElC/1rbh0rIbGdCu/IG70+mAJG7jtvFQz/d5MfPvVOgLH75UYfUJ0RqQzlngLw
-	OUNnylz4xnB1g9+PHtcAZHgXhlTZnw/Z1gAK/5yZgqAFCJJdP6qTgt8KG3H2+gp/PgPPJkVw5MZ
-	rB/tNvqJFiEHNQSkcg57dHg+oCPamE37KsBzbockIsfTTVRUNULw091Fgv3vtsaKuh2jeCr60e0
-	DhH1N1LOJZ7hlAX0ZkU0XhN5gWAmNpNGTtOXZscH26yTQ4JK9V4Lijai4Yz/vRuIQDtodMqnTHs
-	xwDTCsddiHXw5e+g9rZyEbGnio5/LZ/fj9t877KXuQa0blXXSv944kxfFfgb8Tbc4N+trZ52cNj
-	NOJyxiiedz1N+yPzJ49JkKQWmLGPSxEKYZo84aSkOPQerCBvLVMvr8cFL3ZoCG+RU3RIvVDA3/z
-	C4CE3tsc6nWMn+T
-X-Google-Smtp-Source: AGHT+IGFqwL4XFsyw/yn7ECVh094qGGx5ZT2W+oo9SwUYcceC9Ev9EXxvf1Vzo7j4HTu73o/KVJ4vw==
-X-Received: by 2002:a5d:5d86:0:b0:3ea:80ec:8552 with SMTP id ffacd0b85a97d-42cc1d196b5mr34934825f8f.57.1764434610612;
-        Sat, 29 Nov 2025 08:43:30 -0800 (PST)
+        bh=1laVFJ5J/2PogvGPArKDBntximPg68iaWIWh3V2PMC8=;
+        b=QnC/jO8ZIa3blGdGdJudBjknPJPVx+fUzix47p4JzI0WDLoEzSO00hrytGmpZOtCHu
+         BsNFYNYzA3T7TP98cm9Ke76ynTJa3na8CozUIv4VT1E6ZWkW98QTEk45wT7UV61/udHA
+         SSaAwZiLnGtdTsXf1bpeLk0qi4YzyBeTpPZuHAFRH34aHap4J9DnU1QnpQcIOD1VL5z1
+         PZx7plAaKtgrAsj5+iREIlJuOfMDE7ZbvCRO7aP/U3tATObFtdghfafk3Kdj8A0DEmJ2
+         1C4QAec+pHve5NiwGrUdfx6mFV8ax9pqRq2WrMsrgJKag3N762qtNIsD6zGi69cv2TWF
+         zLsw==
+X-Forwarded-Encrypted: i=1; AJvYcCUs7jQ2x1257l59c8jAwVRAOH4ACuN3I6f2HkPDT8WXsoezcPXdUaCEPr/Us+cMh23IZZK4ecKYDGir@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGa4hF237tO8pLXcYV1g5hSgPxlpPRb210OYYpu06HXsiaoh3Q
+	6DjTD5vG7kEzpYxcmbd6MHvvM/nTCk3bEuQ7MZIEDzdck2Jb26Benjoa
+X-Gm-Gg: ASbGnctTrs/zs6G1oB6+oXY4qnF7lFGCP0FgnEXeals2euxR5dwBnT5XOJQy03jBgOR
+	YR7EraSk+57GfKkvU73DlVbW1fy5867Os9Zf63U5IQ7ZWU1vXnyWEgW+3bepEp7Oc7dPhn6CLZZ
+	M4wYVkZJ3tFrPKZjULMjSvAruEHIgubZpAEax0TjDtntIRQ7SJyeBmudkq+jgQiP+TmuUrY2zk/
+	Jy/UU36hX9G5eNNQ74sgOiHWSqFs7EI9fHd5NnHnPg5si5xez0SgyEqyOrF2z4apOjdSB51bQb5
+	Ru48unaEFe6F/TpJLuE0Uh4fT4JRjqTmrJGA2Z8KrZc83IzqCTnZ0kPx1uvgfoJWcyhtTkBolJl
+	hJe1b5I7BRQt9hMgqYpniLqMSThULVSS4xYL2Bg7X+9JmeTnFN1t5DWxubjfudr8jhUYYrsjEmm
+	CcWSeb5xMaxNKwgD+BD1ksIU0d+0Lz3T7hOcbWrrYD38sshDBRyS6Sd1PEyGw0I7mOkZ0WGsPQC
+	OrXeLGN59v7DECw
+X-Google-Smtp-Source: AGHT+IFOOPMW+EuE+WoBWDENaBFiI9rdwCgXZ+oiJXrJkuUjq1n/4uLYNcYjwXAPQNmHWmA+/475eQ==
+X-Received: by 2002:a05:600c:c8c:b0:477:a9e:859a with SMTP id 5b1f17b1804b1-47904b1ad30mr172572825e9.22.1764434611363;
+        Sat, 29 Nov 2025 08:43:31 -0800 (PST)
 Received: from localhost.localdomain (host86-162-200-138.range86-162.btcentralplus.com. [86.162.200.138])
         by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1ca4078csm15970060f8f.29.2025.11.29.08.43.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
@@ -92,9 +92,9 @@ Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v5 03/17] serial: rsci: Add set_rtrg() callback
-Date: Sat, 29 Nov 2025 16:42:59 +0000
-Message-ID: <20251129164325.209213-4-biju.das.jz@bp.renesas.com>
+Subject: [PATCH v5 04/17] serial: sh-sci: Drop checking port type for device file{create, remove}
+Date: Sat, 29 Nov 2025 16:43:00 +0000
+Message-ID: <20251129164325.209213-5-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251129164325.209213-1-biju.das.jz@bp.renesas.com>
 References: <20251129164325.209213-1-biju.das.jz@bp.renesas.com>
@@ -108,52 +108,63 @@ Content-Transfer-Encoding: 8bit
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-The rtrg variable is populated in sci_init_single() for RZ/T2H. Add
-set_rtrg() callback for setting the rtrg value.
+Ports that support FIFO has fifosize > 1. Replace checking the port type
+with fifosize for device file{create, remove}.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
-v5:
+v4->v5:
+ * Dropped checking port type for device file{create, remove} and instead
+   started checking the fifosize.
+ * Dropped sci_is_fifo_type() helper.
+ * Updated commit header and description.
+v4:
  * New patch.
 ---
- drivers/tty/serial/rsci.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ drivers/tty/serial/sh-sci.c | 15 ++++-----------
+ 1 file changed, 4 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/tty/serial/rsci.c b/drivers/tty/serial/rsci.c
-index b3c48dc1e07d..0533a4bb1d03 100644
---- a/drivers/tty/serial/rsci.c
-+++ b/drivers/tty/serial/rsci.c
-@@ -151,6 +151,22 @@ static void rsci_start_rx(struct uart_port *port)
- 	rsci_serial_out(port, CCR0, ctrl);
+diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
+index 28d665a9861a..ff5459c449fb 100644
+--- a/drivers/tty/serial/sh-sci.c
++++ b/drivers/tty/serial/sh-sci.c
+@@ -3549,16 +3549,14 @@ static struct uart_driver sci_uart_driver = {
+ static void sci_remove(struct platform_device *dev)
+ {
+ 	struct sci_port *s = platform_get_drvdata(dev);
+-	unsigned int type = s->type;	/* uart_remove_... clears it */
+ 
+ 	sci_ports_in_use &= ~BIT(s->port.line);
+ 	uart_remove_one_port(&sci_uart_driver, &s->port);
+ 
+-	if (s->port.fifosize > 1)
++	if (s->port.fifosize > 1) {
+ 		device_remove_file(&dev->dev, &dev_attr_rx_fifo_trigger);
+-	if (type == PORT_SCIFA || type == PORT_SCIFB || type == PORT_HSCIF ||
+-	    type == SCI_PORT_RSCI)
+ 		device_remove_file(&dev->dev, &dev_attr_rx_fifo_timeout);
++	}
  }
  
-+static int rsci_scif_set_rtrg(struct uart_port *port, int rx_trig)
-+{
-+	u32 fcr = rsci_serial_in(port, FCR);
+ static const struct sci_of_data of_sci_scif_sh2 = {
+@@ -3917,15 +3915,10 @@ static int sci_probe(struct platform_device *dev)
+ 		ret = device_create_file(&dev->dev, &dev_attr_rx_fifo_trigger);
+ 		if (ret)
+ 			return ret;
+-	}
+-	if (sp->type == PORT_SCIFA || sp->type == PORT_SCIFB ||
+-	    sp->type == PORT_HSCIF || sp->type == SCI_PORT_RSCI) {
 +
-+	if (rx_trig >= port->fifosize)
-+		rx_trig = port->fifosize - 1;
-+	else if (rx_trig < 1)
-+		rx_trig = 0;
-+
-+	fcr &= ~FCR_RTRG4_0;
-+	fcr |= field_prep(FCR_RTRG4_0, rx_trig);
-+	rsci_serial_out(port, FCR, fcr);
-+
-+	return rx_trig;
-+}
-+
- static void rsci_set_termios(struct uart_port *port, struct ktermios *termios,
- 			     const struct ktermios *old)
- {
-@@ -454,6 +470,7 @@ static const struct sci_port_ops rsci_port_ops = {
- 	.poll_put_char		= rsci_poll_put_char,
- 	.prepare_console_write	= rsci_prepare_console_write,
- 	.suspend_regs_size	= rsci_suspend_regs_size,
-+	.set_rtrg		= rsci_scif_set_rtrg,
- 	.shutdown_complete	= rsci_shutdown_complete,
- };
- 
+ 		ret = device_create_file(&dev->dev, &dev_attr_rx_fifo_timeout);
+ 		if (ret) {
+-			if (sp->port.fifosize > 1) {
+-				device_remove_file(&dev->dev,
+-						   &dev_attr_rx_fifo_trigger);
+-			}
++			device_remove_file(&dev->dev, &dev_attr_rx_fifo_trigger);
+ 			return ret;
+ 		}
+ 	}
 -- 
 2.43.0
 
