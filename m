@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-243142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18E11C94389
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 17:43:46 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9491C94395
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 17:43:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F31693A58DC
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 16:43:42 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BC857345FDF
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 16:43:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D50C30FC13;
-	Sat, 29 Nov 2025 16:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9933230FF23;
+	Sat, 29 Nov 2025 16:43:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E1xEiAYQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dNsTJgl2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3AA530EF66
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 16:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A5830F804
+	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 16:43:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764434614; cv=none; b=jbTCCkmdDp1xaxXmSybpZqNq7n//SXkT2+xa6GihiDj32fabF16jPAInupl00fxKgkOm/w9I6DM+n2GL2rdICjG4qa53rr6J6eZ9e0VZ7Hz7zZsqTM5RojrM2RBelXEyBEREOYAXd8KDvSjsV8iXDKn6sMX+Ai3Sy/VFSHPoSMU=
+	t=1764434615; cv=none; b=b0v9zmPmE1xZ2roSYpHylXbA6As5YVK1mKu+ByOc0bw/MsEqCxFFR4Av9UZ4pha9r3Si9A8b6mZLRLKj9DBu92AsnlL+h6Dr85YC6BOXnJxFDtLzgHwRG+WfpEndJZM2U/aejAT9+0Zy5/G4PCEpZEhoT37ewl5IS94XcuWLeTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764434614; c=relaxed/simple;
-	bh=B7v9qrW+paFhlhLozJ6lRj0AyNxXth9PHBmIByVEUjs=;
+	s=arc-20240116; t=1764434615; c=relaxed/simple;
+	bh=7Gt1YgAJEEGKJpT8m2zJjrNGSESqnzyY5pcLamcAVl8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IxAn9IIK5FnDr5ulKDsmu1nlJA4mVcXY/E9zr1uDELjMvW/9FJoGnlZbrs319wqWuA+0MgAZCjQMC56wMjO28xdN2j/ITUS9oVrenjc5INnko3uJr9U5x3Nyg5eC4uVTbOhRgOre/fy93QIak/KF/qdoRP5X4wA+Cdo9qz58vog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E1xEiAYQ; arc=none smtp.client-ip=209.85.221.46
+	 MIME-Version; b=fGZsaHkv8ho0D+X76YhnBoWQ8u0O3fw0t/KkNI8Oon/B7qZ0l7ViLaO2vbzOjGa9rG1FRUrD/0QGo6fmLxpOJBT6N23nq9d3SXy9l4C2bkwgYCLtZShykSUMNY/m3pSqom8BtVJWFjpsfYaRuC2aN/7gOpSdGEA2J7VXac0fxqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dNsTJgl2; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42e2b90ad22so129505f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 08:43:31 -0800 (PST)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42e2d44c727so58316f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 08:43:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764434610; x=1765039410; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1764434611; x=1765039411; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9bPqYF9HDpkdMmik2D0hgGXuyr4x4ACsXKFxzvuy0gs=;
-        b=E1xEiAYQ2C1PazrD72ycPw7SLh4D76mqE04qlL83CHBwHGDYC3W3kYCXQnXqOpb+eV
-         mM3rYbDBLElRwLRIp2wUjuXRh9FkNhkLIuxtrDXVzc8q2NhNTLrTc7LCXB0cMUL7IVoH
-         YZXzvYLzXJk7Gwqli5HYIKk1mAh8XcVBw4fJBT6Zu3ETbVt03reJf8QJwk8Ik2Pp/Mgh
-         WMipaRZcy2m+up3oG7OMdTitxnL1jPaGlmmJm5t3FAZWJSd6RKPVF5j2BGp4LjFqAZA8
-         reDoBGvLMjkI1auSb1vzhdMMnvWPtc6YNMl8KrVoe5zGsek5eG0RMHcu6vNreFBngUfr
-         FMew==
+        bh=C0GL9llKMJnY7Y99yoS1OtzGt53dvO/rcRpUYrh4ZOU=;
+        b=dNsTJgl2gQcLyP2NMhqyEPOUB4/8Xj0OPLHMzeig5M9x6xzHFagHM/P7e5EIVeaWfs
+         uQr6KaYSNdshiTGSeccOxTPGer8jc3IUbJly6UIKNE9DY7NwxYNQS1whXBHQjtYmFxN/
+         FtTxrlLPUs0XI5XymM5ZoQqtC99I6kYKRV5opb3vS2rHOKGd+ADbLvT7q1FX2VaL2Ndw
+         9ar+0IIZt0whfz/+Mr0SMV6QlvqIT7+0ZPUYWR4xiYrKv/eyDE950GWDxu9jwc2OGeRn
+         kKo2iKY2SIhngtQB2MFGURlbBHxdas5EZJvMPnPrwqbYEP96CflgtfBhsTfMiBBYcKMs
+         1SJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764434610; x=1765039410;
+        d=1e100.net; s=20230601; t=1764434611; x=1765039411;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=9bPqYF9HDpkdMmik2D0hgGXuyr4x4ACsXKFxzvuy0gs=;
-        b=pHWSbTo10DiMCSDsTeKOmNyYBT8KZf+Z4IyfgcD35kG8MmqTg3r93MunyCPIb9i5jW
-         2e3GI47hoOefBD1cRy6rjaeKkl5i+ImvkUZ8iXN47vvCFjSxIHJ9xfrMpWEgRL47OuCV
-         4B6yX5gwVBANREOqZ5drkW9Gb50J09aM322gs+IANeIDfiYRRrP99rItOuLfbL5T3yd3
-         +WHy1KZ2ZTREG8hE6pZSqWJMo1/fwv2Iv3Ctvp3Ni4LTI9kTY+hpGsP2G2T39azNmGEv
-         pZScpCbXPy+PWps6UlZT+lJsHwa+1Sfy65L76fXNzwxcoSVlHsaFr6jLqHSbOgFyqlnI
-         u2oA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfhOgDADIgmg0LeRqcEydsSgoBaUjqbfycBbIan1urWVR8cYZAFjwXesFLAkkwobDkmgNKYaTZ4PWW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3E2VzdKtaJsrdlhvBm3t6mJlduxF6eVWV/tHX1ovpzt7xLFaj
-	x32dNHj/fSIagqz41Zx4pqIyizWI/GwikBx3uvRM4muXXJk4uqrVvkn6
-X-Gm-Gg: ASbGncsxtXC8b0Doco0Z9cIHA5zcgLCkPXpkNraw6NNtFwjCrbYhWmW9bNGKDr+kXlw
-	HrKrak+T2IzIoTzojZcEbwNzW+BqdK/lcD5+2oN603DQ4W1iejCSFBkGaTPSttkUHEaPY+AflZm
-	TYB6zWdHFiQjOhbFuulzIutk/sPsJnpBWkCsZNQkzpfBKPUo25+DE4l0aRyWwN5UD3/IyEpZNcZ
-	YrMhBKu+V6aY7qKS3eFh39l749wgx39yqx60HCJaRFz1UqZlZGXI8g9GC3/WOB0hO6/rqdsMoVn
-	W3xqADvqPThOlznnQAnf7DjmxIsOGhYWKTro0QphcR0XtQTu2al4037ERMPvJPkQhyHcKnJb+yL
-	I3Woi489foqXIiVYwAXMjtF0py7EKQ5UoCqn2XGJKViB8HBK8sieTgx7BygbfzNqOjVdz+S0a+/
-	p/FTnWu/W4SZ4Ogf4jKZee1WEnbZQ7+5DsQhCF9y9UblltO4ZFQ7SrXOFO5oLizSnki8SsV2Tw0
-	kOvq8gBgCoY1r9h
-X-Google-Smtp-Source: AGHT+IEEb2qZ0UYDHUie4Qwc62VO5FnkQXg1w3EqYcfeQhWXDStHqlNvLIDNuNrRiYbDT877KormhA==
-X-Received: by 2002:a05:6000:40cc:b0:42b:3cd2:e9bb with SMTP id ffacd0b85a97d-42cc1d2e29dmr33566362f8f.32.1764434610050;
+        bh=C0GL9llKMJnY7Y99yoS1OtzGt53dvO/rcRpUYrh4ZOU=;
+        b=ttNHBNn8sTE4HkR8wy1NnSFzK/vnQ0s+SLgb/RXlr7gTqr7Y1ips49PhRxWCEnUW9s
+         sGewAvMIHKn8keHRIBGQKLmZL3pTYs71Ggf6jka9CPWnBBGh7FXp4FE4pYd9ArkkJC2m
+         Z7rndOnNrU/PnS2QsmM27CiXGXycjTgczdasU+iGhFQVk/VBrV6uP4FoMiQvc4CLZowD
+         Xf+CTIINnpfeNa6J8rWgR5jLu2m+zYQViXXWLEouwhfsZsyfy3EzCWzqvBxyJ4ag0UUn
+         3YYaOnfZdFZFk2Vgrf3pMqQbIm2h85YXqmaw3AN0IqvJKZ4pcsTwx1bI8JTLunhcRK1A
+         M0lg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHMyJBiGeW87h16SK+o9QmYBq940g7BFnaQMDf5TADyY+Y5BRxsSYd7PayBlcXv2oq333cFdOIs4hY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyiSjXYL9su38twzuHlox7jHyMuHvp0xIEhu4RaUkrHa7wxG5u
+	FaEAM7js1b5An0SVVOcTQtRFkJ27V93F4cFuy6esGtwwyWmxFyeCgcrG
+X-Gm-Gg: ASbGncvVaQRLYENk+rh+SKOjxhjSeIVAta35g3zIYlbooEHBBp1e/sHk2Uu2Px7r9kd
+	zuepdTbFHuCGXElC/1rbh0rIbGdCu/IG70+mAJG7jtvFQz/d5MfPvVOgLH75UYfUJ0RqQzlngLw
+	OUNnylz4xnB1g9+PHtcAZHgXhlTZnw/Z1gAK/5yZgqAFCJJdP6qTgt8KG3H2+gp/PgPPJkVw5MZ
+	rB/tNvqJFiEHNQSkcg57dHg+oCPamE37KsBzbockIsfTTVRUNULw091Fgv3vtsaKuh2jeCr60e0
+	DhH1N1LOJZ7hlAX0ZkU0XhN5gWAmNpNGTtOXZscH26yTQ4JK9V4Lijai4Yz/vRuIQDtodMqnTHs
+	xwDTCsddiHXw5e+g9rZyEbGnio5/LZ/fj9t877KXuQa0blXXSv944kxfFfgb8Tbc4N+trZ52cNj
+	NOJyxiiedz1N+yPzJ49JkKQWmLGPSxEKYZo84aSkOPQerCBvLVMvr8cFL3ZoCG+RU3RIvVDA3/z
+	C4CE3tsc6nWMn+T
+X-Google-Smtp-Source: AGHT+IGFqwL4XFsyw/yn7ECVh094qGGx5ZT2W+oo9SwUYcceC9Ev9EXxvf1Vzo7j4HTu73o/KVJ4vw==
+X-Received: by 2002:a5d:5d86:0:b0:3ea:80ec:8552 with SMTP id ffacd0b85a97d-42cc1d196b5mr34934825f8f.57.1764434610612;
         Sat, 29 Nov 2025 08:43:30 -0800 (PST)
 Received: from localhost.localdomain (host86-162-200-138.range86-162.btcentralplus.com. [86.162.200.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1ca4078csm15970060f8f.29.2025.11.29.08.43.29
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1ca4078csm15970060f8f.29.2025.11.29.08.43.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Nov 2025 08:43:29 -0800 (PST)
+        Sat, 29 Nov 2025 08:43:30 -0800 (PST)
 From: Biju <biju.das.au@gmail.com>
 X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -92,9 +92,9 @@ Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v5 02/17] serial: sh-sci: Update rx_trigger size for RZ/T2H RSCI
-Date: Sat, 29 Nov 2025 16:42:58 +0000
-Message-ID: <20251129164325.209213-3-biju.das.jz@bp.renesas.com>
+Subject: [PATCH v5 03/17] serial: rsci: Add set_rtrg() callback
+Date: Sat, 29 Nov 2025 16:42:59 +0000
+Message-ID: <20251129164325.209213-4-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251129164325.209213-1-biju.das.jz@bp.renesas.com>
 References: <20251129164325.209213-1-biju.das.jz@bp.renesas.com>
@@ -108,32 +108,52 @@ Content-Transfer-Encoding: 8bit
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-The RZ/T2H RSCI has 16-stage FIFO. Like other SoCs, set the default
-rx_trigger as the fifosize.
+The rtrg variable is populated in sci_init_single() for RZ/T2H. Add
+set_rtrg() callback for setting the rtrg value.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
-v4->v5:
- * Updated commit description.
-v4:
+v5:
  * New patch.
 ---
- drivers/tty/serial/sh-sci.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/tty/serial/rsci.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index 53edbf1d8963..28d665a9861a 100644
---- a/drivers/tty/serial/sh-sci.c
-+++ b/drivers/tty/serial/sh-sci.c
-@@ -3330,7 +3330,7 @@ static int sci_init_single(struct platform_device *dev,
- 			sci_port->rx_trigger = 8;
- 		break;
- 	case SCI_PORT_RSCI:
--		sci_port->rx_trigger = 15;
-+		sci_port->rx_trigger = 16;
- 		break;
- 	default:
- 		sci_port->rx_trigger = 1;
+diff --git a/drivers/tty/serial/rsci.c b/drivers/tty/serial/rsci.c
+index b3c48dc1e07d..0533a4bb1d03 100644
+--- a/drivers/tty/serial/rsci.c
++++ b/drivers/tty/serial/rsci.c
+@@ -151,6 +151,22 @@ static void rsci_start_rx(struct uart_port *port)
+ 	rsci_serial_out(port, CCR0, ctrl);
+ }
+ 
++static int rsci_scif_set_rtrg(struct uart_port *port, int rx_trig)
++{
++	u32 fcr = rsci_serial_in(port, FCR);
++
++	if (rx_trig >= port->fifosize)
++		rx_trig = port->fifosize - 1;
++	else if (rx_trig < 1)
++		rx_trig = 0;
++
++	fcr &= ~FCR_RTRG4_0;
++	fcr |= field_prep(FCR_RTRG4_0, rx_trig);
++	rsci_serial_out(port, FCR, fcr);
++
++	return rx_trig;
++}
++
+ static void rsci_set_termios(struct uart_port *port, struct ktermios *termios,
+ 			     const struct ktermios *old)
+ {
+@@ -454,6 +470,7 @@ static const struct sci_port_ops rsci_port_ops = {
+ 	.poll_put_char		= rsci_poll_put_char,
+ 	.prepare_console_write	= rsci_prepare_console_write,
+ 	.suspend_regs_size	= rsci_suspend_regs_size,
++	.set_rtrg		= rsci_scif_set_rtrg,
+ 	.shutdown_complete	= rsci_shutdown_complete,
+ };
+ 
 -- 
 2.43.0
 
