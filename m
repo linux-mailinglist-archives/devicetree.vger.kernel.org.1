@@ -1,198 +1,121 @@
-Return-Path: <devicetree+bounces-243169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC4FCC94896
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 23:22:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30542C948BE
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 00:03:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B3ED34E1420
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 22:22:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D79043A6588
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 23:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40DD309F1B;
-	Sat, 29 Nov 2025 22:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A41A226165;
+	Sat, 29 Nov 2025 23:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m3Ipb06M";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="APITAn7v"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="qKKu+ohq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B4E21770B
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 22:22:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6165DD27E;
+	Sat, 29 Nov 2025 23:03:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764454972; cv=none; b=QSYuyFPlEbu12CE2wb7Np326/CQ26eCADrL7LhBdVoiW7TA9dZ85UVrFtoWewwWYlUAMLaO41f+EG7QQwwl5rLWhC6hgfbl5JTFRCiBz3t11OOxb/Q+HMy9lwz5Vt70aNv10uJed4Oz7NAo8Yaso3+oDneeIaZAbltkAFqlB3Js=
+	t=1764457389; cv=none; b=MYvHz4E2kimVinwu87NW3j08FRTHJ1F4AX5yxwiAuGoerrEuux1/hOKXBsv9Cw7wD9lwOzpNsqmNlF/nlt2GJksGWRpuYoAtlVVhRtUXBGljifz07A/00bzKGKeMLbheo3h3IB0wjBn0fSeI4t7fk0erBHo9NRns2Q1moCiED9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764454972; c=relaxed/simple;
-	bh=BE4iF1qYdTW8dcx+Cn1INn01yGU14vjy2WHpax2KPYU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Qs7nKHwrqI3k75WYH9PF4hy+fDnv9v4o5XNPmDiCXFBnnKM49LDOurJucXcJj0F1/ugpdiiVSNRvWYkCfL/w3qZHaHIqSVe0jHLxlut9kB0gTov0zhSzFO+AMbDWF5O4pAQNy2C/Lu+3cuq1OFNNA1FOieNv/eNA7vMm72Lswm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m3Ipb06M; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=APITAn7v; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ATJP2uE3684858
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 22:22:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=wjwQhzHT9BVqC2zA4PkwVgYC
-	rw7KRmitIItefR9bGTM=; b=m3Ipb06MA1W5TOZuy4IH1Pbr4XtBhbiRBd3Pw2+f
-	7fKrlQiFVfdRBI3qwOjUmPZu5i+WoJeOmzHn4afE0IafTB+eBGbxRVjB+lzpSjqP
-	fAqqxXjnPHEwcC0T0AJksTScSBd7taVMa7Fa4WjrZz7JtMbjnbz1d/uMpcVPKZSd
-	7BOUjdlXPCcBBVUXqX+61T15cz4Qty8ySBmwZ9MJ9qldJuQi+lZE43pg+p6co86u
-	FgZBqCxhJq+eF0inR9fvs9S3qGkLtDHX3h0QvnmNphR3OswL3oFgMxJN2TtHkXV/
-	91E5CoEz6b0AoJTPb0aFQZXS56c3f51y3qblSCr0MbSlgQ==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aqqsqheth-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 22:22:50 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3416dc5752aso7729969a91.1
-        for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 14:22:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764454969; x=1765059769; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wjwQhzHT9BVqC2zA4PkwVgYCrw7KRmitIItefR9bGTM=;
-        b=APITAn7vh6UsrWyj5KMU02XsSL5nw1RFPkWFyFdyHoUyUEgWruFq07t3mWPlA9z16s
-         MYc252wXFLu5Pco9iD3pm1AMWXa2K3GKGzknIvRPQU2ijRdXKtOK1n0EpkotcuygRZ5j
-         R5KsTI30DXRJgD8KW/Vjv31bjpVZsa0hlhLFIhd9PWCyjD80tTNWCCGWSWvVyOKuQjMf
-         Mr9saRsuJMliEJ7pWQJMZBMt18XcYx1yVmZ/MBEO5+cmvvN6MhbHRukvxSfFZMacsj0O
-         La6xAXGkNOlj2XMvFRID+yiL2xaV0YXc4kyyUl3wcYfQKV5Nb2V3t8+4TJPZMECiMjZ8
-         GoUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764454969; x=1765059769;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wjwQhzHT9BVqC2zA4PkwVgYCrw7KRmitIItefR9bGTM=;
-        b=suNfJ3RdTUQ41eqEioqPEElmIP9NxBGn2YqfvEnsmu7toQPcBjTgTtxrGgASzuUeHL
-         bgqAr3YOSTO4Zo5TgcMhvMF14lY7DpMsAcc75fyNhF+Ek3ssh9/372suAdoBMQmSyXi5
-         Sq9lcRBZJ/o33W/tGaRGlK03GViSGn8TxlT15VKZNjEEmzNSbIKY86GaSXk1Y6O9EJrj
-         QPalW0KZ4TyrVfU4ksTxk2y6NLeUYZtOl8u15gmwg7aa7DN1AiJ90S5j14M5ntqGseup
-         ineo8IQPHfEXAPKuc4sIadMh1ZPC3LlCghozwCM0kpcno+nIIEL49Uf7k2JxLnqJh/gF
-         NZ8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUlegcHWtooxqBdJxb2n60xNqK9LMaGVpfwO2ukP0YH4nnHntUiyDgxf6gr2SnDYgyIB2SZQCUuzyxI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzzik9ubRg4fKO6xRyR9Yiuhtg2zClAtwD8vKvFknYe1ds/DQEH
-	WaMyOPTIu2fiZ2h74tIxVtMTT+DI4Ic0xJfp8ad5sEjuxr2XmUd9uVzgpxDHaemzuAhkMFV7d1T
-	eN0L7vmQ/I0Rs/k3/JZCAvDv6yXSAjFk/6mpi2g04s/VqGWsg3+R5PuNGMBOLoamYDkAHsJIu62
-	7X9ALVbVGsojH+KKY7QIjqfviTg2ZfHRkI0cUYlR67HF3EkJpEgiv1
-X-Gm-Gg: ASbGncsAbT8U45K1rnsu4Qa0ktufANOVF/UdLt/pxNgUWql4+PTY9hMqSBGeRCdox7d
-	f9ElPcEtedKvfARlvVgDwE0eNrdlKUQXAIGCcuf5JxgpJpGArJ1O6scTf0WpBwo597ZJnrHXJQk
-	8q0rEz0zRI0V8E8oTlSudkMDaXIrU22EJDcnO6Sf8QnHb2H7CRsb4ROkV1yNnNTNUPTg==
-X-Received: by 2002:a17:90b:1802:b0:338:3789:2e7b with SMTP id 98e67ed59e1d1-3475ebe8350mr18298541a91.13.1764454969068;
-        Sat, 29 Nov 2025 14:22:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGAfJJiKsqxeMifoaqRLpI88E1sfmB8UrYGYLg8GAPopV5FYeDzqFmW0/WwkQLCfn+7ugJUSYOqrKvAQwwcELU=
-X-Received: by 2002:a17:90b:1802:b0:338:3789:2e7b with SMTP id
- 98e67ed59e1d1-3475ebe8350mr18298520a91.13.1764454968602; Sat, 29 Nov 2025
- 14:22:48 -0800 (PST)
+	s=arc-20240116; t=1764457389; c=relaxed/simple;
+	bh=mgXfxylVhwi5gIj+YRMh5lhm1brcwJLLHDr8VW0uBI4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MU5wZR6ismOTLDrgXv23Y6OfivRXuWZlwR6V7MjIQYi6jXxiHjRtbXoFrWjS5qyhLZTx+9Ba5pgaPnewQ6Pc7KOOZ+H8ECy2zzN+G44KizRhJZHGgZrPU4OnMB7kkyeuO7ALoed77W8kNqkDn16NwjhXKwl2gQSlRM3KYd+0sMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=qKKu+ohq; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=OhkaxTXYbFwBVT95vUBVttCOVL60xkD5u6rG8NP8cIU=; b=qKKu+ohqNwccUiBW/QUjuA473c
+	kEjo9KTIeYzq5/yF2WBxhbV1PJdHAwezeimvacjpwTRHq3gGsgizqXJK3wGEulb0wOG9kWup2EJKp
+	KPw1RijZF1/aZ9gCXnI9mBAqqAj7LQY+2/3u9or6gr91SIb5OUfyo3CRs0YgUUNbGG2T8B+JzEecZ
+	7IyURIQUSJvWRdSsSzsDDuDf2anBF5G8tcrbK83kp2OxhJ7FwBFwqT82fQs7J8oDcBMTRKRixvr6s
+	Z2E2egA0S21sFDyNuKM7CwLfaBc7KuAPXd+NMEbvM5kGJeGNT6NZuSjAYGFBBxEzHUt9s3dKv/Q3h
+	P2TiqEYQ==;
+Date: Sun, 30 Nov 2025 00:02:59 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Richard Weinberger <richard@nod.at>, linux-kernel
+ <linux-kernel@vger.kernel.org>, linux-omap <linux-omap@vger.kernel.org>,
+ devicetree <devicetree@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>, Lee
+ Jones <lee@kernel.org>, dakr <dakr@kernel.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Mark
+ Brown <broonie@kernel.org>, tony <tony@atomide.com>, rogerq
+ <rogerq@kernel.org>, khilman <khilman@baylibre.com>, aaro koskinen
+ <aaro.koskinen@iki.fi>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, robh <robh@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: Document new common property:
+ has-inaccessible-regs
+Message-ID: <20251130000259.36c37b4e@kemnade.info>
+In-Reply-To: <4fc059f0-8aab-4bd2-a7a2-33a532117e71@kernel.org>
+References: <20251129142042.344359-1-richard@nod.at>
+	<20251129142042.344359-2-richard@nod.at>
+	<7d9fcf24-5ad5-48cf-b36d-83025976f3aa@kernel.org>
+	<771947541.4509.1764430418744.JavaMail.zimbra@nod.at>
+	<8b0e2b8a-314f-40ee-8f30-c281f3799705@kernel.org>
+	<4fc059f0-8aab-4bd2-a7a2-33a532117e71@kernel.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251126-slpi-v1-0-c101d08beaf2@gmail.com> <20251126-slpi-v1-1-c101d08beaf2@gmail.com>
- <jxlq4fbtl5rkiyyaivoelynw5hjpb3xtg4klcyocyzbs6ncpqa@rhqcwbehisjv>
- <2c7fc579-6d46-4821-9059-4ccce589ffdb@ixit.cz> <hw63nhhm4n5fngmrhy2pktztxq32ix4n2be5dycowglekee2rm@js3jyst2i5oz>
- <58e62b16-2056-470f-a868-1b958949c411@ixit.cz>
-In-Reply-To: <58e62b16-2056-470f-a868-1b958949c411@ixit.cz>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Sun, 30 Nov 2025 00:22:33 +0200
-X-Gm-Features: AWmQ_bkGfUo3owmNnmBkWC7NZ8BctNgfDdy_d7ejM7ruh6dnStGPqfNnfxjYRwk
-Message-ID: <CAO9ioeW9=TPde4P=AOcQANvPv90K-9MkcRRgb7HNwe8KiOpFjQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable SLPI
-To: David Heidelberg <david@ixit.cz>
-Cc: longnoserob@gmail.com, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Authority-Analysis: v=2.4 cv=UqVu9uwB c=1 sm=1 tr=0 ts=692b723a cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=IkcTkHD0fZMA:10 a=6UeiqGixMTsA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8
- a=P38NquS9la7hg7DsUToA:9 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-ORIG-GUID: ZZ9V5Gx-t_tUEmg947pLBSSM0U0lMAJR
-X-Proofpoint-GUID: ZZ9V5Gx-t_tUEmg947pLBSSM0U0lMAJR
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI5MDE4NSBTYWx0ZWRfXwlic3kHoWxsg
- DQv1b6Zr4a1bqzrA0j9Q2uy5ETnagxPjAbKFL4hhx4ppsA/H97F513T1ZIyDad8uiCV2wvRUnNh
- w6tPnoWG7/+kNqbI+cdXWoRn8mnPaG9GgomDHspqxDNpSuK3CRYqlD2EAMwd9XyGWsraaNahfGP
- rboKVXFJSZphlJtch25CzB7TQo4ORWVlTU86OLKy3GQDONnEQ10wHnZRBlGLLzXB80AARvtuYve
- HtygvC1a4eH4xhcmDeWdrK2U7rEWZo2r7ByCBWRRC4p8OwCy+0Xh+2aLlat05w0aYrwK+rboq1v
- j7Br0CV82HTMmHpIwWHiLpYRecYw2r53wVrET94ONruZRK74u3iKxkRToA8exfhcx/5hYKZBW6A
- /M8jZjCtkt0K1F449Jg9QzS1uMo0Zw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 spamscore=0 impostorscore=0 phishscore=0 adultscore=0
- malwarescore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511290185
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, 29 Nov 2025 at 14:08, David Heidelberg <david@ixit.cz> wrote:
->
-> On 29/11/2025 02:15, Dmitry Baryshkov wrote:
-> > On Wed, Nov 26, 2025 at 03:59:48PM +0100, David Heidelberg wrote:
-> >> On 26/11/2025 15:41, Dmitry Baryshkov wrote:
-> >>> On Wed, Nov 26, 2025 at 09:08:35PM +0900, Robert Eckelmann via B4 Relay wrote:
-> >>>> From: Robert Eckelmann <longnoserob@gmail.com>
-> >>>>
-> >>>> Enable the SLPI dsp on the Xiaomi Pocophone F1 with Qualcom SDM845 SoC.
-> >>>>
-> >>>> Signed-off-by: Robert Eckelmann <longnoserob@gmail.com>
-> >>>> Signed-off-by: David Heidelberg <david@ixit.cz>
-> >>>> ---
-> >>>>    arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 7 +++++++
-> >>>>    1 file changed, 7 insertions(+)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> >>>> index 785006a15e97..0fb1d7e724c4 100644
-> >>>> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> >>>> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> >>>> @@ -425,6 +425,12 @@ &sdhc_2 {
-> >>>>            cd-gpios = <&tlmm 126 GPIO_ACTIVE_HIGH>;
-> >>>>    };
-> >>>> +&slpi_pas {
-> >>>> +  firmware-name = "qcom/sdm845/beryllium/slpi.mbn";
-> >>>
-> >>> qcom/sdm845/Xiaomi/beryllium/slpi.mbn
+On Sat, 29 Nov 2025 16:49:11 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> On 29/11/2025 16:44, Krzysztof Kozlowski wrote:
+> >>         scm_conf_clocks: clocks {
+> >>                 #address-cells = <1>;
+> >>                 #size-cells = <0>;
+> >>         };      
+> >> };
 > >>
-> >> Could be this change done for all the firmware files at once but later?
+> >> So, drivers like ti,pbias-dra7 or ti,dra7xx-phy-gmii-sel touch only registers
+> >> they know about and this works well.
+> >> But syscon manages the whole register map via regmap, and regmap exposes it all
+> >> via debugfs.
 > >>
-> >> Currently all the firmwares using this legacy path.
-> >
-> > I'd rather see the patch fixing firmware paths first and then the patch
-> > adding SLPI with the correct path from the day 0 (I feel sorry for
-> > causing pain to PmOS maintainers). Of course both patches can come as a
-> > part of the same series.
->
-> Would it make sense as a follow up, I would changed "the whole sdm845"
-> to the new paths, so distros maintainers can update paths everywhere
-> with 6.19?
+> >> What solution do you propose?
+> >> Splitting reg = <0x0 0x1400> into many tiny fractions and not using an mfd anymore?  
+> > 
+> > Fix the driver. In your case, the syscon driver.  
+> 
+> BTW, the state of existing TI DRA code is so poor that you don't have
+> many choices... or rather every choice has drawbacks. If this was proper
+> DTS, then I would say - define register map, used by regmap, for your
+> compatible either in syscon driver or dedicated driver (thus new driver
+> will be the syscon provider for you, just like Google GS101 syscon is
+> special).
+> 
+> Or maybe this is not syscon at all!
+> 
+> Remember that syscon is a collection of miscellaneous system controller
+> registers. You should not use syscon for other things, like devices with
+> incomplete hardware description.
+> 
+It is referenced in mmu0_disp1, it looks like some syscon.
+mmu0_dsp1:
+...
+   ti,syscon-mmuconfig = <&dsp1_system 0x0>;
 
-I think so.
+So it looks valid. In code omap-iommu.c, aparrently only one register is
+written.
 
->
-> David
->
-> >
-> >>
-> >> David
-> >>
-> >> [...]
-> >
->
-> --
-> David Heidelberg
->
+But again, DRA7 is not my area, OMAP3-5: yes.
 
-
--- 
-With best wishes
-Dmitry
+Regards,
+Andreas
 
