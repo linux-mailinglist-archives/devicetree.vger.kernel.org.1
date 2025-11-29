@@ -1,105 +1,134 @@
-Return-Path: <devicetree+bounces-243128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62346C94094
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 16:22:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE046C9409D
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 16:23:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E96254E1A6D
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 15:22:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94DC43A562F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 15:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D0BB1A9FAC;
-	Sat, 29 Nov 2025 15:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FBCE1F03DE;
+	Sat, 29 Nov 2025 15:23:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kbOyqfAb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oD0sTHCq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2101E50E;
-	Sat, 29 Nov 2025 15:22:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 316261C860B;
+	Sat, 29 Nov 2025 15:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764429771; cv=none; b=tLGhwzVY2ZYdCdVzTwsMTI8U4fkH5O2oDh2ONyMJbvudjzFym2QnV5++C1+F1/KyQs+I8J3M3x6Vg686/w/y9UZjaQh3tVCLL/Eopp5ON/wNllxcRxyVN8YrtapBCOgePfa5cmlMvGPSGmtOt9DxsVi/gHAN3qhmzFn0F4CLjj4=
+	t=1764429808; cv=none; b=JJ2YSzAdk1oFLiMPtbfT1xKzhXNLxLVpDJ965VfYKEgwKRdltgtFppBMgU5acTeCn3CM8LHJc4CIhMT8dBhj1hkCVgdFKhX9hp2q/ygzO9ggqCLGSARe/hAPiWNkl84glI3E0gb0ZCU65FlQsd7esLNkfIHQ3RgxrVir7C07FY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764429771; c=relaxed/simple;
-	bh=RfzZyrNDCnWJM4vEwdyob0uPBIIFELux1Gp3qGHDeGw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=IKaW6LZAgWvtVh6c2Nb1gHR+p+O0GNOUtpueZmaZa1OADDEUMeOo0MdICGerhtYS/ahl/pATMT0cErt6Z3Q20VnT9JthZCJDNSdY+Dj/PBcm26N41/oYsaWswY4AMMvYJH8kKlKppqoHMrO+4BMgeFmQg4wgfHS/kWSmQoWwi+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kbOyqfAb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EBB8C4CEF7;
-	Sat, 29 Nov 2025 15:22:50 +0000 (UTC)
+	s=arc-20240116; t=1764429808; c=relaxed/simple;
+	bh=LCD4QgFTmEeRxc6V2ljf2oIBpKOh3/Fe9xyk7FWVCC8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sPfcHEJYHyvBX8fmPAEkbLjbpqURCCw+RdHcoZefUR/xU1HcrH5ucU7vmxyT8bSCq7zKWcU7Wg9EcpYbx92tv7WvKHTz73d1BnyUG6xyRMXrqErXRClyiKYQflofCd5ztw5nyagD/19i8XUwnpUBKdBbuJ3nLk/lvT5TVIb+GSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oD0sTHCq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96DE1C4CEF7;
+	Sat, 29 Nov 2025 15:23:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764429770;
-	bh=RfzZyrNDCnWJM4vEwdyob0uPBIIFELux1Gp3qGHDeGw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=kbOyqfAbUp+Mxoy/gEXMiJvo6ayZZhuGMMqrwHdHiSM9tHsYDs340ZTR5Jig4D200
-	 RVlKR3A/CwW0hxPSTh9SbpLVJAJOM+t1oVcnPjeGROpcOEcqa3XPNQU3ldcWA73Erm
-	 rMNfRXQZPjBw+RUSvEK43DYfHMS5J59DMwhJYo9sXmZuwxXE6uVy4WWfl8rzpSNTcF
-	 kUPjyvRzo3Ftyzo3jVzwXi6cDuIfh8BzKvtlVrdk374Uaq6xMJ7nltlDgHU+mou6ME
-	 CdyU9eD0U/XaA7S5pEZp8X1WmD5cxAr7e1cq4UZoXWPRS3muxIgprekVIlELfFnTnB
-	 1tbodpE4EywPw==
-Date: Sat, 29 Nov 2025 09:22:49 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1764429807;
+	bh=LCD4QgFTmEeRxc6V2ljf2oIBpKOh3/Fe9xyk7FWVCC8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oD0sTHCq81zANh+lgD97MIoh0RlfamBhrGl0ZW+rweA4kMRYkAs69z6Am+E49yP5G
+	 ycPwEnOOYrmZfAigDVdAi4HvyGID5Urs7AB1i1TpxKLjrALNSJjNoFY1Ued2uWbnJF
+	 Q/qW3BW+lUbmu9qcgdw4kpTRFn2LAp0KxB7EcW0sPh5ulyhlD24VYwkktlnY3acf8U
+	 s6n/zGWZZ+8DJmhshHaabM+uQLjfcF9ZryafpJBIpjXVXetvtFH1AtRFkoqboDDswk
+	 F0NsxlFW+oYWIhyLhmRDnyDu3a2znJfYalyRvVitG8KiwjdkT67osOfaKG9rIXD1QU
+	 h4cNXmqbyxDTw==
+Message-ID: <7d9fcf24-5ad5-48cf-b36d-83025976f3aa@kernel.org>
+Date: Sat, 29 Nov 2025 16:23:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- krzk+dt@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, andersson@kernel.org, 
- linux-kernel@vger.kernel.org
-To: Sudarshan Shetty <tessolveupstream@gmail.com>
-In-Reply-To: <20251129142242.3661349-2-tessolveupstream@gmail.com>
-References: <20251129142242.3661349-1-tessolveupstream@gmail.com>
- <20251129142242.3661349-2-tessolveupstream@gmail.com>
-Message-Id: <176442976917.4054928.8877916591661919569.robh@kernel.org>
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: qcom: talos-evk: Add QCS615
- Talos EVK SMARC platform
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: Document new common property:
+ has-inaccessible-regs
+To: Richard Weinberger <richard@nod.at>, linux-kernel@vger.kernel.org
+Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, arnd@arndb.de,
+ lee@kernel.org, dakr@kernel.org, rafael@kernel.org,
+ gregkh@linuxfoundation.org, broonie@kernel.org, tony@atomide.com,
+ rogerq@kernel.org, khilman@baylibre.com, andreas@kemnade.info,
+ aaro.koskinen@iki.fi, conor+dt@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org
+References: <20251129142042.344359-1-richard@nod.at>
+ <20251129142042.344359-2-richard@nod.at>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251129142042.344359-2-richard@nod.at>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 29/11/2025 15:20, Richard Weinberger wrote:
+> This property is used to denote that a certain register map contains
+> registers that are inaccessible under conditions only a device driver
+> can know.
+
+So device driver controls fully their exposure via sysfs.
+
+Binding cannot help here at all.
+
+> The purpose of this property is to disable register access through debug
+> facilities outside of the device driver.
+
+You described OS policy which is not suitable for bindings at all. Plus
+commit msg really mixes up two separate points - buggy driver which
+fails to properly set regmap (or other facility) with some DT-based
+restrictions.
 
 
-On Sat, 29 Nov 2025 19:52:41 +0530, Sudarshan Shetty wrote:
-> Add binding support for the Qualcomm Technologies, Inc. Talos EVK
-> SMARC platform based on the QCS615 SoC.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251129142242.3661349-2-tessolveupstream@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Krzysztof
 
