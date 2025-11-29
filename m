@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45AF7C93B49
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 10:25:36 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61528C93B5E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 10:33:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 021133A3B30
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 09:25:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3D6D834839D
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 09:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82218245014;
-	Sat, 29 Nov 2025 09:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8718D2741C9;
+	Sat, 29 Nov 2025 09:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HXeOB6mh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SST5/dt7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551901A073F;
-	Sat, 29 Nov 2025 09:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C2126738B;
+	Sat, 29 Nov 2025 09:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764408331; cv=none; b=SWl4c0Uq2qowrnbk9EjwmAdpoXpJ6hyDRaN2xZn3y6NTqljc44zsfxqxc7qsxROLv2ANFKi5A0NNNxE/d6rqsWtoOEloz24MtOlVPy3df7OKRyKmt/WaXY9mm1N0A2SBkg+Rwd3NINRm2MsvydqRkZ8b7KD2Tos495YveJXflNY=
+	t=1764408820; cv=none; b=V1S/M9Ff2840mibyR8xTaWglA4bARcLg57jFHcsYRZmskEa+0QGrMZYm1dFNn3/nLrjMIXQyRW7TIT/mMYRWd/HPu8Q562YksbCvz2Al7G8vldyib9q/cWirllHGhKcPiHugA3/N3je5R0reeihapBv75V7WmK4r9p82D5b29z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764408331; c=relaxed/simple;
-	bh=zCeMlv0p/P/d/su+vKKtk6JPpkK0AyLqk4ywU0YC3uA=;
+	s=arc-20240116; t=1764408820; c=relaxed/simple;
+	bh=fBspl33yqQiZQhG3L57M/Uc6CoPOerhwAx6TmmhBzoI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I3Wf9VVMQUC/hXUZzqhbTsjxOob9ATSqC0uGZ1ko+rd9OE1zX5ILD39p1Pwwl73xMO1RfQh7d8S+qtJCOqQ8kq7rOA+hV75YWURTO9KBu4sfa023liTdNudgamopWnMmplhBXmzdD6eklTkosqbesFmYLG55qJWeGA2X5zyVXuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HXeOB6mh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C0F7C4CEF7;
-	Sat, 29 Nov 2025 09:25:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eXVbokiHJMHfrHe5t++DzzIplpQQCuHqZRVkTWzJ2qk1Dl8xSicB1t0KXUtTrn2YrOjZ3g0j6Q4ndCgKC9UP4TA43v0DeVhBiNF8djdCc8lMH2AkpJdzuMOwCjI2rxFFL+kBLo8NLhuPdSS9zDr18i/Oejvid+m+AzKYm/z/S0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SST5/dt7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79792C4CEF7;
+	Sat, 29 Nov 2025 09:33:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764408330;
-	bh=zCeMlv0p/P/d/su+vKKtk6JPpkK0AyLqk4ywU0YC3uA=;
+	s=k20201202; t=1764408819;
+	bh=fBspl33yqQiZQhG3L57M/Uc6CoPOerhwAx6TmmhBzoI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HXeOB6mhsW5mOyqCL1pANs1PyaXhnIEmcfnwO+CGl8T9bPJvdixOJDfl0i51WMMm+
-	 8vA5EPIMmanu2p5P/t3hSI8l2lTPWpLmh66+wgxI+/g8EPpA4lj9X0OZ3TMIr/Y6aj
-	 P+wUcErVcfZ94oNq3KdgMRFbIfM6GjvpuWAstfSpXVIB3X5IzeEylt0co+Oafsjpev
-	 TPm1EpnkJB6VznQ+Wj9o40M46Nl7IIMjuqSGNbmJuI3RblW38k5c3O24LjvynUaY2p
-	 PZpjPZPDPrqY8FGZZtsVgwuZOq/eHSqYYhggDGzVcaN3Dgl8cEPxRFG0VyVMRJxZD1
-	 PooMQ7tQghxng==
-Message-ID: <63be9769-dda8-4c58-92b9-31ebfd4c5f5c@kernel.org>
-Date: Sat, 29 Nov 2025 10:25:25 +0100
+	b=SST5/dt7rFQoCEuqvuAtXdzxATnbjdYeGf+w6XP5xXNLAkwAJaPZ8TkCjA0e/h78Q
+	 aG/mQaXQ2V9brI6T1iWBzfUKEY0foAdfjICK6lhaYcyL0zMu1kMF/zR3w4CTsEbfM7
+	 2l2RUcPll3aEao/PH+WrVGO3CVNN+t09ukiMG2CtTHQ5o6imyplYsXXjNyemS5ESOH
+	 jNou/iB7BAKdpkwYUNP8Tm+sUfXAoC6t0ihXu9nVBeK721QsF9k2Ry4NUIW97dZzdC
+	 L/ouNVTGx6dr5uPy4ikM6KsEUUantHutDwhgZm/G7XI+QrVf4x1KzeUKdm+8sAsDcz
+	 WC+eSHTOk+duQ==
+Message-ID: <bf8fbe4b-d89e-424f-8445-0da2f80422c1@kernel.org>
+Date: Sat, 29 Nov 2025 10:33:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: Add TI ADS1018/ADS1118
-To: Kurt Borja <kuurtb@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Tobias Sperling <tobias.sperling@softing.com>
-Cc: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com>
- <20251128-ads1x18-v3-1-a6ebab815b2d@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: add clocks property to
+ enable QoS on qcs8300
+To: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Mike Tipton <mike.tipton@oss.qualcomm.com>
+References: <20251128150106.13849-1-odelu.kukatla@oss.qualcomm.com>
+ <20251128150106.13849-2-odelu.kukatla@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,19 +110,142 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251128-ads1x18-v3-1-a6ebab815b2d@gmail.com>
+In-Reply-To: <20251128150106.13849-2-odelu.kukatla@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/11/2025 04:47, Kurt Borja wrote:
-> Add documentation for Texas Instruments ADS1018 and ADS1118
-> analog-to-digital converters.
+On 28/11/2025 16:01, Odelu Kukatla wrote:
+> Add 'clocks' property to enable QoS configuration. This property
+> enables the necessary clocks for QoS configuration.
 > 
-> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
+> QoS configuration is essential for ensuring that latency sensitive
+> components such as CPUs and multimedia engines receive prioritized
+> access to memory and interconnect resources. This helps to manage
+> bandwidth and latency across subsystems, improving system responsiveness
+> and performance in concurrent workloads.
+
+I don't see how clocks property help here at all. Are you getting clock
+rates in the driver of some other clocks to make QoS decisions?
+
+> 
+> Both 'reg' and 'clocks' properties are optional. If either is missing,
+
+No! They are not. How they can be optional in the hardware? How SoC can
+have for ONE GIVEN device optional reg, meaning one board with the same
+Soc has the IO address space but other board with the same SoC does not
+have it.
+
+> QoS configuration will be skipped. This behavior is controlled by the
+> 'qos_requires_clocks' flag in the driver, which ensures that QoS
+> configuration is bypassed when required clocks are not defined.
+
+This suggests that - driver is not helping. Please describe the
+hardware, not your drivers.
+
+> 
+> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
 > ---
+>  .../interconnect/qcom,qcs8300-rpmh.yaml       | 53 ++++++++++++++++---
+>  1 file changed, 47 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,qcs8300-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,qcs8300-rpmh.yaml
+> index e9f528d6d9a8..594e835d1845 100644
+> --- a/Documentation/devicetree/bindings/interconnect/qcom,qcs8300-rpmh.yaml
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,qcs8300-rpmh.yaml
+> @@ -35,6 +35,10 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 4
+> +
+>  required:
+>    - compatible
+>  
+> @@ -45,14 +49,39 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> -              - qcom,qcs8300-clk-virt
+> -              - qcom,qcs8300-mc-virt
+> +              - qcom,qcs8300-aggre1-noc
+>      then:
+>        properties:
+> -        reg: false
+> -    else:
+> -      required:
+> -        - reg
 
+Why do you remove this? You cannot make random changes.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> +        clocks:
+> +          items:
+> +            - description: aggre UFS PHY AXI clock
+> +            - description: aggre QUP PRIM AXI clock
+> +            - description: aggre USB2 PRIM AXI clock
+> +            - description: aggre USB3 PRIM AXI clock
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,qcs8300-aggre2-noc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: RPMH CC IPA clock
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,qcs8300-gem-noc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: GCC DDRSS GPU AXI clock
+
+So all devices have clocks now? You made the schema less strict now,
+removed pieces of it and you add more relaxed code telling every device
+has a clock.
+
+And none of this is explained in the commit msg.
+
+>  
+>  unevaluatedProperties: false
+>  
+> @@ -63,6 +92,7 @@ examples:
+>          reg = <0x9100000 0xf7080>;
+>          #interconnect-cells = <2>;
+>          qcom,bcm-voters = <&apps_bcm_voter>;
+> +        clocks = <&gcc_ddrss_gpu_axi_clk>;
+>      };
+>  
+>      clk_virt: interconnect-0 {
+> @@ -70,3 +100,14 @@ examples:
+>          #interconnect-cells = <2>;
+>          qcom,bcm-voters = <&apps_bcm_voter>;
+>      };
+> +
+> +    aggre1_noc: interconnect@16c0000 {
+
+No need for new example, it is the same as previous.
+
+> +        compatible = "qcom,qcs8300-aggre1-noc";
+> +        reg = <0x016c0000 0x17080>;
+> +        #interconnect-cells = <2>;
+> +        qcom,bcm-voters = <&apps_bcm_voter>;
+> +        clocks = <&gcc_aggre_ufs_phy_axi_clk>,
+> +                 <&gcc_aggre_noc_qupv3_axi_clk>,
+> +                 <&gcc_aggre_usb2_prim_axi_clk>,
+> +                 <&gcc_aggre_usb3_prim_axi_clk>;
+> +    };
+
 
 Best regards,
 Krzysztof
