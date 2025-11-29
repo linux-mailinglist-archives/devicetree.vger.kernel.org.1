@@ -1,159 +1,209 @@
-Return-Path: <devicetree+bounces-243071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3BE9C93618
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 02:33:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1A39C9362A
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 02:36:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B52D3AA59B
-	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 01:32:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70D6B3A7D2A
+	for <lists+devicetree@lfdr.de>; Sat, 29 Nov 2025 01:36:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44D141AA7BF;
-	Sat, 29 Nov 2025 01:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED2F1A073F;
+	Sat, 29 Nov 2025 01:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UJsFdQlj";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Qxf1piQc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L4rohnMu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727CE1A3178
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 01:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5A33D994
+	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 01:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764379966; cv=none; b=Hn5n537q8qXcsZU6+ik8sDpqOiTnNVPnYSrfWscXbjA7ddcpZYydkSlcZO5jZgYnY/sBExBnz7dQkdTWLmiHdVPljFdpXCn1XBV1Scz+9xk7WG+QF5QAZS2oSA7JmSULLVwELcqS1DsB4Nm8dGaHeGXZshmnOuYjguR7fl7D2AM=
+	t=1764380192; cv=none; b=V6cc61hPBirta8mSIzC+xxcoyq31ipnUP0YW6fGdCI2IUr1Xn4vXefNjnoHn0Ey7DyguDm+W22VSe0oSt0OVO5JNEOHZ7UI3UzWdCNVnxQBlZxMpNrqJB2cYA/psg0Uvk46ErOyAqMktwVLsy+3lvSE9ob3WAG7tT3d/qIEXJyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764379966; c=relaxed/simple;
-	bh=zvIjdznBdu1ZZVzjsvnLy93MnhNu63QJrHUu9sii3Cs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kuV2jewvdMLHsPJW7MV2OP1Ncqt4jhhYHjk4QB/M7M6aVzDVxaifDjNftQ27e8BEDAwN7SRkUMJxo+2qc46tJGhyPMD6mFb2bjGHonMvoE/K3hzDxeJCnnI9be0zLMZcmz9qeDotQ/CSDakBoDw6RZP5wLHMdrGQ4Pn2kkTqJkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UJsFdQlj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Qxf1piQc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5ASH6WAM4089698
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 01:32:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=hoSEq3IHmBLFm4CC3oj+c91u
-	/X8tntw/x0t/GIsqQlk=; b=UJsFdQljQDOSVV9fkaprFQ8pxVhmavhJahyuIPCU
-	eaHvQLtdxLm6kbwvAxGMCM7GNmg6b4biFyJEwNFk4rwmJMZVRJou7r8Ccg3bnnfS
-	9Rh6CyyCZMYa7tvwuk3tQsAm6f6KIzMQfgJFZ8dW+Yo/U4i/GhirWSIe7FhpGhAx
-	0Mplsq+/sOHP6Lrav3faax3Nzf3/DCs2fwO42QimyMXiF/z2CfedI98SU11XY6jW
-	ic4mQzfeBe8XFKVqxMJvvawJLUn+2efBeOiJqgrSejQqYOcJqO1LM7gM6kX45JYb
-	FlRoapGy3DP4HpllcSAC4FzLxOdiuq2V+k8uVmnjyJKaIw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aqfuj0qx6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 01:32:43 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b22d590227so247608785a.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 17:32:43 -0800 (PST)
+	s=arc-20240116; t=1764380192; c=relaxed/simple;
+	bh=2xaCtJUa6eb+n4HDagZQL7TGTypY2X5CmyLEfb+K8So=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hcMCe4LB5jASQNZdZIZGDGBy2nTYhLb3d2nhs/jxIRinM10AJFRogDDG6QObbrFb9dwhSOIIy6Mb675xYMbcuuKSAbZftga/RVUShUJ+3bfcMUmtp+43ue8J5aqDX1y2xCEe/q9KRejG2ZQC55sQXQtw3QyTTnxH01x99PB5qR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L4rohnMu; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-63c489f1e6cso3630915a12.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Nov 2025 17:36:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764379963; x=1764984763; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hoSEq3IHmBLFm4CC3oj+c91u/X8tntw/x0t/GIsqQlk=;
-        b=Qxf1piQcrJxrnpStRHRTuZrg5i/ScR/C+KobfGrJ20Zllshs3vvkSMGMR1cn6G57PF
-         UC47mnwpYeds3Rj/W0eOM+I03N2q89F6t6BPadWOsS8/ANi5tIw2mGbOVQyfk1kepV1c
-         FtFWfMV9uDh9EtUL29CWl3kMcmRXlGUaPEz/5GDmMtxxD5hfEBQQIqZdoetRJ2uOx6du
-         bYuThXSXhxnJMkOg7TQ3c7PK9iNUX48Y1b58vAauGlj1mKq/YEkY1xVnrnhjnCmanqOo
-         ZKhtzONBgkrfeTm2Bz2yH3a4n+sgrnqelSlqzc7bKmzyN71+cOVooSvbF6lWW/eSCcfv
-         mP3w==
+        d=gmail.com; s=20230601; t=1764380189; x=1764984989; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=brbtVzp9BLMWuVli2pkASz2oawHMJEd3+pWhWeFi5tI=;
+        b=L4rohnMuHrw2gJK3WS4vq5jylL7Ysygcna8BTU9rDTo/xN/6/NFm697ea9WpsjJAxW
+         KZxMi6gnixFD9y45BJbvBxwMDBNkW5c5iFDIEjxfBeSEdm3Zu0Vajkmf5+GGI+EZXxHN
+         9DV/KUguFwSCaTHrzmQIQtiqoQsMNpkLStzU55t5u9vS+cf0uUSSguVjoFLQzkzhk+nw
+         iCW7/jCGVauMMevCMNQVdKTUKTaQlLwKpJ4NdclH+YI55aDrdKGfmjh+br+TEWc632S0
+         eHbWewa6tIuHp8fM5k6CpxY0GmuErCmrFQfTeHL1ehzQN6lmOoGEIjj+Z8Jf3q2KDUNR
+         YIOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764379963; x=1764984763;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hoSEq3IHmBLFm4CC3oj+c91u/X8tntw/x0t/GIsqQlk=;
-        b=L6tK5wzIiUEuX2cEsnm3hxMxBmHrQ5Ky/xBhOAsSomVq2JtLChY7BD3cUY9AAz9Um6
-         AIaQmu7B65htx48e5cTiLfWK5EwA63WcypPqC5iGMlKmMy+ASHdRNLUkwSOHFAgWYZjd
-         TwRWW6Q5zoMXEDqHUshUcckQdeQ5uith/ozrgdEocig3wh685cDFFfMR8U4kfc/RhCvm
-         W67rrkTLnA69uGNoGHv9539z6xcOHUlnZubS9FytraUheCPdcvXb4YAnwQJvpaUv5ZHM
-         rVJIG1jAq258X1ASnQ85OdFWUJJY8/fQvVQgGyPeGAtEl2Maab4jsrOCuNS+Yq8xvLo4
-         Q2Cg==
-X-Forwarded-Encrypted: i=1; AJvYcCVRNZ46XE8yFppy94vXSw4s7VHeqqj6ufRX7IJKF5x5wmu8XxDTEf+wc7cKnSCgX2TvTRV2SyRHv9vx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsuWHqshtU9mI5ud4ZZ3WuuHWbBkluFkvjnt4r65cLLYGlYFXV
-	QmNWYHT18FxAxQr4eEV49tCc4WdNLf+E/PPjuS811YYE6h5PlSZOQ1Jwi+HzEdFPUQTQX5uyAd7
-	5p4jQs+sC5ujzeKdxPpGXkZ6FxMefNqsAuFfI3AeiyWwo2lRkWodqSEHXvt9/ERMI
-X-Gm-Gg: ASbGnct5jvqf824gxZ1Z+OHlNZI//3qi3xnnAO8DnKbwzbia4xSkIbmTWb9Cwx9KbHL
-	Ge9zJgMsJvo/TahM01H1WHtDtPWVPGqolv6XUTBFqHM2mwCyJG7V9CiqTKpSe4mn5Xi/sqh4KMz
-	ocRLor5glvC6ECJ14Ol5jS7oApvzbDUNT1btv382nr7lNcH7oxkVs6pdDJIZbudYGQ3d0+Q9ss/
-	+axAOOlDDMSFsg2oqjTQbz6y/i9blTIPhEEANDK8iICq/sndM9tljteAXAfRWP8/4P3fWmfwY2A
-	6SPelKwVyaOgIq+mdEgENRvZS2A1lSRizyirxLYCV25CWJ2dtyCu7rdHP2vJQGiX9vxTpoj/ijt
-	UfihSRJ1jhqeNyDBe0kRM0w/gILDAihFKMVfAcoRXVy17g8UD1T/dSc39kT96beuO3dUO0Kyhq1
-	lajewFVgRn+tzY49Oyh/UjQPk=
-X-Received: by 2002:a05:620a:7104:b0:8b2:6606:edaf with SMTP id af79cd13be357-8b4ebd6a937mr2432841185a.37.1764379962586;
-        Fri, 28 Nov 2025 17:32:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFWvzdzE7YyN6oTLZfh4hy4cQzmISW9HLizlmpd+yym5WgSYJDQxP4XBIZvwg4EwDFqE4o/Mg==
-X-Received: by 2002:a05:620a:7104:b0:8b2:6606:edaf with SMTP id af79cd13be357-8b4ebd6a937mr2432838785a.37.1764379962103;
-        Fri, 28 Nov 2025 17:32:42 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-596bf8b0565sm1584882e87.32.2025.11.28.17.32.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Nov 2025 17:32:41 -0800 (PST)
-Date: Sat, 29 Nov 2025 03:32:38 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7] arm64: dts: qcom: lemans-evk: Add OTG support for
- primary USB controller
-Message-ID: <fn6xeubhprujdz4gaeh5edpuy4rsgnjxne23g5vsexmbb5ycxq@pajui632powh>
-References: <20251128102507.3206169-1-krishna.kurapati@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1764380189; x=1764984989;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=brbtVzp9BLMWuVli2pkASz2oawHMJEd3+pWhWeFi5tI=;
+        b=E5oGdLE9G+C8TBfdOgDYFR6o/azreUckVSfUk4IOkw/mfQgAZEVlCuRDzin++NXg+8
+         M7K3e0zfyoCpQCbk9VcKO95JQgUQYyLh7DXDQZvBxyjwbS1CXZXtkVi+nPTH8zL/n/KQ
+         jBV0TUvzSH65YHWj8Z35aL+shNW1mJ96/faUIL1POgwauPlGLZt3UDvSOGyhL7kf1qvK
+         CXi5/txmnvKWY0xpJbGT5pV1dJrujZ+h9QlEQKWaVZsVz4rvdN6bm7HqDlGzJCDjMQe7
+         5W3Xf04vkxOd60+ECBvuJcSLnfS3eivJgzhLRv3hXjXHiVp/5SsIT348baMyHOo4Wc4M
+         0dLw==
+X-Forwarded-Encrypted: i=1; AJvYcCXa0QncHrHMbIz+mdWrEYhrqoDtNcTRuZU7yIhgirZmmL3+VWW8VcjRq7Q5nDstTaHfM6nexUAvlOMA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/F9Ytjz40Jtiom7COcKFpel4JAaBw9J1oNb7BsjNZvIXceYaB
+	aSS8ciCYxi00S078aWInTehweTQQ2g8eRfoL46GcM3sDVrtcmR5hU6c=
+X-Gm-Gg: ASbGnctSQNBxob1q56IiDZKRwnKVlc68iWTraIu6dQrWOrO160rNeJts6xLpQ0iIpdL
+	iwjmIdP5aCXLTVn3EU3JDsoBJgf6cW8/egYy3ZVZSul5eFQAPEJeP8R5rOUjbZ012tn0zqzJV0t
+	jQEQk2R3IOZTQ3FXfUTJFRSmdXi7BVTkSBDD2WxbUToaYqbomLIYCpLJ7fTIBe/PVHJF6/J29O4
+	nSqy2+ubzHpGUfoDtr32XlEOP2ipyOa9z87XrdSXtEz0YaNDLa8zGP0+O8C8TiLizYFshoYj0h/
+	MMR3cO0Y2ldzEqIS+wHbEnE3uuCwNTqucagI96Ohnhy5YTFdPuUg1riv0GITp719WmHsmyeomXO
+	q0iS9twM/Jo2yHFfTyqKUS94ninKtsqwrJCiOBHJp0pv/jIZgvBEnMmTWAV6e3ySk2YU897XK/H
+	MhYM+Gchzr6hSBDKUZ+xPeQsZbhPB0oC/HoXpub8OUHTYbiGAk0ZM7JfhU
+X-Google-Smtp-Source: AGHT+IF30E7FIZNrGZvmowLANQLOzFlQpnnEHeJ6v+UVVtB3DQJGu8iTaB4+RnJu0gDLiUkyoZAZBA==
+X-Received: by 2002:a05:6402:350b:b0:63b:ee76:3f63 with SMTP id 4fb4d7f45d1cf-6455508801fmr30169625a12.7.1764380188746;
+        Fri, 28 Nov 2025 17:36:28 -0800 (PST)
+Received: from ?IPV6:2a02:810b:f13:8500:d236:5f71:a9ed:86de? ([2a02:810b:f13:8500:d236:5f71:a9ed:86de])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64750a6ea4csm5751730a12.4.2025.11.28.17.36.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Nov 2025 17:36:27 -0800 (PST)
+Message-ID: <acbbef49-02ad-47e9-9874-68d058b95f21@gmail.com>
+Date: Sat, 29 Nov 2025 02:36:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251128102507.3206169-1-krishna.kurapati@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI5MDAxMCBTYWx0ZWRfXxjqdFTRx8jK0
- 5IGy7yMij3tDBVaTBMI2HDZSAtqJVNsBhL9QNxFhPJ7w7XLNCpl5ItXtMgEGegJ7jn42DdvI4xF
- O3/j4o+YQ7QNUyU2SkRZ8txQPdvqZrTTIX35WzTcfVEdan4Goy4q98qjpNcRK9WC6iNf7LoNcOn
- mCyb6eAPckSULuqz4QAfvv7WfMDNThmZ2+q0QWmUhkdCFqJKaipuMiDCUesDREB669opWin+IGO
- 2aOp0+s1eNoih9Gz0+qUIv+nlYhbKskz7aIYSbweWn1Wi8tS0Cvprb47ljAQf4T8CYWToTbLJ2f
- TCd9RxA7NvsiU9EtkWRFuszPqWEHTvjTD8vLi/AuDfL/Qh6QUWrYHkXXsNYMFRlWu+NnR3Q18Tr
- hOPMM62lgsBudiaeN4TyV0hdx9hw3Q==
-X-Authority-Analysis: v=2.4 cv=GupPO01C c=1 sm=1 tr=0 ts=692a4d3b cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6UeiqGixMTsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=rGjjdaST-h-79XUvT8oA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: E7sZQDBMz9_otHMuph8y4DkZ-ja6wV3I
-X-Proofpoint-ORIG-GUID: E7sZQDBMz9_otHMuph8y4DkZ-ja6wV3I
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 bulkscore=0 spamscore=0 impostorscore=0
- suspectscore=0 phishscore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2511290010
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix audio-supply for ROCK Pi 4
+To: Quentin Schulz <quentin.schulz@cherry.de>, FUKAUMI Naoki
+ <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Heinrich Schuchardt <xypron.glpk@gmx.de>
+References: <20251027005220.22298-1-naoki@radxa.com>
+ <acfc2185-0cb9-4620-abdb-ee25028e8374@cherry.de>
+ <a93ace02-a952-4727-957b-0ed790b47676@cherry.de>
+ <20486653DCCA80ED+7f87a03c-519e-4d6a-a47c-7670e5ae502c@radxa.com>
+ <ffe5e4d1-49d8-4075-a5c4-6f27dda7f35a@cherry.de>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <ffe5e4d1-49d8-4075-a5c4-6f27dda7f35a@cherry.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 28, 2025 at 03:55:07PM +0530, Krishna Kurapati wrote:
-> Enable OTG support for primary USB controller on EVK Platform. Add
-> HD3SS3220 Type-C port controller present between Type-C port and SoC
-> that provides role switch notifications to controller.
-> 
-> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> ---
-> Changes in v7:
-> - Renamed hd3ss3220@67 to usb-typec@67
-> - Compile tested since its only node name change
-> 
+Hi,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Am 28.11.25 um 13:33 schrieb Quentin Schulz:
+> Hi Naoki,
+>
+> On 11/28/25 1:09 PM, FUKAUMI Naoki wrote:
+>> Hi Quentin,
+>>
+>> On 11/28/25 19:24, Quentin Schulz wrote:
+>>> Hi Naoki,
+>>>
+>>> On 11/27/25 4:20 PM, Quentin Schulz wrote:
+>>>> Hi Naoki,
+>>>>
+>>>> On 10/27/25 1:52 AM, FUKAUMI Naoki wrote:
+>>>>> This reverts commit 8240e87f16d17 ("arm64: dts: rockchip: fix
+>>>>> audio-supply for Rock Pi 4").
+>>>>>
+>>>>> Fix the APIO5_VDD power supply to vcc_3v0 as per the schematics[1][2]
+>>>>> [3][4][5].
+>>>>>
+>>>>> This fixes the SPI-NOR flash probe failure when the blue LED is 
+>>>>> on[6],
+>>>>> and the garbled serial console output on Linux.
+>>>>>
+>>>>> The ES8316 headphone and microphone are confirmed to work correctly
+>>>>> after this fix.
+>>>>>
+>>>
+>>> Please test the ES8316 works when booting Linux from a U-Boot where 
+>>> ROCKCHIP_IODOMAIN and SPL_ROCKCHIP_IODOMAIN is *disabled*.
+>>
+>> I tried below, and confirmed that ES8316 is still working.
+>>
+>> diff --git a/configs/rock-pi-4-rk3399_defconfig b/configs/rock-pi-4- 
+>> rk3399_defconfig
+>> index 219f42bc7d4..276ca961c10 100644
+>> --- a/configs/rock-pi-4-rk3399_defconfig
+>> +++ b/configs/rock-pi-4-rk3399_defconfig
+>> @@ -53,6 +53,7 @@ CONFIG_ROCKCHIP_GPIO=y
+>>   CONFIG_SYS_I2C_ROCKCHIP=y
+>>   CONFIG_LED=y
+>>   CONFIG_LED_GPIO=y
+>> +# CONFIG_ROCKCHIP_IODOMAIN is not set
+>>   CONFIG_MMC_DW=y
+>>   CONFIG_MMC_DW_ROCKCHIP=y
+>>   CONFIG_MMC_SDHCI=y
+>> diff --git a/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi b/ 
+>> dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
+>> index 046dbe32901..c734f7824c0 100644
+>> --- a/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
+>> +++ b/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
+>> @@ -51,7 +51,7 @@
+>>
+>>          sound: sound {
+>>                  compatible = "audio-graph-card";
+>> -               label = "Analog";
+>> +               label = "rk3588-es8316";
+>>                  dais = <&i2s0_p0>;
+>>          };
+>>
+>> @@ -516,7 +516,7 @@
+>>   };
+>>
+>>   &io_domains {
+>> -       audio-supply = <&vcca1v8_codec>;
+>> +       audio-supply = <&vcc_3v0>;
+>>          bt656-supply = <&vcc_3v0>;
+>>          gpio1830-supply = <&vcc_3v0>;
+>>          sdmmc-supply = <&vcc_sdio>;
+>>
+>> Notes:
+>> - SPL_ROCKCHIP_IODOMAIN is not set by default
+>> - I don't understand alsa ucm2 ;) so I modified /sound/label
+>>
+>
+> Thanks for testing. Let's hope the original issue doesn't appear for 
+> *some* boots (depending on probe order or some timing for example). 
+> For now I guess this will do. Adding Alex in Cc maybe they are able to 
+> reproduce the issue they had 4 years ago with their board?
+>
+> Cheers,
+> Quentin
 
 
--- 
-With best wishes
-Dmitry
+I can confirm that with this change analog audio is _broken_ for me again.
+
+I never had any issues with uart2 or spi - neither in kernel nor in u-boot
+(also not after io-domain driver has been added to u-boot for RK3399).
+Given this commit is now ~4 years in tree  I'd guess that someone else
+would have reported that issue earlier. It's correct that this information
+came from a "Power Domain Map"  which you call "non schematic" and the
+"schematic part"  says something else -  it would have been indeed be
+better to have clearer information.
+
+Anyway: I can't neither see how this change should relate to uart2 or spi
+which are both in different io-domain, nor why it would happen only in
+u-boot. My strongest guess is, that radxa changed something along the way.
+Or maybe it would be worth to double-check the io-domain driver in u-boot.
+
+
+Regards,
+Alex
+
+
 
