@@ -1,207 +1,490 @@
-Return-Path: <devicetree+bounces-243184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5360C94B65
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 05:19:30 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29BE5C94C1C
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 08:47:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D88663A5C2E
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 04:19:27 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 355023450DB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 07:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401A6242D72;
-	Sun, 30 Nov 2025 04:19:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393B3227B94;
+	Sun, 30 Nov 2025 07:47:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b="z89Oydce"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DrOjTDcI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11023136.outbound.protection.outlook.com [52.101.72.136])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3808A236453;
-	Sun, 30 Nov 2025 04:19:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.136
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764476356; cv=fail; b=fhc14iwbM/SHQNYG13ZYWRWo5oloYuB1Oi5HI24HFUKX/CAqbRxXZFp/bfysO+cvOUUov8OzzMzGv/B+2C5p1G6+oEk6e+iES1T9lhlmv60e+AFhFm0U0VW9iu7eC1JGvA/sX8d9YpcgJx4imRINcKHfqYSntvxuDaJal4y5/RM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764476356; c=relaxed/simple;
-	bh=f6zAffipr1YuD+GeVvgsAwDuI0++WqoT7/7ur2GD5UY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ptdMKlYAkjeLR6zp2m8NQG3SCiw+p0VKa1h4GIf9yoDuyYLWyuGQlBFfE46hhQulvYe7sWz+daelDX1cCqimbTFqedw4KybKK4CuJdSiNUC421sgP9IbU1mcRJTmH3bvDbTTyDmvgMbPvIHWzeFo71YnKGbYqcMzD/CkGPkA6IM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b=z89Oydce; arc=fail smtp.client-ip=52.101.72.136
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Isi7L4UBxweVeRvutevu15tp2R8Xu6Gd7Fwo4StpeoKPGj1SXQiPg8sX2IL+kSnjCCT5KIdUT1dWHAVa8HBUcOwBbbU1pUldB+x/bqhXf33J/ZVovukyf7fhxKx8yLVBVZWikRMVTNJO7YjYAA8wb84xNHHivWP8V7qbIufF5kvnMOwRni7YZMb7UaeDxcsuOcKFkQrMD5OXd7kH7Rc4XkJsLOvr1QZdCtMVAVt1caDz09vm4bseMPmmVZFzkyzAyGdOaxA+YOfYPMi1vyjGXkqIXqpac2J7fIIRgsh9dCwygBZvwNotnT575hK0FRi24VF2wGS/zYNoVK5XStujoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+C3dWoU/YTxYArrXNAcmjUbGgbXVTHJ6m8M5gYtqm8k=;
- b=VuuchWIiIuZ1cG2s48yDQISwDIyZu4GZuXRwGvR8RrUz6T0M4ViYA+KtKdlYg3YnnH0O1Fdwvjksc0TY/CuzqQ5NwioteXTso7Nqwi5DJYta/3LEZ1s88V6/jTYr4DfZXQEw71S5/Ni6t0M63LMReh8ffj7h2HwCnS4uQB8Qb/gZVwFyllyEvP1xuN1rM493FN+x9HHBz0uA93ufu4cqGmL0ey8Eqy0UkgNBvN/beiB6u3F97mG5r3dmz1WJi9b92eGOXwObOjwkhmFQkDjd6hKS8qy8+gNrykmUkanxN1xrCRNdbk6orZdeA0ST3Yec/2hSv933ooNLHx4nHK2POg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
- dkim=pass header.d=iopsys.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+C3dWoU/YTxYArrXNAcmjUbGgbXVTHJ6m8M5gYtqm8k=;
- b=z89Oydcevve3IAU0No90r9HSacCrpMhs49RCou1a5okrFznVNiXy4zgZUcKcPVzOA9Pc4htGORZpgp6YamOup12XoUndk0y9ERJrkkfK9LaxvGTIbntkYRV007+doMB4ifM1jQzLkojo8OG91UhVDi6QURDdDPSk7dC1qza5jtAH3GqvFo1k7k3uBnVQD68GTK2wlI0xcGcnBNfMbd7qGG0WlJ+4UrZIF3r4GBnG89DgUQ3Ej1x360QIWJCTSbz1vkgFiAfyym5H2cnHTX+Bg73q+h5Hd2k216pCmC6i5FoBZcM5xOAWxTjsKQExQsz6kPorhohVRc1aw7J6/N9EPw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=iopsys.eu;
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com (2603:10a6:150:7d::22)
- by DU0PR08MB9049.eurprd08.prod.outlook.com (2603:10a6:10:471::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Sun, 30 Nov
- 2025 04:19:04 +0000
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0]) by GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0%3]) with mapi id 15.20.9366.012; Sun, 30 Nov 2025
- 04:19:04 +0000
-From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
-	Andreas Gnau <andreas.gnau@iopsys.eu>
-Subject: [PATCH 2/2] arm: dts: airoha: en7523: add SNAND node
-Date: Sun, 30 Nov 2025 07:18:54 +0300
-Message-ID: <20251130041854.2909001-3-mikhail.kshevetskiy@iopsys.eu>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251130041854.2909001-1-mikhail.kshevetskiy@iopsys.eu>
-References: <20251130041854.2909001-1-mikhail.kshevetskiy@iopsys.eu>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR2P281CA0088.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9b::13) To GV2PR08MB8121.eurprd08.prod.outlook.com
- (2603:10a6:150:7d::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BEB4537E9
+	for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 07:47:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764488856; cv=none; b=RipuwlX2lsZ7X+nKZiyJt3VMo3SVCNLRmLtnspgd+czVMvphxD5c60QAuVieqvouYe2A7AwTQQkNhQD0j+0qpKy7rHqfjZAmIFP+rt+Ttx0LHhfhTrJFFQ373p5WDWE29QatFrrmxYQM4baaz57+9lsU9Haw+0VIlquaZ2Wsuws=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764488856; c=relaxed/simple;
+	bh=7NfqnlsC8LSzYdlSIIBV0Oh2CDHtcam76Eu1PJzKCjk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I6dhaktoF393U7zC6vvT8NrCuFidZw37sEuXnCHG7Fb5nhOURNboCBPaOV2BVJWUbe+iJLJnljfcG4RRBu2OyLImuSuipmlRQUMYCyK7xKDtYUI8SRntr67SyIvl+UnRWXxNnox+I44yeQVzf6P2ah7sryS5KEjpNEdBXNV7wU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DrOjTDcI; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2956d816c10so35080455ad.1
+        for <devicetree@vger.kernel.org>; Sat, 29 Nov 2025 23:47:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764488853; x=1765093653; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dMz7/I31vULNcXSLjphmBDw8pJN8azXEYtV3XhWvRkg=;
+        b=DrOjTDcICXmt/vEsF2O8aSC+BlysZfjIzHrQefRoW0IPhJJSkQ3bH3EHj72nRxTFgz
+         FvZVtQn1pqR6EvbVguq7FXigv2q4j0vMElR/DQioHotp2VOu+tNBWxf2YYkvRQKDpUh5
+         G5em3LDWPiibT8oUgJ7GKWGFE9Sh1DeufHcRT1oC+Bb6eFb9CzXpIWBwqzgqjauLYuMK
+         MSt1f1SP2pOk3dbAyYghGK4X9NroQ7SLdKwqCdTYzsZIKR95LAa501x1gj7WHRBb915K
+         q9iHTaDjgrUCAaAGwexnOAkWfW4gAAFky2OU6308FP/DiTmTeXUkuZCh/pcHnpFa0Bwv
+         EG1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764488853; x=1765093653;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dMz7/I31vULNcXSLjphmBDw8pJN8azXEYtV3XhWvRkg=;
+        b=cjZTetIPbzrMCrzEGnD6IIVjOnFQnqOZG14S50kTcVcWdrTNMFB2xdoytYg3K/Kboq
+         VS/VBTaDxE/t8UOIs/A4VEmU1h22p50adDAKUvI++XDrwZs55KNSa28JS+Y6fVFgMYc6
+         eYe/6GKvLMwzXSil77sWTAAlhyBmAXtmFwaBAzgn1BpFHJCIyXSTfW8n/1SS3e3m74s5
+         8XkqJaNEH4/6JD2lrjyOoD+tcNKiD6wRCnCyhJfcKWHt/IeOgoYLfLdQ4pNIFIzhV1lX
+         GN3UnbITezTby/Zx9UDisfv42Dc444z0yULXb5vUB6O7diwkwpx5JI5BdX3Y7XPf0qjr
+         RwYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVGSjTyKZeTjMfr96EbvQSfv0fs5v/PttoASMjBcuyFN/AHHwolcBB09MsQrKvln+CvWTKCb3JoOdfx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhG5p8PqczvnRyReapgSL9tUKHtbW6RZCuvhT85l33P8v4XfE6
+	ipsv4W8nkH8zOiStcnr/58NVkD+AtqoBk9FeiZtFpSTs0QwYb+fN23/eYFqjTPf2hbQ=
+X-Gm-Gg: ASbGncucdGstoswseOjsGpo+U+YH8U8Nt8RRzaFbRG/cOvKaHFQGr52k/HOKacXbkh7
+	k5QFAgm4lLa3DhNt4W7+wpqRlUwa8EBjtPp8KPmvNa2/oU/DlgDtnusZPHuublXHdZCltzTT/Us
+	svyhonSisN8ey5gDGFzdcSIfKFc5rap8WaE89fCZB3VzersKK0tm9ymar1xkhYKqInkj2kRt98N
+	ZvUbE4saxfk4Mq23qGnfMUEGzG4JvGn80SRA5y1ODi+DWXRe8o0IVKcqvwGksCnGH1pgIZQsH5A
+	UqFSbHLehv8ZTYDVyC5on9Vduuztoqbxnnx7v035SI6h6XfcL3e/ToAqEX2OT73iO8zGO74kWs0
+	G5jkXTClzdnkYbZr5BiO8WTiE4QX+dVEfbbB5VrT0R+rMsVUkbGdT4zikj1WIPt0IUEK0f6ZcpY
+	H6NLCW406qkCYG
+X-Google-Smtp-Source: AGHT+IFnsg6lvBgHv0uVnuDXa01/Q8nuA7CaFKt7HKnSprbW5Bz97Z1RPpsVroxJIvb/eUosWYvNLg==
+X-Received: by 2002:a17:902:da4d:b0:298:2e7a:3c47 with SMTP id d9443c01a7336-29b6bf5c107mr377978425ad.42.1764488853387;
+        Sat, 29 Nov 2025 23:47:33 -0800 (PST)
+Received: from [192.168.0.13] ([172.92.174.155])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29bceb40021sm90300855ad.68.2025.11.29.23.47.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Nov 2025 23:47:32 -0800 (PST)
+Message-ID: <26475221-f852-4d76-80dd-43f04f9e7ec4@gmail.com>
+Date: Sat, 29 Nov 2025 23:45:39 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR08MB8121:EE_|DU0PR08MB9049:EE_
-X-MS-Office365-Filtering-Correlation-Id: dda4306f-9adb-4ff6-147a-08de2fc79911
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?X7pzpMtwR//eH0hgmZiAN/lFgjdYm6YlKsfbC0TPMT66Bf161VVYxt4Y3arh?=
- =?us-ascii?Q?UjLCiBMrRh6liA9Ou98G+OYYCifaS8rTh53NG0n9yvTeSL36V1BMmrw9nQ33?=
- =?us-ascii?Q?H74mjclbqFqE9EOGRZ1PA74OkswL4/I+wqs6e4V0RYquf5jf7RBz+nUlKyQB?=
- =?us-ascii?Q?WcUGLURSEcNMBhu0k7IRGw0QDsHRgImTZ5ZNjJCPIqez30cWFEQZpkz0H1eO?=
- =?us-ascii?Q?PfGONXcSHJQOzgqldJH8FuwMCMeLGOELC0pOlhEcCGaM+MCBdznFZGrTPQ8n?=
- =?us-ascii?Q?xbXcXi1Fy2wKmYQS8DCQm5vMWqKXAOz+pee6m/PwtGEOb62W/PMftQhSi38C?=
- =?us-ascii?Q?rgf2HLeCVDgTBJhdQlsHleiYOVPx6x7gy0/X1RjQx2Q5VKu2zjDuHJOZ8WP8?=
- =?us-ascii?Q?pHD4QxsSvHmBkIOrXMKctKNLteRG5aaD3GTFZUv9OSJ+1WfHJVOiQHEYyyQc?=
- =?us-ascii?Q?x9nTLeKnz0Q+9BWaSib7JJfSzxOALe0d/8mZhVKA6P+2oc2quUsTMp1tLo0d?=
- =?us-ascii?Q?FbvkqbPAfR0AQB/ME+ttkrTMQU62jup67oyKd2leDkImxNDgxQ+ZIGYAqz2M?=
- =?us-ascii?Q?Z3Fx26sCA7X4/TV/hsnOu/7MSm9G7V2VI2uFlbBTlNr5fRdXiCghIndeW0NQ?=
- =?us-ascii?Q?iwSuANNRPaYkDUGFk+OR4xs1wNjn3FTsL2uSC8EKDzNWq5zE+PvU6RuiaIg1?=
- =?us-ascii?Q?DKnx/4cUr1wa588plNdH4i6oCvElszlDHDYqFSSj8oPaCFRPaFl0SXpYKFM+?=
- =?us-ascii?Q?R04nuoUIIQgi96WP52iaMDnN6FhLd4HlDi4OEzz0702GBAvRfTqyTlTiJbEM?=
- =?us-ascii?Q?KZQYAockKLArAQ5npcLNF384q4cO26I6REbVgX2ItgXu91g5BCEUmTShgXW2?=
- =?us-ascii?Q?qajnkJ8ikZs68O85METDqXlwmsZSTz5iiFQ262c2AiVgKH/30R6j36IWAG6H?=
- =?us-ascii?Q?F1KhL6BOqIw4kL+ABrUnEPtEQ+Y46zI2aIqamx/STZMCoBzcDYmlSIj4axzH?=
- =?us-ascii?Q?QNhPKTxDa/YPV8b5APzX8svUuo58zErIJhm8KQzroYTmQphfPHkdNazng4Wd?=
- =?us-ascii?Q?kKrDS/Llk44Gk/MBVZvszShi5MfXCyd/fQRhuv3CXGjWYy686tb1Y3CM4Wfh?=
- =?us-ascii?Q?+RV1rKP8Fpj+Fau4gGkozUkujngjAVkasQnlTuIv6HUwAg//tucoiYurOmvp?=
- =?us-ascii?Q?fvBqaUvjq0BdOnA8pp5NIAKtOtmnkxf4lanLM11WRoZUDgYTT0eGW7rnzAX0?=
- =?us-ascii?Q?CGOarFF5MXz8kIY6UadWSeADaJCx/acqMG5XTdbpuMLL9T4p0HPGRcV8x/Rm?=
- =?us-ascii?Q?vIyxBQDn26QWxSfBCsT7qF1pS2aYE7Megkb5rIpyJHAu8jd1vTMY9MRkMdes?=
- =?us-ascii?Q?1CWOkB7TrR+tOT+dTa+GFpl700ii2D97fj1zRisoMNcv+B2TVVd+MvSo249a?=
- =?us-ascii?Q?g/B+s3UlRdUTyt5JdfqDnWOKdnXCNC0vReUBonr1E5YncBOSg2G7FdKdhp+e?=
- =?us-ascii?Q?enYvgBdZLvSJOJC0lXD0oLk1k2xjmzrtJuhw?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB8121.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?8RtoJDZ2PFEp9ud0RTv9Bp8ZKe/unfsxQswLtzquJ5VweHyxx1cJvR/lQXdk?=
- =?us-ascii?Q?Gop8K+2JPzRmvUs8xE5CHGhmA49SYPSul9/45QchUDxjCj5ulXIN/Vrr0xRj?=
- =?us-ascii?Q?iwZyXKIKLqD3R9lGkB3JLFSSO60gCPfwBWvK3MDCEGvWW8UmmWIR4ff3h6Ik?=
- =?us-ascii?Q?gZnPWKOV5IITMXEkd7he5L30hpiBMJNWURNlDTmXQiaVXjDD9QJ29G6hkODI?=
- =?us-ascii?Q?0j2bxHr8pBaxpscUY6auAeiFXU8sBgcVMfeI2Ti/0g5QGmziAOPUViIZVvic?=
- =?us-ascii?Q?Tv6bbV25wZObCZ97sDTFjWFAZAhneKnAJXg3tdu+HvHXkem6rA8JsZpMz5CB?=
- =?us-ascii?Q?6uHICq+Mant+AasB6nGv76lok2VwNMMDCtvGl9OGETtTFDBhaNhc950TZfFM?=
- =?us-ascii?Q?s9YK+icY7vyLTfqVrYlpRZWGRN5oHabNbvnVogfA2oBjKWa4tSL2kSUg/9X+?=
- =?us-ascii?Q?xN4PEKaH7Xcj9DfYgsYkSsez1EAcmCd2AN0+7YjR8m3Ces63jUynAoMR7q6z?=
- =?us-ascii?Q?+pfLpEoeChIIjJqbIlvE9OhqPwSwj51dBKxvcjURrdK8R53w2QwM6Op4bjKt?=
- =?us-ascii?Q?XxVa8OVlgJsASCrmpHggzOrg5G+PYSKjtBRyL6r6p7Mm6nB2IGobDTKslC0J?=
- =?us-ascii?Q?tVyCww7GoOgBpaBbJFw78CAPVCdBAAqDnJerckjJT9W2TsXG9jR8i0yGXY47?=
- =?us-ascii?Q?VV5hngI4EQj2I/10eL+GyGh1Fa0IiNmYNq1p+uWQdgv87GLKBKqX/WmeP80e?=
- =?us-ascii?Q?6ptNVjkjQJM6eUqd6Brcx2qZbAlZmYU29XgmZnDqw2uHJOoqgpj0ZfHaD6cw?=
- =?us-ascii?Q?h2FFF6DW8IH6Vp8ckG8MrN35cdJ60MR5Pg2tUpyaisK2YEHCAvFm7aofThlW?=
- =?us-ascii?Q?PzwdUgwdduBeL2zJsx3HcOWcrVeyD4iExLkSG4Tz/BJu5miXyTaX+cbAQ9Vo?=
- =?us-ascii?Q?tNvl++bh8fZvQ5sI17e9oLgMvgtaJmUOi0xEfEfwevVEqQhMAcoGLzvvuvJf?=
- =?us-ascii?Q?YSxxNoEYUnU8GjV6uJk3eqEEe6Uk9jxM2+jtyk4BqMYAfg/7qGqPe1r4iF0k?=
- =?us-ascii?Q?TSSCtLHuV1Cwa/vJuLQ3lDAzkDUmVVUQYM3+MBIOjbm1pzL4YZ4+UoxLn9YK?=
- =?us-ascii?Q?yNVPMvT8OFVXJ9fA71CgPncWqRSwQ2MYwO6eoPL+6CXq7ZrO4MO5phOZVRgg?=
- =?us-ascii?Q?IVLIAmOxrftWJQBqNpV2KAfFeGyaVlZvJoYTQYH3jduT7ayOj7ie6plkadwJ?=
- =?us-ascii?Q?JHI0nHpEpMbb5Hwk90j+ft1SWLrPMqpc5bE4q+OoqZE+c5OhLBKBoXSJH7ZY?=
- =?us-ascii?Q?SVfhQMrWs8njbQTRIQ/LbDqT0EI+pjuadHpYaHTqdB2hVpeQ9eONMtUOTIEo?=
- =?us-ascii?Q?p38xg3wYVyEg6gPwvYlT4oPS3wFiW+KluMWkAjRvWH2Jb5ODnoZuAH/eiohd?=
- =?us-ascii?Q?rT2sk31fxF01ZBNErSnsJZvI4mKKkR8P7bIRFhpYsG2mh53e8WYaYfdx1018?=
- =?us-ascii?Q?qXtbNr9U0RBmQusoxh8lV8+r1l7j8sNmMBMsLz2ySJrtBKHT8JxiJejQ9xSe?=
- =?us-ascii?Q?Ls2q8rbeRgKYpKA1XHCci9mGxGzEqPFN+C0VXK0Jsi8ui8WKCTNnhrAK7wBs?=
- =?us-ascii?Q?CKnFv9XmzX3eaB/lWHzUxnc=3D?=
-X-OriginatorOrg: iopsys.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: dda4306f-9adb-4ff6-147a-08de2fc79911
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB8121.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2025 04:19:04.8048
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hrEtpz8XTnYDOrQldT5EPVgRfqE4SGtcKTqGb4Oqs/tZ1rumX+2I5eqozrKFO9r+6yXQcOkq6RLpoNFQwDgupWrSpIQhZJyLkRMf9UR7sH4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB9049
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 07/12] rvtrace: Add trace ramsink driver
+To: Anup Patel <apatel@ventanamicro.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Greg KH <gregkh@linuxfoundation.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Ian Rogers <irogers@google.com>
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Alexandre Ghiti <alex@ghiti.fr>, Atish Patra <atish.patra@linux.dev>,
+ Peter Zijlstra <peterz@infradead.org>, Anup Patel <anup@brainfault.org>,
+ Adrian Hunter <adrian.hunter@intel.com>, linux-kernel@vger.kernel.org,
+ Mayuresh Chitale <mchitale@ventanamicro.com>, Ingo Molnar
+ <mingo@redhat.com>, Jiri Olsa <jolsa@kernel.org>,
+ Mayuresh Chitale <mchitale@gmail.com>, Namhyung Kim <namhyung@kernel.org>,
+ linux-riscv@lists.infradead.org, Andrew Jones <ajones@ventanamicro.com>,
+ Liang Kan <kan.liang@linux.intel.com>
+References: <20251101154245.162492-1-apatel@ventanamicro.com>
+ <20251101154245.162492-8-apatel@ventanamicro.com>
+Content-Language: en-US
+From: Bo Gan <ganboing@gmail.com>
+In-Reply-To: <20251101154245.162492-8-apatel@ventanamicro.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add SNAND node to enable support of attached SPI-NAND on the EN7523 SoC.
+Hi Anup,
 
-Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm/boot/dts/airoha/en7523.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+My comments below:
 
-diff --git a/arch/arm/boot/dts/airoha/en7523.dtsi b/arch/arm/boot/dts/airoha/en7523.dtsi
-index 231638b25c5b..115cc44093ab 100644
---- a/arch/arm/boot/dts/airoha/en7523.dtsi
-+++ b/arch/arm/boot/dts/airoha/en7523.dtsi
-@@ -205,4 +205,24 @@ pcie_intc1: interrupt-controller {
- 			#interrupt-cells = <1>;
- 		};
- 	};
-+
-+	spi_ctrl: spi@1fa10000 {
-+		compatible = "airoha,en7523-snand", "airoha,en7581-snand";
-+		reg = <0x1fa10000 0x140>,
-+		      <0x1fa11000 0x160>;
-+
-+		clocks = <&scu EN7523_CLK_SPI>;
-+		clock-names = "spi";
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		nand: nand@0 {
-+			compatible = "spi-nand";
-+			reg = <0>;
-+			spi-max-frequency = <50000000>;
-+			spi-tx-bus-width = <1>;
-+			spi-rx-bus-width = <2>;
-+		};
-+	};
- };
--- 
-2.51.0
+On 11/1/25 08:42, Anup Patel wrote:
+> From: Mayuresh Chitale <mchitale@ventanamicro.com>
+> 
+> Add initial implementation of RISC-V trace ramsink driver. The ramsink
+> is defined in the RISC-V Trace Control Interface specification.
+> 
+> Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
+> ---
+>   drivers/hwtracing/rvtrace/Kconfig           |   9 +
+>   drivers/hwtracing/rvtrace/Makefile          |   1 +
+>   drivers/hwtracing/rvtrace/rvtrace-ramsink.c | 262 ++++++++++++++++++++
+>   3 files changed, 272 insertions(+)
+>   create mode 100644 drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+> 
+> diff --git a/drivers/hwtracing/rvtrace/Kconfig b/drivers/hwtracing/rvtrace/Kconfig
+> index ba35c05f3f54..0577f9acb858 100644
+> --- a/drivers/hwtracing/rvtrace/Kconfig
+> +++ b/drivers/hwtracing/rvtrace/Kconfig
+> @@ -21,3 +21,12 @@ config RVTRACE_ENCODER
+>   	default y
+>   	help
+>   	  This driver provides support for RISC-V Trace Encoder component.
+> +
+> +config RVTRACE_RAMSINK
+> +	tristate "RISC-V Trace Ramsink driver"
+> +	depends on RVTRACE
+> +	select DMA_SHARED_BUFFER
+> +	default y
+> +	help
+> +	  This driver provides support for Risc-V E-Trace Ramsink
+> +	  component.
+> diff --git a/drivers/hwtracing/rvtrace/Makefile b/drivers/hwtracing/rvtrace/Makefile
+> index f320693a1fc5..122e575da9fb 100644
+> --- a/drivers/hwtracing/rvtrace/Makefile
+> +++ b/drivers/hwtracing/rvtrace/Makefile
+> @@ -3,3 +3,4 @@
+>   obj-$(CONFIG_RVTRACE) += rvtrace.o
+>   rvtrace-y := rvtrace-core.o rvtrace-platform.o
+>   obj-$(CONFIG_RVTRACE_ENCODER) += rvtrace-encoder.o
+> +obj-$(CONFIG_RVTRACE_RAMSINK) += rvtrace-ramsink.o
+> diff --git a/drivers/hwtracing/rvtrace/rvtrace-ramsink.c b/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+> new file mode 100644
+> index 000000000000..676344c9387c
+> --- /dev/null
+> +++ b/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+> @@ -0,0 +1,262 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2025 Ventana Micro Systems Inc.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/rvtrace.h>
+> +#include <linux/types.h>
+> +#include <linux/sizes.h>
+> +
+> +#define RVTRACE_RAMSINK_STARTLOW_OFF		0x010
+> +#define RVTRACE_RAMSINK_STARTHIGH_OFF		0x014
+> +#define RVTRACE_RAMSINK_LIMITLOW_OFF		0x018
+> +#define RVTRACE_RAMSINK_LIMITHIGH_OFF		0x01c
+> +#define RVTRACE_RAMSINK_WPLOW_OFF		0x020
+> +#define   RVTRACE_RAMSINK_WPLOW_WRAP		0x1
+
+nit: wrong spacing
+
+> +#define RVTRACE_RAMSINK_WPHIGH_OFF		0x024
+> +#define RVTRACE_RAMSINK_RPLOW_OFF		0x028
+> +#define RVTRACE_RAMSINK_RPHIGH_OFF		0x02c
+> +
+> +struct rvtrace_ramsink_priv {
+> +	size_t size;
+> +	void *va;
+> +	dma_addr_t start;
+> +	dma_addr_t end;
+> +	/* WP from prev iteration */
+> +	dma_addr_t prev_head;
+> +};
+> +
+> +struct trace_buf {
+> +	void *base;
+> +	size_t size;
+> +	long cur;
+> +	size_t len;
+> +};
+> +
+> +static int rvtrace_ramsink_stop(struct rvtrace_component *comp)
+> +{
+> +	return rvtrace_comp_is_empty(comp);
+> +}
+> +
+
+We should first set trRamEnable to 0, poll it, then poll trRamEmpty. It's
+essentially the same as encoder, so perhaps move it to core.c. Here we're
+just checking whether it's empty, which is wrong. We're also doing similar
+things in encoder.c Should fix that as well.
+
+> +static void tbuf_to_pbuf_copy(struct trace_buf *src, struct trace_buf *dst)
+> +{
+> +	int bytes_dst, bytes_src, bytes;
+> +	void *dst_addr, *src_addr;
+> +
+> +	while (src->size) {
+> +		src_addr = src->base + src->cur;
+> +		dst_addr = dst->base + dst->cur;
+> +
+> +		if (dst->len - dst->cur < src->size)
+> +			bytes_dst = dst->len - dst->cur;
+> +		else
+> +			bytes_dst = src->size;
+> +		if (src->len - src->cur < src->size)
+> +			bytes_src = src->len - src->cur;
+> +		else
+> +			bytes_src = src->size;
+> +		bytes = bytes_dst < bytes_src ? bytes_dst : bytes_src;
+> +		memcpy(dst_addr, src_addr, bytes);
+> +		dst->cur = (dst->cur + bytes) % dst->len;
+> +		src->cur = (src->cur + bytes) % src->len;
+> +		src->size -= bytes;
+> +	}
+> +}
+> +
+> +static size_t rvtrace_ramsink_copyto_auxbuf(struct rvtrace_component *comp,
+> +					    struct rvtrace_perf_auxbuf *buf)
+> +{
+> +	struct rvtrace_ramsink_priv *priv = dev_get_drvdata(&comp->dev);
+> +	struct trace_buf src, dst;
+> +	u32 wp_low, wp_high;
+> +	u64 buf_cur_head;
+> +	size_t size;
+> +
+> +	wp_low = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_WPLOW_OFF);
+> +	wp_high = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_WPHIGH_OFF);
+> +	buf_cur_head = (u64)(wp_high) << 32 | (wp_low & ~RVTRACE_RAMSINK_WPLOW_WRAP);
+> +
+> +	if (buf_cur_head == priv->prev_head)
+> +		return 0;
+
+cur_head == prev_head could mean that we've wrapped around and stopped at
+the exact position. Thus, we need to check for the wrapped around bit. If
+set, then this case can be merged into buf_cur_head <= priv->prev_head
+below.
+
+For cur_head > prev_head case, we also need to check for wrap-around. If
+wrapped-around, we actually filled the entire buffer, not just cur - prev
+We also should consider the possibility that the buffer has been wrapped
+around multiple times. In all cases, maintaining a prev_head seems to
+complicate things, so why don't we just reset the WP to priv->start each
+time we start the ramsink component and get rid of prev_head? This way,
+we'll always have cur >= start, and depending on wrapped bit, we either
+get the whole buffer, or cur - start.
+
+> +
+> +	dst.base = buf->base;
+> +	dst.len = buf->length;
+> +	dst.cur = buf->pos;
+> +
+> +	src.base = priv->va;
+> +	src.len = priv->end - priv->start;
+> +	if (buf_cur_head > priv->prev_head) {
+> +		src.size = buf_cur_head - priv->prev_head;
+> +	} else {
+> +		src.size = priv->end - priv->prev_head;
+> +		src.size += buf_cur_head - priv->start;
+> +	}
+> +
+> +	src.cur = buf_cur_head - priv->start;
+> +	size = src.size;
+> +	tbuf_to_pbuf_copy(&src, &dst);
+> +	buf->pos = dst.cur;
+> +	priv->prev_head = buf_cur_head;
+> +
+> +	return size;
+> +}
+> +
+> +static int rvtrace_ramsink_setup_buf(struct rvtrace_component *comp)
+> +{
+> +	struct rvtrace_ramsink_priv *priv = dev_get_drvdata(&comp->dev);
+> +	u64 start_min, limit_max, end;
+> +	u32 low, high;
+> +
+> +	/* Probe min and max values for start and limit registers */
+> +	rvtrace_write32(comp->pdata, 0, RVTRACE_RAMSINK_STARTLOW_OFF);
+> +	rvtrace_write32(comp->pdata, 0, RVTRACE_RAMSINK_STARTHIGH_OFF);
+> +	low = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_STARTLOW_OFF);
+> +	high = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_STARTHIGH_OFF);
+> +	start_min = (u64)(high) << 32 | low;
+> +
+> +	rvtrace_write32(comp->pdata, 0xffffffff, RVTRACE_RAMSINK_LIMITLOW_OFF);
+> +	rvtrace_write32(comp->pdata, 0xffffffff, RVTRACE_RAMSINK_LIMITHIGH_OFF);
+> +	low = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITLOW_OFF);
+> +	high = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITHIGH_OFF);
+> +	limit_max = (u64)(high) << 32 | low;
+> +
+> +	if (priv->end < start_min) {
+
+Where was priv->end initialized before this check?
+
+> +		dev_err(&comp->dev, "DMA memory not addressable by device\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Setup ram sink start addresses */
+> +	if (priv->start < start_min) {
+
+No checks for start_min >= priv->end?
+
+> +		dev_warn(&comp->dev, "Ramsink start address updated from %llx to %llx\n",
+> +			 priv->start, start_min);
+> +		priv->va += start_min - priv->start;
+> +		priv->start = start_min;
+> +	}
+> +
+> +	priv->prev_head = priv->start;
+> +	priv->end = priv->start + priv->size;
+> +	rvtrace_write32(comp->pdata, lower_32_bits(priv->start), RVTRACE_RAMSINK_STARTLOW_OFF);
+> +	rvtrace_write32(comp->pdata, upper_32_bits(priv->start), RVTRACE_RAMSINK_STARTHIGH_OFF);
+> +	rvtrace_write32(comp->pdata, lower_32_bits(priv->start), RVTRACE_RAMSINK_WPLOW_OFF);
+> +	rvtrace_write32(comp->pdata, upper_32_bits(priv->start), RVTRACE_RAMSINK_WPHIGH_OFF);
+> +	/* Setup ram sink limit addresses */
+> +	if (priv->end > limit_max) {
+> +		dev_warn(&comp->dev, "Ramsink limit address updated from %llx to %llx\n", priv->end,
+> +			 limit_max);
+> +		priv->end = limit_max;
+> +		priv->size = priv->end - priv->start;
+> +	}
+> +
+> +	/* Limit address needs to be set to end - 4 to avoid overflow */
+> +	end = priv->end - 4;
+
+Should not hard-code 4, instead, do write32(0xfffffff, RamLimit), then
+ffs(RamLimit) to probe for the the write width, aka, "A" value in Table
+47. Typical Trace RAM Sink Configuration in the Spec.
+
+> +	rvtrace_write32(comp->pdata, lower_32_bits(end), RVTRACE_RAMSINK_LIMITLOW_OFF);
+> +	rvtrace_write32(comp->pdata, upper_32_bits(end), RVTRACE_RAMSINK_LIMITHIGH_OFF);
+> +	low = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITLOW_OFF);
+> +	high = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITHIGH_OFF);
+> +	end = (u64)(high) << 32 | low;
+> +	if (end != (priv->end - 4)) {
+> +		dev_warn(&comp->dev, "Ramsink limit address updated from %llx to %llx\n", priv->end,
+> +			 end);
+> +		priv->end = end;
+> +		priv->size = priv->end - priv->start;
+
+Actually the RamLimit read is not the real limit. It's Limit - "A" (the
+write width).
+
+> +	}
+> +
+> +	return 0;
+> +}
+
+I think overall we should simplify this setup_buf function. For RamStart
+alone, there're alignment + min_addr requirement, which is very unlikely
+that the lowest valid address happens to be within the range that dma-
+allocated in the caller (when you need to adjust priv->start). Thus, to
+do it properly, we first need to detect the min_addr + alignment *before*
+dma-alloc, and pass such requirements into dma-alloc, then depending on
+what dma-alloc returns, detect the "M" value by interrogating RamLimit.
+I'm not sure if dma-alloc can be passed a hint address that whatever
+returned must be higher, and whether it can enforce random alignment, so
+may be we can just program RamStart/Limit based on what dma-alloc gives
+and error out if value is not retained. We do however need to probe for
+write width ("A" value). It's usually 4 or 8, but it does vary per-impl,
+and remember, the total buffer size is still 1MB, not 1MB - 4 or -8.
+
+> +
+> +static int rvtrace_ramsink_setup(struct rvtrace_component *comp)
+> +{
+> +	struct device *pdev = comp->pdata->dev;
+> +	struct rvtrace_ramsink_priv *priv;
+> +
+> +	priv = devm_kzalloc(&comp->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	dev_set_drvdata(&comp->dev, priv);
+> +
+> +	/* Derive RAM sink memory size based on component implementation ID */
+> +	switch (comp->pdata->impid) {
+> +	default:
+> +		priv->size = SZ_1M;
+> +		break;
+> +	}
+> +
+> +	priv->va = dma_alloc_coherent(pdev, priv->size, &priv->start, GFP_KERNEL);
+> +	if (!priv->va)
+> +		return -ENOMEM;
+> +
+> +	return rvtrace_ramsink_setup_buf(comp);
+> +}
+> +
+> +static void rvtrace_ramsink_cleanup(struct rvtrace_component *comp)
+> +{
+> +	struct rvtrace_ramsink_priv *priv = dev_get_drvdata(&comp->dev);
+> +
+> +	dma_free_coherent(&comp->dev, priv->size, priv->va, priv->start);
+> +}
+> +
+> +static int rvtrace_ramsink_probe(struct rvtrace_component *comp)
+> +{
+> +	int ret;
+> +
+> +	ret = rvtrace_ramsink_setup(comp);
+> +	if (ret)
+> +		return dev_err_probe(&comp->dev, ret, "failed to setup ramsink.\n");
+> +
+> +	ret = rvtrace_enable_component(comp);
+> +	if (ret)
+> +		return dev_err_probe(&comp->dev, ret, "failed to enable ramsink.\n");
+> +
+> +	return ret;
+> +}
+
+In probe, we should detect and set it to SMEM mode. The default is SRAM
+mode.
+
+> +
+> +static void rvtrace_ramsink_remove(struct rvtrace_component *comp)
+> +{
+> +	int ret;
+> +
+> +	ret = rvtrace_disable_component(comp);
+> +	if (ret)
+> +		dev_err(&comp->dev, "failed to disable ramsink.\n");
+> +
+> +	rvtrace_ramsink_cleanup(comp);
+> +}
+> +
+> +static struct rvtrace_component_id rvtrace_ramsink_ids[] = {
+> +	{ .type = RVTRACE_COMPONENT_TYPE_RAMSINK,
+> +	  .version = rvtrace_component_mkversion(1, 0), },
+> +	{},
+> +};
+> +
+> +static struct rvtrace_driver rvtrace_ramsink_driver = {
+> +	.id_table = rvtrace_ramsink_ids,
+> +	.copyto_auxbuf = rvtrace_ramsink_copyto_auxbuf,
+
+Should have a .start function like the encoder (setting trRamEnable),
+and reset the WP to priv->start, as suggested above.
+
+> +	.stop = rvtrace_ramsink_stop,
+> +	.probe = rvtrace_ramsink_probe,
+> +	.remove = rvtrace_ramsink_remove,
+> +	.driver = {
+> +		.name = "rvtrace-ramsink",
+> +	},
+> +};
+> +
+> +static int __init rvtrace_ramsink_init(void)
+> +{
+> +	return rvtrace_register_driver(&rvtrace_ramsink_driver);
+> +}
+> +
+> +static void __exit rvtrace_ramsink_exit(void)
+> +{
+> +	rvtrace_unregister_driver(&rvtrace_ramsink_driver);
+> +}
+> +
+> +module_init(rvtrace_ramsink_init);
+> +module_exit(rvtrace_ramsink_exit);
+> +
+> +/* Module information */
+> +MODULE_AUTHOR("Mayuresh Chitale <mchitale@ventanamicro.com>");
+> +MODULE_DESCRIPTION("RISC-V Trace Ramsink Driver");
+> +MODULE_LICENSE("GPL");
+
+Bo
 
 
