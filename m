@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-243201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB32C951AF
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:38:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14B79C951B8
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:38:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B3F43A29CC
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 15:38:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1FB73A2982
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 15:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 987B0280CC1;
-	Sun, 30 Nov 2025 15:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C8728136C;
+	Sun, 30 Nov 2025 15:38:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AaaDrKoB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lhEV1ZLq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com [209.85.216.67])
+Received: from mail-pj1-f66.google.com (mail-pj1-f66.google.com [209.85.216.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA941E0DCB
-	for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 15:37:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF37283FDD
+	for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 15:38:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764517079; cv=none; b=boPpfbxV6GRMcN2kHV6ZRe82ObsS/HRq/FrHpGfivFiLi93Dc/TMHEVsc4zNDL1bwI5g/7vMILFb9cdSfEiMILjLaw9oV4ch+u3Z9TZ91fCygbq/plY3gti0QEw8VudkzqtXuUJlUK8s9kcMt4wmvoCfLSFtHdSfkWLw0yXu//Y=
+	t=1764517091; cv=none; b=cWPQlEa11Mf5qXzbZYRJdqzJwG10rx0y59l96LYpLEOAo2iLu2qzMcUtj2pRXqCE8i0KF1Di5rp98xv7pMWEQdhmGtgLyuiqBcSJGPyFQaftl0MPyi2dHdZR7ijuTWh5xGsvGAnIGa1XXqHXddWUBo9vYyiZiCA26Tp3o4eWQM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764517079; c=relaxed/simple;
-	bh=oDwSQ2DgZN5UPeFyVpapzafOE9JeM+6gEZ340+HFjeg=;
+	s=arc-20240116; t=1764517091; c=relaxed/simple;
+	bh=dmVZuhWFNXiJnoForG9aM64k/Rkd4w/YPpHBpHuDhPU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=a85yEOU1qpR0Fq6B3NMEBzS2fUkr6Y8ss8/zIljp53F8wzMbx6I3M/jANm2gRtcsjitTQW1ArWPNMmX+m7pnhMv4sjeDZ1gdSHGt4ZiN95EIjNu14wsMV2p3p2pYhKxRBS5XsEsQVK+Pmw1LrP2WIH492LKIIxbevRBsj1OMhjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AaaDrKoB; arc=none smtp.client-ip=209.85.216.67
+	 MIME-Version; b=uq56Ptij1snXhrRL4yrvr/z2Igrr9J/AEZAs0fuxMi3/A4Y0NthUlNXCosINDOWVJ6K1O3ScD702BJf1g3hIefr66eRW8IlXUewC5KA+OFKYpWHU0VikcLvfj+6jiCKOwyIXABfQFE3wHcAJj0nKtn0xKGx1kEUDpQPcEqD7+Tc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lhEV1ZLq; arc=none smtp.client-ip=209.85.216.66
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f67.google.com with SMTP id 98e67ed59e1d1-3436d6bdce8so3078899a91.3
-        for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 07:37:57 -0800 (PST)
+Received: by mail-pj1-f66.google.com with SMTP id 98e67ed59e1d1-3437c093ef5so3491151a91.0
+        for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 07:38:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764517077; x=1765121877; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1764517089; x=1765121889; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yUC4dObEfZpG4uC9TDLTiGB/YUFdpvHOo5IRraOFoc0=;
-        b=AaaDrKoBBWXbYR+XJ45UhslK0Au/2xTcSPZHNVSVzmtE88ICKipBg783/xdXC0rZfK
-         Rm7ATPEAr/UqhvRHA5HSQRz8Lld5L02iZ/VWUFnV6/g3wjextCMpAMz1Q/utszBlzuPC
-         q6RP0dWOTsvztnGthzLOlZPR5xXieRAnep2SxWTe1lrSARYws+EIK6NqXb5jl3K6+GtT
-         JKCzfIn+BuoZgdm9RZuWWstmL1gSgCaWaDMUEDo0cJiBwc3DBfjhp2Ohw+dt0HU7iKNd
-         JzJHGKSKqkCB2LM1hq2cmvi2zBw1RRjykJASJm6sDip/tFdNMVHHuM0u2r0ZOVvjb7V6
-         54Wg==
+        bh=M7zBNbXRFjiiQJDko6TrwgMM3whDrySsUYoLNxeiUXY=;
+        b=lhEV1ZLqB9vjPFU5iM2zZSowI8xp0ig7dpgB3yW//q1rx74xhcsBvN0yBMuaBUlFk6
+         BLQA2ChmEAYTFmbn4HD7ryUWxRRpWfEiStOpi0Eodi9DiDJghvu27soeUnpW6ssD6h2S
+         eRwgQFx4GuCjyJn/690sEO+4Coa9a/HJUGj5mvbjtEcgRgoD02JhyqRlpbycRZaZlSHg
+         bJtejcZLE7HupKauljqg2bqaw/HHXaa0ZOLGyDrY60W4G7nif4+yBY0nF5SYSzLrzUu8
+         u5uEM9tV24Wgh9Lt1uuu2bC6FOfEoZHIIckRMKRRsv+LZA820tCO135UYKQrKS7yFfxJ
+         CcJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764517077; x=1765121877;
+        d=1e100.net; s=20230601; t=1764517089; x=1765121889;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=yUC4dObEfZpG4uC9TDLTiGB/YUFdpvHOo5IRraOFoc0=;
-        b=LDrfmxPV+PP3QBUCgCa+ekj7XDNW312oHILAO9ooAuJSLDTs1dd4npqW39HDS6UeFw
-         syHhjOG+KrDDlc3YUqoqI0sB+oNd6568Ss2KQW6D0KaiIYk7S/mSf2zAwxgwjEdbEasL
-         a0r7ig3XXhZqgBgoPxSlgBSYMbpTfghHY0XCKBfji/Mb+/wRIVIL9jvWhgMuyq3XcDaE
-         ydp8nD7yQkZBEvsaxkeIzD2aESigvEitTujTyd3ZOkzTx2fBpIua6Z6HHR4Ij8Q9fMkl
-         o01e7s4U9Vqep5OKbhtBRuhFPU4uNmLGcxJALXMXhvHaj18fwg3+GYkZsJlvYUOMRFMn
-         ac6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUFrPomPU5Z6rCGFFEEd/qaifh8pgSPBUwkpYO1dbHN/4awLiYuIB4WGc4A4X6soM+qCZPkFBFfpfv+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8256zgix6gwHO5XzZxWUl8wMbtCJyEHKfzKtPIkQ+uki4YcKu
-	0+b5B67Wx/wzYd82Ia72Ai7/zIlr8uXO2f5/KCLrtK2H2lVdy/bm2wKU
-X-Gm-Gg: ASbGncv4+ZBgODp/9fLQRDRwvZfumaDw3EIfOQTGDRyAiC2gfxIpM6LYTPgcDBkRPWk
-	TalV0T/3fmpQ0Hp4gjllWag7TO9AvE3qlZm9W64dFleBQA1tiMPtzE+OUKbbZ3weh6qGbFh3YFw
-	CrTu6TrmEr/1z79852KyQ8nRyiE65Oz2rR2nmmGtZMK7umhHZnxmBWmBzjTBny+ynvgOzgb0yBI
-	EpXMFx/AKyFG1rw27i+6uFwAgGIyh6rhBtDsTdlIzcfsuB6k02wx/I2yAnGex3auLSwmu0pJ1SC
-	dYgWAI8U04XpjOPBrHeuNah0tg5CZltMZocKQgeGcUNjAWBsTVsrOZgzatj5xus9ZRY/gtafzO2
-	rdEzXawm4uCJ86Ea/Zr3tEzpTwRfEmVkfppqQX4Y/3enlG46aV+rUnXG/VFMahu1zI77RpNGZ4G
-	qEhNStnARvPl7DlQ==
-X-Google-Smtp-Source: AGHT+IGiDaRlSOUQ+fshNFNRIIqAzsM+JdRz2ezhxxJtsrcIPVcLKpE8DvHsW+OMEaI3itBEF++7dw==
-X-Received: by 2002:a17:90b:5588:b0:341:8b42:309e with SMTP id 98e67ed59e1d1-34733f3de19mr35626599a91.31.1764517077432;
-        Sun, 30 Nov 2025 07:37:57 -0800 (PST)
+        bh=M7zBNbXRFjiiQJDko6TrwgMM3whDrySsUYoLNxeiUXY=;
+        b=PiQr/4zGZhKTEEMqdiXi7nsoBmIOPia17e7klObD/Sp6UgbA2imaZlitpbF4lSzNoJ
+         Ege5p1yWUsqpZF3fkBPOkSa/XP3s8SW7HmocWmmUAQpKLbJwaYlQv/VR5k9QgdCGx8hr
+         NvnRIN5TqEwjxmB+coV1f4ZTvE7m6zN66emg974blyjSphyNCbvINGVB0jq3yB2slGIl
+         qsAQvNNrzDQ+qYSN1QVC9qtiRIZtavy4D6JmYFW6Z49gcoJg4oiRWZM8i8FyR4sv59fV
+         Wjqpy969I8pno5ebhZNI7eDmrsRVIO35a7bcjV7i4RHY5+uBdxvg0dwmF3MezYMcQXNj
+         elLg==
+X-Forwarded-Encrypted: i=1; AJvYcCWuygIMGWzRPkEzcTeqQzXcZR4/qgXo/++nFrOqcwB8QRvuQU8QeBY60gyeMeuql73P1heLzt04yL0F@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0bLYHlxDj4LK5X2JlYAkZaPGEa8rsFswE3sMdBDZvHlJyRldQ
+	r6FFZoej0m2I4mzN9Zb+70+L4TqVdBOzRaNGJhdtikp9hnTpT799wNso
+X-Gm-Gg: ASbGnct3I3Wx2yfxhTrUn7PKdy5nT3z+fbiYOC17J7+w3tVNF0hpX3RJd+0mndVBR3D
+	KYRb5mwacRcBfWreLVCEjdr1wT4buxrawpMBs5WoHlDcuYykM8vGYSyDuzQC9rDAK3BObiD+uEN
+	WyxqTy8t7cAKj/ZiX/4GmfepfzAPlYTr5Dvih4bkKB6UWjx7LCvI1Md1jEXnJXAScQ1cxl+hcOF
+	y9w/erzCAbqivZHRHjKhPpZFfjWEQr7v1XiRpgwA+pdhuiJSw7zyUjXuZiVUi/l8LBmdwwCap1m
+	ioW4rk3P1LhDAR2+1G5zJgpEYtZv4uGkMlaiYARpMIeznNLL18nBxiNYOayLwRjzSty0KujQ3UC
+	/2Sn80HniQmsEDeg40hRMyMmnBNUkcf8NPnf+ISJ1PeOyRQeHsPTJ3u/QeUhcSVHcUCY+tE44Pg
+	GuSgxxFcaimiHDVg==
+X-Google-Smtp-Source: AGHT+IF08SUqGtj+JrWhUfy4lL7zxAKhL0SBFWLpJc7hXUSn0VZ3P+CxbjrW5ROkN6ByOvlPrjkaFA==
+X-Received: by 2002:a17:90b:2587:b0:33b:b078:d6d3 with SMTP id 98e67ed59e1d1-34733ef7092mr31567964a91.23.1764517089407;
+        Sun, 30 Nov 2025 07:38:09 -0800 (PST)
 Received: from Ubuntu24.. ([103.187.64.30])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3475e952efbsm6903483a91.1.2025.11.30.07.37.51
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3475e952efbsm6903483a91.1.2025.11.30.07.38.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Nov 2025 07:37:56 -0800 (PST)
+        Sun, 30 Nov 2025 07:38:09 -0800 (PST)
 From: Shrikant Raskar <raskar.shree97@gmail.com>
 To: jic23@kernel.org,
 	robh@kernel.org,
@@ -90,9 +90,9 @@ Cc: dlechner@baylibre.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Shrikant Raskar <raskar.shree97@gmail.com>
-Subject: [PATCH v2 3/4] iio: proximity: rfd77402: Move polling logic into helper
-Date: Sun, 30 Nov 2025 21:07:11 +0530
-Message-ID: <20251130153712.6792-4-raskar.shree97@gmail.com>
+Subject: [PATCH v2 4/4] iio: proximity: rfd77402: Add interrupt handling support
+Date: Sun, 30 Nov 2025 21:07:12 +0530
+Message-ID: <20251130153712.6792-5-raskar.shree97@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251130153712.6792-1-raskar.shree97@gmail.com>
 References: <20251130153712.6792-1-raskar.shree97@gmail.com>
@@ -104,76 +104,285 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This change extracts the polling logic into a dedicated helper,
-rfd77402_result_polling(), which improves readability and keeps
-rfd77402_measure() focused on the high-level measurement flow.
-
-This refactoring is also a necessary preparation step for adding
-interrupt-based result handling in a follow-up patch.
+Add interrupt handling support to enable event-driven data acquisition
+instead of continuous polling. This improves responsiveness, reduces
+CPU overhead, and supports low-power operation by allowing the system
+to remain idle until an interrupt occurs.
 
 Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
 ---
- drivers/iio/proximity/rfd77402.c | 35 +++++++++++++++++++-------------
- 1 file changed, 21 insertions(+), 14 deletions(-)
+Changelog:
+Changes since v1:
+- Remove 'of.h' header
+- Split the condition in 2 parts in interrupt handler
+- Add helper rfd77402_wait_for_irq()
+- Add helper rfd77402_config_irq()
+- Code refactoring
+- Return failure if request IRQ failed
+
+Link to v1:https://lore.kernel.org/all/20251126031440.30065-4-raskar.shree97@gmail.com/
+
+Test Logs:
+1. Interrupt Mode :
+pi@raspberrypi:~$ sudo i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- UU -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --                         
+pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
+35
+pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
+39
+pi@raspberrypi:~$ cat /proc/interrupts | grep rfd
+127:          2          0          0          0 pinctrl-bcm2835   4 Edge      rfd77402
+pi@raspberrypi:~$ dmesg | grep rfd
+[    7.464789] rfd77402 1-004c: Using interrupt mode
+
+2. Polling Mode :
+pi@raspberrypi:~$ sudo i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- UU -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --                         
+pi@raspberrypi:~$ dmesg | grep rfd
+[   26.908031] rfd77402 1-004c: No interrupt specified, using polling mode
+pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
+36
+pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
+45
+---
+ drivers/iio/proximity/rfd77402.c | 126 +++++++++++++++++++++++++++++--
+ 1 file changed, 118 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/iio/proximity/rfd77402.c b/drivers/iio/proximity/rfd77402.c
-index 3262af6f6882..2152509816ca 100644
+index 2152509816ca..8441a7bcabec 100644
 --- a/drivers/iio/proximity/rfd77402.c
 +++ b/drivers/iio/proximity/rfd77402.c
-@@ -110,11 +110,28 @@ static int rfd77402_set_state(struct i2c_client *client, u8 state, u16 check)
+@@ -6,19 +6,21 @@
+  *
+  * 7-bit I2C slave address 0x4c
+  *
+- * TODO: interrupt
+  * https://media.digikey.com/pdf/Data%20Sheets/RF%20Digital%20PDFs/RFD77402.pdf
+  */
+ 
+ #include <linux/module.h>
+ #include <linux/i2c.h>
+ #include <linux/delay.h>
+-
++#include <linux/interrupt.h>
++#include <linux/completion.h>
+ #include <linux/iio/iio.h>
+ 
+ #define RFD77402_DRV_NAME "rfd77402"
+ 
+ #define RFD77402_ICSR		0x00 /* Interrupt Control Status Register */
++#define RFD77402_ICSR_CLR_CFG   BIT(0)
++#define RFD77402_ICSR_CLR_TYPE  BIT(1)
+ #define RFD77402_ICSR_INT_MODE	BIT(2)
+ #define RFD77402_ICSR_INT_POL	BIT(3)
+ #define RFD77402_ICSR_RESULT	BIT(4)
+@@ -26,6 +28,12 @@
+ #define RFD77402_ICSR_H2M_MSG	BIT(6)
+ #define RFD77402_ICSR_RESET	BIT(7)
+ 
++#define RFD77402_IER		0x02
++#define RFD77402_IER_RESULT	BIT(0)
++#define RFD77402_IER_M2H_MSG	BIT(1)
++#define RFD77402_IER_H2M_MSG	BIT(2)
++#define RFD77402_IER_RESET	BIT(3)
++
+ #define RFD77402_CMD_R		0x04
+ #define RFD77402_CMD_SINGLE	0x01
+ #define RFD77402_CMD_STANDBY	0x10
+@@ -80,6 +88,10 @@ struct rfd77402_data {
+ 	struct i2c_client *client;
+ 	/* Serialize reads from the sensor */
+ 	struct mutex lock;
++	/* Completion for interrupt-driven measurements */
++	struct completion completion;
++	/* Flag to indicate if interrupt is available */
++	bool irq_en;
+ };
+ 
+ static const struct iio_chan_spec rfd77402_channels[] = {
+@@ -110,6 +122,36 @@ static int rfd77402_set_state(struct i2c_client *client, u8 state, u16 check)
  	return 0;
  }
  
--static int rfd77402_measure(struct i2c_client *client)
-+static int rfd77402_result_polling(struct i2c_client *client)
- {
- 	int ret;
- 	int tries = 10;
- 
-+	while (tries-- > 0) {
-+		ret = i2c_smbus_read_byte_data(client, RFD77402_ICSR);
-+		if (ret < 0)
-+			return ret;
++static irqreturn_t rfd77402_interrupt_handler(int irq, void *dev_id)
++{
++	struct rfd77402_data *data = dev_id;
++	int ret;
 +
-+		if (ret & RFD77402_ICSR_RESULT)
-+			return 0;
++	ret = i2c_smbus_read_byte_data(data->client, RFD77402_ICSR);
++	if (ret < 0)
++		return IRQ_NONE;
 +
-+		msleep(20);
-+	}
++	/* Check if the interrupt is from our device */
++	if (!(ret & RFD77402_ICSR_RESULT))
++		return IRQ_NONE;
 +
-+	return -ETIMEDOUT;
++	/* Signal completion of measurement */
++	complete(&data->completion);
++	return IRQ_HANDLED;
 +}
 +
-+static int rfd77402_measure(struct i2c_client *client)
++static int rfd77402_wait_for_irq(struct rfd77402_data *data)
 +{
 +	int ret;
++
++	ret = wait_for_completion_timeout(&data->completion,
++					  msecs_to_jiffies(200));
++	if (ret == 0)
++		return -ETIMEDOUT;
++
++	return 0;
++}
++
+ static int rfd77402_result_polling(struct i2c_client *client)
+ {
+ 	int ret;
+@@ -129,21 +171,31 @@ static int rfd77402_result_polling(struct i2c_client *client)
+ 	return -ETIMEDOUT;
+ }
+ 
+-static int rfd77402_measure(struct i2c_client *client)
++static int rfd77402_measure(struct rfd77402_data *data)
+ {
++	struct i2c_client *client = data->client;
+ 	int ret;
++
  	ret = rfd77402_set_state(client, RFD77402_CMD_MCPU_ON,
  				 RFD77402_STATUS_MCPU_ON);
  	if (ret < 0)
-@@ -125,20 +142,10 @@ static int rfd77402_measure(struct i2c_client *client)
+ 		return ret;
+ 
++	/* Initialize completion for interrupt mode */
++	if (data->irq_en)
++		reinit_completion(&data->completion);
++
+ 	ret = i2c_smbus_write_byte_data(client, RFD77402_CMD_R,
+ 					RFD77402_CMD_SINGLE |
  					RFD77402_CMD_VALID);
  	if (ret < 0)
  		goto err;
--
--	while (tries-- > 0) {
--		ret = i2c_smbus_read_byte_data(client, RFD77402_ICSR);
--		if (ret < 0)
--			goto err;
--		if (ret & RFD77402_ICSR_RESULT)
--			break;
--		msleep(20);
--	}
--
--	if (tries < 0) {
--		ret = -ETIMEDOUT;
+ 		
+-	ret = rfd77402_result_polling(client);
++	if (data->irq_en)
++		ret = rfd77402_wait_for_irq(data);
++	else
++		ret = rfd77402_result_polling(data->client);
 +
-+	ret = rfd77402_result_polling(client);
-+	if (ret < 0)
- 		goto err;
--	}
- 
- 	ret = i2c_smbus_read_word_data(client, RFD77402_RESULT_R);
  	if (ret < 0)
+ 		goto err;
+ 
+@@ -175,7 +227,7 @@ static int rfd77402_read_raw(struct iio_dev *indio_dev,
+ 	switch (mask) {
+ 	case IIO_CHAN_INFO_RAW:
+ 		mutex_lock(&data->lock);
+-		ret = rfd77402_measure(data->client);
++		ret = rfd77402_measure(data);
+ 		mutex_unlock(&data->lock);
+ 		if (ret < 0)
+ 			return ret;
+@@ -195,8 +247,25 @@ static const struct iio_info rfd77402_info = {
+ 	.read_raw = rfd77402_read_raw,
+ };
+ 
++static int rfd77402_config_irq(struct i2c_client *client, u8 csr, u8 ier)
++{
++	int ret;
++
++	ret = i2c_smbus_write_byte_data(client, RFD77402_ICSR, csr);
++	if (ret < 0)
++		return ret;
++
++	ret = i2c_smbus_write_byte_data(client, RFD77402_IER, ier);
++	if (ret < 0)
++		return ret;
++
++	return 0;
++}
++
+ static int rfd77402_init(struct i2c_client *client)
+ {
++	struct iio_dev *indio_dev = i2c_get_clientdata(client);
++	struct rfd77402_data *data = iio_priv(indio_dev);
+ 	int ret, i;
+ 
+ 	ret = rfd77402_set_state(client, RFD77402_CMD_STANDBY,
+@@ -204,9 +273,25 @@ static int rfd77402_init(struct i2c_client *client)
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	/* configure INT pad as push-pull, active low */
+-	ret = i2c_smbus_write_byte_data(client, RFD77402_ICSR,
+-					RFD77402_ICSR_INT_MODE);
++	if (data->irq_en) {
++	/*
++	 * Enable interrupt mode:
++	 * - Configure ICSR for auto-clear on read, push-pull output and falling edge
++	 * - Enable "result ready" interrupt in IER
++	 */
++		ret = rfd77402_config_irq(client,
++					  RFD77402_ICSR_CLR_CFG |
++					  RFD77402_ICSR_INT_MODE,
++					  RFD77402_IER_RESULT);
++	} else {
++	/*
++	 * Disable all interrupts:
++	 * - Clear ICSR configuration
++	 * - Disable all interrupt in IER
++	 */
++		ret = rfd77402_config_irq(client, 0, 0);
++	}
++
+ 	if (ret < 0)
+ 		return ret;
+ 
+@@ -283,6 +368,31 @@ static int rfd77402_probe(struct i2c_client *client)
+ 	data = iio_priv(indio_dev);
+ 	data->client = client;
+ 	mutex_init(&data->lock);
++	init_completion(&data->completion);
++
++	i2c_set_clientdata(client, indio_dev);
++
++	data->irq_en = false;
++	if (client->irq > 0) {
++		/* interrupt mode */
++		ret = devm_request_threaded_irq(&client->dev, client->irq,
++						NULL, rfd77402_interrupt_handler,
++						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
++						"rfd77402", data);
++		if (ret < 0) {
++			dev_err(&client->dev,
++				"Failed to request IRQ %d: %d\n",
++				client->irq, ret);
++			return ret;
++		}
++
++		data->irq_en = true;
++		dev_info(&client->dev, "Using interrupt mode\n");
++
++	} else {
++		/* polling mode */
++		dev_info(&client->dev, "No interrupt specified, using polling mode\n");
++	}
+ 
+ 	indio_dev->info = &rfd77402_info;
+ 	indio_dev->channels = rfd77402_channels;
 -- 
 2.43.0
 
