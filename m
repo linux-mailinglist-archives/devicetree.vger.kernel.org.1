@@ -1,101 +1,96 @@
-Return-Path: <devicetree+bounces-243202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B79C951B8
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:38:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21454C951C3
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:40:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1FB73A2982
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 15:38:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB71C3A1E0B
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 15:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C8728136C;
-	Sun, 30 Nov 2025 15:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40DA227CB02;
+	Sun, 30 Nov 2025 15:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lhEV1ZLq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WK0SRfDo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f66.google.com (mail-pj1-f66.google.com [209.85.216.66])
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF37283FDD
-	for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 15:38:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1997F156F20
+	for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 15:40:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764517091; cv=none; b=cWPQlEa11Mf5qXzbZYRJdqzJwG10rx0y59l96LYpLEOAo2iLu2qzMcUtj2pRXqCE8i0KF1Di5rp98xv7pMWEQdhmGtgLyuiqBcSJGPyFQaftl0MPyi2dHdZR7ijuTWh5xGsvGAnIGa1XXqHXddWUBo9vYyiZiCA26Tp3o4eWQM8=
+	t=1764517210; cv=none; b=Ytp7KEs4ED6Pnh9LrciL+11swifj0UFDQhD03qKgOMYE3pELp/G7kyQqG7TR4sFe5ix/2mRF6mRigBgMico7on4RO8sfI6IbmZXVoQROx2dib/digiiLRyACXXlgM7Tt2N1c+yQpx0U0mcVaxrZccu2EyoI7DBJI1EIL8Do+KPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764517091; c=relaxed/simple;
-	bh=dmVZuhWFNXiJnoForG9aM64k/Rkd4w/YPpHBpHuDhPU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uq56Ptij1snXhrRL4yrvr/z2Igrr9J/AEZAs0fuxMi3/A4Y0NthUlNXCosINDOWVJ6K1O3ScD702BJf1g3hIefr66eRW8IlXUewC5KA+OFKYpWHU0VikcLvfj+6jiCKOwyIXABfQFE3wHcAJj0nKtn0xKGx1kEUDpQPcEqD7+Tc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lhEV1ZLq; arc=none smtp.client-ip=209.85.216.66
+	s=arc-20240116; t=1764517210; c=relaxed/simple;
+	bh=qI9BTqqZ3dXuXETf8+g59uoU8GtA86fO2Eru8apxZgg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qAqjnwztaCfuzNlnAdi6ICi1S5ApVmwuj27iOHgRVuCaOku7eIVals/3/BB99KASmqYBAGOGoUKd7xSY4NX6u/z6PYFVoJ9XFp87G8JbQExVNEAEYcAGoDxS/kVhNOMaGtlQZa1yzxSlg6d7r5pzVknJicUDLcqXRfjDFbqLEQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WK0SRfDo; arc=none smtp.client-ip=209.85.216.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f66.google.com with SMTP id 98e67ed59e1d1-3437c093ef5so3491151a91.0
-        for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 07:38:09 -0800 (PST)
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-3436a97f092so4228983a91.3
+        for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 07:40:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764517089; x=1765121889; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M7zBNbXRFjiiQJDko6TrwgMM3whDrySsUYoLNxeiUXY=;
-        b=lhEV1ZLqB9vjPFU5iM2zZSowI8xp0ig7dpgB3yW//q1rx74xhcsBvN0yBMuaBUlFk6
-         BLQA2ChmEAYTFmbn4HD7ryUWxRRpWfEiStOpi0Eodi9DiDJghvu27soeUnpW6ssD6h2S
-         eRwgQFx4GuCjyJn/690sEO+4Coa9a/HJUGj5mvbjtEcgRgoD02JhyqRlpbycRZaZlSHg
-         bJtejcZLE7HupKauljqg2bqaw/HHXaa0ZOLGyDrY60W4G7nif4+yBY0nF5SYSzLrzUu8
-         u5uEM9tV24Wgh9Lt1uuu2bC6FOfEoZHIIckRMKRRsv+LZA820tCO135UYKQrKS7yFfxJ
-         CcJA==
+        d=gmail.com; s=20230601; t=1764517206; x=1765122006; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fwHcvSsyas76YXYDVkYk1lnTFBEFNI7F8L1Zytr2s0c=;
+        b=WK0SRfDo3PU3cyZos5x20Cv6ss9LC+1I/2RKpIcW5p/v247kLH1NJ8+shusGgm4vzG
+         M9JAEWO1319dEc+4MWcJmoS285Z3QZRWKXIfDDJOS/QfYfmydwawKqcAVKD3TMAaGwXQ
+         skK/0QLlGIngcdEOiIalhc2y2Cgc/+VXSg9pidAamqbZMYYFpMv9UFBDJS5jfFPDVx0N
+         FfW9jErfQa/MmgNDoBKsbSJ9McCycMrN6KZMYhnNLVgK5aLy04nkaUUhaGfONZFPDQnw
+         zTYp91nPyW6RizrP77iFB/1strk6H5DAgXqf2ri3Jc47MkelpuT8CG0oJRW+/D9FsHaw
+         HfvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764517089; x=1765121889;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=M7zBNbXRFjiiQJDko6TrwgMM3whDrySsUYoLNxeiUXY=;
-        b=PiQr/4zGZhKTEEMqdiXi7nsoBmIOPia17e7klObD/Sp6UgbA2imaZlitpbF4lSzNoJ
-         Ege5p1yWUsqpZF3fkBPOkSa/XP3s8SW7HmocWmmUAQpKLbJwaYlQv/VR5k9QgdCGx8hr
-         NvnRIN5TqEwjxmB+coV1f4ZTvE7m6zN66emg974blyjSphyNCbvINGVB0jq3yB2slGIl
-         qsAQvNNrzDQ+qYSN1QVC9qtiRIZtavy4D6JmYFW6Z49gcoJg4oiRWZM8i8FyR4sv59fV
-         Wjqpy969I8pno5ebhZNI7eDmrsRVIO35a7bcjV7i4RHY5+uBdxvg0dwmF3MezYMcQXNj
-         elLg==
-X-Forwarded-Encrypted: i=1; AJvYcCWuygIMGWzRPkEzcTeqQzXcZR4/qgXo/++nFrOqcwB8QRvuQU8QeBY60gyeMeuql73P1heLzt04yL0F@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0bLYHlxDj4LK5X2JlYAkZaPGEa8rsFswE3sMdBDZvHlJyRldQ
-	r6FFZoej0m2I4mzN9Zb+70+L4TqVdBOzRaNGJhdtikp9hnTpT799wNso
-X-Gm-Gg: ASbGnct3I3Wx2yfxhTrUn7PKdy5nT3z+fbiYOC17J7+w3tVNF0hpX3RJd+0mndVBR3D
-	KYRb5mwacRcBfWreLVCEjdr1wT4buxrawpMBs5WoHlDcuYykM8vGYSyDuzQC9rDAK3BObiD+uEN
-	WyxqTy8t7cAKj/ZiX/4GmfepfzAPlYTr5Dvih4bkKB6UWjx7LCvI1Md1jEXnJXAScQ1cxl+hcOF
-	y9w/erzCAbqivZHRHjKhPpZFfjWEQr7v1XiRpgwA+pdhuiJSw7zyUjXuZiVUi/l8LBmdwwCap1m
-	ioW4rk3P1LhDAR2+1G5zJgpEYtZv4uGkMlaiYARpMIeznNLL18nBxiNYOayLwRjzSty0KujQ3UC
-	/2Sn80HniQmsEDeg40hRMyMmnBNUkcf8NPnf+ISJ1PeOyRQeHsPTJ3u/QeUhcSVHcUCY+tE44Pg
-	GuSgxxFcaimiHDVg==
-X-Google-Smtp-Source: AGHT+IF08SUqGtj+JrWhUfy4lL7zxAKhL0SBFWLpJc7hXUSn0VZ3P+CxbjrW5ROkN6ByOvlPrjkaFA==
-X-Received: by 2002:a17:90b:2587:b0:33b:b078:d6d3 with SMTP id 98e67ed59e1d1-34733ef7092mr31567964a91.23.1764517089407;
-        Sun, 30 Nov 2025 07:38:09 -0800 (PST)
-Received: from Ubuntu24.. ([103.187.64.30])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3475e952efbsm6903483a91.1.2025.11.30.07.38.03
+        d=1e100.net; s=20230601; t=1764517206; x=1765122006;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fwHcvSsyas76YXYDVkYk1lnTFBEFNI7F8L1Zytr2s0c=;
+        b=vkNICsCQ3LwDBG9cxcppgwdTqah0bRV+gwg5T4sOqZX5uIC764RDWR7TBqwonpZdxQ
+         4Osq2FtKC+CZE0xPRbvYBX6xN1k3qUupBbBVor4ef7b6K16HkH1R/1if5yLkJlYe4F/Y
+         VzaV7HeCPwcz56CHmI84VBV52QfmU7QoXkEGUXm/1QSSEIjADulweHvCtzZz+rSALOtN
+         cKW9RPfmWqJnUF2G9HXmIXM+sJHKbSLRcBD3ZCJayZDosRTLOkzgGJXWcMmjsGntf8d1
+         RN8wvdTuoQwIJ6q8SrP+hH2I/4DlENw1QErVSylkft1lVWvxTkk5R4iuNvSu1qZtEiuF
+         h28g==
+X-Forwarded-Encrypted: i=1; AJvYcCWjeJ3fdhSAyCyOobV0h8rQfHm4jIg9PBZNUsn0qW8etuR3CFmO8os+thu3xxtY8cUu0yVxO0hDqADN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxS1CzhGS2zBlYz0LT69yuscR7xJdTw5d4a46WTPfsjd3mlw3rc
+	HNnrjnvJJ9iWgvlLJuaW2DtyrJyrXH3Y6/HWWGPex0u6/b2XPh+DgB18
+X-Gm-Gg: ASbGncvs1hSlfQ8MxHtFqis6olTKSqXm7jTNiGLijosCcbd7w+R1g3iZxxumJQ9+n3s
+	kc3GUTvsUVvtIAFFDB+v/9Qj+lhFUEdnbUBmVscK7Y75GpqfOPn4ooyXYkvz0TltZ9spizIYori
+	lRkIAyQVJvVcYNednkjE+QGuqqTMTZB3vhGGLyRQ9CjsMI+zKLD/fGVauxTEQXFJeAePEsTnnyS
+	Z1t+xJ66F0GwYAwYHM8j6TxnQ431ZQm9U4UfpeWxN3mwRxDDKeToJ52wPJ5T7nFJMh6ESXbLuQI
+	DGl7IjNlOj0kTtWYP4Wx2G9v9rQJAE2bybAoBF4TR9ZyEHCVl+0dbSVey/RIyh9TW3Afj7VZRBA
+	VewBeKo0CwqNLkWWBvxldPbhI60XGGzc69l0DhcJ6wcIUrMGJk9NrGqB4/PRIvRNiLUuT5txh4p
+	B4G+w6udWkVukdGP7sjKSKOYS6hqC9zeys
+X-Google-Smtp-Source: AGHT+IG9GBgR6pxGOq4rRYK6JTekkJfjeH4w4ABFqMv2w4CvOQ6nmfpJN0HyIoX1QBXUbfarYpToXw==
+X-Received: by 2002:a17:90b:1d8a:b0:341:315:f4ec with SMTP id 98e67ed59e1d1-3475ebd2e3dmr24570075a91.7.1764517206306;
+        Sun, 30 Nov 2025 07:40:06 -0800 (PST)
+Received: from DESKTOP-P76LG1N.lan ([42.116.199.188])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-be5e7485b1esm8640097a12.20.2025.11.30.07.40.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Nov 2025 07:38:09 -0800 (PST)
-From: Shrikant Raskar <raskar.shree97@gmail.com>
-To: jic23@kernel.org,
-	robh@kernel.org,
+        Sun, 30 Nov 2025 07:40:05 -0800 (PST)
+From: Nam Tran <trannamatk@gmail.com>
+To: lee@kernel.org
+Cc: pavel@kernel.org,
+	gregkh@linuxfoundation.org,
+	rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr,
 	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	heiko@sntech.de,
-	neil.armstrong@linaro.org,
-	skhan@linuxfoundation.org,
-	david.hunter.linux@gmail.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Shrikant Raskar <raskar.shree97@gmail.com>
-Subject: [PATCH v2 4/4] iio: proximity: rfd77402: Add interrupt handling support
-Date: Sun, 30 Nov 2025 21:07:12 +0530
-Message-ID: <20251130153712.6792-5-raskar.shree97@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251130153712.6792-1-raskar.shree97@gmail.com>
-References: <20251130153712.6792-1-raskar.shree97@gmail.com>
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Nam Tran <trannamatk@gmail.com>
+Subject: [PATCH v19 0/3] leds: add new LED driver for TI LP5812
+Date: Sun, 30 Nov 2025 22:39:53 +0700
+Message-Id: <20251130153956.241375-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,286 +99,182 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add interrupt handling support to enable event-driven data acquisition
-instead of continuous polling. This improves responsiveness, reduces
-CPU overhead, and supports low-power operation by allowing the system
-to remain idle until an interrupt occurs.
+This patch series adds initial support for the TI LP5812,
+a 4x3 matrix RGB LED driver with autonomous engine control.
+This version provides a minimal, clean implementation focused
+on core functionality only. The goal is to upstream a solid
+foundation, with the expectation that additional features can
+be added incrementally in future patches.
 
-Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
+The driver integrates with the LED multicolor framework and
+supports a set of basic sysfs interfaces for LED control and
+chip management.
+
+Signed-off-by: Nam Tran <trannamatk@gmail.com>
 ---
-Changelog:
-Changes since v1:
-- Remove 'of.h' header
-- Split the condition in 2 parts in interrupt handler
-- Add helper rfd77402_wait_for_irq()
-- Add helper rfd77402_config_irq()
-- Code refactoring
-- Return failure if request IRQ failed
+Changes in v19:
+- DT bindings: Reverted to v17, as making `label` required in v18 was incorrect.
+- Driver: Drop validation code enforcing parsing of the optional `label` property.
+- Driver: Renamed unions for clarity: replaced u_scan_order { s_scan_order, scan_order_val} with
+  lp5812_scan_order { bits, val }. Applied the same pattern to the drive-mode union.
+- Driver: Updated all code to use the new `bits` and `val` fields.
+- Documentation: Fix links (remove backticks, add `.rst`) and make attribute formatting consistent.
+- Link to v18: https://lore.kernel.org/linux-leds/20251123191042.116917-1-trannamatk@gmail.com/
 
-Link to v1:https://lore.kernel.org/all/20251126031440.30065-4-raskar.shree97@gmail.com/
+Changes in v18:
+- Mark `label` as required for all LED nodes for proper sysfs naming, including single-color
+  (led@[0-3]) and multi-color parent nodes (multi-led@[4-7]); remove previous Reviewed-by tag.
+- Simplified parse_drive_mode() logic: replaced nested if checks with continue to reduce indentation.
+- Use leds[i] instead of each in lp5812_register_leds() for clarity.
+- Remove wrapper function lp5812_auto_dc()
+- Define all magic numbers.
+- Handle parsing properties safely and removed unnecessary pre-initialization.
+- Rename lp5812_of_populate_pdata() to lp5812_of_probe().
+- Save chip in i2c_set_clientdata(), not led; use leds instead of led for the array in lp5812_probe().
+- Remove chip register map structure; use register addresses directly.
+- Minor formatting, blank line, comment clean-ups, and add email to MODULE_AUTHOR().
+- Link to v17: https://lore.kernel.org/linux-leds/20251021155927.140929-1-trannamatk@gmail.com/
 
-Test Logs:
-1. Interrupt Mode :
-pi@raspberrypi:~$ sudo i2cdetect -y 1
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-40: -- -- -- -- -- -- -- -- -- -- -- -- UU -- -- -- 
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-70: -- -- -- -- -- -- -- --                         
-pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
-35
-pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
-39
-pi@raspberrypi:~$ cat /proc/interrupts | grep rfd
-127:          2          0          0          0 pinctrl-bcm2835   4 Edge      rfd77402
-pi@raspberrypi:~$ dmesg | grep rfd
-[    7.464789] rfd77402 1-004c: Using interrupt mode
+Changes in v17:
+- Dropped direct_mode from ti,scan-mode property.
+- Updated logic so that omitting ti,scan-mode now implies direct-drive mode by default.
+- Refactor lp5812_parse_led_channel() to simplify function arguments.
+- Mark lp5812_cfg as const since it contains only static configuration data.
+- Link to v16: https://lore.kernel.org/linux-leds/20251013173551.108205-1-trannamatk@gmail.com/
 
-2. Polling Mode :
-pi@raspberrypi:~$ sudo i2cdetect -y 1
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-40: -- -- -- -- -- -- -- -- -- -- -- -- UU -- -- -- 
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-70: -- -- -- -- -- -- -- --                         
-pi@raspberrypi:~$ dmesg | grep rfd
-[   26.908031] rfd77402 1-004c: No interrupt specified, using polling mode
-pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
-36
-pi@raspberrypi:~$ cat /sys/bus/iio/devices/iio:device0/in_distance_raw
-45
+Changes in v16:
+- Renamed property 'ti,operation-mode' to 'ti,scan-mode'.
+- Simplified allowed values using regex pattern instead of long enum list.
+- Updated description accordingly and noted 'direct_mode' as default.
+- Updated core driver to match the binding change.
+- Link to v15: https://lore.kernel.org/linux-leds/20251005153337.94025-1-trannamatk@gmail.com/
+
+Changes in v15:
+- Removed all custom sysfs attributes; driver now fully relies on standard LED multicolor class interfaces.
+- Added new device tree property `ti,operation-mode` to configure direct, TCM, and mix scan modes.
+- Dropped previous Reviewed-by tag from the binding patch due to property addition.
+- Removed ABI documentation since no new sysfs entries are created.
+- Updated lp5812.rst documentation accordingly.
+- Link to v14: https://lore.kernel.org/linux-leds/20250907160944.149104-1-trannamatk@gmail.com/
+
+Changes in v14:
+- Replaced inline constants with proper macros for readability and maintainability.
+- Refactored lp5812_read() and lp5812_write() to simplify logic and improve clarity.
+- Updated lp5812_fault_clear() to use switch() instead of if/else chain.
+- Refactored parse_drive_mode() for cleaner logic, removed string parsing of concatenated data.
+- Updated activate_store() and led_current_store() to replace strsep()/kstrtoint() parsing with sscanf().
+- Removed redundant comments and renamed variables for better clarity.
+- Link to v13: https://lore.kernel.org/lkml/20250818012654.143058-1-trannamatk@gmail.com/
+
+Changes in v13:
+- Fixes build warnings reported by kernel test robot:
+  - Inconsistent indent in lp5812_probe()
+  - Uninitialized variable 'ret' in lp5812_multicolor_brightness()
+- Drop of_match_ptr() and directly assign of_match_table, as the driver is DT-only.
+- Link to v12: https://lore.kernel.org/lkml/20250728065814.120769-1-trannamatk@gmail.com/
+
+Changes in v12:
+- Reordered helper functions above lp5812_probe() for better structure.
+- Clarified DT-only support by removing fallback paths and i2c_device_id table.
+- Directly assign platform_data to the correct pointer instead of relying on
+  string comparisons (LP5812_SC_LED, LP5812_MC_LED) and container_of() casting.
+  This simplifies the logic and avoids unnecessary type checks.
+- Removed redundant messages.
+- Update ABI documentation to reflect reduced feature set.
+- Link to v11: https://lore.kernel.org/lkml/20250714172355.84609-1-trannamatk@gmail.com/
+
+Changes in v11:
+- Drop autonomous animation and other advanced features; reduce driver to core functionality only.
+- Simplify LED parsing to use a unified path.
+- Clean up and streamline code
+  - Use alphabetically ordered includes
+  - Remove redundant comments
+  - Fix style issues (e.g., comment capitalization, code placement)
+- Update ABI documentation to reflect reduced feature set.
+- Link to v10: https://lore.kernel.org/lkml/20250618183205.113344-1-trannamatk@gmail.com/
+
+Changes in v10:
+- Address feedback on v9 regarding missing Reviewed-by tag
+- Added explanation: binding structure changed significantly to integrate
+  with the standard leds-class-multicolor.yaml schema and support multi-led@
+  nodes with nested led@ subnodes. This change introduced a new patternProperties
+  hierarchy and removed the previous flat led@ layout used in the earlier versions.
+  So the Reviewed-by tag was dropped out of caution.
+- Address binding document feedback
+  - Use consistent quotes
+  - Replace 'max-cur' with the standard 'led-max-microamp'
+  - Remove 'led-cur' property
+  - Fix mixed indentation
+- Updated core driver to align with the updated binding schema.
+- Address core driver feedback
+  - Use for_each_available_child_of_node_scoped() to simplify the code
+  - Add a return checks for lp5812_write() and lp5812_read()
+  - Remove unneeded trailing commas
+  - Fix unsafe usage of stack-allocated strings
+- Link to v9: https://lore.kernel.org/lkml/20250617154020.7785-1-trannamatk@gmail.com/
+
+Changes in v9:
+- Move driver back to drivers/leds/rgb/
+- Integrate with LED multicolor framework
+- Refactor and simplify custom sysfs handling
+- Extend Device Tree binding to support multi-led@ nodes using leds-class-multicolor.yaml
+- Update documentation to reflect the updated sysfs.
+- Link to v8: https://lore.kernel.org/lkml/20250427082447.138359-1-trannamatk@gmail.com/
+
+Changes in v8:
+- Move driver to drivers/auxdisplay/ instead of drivers/leds/.
+- Rename files from leds-lp5812.c/.h to lp5812.c/.h.
+- Move ti,lp5812.yaml binding to auxdisplay/ directory,
+  and update the title and $id to match new path.
+- No functional changes to the binding itself (keep Reviewed-by).
+- Update commit messages and patch titles to reflect the move.
+- Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-trannamatk@gmail.com/
+
+Changes in v7:
+- Mark `chip_leds_map` as const.
+- Use consistent `ret` initialization.
+- Simplify the function `set_mix_sel_led()`.
+- Refactor `dev_config_show()` and `led_auto_animation_show()` to avoid temp buffer, malloc/free.
+- Simplify the code and ensure consistent use of mutex lock/unlock in show/store functions.
+- Remove `total_leds` and `total_aeu`.
+- Link to v6: https://lore.kernel.org/linux-leds/20250419184333.56617-1-trannamatk@gmail.com/
+
+Changes in v6:
+- Add `vcc-supply` property to describe the LP5812 power supply.
+- Remove `chan-name` property and entire LED subnodes, as they are not needed.
+- Update LP5812 LED driver node to Raspberry Pi 4 B Device Tree, based on updated binding.
+- Link to v5: https://lore.kernel.org/linux-leds/20250414145742.35713-1-trannamatk@gmail.com/
+
+Changes in v5:
+- Rebase on v6.15-rc2
+- Removed unused functions (lp5812_dump_regs, lp5812_update_bit).
+- Address Krzysztof's review comments
+- Link to v4: https://lore.kernel.org/linux-leds/20250405183246.198568-1-trannamatk@gmail.com/
 ---
- drivers/iio/proximity/rfd77402.c | 126 +++++++++++++++++++++++++++++--
- 1 file changed, 118 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/iio/proximity/rfd77402.c b/drivers/iio/proximity/rfd77402.c
-index 2152509816ca..8441a7bcabec 100644
---- a/drivers/iio/proximity/rfd77402.c
-+++ b/drivers/iio/proximity/rfd77402.c
-@@ -6,19 +6,21 @@
-  *
-  * 7-bit I2C slave address 0x4c
-  *
-- * TODO: interrupt
-  * https://media.digikey.com/pdf/Data%20Sheets/RF%20Digital%20PDFs/RFD77402.pdf
-  */
- 
- #include <linux/module.h>
- #include <linux/i2c.h>
- #include <linux/delay.h>
--
-+#include <linux/interrupt.h>
-+#include <linux/completion.h>
- #include <linux/iio/iio.h>
- 
- #define RFD77402_DRV_NAME "rfd77402"
- 
- #define RFD77402_ICSR		0x00 /* Interrupt Control Status Register */
-+#define RFD77402_ICSR_CLR_CFG   BIT(0)
-+#define RFD77402_ICSR_CLR_TYPE  BIT(1)
- #define RFD77402_ICSR_INT_MODE	BIT(2)
- #define RFD77402_ICSR_INT_POL	BIT(3)
- #define RFD77402_ICSR_RESULT	BIT(4)
-@@ -26,6 +28,12 @@
- #define RFD77402_ICSR_H2M_MSG	BIT(6)
- #define RFD77402_ICSR_RESET	BIT(7)
- 
-+#define RFD77402_IER		0x02
-+#define RFD77402_IER_RESULT	BIT(0)
-+#define RFD77402_IER_M2H_MSG	BIT(1)
-+#define RFD77402_IER_H2M_MSG	BIT(2)
-+#define RFD77402_IER_RESET	BIT(3)
-+
- #define RFD77402_CMD_R		0x04
- #define RFD77402_CMD_SINGLE	0x01
- #define RFD77402_CMD_STANDBY	0x10
-@@ -80,6 +88,10 @@ struct rfd77402_data {
- 	struct i2c_client *client;
- 	/* Serialize reads from the sensor */
- 	struct mutex lock;
-+	/* Completion for interrupt-driven measurements */
-+	struct completion completion;
-+	/* Flag to indicate if interrupt is available */
-+	bool irq_en;
- };
- 
- static const struct iio_chan_spec rfd77402_channels[] = {
-@@ -110,6 +122,36 @@ static int rfd77402_set_state(struct i2c_client *client, u8 state, u16 check)
- 	return 0;
- }
- 
-+static irqreturn_t rfd77402_interrupt_handler(int irq, void *dev_id)
-+{
-+	struct rfd77402_data *data = dev_id;
-+	int ret;
-+
-+	ret = i2c_smbus_read_byte_data(data->client, RFD77402_ICSR);
-+	if (ret < 0)
-+		return IRQ_NONE;
-+
-+	/* Check if the interrupt is from our device */
-+	if (!(ret & RFD77402_ICSR_RESULT))
-+		return IRQ_NONE;
-+
-+	/* Signal completion of measurement */
-+	complete(&data->completion);
-+	return IRQ_HANDLED;
-+}
-+
-+static int rfd77402_wait_for_irq(struct rfd77402_data *data)
-+{
-+	int ret;
-+
-+	ret = wait_for_completion_timeout(&data->completion,
-+					  msecs_to_jiffies(200));
-+	if (ret == 0)
-+		return -ETIMEDOUT;
-+
-+	return 0;
-+}
-+
- static int rfd77402_result_polling(struct i2c_client *client)
- {
- 	int ret;
-@@ -129,21 +171,31 @@ static int rfd77402_result_polling(struct i2c_client *client)
- 	return -ETIMEDOUT;
- }
- 
--static int rfd77402_measure(struct i2c_client *client)
-+static int rfd77402_measure(struct rfd77402_data *data)
- {
-+	struct i2c_client *client = data->client;
- 	int ret;
-+
- 	ret = rfd77402_set_state(client, RFD77402_CMD_MCPU_ON,
- 				 RFD77402_STATUS_MCPU_ON);
- 	if (ret < 0)
- 		return ret;
- 
-+	/* Initialize completion for interrupt mode */
-+	if (data->irq_en)
-+		reinit_completion(&data->completion);
-+
- 	ret = i2c_smbus_write_byte_data(client, RFD77402_CMD_R,
- 					RFD77402_CMD_SINGLE |
- 					RFD77402_CMD_VALID);
- 	if (ret < 0)
- 		goto err;
- 		
--	ret = rfd77402_result_polling(client);
-+	if (data->irq_en)
-+		ret = rfd77402_wait_for_irq(data);
-+	else
-+		ret = rfd77402_result_polling(data->client);
-+
- 	if (ret < 0)
- 		goto err;
- 
-@@ -175,7 +227,7 @@ static int rfd77402_read_raw(struct iio_dev *indio_dev,
- 	switch (mask) {
- 	case IIO_CHAN_INFO_RAW:
- 		mutex_lock(&data->lock);
--		ret = rfd77402_measure(data->client);
-+		ret = rfd77402_measure(data);
- 		mutex_unlock(&data->lock);
- 		if (ret < 0)
- 			return ret;
-@@ -195,8 +247,25 @@ static const struct iio_info rfd77402_info = {
- 	.read_raw = rfd77402_read_raw,
- };
- 
-+static int rfd77402_config_irq(struct i2c_client *client, u8 csr, u8 ier)
-+{
-+	int ret;
-+
-+	ret = i2c_smbus_write_byte_data(client, RFD77402_ICSR, csr);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = i2c_smbus_write_byte_data(client, RFD77402_IER, ier);
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
- static int rfd77402_init(struct i2c_client *client)
- {
-+	struct iio_dev *indio_dev = i2c_get_clientdata(client);
-+	struct rfd77402_data *data = iio_priv(indio_dev);
- 	int ret, i;
- 
- 	ret = rfd77402_set_state(client, RFD77402_CMD_STANDBY,
-@@ -204,9 +273,25 @@ static int rfd77402_init(struct i2c_client *client)
- 	if (ret < 0)
- 		return ret;
- 
--	/* configure INT pad as push-pull, active low */
--	ret = i2c_smbus_write_byte_data(client, RFD77402_ICSR,
--					RFD77402_ICSR_INT_MODE);
-+	if (data->irq_en) {
-+	/*
-+	 * Enable interrupt mode:
-+	 * - Configure ICSR for auto-clear on read, push-pull output and falling edge
-+	 * - Enable "result ready" interrupt in IER
-+	 */
-+		ret = rfd77402_config_irq(client,
-+					  RFD77402_ICSR_CLR_CFG |
-+					  RFD77402_ICSR_INT_MODE,
-+					  RFD77402_IER_RESULT);
-+	} else {
-+	/*
-+	 * Disable all interrupts:
-+	 * - Clear ICSR configuration
-+	 * - Disable all interrupt in IER
-+	 */
-+		ret = rfd77402_config_irq(client, 0, 0);
-+	}
-+
- 	if (ret < 0)
- 		return ret;
- 
-@@ -283,6 +368,31 @@ static int rfd77402_probe(struct i2c_client *client)
- 	data = iio_priv(indio_dev);
- 	data->client = client;
- 	mutex_init(&data->lock);
-+	init_completion(&data->completion);
-+
-+	i2c_set_clientdata(client, indio_dev);
-+
-+	data->irq_en = false;
-+	if (client->irq > 0) {
-+		/* interrupt mode */
-+		ret = devm_request_threaded_irq(&client->dev, client->irq,
-+						NULL, rfd77402_interrupt_handler,
-+						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-+						"rfd77402", data);
-+		if (ret < 0) {
-+			dev_err(&client->dev,
-+				"Failed to request IRQ %d: %d\n",
-+				client->irq, ret);
-+			return ret;
-+		}
-+
-+		data->irq_en = true;
-+		dev_info(&client->dev, "Using interrupt mode\n");
-+
-+	} else {
-+		/* polling mode */
-+		dev_info(&client->dev, "No interrupt specified, using polling mode\n");
-+	}
- 
- 	indio_dev->info = &rfd77402_info;
- 	indio_dev->channels = rfd77402_channels;
+Nam Tran (3):
+  dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
+  leds: add basic support for TI/National Semiconductor LP5812 LED
+    Driver
+  docs: leds: Document TI LP5812 LED driver
+
+ .../devicetree/bindings/leds/ti,lp5812.yaml   | 246 +++++++
+ Documentation/leds/index.rst                  |   1 +
+ Documentation/leds/leds-lp5812.rst            |  50 ++
+ MAINTAINERS                                   |  11 +
+ drivers/leds/rgb/Kconfig                      |  13 +
+ drivers/leds/rgb/Makefile                     |   1 +
+ drivers/leds/rgb/leds-lp5812.c                | 642 ++++++++++++++++++
+ drivers/leds/rgb/leds-lp5812.h                | 172 +++++
+ 8 files changed, 1136 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/ti,lp5812.yaml
+ create mode 100644 Documentation/leds/leds-lp5812.rst
+ create mode 100644 drivers/leds/rgb/leds-lp5812.c
+ create mode 100644 drivers/leds/rgb/leds-lp5812.h
+
+
+base-commit: 6bda50f4333fa61c07f04f790fdd4e2c9f4ca610
 -- 
-2.43.0
+2.25.1
 
 
