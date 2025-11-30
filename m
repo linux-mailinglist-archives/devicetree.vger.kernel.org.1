@@ -1,148 +1,144 @@
-Return-Path: <devicetree+bounces-243172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7184C9496A
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 01:08:28 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83DF4C949D4
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 01:59:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D51B1347193
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 00:08:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 267714E0462
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 00:59:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5A036D4E4;
-	Sun, 30 Nov 2025 00:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9F41F09A3;
+	Sun, 30 Nov 2025 00:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvXffbns"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="GDJ4KkaU";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="R8ogj7Iu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7770417D6;
-	Sun, 30 Nov 2025 00:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11B2D2FB;
+	Sun, 30 Nov 2025 00:58:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764461303; cv=none; b=cwWGKqfYpAG+MY56Eokwp696m9CQ1GF2LkPUxaUphztGQoRbFRC63LYrvwlhDcXSIj7C4PD79g7/eRhQb1lEXim8j56IEhWZp3n8VGuvlclG0ziG5+kT7WZPreVSnmRmiGSHIzkRRPLRsLNuhLhi0iuRogi+YvlVPArAgyVntvE=
+	t=1764464341; cv=none; b=rCDdkUJ1Qki8vYyCtwJ7XWAEULQIPAVL0slvL0TQuZB/ycUdt6L0+mcIZN7ogquxOXfrHAuNdbu3+raRDsj6IwElpUM9jhP7rzS1SwaS2zfQW65mJpfcLWW5pgROeHTTNvT7ILI1arbQfz0w7HzXvE8HbHSZHsS60ggvfbXldL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764461303; c=relaxed/simple;
-	bh=cC21v9mFYe2j/770WeKb3fcKEuR/IXGavK5QB7A3kuI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=CpPFLwJ7vNCtSmo7iw+b/USPPob5eywMEOfPb9lczJwVL9qN3JjLYE9kGOBuvi364to6khPQVckiCChEgTydvxp9U2Z5no8w1oksBi7bV074SgSEfWT2h58GwpTIwNPNsd9I27hRAIG3Z7VzVyK+4usszMl78nKcXRvTGSIPMA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvXffbns; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DDC23C4CEF7;
-	Sun, 30 Nov 2025 00:08:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764461301;
-	bh=cC21v9mFYe2j/770WeKb3fcKEuR/IXGavK5QB7A3kuI=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=nvXffbnsCF9ijv0wE5tEiZTEyuFfopo/fxRwAcwjiuUiWI5fij2y33j6re+SCf9vI
-	 UX20meBm/IGmic7+z1mXtZvKWy/J2D55pxbMfXDe7HW9o+FmvRXOxHi30alehaAyyL
-	 unYkYTQirrJwyu0GwfhVOcOUrkqWEdx48vfdGQC+O71E1w1aBZ7TzV8m9KjulHmG12
-	 lKtwivTQ12xSXyrLq9e7IGOrgLkRGikE4rJiVoFsBYMH4Mh8VDa8foYJYW/HDPWvZx
-	 eiTbb3GLnVbzwDGzMBVx2l1VyzaM5SQDWUeV8t49tuBHidawGeMcRuvBUuo9ubVoBV
-	 wkKFZXNMOxfuQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2950CFD2F6;
-	Sun, 30 Nov 2025 00:08:21 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Sun, 30 Nov 2025 01:08:19 +0100
-Subject: [PATCH] arm64: dts: qcom: sdm845-oneplus: labibb is not used on
- OnePlus 6/6T
+	s=arc-20240116; t=1764464341; c=relaxed/simple;
+	bh=tRDtE7KUg6DIkaQA/ifHZudl2WW9s/egjiKBNK+auKM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CUzxvoI41C47l/uKmfSEO3USP+SToGjrwf6hn/0E4mVvxVTPjTaoa2g78CxTJnnSNwCmUmkeLxKUA/SIKruGTBD73pVECcSVnsqRLcwX4qS9MCIuuBRGsPzCpsDzi2E+Y89o23sDU+1dGsjmvUB0bxAMs1FnZDNwCbP7oUSRWbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=GDJ4KkaU; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=R8ogj7Iu; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dJpZM5Vkzz9thx;
+	Sun, 30 Nov 2025 01:58:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764464331;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=UzyzCbbIsL2cl1obWDT12GSQSmDtX1Z2Fdyk0wFw+Og=;
+	b=GDJ4KkaUZ3RUg2A+secNLimb9P34zsNRZc3Uaf6tUvnIdlzoYJQZ+W4SmA5F2b2WBBKPPA
+	c2SHruxSA0zxAXH/u5eYywPjsmKfKQ8avIOhE/BfSLuyrFZdlskNeNKK8JwhCerrhaF6SW
+	zdN6D8P3twI2otMT212YdearWH5nSbhkfR2ICx+UaA3Li8+Om+8HjgioyG0egkJPXODaNc
+	dyRhYEqNOWnn/QxlpatNhJhvNbGBPFsIJAvfmPPL4tJ0ct8Ey1k+bC7Y6udump81qfZ3DQ
+	jZx9flHAE6M9teqGf5tQIDFlVQs9NG7u0+DrIWyMkagBq8xtclG1u26zCtWrAA==
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764464329;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=UzyzCbbIsL2cl1obWDT12GSQSmDtX1Z2Fdyk0wFw+Og=;
+	b=R8ogj7IutUtQN2Gx6HN7+0xH9RlCHLodREdkhY4W9cvP9EaIgJEo6V2l/HjYZXPCwbLBxP
+	/8L1fLkhmaF8e5SqywVRs9e+fmuMZXzrBMulwq5szGMh5weZpPwTNU3b6MzumiiK8rLx6O
+	DR/npY9Zcjcss6mzEC5IcD6+lHrhh5+PuRDff5xwIxSalSc//B2VcrjjlFe4+o9YROBYVe
+	0OoMh62a4PLudKnoZOz6M1RQro8v/oTinGggDN63diejDCx3ln/Z2c4IORSxQQZ003fKVW
+	ekUKXQX3133ZYGSDJULKw7AEZRc1Slrj5De5BRPJbhTMSPs7rOTyVCuoaK+wCw==
+To: netdev@vger.kernel.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Aleksander Jan Bajkowski <olek2@wp.pl>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Klein <michael@fossekall.de>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	devicetree@vger.kernel.org
+Subject: [net-next,PATCH 1/3] dt-bindings: net: realtek,rtl82xx: Keep property list sorted
+Date: Sun, 30 Nov 2025 01:58:32 +0100
+Message-ID: <20251130005843.234656-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251130-oneplus-labibb-v1-1-bb3653e43120@ixit.cz>
-X-B4-Tracking: v=1; b=H4sIAPKKK2kC/x2MQQqAIBAAvxJ7TlDDDn0lOri51YKoKEUg/j2JO
- c1hpkKhzFRgGSpkerhwDF3UOMB+2XCSYNcdtNRGqUmKGCj5uwhvkRGFNOjc3NGooEcp08HvP1y
- 31j4EN6vBYAAAAA==
-X-Change-ID: 20251130-oneplus-labibb-05bdd6d6d2b1
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Casey Connolly <casey.connolly@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1552; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=yhGffhFUntOUCTMWNhgszqUC32ou/2+cER0uMXyFzY0=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpK4r0rHKaYmKTRdO95a/fUctPZC2iZP8xj5/jy
- oTgMJxYLYqJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaSuK9AAKCRBgAj/E00kg
- co+lD/4qrLRtW3r/YdjJ/A08QcH8fVokvjJ3shcfOyzgXlyXdIqhEDpYgPaaeVw+BNk6i7Qvl+x
- sKpVv/hV3MAEPsiB6R3wabQJPHBqImSCrs+i9IS3xMv7icrTfMMOnltvZQRc2qexmHirMx9eetM
- M+7XBqE7xsj46wiiyXISCB4riUGk3l38PX9yMGJeh2i8GxljWTPzUKgJ7ArjYx5TqrH/7AM5tWM
- BugHLf4b6YGv/LCmQq3HqBRbah3qxoAo01yKRPrZudgkhFkTCFatLrJkcGpCFcu9H8q42c1rlbx
- /xTHVwD/mAkfaGK3Xr3I3u/D2/fvJKFG6iMz59KBb5XFduvqzGfdGecnhlMt8DAAdDrCOLtfNct
- yFNnDM8k0WvNdpxHXg8gHVQ5ALrWoTT+TdU24mcIoYQp/1EO/00yZPYLbOl5eip9ZKQHDXqf1j4
- wpCUbhGbRmitVRWfk6l6LPX/5Adw4Daflj4MsaFUS0GkzgiUrmX/spD0GeF0Fr8o64Twei+xVhJ
- U9zwvGXjfitYHN0EidZP6J4EDUXgiDF6S4UQICiK9hzM1ezB7qViKm1RVqMHKFe+pkt2eufXUuD
- 0U06xuCt0v4sWMO8bPxpUjwHn+Ali4ClUgNEEO8QGHNtoXLv8mAET2c1IL8THKExB/Uw6h/xmZj
- 48uUe6d0lYTAlGQ==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: dac622d50c6456c1c73
+X-MBO-RS-META: hu36wwodc3amws5df3er5oeg8ddqgw89
 
-From: David Heidelberg <david@ixit.cz>
+Sort the documented properties alphabetically, no functional change.
 
-The lab and ibb regulators aren't used here. Disable them.
-
-Removes following warnings:
-qcom-lab-ibb-regulator c440000.spmi:pmic@3:labibb: Failed to create device link (0x180) with supplier c440000.spmi for /soc@0/spmi@c440000/pmic@3/labibb/lab
-qcom-lab-ibb-regulator c440000.spmi:pmic@3:labibb: Failed to create device link (0x180) with supplier c440000.spmi for /soc@0/spmi@c440000/pmic@3/labibb/ibb
-
-Fixes: 288ef8a42612 ("arm64: dts: sdm845: add oneplus6/6t devices")
-Signed-off-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
 ---
-I assume this is right approach, as OLEDs on both devices are driven by
-different regulators.
-
-Question is, if should be labibb nodes enabled by default?
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Michael Klein <michael@fossekall.de>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: devicetree@vger.kernel.org
+Cc: netdev@vger.kernel.org
 ---
- arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../devicetree/bindings/net/realtek,rtl82xx.yaml          | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index db6dd04c51bb5..78a835bdfe3b4 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -419,6 +419,10 @@ rmi4_f12: rmi4-f12@12 {
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+index 2b5697bd7c5df..eafcc2f3e3d66 100644
+--- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
++++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+@@ -40,15 +40,15 @@ properties:
  
-+&ibb {
-+	status = "disabled";
-+};
-+
- &ipa {
- 	qcom,gsi-loader = "self";
- 	memory-region = <&ipa_fw_mem>;
-@@ -426,6 +430,10 @@ &ipa {
- 	status = "okay";
- };
+   leds: true
  
-+&lab {
-+	status = "disabled";
-+};
-+
- &mdss {
- 	status = "okay";
- };
-
----
-base-commit: 7d31f578f3230f3b7b33b0930b08f9afd8429817
-change-id: 20251130-oneplus-labibb-05bdd6d6d2b1
-
-Best regards,
+-  realtek,clkout-disable:
++  realtek,aldps-enable:
+     type: boolean
+     description:
+-      Disable CLKOUT clock, CLKOUT clock default is enabled after hardware reset.
++      Enable ALDPS mode, ALDPS mode default is disabled after hardware reset.
+ 
+-  realtek,aldps-enable:
++  realtek,clkout-disable:
+     type: boolean
+     description:
+-      Enable ALDPS mode, ALDPS mode default is disabled after hardware reset.
++      Disable CLKOUT clock, CLKOUT clock default is enabled after hardware reset.
+ 
+   wakeup-source:
+     type: boolean
 -- 
-David Heidelberg <david@ixit.cz>
-
+2.51.0
 
 
