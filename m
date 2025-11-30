@@ -1,203 +1,112 @@
-Return-Path: <devicetree+bounces-243206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC57C951E5
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:41:33 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA882C95258
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 17:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78CAC3A2A73
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 15:41:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C61FB4E065D
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6A7280035;
-	Sun, 30 Nov 2025 15:41:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB16B298CA6;
+	Sun, 30 Nov 2025 16:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YofwnR2V"
+	dkim=pass (1024-bit key) header.d=jakse.fr header.i=@jakse.fr header.b="LuiDZvuu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.jakse.fr (mail.jakse.fr [45.81.62.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAE96283FCF
-	for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 15:41:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D42259C92;
+	Sun, 30 Nov 2025 16:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.81.62.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764517281; cv=none; b=e+9Yv8iqIm+Zj8j3Ta4uc2TGpMiNq919A0UqRk8VtxO+YRxjYJkKByd9Dwf2ApZIZWJ5Mc9LXQPEAQ74Hj8LTkZZfvpZ+kUypEvHgM4R0KntMro0mfqgA06G//2K+kUGLI6q4aJjl8E/eR+7egQOEoBotu2XRZAeibr0Q/PiXmE=
+	t=1764519765; cv=none; b=ROn3AFa5JlzMU2ShjlUcSS1Pq/moP5JN6hSQDTdJiz8KzeknAtB0iwuwj4VXyCVvHs4xB1jaxPCaHz2d6PoKeWNt0H7ZSZGUkl85rugJriYSn0nSwMRLouyT8XEeSIaMmnCF5wf8C9kb78nvtt7as9ITMZ7f7d1FQC44spmRir8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764517281; c=relaxed/simple;
-	bh=yknEGxi1uCob8yAl1wrjFKtlOfxHjL4MX5qcBlbJfrU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lB+r2OTs3oFmdVWVpaP2qAfgcvc5QGTethKv6x7BCgv00M2B95eqg8g8ybWpEP6KmX+BE6fqDF2Uo5KsdRrZyUwXzSSMldzb7vEiI2elmY+vK5uBlDExVrGJI7uLwzdT4YlFBsulcT61YupO2KU3ikW/+ZspbSUPCdCAV1Bx8XY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YofwnR2V; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7b6dd81e2d4so3118518b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 07:41:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764517279; x=1765122079; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/jOzKc0BXX1qNRReg7a6AAzT4jmiSQSRqVhsPleD4HE=;
-        b=YofwnR2Vu9TonAclhELCRC3jwipwXZbRq40gE0oQtaE6MXLwupvuUXHjS+p80DXVKY
-         aHj9xhDpwqZBIRcrefyZP3F2mjM/ig5UCbOTBdd7jfpSqtHZmv2DKwri9EshcD1h1HOY
-         0YjGEpTD1IqAn6ZmJJ2u27btSXzFPUxfAH/HJXIBotnCSOQ3y7Sk9MLZIjI7HH9lGgpU
-         IJRLZhSI47AAuSxVj8BYqvPEIsTLd1n3xlvcNpts1Pm8Fzof2xnEh4NuCM8fIiGu3A+d
-         yEZ3tidnuZICKGEqYO4SozqX9dwpaYchaGWgvEOvWkvvLnLtF/OcJZolfxJDpKvacOn3
-         q7Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764517279; x=1765122079;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=/jOzKc0BXX1qNRReg7a6AAzT4jmiSQSRqVhsPleD4HE=;
-        b=MoPtyNjKOrXgAzdOs7AmsTt64EmhwnvbY9vV+M+YBdyDQ32MgSi0cIBaMLDLHpYwDz
-         Ohva3cCMJos3FHM86dtUfjzOSEpgfzFbYP5mFJxepMsf9C5e2o5yZlzUAS9K0o5Impn6
-         i0OhTZSAy6F7dRYsNMTSmR8mdbyjYJbxEwu4owZoVUFux33Fw5O9S2sE/uWf2Gq9zT9k
-         VN7vMep7EcvardvFJ+9a60S27ICAtwXJQAGPkDCRHygnLZya2waFm9qi7lhjxCJ7aZEK
-         SkRwUVV6+Mo7okiseo1226YtuSn0hDnBn/ODCqgS6jQ9dlRA0zUy6JwLsb5OgH5c/6PZ
-         Obew==
-X-Forwarded-Encrypted: i=1; AJvYcCW83Pv4N/U3+N2rBiJeR2LhEm3uQkMvM2AbgKe3RaSMgMTxMNj3c8aDysv7023QXEjoJpw/TOasPK8Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEo6N68aq2JnIHvpNoWKM/PAvfvKsoEu1SFgyLREmSIYYp+zq/
-	bb9nVcW52mrEaxsZCzKx3hoyPfiTXl3x78LLBHtvchcsjUrBLfM/Ue4A
-X-Gm-Gg: ASbGncsavHHKW3UZyl/liB+fklD/MPNRlEf0D0O5qXul/i2E0kxTP9y7dEHVtVyz+Fr
-	jthAkfL9EiQMv72sb4Pd27USi5VDcIpJScr9TWvgYljTcEA8gJOOboQ7GAzbB9gcTlf7vH5LfDS
-	EQr8aLPnHsRSpxa65G+O09uF6FzldBaKypxHK9qFvh1cUjQUzaAzcGvAIFyzxx/UvNFyiYswTa9
-	R/Yr4D7Nu4+We4gQYa+n/NQICdgvEgZ7apYEhb3PYPQCurVQa7TsBYHPFUdMATZt5TQX0gPNOeY
-	nHjRT11vL8Re4bgBI/4hlamvto/uEtBpRmv7f+fwZfXtYSSrrqbfvLgYbYUjMjOPYj5uOk4S9ps
-	Vt6WQU7wEbWv1uVMhcg/Gc5J84acecrm6c2FV8XoCEZe0WupTlpvht6S/joCTtaew8GBcWE9ufi
-	t4MXhozeo9nJNFWb1lfzS3Lw==
-X-Google-Smtp-Source: AGHT+IE6IycgglZPBLNtEeo/kPKcOXO5VSy/+npfPp66iSwqU7ysTtvtelkbhYQPNj7tsQg9O5NqAw==
-X-Received: by 2002:a05:6a21:9983:b0:35d:d477:a7fa with SMTP id adf61e73a8af0-3614ebbb712mr34574189637.23.1764517279052;
-        Sun, 30 Nov 2025 07:41:19 -0800 (PST)
-Received: from DESKTOP-P76LG1N.lan ([42.116.199.188])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-be5e7485b1esm8640097a12.20.2025.11.30.07.41.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Nov 2025 07:41:18 -0800 (PST)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org
-Cc: pavel@kernel.org,
-	gregkh@linuxfoundation.org,
-	rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr,
+	s=arc-20240116; t=1764519765; c=relaxed/simple;
+	bh=xsuXwFBhCkJRCOW0BjNeGCGx2rm4a0EUHio1t3u1dR0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=r8lp1WPmpbzgfKLUMA8AlV9GyWgmGNGEvTNXjQOLBl64hBQvvfnvZWW8nIz95/XY3+xw6H2daTA/3QNq4A6E8gYi8KUxZaGU1wkOVWYznEzMUe7ygWzPxTKZzzGr1Iesiz34SxbK29Go4rHNFlTf8J+bVJf5bTXMWbJEl8FzDC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jakse.fr; spf=pass smtp.mailfrom=jakse.fr; dkim=pass (1024-bit key) header.d=jakse.fr header.i=@jakse.fr header.b=LuiDZvuu; arc=none smtp.client-ip=45.81.62.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jakse.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jakse.fr
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jakse.fr; s=default;
+	t=1764519230; bh=1Y5LGb3g31rjjIXxiw5Jdr35UaFiGP0OuDnqqXz+mjE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=LuiDZvuuhNnGg0sLq1wfUtOo/qR/8tevJmuGB8ogaSX7N8Wl8iSvIJSMM9YcR8YWw
+	 sVb2IZqacR9cRCL5mD+Tf6pJU1ircz/soUQPv206H1tyr2cedv+2mETHsLSYBH7bnV
+	 Lpt2/E+/LBN5B7ldPqMKN/mRB9HRX+7Kn9aISmXQ=
+Received: from rigel.lan (rigel.lan [IPv6:2001:912:1ac0:2e00::9bd])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (secp384r1) server-digest SHA384)
+	(No client certificate requested)
+	by mail.jakse.fr (Postfix) with ESMTPSA id 8B83EEA12BF;
+	Sun, 30 Nov 2025 17:13:50 +0100 (CET)
+From: =?UTF-8?q?Rapha=C3=ABl=20Jakse?= <raphael.kernel@jakse.fr>
+To: robh@kernel.org,
 	krzk+dt@kernel.org,
-	robh@kernel.org,
 	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
+	heiko@sntech.de
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Nam Tran <trannamatk@gmail.com>
-Subject: [PATCH v19 3/3] docs: leds: Document TI LP5812 LED driver
-Date: Sun, 30 Nov 2025 22:39:56 +0700
-Message-Id: <20251130153956.241375-4-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251130153956.241375-1-trannamatk@gmail.com>
-References: <20251130153956.241375-1-trannamatk@gmail.com>
+	=?UTF-8?q?Rapha=C3=ABl=20Jakse?= <raphael.kernel@jakse.fr>
+Subject: [PATCH] arm64: dts: rockchip: Fix Bluetooth on the RockPro64 board
+Date: Sun, 30 Nov 2025 17:12:59 +0100
+Message-ID: <20251130161259.9828-1-raphael.kernel@jakse.fr>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The driver provides sysfs interfaces to control and configure the
-LP5812 device and its LED channels.
+The RockPro64 board has an optional BCM4345C5 Bluetooth device on UART0.
 
-The documetation describes the chip's capabilities, sysfs interface,
-and usage examples.
+This patch fixes audio stutters by setting its correct max-speed and
+compatible properties.
 
-Signed-off-by: Nam Tran <trannamatk@gmail.com>
+Signed-off-by: Raphaël Jakse <raphael.kernel@jakse.fr>
 ---
- Documentation/leds/index.rst       |  1 +
- Documentation/leds/leds-lp5812.rst | 50 ++++++++++++++++++++++++++++++
- MAINTAINERS                        |  1 +
- 3 files changed, 52 insertions(+)
- create mode 100644 Documentation/leds/leds-lp5812.rst
+ arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts | 7 +++++++
+ arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts    | 7 +++++++
+ 2 files changed, 14 insertions(+)
 
-diff --git a/Documentation/leds/index.rst b/Documentation/leds/index.rst
-index 76fae171039c..bebf44004278 100644
---- a/Documentation/leds/index.rst
-+++ b/Documentation/leds/index.rst
-@@ -25,6 +25,7 @@ LEDs
-    leds-lp5523
-    leds-lp5562
-    leds-lp55xx
-+   leds-lp5812
-    leds-mlxcpld
-    leds-mt6370-rgb
-    leds-sc27xx
-diff --git a/Documentation/leds/leds-lp5812.rst b/Documentation/leds/leds-lp5812.rst
-new file mode 100644
-index 000000000000..c2a6368d5149
---- /dev/null
-+++ b/Documentation/leds/leds-lp5812.rst
-@@ -0,0 +1,50 @@
-+.. SPDX-License-Identifier: GPL-2.0
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts
+index 304e3c51391c..883d9bcfe792 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts
+@@ -28,3 +28,10 @@ es8316_p0_0: endpoint {
+ 		};
+ 	};
+ };
 +
-+========================
-+Kernel driver for lp5812
-+========================
++&uart0 {
++	bluetooth {
++		compatible = "brcm,bcm4345c5";
++		max-speed = <1500000>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
+index 4b42717800f7..ae3ee91dba2f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
+@@ -28,3 +28,10 @@ es8316_p0_0: endpoint {
+ 		};
+ 	};
+ };
 +
-+* TI/National Semiconductor LP5812 LED Driver
-+* Datasheet: https://www.ti.com/product/LP5812#tech-docs
-+
-+Authors: Jared Zhou <jared-zhou@ti.com>
-+
-+Description
-+===========
-+
-+The LP5812 is a 4x3 matrix LED driver with support for both manual and
-+autonomous animation control. This driver provides sysfs interfaces to
-+control and configure the LP5812 device and its LED channels.
-+
-+Sysfs Interface
-+===============
-+
-+This driver uses the standard multicolor LED class interfaces defined
-+in Documentation/ABI/testing/sysfs-class-led-multicolor.rst.
-+
-+Each LP5812 LED output appears under ``/sys/class/leds/`` with its
-+assigned label (for example ``LED_A``).
-+
-+The following attributes are exposed:
-+  - multi_intensity: Per-channel RGB intensity control
-+  - brightness: Standard brightness control (0-255)
-+
-+Autonomous Control Modes
-+========================
-+
-+The driver also supports autonomous control through pattern configuration
-+(e.g., direct, tcmscan, or mixscan modes) defined in the device tree.
-+When configured, the LP5812 can generate transitions and color effects
-+without CPU intervention.
-+
-+Refer to the device tree binding document for valid mode strings and
-+configuration examples.
-+
-+Example Usage
-+=============
-+
-+To control LED_A::
-+    # Set RGB intensity (R=50, G=50, B=50)
-+    echo 50 50 50 > /sys/class/leds/LED_A/multi_intensity
-+    # Set overall brightness to maximum
-+    echo 255 > /sys/class/leds/LED_A/brightness
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 166fb7e0ca45..530c7a3ff350 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25454,6 +25454,7 @@ M:	Nam Tran <trannamatk@gmail.com>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/leds/ti,lp5812.yaml
-+F:	Documentation/leds/leds-lp5812.rst
- F:	drivers/leds/rgb/Kconfig
- F:	drivers/leds/rgb/Makefile
- F:	drivers/leds/rgb/leds-lp5812.c
++&uart0 {
++	bluetooth {
++		compatible = "brcm,bcm4345c5";
++		max-speed = <1500000>;
++	};
++};
 -- 
-2.25.1
+2.52.0
 
 
