@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-243212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09EEEC95291
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 17:52:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1DBC952AA
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 18:02:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7EB79343208
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:52:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F26A43A2D45
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 17:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29766299922;
-	Sun, 30 Nov 2025 16:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E0A2836B1;
+	Sun, 30 Nov 2025 17:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fxepM4QF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OR9Ui4wU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A16A18C31
-	for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 16:52:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD7D2236EB
+	for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 17:02:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764521562; cv=none; b=oDgybfhrtbA9KyjPaenVnvSIMBQBSBXRja+J1wrokTy4YRkmHRBnD+VOl3L1x5LTCoykKgw0X53tfcf0WOywuFFRggrKKhJK9aWrtuiS2CxaInGfnbzies1bxYZnTPloZ7IUDCBaiUYDMyDZXx1VtYR/y6kvuuKOkYvzJ70Hfl0=
+	t=1764522158; cv=none; b=DTnSJH+Cty3TrvzVTP62OqnuSODJcach/n95MmSUnuLXGIu4Xr5gT2G6L5UUmEXmjvH7vbkfdFV+iwUdaBqAulsA3unj6zPrhSHBA4q0LdDYtwzwFERP/U01D936/4xBlEU9sGD5CCXBTd8cn2/YJUyZkQaejwdujzn3+ZEFMys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764521562; c=relaxed/simple;
-	bh=aSXL3seJLL8qXfeWiZkHI4sxakZslscQUZ5xtdgHtCI=;
+	s=arc-20240116; t=1764522158; c=relaxed/simple;
+	bh=iao0i58WkcUxSobbsPx3tEhso4EIfQ9ZgEjMAw4ofjY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RSGiRx+RH8fvWAEtVWRSJuY1cR5aW8BuEUfBCrQJ6gIfHmYArHAoITF+r/ArVZmUlxEvqtZcisX9Ahb+zbCHDOET8R65fF9vTMCo1l6qyXFoiISTws5djbPiUKpi2tIf4Wa2TQ5IsOHY+cy1gsi5zMMrNCGCpQcvuuaFkD8EfzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fxepM4QF; arc=none smtp.client-ip=209.85.208.53
+	 To:Cc:Content-Type; b=p6AvKH4v2H2vMeNSBfjo3+Ych2UUaz19J6mjAWnSnK2VNyPMUp2xphk5KztcLIMvkcwihjBZLrhm4JHQikCYihoQqcrS5YQD9EYLl1ICq40pRYwgXSSvoseO4xhX9jssDDqtM7QKZUjEQQOwILIDbjEGEWdOVx+0gNosc20Vvrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OR9Ui4wU; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-640bd9039fbso6708769a12.2
-        for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 08:52:40 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b737502f77bso469238166b.2
+        for <devicetree@vger.kernel.org>; Sun, 30 Nov 2025 09:02:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764521559; x=1765126359; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1764522155; x=1765126955; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wJ6fe76ukcbqGnHSuOdykcp8qylK0vyCmnROxjOrYkI=;
-        b=fxepM4QFaYsAlmvLn7uae5un5doG4GIj5ZccQgkK28HUuC0fHNxORXEebDc4IbPWdH
-         5T4xpBWVw5hGNOg6aHc0sriVjEFhY/UNPTjy/yAegwrYKSF8rRBy+ceNhb74+87YdWh8
-         UgFPQLYKnH8h+VfDsBxNQHbf9aL1m6Q3lFUyZ0P2m/WYsGwLjf1msYi9qLpwBaq0abxr
-         o0AVUyGiqkl+rtLCgipp0Qx2lCKmi2TYroIMu0ybKb6ivDibvoUMlGwnBQ1u/YyIlGb4
-         0w40ByimENVfM7CsKJm2YALNWEytnbeKfZybxKS08YHTTvP14+RvIdH4AHGoR9WIke0G
-         Z5Xg==
+        bh=KALx4kdQVf++7KhDqXfXQAUzCUzPZ+kCJiPRrP04uh4=;
+        b=OR9Ui4wUkRr7GQVvH6E3eHADQ/IYN28ypsJsr26j6EdX2+D0WJbaJXBI/5PEAKTMs4
+         UALmcQptp2p8utrecMwYfGwLY5uVh8jtrfRZ6gd8SLdvlrPfLWAEwMNirFXylaohEtuW
+         lOpCSISp5schi4L2Tu0s6DWYItF6pMS+CAqW9tpFwsKZQ+3VJtDPGki7E+I2MecBTWy7
+         LBu0e9UIYqY23CR+8RKrymCRgn+2KHWrYvBYGmpGbyAeHcawRPi+TWsCc9U8a0cipT4s
+         QBifJydmrzHqbTaIfoT0bOtHN2DNhC1QWkLsTuQ4fssaw3AhE7x2oSXcS4aXJvF5Z9Le
+         oHZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764521559; x=1765126359;
+        d=1e100.net; s=20230601; t=1764522155; x=1765126955;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=wJ6fe76ukcbqGnHSuOdykcp8qylK0vyCmnROxjOrYkI=;
-        b=hGUPGpUynz9qVq2cWjEjvtnI2nMjU2j9dx7DbNr75xVCHy66xwb8L7SuRxywJGf9Fp
-         G5aZnp1zmdkw8ZzE6y8w9ikKdvCVbuF++1gOu7Y1N+8rL1YtPX1lqbG1/KrVxTw/hwTy
-         FYq6uFYF3NKFaqP1KZttMgKWKUgStg5HCtNaeM/Jynd+abAPfLKqQqRCYT3HNx5tFcvs
-         G/efDBfbrvTvawF5x5QIt8rpLlEKDQTVEMZ1JzujW/aRBJw504r3lMcRQ7AJO0OYOaob
-         AHfP9Rbg2Jrr0KWdohOYdhgXayikAZDJMr/gOF4lhjrghSM4I/7D5xwpF+IxMNPgQqd1
-         /YKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUztqSmtv44bV6uavbv/+e0GykU8hzBLnFMs02gMxx6IuTGuXOrk7RDRldK8nWsFJD+OIHOwdwWdMQI@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOOUiIuU3Qd4VhNvUMYwXffdZ/PyZ1IH2aCyk+D3WlB54JZdZO
-	ACs4qdYucaJJrY4Ii2cFupg2CQVpfYHtkBqX+GxEOIb2RyA+ueS3pa9cFnzxoXTkxlNGDvOp5Zh
-	GFZfAzcbt/LgT+dOZskwxS+J/13tX/yk=
-X-Gm-Gg: ASbGncsxJbaKRRVN15OIxC/frG7vZQnzpO0YqlxSf7LLBMzPtksXg2CTZfByWQSJYps
-	BFQgMK8SxVf6Mnl2vE8l8oB3yxgishsiOZso4vvjDwjAWvq/xEQpj3nAouoEMGw677CEvEr8cHq
-	kSNR0br5gekXDE3yXK3pzCVFoE6+RKi+yDoXgqeEHPL6SAgDknMX9VKbgxfo4FQ3dPWnwk8XG9J
-	A3oxUsL92Iq3LCnPV3k5p7l+jE29wjKv3TbZPCqfvLCVxEiaVdGg2T4fq4boKdQkSNXNMFOd2Nb
-	qBIMhlyyQYJJEDXMp96eBnM5OAsi9qTI9eyo9IrEiLPVjeoCwPERY/cNUqFaZ6trmI90t6qKAg1
-	ll6yItgY=
-X-Google-Smtp-Source: AGHT+IEgrdz8mK9TGBNR/edqyq1M4MUt61WNWmr7XneeYKJJ1avxdhdJ/mUSBsp7M5BngB5Q3YPqSdESAIgzBL9WIuc=
-X-Received: by 2002:a17:907:3e0b:b0:b76:60ad:77f8 with SMTP id
- a640c23a62f3a-b767170aea1mr4019953466b.48.1764521558404; Sun, 30 Nov 2025
- 08:52:38 -0800 (PST)
+        bh=KALx4kdQVf++7KhDqXfXQAUzCUzPZ+kCJiPRrP04uh4=;
+        b=L0UZOcleq0CeF4MkdbmV+XpLsHN25RHBgmb8hh+k8QofobjOgH92TZ2uFBlRB5mni0
+         Ed+IgE5Dx3BIHCAxtka4G+RCaZdctb6dTc95AsQPqGmtwPV0DtkjAtd6Y9WpBUkWoeIO
+         G9Ur0yFhyFXXqbuMVtJMsHZ0GvoAInE7/X4+/fXOkrtWrw7kSooKVSUDkFuFM1rV+2mD
+         3Lm1uXZyR8My4f2gHBh3wbA3ja8x00Uf0DTbS3frqbrSueKWrpkg4zRnzfmJht/iiGz1
+         210spETPjat8F2rH79dO/C6MP+55fsKqC+9SqtF2gPsmt2S0oG4OR/sEqGirg+POxO30
+         v9PA==
+X-Forwarded-Encrypted: i=1; AJvYcCWKfK2ZgqOEQdHMx7PjOugbbMB9uqVfWH9EGWW2L25MUL7TccNf76S28A5CBGDhH1O+JExOC0hXjGN2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQOqdWu+JuAb9dvPf6JNLBsHg6sxSo/EDN7ieUDWMzGxklDbjq
+	TyoshQHbrX7aNJvF0v9mtcgENu0CYcfxBakAPnX3V9soE0+ap/c8LyPX9iS2Y/H7LfrgartBYLV
+	Mt1nPgtVuk4EAiiJktLN4U95HPJer2uc=
+X-Gm-Gg: ASbGnctYbi7PnPtq8TJgIBpko1JQwpRKdje4sK4t8UAgSVwwqX5vFCySPu15y4XYmpA
+	TOW7gQ6hgOJFOC6NiBIunciz4wTHjo6ieJ1cDYZbLWKutB9hWsYoKPrDMBQR804kSrHmzSpoB3H
+	nXoGWabBqiVikTSrTrawbSHAIZAr2sAubYrH5cOEJvIU2EqnqQf+5n1YVcplRlqBkpbFDpqRCsQ
+	bSBhKmNROsAmYXsMkbAz0JhDD/AyOJFfHOCnVZ+TP5hLVEnyjxuYMYYs09gmRBuC20GmyOmD4na
+	AowjvyxA/m8G3U7QGHM+lsMX5kpi37nco7jsgT56x3qc28FznB9TX5kSvG2UptlpiI8xU9E1JMG
+	wkFNBrRplE5oOmu+MvA==
+X-Google-Smtp-Source: AGHT+IHgK7JbnEanR7iM7uxDR0pdXt5nA3668PhIQLD31H2jVAJrikhChWzjE5F6ZF5fkakeXov6pG3pVBpfegB4KUA=
+X-Received: by 2002:a17:907:2d94:b0:b73:6534:5984 with SMTP id
+ a640c23a62f3a-b76c53c302emr2762952166b.16.1764522154734; Sun, 30 Nov 2025
+ 09:02:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251130153712.6792-1-raskar.shree97@gmail.com> <20251130153712.6792-4-raskar.shree97@gmail.com>
-In-Reply-To: <20251130153712.6792-4-raskar.shree97@gmail.com>
+References: <20251130153712.6792-1-raskar.shree97@gmail.com> <20251130153712.6792-5-raskar.shree97@gmail.com>
+In-Reply-To: <20251130153712.6792-5-raskar.shree97@gmail.com>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sun, 30 Nov 2025 18:52:02 +0200
-X-Gm-Features: AWmQ_bnLDmE_-g4Cj4lFQQDM568Ha-UkLbhD1fvEJHei9syL8qH60b7dNaKtSow
-Message-ID: <CAHp75VfPjQB3UqMEb===5j0YYoWn6mMuaaAdTjUcFMuChBq6_w@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] iio: proximity: rfd77402: Move polling logic into helper
+Date: Sun, 30 Nov 2025 19:01:58 +0200
+X-Gm-Features: AWmQ_blGPFK7jPykZ-KK9ztwjRGiNa0Xr6-6U0Fb-Nc5SzbeOft0ULn2F1NgUF8
+Message-ID: <CAHp75VdE6LMb=7V1iECwQ_GTyjM+2Ffh_3ifa3dsjpgbPHp1Lw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] iio: proximity: rfd77402: Add interrupt handling support
 To: Shrikant Raskar <raskar.shree97@gmail.com>
 Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
 	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, heiko@sntech.de, 
@@ -93,48 +93,162 @@ Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Nov 30, 2025 at 5:37=E2=80=AFPM Shrikant Raskar
+On Sun, Nov 30, 2025 at 5:38=E2=80=AFPM Shrikant Raskar
 <raskar.shree97@gmail.com> wrote:
 >
-> This change extracts the polling logic into a dedicated helper,
-
-Imperative voice.
-
-> rfd77402_result_polling(), which improves readability and keeps
-> rfd77402_measure() focused on the high-level measurement flow.
->
-> This refactoring is also a necessary preparation step for adding
-> interrupt-based result handling in a follow-up patch.
+> Add interrupt handling support to enable event-driven data acquisition
+> instead of continuous polling. This improves responsiveness, reduces
+> CPU overhead, and supports low-power operation by allowing the system
+> to remain idle until an interrupt occurs.
 
 ...
 
-> +       while (tries-- > 0) {
-> +               ret =3D i2c_smbus_read_byte_data(client, RFD77402_ICSR);
-> +               if (ret < 0)
-> +                       return ret;
-> +
-> +               if (ret & RFD77402_ICSR_RESULT)
-> +                       return 0;
-> +
-> +               msleep(20);
-> +       }
-> +
-> +       return -ETIMEDOUT;
+>  #include <linux/module.h>
+>  #include <linux/i2c.h>
+>  #include <linux/delay.h>
 
-Reimplementation of one macro from iopoll.h. Include that and use a
-single call, will be something like
+> -
 
-  return read_poll_timeout(...);
+Strat blank line removal.
+
+> +#include <linux/interrupt.h>
+> +#include <linux/completion.h>
+
+These should be integrated to the block above the (removed) blank line.
+
+>  #include <linux/iio/iio.h>
 
 ...
 
-> +       ret =3D rfd77402_result_polling(client);
+>         struct i2c_client *client;
+>         /* Serialize reads from the sensor */
+>         struct mutex lock;
+> +       /* Completion for interrupt-driven measurements */
+> +       struct completion completion;
+> +       /* Flag to indicate if interrupt is available */
+> +       bool irq_en;
 
-Ah, even better, you don't need a function for that at all. Just use
-that macro here inline.
+Instead of commenting each field separately, just convert existing to
+a kernel-doc format (can be done in a separate change).
 
-> +       if (ret < 0)
+...
+
+> +static int rfd77402_wait_for_irq(struct rfd77402_data *data)
+> +{
+> +       int ret;
+> +
+> +       ret =3D wait_for_completion_timeout(&data->completion,
+> +                                         msecs_to_jiffies(200));
+
+Perhaps a comment on the chosen value for timeout?
+
+> +       if (ret =3D=3D 0)
+> +               return -ETIMEDOUT;
+> +
+> +       return 0;
+> +}
+
+...
+
+> -       ret =3D rfd77402_result_polling(client);
+> +       if (data->irq_en)
+> +               ret =3D rfd77402_wait_for_irq(data);
+> +       else
+> +               ret =3D rfd77402_result_polling(data->client);
+
+> +
+
+Stray blank line addition. The check below is tightened to the upper if-els=
+e.
+
+>         if (ret < 0)
 >                 goto err;
+
+...
+
+> -       /* configure INT pad as push-pull, active low */
+> -       ret =3D i2c_smbus_write_byte_data(client, RFD77402_ICSR,
+> -                                       RFD77402_ICSR_INT_MODE);
+> +       if (data->irq_en) {
+> +       /*
+> +        * Enable interrupt mode:
+> +        * - Configure ICSR for auto-clear on read, push-pull output and =
+falling edge
+> +        * - Enable "result ready" interrupt in IER
+> +        */
+
+This should be indented to the ret =3D ... below.
+
+> +               ret =3D rfd77402_config_irq(client,
+> +                                         RFD77402_ICSR_CLR_CFG |
+> +                                         RFD77402_ICSR_INT_MODE,
+> +                                         RFD77402_IER_RESULT);
+> +       } else {
+> +       /*
+> +        * Disable all interrupts:
+> +        * - Clear ICSR configuration
+> +        * - Disable all interrupt in IER
+> +        */
+
+Ditto.
+
+> +               ret =3D rfd77402_config_irq(client, 0, 0);
+> +       }
+
+> +
+
+Stray blank line addition.
+
+>         if (ret < 0)
+>                 return ret;
+
+...
+
+>         mutex_init(&data->lock);
+
+This should be  converted to devm_mutex_init(). Otherwise the below
+can be called on a (potentially) destroyed mutex.
+
+...
+
+> +       data->irq_en =3D false;
+> +       if (client->irq > 0) {
+> +               /* interrupt mode */
+> +               ret =3D devm_request_threaded_irq(&client->dev, client->i=
+rq,
+> +                                               NULL, rfd77402_interrupt_=
+handler,
+
+> +                                               IRQF_TRIGGER_FALLING | IR=
+QF_ONESHOT,
+
+What's wrong with the FW description for the IRQ line flags?! Why
+can't it be fixed / written correctly to begin with?
+
+> +                                               "rfd77402", data);
+> +               if (ret < 0) {
+
+> +                       dev_err(&client->dev,
+> +                               "Failed to request IRQ %d: %d\n",
+> +                               client->irq, ret);
+
+Drop the dup messages, it will be printed by the above call.
+
+> +                       return ret;
+> +               }
+> +
+> +               data->irq_en =3D true;
+> +               dev_info(&client->dev, "Using interrupt mode\n");
+
+> +
+
+Stray blank line addition.
+
+> +       } else {
+> +               /* polling mode */
+> +               dev_info(&client->dev, "No interrupt specified, using pol=
+ling mode\n");
+> +       }
 
 --=20
 With Best Regards,
