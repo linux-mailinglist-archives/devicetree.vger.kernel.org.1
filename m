@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD644C94C47
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 09:20:35 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBBC5C94C53
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 09:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3DD0E4E04D0
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 08:20:34 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 68D48343F49
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 08:22:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81950230264;
-	Sun, 30 Nov 2025 08:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E2123C39A;
+	Sun, 30 Nov 2025 08:22:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k4WQmxO+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HIELzPTa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5523722068A;
-	Sun, 30 Nov 2025 08:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4D1A1391;
+	Sun, 30 Nov 2025 08:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764490832; cv=none; b=EnxdR+2NCCNJlvwXKhez+/grl6J3YqaNYGAKb1efkw5OjiE5TAPyHHIWXk31JrD0PmIsfV7qrOZHK8Ii2rw6CRPY6B8QvyxStZaKHpguN4Mt0V/fXnHkjBN48HGjdMF2xFj6KT+tITtikP8t11uD4+wRFqQNu9n31WDOQ7kJzRA=
+	t=1764490965; cv=none; b=HiA+1GdqTshOvY0ikQU+01oYdbOiQnob+JTaFrfk182p/HF1gRfKAX11PUTR6VEM0AJhr9MLKelL59pBkkZrg9694EJ9QRzfastezvU1u50rR0R6ACv7MLg1+urJfdiGGqH0OqvID7JEjzSewSIlj5gHas07bfncQgPyqVtflZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764490832; c=relaxed/simple;
-	bh=ix7X7fSFO+etWXtLPVudV3/mpH8HoQRTbfNpg6nM6AY=;
+	s=arc-20240116; t=1764490965; c=relaxed/simple;
+	bh=bUUaXl2BJ4t+2CfI/IqewjPp7TRtclQJMBF9Fk3c3hQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A68elVDx+MRtSaI74XOaI0VoEJPy0tsDRj8rcIdCmZIBc86Ct3DLa/oTWotcMQrXwbB+VtFKBn+53DjdcE9FKoB/OdGjWPcZcu5+I7ywatY5Sn95yvCWp0IERU1hFVNYTM2xkGHNGhXgApRJaFnHOAo8nSmbpHlkUAlkUDsVn90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k4WQmxO+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1393FC4CEF8;
-	Sun, 30 Nov 2025 08:20:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NZoKeHCR7L8bQyrVa+av+VrC7W9kaDeYQm2/aQbQ/hQARr9/oYFhNUmcTD0/C3EtH4nly1FYXxzPX+A+VycpJWnp/uKqngjwyD+jFAyFEEXIjDAnfMEnu0CW07xzEM0TEQ3rF3HvIE7wGQMBGgct6M01/Pjs6RzXNQ/cwRHeJSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HIELzPTa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8712C4CEF8;
+	Sun, 30 Nov 2025 08:22:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764490831;
-	bh=ix7X7fSFO+etWXtLPVudV3/mpH8HoQRTbfNpg6nM6AY=;
+	s=k20201202; t=1764490965;
+	bh=bUUaXl2BJ4t+2CfI/IqewjPp7TRtclQJMBF9Fk3c3hQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k4WQmxO+4Mtx724ofRO4hcbNwZjwha6lCGTulXXcAiS2vCLJqwxkxXheiF2nswcfD
-	 /cuhzOj+ltxnGhini115yDnMigHL7fnGb0jSvO568TaYtOpiOwTT46IgY/TrmNp6Ye
-	 cxCfIAvVHDH+v1R07Okdc00A8MnB8EDP5UXnby+ev7CJP1Ftz1q4Y6Cj5IXUzGHp5/
-	 xc4BkPw3aEzTVp6q25dmBm1P2bILT2O+V2eVjUJ6pRMtRWDkn5Sumj4+41lyRaYvX1
-	 LZwCd9L71EvVpQXlMaMV9t5waqDsEzfzAw5Wbaean8KJV7/s8ptFTkLoPKyLjCclq4
-	 rgpfrh2CCOXxA==
-Message-ID: <f3046826-a44c-4aa9-8a94-351e7fe83f06@kernel.org>
-Date: Sun, 30 Nov 2025 09:20:26 +0100
+	b=HIELzPTaySdP0h91vuZ1eqAPsnckadwsikeSxfvLv09fbL5lLG2pHgRzLw2yOV0hT
+	 blr9YFcLgmOS8rbKlw9DlclJVokIKJGjvHow8CpO0Kq8t0bqvHRwbQpqqMI/juDY2P
+	 XqnDdQsbM95kJ60p6A+c0Et0LPLnp2e1hQ4qf//M8/+liUCw2NpsXGsTXap1hQtpQ+
+	 H4JgtwHzg8aAEDxAAvAKi5mP6TdxjIYbVthm+//T+AKRgGGSRpi5OpK6Ld6nrQVCrn
+	 F9oxgVEIUR3wV6V1YF2CTF/+JW6PZmdINfPaOsr0ENOVtxT2A/ZKPl1not03luGDoi
+	 lIYMvTIjThKVA==
+Message-ID: <2080db04-9845-4193-8dd9-7bb84894815b@kernel.org>
+Date: Sun, 30 Nov 2025 09:22:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next,PATCH 2/3] dt-bindings: net: realtek,rtl82xx: Document
- realtek,ssc-enable property
-To: Marek Vasut <marek.vasut@mailbox.org>, netdev@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>,
- Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, devicetree@vger.kernel.org
-References: <20251130005843.234656-1-marek.vasut@mailbox.org>
- <20251130005843.234656-2-marek.vasut@mailbox.org>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: renesas,sdhi: Add mux-states
+ property
+To: Josua Mayer <josua@solid-run.com>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Mikhail Anikin <mikhail.anikin@solid-run.com>,
+ Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton
+ <jon@solid-run.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20251128-rz-sdio-mux-v1-0-1ede318d160f@solid-run.com>
+ <20251128-rz-sdio-mux-v1-1-1ede318d160f@solid-run.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,54 +109,62 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251130005843.234656-2-marek.vasut@mailbox.org>
+In-Reply-To: <20251128-rz-sdio-mux-v1-1-1ede318d160f@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/11/2025 01:58, Marek Vasut wrote:
-> Document support for spread spectrum clocking (SSC) on RTL8211F(D)(I)-CG,
-> RTL8211FS(I)(-VS)-CG, RTL8211FG(I)(-VS)-CG PHYs. Introduce new DT property
-> 'realtek,ssc-enable' to enable SSC mode for both RXC and SYSCLK clock
-> signals.
+On 28/11/2025 17:15, Josua Mayer wrote:
+> Add mux controller support for when sdio lines are muxed between a host
+> and multiple cards.
 > 
-> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
-> ---
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Eric Dumazet <edumazet@google.com>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Heiner Kallweit <hkallweit1@gmail.com>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Michael Klein <michael@fossekall.de>
-> Cc: Paolo Abeni <pabeni@redhat.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Russell King <linux@armlinux.org.uk>
-> Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> There are several devices supporting a choice of eMMC or SD on a single
+> board by both dip switch and gpio, e.g. Renesas RZ/G2L SMARC SoM and
+> SolidRun RZ/G2L SoM.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-> index eafcc2f3e3d66..f1bd0095026be 100644
-> --- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-> +++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
-> @@ -50,6 +50,11 @@ properties:
->      description:
->        Disable CLKOUT clock, CLKOUT clock default is enabled after hardware reset.
+> In-tree dts for the Renesas boards currently rely on preprocessor macros
+> to hog gpios and define the card.
+> 
+> By adding mux-states property to sdio controller description, boards can
+> correctly describe the mux that already exists in hardware - and drivers
+> can coordinate between mux selection and probing for cards.
+> 
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> index c754ea71f51f7..55635c60ad73a 100644
+> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> @@ -106,6 +106,11 @@ properties:
+>    iommus:
+>      maxItems: 1
 >  
-> +  realtek,ssc-enable:
-> +    type: boolean
+> +  mux-states:
 > +    description:
-> +      Enable SSC mode, SSC mode default is disabled after hardware reset.
+> +      mux controller node to route the SDIO signals from SoC to cards.
+> +    maxItems: 1
+> +
+>    power-domains:
+>      maxItems: 1
+>  
+> @@ -262,9 +267,17 @@ unevaluatedProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+>      #include <dt-bindings/power/r8a7790-sysc.h>
+>  
+> +    mux: mux-controller {
+> +            compatible = "gpio-mux";
+> +            #mux-state-cells = <1>;
+> +            mux-gpios = <&pinctrl RZG2L_GPIO(22, 1) GPIO_ACTIVE_LOW>;
 
-I don't want more SSC properties. We already had a big discussions about
-it - one person pushing vendor property and only shortly after we learnt
-that more vendors want it and they are actually working on this.
+
+Wrong indentation and not really relevant here, so just drop.
 
 Best regards,
 Krzysztof
