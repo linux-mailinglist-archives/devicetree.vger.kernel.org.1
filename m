@@ -1,112 +1,120 @@
-Return-Path: <devicetree+bounces-243209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA882C95258
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 17:22:48 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87ED2C95233
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 17:16:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C61FB4E065D
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:22:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 759734E05A7
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB16B298CA6;
-	Sun, 30 Nov 2025 16:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CAB7280A52;
+	Sun, 30 Nov 2025 16:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=jakse.fr header.i=@jakse.fr header.b="LuiDZvuu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYE/JBe2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.jakse.fr (mail.jakse.fr [45.81.62.48])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D42259C92;
-	Sun, 30 Nov 2025 16:22:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.81.62.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 604D915A864;
+	Sun, 30 Nov 2025 16:16:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764519765; cv=none; b=ROn3AFa5JlzMU2ShjlUcSS1Pq/moP5JN6hSQDTdJiz8KzeknAtB0iwuwj4VXyCVvHs4xB1jaxPCaHz2d6PoKeWNt0H7ZSZGUkl85rugJriYSn0nSwMRLouyT8XEeSIaMmnCF5wf8C9kb78nvtt7as9ITMZ7f7d1FQC44spmRir8=
+	t=1764519364; cv=none; b=QlL3fFkHePuKSFl4agbdfPY4530VkUp65Gd+Zv4jibAgsFttN+xB4pzsREV5YUz3QHryWBkGRMYjTbwcF4+5lraCeADJdeWNraVnz9bNt0ndbqXMQkxrLi/DpC5XbLjdcBGure5wV22G1SyeHRTYatGPBpiRD2CTtexLTDEZfQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764519765; c=relaxed/simple;
-	bh=xsuXwFBhCkJRCOW0BjNeGCGx2rm4a0EUHio1t3u1dR0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=r8lp1WPmpbzgfKLUMA8AlV9GyWgmGNGEvTNXjQOLBl64hBQvvfnvZWW8nIz95/XY3+xw6H2daTA/3QNq4A6E8gYi8KUxZaGU1wkOVWYznEzMUe7ygWzPxTKZzzGr1Iesiz34SxbK29Go4rHNFlTf8J+bVJf5bTXMWbJEl8FzDC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jakse.fr; spf=pass smtp.mailfrom=jakse.fr; dkim=pass (1024-bit key) header.d=jakse.fr header.i=@jakse.fr header.b=LuiDZvuu; arc=none smtp.client-ip=45.81.62.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=jakse.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jakse.fr
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jakse.fr; s=default;
-	t=1764519230; bh=1Y5LGb3g31rjjIXxiw5Jdr35UaFiGP0OuDnqqXz+mjE=;
-	h=From:To:Cc:Subject:Date:From;
-	b=LuiDZvuuhNnGg0sLq1wfUtOo/qR/8tevJmuGB8ogaSX7N8Wl8iSvIJSMM9YcR8YWw
-	 sVb2IZqacR9cRCL5mD+Tf6pJU1ircz/soUQPv206H1tyr2cedv+2mETHsLSYBH7bnV
-	 Lpt2/E+/LBN5B7ldPqMKN/mRB9HRX+7Kn9aISmXQ=
-Received: from rigel.lan (rigel.lan [IPv6:2001:912:1ac0:2e00::9bd])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (secp384r1) server-digest SHA384)
-	(No client certificate requested)
-	by mail.jakse.fr (Postfix) with ESMTPSA id 8B83EEA12BF;
-	Sun, 30 Nov 2025 17:13:50 +0100 (CET)
-From: =?UTF-8?q?Rapha=C3=ABl=20Jakse?= <raphael.kernel@jakse.fr>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rapha=C3=ABl=20Jakse?= <raphael.kernel@jakse.fr>
-Subject: [PATCH] arm64: dts: rockchip: Fix Bluetooth on the RockPro64 board
-Date: Sun, 30 Nov 2025 17:12:59 +0100
-Message-ID: <20251130161259.9828-1-raphael.kernel@jakse.fr>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1764519364; c=relaxed/simple;
+	bh=UQoyz7NmQApLDrpw/+9aqo8k2qLruHLlwuq3Ky/pYhw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=FZLScvBTFJOO1DGL7oAc3ASnTOyv1OW76+kSDkh9Ad0IkdLxIlLUbD7mA+GRBtXjV/WfsCW8514wT+qHEmFZ6Qbo5d1C4iKgx6Ws9tyVJRhdMFG+U2IjrSVz6tin4ZaiA6CrC0dFMu+Xd2jInnYOOuba6RMDx6EPgSJ6xmc4UPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYE/JBe2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE665C4CEF8;
+	Sun, 30 Nov 2025 16:16:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764519364;
+	bh=UQoyz7NmQApLDrpw/+9aqo8k2qLruHLlwuq3Ky/pYhw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=lYE/JBe2eQXWYsMoSlJL9EO+KBiyUQM9s0eBrNmNCSTTX2dSpftjhdMIcE9wkGd0B
+	 QOSgtkw2cSLIi0UeLPpdEqDiV0s7nwG8eT+KdTff4rQ962hUTNeB2OLU5Hf9V3Lml9
+	 UHxHdpoQBoG1sSX0vuE7gSk95foSTdJxlOjONKWXamZbxiqcZ/WjEu8Cle0mxGrL/a
+	 W83IcchPi/BJ+BbH9rxbc6EqfM0imOe2NXNu/om6O8Btb7jC3aHa3qUtkrSjYv+WCF
+	 qz4F4I7igt/IynTt2Z2+zZvbqtHZi3EjW4+aPUP0OUjz2KxpL5rRjddeiXF84AMGsm
+	 R9agoE3/D8cnw==
+Date: Sun, 30 Nov 2025 10:16:02 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: dlechner@baylibre.com, conor+dt@kernel.org, neil.armstrong@linaro.org, 
+ krzk+dt@kernel.org, linux-iio@vger.kernel.org, skhan@linuxfoundation.org, 
+ nuno.sa@analog.com, heiko@sntech.de, andy@kernel.org, 
+ david.hunter.linux@gmail.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, jic23@kernel.org
+To: Shrikant Raskar <raskar.shree97@gmail.com>
+In-Reply-To: <20251130153712.6792-2-raskar.shree97@gmail.com>
+References: <20251130153712.6792-1-raskar.shree97@gmail.com>
+ <20251130153712.6792-2-raskar.shree97@gmail.com>
+Message-Id: <176451936113.1126569.7335546829589054725.robh@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: iio: proximity: Add RF Digital
+ RFD77402 ToF sensor
 
-The RockPro64 board has an optional BCM4345C5 Bluetooth device on UART0.
 
-This patch fixes audio stutters by setting its correct max-speed and
-compatible properties.
+On Sun, 30 Nov 2025 21:07:09 +0530, Shrikant Raskar wrote:
+> The RF Digital RFD77402 is a Time-of-Flight (ToF) proximity and distance
+> sensor that provides absolute and highly accurate distance measurements
+> from 100 mm up to 2000 mm over an I²C interface. It includes an optional
+> interrupt pin that signals when new measurement data is ready.
+> 
+> Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
+> ---
+> Changelog:
+> Changes since v1:
+> - Fix patch heading
+> - Fix commit message
+> - Remove '|' from description
+> - Update interrupt description
+> - Add 'vdd-supply' to required
+> - Add 'vdd-supply' to example
+> 
+> Link to v1:https://lore.kernel.org/all/20251126031440.30065-2-raskar.shree97@gmail.com/
+> ---
+>  .../iio/proximity/rfdigital,rfd77402.yaml     | 53 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  2 files changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/rfdigital,rfd77402.yaml
+> 
 
-Signed-off-by: Raphaël Jakse <raphael.kernel@jakse.fr>
----
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts | 7 +++++++
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts    | 7 +++++++
- 2 files changed, 14 insertions(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts
-index 304e3c51391c..883d9bcfe792 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dts
-@@ -28,3 +28,10 @@ es8316_p0_0: endpoint {
- 		};
- 	};
- };
-+
-+&uart0 {
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		max-speed = <1500000>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
-index 4b42717800f7..ae3ee91dba2f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
-@@ -28,3 +28,10 @@ es8316_p0_0: endpoint {
- 		};
- 	};
- };
-+
-+&uart0 {
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		max-speed = <1500000>;
-+	};
-+};
--- 
-2.52.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251130153712.6792-2-raskar.shree97@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
