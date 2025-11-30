@@ -1,183 +1,109 @@
-Return-Path: <devicetree+bounces-243194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AC7C95094
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:05:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E1BDC9512D
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 16:16:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4F8A8342C8F
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 15:05:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E4DD3A314D
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 15:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C37FF1F0E2E;
-	Sun, 30 Nov 2025 15:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 935191F5851;
+	Sun, 30 Nov 2025 15:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iBs4U6Vw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IqNF5ci3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DFC336D51D;
-	Sun, 30 Nov 2025 15:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9571E0DCB;
+	Sun, 30 Nov 2025 15:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764515151; cv=none; b=cku67oU+F0Yl/H5kgr8IzsdecCcGQCOML9dRjzRTMNnRu3PXq2uCncF3BFxHB0GIqciC3aY1f3TzVvJooy2VKy317wmAENlI/YJUS5CCVaNAcIgZ+C3GWwAXoO4OfJrq0emE1lWGKd2JNK0sSGYkU/scZJNqWnFUOR/BSsjerBE=
+	t=1764515751; cv=none; b=KuNV2rq9XEruDsePY0LKo38qDKK/fWnlbJaQ64NJae+taup/U9h1si8UkPG4U9GGRxISVrn7YP4cdGnuxQEip4qrGsHUOCzA/HEH1M+4KmndUp771lI1XDU/iXKgjX3jQBibOT+fEj1AyFea7Xz+lBhqFbxujVW+nreNwI7SEOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764515151; c=relaxed/simple;
-	bh=5igU6iZCO9sZzOv7NKAHjynR/Bzto2i1XAMlvnec8a8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oPYBpByV4r30bg1VDYBhCw4sS70NMHAw0ecpGEYvLiFRfXlbvcLJjgQ3SvM6JQHZ9v1RP09iEL5o6ZtVyiBvHG9EvogbdMu6pk/8yyIuT8qTbgIjwE/qFQhbFAJc2Ur5Evpzq81BCF/2Ms8Mv9Eem/1RiJet6wFIiM038yVm9dM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iBs4U6Vw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69F04C4CEF8;
-	Sun, 30 Nov 2025 15:05:41 +0000 (UTC)
+	s=arc-20240116; t=1764515751; c=relaxed/simple;
+	bh=hMizoJdXUR5jj48wInWzYGy+PF1KqvVUCrqSYZVjpBE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=M+z3bZklZ7UwlWDXgjgY+TMAK48qkXY3yE1t5HSWP7bpfbpEsy6mBXaHHQFwuEE0bT3nTDKRH7U6TQO23bEXgWtwaKDTlz0UUQe1ZZbs7rFKhuopOrgie1bM0mY2b8IBQCLgMf9u33QAyKxhDkMRSUYcEkgZXc0zq4udaHqynU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IqNF5ci3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1578C4CEF8;
+	Sun, 30 Nov 2025 15:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764515151;
-	bh=5igU6iZCO9sZzOv7NKAHjynR/Bzto2i1XAMlvnec8a8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iBs4U6VwKPeehwoTBBhnMasIiMgXzfqTwKpe47JAljwaVwoCgX3Byta7rZHgBEbwC
-	 Q0axt5RhFqranHo5TGtT6qP1YfGVdQ+nzaM5jXKPdgqp3H3mbMWoljUUZWsLhkl2ti
-	 CN9xwnWZik9IK76+g3uIMI1biofz0AZbPny5GYeicyAIwVzVtDIlBB9gHrkGzej00s
-	 MDQ+uFfyWBhSTNSRv8TqCo5GRFUGIYHwn4pVSSxDRV0fIMwcz5FGCF8DJO6ubqlN1f
-	 +5lkoewUVS977NAXgbY/bsbhZyKZu797Ki21lVLvWCD7oEZ9azPxDwbjpsTPNOC1DR
-	 +iZm2xM9diiHw==
-Date: Sun, 30 Nov 2025 20:35:35 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>, 
-	Jingoo Han <jingoohan1@gmail.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] PCI: dwc: Program device-id
-Message-ID: <2mhc33c5wvaaa7krhfrilz7qkfm47efx7h2esnydyzz4sk5umw@jxixtcmrsq76>
-References: <20251127-program-device-id-v1-0-31ad36beda2c@quicinc.com>
- <20251127-program-device-id-v1-1-31ad36beda2c@quicinc.com>
- <09aed728-51ca-42dd-b680-f6597e0ac00a@rock-chips.com>
- <mp67n7jw3azihax25yw2u25f6nrjl237exw2t66fz3bpt3wzdt@2j4ooqdfgp2l>
- <c43b637a-a0c1-4106-b37b-df389c085057@rock-chips.com>
+	s=k20201202; t=1764515750;
+	bh=hMizoJdXUR5jj48wInWzYGy+PF1KqvVUCrqSYZVjpBE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=IqNF5ci3EiLuQUlGIjLJCNcg4Qe81EAX9pOR3uYIDEiwJiyUDqvQd8ChVSoSGllhM
+	 rIzy3np2qM1hAdQNtneM3ifCrmE45B1bsfR33dQAQtvHdr+5XeQqipfruCqz4Zih+w
+	 rqi5iSzYajSSGgDE4KiKMfjTp9t/LiQHqMln2XbLbm/9EqOfTijmYuWKHxLpDTr4aY
+	 pyT5p0hRiPPZNqtLGYX8xPxy5VwGAUxbJEDiWHeEX7m8rz9M0kAtmaPOObVeTJ6trJ
+	 mDDX/LMGVPDQEPvX0exISE0KrvsZTxvL4wIPQbMge2Hsleb+eXUcvw1A7cuLxe6QV/
+	 q87q8crCsVh5w==
+Date: Sun, 30 Nov 2025 09:15:49 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c43b637a-a0c1-4106-b37b-df389c085057@rock-chips.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: thierry.reding@gmail.com, conor+dt@kernel.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ mripard@kernel.org, airlied@gmail.com, neil.armstrong@linaro.org, 
+ devicetree@vger.kernel.org, maarten.lankhorst@linux.intel.com, 
+ jessica.zhang@oss.qualcomm.com, tzimmermann@suse.de, simona@ffwll.ch, 
+ sam@ravnborg.org, krzk+dt@kernel.org
+To: Renjun Wang <renjunw0@foxmail.com>
+In-Reply-To: <tencent_FD75580BB3BF35F44985E237E7DE56BE2407@qq.com>
+References: <tencent_FD75580BB3BF35F44985E237E7DE56BE2407@qq.com>
+Message-Id: <176451574938.1028542.3454025128487626115.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add HannStar
+ HSD156JUW2
 
-On Sun, Nov 30, 2025 at 10:43:14AM +0800, Shawn Lin wrote:
-> 在 2025/11/29 星期六 15:34, Manivannan Sadhasivam 写道:
-> > On Fri, Nov 28, 2025 at 09:03:52AM +0800, Shawn Lin wrote:
-> > > 在 2025/11/27 星期四 23:30, Sushrut Shree Trivedi 写道:
-> > > > For some controllers, HW doesn't program the correct device-id
-> > > > leading to incorrect identification in lspci. For ex, QCOM
-> > > > controller SC7280 uses same device id as SM8250. This would
-> > > > cause issues while applying controller specific quirks.
-> > > > 
-> > > > So, program the correct device-id after reading it from the
-> > > > devicetree.
-> > > > 
-> > > > Signed-off-by: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
-> > > > ---
-> > > >    drivers/pci/controller/dwc/pcie-designware-host.c | 7 +++++++
-> > > >    drivers/pci/controller/dwc/pcie-designware.h      | 2 ++
-> > > >    2 files changed, 9 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > index e92513c5bda5..e8b975044b22 100644
-> > > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > @@ -619,6 +619,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
-> > > >    		}
-> > > >    	}
-> > > > +	pp->device_id = 0xffff;
-> > > > +	of_property_read_u32(np, "device-id", &pp->device_id);
-> > > > +
-> > > >    	dw_pcie_version_detect(pci);
-> > > >    	dw_pcie_iatu_detect(pci);
-> > > > @@ -1094,6 +1097,10 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
-> > > >    	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0);
-> > > > +	/* Program correct device id */
-> > > > +	if (pp->device_id != 0xffff)
-> > > > +		dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, pp->device_id);
-> > > > +
-> > > >    	/* Program correct class for RC */
-> > > >    	dw_pcie_writew_dbi(pci, PCI_CLASS_DEVICE, PCI_CLASS_BRIDGE_PCI);
-> > > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> > > > index e995f692a1ec..eff6da9438c4 100644
-> > > > --- a/drivers/pci/controller/dwc/pcie-designware.h
-> > > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> > > > @@ -431,6 +431,8 @@ struct dw_pcie_rp {
-> > > >    	struct pci_config_window *cfg;
-> > > >    	bool			ecam_enabled;
-> > > >    	bool			native_ecam;
-> > > > +	u32			vendor_id;
-> > > 
-> > > I don't see where vendor_id is used.
-> > > And why should dwc core take care of per HW bugs, could someone else
-> > > will argue their HW doesn't program correct vender id/class code, then
-> > > we add more into dw_pcie_rp to fix these?
-> > > 
-> > 
-> > Device ID and Vendor ID are PCI generic properties and many controllers specify
-> > them in devicetree due to the default values being wrong or just hardcode them
-> > in the driver. There is nothing wrong in DWC core programming these values if
-> > they are available in devicetree.
-> > 
-> > > How about do it in the defective HW drivers?
-> > > 
-> > 
-> > If the issue is a vendor DWC wrapper specific, for sure it should be added to
-> > the relevant controller driver. But this issue is pretty common among the DWC
-> > wrapper implementations.
-> > 
-> 
-> I think there are already some dwc instances working around this kind of
-> defects in their relevant condroller driver.
-> 
-> drivers/pci/controller/dwc/pci-keystone.c:806:  dw_pcie_writew_dbi(pci,
-> PCI_VENDOR_ID, id & PCIE_VENDORID_MASK);
-> 
-> drivers/pci/controller/dwc/pcie-spacemit-k1.c:146: dw_pcie_writew_dbi(pci,
-> PCI_VENDOR_ID, PCI_VENDOR_ID_SPACEMIT);
-> 
-> drivers/pci/controller/dwc/pcie-spear13xx.c:139: dw_pcie_writew_dbi(pci,
-> PCI_VENDOR_ID, 0x104A);
-> 
-> drivers/pci/controller/dwc/pci-keystone.c:807:  dw_pcie_writew_dbi(pci,
-> PCI_DEVICE_ID, id >> PCIE_DEVICEID_SHIFT);
-> 
-> drivers/pci/controller/dwc/pcie-spacemit-k1.c:147: dw_pcie_writew_dbi(pci,
-> PCI_DEVICE_ID, PCI_DEVICE_ID_SPACEMIT_K1);
-> 
-> drivers/pci/controller/dwc/pcie-spear13xx.c:140: dw_pcie_writew_dbi(pci,
-> PCI_DEVICE_ID, 0xCD80);
-> 
-> If this patch applied, there are two non-consistent apporaches to work
-> around this situation.
 
-Nothing inconsistent here. DWC core will set the IDs based on the devicetree
-properties if exist and controller drivers can override them or set sane default
-if they want.
-
-> Could dwc core provide a common helper for them(this
-> qcom instance inclueded) to call without bothering the dwc core?
+On Sun, 30 Nov 2025 22:35:27 +0800, Renjun Wang wrote:
+> Add the HannStar HSD156JUW2 15.6" FHD (1920x1080) TFT LCD panel to
+> the panel-simple compatible list.
+> 
+> Signed-off-by: Renjun Wang <renjunw0@foxmail.com>
+> ---
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Then the function will be called something like,
+My bot found errors running 'make dt_binding_check' on your patch:
 
-	dw_pcie_set_ids(dwc, 0x0, 0x0); /* for Qcom */
-	dw_pcie_set_ids(dwc, PCI_VENDOR_ID_SPACEMIT, PCI_DEVICE_ID_SPACEMIT_K1);
+yamllint warnings/errors:
 
-I don't think combining both in the same API is a good idea. But I'm OK with an
-API just to set the passed IDs.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
 
-- Mani
+doc reference errors (make refcheckdocs):
 
--- 
-மணிவண்ணன் சதாசிவம்
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/tencent_FD75580BB3BF35F44985E237E7DE56BE2407@qq.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
