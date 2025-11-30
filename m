@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D4EC94C3E
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 09:18:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD644C94C47
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 09:20:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CF7E84E0FA8
-	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 08:17:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3DD0E4E04D0
+	for <lists+devicetree@lfdr.de>; Sun, 30 Nov 2025 08:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D961239E8B;
-	Sun, 30 Nov 2025 08:17:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81950230264;
+	Sun, 30 Nov 2025 08:20:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MFr0xogQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k4WQmxO+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D06B1391;
-	Sun, 30 Nov 2025 08:17:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5523722068A;
+	Sun, 30 Nov 2025 08:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764490676; cv=none; b=VTjXKechCoUAgF+gOC0Twaff7/3LQDacA8mnvTUKRlmL3KaMvLTjdUPwrBZwPfgI99VCkJGPI8xS2FWIluups1JibWC6/n5IEFqqeFAI2afdGkH20NtsHQ6ae1vCsNotZ9SMGHenxOkQb//Z9/tHMQbgHLAshSRFZOXldOwfE9Q=
+	t=1764490832; cv=none; b=EnxdR+2NCCNJlvwXKhez+/grl6J3YqaNYGAKb1efkw5OjiE5TAPyHHIWXk31JrD0PmIsfV7qrOZHK8Ii2rw6CRPY6B8QvyxStZaKHpguN4Mt0V/fXnHkjBN48HGjdMF2xFj6KT+tITtikP8t11uD4+wRFqQNu9n31WDOQ7kJzRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764490676; c=relaxed/simple;
-	bh=Wa7NrDli8507PyZklIg9dfEmRf5sWneKGLxAt1oDo3o=;
+	s=arc-20240116; t=1764490832; c=relaxed/simple;
+	bh=ix7X7fSFO+etWXtLPVudV3/mpH8HoQRTbfNpg6nM6AY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MKq5RKBvM5WcOq0pEZjesIrPiBCUYU632O4hlVdN5BJiOWBsex6tWzTn8q8qE7G2fAkDyNPdFOTgKb4rLXrL/8d1pGfiUlmaiaZVOFfQg80VFgjCeh4x5wOtd/3jvghFwrEtcHuI119V0MPx9PW7hgXG0hcQNkkSGEO/HPU0PSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MFr0xogQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A17ABC4CEF8;
-	Sun, 30 Nov 2025 08:17:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=A68elVDx+MRtSaI74XOaI0VoEJPy0tsDRj8rcIdCmZIBc86Ct3DLa/oTWotcMQrXwbB+VtFKBn+53DjdcE9FKoB/OdGjWPcZcu5+I7ywatY5Sn95yvCWp0IERU1hFVNYTM2xkGHNGhXgApRJaFnHOAo8nSmbpHlkUAlkUDsVn90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k4WQmxO+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1393FC4CEF8;
+	Sun, 30 Nov 2025 08:20:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764490675;
-	bh=Wa7NrDli8507PyZklIg9dfEmRf5sWneKGLxAt1oDo3o=;
+	s=k20201202; t=1764490831;
+	bh=ix7X7fSFO+etWXtLPVudV3/mpH8HoQRTbfNpg6nM6AY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MFr0xogQckUJLmKcfBwGxWN9xT8Dic17bGBab8/QVQnQSz3eNJM5qyPttt8FBwJOB
-	 eixHt6Nfyv0+v5Z+s8KUcfoy+9HRmeqh8j9Q76hUSJhZ6rOn+xDN2yNcRCoWL1Cwoh
-	 ntqNDjY3SQYldefMbbnvyDC8m7JnJ9eex/qmyNh54ekwGvMXmcARdO+SSGsUBEjVnT
-	 8aaVqh4Jn9CI/9fdsv8hkfs/Ln61NeIP1y5OrLsoHwQwliMQP1ihZ3UCaNG8LaLbsL
-	 /uz7oomy5527wCMSz9+7dc+ACYZYvWBIO/ziHvimzW7JbRngLSAyBxwgp77x74PKwQ
-	 vCmKDq/WNpicg==
-Message-ID: <c303a5f3-4283-445e-9e0e-053fab32a468@kernel.org>
-Date: Sun, 30 Nov 2025 09:17:49 +0100
+	b=k4WQmxO+4Mtx724ofRO4hcbNwZjwha6lCGTulXXcAiS2vCLJqwxkxXheiF2nswcfD
+	 /cuhzOj+ltxnGhini115yDnMigHL7fnGb0jSvO568TaYtOpiOwTT46IgY/TrmNp6Ye
+	 cxCfIAvVHDH+v1R07Okdc00A8MnB8EDP5UXnby+ev7CJP1Ftz1q4Y6Cj5IXUzGHp5/
+	 xc4BkPw3aEzTVp6q25dmBm1P2bILT2O+V2eVjUJ6pRMtRWDkn5Sumj4+41lyRaYvX1
+	 LZwCd9L71EvVpQXlMaMV9t5waqDsEzfzAw5Wbaean8KJV7/s8ptFTkLoPKyLjCclq4
+	 rgpfrh2CCOXxA==
+Message-ID: <f3046826-a44c-4aa9-8a94-351e7fe83f06@kernel.org>
+Date: Sun, 30 Nov 2025 09:20:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: Document new common property:
- has-inaccessible-regs
-To: Richard Weinberger <richard@nod.at>
-Cc: linux-kernel <linux-kernel@vger.kernel.org>,
- linux-omap <linux-omap@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Lee Jones <lee@kernel.org>, dakr <dakr@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Mark Brown <broonie@kernel.org>, tony <tony@atomide.com>,
- rogerq <rogerq@kernel.org>, khilman <khilman@baylibre.com>,
- Andreas Kemnade <andreas@kemnade.info>, aaro koskinen
- <aaro.koskinen@iki.fi>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, robh <robh@kernel.org>
-References: <20251129142042.344359-1-richard@nod.at>
- <20251129142042.344359-2-richard@nod.at>
- <7d9fcf24-5ad5-48cf-b36d-83025976f3aa@kernel.org>
- <771947541.4509.1764430418744.JavaMail.zimbra@nod.at>
- <8b0e2b8a-314f-40ee-8f30-c281f3799705@kernel.org>
- <1810160052.4618.1764431802423.JavaMail.zimbra@nod.at>
+Subject: Re: [net-next,PATCH 2/3] dt-bindings: net: realtek,rtl82xx: Document
+ realtek,ssc-enable property
+To: Marek Vasut <marek.vasut@mailbox.org>, netdev@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>,
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, devicetree@vger.kernel.org
+References: <20251130005843.234656-1-marek.vasut@mailbox.org>
+ <20251130005843.234656-2-marek.vasut@mailbox.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,35 +109,54 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1810160052.4618.1764431802423.JavaMail.zimbra@nod.at>
+In-Reply-To: <20251130005843.234656-2-marek.vasut@mailbox.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 29/11/2025 16:56, Richard Weinberger wrote:
-> ----- Ursprüngliche Mail -----
->> Von: "Krzysztof Kozlowski" <krzk@kernel.org>
->>> So, drivers like ti,pbias-dra7 or ti,dra7xx-phy-gmii-sel touch only registers
->>> they know about and this works well.
->>> But syscon manages the whole register map via regmap, and regmap exposes it all
->>> via debugfs.
->>>
->>> What solution do you propose?
->>> Splitting reg = <0x0 0x1400> into many tiny fractions and not using an mfd
->>> anymore?
->>
->> Fix the driver. In your case, the syscon driver.
+On 30/11/2025 01:58, Marek Vasut wrote:
+> Document support for spread spectrum clocking (SSC) on RTL8211F(D)(I)-CG,
+> RTL8211FS(I)(-VS)-CG, RTL8211FG(I)(-VS)-CG PHYs. Introduce new DT property
+> 'realtek,ssc-enable' to enable SSC mode for both RXC and SYSCLK clock
+> signals.
 > 
-> Please help me to understand what the desired behavior of the driver is.
+> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+> ---
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Michael Klein <michael@fossekall.de>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Russell King <linux@armlinux.org.uk>
+> Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> Currently syscon creates one regmap for everything and passes this regmap
-> to the individual syscon users.
-> These users have to know what offset within the regmap is their playground.
-> If I understand correctly, it would be better if every syscon user would register their own regmap?
+> diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+> index eafcc2f3e3d66..f1bd0095026be 100644
+> --- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+> +++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+> @@ -50,6 +50,11 @@ properties:
+>      description:
+>        Disable CLKOUT clock, CLKOUT clock default is enabled after hardware reset.
+>  
+> +  realtek,ssc-enable:
+> +    type: boolean
+> +    description:
+> +      Enable SSC mode, SSC mode default is disabled after hardware reset.
 
-I don't think so. This device driver, so the syscon, creates the regmap
-and knows EXACTLY which registers are valid or not. It is not
-responsibility of the consumer to tell the syscon what this syscon is.
-Syscon knows that...
+I don't want more SSC properties. We already had a big discussions about
+it - one person pushing vendor property and only shortly after we learnt
+that more vendors want it and they are actually working on this.
 
 Best regards,
 Krzysztof
