@@ -1,165 +1,131 @@
-Return-Path: <devicetree+bounces-243493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F502C9836D
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 17:22:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61633C983BF
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 17:26:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0596A3A2CF3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 16:22:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12E2B3A33AE
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 16:26:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE17F32C948;
-	Mon,  1 Dec 2025 16:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80D8334694;
+	Mon,  1 Dec 2025 16:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O3Bn3s86"
+	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="Wh7fwvhJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB2B7081F;
-	Mon,  1 Dec 2025 16:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D277E33343E;
+	Mon,  1 Dec 2025 16:26:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764606162; cv=none; b=fy/lyFSykQWNx2dYnLcl7TIDjAZQ/vDGixTJ4lZCE2XGkW00rpbaOvEAjc32K1JEXdQIr2Qzvu5zNr46SbqnNvqMk26EKoEGBVDEDULycVIJmDsQH0w/0MmqtDTTQhvcgvTmAxwfb1TegN9bEiE8tprDe2qa2rvo/wOz3A+lFm4=
+	t=1764606411; cv=none; b=kBu2A//J8p9OT++q91Ix1ZXyezkwy7UVhfXCEZCQ+iH5VHYIwkvAL2NsmlzaZ/iD8WgMpN/NWMqFRgE8Pkl1kjUZHOujSDcf5OawveN/IXfCv7252FWopdS1Sjqq4s+s7XrdswsIkbfbxoT0L4J4VgRX6xtl+2aVfOSDxyKdQio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764606162; c=relaxed/simple;
-	bh=r85JsunWmzVcpkVTxljVo7UGHdDjxktOk1tuBHycIDk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n0j+xvCX+LMKTidnJhGG9TKLDKr582+ODHLfV88wtiUJDkpqJUtg9PWE53JWtaKL+y0b9XyKq6+co0VPtUIOlwDtrOZz5Y5mwos7ix8sOVaEDS2E3T4g6U1SNwK3+7zdCz+cBXacQqOgWE1240E8K8RtEFxRMNHHlvLxxpuGlRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O3Bn3s86; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14C42C4CEF1;
-	Mon,  1 Dec 2025 16:22:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764606162;
-	bh=r85JsunWmzVcpkVTxljVo7UGHdDjxktOk1tuBHycIDk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O3Bn3s86/DHt712xrGvIivq8dvdEduYK2YI/CMMMMRT9zX1rw81+EKB19MMzmCSI+
-	 F+n9UAR+8N+UkKYPdNCDrqRfncBuDw4CbzM5/lVwnpqrhe4Gidxmcov9qxIqatJc0Z
-	 LAfxvuEHlZb9mBk3GZsJQMMhjrPToY0TuyOtVcCXu/EYxRe7KFwulnqj/Kt3aom/Oo
-	 xeRHa4P6lqh87Kx1Vj007vLXthLaWWb68uvI51hqwZwgRdHOkI0R+GesuLcU3Hrv9l
-	 QmIYJQLdpNrmpDy3N9dX6AaRBHuFUuF883tmu78dwi4daDqfdtbmZyVMfsNSZQEMpx
-	 /dWqkXIT/fCdw==
-Message-ID: <3425c0dd-8c3c-4780-8d1b-494f38282c46@kernel.org>
-Date: Mon, 1 Dec 2025 17:22:38 +0100
+	s=arc-20240116; t=1764606411; c=relaxed/simple;
+	bh=xYjd7tbJoh2y06N1DtuzIzlxdeNR0195+Wn0hvKR0ic=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=baJ5BqxWqHS12SLcOALJF9eeefBER0/W6W+OvylMYYKK+JQWBAhukw5jJvHaUwQJam7IlKqsplGOFRG5DUw3IPfbv7zpDiFkrkRJXfsBbkvlDYEnuMDea6ky3cXJhuzUinFsKZiA00eJZbMUAsS4b8DuKcnzJ5zHJbwgYJ0x22Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=Wh7fwvhJ; arc=none smtp.client-ip=195.113.20.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560+5C/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
+	s=submission; t=1764606330; x=1765906330;
+	bh=xYjd7tbJoh2y06N1DtuzIzlxdeNR0195+Wn0hvKR0ic=; h=From;
+	b=Wh7fwvhJEouVlTgDON3WupDZPYB7g4nvZwcCpS58k42c0vTl077ww5vK8jNWPhvEZ
+	 yZXxieNs7zDu7Gzwwfrq5qOcG5gse/vVohNJBOtHzbBNm6Kad04k/nsZdTtE7h7Ugg
+	 8yUk59ho8+vq2HHB5E6Z5LG4ZOKu2R4py1wYupLEusmu/8DA4nTUfuBHYoEO9BGTXe
+	 OKU0IeE3kFJw1EMdCiZF4YGtrztWrQkkIiXiQv11x42DZg9WTwi4RbT5Ju4KO6QLrc
+	 P/BMYHBe4f3B/+XU2wJvwvH6ZDba+5wrrKnB2WHf7sGW/AvnqRKkG8LozFOlwA85WB
+	 jF+cuEvPP8OEg==
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.18.1/8.18.1) with ESMTPS id 5B1GPSs0006348
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Mon, 1 Dec 2025 17:25:29 +0100 (CET)
+	(envelope-from balejk@matfyz.cz)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: add Microchip IPC
- remoteproc
-To: Valentina.FernandezAlanis@microchip.com
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251121142157.3582463-1-valentina.fernandezalanis@microchip.com>
- <20251121142157.3582463-2-valentina.fernandezalanis@microchip.com>
- <20251125-aromatic-savvy-eagle-b81696@kuoka>
- <3e9f2caf-e3c6-4b59-b4e2-431e796399d7@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <3e9f2caf-e3c6-4b59-b4e2-431e796399d7@microchip.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Mon, 01 Dec 2025 17:25:27 +0100
+Message-Id: <DEN0QJT6O8BU.3INUCXH1I0P0F@matfyz.cz>
+Cc: "Johannes Berg" <johannes@sipsolutions.net>,
+        "Rob Herring"
+ <robh@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        =?utf-8?q?Duje_Mihanovi=C4=87?=
+ <duje@dujemihanovic.xyz>,
+        "Andrew Lunn" <andrew@lunn.ch>,
+        "Gregory Clement"
+ <gregory.clement@bootlin.com>,
+        "Sebastian Hesselbarth"
+ <sebastian.hesselbarth@gmail.com>,
+        "Brian Norris"
+ <briannorris@chromium.org>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>, "Frank
+ Li" <Frank.Li@nxp.com>,
+        <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-mmc@vger.kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, "Jeff Chen" <jeff.chen_1@nxp.com>,
+        "Peng Fan" <peng.fan@nxp.com>, <david@ixit.cz>
+Subject: Re: [DONOTAPPLY RFC PATCH v2 0/4] WiFi support for
+ samsung,coreprimevelte
+To: "Francesco Dolcini" <francesco@dolcini.it>
+From: "Karel Balej" <balejk@matfyz.cz>
+References: <20251026182602.26464-1-balejk@matfyz.cz>
+ <DEJL1ATTQMVE.120JV9YW59I27@matfyz.cz>
+ <aSnWYS2g5slVFaSk@gaggiata.pivistrello.it>
+In-Reply-To: <aSnWYS2g5slVFaSk@gaggiata.pivistrello.it>
+X-Spam-Level: ****
 
-On 01/12/2025 17:04, Valentina.FernandezAlanis@microchip.com wrote:
-> On 25/11/2025 09:46, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On Fri, Nov 21, 2025 at 02:21:56PM +0000, Valentina Fernandez wrote:
->>> Microchip family of RISC-V SoCs typically have one or more application
->>> clusters. These clusters can be configured to run in an Asymmetric
->>> Multi Processing (AMP) mode.
->>>
->>> Add a dt-binding for these application clusters.
->>>
->>> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
->>> ---
->>>   .../microchip,ipc-sbi-remoteproc.yaml         | 95 +++++++++++++++++++
->>>   1 file changed, 95 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/microchip,ipc-sbi-remoteproc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/microchip,ipc-sbi-remoteproc.yaml b/Documentation/devicetree/bindings/remoteproc/microchip,ipc-sbi-remoteproc.yaml
->>> new file mode 100644
->>> index 000000000000..348902f9a202
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/microchip,ipc-sbi-remoteproc.yaml
->>> @@ -0,0 +1,95 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/remoteproc/microchip,ipc-sbi-remoteproc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Microchip IPC Remote Processor
->>> +
->>> +description:
->>> +  Microchip family of RISC-V SoCs typically have one or more
->>> +  clusters. These clusters can be configured to run in an Asymmetric
->>> +  Multi Processing (AMP) mode where clusters are split in independent
->>> +  software contexts.
->>> +
->>> +maintainers:
->>> +  - Valentina Fernandez <valentina.fernandezalanis@microchip.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: microchip,ipc-sbi-remoteproc
->> This should be SoC specific compatible.
-> There was some discussion on this in v1: 
-> https://lore.kernel.org/all/20241015-distrust-chatty-9e723e670fef@spud/
+Hello, Francesco,
 
+Francesco Dolcini, 2025-11-28T18:05:37+01:00:
+> On Thu, Nov 27, 2025 at 04:29:12PM +0100, Karel Balej wrote:
+>> To reiterate, the firmware is generally available but is not part of
+>> linux-firmware and the entire process of upstreaming the chipset support=
+ is
+>> stuck on that.
+>
+> I'll try to see if any of my contact in NXP Wi-Fi group is able to help. =
+Give
+> me a few days.
 
-I don't find anything from that explained in commit msg or device
-description, so next time you send you will get exactly the same comment.
+that's great, thank you very much!
 
-Best regards,
-Krzysztof
+I have received a reply from Jeff in the meantime who has discussed the
+matter with his managers and unfortunately, they are not interested in
+supporting this chip as it's considered outdated and would pose
+maintainance burden.
+
+Jeff however thinks that you as their customer may perhaps have more
+luck when talking to them.
+
+I am also still trying to find out whether upstreaming the old firmware
+version (available as part of the stock Android) would be an acceptable
+compromise for them - I never really intended for this to be supported
+officially and I wasn't too hopeful about getting an up to date version
+of the firmware either (although it would be very useful as it would
+likely solve the issue I'm hacking around in the third patch of this
+series), I mainly just want to upstream the support for the chipset as
+far as possible.
+
+Please let me know when you have some news.
+
+Thanks again and best regards,
+K. B.
 
