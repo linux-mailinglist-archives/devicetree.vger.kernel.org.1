@@ -1,310 +1,127 @@
-Return-Path: <devicetree+bounces-243382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E237EC9751E
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 13:40:52 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C4D9C9752A
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 13:41:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D39CD4E1DB8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 12:40:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 168DA4E1FFB
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 12:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E8E30CD8F;
-	Mon,  1 Dec 2025 12:40:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF97430DD18;
+	Mon,  1 Dec 2025 12:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="BTXqHFrd"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="hIL5Dqc7";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="0oKmwJ/v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E266130C360;
-	Mon,  1 Dec 2025 12:40:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A23A30C373;
+	Mon,  1 Dec 2025 12:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764592808; cv=none; b=pEdr7B9ZfSmX4QaXJFoaxBPaaxAUHqDZLFeW6lssuQ9cS0k5m76X1dgVXMNCEHTY/U5sV2x7vHOQHMwGQJrOe/ilfRtsuQbJKlAo2LNXvnDwdCoD1w3VQVtyUBXMO1/4o0UNgrpc6/rq8bPbIr9PwLq89XFri8mmy4eeckJ7+VI=
+	t=1764592888; cv=none; b=APpoabY+AOh0gCrrsAgTO8DcTv5XukQBLtCU2luFw4DbM5kKb93YRCf6aO0/qJV8l+uMmL082yx2pMDWunONvjPqSzB7zcOYRNgzSosKP7X6OOS0NZiGsG6+1euibyB2WS5IPLwlNJwHG5CD6kGMlWen/1huSduRZy40u+XeOG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764592808; c=relaxed/simple;
-	bh=+v3zans8SQL6TcuqHoU+8GTaVGHsqj/2oeofJiXiwyY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZWkBA6CxmmsBDfb3QL15lFU7LLNPlFG0IZ80bOoGJuxiVDoQZ76sZwNhuw/5AlyyzQfwPhNkJbt2KSgJ5LKesfKTeG45q/cwdiH48DTnAsWVKs1S/xuu+WZckPFxBZjkm4H4nr1ufhLtPa5Z0+iIepVwYLpCCQdpm+/9IGD+QP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=BTXqHFrd; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 121536DF;
-	Mon,  1 Dec 2025 13:37:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1764592671;
-	bh=+v3zans8SQL6TcuqHoU+8GTaVGHsqj/2oeofJiXiwyY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BTXqHFrd53Z8o9bl1CUTaTNbt6M9A4CmUEjSAneXitHkFjmpi5YulXOEvcKY5nmIT
-	 PcDagE3I36YcAXHzKRb+BryKghXidUzQoWxtm2xUHqYJenVVQNSloT/pc81+ei0MuF
-	 xHbInl4nXfhONa4WjpHHNI6bS2RrVMoyuuU5pcB8=
-Message-ID: <b91b00db-b3f1-418a-a686-b417b290eb4b@ideasonboard.com>
-Date: Mon, 1 Dec 2025 14:40:01 +0200
+	s=arc-20240116; t=1764592888; c=relaxed/simple;
+	bh=+6R2Dm3f0PWsrFTZH6ZutnaKbYK6hSXwOT1Aim7DcUg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XQjzHZ/hm11kyV6f0SwqIxCahV1CS8RW6qwQ/zzn8cvYx0kv7Ks0LobI/U1dROKs/dLR8ttK/W65h/v1TD0g2V+N/fB+hlj92MjaEV5V+nQvR3xmyK2gkDXm6UGph1OXSqhRogcSaaA7QRhyzmCdsy47DaXTIV6kHo8xBKs9iVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=hIL5Dqc7; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=0oKmwJ/v; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1764592855; bh=sZSoiCqr6jnkXFHZB09/EO6
+	ISHkyMj98KPx4jfDfSHQ=; b=hIL5Dqc7Ax0vnHw4rtOzg8J1GUk32G02PYL+cjMaOR07vvYZGd
+	kft54/SSQ9TFHBBR+pZuvEGkjMi/diEPNdTNCBNQ25N1D2yxhkX/wM1bdzTo1YBt1TnHdEhj1wE
+	hwkUGANPKykfs8/Y2FDXkPU0tXDMXvb979Kvn1bFHzaEtOYA+hA0VIimuRijw52GoHQdOXnOv0G
+	NwdPiSWk0Sg8UNQkD1qud5Vg2MJFk2ypuGgvS3tKoN3iiyd3icdFdAh+TAWm5x9zIeP2s5B+UiQ
+	tY//lgGotKn8O9Pa6qImpJzmC5dqtl9Mm24Edv4SRJl+s3oAoY/EiVC3qdxQA4aFDyg==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1764592855; bh=sZSoiCqr6jnkXFHZB09/EO6
+	ISHkyMj98KPx4jfDfSHQ=; b=0oKmwJ/vk1Im2g9WGsDi2X+OOVgWoaRxACBHQPENcfhvNawBVR
+	/hh4wiNSF+Bj9fRzODRYYrZtZsuPVkkPeHBw==;
+From: Vasiliy Doylov <nekocwd@mainlining.org>
+Subject: [PATCH v3 0/3] media: i2c: lc898217xc: initial driver
+Date: Mon, 01 Dec 2025 15:40:42 +0300
+Message-Id: <20251201-media-i2c-lc898217xc-initial-driver-v3-0-46e23897e921@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] drm/tidss: Power up attached PM domains on probe
-To: Swamil Jain <s-jain1@ti.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devarsht@ti.com, praneeth@ti.com,
- h-shenoy@ti.com, u-kumar1@ti.com, jyri.sarha@iki.fi, airlied@gmail.com,
- simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, aradhya.bhatia@linux.dev
-References: <20251125165942.2586341-1-s-jain1@ti.com>
- <20251125165942.2586341-3-s-jain1@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20251125165942.2586341-3-s-jain1@ti.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMqMLWkC/53NQQ6CMBCF4auYrh1TphTQlfcwLko7hUmwmEIaj
+ eHuFly6MS7fZPL9LzFRZJrEafcSkRJPPIY81H4nbG9CR8Aub4EStUSs4UaODTBaGGxzbLCoHxY
+ 48MxmABc5UQRXt1qaQmlLWmTpHsnzY6tcrnn3PM1jfG7RhOv14ytZ/uQnBAmVKStlySsyzflmO
+ Az5K3SHMXZijaTiD7jIMKH3Dlv0TtMXvCzLGwpr9oE0AQAA
+X-Change-ID: 20250227-media-i2c-lc898217xc-initial-driver-d7b50a135ce5
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, david@ixit.cz
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Vitalii Skorkin <nikroks@mainlining.org>, 
+ Antonio Rische <nt8r@protonmail.com>, 
+ Vasiliy Doylov <nekocwd@mainlining.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1903;
+ i=nekocwd@mainlining.org; h=from:subject:message-id;
+ bh=+6R2Dm3f0PWsrFTZH6ZutnaKbYK6hSXwOT1Aim7DcUg=;
+ b=owGbwMvMwCXGd//xporA/cmMp9WSGDJ1e64f+H1orZNsQvimk/NUWL4G8PzW5EyOcln27d6sE
+ J/MeayLOkpZGMS4GGTFFFn+Gy6SO3BD2bMuN/UZzBxWJpAhDFycAjARsY+MDDc1J8i9eubE0iLl
+ 693wb7nLIqE398wjLyjEpOU4na30n8jwz4bL038+R2i714WOC91SBzZcrPFfFbzm3hqOKYsS/XQ
+ 1GAA=
+X-Developer-Key: i=nekocwd@mainlining.org; a=openpgp;
+ fpr=FF31A21EC0D823497E6D65E60EDFE3B27851BF63
 
-Hi,
+LX898217XC is a 11 bit DAC, designed for linear control
+of voice coil motor. This driver creates a V4L2 subdevice
+and provides control to set the desired focus.
 
-On 25/11/2025 18:59, Swamil Jain wrote:
-> From: Devarsh Thakkar <devarsht@ti.com>
-> 
-> Some SoC's such as AM62P have dedicated power domains
-> for OLDI which need to be powered on separately along
-> with display controller.
-> 
-> So during driver probe, power up all attached PM domains
-> enumerated in devicetree node for DSS.
-> 
-> This also prepares base to add display support for AM62P.
-> 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> [j-choudhary@ti.com: fix PM call sequence causing kernel crash in OLDI]
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> Signed-off-by: Swamil Jain <s-jain1@ti.com>
-> ---
->  drivers/gpu/drm/tidss/tidss_drv.c | 88 +++++++++++++++++++++++++++++--
->  drivers/gpu/drm/tidss/tidss_drv.h |  4 ++
->  2 files changed, 89 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
-> index 1c8cc18bc53c..50158281715f 100644
-> --- a/drivers/gpu/drm/tidss/tidss_drv.c
-> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
-> @@ -8,6 +8,7 @@
->  #include <linux/of.h>
->  #include <linux/module.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/pm_domain.h>
->  #include <linux/aperture.h>
->  
->  #include <drm/clients/drm_client_setup.h>
-> @@ -107,6 +108,72 @@ static const struct drm_driver tidss_driver = {
->  	.minor			= 0,
->  };
->  
-> +static int tidss_detach_pm_domains(struct tidss_device *tidss)
-> +{
-> +	int i;
-> +
-> +	if (tidss->num_domains <= 1)
-> +		return 0;
-> +
-> +	for (i = 0; i < tidss->num_domains; i++) {
-> +		if (tidss->pd_link[i] && !IS_ERR(tidss->pd_link[i]))
-> +			device_link_del(tidss->pd_link[i]);
-> +		if (tidss->pd_dev[i] && !IS_ERR(tidss->pd_dev[i]))
-> +			dev_pm_domain_detach(tidss->pd_dev[i], true);
+Tested on Oneplus 6 (oneplus-enchilada)
 
-There's IS_ERR_OR_NULL()
+Co-developed-by: Vitalii Skorkin <nikroks@mainlining.org>
+Signed-off-by: Vitalii Skorkin <nikroks@mainlining.org>
+Co-developed-by: Antonio Rische <nt8r@protonmail.com>
+Signed-off-by: Antonio Rische <nt8r@protonmail.com>
+Signed-off-by: Vasiliy Doylov <nekocwd@mainlining.org>
+---
+Changes in v3:
+- Fixed MAINTAINERS (Krzysztof)
+- Reordered commits (Krzysztof)
+- Removed blank line from device-tree documentation (Krzysztof)
+- Refactored to use CCI regmap
+- Refactored to use dev_err_probe in probe
+- Link to v2: https://lore.kernel.org/all/20250304-media-i2c-lc898217xc-initial-driver-v2-0-6a463cef3ea8@mainlining.org/
+Changes in v2:
+- PM functions annotated as __maybe_unused.
+- Fixed dt bindings documentation commit message
+- Added v4l2 events (now v4l2-compliance shows no failed tests)
+- Link to v1: https://lore.kernel.org/r/20250304-media-i2c-lc898217xc-initial-driver-v1-0-e2ffd2b2fd5e@mainlining.org
 
-> +		tidss->pd_dev[i] = NULL;
-> +		tidss->pd_link[i] = NULL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int tidss_attach_pm_domains(struct tidss_device *tidss)
-> +{
-> +	struct device *dev = tidss->dev;
-> +	int i;
-> +	int ret;
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct device_node *np = pdev->dev.of_node;
-> +
-> +	tidss->num_domains = of_count_phandle_with_args(np, "power-domains",
-> +							"#power-domain-cells");
-> +	if (tidss->num_domains <= 1) {
-> +		dev_dbg(dev, "One or less power domains, no need to do attach domains\n");
+---
+Vasiliy Doylov (3):
+      media: dt-bindings: Add LC898217XC documentation
+      media: i2c: Add driver for LC898217XC VCM
+      MAINTAINERS: Add entry for Onsemi LC898217XC lens voice coil driver
 
-I don't think this print is needed. It would be printed on almost all
-platforms with DSS.
+ .../bindings/media/i2c/onnn,lc898217xc.yaml        |  53 +++++
+ MAINTAINERS                                        |   7 +
+ drivers/media/i2c/Kconfig                          |   9 +
+ drivers/media/i2c/Makefile                         |   1 +
+ drivers/media/i2c/lc898217xc.c                     | 254 +++++++++++++++++++++
+ 5 files changed, 324 insertions(+)
+---
+base-commit: 7d31f578f3230f3b7b33b0930b08f9afd8429817
+change-id: 20250227-media-i2c-lc898217xc-initial-driver-d7b50a135ce5
 
-> +		return 0;
-> +	}
-> +
-> +	tidss->pd_dev = devm_kmalloc_array(dev, tidss->num_domains,
-> +					   sizeof(*tidss->pd_dev), GFP_KERNEL);
-> +	if (!tidss->pd_dev)
-> +		return -ENOMEM;
-> +
-> +	tidss->pd_link = devm_kmalloc_array(dev, tidss->num_domains,
-> +					    sizeof(*tidss->pd_link), GFP_KERNEL);
-> +	if (!tidss->pd_link)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < tidss->num_domains; i++) {
-> +		tidss->pd_dev[i] = dev_pm_domain_attach_by_id(dev, i);
-> +		if (IS_ERR(tidss->pd_dev[i])) {
-> +			ret = PTR_ERR(tidss->pd_dev[i]);
-> +			goto fail;
-> +		}
-> +
-> +		tidss->pd_link[i] = device_link_add(dev, tidss->pd_dev[i],
-> +						    DL_FLAG_STATELESS |
-> +						    DL_FLAG_PM_RUNTIME | DL_FLAG_RPM_ACTIVE);
-> +		if (!tidss->pd_link[i]) {
-> +			ret = -EINVAL;
-> +			goto fail;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +fail:
-> +	tidss_detach_pm_domains(tidss);
-> +	return ret;
-> +}
-> +
->  static int tidss_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -129,15 +196,24 @@ static int tidss_probe(struct platform_device *pdev)
->  
->  	spin_lock_init(&tidss->irq_lock);
->  
-> +	/* powering up associated OLDI domains */
-
-I think the function name is self-explanatory, no comment needed.
-
-> +	ret = tidss_attach_pm_domains(tidss);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to attach power domains %d\n", ret);
-> +		goto err_detach_pm_domains;
-
-This is not correct. If tidss_attach_pm_domains() fails, it should do
-its own cleanup, thus there's no need to goto err_detach_pm_domains.
-
-> +	}
-> +
->  	ret = dispc_init(tidss);
->  	if (ret) {
->  		dev_err(dev, "failed to initialize dispc: %d\n", ret);
-> -		return ret;
-> +		goto err_detach_pm_domains;
->  	}
->  
->  	ret = tidss_oldi_init(tidss);
-> -	if (ret)
-> -		return dev_err_probe(dev, ret, "failed to init OLDI\n");
-> +	if (ret) {
-> +		dev_dbg(dev, "failed to init OLDI: %d\n", ret);
-> +		goto err_oldi_deinit;
-
-Same here, this is just not correct. Please go through the error
-handling paths with your patch. This also changes dev_err_probe() to
-dev_dbg().
-
-> +	}
->  
->  	pm_runtime_enable(dev);
->  
-> @@ -203,8 +279,12 @@ static int tidss_probe(struct platform_device *pdev)
->  	pm_runtime_dont_use_autosuspend(dev);
->  	pm_runtime_disable(dev);
->  
-> +err_oldi_deinit:
->  	tidss_oldi_deinit(tidss);
->  
-> +err_detach_pm_domains:
-> +	tidss_detach_pm_domains(tidss);
-> +
->  	return ret;
->  }
->  
-> @@ -232,6 +312,8 @@ static void tidss_remove(struct platform_device *pdev)
->  	/* devm allocated dispc goes away with the dev so mark it NULL */
->  	dispc_remove(tidss);
->  
-> +	tidss_detach_pm_domains(tidss);
-> +
->  	dev_dbg(dev, "%s done\n", __func__);
->  }
->  
-> diff --git a/drivers/gpu/drm/tidss/tidss_drv.h b/drivers/gpu/drm/tidss/tidss_drv.h
-> index e1c1f41d8b4b..6eb17cb32043 100644
-> --- a/drivers/gpu/drm/tidss/tidss_drv.h
-> +++ b/drivers/gpu/drm/tidss/tidss_drv.h
-> @@ -41,6 +41,10 @@ struct tidss_device {
->  	/* protects the irq masks field and irqenable/irqstatus registers */
->  	spinlock_t irq_lock;
->  	dispc_irq_t irq_mask;	/* enabled irqs */
-> +
-> +	int num_domains; /* Handle attached PM domains */
-
-What does the comment mean?
-
- Tomi
-
-> +	struct device **pd_dev;
-> +	struct device_link **pd_link;
->  };
->  
->  #define to_tidss(__dev) container_of(__dev, struct tidss_device, ddev)
+Best regards,
+-- 
+Vasiliy Doylov <nekocwd@mainlining.org>
 
 
