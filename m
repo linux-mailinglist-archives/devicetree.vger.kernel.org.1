@@ -1,129 +1,169 @@
-Return-Path: <devicetree+bounces-243258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8188FC96054
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 08:35:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2DD0C960DE
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 08:51:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 256DB342CB3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 07:35:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1B992343437
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 07:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB3528C864;
-	Mon,  1 Dec 2025 07:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FDA72D3226;
+	Mon,  1 Dec 2025 07:51:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="triFu7KY"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="OnVfzf5I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8369E1E868;
-	Mon,  1 Dec 2025 07:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33342BE02B
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 07:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764574522; cv=none; b=T0CJkRPSup9GwFKMQzCQDJo5RQBnQy5aKsNK04U+VgDwnVnPCcdY+4YfReJjIfCSLKcVnfpmooU5AqZnnRVxGGSw36vdfThEWUebVObrmCZUIvLb5KB9Ya9t70ZOgBFuFIMRNAG+Tgm2wIYIbSEzsSk4Od7KquN1YPCZWYTdeqA=
+	t=1764575484; cv=none; b=aH259rgQ7Hlkh8iKMSuNrXDvtT6AldD4yJSS3+JUYIfyohFvtofqULwGWdW3COhxzOiZjzJEt8GxyotB53c6s9XeV19Qw0+Ou9uV36mT3nMdlIR0FQNmPavBlOwkRx5Wm9Qhgyk6VZrTKo3qYUin3LWDOqehVjBlt6dAqYkpDDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764574522; c=relaxed/simple;
-	bh=JZs7G8T/3JRt0ZvUolyJvOncTl4XADz3CVR3TY3IVS8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kr09bKu5xu8/Atm3QSSFMu1ML0XeIouwQtYA9v2tEtLl/9uUJnw09D/D2LfO1PIcsSSoMPMqW1XiEUpT8XzcTL4/eZgZsRtXwsuKS1QOvoAyNjN7vL+jN5LTrqsux2GzX+k407oFvUdOUkEVzW5zfqUbqZl1EGrLDdDBxmcUCXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=triFu7KY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28F97C116C6;
-	Mon,  1 Dec 2025 07:35:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764574522;
-	bh=JZs7G8T/3JRt0ZvUolyJvOncTl4XADz3CVR3TY3IVS8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=triFu7KYRadSNxvd2YyGp7Y3kkgdtN2Q+UiaA2BWheMOezBSxlkfUJd+Tq6PBZDcy
-	 3J5Edc6djKU7SyRuBITSAYztG9Rf+Xx9GyiJgYhO8A7AhcGpnQKWR4CZz62iZo0JVm
-	 OAQ+JfbVw5UCvy8z8HFBlmIBIzjzgn9XtmqjW59vurE8ZMM6Utwamov5auO3750EK2
-	 WzOF7P2pQVMjcyT2+QHV87xPla4vFbWSc9dxZ9hVQSmnt0hkpTUmDT0z69bs8PhERg
-	 TndGGHigoxL6IO2a38TW/ADCYQaNOE7BtHQy7wUbnroE8nYELc34pZ3jnNfnv3PzAn
-	 9Ojtl7nCYRq5g==
-Message-ID: <9aca23d5-2433-4c25-a95d-6a87127c7c83@kernel.org>
-Date: Mon, 1 Dec 2025 08:35:18 +0100
+	s=arc-20240116; t=1764575484; c=relaxed/simple;
+	bh=/ZJ2ugv0V4jr8DpprkrfoRhMoitKaURZS/txd0wECwA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=JIS2HheOdIGo/5pt2IO9YaaXhBVP2zrmRKCIz+R/qRMitEjf+D1zVe2gToFrRyjO2e5ATOt0YU5Iicyn+AylcrMkNCKKhPo3SxzFbfIq7QnQyKe1eTq0v8U+6XofjKtmFlIMMUr4aCUuUk7gN1VGvYdEJQc2pFCN5cHvKquruGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=OnVfzf5I; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20251201075118euoutp0133c02ac9a07901d9af78b7b6c43535cf~9CAyKssqS2201322013euoutp012
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 07:51:18 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20251201075118euoutp0133c02ac9a07901d9af78b7b6c43535cf~9CAyKssqS2201322013euoutp012
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1764575478;
+	bh=Gff9kc5iCvetWdJWK5B5jhJfee8ZUuI2y3EEzh79HdA=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=OnVfzf5INngnqM6yF7UZgnhv6TS5jliieo+iwMG4xq1b1UTSZSDhTKM3malvYoEYr
+	 0USjD58uLHEWYvCjOCg/N1YdHFbQ4ryBS4fT7DWQ2AWEMHC2IP+5g5aMocMKVzughm
+	 S0wEj3Lzgp6CEo3iuBxK6flduspMhjOqzqxZlYxI=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20251201075118eucas1p1b321d3225172a3cf78b20c4d4f988cda~9CAxy9yly1849318493eucas1p1s;
+	Mon,  1 Dec 2025 07:51:18 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20251201075117eusmtip203c1b003ae05cf23f36aefe48df73016~9CAw40JxZ0920209202eusmtip2J;
+	Mon,  1 Dec 2025 07:51:17 +0000 (GMT)
+Message-ID: <be70bdc4-bddd-4afe-8574-7e0889fd381c@samsung.com>
+Date: Mon, 1 Dec 2025 08:51:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: x1-microsoft-denali: Disable
- rfkill for wifi0
-To: Dale Whinham <daleyo@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?Q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251201011457.17422-1-daleyo@gmail.com>
- <20251201011457.17422-9-daleyo@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH v4] of: reserved_mem: Restructure call site for
+ dma_contiguous_early_fixup()
+To: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>, Ye Li
+	<ye.li@oss.nxp.com>, robh@kernel.org, robin.murphy@arm.com
+Cc: saravanak@google.com, quic_obabatun@quicinc.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, william.zhang@broadcom.com, kernel@oss.qualcomm.com,
+	will@kernel.org, djakov@kernel.org, aisheng.dong@nxp.com, joy.zou@nxp.com,
+	frank.li@nxp.com, jason.hui.liu@nxp.com
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251201011457.17422-9-daleyo@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <306596c4-cc91-4500-b705-50e619e9f38e@oss.qualcomm.com>
 Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20251201075118eucas1p1b321d3225172a3cf78b20c4d4f988cda
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250806172503eucas1p264d6731c73592fcc380b0dcc21cdeadf
+X-EPHeader: CA
+X-CMS-RootMailID: 20250806172503eucas1p264d6731c73592fcc380b0dcc21cdeadf
+References: <CGME20250806172503eucas1p264d6731c73592fcc380b0dcc21cdeadf@eucas1p2.samsung.com>
+	<20250806172421.2748302-1-oreoluwa.babatunde@oss.qualcomm.com>
+	<416dbaed-a68f-4edb-a20c-94cb4c53c748@samsung.com>
+	<cef8f9eb-88aa-4771-b25b-2cfd1ac2c387@oss.nxp.com>
+	<3b0cc36d-0f7e-4d07-949f-fce670170247@samsung.com>
+	<306596c4-cc91-4500-b705-50e619e9f38e@oss.qualcomm.com>
 
-On 01/12/2025 02:14, Dale Whinham wrote:
-> Disable rfkill as it is supposed to be according to the ath12k feature
-> flags in the Microsoft Surface Pro 11 ACPI DSDT.
-> 
-> Signed-off-by: Dale Whinham <daleyo@gmail.com>
-> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+On 01.12.2025 07:31, Oreoluwa Babatunde wrote:
+> On 11/28/2025 4:43 AM, Marek Szyprowski wrote:
+>> On 26.11.2025 02:37, Ye Li wrote:
+>>> On 8/11/2025 7:07 PM, Marek Szyprowski wrote:
+>>>> On 06.08.2025 19:24, Oreoluwa Babatunde wrote:
+>>>>> Restructure the call site for dma_contiguous_early_fixup() to
+>>>>> where the reserved_mem nodes are being parsed from the DT so that
+>>>>> dma_mmu_remap[] is populated before dma_contiguous_remap() is called.
+>>>>>
+>>>>> Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved
+>>>>> memory regions are processed")
+>>>>> Signed-off-by: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
+>>>>> Tested-by: William Zhang <william.zhang@broadcom.com>
+>>>> Thanks, applied to dma-mapping-fixes branch.
+>>>>
+>>>> Best regards
+>>> Hi Oreoluwa,
+>>>
+>>> We observed this patch causing kernel boot hang on iMX6 (armv7)
+>>> platforms if using "cma=" kernel parameter. It only happens when the
+>>> size assigned in
+>>> "cma=" parameter is smaller than cma default size in dts.
+>>>
+>>> For example, we use "cma=96M" in command line and below reserved
+>>> memory node (160M) in dts.
+>>>
+>>>          reserved-memory {
+>>>                  #address-cells = <1>;
+>>>                  #size-cells = <1>;
+>>>                  ranges;
+>>>
+>>>                  linux,cma {
+>>>                          compatible = "shared-dma-pool";
+>>>                          reusable;
+>>>                          size = <0xa000000>;
+>>>                          linux,cma-default;
+>>>                  };
+>>>          };
+>>>
+>>> The root cause is this patch moving the dma_contiguous_early_fixup
+>>> from rmem_cma_setup to __reserved_mem_alloc_size. rmem_cma_setup can
+>>> skip the cma reserved memory if command line has cma parameter.
+>>> However, the __reserved_mem_alloc_size won't do it. So this leads to
+>>> have two cma regions added to dma_mmu_remap, one from dts, the other
+>>> from command line. But the reserved memory of memblock that only
+>>> records the cma from command line is inconsistent with dma_mmu_remap.
+>>> The dma_contiguous_remap clears the MMU paging for the region of
+>>> dma_mmu_remap firstly, then create a new mapping by iotable_init. For
+>>> the cma from dts, this causes incorrect memory mapping cleared. Then
+>>> any allocation from memblock in iotable_init hitting to the area will
+>>> meet MMU mapping issue.
+>>>
+> Hi Ye Li,
+>
+> Thanks for pointing this out. From what I see in the code, if "cma="
+> kernel parameter is being used to configure the default cma region, then we
+> should skip adding the DT defined region to dma_mmu_remap array.
+>
+> I will work on a fix which does this and share here when it is done.
 
-No, you just added this file. This must be squashed.
+I wonder how to avoid adding more such checks to 
+drivers/of/of_reserved_mem.c and making this code even more tangled and 
+spaghetti-like... I've briefly scanned that code and it is already quite 
+hard to follow, especially after commits 8a6e02d0c00e ("of: 
+reserved_mem: Restructure how the reserved memory regions are 
+processed") and 2c223f7239f3 ("of: reserved_mem: Restructure call site 
+for dma_contiguous_early_fixup()")... I wonder how many reserved memory 
+regions are used on real machines? Maybe instead of complicating this 
+code even more it is enough to make this configurable via Kconfig and 
+restore pre-8a6e02d0c00e version?
 
-What happened with the rest of patches? I got only 1, 4, 6 and 8?
+>>>  From commit, I don't understand what issue does this patch fix. Can
+>>> you look into the regression and provide a fix patch.
+> Please see below conversation for details on the original issue this patch fixes:
+> https://lore.kernel.org/all/5aa94f41-c689-443b-8665-c6913ff5ba8f@broadcom.com/
 
-Best regards,
-Krzysztof
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
 
