@@ -1,139 +1,161 @@
-Return-Path: <devicetree+bounces-243305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id B74D0C9693C
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:12:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7424C969FA
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:23:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2B89434154D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:12:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 54EBE342868
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:23:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B5929BDA2;
-	Mon,  1 Dec 2025 10:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E01303A20;
+	Mon,  1 Dec 2025 10:23:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="azux+cwI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nh3e4c07"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9CC5661;
-	Mon,  1 Dec 2025 10:12:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E48F302747
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 10:23:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764583938; cv=none; b=KQDwvHUKuv1ap6VWmLRzy88ecuOjlhL8paUoDIoVFUGAXFWzx19uR+idsAFDl8TwueQUEHjHRtTtPUo18ovBAIc8n0l9C4i6dbYKFmBhAB0Pt7Ue4/FVDP9cysVnT2uJnLVC60WXAtcMV2mEIlsQ/oR2/ICrOZYw5FgknIDL/vk=
+	t=1764584616; cv=none; b=EHktFrgyyoyIBZaa1foFzLxVjORTbEssWB73IRSRwNDymo9QrDZWfQClj0iLHiYUupLZLBEeEkdiFYqPhFtQCrgmezoaY5cSiupkU0kpkTJ0ULN5hMkFDNwa5rkJaAWOzZ/R9uZm1moENoSa5AB0wGA3kwFTw5+mawlU+wAUGPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764583938; c=relaxed/simple;
-	bh=VWwSyZL/rmxZX2up7gqGT7NwoNunVBjLI2L900RZA/A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NwdAkaJ+MPSeDXQt06PS7YRAYWUoVSYO4nEZtmfUUgT7sxVLoyDzPVZcIe2fefSeJb6UV0SKfnFiOXQBSIwGIGlSggmbfM73Y1XRGJj7vpVMbaHE5rhff+xWvIBPXjGqBavONyO9S0EsabXtJBFM6jp88sHGZ9Es4MiYNBo0XSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=azux+cwI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59AADC4CEF1;
-	Mon,  1 Dec 2025 10:12:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764583936;
-	bh=VWwSyZL/rmxZX2up7gqGT7NwoNunVBjLI2L900RZA/A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=azux+cwIwlaOaNoECx0iNcm7VRUokBqjw1FeRPp7wuCwHoMaSkdb7l0loRKGqqNta
-	 trkSE2NP5BaWGJBaDywo+HoYMFHQjIHavwB+Dd/XddbUHmJatzXivrlAF32zEf219W
-	 Nk6kQJpOt9v/JyoizCPM3pM4KSlD9P3FFPGLUVeLotvCtLqLFbh7TEY9vu/Y8nzoVl
-	 Im+foPPAAhh3TcceGgZdVKUVHBByVcLYg2N3HQPTP9PSCP1n893Lrw9k2wtOUh4QuF
-	 Tfmq18C5OKXHUWPaRPF3sOz+q5r09hH+W+jDNA5Ewp63bvnOcRMkAehOFUZyzRAz75
-	 kYiza0O0supOA==
-Message-ID: <f27dc5ef-1c60-4724-8e18-33bbc4230d3e@kernel.org>
-Date: Mon, 1 Dec 2025 11:12:12 +0100
+	s=arc-20240116; t=1764584616; c=relaxed/simple;
+	bh=y/Qwl4YPkUepvuWoy1jfQEPKPu+EB9i1kk8NpTVdZ5Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nor1H4Lm67UGuQ3Gg4xCd10FV8eZJLhkJoFWdztnjVuiYRDa8b7MHn5OHiWCCx1oripgMlYhQunmAMtjNa2FHfiZNkz+BuYnWe0X9OQpHSUHDeQ1z2rVYWG/qtu6JGY11chUs8BT4mIdeqko6fUM55VYyP3l0BxjzBWykWwpa38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nh3e4c07; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-477b1cc8fb4so23509195e9.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 02:23:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764584613; x=1765189413; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/aq5fWGVWti1VxWY/4bnYEN4VvYNMxggYcsTA53nNMs=;
+        b=nh3e4c07P+sMJc8Z0WyIXiqDR+4vOLQLiV2A6Xzw9C45Ms46OUJNsNifY6e15sd3xD
+         jZOjY61Mb3CWuF1bvB6+bUd1LVOsUJUzFXOkn/8vGVFXSoBT3+RAIp/TQw95faewbWo1
+         0RfGp0VeKgPhSfsEfHEBkoCwCtRm9WWMVB1/qFcCs10LYXg5HhM7uISKaKZr2RFN0IaS
+         WuBJ3p7F4jlBmDg3WcvuLE26MEhrYSGjLP/RzeM62oAyPAsFVuUyxDF2MutJObFrAEwF
+         ZYiwOdOLL73Z+i17BpIvJ2tP+BfJqAu1lDWiSosEs1sWJQ2u3776TQq08Iv7UlfBMRjo
+         AS8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764584613; x=1765189413;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/aq5fWGVWti1VxWY/4bnYEN4VvYNMxggYcsTA53nNMs=;
+        b=trie1EuqrjhMZl/TMMCHYz4Pj29kyvokKpV8pN/xFwBFxLV9mRBtSx0GF8ataoNLgB
+         TjgNA1mCYbVZ+C4HP/Bn28iSSZb04/XxzybMkSRoo9UUybx8lTorIfycN4Q4hJLJX/eU
+         dv/UymEydI1e6Rxq8cxm71pW5qUd3NMHfWyQdK3efoPNiSz88mr8vIvXxH6B9i0u0X7E
+         W6xjje6Jop7fdiBKPzuS2tB5GobHJS0IKZk53bnFFmNXRWAvOcyUT4ENBtRlLn0J3zJV
+         Hq1ISlzCqtjwrdHpdi1MHVUBaS+3KQc/2yPwWK2frzcy7sHAyL8+zZV0bNxMem1Dj+/7
+         dFrw==
+X-Gm-Message-State: AOJu0YxyUdjImPOQkO0d0VzJdiP65dGRL11BiOiqzgXvKzCUa28M0I3e
+	eZC030w7fzY9POXBnX4rZnIoFOWBBxwaFB9CEdumQSzpTrutcXlj/Ig6
+X-Gm-Gg: ASbGncsZaovhI5IaABp3yr4Cf7ukIrKItM3Ky0Jm+9lbFtT3RA+9v13bCL4LosQL/x3
+	9bpiXxgtUguNS8hNjNc7omzpPevc82rk3qGMEVgUhIODC5GPQY/Qsu3AsVwbXRttw+JNwx+b3ZC
+	TDcS5YCea+rAy7v9Y0Rdtdj5sA57fZAVf9Tu1pEIfRbhJyvKGQwXSsN8U64VJ76wRAiOynQ4DRD
+	NgBz4fPFcte40PZiGFbsTUPAS07hwIgwD0J+gwT4UZNRfOVWw6vatDtFHYh2YByhrCbPEwmpu+U
+	8VOFmdZ2vU0oL+3W1wIMdRCas8eNch+y7P0FFwgkOsuYiUpJD1LbCP0Nl8qGS5WQcDgDCVvFhKw
+	qVP8SQUmp/TmludTDkkSDTeuaCOrDiE0mS4+zuuSh69tulAJ3+SSYFZV/1qF70jxM7b6RRgZhgc
+	gXW4qD+xs/JE8k9XBps9CBbA9G8Q==
+X-Google-Smtp-Source: AGHT+IGFTh5STldnmeUejFuBCNFwzUivENu5VIGhQtql5aFvAWUkx/tqlq9NXgNt2K7ubqXJ0e/UbQ==
+X-Received: by 2002:a05:6000:2c02:b0:429:d725:4125 with SMTP id ffacd0b85a97d-42e0f35bbb9mr26849422f8f.54.1764584613159;
+        Mon, 01 Dec 2025 02:23:33 -0800 (PST)
+Received: from [127.0.1.1] ([2001:861:3201:3d10:4ab6:6efe:9b65:a6af])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1c5c3c8csm29466439f8f.2.2025.12.01.02.23.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Dec 2025 02:23:32 -0800 (PST)
+From: Gary Bisson <bisson.gary@gmail.com>
+Subject: [PATCH v2 0/4] Add support for Ezurio MediaTek platforms
+Date: Mon, 01 Dec 2025 11:23:14 +0100
+Message-Id: <20251201-review-v2-0-dc2df44eec7e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: arm: rockchip: Add HINLINK H28K
-To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251201100008.206524-1-amadeus@jmu.edu.cn>
- <20251201100008.206524-2-amadeus@jmu.edu.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251201100008.206524-2-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJJsLWkC/1XMyw7CIBCF4VdpZi1kwCLFle9hXGCd0kkEDBgva
+ fruojuXX/Kfs0ClwlRh3y1Q6MGVc2rQmw7G2adAgi/NoFEbpVGJb0RPYQ2i1cY65xS0+FZo4tf
+ v6HhqnkqO4j4X8n9zHHrVo9zaHZpBKHHmWnOSwZf3IUTPVznmCOv6AZ/HEueYAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Gary Bisson <bisson.gary@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764584612; l=2132;
+ i=bisson.gary@gmail.com; s=20251201; h=from:subject:message-id;
+ bh=y/Qwl4YPkUepvuWoy1jfQEPKPu+EB9i1kk8NpTVdZ5Y=;
+ b=5/iUh1WOB7Fub2h2Y3ecTZKoHP9jfWojItMviKYc2zwnzsE2UkOO/rPF6T7HSOelfoNIcb6yQ
+ ezfjdlR0l1jD+MvAemlSDIK44aGQ+gu3AYtB/afKC0mLRg5C3L2QFBl
+X-Developer-Key: i=bisson.gary@gmail.com; a=ed25519;
+ pk=eaOrLwovHUZBMoLbrx+L1ppj+AH+TfgxkVhIEyrhkeE=
 
-On 01/12/2025 11:00, Chukun Pan wrote:
-> The HINLINK H28K is a dual-gigabit SBC based on the RK3528 SoC.
-> Add devicetree binding documentation for it.
-> 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index d496421dbd87..8d6e2b28e51a 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -718,6 +718,11 @@ properties:
->            - const: hardkernel,odroid-m2
->            - const: rockchip,rk3588s
->  
-> +      - description: HINLINK H28K
-> +        items:
-> +          - const: hinlink,h28k
-> +          - const: rockchip,rk3528
-> +
+This series adds support for Ezurio MediaTek platforms called
+"Tungsten". It includes support for MT8370-based Tungsten 510 and
+MT8390-based Tungsten 700 SOMs.
 
-Just squash these two binding patches. Way too much churn. Anyway, looks
-like duplicate - two devices with same model name. You have entire
-commit msg to explain that.
+Changelog v1 -> v2:
+- use b4 to cc all maintainers properly
+- squashed patches 2/3 together
+- updated node names to be generic (pmic)
+
+Couldn't repro the schema issues sent by the bots.
+
+Regards,
+
+Gary Bisson (4):
+  dt-bindings: vendor-prefixes: Add Ezurio LLC
+  dt-bindings: arm: mediatek: Add Ezurio Tungsten entries
+  arm64: dts: mediatek: add device tree for Tungsten 510 board
+  arm64: dts: mediatek: add device tree for Tungsten 700 board
+
+ .../devicetree/bindings/arm/mediatek.yaml     |    2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ arch/arm64/boot/dts/mediatek/Makefile         |    2 +
+ .../dts/mediatek/mt8370-tungsten-smarc.dts    |   14 +
+ .../dts/mediatek/mt8390-tungsten-smarc.dts    |   22 +
+ .../dts/mediatek/mt83x0-tungsten-smarc.dtsi   | 1481 +++++++++++++++++
+ 6 files changed, 1523 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8370-tungsten-smarc.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt83x0-tungsten-smarc.dtsi
+
+--
+2.43.0
+
+---
+Gary Bisson (4):
+      dt-bindings: vendor-prefixes: Add Ezurio LLC
+      dt-bindings: arm: mediatek: Add Ezurio Tungsten entries
+      arm64: dts: mediatek: add device tree for Tungsten 510 board
+      arm64: dts: mediatek: add device tree for Tungsten 700 board
+
+ .../devicetree/bindings/arm/mediatek.yaml          |    2 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ arch/arm64/boot/dts/mediatek/Makefile              |    2 +
+ .../boot/dts/mediatek/mt8370-tungsten-smarc.dts    |   14 +
+ .../boot/dts/mediatek/mt8390-tungsten-smarc.dts    |   22 +
+ .../boot/dts/mediatek/mt83x0-tungsten-smarc.dtsi   | 1481 ++++++++++++++++++++
+ 6 files changed, 1523 insertions(+)
+---
+base-commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+change-id: 20251201-review-750072579991
 
 Best regards,
-Krzysztof
+-- 
+Gary Bisson <bisson.gary@gmail.com>
+
 
