@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-243321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83041C96C1F
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:54:26 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24B08C96C1C
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:54:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AEFD3344A8B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:53:22 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5DD04343E10
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6443054E1;
-	Mon,  1 Dec 2025 10:53:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C894F304980;
+	Mon,  1 Dec 2025 10:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pRebKXcz"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="g75xo7L0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay180-hz1.antispameurope.com (mx-relay180-hz1.antispameurope.com [94.100.133.63])
+Received: from mx-relay50-hz3.antispameurope.com (mx-relay50-hz3.antispameurope.com [94.100.134.239])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 144FF30214A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 744E13043C1
 	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 10:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.133.63
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.239
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764586387; cv=pass; b=e0Xs2K1pDp7+oAzfXcIaEEc7kzPzOX9BTh/9liAtoRC1CuNvu75oykIVP9ujRrbr/1IPexkPz/ukGLUudzzqr1awr+sPA47ForE7UoVX2QDe/KKuW9a9hbVLUAKJQk9GFXE7A4PBShYjYBFcxhrJdrgOa6ByQ4Rb0FDhBRIZ2ho=
+	t=1764586385; cv=pass; b=TyJwmeAx4S922AuSCJDWW4B4dOpfEjBtCONAD9UbjkC2ig91hXpj/qMhQ/7JQJYazBKVR2S41vGKZ8f4ehTjvgFbDVkjL7FrFoa0ovYRlNfaYxs1fmTxn9d63ul+i+AfqQoUtjgU8iog5p6ijAUtBCw7IqOM+vstdfpvHL9Drco=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764586387; c=relaxed/simple;
-	bh=5oms8uc5S43PGOTYBY8EU+HPAJQquVtoNbI+x+bKKLA=;
+	s=arc-20240116; t=1764586385; c=relaxed/simple;
+	bh=MYMEvHemwrORDEfBe5yEvkeYTydgc31vjwDeZslgS2M=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KOE0A0+NwqLz1fXOUmHlsiTjFa/JXqE6ZYDX0bfd6yKHzSqVDjpxgJc4t9e+d407YDNRna4SvK7cTSQ1nO5a9cGbrzu63w9nvZKOJuDsMcJe2ExzHrY1CS6GFzBuXzg9f3o8r9JOkydXvuoP6xuAOxrwiCKuiaoeu+QMyENcHCg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pRebKXcz; arc=pass smtp.client-ip=94.100.133.63
+	 MIME-Version; b=saFzDh5Tx1yrqju6q0icPJDmDvKqc5leRn+8QeoYo3s4a5haMKV8YwM30Nf7wgQtR3mwJuqA8Kz4oArD6dfEPxUDwreV8PG8bmOKJTN4/1khk10cR9/3t4t0cJU26LU/ZTLEnJOKfHg9Qghq8ngcS+7Qwz9txvAJyDeMAmJvqqo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=g75xo7L0; arc=pass smtp.client-ip=94.100.134.239
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate180-hz1.hornetsecurity.com 1;
- spf=pass reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ARC-Authentication-Results: i=1; mx-gate50-hz3.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
  smtp.mailfrom=ew.tq-group.com
  smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
  header.from=ew.tq-group.com orig.disposition=pass
 ARC-Message-Signature: a=rsa-sha256;
- bh=jpud14AVdCVE4BqctTtx1QgtADA41ixWO6mfo6mWLNk=; c=relaxed/relaxed;
+ bh=lUdFDXOpdEHblxEFS8Klgzf9uDbkW8RYNQMN1WIjTJI=; c=relaxed/relaxed;
  d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1764586323;
- b=AEAGoWlUI95S1npBamopreKHixKyFPbWZlujSpmGj6Wm2ymdLdFBBAez2sDQat6mPqLnvSOd
- bkW8P9FV6SqADHbgHxYi5ehTKWSaFY9WevLKc/3b3ypNypesqkmE23wKjwTSa2go3S1cZNofxzB
- WmKx9BjenVuuHTfmuB4XEbfc1T8cw9v3HcM3b+1iKJ0OHsW9j5pNyyamgfNK6LvWFhqyK9RHrKD
- jqpILiN8DBGcBvteuf9c7xKb61EnwLPQInqnxoJSKBV5ugfb9lL0eUuKnUFuLt5EAVaEJm9P0LH
- Q0RlbpO3OXdqO/DNL6jWumyR/SCUIPtck9NBs3FIc+DVw==
+ t=1764586322;
+ b=bs4Nr6wMV/Bk2NlhzcxwXCfO3uu9Zb4q7pHKGhA+75jVoDpcEhiU/+HYEIX1xkfxGOomJwYM
+ 7fJlXR02zcByjDhEhLN/MMFqhiTie8F/REMOn/kKFC4QhfghW8P+DTKkg6cy//w5VUBNuN9t2A7
+ mDBXdfhquZ3nRTkoYC09wjgNKsnsq5vzRJ0vGgeAtUbGK+oEbr6LHPB4k87FUKH0G2rJlufa1yR
+ 1xRWZ8kcYRujFop7Z+otNThc2q19iQW86bnPEYQJ6Bg7dNrzIKxXFXoCNTyqGd4WimuCS0SVu1Q
+ YEvazp4houpYzF2NIxek47F0OLEQbORKw5nZ4CWuhzu8w==
 ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1764586323;
- b=UF3PT2pViFHrCymwhlBBpvWL2Ca5KNznHsUl+et9Z5KEwG8egD5OkiAJhl0HBTateoxZc9TP
- AlKFrOjpF+8XHJ8562QE6PMXEOrXf0jRYeknnx7UTkJuxj9Ow3a6s9vGKlSIcl7ZW68T7y8sEzs
- vI0mcJokXc7Sc2lKANODKhv8D5e2N8bPwYINGGrSh4DEnTh4S95ZmklJDMAkmZxpIP/OrqUy4Gc
- l/MT+oJgjg7fVITIiEZo0/qoifv07JQ246EsPxQdBIIGlr4TemEETPp28Lez3+wtNKijHJTY/8K
- HfXMIRj0iVL/IEUNs93E2UAiFNzROyWKJq3wncnaR8vUw==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay180-hz1.antispameurope.com;
- Mon, 01 Dec 2025 11:52:03 +0100
+ t=1764586322;
+ b=IU86yakjVkJMvGz6x46MG3Ugjfqcbv6WFm+wdrJUbbHViCoWtHmYXvxugiDd25Q1Qv5wZjay
+ RBOlXBvk5XBM7CQ8p70uJsEvTOdTMdSC3y9iBZO4YS7UaA2IBJ7NGbbL+aVvn9oIZnAqgVV71uP
+ awYu/j9eL8lowOm1UYzjHZ9rQnxq67uTa+o1G+QojKnXjEj0WYohsyrU3rJBuGxcg8YlMAYe+gK
+ HWWsUa8uNLnJsD+0ODzQtEQPQo1jHvaOs5r8mGf9GC3/0s7LCXpjsGAl92SGSBRHHqsLZpHVBMg
+ TZZzksW6cg4dH799Yz4PHrM8gEolW1xxqnijmTsyViIjg==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay50-hz3.antispameurope.com;
+ Mon, 01 Dec 2025 11:52:02 +0100
 Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
 	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id B50C8CC0E91;
-	Mon,  1 Dec 2025 11:51:53 +0100 (CET)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 96251CC0E92;
+	Mon,  1 Dec 2025 11:51:54 +0100 (CET)
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Shawn Guo <shawnguo@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -68,9 +68,9 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 1/3] irqchip/ls-extirq: Convert to platform driver
-Date: Mon,  1 Dec 2025 11:51:40 +0100
-Message-ID: <20251201105144.539450-2-alexander.stein@ew.tq-group.com>
+Subject: [RFC PATCH 2/3] irqchip/ls-extirq: Use managed resources
+Date: Mon,  1 Dec 2025 11:51:41 +0100
+Message-ID: <20251201105144.539450-3-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251201105144.539450-1-alexander.stein@ew.tq-group.com>
 References: <20251201105144.539450-1-alexander.stein@ew.tq-group.com>
@@ -87,100 +87,90 @@ X-cloud-security-crypt: load encryption module
 X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
 X-cloud-security-Mailarchivtype:outbound
 X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay180-hz1.antispameurope.com with 4dKghB1ZPZz2SjPb
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay50-hz3.antispameurope.com with 4dKghC0qlRz2nHk2
 X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:877b155cd18575eb910342161cf8e7ff
-X-cloud-security:scantime:2.275
+X-cloud-security-Digest:31ea3d37a4def439ed8686206906e05d
+X-cloud-security:scantime:1.961
 DKIM-Signature: a=rsa-sha256;
- bh=jpud14AVdCVE4BqctTtx1QgtADA41ixWO6mfo6mWLNk=; c=relaxed/relaxed;
+ bh=lUdFDXOpdEHblxEFS8Klgzf9uDbkW8RYNQMN1WIjTJI=; c=relaxed/relaxed;
  d=ew.tq-group.com;
  h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1764586322; v=1;
- b=pRebKXczNNPU+BVG1uvJYdu3MmX4PbYaVL4h3SDEsAhxMsHaz45pDTzkR/bZlYb2H38QzXdI
- fj+xxyRRXfKmCz63+MY/l608HouERT0u64uMb2BZMV+5az7d5peZh5KlDuui3A0/7cZx+O7KvUp
- qB/Y99cBOyzVxWpAjEVnJ4JeLn6fOz4zWa2gf4ddbD4HCb+KF9tWljmgyAMbTDDrKMNjfxBAJ4g
- aJ7Q6d3hnOoltZ1ABh5IZxLB3ekTNdrHNTIgSW+tbJMKG3jlEvfZYdrA8eefPgMdVlFAWdNb//0
- J8/fu7GX8B5JBC5BiZP05nbiH+gFZTQReHOKhT/vGckNg==
+ t=1764586321; v=1;
+ b=g75xo7L0JKsP6V3wC4o6voaZHGQnv8N9G7igdoTeQo2bifSbY8rHj9NKk2znKLPZJtv7DC/p
+ p/r1WH8zXzLKTl52QhAypEhUlQvdUpnLm563ftnIEF0Obv39+0Nm3SWwGF4To0YrXXL9trLYaQe
+ 5XL8zhCmz2PZvO9LxeZj5SHvo7Q5JTibhU2PQYH/mHRIJqkxfzFyCMi0iFyJdFqANHApuUhnaYd
+ xlR/ZCMX2wojPvQ9irRKfdn+0Ekk4O6/2A+8oQQUPYNe/fXhASiS3T+hJLMHmtgTftfjt6pBvVn
+ 96YfAvI3NKWHD+2a/utOBkPBNgQtViNzVPI+A/OR7V5Vw==
 
-extirq maps to gic which might not be present yet when this driver is
-initialized. Convert it to platform driver in order to allow probe
-deferral.
+This simplifies the error handling and probe is straight forward.
+Also use dev_err_probe for even more simplification.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- drivers/irqchip/irq-ls-extirq.c | 40 ++++++++++++++++++++++-----------
- 1 file changed, 27 insertions(+), 13 deletions(-)
+ drivers/irqchip/irq-ls-extirq.c | 37 ++++++++-------------------------
+ 1 file changed, 9 insertions(+), 28 deletions(-)
 
 diff --git a/drivers/irqchip/irq-ls-extirq.c b/drivers/irqchip/irq-ls-extirq.c
-index 50a7b38381b98..cb7db9ae79087 100644
+index cb7db9ae79087..52b8b9fc17621 100644
 --- a/drivers/irqchip/irq-ls-extirq.c
 +++ b/drivers/irqchip/irq-ls-extirq.c
-@@ -168,19 +168,29 @@ ls_extirq_parse_map(struct ls_extirq_data *priv, struct device_node *node)
- 	return 0;
- }
+@@ -192,26 +192,17 @@ static int ls_extirq_probe(struct platform_device *pdev)
+ 	if (!parent_domain)
+ 		return dev_err_probe(dev, -EPROBE_DEFER, "Cannot find parent domain\n");
  
--static int __init
--ls_extirq_of_init(struct device_node *node, struct device_node *parent)
-+static const struct of_device_id ls_extirq_match[] = {
-+	{ .compatible = "fsl,ls1021a-extirq" },
-+	{ .compatible = "fsl,ls1043a-extirq" },
-+	{ .compatible = "fsl,ls1088a-extirq" },
-+	{}
-+};
-+
-+static int ls_extirq_probe(struct platform_device *pdev)
- {
-+	struct device_node *node = pdev->dev.of_node;
- 	struct irq_domain *domain, *parent_domain;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *irq_parent;
- 	struct ls_extirq_data *priv;
- 	int ret;
- 
--	parent_domain = irq_find_host(parent);
--	if (!parent_domain) {
--		pr_err("Cannot find parent domain\n");
--		ret = -ENODEV;
--		goto err_irq_find_host;
+-	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+-	if (!priv) {
+-		ret = -ENOMEM;
+-		goto err_alloc_priv;
 -	}
-+	irq_parent = of_irq_find_parent(dev->of_node);
-+	if (!irq_parent)
-+		return -ENODEV;
-+
-+	parent_domain = irq_find_host(irq_parent);
-+	if (!parent_domain)
-+		return dev_err_probe(dev, -EPROBE_DEFER, "Cannot find parent domain\n");
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
  
- 	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
- 	if (!priv) {
-@@ -194,7 +204,7 @@ ls_extirq_of_init(struct device_node *node, struct device_node *parent)
- 	 */
- 	priv->intpcr = of_iomap(node, 0);
- 	if (!priv->intpcr) {
--		pr_err("Cannot ioremap OF node %pOF\n", node);
-+		dev_err(dev, "Cannot ioremap OF node %pOF\n", node);
- 		ret = -ENOMEM;
- 		goto err_iomap;
- 	}
-@@ -223,10 +233,14 @@ ls_extirq_of_init(struct device_node *node, struct device_node *parent)
- err_iomap:
- 	kfree(priv);
- err_alloc_priv:
--err_irq_find_host:
- 	return ret;
+-	/*
+-	 * All extirq OF nodes are under a scfg/syscon node with
+-	 * the 'ranges' property
+-	 */
+-	priv->intpcr = of_iomap(node, 0);
+-	if (!priv->intpcr) {
+-		dev_err(dev, "Cannot ioremap OF node %pOF\n", node);
+-		ret = -ENOMEM;
+-		goto err_iomap;
+-	}
++	priv->intpcr = devm_of_iomap(dev, node, 0, NULL);
++	if (!priv->intpcr)
++		return dev_err_probe(dev, -ENOMEM, "Cannot ioremap OF node %pOF\n", node);
+ 
+ 	ret = ls_extirq_parse_map(priv, node);
+ 	if (ret)
+-		goto err_parse_map;
++		return dev_err_probe(dev, ret, "Failed to parse IRQ map\n");
+ 
+ 	priv->big_endian = of_device_is_big_endian(node->parent);
+ 	priv->is_ls1021a_or_ls1043a = of_device_is_compatible(node, "fsl,ls1021a-extirq") ||
+@@ -220,20 +211,10 @@ static int ls_extirq_probe(struct platform_device *pdev)
+ 
+ 	domain = irq_domain_create_hierarchy(parent_domain, 0, priv->nirq, of_fwnode_handle(node),
+ 					     &extirq_domain_ops, priv);
+-	if (!domain) {
+-		ret = -ENOMEM;
+-		goto err_add_hierarchy;
+-	}
++	if (!domain)
++		return dev_err_probe(dev, -ENOMEM, "Failed to add IRQ domain\n");
+ 
+ 	return 0;
+-
+-err_add_hierarchy:
+-err_parse_map:
+-	iounmap(priv->intpcr);
+-err_iomap:
+-	kfree(priv);
+-err_alloc_priv:
+-	return ret;
  }
  
--IRQCHIP_DECLARE(ls1021a_extirq, "fsl,ls1021a-extirq", ls_extirq_of_init);
--IRQCHIP_DECLARE(ls1043a_extirq, "fsl,ls1043a-extirq", ls_extirq_of_init);
--IRQCHIP_DECLARE(ls1088a_extirq, "fsl,ls1088a-extirq", ls_extirq_of_init);
-+static struct platform_driver ls_extirq_driver = {
-+	.driver = {
-+		.name		= "irq-ls-extirq",
-+		.of_match_table	= ls_extirq_match,
-+	},
-+	.probe = ls_extirq_probe,
-+};
-+builtin_platform_driver(ls_extirq_driver);
+ static struct platform_driver ls_extirq_driver = {
 -- 
 2.43.0
 
