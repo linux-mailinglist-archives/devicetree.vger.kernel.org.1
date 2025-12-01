@@ -1,154 +1,136 @@
-Return-Path: <devicetree+bounces-243520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC706C98897
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 18:33:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32131C988AC
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 18:35:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 51AC44E1CA0
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 17:33:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 01BF94E1B7C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 17:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB5A335BDB;
-	Mon,  1 Dec 2025 17:33:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 390DD333727;
+	Mon,  1 Dec 2025 17:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r/yD3p2p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OOBalwkf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90DBA21CC4F;
-	Mon,  1 Dec 2025 17:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9800821CC4F
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 17:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764610393; cv=none; b=e2FLNzv0mvabsUNENHi7BtNFVi2gqIxNqgGoWPGB/8SE4U7kRS5/blnMvvfDASNV7zT9iuIPFhXsylHkGK9yMY9UW4CSAdUbiCsG8JfGnqnmVJBxPIGL/AN84esW/I1FFXdU3Mu/0uDKEwQ7cxy2e/mXl/VQXl8gVU+4BAx9kXo=
+	t=1764610521; cv=none; b=ErT2D5GgY3UIfCtYAGgaDnKTb6Cmu4CUXF2th5u7/Z8r79iFJMMTo00yNtsU06rtZOo7wtwpJ919UiCHVgjUE04pfiUBcl3c3Tnx44sS3ESileufGIJWjSSOCqHs1JHb+VvMpEXlr2U//YOM/PjP1vsjdyDJ0oW5M18fLx9xceU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764610393; c=relaxed/simple;
-	bh=vZzWjqKwBCifJUL7S/hk8AvPEyWly2FaYZdeQ4GB3io=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jQHxaldWrl0cvn4FfRwQERpbPtSVWZPvE9RzDyw71fpMl8mjkobraicnJY1eikuB+lmYD9KSxVW7yGm4Aj0LaFLEdfe+CLPBqF7ivMwSMxfaRlI2pjfeTN3m5xgfloITN5nUBBQAdjoDjfzWcHJIylCcFioLGxH+M9tyZpCiiKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r/yD3p2p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B67D4C4CEF1;
-	Mon,  1 Dec 2025 17:33:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764610393;
-	bh=vZzWjqKwBCifJUL7S/hk8AvPEyWly2FaYZdeQ4GB3io=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r/yD3p2pnPlaBW2Ui94UJkgH+PqfrB0VuDESq6+x1dgsNIs6+Ey+jR6nxWu2gs7vb
-	 peGCeiu+DsZiGhIHo8P6Xq7xDJ5N5QzEghAdWIKRL18AuAD0xJ+lmlFoMU7FFpTAgD
-	 3exHo19lEKixc6kgJuEmGtfWImUIdX4Z+mKcnd6jtCcdDkhuT0V8oW2hll9bfAmEzD
-	 ytx20NxLBInYakGHg7wJAShUpWtTW2vaWrvZKUl8Jt/QGWx86EEm4SqIWV3AZTvJuX
-	 S0T4S/eXZCycGCTXGiSWPoL+CD57MxXeh0I2dDliQw9ReO0os/Jypoe33AbizOjBet
-	 OYM1zeUbZ4evw==
-Message-ID: <16bb96e9-c632-457c-8179-82c17bd2a685@kernel.org>
-Date: Mon, 1 Dec 2025 18:33:07 +0100
+	s=arc-20240116; t=1764610521; c=relaxed/simple;
+	bh=9/+YKSn6Mo31VedRJb+IibJXYf/85gv9udHE9tPq93Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=g68T+rjFQxjWS+5fZqUwaSauJYqU5LFloXAlxW1NHZxSoQblwcBvCcIuWmwvuefKUhMpHwiw3We2kA47Jc1WX4xYGfMN5/B1kR8y0WfeBKi0thsF1gGIAEc248z6f75HQEjUcMTdaZiCX7VT5NDZbaXU95kqnpgFDuKDXZaPixI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OOBalwkf; arc=none smtp.client-ip=209.85.222.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-8b2dec4d115so448756285a.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 09:35:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764610518; x=1765215318; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HUy9/tMpZEG+dMBQoKUGEIkUyG26fQzLzLoG5fd72og=;
+        b=OOBalwkfamJ0HbqbJdzy05QkeJR1iwN6T94oYuSwyZ00E45NgGuG7B+og81xhMg3P2
+         H3ULAzRc3WU5P7UqZfAgynDZylCpdRftwneCOkaIslhkHxbAdUlFi6PPJfgBNysguwtu
+         6j+YAcskWi6geAfsQnYfile3EPRA4NwYNBW1Gu2/VcE5IIy1INs/6RfK+WL8Z/+8J+er
+         gjWVnBX6K6T29aqHQ/RwVjBDMSRpqljnzFpKH17IaUpqm7okc6CMxon+eqv7bE7k7Fpg
+         Yg1DvFk4/i74Etr1NEilI0vgbCy3vHnv0Xdg+AVqFrB5RVtxyPoHLqJ5p5jgmHFWaWyi
+         ij4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764610518; x=1765215318;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=HUy9/tMpZEG+dMBQoKUGEIkUyG26fQzLzLoG5fd72og=;
+        b=tT4TIbm9wiPKtMN4qkb62dWO4zVo2txat/axeE1iDFaaX/dMIaFHgiQ4wFMvXGL46g
+         2iXyryTgvnLRjQ1kq1b68+ppKjPb9xfxB5oOt+qU4/5ZAfC7+vywgZ4loY4M2V4uA26s
+         U+Oc7307YO8hQnVKVsMKPesiRJsOm5BL4p0QLQPBKW8U0vi4Rt2aqqTyUJ9nn4Og8tNv
+         WunJYfovWkTmVbZGVk2ZGKacrLxpBa9vYXp4GIR+1bO4PznCema/XH4q2j0I4OGzVRHV
+         HL8Et12e8upT95FuGk8Ivv2qcMPRzyvWNiAeNeeHrkmkp9rNJmD5IW6y8jC83R324AK+
+         dO2Q==
+X-Gm-Message-State: AOJu0YwIi/2fgdns/6zbxLG7KPrj9bZMpjwXYwlP9PP68Ith4Qpwxf6c
+	fjn7uAQMvH8RmFhRGur08/hNQu5i3s/zx8DZ+zQx3PFWYopbr517MdkO2cu50X/WFILf4NpNZi7
+	yFeHiE7rrfFYV1CGBLq499QvgjzMb6aA=
+X-Gm-Gg: ASbGncv+IKtMRx2tpp58egpKDqOtgqEmNMWOWLTAR4etBsRIWpQdzrCbtR7DhFrIkM8
+	Tvu/XTI/OPCjRoaVBO6m5MtaS19HHXml3zOf1OtIqNB6WF7/sgSwjvVNqPF3WEY5cEmUZGQOsbJ
+	H8CTHhLh1+Fy8vzK9S3f+96JwRZYeuKBdNFBHSmHBYsfeoz35XxEOzOCUxydMrmif97CAqrTspk
+	vTh9JBW+uNnW+JWyf3W/5+F6ox6ixskn2MIGqUBaUhaJr0YmKqgRJnm52gWzMBJBNaMZhWkQLmi
+	ULfkQj7xG8QgTW/UjQ+NsVNF3vHQmoveXuY9CGc=
+X-Google-Smtp-Source: AGHT+IG9z48YMtq1Hoc/6GZ1Q2125xNYsRwXEceD8NyRrDRi12uj4aXH0Nvq70m/GP3MOT/fvQpHE0zCpZJfWXVma+M=
+X-Received: by 2002:a05:620a:1a25:b0:8b1:f2cd:76ad with SMTP id
+ af79cd13be357-8b33d5ffadamr5603990885a.89.1764610518305; Mon, 01 Dec 2025
+ 09:35:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: net: nxp,s32-dwmac: Use the GPR syscon
-To: Dan Carpenter <dan.carpenter@linaro.org>,
- Jan Petrous <jan.petrous@oss.nxp.com>
-Cc: s32@nxp.com, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linaro-s32@linaro.org
-References: <cover.1764592300.git.dan.carpenter@linaro.org>
- <333487ea3d23699c7953524cda082813ac4d7be3.1764592300.git.dan.carpenter@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <333487ea3d23699c7953524cda082813ac4d7be3.1764592300.git.dan.carpenter@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251201-evb1-pcie1-v1-1-c62bba5c1167@gmail.com>
+In-Reply-To: <20251201-evb1-pcie1-v1-1-c62bba5c1167@gmail.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Mon, 1 Dec 2025 21:35:07 +0400
+X-Gm-Features: AWmQ_bkh-_4MrBD8Z1igFWdl8lWvuEpvTQY628KgzrJmFFeIaNlOE_zlYPP9A-Y
+Message-ID: <CABjd4YxiOsw0_vR=igLhGkXUp4kSfx_eWv6j=FrsX-qo5sR2hw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add overlay for the PCIe slot on
+ RK3576 EVB1
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/12/2025 14:08, Dan Carpenter wrote:
-> The S32 chipset has a GPR region which has a miscellaneous registers
-> including the GMAC_0_CTRL_STS register.  Originally this code accessed
-> that register in a sort of ad-hoc way, but we want to access it using
-> the syscon interface.
-> 
-> We still need to maintain the old method of accessing the GMAC register
-> but using a syscon will let us access other registers more cleanly.
-> 
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+On Mon, Dec 1, 2025 at 4:37=E2=80=AFPM Alexey Charkov <alchark@gmail.com> w=
+rote:
+>
+> Rockchip RK3576 EVB1 has an onboard PCIe slot (PCIe 2.1, x4 mechanically,
+> x1 electrically), but it shares pins and PHY with the only USB3 Type-A
+> port.
+>
+> There is a physical switch next to the slot to transfer respective pins
+> connection from the USB3 port to the PCIe slot, but apart from flipping
+> the switch one must also disable the USB3 host controller to prevent it
+> from claiming the PHY before the PCIe slot can become usable.
+>
+> Add an overlay to disable the USB3 host port and instead enable the
+> PCIe slot, along with its pin configs. The physical switch must still be
+> flipped to the "ON - PCIe1" position for this to work.
+>
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
->  Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> index 2b8b74c5feec..17f6c50dca03 100644
-> --- a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> @@ -32,6 +32,11 @@ properties:
->        - description: Main GMAC registers
->        - description: GMAC PHY mode control register
->  
-> +  phy-sel:
+>  arch/arm64/boot/dts/rockchip/Makefile              |  4 +++
+>  .../boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso   | 31 ++++++++++++++++=
+++++++
+>  2 files changed, 35 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/=
+rockchip/Makefile
+> index ad684e3831bc..63198a618a2b 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -252,6 +252,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3576-armsom-sige5=
+-v1.2-wifibt.dtb
+>  rk3576-armsom-sige5-v1.2-wifibt-dtbs :=3D rk3576-armsom-sige5.dtb \
+>         rk3576-armsom-sige5-v1.2-wifibt.dtbo
+>
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3576-evb1-v10-pcie1.dtb
+> +rk3576-evb1-v10-pcie1-dtbs :=3D rk3576-evb1-v10.dtb \
+> +       rk3576-evb1-v10-pcie1.dtbo
 
-Missing vendor prefix.
-
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - description: The offset into the s32 GPR syscon
-
-No, first item is not the offset but the phandle. You need syntax like here:
-
-https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
-
-The description of the first item (unlike in example above) should say
-what is the purpose, how this device is using GPR region, what is it
-needed for.
+Missed the separate .dtbo target. Will amend in v2. Should have
+something like this further up in the Makefile:
+dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3576-evb1-v10-pcie1.dtbo
 
 Best regards,
-Krzysztof
+Alexey
 
