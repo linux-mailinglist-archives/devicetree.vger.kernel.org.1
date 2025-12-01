@@ -1,211 +1,206 @@
-Return-Path: <devicetree+bounces-243477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFA2DC98029
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 16:19:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F63C98059
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 16:21:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7BA33A3D40
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 15:18:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A73983A3385
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 15:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1DD632340D;
-	Mon,  1 Dec 2025 15:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D429632AAA8;
+	Mon,  1 Dec 2025 15:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TiEnM7xQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VZEK9ZWK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D25320A02;
-	Mon,  1 Dec 2025 15:18:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C8E329E6E;
+	Mon,  1 Dec 2025 15:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764602313; cv=none; b=ZEpzVYJVSOHVKt9Wk+NJs8DrFbuiJ2uRxGPeEHQD6sxk/ZIO4vyIU+NZZp7ckfSPs2yw4bZy82jmHpC0LyXwyX2WrfaGAskfzxr6OZxooUiRpxfoS518eDIut9Rltit7OnXQfHkg/zshPAytVewrk8Zk8l670rNotHZ3f+GhJ0I=
+	t=1764602462; cv=none; b=MoXB30aGz0EItjp2uMvdhCH03BA8FATVCTCpWNlguYzhOHJEK/AlabGt5Cs80hf9M9lmBk36ucB0c2r8BFb/Hp0sfmAejR+okgw2aYttFxupMEK5XgL2jmYeKqgP5Lt/nvldIaVWsioPrEHpH/M0D/WsOgOmLrvDRndtrWYAXqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764602313; c=relaxed/simple;
-	bh=Mki7EtWdDWKaDpyKx9WCBLY4B2bGO8AptlrZFKGH1tI=;
+	s=arc-20240116; t=1764602462; c=relaxed/simple;
+	bh=GtGmDX/AhMSuhiKJVzfPEcFDYyXwcQo7/YcDqwnHlzs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XYbVq9t3Bj+8iqt05Gy6GiDgHgneKtHqpB5igtSnt1wGyPp1DDDPTOsb7B7uHFa24AFLY2L8XG+O3oJTJLQN/eXL6xeblSuVmVAo5BGFrt/9At0rbJPsPKaKiSSygIgoFhP4nZoG53JbvWH78gNzKseUIkqH13hrB5rDt7kIhUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=TiEnM7xQ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (net-93-65-100-155.cust.vodafonedsl.it [93.65.100.155])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3CF926DF;
-	Mon,  1 Dec 2025 16:16:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1764602165;
-	bh=Mki7EtWdDWKaDpyKx9WCBLY4B2bGO8AptlrZFKGH1tI=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=jMMpeU1CgxeR70dYlaAZ1Bw+SmEsEuQ0jh5HMaPcPvkXhmlvxvvNPABeyl01P21gTcWuStFbFljNbG5ywns0UiMDCvoQx4fhtW/6YQx44p3V56gJknNpPpI3f68ICjbIElci8UvIE15uf747eHQuXga8rsYJboUX70qu/K3FJJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VZEK9ZWK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B962DC4CEF1;
+	Mon,  1 Dec 2025 15:21:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764602461;
+	bh=GtGmDX/AhMSuhiKJVzfPEcFDYyXwcQo7/YcDqwnHlzs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TiEnM7xQ4X1IvX98Qz0t3roG0/74V0pU8N5Fo+DiAy2c3Qqb2iHxDJtxN6WFsest+
-	 WPSMNa7DQbETHLHihx5e6o8QDp+qfKMwybdgfOsZbqsFakMoNO570XFiAne4niTGSE
-	 AJv9bhwPW/+G8e8IfftKnym236Mbn8PUiAlupzEQ=
-Date: Mon, 1 Dec 2025 16:18:16 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, Jacopo Mondi <jacopo@jmondi.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Naushir Patuck <naush@raspberrypi.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
-	Kieran Bingham <kieran.bingham@ideasonboard.com>, David Plowman <david.plowman@raspberrypi.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Peter Robinson <pbrobinson@gmail.com>, 
-	Stefan Wahren <wahrenst@gmx.net>, "Ivan T. Ivanov" <iivanov@suse.de>, 
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Subject: Re: [PATCH v2 11/16] media: i2c: ov5647: Add control of
- V4L2_CID_HBLANK
-Message-ID: <3frejdi5imq4kq6d4mycgtn2milxxptgaspn6fciwp62hmowdv@tepoa2ri3yha>
-References: <20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com>
- <20251118-b4-rpi-ov5647-v2-11-5e78e7cb7f9b@ideasonboard.com>
+	b=VZEK9ZWKk/GAS8Coktmt1tPWsi0PLBEftcXDUJJ9SqfIV8XXJYlB5LpL9peuH1QVY
+	 d7BGdSBieGVdP45eEvWS/BujkT4t6+e4KOs669pTArdJCYo2qcQKZ9GzBk4cDUFw1Q
+	 6C6u333t+1cxDBRZAaETq47U0HLHKIj2hTEg5qEONt4KVxdV95VUL0ctK31XiF53ij
+	 0+0cCsg5c2TPlO7MhEDWvLDjBtL5YWyPYWg8HZx5EzkzlSWmoMEgTJqTtvdii1QJQR
+	 wzYO0v7TR6P0bvcC2K/BOYMf3x9SGsE0neCQKNHByxn5NM3hOJyqUbuDRF3xhw4M9y
+	 7OsNsCpVHhb0g==
+Date: Mon, 1 Dec 2025 16:20:58 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Biju <biju.das.au@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v3 0/8] Add RZ/G3E GPT support
+Message-ID: <vbqsrlqyzd2hhg3qhbpuw4h3tfigpf5vv5yfqoxyad7b5657sy@4opkalytc3kv>
+References: <20250923144524.191892-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pviclmaqrxg2pdad"
 Content-Disposition: inline
-In-Reply-To: <20251118-b4-rpi-ov5647-v2-11-5e78e7cb7f9b@ideasonboard.com>
+In-Reply-To: <20250923144524.191892-1-biju.das.jz@bp.renesas.com>
 
-Hi Jai
 
-On Tue, Nov 18, 2025 at 05:33:04PM +0530, Jai Luthra wrote:
-> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
->
-> The driver did expose V4L2_CID_HBLANK, but as a READ_ONLY control.
->
-> The sensor only uses the HTS register to control the line length,
-> so convert this control to read/write, with the appropriate ranges.
-> Adopt the old fixed values as the minimum values permitted in each
-> mode to avoid issues of it not streaming.
->
-> This should allow exposure times up to ~3 seconds (up from ~1sec).
->
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+--pviclmaqrxg2pdad
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 0/8] Add RZ/G3E GPT support
+MIME-Version: 1.0
 
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Hello Biju,
 
-Thanks
-  j
+On Tue, Sep 23, 2025 at 03:45:04PM +0100, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>=20
+> Add RZ/G3E GPT support. It has multiple clocks and resets compared to
+> RZ/G2L. Also prescale field width and factor for calculating prescale
+> are different.
+>=20
+> This patch series depend upon[1]
+>=20
+> [1]
+> https://lore.kernel.org/all/20250915163637.3572-1-biju.das.jz@bp.renesas.=
+com/
+>=20
+> v2->v3:
+>  * Added Rb tag from Rob for bindings patch
+>  * Dropped wave form callback conversion from this patch series as
+>    it is covered in another series[1]
+>  * Added suspend/resume support.
+> v1->v2:
+>  * Created separate document for RZ/G3E GPT.
+>  * Updated commit header and description for binding patch.
+>  * Added waveform callback conversion to this series.
+>  * Collected tag.
+>  * Added link to hardware manual
+>  * Updated limitation section in driver patch.
+>=20
+> Biju Das (8):
+>   dt-bindings: pwm: Document RZ/G3E GPT support
+>   pwm: rzg2l-gpt: Add info variable to struct rzg2l_gpt_chip
+>   pwm: rzg2l-gpt: Add prescale_pow_of_two_mult_factor variable to struct
+>     rzg2l_gpt_info
+>   pwm: rzg2l-gpt: Add calculate_prescale() callback to struct
+>     rzg2l_gpt_info
+>   pwm: rzg2l-gpt: Add RZ/G3E support
+>   pwm: rzg2l-gpt: Add suspend/resume support
+>   arm64: dts: renesas: r9a09g047: Add GPT nodes
+>   arm64: dts: renesas: r9a09g047e57-smarc: Enable GPT on carrier board
+>=20
+>  .../bindings/pwm/renesas,rzg3e-gpt.yaml       | 323 ++++++++++++++++++
+>  arch/arm64/boot/dts/renesas/r9a09g047.dtsi    | 184 ++++++++++
+>  .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  13 +
+>  drivers/pwm/pwm-rzg2l-gpt.c                   | 209 ++++++++++--
+>  4 files changed, 704 insertions(+), 25 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg3e-g=
+pt.yaml
+>=20
+>=20
+> base-commit: bf2602a3cb2381fb1a04bf1c39a290518d2538d1
 
-> ---
->  drivers/media/i2c/ov5647.c | 26 +++++++++++++-------------
->  1 file changed, 13 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/media/i2c/ov5647.c b/drivers/media/i2c/ov5647.c
-> index 9b5a1275c29877dff99c74aa8d49605c02fa6ed6..48c0e302319d724a20aa7885a62e517d515c6191 100644
-> --- a/drivers/media/i2c/ov5647.c
-> +++ b/drivers/media/i2c/ov5647.c
-> @@ -53,6 +53,8 @@
->  #define OV5647_REG_AEC_AGC		0x3503
->  #define OV5647_REG_GAIN_HI		0x350a
->  #define OV5647_REG_GAIN_LO		0x350b
-> +#define OV5647_REG_HTS_HI		0x380c
-> +#define OV5647_REG_HTS_LO		0x380d
->  #define OV5647_REG_VTS_HI		0x380e
->  #define OV5647_REG_VTS_LO		0x380f
->  #define OV5647_REG_TIMING_TC_V		0x3820
-> @@ -79,6 +81,8 @@
->  #define OV5647_VBLANK_MIN		24
->  #define OV5647_VTS_MAX			32767
->
-> +#define OV5647_HTS_MAX			0x1fff
-> +
->  #define OV5647_EXPOSURE_MIN		4
->  #define OV5647_EXPOSURE_STEP		1
->  #define OV5647_EXPOSURE_DEFAULT		1000
-> @@ -187,8 +191,6 @@ static struct regval_list ov5647_2592x1944_10bpp[] = {
->  	{0x3a19, 0xf8},
->  	{0x3c01, 0x80},
->  	{0x3b07, 0x0c},
-> -	{0x380c, 0x0b},
-> -	{0x380d, 0x1c},
->  	{0x3814, 0x11},
->  	{0x3815, 0x11},
->  	{0x3708, 0x64},
-> @@ -276,8 +278,6 @@ static struct regval_list ov5647_1080p30_10bpp[] = {
->  	{0x3a19, 0xf8},
->  	{0x3c01, 0x80},
->  	{0x3b07, 0x0c},
-> -	{0x380c, 0x09},
-> -	{0x380d, 0x70},
->  	{0x3814, 0x11},
->  	{0x3815, 0x11},
->  	{0x3708, 0x64},
-> @@ -375,8 +375,6 @@ static struct regval_list ov5647_2x2binned_10bpp[] = {
->  	{0x3809, 0x10},
->  	{0x380a, 0x03},
->  	{0x380b, 0xcc},
-> -	{0x380c, 0x07},
-> -	{0x380d, 0x68},
->  	{0x3811, 0x0c},
->  	{0x3813, 0x06},
->  	{0x3814, 0x31},
-> @@ -450,8 +448,6 @@ static struct regval_list ov5647_640x480_10bpp[] = {
->  	{0x3a19, 0xf8},
->  	{0x3c01, 0x80},
->  	{0x3b07, 0x0c},
-> -	{0x380c, 0x07},
-> -	{0x380d, 0x3c},
->  	{0x3814, 0x35},
->  	{0x3815, 0x35},
->  	{0x3708, 0x64},
-> @@ -1063,7 +1059,8 @@ static int ov5647_set_pad_fmt(struct v4l2_subdev *sd,
->  					 mode->pixel_rate, 1, mode->pixel_rate);
->
->  		hblank = mode->hts - mode->format.width;
-> -		__v4l2_ctrl_modify_range(sensor->hblank, hblank, hblank, 1,
-> +		__v4l2_ctrl_modify_range(sensor->hblank, hblank,
-> +					 OV5647_HTS_MAX - mode->format.width, 1,
->  					 hblank);
->
->  		vblank = mode->vts - mode->format.height;
-> @@ -1338,6 +1335,10 @@ static int ov5647_s_ctrl(struct v4l2_ctrl *ctrl)
->  		ret = ov5647_write16(sd, OV5647_REG_VTS_HI,
->  				     sensor->mode->format.height + ctrl->val);
->  		break;
-> +	case V4L2_CID_HBLANK:
-> +		ret = ov5647_write16(sd, OV5647_REG_HTS_HI,
-> +				     sensor->mode->format.width + ctrl->val);
-> +		break;
->  	case V4L2_CID_TEST_PATTERN:
->  		ret = ov5647_write(sd, OV5647_REG_ISPCTRL3D,
->  				   ov5647_test_pattern_val[ctrl->val]);
-> @@ -1345,7 +1346,6 @@ static int ov5647_s_ctrl(struct v4l2_ctrl *ctrl)
->
->  	/* Read-only, but we adjust it based on mode. */
->  	case V4L2_CID_PIXEL_RATE:
-> -	case V4L2_CID_HBLANK:
->  		/* Read-only, but we adjust it based on mode. */
->  		break;
->
-> @@ -1421,10 +1421,11 @@ static int ov5647_init_controls(struct ov5647 *sensor)
->  					       sensor->mode->pixel_rate, 1,
->  					       sensor->mode->pixel_rate);
->
-> -	/* By default, HBLANK is read only, but it does change per mode. */
->  	hblank = sensor->mode->hts - sensor->mode->format.width;
->  	sensor->hblank = v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
-> -					   V4L2_CID_HBLANK, hblank, hblank, 1,
-> +					   V4L2_CID_HBLANK, hblank,
-> +					   OV5647_HTS_MAX -
-> +					   sensor->mode->format.width, 1,
->  					   hblank);
->
->  	sensor->vblank = v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
-> @@ -1454,7 +1455,6 @@ static int ov5647_init_controls(struct ov5647 *sensor)
->  		goto handler_free;
->
->  	sensor->pixel_rate->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> -	sensor->hblank->flags |= V4L2_CTRL_FLAG_READ_ONLY;
->  	sensor->sd.ctrl_handler = &sensor->ctrls;
->
->  	return 0;
->
-> --
-> 2.51.1
->
+I don't know what you did here, but applying your series doesn't work:
+
+	uwe@monoceros:~/gsrc/linux$ b4 am -3 20250923144524.191892-1-biju.das.jz@b=
+p.renesas.com
+	Analyzing 19 messages in the thread
+	Analyzing 27 code-review messages
+	Checking attestation on all messages, may take a moment...
+	---
+	  =E2=9C=97 [PATCH v3 1/8] dt-bindings: pwm: Document RZ/G3E GPT support
+	  =E2=9C=97 [PATCH v3 2/8] pwm: rzg2l-gpt: Add info variable to struct rzg=
+2l_gpt_chip
+	  =E2=9C=97 [PATCH v3 3/8] pwm: rzg2l-gpt: Add prescale_pow_of_two_mult_fa=
+ctor variable to struct rzg2l_gpt_info
+	  =E2=9C=97 [PATCH v3 4/8] pwm: rzg2l-gpt: Add calculate_prescale() callba=
+ck to struct rzg2l_gpt_info
+	  =E2=9C=97 [PATCH v3 5/8] pwm: rzg2l-gpt: Add RZ/G3E support
+	  =E2=9C=97 [PATCH v3 6/8] pwm: rzg2l-gpt: Add suspend/resume support
+	  =E2=9C=97 [PATCH v3 7/8] arm64: dts: renesas: r9a09g047: Add GPT nodes
+	    + Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+	  =E2=9C=97 [PATCH v3 8/8] arm64: dts: renesas: r9a09g047e57-smarc: Enable=
+ GPT on carrier board
+	  ---
+	  =E2=9C=97 BADSIG: DKIM/gmail.com
+	---
+	Total patches: 8
+	Preparing fake-am for v3: Add RZ/G3E GPT support
+	ERROR: Could not fake-am version v3
+	---
+	Cover: ./v3_20250923_biju_das_au_add_rz_g3e_gpt_support.cover
+	 Link: https://patch.msgid.link/20250923144524.191892-1-biju.das.jz@bp.ren=
+esas.com
+	 Base: using specified base-commit bf2602a3cb2381fb1a04bf1c39a290518d2538d1
+	       git checkout -b v3_20250923_biju_das_au_gmail_com bf2602a3cb2381fb1=
+a04bf1c39a290518d2538d1
+	       git am -3 ./v3_20250923_biju_das_au_add_rz_g3e_gpt_support.mbx
+
+	uwe@monoceros:~/gsrc/linux$ git checkout bf2602a3cb2381fb1a04bf1c39a290518=
+d2538d1
+	Previous HEAD position was ...
+	HEAD is now at bf2602a3cb23 Add linux-next specific files for 20250922
+
+	uwe@monoceros:~/gsrc/linux$ git am -3 ./v3_20250923_biju_das_au_add_rz_g3e=
+_gpt_support.mbx
+	Applying: dt-bindings: pwm: Document RZ/G3E GPT support
+	Applying: pwm: rzg2l-gpt: Add info variable to struct rzg2l_gpt_chip
+	error: sha1 information is lacking or useless (drivers/pwm/pwm-rzg2l-gpt.c=
+).
+	error: could not build fake ancestor
+	Patch failed at 0002 pwm: rzg2l-gpt: Add info variable to struct rzg2l_gpt=
+_chip
+	hint: Use 'git am --show-current-patch=3Ddiff' to see the failed patch
+	hint: When you have resolved this problem, run "git am --continue".
+	hint: If you prefer to skip this patch, run "git am --skip" instead.
+	hint: To restore the original branch and stop patching, run "git am --abor=
+t".
+	hint: Disable this message with "git config advice.mergeConflict false"
+
+I don't feel like debugging that, which unfortunately means I cannot
+provide you a diff on top of your tree to explain my doubts about the
+resume callback. :-(
+
+Best regards
+Uwe
+
+--pviclmaqrxg2pdad
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmktslgACgkQj4D7WH0S
+/k5uGAgAudLS8v065D9Xt+vJPjMyP4WKVupIE9LTMeT8/TaAMRra9UYtHljDzUft
+3FdA03MGwGypwF9Dwb1u1V5onJJJa6gNFvcbgEvWRv+lelvSLHGyqPsvw/sNdiXP
+EalhH1oU9KxlfjDbkejk2L4J8e1Mo+M0Virz5Fgd28NKvf7Bj5xwZZ+wd5ZHCSpD
+n3SBC1dG84bRR1d2UDFSOZD1+fksXvyVguFD3eKY4e1cgbK4bgBuKuqP772cMzh3
+AnTceJJ27GHQrY2FALfvxOfllb7Szfp+5t4ZE12Zq2w6htY7rm6PAVqdC+y2wIUP
+jap8rn0uZ8xxx2fMZSbsXnYV8qG19w==
+=sRyU
+-----END PGP SIGNATURE-----
+
+--pviclmaqrxg2pdad--
 
