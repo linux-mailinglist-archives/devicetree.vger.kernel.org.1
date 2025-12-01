@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14378C960F9
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 08:55:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDD70C9611A
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 09:06:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C573A4E165E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 07:55:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B0CE14E10EF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 08:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9352D738E;
-	Mon,  1 Dec 2025 07:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60F22C234C;
+	Mon,  1 Dec 2025 08:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pdAAQtBG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SckUCPVx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0975D2D47E3;
-	Mon,  1 Dec 2025 07:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B616C2BE7CB;
+	Mon,  1 Dec 2025 08:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764575717; cv=none; b=rlO3Q7siIr7xV8GK4dQxKUjpOpYt3ZQL+vXmr0taY/nFG35o3KNETDw6kORN9toKjT28dYuWP2RH/9ksLZwM0N/hHuj2lKW6eNfzR/fMzv2ip5gxjYLAj7odr5r0oNRddzWsjdIOIGDFPagm85BVEDkyO/R69x35qBbxbAX9N7U=
+	t=1764576413; cv=none; b=TnS18ASStNiWwJazYUcMq8Y4YzZ3Tn04TzNc31v3JRpqOfFxkUZpjW3WmQs1l5qGpx86Dy38MHL6/WvkLclAJMRnX6GXLZqHFjVG8wYDlr/NgvRWEJI8TuiPGnOQyxn+65Go8fa9zWI43DsFeAlqJTWcIY22kEuYkaLIXR0Kd2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764575717; c=relaxed/simple;
-	bh=zB0YrIsUPAF0oMEsIaRA6jehcKRrv70UrEe+PTfX6XE=;
+	s=arc-20240116; t=1764576413; c=relaxed/simple;
+	bh=AWxWdF9jmtD1m+ElThswGyUYrrBvfvOWX4QA3C3aBBM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mV/lY2XyL+e1Js4vYq7sUEystv9mtwep45Z1wqOeZ7e1A7JMOKHstSldgsyLuWtmTIfoEEPqsLCmNDy68buz/MOTAC76dszW2KwEDtq50NcIAiso/55V8WD33BpQsRzfUvUhNvQfjkMMXH0m4kdHqaikhaAZFtwbexKvkPYLAR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pdAAQtBG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89030C4CEF1;
-	Mon,  1 Dec 2025 07:55:13 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MWZSclw/oEvwdW81yXXZzxTO0UUFtfoOIxCqDmD3MXp5LuvLH3SFJwM33HKc2m+50wqlj/cYjU6qR7EwbJ7sIFeL2kEKcUcR38yRLwuF+RNY/qoaaFyriZZM+SqtCJme0Nva0cIKpBvK/O7g22jU0cJImuh6FXVnhduZaFlTL8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SckUCPVx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC953C4CEF1;
+	Mon,  1 Dec 2025 08:06:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764575716;
-	bh=zB0YrIsUPAF0oMEsIaRA6jehcKRrv70UrEe+PTfX6XE=;
+	s=k20201202; t=1764576413;
+	bh=AWxWdF9jmtD1m+ElThswGyUYrrBvfvOWX4QA3C3aBBM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pdAAQtBGH0WFXjUAGOWhOMOETY9IXsw2wovh8yzXHafwSwa2HdwFT0slRWNag/wp5
-	 Rk192+SAtSiK8JxyvD2J8S4ug/5wmY8Dp6Ff/g53y7GZtQcNbPkO9VR1NMEtWQ9KMO
-	 aH8FTgEENN2XZcN+47zaYay+YlzRx7M1mlX6k4P1/dRtWMS1oDOfZZZR9/YFURYC4S
-	 HIzC5O39zDnUgedBoGS0wsbQFu3paVlJoXKewt3ppBNpeZ4taC5s53VSKr6R2MP5wT
-	 5KuM7IaCN/0FrSR6IfTdMbRmiAcjDd9tJX5o3sGb/Php1ZdgwDK4Y+MCPLaEx4EoOz
-	 664sHnrSCGBaw==
-Message-ID: <96958186-0e46-4606-ae36-239112eb31ea@kernel.org>
-Date: Mon, 1 Dec 2025 08:55:11 +0100
+	b=SckUCPVxVfDdrhJytf0wJpjZxoTZkY+vKOuxKGFJJTEEHEiOFyg+bEc0e5Hozi9fU
+	 OUcXQmw8pyNFbFZfzy4+DkJMQvOovVVUBlUqjiHsmeN9dQdybx4qrKD4anX/civUCM
+	 blSNDbcn/CpiNUdA+2ubbdb4xCUfOm5tZzuZUDcCdTL9usqhmNv2ou3Mth9pG4EETj
+	 h1ChWcCzk7MkAxOMK0B9wBsgV2xeQHTeVFPrjfz5nVYWaNI7xnuhETL9EpHPgGuY8o
+	 1CxNpU/facwVOdlJiSodD+M4H4TR9NCkUvqQLcSj/3DXXa6tf2pvT6nXD5k2VS5l+a
+	 oET3GLpfnuliw==
+Message-ID: <607dbea3-d887-414e-a0cc-515b9a1f1eb8@kernel.org>
+Date: Mon, 1 Dec 2025 09:06:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iommu: rockchip: Add support for
- multiple interface clocks
-To: Chaoyi Chen <kernel@airkyi.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Chaoyi Chen <chaoyi.chen@rock-chips.com>
-References: <20251128071322.92-1-kernel@airkyi.com>
- <20251128071322.92-2-kernel@airkyi.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: iio: proximity: Add RF Digital
+ RFD77402 ToF sensor
+To: Shrikant Raskar <raskar.shree97@gmail.com>, jic23@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ heiko@sntech.de, neil.armstrong@linaro.org, skhan@linuxfoundation.org,
+ david.hunter.linux@gmail.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251130153712.6792-1-raskar.shree97@gmail.com>
+ <20251130153712.6792-2-raskar.shree97@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,99 +105,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251128071322.92-2-kernel@airkyi.com>
+In-Reply-To: <20251130153712.6792-2-raskar.shree97@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 28/11/2025 08:13, Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+On 30/11/2025 16:37, Shrikant Raskar wrote:
+> The RF Digital RFD77402 is a Time-of-Flight (ToF) proximity and distance
+> sensor that provides absolute and highly accurate distance measurements
+> from 100 mm up to 2000 mm over an I²C interface. It includes an optional
+> interrupt pin that signals when new measurement data is ready.
 > 
-> The iommu found on RK3576 NPU and RK3576 RKVDEC have 4 clock instead of
-> 2 clock. Their clock names might differ, but I don't think that matters
-> much.
-> 
-> Add support for them.
-> 
-> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
 > ---
-> 
-> Changes in v2:
-> - Rewrite dt binding.
-> 
->  .../bindings/iommu/rockchip,iommu.yaml        | 52 ++++++++++++++++---
->  1 file changed, 46 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> index 6ce41d11ff5e..dfa5e25476d9 100644
-> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> @@ -27,6 +27,8 @@ properties:
->            - enum:
->                - rockchip,rk3576-iommu
->                - rockchip,rk3588-iommu
-> +              - rockchip,rk3576-npu-iommu
-> +              - rockchip,rk3576-rkvdec-iommu
->            - const: rockchip,rk3568-iommu
->  
->    reg:
-> @@ -42,14 +44,12 @@ properties:
->      minItems: 1
->  
->    clocks:
-> -    items:
-> -      - description: Core clock
-> -      - description: Interface clock
+> Changelog:
+> Changes since v1:
+> - Fix patch heading
+> - Fix commit message
+> - Remove '|' from description
+> - Update interrupt description
+> - Add 'vdd-supply' to required
 
-These go to specific variant if:then.
 
-> +    minItems: 2
-> +    maxItems: 4
->  
->    clock-names:
-> -    items:
-> -      - const: aclk
-> -      - const: iface
-> +    minItems: 2
-> +    maxItems: 4
 
-So you just allow any names, like pink-pony.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-No, define common list here. Actually same for clocks.
 
->  
->    "#iommu-cells":
->      const: 0
-> @@ -64,6 +64,46 @@ properties:
->        Some mmu instances may produce unexpected results
->        when the reset operation is used.
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - rockchip,rk3576-npu-iommu
-> +              - rockchip,rk3576-rkvdec-iommu
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 4
-> +        clock-names:
-> +          minItems: 4
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          items:
-> +            - const: rockchip,iommu
-> +            - const: rockchip,rk3568-iommu
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 2
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, just skip it entirely
+(please do not feel offended by me posting it here - no bad intentions
+intended, no patronizing, I just want to avoid wasted efforts). If you
+do not know the process, here is a short explanation:
 
-Why this is unspecific now? Please look at other examples how it is
-done, e.g. Samsung clocks.
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here ('b4 trailers -u ...'). However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for tags received on the version they apply.
+
+Full context and explanation:
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
+</form letter>
 
 
 Best regards,
