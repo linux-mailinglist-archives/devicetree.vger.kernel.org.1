@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A266C97921
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:22:50 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DC5CC97975
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:27:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0507E4E1216
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 13:22:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D58994E337B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 13:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F96313260;
-	Mon,  1 Dec 2025 13:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88857313529;
+	Mon,  1 Dec 2025 13:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Q8gP6OMK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZRecGYUS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECD530E0D8;
-	Mon,  1 Dec 2025 13:22:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB72313291;
+	Mon,  1 Dec 2025 13:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764595366; cv=none; b=gkh0xo9uC1sWtPoKI0fH3ry6fpyav12tMtq16cBk/vZMRJDwe99N0F7WAbkPEI5gpgsruW06rSORdbOsgk/dg+kfz27op5K9xZRd7OTjblka/bsUXGpX7UtcWnvlrljLA5R+Metf4nhiB8ZcTJj/R0RyOgKxxVl0CcaKM3vZuhY=
+	t=1764595547; cv=none; b=hLUPVojfmgZ1eVzOBhsDNlnLqI8pgtn9qLSQJ82l0WGHO+NWFRvIxlJ8Vm3q25pJ11hr7L2WR7ucXv1y4rH0gx0PqdxtnLGNBxTZcT/FYlzsgzbvcrWfcJnQZ/UNldONevbUB7Scrw9M5KUKzc38HIbahaRAoqLzzWsCvUmH3F8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764595366; c=relaxed/simple;
-	bh=n5faNjLlToEyQN5R1HxfBd4hxXELofaKmnNwdPdzeUM=;
+	s=arc-20240116; t=1764595547; c=relaxed/simple;
+	bh=fFxIRu9z3VENqv3Y59jqBXtdmH5YYDZzb8aZJy3eW1o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m8YpqunCErCqTGPFHOaOL9M98Z+tpqz2foAAIxiqPSQ4TRoO2PFKI84LH5ZwjphSBRipn1L4UEZvoZ5EXObSPc+3PBniuoTEoEtp8vs6Iylmd06j8roCvTbwVtLisxpPv9SwK7zKepO465dkihqC4MWXVbGZoYViYXDyHxp3U08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Q8gP6OMK; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8F555111D;
-	Mon,  1 Dec 2025 14:20:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1764595227;
-	bh=n5faNjLlToEyQN5R1HxfBd4hxXELofaKmnNwdPdzeUM=;
+	 In-Reply-To:Content-Type; b=NbVvpdV2sWu1G4YoCxwNY6Y5w050I+v2c/6/vRINc7zB15okIkExsBj9DmEJdqCE/YjQ+nfPvINW0taEfB91gQt/w9xuOGYNDXMGO0o39tDKWdO86BujyztcKyYrme5usF79lT7aeJQRMYxM8vyV0GVYhO8XKiECzgcuwAXm4ZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZRecGYUS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0309C4CEF1;
+	Mon,  1 Dec 2025 13:25:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764595545;
+	bh=fFxIRu9z3VENqv3Y59jqBXtdmH5YYDZzb8aZJy3eW1o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q8gP6OMK6W94fv+SJH5itvhPQWzQqqHmDZvOLnB1cfG8cVF1CcCY7bTKZxWzkKGx3
-	 AgdqLRACMb79EAg2EXLclQlpIrew8rusUe8ZiWz9uenZCBvWMWNB0KeQ1ezpbmSbh0
-	 wslPYSAHAjX7OgGT7TDAFnhGq/PQpLHfs3Y+/Cfs=
-Message-ID: <032b441e-eefc-4574-bf7a-5c4d09599925@ideasonboard.com>
-Date: Mon, 1 Dec 2025 15:22:36 +0200
+	b=ZRecGYUSkeFjzfIx4/vLetPUdgx7CQxVijne60AokJ5EjdIZUVuaRKZfEvZes0I6q
+	 GmiA90hdeOpvmd2nDK7EG1cU/JSbaYdMg7akQ4ZP0tTC68vZZMhiBdY5gZLL6MZDJC
+	 RT7RiCyGesY1cXgUamOpkDmcA2bMffrj+WRBjegukVEGH9l/GlSoIOcHhozmQLFm9s
+	 7hL6zO5NYzDIy1y6wh2/OR6Pbn6GjHj3tLQd2/DM0KRb9tUYz94Kmz3qd6YAR2pFP4
+	 gIeYWAhcuDq8o6VYQA0E+wzRZa5+5gsviCr/qOYYkxtUFTTnQInE4gt6kZcSyYJL+H
+	 VSDqKvfE/aMiQ==
+Message-ID: <531f4d52-a48d-498a-861c-f15d0f5b456c@kernel.org>
+Date: Mon, 1 Dec 2025 14:25:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,242 +50,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 17/18] media: ti: j721e-csi2rx: Support runtime suspend
-To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev,
- laurent.pinchart@ideasonboard.com, mripard@kernel.org
-Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
- vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
- hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
- changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
- sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251112115459.2479225-1-r-donadkar@ti.com>
- <20251112115459.2479225-18-r-donadkar@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: Re: [PATCH 1/4] dt-bindings: arm: rockchip: Add HINLINK H28K
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ robh@kernel.org
+References: <f27dc5ef-1c60-4724-8e18-33bbc4230d3e@kernel.org>
+ <20251201130106.236903-1-amadeus@jmu.edu.cn>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20251112115459.2479225-18-r-donadkar@ti.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251201130106.236903-1-amadeus@jmu.edu.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 12/11/2025 13:54, Rishikesh Donadkar wrote:
-> From: Jai Luthra <jai.luthra@ideasonboard.com>
+On 01/12/2025 14:01, Chukun Pan wrote:
+> Hi,
 > 
-> Add support for runtime power-management to enable powering off the
-> shared power domain between Cadence CSI2RX and TI CSI2RX wrapper when
-> the device(s) are not in use.
+>> Just squash these two binding patches. Way too much churn.
 > 
-> When powering off the IP, the PSI-L endpoint loses the paired DMA
-> channels. Thus we have to release the DMA channels at runtime suspend
-> and request them again at resume.
+> However, they are different SBCs manufactured by different companies:
 
-I'm not an expert on the dmaengine, but to me this sounds like a bug in
-the dma driver. It just sounds very wrong...
+Does not matter, you update same file doing almost the same.
 
-> Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> ---
->  drivers/media/platform/ti/Kconfig             |  1 +
->  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 55 ++++++++++++++++++-
->  2 files changed, 54 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/media/platform/ti/Kconfig b/drivers/media/platform/ti/Kconfig
-> index 3bc4aa35887e6..a808063e24779 100644
-> --- a/drivers/media/platform/ti/Kconfig
-> +++ b/drivers/media/platform/ti/Kconfig
-> @@ -70,6 +70,7 @@ config VIDEO_TI_J721E_CSI2RX
->  	depends on VIDEO_CADENCE_CSI2RX
->  	depends on PHY_CADENCE_DPHY_RX || COMPILE_TEST
->  	depends on ARCH_K3 || COMPILE_TEST
-> +	depends on PM
->  	select VIDEOBUF2_DMA_CONTIG
->  	select V4L2_FWNODE
->  	help
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> index 528041ee78cf3..21e032c64b901 100644
-> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> @@ -13,6 +13,7 @@
->  #include <linux/module.h>
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
->  #include <linux/property.h>
->  
->  #include <media/cadence/cdns-csi2rx.h>
-> @@ -963,12 +964,16 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->  	unsigned long flags;
->  	int ret = 0;
->  
-> +	ret = pm_runtime_resume_and_get(csi->dev);
-> +	if (ret)
-> +		return ret;
-> +
->  	spin_lock_irqsave(&dma->lock, flags);
->  	if (list_empty(&dma->queue))
->  		ret = -EIO;
->  	spin_unlock_irqrestore(&dma->lock, flags);
->  	if (ret)
-> -		return ret;
-> +		goto err;
->  
->  	ret = video_device_pipeline_start(&ctx->vdev, &csi->pipe);
->  	if (ret)
-> @@ -1024,6 +1029,8 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->  	writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
->  err:
->  	ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_QUEUED);
-> +	pm_runtime_put(csi->dev);
-> +
->  	return ret;
->  }
->  
-> @@ -1055,6 +1062,7 @@ static void ti_csi2rx_stop_streaming(struct vb2_queue *vq)
->  
->  	ti_csi2rx_stop_dma(ctx);
->  	ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_ERROR);
-> +	pm_runtime_put(csi->dev);
->  }
->  
->  static const struct vb2_ops csi_vb2_qops = {
-> @@ -1261,7 +1269,9 @@ static void ti_csi2rx_cleanup_notifier(struct ti_csi2rx_dev *csi)
->  
->  static void ti_csi2rx_cleanup_ctx(struct ti_csi2rx_ctx *ctx)
->  {
-> -	dma_release_channel(ctx->dma.chan);
-> +	if (!pm_runtime_status_suspended(ctx->csi->dev))
-> +		dma_release_channel(ctx->dma.chan);
-> +
->  	vb2_queue_release(&ctx->vidq);
->  
->  	video_unregister_device(&ctx->vdev);
-> @@ -1512,6 +1522,39 @@ static int ti_csi2rx_init_ctx(struct ti_csi2rx_ctx *ctx)
->  	return ret;
->  }
->  
-> +static int ti_csi2rx_runtime_suspend(struct device *dev)
-> +{
-> +	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-> +	int i;
-> +
-> +	if (csi->enable_count != 0)
-> +		return -EBUSY;
-> +
-> +	for (i = 0; i < csi->num_ctx; i++)
-> +		dma_release_channel(csi->ctx[i].dma.chan);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ti_csi2rx_runtime_resume(struct device *dev)
-> +{
-> +	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-> +	int ret, i;
-> +
-> +	for (i = 0; i < csi->num_ctx; i++) {
-> +		ret = ti_csi2rx_init_dma(&csi->ctx[i]);
+> HINLINK H28K - Shenzhen HINLINK manufactures
+> MangoPi M28K - Beijing Widora manufactures
+> 
+> So should I squash them into a patch?
+> 
+>> Anyway, looks like duplicate - two devices with same model name.
+> 
+> These two SBCs are indeed very similar, both in name and configuration.
+> So I put them in one series. Perhaps splitting them into two series to
+> avoid confusion would have been better?
 
-If runtime_resume always requests the dma channels, is the call to
-ti_csi2rx_init_dma() in ti_csi2rx_init_ctx() needed? If not, you could
-inline the code from ti_csi2rx_init_dma() to here and also drop the
-dma_release_channel() call from ti_csi2rx_cleanup_ctx(), making the flow
-more understandable.
+No, even more confusion. Look what I wrote:
 
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops ti_csi2rx_pm_ops = {
-> +	RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resume,
-> +		       NULL)
-> +};
-> +
->  static int ti_csi2rx_probe(struct platform_device *pdev)
->  {
->  	struct device_node *np = pdev->dev.of_node;
-> @@ -1579,6 +1622,10 @@ static int ti_csi2rx_probe(struct platform_device *pdev)
->  		goto err_notifier;
->  	}
->  
-> +	pm_runtime_set_active(csi->dev);
-> +	pm_runtime_enable(csi->dev);
-> +	pm_request_idle(csi->dev);
+"You have entire commit msg to explain that."
 
-I always forget what exactly the runtime_pm funcs do. What's the idea
-here? If you do something else than the plain standard
-pm_runtime_enable(), I think it's good to mention what/why in a comment.
-
->  	return 0;
->  
->  err_notifier:
-> @@ -1609,6 +1656,9 @@ static void ti_csi2rx_remove(struct platform_device *pdev)
->  	mutex_destroy(&csi->mutex);
->  	dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
->  			  csi->drain.paddr);
-> +	pm_runtime_disable(&pdev->dev);
-> +	pm_runtime_set_suspended(&pdev->dev);
-> +
->  }
->  
->  static const struct of_device_id ti_csi2rx_of_match[] = {
-> @@ -1623,6 +1673,7 @@ static struct platform_driver ti_csi2rx_pdrv = {
->  	.driver = {
->  		.name = TI_CSI2RX_MODULE_NAME,
->  		.of_match_table = ti_csi2rx_of_match,
-> +		.pm		= &ti_csi2rx_pm_ops,
->  	},
->  };
->  
-
+Best regards,
+Krzysztof
 
