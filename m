@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1742C9604B
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 08:34:36 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8188FC96054
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 08:35:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BBEF34E07AA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 07:34:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 256DB342CB3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 07:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694C32877CD;
-	Mon,  1 Dec 2025 07:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB3528C864;
+	Mon,  1 Dec 2025 07:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NNGdLHm9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="triFu7KY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C5E41E868;
-	Mon,  1 Dec 2025 07:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8369E1E868;
+	Mon,  1 Dec 2025 07:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764574471; cv=none; b=RU+by1E+VkekkmhUB+ifQGEQ5LUHQmFd7FE282B79CcsbaflK+sfvfP4hOw8mo+qOiSPTA1Dczl3S/86tq0q6ysYb4Cy3bdcVKxW1V6kY5akDDil/pICXwIvB36VKiro0aPR+MunKClvG8zsaq75IdOH8Hh+jjI8V+rh7MPcgws=
+	t=1764574522; cv=none; b=T0CJkRPSup9GwFKMQzCQDJo5RQBnQy5aKsNK04U+VgDwnVnPCcdY+4YfReJjIfCSLKcVnfpmooU5AqZnnRVxGGSw36vdfThEWUebVObrmCZUIvLb5KB9Ya9t70ZOgBFuFIMRNAG+Tgm2wIYIbSEzsSk4Od7KquN1YPCZWYTdeqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764574471; c=relaxed/simple;
-	bh=tFF6SSDcRqDZl4UXjOH5y0MCMKb9bpHMhVhoEcMceVQ=;
+	s=arc-20240116; t=1764574522; c=relaxed/simple;
+	bh=JZs7G8T/3JRt0ZvUolyJvOncTl4XADz3CVR3TY3IVS8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KjUiZE3uBXflSXV05fzGmZcldBMeNHzqj2sr2lvD/lWrwfftHuWgTQqubGdf10fNVUc6BfO/czTMQ7Hd460cYqy8i2B2msF8LLLckDUAg/NLJl7gkXVgoQxweuIaaJODxCwWsKRO8IZqdKAObjAKtVb7sHAkMkKLSV62AtQYpNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NNGdLHm9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A80FC4CEF1;
-	Mon,  1 Dec 2025 07:34:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kr09bKu5xu8/Atm3QSSFMu1ML0XeIouwQtYA9v2tEtLl/9uUJnw09D/D2LfO1PIcsSSoMPMqW1XiEUpT8XzcTL4/eZgZsRtXwsuKS1QOvoAyNjN7vL+jN5LTrqsux2GzX+k407oFvUdOUkEVzW5zfqUbqZl1EGrLDdDBxmcUCXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=triFu7KY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28F97C116C6;
+	Mon,  1 Dec 2025 07:35:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764574470;
-	bh=tFF6SSDcRqDZl4UXjOH5y0MCMKb9bpHMhVhoEcMceVQ=;
+	s=k20201202; t=1764574522;
+	bh=JZs7G8T/3JRt0ZvUolyJvOncTl4XADz3CVR3TY3IVS8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NNGdLHm9lGWWlxSTX5pp7BJDPzNKEZcVLLMW6uRyqXK0riU8V9tHRiI6/3SxiF3+g
-	 e4kvB6w4/cqUpUtnBctJkiUKe+t90KJgS0u6XgMH3aobxVMBE849olur/y5PUdRS5A
-	 qRCx7JAa19Z7dPy0JD25r3pFUMw26CUoRa4IhigD7P0RDhwqbE3CMxgftPOqLHKJB7
-	 OUsK54Y/cMsBnpFvv+TJj59L6KtehFg5Qndk8DcfXRG3TppFTOuNng4kWk4muEKLvm
-	 DxgFNsQ/+Ir4tixadDn7fft3eFsPVLTQBFozOvNnXeVVMls8lV6H71IcFt1NyOLeRq
-	 cdzR/Rpat9cBw==
-Message-ID: <7ea43ef2-b453-46cf-a35e-ea11ca1dbe24@kernel.org>
-Date: Mon, 1 Dec 2025 08:34:26 +0100
+	b=triFu7KYRadSNxvd2YyGp7Y3kkgdtN2Q+UiaA2BWheMOezBSxlkfUJd+Tq6PBZDcy
+	 3J5Edc6djKU7SyRuBITSAYztG9Rf+Xx9GyiJgYhO8A7AhcGpnQKWR4CZz62iZo0JVm
+	 OAQ+JfbVw5UCvy8z8HFBlmIBIzjzgn9XtmqjW59vurE8ZMM6Utwamov5auO3750EK2
+	 WzOF7P2pQVMjcyT2+QHV87xPla4vFbWSc9dxZ9hVQSmnt0hkpTUmDT0z69bs8PhERg
+	 TndGGHigoxL6IO2a38TW/ADCYQaNOE7BtHQy7wUbnroE8nYELc34pZ3jnNfnv3PzAn
+	 9Ojtl7nCYRq5g==
+Message-ID: <9aca23d5-2433-4c25-a95d-6a87127c7c83@kernel.org>
+Date: Mon, 1 Dec 2025 08:35:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] dt-bindings: wireless: ath12k: Add disable-rfkill
- property
-To: Dale Whinham <daleyo@gmail.com>, Johannes Berg
- <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: x1-microsoft-denali: Disable
+ rfkill for wifi0
+To: Dale Whinham <daleyo@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: =?UTF-8?Q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>,
- Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
- linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
- ath12k@lists.infradead.org, linux-kernel@vger.kernel.org
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 References: <20251201011457.17422-1-daleyo@gmail.com>
- <20251201011457.17422-7-daleyo@gmail.com>
+ <20251201011457.17422-9-daleyo@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,31 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251201011457.17422-7-daleyo@gmail.com>
+In-Reply-To: <20251201011457.17422-9-daleyo@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 On 01/12/2025 02:14, Dale Whinham wrote:
-> From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> Disable rfkill as it is supposed to be according to the ath12k feature
+> flags in the Microsoft Surface Pro 11 ACPI DSDT.
 > 
-> rfkill should be disabled according to the Surface Pro 11's DSDT.
+> Signed-off-by: Dale Whinham <daleyo@gmail.com>
+> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> https://lore.kernel.org/all/20250113074810.29729-3-quic_lingbok@quicinc.com/
-> has added support to read the ACPI bitflag when ACPI is supported.
 
-It wasn't merged. If it was, reference commits, not random emails.
+No, you just added this file. This must be squashed.
 
-> 
-> Document the disable-rfkill property to expose one specific feature
-> (DISABLE_RFKILL_BIT) for devices described with a DT, so that the
-> feature can be disabled.
-
-This is just a circular logic. Add property to have property in DT so
-that you can use feature.
-
-No, describe the hardware or actual problem instead.
-
-You still need to answer Rob's questions.
+What happened with the rest of patches? I got only 1, 4, 6 and 8?
 
 Best regards,
 Krzysztof
