@@ -1,171 +1,125 @@
-Return-Path: <devicetree+bounces-243469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9BB3C97E65
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 15:48:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61FFBC97ED7
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 15:55:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5FDDF4E1B2A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 14:48:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2063A3A1DC2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 14:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E073631AF36;
-	Mon,  1 Dec 2025 14:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C616531B808;
+	Mon,  1 Dec 2025 14:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oItxlAsK";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="id38owrX"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="S5MmoTGV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4808130E0C6
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 14:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9CF2C0291;
+	Mon,  1 Dec 2025 14:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764600511; cv=none; b=ePTVrmf9wQgdhTd08nfUZEw59mFe45H9KEVkaIUVmE9GOb/nkWbHlaJYi5KFl2wyDhZhmt9VfPyEIZ6AW0r1r4/4xsQco2eTLvDB5MVVWH57MCoveEMbU3kTT/+w4WMhL0tHxcLl5+5eUnkl+NWvMDnxxL4u2PxQaB0b5nyxLNU=
+	t=1764600931; cv=none; b=GqZ+j/cCd9ucUOQnWx6kPZmnIv5Q+ElbDNosbMy0udRrC0HRyhn4kbzTj5DpwDjNz1x3NZ8Qa7wfKew3I1Qq0DI4UY7fA5oQ2ie8zv2YhgBEMjakyteAimnsvQZR9/HmiHbPbSe7WKE4+0lgl8d/oohvHhGlEw9TAJkEW2pES9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764600511; c=relaxed/simple;
-	bh=kJo2bPDBUuIc6a4dhKxiT2Prq+nttBS2G4R9n3nrBtE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kCXa6PYuRSNmdfEYw6ES2yefsYqwLCd/fIZVk/NDCHaoII5ckCiCNRVyGIVwV112v+Z0FkpLVQXzrhdTJXfRkRWVM/l/jeYqrVB1p3BDmGbkzO+Eo4/HDOBWhi+xpyXIQ2zItxg0aPpeaigPhmiD5Q/OijQH7bfioQRynJ9+Rxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oItxlAsK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=id38owrX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B1A7cmQ435469
-	for <devicetree@vger.kernel.org>; Mon, 1 Dec 2025 14:48:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zFUShCKTFzpAAcU4dG8e5ZvFplYdFS4xxKvgwSWJN+s=; b=oItxlAsK2BV3kjXi
-	nihVMfCfIzwRhsA14y3Ff3M9fmYF6U4Wf7ccnHYBFcbYTfI2wPLxEjiRNDr67q1I
-	m0jxVlw5flUkeT48ngbMZpxp0fG+CCLPPuuVakskih2HjL6QOdqYXi/vPg5YyL7J
-	fAy6Lab2GOkGyLBx2pwEMRQykYcbwul/Iu8t5ixAS1pRNybEldGhrktchMMGcnSU
-	1sVXzdYpBFZhJU47igxkwioemHhy28yiVrzRNGN9CUt6MXCe/I86FglTsYOa1UNb
-	pDgGUfS67+dlIsldp5dsQhkGw6vGXbWnCb5oS8pxNtkLiTwTXCBd+aBi49j+TmuQ
-	KTzGww==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4as909rqw2-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 14:48:22 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7ba92341f38so4140408b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 06:48:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764600502; x=1765205302; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zFUShCKTFzpAAcU4dG8e5ZvFplYdFS4xxKvgwSWJN+s=;
-        b=id38owrXCuCdIFQ/VcqDukZ6Bd6GVC04Nrmo6RMatOg3M+LIYQ6lH7Xh/kgig6WwkX
-         c18YdK6laWM6KYmil8IeFdqYVXEAXoFD93Hq7VFKCKufepqgQvWoF1ymemBTgKYHjNRB
-         6fcy5Rcje3le3EY6j0wCDpdOuJJ4voY3ULBrYpNWLfAA+V8yl8MfzKToY3NaJaLT7ibZ
-         aOpSxXvWIdY4iOjnfNjXnADtaaUih78A0CsV68yD7LfySmf7Uvg6GrJeTGTNjqSrIh8i
-         l8i/o3qUqsFeDeID1MQVP9ZCL4iNq8V/WWFaJGfzp5zrdIUZ/qrV7S6ooY0ko6s/fj5u
-         sLhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764600502; x=1765205302;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zFUShCKTFzpAAcU4dG8e5ZvFplYdFS4xxKvgwSWJN+s=;
-        b=rL7rRdf3wzyjhxWnBrUmlFZLxxcgNWyFl8gPAgz4ET56qgOh0UvgySkGDQ/m427NFL
-         V2yVN0DdX+1ArCKTsF1Y2vx72k9mDSEd07LOOR4BtcL7xhm4+ROlLy7FDrnPR25ZAdrw
-         fEm3NZ79H78Xl8RGPkSPbAV3aoyfe6Gy2o0sFdtzJM4tC9mS73h+IAd+JZkq10kR/ao0
-         hjoSIhdej94FkOi/GvebTeYF5oyoqX+pvEaSSJQGSHXr86e/+uIRGUuJhUrcX7vRzjGP
-         fHVNdjLkC2npZZEHMu+YuVRIOx9lcbHG39anfZOzL3Viaymfz3uJs59wEvxpkGacyN1F
-         24Dw==
-X-Forwarded-Encrypted: i=1; AJvYcCWHx47HvRtG/FIfUZIn+pV8TSTEj1yhKcHKcNPWVagTgDciF57p5GNFnNYdJCFF36npCf7heZ6BJEYv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3RTaIODZ2XeG+9fufwil4hb3VhfdqyW1XpJTGVFd/KYo8cjS4
-	ZXG2efFgAQ+CgjX4XNvvAy0x+z1731Fpeq4Ob39sHRnxhfvFqAX4kV/rDPUHcIQ6VIxPTmAaudD
-	fR+8GdLrUIQYi5Byg79vDQFEnHOsAnP9qY79eoqvIF1tgCU9WOF0KKAeQAYQCpunN
-X-Gm-Gg: ASbGncvw/K/C3IUTihH7Ne9fzFxBE786FswmF/8+3D0X+Qo6DzPofmz802Z4aFl8YBb
-	82eco6ialySRSPXfQw6OorABPdKn2lS8QLp9I3MnQkK52nZxHIh8Pld9+Fa4G+2Ug3puAhcIxud
-	vs29ACbG1AnBePjGcPC9FPXt4CmuJAqf/W5/itknof+6tL0RxagBe8LCKW4GMYRamd29+oU/uuK
-	YboBf4EwZeu36hhvcVTbejMie9mIW7JzgPzPwfvvDMb4ebMKeyG4VB2ydx8STzd7cK0rTY8cyzl
-	wuW28MrKN4xYltNK4rkSpsM+EcGikoT2AZ0N3mIFHADiLirYwqQcn/7znXn3coofutDyPoz2Q5Q
-	tePkca6LZDVbO941mAVvoqsY9gSx2z8AljTasbQw3
-X-Received: by 2002:a05:6a20:430e:b0:35d:2172:5ffb with SMTP id adf61e73a8af0-3637e0b9b1bmr27693913637.47.1764600501587;
-        Mon, 01 Dec 2025 06:48:21 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHOjiaXyFZ9x9qVZy8TQ6zSjZu3ioOiZuPu5UeevNwykKCCX1DIHrzfM9MFUHb+3rHvjLPDqw==
-X-Received: by 2002:a05:6a20:430e:b0:35d:2172:5ffb with SMTP id adf61e73a8af0-3637e0b9b1bmr27693862637.47.1764600501001;
-        Mon, 01 Dec 2025 06:48:21 -0800 (PST)
-Received: from [192.168.1.57] ([98.148.145.183])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d15f175f15sm13729699b3a.53.2025.12.01.06.48.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Dec 2025 06:48:20 -0800 (PST)
-Message-ID: <b9150026-cd87-4bed-8ba1-800e92203a30@oss.qualcomm.com>
-Date: Mon, 1 Dec 2025 06:48:18 -0800
+	s=arc-20240116; t=1764600931; c=relaxed/simple;
+	bh=QqhShJ/JYaK+kOtgtdv0BOswhj0jK7HjNvv2/upeK04=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m9nPs4/7ay2IOdM89gcJsmDsQdB5DB98xkEIKyolVXzbcf9RwFes7sCj9zwWuJjKsSrGexwqTQ9/8HunEBfRlWwkTxP+JMZnzvEV31HN+GMx/+pOflda8cIkEIY4kMPhLqW8uIq5pvst+QQCP0nxfLSanXFQmCpLGHO6mw5jKJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=S5MmoTGV; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (net-93-65-100-155.cust.vodafonedsl.it [93.65.100.155])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 135706AC;
+	Mon,  1 Dec 2025 15:53:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1764600792;
+	bh=QqhShJ/JYaK+kOtgtdv0BOswhj0jK7HjNvv2/upeK04=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S5MmoTGVQukiQsUXgCyp7hlI+6nHqA9WOPa2sZpTCGddH9Gce3e8X59AQ+PL63HoG
+	 bEf7KkuDvLy47MRLUMV7Or0GvtIutvRewDoQ6qwH7M8MuO6v1LwcOIz4jQrcYexIRg
+	 K06iqCHUxKUKr65WPS3dDsM9VvlvtrMjQPz1rh5k=
+Date: Mon, 1 Dec 2025 15:55:22 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, Jacopo Mondi <jacopo@jmondi.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Naushir Patuck <naush@raspberrypi.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, David Plowman <david.plowman@raspberrypi.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Peter Robinson <pbrobinson@gmail.com>, 
+	Stefan Wahren <wahrenst@gmx.net>, "Ivan T. Ivanov" <iivanov@suse.de>, 
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Subject: Re: [PATCH v2 08/16] media: i2c: ov5647: Parse and register
+ properties
+Message-ID: <646ej3sqxs7lhy57rle65bsiv2dycaxbu7rzrjemfn7aty3esf@rgbuo4fy74g4>
+References: <20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com>
+ <20251118-b4-rpi-ov5647-v2-8-5e78e7cb7f9b@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND] media: camss: csiphy: Make CSIPHY status macro
- cross-platform
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-References: <20251130-make-csiphy-status-macro-cross-platform-v1-1-334664c6cf70@oss.qualcomm.com>
- <ae056a82-e5d4-4a73-b478-37533ce2e0ed@oss.qualcomm.com>
-Content-Language: en-US
-From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
-In-Reply-To: <ae056a82-e5d4-4a73-b478-37533ce2e0ed@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAxMDEyMCBTYWx0ZWRfX75ad8fL/LcNv
- GJMsLVT0TthcNKxnKwAESFUfbEShVb+w088VUyHl59D/13q6vmGoaLmstAPjBDWiE7iphFMiLJ3
- t+JPSQyjH+PuaTtQmjzcPy9hwFxapVd92HYI9y53o2nxZVvOpT2csnxShx3ox36X8h/ayseDZlR
- ISwKeubYtgYhxd2KX3KBf/wISEyL9y0f24e8tQNI1QGvYzx8CpL5YlDVXzr0F1Myp/VtT9eDuAP
- dkGQLW66NpmMBj81zvi2/c8A8VzH8mJyAeH0t70bvj0QZWtzvskAMPbt3QPgTWbA/yxfIlP5Fnx
- k2C78qBZWi0uVoqHxr2XCuGnGqyaYi/fswbRrcNANcyQSUbxJa22quRFN/xQJY2XvPufZUzV80P
- 7628Wn5FRq+x9yCXnfj4AT2gjxKvhg==
-X-Authority-Analysis: v=2.4 cv=XJQ9iAhE c=1 sm=1 tr=0 ts=692daab6 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=BiHMn5M11h/vNwziJwzFrg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Wn5s78lpapD4s7JFFjsA:9 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-ORIG-GUID: IwHqTpwOZbBLjTuvjadf39ekFYng0gpW
-X-Proofpoint-GUID: IwHqTpwOZbBLjTuvjadf39ekFYng0gpW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 impostorscore=0 priorityscore=1501 spamscore=0 clxscore=1015
- phishscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512010120
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251118-b4-rpi-ov5647-v2-8-5e78e7cb7f9b@ideasonboard.com>
 
+Hi Jai
 
-On 12/1/2025 4:20 AM, Konrad Dybcio wrote:
-> On 12/1/25 7:25 AM, Hangxiang Ma wrote:
->> The current value of '0xb0' that represents the offset to the status
->> registers within the common registers of the CSIPHY has been changed on
->> the newer SOCs and it requires generalizing the macro using a new
->> variable 'common_status_offset'. This variable is initialized in the
->> csiphy_init() function.
-> "offset" + "common_status_offset" is confusing
+On Tue, Nov 18, 2025 at 05:33:01PM +0530, Jai Luthra wrote:
+> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 >
-> Let's maybe add some platform data where we store the actual offset of
-> the registers in question and pass a csiphy ptr as an argument
+> Parse device properties and register controls for them using the V4L2
+> fwnode properties helpers.
 >
-> Konrad
-Hi Konrad, may be I didn't follow correctly. This is consistent with the 
-way we maintain the other SOC specific reg offsets / data in the CSIPHY 
-driver, in csiphy_device_regs, isn't it? I seem to think it's clearer 
-this way for the reader to see all the offsets at one place. No? Thanks.
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+
+Thanks
+  j
+
+> ---
+>  drivers/media/i2c/ov5647.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/media/i2c/ov5647.c b/drivers/media/i2c/ov5647.c
+> index dbc134af06a26e0e31b12a6360d794afa8bad5dd..5009fd8c05a64d7e06f66f8f75f0a881cd0b95c1 100644
+> --- a/drivers/media/i2c/ov5647.c
+> +++ b/drivers/media/i2c/ov5647.c
+> @@ -1320,9 +1320,11 @@ static int ov5647_configure_regulators(struct device *dev,
+>  static int ov5647_init_controls(struct ov5647 *sensor)
+>  {
+>  	struct i2c_client *client = v4l2_get_subdevdata(&sensor->sd);
+> +	struct v4l2_fwnode_device_properties props;
+>  	int hblank, exposure_max, exposure_def;
+> +	struct device *dev = &client->dev;
+>
+> -	v4l2_ctrl_handler_init(&sensor->ctrls, 9);
+> +	v4l2_ctrl_handler_init(&sensor->ctrls, 11);
+>
+>  	v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
+>  			  V4L2_CID_AUTOGAIN, 0, 1, 1, 0);
+> @@ -1371,6 +1373,11 @@ static int ov5647_init_controls(struct ov5647 *sensor)
+>  				     ARRAY_SIZE(ov5647_test_pattern_menu) - 1,
+>  				     0, 0, ov5647_test_pattern_menu);
+>
+> +	v4l2_fwnode_device_parse(dev, &props);
+> +
+> +	v4l2_ctrl_new_fwnode_properties(&sensor->ctrls, &ov5647_ctrl_ops,
+> +					&props);
+> +
+>  	if (sensor->ctrls.error)
+>  		goto handler_free;
+>
+>
+> --
+> 2.51.1
+>
 
