@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 525D8C963EE
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 09:50:20 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF7BC9640C
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 09:51:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F3F23A2B80
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 08:50:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 54EE8343754
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 08:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACD62FCBF0;
-	Mon,  1 Dec 2025 08:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E35822FE042;
+	Mon,  1 Dec 2025 08:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LsMvLiMj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+HCEoML"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22C62FBDFA;
-	Mon,  1 Dec 2025 08:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8742FDC54;
+	Mon,  1 Dec 2025 08:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764579012; cv=none; b=LsQg18zCtXqrl7nmqPk+kduMGxGka2uxXeFX/XNTqi6lIsYzJRYuxQhZpCVrXL6vl++jc7YKn7qxKevZ/qqyYP5Onra41UGy5frrWxXb8G7YW3Gpp24opUHmKt2xkmLgWZWOExiI0ED18Zn62+v1kPkRDky/rlhJaN/VAZTQUXc=
+	t=1764579068; cv=none; b=sotH0JHGoM3fkkbOALGbAnbcKN1nxhDDahJg7F0WE9gz72IjEZekAALG8LBswsF8XBJe3ycxWiNnEMVNljPn+sO5sENz/XyNmHgEZ0eXzjm7ZpWAVbeogs4hIw/IyGsOD8OYSnFyR5N6PkeSOojOLi2ZhSqkASJkF/h23pi1dIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764579012; c=relaxed/simple;
-	bh=W7O819H712rQrqGo+KZPzY8sppsuSUBNeoFn1o++8HA=;
+	s=arc-20240116; t=1764579068; c=relaxed/simple;
+	bh=jVHQ+e1RFD0Fe3OWakUmmDRTB8ywOT7Kf1pTfwUt8Go=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bA+iokWyGWtMCDUvYwH5EsLiwRecGfIzVdJpCyLz5JYYclc/n4XEcIL5Ph1DBc3f0jP3O+6LBZrVuVnuMJwNDJnu449x91yPO4mnl4Z+NH9CDwNdo77raNLOa3+F39iUQMfxkQr2QfRk+wf07+4y8OwoBG8e1mlnmq9Div2tzzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LsMvLiMj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 772A0C4CEF1;
-	Mon,  1 Dec 2025 08:50:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LPr8eSjhp+CkBZ7o0v2imD/X4j1og/qyGml16tNsvUeS1wPr5Xsnoi/GUyzjvpUYv2/XiR52VirkcSyK96VeQU/fY0lDhMmn14SLgU6WLmBUgAsc07OOvnkMJiXwzyswve/MydTkscv4lX3jndjpDSoYDU8HUgNtZ5qCfLVY6w4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i+HCEoML; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 574A1C113D0;
+	Mon,  1 Dec 2025 08:51:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764579011;
-	bh=W7O819H712rQrqGo+KZPzY8sppsuSUBNeoFn1o++8HA=;
+	s=k20201202; t=1764579068;
+	bh=jVHQ+e1RFD0Fe3OWakUmmDRTB8ywOT7Kf1pTfwUt8Go=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LsMvLiMj+6aybVY+/7HIUVkaOrpfYzeFXxuSgYkJYEJVbtaXYY74A9wpbFoTV0+1u
-	 ZwZ9gwBTS33/mICZKKv+XlwS4G7Acg03HoDeLKdwCtCWoE2fhVpj52qxcieGpRFAVT
-	 ZsyLFLxcKb+lp4HRmJKn+7ppuReiak/XrVesoKCZbWstS9YJid3k6ctyQHOdF4Iso7
-	 B0XralekAOQp/bprv7pu8x49iSyzGBiWuD3QTdevUdR9FLkOh6y4epJ5DoZVgXw3X2
-	 FermJke8xVBUn4U31sQ63J57NvMGcqz65YnoIKJI/hLkC93qxW6lG5WmSlgjcCC1BV
-	 eiDF69W5lozeg==
-Message-ID: <f9e30721-a636-41dc-93ab-ca960e0415ab@kernel.org>
-Date: Mon, 1 Dec 2025 09:50:07 +0100
+	b=i+HCEoMLPpOVqcIhz8ZkxtZqM9uNa4Tnl6SJSDeMr9FnIEVqE4wy0UxSCTwvxc0w0
+	 PmtuKTEpEp6U5fjKlwiZhFgBnKvhhSZzVz/lbU6ClXDNjQgw2Eht+DSLE7m4pOQsdv
+	 rgaAml8PsjcqrXnL+dh0QBMKjui2hiLLBOPkG8BACmMqhkedI5J/XkhxLzk015oypX
+	 KNWUf1xVYppxB1KmjB0tatQl5IBCCMSu3BnnV3mduI4j9Cjgwn9nANKnEsh1cE3jRG
+	 bym8hyTu9cLvJl44GV6lKKfHxjbTfvCvietErATjHQLg9mg/BGssZACR8+8hlvpNC7
+	 IRb7MiL0ojjcQ==
+Message-ID: <c6397239-2882-486d-a6e9-b8117a5c2fc6@kernel.org>
+Date: Mon, 1 Dec 2025 09:51:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: vendor-prefixes: Add Ezurio LLC
+Subject: Re: [PATCH 2/5] dt-bindings: arm: mediatek: Add
+ ezurio,mt8370-tungsten-smarc
 To: Gary Bisson <bisson.gary@gmail.com>, devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org
+ linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com
 References: <20251201084140.376058-1-bisson.gary@gmail.com>
- <20251201084140.376058-2-bisson.gary@gmail.com>
+ <20251201084140.376058-3-bisson.gary@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,38 +103,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251201084140.376058-2-bisson.gary@gmail.com>
+In-Reply-To: <20251201084140.376058-3-bisson.gary@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 01/12/2025 09:41, Gary Bisson wrote:
-> Ezurio is the new name of Laird Connectivity after it acquired Boundary
-> Devices.
+> Add device tree bindings support for the Ezurio Tungsten 510 (MT8370)
+> SMARC SOM [1] + Universal SMARC carrier board [2].
+> 
+> [1] https://www.ezurio.com/product/tungsten510-smarc
+> [2]
+
+Don't wrap lines
+
+> https://www.ezurio.com/system-on-module/accessories/universal-smarc-carrier
 > 
 > Signed-off-by: Gary Bisson <bisson.gary@gmail.com>
 > ---
 > Cc: robh@kernel.org
 > Cc: krzk+dt@kernel.org
+> Cc: conor+dt@kernel.org
 
-Why only two of us? Please don't work on old kernels, some ancient code.
+And here Conor? Just use b4.
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument, so you will
-not CC people just because they made one commit years ago). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
+Anyway, please squash this and 3/5, it's just churn if boards are
+per-commit.
 
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline) or work on fork of kernel
-(don't, instead use mainline). Just use b4 and everything should be
-fine, although remember about `b4 prep --auto-to-cc` if you added new
-patches to the patchset.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-
 
 Best regards,
 Krzysztof
