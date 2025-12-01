@@ -1,164 +1,331 @@
-Return-Path: <devicetree+bounces-243475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13FEEC97F9B
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 16:10:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB04BC98015
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 16:17:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C7D574E1F2D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 15:09:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 468783A402E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 15:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B672319619;
-	Mon,  1 Dec 2025 15:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C659431D37A;
+	Mon,  1 Dec 2025 15:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nJTjUsNj";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Uwgu4myy"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Vl1q0JAc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2358313E0C
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 15:09:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B7816DEB3;
+	Mon,  1 Dec 2025 15:15:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764601784; cv=none; b=KNuaxETK4eRgBsaGD9KUhFPgRoj5P0qDr6/qc3GYWn2zd1z1lNQWn4g9PNvLRjw2LbpkiIM/cBUE5MtQ4pYvN+aBxYjkuPM7/fpELVB6kJhBhTOhIqq00C78C/CGFHMUnp7sw9uq59S64zfqcPN3XhjGEiDC8UV/7TSJ157jBJQ=
+	t=1764602137; cv=none; b=cg/EsOHc/FBber8gwJxeYmTEpr0kVQIzSYTN81jyNgRDvPLZFoc5/Or4/Pt9ICdpG3VqQT8Xi5cbEeaAd4IIyYmQajOlWbjoijEbHmGaYihs+klm0jzBZrOA7hbiBy58JPWthgQqG/sRKzx+dcj4S/o4SvVX95BdlMajHY0HCRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764601784; c=relaxed/simple;
-	bh=YGSSDKFg5jrGbiSq4AkXaxodG2ZTxYZiOQtMhSy+4z4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zm9Jl23oUvrikDQ7Hu0uXV/LSENhRDlSrAY1ba8k9XhXWKthFTymHlzMKY9QCEQKUr//nE9/29l2RPBs5ZHjhQ3S+dSJABdM6SSHsEVDH7Z5FLZtBp0TWHX6VR04HysIBArZLzNzhxJfmZwwcLOLfSyYACFHsLlvlhlx6FsmYRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nJTjUsNj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Uwgu4myy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B1A7ngr435828
-	for <devicetree@vger.kernel.org>; Mon, 1 Dec 2025 15:09:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	z3t1Xs6zgjRdXhFfVBguGwwnqAOk/Svbih2vGB4uC6Y=; b=nJTjUsNjRIHHpY2D
-	J1AaiSet+6NiDLpnynoJhuerpyahkAZJTZUSrSvCFDRLJ6basaXXifhR4b/ibpDl
-	WWnKwjiQ4x0TgMlfBwUJQOdqlHAt50McNg8Rlgk4FXgW1P+neRJEQezVWEgsq75z
-	97tVh9xpLvOsBDHyuY1PSAcaijAGOEfqyVYs+LTP1rsgomLMbhCdBKjWO9AQ0KrO
-	xSuJlcw7cKV8UlqRrrpa7NC9dancKajDaDNXuFnKF8WSnmWlbaWntE/CtY0cvf16
-	SbmmZsj4wIYVFPSKWk+fvcJHIdZn5Lh8azZpO3xfJuWEMVeyAA6/VzbR68AiD0wZ
-	wvNuEQ==
-Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4as909rt8h-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 15:09:41 +0000 (GMT)
-Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-5e1fde1f025so444260137.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 07:09:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764601781; x=1765206581; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z3t1Xs6zgjRdXhFfVBguGwwnqAOk/Svbih2vGB4uC6Y=;
-        b=Uwgu4myyKAwGyvQBS7J7LdcYsxMcwtRUalAM2sED2gt3ksSh1gEdza3QhVQHPGRITs
-         hijpzbAUaQdxXYJk7q+GcLXRhUqTZCkKP39AjHVstsebByyRFVQgi4kmbZhjTUoYLbLa
-         SJ58s5x2vIfw0aG5HsJVxJfG8Ak7B+zRD6dHwbOqaIsnS0VWdUnzcnllUTI2CBeoVNOo
-         9cK4dZXwEu/3D5mYCvWHucHumLKuMTsDFUgoZN2/G+nPOYOhq281qo5PYuTUdgPAcdNM
-         nExCj1qDl2cTXkVWOAfYrGFTz+JYDYiWD30c8TE4Z+eyORzoey2szsh999bamLEehJ8r
-         Sbog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764601781; x=1765206581;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z3t1Xs6zgjRdXhFfVBguGwwnqAOk/Svbih2vGB4uC6Y=;
-        b=nH3nlvBh18qXHpPNc0Cd1+wgZPjoDopIAmYn2UWaXtHpUw9+KHm2+2Q8OKfIzZusuC
-         VfqCGyOw9PGJRQFPawnjA20FIIgSggIMekOiRDmJIKbv4FVn4pObDZMeKatVIxiKRiVe
-         9kIjuvYILcEg9ZTGOa0lnwnyIS2/acNZyW8Rp31ooTfKeyg9ez/sw5/ymT3krbaixPqm
-         GGGgmQ/qLIT7NqMflcKbt3BG9iMcLyEVbY3tdNEXrGPzW8VXkvBiQgoBgDyJVkEOl0pK
-         0ZCSPiK2ofOzvbO/TyOYr0j/qJWzzIshtd+ZgrcslQjGLd6yqr8hfKHkgEl8Y7jpa2de
-         gKNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU28Z5chXebUpat7IthDMsIJP6IX652GLxZZC5/40BT5STmKtiNxJwxWwRpIqd9SN6GMSCIanhce79i@vger.kernel.org
-X-Gm-Message-State: AOJu0YznlmESRxE2MsHVO11KBCh5/f/zu8qxYaUb+j0igQSz1jdFb0Mf
-	DbSuzrCV4tq0y4Rq/nyPpXU2JU+SZASUAfu79IVG7miVXeS19LmNta48aBpyiMRjp0rUXFivacW
-	fyVrZYwWws1cS2HFDrKA7BVYhmWdeC7+PaojYb7abcdYCQaU4HCafmEF1qNxsrjg/
-X-Gm-Gg: ASbGncsIfMh5VO1+tL/dP9Tp3iC4YT4865S3aIUU8NF3EB86oZmZdGUAgJ9AAcniFK2
-	M3WT9g6n+rzvQhXhlaebxjReS4Gvn45O/i8YC7aa+1aeaLALLpoHxcBzoSiJxZPwT/c5RT2BQ4h
-	tHPB/o3g7pYfOLGU3o80korhnAo/mpAzgyDwl4oAdvLviqxvWrn4SW0LnTijsm9ii0TizBIYpaw
-	ww6TW55aq0kqpevfQiN9DZ9V/szg8L48MsAcb/AoDe0zVJdkNkOn2UzTPV438dudxET0d7T8XX3
-	HSQwelNqZ8dyIxMKwMyZEXfyQW0iI0GtrEVnd1MuwPJxDi45ADF6PEqWZnseoiSWa3nP1shmS1d
-	C0Vu5yZFQcfoGjC93A+3WPWsLBXZapELI4fMJUety6oYV81/wuspULgm9SdGB4ZZXces=
-X-Received: by 2002:a05:6102:5ccc:b0:5db:d7a5:ba2e with SMTP id ada2fe7eead31-5e1de57c9c5mr7861928137.8.1764601779874;
-        Mon, 01 Dec 2025 07:09:39 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFqJ/bOtUtruLfvAMP21Fx4vb+d1CVVf6E0IukYWZBWR+luXF1KzuKUUzQCJI+z3Ap2EQMNNg==
-X-Received: by 2002:a05:6102:5ccc:b0:5db:d7a5:ba2e with SMTP id ada2fe7eead31-5e1de57c9c5mr7861677137.8.1764601777393;
-        Mon, 01 Dec 2025 07:09:37 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f5a265d4sm1236160666b.60.2025.12.01.07.09.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Dec 2025 07:09:36 -0800 (PST)
-Message-ID: <4f8a5842-2132-46f3-a3a4-1243e5342f6c@oss.qualcomm.com>
-Date: Mon, 1 Dec 2025 16:09:34 +0100
+	s=arc-20240116; t=1764602137; c=relaxed/simple;
+	bh=unwhROlfIDKJhZRrjNRFgJyZp1RiAhD5PhXdORnQ8iU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fZ3OmtgJLUGV9buReWMROlHZh/I9ujarwIDad9IlaF72b6jKSl4fIGjh44y9Z9sifWCL/GEtTVoJcKf+Wbyrr3wYD9GZNmS6C1Kv6RxwwYioALQnehv+C1MY3TVCGLN5kA6fOU7X+pqF4IDp3BEQWKBVOHUXXH9iCs2rV5Fidt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Vl1q0JAc; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (net-93-65-100-155.cust.vodafonedsl.it [93.65.100.155])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D0CFC6DF;
+	Mon,  1 Dec 2025 16:13:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1764601998;
+	bh=unwhROlfIDKJhZRrjNRFgJyZp1RiAhD5PhXdORnQ8iU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Vl1q0JAc5rbYNblfx557hxNu8abwkS+2yaoGZzthhbVq34lRFw4txvnwTGcel5mdn
+	 iFbMSxAduBdx574lRa5S8DbygGZE/ohP0Gbo5aDXfZU6Tf28XbwftuHYumWySMjlp6
+	 T0NE4UrCqgOiIkdd5ktF2+dFoMabm9zZVg2jBkCo=
+Date: Mon, 1 Dec 2025 16:15:27 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, Jacopo Mondi <jacopo@jmondi.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Naushir Patuck <naush@raspberrypi.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, David Plowman <david.plowman@raspberrypi.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Peter Robinson <pbrobinson@gmail.com>, 
+	Stefan Wahren <wahrenst@gmx.net>, "Ivan T. Ivanov" <iivanov@suse.de>, 
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Subject: Re: [PATCH v2 09/16] media: i2c: ov5647: Support HFLIP and VFLIP
+Message-ID: <gla47pqyt6aan7fzr4eizm5ftyoc5s5u3dyh5u2fqbig7h2n6o@3lernf2jpswf>
+References: <20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com>
+ <20251118-b4-rpi-ov5647-v2-9-5e78e7cb7f9b@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: qcs8300: Add clocks for QoS
- configuration
-To: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
-        Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mike Tipton <mike.tipton@oss.qualcomm.com>
-References: <20251128150106.13849-1-odelu.kukatla@oss.qualcomm.com>
- <20251128150106.13849-4-odelu.kukatla@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251128150106.13849-4-odelu.kukatla@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAxMDEyMyBTYWx0ZWRfX5DfucoCP8o8c
- PWC+sX7Wnopz9319Hfb7JyKcZcBPkHFg2fppNFJ64yxgcWgua2n9HHdxt5G9L1vooCBQNnbcD3+
- R0C3WmTHF6isMOkWUT5ntEpV8xaA+m7pwIiIOZrwAlPtEn54kTbnwHFmJCPWzQI1aBUJX80Qme7
- 8jSyMPkwQUSzdI577iABJSex5n6NkLIEgekFdsWK02SE2FK2odcYN86Kjty1iwkBSuRnz5AjuPW
- B6fsxEmDNezr2zTVkhgzmPPSMjJgXoLjSjkTDRfElUmEDTv/szWZdYIHen10TzV63+BtLuv9AnA
- GfwkEHqUFVnu9hqxDTwzxa/9oypzhl+4AVSp5tAWo1RjtcWSzFxrTnsJlyrLmN1mQmhxj1atPji
- HsCJDq9ZBg40Mmz0+DxdVc2Oqh/dxA==
-X-Authority-Analysis: v=2.4 cv=XJQ9iAhE c=1 sm=1 tr=0 ts=692dafb5 cx=c_pps
- a=P2rfLEam3zuxRRdjJWA2cw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=PHHq1DDFEsKsDgH6OmAA:9
- a=QEXdDO2ut3YA:10 a=ODZdjJIeia2B_SHc_B0f:22
-X-Proofpoint-ORIG-GUID: qI5js-zyxAP6w8jDK7hZ2C7UN_t_ka0E
-X-Proofpoint-GUID: qI5js-zyxAP6w8jDK7hZ2C7UN_t_ka0E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 impostorscore=0 priorityscore=1501 spamscore=0 clxscore=1015
- phishscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512010123
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251118-b4-rpi-ov5647-v2-9-5e78e7cb7f9b@ideasonboard.com>
 
-On 11/28/25 4:01 PM, Odelu Kukatla wrote:
-> Add clocks which need to be enabled for configuring QoS on
-> qcs8300 SoC.
-> 
-> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+Hi Jai
+
+On Tue, Nov 18, 2025 at 05:33:02PM +0530, Jai Luthra wrote:
+> From: David Plowman <david.plowman@raspberrypi.com>
+>
+> Add missing controls for horizontal and vertical flipping.
+>
+> The sensor readout mirrors in the horizontal direction by default (if
+> 0x3821[1] = 0) which can make things unnecessarily difficult for
+> applications. The register table prior to this commit was setting that
+> bit explicitly, to achieve a normally oriented image.
+>
+> Now that we have userspace controls for HFLIP, we keep the convention
+> and report the non-mirrored image (with 0x3821[1] = 1) as
+> horizontal_flip=0, and vice versa.
+
+I would drop this last part. This patch makes thing work "as
+expected", HFLIP=1 -> mirror, HFLIP=0 -> non mirror
+
+The fact we invert the control value to get the right register value
+might just be confusing to read here ?
+
+>
+> Signed-off-by: David Plowman <david.plowman@raspberrypi.com>
+> Co-developed-by: Jai Luthra <jai.luthra@ideasonboard.com>
+> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
 > ---
+>  drivers/media/i2c/ov5647.c | 86 ++++++++++++++++++++++++++++++++++++++++++----
+>  1 file changed, 79 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/media/i2c/ov5647.c b/drivers/media/i2c/ov5647.c
+> index 5009fd8c05a64d7e06f66f8f75f0a881cd0b95c1..0343583692ab9bcca1a07d874a707ac6093a9035 100644
+> --- a/drivers/media/i2c/ov5647.c
+> +++ b/drivers/media/i2c/ov5647.c
+> @@ -55,6 +55,8 @@
+>  #define OV5647_REG_GAIN_LO		0x350b
+>  #define OV5647_REG_VTS_HI		0x380e
+>  #define OV5647_REG_VTS_LO		0x380f
+> +#define OV5647_REG_TIMING_TC_V		0x3820
+> +#define OV5647_REG_TIMING_TC_H		0x3821
+>  #define OV5647_REG_FRAME_OFF_NUMBER	0x4202
+>  #define OV5647_REG_MIPI_CTRL00		0x4800
+>  #define OV5647_REG_MIPI_CTRL14		0x4814
+> @@ -120,6 +122,8 @@ struct ov5647 {
+>  	struct v4l2_ctrl		*hblank;
+>  	struct v4l2_ctrl		*vblank;
+>  	struct v4l2_ctrl		*exposure;
+> +	struct v4l2_ctrl		*hflip;
+> +	struct v4l2_ctrl		*vflip;
+>  };
+>
+>  static inline struct ov5647 *to_sensor(struct v4l2_subdev *sd)
+> @@ -161,7 +165,7 @@ static struct regval_list ov5647_2592x1944_10bpp[] = {
+>  	{0x3036, 0x69},
+>  	{0x303c, 0x11},
+>  	{0x3106, 0xf5},
+> -	{0x3821, 0x06},
+> +	{0x3821, 0x00},
+>  	{0x3820, 0x00},
+>  	{0x3827, 0xec},
+>  	{0x370c, 0x03},
+> @@ -250,7 +254,7 @@ static struct regval_list ov5647_1080p30_10bpp[] = {
+>  	{0x3036, 0x62},
+>  	{0x303c, 0x11},
+>  	{0x3106, 0xf5},
+> -	{0x3821, 0x06},
+> +	{0x3821, 0x00},
+>  	{0x3820, 0x00},
+>  	{0x3827, 0xec},
+>  	{0x370c, 0x03},
+> @@ -414,7 +418,7 @@ static struct regval_list ov5647_2x2binned_10bpp[] = {
+>  	{0x4800, 0x24},
+>  	{0x3503, 0x03},
+>  	{0x3820, 0x41},
+> -	{0x3821, 0x07},
+> +	{0x3821, 0x01},
+>  	{0x350a, 0x00},
+>  	{0x350b, 0x10},
+>  	{0x3500, 0x00},
+> @@ -430,7 +434,7 @@ static struct regval_list ov5647_640x480_10bpp[] = {
+>  	{0x3035, 0x11},
+>  	{0x3036, 0x46},
+>  	{0x303c, 0x11},
+> -	{0x3821, 0x07},
+> +	{0x3821, 0x01},
 
-I don't have a good reference for this, but it seems like there's
-a lot more various AXI_CLKs (PCIe, ethernet, camera) - do we need
-any of them too?
+So we now mirror by default (HFLIP=1). See below at controls
+initialization
 
-Konrad
+>  	{0x3820, 0x41},
+>  	{0x370c, 0x03},
+>  	{0x3612, 0x59},
+> @@ -956,6 +960,26 @@ static const struct v4l2_subdev_video_ops ov5647_subdev_video_ops = {
+>  	.s_stream =		ov5647_s_stream,
+>  };
+>
+> +/*
+> + * This function returns the mbus code for the current settings of the HFLIP
+> + * and VFLIP controls.
+> + */
+> +static u32 ov5647_get_mbus_code(struct v4l2_subdev *sd)
+> +{
+> +	struct ov5647 *sensor = to_sensor(sd);
+> +	/* The control values are only 0 or 1. */
+> +	int index =  sensor->hflip->val | (sensor->vflip->val << 1);
+> +
+> +	static const u32 codes[4] = {
+> +		MEDIA_BUS_FMT_SGBRG10_1X10,
+> +		MEDIA_BUS_FMT_SBGGR10_1X10,
+> +		MEDIA_BUS_FMT_SRGGB10_1X10,
+> +		MEDIA_BUS_FMT_SGRBG10_1X10
+> +	};
+> +
+> +	return codes[index];
+> +}
+> +
+>  static int ov5647_enum_mbus_code(struct v4l2_subdev *sd,
+>  				 struct v4l2_subdev_state *sd_state,
+>  				 struct v4l2_subdev_mbus_code_enum *code)
+> @@ -963,7 +987,7 @@ static int ov5647_enum_mbus_code(struct v4l2_subdev *sd,
+>  	if (code->index > 0)
+>  		return -EINVAL;
+>
+> -	code->code = MEDIA_BUS_FMT_SBGGR10_1X10;
+> +	code->code = ov5647_get_mbus_code(sd);
+>
+>  	return 0;
+>  }
+> @@ -974,7 +998,7 @@ static int ov5647_enum_frame_size(struct v4l2_subdev *sd,
+>  {
+>  	const struct v4l2_mbus_framefmt *fmt;
+>
+> -	if (fse->code != MEDIA_BUS_FMT_SBGGR10_1X10 ||
+> +	if (fse->code != ov5647_get_mbus_code(sd) ||
+>  	    fse->index >= ARRAY_SIZE(ov5647_modes))
+>  		return -EINVAL;
+>
+> @@ -1007,6 +1031,8 @@ static int ov5647_get_pad_fmt(struct v4l2_subdev *sd,
+>  	}
+>
+>  	*fmt = *sensor_format;
+> +	/* The code we pass back must reflect the current h/vflips. */
+> +	fmt->code = ov5647_get_mbus_code(sd);
+>  	mutex_unlock(&sensor->lock);
+>
+>  	return 0;
+> @@ -1054,6 +1080,8 @@ static int ov5647_set_pad_fmt(struct v4l2_subdev *sd,
+>  					 exposure_def);
+>  	}
+>  	*fmt = mode->format;
+> +	/* The code we pass back must reflect the current h/vflips. */
+> +	fmt->code = ov5647_get_mbus_code(sd);
+>  	mutex_unlock(&sensor->lock);
+>
+>  	return 0;
+> @@ -1229,6 +1257,36 @@ static int ov5647_s_exposure(struct v4l2_subdev *sd, u32 val)
+>  	return ov5647_write(sd, OV5647_REG_EXP_LO, (val & 0xf) << 4);
+>  }
+>
+> +static int ov5647_s_flip(struct v4l2_subdev *sd, u16 reg, u32 ctrl_val)
+> +{
+> +	int ret;
+> +	u8 reg_val;
+
+nit: invert the declaration order
+
+> +
+> +	/*
+> +	 * TIMING TC REG20 (Vertical) and REG21 (Horizontal):
+> +	 * - [2]:	ISP mirror/flip
+> +	 * - [1]:	Sensor mirror/flip
+> +	 *
+> +	 * We only use sensor flip.
+> +	 *
+> +	 * Using ISP flip retains the BGGR pattern at the cost of changing the
+> +	 * pixel array readout. This affects the selection rectangles in ways
+> +	 * that are not very well documented, and would be tougher to deal with
+> +	 * for applications compared to reading a different bayer pattern.
+
+Nice you reported this
+
+> +	 */
+> +	ret = ov5647_read(sd, reg, &reg_val);
+> +	if (ret == 0) {
+
+isn't it easier:
+
+        if (ret)
+                return ret;
+
+
+> +		if (ctrl_val)
+> +			reg_val |= BIT(1);
+> +		else
+> +			reg_val &= ~BIT(1);
+> +
+> +		ret = ov5647_write(sd, reg, reg_val);
+
+        return ov5647_write(sd, reg, val ? reg_val | BIT(1)
+                                         : reg_val &= ~BIT(1));
+
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>  static int ov5647_s_ctrl(struct v4l2_ctrl *ctrl)
+>  {
+>  	struct ov5647 *sensor = container_of(ctrl->handler,
+> @@ -1291,6 +1349,14 @@ static int ov5647_s_ctrl(struct v4l2_ctrl *ctrl)
+>  		/* Read-only, but we adjust it based on mode. */
+>  		break;
+>
+> +	case V4L2_CID_HFLIP:
+> +		/* There's an in-built hflip in the sensor, so account for that here. */
+> +		ov5647_s_flip(sd, OV5647_REG_TIMING_TC_H, !ctrl->val);
+> +		break;
+> +	case V4L2_CID_VFLIP:
+> +		ov5647_s_flip(sd, OV5647_REG_TIMING_TC_V, ctrl->val);
+> +		break;
+> +
+>  	default:
+>  		dev_info(&client->dev,
+>  			 "Control (id:0x%x, val:0x%x) not supported\n",
+> @@ -1324,7 +1390,7 @@ static int ov5647_init_controls(struct ov5647 *sensor)
+>  	int hblank, exposure_max, exposure_def;
+>  	struct device *dev = &client->dev;
+>
+> -	v4l2_ctrl_handler_init(&sensor->ctrls, 11);
+> +	v4l2_ctrl_handler_init(&sensor->ctrls, 13);
+>
+>  	v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
+>  			  V4L2_CID_AUTOGAIN, 0, 1, 1, 0);
+> @@ -1373,6 +1439,12 @@ static int ov5647_init_controls(struct ov5647 *sensor)
+>  				     ARRAY_SIZE(ov5647_test_pattern_menu) - 1,
+>  				     0, 0, ov5647_test_pattern_menu);
+>
+> +	sensor->hflip = v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
+> +					  V4L2_CID_HFLIP, 0, 1, 1, 0);
+
+if now we mirror by default, should you initialize the control value
+to 1 ?
+
+Nits apart
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+
+Thanks
+  j
+
+> +
+> +	sensor->vflip = v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
+> +					  V4L2_CID_VFLIP, 0, 1, 1, 0);
+> +
+>  	v4l2_fwnode_device_parse(dev, &props);
+>
+>  	v4l2_ctrl_new_fwnode_properties(&sensor->ctrls, &ov5647_ctrl_ops,
+>
+> --
+> 2.51.1
+>
 
