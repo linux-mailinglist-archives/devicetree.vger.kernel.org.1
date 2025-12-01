@@ -1,196 +1,196 @@
-Return-Path: <devicetree+bounces-243483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C14C98152
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 16:41:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B655C981BB
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 16:50:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 09B303414E2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 15:41:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D764D4E1A0B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 15:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D3AC3321CD;
-	Mon,  1 Dec 2025 15:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5E1332ED9;
+	Mon,  1 Dec 2025 15:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="nYeGxFAr"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="itQUXyVO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011044.outbound.protection.outlook.com [52.101.65.44])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1536032BF24;
-	Mon,  1 Dec 2025 15:41:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764603702; cv=fail; b=GPo+Sb4XyVMtNywo3cMIRrFKJ87pseSrdB0qOtH8AW7VAW87binRC3v80QIKMgIAouwCWbEA+IE56hYM+UWei6J2/63XwJnuSxoQDgTp+7H8Dw2KTKavuFWT+wC5es5puXwTUa31Vn23FwMxhNq5XPjZngXpvUBlzYMR4YIEgsM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764603702; c=relaxed/simple;
-	bh=hQ8PAZNiwyPc+lscrPxqLojUwl/D2JMkr7QfOM7bPxM=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=fTo0jAM5tpr5k/x51AGW34rxhtmCu5mcunFgHCOvBCkBh+Qe4l2tNDsXQEOGMZa/t9ocBlu0CjfV1KMRmCQmt7NK+iyB0tyNE7on3zHqDjdXGyGoK8l1byTJiYOKodYq12e/xzh8NBMbXD5aYyNCHgsJBaC+MhFxO94Ju0H+GBk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=nYeGxFAr; arc=fail smtp.client-ip=52.101.65.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AflHoYDP5OsLe7kwTw1STN12qLtcfPCYwMzk4fcQwSNWz3YZEf+ij6P2tSfU0AUxywCROa8Kg73uWcASJB0I0flSJ7tccHax8GhG/+yL8mYel3IltcVoGWEVKJIyQ8jgZq0g3Xdipnp9TAKsvzjml7yGh9EcSDdm0goJfYuVr/e1sUFBcTq6UlCqFl2mcrqgBYX0znIcy0m5r8sefBZRp128s0BnANL4CSEyMReoiCow4zEqOz9XC6rKjW8GXexu1Z7VtqHkih2n8hy5tSojLDKH3pe84GP+i84UkvTmVhWfGAasRh+eYMVG9lfxAPXzwGoucv341wcCJmfWPkBGrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Di4oVPEMq+ZqZZ8Ol505NgTB8/NfxBJfO8wIFS+gUeE=;
- b=udLAFRvwr8Rq1N1bngtgOUOLe0U7o1ZR17Rb8F/KWQIzozTNrySTyH89hbS4tNTNQ3dYrfYvIn0NYc4X4Wr81SqhZY79CuEciTaN1u9bKDswUNHcu4fvOtAh8M0JGLcjb4qZ3HIZ2l0tLPPfjMhSvBd1IfxnWyrm5rCv+14gsK+0IRxFogwUXusRJT1lGgYIH+M/TKXdtasxvpETtNzgr2T1ozHE2eqcrmzze6i3by4GzuwDSZ7h81pmHfdnZ2KfiCC3JApSLItmTHATWRVSXztx9bYCiVg21tywV+Je6IN7g8N49G7Ey6iAfdvP05MkmpZXzH9nCjvTvK33a//csw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Di4oVPEMq+ZqZZ8Ol505NgTB8/NfxBJfO8wIFS+gUeE=;
- b=nYeGxFArdzvy2LLPftassKAf6eGU79Vh9zqhojdgQjHC89/T004+boac1ViqFKDjE/V+WJzJf9SrgzzPXqU65i6bx9IJL5PMb5Y74bglBiLXO5jT7TqAoumLLf09e2YJ9V/eyO98Ed0S/vwSBAlF96RMuVvvAlMAzd4sxpekDTQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com (2603:10a6:150:2be::5)
- by DU4PR04MB11056.eurprd04.prod.outlook.com (2603:10a6:10:58c::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
- 2025 15:41:35 +0000
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::1033:5a9a:dc18:dad]) by GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::1033:5a9a:dc18:dad%4]) with mapi id 15.20.9366.012; Mon, 1 Dec 2025
- 15:41:35 +0000
-Message-ID: <efb64744-c140-4421-b72e-6ead771548c9@cherry.de>
-Date: Mon, 1 Dec 2025 16:41:28 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/9] arm64: dts: rockchip: Use phandle for i2c_lvds_blc
- on rk3368-lion haikou
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andy.yan@rock-chips.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, cn.liweihao@gmail.com,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-References: <20251021074254.87065-1-heiko@sntech.de>
- <20251021074254.87065-7-heiko@sntech.de>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <20251021074254.87065-7-heiko@sntech.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR0P281CA0160.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b3::14) To GVXPR04MB12038.eurprd04.prod.outlook.com
- (2603:10a6:150:2be::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4F9E332EBD;
+	Mon,  1 Dec 2025 15:50:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764604246; cv=none; b=gOYyyEkTQoJc6S/VKl38FmlII9RZL9UEmsJJMLAvy9bM1thqp3xFPuWO8pv0iyhywmZkgdfqpJ/hKGEy5Xzz5nZnicFsgGJD8JDmeoXbSfhYV6ZSUc41x2AsFZpz1n9TPeUvteShc92apXMq0B/8KL6+YSR1XiuilMMwh6tFAYU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764604246; c=relaxed/simple;
+	bh=RPOV0/K3agKHfWiaDX9fzUjkflEVPIyTOubNJMJlfMo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eYb/RBBLmWNjfD0FOgJ99D20UGzPH29Ny27WNU8OPGJA/4tQRh0KDJyeKVf4aBSX43XRqX8bHT0d2G+45M0WnidsFPgg7YmPmpSYIdth78HQmszI2LT8ewiRtx9Pn1SPNDMQ7HwWbni5++fbwYABTv/An3Mm7CXptdk9xCpoU0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=itQUXyVO; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (net-93-65-100-155.cust.vodafonedsl.it [93.65.100.155])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A660B6DF;
+	Mon,  1 Dec 2025 16:48:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1764604108;
+	bh=RPOV0/K3agKHfWiaDX9fzUjkflEVPIyTOubNJMJlfMo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=itQUXyVOMu7lWo3z+QPxRwuim1ehUvcepthaRD6JVTt+9/ZyKm1ZFAeJkCtZ0zx5k
+	 ER18R8anxc0qjLjYKAxiUEXHG9oasaadYJmiprWW/Ts64ah2WMPe+Lqzg+TlNYS1dp
+	 XBz2gVqI9bHDSkD2z11UIE5L9k+0j7MlQw8NTsEY=
+Date: Mon, 1 Dec 2025 16:50:39 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, Jacopo Mondi <jacopo@jmondi.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Naushir Patuck <naush@raspberrypi.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, David Plowman <david.plowman@raspberrypi.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Peter Robinson <pbrobinson@gmail.com>, 
+	Stefan Wahren <wahrenst@gmx.net>, "Ivan T. Ivanov" <iivanov@suse.de>, 
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Subject: Re: [PATCH v2 16/16] media: i2c: ov5647: Add V4L2_CID_LINK_FREQUENCY
+ control
+Message-ID: <5e2lwyzel45ejbb4mch2johetncaj7arpidjst2tjpatseklvn@vlv6hnwzfmwj>
+References: <20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com>
+ <20251118-b4-rpi-ov5647-v2-16-5e78e7cb7f9b@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12038:EE_|DU4PR04MB11056:EE_
-X-MS-Office365-Filtering-Correlation-Id: 16275465-870a-4e72-5d5d-08de30f01bba
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|10070799003|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ellMQWFZU2xOUXEvQjhxL1BqaHZiWU5qMXByNjQ1bklZNHpBZE4ySG9mZFRs?=
- =?utf-8?B?SWxGMFlCamhDOGxBdUNBbDZmNk5CRFBjcytWRHZwTXBZK2JjNU8waXJkWUxl?=
- =?utf-8?B?VFFKU0Y3TzAwYkhVb2xZSU91Y0k4UU5BeHUxZlYwOFUzTmlsdlpFc1ZHbEd0?=
- =?utf-8?B?STJqalp5ODVTelhtQlFKY0pJQml5OUJZd2l2aXNCNkc4MENta0p5REhLR05r?=
- =?utf-8?B?SmdRenRJOWM3SGlPaVE0UXVQdE14WmVUaTJsTk5pZWQybTRXWUlGRW1WbmNk?=
- =?utf-8?B?WFU5QWRPSFQwK0kybDFEQ1FWUVBsUjZ3dmhkcWRXRTBlU3I4eHBwbTZPNUkx?=
- =?utf-8?B?czlUSnJuVEhhWjlQRFJKUmVMcnl2MXR0UzA4ZGhSSjErZVppVTFjUC9RcTN1?=
- =?utf-8?B?MWhrRHkwQWxwbGlTUmxaNCtpanEzd00vV1prcEZUd3IwelBmMzU5Si83LzBG?=
- =?utf-8?B?dWFyYTErUWZyN1U1WC9lUjEwdzJlNHNFQjN3bkhhUW53ZHVEb3Q1RXU5aXdw?=
- =?utf-8?B?VmZpaEQ3WmU1a2xtOWw5cFVZaWtTN0dkR2V2dk9TS0lONXQyblgvbjhDMDRh?=
- =?utf-8?B?Y3pWVEFKbjRyVGxtNEhEY01URVRqempkN3VJV3JnZFh0NDNmelpuUm9PY1Mz?=
- =?utf-8?B?RWVYdUZDbEx5akcyZ3RrY2Z5UWRHQVE0YXBsWElkbThTaHgxcTZlL3Byb2Fk?=
- =?utf-8?B?NlNieWNFMnl4WFpRSm1WY1JoYUFrcTloMFZ4NlloeENzWUpSRWhzdXZTOFlO?=
- =?utf-8?B?bkE5ekFSOWdaOGFhMmVScnROWUNFZ0Q4bnNZbkM4QjFRSElnYXdEWXcrejBx?=
- =?utf-8?B?dGZOWkJpV0NIZXRSOVRrNzJLM0pmVmo4bnVsN0ZXR0Z2L3orUW9qYkZ1UHF5?=
- =?utf-8?B?cFNWNlhSN0V3TjJ2elN2MXlaeWxvQnI0cjZzUmZoTEtsUGJQeE5PamJmZ1BJ?=
- =?utf-8?B?ajJZM0JOdWRJWXFkS3BHV3VGdFBNN25ENlhIQmp0N09yZ0VHL29VMm8xWU9k?=
- =?utf-8?B?d1Z5ZlRrMzRyc2QzeHhaM0hNendEd2hvVGFmQ01WV2orUGs5QWVmT0F1TUly?=
- =?utf-8?B?WC95aU1FbmEwYm55Z2IwdG1URE1aSW5xTjg0MkpLUXFhUWJ1eTlsVkpQWS9I?=
- =?utf-8?B?a083dkUra0JFZkR3V1oxN0pkWmJscFBpQVE2bWlicklnMXNjMnI4WUdZQS8x?=
- =?utf-8?B?a3d4VzRQaWRTRElvSElMN2pUV3JCWFNYQW1RSG5BTWlBVmRSTHVNUDlkeGRv?=
- =?utf-8?B?V25Td0cyN2t2K29aV1J6Rk5VZHFYZmg2NCsrbCsyTjBpQ3R0RVpwWHgrSXdW?=
- =?utf-8?B?Tmd4SGJQSG05enVuUDJidHhnUGZMemtLekFBK1J1RFZHUkZDbzVudm0xUW40?=
- =?utf-8?B?YktLYU1LMVM3RmhIbS8wZkF4Tjh5Tm5iK3BBOGNXS1dxcUFTazVJVXRBc0U4?=
- =?utf-8?B?YzdDOFV4RytCOVdQNW9vZjhlbi9xMC9DM2xRRDBqUVlEeEMwYVdDa2FMM2Zl?=
- =?utf-8?B?TDZZQktIbGl1dFdhZ3hOWHFTZngxYU5YRDFoTWxQUHNaM3hCRXRtTnZMNkJr?=
- =?utf-8?B?UkkzcXJ0ZXFWU0NScFVNT3U0cnJFTE44Zk44QTV5Qy9kRE1WWk1NYXM0RmRT?=
- =?utf-8?B?L2k0QTBCYWRwaDU2MVBaVUF2V1dmK2tvSkVWY2lhSVZ3OExMdkxtdS9FeExO?=
- =?utf-8?B?TEcreS9kRk1iYjQyKzlaQ2RSTTlJMjljMmdDdDJIUGZBTVVxZkFrOUtVcnVI?=
- =?utf-8?Q?1DqVUGZDL6hbEb2TBNXao9KXD/kSjqiD2HJLRKH?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12038.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(10070799003)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WHVwd0NrYmFBTzJoaS9IOTRRWWVyZ1p6VTV3MFJrNGFTZ0FnRTVnYzdjTU8v?=
- =?utf-8?B?clVBRk9LcEpGcmhMUUJLc0MvQ2w4Ylc4Ui9ndXJ6MUJydEJEZHEwMWFzdkdL?=
- =?utf-8?B?a1pwV0ZZYzM1MlJZSytpdE95Z2xROFpKN0hWSU0yckR1Sml5c1hZRFpGZzJw?=
- =?utf-8?B?UkFGRDlkSk9Cdzlid2xEa0kzcUFyd2lkSEJsU0xYWG5jaHR0aE1Bb0w1OEdF?=
- =?utf-8?B?UHMyc2dmWTdNck5WWENPNCtHWVh4VFIrTVVFU3Rhcjkycm5kR0ozenVDUnN0?=
- =?utf-8?B?V2o0SDVuenlsR3Rham9HWEFKQ2NBVUNiNzBWWUF3MlNFRVAvVDRZT09xTXRh?=
- =?utf-8?B?U0VSd1phMllxUVdyQ1JpR2t2UFN4REVGcktHN0NnQnMwSGQveWVYeEVLUkdZ?=
- =?utf-8?B?dEtoQkY1K0l0YWNud200R2pxZ2pzUzVEeWJwR3dpRFFZZzdCczBkWG0yTUQ4?=
- =?utf-8?B?d3lINk1UNStLaFdaOXhkVGZXaHpibnZCTGloZWxYaGlST3V5dkhhZFBBZU1i?=
- =?utf-8?B?enliciswTEc5RjF6VW5tVkFveSt5N0lFeGE1V3dad0FXMmxtVDVnUFdmdk1M?=
- =?utf-8?B?U3kvNkc1QktzME1LOXFxQWdDRWdEM2IrK0JTeUorcXluY21XNmgyRkNpdXBT?=
- =?utf-8?B?Wm5TemNoNTJCTVJsSG1BWnVqQW1HQTFaY1JBb3VkRkJUV1Vobmk2UStTWVpa?=
- =?utf-8?B?d3JrQjVEOEw5ZHJ5TmI3K25xS2hFR3ZTYis0bG9GY1dOL2o4VlM4NW0wQzZx?=
- =?utf-8?B?aVRYQUpOcVZJbWN2ZlRKQzgxUHFQRTB6RjV3blFFdy9oaFplTGY3SkVEOGZU?=
- =?utf-8?B?TFk4T3pFUGphOWZ3QzZ3ZFlac01aTXp2V2ovSlJlSU9iakliaFZYQ0RpMnps?=
- =?utf-8?B?UkIvejFqMmdYOE1CWVhnc2taY0dyYjB5UmJWTm8zR0w2eUpWekJtRDFKZGFh?=
- =?utf-8?B?NlhETWR3aisrS3MyMXVPbCs4WjJyWXd4Zk5UWGNzL0hUYnZrMWxGbWJxZUVi?=
- =?utf-8?B?QlRHcmNSYUUwRmphWTFBR2xRM1U5cFlCYllpb3E3cllDK1ZCLzRCL1NBbXBy?=
- =?utf-8?B?U0QxUndDakUzWGgyY0JkeER5SEg1Z05TUFVhQ2FVQUpNam5ldXlKUFZYdnNY?=
- =?utf-8?B?SkF1eUNUWTgrS1EzekNOMlg3a2FncmNrZDBEQkRrVHJFYy9SYzRpdmRhQ2xy?=
- =?utf-8?B?MVpwZHF0Y2IvR0JDYzdYMHBVREUyU2dkaWs0anl1cDUzS0pRYXl0L3p0VXB3?=
- =?utf-8?B?ZjREdVh1S0VqR0I3VTl0RDZFSVJlajViT1k3Y3hKUzVJMU1ScjhXUnhxWk1y?=
- =?utf-8?B?QzBvSFovNDZLY1VFb1EwVXpyVE1pZ3hKdisxcUl2cnlKNWNUb0xQMkN0ZUtR?=
- =?utf-8?B?RE03UEFRTGYyZG5XQ2o3NjJxVkd0Tm5qM1VNNWZIL3ZSMlE3Y0J6R1VSTldG?=
- =?utf-8?B?UEF2cEc2YUZKd1I5ZzdoT0oxU1ZsOTdIclFLekxrcENORHFyZ2NFQ0VISXNs?=
- =?utf-8?B?N3RnS0lYWVk0OWpQalF5MXZZaVg4MHZCQzQvai9QNE4wNlRIT210TUZsam9r?=
- =?utf-8?B?UHpyeGcxdjMrYmVqWWRZWExDbWUxbVdkUjAwckI3Q21rTFJyT2xFeVVjVlZx?=
- =?utf-8?B?VTNqMmJGN1hJMzJNYVUvVmZidHFveUh3ZGdDWE1ESWhMbzF3RVlENm0wYXF1?=
- =?utf-8?B?MnE4eUtaeWlWOUo0NkgxZmVlTjFDV0hnYytMVUJNT2p2UFBjNzdDZkxLZFVS?=
- =?utf-8?B?ZUdFeWdiVXR4Yk1vUkFQZ0pnMUhNaXdDVjA1TkR0S0p2UnI3N1pnTjF1c1Z6?=
- =?utf-8?B?Q3J1QXA0eGlQUkhnNzFkRDBWcU54SXlWTXR5V0hzUFpjd3NRTGJkRnN2RmVY?=
- =?utf-8?B?VWFQQVdmL1ppd1ZqTUJKeXRGMzJsZVBGYkJ2SGVWSlJnNHVaYkNHbVROY0Nm?=
- =?utf-8?B?NkRadkpSdWxtTjVRZnNtSnNBcTBydzRZMXRMZnIrSTUzTFY1WmhIL2tidjF4?=
- =?utf-8?B?RnEzZ0NEL3F4clNTdWZQR1Q1SVk3dXB4aDJaZFQ4R2dkWFNDc3ZlTDlDT0VX?=
- =?utf-8?B?WnYxbEg3dHlSUzlmWlNIR2NZSHRSRXNXM3lMRDU0Q0lhalBnNGQ0blk2akJS?=
- =?utf-8?B?enFSVUlBYzQ3WkxpN25VeERsUmtMZC9hNGxMM3lrOXdvL2tmM0FEQlVFSGk4?=
- =?utf-8?Q?GdH4qEhbyoRxfpsNpXElSKg=3D?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16275465-870a-4e72-5d5d-08de30f01bba
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12038.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 15:41:35.1361
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +bhov7t+0cUE8VJYTQju9BlQZKUG2X1CreRGadQ3XMQSMGiUDvs/ub3almKWq11PsUob7X0+t4LNp1Rv25fptQnw161PGnW6XnuCvUyxRIY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB11056
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251118-b4-rpi-ov5647-v2-16-5e78e7cb7f9b@ideasonboard.com>
 
-Hi Heiko,
+Hi Jai
 
-On 10/21/25 9:42 AM, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> 
-> i2c@0 on i2cmux2 does already have a phandle i2c_lvds_blc defined.
-> 
-> Use this one instead of replicating the hierarchy again, as this might
-> result in strange errors if the lion dtsi is changed at some point
-> in the future.
-> 
+On Tue, Nov 18, 2025 at 05:33:09PM +0530, Jai Luthra wrote:
+> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+>
+> The link frequency can vary between modes, so add it as a
+> control.
+>
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+> ---
+>  drivers/media/i2c/ov5647.c | 24 +++++++++++++++++++++++-
+>  1 file changed, 23 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/media/i2c/ov5647.c b/drivers/media/i2c/ov5647.c
+> index 71107d74f2900b39233a52b29a229282bd087963..de27e76b487957bfa0a072359f28194425950eaf 100644
+> --- a/drivers/media/i2c/ov5647.c
+> +++ b/drivers/media/i2c/ov5647.c
+> @@ -97,6 +97,13 @@ static const char * const ov5647_supply_names[] = {
+>
+>  #define OV5647_NUM_SUPPLIES ARRAY_SIZE(ov5647_supply_names)
+>
+> +#define FREQ_INDEX_FULL		0
+> +#define FREQ_INDEX_VGA		1
+> +static const s64 ov5647_link_freqs[] = {
+> +	[FREQ_INDEX_FULL]	= 218750000,
+> +	[FREQ_INDEX_VGA]	= 208333000,
+> +};
+> +
+>  struct regval_list {
+>  	u16 addr;
+>  	u8 data;
+> @@ -106,6 +113,7 @@ struct ov5647_mode {
+>  	struct v4l2_mbus_framefmt	format;
+>  	struct v4l2_rect		crop;
+>  	u64				pixel_rate;
+> +	unsigned int			link_freq_index;
+>  	int				hts;
+>  	int				vts;
+>  	const struct regval_list	*reg_list;
+> @@ -128,6 +136,7 @@ struct ov5647 {
+>  	struct v4l2_ctrl		*exposure;
+>  	struct v4l2_ctrl		*hflip;
+>  	struct v4l2_ctrl		*vflip;
+> +	struct v4l2_ctrl		*link_freq;
+>  };
+>
+>  static inline struct ov5647 *to_sensor(struct v4l2_subdev *sd)
+> @@ -376,6 +385,7 @@ static const struct ov5647_mode ov5647_modes[] = {
+>  			.height		= 1944
+>  		},
+>  		.pixel_rate	= 87500000,
+> +		.link_freq_index = FREQ_INDEX_FULL,
+>  		.hts		= 2844,
+>  		.vts		= 0x7b0,
+>  		.reg_list	= ov5647_2592x1944_10bpp,
+> @@ -397,6 +407,7 @@ static const struct ov5647_mode ov5647_modes[] = {
+>  			.height		= 1080,
+>  		},
+>  		.pixel_rate	= 87500000,
+> +		.link_freq_index = FREQ_INDEX_FULL,
+>  		.hts		= 2416,
+>  		.vts		= 0x450,
+>  		.reg_list	= ov5647_1080p30_10bpp,
+> @@ -418,6 +429,7 @@ static const struct ov5647_mode ov5647_modes[] = {
+>  			.height		= 1944,
+>  		},
+>  		.pixel_rate	= 87500000,
+> +		.link_freq_index = FREQ_INDEX_FULL,
+>  		.hts		= 1896,
+>  		.vts		= 0x59b,
+>  		.reg_list	= ov5647_2x2binned_10bpp,
+> @@ -439,6 +451,7 @@ static const struct ov5647_mode ov5647_modes[] = {
+>  			.height		= 1920,
+>  		},
+>  		.pixel_rate	= 55000000,
 
-Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+I now read again v1 13/13 and this mode seems to have a different pixel
+rate and a lower link freq ?
 
-Thanks!
-Quentin
+> +		.link_freq_index = FREQ_INDEX_VGA,
+>  		.hts		= 1852,
+>  		.vts		= 0x1f8,
+>  		.reg_list	= ov5647_640x480_10bpp,
+> @@ -927,6 +940,8 @@ static int ov5647_set_pad_fmt(struct v4l2_subdev *sd,
+>  					 sensor->exposure->minimum,
+>  					 exposure_max, sensor->exposure->step,
+>  					 exposure_def);
+> +
+> +		__v4l2_ctrl_s_ctrl(sensor->link_freq, mode->link_freq_index);
+>  	}
+>  	*fmt = mode->format;
+>  	/* The code we pass back must reflect the current h/vflips. */
+> @@ -1236,7 +1251,7 @@ static int ov5647_init_controls(struct ov5647 *sensor)
+>  	int hblank, exposure_max, exposure_def;
+>  	struct device *dev = &client->dev;
+>
+> -	v4l2_ctrl_handler_init(&sensor->ctrls, 13);
+> +	v4l2_ctrl_handler_init(&sensor->ctrls, 14);
+>
+>  	v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
+>  			  V4L2_CID_AUTOGAIN, 0, 1, 1, 0);
+> @@ -1292,6 +1307,13 @@ static int ov5647_init_controls(struct ov5647 *sensor)
+>  	sensor->vflip = v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
+>  					  V4L2_CID_VFLIP, 0, 1, 1, 0);
+>
+> +	sensor->link_freq =
+> +		v4l2_ctrl_new_int_menu(&sensor->ctrls, NULL, V4L2_CID_LINK_FREQ,
+> +				       ARRAY_SIZE(ov5647_link_freqs) - 1, 0,
+
+The default control value should follow the default mode.
+You can use mode->link_req_index to retrieve it
+
+> +				       ov5647_link_freqs);
+> +	if (sensor->link_freq)
+> +		sensor->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> +
+>  	v4l2_fwnode_device_parse(dev, &props);
+>
+>  	v4l2_ctrl_new_fwnode_properties(&sensor->ctrls, &ov5647_ctrl_ops,
+>
+> --
+> 2.51.1
+>
 
