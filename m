@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEF7BC9640C
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 09:51:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F805C9641E
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 09:53:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 54EE8343754
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 08:51:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D92013A1D04
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 08:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E35822FE042;
-	Mon,  1 Dec 2025 08:51:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B550E2FA0EE;
+	Mon,  1 Dec 2025 08:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+HCEoML"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I6InpAK5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8742FDC54;
-	Mon,  1 Dec 2025 08:51:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CDB72F6170;
+	Mon,  1 Dec 2025 08:53:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764579068; cv=none; b=sotH0JHGoM3fkkbOALGbAnbcKN1nxhDDahJg7F0WE9gz72IjEZekAALG8LBswsF8XBJe3ycxWiNnEMVNljPn+sO5sENz/XyNmHgEZ0eXzjm7ZpWAVbeogs4hIw/IyGsOD8OYSnFyR5N6PkeSOojOLi2ZhSqkASJkF/h23pi1dIY=
+	t=1764579189; cv=none; b=k1F8WVm3LdBvObzvR1BZXvl4a7GJAzUvAfNKocpS7dTYAsR+X4cPQfb7HTBSej35uUjjKr8htDvZMCZ2yaZIm+E7oQKzBH/iHfZpYeNfTkUPaV79IeKyfq3yp81iuqIsjDrTcoqH4mEwg/ajwO2zih+go+CIKAACDxpVw5kPb5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764579068; c=relaxed/simple;
-	bh=jVHQ+e1RFD0Fe3OWakUmmDRTB8ywOT7Kf1pTfwUt8Go=;
+	s=arc-20240116; t=1764579189; c=relaxed/simple;
+	bh=DqPfVY9n1pdKISB6lSZ6GbLpt0RQvCqoT06+QQY/tkU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LPr8eSjhp+CkBZ7o0v2imD/X4j1og/qyGml16tNsvUeS1wPr5Xsnoi/GUyzjvpUYv2/XiR52VirkcSyK96VeQU/fY0lDhMmn14SLgU6WLmBUgAsc07OOvnkMJiXwzyswve/MydTkscv4lX3jndjpDSoYDU8HUgNtZ5qCfLVY6w4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i+HCEoML; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 574A1C113D0;
-	Mon,  1 Dec 2025 08:51:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cAqv1cSmFv4LEeWpfSJJCV34tMGLf2lpFv484F2EkoWo1iPwMC7zeZz4aeg9GeYMisn9MbCfwrGv0M7e1ZQjvLB0j7PLcxUgtw6h2DOEeCnPhymg6FkLr7whTbTGqtSzWgvWJNfmI2KZQd5Ww0nOtFdTFTWY77A6sxcLD59wn04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I6InpAK5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6A13C4CEF1;
+	Mon,  1 Dec 2025 08:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764579068;
-	bh=jVHQ+e1RFD0Fe3OWakUmmDRTB8ywOT7Kf1pTfwUt8Go=;
+	s=k20201202; t=1764579188;
+	bh=DqPfVY9n1pdKISB6lSZ6GbLpt0RQvCqoT06+QQY/tkU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i+HCEoMLPpOVqcIhz8ZkxtZqM9uNa4Tnl6SJSDeMr9FnIEVqE4wy0UxSCTwvxc0w0
-	 PmtuKTEpEp6U5fjKlwiZhFgBnKvhhSZzVz/lbU6ClXDNjQgw2Eht+DSLE7m4pOQsdv
-	 rgaAml8PsjcqrXnL+dh0QBMKjui2hiLLBOPkG8BACmMqhkedI5J/XkhxLzk015oypX
-	 KNWUf1xVYppxB1KmjB0tatQl5IBCCMSu3BnnV3mduI4j9Cjgwn9nANKnEsh1cE3jRG
-	 bym8hyTu9cLvJl44GV6lKKfHxjbTfvCvietErATjHQLg9mg/BGssZACR8+8hlvpNC7
-	 IRb7MiL0ojjcQ==
-Message-ID: <c6397239-2882-486d-a6e9-b8117a5c2fc6@kernel.org>
-Date: Mon, 1 Dec 2025 09:51:04 +0100
+	b=I6InpAK5qQ6BSo03NFqzSR2xiZq7nZOCR36BAXDIpCbckr4PsvahJhSHYNhrsVlLg
+	 DH/d2YGBPdkx2RPjtcMceJMRBJEGB4ex8fSeNcmpUJloKc60RDy8Ap+UJXL6Jz0Qql
+	 8QcrUuoLFkH+CAKC5TtJ2yLt6FPlj61yZXMnPQ21G6yDwkCuS+Hl2Gz59Pi4WvQMZ2
+	 qQdj/JqMXpOqocpAQpQv6T/i8S04pAk6qwrm70Eq3VbWT0vvQYyExAnknzK9NWCm47
+	 e7K7Rbv5zu3JN8KvJ21qA5k8CFbBypQxVoOB/DejQamOgV8JLlJNiPc9B6IUICBhoz
+	 am18uFu+YkUcA==
+Message-ID: <29ad8354-231d-470e-a899-cb7c42754c8c@kernel.org>
+Date: Mon, 1 Dec 2025 09:53:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: arm: mediatek: Add
- ezurio,mt8370-tungsten-smarc
+Subject: Re: [PATCH 4/5] arm64: dts: mediatek: add device tree for Tungsten
+ 510 board
 To: Gary Bisson <bisson.gary@gmail.com>, devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com
+ linux-mediatek@lists.infradead.org, angelogioacchino.delregno@collabora.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com
 References: <20251201084140.376058-1-bisson.gary@gmail.com>
- <20251201084140.376058-3-bisson.gary@gmail.com>
+ <20251201084140.376058-5-bisson.gary@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,34 +104,50 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251201084140.376058-3-bisson.gary@gmail.com>
+In-Reply-To: <20251201084140.376058-5-bisson.gary@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 01/12/2025 09:41, Gary Bisson wrote:
-> Add device tree bindings support for the Ezurio Tungsten 510 (MT8370)
-> SMARC SOM [1] + Universal SMARC carrier board [2].
-> 
-> [1] https://www.ezurio.com/product/tungsten510-smarc
-> [2]
+> +
+> +&i2c_mux_lcd_2 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	bridge@2c {
+> +		compatible = "ti,sn65dsi84";
+> +		reg = <0x2c>;
+> +		enable-gpios = <&pio 25 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&dsi0_sn65dsi84_pins>;
+> +		status = "okay";
 
-Don't wrap lines
-
-> https://www.ezurio.com/system-on-module/accessories/universal-smarc-carrier
-> 
-> Signed-off-by: Gary Bisson <bisson.gary@gmail.com>
-> ---
-> Cc: robh@kernel.org
-> Cc: krzk+dt@kernel.org
-> Cc: conor+dt@kernel.org
-
-And here Conor? Just use b4.
-
-Anyway, please squash this and 3/5, it's just churn if boards are
-per-commit.
+Did you disable it anywhere?
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+...
+
+
+> +
+> +&spmi {
+> +	#address-cells = <1>;
+> +	#size-cells = <2>;
+> +
+> +	mt6315_6: mt6315@6 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+e.g. pmic
+
+> +		compatible = "mediatek,mt6315-regulator";
+> +		reg = <0x6 0 0xb>;
+
+
 
 Best regards,
 Krzysztof
