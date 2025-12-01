@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1520DC9692A
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:09:54 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F168C96936
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:10:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CED5C3A121B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:09:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7C7384E0F25
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7C23019C4;
-	Mon,  1 Dec 2025 10:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1022A3019C4;
+	Mon,  1 Dec 2025 10:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oS07c3Ti"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gpw6xBTV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC202F3617;
-	Mon,  1 Dec 2025 10:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE0F21CC4F;
+	Mon,  1 Dec 2025 10:10:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764583789; cv=none; b=ZCk1YF2pVBF5FJld73fLY3/sTUZDKwetP3OU7SfCibeQEKf2q6BrFJBMnAcBiEMQMlG8QmQm4/JHz+Hy2fqhSCxIWQV6ChnGi33xxEB+Os6YE+1dmrtKlFyEk+zd80e3ecUO0iKZG04aKjWB5+5WTpCRgoi4WV0uGtQs0Eeqdvg=
+	t=1764583852; cv=none; b=p0MebTDjfLi/+qRk7btaGD0E0AXE3tUJDoOQBHEJU116A5HvmWEeHjY+dKdDIzojCyAoesE6CG43aqBS2mjeAlVDxtbJce6I04WjqVO2b8mTiYUIAhYTt9aE/Ysbld0mKTA7jdJ7cDmp6G1cZ9ymSPbVQ1XZMxteyE2WNGEK0rQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764583789; c=relaxed/simple;
-	bh=gml+0AKSpROQtvHs2H692pn8ZeWP728QrdYLf9bsMlc=;
+	s=arc-20240116; t=1764583852; c=relaxed/simple;
+	bh=fBaiBSjUvZkarr92aTi6ynHZyhYGvprKNQXa986VvkI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pVmYdO7/qt3cbl3BjBABukpRUtg0cXMAqfEdPQKLmMH/899fZrNlXgik7J0kDQZiAbMAZyX0G9Fhe651S7X/pPOZEkNxTbpR+XlEWWRoSFJm5admwto3SNl+48D0YjZ1w4iya3rHcsrjdof9HmEDVTXbZDrQikRSnmDStkMP/70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oS07c3Ti; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50300C4CEF1;
-	Mon,  1 Dec 2025 10:09:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fqQrmNaIv41yyH34a92MTA2C7xYdswT2QqR+bP/bjxaBUwrx7dlTAtgyyIsJ/jFBbA20izWwr+QCnLDyInlz1E0vTTzn+dCUS+jhHC4VAxY83bSiKdTsgGMizvI8LQmm3f+LbIzAcaph2SuIO9j4iUaoWLI0ROLuvRG5E0HMioo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gpw6xBTV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7688FC4CEF1;
+	Mon,  1 Dec 2025 10:10:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764583789;
-	bh=gml+0AKSpROQtvHs2H692pn8ZeWP728QrdYLf9bsMlc=;
+	s=k20201202; t=1764583851;
+	bh=fBaiBSjUvZkarr92aTi6ynHZyhYGvprKNQXa986VvkI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oS07c3TixY11P6gnH8fKZOakjtPI2r/uWDFvb0nsKs/suRHvmqLV6G/fHc9A4xv+U
-	 0qrd7mNGNj+Sarjik5tc/zKeDw4HOAfPFDvcnB+CRkq0I4qnUU95IS5RCL81AnO6E1
-	 1WCsOFPqcRQtRPV3RoigL0KMndlPL9w5XhGxO72fGjlpPs6mtSnhMpkeDLyOTTSXJl
-	 SBqahEnpbqkdm8bX5EuA42pXisZwQXDNWrPqbMk3zU4qqpeJeUm93wFUgqKj5c9xzE
-	 78CvMVcwl6RP3g6frtRtoJ7lIbhaTxBTLncoAP+podm1Jw9qRNpzLii4wW3IGwV6dU
-	 +DK6phUo5mBkg==
-Message-ID: <ea8e4201-f1c2-41cc-83ff-b509fd22bca2@kernel.org>
-Date: Mon, 1 Dec 2025 11:09:41 +0100
+	b=gpw6xBTV7dQsFenVymlRvJfdYZJhFP0XhAR5fDj1ByQEbtMaZlEEk85zQw3kpuC0Y
+	 9KTOB1FHYpvJu3cd/CniucG2a8uh8/RdAo+DB5gBtzJL5d5PxP+cf2549Ur5FGsjA5
+	 bRISkWG9mZ45TeAUJq/1P1LlMUZBKSVmngH8sSslX3EQhe++nXBjL76qFT7mF8bAXW
+	 nMPuj92SltTex7pkxPq0zQbSPmEDtOfKOKk8nmqsCE1EGiYufjxx93cqXWPfqe2DZu
+	 PEraGUF6Bcnm1p0/oEW1iBQsDTzcQtlvfBTisT0u7j95UBELwvbsiHXcuGAcyrwFn5
+	 hdnke0tcktZkg==
+Message-ID: <98e46b8e-e70f-4edb-ab59-f83e19bf01ec@kernel.org>
+Date: Mon, 1 Dec 2025 11:10:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: mediatek: mt8189: Add thermal
- controller node
-To: Hanchien Lin <hanchien.lin@mediatek.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Balsam CHIHI <bchihi@baylibre.com>
-Cc: Irving-CH.lin@mediatek.com, Jh Hsu <Jh.Hsu@mediatek.com>,
- WH Wu <vincent.wu@mediatek.com>, Raymond Sun <Raymond.Sun@mediatek.com>,
- Sirius Wang <Sirius.Wang@mediatek.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20251201100620.1557608-1-hanchien.lin@mediatek.com>
- <20251201100620.1557608-2-hanchien.lin@mediatek.com>
+Subject: Re: [PATCH 1/5] dt-bindings: vendor-prefixes: Add Ezurio LLC
+To: Gary Bisson <bisson.gary@gmail.com>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: krzk+dt@kernel.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20251201084140.376058-1-bisson.gary@gmail.com>
+ <20251201084140.376058-2-bisson.gary@gmail.com>
+ <176458161856.2489196.6170126310129033736.robh@kernel.org>
+ <aS1oQonkuFpyqSI2@owl5>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,20 +104,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251201100620.1557608-2-hanchien.lin@mediatek.com>
+In-Reply-To: <aS1oQonkuFpyqSI2@owl5>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/12/2025 11:06, Hanchien Lin wrote:
-> Add device tree node for the thermal controller on MediaTek MT8189 SoC.
+On 01/12/2025 11:04, Gary Bisson wrote:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
 > 
-> Signed-off-by: Hanchien Lin <hanchien.lin@mediatek.com>
+> Couldn't reproduce, I can't seem to see any error/warning that would be
+> introduced by this patch, can the above be discarded then?
 
 
-Nothing improved. You just completely ignored feedback expecting
-reviewers to repeat themself.
-
-NAK
+Bot has a hiccup, you can ignore reports.
 
 Best regards,
 Krzysztof
