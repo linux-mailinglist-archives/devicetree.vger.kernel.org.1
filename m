@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F168C96936
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:10:55 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id B74D0C9693C
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:12:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7C7384E0F25
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:10:54 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2B89434154D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1022A3019C4;
-	Mon,  1 Dec 2025 10:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B5929BDA2;
+	Mon,  1 Dec 2025 10:12:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gpw6xBTV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="azux+cwI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE0F21CC4F;
-	Mon,  1 Dec 2025 10:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9CC5661;
+	Mon,  1 Dec 2025 10:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764583852; cv=none; b=p0MebTDjfLi/+qRk7btaGD0E0AXE3tUJDoOQBHEJU116A5HvmWEeHjY+dKdDIzojCyAoesE6CG43aqBS2mjeAlVDxtbJce6I04WjqVO2b8mTiYUIAhYTt9aE/Ysbld0mKTA7jdJ7cDmp6G1cZ9ymSPbVQ1XZMxteyE2WNGEK0rQ=
+	t=1764583938; cv=none; b=KQDwvHUKuv1ap6VWmLRzy88ecuOjlhL8paUoDIoVFUGAXFWzx19uR+idsAFDl8TwueQUEHjHRtTtPUo18ovBAIc8n0l9C4i6dbYKFmBhAB0Pt7Ue4/FVDP9cysVnT2uJnLVC60WXAtcMV2mEIlsQ/oR2/ICrOZYw5FgknIDL/vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764583852; c=relaxed/simple;
-	bh=fBaiBSjUvZkarr92aTi6ynHZyhYGvprKNQXa986VvkI=;
+	s=arc-20240116; t=1764583938; c=relaxed/simple;
+	bh=VWwSyZL/rmxZX2up7gqGT7NwoNunVBjLI2L900RZA/A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fqQrmNaIv41yyH34a92MTA2C7xYdswT2QqR+bP/bjxaBUwrx7dlTAtgyyIsJ/jFBbA20izWwr+QCnLDyInlz1E0vTTzn+dCUS+jhHC4VAxY83bSiKdTsgGMizvI8LQmm3f+LbIzAcaph2SuIO9j4iUaoWLI0ROLuvRG5E0HMioo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gpw6xBTV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7688FC4CEF1;
-	Mon,  1 Dec 2025 10:10:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NwdAkaJ+MPSeDXQt06PS7YRAYWUoVSYO4nEZtmfUUgT7sxVLoyDzPVZcIe2fefSeJb6UV0SKfnFiOXQBSIwGIGlSggmbfM73Y1XRGJj7vpVMbaHE5rhff+xWvIBPXjGqBavONyO9S0EsabXtJBFM6jp88sHGZ9Es4MiYNBo0XSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=azux+cwI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59AADC4CEF1;
+	Mon,  1 Dec 2025 10:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764583851;
-	bh=fBaiBSjUvZkarr92aTi6ynHZyhYGvprKNQXa986VvkI=;
+	s=k20201202; t=1764583936;
+	bh=VWwSyZL/rmxZX2up7gqGT7NwoNunVBjLI2L900RZA/A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gpw6xBTV7dQsFenVymlRvJfdYZJhFP0XhAR5fDj1ByQEbtMaZlEEk85zQw3kpuC0Y
-	 9KTOB1FHYpvJu3cd/CniucG2a8uh8/RdAo+DB5gBtzJL5d5PxP+cf2549Ur5FGsjA5
-	 bRISkWG9mZ45TeAUJq/1P1LlMUZBKSVmngH8sSslX3EQhe++nXBjL76qFT7mF8bAXW
-	 nMPuj92SltTex7pkxPq0zQbSPmEDtOfKOKk8nmqsCE1EGiYufjxx93cqXWPfqe2DZu
-	 PEraGUF6Bcnm1p0/oEW1iBQsDTzcQtlvfBTisT0u7j95UBELwvbsiHXcuGAcyrwFn5
-	 hdnke0tcktZkg==
-Message-ID: <98e46b8e-e70f-4edb-ab59-f83e19bf01ec@kernel.org>
-Date: Mon, 1 Dec 2025 11:10:47 +0100
+	b=azux+cwIwlaOaNoECx0iNcm7VRUokBqjw1FeRPp7wuCwHoMaSkdb7l0loRKGqqNta
+	 trkSE2NP5BaWGJBaDywo+HoYMFHQjIHavwB+Dd/XddbUHmJatzXivrlAF32zEf219W
+	 Nk6kQJpOt9v/JyoizCPM3pM4KSlD9P3FFPGLUVeLotvCtLqLFbh7TEY9vu/Y8nzoVl
+	 Im+foPPAAhh3TcceGgZdVKUVHBByVcLYg2N3HQPTP9PSCP1n893Lrw9k2wtOUh4QuF
+	 Tfmq18C5OKXHUWPaRPF3sOz+q5r09hH+W+jDNA5Ewp63bvnOcRMkAehOFUZyzRAz75
+	 kYiza0O0supOA==
+Message-ID: <f27dc5ef-1c60-4724-8e18-33bbc4230d3e@kernel.org>
+Date: Mon, 1 Dec 2025 11:12:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: vendor-prefixes: Add Ezurio LLC
-To: Gary Bisson <bisson.gary@gmail.com>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzk+dt@kernel.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20251201084140.376058-1-bisson.gary@gmail.com>
- <20251201084140.376058-2-bisson.gary@gmail.com>
- <176458161856.2489196.6170126310129033736.robh@kernel.org>
- <aS1oQonkuFpyqSI2@owl5>
+Subject: Re: [PATCH 1/4] dt-bindings: arm: rockchip: Add HINLINK H28K
+To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251201100008.206524-1-amadeus@jmu.edu.cn>
+ <20251201100008.206524-2-amadeus@jmu.edu.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,23 +103,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aS1oQonkuFpyqSI2@owl5>
+In-Reply-To: <20251201100008.206524-2-amadeus@jmu.edu.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/12/2025 11:04, Gary Bisson wrote:
->>
->> pip3 install dtschema --upgrade
->>
->> Please check and re-submit after running the above command yourself. Note
->> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->> your schema. However, it must be unset to test all examples with your schema.
+On 01/12/2025 11:00, Chukun Pan wrote:
+> The HINLINK H28K is a dual-gigabit SBC based on the RK3528 SoC.
+> Add devicetree binding documentation for it.
 > 
-> Couldn't reproduce, I can't seem to see any error/warning that would be
-> introduced by this patch, can the above be discarded then?
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index d496421dbd87..8d6e2b28e51a 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -718,6 +718,11 @@ properties:
+>            - const: hardkernel,odroid-m2
+>            - const: rockchip,rk3588s
+>  
+> +      - description: HINLINK H28K
+> +        items:
+> +          - const: hinlink,h28k
+> +          - const: rockchip,rk3528
+> +
 
-
-Bot has a hiccup, you can ignore reports.
+Just squash these two binding patches. Way too much churn. Anyway, looks
+like duplicate - two devices with same model name. You have entire
+commit msg to explain that.
 
 Best regards,
 Krzysztof
