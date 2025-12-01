@@ -1,474 +1,280 @@
-Return-Path: <devicetree+bounces-243456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6AFC97CAE
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 15:14:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B39C97CC9
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 15:15:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD4913A3EEC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 14:13:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E54153A1660
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 14:15:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B413191C4;
-	Mon,  1 Dec 2025 14:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E4D9316918;
+	Mon,  1 Dec 2025 14:15:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JsmkxqW8"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="d5VM+69k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010019.outbound.protection.outlook.com [52.101.228.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81420319859;
-	Mon,  1 Dec 2025 14:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764598409; cv=none; b=CSSUOsmvdLVQtAJ94mklKG6LIt983I7X1VMob94P62QM8F3z3DfJJDmnfOl1fflyX+0ZZ5Kd5XzBX3gHIQqJpjfScVPOjjFjPibc0KKWEfs59fMKci/zC6Cg+5GrCfFURqAaRh5Hl0DFHnlgnhtHGFD1sMK2r5yemVd2G2B8Enk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764598409; c=relaxed/simple;
-	bh=ERO00CYF2jt86k6vPGoPpd3u3B8oGPoi+ij5ehgCHx4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PZ9oGOee4lb7sfleXWacIEczA/BCJa5KMM4DbvFMdgWHU3a9c8KaFcit0lo+MRvRs6iaimNBHJG1kWkGa8WGY8BKkTbwzYAGWcs1dghB3Vy8TnGSE6lBStetDIMu0KNUxFaLXdVIKyrgfNaeB0QPyIWi3Qe4KbgsVXgKiIbzD2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JsmkxqW8; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 702E66AC;
-	Mon,  1 Dec 2025 15:11:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1764598268;
-	bh=ERO00CYF2jt86k6vPGoPpd3u3B8oGPoi+ij5ehgCHx4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JsmkxqW8Fm+G8HLBckYKYetZ95hcPdDuQj1rY2fz4jjHDv2MxhALzIrVUfvN3q9QE
-	 Myo2ZIfOtRsXjP68qDHf2XQEzabyOLJS338/7Gy9tUP6qSMeSxsfr5jRLXs4OjmHqX
-	 dakVddeeKLrci4RRmv0hVCTJqZOsMDRvNbD4Yn50=
-Message-ID: <96b1b7bf-ddbe-4213-a201-dc89cf2998dd@ideasonboard.com>
-Date: Mon, 1 Dec 2025 16:13:16 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332BC318152;
+	Mon,  1 Dec 2025 14:15:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764598523; cv=fail; b=nbVmtIlQ6HBFuMPWtpVmIju5vIZWDlU6iYPPvT9kA/uQIalkmTKxAUUKImrmx5GPx1Hg0rj0tcWt+ujBaJhYP1rTAkfYUMf4B2WtIGNf18n0J9nuqZVriMkN88Y+I+Zhdoq7kmV1xCSfHstiqBGGL1IVBS+C0A/vHe+PuAwkVEo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764598523; c=relaxed/simple;
+	bh=l1QWShYm2SuRf4qvpdsb7aLlwX2XpveM049pYOrc1eU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=QaFwt18J1HIXpTxjkMprJeSebWbZre/A61Cfg6neTIrr/lC2k6obR27maNceL43KUxK90qNv7qOxrraLpevoygmOlRk4mlqjbrh3cD1whFqsubiCmoV/Q3uwwdMCYXag6gOcdUCQIr0b8R6xq0X3jnhnekVzxwzD0vs7zax5LMM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=d5VM+69k; arc=fail smtp.client-ip=52.101.228.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Sv8qznfsYxScIN9LYjnwcVobyI9kHBm+INXxUneFCSWNRj0d2hONPA1VGYpEUdkbHFn4BHuZa/CnHLaKhdKDeCJQ83gBEjUrJV+ORSvnIEGpC9JPgOTLC8S5TKVvwylYuMTuMdF9afpZdfnNz1bylvMDpixhmEh5Xb2zGXKT5zgzo97wBqdk1k+ZwR1Dg1pyCmxOcvHFh2/AQO+MLMocBLi8+o68Ogxum4VSBVn08haDOa9EX5rFoHFgpIs+iHccFBg12f3TPv58y0Nene07jr0T750LMdJ95yMKvH4cMT4cRtSykAJP3SgVHmqFD2y1UqxoARYkY+EUUO9YDNAvQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l1QWShYm2SuRf4qvpdsb7aLlwX2XpveM049pYOrc1eU=;
+ b=u1YTf6IgnN/f+/dtVeXOIXqRTbSk7WxEu+oJ2kS/zGHcRB+s308+rSsiY1lJHqzceGm6xluXr0QfoTfSVIZchJsJTA5fl6TJ8qz4OAhcCxXes2/Q+pjjGNRR9ALQlekUBKjTsOBXWkl5uC3dUz6NGAUZDjGqTKEeQEHfRUEFH0QWEkYDZjl2lD1pTA76tUdVn64axj+3/rSq5/q2RZ0jFFpabNy4gJ2K/fzW/B1NevfVISwL+LTaVQOwd/GZl7qkfGmkbL0BoFuTnhVLH2SyC+2X1aE5GN5bbAGZige9DyIBn6LzgEmT7CYDt5Opn4MZ9anT88fafzQdXsGotLhQDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l1QWShYm2SuRf4qvpdsb7aLlwX2XpveM049pYOrc1eU=;
+ b=d5VM+69ku3hE9LcDK1tx+EEAe82F+9HYlAAysfRpmFsGQ5BTnK+ysO6ZX7KBGAqx+6rXg8QAZo5vM7P3dDU8iMcWsJzgn/OQOZ0DdV1NeJlcimcvA0naE8vfNS+TFOkO9oWkM0JTUz0Bh2DG8TVTHt0Vdh+GLHzCKnKWSNPkXZk=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by OSRPR01MB11523.jpnprd01.prod.outlook.com (2603:1096:604:230::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Mon, 1 Dec
+ 2025 14:15:14 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%6]) with mapi id 15.20.9388.003; Mon, 1 Dec 2025
+ 14:15:14 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Josua Mayer <josua@solid-run.com>, Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>, wsa+renesas
+	<wsa+renesas@sang-engineering.com>
+CC: Mikhail Anikin <mikhail.anikin@solid-run.com>, Yazan Shhady
+	<yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>,
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v2 1/2] dt-bindings: mmc: renesas,sdhi: Add mux-states
+ property
+Thread-Topic: [PATCH v2 1/2] dt-bindings: mmc: renesas,sdhi: Add mux-states
+ property
+Thread-Index: AQHcYr6fMjaP0/3KT0Wqx+rUGWyUpLUMuQqggAAXLwCAAAFLoA==
+Date: Mon, 1 Dec 2025 14:15:14 +0000
+Message-ID:
+ <TY3PR01MB1134642684DDFC5D4F1DBA76286DBA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20251201-rz-sdio-mux-v2-0-bcb581b88dd7@solid-run.com>
+ <20251201-rz-sdio-mux-v2-1-bcb581b88dd7@solid-run.com>
+ <TY3PR01MB113465581E5F8BD6C45FB7DCB86DBA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <7322ce79-4684-4a3e-9637-824b4398b51a@solid-run.com>
+In-Reply-To: <7322ce79-4684-4a3e-9637-824b4398b51a@solid-run.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OSRPR01MB11523:EE_
+x-ms-office365-filtering-correlation-id: 4173dfa6-fc14-4a1c-439f-08de30e40bd7
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|366016|7416014|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?UFpLdWVjdjFjN1pVSHFtN0sxOXlDR2paUXNnZHJja1lBT1dDQTJWSTg5THlG?=
+ =?utf-8?B?M0hrREJlVGhUY2pVbWF4dkJTRjR0c0ZSeVkraENCUFg1TnJDMlFoT2dSMmhq?=
+ =?utf-8?B?bDJSZysvbFBSWVRSejI2V3YwR3RTaWhrOC8vc0JtZktITmo0OFlKOHJmTElT?=
+ =?utf-8?B?TVI5Tkc1b0FUZWZudzhrZUJXVldGdEFQd1h0NStHbjFSdnoyNnNWSm1xNG5T?=
+ =?utf-8?B?MzNoblZvME9UQVJ2ZFRCbk9jaUNwNmFjcW5ERG9RNmlld3BjNkZtU0M4UkpW?=
+ =?utf-8?B?UlAxUmRBLzk5d3pIeDZwbE9DemdWUGFDK1Mxa1ZIZXFUZXQzSlBySkpTT3U0?=
+ =?utf-8?B?cmpiRHRKOVh3bnNTVEFKci9LM2JMbXVNSGw4aUdRSW5Wc0E1WjZIQjB2YU1D?=
+ =?utf-8?B?UGlpVGdVRHdwQWxuRUlYVExqYWU5MGJ0eFVINjZoR3N5T09aTVo3NnFwT3d4?=
+ =?utf-8?B?bUxUYjZGczVDd3E0bjlGeUdpcWhmUnNRdGZtV0RpR0I3bTFtaEFhS1p1cXZQ?=
+ =?utf-8?B?S1BBUHpEblo0cWVKSUEreVZ0a25pQTJYRk9FaktZTFFCVGtxeWdsNE5TUWdW?=
+ =?utf-8?B?enk1WlpTV2NwdEcrRk8yN2tJcG12bkZOK3JIQXd0Rmt0eWdScmQyWUFObWR1?=
+ =?utf-8?B?REpHSTRxL28wOFhTNCtHZnZKckhldzljQW5iRnovMFlWaWNYM3p4blZzb2JW?=
+ =?utf-8?B?OGlMa0NrdndxNUZ5NWtzRGU0U1k2OERZQjZya1pCTVduR2EwOTlLQjdYUHky?=
+ =?utf-8?B?YnNKR2YyTE8rOXRqc2daeHQzbG9EbEU0S09HUlczUU1WeTlRMHg2cDRpbGhO?=
+ =?utf-8?B?QWV1ci9RNFFJUERyUkVYY21LcUZrR3ZtWTFQVG1iMUR3UVFJbkNFUHE2VFVF?=
+ =?utf-8?B?RzB4cWsreDlpMDFFRnFPQ3lRSWg1MVVaQ2Z1bWhNRm56amYzUXcweXZsOFo0?=
+ =?utf-8?B?MXkvb0loQk1PT2xyR0N4UmRxSlhOYVF3Rmhvd2xraDZ3YnJ6ZEt0Wk1vL1Vn?=
+ =?utf-8?B?dEFtUmZPZmpvZHZ5cWhnbWhOdU14SzZ0TzN4TDBvL01kKzNuVXdDRnRHcC9H?=
+ =?utf-8?B?QzRRVFdwK2lVOVpXL2NCVjAvNE5wWHFqRlNFZnhYRmk0VU4rVjJ5NWdYYVM0?=
+ =?utf-8?B?Tms1aVV0Z3Q0OHkycHFNU2g5Y2pTVUVIemVIY2RESWZJQVdsODdYc3BGVFd0?=
+ =?utf-8?B?S1JURUh2aWhFSW8zd0dVNHNJY0FOSUFMR2xHUFZMNzZmVTc4RzdldTJYVFVB?=
+ =?utf-8?B?V1F2clRyOXVRTFlEZkduWUtvT1hidDk1N0RuVisrV3dKYTVlS1VXWklvR2RU?=
+ =?utf-8?B?bGFRRjJTc3k2YWhvMnZoQjRPb0lwUStJZE1nOVRsMkxienRHZEpFekVYMlJ4?=
+ =?utf-8?B?RFFZc1ZPZ3N2Zk5sQnMzeUowekpEWE1NTTByOUhCZTZIZGpFRnA4MXRtNEhv?=
+ =?utf-8?B?aGwxejRscDVkUEsrZVgyMllJdUpFeXVzUmppQjN2MnUzYisrOWZJUHZLdE8x?=
+ =?utf-8?B?SUpnUWFqSEFvUVJQbFh3K0Z0Mk9CTHQ0RzM5QXhWcnR4MFB1SUtiUFZwUkR6?=
+ =?utf-8?B?K3A5YnhmWXEzRVVLUzJ0UXROODhqYy85Mjc5SmRnTStBQXJGOFJzaitZRVR0?=
+ =?utf-8?B?R2hLMVo3cmhmV1ZPYmFSdXkxVUlDSFhpejNiTnZFejYwWHI3ZmluQXppdG00?=
+ =?utf-8?B?YkFST3RwM2MvVHFrY0NiL2MwU0h3QTRxYkpGTEtEUVd0MithemlRRE9tVjVG?=
+ =?utf-8?B?M01pZjU3UkFhMEUwZThRbTNLYjJxQSt3QzlBbDZqM2pJNzd2SUllOUZNR3lu?=
+ =?utf-8?B?dlRCSmpqcXVFdzR6RUUrSmJIeUhLRHFTSXA5bjU0QjdRYXA3SFpnaElWa0Fr?=
+ =?utf-8?B?cWgveXhTQ1BnaStzQ3JDWWJFc2F4YmtVc2FyOUxWMEozUWw0SEcvSTlGSnFp?=
+ =?utf-8?B?NVdzLy9OSEZ3NnRBR3pFTjRQa3Y2aGRDZGV0Q0hqSWdJcFNsN3k0K1M0Mi8y?=
+ =?utf-8?B?WWNTeG91eUkyRzJrWVI5NDNDakRjVlNlOVFtZjBiWXE3SzQ4RDUycFU3ZXlY?=
+ =?utf-8?Q?nP4T3h?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(7416014)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?a2FZVDZwdlB3TDRXOVhSSWdQWitHK29RVHo0TmRnRW9BVDRmTmdONDZmdWdG?=
+ =?utf-8?B?dlVVNVR5bHdZZ3ppVGYxMnhNalhyemlZQ3J4ZTN3c25Hak9pTGNTS09BWVpo?=
+ =?utf-8?B?ZU9uUXdrek01N2VhTDY3MUtnWjVQUlJ0MGFUWHpOZ0g2ZGIwTGdVajF2UFJu?=
+ =?utf-8?B?Nll1cHNkQ3FkbVhQdWlzNVAyRjAwMkpzWURzcG5HZERBUnBnNjNlVXRmWnMx?=
+ =?utf-8?B?bHNLMnBob3oyamhJV25ReDhzcjNGY2dPcTNvZWNtTXkrcHpCeWRsWS8ycjJy?=
+ =?utf-8?B?TFBIbkRoNUVuSjkzVHJ5cnlNWWhsbERZTGRMUGtBUmxJVFo1RFRGV0dpQkJ0?=
+ =?utf-8?B?Q0g3dDJpOHU2WFpRK3M1Myt6aUVGMDdSVGNrWGxKYTk4VWZuVWowNGNZMG9N?=
+ =?utf-8?B?UkpuaERjUWZsMGxZdzFKREhCOFlYQ1BtQllVMXdGbkdPTEtpbDVoU0VJcERE?=
+ =?utf-8?B?K0o4TjIzM2w0cTNVTEYrWTlqT3k3d1RpV21pd2ltMGxQdkVZdkh1RWF3cUND?=
+ =?utf-8?B?Rm1Ca21MalgxY3hvRXI3Y3NQRWluT3JOdDR0SHpJbGFVVnNQMC92MFNMMytF?=
+ =?utf-8?B?RzdQeHZJZEk5blhUU0VOT2lyQUhia0d2UGdjayt6c2gzaldhenNmQkxzalcx?=
+ =?utf-8?B?ZXJDZUVMZW1zanVsYWc4S1Zkbm9adVVDdHg2d3VSemg5RzN3YktNNXhHT1R5?=
+ =?utf-8?B?K2lUYkdIdW1xUWZjVHdNMStIWEJHOGwwVnZKNmFGZkNrTFRndC85czB6c29S?=
+ =?utf-8?B?MVJsYWp3b3BZTkNzYkx1VlZpQWIyWjFMWElzaldLc1hwTFM5bk1JUEEzaW9N?=
+ =?utf-8?B?YzJZRjRXR3VqZElCNktFZGZ2Vk9udjFjMExlM3o3cDg5SzdXMDlwa3pvY0Rx?=
+ =?utf-8?B?NFNUeTU4RE1iNmxUcysxYlFKS3RwZjhIRWx5dEFaY1Z2MVJkaUFuQmhXa3A5?=
+ =?utf-8?B?amR1UkhObUVjRXlyNzBFQk5UOTlDMkZKUlJremp5M0Fnc1dYckNSTVRrdWxI?=
+ =?utf-8?B?L0I5aVdyM09iSllkUXBOZ0tTMTgyYkdaTGlPaTIrRy9sZHM5N1dJdjQ0UnN0?=
+ =?utf-8?B?SThHUTJJOUEwOUZtYUFDKzI4cmNwdjBOejJ0aXZSUjVjOVhYQTBzWWdBelJD?=
+ =?utf-8?B?bmdkQkhjWFpBT0liY0tESkhjVzJZY09SL0dqU2Rla0tFNzIrK1dnUnU0Sk8w?=
+ =?utf-8?B?eUM5cSs0Y2o0OXFnNUxZZmxLSVl2VnpPcjF2MXVOUVM5VUFuMGRZYUpoODR6?=
+ =?utf-8?B?NGVmRkRYbnBYMVVBUGZ1cHhwanE0Nzc2RVk5Q1lVN01DWko4WTBvVXVyd1h0?=
+ =?utf-8?B?QXVJVUZYYzIvVU0wck5RUWVKUGIrcGtHa3Vua1JqclJaQzYzMHFqanlUWW5I?=
+ =?utf-8?B?OTQrY2VXbUVHVDZtYlcvYXJhL1hPYlk1VEJKa29kc0pLcGZxM0RPckZ4S3Fx?=
+ =?utf-8?B?Ti9HSGtKWWk0UFNUOVdpbGdnV09BTmVUNHE2WFU3ejNrUFpSMFB4RElpY2xs?=
+ =?utf-8?B?dFZmUGNwamwzS1c4VTY3b0NFQnRPYWFUWHNtZ2dVdW5uQ0VlSFVBUnBLYTRK?=
+ =?utf-8?B?UUx3a0NKRGZYUmxUL01vU0JMaklaWThZWmRIYndBVFhuNEV4OW1PNHV0a0Ry?=
+ =?utf-8?B?aVVMbTl1NEM3YXgwYkVWa1N2cTBGYjBNd1J4MElOZk5YOHBCenpxakE3bnds?=
+ =?utf-8?B?QnJjN3FYaTJDdnN3TFZtZFBQTFJmaElTenhYNWdkN3JUT0xTUDN0OVZBLzds?=
+ =?utf-8?B?Ykl0T2pPcjlaeWtiZG8zUVBXV0JFT3Y5L3ZpWFZzOUlkekJnRWxQZUFEWjRV?=
+ =?utf-8?B?YTl4S3NJNnhMVWZyVmxsaVcwMDVDMXduekJVcHNpNEN1RnlDUnVzMnhJWmpw?=
+ =?utf-8?B?am9OYXBEdW5ZMHhYaXM3cEQrRDZvdmpLalYwQUlzZW1SR0Q4Ylo4TUlkc1Iz?=
+ =?utf-8?B?d256SG1KL2ZnRFE5dDFmbEgzdC8xVXgxV0ZpTEVrQTF2WlBxdHM1MkJCbExI?=
+ =?utf-8?B?MkRRRk40WnFnK1FYTXJIQ3d3MkVsOEZPdW9NRCthQzJzYzVNbS94TFYzQklM?=
+ =?utf-8?B?T2RKME10cHQ3R0ZBSDkyUnB2WWhmNzdCbGdQa3QwQSt0SU9OVTVtUFhHczFD?=
+ =?utf-8?B?WEVRMERFcDhsU1JKSVBPNnR2NWZmaHd3Y1dITURieFVuSm1Yc2F3UXlNVENa?=
+ =?utf-8?B?akE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/21] ARM: dts: omap: Bind panel to panel-dpi instead of
- ti,tilcdc,panel driver
-To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Cc: Markus Schneider-Pargmann <msp@baylibre.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Miguel Gazquez <miguel.gazquez@bootlin.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-omap@vger.kernel.org, Jyri Sarha <jyri.sarha@iki.fi>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Tony Lindgren <tony@atomide.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
- <20251126-feature_tilcdc-v1-5-49b9ef2e3aa0@bootlin.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
- wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
- Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
- eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
- LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
- G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
- DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
- 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
- rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
- Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
- aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
- ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
- PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
- VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
- 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
- uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
- R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
- sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
- Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
- PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
- dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
- qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
- hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
- DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
- KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
- 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
- xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
- UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
- /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
- 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
- 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
- mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
- 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
- suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
- xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
- m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
- CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
- CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
- 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
- ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
- yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
- 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
-In-Reply-To: <20251126-feature_tilcdc-v1-5-49b9ef2e3aa0@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4173dfa6-fc14-4a1c-439f-08de30e40bd7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2025 14:15:14.1985
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8JesY3QSypYJYXzuJ5S62LKjCPXaPIdh8e+vImgFd2xpDjwirl+rhJxTP/Vz0VzAge5bF8TMc4mIM80Z++hCge3l07Kuc2JIpRsZi/LSXcQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSRPR01MB11523
 
-Hi Kory,
-
-On 26/11/2025 19:35, Kory Maincent (TI.com) wrote:
-> Use panel-dpi driver instead of the deprecated tilcdc-panel driver in
-> preparation for removing the tilcdc-panel driver and binding.
-> 
-> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
-> ---
-> 
-> This patch is not tested. It would be nice if someone with one of this
-> board could test and validate it.
-> ---
->  arch/arm/boot/dts/ti/davinci/da850-evm.dts    | 26 +++++++++++++-------------
->  arch/arm/boot/dts/ti/omap/am335x-guardian.dts | 25 +++++++++----------------
->  arch/arm/boot/dts/ti/omap/am335x-pdu001.dts   | 21 ++++++++++-----------
->  arch/arm/boot/dts/ti/omap/am335x-pepper.dts   | 22 +++++++++++-----------
->  arch/arm/boot/dts/ti/omap/am335x-sbc-t335.dts | 25 +++++++++++++------------
->  arch/arm/boot/dts/ti/omap/am335x-sl50.dts     | 25 ++++++++++++-------------
->  6 files changed, 68 insertions(+), 76 deletions(-)
-> 
-
-Doesn't this, or rather the following patches, break DTB compatibility
-with all the above boards?
-
- Tomi
-
-> diff --git a/arch/arm/boot/dts/ti/davinci/da850-evm.dts b/arch/arm/boot/dts/ti/davinci/da850-evm.dts
-> index 38a191fb04149..79cca1f6205ef 100644
-> --- a/arch/arm/boot/dts/ti/davinci/da850-evm.dts
-> +++ b/arch/arm/boot/dts/ti/davinci/da850-evm.dts
-> @@ -40,7 +40,7 @@ backlight: backlight-pwm {
->  	};
->  
->  	panel {
-> -		compatible = "ti,tilcdc,panel";
-> +		compatible = "panel-dpi";
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&lcd_pins>;
->  		/*
-> @@ -50,17 +50,10 @@ panel {
->  		 */
->  		status = "okay";
->  		enable-gpios = <&gpio 40 GPIO_ACTIVE_HIGH>; /* lcd_panel_pwr */
-> -
-> -		panel-info {
-> -			ac-bias = <255>;
-> -			ac-bias-intrpt = <0>;
-> -			dma-burst-sz = <16>;
-> -			bpp = <16>;
-> -			fdd = <0x80>;
-> -			sync-edge = <0>;
-> -			sync-ctrl = <1>;
-> -			raster-order = <0>;
-> -			fifo-th = <1>;
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&lcdc_out>;
-> +			};
->  		};
->  
->  		display-timings {
-> @@ -222,6 +215,13 @@ &rtc0 {
->  };
->  
->  &lcdc {
-> +	fifo-threshold = <16>;
-> +
-> +	port {
-> +		lcdc_out: endpoint {
-> +			remote-endpoint = <&panel_in>;
-> +		};
-> +	};
->  	status = "okay";
->  };
->  
-> @@ -459,7 +459,7 @@ &vpif {
->  	pinctrl-0 = <&vpif_capture_pins>, <&vpif_display_pins>;
->  	/*
->  	 * The vpif and the LCD are mutually exclusive.
-> -	 * To enable VPIF, disable the ti,tilcdc,panel then
-> +	 * To enable VPIF, disable the panel-dpi then
->  	 * change the status below to 'okay'
->  	 */
->  	status = "disabled";
-> diff --git a/arch/arm/boot/dts/ti/omap/am335x-guardian.dts b/arch/arm/boot/dts/ti/omap/am335x-guardian.dts
-> index 4b070e634b281..f38ce9be2c106 100644
-> --- a/arch/arm/boot/dts/ti/omap/am335x-guardian.dts
-> +++ b/arch/arm/boot/dts/ti/omap/am335x-guardian.dts
-> @@ -68,10 +68,15 @@ gpio-poweroff {
->  	};
->  
->  	panel {
-> -		compatible = "ti,tilcdc,panel";
-> +		compatible = "panel-dpi";
->  		pinctrl-names = "default", "sleep";
->  		pinctrl-0 = <&lcd_pins_default &lcd_disen_pins>;
->  		pinctrl-1 = <&lcd_pins_sleep>;
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&lcdc_out>;
-> +			};
-> +		};
->  
->  		display-timings {
->  			timing-320x240 {
-> @@ -86,21 +91,9 @@ timing-320x240 {
->  				clock-frequency = <9000000>;
->  				hsync-active    = <0>;
->  				vsync-active    = <0>;
-> +				pixelclk-active = <1>;
->  			};
->  		};
-> -		panel-info {
-> -			ac-bias           = <255>;
-> -			ac-bias-intrpt    = <0>;
-> -			dma-burst-sz      = <16>;
-> -			bpp               = <24>;
-> -			bus-width         = <16>;
-> -			fdd               = <0x80>;
-> -			sync-edge         = <0>;
-> -			sync-ctrl         = <1>;
-> -			raster-order      = <0>;
-> -			fifo-th           = <0>;
-> -		};
-> -
->  	};
->  
->  	guardian_beeper: pwm-7 {
-> @@ -265,8 +258,8 @@ &lcdc {
->  	blue-and-red-wiring = "crossed";
->  	status = "okay";
->  	port {
-> -		lcdc_0: endpoint@0 {
-> -			remote-endpoint = <0>;
-> +		lcdc_out: endpoint@0 {
-> +			remote-endpoint = <&panel_in>;
->  		};
->  	};
->  };
-> diff --git a/arch/arm/boot/dts/ti/omap/am335x-pdu001.dts b/arch/arm/boot/dts/ti/omap/am335x-pdu001.dts
-> index c9ccb9de21ad7..2c5229d05ade7 100644
-> --- a/arch/arm/boot/dts/ti/omap/am335x-pdu001.dts
-> +++ b/arch/arm/boot/dts/ti/omap/am335x-pdu001.dts
-> @@ -50,20 +50,14 @@ lis3_reg: fixedregulator@1 {
->  	};
->  
->  	panel {
-> -		compatible = "ti,tilcdc,panel";
-> +		compatible = "panel-dpi";
->  		status = "okay";
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&lcd_pins_s0>;
-> -		panel-info {
-> -			ac-bias           = <255>;
-> -			ac-bias-intrpt    = <0>;
-> -			dma-burst-sz      = <16>;
-> -			bpp               = <16>;
-> -			fdd               = <0x80>;
-> -			sync-edge         = <0>;
-> -			sync-ctrl         = <1>;
-> -			raster-order      = <0>;
-> -			fifo-th           = <0>;
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&lcdc_out>;
-> +			};
->  		};
->  
->  		display-timings {
-> @@ -395,6 +389,11 @@ &rtc {
->  
->  &lcdc {
->  	status = "okay";
-> +	port {
-> +		lcdc_out: endpoint {
-> +			remote-endpoint = <&panel_in>;
-> +		};
-> +	};
->  };
->  
->  &elm {
-> diff --git a/arch/arm/boot/dts/ti/omap/am335x-pepper.dts b/arch/arm/boot/dts/ti/omap/am335x-pepper.dts
-> index e7d561a527fdd..2760c0eab50c2 100644
-> --- a/arch/arm/boot/dts/ti/omap/am335x-pepper.dts
-> +++ b/arch/arm/boot/dts/ti/omap/am335x-pepper.dts
-> @@ -31,7 +31,7 @@ leds: user-leds-pins {
->  	};
->  
->  	panel: lcd_panel {
-> -		compatible = "ti,tilcdc,panel";
-> +		compatible = "panel-dpi";
->  	};
->  
->  	sound: sound_iface {
-> @@ -189,16 +189,10 @@ &panel {
->  	status = "okay";
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&lcd_pins>;
-> -	panel-info {
-> -		ac-bias = <255>;
-> -		ac-bias-intrpt = <0>;
-> -		dma-burst-sz = <16>;
-> -		bpp = <32>;
-> -		fdd = <0x80>;
-> -		sync-edge = <0>;
-> -		sync-ctrl = <1>;
-> -		raster-order = <0>;
-> -		fifo-th = <0>;
-> +	port {
-> +		panel_in: endpoint {
-> +			remote-endpoint = <&lcdc_out>;
-> +		};
->  	};
->  	display-timings {
->  		native-mode = <&timing0>;
-> @@ -214,12 +208,18 @@ timing0: timing-480x272 {
->  			vsync-len = <10>;
->  			hsync-active = <1>;
->  			vsync-active = <1>;
-> +			pixelclk-active = <1>;
->  		};
->  	};
->  };
->  
->  &lcdc {
->  	status = "okay";
-> +	port {
-> +		lcdc_out: endpoint {
-> +			remote-endpoint = <&panel_in>;
-> +		};
-> +	};
->  };
->  
->  &am33xx_pinmux {
-> diff --git a/arch/arm/boot/dts/ti/omap/am335x-sbc-t335.dts b/arch/arm/boot/dts/ti/omap/am335x-sbc-t335.dts
-> index 2841e95d9a094..25ee855dd21a7 100644
-> --- a/arch/arm/boot/dts/ti/omap/am335x-sbc-t335.dts
-> +++ b/arch/arm/boot/dts/ti/omap/am335x-sbc-t335.dts
-> @@ -13,23 +13,17 @@ / {
->  
->  	/* DRM display driver */
->  	panel {
-> -		compatible = "ti,tilcdc,panel";
-> +		compatible = "panel-dpi";
->  		status = "okay";
->  		pinctrl-names = "default", "sleep";
->  		pinctrl-0 = <&lcd_pins_default>;
->  		pinctrl-1 = <&lcd_pins_sleep>;
-> -
-> -		panel-info {
-> -			ac-bias           = <255>;
-> -			ac-bias-intrpt    = <0>;
-> -			dma-burst-sz      = <16>;
-> -			bpp               = <32>;
-> -			fdd               = <0x80>;
-> -			sync-edge         = <0>;
-> -			sync-ctrl         = <1>;
-> -			raster-order      = <0>;
-> -			fifo-th           = <0>;
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&lcdc_out>;
-> +			};
->  		};
-> +
->  		display-timings {
->  			/* Timing selection performed by U-Boot */
->  			timing0: lcd {/* 800x480p62 */
-> @@ -44,6 +38,7 @@ timing0: lcd {/* 800x480p62 */
->  				vsync-len = <2>;
->  				hsync-active = <1>;
->  				vsync-active = <1>;
-> +				pixelclk-active = <1>;
->  			};
->  			timing1: dvi { /* 1024x768p60 */
->  				clock-frequency = <65000000>;
-> @@ -57,6 +52,7 @@ timing1: dvi { /* 1024x768p60 */
->  				vsync-len = <6>;
->  				hsync-active = <0>;
->  				vsync-active = <0>;
-> +				pixelclk-active = <1>;
->  			};
->  		};
->  	};
-> @@ -173,4 +169,9 @@ lcd-ena-hog {
->  /* Display */
->  &lcdc {
->  	status = "okay";
-> +	port {
-> +		lcdc_out: endpoint {
-> +			remote-endpoint = <&panel_in>;
-> +		};
-> +	};
->  };
-> diff --git a/arch/arm/boot/dts/ti/omap/am335x-sl50.dts b/arch/arm/boot/dts/ti/omap/am335x-sl50.dts
-> index f3524e5ee43e2..b4b2b6d18d646 100644
-> --- a/arch/arm/boot/dts/ti/omap/am335x-sl50.dts
-> +++ b/arch/arm/boot/dts/ti/omap/am335x-sl50.dts
-> @@ -123,22 +123,14 @@ audio_mclk: audio_mclk_gate@0 {
->  	};
->  
->  	panel: lcd_panel {
-> -		compatible = "ti,tilcdc,panel";
-> +		compatible = "panel-dpi";
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&lcd_pins>;
->  
-> -		panel-info {
-> -			ac-bias = <255>;
-> -			ac-bias-intrpt = <0>;
-> -			dma-burst-sz = <16>;
-> -			bpp = <16>;
-> -			fdd = <0x80>;
-> -			tft-alt-mode = <0>;
-> -			mono-8bit-mode = <0>;
-> -			sync-edge = <0>;
-> -			sync-ctrl = <1>;
-> -			raster-order = <0>;
-> -			fifo-th = <0>;
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&lcdc_out>;
-> +			};
->  		};
->  
->  		display-timings {
-> @@ -157,6 +149,8 @@ timing0: 960x128 {
->  				vfront-porch = <8>;
->  				vsync-len = <4>;
->  				vsync-active = <0>;
-> +
-> +				pixelclk-active = <1>;
->  			};
->  		};
->  	};
-> @@ -711,6 +705,11 @@ &ehrpwm1 {
->  
->  &lcdc {
->  	status = "okay";
-> +	port {
-> +		lcdc_out: endpoint {
-> +			remote-endpoint = <&panel_in>;
-> +		};
-> +	};
->  };
->  
->  &tscadc {
-> 
-
+SGkgSm9zdWEgTWF5ZXIsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IC0tLS0tT3Jp
+Z2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEpvc3VhIE1heWVyIDxqb3N1YUBzb2xpZC1ydW4u
+Y29tPg0KPiBTZW50OiAwMSBEZWNlbWJlciAyMDI1IDE0OjAxDQo+IFN1YmplY3Q6IFJlOiBbUEFU
+Q0ggdjIgMS8yXSBkdC1iaW5kaW5nczogbW1jOiByZW5lc2FzLHNkaGk6IEFkZCBtdXgtc3RhdGVz
+IHByb3BlcnR5DQo+IA0KPiBIaSBCaWp1LA0KPiANCj4gQW0gMDEuMTIuMjUgdW0gMTQ6MDIgc2No
+cmllYiBCaWp1IERhczoNCj4gPiBIaSBKb3N1YSBNYXllciwNCj4gPg0KPiA+DQo+ID4gVGhhbmtz
+IGZvciB0aGUgcGF0Y2guDQo+ID4NCj4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4g
+Pj4gRnJvbTogSm9zdWEgTWF5ZXIgPGpvc3VhQHNvbGlkLXJ1bi5jb20+DQo+ID4+IFNlbnQ6IDAx
+IERlY2VtYmVyIDIwMjUgMTI6MzENCj4gPj4gU3ViamVjdDogW1BBVENIIHYyIDEvMl0gZHQtYmlu
+ZGluZ3M6IG1tYzogcmVuZXNhcyxzZGhpOiBBZGQNCj4gPj4gbXV4LXN0YXRlcyBwcm9wZXJ0eQ0K
+PiA+Pg0KPiA+PiBBZGQgbXV4IGNvbnRyb2xsZXIgc3VwcG9ydCBmb3Igd2hlbiBzZGlvIGxpbmVz
+IGFyZSBtdXhlZCBiZXR3ZWVuIGEgaG9zdCBhbmQgbXVsdGlwbGUgY2FyZHMuDQo+ID4+DQo+ID4+
+IFRoZXJlIGFyZSBzZXZlcmFsIGRldmljZXMgc3VwcG9ydGluZyBhIGNob2ljZSBvZiBlTU1DIG9y
+IFNEIG9uIGENCj4gPj4gc2luZ2xlIGJvYXJkIGJ5IGJvdGggZGlwIHN3aXRjaCBhbmQgZ3Bpbywg
+ZS5nLiBSZW5lc2FzIFJaL0cyTCBTTUFSQyBTb00gYW5kIFNvbGlkUnVuIFJaL0cyTCBTb00uDQo+
+ID4+DQo+ID4+IEluLXRyZWUgZHRzIGZvciB0aGUgUmVuZXNhcyBib2FyZHMgY3VycmVudGx5IHJl
+bHkgb24gcHJlcHJvY2Vzc29yDQo+ID4+IG1hY3JvcyB0byBob2cgZ3Bpb3MgYW5kIGRlZmluZSB0
+aGUgY2FyZC4NCj4gPj4NCj4gPj4gQnkgYWRkaW5nIG11eC1zdGF0ZXMgcHJvcGVydHkgdG8gc2Rp
+byBjb250cm9sbGVyIGRlc2NyaXB0aW9uLCBib2FyZHMNCj4gPj4gY2FuIGNvcnJlY3RseSBkZXNj
+cmliZSB0aGUgbXV4IHRoYXQgYWxyZWFkeSBleGlzdHMgaW4gaGFyZHdhcmUgLSBhbmQNCj4gPj4g
+ZHJpdmVycyBjYW4gY29vcmRpbmF0ZSBiZXR3ZWVuIG11eCBzZWxlY3Rpb24gYW5kIHByb2Jpbmcg
+Zm9yIGNhcmRzLg0KPiA+PiBTaWduZWQtb2ZmLWJ5OiBKb3N1YSBNYXllciA8am9zdWFAc29saWQt
+cnVuLmNvbT4NCj4gPj4gLS0tDQo+ID4+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvbW1jL3JlbmVzYXMsc2RoaS55YW1sIHwgNiArKysrKysNCj4gPj4gIDEgZmlsZSBjaGFuZ2Vk
+LCA2IGluc2VydGlvbnMoKykNCj4gPj4NCj4gPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvcmVuZXNhcyxzZGhpLnlhbWwNCj4gPj4gYi9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL3JlbmVzYXMsc2RoaS55YW1sDQo+ID4+IGlu
+ZGV4IGM3NTRlYTcxZjUxZjcuLjc1NGNjYjFjMzBlZmIgMTAwNjQ0DQo+ID4+IC0tLSBhL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvcmVuZXNhcyxzZGhpLnlhbWwNCj4gPj4g
+KysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9yZW5lc2FzLHNkaGku
+eWFtbA0KPiA+PiBAQCAtMTA2LDYgKzEwNiwxMSBAQCBwcm9wZXJ0aWVzOg0KPiA+PiAgICBpb21t
+dXM6DQo+ID4+ICAgICAgbWF4SXRlbXM6IDENCj4gPj4NCj4gPj4gKyAgbXV4LXN0YXRlczoNCj4g
+Pj4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPj4gKyAgICAgIG11eCBjb250cm9sbGVyIG5vZGUgdG8g
+cm91dGUgdGhlIFNESU8gc2lnbmFscyBmcm9tIFNvQyB0byBjYXJkcy4NCj4gPiBNYXliZSBkZXNj
+cmliZSAwIC0gc3RhdGUgZm9yIFNEIGFuZCAxIC0gc3RhdGUgZm9yIGVNTUMgPz8NCj4gVGhlIHN0
+YXRlLW1tYy1zZCBtYXBwaW5nIGRlcGVuZHMgb24gdGhlIHdpcmluZyBhbmQgZGVzY3JpcHRpb24g
+b2YgdGhlIG11eCwgc28gd2UgY2Fubm90IGRpZmZlcmVudGlhdGUNCj4gaW4gdGhlIG11eC1zdGF0
+ZXMgcHJvcGVydHkuDQoNCk9LLiBBZ3JlZWQuDQoNCj4gDQo+IFRoZSBpZGVhIGlzIHRoYXQgd2hh
+dGV2ZXIgbnVtZXJpYyBhcmd1bWVudCB5b3UgYWRkIHRvIHRoZSBwaGFuZGxlIHdpbGwgc2VsZWN0
+IGEgcGFydGljdWxhciBzdGF0ZSBmb3INCj4gdGhlIG11eC4NCj4gVGhlIHJlc3Qgb2YgZHQgcHJv
+cGVydGllcyBtdXN0IHN0aWxsIGJlIHNwZWNpZmljIHRvIFNEIG9yIGVNTUMsIGUuZy46DQo+IA0K
+PiAmc2RoaTAgew0KPiDCoCDCoCBwaW5jdHJsLTAgPSA8JnNkaGkwX3BpbnM+LCA8JnNkaGkwX2Nk
+X3BpbnM+Ow0KPiDCoCDCoCBwaW5jdHJsLTEgPSA8JnNkaGkwX3Voc19waW5zPiwgPCZzZGhpMF9j
+ZF9waW5zPjsNCj4gwqAgwqAgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IiwgInN0YXRlX3VocyI7
+DQo+IMKgIMKgIHZtbWMtc3VwcGx5ID0gPCZ2bW1jPjsNCj4gwqAgwqAgdnFtbWMtc3VwcGx5ID0g
+PCZyZWdfcG1pY19sZG8xPjsNCj4gwqAgwqAgYnVzLXdpZHRoID0gPDQ+Ow0KPiDCoCDCoCBzZC11
+aHMtc2RyNTA7DQo+IMKgIMKgIHNkLXVocy1zZHIxMDQ7DQo+IMKgIMKgIGZ1bGwtcHdyLWN5Y2xl
+Ow0KPiDCoCDCoCBtdXgtc3RhdGVzID0gPCZzZGhpMF9tdXggMT47DQo+IMKgIMKgIHN0YXR1cyA9
+ICJva2F5IjsNCj4gfTsNCj4gDQo+ID4NCj4gPg0KPiA+PiArICAgIG1heEl0ZW1zOiAxDQo+ID4+
+ICsNCj4gPj4gICAgcG93ZXItZG9tYWluczoNCj4gPj4gICAgICBtYXhJdGVtczogMQ0KPiA+Pg0K
+PiA+PiBAQCAtMjc1LDYgKzI4MCw3IEBAIGV4YW1wbGVzOg0KPiA+PiAgICAgICAgICBtYXgtZnJl
+cXVlbmN5ID0gPDE5NTAwMDAwMD47DQo+ID4+ICAgICAgICAgIHBvd2VyLWRvbWFpbnMgPSA8JnN5
+c2MgUjhBNzc5MF9QRF9BTFdBWVNfT04+Ow0KPiA+PiAgICAgICAgICByZXNldHMgPSA8JmNwZyAz
+MTQ+Ow0KPiA+PiArICAgICAgICBtdXgtc3RhdGVzID0gPCZtdXggMD47DQo+ID4gT24gUi1DYXIg
+bW1jL3NkIG11eCBhdmFpbGFibGUgb25seSBvbiBTRDIvU0QzLCBzbyBJIGd1ZXNzIHlvdSBwaWNr
+ZWQgd3Jvbmcgbm9kZSBTRDA/Pw0KPiBBcyB0aGV5IHdlcmUgZXhhbXBsZXMgSSBkaWQgbm90IGdp
+dmUgaXQgbXVjaCB0aG91Z2h0LCBXZSBjb3VsZCBldmVuIG9taXQgbXV4LXN0YXRlcyBmcm9tIGV4
+YW1wbGVzDQo+IGNvbXBsZXRlbHkgc2luY2UgaXQgaXMgb3B0aW9uYWwuDQoNCk9LLCBJIGd1ZXNz
+IHRoYXQgaXMgYWxzbyBmaW5lLCBpbnN0ZWFkIG9mIHRoZSB3cm9uZyB1c2FnZSBpbiBzZDAgZGV2
+aWNlIG5vZGUuDQoNCj4gPg0KPiA+IG9yDQo+ID4NCj4gPiBBZGQgc2VwYXJhdGUgZXhhbXBsZSB3
+aXRoIFJaL0cyTCwgYXMgdGhlIGJvYXJkcyhSWi9HMkwgU01BUkMgRVZLKSB1c2UNCj4gPiBncGlv
+L3N3aXRjaCAoWE9SIGZ1bmN0aW9uKSB0byBzZWxlY3QgdGhlIGVNTUMgb3IgU0Qgc2lnbmFscz8/
+DQo+IA0KPiBJIGNhbiBpZiBzbyBkZXNpcmVkIGFkZCB2ZXJib3NlIGV4YW1wbGUgZnJvbSBvdXIg
+b3duIEcyTCBiYXNlZCBib2FyZCwgZS5nLjoNCj4gDQo+IHNkaGkwOiBtbWNAMTFjMDAwMDAgew0K
+PiDCoCDCoCBjb21wYXRpYmxlID0gInJlbmVzYXMsc2RoaS1yOWEwN2cwNDQiLCAicmVuZXNhcyxy
+emcybC1zZGhpIjsNCj4gwqAgwqAgcmVnID0gPDB4MCAweDExYzAwMDAwIDAgMHgxMDAwMD47DQo+
+IMKgIMKgIGludGVycnVwdHMgPSA8R0lDX1NQSSAxMDQgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQo+
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgPEdJQ19TUEkgMTA1IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0K
+PiDCoCDCoCBjbG9ja3MgPSA8JmNwZyBDUEdfTU9EIFI5QTA3RzA0NF9TREhJMF9JTUNMSz4sDQo+
+IMKgIMKgIMKgIMKgIMKgPCZjcGcgQ1BHX01PRCBSOUEwN0cwNDRfU0RISTBfQ0xLX0hTPiwNCj4g
+wqAgwqAgwqAgwqAgwqA8JmNwZyBDUEdfTU9EIFI5QTA3RzA0NF9TREhJMF9JTUNMSzI+LA0KPiDC
+oCDCoCDCoCDCoCDCoDwmY3BnIENQR19NT0QgUjlBMDdHMDQ0X1NESEkwX0FDTEs+Ow0KPiDCoCDC
+oCBjbG9jay1uYW1lcyA9ICJjb3JlIiwgImNsa2giLCAiY2QiLCAiYWNsayI7DQo+IMKgIMKgIHJl
+c2V0cyA9IDwmY3BnIFI5QTA3RzA0NF9TREhJMF9JWFJTVD47DQo+IMKgIMKgIHBvd2VyLWRvbWFp
+bnMgPSA8JmNwZz47DQo+IMKgIMKgIHBpbmN0cmwtMCA9IDwmc2RoaTBfcGlucz4sIDwmc2RoaTBf
+Y2RfcGlucz47DQo+IMKgIMKgIHBpbmN0cmwtMSA9IDwmc2RoaTBfdWhzX3BpbnM+LCA8JnNkaGkw
+X2NkX3BpbnM+Ow0KPiDCoCDCoCBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiLCAic3RhdGVfdWhz
+IjsNCj4gwqAgwqAgdm1tYy1zdXBwbHkgPSA8JnZtbWM+Ow0KPiDCoCDCoCB2cW1tYy1zdXBwbHkg
+PSA8JnJlZ19wbWljX2xkbzE+Ow0KPiDCoCDCoCBidXMtd2lkdGggPSA8ND47DQo+IMKgIMKgIHNk
+LXVocy1zZHI1MDsNCj4gwqAgwqAgc2QtdWhzLXNkcjEwNDsNCj4gwqAgwqAgZnVsbC1wd3ItY3lj
+bGU7DQo+IMKgIMKgIG11eC1zdGF0ZXMgPSA8JnNkaGkwX211eCAxPjsNCj4gfTsNCj4gDQo+IEkg
+ZG8gbm90IGJlbGlldmUgaG93ZXZlciB0aGF0IHRoaXMgaXMgYWRkaW5nIGFueSB2YWx1ZS4NCg0K
+TWF5YmUgV29sZnJhbS9HZWVydCBjYW4gY29tbWVudCBvbiB0aGlzLiBMb29rcyBsaWtlIFNEIG11
+eCBpcyBhbiBpbXBvcnRhbnQgZmVhdHVyZSBvZiB0aGUgU29DLg0KDQpQcmV2aW91c2x5IEkgZ290
+IGZlZWRiYWNrIHRvIHByb3ZpZGUgcmVhbCBleGFtcGxlLiBUaGlzIHJ1bGUgbWlnaHQgaGF2ZSBj
+aGFuZ2VkPz8NCg0KQ2hlZXJzLA0KQmlqdQ0K
 
