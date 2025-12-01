@@ -1,331 +1,248 @@
-Return-Path: <devicetree+bounces-243284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF64C965F6
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 10:25:53 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0DFC96643
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 10:35:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA7273A15FF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 09:25:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3F0244E3099
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 09:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB9C2FE057;
-	Mon,  1 Dec 2025 09:25:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D5D30147D;
+	Mon,  1 Dec 2025 09:33:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kzUvEBfo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bGkSVe+T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012031.outbound.protection.outlook.com [52.101.48.31])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0201A1FDA;
-	Mon,  1 Dec 2025 09:25:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.31
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764581148; cv=fail; b=Qqftl04EaWGxAuEtw1JrPlst/ZQC3khUI6aYfJ6PbeHXJexHvQB8YzCBbntqe4/v4/qJMzbx252Loso68stB+gvIcTIWc9WZqCYYNxCP6qG58Yl3GLwLSZaDgvqI+PK4Xf70K/2/7RF6OOs/Y5x72C6/Y35iTvXaz/QOtYmczGQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764581148; c=relaxed/simple;
-	bh=5JgXSeBjAZ1+nn42bj2eA/SPzSuwcyDDDtE4heNA1gw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cRDx+Dfn0vrjaPKn7YHjfNJAiwsJqysCXLLb/JCfaqmFAjklXEpcXlentdx+CtFQyRYV1iFk7JHI/y8Yqu819NoMdZYKA1RcL2e/I+qVup+U1WWl1iAhQF34uR3p6qQjcgz/Dt16I69gkPOPrQXUkoekSUzE6qxUnMidCfNp/Ok=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kzUvEBfo; arc=fail smtp.client-ip=52.101.48.31
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NKonH446u4lUZxSbVxUl356Ge4KHVEyMhmBLyRlxUGCGIELacGby8U5cESNC/RHwooO0IxHuMxMVOahe60owo3GtnqxKvpHLyXOCyORNGUDD1BjYD1Gd91LTGuk0Z2GJSLERqcyCNhdSGpxeYnxpbSS9oxCX+lRk41JKzbUY+VJ9QBWPXMFj/s49q6JC7ilry19yW4/OPIs263kXY6NxETMAkWeAa/TsDWRQ4IimY4Ei1ZZxPs8Ni+H8zEwaDx4ECyBeEqoEkrjf1p9f90flz6Co6/9qOkZcjo3wWFTUGg7WBGACDyWrCrXeM66qVmBagrp5czgOs3ldOHDi4tzvBQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6toAzVyTklXHsG4Pfo0aGViDNXu1+Pq+PwzllUXMxUk=;
- b=uxfucMLvdCNaJKN3/ClmHCZh9HkoKZKBNYvrrLg+pCjfZcTRxci0O1jbOzlMtTPJYdHo3rM7RcMBg6MIiRq9hz4xWhaqNhU45axfUcpWfjfTCqf/Zu7inEPJOVcC5H989Jtx42bfUXL6SmHlkQ3oewLqc2Jh6pLCJ4sbq6Rinw6YiAD0qY37FQ1b1u7oEVC6O5Q56dS8hjMtxh8O6YbsFWI628YpkyLsRFe0xoB/XJXEX8wt+mCbHta1aig5aW90VnabU1HihjElhFb+sQEef193o+q48k3QPHnvpbAG2L/AMkndh21j7oMtbBj1DvbWMdSuSZfLKStGyVS4mPKgbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6toAzVyTklXHsG4Pfo0aGViDNXu1+Pq+PwzllUXMxUk=;
- b=kzUvEBfo4G+FhdIis7yxDb8CrYbFAMqCM30t8Qay362wtlqBrh07W2J1wLOiCmQm5t8DJdBoHz9/zV1+/LpBG7o/337g3twQ3FqwM4NaxFeo0LNc44uSbBAq/yZgEU/rKEVsa239llor11eEUDXdbm89LtXW02A/pGW0TYESZKk=
-Received: from BYAPR05CA0019.namprd05.prod.outlook.com (2603:10b6:a03:c0::32)
- by PH7PR10MB6180.namprd10.prod.outlook.com (2603:10b6:510:1f0::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
- 2025 09:25:43 +0000
-Received: from CO1PEPF000075ED.namprd03.prod.outlook.com
- (2603:10b6:a03:c0:cafe::ac) by BYAPR05CA0019.outlook.office365.com
- (2603:10b6:a03:c0::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.9 via Frontend Transport; Mon, 1
- Dec 2025 09:25:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- CO1PEPF000075ED.mail.protection.outlook.com (10.167.249.36) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Mon, 1 Dec 2025 09:25:42 +0000
-Received: from DFLE209.ent.ti.com (10.64.6.67) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
- 2025 03:25:36 -0600
-Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
- 2025 03:25:36 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE214.ent.ti.com
- (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 1 Dec 2025 03:25:36 -0600
-Received: from [172.24.233.149] (ws.dhcp.ti.com [172.24.233.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B19PUUX188167;
-	Mon, 1 Dec 2025 03:25:30 -0600
-Message-ID: <d640eb82-7e52-4997-8e2f-ae6a8be57f62@ti.com>
-Date: Mon, 1 Dec 2025 14:55:29 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFCF30146B;
+	Mon,  1 Dec 2025 09:33:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764581623; cv=none; b=F1vBAaQnFp5ujNYcx4FkIL/VAtk/2uyP5uGybiBRwuzd8TUUkIJtMTIZyayf1Ir4GTdlheClLRnJVU+UGKW6EVIhJvZb4L+Clv2hr/vhQJKhBCa/VDJ5huBZtsrvBYNFayppaXgdnKSzXI5sqxAdAuWR+ChBxveP060l+Vc/hMQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764581623; c=relaxed/simple;
+	bh=hCB+h8upvH20oKb6hCw5kz2C86FqOUOLpfO3S1y1r/E=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=CuB42An5+4unvtrnJgKY62rR97/ixFydqzDtZXNk53Tsg9o29CKTVVRmiCrdDcK2FTBaihP3QC2QBPXxFahS92hjSZQm6+WO8/Xatb9sDAvMxAr/1IqS4c+so5DA1OmYohEOnPtjPsC6KIOxRJPj5FSvrhX6rI3yBpwlzGcODhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bGkSVe+T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36891C113D0;
+	Mon,  1 Dec 2025 09:33:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764581622;
+	bh=hCB+h8upvH20oKb6hCw5kz2C86FqOUOLpfO3S1y1r/E=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=bGkSVe+TqazC8R/C2V9gcTpqyhh9E17IB3PgcK50OaJNOEx5Da9ziui3rK/+d2Ki9
+	 4I2uZ+c9Xy04uQ9NbD1YPjZIW/tvNmZs7OXBFMWL2CiB3M2xJPwpw4Wa4ZuBqw5N04
+	 ZG+E4ic4f+AQsKzw/XlC/NedmXUbELPP6RxpPvUJJgw508g22O2ggGs5ijlZtTQh1N
+	 sJwNSd9udYCXRKnSPa4ipmzmfXjQDgSi436q/SA7KoD5trDUEGpUDWP+qfri+fWU5H
+	 J4nmmqNGuS7BPE+bv8NFB8jeRflASYMF7FwpFqDwlmfbDryjtc5bJwp8Jgz4sXEE33
+	 qjzopgWM+EoEA==
+Date: Mon, 01 Dec 2025 03:33:40 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 11/18] media: ti: j721e-csi2rx: add support for
- processing virtual channels
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <jai.luthra@linux.dev>,
-	<laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
-CC: <y-abhilashchandra@ti.com>, <devarsht@ti.com>, <s-jain1@ti.com>,
-	<vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
-	<sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
-	<jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
-	<jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
-	<dan.carpenter@linaro.org>, <hverkuil+cisco@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-References: <20251112115459.2479225-1-r-donadkar@ti.com>
- <20251112115459.2479225-12-r-donadkar@ti.com>
- <442f321e-be2e-4a42-ba3e-d8a58eaac11b@ideasonboard.com>
-Content-Language: en-US
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-In-Reply-To: <442f321e-be2e-4a42-ba3e-d8a58eaac11b@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000075ED:EE_|PH7PR10MB6180:EE_
-X-MS-Office365-Filtering-Correlation-Id: c71bcf04-9e76-419e-0c17-08de30bb9966
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|7416014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ci9KQS9pblNUSWR6TTV4VDh6aSt6bVBBZ1JxRlI4VzdGTUFUV0FvVHFGUWtY?=
- =?utf-8?B?d3dZM1gyNnJ1dDlQYmRWTHF6cFhlenAvalZvVWE1UlRtOS9LWXZVOHk0eVVS?=
- =?utf-8?B?N1NycVJCd3RJNE5lc3JvMkZxUkRRMzlGQVVKY0xLQWNmL3Z6VjhaaDcyNnIr?=
- =?utf-8?B?OWZaRktjMDk4cUVKWE1KVjV4VTZBbGIyL0s0cVpzblhMVTlLbDladzN3aE9k?=
- =?utf-8?B?cWIzQktacGpjSllTb2xmOWtzOTdXOTA4d25mQ21sK1poZEROaEI3UkY0RXlk?=
- =?utf-8?B?aDFxQzVRMzFqTTdSaXBPYlg5bmo3TXM1N2hvN1l2QTJJN05nVmpJcGp5aFh3?=
- =?utf-8?B?RDBSNTN6WFJIdjYxenNwN0JFV1dvd3RpRVdPMnl4WmhrRGs0bVA3TU1NU0tG?=
- =?utf-8?B?WFdpLzNvNk83b3lWUTNXSUp4M2FxSEg5Y2hmUDFtbmU2OVBJQTRmcEl3Yk0y?=
- =?utf-8?B?aStlKytSZ0p3eWpDRGNkYXFKVU92MGdiZ2lwaHV5ZlgrMTQ3Z2h2emtpRHBU?=
- =?utf-8?B?aGUzZnBYZS96U1ZPclh3Wk1HZ3JLNXQxSHVIcHFLMjU4S1RIU0kveHhnamUx?=
- =?utf-8?B?L0tGampRUzFidWlwdlVKK2dqQ2l0SzVCb2c3UGkxa1VQTXFsZVQxQWdzRUNB?=
- =?utf-8?B?UTd6Um9lTy9UMUxIOEdRUndCeUlxTURzanVqYzN1VWF0dHVtV0dibm9tRlZH?=
- =?utf-8?B?SUh2eXc1SklYQ0hURzNlYjNmeEFsclpoNHBxZlh6RWdPRkhPbC8zMnRaK1Ny?=
- =?utf-8?B?R1JyNDNTVTlhbHN1N2tKMGsxVjMvNlRaMlpYZko2NVVpMnZNQ1pUZXJLbzR1?=
- =?utf-8?B?TURSK2pPMUY0ZS9Ya0xDSTRzS1cvTStXOUVvempUMzlWblNSaXdYNTB4TExX?=
- =?utf-8?B?djZ6UytIb3FYYWJaeGFNNW9aS3RBNUdQVHhGb0hwaE9xaFNjaEpFdWZnUFN5?=
- =?utf-8?B?V2p1bzNaUXI4enNYWVVGNWZzKzU0SHd3SHl1Ui91bkRybjF1c1dmUExoQkNI?=
- =?utf-8?B?YzdpdDNXTlkwOEp3SC9nOUtka3NRQ1R6Ym5KNERYK1J5bUxveFRyRHBMSUQ4?=
- =?utf-8?B?N1JxMTFHaXpGT3IzTTQ1NXZVQzZjelJ6ekdRczRLclVkcGltU09Pajk3MTVS?=
- =?utf-8?B?L3Z2USt6eUltN08rNnZkTXhVbG5ObisvY3g0QlpkY0RESFNFWWQ2TkMyTUtS?=
- =?utf-8?B?OHk5TmEvaHFZM0NZdkU2NzZBdndtd3FSZTFPZjFXQy95ZGdoSGEyY0NtK2VP?=
- =?utf-8?B?ck9UekN6QkpKdW8zYVNyVjc5eGRLN0RvWnErZE0xZGcwb2NKcG9zakdXRjdV?=
- =?utf-8?B?NzVPcXBJV2JHc3Q2L0JlMTF1cTBMZEhTTjNZS1ZIZDJTRVhzWEN6UG1PYm91?=
- =?utf-8?B?RS8yNkJJZ1oyYW1nbHB4VHUvZ3hOanQzVU9QaEIxWXAvTElTMytydHVUTWlq?=
- =?utf-8?B?NmlZZ0VKM29sbU1YV0xMRmVWSHFaQnlSL1FmV0NLMlRFVnI1TkRvL3V4TVlM?=
- =?utf-8?B?NHVSRHdmQUszZytVMjYxMzYxdUx2TGorOWVMbkYzSnBuMGU1akd5ck95QndO?=
- =?utf-8?B?RTNjZXZ0Z3NtNEkxYVFwM3pscmpmcXY2SWZzeEVWa3MwNXlKbTZQdXY4YnN0?=
- =?utf-8?B?ME1Oa3VrVG16aWhqbkJkVm11dHVtMndaWGowcFF6RWFIWDJmY1V4VGxGUzg5?=
- =?utf-8?B?U0lPR3dML2hoRGVRQWFVdVBGb3VLclZGdXVIajFOZW9Td05JQmNqdWxIandN?=
- =?utf-8?B?RUhBSjZQdE1vOTdVNWN3T296ZlU0YTBJUVprUkowTzBRWmw3UVpQcExhbmhW?=
- =?utf-8?B?b2M1NmFhN2ZtclJVTkZLaFczblRlK2ZpZFBRaytsWExRc0djUlMydVJWTXFL?=
- =?utf-8?B?aWIyVnpNZ2ppRnBOOHJ5cUdQSkh5NlMxVFlzeHRkNkJrMGI4WnJMYnZZS0I3?=
- =?utf-8?B?dDFYMmI0czVZcm12Y2w3ZlcyK2NkQThIaHREcEdXWWtYQVd1S3BnUEo2N0dm?=
- =?utf-8?B?R1A3TTMySldDTG9LM2RBdUVBamdtTTkxRHBDN1krYmZpZ0xlOUZFaXNsRXdR?=
- =?utf-8?B?TzMvNFpUV1NidHVFazdQUnVZOGNwUFh4Q0tlWTJwVjFYZnh2UjdObW5jTHdN?=
- =?utf-8?Q?9ztM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(7416014)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 09:25:42.3120
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c71bcf04-9e76-419e-0c17-08de30bb9966
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000075ED.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6180
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: krzk+dt@kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org
+To: Gary Bisson <bisson.gary@gmail.com>
+In-Reply-To: <20251201084140.376058-2-bisson.gary@gmail.com>
+References: <20251201084140.376058-1-bisson.gary@gmail.com>
+ <20251201084140.376058-2-bisson.gary@gmail.com>
+Message-Id: <176458161856.2489196.6170126310129033736.robh@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: vendor-prefixes: Add Ezurio LLC
 
 
-On 20/11/25 18:02, Tomi Valkeinen wrote:
-> Hi,
+On Mon, 01 Dec 2025 09:41:36 +0100, Gary Bisson wrote:
+> Ezurio is the new name of Laird Connectivity after it acquired Boundary
+> Devices.
+> 
+> Signed-off-by: Gary Bisson <bisson.gary@gmail.com>
+> ---
+> Cc: robh@kernel.org
+> Cc: krzk+dt@kernel.org
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Hi Tomi,
+yamllint warnings/errors:
 
->
-> On 12/11/2025 13:54, Rishikesh Donadkar wrote:
->> From: Jai Luthra <j-luthra@ti.com>
->>
->> Use get_frame_desc() to get the frame desc from the connected source,
->> and use the provided virtual channel instead of hardcoded one.
-> So this baffled me a bit: the code seems to get the VC from the frame
-> desc, but not the DT. But it looks like the DT values are hardcoded in
-> the driver's formats table, and those are used for DT filtering.
+dtschema/dtc warnings/errors:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 428, in get_or_retrieve
+    resource = registry._retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 426, in retrieve
+    return DRAFT201909.create_resource(self.schemas[uri])
+                                       ~~~~~~~~~~~~^^^^^
+KeyError: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
 
+The above exception was the direct cause of the following exception:
 
-Previous to this, we were using default VC 0(hard coded), In this patch 
-we change it to use the one returned by the get_frame_desc(). I will 
-edit the commit message to mention this properly.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
+    retrieved = self._registry.get_or_retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 435, in get_or_retrieve
+    raise exceptions.Unretrievable(ref=uri) from error
+referencing.exceptions.Unretrievable: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
 
-Yes, to filter on the basis of DT we use the DT form the the driver's 
-format table.
+The above exception was the direct cause of the following exception:
 
->
-> We need to do something like that for legacy cases where the source does
-> not support get_frame_desc, but if there is a frame desc, we should use
-> the DT and VC from the frame desc.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 463, in _validate_reference
+    resolved = self._resolver.lookup(ref)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 686, in lookup
+    raise exceptions.Unresolvable(ref=ref) from error
+referencing.exceptions.Unresolvable: /schemas/thermal/qcom-tsens.yaml#
 
+The above exception was the direct cause of the following exception:
 
-Sure, I will change this in the next revision.
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-validate", line 8, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 158, in main
+    sg.check_dtb(filename)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 95, in check_dtb
+    self.check_subtree(dt, subtree, False, "/", "/", filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 83, in check_subtree
+    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 34, in check_node
+    for error in self.validator.iter_errors(node, filter=match_schema_file,
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                            compatible_match=compatible_match):
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 448, in iter_errors
+    for error in self.DtValidator(schema, registry=self.registry).iter_errors(instance):
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 384, in iter_errors
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 296, in properties
+    yield from validator.descend(
+    ...<4 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 275, in ref
+    yield from validator._validate_reference(ref=ref, instance=instance)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 465, in _validate_reference
+    raise exceptions._WrappedReferencingError(err) from err
+jsonschema.exceptions._WrappedReferencingError: Unresolvable: /schemas/thermal/qcom-tsens.yaml#
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 428, in get_or_retrieve
+    resource = registry._retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 426, in retrieve
+    return DRAFT201909.create_resource(self.schemas[uri])
+                                       ~~~~~~~~~~~~^^^^^
+KeyError: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
 
->
->> get_frame_desc() returns the same information when called on each stream
->> start, so instead get the VCs for all the routed stream at first
->> stream start and cache this information in the driver.
-> I get the point but... There isn't anything like this in the patch?
+The above exception was the direct cause of the following exception:
 
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
+    retrieved = self._registry.get_or_retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 435, in get_or_retrieve
+    raise exceptions.Unretrievable(ref=uri) from error
+referencing.exceptions.Unretrievable: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
 
-Thanks for pointing out, I moved the code to do this in the patch 13/18 
-between v7->v8. I will remove this form the commit message.
+The above exception was the direct cause of the following exception:
 
->
->> get_frame_desc() works per stream, but as we don't support multiple
-> "get_frame_desc() works per stream", what does it mean? It returns all
-> the streams for a pad.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 463, in _validate_reference
+    resolved = self._resolver.lookup(ref)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 686, in lookup
+    raise exceptions.Unresolvable(ref=ref) from error
+referencing.exceptions.Unresolvable: /schemas/thermal/qcom-tsens.yaml#
 
+The above exception was the direct cause of the following exception:
 
-This means that get_frame_desc() works for single stream use case as 
-well, I will change the commit message.
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-validate", line 8, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 158, in main
+    sg.check_dtb(filename)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 95, in check_dtb
+    self.check_subtree(dt, subtree, False, "/", "/", filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 83, in check_subtree
+    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 34, in check_node
+    for error in self.validator.iter_errors(node, filter=match_schema_file,
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                            compatible_match=compatible_match):
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 448, in iter_errors
+    for error in self.DtValidator(schema, registry=self.registry).iter_errors(instance):
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 384, in iter_errors
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 296, in properties
+    yield from validator.descend(
+    ...<4 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 334, in allOf
+    yield from validator.descend(instance, subschema, schema_path=index)
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
+    for error in errors:
+                 ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 275, in ref
+    yield from validator._validate_reference(ref=ref, instance=instance)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 465, in _validate_reference
+    raise exceptions._WrappedReferencingError(err) from err
+jsonschema.exceptions._WrappedReferencingError: Unresolvable: /schemas/thermal/qcom-tsens.yaml#
 
->
->> streams yet, we will just always use stream 0. If the source doesn't
->> support get_frame_desc(), fall back to the previous method of always
->> capturing virtual channel 0.
-> Right, if there's no frame desc (and we need to support legacy drivers),
-> the driver should default to VC=0, DT from the formats table. But as
-> mentioned above, VC and DT should normally come from the frame desc. It
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251201084140.376058-2-bisson.gary@gmail.com
 
-I will change this in the next revision.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Rishikesh
+pip3 install dtschema --upgrade
 
-> would be good to have a separate "legacy" function/branch/something, so
-> that we clearly distinguish the legacy and frame-desc cases.
->
->   Tomi
->
->> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
->> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
->> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
->> Signed-off-by: Jai Luthra <j-luthra@ti.com>
->> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
->> ---
->>   .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 38 +++++++++++++++++++
->>   1 file changed, 38 insertions(+)
->>
->> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
->> index 5c4524bf42e6e..126a62fa2c4c4 100644
->> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
->> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
->> @@ -32,6 +32,7 @@
->>   #define SHIM_DMACNTX_YUV422		GENMASK(27, 26)
->>   #define SHIM_DMACNTX_DUAL_PCK_CFG	BIT(24)
->>   #define SHIM_DMACNTX_SIZE		GENMASK(21, 20)
->> +#define SHIM_DMACNTX_VC			GENMASK(9, 6)
->>   #define SHIM_DMACNTX_FMT		GENMASK(5, 0)
->>   #define SHIM_DMACNTX_YUV422_MODE_11	3
->>   #define SHIM_DMACNTX_SIZE_8		0
->> @@ -110,6 +111,8 @@ struct ti_csi2rx_ctx {
->>   	struct media_pad		pad;
->>   	u32				sequence;
->>   	u32				idx;
->> +	u32				vc;
->> +	u32				stream;
->>   };
->>   
->>   struct ti_csi2rx_dev {
->> @@ -610,6 +613,7 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
->>   	}
->>   
->>   	reg |= FIELD_PREP(SHIM_DMACNTX_SIZE, fmt->size);
->> +	reg |= FIELD_PREP(SHIM_DMACNTX_VC, ctx->vc);
->>   
->>   	writel(reg, csi->shim + SHIM_DMACNTX(ctx->idx));
->>   
->> @@ -884,6 +888,32 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
->>   	}
->>   }
->>   
->> +static int ti_csi2rx_get_vc(struct ti_csi2rx_ctx *ctx)
->> +{
->> +	struct ti_csi2rx_dev *csi = ctx->csi;
->> +	struct v4l2_mbus_frame_desc fd;
->> +	struct media_pad *pad;
->> +	int ret, i;
->> +
->> +	pad = media_entity_remote_pad_unique(&csi->subdev.entity, MEDIA_PAD_FL_SOURCE);
->> +	if (!pad)
->> +		return -ENODEV;
->> +
->> +	ret = v4l2_subdev_call(csi->source, pad, get_frame_desc, pad->index, &fd);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (fd.type != V4L2_MBUS_FRAME_DESC_TYPE_CSI2)
->> +		return -EINVAL;
->> +
->> +	for (i = 0; i < fd.num_entries; i++) {
->> +		if (ctx->stream == fd.entry[i].stream)
->> +			return fd.entry[i].bus.csi2.vc;
->> +	}
->> +
->> +	return -ENODEV;
->> +}
->> +
->>   static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->>   {
->>   	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
->> @@ -904,6 +934,14 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->>   	if (ret)
->>   		goto err;
->>   
->> +	ret = ti_csi2rx_get_vc(ctx);
->> +	if (ret == -ENOIOCTLCMD)
->> +		ctx->vc = 0;
->> +	else if (ret < 0)
->> +		goto err;
->> +	else
->> +		ctx->vc = ret;
->> +
->>   	ti_csi2rx_setup_shim(ctx);
->>   
->>   	ctx->sequence = 0;
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
