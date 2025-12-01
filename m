@@ -1,171 +1,139 @@
-Return-Path: <devicetree+bounces-243316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D66C96B4D
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:46:51 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF94DC96C0A
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:53:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DF193A3A32
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:46:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 21B234E2303
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2213054E8;
-	Mon,  1 Dec 2025 10:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76125304BCA;
+	Mon,  1 Dec 2025 10:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P9W8luIf"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="p1PiVHlq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx-relay19-hz1.antispameurope.com (mx-relay19-hz1.antispameurope.com [94.100.132.219])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6BCD303A22
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 10:45:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764585951; cv=none; b=pXah/eHjIGZDDk89aSAyVdtgdLHfBEXfwv+pMhv+jLYScCOQNJZSFjK+CB0aLovMdArEnyvahbL3C04Rn5j+QAK+DFkvNy+8nadCglyCqHF3ZDrKQrhXhRaena/ADYL6Tmp/ZSpOjNCbyii3x+URVjELZKw1k/eRbPFpe5ge/fo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764585951; c=relaxed/simple;
-	bh=8KaOuw6GZeezjBlK0qtnPyFb+grvQ/ybFVCMd9aLdYY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CvtOYh8pYZI0Y7szFsNA8LDzOFvSSRcFIgQcHH3Vh0o6YKhVBJ6IPJZdeHbia2Q4shAnpbW7uyx34z1EozQHfJIyZLimMJ5BzQO+s9q1lzetKwDA5zMo9fvNt7yydxUX6kQOlht/qVcmGM4FyZtbpcTwYvJaW3o55Dcvj66KYXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P9W8luIf; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-42e2b90ad22so594834f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 02:45:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764585948; x=1765190748; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kaEhz6O2P9o+eF4N4eTnx5zXJUYRgf4JEjtCniVcp2w=;
-        b=P9W8luIf/NP9cT7q1rLfn7sY0fOjRHD9J8hCrWg8RR8sCezTFkKX9ta4YnwVE30LZj
-         jUoxQ+UzeJE52MZJsaDMN33p2T0qwBtO9QOCW3hOBxJa81Ufiyg4Wuvy10il92Q/FHZN
-         oeIemoXakKJTm/6Xo8A+fRPD4y6K8c/tUhH8EUe+xnDFXVErQZfm3ZOlxFLCbSTtJU1f
-         gTC6BQO3qxFH8QLLB64RWryuaLsAbHwYcdPqdH7hY1SlUOYSPB22X4kwnHsZvbhqTBg9
-         2b9mC674SI1vvGJ0qa62vwlw1caFG+NHU1YR5H5B1BDyqR/1cAGJl+Mew2U7/PYXsxhR
-         De6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764585948; x=1765190748;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kaEhz6O2P9o+eF4N4eTnx5zXJUYRgf4JEjtCniVcp2w=;
-        b=t28wp1ZkeRsqe3LAyUM3rctTzm6a+bS3Ot94uFcGa2kZG00v7YCP3up0yLhp9xRsE2
-         boAJkB2nATUvivUxG9SXnl6BSmqnEvyrepRFsxdrmdFKai/MNprSNNTbLXnzWZesg86V
-         TbtfVwBL2GwmAs3U9tqMRRaXdeUyDtyh+iF1MyJc0SrC2MG3nQn9za8uBeDXL8gQv9yD
-         OCjxc6eEcTKRrgWM3GRrzZGXm9/qAQSxHwGxY+j+K7FuOZthr8ANO1Wvdsxsz6vn82uj
-         A/xVL+hFtRlf3nU+Vi2YdC99jrV+63PFkupfOQyDMLlNW7WkF1Pv1D0mscr0Lzpdx6DK
-         cfbQ==
-X-Gm-Message-State: AOJu0Yx76gVElphfaTcG/c1w48PLARNu9raEteeOFn4wrRwtaOJ/nMFj
-	uvSKFOIo47MXeEKNsyYK3sD8Z25i+znXVTNgk5EHVOUh9WixANeLDEMe
-X-Gm-Gg: ASbGnctT0g8tXLXg2w4ZayOx26zBWNtYeFVi/CqCBdsmOw0cNz2WKXHDP4lx4FKM6Rh
-	HNKqJ5VFV1TmYsqe5fjIT3OFu9ahda3NFG2s1xdq7nWs5BsbGRUK2c4dFGlytAw75vOLK/E0oC7
-	vlFA3v1OZu9hnBWpxgs25GN8srZjdUAHvm5NSM1b16LJ5leIYbVSSP9NzrKcmB5DCyF8wse7tqH
-	Bnh9ZZZFynReKX4pqv3eZ7Ae9cwn+akRHEYysTdrMm5FRtBJ1bRY5x23jKJKQ5hxzzhsC5OZYrn
-	HYSmOyhm06eKR5yIfscVAkZltSR6ZDZw6Rh+QgQrRVEE1egePXFG7qtblVPShNl0D7MX6CeN1uG
-	gKriaUsu1iRBSiru18/p/XgaofSxdQRIqaGsEMEaFGh30wqp1hHyclhiXCmxeFesFQOhEhdP2Nv
-	GR75NnvdIC/6OMzKUWoKzIg5y4mA==
-X-Google-Smtp-Source: AGHT+IE8G4qn9MtqoJRt6EwzOs1Re3GYjg7OEjxSvjTqoKuOR37PmgQUIwGfViG46KaNtOidrvSCPA==
-X-Received: by 2002:a05:6000:24c4:b0:42b:3268:bfc0 with SMTP id ffacd0b85a97d-42cc1d51edcmr41874577f8f.49.1764585947940;
-        Mon, 01 Dec 2025 02:45:47 -0800 (PST)
-Received: from [127.0.1.1] ([2001:861:3201:3d10:4ab6:6efe:9b65:a6af])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1c5d6049sm26264262f8f.10.2025.12.01.02.45.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Dec 2025 02:45:47 -0800 (PST)
-From: Gary Bisson <bisson.gary@gmail.com>
-Date: Mon, 01 Dec 2025 11:45:20 +0100
-Subject: [PATCH v3 4/4] arm64: dts: mediatek: add device tree for Tungsten
- 700 board
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044693043D7
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 10:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.219
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764586386; cv=pass; b=AaxELGN3n/FXyPt79jMqMp3xMYmLcc8ebFMdvFXJCuulzcJ0AlTB5ZPWvbOnO2wptNZXWYeL60ajWirOl1QQ+J1LRvM7bxiBPEAEfztDL+90W1j40aoTNutKx4Vvrvcat2BvBVGLuOHAFrl8vNbsulhnfow7dIAmnF9flgJ0y3A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764586386; c=relaxed/simple;
+	bh=j5PeCcwNp5sMBjLNs3zde8ahharoQ3/F4X72VmxDAAc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jEyBkeo1HmF1CuG0hDvAZUhyMTOi0VOsh+4ynbdRdXW2QuEMoPxPeP0Cf5b1G0L3hmy09V1HS02urqOm2U7ORB2ct16EDml2rXniDY2pGbp6ThSibtJaKl1HFJ9rO+fBwCXSg5yxulIsTj4ZieY80sNnFqD2RsnupYx9rieI3SE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=p1PiVHlq; arc=pass smtp.client-ip=94.100.132.219
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate19-hz1.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com
+ smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
+ header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=K96yAKM+xcrHhzOcR0zBqIliZQSixR1YCX/rN6x1xxY=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1764586320;
+ b=fS5hrfhy7J9n7Ayl5TDMImhPDLzILsTRmwwiAf4UrE/UZl8Lndl3TID/968WBtMM8uw7mV3r
+ +3MM0pCdY3+fq6YpUtXKTf9/KFRUzVqs9gAnrIZhphcyoK9QcFNUsFmfKkQ+Adoy1YigPt0ASCX
+ VOaNczb28dd+uWl+kpEfCN6CnA+qZVJgo5Ou93h0beqmOafmgCxrxPrajWRvHSMBTeuQKrg2Gjp
+ kCfAyIFrF7TvOZ4FgB7oz74lZhmcNgkSJnrzSzFUCeSuObS/T1PF6pnXu184gTqfkBdV9LtddGX
+ Du545FgsY+LtEyLUSzEjD1XLXlkeP1AvELcx0TT3C3UjA==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1764586320;
+ b=UBFaLubd8Z3+oYJPEVXN3Q2j4C48sTTjN36SgkrgtYV+mrB3e5nLZz4NT0ZancNV2PaBgPab
+ zAfD3M+SLunFxq9+YFDp6XGjJEc+ZXJNZYsqZUA0aKKGYINU+i7Z7FYapM3nkfCodHeKIvpd6xZ
+ jqqZKTs8rvDZwQCacUmYWs/P/zjvjehS6QfuyofZvqoCl4pQqz6F6fJuoolty3vfJOw/wEk2+RM
+ 1kZ+AyzxF2vvfnzoPhY5lChmJKT+8pgwuPP3gcpZFcJOe1F2H3NP37ty5Tb+Ge+Ta+uzPCvrx8F
+ uvnutjFK9ecg6YhXjetx9P9I/v5R6hNtJeEVBaGwH+lVQ==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay19-hz1.antispameurope.com;
+ Mon, 01 Dec 2025 11:52:00 +0100
+Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: alexander.stein@ew.tq-group.com)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id AA9ADCC0DC2;
+	Mon,  1 Dec 2025 11:51:52 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <pjw@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [RFC PATCH 0/3] ls-extirq platform device conversion
+Date: Mon,  1 Dec 2025 11:51:39 +0100
+Message-ID: <20251201105144.539450-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251201-review-v3-4-07f9af7341fd@gmail.com>
-References: <20251201-review-v3-0-07f9af7341fd@gmail.com>
-In-Reply-To: <20251201-review-v3-0-07f9af7341fd@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Gary Bisson <bisson.gary@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764585944; l=2265;
- i=bisson.gary@gmail.com; s=20251201; h=from:subject:message-id;
- bh=8KaOuw6GZeezjBlK0qtnPyFb+grvQ/ybFVCMd9aLdYY=;
- b=AsDpy0c1UumnO9hVt5+7BO2Zwo3WS5S4yoCjwC+QAKb4mUapitLgW4BNxeVRPZtkvoZYv0U42
- VGYhnErXsBMDbl0zUmg07sf3hmHrpdCz8hWwbLDmMhvu6p9+/FJQB1U
-X-Developer-Key: i=bisson.gary@gmail.com; a=ed25519;
- pk=eaOrLwovHUZBMoLbrx+L1ppj+AH+TfgxkVhIEyrhkeE=
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:alexander.stein@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay19-hz1.antispameurope.com with 4dKgh927gRz3DJLr
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:690fad471cfd5f66c6a94f5d6552821d
+X-cloud-security:scantime:1.904
+DKIM-Signature: a=rsa-sha256;
+ bh=K96yAKM+xcrHhzOcR0zBqIliZQSixR1YCX/rN6x1xxY=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1764586319; v=1;
+ b=p1PiVHlqG//Y9LQ6WV3cv1VCsiAtwXuuZo7P3mTfADv9p1q65yRySPPz1fd5fEZKyTY6zn5W
+ rrH6uAUL3rU0e1smOvOep8rsNg9soXAiUq49qS2idv8ZeffrYct/tHRIR9QqQOOr3Ra32FInTAN
+ EiOnoGVEy8GnzZs4EclBI/VFN3Y2CxH9srYsuuSAal1uGxSlHHMgYiGnXwoyaSU60pK9558S0zU
+ o/E+d4epvYbdN6OFjbEwxhwER2s+MMV2lJ0bfIkTlO5FnLRcrMayFyc+rWUdM1myKUcfCJbhf8t
+ fy59AieN9HbL42O8z3FUu/vXtv8bjrQmAWEcEF/3loFqg==
 
-Add device tree to support Ezurio Tungsten 700 (MT8390) SMARC SOM [1] +
-Universal SMARC carrier board [2].
-It includes support for the MIPI-DSI BD070LIC3 display which uses the
-Tianma TM070JDHG30 panel + TI SN65DSI84 MIPI-DSI to LVDS bridge [3].
+Hi,
 
-[1] https://www.ezurio.com/product/tungsten700-smarc
-[2] https://www.ezurio.com/system-on-module/accessories/universal-smarc-carrier
-[3] https://www.ezurio.com/product/bd070lic3-7-touchscreen-display
+this RFC tried to address the problem that sometimes at time of probing the
+parent IRQ domain is not yet ready. This results in the error message:
+> irq-ls-extirq: Cannot find parent domain
+> OF: of_irq_init: Failed to init /soc/syscon@1f70000/interrupt-controller@14
+>  ((____ptrval____)), parent 0000000000000000
 
-Signed-off-by: Gary Bisson <bisson.gary@gmail.com>
+Probe deferral is only possible having a platform device so the driver is
+converted accordingly. It is inspired by commit 8ec99b033147e
+("irqchip/sifive-plic: Convert PLIC driver into a platform driver").
 
----
-Changes in v2:
-- None
-Changed in v3:
-- None
----
- arch/arm64/boot/dts/mediatek/Makefile              |  1 +
- .../boot/dts/mediatek/mt8390-tungsten-smarc.dts    | 22 ++++++++++++++++++++++
- 2 files changed, 23 insertions(+)
+Because the interrupt-controller@1f70014 is a child of a syscon node, it is
+not probed after platform device conversion. So it has to be moved outside.
+This DT change has to be done for all layerscape SoC .dtsi
+This is an incompatible change and I don't really know how to address that for
+now. I've done it for LS1088A as a proof-of-concept for now.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 30d169a31b10..85f338344dd3 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -102,6 +102,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-genio-510-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-tungsten-smarc.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-genio-700-evk.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-tungsten-smarc.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-kontron-3-5-sbc-i1200.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-radxa-nio-12l.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-radxa-nio-12l-8-hd-panel.dtbo
-diff --git a/arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dts b/arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dts
-new file mode 100644
-index 000000000000..f1cf2821107f
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 Ezurio LLC
-+ * Author: Gary Bisson <bisson.gary@gmail.com>
-+ */
-+/dts-v1/;
-+#include "mt8188.dtsi"
-+#include "mt83x0-tungsten-smarc.dtsi"
-+
-+/ {
-+	model = "Ezurio Tungsten700 SMARC (MT8390)";
-+	compatible = "ezurio,mt8390-tungsten-smarc", "mediatek,mt8390",
-+		     "mediatek,mt8188";
-+};
-+
-+&cpu4 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
-+
-+&cpu5 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
+Comments if this is the way to go or a different approach is more suitable
+are very much welcome.
+
+Best regards,
+Alexander
+
+Alexander Stein (3):
+  irqchip/ls-extirq: Convert to platform driver
+  irqchip/ls-extirq: Use managed resources
+  arm64: dts: ls1088a: Move extirq outside of syscon
+
+ .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 42 +++++------
+ drivers/irqchip/irq-ls-extirq.c               | 75 +++++++++----------
+ 2 files changed, 56 insertions(+), 61 deletions(-)
 
 -- 
 2.43.0
