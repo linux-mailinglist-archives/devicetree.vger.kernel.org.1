@@ -1,166 +1,388 @@
-Return-Path: <devicetree+bounces-243419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 585B6C97837
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:12:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EAD9C978C7
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:19:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A62533461DE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 13:11:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F1963A32FA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 13:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A923316917;
-	Mon,  1 Dec 2025 13:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C3E3101DE;
+	Mon,  1 Dec 2025 13:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YvMEOW9h"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="B1LE9m6L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D71F3176E0
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 13:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 232F630F95E;
+	Mon,  1 Dec 2025 13:11:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764594520; cv=none; b=eazzkxOcvzbf8lvxWBbUyVy53Iqfm6WwJk7fFo9XS6Z8yrskA/YbZaFewURIQUplIyM+zZSf2IBkzmfQeFs9iIpw8ba+2xHTshQNh0RRonO6j6rEqXgMnMGnP6vOfkQiYJTMsvAe76uDQ2fOYkFmiXF6KE4yyebVuXdauylnl5U=
+	t=1764594699; cv=none; b=B8hY3t5StsLqmAxcCz6YzuYdd+2NuZAwJ7GOo/ooPcNL7sMMBWCG/FY5uPDj/0XNCNdLdtxJESApKT10AtDqoSM810rgTdpsu6Yy9zgHPWxapRaUzwygPMminTmDM172zNKaOyQKKvEmUkrw073RCUb0dCr1DKSg6zxDjajiPe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764594520; c=relaxed/simple;
-	bh=yK2o72zQe+DCz+K/wPAmdcA6PJnQHLVXjQkN9fm3wv8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o5KC54+iMJsd7YUAG9bPrvJXWsIYgIh/5wgfiQMvwmX11PkEKrJs19kzQe0oCXG5iLhYKs4ZGn0+X1JsPKaqL241EOhfNgZPwqiT2sZTXWnAGRfnfYNew+hn6l5iq06e6KtqXLMGJg40Bx+RSHJG6yqcHtMKHN2ETCg1z3Bmk0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YvMEOW9h; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b75c7cb722aso610247566b.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 05:08:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764594517; x=1765199317; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6ART4te0v+vV281V0YHRF37dtpcBxay9iLJ0GSUM95g=;
-        b=YvMEOW9hE8TykCirTmxiDGZHi3aUd0SgIjtjLSzWNvxtfxZJzG7+LLmEcvs9XW8ah9
-         s22u3lA7EHJRoyAJL5oVCF+0+ukHwqc04Xckg3eXSC2rDIbruC6WPlq6eumOUS60ayje
-         44IkgyCBHv+gk7h7I9wfv5GvcudiK55QMBrsjH1NOQbn7P8An9VnOL+TXwZQg1nmIzjV
-         H0zVao6ebq4/xyv1TDISII5NBf9XuXjumSZuP0tGVx/aVeilKfvE1CxwsJP5BDevCUl4
-         3PpNac1kfubRe+LsXVe0MpvHjUl+uDsGAEDOZqypEKppgKAloYy06P7WYagt3j+Jv5Hc
-         lbxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764594517; x=1765199317;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6ART4te0v+vV281V0YHRF37dtpcBxay9iLJ0GSUM95g=;
-        b=YMuRGxSY+1lbmuDn5JSR0OgYyKQr9U5oJ3KqJNujoQfbiPJLrlrQ+aU+mb7+3FBXr+
-         pDE7x6wdGLHhZpngjPQQGtDTD4y7mwpZWKItg/mV1KKj3DCz2r3MCSreeobmyLNbWTlF
-         FhfClUbfob64flk8/tEILzr+9CeaHJDZzw+6a30le+yzGmVgJsS2DQyvXpZibllhnC+h
-         2YBbv8aHfZlq58mskY2uNGfa9mqU6MxY8PInzxg+RAe6ZMAEEN4RyqnUJHRJQn9OVQsC
-         uqXWtzpdvfuzbjxgFYn9BEzUEg5nXhgRKzcR4+CDeuxvyZTE51fQczQtMfwYjQnE6Njj
-         MhWg==
-X-Forwarded-Encrypted: i=1; AJvYcCXNSnDhPdUSgALB6zlmcUPwbGb4BgBIv79X1ZIxTgpV4H/60Pqb/UcbUS6M2ra0EXjYFyDyLiIAjexm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIgVhq5j74T9sZl3Kx+Efp7gFA26yQlOTY6YBAcwBzZZ5TvF0A
-	dbJQgAANF0OwvR1GkFP4JhL/jfM54EzSmHBbnuLhEIEl65E0C5/+FLKi5sI5XDupOB8=
-X-Gm-Gg: ASbGncsWICIjwaB2G+PNCefm0/+S2mdjqTkke7Ao/5vDm+xwobgT4awLbu/UAdp6W/1
-	x6TwkCk9NAtaxdpBUdQtoRhQuYyguTxNOQRL+T/+GKkQCqVLk4rqgO0SLTtZ1onIMIvQ1iY5Gr2
-	bF5HVl46cUUGCTI/70GcQanzQGRY44IGQJGqReUgzC+ZMCul5S6m7mzqgLRWMu0H1JGc2EpZjXo
-	VBGFbNx2a2tAASTy4CfvD+0HJoYYDsNTmyRRmBOAQ/MayhTSzfp1o23R/8WRgwAubzjscCQF5sd
-	kIFw5ILrSLCoUCckIMZFJvm35kzN/igR4RR3Armx6A3+m6i8Ow5ZMMeiF3Xla7juxMkwV+pwsbd
-	gm4UocLoFm/H3UMdzvpTrBbFLsSMtQ3ZO7v7CveuhH0zqAw6PL55pyfVuvR4tUB0JPQk3xsFu8s
-	gWK28hrXbjXvcfsmTqZi7bnFJ+h6s=
-X-Google-Smtp-Source: AGHT+IGy8H4hZkMdsPgp5ClNfSZPP5T+1EX7uyKwcjKjvElb0fOWVlyxh4nPkZ/Ts/Rfemd9Q4kkuA==
-X-Received: by 2002:a17:906:b4a:b0:b73:53ab:cfa1 with SMTP id a640c23a62f3a-b76715ab9ebmr3096430866b.17.1764594516820;
-        Mon, 01 Dec 2025 05:08:36 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-b76f51c67e2sm1228965866b.27.2025.12.01.05.08.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Dec 2025 05:08:36 -0800 (PST)
-Date: Mon, 1 Dec 2025 16:08:33 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Chester Lin <chester62515@gmail.com>
-Cc: Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linaro-s32@linaro.org
-Subject: [PATCH 4/4] dts: s32g: Add GPR syscon region
-Message-ID: <c8302f53fcbb5cb5afe42cdb15aba7e2e6ed7338.1764592300.git.dan.carpenter@linaro.org>
-References: <cover.1764592300.git.dan.carpenter@linaro.org>
+	s=arc-20240116; t=1764594699; c=relaxed/simple;
+	bh=+JPbTZdPJTbEDftl6B5rwSsD6NcqgePl8VHy8DbnFrw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wo5wUrJOlmoDwyDQrrmRUr8TJ/08JE8pkfRT19V0kVjtVAlwKnaHFY4jIqLckxqANdShmbhpJroHx1VRXNnS4lnJ6UKLP4EpPw1DqDnoiOsYUR1Ss8q2SGmDyDpLlg48/YiVTAE5YQPK7toziVg/OJu3J8VIO6JdSlajCApyYGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=B1LE9m6L; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E8DD2161;
+	Mon,  1 Dec 2025 14:09:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1764594561;
+	bh=+JPbTZdPJTbEDftl6B5rwSsD6NcqgePl8VHy8DbnFrw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=B1LE9m6LrDoidNxjlifUqvdvvCam4NabsFKKPLWfQl5teB6Or32wUvUI+Upwdu7jc
+	 IzWUDRU3jEvdh2TkEVEwtlTpCRUq/KjbHP1wWIJ4NKq6aIvFfo6C+OYTRi8aa10qdE
+	 ETqPUHny9ap92p4O/iJrk8ypOv9xCMI7vGMigQKw=
+Message-ID: <a4bba302-8be2-4bbd-96c8-3a20472e0c12@ideasonboard.com>
+Date: Mon, 1 Dec 2025 15:11:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1764592300.git.dan.carpenter@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 16/18] media: cadence: csi2rx: Support runtime PM
+To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev,
+ laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
+ vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
+ hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
+ changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
+ sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251112115459.2479225-1-r-donadkar@ti.com>
+ <20251112115459.2479225-17-r-donadkar@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20251112115459.2479225-17-r-donadkar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add the GPR syscon region for the s32 chipset.
+Hi,
 
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- arch/arm64/boot/dts/freescale/s32g2.dtsi | 8 ++++++++
- arch/arm64/boot/dts/freescale/s32g3.dtsi | 8 ++++++++
- 2 files changed, 16 insertions(+)
+On 12/11/2025 13:54, Rishikesh Donadkar wrote:
+> From: Changhuang Liang <changhuang.liang@starfivetech.com>
+> 
+> Use runtime power management hooks to save power when CSI-RX is not in
+> use.
+> 
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+>  drivers/media/platform/cadence/Kconfig       |   1 +
+>  drivers/media/platform/cadence/cdns-csi2rx.c | 129 ++++++++++++-------
+>  2 files changed, 83 insertions(+), 47 deletions(-)
+> 
+> diff --git a/drivers/media/platform/cadence/Kconfig b/drivers/media/platform/cadence/Kconfig
+> index 1aa608c00dbce..ea85ef82760e6 100644
+> --- a/drivers/media/platform/cadence/Kconfig
+> +++ b/drivers/media/platform/cadence/Kconfig
+> @@ -5,6 +5,7 @@ comment "Cadence media platform drivers"
+>  config VIDEO_CADENCE_CSI2RX
+>  	tristate "Cadence MIPI-CSI2 RX Controller"
+>  	depends on VIDEO_DEV
+> +	depends on PM
+>  	select MEDIA_CONTROLLER
+>  	select VIDEO_V4L2_SUBDEV_API
+>  	select V4L2_FWNODE
+> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+> index 833bc134f17cb..6447c225ba354 100644
+> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+> @@ -337,11 +337,6 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>  	u32 reg;
+>  	int ret;
+>  
+> -	ret = clk_prepare_enable(csi2rx->p_clk);
+> -	if (ret)
+> -		return ret;
+> -
+> -	reset_control_deassert(csi2rx->p_rst);
+>  	csi2rx_reset(csi2rx);
+>  
+>  	if (csi2rx->error_irq >= 0)
+> @@ -382,7 +377,7 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>  		if (ret) {
+>  			dev_err(csi2rx->dev,
+>  				"Failed to configure external DPHY: %d\n", ret);
+> -			goto err_disable_pclk;
+> +			return ret;
+>  		}
+>  	}
+>  
+> @@ -397,12 +392,6 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>  	 * hence the reference counting.
+>  	 */
+>  	for (i = 0; i < csi2rx->max_streams; i++) {
+> -		ret = clk_prepare_enable(csi2rx->pixel_clk[i]);
+> -		if (ret)
+> -			goto err_disable_pixclk;
+> -
+> -		reset_control_deassert(csi2rx->pixel_rst[i]);
+> -
+>  		writel(CSI2RX_STREAM_CFG_FIFO_MODE_LARGE_BUF |
+>  			       FIELD_PREP(CSI2RX_STREAM_CFG_NUM_PIXELS_MASK,
+>  					  csi2rx->num_pixels[i]),
+> @@ -415,30 +404,8 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>  		       csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
+>  	}
+>  
+> -	ret = clk_prepare_enable(csi2rx->sys_clk);
+> -	if (ret)
+> -		goto err_disable_pixclk;
+> -
+> -	reset_control_deassert(csi2rx->sys_rst);
+> -
+> -	clk_disable_unprepare(csi2rx->p_clk);
+>  
+>  	return 0;
+> -
+> -err_disable_pixclk:
+> -	for (; i > 0; i--) {
+> -		reset_control_assert(csi2rx->pixel_rst[i - 1]);
+> -		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
+> -	}
+> -
+> -	if (csi2rx->dphy) {
+> -		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
+> -		phy_power_off(csi2rx->dphy);
+> -	}
+> -err_disable_pclk:
+> -	clk_disable_unprepare(csi2rx->p_clk);
+> -
+> -	return ret;
+>  }
+>  
+>  static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+> @@ -447,10 +414,6 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+>  	u32 val;
+>  	int ret;
+>  
+> -	clk_prepare_enable(csi2rx->p_clk);
+> -	reset_control_assert(csi2rx->sys_rst);
+> -	clk_disable_unprepare(csi2rx->sys_clk);
+> -
+>  	writel(0, csi2rx->base + CSI2RX_ERROR_IRQS_MASK_REG);
+>  
+>  	for (i = 0; i < csi2rx->max_streams; i++) {
+> @@ -465,14 +428,8 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+>  		if (ret)
+>  			dev_warn(csi2rx->dev,
+>  				 "Failed to stop streaming on pad%u\n", i);
+> -
+> -		reset_control_assert(csi2rx->pixel_rst[i]);
+> -		clk_disable_unprepare(csi2rx->pixel_clk[i]);
+>  	}
+>  
+> -	reset_control_assert(csi2rx->p_rst);
+> -	clk_disable_unprepare(csi2rx->p_clk);
+> -
+>  	if (csi2rx->dphy) {
+>  		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
+>  
+> @@ -548,10 +505,17 @@ static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
+>  	 * enable the whole controller.
+>  	 */
+>  	if (!csi2rx->count) {
+> +		ret = pm_runtime_resume_and_get(csi2rx->dev);
+> +		if (ret < 0)
+> +			return ret;
+> +
+>  		csi2rx_update_vc_select(csi2rx, state);
+> +
+>  		ret = csi2rx_start(csi2rx);
+> -		if (ret)
+> +		if (ret) {
+> +			pm_runtime_put(csi2rx->dev);
+>  			return ret;
+> +		}
+>  	}
+>  
+>  	/* Start streaming on the source */
+> @@ -561,8 +525,10 @@ static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
+>  		dev_err(csi2rx->dev,
+>  			"Failed to start streams %#llx on subdev\n",
+>  			sink_streams);
+> -		if (!csi2rx->count)
+> +		if (!csi2rx->count) {
+>  			csi2rx_stop(csi2rx);
+> +			pm_runtime_put(csi2rx->dev);
 
-diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-index 51d00dac12de..3c9472f6c174 100644
---- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-@@ -325,6 +325,13 @@ usdhc0-200mhz-grp4 {
- 			};
- 		};
- 
-+		gpr: syscon@4007c000 {
-+			compatible = "nxp,s32-gpr", "syscon";
-+			reg = <0x4007c000 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
-+
- 		ocotp: nvmem@400a4000 {
- 			compatible = "nxp,s32g2-ocotp";
- 			reg = <0x400a4000 0x400>;
-@@ -731,6 +738,7 @@ gmac0: ethernet@4033c000 {
- 			compatible = "nxp,s32g2-dwmac";
- 			reg = <0x4033c000 0x2000>, /* gmac IP */
- 			      <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-+			phy-sel = <&gpr 0x4>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "macirq";
-diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-index eff7673e7f34..0ceca3caf133 100644
---- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-@@ -383,6 +383,13 @@ usdhc0-200mhz-grp4 {
- 			};
- 		};
- 
-+		gpr: syscon@4007c000 {
-+			compatible = "nxp,s32-gpr", "syscon";
-+			reg = <0x4007c000 0x3000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
-+
- 		ocotp: nvmem@400a4000 {
- 			compatible = "nxp,s32g3-ocotp", "nxp,s32g2-ocotp";
- 			reg = <0x400a4000 0x400>;
-@@ -808,6 +815,7 @@ gmac0: ethernet@4033c000 {
- 			compatible = "nxp,s32g2-dwmac";
- 			reg = <0x4033c000 0x2000>, /* gmac IP */
- 			      <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-+			phy-sel = <&gpr 0x4>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "macirq";
--- 
-2.51.0
+Probably time to add 'goto' based error handling to this func... Maybe
+in this patch, maybe as a separate patch before this.
+
+ Tomi
+
+> +		}
+>  		return ret;
+>  	}
+>  
+> @@ -589,8 +555,10 @@ static int csi2rx_disable_streams(struct v4l2_subdev *subdev,
+>  	csi2rx->count--;
+>  
+>  	/* Let the last user turn off the lights. */
+> -	if (!csi2rx->count)
+> +	if (!csi2rx->count) {
+>  		csi2rx_stop(csi2rx);
+> +		pm_runtime_put(csi2rx->dev);
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -1092,6 +1060,7 @@ static int csi2rx_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto err_cleanup;
+>  
+> +	pm_runtime_enable(csi2rx->dev);
+>  	ret = v4l2_async_register_subdev(&csi2rx->subdev);
+>  	if (ret < 0)
+>  		goto err_free_state;
+> @@ -1106,6 +1075,7 @@ static int csi2rx_probe(struct platform_device *pdev)
+>  
+>  err_free_state:
+>  	v4l2_subdev_cleanup(&csi2rx->subdev);
+> +	pm_runtime_disable(csi2rx->dev);
+>  err_cleanup:
+>  	v4l2_async_nf_unregister(&csi2rx->notifier);
+>  	v4l2_async_nf_cleanup(&csi2rx->notifier);
+> @@ -1124,9 +1094,73 @@ static void csi2rx_remove(struct platform_device *pdev)
+>  	v4l2_async_unregister_subdev(&csi2rx->subdev);
+>  	v4l2_subdev_cleanup(&csi2rx->subdev);
+>  	media_entity_cleanup(&csi2rx->subdev.entity);
+> +	pm_runtime_disable(csi2rx->dev);
+>  	kfree(csi2rx);
+>  }
+>  
+> +static int csi2rx_runtime_suspend(struct device *dev)
+> +{
+> +	struct csi2rx_priv *csi2rx = dev_get_drvdata(dev);
+> +	unsigned int i;
+> +
+> +	reset_control_assert(csi2rx->sys_rst);
+> +	clk_disable_unprepare(csi2rx->sys_clk);
+> +
+> +	for (i = 0; i < csi2rx->max_streams; i++) {
+> +		reset_control_assert(csi2rx->pixel_rst[i]);
+> +		clk_disable_unprepare(csi2rx->pixel_clk[i]);
+> +	}
+> +
+> +	reset_control_assert(csi2rx->p_rst);
+> +	clk_disable_unprepare(csi2rx->p_clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int csi2rx_runtime_resume(struct device *dev)
+> +{
+> +	struct csi2rx_priv *csi2rx = dev_get_drvdata(dev);
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(csi2rx->p_clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	reset_control_deassert(csi2rx->p_rst);
+> +
+> +	for (i = 0; i < csi2rx->max_streams; i++) {
+> +		ret = clk_prepare_enable(csi2rx->pixel_clk[i]);
+> +		if (ret)
+> +			goto err_disable_pixclk;
+> +
+> +		reset_control_deassert(csi2rx->pixel_rst[i]);
+> +	}
+> +
+> +	ret = clk_prepare_enable(csi2rx->sys_clk);
+> +	if (ret)
+> +		goto err_disable_pixclk;
+> +
+> +	reset_control_deassert(csi2rx->sys_rst);
+> +
+> +	return 0;
+> +
+> +err_disable_pixclk:
+> +	for (; i > 0; i--) {
+> +		reset_control_assert(csi2rx->pixel_rst[i - 1]);
+> +		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
+> +	}
+> +
+> +	reset_control_assert(csi2rx->p_rst);
+> +	clk_disable_unprepare(csi2rx->p_clk);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct dev_pm_ops csi2rx_pm_ops = {
+> +	RUNTIME_PM_OPS(csi2rx_runtime_suspend, csi2rx_runtime_resume, NULL)
+> +};
+> +
+>  static const struct of_device_id csi2rx_of_table[] = {
+>  	{ .compatible = "starfive,jh7110-csi2rx" },
+>  	{ .compatible = "cdns,csi2rx" },
+> @@ -1141,6 +1175,7 @@ static struct platform_driver csi2rx_driver = {
+>  	.driver	= {
+>  		.name		= "cdns-csi2rx",
+>  		.of_match_table	= csi2rx_of_table,
+> +		.pm		= &csi2rx_pm_ops,
+>  	},
+>  };
+>  module_platform_driver(csi2rx_driver);
 
 
