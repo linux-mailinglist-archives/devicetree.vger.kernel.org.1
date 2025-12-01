@@ -1,135 +1,176 @@
-Return-Path: <devicetree+bounces-243466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16220C97DBD
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 15:32:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01DEBC97DD2
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 15:34:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C8013A39D7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 14:31:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB37C3A16BF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 14:34:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 327E531A049;
-	Mon,  1 Dec 2025 14:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1680F31A055;
+	Mon,  1 Dec 2025 14:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pFU59lxE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l976On9Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EFA5316190
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 14:31:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61D930FC1F
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 14:34:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764599508; cv=none; b=O7KW/nQX9EktPJwYRx6suo2f4iDYVDK9b6U0wT9Kli/CYRs1NXM5CLBCvyOepVEDY/QPX32Rt+QLlZn0xp0h5zaOID1vKLjXhFvciu4BdS1Vi1CMSkad/awxXHYMolYyt58G54NGjeIWL1EtYCGBcibsjfWlqIt5d/ltMMSaZvs=
+	t=1764599691; cv=none; b=PhLV0e1zDHF7eXKO6GtCsbHeMs2iLjJ0a3Pym86N4dXSBxioUqtQxIQeWz9td07wDov+YDw6ARsHiEOiSp22MSNS5fWJutCQ4N0nYe/S718LOpZ9e3ptsBJXUeSCtIOUwgLx9b+JDTtnbmos4UOL/4Uny1b0Jm+BeKcz1NAt7J4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764599508; c=relaxed/simple;
-	bh=iSzXnkL6CZ7clNjmcPJzJQEgcd8lgXcvAiTHRowiIsA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qDr4gb1gAc98nEtKomterWimroK2PgPVDDU3NYjNMaVmFxhfs+e2bpN5qL0dakooMCavPDlEnPuwa0QNp4wuquJUrIIZn2IDVli+gTMp9VhXd2dTZ9JXwFF5zpLfRTn/MZf621l4ZL6qoFwOpJsvmnXTDqxPyX3XebPFGfpoYY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pFU59lxE; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4779d47be12so34409725e9.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 06:31:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764599504; x=1765204304; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=P3Udye7A+1mJEIOEFZOxhVuAe/sJ9GEaxJR6U/sqIe4=;
-        b=pFU59lxErcDBwDqOjO49K8/irivP5aAkyCDo0uSmltDPIm/fC0dYk+e2T2tMJafIfB
-         nrr87ztMVEftj1yTscjflIAGLtAXGVpI2OcMXlgWgaQz9zSqwJSlguUd3Q//9WrG8tii
-         vnD/JGbY+qrRDdsyI0meLaGoUXl+CX3P0/vq3LgM3SWkyJAq7ZPuk60zrxnTVk1Gq7Yf
-         Mb7M1rLnLWqRLMp34kZdy7ttohhXAlO9T8AjwocipVGhhJMD7iIT2doDOg6XWqZV6c8A
-         sA5RQOmrEurGDTpJxrbcavugG/NRv+vccBsfapNWuo7gTPj+1tdQTMfkvlVoOMvDDPyN
-         2WfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764599504; x=1765204304;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P3Udye7A+1mJEIOEFZOxhVuAe/sJ9GEaxJR6U/sqIe4=;
-        b=koCTDyn3T8/2EEZeyBQfbLfCTezqEbdizTG3igoQh5dM+R97iyY1SvKdRc0lOHCUAi
-         30leFtQ9Uulc2u13qUGRrDt5ZBA8mywW4tpZlz4LxYir1m+vc0bhKTjO908mVUn4og3L
-         lr+O6Kf4LDWlZGnIKRn/RQg9tX+AGe2p7SS19lv7fjsWWuutYiDfyXwqoS4oegitD99f
-         6M0O0Sy4D8l2wUwhObZ6pqGNBzmoMX5OkUwET9rGX1k9N6qvbzfxZk4EFumUZepTem6j
-         XNp5KfyxZshvCUGPAXSxqA3/yVaxNHPGU+KkLhyu/w+gwytdxHewSfsTzsXyiyJXxi0Z
-         I9BQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXzQcaMSaU9Z0tY4LsrGbdhvjM0x81RXzeZekl5OxqlCNTNL3F0cTL25m1NT4eOKgSXhfxCdJOE1jwM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBjxG3/iEgN3xrdnW9W4uou4bjsY35d/PrrD1fzUwJfzrJPDY9
-	3HGQinfwUinWBwvDGL7/KUEgKWlO664a2/5wuxPH2+Ljy/jXrekzWnsATkMYiMZkmN8=
-X-Gm-Gg: ASbGncvwzvN3rDSHykzlM57XIt2FFMmuSI3Lh3Zp9V65PV9eYVJTAq4Z/WSoeboYW8w
-	w+it36rrD2l0sjZpPpYUuqYnnN6NBm33e9Ir7+zy7QBY0iEJ7X96Rq+DKZXR+9jlU1MBKYtsNKb
-	he843cMitv5tty1/Y9eGiy1Pxnwsys7iBc8KlYit5Wo1yksn4cWT/f0OuIXkGFyEftw46cGkCQJ
-	0K4v/xU7swk6YMu5Z65y0Z6oyvQulsWGLDLWZVjVzhKCt/o5ijXLrOrHVOhtbQnwsxF7WJeLD7c
-	z5KYXihFEHt9pxU9W3lTDihw2p9nt5DxzwYcQyZHttP+4fnZbMCGa76d5CtJCqlqc+y40NflXRW
-	dyzo2j3ArEAgjd6FzRtIw1MQURP1DqPIefG32WYZO5CwnbN1Jv+ZJREU46sH2SdRb/FgdbgoyED
-	NE2+ypO01JJSONyKcF
-X-Google-Smtp-Source: AGHT+IH6A6FJXGfT8Zsjwa2/f7hPiOGak401pIC2WoSIqlHjuQJJxsh60eESxFQX7d8Tr6L3Wxf8Ig==
-X-Received: by 2002:a05:600c:1f8f:b0:46e:1fb7:a1b3 with SMTP id 5b1f17b1804b1-477c01ee3camr380965655e9.23.1764599504416;
-        Mon, 01 Dec 2025 06:31:44 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-479052cf8d9sm154964375e9.9.2025.12.01.06.31.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Dec 2025 06:31:43 -0800 (PST)
-Date: Mon, 1 Dec 2025 17:31:38 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Chester Lin <chester62515@gmail.com>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
-	Eric Dumazet <edumazet@google.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	imx@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>,
-	Jan Petrous <jan.petrous@oss.nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Matthias Brugger <mbrugger@suse.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>, Paolo Abeni <pabeni@redhat.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, linaro-s32@linaro.org
-Subject: Re: [PATCH 0/4] s32g: Use a syscon for GPR
-Message-ID: <aS2myhp8asABFyLt@stanley.mountain>
-References: <cover.1764592300.git.dan.carpenter@linaro.org>
+	s=arc-20240116; t=1764599691; c=relaxed/simple;
+	bh=o3Z6L0iRu7JBb6a+rLYFwtgDizArktN6c8/NKR6sbew=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mjxGCnKHtZ+3RkFTOOfK9OluW8BOxHUSDcLXc4s3EDo/CtESv97towU8oWCnovX1RVNnoPUdZvZ5az89iePoEJCjOGv7zXLzzqITtTqLMbDkfvSr1Z5sQQMBW72SHNHoWj8VBSnZjl5M23sSuja0bHWudAfD7f4GVJLqT0Ek2s8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l976On9Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8650BC16AAE
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 14:34:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764599690;
+	bh=o3Z6L0iRu7JBb6a+rLYFwtgDizArktN6c8/NKR6sbew=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=l976On9QQR85pAQl0obkl9Ctdj7dLR94Mzv/pMSxc/2Juqy4+ASzM/hFJgedWOTLJ
+	 Ct2FQ6DLKw6Of/SVMHF4cvRJwqnoIxBanjgiChnjjkhsS27igj1GMBnHHF2oFGop/s
+	 LD96vQGZZ9r7oNmG1hBorWlS3QX/FwT27jTGFySSC/9ps9o8b2IpCWExrI6BxNjll0
+	 c7/z+nZ++naPZJBS/g1kbUfjWmah/Gq4vcQQHd8WMJXVkTZudLoRVSoiO6fOONVjx1
+	 vGcwrFq3/jgT3yUJzoiJfC/1gtU1to+5bNkU6DIZTy7tV2AiiYXniBWk1FF+fY2W79
+	 u7tIu5wxke9Uw==
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64198771a9bso8312152a12.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 06:34:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXvCH/LsFmV+UNuuBe1W7Pv4Sn4SNOjIid9awFjaTaaXi6pE9xAWAsNISUxEcXA+P/+GxgNS+5wLasz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPc9qmr4b7ZQRNEOn+8pp9YncfX/GK56EvpG7CQIAW3z3tkqUG
+	awIaCgy0DulhI2qqN0LPLcZtAMilVG9GQ64QjzW8iD5BjFd45mkAFitXwnTu8gj7fBeDqFjOm0O
+	VpaTSevdi5MBiJREzqz+OVvDeaQy8dw==
+X-Google-Smtp-Source: AGHT+IGZh9DruSG0PEbPS75zrnc5WGkF/VK+YNeCQb80LR7bexhyB4OvRJ5DQoBp3aPrktG+XBwn8tcbNGl/H/0sW/8=
+X-Received: by 2002:a17:907:94c9:b0:b72:9961:dc04 with SMTP id
+ a640c23a62f3a-b7671703d94mr4713493666b.28.1764599689008; Mon, 01 Dec 2025
+ 06:34:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1764592300.git.dan.carpenter@linaro.org>
+References: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
+ <dyaqe3ssrn65r5xndlwe7tlbiw2lbwvu3q3lzusfgr5mgycp6h@gfzyxk7uyva7>
+ <CAL_JsqJ4q2=UJbuhfbvsbr2T+SRGXsPSXCLk6iXZid_qwYrN4g@mail.gmail.com> <CAMuHMdXsZwDaT8L5z9KzyX0FF4WVbvZhsGAtSK7pJ=nCr4hE4Q@mail.gmail.com>
+In-Reply-To: <CAMuHMdXsZwDaT8L5z9KzyX0FF4WVbvZhsGAtSK7pJ=nCr4hE4Q@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 1 Dec 2025 08:34:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKYzWQr7AJFSHj4gJPDtxogFrPk=7NS0HKa-ay00fpV_w@mail.gmail.com>
+X-Gm-Features: AWmQ_blyKVkMKCugvCh0EMBfIrbVAJgwbaORavR9EyO3QVbtZQXo5zZRXe74wm0
+Message-ID: <CAL_JsqKYzWQr7AJFSHj4gJPDtxogFrPk=7NS0HKa-ay00fpV_w@mail.gmail.com>
+Subject: Re: [PATCH v2] of/irq: Ignore interrupt parent for nodes without interrupts
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Ioana Ciornei <ioana.ciornei@nxp.com>, Saravana Kannan <saravanak@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel@sholland.org>, Marc Zyngier <maz@kernel.org>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 01, 2025 at 04:08:14PM +0300, Dan Carpenter wrote:
-> *** BLURB HERE ***
-> 
+On Mon, Dec 1, 2025 at 6:52=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68k=
+.org> wrote:
+>
+> Hi Rob,
+>
+> Thanks, I was just looking into this...
+>
+> On Mon, 1 Dec 2025 at 13:09, Rob Herring <robh@kernel.org> wrote:
+> > On Fri, Nov 28, 2025 at 10:43=E2=80=AFAM Ioana Ciornei <ioana.ciornei@n=
+xp.com> wrote:
+> > > On Fri, Nov 14, 2025 at 11:47:54AM +0100, Geert Uytterhoeven wrote:
+> > > > The Devicetree Specification states:
+> > > >
+> > > >     The root of the interrupt tree is determined when traversal of =
+the
+> > > >     interrupt tree reaches an interrupt controller node without an
+> > > >     interrupts property and thus no explicit interrupt parent.
+> > > >
+> > > > However, of_irq_init() gratuitously assumes that a node without
+> > > > interrupts has an actual interrupt parent if it finds an
+> > > > interrupt-parent property higher up in the device tree.  Hence when=
+ such
+> > > > a property is present (e.g. in the root node), the root interrupt
+> > > > controller may not be detected as such, causing a panic:
+> > > >
+> > > >     OF: of_irq_init: children remain, but no parents
+> > > >     Kernel panic - not syncing: No interrupt controller found.
+> > > >
+> > > > Commit e91033621d56e055 ("of/irq: Use interrupts-extended to find
+> > > > parent") already fixed a first part, by checking for the presence o=
+f an
+> > > > interrupts-extended property.  Fix the second part by only calling
+> > > > of_irq_find_parent() when an interrupts property is present.
+> > > >
+> > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> > > > --- a/drivers/of/irq.c
+> > > > +++ b/drivers/of/irq.c
+> > > > @@ -613,7 +613,7 @@ void __init of_irq_init(const struct of_device_=
+id *matches)
+> > > >                * are the same distance away from the root irq contr=
+oller.
+> > > >                */
+> > > >               desc->interrupt_parent =3D of_parse_phandle(np, "inte=
+rrupts-extended", 0);
+> > > > -             if (!desc->interrupt_parent)
+> > > > +             if (!desc->interrupt_parent && of_property_present(np=
+, "interrupts"))
+> > > >                       desc->interrupt_parent =3D of_irq_find_parent=
+(np);
+> > > >               if (desc->interrupt_parent =3D=3D np) {
+> > > >                       of_node_put(desc->interrupt_parent);
+>
+> > > This change irq-ls-extirq and commit 6ba51b7b34ca ("of/irq: Handle
+> > > explicit interrupt parent") does not help with the issue.
+> > >
+> > > This is how the DT node in lx2160a.dtsi looks like:
+> >
+> > ls-extirq strikes again!
+> >
+> > I think something like this should fix it:
+> >
+> > diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> > index 2271110b5f7c..c06c74aef801 100644
+> > --- a/drivers/of/irq.c
+> > +++ b/drivers/of/irq.c
+> > @@ -593,7 +593,8 @@ void __init of_irq_init(const struct of_device_id *=
+matches)
+> >                  * are the same distance away from the root irq control=
+ler.
+> >                  */
+> >                 desc->interrupt_parent =3D of_parse_phandle(np, "interr=
+upts-extended", 0);
+> > -               if (!desc->interrupt_parent && of_property_present(np, =
+"interrupts"))
+> > +               if (!desc->interrupt_parent &&
+> > +                   (of_property_present(np, "interrupts") || of_proper=
+ty_present(np, "interrupt-map"))
+>
+> That should indeed restore the previous behavior, and find again
+> "interrupt-parent =3D &gic" in the root node.  However, wouldn't it
+> be more correct to follow the approach used for interrupts-extended,
+> and use the first interrupt parent from the interrupt-map (which is
+> coincidentally &gic, too)?
 
-Sorry, I obviously meant to write a message here.
+You might notice this binding is in the interrupt-map abusers list
+which is basically the list of cases that the interrupt parsing code
+should ignore 'interrupt-map'. So I think the less we look into it,
+the better.
 
-The s32g devices have a GPR register region which could be accessed
-via a syscon.  Currently only the stmmac/dwmac-s32.c uses anything
-from there and we just add a line to the device tree to access
-that GMAC_0_CTRL_STS register:
+I think we should do the above for now and then revert it when the
+ls-extirq is converted to a proper driver.
 
-			reg = <0x4033c000 0x2000>, /* gmac IP */
-			      <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-
-But it would be better to have a syscon instead of adding each
-register to the device tree like this.
-
-We still have to maintain backwards compatibility to this format,
-of course.
-
-regards,
-dan carpenter
-
+Rob
 
