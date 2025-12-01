@@ -1,360 +1,274 @@
-Return-Path: <devicetree+bounces-243458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42CAEC97CF4
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 15:18:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1727CC97CFA
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 15:18:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B81BC341507
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 14:18:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F1F3F4E06EC
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 14:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F319E290DBB;
-	Mon,  1 Dec 2025 14:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76AE3148B7;
+	Mon,  1 Dec 2025 14:18:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="gg4VSefj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lfhlw4OD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA30246BC5
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 14:18:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15641246BC5
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 14:18:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764598699; cv=none; b=ps1MgrMivpsj/9+EcJC/p21mxUp3lUoboGyP+qsy3M/OYmjbagYtJVz1VQaVg/ARCEc+FSsTMqcnYKhnovwMthBb4EKv2vOegV41qHeZGek6u30zxbRHld4zbfB+uJR7gM49Yb+I2EFkhDmoj4I1E9LnLH3qDbPCIc2Tq3voxiI=
+	t=1764598735; cv=none; b=U4MeDTLq3VgYbSFV9J59UVMdwUuhDNsLKgT2JHfREH7S+Yz1h4orWCS9xlBXxWifEkjCUqq0eRiJ/YZ0MMdYU2a+70HQxBpGAHYtYrsNAW21ILFcccPOJ/todggYMZmzDSc5DgVimClCIzQXWsd8X7AIv2hgiL4+xVhBATMFwPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764598699; c=relaxed/simple;
-	bh=ki2y++ZjniIQS/HtrkBCbJ1CUJELIigy3M+YRheBGk4=;
+	s=arc-20240116; t=1764598735; c=relaxed/simple;
+	bh=53LkXaYFrn3GVJ1cIaB3BFaBBqn6BqjYqqHvmEyC6b0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HOXpqV8Cq0mOmJndhYutrZ/SpNcARysEra8OjV+Xhs2NilV8zctf8pmYcQlsgmDufuO2wHQ3dlT3ND86OcoRSI/izsmRUXbyGgV2QW9mkA0fqWQsNEvGgXxWBaF+E8noq0GRHlT2J5UDxGctknVsbpr5ElPqTCIGbaphRkwuL5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=gg4VSefj; arc=none smtp.client-ip=95.215.58.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Mon, 1 Dec 2025 22:17:40 +0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1764598694;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZfA8A/DpOfcKGNnl3CUwcM7Rf2gaT/hhoAOsm0Fd8DY=;
-	b=gg4VSefjcdreHywji05j6Z+Tm3nLxDrWzQGC+NcXuAsW0l/zNZNTeUZ/tx0gcQu3iMpHUu
-	4dpTmA2lwIGnTLw7mXuwrMQM7X87/f8LwGjCNkuU8UHLLogxyQDieHuurXphH+rojU0K2u
-	GtUD2sZgEbAyfAYMQ4JjF/jQ0l0c/qE=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Ze Huang <huang.ze@linux.dev>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Ze Huang <huang.ze@linux.dev>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Ze Huang <huangze@whut.edu.cn>
-Subject: Re: [PATCH v6 2/2] phy: spacemit: support K1 USB2.0 PHY controller
-Message-ID: <aS2jhKiZ7Iuochvs@diana-arch>
-References: <20251017-k1-usb2phy-v6-0-7cf9ea2477a1@linux.dev>
- <20251017-k1-usb2phy-v6-2-7cf9ea2477a1@linux.dev>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MFq6fkPoaejhgSOTn/mdIGEbIJiH1X0mIEOzUn4KhzxDyWYxncUIGfwMEmRPd1w8UmOwQ5SA9GXX8oxs36za6UToh00wtXtScz2C/l1PrgqDxXi5mwZDdbTnlZCpgfQeGY/EYqkai8FBzlN3ghosi06ATijMZdes+kA4dhxlZ4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lfhlw4OD; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-477632d9326so26435615e9.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 06:18:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764598732; x=1765203532; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zrU/m1NsQKsXrrOPLuPzfw00NgfNm1183Aja3qoirBc=;
+        b=Lfhlw4ODPByC4VhVMdASHQgH5s6JHY0SqbFAues7tvOzCm/T2iq8JVOeiHUbrgtA1D
+         flVHHpZ8ENDR1gxKYRXdSh/rUpgEfbsC1rRtegOy+6amgR9WhMojA/uKMb/r7Lpun1RD
+         rJL1ZfGxGcnDCPdqVNc4kTxjcagVnPGWfTbRQOVwnwUaCQKLaZ2jlvxxNpTJfhndxx89
+         UU1dQefxusE/lo1KCFheOT8b9ElBJCV7hUCMlGJNQ7jySA7bUYB4+gX6HS+0audNe8/f
+         lHvrL8gpbOK3piY4EWsVmga/RoSS3CrrEvQZLmxC06B5hFrOALvT9T4FSvItWbBE3D1h
+         9gdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764598732; x=1765203532;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zrU/m1NsQKsXrrOPLuPzfw00NgfNm1183Aja3qoirBc=;
+        b=KaRrHYxgJKI/jGwgJrPv1a4JIvtZv0TjhmvFoKI13rVWSDfYdunIesfsfJEzGOmUWx
+         yciK/ExwAPcju4bi8vLoieDV51fdmxBvFGtQrrGi1zA5e8E8/wyaLad9FdygJc6G/SWN
+         UIzRY2tpE186J/hLO9R7YVBNWyNruwVkkuDvv+Ff7HrcPd10Hrk8tIwWH1TFVjLMbT8b
+         D6k/MgyU/mZQGJKqDX43OxmVhG4+RJmfnfoI5ZzQVHQy1fhVSVps1LAHtPXOlieGA/iT
+         v+1yaPxG4JMI1s80ECJ8y8/Jj0/LKRcbuk3QOE/rNFuy6KSn/75yrM6bfl2LNc64TjE6
+         70gQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV0Nya5G20BBlm8qe4OuqUVtkSmoSEbBfKB2tYyLigTqvtm25cfECVFXa9D9A96ui2Y300fYWCEz8We@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjnaxkXwcyIgyBHZjouBf6gOoVCGzUHuwkexK6LQkIGYP0Y55b
+	OU0eefWzRI5i/eI6v7W/J546VR4bsn/8k80a8k1HElFvueNrI/k5VK+0
+X-Gm-Gg: ASbGncu3+SpktQJ0vZirsIr7WVO8bTjqzy2MsZfcsJKKkt/0kdyFRDwJmyXMoxazafZ
+	W7ttRDYiP4o3ASVeC9gpLiQOmCOQgcyEtdklrd2+x4goC1eJwXbGP/jGyGmLQAHRgkJr2dBSEuV
+	g5MPSZ1668u1lWELL4ZB5M6y5mz1O1SV/cXmYiI35ZLiQcwjKYGPWznokQMBr00m/AtONCV/PTV
+	+qqV5M19qxIpMAkdOkzPtZ9tU9zjKuuku3ZO6670lPbyxnfcvE17XE/AWonIyC7dJvtQhF6ZWjf
+	bD76/6mA0VJnP7aS9JE+PpDADgLVzvk7VKfxsL2QMWDy1qneKqhB6QBBHoxTL+G5bXbfPGeQxS8
+	kAjpxuA09/JrTcbB8KVxvEk6bkbYItIHUqfag/048hQ/BFZ1ilrpvdr6AvrAwMptNW5kGE4ljB8
+	r6rhekgfuobnCs7mMU1TNC/tD4Rd1Oyx+lmWyh2vsufd3utYh3zHZ1bSnOY/ef6kd8rHtEDlzwb
+	Q==
+X-Google-Smtp-Source: AGHT+IEWJAy9TFAQ+VOIZ162KEF2lzriCvlTOGHOqCcNNfqx4TM96iV2z0z1mnsWDrSD2qljqTJPoQ==
+X-Received: by 2002:a05:600c:46c3:b0:477:6d96:b3ca with SMTP id 5b1f17b1804b1-477c01743e2mr375540815e9.5.1764598732075;
+        Mon, 01 Dec 2025 06:18:52 -0800 (PST)
+Received: from orome (p200300e41f07e000f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f07:e000:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4790ade13ddsm303266005e9.8.2025.12.01.06.18.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Dec 2025 06:18:50 -0800 (PST)
+Date: Mon, 1 Dec 2025 15:18:48 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Svyatoslav Ryhel <clamor95@gmail.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Prashant Gaikwad <pgaikwad@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Dmitry Osipenko <digetx@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 03/11] dt-bindings: memory: Document Tegra114 Memory
+ Controller
+Message-ID: <v6adntm5a3wxxxsmufd54t6pgmoj4njp63q362orkbeew6t3ef@7pfiz6ou7w77>
+References: <20250915080157.28195-1-clamor95@gmail.com>
+ <20250915080157.28195-4-clamor95@gmail.com>
+ <20250922160040.GA92842-robh@kernel.org>
+ <CAPVz0n3cmFC1PdFnLJ0Vf60i3c6pDO9Lvi8dmAHzBgwgsrPXnA@mail.gmail.com>
+ <20250924152430.GA1735105-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cmjgfgew7ig24nkq"
 Content-Disposition: inline
-In-Reply-To: <20251017-k1-usb2phy-v6-2-7cf9ea2477a1@linux.dev>
-X-Migadu-Flow: FLOW_OUT
+In-Reply-To: <20250924152430.GA1735105-robh@kernel.org>
 
-On Fri, Oct 17, 2025 at 10:49:53PM +0800, Ze Huang wrote:
-> The SpacemiT K1 SoC includes three USB ports:
-> 
-> - One USB2.0 OTG port
-> - One USB2.0 host-only port
-> - One USB3.0 port with an integrated USB2.0 DRD interface
-> 
-> Each of these ports is connected to a USB2.0 PHY responsible for USB2
-> transmission.
-> 
-> This commit adds support for the SpacemiT K1 USB2.0 PHY, which is
-> compliant with the USB 2.0 specification and supports both 8-bit 60MHz
-> and 16-bit 30MHz parallel interfaces.
-> 
 
-Gentle ping
+--cmjgfgew7ig24nkq
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 03/11] dt-bindings: memory: Document Tegra114 Memory
+ Controller
+MIME-Version: 1.0
 
-This patch still needs review. Any feedback to help move it forward would
-be appreciated!
+On Wed, Sep 24, 2025 at 10:24:30AM -0500, Rob Herring wrote:
+> On Mon, Sep 22, 2025 at 07:18:00PM +0300, Svyatoslav Ryhel wrote:
+> > =D0=BF=D0=BD, 22 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 19:00 =
+Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> > >
+> > > On Mon, Sep 15, 2025 at 11:01:49AM +0300, Svyatoslav Ryhel wrote:
+> > > > Add Tegra114 support into existing Tegra124 MC schema with the most
+> > > > notable difference in the amount of EMEM timings.
+> > > >
+> > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > > > ---
+> > > >  .../nvidia,tegra124-mc.yaml                   | 97 ++++++++++++++-=
+----
+> > > >  1 file changed, 74 insertions(+), 23 deletions(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/memory-controllers/n=
+vidia,tegra124-mc.yaml b/Documentation/devicetree/bindings/memory-controlle=
+rs/nvidia,tegra124-mc.yaml
+> > > > index 7b18b4d11e0a..9cc9360d3bd0 100644
+> > > > --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,t=
+egra124-mc.yaml
+> > > > +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,t=
+egra124-mc.yaml
+> > > > @@ -19,7 +19,9 @@ description: |
+> > > >
+> > > >  properties:
+> > > >    compatible:
+> > > > -    const: nvidia,tegra124-mc
+> > > > +    enum:
+> > > > +      - nvidia,tegra114-mc
+> > > > +      - nvidia,tegra124-mc
+> > > >
+> > > >    reg:
+> > > >      maxItems: 1
+> > > > @@ -64,29 +66,10 @@ patternProperties:
+> > > >
+> > > >            nvidia,emem-configuration:
+> > > >              $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > -            description: |
+> > > > +            description:
+> > > >                Values to be written to the EMEM register block. See=
+ section
+> > > > -              "15.6.1 MC Registers" in the TRM.
+> > > > -            items:
+> > > > -              - description: MC_EMEM_ARB_CFG
+> > > > -              - description: MC_EMEM_ARB_OUTSTANDING_REQ
+> > > > -              - description: MC_EMEM_ARB_TIMING_RCD
+> > > > -              - description: MC_EMEM_ARB_TIMING_RP
+> > > > -              - description: MC_EMEM_ARB_TIMING_RC
+> > > > -              - description: MC_EMEM_ARB_TIMING_RAS
+> > > > -              - description: MC_EMEM_ARB_TIMING_FAW
+> > > > -              - description: MC_EMEM_ARB_TIMING_RRD
+> > > > -              - description: MC_EMEM_ARB_TIMING_RAP2PRE
+> > > > -              - description: MC_EMEM_ARB_TIMING_WAP2PRE
+> > > > -              - description: MC_EMEM_ARB_TIMING_R2R
+> > > > -              - description: MC_EMEM_ARB_TIMING_W2W
+> > > > -              - description: MC_EMEM_ARB_TIMING_R2W
+> > > > -              - description: MC_EMEM_ARB_TIMING_W2R
+> > > > -              - description: MC_EMEM_ARB_DA_TURNS
+> > > > -              - description: MC_EMEM_ARB_DA_COVERS
+> > > > -              - description: MC_EMEM_ARB_MISC0
+> > > > -              - description: MC_EMEM_ARB_MISC1
+> > > > -              - description: MC_EMEM_ARB_RING1_THROTTLE
+> > > > +              "20.11.1 MC Registers" in the Tegea114 TRM or
+> > > > +              "15.6.1 MC Registers" in the Tegra124 TRM.
+> > > >
+> > > >          required:
+> > > >            - clock-frequency
+> > > > @@ -109,6 +92,74 @@ required:
+> > > >    - "#iommu-cells"
+> > > >    - "#interconnect-cells"
+> > > >
+> > > > +allOf:
+> > > > +  - if:
+> > > > +      properties:
+> > > > +        compatible:
+> > > > +          contains:
+> > > > +            enum:
+> > > > +              - nvidia,tegra114-mc
+> > > > +    then:
+> > > > +      patternProperties:
+> > > > +        "^emc-timings-[0-9]+$":
+> > > > +          patternProperties:
+> > > > +            "^timing-[0-9]+$":
+> > > > +              properties:
+> > > > +                nvidia,emem-configuration:
+> > > > +                  items:
+> > > > +                    - description: MC_EMEM_ARB_CFG
+> > > > +                    - description: MC_EMEM_ARB_OUTSTANDING_REQ
+> > > > +                    - description: MC_EMEM_ARB_TIMING_RCD
+> > > > +                    - description: MC_EMEM_ARB_TIMING_RP
+> > > > +                    - description: MC_EMEM_ARB_TIMING_RC
+> > > > +                    - description: MC_EMEM_ARB_TIMING_RAS
+> > > > +                    - description: MC_EMEM_ARB_TIMING_FAW
+> > > > +                    - description: MC_EMEM_ARB_TIMING_RRD
+> > > > +                    - description: MC_EMEM_ARB_TIMING_RAP2PRE
+> > > > +                    - description: MC_EMEM_ARB_TIMING_WAP2PRE
+> > > > +                    - description: MC_EMEM_ARB_TIMING_R2R
+> > > > +                    - description: MC_EMEM_ARB_TIMING_W2W
+> > > > +                    - description: MC_EMEM_ARB_TIMING_R2W
+> > > > +                    - description: MC_EMEM_ARB_TIMING_W2R
+> > > > +                    - description: MC_EMEM_ARB_DA_TURNS
+> > > > +                    - description: MC_EMEM_ARB_DA_COVERS
+> > > > +                    - description: MC_EMEM_ARB_MISC0
+> > > > +                    - description: MC_EMEM_ARB_RING1_THROTTLE
+> > >
+> > > Like I said before, I don't think it is worth enumerating the list of
+> > > registers for every variant. If you want to define the length
+> > > (minItems/maxItems), then that is fine.
+> > >
+> >=20
+> > It worth because position of value matters when reading and list above
+> > provides a reference to the order in which register values should be
+> > grouped.
+>=20
+> The schema does nothing to validate that. The only thing that gets=20
+> validated is the length. It is just an opaque blob of data. I'm sure you=
+=20
+> have to define the order in the driver as well. One place is enough.
 
-> Signed-off-by: Ze Huang <huang.ze@linux.dev>
-> ---
->  drivers/phy/Kconfig                |   1 +
->  drivers/phy/Makefile               |   1 +
->  drivers/phy/spacemit/Kconfig       |  13 +++
->  drivers/phy/spacemit/Makefile      |   2 +
->  drivers/phy/spacemit/phy-k1-usb2.c | 200 +++++++++++++++++++++++++++++++++++++
->  5 files changed, 217 insertions(+)
-> 
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index 1984c2e56122..95ee47f0fbc7 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -134,6 +134,7 @@ source "drivers/phy/rockchip/Kconfig"
->  source "drivers/phy/samsung/Kconfig"
->  source "drivers/phy/socionext/Kconfig"
->  source "drivers/phy/sophgo/Kconfig"
-> +source "drivers/phy/spacemit/Kconfig"
->  source "drivers/phy/st/Kconfig"
->  source "drivers/phy/starfive/Kconfig"
->  source "drivers/phy/sunplus/Kconfig"
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index a206133a3515..950dd4f14372 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -37,6 +37,7 @@ obj-y					+= allwinner/	\
->  					   samsung/	\
->  					   socionext/	\
->  					   sophgo/	\
-> +					   spacemit/	\
->  					   st/		\
->  					   starfive/	\
->  					   sunplus/	\
-> diff --git a/drivers/phy/spacemit/Kconfig b/drivers/phy/spacemit/Kconfig
-> new file mode 100644
-> index 000000000000..0136aee2e8a2
-> --- /dev/null
-> +++ b/drivers/phy/spacemit/Kconfig
-> @@ -0,0 +1,13 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# Phy drivers for SpacemiT platforms
-> +#
-> +config PHY_SPACEMIT_K1_USB2
-> +	tristate "SpacemiT K1 USB 2.0 PHY support"
-> +	depends on (ARCH_SPACEMIT || COMPILE_TEST) && OF
-> +	depends on COMMON_CLK
-> +	depends on USB_COMMON
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable this to support K1 USB 2.0 PHY driver. This driver takes care of
-> +	  enabling and clock setup and will be used by K1 udc/ehci/otg/xhci driver.
-> diff --git a/drivers/phy/spacemit/Makefile b/drivers/phy/spacemit/Makefile
-> new file mode 100644
-> index 000000000000..fec0b425a948
-> --- /dev/null
-> +++ b/drivers/phy/spacemit/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_PHY_SPACEMIT_K1_USB2)		+= phy-k1-usb2.o
-> diff --git a/drivers/phy/spacemit/phy-k1-usb2.c b/drivers/phy/spacemit/phy-k1-usb2.c
-> new file mode 100644
-> index 000000000000..342061380012
-> --- /dev/null
-> +++ b/drivers/phy/spacemit/phy-k1-usb2.c
-> @@ -0,0 +1,200 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * SpacemiT K1 USB 2.0 PHY driver
-> + *
-> + * Copyright (C) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-> + * Copyright (C) 2025 Ze Huang <huang.ze@linux.dev>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/usb/of.h>
-> +
-> +#define PHY_RST_MODE_CTRL		0x04
-> +#define  PHY_PLL_RDY			BIT(0)
-> +#define  PHY_CLK_CDR_EN			BIT(1)
-> +#define  PHY_CLK_PLL_EN			BIT(2)
-> +#define  PHY_CLK_MAC_EN			BIT(3)
-> +#define  PHY_MAC_RSTN			BIT(5)
-> +#define  PHY_CDR_RSTN			BIT(6)
-> +#define  PHY_PLL_RSTN			BIT(7)
-> +/*
-> + * hs line state sel (Bit 13):
-> + * - 1 (Default): Internal HS line state is set to 01 when usb_hs_tx_en is valid.
-> + * - 0: Internal HS line state is always driven by usb_hs_lstate.
-> + *
-> + * fs line state sel (Bit 14):
-> + * - 1 (Default): FS line state is determined by the output data
-> + * (usb_fs_datain/b).
-> + * - 0: FS line state is always determined by the input data (dmo/dpo).
-> + */
-> +#define  PHY_HS_LINE_TX_MODE		BIT(13)
-> +#define  PHY_FS_LINE_TX_MODE		BIT(14)
-> +
-> +#define  PHY_INIT_MODE_BITS		(PHY_FS_LINE_TX_MODE | PHY_HS_LINE_TX_MODE)
-> +#define  PHY_CLK_ENABLE_BITS		(PHY_CLK_PLL_EN | PHY_CLK_CDR_EN | \
-> +					 PHY_CLK_MAC_EN)
-> +#define  PHY_DEASSERT_RST_BITS		(PHY_PLL_RSTN | PHY_CDR_RSTN | \
-> +					 PHY_MAC_RSTN)
-> +
-> +#define PHY_TX_HOST_CTRL		0x10
-> +#define  PHY_HST_DISC_AUTO_CLR		BIT(2)		/* autoclear hs host disc when re-connect */
-> +
-> +#define PHY_HSTXP_HW_CTRL		0x34
-> +#define  PHY_HSTXP_RSTN			BIT(2)		/* generate reset for clock hstxp */
-> +#define  PHY_CLK_HSTXP_EN		BIT(3)		/* clock hstxp enable */
-> +#define  PHY_HSTXP_MODE			BIT(4)		/* 0: force en_txp to be 1; 1: no force */
-> +
-> +#define PHY_PLL_DIV_CFG			0x98
-> +#define  PHY_FDIV_FRACT_8_15		GENMASK(7, 0)
-> +#define  PHY_FDIV_FRACT_16_19		GENMASK(11, 8)
-> +#define  PHY_FDIV_FRACT_20_21		BIT(12)		/* fdiv_reg<21>, <20>, bit21 == bit20 */
-> +/*
-> + * freq_sel<1:0>
-> + * if ref clk freq=24.0MHz-->freq_sel<2:0> == 3b'001, then internal divider value == 80
-> + */
-> +#define  PHY_FDIV_FRACT_0_1		GENMASK(14, 13)
-> +/*
-> + * pll divider value selection
-> + * 1: divider value will choose internal default value ,dependent on freq_sel<1:0>
-> + * 0: divider value will be over ride by fdiv_reg<21:0>
-> + */
-> +#define  PHY_DIV_LOCAL_EN		BIT(15)
-> +
-> +#define  PHY_SEL_FREQ_24MHZ		0x01
-> +#define  FDIV_REG_MASK			(PHY_FDIV_FRACT_20_21 | PHY_FDIV_FRACT_16_19 | \
-> +					 PHY_FDIV_FRACT_8_15)
-> +#define  FDIV_REG_VAL			0x1ec4		/* 0x100 selects 24MHz, rest are default */
-> +
-> +#define K1_USB2PHY_RESET_TIME_MS	50
-> +
-> +struct spacemit_usb2phy {
-> +	struct phy *phy;
-> +	struct clk *clk;
-> +	struct regmap *regmap_base;
-> +};
-> +
-> +static const struct regmap_config phy_regmap_config = {
-> +	.reg_bits = 32,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.max_register = 0x200,
-> +};
-> +
-> +static int spacemit_usb2phy_init(struct phy *phy)
-> +{
-> +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-> +	struct regmap *map = sphy->regmap_base;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = clk_enable(sphy->clk);
-> +	if (ret) {
-> +		dev_err(&phy->dev, "failed to enable clock\n");
-> +		clk_disable(sphy->clk);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * make sure the usb controller is not under reset process before
-> +	 * any configuration
-> +	 */
-> +	usleep_range(150, 200);
-> +
-> +	/* 24M ref clk */
-> +	val = FIELD_PREP(FDIV_REG_MASK, FDIV_REG_VAL) |
-> +	      FIELD_PREP(PHY_FDIV_FRACT_0_1, PHY_SEL_FREQ_24MHZ) |
-> +	      PHY_DIV_LOCAL_EN;
-> +	regmap_write(map, PHY_PLL_DIV_CFG, val);
-> +
-> +	ret = regmap_read_poll_timeout(map, PHY_RST_MODE_CTRL, val,
-> +				       (val & PHY_PLL_RDY),
-> +				       500, K1_USB2PHY_RESET_TIME_MS * 1000);
-> +	if (ret) {
-> +		dev_err(&phy->dev, "wait PLLREADY timeout\n");
-> +		clk_disable(sphy->clk);
-> +		return ret;
-> +	}
-> +
-> +	/* release usb2 phy internal reset and enable clock gating */
-> +	val = (PHY_INIT_MODE_BITS | PHY_CLK_ENABLE_BITS | PHY_DEASSERT_RST_BITS);
-> +	regmap_write(map, PHY_RST_MODE_CTRL, val);
-> +
-> +	val = (PHY_HSTXP_RSTN | PHY_CLK_HSTXP_EN | PHY_HSTXP_MODE);
-> +	regmap_write(map, PHY_HSTXP_HW_CTRL, val);
-> +
-> +	/* auto clear host disc */
-> +	regmap_update_bits(map, PHY_TX_HOST_CTRL, PHY_HST_DISC_AUTO_CLR,
-> +			   PHY_HST_DISC_AUTO_CLR);
-> +
-> +	return 0;
-> +}
-> +
-> +static int spacemit_usb2phy_exit(struct phy *phy)
-> +{
-> +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-> +
-> +	clk_disable(sphy->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops spacemit_usb2phy_ops = {
-> +	.init = spacemit_usb2phy_init,
-> +	.exit = spacemit_usb2phy_exit,
-> +	.owner = THIS_MODULE,
-> +};
-> +
-> +static int spacemit_usb2phy_probe(struct platform_device *pdev)
-> +{
-> +	struct phy_provider *phy_provider;
-> +	struct device *dev = &pdev->dev;
-> +	struct spacemit_usb2phy *sphy;
-> +	void __iomem *base;
-> +
-> +	sphy = devm_kzalloc(dev, sizeof(*sphy), GFP_KERNEL);
-> +	if (!sphy)
-> +		return -ENOMEM;
-> +
-> +	sphy->clk = devm_clk_get_prepared(&pdev->dev, NULL);
-> +	if (IS_ERR(sphy->clk))
-> +		return dev_err_probe(dev, PTR_ERR(sphy->clk), "Failed to get clock\n");
-> +
-> +	base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	sphy->regmap_base = devm_regmap_init_mmio(dev, base, &phy_regmap_config);
-> +	if (IS_ERR(sphy->regmap_base))
-> +		return dev_err_probe(dev, PTR_ERR(sphy->regmap_base), "Failed to init regmap\n");
-> +
-> +	sphy->phy = devm_phy_create(dev, NULL, &spacemit_usb2phy_ops);
-> +	if (IS_ERR(sphy->phy))
-> +		return dev_err_probe(dev, PTR_ERR(sphy->phy), "Failed to create phy\n");
-> +
-> +	phy_set_drvdata(sphy->phy, sphy);
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +
-> +	return PTR_ERR_OR_ZERO(phy_provider);
-> +}
-> +
-> +static const struct of_device_id spacemit_usb2phy_dt_match[] = {
-> +	{ .compatible = "spacemit,k1-usb2-phy", },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, spacemit_usb2phy_dt_match);
-> +
-> +static struct platform_driver spacemit_usb2_phy_driver = {
-> +	.probe	= spacemit_usb2phy_probe,
-> +	.driver = {
-> +		.name   = "spacemit-usb2-phy",
-> +		.of_match_table = spacemit_usb2phy_dt_match,
-> +	},
-> +};
-> +module_platform_driver(spacemit_usb2_phy_driver);
-> +
-> +MODULE_DESCRIPTION("Spacemit USB 2.0 PHY driver");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.51.1.dirty
-> 
+Hi Rob,
+
+Sorry for being so late on this, but I just noticed that v4 had dropped
+these items descriptions and then saw that you had suggested this. I
+have always found the explicit mention useful because it allows DT
+writers to know what to put into the properties without having to look
+up a specific implementation.
+
+If the DT bindings don't specify the order, then how do we guarantee
+that all implementations agree on the order? While it's true that no
+validation is done via the schema, the schema is the only specification
+that we have for this. Without it there is no reason for an
+implementation to pick one order over another.
+
+Thierry
+
+--cmjgfgew7ig24nkq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmkto8gACgkQ3SOs138+
+s6HFVA//bOnUI5x0pMH+aZ0FS0k/qH/djSWzAvFTrK5cY0onr6xpH6+WvrUb8B4f
+6uuehVHmVOVcMfPWrhJ24ydQsI3RJouP2ZgfRdW80gN6tRr3Sg7aLaM400HPTfiy
+ueUNUSjMUQqRFKbR7YbuMk/F/t/yvgoNBDebzvHwzJV2mfpTXYWJpyUS4SY0hZOj
+7Hav1nmXGi6hX6mU4OCwf6sChzMgATCGy6W6WQ1ka0R8tjyb6XG7zMkpWKFJxPvK
+xAT+Sdzui7OCknvXtXknsGdhug4lpKN0A5eLqKtnzI5BQG7FFYsAuKubzVMLaprX
+1iu3jNH59ZarofA8Rypgm2sUyFbl/yEJAmQlAt1EkZBXnXba/eV8SdmMZrwy6MzR
+9TkEEmQMrYqZ/SFbR34KYmtQfGjx+POAbRVOzvLZxpNUKG4MTFkPTtoiX59gH4ta
+p69j0xbLjYigBzDy4sJGtHVEjDyeB9x+3iJ0o9HeCwQqJ/BzaVTj/GD8BTsyzenu
+A1d8osMl3Clhqa9MsFHe8nAHycCJDZ5XOvwIixcxkd1/jNOkzl5ZSP7a9rtGQjAg
+0/UzrthuSEdMCWWpJImOw8LBrvBnEz0Fte+Gqz6cSblYEx8INoZlUwVoBPwt8ZWc
+qfloinXffZgtWSXTOkd1OCRTBByFtK0K58IqeI4EI67oJ6BMzDU=
+=0r9F
+-----END PGP SIGNATURE-----
+
+--cmjgfgew7ig24nkq--
 
