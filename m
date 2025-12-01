@@ -1,196 +1,272 @@
-Return-Path: <devicetree+bounces-243484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B655C981BB
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 16:50:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABD64C981C1
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 16:51:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D764D4E1A0B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 15:50:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AF1144E24E8
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 15:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5E1332ED9;
-	Mon,  1 Dec 2025 15:50:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE53E333441;
+	Mon,  1 Dec 2025 15:50:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="itQUXyVO"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RAL7dmVF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011039.outbound.protection.outlook.com [40.107.130.39])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4F9E332EBD;
-	Mon,  1 Dec 2025 15:50:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764604246; cv=none; b=gOYyyEkTQoJc6S/VKl38FmlII9RZL9UEmsJJMLAvy9bM1thqp3xFPuWO8pv0iyhywmZkgdfqpJ/hKGEy5Xzz5nZnicFsgGJD8JDmeoXbSfhYV6ZSUc41x2AsFZpz1n9TPeUvteShc92apXMq0B/8KL6+YSR1XiuilMMwh6tFAYU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764604246; c=relaxed/simple;
-	bh=RPOV0/K3agKHfWiaDX9fzUjkflEVPIyTOubNJMJlfMo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eYb/RBBLmWNjfD0FOgJ99D20UGzPH29Ny27WNU8OPGJA/4tQRh0KDJyeKVf4aBSX43XRqX8bHT0d2G+45M0WnidsFPgg7YmPmpSYIdth78HQmszI2LT8ewiRtx9Pn1SPNDMQ7HwWbni5++fbwYABTv/An3Mm7CXptdk9xCpoU0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=itQUXyVO; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (net-93-65-100-155.cust.vodafonedsl.it [93.65.100.155])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A660B6DF;
-	Mon,  1 Dec 2025 16:48:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1764604108;
-	bh=RPOV0/K3agKHfWiaDX9fzUjkflEVPIyTOubNJMJlfMo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=itQUXyVOMu7lWo3z+QPxRwuim1ehUvcepthaRD6JVTt+9/ZyKm1ZFAeJkCtZ0zx5k
-	 ER18R8anxc0qjLjYKAxiUEXHG9oasaadYJmiprWW/Ts64ah2WMPe+Lqzg+TlNYS1dp
-	 XBz2gVqI9bHDSkD2z11UIE5L9k+0j7MlQw8NTsEY=
-Date: Mon, 1 Dec 2025 16:50:39 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, Jacopo Mondi <jacopo@jmondi.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Naushir Patuck <naush@raspberrypi.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
-	Kieran Bingham <kieran.bingham@ideasonboard.com>, David Plowman <david.plowman@raspberrypi.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Peter Robinson <pbrobinson@gmail.com>, 
-	Stefan Wahren <wahrenst@gmx.net>, "Ivan T. Ivanov" <iivanov@suse.de>, 
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Subject: Re: [PATCH v2 16/16] media: i2c: ov5647: Add V4L2_CID_LINK_FREQUENCY
- control
-Message-ID: <5e2lwyzel45ejbb4mch2johetncaj7arpidjst2tjpatseklvn@vlv6hnwzfmwj>
-References: <20251118-b4-rpi-ov5647-v2-0-5e78e7cb7f9b@ideasonboard.com>
- <20251118-b4-rpi-ov5647-v2-16-5e78e7cb7f9b@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3632A32D425;
+	Mon,  1 Dec 2025 15:50:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.39
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764604248; cv=fail; b=eIQNBVHQXqqMqxHQQGOBwvjs8p6Q56AFGsuRUici4wQPitQmZD9Kj9CSivzrOd0TkhgPUNSKRRcbodBE4SpowBNIvzOGNeVeOsrxrwBp3nmeYtodG8YF+AEO+og0qD8PYQtPmXeDNFThql89V7QY9UZ6oJCXxOVh/GtDACBCANY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764604248; c=relaxed/simple;
+	bh=J5s9S7ltePs7+drKMq3bJj363XNLZT+JbiH9nBSVgQY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=CK2k1DOSuw2XdgFYdAzOJ9ibsem0PaknqUnyD7NS3i96vYQT/7juORyIeJgVeh1jeJrCgmPQ+HIVYq+1PfW7fX2/Zj54QmhZ+Hfph24fTtRafbvv8l+MrzU0Xtl8HGRZt69M0DpthEx0IqCUhBZha0PykmJc9Wb6SLgj3SAcbVA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RAL7dmVF; arc=fail smtp.client-ip=40.107.130.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gkz7Bo8T+Y+qZhd+/548OnkUdxJi3KcYmO4Vef7Ledwg5Ieu2xkyg+SfncC8ZjzTLm7qN6EjfiF4XEap9S5OaAdjZ28MC8EhVS8GbkPfEdcqCig4//XvDUXxxy5zGg0Wdy1ocfdgCiXl+p9eo/w9Em/bcXYUQncW63Sl5snRdXAm0RvotLGvbvzXEbXxcvt23cN+KqAL03riN+p/MnspcfMyG+0+s/0U5g8JEXbQqaIFhmoewenqJjRy58VrEwomdCGW2SXPfFLlkDe9DrDLnLUf93YdCd7v4JEzc97uVdn5nhynl2L2AcOzTEMAj0FvMjpyK9rxvSdtL1dwxBQSUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=i+hPAXaXA5EWWuXS76KEIpzPXgtINiRDDqUrE720ivk=;
+ b=JbBPSNxd2jpektzVGA8deuMrv3yWdmOzqM41CdskR2tsxbS8T+frDVm3qvnu7xTVrB/CKNWuKODgFeimowE4jR96S7uVPFwQ2NYrn6I2x5ii2HCP6X5HcXAi6F75pnZVq2+zP5gEnCOXnSK/Vzb8Zm+Q25cCD/l1byHeVcUXdpR2k5XW5BktY/uZM4hmnXHSrJL2Gc0GE996gOjCLSsh3LwID4MXeubnHrM9hR8Gtzc5TXLtyXhvsuRrsMzJ35fUkjMtUPPnLwgH72Enw7kHAFjDC7uJztqryIx8HHxdMws7HgYx/1nUrPuC5S7Lmc2GInhKOPPpitLW4ue8TQt8Zg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i+hPAXaXA5EWWuXS76KEIpzPXgtINiRDDqUrE720ivk=;
+ b=RAL7dmVFmuFRuqN7+vFMVqKhFuS55aEn4auQ9f/+HYYKpRxgzYuNbWwxisLw+4pIQNvuUd0/aWsVOsnGLtGLLR0HhxxqviIAO09DKgUKkuL8BszV7tsL7/EGPiXJVGDUlySe1QBpdK9Bzb+QBzchQCYxLGtM6keZ6lfIznnst9wwoPsVpJAX3+Y8HKdMWupXhQWXwLR06m5w8BIYd1siCEcL6UKGyT20sTM8lIsIKOpNlkW7/GUqojxfI6MnbFteVFUnf6f5SEomkvo1sRUZZeHlbobdcE/WdJCQbPLIg599ifEnM/dAT8/pE440BEjgahMdY/DdYs7g3JymvyttNA==
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
+ by VI1PR04MB9786.eurprd04.prod.outlook.com (2603:10a6:800:1e1::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
+ 2025 15:50:41 +0000
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::21bf:975e:f24d:1612]) by PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::21bf:975e:f24d:1612%5]) with mapi id 15.20.9366.012; Mon, 1 Dec 2025
+ 15:50:41 +0000
+From: Shenwei Wang <shenwei.wang@nxp.com>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan
+	<peng.fan@nxp.com>, "linux-remoteproc@vger.kernel.org"
+	<linux-remoteproc@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>, dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH v5 2/5] remoteproc: imx_rproc: Populate devices under
+ "rpmsg" subnode
+Thread-Topic: [PATCH v5 2/5] remoteproc: imx_rproc: Populate devices under
+ "rpmsg" subnode
+Thread-Index: AQHcYto+jpS1cJwWJ0CSzeusJbSMPQ==
+Date: Mon, 1 Dec 2025 15:50:40 +0000
+Message-ID:
+ <PAXPR04MB91853C6A0BA9BC556A09EB2789DBA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+References: <20251104203315.85706-1-shenwei.wang@nxp.com>
+ <20251104203315.85706-3-shenwei.wang@nxp.com> <aSdMufLCeqvVyKsp@p14s>
+ <PAXPR04MB91857863B163B3F38A26647389DEA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <aSh67mvFB_00PywW@p14s>
+In-Reply-To: <aSh67mvFB_00PywW@p14s>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|VI1PR04MB9786:EE_
+x-ms-office365-filtering-correlation-id: b035d3dd-c45c-47dd-0514-08de30f16147
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|19092799006|366016|1800799024|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?kotfLQ7jJRnPGTIoGH8ogt/95PtkT7UObPjVQhNmifRfvTzpmAGcGzZOWkA/?=
+ =?us-ascii?Q?NZZg/lBHovFwmLylwQ4g4NBTXAfmHRS5jqcqJEkFZkeiPx2Ok7FJk9etwUNG?=
+ =?us-ascii?Q?pouyUESwdyGfKE6d6uJM5VWhm6QTbfczCIIF3qELFO6UAaOL467CCUXf6Nh9?=
+ =?us-ascii?Q?K3yM48k7LMH9Y+gEGZifoYl2Ty+bS41oquXsslwEqq0gp0pyg3eWkKDP1sAB?=
+ =?us-ascii?Q?Qz7B4FhddsYTgzETKpeu5Ht4weQ4jNgda1p3sDCx6s3FVDKMklmClA4+KZBk?=
+ =?us-ascii?Q?TPGPz1oYdkkbVE5csfMvBdCmiC0N/uzIs5v61Z/PksBNUXuwsZoRthyf4bHL?=
+ =?us-ascii?Q?6bFgY4uK6EmlgZGaSiNOeFBSfNSppWMX0t/LEhb8MAoS4x+9ttmkvdDoPCOX?=
+ =?us-ascii?Q?UGThzP8dfOq3lIK15rBMdVrZVOVdZg3xeVsPQTUdxGQexvDYtrSMGpM/4qbj?=
+ =?us-ascii?Q?BTmm+EDhghhY5BNm2NQhgZoyY/3mpzt14vuaMzaSSa+Ah5Sxe8STPvqNVnSK?=
+ =?us-ascii?Q?jccP0+AelvWqRablCF1glmYxobjZLxj4OKYZGxhE5/kcL/TOs8yMw1pO3B/y?=
+ =?us-ascii?Q?ChuLYF9mMlH+GbcSi/1xuXeYxJfYIG37BlNoXMx9LVHEvZ+5krNRFGNkZhbH?=
+ =?us-ascii?Q?EECFYg8CnnUhxKCrWPZQ1smldJ2mgb614BERAksBHSqe8dQhOz6jlIgt0wYQ?=
+ =?us-ascii?Q?y6UiR92SSsGXUdhtu27GAUov2ncN3CQJTT6yKwj2Jno4VRjtU08/1HpvANk6?=
+ =?us-ascii?Q?dmrFCf2AS+G5jdWgNmOwfugLlRL6ooubAi4i5Dwcm9Jh4d7c9wafAgz7eMBx?=
+ =?us-ascii?Q?SZRGJuqL+c28wosJFBz8KwAQ8etEpOQmsy/V2NsaeusuQYduU4tMUGhs251n?=
+ =?us-ascii?Q?hDuQ+zqdBRserv6Hq+2WX6LOTic+6Ju7SlwXIla7rKKDd00oiUfeWSk2o3iF?=
+ =?us-ascii?Q?pmFX7/ENKgNI4k5GkS5IeG4kDgyWRhLKax22S9Tr57Qs0hCDE1iMHku+cLC+?=
+ =?us-ascii?Q?G3L1tRiw1r4GW094Pc5u5xl3RPDxCuFp1EY9nP2zEZXUUZNzRtNDcu+gy3EL?=
+ =?us-ascii?Q?5i2R91qfOmkpXsAZYdgX4/8gFbo3mcDK1pQyVanHnXpx7NL8Gz/BzEfwIF3J?=
+ =?us-ascii?Q?20L0pyaFPNdHavV6/ZeOAnb3uL2RpFvIzbTc2fqtGhcVHmbzgYBdffv17Q31?=
+ =?us-ascii?Q?ggTfk5ZOkZ/GzIJALlhKHOVoiMEPSwbjcjm5H3uQoAysc9XtG2MrmpWjIUhy?=
+ =?us-ascii?Q?unGx4CFZWHD4kh3IDifIWdezNeFrQh+nVMhZdOGkGaNsOw8KXfpgquHwYVYY?=
+ =?us-ascii?Q?2YSOiNZvfc5uT1KFmCq13URkCPt0nnlNrpmIPnzI9UY4TjQiRvF1bzfW2LK0?=
+ =?us-ascii?Q?0P0Ye3nIKlNZMrrXqRQNVID2FDjoojenuNwYxtZYKmpWwQKBkh+MDqvDF0pn?=
+ =?us-ascii?Q?bFMBvnwtLYMiNIfmax2G2uONadcTtJ3MXFJG4ApyZKFO38n9QtEbPrxXlGco?=
+ =?us-ascii?Q?dJQ1Vyc+AzNGOL/N2hkLxZOij4YCPGzIq6cs?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(19092799006)(366016)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?pJxftt97BmCxr8C6pAqGEGrFO2yd1u/e7Z2TQFvt/DkKxGQAe5sG3SDPFfir?=
+ =?us-ascii?Q?2M+NGWiBMdDNG2nlTfTIjDexAM+tUGDkCCkaGe7F3AmHDRWkO6V14Wy+kaFA?=
+ =?us-ascii?Q?bDxbz2nCmrVVF91BLF8MSzdxiLtK1+qU09ZKUpXeUpLg/49zhtZqFC1EpS0X?=
+ =?us-ascii?Q?8F3Y8AImmenBpxYqjjQ7aWXq9KqoL6H0ZHlWq/tbo+3rP0PgKRyMwTzo6WC7?=
+ =?us-ascii?Q?Y2M+b59kvotbQLY8FDjagSbPEBhY4KBSFZ7+r3f4ivkhS4LTKtKurEmagYHm?=
+ =?us-ascii?Q?L8Y0xMngupDAGebqW3ptXhq+aBLF55N1b3HmLVWFqgsCdZXN9NFFdGccx4tC?=
+ =?us-ascii?Q?hQJ2qeV2O3ULuvMMROPrzPd8l9phEQTTZqEfdjzjp4xYy6Rtqe51g+xOUJyd?=
+ =?us-ascii?Q?MnHIZESHV+Ff944Fuytj0zYl8Ko4cjy8Aj77walTMXx2dd51HdjmHLPb9uSn?=
+ =?us-ascii?Q?V0pvhXM1aOUuuv26VZkhJsymiq8EdP72JQJNl6LfqPf2HQwVWBsvnC6MOIfO?=
+ =?us-ascii?Q?Jp/SB7QXQgrwwsFxMxqz6yBGQGz0j5DYNUCy+SdCSRYtTKIsyF8DGuL08Y6i?=
+ =?us-ascii?Q?XqpLtGUAGVHNDO4sM53PLrhzxIG0LM1dgdQw5gm8Q/PCY+AtAluLpfX/c+tC?=
+ =?us-ascii?Q?Cgsa0u2fnJtQse9Dt3cdIZ0aIViGCBVQ5Zf8THaS53olfQCkKuHXAjs0h05U?=
+ =?us-ascii?Q?ge2vOL9jxLtGaPxKwJk9hhBPOBsbVqPWKSioZldNt7QFVr+VYIzOXm/08+w+?=
+ =?us-ascii?Q?eU83zAp/MpI6hpX+1x0Rfa6E28wE+7QbuDUDBi7qMHv+dqCFXCrFuYAQM+uK?=
+ =?us-ascii?Q?3uojexOmmn4c2XFJs0X3ZkmkFJYB9wUhRvOcizBIMSP+fvZkPwVVJa6Z6lfa?=
+ =?us-ascii?Q?VeVPWVMccJGJGx1zLgmJXchiAX3y4GoEMiHIDxCmVirmPYz1KHoMn+O1gt9Y?=
+ =?us-ascii?Q?y7uFqW3kXBKB0qm1WsMP/kqQVcqlhduIqh/i5yS6qJTjSo2vfxyPUf674eZv?=
+ =?us-ascii?Q?HbonXGatSUFcd53o5xbrsntZlBSYqUCnOJRQqzSCsgVApWQztcr30eOM97Av?=
+ =?us-ascii?Q?ula+Kv8n69xl4Ymvi3I/cw8xGjmM0WEFNvK/qpxQDhEhpi0ivL8kp1hIcIAQ?=
+ =?us-ascii?Q?I7oOx+frFr3xHakdMnkdZ/8yZvibWJdOgOWUb/texvHoFdljQZ1+fTdc+MV3?=
+ =?us-ascii?Q?Coe285ytDfTVYPxcPWWGfdHkZt/PmyTKYqWzhMRaGJbG6O3ZDSJvgcZzJe5J?=
+ =?us-ascii?Q?ruRI36uRtL3XgN+2g+LQkhKWVejRxrsG92blWl4hlj8ZjJnXM6MFbHcsJYK8?=
+ =?us-ascii?Q?tv34w7oWeyRAb+zHgPTwUMNA4/HQ4eBJsFcg9B1q5xkfOievwU1ff42A7nUO?=
+ =?us-ascii?Q?vGp9eShoojDPZSKFTI/cOedidcGBtpUvcHaSp6iRzofS0xzqq7tj+1EcK+au?=
+ =?us-ascii?Q?0KtMzu70s70WBtapltZz2wE+/IlmyJExN5OCaHPwQBtZe4sGD9AKRaFg/2Gq?=
+ =?us-ascii?Q?dxDjYMxwYpgeZkQcdT1z1IN72rVbuqcqRN4v3OoJeK9oSFnZkJeGb22pdLfl?=
+ =?us-ascii?Q?LmJvZAnjUDTzu7G3LBqxyjgTnFJvj6jQyggv+ByJ?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251118-b4-rpi-ov5647-v2-16-5e78e7cb7f9b@ideasonboard.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b035d3dd-c45c-47dd-0514-08de30f16147
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2025 15:50:41.0352
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HfTr7iI5mpgL6Rr7lmcqY5Omob0gEgVePjDXE3krqDp9wBhvzPpZhGPfexHPTvRSeqJbufgqIXSUzFAdM3d0TA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB9786
 
-Hi Jai
 
-On Tue, Nov 18, 2025 at 05:33:09PM +0530, Jai Luthra wrote:
-> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
->
-> The link frequency can vary between modes, so add it as a
-> control.
->
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-> ---
->  drivers/media/i2c/ov5647.c | 24 +++++++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/media/i2c/ov5647.c b/drivers/media/i2c/ov5647.c
-> index 71107d74f2900b39233a52b29a229282bd087963..de27e76b487957bfa0a072359f28194425950eaf 100644
-> --- a/drivers/media/i2c/ov5647.c
-> +++ b/drivers/media/i2c/ov5647.c
-> @@ -97,6 +97,13 @@ static const char * const ov5647_supply_names[] = {
->
->  #define OV5647_NUM_SUPPLIES ARRAY_SIZE(ov5647_supply_names)
->
-> +#define FREQ_INDEX_FULL		0
-> +#define FREQ_INDEX_VGA		1
-> +static const s64 ov5647_link_freqs[] = {
-> +	[FREQ_INDEX_FULL]	= 218750000,
-> +	[FREQ_INDEX_VGA]	= 208333000,
-> +};
-> +
->  struct regval_list {
->  	u16 addr;
->  	u8 data;
-> @@ -106,6 +113,7 @@ struct ov5647_mode {
->  	struct v4l2_mbus_framefmt	format;
->  	struct v4l2_rect		crop;
->  	u64				pixel_rate;
-> +	unsigned int			link_freq_index;
->  	int				hts;
->  	int				vts;
->  	const struct regval_list	*reg_list;
-> @@ -128,6 +136,7 @@ struct ov5647 {
->  	struct v4l2_ctrl		*exposure;
->  	struct v4l2_ctrl		*hflip;
->  	struct v4l2_ctrl		*vflip;
-> +	struct v4l2_ctrl		*link_freq;
->  };
->
->  static inline struct ov5647 *to_sensor(struct v4l2_subdev *sd)
-> @@ -376,6 +385,7 @@ static const struct ov5647_mode ov5647_modes[] = {
->  			.height		= 1944
->  		},
->  		.pixel_rate	= 87500000,
-> +		.link_freq_index = FREQ_INDEX_FULL,
->  		.hts		= 2844,
->  		.vts		= 0x7b0,
->  		.reg_list	= ov5647_2592x1944_10bpp,
-> @@ -397,6 +407,7 @@ static const struct ov5647_mode ov5647_modes[] = {
->  			.height		= 1080,
->  		},
->  		.pixel_rate	= 87500000,
-> +		.link_freq_index = FREQ_INDEX_FULL,
->  		.hts		= 2416,
->  		.vts		= 0x450,
->  		.reg_list	= ov5647_1080p30_10bpp,
-> @@ -418,6 +429,7 @@ static const struct ov5647_mode ov5647_modes[] = {
->  			.height		= 1944,
->  		},
->  		.pixel_rate	= 87500000,
-> +		.link_freq_index = FREQ_INDEX_FULL,
->  		.hts		= 1896,
->  		.vts		= 0x59b,
->  		.reg_list	= ov5647_2x2binned_10bpp,
-> @@ -439,6 +451,7 @@ static const struct ov5647_mode ov5647_modes[] = {
->  			.height		= 1920,
->  		},
->  		.pixel_rate	= 55000000,
 
-I now read again v1 13/13 and this mode seems to have a different pixel
-rate and a lower link freq ?
+> -----Original Message-----
+> From: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Sent: Thursday, November 27, 2025 10:23 AM
+> To: Shenwei Wang <shenwei.wang@nxp.com>
+> Cc: Bjorn Andersson <andersson@kernel.org>; Rob Herring <robh@kernel.org>=
+;
+> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
+> <s.hauer@pengutronix.de>; Jonathan Corbet <corbet@lwn.net>; Linus Walleij
+> <linus.walleij@linaro.org>; Bartosz Golaszewski <brgl@bgdev.pl>; Pengutro=
+nix
+> Kernel Team <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>;
+> Peng Fan <peng.fan@nxp.com>; linux-remoteproc@vger.kernel.org;
+> devicetree@vger.kernel.org; imx@lists.linux.dev; linux-arm-
+> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; linux-
+> doc@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>
+> Subject: [EXT] Re: [PATCH v5 2/5] remoteproc: imx_rproc: Populate devices
+> under "rpmsg" subnode
+> > > > +static void imx_rpmsg_endpoint_remove(struct rpmsg_device *rpdev) =
+{
+> > > > +     of_platform_depopulate(&rpdev->dev);
+> > > > +}
+> > > > +
+> > > > +static int imx_rpmsg_endpoint_probe(struct rpmsg_device *rpdev) {
+> > >
+> > > Where does the rpmsg_device come from?  Usually there is a call to
+> > > rpmsg_register_device() and I don't see it anywhere in this
+> > > patchset.  I also don't see a link to the remote processor.  I can't
+> > > continue with this set for as long as I don't have this information.
+> > >
+> >
+> > It is in the function below named imx_of_rpmsg_register_rpdriver.
+> >
+>=20
+> The function below calls register_rpmsg_driver(), not rpmsg_register_devi=
+ce().
+> I still don't know where @rpdev comes from.
+>=20
 
-> +		.link_freq_index = FREQ_INDEX_VGA,
->  		.hts		= 1852,
->  		.vts		= 0x1f8,
->  		.reg_list	= ov5647_640x480_10bpp,
-> @@ -927,6 +940,8 @@ static int ov5647_set_pad_fmt(struct v4l2_subdev *sd,
->  					 sensor->exposure->minimum,
->  					 exposure_max, sensor->exposure->step,
->  					 exposure_def);
-> +
-> +		__v4l2_ctrl_s_ctrl(sensor->link_freq, mode->link_freq_index);
->  	}
->  	*fmt = mode->format;
->  	/* The code we pass back must reflect the current h/vflips. */
-> @@ -1236,7 +1251,7 @@ static int ov5647_init_controls(struct ov5647 *sensor)
->  	int hblank, exposure_max, exposure_def;
->  	struct device *dev = &client->dev;
->
-> -	v4l2_ctrl_handler_init(&sensor->ctrls, 13);
-> +	v4l2_ctrl_handler_init(&sensor->ctrls, 14);
->
->  	v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
->  			  V4L2_CID_AUTOGAIN, 0, 1, 1, 0);
-> @@ -1292,6 +1307,13 @@ static int ov5647_init_controls(struct ov5647 *sensor)
->  	sensor->vflip = v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
->  					  V4L2_CID_VFLIP, 0, 1, 1, 0);
->
-> +	sensor->link_freq =
-> +		v4l2_ctrl_new_int_menu(&sensor->ctrls, NULL, V4L2_CID_LINK_FREQ,
-> +				       ARRAY_SIZE(ov5647_link_freqs) - 1, 0,
+The rpdev device is created by the rpmsg bus driver. On i.MX platforms, thi=
+s is handled by the virtio_rpmsg_bus driver.=20
+When the remote firmware sends a channel announcement, the bus driver creat=
+es the corresponding rpdev device.
 
-The default control value should follow the default mode.
-You can use mode->link_req_index to retrieve it
+This patch implements the driver for the interested rpdev device.
 
-> +				       ov5647_link_freqs);
-> +	if (sensor->link_freq)
-> +		sensor->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> +
->  	v4l2_fwnode_device_parse(dev, &props);
->
->  	v4l2_ctrl_new_fwnode_properties(&sensor->ctrls, &ov5647_ctrl_ops,
->
-> --
-> 2.51.1
->
+Thanks,
+Shenwei
+
+> > Thanks,
+> > Shenwei
+> >
+> > > > +
+> > > > +static int imx_of_rpmsg_register_rpdriver(struct device_node *chan=
+nel,
+> > > > +                                       struct device *dev, int idx=
+) {
+> > > > +     struct imx_rpmsg_driver_data *driver_data;
+> > > > +     struct imx_rpmsg_driver *rp_driver;
+> > > > +     struct rpmsg_device_id *rpdev_id;
+> > > > +
+> > > > +     rpdev_id =3D devm_kzalloc(dev, sizeof(*rpdev_id) * 2, GFP_KER=
+NEL);
+> > > > +     if (!rpdev_id)
+> > > > +             return -ENOMEM;
+> > > > +
+> > > > +     strscpy(rpdev_id[0].name, channel_device_map[idx][0],
+> > > > + RPMSG_NAME_SIZE);
+> > > > +
+> > > > +     rp_driver =3D devm_kzalloc(dev, sizeof(*rp_driver), GFP_KERNE=
+L);
+> > > > +     if (!rp_driver)
+> > > > +             return -ENOMEM;
+> > > > +
+> > > > +     driver_data =3D devm_kzalloc(dev, sizeof(*driver_data), GFP_K=
+ERNEL);
+> > > > +     if (!driver_data)
+> > > > +             return -ENOMEM;
+> > > > +
+> > > > +     driver_data->rproc_name =3D dev->of_node->name;
+> > > > +     driver_data->channel_node =3D channel;
+> > > > +     driver_data->map_idx =3D idx;
+> > > > +
+> > > > +     rp_driver->rpdrv.drv.name =3D channel_device_map[idx][0];
+> > > > +     rp_driver->rpdrv.id_table =3D rpdev_id;
+> > > > +     rp_driver->rpdrv.probe =3D imx_rpmsg_endpoint_probe;
+> > > > +     rp_driver->rpdrv.remove =3D imx_rpmsg_endpoint_remove;
+> > > > +     rp_driver->rpdrv.callback =3D imx_rpmsg_endpoint_cb;
+> > > > +     rp_driver->driver_data =3D driver_data;
+> > > > +
+> > > > +     register_rpmsg_driver(&rp_driver->rpdrv);
+> > > > +
+> > > > +     return 0;
+> > > > +}
 
