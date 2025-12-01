@@ -1,144 +1,248 @@
-Return-Path: <devicetree+bounces-243270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B4EC96351
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 09:39:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EE03C9636F
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 09:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 74B8F4E0EBD
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 08:39:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48CAC3A196C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 08:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DB32E7182;
-	Mon,  1 Dec 2025 08:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BC782E974D;
+	Mon,  1 Dec 2025 08:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u2RXyHtQ"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="pYLNWuRl";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="l1kND3Pz";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="s17wxIhO";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qrWjtcND"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2061833985;
-	Mon,  1 Dec 2025 08:39:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BAEA2C0F7B
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 08:41:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764578354; cv=none; b=NGhVfYzfDkRHIugbqGcQ7ztlInlKi9tCjBMHx4HOUa/cZ/BYGCjK/EMvPdhIYsyv1jeOslmIdEzFzDeGZJjxb3ZPA08jFRbPCsl3VHBZD0LLPH+mtHNqf/nz4GUYJwZgDpnSYHcTgNLYJexM0RdIhdV/yDVC4SOs6aJEX/EDmc0=
+	t=1764578470; cv=none; b=IuO9IqzqXVT0YCRO4iPqHwj4rr+MSzHEmuclDAeHavfMllumep7vKYiAO7g7bMQhpTr8eNHgmtVHFw0q8Zyyb12jjpRHq73mnt7k0IwdhgzLvz2dD+Ixh0faEo3yECETWSs9G9E+4E/ZdQtCQPjZRpPrbYYJyBakI1xrnFiCZc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764578354; c=relaxed/simple;
-	bh=3sJ+H4Wmct5s2XmC9zTvhNk2LFQ225kv2to609V53pU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s+eVUmtZ8sQlHXQFGEgqumIwbkVgwodCOcc0DX4v966jLP8yO1HkHb2Wj4G5F3aX+Hu8WsVGYrJDMLqt+//RlyGOSxoyY694XxEHRAHvAIkjC2ilMVG+fTg8jWD/KwpII5SEEyPrXoVC7Auv5/rCpN847S5NVugDNiIcMmpcTrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u2RXyHtQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDF93C4CEF1;
-	Mon,  1 Dec 2025 08:39:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764578354;
-	bh=3sJ+H4Wmct5s2XmC9zTvhNk2LFQ225kv2to609V53pU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=u2RXyHtQ5gzPP7NpNFfQw8hjmV+VSWf9bwRv0qU+NVi6rVI2huxuObUP3735wEa6Z
-	 ldcePP8CtP3UYRFy4C1UfpbIL2JtozGsdnIblVxndqZEei1ByAsAADPAamQM44RIcY
-	 EWd3bRR7qnY5YWnXw0Zd+RxXwXGenyNJeus/UO0KMnc763WNZZN4nhvxs8RmEZ1i6L
-	 tKWredBawcHG2b0uyCIItZyI+xbYZjP2HvB/EdyVK6ZTKio0CqIJOZxfNUoA9I8L+e
-	 KpUA3S37RQ5Civ8ynneNqZcF8xTMoz+43cH4WY3EtNep5XFMvAqNoqVv2CA68m9iCC
-	 a34XhHmbcP4iw==
-Message-ID: <491560f1-ee50-43ef-b258-adb5859cb05a@kernel.org>
-Date: Mon, 1 Dec 2025 09:39:09 +0100
+	s=arc-20240116; t=1764578470; c=relaxed/simple;
+	bh=CG8i24/mz2sClXO9Z4WYHvqVvkWCiLpRn1K+K6HxuLw=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TqGTy53IB7UFfYCNgOubxcX4nUIzBUXezIvCdm+ykZxCdH9fY4Wh0yNAGzlsQBNnS9fUr7G1JOaTV9+RDgix5U7YquEp8VNQXVr9J/P+e5lBZ3yyJa9/q61e81eAGe9S9j8tkWeVdFbYknTg/Vank0QeheUwHqTBPcbXHyBIG6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=pYLNWuRl; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=l1kND3Pz; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=s17wxIhO; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=qrWjtcND; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 376B93379C;
+	Mon,  1 Dec 2025 08:41:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1764578466; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/HqrAqUREYOgMdrbihNFfVZ5OBi2extLEfpQOjtfKdE=;
+	b=pYLNWuRllbg8avaCnfL6HD6BbkTP304Pw8k9Pz4ZcK2kXdGNbO0Jrsz07zvxs5CWufxNoR
+	VOX3KQb5YkPfT7aZCni3RATDD6zerfZAHk+JHtvBx5/wACfX64s6Hr4/Yjlktn+gdNfLG1
+	42iy02aE4PA0AMN8ynNx0pMi/KUD2PM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1764578466;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/HqrAqUREYOgMdrbihNFfVZ5OBi2extLEfpQOjtfKdE=;
+	b=l1kND3PzI8+QaVdokb4vxy9JTwpT7mnbbPYNJ0QXUwWAxXOQ8NpfFLX/WhHKYvdtVJsU6c
+	FRNdcXT8oHUcxcCw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1764578464; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/HqrAqUREYOgMdrbihNFfVZ5OBi2extLEfpQOjtfKdE=;
+	b=s17wxIhO+7GfZqTxBde944bWOsY5PiPwoNHnFbom46aHStNO/yCB2DQdaMmvWFpqZU18qT
+	Dll+fnKDeyMuLALN9f1tBQqc9Z4tc84+UPMi/2Bhj72ZENo9AKix6CzNMN+GS/7Fti/IXB
+	JcC9BgEchieP/sTGps2tpJrqjc1QZvc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1764578464;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/HqrAqUREYOgMdrbihNFfVZ5OBi2extLEfpQOjtfKdE=;
+	b=qrWjtcNDxXU1fLaRk2j4xyRPFBmWWGaGJUtqSpcrQVe170mtYs+aL7mQbSovu47Vu2r8xi
+	lxEBV9cdR79y3dAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D50293EA63;
+	Mon,  1 Dec 2025 08:41:03 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id EDTEMp9ULWkALQAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Mon, 01 Dec 2025 08:41:03 +0000
+Date: Mon, 01 Dec 2025 09:41:03 +0100
+Message-ID: <87cy4yd274.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: "Joakim  Zhang" <joakim.zhang@cixtech.com>
+Cc: Takashi Iwai <tiwai@suse.de>,
+	"lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+	"broonie@kernel.org"
+	<broonie@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org"
+	<conor+dt@kernel.org>,
+	"perex@perex.cz" <perex@perex.cz>,
+	"tiwai@suse.com"
+	<tiwai@suse.com>,
+	"linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>,
+	"devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+	cix-kernel-upstream
+	<cix-kernel-upstream@cixtech.com>
+Subject: Re: [PATCH V1 2/3] ALSA: hda: add bus callback for address translation
+In-Reply-To: <SEYPR06MB62263D352405481E3046320782DBA@SEYPR06MB6226.apcprd06.prod.outlook.com>
+References: <20251030110928.1572703-1-joakim.zhang@cixtech.com>
+	<20251030110928.1572703-3-joakim.zhang@cixtech.com>
+	<87pla3joop.wl-tiwai@suse.de>
+	<SEYPR06MB62269EEF81C53AC28278694982DFA@SEYPR06MB6226.apcprd06.prod.outlook.com>
+	<87ecpi842g.wl-tiwai@suse.de>
+	<SEYPR06MB62263D352405481E3046320782DBA@SEYPR06MB6226.apcprd06.prod.outlook.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/30.1 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iommu: rockchip: Add support for
- multiple interface clocks
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>, Chaoyi Chen
- <kernel@airkyi.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251128071322.92-1-kernel@airkyi.com>
- <20251128071322.92-2-kernel@airkyi.com>
- <96958186-0e46-4606-ae36-239112eb31ea@kernel.org>
- <98a847f7-0880-4e5b-a946-26dc81fde5d2@rock-chips.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <98a847f7-0880-4e5b-a946-26dc81fde5d2@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spamd-Result: default: False [-1.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TAGGED_RCPT(0.00)[dt];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	ARC_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[suse.de,gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org,cixtech.com];
+	RCVD_TLS_ALL(0.00)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	URIBL_BLOCKED(0.00)[suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo,suse.com:email,perex.cz:email];
+	RCVD_COUNT_TWO(0.00)[2];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,cixtech.com:email,imap1.dmz-prg2.suse.org:helo,suse.com:email,perex.cz:email]
+X-Spam-Level: 
+X-Spam-Score: -1.80
+X-Spam-Flag: NO
 
-On 01/12/2025 09:10, Chaoyi Chen wrote:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          items:
->>> +            - const: rockchip,iommu
->>> +            - const: rockchip,rk3568-iommu
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          maxItems: 2
->>
->> Why this is unspecific now? Please look at other examples how it is
->> done, e.g. Samsung clocks.
+On Mon, 01 Dec 2025 09:14:57 +0100,
+Joakim  Zhang wrote:
 > 
-> I looked at some examples. Maybe it need to set both minItems and 
-> maxItems here? I'm not sure I understood your point.
+> 
+> Hello Takashi,
+> 
+> > -----Original Message-----
+> > From: Takashi Iwai <tiwai@suse.de>
+> > Sent: Saturday, November 29, 2025 1:23 AM
+> > To: Joakim Zhang <joakim.zhang@cixtech.com>
+> > Cc: Takashi Iwai <tiwai@suse.de>; lgirdwood@gmail.com;
+> > broonie@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
+> > conor+dt@kernel.org; perex@perex.cz; tiwai@suse.com; linux-
+> > sound@vger.kernel.org; devicetree@vger.kernel.org; cix-kernel-upstream
+> > <cix-kernel-upstream@cixtech.com>
+> > Subject: Re: [PATCH V1 2/3] ALSA: hda: add bus callback for address
+> > translation
+> >
+> > EXTERNAL EMAIL
+> >
+> > CAUTION: Suspicious Email from unusual domain.
+> >
+> > On Thu, 27 Nov 2025 10:44:26 +0100,
+> > Joakim  Zhang wrote:
+> > >
+> > > [...]
+> > > > >  include/sound/hdaudio.h     |  3 +++
+> > > > >  sound/hda/core/controller.c | 25 +++++++++++++++++++------
+> > > > >  sound/hda/core/stream.c     | 17 ++++++++++++++---
+> > > > >  3 files changed, 36 insertions(+), 9 deletions(-)
+> > > > >
+> > > > > diff --git a/include/sound/hdaudio.h b/include/sound/hdaudio.h
+> > > > > index 4e0c1d8af09f..61b41a014f4a 100644
+> > > > > --- a/include/sound/hdaudio.h
+> > > > > +++ b/include/sound/hdaudio.h
+> > > > > @@ -293,6 +293,9 @@ struct hdac_bus {
+> > > > >       const struct hdac_bus_ops *ops;
+> > > > >       const struct hdac_ext_bus_ops *ext_ops;
+> > > > >
+> > > > > +     /* address translation from host to hdac */
+> > > > > +     dma_addr_t (*addr_host_to_hdac)(struct hdac_bus *bus,
+> > > > > + dma_addr_t addr);
+> > > >
+> > > > This should be rather added to hdac_bus_ops instead.
+> > > >
+> > > > Or, we can just add addr_offset field in hdac_bus instead of yet
+> > > > another callback.  Then the change would be simpler.
+> > > >
+> > >
+> > > Hello Takashi,
+> > >
+> > > Sorry for late updating since I am involving in other tasks recently.
+> > >
+> > > I tried to add addr_offset field in hdac_bus for the address
+> > > translation, but met the issue, e.g.
+> > > On our platform, if HOST address is 0xd0c09000, HDAC address is
+> > 0xd0c09000 - 0x90000000 = 0x40c09000.
+> > >
+> > > If we use the pattern, HOST_addr + addr_offset = HDAC_addr For 64bit
+> > > host, then addr_offset shound be 0x70000000,
+> > > 0xd0c09000+0x70000000=0x1_40c09000, it will update both lower 32bit
+> > > and upper 32bit into hda registers. However, hda controller in our
+> > > audio subsystem can only support 32bit address, if hda  sending address
+> > more than 32bit, it would not work.
+> >
+> > Hm, I don't understand.  It we define something like
+> >
+> >         dma_addr_t addr_offset;
+> >
+> > in hdac_bus, and the driver setting
+> >
+> >         bus->addr_offset = -0x90000000;
+> >
+> > then a calculation
+> >
+> >         dma_addr_t addr;
+> >
+> >         addr = bus->rb.addr + bus->addr_offset;
+> >
+> > will lead to the very same result as your callback, no?
+> > Or am I missing something?
+> 
+> typedef u64 dma_addr_t;
+> 
+> 1)
+> dma_addr_t a = 0xd0c09000;
+> dma_addr_t b = -0x90000000;
 
-Individual items were described before. Now they are not, so first item
-can be anything.
+You have to pass with ULL suffix as a 64bit value instead:
+  dma_addr_t b = -0x90000000ULL;
 
-You need to define the list. If the devices have completely different
-clocks, then you would go with Samsung approach. But devices should not
-have completely different clocks, so you should define common parts in
-top-level and just narrow number of items here. maxItems is enough in
-such case.
-Best regards,
-Krzysztof
+
+thanks,
+
+Takashi
 
