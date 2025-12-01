@@ -1,102 +1,67 @@
-Return-Path: <devicetree+bounces-243449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA7AC97BAF
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:53:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D20EC97BF7
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:57:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 469763A2109
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 13:53:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 43E4F4E166E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 13:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4EAB313E2B;
-	Mon,  1 Dec 2025 13:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A235314B6B;
+	Mon,  1 Dec 2025 13:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UzXRc28r";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BXh/TvNH"
+	dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b="VMuTgqUr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from xmbghk7.mail.qq.com (xmbghk7.mail.qq.com [43.163.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3428F313260
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 13:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0996F30FF08;
+	Mon,  1 Dec 2025 13:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=43.163.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764597196; cv=none; b=maZLpLl/CjxUvzB848yh8+/5Y4Fgt+0o/duVivJq5ep+9JY7YlxcsSv5PJRGFCwo+ttScEJxYli+K6ygDZdUVicWewp/D3ZgbhG2vU/HhfPF2KvQ0r3p8vlTbSebOEOm96NK+zYkCfv0i98oEctvVQuXDPdKht+Ve26WWOMQPGk=
+	t=1764597468; cv=none; b=BN3qyVyNpfenOAp1XkBh4cI+dX6ab4rp7/a2RWW39SBEmJcvVPxET6940f0z0qPtk1axYL+E3o5qjhwtHU7N5oyU4D+hUZwrTA9cX6Kp5ezuGeeKe+nFYwJVhgATvP3GHaO+0M2KmgmEmRzX7hulbUNSYa1d32R+DyNqibGlsdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764597196; c=relaxed/simple;
-	bh=Nq+G3avRDSDgJECHICzai2G1D0ja4jtll3UcIZCR51U=;
+	s=arc-20240116; t=1764597468; c=relaxed/simple;
+	bh=KyMeo2ohYPWFV1DpgXObDUIg+zLpwyJ70Pk0Mj0luHU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I2McJgHNB1Q/quVRIY4oQnZsN+6vmQHJ3s3cXTK3XjZt8zTDG5vGznNO+A8UFV6WvsNaNNT9gPAOxBYCHkmw7txlvVvCdVngb9ikBGDD3yNx/cn3pr2MMUunDivW/ZfygYx6LbFvyVVA+LBLQ72OvjZ0TExw9Io76NMq4vzIWu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UzXRc28r; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BXh/TvNH; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B18xa762700226
-	for <devicetree@vger.kernel.org>; Mon, 1 Dec 2025 13:53:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	B5MDGNBDVHdT9FzvIqVGT59U8KZh5yYJvovosLmlBeU=; b=UzXRc28rQr7+5GY1
-	OehBogeEHf1CErK/dPOD1cmmw3jWHLe/0qV0eIHXgdLAx9aIW1bDWx23sFAcB8oI
-	8pgNMCfMVQZdZ+SdEPyjDnbRi82UqrtJmnYW9v/+XuIAykNXpLM2OhL+ZhXZHqBe
-	UmK5H12a1VlHP8lYpAxFs8KxOBVRXoGz9Mn+jlceRgHoQG7fwWrIWqfwVm9ROy9M
-	HoKvLtrrgxfSxi8IE9USQUz5NkzG3kMRRWwWzd+2IPIc2U3gLFIYfEw2wBv2SKB7
-	qJ89ynfHCoigo8AEJND52TMwoeZ9H1npETAGzappACu0sER4LcJs77SUp4CUCJvg
-	Rq8ceg==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4arwnvt5ks-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 13:53:14 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b222111167so92615985a.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 05:53:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764597193; x=1765201993; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B5MDGNBDVHdT9FzvIqVGT59U8KZh5yYJvovosLmlBeU=;
-        b=BXh/TvNHtbGGsuoDIViqa3l9M26BT9wn0Jvdhn/D2jdqbCm99t5AakEc03yc/fZf1T
-         3PMbr3wlP1fqkB+eb/WAy/mYHpiRMCQP0v1PjdNEIfhBabBdAn3DGcoc5byNIPDY+B60
-         pJdH5GpcPPlK2n91Hpk9gxS6S/uURZxEE5GfS9lp31UkuFr8fVYgsB2H2YsVdFc4LVwe
-         3lEu/ClDO2BtzyaEWW9IcaOkVAVG7LC1dRkgHECoIDbaCLJuAMdvlYrTeUrHCfmHxOpA
-         Ntu1uyWWmgqQpVg0qX/cRquXSZRPh52l65465olgmUFOTmcAOwRGn+9p1cUzb2Wgtn0s
-         Ei+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764597193; x=1765201993;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B5MDGNBDVHdT9FzvIqVGT59U8KZh5yYJvovosLmlBeU=;
-        b=KODD8uaHExYtrxV5jP+piso/ejrTf67n4ONH1j2COP7MlAz44Nf4KnAbMxnY7uLHCu
-         cx2CwHvpUKWIQ85EBGm7lXDuiL8B/mHB434+fqYB2vriVplUz3KZHvQ2NVs5v+hsj4+4
-         uxfx93ieNMf5A0P5b4kiRC3Gee3UHXL2Q+ejAcw1Qa1FaMXw4cEs/Ivs6lCHfg9HG06q
-         VfCxbR9NmQGDpZccHEUiI0fANZum5tXhhPdONwMBdZA0AT5Dt71djazoaRXTOq5DgFr7
-         X61GuwFRqEZ3Vjj6laHXa8i9plNdUzdbORd2wK7mXbQIAcNyPJLpWATpU9Y5QH03oL7B
-         UgTg==
-X-Forwarded-Encrypted: i=1; AJvYcCXuf+jg7usrjKzjdfwd/Wz7G86pDeWSZYeCtPCFjWJXswvu9rEX7Z8qyizFH2m8o7dVm5JFB7wGh3qH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyu9txndS6rT0n9zaWZCzvj3Ln4SCj4ddmGDtM5fO7RL77ZeGW0
-	x715hfeKDAWrgIBI9sE81Q2rZivLEgdohiQnxqgzQ64yutep+AyYmdbOWV5kzclYpm4CtGGxgvH
-	sm5dlDT/lte7j5Oq6mK2x7gVcDGNUYwCopXe8/SZsyH+jjCg8tS/v44KUJlYoaCvi
-X-Gm-Gg: ASbGncuN7FrQCn5NcyN0wbTdoqRC8OCjlZyde5Dp4DeqE8ILxHYqvDXXsp7xP37AeCX
-	qiE1Gi/Bmdb9bWYuMCXEdl9Q6XsB4cK1BJylIqDchvnVwRpv01QZLBo0SpCE5XuOEdIWHCWj5hg
-	5Is23wMyDqScQF4fWoCMA9n9GmKrcSGbL/prUfpOGmeNBlVGKEsrK79SlEymZLHQISSVqE78lDX
-	wn3WRI9bcz+xA5wlKJ3RTbYgGGmNpRh5varb/jr4utkDAjRJM0DX5wW+l3erpLCoOnVSySk9S/G
-	3PPBD2X00bsjDV7ygPQ2I/7Mh2M3i8moIZQDFpsGrkM88FwH5W5rg0HEXzJp27tMfPn9nS0TZr1
-	aSUX9cXXGAEnI/VJgLhwG8A+tfIXiraC82pcxLOOG81J/qw1QG4ZwVCujnUzH5UZkVpw=
-X-Received: by 2002:a05:622a:211:b0:4ee:1588:6186 with SMTP id d75a77b69052e-4ee5b7badc4mr391677341cf.11.1764597189124;
-        Mon, 01 Dec 2025 05:53:09 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHwzqYjN9xLAgASRb7iVSQqOyCv0TQjsaBpUSAb6z8ODxHfZUAAN+UALIMWqbYqGWJWD7EkkA==
-X-Received: by 2002:a05:622a:211:b0:4ee:1588:6186 with SMTP id d75a77b69052e-4ee5b7badc4mr391675081cf.11.1764597185974;
-        Mon, 01 Dec 2025 05:53:05 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64750a90d14sm12615163a12.10.2025.12.01.05.53.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Dec 2025 05:53:05 -0800 (PST)
-Message-ID: <259a997c-eebe-4361-9043-676d77ed85d4@oss.qualcomm.com>
-Date: Mon, 1 Dec 2025 14:53:02 +0100
+	 In-Reply-To:Content-Type; b=bKr/bL4rLKIJFUqIgYrcDat6+b4Q9zx8jDDDMKGJRt+FAuumWxfutPbxMfYX/mfbAj93tzHmD1tSchJnUmGAhg0L3UCE3n8PA2nmcIiD730HsvatNnLR7s+RbP/tKg5VFxsaJs1Rd+dCPpd4utibRjM/v+U8vpLou/TjVBoaZuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com; spf=pass smtp.mailfrom=foxmail.com; dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b=VMuTgqUr; arc=none smtp.client-ip=43.163.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foxmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+	s=s201512; t=1764597454;
+	bh=VBy+8qDfsL7EqwCP54AMVys1BPzcaJ9q5zou21zg8BQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=VMuTgqUrGH1+zW+hQp1CkGnZH4FafsR25kBwX+zn7ynxGz8Oz2BlDAMWBw3YVeiBe
+	 MPny4EDaoUuxXcZmTvBTrQukMnQ1u8qvbhvNKnvgtInU7CB/ozOZr6dZXs5hyA67gm
+	 HN1pJcOYRMzaovnLtoHs+sodDILkOTH6BIAgdwvE=
+Received: from [198.18.0.1] ([171.223.167.52])
+	by newxmesmtplogicsvrsza63-0.qq.com (NewEsmtp) with SMTP
+	id E5E9842A; Mon, 01 Dec 2025 21:57:30 +0800
+X-QQ-mid: xmsmtpt1764597450t8pul6w7l
+Message-ID: <tencent_155071AA73556B4DD22BEC8599C05AC8A406@qq.com>
+X-QQ-XMAILINFO: MJf32pulH481bGVQsT4W28f7hBaG1205FFOakRe2x0cPywrVUuCUitLbVFiybY
+	 mgml9qCwTgeok+SsS5MKngkJ05ffalXR+4JD25H7B0CWB9QHn8dC3X5EVbd8oZwJ/LOHQ9zXMmgE
+	 txbR/DD87fk6OyikjKpIP6mzfoOhda9EfwUXF959qg9avAlSodjAVo7QvIantcPqJKCg63y2NWdh
+	 GBSxYC79IwLyLXXCqzAupMtfGOP3LJlbSbuOHpVblpjcsDqUYWANhJEq3K/9qZEClx4+EfFD6fyG
+	 cNOjz2+ftfiJQtufonZchwBtTib85LauDWVX1RpA1bMvHrxkPyXuoUlisU4bQU6sL4MLqSBdFsWE
+	 xZ8742ln4WyMQUyuyp59rWiAdix7PLoI88Qy9tM3Cd399UrGxk7mq7AwrPOK3514axuiYZPTMMAy
+	 lYbJG8otTTRHNrjOyF8gn9eFTeLipNr5Nh4OlHxhq5+H0y/yIlxyA0jzudArw6hYyCUG8+v9nzXu
+	 EmRQNrowLUBEX76bZf1T5l2HnVsIPK+IQ8J369XgFeZ4OtJoKCwUaj6NJlKklDWFx2afKX2rH5S/
+	 URXnTg9HXe8/uinvKs9bHi38qXg3hUvnpySyYPmQaRq6NgbAPyIY/IDul3AIX5mdiy7Q33eixzlO
+	 bvODrFrblH0rJmFgFFZD3tU8A4xP7Q78eygfW/CEcg583C6tqY3aVV+SSmXCQgYrY7Rew1pGrQts
+	 mfPPr1XUOVX6+Lj/n/EvMfD8/A644JtudlZv9zn0UpmKPbwgzXL2YgceV6mw38UloLYPJR9FUlaE
+	 WecT5pZ5q2lSiuB9pTA7xiNyI3Z/k+RqKXrJPpOQgDueyNQwE5MK1NqFbU8kPmrL4T1NkJC32xtw
+	 +iSX8I8fIw0oVsW6Sxgpp/mJa2vHORHbPuNzibljU9N4GDUNoi8573ddOrKexNrBjoKJl7S2DX3k
+	 0oAI+AAnP+HWFpp5Cm6GY7Tl7psEUpK7uZiyVxqBgUgjgkM7ZAH95IIJtlAVrT/x3cwSIFaRWmxi
+	 LEAehR74CmehhOHo7TfjjXMyJ6C93rNrt0cuHyGGWg36cEyVNgy+Jb53OC8oFc4i4NUWCOVso+Tk
+	 Kj54o9qJDbvXmqb4u6wfGYkAmP8Q==
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+X-OQ-MSGID: <8c838e04-5e4a-4eca-a8e1-388a4e0b416b@foxmail.com>
+Date: Mon, 1 Dec 2025 21:57:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,65 +69,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: Represent xo_board as fixed-factor
- clock on IPQ5332
-To: Luo Jie <jie.luo@oss.qualcomm.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-        quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
-        quic_suruchia@quicinc.com
-References: <20251128-qcom_ipq5332_cmnpll-v1-0-55127ba85613@oss.qualcomm.com>
- <20251128-qcom_ipq5332_cmnpll-v1-5-55127ba85613@oss.qualcomm.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add HannStar HSD156JUW2
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: thierry.reding@gmail.com, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ mripard@kernel.org, airlied@gmail.com, neil.armstrong@linaro.org,
+ devicetree@vger.kernel.org, maarten.lankhorst@linux.intel.com,
+ jessica.zhang@oss.qualcomm.com, tzimmermann@suse.de, simona@ffwll.ch,
+ sam@ravnborg.org, krzk+dt@kernel.org, renjunw0@foxmail.com
+References: <tencent_FD75580BB3BF35F44985E237E7DE56BE2407@qq.com>
+ <176451574938.1028542.3454025128487626115.robh@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251128-qcom_ipq5332_cmnpll-v1-5-55127ba85613@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: EL8D8aA20Eer1SDn7dEeQl33HM4tkX-O
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAxMDExMyBTYWx0ZWRfXzOId6zUrGGKK
- BUXNT7Yolo60dvi0U4MYO+6Sh2p6XvqDOcqVBpV9cItjteNu4MEh9bEcZg152I4Hl89t0sx7Cw8
- P+/vbzAJvsaGPAC8h6i5KYo/XBIQlz6pchpy8qdZ4imd6ZbjZwBSHd483dv47KqBsYZLLTEl/+K
- Z0Vw3vqPVz7+fL3W1xJm8Xz2DaFjyd2VTd6stR0UyjYR7FpbLlHU1NGudyLfoxBslgkAgIeaq06
- mLBh8to4CoQgT7z3b426nSX+B6NmF2+1cN7vvJQ6v3IEzgn1txBUVhTB+mwJuyZdPv0spo/OIsE
- /T283XTECbKKqiHw7pL6KKxPcwmHZg6ZrqujoIWrqqJYab3td0lzbaE3M1CKp4/Oa7gjXfxzY2f
- fV5BuvilPqcLhlMH1SnW8b5qNEU/5w==
-X-Authority-Analysis: v=2.4 cv=Urxu9uwB c=1 sm=1 tr=0 ts=692d9dca cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=yS86qH7rw_eMqjCuMg4A:9
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: EL8D8aA20Eer1SDn7dEeQl33HM4tkX-O
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 impostorscore=0 clxscore=1015 adultscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512010113
+From: Renjun Wang <renjunw0@foxmail.com>
+In-Reply-To: <176451574938.1028542.3454025128487626115.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 11/28/25 9:40 AM, Luo Jie wrote:
-> The xo_board clock is derived from the 48 MHz WiFi output clock (divided
-> by 2), and not a standalone fixed frequency source.
-> 
-> The previous implementation incorrectly modelled it as a fixed-clock with
-> fixed frequency, which doesn't reflect the actual hardware clock tree.
-> Update for fixed-factor-clock compatibility, and properly reference the
-> source clock.
-> 
-> Signed-off-by: Luo Jie <jie.luo@oss.qualcomm.com>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On 11/30/25 23:15, Rob Herring (Arm) wrote:
+> On Sun, 30 Nov 2025 22:35:27 +0800, Renjun Wang wrote:
+>> Add the HannStar HSD156JUW2 15.6" FHD (1920x1080) TFT LCD panel to
+>> the panel-simple compatible list.
+>>
+>> Signed-off-by: Renjun Wang <renjunw0@foxmail.com>
+>> ---
+>>   .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/tencent_FD75580BB3BF35F44985E237E7DE56BE2407@qq.com
+>
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
 
-Konrad
+Hi Rob,
+
+     I ran 'make dt_binding_check' on my local computer, there are no 
+errors and warnings
+
+about panel-simple.yaml, thermal-sensor.yaml and thermal-zones.yaml. My 
+checking process output shown blow:
+
+(env0) renjun@debian:~/linux$ make dt_binding_check 
+DT_SCHEMA_FILES=panel-simple.yaml
+   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+   CHKDT   ./Documentation/devicetree/bindings
+   LINT    ./Documentation/devicetree/bindings
+   DTEX 
+Documentation/devicetree/bindings/display/panel/panel-simple.example.dts
+   DTC [C] 
+Documentation/devicetree/bindings/display/panel/panel-simple.example.dtb
+(env0) renjun@debian:~/linux$ make dt_binding_check 
+DT_SCHEMA_FILES=thermal-sensor.yaml
+   CHKDT   ./Documentation/devicetree/bindings
+   LINT    ./Documentation/devicetree/bindings
+   DTC [C] 
+Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb
+(env0) renjun@debian:~/linux$ make dt_binding_check 
+DT_SCHEMA_FILES=thermal-zones.yaml
+   CHKDT   ./Documentation/devicetree/bindings
+   LINT    ./Documentation/devicetree/bindings
+   DTC [C] 
+Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb
+(env0) renjun@debian:~/linux$ pip3 list|grep dtschema
+dtschema           2025.8
+(env0) renjun@debian:~/linux$ yamllint -v
+yamllint 1.29.0
+
+Best Regards,
+
+Renjun Wang
+
+
 
