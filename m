@@ -1,166 +1,237 @@
-Return-Path: <devicetree+bounces-243495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83A9CC983EE
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 17:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0123AC98403
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 17:32:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 352E13A2716
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 16:30:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9D003A1489
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 16:32:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B052D9EFA;
-	Mon,  1 Dec 2025 16:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E0BD1EF39E;
+	Mon,  1 Dec 2025 16:31:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="QNZJ9f0N"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="URknUD6z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013046.outbound.protection.outlook.com [52.101.83.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2901288D2;
-	Mon,  1 Dec 2025 16:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764606602; cv=none; b=oPMyd3m1QGtFo7ERX1vG1IFbDObePDvNERlO8dSNGWbABIdFzAfJ9562Q1nZEiJRxOhkHE7Q7Vn4fACqZsVDFtWszHXtFJeAjIW2LMw8topcVvpJdGtUWCuHwm/6bvOSRwa9Ykw/ZYIm1VihHQcqDBl0Vd9fyuKXBbQO3auv4Rk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764606602; c=relaxed/simple;
-	bh=tkyO5p8LYYbNGz/+zu6mllYxkhDq9GTEjlu9HhYiUDk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MRTZ8ZQvXlE9CcFot5Vkr46Xt3E96IVZ/4Fz44dLpTrVBFik2P9iaBOVm8m19Tc4xNImPZ34vFfyh/sQ/f0jdL5T093JiPDBQEtW4jeEeTUugZ1fTQALI90SE7AYE/8AzrxuMhEv141CQPt8dV7iUJZeLgjH3VNV/OPrpALWdPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=QNZJ9f0N; arc=none smtp.client-ip=46.255.230.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 2A8061C00AB; Mon,  1 Dec 2025 17:29:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1764606591;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ys4fM5oxuac5BA8yXwPfUxu5XSYHVpba6xxZaqliwMw=;
-	b=QNZJ9f0NVkMN90sS7G6UbXXOErLvhTIW9qzPwO8ba1XpK64RGNMdA4zIDxxP7GCydNAumH
-	FKEj2dlLZhZJ2ewUXnP/wNGs7cXtycpaTYJi2781Ib4aYVsd6Vs1IqFEKV6AyxJ0sXRhIs
-	DDJTsV7FSPh7vM/rXrhueYudwFV8Dks=
-Date: Mon, 1 Dec 2025 17:29:50 +0100
-From: Pavel Machek <pavel@ucw.cz>
-To: david@ixit.cz
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Casey Connolly <casey.connolly@linaro.org>,
-	Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-	linux-input@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-	Gergo Koteles <soyer@irl.hu>, Casey Connolly <casey@connolly.tech>
-Subject: Re: [PATCH v8 2/2] arm64: dts: qcom: sdm845-oneplus: Add alert-slider
-Message-ID: <aS3Cfmx3gVyl/wTr@duo.ucw.cz>
-References: <20251113-op6-tri-state-v8-0-54073f3874bc@ixit.cz>
- <20251113-op6-tri-state-v8-2-54073f3874bc@ixit.cz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E08613959D;
+	Mon,  1 Dec 2025 16:31:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764606718; cv=fail; b=mwUmpdqpcqOz559YI5JmdYUd4QCDsDfwudj/+ylRdCPiTJixHpFVU3ey11mJtp7n9B3NRD/wpso90CQCKfPFdEW0KpTSihXCkWxGE7bXB22pTHxLdEZwPfxOVfOCiXO3AjNEvoJT78M7h1z0gtSz2qW56ilz/rXid35zXfYdMR0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764606718; c=relaxed/simple;
+	bh=wj34ccAA/U6LV2ejueBNUTGFNf60ihDDWdF0yHLVwHE=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=L+Vx1n0qw8c6qidByI4oqNY36V2wpeS93IBv1VNUpmlMAt6JSMEOK0QgrL5ihrk1RI+g5hnCVLjXfVife5A9iuzZbOnmLZktC6QKlFFJ+JChK9B6yzJk2VQrXUvu9rfsMxjfUrNB02rQgwd9GfI1Unx3htw5dH3ZuxgITgs3N1s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=URknUD6z; arc=fail smtp.client-ip=52.101.83.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Jy4QD3ZScuNPSnbIEVU1YTVr8cMGK4v/cPzaScoGsaZ0o2L9fLNUEwNxJnehZg5uVUS/c6XN/M1yxuoXPcGBHapx+ELJUdwCmLH5Nq8KHrQ5pE31HUc+Q8NScJHLdXXNYdc4iFetTmcB4feHXg3gUg4yhQJjBpxZCOZ4e4UlNfnQa3E97cXqnsA9Tj0LpuDv6mmkfPcFWqKoU3puTMI7jXZeZmBtHicnlMMXKPvD3Y1+DB14DV4vggIPAM4gpWVhlCBYps4exqOLGZz+rl9DQ72eRU3odiirvwaugrszZZnhmt99rhjpv0kXG4yHeT4pcEEvt45L12hGBEU3A8VzzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MByC5Sp5WhZsz7ZTxJas9o7CPOVqF5PRwoKhkEt6qTE=;
+ b=VR+UGxAt3QEqYRuko8C/uNbUDgcAuUzwVjlR/d54knyqBpDXi7Ij1AhTlhbpZIkIO7KBk++4Jx0JnZgHKQY31oFGSpq0gAXiQtT2zrbbr4F94UAhtZjqOWoTfByGDsLqeSH/UpM9oh4TnJ9soHAKBnBw/8B4xGK9WLqxhPhp6Y76lU2MEdu0ceDpku1L/p91QBKw7PVO3HGosij2t9WdCzIRr2yU6h6xNNqV7J4H2zzKjJMYM2D2y5Q0puueCB9MQ/D/KxLSUP8VQnKaHfqXkluuqM8BMZ3NR3ySftyinozwAxQOZ69trmCspxpzeiaDN4I4dNpNKmO64PqwpRXg7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MByC5Sp5WhZsz7ZTxJas9o7CPOVqF5PRwoKhkEt6qTE=;
+ b=URknUD6zOSgFfzJFC5HAddCNVF4sIgh191b37zBKHl6Q0h+m5GRFBxjzX/CQyYr0Fbp7YC6G9P7Aw9KbaO/NLvgrHMdYYINQsFiX9dDRq3J5WpTfepu5DSUqPyelwv7jnuK4wLG2lAqfJs8DEcNGOrDqqsouZc83dicqh+TBZxA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from GVXPR04MB12038.eurprd04.prod.outlook.com (2603:10a6:150:2be::5)
+ by MRWPR04MB11519.eurprd04.prod.outlook.com (2603:10a6:501:76::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
+ 2025 16:31:51 +0000
+Received: from GVXPR04MB12038.eurprd04.prod.outlook.com
+ ([fe80::1033:5a9a:dc18:dad]) by GVXPR04MB12038.eurprd04.prod.outlook.com
+ ([fe80::1033:5a9a:dc18:dad%4]) with mapi id 15.20.9366.012; Mon, 1 Dec 2025
+ 16:31:51 +0000
+Message-ID: <f8af1ebc-c002-4f14-95bc-082474d8f187@cherry.de>
+Date: Mon, 1 Dec 2025 17:31:44 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 8/9] arm64: dts: rockchip: Enable HDMI output on
+ RK3368-Lion-Haikou
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andy.yan@rock-chips.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, cn.liweihao@gmail.com,
+ Heiko Stuebner <heiko.stuebner@cherry.de>
+References: <20251021074254.87065-1-heiko@sntech.de>
+ <20251021074254.87065-9-heiko@sntech.de>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <20251021074254.87065-9-heiko@sntech.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: WA2P291CA0037.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1f::17) To GVXPR04MB12038.eurprd04.prod.outlook.com
+ (2603:10a6:150:2be::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="FtYVekWiQ6/kXxDO"
-Content-Disposition: inline
-In-Reply-To: <20251113-op6-tri-state-v8-2-54073f3874bc@ixit.cz>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR04MB12038:EE_|MRWPR04MB11519:EE_
+X-MS-Office365-Filtering-Correlation-Id: fd0ad5f6-24ad-4420-aa6d-08de30f721c9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|10070799003|7416014|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bEhBVnp2L01zdFZ6VnBicXErZmZyNmFHcmdvcTR2dkJYejYxQWtrYjFkRVlw?=
+ =?utf-8?B?TUo2TTNkMTRnOXhDZUFZaXZidzVLNGNXeWI1SWQzdTEyTFp4SldHcms4c2hr?=
+ =?utf-8?B?R0RXN1BwVUVVaVpsQXhyNTRPNlhoRmlIeGVUK0p2bFYrVFVLQzAxY2xkOUNy?=
+ =?utf-8?B?SFd2MEFhazgrRXNHNEhnVXJ1QmZUcDBNdE5NQmVmbEw4Q1dGdkJ3R1hIdkR1?=
+ =?utf-8?B?dGthb0UzeE1pbGdZdjc2UGVPUlprN0thQzk1cjhFZUQ2MS9GNjV0eVQwTWhD?=
+ =?utf-8?B?M045bS9iT0w1SkIvZVVkSHI4UHZUZG9wMlFieHRBU3BlWmpoYTZiZkNyNmlj?=
+ =?utf-8?B?dExWTEVUcUdpUGpVQnNmVWZGRm9aT0dZZTNtRkdVS0tWb1I3VGVlM2xEZUdU?=
+ =?utf-8?B?YnhSODZmWG9pbDJtLzZmWjk5T1N3a2QyRGVKLzVUQ3Z2UDFUK2lZdENiTlRr?=
+ =?utf-8?B?OEU2c3VvNTBXaGFsd0JDNms5d0hTVVNZL1NuajFldFF6QmRFSUVYdVk1emwv?=
+ =?utf-8?B?NkI1RFBRb2FONVh4MDZJU2JpSUdreGhhSUZjdmJmYUFJWEp1YU90c2ZzS1dy?=
+ =?utf-8?B?dXJwY2dYcXU1YjdWek96OHVuUmFnRy9aVVIxSHJreHBjOGtPbkYzaHZ0OXVB?=
+ =?utf-8?B?b2hEN2ZVd1daOWpVVnFWY051MmJlaS93UTJEUTVaTnN0bnVaTk80b2pEN3d1?=
+ =?utf-8?B?U3FmeTBvVGhlTzFBYWY5MDJxa1l3cHB6aHlWZkdEc0hrVDNrSnVrQUtoQU1p?=
+ =?utf-8?B?WUlPZjlJS0lPbUUwWFBqUk8zd25DUFJxS0pMV0l1N2F3WWV4NEVIRm9DRFc1?=
+ =?utf-8?B?MHVPODFwR2pUNUgvMnJpTzA4SHpjeTI4dm5iVDlmamp6eHR5N3dqQXZMS1F6?=
+ =?utf-8?B?K3JMa1lIWjl5dnVzMWVyUTVIakRCMy91Slg4b0UwbFZRY3lYSTR4NEVQRm1E?=
+ =?utf-8?B?NlB5b3ZvRUFXUDhycXdDQ3dzQ0V3bWJZTWhqRlhNY1A3dHVVNHpCUm90Y29K?=
+ =?utf-8?B?YnpVVGlDWXhqR0xGMDl6dTVuTWhOSFJUQytyYzRFVXB5cTc4RExZM1pUcThW?=
+ =?utf-8?B?RWF1MTVWODdPYktCY0ZOVTJEYS9CTk1CMHJzUFdtMkJiclZ3aGdzMjVkc2ZF?=
+ =?utf-8?B?SU1hbWhhWGY2UDlxYU4vRTlQMWM5ZkJiY2t1a0w3c1Nzc1lYMTFjNWw2TFNL?=
+ =?utf-8?B?YjN5YTZCVmsyU1dxbStqWkVQbnU3eUhlUU5FYm55SW15SWowRTB5bks2ZVVN?=
+ =?utf-8?B?SzY5ZkJ1KzhiNm5qUkxaN3lGdEtMWFpYQ2xGdU1MMUpZaUkvOXhkb2hEeXdv?=
+ =?utf-8?B?dy9ZTTU4cjlDckZFc3ZEeXZab1Z0bkY2dk0xNi9Bd1FVSVBzQ2VydmpnUzhY?=
+ =?utf-8?B?ek5JZDBGTGxINW91bXYraWp1NHN6N1Voaytab2NGbkc1R3ZuZEEyenFhaUQz?=
+ =?utf-8?B?QnJEeDdLVnUzbUhLZFZjajNoM1orL3J1K3RqVGw0T3dPVS83aHZjSm9xWUhz?=
+ =?utf-8?B?UFRIS1MzbkhmTVdtL2hycENSc2pqM1d3OU4xM3lJZFZmNjNNNy9HYzlxSnR4?=
+ =?utf-8?B?TW9CVkRZa2RPZFEyTzVOVmplN24yNVRXUmo2Q1pibWllMDFHUFh0aW83YTZO?=
+ =?utf-8?B?cGFDYWFoMlZuNXBQZjRaQUFEM3lralNHWXZWQ3FRWlBLb0ZiY3M2WDNvOExG?=
+ =?utf-8?B?RHJLVFVTL29wVVB3a1VQOWVDaHNvYWJQaDBuZEVWMHBlUktObXVIQysrSVFj?=
+ =?utf-8?B?V1NUdXhJZTdzc0Iza1hiQmZNbU1wUURVb2FBVmZTbWl4djFyajdlbHZvV09R?=
+ =?utf-8?B?clNabERmRDdvemcwMXNRKy9Kc1pxYzJtUlB5Nk1CaHdsUUNkMndrZjFhZ2g5?=
+ =?utf-8?B?aFRjek12ZG0vVHJDeE9EVTU3ZEovU0JPVm5VM2JJVUJNdk1iUXpZbnNRdnZn?=
+ =?utf-8?Q?G0OeHnB+8wOUiHxXHDUbl/uzAzinJOC4?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12038.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(7416014)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TmNIM2xXUWQ3V0d0eGtLbEE3MkpnYjRzMkZSRDNwZ3Y5am95RmN1V0hKRWVK?=
+ =?utf-8?B?NVhHbzIzeVVyK2dhSVV2WFNtYnFpQjJqNFQzSVpuZUtVbSttenBWYUl1RVM2?=
+ =?utf-8?B?RzVLeTBYKzdyUkhOdmU0MnhPRW40QWVNUXNtbEhid0RDTFZGUVA0YTZ2NlJH?=
+ =?utf-8?B?MHQreHphaFlkRjJvaWdOaFhGY1d6MkhYWlcrOUpMUmU0YXFrSmhUSnRwMDFn?=
+ =?utf-8?B?MjMyZ2VuRjZuRDgyZHhIMUpsNyttUGVQdFZRSkZTZTJWM1RWbzRoRkJRN3Bv?=
+ =?utf-8?B?bjE2d1VaaDQxc21XWmRXK2J4UUh0aktUd3JoWjlxNTNUazZLTXkvbU1idWNz?=
+ =?utf-8?B?bTFtTWhyODBST01nQlk1YS9hNnh3emRucDh3bHcwTWRyeVl2bzFmQnV2MGVj?=
+ =?utf-8?B?T2FlUmZXbXorMXdINzR3ZVJEQ1pvdndQZ1d6MnVaKzcycllIM3g3SHZWZnln?=
+ =?utf-8?B?Rm83bWJNSWlYcUhnOS94WHlsTXQ4cEVBS0M3SVZ0SVFqMmNJRFQ5aS9NbENx?=
+ =?utf-8?B?WldLWER4Vm9BUnczZ2R0TFpDRFJvclZIMzdGNmRsT1ZEZGlXZzlvWkZiV0NW?=
+ =?utf-8?B?YUxmSWpsUWdqVktCS3B4Yi93WVpVdlBBeGdSVFN4THhOejcyWnoweDBsMUc1?=
+ =?utf-8?B?QVRWaE1ONm51aHdHUGFwWDhjTlJUOUt0bkU1dkZDZndGcEE1eUZsK3RMK2Zl?=
+ =?utf-8?B?OElqRWE2QVVtTCs2Vk1DdGdjejlRc1BFbGk0WHVMcTltSXZ5YXlmbDIzMFly?=
+ =?utf-8?B?MWZQNFhhVWVpNHViaWsyVXVaRlcyY2tEckdJTGFsYlN0R0k3N1pPNWV3bXRo?=
+ =?utf-8?B?R2NCL003TEl3VjVFaXJ6dWpndXlKd1B2UUlVYWs1VFVEWkVoWnFxY1crWUZm?=
+ =?utf-8?B?elI1SzZCcnJrQnVLbTQwN21sWk02TmltR3VUTTQ0ZFlYaHBIUW1KVjB2dDV6?=
+ =?utf-8?B?dGVFUTdsTnhxSll6aU1DMGhzZkpuNmt0aUx6S0UvcWtWYzNveUxwY0lCS0NS?=
+ =?utf-8?B?d2o0UHMvVTZKNTF0bmlCbEtIWVNaV3VCTkY4R1RDbGFISW5uSnROaTI2QWFy?=
+ =?utf-8?B?MW5EMURGTjdUTnBPNDI1YzRGaUF1dmhuTEZtNU5XQ0NLTStrTHM0dWJoOFZq?=
+ =?utf-8?B?ZzFaRXdJQVNnKzIyUnpXaTREa0pyOWloS0RLY01sMmxSQU5vNE4zbE9KOXhn?=
+ =?utf-8?B?N2N1N2Fsb0h3WjVwd3AzTmF2bzNSYmx3WFZ5WVM4L2VzV2dDUTdwUmpqeGVZ?=
+ =?utf-8?B?NnppWnVzOGptcUErd0grUGdDRG1VUHBRN0s4a3lTRXl5SXJOV3BaenFMaGNU?=
+ =?utf-8?B?Z0Q4eXB0eDFSUWhkckpsakZTdDhKd3RudkpBUmdIdFptN0gyaVVQSzdKOFFr?=
+ =?utf-8?B?bkJRblA3V1gxaFAvdjVpT0cxd2FYL1RiQlREODZFNjhEclcrSG92WnpWeTlM?=
+ =?utf-8?B?by9KSmh3enEvcC9iZXJPVXFvNnJLSVlYOGVBREF3enNqT1RtbUk0T3FZMSts?=
+ =?utf-8?B?bjNOdGRjYUF0cmkyUzJVY0E4K3JKTXVWUHk4K2FsZlZPVVlUOWl5MmJFZkxH?=
+ =?utf-8?B?Yzd6bzQ4OWI3dGFiS3BSeVBEUWJndzJDeW1CM2NjU2t2V0wya3AvMitGUG42?=
+ =?utf-8?B?c3FlcWV2NUVmSFlLK0hyWmJoK29DSTlDZUVOUXFLanNQbDcyVG43THdWQXI0?=
+ =?utf-8?B?SHNrRFMyRHBVbUJ5WitpcTFNSHFCZVh0YnZUN1V5eEtBOSt5UWxFbVBoaEw4?=
+ =?utf-8?B?Q3hiMXh4ckkxWkxqaTlBbWMvN2g2ZU1WcXB3M1pkOFVyY00ycHYwbGRZZmxm?=
+ =?utf-8?B?OU1SaiswMTJzUEVjQi9PUmNpZzFsRmkwU3B0eW1mZkZ5c3FqRGVZWHRRazJi?=
+ =?utf-8?B?RUhKYUNKNGFXWlpkRnFkUmh4UlY2RXBTWmM2cm16TTIxQjlNdnpIOHpGUFZ4?=
+ =?utf-8?B?WVBEZXl0b0JkL1A0bW5zdHh6MWtOdGdXdUdQTnc4bTI3Y2l2Qnk3ZmR2bkUz?=
+ =?utf-8?B?TGc2c2s1Y2hjQlJ2MmNJK0loNVUxRHlnVDczcW9rdGpQenlvekdwRVRlUE9W?=
+ =?utf-8?B?b0k3UjFpeGxEemtmSEkxNW5lVE9ibmk0VjhLR092YUdRUTVxNmdlbjdjaVhB?=
+ =?utf-8?B?Y3IvV3VYcWxiK1FnRGFxN2s0MjhNNnJzWE1pcENCVi9DRTFjRjZzMWtnQ3lm?=
+ =?utf-8?Q?V6qKdT/lNT/NmbKoxo27Kb4=3D?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd0ad5f6-24ad-4420-aa6d-08de30f721c9
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12038.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 16:31:51.6277
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DZnpN1wL6zFwB0m8UAA7y9EwPileaKro4JLSWJGz9dKLG306CQkhjuXAuonyC15JAQ+z7tqvc0AsQYfysRS5t0+8SLuiYGekqHFY6d2yxhw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MRWPR04MB11519
 
+Hi Heiko,
 
---FtYVekWiQ6/kXxDO
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi!
-
-> From: Gergo Koteles <soyer@irl.hu>
->=20
-> The alert-slider is a tri-state sound profile switch found on the
-> OnePlus 6, Android maps the states to "silent", "vibrate" and "ring".
-> Expose them as ABS_SND_PROFILE events.
-> The previous GPIO numbers were wrong. Update them to the correct ones.
->=20
-> Co-developed-by: Casey Connolly <casey@connolly.tech>
-> Signed-off-by: Casey Connolly <casey@connolly.tech>
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Tested-by: Guido G=FCnther <agx@sigxcpu.org> # oneplus,fajita & oneplus,e=
-nchilada
-> Reviewed-by: Guido G=FCnther <agx@sigxcpu.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-
-Reviewed-by: Pavel Machek <pavel@ucw.cz>
-
-Best regards,
-     							Pavel=09
-
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -25,6 +25,41 @@ / {
->  	chassis-type =3D "handset";
->  	qcom,msm-id =3D <QCOM_ID_SDM845 0x20001>;
-> =20
-> +	alert-slider {
-> +		compatible =3D "gpio-keys";
-> +		label =3D "Alert slider";
+On 10/21/25 9:42 AM, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+> 
+> Enable the VOP and HDMI controller on the Lion-Haikou board.
+> 
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+> ---
+>   .../boot/dts/rockchip/rk3368-lion-haikou.dts   | 18 ++++++++++++++++++
+>   1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dts b/arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dts
+> index abd1af97456a..a8eb4e9c2778 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dts
+> @@ -58,6 +58,16 @@ vcc5v0_otg: regulator-vcc5v0-otg {
+>   	};
+>   };
+>   
+> +&display_subsystem {
+> +	status = "okay";
+> +};
 > +
-> +		pinctrl-0 =3D <&alert_slider_default>;
-> +		pinctrl-names =3D "default";
+> +&hdmi {
+> +	avdd-0v9-supply = <&vdd10_video>;
+> +	avdd-1v8-supply = <&vcc18_video>;
+> +	status = "okay";
+> +};
 > +
-> +		switch-top {
-> +			label =3D "Silent";
-> +			linux,input-type =3D <EV_ABS>;
-> +			linux,code =3D <ABS_SND_PROFILE>;
-> +			linux,input-value =3D <SND_PROFILE_SILENT>;
-> +			gpios =3D <&tlmm 126 GPIO_ACTIVE_LOW>;
-> +			linux,can-disable;
-> +		};
+>   &i2c_lvds_blc {
+>   	eeprom: eeprom@50 {
+>   		compatible = "atmel,24c01";
+> @@ -101,6 +111,14 @@ &uart1 {
+>   	status = "disabled";
+>   };
+>   
+> +&vop {
+> +	status = "okay";
+> +};
 > +
-> +		switch-middle {
-> +			label =3D "Vibrate";
-> +			linux,input-type =3D <EV_ABS>;
-> +			linux,code =3D <ABS_SND_PROFILE>;
-> +			linux,input-value =3D <SND_PROFILE_VIBRATE>;
-> +			gpios =3D <&tlmm 52 GPIO_ACTIVE_LOW>;
-> +			linux,can-disable;
-> +		};
+> +&vop_mmu {
+> +	status = "okay";
+> +};
 > +
-> +		switch-bottom {
-> +			label =3D "Ring";
-> +			linux,input-type =3D <EV_ABS>;
-> +			linux,code =3D <ABS_SND_PROFILE>;
-> +			linux,input-value =3D <SND_PROFILE_RING>;
-> +			gpios =3D <&tlmm 24 GPIO_ACTIVE_LOW>;
-> +			linux,can-disable;
-> +		};
-> +	};
-> +
->  	aliases {
->  		serial0 =3D &uart9;
->  		serial1 =3D &uart6;
->=20
 
---=20
-I don't work for Nazis and criminals, and neither should you.
-Boycott Putin, Trump, Netanyahu and Musk!
+This isn't alphabetically sorted (see &pinctrl right after) but I think 
+it's rather pinctrl being in the wrong location than vop* as all the 
+other nodes seem to be sorted properly, thus:
 
---FtYVekWiQ6/kXxDO
-Content-Type: application/pgp-signature; name="signature.asc"
+Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
 
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaS3CfgAKCRAw5/Bqldv6
-8np0AJ4g37/E7yC1TFrIYjmX1lFqPyanagCfavl9NgqGe6YnRqOeqERMZWE2skE=
-=M3u4
------END PGP SIGNATURE-----
-
---FtYVekWiQ6/kXxDO--
+Thanks!
+Quentin
 
