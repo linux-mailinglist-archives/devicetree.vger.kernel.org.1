@@ -1,114 +1,135 @@
-Return-Path: <devicetree+bounces-243303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBE8DC96933
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:10:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0BAC964C8
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 10:00:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60E3F3A1715
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:10:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AA843A409C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 09:00:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12CD30214A;
-	Mon,  1 Dec 2025 10:10:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 527C82FE04D;
+	Mon,  1 Dec 2025 09:00:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="M9saWfPc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DMHo4Tzl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973181.qiye.163.com (mail-m1973181.qiye.163.com [220.197.31.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADA029BDA2;
-	Mon,  1 Dec 2025 10:09:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC482FE042
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 08:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764583803; cv=none; b=p9qF+7zcXlpbNwJYTK1i4bX18iOzpatngY427XY6Sw55HE9/aZARtVAojhrThOmt+309pcxeHOD5kSUNarDOWFKqjsrplgnof3ZufIpyYGSgq2OYm4u17fjPwMjW0tTcNmxCqGPwQOKq5jqrlpllZZLp/Jo02aYpBdcEFkN4bcY=
+	t=1764579601; cv=none; b=kgSDvzdWFwDUr9hcLjg5M+mvL18NSPuGi0QT4gxYDiq80kfP0e8VPhR/KfgGMADpryig/eqhTAp6ESoAHl3qC3/cVkRMkb1FpDhZbhu/QMmN6caqjX1fZg4u+v/qVZ8lqFFTqlJmQQiVU+8FvPBb66S1mNPj9VsbqHIaLw6LNQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764583803; c=relaxed/simple;
-	bh=ee4ZcnGduBVW9fcxwoKnW8mXBae4FnxxWqgdbVDdjs0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uBpb4HjLrTQ08P/8S4Hz65x5YGrCkL8MnL5PT0c5HtzX3Ffpz/wqi7rXU55kMxgU2EmoT6jUBQdsopwzno2brC57IciQ452orwiYJ6htFhharmUno5WtfejVKMy1X8/JrhnhY4pv6UqS81rZiYU4xr4CIXDxVUGrKous+Bn9QCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=M9saWfPc; arc=none smtp.client-ip=220.197.31.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2b8268f6e;
-	Mon, 1 Dec 2025 16:54:21 +0800 (GMT+08:00)
-Message-ID: <8ac259e2-c075-4a29-827e-315ad84c6363@rock-chips.com>
-Date: Mon, 1 Dec 2025 16:54:20 +0800
+	s=arc-20240116; t=1764579601; c=relaxed/simple;
+	bh=OlvFf6fno+95o8YGvLqx4ArTG+OZ1gRz8l8cTez3L0E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nonptBEYxSzNDH8aYvnrjTm7NJzFOJM+KY0y7vXPH+cw/2sZJXGHx/yRTWU/sys/6LtQAydsiHmAZw+PCx97CrOCvHWX765s/AB8lxfwrnAczDGrXG/WQnkZk63mOfTu+mgxblj+agF3DjY9xXEI/nQhIIxrK9RE4XKV0obXXtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DMHo4Tzl; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42e2ce8681eso1058227f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 00:59:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764579598; x=1765184398; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=0cmFzub/Ypc6pcPBJnk2rpItrwarW2n0unLQwqzI/cY=;
+        b=DMHo4TzlGjF1qe7atplUJYMANvMX+ffn20Ir/XubBwH50cSx7VzXLhVulrrR02c8IB
+         0b0yUPBQqVVxd49K1VBGPooRqvLb34BUXRprh3ZmTADlXVSlAt9gP3doG5qAoSY7kSwP
+         T285X8+PexsTPSgoNKs6LsLtUWKhAPLPNRYStvgeNk7LfDP+fBJS2KS9IEzgSS7MrzWI
+         x8fit2Ip/SUKVPN67ua+v28kMlo0Qze/U2kzVxw1SBnfig9YImlfGiI0vebUSG8ePQuu
+         hMtlndHFLyzY5tyDX5/rsU376/DuNgpjoTXu5cWxhhk3psWOlUib3O/Gzt+ystzVXlr0
+         s61w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764579598; x=1765184398;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0cmFzub/Ypc6pcPBJnk2rpItrwarW2n0unLQwqzI/cY=;
+        b=EZpV5tHVxAPdGu77eHVYkGzHGUKnikSSFJ6ae2yvowaVEjVr4nQgv+vwcQoFY93cDM
+         Nnm+xOXmfhsGBKBtpzvxzYfJgPnY7Fn4epaViHJsis81Thf2oCnhY/+ITIkV4dyRSRnu
+         3/PL3jJETmXdMZOciV+dw61KHbH27l0LbF4GsHMamgmRPPdbKuugpIN8N5W1H92MfYiP
+         zOxKBAGg29G+4hqocMnN7kl5dDGu+IsQKpp4aP2Ll4Wpr4vUNLvGizHjDXoQnymSr1LF
+         zRuHhHoFF9rESUC3ngXDeVVxtNfSy8DZSqCxy+6agp65ga9ayjBxB06YxRyGpmw1GZNa
+         K4hA==
+X-Gm-Message-State: AOJu0YzCQewA67ddP7eKcMr1szaY/+MjxuGZfkWlzXWnQ/2ifuf3fCNm
+	lm8sHvyMZOrnMkH0Xwiv7TjC9BOzQOfDFuyfGx6X+sIYEKEHiSYoYOJf
+X-Gm-Gg: ASbGnctKzP0FqdcPEK7t011Wy+Ibn3RrO2Yq9HLiYMXqyRG+o43QcZQ2fR3R2eFvTqp
+	XPZyZ2XYaroe5Fjfyw8grLPK0UKLTez5/M0DHEpx196sBlVAHwntXqH3WG6myrFQQiy8doHelH/
+	jb0FAd1JI6E3r49emth0kK5wAzIUvZowjz9G52ZTPowhjaIFvZKCe+seZM/eC9p80Edd5SR8soc
+	4fh+2HuCShHKOn7q9iC/n8/7Q3nnM2ubpy0rxY9W9//z9oHb8ODBbAGrZlHlXYjlKaf0Y3cGyVN
+	Sq++wIoHIzTsQQgQ3eGjE4KT1H7nZH9GlVaQh9bK37YRsS9gkCTTUA5eyb7sWLNmdPP7TmUkdNk
+	Km7NiJLXy+jao3d/HglgiWkrp/GbvjjvnttZj/MKdzEA4wqwdqXlYWO2tm8z2yHLKz6R7EEu0+c
+	Gy0v1Ws9YWBlDsmA2djHehml3eIxY=
+X-Google-Smtp-Source: AGHT+IEOa736pXo0/WJD4acqB/BdSl155lhGxRAO7bq/cz6pjE/kshkcCp3gRvHiSfviAaM/CB44pQ==
+X-Received: by 2002:a05:6000:200c:b0:42b:4139:579e with SMTP id ffacd0b85a97d-42cc1d1983fmr38638725f8f.43.1764579597732;
+        Mon, 01 Dec 2025 00:59:57 -0800 (PST)
+Received: from owl5 ([2001:861:3201:3d10:4ab6:6efe:9b65:a6af])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1cab9af3sm24362786f8f.41.2025.12.01.00.59.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Dec 2025 00:59:57 -0800 (PST)
+Date: Mon, 1 Dec 2025 09:59:55 +0100
+From: Gary Bisson <bisson.gary@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, robh@kernel.org,
+	krzk+dt@kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: vendor-prefixes: Add Ezurio LLC
+Message-ID: <aS1ZCy2G03zZLH6D@owl5>
+References: <20251201084140.376058-1-bisson.gary@gmail.com>
+ <20251201084140.376058-2-bisson.gary@gmail.com>
+ <f9e30721-a636-41dc-93ab-ca960e0415ab@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iommu: rockchip: Add support for
- multiple interface clocks
-To: Krzysztof Kozlowski <krzk@kernel.org>, Chaoyi Chen <kernel@airkyi.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251128071322.92-1-kernel@airkyi.com>
- <20251128071322.92-2-kernel@airkyi.com>
- <96958186-0e46-4606-ae36-239112eb31ea@kernel.org>
- <98a847f7-0880-4e5b-a946-26dc81fde5d2@rock-chips.com>
- <491560f1-ee50-43ef-b258-adb5859cb05a@kernel.org>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <491560f1-ee50-43ef-b258-adb5859cb05a@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9ad91ebc9f03abkunm0983dea69e84a6
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQx5NTFZJHU9PGU8dSEtJGEtWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=M9saWfPcwmCgvCUeKRaAFxKgt02jlM09r19UmbH+tO5Vh9xp+DZUinmwH87OwuvOv7ArvxSu26Q2PGUWibZoa2eqv1u+tJBntgnKHci8pj9M0HzAWvuG/G1NEwv+jnOMDlsOBdlu+dm3tqXnPqdyfBzNR+nbXinw18D0jtUQZHU=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=QPt7Lzjv5NOO9AmXGaEbndBUfDWG3N+K6MGje1fGLfs=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f9e30721-a636-41dc-93ab-ca960e0415ab@kernel.org>
 
-On 12/1/2025 4:39 PM, Krzysztof Kozlowski wrote:
-> On 01/12/2025 09:10, Chaoyi Chen wrote:
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          items:
->>>> +            - const: rockchip,iommu
->>>> +            - const: rockchip,rk3568-iommu
->>>> +    then:
->>>> +      properties:
->>>> +        clocks:
->>>> +          maxItems: 2
->>>
->>> Why this is unspecific now? Please look at other examples how it is
->>> done, e.g. Samsung clocks.
->>
->> I looked at some examples. Maybe it need to set both minItems and 
->> maxItems here? I'm not sure I understood your point.
+Hi,
+
+On Mon, Dec 01, 2025 at 09:50:07AM +0100, Krzysztof Kozlowski wrote:
+> On 01/12/2025 09:41, Gary Bisson wrote:
+> > Ezurio is the new name of Laird Connectivity after it acquired Boundary
+> > Devices.
+> > 
+> > Signed-off-by: Gary Bisson <bisson.gary@gmail.com>
+> > ---
+> > Cc: robh@kernel.org
+> > Cc: krzk+dt@kernel.org
 > 
-> Individual items were described before. Now they are not, so first item
-> can be anything.
+> Why only two of us? Please don't work on old kernels, some ancient code.
 > 
-> You need to define the list. If the devices have completely different
-> clocks, then you would go with Samsung approach. But devices should not
-> have completely different clocks, so you should define common parts in
-> top-level and just narrow number of items here. maxItems is enough in
-> such case.
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC (and consider --no-git-fallback argument, so you will
+> not CC people just because they made one commit years ago). It might
+> happen, that command when run on an older kernel, gives you outdated
+> entries. Therefore please be sure you base your patches on recent Linux
+> kernel.
 
-Ah, it looks like Samsung's clock bindings rarely have common parts.
-At present, there are indeed some common parts for the IOMMU clock,
-but I'm not sure how other variants will change. 
+Actually I'm using master so the get_maintainer.pl output is fine, just
+wasn't using b4 and addding the CC myself, will resend with b4 and will
+update the patches per your review.
 
-I'll give this a try, thank you!
+> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+> people, so fix your workflow. Tools might also fail if you work on some
+> ancient tree (don't, instead use mainline) or work on fork of kernel
+> (don't, instead use mainline). Just use b4 and everything should be
+> fine, although remember about `b4 prep --auto-to-cc` if you added new
+> patches to the patchset.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
--- 
-Best, 
-Chaoyi
+Thanks for the quick review of the series.
+
+Regards,
+Gary
 
