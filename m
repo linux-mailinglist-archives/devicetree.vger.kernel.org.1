@@ -1,176 +1,252 @@
-Return-Path: <devicetree+bounces-243341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB482C9713B
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 12:38:59 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF83FC9715A
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 12:40:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F30603A4597
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 11:36:12 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7664434592C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 11:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04803275B0F;
-	Mon,  1 Dec 2025 11:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F81F26FA52;
+	Mon,  1 Dec 2025 11:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YMYy1+4a"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="K548kYGc";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ECj2RayR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E0F52737E7
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 11:35:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E19926CE06
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 11:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764588957; cv=none; b=YtJdEn2x+KbwLk67c9slUpX6iRcfw/ufQYWIt/+CgMNz3b1rlojmjdECisifiVSFcguunrDznx/66itfjcaXjyl20p8rcYx75Db3r++PGaIXIyvULRPE4l4Tr1WOj11m9uvDM+MLTCUT1KzRKgjFEEdU3RkOOA3fQ3D95oQ109U=
+	t=1764588953; cv=none; b=p4xtGGEXvmtJ0yKHlJ8k1X9CNC1W0weslqa2UfW3pirFsyyDnm0t8tYUmfwUO1FoVw/Qyj0XEY6gL7+I452vnutdCNB2AXJYj+3Fl2zJBLwB6C3+KqkLOLJjYlHQxJNaI8+DUQMhWmd48si5rlKFLADDPJJgKT3aY7i5YqZwHCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764588957; c=relaxed/simple;
-	bh=jit6SwpYSZg7MHOqsz1YeBvIKc+w2wXoHi7Wzy+qMew=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=nQ6WB2Y6p8MC9yIHd4cCqWQXEonxtgHW8bQXA1ZW00QYTTlKkUusqDN42sZxTW3BF3tTd6ditkMV98zAGu26Y4bBz2RSuxkCWlcGSUuCSSkFWPwos4tXnAWSKYhIDaniuv5LuPdjJleLhJfiaWY2PgYZk5KD+528h7/mgdiyx4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YMYy1+4a; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477b91680f8so35669555e9.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 03:35:55 -0800 (PST)
+	s=arc-20240116; t=1764588953; c=relaxed/simple;
+	bh=bi1e3XR7pfCOOYVxdQSZ0zKYYdXXaCUk2xE3m1Eq04s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aKVxaYBp0q1elcc+5ZywC1I2UTbKOzTd9hGsg9nFJZ7zAO0vA2MPIdaBDtm4XrC3Xii4OvXa2AYL4mWKbVKc99gWlObLFtJiFK0PMlK7KvNTCukMkahv1P7mGcICxGCQXc93+5YNe++9Q21TZ0fN99MSxCej9dGvd/Nhp7/ZVnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=K548kYGc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ECj2RayR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B19rckA212781
+	for <devicetree@vger.kernel.org>; Mon, 1 Dec 2025 11:35:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lCWVNvn+OqeHLRLNj//Ta+HiE6qf46ogB4coZkDMqd0=; b=K548kYGc9YUcNeYk
+	8Ct9OIa8h6FE4P0OtDUrpW+iMUuZTCX9ttQcZxDuWCOP8KoZ7lwQN/5AkPuN++Lt
+	RN/9dIac29sQX0eAqCkEmyK7qyPXRwOx9uGfM+qMJeBHkchngnw3DHYZ3j+3oDCc
+	+im74SPrzRLZHlaP6GqHuk4C08u8X0JtVXhFKHrlycSN7J6lQfoJ1jLR0RBCpmxX
+	3ML3M3DvdksJEiu6Ku3in+uMsebXvSDqdgXu0uXgRQcxE1oKxnil2QiTTqknCfQR
+	xKXFmMuRENWSHsA7Ct85NsljrnigSpY4GBO+PrDWuFRKgKtYwXDiSbjVlmsjTlpt
+	dInO/g==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4as8sj08qy-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 11:35:50 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-343e262230eso4420315a91.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 03:35:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764588954; x=1765193754; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=t7olQJkRc4y8ZtsZKoLuuqyEd4qRhINko81csOamj94=;
-        b=YMYy1+4aNWyCVts4WlbMcu7RCAn+BJyXPrpVAolaZLVidllJyI5VwWgDePbdsxNL5G
-         QULspwk8/rf2lGYxtJTpscc5WSTDNiRCXOBCIVppn/2xd7e6+3n+bLqJJlYi6d5IXs6E
-         gKctOqN1kk/XliyCe1AbxrHi28mHOormcVtm1yI/jAXb1n6MDIhkCtLsvjYDG4l9ougq
-         MmHhkkkIkp87R/lMuL1Mm6m4admw+a+fiwP9NOi11u1glnc0f0swf9slVWGZWQfJcUFo
-         /YY+6bcvgvulakpPzj15fjd3afhBUGF0HZk5ruVZjIpdzkPMQfHwQ6A95BCQjwf1+vOj
-         O1tQ==
+        d=oss.qualcomm.com; s=google; t=1764588950; x=1765193750; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lCWVNvn+OqeHLRLNj//Ta+HiE6qf46ogB4coZkDMqd0=;
+        b=ECj2RayRFz5+w6XESlBElIEPh+f7ohRoC8vpDmWvSw1bd5Ide2TgOA12XKy/gDZra8
+         tRqcnuqP+X01u8+ebdDLJcb+lF52g1QeN1wIKUiarXTe8O5CV4RPB59iWr9VTnaedPSG
+         SUmBDgaehP0BZ8GTYteqascaMd/LG1WcdPq3u3Ogc2Pvduulb+w9xbxqpk12vBMUAAA9
+         7HU2vBiebKpOBRhsl14L/HKJUrzZw+V5D9VTfaBz9zIvnOeJfcRwtJIYhQbrOZ//kjIE
+         7PwFw9lTdWzbBNpD/hKv3d0taqu2ylZqsJflpvellAni1GlGyOBzajmzmnMYEanJJfRm
+         fegg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764588954; x=1765193754;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t7olQJkRc4y8ZtsZKoLuuqyEd4qRhINko81csOamj94=;
-        b=HKhhwssVHyO0LSH3wfY6DT3SqsYQMzgekNAPc+c29Qf546SyvPiXR92tpfYeR8hkz6
-         ulRzCtZ3m9ZH7CDpK0Nq2hewRzyArG+5LnNIG2pPOzt8Ejj8+jUbgpBcWKlNPWxRTLCe
-         UnDGbjCnG4PQkckBRmSkWvv2TkGj1djpMsapu0Maugrf/u7qLd/wKofH7E5D3/RIY6qQ
-         nj95X9zK968uYMuUIahEcJGAlN9jFQM4kVcVGGb7umwPPP3gTdL14CQzNTPsAPtkk7bT
-         GcfDN1aX3hjUCVn0ZZNe7q950HLMxDz6Ali6sdo2EyM2X82d/KeKyOD9wikqQC6QhyOu
-         Xnjw==
-X-Gm-Message-State: AOJu0Ywhv/BMOlbvnZj86UqHPuT4yWh8hMpRWYUWfKpFXCAk7BFDI3UT
-	Av43ZliqGpFvs4GXZt++BVpg7FIxs99bcHzoIHaulTOvzpE/KZrRuohi
-X-Gm-Gg: ASbGncvBawScPUHF0mx+6EilSc1rB1nueG1UcboWl8bCfqZ6UDenXY0/6RCrzS2HBHn
-	Ca7TUSFVqwRxlJe/KsUQ8RLpd1Xd78cIFkeB5PvVyGBYTvdkRTHog567iMQHzRUltM0jRkgg/uo
-	7vcE1F7aiIKehvLP0stANOOv7KKx4/aSGcmnUqINSSb8tG8jSG32s6FGO9rqjhdTY0YGxxqL+SB
-	JWF2iPL/VPjDWVzM1WneOSbn2JoxtLg0NFceQDe5xY5uXZ7S9XcA+LYAvHgr/VHyV7dSBkVQNdt
-	QmlLC/CRTSaSjGuuFkvtgFl6XpHVi5XRiSZreZTaAKTNALVuJ9yeZyxM9UCAbNPyUlyv3cYPY0K
-	4dSqMwVvvRC3G8bsVCpQfhnMeiMJ3MgpRtAxiDZGtu2LKf2642IZo7AheYrhUjeM/3Wmkcc1oZz
-	TZS2xaxrmkU3JzISWg/2CS+TudRLX4cFKNCIenCuJgcwr/lwem2j7y+kwSHI4jAqA=
-X-Google-Smtp-Source: AGHT+IGEmdMZ0R3tt5yY9NXh82qqcwbZBrGNS8WUEWJTg2IQ0I0mwwWROWpuFC9/qp0jUemfc1nANg==
-X-Received: by 2002:a05:600c:1c20:b0:477:9d54:58d7 with SMTP id 5b1f17b1804b1-477c1131d60mr402688025e9.29.1764588953844;
-        Mon, 01 Dec 2025 03:35:53 -0800 (PST)
-Received: from alchark-surface.localdomain (bba-92-99-175-128.alshamil.net.ae. [92.99.175.128])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47913870b38sm92507995e9.15.2025.12.01.03.35.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Dec 2025 03:35:53 -0800 (PST)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Mon, 01 Dec 2025 15:35:38 +0400
-Subject: [PATCH v2] arm64: dts: rockchip: enable UFS controller on
- FriendlyElec NanoPi M5
+        d=1e100.net; s=20230601; t=1764588950; x=1765193750;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lCWVNvn+OqeHLRLNj//Ta+HiE6qf46ogB4coZkDMqd0=;
+        b=QAFCvO0l2qPUk0+JCjj2ffd5duIB8Euc+0lpVdn7lRxRuk7veb6J9Pxo9TkFQAXBhL
+         5LQV8AsJf2OHGP5nNkG7uJyji9QY9q1i5qvFbf7tZO2ng5peT5DFM5LXyMjJf4VVIkaC
+         NG+NYab4HVHfXHJkQYe0swrTyTQlzmt8smYVrszm5RU71twO9n3ilHsVhM5Z/spHtQNk
+         ucF2zWQub43cl5jgFhXPkIGgYs0n7eK9hQZXzI/6meuB3h0+gEG0pX3tZ5fCapJV4kVN
+         AhERw3ahNJDYmKLYjlSCiUBXuc41ZUGTEmX4qEDF6aQxc/I0cTrzNctIZCrdMgP94uK2
+         ayQw==
+X-Forwarded-Encrypted: i=1; AJvYcCXLA7kcD9zrQszEWClDq0LHHCiFVfVCmbd8WssR8yTfSoXi0VKEQAAtrWFLnrycdD+hn5jMubQfP7ZK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLf6kKXopF6kVVKoDMcT8tEjnA7FbRv07MoBenTEjiLrzKL+No
+	qN0JQdFOdQf0tgFMxPQfRGFe/c4U9ZRXKw3/m1Hzyt1W4Exlav2TKZ8gBlEbvHG/rq0vWGO2iTv
+	7HNgpQGzCN4qI5AHbK4uKSiMCZBLRnGlCpDZo4cLVzEx63Tk5qX4wCq+z3we9z0nf
+X-Gm-Gg: ASbGncsTdtqLsgjA6I6lHyxA24CZKYxvAEX9907kNpGKKOKOeCdG/IYqir0X76x7ex2
+	7vs2ySGRfZnPM+lHR70cfXiDV2lmv7pj3IzBvgmxICVTQpvttnLU8OK/9WCU6lzSxvmvDenRSSE
+	yhxWpjUw6qN2A5Yo4aVmQyMaJpy/NUN9qTc9GYFH1pX0vssAlxE8l5lHjSaXyJNahhr+RCudIGV
+	wrqDL6oh3vucEGXtfsVXev8+jB8esKHbo5YxHnleEZloKJY5n0RA0cQcF7Lstkpy0+TavHYitPj
+	7XBuxySWtuPEtlkEILhWKvCqmUW6wK9yUX8tkRupu0eP5vNlGcXSvNt0C8GmEfhohF4ABF6V/LB
+	uRHRlBNqLaQfDJVL3EIrqCWmw7w8ujLVmLa2oGA==
+X-Received: by 2002:a17:90b:3a4e:b0:341:2150:4856 with SMTP id 98e67ed59e1d1-3475ed50953mr27032074a91.17.1764588949822;
+        Mon, 01 Dec 2025 03:35:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE7FC+u+ZKqgI05yrxKREm/4X7WqyMNU6LzamBjg/C4D5mxmTtjxWlSovTOcCMbON9ZrQPULg==
+X-Received: by 2002:a17:90b:3a4e:b0:341:2150:4856 with SMTP id 98e67ed59e1d1-3475ed50953mr27032051a91.17.1764588949202;
+        Mon, 01 Dec 2025 03:35:49 -0800 (PST)
+Received: from [10.218.43.241] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3476a546ed0sm16660353a91.3.2025.12.01.03.35.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Dec 2025 03:35:48 -0800 (PST)
+Message-ID: <f96ed414-f69b-4eb6-91d5-c1db7d2a87be@oss.qualcomm.com>
+Date: Mon, 1 Dec 2025 17:05:42 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251201-nanopi-m5-ufs-v2-1-ece9c0ee17c4@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAIl9LWkC/3XMQQrCMBCF4auUWTuSGYgRV95DughJ2g7YpCS1K
- CV3N3bv8n/wvh1KyBIK3LodctikSIot+NSBm2wcA4pvDaxYE7HBaGNaBGeNr6Gg5oGdVkbRxUD
- 7LDkM8j68R996krKm/Dn4jX7rP2kjJFSer560McTuPs5WnmeXZuhrrV9iQV6rqgAAAA==
-X-Change-ID: 20251127-nanopi-m5-ufs-52f2c5070167
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2098; i=alchark@gmail.com;
- h=from:subject:message-id; bh=jit6SwpYSZg7MHOqsz1YeBvIKc+w2wXoHi7Wzy+qMew=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWTq1vaybzo1+9jx0qZ1ee+ZUyuvfLn0yekVd+6CyGDre
- 9FCHAtudZSyMIhxMciKKbLM/bbEdqoR36xdHh5fYeawMoEMYeDiFICJZBxn+F+o2aN9VcvO/P8J
- 8y+OqYce/RHVeqN16r3RDe+Z3ZLN+jMZGX7Mu1lXHbDeUqW48E/atZTIR3KvWJXPLghN7jWIMK7
- JYwcA
-X-Developer-Key: i=alchark@gmail.com; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: usb: qcom,snps-dwc3: Add support for
+ firmware-managed resources
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: jack.pham@oss.qualcomm.com, faisal.hassan@oss.qualcomm.com,
+        krishna.kurapati@oss.qualcomm.com, andersson@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konradybcio@kernel.org>
+References: <20251127-controller_scmi_upstream-v1-0-38bcca513c28@oss.qualcomm.com>
+ <20251127-controller_scmi_upstream-v1-1-38bcca513c28@oss.qualcomm.com>
+ <e9363a14-183e-4d12-91b0-1ac5655e6e90@kernel.org>
+Content-Language: en-US
+From: Sriram Dash <sriram.dash@oss.qualcomm.com>
+In-Reply-To: <e9363a14-183e-4d12-91b0-1ac5655e6e90@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: mpTh2uhyXPQyEb0guAjOrndg98MJmDyt
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAxMDA5NCBTYWx0ZWRfX/7OC5109Gzxq
+ QXht4Q1PD2L08D3gbLo24PKA3ppaxKTKjB1W1SJs/11xnYxLzuITL4em/xPwabGkBGw5+01GLmx
+ 2vh7skWIvZG2RWwmrdMg4WPqdsREOn8v/jPo/cLMmUGh3r6ffMsFCvc2KlvLPp4Lbnl7vlMcLI6
+ dbiU6MVfRCyR0DggzpRyaZt0qtNd2RLLY2S8jWIA0MdhqWeGB1j2taQ3lILugphqIOm8GievZME
+ p1PrCcaKna/7zGHAbMJQByTmksPxmsgw/dO9tSzx90BWAfNAVdooCIHoSzYPdpsTWUItr/Yw1kT
+ GQ2/aLPZrQeWHQwiUt5z++/ILCMEaKStgCNoUcb2G5H3Pfp9UHxDI0WwWXp/yT3ysFM0yneWYlH
+ d4nkjGLDyag5urYHgNHmUQNMmMRGKQ==
+X-Authority-Analysis: v=2.4 cv=Lr+fC3dc c=1 sm=1 tr=0 ts=692d7d97 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=6_TIFzAPhmGdkGW-2bEA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-ORIG-GUID: mpTh2uhyXPQyEb0guAjOrndg98MJmDyt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 adultscore=0 malwarescore=0 priorityscore=1501 phishscore=0
+ spamscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512010094
 
-The NanoPi M5 board supports pluggable UFS modules using the UFSHC
-inside its Rockchip RK3576 SoC.
+On 11/27/2025 5:43 PM, Krzysztof Kozlowski wrote:
+> On 27/11/2025 11:31, Sriram Dash wrote:
+>> On Qualcomm automotive SoC sa8255p, platform resources like clocks,
+>> interconnect, resets, regulators and GDSC are configured remotely by
+>> firmware.
+>>
+>> PM OPP is used to abstract these resources in firmware and SCMI perf
+>> protocol is used to request resource operations by using runtime PM
+>> framework APIs such as pm_runtime_get/put_sync to signal firmware
+>> for managing resources accordingly for respective perf levels.
+>>
+>> "qcom,snps-dwc3-fw-managed" compatible helps determine if
+>> the device's resources are managed by firmware.
+>> Additionally, it makes the power-domains property mandatory
+>> and excludes the clocks property for the controller.
+>>
+>> Signed-off-by: Sriram Dash <sriram.dash@oss.qualcomm.com>
+>> ---
+>>  .../devicetree/bindings/usb/qcom,snps-dwc3.yaml    | 173 +++++++++++++--------
+>>  1 file changed, 111 insertions(+), 62 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+>> index 8cee7c5582f2..d2d1b42fbb07 100644
+>> --- a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+>> @@ -12,68 +12,65 @@ maintainers:
+>>  description:
+>>    Describes the Qualcomm USB block, based on Synopsys DWC3.
+>>  
+>> -select:
+>> -  properties:
+>> -    compatible:
+>> -      contains:
+>> -        const: qcom,snps-dwc3
+>> -  required:
+>> -    - compatible
+> I wonder why do you think dropping some code is fine...
+>
+>
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,sa8255p-dwc3
+>> +          - const: qcom,snps-dwc3-fw-managed
+> No, you cannot keep coming with more generic compatibles.
+>
+> If you want generic a compatible, you already have - qcom,snps-dwc3 -
+> and that "generic" part already said that everything is compatible with it.
+>
+> Now you claim that existing generic compatible qcom,snps-dwc3 is not
+> generic enough and you need one more generic compatible.
+>
+> Next year you will say that two generic compatibles are not generic
+> enough and you need third generic compatible.
+>
+> In two years we will learn that three generic compatibles are not enough...
+>
+> I think I was complaining on the lists a lot on this, so I am surprised
+> it is still coming back.
+>
+> So no, you cannot claim that you need more generic compatibles because
+> one generic is not generic. NAK.
 
-Enable the respective devicetree node and add its supply regulators.
 
-Link: https://wiki.friendlyelec.com/wiki/images/9/97/NanoPi_M5_LP5_2411_SCH.pdf
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
-Changes in v2:
-- Describe UFS supply regulators
-- Add link to schematic
-- Link to v1: https://lore.kernel.org/r/20251127-nanopi-m5-ufs-v1-1-0d28d157712c@gmail.com
----
- arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts | 27 +++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Hi Krzysztof,
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
-index cce34c541f7c..4f2930cff70a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts
-@@ -110,6 +110,24 @@ vcc12v_dcin: regulator-vcc12v-dcin {
- 		regulator-name = "vcc12v_dcin";
- 	};
- 
-+	vcc1v2_ufs_vccq: regulator-vcc1v2-ufs-vccq {
-+		compatible = "regulator-fixed";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-name = "vcc1v2_ufs_vccq";
-+		vin-supply = <&vcc5v0_sys_s5>;
-+		en-supply = <&vcc_3v3_s3>;
-+	};
-+
-+	vcc1v8_ufs_vccq2: regulator-vcc1v8-ufs-vccq2 {
-+		compatible = "regulator-fixed";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-name = "vcc1v8_ufs_vccq2";
-+		vin-supply = <&vcc_1v8_s3>;
-+		en-supply = <&vdda_1v2_s0>;
-+	};
-+
- 	vcc3v3_m2_keym: regulator-vcc3v3-m2-keym {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -906,6 +924,15 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&ufshc {
-+	vcc-supply = <&vcc_3v3_s3>;
-+	vccq-supply = <&vcc1v2_ufs_vccq>;
-+	vccq2-supply = <&vcc1v8_ufs_vccq2>;
-+	vdd-hba-supply = <&vdda_1v2_s0>;
-+
-+	status = "okay";
-+};
-+
- &usbdp_phy {
- 	status = "okay";
- };
+understood. Shall i make it platform specific then ? For example,
 
----
-base-commit: 7d31f578f3230f3b7b33b0930b08f9afd8429817
-change-id: 20251127-nanopi-m5-ufs-52f2c5070167
+Say, For x1e80100, where platform resources are not managed by firmware,
+use compatible = "qcom,x1e80100-dwc3", "qcom,snps-dwc3";
 
-Best regards,
--- 
-Alexey Charkov <alchark@gmail.com>
+For Soc 8255p, where platform resources are managed by firmware, still
+will use the generic compatible say,  compatible = "qcom,sa8255p-dwc3",
+"qcom,snps-dwc3";
 
+
+and in the driver, we will handle with the platform specific compatible.
+
+static const struct of_device_id dwc3_qcom_of_match[] = {
+        {
+                .compatible     = "qcom,sa8255p-dwc3",
+                .data           = (void *)true,
+        },
+        { .compatible = "qcom,snps-dwc3" },
+        { }
+};
+
+
+For any other Soc where the resources are managed by firmware, we can
+still reuse the compatible qcom,sa8255p-dwc3
+
+say compatible = "qcom-foo-dwc3", "qcom,sa8255p-dwc3", "qcom,snps-dwc3";
+
+compatible = "qcom-bar-dwc3", "qcom,sa8255p-dwc3", "qcom,snps-dwc3";
+
+...
+
+
+>
+> Best regards,
+> Krzysztof
 
