@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5169C98873
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 18:32:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC706C98897
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 18:33:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5D09934523B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 17:31:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 51AC44E1CA0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 17:33:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E90338591;
-	Mon,  1 Dec 2025 17:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB5A335BDB;
+	Mon,  1 Dec 2025 17:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnwBOr4a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r/yD3p2p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139BE335062;
-	Mon,  1 Dec 2025 17:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90DBA21CC4F;
+	Mon,  1 Dec 2025 17:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764610235; cv=none; b=E8/luU+7Zb3+/RkgY23j7uXX2GAWnmVWJMct59wKU+mcOMzyVh9Zyv19uRRH7Ci4dhyZ596G8JPy3BainZE0aRv1Zk09tKlgJBhZi1HrlebMgvrtD1BleoJKeDu5OYV7Klb7UeoKayWmg7yBplRpCdy8b1UeRQhgdIfUFndRoFI=
+	t=1764610393; cv=none; b=e2FLNzv0mvabsUNENHi7BtNFVi2gqIxNqgGoWPGB/8SE4U7kRS5/blnMvvfDASNV7zT9iuIPFhXsylHkGK9yMY9UW4CSAdUbiCsG8JfGnqnmVJBxPIGL/AN84esW/I1FFXdU3Mu/0uDKEwQ7cxy2e/mXl/VQXl8gVU+4BAx9kXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764610235; c=relaxed/simple;
-	bh=gm3ez3kM7vGsELEEjn8SG3yKSxT4oc1wtBtWenupaKI=;
+	s=arc-20240116; t=1764610393; c=relaxed/simple;
+	bh=vZzWjqKwBCifJUL7S/hk8AvPEyWly2FaYZdeQ4GB3io=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tvVfMSJAM66E07Zl97NPzLQLLSPskw+2GvFGFgkVnXwjtHR+eMViVqYlbrAFJrE1J0lYAsC5OJVpo1izNbwA3yRQh2vBgmZfcIdmZBa3TxfIZb+bAvO71H1oHvI19p11L2Pa2lXxX5PR7iuV2OxFwZ5iYW6GEtf16O+qT0EQI6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnwBOr4a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BE41C4CEF1;
-	Mon,  1 Dec 2025 17:30:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jQHxaldWrl0cvn4FfRwQERpbPtSVWZPvE9RzDyw71fpMl8mjkobraicnJY1eikuB+lmYD9KSxVW7yGm4Aj0LaFLEdfe+CLPBqF7ivMwSMxfaRlI2pjfeTN3m5xgfloITN5nUBBQAdjoDjfzWcHJIylCcFioLGxH+M9tyZpCiiKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r/yD3p2p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B67D4C4CEF1;
+	Mon,  1 Dec 2025 17:33:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764610234;
-	bh=gm3ez3kM7vGsELEEjn8SG3yKSxT4oc1wtBtWenupaKI=;
+	s=k20201202; t=1764610393;
+	bh=vZzWjqKwBCifJUL7S/hk8AvPEyWly2FaYZdeQ4GB3io=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BnwBOr4aTj9XpmaVpbxbADaunaLiatQ0mnOigHtG7cVclQOqzuo4HFp8wmZjWHS1u
-	 C0wBTFXQjaHytf6VdBI4+EgEYsSWY8pPoNnbZjhtcdcPHthVPIgcrpwCE36Hc26+pv
-	 96RADEJhNLBNsoPI7nDjR8GYZAmoG3Th2ICN7ASDmpGNjRLYzMajxTLFY9RGHj5JLD
-	 DAU6qD91iB5DHnZnU8l1GBhYMWDjyt9JKOunh/XKXxcULTx7jrP3tDK3zBS9OXB0/O
-	 d5MgKzuHoapYZXoITFS4/H3cB74HahawnQAyDz5vE3A5LlqYzLtmqnvM1CZcQiynga
-	 EBtH7ttjSaARQ==
-Message-ID: <0ac37150-85f7-4098-b2e5-d43958c0d08d@kernel.org>
-Date: Mon, 1 Dec 2025 18:30:30 +0100
+	b=r/yD3p2pnPlaBW2Ui94UJkgH+PqfrB0VuDESq6+x1dgsNIs6+Ey+jR6nxWu2gs7vb
+	 peGCeiu+DsZiGhIHo8P6Xq7xDJ5N5QzEghAdWIKRL18AuAD0xJ+lmlFoMU7FFpTAgD
+	 3exHo19lEKixc6kgJuEmGtfWImUIdX4Z+mKcnd6jtCcdDkhuT0V8oW2hll9bfAmEzD
+	 ytx20NxLBInYakGHg7wJAShUpWtTW2vaWrvZKUl8Jt/QGWx86EEm4SqIWV3AZTvJuX
+	 S0T4S/eXZCycGCTXGiSWPoL+CD57MxXeh0I2dDliQw9ReO0os/Jypoe33AbizOjBet
+	 OYM1zeUbZ4evw==
+Message-ID: <16bb96e9-c632-457c-8179-82c17bd2a685@kernel.org>
+Date: Mon, 1 Dec 2025 18:33:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: mfd: syscon: Document the GPR syscon for
- the NXP S32 SoCs
-To: Dan Carpenter <dan.carpenter@linaro.org>, Lee Jones <lee@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>,
+Subject: Re: [PATCH 3/4] dt-bindings: net: nxp,s32-dwmac: Use the GPR syscon
+To: Dan Carpenter <dan.carpenter@linaro.org>,
+ Jan Petrous <jan.petrous@oss.nxp.com>
+Cc: s32@nxp.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linaro-s32@linaro.org
 References: <cover.1764592300.git.dan.carpenter@linaro.org>
- <df275a4bbf3fa4d4f0a622cd06d00ebdf847563f.1764592300.git.dan.carpenter@linaro.org>
+ <333487ea3d23699c7953524cda082813ac4d7be3.1764592300.git.dan.carpenter@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,55 +107,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <df275a4bbf3fa4d4f0a622cd06d00ebdf847563f.1764592300.git.dan.carpenter@linaro.org>
+In-Reply-To: <333487ea3d23699c7953524cda082813ac4d7be3.1764592300.git.dan.carpenter@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 01/12/2025 14:08, Dan Carpenter wrote:
-> The NXP S32 SoCs have a GPR region which is used by a variety of
-> drivers.  Some examples of the registers in this region are:
->   * DDR_PMU_IRQ
->   * GMAC0_PHY_INTF_SEL
->   * GMAC1_PHY_INTF_SEL
->   * PFE_EMACS_INTF_SEL
->   * PFE_COH_EN
->   * PFE_PWR_CTRL
->   * PFE_EMACS_GENCTRL1
->   * PFE_GENCTRL3
+> The S32 chipset has a GPR region which has a miscellaneous registers
+> including the GMAC_0_CTRL_STS register.  Originally this code accessed
+> that register in a sort of ad-hoc way, but we want to access it using
+> the syscon interface.
 > 
-> Use the syscon interface to access these registers.
+> We still need to maintain the old method of accessing the GMAC register
+> but using a syscon will let us access other registers more cleanly.
 > 
 > Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index 55efb83b1495..6e6b92227092 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -102,6 +102,7 @@ select:
->            - mstar,msc313-pmsleep
->            - nuvoton,ma35d1-sys
->            - nuvoton,wpcm450-shm
-> +          - nxp,s32-gpr
->            - qcom,apq8064-mmss-sfpb
->            - qcom,apq8064-sps-sic
->            - rockchip,px30-qos
-> @@ -212,6 +213,7 @@ properties:
->                - mstar,msc313-pmsleep
->                - nuvoton,ma35d1-sys
->                - nuvoton,wpcm450-shm
-> +              - nxp,s32-gpr
->                - qcom,apq8064-mmss-sf
+> diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> index 2b8b74c5feec..17f6c50dca03 100644
+> --- a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> @@ -32,6 +32,11 @@ properties:
+>        - description: Main GMAC registers
+>        - description: GMAC PHY mode control register
+>  
+> +  phy-sel:
 
-You should have Soc specific compatible, not family one, so s32g2 and
-probably separate s32g3.
+Missing vendor prefix.
 
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - description: The offset into the s32 GPR syscon
 
->                - qcom,apq8064-sps-sic
->                - rockchip,px30-qos
+No, first item is not the offset but the phandle. You need syntax like here:
 
+https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+
+The description of the first item (unlike in example above) should say
+what is the purpose, how this device is using GPR region, what is it
+needed for.
 
 Best regards,
 Krzysztof
