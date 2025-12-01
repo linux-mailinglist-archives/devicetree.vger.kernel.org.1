@@ -1,171 +1,106 @@
-Return-Path: <devicetree+bounces-243526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ACE4C98B6B
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 19:28:57 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E17E7C98CD4
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 20:04:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D30AB3A3B1F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 18:28:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F2E374E2F88
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 19:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D724333890D;
-	Mon,  1 Dec 2025 18:28:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700BB22D780;
+	Mon,  1 Dec 2025 19:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="xYA6t3rF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZfEFJfVW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE3E338596;
-	Mon,  1 Dec 2025 18:28:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4069B21883E;
+	Mon,  1 Dec 2025 19:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764613732; cv=none; b=IFZjwogdkX2p8lSOO2Df3VknbrmiPx/09aEE1aaGfHS7Dn9JvL70zzIkz+2Vzmuv5bYsH0pYN0rZPbRkATu3Qh+Lvsex9Y0Fel4m0R2QiabZduIgHMCxtUl0AO/cBAfjUsYHd0/kpIbnpIm+IcejC0mzBo3HLIN8Iw2tjDawyTY=
+	t=1764615841; cv=none; b=bfdFaH9NvUOp3syju4MfCGDMwdJh6wGtPbX1UJjz/Z3NTliFe4j7ZjYbHvM4rRm832ZMWueDCjCMnDjmLnxh3evDh6DAuqyME/LWI1IGowBfy84Mf0y1Tn7k9AhHOcGnTXPvHv1lKJLdgMFFyYPUEavxMDe0dN+rPx5snFmLMuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764613732; c=relaxed/simple;
-	bh=TC6rh/kNz8LYPMfZwTGd9bvg33O4XvZBRbYSpzqFZG4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r0ANBEbKE7KG/duZthTXxQdPu912xeilemd3cmZI6GHPNMzhwtLxXULoeVuQMx6KElG3CHS4Y4pEZjEmyvtpVf8HI7lRCyQ/wzcAzNirq4IUfOp21WiHVt3nt8mGTxfAITf0NWl9A8CwulpULDp+ZD+nfyShl0c8jPx8BoKjSnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=xYA6t3rF; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Jasc+4JKJtGpQrZOc1NYVylmCxu8hHyDpwp8Z4XDuU4=; b=xYA6t3rFlF5To9WmQjm52MkdgC
-	XNzLt48v8379dncpuux52Rkre35pzHQe5rk8CVzYA7Wk4odgr75tlBzz7DtdfSuFBLwx/ilOH7n2F
-	8hBpLrpjWQkqb+npDxJSg95I4JQjYVO/IY6Mo9Y0T2UYzxy+MvtRLBQKATc/nFuOiko6EDRE9mgkd
-	nNr6wYf5wAX1STUFYPWZW5DHddGxsuKhfeenI/1DR2LJ9gzB5k7MPDAPn+NXV27jMRbRngowGU9tY
-	UyX1jqkDZDyFRrsOlIEl9Fh67z0Ar4Z78ePVJX/jQwt+aNjh+qAcRgP+ZnmxlS10UOxIBRjOjjL11
-	ribHx3hw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49772)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vQ8di-000000000vx-41Yr;
-	Mon, 01 Dec 2025 18:28:47 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vQ8dg-000000006gH-3zO9;
-	Mon, 01 Dec 2025 18:28:44 +0000
-Date: Mon, 1 Dec 2025 18:28:44 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Doug Anderson <dianders@chromium.org>
-Cc: devicetree-spec@vger.kernel.org, boot-architecture@lists.linaro.org,
-	Chen-Yu Tsai <wenst@chromium.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	LKML <linux-kernel@vger.kernel.org>,
-	Linux ARM <linux-arm-kernel@lists.infradead.org>,
-	William McVicker <willmcvicker@google.com>,
-	Julius Werner <jwerner@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Subject: Re: Proposal: Officially allow "incomplete" trees as a base
-Message-ID: <aS3eXBDtaoNLfxZy@shell.armlinux.org.uk>
-References: <CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com>
- <CAD=FV=UbejKdD2q2Z3RuYH0Ooc6XRb0oynchDsqnq7GzM6ah0w@mail.gmail.com>
+	s=arc-20240116; t=1764615841; c=relaxed/simple;
+	bh=o+FCanS35An+MiDwhjJ8w/zhkp0tC/kZk0IrIBLdhJA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bkI6CQLd5emcntFiSEwvDDGPkOrzw+hPdVVKbjVewxOT/gRhiFIzj8R0v9hkoGqAxzS3KphT6BOgjGxPfWvP6+Xt30amU2VmW5/Ji4AYrTPCmxzdt/1G4puy3W3ltKsSKxmxMwNU9LcUoiyF9+59Rfs5sZNtb3vW5WQIRA1blxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZfEFJfVW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2750C113D0;
+	Mon,  1 Dec 2025 19:03:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764615840;
+	bh=o+FCanS35An+MiDwhjJ8w/zhkp0tC/kZk0IrIBLdhJA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ZfEFJfVWww3xEELw2OmQMyV36tKdSwDRtdofxmKQfb+ILyEXpPhPrUNkl5MMnvqdk
+	 MeHgecGP2EhHmfAgvv4cg3ASh6ilA8h5W5ooFuflZZi0/2Tle/0ibXxbnDItRhMwBf
+	 DyiYWSDS+Z74LDiwCXVOZE4rbj4OZxE9c9IQprfUrnef8s0TdGKK+7J61DS0IwlNy/
+	 gneE8GMMGdaj/GSHF4HUhsFhpFBITU5tvY/NPYYgqw+RUhepWKj/qtMUshYwc2/avJ
+	 z4/v4E+SwVV/7np/kW8g/FiFhIR+l/Qoonk0nHp4I+hBfxNx56o36KwMo5F6mIaYeI
+	 NLv4o7cfZK56A==
+Date: Mon, 1 Dec 2025 11:03:58 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Vinod Koul <vkoul@kernel.org>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Daniel Golle <daniel@makrotopia.org>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew Lunn
+ <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Eric Woudstra
+ <ericwouds@gmail.com>, Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Lee
+ Jones <lee@kernel.org>, Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: Re: [PATCH net-next 5/9] phy: add phy_get_rx_polarity() and
+ phy_get_tx_polarity()
+Message-ID: <20251201110358.7618fee2@kernel.org>
+In-Reply-To: <aS1T5i3pCHsNVql6@vaman>
+References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+	<20251122193341.332324-6-vladimir.oltean@nxp.com>
+	<20251124200121.5b82f09e@kernel.org>
+	<aS1T5i3pCHsNVql6@vaman>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=UbejKdD2q2Z3RuYH0Ooc6XRb0oynchDsqnq7GzM6ah0w@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 01, 2025 at 09:42:40AM -0800, Doug Anderson wrote:
-> Hi,
+On Mon, 1 Dec 2025 14:07:58 +0530 Vinod Koul wrote:
+> > > Push the supported mask of polarities to these helpers, to simplify
+> > > drivers such that they don't need to validate what's in the device tree
+> > > (or other firmware description).
+> > > 
+> > > The proposed maintainership model is joint custody between netdev and
+> > > linux-phy, because of the fact that these properties can be applied to
+> > > Ethernet PCS blocks just as well as Generic PHY devices. I've added as
+> > > maintainers those from "ETHERNET PHY LIBRARY", "NETWORKING DRIVERS" and
+> > > "GENERIC PHY FRAMEWORK".  
+> > 
+> > I dunno.. ain't no such thing as "joint custody" maintainership.
+> > We have to pick one tree. Given the set of Ms here, I suspect 
+> > the best course of action may be to bubble this up to its own tree.
+> > Ask Konstantin for a tree in k.org, then you can "co-post" the patches
+> > for review + PR link in the cover letter (e.g. how Tony from Intel
+> > submits their patches). This way not networking and PHY can pull
+> > the shared changes with stable commit IDs.  
 > 
-> On Tue, Nov 18, 2025 at 2:43 PM Doug Anderson <dianders@chromium.org> wrote:
-> >
-> > This is a continuation of the discussion that started in reply to my
-> > patch adding basic device trees for Pixel 10 phones [1].
-> >
-> >
-> > Problem statement:
-> > ------------------
-> >
-> > We would like an officially accepted scheme that lets us more
-> > efficiently ship compiled device trees for a handful of related
-> > products by breaking the device trees up into a common "base" device
-> > tree and then applying "overlay" device trees atop the base to make a
-> > full and complete device tree.
-> >
-> > To make it more concrete, we'd like to build a "base" device tree that
-> > describes a SoC and then have the overlays be enough to make a full
-> > description of a board. In theory, one could also imagine wanting to
-> > expand this to 3 or more levels (perhaps SoC, baseboard, derived
-> > boards), though this is not planned at this time.
-> >
-> > The primary reason for wanting to break device trees like this is
-> > efficiency of the shipped binary device trees. A large portion of a
-> > final device tree just describes the SoC. We save space in the final
-> > compiled device trees if they don't need to contain as much duplicated
-> > information.
-> >
-> > A secondary reason for wanting to break device trees like this is to
-> > more nicely handle when a board has a socketed SoC that can be
-> > replaced with a finite (and small) number of different SoCs (usually
-> > revisions of the same SoC). Even if this secondary reason is
-> > considered invalid or too difficult, the primary reason still
-> > describes a compelling need.
-> >
-> > In order to make this proposal work, it's expected that a bootloader
-> > will understand the scheme and will know how to combine the overlay
-> > atop the base before passing a complete device tree to the main OS.
-> 
-> It's been roughly two weeks since I sent out this proposal. Do DT
-> folks have any comments? Are the goals I have stated understood? Do
-> people agree that these goals are reasonable? Is there any question
-> that there is a need to solve these problems not just for Google, but
-> for the community as a whole? I'm happy to reach out to people and
-> have them reply "yes, I have this problem too" if it would somehow
-> help. I don't doubt that there are still people at Qualcomm who would
-> like a solution even if I think Elliot isn't driving it there
-> anymore...
-> 
-> How do we make forward progress? Does anyone have any comments on
-> Julius's reply? At the moment, I think there are some conflicts with
-> what Julius would like to see (no changes to the rules for how
-> overlays are applied) and what Rob said previously (we need to find
-> some way to combine the compatible strings). Did I misunderstand? Can
-> we find a common ground?
+> How much is the volume of the changes that we are talking about, we can
+> always ack and pull into each other trees..?
 
-My feeling on this (and I don't have much time to consider it tonight)
-is that this isn't going to get a quick answer.
-
-This answer is based on my authorship of various device trees, and is
-solely my own opinion, and in no way represents any position by my
-employer.
-
-While the DT files are dual-licensed, the license that applies to the
-copy in the kernel is GPL v2, because the kernel as a whole is GPL v2
-licensed. The dual-licensing of the DT files is to permit them to be
-taken from the kernel and used in e.g. boot loaders etc.
-
-However, as the license that applies to the kernel copy is GPL v2, and
-GPL v2 requires distribution in source code form, or an offer valid
-for two years of the corresponding source code etc (check the GPL v2
-for the exact terms) it could be inappropriate for the kernel tree
-to distribute binary DT blobs without their corresponding source.
-
-It seems to me that this is a problem for lawyers, and you're probably
-not going to get a quick answer on it.
-
-So, I'd suggest patience, and don't expect this topic to move quickly.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+We have such ad-hoc situations with multiple subsystems. Letting
+Vladimir and co create their own tree is basically shifting the 
+work of managing the stable branches from netdev maintainers
+downstream. I'd strongly prefer that we lean on git in this way, 
+rather than reenact the 3 spiderman meme multiple times in each
+release.
 
