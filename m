@@ -1,48 +1,82 @@
-Return-Path: <devicetree+bounces-243535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73E58C993E0
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 22:46:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86708C99440
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 22:53:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DC63F3453BA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 21:46:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3973B3A29B7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 21:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBAC42853F8;
-	Mon,  1 Dec 2025 21:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A528B285C98;
+	Mon,  1 Dec 2025 21:53:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZHZeyGnX"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XRK5sdeB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D589281508;
-	Mon,  1 Dec 2025 21:46:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7200227C842
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 21:53:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764625574; cv=none; b=bnaM5bu0efJIWgKmVY9DrqGTMnr5wYZ1fnoI6/0P18f2pi0ioaknDV2pr1sSMPwVVGVNCRzJad81Znsrtdwij+wQPgVjy/LINDWWy9JHhDukovIfjFbE2JAg7U8SjF6KVkXcxBAIx3GLTfVYYqLnCv/4d1PNTxZv8jJ7S5RK4/c=
+	t=1764626004; cv=none; b=smUO4i8+MO7/9j1DD7ztfi6SnyQofI79KAseeK6j8tUl1sW7W2h2kjfFn4GEzU/VZlXj8WInt3zNNuUSg37omLtTkgsBfYpN3lmewu+xtksGTrReUK33AMzvVmR4Swgvm9auO243N6BPGskitU+9PFJdGPFDPGpvJgr7z5dKWDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764625574; c=relaxed/simple;
-	bh=VLLU6Fk7P3OG6KYCxQGd9OElcUAY4ZD7P6cn13H2jiM=;
+	s=arc-20240116; t=1764626004; c=relaxed/simple;
+	bh=5q9Iv//mIpypUaynw8++s+lccd4+l1jE8IYnVDYU7vE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P0hgO6sDHfEfmlAhCw8HgkVJO7svL90RFJjpuikXBNpSx+BrmfPy+nWFj21QymxhRTOkMX4knZpb6wtk0WobX+/Ne7cvqKImP//+3ilrD7VghyEc0SMb4Y1S6BRUvtx0W/LyT1NOnXVpC6bpV78ZZyS0VbuTzL6TheBCa4jXGvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZHZeyGnX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3335AC4CEF1;
-	Mon,  1 Dec 2025 21:46:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764625574;
-	bh=VLLU6Fk7P3OG6KYCxQGd9OElcUAY4ZD7P6cn13H2jiM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZHZeyGnX53fuJ+TFcphgGSaCsDCJhwYeaA57v4UgoTroDE1bNBiA+AEBgK6TWk4PP
-	 StgMzwo6oxSb3Di3nUAj39dfRtVry2Wghasn0rtlszjDZ0b0OIc7DgBquFet90WHED
-	 ehtfNAglh2SiPiEaAwI9a0/EJQobw2hmwPQIq0V9K84uSkvqYOlmByaMD+eio2ZZ2G
-	 yt3YHi9/JGIleOqhXNXcVEzMu9wN0MPTXcRHzFrJgDHbSa7zwK4yDWuN9GQCtGx8+C
-	 XLDzaT0uptyRyeOLkxSEy9O1+HUv0wd+Nhq+nhmh0O1OrAiNU53CBX3C/P0z6wenKo
-	 UCNSbv44STpbQ==
-Message-ID: <3bc5bf92-05c3-4841-ab28-9bab2bb31cd5@kernel.org>
-Date: Mon, 1 Dec 2025 22:46:01 +0100
+	 In-Reply-To:Content-Type; b=huLdS4sapOKG8MLTi6rcF9JbDPKIg1ZCiywRCK+P5IGH/SC0VeSPJPQlRGPex3XdZqtOtdwVm98h9eRz6sJCAskDHD3zI9hrd5MqbEKWmNzMfeqVIrkP2iAX+pV6k/8qrHXCiA1L4647Z3c+opm3wrQ1zbaniNMbxfwzqA+ny0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XRK5sdeB; arc=none smtp.client-ip=209.85.160.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-3e898ba2a03so3168557fac.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 13:53:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1764626001; x=1765230801; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rFhnDBg0kXeD51glLwE29J4X5kSMJanTCsRTgbxRyOo=;
+        b=XRK5sdeBGipUVk9GL2VDNJRXpH6y+lixsSeXsVf0z3fkYYbW3mjLwcVmiSa3cu8W1g
+         kMpD5YcCSicygQ4JALuLnonzEW9irJMmfgMZM/YwGBWAsS8+WCQXbUpLFLFj5TXZmtgq
+         wYQbE6b5XwZXVg4uWBMXT7ypzV/tqki9bgjVJzSXYV3+AKt47AfynXPK0OMiX5SnDN/g
+         vr4IA3MBLaH9bJKqttnTjRwm+jZTWt1MkMnfFV8TvJf55pwObWR+lavOzGJyZvmGHDOm
+         iAGn7XUJ6CFVsHRo+qi+5BXMTOSfeQh/M5K5a2gbTpzI4G2bpVllYX38/YwTfC7oy8Zb
+         6DfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764626001; x=1765230801;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rFhnDBg0kXeD51glLwE29J4X5kSMJanTCsRTgbxRyOo=;
+        b=P514aNjIY28+uictyB5802aqvyV+pgSNFKYw0vRvA1AFmPVC5KwVL2LwAiXQ1eOe61
+         VDKS5+1GRYIDDdA90puLic08e5G6n6wwm+OVygSaE3V+j/9FwcuP8pWcJuvCTZjQgV7I
+         i6kBJdwCQiqIdG//a+wSv3DF7ID62TwR4WjpERJ1UDA4zIQ8J60cIuizwDel93jcHP9D
+         PUSybGg4s+It1W7MNvPx+x410N19qhcgyr8W/TVLlwpLSeCnv+g8nRAGa03iWXTjwqIy
+         jd1hk34pJivlwDjvkxp9dCZ6NtLIjVsJ2ZKsS6JLFs2LTelqW0F/mH5JtMs14YJHCJbR
+         ZLdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU6uW3MhIbAFDcQhVSaZ6mkamyzZGeiUKtbJeDVVx3N8QyVFBLXG6XKU5LMi6pyKcAyPkcMQPQgW/vK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7Z/GClUU2e3VTZcJYjAuVBH0ZAO7V8DQKU1GLLP2rIx6kU/6K
+	U97O+JQq67JDbewntxxnG9EdrXht2xcnPlWRxQk40gGV10UPmrqzpKxH9SanL8beohg=
+X-Gm-Gg: ASbGnctsUwdnI+bmSlUgJd5f7Q1Lm+9ZGlNBZayr06Tf0dLWzC12gNu846CB3OYML1i
+	11akTZFjOMNrCDjwvj50aDr2K/rNHKp4+UkiMzp92/gX0+ns/nKl0F1n59qp9+W74cZG/eTHB3o
+	8yBrbw6F8jYPVDdxSRRC0qZbvYFQGJ72hkDiGEqGu6YRfCjaPbutDuA6d7EHfCrxZ78nLuOQMLF
+	IU3hFD7+XRIYKhrHrxT93W6dfq0MHSZdS5fGzQ4h11rbK+rT78rIIqR6CsA/UGxhYKBNzpUXjZU
+	RJt4GS5ZcqM30A5iIaVK6+1hp00pZ06t4fiUEeKi2zvDOy7uwigGgl2mJfbfe8q1NUbSzvtoQ5O
+	M9QQ+uXUjuvJWKqmWSyc7eQgyROaM+TSHAw2AxKkyCKYanVgiABPXEiGTDeJYkefnzxAQXSkF4O
+	2ekI+RAHAhy2lX+whkuD/An4D0zNSUAMaBvPZKUbhm8utUYk7StJ2xPAtBNg==
+X-Google-Smtp-Source: AGHT+IEUi4HQD4MeWgmtjcJxdxnSWi94Lov5ZIkoWcpAPeNP+EfY38zUZPLeRZvSH7fA6B55qw8ZqA==
+X-Received: by 2002:a05:6870:e0c6:b0:3d4:b76:5080 with SMTP id 586e51a60fabf-3ed1fd9424emr12729233fac.28.1764626001435;
+        Mon, 01 Dec 2025 13:53:21 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:b67b:16c:f7ae:4908? ([2600:8803:e7e4:500:b67b:16c:f7ae:4908])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3f0dd05bc9asm6083995fac.22.2025.12.01.13.53.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Dec 2025 13:53:20 -0800 (PST)
+Message-ID: <248b009e-0401-4531-b9f0-56771e16bdef@baylibre.com>
+Date: Mon, 1 Dec 2025 15:53:19 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,111 +84,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/21] ARM: dts: omap: Bind panel to panel-dpi instead of
- ti,tilcdc,panel driver
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Cc: Markus Schneider-Pargmann <msp@baylibre.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Miguel Gazquez <miguel.gazquez@bootlin.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-omap@vger.kernel.org, Jyri Sarha <jyri.sarha@iki.fi>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Tony Lindgren <tony@atomide.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
- <20251126-feature_tilcdc-v1-5-49b9ef2e3aa0@bootlin.com>
- <96b1b7bf-ddbe-4213-a201-dc89cf2998dd@ideasonboard.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 2/2] iio: adc: Add ti-ads1018 driver
+To: Kurt Borja <kuurtb@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Tobias Sperling <tobias.sperling@softing.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com>
+ <20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
+ <aSsBdJZDWcadxEHC@smile.fi.intel.com> <DELPNLNPGQSM.1YDTB81AG0RAY@gmail.com>
+ <18fbf486-c1cc-4cd2-af12-ffa093fa9ce7@baylibre.com>
+ <DEN50VFOIB5O.1ENBKI6JQ0ZC@gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <96b1b7bf-ddbe-4213-a201-dc89cf2998dd@ideasonboard.com>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <DEN50VFOIB5O.1ENBKI6JQ0ZC@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/12/2025 15:13, Tomi Valkeinen wrote:
-> Hi Kory,
+On 12/1/25 1:47 PM, Kurt Borja wrote:
+> On Mon Dec 1, 2025 at 11:07 AM -05, David Lechner wrote:
 > 
-> On 26/11/2025 19:35, Kory Maincent (TI.com) wrote:
->> Use panel-dpi driver instead of the deprecated tilcdc-panel driver in
->> preparation for removing the tilcdc-panel driver and binding.
->>
->> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
->> ---
->>
->> This patch is not tested. It would be nice if someone with one of this
->> board could test and validate it.
->> ---
->>  arch/arm/boot/dts/ti/davinci/da850-evm.dts    | 26 +++++++++++++-------------
->>  arch/arm/boot/dts/ti/omap/am335x-guardian.dts | 25 +++++++++----------------
->>  arch/arm/boot/dts/ti/omap/am335x-pdu001.dts   | 21 ++++++++++-----------
->>  arch/arm/boot/dts/ti/omap/am335x-pepper.dts   | 22 +++++++++++-----------
->>  arch/arm/boot/dts/ti/omap/am335x-sbc-t335.dts | 25 +++++++++++++------------
->>  arch/arm/boot/dts/ti/omap/am335x-sl50.dts     | 25 ++++++++++++-------------
->>  6 files changed, 68 insertions(+), 76 deletions(-)
->>
+> ...
 > 
-> Doesn't this, or rather the following patches, break DTB compatibility
-> with all the above boards?
+>>>>> +	if (iio_device_claim_buffer_mode(indio_dev))
+>>>>> +		goto out_notify_done;
+>>>>> +
+>>>>> +	if (iio_trigger_using_own(indio_dev)) {
+>>>>> +		disable_irq(ads1018->drdy_irq);
+>>>>> +		ret = ads1018_read_unlocked(ads1018, &scan.conv, true);
+>>>>> +		enable_irq(ads1018->drdy_irq);
+>>>>> +	} else {
+>>>>> +		ret = spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf));
+>>>>> +		scan.conv = ads1018->rx_buf[0];
+>>>>> +	}
+>>>>> +
+>>>>> +	iio_device_release_buffer_mode(indio_dev);
+>>>>> +
+>>>>> +	if (ret)
+>>>>> +		goto out_notify_done;
+>>>>> +
+>>>>> +	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
+>>>>> +
+>>>>> +out_notify_done:
+>>>>> +	iio_trigger_notify_done(ads1018->indio_trig);
+>>>>
+>>>> Jonathan et al., maybe we need an ACQUIRE() class for this? It will solve
+>>>> the conditional scoped guard case, no?
+>>
+>> No, ACQUIRE() is not scoped, just conditional. I don't think it
+>> will improve anything here.
+> 
+> Maybe I'm not understanding the problem fully?
+> 
+> I interpreted "ACQUIRE() class" as a general GUARD class, i.e.
+> 	
+> 	guard(iio_trigger_notify)(indio_dev->trig);
+> 
+> This way drivers may use other cleanup.h helpers cleaner, because of the
+> goto problem?
+> 
+> I do think it's a good idea, like a `defer` keyword. But it is a bit
+> unorthodox using guard for non locks.
+> 
+> 
 
-Stuffing DTS change in the middle of the driver change tries to hide
-impact, which is not nice on its own.
+To take a simple example first:
 
-Please follow soc maintainer profile and submitting patches in DT
-regarding DTS patches.
+static int
+ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
+		 int *val, int *val2, long mask)
+{
+	int ret;
 
-Best regards,
-Krzysztof
+	if (!iio_device_claim_direct(indio_dev))
+		return -EBUSY;
+
+	ret = ads1018_read_raw_unlocked(indio_dev, chan, val, val2, mask);
+
+	iio_device_release_direct(indio_dev);
+
+	return ret;
+}
+
+using ACQUIRE would look like:
+
+static int
+ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
+		 int *val, int *val2, long mask)
+{
+	int ret;
+
+	ACQUIRE(iio_device_claim_direct_mode, claim)(indio_dev);
+	if ((ret = ACQUIRE_ERR(iio_device_claim_direct_mode, &claim)))
+		return ret;
+
+	return ads1018_read_raw_unlocked(indio_dev, chan, val, val2, mask);
+}
+
+It makes it quite more verbose IMHO with little benefit (the direct
+return is nice, but comes at at an expense of the rest being less
+readable).
+
+
+
+And when we need it to be scoped, it adds indent and we have to do
+some unusual things still to avoid using goto.
+
+static irqreturn_t ads1018_trigger_handler(int irq, void *p)
+{
+	struct iio_poll_func *pf = p;
+	struct iio_dev *indio_dev = pf->indio_dev;
+	struct ads1018 *ads1018 = iio_priv(indio_dev);
+	struct {
+		__be16 conv;
+		aligned_s64 ts;
+	} scan = {};
+	int ret;
+
+	do {
+		ACQUIRE(iio_device_claim_direct_mode, claim)(indio_dev);
+		if ((ret = ACQUIRE_ERR(iio_device_claim_direct_mode, &claim)))
+			break;
+
+		if (iio_trigger_using_own(indio_dev)) {
+			disable_irq(ads1018->drdy_irq);
+			ret = ads1018_read_unlocked(ads1018, &scan.conv, true);
+			enable_irq(ads1018->drdy_irq);
+		} else {
+			ret = spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf));
+			scan.conv = ads1018->rx_buf[0];
+		}
+	} while (0);
+
+	if (!ret)
+		iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
+
+	iio_trigger_notify_done(ads1018->indio_trig);
+
+	return IRQ_HANDLED;
+}
+
+So unless Jonathan says this is what he wants, I would avoid it.
+
 
