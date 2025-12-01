@@ -1,256 +1,186 @@
-Return-Path: <devicetree+bounces-243451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18F89C97BEE
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:57:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8F24C97A02
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:35:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 459AC3A1C0F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 13:57:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 487843A22F6
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 13:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 391F4314B88;
-	Mon,  1 Dec 2025 13:57:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CCF311C2D;
+	Mon,  1 Dec 2025 13:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=hendrik-noack@gmx.de header.b="bOiInRU2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="c2B6F0tF";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gsvbIgbh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA59313525;
-	Mon,  1 Dec 2025 13:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8663330E837
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 13:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764597430; cv=none; b=bxTQ7BLgfSmnBitTyh1uBqUIL/vfxK42EnS9gTMp0T2JZbnz04tHgq8MS1BkFkyqC7DtdqKEuKI1EhiK/DF6AH36bO0vLurtdoWxkyjFh+EP8fbv20DIOld00eCRNw17gGbuVZXguCCjVicApqq1tL0q7gDlL6iq2P0MehoS/Fg=
+	t=1764596153; cv=none; b=efDjy5o+dGLlmhAbEy8I9HSWnf8Y5QKahB2sNFk4AQv6roiFXE8kv/r0OiL71kP0jE+WA6jub7lElDIf8EVt0vcAaTmH6KfzlvYV3/XLiEJ1FDqCAYUC6H/btd9pWgdJYCZu+0z/pNxLxpDfGpwN6fOwaP9BdG4/OCxyiWabOOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764597430; c=relaxed/simple;
-	bh=Q78z6zWmo1XZOJF342jr+Wu8SBXNOAFmjJy+q8cyzJY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=teXjEeLX2VCYI+m8H3b52Q5hZE7I5+8rl+2U5e5PGGP+Mb9vXQCK+k+Mqkwm8XKMY7EY9ErGSkkzx3NsAs+TOQ0Bmhegosr2olPLLJzxhvmlrfoAqFCgP0cr0Ea8Jlb52omTgvqBFKoaSmAFM8id8ySLsmf5XL2tP/35MYKgF3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=hendrik-noack@gmx.de header.b=bOiInRU2; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1764597423; x=1765202223; i=hendrik-noack@gmx.de;
-	bh=nG9h5QOtX94dF9HtlyB/U3/neznnsuC8fhx+fJdOk1I=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
-	 References:MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=bOiInRU2o7mRWFsnZw8kxE/4EC/jLocZ5t/BrnxwZUs0HrEP/jz6HFyqsmzpRtpD
-	 8RWLON09R82xzkcGrbu6FV4f8rfFlC2FLu1cxRFQI9VSMKmFNB1NU0yNwvOp8nw+L
-	 0RJPouTwB4HAGqB6dxjh3rpOw3GS7jo3NNQ3fHHJP3+dmBS6VeoufGHKGzpeG+YXi
-	 40ugZnRNRuinp2BlpDMvDsApMzVoqlToEuHIfiLgS4IjCJ5ydFuHJydn/Dy0BwDK0
-	 FpQXvZAU4AoRpMEMCPLi6E4hiSSHq+xxlHnb/djxbFfyDgL5uM+csZHF6ZQ/C8KeY
-	 CMw9N6LfvOz1SH7k1Q==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from Hendrik-Linux ([217.85.36.251]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MKsj7-1ve9R52khx-00LUMg; Mon, 01
- Dec 2025 14:57:02 +0100
-From: Hendrik Noack <hendrik-noack@gmx.de>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Hendrik Noack <hendrik-noack@gmx.de>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: Input: Add Wacom W9000-series penabled touchscreens
-Date: Mon,  1 Dec 2025 14:31:13 +0100
-Message-ID: <20251201135552.93540-2-hendrik-noack@gmx.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251201135552.93540-1-hendrik-noack@gmx.de>
-References: <20251201135552.93540-1-hendrik-noack@gmx.de>
+	s=arc-20240116; t=1764596153; c=relaxed/simple;
+	bh=OZdWXq4I/E5WIteXnC1Jkbk3o/gu4E2QWIb40Icnr6Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HaKDV6NSg1wro5BgOOPcydlkR1Zd1aUpo1oOIiKkUZUb1FZPaFFUpny/HgNMsnvk2ySyT5uWhxQU/aou9gh6QrW6bLeZKEEj7r0kj+zf8bXaucnhyFE8QrNIpAuLH7liJ8c+tSS1StOm+WhGSAfYVj90Dpzfu3A1eLpNp5EU1sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=c2B6F0tF; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gsvbIgbh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B19a1Jj451837
+	for <devicetree@vger.kernel.org>; Mon, 1 Dec 2025 13:35:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MGBpbvKiOlzvOmnX0NTD3FcdMyguWjR0JGOboZ7NqVA=; b=c2B6F0tFjcrU9BYT
+	a0r1Ayf+l2wd9/lm03szYYU5V46n0Hnurl62hO6470Vec56G0gQq+4bziEN/J0FQ
+	QB+Me7IsTSwDgOyUgWbkyTd/QenUfVOc3juvb5OiJdb39Gy+ZxpGXo7c/l5hCwa1
+	Qu7AMk/JkF9VPbdsmkqgkqoXU8Hlz6JVtQYBIR1mDYDSiqy1grdgYGiUraL8lXm7
+	eh/hAGhJITR4wOtigTrQhadCsXa7xyV0SWMaqPTwYG5cp1+D8HHrtj7qiNFTU2r9
+	j1PZoIg/brkw6zGai+wXViJa6R87LAIla+QzDAvcgfkaXBf3PPL6it0DINHN3Jg6
+	gBvS6A==
+Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4as8hermvf-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 13:35:49 +0000 (GMT)
+Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-5dbd3b72401so411760137.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 05:35:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764596149; x=1765200949; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MGBpbvKiOlzvOmnX0NTD3FcdMyguWjR0JGOboZ7NqVA=;
+        b=gsvbIgbhAtm91L5coOnk2LVz8L1qRXnX1bYytDAlh/sHm2iV1ajgkFtGW0/7ibMIyH
+         EBdcgBAqzsKtS3SKAYrfAidfeOxMPhi80lTRwZKWJN8twYNqV/yoU6MWnBYMhfouMXLk
+         wxUjXEZZjVH7Ml+/XFqTf7YvHV6fcwOeWdUG7hw+RjJ/t2Zbn0r5WzcorEwa7Acn1Aq8
+         NLf5aL6C3MgdXxEjrnP/atiCnvvOOl0OHJpw0VEnFqiV+sYDqWQLrzmd+todrsyYA2Ge
+         +8ZeSav43Ttl7F8vqQDTErBWaro/64FuKqGMZ7VE+gJbe6VuF2hgsrklD4UF8vpzalNB
+         HqOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764596149; x=1765200949;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MGBpbvKiOlzvOmnX0NTD3FcdMyguWjR0JGOboZ7NqVA=;
+        b=hTHzmgah0rBz5KTcvqnmFCqi2PnVp9S+4XZR/8E+HHgMUrJxVabEWbEJXK9SKW1NEU
+         JHplM9/bHbd99rFkoWbFE/t3MD7aAhiJHI6CAl2CPHIYkzuyh0DFc2WsoxIp0wBSLm8K
+         14GCTOogYuLpSJ8j/YtFMSM6pbOOdN/3nKvK9YMENnoD1lsh0iVDUPrLLhATqDdpHZgM
+         00Cr2NW9q3xP/h38eWrfGjoBrM9W5/If73o2AyMnK9K58CWfeDCUYx43obsYdJoq+f2g
+         5LVk8EAFa6E222pUGvmDHd5+Mn0r6ze6ndnUBjlYfMyWxp1vYXZlvqmWWZy+Rj2s4QCT
+         /xeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFgNEAMY/UdwUZ748VQOXaAF5dvQvMjCRCKIVFKStJfKdjp7AaZDAxn1kHURspHiwSBN7/sArz96g+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWk/fwC44qMubXy9kXEbDu6+nX9BLJ+IHCd903dFPfAb28JxBE
+	Diq85I/mj6QMle11Gwo9J20oeE7Yy42myyL1XUuBJgI+Al/sWyABDfownshF5uuy4uPmaHsk3hW
+	4YQgwj7FHNJ2uHFyJZTjpgEuryMbRMM8aKTLpHgJPr008OxlSAWziJgyGwgRexMDL
+X-Gm-Gg: ASbGncu7Dt+szLAXJRpzlnPu+69D+EAxL7tFhk8lyUjruAVn/sb/PJKwctg/3NmwNpG
+	douEJffPPBD87JM7lOU5eSIKc9hPCTtMGv1gXkLvtSdZEU1g3Ypz2QEQrOAbQ3uI2cZShL8De2l
+	VEYbMrRhPdm7iw+nBFF66olGQq0nfl/Lbv4ZRkHOSFpLJvojDzU+2tJnQ7wwalI9BNOOlsPA7l7
+	4JROZWU8VDtyTxi/DR3xYgnyppPRtEA02QVSKiArjeXDkitx+YP7+s+aAM1h31AVqUoslVQaxHd
+	EGaGOkM2kv3vwRH1L2L4b5A0uiF0xIJV6ogdHf5lWBL4z3qMAuOc5/rZPjltP6h6ZEkelTQ6I6i
+	SM2iqPvFC5mEaE5dSildrOjOP5UaszCZfXTvitMWarT3cQykVQzBydZ73RXCXwhU/jYc=
+X-Received: by 2002:a05:6102:5e84:b0:5db:36c1:17bd with SMTP id ada2fe7eead31-5e1de56cb5emr7410323137.7.1764596149120;
+        Mon, 01 Dec 2025 05:35:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGIEwD4EDN19spY8zdgqRbNhH3BpetN0hw22bq4r1xGtt1Ytiy1Dj8is8Rgsg4LEhNka2bT7g==
+X-Received: by 2002:a05:6102:5e84:b0:5db:36c1:17bd with SMTP id ada2fe7eead31-5e1de56cb5emr7410299137.7.1764596148634;
+        Mon, 01 Dec 2025 05:35:48 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64751035af1sm12781918a12.16.2025.12.01.05.35.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Dec 2025 05:35:48 -0800 (PST)
+Message-ID: <32f013e7-ce2a-484b-8575-e98f2d23f59b@oss.qualcomm.com>
+Date: Mon, 1 Dec 2025 14:35:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:A1eXDHAj7e18ligmH0/KOmqgXIcJsGjhpquzC3G3fQ9EkGpquLr
- 04uDU+FJG9X9uBslFNZrAWNNbzV5pW7WdzBVoifGQEzRd+4E0fSbOnCyarzMB9SI0iQDu/P
- KBdJarE0Dv8rQD+UuY8yQIuTVVGaijq3nh9o5wcrUqUjoV43KWQqbbLQvg3qYhEnhahP1fu
- WbmKpq05OFiXbSnYIDckg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:5OwSfvGbzr4=;wrUrGbj/VDq0QKSCLnxFdLNkU3r
- 4GlCB9FKRX2hJ+5sErF/WDn3lvW/i2216YF7SUpmeWAYxceaCUf8fYrtpHxpck+CN4/sJCvkS
- R8mk0iwynPj3LNxGhlW1RW7+uW3DO/f1D/0QzYk3rNFGJc6PUEwah+Sg+8Blychek64eAeAme
- g7ce2Th/ty8cOI5Y9QOlqprxqYZrS9HLXY6oShlnIdrhihgZT83vk8+c8H12WXdKBVYIcZ7fZ
- iZYzN9JtK1uNYQ7xAu2e4zDMeAHanBoekjDspeLcRRze18FShEVzEtLGNik2t/Gd7MS7blvUp
- T+Jcx9CG6EZN36h+ttIhuw4aAR3VZk/szFnrGKNaMJK4+cb7wILRa2/FtM26983iLIxfdVLuj
- uHKzKdU2xA/gKllbmFZNIpHzCqJ2tz5tDL8PQBoF+D+y4Rr+2irEr0Klal67P6kT1johtDtwu
- b+OvRYhpU5htaTtc8LsEPBUT5gLcsmF5kGO7ijryt+9+8JE0yB8IhzpyiowIxr2Mddosa7C3h
- 7fePUdVL0QZt7ZX1APiXHjA9lkkCYBHAYcfEe4BK1w1hFkCpKZuXYvdyUgvz8jyMZfNZ/ft1s
- vHKQY+M/vg+qd/AtvA8ko73ppGswN6dl2cf6KV6b5gE5TH8zkHgSnJJTGu5c+biAfaOHNu6Ui
- imAeYGnWRQ6qwisccFMh8ee4hZn00TNORommE1VEIGIvJcbYv60UIVBqTuTHuT8hkz4WDORr4
- WLrZMcSKWBLtU8v5Izw4TNaXVCMdMPgafTBNeekfJx3E80/t8rH4E5fZCjglZc7MXV7ELJMZX
- AHupJnTnTMVYM4qicbjObATsG5vV051CkMPpklDr3geLmcrr5XTRTpkvDLfFHxFHPxgp3S7z2
- WgpCyx/Qvf/dI3ncQxyjlg85inqljgsOeRK4Xj7V9hzrJan9EinXjGMXXF9CeB5l5j/jxYJXF
- ry4jXhKZrPe1LyY6VPlZGSvqky5YGGI3hOfu8rN9zqKvfGyt0IZofk1PE0wyiwMvlyZseZUHA
- mCR97VFTINAW7kbG1IxJdmWAbh23aO2M4XsAG1euoIvnr/YNCjOJL5jN1DqJ7lE7IKZcnS+vr
- EydTotu0J/BMlvUmO366ljPyhbPtBKt+ntzmBW+SGtTKXQ86uI3xj9Yrxc6oMzcRfit037QJC
- mYb3ErVsr8E01oqrqGg8OfZIHmjVYQGiLZlg0F6+FjgzyGyWUx66Wduclp4iVHAlzFN51Rck6
- pg/UubGvO8nEIZscEc0ncs7aIPP8IuMpIuUp+mLn5vaMn+HuRa4b1HmZ/UJSBZyBTX/9bXkdT
- 7NJcYyA7HaTd5MauPmLRT4vNCrw5Uo32obPm1hUsFRPgu2TGFD1WYbWOYoOMpZYCkFiqYBt/c
- UjQTfFl2FcjGTNxblcXMRNsy7APm5FBno2/Tk7Uv9tAtIlLiuCqLQEEQhuW3H4Lva4YN2H55h
- 04zHf1/kfxUv/K6dIesyaFW6AilMsYqZIk9sgVJscd3ntwo5yFc5V2zdO8Qc9maZ7uL2bpz8A
- m8dHeVSqco173wA7o2z/mLcsFkdO42PhQnsONQ9v+z0AMebGfh14umTHNOk490rXNgKIJfosF
- OuwERfmqBfuIFj/bGjDn/m0/L4+GtgEvMyeHpx8JnTqNL0DZcc8GjcnD9RR+qcsShReQCOvu6
- Iwhk5k8Svl2FtXjxzsf6fL7N2DKMZxWg2ijYmKXHz0CBuB95EUv6pDnlVIGuBuT5ZqxLWEqvy
- KyN+EZlsFe47tPW/j7ADXFMPUDbaBjRZunkvNyVlT2Dr46fUmX3u51JPdv3x+oZA07OPOkksj
- n6NiYJ1bS2m/n7bQf9hZZGbCVrqwQWUB/kWfVsTd+a37EUclqLC8uSpCK8ZyJsnK0ByZK43u3
- JXUxeqOcA8wwCpUGcCWUQROuVtw3NqM6k9CLvp5JfKRyFvX15pfPf52yqF2SPDxnoh8V4P+29
- wBl7AiREYJwPJPUCWGORZzb+R3B8hXcTJ+FjUxIi5rjm9GmnpjzYtqFRbJm+rvEbsxxiV3uRC
- 0Np1MqqofJcOCUgVr2qZGshz+DjoUe9qK3Im0BlpGC4uSW3ijmtuKG/oBISGVj4dkODngeVcc
- luciNTmlwpYPJjSf9DN71MG0khjiJYtdCByxhx+vPy+Egr2Z0dCPweULDTCcv0UttFdQf0RgX
- qHO8SwYkKGY54rJcyOyDCzNxibBAnhmnUj/vrF3O/rPiYu7LpbmVZRQzUL0Mh9LiqeYFfbge4
- pocuAUIBnQQAYUD3rPklBzMHMSToPXCjNVRqrv0YOKRK///ambE3KjpIOLPTY0G/J0ryGWLdW
- AmxeqJjx5vYi80lpDbAR3xDjz/OBoR2eiotZcfP465S0HJ1OgVxnj7I6Le/nK+s1UK8eIH27u
- Wmk5SdxYGRtIZzHMm+dQ85NEjlpfujqC0Koqwx6iMl36d3RZUD1CCPM+cdgfoy/cy2MV+Pi2c
- c7xX4G/6CJNMocc+iJAFTAGdOP2J24/DKxya+dBwgPEwxHuS2wBtTtkIGabauhYDV+YH1JSz5
- Pp4eYGbWwxIfwSTVw2oL8wDcd4DT8VR47KU3oPfvN2MO0GardfHRUPTojr4fYrW2z+oj9KLqO
- F61KT7aTZ9FZFvEZIIuwecCDqATmNZNACe53o2JP7auCUzQ6A7QjRUJH4SZUgA1X0Z7gMZzj2
- 6gCilcOnCF1ccJLizsWp2GAzOmknu62Aw4kTf3eDkbBEHCgXXkCiJuvif2Mt9BwJTi8NTeHWM
- izQLoTppkt0kTQkV8AK614j/qekxOiJFkZfY4dvOlj82cLaQo6K8CDf1NjYfR9Y8ApR/s53yE
- z1CfcLwlEyjcvHzMF355Uf4iaFCwh9m0Y/IPiieUR3FGADno2bm6+J1tZvzxy+UEsunfyxWXC
- tQCVVszaOa/WV3uH0ml24SK7iM4Qn2yKVXKSevFWlfcaph5E+Ws28j6S22Ri5m7y9ewZZGTo5
- 2fHTk4r1nR6wIAj8ZBo088rKwnmOGD5GvOPXFlxhjbCNA3NcTXM0QYlEhtpVyF9G4DwnSFZvP
- OvlcLvLvvsnV0nBTu1gSUjBPMKAtom6B5P+fR1es5a4xXwagZB6o346rhKzG4pq8KYczFrM/E
- pLwXUCVhKWlReriWy8QEqZHyGJ5vQMdwpTR6AtB9Ka0LElCewZHh0h1yKKkdqlaTjReA6HltI
- Z+lUGhy/1gxiljwmvod8CnlJhwIdK66D0mUU7tDaego22RWnynov8zDqtEXOz2kiATX6nMlUc
- QSBggTCwaoIuZ5WrlSRZAvFuxWN+U+5hQdWiTCEuVto5LyozapYc223BtwBlD/YGGOoNaHjYd
- ynoOp5tH0gauEx5dt+I0ByK3uI/YC7pZKHgxSxKryMLZUZ5crT65Rn/Xycrhov+jbfsXTNyLA
- cSQd3eqb1ZFPfgSxJli4hkicp9cQobOLZCBKurD9qqfSHA8InrTYUNUVoV94uflH9xh9/Zb93
- 2BQWtY67bUswiQfzCsSrub3zQTiPY6SATzXrsFxX0T3gNmSv9XY3e2mms44aN2RAmK/bSgY1Q
- ix3C9BpNLS91WwbwDFSWluKBJGxCIsXk0ZP30EiV4uCBE47PUQPilh113db8PiD7LW2TLBdQ7
- v/GIP6SyCswKUEXBTB64M3hdsMkIzQj19OE5GBIGahogxuX1GNY4bWJFHYRz0aQBZC5CkwkNU
- N33ynCvylG91fB9Rhd5iztnnvTEQNGZHluW5sMVTslHcy1nEnyuw58gDgrjkMxdJHa8EXekYs
- tUeJXqQxUi/relUcTk65LA2l7LEuUfE0NflIED5uqQNeYIgYlc+vOAPDbOnR3qjCyQjKk4XXH
- AeDfZY1I0C6kkCoDMnkj2hyMuSVRbJy+kOPJX+quuSCgIbcmAwDCAHm9dsUNTSt6t7xpL3I6B
- 7voFQRC/3dHjQUL1+zx7xDFLvQwkwKaaF+uwrjTch3bmO3H4rxBCfQ2dwoq5KZ8HG5EWGaiwp
- vKs250CGSL5r16LdYG3nrhxfHyTJE9zk69MQ21D/umfnZt7abbDTvucxNvIV6PrEMkOvtKWF4
- 6TpUZR3Mbq/r/FlyFMpfMDTgDbWCp07hViCWnfkWNzvlABIOkA5DsmAvsTLTkYcA2XJhmbyvy
- COiDHkVAPqFQdyU5+TdtK7QXZdGqpPMdlmYbUhf1p0fSe06thxHIv12dfc5bH6nmHgCPLshOd
- vgzkHKnTtbfkRzO2wOKw1QPQ6OavziCAvPPIvxQ5/NjH54W3adC9sAOGAzc0dNChr5m+TJnjI
- z/xaMy2/3SRcN9XEy5iTksM6TQKIqS5V5awg6MFA9FltTmxwsJbVdZ/5g8hQagZB2LbP4Qej9
- 1D7i5SYQO9TpDL0EAzlH2c0pZlVPB2wMHNv0dZLroaeKpEw8XDM60p/dcsqGSrT/115VcN7ie
- OQeoigpcV/4omSHznAe/gYZb+3R0BTe2zeCGzU2aMMXAKQVjDJXgZhMYD+czNCzaj8bnZMC5i
- 0Lh0iGADeJtHKwAyxip9ss0RmbyoTR2uXDgMC0mYVCPUT09A37TZx8/VZbl4+MKAymjpw9zYZ
- Zl/nXHVdQCTo9jryjjx/qAv0//w3PpXPBVeYNQJ/fy4qpJSu7OiVdR+3L7J4tjC+KGgrEVOih
- gDoFqcdt6t+HZ7jcCThsSXJWQTQMazXPV6tJzWs7qtWBLdCCmObbglTIpFpyJfOnWyeQQ5Rpe
- ykL62nJQS9VoKZNZRdCcuFStZOgSSwBzmA0UoJ/QDRReOZm2f1Mn0OQb1wOzyhvY7QNEmueU8
- /hb0W8k+6LAsvn9F7BxMHWeAQsiFlzJ/CcR5EsRtYUOs9jwnX23fM8qBtP6DIPGDjAwCFWAhw
- 0NSda0mp4ya+PwberKHM9+ArXyfmXeV2rqYgn/jt+DFMyMd4UcyJTiFBEoqA9BTUHCPzd1ZYT
- UmB7aPC7KOs9ippCoVJ6nRSeOumCnSuABi3VLEpJ1LrWmAtAl0HVlVpW+WeqPvouORI9Kr5kM
- WRa3Lt9uOoXYe3EaitX/628E7rBXf6+m1uyCFnSNDzfHfFj2bNlJxGnDkrKCeiuLQ6IRgLqT3
- mflffLsWTGpbXnt1WlnquIwGSBQlWxVLp/JSr1gANmIY3uEsVS+9O03I/BL7wcXXrOs8vTx8V
- vaD1OtCC2xQY6K7ZQjD+GEyzvtdHChBy1QFe7Mlk3j2u/ubRj4hW2FeD8AMg6YxMVuUKat6ZL
- 1HmJyuH+sROAl8B25ViVUPZAM8AYbu+qbWBB4kMxpQZJH1w/SfBcMYMOCOAVdQQiPzKPjmfX3
- Bj1ouC1KWvSAQQrdp5U7MsdqcnQAbf2fSoR02spB0xDon38Wp1nK0g5eH36EQvyCM7lvlUiU8
- AEDAiH2yxvD
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: lemans: add mdss1 display device
+ nodes
+To: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>,
+        dmitry.baryshkov@oss.qualcomm.com, marijn.suijten@somainline.org,
+        swboyd@chromium.org, mripard@kernel.org, abel.vesa@linaro.org,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, robin.clark@oss.qualcomm.com,
+        jessica.zhang@oss.qualcomm.com, abhinav.kumar@linux.dev,
+        sean@poorly.run, airlied@gmail.com, simona@ffwll.ch,
+        alex.vinarskis@gmail.com
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
+        quic_riteshk@quicinc.com, quic_amitsi@quicinc.com,
+        Mahadevan P <mahadevan.p@oss.qualcomm.com>
+References: <20251125105622.1755651-1-quic_mkuntuma@quicinc.com>
+ <20251125105622.1755651-3-quic_mkuntuma@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251125105622.1755651-3-quic_mkuntuma@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=LewxKzfi c=1 sm=1 tr=0 ts=692d99b6 cx=c_pps
+ a=P2rfLEam3zuxRRdjJWA2cw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=qKhk4BsYAtMBMWEJztUA:9 a=QEXdDO2ut3YA:10 a=ODZdjJIeia2B_SHc_B0f:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: kBa0gJuWSK_WXex-XurT-UFCn_L3AHAm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAxMDExMSBTYWx0ZWRfXwJDJIeLRRnVh
+ jqL9MZEUghlIQ4ub3QORDKyKirW3wnAndBA9yshSkZW+WQSZudhW5BqFlfTb9gs+ZdZpZZWRMop
+ dmhvGt1IChpE6E+S+mrZWKN5pH8SyZkfnSdm7muOEiPkUxW7TDVKuOmAVwi7sXc7PimBCZiVtbx
+ PdxgZOhRHofMNRfIH7p1c+a5BOuN8koJUwPa2YNPwiPKOR25r9jC9gP9ItWz+BLVPkoD3n9LYEw
+ rZWj8crjD+cXGwW8X6CSuVOTfZ2WBO6cVz/nwqui2JbNJtrUCqC6ZEREkMBaqSkO2XYPU6LkGK8
+ zl2OJHWDi3SKCQmTvhOYRUOlZB0g4gv+gSzxPuf1F61BNeQ5mPpzvXnsWL2cgKtV8SZjgDl3ogm
+ 6UvcjDqj2p693O9iF/I2aItmp/7OFQ==
+X-Proofpoint-ORIG-GUID: kBa0gJuWSK_WXex-XurT-UFCn_L3AHAm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 clxscore=1015 suspectscore=0 bulkscore=0 malwarescore=0
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512010111
 
-Add bindings for two Wacom W9007 variants which can be found in tablets.
+On 11/25/25 11:56 AM, Mani Chandana Ballary Kuntumalla wrote:
+> Add devicetree changes to enable second Mobile Display Subsystem (mdss1),
+> Display Processing Unit(DPU), Display Port(DP) controllers and eDP PHYs
+> on the Qualcomm Lemans platform.
+> 
+> Signed-off-by: Mahadevan P <mahadevan.p@oss.qualcomm.com>
+> Signed-off-by: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>
+> ---
 
-Signed-off-by: Hendrik Noack <hendrik-noack@gmx.de>
-=2D--
- .../input/touchscreen/wacom,w9007a-lt03.yaml  | 79 +++++++++++++++++++
- 1 file changed, 79 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/wa=
-com,w9007a-lt03.yaml
+[...]
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/wacom,w90=
-07a-lt03.yaml b/Documentation/devicetree/bindings/input/touchscreen/wacom,=
-w9007a-lt03.yaml
-new file mode 100644
-index 000000000000..80d12cb8392d
-=2D-- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/wacom,w9007a-lt0=
-3.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/wacom,w9007a-lt03.ya=
-ml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Wacom W9000-series penabled I2C touchscreen
-+
-+maintainers:
-+  - Hendrik Noack <hendrik-noack@gmx.de>
-+
-+description: |
-+  The W9000-series are penabled touchscreen controllers by Wacom.
-+
-+  The firmware of chips between devices can differ and with it also
-+  how the chips behaves.
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - wacom,w9007a-lt03
-+      - wacom,w9007a-v1
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description:
-+      Optional regulator for the VDD digital voltage.
-+
-+  flash-mode-gpios:
-+    maxItems: 1
-+    description:
-+      Optional GPIO specifier for the touchscreen's flash-mode pin.
-+
-+  pen-inserted-gpios:
-+    maxItems: 1
-+    description:
-+      Optional GPIO specifier for the touchscreen's pen-insert pin.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - vdd-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        digitizer@56 {
-+            compatible =3D "wacom,w9007a-lt03";
-+            reg =3D <0x56>;
-+            interrupt-parent =3D <&gpd1>;
-+            interrupts =3D <1 IRQ_TYPE_EDGE_RISING>;
-+
-+            vdd-supply =3D <&stylus_reg>;
-+
-+            flash-mode-gpios =3D <&gpd1 3 GPIO_ACTIVE_HIGH>;
-+            pen-inserted-gpios =3D <&gpx0 0 GPIO_ACTIVE_LOW>;
-+
-+            touchscreen-x-mm =3D <216>;
-+            touchscreen-y-mm =3D <135>;
-+            touchscreen-inverted-x;
-+        };
-+    };
-=2D-=20
-2.43.0
+> +			mdss1_dp1: displayport-controller@2215c000 {
+> +				compatible = "qcom,sa8775p-dp";
+> +
+> +				reg = <0x0 0x2215c000 0x0 0x104>,
+> +				      <0x0 0x2215c200 0x0 0x0c0>,
+> +				      <0x0 0x2215d000 0x0 0x770>,
+> +				      <0x0 0x2215e000 0x0 0x09c>,
+> +				      <0x0 0x2215f000 0x0 0x09c>,
+> +				      <0x0 0x22160000 0x0 0x09c>,
+> +				      <0x0 0x22161000 0x0 0x09c>,
+> +				      <0x0 0x22162000 0x0 0x23c>,
+> +				      <0x0 0x22163000 0x0 0x23c>;
+
+The last two regions still happen not to exist
+
+https://lore.kernel.org/all/vc2hen5r7xdaj4nepkoy7pk2jmj4y4hgog5o2nfndrff4yti2m@g46svhsdyy7m/
+
+Konrad
+
 
 
