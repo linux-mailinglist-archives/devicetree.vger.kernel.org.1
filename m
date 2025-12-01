@@ -1,102 +1,48 @@
-Return-Path: <devicetree+bounces-243365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22378C9739B
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 13:23:51 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49FFDC97416
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 13:28:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7B213A63C8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 12:21:30 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 33E28343D01
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 12:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C201130BF6A;
-	Mon,  1 Dec 2025 12:20:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C519C30F535;
+	Mon,  1 Dec 2025 12:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="M3NJGuGP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CtGi2OZB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZhaWPcyt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3E23093AE
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 12:20:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945202DA758;
+	Mon,  1 Dec 2025 12:26:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764591630; cv=none; b=F6SFE8YFX9ENJuspuYXoagbRUX6r4GJYLICvvIISTr7D1htVnRQPWQilqc6rm8zrgapHAT0ppZEvLXIHK7wxQ0lVsiGkUdDJzHPpjfOj5hjj+uGlWP4KhbRsi4ZBcoPZBdXZ2AgCJQnZek4ALjdsZ+hqNQkrts8ZKu6zRDAjg3Y=
+	t=1764591987; cv=none; b=ewO8dY+EX3HA0DsI/Zip4PpnAo/H4E9je+0YbYDcrB2howiMuDILLQt1cmR307IxGixC6AuLQG9+UVhjz4vvep4341O2lOMifbhaqppTsBCBqrbuD5SxQI+GCbp5yJ29qGLw3VzS7E9syyauVfP533veQLMaUxaltzyL2v8XCsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764591630; c=relaxed/simple;
-	bh=eY2f/OQiXjvQ99EgQG+7NrC52FpWQ+O8IZO2TLGmBJw=;
+	s=arc-20240116; t=1764591987; c=relaxed/simple;
+	bh=HwbmTSAOHlu/06UJIRWqqyPZO7iTe/0Ssg8JnH1Yga4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kMXdnhfHfytJQn5bZyoob7QSEBAPe9umZXlbLVP778Pz5c6Z7PQEzAWpo1iECiTztyM6KA5Tm48ROk4WtwpzQn3bA4fk3YiKXI11Cw3qMyJwG2ntYV0J89Goi4do3rpUYSujrCc67MtFH0KMT+zYnXuv/RPVQfESCv4Ik8MpEuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=M3NJGuGP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CtGi2OZB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B1CGCWI060621
-	for <devicetree@vger.kernel.org>; Mon, 1 Dec 2025 12:20:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	eY2f/OQiXjvQ99EgQG+7NrC52FpWQ+O8IZO2TLGmBJw=; b=M3NJGuGPgS5tRI7J
-	+bWh5iXyWN5ciH8Mo15hMRm19CPDbq1bBkcpt1H2rXLjVMSzXZ8LX7OwbSUf8v+Y
-	GfjSALoKlJ1adGV6+l1x3DaJn6YqtXLlRNUFI5cuRkFmn2TqYVsDftXDJfAM3dXv
-	6Nr5VYWkg//PH8uOnHmgCw9kHb/pLJJppRTcelVCXN6iRI/dNkuGJC9CED7j7CwI
-	2DfBGJXpB29hSAdpNk4S8t3SUUTsY0zSH1a6kTI0M7V/uomdPF02ArXu7k37sUnK
-	kV7klO9iLIxVyTgXk2jqBxwQmVSKDSZcv/1OcO/dS5Of/vFzwSXRsu0iE5q8UW62
-	CjRyBg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4asavh80dx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 12:20:28 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee409f1880so7065421cf.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 04:20:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764591627; x=1765196427; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eY2f/OQiXjvQ99EgQG+7NrC52FpWQ+O8IZO2TLGmBJw=;
-        b=CtGi2OZBQSSrN1+0g1Rcg2g6crUsUwdjZLoWmvIlO0XSAybN6u7d/ZmTFShOT9Oe2V
-         kfGMaRgINQnUkj24i6ENhohahq19HLE/yrS+k4bLySAotVFCq8063mK5skUV2nfPdV+q
-         XlafhGhMY9gkEk+pQUe7EF86BdB8AFDtIc1/UBUXDvMJme+sBbQVM8y+HNI9YNkQt9Xb
-         v6hnOSBaCNfpD7Krofsblvt1cGp27mmMVvr5L71kNxe7tiab2YYjlLUYuPHkgrcZvpSM
-         dPi1i0+6foMPT1SA5NyeMnecSV7e0CLRcBAsPboG9yd3lZNjEeAPWb1KHPR4v6hCIF+d
-         nj+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764591627; x=1765196427;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eY2f/OQiXjvQ99EgQG+7NrC52FpWQ+O8IZO2TLGmBJw=;
-        b=rcR5b+Sqmf2UgOfyNTDmkT1LE9HNX7uu6Xs74IO7pBXzVd9Z6N9qLdy1Xyz20eIVs3
-         3NViAlkz/U7y+G000+NZ7XQY+kBiHC4pUjR390Pb0j3VPp5sleDGJZ5IyxghV+bM8OIT
-         285TLfZrrhVyh9g9Dry+ciO3RuTKAYc8K5sTHYyEx1ktYDCsm3KFWtdNS/gNPnJlP6zQ
-         pxWF1TXNY+1A4NWoKEvMaWvlDjYJBJmPZqBELj8lwmErrlrLxSuL9m4zKJBuN7zV+A4s
-         WjXCzyBbKoIkc5FmwfGqGjX4ERinNpInxYJe5ziu2+zaAjhXpgz0Mc3CaEdCiUJTLU79
-         UC1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVLUJa46sAJmL3brosDFjlweQTYDtiWhcPWt0srJ6lRyEgK8rFjb7NApkSUlU/HaW61sOzWCShjYj9D@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1lEe+sm9Wqbq2B1VuYSun3VAUx/GFDMCbdwAjXTGzH9IctieY
-	7nk8IrNr2fBghvmAPCv2UtkQzD21buGjnROvRHiaVstH6QabslvQJGwJmhXkWfxGbqLHy82JVDI
-	eV/Vn2XBLlPXeO61uLG//Ga29Sxf3rJimmyVlePRtELRbHQdjCGP1C+0EinEJCi4m
-X-Gm-Gg: ASbGncvL1bjOcvNASpKo1cQePX60E8So29ZQrqzqiSekxgiu3VscWwFu4xH91OPwq4A
-	6QiR6rQY+mBtJeoawaJ+UCtXsNF+TxDQgNHxZQKoiDEPUXjMD1l8sWIJfE2nTjwg9f9H1tvpe2j
-	k4kOuaVbZDheFizAdiDFe6YD5OSW4XXkCK5i7uAmVRTIya2okpB85XFNvdGEvUF1QtEUxaQj9P4
-	Ahir1U05cOq/5gKA5C4CTiz+Mr8YWOzQWcv/huIsWVmEYp6VFy7ez/erhtipoSJ/kbpVMkZPJeQ
-	ssJapLRH/ypFbP3SUszc6m5K1ZG6BBnsyUvhZeZ8klUSNnwXsZjElyQjNOBzjhmqSiLiZZMY/bb
-	neW/SfqNCptVf1e6hP2jx8GzKGW06qyukDaSEhEjKxXUBt3AU4utbI62IJDQuDT5YLbg=
-X-Received: by 2002:a05:622a:1388:b0:4ee:1a3:2e79 with SMTP id d75a77b69052e-4ee589272d9mr392682191cf.8.1764591627383;
-        Mon, 01 Dec 2025 04:20:27 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGJKlfp8WVWHfI6G33XR+NIj+3I4kVuSnGH8T8BZFtRFo3N6WDtyo+7PMNn0O3wAizbedoOOA==
-X-Received: by 2002:a05:622a:1388:b0:4ee:1a3:2e79 with SMTP id d75a77b69052e-4ee589272d9mr392681551cf.8.1764591626827;
-        Mon, 01 Dec 2025 04:20:26 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f59e93acsm1186657866b.50.2025.12.01.04.20.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Dec 2025 04:20:26 -0800 (PST)
-Message-ID: <ae056a82-e5d4-4a73-b478-37533ce2e0ed@oss.qualcomm.com>
-Date: Mon, 1 Dec 2025 13:20:23 +0100
+	 In-Reply-To:Content-Type; b=fmaGowAw2E4AJioSSJqZbOb8Or7diO8SiCZs9qj+PRGjCF7S6O7J2PadWABVaO4rXrPl8v4E2nwYoT6JxxDZ0rLEcBQChLpOKBmIkooJiw+17+jw/xeGUnR2ODNSbViitE0JgB4b5f2AfjQa3dbovMOkH4UjfYLWksK4nFOIuik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZhaWPcyt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C2ADC4CEF1;
+	Mon,  1 Dec 2025 12:26:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764591987;
+	bh=HwbmTSAOHlu/06UJIRWqqyPZO7iTe/0Ssg8JnH1Yga4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZhaWPcytKZ+qwvjMmx+brlU4f4hOw3s8DMUbXhlwhVl41Mo0EVSauuiEYmJccEvXg
+	 TJJQH9PEFw+lfAYTbZaY6zP77KXbX4p+uKfz5erjSROYQ+SSq0x+JtPt7v92rfFYtI
+	 D9hVXu7RQ8cK2EEfyjxjO0TjXhawn2krpgReVZquPZQSLAflIEsWtoIqVoP4Ada6E2
+	 6vnMULmnHwT3DvdCkINYRqXwpFZsLCXXEHie5+1l+bFy9uDveksaBqj9S8uO5Q0BM5
+	 zw8/gzo6rs7n9XkaMKvV4prXDGwO2TlMDfHNfaMhuANf+psNWNbWW2aI5a8zMMztB7
+	 /HK74+MjmiTsQ==
+Message-ID: <35735aa9-26ce-4922-bd05-f68cc75353fb@kernel.org>
+Date: Mon, 1 Dec 2025 06:26:25 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,62 +50,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND] media: camss: csiphy: Make CSIPHY status macro
- cross-platform
-To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-References: <20251130-make-csiphy-status-macro-cross-platform-v1-1-334664c6cf70@oss.qualcomm.com>
+Subject: Re: [RESEND PATCH 2/2] dt-bindings: soc: altera: combine Intel's
+ SoCFPGA into altera.yaml
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251125134004.261165-1-dinguyen@kernel.org>
+ <20251125134004.261165-2-dinguyen@kernel.org>
+ <20251126-blond-bat-of-emphasis-81c0a8@kuoka>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251130-make-csiphy-status-macro-cross-platform-v1-1-334664c6cf70@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20251126-blond-bat-of-emphasis-81c0a8@kuoka>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: iNLLwbILXxG8RpGq3rZZGEWVoEOMTt2o
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAxMDEwMCBTYWx0ZWRfX07UvNf0dsSFf
- lnXwD4qtsF1gHJdpFdKqn9ZCkPwz9Xp3uo9fdM6EsP3MPe42xKN0OigNMWKqM/fflFdy2pb8j5V
- /PW2gYXPKz7R0Mt5VGrV0zNwO06aIdL59UaHO9QKyWVsERHQcow2rz9VpyqhhCGTSCx2j9wb8ZR
- KB1oW6lDYAWGDYPgjyF4fpTJcm8iY4vADFgnbz2IIEt1cY+xgUQCAu8ZT0Ybj0D+VG78YHVu/H5
- 19BjPSwXpQ/3IVN8YtKzZkrcL/Idsp4qY1SzsZRvzrOVAcfSMIFazsYk9tJBqT9S4ByrKRZy7D5
- /dEL5WpUD+v50W6+VRodN6EEoTexPlpFZuCPO2IYWurez2qqt6BgxTr6gcoYrbov8RbZX54u6Pd
- dmE9e5XTiNvueu9dZVgRqk4VZ95Sag==
-X-Authority-Analysis: v=2.4 cv=QutTHFyd c=1 sm=1 tr=0 ts=692d880c cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=yCSNFImgYS9KtUgOuK0A:9 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: iNLLwbILXxG8RpGq3rZZGEWVoEOMTt2o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 adultscore=0 suspectscore=0 phishscore=0 spamscore=0
- malwarescore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512010100
 
-On 12/1/25 7:25 AM, Hangxiang Ma wrote:
-> The current value of '0xb0' that represents the offset to the status
-> registers within the common registers of the CSIPHY has been changed on
-> the newer SOCs and it requires generalizing the macro using a new
-> variable 'common_status_offset'. This variable is initialized in the
-> csiphy_init() function.
 
-"offset" + "common_status_offset" is confusing
 
-Let's maybe add some platform data where we store the actual offset of
-the registers in question and pass a csiphy ptr as an argument
+On 11/26/25 03:49, Krzysztof Kozlowski wrote:
+> On Tue, Nov 25, 2025 at 07:40:03AM -0600, Dinh Nguyen wrote:
+>> For all SoCFPGA platforms, whether it has the "intel" or "altr" vendor
+>> prefix are referring to the same business unit that is responsible for
+>> the platform. Thus, it would make sense to have the device bindings
+>> documentation in the same location. Move the Intel AgileX board binding
+>> documentations into the same file that contains the Altera ones.
+> 
+> I had impression that "intel" is the new, thus preferred vendor prefix
+> and actual owner, so please describe here why this is the other way.
+> 
 
-Konrad
+Altera has just spun off to be a separate business entity from Intel. 
+Yes, while Intel is still a minority owner, Altera is technically on 
+it's own. Moving forward, "altr" would be the preferred vendor prefix 
+for SoCFPGA parts.
+
+Dinh
 
