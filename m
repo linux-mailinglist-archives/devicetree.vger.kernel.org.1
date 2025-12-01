@@ -1,156 +1,119 @@
-Return-Path: <devicetree+bounces-243228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AF2C95A6E
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 04:37:39 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD93C95C03
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 07:08:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B2FAF3420C2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 03:37:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D538A4E0FEF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 06:08:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99FF41D5CFB;
-	Mon,  1 Dec 2025 03:37:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="qM/jpEgU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFECE233721;
+	Mon,  1 Dec 2025 06:08:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B802513FEE;
-	Mon,  1 Dec 2025 03:37:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0457A229B2A;
+	Mon,  1 Dec 2025 06:08:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764560254; cv=none; b=h6GU9VDtz4i1khb/IQktF7zIFPo7OCojy4p445WF3x3FIi/W8lhUcEyY4yO8eP9oJTs2nm913+THq++vuZNB3D+d9T5h/IU6j1406qm7jXTfsLtDZG/IJMuTVUMcBaj3/guOF/MQP0U1OgnfsDoXbIqZGdngUU+IUtoKXQ7Skqc=
+	t=1764569304; cv=none; b=fHDx0gbzr2KkZX6wwuVNwR58f8RPMYTu4rPBjdwA8zaCT7FYAzaAYO/tbi4U45D75lOnISQR+dm08+HLfhZLjVgmv/L/XVI6JLHtX0TqOcYEVcHRvm3YdPCClzb9UCKRBClR2Qz3PkD1DA9+TOSNvnm1KqjLB1mAhKt7C2vXRtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764560254; c=relaxed/simple;
-	bh=cCPR+pIU13nIqPPAmxJUzZ9WNyhhXDoQPnxKeb/DE6s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S+dfhl5x+ohDYJRfb2MFKwr2ZrFnsN2MItk0cEmwvGBMowxaQ5bcIYAwfMRmgAanWA98SPdu0LphcY7r/pbVtPiw11bd72ItF/oXy4WftdJk45VD+oclUnzZk81P2V14wXuTrLZXM0I7LtN48t4cNMXv0VXC2EM/eF1PtaWJuFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=qM/jpEgU; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (fp76f193f3.tkyc206.ap.nuro.jp [118.241.147.243])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 5A884F13;
-	Mon,  1 Dec 2025 04:35:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1764560109;
-	bh=cCPR+pIU13nIqPPAmxJUzZ9WNyhhXDoQPnxKeb/DE6s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qM/jpEgUdA19glwbyE2H3ayIZ9/bnftrChud7b7kT2zwvlf7GoiKCQG0qYbIL/Ce0
-	 1DRpTW33IGsRk++KZaBSN99qFxv+txwqvohB2fnntzwB01XqUCC52j/dh3wRvb9J0J
-	 xMpoIZWa0k0aRqRq8BkAjrmEbzkSTxBzZWvGxbBw=
-Date: Mon, 1 Dec 2025 12:37:00 +0900
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Frank Li <Frank.li@nxp.com>, Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] media: rockchip: add driver for the rockchip mipi
- csi-2 receiver
-Message-ID: <20251201033700.GB21943@pendragon.ideasonboard.com>
-References: <20251114-rockchip-mipi-receiver-v2-0-eb9b43377fc4@collabora.com>
- <20251114-rockchip-mipi-receiver-v2-2-eb9b43377fc4@collabora.com>
- <aRyplYZOrGsSxSlp@lizhi-Precision-Tower-5810>
- <554971e1-6fde-4b2c-a2de-fe178358a4e3@collabora.com>
- <aRzub5Ak6DZpO5f/@lizhi-Precision-Tower-5810>
- <87049b4c-df7d-454b-a7f4-073975a7ee94@collabora.com>
+	s=arc-20240116; t=1764569304; c=relaxed/simple;
+	bh=53+1MZJBGn2PF7HMiXBUNqJUlWfCO65nDuD4NLl4F/M=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=C4CVkYWyGN8gFE9m2Ixj31G4kVKMLr96AIS5j01snPmnDUIc93QFTPN+fNA0Rsvx+4EKYQ/Ey0Ub/cz5CQLtEPHy4W/9N+ySbYodtcg/UDtKHkSrq86Ll10AW9l4zyfrKwJBAtTjSzr9opznoRwbshfC4OXBCXX6BM3eaIymtH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0006800LT.eswin.cn (unknown [10.12.96.77])
+	by app2 (Coremail) with SMTP id TQJkCgCX2q28MC1pASKAAA--.43009S2;
+	Mon, 01 Dec 2025 14:08:01 +0800 (CST)
+From: Yulin Lu <luyulin@eswincomputing.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	p.zabel@pengutronix.de,
+	neil.armstrong@linaro.org
+Cc: ningyu@eswincomputing.com,
+	zhengyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	fenglin@eswincomputing.com,
+	lianghujun@eswincomputing.com,
+	Yulin Lu <luyulin@eswincomputing.com>
+Subject: [PATCH v6 0/2] Add driver support for Eswin EIC7700 SoC SATA PHY
+Date: Mon,  1 Dec 2025 14:07:37 +0800
+Message-Id: <20251201060737.868-1-luyulin@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <87049b4c-df7d-454b-a7f4-073975a7ee94@collabora.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgCX2q28MC1pASKAAA--.43009S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7trWkCF1rtw47GrWrAw43Wrg_yoW8Aw4Upa
+	ykGFyrWr1ktr12qws3J3W09Fy3J3Z7JFWa9r4xX3W5WF15Zr95Za1fCa4YqFyxArZ7J345
+	tFn09Fy7CFyUAFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
+	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
+	wI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
+	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v2
+	0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
+	W8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRidbbtUUUUU==
+X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/
 
-Hello,
+Updates:
+  v6 -> v5:
+    - eswin,eic7700-ahci.yaml
+      - Delete this file and it has already been applied in reply[1].
+    - eswin,eic7700-sata-phy.yaml
+      - Add clock and reset related properties.
+    - phy-eic7700-sata.c
+      - Map the io resource with platform_get_resource and devm_ioremap instead of
+        devm_platform_ioremap_resource API. Because the address region of sata-phy falls
+        into the region of hsp clock&reset which has been got by hsp clock&reset driver.
+      - Use regmap_read_poll_timeout in wait_for_phy_ready to replace the while loop check.
+      - Use devm_regmap_init_mmio and regmap_write to replace writel.
+      - Adapt to the clock and reset driver framework, replacing the original readl and writel.
+        Because we are implementing the HSP layer clock and reset drivers, the corresponding
+        clock and reset registers can be registered into the driver framework. And I have tested
+        on the Sifive HiFive Premier P550 board.
+    - Link to v5: https://lore.kernel.org/lkml/20250930083754.15-1-luyulin@eswincomputing.com/
 
-On Wed, Nov 26, 2025 at 09:57:31PM +0100, Michael Riesch wrote:
-> On 11/18/25 23:08, Frank Li wrote:
-> > On Tue, Nov 18, 2025 at 07:59:14PM +0100, Michael Riesch wrote:
-> >> On 11/18/25 18:15, Frank Li wrote:
-> >>> On Tue, Nov 18, 2025 at 12:12:26PM +0100, Michael Riesch via B4 Relay wrote:
-> >>>> From: Michael Riesch <michael.riesch@collabora.com>
-> >>>>
-> >>>> [...]
-> >>>> +#define CSI2HOST_N_LANES     0x04
-> >>>> +#define CSI2HOST_CSI2_RESETN 0x10
-> >>>> +#define CSI2HOST_PHY_STATE   0x14
-> >>>> +#define CSI2HOST_ERR1	     0x20
-> >>>> +#define CSI2HOST_ERR2	     0x24
-> >>>> +#define CSI2HOST_MSK1	     0x28
-> >>>> +#define CSI2HOST_MSK2	     0x2c
-> >>>> +#define CSI2HOST_CONTROL     0x40
-> >>>
-> >>> Look like that is designware CSI2 controller, can we build common library
-> >>> for all dwc csi2 controller, instead of every vendor create individual one.
-> >>>
-> >>> First try at
-> >>> https://lore.kernel.org/linux-media/20250821-95_cam-v3-21-c9286fbb34b9@nxp.com/
-> >>>
-> >>> Toshiba have similar patch
-> >>> https://lore.kernel.org/linux-media/aPZd39riAxqfw3mT@lizhi-Precision-Tower-5810/
-> >>>
-> >>> Frank
-> >>
-> >> This has been discussed already a while ago:
-> >> https://lore.kernel.org/all/20250507083837.GA11152@pendragon.ideasonboard.com/
-> > 
-> > https://lore.kernel.org/all/20250702093806.GF16835@pendragon.ideasonboard.com/
-> > 
-> > Laurent Pinchart prevent imx93 DWC CSI2 driver at Jul, your discussion at
-> > May, I think Laurent Pinchart change the mind.
-> > 
-> > We can choose not base on imx6, but we should create a standard dwc2 under
-> > drivers/media/platform/synopsys/
-> 
-> In principle, I agree with refactoring out common code. However, I am
-> not sure how similar these IP cores really are. Again, the answer I
-> received from Rockchip states that this is *not* a Synopsys IP core.
+[1] https://lore.kernel.org/lkml/aOUCU28Jjfnk2bYm@ryzen/
 
-That's what I based my opinion on. If we're dealing with different IP
-cores from different vendors, we can have separate drivers. Even within
-the family of CSI-2 receivers from Synopsys, I'm fine having different
-drivers if the version differ significantly enough that using a single
-driver would cause more pain than gain.
+Yulin Lu (2):
+  dt-bindings: phy: eswin: Document the EIC7700 SoC SATA PHY
+  phy: eswin: Create eswin directory and add EIC7700 SATA PHY driver
 
-To explain this differently, for Synopsys CSI-2 receivers, I would like
-to try and support multiple IP cores integrated in different SoCs in a
-single driver. If, during that development, we find good reasons to use
-separate drivers, then we can do so.
-
-> Can you maybe test whether the Rockchip MIPI CSI-2 Receiver driver in
-> this series works on your hardware? Then we will know if (and what)
-> parts can be shared.
-> 
-> > Laurent Pinchart:
-> > 
-> > 	Can you provide direction?
-> > 
-> >> Bottom line from Laurent:
-> >>
-> >> "Let's keep this driver Rockchip-specific then. Thanks for checking."
-> >>
-> >>>  [...]
+ .../bindings/phy/eswin,eic7700-sata-phy.yaml  |  58 +++++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/eswin/Kconfig                     |  14 ++
+ drivers/phy/eswin/Makefile                    |   2 +
+ drivers/phy/eswin/phy-eic7700-sata.c          | 211 ++++++++++++++++++
+ 6 files changed, 287 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/eswin,eic7700-sata-phy.yaml
+ create mode 100644 drivers/phy/eswin/Kconfig
+ create mode 100644 drivers/phy/eswin/Makefile
+ create mode 100644 drivers/phy/eswin/phy-eic7700-sata.c
 
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
 
