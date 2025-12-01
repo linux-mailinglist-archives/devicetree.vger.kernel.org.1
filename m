@@ -1,319 +1,291 @@
-Return-Path: <devicetree+bounces-243295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3516FC968C9
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B917C968D5
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 11:05:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DBD43A20E5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:03:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04C9D3A1455
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 10:05:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E0FE30149E;
-	Mon,  1 Dec 2025 10:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1972FCC17;
+	Mon,  1 Dec 2025 10:04:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TMu0bQkl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cbDQuYMG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010058.outbound.protection.outlook.com [52.101.85.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E91030171C;
-	Mon,  1 Dec 2025 10:03:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764583388; cv=fail; b=RvKWJP8151xQPzqtSv/QBhDaXivNg+dYT8WWcqNhPKauFXufX0PqRdHBhijxMvNu7A7x4Nodnr+xpFJgWoRdWtqcrsakdWJGPt/YGvEO4ph8H74HEnK0Ye4I15a9+Cy+2NrbRR0KiEqZD80z+9RdyNmhLKFtxtQnmWmaqXCom2s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764583388; c=relaxed/simple;
-	bh=XRb+x6ESIu2uW9gqTjZMLN6/dTyFryZS37l98cCRGjg=;
-	h=MIME-Version:Content-Type:Date:Message-ID:CC:Subject:From:To:
-	 References:In-Reply-To; b=U+yQuX989b+If/MmwG4tyyS469EEn5sJsxxKmnstm6nBCEzuHuL3xQrajRnyCzhRBddbX4u1Cn2oixX7TBUlg8iuhkkcaFWoXNgMdBDPifN1mJ6H23KlcE+q0sPWkKepRG1vkwk6LLzFLxOWjQRvo/NUMA0qrUB5n6WRpXub0pE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TMu0bQkl; arc=fail smtp.client-ip=52.101.85.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DQH4pxAVCFRqR+VgykhCwdWwX5ikrr8GFFwqHRMXXkIytzg4tA4OOavH/XFoUT2t+xmutvg/5aSuAYvg/vIfDw28ZAy+WYI8DN+zIkJeekoiDfxQv+8frV4DS5XT4mSD4DVnOJU9RBc9QA3T4WOSwDmC6NA5q7uA1knpajAy2USVYiy0duGGo64VYUN6g+rZNfkSHBqX62SEPDXPZK6fkz1K1w3JUZHL75IY69omyfHHwF0CV7uYPe8rppuoW5cicq4bpTZV5x98+XMlWhdczyU0mLNBUUwbuhCfLNtSNNEYafUOq9qW0CNf0Td7DTy9CBTaTOT9Eu73y29D4I0ESg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TlITydG0VPKKgHKEoMPeIzEjx1OwozLNfXIPF6PpkBo=;
- b=daNXCD3DHGh9/PGi96KOF8ddksvtmxrA5otwvJD73tmVVzAPspM0/QsutspfE9EmrqwXmJ7nOtqf00omoTGb3pW3eEnV9SCfGzTGKiSLtDZYKNZs3x9Swrt32gYo4WpwoB493KsrmUxQwO/diygRkIwJZz3rfrDf88W9biKDvqN6KdgPmgBFrAKtd3aaP7gJowqMA/q8h1RGHB9zdLcaXQkZlIh2j2wji3qMQmL70MCqOmyVYfTfpJ4xCHrtaw8imhmI+7bAfQ3As7wpEYYGn+gykR1n8XWjtmKFvW6j1wojzlRWiWykRt0mUsS9UgrxZMy7cQfO79QXlZbzCmZxPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TlITydG0VPKKgHKEoMPeIzEjx1OwozLNfXIPF6PpkBo=;
- b=TMu0bQklVl28PIb44e7iOrixSJjp9Y1IEGvNrkBn7P4mRXtaXFgjnzSYvm1S9tzcv0A9Gmwr0L8L9pJxNS0O7TjP/YKBSNZ5y9r9u7g3/dZtg01y48hAMCXKn7izrivAtTrrMzn8ll2Ndwiap0m+b5bIrU7YN//mARg/tCxxFBY=
-Received: from PH8P221CA0043.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:346::23)
- by DS7PR10MB5928.namprd10.prod.outlook.com (2603:10b6:8:84::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
- 2025 10:03:02 +0000
-Received: from SN1PEPF000252A2.namprd05.prod.outlook.com
- (2603:10b6:510:346:cafe::14) by PH8P221CA0043.outlook.office365.com
- (2603:10b6:510:346::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Mon,
- 1 Dec 2025 10:02:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- SN1PEPF000252A2.mail.protection.outlook.com (10.167.242.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Mon, 1 Dec 2025 10:03:00 +0000
-Received: from DFLE214.ent.ti.com (10.64.6.72) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
- 2025 04:02:57 -0600
-Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE214.ent.ti.com
- (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
- 2025 04:02:56 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE204.ent.ti.com
- (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 1 Dec 2025 04:02:56 -0600
-Received: from localhost (dhcp-172-24-233-105.dhcp.ti.com [172.24.233.105])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B1A2tIj238147;
-	Mon, 1 Dec 2025 04:02:56 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 176BF2E4279
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 10:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764583496; cv=none; b=I2rrTTZIAJlOxvgXkNGhw8HNWy+23TvT34XNfB2M0c+WDIn1NLGXpYyVBDHGUZKQi54zxutAI/bUAKLYthHw9tdqhTkFT7YIgG1mjrLBSw4yCXo1DfJSETGLjSigR5iRY1eplh0oQMxstEfCGz5YIk26dTavwCNaoYvn6ikuTrE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764583496; c=relaxed/simple;
+	bh=6rKFiaVGECYHL+8XWp6ClZQhtUMNAEoov3QwfQjMlAg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y0P72T4KthO49vqgkg8IlNXTcIFWevYDvQQbecQ6SjSxFkJICKmt3IMmkp4TFBXO6uyAD/lM2NSaZL400qGx2u34aUEviCTRLN8Cr5AO+P93kuGcw8Sv3YT9BAxW6tncqOj7uwqyY7igu/0YXo62eBLDR6Ba2825+npox1UCJPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cbDQuYMG; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47798ded6fcso21169445e9.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 02:04:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764583492; x=1765188292; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xd04XdmAGe70xw02O+BseE6+4n3YbnX/7asIzkdBhqk=;
+        b=cbDQuYMGmEXH1L+eFPJVxkYT1QFPrWuiHUgDJeDXP/mUoK/zf+Ur2f63ARcYAZNt83
+         HkVs3pVNAKAZbRAc+k9buxzxUxjpwwdTAwhtH1QnlzbXGbMnwPIQ/kUpv0KLGHBkkIyP
+         40MthCeTztP69wsZqXs+82G/bvq/uBTgkpyDfja5MfqmHQgFtSf1n0Nbdw8g8x8c4/P6
+         CKhb+4TiYNEGDX/+CrLGq531q2n4AbTDM2TNurirmHg/zhvi7oCZXY3SY49kwPtpZiKG
+         PxZ5KTy/usZJ6pavYnsO3SLvQgfw0QjAP0yYFe14ciOd/5daftbX4YXAu9esBL+6+BB3
+         Scmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764583492; x=1765188292;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xd04XdmAGe70xw02O+BseE6+4n3YbnX/7asIzkdBhqk=;
+        b=JVvDn+N0UnQdfVWWqzZGYjhd7kuXu+iDkdltEN7ilVGRUw5Yo3fw8Y8nRR5owGM4WH
+         yPBTFI1KC+uRmzydz/qxTN10HRMBqRhFnDOVRjCO2plnnQ76/yXWedxd81f0Tb4b5eSe
+         uURD90gP17JHOkU0YnOjSTQQYe/9paI+2WPRKnX9Xdf07c4smIXeQrPi3AuzYSg62MVg
+         aRwMgBom9fx/6mhCSnIyuxIvCiieJb2OwXiS3/eMoXGzA8jSk8p8XiM6hy9HGDv6lXGB
+         VVejGRRabgyltrv7V1zzWIVKi2p6elsoji7T6VY/N1cANTWIxF1zqWs0946MY6ZuYG6/
+         h5Hg==
+X-Forwarded-Encrypted: i=1; AJvYcCVWCys0Vgi0Y8Rf6JTKEkXIiuBRVt9z0yQkBjty1rQsIBHIDhSFdil1d/D9uSStWkD4uDIoIh4pW62m@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3zLE1wIMTFSC2nsryYgenWfYkZUd7AMOjmeOX8wcS5ric2fFV
+	ybldZ2oGCzMyK66EVSzTV9upOT7MmjF/6iMGxOWvmDMY73raOkr9CmSF
+X-Gm-Gg: ASbGnct9YiaWQ1fTVLxhb7GHTDdqN6keo2mkWwSmW1DLNjRRpLLf7hjv2Z2hdEId/X2
+	s0cSBFGKPTO4YMabHr5EqUsSUE2Dw/h3ecj8BXQYhD4ysAQzOqKj4P/AUWxnPSPCh7sXOEeBx5g
+	dxvEb70N/uXJRQZLy2/+opzNFifhi9lXqfWhfaznHawfojHN7vZocYx1aLmihzTPmI4NtcvuUAx
+	bVvyGyauRQxuQj9M7uAu8L1v5r99tRlBuOGKhWK4HiRgOaJ7KsXSFNtBMk8u+2rY55AzosiQMpm
+	bNN/D9HDxxxxXCZen1pidtcPDIvALYRXIfaHjBnmVRoxElA0XoGoADcj8iMMeLLmt0A787G5r7B
+	xl6V2hsvnRJztFiRECUvlJgXbwwhoBjwaqm+M4Wgq6UZ3EEmgFbnUxiW0dPJh/O4CC1pUcYN+c4
+	NtV+UC2PA/IvWj7YH0
+X-Google-Smtp-Source: AGHT+IHo5bI1IRZ9DJRFKm5suWsmADqZbLqR/rj8bQ8rERwyjgO7HPxMN1i7xosry+PHVlL5KsnDVQ==
+X-Received: by 2002:a05:600c:1f0f:b0:477:8b2e:aa7d with SMTP id 5b1f17b1804b1-477c1132bf2mr369712165e9.30.1764583491941;
+        Mon, 01 Dec 2025 02:04:51 -0800 (PST)
+Received: from owl5 ([2001:861:3201:3d10:4ab6:6efe:9b65:a6af])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4791163e36csm224508325e9.9.2025.12.01.02.04.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Dec 2025 02:04:51 -0800 (PST)
+Date: Mon, 1 Dec 2025 11:04:50 +0100
+From: Gary Bisson <bisson.gary@gmail.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: krzk+dt@kernel.org, linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: vendor-prefixes: Add Ezurio LLC
+Message-ID: <aS1oQonkuFpyqSI2@owl5>
+References: <20251201084140.376058-1-bisson.gary@gmail.com>
+ <20251201084140.376058-2-bisson.gary@gmail.com>
+ <176458161856.2489196.6170126310129033736.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Mon, 1 Dec 2025 15:32:55 +0530
-Message-ID: <DEMSLNLDXSNY.2CMMGUMUOYA9T@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Vignesh
- Raghavendra" <vigneshr@ti.com>
-Subject: Re: [PATCH v3] dt-bindings: arm: keystone: add boot_* mboxes to
- ti,sci
-From: Anshul Dalal <anshuld@ti.com>
-To: Nishanth Menon <nm@ti.com>, Anshul Dalal <anshuld@ti.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251112-k3_syscon_add_boot_mailboxes-v3-1-66155a4236dc@ti.com>
- <20251112152806.zsinwwzaht2ws2wh@headpiece>
-In-Reply-To: <20251112152806.zsinwwzaht2ws2wh@headpiece>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000252A2:EE_|DS7PR10MB5928:EE_
-X-MS-Office365-Filtering-Correlation-Id: bfc704d2-b537-4b55-32f9-08de30c0cf3a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Y0x3NFlFbEZGM3ovYkU2SEtOb3pNbVExN3ZLNmRWSTd0c3A2K0NNaEhpRnUz?=
- =?utf-8?B?Z0FpUlB1dTg4T1hOelordDZVODRxb00zOWN6Rm9xSG5jQk1wRUZZUVQ2NjIw?=
- =?utf-8?B?WDRmcitsOEovZ01SR2ZsNHpPWVlia2N1U0E1eFZaMGQvck9JSklZek1pN1B4?=
- =?utf-8?B?K2VZalBkbVdwakJuWG5mL0s3emZIMFdUVGNuK1E3ZWdYR3pZV2VVOTVLMWE5?=
- =?utf-8?B?OXR5ZDl5elM0bUxNVGl1d0pqNVlLSWZSUzAwWFl2MWdibCtNc2FBVzBrWGhr?=
- =?utf-8?B?eWR5TmdtSHFibk42TkV4U1BNS2hVYmpRaVZJNmgxUUM1OHZKdnNOVHQ1MXFj?=
- =?utf-8?B?ZFdhWXVmaTlLSWtNb093UCtjS2ZVVnFIYUhpTHF6VVltTVBTUWVYaFMzY05u?=
- =?utf-8?B?d0ZkWmUwZEc5M0p1b1hibmQ5cnlXMVFRZDRPYkllRWtiNkRTYzdSMjJ4OWds?=
- =?utf-8?B?RGZGa1QvamVyUlhvUDJZS21veHg0SDdrY1ZsUm95MXRubjkyS1NnNlB4WTF1?=
- =?utf-8?B?REJtbEZUeUU2UHQ1N0VKdVUxWmprUFA4WlYvc0F0RXRYVU9aSGJyR2hUa080?=
- =?utf-8?B?TnA3MGYxa3g3dHIvLzJMMW9OL2lFTy9Xell6TTVheDRKTm9jRlhwUkJ1ekR4?=
- =?utf-8?B?WVpVakJXMVFWRUxNYnFTb2o3QUdsOFdQbEZZMmV2SmgyMjdGL3YxSm1wL3VQ?=
- =?utf-8?B?aXM0clhBV1Y5ZmxpaDBzbGZTNHkwNTJNc0xHZmhDcEVWaVJVcjVWZG1EL0l0?=
- =?utf-8?B?UStRU3JkT2svMXV1ZUhlaVpGbDl3NkRrME5Hbm5FQ3dENzFBWit1M3Frb0k0?=
- =?utf-8?B?aThHWXd0QmJhbVY1d1VPVzFsM05tT0ZCR2pmN0h4cENoVEFtNDIyazB1SFBq?=
- =?utf-8?B?eUFvTVRLcE5QWDJtQlNNMXVKMndCemsrQ2IyNG9xUXF6WWE5QVplVmdSR1Jk?=
- =?utf-8?B?QitJOW01SXhNQWtuQ3grYUZxZjczVmNkOU5vZkh4QThxYjJzeXN5TlBNMnl5?=
- =?utf-8?B?eXRNbGQ0SlU0S0VmNWtRbURZajBFQTZDQkpERmFGYUcyMnlocnE1aFkrL0ph?=
- =?utf-8?B?UWpObXYwWnc1amRwZnZ2bkh6dDFPMnAydTlHZUJCdkdGUnR4OExBV0JwSVEx?=
- =?utf-8?B?b29nM0N5NU13VkJQbUFUelNzRUp0S2ZzY3A5SVBUcG5RMEFMNnBiNTRJb0E5?=
- =?utf-8?B?NVZ1eGZwWlVhMGxRVUlZSkdLWVQxT3JueWpPYmp6Q284TEdhblFOSm52RkRF?=
- =?utf-8?B?YVI1UitMTnMxem1YZUxrOUcyRVhnQythQjhncTI4bUZ3QW9HWEJaZlllNkQr?=
- =?utf-8?B?cEdwQWh6TWNDWnRVbUxLbmRxeGpiaXZrMnUzSzRyZ2ZaamdqZmw3UFFWME9o?=
- =?utf-8?B?SWpobkt5dXpnSXJpSTZhNlBvc3RocVh4VEhCMUlrYXlJMi9MQWVhTWdVSzRz?=
- =?utf-8?B?ZGd5TGhxV0RadXJ5alMvT1pEQmQvQkMxRnU3bWhYVTBuV1Y0cEpZaXU0Q2dq?=
- =?utf-8?B?bCtBNGRNUURHVGk1RmE2QVVxZ1JaRlBYOHlZMERjQXV0TXBGK3FiaTkrU2hN?=
- =?utf-8?B?eVVvbm01emxyQm5tcWc5VE1hak1DZnU0WHVJdVBlRjdVVmgrVTlheFFLbUQw?=
- =?utf-8?B?R2VkK3pIcENIS1VSUFZJY0hucGlNT2F1YW85RCtSemhnR1grSDhMTlFyYVlk?=
- =?utf-8?B?ZUpHbGlZV0FSSllNeVQrOGF5Y2J6MXBzdjFNdmptN2dGNms4cFQ3RjA4Vzk0?=
- =?utf-8?B?cVlxN0tHa3UvSEN3bm5qQUowbk1nVENkeXRjWGpzb3BxM0w4enF0cDh2a3Nn?=
- =?utf-8?B?dmJMNGJpZzJHMjlIN0o4bTVUNTNZanRzNjdHVWJtSGZPdUQ0R1J3eTJhZ2p1?=
- =?utf-8?B?T04vZ2xoSHMwcCtoem9SMmwzenVrSHgxbUdSU211eVpWTU1aeVJ3bVdlSWVB?=
- =?utf-8?B?Wk1hcVZrWE9vZmptN1dwQktmQ2kyR2Z6OW9VdldNT1AyWmI4bjg0RWRHV2lF?=
- =?utf-8?B?ZjIrdTZ1QjVEMzJkdHh3L2cvL05ybTNhZ2JibElmcWxkemlmdUJwQWJRTUJP?=
- =?utf-8?B?eXZTeUxOM09vQTJCWFdFaTE1RVUvU0I3bWUyNnlxZmZpN0RhaDlNSnhtaHVL?=
- =?utf-8?Q?/oTo=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 10:03:00.1210
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bfc704d2-b537-4b55-32f9-08de30c0cf3a
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF000252A2.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB5928
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <176458161856.2489196.6170126310129033736.robh@kernel.org>
 
-On Wed Nov 12, 2025 at 8:58 PM IST, Nishanth Menon wrote:
-> On 15:54-20251112, Anshul Dalal wrote:
->> The bootloader on K3 devices makes use of mailboxes as per the ROM spec
->> which might be different than one's available to the kernel (firmware
->> spec).
->>=20
->> Therefore, this patch adds the missing mailbox entries to the DT binding
->> to represent the mailboxes exposed by the hardware during boot for the
->> purpose of loading the firmware.
->>=20
->> Signed-off-by: Anshul Dalal <anshuld@ti.com>
->> ---
->> Changes in v3:
->> - Drop [1/2] of the last patch series
->> - Update existing example with boot_* mailboxes instead of adding a new =
-one
->> - Link to v2: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mail=
-boxes-v2-0-aebc1e47b391@ti.com
->>=20
->> Changes in v2:
->> - Remove maxItems entry
->> - Remove RFC tag from patch (added by mistake in v1)
->> - Document the new mailboxes in mboxes instead of mbox-names
->> - Provide example with all the mailboxes set
->> - Update commit title to have "ti,sci"
->> - Split into two patches
->> - Link to v1: https://lore.kernel.org/r/20251111-k3_syscon_add_boot_mail=
-boxes-v1-1-529a27f21076@ti.com
->> ---
->>  .../devicetree/bindings/arm/keystone/ti,sci.yaml      | 19 ++++++++++++=
-++++---
->>  1 file changed, 16 insertions(+), 3 deletions(-)
->>=20
->> diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml =
-b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
->> index 25a2b42105e541cb3c8ad12a0dfec1af038fa907..be8a5b2b051b441884795059=
-c70892910d981130 100644
->> --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
->> +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
->> @@ -51,15 +51,27 @@ properties:
->>      minItems: 1
->> =20
->>    mbox-names:
->> +    minItems: 2
->>      description: |
->>        Specifies the mailboxes used to communicate with TI-SCI Controlle=
-r
->>        made available from TI-SCI controller.
->>      items:
->>        - const: rx
->>        - const: tx
->> +      - const: notify
->> +      - const: boot_rx
->> +      - const: boot_tx
->> +      - const: boot_notify
->
-> Sorry for joining the party late.. just saw the thread while happening
-> to glance at the pending list..
->
-> k2g does not use boot_* mboxes, the load mechanism doesn't involve
-> ROM talking over mboxes, we load the pmmc on that SoC! ti,am654-sci
-> onwards does. This would be a good case for adding a conditional
-> property, IMHO. That said majority of the K3 dts entries still use
-> k2g-sci for k3 (#facepalm.. i should have caught it, but missed).. but
-> that cleanup is for follow on patches that could fix.. driver seems to
-> be able to handle the same.
->
+Hi,
 
-Should we therefore have the new mboxes be conditional on "ti,am654-sci"
-while k2g continues to use the existing "rx" and "tx" mboxes?
+On Mon, Dec 01, 2025 at 03:33:40AM -0600, Rob Herring (Arm) wrote:
+> 
+> On Mon, 01 Dec 2025 09:41:36 +0100, Gary Bisson wrote:
+> > Ezurio is the new name of Laird Connectivity after it acquired Boundary
+> > Devices.
+> > 
+> > Signed-off-by: Gary Bisson <bisson.gary@gmail.com>
+> > ---
+> > Cc: robh@kernel.org
+> > Cc: krzk+dt@kernel.org
+> > ---
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Traceback (most recent call last):
+>   File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 428, in get_or_retrieve
+>     resource = registry._retrieve(uri)
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 426, in retrieve
+>     return DRAFT201909.create_resource(self.schemas[uri])
+>                                        ~~~~~~~~~~~~^^^^^
+> KeyError: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
+> 
+> The above exception was the direct cause of the following exception:
+> 
+> Traceback (most recent call last):
+>   File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
+>     retrieved = self._registry.get_or_retrieve(uri)
+>   File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 435, in get_or_retrieve
+>     raise exceptions.Unretrievable(ref=uri) from error
+> referencing.exceptions.Unretrievable: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
+> 
+> The above exception was the direct cause of the following exception:
+> 
+> Traceback (most recent call last):
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 463, in _validate_reference
+>     resolved = self._resolver.lookup(ref)
+>   File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 686, in lookup
+>     raise exceptions.Unresolvable(ref=ref) from error
+> referencing.exceptions.Unresolvable: /schemas/thermal/qcom-tsens.yaml#
+> 
+> The above exception was the direct cause of the following exception:
+> 
+> Traceback (most recent call last):
+>   File "/usr/local/bin/dt-validate", line 8, in <module>
+>     sys.exit(main())
+>              ~~~~^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 158, in main
+>     sg.check_dtb(filename)
+>     ~~~~~~~~~~~~^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 95, in check_dtb
+>     self.check_subtree(dt, subtree, False, "/", "/", filename)
+>     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+>     self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+>     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+>     self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+>     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 83, in check_subtree
+>     self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+>     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 34, in check_node
+>     for error in self.validator.iter_errors(node, filter=match_schema_file,
+>                  ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>                                             compatible_match=compatible_match):
+>                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 448, in iter_errors
+>     for error in self.DtValidator(schema, registry=self.registry).iter_errors(instance):
+>                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 384, in iter_errors
+>     for error in errors:
+>                  ^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 296, in properties
+>     yield from validator.descend(
+>     ...<4 lines>...
+>     )
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
+>     for error in errors:
+>                  ^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 275, in ref
+>     yield from validator._validate_reference(ref=ref, instance=instance)
+>                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 465, in _validate_reference
+>     raise exceptions._WrappedReferencingError(err) from err
+> jsonschema.exceptions._WrappedReferencingError: Unresolvable: /schemas/thermal/qcom-tsens.yaml#
+> Traceback (most recent call last):
+>   File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 428, in get_or_retrieve
+>     resource = registry._retrieve(uri)
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 426, in retrieve
+>     return DRAFT201909.create_resource(self.schemas[uri])
+>                                        ~~~~~~~~~~~~^^^^^
+> KeyError: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
+> 
+> The above exception was the direct cause of the following exception:
+> 
+> Traceback (most recent call last):
+>   File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
+>     retrieved = self._registry.get_or_retrieve(uri)
+>   File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 435, in get_or_retrieve
+>     raise exceptions.Unretrievable(ref=uri) from error
+> referencing.exceptions.Unretrievable: 'http://devicetree.org/schemas/thermal/qcom-tsens.yaml'
+> 
+> The above exception was the direct cause of the following exception:
+> 
+> Traceback (most recent call last):
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 463, in _validate_reference
+>     resolved = self._resolver.lookup(ref)
+>   File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 686, in lookup
+>     raise exceptions.Unresolvable(ref=ref) from error
+> referencing.exceptions.Unresolvable: /schemas/thermal/qcom-tsens.yaml#
+> 
+> The above exception was the direct cause of the following exception:
+> 
+> Traceback (most recent call last):
+>   File "/usr/local/bin/dt-validate", line 8, in <module>
+>     sys.exit(main())
+>              ~~~~^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 158, in main
+>     sg.check_dtb(filename)
+>     ~~~~~~~~~~~~^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 95, in check_dtb
+>     self.check_subtree(dt, subtree, False, "/", "/", filename)
+>     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+>     self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+>     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
+>     self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+>     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 83, in check_subtree
+>     self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+>     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 34, in check_node
+>     for error in self.validator.iter_errors(node, filter=match_schema_file,
+>                  ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>                                             compatible_match=compatible_match):
+>                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 448, in iter_errors
+>     for error in self.DtValidator(schema, registry=self.registry).iter_errors(instance):
+>                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 384, in iter_errors
+>     for error in errors:
+>                  ^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 296, in properties
+>     yield from validator.descend(
+>     ...<4 lines>...
+>     )
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
+>     for error in errors:
+>                  ^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 334, in allOf
+>     yield from validator.descend(instance, subschema, schema_path=index)
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
+>     for error in errors:
+>                  ^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 275, in ref
+>     yield from validator._validate_reference(ref=ref, instance=instance)
+>                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 465, in _validate_reference
+>     raise exceptions._WrappedReferencingError(err) from err
+> jsonschema.exceptions._WrappedReferencingError: Unresolvable: /schemas/thermal/qcom-tsens.yaml#
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251201084140.376058-2-bisson.gary@gmail.com
 
-Something similar to:
+This link gives me a 404 error, is it expected?
 
-	if:
-	  properties:
-	    compatible:
-	      contains:
-		const: ti,am654-sci
-	then:
-	  properties:
-	    mbox-names:
-	      minItems: 2
-	      items:
-		- const: rx
-		- const: tx
-		- const: notify
-		- const: boot_rx
-		- const: boot_tx
-		- const: boot_notify
-	    mboxes:
-	      minItems: 2
-	      items:
-		- description: RX thread
-		- description: TX thread
-		- description: Notify thread
-		- description: boot stage RX thread
-		- description: boot stage TX thread
-		- description: boot stage Notify thread
-	else:
-	  properties:
-	    mbox-names:
-	      items:
-		- const: rx
-		- const: tx
-	    mboxes:
-	      maxItems: 2
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
 
-With the top level mbox* having a minItems of 2 and max of 6.
+Couldn't reproduce, I can't seem to see any error/warning that would be
+introduced by this patch, can the above be discarded then?
 
 Regards,
-Anshul
-
->> =20
->>    mboxes:
->>      minItems: 2
->> +    items:
->> +      - description: RX thread
->> +      - description: TX thread
->> +      - description: Notify thread
->> +      - description: boot stage RX thread
->> +      - description: boot stage TX thread
->> +      - description: boot stage Notify thread
->> =20
->>    ti,host-id:
->>      $ref: /schemas/types.yaml#/definitions/uint32
->> @@ -90,9 +102,10 @@ examples:
->>    - |
->>      pmmc: system-controller@2921800 {
->>        compatible =3D "ti,k2g-sci";
->> -      mbox-names =3D "rx", "tx";
->> -      mboxes =3D <&msgmgr 5 2>,
->> -               <&msgmgr 0 0>;
->> +      mbox-names =3D "rx", "tx", "notify", "boot_rx", "boot_tx", "boot_=
-notify";
->> +      mboxes =3D <&secure_proxy_mcu 8>, <&secure_proxy_mcu 6>,
->> +        <&secure_proxy_mcu 5>, <&secure_proxy_mcu 4>,
->> +        <&secure_proxy_mcu 5>, <&secure_proxy_sa3 5>;
->
->
->>        reg-names =3D "debug_messages";
->>        reg =3D <0x02921800 0x800>;
->>      };
->>=20
->> ---
->> base-commit: 4427259cc7f7571a157fbc9b5011e1ef6fe0a4a8
->> change-id: 20251105-k3_syscon_add_boot_mailboxes-8452bdd98962
->>=20
->> Best regards,
->> --=20
->> Anshul Dalal <anshuld@ti.com>
->>=20
-
+Gary
 
