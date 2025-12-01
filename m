@@ -1,161 +1,90 @@
-Return-Path: <devicetree+bounces-243342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC356C9716F
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 12:42:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61FD0C971B6
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 12:50:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E54173411FB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 11:42:42 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4A520343735
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 11:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5AB2D9789;
-	Mon,  1 Dec 2025 11:42:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YA7iqb6o";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="F8x3vZEu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6760E2EB5DC;
+	Mon,  1 Dec 2025 11:50:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5424A2D373F
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 11:42:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4896E2EA731;
+	Mon,  1 Dec 2025 11:50:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764589358; cv=none; b=j+J98mw8AJOss5PX5UKVipgF4gnkEVxw+nisBwcByADIYgsIGQsNLaEzWD2gR4IXO8MTeWc3SISmPDruTRrE2mpU89JA8o9ktLLHORjjL8z7kEtnlj+qjdz3AP8v2hTyANACV0qxEyyZLqRuY1oWViM8N61DcBzcklLinDeQU/0=
+	t=1764589809; cv=none; b=sQrWMNh62T5PP3wxfQBXu38Z2MUUFF8yiKwxcWNQlCRdH11gzCev01eXVTHZ94TDgGpYp3m30TduFvB8E85sDsth/6tCTIyVB82ERDgG5UWmXiUPi/gyFSl9TNFqh7JaBO5QPWrhVjbIMDGlxJi13kFbTVdb6NPq+LCTdQevObs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764589358; c=relaxed/simple;
-	bh=pGZqwPPf0pQCF3sBnET4Si/EPdcbyy3iS+zz5CzoJAo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VoZjWe+O+xPULGo+R0nZcLTSy+yIc7+06Tdt3mN0lzi85r9dGbYm87cyaP8S14USBZPeOCYgs7d6pkEeuIZ5l20NanUyDkuYLl2xkCkRE5/UvEPyKRvQO82Rug31kVvSUXDGeRs0g0g8LuT2c/3K4QSBNx6C9z0J5ajrW8b6n+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YA7iqb6o; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=F8x3vZEu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B18b3gQ2550598
-	for <devicetree@vger.kernel.org>; Mon, 1 Dec 2025 11:42:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pGZqwPPf0pQCF3sBnET4Si/EPdcbyy3iS+zz5CzoJAo=; b=YA7iqb6o7+oDOQWN
-	AtUYdzSuR/+OyshkssRGHYZtEyHNMSUEtkGnV7SlDmdrP/tWnnNZzDo6m3lmQ+NL
-	oyY03E6eMurLhCsHuTRu8toISkGQjPChWy5ZpA50WKeDfLo+/RSJsl9X3QjCzanM
-	xbSbAC8P4s2rR7SjyG5B3t2ozlHvWDnUTmteLV+3qMEqJBoUEerMrpM2lFJaSJMm
-	d23bPMHvwL8vfXn7aKF4oEgu2a00rj+ZNTbXOwGj4AJaEJ4MVp0mz1pDbQ2QAQef
-	GIfe65yRCF8NmOvW5EK9B6JuI2UuEIrokel7VwW9XyNi7L31awZIzWFe/Yaggr7/
-	XIsM5w==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aqphfcu0x-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 11:42:36 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4edaa289e0dso18547801cf.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 03:42:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764589355; x=1765194155; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pGZqwPPf0pQCF3sBnET4Si/EPdcbyy3iS+zz5CzoJAo=;
-        b=F8x3vZEuRHgARMpD/2exSt3jG4+4NVth5fAvwKFp22UxIazCnYmhn0T/82FHx65g4D
-         txNsD1UWoIV7WVDxboK3j6PECHdB5oO/qB9xHi1F7+FJV1lCASZC97WPU+m5cbbOIxz8
-         uBUNb3pP0Q8brMlE7Ki3REGek09jw41v4iW1sqpD0Fycp9vnoRWDKQeo36ts3c6OUUeC
-         ElGYDWd3v1Y8atTO5/RljP+unySViDphUGEqhkT+Vx0l8mDfiQHCOfIhQ9N8Wk7xbzij
-         YZX8PUliCunG6TndCDXCAMygezQk/IrYSAd4tBWisG5sFbXp2mQddCfU3WR/Co1D7Whh
-         5w8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764589355; x=1765194155;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pGZqwPPf0pQCF3sBnET4Si/EPdcbyy3iS+zz5CzoJAo=;
-        b=UhZNwjzeDPqpR647MpipnDWGOZzO8c+sRUazT1MnU+TaAxkDSJOzFX5n5OmhqGlk3z
-         4y96O6+liSsm/Gd5Y6QvGHSKe7Mcq6+Rn1RQUHp6YN8T8pklv/dPwxKcWb3yh2ukjKqt
-         z5v5bb9wtz6W9Xm5GA+McD1yqy9Fq6iijqPwSpgLgptdLHQeIE1H03jPNeqE3+yw8Ne/
-         ha5YF77wQIckQTK8J6PWSv5lAmyAkRSdZdioxDVx3DHRSpRiSHI05cvlyxLqanqXFe3v
-         +0kfUEouJE46f0r7JYbgHxRzaXPiBiYlmiSUqQOFgehHq+84sUixxRt2+Z/LdIEf5Ouz
-         Yhow==
-X-Forwarded-Encrypted: i=1; AJvYcCWeCOm5BiQ4TPoOevXnLSsFiNISoSKcyXfXg20HneW/aUlEZms6rqEiqic8GX0gZjYvoLEiTW4/1O7G@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRnyF52DA2FlvYiahNi2Vx8DUnLh/7tuSR6F8asXETNQDFrQWB
-	4P/Oy7HLEfcQ+GvvWRzgI0el+uMgYWJ87V9+NdjAFdJ0dO194fD8sxyQT6hE3LIJzfvNkgOe8mC
-	JZVhCF0+rssz515FMToPSwiE6loMVENkW19XuMYEEhxoNhT9+9bZP6QftZDBh5LxS
-X-Gm-Gg: ASbGnctLRdlyI5c8WgcaosXMRiWCUNkPAlI1PWRnpw/G7BzIciaGzSo8niGyMh9MakV
-	zDB4omaECavLhh2s6o14aOcXuEKnU4lBYBc+y6YShydygC32ue5TDM1YRPOT+2BceeX/MeZWURb
-	vQPwVJ2RL9dtRMQNOjnOg9cg7L01CJcr3v+ng2XiJqJanczAjBzJ9dUKY8QB6Qbbnts0pJdc6hl
-	0UtvD+cWgvtN9hsL+n+4HMzjQzhLHShcQ/4/K/zX4/B4qcUOo/mDqG0QzFEE7ZP9Qxd+d+0CHS7
-	ZSPaNUH2QYsJ5JEABcLZdy5ElqzRDNUJozVe/AHh7r02+1/goYIDam8SnVhS1H3O9LQrSrOSNdI
-	x903fN/qvTFSHtWmTcpHB1r8W2Y6vWs5OybAAfPLSqHh+ZO5E5j4MkgvIF9mVgDfvejU=
-X-Received: by 2002:ac8:5acf:0:b0:4e8:a001:226d with SMTP id d75a77b69052e-4ee5890bf69mr401442861cf.7.1764589355498;
-        Mon, 01 Dec 2025 03:42:35 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGtKPMWapl5XLHH3Ls6A2W4eskhuJBji8AbzTzz7F2JxfHCs5s7yYpv4jTjsYG3lHoa/ByqDg==
-X-Received: by 2002:ac8:5acf:0:b0:4e8:a001:226d with SMTP id d75a77b69052e-4ee5890bf69mr401442621cf.7.1764589355094;
-        Mon, 01 Dec 2025 03:42:35 -0800 (PST)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f519d828sm1198664666b.18.2025.12.01.03.42.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Dec 2025 03:42:34 -0800 (PST)
-Message-ID: <863db415-51e0-4c54-85bf-ac6a168758e0@oss.qualcomm.com>
-Date: Mon, 1 Dec 2025 12:42:32 +0100
+	s=arc-20240116; t=1764589809; c=relaxed/simple;
+	bh=XFMxdE8Alv0aKQHCuzczfaG0gEshdlSiPssBWL6OF/Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nXEh3IZhuZ+Mll3G0f7qk6d1L8r+Htjlt9qQOgC9mCkwFSYwb5Yrd3XiXEmTdEEk2Ty9YK5BrDBZ/HFdgJN43gBjouVB9uJnroDaM99P9A6X6oWy8mKAZFqX52MEjZ+iF1ioU3JSEFG8Y78BG9dcZs5kQcjZtVseS4WopE6AfE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: IcjwymnMTTmEhGXNxHKiZw==
+X-CSE-MsgGUID: dlgqygW1SH6etGyNfPBzUw==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 01 Dec 2025 20:49:59 +0900
+Received: from demon-pc.localdomain (unknown [10.226.93.83])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2A7C441F9E06;
+	Mon,  1 Dec 2025 20:49:54 +0900 (JST)
+From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Johan Hovold <johan@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>
+Cc: dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 0/6] Add DMA support for RZ/T2H and RZ/N2H
+Date: Mon,  1 Dec 2025 13:49:04 +0200
+Message-ID: <20251201114910.515178-1-cosmin-gabriel.tanislav.xa@renesas.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/12] arm64: dts: qcom: sdm845-lg-common: Add camera
- flash
-To: Paul Sajna <sajattack@postmarketos.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        Amir Dahan <system64fumo@protonmail.com>,
-        Christopher Brown <crispybrown@gmail.com>
-References: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
- <20251125-judyln-dts-v4-9-a5a60500b267@postmarketos.org>
- <62ce91326c0e1d5aef1ad5ecad9b99695f983347@postmarketos.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <62ce91326c0e1d5aef1ad5ecad9b99695f983347@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 4M3soMlA5fP455IpRPSXcEQIIRRwDcfO
-X-Authority-Analysis: v=2.4 cv=FvwIPmrq c=1 sm=1 tr=0 ts=692d7f2c cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VVznJNgsxCGEoLoMiiIA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAxMDA5NSBTYWx0ZWRfX0onhvGZa5adL
- UMPpZi4tWVOkuTyN7qzVWR3SZ2oc9TUy5Y4gD40Tn/ke3mzjxPw09gsISWGOe7OBaj+hzIkUKp2
- jIxVQA7tgFHoe+O0WH71oOz5u+ccTG2+ln3M5MocfvPlLDcZ8C5BAdBs5fpcnUEQVRi5LFSFuRz
- 24cHexgFOcCwT7O/3XKY+HT4TMXBXq3xSFnQ12RdHvSmQlz3D+O3JdSSlF8wkC449+u4v93nrDJ
- HbweO6cV0FKKDnN3xFvozC2scLY+MIaRNNCASsVFDLiPj5Q4GKzINyHnwpFe/LARWNAOofKM2sO
- lQ8Oj6Q7vVYMgxMYrmAbHj8KdHPPjP+b6s5fQfrpA==
-X-Proofpoint-GUID: 4M3soMlA5fP455IpRPSXcEQIIRRwDcfO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 bulkscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0
- malwarescore=0 spamscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512010095
+Content-Transfer-Encoding: 8bit
 
-On 11/28/25 9:20 PM, Paul Sajna wrote:
-> I did more testing on this, and the led only comes on if it's brightness is set to approx 150/255 or lower. In that case, should I set led-max-microamp to 60mA?
+The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs have three
+DMAC instances. Compared to the previously supported RZ/V2H, these SoCs
+are missing the error interrupt line and the reset lines, and they use
+a different ICU IP.
 
-FWIW your downstream kernel sets up channels 0 and 1, here you only
-enabled 1. Taking a look at a picture of the phone, I only see a single
-LED on the back, so perhaps you're (over)driving a single power line?
+This series depends on the ICU series [1].
 
-I'm not a milion percent sure, but I would assume the current draw
-*limiting* register applies to the sum of the current going through
-the three channels because there's only a single instance of it.
+[1]: https://lore.kernel.org/lkml/20251201112933.488801-1-cosmin-gabriel.tanislav.xa@renesas.com/
 
-Konrad
+Cosmin Tanislav (6):
+  dmaengine: sh: rz_dmac: make error interrupt optional
+  dmaengine: sh: rz_dmac: make register_dma_req() chip-specific
+  dt-bindings: dma: renesas,rz-dmac: document RZ/{T2H,N2H}
+  dmaengine: sh: rz_dmac: add RZ/{T2H,N2H} support
+  arm64: dts: renesas: r9a09g077: add DMAC support
+  arm64: dts: renesas: r9a09g087: add DMAC support
+
+ .../bindings/dma/renesas,rz-dmac.yaml         | 100 ++++++++++++++----
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi    |  90 ++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi    |  90 ++++++++++++++++
+ drivers/dma/sh/rz-dmac.c                      |  94 +++++++++-------
+ 4 files changed, 317 insertions(+), 57 deletions(-)
+
+-- 
+2.52.0
+
 
