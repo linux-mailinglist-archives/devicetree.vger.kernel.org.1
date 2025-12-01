@@ -1,125 +1,87 @@
-Return-Path: <devicetree+bounces-243403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67A8FC9772D
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:00:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24372C9777A
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 14:06:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 83552343CE2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 12:59:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E775E3A3008
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 13:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A9B30DD35;
-	Mon,  1 Dec 2025 12:59:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FlLG1bv3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E991830DD35;
+	Mon,  1 Dec 2025 13:01:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7708830C608;
-	Mon,  1 Dec 2025 12:59:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CDF30FC1C;
+	Mon,  1 Dec 2025 13:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764593976; cv=none; b=GM2cCNLJvKgTnt8VoCuhpmZZJvfXjRKTgAWv3V+9ZPnqARhXz2Wjic/slg/uanmEJNi7Y7GqxsTojSXM4OYu7jwhzRzsoT5pft7xZg5Tm2n807DVnunEhywLk3eSdAqTFFDtTscX4M3fBtI3MWaMmbgRLWNEVVSh9WeSejJnO1M=
+	t=1764594084; cv=none; b=khvrY/2kWmNivUSp1apn6sv568lPtQwqMkUWzicBvjJfuXrYKEwVALdcEYWG2Z6NuDijq1uS3c4+bCxRiJR6V1Zo02t3yMs2aNEnx3d0QDGOwYJTQsDgfrFgAY9+sxRE8qF2KAPOkUkvfuOydBGWZTOGHnal29pCtjNkIEFzKc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764593976; c=relaxed/simple;
-	bh=7IrvfZCnhHhrqTkTyCux4zzyumsKPggknQbCm+CYDjw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dyzOYts0nOJcs2RVZv45UXsMKsTv0WDoOnoZqlNSuKcYxrXM68qdwGhoW7R3P5BcbKrTPs6/v1jpwsoTprC2F7XhXhmSm9fexO2VxDBBA/5Gks/byCDacK4IOZcqwOkGtj8LKPIPsYe8S/F7XMbd7wN5WcDquV16AqZf4QJomnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FlLG1bv3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD63AC4CEF1;
-	Mon,  1 Dec 2025 12:59:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764593976;
-	bh=7IrvfZCnhHhrqTkTyCux4zzyumsKPggknQbCm+CYDjw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FlLG1bv3qPdAiuw2BjeBJA4V1OfVX+WOn0nBONHr+PoYx4Fr4SqgDGTOlcK9rpjij
-	 P4KzLyKCsc+FmlXb4CV6+KM1VN3+Awd4l7da997s/bLHC+UFfnhNc54oN9Fwu2dUrS
-	 vCCW/aaAuvbkVYYlwf8xfWJlcVwfVcZBFcdOKJl0RBsDUKONApuLT98KYx1QL4btul
-	 UnUbnJO5ODwWqNh9/wrPGrkaf+ACpQQ7q24OEfv8rMGIhRJzLlajS09+PAZGI55l0v
-	 iFdSUgZI9IMG54dXZiVuOY4Nmt40LiKX7n1fTlMCfqaQUQLZe6TrE1IgKfc0JREpcq
-	 Yaz0CSEoJMTiw==
-Date: Mon, 1 Dec 2025 06:59:34 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Eric Anholt <eric@anholt.net>,
-	=?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Doug Berger <opendmb@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Stefan Wahren <wahrenst@gmx.net>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Florian Fainelli <f.fainelli@gmail.com>, linux-gpio@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 0/3] drm/vc4: Fixup DT and DT binding issues from
- recent patchset
-Message-ID: <20251201125934.GA3004948-robh@kernel.org>
-References: <20241220-dt-bcm2712-fixes-v5-0-cbbf13d2e97a@raspberrypi.com>
+	s=arc-20240116; t=1764594084; c=relaxed/simple;
+	bh=AnX7suPMOHZ4sA2weyZU5deC0NdJjWeH3iIjEczM+F8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ZQbvkpDaqBzL2CkSUJfvubyBLJB/IpXWx+RnNF9jjEVhf0OVYsTSnGWThyp3gPn8XVQ7j5NDzlyyrUX74uTlpglwaixxx/DpHddnNagmGQFhMtq2PYwITQrEtqdUYKViGPwV8PuRsT3wjmkPiKwafnfcTRx+WhpI4V5J5+FYMOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.215.79])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2b8a20103;
+	Mon, 1 Dec 2025 21:01:13 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: krzk@kernel.org
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: arm: rockchip: Add HINLINK H28K
+Date: Mon,  1 Dec 2025 21:01:06 +0800
+Message-Id: <20251201130106.236903-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <f27dc5ef-1c60-4724-8e18-33bbc4230d3e@kernel.org>
+References: <f27dc5ef-1c60-4724-8e18-33bbc4230d3e@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241220-dt-bcm2712-fixes-v5-0-cbbf13d2e97a@raspberrypi.com>
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9ada00be9203a2kunm2a36c62d3110
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCT00YVk1DTksZQkhKTU5PGVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVMQllXWRYaDxIVHRRZQVlPS0hVSktJQk1LSlVKS0tVS1
+	kG
 
-On Fri, Dec 20, 2024 at 06:11:10PM +0000, Dave Stevenson wrote:
-> I missed the DT errors from the recent patchset[1] (DT patches
-> in linux-next via Florian, DRM bindings patches on dri-misc-next)
-> as Rob's bot report got spam filtered, so this is a fixup set.
-> 
-> Largely it was changes to number of interrupts or clocks in the
-> bindings, so those are now covered.
-> 
-> I've fixed up the missing "interrupt-controller" flags for 2711
-> and 2712 whilst here.
+Hi,
 
-I found this is still warning a year later, so I fixed up the commit 
-messages and applied.
+> Just squash these two binding patches. Way too much churn.
 
-The comments were a bit nitpicky for a v5 version IMO. However, you went 
-to the trouble of preparing 5 versions of the series and we spent our 
-time reviewing them, so why abandon them? 
+However, they are different SBCs manufactured by different companies:
 
-It would be nice if the Broadcom folks spent some effort fixing the 
-remaining DT warnings. I see little progress.
+HINLINK H28K - Shenzhen HINLINK manufactures
+MangoPi M28K - Beijing Widora manufactures
 
-> 
-> I can't get my head around what is meant to happen with ranges:
-> "soc@107c000000: firmware: 'ranges' is a required property"
-> The meaning seems obvious.
+So should I squash them into a patch?
 
-Adding "ranges" is probably not correct. Generally, 'firmware' is not 
-MMIO and should not be under an MMIO bus (i.e. simple-bus).
+> Anyway, looks like duplicate - two devices with same model name.
 
-> 
-> However if I add it then I get:
-> "firmware: '#address-cells', '#size-cells', 'dma-ranges', 'ranges' do
-> not match any of the regexes: 'pinctrl-[0-9]+'
-> from schema $id: http://devicetree.org/schemas/arm/bcm/raspberrypi,bcm2835-firmware.yaml#
+These two SBCs are indeed very similar, both in name and configuration.
+So I put them in one series. Perhaps splitting them into two series to
+avoid confusion would have been better?
 
-If you add properties to the 'firmware' node, then you need to add those 
-properties to its schema.
+> You have entire commit msg to explain that.
 
-> 
-> There's obviously some other flag I need to set in the bindings,
-> but I can't work it out. We have similar errors for all the Pi
-> platforms for one or more nodes.
-> Please advise and I'll happily fix them all.
+Thanks,
+Chukun
 
