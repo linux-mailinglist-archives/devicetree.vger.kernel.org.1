@@ -1,187 +1,180 @@
-Return-Path: <devicetree+bounces-243378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67EB0C974DF
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 13:38:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F399C974E8
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 13:38:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D1AB53431A8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 12:38:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7F2F64E173F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 12:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18415309F13;
-	Mon,  1 Dec 2025 12:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B5530BF4E;
+	Mon,  1 Dec 2025 12:38:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="REck/zTJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LO1J/y9M";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WvjXxDGE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C03A30103D
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 12:37:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9013054F2
+	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 12:38:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764592679; cv=none; b=Uc+B6A6Hoh+vxOVw/IoEiFc1IjsalqVlAUcGO/3UdGg+1ONHrZ9Xw1FArIORArwuTlf5A2vrW48uX1dlNSnEbn7P6d18kqqYg1tcMJCXSH8BOneQSid7XkliimEH2dGWwAJgGI20mTUsTgMoJ3hJB/XeX9eBZJ70s2yGFJNGVpA=
+	t=1764592708; cv=none; b=n0LlIc5pepiJXHXOinW/2Wv6n9q5QqFtgC4hHi1Z33UT7rXKFW7rrjy/6SZc9n55MA4AJ/X9OVyY7NqnIY4tTJi7zPkOgxCbPSmhl+hDCMSgsIjdMl+oNTxZGjJklHNFHYaksG/s4I8zhzMvUhbs1EPe7xzOdjnHDgeMK1/i+Co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764592679; c=relaxed/simple;
-	bh=3Vvq8LPwxXKHOKoZ+a6kHlkt56selPRWjocT3g952Go=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=BjZPGBkNUqRaHJd4Jk3UPUaz21EngfzQXlUcGNMXdd9w8OHJXTsvWSCeDbxuIIbl+Ci4n/hEuI1Ju+R/on7JdHXeeWWhGR+GwWt+l88f9AWxZI6m5uKQINDWGepDuOtsfsRSLfLyLDmjGGJho9NGysXOSB0Q/gCD0bq+wPNGZGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=REck/zTJ; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47798ded6fcso22608575e9.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 04:37:56 -0800 (PST)
+	s=arc-20240116; t=1764592708; c=relaxed/simple;
+	bh=KWOuLZ6hidwbE9TypQPKFmH8VsQsNVIc9SSYi6JlIQ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YMxxViaXTfNNw2x0D9ltRGVxcFZOahSAPQIJj81un40dwiqlBRohGGHudHmP7sqDHztd1X61QBv2EaizihFgQFTqDU5cW1uoeS45LpgD4md/ZZvUi1jc3U/n96YZufJlSeUj2BlOPjTI2suva8hoTe/GEiwHc2HWCOrzMxbhr6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LO1J/y9M; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WvjXxDGE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B1B5lhQ396873
+	for <devicetree@vger.kernel.org>; Mon, 1 Dec 2025 12:38:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Vf/BxP0mgWbgh9NhPSJR1YuUPlhPxjgnkQcac/3egYk=; b=LO1J/y9MQGtuPti4
+	6WXEBziCHwB+6CCAeVaL5jgKRLSwJRFPr5UbtivjyMvaYXhMhvLFDouzprkbT5HK
+	OyfEB8fksExcRlJe2+NPaEDLLWbbqaggqhZv5p5ZxCqUYf31X0T1brA5AblmdSRA
+	37A38/AB5FeehMc+fBg7g3IFYYimO+6RccEZLru/OTb05WX1kyRjqSTXTViGKhvy
+	HU8ftrbVUr/bCrkzPj2ZctoCGT9mUY64IpgkALJQ/8mpAj4dPrWQKd3+df/gKoyT
+	QIuyPucUgJfM3EPmX+gw8tbWoUZLrPnOnHlP+pROuARncw0AsGMqZl2IK+dUvYd0
+	I05aAQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4as9ug082x-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 12:38:25 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ee0440a771so3188181cf.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 04:38:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764592675; x=1765197475; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Th9QIGTGx5TubvrIKd4rYbZwHElm6Jjolg9pSmpCDxM=;
-        b=REck/zTJqePa188rPcS/rLzyNHcL9vCzxPW0T8s60NuOLmFZNzxl4YlH84iJ+Byid4
-         6MYR0h3OV0XAapcmguQs2CneqqgjqfWejEXhezEKoT/NspxU/sCQJEh+EO8VRVwzy7Ai
-         shUvSjyVLLWWeNyXDy8cwUxA0jN9MM9ND5O8eN9NIRaMhmV6yEc9GbbM/5FlivIljJ8w
-         nU6s8qgLF+Lce5FYDJH9Q1rKNBqKvNlN9FUgceQv+Wtci6zmRr+RWbbjETxh/S0GvGyy
-         ed1dqWOjyeaMU8wmLq5JH8usi/viCFQ6VFLV6tOXw1SY96ty1rUbqeHbPQJAMNXQUUhp
-         J1tA==
+        d=oss.qualcomm.com; s=google; t=1764592705; x=1765197505; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vf/BxP0mgWbgh9NhPSJR1YuUPlhPxjgnkQcac/3egYk=;
+        b=WvjXxDGEvZ7pLzP89pq7/ZPcPteFrAMFF6+f8UY9owthp+NazacGDcfYQAdFVEALu/
+         SisAUGgJ2+tpCXIwDF10S5v8BwDKEclQn1Jqt1NikFU9YyVlZLVWTUvYYrPjM+UkeNo4
+         M3wBxLn8W1vU3eaLevw30ruzrgPI92xvy/lHAPoeWhh8OT8CyXKfgwWSp/vY84Wc4drI
+         rii1l6S1pXNcEm5+NnTWzjUKEK5D1D+aItreqWVff0JvXz71mvxRbnEJS6SY8oiXcw3B
+         JkgBw2YpHmfWgMYfXnXGC7OAWsAzTc5XgWQuwxlg0w0OC3Zh++8DDA6vJM3OWs+9Zf6f
+         fb+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764592675; x=1765197475;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Th9QIGTGx5TubvrIKd4rYbZwHElm6Jjolg9pSmpCDxM=;
-        b=trVNHGDCE4D0ppKJzZewrn7be5M/LVwX/LFHm0NZ/V8RJEF7NKbcLwjOBgJSl1Kwsl
-         B5cTC/+RmsTweSbXHj4TZpUOYZnffg8ag6xF/tz401BoGZ4YsDXNP3kKyBu0ryzOHrSD
-         62cy1Ta7ulHLHjX4bpawXoRFmSWxbbZwBa2ovfx+yhMHE/DytLhMirQZsjRXSWkxGSTZ
-         kHNip4JcWc2qVYvEnPvERYPY2Sy3XEy0tyaX6eOG/TH1Oeg6r6N3RbgrX0og3DqD+vxp
-         hH3J0RYAFGR1LXgpHdiiMepYZHsFC/+8wENt92AenBvzaqLe3VAB/m8ESiUwLhPsiLJG
-         FlIQ==
-X-Gm-Message-State: AOJu0YxtFsvKTaMwZr+tJIHNJmE3yciAQZ4fRlNqWxjPIUbsOS3cTEjn
-	SqahYqzX322KF7ZfBo3URDX6MVNXneK7PAynHDR1lGtQ1twpALzbYbLV
-X-Gm-Gg: ASbGncvvYKIZDCyitO65sqZrY+deL3Stvas0ZRQwY6aPiZTAM39bnZmTMtEepSRVqaa
-	/6hd/w91R7qOcaEPnWdJI5o1fhYIlHvrUgzim/GP1Ht9woYiVbwIb0q2CL6uCuWIfGCyAVogyqS
-	VJwWTaueA3d6dGHkQ6V6zaTC6SENh/PmyUX3ur2uGJopjRioopYyrlDjRdZymnODiKwjO0yYMtx
-	Url1miGzy94A5y9ZcdDb5V+4k78VWmXBwUUkpAOYGlUj9jaW+oxqzW9Ldb06xmK9bN13KW6KiT7
-	aui0TP09hJWvaFymLnBF5rE+JPfT2YmCbrGeWACP8GzhHVrWDTyqsGlafA9z/13lbaQChkUGeuP
-	mH89tTJRCdWi/gBKcohnC0cRNjJ/AEBZnperIMeZHxeIltSzT9RVrDkRngHnRY1H5aJd3L3xM2W
-	LnehXVZUzCb1gJeixjdcL/rlsDC4a1UlXVAO4IrvtxIhszwZaTsSNTKO5rK/eLx2QkvPuoFrPk8
-	w==
-X-Google-Smtp-Source: AGHT+IHuS7ih0/r1wtiTtCRYhrtbZkOYclnmpf83ik6Tv1jMFCB/iqtIuG69FulsayoBVRSfhmATZA==
-X-Received: by 2002:a05:600c:198e:b0:46e:33b2:c8da with SMTP id 5b1f17b1804b1-477c1133927mr378893455e9.32.1764592675414;
-        Mon, 01 Dec 2025 04:37:55 -0800 (PST)
-Received: from alchark-surface.localdomain (bba-92-99-175-128.alshamil.net.ae. [92.99.175.128])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1cac4fd7sm26232131f8f.42.2025.12.01.04.37.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Dec 2025 04:37:54 -0800 (PST)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Mon, 01 Dec 2025 16:37:54 +0400
-Subject: [PATCH] arm64: dts: rockchip: Add overlay for the PCIe slot on
- RK3576 EVB1
+        d=1e100.net; s=20230601; t=1764592705; x=1765197505;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Vf/BxP0mgWbgh9NhPSJR1YuUPlhPxjgnkQcac/3egYk=;
+        b=Qw1Sdz4ttk3cPfr/hNmTG9xnQ2fMVoVB6vRabsVtoNsnOplrCk3uOkIiwRiIL2GYTZ
+         L9V6Zft/mJcdDQV8oGQNUIlsxhZZMiskCiXvDUQZNd4SYtGxve41W4IXqDAe9W6mEsWr
+         aIH7r6hDIhFSYibANWzYe4npaUu+VWuGKmLbDCbqWNk7Q0Z3BZx1o3ed7Dx0qXlvrJq2
+         1d+VWN4ADW/+Mhci+gulEUP3gGabtsJkUgWa828JyIn8ZTEyVAgdxBl4kCgHIJ8EENZf
+         nbIRBC3aHq/TW+yCSSiIDPcsY9wDppCWuduTtlBxyp5vhj2bnrMlrha17VmeezSh/Xfl
+         cmQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUuGXDm2467WHJ1oDTKMu4vyseZeZ2TZZovV0hMRJ/wzFTE+L6d/WkbN/eWcr5D3VKGNS8w2G3wBfcC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx24lz+VQwa6IL+8+Sqsy8Om4JssGKIwK338gsvfq8ozGDxahcP
+	lw+//XX8FnXLdjGOGOjo6m3nd7qVFxZ0gbSKPWsfbsDGKDfcpUh87gb2BnV96o7FcfvOWM6jDz4
+	Zz8iVw0qNRq5txorBeueh4OB1W2a/vM0YLoRZR37tcGpEmkOQc5pvVunJ4/A4nDkjB8JKNM7m
+X-Gm-Gg: ASbGncv/PqBZ7YBb41N9fxzNYM48PApgOTWhNYMkhMHiJ3EiBelIKaAqMz5SenZ83OA
+	lQYlxEws7v3BJj2mxz2wdsdo5brVU1fxGxwtV2jHvzHpvEXjZkLJIiPzjfui2/FRQCWGFgYoi97
+	cXm78CrUIANRgK/MGdmjKlFtL0dipDayfPjtgGVwY56vJ3HZaB9z7uoAwAsjb6aQKcob4i+BLI6
+	/vBgDIo4E5V9HjzaHJ20JoopvSZYtBF4xSmvRzrFG/VAUdkreYQGitOiLysLRos6twTnLaMqtpM
+	48K5q8r62fAXmu+QEj2PycxjcXaJbVlDk4TpNz6q0Beevg14f34aaPgcXJIegJX6s1IqNoiqC41
+	BpHfKy/YAcRMn/XGezK2auDH5ADw3lYV030JglOGh96PJA/r49e/eJy4ThBWNQA4oXLU=
+X-Received: by 2002:a05:622a:1a97:b0:4ee:2408:4e36 with SMTP id d75a77b69052e-4ee5b5c972cmr438714611cf.2.1764592705141;
+        Mon, 01 Dec 2025 04:38:25 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFIktgyEHZW/1IMc0NJW4hRWI1Ul1vhVGeaHmxVXEPJ7nVkOnEm9iQUL8B66CQB9NZy4FuBZA==
+X-Received: by 2002:a05:622a:1a97:b0:4ee:2408:4e36 with SMTP id d75a77b69052e-4ee5b5c972cmr438714241cf.2.1764592704693;
+        Mon, 01 Dec 2025 04:38:24 -0800 (PST)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f59aecbdsm1180313966b.38.2025.12.01.04.38.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Dec 2025 04:38:24 -0800 (PST)
+Message-ID: <09e5d84c-39b7-45a9-b7d7-9beb54fb2f3f@oss.qualcomm.com>
+Date: Mon, 1 Dec 2025 13:38:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 10/12] arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
+To: Paul Sajna <sajattack@postmarketos.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        Amir Dahan <system64fumo@protonmail.com>,
+        Christopher Brown <crispybrown@gmail.com>
+References: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
+ <20251125-judyln-dts-v4-10-a5a60500b267@postmarketos.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251125-judyln-dts-v4-10-a5a60500b267@postmarketos.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251201-evb1-pcie1-v1-1-c62bba5c1167@gmail.com>
-X-B4-Tracking: v=1; b=H4sIACGMLWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1NDQyML3dSyJEPdguTMVEPdxJRUYwvLRJMUU0sDJaCGgqLUtMwKsGHRsbW
- 1AFzmF8ZcAAAA
-X-Change-ID: 20251128-evb1-pcie1-ade389a4d590
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2800; i=alchark@gmail.com;
- h=from:subject:message-id; bh=3Vvq8LPwxXKHOKoZ+a6kHlkt56selPRWjocT3g952Go=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWTq9qjM+691ivHks9cl6irvd3S+X5b8yzb0c/Wbn8kXV
- J+fCNi0t6OUhUGMi0FWTJFl7rcltlON+Gbt8vD4CjOHlQlkCAMXpwBMZIEsw1+5Xs2myvIjZp5G
- Zg+Mzn3R+X2u4btNSYuWg5DLtMXMx2cxMjzIdo88aLhfr3Zr9D1l2f+H4948v7/RWLmP55WDrXb
- xOUYA
-X-Developer-Key: i=alchark@gmail.com; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAxMDEwMyBTYWx0ZWRfX7Mwi7GH7NLFD
+ XJs0Rf9Wc9JiSKZ6Wb2tVrnojQ39Ab5R6iCWmsmbE/HAyPBSnm7u8Mn80LAXfiuvNMIe4RZbC/3
+ UlilGDHUuWna2BW+v6bNucRbzK7GjfRmqzahQ+pRWVtIyCfR+FBg9XnAmi9bXHkGpmCQBC92bXd
+ R8OpI9e9+tEsi8+gCStfF5G1ovHEpxZwd2UVkaz2lrOX30Ihff9EBWUJ45pbY++f24qsSIj1Uij
+ oYILcb2JWZ3fqegX5BiISmpZs75NOl/U8dZLy2NvP86YDXVRrP6tMotOrr5i8IZxKyASqowI6Ao
+ lFzaWDFduab329nZpw769QNf66X/PZ36qHIrdNFXgK9ME6395jIEAKWrP2+bH9WKyNH42tCZ2e5
+ yU4CyVTa+BeOXjSevD+Z50YfHNxyiw==
+X-Proofpoint-GUID: M8wsDb2bg7HlEss40XN6UWuVn1SekKgK
+X-Proofpoint-ORIG-GUID: M8wsDb2bg7HlEss40XN6UWuVn1SekKgK
+X-Authority-Analysis: v=2.4 cv=EunfbCcA c=1 sm=1 tr=0 ts=692d8c41 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Gbw9aFdXAAAA:8 a=EiCcalQ1L6XHdR4pprMA:9
+ a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22 a=9vIz8raoGPyDa4jBFAYH:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 priorityscore=1501 suspectscore=0 bulkscore=0
+ clxscore=1015 spamscore=0 lowpriorityscore=0 adultscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512010103
 
-Rockchip RK3576 EVB1 has an onboard PCIe slot (PCIe 2.1, x4 mechanically,
-x1 electrically), but it shares pins and PHY with the only USB3 Type-A
-port.
+On 11/25/25 9:12 AM, Paul Sajna wrote:
+> These regulators are required for the LCD
+> 
+> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> index a61f7bd65a7a..3188334d269b 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> @@ -56,10 +56,27 @@ zap-shader {
+>  	};
+>  };
+>  
+> +&ibb {
+> +	regulator-min-microvolt = <4600000>;
+> +	regulator-max-microvolt = <6000000>;
 
-There is a physical switch next to the slot to transfer respective pins
-connection from the USB3 port to the PCIe slot, but apart from flipping
-the switch one must also disable the USB3 host controller to prevent it
-from claiming the PHY before the PCIe slot can become usable.
+Sorry for not responding earlier, you can retrieve the actual volt
+numbers from the hardware by reading
 
-Add an overlay to disable the USB3 host port and instead enable the
-PCIe slot, along with its pin configs. The physical switch must still be
-flipped to the "ON - PCIe1" position for this to work.
+PMI8998_IBB_REG_BASE + REG_LABIBB_VOLTAGE = 0xdc41
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile              |  4 +++
- .../boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso   | 31 ++++++++++++++++++++++
- 2 files changed, 35 insertions(+)
+ibb_uV = 1.4 + .1 * val
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index ad684e3831bc..63198a618a2b 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -252,6 +252,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5-v1.2-wifibt.dtb
- rk3576-armsom-sige5-v1.2-wifibt-dtbs := rk3576-armsom-sige5.dtb \
- 	rk3576-armsom-sige5-v1.2-wifibt.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10-pcie1.dtb
-+rk3576-evb1-v10-pcie1-dtbs := rk3576-evb1-v10.dtb \
-+	rk3576-evb1-v10-pcie1.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
- rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
- 	rk3588-edgeble-neu6a-wifi.dtbo
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso
-new file mode 100644
-index 000000000000..dccf4a5debdb
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso
-@@ -0,0 +1,31 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * DT-overlay to enable the onboard PCIe x1 slot, which shares pins and the PHY
-+ * with the USB3 host port.
-+ * To use the PCIe slot, apply this overlay and flip the Dial_Switch_1 right
-+ * next to the PCIe slot to low state (labeled "ON - PCIe1"). USB3 host port
-+ * will be unusable (not even in 2.0 mode)
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+&pcie1 {
-+	pinctrl-0 = <&pcie1m0_pins &pcie1_rst>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	pcie1 {
-+		pcie1_rst: pcie1-rst {
-+			rockchip,pins = <4 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&usb_drd1_dwc3 {
-+	status = "disabled";
-+};
+PMI8998_LAB_REG_BASE + REG_LABIBB_VOLTAGE = 0xde41
 
----
-base-commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
-change-id: 20251128-evb1-pcie1-ade389a4d590
+lab_uV = 4.6 + .1 * val
 
-Best regards,
--- 
-Alexey Charkov <alchark@gmail.com>
-
+Konrad
 
