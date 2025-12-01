@@ -1,82 +1,54 @@
-Return-Path: <devicetree+bounces-243536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86708C99440
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 22:53:36 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 292E6C9945B
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 22:55:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3973B3A29B7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 21:53:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0BFBF4E2B03
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 21:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A528B285C98;
-	Mon,  1 Dec 2025 21:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816BF281369;
+	Mon,  1 Dec 2025 21:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XRK5sdeB"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="ObvHkTRH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7200227C842
-	for <devicetree@vger.kernel.org>; Mon,  1 Dec 2025 21:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E439F2773D9;
+	Mon,  1 Dec 2025 21:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764626004; cv=none; b=smUO4i8+MO7/9j1DD7ztfi6SnyQofI79KAseeK6j8tUl1sW7W2h2kjfFn4GEzU/VZlXj8WInt3zNNuUSg37omLtTkgsBfYpN3lmewu+xtksGTrReUK33AMzvVmR4Swgvm9auO243N6BPGskitU+9PFJdGPFDPGpvJgr7z5dKWDk=
+	t=1764626148; cv=none; b=ufGebDhm1pUNePuGI3mmhPDftRcresqr8jP3hk7ruZDkLZFd2loN/Jv1Br93o2iEvxy2utJSHaKPfAwpcES19NeojPVbVN6vX7zy+rF2sUaKcoGcYUjtfIWA4QOdh3PsPCvFHepT/2KGZ2CsxBEAcR5S8EMz1pb8jKGddlmfAis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764626004; c=relaxed/simple;
-	bh=5q9Iv//mIpypUaynw8++s+lccd4+l1jE8IYnVDYU7vE=;
+	s=arc-20240116; t=1764626148; c=relaxed/simple;
+	bh=uBotYgWQ+nx+ouVU9ZBUFlMtI/r+PYbW0lsuUr98/qQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=huLdS4sapOKG8MLTi6rcF9JbDPKIg1ZCiywRCK+P5IGH/SC0VeSPJPQlRGPex3XdZqtOtdwVm98h9eRz6sJCAskDHD3zI9hrd5MqbEKWmNzMfeqVIrkP2iAX+pV6k/8qrHXCiA1L4647Z3c+opm3wrQ1zbaniNMbxfwzqA+ny0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XRK5sdeB; arc=none smtp.client-ip=209.85.160.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-3e898ba2a03so3168557fac.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 13:53:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1764626001; x=1765230801; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rFhnDBg0kXeD51glLwE29J4X5kSMJanTCsRTgbxRyOo=;
-        b=XRK5sdeBGipUVk9GL2VDNJRXpH6y+lixsSeXsVf0z3fkYYbW3mjLwcVmiSa3cu8W1g
-         kMpD5YcCSicygQ4JALuLnonzEW9irJMmfgMZM/YwGBWAsS8+WCQXbUpLFLFj5TXZmtgq
-         wYQbE6b5XwZXVg4uWBMXT7ypzV/tqki9bgjVJzSXYV3+AKt47AfynXPK0OMiX5SnDN/g
-         vr4IA3MBLaH9bJKqttnTjRwm+jZTWt1MkMnfFV8TvJf55pwObWR+lavOzGJyZvmGHDOm
-         iAGn7XUJ6CFVsHRo+qi+5BXMTOSfeQh/M5K5a2gbTpzI4G2bpVllYX38/YwTfC7oy8Zb
-         6DfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764626001; x=1765230801;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rFhnDBg0kXeD51glLwE29J4X5kSMJanTCsRTgbxRyOo=;
-        b=P514aNjIY28+uictyB5802aqvyV+pgSNFKYw0vRvA1AFmPVC5KwVL2LwAiXQ1eOe61
-         VDKS5+1GRYIDDdA90puLic08e5G6n6wwm+OVygSaE3V+j/9FwcuP8pWcJuvCTZjQgV7I
-         i6kBJdwCQiqIdG//a+wSv3DF7ID62TwR4WjpERJ1UDA4zIQ8J60cIuizwDel93jcHP9D
-         PUSybGg4s+It1W7MNvPx+x410N19qhcgyr8W/TVLlwpLSeCnv+g8nRAGa03iWXTjwqIy
-         jd1hk34pJivlwDjvkxp9dCZ6NtLIjVsJ2ZKsS6JLFs2LTelqW0F/mH5JtMs14YJHCJbR
-         ZLdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU6uW3MhIbAFDcQhVSaZ6mkamyzZGeiUKtbJeDVVx3N8QyVFBLXG6XKU5LMi6pyKcAyPkcMQPQgW/vK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7Z/GClUU2e3VTZcJYjAuVBH0ZAO7V8DQKU1GLLP2rIx6kU/6K
-	U97O+JQq67JDbewntxxnG9EdrXht2xcnPlWRxQk40gGV10UPmrqzpKxH9SanL8beohg=
-X-Gm-Gg: ASbGnctsUwdnI+bmSlUgJd5f7Q1Lm+9ZGlNBZayr06Tf0dLWzC12gNu846CB3OYML1i
-	11akTZFjOMNrCDjwvj50aDr2K/rNHKp4+UkiMzp92/gX0+ns/nKl0F1n59qp9+W74cZG/eTHB3o
-	8yBrbw6F8jYPVDdxSRRC0qZbvYFQGJ72hkDiGEqGu6YRfCjaPbutDuA6d7EHfCrxZ78nLuOQMLF
-	IU3hFD7+XRIYKhrHrxT93W6dfq0MHSZdS5fGzQ4h11rbK+rT78rIIqR6CsA/UGxhYKBNzpUXjZU
-	RJt4GS5ZcqM30A5iIaVK6+1hp00pZ06t4fiUEeKi2zvDOy7uwigGgl2mJfbfe8q1NUbSzvtoQ5O
-	M9QQ+uXUjuvJWKqmWSyc7eQgyROaM+TSHAw2AxKkyCKYanVgiABPXEiGTDeJYkefnzxAQXSkF4O
-	2ekI+RAHAhy2lX+whkuD/An4D0zNSUAMaBvPZKUbhm8utUYk7StJ2xPAtBNg==
-X-Google-Smtp-Source: AGHT+IEUi4HQD4MeWgmtjcJxdxnSWi94Lov5ZIkoWcpAPeNP+EfY38zUZPLeRZvSH7fA6B55qw8ZqA==
-X-Received: by 2002:a05:6870:e0c6:b0:3d4:b76:5080 with SMTP id 586e51a60fabf-3ed1fd9424emr12729233fac.28.1764626001435;
-        Mon, 01 Dec 2025 13:53:21 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:b67b:16c:f7ae:4908? ([2600:8803:e7e4:500:b67b:16c:f7ae:4908])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3f0dd05bc9asm6083995fac.22.2025.12.01.13.53.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Dec 2025 13:53:20 -0800 (PST)
-Message-ID: <248b009e-0401-4531-b9f0-56771e16bdef@baylibre.com>
-Date: Mon, 1 Dec 2025 15:53:19 -0600
+	 In-Reply-To:Content-Type; b=Q9rq4GtAkddeDk6rIqgwGBSUWXGnRkp7QuMn8caJIzKyUgzr3qYVTqpC+LqpWIRNeWkPIT4mt18fQqWTiQmsGoKJkEbXQ4v5wl/dPA0IeOFVTB7GyJoVCzQ39fDg8NV0DItoeDXsFWK7Z+68iMgI8+bTELJNP+IJGgGJDdfvPzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=ObvHkTRH; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 394F95340E49;
+	Mon, 01 Dec 2025 22:55:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1764626141;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=nVQZ/mOTyntm6xDs1fWWvlyqtu62RDo9OfmZeXa06TA=;
+	b=ObvHkTRHxBGfVvBoVvC3xOf4u/YpAvEzbshh4kjwsXPvSIc7tUUVw9JBA/6zRwVn1DdLty
+	Ek9sqsTMN6KreBESgh7tbGeu2PrqrMHlKGbv8jMLaqUaxOle+k9WVAxxmgVEHe3Zkh4Cwu
+	v6bDNeE1BbYQ7buBwnh/sbSndhLZyBI=
+Message-ID: <63ad4e46-8450-4ec4-bb13-6701f5eec5f6@ixit.cz>
+Date: Mon, 1 Dec 2025 22:55:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,150 +56,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] iio: adc: Add ti-ads1018 driver
-To: Kurt Borja <kuurtb@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tobias Sperling <tobias.sperling@softing.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com>
- <20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
- <aSsBdJZDWcadxEHC@smile.fi.intel.com> <DELPNLNPGQSM.1YDTB81AG0RAY@gmail.com>
- <18fbf486-c1cc-4cd2-af12-ffa093fa9ce7@baylibre.com>
- <DEN50VFOIB5O.1ENBKI6JQ0ZC@gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-oneplus: labibb is not used on
+ OnePlus 6/6T
+To: Casey Connolly <casey.connolly@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20251130-oneplus-labibb-v1-1-bb3653e43120@ixit.cz>
+ <3fcfc5b8-7509-4e4c-a1cd-e973d7e1d091@oss.qualcomm.com>
+ <f86267ee-ad70-43ef-8e48-b9f2e509c193@linaro.org>
+ <0d63bddf-7a88-4c59-8ba3-6655e7a8854e@oss.qualcomm.com>
+ <92c1609c-735d-4b5b-85ff-c40995aab813@linaro.org>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <DEN50VFOIB5O.1ENBKI6JQ0ZC@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ xsFNBF5v1x4BEADS3EddwsNsvVAI1XF8uQKbdYPY/GhjaSLziwVnbwv5BGwqB1tfXoHnccoA
+ 9kTgKAbiXG/CiZFhD6l4WCIskQDKzyQN3JhCUIxh16Xyw0lECI7iqoW9LmMoN1dNKcUmCO9g
+ lZxQaOl+1bY/7ttd7DapLh9rmBXJ2lKiMEaIpUwb/Nw0d7Enp4Jy2TpkhPywIpUn8CoJCv3/
+ 61qbvI9y5utB/UhfMAUXsaAgwEJyGPAqHlC0YZjaTwOu+YQUE3AFzhCbksq95CwDz4U4gdls
+ dmv9tkATfu2OmzERZQ6vJTehK0Pu4l5KmCAzYg42I9Dy4E6b17x6NncKbcByQFOXMtG0qVUk
+ F1yeeOQUHwu+8t3ZDMBUhCkRL/juuoqLmyDWKMc0hKNNeZ9BNXgB8fXkRLWEUfgDXsFyEkKp
+ NxUy5bDRlivf6XfExnikk5kj9l2gGlNQwqROti/46bfbmlmc/a2GM4k8ZyalHNEAdwtXYSpP
+ 8JJmlbQ7hNTLkc3HQLRsIocN5th/ur7pPMz1Beyp0gbE9GcOceqmdZQB80vJ01XDyCAihf6l
+ AMnzwpXZsjqIqH9r7T7tM6tVEVbPSwPt4eZYXSoJijEBC/43TBbmxDX+5+3txRaSCRQrG9dY
+ k3mMGM3xJLCps2KnaqMcgUnvb1KdTgEFUZQaItw7HyRd6RppewARAQABzSBEYXZpZCBIZWlk
+ ZWxiZXJnIDxkYXZpZEBpeGl0LmN6PsLBlAQTAQgAPgIbAwULCQgHAgYVCgkICwIEFgIDAQIe
+ AQIXgBYhBNd6Cc/u3Cu9U6cEdGACP8TTSSByBQJl+KksBQkPDaAOAAoJEGACP8TTSSBy6IAQ
+ AMqFqVi9LLxCEcUWBn82ssQGiVSDniKpFE/tp7lMXflwhjD5xoftoWOmMYkiWE86t5x5Fsp7
+ afALx7SEDz599F1K1bLnaga+budu55JEAYGudD2WwpLJ0kPzRhqBwGFIx8k6F+goZJzxPDsf
+ loAtXQE62UvEKa4KRRcZmF0GGoRsgA7vE7OnV8LMeocdD3eb2CuXLzauHAfdvqF50IfPH/sE
+ jbzROiAZU+WgrwU946aOzrN8jVU+Cy8XAccGAZxsmPBfhTY5f2VN1IqvfaRdkKKlmWVJWGw+
+ ycFpAEJKFRdfcc5PSjUJcALn5C+hxzL2hBpIZJdfdfStn+DWHXNgBeRDiZj1x6vvyaC43RAb
+ VXvRzOQfG4EaMVMIOvBjBA/FtIpb1gtXA42ewhvPnd5RVCqD9YYUxsVpJ9d+XsAy7uib3BsV
+ W2idAEsPtoqhVhq8bCUs/G4sC2DdyGZK8MRFDJqciJSUbqA+5z1ZCuE8UOPDpZKiW6H/OuOM
+ zDcjh0lOzr4p+/1TSg1PbUh7fQ+nbMuiT044sC1lLtJK0+Zyn0GwhR82oNM4fldNsaHRW42w
+ QGD35+eNo5Pvb3We5XRMlBdhFnj7Siggp4J8/PJ6MJvRyC+RIJPGtbdMB2/RxWunFLn87e5w
+ UgwR9jPMHAstuTR1yR23c4SIYoQ2fzkrRzuazsFNBF5v1x4BEADnlrbta2WL87BlEOotZUh0
+ zXANMrNV15WxexsirLetfqbs0AGCaTRNj+uWlTUDJRXOVIwzmF76Us3I2796+Od2ocNpLheZ
+ 7EIkq8budtLVd1c06qJ+GMraz51zfgSIazVInNMPk9T6fz0lembji5yEcNPNNBA4sHiFmXfo
+ IhepHFOBApjS0CiOPqowYxSTPe/DLcJ/LDwWpTi37doKPhBwlHev1BwVCbrLEIFjY0MLM0aT
+ jiBBlyLJaTqvE48gblonu2SGaNmGtkC3VoQUQFcVYDXtlL9CVbNo7BAt5gwPcNqEqkUL60Jh
+ FtvVSKyQh6gn7HHsyMtgltjZ3NKjv8S3yQd7zxvCn79tCKwoeNevsvoMq/bzlKxc9QiKaRPO
+ aDj3FtW7R/3XoKJBY8Hckyug6uc2qYWRpnuXc0as6S0wfek6gauExUttBKrtSbPPHiuTeNHt
+ NsT4+dyvaJtQKPBTbPHkXpTO8e1+YAg7kPj3aKFToE/dakIh8iqUHLNxywDAamRVn8Ha67WO
+ AEAA3iklJ49QQk2ZyS1RJ2Ul28ePFDZ3QSr9LoJiOBZv9XkbhXS164iRB7rBZk6ZRVgCz3V6
+ hhhjkipYvpJ/fpjXNsVL8jvel1mYNf0a46T4QQDQx4KQj0zXJbC2fFikAtu1AULktF4iEXEI
+ rSjFoqhd4euZ+QARAQABwsF8BBgBCAAmAhsMFiEE13oJz+7cK71TpwR0YAI/xNNJIHIFAmX4
+ qVAFCQ8NoDIACgkQYAI/xNNJIHKN4A/+Ine2Ii7JiuGITjJkcV6pgKlfwYdEs4eFD1pTRb/K
+ 5dprUz3QSLP41u9OJQ23HnESMvn31UENk9ffebNoW7WxZ/8cTQY0JY/cgTTrlNXtyAlGbR3/
+ 3Q/VBJptf04Er7I6TaKAmqWzdVeKTw33LljpkHp02vrbOdylb4JQG/SginLV9purGAFptYRO
+ 8JNa2J4FAQtQTrfOUjulOWMxy7XRkqK3QqLcPW79/CFn7q1yxamPkpoXUJq9/fVjlhk7P+da
+ NYQpe4WQQnktBY29SkFnvfIAwqIVU8ix5Oz8rghuCcAdR7lEJ7hCX9bR0EE05FOXdZy5FWL9
+ GHvFa/Opkq3DPmFl/0nt4HJqq1Nwrr+WR6d0414oo1n2hPEllge/6iD3ZYwptTvOFKEw/v0A
+ yqOoYSiKX9F7Ko7QO+VnYeVDsDDevKic2T/4GDpcSVd9ipiKxCQvUAzKUH7RUpqDTa+rYurm
+ zRKcgRumz2Tc1ouHj6qINlzEe3a5ldctIn/dvR1l2Ko7GBTG+VGp9U5NOAEkGpxHG9yg6eeY
+ fFYnMme51H/HKiyUlFiE3yd5LSmv8Dhbf+vsI4x6BOOOq4Iyop/Exavj1owGxW0hpdUGcCl1
+ ovlwVPO/6l/XLAmSGwdnGqok5eGZQzSst0tj9RC9O0dXO1TZocOsf0tJ8dR2egX4kxM=
+In-Reply-To: <92c1609c-735d-4b5b-85ff-c40995aab813@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/1/25 1:47 PM, Kurt Borja wrote:
-> On Mon Dec 1, 2025 at 11:07 AM -05, David Lechner wrote:
+On 01/12/2025 13:57, Casey Connolly wrote:
 > 
-> ...
 > 
->>>>> +	if (iio_device_claim_buffer_mode(indio_dev))
->>>>> +		goto out_notify_done;
->>>>> +
->>>>> +	if (iio_trigger_using_own(indio_dev)) {
->>>>> +		disable_irq(ads1018->drdy_irq);
->>>>> +		ret = ads1018_read_unlocked(ads1018, &scan.conv, true);
->>>>> +		enable_irq(ads1018->drdy_irq);
->>>>> +	} else {
->>>>> +		ret = spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf));
->>>>> +		scan.conv = ads1018->rx_buf[0];
->>>>> +	}
->>>>> +
->>>>> +	iio_device_release_buffer_mode(indio_dev);
->>>>> +
->>>>> +	if (ret)
->>>>> +		goto out_notify_done;
->>>>> +
->>>>> +	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
->>>>> +
->>>>> +out_notify_done:
->>>>> +	iio_trigger_notify_done(ads1018->indio_trig);
+> On 01/12/2025 13:55, Konrad Dybcio wrote:
+>> On 12/1/25 1:50 PM, Casey Connolly wrote:
+>>>
+>>>
+>>> On 01/12/2025 13:48, Konrad Dybcio wrote:
+>>>> On 11/30/25 1:08 AM, David Heidelberg via B4 Relay wrote:
+>>>>> From: David Heidelberg <david@ixit.cz>
+>>>>>
+>>>>> The lab and ibb regulators aren't used here. Disable them.
+>>>>>
+>>>>> Removes following warnings:
+>>>>> qcom-lab-ibb-regulator c440000.spmi:pmic@3:labibb: Failed to create device link (0x180) with supplier c440000.spmi for /soc@0/spmi@c440000/pmic@3/labibb/lab
+>>>>> qcom-lab-ibb-regulator c440000.spmi:pmic@3:labibb: Failed to create device link (0x180) with supplier c440000.spmi for /soc@0/spmi@c440000/pmic@3/labibb/ibb
 >>>>
->>>> Jonathan et al., maybe we need an ACQUIRE() class for this? It will solve
->>>> the conditional scoped guard case, no?
+>>>> These are only vaguely related, as there's nothing to be wary about that's
+>>>> specific to these devices - it's just devlink being grumpy
+>>>>
+>>>>> Fixes: 288ef8a42612 ("arm64: dts: sdm845: add oneplus6/6t devices")
+>>>>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>>>>> ---
+>>>>> I assume this is right approach, as OLEDs on both devices are driven by
+>>>>> different regulators.
+>>>>>
+>>>>> Question is, if should be labibb nodes enabled by default?
+>>>>
+>>>> They're onboard. I'd rather keep them predictably parked than left in
+>>>> whatever (potentially ON) state the bootloader may leave them at
+>>>
+>>> Shouldn't they be default disabled in the pmic dtsi and only enabled on
+>>> the devices that actually use them? Many SDM845 devices with OLED panels
+>>> don't use these regulators.
 >>
->> No, ACQUIRE() is not scoped, just conditional. I don't think it
->> will improve anything here.
+>> As I said, I wouldn't be surprised if they were enabled by the bootloader
+>> as part of some reference/common routine and left hanging. Linux will
+>> switch them off if they're never used and I'm fairly sure the users won't
+>> mind the odd couple dozen bytes of runtime kernel memory usage (which if
+>> we go that route probably balance out with the added couple characters for
+>> status=disabled in the resulting DTB)
 > 
-> Maybe I'm not understanding the problem fully?
+> Ahh yeah I understand, the DT node has to be enabled for the driver to
+> load and actually turn off the regulators if they're unused. Makes sense.
 > 
-> I interpreted "ACQUIRE() class" as a general GUARD class, i.e.
-> 	
-> 	guard(iio_trigger_notify)(indio_dev->trig);
-> 
-> This way drivers may use other cleanup.h helpers cleaner, because of the
-> goto problem?
-> 
-> I do think it's a good idea, like a `defer` keyword. But it is a bit
-> unorthodox using guard for non locks.
-> 
+> Thanks,>
+>> Konrad
 > 
 
-To take a simple example first:
+Thank you both, now I also understand (and withdrawing the patch).
 
-static int
-ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-		 int *val, int *val2, long mask)
-{
-	int ret;
+Should
 
-	if (!iio_device_claim_direct(indio_dev))
-		return -EBUSY;
+5dcc6587fde2 ("arm64: dts: qcom: sdm845-tama: Add display nodes")
 
-	ret = ads1018_read_raw_unlocked(indio_dev, chan, val, val2, mask);
+also get fixed up to not disable the lab & ibb node then?
 
-	iio_device_release_direct(indio_dev);
+Thanks
+David
 
-	return ret;
-}
-
-using ACQUIRE would look like:
-
-static int
-ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-		 int *val, int *val2, long mask)
-{
-	int ret;
-
-	ACQUIRE(iio_device_claim_direct_mode, claim)(indio_dev);
-	if ((ret = ACQUIRE_ERR(iio_device_claim_direct_mode, &claim)))
-		return ret;
-
-	return ads1018_read_raw_unlocked(indio_dev, chan, val, val2, mask);
-}
-
-It makes it quite more verbose IMHO with little benefit (the direct
-return is nice, but comes at at an expense of the rest being less
-readable).
-
-
-
-And when we need it to be scoped, it adds indent and we have to do
-some unusual things still to avoid using goto.
-
-static irqreturn_t ads1018_trigger_handler(int irq, void *p)
-{
-	struct iio_poll_func *pf = p;
-	struct iio_dev *indio_dev = pf->indio_dev;
-	struct ads1018 *ads1018 = iio_priv(indio_dev);
-	struct {
-		__be16 conv;
-		aligned_s64 ts;
-	} scan = {};
-	int ret;
-
-	do {
-		ACQUIRE(iio_device_claim_direct_mode, claim)(indio_dev);
-		if ((ret = ACQUIRE_ERR(iio_device_claim_direct_mode, &claim)))
-			break;
-
-		if (iio_trigger_using_own(indio_dev)) {
-			disable_irq(ads1018->drdy_irq);
-			ret = ads1018_read_unlocked(ads1018, &scan.conv, true);
-			enable_irq(ads1018->drdy_irq);
-		} else {
-			ret = spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf));
-			scan.conv = ads1018->rx_buf[0];
-		}
-	} while (0);
-
-	if (!ret)
-		iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
-
-	iio_trigger_notify_done(ads1018->indio_trig);
-
-	return IRQ_HANDLED;
-}
-
-So unless Jonathan says this is what he wants, I would avoid it.
+-- 
+David Heidelberg
 
 
