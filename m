@@ -1,183 +1,189 @@
-Return-Path: <devicetree+bounces-243349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B10C9C971E3
-	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 12:51:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C60BC97207
+	for <lists+devicetree@lfdr.de>; Mon, 01 Dec 2025 12:53:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A1C2634393C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 11:51:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CDDD3A16EC
+	for <lists+devicetree@lfdr.de>; Mon,  1 Dec 2025 11:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6E962F069E;
-	Mon,  1 Dec 2025 11:50:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC8A2F49FE;
+	Mon,  1 Dec 2025 11:53:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W3+FpNn/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5CE12ECD28;
-	Mon,  1 Dec 2025 11:50:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D982F3C31;
+	Mon,  1 Dec 2025 11:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764589836; cv=none; b=rC3ycyMsDjLZsVgPZnefjAocTpdt/2WTGSs8H74tE8k8apROcKLUdx/WkvD9waeS4sR1kdLZP3rNVCFTMZTJ41BMP4KGpPKl4ovL3wvY3hquRiCo9og1bEPP5cEPsI+9pjJLrBi1q+l4N+AcEQuotvdaJ6ai5t5QvoSpfbJt0nQ=
+	t=1764590006; cv=none; b=YrWvG6im5QkhpgUjH846aK1yHXx3mvFLjiAEyWyPdIR/qQYoPQkIQfP1C2dDTeSzGWaidBVcNGJAD9VUBLSqBQ8KFYYBN6NwCaeHgFdItRjt+2ek36cg4yEr43p42XVqxRaL+b9YeRnwtnvT1i0V2DBlLJESlKRnF0Uw1TgvS3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764589836; c=relaxed/simple;
-	bh=AwyOcMv87etOKVfQMyLHbCVxytfi7WUu67I2+NOG5xw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=faa502eOL3qRs47ozvKBr9LnIgeF8gKKxov2ZciWQTPhCHC6SFBgCXAt5vLlBXzkcn1EnNJBZHE6aMyTZaFI4CN9ug/g4o7saWirFixnDsAjnL57iJA3qFoJvwAgRH7KEZt2jwCOgQLVpRqnKtuiZ3iNYk0lgKUfhHpUhTIzY5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: KB9l88vsRaSIy5UD6HvClg==
-X-CSE-MsgGUID: 89MMhAoFQz6PePy3pqS0OQ==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 01 Dec 2025 20:50:34 +0900
-Received: from demon-pc.localdomain (unknown [10.226.93.83])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id A189741FA260;
-	Mon,  1 Dec 2025 20:50:29 +0900 (JST)
-From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Johan Hovold <johan@kernel.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>
-Cc: dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: renesas: r9a09g087: add DMAC support
-Date: Mon,  1 Dec 2025 13:49:10 +0200
-Message-ID: <20251201114910.515178-7-cosmin-gabriel.tanislav.xa@renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251201114910.515178-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20251201114910.515178-1-cosmin-gabriel.tanislav.xa@renesas.com>
+	s=arc-20240116; t=1764590006; c=relaxed/simple;
+	bh=0nMJ0F2u0g5tfi1U82ygJgaOgW4YChsxsA3FwPtCIoY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=g3Wve3gXrqqHRBNkDyiTwQbHZVlq3OOYbnU0ftOTlLf7RC2ajtVnk3WFx8fPms5pj8lL7q2Q9JvkN2NWgiO8o3w2C5PJd+PDxtCoNMUENNM9XnT8C2H8m0gb7JO0oJzletKQ/Uol+7WZIaSZ3qVqVBVkfqB5oa1mRZw5wu5XsoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W3+FpNn/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6F8FAC4CEF1;
+	Mon,  1 Dec 2025 11:53:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764590005;
+	bh=0nMJ0F2u0g5tfi1U82ygJgaOgW4YChsxsA3FwPtCIoY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=W3+FpNn/9/OtDVt3k2X0c10JxWWchRqIYaKLQvRcKbW3258FW1CmHnTw4w9UHtMkL
+	 2GeVI4NRKS38vEIrKE2aqXpvGkroTkLRgWNWsiI03E15MS9ONmQdoG40/n1BKpOS4Z
+	 yyWcfNRutYHbNzqcaVR2TSOzEvqhSn9QPr7kq+BeKHeBQ9n6PM+KAxX8RtJLKCKaow
+	 UUIXTKCU5vI/phCOHYDUZvTZIqQ1CDxW55qnZKtMcIGxMqs+4t4K2bpJ+B5lFFgryr
+	 lHc07iENbEK3P6UNJfj043FdsZICHcIh8YQTEkgRKYDwXoBXoxDmvg4qQpVyY3gqNn
+	 ORbkDwOzrDNTQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C100D116F5;
+	Mon,  1 Dec 2025 11:53:25 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
+Subject: [PATCH v6 0/4] backlight: add new max25014 backlight driver
+Date: Mon, 01 Dec 2025 12:53:19 +0100
+Message-Id: <20251201-max25014-v6-0-88e3ac8112ff@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK+BLWkC/23NzWrDMAzA8VcpPs9D8me8095j7KA4cmto4+GU0
+ FHy7nM7WALLzTL6/XUXE9fMk3g73EXlOU+5jG1wLwcRTzQeWeahzUKBsuCUkxe6tRcaaRR4G5C
+ RkhVt/atyyrdn6uOzzac8XUv9fpZnfPz+Rryya2RGCRK4i5FD63X8fiyxjNdazufXWC7iUZrVq
+ jsMG62atmnwxD0aZNrVetUBcaN10wPoZLgn7e3+bfOnEWB72zTtaOgVAZG2aVfbVSP4jbZNB3J
+ E1mtw/X+9LMsPhwCQh50BAAA=
+X-Change-ID: 20250626-max25014-4207591e1af5
+To: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-fbdev@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, 
+ Maud Spierings <maudspierings@gocontroll.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764590004; l=4564;
+ i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
+ bh=0nMJ0F2u0g5tfi1U82ygJgaOgW4YChsxsA3FwPtCIoY=;
+ b=0lbejPBBqafdrfT0aI0CHFJD41yFIchpfq4m6Fz7r5gOfezIZC52it3MGOmbfoa+pkvqoQaz2
+ 2PiHMMjaRNcD+GY+SlKLgROngLwWnrR4FmZwPrfbe4gXI4jBN1Cqhpx
+X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
+ pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
+X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
+ with auth_id=341
+X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
+Reply-To: maudspierings@gocontroll.com
 
-The Renesas RZ/N2H (R9A09G087) SoC has three instances of the DMAC IP.
+The Maxim MAX25014 is an automotive grade backlight driver IC. Its
+datasheet can be found at [1].
 
-Add support for them.
+With its integrated boost controller, it can power 4 channels (led
+strings) and has a number of different modes using pwm and or i2c.
+Currently implemented is only i2c control.
 
-Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+link: https://www.analog.com/media/en/technical-documentation/data-sheets/MAX25014.pdf [1]
+
+Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
 ---
+Changes in v6:
+- fixup changes in v4 where default brightness handling was changed but
+  not noted
+- remove leftover comment about initializing brightness
+- use BIT definitions for fields in the DIAG register
+- apply reverse christmas tree initialization of local variables
+- remove !=0 from checks, just check if (ret)
+- remove > 0 from checks, just check if (val)
+- use dev_err_probe() more
+- set enable gpio high in the get() instead of seperately calling set()
+- change usleep_range() to fsleep()
+- remove null checks when setting gpio value
+- get regular regulator, not optional to avoid further NULL checks in
+  case none is provided
+- introduce max25014_initial_power_state() to check if the bootloader
+  has already initialized the backlight and to correctly set props.power
+- squash max25014_register_control() into max25014_update_status()
+- in max25014_configure() perform extra checking on the DISABLE register
+  now that the state from the bootloader is taken into account
+- Link to v5: https://lore.kernel.org/r/20251107-max25014-v5-0-9a6aa57306bf@gocontroll.com
 
-V2:
- * pick up Fab's Reviewed-by
+Changes in v5:
+- moved comment about current functions of the driver to the actual
+  comment section of the commit
+- fixed the led@0 property, regex patternProperty is not needed as of
+  now
+- added extra clarification about the ISET field/register
+- moved #address-cells and #size-cells to the correct location
+- remove leftover default-brightness in backlight nodes
+- Link to v4: https://lore.kernel.org/r/20251009-max25014-v4-0-6adb2a0aa35f@gocontroll.com
 
- arch/arm64/boot/dts/renesas/r9a09g087.dtsi | 90 ++++++++++++++++++++++
- 1 file changed, 90 insertions(+)
+Changes in v4:
+- remove setting default brightness, let backlight core take care of it
+- use a led node to describe the backlight
+- use led-sources to enable specific channels
+- also wait 2ms when there is a supply but no enable
+- change dev_warn() to dev_err() in error path in max25014_check_errors()
+- set backlight_properties.scale to BACKLIGHT_SCALE_LINEAR
+- rebase latest next
+- add address-cells and size-cells to i2c4 in av101hdt-a10.dtso
+- Link to v3: https://lore.kernel.org/r/20250911-max25014-v3-0-d03f4eba375e@gocontroll.com
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-index 19475c72017f..7b1f2c1c9e85 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-@@ -376,6 +376,96 @@ i2c2: i2c@81008000 {
- 			status = "disabled";
- 		};
- 
-+		dmac0: dma-controller@800c0000 {
-+			compatible = "renesas,r9a09g087-dmac", "renesas,r9a09g077-dmac";
-+			reg = <0 0x800c0000 0 0x1000>;
-+			interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 33 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 36 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 37 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 38 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 39 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 40 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 41 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 42 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 43 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 45 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 46 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 47 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKH>;
-+			power-domains = <&cpg>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 0>;
-+		};
-+
-+		dmac1: dma-controller@800c1000 {
-+			compatible = "renesas,r9a09g087-dmac", "renesas,r9a09g077-dmac";
-+			reg = <0 0x800c1000 0 0x1000>;
-+			interrupts = <GIC_SPI 48 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 49 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 51 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 53 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 54 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 55 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 56 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 58 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 60 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 61 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 62 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 63 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKH>;
-+			power-domains = <&cpg>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 1>;
-+		};
-+
-+		dmac2: dma-controller@800c2000 {
-+			compatible = "renesas,r9a09g087-dmac", "renesas,r9a09g077-dmac";
-+			reg = <0 0x800c2000 0 0x1000>;
-+			interrupts = <GIC_SPI 64 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 65 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 66 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 67 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 69 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 70 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 71 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 72 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 74 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 77 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKH>;
-+			power-domains = <&cpg>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 2>;
-+		};
-+
- 		gmac0: ethernet@80100000 {
- 			compatible = "renesas,r9a09g087-gbeth", "renesas,r9a09g077-gbeth",
- 				     "snps,dwmac-5.20";
+Changes in v3:
+- fixed commit message type intgrated -> integrated
+- added maximum and description to maxim,iset-property
+- dropped unused labels and pinctrl in bindings example
+- put the compatible first in the bindings example and dts
+- removed brackets around defines
+- removed the leftover pdata struct field
+- removed the initial_brightness struct field
+- Link to v2: https://lore.kernel.org/r/20250819-max25014-v2-0-5fd7aeb141ea@gocontroll.com
+
+Changes in v2:
+- Remove leftover unused property from the bindings example
+- Complete the bindings example with all properties
+- Remove some double info from the maxim,iset property
+- Remove platform_data header, fold its data into the max25014 struct
+- Don't force defines to be unsigned
+- Remove stray struct max25014 declaration
+- Remove chipname and device from the max25014 struct
+- Inline the max25014_backlight_register() and strings_mask() functions
+- Remove CONFIG_OF ifdef
+- Link to v1: https://lore.kernel.org/r/20250725-max25014-v1-0-0e8cce92078e@gocontroll.com
+
+---
+Maud Spierings (4):
+      dt-bindings: backlight: Add max25014 support
+      backlight: add max25014atg backlight
+      arm64: dts: freescale: moduline-display-av101hdt-a10: add backlight
+      arm64: dts: freescale: moduline-display-av123z7m-n17: add backlight
+
+ .../bindings/leds/backlight/maxim,max25014.yaml    | 107 ++++++
+ MAINTAINERS                                        |   6 +
+ ...x8p-ml81-moduline-display-106-av101hdt-a10.dtso |  30 ++
+ ...x8p-ml81-moduline-display-106-av123z7m-n17.dtso |  25 +-
+ drivers/video/backlight/Kconfig                    |   7 +
+ drivers/video/backlight/Makefile                   |   1 +
+ drivers/video/backlight/max25014.c                 | 419 +++++++++++++++++++++
+ 7 files changed, 594 insertions(+), 1 deletion(-)
+---
+base-commit: 9c0826a5d9aa4d52206dd89976858457a2a8a7ed
+change-id: 20250626-max25014-4207591e1af5
+
+Best regards,
 -- 
-2.52.0
+Maud Spierings <maudspierings@gocontroll.com>
+
+
 
