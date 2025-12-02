@@ -1,88 +1,102 @@
-Return-Path: <devicetree+bounces-243707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A8A9C9B7D0
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 13:25:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5E70C9B878
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 13:56:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9F589347E92
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 12:25:34 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 696D1343BD0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 12:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037BB311979;
-	Tue,  2 Dec 2025 12:25:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBFF313E22;
+	Tue,  2 Dec 2025 12:55:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EI3fikyw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dTfs+Gjc";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZIOsHLP4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012033.outbound.protection.outlook.com [52.101.48.33])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544D62FD7CA;
-	Tue,  2 Dec 2025 12:25:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.33
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764678329; cv=fail; b=lSBzVZly5FGLgtCDBLIEXmoNAbvpoYwFKKQrX1gr6PYM7Yet7yrTqpOYxu/tQEdCQVIoT/4gmcvG4r6k4SDtEeEBEckhSMuv2/eJIxcuj98nag+cmEasWZ6Yuwv47TGznhoHXZb4gaTN9ruLSmOdS8eY/D1hCVzZFL/jNIA0Qj4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764678329; c=relaxed/simple;
-	bh=ZiLIKsLasPvEy35I4wc+fMXg3CHgKza0kH7e50bU1Co=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=YFKHQTNt1rmLiJE4jnNRp5p49UltdHbQZNpeuZliDKGdm0noJuxAb0D/cIo9EtM8H3jxVdumt3v/RwKQbCLKBEFL1hfXWtWIthPEWZIZCjWKgL8D8lK4qvRVhFjv/68bWEsmXkjYL2UHL/SUgZRkk9ooBieXZvTU957wd/iCyJU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EI3fikyw; arc=fail smtp.client-ip=52.101.48.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NiNFRz6lxaJGiibuwjS2isFjoXtRK3CAfIcBk0VzNI4zwuu6PO/Qu07fJOO/mMP/RTciVL4PLuv2XViPb0iY2zfbPewR//DiY74EOITXeMgwu2MwaYJMZPfnME53dmD2XEs4J3OfqngYqQ6sWe90Wkb+wcQyGTfqNnbvtWvPaPE+4SGZnUVrdOb5NZx346inpTizabXTNVWfmXdoELZbVHq5INVwJaGYYryl/xRD7/OQ2V9d3xYE5GhfOq8KkILFItK7G6AXCOqluNs1iWnk/8JFMysOmc9Q7nAhHg7nYcghYZshymnUjR50sTspeoXlcWpM/ZDiEp+xf+Wye+MCnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gmObU8DSK+8IY5/zZJBSEdulBlvEVHoUo6i9HXNrRu4=;
- b=KoQ4mHLiTy2x8pMJ6BXUp8dTZ3egG2rIkgaPMIJTLgcZiUgcFe9Xs3xqT+jSDcAipg/6tOuWOe9cROIp8tDEG3Ntm9WaV9QOxgdbGfOAtwvo0bnZnVAI8C68rG1XzYrgb5HOk2SmUd3VDcBkx6FfV+rbazVfHqUb1aGsFdM1C5AW099xpcA3mMRA2Mg5KlNByoUXHA8WYe8A4NqOi9GChuebBFobdk7oHxVPGJaqPZU1tRkP2lOAWOBYh53iTtkCg9NtrCsAjXTPtf3JOKEs9QTzDSIegNb5sYBOF5lzX6/0tTrEqcZSjV00B/WF2pQXDEjRPAHFRQdZ4ve4+uaVbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gmObU8DSK+8IY5/zZJBSEdulBlvEVHoUo6i9HXNrRu4=;
- b=EI3fikyw6cLpaKM5M2BQ1Rp6HPNyLIPsOZnH6qJWUIzlAEGXTNNQ4W2IbGxRBvnQaRxrlWgl7fRqZVsqxRRztExfGuZAglON5CqFsNDOYLAsVq1nwu2aBAs/Foc9fISq5yOsxSAxXmaHrgPWw+fZnvexbhpBFUZIjFmUl+S35jE=
-Received: from DS7PR05CA0010.namprd05.prod.outlook.com (2603:10b6:5:3b9::15)
- by DS0PR10MB6223.namprd10.prod.outlook.com (2603:10b6:8:d3::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 12:25:23 +0000
-Received: from DS1PEPF00017094.namprd03.prod.outlook.com
- (2603:10b6:5:3b9:cafe::54) by DS7PR05CA0010.outlook.office365.com
- (2603:10b6:5:3b9::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.9 via Frontend Transport; Tue, 2
- Dec 2025 12:24:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- DS1PEPF00017094.mail.protection.outlook.com (10.167.17.137) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Tue, 2 Dec 2025 12:25:23 +0000
-Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 2 Dec
- 2025 06:25:23 -0600
-Received: from DLEE207.ent.ti.com (157.170.170.95) by DLEE212.ent.ti.com
- (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 2 Dec
- 2025 06:25:23 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE207.ent.ti.com
- (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 2 Dec 2025 06:25:23 -0600
-Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B2CPFAd2241797;
-	Tue, 2 Dec 2025 06:25:16 -0600
-Message-ID: <7b8e22d1-a872-4ea0-8fce-4323d2bf81ff@ti.com>
-Date: Tue, 2 Dec 2025 17:55:15 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3713F313554
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 12:55:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764680152; cv=none; b=iG8WONHpxzHeDEaT+JKjedVBRWQJu58uLzTSuajnRtUt4RgYyseeWXWjo/2ZBmVmvuoMFwyJHM/VYC3pxQ9zxhS8tQPj9yVZY8Gfkx9iUw3NnrViN4FFDMn5NjZA9Y7/3PCrxPMDoTAsBNaE4wWp/FyT4qAvA392kJeVwyD4WCQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764680152; c=relaxed/simple;
+	bh=c99VfiJziIa4p5oGCuYMvysD45YMsYYhzKzywiDorKk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u44bGppK14lmOeu87HZm6RSt6TvSIbrIrzSloIxnvQ+5WpgfBl8Y0JCqvUxXNhmkt6xX6fcs0t9ao8hJCpw54IzhL1WnnhGuhYgJvOBdU9MEvWJCt90AXtt1gNmGOXlDfkHb+kmLL1DKShwjF6gN0MwTumtApR04umcj9FAk22A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dTfs+Gjc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZIOsHLP4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B2673Np2821194
+	for <devicetree@vger.kernel.org>; Tue, 2 Dec 2025 12:55:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jPs09PlsZI8fe/FIRCcZ/95GybauVOjun80wvJ9Xx1I=; b=dTfs+Gjc3A3PKdA1
+	3u7vgi99q/oxlTAdzbqjlKAJYmvZWNZLeGRDe4fPJgp/mBzaGi8A8x6TgzI/2p/g
+	hWIOP7AQQJziisAEhyRCazkJjyzOuXNtRKrsisZg/ACg3FDfxODyzxxGukH0rB1V
+	ri4uL6yw9GEBzDR2LkinlR48dnUx0gNNi6E7H18+yeP5BlnAEF8+u8Ppzat0Enwg
+	IiNxKM55mSRRxOX3My555Ozp+mIB7mENqdfsLMxItoqTfbC5Cgfqgn6rRRw7Wpc6
+	IvvavbvjZsO0NSbi0uati/iFMUsqAGtyIGicNkYGaJRO4oaJ3cTnsy+3Ap1opw+M
+	dB0Mlw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4astjgh6yu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 12:55:44 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8b21f4ce5a6so65727785a.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 04:55:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764680144; x=1765284944; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jPs09PlsZI8fe/FIRCcZ/95GybauVOjun80wvJ9Xx1I=;
+        b=ZIOsHLP4TeXJoaL7XMfBGVtsvicyDJZa8njZTQplpaQsluOB21AO6sSgHlkEwIMUbi
+         tke//5cXWgY2Wfn3/wpP1XXIDpnzr4LyxvuqI4lOpG9jy4y08fzz/tW9tKeKC56r6npE
+         ibeFfkTHjLZiEsCoF899AWR+Z0bN+YQdjOPbe/CaXjXoVd+Qx4xWv99aVoBFynfZywHd
+         qOPCAOGZOIIX8bQib41SKPkroWqOMCX/+kbSey78lwerpuY5pTazhzS9t/+lN17g/7/i
+         M4jKOysoSMxGo5JRwemmfhDa6OBvIpX7c3yB+OEGO3OXcSOMsbTZQCJ0+b5uYlaZBqoj
+         lO6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764680144; x=1765284944;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jPs09PlsZI8fe/FIRCcZ/95GybauVOjun80wvJ9Xx1I=;
+        b=RtHeVNGxoAtLgSEffGwY9bgJgK6DLYa0KyjT1gmj9iRn8FVAV7QmIpVrmTvjSpp+JH
+         OnDzpWSM4EGLVa62lop1KdFCn34d9x3dzja4wipB8XJ1bPuH9w/6zFElZ28Tkyf9bb/V
+         FNPKuyGYMo+rMD8n8X3F4WtPTbBBgLRKn9CTI4d3BqssIroH33Vdl0JMwM701tIrqWgN
+         zn50LZNXGe9a3k5SF/lVibUh+5hbGJOIXk/N1VwmJIPZweZ9AsRw2FEcokLp6Bra54va
+         DuC+mzoCRZrbmUToBAwL7UGw/TOK9N0h4QT+PBHfmzv708hqvKMBYbvwtkYdW3xqHNMI
+         BIJg==
+X-Forwarded-Encrypted: i=1; AJvYcCV+0+XpVLlbleRSsxSDCMa9MR7OcIhKmIrgcBtc4MM7a9tg2Yb+iiZhUlVomzKhe4OoRPAunhqpGYfg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4bTS2iy1SxcYVnTVA4i0kODWQzQgVfctAVo8tkYSo9K//7mK8
+	z9gbQm57xAfE0yrnKbXG9mE1Zl0sc1u3IS7Al/T4xfykJWPtl0Yh4eTEDx13r4I0jzEGOrbYg0s
+	rdQlRduWTs6WzqWMjHVtWUuYK4Zd670Tjxiq/x2vJu+CYiq4RGEOD+WoQj0Vu0i/+
+X-Gm-Gg: ASbGncsWsrEzEBTEdbvn4xasZpbcfU1JPXQVW0M9SH93ib/gY/4623XHEIEAQMpqv3H
+	p9G2+uB37y9oG66Dd+aE5fzwwE64aqpPswmonAC/dUNb418PSghpQJgCi76Z0Kn1BFpeiPpbMVg
+	kWz/Nzmorr9zcn853XfdG5s2a3CM1xVt4l4+CVuUXmCXlVMqVydnv6kyxrvVvdGlzG3qjqHD7Ai
+	Ly+hHZdWNuQm0VtpCIbLnXwumXczc7JnxViDHeV3z8NcsDjWHyd+75exRW9ud8z3mpbZ7v9Zm8j
+	0rup5GJHiWbODVUvO1c1eiVF0SK9s7gpmiR6dPkQV/JYeHod3vZjBmsTCHF4dtmPr1pnaYE7Gcf
+	EfZZwC7GyaMxmwZiqr3yEqteWAyxVwGxqCi/4lQdFwkqsbjPNJDcN8QkCEcaNHqy6KA==
+X-Received: by 2002:a05:620a:1aa1:b0:8b2:ddd3:adae with SMTP id af79cd13be357-8b33cfc6cd2mr4243980785a.0.1764680143897;
+        Tue, 02 Dec 2025 04:55:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG6t5tAlhnUSrzpVsQ4YaBwDMUp5ld41UwU7dts+koLAB5uAJi/EM37lxZiwbVRa41NR97csw==
+X-Received: by 2002:a05:620a:1aa1:b0:8b2:ddd3:adae with SMTP id af79cd13be357-8b33cfc6cd2mr4243976685a.0.1764680143341;
+        Tue, 02 Dec 2025 04:55:43 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b79cbc1f1d5sm33115466b.63.2025.12.02.04.55.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Dec 2025 04:55:42 -0800 (PST)
+Message-ID: <ed0bdcae-6fa1-48a4-9618-e0ac09097f9e@oss.qualcomm.com>
+Date: Tue, 2 Dec 2025 13:55:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,180 +104,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/21] Clean and update tilcdc driver to support
- DRM_BRIDGE_ATTACH_NO_CONNECTOR
-To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, Jyri Sarha
-	<jyri.sarha@iki.fi>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
-	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, "Bartosz
- Golaszewski" <brgl@bgdev.pl>, Tony Lindgren <tony@atomide.com>, Andrzej Hajda
-	<andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	"Robert Foss" <rfoss@kernel.org>, Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, "Jernej
- Skrabec" <jernej.skrabec@gmail.com>
-CC: Markus Schneider-Pargmann <msp@baylibre.com>, Luca Ceresoli
-	<luca.ceresoli@bootlin.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Miguel Gazquez
-	<miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-tama: Keep labibb on, so kernel
+ can disable it
+To: david@ixit.cz, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251202-tama-labibb-v1-1-f8f3fda53d1d@ixit.cz>
 Content-Language: en-US
-From: Swamil Jain <s-jain1@ti.com>
-In-Reply-To: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251202-tama-labibb-v1-1-f8f3fda53d1d@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017094:EE_|DS0PR10MB6223:EE_
-X-MS-Office365-Filtering-Correlation-Id: a99b2e69-568a-4d5e-d4d1-08de319dde0d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|82310400026|36860700013|1800799024|376014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cWc3QXBERDRFZ1dHdlpJY3BPTmNVVjlHOU1DUUFBRFgzZ3FTTDRPaXNVM2tk?=
- =?utf-8?B?OEFmd25RSCtQNUVDSUtLQzBJYTZuZS9WdXllS2Q4US9BVVJoejhQMGdudlZH?=
- =?utf-8?B?RU9YcnNsSStHcWJ3Zlk5T1RzRy83cFIwa2Q2Ly9IVGhkaGVKN3VtVVo2N282?=
- =?utf-8?B?QVAwUmZiZWJtZGlUaUFYYmY4TkRRY3RJVzdncDBsNTAzU3pKQytQcU9rQk9r?=
- =?utf-8?B?QndXQWZQUENxMWV1eURodEJUcVI1RTI1MzFHU3VWZ1MrY21jazM5UzYrSHRu?=
- =?utf-8?B?bFNYbmsvaXljQmJrNVpScHFFVzAyT1FYR2ErZE9jVklkNGQzTDRhZ0NqSkpO?=
- =?utf-8?B?TDRhWHpRSUQ0UkdzQnRRdTVxVEVtNURDUUhTbTR0M0tJa1kwTjIwSkdGSi9L?=
- =?utf-8?B?VlVxaUJMa2x0MXhlOTdyVWp4RzhvMklBZ08yRThwWFAzVTViNWk1K1I3ZGN6?=
- =?utf-8?B?L3gvRGVLcmpiSUx0YnBuU0RiOVpRTVF6TWlLQVZORlh3R0NNeEZrOFRKYXFD?=
- =?utf-8?B?V2FtYzZ4V1pya0RKV0kxWGZpMDVXWVhiREtGUURnQjFqcFVrbXVSRWpGR2Qw?=
- =?utf-8?B?ZU1HcU5WdklzNFFGUWZBOHNMVVhzSHdNejhEYytna2ZoK2xtNTkyTmNTMzZC?=
- =?utf-8?B?S0FWSkdDbUlXSzkyUW9xaVNEa01WeVFyaThvbllWeWdqZjduZ0pjR0JTamtr?=
- =?utf-8?B?aXRaNE5hbWcwKzZEdkFCUzMySVRINjZZZ0ZXTXZhNUcwV09xTUFUd21uQ1lw?=
- =?utf-8?B?ZFgyUlZ6UWRYeEhiUnVKK0pZUVg1MWJhUnZlTHRBblpwa2dpQlJMaTRZb2d0?=
- =?utf-8?B?MXlBWDE2K2JzZFdOYXBDYk45d3RTaTU0MFpjdzFLblJ4NWttRmJScWVOcUl4?=
- =?utf-8?B?c1orcnFUNVkvb2F2bDNKNlg1QXVhc0ZlMU9zcmpFVTV1UU1RYTZaSDViNTRC?=
- =?utf-8?B?ajVacWN6M2lEczF4SXdxSGxsTVd1R3d4elZMOGRqVkZiYmt6WnJ4NnlnM01a?=
- =?utf-8?B?OTFBbDRuR1V0R0ZiOWZLR2pUejZETThrdE9qZ3Nyckw4SmpjRk4xYU9DYWVP?=
- =?utf-8?B?UjQxQWc3cEp5QlBTSkpuMUF0QXpsZDV0M1o2THgvT3QvZWpielE5SDROYnVF?=
- =?utf-8?B?MFFaNERjQk1vVERYVkF1czhvWC9EVE5MaC9ndU5xbWtPb0RRcXpJTVU1cnI0?=
- =?utf-8?B?L2g2alVjMHQ3MTBTN3ZwM2xnenp3eDZkeDZZTDk2eTR4MDZOVWo2SncvenlL?=
- =?utf-8?B?NG1VWU9qRWc2cVdBenpKUXZwVlNLUmVtT1ZoUThVT2ZhN2U1NDJ5V1Z1UFQ0?=
- =?utf-8?B?RDlydmlsVVB3TjFwRHVZK1pPZW9GQlkwNmgzczRCVTc4emhQMTJlZWFuVm1z?=
- =?utf-8?B?RjVnbU4vaktsa2NmbEU4dHBoaDMxVkJZUXR3ZTcybFBjMlNHUnV6blQ3SHNR?=
- =?utf-8?B?NC84bktVMzVXeVRHa3ZGYWN2NXVrdW5nR1NFSWpQR2VCV0VMTkpHMXZ4VS9m?=
- =?utf-8?B?ejFYUEVEMG42VGJGamwxbUQ3eDJnSldtNTFuSVpsaThIbnFpRlN1S0REYlVk?=
- =?utf-8?B?MUZxMmw5bHBQM244TmRad2l2RGVZVDhPWkRQWWQrV3o3U2tSelZiMWxjV0Nw?=
- =?utf-8?B?dWlDRXJ6WnVEYTd0dTY3UWtVNDNBMmtRSjZiWGU3a1ZKbVJaSFBNd0ZaZDNK?=
- =?utf-8?B?d1FLR1JGRmdWcTE0RER3Tk9KODJVYkhFMTU0N1ZYQ2RqUHFFSEVpcDluWThS?=
- =?utf-8?B?U1h2UEFLbDQyUUpOVkx0byt2TnhFRWpkK0FZUzRWQVJ1TnVjWWJ2TElVemM1?=
- =?utf-8?B?L0x4OWJpdW1pUUxWZUs1OHZnSjE0MlRhaHpCdHpqeGV5VmxyWlp6emJpQjhD?=
- =?utf-8?B?MDg1V296eDU2ZUNKR1lFNkFlcjNjNHFpYnZTOURJMkRWQ2Y0Mjdicmc5akpM?=
- =?utf-8?B?SGhUVVhYdml5SjFwRU9SUU1TQVZ4U0FRMyt1NGloRTN5ZG1YVDF1TmlScWMv?=
- =?utf-8?B?UUk1b2lnTjBGMVlhY2xWWmpSWDZFMHhaOVkyd09XZTNJVEl4RnZZbE9aMWZ2?=
- =?utf-8?Q?5PWWw/?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(82310400026)(36860700013)(1800799024)(376014)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 12:25:23.7612
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a99b2e69-568a-4d5e-d4d1-08de319dde0d
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF00017094.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB6223
+X-Proofpoint-ORIG-GUID: BAC_3ck55s2xZvjBLQ3MGZdpU5PqUnbJ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAyMDEwNCBTYWx0ZWRfX8zXgL+9IqNYX
+ uvjo9EAUTMTifA7Ou5Sx9t/UzDFx83nbFKtJ0zTuxVLBXTVssrSF3A/Rzow7hAAMwB/sI3jDft6
+ Jk6df/zX4bPlVa9R2r++atBecEvffNYr2mrE4kNUpKsrA2BhFySIZFBAJ+rcUfwJZUYbcZJGTlc
+ AF27XLiURVG+52vriJcrP4CpsfwLUF5x0ieQUCLj2Pbv1s+2w1qvg+olUgGF/pfhnzwu5fijsoD
+ xijKs/PmKfIsKlwsVU7X9AADBpqezCellENIQBPIcFyFOdCRo/QMyQ5QOUVuYOxMDVeaTF7gb+P
+ bX6xrQln7dOwN0ij70Fv2o/DR2fG0ufu4GWM2LL2WRBEvuf6vxuhXovTh9q0NccvwfypeV8Cbxs
+ v9DJscuLk2D9e9K78PBkb7lQHTIEmg==
+X-Proofpoint-GUID: BAC_3ck55s2xZvjBLQ3MGZdpU5PqUnbJ
+X-Authority-Analysis: v=2.4 cv=EbfFgfmC c=1 sm=1 tr=0 ts=692ee1d1 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=iaR-HtB-u2oQH_P8YIwA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-01_01,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
+ phishscore=0 impostorscore=0 malwarescore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512020104
 
-Hi Kory,
-Thanks for the series.
-
-On 11/26/25 23:05, Kory Maincent (TI.com) wrote:
-> The starting point for this work was adding support for the HDMI cape:
-> https://www.seeedstudio.com/Seeed-Studio-BeagleBone-Green-HDMI-Cape.html
-> This will be sent in a later series.
+On 12/2/25 12:31 PM, David Heidelberg via B4 Relay wrote:
+> From: David Heidelberg <david@ixit.cz>
 > 
-> Initially, Miguel proposed modifying the ite-it66121 bridge to support
-> the legacy behavior without the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag:
-> https://lore.kernel.org/lkml/20250909-it66121-fix-v1-1-bc79ca83df17@bootlin.com/
-> This patch was NAK'd as we don't want to add more legacy code. Maxime
-> requested that the tilcdc driver be updated to use
-> DRM_BRIDGE_ATTACH_NO_CONNECTOR instead.
+> In case if they were enabled by the bootloader as part of some
+> reference/common routine and left hanging. Linux will switch them off if
+> they're never used.
 > 
-> While working on this update, I discovered that the tilcdc driver
-> contained significant amounts of legacy code that needed cleaning.
-> Since this driver was developed alongside the tda998x driver for
-> several AM335x boards, the tda998x driver also required cleanup and
-> support for the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
+> Discussion about it can be found here:
+>   https://lore.kernel.org/all/20251130-oneplus-labibb-v1-1-bb3653e43120@ixit.cz/
 > 
-> This series is based on the tilcdc fix sent to mainline:
-> https://lore.kernel.org/lkml/20251125090546.137193-1-kory.maincent@bootlin.com/
-> 
-> Patch 1-7: Convert tilcdc binding to YAML and remove the ti,tilcdc,panel
-> 	   sub-binding and driver
-> Patch 8-16: Clean up tilcdc driver
-> Patch 17-19: Clean up tda998x driver
-> Patch 20: Add DRM_BRIDGE_ATTACH_NO_CONNECTOR support to tda998x
-> Patch 21: Add DRM_BRIDGE_ATTACH_NO_CONNECTOR support to tilcdc
-> 
-> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+> Fixes: 5dcc6587fde2 ("arm64: dts: qcom: sdm845-tama: Add display nodes")
+> Suggested-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
-> Kory Maincent (TI.com) (21):
->        dt-bindings: display: tilcdc: Convert to DT schema
->        dt-bindings: display: tilcdc: Add fifo-threshold property
->        drm/tilcdc: Remove simulate_vesa_sync flag
->        drm/tilcdc: Add support for DRM bus flags and simplify panel config
->        ARM: dts: omap: Bind panel to panel-dpi instead of ti,tilcdc,panel driver
->        dt-bindings: display: tilcdc: Remove panel binding
->        drm/tilcdc: Remove tilcdc panel driver
->        drm/tilcdc: Remove component framework support
->        drm/tilcdc: Remove tilcdc_panel_info structure
->        drm/tilcdc: Remove redundant #endif/#ifdef in debugfs code
->        drm/tilcdc: Remove unused encoder and connector tracking arrays
->        drm/tilcdc: Rename external_encoder and external_connector to encoder and connector
->        drm/tilcdc: Rename tilcdc_external to tilcdc_encoder
->        drm/tilcdc: Remove the useless module list support
->        drm/tilcdc: Modernize driver initialization and cleanup paths
->        drm/tilcdc: Remove the use of drm_device private_data
->        drm/bridge: tda998x: Remove component support
->        drm/bridge: tda998x: Move tda998x_create/destroy into probe and remove
->        drm/bridge: tda998x: Remove useless tda998x_connector_destroy wrapper
->        drm/bridge: tda998x: Add support for DRM_BRIDGE_ATTACH_NO_CONNECTOR
->        drm/tilcdc: Add support for DRM_BRIDGE_ATTACH_NO_CONNECTOR
-> 
->   .../devicetree/bindings/display/tilcdc/panel.txt   |  66 ---
->   .../devicetree/bindings/display/tilcdc/tilcdc.txt  |  82 ----
->   .../devicetree/bindings/display/tilcdc/tilcdc.yaml | 103 +++++
->   arch/arm/boot/dts/ti/davinci/da850-evm.dts         |  26 +-
->   arch/arm/boot/dts/ti/omap/am335x-guardian.dts      |  25 +-
->   arch/arm/boot/dts/ti/omap/am335x-pdu001.dts        |  21 +-
->   arch/arm/boot/dts/ti/omap/am335x-pepper.dts        |  22 +-
->   arch/arm/boot/dts/ti/omap/am335x-sbc-t335.dts      |  25 +-
->   arch/arm/boot/dts/ti/omap/am335x-sl50.dts          |  25 +-
->   drivers/gpu/drm/bridge/tda998x_drv.c               | 251 ++++++------
->   drivers/gpu/drm/tilcdc/Makefile                    |   3 +-
->   drivers/gpu/drm/tilcdc/tilcdc_crtc.c               | 117 ++----
->   drivers/gpu/drm/tilcdc/tilcdc_drv.c                | 456 +++++++--------------
->   drivers/gpu/drm/tilcdc/tilcdc_drv.h                |  88 +---
->   drivers/gpu/drm/tilcdc/tilcdc_encoder.c            |  93 +++++
->   .../tilcdc/{tilcdc_external.h => tilcdc_encoder.h} |   5 +-
->   drivers/gpu/drm/tilcdc/tilcdc_external.c           | 179 --------
->   drivers/gpu/drm/tilcdc/tilcdc_panel.c              | 408 ------------------
->   drivers/gpu/drm/tilcdc/tilcdc_panel.h              |  15 -
->   drivers/gpu/drm/tilcdc/tilcdc_plane.c              |   2 +-
->   drivers/gpu/drm/tilcdc/tilcdc_regs.h               |   8 +-
->   21 files changed, 589 insertions(+), 1431 deletions(-)
-> ---
-> base-commit: 670bacfc7579bdd79a3069cfb5ab60a6a7923003
 
-I was trying to test the patches, unable to find the base-commit, are
-you using drm-misc-next?
+Perhaps "keeping it on" is a little bit unfortunate in that the wording
+collides with keeping the regulator's output enabled, but anyway
 
-Regards,
-Swamil.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> change-id: 20251014-feature_tilcdc-79cd49e67bf9
-> 
-> Best regards,
-
+Konrad
 
