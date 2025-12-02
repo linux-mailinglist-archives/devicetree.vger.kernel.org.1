@@ -1,136 +1,143 @@
-Return-Path: <devicetree+bounces-243765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A70AC9C3C5
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 17:37:43 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8533AC9C4A9
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 17:53:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 013F84E438B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 16:37:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0835134909B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 16:53:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C80629A30A;
-	Tue,  2 Dec 2025 16:37:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB8F29D29C;
+	Tue,  2 Dec 2025 16:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="TD/7tCNK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W9/Wzv9F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4339C289378;
-	Tue,  2 Dec 2025 16:37:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFEE329D27A
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 16:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764693421; cv=none; b=A9ZndY4vaGwrUUwW6Ceb3Pjb/ZSzQja3j5xvF++zkppJNrxsnKWO4lhFoMoNeRMXyWu6+pdqmS/iwqpPBmQr6yEUTW3iqCySgqVUQqW7mBfgOxfImcxae4JPpz9r0OWEKjxKzvb3g8y9XLkSnEYzBpygykuIR1Reb+MN7a8FqgE=
+	t=1764694385; cv=none; b=DbucOdeHcBZDJsaA0oD7ybycY7IRLI+xedVmOUm0kDbnGTAwFYSik4Ijp5HxenEN+40iMXf0WVYq7AyrWTL4kiTqrGMUx/5um9D3Z5ZjRxrj8/P1m2lkZkUQewqlXSutAOEhhBKqN2MdToE8OhjKq+rdU7jvOXXCs0bQmrBvj7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764693421; c=relaxed/simple;
-	bh=2KDgS7tYAgFLjq0GgUSJJ7WRNioD+CIep2YyfepMI2Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d3v8Bvip2yXXXj5P9ozQ2nra/TbdaB6lsyeCiGjMcarcc6w5q5SwpOlnn5oD69tSY6rMDZyO8DQBvxP84JRvLpTGrNFXr/jEZTgEFZ7M+Lit+mPvvmfAUGrY2Ky5y1Hhf8kdB2xyNlq/tpwGUdhAkocvyYkApkKNl13QknaYCls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=TD/7tCNK; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dLRHr3bFbz9tPF;
-	Tue,  2 Dec 2025 17:36:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1764693416;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ouQXuzIraPB2D4kvwgqomW1JSJU+R5g72qD/eXUPvvw=;
-	b=TD/7tCNK7xPkEzXu1K6i6i0oJ+JPL0/9upqdLYIRjNpUCk8SgRS2tjNyFrrXxH24BUd5Ml
-	TJdUSoMSllooOJK6PRPLDIKfQZ+RpEd/anVN+Si6BRF8leyiV1TjGOJf8a5JJHGiz6qTH6
-	Sck77NrE4BvZNZ6PC9Lc0nO19XQmcMO54916VDnVvauCsAyXPKfrbY07dqLfwZ5VZGtlus
-	edEmHw51yrLEDVd3bkDxq3GfZUaIDOK3uKIpQgoOxJTc4ED4i7HaX7E+G028VKtzIblbK2
-	NRYZuKHUCmjdbMR9p/HYOHSPvZWKBQw4HrO9CSi3cLQ5HxBN8L7YxXQ3gJSeCA==
-Message-ID: <66257fcf-9024-454f-b776-4ba584963ebe@mailbox.org>
-Date: Tue, 2 Dec 2025 17:36:53 +0100
+	s=arc-20240116; t=1764694385; c=relaxed/simple;
+	bh=mJ1vqZveqVD6FTtyhaVHSkhjadzx9EmB1m/qDyNlDWE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=VRpeIA7MwuXd5n4N8G8F7wUsBzpebuWB81eAZhGBC3ZrUn5jW7cut1b3HLnive39jG3BfZrzrMsztgPtC0ocT3n1L/X6mGSc9y1XzZZSzcgpV2l/mMjqI4jutHWc40Z3U/1somjV7sxi7sbeKyK5trOS7ALQTyoj6HVh3yx4w2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W9/Wzv9F; arc=none smtp.client-ip=209.85.222.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-93917ebde8aso4446241.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 08:53:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764694382; x=1765299182; darn=vger.kernel.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lpPLuo53I6h3V+PicS332QHjcrzteQ8XBzR6dVBP4mY=;
+        b=W9/Wzv9FO0eyLl5N8mLyF2g5i5xtopbABgAm02yQAERJWGgya0Z/k0uAZsMhE61MqF
+         S3XMNdITGUlfR0PFHXyswPdIZT6Pb5fIHQkVh42jezPEkhETTGQivc31Abt0OwqLjjRi
+         47YhEapWJKG3+idR/j5vF/8wmuT4xzv2qIREAgM/CRy82Bnlq3iWLNzRD5HffrDFRSSB
+         /yhM2TNyvpN+9cubZ+5+XJyXzUQ40+U/ROJITM7URMN6qktCRt2FexZWGhHlLGRadRG+
+         3nNQiX8F8+o6zpY46N9bGhuzFy4WUd14XrLZQATnPEqXkz9b+1Bn2ZESYlemh1m7Ozqd
+         9Jug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764694382; x=1765299182;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lpPLuo53I6h3V+PicS332QHjcrzteQ8XBzR6dVBP4mY=;
+        b=bLi6YiumUYEM2NzHuM6YX94mx3IzAz8YRMPbzgRGeBEIO9sFjSo2UrqwVRUhTZpcD/
+         ScAjpYM/NDaBrru0QKQa8NHsUCs8epcOPI7+DBXUa2xiDrS3rpX08t7D58Vmh5UWnJ8C
+         6l41yBBFThg8wcuucSvT1J0mWo6F1C/dGzW/R1RvDuh/vJcd8yHfBSh54UNv9DakfzFW
+         PhABQwtAtN8oq5+vP0o+P5nhIVjtLvKsJBwatCyZ9zjW5WIFaXIQmSJoQUjyNus36N3C
+         iid6WSy/xuMi+oFhvG0Ow1DIRWKg3VULTmcwGBFgC+XimBZfLemeAaAM8Awx+lsN5M3B
+         yMjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV/uBDs2IUmwBkdIFm48038a/f+J83iSBvE0Z2T5jE7cFkZQNhISdRuo/IouJdesc4O07UfJgbKvsv1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIPMvWeVQjZq2qN3swXoubTjseNKpTHEhxVqudGitaVLdfv+Lx
+	aks/F6GyPmesXmKF9jnAGWa4Go0AN+D/8ivZ3wp4zBaYhwko7D7kE0G/
+X-Gm-Gg: ASbGncu0Dt+SYlRFO4UnFSLCS7NoUQBaIALoA//QhDiO7xANoM+ACv6BwHECRG1nxkl
+	AyPnmcUyhDep7lnefcYhq0Hq2p8nSy2tLS5MbyMJhNo7QeTtt8Cq13nlpSNYHhzEZO1LbKxY3Zv
+	MXrWkJDjpuM64zjyyhDeqi/0RU/3GkiF5hpLspg56f196yoFMfWfmLM9fZpPeZsBpMCetiHXJia
+	WYTR3PgJvOTrmv3AJG4eL0pJJDYk6YUXL0lfBtuyhivtDLRSoeSy2N0dWpTKifaYPhuUs8Aa3Z7
+	uOuMZuztqS+xeUEglr5Z0H3GN5a706EqldwcAkEFqW9c2bvV/H3sFwEjKQkJU4YPaURKk/RZ+Rs
+	N+DIpg3zKy5CgfOgx+GLCZK8bHQZ0Ei0M8dBCYzJwwpl07JDeLUCaKpFsmnEiMkbxZOkLZGXKJz
+	MNCxxg4w==
+X-Google-Smtp-Source: AGHT+IGeCeEIS2GLEDxIvZQM2NjmRQm29Rl9y4xLMUI1F06FQ+qddMpe26cG8KXEZ0UKAHEhHxLGOw==
+X-Received: by 2002:a05:6102:3a10:b0:5d5:f6ae:3914 with SMTP id ada2fe7eead31-5e40c7cb8d0mr1892111137.22.1764694382563;
+        Tue, 02 Dec 2025 08:53:02 -0800 (PST)
+Received: from localhost ([2800:bf0:4580:3149:7d4:54b1:c444:6f2f])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5e24d91777csm6283432137.1.2025.12.02.08.53.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Dec 2025 08:53:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
- arm,poll-transport property
-To: Sudeep Holla <sudeep.holla@arm.com>,
- Cristian Marussi <cristian.marussi@arm.com>
-Cc: arm-scmi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org
-References: <20251023123644.8730-1-marek.vasut+renesas@mailbox.org>
- <aPoxfH_TLrsMxMVQ@pluto> <70554674-7020-4582-a4e7-dbee34907096@mailbox.org>
- <5ae0a793-d3e7-45d1-bf5c-3c46593d1824@mailbox.org> <aRW7BZimWdpq4TyX@pluto>
- <20251202-evasive-neon-rhino-d2745e@sudeepholla>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20251202-evasive-neon-rhino-d2745e@sudeepholla>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: ef09950386f662b3642
-X-MBO-RS-META: xnxgf58ioag4dimis9zusdeen8x8huea
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 02 Dec 2025 11:52:59 -0500
+Message-Id: <DENVY6GZ4XZB.16W16KKSN1KXT@gmail.com>
+To: "David Lechner" <dlechner@baylibre.com>, "Kurt Borja"
+ <kuurtb@gmail.com>, "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Tobias Sperling"
+ <tobias.sperling@softing.com>
+Cc: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
+ <andy@kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jonathan
+ Cameron" <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v3 2/2] iio: adc: Add ti-ads1018 driver
+From: "Kurt Borja" <kuurtb@gmail.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com>
+ <20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
+ <a01f95ba-23c0-4c4b-a6bc-31b316bb04ef@baylibre.com>
+In-Reply-To: <a01f95ba-23c0-4c4b-a6bc-31b316bb04ef@baylibre.com>
 
-On 12/2/25 3:52 PM, Sudeep Holla wrote:
+On Mon Dec 1, 2025 at 6:09 PM -05, David Lechner wrote:
 
-Hello Sudeep,
+...
 
->>> While I was going through the SCMI spec, DEN0056F , page 209 , section "4.1
->>> Shared memory based transport" , bullet • Completion interrupts, I found it
->>> explicitly states:
->>>
->>> "
->>> This transport supports polling or interrupt driven modes of communication.
->>> In interrupt mode, when the callee completes processing a message, it raises
->>> an interrupt to the caller. Hardware support for completion interrupts is
->>> optional.
->>> "
->>
->> Oh, yes...I knew that...it is just that till now, no systems were really
->> ever developed that lacked the completion IRQ as a whole, it was, till now,
->> more of a case of having the capability NOT to use it selectively at runtime
->> and instead use polling when wanted (like for clock ops in ISR context)
->>
-> 
-> Indeed.
-> 
->> I am not sure what is the reason why this only-polling scenario was never
->> supported in the HW description, this indeed pre-dates my work on SCMI....
->> ...I would/will check with Sudeep, when he's back, what are the reasons for
->> this (if any)...
->>
-> 
-> As you mentioned earlier, no platform has required this before. I’m fine with
-> adding it, but we need to be more explicit about what it implies for SCMI. The
-> transport may be shared with other system components, and enforcing polling
-> for SCMI while the same transport generates interrupts for another user could
-> lead to issues.
+>> +static int ads1018_buffer_preenable(struct iio_dev *indio_dev)
+>> +{
+>> +	struct ads1018 *ads1018 =3D iio_priv(indio_dev);
+>> +	const struct ads1018_chip_info *chip_info =3D ads1018->chip_info;
+>> +	unsigned int pga, drate, addr;
+>> +	u16 cfg;
+>> +
+>> +	addr =3D find_first_bit(indio_dev->active_scan_mask, iio_get_masklengt=
+h(indio_dev));
+>> +	pga =3D ads1018_get_pga_mode(ads1018, addr);
+>> +	drate =3D ads1018_get_data_rate_mode(ads1018, addr);
+>> +
+>> +	cfg =3D ADS1018_CFG_VALID;
+>> +	cfg |=3D FIELD_PREP(ADS1018_CFG_MUX_MASK, addr);
+>> +	cfg |=3D FIELD_PREP(ADS1018_CFG_PGA_MASK, pga);
+>> +	cfg |=3D FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_CONTINUOUS);
+>> +	cfg |=3D FIELD_PREP(ADS1018_CFG_DRATE_MASK, drate);
+>> +
+>> +	if (chip_info->channels[addr].type =3D=3D IIO_TEMP)
+>> +		cfg |=3D ADS1018_CFG_TS_MODE_EN;
+>> +
+>> +	ads1018->tx_buf[0] =3D cpu_to_be16(cfg);
+>> +	ads1018->tx_buf[1] =3D 0;
+>
+> Seems like we could use 16-bit cycles here too?
+>
 
-How do you imagine this -- a transport shared with other components, one 
-which does generate IRQs and one which does not -- would look like ? Can 
-you think of an example ?
+Just realized, we can't use it here because we would need a CS de-assert
+in between (16-bit) words and also keep it asserted after that for drdy
+IRQ. The 32-bit cycle simplifies things a lot in buffer mode.
 
-> Clearly defining these constraints would be helpful. It may also be useful to
-> note that this is primarily intended for mailbox transports, if that’s
-> accurate. Alternatively, we could keep the DT binding definition broader but
-> emit warnings when a transport other than mailbox is used. That approach might
-> make it easier to move forward.
 
-DEN0056F refers to this polling mode in Shared memory based transports, 
-that can be other than mailbox transports, it includes e.g. SMC or OPTEE 
-transports.
+--=20
+ ~ Kurt
 
-I don't think a warning is justified, if the behavior follows the 
-specification. But I do agree the behavior is ... suboptimal.
-
--- 
-Best regards,
-Marek Vasut
 
