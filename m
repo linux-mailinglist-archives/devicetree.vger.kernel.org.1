@@ -1,160 +1,310 @@
-Return-Path: <devicetree+bounces-243690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC92BC9B49F
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 12:19:15 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B7D9C9B4B9
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 12:21:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 694713432A8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 11:19:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DAB8B4E2ED9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 11:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9772130F803;
-	Tue,  2 Dec 2025 11:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E4331159C;
+	Tue,  2 Dec 2025 11:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="d66PwGmR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ikWyO8kh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83AF1201033;
-	Tue,  2 Dec 2025 11:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4E230F811
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 11:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764674351; cv=none; b=mbSho09cG0QMwAnYX4fb0tRG2MrKS49Z6Lpe7IE6ykaPgiJiAx4kf/BfC3xByxU/2kQfWrcGAKx96QDHI6sH6upIeF0oWl4k2+M9BGPlyv0T8jdlxdQ9i/S021MC6/K4+2s1M8C7QpekBub/sI+M0ITMWs+auwR8f8qRVYcXPwE=
+	t=1764674484; cv=none; b=k3fzyFqX3pXhfmLJ+qn1S9yHsYgOefT0//YRKNH2JLAT9S+BnoG01+qj8VgA+/JjQq8BBvfw7BK8+fRaoA9Ux/b2y5wR9Mk9WsB/f2Y0qnAVu5bB9zo6FLeO+q6KM794K37Dpw6szSCE+Z3JwNGNt/5UYdA6QF9MNxO+MNe7aNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764674351; c=relaxed/simple;
-	bh=bsZpWTbJA5Ji4ZEdCb6pkFF0SUzTtbhhOzyCxRyrtPw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KVdD7beGMxLwDJheWGDQT7iJAvIuZHkQDa6Oal4CqsQzMF7mBo5ClxUZuGYv06MaFJtRlBhssXaj8kIqvY644fZ5FAqGRSEVZc6tA0dBucYJmakbIk+xONh7Qm71vqrUDSj6ANCe9zVlwmwvtrSoIMLcnieUyaVhUA4vtAjj6Ms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=d66PwGmR; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id BEFCE1A1EC6;
-	Tue,  2 Dec 2025 11:19:05 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 89707606D3;
-	Tue,  2 Dec 2025 11:19:05 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7C9671191942B;
-	Tue,  2 Dec 2025 12:18:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764674344; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=8V3hIJFvUgVjg0/tUj7NHCN4G/8vGDXw+L9NVOOC8l4=;
-	b=d66PwGmR6xFbSkXchCyHcaQzFN5GVfO0AyQo/yODXfML8MFJHVb0alTIT5YUTicejcOvx4
-	WDFeB0rvweqZyxxHICzE+GJbKYhzXn/S7QGhfXb8QP7Wyri9kUPa1RRK/AxC5kd1lyfrHh
-	MQC4tkv0f6Dh67I+pxemljbxllZ1m6dtuqhGriKAHFtr9RjD18MfgIge+QugD3v9DbyhLC
-	sL9V3E2tlzC1fQ6Fdo+4GK31D26/trGGWTlMZ3OWOYVuLwdDe/CgNbWPGvm6QRncih3lsQ
-	krrXozHuRqjPvJASDOxJlvad8izQr/VZJXsOprzRGc3PQXTN7wimnZbgIn1VWw==
-Date: Tue, 2 Dec 2025 12:18:56 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Markus
- Schneider-Pargmann <msp@baylibre.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Miguel Gazquez
- <miguel.gazquez@bootlin.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, Jyri
- Sarha <jyri.sarha@iki.fi>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Russell
- King <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, Tony
- Lindgren <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH 05/21] ARM: dts: omap: Bind panel to panel-dpi instead
- of ti,tilcdc,panel driver
-Message-ID: <20251202121856.0da62885@kmaincent-XPS-13-7390>
-In-Reply-To: <94e254fa-289d-41ed-909f-1742cfbb2690@kernel.org>
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
-	<20251126-feature_tilcdc-v1-5-49b9ef2e3aa0@bootlin.com>
-	<96b1b7bf-ddbe-4213-a201-dc89cf2998dd@ideasonboard.com>
-	<3bc5bf92-05c3-4841-ab28-9bab2bb31cd5@kernel.org>
-	<20251202104244.59a9e83d@kmaincent-XPS-13-7390>
-	<d7515cd3-5488-4d15-82dc-d2b98cfa2bed@kernel.org>
-	<20251202114416.09624a4b@kmaincent-XPS-13-7390>
-	<94e254fa-289d-41ed-909f-1742cfbb2690@kernel.org>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1764674484; c=relaxed/simple;
+	bh=ebI41iK5gjq0L5IRa7e/P/x9OhOy/cqTUUejIoRXkM0=;
+	h=Content-Type:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To; b=FtQ2ugibJ7hUhllkd3iR+Fz0dC+3GAjScbMAW0EbXyTB1GrZVpklI3aJCLyoDQAiV9qfrRxSJ5ceRJ/VlK8yVjLH6cVjwbNkf/mQ+OUrq8yg5C/HQLc1B/Q5mO/6/lKk3JQMrDGC2g0PcdckokTJTyUSsoEUBvCoITG8iHf9Bpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ikWyO8kh; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-37a2dced861so51572331fa.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 03:21:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764674480; x=1765279280; darn=vger.kernel.org;
+        h=in-reply-to:from:content-language:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FHGvFJa75lB1s5FOVY85+WmT8K+iTuEMFLumjxbx42M=;
+        b=ikWyO8khZwe/qLfkusvEeIK9GVQGgt/sEtx7wdjlZaWa+/51MLaRa2wXNChRwbj3Cd
+         V2lvMgM8hImInF3Cogr8oJ4jClQ2AXEK3JndZH2GW2ma+GM7h/gjLb6/gB+EfRjh5byP
+         j796Eh5MQko0sFSTz3ruiHGLRJ3wNZZTTKv5Pwc9old9Dqnb9pjwkM6xRhzv/0G8MrLl
+         ioYSPIpcgw7J3Aa1AEmFjeVWAj7+IgsB0oBglt2jD3M4n19eWtIRdwAEf3NzLH9qViW/
+         XKhBrPA+U1A5VuxMWgJpVXkpVd55gUflHxwsfcWSjEQYbjT7qRfNzJJyUJNDCtMsKSB5
+         A6GQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764674480; x=1765279280;
+        h=in-reply-to:from:content-language:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FHGvFJa75lB1s5FOVY85+WmT8K+iTuEMFLumjxbx42M=;
+        b=dzb6Yt70P8iwTkz7afCNutTZ9Re6S4wExGDfNm/J0kg2ppW3m1+2Dr8wADG1AgBU8Y
+         kgjG9Adg97y/AurSQg/WwjrNr3FK0h9zhJ9p9yAwK7hQFy+sGRS4l6Iv4lllvSatvO1r
+         ph0g3qqYYgsVoQ3HUN9lpwjMspADdW+Ps2vtjYp2K9JzMGroUCvqUcqUQx+35KkA8pbj
+         t751QwoOKYn9CyPM0fu+R1sQkoSw9rrlYmX8AWriIuFB2cMpXo154UhOW2Wus6jZTSWa
+         6+aX8EkUYv12MVo8YD0SUn7QwNtoaOSFxxGQF0hycUQgffihNhCCYM5N6MiLu5x/nNVv
+         nRFg==
+X-Forwarded-Encrypted: i=1; AJvYcCUdxA60HyAsz3CDV5M6Htc4cDtAAXZB1DOPbKRUIyS+xx7oZzzA2fDJb6iZORa/6B/SuqvPusyZBH1L@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfB/wpXF/ngHjd1rcPpT/tN2mu0xalYFAz5/hkC57ZNg8Lbu6s
+	NIWp+wOFNfRAPS6Lg7qvuDsQGq5iU0U+ihkg5/pco44xSEhxk1pseATD
+X-Gm-Gg: ASbGncuuM8psPnk9hQ7aZ9HVqgrvAtdWMS1h34T8jQdW2pYMfIV4aYeWkIo6Pjs0h7M
+	aV7NqieVhOY3HhVky0B0H9RqWYlWFYq8cpmVLdId3tHKmiYBDkBQfwb+ERExqqu2CnaHdftKrje
+	EP2pXfuk86Kt7xYu2UiYc1+rUUw0huPVSI7/bnFxY69d+K8MJrNHK+CnOFRV5CsGjkaFRqePj+I
+	ZPxqOGTOoOTmgZHiAm8eyasNqX9Tr0u3nFVqwMaATwH83A9TVE0z5nxEcFqySJRMaHhTUc5zotF
+	NFqbvq6Yrs2wbs5tl2Uu9yGwqWP++qAzQ8q2MSKAsiKD3AVNkpY/noc8x6L+OBqBPshcZlkIzsq
+	hscGhdwFzKvjTdGrX7uhBHIpYU1L1orqwOQtALbn8kkaX1WtuS/b3Oh9MUV+XvwLqluOhwQ+222
+	k0UfA5A89urkfo7g==
+X-Google-Smtp-Source: AGHT+IEAmVx71ofDJnqXMWdm5SDHhZDccJOhKRMoK+tDdSkd1NpTk5tba5l1eQx6flbKeCAUi9zshw==
+X-Received: by 2002:a2e:9546:0:b0:37e:5208:e2d7 with SMTP id 38308e7fff4ca-37e58e4f776mr5336841fa.19.1764674479321;
+        Tue, 02 Dec 2025 03:21:19 -0800 (PST)
+Received: from [10.38.18.76] ([213.255.186.37])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37d236efc92sm37487261fa.19.2025.12.02.03.21.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Dec 2025 03:21:18 -0800 (PST)
+Content-Type: multipart/mixed; boundary="------------RTMpC01dN2Tts0K0800P0dVv"
+Message-ID: <088af3ff-bd04-4bc9-b304-85f6ed555f2a@gmail.com>
+Date: Tue, 2 Dec 2025 13:21:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
+ overlays"
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Matti Vaittinen
+ <mazziesaccount@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
+ Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Charles Keepax <ckeepax@opensource.cirrus.com>,
+ Richard Fitzgerald <rf@opensource.cirrus.com>,
+ David Rhodes <david.rhodes@cirrus.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Dave Jiang <dave.jiang@intel.com>,
+ Alison Schofield <alison.schofield@intel.com>,
+ Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Wolfram Sang <wsa@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
+ patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
+ Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Steen Hegelund <steen.hegelund@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20251015071420.1173068-1-herve.codina@bootlin.com>
+ <20251015071420.1173068-2-herve.codina@bootlin.com>
+ <f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
+ <CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
+ <5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
+ <CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
+ <072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
+ <CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
+ <55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com>
+ <20251202102619.5cd971cc@bootlin.com>
+Content-Language: en-US
+From: Kalle Niemi <kaleposti@gmail.com>
+In-Reply-To: <20251202102619.5cd971cc@bootlin.com>
 
-On Tue, 2 Dec 2025 11:47:40 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+This is a multi-part message in MIME format.
+--------------RTMpC01dN2Tts0K0800P0dVv
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> On 02/12/2025 11:44, Kory Maincent wrote:
-> > On Tue, 2 Dec 2025 11:28:55 +0100
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >  =20
-> >> On 02/12/2025 10:42, Kory Maincent wrote: =20
-> >>>     =20
-> >>>> Stuffing DTS change in the middle of the driver change tries to hide
-> >>>> impact, which is not nice on its own.   =20
-> >>>
-> >>> As it needs driver change before the removal for not breaking things =
-it
-> >>> can't be done at the beginning of the series.   =20
-> >>
-> >> And that is the problem which should stop you there and rethink how to
-> >> organize it without impacting users. DTS cannot go via DRM. If that was
-> >> your intention, that's my:
-> >>
-> >> NAK =20
-> >=20
-> > My intention was to raise discussion over the ugly and legacy tilcdc-pa=
-nel
-> > binding and what to do with it. But it seems you don't want to, that's a
-> > shame. =20
->=20
-> I don't see how you get to these conclusions. I comment that putting
-> here DTS in the middle without any explanation of the impact is not
-> correct and this one alone I disagree with.
+On 12/2/25 11:26, Herve Codina wrote:
+> Hi Kalle,
+> 
+> On Fri, 28 Nov 2025 10:34:57 +0200
+> Kalle Niemi <kaleposti@gmail.com> wrote:
+> 
+> ...
+>>>>>>>>
+>>>>>>>> Hello,
+>>>>>>>>
+>>>>>>>> Test system testing drivers for ROHM ICs bisected this commit to cause
+>>>>>>>> BD71847 drivers probe to not be called.
+>>>>>>> This driver (and overlay support) is in linux-next or something out of
+>>>>>>> tree on top of linux-next?
+>>>>>>>
+>>>>>>> Rob
+>>>>>> Yes the driver is in mainline linux: /drivers/mfd/rohm-bd718x7.c
+>>>>> I don't see any support to apply overlays in that driver.
+>>>> Ah. Sorry for the confusion peeps. I asked Kalle to report this without
+>>>> proper consideration. 100% my bad.
+>>>>
+>>>> While the bd718x7 drive indeed is mainline (and tested), the actual
+>>>> 'glue-code' doing the overlay is part of the downstream test
+>>>> infrastructure. So yes, this is not a bug in upstream kernel - this
+>>>> falls in the category of an upstream change causing downstream things to
+>>>> break. So, feel free to say: "Go fix your code" :)
+>>>>
+>>>> Now that this is sorted, if someone is still interested in helping us to
+>>>> get our upstream drivers tested - the downstream piece is just taking
+>>>> the compiled device-tree overlay at runtime (via bin-attribute file),
+>>>> and applying it using the of_overlay_fdt_apply(). The approach is
+>>>> working for our testing purposes when the device is added to I2C/SPI
+>>>> node which is already enabled. However, in case where we have the I2C
+>>>> disabled, and enable it in the same overlay where we add the new device
+>>>> - then the new device does not get probed.
+>>>>
+>>>> I would be really grateful if someone had a pointer for us.
+>>> Seems to be fw_devlink related. I suppose if you turn it off it works?
+>>> There's info about the dependencies in sysfs or maybe debugfs. I don't
+>>> remember the details, but that should help to tell you why things
+>>> aren't probing.
+> 
+> Rob reverted patches but I plan to continue my work on it.
+> On my side, I need the reverted patches but I fully understand that, on
+> your side, you need a working system.
+> 
+> In order to move forward and find a solution for my next iteration, can you
+> send your overlay (dtso) used in your working and non working cases?
+> 
+> Best regards,
+> Hervé
 
-Because you didn't replied to the first line of my answer:
-"Yes, I know this but I still wanted to try and begin a discussion on this,=
- as I
-really thought it is not a good idea to add and maintain an new non-standard
-panel driver solely for this tilcdc panel binding."
+Hello Hervé,
 
-But indeed you are right, I should have put more explanation on why there i=
-s DTS
-and binding change in the middle of the series. Sorry for that.
-=20
-> From that you claim I don't want to fix things...
->=20
-> DTS cannot go to drm, which means you either need to separate the change
-> and make entire work bisectable and backwards compatible for some time
-> OR at least document clearly the impact as we always ask.
+I have attached the overlay source file: bd71847_overlay.dts
 
-The thing is, if I split it, it has to be in 3. One for the of DRM bus flags
-support, a second for the the devicetree and binding change and a third for=
- the
-whole tilcdc and tda998x cleaning stuff. I think I will go for one series, =
-with
-better documentation.
+BR
+Kalle
 
-Now, what is your point of view on my question. Will you nak any binding
-removal even if the binding is ugly and legacy and imply maintaining an
-non-standard tilcdc panel driver? I know it breaks DTB compatibility but th=
-ere
-is several argument to not keep it. See patch 6.
+--------------RTMpC01dN2Tts0K0800P0dVv
+Content-Type: audio/vnd.dts; name="bd71847_overlay.dts"
+Content-Disposition: attachment; filename="bd71847_overlay.dts"
+Content-Transfer-Encoding: base64
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+L2R0cy12MS87Ci9wbHVnaW4vOwoKL3sgLyogdGhpcyBpcyBvdXIgZGV2aWNlIHRyZWUgb3Zl
+cmxheSByb290IG5vZGUgKi8KCgljb21wYXRpYmxlID0gInRpLGJlYWdsZWJvbmUiLCAidGks
+YmVhZ2xlYm9uZS1ibGFjayI7CglwYXJ0LW51bWJlciA9ICJCQkItSTJDMSI7IC8vIHlvdSBj
+YW4gY2hvb3NlIGFueSBuYW1lIGhlcmUgYnV0IGl0IHNob3VsZCBiZSBtZW1vcmFibGUKIAl2
+ZXJzaW9uID0gIjAwQTAiOwoKCWZyYWdtZW50QDAgewoJCXRhcmdldCA9IDwmYW0zM3h4X3Bp
+bm11eD47IC8vIHRoaXMgaXMgYSBsaW5rIHRvIGFuIGFscmVhZHkgZGVmaW5lZCBub2RlIGlu
+IHRoZSBkZXZpY2UgdHJlZSwgc28gdGhhdCBub2RlIGlzIG92ZXJsYXllZCB3aXRoIG91ciBt
+b2RpZmljYXRpb24KCgkJX19vdmVybGF5X18gewoJCQlpMmMxX3BpbnM6IHBpbm11eF9pMmMx
+X3BpbnMgewoJCQkJcGluY3RybC1zaW5nbGUscGlucyA9IDwKICAgICAgICAgIAkJCTB4MTU4
+IDB4NzIgLyogc3BpMF9kMS5pMmMxX3NkYSAqLyAKICAgICAgICAgIAkJCTB4MTVDIDB4NzIg
+Lyogc3BpMF9jczAuaTJjMV9zZGwgKi8KICAgICAgICAJCQk+OwoJCQl9OwoJCX07Cgl9OwoJ
+ZnJhZ21lbnRAMSB7CgkJdGFyZ2V0LXBhdGggPSAiLyI7CgkJX19vdmVybGF5X18gewoJCQkv
+KiBleHRlcm5hbCBvc2NpbGxhdG9yICovCgkJCW9zYzogb3NjaWxsYXRvciB7CgkJCQljb21w
+YXRpYmxlID0gImZpeGVkLWNsb2NrIjsKCQkJCSNjbG9jay1jZWxscyA9IDwxPjsKCQkJCWNs
+b2NrLWZyZXF1ZW5jeSAgPSA8MzI3Njg+OwoJCQkJY2xvY2stb3V0cHV0LW5hbWVzID0gIm9z
+YyI7CgkJCX07CgkJfTsKCX07CgoJZnJhZ21lbnRAMiB7CgkJdGFyZ2V0ID0gPCZpMmMxPjsK
+CgkJX19vdmVybGF5X18gewoJCQlwaW5jdHJsLTAgPSA8JmkyYzFfcGlucz47CgkJCWNsb2Nr
+LWZyZXF1ZW5jeSA9IDwxMDAwMDA+OwoJCQlzdGF0dXMgPSAib2theSI7CgoKCgkJCXBtaWM6
+IHBtaWNANGIgeyAvKiB0aGUgInRlc3QiIGRlZmluZWQgYXMgY2hpbGQgb2YgdGhlIGkyYzEg
+YnVzICovCgkJCQljb21wYXRpYmxlID0gInJvaG0sYmQ3MTg0NyI7CgkJCQlyZWcgPSA8MHg0
+Yj47CgkJCQkvKiBMZXQncyB0cnkgdXNpbmcgR1BJTzFfMjkgYXMgaXJxIHBpbiAqLwoJCQkJ
+aW50ZXJydXB0LXBhcmVudCA9IDwmZ3BpbzE+OwoJCQkJaW50ZXJydXB0cyA9IDwyOSA4PjsK
+CQkJCWNsb2NrcyA9IDwmb3NjIDA+OwoJCQkJI2Nsb2NrLWNlbGxzID0gPDA+OwoJCQkJY2xv
+Y2stb3V0cHV0LW5hbWVzID0gImJkNzE4NDctMzJrLW91dCI7CgkJCQkvKiAxNTAwIG1zIGNv
+bGQgcmVzZXQgKi8KCQkJCXJvaG0scmVzZXQtZGVsYXkgPSA8MTUwMD47CgoJCQkJcmVndWxh
+dG9ycyB7CgkJCQkJYnVjazE6IEJVQ0sxIHsKCQkJCQkJcmVndWxhdG9yLW5hbWUgPSAiYnVj
+azEiOwoJCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDw3MDAwMDA+OwoJCQkJCQly
+ZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxMzAwMDAwPjsKCQkJCQkJLy9yZWd1bGF0b3It
+Ym9vdC1vbjsKCQkJCQkJLy9yZWd1bGF0b3ItYWx3YXlzLW9uOwpyZWd1bGF0b3ItcmFtcC1k
+ZWxheSA9IDwxMDAwMD47CgkJCQkJCXJlZ3VsYXRvci1vdi1wcm90ZWN0aW9uLW1pY3Jvdm9s
+dCA9IDwxPjsKCQkJCQkJcmVndWxhdG9yLXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+
+OwoJCQkJCX07CgkJCQkJYnVjazI6IEJVQ0syIHsKCQkJCQkJcmVndWxhdG9yLW5hbWUgPSAi
+YnVjazIiOwoJCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDw3MDAwMDA+OwoJCQkJ
+CQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxMzAwMDAwPjsKCQkJCQkJcmVndWxhdG9y
+LWJvb3Qtb247CgkJCQkJCXJlZ3VsYXRvci1hbHdheXMtb247CnJlZ3VsYXRvci1yYW1wLWRl
+bGF5ID0gPDUwMDA+OwoJCQkJCQlyZWd1bGF0b3Itb3YtcHJvdGVjdGlvbi1taWNyb3ZvbHQg
+PSA8MT47CgkJCQkJCXJlZ3VsYXRvci11di1wcm90ZWN0aW9uLW1pY3Jvdm9sdCA9IDwxPjsK
+CQkJCQl9OwoJCQkJCWJ1Y2szOiBCVUNLMyB7CgkJCQkJCXJlZ3VsYXRvci1uYW1lID0gImJ1
+Y2szIjsKCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDw1NTAwMDA+OwoJCQkJCQly
+ZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxMzUwMDAwPjsKCQkJCQkJLy9yZWd1bGF0b3It
+Ym9vdC1vbjsKCQkJCQkJcm9obSxuby1yZWd1bGF0b3ItZW5hYmxlLWNvbnRyb2w7CgkJCQkJ
+CXJlZ3VsYXRvci1vdi1wcm90ZWN0aW9uLW1pY3Jvdm9sdCA9IDwxPjsKCQkJCQkJcmVndWxh
+dG9yLXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJCQkJCX07CgoJCQkJCUJVQ0s0
+OiBCVUNLNCB7CgkJCQkJCXJlZ3VsYXRvci1uYW1lID0gImJ1Y2s0IjsKCQkJCQkJcmVndWxh
+dG9yLW1pbi1taWNyb3ZvbHQgPSA8MjYwMDAwMD47CgkJCQkJCXJlZ3VsYXRvci1tYXgtbWlj
+cm92b2x0ID0gPDMzMDAwMDA+OwoJCQkJCQlyZWd1bGF0b3ItYm9vdC1vbjsKCQkJCQkJcmVn
+dWxhdG9yLW92LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJCQkJCQlyZWd1bGF0b3It
+dXYtcHJvdGVjdGlvbi1taWNyb3ZvbHQgPSA8MT47CgkJCQkJfTsKCgkJCQkJYnVjazU6IEJV
+Q0s1IHsKCQkJCQkJcmVndWxhdG9yLW5hbWUgPSAiYnVjazUiOwoJCQkJCQlyZWd1bGF0b3It
+bWluLW1pY3Jvdm9sdCA9IDwxNjA1MDAwPjsKCQkJCQkJcmVndWxhdG9yLW1heC1taWNyb3Zv
+bHQgPSA8MTk5NTAwMD47CgkJCQkJCXJlZ3VsYXRvci1ib290LW9uOwoJCQkJCQlyZWd1bGF0
+b3Itb3YtcHJvdGVjdGlvbi1taWNyb3ZvbHQgPSA8MT47CgkJCQkJCXJlZ3VsYXRvci11di1w
+cm90ZWN0aW9uLW1pY3Jvdm9sdCA9IDwxPjsKCQkJCQl9OwoJCQoJCQkJCWJ1Y2s2OiBCVUNL
+NiB7CgkJCQkJCXJlZ3VsYXRvci1uYW1lID0gImJ1Y2s2IjsKCQkJCQkJcmVndWxhdG9yLW1p
+bi1taWNyb3ZvbHQgPSA8ODAwMDAwPjsKCQkJCQkJcmVndWxhdG9yLW1heC1taWNyb3ZvbHQg
+PSA8MTQwMDAwMD47CgkJCQkJCXJlZ3VsYXRvci1vdi1wcm90ZWN0aW9uLW1pY3Jvdm9sdCA9
+IDwxPjsKCQkJCQkJcmVndWxhdG9yLXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJ
+CQkJCX07CgkJCQovKiBMRE8xIGFuZCBMRE8yIGFyZSBlbmFibGVkIGJ5IEhXIHdoZW4gUE1J
+QyB0dXJucyBmcm9tIFJFQURZIHRvIFNOVlMgc3RhdGUgKi8KCQkJCQlsZG8xOiBMRE8xIHsK
+CQkJCQkJcmVndWxhdG9yLW5hbWUgPSAibGRvMSI7CgkJCQkJCXJlZ3VsYXRvci1taW4tbWlj
+cm92b2x0ID0gPDE2MDAwMDA+OwoJCQkJCQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwz
+MzAwMDAwPjsKCQkJCQkJcmVndWxhdG9yLWJvb3Qtb247CgkJCQkJCS8vcmVndWxhdG9yLWFs
+d2F5cy1vbjsKCQkJCQkJcmVndWxhdG9yLXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+
+OwoJCQkJCX07CgoJCQkJCWxkbzI6IExETzIgewoJCQkJCQlyZWd1bGF0b3ItbmFtZSA9ICJs
+ZG8yIjsKCQkJCQkJcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8ODAwMDAwPjsKCQkJCQkJ
+cmVndWxhdG9yLW1heC1taWNyb3ZvbHQgPSA8OTAwMDAwPjsKCQkJCQkJcmVndWxhdG9yLWJv
+b3Qtb247CgkJCQkJCS8vcmVndWxhdG9yLWFsd2F5cy1vbjsKCQkJCQkJcmVndWxhdG9yLXV2
+LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJCQkJCX07CgoJCQkJCWxkbzM6IExETzMg
+ewoJCQkJCQlyZWd1bGF0b3ItbmFtZSA9ICJsZG8zIjsKCQkJCQkJcmVndWxhdG9yLW1pbi1t
+aWNyb3ZvbHQgPSA8MTgwMDAwMD47CgkJCQkJCXJlZ3VsYXRvci1tYXgtbWljcm92b2x0ID0g
+PDMzMDAwMDA+OwoJCQkJCQlyZWd1bGF0b3ItdXYtcHJvdGVjdGlvbi1taWNyb3ZvbHQgPSA8
+MT47CgkJCQkJfTsKCgkJCQkJbGRvNDogTERPNCB7CgkJCQkJCXJlZ3VsYXRvci1uYW1lID0g
+ImxkbzQiOwoJCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDw5MDAwMDA+OwoJCQkJ
+CQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxODAwMDAwPjsKCQkJCQkJcmVndWxhdG9y
+LXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJCQkJCQkvL3JlZ3VsYXRvci1ib290
+LW9uOwoJCQkJCX07CgoJCQkJCWxkbzU6IExETzUgewoJCQkJCQlyZWd1bGF0b3ItbmFtZSA9
+ICJsZG81IjsKCQkJCQkJcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8ODAwMDAwPjsKCQkJ
+CQkJcmVndWxhdG9yLW1heC1taWNyb3ZvbHQgPSA8MzMwMDAwMD47CgkJCQkJCXJvaG0sbm8t
+cmVndWxhdG9yLWVuYWJsZS1jb250cm9sOwoJCQkJCQlyZWd1bGF0b3ItdXYtcHJvdGVjdGlv
+bi1taWNyb3ZvbHQgPSA8MT47CgkJCQkJfTsKCgkJCQkJbGRvNjogTERPNiB7CgkJCQkJCXJl
+Z3VsYXRvci1uYW1lID0gImxkbzYiOwoJCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9
+IDw5MDAwMDA+OwoJCQkJCQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxODAwMDAwPjsK
+CQkJCQkJcmVndWxhdG9yLWJvb3Qtb247CgkJCQkJCS8qIFRoaXMgc2hvdWxkIGZhaWwgYXMg
+TERPcyBkbyBub3Qgc3VwcG9ydCBPVlAgKi8KCQkJCQkJcmVndWxhdG9yLW92LXByb3RlY3Rp
+b24tbWljcm92b2x0ID0gPDE+OwoJCQkJCQlyZWd1bGF0b3ItdXYtcHJvdGVjdGlvbi1taWNy
+b3ZvbHQgPSA8MT47CgkJCQkJfTsKCQkJCX07CgkJCX07CgkJfTsKCX07CgoJZnJhZ21lbnRA
+MyB7CgkJdGFyZ2V0LXBhdGggPSAiLyI7CgkJX19vdmVybGF5X18gewoJCQlpcnF0ZXN0OiBk
+dW1teSB7CgkJCQljb21wYXRpYmxlID0gInJvaG0sY2xrdGVzdC1iZDcxODQ3IjsKLyoKCQkJ
+CWNvbXBhdGlibGUgPSAicm9obSxmb28tYmQ3MTg0Ny1pcnEiOwoJCQkJaW50ZXJydXB0LXBh
+cmVudCA9IDwmcG1pYz47CgkJCQlpbnRlcnJ1cHRzID0gPDA+LCA8MT4sIDwyPiwgPDM+LCA8
+ND4sIDw1PiwgPDY+OwoJCQkJaW50ZXJydXB0LW5hbWVzID0gImlycS1idG4iLCAiaXJxLWJ0
+bi1zIiwgImlycS1idG4tbCIsICJpcnEtc3dyc3QiLCAiaXJxLXdkb2ciLCAiaXJxLW9uIiwg
+ImlycS1zdGIiOwoqLwoJCQkJY2xvY2tzID0gPCZwbWljPjsKCQkJCWNsb2NrLW5hbWVzID0g
+ImZvby1pbiI7CgkJCX07CgkJfTsKCX07Cn07IC8qIHJvb3Qgbm9kZSBlbmQgKi8K
+
+--------------RTMpC01dN2Tts0K0800P0dVv--
 
