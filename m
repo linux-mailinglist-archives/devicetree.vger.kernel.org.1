@@ -1,159 +1,131 @@
-Return-Path: <devicetree+bounces-243720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 867A3C9BA2A
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 14:41:01 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA330C9BA36
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 14:42:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 445683A2228
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 13:41:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8F3673418F0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 13:42:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19DC314B94;
-	Tue,  2 Dec 2025 13:40:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71BA0314B94;
+	Tue,  2 Dec 2025 13:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="ZwqqWzxy";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="5xSxb8nk"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Zbh2TrvK";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="tbGibNpJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8CC92BE020;
-	Tue,  2 Dec 2025 13:40:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C392BE020
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 13:42:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764682857; cv=none; b=j6NQgt+Et82Av6/rFPg/m5dttf4Kyp+tjANVv/FZeEtpAc/Suq5jnBHz9FUrn2j2IBI3LFPSqOlzIFYztYbS6DeeAUPWm05EziYXJACc52hYiiu0yMpr45/fb3REGZuNuf5+DCz0OupjcVUQ2EpQrFAfC/dlLEgJN8ca2xaOQAs=
+	t=1764682930; cv=none; b=ezq6i3ccdVK58dpK0tNVAiPPcavqAX5KJEZ0JEIE5qV9vrRzPucmKdevIFAWG1GzdhlvhKXaopgP9NOdYtBTstKG4K9d8P1blpupUdvSRomxxLHi5iWD9caL8CC0Nsc90N8c0bIKSQnfMi/Ib2CN+Zo/Q9kdl6ABVzVvHEoz++M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764682857; c=relaxed/simple;
-	bh=hmfl8Sjsg+hFjutE8F2JTdr5DTHIUHxBLQn9sci01Kw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=uF2Hw0lh9cXpzMASlsm8IfYH2gN1Jdh1Yy56JVQE8vq0J8WhmnGvR3YtvXhxy0rjYxAshGmydLVQpwMxPeyZXKLktwC2EZgM6uGN7VQwL3sbNE6ztYDCcELsvXzSd3Cp9lNrvydD0KifIatGdBYzWZSLHRq/c738oXWdD1wmy5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=ZwqqWzxy; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=5xSxb8nk; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1764682846; bh=F13BqT16VWqKico9Z7yQuR4
-	8uJ9Wd8/l/hScm3Hrpq0=; b=ZwqqWzxyjrZfbpA+TOTt/A+lrbNNxuLu2b5eoYBePkTs/fpiux
-	oHJqYjjRhsFpuix13XwnIxv/BdFuDLfuQGkRTf/pYJmSKbpGJkJiBTaeMVvsIiiLRupE8whZ/rk
-	qooroWwTm9ZOVvdlw+40jtdZAWXcdGc+jiMcrpfnYiREY2usMEK8IKO649AMCw3ABynSmypJ0U0
-	HqsmiPHFac1B6kkXr+LNnC+TV6tmf4zf3G1iap+0OK29tdYLvWvHihEe6+3NSCxnTWSGgt3Src0
-	RoaYTUkF/qBDzCcBcCSvLjxMCeNqZIHQGtFIbJMsUn4WbUuZLBt0PcMmU3SBDllH9Dw==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1764682846; bh=F13BqT16VWqKico9Z7yQuR4
-	8uJ9Wd8/l/hScm3Hrpq0=; b=5xSxb8nkitVHzOHzNuYp1tr6TOiJPp78okHVPKEEBrzKZFNU4h
-	rKEnMA3ekNoozbiPOgbd4uTOnScTqqJtWpAQ==;
+	s=arc-20240116; t=1764682930; c=relaxed/simple;
+	bh=ka10s/m51A5sD5hXxZSkBvpUzXc7aNT8t9aCjRwuzIA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BUe4uJYuMSYG+Md9s5g8ykwtpDnIzpHxTtUB/ceYGrgvvXrrLNfR3Z2ME9VscGQx3vuG9yX3HbbDXIkjbKh2Ij0Lj05CuQp/cN0uH8rk2SMfsINU3d1rDcM9cgHR7huCSe1JWK81Bm9lraeUJq6pPYEnxxJYau6K2TVQGHztGRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Zbh2TrvK; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=tbGibNpJ; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dLMQ64hWpz9tBD;
+	Tue,  2 Dec 2025 14:42:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764682926;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=I0SIJKX9tZQSfmZscwDLxEmvBbRFMw4s1nyXcFylYtY=;
+	b=Zbh2TrvKZ0UDXVv986Hs/XYg0Vo7XiszfkiBSyLU6Kmo2upVqHHc0e3WQcc+pJ1JaFJjdY
+	yIUvjwaDite8wifZfdPvFSLUEfmNQhajWt+SD/qz9u9L7EQkShNS/PvBCQm30la+4zceaF
+	f3nhyr/xe3ECYNyiG/2MkNy+TKz9djW3/uXddQomREVK8dR86LZHk5NDKDa2QDamJeQBXH
+	wpSJ65XKKkPaTbftV+xHm8PcxLYToJWOA4VeQWzzRupZEfTswW01gDqftnGohgTumFVVCT
+	TSevwZF0qJhVP4YAauLLOpAgqUVXT/8Z/O6pR/ipKqkRC7v+CdO+bzR4wjOn4w==
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764682924;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=I0SIJKX9tZQSfmZscwDLxEmvBbRFMw4s1nyXcFylYtY=;
+	b=tbGibNpJxAY4qNsUW32sYPHZrLzYTky+M5WIPTmYLRqN1uTSonMf522c/6GC8Ej6wmcqzO
+	coebMplSN4Z4r1qOOz0d/9gzQhtRZ/LeyCs56Fl3aesQ4yghDsgota8EI421icAN2ENU3r
+	S4PlcCczqtxRJL+nRQ/r31WmVhY0c/YGbQ2LoD0dRSESseYPc5DmTa6hqrLcY9UQXDZPNL
+	mcV8WaOY+rVn2uo7QDEZsBHtH7cBXIxbTUgoxReELqg7viR/AAyUTXBz5B+4mrfA8OVeiV
+	zfR8aclx0D097W+oA3RXzN3IdfOd2M4SHoIe0a3lYTDiuozmtApt56mHJGleZg==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@dh-electronics.com
+Subject: [PATCH] arm64: dts: imx8mp: Fix LAN8740Ai PHY reference clock on DH electronics i.MX8M Plus DHCOM
+Date: Tue,  2 Dec 2025 14:41:51 +0100
+Message-ID: <20251202134200.8397-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 02 Dec 2025 14:40:46 +0100
-From: barnabas.czeman@mainlining.org
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Taniya Das <taniya.das@oss.qualcomm.com>, Bjorn Andersson
- <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Adam Skladowski
- <a_skl39@protonmail.com>, Sireesh Kodali <sireeshkodali@protonmail.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lanik
- <daniilt971@gmail.com>
-Subject: Re: [PATCH 2/4] clk: qcom: gcc: Add support for Global Clock
- controller found on MSM8940
-In-Reply-To: <13b44a8c-357d-4f98-8762-640179fe3ff3@oss.qualcomm.com>
-References: <20251116-gcc-msm8940-sdm439-v1-0-7c0dc89c922c@mainlining.org>
- <20251116-gcc-msm8940-sdm439-v1-2-7c0dc89c922c@mainlining.org>
- <793d5039-0506-4104-b4ce-64bfa3cc00eb@oss.qualcomm.com>
- <5C7A10CF-910E-448A-8BFD-F2A46782D3B9@mainlining.org>
- <8faa0c8e-6f21-4025-bbdf-d4ec18eb7628@oss.qualcomm.com>
- <869028d628bad9e1c37c3d9ea8346ba0@mainlining.org>
- <2220aea0-6139-4534-8c42-1331a642ab62@oss.qualcomm.com>
- <f0be91fdde1b542b2c18702b0c91f26f@mainlining.org>
- <13b44a8c-357d-4f98-8762-640179fe3ff3@oss.qualcomm.com>
-Message-ID: <14c40512a19b20199acd902bbe5f4598@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 19aa33e691b1c0446b7
+X-MBO-RS-META: dkcxn7cuarhsocuktk5766e9tug3h93f
 
-On 2025-12-01 13:26, Konrad Dybcio wrote:
-> On 11/30/25 3:50 PM, barnabas.czeman@mainlining.org wrote:
->> On 2025-11-17 15:17, Konrad Dybcio wrote:
->>> On 11/17/25 3:02 PM, barnabas.czeman@mainlining.org wrote:
->>>> On 2025-11-17 13:17, Konrad Dybcio wrote:
->>>>> On 11/17/25 9:51 AM, Barnabás Czémán wrote:
->>>>>> 
->>>>>> 
->>>>>> On 17 November 2025 09:03:53 CET, Taniya Das 
->>>>>> <taniya.das@oss.qualcomm.com> wrote:
->>>>>>> 
->>>>>>> 
->>>>>>> On 11/17/2025 3:05 AM, Barnabás Czémán wrote:
->>>>>>>> 
->>>>>>>> +static struct clk_branch gcc_ipa_tbu_clk = {
->>>>>>>> +    .halt_reg = 0x120a0,
->>>>>>>> +    .halt_check = BRANCH_VOTED,
->>>>>>>> +    .clkr = {
->>>>>>>> +        .enable_reg = 0x4500c,
->>>>>>>> +        .enable_mask = BIT(16),
->>>>>>>> +        .hw.init = &(struct clk_init_data){
->>>>>>>> +            .name = "gcc_ipa_tbu_clk",
->>>>>>>> +            .ops = &clk_branch2_ops,
->>>>>>>> +        },
->>>>>>>> +    },
->>>>>>>> +};
->>>>>>>> +
->>>>>>> 
->>>>>>> Is the TBU clock used on 8940 by a SMMU driver?
->>>>>> As far as I know no MSM8940 is using same smmu driver and bindings 
->>>>>> like MSM8937.
->>>>> 
->>>>> On msm8939, the clock needed to be turned on for the GPU SMMU
->>>> I have not got any qcom-iommu issues on 8940 but i think it could 
->>>> come when i try to add ipa2 driver
->>>> for the SoC until i do not know where to check it.
->>> 
->>> I can't find a definitive answer, but it's most certainly going to be
->>> necessary to turn it on
->>> 
->>> Konrad
->> 
->> I have enabled ipa2-lite for 8940 at downstream and it can cause gpu 
->> to crash.
-> 
-> Really!?
-> 
-> FWIW the clock on 8939 is called GCC_*GFX*_TBU_CLK so it being related
-> made more sense. Here, I see no connection :/
-> 
-> Konrad
+Add missing 'clocks' property to LAN8740Ai PHY node, to allow the PHY driver
+to manage LAN8740Ai CLKIN reference clock supply. This fixes sporadic link
+bouncing caused by interruptions on the PHY reference clock, by letting the
+PHY driver manage the reference clock and assure there are no interruptions.
 
-I have find out the issue was caused by the interconnect, removing 
-sync_state callback
-makes the ipa driver working, the ipa tbu clock do not needed to be 
-enabled by smmu.
-> 
->> I have tried to add TBU clock for apps_iommu but it not fixing the 
->> issue.
->> 
->> Here are the iommu changes based on 8937 apps_iommu node:
->> +&apps_iommu {
->> +       clocks = <&gcc GCC_SMMU_CFG_CLK>,
->> +                <&gcc GCC_APSS_TCU_CLK>,
->> +                <&gcc MSM8940_GCC_IPA_TBU_CLK>;
->> +       clock-names = "iface",
->> +                     "bus",
->> +                     "tbu";
->> +
->> +       /* IPA */
->> +       iommu-ctx@18000 {
->> +               compatible = "qcom,msm-iommu-v1-ns";
->> +               reg = <0x18000 0x1000>;
->> +               interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
->> +       };
->> +};
->> +
->> 
+This follows the matching PHY driver recommendation described in commit
+bedd8d78aba3 ("net: phy: smsc: LAN8710/20: add phy refclk in support")
+
+Fixes: 8d6712695bc8 ("arm64: dts: imx8mp: Add support for DH electronics i.MX8M Plus DHCOM and PDK2")
+Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+---
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+index 68c2e0156a5c8..f8303b7e2bd22 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+@@ -113,6 +113,7 @@ mdio {
+ 		ethphy0f: ethernet-phy@1 { /* SMSC LAN8740Ai */
+ 			compatible = "ethernet-phy-id0007.c110",
+ 				     "ethernet-phy-ieee802.3-c22";
++			clocks = <&clk IMX8MP_CLK_ENET_QOS>;
+ 			interrupt-parent = <&gpio3>;
+ 			interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+ 			pinctrl-0 = <&pinctrl_ethphy0>;
+-- 
+2.51.0
+
 
