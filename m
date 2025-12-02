@@ -1,239 +1,213 @@
-Return-Path: <devicetree+bounces-243616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED9DC9AB3B
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 09:35:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B612FC9AB5F
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 09:37:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 153134E06AD
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 08:35:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DC163A340D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 08:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7787623D2B4;
-	Tue,  2 Dec 2025 08:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07F0305E2B;
+	Tue,  2 Dec 2025 08:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="V4q6+Zvz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mFqX+HK1";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RNLc6ATG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B703FF1
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 08:35:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CCF330217C
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 08:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764664540; cv=none; b=VobSuOMMY5ydAKxCJ0QePemVZ6Eh/PjQW06QQoBtghMtvalUzPairvuKmw0je5uhimYc0WLo2V+Je9m3wR9mC5NdMi/ySpi6Wdrn3YPd9ko0BXXR4d+19Ja+argCGDtYzkc1K2ZseWvxZ1ACfsxznXgL9kG0Ltq4rc4NsXx4hUg=
+	t=1764664621; cv=none; b=TcfwIjhC5Q3S/PmwP3Q/TMTHN7FwJtK68uu3PpS1zz/MfUV85jcvKeT6Vhq8Umuv19QPvITXcikou77qYi/Z0VNccXXbDrSCqYAa2LiemH+U89A+IzD6uz/kORJcxbqEwNwMxPXmivnt42ow2Zvv6Iv83u6kpto6KCW0KjGzyKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764664540; c=relaxed/simple;
-	bh=4vaQ9WNJT1i5QQHGxZbypcSK2+H2d1p6oOPk1sZfpiY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E4+YvOaVY49Yk0vSpWM/lfNLX/nQZH8CgnCcn28+L4l41rTcrYCcYP6f7yEO9dwpzPlS7huZPtDI6PTg/GQqNt7AucByVvg7UGArp+yr7ZJHiFLWSSY0xH7LVUBVm616OexLGBizj8pXSr0mKg3UJW1eestzKWGVnvDd3/iQU4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=V4q6+Zvz; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b9a5b5b47bfso4425050a12.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 00:35:38 -0800 (PST)
+	s=arc-20240116; t=1764664621; c=relaxed/simple;
+	bh=2f+oyT22R6+ufw0lsSoxkkFhzOSzFUApxscYiZJh5yM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oC/O6G26SqSJE37qKLDjDQb3NZ7JzQWjEMTi8wgPjDnlNFxRhHVm7//SDVB7HEEf4jqbx0TYHyvOZeehIjJ9kZm9qH4kEm63sGqp4yQAqqZkL2rJtXMOaH1rZ8R/4nvi0hiuFonJxsw10IKlDx2BmBZQy4Dn+ZRL+RZc8BX2JVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mFqX+HK1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RNLc6ATG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B28EbCO1491767
+	for <devicetree@vger.kernel.org>; Tue, 2 Dec 2025 08:36:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cea5xRd2LAR6OP560Xpt2pLurPYWnXx5KGRmwEu0v84=; b=mFqX+HK1LRESWUFL
+	dEfgw2n39YSmuvs9JElkewYEoc2EQ9t2BkXAusfKpZfnSbgIqoOBT/eZddLkSlMA
+	TtK99/RmM4rZtenoMGtf1K8xamudSKOzafXR1HcoZ1zZs3MLWHuP0h34TZrzp7FL
+	AzXAw9GWIsQmsUx0r9JyGnNh1UO4izMiKHj73zmkdKgRPLUIj8PJ/rHrEglLH4gz
+	Mt0ywnkeDhr7v01zbByrxXY8BBcK3YTR146XxVs2xdx5EEgedcHdP0ACoTNGtZ/T
+	zy4l/8/BbSjgGEfrbmuiZOEfnX1SLEzkQt6AnIaZtyY2Ctx7gXdZmttEo/SBjyqo
+	yD1R3Q==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4askbd1mwa-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 08:36:59 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7c7957d978aso4958480b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 00:36:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1764664538; x=1765269338; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JjuUELaIuU1gd/2FdtvzglPjtUaEtmlP48ZimdLyUps=;
-        b=V4q6+ZvzZylpy3qbS0GLNnsuewVGJVHl6YF/J57Mx6sOymKyuVg/smV9YKHoHwSK2x
-         T4AoSXAVIpHtwikun+KDsOm8inlWy4sgAZoUBcNhl2EytlAv9+rT7PmlgSh/lBNgsV2/
-         qNKupcazMjhC+dnWgTh8HiAaBy7J9Nwh9Gn5vWLolZcSXwqHPnVoTOiteOoHnY1wwega
-         H3IQlHPtQNP9MLiRffvFe7ONQAIsgAXOVPY2D4WNqjNDzh97r1979GtcRxk/rqUhOBUR
-         PyGtxvxPpnLqicVQiUIs05l65U1Bw1ASv8EuqWCRr9DdEENJuQgo45SfnsUJLG7IrfWF
-         fQeg==
+        d=oss.qualcomm.com; s=google; t=1764664618; x=1765269418; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cea5xRd2LAR6OP560Xpt2pLurPYWnXx5KGRmwEu0v84=;
+        b=RNLc6ATGmjgLwrjqawWWK+LatoPTiZSGEJy3BcFFjEJsq94M4yjUwI0jMNHJIx/H9h
+         celBTltrzR2rc40mguqkZ650UyqVgtP5y10y9AmSsE4rmhAs4qtYKAjWHmGRaJjm4ncO
+         4ga0fmMfhGHSbX+8krKMI+SRzunDoZ7hXP7df+SJz0cJbEXTeaQ8zJDx87a1HZNQpZwZ
+         lQXSbj/GLgun9bBWTHGUYnZXjkcXzjL4qYkT0P08Wc+rBmoTSCvOzYSUEBsfWOz0wZpf
+         9eIym+brWZtsyewxsNkq41JOKaMbWr0gK3/w4679TAP/QPX2A6Ul70NFom0ecap/GsCo
+         lyfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764664538; x=1765269338;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=JjuUELaIuU1gd/2FdtvzglPjtUaEtmlP48ZimdLyUps=;
-        b=gpJkQERbmJc4CmhgoOM/bWkFMaTXCyLJuEaU+r5iz6kpH7MNpYRoNlF/cgbXVXWqDK
-         QPflZ1FHOKvjpTxOfUtt5jCttNFkXqWL59t96q2nTwcy2Y3zofy217nHqdJCqr1aErIU
-         V8mO/AqBhojyzkGus6LaCuJMOZxnA7yKfndEEs2lTwx5BSAkhSSaY8qG/8bGJkK96BMX
-         Qwq2HwGcH5soH/1PlKH7KQrVl9l67F6yu5U3b5LHGQVyvovDjlmahQyku7znDFcg9h8q
-         zUHn1pbY0lgVdoCZ3BMc4uBLt8cYqI+T30u8pr53xfsv42riFmjrTcOsCvGYTeP9nE2A
-         LyzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXyeS1dJq4bqeSEPajCIgd9eT+gv2MKx2b2tAkMQ93f/aXt6CHEKPqyzcTFUAVidF/J9qm7lAtToa9o@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYbWGhu7Xp9ulGP3UOgEGrLnwQRuYzCXrkPQvtZ/z+96wlAGkf
-	V2R2N/8jQ0Fd930sC9v94Cc5etxRXyMET+3hRRLDUsV6Dtg9N7tirfVeyIa3NMvAAffE3Qg1CP8
-	ilwcLtgN8PLmO8F8oK0fHc41PZqQ7AQOAQ1eqf2MO
-X-Gm-Gg: ASbGnct+YWPuNi+bI4p5V3URTuJvjmYJ05A9bM8/H6EtQHbvpUuTPjhgLkTWhCNWQqj
-	IdmgIxU1kIem56Dq0EnoNQIkfJ54zOHUYWsIGYbwyvnxxCepMsFhfY5Y/Uh7jMdyeEEDgl4zeU5
-	GSuNe+1NZ44NIXwqjVb/EqHqxL5F9XvMb0yyPp7tZbwAtykqJ9KUygLdCThsAWCRgqF3M0jVw/Z
-	bA4NoBaFWZkEriC9Fm0LRELVWNdt7YQcyNKoV6BKW8RtAFcQxAd8naO0QE63NDi3cuua+YMF9g7
-	75MJ1w==
-X-Google-Smtp-Source: AGHT+IE4K+rC1T0nxBLda3rMJ7Xh3tPJApYjBfQYjhEN+PQBck3O++fb17f2VhiEsxBvds6BzbdMR2BO+hO3HQSpzKc=
-X-Received: by 2002:a05:7301:4616:b0:2a4:50ca:9234 with SMTP id
- 5a478bee46e88-2a719d7d25cmr21780225eec.26.1764664537612; Tue, 02 Dec 2025
- 00:35:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1764664618; x=1765269418;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cea5xRd2LAR6OP560Xpt2pLurPYWnXx5KGRmwEu0v84=;
+        b=Y1JxgKletzLk7g/icRbc/mlsQE+m9h4UW5ncs7ttkyXA82RaARIAsQXKE85JCR5RW7
+         vdYT8l9jD78ti8k5g86JBUKBMZG6SuZZuuPQ99mR68pRCXNOlLlycOVg7G9aJjdsqlbN
+         6popdXJWeAkD37XDUqGJLsWpkGEw1AEqRBk+jchX+MJSoST1HZkyhKJnqgojZoIL8l4c
+         adxbT400UrDh1eEh3x2Z0B3z4fuc5nu5Rrm9EcB4uq7OWUz1m+vMyrlmt16e0MBqTqgj
+         +ILWYqylzFDWNKyBNRAGkzEdVJ7rvLmWuK1yrePEO3Gv+aMJlDirunjLnHieCn/W6MGq
+         APdA==
+X-Forwarded-Encrypted: i=1; AJvYcCXoknb3UGGuDsW5FCR/D5vELRfBV7fjrpRdvrklRbJ03DrgqArHCIhcmcXE/kvHlJAfSMEgwZ2GVlmC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUFbWaeWOJr7zyaRJGck4m6tA2WZOKv+R4J6XpmuLs3pH8wb5u
+	rvalKUEpbccD3QOnQdKpm14C376aPZjO2is6rF/IFzmnvN/3i2b9J6Gu3iW7pMMaP4PPRPFLwSP
+	uAVlcyGaHS7HqdAi5w2AuHTgJmYM/RXZOd3G6BjR2VLhHvCTCEOYicK4c6zRJo71s
+X-Gm-Gg: ASbGncsi6jdq9ByM5wPsiDJR/v22qMSq3NALn3hOE6cARsB4T9BIEb59gX9niLCjlhT
+	d/8yblEtLO9M/kgBJ95F40c2y1roiDI0+rMWj1Wpq6u6M3PAYEpvORcCS1vcJo2MWFh5DLnF8UB
+	RIRO7ZtBPZOILNSqLYxKhuow4tIif4eQmbXXY6y1cohqYPfg9Q7coA45fP1dAGyVCUX/2WQlS2m
+	NcGZJvTHGFwzbq5tDsMPcCiDVcKP82Lhu19UFgzXajto4F2LXceWlVarFEJ6YbdfbMs60DxUN7a
+	xWx1Rzss1z5i2V9KXmyDtFyUPYAVfyr0vMkLNh19lcicbHwxwr8g+cXHub8HDjIARC9Fn3UqScb
+	q6hrVPhA7olGlSotNPhKAmlarZYhhaZI+wDlD
+X-Received: by 2002:a05:6a21:3395:b0:34e:e0ba:7bf with SMTP id adf61e73a8af0-36150e1fc24mr48387154637.1.1764664618282;
+        Tue, 02 Dec 2025 00:36:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFFfcyGB74lclpQ93vXWzJfbznVZKLqfP1ZJZEp1qLtVB0QSTSWqyEngdybDcfSBj3gxxXBGQ==
+X-Received: by 2002:a05:6a21:3395:b0:34e:e0ba:7bf with SMTP id adf61e73a8af0-36150e1fc24mr48387111637.1.1764664617636;
+        Tue, 02 Dec 2025 00:36:57 -0800 (PST)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d150b684d7sm16158039b3a.7.2025.12.02.00.36.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Dec 2025 00:36:57 -0800 (PST)
+Date: Tue, 2 Dec 2025 14:06:50 +0530
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+To: Bryan O'Donoghue <bod@kernel.org>, vikash.garodia@oss.qualcomm.com
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
+ SoCs running Linux host at EL2
+Message-ID: <20251202083650.luk2jpcquq2pcf2r@hu-mojha-hyd.qualcomm.com>
+References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
+ <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
+ <Ux4KioDAyhqgZYleT-eeeFKzuT_qadCIpP3RgyB40apZPX4I9_JwcfY9mebop4gmFcyh4LPw0KQvFzL4zzysJQ==@protonmail.internalid>
+ <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
+ <9dfe5343-824d-42c2-aab8-8389602601e9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251122-controller-v8-0-e7562e0df658@google.com>
- <20251122-controller-v8-2-e7562e0df658@google.com> <CADrjBPqPsPBBSbhx8ZFreFWX2tRxaATT=azS-b1H2b=TJoVAAw@mail.gmail.com>
-In-Reply-To: <CADrjBPqPsPBBSbhx8ZFreFWX2tRxaATT=azS-b1H2b=TJoVAAw@mail.gmail.com>
-From: Roy Luo <royluo@google.com>
-Date: Tue, 2 Dec 2025 02:35:00 -0600
-X-Gm-Features: AWmQ_bl1YCwZSA7pQNoH9cFjlkJSn831NjN8Dq9QhCXB5pUpJEJxffvLo_epzic
-Message-ID: <CA+zupgyopHGCCb-HcNvyi4m5-UDerYZFmT7S0cNYLYONz-wzwg@mail.gmail.com>
-Subject: Re: [PATCH v8 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Badhri Jagan Sridharan <badhri@google.com>, 
-	Doug Anderson <dianders@google.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, Joy Chakraborty <joychakr@google.com>, 
-	Naveen Kumar <mnkumar@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9dfe5343-824d-42c2-aab8-8389602601e9@kernel.org>
+X-Proofpoint-ORIG-GUID: jK3I3-OQqRPXuO1uanrOguKRcAQyGi0N
+X-Proofpoint-GUID: jK3I3-OQqRPXuO1uanrOguKRcAQyGi0N
+X-Authority-Analysis: v=2.4 cv=fLg0HJae c=1 sm=1 tr=0 ts=692ea52b cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=uEwPF_Y-ILqiIyH3WEEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAyMDA2OCBTYWx0ZWRfX+mgUC8dvUBZG
+ FmSSxZDCIyZfgE0QOUctSRYUPmSHtWCCnOhWeYJ5hk+P1f8FzqKwPl3pHn5iIipbNCdR3IVQGn9
+ 6DbZZo+4FHLPkjxL7J3/KdCioKQDXb44VngRHEy3/BD10ph3NsWK9Q4s98OCOy25CUBFGsoUZ5C
+ ENdny+mrSM6Q6ZyxTnA63s/QJk1O+2rzavZb88ceiaimM50FoKmuyln6cHO0xJkey5WdFCbDFTm
+ VGIqm/OnilvMFnPaLGVIRbIeD5N2saa0whbxFcYZ47MwsHQUK/CznLndaI1uQLI1EIbjZur2lMU
+ 8I5imAgvnIh0IgpZKrDdqVTjNcCkT8BqSJzjcMYN2vR9uyCT2Q8BPF6ZHr07Qt9sAFkoesIQQf7
+ qbAFPZBusvBYxWm01isUWzTQsIskWA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-01_01,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 clxscore=1015 phishscore=0 adultscore=0 malwarescore=0
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512020068
 
-On Sat, Nov 22, 2025 at 7:58=E2=80=AFPM Peter Griffin <peter.griffin@linaro=
-.org> wrote:
->
-> Hi Roy,
->
-> Thanks for your patch. It's great to see Laguna support being added upstr=
-eam.
->
-> On Sat, 22 Nov 2025 at 09:32, Roy Luo <royluo@google.com> wrote:
-> >
-> > Add support for the DWC3 USB controller found on Google Tensor G5
-> > (codename: laguna). The controller features dual-role functionality
-> > and hibernation.
-> >
-> > The primary focus is implementing hibernation support in host mode,
-> > enabling the controller to enter a low-power state (D3). This is
-> > particularly relevant during system power state transition and
-> > runtime power management for power efficiency.
-> > Highlights:
-> > - Align suspend callback with dwc3_suspend_common() for deciding
-> >   between a full teardown and hibernation in host mode.
-> > - Integration with `psw` (power switchable) and `top` power domains,
-> >   managing their states and device links to support hibernation.
-> > - A notifier callback dwc3_google_usb_psw_pd_notifier() for
-> >   `psw` power domain events to manage controller state
-> >   transitions to/from D3.
-> > - Coordination of the `non_sticky` reset during power state
-> >   transitions, asserting it on D3 entry and deasserting on D0 entry
-> >   in hibernation scenario.
-> > - Handling of high-speed and super-speed PME interrupts
-> >   that are generated by remote wakeup during hibernation.
-> >
-> > Co-developed-by: Joy Chakraborty <joychakr@google.com>
-> > Signed-off-by: Joy Chakraborty <joychakr@google.com>
-> > Co-developed-by: Naveen Kumar <mnkumar@google.com>
-> > Signed-off-by: Naveen Kumar <mnkumar@google.com>
-> > Signed-off-by: Roy Luo <royluo@google.com>
-> > ---
-> >  drivers/usb/dwc3/Kconfig       |  13 +
-> >  drivers/usb/dwc3/Makefile      |   1 +
-> >  drivers/usb/dwc3/dwc3-google.c | 628 +++++++++++++++++++++++++++++++++=
-++++++++
-> >  3 files changed, 642 insertions(+)
-> >
-> > diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-> > index 4925d15084f816d3ff92059b476ebcc799b56b51..f58c70dabf108878cbefe0a=
-bea88572d9ae81e26 100644
-> > --- a/drivers/usb/dwc3/Kconfig
-> > +++ b/drivers/usb/dwc3/Kconfig
-> > @@ -200,4 +200,17 @@ config USB_DWC3_GENERIC_PLAT
-> >           the dwc3 child node in the device tree.
-> >           Say 'Y' or 'M' here if your platform integrates DWC3 in a sim=
-ilar way.
-> >
-> > +config USB_DWC3_GOOGLE
-> > +       tristate "Google Platform"
-> > +       depends on COMPILE_TEST
-> > +       depends on OF && COMMON_CLK && RESET_CONTROLLER
-> > +       help
-> > +         Support the DesignWare Core USB3 IP found on Google Tensor
-> > +         SoCs, starting with the G5 generation. This driver includes
->
-> consider adding: (Laguna)
+On Thu, Nov 27, 2025 at 10:25:23AM +0000, Bryan O'Donoghue wrote:
+> On 21/11/2025 11:37, Mukesh Ojha wrote:
+> > > Sorry.
+> > > 
+> > > Did we actually come up with a cogent reason to omit the video firmware
+> > > loading here ?
+> > > 
+> > > AFAIU it is required for Lemans and Glymur - leaving it out is blocking
+> > > getting video stuff done and storing up trouble.
+> > > 
+> > > What exactly is the blockage - is it something you want help with ?
+> > I replied to you here[1] and given my reason..till something concluded on
+> > "multi-cell IOMMU[2]", I can not add video and block what is working
+> > already.
+> > 
+> > [1]
+> > https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-
+> > hyd.qualcomm.com/
+> 
+> Why though ?
+> 
+> You are mixing together the issue of multiple SIDs and the original loading
+> of firmware which could easily reuse the venus method of
+> 
+> &iris {
+> 	video-firmware {
+> 		iommus = <&apss_smmu hex>;
+> 	};
+> };
 
-Ack, will add it in the next revision.
+I completely understand what you are saying, and it would be very easy
+for me to do that if it gets accepted. However, I doubt that the people
+who raised this concern would agree with the approach.
 
->
-> > +         support for hibernation in host mode.
-> > +         Say 'Y' or 'M' if you have one such device.
-> > +
-> > +         To compile this driver as a module, choose M here: the
-> > +         module will be called dwc3-google.ko.
-> > +
-> >  endif
-> > diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-> > index 96469e48ff9d189cc8d0b65e65424eae2158bcfe..cf1cd408d938b3ac26d58b9=
-be7fcc5af3ee82660 100644
-> > --- a/drivers/usb/dwc3/Makefile
-> > +++ b/drivers/usb/dwc3/Makefile
-> > @@ -58,3 +58,4 @@ obj-$(CONFIG_USB_DWC3_XILINX)         +=3D dwc3-xilin=
-x.o
-> >  obj-$(CONFIG_USB_DWC3_OCTEON)          +=3D dwc3-octeon.o
-> >  obj-$(CONFIG_USB_DWC3_RTK)             +=3D dwc3-rtk.o
-> >  obj-$(CONFIG_USB_DWC3_GENERIC_PLAT)    +=3D dwc3-generic-plat.o
-> > +obj-$(CONFIG_USB_DWC3_GOOGLE)          +=3D dwc3-google.o
-> > diff --git a/drivers/usb/dwc3/dwc3-google.c b/drivers/usb/dwc3/dwc3-goo=
-gle.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..53e04a5409d8a11eb025b0f=
-5cd351cb1b33281ab
-> > --- /dev/null
-> > +++ b/drivers/usb/dwc3/dwc3-google.c
-> > @@ -0,0 +1,628 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * dwc3-google.c - Google DWC3 Specific Glue Layer
-> > + *
-> > + * Copyright (c) 2025, Google LLC
-> > + * Author: Roy Luo <royluo@google.com>
-> > + */
-> > +
-> > +#include <linux/of.h>
-> > +#include <linux/bitfield.h>
-> > +#include <linux/irq.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/module.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/reset.h>
-> > +#include <linux/pm_domain.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/mfd/syscon.h>
->
-> Please sort the headers alphabetically. It helps avoid duplicates and
-> is easier when adding new headers.
+I’m not sure if the video team would like to pursue pixel/non-pixel/firmware context
+banks separately. I’ll leave this to @Vikas to answer.
 
-As Greg pointed out, no such requirement exists for usb drivers, but
-if it makes things look nicer, why not?
-Will sort the headers alphabetically in the next revision.
+Also, I do not want the video PIL discussion to be part of this series, as it could
+unnecessarily give the impression that this series depends on it.
 
->
-> Also can you add this file, and the bindings patch to the Tensor SoC
-> MAINTAINERS entry, so it's easier to review future patches?
+> 
+> That binding got dropped because it was unused in Iris.
+> 
+> https://lore.kernel.org/lkml/05d40a3b-cc13-b704-cac7-0ecbeea0e59d@quicinc.com/
+> 
+> I still fail to see why we are waiting for multi-cell IOMMU to land, when it
+> is expected to and what the VPU enablement story is upstream in the
+> meantime.
+> 
+> Blocked it seems.
 
-Sure! Will update MAITAINERS in the next revision.
-Appreciate the review!
+No, it is ongoing, there will be next version coming.
 
-Thanks,
-Roy Luo
+> 
+> ---
+> bod
 
-
->
-> With those nits  addressed:
-> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
->
-> regards,
->
-> Peter.
+-- 
+-Mukesh Ojha
 
