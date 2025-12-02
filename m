@@ -1,127 +1,290 @@
-Return-Path: <devicetree+bounces-243788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A48E4C9CCF4
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 20:44:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5B3C9CDEB
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 21:08:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AF26A348D26
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 19:43:57 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9C533347491
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 20:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631782F7AB0;
-	Tue,  2 Dec 2025 19:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0762F1FC9;
+	Tue,  2 Dec 2025 20:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="T/n4pfrn"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Qn/bfhMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f74.google.com (mail-wm1-f74.google.com [209.85.128.74])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90AEC2F6919
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 19:38:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.74
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC432C327A
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 20:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764704303; cv=none; b=Ity5SkIw4rvpNnxx7bHg8eRgrTylrfiUWno26xTd+1BIDoTaitWy2lhlxpdYaX0r1GQGIAnftLpfcX2Q/JnhChxGW6HY6CBqaZEfpdSjITZrENfyOrb2P3eXgbw0rwp8yhVlsYjGNw6LLSKC73Msw7nNbdyR0sAFoEbYwxqfNhk=
+	t=1764706069; cv=none; b=PG0M90pqhRTPn3oQvKJMuzLZ1CWn6qyXBj+WYD/dpyq2qHL0j9HHw0ys/e8Jka7fTO7HD1uokv83aRvMAs8hKOQsciq5L1elJKst/2hg6gsXAR57whxmb5vsz2uqGkmxto5aEQTg+HKpZep+kv0jSHdVRc6oQ7eYz4b2fOMdPpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764704303; c=relaxed/simple;
-	bh=Lu5/2dkCBekMOnFjfAtPefEM4sDqyp5zFvk+JuEa/DA=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=dunQfenZtyPo63OwG+FPlYECN9Scf6Ja8gGCow6xb9oGrdY199d8QHBLgHSe8BhnxKPIvfaZMV0y4GWudVpcEmTPw1DjultcBPXYVrA05UsAUP7EpMEXweQxXOMWi3LzEnl5WXO5oaea+UXmn3Vy3h4sOfyLINWDWAN5ZDf68Dk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--aliceryhl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=T/n4pfrn; arc=none smtp.client-ip=209.85.128.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--aliceryhl.bounces.google.com
-Received: by mail-wm1-f74.google.com with SMTP id 5b1f17b1804b1-477a11d9e67so34647965e9.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 11:38:21 -0800 (PST)
+	s=arc-20240116; t=1764706069; c=relaxed/simple;
+	bh=O2vhRa1Ww4B2Sglvvf0EIXVX7N8syo6v9n4sg3VyvQg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R4G4PklitpYZqfzfZ1uIIjGWAj7tJ3MZCJTQK2hewuw8jQM6oDRb3cn/VWuuYTWlsrGtnJyUvFuNBTwBJtDphBwBTM7uoBtUHmmqMaLEAnlISUdgOYuq6Ta8WPKrDQV7EKKCWAqaKApSZ9pDQzWFTqbvcPrh/ppmpVuEtGwGZOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Qn/bfhMS; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-640aa1445c3so9048545a12.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 12:07:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1764704300; x=1765309100; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=X7h6JfaQinSsVoRNGKp5y99NtfYL+hb5SKedwfR4azw=;
-        b=T/n4pfrnZUjkDAzlKpPvmKqSgLkW0EJDXbBAUg7h4plzkmQbjtaR2kMKdj82JUSIRc
-         5YczFSRkOlRzeQsrdH4V7i11ahvv6tP1w7saILahe0ytyIXopSt3FSnaMUsI3pXlIGE3
-         1AYFHaD6UlPrIbqLZa6CckrUwKRQawCh4lB6MV14r0ZUZ6TSBGPVSeFU6ZhG0pPmdhl6
-         kshGFw/nLl02rM4g4nQFDLqEe8rnRlffwXKH32AUd00mn8XX27DutCVycBB64lLokyGK
-         5L/4AnW9U52AqFm1s3KS6eevTvPLmrIiTJ/1CZqfHXW69R8WbFM54M3nGo1jGbc8FKMN
-         aNyQ==
+        d=chromium.org; s=google; t=1764706065; x=1765310865; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=K1Z1gpYyVlWN4964g+8VdhJkOzma6JMhAsAp5ym1zGM=;
+        b=Qn/bfhMSxafyYueUyQbUUyhEVDVlUqz4nrO+i49WprPeaks3UY8+v2Xh60cFldxNDo
+         5AmCmsodvqleHJ8xwbuv1V1pOpsYACuog1dmRbF747vIzAjDHjrFtCzo0CtVoqWegvPn
+         pa/r2KItifcdnptGIf5B4QSZiFUWWaHfFTQDY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764704300; x=1765309100;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X7h6JfaQinSsVoRNGKp5y99NtfYL+hb5SKedwfR4azw=;
-        b=BciaqDCMtaPOw0RskrsIHvW474PN7XcvdLAVptHPJvm63nkzevSZjIwLOVbm60shWE
-         IFOpTAK18s5YMt6L4N+EGNV4aLpARFExR+EHa7SLV0N/HBRUBapwjuW3QRMF+cqYYQJP
-         RSGI87+53eVOeguFVwLs79B8KGq6q4tKQPbAmP7Y0LvYtgxU2G/ftQxRMPrr+31YG0rT
-         hNOtlQ/asXN5oVcprSwmFIXwybvjlxvP44d3eRnUmT+OdxxVrmeE9UXpDNzaHOjQIEHs
-         QlgT8p2OZ+uowcLA4mIpHpU/ZKIOfpGyqvz4s7RfOqlZWp0/8F5KFsFscVxNSh5+rZp1
-         cyJg==
-X-Forwarded-Encrypted: i=1; AJvYcCXPxR/JuKHl1+S1eWa2ugd4Qsc8j8oDU61uZZPys+TAvaaplG2hsqpyjH/2GkawufNX4CTmnV+hemLZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaKyvvNvAH/tXNfJlH18vWoNs2suJxtnsCaDPC53Hnh5LDee5D
-	LMERTJ5/DSkxUAJq0o02fpxmxXT1pFgKyiHkQ3CyCAEr+Dkb/6oi1HW6uW21zc08jgUIwquinog
-	QlRpeuL4MhVXVuwjbwQ==
-X-Google-Smtp-Source: AGHT+IF470EvqzkQvtaq+IbBhM9Cb35wltaRH3yorsMqKH5J+qIBD8RPwyfg8j+Z+GJGoe0mjXwPUH/cER1xfmY=
-X-Received: from wmpv21.prod.google.com ([2002:a05:600c:4d95:b0:477:a480:b38])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:444b:b0:477:54f9:6ac2 with SMTP id 5b1f17b1804b1-4792a4b8c51mr8092885e9.0.1764704300016;
- Tue, 02 Dec 2025 11:38:20 -0800 (PST)
-Date: Tue, 02 Dec 2025 19:37:49 +0000
-In-Reply-To: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
+        d=1e100.net; s=20230601; t=1764706065; x=1765310865;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K1Z1gpYyVlWN4964g+8VdhJkOzma6JMhAsAp5ym1zGM=;
+        b=kYxFKD2+i0gGVMfH1PEAHvLl/vruG4Zv58VirqTEqfSX1MZYoMP0TYyJhzFRQcmxDI
+         hWpo82YLZtZBU1H/jYu1QxLd0myns8pcj9qaX4gnXoWfNbZgPgoBl9WJSfB9noHJVzjL
+         Xq2jOw26OE/wmXrwcouOd0w+eqzqFMUeouTKOpd6VnzpWDpCzvKK+iviinnV3oTpiqvZ
+         QF8JXLOeqHt1g6ZgmQCBZk2/jaD2sVlNGS2MTG3yRpsHzBM0aln5w1qv5W2p+dFlK1IF
+         zwQj89i7ETWv2/GA7LKvmce2KMW94HUXvJ7NDmtb01KfNPfNXsK7ndrpnhiRMHN5+NS9
+         pCVA==
+X-Forwarded-Encrypted: i=1; AJvYcCXWQPybBQ5k7ZYRVMdjOfqK6MkTNCeH5PD7rOsDPA4uqITLXIutv/VIx7MwuXX+lK0AnO0M+p7c2IS6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsK9C4XzMJJITCHFJGbOBSeV/pq/K29HIAF9gZH3yJ51t2ESRA
+	ldQxGFZE8mKbCjD5AyaZjAdNfkXcl1f7AUeXWiCm/2DuCVZE+u4JkscnlJmHdED0MUEKMPntNn9
+	TKOpS8SnMeXAgW1HkOHrtmA+idHMBsr40WPMExa1T
+X-Gm-Gg: ASbGnctG8mW5QzonfC+Uvh+5/HZeqcETSmSys2PXRb/9UyZKoV6nhxMNXOAf+7BwIGD
+	Rm9qv2sEZ5S3o9Ooyslwlhbk0MCh5zyls0iNjfjbAPJr3MDPQdC2CcireKvkrSC23zZpauF51o7
+	de/Ij0kQ7kt+vv5NIGYhhrOMEAjUfKxzL2R/mWEil75mrcZUO9wTGx65e8aKSlUKja5mJ95+pQH
+	6BjtrAM8UZjFq8dq/LGztXs8eUTEHkqQAp4F4dPRUknGALPXy5KO/Kpu9Githj/vnOpkRmsLg==
+X-Google-Smtp-Source: AGHT+IHpNDvlQF6rrVzJte7nrF7RpWvOee7GviXU+nEM/LhRTuCAt8IXC4tPve/eMT8xSEnq+zf+mASWeYblufPu2p0=
+X-Received: by 2002:a17:906:dc8b:b0:b79:b910:fd45 with SMTP id
+ a640c23a62f3a-b79d118c79emr39330966b.38.1764706064920; Tue, 02 Dec 2025
+ 12:07:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
-X-Developer-Key: i=aliceryhl@google.com; a=openpgp; fpr=49F6C1FAA74960F43A5B86A1EE7A392FDE96209F
-X-Developer-Signature: v=1; a=openpgp-sha256; l=772; i=aliceryhl@google.com;
- h=from:subject:message-id; bh=Lu5/2dkCBekMOnFjfAtPefEM4sDqyp5zFvk+JuEa/DA=;
- b=owEBbQKS/ZANAwAKAQRYvu5YxjlGAcsmYgBpL0AJDW4Ic6TkaUrfsfwk62CHeR8GDaGxtm2eE
- OevQCMXARaJAjMEAAEKAB0WIQSDkqKUTWQHCvFIvbIEWL7uWMY5RgUCaS9ACQAKCRAEWL7uWMY5
- RtRVEACnD2Qh/Xn2QyWvQqpvzNqrjwA6t40ohXHM8XqIOyHQTAU0PgW34zFFG3mx8tUrjNUvkhc
- Au4QjJM1QQ+EMpEj53c2oVbbGTwNgxSXh9kzOLx1knFy4NjIjmasB2f6/2b2a00OeARRSrTJHqV
- u4DzmRscHMR3frRZ6L5+JJUH6QWBBxKf2UpBKune7BA+HNRp4IH+JULFPtfZrWAV+in+iaxmE0l
- QRR0P5+MkmTUGrbInO2vW+HWDrVNnCAi15P1IeJTVOWBm72VxE4FCQObXoT5YbaUpADvGu5bRBs
- Q3LEgIsdyPXO1upffHJyaIkgQ9omam29AzMDE385vDn78TXsGXv1O3bb8rfTXw0FuFHf1/VdLq8
- Cq/gsF/qis7pTpyDB49YDHGFpe08ZOXu9iu+lsQKxFkqy4hlo5U7u2OGCk6sA4glW2+bT2yVjrB
- rSO3mlNTvqyelmW9Oo1HKy3sR1+LPHoG0lvzabTrRxD2ghycnOW85yn9320lQtUWmb8nQPCIEtV
- ymP4VezENQ3q9x69QfChIO5Yeux0pnNGW+VvFnEKLKnRkTRasdcA1UWhvaydZi8+lRNFC4MlRak
- fon1vNXPjX49oniZqbiNvia2ilfLtoKqtA2jWMHJbuKLcHQV6rGqlgoFGJDNohCiOsX0sWeKGw1 HjjLIcMtAz/jrqg==
-X-Mailer: b4 0.14.2
-Message-ID: <20251202-define-rust-helper-v1-25-a2e13cbc17a6@google.com>
-Subject: [PATCH 25/46] rust: of: add __rust_helper to helpers
-From: Alice Ryhl <aliceryhl@google.com>
-To: rust-for-linux@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, Alice Ryhl <aliceryhl@google.com>, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+References: <CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com>
+In-Reply-To: <CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com>
+From: Simon Glass <sjg@chromium.org>
+Date: Tue, 2 Dec 2025 20:07:32 +0000
+X-Gm-Features: AWmQ_bnVY6hul7hU5okWO5b51z2U7n3Hx5WSWCXXOIPs5Du940FPVrwtuGaFSl4
+Message-ID: <CAFLszTiVT9rHwympUJSehxaDR7ks9Bs2FVjYEuN6=j1e_-289Q@mail.gmail.com>
+Subject: Re: Proposal: Officially allow "incomplete" trees as a base
+To: Doug Anderson <dianders@chromium.org>
+Cc: devicetree-spec@vger.kernel.org, boot-architecture@lists.linaro.org, 
+	Chen-Yu Tsai <wenst@chromium.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
+	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
+	William McVicker <willmcvicker@google.com>, Julius Werner <jwerner@chromium.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-This is needed to inline these helpers into Rust code.
+Hi Doug!
 
-Signed-off-by: Alice Ryhl <aliceryhl@google.com>
----
-Cc: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>
-Cc: devicetree@vger.kernel.org
----
- rust/helpers/of.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Tue, 18 Nov 2025 at 22:43, Doug Anderson <dianders@chromium.org> wrote:
+>
+> This is a continuation of the discussion that started in reply to my
+> patch adding basic device trees for Pixel 10 phones [1].
+>
+>
+> Problem statement:
+> ------------------
+>
+> We would like an officially accepted scheme that lets us more
+> efficiently ship compiled device trees for a handful of related
+> products by breaking the device trees up into a common "base" device
+> tree and then applying "overlay" device trees atop the base to make a
+> full and complete device tree.
+>
+> To make it more concrete, we'd like to build a "base" device tree that
+> describes a SoC and then have the overlays be enough to make a full
+> description of a board. In theory, one could also imagine wanting to
+> expand this to 3 or more levels (perhaps SoC, baseboard, derived
+> boards), though this is not planned at this time.
+>
+> The primary reason for wanting to break device trees like this is
+> efficiency of the shipped binary device trees. A large portion of a
+> final device tree just describes the SoC. We save space in the final
+> compiled device trees if they don't need to contain as much duplicated
+> information.
+>
+> A secondary reason for wanting to break device trees like this is to
+> more nicely handle when a board has a socketed SoC that can be
+> replaced with a finite (and small) number of different SoCs (usually
+> revisions of the same SoC). Even if this secondary reason is
+> considered invalid or too difficult, the primary reason still
+> describes a compelling need.
+>
+> In order to make this proposal work, it's expected that a bootloader
+> will understand the scheme and will know how to combine the overlay
+> atop the base before passing a complete device tree to the main OS.
+>
+>
+> Current state of the art (downstream):
+> --------------------------------------
+>
+> In Android, we do a pretty good job of solving the stated problem
+> using device tree overlays. We describe the SoCs in "dts" files and
+> compile them into "dtb"s. We describe boards in "dtso" files and
+> compile them into "dtbo" files. A bootloader can handle identifying
+> the correct base and overlay (the scheme for doing this is a separate
+> but related topic) and applying the overlay atop the base "dtb". This
+> solution is fully implemented downstream for Android phones and is
+> well documented [2].
+>
+> The issues I'm aware of with the current state of the art are:
+>
+> 1. In order for the base device tree to pass schema validation on its
+> own we'd need to document the top-level compatible strings in the
+> device tree. It is the opinion of at least some device tree
+> maintainers that a SoC doesn't qualify as a top-level compatible
+> string. This prevents the device trees from landing in an officially
+> sanctioned location.
+>
+> 2. It is also possible we may fail schema validation for the base SoC
+> tree if the schema marks a property as "required" but that property
+> needs to be filled out by the board (perhaps a "-supply" is marked as
+> "required", since most "-supply" properties are filled in by the
+> board. I'm not sure this is a big issue, but it's something to think
+> about.
+>
+> 3. It's unclear if there is any official "ABI" promised here once
+> we've compiled and validated the base device tree on its own. Will
+> people assume that they can have out-of-tree overlays derived from the
+> base SoC tree and that those out-of-tree overlays will continue to
+> work across changes / cleanups to the base? NOTE: this is a
+> pre-existing question for existing device tree overlay usage, but the
+> sheer quantity of nodes/properties that a board would be expected to
+> overlay/modify in the base make the problem more prominent.
+>
+> 4. We want the final device tree's top-level compatible to be all the
+> compatible strings from the board followed by all of the compatible
+> strings for the SoC. When the board's overlay is applied to the base
+> SoC tree, though, the board's top-level compatible fully replaces the
+> compatible from the base SoC tree. This can be solved today for
+> non-socketed boards by just duplicating the SoC compatible strings in
+> the board overlays. We can't solve this today for socketed boards,
+> though we can simply make sure that no software drivers rely on the
+> specific SoC compatible string being present and thus we can ignore
+> the problem.
+>
+> None of the above problems are big enough to have prevented widespread
+> use of this scheme in downstream Android.
+>
+>
+> Current state of the art (upstream):
+> ------------------------------------
+>
+> Upstream if we have a pile of related boards, we do allow
+> deduplicating things at a source-code level with "dtsi" files. We can
+> have a SoC "dtsi" file and that file is included by all boards that
+> use that SoC. When it comes time to validate or ship things, though,
+> we only work with full devices trees. This means that we ship
+> duplicated information.
+>
+>
+> Proposal:
+> ---------
+>
+> 1. Allow the top-level compatible string of an "incomplete" device
+> tree to be documented so it can be validated on its own by tools. It's
+> understood that this SoC is not a board by itself and we'd never boot
+> a full OS with this device tree without adding an overlay that changes
+> the top-level compatible. Add a top-level property to the device tree
+> (perhaps "incomplete-compatible;") to indicate that the tree is not
+> complete without an overlay.
 
-diff --git a/rust/helpers/of.c b/rust/helpers/of.c
-index 86b51167c913f96b626e55adb51bdac2a9f04f56..8f62ca69e8ba54098343dcef77f5e82e5a3bf497 100644
---- a/rust/helpers/of.c
-+++ b/rust/helpers/of.c
-@@ -2,7 +2,7 @@
- 
- #include <linux/of.h>
- 
--bool rust_helper_is_of_node(const struct fwnode_handle *fwnode)
-+__rust_helper bool rust_helper_is_of_node(const struct fwnode_handle *fwnode)
- {
- 	return is_of_node(fwnode);
- }
+or be more description, e.g.: compatible-scope = "soc"  - or just scope = "soc"
 
--- 
-2.52.0.158.g65b55ccf14-goog
+In other words, I don't think we should be frightened to define some
+levels (soc, som, carrier, exxpansion, chassis?)
 
+>
+> 2. If it turns out to be needed (hopefully it's not), allow some type
+> of syntax in yaml files that allows a property to be marked as
+> "required" in a "complete" device tree but not in an "incomplete"
+> device tree. Alternatively, we could discourage marking properties as
+> "required" if they're expected to be filled in by a board.
+
+Another option would be to validate the soc DT with a chosen board,
+just as a workaround. It would probably be good enough.
+
+>
+> 3. Define that there is no promised ABI between "incomplete" device
+> trees and anything not stored with them. Specifically, all valid
+> combinations of "incomplete" device trees with overlays to complete
+> them should be enumerated together with the "incomplete" device tree.
+
+This seems important, yes.
+
+>
+> 4. When applying an overlay to a device tree that's "incomplete", the
+> top level overlay will be merged instead of replaced.
+>
+> Example for 2 levels:
+>
+> base (incomplete) compatible: "socvendor,mysoc-rev1", "socvendor,mysoc";
+> overlay compatible: "boardvendor,myboard-rev1", "boardvendor,myboard";
+> merged compatible: "boardvendor,myboard-rev1", "boardvendor,myboard",
+>                    "socvendor,mysoc-rev1", "socvendor,mysoc";
+>
+> Possible example if we support 3 levels:
+>
+> SoC (incomplete) compatible: "socvendor,mysoc-rev1", "socvendor,mysoc"
+> overlay1 (incomplete) compatible: "referencevendor,referencecodename";
+> overlay2 compatible: "boardvendor,myboard-rev1", "boardvendor,myboard"
+> merged compatible: "boardvendor,myboard-rev1", "boardvendor,myboard",
+>                    "referencevendor,reference-codename",
+>                    "socvendor,mysoc-rev1", "socvendor,mysoc";
+>
+> Obviously in the 3-level scheme we need to know the order that
+> overlays are applied, but that's true for overlays today anyway.
+>
+> The above proposal takes the current downstream "state of the art" and
+> addresses the known issues, solving the original problem statement.
+>
+>
+> Other thoughts:
+> ---------------
+>
+> If you don't like the proposal, I'd be interested in knowing if you
+> have other ideas for solving the original problem statement, or if you
+> simply think the problem we're trying to solve here is an invalid one.
+>
+> I'm happy to post up another revision of my Pixel 10 device trees
+> following this proof of concept (or other ones). My v1 was _very_
+> close to this, but didn't have the "incomplete-compatible;" property
+> and didn't implement top-level compatible merging.
+
+This proposal seems good to me.
+
+We don't need to worry about old bootloaders since they presumably are
+not installed on new hardware. Assuming Linux adopts this proposal, I
+am sure people will implement it in bootloaders when they need to.
+
+Chen-Yu, thank you for the reminder re my extensions thing for FIT. I
+had forgotten about that. Here are some current proposed FIT
+additions, BTW, in case anyone is interested in taking a look:
+
+https://github.com/open-source-firmware/flat-image-tree/pulls
+
+Regards,
+Simon
+
+
+>
+>
+> [1] https://lore.kernel.org/r/20251111112158.1.I72a0b72562b85d02fee424fed939fea9049ddda9@changeid
+> [2] https://source.android.com/docs/core/architecture/dto/partitions
+>
 
