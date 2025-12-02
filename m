@@ -1,287 +1,529 @@
-Return-Path: <devicetree+bounces-243631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1473C9AC77
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:04:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D3D5C9AC89
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:04:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 23D3C345686
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:04:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACFF53A3645
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:04:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E0C3081D0;
-	Tue,  2 Dec 2025 09:04:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RZbmUcv7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A7D3081D8;
+	Tue,  2 Dec 2025 09:04:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazon11013021.outbound.protection.outlook.com [40.93.196.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D60324886E;
-	Tue,  2 Dec 2025 09:04:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.196.21
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764666244; cv=fail; b=cN0ruzbBuBfv6yhgHUK7+BRcuYEeG/Q3nb8oWrvP0DZLJhsZ+jvQDtTokexIe6r66EKGTFTwMelshZRp5y5PMq692M7JQhyWV2vkqZHH8+qA57n8PAdytFTstsLozsy4DUenX0N4FkrsW4I0ke0hmetBX8yQj9FzdSHcWHAytlU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764666244; c=relaxed/simple;
-	bh=EhTVTYxisid8c/m8sV1bC1Lsh3Tg/5cWigB7djeBEG8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bXUh+Ku/DljQvr058fIsTiSN5F93lDxtS23gC9yFGS8dLQO2gDV4D5oX2pvRvokNTS3OB9nvWn4Ac+XZjp/HanapacaWSLDS2FC+cATjNTxDsYAWaQLeA7oVmCqmLfINzH3xwZJxDR21l2R/l43NJOgfzzR+CDE3xrY2iep7aoQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RZbmUcv7; arc=fail smtp.client-ip=40.93.196.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DIgTP7crFOii7RMvlRB/HcqX1Xz/UdYEZo5FFdhrxUINRCllp/OGUf5m/SiBFSplf1zjt3Dj19DN8xuy6pdFwb+Pwg7yYJdLbNTojiVFy4AnwtfRdiwTwT9F7+i831YUbGGd4QKU6BOohhAtkhyx7j7UwJznNEReqAOj/sfB6PZ6crY1NxUpTwFSZuWCDpaocqS5hMy6QWBVmR7GAbtRYWhKJO3/V6Y0rr3SV+j62woOzcoooaromVS3glkYM5wuLr+4fAkSssMtylxLy90CdZQpFthIjAn+Dx6HJ7ro66K/ZNvmUYBFmZHepdEMU1ZXUcFqI4VSEHG5Fn/ZRy6bog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uw81YclL+r+ooTLj9ydtg0p0Ny6BgaFC5DUIvU9Lpo8=;
- b=vUSyH7oZXvzYgRMiLvt2Cj0Yo/3nO9i2lVYE9RgesUeerVZvDbka8/blDlhbB7Q8X4IR9bCCucpkWwtSTyTzvFxopiEbUm3JlVFYQ2sa+gGkapFK9+hcMtAKbERq0DlV2KpNUCPeBliBjEoz80MiPmtUyCxeCDy+hrIfpJ3RzGxoMEUsMXBruHNegv4jYHJot36YerUYKfOgX+zm6gnwPlkJE5HlTj7/WlxwEzOXZzF0PEz89awLC9oQiSvMrBblanfqfkvAninRx7i9D2IyMe9SOaoJed3k0cu71a0a1fyv0OLEG7McNzgVkcY46Auy4Eqdu4W3hGEvK1oMZb6kAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uw81YclL+r+ooTLj9ydtg0p0Ny6BgaFC5DUIvU9Lpo8=;
- b=RZbmUcv7dtVQtQeVnmYSLXL56udVM+oJbGPgxmRITdp1+ixscbf5l//5Gfm5eibGzUyo2zJfD0P3QIhi3mhUMmleHaDdhiF0vJsDtUNaCmKlYAzocFVZgJHzts5Tfx5AorIirLqx4ew4RtIBRctCJIyIGz08D+zz95fVPdN2nqk=
-Received: from BLAPR03CA0113.namprd03.prod.outlook.com (2603:10b6:208:32a::28)
- by DS0PR10MB7092.namprd10.prod.outlook.com (2603:10b6:8:148::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 09:03:57 +0000
-Received: from BL02EPF0002992B.namprd02.prod.outlook.com
- (2603:10b6:208:32a:cafe::93) by BLAPR03CA0113.outlook.office365.com
- (2603:10b6:208:32a::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Tue,
- 2 Dec 2025 09:03:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- BL02EPF0002992B.mail.protection.outlook.com (10.167.249.56) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Tue, 2 Dec 2025 09:03:56 +0000
-Received: from DLEE205.ent.ti.com (157.170.170.85) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 2 Dec
- 2025 03:03:53 -0600
-Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE205.ent.ti.com
- (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 2 Dec
- 2025 03:03:53 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 2 Dec 2025 03:03:53 -0600
-Received: from [172.24.233.149] (ws.dhcp.ti.com [172.24.233.149])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B293lwn1963805;
-	Tue, 2 Dec 2025 03:03:47 -0600
-Message-ID: <16e0daf1-1508-462e-8d3c-f5447a803961@ti.com>
-Date: Tue, 2 Dec 2025 14:33:46 +0530
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56C623081C5;
+	Tue,  2 Dec 2025 09:04:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764666269; cv=none; b=M0IJqdyDd2YU5Y43E3H6Oa1tUmvwiBScswbBOjcfPVF5FVvVG11eOv7GmibEdy1zqASRPq4bQcgwuqx1BznTMNMxiQX0K/7W4cTweaiq3Bin/guTPQaVa2D8tW0kkZWE2timjBHwuH9Ug4RyKUB21F95dLqMCvIon63qMyd6BBg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764666269; c=relaxed/simple;
+	bh=xFhTlcePwXMhCsPzBMSaPqSSWv00X9gVpykK2B9VAF4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Z0eS9tuDO46Ray7uXYFp12lZA9OmGaV1ndgEmKu4waVG7gwfKnXuTfAOPbw/FlcO5P7bDN0uDnU3TZbA5Dv9pWXX5YUguDOGbwTVmNLIA9p9tlZ+jywLyfVj+N/BWHquQ+r3a2RRLKr/LKwStkzC7UX5Wv9C281yJT/Q332xyXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0004758DT.eswin.cn (unknown [10.12.96.83])
+	by app1 (Coremail) with SMTP id TAJkCgA3MGiLqy5pNaiAAA--.36919S2;
+	Tue, 02 Dec 2025 17:04:13 +0800 (CST)
+From: zhangsenchuan@eswincomputing.com
+To: bhelgaas@google.com,
+	mani@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	robh@kernel.org,
+	p.zabel@pengutronix.de,
+	jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com,
+	mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com,
+	inochiama@gmail.com,
+	Frank.li@nxp.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	ouyanghui@eswincomputing.com,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: [PATCH v7 2/3] PCI: eic7700: Add Eswin PCIe host controller driver
+Date: Tue,  2 Dec 2025 17:04:06 +0800
+Message-ID: <20251202090406.1636-1-zhangsenchuan@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
+In-Reply-To: <20251202090225.1602-1-zhangsenchuan@eswincomputing.com>
+References: <20251202090225.1602-1-zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 10/18] media: cadence: csi2rx: add get_frame_desc
- wrapper
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <jai.luthra@linux.dev>,
-	<laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
-CC: <y-abhilashchandra@ti.com>, <devarsht@ti.com>, <s-jain1@ti.com>,
-	<vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
-	<sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
-	<jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
-	<jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
-	<dan.carpenter@linaro.org>, <hverkuil+cisco@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-References: <20251112115459.2479225-1-r-donadkar@ti.com>
- <20251112115459.2479225-11-r-donadkar@ti.com>
- <ecae251f-3f2e-4f80-8423-09d0e8679416@ideasonboard.com>
-Content-Language: en-US
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-In-Reply-To: <ecae251f-3f2e-4f80-8423-09d0e8679416@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0002992B:EE_|DS0PR10MB7092:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6af68dbd-b0ce-4d67-6cf7-08de3181b9c8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|82310400026|376014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MnZ3Vno2VDBJei9EVVVXT3N3UVVKNlg5QTR3K2NtTnFqYkNrYkdsUzBEcWNS?=
- =?utf-8?B?NE9WMVhicGJ4NWhmY040alZEdlIwTEF6UEM2QmdCUndBeWlNdVdiTXZLdmxG?=
- =?utf-8?B?cks5MllrUEJJT2pCZlkrZEtuR0JRZlFOSGN1T3duREtMWEI4T2gyY1JMRFRN?=
- =?utf-8?B?bGxLYWo4M0xIVnFEakJoNlh3L1BwTlc0TE84V2VqQ3FRYVhpS2VQK2s5VmM3?=
- =?utf-8?B?UzdIQkNoM3hnNE95bUtIdjhmRWFIRUtKUWhWd2RISmF3UlRPR0tCdlo2MzQy?=
- =?utf-8?B?cldhQy9vWVlhVkxFcVJUUWpQVXNGcGxJRGxlaXVsTHVHcTV4T29Rdmx2TmF4?=
- =?utf-8?B?N25rd3BwUkVSTWpwdmFmTjlKZlE4UmVWUk1GcGRHaG53WVhnUktsNWk4UlJq?=
- =?utf-8?B?byt0MDNpVnlvSndoeDR6YjJKWXN0dmxTRzRjVE56d2VtY21ESkZTMldPUTUy?=
- =?utf-8?B?RkN4cjNPdnhITkxKeDMxQTZyQkZxTUpTdEJ6VHdSb3E2cmxkNFk5TGxBd1Jy?=
- =?utf-8?B?N1Rkb2taTDFFSk93S0xQUlJqSE54bWs2QWRpSGJLMDJoZkVQcDR0UU5KRTIr?=
- =?utf-8?B?RkR2eFZvZW1XN0xackhJamkvaU1OdzczZVhUMStYS0tRSS9ZS0VlNE9EWTJn?=
- =?utf-8?B?Sk5TSFUyVjZhcTVYK1dmbVVZbTdIeGxMNWRoN2poWXh3UFh4NC96ekVUcHh6?=
- =?utf-8?B?TGwxMktGcnVKL21qQjM3TTE3TStIZFl0NkI3QXFrU0V1NHJRc3d2NkNyaHlM?=
- =?utf-8?B?MWljcU1aVTkzVmEvWVd5WG02WjdVTjNqTmVrSU94QWY5M0t3bXZ0Rnh6R2Uw?=
- =?utf-8?B?RHR3VFBTN25wR0Y3ZkgxTmw2azNxd25YeHJZN21WWG52NFAxRGh5Ry96MzBm?=
- =?utf-8?B?MEVVaDRpOVJ2YWd2TGR0clg0VEdydkgrcUV3WE5UQk9pVWl6dThOVk1DNW9Y?=
- =?utf-8?B?OG5WVVN5bVpaWmNZVVNnb2dqNnpTNlFMbTVkZGNIWjJqVmlmT2ZHajRnUkta?=
- =?utf-8?B?aDNoa05HYW9nVFRWaHdjUzY4OWdOOTZGOE1acUxiREl5SHFZdzRXelV4Tkw5?=
- =?utf-8?B?Z2FjOXNxKzZxL24xOVRBUGJZZUNabUplMXdsT0szUWRsSndzWHJ2R2ZXazZU?=
- =?utf-8?B?ZHNkMTlMa201NHZ0Q2tueXFrSlRsaTNhbVZXS1NrRkJubkJHUm8rYXFiQ1NT?=
- =?utf-8?B?cXEwMHMrSEx4MXFEY1FoS2FjK0I1OTQwSzl2VzlwTTA1NXhrR2lYN0hvVUtD?=
- =?utf-8?B?cjc4QmlsQzJaWWFYTXdsQ2JGQzhPSFU0UXRCYzJGRndsVlpNMVFuVDVHVVAx?=
- =?utf-8?B?dUpmdm1KL3p6Q0IwRVI0bkNDQlZ4eUF2TnQyNGVib0t1Y0VRczYreWJicndX?=
- =?utf-8?B?SEJSQi9vUVdDd2w1YkxFS0gwNTIvTkpBbnh1cUNqcms2MzEzVUphakNuaHhX?=
- =?utf-8?B?VXROdDBkclY3bWQrUWlQbzROV1BPMUlmWVFkK2R3TjJKcjlTMEN1ekR1MVhG?=
- =?utf-8?B?c09VRmhkU1BOSVhIcElOdENsSmdndjdGeUhuY0xFWDExcU5iSXFZcHpnTG9m?=
- =?utf-8?B?WUt0M3VCOUhuQU9MancwOVg4T2pyVTZPUnV6WG4xaVFKS2V2S1ppUmZOYnhE?=
- =?utf-8?B?SjZIQzRMdjZZdWRzUyt4OWNMWnpHQUEzK3FSNkNHS1NoM0tPRlI0VEZUekla?=
- =?utf-8?B?RnljQnVnVzQ0VytTQXpTSy83VkN3WHlOWXYweVg3cHJoNSt3bkdjckhDL1BD?=
- =?utf-8?B?VDNCdU9RaGNpY0NXTWZvaGwrNGd4THdSR1NOWWYvcjRzWkY5akdldFBvRHVq?=
- =?utf-8?B?TjJkYmxBK2FQRnJvc1lscTJDMTVQdGtHK3J0S0lacnlTaktBNmJ4aEJMWkcx?=
- =?utf-8?B?cjlTMUxxK3gvNWJFdFkybERXTFlIZWhFVGo4SXRqaDI5WmNrWGhBTWxkTlRY?=
- =?utf-8?B?emRMcDNwaWRmUWRuaFQySU1XRGZMK2xEblNDNTlLOERNU0R4disvZmdqMWlH?=
- =?utf-8?B?YjJKSDFwb040VUhjdDZadFEvOElvUmRycFJyWTNlcm4rMlNVVklHaEl5RWpB?=
- =?utf-8?B?TXhCUTNna3ovNU1Vbnp3QysxdDhkaGRuS001b1lmSjFDdnNSNGY4SWpsK3VT?=
- =?utf-8?Q?UdsU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 09:03:56.9472
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6af68dbd-b0ce-4d67-6cf7-08de3181b9c8
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL02EPF0002992B.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7092
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgA3MGiLqy5pNaiAAA--.36919S2
+X-Coremail-Antispam: 1UD129KBjvAXoW3Kw4fAw4UurWxCryrJrW8JFb_yoW8Jw4fJo
+	Z3Xrn3Xw4fGryrurWxXF1xZ34xZ34IvFW3JFnY9397Ca40yr15tryDGwnIqw1akr40krW5
+	Zw17Xw13CFWIqa1rn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+	AaLaJ3UjIYCTnIWjp_UUUYN7AC8VAFwI0_Xr0_Wr1l1xkIjI8I6I8E6xAIw20EY4v20xva
+	j40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2
+	x7M28EF7xvwVC0I7IYx2IY67AKxVWDJVCq3wA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8
+	Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
+	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+	6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
+	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42
+	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
+	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI4
+	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4U
+	JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcV
+	C2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRiBT5PUUUUU==
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/
 
+From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 
-On 20/11/25 18:10, Tomi Valkeinen wrote:
->
-> On 12/11/2025 13:54, Rishikesh Donadkar wrote:
->> From: Pratyush Yadav <p.yadav@ti.com>
->>
->> J721E wrapper CSI2RX driver needs to get the frame descriptor from the
->> source to find out info about virtual channel. This driver itself does
->> not touch the routing or virtual channels in any way. So simply pass the
->> descriptor through from the source.
+Add driver for the Eswin EIC7700 PCIe host controller, which is based on
+the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
+supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
+interrupts.
 
+Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
+Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>
+Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+---
+ drivers/pci/controller/dwc/Kconfig        |  11 +
+ drivers/pci/controller/dwc/Makefile       |   1 +
+ drivers/pci/controller/dwc/pcie-eic7700.c | 378 ++++++++++++++++++++++
+ 3 files changed, 390 insertions(+)
+ create mode 100644 drivers/pci/controller/dwc/pcie-eic7700.c
 
-Hi Tomi,
+diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+index 519b59422b47..c837cb5947b6 100644
+--- a/drivers/pci/controller/dwc/Kconfig
++++ b/drivers/pci/controller/dwc/Kconfig
+@@ -93,6 +93,17 @@ config PCIE_BT1
+ 	  Enables support for the PCIe controller in the Baikal-T1 SoC to work
+ 	  in host mode. It's based on the Synopsys DWC PCIe v4.60a IP-core.
+ 
++config PCIE_EIC7700
++	tristate "Eswin EIC7700 PCIe controller"
++	depends on ARCH_ESWIN || COMPILE_TEST
++	depends on PCI_MSI
++	select PCIE_DW_HOST
++	help
++	  Say Y here if you want PCIe controller support for the Eswin EIC7700.
++	  The PCIe controller on EIC7700 is based on DesignWare hardware,
++	  enables support for the PCIe controller in the EIC7700 SoC to work in
++	  host mode.
++
+ config PCI_IMX6
+ 	bool
+ 
+diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
+index 67ba59c02038..7c5a5186ea83 100644
+--- a/drivers/pci/controller/dwc/Makefile
++++ b/drivers/pci/controller/dwc/Makefile
+@@ -6,6 +6,7 @@ obj-$(CONFIG_PCIE_DW_EP) += pcie-designware-ep.o
+ obj-$(CONFIG_PCIE_DW_PLAT) += pcie-designware-plat.o
+ obj-$(CONFIG_PCIE_AMD_MDB) += pcie-amd-mdb.o
+ obj-$(CONFIG_PCIE_BT1) += pcie-bt1.o
++obj-$(CONFIG_PCIE_EIC7700) += pcie-eic7700.o
+ obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
+ obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
+ obj-$(CONFIG_PCIE_FU740) += pcie-fu740.o
+diff --git a/drivers/pci/controller/dwc/pcie-eic7700.c b/drivers/pci/controller/dwc/pcie-eic7700.c
+new file mode 100644
+index 000000000000..cb7cdea6a94b
+--- /dev/null
++++ b/drivers/pci/controller/dwc/pcie-eic7700.c
+@@ -0,0 +1,378 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * ESWIN EIC7700 PCIe root complex driver
++ *
++ * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd.
++ *
++ * Authors: Yu Ning <ningyu@eswincomputing.com>
++ *          Senchuan Zhang <zhangsenchuan@eswincomputing.com>
++ *          Yanghui Ou <ouyanghui@eswincomputing.com>
++ */
++
++#include <linux/interrupt.h>
++#include <linux/iopoll.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/pci.h>
++#include <linux/platform_device.h>
++#include <linux/pm_runtime.h>
++#include <linux/resource.h>
++#include <linux/reset.h>
++#include <linux/types.h>
++
++#include "pcie-designware.h"
++
++/* ELBI registers */
++#define PCIEELBI_CTRL0_OFFSET		0x0
++#define PCIEELBI_STATUS0_OFFSET		0x100
++
++/* LTSSM register fields */
++#define PCIEELBI_APP_LTSSM_ENABLE	BIT(5)
++
++/* APP_HOLD_PHY_RST register fields */
++#define PCIEELBI_APP_HOLD_PHY_RST	BIT(6)
++
++/* PM_SEL_AUX_CLK register fields */
++#define PCIEELBI_PM_SEL_AUX_CLK		BIT(16)
++
++/* DEV_TYPE register fields */
++#define PCIEELBI_CTRL0_DEV_TYPE		GENMASK(3, 0)
++
++/* Vendor and device ID value */
++#define PCI_VENDOR_ID_ESWIN		0x1fe1
++#define PCI_DEVICE_ID_ESWIN		0x2030
++
++#define EIC7700_NUM_RSTS		ARRAY_SIZE(eic7700_pcie_rsts)
++
++static const char * const eic7700_pcie_rsts[] = {
++	"pwr",
++	"dbi",
++};
++
++struct eic7700_pcie_data {
++	bool no_pme_handshake;
++};
++
++struct eic7700_pcie_port {
++	struct list_head list;
++	struct reset_control *perst;
++	int num_lanes;
++};
++
++struct eic7700_pcie {
++	struct dw_pcie pci;
++	struct clk_bulk_data *clks;
++	struct reset_control_bulk_data resets[EIC7700_NUM_RSTS];
++	struct list_head ports;
++	const struct eic7700_pcie_data *data;
++	int num_clks;
++};
++
++#define to_eic7700_pcie(x) dev_get_drvdata((x)->dev)
++
++static int eic7700_pcie_start_link(struct dw_pcie *pci)
++{
++	u32 val;
++
++	/* Enable LTSSM */
++	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
++	val |= PCIEELBI_APP_LTSSM_ENABLE;
++	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
++
++	return 0;
++}
++
++static bool eic7700_pcie_link_up(struct dw_pcie *pci)
++{
++	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
++	u16 val = dw_pcie_readw_dbi(pci, offset + PCI_EXP_LNKSTA);
++
++	return val & PCI_EXP_LNKSTA_DLLLA;
++}
++
++static int eic7700_pcie_perst_reset(struct eic7700_pcie_port *port,
++				    struct eic7700_pcie *pcie)
++{
++	int ret;
++
++	ret = reset_control_assert(port->perst);
++	if (ret) {
++		dev_err(pcie->pci.dev, "Failed to assert PERST#\n");
++		return ret;
++	}
++
++	/* Ensure that PERST# has been asserted for at least 100 ms */
++	msleep(PCIE_T_PVPERL_MS);
++
++	ret = reset_control_deassert(port->perst);
++	if (ret) {
++		dev_err(pcie->pci.dev, "Failed to deassert PERST#\n");
++		return ret;
++	}
++
++	return 0;
++}
++
++static int eic7700_pcie_parse_port(struct eic7700_pcie *pcie,
++				   struct device_node *node)
++{
++	struct device *dev = pcie->pci.dev;
++	struct eic7700_pcie_port *port;
++
++	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
++	if (!port)
++		return -ENOMEM;
++
++	port->perst = of_reset_control_get_exclusive(node, "perst");
++	if (IS_ERR(port->perst)) {
++		dev_err(dev, "Failed to get PERST# reset\n");
++		return PTR_ERR(port->perst);
++	}
++
++	/*
++	 * TODO: Since the Root Port node is separated out by pcie devicetree,
++	 * the DWC core initialization code can't parse the num-lanes attribute
++	 * in the Root Port. Before entering the DWC core initialization code,
++	 * the platform driver code parses the Root Port node. The EIC7700 only
++	 * supports one Root Port node, and the num-lanes attribute is suitable
++	 * for the case of one Root Rort.
++	 */
++	if (!of_property_read_u32(node, "num-lanes", &port->num_lanes))
++		pcie->pci.num_lanes = port->num_lanes;
++
++	INIT_LIST_HEAD(&port->list);
++	list_add_tail(&port->list, &pcie->ports);
++
++	return 0;
++}
++
++static int eic7700_pcie_parse_ports(struct eic7700_pcie *pcie)
++{
++	struct eic7700_pcie_port *port, *tmp;
++	struct device *dev = pcie->pci.dev;
++	int ret;
++
++	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
++		ret = eic7700_pcie_parse_port(pcie, of_port);
++		if (ret)
++			goto err_port;
++	}
++
++	return 0;
++
++err_port:
++	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
++		list_del(&port->list);
++
++	return ret;
++}
++
++static int eic7700_pcie_host_init(struct dw_pcie_rp *pp)
++{
++	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
++	struct eic7700_pcie *pcie = to_eic7700_pcie(pci);
++	struct eic7700_pcie_port *port;
++	u32 val;
++	int ret;
++
++	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
++	if (pcie->num_clks < 0)
++		return dev_err_probe(pci->dev, pcie->num_clks,
++				     "Failed to get pcie clocks\n");
++
++	/*
++	 * The PWR and DBI Reset signals are respectively used to reset the
++	 * PCIe controller and the DBI registers.
++	 * The PERST# signal is a reset signal that simultaneously controls the
++	 * PCIe controller, PHY, and Endpoint.
++	 * Before configuring the PHY, the PERST# signal must first be
++	 * deasserted.
++	 * The external reference clock is supplied simultaneously to the PHY
++	 * and EP. When the PHY is configurable, the entire chip already has
++	 * stable power and reference clock.
++	 * The PHY will be ready within 20ms after writing app_hold_phy_rst
++	 * register of ELBI register space.
++	 */
++	ret = reset_control_bulk_deassert(EIC7700_NUM_RSTS, pcie->resets);
++	if (ret) {
++		dev_err(pcie->pci.dev, "Failed to deassert resets\n");
++		return ret;
++	}
++
++	/* Configure Root Port type */
++	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
++	val &= ~PCIEELBI_CTRL0_DEV_TYPE;
++	val |= FIELD_PREP(PCIEELBI_CTRL0_DEV_TYPE, PCI_EXP_TYPE_ROOT_PORT);
++	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
++
++	list_for_each_entry(port, &pcie->ports, list) {
++		ret = eic7700_pcie_perst_reset(port, pcie);
++		if (ret)
++			goto err_perst;
++	}
++
++	/* Configure app_hold_phy_rst */
++	val = readl_relaxed(pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
++	val &= ~PCIEELBI_APP_HOLD_PHY_RST;
++	writel_relaxed(val, pci->elbi_base + PCIEELBI_CTRL0_OFFSET);
++
++	/* The maximum waiting time for the clock switch lock is 20ms */
++	ret = readl_poll_timeout(pci->elbi_base + PCIEELBI_STATUS0_OFFSET,
++				 val, !(val & PCIEELBI_PM_SEL_AUX_CLK), 1000,
++				 20000);
++	if (ret) {
++		dev_err(pci->dev, "Timeout waiting for PM_SEL_AUX_CLK ready\n");
++		goto err_phy_init;
++	}
++
++	/*
++	 * Configure ESWIN VID:DID for Root Port as the default values are
++	 * invalid.
++	 */
++	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, PCI_VENDOR_ID_ESWIN);
++	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, PCI_DEVICE_ID_ESWIN);
++
++	return 0;
++
++err_phy_init:
++	list_for_each_entry(port, &pcie->ports, list)
++		reset_control_assert(port->perst);
++err_perst:
++	reset_control_bulk_assert(EIC7700_NUM_RSTS, pcie->resets);
++
++	return ret;
++}
++
++static void eic7700_pcie_host_deinit(struct dw_pcie_rp *pp)
++{
++	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
++	struct eic7700_pcie *pcie = to_eic7700_pcie(pci);
++	struct eic7700_pcie_port *port;
++
++	list_for_each_entry(port, &pcie->ports, list)
++		reset_control_assert(port->perst);
++	reset_control_bulk_assert(EIC7700_NUM_RSTS, pcie->resets);
++	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
++}
++
++static const struct dw_pcie_host_ops eic7700_pcie_host_ops = {
++	.init = eic7700_pcie_host_init,
++	.deinit = eic7700_pcie_host_deinit,
++};
++
++static const struct dw_pcie_ops dw_pcie_ops = {
++	.start_link = eic7700_pcie_start_link,
++	.link_up = eic7700_pcie_link_up,
++};
++
++static int eic7700_pcie_probe(struct platform_device *pdev)
++{
++	const struct eic7700_pcie_data *data;
++	struct eic7700_pcie_port *port, *tmp;
++	struct device *dev = &pdev->dev;
++	struct eic7700_pcie *pcie;
++	struct dw_pcie *pci;
++	int ret, i;
++
++	data = of_device_get_match_data(dev);
++	if (!data)
++		return dev_err_probe(dev, -ENODATA, "OF data missing\n");
++
++	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
++	if (!pcie)
++		return -ENOMEM;
++
++	INIT_LIST_HEAD(&pcie->ports);
++
++	pci = &pcie->pci;
++	pci->dev = dev;
++	pci->ops = &dw_pcie_ops;
++	pci->pp.ops = &eic7700_pcie_host_ops;
++	pcie->data = data;
++	pci->no_pme_handshake = pcie->data->no_pme_handshake;
++
++	for (i = 0; i < EIC7700_NUM_RSTS; i++)
++		pcie->resets[i].id = eic7700_pcie_rsts[i];
++
++	ret = devm_reset_control_bulk_get_exclusive(dev, EIC7700_NUM_RSTS,
++						    pcie->resets);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to get resets\n");
++
++	ret = eic7700_pcie_parse_ports(pcie);
++	if (ret)
++		return dev_err_probe(dev, ret,
++				     "Failed to parse Root Port: %d\n", ret);
++
++	platform_set_drvdata(pdev, pcie);
++
++	pm_runtime_no_callbacks(dev);
++	devm_pm_runtime_enable(dev);
++	ret = pm_runtime_get_sync(dev);
++	if (ret < 0)
++		goto err_pm_runtime_put;
++
++	ret = dw_pcie_host_init(&pci->pp);
++	if (ret) {
++		dev_err(dev, "Failed to initialize host\n");
++		goto err_init;
++	}
++
++	return 0;
++
++err_init:
++	list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
++		list_del(&port->list);
++		reset_control_put(port->perst);
++	}
++err_pm_runtime_put:
++	pm_runtime_put(dev);
++
++	return ret;
++}
++
++static int eic7700_pcie_suspend_noirq(struct device *dev)
++{
++	struct eic7700_pcie *pcie = dev_get_drvdata(dev);
++
++	return dw_pcie_suspend_noirq(&pcie->pci);
++}
++
++static int eic7700_pcie_resume_noirq(struct device *dev)
++{
++	struct eic7700_pcie *pcie = dev_get_drvdata(dev);
++
++	return dw_pcie_resume_noirq(&pcie->pci);
++}
++
++static const struct dev_pm_ops eic7700_pcie_pm_ops = {
++	NOIRQ_SYSTEM_SLEEP_PM_OPS(eic7700_pcie_suspend_noirq,
++				  eic7700_pcie_resume_noirq)
++};
++
++static const struct eic7700_pcie_data eic7700_data = {
++	.no_pme_handshake = true,
++};
++
++static const struct of_device_id eic7700_pcie_of_match[] = {
++	{ .compatible = "eswin,eic7700-pcie", .data = &eic7700_data },
++	{},
++};
++
++static struct platform_driver eic7700_pcie_driver = {
++	.probe = eic7700_pcie_probe,
++	.driver = {
++		.name = "eic7700-pcie",
++		.of_match_table = eic7700_pcie_of_match,
++		.suppress_bind_attrs = true,
++		.pm = &eic7700_pcie_pm_ops,
++		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
++	},
++};
++builtin_platform_driver(eic7700_pcie_driver);
++
++MODULE_DESCRIPTION("Eswin EIC7700 PCIe host controller driver");
++MODULE_AUTHOR("Yu Ning <ningyu@eswincomputing.com>");
++MODULE_AUTHOR("Senchuan Zhang <zhangsenchuan@eswincomputing.com>");
++MODULE_AUTHOR("Yanghui Ou <ouyanghui@eswincomputing.com>");
++MODULE_LICENSE("GPL");
+-- 
+2.25.1
 
-> Unfortunately I think that doesn't work.
->
-> E.g. we have a fpdllink deser and the cdns csi2rx.
->
-> Deser's routing table (pad/stream):
->
-> 0/0 -> 4/15
-> 0/1 -> 4/33
->
-> So we have two streams coming into the deser's pad 0, with stream IDs 0
-> and 1. They are routed by the user to output pad 4, with stream IDs 15
-> and 33.
->
-> cdns csi2rx routing table:
->
-> 0/15 -> 1/0
-> 0/33 -> 1/1
->
-> So cdns csi2rx routes the streams through, as stream IDs 0 and 1 on the
-> output side.
->
-> With this patch, if the j2 csi2rx asks frame desc from cdns csi2rx, it
-> gets a frame desc with two streams, stream IDs 15 and 33.
-
-
-Thank you for pointing out, I will change the body of get_frame_desc() 
-in this subdev driver set the stream field of the fd to the sink_stream 
-of the corresponding route.
-
-
-Rishikesh
-
->
-> I made this series for the issue above, but it hasn't been merged:
->
-> https://lore.kernel.org/all/20250324-frame-desc-passthrough-v4-0-dbe2412297cc%40ideasonboard.com/
->
->   Tomi
->
->> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
->> Signed-off-by: Jai Luthra <j-luthra@ti.com>
->> Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->> Reviewed-by: Changhuang Liang <changhuang.liang@starfivetech.com>
->> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
->> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
->> ---
->>   drivers/media/platform/cadence/cdns-csi2rx.c | 24 ++++++++++++++++++++
->>   1 file changed, 24 insertions(+)
->>
->> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
->> index 34da81893308b..3688077fa8347 100644
->> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
->> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
->> @@ -229,6 +229,21 @@ static const struct csi2rx_fmt *csi2rx_get_fmt_by_code(u32 code)
->>   	return NULL;
->>   }
->>   
->> +static int csi2rx_get_frame_desc_from_source(struct csi2rx_priv *csi2rx,
->> +					     struct v4l2_mbus_frame_desc *fd)
->> +{
->> +	struct media_pad *remote_pad;
->> +
->> +	remote_pad = media_entity_remote_source_pad_unique(&csi2rx->subdev.entity);
->> +	if (!remote_pad) {
->> +		dev_err(csi2rx->dev, "No remote pad found for sink\n");
->> +		return -ENODEV;
->> +	}
->> +
->> +	return v4l2_subdev_call(csi2rx->source_subdev, pad, get_frame_desc,
->> +				remote_pad->index, fd);
->> +}
->> +
->>   static inline
->>   struct csi2rx_priv *v4l2_subdev_to_csi2rx(struct v4l2_subdev *subdev)
->>   {
->> @@ -611,12 +626,21 @@ int cdns_csi2rx_negotiate_ppc(struct v4l2_subdev *subdev, unsigned int pad,
->>   }
->>   EXPORT_SYMBOL_FOR_MODULES(cdns_csi2rx_negotiate_ppc, "j721e-csi2rx");
->>   
->> +static int csi2rx_get_frame_desc(struct v4l2_subdev *subdev, unsigned int pad,
->> +				 struct v4l2_mbus_frame_desc *fd)
->> +{
->> +	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
->> +
->> +	return csi2rx_get_frame_desc_from_source(csi2rx, fd);
->> +}
->> +
->>   static const struct v4l2_subdev_pad_ops csi2rx_pad_ops = {
->>   	.enum_mbus_code	= csi2rx_enum_mbus_code,
->>   	.get_fmt	= v4l2_subdev_get_fmt,
->>   	.set_fmt	= csi2rx_set_fmt,
->>   	.enable_streams         = csi2rx_enable_streams,
->>   	.disable_streams        = csi2rx_disable_streams,
->> +	.get_frame_desc	= csi2rx_get_frame_desc,
->>   };
->>   
->>   static const struct v4l2_subdev_core_ops csi2rx_core_ops = {
 
