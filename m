@@ -1,131 +1,109 @@
-Return-Path: <devicetree+bounces-243721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA330C9BA36
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 14:42:13 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A35BC9BA6C
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 14:45:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8F3673418F0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 13:42:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BBA294E3643
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 13:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71BA0314B94;
-	Tue,  2 Dec 2025 13:42:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Zbh2TrvK";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="tbGibNpJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3F2B318133;
+	Tue,  2 Dec 2025 13:45:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C392BE020
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 13:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36002280327
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 13:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764682930; cv=none; b=ezq6i3ccdVK58dpK0tNVAiPPcavqAX5KJEZ0JEIE5qV9vrRzPucmKdevIFAWG1GzdhlvhKXaopgP9NOdYtBTstKG4K9d8P1blpupUdvSRomxxLHi5iWD9caL8CC0Nsc90N8c0bIKSQnfMi/Ib2CN+Zo/Q9kdl6ABVzVvHEoz++M=
+	t=1764683151; cv=none; b=mhuKBefQpMb8wv/dyu/oHyDGsfSXnZuudijrQWiKJ62yhzvY5D5/Z7HJMqR7MwH4o6aV+TZG/RXR9N/acC4it/lIGmI8vcQ8QNYNw21xDh0mxYtKwlZTMEcGlR/GgZurB4HPAwJ4e+0rFWZooDkWb9kXkNrHaCHJE0D1ATBXz3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764682930; c=relaxed/simple;
-	bh=ka10s/m51A5sD5hXxZSkBvpUzXc7aNT8t9aCjRwuzIA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BUe4uJYuMSYG+Md9s5g8ykwtpDnIzpHxTtUB/ceYGrgvvXrrLNfR3Z2ME9VscGQx3vuG9yX3HbbDXIkjbKh2Ij0Lj05CuQp/cN0uH8rk2SMfsINU3d1rDcM9cgHR7huCSe1JWK81Bm9lraeUJq6pPYEnxxJYau6K2TVQGHztGRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Zbh2TrvK; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=tbGibNpJ; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dLMQ64hWpz9tBD;
-	Tue,  2 Dec 2025 14:42:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1764682926;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=I0SIJKX9tZQSfmZscwDLxEmvBbRFMw4s1nyXcFylYtY=;
-	b=Zbh2TrvKZ0UDXVv986Hs/XYg0Vo7XiszfkiBSyLU6Kmo2upVqHHc0e3WQcc+pJ1JaFJjdY
-	yIUvjwaDite8wifZfdPvFSLUEfmNQhajWt+SD/qz9u9L7EQkShNS/PvBCQm30la+4zceaF
-	f3nhyr/xe3ECYNyiG/2MkNy+TKz9djW3/uXddQomREVK8dR86LZHk5NDKDa2QDamJeQBXH
-	wpSJ65XKKkPaTbftV+xHm8PcxLYToJWOA4VeQWzzRupZEfTswW01gDqftnGohgTumFVVCT
-	TSevwZF0qJhVP4YAauLLOpAgqUVXT/8Z/O6pR/ipKqkRC7v+CdO+bzR4wjOn4w==
-From: Marek Vasut <marek.vasut@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1764682924;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=I0SIJKX9tZQSfmZscwDLxEmvBbRFMw4s1nyXcFylYtY=;
-	b=tbGibNpJxAY4qNsUW32sYPHZrLzYTky+M5WIPTmYLRqN1uTSonMf522c/6GC8Ej6wmcqzO
-	coebMplSN4Z4r1qOOz0d/9gzQhtRZ/LeyCs56Fl3aesQ4yghDsgota8EI421icAN2ENU3r
-	S4PlcCczqtxRJL+nRQ/r31WmVhY0c/YGbQ2LoD0dRSESseYPc5DmTa6hqrLcY9UQXDZPNL
-	mcV8WaOY+rVn2uo7QDEZsBHtH7cBXIxbTUgoxReELqg7viR/AAyUTXBz5B+4mrfA8OVeiV
-	zfR8aclx0D097W+oA3RXzN3IdfOd2M4SHoIe0a3lYTDiuozmtApt56mHJGleZg==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut@mailbox.org>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	kernel@dh-electronics.com
-Subject: [PATCH] arm64: dts: imx8mp: Fix LAN8740Ai PHY reference clock on DH electronics i.MX8M Plus DHCOM
-Date: Tue,  2 Dec 2025 14:41:51 +0100
-Message-ID: <20251202134200.8397-1-marek.vasut@mailbox.org>
+	s=arc-20240116; t=1764683151; c=relaxed/simple;
+	bh=r7NBeEMuLbT8jlDfBz3Tfe2l7yJ1hcITmL2i+MsedNk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ECXo/vrceDgy2oC1891hLwmY2PBYCDXK7S4kwyjj7c1wt54kGF5rRFPB4bxwUDYBAY7R3V0SaLrpKnmZdILq4IKCuRgCtcnNThIMjUCVfxbBYjBpT8lmA+hMr/b0XAYkyt/PfR9MRsMTzMsfc6ejRqfxs63D79QL8INtP5iSVDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <m.felsch@pengutronix.de>)
+	id 1vQQgZ-0006jO-Fr; Tue, 02 Dec 2025 14:44:55 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+Subject: [PATCH 0/2] i.MX93 phyBOARD-Segin DisplayKit AV-02 Support
+Date: Tue, 02 Dec 2025 14:44:52 +0100
+Message-Id: <20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-v1-0-9c14be6c7478@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 19aa33e691b1c0446b7
-X-MBO-RS-META: dkcxn7cuarhsocuktk5766e9tug3h93f
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFTtLmkC/x2N0QrCMAxFf2Xk2YCZc05/RXzI2mwLaFsaKRtj/
+ 27x5cCBw707mGQVg0ezQ5aipjFUoVMDbuEwC6qvDu25vVIFlh5pwG9M6lA/6/2CadnGyNmjyaw
+ BuWDNvFp684aO+uHGTM5NHdTRlGXS9X/4fB3HD48t566AAAAA
+X-Change-ID: 20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-c1687aa1ccf4
+To: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, andrej.picej@norik.com, 
+ primoz.fiser@norik.com, c.hemp@phytec.de, s.mueller-klieser@phytec.de, 
+ n.wesp@phytec.de, c.stoidner@phytec.de
+Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@pengutronix.de, 
+ Marco Felsch <m.felsch@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add missing 'clocks' property to LAN8740Ai PHY node, to allow the PHY driver
-to manage LAN8740Ai CLKIN reference clock supply. This fixes sporadic link
-bouncing caused by interruptions on the PHY reference clock, by letting the
-PHY driver manage the reference clock and assure there are no interruptions.
+Hi,
 
-This follows the matching PHY driver recommendation described in commit
-bedd8d78aba3 ("net: phy: smsc: LAN8710/20: add phy refclk in support")
+this small series add the support for the phyBOARD-Segin DisplayKit
+AV-02 evaluation kit. This patchset depends on the following patchsets:
 
-Fixes: 8d6712695bc8 ("arm64: dts: imx8mp: Add support for DH electronics i.MX8M Plus DHCOM and PDK2")
-Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+ - https://lore.kernel.org/linux-arm-kernel/20251202-v6-18-topic-imx93-blkctrl-v2-0-e73501034adc@pengutronix.de/
+ - https://lore.kernel.org/linux-arm-kernel/20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de/
+
+My test setup was:
+- phyCORE-i.MX93 +
+- phyBOARD-Segin + 
+- DisplayKit
+
+and I used 'modeset -r' to validate the display output.
+
+Regards,
+ Marco
+
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
-Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Andrej Picej (1):
+      arm64: dts: imx93-phyboard-segin: Add peb-av-02 overlay
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-index 68c2e0156a5c8..f8303b7e2bd22 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-@@ -113,6 +113,7 @@ mdio {
- 		ethphy0f: ethernet-phy@1 { /* SMSC LAN8740Ai */
- 			compatible = "ethernet-phy-id0007.c110",
- 				     "ethernet-phy-ieee802.3-c22";
-+			clocks = <&clk IMX8MP_CLK_ENET_QOS>;
- 			interrupt-parent = <&gpio3>;
- 			interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
- 			pinctrl-0 = <&pinctrl_ethphy0>;
+Marco Felsch (1):
+      clk: imx: fracn-gppll: Add 332.60 MHz Support
+
+ arch/arm64/boot/dts/freescale/Makefile             |   2 +
+ .../freescale/imx93-phyboard-segin-peb-av-02.dtso  | 135 +++++++++++++++++++++
+ drivers/clk/imx/clk-fracn-gppll.c                  |   1 +
+ 3 files changed, 138 insertions(+)
+---
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+change-id: 20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-c1687aa1ccf4
+
+Best regards,
 -- 
-2.51.0
+Marco Felsch <m.felsch@pengutronix.de>
 
 
