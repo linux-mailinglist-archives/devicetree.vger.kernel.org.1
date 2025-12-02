@@ -1,238 +1,98 @@
-Return-Path: <devicetree+bounces-243558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D0A3C99DCD
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 03:22:55 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24A42C99EB1
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 03:52:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 192FD3460C9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 02:22:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 10CCD4E2567
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 02:52:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9183247291;
-	Tue,  2 Dec 2025 02:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C7A9257848;
+	Tue,  2 Dec 2025 02:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kS/1vXcV"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="PZL4yxOA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BBB4261B9E
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 02:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7D321322F
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 02:52:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764642109; cv=none; b=qR59qzTR/PeFtKmRDhUiVrmyRJ650ft9AkSjsy1T3OZpCKT07XL8yVE11qnyz+5YWuBr7ScH33ocu9/XUrM5L4cZ08SvUka7DAtW9mTAXm6VarKrK3FgbeIbWmFiKeY1bWokh6ba+GkWEyku2hbPMaKwRsbALL4ZwHPQfrIzN58=
+	t=1764643973; cv=none; b=QlVoFVmihY3Ece98tl7WZxT7FlswHYQ0lKDBwIU+N6n/7yGzzQJr00ijAXI8BWyMkyCuLqrNsAEAJtkFMskNftacKuKIz8V5GFnVLF0zfcim65Bt/9xpuv95vDm7o+lgiyEq1SoMUAqw1fNywIskd1x6axno73BdbId1sbMYEnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764642109; c=relaxed/simple;
-	bh=27Dp9Eo/5bYs6ZpgMcoa3VFqU+ecGM/2yaho9ilRZUw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=H6aQf/55nXe+v5f5AWurzWj0t3JdKLwozghICnL/p3+bF46e6JDuDDI2UXqZWn28DclCGvCpBRsraeO41bPZNMYoJ4j4iqko2ywCrDextJMVllq1pVfy7A7/qXD/9bkY3R89toBp7EnqMx0ssmzqeyER6NdGWR4oWCofNtR5VG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kS/1vXcV; arc=none smtp.client-ip=209.85.160.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-3ece54945d9so1123733fac.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 18:21:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1764642106; x=1765246906; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CPykPTKA5daJRF8sWGIwc7I2B3AYq5LCnkOdVykOFbY=;
-        b=kS/1vXcVObHLAprxcrhpM6pgiVNaLZ4v+x48EikJ5qkBO6KB3uSIjD2KDSbaYHJUMl
-         aER9COUqk02Ee9ElgBjvzLnkU7ERyyCSCsM2cQDOYD4ZUJfdxF3vjWZmJm7ZY/ybBTaL
-         2qFb7IXzphZQK6+xoSXTS2L+3lKadj9NGAcmzSlkirL7nl5U8LA6yp00N3tbbwNprZ47
-         jH1CkUtckehx0qPrDl+VEttEru3dYXaOH9NKmE45/7SebRkA1PLLO4Fv0DLol0wit5ak
-         fMpLtnBhmYH+FRz9L4QtUb0g30IovEiGJHlrI9O7zrywu396z+50PDHEf4Youa+U0YOo
-         pqfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764642106; x=1765246906;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CPykPTKA5daJRF8sWGIwc7I2B3AYq5LCnkOdVykOFbY=;
-        b=InB5fAZekV4fW0T0Qx8o9cZh+r60uLsnxsLF4yTMg9TkN2YrvSUgnXHfWCZ99zNlAg
-         i4MA/WrnTEDU6QtNnXLPaj2/xqXh859hKCtOKy7NCzPz6nAmab/7U2ibff4Pl/Xqq5Ot
-         69MygwqJXt958Z36is6+d3Ku0cr75Sg/w/pxVl+qLr+P8RxdoJgTLm+zgQ/z6chW5HON
-         TvGOlS0eJ4hev/vjTb6usYTqiRK3btcqe5lQYURHxWX3O1mS1r78w3IoZ6+ilK2Ut8V2
-         3u90LwjGubJXIz9WxNPrzSaB5vNGuWXV9hoZusNeBcDTkxAoLDjhXEQRQ5P/hm8396Pk
-         7uxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU4M6pqFdKyc7mfu0mrmTliVFaEcAo7k3m/h38q+reBT7z10BXCYU3BPUOB0IWmNB+AFfhkcfJMFKiD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbON6b9r/jMrRgztmRTBPbT1R41+5vglXjOtqzZGc+p6bxdUxx
-	tGfbWGp93X26oWtSioKG/3xwdSupuJ7hOOvDbsNk4eTLPLjW3eivlDZRVixHXWzoY9g=
-X-Gm-Gg: ASbGncum57ymcgRdtI62sbxqPW0qdB+4mtrI7me9CI6et8Mn6NciAh+v8eXzDFs9QzU
-	SzZOiJptdJlgrc6kKbmJi5kygjS8Qu5RTa30ZyPysB9AdFtsTIIdYOCGzvED0L23wlK2aN/zIar
-	drGdtqxmgpEkkxCkoMagU1CdacRIP6wUhUPZwEggu6ni1dd23C/h/PtRRoLDYeX8VLbmis7mxoc
-	AiwvkhTEVJ/gvZfYG/vDYKplNn47E3fkZHsluSRWoV81wUrx+FE83gkwxJul3KGBb5b/Ft+YX+J
-	wOtKdZyNo9K7KdK8rSffgvlxg9PSMQeZqek5uI7vtkvamZFaE4Srk0EEnyvWnyYxygU3w/WYmPo
-	hg8gooxLesrsRz4Xk/2o4g+1cwsZN7jtstLqKLApGnONGYUl1Te7S7yTzTG/FIjo/klDoccn48Y
-	XHkAdkW5yP2TZNOg==
-X-Google-Smtp-Source: AGHT+IFvD1zTn1ErmOjBKVWjKkG81o3I0u8+p2buGgYwdnhsp0hpGivL1sZfR516DJKRAAK4GAzmYA==
-X-Received: by 2002:a05:6871:4b0c:b0:3e0:b4ef:8af with SMTP id 586e51a60fabf-3ecbe17be40mr21124177fac.2.1764642106231;
-        Mon, 01 Dec 2025 18:21:46 -0800 (PST)
-Received: from [127.0.1.1] ([2600:8803:e7e4:500:b67b:16c:f7ae:4908])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3f0dca0475esm6651747fac.1.2025.12.01.18.21.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Dec 2025 18:21:45 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 01 Dec 2025 20:20:45 -0600
-Subject: [PATCH v3 7/7] dt-bindings: iio: adc: adi,ad4030: add data-lanes
- property
+	s=arc-20240116; t=1764643973; c=relaxed/simple;
+	bh=UamFA+0PqzOcf5Yr33ZU/28rTtULvRklTxT6YMNEWrI=;
+	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
+	 In-Reply-To:References; b=K9qf93g4lq12eYBttwytaU6YPuIUO7dLfI165meJLtToZM+xJtIaV3eoY52/DvEb95TxMl1atwLzPy1YleFJNts77ttUT4htmpTj/l20X2Ap4PHbZ/YBRaAPCkYN2zRiGlDJ7xaGTx8FBqKKxz9aW2YupQKRGiZYJuI+CyBwBH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=PZL4yxOA; arc=none smtp.client-ip=95.215.58.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1764643959;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UamFA+0PqzOcf5Yr33ZU/28rTtULvRklTxT6YMNEWrI=;
+	b=PZL4yxOAplES6oWC8H5/NfbpxBuQXvSjGzLxJ43I3HGI/tUv+tOtPNbEGhQDixMxOGL7gf
+	EUKXhVG5nKi/qf1vx7pkUHvNGBG49QRbUuGZOSANA/C+m0ip27NzthuSpouWs6FurcPX5b
+	DiIlb64OWVxsLNo5lwrRQe/lTMf5KPfUWEF1p24vDQaLHlu3GNH2KA/xPmO91iKYMcRVos
+	EMPk9lKYXOpyH9X47gIw0oX+yhwFe6oMnEXAnMw2nem0RJ3TjGAXpQX+gti8Jn7Hhi/Nf4
+	L+cM0EL2F8QoCfCLt9GXdJnDsmz7yBlFXmjhr6/f3isU7WRGzHmFJ5NZbXapWQ==
+Date: Tue, 02 Dec 2025 02:52:35 +0000
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251201-spi-add-multi-bus-support-v3-7-34e05791de83@baylibre.com>
-References: <20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com>
-In-Reply-To: <20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Marcelo Schmitt <marcelo.schmitt@analog.com>, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>
-Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3601; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=27Dp9Eo/5bYs6ZpgMcoa3VFqU+ecGM/2yaho9ilRZUw=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpLk0q1qmirQp45GTsbp3wnc6b4EfeWPDOtwrdD
- EyCmQTEpruJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaS5NKgAKCRDCzCAB/wGP
- wG22B/9ckntDaW+bEuGUVG7E647gXFThMKkJo6KE6i+MjjO4nmRkddLZQJX7lBhb7vTmnmto7Hx
- m6DB2P+9N47QXbEHGXNri+mdCQR6VCEu0vqfedEwsH/CmuYy0LoGdGg2X0Z7Uf4D8kiuxMuKfOy
- ri0/Cs3EVX9k3E545g96486EQ7X2f9sdOXUV49HzvHcMnL5tv/J4lV3fb14BNdlCQHG4RporknU
- u8aOSuGiAiORe8q9MMmH8IpJeCgOTxJGT087BunIu6PAfAvy/T5w20enWDXj+G/yB1GpyYbP7VV
- ujzxvZ29VtZVtSHAxeXZ3/o+3gZE7qlADJeNbQz7WRda9nCL
-X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
- fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Paul Sajna" <sajattack@postmarketos.org>
+Message-ID: <6c96f1ea3e156db82435909992995b424817bc37@postmarketos.org>
+TLS-Required: No
+Subject: Re: [PATCH v3 11/11] arm64: dts: qcom: sdm845-lg-common: Change ipa
+ gsi-loader to 'self'
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "David Heidelberg" <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
+ <system64fumo@protonmail.com>, "Christopher Brown"
+ <crispybrown@gmail.com>
+In-Reply-To: <0d98d501-85cd-4647-8d1f-126242c220a5@oss.qualcomm.com>
+References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
+ <20250928-judyln-dts-v3-11-b14cf9e9a928@postmarketos.org>
+ <68a07e54-9f0e-4938-803b-64d6f0c31e5e@oss.qualcomm.com>
+ <c95cc75a560d5773c298537f6078949d32d22007@postmarketos.org>
+ <0d98d501-85cd-4647-8d1f-126242c220a5@oss.qualcomm.com>
+X-Migadu-Flow: FLOW_OUT
 
-Add data-lanes property to specify the number of data lanes used on the
-ad463x chips that support reading two samples at the same time using
-two data lanes with a capable SPI controller.
+December 1, 2025 at 12:54 PM, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm=
+.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%20%=
+3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote:
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
-v3 changes: new patch
+> IDK if it's super related, but some phones have additional mechanisms
+> for detecting (particulary the secondary) SIM - any chance yours is a
+> dual-SIM and you can try using the other slot?
+>=20
+>=20Konrad
+>
 
-I added this one to give a real-world use case where spi-rx-bus-width
-was not sufficient to fully describe the hardware configuration.
+No such luck.=20
 
-spi-rx-bus-width = <4>; alone could be be interpreted as either:
+I=20think the device might have a second sim slot shared with the sdcard =
+(if I put it sideways in the sdcard tray, there seems to be a bit of a gr=
+oove there).
 
-+--------------+    +----------+
-| SPI          |    | AD4630   |
-| Controller   |    | ADC      |
-|              |    |          |
-|        SDIA0 |<---| SDOA0    |
-|        SDIA1 |<---| SDOA1    |
-|        SDIA2 |<---| SDOA2    |
-|        SDIA3 |<---| SDOA3    |
-|              |    |          |
-|        SDIB0 |x   | SDOB0    |
-|        SDIB1 |x   | SDOB1    |
-|        SDIB2 |x   | SDOB2    |
-|        SDIB3 |x   | SDOB3    |
-|              |    |          |
-+--------------+     +---------+
+But the sim is detected by qmicli in the main slot I was using before, Mo=
+demManager just can't tell if it's locked or not.
 
-or
-
-+--------------+    +----------+
-| SPI          |    | AD4630   |
-| Controller   |    | ADC      |
-|              |    |          |
-|        SDIA0 |<---| SDOA0    |
-|        SDIA1 |<---| SDOA1    |
-|        SDIA2 |x   | SDOA2    |
-|        SDIA3 |x   | SDOA3    |
-|              |    |          |
-|        SDIB0 |<---| SDOB0    |
-|        SDIB1 |<---| SDOB1    |
-|        SDIB2 |x   | SDOB2    |
-|        SDIB3 |x   | SDOB3    |
-|              |    |          |
-+--------------+     +---------+
-
-Now, with data-lanes having a default value of [0] (inherited from
-spi-peripheral-props.yaml), specifying:
-
-    spi-rx-bus-width = <4>;
-
-is unambiguously the first case and the example given in the binding
-documentation is the second case:
-
-    spi-rx-bus-width = <2>;
-    data-lanes = <0>, <1>;
----
- .../devicetree/bindings/iio/adc/adi,ad4030.yaml    | 36 ++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-index 54e7349317b77f032ecafde0102bf3a09f140f03..315ebcfbfa28888a4518073c1b286f0993f83673 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-@@ -39,6 +39,10 @@ properties:
-   spi-rx-bus-width:
-     enum: [1, 2, 4]
- 
-+  data-lanes:
-+    minItems: 1
-+    maxItems: 2
-+
-   vdd-5v-supply: true
-   vdd-1v8-supply: true
-   vio-supply: true
-@@ -88,6 +92,17 @@ oneOf:
- 
- unevaluatedProperties: false
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - adi,ad4030-24
-+            - adi,ad4032-24
-+    then:
-+      properties:
-+        data-lanes: false
-+
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-@@ -108,3 +123,24 @@ examples:
-             reset-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
-         };
-     };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+            compatible = "adi,ad4630-24";
-+            reg = <0>;
-+            spi-max-frequency = <80000000>;
-+            spi-rx-bus-width = <2>;
-+            data-lanes = <0>, <1>;
-+            vdd-5v-supply = <&supply_5V>;
-+            vdd-1v8-supply = <&supply_1_8V>;
-+            vio-supply = <&supply_1_8V>;
-+            ref-supply = <&supply_5V>;
-+            cnv-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
-+        };
-+    };
-
--- 
-2.43.0
-
+The SIM is not detected at all in the sideways sdcard slot.
 
