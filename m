@@ -1,171 +1,113 @@
-Return-Path: <devicetree+bounces-243733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D52B4C9BCDC
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 15:36:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9316AC9BD67
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 15:46:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E7713A7C66
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 14:36:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51BDD3A7B08
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 14:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77961219319;
-	Tue,  2 Dec 2025 14:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECFD8158DA3;
+	Tue,  2 Dec 2025 14:46:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="jxogwyTK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com [157.90.84.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13AE5202C48
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 14:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F1E12AE70;
+	Tue,  2 Dec 2025 14:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=157.90.84.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764686210; cv=none; b=qPtjwJJKHIKeXgjCpwryHhq9eLct96rAm5OuyWEvCGajWmPhKMYPTJy7Gg5e9O18Xv3I+HQFAGA5hsVuchXZPeTHQiczM/YyhYpUiEnEPkf4D0dDi/yi6gvQPh3M8ciQ8MIrCMfNJGJ2wabxkP8CagHlJxP/pR5yPkvE/neHY5M=
+	t=1764686770; cv=none; b=mTrFK2mR1jQ4mMKwLEWIMN0T4akIu9fECdL+pOOlcEzhLZtGEz35U3uxjfSRBI92HTPUEJ29XdVp8436X9BJFguq3NaKPPCRJB628CZaa4MfnfLGEwLp4C6fVl6Fl5tKMv1gi+RJrNxe9aWAgDIHYTstUhus26bF1h9UakS1pPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764686210; c=relaxed/simple;
-	bh=+EeVH2acrEQebb7pmkKa4F50vfoIxeK7NnaPgJHaqgs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=txOZ3TyuUWnF9jU/qNGkk3Nlg1HNzE0/Nj7Modk8ZMG0fczLdMHEEYWSyt0WgpV9JQSevBzf+8uVohIBgPNxjTQyo4GlLpxVZQ+Ig+bREyRdbfjWLk4bPUifskdpXnEm0m7AJ5BUVHIi0Rm01M6TAKAJH9KP/S0TyduZsLRRDhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1vQRUa-0004ex-Pi; Tue, 02 Dec 2025 15:36:36 +0100
-Message-ID: <2dc6c675-9c69-40a1-b2ed-ff1d22157228@pengutronix.de>
-Date: Tue, 2 Dec 2025 15:36:33 +0100
+	s=arc-20240116; t=1764686770; c=relaxed/simple;
+	bh=e99jIHZIJKr3uBuAwNspgstDVg2xBcPJG4DC41GXKZA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CDaQjD+6GDkuqn64Yeeg3qtzLT9kD7z9Bd4UAH0czxsXRGzIkxCAtdN6pU8A17oWDJHp2h4TVCUrmV02l0NM2gdAKCDbWaV9Lo2BY/hE76LxTnAZo3Yvw6mAU5yqSZJjHbIM+W9015DUHkOCXexk4PtsRU2RtEoObCCO//0Cn14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com; spf=pass smtp.mailfrom=tuxedocomputers.com; dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b=jxogwyTK; arc=none smtp.client-ip=157.90.84.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxedocomputers.com
+Received: from ggottleuber-tuxedo.gaeste.augsburg.tuxedo.de (business-24-134-207-61.pool2.vodafone-ip.de [24.134.207.61])
+	(Authenticated sender: g.gottleuber@tuxedocomputers.com)
+	by mail.tuxedocomputers.com (Postfix) with ESMTPA id 034802FC0052;
+	Tue,  2 Dec 2025 15:38:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+	s=default; t=1764686316;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=vnAF2uPKeHmjxWZks1/IPFCUtPM6e74TqlFq/UXbEdA=;
+	b=jxogwyTKWPZwPxdLM9XmS93ReiDARX+r8eHq6p0DkCEDiSJbw9X7D+KXKLqQ95heIbhCnp
+	eI5mCUMF5I5t3e9c+c8MN/rMut7/Jl00Nshq5Th0YI+QMqipomuZAOF4yErZUHNe6cqtD/
+	Zg3LCocl0lZnbXitgrRVLzqYY7KKTPs=
+Authentication-Results: mail.tuxedocomputers.com;
+	auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com smtp.mailfrom=ggo@tuxedocomputers.com
+From: Georg Gottleuber <ggo@tuxedocomputers.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ettore Chimenti <ettore.chimenti@linaro.org>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	stefan.schmidt@linaro.org,
+	stephan.gerhold@linaro.org,
+	wse@tuxedocomputers.com,
+	cs@tuxedo.de,
+	Georg Gottleuber <ggo@tuxedocomputers.com>
+Subject: [PATCH 0/4] Add Medion SPRCHRGD 14 S1 (X1E78100)
+Date: Tue,  2 Dec 2025 15:37:50 +0100
+Message-ID: <20251202143757.69817-1-ggo@tuxedocomputers.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/16] media: rockchip: rga: align stride to 16 bytes
-To: Nicolas Dufresne <nicolas@ndufresne.ca>,
- Jacob Chen <jacob-chen@iotwrt.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, kernel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-References: <20251007-spu-rga3-v1-0-36ad85570402@pengutronix.de>
- <20251007-spu-rga3-v1-3-36ad85570402@pengutronix.de>
- <db7030790063d0ebe6d254c7053e758184b9d7cc.camel@ndufresne.ca>
-Content-Language: en-US
-From: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-In-Reply-To: <db7030790063d0ebe6d254c7053e758184b9d7cc.camel@ndufresne.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Nicolas,
+Initial support for Medion SPRCHRGD 14 S1 notebook, which is based on
+Qualcomm Snapdragon X Elite SoC (X1E78100).
 
-On 10/7/25 8:19 PM, Nicolas Dufresne wrote:
-> Hi,
->
->
-> Le mardi 07 octobre 2025 à 10:31 +0200, Sven Püschel a écrit :
->> Align the stride to a multiple of 16 according to the RGA3 requirements
->> mentioned in the datasheet. This also ensures that the stride of the RGA2
->> is aligned to 4 bytes, as it needs to divide the value by 4 (one word)
->> before storing it in the register.
->>
->> Increasing the stride for the alignment also requires to increase the
->> sizeimage value. This is usually handled by v4l2_fill_pixfmt_mp, but
->> it doesn't allow to set a stride alignment. Therefore use the generated
->> values to calculate the total number of lines to properly update the
->> sizeimage value after the bytesperline has been aligned.
->>
->> Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
->> ---
->>   drivers/media/platform/rockchip/rga/rga.c | 21 +++++++++++++++++++++
->>   1 file changed, 21 insertions(+)
->>
->> diff --git a/drivers/media/platform/rockchip/rga/rga.c
->> b/drivers/media/platform/rockchip/rga/rga.c
->> index
->> 6438119a6c7aeff1e89e7aa95dcd5d2921fefa08..3cb7ce470c47e39d694e8176875a75fad271
->> 7f96 100644
->> --- a/drivers/media/platform/rockchip/rga/rga.c
->> +++ b/drivers/media/platform/rockchip/rga/rga.c
->> @@ -459,6 +459,25 @@ static int vidioc_enum_fmt(struct file *file, void *priv,
->> struct v4l2_fmtdesc *f
->>   	return 0;
->>   }
->>   
->> +static void align_pixfmt(struct v4l2_pix_format_mplane *pix_fmt)
->> +{
->> +	int lines;
->> +	struct v4l2_plane_pix_format *fmt;
->> +
->> +	/*
->> +	 * Align stride to 16 for the RGA3 (based on the datasheet)
->> +	 * To not dismiss the v4l2_fill_pixfmt_mp helper
->> +	 * (and manually write it again), we're approximating the new
->> sizeimage
->> +	 */
->> +	for (fmt = pix_fmt->plane_fmt;
->> +	     fmt < pix_fmt->plane_fmt + pix_fmt->num_planes;
->> +	     fmt++) {
->> +		lines = DIV_ROUND_UP(fmt->sizeimage, fmt->bytesperline);
->> +		fmt->bytesperline = (fmt->bytesperline + 0xf) & ~0xf;
->> +		fmt->sizeimage = fmt->bytesperline * lines;
-> Instead of open coding this, describe this with struct v4l2_frmsize_stepwise and
-> then use v4l2_apply_frmsize_constraints().
-Looking into v4l2_frmsize_stepwise, it only applies to the width/height 
-values, whereas I'm interested to control the stride 
-byte-alignment/stepping (allowing free range widths/heights).
+These patches are based on the patches for the TUXEDO Elite 14 Gen1
+notebook and have almost the same code [1]. I only did a rebase on
+linux-next/master and replaced all vendor stings.
 
-Do you intent that I (mis)use it like this: 
-v4l2_apply_frmsize_constraints(&fmt->bytesperline, &lines, &constraints)  ?
+The patches for asl-tek vendor prefix have already been accepted [2].
+ALSA UCM and Audioreach topology patches are available at [3] and [4].
+The fingerprint reader requires USB IDs to be patched into libfprint.
+WiFi requires a firmware patch [5].
 
-This only replaces one of the three lines in the for loop (where i 
-manually do the alignment with & ~0xf) and would also look odd, as i use 
-a value in bytes as a width parameter (expected to be in pixels).
+[1]: https://lore.kernel.org/lkml/20251121142623.251118-1-ggo@tuxedocomputers.com/
+[2]: https://lore.kernel.org/lkml/176400350522.514667.5379863973279531790.b4-ty@linaro.org/
+[3]: https://github.com/tuxedo-ggo/alsa-ucm-conf/tree/medion-sprchrgd-dp
+[4]: https://github.com/tuxedo-ggo/audioreach-topology/tree/medion-display-port
+[5]: https://lore.kernel.org/linux-wireless/59ed6306-28f8-478e-90fe-4a1b73ae3051@tuxedocomputers.com/
 
-Technically the core problem is that the v4l2_fill_pixfmt_mp helper 
-doesn't allow to specify a stride byte alignment and just aligns the 
-stride based on the format requirements. Therefore I think that maybe 
-creating a new v4l2_fill_pixfmt_mp_aligned helper would probably be the 
-better solution to get the correct bytesperline value right from the 
-start instead of adjusting it afterwards.
+Signed-off-by: Georg Gottleuber <ggo@tuxedocomputers.com>
 
-Sincerely
-     Sven
->
-> Nicolas
->
->> +	}
->> +}
->> +
->>   static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
->>   {
->>   	struct v4l2_pix_format_mplane *pix_fmt = &f->fmt.pix_mp;
->> @@ -474,6 +493,7 @@ static int vidioc_g_fmt(struct file *file, void *priv,
->> struct v4l2_format *f)
->>   		return PTR_ERR(frm);
->>   
->>   	v4l2_fill_pixfmt_mp(pix_fmt, frm->fmt->fourcc, frm->width, frm-
->>> height);
->> +	align_pixfmt(pix_fmt);
->>   
->>   	pix_fmt->field = V4L2_FIELD_NONE;
->>   	pix_fmt->colorspace = frm->colorspace;
->> @@ -496,6 +516,7 @@ static int vidioc_try_fmt(struct file *file, void *priv,
->> struct v4l2_format *f)
->>   				(u32)MIN_HEIGHT, (u32)MAX_HEIGHT);
->>   
->>   	v4l2_fill_pixfmt_mp(pix_fmt, fmt->fourcc, pix_fmt->width, pix_fmt-
->>> height);
->> +	align_pixfmt(pix_fmt);
->>   	pix_fmt->field = V4L2_FIELD_NONE;
->>   
->>   	return 0;
+Georg Gottleuber (4):
+  dt-bindings: vendor-prefixes: Add Medion AG
+  dt-bindings: arm: qcom: Add Medion device
+  arm64: dts: qcom: Add dts for Medion SPRCHRGD 14 S1
+  firmware: qcom: scm: QSEECOM on Medion SPRCHRGD 14 S1
+
+ .../devicetree/bindings/arm/qcom.yaml         |    6 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ arch/arm64/boot/dts/qcom/Makefile             |    2 +
+ .../qcom/x1e80100-medion-sprchrgd-14-s1.dts   | 1520 +++++++++++++++++
+ drivers/firmware/qcom/qcom_scm.c              |    1 +
+ 5 files changed, 1531 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts
+
+-- 
+2.43.0
+
 
