@@ -1,237 +1,192 @@
-Return-Path: <devicetree+bounces-243662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28479C9B0AE
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 11:14:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D54EC9B0B7
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 11:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9394A3A6152
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 10:13:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FDBD3A5982
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 10:14:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13F1330F80F;
-	Tue,  2 Dec 2025 10:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 385ED30CDBE;
+	Tue,  2 Dec 2025 10:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="T7FBKA6m";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="V2odpmc4"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="kZEmF1sq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1D530F819
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 10:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0C42F617B;
+	Tue,  2 Dec 2025 10:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764670407; cv=none; b=Ctl2wMWPQBFiekqvSRafwr7GPP0/TPw4OxFKG9hJMcUeGbhYohUcpfbdFLwTW66+udnIoD5cqmrYHnLPncNVG0dIZ0i5laX90LhELfg+CCWKfgS9E86WmKFwNJENYYGOkKXTSIt6iWhHtHRNdBpO6cMxxzzoIH9TGTAXswV7/50=
+	t=1764670443; cv=none; b=Mf2HIWVKihLeHqnVaTFH4JjM6YtphCFwhg/vllSdVrEgdFBOf5FvAEepuEMZT0QJ2md+AuObQto7weXurzqL2h023Op2hpqLCMQiiud5WQsnkdW30FZdH9ALrrnE+W1pOdtL4xJtdybhz+Ci5s3onN2OYHy+ymDRNEr7X02b9Uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764670407; c=relaxed/simple;
-	bh=jkD0PgX4AYLD/tWeanomvQ7p36iUYtXramiDJGNxlqY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fp601nfl/QWNQwx+hgGFkRiy81FmnuA3VXuDxSvOFcczyqFFgIl67by7zO5drpoHCWSzK78Yz+y4VX1T+qr+/+hS/grje2iyK6wJgLP4aKJsJVHdhN/Z/7tWdDC+FXuh1CUf/vLKlSZajYdqUt4YfPwJ4KYIZT+1tTEejO4196E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=T7FBKA6m; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=V2odpmc4; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B27NAEg2584140
-	for <devicetree@vger.kernel.org>; Tue, 2 Dec 2025 10:13:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LsmArkF89BOUHhGXQUlWFZF2aiQoOW1ZrRrGna7xdxg=; b=T7FBKA6m/ge7cXxt
-	AXpuCZXKHfSJS4y+bY0aaVnQr4Fgd3vhmQcJz1p/CmJpjFtM8Obz7+j7Rgw9zI26
-	DX5mhc5PDqf4bJxyKhtCxk7ToPh/sEND4h6Jt48sjxdEbBDxtcYBldwzm7Cu+Zwe
-	w1gE5HFrUT/YPw/UCzOANxGS07yRASCudBSnjWsCFtpIFkFz/nQjR4wZI8bPJKKB
-	K97Yeq5U9AJosGbQqGArzbtjLYi4ijvYPLyoDHj5TCeD+nEDYkHUSfLhvEMzSfyn
-	w/9/d/Dxi42kzCnJLvYD2OuIofHA1ImuyiE4X6TFCJdFG9GodeE34jfnGSsbj7qj
-	1GkM7A==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4asup3ghwb-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 10:13:24 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7a998ab7f87so6742574b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 02:13:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764670404; x=1765275204; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LsmArkF89BOUHhGXQUlWFZF2aiQoOW1ZrRrGna7xdxg=;
-        b=V2odpmc4ypMEQtQyAR1x303PwKwZwzY0Jj2E7/YyeutsNyUfAVGGLds9uZmSwCq4eC
-         jrwqnS6Kxmha96p8N+VU0/C2YzynLu94czRigHOPXqDiNb2bnKyp1Ba52EUb9UBQMR4K
-         jNlS65+kk4KAtdLuE3RWauQHtWvfH5aonXsSWHjIs/1ZDLhmj3VVpoclECTEFlUDEnMT
-         5+C/OULPHtfaCQS61QrK2vv/XqhkdlpY4fy7nw4URXQS1Acp+gL8kd3/L3yMLtJz63b3
-         q8XC72EAXLPEI7gq30mp6Vx03Eh9fcw9FGOwFXKuYeUMxGz/VAngv6egCf6gSR3uJdzE
-         6Nhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764670404; x=1765275204;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LsmArkF89BOUHhGXQUlWFZF2aiQoOW1ZrRrGna7xdxg=;
-        b=FBEIJ1ca3VJoXG3O5SEGeWqphR+wyffCiL6LenxUrHC5eAzdomRMmvGIqOyO0nSAQM
-         4Ej79PvEDEjVBuy2Th0OVHGZOqltibQecnnXfnh0H0wDn8tm03ctrs5qxlU/OW1CJOUq
-         rBGNs0E7U2ukNHxJtJwNnbENnKzANr7v0Z32qsAKJIYKM9aLlVZXsM4TfVQ0X9GiK8d2
-         OIIR4+gDruTNKt3S78ODziNlONEEaI/Br+1t05F7XGJuWzokI8q0NZIwOlkr+UuxRSZt
-         b2VRRxU7dwkUH43RhqkbE8iXQB2WfaXh5stwc1GO9f57WU2Vfvv7PKRYIm0f+GCxLVYE
-         E28g==
-X-Forwarded-Encrypted: i=1; AJvYcCUYVAtWrVrDSTsTeTwqKoY8RhAnCk6e7b9o5kZlkTY0bK/YkiKg2xdrFG6X28Klg9zGLgkidUa245f7@vger.kernel.org
-X-Gm-Message-State: AOJu0YziCqIbQP22Nws9az6V+FjglKy8vGVOfATR9/NPkZgaPhjxrHVs
-	7Lvvcw6HZuDcqgiiy/meCcRnkFcp9WQgC5K3wdxOD847tFnuceLjFXH2ZWoU5eSjeEI9cKySJhP
-	kpd+IyyfOkr1ydsLUasWNmkFCSBRWsd0QV6/pFP1//LZAgPWbe8sU6yEjdOsQOCjP
-X-Gm-Gg: ASbGncuZS79bEzQ8o7cMUaAAzHklfxeS6gsP3EIPb50oOOXeT9eSh817q0TYnP+cJ3j
-	7J4PtSSKkWYnVuUXfCaMbNcPGHxmt+DfmC59OaouDmsez59SLIlOW2sly1twd96wjASatEeNVOt
-	d+cUCZ+nNQCahZYcycx3UDpE4eKCaPhR6Ga7ASFGTnu4u1uURhKkNre+UkXLGW81p+rWmqY/MzW
-	N8klzJ0u1EOEwfaHtcI2bJ9/72/11dk+u6cj0Xgva5opPToKeCNubJeRvXl6lHGenYTCRcALohl
-	rXesjX2Z0jFUyJ61XfaBIQDFHxkASdUVxSv6SJEUieA+cSExzdGs9MD2zgALW0iCAlNClyYxdp9
-	ob7AjT9KPn39T5cMNhlzoyG5x2mGI7rMHLtCmDuGDoA==
-X-Received: by 2002:a05:6a00:17a7:b0:7b8:383d:870e with SMTP id d2e1a72fcca58-7c58c2ab7b5mr43279797b3a.2.1764670403819;
-        Tue, 02 Dec 2025 02:13:23 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IESsZ966I0XhgbDr2ekmgjrYiAu9aQpL3u5Xnmdj7BMfBxv2ve0RBT+vHWnMSj5FtqfLf96iA==
-X-Received: by 2002:a05:6a00:17a7:b0:7b8:383d:870e with SMTP id d2e1a72fcca58-7c58c2ab7b5mr43279759b3a.2.1764670403377;
-        Tue, 02 Dec 2025 02:13:23 -0800 (PST)
-Received: from [10.206.101.67] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d15fc08bd1sm16402354b3a.63.2025.12.02.02.13.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Dec 2025 02:13:22 -0800 (PST)
-Message-ID: <623225c2-166a-49a1-9856-d02ed55f1e47@oss.qualcomm.com>
-Date: Tue, 2 Dec 2025 15:43:17 +0530
+	s=arc-20240116; t=1764670443; c=relaxed/simple;
+	bh=NGtXY0pLKfo2qmBrjmxACeURTMcfguyBgNv/s9cUzVg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pL1yJ/WdXHAaypyIc7W5D7BovLX172G9sld8ixRDNDdlIoSHQPjWlbhExjP5VdFocMsvgvF7tn1i4RZ3wQlowl4tmGkbmTVvDDtzIozb/aP5GitlOM7/SXNn8LcuRJuD2qxa9FCj9oIkm9CK+jGrnjDLXZ5nwCfgznxptiTUrpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=kZEmF1sq; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Mqa67RIrhD++z/gRzGnk44jGH9wmQOcesJy5IsuIKGU=; b=kZEmF1sq3E9HC4+vBNPOTSN88u
+	f83/xOCX3XVPKccw2AzuEdtZv0SoM7xbbQrNJY+l5H5Z+X1yjofO96Q0NLMmw83h2lG6gY9DY5tYf
+	fGiQ14v7NykKRV+EvREGFlSFen1b8grdS/8OqYAxkdPxauUjw3oVD7o9Yz/IWFabIaTRBvc550wxp
+	RtCQnRKbW4+IvWrSJis1On/uKEtIPjyCplSVF7MxuCxVbM/sEzy/eIr5oabElq6yCTBVCdM5pk6ZO
+	9kjMd+ll+g6iCICBU0vT5eC7W2X5T9+IdflgT5kK04Pqi201q975GCvUkcPuVKoXmlqIvITO4WExY
+	7d0DUZ2A==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34014)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vQNOP-000000001Ym-20VK;
+	Tue, 02 Dec 2025 10:13:57 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vQNON-000000007Mw-3ir1;
+	Tue, 02 Dec 2025 10:13:55 +0000
+Date: Tue, 2 Dec 2025 10:13:55 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Doug Anderson <dianders@chromium.org>
+Cc: devicetree-spec@vger.kernel.org, boot-architecture@lists.linaro.org,
+	Chen-Yu Tsai <wenst@chromium.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	LKML <linux-kernel@vger.kernel.org>,
+	Linux ARM <linux-arm-kernel@lists.infradead.org>,
+	William McVicker <willmcvicker@google.com>,
+	Julius Werner <jwerner@chromium.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Subject: Re: Proposal: Officially allow "incomplete" trees as a base
+Message-ID: <aS674_yXxYwJzHX9@shell.armlinux.org.uk>
+References: <CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com>
+ <CAD=FV=UbejKdD2q2Z3RuYH0Ooc6XRb0oynchDsqnq7GzM6ah0w@mail.gmail.com>
+ <aS3eXBDtaoNLfxZy@shell.armlinux.org.uk>
+ <CAD=FV=WBbqSDghm+o2ZVa4-AbL4aggFQO0xdtmZNrYOQRjF5Vw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
- SoCs running Linux host at EL2
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Bryan O'Donoghue <bod@kernel.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
- <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
- <Ux4KioDAyhqgZYleT-eeeFKzuT_qadCIpP3RgyB40apZPX4I9_JwcfY9mebop4gmFcyh4LPw0KQvFzL4zzysJQ==@protonmail.internalid>
- <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
- <9dfe5343-824d-42c2-aab8-8389602601e9@kernel.org>
- <20251202083650.luk2jpcquq2pcf2r@hu-mojha-hyd.qualcomm.com>
-Content-Language: en-US
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <20251202083650.luk2jpcquq2pcf2r@hu-mojha-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=MaZhep/f c=1 sm=1 tr=0 ts=692ebbc4 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
- a=EUspDBNiAAAA:8 a=Ajh8_egcEEMJNl95zMkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=2VI0MkxyNR6bbpdq8BZq:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAyMDA4MSBTYWx0ZWRfXycEbeSap/1Xn
- ZoRvYHMQzdqNGdh1na+BsFOvdk0RLivhF/9cQMxhcLeSqursU0z+KFLOIjqIky1Tde9GvGeXIg+
- amVrpv24v+RXUso36IsBuvTwFpTCz4plIu2ugbuBbsIFzkcxA/QH9/RWtrdY9Byfoh2WUQLMP41
- L+v9AS8nP0Fm+OfNAdFKl83lP2SbHSUAzGKg7YSsqmdAaZwWLlB1T2MQijarTvHcQTA4A5TifN4
- FHdyLOlCcBitofI+h/5daZG5LGfDME21tHLRP9GULlU0RgcQP8Wwa6vBYREJuQZohGA2we79JCl
- xOoaJR5Pb9qCpnqBp2iGf0CUDwFDxsI0EyH/zkIYYhqqX+HpExJxCI72JiyZEPnWn72FYbLp+kS
- A14ZIw9/vP5WNTsjPFa+TRMR9/PSHg==
-X-Proofpoint-GUID: iJr-fyZFX3jgdO7yOmTQUJUf6wBDLWxJ
-X-Proofpoint-ORIG-GUID: iJr-fyZFX3jgdO7yOmTQUJUf6wBDLWxJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-01_01,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 bulkscore=0 adultscore=0 impostorscore=0
- clxscore=1015 lowpriorityscore=0 suspectscore=0 phishscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512020081
+In-Reply-To: <CAD=FV=WBbqSDghm+o2ZVa4-AbL4aggFQO0xdtmZNrYOQRjF5Vw@mail.gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-
-On 12/2/2025 2:06 PM, Mukesh Ojha wrote:
-> On Thu, Nov 27, 2025 at 10:25:23AM +0000, Bryan O'Donoghue wrote:
->> On 21/11/2025 11:37, Mukesh Ojha wrote:
->>>> Sorry.
->>>>
->>>> Did we actually come up with a cogent reason to omit the video firmware
->>>> loading here ?
->>>>
->>>> AFAIU it is required for Lemans and Glymur - leaving it out is blocking
->>>> getting video stuff done and storing up trouble.
->>>>
->>>> What exactly is the blockage - is it something you want help with ?
->>> I replied to you here[1] and given my reason..till something concluded on
->>> "multi-cell IOMMU[2]", I can not add video and block what is working
->>> already.
->>>
->>> [1]
->>> https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-
->>> hyd.qualcomm.com/
->>
->> Why though ?
->>
->> You are mixing together the issue of multiple SIDs and the original loading
->> of firmware which could easily reuse the venus method of
->>
->> &iris {
->> 	video-firmware {
->> 		iommus = <&apss_smmu hex>;
->> 	};
->> };
+On Mon, Dec 01, 2025 at 12:58:57PM -0800, Doug Anderson wrote:
+> Hi,
 > 
-> I completely understand what you are saying, and it would be very easy
-> for me to do that if it gets accepted. However, I doubt that the people
-> who raised this concern would agree with the approach.
+> On Mon, Dec 1, 2025 at 10:28 AM Russell King (Oracle)
+> <linux@armlinux.org.uk> wrote:
+> >
+> > On Mon, Dec 01, 2025 at 09:42:40AM -0800, Doug Anderson wrote:
+> > > Hi,
+> > >
+> > > On Tue, Nov 18, 2025 at 2:43 PM Doug Anderson <dianders@chromium.org> wrote:
+> > > >
+> > > > This is a continuation of the discussion that started in reply to my
+> > > > patch adding basic device trees for Pixel 10 phones [1].
+> > > >
+> > > >
+> > > > Problem statement:
+> > > > ------------------
+> > > >
+> > > > We would like an officially accepted scheme that lets us more
+> > > > efficiently ship compiled device trees for a handful of related
+> > > > products by breaking the device trees up into a common "base" device
+> > > > tree and then applying "overlay" device trees atop the base to make a
+> > > > full and complete device tree.
+> > > >
+> > > > To make it more concrete, we'd like to build a "base" device tree that
+> > > > describes a SoC and then have the overlays be enough to make a full
+> > > > description of a board. In theory, one could also imagine wanting to
+> > > > expand this to 3 or more levels (perhaps SoC, baseboard, derived
+> > > > boards), though this is not planned at this time.
+> > > >
+> > > > The primary reason for wanting to break device trees like this is
+> > > > efficiency of the shipped binary device trees. A large portion of a
+> > > > final device tree just describes the SoC. We save space in the final
+> > > > compiled device trees if they don't need to contain as much duplicated
+> > > > information.
+> > > >
+> > > > A secondary reason for wanting to break device trees like this is to
+> > > > more nicely handle when a board has a socketed SoC that can be
+> > > > replaced with a finite (and small) number of different SoCs (usually
+> > > > revisions of the same SoC). Even if this secondary reason is
+> > > > considered invalid or too difficult, the primary reason still
+> > > > describes a compelling need.
+> > > >
+> > > > In order to make this proposal work, it's expected that a bootloader
+> > > > will understand the scheme and will know how to combine the overlay
+> > > > atop the base before passing a complete device tree to the main OS.
+> > >
+> > > It's been roughly two weeks since I sent out this proposal. Do DT
+> > > folks have any comments? Are the goals I have stated understood? Do
+> > > people agree that these goals are reasonable? Is there any question
+> > > that there is a need to solve these problems not just for Google, but
+> > > for the community as a whole? I'm happy to reach out to people and
+> > > have them reply "yes, I have this problem too" if it would somehow
+> > > help. I don't doubt that there are still people at Qualcomm who would
+> > > like a solution even if I think Elliot isn't driving it there
+> > > anymore...
+> > >
+> > > How do we make forward progress? Does anyone have any comments on
+> > > Julius's reply? At the moment, I think there are some conflicts with
+> > > what Julius would like to see (no changes to the rules for how
+> > > overlays are applied) and what Rob said previously (we need to find
+> > > some way to combine the compatible strings). Did I misunderstand? Can
+> > > we find a common ground?
+> >
+> > My feeling on this (and I don't have much time to consider it tonight)
+> > is that this isn't going to get a quick answer.
+> >
+> > This answer is based on my authorship of various device trees, and is
+> > solely my own opinion, and in no way represents any position by my
+> > employer.
+> >
+> > While the DT files are dual-licensed, the license that applies to the
+> > copy in the kernel is GPL v2, because the kernel as a whole is GPL v2
+> > licensed. The dual-licensing of the DT files is to permit them to be
+> > taken from the kernel and used in e.g. boot loaders etc.
+> >
+> > However, as the license that applies to the kernel copy is GPL v2, and
+> > GPL v2 requires distribution in source code form, or an offer valid
+> > for two years of the corresponding source code etc (check the GPL v2
+> > for the exact terms) it could be inappropriate for the kernel tree
+> > to distribute binary DT blobs without their corresponding source.
+> >
+> > It seems to me that this is a problem for lawyers, and you're probably
+> > not going to get a quick answer on it.
+> >
+> > So, I'd suggest patience, and don't expect this topic to move quickly.
 > 
-> I’m not sure if the video team would like to pursue pixel/non-pixel/firmware context
-> banks separately. I’ll leave this to @Vikas to answer.
+> It seems like perhaps I wasn't clear enough in my description of the
+> problem I'm trying to solve.
 
-Not exactly as a separate sub-node, but i do like the idea of 
-introducing a simple iommu property, something like this, which Stephan 
-proposed earlier in the discussion [1]
+I didn't have time last night to properly read your proposal - certainly
+not to go back to your original post, but from what I did read in your
+follow up, it seemed that you were proposing that e.g. the SoC level
+should be in binary form.
 
-firmware-iommus = <&apps_smmu ...>;
+The confusion came from "build a "base" device tree" which implied to
+me taking the e.g. SoC .dtsi and turning that into its binary form.
 
-I understand that we are doing the iommu-map thing, but a property 
-exclusively for firmware like above look much simpler to me.
+Sorry for misunderstanding.
 
-Dmitry/ Bryan/ Krzysztof if you are good with this, we can bring back 
-video in this series. Please share your thoughts on this.
-
-Regards,
-Vikash
-
-[1] https://lore.kernel.org/lkml/aKooCFoV3ZYwOMRx@linaro.org/
-
-> 
-> Also, I do not want the video PIL discussion to be part of this series, as it could
-> unnecessarily give the impression that this series depends on it.
-> 
->>
->> That binding got dropped because it was unused in Iris.
->>
->> https://lore.kernel.org/lkml/05d40a3b-cc13-b704-cac7-0ecbeea0e59d@quicinc.com/
->>
->> I still fail to see why we are waiting for multi-cell IOMMU to land, when it
->> is expected to and what the VPU enablement story is upstream in the
->> meantime.
->>
->> Blocked it seems.
-> 
-> No, it is ongoing, there will be next version coming.
-> 
->>
->> ---
->> bod
-> 
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
