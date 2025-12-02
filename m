@@ -1,82 +1,103 @@
-Return-Path: <devicetree+bounces-243691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B7D9C9B4B9
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 12:21:36 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA2EC9B4DB
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 12:24:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DAB8B4E2ED9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 11:21:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9328B4E14BE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 11:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E4331159C;
-	Tue,  2 Dec 2025 11:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BC930F806;
+	Tue,  2 Dec 2025 11:24:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ikWyO8kh"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="K1vdQ1eM";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AMZcI2JK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4E230F811
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 11:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5027201033
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 11:24:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764674484; cv=none; b=k3fzyFqX3pXhfmLJ+qn1S9yHsYgOefT0//YRKNH2JLAT9S+BnoG01+qj8VgA+/JjQq8BBvfw7BK8+fRaoA9Ux/b2y5wR9Mk9WsB/f2Y0qnAVu5bB9zo6FLeO+q6KM794K37Dpw6szSCE+Z3JwNGNt/5UYdA6QF9MNxO+MNe7aNM=
+	t=1764674642; cv=none; b=AyySIG32dnwfbIqk9cq4mUbYSFGe7/N5GIlhGe/7tZ1tKwX+L5hhFPY9u89McfF/YpTYNqH6YhCW9weTXzSb9QBkZO/UbF4/qblnnw3q4zb9wGb7ErwhGANPWErKJuSLvACv5XZPqJNU7Qk5W+R5IAuUYaKivihIfl1AZi1QhOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764674484; c=relaxed/simple;
-	bh=ebI41iK5gjq0L5IRa7e/P/x9OhOy/cqTUUejIoRXkM0=;
-	h=Content-Type:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To; b=FtQ2ugibJ7hUhllkd3iR+Fz0dC+3GAjScbMAW0EbXyTB1GrZVpklI3aJCLyoDQAiV9qfrRxSJ5ceRJ/VlK8yVjLH6cVjwbNkf/mQ+OUrq8yg5C/HQLc1B/Q5mO/6/lKk3JQMrDGC2g0PcdckokTJTyUSsoEUBvCoITG8iHf9Bpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ikWyO8kh; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-37a2dced861so51572331fa.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 03:21:21 -0800 (PST)
+	s=arc-20240116; t=1764674642; c=relaxed/simple;
+	bh=Ur35kC7ex1LlDAxoSgVabazTIjVWHELziTdwUeDTtwM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jJGMxcpkJovqrJZK3QHTghCdSYWQt9AE91wJDeE5KlzFbVjRULyQWuuN+2tVfo7o4eIh/w6KRgLnZapGw1b2YkD6K7fXwWoPtCLWiH3W4x2mzUV/ZOGJIEj5dgU+J8cvDyoeWVMzAqRaFx6+Ji+fmqsgGZDLimEonhJSnInRgv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=K1vdQ1eM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AMZcI2JK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B2676Wa2821258
+	for <devicetree@vger.kernel.org>; Tue, 2 Dec 2025 11:23:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BP+WE8Qo8est+P0uDoDlZmZ7Zwtd1KdJqw/NEEpJeFY=; b=K1vdQ1eMbnjh2Zl2
+	4KEhF1uOFTXeGoD3W/Jokzc+pR4tW9Qwo0Ltk/BzilHMU9N9BX0VaXooOdihQa6u
+	Kzlw8sP32n4Yn1+LIEuyMmcTgzxjVdmZVy+5HoIx9B/zadcwa9hVDO3zN6cy1GWm
+	BkGMIiEnn45rHmX293tiU5KxUmBUkdllZRJP7ADK3d8ryPvF59jM0A7/4bcuq/+v
+	4MtU4Qbov8BNqxug8JlrJqb5z/yTUWmcJnaOI+cwZnieAct3I95c4WMaeekZZJK1
+	xlwuQ8kVd2fIfLMb65U1dksS6yyVVi6NGvBlC+JR9bK//5Ve0xW5TYYEndc/Agvp
+	oQWp1Q==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4astjggyrb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 11:23:59 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-29806c42760so171598405ad.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 03:23:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764674480; x=1765279280; darn=vger.kernel.org;
-        h=in-reply-to:from:content-language:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FHGvFJa75lB1s5FOVY85+WmT8K+iTuEMFLumjxbx42M=;
-        b=ikWyO8khZwe/qLfkusvEeIK9GVQGgt/sEtx7wdjlZaWa+/51MLaRa2wXNChRwbj3Cd
-         V2lvMgM8hImInF3Cogr8oJ4jClQ2AXEK3JndZH2GW2ma+GM7h/gjLb6/gB+EfRjh5byP
-         j796Eh5MQko0sFSTz3ruiHGLRJ3wNZZTTKv5Pwc9old9Dqnb9pjwkM6xRhzv/0G8MrLl
-         ioYSPIpcgw7J3Aa1AEmFjeVWAj7+IgsB0oBglt2jD3M4n19eWtIRdwAEf3NzLH9qViW/
-         XKhBrPA+U1A5VuxMWgJpVXkpVd55gUflHxwsfcWSjEQYbjT7qRfNzJJyUJNDCtMsKSB5
-         A6GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764674480; x=1765279280;
-        h=in-reply-to:from:content-language:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+        d=oss.qualcomm.com; s=google; t=1764674639; x=1765279439; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FHGvFJa75lB1s5FOVY85+WmT8K+iTuEMFLumjxbx42M=;
-        b=dzb6Yt70P8iwTkz7afCNutTZ9Re6S4wExGDfNm/J0kg2ppW3m1+2Dr8wADG1AgBU8Y
-         kgjG9Adg97y/AurSQg/WwjrNr3FK0h9zhJ9p9yAwK7hQFy+sGRS4l6Iv4lllvSatvO1r
-         ph0g3qqYYgsVoQ3HUN9lpwjMspADdW+Ps2vtjYp2K9JzMGroUCvqUcqUQx+35KkA8pbj
-         t751QwoOKYn9CyPM0fu+R1sQkoSw9rrlYmX8AWriIuFB2cMpXo154UhOW2Wus6jZTSWa
-         6+aX8EkUYv12MVo8YD0SUn7QwNtoaOSFxxGQF0hycUQgffihNhCCYM5N6MiLu5x/nNVv
-         nRFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUdxA60HyAsz3CDV5M6Htc4cDtAAXZB1DOPbKRUIyS+xx7oZzzA2fDJb6iZORa/6B/SuqvPusyZBH1L@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfB/wpXF/ngHjd1rcPpT/tN2mu0xalYFAz5/hkC57ZNg8Lbu6s
-	NIWp+wOFNfRAPS6Lg7qvuDsQGq5iU0U+ihkg5/pco44xSEhxk1pseATD
-X-Gm-Gg: ASbGncuuM8psPnk9hQ7aZ9HVqgrvAtdWMS1h34T8jQdW2pYMfIV4aYeWkIo6Pjs0h7M
-	aV7NqieVhOY3HhVky0B0H9RqWYlWFYq8cpmVLdId3tHKmiYBDkBQfwb+ERExqqu2CnaHdftKrje
-	EP2pXfuk86Kt7xYu2UiYc1+rUUw0huPVSI7/bnFxY69d+K8MJrNHK+CnOFRV5CsGjkaFRqePj+I
-	ZPxqOGTOoOTmgZHiAm8eyasNqX9Tr0u3nFVqwMaATwH83A9TVE0z5nxEcFqySJRMaHhTUc5zotF
-	NFqbvq6Yrs2wbs5tl2Uu9yGwqWP++qAzQ8q2MSKAsiKD3AVNkpY/noc8x6L+OBqBPshcZlkIzsq
-	hscGhdwFzKvjTdGrX7uhBHIpYU1L1orqwOQtALbn8kkaX1WtuS/b3Oh9MUV+XvwLqluOhwQ+222
-	k0UfA5A89urkfo7g==
-X-Google-Smtp-Source: AGHT+IEAmVx71ofDJnqXMWdm5SDHhZDccJOhKRMoK+tDdSkd1NpTk5tba5l1eQx6flbKeCAUi9zshw==
-X-Received: by 2002:a2e:9546:0:b0:37e:5208:e2d7 with SMTP id 38308e7fff4ca-37e58e4f776mr5336841fa.19.1764674479321;
-        Tue, 02 Dec 2025 03:21:19 -0800 (PST)
-Received: from [10.38.18.76] ([213.255.186.37])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37d236efc92sm37487261fa.19.2025.12.02.03.21.17
+        bh=BP+WE8Qo8est+P0uDoDlZmZ7Zwtd1KdJqw/NEEpJeFY=;
+        b=AMZcI2JK8cnQHHQXfVytr9ZD9c73QqOeQSEDJ+4IMQIS+Muf2gq0FBO/NRiTlhgiEa
+         ZZvqgF5f67Bd50hZCeL7v/XjUkTLq8rQ7X9KQROFyu6FR0p0eznRUnZYRGBvpFxUjWTj
+         K3Q5nHKdgCnwxBM3bmAZrEh0cAOdvSVe8kG5qyPo4RAMpnrkijuycBkMcygijwY2BA6s
+         /UqQhIDv9S4WwA37LBxILEB0W4ZFYQw8N0s6wIxEe9E45YRW9Bda58UXuKMfJhru6Kq4
+         yo6ttK1nb8HVQeFM6M3M1dLZCrxWxRrWnU6rMqe771UIXHwvrCOoRY+h3llKwmcEwnKy
+         pP3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764674639; x=1765279439;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BP+WE8Qo8est+P0uDoDlZmZ7Zwtd1KdJqw/NEEpJeFY=;
+        b=wTrZeCYZFM7MZGxi8CNkDdLhIRw9GUbkV2p6xivQNKKDepG8PNOiNqEpjD+3bogvtk
+         nMP+gKcu5hxXJgzVFtgNHe3JgpJc3Z5LGNH4sl6eIiaqVdTnJm9lPARyIa64rE/6+i7a
+         drNzt1rYNJjcypw2IhM+/kMLKDFw7Hfy/7WVMgs4JbqC6Dt0708HSsmtVBRkmVvXw8me
+         4hBtT8S7Uj7vn2XtgqLEewBKR8ZPuC1OoTFU7BXEvSITgjXrhTs/lyWf9TzFcBR7djOs
+         HkJ60QJhmw7/ylUFgaTQ8RRZRfgb8sNGmm7zFTATfsO+IZbH9+gs/fCwEY7QJlirTEKg
+         eurQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVi+ZKLbq9TPFP0DJMri3UvDAnOXWr2sh0WnQP8QVA82C36OmrRiqFCPCceoLnMyYC/h0O6WE4IsT1N@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+ShVagu2/W6ogUwQXDNMmMk/A2LtZpXE4k4NPLXv/gdf3RUwq
+	u8uPxnUJxTZ5Ia6k7Wp0QFCBqEWnn7siK8z7qgkC381IJ6Tgg2ksN2UdIXsXl/6yWzqi5hW2Hoq
+	Wzkwhiwk9aXSaxSRaBW4CFIShenO3yqop5ANDSngQcrWgvrw/FxeE4FG7+laCHY02
+X-Gm-Gg: ASbGncvsaCO3Nw+UlFPO9Hkl+A3JpOuuJkaXCqYMe6LK7/LVupTm2KyWgd2bD5qx72A
+	GWxV51PIWRYuj+kEuBCie0am5Zr4Gpqa76cfg5MRQhArZvDDX+wFuq4RnBoXzm6igYS7OX2skQ0
+	2EE+RGssR2ywuK43NJLMIPEcxKrOq5KzXpVqgAho1vQPOCbsFQwxxwfy/N4joH0Uc2Qr/D4+UUu
+	RqSY5TqO45hN/+h8bjBoKZPtvNgWHU+2BKAuYvAdcqS8AOayIgoI2qoN16an8OPkfEQWoIhrNN+
+	+fd2cRcJJKXHnmUTEN+hwu+XeOlftIg2YZPBXExCvsoYR+YdAJbilWoX33QhSNuicgzx6o+urju
+	k5XzeY2HO1W92z9NrtmNvAmwIw+IgpQO4yXp4pbMOQAzF4KUzWkF44pDJ1OV9QB5shIGUh7tEWU
+	O+nCIxXeSVOCMsALYDCmielROuSrmvLQsb
+X-Received: by 2002:a17:902:db0e:b0:295:3d5d:fe37 with SMTP id d9443c01a7336-29bab198021mr312051585ad.41.1764674638535;
+        Tue, 02 Dec 2025 03:23:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEkTyb2UgaQNFXC0mQ+wVAuD2Q2MIZoOIJIXSBk6SLZyZ2ecRicxhzG8Pw9QeVrE5MtSZbhMg==
+X-Received: by 2002:a17:902:db0e:b0:295:3d5d:fe37 with SMTP id d9443c01a7336-29bab198021mr312051275ad.41.1764674638070;
+        Tue, 02 Dec 2025 03:23:58 -0800 (PST)
+Received: from [10.190.211.199] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29bce477e94sm150184345ad.43.2025.12.02.03.23.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Dec 2025 03:21:18 -0800 (PST)
-Content-Type: multipart/mixed; boundary="------------RTMpC01dN2Tts0K0800P0dVv"
-Message-ID: <088af3ff-bd04-4bc9-b304-85f6ed555f2a@gmail.com>
-Date: Tue, 2 Dec 2025 13:21:16 +0200
+        Tue, 02 Dec 2025 03:23:57 -0800 (PST)
+Message-ID: <6a8f5d62-f6ea-44b3-9baf-acfbc1e58efe@oss.qualcomm.com>
+Date: Tue, 2 Dec 2025 16:53:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,227 +105,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
- overlays"
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
- Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Charles Keepax <ckeepax@opensource.cirrus.com>,
- Richard Fitzgerald <rf@opensource.cirrus.com>,
- David Rhodes <david.rhodes@cirrus.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>,
- Davidlohr Bueso <dave@stgolabs.net>,
- Jonathan Cameron <jonathan.cameron@huawei.com>,
- Dave Jiang <dave.jiang@intel.com>,
- Alison Schofield <alison.schofield@intel.com>,
- Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>,
- Dan Williams <dan.j.williams@intel.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Wolfram Sang <wsa@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
- Allan Nielsen <allan.nielsen@microchip.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>,
- Steen Hegelund <steen.hegelund@microchip.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20251015071420.1173068-1-herve.codina@bootlin.com>
- <20251015071420.1173068-2-herve.codina@bootlin.com>
- <f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
- <CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
- <5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
- <CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
- <072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
- <CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
- <55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com>
- <20251202102619.5cd971cc@bootlin.com>
+Subject: Re: [PATCH v8 0/2] Add support for Gunyah Watchdog
+To: Bjorn Andersson <andersson@kernel.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20251118-gunyah_watchdog-v8-0-e5de12e2eef5@oss.qualcomm.com>
 Content-Language: en-US
-From: Kalle Niemi <kaleposti@gmail.com>
-In-Reply-To: <20251202102619.5cd971cc@bootlin.com>
-
-This is a multi-part message in MIME format.
---------------RTMpC01dN2Tts0K0800P0dVv
+From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+In-Reply-To: <20251118-gunyah_watchdog-v8-0-e5de12e2eef5@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: g6Lau1ktGG8hmm_8ZzKORlLUfkz9aoET
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAyMDA5MSBTYWx0ZWRfXw/12Hhtc9PBH
+ /prN7Xr/39AJwtdDycpmO+w3+2aU+tOut8NgO7WTMUH8zwOLPrRhWQFRl4huiVrL9Cuc4qwJfW4
+ pEKGIT/j1pTVec0AOPITOvWzvXMqX2cmZeUhWviMjKqJeOLVzY5k9PK6HdWd4kZcWZ+UYlKdt/A
+ 12kqIIlf0vlpXhhZD4xe8vE66H3R8/FvscqtX0qxDdF+YzOptPj+5wZ9nh5lYOF2rDWjNK936wB
+ P6UIYrXv6kZxcTlVbm5okQMkv6JSvX8jM6UrzGkTJ4ZJAE1g1oiCWqV5NU74nD1EYXv0Lqp7Ptq
+ nrPYDYXV5Ev6GF6b5mK/cd2l+f4Fq+HlL9QJc1dNn1TwkQQCLg5qtXEhya116dtYRQGeoiw6WH3
+ EVZffK7MWTkdDBiKMxdw13iJd3cyPQ==
+X-Proofpoint-GUID: g6Lau1ktGG8hmm_8ZzKORlLUfkz9aoET
+X-Authority-Analysis: v=2.4 cv=EbfFgfmC c=1 sm=1 tr=0 ts=692ecc4f cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=BFnnhZRdYZWPRrPjbyQA:9 a=QEXdDO2ut3YA:10
+ a=zZCYzV9kfG8A:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-01_01,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
+ phishscore=0 impostorscore=0 malwarescore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512020091
 
-On 12/2/25 11:26, Herve Codina wrote:
-> Hi Kalle,
-> 
-> On Fri, 28 Nov 2025 10:34:57 +0200
-> Kalle Niemi <kaleposti@gmail.com> wrote:
-> 
-> ...
->>>>>>>>
->>>>>>>> Hello,
->>>>>>>>
->>>>>>>> Test system testing drivers for ROHM ICs bisected this commit to cause
->>>>>>>> BD71847 drivers probe to not be called.
->>>>>>> This driver (and overlay support) is in linux-next or something out of
->>>>>>> tree on top of linux-next?
->>>>>>>
->>>>>>> Rob
->>>>>> Yes the driver is in mainline linux: /drivers/mfd/rohm-bd718x7.c
->>>>> I don't see any support to apply overlays in that driver.
->>>> Ah. Sorry for the confusion peeps. I asked Kalle to report this without
->>>> proper consideration. 100% my bad.
->>>>
->>>> While the bd718x7 drive indeed is mainline (and tested), the actual
->>>> 'glue-code' doing the overlay is part of the downstream test
->>>> infrastructure. So yes, this is not a bug in upstream kernel - this
->>>> falls in the category of an upstream change causing downstream things to
->>>> break. So, feel free to say: "Go fix your code" :)
->>>>
->>>> Now that this is sorted, if someone is still interested in helping us to
->>>> get our upstream drivers tested - the downstream piece is just taking
->>>> the compiled device-tree overlay at runtime (via bin-attribute file),
->>>> and applying it using the of_overlay_fdt_apply(). The approach is
->>>> working for our testing purposes when the device is added to I2C/SPI
->>>> node which is already enabled. However, in case where we have the I2C
->>>> disabled, and enable it in the same overlay where we add the new device
->>>> - then the new device does not get probed.
->>>>
->>>> I would be really grateful if someone had a pointer for us.
->>> Seems to be fw_devlink related. I suppose if you turn it off it works?
->>> There's info about the dependencies in sysfs or maybe debugfs. I don't
->>> remember the details, but that should help to tell you why things
->>> aren't probing.
-> 
-> Rob reverted patches but I plan to continue my work on it.
-> On my side, I need the reverted patches but I fully understand that, on
-> your side, you need a working system.
-> 
-> In order to move forward and find a solution for my next iteration, can you
-> send your overlay (dtso) used in your working and non working cases?
-> 
-> Best regards,
-> Hervé
+Hi Bjorn, Guenter, and Wim,
 
-Hello Hervé,
+Just a gentle ping on this series.
 
-I have attached the overlay source file: bd71847_overlay.dts
+Since the patches have received Reviewed-by tags from Dmitry and 
+Guenter, I wanted to confirm the merge strategy.
 
-BR
-Kalle
+Bjorn: Are you planning to pick the QCOM SCM changes separately through 
+your tree, or would you prefer the whole series go through the Watchdog 
+tree?
+If the latter, do we need an explicit Acked-by from you for QCOM SCM patch?
 
---------------RTMpC01dN2Tts0K0800P0dVv
-Content-Type: audio/vnd.dts; name="bd71847_overlay.dts"
-Content-Disposition: attachment; filename="bd71847_overlay.dts"
-Content-Transfer-Encoding: base64
+Thanks,
+Hrishabh
 
-L2R0cy12MS87Ci9wbHVnaW4vOwoKL3sgLyogdGhpcyBpcyBvdXIgZGV2aWNlIHRyZWUgb3Zl
-cmxheSByb290IG5vZGUgKi8KCgljb21wYXRpYmxlID0gInRpLGJlYWdsZWJvbmUiLCAidGks
-YmVhZ2xlYm9uZS1ibGFjayI7CglwYXJ0LW51bWJlciA9ICJCQkItSTJDMSI7IC8vIHlvdSBj
-YW4gY2hvb3NlIGFueSBuYW1lIGhlcmUgYnV0IGl0IHNob3VsZCBiZSBtZW1vcmFibGUKIAl2
-ZXJzaW9uID0gIjAwQTAiOwoKCWZyYWdtZW50QDAgewoJCXRhcmdldCA9IDwmYW0zM3h4X3Bp
-bm11eD47IC8vIHRoaXMgaXMgYSBsaW5rIHRvIGFuIGFscmVhZHkgZGVmaW5lZCBub2RlIGlu
-IHRoZSBkZXZpY2UgdHJlZSwgc28gdGhhdCBub2RlIGlzIG92ZXJsYXllZCB3aXRoIG91ciBt
-b2RpZmljYXRpb24KCgkJX19vdmVybGF5X18gewoJCQlpMmMxX3BpbnM6IHBpbm11eF9pMmMx
-X3BpbnMgewoJCQkJcGluY3RybC1zaW5nbGUscGlucyA9IDwKICAgICAgICAgIAkJCTB4MTU4
-IDB4NzIgLyogc3BpMF9kMS5pMmMxX3NkYSAqLyAKICAgICAgICAgIAkJCTB4MTVDIDB4NzIg
-Lyogc3BpMF9jczAuaTJjMV9zZGwgKi8KICAgICAgICAJCQk+OwoJCQl9OwoJCX07Cgl9OwoJ
-ZnJhZ21lbnRAMSB7CgkJdGFyZ2V0LXBhdGggPSAiLyI7CgkJX19vdmVybGF5X18gewoJCQkv
-KiBleHRlcm5hbCBvc2NpbGxhdG9yICovCgkJCW9zYzogb3NjaWxsYXRvciB7CgkJCQljb21w
-YXRpYmxlID0gImZpeGVkLWNsb2NrIjsKCQkJCSNjbG9jay1jZWxscyA9IDwxPjsKCQkJCWNs
-b2NrLWZyZXF1ZW5jeSAgPSA8MzI3Njg+OwoJCQkJY2xvY2stb3V0cHV0LW5hbWVzID0gIm9z
-YyI7CgkJCX07CgkJfTsKCX07CgoJZnJhZ21lbnRAMiB7CgkJdGFyZ2V0ID0gPCZpMmMxPjsK
-CgkJX19vdmVybGF5X18gewoJCQlwaW5jdHJsLTAgPSA8JmkyYzFfcGlucz47CgkJCWNsb2Nr
-LWZyZXF1ZW5jeSA9IDwxMDAwMDA+OwoJCQlzdGF0dXMgPSAib2theSI7CgoKCgkJCXBtaWM6
-IHBtaWNANGIgeyAvKiB0aGUgInRlc3QiIGRlZmluZWQgYXMgY2hpbGQgb2YgdGhlIGkyYzEg
-YnVzICovCgkJCQljb21wYXRpYmxlID0gInJvaG0sYmQ3MTg0NyI7CgkJCQlyZWcgPSA8MHg0
-Yj47CgkJCQkvKiBMZXQncyB0cnkgdXNpbmcgR1BJTzFfMjkgYXMgaXJxIHBpbiAqLwoJCQkJ
-aW50ZXJydXB0LXBhcmVudCA9IDwmZ3BpbzE+OwoJCQkJaW50ZXJydXB0cyA9IDwyOSA4PjsK
-CQkJCWNsb2NrcyA9IDwmb3NjIDA+OwoJCQkJI2Nsb2NrLWNlbGxzID0gPDA+OwoJCQkJY2xv
-Y2stb3V0cHV0LW5hbWVzID0gImJkNzE4NDctMzJrLW91dCI7CgkJCQkvKiAxNTAwIG1zIGNv
-bGQgcmVzZXQgKi8KCQkJCXJvaG0scmVzZXQtZGVsYXkgPSA8MTUwMD47CgoJCQkJcmVndWxh
-dG9ycyB7CgkJCQkJYnVjazE6IEJVQ0sxIHsKCQkJCQkJcmVndWxhdG9yLW5hbWUgPSAiYnVj
-azEiOwoJCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDw3MDAwMDA+OwoJCQkJCQly
-ZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxMzAwMDAwPjsKCQkJCQkJLy9yZWd1bGF0b3It
-Ym9vdC1vbjsKCQkJCQkJLy9yZWd1bGF0b3ItYWx3YXlzLW9uOwpyZWd1bGF0b3ItcmFtcC1k
-ZWxheSA9IDwxMDAwMD47CgkJCQkJCXJlZ3VsYXRvci1vdi1wcm90ZWN0aW9uLW1pY3Jvdm9s
-dCA9IDwxPjsKCQkJCQkJcmVndWxhdG9yLXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+
-OwoJCQkJCX07CgkJCQkJYnVjazI6IEJVQ0syIHsKCQkJCQkJcmVndWxhdG9yLW5hbWUgPSAi
-YnVjazIiOwoJCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDw3MDAwMDA+OwoJCQkJ
-CQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxMzAwMDAwPjsKCQkJCQkJcmVndWxhdG9y
-LWJvb3Qtb247CgkJCQkJCXJlZ3VsYXRvci1hbHdheXMtb247CnJlZ3VsYXRvci1yYW1wLWRl
-bGF5ID0gPDUwMDA+OwoJCQkJCQlyZWd1bGF0b3Itb3YtcHJvdGVjdGlvbi1taWNyb3ZvbHQg
-PSA8MT47CgkJCQkJCXJlZ3VsYXRvci11di1wcm90ZWN0aW9uLW1pY3Jvdm9sdCA9IDwxPjsK
-CQkJCQl9OwoJCQkJCWJ1Y2szOiBCVUNLMyB7CgkJCQkJCXJlZ3VsYXRvci1uYW1lID0gImJ1
-Y2szIjsKCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDw1NTAwMDA+OwoJCQkJCQly
-ZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxMzUwMDAwPjsKCQkJCQkJLy9yZWd1bGF0b3It
-Ym9vdC1vbjsKCQkJCQkJcm9obSxuby1yZWd1bGF0b3ItZW5hYmxlLWNvbnRyb2w7CgkJCQkJ
-CXJlZ3VsYXRvci1vdi1wcm90ZWN0aW9uLW1pY3Jvdm9sdCA9IDwxPjsKCQkJCQkJcmVndWxh
-dG9yLXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJCQkJCX07CgoJCQkJCUJVQ0s0
-OiBCVUNLNCB7CgkJCQkJCXJlZ3VsYXRvci1uYW1lID0gImJ1Y2s0IjsKCQkJCQkJcmVndWxh
-dG9yLW1pbi1taWNyb3ZvbHQgPSA8MjYwMDAwMD47CgkJCQkJCXJlZ3VsYXRvci1tYXgtbWlj
-cm92b2x0ID0gPDMzMDAwMDA+OwoJCQkJCQlyZWd1bGF0b3ItYm9vdC1vbjsKCQkJCQkJcmVn
-dWxhdG9yLW92LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJCQkJCQlyZWd1bGF0b3It
-dXYtcHJvdGVjdGlvbi1taWNyb3ZvbHQgPSA8MT47CgkJCQkJfTsKCgkJCQkJYnVjazU6IEJV
-Q0s1IHsKCQkJCQkJcmVndWxhdG9yLW5hbWUgPSAiYnVjazUiOwoJCQkJCQlyZWd1bGF0b3It
-bWluLW1pY3Jvdm9sdCA9IDwxNjA1MDAwPjsKCQkJCQkJcmVndWxhdG9yLW1heC1taWNyb3Zv
-bHQgPSA8MTk5NTAwMD47CgkJCQkJCXJlZ3VsYXRvci1ib290LW9uOwoJCQkJCQlyZWd1bGF0
-b3Itb3YtcHJvdGVjdGlvbi1taWNyb3ZvbHQgPSA8MT47CgkJCQkJCXJlZ3VsYXRvci11di1w
-cm90ZWN0aW9uLW1pY3Jvdm9sdCA9IDwxPjsKCQkJCQl9OwoJCQoJCQkJCWJ1Y2s2OiBCVUNL
-NiB7CgkJCQkJCXJlZ3VsYXRvci1uYW1lID0gImJ1Y2s2IjsKCQkJCQkJcmVndWxhdG9yLW1p
-bi1taWNyb3ZvbHQgPSA8ODAwMDAwPjsKCQkJCQkJcmVndWxhdG9yLW1heC1taWNyb3ZvbHQg
-PSA8MTQwMDAwMD47CgkJCQkJCXJlZ3VsYXRvci1vdi1wcm90ZWN0aW9uLW1pY3Jvdm9sdCA9
-IDwxPjsKCQkJCQkJcmVndWxhdG9yLXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJ
-CQkJCX07CgkJCQovKiBMRE8xIGFuZCBMRE8yIGFyZSBlbmFibGVkIGJ5IEhXIHdoZW4gUE1J
-QyB0dXJucyBmcm9tIFJFQURZIHRvIFNOVlMgc3RhdGUgKi8KCQkJCQlsZG8xOiBMRE8xIHsK
-CQkJCQkJcmVndWxhdG9yLW5hbWUgPSAibGRvMSI7CgkJCQkJCXJlZ3VsYXRvci1taW4tbWlj
-cm92b2x0ID0gPDE2MDAwMDA+OwoJCQkJCQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwz
-MzAwMDAwPjsKCQkJCQkJcmVndWxhdG9yLWJvb3Qtb247CgkJCQkJCS8vcmVndWxhdG9yLWFs
-d2F5cy1vbjsKCQkJCQkJcmVndWxhdG9yLXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+
-OwoJCQkJCX07CgoJCQkJCWxkbzI6IExETzIgewoJCQkJCQlyZWd1bGF0b3ItbmFtZSA9ICJs
-ZG8yIjsKCQkJCQkJcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8ODAwMDAwPjsKCQkJCQkJ
-cmVndWxhdG9yLW1heC1taWNyb3ZvbHQgPSA8OTAwMDAwPjsKCQkJCQkJcmVndWxhdG9yLWJv
-b3Qtb247CgkJCQkJCS8vcmVndWxhdG9yLWFsd2F5cy1vbjsKCQkJCQkJcmVndWxhdG9yLXV2
-LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJCQkJCX07CgoJCQkJCWxkbzM6IExETzMg
-ewoJCQkJCQlyZWd1bGF0b3ItbmFtZSA9ICJsZG8zIjsKCQkJCQkJcmVndWxhdG9yLW1pbi1t
-aWNyb3ZvbHQgPSA8MTgwMDAwMD47CgkJCQkJCXJlZ3VsYXRvci1tYXgtbWljcm92b2x0ID0g
-PDMzMDAwMDA+OwoJCQkJCQlyZWd1bGF0b3ItdXYtcHJvdGVjdGlvbi1taWNyb3ZvbHQgPSA8
-MT47CgkJCQkJfTsKCgkJCQkJbGRvNDogTERPNCB7CgkJCQkJCXJlZ3VsYXRvci1uYW1lID0g
-ImxkbzQiOwoJCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDw5MDAwMDA+OwoJCQkJ
-CQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxODAwMDAwPjsKCQkJCQkJcmVndWxhdG9y
-LXV2LXByb3RlY3Rpb24tbWljcm92b2x0ID0gPDE+OwoJCQkJCQkvL3JlZ3VsYXRvci1ib290
-LW9uOwoJCQkJCX07CgoJCQkJCWxkbzU6IExETzUgewoJCQkJCQlyZWd1bGF0b3ItbmFtZSA9
-ICJsZG81IjsKCQkJCQkJcmVndWxhdG9yLW1pbi1taWNyb3ZvbHQgPSA8ODAwMDAwPjsKCQkJ
-CQkJcmVndWxhdG9yLW1heC1taWNyb3ZvbHQgPSA8MzMwMDAwMD47CgkJCQkJCXJvaG0sbm8t
-cmVndWxhdG9yLWVuYWJsZS1jb250cm9sOwoJCQkJCQlyZWd1bGF0b3ItdXYtcHJvdGVjdGlv
-bi1taWNyb3ZvbHQgPSA8MT47CgkJCQkJfTsKCgkJCQkJbGRvNjogTERPNiB7CgkJCQkJCXJl
-Z3VsYXRvci1uYW1lID0gImxkbzYiOwoJCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9
-IDw5MDAwMDA+OwoJCQkJCQlyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwxODAwMDAwPjsK
-CQkJCQkJcmVndWxhdG9yLWJvb3Qtb247CgkJCQkJCS8qIFRoaXMgc2hvdWxkIGZhaWwgYXMg
-TERPcyBkbyBub3Qgc3VwcG9ydCBPVlAgKi8KCQkJCQkJcmVndWxhdG9yLW92LXByb3RlY3Rp
-b24tbWljcm92b2x0ID0gPDE+OwoJCQkJCQlyZWd1bGF0b3ItdXYtcHJvdGVjdGlvbi1taWNy
-b3ZvbHQgPSA8MT47CgkJCQkJfTsKCQkJCX07CgkJCX07CgkJfTsKCX07CgoJZnJhZ21lbnRA
-MyB7CgkJdGFyZ2V0LXBhdGggPSAiLyI7CgkJX19vdmVybGF5X18gewoJCQlpcnF0ZXN0OiBk
-dW1teSB7CgkJCQljb21wYXRpYmxlID0gInJvaG0sY2xrdGVzdC1iZDcxODQ3IjsKLyoKCQkJ
-CWNvbXBhdGlibGUgPSAicm9obSxmb28tYmQ3MTg0Ny1pcnEiOwoJCQkJaW50ZXJydXB0LXBh
-cmVudCA9IDwmcG1pYz47CgkJCQlpbnRlcnJ1cHRzID0gPDA+LCA8MT4sIDwyPiwgPDM+LCA8
-ND4sIDw1PiwgPDY+OwoJCQkJaW50ZXJydXB0LW5hbWVzID0gImlycS1idG4iLCAiaXJxLWJ0
-bi1zIiwgImlycS1idG4tbCIsICJpcnEtc3dyc3QiLCAiaXJxLXdkb2ciLCAiaXJxLW9uIiwg
-ImlycS1zdGIiOwoqLwoJCQkJY2xvY2tzID0gPCZwbWljPjsKCQkJCWNsb2NrLW5hbWVzID0g
-ImZvby1pbiI7CgkJCX07CgkJfTsKCX07Cn07IC8qIHJvb3Qgbm9kZSBlbmQgKi8K
-
---------------RTMpC01dN2Tts0K0800P0dVv--
 
