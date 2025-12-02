@@ -1,206 +1,172 @@
-Return-Path: <devicetree+bounces-243644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF013C9AEC8
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:46:14 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21C4AC9AEE0
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:48:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B81664E31E2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:46:09 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 747DB34298F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:48:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E68230EF83;
-	Tue,  2 Dec 2025 09:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63619305E2B;
+	Tue,  2 Dec 2025 09:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Kgohop/j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022110.outbound.protection.outlook.com [52.101.126.110])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796E6283FEF;
-	Tue,  2 Dec 2025 09:45:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.110
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764668760; cv=fail; b=sOp8+JiOY6Q/BCeHhm3lL2wXjh35KIy7nS/stDZBL5G7b6/OGlKwHKWQWgzfwTBjxmtTTZfUvNXqUmisA+MgT2BtqEbDuIbQDqC8wjVPe0m7kX43PFJOrfX3DHpE0B+25GY9E/k1ykKdcrGbjOG1QEj04zR0NrpeOjubAkgkZGc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764668760; c=relaxed/simple;
-	bh=BoVJhujiKXPeDENPiMeR7AsGaEAv4FgbE7SFyqYYZek=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=d6rtfMxS/rqsHxNTONhVnwpBWaobNnXFHcb/m0PRDDD1YKuzahWTbqbkK3hx9/I+P7WHGZAVBCKfQty1Wx0SNOkOjpf45gCjpVAy/jPd6ZJw94Ul/cUodX2MAwUuaQ9hbSRW83yA0STcx/ANkNyOe1uUqBBNzjVH2urD+St7imQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Mmg/fnTigX0EHjGwtkT0YlOslSfqk4924BdewzGQCYBJrWudRpTpCidSY1Ngn5HtnyTreDDo3aecjGvNGNqZAuUb7UiwI5jZeAdkZ46i1KmhUntxcXsd7IkiFCSj9MNORbSE2NWG2zMWsPe7pdke03kXjvFrSBLs38a/zPP5BTrJxcr6HYqA9Mm2wUZ9Und1FAV5nbgEQcQiC+ZvQ80q74Txd43QChakLDNLJBNFIY+0e+oV2M5M+YU8TveOCIZK9TS14keFIus0dSlSrE5JMnCtQ4TmpAFmqEAgiiCjvFPhWWlVwLQNvC0iXNI+n34DRLAc5zCwf+NUTJZZtkcOTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BoVJhujiKXPeDENPiMeR7AsGaEAv4FgbE7SFyqYYZek=;
- b=EEBiRowHdtoZGVyIQlT6Z8XOKaXtBzMgpMc0BwkLkSG2Ej9J3r52kDUNA0z/8U/1YCRpAN5csmfFpkaovN0bhd54AoYFF/Lmk6+04OHBM3aF1Wa1LDj2Twuct7SzVxCHrWI8YYTL6fwYLU5O5ClcyDgTC0Ipr2pYNguwkUVqPY159NeLgz1oY18KjhetIT1Wux5b8z3GK1g9OMIltcbw4SnB4pkDSEabcWevGOisUB4ElXFzN/ylEduDKREBD984GEpAhquSrlC+NfOkob2I+m5ZmKyj+8ucYT5Aya2XB3gMYKLDcKr8PAoXPYMKL5GmsgrZN+FkN3t+Oe3r4uH02Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cixtech.com; dmarc=pass action=none header.from=cixtech.com;
- dkim=pass header.d=cixtech.com; arc=none
-Received: from SEYPR06MB6226.apcprd06.prod.outlook.com (2603:1096:101:df::13)
- by SEZPR06MB7004.apcprd06.prod.outlook.com (2603:1096:101:1f2::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 09:45:53 +0000
-Received: from SEYPR06MB6226.apcprd06.prod.outlook.com
- ([fe80::56e8:777c:d80e:d364]) by SEYPR06MB6226.apcprd06.prod.outlook.com
- ([fe80::56e8:777c:d80e:d364%5]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
- 09:45:52 +0000
-From: "Joakim  Zhang" <joakim.zhang@cixtech.com>
-To: Takashi Iwai <tiwai@suse.de>
-CC: "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "broonie@kernel.org"
-	<broonie@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com"
-	<tiwai@suse.com>, "linux-sound@vger.kernel.org"
-	<linux-sound@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, cix-kernel-upstream
-	<cix-kernel-upstream@cixtech.com>
-Subject: RE: [PATCH v3 3/3] ALSA: hda: add CIX IPBLOQ HDA controller support
-Thread-Topic: [PATCH v3 3/3] ALSA: hda: add CIX IPBLOQ HDA controller support
-Thread-Index: AQHcYrE8SyNQRYmPEEiZzVTFHQiBDLUMvZaAgAFW6mA=
-Date: Tue, 2 Dec 2025 09:45:51 +0000
-Message-ID:
- <SEYPR06MB6226B3E1A33A299E1D94EE1F82D8A@SEYPR06MB6226.apcprd06.prod.outlook.com>
-References: <20251201105700.832715-1-joakim.zhang@cixtech.com>
-	<20251201105700.832715-4-joakim.zhang@cixtech.com>
- <87zf82bby0.wl-tiwai@suse.de>
-In-Reply-To: <87zf82bby0.wl-tiwai@suse.de>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cixtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR06MB6226:EE_|SEZPR06MB7004:EE_
-x-ms-office365-filtering-correlation-id: 3d90cf79-f296-44c0-0536-08de318794c6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|366016|1800799024|7053199007|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?mNKx12kBjbCXN14Q8F6AFaAe9eQIisKeVo4HWjuYPFT3ai0eMLhisai5PSj+?=
- =?us-ascii?Q?WwPM6gQmLxY9a75PxopQFZ+50Nw+k6LgDvbOcUc8YBiVuQlPStzV2/q/MW4c?=
- =?us-ascii?Q?rUVzqYuKJ+TdmT/N5vDn9xuySYWUdleOeQEi4TR+zLvruMvSxiRBMcpiGWpi?=
- =?us-ascii?Q?RJIx+LmyP5N+sxpYBEY6OxfW1NtrYiu29+Hk0OyG35714HUgDOozL4nbEw6x?=
- =?us-ascii?Q?CfSSI3VGdFdKkR1Hm1jDstPht7NLPT5EYacMUPIfodlKdK+/X53AK90ijHxD?=
- =?us-ascii?Q?5fGWkt0VJP/NgEKSn1Q28tn9gYjlRLbKtaUy80QbQiBY7zVIzvwp3U8dGSiw?=
- =?us-ascii?Q?S8YEB6fRaorBC6NcUtI7/OJk1ZZwPX+/AjY6Or0ltH7qcVtEkd+V6FJHb3p+?=
- =?us-ascii?Q?A1aEXOO5LR8IJF6O6BDZK+SuiGPadkT7ulKr57Nobev70Ecbi3bSxkjsxP5d?=
- =?us-ascii?Q?C3Ie9LGVL5jH0lv/3k/4fzduV6eT2mX1VA90PYeeesuzSNKJPH/T6A9L5FaJ?=
- =?us-ascii?Q?Uu/etBqcbONHYUKzf34kYFtvxgrm1ZBUNmfn4JDnWwTMngrEw+DxTnlyRXxN?=
- =?us-ascii?Q?vv2h1Gkm57HWyIhOaMjwPbBFhdgXhq11QgASUL2jcFXallr6hyVA/GAeb+Z7?=
- =?us-ascii?Q?R9Np/Ih6IgR9N9H3+pSXpZ8PqkTe0ErLNcqmD3/G2YYb4+FFnpr7uhTXwQFu?=
- =?us-ascii?Q?CNxWAh+8rpeGdzVQyA3XfAaRPzg+R4JKXhAwoj0NqybDCGMxfltJPja5185k?=
- =?us-ascii?Q?SIM1Guf9RtR58N0YYg6ZJhAJYL9hhpwhlJ68OHSPKeaykC/xuY7gKpnQaIEH?=
- =?us-ascii?Q?2n+mxUQr6SstKVkibfs9nIQ0AtFQGmeyrjeYGrNdku0QYHkLp+alhxg+5OE0?=
- =?us-ascii?Q?dVpY+bgHzoMLpSfogXm0aI++qsx1B3g/B1aorGnNulG/Or6zSdQVQSaP1LuC?=
- =?us-ascii?Q?w5jYinmCqTer+S0p55Rgni69QkkKJest5srWdpwPtvFn6SQ/7b61JEkem1Le?=
- =?us-ascii?Q?8niO7IQCoQpt1f+hO+sI6dTbMHcytA3jMiFnuwDDUlbS5ubSVUUZ48OBH2+S?=
- =?us-ascii?Q?KA1vctSRqC/7Ab53/qYfgyoaIpQ9SHyK3gs0/bc7lzXJkbsORaWXvWVlWIh1?=
- =?us-ascii?Q?x373zfyMT6DuKyjZv96nkxvMMunhT/L9m9xucmMyUMyph6wI4qrnV8xMZjyU?=
- =?us-ascii?Q?F2A01ALz161OLjJfbQ87oZ+LP7xqYxmq7TChM2v+Sbt8kUIJ6+K0G3ZGLVz0?=
- =?us-ascii?Q?Bhs0kv1kwcGmYwsSD7I7Fer5uZpBIDvbKqp1T3j/HrZoB3yvjxbYtAYzB3SI?=
- =?us-ascii?Q?LyjKZYKhmJvSDxB+BxJ5Q8ls72Z/KzQGhQjKc6ldWkK9O2PW51+/ukQZQJOK?=
- =?us-ascii?Q?zRhYHy7kn0ljr6JPNw/YiZERV7bndeB9dvcvuXWyNVJqLZaGWDoeSPYDqX+6?=
- =?us-ascii?Q?MoJUsLPfofXt+FDHnkWjwrRBoU/OIf46nqvrh9G6Y8i8ZdyDPttVL6zFiYMp?=
- =?us-ascii?Q?QgYCjwT+inTXAAkd3YTHByC8raclA0DRDHQu?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB6226.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(7053199007)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?pxvA+Sh/irAQLROwc4uMGg+4X4701itbKXZTJ8jxMkbhEH8hSbV3fun7U+jn?=
- =?us-ascii?Q?tV6mZZVl1AYGqPM+brmNCrtOzEMkH2g1DQDJzJb1Gydmzy8KP2UBrIbESOAM?=
- =?us-ascii?Q?vdqTXTcr1LFwp8/khrb+I06OPCaYEcsks7mGyVKVtoEYOk1ge3OEUe255UdD?=
- =?us-ascii?Q?uP6TSTqgzCT2aUt3ilxu6yPjREELuVnkewsgEkG4S8RjTaxrUx9Zt6SvtbBB?=
- =?us-ascii?Q?9Hen6Sg9qMVFbTjdSRsh5Kn6mgH0sJDoEzVpYpfLMgIVPZa8RwqVZsqK8RuN?=
- =?us-ascii?Q?VeU0VA9JvYAHZYhHhjMTxF4IBJ2Fk0Y+JQ4uhWkZtvK7HAKEHQm5tNQ5c3pB?=
- =?us-ascii?Q?CAsOvW6ka+c8R0IXRrHxOPbd8TPfOn6kQV5X9xDpyQObXnK+yapOvkOzYd94?=
- =?us-ascii?Q?RzTdBO0507sShNvkozISZqJXMFnJjYHAXucENELm3Pk7M3M5y3FlOyPVVe1f?=
- =?us-ascii?Q?IZX/vKOgeDuJPr1GcnkAFmTZkCagBU93/F5Up8LeyyxjUzv2pe8UX2S042Dk?=
- =?us-ascii?Q?bTsmJx0Ifv+tQ2TquLS4TvR9k3EvGnNgf0cEBQolqyI8d54sGGiNV27RMhVX?=
- =?us-ascii?Q?l08o4FKt9Gs7PEXPJjTBZe2kV3AIQMYxEAIthSK4fBJW0kF+U+nrXnikyERQ?=
- =?us-ascii?Q?citn60MUNdAwsgmMjx3r6q7UWn+ek+IoCwJ7m1Mh6e3Xifq2VsS9ss74bsCa?=
- =?us-ascii?Q?zvMi45R/68AbHxoY2EMV2pJeqXi69/xguymWo/SfS9taa8l2KAY+0H9GSNBM?=
- =?us-ascii?Q?NQj1BDfoPj7TcCCD85EuJpzUhc0FJBf+vxh5KaPuuuXhT7yPVYYxNfT0wwuB?=
- =?us-ascii?Q?SkCE23fH8NxIWPIkxd7eo6aTJJFbU4U5gdkiIjVsPQ/rs8K7otz5kV0d24UC?=
- =?us-ascii?Q?5Srd1U+fEJ7vJz5LpL/lRrBieiRViNub235AvEMSSPRN0id3wkp6bElFHWhA?=
- =?us-ascii?Q?6E6ssGld6rx3/w11PALmMYhmZCU8ApZ+5WVVV/+dlNe0YAJ2cc/NAGYRdMBp?=
- =?us-ascii?Q?JQozgALMMw5G+6tgFOYTjHyT6HkLMGvC6a8L0qnlhj3MQ9Zhw5/7Wj5NahR0?=
- =?us-ascii?Q?t/KdRD8t4KIQMVcM5GVfF1tNxdnGe/+APQCbi2h7mC3YZ9kmrJzussQ1uuaj?=
- =?us-ascii?Q?aMTo1X0//KytYTElxwgkREgGdP0ePtYcz3YKz+m8nNksR+lKwd7NcEH4lYG7?=
- =?us-ascii?Q?iFQWi8CS1FD+QHGfClngi9/k8pauQwFhu6AF601UDifbYXSN/RXfOmAv9/Zx?=
- =?us-ascii?Q?SfPHTVj9i1yxMKfz/eCEqJOBV4YR+a5SLB1NqpIdRGn0q3Q1uUz1xSSwdkCT?=
- =?us-ascii?Q?ZyD5iof/fi/aR4XN0ScjXwrtuVA/uG0dMBpCCrPl95N2EIMl6uP9j1zbsoDi?=
- =?us-ascii?Q?lwIt9NRoXZ22HkwHx4yHOfNWtwORiinqswYVrs0ZEGbNA1l2tkPbV+jyXCoi?=
- =?us-ascii?Q?qXeZXho2a2fcYcqOjfyHk9kg9c5kM89DUIlogOcXYNhBqi51ZNxBHyptvUJ9?=
- =?us-ascii?Q?kLY0tbaf9K08ayfuRtibmtUcbkbm0oAJ0nf8OLDaIgejsuWNovatomUajDV5?=
- =?us-ascii?Q?jkGy7kSRK2jTUoTReUgwn9sMwsCcui3rqSDo8/gq?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C7F212548;
+	Tue,  2 Dec 2025 09:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764668894; cv=none; b=NfvhvpxK9mDQ32+ut/nGoe1ahSY5R8Sc3kpsVj9eEuGjEYC3sV2vEkWGgq0Kj6wwJjuYkkQsxQJDWL9uTQ4lvDSCOBbcsYJJ2mWOrb/if3kdxllZMA3ZnMXj+nqh2SyxgqBDr4nBH+PWbFUiz2McUUE1ng0Op1MUyiIzOr2SP84=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764668894; c=relaxed/simple;
+	bh=8G25LQzjTGIJB5ZgW6XJvkQwhzr5enzYI6bZkflT6Lo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TToK1lucTaQif28fVVJIX0KUSDYdv8g/Z0JTdeljYUWOe4OKQJSvoq+AOzNZj5FkPC2qHWcgmmAGdaLdOsVZX5LXEzGdklrQkABZnxnEAD3oYMXsSZinuR2Gw5KAi6WXn0WwZ8RpUWwNNKsmJMl7i7aL2Kbs8/udF2nFuujKbbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Kgohop/j; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: fef8fecacf6311f0b2bf0b349165d6e0-20251202
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:To:From; bh=guA+QB2P6R3BPkrbN5CwOJVp0V4jK40YB0OxLJnUQzM=;
+	b=Kgohop/j7EQHq082gtuVo4zWcupWVCizIInr9jH5iUmqcaGlSL2AZy1npC58of4LOBmKwRVZrfohht4WiiwBs4htOWSvCPTOInA0gdLhxSK9a77Ncmm64csIzhmW5dxO4K3wnW2jlaeww9jTYlL7WlYKjPHVDLPastB6UR8DZb4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:82112f70-ebd4-48d8-9a28-d5e5df46cd73,IP:0,UR
+	L:0,TC:0,Content:0,EDM:-20,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-20
+X-CID-META: VersionHash:a9d874c,CLOUDID:0b4bbca9-6421-45b1-b8b8-e73e3dc9a90f,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:1,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA
+	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: fef8fecacf6311f0b2bf0b349165d6e0-20251202
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 303227762; Tue, 02 Dec 2025 17:48:03 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Tue, 2 Dec 2025 17:48:02 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.26 via Frontend Transport; Tue, 2 Dec 2025 17:48:01 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+Subject: [PATCH v11 00/12] Enable jpeg enc & dec multi-hardwares for MT8196
+Date: Tue, 2 Dec 2025 17:47:48 +0800
+Message-ID: <20251202094800.6140-1-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB6226.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d90cf79-f296-44c0-0536-08de318794c6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Dec 2025 09:45:51.8990
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xxHg9t+Hw95g2Ox4ZFvIkiyEGWYL6zCl1BqLef8k8g5DNwKgP/KeDCO3UKTPvloRkx97YYxkRq16H7oKQ7vACpld7NZ0LPfMdjqY4sQ7vX0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB7004
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
+This series have the follow changing:
+Firstly fix some bugs, including resolution change handleing, stop
+streaming sw flow, fix buffer layout and clock setting to support multi-hw
+jpeg working and others.
+Secondly add mt8196 jpegdec and jpegenc compatible to support MT8196
+kernel driver.
+Lastly, Add smmu setting to support smmu and iommu at the same time.
 
-Hello, Takashi
+This series has been tested with MT8196 tast test.
+Encoding and decoding worked for this chip.
 
-> -----Original Message-----
-> From: Takashi Iwai <tiwai@suse.de>
-> Sent: Monday, December 1, 2025 8:53 PM
-> To: Joakim Zhang <joakim.zhang@cixtech.com>
-> Cc: lgirdwood@gmail.com; broonie@kernel.org; robh@kernel.org;
-> krzk+dt@kernel.org; conor+dt@kernel.org; perex@perex.cz;
-> tiwai@suse.com; linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
-> cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-> Subject: Re: [PATCH v3 3/3] ALSA: hda: add CIX IPBLOQ HDA controller
-> support
->=20
-> EXTERNAL EMAIL
->=20
-> CAUTION: Suspicious Email from unusual domain.
->=20
-> On Mon, 01 Dec 2025 11:57:00 +0100,
-> joakim.zhang@cixtech.com wrote:
-> >
-> > From: Joakim Zhang <joakim.zhang@cixtech.com>
-> >
-> > Add CIX IPBLOQ HDA controller support, which integrated in CIX SKY1
-> > SoC.
->=20
-> It'd be more helpful to describe the characteristics about this chip.
-> e.g. this chip requires special handling for jack polling, and it needs t=
-he
-> address offset, etc.
->=20
+Patches 1 fix jpeg hw count setting to support different chips.
+Patches 2 fix jpeg buffer payload setting to handle buffer
+size bug while resolution changed.
+Patches 3 fix jpeg dst buffer layout.
+Patches 4 fix multi-core stop streaming flow
+Patches 5 fix multi-core clk suspend/resume setting
+Patches 6 fix decoding buffer number setting timing issue
+Patches 7 fix decoding resolution change operation
+Patches 8 fix remove buffer operation
+Patches 9-11 Adds jpeg encoder and decoder compatible.
+Patches 12 add jpeg smmu sid setting.
 
-Fine.
+---
+Changes compared with v10:
+--Rebased on top of the latest media tree
+--add reviewer to commit messages
 
-> > +static int __maybe_unused cix_ipbloq_hda_suspend(struct device *dev)
->=20
-> Those __maybe_unused are superfluous when you use
-> SYSTEM_SLEEP_PM_OPS() or RUNTIME_PM_OPS() in dev_pm_ops
-> definition.
->=20
+Changes compared with v9:
+--Rebased on top of the latest media tree
 
-OK
+Changes compared with v8:
+--Rebased on top of the latest media tree
 
-Joakim
+Changes compared with v7:
+--Rebased on top of the latest media tree
+
+Changes compared with v6:
+--Rebased on top of the latest media tree
+
+Changes compared with v5:
+--reorder the patches set.
+--fix commit message of patch 1-8.
+
+Changes compared with v4:
+--fix kernel robot build errors for patch 4.
+--add reviewer for patch 1 and patch 2.
+
+Changes compared with v3:
+--change patch subject of jpeg encoder and decoder compatible.
+
+Changes compared with v2:
+--refactor smmu sid setting function interface
+--Some modifications for patch v2's review comments.
+
+Changes compared with v1:
+--refine jpeg dt-bindings for MT8196
+--optimize software code to manage jpeg HW count
+--refactor smmu sid setting function interface
+--Some modifications for patch v1's review comments.
+
+Kyrie Wu (12):
+  media: mediatek: jpeg: fix jpeg hw count setting
+  media: mediatek: jpeg: fix jpeg buffer payload setting
+  media: mediatek: jpeg: fix jpeg buffer layout
+  media: mediatek: jpeg: fix stop streaming flow for multi-core
+  media: mediatek: jpeg: fix multi-core clk suspend and resume setting
+  media: mediatek: jpeg: fix decoding buffer number setting timing issue
+  media: mediatek: jpeg: fix decoding resolution change operation
+  media: mediatek: jpeg: fix remove buffer operation for multi-core
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgdec
+    compatible
+  media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgenc
+    compatible
+  media: mediatek: jpeg: add jpeg compatible
+  media: mediatek: jpeg: add jpeg smmu sid setting
+
+ .../media/mediatek,mt8195-jpegdec.yaml        |   8 +-
+ .../media/mediatek,mt8195-jpegenc.yaml        |   8 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 170 +++++++++++++-----
+ .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  21 ++-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 112 +++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 112 +++++++++++-
+ 6 files changed, 376 insertions(+), 55 deletions(-)
+
+-- 
+2.45.2
+
 
