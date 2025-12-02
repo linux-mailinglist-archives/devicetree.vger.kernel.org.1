@@ -1,213 +1,155 @@
-Return-Path: <devicetree+bounces-243617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B612FC9AB5F
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 09:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82139C9AB7A
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 09:38:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DC163A340D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 08:37:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 222B93A4444
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 08:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07F0305E2B;
-	Tue,  2 Dec 2025 08:37:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mFqX+HK1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RNLc6ATG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 568BB2580F2;
+	Tue,  2 Dec 2025 08:38:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CCF330217C
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 08:37:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEEBD218827
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 08:38:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764664621; cv=none; b=TcfwIjhC5Q3S/PmwP3Q/TMTHN7FwJtK68uu3PpS1zz/MfUV85jcvKeT6Vhq8Umuv19QPvITXcikou77qYi/Z0VNccXXbDrSCqYAa2LiemH+U89A+IzD6uz/kORJcxbqEwNwMxPXmivnt42ow2Zvv6Iv83u6kpto6KCW0KjGzyKA=
+	t=1764664728; cv=none; b=XbO1zZERvYXCktfFv9v1hJZMX5x+5R8yW8yOvdAnHnns+IiYf56shaGYQxr873uKiyp2tWIl0m1LvzqsyGHco0Jt/Kau29yqlQBt9kBHlMWmGi26FW3qUHCAb6gp4j5osG+qof7T4KClWw8xaNDWaG4fJMn9pWQPhji8r46oa6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764664621; c=relaxed/simple;
-	bh=2f+oyT22R6+ufw0lsSoxkkFhzOSzFUApxscYiZJh5yM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oC/O6G26SqSJE37qKLDjDQb3NZ7JzQWjEMTi8wgPjDnlNFxRhHVm7//SDVB7HEEf4jqbx0TYHyvOZeehIjJ9kZm9qH4kEm63sGqp4yQAqqZkL2rJtXMOaH1rZ8R/4nvi0hiuFonJxsw10IKlDx2BmBZQy4Dn+ZRL+RZc8BX2JVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mFqX+HK1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RNLc6ATG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B28EbCO1491767
-	for <devicetree@vger.kernel.org>; Tue, 2 Dec 2025 08:36:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cea5xRd2LAR6OP560Xpt2pLurPYWnXx5KGRmwEu0v84=; b=mFqX+HK1LRESWUFL
-	dEfgw2n39YSmuvs9JElkewYEoc2EQ9t2BkXAusfKpZfnSbgIqoOBT/eZddLkSlMA
-	TtK99/RmM4rZtenoMGtf1K8xamudSKOzafXR1HcoZ1zZs3MLWHuP0h34TZrzp7FL
-	AzXAw9GWIsQmsUx0r9JyGnNh1UO4izMiKHj73zmkdKgRPLUIj8PJ/rHrEglLH4gz
-	Mt0ywnkeDhr7v01zbByrxXY8BBcK3YTR146XxVs2xdx5EEgedcHdP0ACoTNGtZ/T
-	zy4l/8/BbSjgGEfrbmuiZOEfnX1SLEzkQt6AnIaZtyY2Ctx7gXdZmttEo/SBjyqo
-	yD1R3Q==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4askbd1mwa-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 08:36:59 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7c7957d978aso4958480b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 00:36:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764664618; x=1765269418; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=cea5xRd2LAR6OP560Xpt2pLurPYWnXx5KGRmwEu0v84=;
-        b=RNLc6ATGmjgLwrjqawWWK+LatoPTiZSGEJy3BcFFjEJsq94M4yjUwI0jMNHJIx/H9h
-         celBTltrzR2rc40mguqkZ650UyqVgtP5y10y9AmSsE4rmhAs4qtYKAjWHmGRaJjm4ncO
-         4ga0fmMfhGHSbX+8krKMI+SRzunDoZ7hXP7df+SJz0cJbEXTeaQ8zJDx87a1HZNQpZwZ
-         lQXSbj/GLgun9bBWTHGUYnZXjkcXzjL4qYkT0P08Wc+rBmoTSCvOzYSUEBsfWOz0wZpf
-         9eIym+brWZtsyewxsNkq41JOKaMbWr0gK3/w4679TAP/QPX2A6Ul70NFom0ecap/GsCo
-         lyfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764664618; x=1765269418;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cea5xRd2LAR6OP560Xpt2pLurPYWnXx5KGRmwEu0v84=;
-        b=Y1JxgKletzLk7g/icRbc/mlsQE+m9h4UW5ncs7ttkyXA82RaARIAsQXKE85JCR5RW7
-         vdYT8l9jD78ti8k5g86JBUKBMZG6SuZZuuPQ99mR68pRCXNOlLlycOVg7G9aJjdsqlbN
-         6popdXJWeAkD37XDUqGJLsWpkGEw1AEqRBk+jchX+MJSoST1HZkyhKJnqgojZoIL8l4c
-         adxbT400UrDh1eEh3x2Z0B3z4fuc5nu5Rrm9EcB4uq7OWUz1m+vMyrlmt16e0MBqTqgj
-         +ILWYqylzFDWNKyBNRAGkzEdVJ7rvLmWuK1yrePEO3Gv+aMJlDirunjLnHieCn/W6MGq
-         APdA==
-X-Forwarded-Encrypted: i=1; AJvYcCXoknb3UGGuDsW5FCR/D5vELRfBV7fjrpRdvrklRbJ03DrgqArHCIhcmcXE/kvHlJAfSMEgwZ2GVlmC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUFbWaeWOJr7zyaRJGck4m6tA2WZOKv+R4J6XpmuLs3pH8wb5u
-	rvalKUEpbccD3QOnQdKpm14C376aPZjO2is6rF/IFzmnvN/3i2b9J6Gu3iW7pMMaP4PPRPFLwSP
-	uAVlcyGaHS7HqdAi5w2AuHTgJmYM/RXZOd3G6BjR2VLhHvCTCEOYicK4c6zRJo71s
-X-Gm-Gg: ASbGncsi6jdq9ByM5wPsiDJR/v22qMSq3NALn3hOE6cARsB4T9BIEb59gX9niLCjlhT
-	d/8yblEtLO9M/kgBJ95F40c2y1roiDI0+rMWj1Wpq6u6M3PAYEpvORcCS1vcJo2MWFh5DLnF8UB
-	RIRO7ZtBPZOILNSqLYxKhuow4tIif4eQmbXXY6y1cohqYPfg9Q7coA45fP1dAGyVCUX/2WQlS2m
-	NcGZJvTHGFwzbq5tDsMPcCiDVcKP82Lhu19UFgzXajto4F2LXceWlVarFEJ6YbdfbMs60DxUN7a
-	xWx1Rzss1z5i2V9KXmyDtFyUPYAVfyr0vMkLNh19lcicbHwxwr8g+cXHub8HDjIARC9Fn3UqScb
-	q6hrVPhA7olGlSotNPhKAmlarZYhhaZI+wDlD
-X-Received: by 2002:a05:6a21:3395:b0:34e:e0ba:7bf with SMTP id adf61e73a8af0-36150e1fc24mr48387154637.1.1764664618282;
-        Tue, 02 Dec 2025 00:36:58 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFFfcyGB74lclpQ93vXWzJfbznVZKLqfP1ZJZEp1qLtVB0QSTSWqyEngdybDcfSBj3gxxXBGQ==
-X-Received: by 2002:a05:6a21:3395:b0:34e:e0ba:7bf with SMTP id adf61e73a8af0-36150e1fc24mr48387111637.1.1764664617636;
-        Tue, 02 Dec 2025 00:36:57 -0800 (PST)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d150b684d7sm16158039b3a.7.2025.12.02.00.36.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Dec 2025 00:36:57 -0800 (PST)
-Date: Tue, 2 Dec 2025 14:06:50 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Bryan O'Donoghue <bod@kernel.org>, vikash.garodia@oss.qualcomm.com
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
- SoCs running Linux host at EL2
-Message-ID: <20251202083650.luk2jpcquq2pcf2r@hu-mojha-hyd.qualcomm.com>
-References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
- <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
- <Ux4KioDAyhqgZYleT-eeeFKzuT_qadCIpP3RgyB40apZPX4I9_JwcfY9mebop4gmFcyh4LPw0KQvFzL4zzysJQ==@protonmail.internalid>
- <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
- <9dfe5343-824d-42c2-aab8-8389602601e9@kernel.org>
+	s=arc-20240116; t=1764664728; c=relaxed/simple;
+	bh=tHeFvc7UhicjqN00K1r884+rK0Ul+tMYEK4JceK0xMI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YeQ/keFpERoOMeBUKp2/mGqmS1km2XS9eGYhm20bXVuf6OwmkAula5efdhjcCTSAHC9Tdh8EJEniM5YlO1HtpuAc+JdaNQVaXWf+PybYAoNccuaRwlxk9ifF0//8UlqboHEJ9GkH0fsjisWeRVAazCxncwDu1ZeGiyiy1OrlEg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip4t1764664668t3725c885
+X-QQ-Originating-IP: qHSl1Yl2slirFGRTqNTrStmEkXBqkUSw3ZOxNOPAMrA=
+Received: from [IPV6:240f:10b:7440:1:a68f:7233 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 02 Dec 2025 16:37:45 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 16993972051535158119
+Message-ID: <852EA51CD6BBC1AD+2613d6c1-d999-47c1-9842-ef6ce3ddd1f3@radxa.com>
+Date: Tue, 2 Dec 2025 17:37:44 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND PATCH v5 3/3] arm64: dts: rockchip: Add support for CM5
+ IO carrier
+To: Michael Opdenacker <michael.opdenacker@rootcommit.com>, heiko@sntech.de
+Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, quentin.schulz@cherry.de, jonas@kwiboo.se,
+ kever.yang@rock-chips.com, i@next.chainsx.cn, honyuenkwun@gmail.com,
+ inindev@gmail.com, dsimic@manjaro.org, pbrobinson@gmail.com,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20251202052702.155523-1-naoki@radxa.com>
+ <20251202052702.155523-4-naoki@radxa.com>
+ <39d3d988-f436-4b31-a130-c65dc292c469@rootcommit.com>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <39d3d988-f436-4b31-a130-c65dc292c469@rootcommit.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9dfe5343-824d-42c2-aab8-8389602601e9@kernel.org>
-X-Proofpoint-ORIG-GUID: jK3I3-OQqRPXuO1uanrOguKRcAQyGi0N
-X-Proofpoint-GUID: jK3I3-OQqRPXuO1uanrOguKRcAQyGi0N
-X-Authority-Analysis: v=2.4 cv=fLg0HJae c=1 sm=1 tr=0 ts=692ea52b cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=uEwPF_Y-ILqiIyH3WEEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAyMDA2OCBTYWx0ZWRfX+mgUC8dvUBZG
- FmSSxZDCIyZfgE0QOUctSRYUPmSHtWCCnOhWeYJ5hk+P1f8FzqKwPl3pHn5iIipbNCdR3IVQGn9
- 6DbZZo+4FHLPkjxL7J3/KdCioKQDXb44VngRHEy3/BD10ph3NsWK9Q4s98OCOy25CUBFGsoUZ5C
- ENdny+mrSM6Q6ZyxTnA63s/QJk1O+2rzavZb88ceiaimM50FoKmuyln6cHO0xJkey5WdFCbDFTm
- VGIqm/OnilvMFnPaLGVIRbIeD5N2saa0whbxFcYZ47MwsHQUK/CznLndaI1uQLI1EIbjZur2lMU
- 8I5imAgvnIh0IgpZKrDdqVTjNcCkT8BqSJzjcMYN2vR9uyCT2Q8BPF6ZHr07Qt9sAFkoesIQQf7
- qbAFPZBusvBYxWm01isUWzTQsIskWA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-01_01,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 clxscore=1015 phishscore=0 adultscore=0 malwarescore=0
- suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512020068
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: NO0eLx0aUO/YN78Hw5ehA4SdICYIKGwZrhzNRsgw23mevF7DmAQHbAk1
+	1gtbY0FNquQAnhIHbQ6GPF7DLanuO3r9OLAD12bAITb1RSa8OavS/vw2oFXk2qgXcjWClXw
+	GPMyBaDya/2yCH2UqOvFMMvmDSI5C58K1jgVfQTLP+1Eb0swT+RC9nfF4lMt5BqWTRNJi7X
+	wEujyYykpbH5IlwLsnvf6EcSq0jc2mhrCvsSnWuyHmm4fZXrEAWdw3XO+uB5V1rzAElwb8G
+	pCPoVXjs/OxcIw1MlyUqrpZHKgcd+LCcMzmVVXCW3AE6Nq5Ue9NiZRByUYP9oGp4KoERckR
+	dLfbstqobltMmR/BwtyRdJI3ZWeIBcVu/396IAKVgLZ5eZ55h9LvrpX2fVU22UkdlLxbUR2
+	p/tcVdJLIo/284bPtW0EmPK0t9Lz9jHdttcKs1i97vbbqFRwlx71+Ounal6YameHgFmydiN
+	qt9vMivnD0AL0YiHlipt+bdLjl5tCCh3tPv+ig3uz07N3AwSSB7hk51VLYXSTgkKQ59xfJg
+	V0UNj+GjQMhLSSPeqQIArBBAiFM6vDjboekIlUgsY7utmNQwyXWbZfMraaJSdYMHLCnUg5M
+	uIJLe3J9vssPwZDnegldmrnc3JVURhvWSOzcnVcPIO6YMxJUNu3eU/L4pXkMRo8qoBfz24Y
+	OHBaC/MFcsIoH6pgb3vaV4JBTrWXO+YZ30Y5GAqtJGOPc4u2RY5HPrq61AWeVvRK2irWCJo
+	gwzCH0Z9eUyPNTPhYQaXomRWiwTLuTKysuuq4+MjgkcWNmHlQnEVx75HMl2BIGqRB/eEVg0
+	OyHJxhVAKDu10OAF+/PZKGhMX3uB8ETW5FJiltjNq6UlzcS/avilDe48FflQiUlCGs7haq0
+	buXbM71l8Q3pUbk9MOY3q29WsxXyVIKL3m9CmQFVAiGoUqlipfbzchz2tcw9y0cUPekD4/t
+	0+9KCL/AoAg5NTJHtwm74sxe6V/Rrfeqz8deRNfyBeUw+BcNP4Wxy4Mx39bNWzDF5f8Jcyc
+	xnbUuLWGZ+GGrrYRBzSR3PnSTwwyA=
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-RECHKSPAM: 0
 
-On Thu, Nov 27, 2025 at 10:25:23AM +0000, Bryan O'Donoghue wrote:
-> On 21/11/2025 11:37, Mukesh Ojha wrote:
-> > > Sorry.
-> > > 
-> > > Did we actually come up with a cogent reason to omit the video firmware
-> > > loading here ?
-> > > 
-> > > AFAIU it is required for Lemans and Glymur - leaving it out is blocking
-> > > getting video stuff done and storing up trouble.
-> > > 
-> > > What exactly is the blockage - is it something you want help with ?
-> > I replied to you here[1] and given my reason..till something concluded on
-> > "multi-cell IOMMU[2]", I can not add video and block what is working
-> > already.
-> > 
-> > [1]
-> > https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-
-> > hyd.qualcomm.com/
-> 
-> Why though ?
-> 
-> You are mixing together the issue of multiple SIDs and the original loading
-> of firmware which could easily reuse the venus method of
-> 
-> &iris {
-> 	video-firmware {
-> 		iommus = <&apss_smmu hex>;
-> 	};
-> };
+Hi Michael,
 
-I completely understand what you are saying, and it would be very easy
-for me to do that if it gets accepted. However, I doubt that the people
-who raised this concern would agree with the approach.
-
-I’m not sure if the video team would like to pursue pixel/non-pixel/firmware context
-banks separately. I’ll leave this to @Vikas to answer.
-
-Also, I do not want the video PIL discussion to be part of this series, as it could
-unnecessarily give the impression that this series depends on it.
-
+On 12/2/25 17:30, Michael Opdenacker wrote:
+> Hi Naoki,
 > 
-> That binding got dropped because it was unused in Iris.
+> Thanks for the patch update!
 > 
-> https://lore.kernel.org/lkml/05d40a3b-cc13-b704-cac7-0ecbeea0e59d@quicinc.com/
+> On 12/2/25 06:27, FUKAUMI Naoki wrote:
+>> From: Joseph Kogut <joseph.kogut@gmail.com>
+>>
+>> From: Joseph Kogut <joseph.kogut@gmail.com>
+>>
+>> Specification:
+>> - 1x HDMI
+>> - 2x MIPI DSI
+>> - 2x MIPI CSI
+>> - 1x eDP
+>> - 1x M.2 E key
+>> - 1x USB 3.0 Host
+>> - 1x USB 3.0 OTG
+>> - 2x USB 2.0 Host
+>> - Headphone jack w/ microphone
+>> - Gigabit Ethernet w/ PoE
+>> - microSD slot
+>> - 40-pin expansion header
+>> - 12V DC
+>>
+>> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>> ---
+>> Rebased on linux-next 20251201, no change.
+>> ---
+>>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>   .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 486 ++++++++++++++++++
+>>   2 files changed, 487 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5- 
+>> io.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/ 
+>> dts/rockchip/Makefile
+>> index dbdda9783e93..697808b544d8 100644
+>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>> @@ -210,6 +210,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-roc-pc.dtb
+>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-radxa-cm5-io.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
 > 
-> I still fail to see why we are waiting for multi-cell IOMMU to land, when it
-> is expected to and what the VPU enablement story is upstream in the
-> meantime.
-> 
-> Blocked it seems.
+> Small nitpick...
+> The file names are alphanumerically ordered in this file.
+> You should have rk3588s-radxa-cm5-io.dtb before rk3588s-roc-pc.dtb.
 
-No, it is ongoing, there will be next version coming.
+Sorry, it was my mistake while rebasing to linux-next. I'll resend this 
+patch series with this correction.
 
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> Cheers
+> Michael.
 > 
-> ---
-> bod
 
--- 
--Mukesh Ojha
+
 
