@@ -1,347 +1,198 @@
-Return-Path: <devicetree+bounces-243657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8562C9AF60
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:51:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4FE8C9B00F
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:58:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4AA104E1000
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:51:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6DEE83481A7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:57:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA09314D3E;
-	Tue,  2 Dec 2025 09:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B2F3101A2;
+	Tue,  2 Dec 2025 09:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="tNfOMlSe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NrpEgUaK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797EC312801;
-	Tue,  2 Dec 2025 09:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDAD030FF26
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 09:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764668902; cv=none; b=Oz3UtaeZhU9HhzeQ6rdL3gzyUXx9Cvqazanpvs0MieI+6kXTu3bDmQWewsFp/NCXA7RM2mbafLUOqNIG/CDeAd7lP74czbiV19c7oTAT96eHOV0bvToITfI0EJWUeMVLoHSq2xucEhWg7qqH6JxQeh0pJ3lb287VZaKhFT9N+LQ=
+	t=1764669280; cv=none; b=Nqrwu1BY15Qa5C14kiRnRlxZV8R9WDVIqoKCgxOKOMi6/h3QLJdg2ZvX+ny4Z7OWO3BtGUwKjSkO0stp56iT7u3l72bWVkHNJarZSpSr2ubrkLq9mXv8MYMJ0neZ1OPIw8ClegicOZPMeZXHRwW8sftk7x29u+yEHMP/UZvkOcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764668902; c=relaxed/simple;
-	bh=wUr2HpwIJuST4uB++UPSkdMlaO8+9jx9c+ZnYzBf2io=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Um4coff7mHsc6dHT2qruW+PzZ0fg35Y30/BUwCy0DqN3mULs806c9R91zmofRqLC5MC9px9kK1s85kPzO4UgtX4IMzljD8KbC6qPz6tPxQaAz4+10uDXW3SMsjkHtCLkBiT0Xy2S7PFlWjuy3KkxzJ19VuvHaIAdrfTyJlVhAxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=tNfOMlSe; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 05152310cf6411f0b2bf0b349165d6e0-20251202
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From; bh=IuxrjQGkPURWMxOhrzqIZDhazzA4UeBlX38l8eJK1zg=;
-	b=tNfOMlSeuoBxFpg9aFDwM4uu9OVLPVqWy63MLZRWWGSE4Y7GtS3uK4Dal/o36xx5Mx6AQ4LXesxq6yeuzXwDlHsxjGRXe4p6TOIG2zwZW+N1SIi2gwrN8AmIMTiQ3F56Y9dFsVWvKKyfvzkEN1psfVHP6H2aIG1YkfugW58kIfg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:07600075-f341-4cc8-a7e9-3caf11a67b59,IP:0,UR
-	L:0,TC:0,Content:0,EDM:-20,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-20
-X-CID-META: VersionHash:a9d874c,CLOUDID:7c455002-1fa9-44eb-b231-4afc61466396,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:1,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI
-	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 05152310cf6411f0b2bf0b349165d6e0-20251202
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <kyrie.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 88952954; Tue, 02 Dec 2025 17:48:13 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 2 Dec 2025 17:48:12 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Tue, 2 Dec 2025 17:48:11 +0800
-From: Kyrie Wu <kyrie.wu@mediatek.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>
-Subject: [PATCH v11 12/12] media: mediatek: jpeg: add jpeg smmu sid setting
-Date: Tue, 2 Dec 2025 17:48:00 +0800
-Message-ID: <20251202094800.6140-13-kyrie.wu@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20251202094800.6140-1-kyrie.wu@mediatek.com>
-References: <20251202094800.6140-1-kyrie.wu@mediatek.com>
+	s=arc-20240116; t=1764669280; c=relaxed/simple;
+	bh=EiXesyPMoSc0xu7TjPVo5wefAUNtnNky3tjqoIW+AFk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=mSVYmT6tgx6/Y0LnSOPn6slThC4qcGqTd+6+lMTbj0TuPAprV3Nz4ZvrfK2JXhddtwWqKvCfpxla1Hhr3ARTEZOdsW/UuRT/57aZ2tC7IauUMjZHPUQbebR61fXWMD2mMtLKtZ87ufSUwC7y8fk6fiJB/DKL85TQ5Q6g8/3pM4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NrpEgUaK; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b735e278fa1so313572766b.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 01:54:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764669277; x=1765274077; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fmcXNUEO80mXAVYkIIIRpgbvGeVPZ2JwOkqQjxC/qNM=;
+        b=NrpEgUaKRNZoe9Y8q/d64rw0uM4BlGEzh63YRzd9otkLbyfbxaqrbg0Xh3/ErOcBw3
+         qqV1Xv7lVYFPNGne5npUCXZJVnrqtyMs5+90eDZJTLvv/GOtsyGoaLvV0eHTPjV+sO3F
+         DC7BPGBdXPCcWrOuOcxEXEP0TizaLqCQsmk3AYz5Fwmb02XLmxgDL+7MoI6KRvqsmnFj
+         k/FEQ04ybYFVCnrDiUb0Ql05YMn0xBRXTtU9HdAJvSxQXChpKEpddCFoTn2XzIdTyUCd
+         rJg7i3YrslyyLV+sqkTomR8Uo9HpXQNR8tvD4InVWAYFAyPK5akW3sy96c/fSO6BsKh9
+         KQrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764669277; x=1765274077;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fmcXNUEO80mXAVYkIIIRpgbvGeVPZ2JwOkqQjxC/qNM=;
+        b=idSV7xn5D9FRjydPCW1cFCquMJi6MmAa+plA3EHVcXQIRq0L6cS6qqdK4juAwDL4wS
+         g0nbwLSz9apJ/xGUTgPIYdNs4qDas4i0FWr11fNveTkcoaQ4n+RUcYC1WbxRN696aeeo
+         yMi9l2pyQe2N2AtuMhb/FXWiMUsIdywKYkVSU4/2e3nrPszvKHk86Tcsd98dMYD8Jfzd
+         3aWd+//OcN8yeSVKJ+jeTuDvjxLkzb8xqD0wUNCOTgbfBQ9BimPkPw6qjpNbAYRp+esS
+         x9dX1Bcmlb1hnOkWgQ87IyOhimdlwq8oqF0LyPW34XTAxS/ukI7hVmVrwTNb+NDIzVXE
+         Kb/Q==
+X-Gm-Message-State: AOJu0YwlqV+aN88sKD3E5ANb+46gSDqDd093u9pfzlTo7Bjm6ZiO8DdZ
+	kLfXiJ0/YooOOhZVjJ7PgPFZrtWz+M/JlHDmwjQ6he2qeh2a+7XkpyC1VAh4TeYAG+4=
+X-Gm-Gg: ASbGncsLMh7icZwfFX4DgYHeGHg+zXyJZMs1ceKXLi8cndOgjSkx8OJbl4cu7yfqY2f
+	/8EK1Bwe8En24Ue0TGDJLGr+wx4lJDgMap4lB1325eH74A5LXmw8UusY/CgdX4NX+T/sDTAWBHo
+	+EKSHAkR9Zf8vpsRTBtf/5EWKpSIB99vHBOyqrhQyVSErHUIFXcLtI36grgRCnSa4GLoIBHpPQe
+	Rwz9M9J7MXMnfrv2XCxKXYaMT95NIXAxZUaFvkNQt8+1PtrfOj6is0/w9q0VXqu5rIn9z9M9LNE
+	W596k7XjaaKlMbM0oQKrhXLnbcyCYddPP2z9G7x8tvFjERx6p0NoDUXJf3pjoIJo8+gW0+lz9Ab
+	M/VmTP5E0vy2DV/gFbfCi4Ls7t/bkdX++81CxhK4rux3O8iHNCY4I3EYKvrVwJ2cbp8z2OvouaD
+	HVKNVVdF3Y6deuvqh3X/xeG0NUsZOK
+X-Google-Smtp-Source: AGHT+IFJ63lxp3eqfF6B3HqtZfdhy6bpjHT9zOV3GMz4SeDzpuMwc0q+BDsBTOMbJgg/CZ2xByTBig==
+X-Received: by 2002:a17:906:c10e:b0:b73:2df0:9fa9 with SMTP id a640c23a62f3a-b76c566bccamr3151399066b.59.1764669276496;
+        Tue, 02 Dec 2025 01:54:36 -0800 (PST)
+Received: from alchark-surface.localdomain ([185.209.196.169])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f51a9819sm1494466566b.25.2025.12.02.01.54.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Dec 2025 01:54:36 -0800 (PST)
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 02 Dec 2025 13:54:31 +0400
+Subject: [PATCH v2] arm64: dts: rockchip: Add overlay for the PCIe slot on
+ RK3576 EVB1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251202-evb1-pcie1-v2-1-810693b1b72f@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAFa3LmkC/03Myw6CMBCF4Vchs7amUwWBle9hWPQywiRCSWsaD
+ em7W3Hj8j/J+TaIFJgi9NUGgRJH9ksJdajATnoZSbArDUqqGlG1gpJBsVomFNrRqe302dWdhHJ
+ YA935tWO3ofTE8enDe7cTftcfoyT+MwkFCtsoY3RtEZvLdZw1P47WzzDknD9VrquJpAAAAA==
+X-Change-ID: 20251128-evb1-pcie1-ade389a4d590
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3470; i=alchark@gmail.com;
+ h=from:subject:message-id; bh=EiXesyPMoSc0xu7TjPVo5wefAUNtnNky3tjqoIW+AFk=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWTqbY/lOdT+2f7X5obnj38bezgrMH3WFfszl68h9d+Jg
+ 3G+035N7ShlYRDjYpAVU2SZ+22J7VQjvlm7PDy+wsxhZQIZwsDFKQATkbvHyDD565v1+aeZN6gq
+ BIqeDb5mNnP5NPFfR7OK0sJdar+Ze9xkZJi31pDL3qBQ8tc3n9Ptv75NXSP3KtTp24Moni6xqPL
+ bM5gA
+X-Developer-Key: i=alchark@gmail.com; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 
-Add a configuration to set jpeg dec & enc smmu sid
+Rockchip RK3576 EVB1 has an onboard PCIe slot (PCIe 2.1, x4 mechanically,
+x1 electrically), but it shares pins and PHY with the only USB3 Type-A
+port.
 
-Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+There is a physical switch next to the slot to transfer respective pins
+connection from the USB3 port to the PCIe slot, but apart from flipping
+the switch one must also disable the USB3 host controller to prevent it
+from claiming the PHY before the PCIe slot can become usable.
+
+Add an overlay to disable the USB3 host port and instead enable the
+PCIe slot, along with its pin configs. The physical switch must still be
+flipped to the "ON - PCIe1" position for this to work.
+
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
- .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 37 +++++++++++++++++++
- .../platform/mediatek/jpeg/mtk_jpeg_core.h    | 15 ++++++++
- .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 23 ++++++++++++
- .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 23 ++++++++++++
- 4 files changed, 98 insertions(+)
+Changes in v2:
+- Added the standalone .dtbo Makefile target forgotten in v1
+- Link to v1: https://lore.kernel.org/r/20251201-evb1-pcie1-v1-1-c62bba5c1167@gmail.com
+---
+ arch/arm64/boot/dts/rockchip/Makefile              |  5 ++++
+ .../boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso   | 31 ++++++++++++++++++++++
+ 2 files changed, 36 insertions(+)
 
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-index 10a588b92e76..625dfa8468e1 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-@@ -15,6 +15,7 @@
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
- #include <linux/slab.h>
- #include <linux/spinlock.h>
- #include <media/v4l2-event.h>
-@@ -1613,6 +1614,20 @@ static irqreturn_t mtk_jpeg_enc_done(struct mtk_jpeg_dev *jpeg)
- 	return IRQ_HANDLED;
- }
+diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+index ad684e3831bc..ecd2dd365e97 100644
+--- a/arch/arm64/boot/dts/rockchip/Makefile
++++ b/arch/arm64/boot/dts/rockchip/Makefile
+@@ -153,6 +153,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5-v1.2-wifibt.dtbo
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10-pcie1.dtbo
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-luckfox-omni3576.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-nanopi-m5.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-roc-pc.dtb
+@@ -252,6 +253,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5-v1.2-wifibt.dtb
+ rk3576-armsom-sige5-v1.2-wifibt-dtbs := rk3576-armsom-sige5.dtb \
+ 	rk3576-armsom-sige5-v1.2-wifibt.dtbo
  
-+static void mtk_jpeg_enc_set_smmu_sid(struct mtk_jpegenc_comp_dev *jpeg)
-+{
-+	struct mtk_jpeg_dev *mjpeg = jpeg->master_dev;
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10-pcie1.dtb
++rk3576-evb1-v10-pcie1-dtbs := rk3576-evb1-v10.dtb \
++	rk3576-evb1-v10-pcie1.dtbo
 +
-+	if (!mjpeg->variant->support_smmu || !jpeg->smmu_regmap)
-+		return;
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+ rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb \
+ 	rk3588-edgeble-neu6a-wifi.dtbo
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso
+new file mode 100644
+index 000000000000..dccf4a5debdb
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso
+@@ -0,0 +1,31 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * DT-overlay to enable the onboard PCIe x1 slot, which shares pins and the PHY
++ * with the USB3 host port.
++ * To use the PCIe slot, apply this overlay and flip the Dial_Switch_1 right
++ * next to the PCIe slot to low state (labeled "ON - PCIe1"). USB3 host port
++ * will be unusable (not even in 2.0 mode)
++ */
 +
-+	regmap_update_bits(jpeg->smmu_regmap, JPEG_ENC_SMMU_SID,
-+			   JPG_REG_GUSER_ID_MASK <<
-+			   JPG_REG_ENC_GUSER_ID_SHIFT,
-+			   JPG_REG_GUSER_ID_ENC_SID <<
-+			   JPG_REG_ENC_GUSER_ID_SHIFT);
-+}
++/dts-v1/;
++/plugin/;
 +
- static void mtk_jpegenc_worker(struct work_struct *work)
- {
- 	struct mtk_jpegenc_comp_dev *comp_jpeg[MTK_JPEGENC_HW_MAX];
-@@ -1674,6 +1689,9 @@ static void mtk_jpegenc_worker(struct work_struct *work)
- 	jpeg_dst_buf->frame_num = ctx->total_frame_num;
- 	ctx->total_frame_num++;
- 	mtk_jpeg_enc_reset(comp_jpeg[hw_id]->reg_base);
++#include <dt-bindings/pinctrl/rockchip.h>
 +
-+	mtk_jpeg_enc_set_smmu_sid(comp_jpeg[hw_id]);
++&pcie1 {
++	pinctrl-0 = <&pcie1m0_pins &pcie1_rst>;
++	pinctrl-names = "default";
++	status = "okay";
++};
 +
- 	mtk_jpeg_set_enc_dst(ctx,
- 			     comp_jpeg[hw_id]->reg_base,
- 			     &dst_buf->vb2_buf);
-@@ -1701,6 +1719,20 @@ static void mtk_jpegenc_worker(struct work_struct *work)
- 	v4l2_m2m_job_finish(jpeg->m2m_dev, ctx->fh.m2m_ctx);
- }
- 
-+static void mtk_jpeg_dec_set_smmu_sid(struct mtk_jpegdec_comp_dev *jpeg)
-+{
-+	struct mtk_jpeg_dev *mjpeg = jpeg->master_dev;
++&pinctrl {
++	pcie1 {
++		pcie1_rst: pcie1-rst {
++			rockchip,pins = <4 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++};
 +
-+	if (!mjpeg->variant->support_smmu || !jpeg->smmu_regmap)
-+		return;
-+
-+	regmap_update_bits(jpeg->smmu_regmap, JPEG_DEC_SMMU_SID,
-+			   JPG_REG_GUSER_ID_MASK <<
-+			   JPG_REG_DEC_GUSER_ID_SHIFT,
-+			   JPG_REG_GUSER_ID_DEC_SID <<
-+			   JPG_REG_DEC_GUSER_ID_SHIFT);
-+}
-+
- static void mtk_jpegdec_worker(struct work_struct *work)
- {
- 	struct mtk_jpeg_ctx *ctx = container_of(work, struct mtk_jpeg_ctx,
-@@ -1784,6 +1816,9 @@ static void mtk_jpegdec_worker(struct work_struct *work)
- 	jpeg_dst_buf->frame_num = ctx->total_frame_num;
- 	ctx->total_frame_num++;
- 	mtk_jpeg_dec_reset(comp_jpeg[hw_id]->reg_base);
-+
-+	mtk_jpeg_dec_set_smmu_sid(comp_jpeg[hw_id]);
-+
- 	mtk_jpeg_dec_set_config(comp_jpeg[hw_id]->reg_base,
- 				jpeg->variant->support_34bit,
- 				&jpeg_src_buf->dec_param,
-@@ -1943,6 +1978,7 @@ static struct mtk_jpeg_variant mtk8196_jpegenc_drvdata = {
- 	.cap_q_default_fourcc = V4L2_PIX_FMT_JPEG,
- 	.multi_core = true,
- 	.jpeg_worker = mtk_jpegenc_worker,
-+	.support_smmu = true,
- };
- 
- static const struct mtk_jpeg_variant mtk8195_jpegdec_drvdata = {
-@@ -1969,6 +2005,7 @@ static const struct mtk_jpeg_variant mtk8196_jpegdec_drvdata = {
- 	.cap_q_default_fourcc = V4L2_PIX_FMT_YUV420M,
- 	.multi_core = true,
- 	.jpeg_worker = mtk_jpegdec_worker,
-+	.support_smmu = true,
- };
- 
- static const struct of_device_id mtk_jpeg_match[] = {
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-index 33f7fbc4ca5e..6e8304680393 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-@@ -11,6 +11,7 @@
- 
- #include <linux/clk.h>
- #include <linux/interrupt.h>
-+#include <linux/mfd/syscon.h>
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-device.h>
- #include <media/v4l2-fh.h>
-@@ -34,6 +35,14 @@
- 
- #define MTK_JPEG_MAX_EXIF_SIZE	(64 * 1024)
- 
-+#define JPEG_DEC_SMMU_SID				0
-+#define JPEG_ENC_SMMU_SID				0
-+#define JPG_REG_GUSER_ID_MASK			0x7
-+#define JPG_REG_GUSER_ID_DEC_SID		0x4
-+#define JPG_REG_GUSER_ID_ENC_SID		0x5
-+#define JPG_REG_DEC_GUSER_ID_SHIFT		8
-+#define JPG_REG_ENC_GUSER_ID_SHIFT		4
-+
- #define MTK_JPEG_ADDR_MASK GENMASK(1, 0)
- 
- /**
-@@ -65,6 +74,7 @@ enum mtk_jpeg_ctx_state {
-  * @multi_core:		mark jpeg hw is multi_core or not
-  * @jpeg_worker:		jpeg dec or enc worker
-  * @support_34bit:	flag to check support for 34-bit DMA address
-+ * @support_smmu:	flag to check if support smmu
-  */
- struct mtk_jpeg_variant {
- 	struct clk_bulk_data *clks;
-@@ -82,6 +92,7 @@ struct mtk_jpeg_variant {
- 	bool multi_core;
- 	void (*jpeg_worker)(struct work_struct *work);
- 	bool support_34bit;
-+	bool support_smmu;
- };
- 
- struct mtk_jpeg_src_buf {
-@@ -150,6 +161,7 @@ struct mtk_jpegdec_clk {
-  * @hw_param:		jpeg encode hw parameters
-  * @hw_state:		record hw state
-  * @hw_lock:		spinlock protecting the hw device resource
-+ * @smmu_regmap:	SMMU registers mapping
-  */
- struct mtk_jpegenc_comp_dev {
- 	struct device *dev;
-@@ -163,6 +175,7 @@ struct mtk_jpegenc_comp_dev {
- 	enum mtk_jpeg_hw_state hw_state;
- 	/* spinlock protecting the hw device resource */
- 	spinlock_t hw_lock;
-+	struct regmap *smmu_regmap;
- };
- 
- /**
-@@ -177,6 +190,7 @@ struct mtk_jpegenc_comp_dev {
-  * @hw_param:			jpeg decode hw parameters
-  * @hw_state:			record hw state
-  * @hw_lock:			spinlock protecting hw
-+ * @smmu_regmap:		SMMU registers mapping
-  */
- struct mtk_jpegdec_comp_dev {
- 	struct device *dev;
-@@ -190,6 +204,7 @@ struct mtk_jpegdec_comp_dev {
- 	enum mtk_jpeg_hw_state hw_state;
- 	/* spinlock protecting the hw device resource */
- 	spinlock_t hw_lock;
-+	struct regmap *smmu_regmap;
- };
- 
- /**
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-index e453a1634f33..da753a636eaa 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-@@ -624,6 +624,25 @@ static int mtk_jpegdec_hw_init_irq(struct mtk_jpegdec_comp_dev *dev)
- 	return 0;
- }
- 
-+static int mtk_jpegdec_smmu_init(struct mtk_jpegdec_comp_dev *dev)
-+{
-+	struct mtk_jpeg_dev *master_dev = dev->master_dev;
-+
-+	if (!master_dev->variant->support_smmu)
-+		return 0;
-+
-+	dev->smmu_regmap =
-+		syscon_regmap_lookup_by_phandle(dev->plat_dev->dev.of_node,
-+						"mediatek,smmu-config");
-+	if (IS_ERR(dev->smmu_regmap)) {
-+		return dev_err_probe(dev->dev, PTR_ERR(dev->smmu_regmap),
-+				     "mmap smmu_base failed(%ld)\n",
-+				     PTR_ERR(dev->smmu_regmap));
-+	}
-+
-+	return 0;
-+}
-+
- static int mtk_jpegdec_hw_probe(struct platform_device *pdev)
- {
- 	struct mtk_jpegdec_clk *jpegdec_clk;
-@@ -677,6 +696,10 @@ static int mtk_jpegdec_hw_probe(struct platform_device *pdev)
- 	dev->master_dev = master_dev;
- 	master_dev->max_hw_count++;
- 
-+	ret = mtk_jpegdec_smmu_init(dev);
-+	if (ret)
-+		return ret;
-+
- 	platform_set_drvdata(pdev, dev);
- 	pm_runtime_enable(&pdev->dev);
- 	ret = devm_clk_bulk_get(dev->dev,
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-index b30c728c3712..8a61d5537315 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-@@ -348,6 +348,25 @@ static int mtk_jpegenc_hw_init_irq(struct mtk_jpegenc_comp_dev *dev)
- 	return 0;
- }
- 
-+static int mtk_jpegenc_smmu_init(struct mtk_jpegenc_comp_dev *dev)
-+{
-+	struct mtk_jpeg_dev *master_dev = dev->master_dev;
-+
-+	if (!master_dev->variant->support_smmu)
-+		return 0;
-+
-+	dev->smmu_regmap =
-+		syscon_regmap_lookup_by_phandle(dev->plat_dev->dev.of_node,
-+						"mediatek,smmu-config");
-+	if (IS_ERR(dev->smmu_regmap)) {
-+		return dev_err_probe(dev->dev, PTR_ERR(dev->smmu_regmap),
-+				     "mmap smmu_base failed(%ld)\n",
-+				     PTR_ERR(dev->smmu_regmap));
-+	}
-+
-+	return 0;
-+}
-+
- static int mtk_jpegenc_hw_probe(struct platform_device *pdev)
- {
- 	struct mtk_jpegenc_clk *jpegenc_clk;
-@@ -399,6 +418,10 @@ static int mtk_jpegenc_hw_probe(struct platform_device *pdev)
- 	dev->master_dev = master_dev;
- 	master_dev->max_hw_count++;
- 
-+	ret = mtk_jpegenc_smmu_init(dev);
-+	if (ret)
-+		return ret;
-+
- 	platform_set_drvdata(pdev, dev);
- 	pm_runtime_enable(&pdev->dev);
- 	ret = devm_clk_bulk_get(dev->dev,
++&usb_drd1_dwc3 {
++	status = "disabled";
++};
+
+---
+base-commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+change-id: 20251128-evb1-pcie1-ade389a4d590
+
+Best regards,
 -- 
-2.45.2
+Alexey Charkov <alchark@gmail.com>
 
 
