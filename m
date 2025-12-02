@@ -1,155 +1,108 @@
-Return-Path: <devicetree+bounces-243618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82139C9AB7A
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 09:38:52 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45CC9C9ABDD
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 09:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 222B93A4444
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 08:38:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D8A5E4E2700
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 08:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 568BB2580F2;
-	Tue,  2 Dec 2025 08:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4167B26D4DE;
+	Tue,  2 Dec 2025 08:45:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEEBD218827
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 08:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888603016F0
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 08:45:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764664728; cv=none; b=XbO1zZERvYXCktfFv9v1hJZMX5x+5R8yW8yOvdAnHnns+IiYf56shaGYQxr873uKiyp2tWIl0m1LvzqsyGHco0Jt/Kau29yqlQBt9kBHlMWmGi26FW3qUHCAb6gp4j5osG+qof7T4KClWw8xaNDWaG4fJMn9pWQPhji8r46oa6k=
+	t=1764665157; cv=none; b=MA6xp+KjwyGQJ/jzVr6ge9XitXQdGksVMD2PYfMJxDL4U1lObAkKvpCN4syniq8ZLc+vR6xZBDyA1gOKue/ivSr9zHa2ZkUiIzDZVLgH+EA//xipAribYSH9hNPzf1OaqIryaR3ixxbuPvnfn5XXy5I/Ic0YXNnJCWNo8UL6hdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764664728; c=relaxed/simple;
-	bh=tHeFvc7UhicjqN00K1r884+rK0Ul+tMYEK4JceK0xMI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YeQ/keFpERoOMeBUKp2/mGqmS1km2XS9eGYhm20bXVuf6OwmkAula5efdhjcCTSAHC9Tdh8EJEniM5YlO1HtpuAc+JdaNQVaXWf+PybYAoNccuaRwlxk9ifF0//8UlqboHEJ9GkH0fsjisWeRVAazCxncwDu1ZeGiyiy1OrlEg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1764664668t3725c885
-X-QQ-Originating-IP: qHSl1Yl2slirFGRTqNTrStmEkXBqkUSw3ZOxNOPAMrA=
-Received: from [IPV6:240f:10b:7440:1:a68f:7233 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 02 Dec 2025 16:37:45 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16993972051535158119
-Message-ID: <852EA51CD6BBC1AD+2613d6c1-d999-47c1-9842-ef6ce3ddd1f3@radxa.com>
-Date: Tue, 2 Dec 2025 17:37:44 +0900
+	s=arc-20240116; t=1764665157; c=relaxed/simple;
+	bh=jII2/dJMx4N96x3p2H86nRjlHzt3HPOdCDgKO12nhZM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pvmLjR/lS/Z3j1tjLQDwXbvO4PY0zQLDsVpHZgEIX/6zSPZIWWiv1VumlVeWMeROEOI0fXxvKSrSSlvGwmAOtFqczntIhTyJ3mBG128l9fZPYsUhDikar0XyGOfcackDp2FA6BOTo8dzpegbhelb2/LNXmE94RnJsXmBpKPUmwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5B28ewPc008611;
+	Tue, 2 Dec 2025 17:40:58 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quentin.schulz@cherry.de, jonas@kwiboo.se,
+        kever.yang@rock-chips.com, i@next.chainsx.cn, honyuenkwun@gmail.com,
+        inindev@gmail.com, michael.opdenacker@rootcommit.com,
+        dsimic@manjaro.org, pbrobinson@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: [RESEND2 PATCH v5 0/3] Add Radxa CM5 module and IO board dts
+Date: Tue,  2 Dec 2025 08:40:48 +0000
+Message-ID: <20251202084052.1517-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v5 3/3] arm64: dts: rockchip: Add support for CM5
- IO carrier
-To: Michael Opdenacker <michael.opdenacker@rootcommit.com>, heiko@sntech.de
-Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, quentin.schulz@cherry.de, jonas@kwiboo.se,
- kever.yang@rock-chips.com, i@next.chainsx.cn, honyuenkwun@gmail.com,
- inindev@gmail.com, dsimic@manjaro.org, pbrobinson@gmail.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251202052702.155523-1-naoki@radxa.com>
- <20251202052702.155523-4-naoki@radxa.com>
- <39d3d988-f436-4b31-a130-c65dc292c469@rootcommit.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <39d3d988-f436-4b31-a130-c65dc292c469@rootcommit.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: NO0eLx0aUO/YN78Hw5ehA4SdICYIKGwZrhzNRsgw23mevF7DmAQHbAk1
-	1gtbY0FNquQAnhIHbQ6GPF7DLanuO3r9OLAD12bAITb1RSa8OavS/vw2oFXk2qgXcjWClXw
-	GPMyBaDya/2yCH2UqOvFMMvmDSI5C58K1jgVfQTLP+1Eb0swT+RC9nfF4lMt5BqWTRNJi7X
-	wEujyYykpbH5IlwLsnvf6EcSq0jc2mhrCvsSnWuyHmm4fZXrEAWdw3XO+uB5V1rzAElwb8G
-	pCPoVXjs/OxcIw1MlyUqrpZHKgcd+LCcMzmVVXCW3AE6Nq5Ue9NiZRByUYP9oGp4KoERckR
-	dLfbstqobltMmR/BwtyRdJI3ZWeIBcVu/396IAKVgLZ5eZ55h9LvrpX2fVU22UkdlLxbUR2
-	p/tcVdJLIo/284bPtW0EmPK0t9Lz9jHdttcKs1i97vbbqFRwlx71+Ounal6YameHgFmydiN
-	qt9vMivnD0AL0YiHlipt+bdLjl5tCCh3tPv+ig3uz07N3AwSSB7hk51VLYXSTgkKQ59xfJg
-	V0UNj+GjQMhLSSPeqQIArBBAiFM6vDjboekIlUgsY7utmNQwyXWbZfMraaJSdYMHLCnUg5M
-	uIJLe3J9vssPwZDnegldmrnc3JVURhvWSOzcnVcPIO6YMxJUNu3eU/L4pXkMRo8qoBfz24Y
-	OHBaC/MFcsIoH6pgb3vaV4JBTrWXO+YZ30Y5GAqtJGOPc4u2RY5HPrq61AWeVvRK2irWCJo
-	gwzCH0Z9eUyPNTPhYQaXomRWiwTLuTKysuuq4+MjgkcWNmHlQnEVx75HMl2BIGqRB/eEVg0
-	OyHJxhVAKDu10OAF+/PZKGhMX3uB8ETW5FJiltjNq6UlzcS/avilDe48FflQiUlCGs7haq0
-	buXbM71l8Q3pUbk9MOY3q29WsxXyVIKL3m9CmQFVAiGoUqlipfbzchz2tcw9y0cUPekD4/t
-	0+9KCL/AoAg5NTJHtwm74sxe6V/Rrfeqz8deRNfyBeUw+BcNP4Wxy4Mx39bNWzDF5f8Jcyc
-	xnbUuLWGZ+GGrrYRBzSR3PnSTwwyA=
-X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
-X-QQ-RECHKSPAM: 0
 
-Hi Michael,
+This patch series adds initial device tree support for the Radxa CM5 SoM
+and accompanying IO board.
 
-On 12/2/25 17:30, Michael Opdenacker wrote:
-> Hi Naoki,
-> 
-> Thanks for the patch update!
-> 
-> On 12/2/25 06:27, FUKAUMI Naoki wrote:
->> From: Joseph Kogut <joseph.kogut@gmail.com>
->>
->> From: Joseph Kogut <joseph.kogut@gmail.com>
->>
->> Specification:
->> - 1x HDMI
->> - 2x MIPI DSI
->> - 2x MIPI CSI
->> - 1x eDP
->> - 1x M.2 E key
->> - 1x USB 3.0 Host
->> - 1x USB 3.0 OTG
->> - 2x USB 2.0 Host
->> - Headphone jack w/ microphone
->> - Gigabit Ethernet w/ PoE
->> - microSD slot
->> - 40-pin expansion header
->> - 12V DC
->>
->> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
->> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->> ---
->> Rebased on linux-next 20251201, no change.
->> ---
->>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>   .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 486 ++++++++++++++++++
->>   2 files changed, 487 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5- 
->> io.dts
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/ 
->> dts/rockchip/Makefile
->> index dbdda9783e93..697808b544d8 100644
->> --- a/arch/arm64/boot/dts/rockchip/Makefile
->> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->> @@ -210,6 +210,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-roc-pc.dtb
->> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-radxa-cm5-io.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
-> 
-> Small nitpick...
-> The file names are alphanumerically ordered in this file.
-> You should have rk3588s-radxa-cm5-io.dtb before rk3588s-roc-pc.dtb.
+V4 -> V5:
+  Patch (2/3), per Jimmy:
+  - Alias eMMC to mmc0
+  - Remove unused sdio alias
+  - Move gmac, hdmi0 nodes to carrier board dts
 
-Sorry, it was my mistake while rebasing to linux-next. I'll resend this 
-patch series with this correction.
+  Patch (3/3), per Jimmy:
+  - Enable hdmi0_sound and i2s5_8ch
+  - Remove redundant enablement of sdhci
+  - Enable usb_host2_xhci
 
-Best regards,
+  - Tested HDMI audio
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+V3 -> V4:
+  - Fixed XHCI initialization bug by changing try-power-role from source
+    to sink
 
-> Cheers
-> Michael.
-> 
+V2 -> V3:
+  - Addressed YAML syntax error in dt binding (per Rob)
+  - Fixed whitespace issue in dts reported by checkpatch.pl
+  - Split base SoM and carrier board into separate patches
+  - Added further details about the SoM and carrier to the commit
+    messages
 
+V1 -> V2:
+  - Added copyright header and data sheet links
+  - Removed non-existent property
+  - Sorted alphabetically
+  - Removed errant whitespace
+  - Moved status to the end of each node
+  - Removed pinctrl-names property from leds (indicated by CHECK_DTBS)
+  - Removed delays from gmac with internal delay
+
+- Link to v4: https://lore.kernel.org/r/20250605-rk3588s-cm5-io-dts-upstream-v4-0-8445db5ca6b0@gmail.com
+
+Joseph Kogut (3):
+  dt-bindings: arm: rockchip: Add Radxa CM5 IO board
+  arm64: dts: rockchip: Add rk3588 based Radxa CM5
+  arm64: dts: rockchip: Add support for CM5 IO carrier
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   7 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 486 ++++++++++++++++++
+ .../boot/dts/rockchip/rk3588s-radxa-cm5.dtsi  | 135 +++++
+ 4 files changed, 629 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
+
+-- 
+2.43.0
 
 
