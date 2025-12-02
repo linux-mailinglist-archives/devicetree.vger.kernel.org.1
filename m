@@ -1,256 +1,322 @@
-Return-Path: <devicetree+bounces-243801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A2E6C9D158
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 22:27:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC094C9D1CF
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 22:45:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 00DFB4E41FA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 21:27:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D77C64E03EA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 21:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038D52F99B3;
-	Tue,  2 Dec 2025 21:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25A9A22FE0E;
+	Tue,  2 Dec 2025 21:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CXVsryoy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k8j2tXkx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1021F2F90CA
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 21:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE9E117BED0;
+	Tue,  2 Dec 2025 21:45:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764710840; cv=none; b=o0vIruq4D36HRsy6cV0dY126IJ3V907Jb8FpPXqwIs4RvJdHMuLelOsmuIEahsm/gdnMk7Avbd+LO5sH0gW0nIb1zKzolziRKvt7To1jdKS4wM1b2VBtthOFMSib0gSM8YNrk0LJ+iwGZzO/cvxWwQ4MPLADHZGR3a4z1Yx40eE=
+	t=1764711955; cv=none; b=BMi0gkKN0oY+xK7lLjFBkwTM1Tjjwoz6xKsLr8K1WFk3afSKa/Iw/dmFa0mDiT5opDbNyGIKCosrjD+R1miXXA/4ner5Mg0hopR79wlwkqUkmHGBkFtZ/ya6l4cDeshoYHxCFIaPLL7Qfsd2efdpdGhBbbUrloZQ17dNpmf5VLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764710840; c=relaxed/simple;
-	bh=IF4JIJy9AebTLa+7WBComoEINwMkvEmXkt0dVcdjLmc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OeAkH+V6rq4qa9Ndxk2N1pBEhLytBpJx3w/IHLAqoa6mInDuImMp3/lQIWOzFo7rRN5GRWjbfcaQZNgGdUFpmlU1KJaimtU0Q9DhvOKCnfn6G7tM6I6FEjhiDH4kNLhp22bjICEerlb3BwB0TN/x6E3yqgUFNIgqOTHbP602RYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CXVsryoy; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-644f90587e5so9238930a12.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 13:27:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764710837; x=1765315637; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=izHpBo4KfWQtDeefh6EvIJ4kME03b+71gsYy+yYHuR4=;
-        b=CXVsryoyJi2HlOkTMwa9LOcPick8gz1teoSTDd703cR8EgyKjBOeaLkMNuXPkW6je3
-         /jUUdKHQkjsKniuaezTATRxqWs2uDrS1A9oTWjaEO3faUTVrDTc/Z3y92Gj3ZvTfQdHK
-         PHZR3ENJGhfg3EL2JqFDnR7ZP/iaymyTdO00Y67QZStn3BS6RkOX1wXn989cn2waopDz
-         EMBWQA3TXpHOdDdpb142wfNuKBQLZJ9EAaFufqstJBadFulqoW1TUYJBdC7ILtGKLs62
-         uHn0Jv6YknnznhbC25VYCkRLbmUjfHNT4DvmhRTQj9Ew/DmMKoQCcMRk1MXvkxCuUF/K
-         rkSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764710837; x=1765315637;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=izHpBo4KfWQtDeefh6EvIJ4kME03b+71gsYy+yYHuR4=;
-        b=h+Y4uTZBK+0odnxXhdWY3H1xivUzcdYnNAdzd5rgYlg6S2aiGwKifu5+pNhnMei8zg
-         Rk8rrtC6+EWmmBV3tYdSkD/eFNTmCMOBDnRUcyXmFzHYS2oselAf8CdGtc1scqiVHv79
-         lBF9h5AUv9VSqGGi0EvQdcGM09faJ+g2I48cyC05rsIB+KSPx+qSxxb3fqz97LWuVeOO
-         uxOoVABRRDchT+vUUNz03+pg8gjS12xeJ0i6jdjhr+9a3HWt7tNJmTdb3v+Z7KMM9U/o
-         upATT9eyertnJ3Swifc/WoiMPo3P/Yc9mvOh1wNY7iYy7hn7ruDRSEqvHGxQ5QwOK+A6
-         inkw==
-X-Forwarded-Encrypted: i=1; AJvYcCWdD+fpTr0OpRJRC76YENVqZM0Xwf7z3kl+NHxpOnBbsw8VLIb5xj/WT9hF3bOhqJSYyCNLLDII/ebw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqNg/XdA1DgDPKDzkwlIP1wE/LpGwY5GWSbj+wRyZPDL5iDAU5
-	iOYMCnWGeqc1I5EM/ah19l502CUV4exlDNkHfQ/8iBOZXGw11tQPzpbPw7Y59ge6c/I6pkwxLR2
-	9vNBV7znSFT4cly43228GNwD3WXGqD9Q=
-X-Gm-Gg: ASbGncuEoU7IH+tEeDvdGYe8rnW63xAFufCAC1csk+8ttOX4CJCHMhofQWiYVBbCbPS
-	lu/b+CSEyocOm7s87y4qvdMtQR+J4LTR+TmzkLL+9cDxLv5loB5XZDe60r4QaZFU6zUx3tbOjnN
-	tjW2nKut8sI7mr7MAdLL2I0NALm14U8hKqU5DKVdqOA07rn29T6VNyQnAavO8C/ZrXREZnw+cki
-	bHANEzBpxtsyQNg4NIKzpdIT6epfeTVm3zPSgic+cCLdbR3PhgW+wt6g3sGQ91q+P70ioMPKY9b
-	NhUXSG4UlUu0lBolAaPwIN1QZ8SZPGcuCB9vVj1kb5s0jKEZRmg+3FPlsHamTcHEdXgTKUJpfzz
-	fyO6muQ==
-X-Google-Smtp-Source: AGHT+IFi4VqAeQ6ylauCI6SfoeNuTHJk9Yg/0Yr9DgMxNTCiwD+q5tOWVzR64YvQJS5zYnsWgG+Guc5cp8GP5risKAY=
-X-Received: by 2002:a17:907:7fa2:b0:b70:b3cb:3b30 with SMTP id
- a640c23a62f3a-b76c5595bb8mr3560613866b.59.1764710837088; Tue, 02 Dec 2025
- 13:27:17 -0800 (PST)
+	s=arc-20240116; t=1764711955; c=relaxed/simple;
+	bh=D5jIlCOTuSedkht4OP47ONHjNh51bSyG/euQxLWdCY0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FlNzpXcZlXQUIvxHOuJT0qMSWNv9rvxFlpy27NZQDh0ALupCr9iY8SPDECPt6D4UW8vRPpubjk/I1ddYNdrM9oKL4eybjCzHMTVfqP4H+8Gi8iTFMCgnjRu/tILQsUA2ZKGRVypxZ7W8k4QM4d2yko9/nGCk2Xz7KstsVziCUmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k8j2tXkx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C397C4CEF1;
+	Tue,  2 Dec 2025 21:45:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764711954;
+	bh=D5jIlCOTuSedkht4OP47ONHjNh51bSyG/euQxLWdCY0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k8j2tXkx1eeXmaoDXcFhajOuft8ThBfB98DTzRyY1i4gSUHWrZUqPwAlQEU9+RtXR
+	 IEkMXXh/W0roQ2rawtYaY/clVfke0kERyxwmIxNDBWzgN4B/DQZxEBhM+uO478P6Fm
+	 pLIhsgolaLGvMq7+JsioU2+4QyiUfr1POiJOWVNrEfUsuA+10oA/AvfrTBjrC7ZOGA
+	 A37n76QFMZ09aFegw2fcyoLcDdBnHDbOPuvyE+po0fLP2C1YAxkcW1nmSQ3b2e4y4i
+	 MJsmytY3h/tBpH+h0WBiIrdc9yWu834iAD3QCBXCG2C0GrsjdfCAc7G6u/ltYKbAh2
+	 0W26uN0kobvZA==
+Date: Tue, 2 Dec 2025 21:45:50 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
+Subject: Re: =?utf-8?B?5Zue5aSNOiDlm57lpI06IFtQQVRD?= =?utf-8?Q?H?= v3 1/3]
+ dt-bindings: reset: add sky1 reset controller
+Message-ID: <20251202-mortuary-omission-f20793e20a36@spud>
+References: <20251124063235.952136-1-gary.yang@cixtech.com>
+ <20251124063235.952136-2-gary.yang@cixtech.com>
+ <20251124-selector-blemish-ec6e9a356bc6@spud>
+ <PUZPR06MB5887CB84BC4D006EC594B654EFD1A@PUZPR06MB5887.apcprd06.prod.outlook.com>
+ <20251126-dreamily-shorty-cb543d993e7a@spud>
+ <PUZPR06MB58873EBA3818208D061FF866EFDBA@PUZPR06MB5887.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1764708608.git.marcelo.schmitt@analog.com> <c189c25b1c46f406c3f7942e5ac4cdb0b964ee52.1764708608.git.marcelo.schmitt@analog.com>
-In-Reply-To: <c189c25b1c46f406c3f7942e5ac4cdb0b964ee52.1764708608.git.marcelo.schmitt@analog.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 2 Dec 2025 23:26:38 +0200
-X-Gm-Features: AWmQ_blOI9-8RPZg0XCvO-iUC7cg8_MvPG-sGlHea2wNFEI3gTFMs76_JdYkyUY
-Message-ID: <CAHp75Vf7p=aPy2ofC_zVz1PURA3R9i0WZCG63-dCEXO=xKJ0FA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] iio: adc: Initial support for AD4134
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, jic23@kernel.org, 
-	nuno.sa@analog.com, dlechner@baylibre.com, andy@kernel.org, 
-	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, corbet@lwn.net, marcelo.schmitt1@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gh+Gg8VtfZRPDihV"
+Content-Disposition: inline
+In-Reply-To: <PUZPR06MB58873EBA3818208D061FF866EFDBA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+
+
+--gh+Gg8VtfZRPDihV
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 2, 2025 at 10:55=E2=80=AFPM Marcelo Schmitt
-<marcelo.schmitt@analog.com> wrote:
->
-> AD4134 is a 24-bit, 4-channel, simultaneous sampling, precision
-> analog-to-digital converter (ADC). The device can be managed through SPI =
-or
-> direct control of pin logical levels (pin control mode). The AD4134 desig=
-n
-> also features a dedicated bus for ADC sample data output. Though, this
-> initial driver for AD4134 only supports usual SPI connections.
->
-> Add basic support for AD4134 that enables single-shot ADC sample read.
+On Mon, Dec 01, 2025 at 03:13:44AM +0000, Gary Yang wrote:
+> Hi Conor:
+>=20
+> Thanks for your comments.
+>=20
+> > -----=E9=82=AE=E4=BB=B6=E5=8E=9F=E4=BB=B6-----
+> > =E5=8F=91=E4=BB=B6=E4=BA=BA: Conor Dooley <conor@kernel.org>
+> > =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2025=E5=B9=B411=E6=9C=8827=E6=97=
+=A5 3:15
+> > =E6=94=B6=E4=BB=B6=E4=BA=BA: Gary Yang <gary.yang@cixtech.com>
+> > =E6=8A=84=E9=80=81: p.zabel@pengutronix.de; robh@kernel.org; krzk+dt@ke=
+rnel.org;
+> > conor+dt@kernel.org; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
+> > =E4=B8=BB=E9=A2=98: Re: =E5=9B=9E=E5=A4=8D: [PATCH v3 1/3] dt-bindings:=
+ reset: add sky1 reset controller
+> >=20
+> > On Tue, Nov 25, 2025 at 02:12:23PM +0000, Gary Yang wrote:
+> > > Hi Conor:
+> > >
+> > > Thanks for your comments
+> > >
+> > > > -----=E9=82=AE=E4=BB=B6=E5=8E=9F=E4=BB=B6-----
+> > > > =E5=8F=91=E4=BB=B6=E4=BA=BA: Conor Dooley <conor@kernel.org>
+> > > > =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2025=E5=B9=B411=E6=9C=8825=E6=
+=97=A5 3:54
+> > > > =E6=94=B6=E4=BB=B6=E4=BA=BA: Gary Yang <gary.yang@cixtech.com>
+> > > > =E6=8A=84=E9=80=81: p.zabel@pengutronix.de; robh@kernel.org; krzk+d=
+t@kernel.org;
+> > > > conor+dt@kernel.org; devicetree@vger.kernel.org;
+> > > > linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > > > cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
+> > > > =E4=B8=BB=E9=A2=98: Re: [PATCH v3 1/3] dt-bindings: reset: add sky1=
+ reset controller
+> > > >
+> > > > On Mon, Nov 24, 2025 at 02:32:33PM +0800, Gary Yang wrote:
+> > > > > There are two reset controllers on Cix sky1 Soc.
+> > > > > One is located in S0 domain, and the other is located in S5 domai=
+n.
+> > > > >
+> > > > > Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> > > > > ---
+> > > > >  .../bindings/reset/cix,sky1-rst.yaml          |  50 ++++++
+> > > > >  include/dt-bindings/reset/cix,sky1-rst-fch.h  |  42 +++++
+> > > > >  include/dt-bindings/reset/cix,sky1-rst.h      | 164
+> > ++++++++++++++++++
+> > > > >  3 files changed, 256 insertions(+)  create mode 100644
+> > > > > Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml
+> > > > >  create mode 100644 include/dt-bindings/reset/cix,sky1-rst-fch.h
+> > > > >  create mode 100644 include/dt-bindings/reset/cix,sky1-rst.h
+> > > > >
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml
+> > > > > b/Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..a28f938a283d
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/reset/cix,sky1-rst.yaml
+> > > > > @@ -0,0 +1,50 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML
+> > > > > +1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/reset/cix,sky1-rst.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: CIX Sky1 Reset Controller
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Gary Yang <gary.yang@cixtech.com>
+> > > > > +
+> > > > > +description: |
+> > > > > +  CIX Sky1 reset controller can be used to reset various set of
+> > peripherals.
+> > > > > +  There are two reset controllers, one is located in S0 domain,
+> > > > > +the other
+> > > > > +  is located in S5 domain.
+> > > > > +
+> > > > > +  See also:
+> > > > > +  - include/dt-bindings/reset/cix,sky1-rst.h
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    items:
+> > > > > +      - enum:
+> > > > > +          - cix,sky1-rst
+> > > > > +          - cix,sky1-rst-fch
+> > > >
+> > > > You've not addressed my v2 commentary:
+> > > > https://lore.kernel.org/all/20251114-problem-overbook-383f8e45cd0b@s
+> > > > pud
+> > > > /
+> > > > I asked what else the device does, but you didn't answer me.
+> > > > Dropping the syscon doesn't make sense if the device genuinely has =
+other
+> > functions.
+> > > >
+> > >
+> > > First I'm sorry for not responding your questions earlier. We agree t=
+he fact
+> > the register space of reset should not depends on other modules.
+> > > We found that while the reset register spaces on the sky1 platform are
+> > non-contiguous, a specific register space among them is exclusively use=
+d by
+> > reset.
+> > > So we can remove syscon property and split serval register spaces. Al=
+l right?
+> >=20
+> > No, not all right, sorry.
+> > It's perfectly okay for some region to do multiple things, most SoCs ha=
+ve
+> > multiple regions exactly like this.
+> > The normal thing to do is to treat these regions as a syscon like your =
+earlier
+> > version did. The problem with your v1 was that you called the whole thi=
+ng a
+> > reset, when it isn't just that.
+> > There's plenty of examples using mfd for how these kinds of devices are
+> > handled in the kernel. There's some using the simple-mfd compatible, wh=
+ich is
+> > for when there are subdevices with their own nodes and other defining
+> > mfd_cells and calling mfd_add_devices() when the subdevices do not have
+> > enough complexity for a node (like your reset controller that has one p=
+roperty
+> > and is unlikely to be reusable on another platform).
+> >=20
+> > > > > +  reg:
+> > > > > +    minItems: 1
+> > > > > +    maxItems: 3
+> > > > > +
+> > > > > +  '#reset-cells':
+> > > > > +    const: 1
+> > > > > +
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - reg
+> > > > > +  - '#reset-cells'
+> > > > > +
+> > > > > +additionalProperties: false
+> > > > > +
+> > > > > +examples:
+> > > > > +  - |
+> > > > > +    #include <dt-bindings/reset/cix,sky1-rst.h>
+> > > > > +    reset-controller@16000304 {
+> > > > > +      compatible =3D "cix,sky1-rst";
+> > > >
+> > > > > +      reg =3D <0x16000304 0xc>,
+> > > > > +            <0x16000400 0x10>,
+> > > > > +            <0x16000800 0x8>;
+> > > >
+> > > > This is also highly suspect, and I believe what you had before was
+> > > > probably much more realistic.
+> > > > Do things properly and fully *now*, rather than pay the price of
+> > > > unravelling it all later. I just did this for one of my own
+> > > > platforms, and putting in the effort to completely describe stuff up
+> > > > front is actually worth it rather than having to refactor years dow=
+n the line.
+> >=20
+> > > Yes, I agree your view.
+> > > This scheme is discussed in our team. It is our decision, not only mi=
+ne.
+> > > There are some modules here that haven't been pushed upstream yet.
+> > > If we take them as our internal names, maybe make you confuse. For
+> > > example,
+> >=20
+> > If the naming is going to be confusing, then explain things in the desc=
+ription
+> > property.
+> >=20
+> > > The register space based 0x16000000 belongs to PMCTRL_S5. It is a sys=
+tem
+> > power control module, not SCP.
+> > > It not only includes reset controller, but also some usb control,
+> > > wakeup sources, clk gates, sleep states settings, generic registers f=
+or software,
+> > and so on. But In kernel, we mainly focus on reset controller and usb c=
+ontrol.
+> > > They are controlled by the different registers. So we decide to adopt=
+ this
+> > scheme.
+> >=20
+> > This is all very normal stuff that syscons are used for on other platfo=
+rms.
+> > Describe the register region based on what it contains, not based on wh=
+at you
+> > currently thing that linux is going to use. Maybe later you'll need the=
+ other
+> > functions either in linux, or in other projects (like u-boot) that impo=
+rt our
+> > devicetrees.
+> >=20
+>=20
+> Yes=EF=BC=8CFirst we agree syscon scheme. It is very common in kernel. We=
+ want to verify the next actions with you.
+> One, we add a node syscon@16000000 as pmctrl_s5 an example.
+> Two, the reset node and usb node both contain a phandle used to point to =
+syscon node
 
-...
+Not quite. The rest node would be empty, other than the phandle, and is
+therefore pointless. The #reset-cells property should go in the syscon
+node itself. For usb, because it sounds like the syscon is only
+providing some control registers and is not the usb controller itself, a
+phandle is okay. It's a case by case thing, but if the syscon node
+provides an entire feature then a phandle is not suitable and instead
+either a child node of the syscon (which would make it a simple-mfd too)
+should be used or the properties should go directly into the syscon
+node. That depends on how complex the feature is and how likely it is to
+be reused between devices. reset is very unlikely to be suitable for
+reuse, for example.
 
-> I tried using the reset-gpio driver to handle AD4134 reset GPIO. I had ch=
-anged
-> the device tree to set a reset-controller node and had referenced that fr=
-om the
-> ADC node. I also updated the ad4134 driver to use a reset controller to h=
-andle
-> its reset GPIO. Though, after those changes, the AD4134 driver would defe=
-r
-> device initialization forever because it missed a reset-controller. To ma=
-ke the
-> reset-gpio driver probe and instantiate a reset controller, it would take=
- a
-> platform device to be set within a machine-specific, hardcoded platform d=
-ata.
-> AD4134 is not bound to any specific platform, so it doesn't make much sen=
-se to
-> have a reset-gpio platform device for that. Thanks for mentioning reset-g=
-pio. It
-> was interesting looking into the reset-gpio driver and the reset framewor=
-k. It
-> looks cool. But I don't think the reset-gpio driver suits the AD4134 rese=
-t use
-> case.
+> Three, In corresponding driver files, we can get the regmap pointers via =
+syscon API.
+> All right? By the way, How should we describe syscon in yaml file? Are th=
+ere some files used to refer?
 
-Bart converted it to be an aux driver and it should work. Please, give
-a try after v6.19-rc1 is out.
+microchip,mpfs-mss-top-sysreg.yaml is one I wrote recently. Going to the
+corresponding driver you will be able to see how the reset controller
+driver is probed. You should be able to find it in linux-next.
+sophgo,sg2044-top-syscon.yaml is another that works in the same way.
 
-...
+> Please show us your suggestions. Thanks
+>=20
+> Best regards
+> Gary
+>=20
+> > > If you have any questions, please let us know. If make any mistakes, =
+please
+> > remind me kindly.
 
-> +       /*
-> +        * To be able to read data from all 4 channels through a single l=
-ine, we
-> +        * set DOUTx output format to 0 in the digital interface config r=
-egister
-> +        * (0x12). With that, data from all four channels is serialized a=
-nd
-> +        * output on DOUT0. During probe, we also set SDO_PIN_SRC_SEL in
+--gh+Gg8VtfZRPDihV
+Content-Type: application/pgp-signature; name="signature.asc"
 
-During the probe
+-----BEGIN PGP SIGNATURE-----
 
-> +        * DEVICE_CONFIG_1 register to duplicate DOUT0 on the SDO pin. Co=
-mbined,
-> +        * those configurations enable ADC data read through a convention=
-al SPI
-> +        * interface. Now we read data from all channels but keep only th=
-e bits
-> +        * from the requested one.
-> +        */
-> +       for (i =3D 0; i < ARRAY_SIZE(ad4134_chan_set); i++) {
-> +               ret =3D spi_write_then_read(st->spi, NULL, 0, st->rx_buf,
-> +                                         BITS_TO_BYTES(AD4134_CHAN_PRECI=
-SION_BITS));
-> +               if (ret)
-> +                       return ret;
-> +
-> +               if (i !=3D AD4134_VREG_CH(reg))
-> +                       continue;
-> +               *val =3D get_unaligned_be24(st->rx_buf);
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaS9eCgAKCRB4tDGHoIJi
+0n2sAP4reHUmp3T6NsE1TClEamXkob6EerJdAxUtkD0eMsvyDAD+Jez1eImoaD9G
+nEzfe/Orw7rOSIFtyfyd0mfOSrZBRAs=
+=LWgG
+-----END PGP SIGNATURE-----
 
-Hmm...
-
-In this case it might be better to  use
-
-  if (i =3D=3D ...)
-    *val =3D ...
-
-but it's still unclear on how many times the conditional can be true
-in the loop.
-
-> +       }
-
-...
-
-> +static int ad4134_clock_select(struct ad4134_state *st)
-> +{
-> +       struct device *dev =3D &st->spi->dev;
-> +       struct clk *sys_clk;
-> +
-> +       /*
-> +        * AD4134 requires one external clock source and only one externa=
-l clock
-> +        * source can be provided at a time. Try get a crystal provided c=
-lock.
-> +        * If that fails, try to get a CMOS clock.
-> +        */
-> +       sys_clk =3D devm_clk_get_optional_enabled(dev, "xtal1-xtal2");
-> +       if (IS_ERR_OR_NULL(sys_clk)) {
-> +               if (PTR_ERR(sys_clk) =3D=3D -EPROBE_DEFER)
-> +                       return -EPROBE_DEFER;
-
-But this will ignore other errors when clock _is_ available.
-
-This should be as simple as
-
-sys_clk =3D devm_clk_get_...(...);
-if (!sys_clk)
-  sys_clk =3D devm_clk_get_enabled(...);
-if (IS_ERR(...))
-  return dev_err_probe(..., PTR_ERR(...), ...);
-
-See how other drivers do in the similar situation (IIRC 8250_dw does this).
-
-> +               /* Try the CMOS clock */
-> +               sys_clk =3D devm_clk_get_enabled(dev, "clkin");
-> +               if (IS_ERR(sys_clk)) {
-> +                       if (PTR_ERR(sys_clk) =3D=3D -EPROBE_DEFER)
-> +                               return -EPROBE_DEFER;
-> +
-> +                       return dev_err_probe(dev, PTR_ERR(sys_clk),
-> +                                            "failed to get external cloc=
-k\n");
-> +               }
-> +       }
-> +
-> +       st->sys_clk_hz =3D clk_get_rate(sys_clk);
-> +       if (st->sys_clk_hz !=3D AD4134_EXT_CLOCK_MHZ)
-> +               dev_warn(dev, "invalid external clock frequency %lu\n",
-> +                        st->sys_clk_hz);
-> +
-> +       return 0;
-> +}
-
-...
-
-> +       reset_gpio =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HI=
-GH);
-> +       if (IS_ERR(reset_gpio))
-> +               return dev_err_probe(dev, PTR_ERR(reset_gpio),
-> +                                    "failed to find reset GPIO\n");
-> +
-> +       if (reset_gpio) {
-> +               fsleep(AD4134_RESET_TIME_US);
-> +               gpiod_set_value_cansleep(reset_gpio, 0);
-> +       }
-
-I still think that reset-gpio driver is the right way to go (after
-Bart's changes, which should be part of v6.19-rc1).
-
-...
-
-The rest LGTM.
-
---=20
-With Best Regards,
-Andy Shevchenko
+--gh+Gg8VtfZRPDihV--
 
