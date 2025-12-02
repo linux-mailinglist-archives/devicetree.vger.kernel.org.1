@@ -1,159 +1,182 @@
-Return-Path: <devicetree+bounces-243807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58E72C9D253
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 23:08:33 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49BA1C9D277
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 23:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6853B349A09
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 22:08:31 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 05327343C55
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 22:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B12912FC029;
-	Tue,  2 Dec 2025 22:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A162F9DB1;
+	Tue,  2 Dec 2025 22:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VKgxTL8w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TAkJOOoE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3572FB632
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 22:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B952A2F7ACF
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 22:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764713271; cv=none; b=mwxtbfSHIy+8wKTv/AtZgRuRlgQhUIayVPVhOFSimhTY5oIjTGgAAGdYdTwjygWSaSCfQydvA1S7WItdh4+KCOKWbD1zUr2An7pvmlVu4mLD1UgFUa4l5dKGAt+WSkA8rzBIBwcn0a7DxTeY9F8pvX/mBwclFIlj6rVIcrDCsuU=
+	t=1764713353; cv=none; b=CWlIuVQLWWCc0QfIDEGIsc2QvOyY1eeKMBji9fUAAAQ1F6k7R2gfUSBCTmxL4Jracx/ELnxqhN8OZe44qlLGbxUXewmyanRPVMFEjJwBrZIF5toEJ/xRTNFAg05JssdpFh5Bt233CcIH4g8Qx9OhH59yt4fb8HmJ+pAxTN25kh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764713271; c=relaxed/simple;
-	bh=eBD4gOrC3LaRB8AsbzyAfhHTBnlgO531KCaqBO5JwiA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AaANuPCGkJdRDv153xIDrNv8Y3WmqHG2JNSNdb2rP4c8kB3JnkmaBGJ/5q+71c/rb3IOr6OOZJqoBmysKYxUidEDdHI0BZie0uSjUxuly1SfLR1bkge85oNz0TRHVjd0cwPmm06avlzoxHbuFfbq0+298cJykHIt/HQOYdNvSgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VKgxTL8w; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b7633027cb2so899268666b.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 14:07:49 -0800 (PST)
+	s=arc-20240116; t=1764713353; c=relaxed/simple;
+	bh=hmzAGm2KV+/8JNbNSevtwuUcM8ZgD/Dyr/satwDJz+I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FakLWHfp1lx4jq7dEohYyPaNHgcXIKqf8m6KMiMh9owgkBqoaHVNNesIIC1ZPVIqVm0kIBhpSi2OjgyHbvyQPUlQJ+rnCdUS6fNz6d+xju+g8UPVppXlBxRzrsVqD/QTuRPUrLt/U4O6D/Qjzz44z6k9yMY0BIIO1yDd7PuXSvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TAkJOOoE; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-477563e28a3so1881265e9.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 14:09:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1764713263; x=1765318063; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6N8ENlMp0JtUvDjwpbGXfIGBmY/pHGb1XQuUiLpAW3Q=;
-        b=VKgxTL8wxfL1SwBqbDX7RcjiGVzpwP/LLyVSKzAhLLlIsNId5FMYNH4GoFU3/X9GWl
-         TA0jfkBV/PHqUHHsjPpPvCuh1bzOu4JgURjNZODwesJLTBuDd9QPN4hpAW920f21OAkH
-         KqUVrqwvePMaHxw65M8rKxkVH61LFxmhzAS1w=
+        d=gmail.com; s=20230601; t=1764713350; x=1765318150; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JSLkiY2zvImHUDZbOwBQtO8/4saKzF7QG8VA5Q/K3ls=;
+        b=TAkJOOoEKBYXrZeVLdP5yf85y8zAzlrRPIKZ0dBU1qa7N9POZdOWtM2L+qHfh5SJhI
+         s/MwTVs2o97PiG29OxBVbLEIOKXTIKpuIwf0SzhkVNLgf0T5fVKYWGnmn0CbCAsqIJNC
+         mCsJP8Yp0Ect/94YhXckz448+h8WgXZCK/xjX03d4X8UQWSBm0u4HfNYNeZEczVybZTW
+         +86oEkgmCG+oiAST8GksUfHzJMyNeLcXtbP3EnspkSyjh/0SkFWQLrqnsSKD6Gin1mho
+         lFX+fdgyhKmfxtFZpV60eOZ/3x7h3oSw3t+tuJLujR+eHFXvRzH2o+rzEef4vE5oaUTP
+         DUTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764713263; x=1765318063;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6N8ENlMp0JtUvDjwpbGXfIGBmY/pHGb1XQuUiLpAW3Q=;
-        b=aorvcU7hWig410Uzu++eUKcEnzAz86qDfCLUDXkxhgpCyKZt7IGoSm6zjF2sF0p5Mv
-         AnJvHNUOeJfaujGWLZc7n0DFSbKJPmO4wNNUTuQkRzW2bIVtxaW33Oi8IYodOgXH772G
-         ZPlgs//a79u16m4OBuy+eSSUlwDFVbECGwaEvM++YWnPQ5vfNg7AfI6zQrsEQjiZ4lFO
-         YXxyoknFu60EHOLdrXlVbJQWtUzCRWCNOUrbubGQgT3D2DQbLnr10wYt9fUNJizTU9mk
-         12DTCCwAOqUp+Q6WkW+/xVJpyBnrklJsDeX9ycmbxHAMJtuljczu5S1Au8L31pRqx2Tz
-         Y8vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUwv1/FPgUefEFmAsQCqbms7MQ+Zw/axXfUX62sPo47tBsdOo6hcJgO2xPxwC0ZnNGJdgwacyeHKm0Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZHN36D0AMs/Zlf+W39FJQGwBWed7o+2cLIwpgAuYdbMydwe8P
-	WnjpaQMl6nyKXP7snXIjG3EMPKcrkKtA4xGmRV36C17nrwNTBV9TJeh5k+6ftcBe2hWoEhw6eOt
-	OHqOJtxjU
-X-Gm-Gg: ASbGncuIjTsRyAN+RPn0d5nhEBm23KL0qN5eJoZyi1ng4axyURsSpoG94pwr9W0aE/T
-	ZRQR/ctz2hPtDZKHsnFYPMOZTdxcxkqt5bFOaW+2ln+h8RkVfvGHys0FZAtEcqdplUIHPxmhMfa
-	/b263xcvulhFKfDv0scadu/RxyRH8uj7BY0fisB4ZWvhcCKYDDdFE9LFY/BiM1iHR003/bUX8Vh
-	YcJZqyYQ2THLmNekIHOOLWtz+KHEwHydPuzu/EpqhmYtomiPupu8e0++crAHifhc/71z6oqIruc
-	L58fh/kn50Pn/e5klRjlPoC43g0jdjHju8c8sN2vz5562QTG6kYx5PxkMqVKxvbXnR9tfwX7Afp
-	Tw5d2Mk0dX3Ab9faqIcySZe904mlx0ZPjgVnkvHtRKiXUK/JMJ3wp9923xql5i0yU1JKqrkFCE8
-	gk4yloNRKqwWOXGky+HmFsOJURAqoD4XLlIepbTEXiOkJQ6d5TBw==
-X-Google-Smtp-Source: AGHT+IFGxmbBCy9p8Jxpr/OFjSVwaCACF1i2GJNYOAz0rLi38hKchxdFaK8y0ZpcA6mxNu4eepD5Gg==
-X-Received: by 2002:a17:907:948e:b0:b73:70c9:1780 with SMTP id a640c23a62f3a-b767183c122mr5447097466b.41.1764713263372;
-        Tue, 02 Dec 2025 14:07:43 -0800 (PST)
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com. [209.85.221.42])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f59aea78sm1555279566b.36.2025.12.02.14.07.41
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Dec 2025 14:07:42 -0800 (PST)
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-42b38de7940so2984820f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 14:07:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUCnhuUsVqPMvqHmsaB9rSa8+se2ZXmCktvCAi0W1QGWebrmLTCpGnvLV0huD+9lNp+kvUZclurNTdD@vger.kernel.org
-X-Received: by 2002:a05:6000:4383:b0:42b:2eb3:c909 with SMTP id
- ffacd0b85a97d-42cc1ac98a9mr45463866f8f.20.1764713260943; Tue, 02 Dec 2025
- 14:07:40 -0800 (PST)
+        d=1e100.net; s=20230601; t=1764713350; x=1765318150;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JSLkiY2zvImHUDZbOwBQtO8/4saKzF7QG8VA5Q/K3ls=;
+        b=KBrvgyY1GqBLL/SFUMYDXPYpcggWZLhZqe07DIZvA2aSLXv97I52XcFwzUgwrhBuKd
+         uiFaZfTlj9fUTbnByubqv5cjc+x1Ovt1KQin/XwkPhpAx4eXy0kBTZB61yXxiBiKgJTF
+         oWhPD/hjTGlGWZhAySzf0HegIaYPMZVN3gVBRp2te5dxo9VkAUydNy+092ewVSoyqFYv
+         WLqY995IXfCQCnxfd1bE+W/2BKoRf1F/FwMN4/sVxJ1Vodf+4p5x0DFmlJdfIS+y/6OO
+         Na4qTC/gs2sW8P37jSPlENewn/n4nNFyIOPMLUS18gXxkwyvf3TUpmxGTupX+bm+1Nh8
+         xk0g==
+X-Gm-Message-State: AOJu0YyEV/UL7M04nT2wA5c2179ddxnwo2ONtdPu9n+ltLkgnZFo+Gl8
+	OFzV9RnqSv5JsNy0vtKyhoKrnmAvRl4faQM6cj7UW4MjYtFs8TNGPIBG
+X-Gm-Gg: ASbGnctoYmBtKCWM8MKYWMdAT9FxmTYJTV5bSTlpEuGjDAICF5YV8clqFg0fwH0/pts
+	gdcT3BjGbTHuyrQELtXIaiPeynWO8lcHUuhNzwrdnZg6zV4+tlIIHMdl2jG0vAegWB/HU2//I1j
+	GjTib/mJzQznsB19pNPVVgSyoMY3Te9AYaFtq/4Hp+C2SWLPPJwhPyLceqSL+lGgsY0oEt5Qf9Q
+	CYaFnt9VqhYzMo3L0H82KlQu8hi3HLROtjGaKhRCdwkcos8xo0ObTKplwPwgzZKbnGQA8kvLgGM
+	KNRHM7Fdd90eirqzFqZwnCWdwsmCg/KkYAJE6VYK3he//yFdWxGJoKNmvaG2XqPpCa9C4bSha1Y
+	uqe3ZqlN73Ketz2IPVfsAWBRCojh6nAbPer3ciAMGGt4M2giSTDets81Olhi32JED4EL8fpPf/V
+	Q0zXBRYuvsLngQElnstkycgK5wqulu7qOfakjp
+X-Google-Smtp-Source: AGHT+IFa4GbiRXpXHQJ7qzlsxieJBhAIZGPkTWaihBlWgwkhaDnomrokxbDrSKdw1Li+bI3Q3V3kgg==
+X-Received: by 2002:a05:600c:1c25:b0:477:9fa0:7495 with SMTP id 5b1f17b1804b1-4792af4311emr1823995e9.14.1764713349971;
+        Tue, 02 Dec 2025 14:09:09 -0800 (PST)
+Received: from [127.0.1.1] ([2001:861:3201:3d10:d253:f5eb:2f9c:dde7])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4792a79760esm11534795e9.3.2025.12.02.14.09.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Dec 2025 14:09:09 -0800 (PST)
+From: Gary Bisson <bisson.gary@gmail.com>
+Subject: [PATCH v4 0/4] Add support for Ezurio MediaTek platforms
+Date: Tue, 02 Dec 2025 23:08:45 +0100
+Message-Id: <20251202-review-v4-0-93f5cd2a0d4a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com>
- <CAFLszTiVT9rHwympUJSehxaDR7ks9Bs2FVjYEuN6=j1e_-289Q@mail.gmail.com>
-In-Reply-To: <CAFLszTiVT9rHwympUJSehxaDR7ks9Bs2FVjYEuN6=j1e_-289Q@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 2 Dec 2025 14:07:29 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=Vrit=N6L30dA3X6uV95e5E1bVoLph55_=ihqSTBy52FQ@mail.gmail.com>
-X-Gm-Features: AWmQ_blcEODuHNOTfASjHIB_XmBuUPaulzfzl56_GN_PjmcKkVckIKFg3FzvIbw
-Message-ID: <CAD=FV=Vrit=N6L30dA3X6uV95e5E1bVoLph55_=ihqSTBy52FQ@mail.gmail.com>
-Subject: Re: Proposal: Officially allow "incomplete" trees as a base
-To: Simon Glass <sjg@chromium.org>
-Cc: devicetree-spec@vger.kernel.org, boot-architecture@lists.linaro.org, 
-	Chen-Yu Tsai <wenst@chromium.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
-	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
-	William McVicker <willmcvicker@google.com>, Julius Werner <jwerner@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG5jL2kC/22O0Q6CIBhGX6VxHe4HMbSr3qN1QfCjbCkNnOWc7
+ x54ZavLs33n7FtIxOAwkvNhIQEnF50fEojjgehODS1SZxITDrxiHBjNI3xRWQFIXsmmaRhJ42d
+ A695b6HpLbIPv6dgFVF861IIJKEp5gqqmjN5djH4oWhXmS9sr9yi073Ovc3H0Yd5+TTxXfy5Mn
+ AI1mhsrBKKWuCvkC1P5XyuTBtI2yspSMGv22rquHwDX/qQTAQAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Gary Bisson <bisson.gary@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764713347; l=2814;
+ i=bisson.gary@gmail.com; s=20251201; h=from:subject:message-id;
+ bh=hmzAGm2KV+/8JNbNSevtwuUcM8ZgD/Dyr/satwDJz+I=;
+ b=Xj8Lo8dDuGarkgHqaWbPYbE0zlRP+EF5lB/j8o9yyNKhDUHj9nD4lAruzZtpbZugLaG/Jepvv
+ kL6mTPyn7ysAQGJUs/SRBYUe7iKdEnUWAwHQYzR3l6KPJ1N2sFj2+a4
+X-Developer-Key: i=bisson.gary@gmail.com; a=ed25519;
+ pk=eaOrLwovHUZBMoLbrx+L1ppj+AH+TfgxkVhIEyrhkeE=
 
-Hi Simon!
+This series adds support for Ezurio MediaTek platforms called
+"Tungsten". It includes support for MT8370-based Tungsten 510 and
+MT8390-based Tungsten 700 SOMs.
 
-On Tue, Dec 2, 2025 at 12:07=E2=80=AFPM Simon Glass <sjg@chromium.org> wrot=
-e:
->
-> > 1. Allow the top-level compatible string of an "incomplete" device
-> > tree to be documented so it can be validated on its own by tools. It's
-> > understood that this SoC is not a board by itself and we'd never boot
-> > a full OS with this device tree without adding an overlay that changes
-> > the top-level compatible. Add a top-level property to the device tree
-> > (perhaps "incomplete-compatible;") to indicate that the tree is not
-> > complete without an overlay.
->
-> or be more description, e.g.: compatible-scope =3D "soc"  - or just scope=
- =3D "soc"
->
-> In other words, I don't think we should be frightened to define some
-> levels (soc, som, carrier, exxpansion, chassis?)
+Changes in v2:
+- Use b4 to cc all maintainers properly
+- Squashed patches 2/3 together
+- Updated dts node names to be generic
 
-Sure, I'd be OK with this if this is what DT folks want. I don't have
-any strong opinions here. NOTE: something like this would only make
-sense if we're going to introduce new variants on how we apply
-overlays (like merging compatible strings).
+Changes in v3:
+- Added per-commit changelog
+- Added missing Acked-by on 1st patch
+- Link to v2: https://lore.kernel.org/r/20251201-review-v2-0-dc2df44eec7e@gmail.com
 
+Changes in v4:
+- Fixed remaining DTB warnings
+- Link to v3: https://lore.kernel.org/r/20251201-review-v3-0-07f9af7341fd@gmail.com
 
-> > 2. If it turns out to be needed (hopefully it's not), allow some type
-> > of syntax in yaml files that allows a property to be marked as
-> > "required" in a "complete" device tree but not in an "incomplete"
-> > device tree. Alternatively, we could discourage marking properties as
-> > "required" if they're expected to be filled in by a board.
->
-> Another option would be to validate the soc DT with a chosen board,
-> just as a workaround. It would probably be good enough.
+Regards,
 
-Sure, though I think Rob and Krzysztof are pretty interested in being
-able to validate the SoC DTB by itself. I'd like to at least set that
-as a goal. If we find some reason why we _truly_ can't achieve that
-then we can talk about relaxing it, but I'd like to start with the
-more aggressive goal.
+Gary Bisson (4):
+  dt-bindings: vendor-prefixes: Add Ezurio LLC
+  dt-bindings: arm: mediatek: Add Ezurio Tungsten entries
+  arm64: dts: mediatek: add device tree for Tungsten 510 board
+  arm64: dts: mediatek: add device tree for Tungsten 700 board
 
+ .../devicetree/bindings/arm/mediatek.yaml     |    2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ arch/arm64/boot/dts/mediatek/Makefile         |    2 +
+ .../dts/mediatek/mt8370-tungsten-smarc.dts    |   14 +
+ .../dts/mediatek/mt8390-tungsten-smarc.dts    |   22 +
+ .../dts/mediatek/mt83x0-tungsten-smarc.dtsi   | 1481 +++++++++++++++++
+ 6 files changed, 1523 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8370-tungsten-smarc.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-tungsten-smarc.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt83x0-tungsten-smarc.dtsi
 
-> We don't need to worry about old bootloaders since they presumably are
-> not installed on new hardware. Assuming Linux adopts this proposal, I
-> am sure people will implement it in bootloaders when they need to.
+--
+2.43.0
 
-Right. IMO if we have to make changes to the way overlays are applied
-and we can do it in a simple and backward compatible way, it should be
-OK. Only new bootloaders would be able to take advantage of it, but
-presumably we'll have to modify bootloaders a little anyway when we
-standardize on ways to pick the right overlays to apply...
+---
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Sean Wang <sean.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+
+---
+Gary Bisson (4):
+      dt-bindings: vendor-prefixes: Add Ezurio LLC
+      dt-bindings: arm: mediatek: Add Ezurio Tungsten entries
+      arm64: dts: mediatek: add device tree for Tungsten 510 board
+      arm64: dts: mediatek: add device tree for Tungsten 700 board
+
+ .../devicetree/bindings/arm/mediatek.yaml          |    2 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ arch/arm64/boot/dts/mediatek/Makefile              |    2 +
+ .../boot/dts/mediatek/mt8370-tungsten-smarc.dts    |   14 +
+ .../boot/dts/mediatek/mt8390-tungsten-smarc.dts    |   22 +
+ .../boot/dts/mediatek/mt83x0-tungsten-smarc.dtsi   | 1510 ++++++++++++++++++++
+ 6 files changed, 1552 insertions(+)
+---
+base-commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+change-id: 20251201-review-750072579991
+
+Best regards,
+-- 
+Gary Bisson <bisson.gary@gmail.com>
+
 
