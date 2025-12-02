@@ -1,129 +1,211 @@
-Return-Path: <devicetree+bounces-243546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458F8C99ABD
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 01:44:55 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36662C99AC9
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 01:48:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 38A2C4E1AEF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 00:44:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ECCFF4E12D8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 00:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508F01B3925;
-	Tue,  2 Dec 2025 00:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF90A78F4F;
+	Tue,  2 Dec 2025 00:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UFZqFZ/j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kni7xeGE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF4E19F13F;
-	Tue,  2 Dec 2025 00:44:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1DC1FD4
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 00:48:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764636291; cv=none; b=CfZyO5nEKd3drKK1yXSjRCIUmi2zm7MH2xVrHSVg0hp+wnbr4CbQosRFxJaVeQNuZA/FcewwtiPvEMfrEexupLAQmq95EB1yDbaSi6hVq7Bo53P6qeKGajtZT4a6QvT2NLLTevj0qB9tCl4/SHJUI+bKiYFHpeedziWLCNYdY5A=
+	t=1764636526; cv=none; b=JAlUFrCs85QSH7eZtO8/8rk6Qe6lykejJK1/2P4yuT/wklUeVoH3xfzxA2ufRYgBI6g9Gsizv4TUDNSclVyXSb+VqtMpUsvFAYQ4IW2KCTXHfRzAgiI3A9PYvhZ78b2P7PGRHpGnhcd1rvFD5/qWfF1DOrVd0FKh2NCplKmWDIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764636291; c=relaxed/simple;
-	bh=ahYHoAHLy/S529n0IMKuiDKbU4uic7IDh42n+XLJVbk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SHv25Gd+Lu01vXi5v9aeIoy14ACOhObA4TOynjrso3Wo8IjIG6OsWkrJgQbqAyDqEkScAXRqtjz1FVqukkxuZpKSGeEPHdLbCN4UJ6A88OAhYTcEGYP0l+JD2iFgOHG/CWokESfFCf1p9TniQk5kS1k5MsUyBbVOY0USgpeOjlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UFZqFZ/j; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764636290; x=1796172290;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ahYHoAHLy/S529n0IMKuiDKbU4uic7IDh42n+XLJVbk=;
-  b=UFZqFZ/jZRD41lIDUfSxK3t/hU7vzqJ/a45AF9Z+cRc84IHu1ujHU4m7
-   WGKIN3htEZgnYmUdA3VOT/aRWz3ID28n7ZLBQ7nXpSPDM173cW/FJyHG1
-   vd9kgiZpZ+ilSwyyO5uncdrBB8ZZbZ6sQT8/MCYLqnglkNHC+nquhLrXs
-   lO7h6K5Dr4XFYy6vDscFwhrmUwLXua2xxh1JS/jv5YV68h1yb5w7z7U9b
-   Glq1YHA68C+NfMcsLHXvl4BqOl5OBN9kgCM+wWx5dnNIecS5UW7Q7a4Ha
-   enXaoj6NIQ4hqC344niM4fEaXTEReQYi7rVvXyToadn4/cP+5uTeqElz5
-   w==;
-X-CSE-ConnectionGUID: O9YJbj30R3+XRdTcT4NktQ==
-X-CSE-MsgGUID: eJ0DoiUsRJiWclelWgFRxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11630"; a="76912580"
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; 
-   d="scan'208";a="76912580"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2025 16:44:49 -0800
-X-CSE-ConnectionGUID: zZIUSAGtTW2e7IOt8s8cdg==
-X-CSE-MsgGUID: mVThrixTRBqXdkx7IN+Xrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,241,1758610800"; 
-   d="scan'208";a="193498844"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 01 Dec 2025 16:44:46 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vQEVX-000000009GT-1zK7;
-	Tue, 02 Dec 2025 00:44:43 +0000
-Date: Tue, 2 Dec 2025 08:44:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: joakim.zhang@cixtech.com, lgirdwood@gmail.com, broonie@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, cix-kernel-upstream@cixtech.com,
-	Joakim Zhang <joakim.zhang@cixtech.com>
-Subject: Re: [PATCH v3 3/3] ALSA: hda: add CIX IPBLOQ HDA controller support
-Message-ID: <202512020810.KrwjSbJ9-lkp@intel.com>
-References: <20251201105700.832715-4-joakim.zhang@cixtech.com>
+	s=arc-20240116; t=1764636526; c=relaxed/simple;
+	bh=F1zMf0xAV3n5GajLqqtfHNPR2ObKgiI1lW5iYWJGjSY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dWcAHSVEHm4O33BedyUeK5mqKrD6UWuGJT3RiBGxtfBTocIexJhgv5If1s1cU0UCH4S3M8CQS7b9Gy9p6DsAGN16rK+K8Xrku3OfKfdK18GF6AX7Q4mbyPCdBfdn4xSh8gSBY9zUOyxlSz3D0MoU/p8UBkWxstZX0fG6GyJ0pPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kni7xeGE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A4D0C2BC86
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 00:48:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764636526;
+	bh=F1zMf0xAV3n5GajLqqtfHNPR2ObKgiI1lW5iYWJGjSY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=kni7xeGEcSHgsOn0IoB0h0waN+XHTY6dxaVorAYfaItXdCWeLm8eOJd4WMd13o2sH
+	 rCpk4mtZOMdbozE2e7ITrTSVRbc7BEpJsy2HACkib3Wkp98RbxO2nGyBePjOS2L2qd
+	 8QS3F+eNHDYAbsoEHqCO930npFXEjZSKYQCCN+YN8e5O6S9+VYGGg4IRgosY9DBVxo
+	 1FOvumZLy9d0FBlKxtBI/FWM7psUDjmeOh1upIm8mMjraiN1BV5pqtUHo5SmD7+MJC
+	 zPpyB3BwFvske5HxuZ9VYQBqnOo9fhefbML9otbLrrKS7pPq/YCL+fJJFccbhnn/mi
+	 +kqZR9TCbvsgw==
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b76b5afdf04so859291266b.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 16:48:46 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUYIIryfqHr5TfobDMsXnLGterqcJm7uJ/linuJJDO9/PrpfSrocixIcL3n0R5T23yZ7xH8vvet5qzn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxa42HKco1Xj14XWcye2VuPJG2O/xyPKOYSj2Sfpnxcom6Qsi8S
+	yZLNzt/z9t6tvpvHZAbB/AtqQJPjqd6NQy1ymX8YDfhOxUdYaPoUnMe11CZU9mH9RnOV/JCIW3g
+	7jA1K6V4rzGPrcznOkyLp36vIXJHOkw==
+X-Google-Smtp-Source: AGHT+IHsbAgkTYC3BiyJbz7RyFZBLR+6hEYw0E6ajgDKEs+abMeN+Q9Ms42Dfb0hRLTV+mlCnXEF5zGTuqKzeflJPYI=
+X-Received: by 2002:a17:907:9812:b0:b73:8e7d:4f91 with SMTP id
+ a640c23a62f3a-b767184b2b6mr3860980966b.41.1764636525152; Mon, 01 Dec 2025
+ 16:48:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251201105700.832715-4-joakim.zhang@cixtech.com>
+References: <CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com>
+ <CAODwPW_51fKOfDQbTUFCum13M621Uxi2Zw2YHng0DrrwwvZhRQ@mail.gmail.com>
+In-Reply-To: <CAODwPW_51fKOfDQbTUFCum13M621Uxi2Zw2YHng0DrrwwvZhRQ@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 1 Dec 2025 18:48:33 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJz8D53OF8PGaq+o6X5zfE1Y4NrH+BpYPEo6OENviJvbg@mail.gmail.com>
+X-Gm-Features: AWmQ_bmC9dfGHTRkyO29JA1uPLAX1tEAvsj_cavV6WehLJKkNSkE0dPMilgLT3M
+Message-ID: <CAL_JsqJz8D53OF8PGaq+o6X5zfE1Y4NrH+BpYPEo6OENviJvbg@mail.gmail.com>
+Subject: Re: Proposal: Officially allow "incomplete" trees as a base
+To: Julius Werner <jwerner@chromium.org>
+Cc: Doug Anderson <dianders@chromium.org>, devicetree-spec@vger.kernel.org, 
+	boot-architecture@lists.linaro.org, Chen-Yu Tsai <wenst@chromium.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
+	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
+	William McVicker <willmcvicker@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	yupingso@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Tue, Nov 18, 2025 at 5:48=E2=80=AFPM Julius Werner <jwerner@chromium.org=
+> wrote:
+>
+> > 4. When applying an overlay to a device tree that's "incomplete", the
+> > top level overlay will be merged instead of replaced.
+> >
+> > Example for 2 levels:
+> >
+> > base (incomplete) compatible: "socvendor,mysoc-rev1", "socvendor,mysoc"=
+;
+> > overlay compatible: "boardvendor,myboard-rev1", "boardvendor,myboard";
+> > merged compatible: "boardvendor,myboard-rev1", "boardvendor,myboard",
+> >                    "socvendor,mysoc-rev1", "socvendor,mysoc";
+> >
+> > Possible example if we support 3 levels:
+> >
+> > SoC (incomplete) compatible: "socvendor,mysoc-rev1", "socvendor,mysoc"
+> > overlay1 (incomplete) compatible: "referencevendor,referencecodename";
 
-kernel test robot noticed the following build warnings:
+I don't understand this one...
 
-[auto build test WARNING on tiwai-sound/for-next]
-[also build test WARNING on tiwai-sound/for-linus linus/master v6.18 next-20251201]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > overlay2 compatible: "boardvendor,myboard-rev1", "boardvendor,myboard"
+> > merged compatible: "boardvendor,myboard-rev1", "boardvendor,myboard",
+> >                    "referencevendor,reference-codename",
+> >                     , "socvendor,mysoc";
+>
+> Sorry, I only cursorily followed the previous discussion so I may have
+> missed the exact need for this part. But I would caution against any
+> proposal that changes the basic rules of how an overlay is applied.
+> The definition of how overlays work has (I think?) been stable for
+> over a decade now, and is implemented in bootloaders that often cannot
+> easily be updated. I absolutely support your effort to get more
+> upstream standardization for managing base device trees and overlays
+> (which I think need to be flexible for arbitrary layers, not just SoC
+> and board), but let's not break the overlay code in old bootloaders
+> while doing it.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/joakim-zhang-cixtech-com/ALSA-hda-dt-bindings-add-CIX-IPBLOQ-HDA-controller-support/20251201-185859
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound.git for-next
-patch link:    https://lore.kernel.org/r/20251201105700.832715-4-joakim.zhang%40cixtech.com
-patch subject: [PATCH v3 3/3] ALSA: hda: add CIX IPBLOQ HDA controller support
-config: nios2-allmodconfig (https://download.01.org/0day-ci/archive/20251202/202512020810.KrwjSbJ9-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 11.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251202/202512020810.KrwjSbJ9-lkp@intel.com/reproduce)
+I think merging compatibles is orthogonal to splitting SoC and board
+DTs. Doug needs to merge because there is more than 1 SoC version or
+base DT to pick. In many cases (SoC revision compatibles are the
+exception upstream), there is only 1 SoC DT and N board DTs. So we
+should consider both and define them separately. In the simple case,
+you'd have something like:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512020810.KrwjSbJ9-lkp@intel.com/
+SoC (incomplete) compatible: "socvendor,mysoc"
+Board overlay compatible: "boardvendor,myboard-rev1",
+"boardvendor,myboard", "socvendor,mysoc"
 
-All warnings (new ones prefixed by >>):
+Then you just apply the overlay and it overwrites the incomplete
+compatible. That works with existing overlay applying (overwriting)
+for multiple steps as long as each step is a superset (compatible
+list) of the prior steps.
 
-   sound/hda/controllers/cix-ipbloq.c: In function 'cix_ipbloq_hda_create':
->> sound/hda/controllers/cix-ipbloq.c:23:57: warning: conversion from 'long long unsigned int' to 'dma_addr_t' {aka 'unsigned int'} changes value from '18446744071293632512' to '1879048192' [-Woverflow]
-      23 | #define CIX_IPBLOQ_SKY1_ADDR_HOST_TO_HDAC_OFFSET        (-0x90000000ULL)
-         |                                                         ^
-   sound/hda/controllers/cix-ipbloq.c:224:38: note: in expansion of macro 'CIX_IPBLOQ_SKY1_ADDR_HOST_TO_HDAC_OFFSET'
-     224 |         chip->bus.core.addr_offset = CIX_IPBLOQ_SKY1_ADDR_HOST_TO_HDAC_OFFSET;
-         |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In Doug's case, I think you need code to decide which base to pick and
+then fixup the final compatible.
 
+SoC (incomplete) compatible: "socvendor,mysoc-rev1", "socvendor,mysoc"
+Board overlay compatible: "boardvendor,myboard-rev1",
+"boardvendor,myboard", "socvendor,mysoc"
 
-vim +23 sound/hda/controllers/cix-ipbloq.c
+And then after applying, you do the merge to insert the SoC rev compatible:
 
-    22	
-  > 23	#define CIX_IPBLOQ_SKY1_ADDR_HOST_TO_HDAC_OFFSET	(-0x90000000ULL)
-    24	
+"boardvendor,myboard-rev1", "boardvendor,myboard",
+"socvendor,mysoc-rev1", "socvendor,mysoc"
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+You need SoC specific code to know what SoC revision you are running
+on, so SoC specific post apply code should be fine too. There's not
+any existing bootloader problem because you need code to handle this.
+
+Maybe that fixup will end up being generic enough that it's not
+platform specific, but that's an optimization of the implementation.
+
+> Is there really a need to merge the compatible strings in your case?
+
+Well, you could just require duplicating an overlay N times for N
+bases, but that doesn't scale
+
+> I
+> think in the vast majority of platform identification cases, code only
+> cares about matching the most precise string (i.e.
+> "boardvendor,myboard-rev1"). If we do feel like having the whole chain
+> of identification is necessary, it could be achieved by just
+> copy&pasting the extra strings into the overlay file. If we have
+> cross-validation between base and overlay source files we could also
+> have the validation check that the overlays correctly contain all
+> compatible strings from their base tree. If we know that the base
+> trees aren't standalone anyway, we could also just invent other
+> property names that identify them (e.g. `soc-compatible =3D
+> "socvendor,mysoc";`). Anything other than breaking the overlay format
+> would be preferable in my opinion.
+
+There's also a use case I'm aware of where the base DT is just for a
+SoM and then the bootloader applies an expansion board overlay. So it
+is not always "not standalone". And of course, this could be combined
+with what Doug wants to do.
+
+Note that for any new property (or an incomplete compatible) like
+soc-compatible, you will need to consider how we validate it.
+
+> I also feel like we need a better standardized way to tie base device
+> trees to overlays, like your `/loaders` node proposal in an earlier
+> email, although maybe that's an orthogonal discussion (but related,
+> especially if there's supposed to be cross-validation between base
+> trees and overlays). The compatible string is just not a scalable way
+> for bootloaders to make this determination, there may be a lot more
+> differentiation than just "SoC" and "board", and the scheme almost
+> certainly needs to be platform/bootloader-specific because every
+> hardware vendor has their own ideas about how to group and reuse parts
+> of a platform. This information doesn't necessarily need to be *in*
+> the device tree, it could also just be in a separate YAML file in the
+> same repo (since bootloaders will almost certainly want to have it
+> transformed into their own out-of-band descriptor at build-time
+> anyway, so that they can compress the device tree itself and don't
+> have to decompress each one for matching), but it needs to be
+> somewhere.
+
+There is a proposal here[1]. It's simple, but I do wonder if looking
+at the root compatible only is too narrow of a view. An overlay could
+target a connector compatible for example.
+
+We kind of have this information in the kernel build already as well.
+The requirement for overlays in the kernel tree is overlays get
+applied to at least one target at build time. It would be nice for any
+solution to this problem to replace those build rules.
+
+Rob
+
+[1] https://lore.kernel.org/all/20250911151436.2467758-1-raymond.mao@linaro=
+.org/
 
