@@ -1,300 +1,271 @@
-Return-Path: <devicetree+bounces-243563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DEEDC99F7D
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 04:31:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68892C99FC2
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 05:11:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 984D8345D70
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 03:31:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 166AC3A51A2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 04:11:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 619EA2727F5;
-	Tue,  2 Dec 2025 03:31:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Pf5CxoU2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7212F272811;
+	Tue,  2 Dec 2025 04:11:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2090.outbound.protection.partner.outlook.cn [139.219.17.90])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DDAB204F93
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 03:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764646294; cv=none; b=aDL3ahY2IGbFrj3fVnEvLi1s7lPq4kRQP5V6AGGi4+DpVuetMZqQIALLu2DGdxaFV4tGsKCHoook0SAmvTXv2asEY37fF9ZG2fk7KO0mwGjasxg/Wz/ec0GG9Hj5UxqAlpYTO2S1U3mfN13rHoh9DlJVkKat6u0DzAJPDwK9LZM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764646294; c=relaxed/simple;
-	bh=wyinoc4xaY1OzgCf76hkfzZu6NKt+z87cHaL8MQdtdk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oyMXip2XZ2IpMh+fkQcsBeAEj0AIrxBoEpPQmyE6pU4tKMlYLc5od0Bih6NhowmWkQl7EJss+RI364AU5GpceGbVgEfoqOJFbJJ7Cy2KjUJmh41mSnl8gaeVnX2vLI/RC3L5uI56xM2pSmQt9Oh+/JpgZIICuzVou+x+F/JDlFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Pf5CxoU2; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-595819064cdso6562548e87.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 19:31:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1764646290; x=1765251090; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UISp/QKH49pzmuCcD0EsuuYAsPOsnKu2RiSc8caIOyQ=;
-        b=Pf5CxoU26gks7QsnkMKSMnOYpPy5ybJ7JyJ9b9nK1MGmvlapsFV5E/cgRbTGNqJD3d
-         ONdgCKOfouITaGalD992vX+lFy8SAXCvrw7kWiU10X2Lhg8sM2E+aeQJTdnJMFApf8Gn
-         dzKRnXrf7YkzcMpTAwl55OhfqmvH7YGZyE5SE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764646290; x=1765251090;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=UISp/QKH49pzmuCcD0EsuuYAsPOsnKu2RiSc8caIOyQ=;
-        b=aWdbjF298fF0zhKDeX45bGwdvKranKWuwb+yHPBcee976IUEsbLNo+xSAhUkJxBnwC
-         eIQuaWRmFmqt9Qc990D53MzKZOfMwsHhl98ADy+cqrur7332SI5q55n5/YrusLYFSFmN
-         fpA2eju2P1V3Qf6i/oK0BesURooS43KzJn7NZcwF3zL6hDThAHAlUQlUPj56UqxrMivv
-         siZQCTa5JdbT7s/tp0Pa8cew4i0Q8gFoTxOa6CmxrJctIsGedIFxymo0AXFycuuCyIU7
-         he7qVUf8SAVWRGv6xIryKhqCHugfioX6D0PtMapGJgsrrnwaE+bhI7udqjgTjrMDEHJb
-         rR4g==
-X-Forwarded-Encrypted: i=1; AJvYcCXraid7+AkG3RXqXnuH46O5jeTjfWXNlZEHbt+Fg5ufSoeENUrdVEIOkSFqa91SHlM3jiAm7RoAQIOy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkZT3pn52YoS8c5uJCLBA/7MWFaAFfCUdzvdqCm9mgDG6zrSGi
-	mXhhZKt1UAddAcHc2eRKGfCsjeE8C3NlRyysOClswlbMZXsemWukcZvNlh6C21wWrnrINkh+vtx
-	IvjdIEBb8YvGlK481p7z0jhFK/aG9VsFVpaUEW6GT
-X-Gm-Gg: ASbGnct0x8IAZ1VRVJhCNCMjqxfXBAR7VffxY4yYrD+rrmtCZaH8Bghfv/HK5sbrEKc
-	9Ut1seRdcpzprpgtyrQizacBQl8sDKMd3hoYnp7u9q1TbX47Fzic0anj5Zr5QwDoB8SiqcJUNhe
-	/QPX89uq7UFooc8+obopYJBvc5PBpl3SG/dQJBZjRZ2QCdQapinbjq/BmGVcz/pPYXcbnUAzEjy
-	PCpZoUnWRf2Lzb1X5sdUsLHgeosFvbPkILdo9Rt8IFHKweek0H4ArYo9B96qrJ7ucbJpeIczZ57
-	kdmxTT2wFgZXf6aMgbUaB9M79g==
-X-Google-Smtp-Source: AGHT+IG/XT0mJ+VtcswRdHKIakx2G21+IYuhd8npGfA3vfhDMFJa23+U+8Cos/aIvejkhufQb/8Duqd/PP0vxmMf82A=
-X-Received: by 2002:a05:6512:1256:b0:594:1cef:21fb with SMTP id
- 2adb3069b0e04-597cfae45c6mr278160e87.3.1764646290107; Mon, 01 Dec 2025
- 19:31:30 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0CB23FC2;
+	Tue,  2 Dec 2025 04:11:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.90
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764648709; cv=fail; b=A9Trq0pQzlhnFDYenq8j4AVbuAQhMhIR7sDM5vplfKbuoZfHiieilaMHHkZJfpGYp1SKQ5n8c+GDntOEOHoL7/irD5Rf2vhIIBl13lhRYwSSUZHbKZPzOIiTfYhqzQZpXSYnzYmXbUzCri72ZMi9POOYWPtLgqEKghOPnJzG1ME=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764648709; c=relaxed/simple;
+	bh=McmNfESCkb+464IPuk92pS5aoAbtl0qO3ltlXfQ7NHU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=bnXOg8szUZH6255a0mWeIVe6Rl/5fhe1FTaM1lQiEKl5VCP2wQTUI5k0SEwuW3nOBh12DZpkIbnElQNu0eGyBN3+o7Xh2aJ0Q61FwxIR4CYIv6nl2jKXmdOdOoni2KmYtRIGzL0O/8y+5CWS1JdF1M1zYDLSKt4cYO5h4SF/7oY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xt6zoscws+9x5oN+FhQu5MA9X+jI6Vj/RVHxJoHp8cx6FGbmi70BGPAOOoSdJt9TCLb0UZe2FuzQPMKhNZfe87XKYEZDKoBMxSmUUqVOyG4H5WfMSdmGLADD03TNm/1sMxA4XLDq1+I39vkDOzitiqDIBZ53LCU8loYfDcbLAIs80ylQTwVtKJtQo5Dyz3+SSkTUV4GVz3qL1GRVY+oc76EEdLRaQHLBtcAi3dkgMariqrQZBDibMIjsj81lvodK5vgPHCoOuHizOEQvlzwjoE4pgWcxN4IGjVUEEZ04fLGnB0VIJ9w1GVss3o81oR/YvmBfZDhS1RLPZfoOLFvEHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3iatfrs3jQ+KuyGG8mPWLClDK6RvFlyEqF374ogMp7M=;
+ b=EsfFDt1oyE+VHUCwg4QMt1dZ/96/vyyUJBFaodedvqLNGwsFx+9Fg1MzXYDFcM5X0ZRwBe/uXfWkDdZLrO9++Oem54A16sVM9jOxmGEVjfcTKzli6gE/RhIT5PKKgHjwJ85vlus3sRrOCVmyAMxzIittGAoalZcM27Nw2pUuxdVIGhpel+Nbzq5yUqOXsRweVEXCz5TCvmvWeNyyVjl7UdXtV0CaxHAdGTNgIHfP+ZERiGzVUOh6jCLOcOTm44u1HvjnjvJQ9JrXqd3C+1huVRdQ6fwLJnitNXIvnLojwge1BIHomtADkXSVnutxLaYfRWod3aNwixqu1uZEf+887g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14) by ZQ2PR01MB1228.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:12::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
+ 2025 03:38:02 +0000
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7%4]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
+ 03:38:02 +0000
+From: Hal Feng <hal.feng@starfivetech.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt
+	<palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, Albert Ou
+	<aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>, Viresh
+ Kumar <viresh.kumar@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kwilczynski@kernel.org>, Manivannan
+ Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Emil Renner
+ Berthing <emil.renner.berthing@canonical.com>, Heinrich Schuchardt
+	<heinrich.schuchardt@canonical.com>, E Shattow <e@freeshell.de>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Kevin Xie
+	<kevin.xie@starfivetech.com>
+Subject: RE: [PATCH v4 1/6] PCI: starfive: Use regulator APIs instead of GPIO
+ APIs to enable the 3V3 power supply of PCIe slots
+Thread-Topic: [PATCH v4 1/6] PCI: starfive: Use regulator APIs instead of GPIO
+ APIs to enable the 3V3 power supply of PCIe slots
+Thread-Index: AQHcXeD4WDMn2zfogkuoU7yPusoik7UNTRYAgABozmA=
+Date: Tue, 2 Dec 2025 03:38:01 +0000
+Message-ID:
+ <ZQ2PR01MB13074FB41F2DBE15CE96855DE6D82@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+References: <20251125075604.69370-2-hal.feng@starfivetech.com>
+ <20251201205236.GA3023515@bhelgaas>
+In-Reply-To: <20251201205236.GA3023515@bhelgaas>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1228:EE_
+x-ms-office365-filtering-correlation-id: ee174fe9-1501-476a-0981-08de31543214
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|41320700013|1800799024|7416014|366016|38070700021;
+x-microsoft-antispam-message-info:
+ 8JC509K6YOopHOYtyXkjLkTYoSKB6RFn1bkYja2xWaoWdzZKil7DJbIbPfbSgrY+HCFNi/nwZ2fgxaNIBHPAMi65i3qWLlQoGWqBywz48t7b2pBNvsqQmfZ6/KRyqajQXky7zljX2s6wzcCQeqTGpjuFb7SdLeqRFJcuJLs69qSWMjhe2NaVXQNckQ03ag4lDrGJYtoxpsgIboNQjlKFQdL7ymd010XxDHTXsc3UjqYZnWfI4w9Y/zCV/Y7aCxrmUP6bK+kttSKPIoESKyX9CAIF8AfQhuyOw5MwMR9XfVMAc+zQFVgq8K8knzvAOiG6/ltp2gPG93CqZo+QxZoYKmv3qpUK1PcKXWiethhgo2KiK4GClKNcwxSkQ/2otkmrB6C645XfcQaxmvfwC9cmhTNGLdYCWqHEPunmJigjXxIQ6jrw2bh67/yOpNbgANCqLQXRGwpjA68JuIGJ7uqwhQvv4xSt5RFao+6r4yLLe9fPnHXlRDWgQRj28tcbfDHv4Omu66froAM3gA+rm4b5y5j3CR5LocVAAJK7DTZPJJl3W5jwq604zOUw0nWr+gXa+20Ivzy7s7Ov6gJ411XV0822mWSsav9Dac+ofWonkvQ=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(41320700013)(1800799024)(7416014)(366016)(38070700021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-2?Q?SP+4VovJdea9c2Fw5C3B6uFjMO86gbZqTHR8fnmtySztp4Osyd+2QObxqh?=
+ =?iso-8859-2?Q?cAbrtxD0r7vt9c5HSB5nSCUzBu9cVxmcnFO21Aq+IZ7Gl5stqgCgdG6wWI?=
+ =?iso-8859-2?Q?PKYDGse26OIEqAbdXhgl+xjuxhcXus0Z2hqFOpzdp6YcXybv/VV0RIDwdd?=
+ =?iso-8859-2?Q?yGcnTIM278FilZQsfitWtCegnr4oQE7cZk/PNAh0vJjcjuDTbmaMsHs+R/?=
+ =?iso-8859-2?Q?gN5IuwW3VuiwzWQab+AkYTLZ/oLq2kK6joEmYbEJwSeH8HvWMsuBTJnIRu?=
+ =?iso-8859-2?Q?1M9zCssroj5BbRYc7FFCc/jfoXb2XqgMvSWW7OP+IO2imxbf4R6gEeHMaP?=
+ =?iso-8859-2?Q?GDuA6fdeea0DwvcDhFi5VoIBwoJHMSmU5HsIVtADWpPCVH4ugWwE2qp+hQ?=
+ =?iso-8859-2?Q?/MJmHLBopALRWC2Yj+lh467jqmTRZPlQe/Cp/TYMBQe2TgHHTkpphLoKAd?=
+ =?iso-8859-2?Q?FUFNkuQ/gib+1pwqZbf1vwFLbqVe/GLfBa5yItLxk16xZwOH+JbM6PCEqF?=
+ =?iso-8859-2?Q?ZcCzkbqsRDJjtQA5lNHwyLtsX7Jhzf+tFI/IsnzVU7pw0s5eUi44JbAh1z?=
+ =?iso-8859-2?Q?InsvGubFP0C1Dn0t8BDxeZb4DfrcB/ocs7cmonkF6gmbMRIRx0REF8BPEa?=
+ =?iso-8859-2?Q?DK++DGRJImQLOPcyOE7G4a4hvqr5Q58YJKb1hRnXKxgNDpQkHQsdFr1uxF?=
+ =?iso-8859-2?Q?2LiLgxlB5IEfi5B0kp3laJ191u0FBlGZOJ/mLiA2/aUIGosZHCfXguP+Vd?=
+ =?iso-8859-2?Q?5U96+GmtahYlhfO/VQ+1sdFcSZVKnZdmg6BAQBxHuuUjVtC+AIDsltI8HJ?=
+ =?iso-8859-2?Q?8SyxXic+v1/cfXLm7YjKE9lCkZcxaxinmnFZX2XK9lYIOMCW5x92jl/5BZ?=
+ =?iso-8859-2?Q?VnnuBAEX4H/oK82b5cN5B4zXp/atAuNHeuoC4kQkL1LXKr88PqflP/9PkP?=
+ =?iso-8859-2?Q?qVkmQ1AUc3JKMM1voPuq7kysM29coKrOZ3drhAUHtbUMu1sZzuQSp++rVw?=
+ =?iso-8859-2?Q?FxfLLwJtOC7x3C/e9sk+tNEgf87qZRCu4ktd8TeZW8EuCodezfTMEmNmbM?=
+ =?iso-8859-2?Q?AfmzdsxR5f2FjEF5WBh3SKR6rU/TIXzvnDmdKF4X9MY1aaVBuCEhUo/4Ry?=
+ =?iso-8859-2?Q?NKsPirodrNud2ReU1G6u20KIjFYtVHPUsfS4X4jJAtode3Vnaf8S6vKw21?=
+ =?iso-8859-2?Q?IpJzr4bMAzTyUCDNLr96S5riThwAOQblRGUmsIF3NFuNL51lK/l/9SKuj9?=
+ =?iso-8859-2?Q?C4YlfkWtRuJoRVZCRUB6iKYVdRIBgQg6hZUx3FnpwG1V9lX8ULmww8IDfj?=
+ =?iso-8859-2?Q?Fv8JWManpyt5RJCsJOXyVqP3Wmd4tV8VldTVSXsMK+CBkAzKnidWcPc7TR?=
+ =?iso-8859-2?Q?SjQ17jlDfsqBwwc8owYq9RgHvc8qx6aGKKJ++a2plGnY6dXGrKzMajlvzA?=
+ =?iso-8859-2?Q?O7iFj5Zk52BVQMq1nDA7pUjsr63UcQ5TwJVnRtjJOMreWviIIva5bq9odt?=
+ =?iso-8859-2?Q?+Kv1QOG+PXnyG5BzYVEzgA+YWIUjx4TSM5f9bQkB4pHWT67tQaqR94SNMc?=
+ =?iso-8859-2?Q?p7HRV3unSHmEspiKuf48H0DThX10JiN7/1Sfv8oS/ZYCSMXFBRVANzXWvs?=
+ =?iso-8859-2?Q?gKYuaBBXyyICQUfIS0o1QN0Q1I3WuIPFZ1?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com>
- <CAD++jLkuRQKoiEN928GtAj7wUts5PxH905bLp6ZhKsJ3NnenEA@mail.gmail.com> <CAD=FV=X5=AK4XMANv+fatn3d9Y5vo9AXsHWb_47HmNaMWUtMwA@mail.gmail.com>
-In-Reply-To: <CAD=FV=X5=AK4XMANv+fatn3d9Y5vo9AXsHWb_47HmNaMWUtMwA@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 2 Dec 2025 11:31:19 +0800
-X-Gm-Features: AWmQ_bmp8bpRQyGIP8TF94WGb_32TOhHca9ia1ako0VXsKtlbsLs6VtRP2W_koE
-Message-ID: <CAGXv+5HyMYgKmLc+jmkj-gytm9SNVg9dS7Vn3dQ-dsH8Wo+4sg@mail.gmail.com>
-Subject: Re: Proposal: Officially allow "incomplete" trees as a base
-To: Doug Anderson <dianders@chromium.org>
-Cc: Linus Walleij <linusw@kernel.org>, devicetree-spec@vger.kernel.org, 
-	boot-architecture@lists.linaro.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
-	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
-	William McVicker <willmcvicker@google.com>, Julius Werner <jwerner@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Simon Glass <sjg@chromium.org>, Yu-Ping Wu <yupingso@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee174fe9-1501-476a-0981-08de31543214
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Dec 2025 03:38:01.9898
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: BsOzAyHdsKHxTmACZdlx+tPUpeBs1a2xsvJGzMCxdpcrTTyGbEipyHOG3dMDITpBDfEK62Gg5er8z4SOAddlHsP73tGJi+kngZ+jkvZIMgM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1228
 
-On Tue, Dec 2, 2025 at 8:44=E2=80=AFAM Doug Anderson <dianders@chromium.org=
-> wrote:
->
-> Hi,
->
-> On Mon, Dec 1, 2025 at 3:52=E2=80=AFPM Linus Walleij <linusw@kernel.org> =
-wrote:
+> On 02.12.25 04:53, Bjorn Helgaas wrote:
+> [+cc Kevin, pcie-starfive.c maintainer; will need his ack]
+>=20
+> Subject line is excessively long.
+>=20
+> On Tue, Nov 25, 2025 at 03:55:59PM +0800, Hal Feng wrote:
+> > The "enable-gpio" property is not documented in the dt-bindings and
+> > using GPIO APIs is not a standard method to enable or disable PCIe
+> > slot power, so use regulator APIs to replace them.
+>=20
+> I can't tell from this whether existing DTs will continue to work after t=
+his
+> change.  It looks like previously we looked for an "enable-gpios" or "ena=
+ble-
+> gpio" property and now we'll look for a "vpcie3v3-supply" regulator prope=
+rty.
+>=20
+> I don't see "enable-gpios" or "enable-gpio" mentioned in any of the DT
+> patches in this series, so maybe that property was never actually used be=
+fore,
+> and the code for pcie->power_gpio was actually dead?
+
+Yes, "enable-gpios" or "enable-gpio" is never used in any DTs, and pcie->po=
+wer_gpio
+related code is never run actually. Even the "enable-gpios" or "enable-gpio=
+"
+property was not added in the dt-bindings
+Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml.
+
+Suggested by Manivannan in the previous version [1], let's use regulator AP=
+Is instead.
+
+[1] https://lore.kernel.org/all/xxswzi4v6gpuqbe3cczj2yjmprhvln26fl5ligsp5vk=
+iogrnwk@hpifxivaps6j/
+
+Best regards,
+Hal
+
+>=20
+> Please add something here about how we know this won't break any existing
+> setups using DTs that are already in the field.
+>=20
+> > Tested-by: Matthias Brugger <mbrugger@suse.com>
+> > Fixes: 39b91eb40c6a ("PCI: starfive: Add JH7110 PCIe controller")
+>=20
+> Based on the cover letter, it looks like the point of this is to add supp=
+ort for a
+> new device, which I don't think really qualifies as a "fix".
+>=20
+> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> > ---
+> >  drivers/pci/controller/plda/pcie-starfive.c | 25
+> > ++++++++++++---------
+> >  1 file changed, 15 insertions(+), 10 deletions(-)
 > >
-> > Hi Dough,
+> > diff --git a/drivers/pci/controller/plda/pcie-starfive.c
+> > b/drivers/pci/controller/plda/pcie-starfive.c
+> > index 3caf53c6c082..298036c3e7f9 100644
+> > --- a/drivers/pci/controller/plda/pcie-starfive.c
+> > +++ b/drivers/pci/controller/plda/pcie-starfive.c
+> > @@ -55,7 +55,7 @@ struct starfive_jh7110_pcie {
+> >  	struct reset_control *resets;
+> >  	struct clk_bulk_data *clks;
+> >  	struct regmap *reg_syscon;
+> > -	struct gpio_desc *power_gpio;
+> > +	struct regulator *vpcie3v3;
+> >  	struct gpio_desc *reset_gpio;
+> >  	struct phy *phy;
 > >
-> > thanks for your mail!
+> > @@ -153,11 +153,13 @@ static int starfive_pcie_parse_dt(struct
+> starfive_jh7110_pcie *pcie,
+> >  		return dev_err_probe(dev, PTR_ERR(pcie->reset_gpio),
+> >  				     "failed to get perst-gpio\n");
 > >
-> > Let me just see if I understand correctly what you're trying to
-> > do  (and apparently actively doing in production):
->
-> Thanks for your thoughts. Just to be clear, even though I've dealt
-> with device trees on a lot of ChromeOS boards, this is something that
-> _Android_ phones are doing in production and is what I'm focusing on
-> here. The whole scheme is at least roughly documented at:
->
-> https://source.android.com/docs/core/architecture/dto/partitions
->
-> This is all stuff that predates me looking at Android. I'm just coming
-> in and trying to make sense of what's there and trying to upstream
-> what I can.
->
-> Separately, it can be noted that we always _wanted_ a similar solution
-> for ChromeOS, but we never quite got there... ;-)
-
-FTR ChromeOS is moving in that direction: splitting SKU differences
-based on components into overlays that get applied to the base by the
-bootloader.
-
-In the simplest example we could have one base dts and two overlays
-for two different DSI panel models:
-
-  - base.dtb
-    - panel-model-a.dtbo
-    - panel-model-b.dtbo
-
-The problem we then run into is that the base.dtb will only have the
-generic model compatible "google,foo", not the sku and revision
-specific ones like "google,foo-sku1-rev2".
-
-And we'd really like to avoid having _more_ overlays just to add the
-final specific compatible string, as that kind of defeats the purpose
-of using overlays to reduce the number of dts files.
-
-I proposed internally maybe having the bootloader fix up the final
-compatible string, but I think we need some rough consensus upstream
-whether this is acceptable or not.
-
-
-> > On Tue, Nov 18, 2025 at 11:43=E2=80=AFPM Doug Anderson <dianders@chromi=
-um.org> wrote:
+> > -	pcie->power_gpio =3D devm_gpiod_get_optional(dev, "enable",
+> > -						   GPIOD_OUT_LOW);
+> > -	if (IS_ERR(pcie->power_gpio))
+> > -		return dev_err_probe(dev, PTR_ERR(pcie->power_gpio),
+> > -				     "failed to get power-gpio\n");
+> > +	pcie->vpcie3v3 =3D devm_regulator_get_optional(dev, "vpcie3v3");
+> > +	if (IS_ERR(pcie->vpcie3v3)) {
+> > +		if (PTR_ERR(pcie->vpcie3v3) !=3D -ENODEV)
+> > +			return dev_err_probe(dev, PTR_ERR(pcie->vpcie3v3),
+> > +					     "failed to get vpcie3v3
+> regulator\n");
+> > +		pcie->vpcie3v3 =3D NULL;
+> > +	}
 > >
-> > > We would like an officially accepted scheme that lets us more
-> > > efficiently ship compiled device trees for a handful of related
-> > > products by breaking the device trees up into a common "base" device
-> > > tree and then applying "overlay" device trees atop the base to make a
-> > > full and complete device tree.
-> > (...)
-> > > In Android, we do a pretty good job of solving the stated problem
-> > > using device tree overlays. We describe the SoCs in "dts" files and
-> > > compile them into "dtb"s. We describe boards in "dtso" files and
-> > > compile them into "dtbo" files. A bootloader can handle identifying
-> > > the correct base and overlay (the scheme for doing this is a separate
-> > > but related topic) and applying the overlay atop the base "dtb". This
-> > > solution is fully implemented downstream for Android phones and is
-> > > well documented [2].
+> >  	return 0;
+> >  }
+> > @@ -270,8 +272,8 @@ static void starfive_pcie_host_deinit(struct
+> plda_pcie_rp *plda)
+> >  		container_of(plda, struct starfive_jh7110_pcie, plda);
 > >
-> > So in the kernel we have several arch/*/boot/dts/vendor/ folders
-> > where they have:
+> >  	starfive_pcie_clk_rst_deinit(pcie);
+> > -	if (pcie->power_gpio)
+> > -		gpiod_set_value_cansleep(pcie->power_gpio, 0);
+> > +	if (pcie->vpcie3v3)
+> > +		regulator_disable(pcie->vpcie3v3);
+> >  	starfive_pcie_disable_phy(pcie);
+> >  }
 > >
-> > soc.dtsi included by board.dtsi included by system.dts
-> > and the top system.dts is all that get compiled.
+> > @@ -304,8 +306,11 @@ static int starfive_pcie_host_init(struct
+> plda_pcie_rp *plda)
+> >  	if (ret)
+> >  		return ret;
 > >
-> > So what you say is that you do the same thing but at runtime?
->
-> Essentially. In this case, we don't ship the device tree _sources_ but
-> ship _compiled_ device tree. We compile the SoC into a "dtb" and then
-> combine anything above the SoC into a single "dtbo". We ship several
-> "dtb" files and several "dtbo" files and combine them at runtime after
-> we identify which hardware we're running on.
->
->
-> > Can you just describe why this is done like this with
-> > overlays?
+> > -	if (pcie->power_gpio)
+> > -		gpiod_set_value_cansleep(pcie->power_gpio, 1);
+> > +	if (pcie->vpcie3v3) {
+> > +		ret =3D regulator_enable(pcie->vpcie3v3);
+> > +		if (ret)
+> > +			dev_err_probe(dev, ret, "failed to enable vpcie3v3
+> regulator\n");
+> > +	}
 > >
-> > I can only guess that you have one bootloader that needs
-> > to compose device trees to many systems and the bootloader
-> > only discovers the system it is running on and its constraints
-> > at runtime, so shipping the static system.dtb as many people
-> > do is not an option for you?
+> >  	if (pcie->reset_gpio)
+> >  		gpiod_set_value_cansleep(pcie->reset_gpio, 1);
+> > --
+> > 2.43.2
 > >
-> > And the reason the bootloader doesn't already know what
-> > it is running on and doesn't just pass that one device tree
-> > or is just prepared with that one device tree has something
-> > to do with manufacturing or so?
 > >
-> > Sorry it just evades me.
->
-> Our builder creates a single "image" that can be flashed onto any
-> number of devices. Users (or manufacturers) can download and install
-> this single image and it will work on a wide variety of devices. So
-> you can download a single "Pixel 10" image that can be installed on
-> any of the Pixel 10 devices (Pixel 10, Pixel 10 Pro, and Pixel 10 Pro
-> XL). It will also work on our development board and early
-> pre-production variants of those boards.
->
-> In order for this to work, we need a lot of device trees and
-> _something_ needs to pick the correct one. Right now, the bootloader
-> is in charge of this task.
->
-> If we had less variety of products that we needed to ship then, yes,
-> we could just ship the one device tree and have a separate build for
-> each product. ...but that doesn't scale terribly well.
->
->
-> > Probably becayse even U-Boot these days use the provided
-> > device tree dtb, for the system targeted, to initialize itself. I
-> > suppose your bootloader is generic enough to avoid that
-> > chicken-and-egg problem, right?
->
-> FWIW: I believe even U-boot supports shipping a pile of device trees
-> and detecting things at runtime. See the "FIT" image:
->
-> https://docs.u-boot.org/en/latest/usage/fit/index.html
->
->
-> > I guess if I had this problem:
-> >
-> > soc.dtsi
-> > board-a.dtsi
-> > board-b.dtsi
-> > system-board-a-v1.dts
-> > system-board-a-v2.dts
-> > system-board-b-v1.dts
-> >
-> > etc having to be combined at runtime, in a bootloader, I would
-> > consider shipping exactly these files in a memory-based
-> > filesystem in my bootloader, and bake a DTS compiler into
-> > my bootloader so it can just build a device tree for what
-> > it detects.
-> >
-> > But I guess you didn't want to hear that :D
->
-> You're saying to just ship device tree source instead of binary? Hmmm,
-> it's an interesting idea. It wouldn't be _terrible_ since "dtb" stores
-> a lot of strings to begin with, but I think it would still add enough
-> of a bloat to make it a no-go for us... I would also imagine it would
-> be a pain to deal with #include of header files with #defines. Do we
-> somehow partially pre-process the device tree files but don't apply
-> the #include files. It might be possible to solve some specific cases,
-> but having this work in a generic way seems miserable.
->
->
-> > Anyway, please describe how you ended up in this situation,
-> > I'm trying to understand this.
->
-> The main goal is just building/shipping one image to support a variety
-> of similar products and trying to save space by not repeating the SoC
-> bits over and over again.
-
-I think that's a valid goal. ChromeOS ships all DTBs for the same SoC
-in a unified kernel FIT image. It used to be all DTBs for the same SoC
-vendor (arch/arm64/boot/dts/mediatek/*.dtb), but we ran out of space
-on an old device that had a pretty small kernel image partition.
-
-And given that the devices built on one SoC are mostly derived from the
-same reference hardware design, maybe 90~95% of the resulting DTBs are
-the same. It would be nice to even have the reference design as the base
-DTB, but again that would require either having a bunch of DTBOs just
-to fix the board compatible, or have the bootloader fix it up.
-
-> > It is quite clear that device tree overlays were intended for
-> > say plug-n-play additions and minor fragments to be added
-> > to a basically complete device tree, what you are doing was
-> > probably not how it was intended. (Or let's see if someone
-> > proves me wrong on that.)
->
-> Not sure what makes that so clear, since it's not clear to me. In any
-> case, even if device tree overlays weren't intended for such a usage,
-> they actually seem to work fairly well for it, even if upstream
-> currently rejects device tree usage like this.
->
-> FWIW, the fact that bootloaders (like U-Boot) have the ability to
-> apply overlays makes me think that _someone_ intended them to be used
-> similar to how Android is using them. ;-) If it was just expansion
-> cards then (presumably) someone would boot to Linux and just apply
-> overlays from there. See:
->
-> https://docs.u-boot.org/en/latest/usage/fit/overlay-fdt-boot.html
-
-FWIW Simon also mentioned this as a possibility in his "FIT support for
-extension boards / overlays" proposal [1], but maybe I'm misreading it.
-
-
-Thanks
-ChenYu
-
-[1] https://lore.kernel.org/all/CAPnjgZ06s64C2ux1rABNAnMv3q4W++sjhNGCO_uPMH=
-_9sTF7Mw@mail.gmail.com/
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
 
