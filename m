@@ -1,189 +1,204 @@
-Return-Path: <devicetree+bounces-243798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09357C9D028
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 22:06:51 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7219C9D104
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 22:19:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 401E23A46AA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 21:06:49 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EAF1834202C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 21:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BCE2F83C9;
-	Tue,  2 Dec 2025 21:06:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97A02F83BB;
+	Tue,  2 Dec 2025 21:19:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Wi9acDJG";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NdR6JS19"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kuWVE5xA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A112F7459
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 21:06:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840142F691A
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 21:19:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764709604; cv=none; b=mzcaJH7bdSP4L3mIa3PKhNGoVebXBDbF1Z3GiW1Tq1CM7zZNxyCKS6198x6udA/JZK2X2icwCl/C/GS8cHW7MAZiZwbAAZbZfOvVZIQ/n8s/3Nz8KVwWcpQPiCZr6njtf0WK1le0mZmMXWYUr4xsZJgUfzvECDcTG4A6lpGZRlU=
+	t=1764710370; cv=none; b=P2MR0SNT5BbsRkAt8iilS4RsKbHoyv0+1copi0ayeFNKIJili7ikO7Fx3TsPqsiwiHNQvLqfLFMpRvBaZtvbT/OX3yDL/6ottEZaU3C4b7ZWF26Gsz+hPORo/H8QfZ+MeBEXMviIs7K5Q//d01RTiftQ7w/y/eX4A01b/wyTiq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764709604; c=relaxed/simple;
-	bh=levm/eFs6Pq7GzCojVYWl8fYRj+Ya0yFTu2901K/OOY=;
+	s=arc-20240116; t=1764710370; c=relaxed/simple;
+	bh=AZASaj5aXBVLP8FVAp2pUANC9RpCBKlvtMSjV9a7KLY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KDWT8s9Qbon9CeVGFTfjQf/3rEKIZheipWcTFQO5Fr+AQH5RnymJ35vhyp3a02dSyyHdaTKxpOo20ek8Y+ZWijos0rpeqDD0IknK4XMO1JyWELaplYSCeuS6KYHInoUQauQHjkig8fwuWN3Plf5tIbxn9zVIUwn3xZiZKoj5VTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Wi9acDJG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NdR6JS19; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B2KpXS63310333
-	for <devicetree@vger.kernel.org>; Tue, 2 Dec 2025 21:06:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=weaA+rX7Z/XNIRuchY/Dyj2L
-	JxaYm0oPd2w5/PR0Lm4=; b=Wi9acDJGN8HvF6QJKhk/SXamaBQ0NLUmfm8mT72B
-	wp8Bvwpd7HTsZb2pCgJk1SWHMjfDfn6Vwz9pQzQUT1PuLw7Zy7m7OTU+0Xry9SNH
-	433W/G3NT2V5OMF/M2aV1pY4cOptoqUn95XJMIG61ULegP7BIq/OTsSyFgAnBrVi
-	COfX+ITp/1Tc1uc09MLY6vpmtgcTJvBVSDIhFXLNSrA8Um7ZQFnr+1dJsFDgR4Pe
-	zObOkiH59p5k3amxvVz4KEC/qvfL07rnCbR9Cf9Pb2KhOFwLR4nN1DSuI9os7zQ3
-	rNk7sTbH2keiPGzN+9Yt6R+733xWBS/ia/VSl1e7CHq2PQ==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4asxwwhuut-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 21:06:41 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-297e1cf9aedso102051105ad.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 13:06:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764709600; x=1765314400; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=weaA+rX7Z/XNIRuchY/Dyj2LJxaYm0oPd2w5/PR0Lm4=;
-        b=NdR6JS19LXk7Xm3wk6jooxtSpNaYAVrJuz6G5AhO8kUTA23sxdyMxHWaUIS6CL7KVM
-         P2PHATM1hN408Q91jUiy77l9OQ9JUNPyIHR8u0yDEb4uRrapA84QAGeVlRHGaDV1+3hp
-         kEp9vRKAJrhOIwoEqhgRO/dltAOkZB9+h88YssuJS3tsj7GzKRFD5lF6/NIjq9ue4TrA
-         I/QYTI2d/BYkJOxwlLlt89W8nQ+LGZ9zznEEQbt8jUlzd2hnHHSkwRRhyyVOV/UHTwbJ
-         vGHNHYYhB6Ap4qB93nWfaX5QB7D6O8grLZpx4PiZhscUc2lVCIUvdzPr3fsojeMaAN4n
-         u1Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764709600; x=1765314400;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=weaA+rX7Z/XNIRuchY/Dyj2LJxaYm0oPd2w5/PR0Lm4=;
-        b=N4V+/JHLKMifhZ0B+AZcia8naALv/paltxWKT1ljvbvUtwy0Z0aKZ8s6S7Df+iWQbF
-         HFxTyvYM9fcrBMh32/eKWgUww/IW4puHyKKd9LwS/uzEE5jGA1W4tdy6Mmfz7JBNAX8a
-         leV7ciCC6lOUhoL/BRI3lGQoPiI0NXN4akLtQIILwE9vzChGpXSDnSfAUa9uciTuSliu
-         A0/UTD6xCVajsJ6wWP1xKJMYyMLkzThTGVzy+wpA6TfT1bpbrZW44JcaQuK1Hj1nXu68
-         ZyI6P83eIJoloZOM84/KIe9JqcitBSbeO7KTQLsz6MTvOv5HAYgrBRaUz6FRiYFujlXe
-         4W1A==
-X-Forwarded-Encrypted: i=1; AJvYcCWUP/hVgPF+WXmpsEmkVImoV2BPGbIa8HDeam5Bh8XZkwMesR7ddQNVmlTWSyu6Ge1mc3xezN9uShLy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwW4DJdV6DrtrSFhqY3GabC+mhCw4zbTx1eBReX6Ilxec8Us4Hu
-	SwoCcQg1LwsucdwIZjvQKd/cMziP0X5916BSM4bn4MCD7z6llEBeouEnDJ3MPcSMY7LpSjZFQRC
-	UPJEjj5DdwAfkUc7KPGc/tHpB15MQoaWgCajz6ofXLKaKOzSeAAAhG3GEn+L+BC1T2aue017IWf
-	X/vbtOthrzeR5JNMRnFmY4+CLlQ9H+qRVYMd68cfE=
-X-Gm-Gg: ASbGncv0UdnccmYZif66BYo3qDne+HLHJQaJa49p7N75LUs6ZQGqqtk2eNDVsACulfC
-	Dj+GjAzRf62cJ4fkHfa9RrzK0ucI87PIMWJkOv449La6TF2QoGYxIijB5e+5ZIu7mL0wEBt4eI8
-	sKmEJPR+GugYJtith7Z9vxyoASE0aJUVMFWWGzMkFUuHkCRGOoq7zAWgNQyNT47RZtA06hha4Rm
-	KC43AIYFFsrb9ESrUrDeck=
-X-Received: by 2002:a17:903:40ca:b0:29d:584e:6349 with SMTP id d9443c01a7336-29d584e6510mr45243095ad.13.1764709600175;
-        Tue, 02 Dec 2025 13:06:40 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHhG/ITWxbbVQlcZSwuu5xuuK3grqFEEBLjX2WNOEW4DAnjX7z5p6mwkSjVqc+lIk0uaIi8WN84vFytgq4LOrA=
-X-Received: by 2002:a17:903:40ca:b0:29d:584e:6349 with SMTP id
- d9443c01a7336-29d584e6510mr45242845ad.13.1764709599637; Tue, 02 Dec 2025
- 13:06:39 -0800 (PST)
+	 To:Cc:Content-Type; b=CdUwfBFWGUtxXOY4KK9ibp32UwkYKSEMQmA0WnKcGwq8Y8tKkWVlDVp+xInR87m62cZCesoX++a+MekBv74V5wnO9yqZke1GeKfYuQAHM34KR14iLShQXSHb49pCSHHjHAmCqXzCW+KmBBMHJ0RLa9Uf9jkprELzSNzOf9+T2yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kuWVE5xA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B223C113D0
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 21:19:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764710370;
+	bh=AZASaj5aXBVLP8FVAp2pUANC9RpCBKlvtMSjV9a7KLY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=kuWVE5xAUKf/RoJrUZHluwZNMMyyIOEbqPK1wJPuyFMYKRYusp9GI4o8NFuwoZVmO
+	 QvVt9ok0NJiQFISw9ZZDaPsPjH9aStDkI7LjAox9GjKIKPs9orNnuuUsxUrbwgDhiG
+	 hR2u1kZy/fe+OvZ9G3gxySVxgXRy8UYMgaaW6iw5UQeRxfMtGr1wytKBoRKT00eLwu
+	 dHykF3EJz2qTNpN0cPrq4eoaO/zqenlv6FUzBDdN8ygent2GYGucY9049YsB8gk3Fa
+	 8Tao9s1xqW8SCfddD8KKZL1O7+HnnSooIZ3l5b3IBMH4DfLJhqgvYPDTn2In96Fs+J
+	 myQTVRC5tvVPQ==
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b7370698a8eso619576266b.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 13:19:30 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXU27XptLB0ITHf++uMUvFqkG0h0uErgtvDWs/+p1b+LCwiVM+j0JtFhaYQjYcjMpyaSa1ZbX9fkhoj@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywk5D3Wqp+bJGMJEajp18ggcx/Hh/JcTRC5iAaScB36or3saZNi
+	IEBKOlg20LkpiUEsfX6b+YDXhTdzx8s2mbzwTchcjzXp9/tg9uz39zqBj9h294N/SdUnlPSwSh4
+	Q+Plc4IDxQaTlx7fa34rRcAiteWQj6Q==
+X-Google-Smtp-Source: AGHT+IGSvertTLJx8KV/G+O5qP6vmOOBt66zoC19fcl1TNbrYXNS/rPJp4BO31NUjhkWZrh153Dkp7jy+quBZlZ+Dig=
+X-Received: by 2002:a17:906:b84b:b0:b76:7b85:f630 with SMTP id
+ a640c23a62f3a-b767b8643d6mr3409596366b.34.1764710368753; Tue, 02 Dec 2025
+ 13:19:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251107105735.1491273-1-tessolveupstream@gmail.com>
- <20251107105735.1491273-3-tessolveupstream@gmail.com> <badmoityubqmjsxune27vrh2e6htwkhvnak4uj7iiixnxhjpkm@qi56e6kilyt2>
- <db3edb31-4a1c-4512-ac46-ca3b4e9f187e@gmail.com>
-In-Reply-To: <db3edb31-4a1c-4512-ac46-ca3b4e9f187e@gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Tue, 2 Dec 2025 23:06:28 +0200
-X-Gm-Features: AWmQ_bkLJWTM4Nido7Wn3CF4LTeT0kNAOKXGyWrlQ-X6bErmexXFtYdBKS1bY9A
-Message-ID: <CAO9ioeUVx_qf3no9aLgZ3OQQPQ7nG-2aTx8SHaEN5DUf02USWA@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: tessolveupstream@gmail.com
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <fbe6fc3657070fe2df7f0529043542b52b827449.1763116833.git.geert+renesas@glider.be>
+ <dyaqe3ssrn65r5xndlwe7tlbiw2lbwvu3q3lzusfgr5mgycp6h@gfzyxk7uyva7>
+ <CAL_JsqJ4q2=UJbuhfbvsbr2T+SRGXsPSXCLk6iXZid_qwYrN4g@mail.gmail.com> <bgieskezxsscyg65ihbzq45opwfjavcfut7bz7ywsvufeeaoqe@47hx5fvmsi22>
+In-Reply-To: <bgieskezxsscyg65ihbzq45opwfjavcfut7bz7ywsvufeeaoqe@47hx5fvmsi22>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 2 Dec 2025 15:19:17 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ9YUe6cy0YEMLvQhGTGmog6onTA9W5owQBP4q1viijug@mail.gmail.com>
+X-Gm-Features: AWmQ_bmTQVJ_hL0pc9x1GncG71ibSKGCHF04s-qMqZd6-07jLgk75ahA_73hYM4
+Message-ID: <CAL_JsqJ9YUe6cy0YEMLvQhGTGmog6onTA9W5owQBP4q1viijug@mail.gmail.com>
+Subject: Re: [PATCH v2] of/irq: Ignore interrupt parent for nodes without interrupts
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Saravana Kannan <saravanak@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel@sholland.org>, Marc Zyngier <maz@kernel.org>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Authority-Analysis: v=2.4 cv=JbyxbEKV c=1 sm=1 tr=0 ts=692f54e1 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8
- a=GV42bERHAddS6UJatvEA:9 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-ORIG-GUID: k1VAgsaD2mHmeAyX5P5US-pXTVVs5fa4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAyMDE2NiBTYWx0ZWRfX6ZEaTrppA28W
- xzQCzFkrgTaa/bL31QOm6Hb28GSqxE9v5i8egxoQU43l0h/8ZkR863BYfG5sYXCrP2/FgkgYrjL
- lzIfBcx+1JDIkiHQg1MsdL+RES66mScv7pGAlDzVDRfWrKMQyoalTktAuuNZomYKl0P6EZ4x/4e
- cjbXuiF5jVqULG6hMMPLZUcfQNx9lH1m5nzbiOUPNTGqy5tXkz8lXRr9njr9VxEzSEHoSaCU2JM
- ZsoVFvpO2ZltMs3jNyJxm40BqWMIE128bXdohjntUu2fb//bWWAzRZtr8H8bYgMJ01NixKHTsd1
- 3hyRniOK+hq43IhUSYEeU4+6wLVougGevoJUIpG82DDvNafK2eZRfZ9tqdfRtzOa44EHtBDeUxK
- DsCrymZKwm1C0/jBDJ0PohAe4G0IkA==
-X-Proofpoint-GUID: k1VAgsaD2mHmeAyX5P5US-pXTVVs5fa4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-01_01,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1015 suspectscore=0 adultscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512020166
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 18 Nov 2025 at 12:16, <tessolveupstream@gmail.com> wrote:
+On Tue, Dec 2, 2025 at 10:36=E2=80=AFAM Ioana Ciornei <ioana.ciornei@nxp.co=
+m> wrote:
 >
->
->
-> On 14-11-2025 01:38, Dmitry Baryshkov wrote:
-> > On Fri, Nov 07, 2025 at 04:27:35PM +0530, Sudarshan Shetty wrote:
-
-> >> +
-> >> +&uart0 {
-> >> +    status = "okay";
-> >> +};
-> >> +
-> >> +&usb_1_hsphy {
-> >> +    vdd-supply = <&vreg_l5a>;
-> >> +    vdda-pll-supply = <&vreg_l12a>;
-> >> +    vdda-phy-dpdm-supply = <&vreg_l13a>;
-> >> +
-> >> +    status = "okay";
-> >> +};
-> >> +
-> >> +&usb_qmpphy {
-> >> +    vdda-phy-supply = <&vreg_l5a>;
-> >> +    vdda-pll-supply = <&vreg_l12a>;
-> >> +
-> >> +    status = "okay";
-> >> +};
-> >> +
-> >> +&usb_1 {
-> >> +    status = "okay";
-> >> +};
-> >> +
-> >> +&usb_1_dwc3 {
-> >> +    dr_mode = "host";
-> >> +};
-> >> +
-> >> +&usb_hsphy_2 {
+> On Mon, Dec 01, 2025 at 06:09:19AM -0600, Rob Herring wrote:
+> > On Fri, Nov 28, 2025 at 10:43=E2=80=AFAM Ioana Ciornei <ioana.ciornei@n=
+xp.com> wrote:
+> > >
+> > > On Fri, Nov 14, 2025 at 11:47:54AM +0100, Geert Uytterhoeven wrote:
+> > > > The Devicetree Specification states:
+> > > >
+> > > >     The root of the interrupt tree is determined when traversal of =
+the
+> > > >     interrupt tree reaches an interrupt controller node without an
+> > > >     interrupts property and thus no explicit interrupt parent.
+> > > >
+> > > > However, of_irq_init() gratuitously assumes that a node without
+> > > > interrupts has an actual interrupt parent if it finds an
+> > > > interrupt-parent property higher up in the device tree.  Hence when=
+ such
+> > > > a property is present (e.g. in the root node), the root interrupt
+> > > > controller may not be detected as such, causing a panic:
+> > > >
+> > > >     OF: of_irq_init: children remain, but no parents
+> > > >     Kernel panic - not syncing: No interrupt controller found.
+> > > >
+> > > > Commit e91033621d56e055 ("of/irq: Use interrupts-extended to find
+> > > > parent") already fixed a first part, by checking for the presence o=
+f an
+> > > > interrupts-extended property.  Fix the second part by only calling
+> > > > of_irq_find_parent() when an interrupts property is present.
+> > > >
+> > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > v2:
+> > > >   - Split off from series "[PATCH/RFC 0/2] of/irq: Fix root interru=
+pt
+> > > >     controller handling"[1] to relax dependencies,
+> > > >   - Drop RFC.
+> > > >
+> > > > [1] https://lore.kernel.org/all/cover.1759485668.git.geert+renesas@=
+glider.be
+> > > > ---
+> > > >  drivers/of/irq.c | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> > > > index b174ec29648955c6..5cb1ca89c1d8725d 100644
+> > > > --- a/drivers/of/irq.c
+> > > > +++ b/drivers/of/irq.c
+> > > > @@ -613,7 +613,7 @@ void __init of_irq_init(const struct of_device_=
+id *matches)
+> > > >                * are the same distance away from the root irq contr=
+oller.
+> > > >                */
+> > > >               desc->interrupt_parent =3D of_parse_phandle(np, "inte=
+rrupts-extended", 0);
+> > > > -             if (!desc->interrupt_parent)
+> > > > +             if (!desc->interrupt_parent && of_property_present(np=
+, "interrupts"))
+> > > >                       desc->interrupt_parent =3D of_irq_find_parent=
+(np);
+> > > >               if (desc->interrupt_parent =3D=3D np) {
+> > > >                       of_node_put(desc->interrupt_parent);
+> > > > --
+> > > > 2.43.0
+> > > >
+> > > >
+> > >
+> > > This change irq-ls-extirq and commit 6ba51b7b34ca ("of/irq: Handle
+> > > explicit interrupt parent") does not help with the issue.
+> > >
+> > > This is how the DT node in lx2160a.dtsi looks like:
 > >
-> > So, the labels are usb_1_hsphy, but usb_hsphy_2? That's not logical,
-> > please fix one of them. Then please fix the order of nodes here.
+> > ls-extirq strikes again!
+> >
+> > I think something like this should fix it:
+> >
+> > diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> > index 2271110b5f7c..c06c74aef801 100644
+> > --- a/drivers/of/irq.c
+> > +++ b/drivers/of/irq.c
+> > @@ -593,7 +593,8 @@ void __init of_irq_init(const struct of_device_id *=
+matches)
+> >                  * are the same distance away from the root irq control=
+ler.
+> >                  */
+> >                 desc->interrupt_parent =3D of_parse_phandle(np,
+> > "interrupts-extended", 0);
+> > -               if (!desc->interrupt_parent && of_property_present(np,
+> > "interrupts"))
+> > +               if (!desc->interrupt_parent &&
+> > +                   (of_property_present(np, "interrupts") ||
+> > of_property_present(np, "interrupt-map"))
+> >                         desc->interrupt_parent =3D of_irq_find_parent(n=
+p);
+> >                 else if (!desc->interrupt_parent)
+> >                         desc->interrupt_parent =3D of_parse_phandle(np,
+> > "interrupt-parent", 0);
+> >
+> >
+> > But really, at some point it should be converted to a proper driver as
+> > there's no reason extirq needs to be initialized early.
+> >
 >
-> The node names come directly from the included talos.dtsi, where they
-> are defined as usb_1_hsphy & usb_hsphy_2.
-> To avoid breaking inherited definitions, we kept the same labels
-> in our board DTS.
+> I just tried converting ls-extirq to a proper platform driver and it's
+> pretty straightforward. The problem is getting that driver to probe on
+> the ls-extirq dt node since of_platform_populate() is not called on its
+> parent node.
+>
+> I would avoid changing the DT and adding a "simple-bus" compatible to
+> the parent nodes. The other option is to add another simple driver which
+> just calls of_platform_populate() for all compatible strings defined in
+> fsl,layerscape-scfg.yaml.
 
-Please fix them in the base DT.
+The simplest solution might be adding 'syscon' to the default match
+list for of_platform_populate(). That's kind of a big hammer though
+and could break something. Not sure, but I'm willing to stick that in
+linux-next and see.
 
-> However, I will reorder the nodes so they appear in a logical and
-> consistent sequence.
+Another option is hijack the simple-pm-bus driver which already does
+just what you said.
 
-This is a prerequisite, no questions.
-
--- 
-With best wishes
-Dmitry
+Rob
 
