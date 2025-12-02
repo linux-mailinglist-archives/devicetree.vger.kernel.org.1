@@ -1,470 +1,184 @@
-Return-Path: <devicetree+bounces-243673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E6CDC9B1DC
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 11:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0071BC9B218
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 11:26:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6A32534400D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 10:23:45 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 77000341629
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 10:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A8F30FC12;
-	Tue,  2 Dec 2025 10:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127982F49E0;
+	Tue,  2 Dec 2025 10:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="azMYPUdE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Dd5RfVCo";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UxFCZG/W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011071.outbound.protection.outlook.com [52.101.62.71])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992FA3115A5;
-	Tue,  2 Dec 2025 10:22:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764670976; cv=fail; b=RePQki5EtpeF+1YWQtZhhcn0h7d3d2r26meq9bnmIORPJIKnjLuU3iLghqbcWAi9wkLbdrFCnfVyeO+3x01S0RZphb5ukYLdibcDdMrevRU9bzoZReiO3UMSl+AUkEODWBxTZomgtv3nEx7DXpK5o06G0aYGflj6YpUIOgf9eRw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764670976; c=relaxed/simple;
-	bh=i2nZKl3m/ZX5OVaMkFWbJHGkco+AMG1+YV4UzeVipdM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eZqi8D7cLpfyQ1gFFDfOxULzrqrrxTbIVDz0QZl23z36TQPPG/okyKkXmuGpjoQWbqe8Vk7RKFqZBS+JxLPZTN+Wdrj107BfUzx5uyN9Yp6QWNK0Gkgw96ELCaI6QIBKtLVaWOB0FLDDvVEmQP/C8lHDeJwG5hX9dYVHbwSOdds=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=azMYPUdE; arc=fail smtp.client-ip=52.101.62.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OgI1C7Y9IE0x91ib8srh12oP1NQyKv2zISwqo72EhMBfxhVMA2r9DNvjyxuWnTxs0ch0qcLUh9qrJ7we5kNlfioqf7DBrMugQt0Y/00wqPXleTYwSz7UwXX3r9aSxZnkQ1bYd1hRk4kjsfSZc6ObxNk7J3XYxcglZYdDZPqkpCkOT5aVIvtwNd1LFqa03s2ogZmQC6PoqbALIC/U+m1krYpX2KCZ+5twQAwZW5R5B7Wr0u8Oj3D21RJ0bTRB6DuAO6m31aXzej8/4cElPD9IiO9YjZAKiFNPqI9MjGXsiCVq5BH1rzboN+nM7839c7zG9XEVzeA14VgqsdJjmLroCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mbEW61FbmCEwv2JsQtz3THp0ZOs+jClWwvDf9FIRpfk=;
- b=k+zjpSNZdZcommPuJfmpBeImeI1WTL9I52V/tx2HyMcGWyGAcCWXPVltYiTxUaNH5c0ylD/J9RqASCiF8GueDip2YkifDiiXzZuVIFBekBdGmFJHn061mLwLdb+9OaG9oYovJZ9FwX1TTk0ZeErBiVDW8o1mi0imsloHXOrg8g8Ps40pjWPHGJ8pKfedH0X13Pd/xSNBfSzl+85uUqAeE0mkSpJyPIFfLLuS+6Yb9y7Z0FJvoOpVKf2e9NiXp5C3rAuKo5wnhlQ0v9JctoDpkHWCVc4aE1rUzeVjLUTqEn/AafH8QrsQ5iHWqzQHyFhzW7MqyakJC8SzCaynkK55TQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mbEW61FbmCEwv2JsQtz3THp0ZOs+jClWwvDf9FIRpfk=;
- b=azMYPUdElpPr2ZNY63GSRArnqsCUOn/fGu1zfinvbvD1LtclC4n47EoWlIOdttXBdPjOixPjmkvXnhCbhMgc/G/4bxSB8QdT918x6Ny6PhCJfaDNtsSSpkoE7f+cYY3B9hVZElNfU/sQ8bYxUrQI3bjUAmoLBwSFK3Cr4a6HAbk=
-Received: from SJ0PR03CA0039.namprd03.prod.outlook.com (2603:10b6:a03:33e::14)
- by BN0PR10MB5189.namprd10.prod.outlook.com (2603:10b6:408:117::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Tue, 2 Dec
- 2025 10:22:52 +0000
-Received: from CO1PEPF000075F4.namprd03.prod.outlook.com
- (2603:10b6:a03:33e:cafe::4) by SJ0PR03CA0039.outlook.office365.com
- (2603:10b6:a03:33e::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.9 via Frontend Transport; Tue, 2
- Dec 2025 10:22:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- CO1PEPF000075F4.mail.protection.outlook.com (10.167.249.43) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Tue, 2 Dec 2025 10:22:50 +0000
-Received: from DFLE207.ent.ti.com (10.64.6.65) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 2 Dec
- 2025 04:22:46 -0600
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 2 Dec
- 2025 04:22:45 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 2 Dec 2025 04:22:45 -0600
-Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [10.24.68.198])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B2AMDKT2072084;
-	Tue, 2 Dec 2025 04:22:40 -0600
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-To: <tomi.valkeinen@ideasonboard.com>, <mchehab@kernel.org>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<hverkuil@xs4all.nl>, <sakari.ailus@linux.intel.com>,
-	<laurent.pinchart@ideasonboard.com>
-CC: <hansg@kernel.org>, <mehdi.djait@linux.intel.com>, <ribalda@chromium.org>,
-	<git@apitzsch.eu>, <vladimir.zapolskiy@linaro.org>,
-	<benjamin.mugnier@foss.st.com>, <dongcheng.yan@intel.com>, <u-kumar1@ti.com>,
-	<jai.luthra@linux.dev>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<y-abhilashchandra@ti.com>
-Subject: [PATCH V2 4/4] media: i2c: ds90ub960: Add support for DS90UB954-Q1
-Date: Tue, 2 Dec 2025 15:52:08 +0530
-Message-ID: <20251202102208.80713-5-y-abhilashchandra@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251202102208.80713-1-y-abhilashchandra@ti.com>
-References: <20251202102208.80713-1-y-abhilashchandra@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E95128726E
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 10:26:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764671207; cv=none; b=YLf7CCeXZlWeHJIUSm6F/X99rh+qEyMH1Cl4EI3J76xuc8xIx6ajwMh7+dglU4uH9SPEtN66/rzXFPHXV5iVogRiyj9TnAq9BSKvjBnVegc4uTCNU9ojPJI4/IpoJeBBM13MBeBRIxjQ4e66yDK5Yi7uiIoO0tyoSXQLHHEJC2A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764671207; c=relaxed/simple;
+	bh=XVnP1fisO3gYA+mP9TQejhTGNM4CXK+qwk0ltQTW1M4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kjQiD273fN3fin2mjH3nQ7IbOBbaWxYfqpeO83P65OE+LN0CMp2wzHTcdWPDfTfEAasPX0+UuOQ8J8QY0kp0v+3ViShVgv1XHVDh8MkyIZbwg+qTPzvaoa+O6BFsUktmNHqrLFdkUWrKtbpCwEIgiGVPlNB8devKVTzyYpI6xt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Dd5RfVCo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UxFCZG/W; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B282XQq1926812
+	for <devicetree@vger.kernel.org>; Tue, 2 Dec 2025 10:26:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=VrUz8PGW2KF5hQpyTzA1xT
+	f3mo1AjxCZZSaanbzdKYI=; b=Dd5RfVCognEcboKe8lyMiN/Xwm+gtb21hXd2S3
+	CettWgI1R8CpOnDC8q5dSOv0JdvF0hRBOUooCagXTcF1L7iGaOQjw5IHsjAV4qlk
+	AIcZfMllxeGUMJSwYPkx35b48gkMB+L+cgqgi3QKJp5AB52+zNBNYOSDtwsbRSoK
+	4BHhVVY5pu8/C7qjhnzF6ga1ZDLMrowENFNUucyvUrPqR994t597ALSEnjvq/ImY
+	aZe2CHtJ3k/b6g9e5rwjs0K0ashcXUtds8zXvViT5dvQuFLlxmwuvkPiXgpypIHC
+	SjYxLdbcKvNr2WapMwwNofu8JKKyFS0IYJHYHZR1fFskPORQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4asm4xsves-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 10:26:44 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7b6b194cf71so7630945b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 02:26:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764671203; x=1765276003; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VrUz8PGW2KF5hQpyTzA1xTf3mo1AjxCZZSaanbzdKYI=;
+        b=UxFCZG/Wy0vBOuWkrNnmVumyRfRLN63lZpgZWAN2MVNXqc4M3WOjK16G5baETkx8k1
+         NLQv4mRR1lHSZyXE8C77K4fFTxKdzgOanMwCTHEKMvmEzAHfbHdzCZhnh2rS4/6k8YDX
+         5N5aYvUIFMk8DABNHKJTkzJhz38nZlY1Fe1kcFupFyySk4FeH0g5dQjRQl80xt+cl3+R
+         Z0bZIPHPoP3AGtij8gw4mw78LppAsJVQFVdcq2yuYLTrAUMgIiJhlyCnohgBrdEpni7w
+         oqU00lococYTfQ3qNngfqcgmC7RZYGov9OPqF+8nSOH/tbQrwILpZ0bROePzcQCowYow
+         hzBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764671203; x=1765276003;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VrUz8PGW2KF5hQpyTzA1xTf3mo1AjxCZZSaanbzdKYI=;
+        b=MzGuHR7eH86iQX9K3yJZvSCAK/YX4Qgm/qR0g2NFnTfbgK2l8+VdOr4c5Se69lBWLN
+         6vgmzHoULj9qcCeGtmTErd2lIXE920r295RJtAOypTC/Y436eUPslyhrf65EFxZUqC51
+         aabsN4na3iZfeXWeIEX9MoiqFcBCOBX9O5s71Au52pyh02qwzeEcn+UEEzeNLmVPq8Oh
+         WBu72vsfK7V0wIAgJfgsb4622XoIzLt4WCEHkK1AU7OtpXhwuiChIulyywL+uBrFpT1g
+         bmsv9L3wCcGophxxGWf0AvabT720nh/tisnuhqoBz7PcLzJd6kLrB89+Ghg+/yAWzsm7
+         kgGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV51utMU9VQyZc/Q5mENIgFdEuaL77zW5nWUG957bT2Mvof1bvVk6V95BhrOTFuQtVNR8HG2AwnuCed@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9/JoOtJ5d/3cWwE8A+auj1jTNV0ObXKb2+lHZqX3ekiIMqIwk
+	UWwJa1vKmOk+82dR7nA9B+CK6Bt0TQuhNNgHmWuOsPvUDoPMQucjjMD9cvfFB+WcUHuz3T7QqHr
+	nPryfBPcDsK/nZi3QMd3aU6zaxb6yZSzeKNvTUEPFw2G5EbfluRDP/Lc/neRJ+3OI
+X-Gm-Gg: ASbGnctYL3JlAfrBcGDBhvMLjnMwnp/loING3AuHgkS12CPjEobm5kSjMFvQfn5HT2/
+	rQgitpgLZIK+xjDVlzMxJdsqyhP8ir3k07F+/TsWyaP4TuhvOZ3MNFT4ET6o7JzlVcuqTyuin1r
+	sPY6dI/emvH1zt1miQVkkmGu6sUMFVx7Duw9tITbzKhhNGjulmU1/RBs175dP7HstXusyWXRmPA
+	cFsetyrs3Rj3GTj/NPnCDZvXm+0kMtOQt6gRheCJwBM2QCAp34sEVm1OMkvGKV9DbBF85nD+q92
+	o6lEyp4X/yQimuHPa/0AolWNsTmjBbkJKzVuI5Y7wGsBCi1B3qonUBVfUplsXSmIFkxIcRamrnX
+	Wws0uXbnH8Bk6KZymkuSwSZCNHAKWw1rpWQ==
+X-Received: by 2002:a05:6a20:7285:b0:340:6b9c:8a6d with SMTP id adf61e73a8af0-36150e2b4edmr46198298637.3.1764671203422;
+        Tue, 02 Dec 2025 02:26:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFqbxAi6x2C16q6RSb0ek1+DoOM9LaefMRtdRnCp29pa73Jqf77f/0+GtRe+Jn5R0eGnnhL3w==
+X-Received: by 2002:a05:6a20:7285:b0:340:6b9c:8a6d with SMTP id adf61e73a8af0-36150e2b4edmr46198272637.3.1764671202970;
+        Tue, 02 Dec 2025 02:26:42 -0800 (PST)
+Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d151ad4d6esm16379511b3a.26.2025.12.02.02.26.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Dec 2025 02:26:42 -0800 (PST)
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+Subject: [PATCH 0/3] Add the support for SM8750 Camera clock controller
+Date: Tue, 02 Dec 2025 15:56:24 +0530
+Message-Id: <20251202-sm8750_camcc-v1-0-b3f7ef6723f1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000075F4:EE_|BN0PR10MB5189:EE_
-X-MS-Office365-Filtering-Correlation-Id: 164b6365-1b57-4d55-aa71-08de318cbf0a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|7416014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?7xgrkiElLnw+VLhBROezTV2dRTpEk88wi9JC1Xz9PxcjCdGs/Hcob7WkSWTZ?=
- =?us-ascii?Q?E5H2Rm/qJgp5vlcEXUt5un11bHo3j6ExRX65meQY6u3GhzkTxO6tLJ31RCnc?=
- =?us-ascii?Q?63JrZ35p25pp0NoHcWmM/p9ZyJc6PFDGi7dllWZvHuic8DA4cgQ4lSuDcxmO?=
- =?us-ascii?Q?La/OdA1Nkoza9TQDHRs2R/7hJhfn+XCarbinQpaeHqSVFRc0pfNf04ZU0Qq7?=
- =?us-ascii?Q?7ivFcL93LlLUhuUA66bBX7hZb3y12X/irGpaaol195qGyV5UfZcWf3bJnCkL?=
- =?us-ascii?Q?ehF7Am9AjyRAfQ1X1JVESVwMcYfz8U/BY6LeEx9kZJw/1PytkEoRm6wrFMHq?=
- =?us-ascii?Q?InzU3H12mXPedT2iEKLiMHqo+sPshxyarR4eQmUkBXHboAOpk6VLTiFxSEu5?=
- =?us-ascii?Q?gnyiGV/1/vwAEMmBfuMDSt3mJ0TcNWEkFVRdqhOPPVkyaQux+CJLk9iQDIEQ?=
- =?us-ascii?Q?J2m1wRWjNSsIWwDpz9ZrsO1zyBFABU+2Jf0flL67HCCyLBU6ywlvlzdosnnD?=
- =?us-ascii?Q?hOYErczZSmbq3Oa/w+K7AgT1amvRRhqstyJ9fZ+xI6SBcNuFg+jtdnvTel87?=
- =?us-ascii?Q?uyNpgkoj6iLWlRbAWpnkZ8n0lGNbVj+hhVRKqU6aSTzqB8JqKe6GK0Xe61UH?=
- =?us-ascii?Q?7blj07JI7S9ypj1HfGuXcer4aabPBkTvV6qUZjBp+0QWTuNdl6VZez4bLnFU?=
- =?us-ascii?Q?mZiV8JN8X0TbXsubYfIBXIL5JOnZugX2aQkwmIlaz89XoDU04ObRUStvVLQP?=
- =?us-ascii?Q?WlH0yRUFYeMMGBfAzQmuRN2FJnGefhy+Xr5U/zdzTrhqqYe/zV5WHDkqng8C?=
- =?us-ascii?Q?o41WCtMjFlZEavs/ChwffJfRRv+jXj/j4QbC074SsJwl9orn79KixZ4w/UaX?=
- =?us-ascii?Q?abNGCoBp+1VFdkYdg6H8INWHMGTEE7vH1MhhuaiDgLyE/qF5kjrMookWwZnL?=
- =?us-ascii?Q?k5feW0477X2k1gLQpK8moT6TLKvQYVaT7QfxdHL2dIXmdV+k8mSjrXUjzxjJ?=
- =?us-ascii?Q?9cBp2ksAXi8ibMMuHonxlvgZPr/vuYSouOe0nthgy4xzbD3fDUfwRuOKXFW2?=
- =?us-ascii?Q?rN0un/H1BY8NioT+XEKB6bEtccxkfRHySFsk1Po1KL2A3kLF+Nk7pKvm6oAe?=
- =?us-ascii?Q?nDtgcGAgvhJZLM/WlcmvHw6uU7nfOOk/LVtIlLhm+aZWq7KiEA9h5DoTZXLD?=
- =?us-ascii?Q?0/ox+DHkVhvh5SrUI6upzlxQ1OaGCIbUr6ihy+IVT8tVYY/KyWq6EcJVxJcO?=
- =?us-ascii?Q?mNS9R1lrKvjwQU3S/RTpDxdJepSlmEytXUnMV9nmlGJ7gZXdgWH1CWZrldzO?=
- =?us-ascii?Q?SnbplYBPmsVejHr1/q8V51V/lW9JSzlfuSieHHkdUu3tLNgVU42fzhVqw054?=
- =?us-ascii?Q?OWOUrl208OoQRmcSjeAfCY23IRGCaIW/JQqjp02qOPIbXfDyPNAEoybbyVQl?=
- =?us-ascii?Q?q9rA0IG6WGvwJNoSeqpD1T1m88S1XPYmItsBu4oilnKzLMyFWK4JdCd2mLJp?=
- =?us-ascii?Q?A4Auiz/En5qaMYH7supbXjAMXd3ZACKcdPWlE6Ko4e6KZh+vexDiXZhiSqU4?=
- =?us-ascii?Q?/ZwmE3fYRvsxjo3Pf5T1Kq7S9UmQX3q1Z9x+qLzm?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(376014)(7416014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 10:22:50.2292
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 164b6365-1b57-4d55-aa71-08de318cbf0a
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000075F4.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB5189
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANC+LmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDIKFbnGthbmoQn5yYm5ysa2RqmWRkbJRiYWpmoATUUlCUmpZZATYuOra
+ 2FgCGaOyxXgAAAA==
+X-Change-ID: 20251202-sm8750_camcc-259b232d8560
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Taniya Das <taniya.das@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-Proofpoint-GUID: pwpsiebrmiqkULLgndIGZm6h2wpa-ZlQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAyMDA4MyBTYWx0ZWRfX4F5R8h1wfAxK
+ iBxaV0FgVaBOkA0uWEJcbpFgDsBbDkZz7orW6gog3ZD21vXzPvCXUf5mcGp2w9mdRCOj95z8QjQ
+ Rd0hr560ggblGt7YUlcLr5ukN2O+/A/2+jbQ4c4g4dlWxN6xUmYoEAOXa877EphTGFSWkiTzOfV
+ Eu4JW1ALXf3oG7BtA6KSzsLSJ8cqkihXGyPTv+F5I6PjcZjpFHjzUwG1ao+SJojG4MlwTb0H52U
+ YoQR+W2x433rrJg2WFCU90ebA3as/0oQ0zbypsTjDrOTmE6ZRpHGArHSS/J9J3hQGZTaP4KCk4v
+ OxsO6obzlhDI5rqtmG1tVVE5wWznUiMUxHXOSzMebWhKW1SdJPU/NM70AZd807r8Wy32drFxZyk
+ 9CxAQDNED1gSmIQzBhEDJ8TXASeU1A==
+X-Authority-Analysis: v=2.4 cv=cPTtc1eN c=1 sm=1 tr=0 ts=692ebee4 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=V3dEWrsxhXhpuwuaMIQA:9
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-ORIG-GUID: pwpsiebrmiqkULLgndIGZm6h2wpa-ZlQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-01_01,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0 malwarescore=0
+ priorityscore=1501 clxscore=1015 phishscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512020083
 
-DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
-compatible with DS90UB960-Q1. The main difference is that it supports half
-of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX port.
+Support the Camera clock controller for SM8750 Qualcomm SoC.
+ - The camera MCLK BIST clock controller, which is required
+   for functional MCLKs.
+ - The camera CC (clock controller) for managing camera-related
+    clocks.
+  - Additionally, the Rivian ELU PLL is utilized within the
+    SM8750 clock controller, so support for this PLL is also added.
 
-A couple of differences are between the status registers and the
-strobe setting registers. Hence accommodate these differences in
-the UB960 driver so that we can reuse a large part of the existing code.
-
-Link: https://www.ti.com/lit/gpn/ds90ub954-q1
-Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 ---
-Refer table 5.2.1 STROBE_SET Register in [1] for DS90UB954 strobe
-setting register.
+Taniya Das (3):
+      clk: qcom: clk-alpha-pll: Add support for Rivian ELU PLL
+      dt-bindings: clock: qcom: Add camera clock controller for SM8750 SoC
+      clk: qcom: camcc: Add camera clock controller driver for SM8750 SoC
 
-[1]: https://www.ti.com/lit/an/snla301/snla301.pdf
+ .../bindings/clock/qcom,sm8450-camcc.yaml          |    5 +
+ drivers/clk/qcom/Kconfig                           |   10 +
+ drivers/clk/qcom/Makefile                          |    1 +
+ drivers/clk/qcom/cambistmclkcc-sm8750.c            |  454 ++++
+ drivers/clk/qcom/camcc-sm8750.c                    | 2710 ++++++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.c                   |   14 +
+ drivers/clk/qcom/clk-alpha-pll.h                   |    2 +
+ .../dt-bindings/clock/qcom,sm8750-cambistmclkcc.h  |   30 +
+ include/dt-bindings/clock/qcom,sm8750-camcc.h      |  151 ++
+ 9 files changed, 3377 insertions(+)
+---
+base-commit: 92fd6e84175befa1775e5c0ab682938eca27c0b2
+change-id: 20251202-sm8750_camcc-259b232d8560
 
- drivers/media/i2c/Kconfig     |   4 +-
- drivers/media/i2c/ds90ub960.c | 165 +++++++++++++++++++++++++---------
- 2 files changed, 125 insertions(+), 44 deletions(-)
-
-diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-index 745819c625d6..52104f76e371 100644
---- a/drivers/media/i2c/Kconfig
-+++ b/drivers/media/i2c/Kconfig
-@@ -1703,8 +1703,8 @@ config VIDEO_DS90UB960
- 	select V4L2_FWNODE
- 	select VIDEO_V4L2_SUBDEV_API
- 	help
--	  Device driver for the Texas Instruments DS90UB960
--	  FPD-Link III Deserializer and DS90UB9702 FPD-Link IV Deserializer.
-+	  Device driver for the Texas Instruments DS90UB954, DS90UB960
-+	  FPD-Link III Deserializers and DS90UB9702 FPD-Link IV Deserializer.
- 
- config VIDEO_MAX96714
- 	tristate "Maxim MAX96714 GMSL2 deserializer"
-diff --git a/drivers/media/i2c/ds90ub960.c b/drivers/media/i2c/ds90ub960.c
-index 45494fcaf095..7d3e5a87bb17 100644
---- a/drivers/media/i2c/ds90ub960.c
-+++ b/drivers/media/i2c/ds90ub960.c
-@@ -396,6 +396,12 @@
- #define UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY	BIT(3)
- #define UB960_IR_RX_ANA_STROBE_SET_DATA_DELAY_MASK	GENMASK(2, 0)
- 
-+#define UB954_IR_RX_ANA_STROBE_SET_CLK_DATA		0x08
-+#define UB954_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY	BIT(3)
-+#define UB954_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY	BIT(7)
-+#define UB954_IR_RX_ANA_STROBE_SET_CLK_DELAY_MASK	GENMASK(2, 0)
-+#define UB954_IR_RX_ANA_STROBE_SET_DATA_DELAY_MASK	GENMASK(4, 6)
-+
- /* UB9702 Registers */
- 
- #define UB9702_SR_CSI_EXCLUSIVE_FWD2		0x3c
-@@ -455,6 +461,7 @@
- #define UB960_NUM_EQ_LEVELS (UB960_MAX_EQ_LEVEL - UB960_MIN_EQ_LEVEL + 1)
- 
- enum chip_type {
-+	UB954,
- 	UB960,
- 	UB9702,
- };
-@@ -1000,6 +1007,10 @@ static int ub960_txport_select(struct ub960_data *priv, u8 nport)
- 
- 	lockdep_assert_held(&priv->reg_lock);
- 
-+	/* UB954 has only 1 CSI TX. Hence, no need to select */
-+	if (priv->hw_data->chip_type == UB954)
-+		return 0;
-+
- 	if (priv->reg_current.txport == nport)
- 		return 0;
- 
-@@ -1424,10 +1435,11 @@ static int ub960_parse_dt_txport(struct ub960_data *priv,
- 	priv->tx_link_freq[0] = vep.link_frequencies[0];
- 	priv->tx_data_rate = priv->tx_link_freq[0] * 2;
- 
--	if (priv->tx_data_rate != MHZ(1600) &&
--	    priv->tx_data_rate != MHZ(1200) &&
--	    priv->tx_data_rate != MHZ(800) &&
--	    priv->tx_data_rate != MHZ(400)) {
-+	if ((priv->tx_data_rate != MHZ(1600) &&
-+	     priv->tx_data_rate != MHZ(1200) &&
-+	     priv->tx_data_rate != MHZ(800) &&
-+	     priv->tx_data_rate != MHZ(400)) ||
-+	     (priv->hw_data->chip_type == UB954 && priv->tx_data_rate == MHZ(1200))) {
- 		dev_err(dev, "tx%u: invalid 'link-frequencies' value\n", nport);
- 		ret = -EINVAL;
- 		goto err_free_vep;
-@@ -1551,22 +1563,44 @@ static int ub960_rxport_get_strobe_pos(struct ub960_data *priv,
- 	u8 clk_delay, data_delay;
- 	int ret;
- 
--	ret = ub960_read_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
--			     UB960_IR_RX_ANA_STROBE_SET_CLK, &v, NULL);
--	if (ret)
--		return ret;
-+	/*
-+	 * DS90UB960 has two separate registers for clk and data delay whereas
-+	 * DS90UB954 has a single combined register. Hence read accordingly
-+	 */
-+	if (priv->hw_data->chip_type == UB954) {
-+		ret = ub960_read_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
-+				     UB954_IR_RX_ANA_STROBE_SET_CLK_DATA, &v, NULL);
-+		if (ret)
-+			return ret;
- 
--	clk_delay = (v & UB960_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY) ?
--			    0 : UB960_MANUAL_STROBE_EXTRA_DELAY;
-+		clk_delay = (v & UB954_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY) ?
-+			     0 : UB960_MANUAL_STROBE_EXTRA_DELAY;
- 
--	ret = ub960_read_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
--			     UB960_IR_RX_ANA_STROBE_SET_DATA, &v, NULL);
--	if (ret)
--		return ret;
-+		ret = ub960_read_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
-+				     UB954_IR_RX_ANA_STROBE_SET_CLK_DATA, &v, NULL);
-+		if (ret)
-+			return ret;
-+
-+		data_delay = (v & UB954_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY) ?
-+			      0 : UB960_MANUAL_STROBE_EXTRA_DELAY;
-+	} else {
-+		ret = ub960_read_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
-+				     UB960_IR_RX_ANA_STROBE_SET_CLK, &v, NULL);
-+		if (ret)
-+			return ret;
- 
--	data_delay = (v & UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY) ?
-+		clk_delay = (v & UB960_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY) ?
- 			     0 : UB960_MANUAL_STROBE_EXTRA_DELAY;
- 
-+		ret = ub960_read_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
-+				     UB960_IR_RX_ANA_STROBE_SET_DATA, &v, NULL);
-+		if (ret)
-+			return ret;
-+
-+		data_delay = (v & UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY) ?
-+			      0 : UB960_MANUAL_STROBE_EXTRA_DELAY;
-+	}
-+
- 	ret = ub960_rxport_read(priv, nport, UB960_RR_SFILTER_STS_0, &v, NULL);
- 	if (ret)
- 		return ret;
-@@ -1590,8 +1624,17 @@ static int ub960_rxport_set_strobe_pos(struct ub960_data *priv,
- 	u8 clk_delay, data_delay;
- 	int ret = 0;
- 
--	clk_delay = UB960_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY;
--	data_delay = UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY;
-+	/*
-+	 * DS90UB960 has two separate registers for clk and data delay whereas
-+	 * DS90UB954 has a single combined register. Hence assign accordingly.
-+	 */
-+	if (priv->hw_data->chip_type == UB954) {
-+		clk_delay = UB954_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY;
-+		data_delay = UB954_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY;
-+	} else {
-+		clk_delay = UB960_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY;
-+		data_delay = UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY;
-+	}
- 
- 	if (strobe_pos < UB960_MIN_AEQ_STROBE_POS)
- 		clk_delay = abs(strobe_pos) - UB960_MANUAL_STROBE_EXTRA_DELAY;
-@@ -1602,11 +1645,25 @@ static int ub960_rxport_set_strobe_pos(struct ub960_data *priv,
- 	else if (strobe_pos > 0)
- 		data_delay = strobe_pos | UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY;
- 
--	ub960_write_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
--			UB960_IR_RX_ANA_STROBE_SET_CLK, clk_delay, &ret);
--
--	ub960_write_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
--			UB960_IR_RX_ANA_STROBE_SET_DATA, data_delay, &ret);
-+	/*
-+	 * DS90UB960 has two separate registers for clk and data delay whereas
-+	 * DS90UB954 has a single combined register. Hence write the registers accordingly.
-+	 */
-+	if (priv->hw_data->chip_type == UB954) {
-+		ub960_ind_update_bits(priv, UB960_IND_TARGET_RX_ANA(nport),
-+				      UB954_IR_RX_ANA_STROBE_SET_CLK_DATA,
-+				      UB954_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY,
-+				      clk_delay, &ret);
-+		ub960_ind_update_bits(priv, UB960_IND_TARGET_RX_ANA(nport),
-+				      UB954_IR_RX_ANA_STROBE_SET_CLK_DATA,
-+				      UB954_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY,
-+				      data_delay, &ret);
-+	} else {
-+		ub960_write_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
-+				UB960_IR_RX_ANA_STROBE_SET_CLK, clk_delay, &ret);
-+		ub960_write_ind(priv, UB960_IND_TARGET_RX_ANA(nport),
-+				UB960_IR_RX_ANA_STROBE_SET_DATA, data_delay, &ret);
-+	}
- 
- 	return ret;
- }
-@@ -4176,33 +4233,40 @@ static int ub960_log_status(struct v4l2_subdev *sd)
- 		dev_info(dev, "\tsync %u, pass %u\n", v & (u8)BIT(1),
- 			 v & (u8)BIT(0));
- 
--		ret = ub960_read16(priv, UB960_SR_CSI_FRAME_COUNT_HI(nport),
--				   &v16, NULL);
--		if (ret)
--			return ret;
-+		/*
-+		 * Frame counter, frame error counter, line counter and line error counter
-+		 * registers are marked as reserved in the UB954 datasheet. Hence restrict
-+		 * the following register reads only for UB960 and UB9702.
-+		 */
-+		if (priv->hw_data->chip_type != UB954) {
-+			ret = ub960_read16(priv, UB960_SR_CSI_FRAME_COUNT_HI(nport),
-+					   &v16, NULL);
-+			if (ret)
-+				return ret;
- 
--		dev_info(dev, "\tframe counter %u\n", v16);
-+			dev_info(dev, "\tframe counter %u\n", v16);
- 
--		ret = ub960_read16(priv, UB960_SR_CSI_FRAME_ERR_COUNT_HI(nport),
--				   &v16, NULL);
--		if (ret)
--			return ret;
-+			ret = ub960_read16(priv, UB960_SR_CSI_FRAME_ERR_COUNT_HI(nport),
-+					   &v16, NULL);
-+			if (ret)
-+				return ret;
- 
--		dev_info(dev, "\tframe error counter %u\n", v16);
-+			dev_info(dev, "\tframe error counter %u\n", v16);
- 
--		ret = ub960_read16(priv, UB960_SR_CSI_LINE_COUNT_HI(nport),
--				   &v16, NULL);
--		if (ret)
--			return ret;
-+			ret = ub960_read16(priv, UB960_SR_CSI_LINE_COUNT_HI(nport),
-+					   &v16, NULL);
-+			if (ret)
-+				return ret;
- 
--		dev_info(dev, "\tline counter %u\n", v16);
-+			dev_info(dev, "\tline counter %u\n", v16);
- 
--		ret = ub960_read16(priv, UB960_SR_CSI_LINE_ERR_COUNT_HI(nport),
--				   &v16, NULL);
--		if (ret)
--			return ret;
-+			ret = ub960_read16(priv, UB960_SR_CSI_LINE_ERR_COUNT_HI(nport),
-+					   &v16, NULL);
-+			if (ret)
-+				return ret;
- 
--		dev_info(dev, "\tline error counter %u\n", v16);
-+			dev_info(dev, "\tline error counter %u\n", v16);
-+		}
- 	}
- 
- 	for_each_rxport(priv, it) {
-@@ -5023,6 +5087,9 @@ static int ub960_enable_core_hw(struct ub960_data *priv)
- 	}
- 
- 	switch (priv->hw_data->chip_type) {
-+	case UB954:
-+		model = "UB954";
-+		break;
- 	case UB960:
- 		model = "UB960";
- 		break;
-@@ -5039,6 +5106,11 @@ static int ub960_enable_core_hw(struct ub960_data *priv)
- 	if (ret)
- 		goto err_pd_gpio;
- 
-+	/*
-+	 * UB954 REFCLK_FREQ is not synchronized, so multiple reads are recommended
-+	 * by the datasheet. However, we use the same logic as UB960 (single read),
-+	 * as practical testing showed this is sufficient and stable for UB954 as well.
-+	 */
- 	if (priv->hw_data->chip_type == UB9702)
- 		ret = ub960_read(priv, UB9702_SR_REFCLK_FREQ, &refclk_freq,
- 				 NULL);
-@@ -5198,6 +5270,13 @@ static void ub960_remove(struct i2c_client *client)
- 	mutex_destroy(&priv->reg_lock);
- }
- 
-+static const struct ub960_hw_data ds90ub954_hw = {
-+	.chip_type = UB954,
-+	.chip_family = FAMILY_FPD3,
-+	.num_rxports = 2,
-+	.num_txports = 1,
-+};
-+
- static const struct ub960_hw_data ds90ub960_hw = {
- 	.chip_type = UB960,
- 	.chip_family = FAMILY_FPD3,
-@@ -5213,6 +5292,7 @@ static const struct ub960_hw_data ds90ub9702_hw = {
- };
- 
- static const struct i2c_device_id ub960_id[] = {
-+	{ "ds90ub954-q1", (kernel_ulong_t)&ds90ub954_hw },
- 	{ "ds90ub960-q1", (kernel_ulong_t)&ds90ub960_hw },
- 	{ "ds90ub9702-q1", (kernel_ulong_t)&ds90ub9702_hw },
- 	{}
-@@ -5220,6 +5300,7 @@ static const struct i2c_device_id ub960_id[] = {
- MODULE_DEVICE_TABLE(i2c, ub960_id);
- 
- static const struct of_device_id ub960_dt_ids[] = {
-+	{ .compatible = "ti,ds90ub954-q1", .data = &ds90ub954_hw },
- 	{ .compatible = "ti,ds90ub960-q1", .data = &ds90ub960_hw },
- 	{ .compatible = "ti,ds90ub9702-q1", .data = &ds90ub9702_hw },
- 	{}
+Best regards,
 -- 
-2.34.1
+Taniya Das <taniya.das@oss.qualcomm.com>
 
 
