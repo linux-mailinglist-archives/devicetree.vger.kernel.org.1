@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-243566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7EFBC99FE1
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 05:22:01 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAEE0C9A05B
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 05:41:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A180E3A3A43
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 04:22:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C50834E01B2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 04:41:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05C72F532F;
-	Tue,  2 Dec 2025 04:21:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BEAC29C33D;
+	Tue,  2 Dec 2025 04:41:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="e2S3pqLk"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="mqrt0InK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BACDC176ADE
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 04:21:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7512C223328
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 04:41:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764649316; cv=none; b=IygW4WTh2hS1YaJ/owWSJLR6BW2r9UxuBExCK5kzRF3mnXagagQR1TYzmhi5tu0FqTBrHVLNgAX8WkrF16tHLMFu5Tnl6EgjrUL6Lxbl7J8w2d0MuuiX230kgSQ5kMBvVL/yWO2dRyhrY4KvXCUh4O+uvkjteo2SUe5ucByYrA0=
+	t=1764650514; cv=none; b=qktIH7HUGHNpRLw7OFJVPMrmlwEoCYPyHimPvLy6o6ejxS8gd7ao9nX4tkFHRGDuuUOaYsMbxTDlEM1mrzXyVumkz7tdCC4l5vC6etoymQtdeUCR2BWVOQ6X+d5pMtpXAFAUiM0renck3X4UybXOxrRbFioPWtj4cuZjn65PQ/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764649316; c=relaxed/simple;
-	bh=H7JiUbr0grbD/OuMUxd8lM1sXrcva3VeiRYfJNqlcBo=;
+	s=arc-20240116; t=1764650514; c=relaxed/simple;
+	bh=xZv+kdthMHC35YBNM5GYL4gmGfKPEygC5TP1M1hv35c=;
 	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
-	 In-Reply-To:References; b=ogJ5uxn9PxY1f6zkY40qdNMxxzR07HmlHupmYCVGXik0W08BQ4/MZTf0wrQpnTfSVXIOBnBmlnxGj5TN1OjrhE3JroQjGFy1WRzUopMzw/4knJMLT1IiJSABwEkXlhR4byaiwrx3FDswFO6XpVpx5OSKE3NIspvLV9hcqniyVRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=e2S3pqLk; arc=none smtp.client-ip=91.218.175.186
+	 In-Reply-To:References; b=LZtlvLsgNLQQWljS7DQRSWTfbAE2PHvWuuflEdPpanYooG25h1nZtBvbTggdfFvTIZHCFoRcGfn+VxUEFK9c56tEB65iRY8/tYESMNGKFaKiMvf8f6BnGCkHcWjT9ABHkoiGIPyyLVho/xQRIZ6ZkiiQB/cz6zTXAtOA62zW0vk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=mqrt0InK; arc=none smtp.client-ip=91.218.175.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
@@ -38,25 +38,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1764649302;
+	s=key1; t=1764650500;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=H7JiUbr0grbD/OuMUxd8lM1sXrcva3VeiRYfJNqlcBo=;
-	b=e2S3pqLkqd4uKG23Rjeb08tGQKrixyD/ymVYVpV0f1bv8zLEbAyl0jkW4hHyDVz9RYVkXE
-	uDF/Ls9BZ97bDRzrwZHeAXuShHmcI5TWvfn70+15fvKl5032vIIISIkgGt4NqAi1C+HDed
-	JxuYXKrw2wVK90VYHIC81nr2A5LZbUKRycJysSTi2U4/udmzv3KbXWBqskxR13CgutCtAl
-	Q90HTiO3wgcmBgv9jP/06C/Z0ZcM7DkrX33+eGcSj9ru+Wy8BMf22D8TX07JhSIvJUbL8A
-	vciHByRY+CdyFl4l0jYjhKmKGoivV4LKOWts/0C2qf4xItUSXhdu3ZzePDmGFw==
-Date: Tue, 02 Dec 2025 04:21:40 +0000
+	bh=T1mFU9OCRrIY5hDgOI6aUY6esQiEhROY1AIYyG7Ggbc=;
+	b=mqrt0InKHjr1Hnux7w8yWmk2jA62/VKjWxzGQo2x1oHQTULzs/joG0r9L9jJlK2FcLqg2h
+	tgzoN9AS6XMwqtw6HX8coWtopVO/W+FSbRZYZj6rPTDpuwkFuhQrI8JaSN3oodBLXRdzPv
+	ZGMTxMU7I+3MupBHejUhA48eBecWIc91hJwHGSmjDIymClwENGaMj9ksOuFc03iQhhjIi3
+	0ordnSQo1mnFoz2lmPIK4aXAX6CVOaC6L0mzNJdTuBHNju63FKGOsPs58w9kJJkrWLfagr
+	KUs3fuD0rsMGzX9rT80FFsllnpIy27dPTDngVy8ogBRK2MIwX1yKA0Qy0b+aHQ==
+Date: Tue, 02 Dec 2025 04:41:38 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: "Paul Sajna" <sajattack@postmarketos.org>
-Message-ID: <cb37445326732dc1c17e80d245c8a29ba3f5aee6@postmarketos.org>
+Message-ID: <803c48742755394d6eabc34ac73a42b36615cc01@postmarketos.org>
 TLS-Required: No
-Subject: Re: [PATCH v4 10/12] arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
+Subject: Re: [PATCH v4 12/12] arm64: dts: qcom: sdm845-lg-common: remove
+ framebuffer reserved-mem
 To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
  <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
  Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
@@ -65,38 +66,37 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
  <system64fumo@protonmail.com>, "Christopher Brown"
  <crispybrown@gmail.com>
-In-Reply-To: <09e5d84c-39b7-45a9-b7d7-9beb54fb2f3f@oss.qualcomm.com>
+In-Reply-To: <adcac270-3668-4b17-b430-d67ef311dd7c@oss.qualcomm.com>
 References: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
- <20251125-judyln-dts-v4-10-a5a60500b267@postmarketos.org>
- <09e5d84c-39b7-45a9-b7d7-9beb54fb2f3f@oss.qualcomm.com>
+ <20251125-judyln-dts-v4-12-a5a60500b267@postmarketos.org>
+ <adcac270-3668-4b17-b430-d67ef311dd7c@oss.qualcomm.com>
 X-Migadu-Flow: FLOW_OUT
 
-December 1, 2025 at 12:38 PM, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm=
+December 1, 2025 at 12:41 PM, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm=
 .com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%20%=
 3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote:
 
-> Sorry for not responding earlier, you can retrieve the actual volt
-> numbers from the hardware by reading
+
 >=20
->=20PMI8998_IBB_REG_BASE + REG_LABIBB_VOLTAGE =3D 0xdc41
+>=20On 11/25/25 9:12 AM, Paul Sajna wrote:
 >=20
->=20ibb_uV =3D 1.4 + .1 * val
->=20
->=20PMI8998_LAB_REG_BASE + REG_LABIBB_VOLTAGE =3D 0xde41
->=20
->=20lab_uV =3D 4.6 + .1 * val
+>=20>=20
+>=20> It causes this warning
+> >=20=20
+>=20>  [ 0.000000] OF: reserved mem: OVERLAP DETECTED!
+> >  framebuffer@9d400000 mailto:framebuffer@9d400000=20
+>=20>  (0x000000009d400000--0x000000009f800000) overlaps with
+> >  memory@9d400000 mailto:memory@9d400000  (0x000000009d400000--0x00000=
+0009f800000)
+> >=20=20
+>=20>  Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+> >  ---
+> >=20
+>=20It's defined for both devices that include this dtsi.. perhaps you
+> could remove it from there
 >=20
 >=20Konrad
 >
 
-I found it in sysfs along the lines of your previous suggestion instead.
-
-```
-1|judyln:/ # cat /sys/kernel/debug/regulator/c440000.qcom,spmi:qcom,pmi89=
-98@3:qpnp-labibb-regulator-ibb_reg/voltage
-5500000
-judyln:/ # cat /sys/kernel/debug/regulator/c440000.qcom,spmi:qcom,pmi8998=
-@3:qpnp-labibb-regulator-lab_reg/voltage
-5500000
-```
+I don't have a judyp to test with and prefer to limit scope.
 
