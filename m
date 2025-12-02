@@ -1,329 +1,110 @@
-Return-Path: <devicetree+bounces-243573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4274C9A0EA
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 06:15:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EACA7C9A194
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 06:32:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BF2954E27DD
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 05:15:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9DF9F4E11DA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 05:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6502F744F;
-	Tue,  2 Dec 2025 05:15:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T3l4rGvc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA87B2DE6E5;
+	Tue,  2 Dec 2025 05:32:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C812F549E;
-	Tue,  2 Dec 2025 05:15:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C5415746F
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 05:31:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764652518; cv=none; b=ejguh9SACGfWgVAykqBhLDo9ZM5OstSzA0HkikD0wbEdJccfm7RaqsFiuUStAt9GYzQsRKUY7QLW7+/yMf7scDkT04XRjNf/C4dO52Qc65o8i8wxC0FkLyOKnX2RgDZ517Vch+8V3qQBKIOMzKDWsGEBcaQqBtcNI8jehkByxxY=
+	t=1764653521; cv=none; b=QQToExtFOmP3YLjoTua7+/kY8QlEntCKg4XUV0pg3aB2UBIweRnfF7e9nmPUUZGm6v/22KGGAQ7PuLYqfr02yBIm0bsW3B47JEShDfQdr8ccoJu59nlUdU8A05/W/ouCmP2KyfwAzxUkvGCuyTPwxAPqpW75uz10Oj3zuOX3SQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764652518; c=relaxed/simple;
-	bh=TBql347zRBUolY5tjSQJUadKcvbybIBvP0WJuiVfEzw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JQ1tHZKhuhIXPiAYkmmRxb2p8ahsfWiXQKv2RB24yAriqXbox9tDmkp9rhTM4J3xWOLCXaXk9+lOaBmz66aKT4VFIlTjF6NItGyfzrJ8Bs+V+Tl3YvTPGmA+hwTcAAawHLm512JfM8fZqUO7V7Z2knq6uvSfKpi3oT+9jlAN0RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T3l4rGvc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3F83C4CEF1;
-	Tue,  2 Dec 2025 05:15:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764652518;
-	bh=TBql347zRBUolY5tjSQJUadKcvbybIBvP0WJuiVfEzw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T3l4rGvcTFn7JnyDSoY2MXWfU4yAddRH+rI1ZDwaDrJovNOgRy5RVXw8fKs+UUxg+
-	 oGl3iAzUHREiaecRISBWAtFyxH1qgENRsz5zSvwezs/GM1I2Prcw6b+eZ8l/Rlmg7x
-	 5lCLWz94U7+GQnarY/fDR7mhCHXU1UaTMRMOmP5IfLn2VngBt9nbDwGtRAqgScvoKh
-	 73UbiFIyAZMpPMava7ybnhV5uqPGJ1mhdkydCS6lzsrNNZz5OU+Zjq4olSW+AoZiQq
-	 crTG33Wn5FYW1o7FuQdw68Sk2kqGxofqQSSxfusCXWMABvOOKqBPxdo57fURneY0eD
-	 Im3RWN4Nw72ww==
-Date: Mon, 1 Dec 2025 23:21:16 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Sriram Dash <sriram.dash@oss.qualcomm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, jack.pham@oss.qualcomm.com, faisal.hassan@oss.qualcomm.com, 
-	krishna.kurapati@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Konrad Dybcio <konradybcio@kernel.org>, Shazad Hussain <shazad.hussain@oss.qualcomm.com>
-Subject: Re: [PATCH 2/2] usb: dwc3: qcom: Support firmware-managed resource
- states for power management
-Message-ID: <cwtbvgoljjqfvuktwlnnsnroa4jj7m6l63yq6t34hccs4wa6xp@mggosrleq7vl>
-References: <20251127-controller_scmi_upstream-v1-0-38bcca513c28@oss.qualcomm.com>
- <20251127-controller_scmi_upstream-v1-2-38bcca513c28@oss.qualcomm.com>
+	s=arc-20240116; t=1764653521; c=relaxed/simple;
+	bh=iibVxKxx8C6HvAN/GYrtnawRrQLwkIFAioxf41qNga0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tRUukhZdhLBxZh1Rb4GR9YMsDgMACfNYL5/WNWMdp15c1t80mSXnUXb2fDxbK5KI6RLCixQHtgl82HEIskPH96YW+Bt5zmgDC7CGss6tdBNyLucSFARSXDldkQ14BKTO1U2Osci2GwfbdRpqhIPDIXOK5EVR4iV2GkNmzOtaIh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5B25R8HS007965;
+	Tue, 2 Dec 2025 14:27:09 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quentin.schulz@cherry.de, jonas@kwiboo.se,
+        kever.yang@rock-chips.com, i@next.chainsx.cn, honyuenkwun@gmail.com,
+        inindev@gmail.com, michael.opdenacker@rootcommit.com,
+        dsimic@manjaro.org, pbrobinson@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: [RESEND PATCH v5 0/3] Add Radxa CM5 module and IO board dts
+Date: Tue,  2 Dec 2025 05:26:59 +0000
+Message-ID: <20251202052702.155523-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251127-controller_scmi_upstream-v1-2-38bcca513c28@oss.qualcomm.com>
 
-On Thu, Nov 27, 2025 at 04:01:45PM +0530, Sriram Dash wrote:
-> Add support for firmware-managed resource states in the
-> Qualcomm DWC3 USB controller driver. On platforms
-> like sa8255p, where controller resources are abstracted
-> and managed collectively by firmware, the driver communicates
-> power management transitions using dedicated resource state
-> levels via dev_pm_opp_set_level().
-> 
-> Macros are introduced to represent key lifecycle events:
-> initialization, system and runtime suspend/resume, and exit.
-> The driver sets the appropriate resource state during probe,
-> remove, suspend, and resume operations, enabling bulk ON/OFF
-> transitions of grouped resources according to the
-> controller's operational state.
-> 
-> Signed-off-by: Sriram Dash <sriram.dash@oss.qualcomm.com>
-> Co-developed-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
-> Signed-off-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 97 ++++++++++++++++++++++++++++++++++++++++----
->  1 file changed, 88 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 9ac75547820d..9615ca6cfcae 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -13,6 +13,8 @@
->  #include <linux/kernel.h>
->  #include <linux/interconnect.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/pm_opp.h>
->  #include <linux/phy/phy.h>
->  #include <linux/usb/of.h>
->  #include <linux/reset.h>
-> @@ -85,10 +87,48 @@ struct dwc3_qcom {
->  	struct icc_path		*icc_path_apps;
->  
->  	enum usb_role		current_role;
-> +	bool			fw_managed;
->  };
->  
->  #define to_dwc3_qcom(d) container_of((d), struct dwc3_qcom, dwc)
->  
-> +/*
-> + * QCOM DWC3 USB Controller: Firmware-Managed Resource State Levels
-> + *
-> + * On select Qualcomm platforms, the USB controller’s power-related
-> + * resources including GDSC, reset lines, clocks, and interconnects
-> + * are managed collectively by system firmware via SCMI. The driver
-> + * signals the controller’s operational state to firmware using these
-> + * levels, each mapped to a specific power management transition or
-> + * lifecycle event:
-> + *
-> + * DWC3_QCOM_FW_MANAGED_INIT
+From: Joseph Kogut <joseph.kogut@gmail.com>
 
-Both power and performance states are typically...states...
-But these are actions/transitions between states.
+This patch series adds initial device tree support for the Radxa CM5 SoM
+and accompanying IO board.
 
+V4 -> V5:
+  Patch (2/3), per Jimmy:
+  - Alias eMMC to mmc0
+  - Remove unused sdio alias
+  - Move gmac, hdmi0 nodes to carrier board dts
 
-The purpose of doing firmware assisted resource management (like done in
-ACPI) is that it abstracts away the power management aspects from the OS
-implementation, here we instead seems to complicate the OS
-implementation.
+  Patch (3/3), per Jimmy:
+  - Enable hdmi0_sound and i2s5_8ch
+  - Remove redundant enablement of sdhci
+  - Enable usb_host2_xhci
 
-> + *	Enable GDSC, Assert and Deassert Resets, and turn ON all clocks
-> + *	and interconnects.
-> + *
-> + * DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME
-> + *	Enable GDSC and turn ON all clocks and interconnects.
-> + *
-> + * DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME
-> + *	Turn ON all clocks and interconnects.
-> + *
-> + * DWC3_QCOM_FW_MANAGED_EXIT
-> + *	Turn OFF all clocks and interconnects, Assert reset and disable GDSC.
-> + *
-> + * DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND
-> + *	Turn OFF all clocks and interconnects and disable GDSC.
-> + *
-> + * DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND
-> + *	Turn OFF clocks and interconnects.
-> + */
-> +
-> +#define DWC3_QCOM_FW_MANAGED_INIT			1
-> +#define DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME		2
-> +#define DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME		3
+  - Tested HDMI audio
 
-Given that dwc3_core_probe() calls pm_runtime_forbid(), do we actually
-hit these states, or are you in practice only hitting some "D0" and "D3"
-states?
+V3 -> V4:
+  - Fixed XHCI initialization bug by changing try-power-role from source
+    to sink
 
-Could this be simplified to match what we would need here for an ACPI
-system?
+V2 -> V3:
+  - Addressed YAML syntax error in dt binding (per Rob)
+  - Fixed whitespace issue in dts reported by checkpatch.pl
+  - Split base SoM and carrier board into separate patches
+  - Added further details about the SoM and carrier to the commit
+    messages
 
-Regards,
-Bjorn
+V1 -> V2:
+  - Added copyright header and data sheet links
+  - Removed non-existent property
+  - Sorted alphabetically
+  - Removed errant whitespace
+  - Moved status to the end of each node
+  - Removed pinctrl-names property from leds (indicated by CHECK_DTBS)
+  - Removed delays from gmac with internal delay
 
-> +#define DWC3_QCOM_FW_MANAGED_EXIT			8
-> +#define DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND		9
-> +#define DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND		10
-> +
->  static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
->  {
->  	u32 reg;
-> @@ -335,7 +375,7 @@ static void dwc3_qcom_enable_interrupts(struct dwc3_qcom *qcom)
->  		dwc3_qcom_enable_port_interrupts(&qcom->ports[i]);
->  }
->  
-> -static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
-> +static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup, pm_message_t msg)
->  {
->  	u32 val;
->  	int i, ret;
-> @@ -348,6 +388,13 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
->  		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
->  			dev_err(qcom->dev, "port-%d HS-PHY not in L2\n", i + 1);
->  	}
-> +	if (qcom->fw_managed) {
-> +		if (PMSG_IS_AUTO(msg))
-> +			dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND);
-> +		else
-> +			dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND);
-> +	}
-> +
->  	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
->  
->  	ret = dwc3_qcom_interconnect_disable(qcom);
-> @@ -369,7 +416,7 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
->  	return 0;
->  }
->  
-> -static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
-> +static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup, pm_message_t msg)
->  {
->  	int ret;
->  	int i;
-> @@ -380,6 +427,18 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
->  	if (dwc3_qcom_is_host(qcom) && wakeup)
->  		dwc3_qcom_disable_interrupts(qcom);
->  
-> +	if (qcom->fw_managed) {
-> +		if (PMSG_IS_AUTO(msg))
-> +			ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME);
-> +		else
-> +			ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME);
-> +
-> +		if (ret < 0) {
-> +			dev_err(qcom->dev, "Failed to Resume fw managed device\n");
-> +			return ret;
-> +		}
-> +	}
-> +
->  	ret = clk_bulk_prepare_enable(qcom->num_clocks, qcom->clks);
->  	if (ret < 0)
->  		return ret;
-> @@ -624,10 +683,18 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
->  
->  	qcom->dev = &pdev->dev;
->  
-> +	qcom->fw_managed = device_get_match_data(dev);
-> +	if (qcom->fw_managed) {
-> +		ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_INIT);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
->  	qcom->resets = devm_reset_control_array_get_optional_exclusive(dev);
->  	if (IS_ERR(qcom->resets)) {
-> -		return dev_err_probe(&pdev->dev, PTR_ERR(qcom->resets),
-> -				     "failed to get resets\n");
-> +		dev_err_probe(&pdev->dev, PTR_ERR(qcom->resets),
-> +			      "failed to get resets\n");
-> +		goto resources_off;
->  	}
->  
->  	ret = devm_clk_bulk_get_all(&pdev->dev, &qcom->clks);
-> @@ -638,7 +705,7 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
->  	ret = reset_control_assert(qcom->resets);
->  	if (ret) {
->  		dev_err(&pdev->dev, "failed to assert resets, err=%d\n", ret);
-> -		return ret;
-> +		goto resources_off;
->  	}
->  
->  	usleep_range(10, 1000);
-> @@ -727,6 +794,10 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
->  clk_disable:
->  	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
->  
-> +resources_off:
-> +	if (qcom->fw_managed)
-> +		dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_EXIT);
-> +
->  	return ret;
->  }
->  
-> @@ -739,6 +810,10 @@ static void dwc3_qcom_remove(struct platform_device *pdev)
->  		return;
->  
->  	dwc3_core_remove(&qcom->dwc);
-> +
-> +	if (qcom->fw_managed)
-> +		dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_EXIT);
-> +
->  	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
->  	dwc3_qcom_interconnect_exit(qcom);
->  
-> @@ -756,7 +831,7 @@ static int dwc3_qcom_pm_suspend(struct device *dev)
->  	if (ret)
->  		return ret;
->  
-> -	ret = dwc3_qcom_suspend(qcom, wakeup);
-> +	ret = dwc3_qcom_suspend(qcom, wakeup, PMSG_SUSPEND);
->  	if (ret)
->  		return ret;
->  
-> @@ -772,7 +847,7 @@ static int dwc3_qcom_pm_resume(struct device *dev)
->  	bool wakeup = device_may_wakeup(dev);
->  	int ret;
->  
-> -	ret = dwc3_qcom_resume(qcom, wakeup);
-> +	ret = dwc3_qcom_resume(qcom, wakeup, PMSG_RESUME);
->  	if (ret)
->  		return ret;
->  
-> @@ -809,7 +884,7 @@ static int dwc3_qcom_runtime_suspend(struct device *dev)
->  	if (ret)
->  		return ret;
->  
-> -	return dwc3_qcom_suspend(qcom, true);
-> +	return dwc3_qcom_suspend(qcom, true, PMSG_AUTO_SUSPEND);
->  }
->  
->  static int dwc3_qcom_runtime_resume(struct device *dev)
-> @@ -818,7 +893,7 @@ static int dwc3_qcom_runtime_resume(struct device *dev)
->  	struct dwc3_qcom *qcom = to_dwc3_qcom(dwc);
->  	int ret;
->  
-> -	ret = dwc3_qcom_resume(qcom, true);
-> +	ret = dwc3_qcom_resume(qcom, true, PMSG_AUTO_RESUME);
->  	if (ret)
->  		return ret;
->  
-> @@ -839,6 +914,10 @@ static const struct dev_pm_ops dwc3_qcom_dev_pm_ops = {
->  };
->  
->  static const struct of_device_id dwc3_qcom_of_match[] = {
-> +	{
-> +		.compatible	= "qcom,snps-dwc3-fw-managed",
-> +		.data		= (void *)true,
-> +	},
->  	{ .compatible = "qcom,snps-dwc3" },
->  	{ }
->  };
-> 
-> -- 
-> 2.34.1
-> 
+- Link to v4: https://lore.kernel.org/r/20250605-rk3588s-cm5-io-dts-upstream-v4-0-8445db5ca6b0@gmail.com
+
+Joseph Kogut (3):
+  dt-bindings: arm: rockchip: Add Radxa CM5 IO board
+  arm64: dts: rockchip: Add rk3588 based Radxa CM5
+  arm64: dts: rockchip: Add support for CM5 IO carrier
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   7 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 486 ++++++++++++++++++
+ .../boot/dts/rockchip/rk3588s-radxa-cm5.dtsi  | 135 +++++
+ 4 files changed, 629 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
+
+-- 
+2.43.0
+
 
