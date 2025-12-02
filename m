@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-243554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF497C99D9A
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 03:22:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E57C99DB8
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 03:22:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1201E34607C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 02:22:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6038E3A5313
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 02:22:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7593C256C6D;
-	Tue,  2 Dec 2025 02:21:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEAEF25B663;
+	Tue,  2 Dec 2025 02:21:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CErnu4MU"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="GFUJapYs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF95246762
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 02:21:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABB32550CC
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 02:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764642104; cv=none; b=Sp1R8OHyS22MgCvuVhjoL53E9zVwKZmkPVGUAQcS8pofwJHsPPYyxN+6h1C0q6Gjotq6T5zYKxy4LipHFiDqedNUWCQ6+J0GaMU2b0Ir2fex6MbPtYzFaTZolEhUt8PfyqTJc1OhOx62SUPVjFTTXj5Tj+OwzJM7gN6uvRVqvPQ=
+	t=1764642105; cv=none; b=LLSrBzv01VK1lt/P0TGcCk024prYHzeJXtL/pCalUjZarETo6wFd4cttosDOAMo8BehvZW92Him8eByRPkm4I/sOn+9FdVbEoJxY+5sNLioFMy7DEk3eHtgWZYbvpLOlZZDsHe7vFytdnalDRhVq/taHtOrDHCQz+QdrwzU61Os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764642104; c=relaxed/simple;
-	bh=SOLtPT6owwghcaZyK3hgcBY1YxMGX+Pp1GA+cecJhgE=;
+	s=arc-20240116; t=1764642105; c=relaxed/simple;
+	bh=TGjCIVF9DnX01qsx2dX8gm1MS1+Bio1XhGl3ovLH9lQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=vBmblmngueNGcZvzAtdKWEHU9cHwaLC+lwqdZcKPicGFlhJwjoqSbSvA9ejzWWZcsZ7EuuOZRzYu0eiUzzyCD97EscdFYKvgdvg7n9TRLCoWw+pIgOOC7Ffh5zeUYgrT2/XHyP3mAUP1u1jG/V4kqsg879y83QjdoLK4O08/Rww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CErnu4MU; arc=none smtp.client-ip=209.85.210.44
+	 In-Reply-To:To:Cc; b=AJJbciRhGmfosg88F/nBDE5qElWxdOcGPtBiuus3QbWA9XiNj+cpKoZe38CkCwK4XjkQ1bS/6gJlP0lyZ6C9jl56jwKTiOr1iQl+zaEa8K3nC/w8QCwuXVohLsZFe3mqMrZ4PuE0EmOW5WTVEKq/5ES8L8fCSU9l4J+R2gvi614=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=GFUJapYs; arc=none smtp.client-ip=209.85.160.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-7c6d1ebb0c4so3153561a34.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 18:21:42 -0800 (PST)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-3e84d56c4b8so3145228fac.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 18:21:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1764642101; x=1765246901; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1764642102; x=1765246902; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HPdLzV9759rLu3YraDadPRqj18u/8wh/PsCbPPDkTWQ=;
-        b=CErnu4MU+YapaJXiM59I0qDVIVcb0+Dm0p8MrqQzLVY13vIfN5bBVdYrWFV4+/IxlN
-         HmicypVrcEQdQYKnj2dEcGj0Xw17TBghv9qDx8d0oIGLk35bBy/+jRzQBz+wflTOKYbm
-         cSSA9L+qkMvB4XplShpQIbqKH/7hI3efsIjUZTvapw4BR1S6q63U/1IgupJzgdeRVS82
-         b2Y9jPs+9n0IMdxZO21ANwOIoghykfJbtURmu3DZ3clMmhO9vZ0yB6kR1LKqUWA8E1r8
-         2IuzqZzr2F0i7K5GMyIJY7ktRFUimZZV2YY+WqFg5E+w1crOD5siCJxYF38rjOuIsT7/
-         ePwA==
+        bh=gdlFSLl65q0J0SJZwlNdAcYu1FN/ZLabKc7F0Xt+QhY=;
+        b=GFUJapYsEa+Dof7WyP+glp12m0fA7gjqgbhvVMcwmrq25lODF8YdQxPDmOr2LnVS7l
+         UbLuYpDXI+/KjjBHwQjoMujw0xoqcYR1fFzDQLSQoCxpeL9byJzVNLM1EeYVU/Hn60FI
+         TDqdIzRV9zAs1mp1/qUi0bimU6IOuUBWBdnQGQ9QEi2K8QqEWuNmew+Xeg5UiAYz9aRh
+         E5JxGMH3qThDHsoUywGn4H4eNpL75SviVWDgdsL9U/cYSLtIjFs1Fwv+SRpXro97xfUj
+         cERJx5Ct+mrkBjZeLaKTX/1gCahvyFuKUSvGtI1VrJbrxiX0CcNwsf6HZ3LhhZwSnzUz
+         RsYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764642101; x=1765246901;
+        d=1e100.net; s=20230601; t=1764642102; x=1765246902;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=HPdLzV9759rLu3YraDadPRqj18u/8wh/PsCbPPDkTWQ=;
-        b=s/OSAkiZtGsULS9Pdu4Vii7aWq0/l7By0gmz+L1aD228M+jWkw9A6cLE7E5zNLXPxq
-         ECIgJZnRtajj/S/ZtDSUkxgBPmaViNKyHqysi29HnsqvcxSpyRjkTuaQv+v6W0i7lcmo
-         aRYm/gDv9ivryx/qQVX2JuANYiwuoeDaUJR3KAaDhYAlxmgdmlspI5PRoqTyQ4oRTR96
-         tyZfou5rVqyx2RcLq5CvBooL8FfXCI2BOGsvHetuZHe3Yoy8Iy5xNAByclaebDK89YeK
-         fgY5UPkTzBr5iquuEA7jWO5l/xv9MpfvfCBmfy5n2dUy9ZLGWzhPKejwFDLs5wztDwcT
-         kUwA==
-X-Forwarded-Encrypted: i=1; AJvYcCUyci3K+NOmVK6vyjis5HSBaLmkaWPX1HRWYvz1Lw2jOXIyVQ/6XcRz+1SdFIUXG2wwxCaTwasNAq08@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZ4bdjcDPn60Ru3fLlt3aCi5nrXttAYD4lD6+SNdvNQMO7c+1V
-	qFldRTtzGGLR/k9SFbUtBWsVqg2xRNbg3ElTCSkLeQdaVrtNVM7bDKiKCreDWn7zYrQ=
-X-Gm-Gg: ASbGncvMDwtWDd55wc8lJLSKQOpD6C/pFNBkbVrFjH+rT8MrOyDg9gRpJL693avmwVL
-	9aLvp2GeWK+6CdTi8etXaPBQvboY3JX/WSgsbcksfMNj/jHCgXI1+5rk/VAnmKy/0j9vwbrlBla
-	izh5d56N4mcweuLuA/8WW+P5DCZI/ZCEq/cbmauQA/7oIML9aZd9/PYZIoVG27S1YrjmK16XG/4
-	UnoZZyA/AtgkfvZ0YrMvkJ6qEfp0WuKBtMYAuv/TVyKTh37B44rRZI4jCJqjA0eBDnZT6I2rkEE
-	CFmTmVS3/R106gsgnnNDGVWGYg90gCyNIsO1bNrkH9bSgq07VJ6r3riAl1e42YTtjCqsaTe+G24
-	CG1alNxmig+uPPnKW4d7bwGKbWgfxPRxyC6lMtBNF4sh2QS+m7V7+9GAjQTQXhkUtlz62JpWwLm
-	JTBoSsAZ7beQH31w==
-X-Google-Smtp-Source: AGHT+IGr+eBFnlP4kwuK4x0vUmgIf8E/yZkWXnYDJkbVi4e40IJYit9GKy8xgz4FMlcYzfcdgxlfBQ==
-X-Received: by 2002:a05:6830:4107:b0:7c7:6558:277a with SMTP id 46e09a7af769-7c798bff0d0mr19572559a34.15.1764642101497;
-        Mon, 01 Dec 2025 18:21:41 -0800 (PST)
+        bh=gdlFSLl65q0J0SJZwlNdAcYu1FN/ZLabKc7F0Xt+QhY=;
+        b=sjIOaZ2wcqzMm05Gl1ZWk7ueJWAKzOL/n2er8so1DWA5cQDWLxIIe1vkA0sRwSoGtt
+         8Al75GzjlM1oZ6Zgc8vlcadRVVGRkCzV7G6GGky7IAJ1Cu5JXOSGdsA7k2qDcYpb2CSB
+         4YWt4/YOCrxicRsBohbluWBZ/clHDbglPF7RVVHQ4gN0+V1D5Q7Keq2/oYo3NonCw0AR
+         yzHmtZYf9uxG50XsikMb0DUdvMYeuQJ0XsK97k+7Yw6R4Ye/BDLoxtrCBjlMLp3EM19V
+         v5l2bBmHZ9/SU9vezLsjldeZeDuhFElHoOrKyvgxA7ux/cH45SA2jjNrWH9Fcz5MJxAE
+         /aDA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwMA8aTMglgchwULnG7kn2n8NLtRiE6AnQZadQTNqR4Xs1zW9IEiW7bIpkAO0rrk8EPrxfT/vHggur@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4y32hE5T+GAfg78mWpRq4rpj4iyY4YFncYxZBDgejH2eUm9Kc
+	zCBsPofejrCI4s83pa2R1BC3SS3DRhMefCxqMeGp92CzYNBLIJHGENWl5sCxK4SoXx8=
+X-Gm-Gg: ASbGncsYSm93rcKd1IXIiIEdeyDr2NHs7De/qDbV6jSaRhX2zXKoBROT1KstBMBsXmr
+	tTPfdxeP3JPxZnN0CGwYPw8PhHUTEkVHIUvXcvhhkMi/co2TRaCxFglMJPIP1y8L2/5gvBbEsNH
+	GheWhXTDkZoqXSdoYbHQ00Bc7hHyFW+uZLWPwRRu9zqrJSkBxR9dFZV+58Kxt/fzTXblKqpaA04
+	9scl5FMOdEnIn8R68iDxmipbToQbgK2EaKGakHpimB+TRxCwKNSAJBL3PyGg/svCEgI7HuSHhd3
+	ed3sojer6IaWp17kgO83zECG9wsrvg0QqokN/offgzHjcn7USqSewhFITgNYeR+B96K69lkG+tk
+	RVseL0uoCmY2IV/py4epvSpXtaDSvJ7t/W0eoQUXhEJSmZtsNOHj2cLxqpzx8JwJLbMu39zaKNd
+	XSFynMw+wIpy/QAw==
+X-Google-Smtp-Source: AGHT+IF7TTC48aLa33waAV02KTt4GApUcfsHVKhRQ54uaTYRvn/RKSFBSUELTWzMFpt21aEZyeVT0Q==
+X-Received: by 2002:a05:6870:860e:b0:3e8:5ff4:a620 with SMTP id 586e51a60fabf-3ed1fd947fdmr14104301fac.35.1764642102490;
+        Mon, 01 Dec 2025 18:21:42 -0800 (PST)
 Received: from [127.0.1.1] ([2600:8803:e7e4:500:b67b:16c:f7ae:4908])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3f0dca0475esm6651747fac.1.2025.12.01.18.21.39
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3f0dca0475esm6651747fac.1.2025.12.01.18.21.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Dec 2025 18:21:41 -0800 (PST)
+        Mon, 01 Dec 2025 18:21:42 -0800 (PST)
 From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 01 Dec 2025 20:20:40 -0600
-Subject: [PATCH v3 2/7] spi: Support controllers with multiple data lanes
+Date: Mon, 01 Dec 2025 20:20:41 -0600
+Subject: [PATCH v3 3/7] spi: add multi_lane_mode field to struct
+ spi_transfer
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251201-spi-add-multi-bus-support-v3-2-34e05791de83@baylibre.com>
+Message-Id: <20251201-spi-add-multi-bus-support-v3-3-34e05791de83@baylibre.com>
 References: <20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com>
 In-Reply-To: <20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com>
 To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -99,161 +100,122 @@ Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5834; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=SOLtPT6owwghcaZyK3hgcBY1YxMGX+Pp1GA+cecJhgE=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpLk0K7SeSEzsAvi3/ksvzqCAOBju2aRlYBWzMD
- AFTRNaCrLeJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaS5NCgAKCRDCzCAB/wGP
- wHdnCACNzRw4+s1mT/i0sKQH6IJm/x705D4bHbUAsrRvZX83ZykQRM5AWbEyc5njqcAE6HeqtNZ
- jIZ27lqT6EdiMtM54dPFC1GCJAPEN1MU9eCUBmLY/QuxT9Gk33usJIpP2Yx1BGheOHjXmStXQCR
- MuJa+us643qgj2hp2b+fj+HRefB6ajEWa+ynFid8IqRDin3qVbuJ1+EScu08hoXRpvNkg6Ofkmu
- WrrB8IeZlxmR560r1vCgYt4Bye/W+nIZkAyCiWudBCHv1XM5OeAVMu5MOv5ZlWwuiZPHIDp+p5O
- SRvUlQRQOdYgPygRbgnJuFCyr7tWKZSmSkRr6T31H5b4ahgg
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3947; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=TGjCIVF9DnX01qsx2dX8gm1MS1+Bio1XhGl3ovLH9lQ=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpLk0QTT6Cd3sYnwNT/jQy9UMMBCEsZs/trlMzx
+ +/5sY1BoaqJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaS5NEAAKCRDCzCAB/wGP
+ wH2XB/9dfEv+3wyMjoOraMkNrZG74p/xppo0+/IyWs/u8oz5MOrRsigT9I8TYYdMrmimz6WSSZg
+ Jc/Uhl1x6GOJeedi4nteemS5KQ5uOF0VZy+fcvq+iSoKmfXMOShqDiJSdSq+DTPfLz0XBaoudmk
+ wWkP9e/rgMKe15yfaA2CoN64mJlvRiSMsHYiqn5Su6FJarLBBy5J+RM3l1TMrjbHy0xlVnDAkWR
+ HXgkfg7qOGVU4QWWr7bzYPMmu5eUhgTRPzwLurmbx38fSWUAApLKpm44ZRkSSiE6q3YUo38KQ/r
+ ICR7o7TnNKp8aaz4ZyOMAP4PG0jjn+FWutqh0HtUEkKkBlzZ
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Add support for SPI controllers with multiple physical SPI data lanes.
-(A data lane in this context means lines connected to a serializer, so a
-controller with two data lanes would have two serializers in a single
-controller).
+Add a new multi_lane_mode field to struct spi_transfer to allow
+peripherals that support multiple SPI lanes to be used with a single
+SPI controller.
 
-This is common in the type of controller that can be used with parallel
-flash memories, but can be used for general purpose SPI as well.
+This requires both the peripheral and the controller to have multiple
+serializers connected to separate data lanes. It could also be used with
+a single controller and multiple peripherals that are functioning as a
+single logical device (similar to parallel memories).
 
-To indicate support, a controller just needs to set ctlr->num_data_lanes
-to something greater than 1. Peripherals indicate which lane they are
-connected to via device tree (ACPI support can be added if needed).
+The possible values for this field have the following semantics:
+
+- SPI_MULTI_BUS_MODE_SINGLE: Only use the first lane. This means that it
+    it is operating just like a conventional SPI lane. It is the default
+    value so that existing drivers do not need to be modified.
+
+    Example:
+        tx_buf[0] = 0x88;
+
+        struct spi_transfer xfer = {
+            .tx_buf = tx_buf,
+            .len = 1,
+        };
+
+        spi_sync_transfer(spi, &xfer, 1);
+
+        controller    > data bits >     peripheral
+        ----------   ----------------   ----------
+            SDO 0    0-0-0-1-0-0-0-1    SDI 0
+
+- SPI_MULTI_BUS_MODE_MIRROR: Send a single data word over all of the
+    lanes at the same time. This only makes sense for writes and not
+    for reads.
+
+    Example:
+        tx_buf[0] = 0x88;
+
+        struct spi_transfer xfer = {
+            .tx_buf = tx_buf,
+            .len = 1,
+            .multi_lane_mode = SPI_MULTI_BUS_MODE_MIRROR,
+        };
+
+        spi_sync_transfer(spi, &xfer, 1);
+
+        controller    > data bits >     peripheral
+        ----------   ----------------   ----------
+            SDO 0    0-0-0-1-0-0-0-1    SDI 0
+            SDO 1    0-0-0-1-0-0-0-1    SDI 1
+
+- SPI_MULTI_BUS_MODE_STRIPE: Send or receive two different data words at
+    the same time, one on each lane.
+
+    Example:
+        struct spi_transfer xfer = {
+            .rx_buf = rx_buf,
+            .len = 2, /* must be multiple of number of lanes */
+            .multi_lane_mode = SPI_MULTI_BUS_MODE_STRIPE,
+        };
+
+        spi_sync_transfer(spi, &xfer, 1);
+
+        controller    < data bits <     peripheral
+        ----------   ----------------   ----------
+            SDI 0    0-0-0-1-0-0-0-1    SDO 0
+            SDI 1    1-0-0-0-1-0-0-0    SDO 1
+
+        After the transfer, rx_buf[0] == 0x11 (word from SDO 0) and
+        rx_buf[1] == 0x88 (word from SDO 1). If the transfer was longer,
+        the data would continue in an alternating fashion.
 
 Acked-by: Nuno Sá <nuno.sa@analog.com>
 Acked-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
-
 v3 changes:
 * Renamed "buses" to "lanes" to reflect devicetree property name change.
-
-This patch has been seen in a different series [1] by Sean before:
-
-[1]: https://lore.kernel.org/linux-spi/20250616220054.3968946-4-sean.anderson@linux.dev/
-
-Changes:
-* Use u8 array instead of bitfield so that the order of the mapping is
-  preserved. (Now looks very much like chip select mapping.)
-* Added doc strings for added fields.
-* Tweaked the comments.
 ---
- drivers/spi/spi.c       | 28 +++++++++++++++++++++++++++-
- include/linux/spi/spi.h | 17 +++++++++++++++++
- 2 files changed, 44 insertions(+), 1 deletion(-)
+ include/linux/spi/spi.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index e25df9990f82de37c5ee20b703abcefc6f80c082..6b0fcbb26f424fe9972276b183117bdac2ee8ad4 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -2354,7 +2354,7 @@ static void of_spi_parse_dt_cs_delay(struct device_node *nc,
- static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
- 			   struct device_node *nc)
- {
--	u32 value, cs[SPI_DEVICE_CS_CNT_MAX];
-+	u32 value, lanes[SPI_DEVICE_DATA_LANE_CNT_MAX], cs[SPI_DEVICE_CS_CNT_MAX];
- 	int rc, idx;
- 
- 	/* Mode (clock phase/polarity/etc.) */
-@@ -2446,6 +2446,31 @@ static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
- 	for (idx = 0; idx < rc; idx++)
- 		spi_set_chipselect(spi, idx, cs[idx]);
- 
-+	rc = of_property_read_variable_u32_array(nc, "data-lanes", lanes, 1,
-+						 ARRAY_SIZE(lanes));
-+	if (rc < 0 && rc != -EINVAL) {
-+		dev_err(&ctlr->dev, "%pOF has invalid 'data-lanes' property (%d)\n",
-+			nc, rc);
-+		return rc;
-+	}
-+
-+	if (rc == -EINVAL) {
-+		/* Default when property is omitted. */
-+		spi->num_data_lanes = 1;
-+	} else {
-+		for (idx = 0; idx < rc; idx++) {
-+			if (lanes[idx] >= ctlr->num_data_lanes) {
-+				dev_err(&ctlr->dev,
-+					"%pOF has out of range 'data-lanes' property (%d/%d)\n",
-+					nc, lanes[idx], ctlr->num_data_lanes);
-+				return -EINVAL;
-+			}
-+			spi->data_lanes[idx] = lanes[idx];
-+		}
-+
-+		spi->num_data_lanes = rc;
-+	}
-+
- 	/*
- 	 * By default spi->chip_select[0] will hold the physical CS number,
- 	 * so set bit 0 in spi->cs_index_mask.
-@@ -3066,6 +3091,7 @@ struct spi_controller *__spi_alloc_controller(struct device *dev,
- 	mutex_init(&ctlr->add_lock);
- 	ctlr->bus_num = -1;
- 	ctlr->num_chipselect = 1;
-+	ctlr->num_data_lanes = 1;
- 	ctlr->target = target;
- 	if (IS_ENABLED(CONFIG_SPI_SLAVE) && target)
- 		ctlr->dev.class = &spi_target_class;
 diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-index cb2c2df3108999a73b67ef4a7b0d2cb07adfc669..607f1eac96364a73f95876ec27a9f86f14fa6112 100644
+index 607f1eac96364a73f95876ec27a9f86f14fa6112..5fad82989853d69cc4bb3e6775e323e2ba8f1144 100644
 --- a/include/linux/spi/spi.h
 +++ b/include/linux/spi/spi.h
-@@ -23,6 +23,9 @@
- /* Max no. of CS supported per spi device */
- #define SPI_DEVICE_CS_CNT_MAX 4
- 
-+/* Max no. of data lanes supported per spi device */
-+#define SPI_DEVICE_DATA_LANE_CNT_MAX 8
-+
- struct dma_chan;
- struct software_node;
- struct ptp_system_timestamp;
-@@ -171,6 +174,9 @@ extern void spi_transfer_cs_change_delay_exec(struct spi_message *msg,
-  * @chip_select: Array of physical chipselect, spi->chipselect[i] gives
-  *	the corresponding physical CS for logical CS i.
-  * @num_chipselect: Number of physical chipselects used.
-+ * @data_lanes: Array of physical data lanes. This is only used with specialized
-+ * controllers that support multiple data lanes.
-+ * @num_data_lanes: Number of physical data lanes used.
-  * @cs_index_mask: Bit mask of the active chipselect(s) in the chipselect array
-  * @cs_gpiod: Array of GPIO descriptors of the corresponding chipselect lines
-  *	(optional, NULL when not using a GPIO line)
-@@ -231,6 +237,8 @@ struct spi_device {
- 
- 	u8			chip_select[SPI_DEVICE_CS_CNT_MAX];
- 	u8			num_chipselect;
-+	u8			data_lanes[SPI_DEVICE_DATA_LANE_CNT_MAX];
-+	u8			num_data_lanes;
- 
- 	/*
- 	 * Bit mask of the chipselect(s) that the driver need to use from
-@@ -401,6 +409,7 @@ extern struct spi_device *spi_new_ancillary_device(struct spi_device *spi, u8 ch
-  *	SPI targets, and are numbered from zero to num_chipselects.
-  *	each target has a chipselect signal, but it's common that not
-  *	every chipselect is connected to a target.
-+ * @num_data_lanes: Number of data lanes supported by this controller. Default is 1.
-  * @dma_alignment: SPI controller constraint on DMA buffers alignment.
-  * @mode_bits: flags understood by this controller driver
-  * @buswidth_override_bits: flags to override for this controller driver
-@@ -576,6 +585,14 @@ struct spi_controller {
- 	 */
- 	u16			num_chipselect;
- 
-+	/*
-+	 * Some specialized SPI controllers can have more than one physical
-+	 * data lane interface per controller (each having it's own serializer).
-+	 * This specifies the number of data lanes in that case. Other
-+	 * controllers do not need to set this (defaults to 1).
-+	 */
-+	u16			num_data_lanes;
-+
- 	/* Some SPI controllers pose alignment requirements on DMAable
- 	 * buffers; let protocol drivers know about these requirements.
- 	 */
+@@ -976,6 +976,8 @@ struct spi_res {
+  *      (SPI_NBITS_SINGLE) is used.
+  * @rx_nbits: number of bits used for reading. If 0 the default
+  *      (SPI_NBITS_SINGLE) is used.
++ * @multi_lane_mode: How to serialize data on multiple lanes. One of the
++ *      SPI_MULTI_LANE_MODE_* values.
+  * @len: size of rx and tx buffers (in bytes)
+  * @speed_hz: Select a speed other than the device default for this
+  *      transfer. If 0 the default (from @spi_device) is used.
+@@ -1112,6 +1114,10 @@ struct spi_transfer {
+ 	unsigned	cs_change:1;
+ 	unsigned	tx_nbits:4;
+ 	unsigned	rx_nbits:4;
++	unsigned	multi_lane_mode: 2;
++#define SPI_MULTI_LANE_MODE_SINGLE	0 /* only use single lane */
++#define SPI_MULTI_LANE_MODE_STRIPE	1 /* one data word per lane */
++#define SPI_MULTI_LANE_MODE_MIRROR	2 /* same word sent on all lanes */
+ 	unsigned	timestamped:1;
+ 	bool		dtr_mode;
+ #define	SPI_NBITS_SINGLE	0x01 /* 1-bit transfer */
 
 -- 
 2.43.0
