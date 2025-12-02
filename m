@@ -1,102 +1,78 @@
-Return-Path: <devicetree+bounces-243567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAEE0C9A05B
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 05:41:57 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02391C9A0AC
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 05:58:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C50834E01B2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 04:41:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E97F74E110B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 04:58:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BEAC29C33D;
-	Tue,  2 Dec 2025 04:41:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="mqrt0InK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D6E82F7AA8;
+	Tue,  2 Dec 2025 04:57:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7512C223328
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 04:41:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22AB52F744F;
+	Tue,  2 Dec 2025 04:57:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764650514; cv=none; b=qktIH7HUGHNpRLw7OFJVPMrmlwEoCYPyHimPvLy6o6ejxS8gd7ao9nX4tkFHRGDuuUOaYsMbxTDlEM1mrzXyVumkz7tdCC4l5vC6etoymQtdeUCR2BWVOQ6X+d5pMtpXAFAUiM0renck3X4UybXOxrRbFioPWtj4cuZjn65PQ/U=
+	t=1764651475; cv=none; b=NsZHV0ARffvpW8FfxNFi8CqJvd63pECkp3g/9MopDks4ZxTCrYzJ88WgCc8yQefOnpEQqr2Fazas2FNm4uBdZBqjNbJ0EjVY7P0EmDtetTc9IgC2JQkFwTGer0Q3rDQmq0CjU7nH9hw6c7Nqhl3lJDSr7LXYm76bzbvdFpIDzJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764650514; c=relaxed/simple;
-	bh=xZv+kdthMHC35YBNM5GYL4gmGfKPEygC5TP1M1hv35c=;
-	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
-	 In-Reply-To:References; b=LZtlvLsgNLQQWljS7DQRSWTfbAE2PHvWuuflEdPpanYooG25h1nZtBvbTggdfFvTIZHCFoRcGfn+VxUEFK9c56tEB65iRY8/tYESMNGKFaKiMvf8f6BnGCkHcWjT9ABHkoiGIPyyLVho/xQRIZ6ZkiiQB/cz6zTXAtOA62zW0vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=mqrt0InK; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+	s=arc-20240116; t=1764651475; c=relaxed/simple;
+	bh=t+t+rWudqkTOpsqQn3QFTOePW2pWLYYSrCRrmeO7E+s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nq+SIORfzy+7pd8jDGmvEEX4OyrQFbIiG21ztIW7XvUxXKDZUAnl1jWN8MEi1drS0oAafnownWjINZWW5OLUTmb8NXlBGBCDes52TJk5IIgtYRd43HvPhj+Y66PiB4rQt2gQyM44+I+zXkJf4APd2UQLSqj87Sbj0YabOB+O9tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5B24uxmF007827;
+	Tue, 2 Dec 2025 13:57:00 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: brgl@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        dsimic@manjaro.org, didi.debian@cknow.org, wens@kernel.org,
+        nicolas.frattaroli@collabora.com, detlev.casanova@collabora.com,
+        stephen@radxa.com, sebastian.reichel@collabora.com,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH 0/4] Add Belling EEPROMs found in Radxa boards
+Date: Tue,  2 Dec 2025 04:56:51 +0000
+Message-ID: <20251202045655.154543-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1764650500;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=T1mFU9OCRrIY5hDgOI6aUY6esQiEhROY1AIYyG7Ggbc=;
-	b=mqrt0InKHjr1Hnux7w8yWmk2jA62/VKjWxzGQo2x1oHQTULzs/joG0r9L9jJlK2FcLqg2h
-	tgzoN9AS6XMwqtw6HX8coWtopVO/W+FSbRZYZj6rPTDpuwkFuhQrI8JaSN3oodBLXRdzPv
-	ZGMTxMU7I+3MupBHejUhA48eBecWIc91hJwHGSmjDIymClwENGaMj9ksOuFc03iQhhjIi3
-	0ordnSQo1mnFoz2lmPIK4aXAX6CVOaC6L0mzNJdTuBHNju63FKGOsPs58w9kJJkrWLfagr
-	KUs3fuD0rsMGzX9rT80FFsllnpIy27dPTDngVy8ogBRK2MIwX1yKA0Qy0b+aHQ==
-Date: Tue, 02 Dec 2025 04:41:38 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Paul Sajna" <sajattack@postmarketos.org>
-Message-ID: <803c48742755394d6eabc34ac73a42b36615cc01@postmarketos.org>
-TLS-Required: No
-Subject: Re: [PATCH v4 12/12] arm64: dts: qcom: sdm845-lg-common: remove
- framebuffer reserved-mem
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "David Heidelberg" <david@ixit.cz>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
- <system64fumo@protonmail.com>, "Christopher Brown"
- <crispybrown@gmail.com>
-In-Reply-To: <adcac270-3668-4b17-b430-d67ef311dd7c@oss.qualcomm.com>
-References: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
- <20251125-judyln-dts-v4-12-a5a60500b267@postmarketos.org>
- <adcac270-3668-4b17-b430-d67ef311dd7c@oss.qualcomm.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
 
-December 1, 2025 at 12:41 PM, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm=
-.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%20%=
-3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote:
+This patch series adds Belling BL24C04A, BL24C16A, and BL24C16F EEPROM
+found in Radxa boards.
 
+FUKAUMI Naoki (4):
+  dt-bindings: eeprom: at24: Add compatible for Belling BL24C04A
+  dt-bindings: eeprom: at24: Add compatible for Belling BL24C16F
+  arm64: dts: rockchip: Add EEPROMs for Radxa ROCK 4 boards
+  arm64: dts: rockchip: Add EEPROMs for Radxa boards
 
->=20
->=20On 11/25/25 9:12 AM, Paul Sajna wrote:
->=20
->=20>=20
->=20> It causes this warning
-> >=20=20
->=20>  [ 0.000000] OF: reserved mem: OVERLAP DETECTED!
-> >  framebuffer@9d400000 mailto:framebuffer@9d400000=20
->=20>  (0x000000009d400000--0x000000009f800000) overlaps with
-> >  memory@9d400000 mailto:memory@9d400000  (0x000000009d400000--0x00000=
-0009f800000)
-> >=20=20
->=20>  Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
-> >  ---
-> >=20
->=20It's defined for both devices that include this dtsi.. perhaps you
-> could remove it from there
->=20
->=20Konrad
->
+ Documentation/devicetree/bindings/eeprom/at24.yaml |  2 ++
+ .../boot/dts/rockchip/rk3399-rock-4c-plus.dts      |  8 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3399-rock-4se.dts   | 12 ++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi |  8 ++++++++
+ .../arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi | 10 +++++++++-
+ arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts    |  8 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts    |  8 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts    | 14 ++++++++++++++
+ .../boot/dts/rockchip/rk3588-rock-5b-plus.dts      | 10 ++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts    | 10 ++++++++++
+ 10 files changed, 89 insertions(+), 1 deletion(-)
 
-I don't have a judyp to test with and prefer to limit scope.
+-- 
+2.43.0
+
 
