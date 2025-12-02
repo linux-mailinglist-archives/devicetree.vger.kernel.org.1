@@ -1,189 +1,114 @@
-Return-Path: <devicetree+bounces-243714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E11CC9B9A0
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 14:33:22 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC9BC9B9EB
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 14:36:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1CE9D4E10CF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 13:33:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 22FE63410C2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 13:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D315313526;
-	Tue,  2 Dec 2025 13:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A4273148B1;
+	Tue,  2 Dec 2025 13:36:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="VC9d/UAn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B1730FF39
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 13:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C05A52BE033;
+	Tue,  2 Dec 2025 13:36:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764682398; cv=none; b=BiXu4OGGsjHfYYUUjHLS2CFq6CQVC4WvnFBtPJPK5y0Isz+DAdQQRC5wmRys2wzySt7AZoy++ZuK3+mDQ5sHNPA5fyB9d3kS8IN+ABRXZLhvjkPyxpwP5hmtfu+/JB7z85otNn+o/8s+P7wadObllhSQEKDtvHliS1B2UV9xlOE=
+	t=1764682613; cv=none; b=AccLlu45GsfwuTamrii4Q96UA9DQ11d2VeO9OI6sVK+2H7DljiSA67QJ0g1job22hpE9u1oGEKxHmg5zF49xFz7vK++WMc7SKSluUNnsH0vJIhHRk4UK9GZMDU2SF0W7e5foP3y3ZYOpBBsq6yZvo4jyDC/4+goUbi6iaQs8mlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764682398; c=relaxed/simple;
-	bh=Hik9+zarGbIcSz4OSRFTsaTLuDpIYho2xAqwW24Pluk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PfNkuMiYGBGJrMLZ6LbFQ+TS1r+PG9Rx67amKjWQKOumMvQuLIxeEC3LF7Q8AgoSTcCqLUq9k6mgg0LzOMd1D3A9+ImT1y+jkeGKOoKDqco+6wxeYLOipOYqOqnzX1grzA2ccdZfMVXCSwbFMoaMcBDtJBDbxXz+REATR9t3s30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1vQQVD-0005Gc-Lb; Tue, 02 Dec 2025 14:33:11 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Tue, 02 Dec 2025 14:33:00 +0100
-Subject: [PATCH v7 3/3] arm64: dts: imx93: Add parallel display output
- nodes
+	s=arc-20240116; t=1764682613; c=relaxed/simple;
+	bh=fdhup/S/zrXpJWaUcDkcxNrD2Cwp5IAQxDToERCP1nI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GuzJ477PwwfLSfX3c6PR+2VSOvSHfST7oEn98jTsOei3ivmg+Xp8vSfq/a26RRhkLENPhFafALfaJ9Qc+ijdij0a3+s75+dOt8FFPyolkxSLQOEEJtd83yppQh79DoIo4M0FG6SUrCZskGwiDT+mD523uUzIBx79E6SrtAS0URI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=VC9d/UAn; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=1Wpx9IjkcuCXJrN+lvoQ0/PWGUe4eWqI7yjH11ZhMTc=; b=VC9d/UAnse+naHpZdifFVmTv3e
+	21BAnHhjw8HPGF19RKmyVaDfCX6uHMOxsibeLkKxh5KZZeEQwS0ZaR2Ua03HSCUyahL8vElefUN41
+	iBZxxnp/a8B+iPeb1ShSxBRSNEViUIygvNlf3anjA6FMYUa0PzxmLXuwq5Uhc3Ct54bE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vQQY7-00FhXN-UW; Tue, 02 Dec 2025 14:36:11 +0100
+Date: Tue, 2 Dec 2025 14:36:11 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Tao Ren <rentao.bupt@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"taoren@meta.com" <taoren@meta.com>
+Subject: Re: [PATCH net-next v4 4/4] net: ftgmac100: Add RGMII delay support
+ for AST2600
+Message-ID: <4f0e4aa0-166d-4a7f-b91e-42dbc6b832e5@lunn.ch>
+References: <68f10ee1-d4c8-4498-88b0-90c26d606466@lunn.ch>
+ <SEYPR06MB5134EBA2235B3D4BE39B19359DCCA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <3af52caa-88a7-4b88-bd92-fd47421cc81a@lunn.ch>
+ <SEYPR06MB51342977EC2246163D14BDC19DCDA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <041e23a2-67e6-4ebb-aee5-14400491f99c@lunn.ch>
+ <SEYPR06MB5134BC17E80DB66DD385024D9DD1A@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <1c2ace4e-f3bb-4efa-a621-53c3711f46cb@lunn.ch>
+ <aSbA8i5S36GeryXc@fedora>
+ <SEYPR06MB513424DDB2D32ADB9C30B5119DDFA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <SEYPR06MB5134A5D1603F39E6025629A19DD8A@SEYPR06MB5134.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251202-v6-18-topic-imx93-parallel-display-v7-3-2cce31d64608@pengutronix.de>
-References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
-In-Reply-To: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
- Liu Ying <victor.liu@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, kernel@pengutronix.de, 
- Marco Felsch <m.felsch@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SEYPR06MB5134A5D1603F39E6025629A19DD8A@SEYPR06MB5134.apcprd06.prod.outlook.com>
 
-Add required OF nodes to support the i.MX93 parallel output (DPI) path.
+> Hi Andrew,
+> 
+> I miss one condition is using fixed-link property.
+> In ftgmac100, there are RGMII, NC-SI and fixed-link property.
+> On RGMII, we have solution on dedicated PHY, but there is an issue on fixed-link
+> property.
+> 
+> Example on dedicated PHY.
+> The driver can pass the "rgmii-id" to tell PHY driver to enable the internal delay on
+> PHY side. Therefore, we can force to disable RGMII delay on MAC side.
+> But there is not any driver when using fixed-link property, which means
+> no body can tell the outside device, like switch or MAC-to-MAC, to enable the internal
+> delay on them. Also mean the phy-mode in fixed-link case is not used.
+> 
+> Therefore, could we ignore the RGMII delay on MAC side when the ftgmac100 driver gets
+> the fixed-link property? Just keep the original delay value?
 
-On the i.MX93 a single LCDIF is connected to three bridges: DPI, LVDS
-LDB and the MIPI-DSI whereas the i.MX91 support only the DPI bridge.
+MAC to MAC is one of the edge cases where phy-mode is not great. What
+is generally accepted it to use rx-internal-delay-ps and
+tx-internal-delay-ps with 2ns and a comment explaining it is a MAC to
+MAC link, with this MAC adding the delays.
 
-Map endpoint@0 as DPI bridge output since the i.MX93 TRM (Figure 485.
-MEDIAMIX block diagram) doesn't mention any port-number <-> bridge
-combination.
+I suggest you see how messy it is to implement this for 2600. If the
+code looks horrible, keep the bootloader delays. For 2700 you have a
+clean slate, you can implement all this correctly from the start.
 
-Set the MEDIA-AXI and MEDIA-APB clocks to the overdrive (OD) values
-since the i.MX93 and i.MX91 use the overdrive (OD) clk settings per
-default.
-
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/imx91_93_common.dtsi | 57 ++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx93.dtsi           | 12 +++++
- 2 files changed, 69 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-index 52da571f26c4e8a2703e4476b5541fa7aca52f10..6dc01a76c68425bb65576712bfd98950d662bd38 100644
---- a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-@@ -1122,8 +1122,65 @@ media_blk_ctrl: system-controller@4ac10000 {
- 				 <&clk IMX93_CLK_MIPI_DSI_GATE>;
- 			clock-names = "apb", "axi", "nic", "disp", "cam",
- 				      "pxp", "lcdif", "isi", "csi", "dsi";
-+			assigned-clocks = <&clk IMX93_CLK_MEDIA_AXI>,
-+					  <&clk IMX93_CLK_MEDIA_APB>,
-+					  <&clk IMX93_CLK_MEDIA_DISP_PIX>;
-+			assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1>,
-+						 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
-+						 <&clk IMX93_CLK_VIDEO_PLL>;
-+			assigned-clock-rates = <400000000>, <133333333>;
- 			#power-domain-cells = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 			status = "disabled";
-+
-+			dpi_bridge: bridge@60 {
-+				compatible = "nxp,imx93-pdfc";
-+				reg = <0x60 0x4>;
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						dpi_from_lcdif: endpoint {
-+							remote-endpoint = <&lcdif_to_dpi>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						dpi_to_panel: endpoint {
-+						};
-+					};
-+				};
-+			};
-+		};
-+
-+		lcdif: display-controller@4ae30000 {
-+			compatible = "fsl,imx93-lcdif";
-+			reg = <0x4ae30000 0x23c>;
-+			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX93_CLK_MEDIA_DISP_PIX>,
-+				 <&clk IMX93_CLK_LCDIF_GATE>,
-+				 <&clk IMX93_CLK_MEDIA_AXI>;
-+			clock-names = "pix", "axi", "disp_axi";
-+			power-domains = <&media_blk_ctrl IMX93_MEDIABLK_PD_LCDIF>;
-+			status = "disabled";
-+
-+			port {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				lcdif_to_dpi: endpoint@0 {
-+					reg = <0>;
-+					remote-endpoint = <&dpi_from_lcdif>;
-+				};
-+			};
- 		};
- 
- 		usbotg1: usb@4c100000 {
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 7b27012dfcb564650882dc8c40e836e797b2fda1..5436b48b30e89eb1f939b398ce1bf105abe7e34b 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -150,6 +150,18 @@ l3_cache: l3-cache {
- 	};
- };
- 
-+&lcdif {
-+	port {
-+		lcdif_to_ldb: endpoint@1 {
-+			reg = <1>;
-+		};
-+
-+		lcdif_to_dsi: endpoint@2 {
-+			reg = <2>;
-+		};
-+	};
-+};
-+
- &src {
- 	mlmix: power-domain@44461800 {
- 		compatible = "fsl,imx93-src-slice";
-
--- 
-2.47.3
-
+	Andrew
 
